@@ -47,6 +47,9 @@ runtime入力はtop-levelとnested requirements／profileの余剰identity key�
 
 Full packageとLite packageは同じarchive coreを使用する。path順、mtime epoch、uid／gid 0、numeric owner、
 volatile pax field除去を共通化し、同一inputの独立2 buildでtarball、manifest、checksum bytesを一致させる。
+Lite packageはconsumer専用entrypointをNode 24向けsingle bundleへprebuildし、`dist/helix.js`のpath／digestを
+manifestへ束縛する。package.jsonは同artifactを`bin.helix`へ固定し、fresh install後の`helix --version`が
+TypeScript source、tsx、esbuildへ依存せず起動することをpackage sliceの受入境界とする。
 1 pathまたは1 byteの変更はartifact setまたはtarball digestを変える。
 
 ## 非対象

@@ -1,7 +1,10 @@
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { buildSync } from "esbuild";
 import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
+import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 import {
   type DistributionArtifactProjectionFailure,
   loadDistributionCapabilityArtifactCatalog,
@@ -17,10 +20,57 @@ import {
   loadDistributionProfileCatalog,
 } from "./distribution-profile";
 
-const LITE_ENTRYPOINTS = [
-  "src/setup/distribution-consumer-command-composition.ts",
-  "src/setup/distribution-consumer-node-adapter.ts",
-] as const;
+const LITE_ENTRYPOINTS = ["src/setup/distribution-consumer-cli.ts"] as const;
+const LITE_NODE_ARTIFACT_PATH = "dist/helix.js";
+
+function digest(bytes: Buffer | string): string {
+  return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
+}
+
+function buildLiteNodeArtifact(repoRoot: string, version: string): Buffer | null {
+  try {
+    const result = buildSync({
+      absWorkingDir: repoRoot,
+      entryPoints: ["src/setup/distribution-consumer-cli.ts"],
+      bundle: true,
+      platform: "node",
+      format: "esm",
+      target: "node24",
+      write: false,
+      define: {
+        __HELIX_LITE_VERSION__: JSON.stringify(version),
+        __HELIX_LITE_EXECUTABLE__: "true",
+      },
+      legalComments: "none",
+    });
+    return result.outputFiles.length === 1 ? Buffer.from(result.outputFiles[0].contents) : null;
+  } catch {
+    return null;
+  }
+}
+
+function litePackageJson(repoRoot: string, version: string): string | null {
+  try {
+    const source = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
+      engines?: unknown;
+      license?: unknown;
+    };
+    return `${JSON.stringify(
+      {
+        name: "helix-harness-lite",
+        version,
+        type: "module",
+        bin: { helix: `./${LITE_NODE_ARTIFACT_PATH}` },
+        engines: source.engines,
+        license: source.license,
+      },
+      null,
+      2,
+    )}\n`;
+  } catch {
+    return null;
+  }
+}
 
 export type LiteDistributionPackageFailure =
   | "profile_required"
@@ -120,6 +170,12 @@ export function buildLiteDistributionPackage(input: {
   if (!requirements) return { ok: false, failures: ["requirements_identity_invalid"] };
   const version = packageVersion(input.repo_root);
   if (!version) return { ok: false, failures: ["package_identity_invalid"] };
+  const nodeArtifact = buildLiteNodeArtifact(input.repo_root, version);
+  const packageJson = litePackageJson(input.repo_root, version);
+  if (!nodeArtifact || !packageJson) {
+    return { ok: false, failures: ["package_identity_invalid"] };
+  }
+  const finalArtifactPaths = [...projection.artifact_paths, LITE_NODE_ARTIFACT_PATH].sort();
   return createDeterministicDistributionPackage({
     source_root: input.repo_root,
     out_dir: input.out_dir,
@@ -135,7 +191,15 @@ export function buildLiteDistributionPackage(input: {
       },
       package_version: version,
       distribution_repository: profile.distribution_repository,
-      artifact_set_digest: projection.artifact_set_digest,
+      artifact_set_digest: sha256Digest(canonicalJson(finalArtifactPaths)),
+      prebuilt_node_artifact: {
+        path: LITE_NODE_ARTIFACT_PATH,
+        digest: digest(nodeArtifact),
+      },
     },
+    generated_artifacts: {
+      [LITE_NODE_ARTIFACT_PATH]: { bytes: nodeArtifact, mode: 0o755 },
+    },
+    transform_artifact: (artifactPath) => (artifactPath === "package.json" ? packageJson : null),
   });
 }

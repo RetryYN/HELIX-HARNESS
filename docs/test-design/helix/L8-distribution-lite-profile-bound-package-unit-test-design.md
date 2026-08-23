@@ -19,10 +19,12 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-001 | profile admission | profile未指定／unknownではFull packageへfallbackせずwrite 0 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-002 | projection／closure gate | いずれかがredならarchive作成前にtyped failure | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-003 | manifest identity | HEAD、requirements、profile、package、artifact set、DevOS identityをexact束縛 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-011 | prebuilt identity | prebuilt path／digestと生成bytesの不一致を拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-004 | deterministic build | 独立2 buildのtarball／manifest／checksum bytes digestが一致 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-005 | mutation | 1 path追加と1 byte変更でそれぞれdigest不一致 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-006 | shared builder | Full commandとLite commandが同じarchive coreを呼ぶ | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-007 | current profile | current `consumer_core_v1`の独立2 buildを同一identityへ束縛 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-012 | prebuilt install | fresh package install後の`node_modules/.bin/helix --version`をbuild-sourceなしで起動 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-008 | G3 freeze | L6/L8 pairとcatalog digestを同一transactionへ束縛 | `tests/l3-g3-freeze-packet-v2.test.ts` |
 | U-DISTPKG-009 | physical source identity | symlink sourceでrepo外bytesを混入させずarchive write 0 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009b | symlink source identity | source root内を指すsymlinkもartifact sourceとして拒否 | `tests/distribution-lite-profile-package.test.ts` |

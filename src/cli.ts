@@ -15989,6 +15989,7 @@ distribution
               artifact_set_digest: `sha256:${createHash("sha256")
                 .update(JSON.stringify(exportPlan.artifactPaths))
                 .digest("hex")}`,
+              prebuilt_node_artifact: null,
             },
             resolve_source_path: (artifactPath) =>
               cleanDistributionSourcePath(artifactPath, sourcePaths),

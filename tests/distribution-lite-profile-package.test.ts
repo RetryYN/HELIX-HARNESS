@@ -25,7 +25,7 @@ import { ensureCliBundle } from "./tools/cli-bundle";
 
 // PLAN-L7-656-distribution-lite-profile-bound-package
 // U-DISTPKG-001 U-DISTPKG-002 U-DISTPKG-003 U-DISTPKG-004
-// U-DISTPKG-005 U-DISTPKG-006 U-DISTPKG-007
+// U-DISTPKG-005 U-DISTPKG-006 U-DISTPKG-007 U-DISTPKG-011 U-DISTPKG-012
 
 const roots: string[] = [];
 afterEach(() => {
@@ -51,6 +51,7 @@ const identity: DistributionPackageIdentity = {
   package_version: "0.1.0",
   distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
   artifact_set_digest: sha256Digest(canonicalJson(["src/entry.ts"])),
+  prebuilt_node_artifact: null,
 };
 
 describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
@@ -93,6 +94,29 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(result.manifest).toMatchObject(identity);
     expect(result.manifest.tarball_digest).toMatch(/^sha256:[0-9a-f]{64}$/);
     expect(result.manifest.checksum).toBe("lite.tar.gz.sha256");
+  });
+
+  it("U-DISTPKG-011: prebuilt Node artifactのbytesとidentity digest不一致を拒否する", () => {
+    const sourceRoot = fixture();
+    const finalPaths = ["dist/helix.js", "src/entry.ts"];
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-prebuilt-mismatch"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity: {
+        ...identity,
+        artifact_set_digest: sha256Digest(canonicalJson(finalPaths)),
+        prebuilt_node_artifact: {
+          path: "dist/helix.js",
+          digest: `sha256:${"0".repeat(64)}`,
+        },
+      },
+      generated_artifacts: {
+        "dist/helix.js": { bytes: "#!/usr/bin/env node\n", mode: 0o755 },
+      },
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["prebuilt_node_artifact_invalid"] });
   });
 
   it("U-DISTPKG-004: 独立2 buildのtarball／manifest／checksum digestが一致する", () => {
@@ -168,7 +192,43 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       profile: { id: "consumer_core_v1", version: "1.0.0" },
       package_version: "0.1.0",
       distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
+      prebuilt_node_artifact: {
+        path: "dist/helix.js",
+        digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
+      },
     });
+  });
+
+  it("U-DISTPKG-012: tarballをfresh package installしてprebuilt helix --versionを起動する", () => {
+    const outDir = mkdtempSync(join(tmpdir(), "helix-lite-install-artifact-"));
+    const consumer = mkdtempSync(join(tmpdir(), "helix-lite-install-consumer-"));
+    roots.push(outDir, consumer);
+    writeFileSync(
+      join(consumer, "package.json"),
+      `${JSON.stringify({ name: "lite-consumer", private: true })}\n`,
+      "utf8",
+    );
+    const built = buildLiteDistributionPackage({
+      repo_root: process.cwd(),
+      out_dir: outDir,
+      profile_id: "consumer_core_v1",
+    });
+    expect(built.ok).toBe(true);
+    if (!built.ok || !("paths" in built)) return;
+    const install = spawnSync("npm", ["install", "--ignore-scripts", built.paths.tarball], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 60_000,
+    });
+    expect(install.status, install.stderr).toBe(0);
+    const command = process.platform === "win32" ? "helix.cmd" : "helix";
+    const version = spawnSync(join(consumer, "node_modules", ".bin", command), ["--version"], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 10_000,
+    });
+    expect(version.status, version.stderr).toBe(0);
+    expect(version.stdout.trim()).toBe("0.1.0");
   });
 
   it("U-DISTPKG-009: source symlinkからrepo外bytesをarchiveへ混入させずwrite 0で拒否する", () => {

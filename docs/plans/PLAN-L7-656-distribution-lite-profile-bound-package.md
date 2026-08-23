@@ -63,6 +63,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009i, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009j, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-010, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-011, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-012, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009k, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009l, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009m, test_path: tests/distribution-lite-profile-package.test.ts }
@@ -77,6 +79,8 @@ generates:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-package-builder.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-lite-package.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/distribution-consumer-cli.ts, artifact_type: source_module }
+  - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: tests/distribution-lite-profile-package.test.ts, artifact_type: test_code }
@@ -107,4 +111,5 @@ review_evidence: []
 
 ## 非対象
 
-consumer実行、Windows smoke、tag、publish、promotion、remote applyは#948／#659へ残す。
+setup／status／doctor／minimal workflowのclean consumer実行、Windows smoke、tag、publish、promotion、remote applyは
+#948／#659へ残す。本sliceではpackage installとprebuilt `helix --version`の起動だけを検証する。

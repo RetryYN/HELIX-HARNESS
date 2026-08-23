@@ -37,6 +37,7 @@ export interface DistributionPackageIdentity {
   package_version: string;
   distribution_repository: "RetryYN/HELIX-HARNESS-DevOS";
   artifact_set_digest: string;
+  prebuilt_node_artifact: { path: string; digest: string } | null;
 }
 
 export interface DistributionPackageManifest extends DistributionPackageIdentity {
@@ -57,6 +58,7 @@ export type DistributionPackageFailure =
   | "artifact_source_unsafe"
   | "artifact_output_unsafe"
   | "artifact_identity_invalid"
+  | "prebuilt_node_artifact_invalid"
   | "manifest_extension_reserved"
   | "tarball_digest_alias_reserved"
   | "tar_failed";
@@ -169,6 +171,7 @@ function identityHasExactKeys(identity: DistributionPackageIdentity): boolean {
     "package_version",
     "distribution_repository",
     "artifact_set_digest",
+    "prebuilt_node_artifact",
   ]);
   const requirementsKeys = new Set(["version", "root_digest"]);
   const profileKeys = new Set(["id", "version", "digest"]);
@@ -182,11 +185,18 @@ function identityHasExactKeys(identity: DistributionPackageIdentity): boolean {
     (typeof identity.profile === "object" &&
       Object.keys(identity.profile).length === profileKeys.size &&
       Object.keys(identity.profile).every((key) => profileKeys.has(key)));
+  const nodeArtifactKeys = new Set(["path", "digest"]);
+  const nodeArtifactExact =
+    identity.prebuilt_node_artifact === null ||
+    (typeof identity.prebuilt_node_artifact === "object" &&
+      Object.keys(identity.prebuilt_node_artifact).length === nodeArtifactKeys.size &&
+      Object.keys(identity.prebuilt_node_artifact).every((key) => nodeArtifactKeys.has(key)));
   return (
     Object.keys(identity).length === expected.size &&
     Object.keys(identity).every((key) => expected.has(key)) &&
     requirementsExact &&
-    profileExact
+    profileExact &&
+    nodeArtifactExact
   );
 }
 
@@ -200,9 +210,17 @@ export function createDeterministicDistributionPackage(input: {
   transform_artifact?: (artifactPath: string, content: Buffer) => Buffer | string | null;
   manifest_extensions?: Record<string, unknown>;
   tarball_digest_aliases?: readonly string[];
+  generated_artifacts?: Readonly<Record<string, { bytes: Buffer | string; mode?: number }>>;
 }): DistributionPackageResult {
-  const admitted = normalizedArtifactPaths(input.artifact_paths);
+  const generatedEntries = Object.entries(input.generated_artifacts ?? {});
+  const admitted = normalizedArtifactPaths([
+    ...input.artifact_paths,
+    ...generatedEntries.map(([path]) => path),
+  ]);
   const failures = new Set(admitted.failures);
+  if (generatedEntries.some(([path]) => input.artifact_paths.includes(path))) {
+    failures.add("artifact_path_duplicate");
+  }
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(input.artifact_stem)) {
     failures.add("artifact_stem_invalid");
   }
@@ -216,6 +234,7 @@ export function createDeterministicDistributionPackage(input: {
     "package_version",
     "distribution_repository",
     "artifact_set_digest",
+    "prebuilt_node_artifact",
     "artifact_paths",
     "tarball",
     "tarball_digest",
@@ -241,6 +260,18 @@ export function createDeterministicDistributionPackage(input: {
   if (computedSetDigest !== input.identity.artifact_set_digest) {
     failures.add("artifact_set_digest_mismatch");
   }
+  const prebuilt = input.identity.prebuilt_node_artifact;
+  if (prebuilt !== null) {
+    const generated = input.generated_artifacts?.[prebuilt.path];
+    if (
+      generated === undefined ||
+      !admitted.paths.includes(prebuilt.path) ||
+      digest(generated.bytes) !== prebuilt.digest ||
+      !/^sha256:[0-9a-f]{64}$/.test(prebuilt.digest)
+    ) {
+      failures.add("prebuilt_node_artifact_invalid");
+    }
+  }
   let physicalRoot: string | null = null;
   try {
     if (
@@ -255,6 +286,7 @@ export function createDeterministicDistributionPackage(input: {
   }
   const physicalSources = new Map<string, string>();
   for (const artifactPath of admitted.paths) {
+    if (input.generated_artifacts?.[artifactPath] !== undefined) continue;
     if (!physicalRoot) continue;
     const sourcePath = input.resolve_source_path?.(artifactPath) ?? artifactPath;
     const logicalSource = join(physicalRoot, ...sourcePath.split("/"));
@@ -299,6 +331,12 @@ export function createDeterministicDistributionPackage(input: {
     package_version: input.identity.package_version,
     distribution_repository: input.identity.distribution_repository,
     artifact_set_digest: input.identity.artifact_set_digest,
+    prebuilt_node_artifact: input.identity.prebuilt_node_artifact
+      ? {
+          path: input.identity.prebuilt_node_artifact.path,
+          digest: input.identity.prebuilt_node_artifact.digest,
+        }
+      : null,
     ...safeExtensions,
     artifact_paths: admitted.paths,
     tarball: basename(tarball),
@@ -323,6 +361,13 @@ export function createDeterministicDistributionPackage(input: {
   try {
     mkdirSync(input.out_dir, { recursive: true });
     for (const artifactPath of admitted.paths) {
+      const generatedArtifact = input.generated_artifacts?.[artifactPath];
+      if (generatedArtifact !== undefined) {
+        const to = join(stage, ...artifactPath.split("/"));
+        mkdirSync(dirname(to), { recursive: true });
+        writeFileSync(to, generatedArtifact.bytes, { mode: generatedArtifact.mode ?? 0o644 });
+        continue;
+      }
       const from = physicalSources.get(artifactPath);
       if (!from) throw new Error(`admitted artifact source missing: ${artifactPath}`);
       const to = join(stage, ...artifactPath.split("/"));
