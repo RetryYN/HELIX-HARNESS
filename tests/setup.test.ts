@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-006
 import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -112,7 +113,7 @@ const baseTemplates: TemplateSet = {
     "- Status: `helix status`",
     "- Completion packet: `helix completion decision-packet --json`",
     "- Completion review bundle: `helix completion review-bundle --json` (exact digest と semantic digest を確認)",
-    "- Version-up dry-run: `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+    "- Version-up dry-run: `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`",
     "- Doctor: `helix doctor --profile consumer`",
     "- Rename packet: `helix rename plan --json`",
     "- Continuation: `helix status`",
@@ -127,7 +128,7 @@ const baseTemplates: TemplateSet = {
     "- `helix status`",
     "- `helix completion decision-packet --json`",
     "- `helix completion review-bundle --json` は exact digest と semantic digest を確認する",
-    "- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+    "- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`",
     "- `helix doctor --profile consumer`",
     "- `helix rename plan --json`",
     "<!-- HELIX:managed:end -->",
@@ -140,7 +141,7 @@ const baseTemplates: TemplateSet = {
     "- `helix status`",
     "- `helix completion decision-packet --json`",
     "- `helix completion review-bundle --json` は exact digest と semantic digest を確認する",
-    "- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json`",
+    "- `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json`",
     "- `helix doctor --profile consumer`",
     "- `helix rename plan --json`",
     "<!-- HELIX:managed:end -->",
@@ -156,7 +157,7 @@ const baseTemplates: TemplateSet = {
     '    { "label": "HELIX: doctor", "type": "shell", "command": "npm run helix -- doctor --profile consumer", "problemMatcher": [] },',
     '    { "label": "HELIX: completion decision-packet", "type": "shell", "command": "npm run helix -- completion decision-packet --json", "problemMatcher": [] },',
     '    { "label": "HELIX: completion review-bundle", "type": "shell", "command": "npm run helix -- completion review-bundle --json", "problemMatcher": [] },',
-    '    { "label": "HELIX: version-up dry-run", "type": "shell", "command": "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json", "problemMatcher": [] },',
+    '    { "label": "HELIX: version-up dry-run", "type": "shell", "command": "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json", "problemMatcher": [] },',
     '    { "label": "HELIX: rename plan", "type": "shell", "command": "npm run helix -- rename plan --json", "problemMatcher": [] },',
     '    { "label": "HELIX: setup dry-run", "type": "shell", "command": "npm run helix -- setup project --dry-run", "problemMatcher": [] },',
     '    { "label": "HELIX: team run dry-run", "type": "shell", "command": "npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json", "problemMatcher": [] }',
@@ -216,7 +217,7 @@ const baseTemplates: TemplateSet = {
     "      - name: HELIX completion review bundle",
     "        run: npm run helix -- completion review-bundle --json",
     "      - name: HELIX version-up dry-run",
-    "        run: npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+    "        run: npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
     "      - name: HELIX consumer doctor",
     "        run: npm run helix -- doctor --profile consumer --json",
     "      - name: HELIX rename plan",
@@ -281,6 +282,16 @@ const baseTemplates: TemplateSet = {
 };
 
 describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
+  it("U-DISTID-006: clean distribution defaultはDevOS receiptを返す", () => {
+    const plan = buildCleanDistributionPlan({ paths: [] });
+    expect(plan.cleanRepo).toBe("RetryYN/HELIX-HARNESS-DevOS");
+    expect(plan.distributionIdentity).toMatchObject({
+      ok: true,
+      source: "current",
+      repository: "RetryYN/HELIX-HARNESS-DevOS",
+    });
+  });
+
   it("U-SETUP-001: detectProjectScale は never-throws / org 検出 / gh 失敗で unknown+null", () => {
     // org + collaborators + protection
     const org = mockDeps({ gh: ghTeam });
@@ -404,12 +415,12 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect(templates["adapter/AGENTS.md"]).toContain("helix completion decision-packet --json");
       expect(templates["adapter/AGENTS.md"]).toContain("helix completion review-bundle --json");
       expect(templates["adapter/AGENTS.md"]).toContain(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       );
       expect(templates["adapter/CLAUDE.md"]).toContain("helix completion decision-packet --json");
       expect(templates["adapter/CLAUDE.md"]).toContain("helix completion review-bundle --json");
       expect(templates["adapter/CLAUDE.md"]).toContain(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       );
       expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
         "helix completion decision-packet --json",
@@ -418,7 +429,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "helix completion review-bundle --json",
       );
       expect(templates["adapter/.claude/CLAUDE.md"]).toContain(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       );
       expect(templates["adapter/.codex/config.toml"]).toContain("hooks = true");
       expect(templates["adapter/.codex/hooks.json"]).toContain("helix hook agent-guard");
@@ -438,7 +449,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "helix completion review-bundle --json",
       );
       expect(templates["adapter/.claude/agents/helix-tl.md"]).toContain(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       );
       expect(templates["adapter/.claude/commands/build.md"]).toContain("Command: build");
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
@@ -455,10 +466,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "helix completion review-bundle --json",
       );
       expect(templates["adapter/.claude/commands/helix-status.md"]).toContain(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       );
       expect(templates["adapter/.claude/commands/helix-test.md"]).toContain(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       );
       expect(templates["project/.helix/teams/default-hybrid.yaml"]).toContain(
         "name: default-hybrid",
@@ -816,7 +827,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     ];
     const plan = buildCleanDistributionPlan({
       sourceTag: "v0.1.0",
-      cleanRepo: "RetryYN/HELIX-HARNESS-OS",
+      cleanRepo: "RetryYN/HELIX-HARNESS-DevOS",
       paths,
     });
 
@@ -842,7 +853,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     expect(sync).toMatchObject({
       ok: true,
       mode: "non-destructive-sync-plan",
-      cleanRepo: "RetryYN/HELIX-HARNESS-OS",
+      cleanRepo: "RetryYN/HELIX-HARNESS-DevOS",
       publishRequiresPoApproval: true,
       destructiveRemoteMutation: false,
     });
@@ -897,7 +908,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
 
     expect(ready.ok).toBe(true);
-    expect(ready.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-OS#v0.1.0");
+    expect(ready.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-DevOS#v0.1.0");
     expect(ready.contracts.tagPin).not.toContain("helix-agent-harness-clean");
     expect(ready.mode).toBe("codex-only");
     expect(ready.workspace.monorepo).toBe(true);
@@ -953,7 +964,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "npm run helix -- setup project --dry-run --json",
         "npm run helix -- completion decision-packet --json",
         "npm run helix -- completion review-bundle --json",
-        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
         "npm run helix -- doctor --profile consumer --json",
         "npm run helix -- rename plan --json",
       ]),
@@ -999,7 +1010,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "npm run helix -- status --json",
         "npm run helix -- completion decision-packet --json",
         "npm run helix -- completion review-bundle --json",
-        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
         "npm run helix -- doctor --profile consumer --json",
         "npm run helix -- rename plan --json",
         "npm run helix -- team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -1273,7 +1284,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           "helix setup project --dry-run --json",
           "helix completion decision-packet --json",
           "helix completion review-bundle --json",
-          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           "helix doctor --profile consumer",
           "helix rename plan --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -1413,7 +1424,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "helix status --json",
         "helix completion decision-packet --json",
         "helix completion review-bundle --json",
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
         "helix doctor --profile consumer",
         "helix rename plan --json",
         "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -1434,7 +1445,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "helix setup project --dry-run --json",
       "helix completion decision-packet --json",
       "helix completion review-bundle --json",
-      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       "helix doctor --profile consumer",
       "helix rename plan --json",
       "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -1445,7 +1456,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       "helix setup project --dry-run --json",
       "helix completion decision-packet --json",
       "helix completion review-bundle --json",
-      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       "helix rename plan --json",
     ]);
     expect(preview.postSetupWorkflow.manualVerificationCommands).toEqual([
@@ -1544,7 +1555,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       expect.objectContaining({
         phase: "version-up-dry-run",
         command:
-          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
         writePolicy: "no-write",
         availability: "dry-run-immediate",
         requiresMaterializedPaths: [],
@@ -2118,7 +2129,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         versionUpPacketCommand: "helix version-up activation-packet --json",
         cutoverPacketCommand: "helix rename plan --json",
         distributionReference: {
-          repo: "RetryYN/HELIX-HARNESS-OS",
+          repo: "RetryYN/HELIX-HARNESS-DevOS",
           mainHead: "unpublished",
           targetTag: "v0.1.4",
         },
@@ -2164,7 +2175,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
         "`helix setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
         "`helix completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
         "`helix completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束、exact digest、semantic digest を初回稼働証跡に保存する",
-        "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
+        "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
         "`helix doctor --profile consumer` を実行する",
         "`helix rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
         "`helix status --json` で DB-backed continuation または current PLAN route を確認して開始する",
@@ -3430,10 +3441,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
 
     expect(Object.keys(repoTemplates)).toHaveLength(49);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "dae9a74c3bffbda815ddfc5067dc849bcd280dfbf0f4cab32679b4ba30e4c7af",
+      "12242ad05432c45af81732207c12c73e3c4786864426f14f80c7171a4c41c6f5",
     );
     expect(manifest).toContain(
-      "c0f5aabef67273b2f52b5a834733b5a65ecef06977fcf8f85095844795dae9df  adapter/AGENTS.md",
+      "7bb741a0131f874bb3036f967c33067e080b081173183c474840f5ac9730e99b  adapter/AGENTS.md",
     );
     expect(manifest).toContain(
       "585b5163aa350e47547fa7778838204c1b261a4131597ccf8ac9c1578013ea0d  adapter/.claude/settings.json",

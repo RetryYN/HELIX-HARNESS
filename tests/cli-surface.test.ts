@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-007
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
@@ -145,7 +146,7 @@ function writeFakeGitLsRemote(
           : `  echo a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}`,
         "  exit /b 0",
         ")",
-        'echo %args% | findstr /C:"HELIX-HARNESS-OS.git" >nul',
+        'echo %args% | findstr /C:"HELIX-HARNESS-DevOS.git" >nul',
         "if not errorlevel 1 (",
         `  echo ${packHead} refs/heads/main`,
         "  exit /b 0",
@@ -169,9 +170,9 @@ function writeFakeGitLsRemote(
       "esac",
       'case "$*" in',
       latestTag === "unpublished"
-        ? '  *"HELIX-HARNESS-OS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-OS.git"*) ;;'
-        : `  *"HELIX-HARNESS-OS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-OS.git"*) echo 'a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}' ;;`,
-      '  *"HELIX-HARNESS-OS.git"*)',
+        ? '  *"HELIX-HARNESS-DevOS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-DevOS.git"*) ;;'
+        : `  *"HELIX-HARNESS-DevOS.git"*"--tags"*|*"--tags"*"HELIX-HARNESS-DevOS.git"*) echo 'a148fd304a455e21e631d4dab3c36d59725b1034 refs/tags/${latestTag}' ;;`,
+      '  *"HELIX-HARNESS-DevOS.git"*)',
       `    echo '${packHead} refs/heads/main'`,
       "    ;;",
       "  *)",
@@ -1040,7 +1041,7 @@ describe("L7 CLI surface closure", () => {
       "--tag",
       "v0.1.0",
       "--repo",
-      "RetryYN/HELIX-HARNESS-OS",
+      "RetryYN/HELIX-HARNESS-DevOS",
       "--json",
     ]);
     expect(releasePlan.status, releasePlan.stderr || releasePlan.stdout).toBe(0);
@@ -2373,7 +2374,7 @@ describe("L7 CLI surface closure", () => {
           "helix setup project --dry-run --json",
           "helix completion decision-packet --json",
           "helix completion review-bundle --json",
-          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           "helix doctor --profile consumer",
           "helix rename plan --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -2487,7 +2488,7 @@ describe("L7 CLI surface closure", () => {
       "helix setup project --dry-run --json",
       "helix completion decision-packet --json",
       "helix completion review-bundle --json",
-      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       "helix doctor --profile consumer",
       "helix rename plan --json",
       "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -2544,7 +2545,7 @@ describe("L7 CLI surface closure", () => {
         expect.objectContaining({
           phase: "version-up-dry-run",
           command:
-            "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+            "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           writePolicy: "no-write",
           source: "Semantic Versioning 2.0.0 and HELIX version-up dry-run contract",
           sourceUrl: "https://semver.org/",
@@ -2591,7 +2592,7 @@ describe("L7 CLI surface closure", () => {
     expect(text.stdout).toContain("verification-command: helix completion decision-packet --json");
     expect(text.stdout).toContain("verification-command: helix completion review-bundle --json");
     expect(text.stdout).toContain(
-      "verification-command: helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "verification-command: helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
     );
     expect(text.stdout).toContain("verification-command: helix doctor --profile consumer");
     expect(text.stdout).toContain("verification-command: helix rename plan --json");
@@ -7385,7 +7386,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.stderr).toContain("explicit human-approved runbook");
   });
 
-  it("exposes clean distribution planning with preflight, rollback, and contract metadata", () => {
+  it("U-DISTID-007: exposes DevOS clean distribution planning with preflight, rollback, and contract metadata", () => {
     const binDir = mkdtempSync(join(tmpdir(), "helix-cli-dist-"));
     try {
       writeFakeCommand(binDir, "git", "2.0.0");
@@ -7416,7 +7417,7 @@ describe("L7 CLI surface closure", () => {
             completionClaimAllowed: false,
             completionReviewBundleCommand: "helix completion review-bundle --json",
             distributionReference: {
-              repo: "RetryYN/HELIX-HARNESS-OS",
+              repo: "RetryYN/HELIX-HARNESS-DevOS",
               mainHead: "unpublished",
               targetTag: "v0.1.4",
             },
@@ -7432,8 +7433,8 @@ describe("L7 CLI surface closure", () => {
         },
       });
       expect(payload.export.artifactPaths).toContain("LICENSE");
-      expect(payload.export.cleanRepo).toBe("RetryYN/HELIX-HARNESS-OS");
-      expect(payload.readiness.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-OS#v0.1.0");
+      expect(payload.export.cleanRepo).toBe("RetryYN/HELIX-HARNESS-DevOS");
+      expect(payload.readiness.contracts.tagPin).toBe("github:RetryYN/HELIX-HARNESS-DevOS#v0.1.0");
       expect(payload.readiness.contracts.tagPin).not.toContain("helix-agent-harness-clean");
       expect(payload.export.artifactPaths).not.toContain(
         "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
@@ -7509,7 +7510,7 @@ describe("L7 CLI surface closure", () => {
         "--tag",
         "v0.1.0",
         "--repo",
-        "RetryYN/HELIX-HARNESS-OS",
+        "RetryYN/HELIX-HARNESS-DevOS",
         "--json",
       ]);
       expect(releasePlan.status, releasePlan.stderr || releasePlan.stdout).toBe(0);

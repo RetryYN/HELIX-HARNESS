@@ -1,3 +1,4 @@
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-005
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -36,7 +37,7 @@ function depsFor(files: Record<string, string>, overrides: Partial<UpdateCheckDe
 
 function manifest(
   version = "0.1.0",
-  repository: unknown = { url: "git+https://github.com/RetryYN/HELIX-HARNESS-OS.git" },
+  repository: unknown = { url: "git+https://github.com/RetryYN/HELIX-HARNESS-DevOS.git" },
 ): string {
   return JSON.stringify({ version, repository });
 }
@@ -73,11 +74,11 @@ describe("update-check advisory", () => {
       updateAvailable: true,
       source: "remote",
     });
-    expect(calls).toEqual(["https://github.com/RetryYN/HELIX-HARNESS-OS.git"]);
+    expect(calls).toEqual(["https://github.com/RetryYN/HELIX-HARNESS-DevOS.git"]);
     expect(JSON.parse(writes[join(harnessRoot, UPDATE_CHECK_CACHE_PATH)])).toMatchObject({
       checkedAtMs: 1_000_000,
       latestVersion: "v0.1.3",
-      remote: "https://github.com/RetryYN/HELIX-HARNESS-OS.git",
+      remote: "https://github.com/RetryYN/HELIX-HARNESS-DevOS.git",
     });
   });
 
@@ -143,6 +144,18 @@ describe("update-check advisory", () => {
     const fallback = depsFor({ [join("/repo", "package.json")]: manifest("0.1.0", null) });
     checkForUpdate(fallback.deps);
     expect(fallback.calls).toEqual([DEFAULT_UPDATE_REMOTE]);
+  });
+
+  it("U-DISTID-005: converts the legacy distribution remote to DevOS before network access", () => {
+    const legacy = depsFor({
+      [join("/repo", "package.json")]: manifest("0.1.0", {
+        url: "git+https://github.com/RetryYN/HELIX-HARNESS-OS.git",
+      }),
+    });
+
+    checkForUpdate(legacy.deps);
+
+    expect(legacy.calls).toEqual(["https://github.com/RetryYN/HELIX-HARNESS-DevOS.git"]);
   });
 
   it("renders status lines without turning advisory failure into a blocker", () => {
