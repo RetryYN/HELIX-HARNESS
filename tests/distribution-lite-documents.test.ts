@@ -14,6 +14,7 @@ import {
 } from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-658-lite-consumer-distribution-docs
+// PLAN-L7-660-lite-document-rule-oracles
 const roots: string[] = [];
 let cleanSourceFixture: string | null = null;
 
@@ -40,6 +41,42 @@ function cleanCurrentSourceRoot(): string {
   );
   if (remote.status !== 0) throw new Error(`clean document source remote failed: ${remote.stderr}`);
   return sourceRoot;
+}
+
+function mutableCurrentSourceRoot(label: string): string {
+  const fixture = mkdtempSync(join(tmpdir(), `helix-lite-docs-${label}-`));
+  roots.push(fixture);
+  const sourceRoot = join(fixture, "repo");
+  const clone = spawnSync("git", ["clone", "--shared", process.cwd(), sourceRoot], {
+    encoding: "utf8",
+  });
+  if (clone.status !== 0) throw new Error(`mutable document source clone failed: ${clone.stderr}`);
+  const remote = spawnSync(
+    "git",
+    ["remote", "set-url", "origin", "https://github.com/RetryYN/HELIX-HARNESS"],
+    { cwd: sourceRoot, encoding: "utf8" },
+  );
+  if (remote.status !== 0)
+    throw new Error(`mutable document source remote failed: ${remote.stderr}`);
+  return sourceRoot;
+}
+
+function commitFixture(sourceRoot: string, paths: string[], message: string): void {
+  for (const args of [
+    ["add", ...paths],
+    [
+      "-c",
+      "user.name=HELIX Test",
+      "-c",
+      "user.email=helix@example.invalid",
+      "commit",
+      "-m",
+      message,
+    ],
+  ]) {
+    const git = spawnSync("git", args, { cwd: sourceRoot, encoding: "utf8" });
+    expect(git.status, `${args.join(" ")}\n${git.stderr}`).toBe(0);
+  }
 }
 
 const digest = (bytes: Buffer | string): string =>
@@ -169,8 +206,9 @@ describe("PLAN-L7-658: Lite consumer distribution documents", () => {
       "node /path/to/HELIX-HARNESS/dist/helix.js",
       "helix team run",
     ]) {
+      const readme = `${complete["README.md"]?.toString("utf8")}\n${mutation}\n`;
       expect(
-        validateLiteDistributionDocumentBytes({ ...complete, "README.md": mutation }),
+        validateLiteDistributionDocumentBytes({ ...complete, "README.md": readme }),
         mutation,
       ).toContain("consumer_readme_invalid");
     }
@@ -184,5 +222,54 @@ describe("PLAN-L7-658: Lite consumer distribution documents", () => {
         mutation,
       ).toContain("document_sensitive_content");
     }
+  });
+
+  it("U-DISTDOC-007: 各consumer文書の空bytesを規則単位で拒否する", () => {
+    const complete = Object.fromEntries(
+      Object.entries(LITE_DOCUMENT_SOURCES).map(([path, source]) => [path, readFileSync(source)]),
+    );
+    for (const path of Object.keys(LITE_DOCUMENT_SOURCES)) {
+      expect(validateLiteDistributionDocumentBytes({ ...complete, [path]: " \n" }), path).toContain(
+        "document_empty",
+      );
+    }
+  });
+
+  it("U-DISTDOC-008: READMEの配布先identity token欠落を拒否する", () => {
+    const complete = Object.fromEntries(
+      Object.entries(LITE_DOCUMENT_SOURCES).map(([path, source]) => [path, readFileSync(source)]),
+    );
+    const readme = complete["README.md"]?.toString("utf8") ?? "";
+    expect(readme).toContain("RetryYN/HELIX-HARNESS-DevOS");
+    expect(
+      validateLiteDistributionDocumentBytes({
+        ...complete,
+        "README.md": readme.replaceAll("RetryYN/HELIX-HARNESS-DevOS", "distribution-target"),
+      }),
+    ).toContain("consumer_readme_invalid");
+  });
+
+  it("U-DISTDOC-009: builderは文書検証redをartifact生成前に拒否する", () => {
+    const sourceRoot = mutableCurrentSourceRoot("builder-invalid");
+    const readmePath = join(sourceRoot, "README-LITE.md");
+    writeFileSync(
+      readmePath,
+      readFileSync(readmePath, "utf8").replaceAll(
+        "RetryYN/HELIX-HARNESS-DevOS",
+        "distribution-target",
+      ),
+    );
+    commitFixture(sourceRoot, ["README-LITE.md"], "mutate consumer document identity");
+    expect(resolveTrackedSourceIdentity(sourceRoot)).toMatchObject({ ok: true });
+
+    const out = mkdtempSync(join(tmpdir(), "helix-lite-docs-builder-invalid-"));
+    roots.push(out);
+    expect(
+      buildLiteDistributionPackage({
+        repo_root: sourceRoot,
+        out_dir: out,
+        profile_id: "consumer_core_v1",
+      }),
+    ).toEqual({ ok: false, failures: ["distribution_documents_invalid"] });
   });
 });
