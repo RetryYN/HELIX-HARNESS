@@ -62,11 +62,14 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014b, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-014c, test_path: tests/distribution-dependency-closure.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, oracle_id: U-DISTCLOSE-015, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-653-distribution-lite-dependency-closure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md, artifact_type: design_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-dependency-closure-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: config }
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
