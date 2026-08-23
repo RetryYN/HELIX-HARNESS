@@ -22,7 +22,7 @@ responsibility_owner: distribution-lite-consumer-canary
 source HEAD、requirements、profile、artifact、Linux／Windows receiptを一つのmanifest chainへ束縛し、
 差替え、別HEAD、別profile、consumer所有bytesの破壊を成功へ丸めない。
 
-## artifact admission
+## artifact受理
 
 - #947 builder receiptを外部期待値とし、tarball、manifest、checksumのbytes digestを展開前に再計算する。
 - manifestのsource HEAD、requirements version／digest、profile ID／version／digest、package version、
@@ -31,7 +31,7 @@ source HEAD、requirements、profile、artifact、Linux／Windows receiptを一�
 - archive entryはportable relative pathだけを受理し、manifestのexact setとの過不足を拒否する。
 - checksum drift、artifact 1 byte差替え、別HEAD、別profileはextract／install／process起動前にfail-closeする。
 
-## clean consumer transaction
+## clean consumer処理
 
 Linuxはfresh temporary repositoryでchecksum検証、extract、package install、setup dry-run／apply／idempotency、status、
 consumer doctor、Codex／Claude minimal workflow dry-run、generated CI、completion decision packet／review bundleを順に実測する。
@@ -40,7 +40,7 @@ setupはconsumer所有fileの既存bytesを上書きせず、HELIX管理blockだ
 WindowsはLinuxで検証した同一tarball digestとprebuilt Node artifactを使用し、PowerShell entrypoint、setup dry-run、
 status、consumer doctor、minimal workflow dry-runを検証する。Windows専用rebuildで代替しない。
 
-## lifecycle rehearsal
+## lifecycle予行
 
 upgrade、rollback、uninstallはengine pinだけを変更対象とし、consumer成果とcompletion evidenceのbefore／after digestを
 一致させる。直前pin以外へのrollback、identity drift、部分更新を拒否する。

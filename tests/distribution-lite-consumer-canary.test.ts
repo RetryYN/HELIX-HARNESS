@@ -15,6 +15,7 @@ import { admitLiteConsumerCanaryArtifact } from "../src/setup/distribution-lite-
 import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-657-distribution-lite-consumer-canary
+// U-DISTCAN-008: Windowsではnpm生成PowerShell shimを同一Node artifactへ接続する。
 
 const roots: string[] = [];
 afterEach(() => {
@@ -129,7 +130,7 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     });
   });
 
-  it("U-DISTCAN-006: fresh Linux processでinstallからcompletion evidenceまでgreen", () => {
+  it("U-DISTCAN-006: fresh processでLinux consumer E2Eを検証する", () => {
     const fixture = buildFixture();
     expect(admitLiteConsumerCanaryArtifact(fixture.input).ok).toBe(true);
     const consumer = mkdtempSync(join(tmpdir(), "helix-lite-canary-consumer-"));
@@ -145,22 +146,6 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       timeout: 60_000,
     });
     expect(install.status, install.stderr).toBe(0);
-    if (process.platform === "win32") {
-      const powershell = spawnSync(
-        "powershell.exe",
-        [
-          "-NoProfile",
-          "-ExecutionPolicy",
-          "Bypass",
-          "-File",
-          join(consumer, "node_modules", ".bin", "helix.ps1"),
-          "--version",
-        ],
-        { cwd: consumer, encoding: "utf8", timeout: 10_000 },
-      );
-      expect(powershell.status, powershell.stderr).toBe(0);
-      expect(powershell.stdout.trim()).toBe("0.1.0");
-    }
     const executable = join(
       consumer,
       "node_modules",
@@ -201,6 +186,37 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     );
     expect(generatedCiDoctor.status, generatedCiDoctor.stderr).toBe(0);
     expect(JSON.parse(generatedCiDoctor.stdout)).toMatchObject({ ok: true, failures: [] });
+  });
+
+  it("U-DISTCAN-008: 同一tarballのnpm PowerShell shimを起動する", () => {
+    if (process.platform !== "win32") return;
+    const fixture = buildFixture();
+    const consumer = mkdtempSync(join(tmpdir(), "helix-lite-windows-consumer-"));
+    roots.push(consumer);
+    writeFileSync(
+      join(consumer, "package.json"),
+      `${JSON.stringify({ name: "lite-windows-consumer", private: true })}\n`,
+    );
+    const install = spawnSync("npm", ["install", "--ignore-scripts", fixture.input.tarball], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 60_000,
+    });
+    expect(install.status, install.stderr).toBe(0);
+    const powershell = spawnSync(
+      "powershell.exe",
+      [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        join(consumer, "node_modules", ".bin", "helix.ps1"),
+        "--version",
+      ],
+      { cwd: consumer, encoding: "utf8", timeout: 10_000 },
+    );
+    expect(powershell.status, powershell.stderr).toBe(0);
+    expect(powershell.stdout.trim()).toBe("0.1.0");
   });
 
   it("U-DISTCAN-010: development state／PLAN／credential pathをartifactへ混入させない", () => {
