@@ -1,5 +1,6 @@
 import { spawnSync } from "node:child_process";
 import {
+  cpSync,
   existsSync,
   linkSync,
   mkdirSync,
@@ -562,17 +563,19 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     });
     const invalidRoot = fixture();
     mkdirSync(join(invalidRoot, "docs", "governance"), { recursive: true });
-    mkdirSync(join(invalidRoot, "requirements-ir"), { recursive: true });
+    cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });
     writeFileSync(
       join(invalidRoot, "docs", "governance", "helix-harness-requirements_v1.3.md"),
       "- **Version**: 1.3.13\n",
       "utf8",
     );
-    writeFileSync(
-      join(invalidRoot, "requirements-ir", "manifest.json"),
-      JSON.stringify({ root_digest: `sha256:${"0".repeat(64)}` }),
-      "utf8",
-    );
+    const requirementShardPath = join(invalidRoot, "requirements-ir", "requirements.json");
+    const requirementShard = JSON.parse(readFileSync(requirementShardPath, "utf8")) as Record<
+      string,
+      unknown
+    >;
+    requirementShard[Object.keys(requirementShard)[0]] = { mutated: true };
+    writeFileSync(requirementShardPath, JSON.stringify(requirementShard), "utf8");
     expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
   });
 

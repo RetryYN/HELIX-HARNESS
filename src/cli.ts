@@ -456,11 +456,6 @@ import {
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
 import { findReference } from "./search/index";
-import {
-  buildLiteDistributionPackage,
-  resolveLiteRequirementsIdentity,
-  resolveTrackedSourceIdentity,
-} from "./setup/distribution-lite-package";
 import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
   buildCleanDistributionPlan,
@@ -15896,7 +15891,8 @@ distribution
   .requiredOption("--profile <id>", "distribution profile ID")
   .option("--out <dir>", "output directory for local release artifacts", ".helix/release")
   .option("--json", "JSON output")
-  .action((opts: { profile: string; out?: string; json?: boolean }) => {
+  .action(async (opts: { profile: string; out?: string; json?: boolean }) => {
+    const { buildLiteDistributionPackage } = await import("./setup/distribution-lite-package");
     const repoRoot = process.cwd();
     const outDir = opts.out
       ? isAbsolute(opts.out)
@@ -15954,7 +15950,10 @@ distribution
   .option("--clean-repo <name>", "clean distribution repository", HELIX_DISTRIBUTION_REPOSITORY)
   .option("--out <dir>", "output directory for local release artifacts", ".helix/release")
   .option("--json", "JSON output")
-  .action((opts: { tag?: string; cleanRepo?: string; out?: string; json?: boolean }) => {
+  .action(async (opts: { tag?: string; cleanRepo?: string; out?: string; json?: boolean }) => {
+    const { resolveLiteRequirementsIdentity, resolveTrackedSourceIdentity } = await import(
+      "./setup/distribution-lite-package"
+    );
     const repoRoot = process.cwd();
     const exportPlan = buildCleanDistributionPlan({
       paths: collectDistributionCandidatePaths(repoRoot),

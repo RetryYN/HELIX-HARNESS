@@ -27,6 +27,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-006 | shared builder | Full commandとLite commandが同じarchive coreを呼ぶ | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-007 | current profile | current `consumer_core_v1`の独立2 buildを同一identityへ束縛 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-012 | prebuilt install | fresh package install後の`node_modules/.bin/helix --version`をbuild-sourceなしで起動 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-013 | compiler lazy load | package command追加後も非compiler CLI経路でTypeScript実体をloadしない | `tests/typescript-lazy.test.ts` |
 | U-DISTPKG-008 | G3 freeze | L6/L8 pairとcatalog digestを同一transactionへ束縛 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009 | physical source identity | symlink sourceでrepo外bytesを混入させずarchive write 0 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009b | symlink source identity | source root内を指すsymlinkもartifact sourceとして拒否 | `tests/distribution-lite-profile-package.test.ts` |

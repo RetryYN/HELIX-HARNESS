@@ -1,9 +1,8 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { isAbsolute, join, relative, resolve } from "node:path";
 import { buildSync } from "esbuild";
-import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
 import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 import {
   type DistributionArtifactProjectionFailure,
@@ -125,8 +124,104 @@ export function resolveLiteRequirementsIdentity(
       "utf8",
     );
     const version = requirements.match(/^- \*\*Version\*\*: ([0-9]+\.[0-9]+\.[0-9]+)$/m)?.[1];
-    const canonical = loadCanonicalRequirementIrFromShards(repoRoot);
-    return version ? { version, root_digest: canonical.root_digest } : null;
+    const manifest = JSON.parse(
+      readFileSync(join(repoRoot, "requirements-ir/manifest.json"), "utf8"),
+    ) as {
+      schema_version?: unknown;
+      authority?: unknown;
+      source_authority?: unknown;
+      partition?: unknown;
+      shards?: Array<{
+        kind?: unknown;
+        path?: unknown;
+        count?: unknown;
+        digest?: unknown;
+      }>;
+      baseline_root_digest?: unknown;
+      root_digest?: unknown;
+    };
+    const digestPattern = /^sha256:[0-9a-f]{64}$/;
+    const exactKinds = [
+      "requirements",
+      "system_contracts",
+      "acceptance_cases",
+      "system_tests",
+      "refinement_contracts",
+    ];
+    if (
+      !version ||
+      manifest.schema_version !== "helix-requirement-ir.v2" ||
+      manifest.authority !== "canonical" ||
+      manifest.source_authority !== "json_stable_id_shards" ||
+      manifest.partition !== "stable_id_keyed_shards" ||
+      !digestPattern.test(String(manifest.baseline_root_digest ?? "")) ||
+      !digestPattern.test(String(manifest.root_digest ?? "")) ||
+      !Array.isArray(manifest.shards) ||
+      manifest.shards.length !== exactKinds.length
+    ) {
+      return null;
+    }
+    const shardKinds = manifest.shards.map((entry) => entry.kind);
+    if (
+      exactKinds.some((kind) => shardKinds.filter((candidate) => candidate === kind).length !== 1)
+    ) {
+      return null;
+    }
+    const root = resolve(repoRoot);
+    const records = new Map<string, unknown[]>();
+    for (const kind of exactKinds) {
+      const entry = manifest.shards.find((candidate) => candidate.kind === kind);
+      if (
+        !entry ||
+        entry.path !== `requirements-ir/${kind}.json` ||
+        typeof entry.count !== "number" ||
+        !Number.isInteger(entry.count) ||
+        entry.count < 0 ||
+        !digestPattern.test(String(entry.digest ?? ""))
+      ) {
+        return null;
+      }
+      const target = resolve(root, entry.path);
+      const rel = relative(root, target);
+      if (isAbsolute(entry.path) || rel.startsWith("..") || isAbsolute(rel)) return null;
+      const keyed = JSON.parse(readFileSync(target, "utf8")) as unknown;
+      if (!keyed || typeof keyed !== "object" || Array.isArray(keyed)) return null;
+      const entries = Object.entries(keyed as Record<string, unknown>);
+      if (entries.length !== entry.count || sha256Digest(JSON.stringify(keyed)) !== entry.digest) {
+        return null;
+      }
+      records.set(
+        kind,
+        entries.map(([, record]) => record),
+      );
+    }
+    const baseline = {
+      schema_version: "helix-requirement-ir.v1",
+      authority: "canonical",
+      source_authority: "json_stable_id_shards",
+      requirements: records.get("requirements"),
+      system_contracts: records.get("system_contracts"),
+      acceptance_cases: records.get("acceptance_cases"),
+      system_tests: records.get("system_tests"),
+    };
+    const observedBaselineDigest = sha256Digest(canonicalJson(baseline));
+    if (observedBaselineDigest !== manifest.baseline_root_digest) return null;
+    const observedRootDigest = sha256Digest(
+      canonicalJson({
+        schema_version: manifest.schema_version,
+        authority: manifest.authority,
+        source_authority: manifest.source_authority,
+        baseline_root_digest: observedBaselineDigest,
+        requirements: baseline.requirements,
+        system_contracts: baseline.system_contracts,
+        acceptance_cases: baseline.acceptance_cases,
+        system_tests: baseline.system_tests,
+        refinement_contracts: records.get("refinement_contracts"),
+      }),
+    );
+    return observedRootDigest === manifest.root_digest
+      ? { version, root_digest: observedRootDigest }
+      : null;
   } catch {
     return null;
   }

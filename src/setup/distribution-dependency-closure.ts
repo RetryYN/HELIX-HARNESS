@@ -1,6 +1,7 @@
 import { existsSync, lstatSync, readFileSync, realpathSync } from "node:fs";
 import { extname, isAbsolute, join, posix, relative, sep, win32 } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
+import ts from "../shared/typescript-lazy";
 
 export interface DistributionDependencyEdge {
   importer: string;
@@ -24,7 +25,7 @@ function normalize(path: string): string {
   return posix.normalize(path.replaceAll("\\", "/")).replace(/^\.\//, "");
 }
 
-function sourceKind(path: string): ts.ScriptKind {
+function sourceKind(path: string): TS.ScriptKind {
   if (path.endsWith(".tsx")) return ts.ScriptKind.TSX;
   if (path.endsWith(".jsx")) return ts.ScriptKind.JSX;
   if (path.endsWith(".js") || path.endsWith(".mjs") || path.endsWith(".cjs")) {
@@ -42,11 +43,11 @@ function relativeSpecifiers(
 }> {
   const file = ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, sourceKind(path));
   const found: Array<{ specifier: string; kind: "static" | "dynamic" }> = [];
-  const add = (value: ts.Expression | undefined, kind: "static" | "dynamic") => {
+  const add = (value: TS.Expression | undefined, kind: "static" | "dynamic") => {
     if (!value || !ts.isStringLiteralLike(value) || !value.text.startsWith(".")) return;
     found.push({ specifier: value.text, kind });
   };
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       add(node.moduleSpecifier, "static");
     } else if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword) {

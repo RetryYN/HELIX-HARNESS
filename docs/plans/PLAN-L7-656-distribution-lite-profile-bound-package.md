@@ -72,6 +72,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009m, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009n, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009o, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-013, test_path: tests/typescript-lazy.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, artifact_type: design_doc }
@@ -81,11 +82,15 @@ generates:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-package-builder.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-lite-package.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-cli.ts, artifact_type: source_module }
   - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: tests/distribution-lite-profile-package.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/typescript-lazy.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:

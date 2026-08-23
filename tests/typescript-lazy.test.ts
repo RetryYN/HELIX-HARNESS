@@ -60,7 +60,7 @@ describe("typescript lazy loading (PLAN-RECOVERY-40)", () => {
     }
   });
 
-  it("U-TSLAZY-001: compiler を使わない CLI 経路は typescript を load しない", () => {
+  it("U-DISTPKG-013: compiler を使わない CLI 経路は typescript を load しない (PLAN-L7-656-distribution-lite-profile-bound-package)", () => {
     // 検査対象は **bundle の実起動 process そのもの**。別 process で単体 module を import して
     // 代用すると、cli.ts 側に直接 `import ts from "typescript"` が戻っても green のままになる。
     const bundle = ensureCliBundle(repoRoot);
@@ -140,6 +140,7 @@ describe("typescript lazy loading (PLAN-RECOVERY-40)", () => {
         "src/lint/plan-specific-vpair-binding.ts",
         "src/lint/source-edge-extractor.ts",
         "src/requirements/requirement-authority-gate.ts",
+        "src/setup/distribution-dependency-closure.ts",
       ].sort(),
     );
     expect(legacyImporters).toEqual([]);
