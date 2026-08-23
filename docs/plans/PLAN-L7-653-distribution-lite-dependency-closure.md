@@ -75,6 +75,8 @@ generates:
   - { artifact_path: tests/distribution-consumer-command-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-consumer-command-composition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-consumer-node-adapter.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/helix-objective-evidence-audit.md, artifact_type: audit_doc }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:

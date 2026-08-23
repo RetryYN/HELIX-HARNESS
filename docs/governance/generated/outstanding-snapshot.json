@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 24,
+  "decision_count": 25,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -23,6 +23,7 @@
     "PLAN-L7-447-qs4-doctor-context-inventory",
     "PLAN-L7-448-qs4-test-infra-inventory",
     "PLAN-L7-541-codex-seal-egress",
+    "PLAN-L7-653-distribution-lite-dependency-closure",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
