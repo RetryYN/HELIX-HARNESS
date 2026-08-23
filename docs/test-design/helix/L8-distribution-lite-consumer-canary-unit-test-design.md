@@ -28,6 +28,8 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-consumer-c
 | U-DISTCAN-007a | ownership conflict | 既存consumer CIと同bytes symlinkを上書き・admitせずfail-close | `tests/distribution-lite-consumer-services.test.ts` |
 | U-DISTCAN-008 | Windows same artifact | Linux receiptと同じtarball／Node digestでPowerShell setup／status／doctor／minimal workflow smokeがgreen | `tests/distribution-lite-consumer-canary.test.ts` |
 | U-DISTCAN-008a | Windows CI wiring | Linux jobが生成・検証・uploadしたexact artifactをrequired Windows jobがdownloadしてLite canaryを実行 | `tests/harness-check-workflow.test.ts` |
+| U-DISTCAN-008b | catalog freeze | canary L6／L8設計のcatalog登録とG3 freeze digest pinを同時に固定 | `tests/l3-g3-freeze-packet-v2.test.ts` |
+| U-DRG-012c | registry reality fence | requirement nodeを含むintakeでもscreen nodeの全件対応だけを比較しsilent dropを拒否 | `tests/design-registry-screen-intake.test.ts` |
 | U-DISTCAN-009 | lifecycle rehearsal | upgrade／rollback／uninstallでconsumer成果とevidence digestを保全 | `tests/distribution-lite-consumer-lifecycle.test.ts` |
 | U-DISTCAN-009a | direct rollback | 直前pin以外とsymlink pinを拒否 | `tests/distribution-lite-consumer-lifecycle.test.ts` |
 | U-DISTCAN-010 | exclusion | PLAN、memory、DB実データ、credential、absolute path、除外capabilityが存在・到達しない | `tests/distribution-lite-consumer-canary.test.ts` |
