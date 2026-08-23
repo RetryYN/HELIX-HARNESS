@@ -4,7 +4,7 @@ title: "PLAN-L7-656 (impl): Lite exact artifact setを共通deterministic builde
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -104,7 +104,27 @@ dependencies:
     - issue:947
   blocks:
     - issue:948
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex Luna / intra-runtime verifier"
+    review_kind: intra_runtime_subagent
+    reviewer_session_id: "01a02e80-4aac-75b2-b136-cf2247e5bcad"
+    reviewed_at: "2026-08-23T12:16:02Z"
+    tests_green_at: "2026-08-23T12:07:34Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex:gpt-5.6-luna
+    reviewed_head_sha: 0b6fb8fd93481365c2a60f5923dd1330d1d51cd3
+    scope: "PR #960 exact HEAD 0b6fb8fd93481365c2a60f5923dd1330d1d51cd3をLuna/xhighがread-onlyで敵対的検証した。source remote／HEAD／tracked・untracked差分／hidden index flags、Requirement IR、profile、closure、46件のconsumer-safe exact artifact path、physical source／output identity、manifest digest pinを照合し、APPROVE／blocker 0。sandboxにlocal dependency binaryが無いためテストを虚偽に再実行せず、親runtimeの44 targeted tests、typecheck、PLAN lint、digest check greenと静的・bounded probeを分離して判定した。"
+    green_commands:
+      - kind: smoke
+        command: "git diff --check origin/main...HEAD"
+        runner: bash
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-23T12:07:34Z"
+        evidence_path: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        result: "Luna verifier session内でexit 0、出力0 bytes。"
 ---
 
 # PLAN-L7-656: Lite profile-bound決定的package

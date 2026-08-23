@@ -2,7 +2,7 @@
 title: "HELIX L6 機能設計 — Lite profile-bound deterministic package"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-23
 updated: 2026-08-23
 owner: SE + TL
