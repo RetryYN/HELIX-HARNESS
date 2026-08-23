@@ -224,7 +224,11 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     });
   });
 
-  it("U-DISTCAN-006: fresh processでLinux consumer E2Eを検証する", () => {
+  it("U-DISTCAN-006: fresh processでLinux consumer E2Eを検証する", (ctx) => {
+    if (process.platform === "win32") {
+      ctx.skip("Linux E2EはWindows同一artifact oracle U-DISTCAN-008と分離する");
+      return;
+    }
     const fixture = buildFixture();
     expect(admitLiteConsumerCanaryArtifact(fixture.input).ok).toBe(true);
     const consumer = mkdtempSync(join(tmpdir(), "helix-lite-canary-consumer-"));
@@ -248,12 +252,7 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     expect(readFileSync(join(consumer, "dist", "consumer-build.txt"), "utf8")).toBe(
       "consumer-build-ok\n",
     );
-    const executable = join(
-      consumer,
-      "node_modules",
-      ".bin",
-      process.platform === "win32" ? "helix.cmd" : "helix",
-    );
+    const executable = join(consumer, "node_modules", ".bin", "helix");
     const commands = [
       ["setup", "project", "--dry-run", "--json"],
       ["setup", "project", "--json"],
@@ -277,11 +276,11 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     expect(JSON.parse(secondSetup.stdout)).toMatchObject({ ok: true, idempotent: true });
     const generatedCiInstall = spawnNpm(["ci", "--ignore-scripts"], consumer);
     expect(generatedCiInstall.status, generatedCiInstall.stderr).toBe(0);
-    const generatedCiDoctor = spawnSync(
-      join(consumer, "node_modules", ".bin", process.platform === "win32" ? "helix.cmd" : "helix"),
-      ["doctor", "--profile", "consumer", "--json"],
-      { cwd: consumer, encoding: "utf8", timeout: 10_000 },
-    );
+    const generatedCiDoctor = spawnSync(executable, ["doctor", "--profile", "consumer", "--json"], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 10_000,
+    });
     expect(generatedCiDoctor.status, generatedCiDoctor.stderr).toBe(0);
     expect(JSON.parse(generatedCiDoctor.stdout)).toMatchObject({ ok: true, failures: [] });
   });
