@@ -81,7 +81,11 @@ function buildFixture() {
             output_digests: receipt.output_digests,
           },
         });
-        if (!externalAdmission.ok) throw new Error("external canary artifact rejected");
+        if (!externalAdmission.ok) {
+          throw new Error(
+            `external canary artifact rejected: ${externalAdmission.failures.join(",")}`,
+          );
+        }
         const paths = {
           tarball: join(out, basename(receipt.paths.tarball)),
           checksum: join(out, basename(receipt.paths.checksum)),
