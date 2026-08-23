@@ -55,7 +55,7 @@ review_evidence:
     reviewed_head_sha: ba0255408d7e91467b2524b0602ffb0b63b24ff2
     scope: "PR #969 current exact HEAD ba0255408d7e91467b2524b0602ffb0b63b24ff2をClaude Codeが検収し、Issue #965のarchive／manifest exact-set oracle、U-DISTCAN-001a、CI／DB projection／replayを照合した。approve／blocker 0。Actions run 32659698019はfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreen。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/969#issuecomment-5388001830。receipt digest: sha256:c989973771c2d26407957480893b51f8f4b9d939545574e5c167f9223dec9604"
     green_commands:
-      - kind: integration_test
+      - kind: smoke
         command: "gh run view 32659698019 --log"
         runner: ci
         scope: full
