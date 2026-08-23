@@ -197,7 +197,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     const sourceRoot = fixture();
     for (const args of [
       ["init"],
-      ["remote", "add", "origin", "git@github.com:RetryYN/HELIX-HARNESS.git"],
+      ["remote", "add", "origin", "https://github.com/RetryYN/HELIX-HARNESS"],
       ["add", "src/entry.ts"],
       [
         "-c",
