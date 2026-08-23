@@ -96,7 +96,7 @@ review_evidence:
     review_kind: intra_runtime_subagent
     reviewer_session_id: "01a02f60-0b6b-71b3-ba7c-936f68042762"
     reviewed_at: "2026-08-23T16:09:14Z"
-    tests_green_at: "2026-08-23T16:06:45Z"
+    tests_green_at: "2026-08-23T16:09:14Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: codex:gpt-5.6-luna
@@ -119,7 +119,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Codex Luna / intra-runtime verifier"
     reviewed_at: "2026-08-23T16:09:14Z"
-    evidence_digest: "sha256:47f82f7b021cfa51b113d0589abf28ca7c625f282ed36482e7bcb41ac0c59a64"
+    evidence_digest: "sha256:04ec8ffcd7736f54c4919cb788590d7030f00fb3e6365a97a34fe1c23ef9ec41"
   entries: []
 ---
 
