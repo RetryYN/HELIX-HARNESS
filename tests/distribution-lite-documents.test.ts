@@ -7,7 +7,9 @@ import { afterEach, describe, expect, it } from "vitest";
 import { admitLiteConsumerCommand } from "../src/setup/distribution-consumer-command-registry";
 import {
   buildLiteDistributionPackage,
+  LITE_DOCUMENT_SOURCES,
   loadLiteDistributionDocuments,
+  validateLiteDistributionDocumentBytes,
 } from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-658-lite-consumer-distribution-docs
@@ -76,5 +78,44 @@ describe("PLAN-L7-658: Lite consumer distribution documents", () => {
     ];
     for (const argv of commands)
       expect(admitLiteConsumerCommand(argv).ok, argv.join(" ")).toBe(true);
+  });
+
+  it("U-DISTDOC-004: 各文書欠落をexact set violationとして拒否する", () => {
+    const complete = Object.fromEntries(
+      Object.entries(LITE_DOCUMENT_SOURCES).map(([path, source]) => [path, readFileSync(source)]),
+    );
+    for (const path of Object.keys(LITE_DOCUMENT_SOURCES)) {
+      const missing = { ...complete };
+      delete missing[path];
+      expect(validateLiteDistributionDocumentBytes(missing), path).toContain(
+        "document_exact_set_invalid",
+      );
+    }
+  });
+
+  it("U-DISTDOC-005: development guidance／absolute path／credential例を拒否する", () => {
+    const complete = Object.fromEntries(
+      Object.entries(LITE_DOCUMENT_SOURCES).map(([path, source]) => [path, readFileSync(source)]),
+    );
+    for (const mutation of [
+      "development / private",
+      "node /path/to/HELIX-HARNESS/dist/helix.js",
+      "helix team run",
+    ]) {
+      expect(
+        validateLiteDistributionDocumentBytes({ ...complete, "README.md": mutation }),
+        mutation,
+      ).toContain("consumer_readme_invalid");
+    }
+    for (const mutation of [
+      "/home/alice/project",
+      "C:\\Users\\alice\\project",
+      "ghp_exampletoken",
+    ]) {
+      expect(
+        validateLiteDistributionDocumentBytes({ ...complete, "DISCLAIMER.md": mutation }),
+        mutation,
+      ).toContain("document_sensitive_content");
+    }
   });
 });
