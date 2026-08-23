@@ -3,14 +3,16 @@ import { createHash } from "node:crypto";
 import {
   cpSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  realpathSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, isAbsolute, join, posix } from "node:path";
+import { basename, dirname, isAbsolute, join, posix, relative, sep } from "node:path";
 import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 
 const digest = (bytes: Buffer | string): string =>
@@ -39,6 +41,7 @@ export type DistributionPackageFailure =
   | "artifact_path_duplicate"
   | "artifact_set_digest_mismatch"
   | "artifact_source_missing"
+  | "artifact_source_unsafe"
   | "tar_failed";
 
 export interface DistributionPackageResult {
@@ -84,6 +87,33 @@ function normalizedArtifactPaths(paths: readonly string[]): {
   return { paths: [...new Set(normalized)].sort(), failures: [...failures].sort() };
 }
 
+function pathInside(root: string, candidate: string): boolean {
+  const rel = relative(root, candidate);
+  return rel === "" || (rel !== ".." && !rel.startsWith(`..${sep}`));
+}
+
+function resolvePhysicalSource(root: string, sourcePath: string): string | null {
+  const normalized = posix.normalize(sourcePath.replaceAll("\\", "/"));
+  if (
+    !normalized ||
+    normalized === "." ||
+    normalized === ".." ||
+    normalized.startsWith("../") ||
+    isAbsolute(normalized)
+  ) {
+    return null;
+  }
+  let cursor = root;
+  for (const part of normalized.split("/")) {
+    cursor = join(cursor, part);
+    if (!existsSync(cursor) || lstatSync(cursor).isSymbolicLink()) return null;
+    const physical = realpathSync(cursor);
+    if (!pathInside(root, physical)) return null;
+    cursor = physical;
+  }
+  return cursor;
+}
+
 export function createDeterministicDistributionPackage(input: {
   source_root: string;
   out_dir: string;
@@ -101,10 +131,16 @@ export function createDeterministicDistributionPackage(input: {
   if (computedSetDigest !== input.identity.artifact_set_digest) {
     failures.add("artifact_set_digest_mismatch");
   }
+  const physicalRoot = realpathSync(input.source_root);
+  const physicalSources = new Map<string, string>();
   for (const artifactPath of admitted.paths) {
     const sourcePath = input.resolve_source_path?.(artifactPath) ?? artifactPath;
-    if (!existsSync(join(input.source_root, ...sourcePath.split("/")))) {
-      failures.add("artifact_source_missing");
+    const logicalSource = join(physicalRoot, ...sourcePath.split("/"));
+    if (!existsSync(logicalSource)) failures.add("artifact_source_missing");
+    else {
+      const physicalSource = resolvePhysicalSource(physicalRoot, sourcePath);
+      if (!physicalSource) failures.add("artifact_source_unsafe");
+      else physicalSources.set(artifactPath, physicalSource);
     }
   }
 
@@ -136,8 +172,8 @@ export function createDeterministicDistributionPackage(input: {
   try {
     mkdirSync(input.out_dir, { recursive: true });
     for (const artifactPath of admitted.paths) {
-      const sourcePath = input.resolve_source_path?.(artifactPath) ?? artifactPath;
-      const from = join(input.source_root, ...sourcePath.split("/"));
+      const from = physicalSources.get(artifactPath);
+      if (!from) throw new Error(`admitted artifact source missing: ${artifactPath}`);
       const to = join(stage, ...artifactPath.split("/"));
       mkdirSync(dirname(to), { recursive: true });
       const transformed = input.transform_artifact?.(artifactPath, readFileSync(from));

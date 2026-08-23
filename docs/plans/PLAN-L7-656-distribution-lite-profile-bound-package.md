@@ -22,7 +22,7 @@ behavior_contract_id: DISTRIBUTION-LITE-PROFILE-PACKAGE-001
 responsibility_owner: distribution-lite-profile-package
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: extract_and_route
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
@@ -33,9 +33,9 @@ contract_failures: "profile／projection／closure／path／identity不正をarc
 tdd_red_required: true
 red_test: "U-DISTPKG-001..006が未実装shared builderとprofile admissionを検出する"
 red_at: 2026-08-23T05:50:31+09:00
-green_at: 2026-08-23T05:56:52+09:00
-mutation_oracle_evidence: "U-DISTPKG-005で1 byte mutationによりtarball digest不一致を実測し、U-DISTPKG-001/002でgate red時write 0を確認"
-complexity_effect: neutral
+green_at: 2026-08-23T10:06:03+09:00
+mutation_oracle_evidence: "U-DISTPKG-005で1 byte mutationによりtarball digest不一致を実測。resolvePhysicalSourceからlstatSync(...).isSymbolicLink()拒否を一時除去するとU-DISTPKG-009bがarchive生成ok=trueでred（1 failed / 8 passed）、復元後9/9 greenを実測"
+complexity_effect: net_neutral
 complexity_justification: "既存CLI内archive処理を共通coreへ抽出し、Lite専用builderの重複を作らない"
 removal_trigger: "distribution package identityが単一generated release transactionへ統合された時"
 agent_slots:
@@ -52,6 +52,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-006, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-007, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-008, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009b, test_path: tests/distribution-lite-profile-package.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, artifact_type: design_doc }

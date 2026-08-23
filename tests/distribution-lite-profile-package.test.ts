@@ -1,4 +1,12 @@
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -155,5 +163,39 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       package_version: "0.1.0",
       distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
     });
+  });
+
+  it("U-DISTPKG-009: source symlinkからrepo外bytesをarchiveへ混入させずwrite 0で拒否する", () => {
+    const sourceRoot = fixture();
+    const outside = fixture();
+    writeFileSync(join(outside, "secret.txt"), "external bytes\n", "utf8");
+    symlinkSync(join(outside, "secret.txt"), join(sourceRoot, "src", "linked.ts"));
+    const outDir = join(sourceRoot, "out");
+    const paths = ["src/linked.ts"];
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: outDir,
+      artifact_stem: "lite",
+      artifact_paths: paths,
+      identity: { ...identity, artifact_set_digest: sha256Digest(canonicalJson(paths)) },
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_source_unsafe"] });
+    expect(existsSync(outDir)).toBe(false);
+  });
+
+  it("U-DISTPKG-009b: source root内を指すsymlinkもartifact identityとして拒否する", () => {
+    const sourceRoot = fixture();
+    symlinkSync(join(sourceRoot, "src", "entry.ts"), join(sourceRoot, "src", "linked.ts"));
+    const outDir = join(sourceRoot, "out");
+    const paths = ["src/linked.ts"];
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: outDir,
+      artifact_stem: "lite",
+      artifact_paths: paths,
+      identity: { ...identity, artifact_set_digest: sha256Digest(canonicalJson(paths)) },
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_source_unsafe"] });
+    expect(existsSync(outDir)).toBe(false);
   });
 });

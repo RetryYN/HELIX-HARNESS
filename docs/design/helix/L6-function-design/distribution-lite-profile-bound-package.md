@@ -28,6 +28,8 @@ Lite専用builder、別requirements、暗黙のFull package fallbackを作らな
 - artifact projectionとdependency closureの両方が`ok=true`でなければfilesystem writeを0件にする。
 - exact artifact setは昇順relative pathだけを受理し、重複、absolute、escape、excluded、development state、
   PLAN corpus、credential／PII候補を既存projection gateで拒否する。
+- source rootと各artifact sourceをphysical identityへ解決し、source自身またはancestorがsymlink、root外、
+  missingの場合はarchive staging前に全write 0で拒否する。
 - current distribution repositoryは`RetryYN/HELIX-HARNESS-DevOS`だけを出力する。旧OS identityは出力しない。
 
 ## package identity
