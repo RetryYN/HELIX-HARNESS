@@ -4,7 +4,7 @@ title: "PLAN-L7-653 (impl): Lite consumer entrypointをdependency-closed exact s
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTCLOSE-004でcurrent src/cli.tsから267 missingを実測"
 red_at: 2026-08-22T23:49:00+09:00
 green_at: 2026-08-23T10:24:17+09:00
-mutation_oracle_evidence: "resolvePhysicalSourceからsymlink拒否を一時除去するとU-DISTCLOSE-014bがok=trueでred（1 failed / 6 passed）。task-file ancestorのsymlink拒否を除去するとU-DISTCLOSE-013bがread成功でred（1 failed / 2 passed）。Luna reviewで空entrypoint、Windows absolute、logical traversal、duplicate optionの反例を実測し、U-DISTCLOSE-000／006b／014cとtask-file negative inputを追加して27/27 greenへ復元した"
+mutation_oracle_evidence: "tests/distribution-dependency-closure.test.tsのresolvePhysicalSourceからsymlink拒否を一時除去するとU-DISTCLOSE-014bがok=trueでred（1 failed / 6 passed）。tests/distribution-consumer-node-adapter.test.tsのtask-file ancestor symlink拒否を除去するとU-DISTCLOSE-013bがread成功でred（1 failed / 2 passed）。Luna reviewで空entrypoint、Windows absolute、logical traversal、duplicate optionの反例を実測し、U-DISTCLOSE-000／006b／014cとtask-file negative inputを追加して27/27 greenへ復元した"
 complexity_effect: justified_positive
 complexity_justification: "monolithic Full CLIをarchiveへ混入させずconsumer-safe compositionを再利用可能な境界へ分離する"
 removal_trigger: "Full／consumer command registryが単一generated capability graphへ統合された時"
@@ -88,7 +88,36 @@ dependencies:
     - issue:938
   blocks:
     - issue:856-profile-bound-builder
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: "792345fd-722c-4696-85eb-02494ab28d30"
+    reviewed_at: "2026-08-23T07:17:56Z"
+    tests_green_at: "2026-08-23T07:12:46Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewed_head_sha: bcb72746329647530b1b04761360d7dc930c1444
+    scope: "PR #954 exact HEAD bcb72746329647530b1b04761360d7dc930c1444をClaude Opusが独立レビューした。path traversal／symlink／excluded reachability／dynamic ownership／task-file identityの8 guardをmutationで測定し、6件killed、realpath containment 1件は等価変異、read前size check 1件は非blockerとしてIssue #955へ分離した。CI run 32623930404、DB projection／replay、checkpoint／replayの一致をreceipt v4でsealし、blocker 0、verdict approve。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/954#issuecomment-5384804694"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast \"${bulk_files[@]}\" && npx --no-install vitest run --project fast tests/cli-surface.test.ts && npx --no-install vitest run --project slow"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-23T07:12:46Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:f2afb15e249f37fcaebf847132251cf3a930845c64040fcb960fa3b621a1a78a"
+        result: "Actions run 32623930404の全回帰、typecheck、Biome、doctor、full admissionがsuccess"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-23T07:17:56Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-23T07:17:56Z"
+    evidence_digest: "sha256:b9f24c3c0a3a04f7edc5653c133e8934e0ac857c3f472c2d99bb17a09d724b04"
+  entries: []
 ---
 
 # PLAN-L7-653: Lite consumer依存閉包
@@ -103,12 +132,18 @@ review_evidence: []
 | 4 | clean staged build smoke | help／setup／status／consumer doctorが起動する |
 | 5 | Claudeによるexact-HEADレビュー | blocker 0 |
 
-## 現在のRed evidence
+## 実装・検収evidence
 
-consumer command registry／composition／Node adapterをservice portへ分離した後、44 profile artifactに
-adapter 4 pathを加えたadapter import closureはvisited 3、missing 0へ縮小した。Full機能集約の直接importは
-adapterから除去済みだが、setup／status／doctor／completion／delegationのconsumer-safe service bindingと
-clean staged entrypointは未実装なので、current profile oracleは引き続きRedとする。
+consumer command registry／composition／Node adapterをservice portへ分離し、Full機能集約の直接importを
+adapterから除去した。current profileのdependency closureはmissing 0、excluded reachability 0、unsafe source 0で
+greenとなり、PR #954 exact-HEAD reviewとCI／DB convergenceを完了した。archive生成とclean staged consumer E2Eは
+後続Issue #947／#948が所有するため、本PLANの`completion_claim_allowed`はfalseを維持する。
+
+## main統合後の再確認
+
+統合commit `1806602852c873ade2d3f41dac012aeafb45e69d`を取得後、対象4 suite／20 tests、`tsc --noEmit`、
+対象8ファイルのBiomeを2026-08-23T07:24:14Zに再実行し、全てexit 0を確認した。この終端read-afterは
+ClaudeがPR #954を判断した時点より後の証拠であるため、`review_evidence.green_commands`へ混載しない。
 
 ## 非対象
 

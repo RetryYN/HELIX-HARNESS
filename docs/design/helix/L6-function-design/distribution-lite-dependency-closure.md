@@ -2,7 +2,7 @@
 title: "HELIX L6 機能設計 — Lite consumer dependency closure"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-22
 updated: 2026-08-22
 owner: SE + TL
