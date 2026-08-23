@@ -1,4 +1,12 @@
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -16,6 +24,10 @@ function fixture(): string {
   mkdirSync(join(root, ".helix", "evidence"), { recursive: true });
   writeFileSync(join(root, "consumer.txt"), "consumer-owned\n");
   writeFileSync(join(root, ".helix", "evidence", "completion.json"), '{"green":true}\n');
+  writeFileSync(
+    join(root, ".helix", "engine-pin.json"),
+    `${JSON.stringify({ schema_version: "helix-lite-engine-pin.v1", immutable_tag: "v0.1.0" }, null, 2)}\n`,
+  );
   return root;
 }
 
@@ -55,7 +67,19 @@ describe("PLAN-L7-657: Lite consumer lifecycle", () => {
     });
     const root = fixture();
     writeFileSync(join(root, "outside-pin.json"), "{}\n");
+    unlinkSync(join(root, ".helix", "engine-pin.json"));
     symlinkSync(join(root, "outside-pin.json"), join(root, ".helix", "engine-pin.json"));
     expect(rehearse(root)).toEqual({ ok: false, failures: ["consumer_path_unsafe"] });
+
+    const drifted = fixture();
+    writeFileSync(join(drifted, ".helix", "engine-pin.json"), '{"immutable_tag":"v0.0.9"}\n');
+    expect(rehearse(drifted)).toEqual({ ok: false, failures: ["pin_identity_mismatch"] });
+
+    const ancestorRoot = mkdtempSync(join(tmpdir(), "helix-lite-lifecycle-ancestor-"));
+    const outsideRoot = fixture();
+    roots.push(ancestorRoot);
+    writeFileSync(join(ancestorRoot, "consumer.txt"), "consumer-owned\n");
+    symlinkSync(join(outsideRoot, ".helix"), join(ancestorRoot, ".helix"));
+    expect(rehearse(ancestorRoot)).toEqual({ ok: false, failures: ["consumer_path_unsafe"] });
   });
 });

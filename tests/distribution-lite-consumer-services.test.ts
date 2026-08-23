@@ -86,6 +86,59 @@ describe("PLAN-L7-657: Lite consumer services", () => {
       exit_code: 1,
       payload: { reason: "consumer_owned_file_conflict" },
     });
+
+    const danglingRoot = fixture();
+    mkdirSync(join(danglingRoot, ".github", "workflows"), { recursive: true });
+    symlinkSync(
+      join(danglingRoot, "outside-missing.yml"),
+      join(danglingRoot, ".github", "workflows", "helix-consumer.yml"),
+    );
+    expect(
+      createLiteConsumerServices(danglingRoot).setup_project({ dry_run: false }),
+    ).toMatchObject({
+      exit_code: 1,
+      payload: { reason: "consumer_owned_file_conflict" },
+    });
+    expect(() => readFileSync(join(danglingRoot, "outside-missing.yml"))).toThrow();
+
+    const ancestorRoot = fixture();
+    const outsideRoot = fixture();
+    symlinkSync(outsideRoot, join(ancestorRoot, ".github"));
+    expect(
+      createLiteConsumerServices(ancestorRoot).setup_project({ dry_run: false }),
+    ).toMatchObject({
+      exit_code: 1,
+      payload: { reason: "consumer_owned_file_conflict" },
+    });
+    expect(() => readFileSync(join(outsideRoot, "workflows", "helix-consumer.yml"))).toThrow();
+    expect(() => readFileSync(join(ancestorRoot, ".helix", "consumer-lite.json"))).toThrow();
+    expect(createLiteConsumerServices(ancestorRoot).setup_project({ dry_run: true })).toMatchObject(
+      {
+        exit_code: 1,
+        payload: { reason: "consumer_owned_file_conflict" },
+      },
+    );
+  });
+
+  it("U-DISTCAN-007: setup前後で既存consumer所有bytesを保全する", () => {
+    const root = fixture();
+    const consumerPath = join(root, "consumer-owned.txt");
+    writeFileSync(consumerPath, "consumer-owned\n");
+    const packagePath = join(root, "package.json");
+    const before = [readFileSync(packagePath, "utf8"), readFileSync(consumerPath, "utf8")];
+    const services = createLiteConsumerServices(root);
+    expect(services.setup_project({ dry_run: true })).toMatchObject({
+      exit_code: 0,
+      payload: { dry_run: true },
+    });
+    expect([readFileSync(packagePath, "utf8"), readFileSync(consumerPath, "utf8")]).toEqual(before);
+    expect(services.setup_project({ dry_run: false }).exit_code).toBe(0);
+    expect([readFileSync(packagePath, "utf8"), readFileSync(consumerPath, "utf8")]).toEqual(before);
+    expect(services.setup_project({ dry_run: false })).toMatchObject({
+      exit_code: 0,
+      payload: { idempotent: true },
+    });
+    expect([readFileSync(packagePath, "utf8"), readFileSync(consumerPath, "utf8")]).toEqual(before);
   });
 
   it("U-DISTCAN-006b: delegationは実行せずproviderとtask digestだけをreceipt化する", () => {

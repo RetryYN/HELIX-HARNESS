@@ -1,12 +1,5 @@
 import { createHash } from "node:crypto";
-import {
-  existsSync,
-  lstatSync,
-  mkdirSync,
-  readFileSync,
-  realpathSync,
-  writeFileSync,
-} from "node:fs";
+import { lstatSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import type {
   LiteConsumerDelegationInput,
@@ -62,6 +55,36 @@ function readOwnedRegularFile(root: string, path: string): string | null {
   }
 }
 
+function pathEntryExists(path: string): boolean {
+  try {
+    lstatSync(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function hasSafePhysicalParents(root: string, path: string): boolean {
+  const logical = resolve(root, path);
+  const rel = relative(root, logical);
+  if (!rel || rel === ".." || rel.startsWith(`..${sep}`)) return false;
+  try {
+    if (realpathSync(root) !== root || lstatSync(root).isSymbolicLink()) return false;
+    let current = root;
+    for (const segment of rel.split(sep).slice(0, -1)) {
+      current = join(current, segment);
+      if (!pathEntryExists(current)) break;
+      const stat = lstatSync(current);
+      if (!stat.isDirectory() || stat.isSymbolicLink() || realpathSync(current) !== current) {
+        return false;
+      }
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function readState(root: string): ConsumerState | null {
   try {
     const bytes = readOwnedRegularFile(root, STATE_PATH);
@@ -86,11 +109,13 @@ function writeOwnedFile(
   content: string,
 ): "created" | "unchanged" | "conflict" {
   const target = join(root, path);
-  if (existsSync(target)) {
+  if (!hasSafePhysicalParents(root, path)) return "conflict";
+  if (pathEntryExists(target)) {
     return readOwnedRegularFile(root, path) === content ? "unchanged" : "conflict";
   }
   mkdirSync(dirname(target), { recursive: true });
-  writeFileSync(target, content, "utf8");
+  if (!hasSafePhysicalParents(root, path) || pathEntryExists(target)) return "conflict";
+  writeFileSync(target, content, { encoding: "utf8", flag: "wx" });
   return "created";
 }
 
@@ -132,16 +157,20 @@ export function createLiteConsumerServices(repoRoot: string): LiteConsumerNodeSe
   return {
     setup_project({ dry_run }) {
       const currentState = readState(root);
-      const ciStatus = existsSync(join(root, CI_PATH))
-        ? readOwnedRegularFile(root, CI_PATH) === ci
-          ? "unchanged"
-          : "conflict"
-        : "create";
-      const stateStatus = existsSync(join(root, STATE_PATH))
-        ? readOwnedRegularFile(root, STATE_PATH) === stateBytes
-          ? "unchanged"
-          : "conflict"
-        : "create";
+      const ciStatus = !hasSafePhysicalParents(root, CI_PATH)
+        ? "conflict"
+        : pathEntryExists(join(root, CI_PATH))
+          ? readOwnedRegularFile(root, CI_PATH) === ci
+            ? "unchanged"
+            : "conflict"
+          : "create";
+      const stateStatus = !hasSafePhysicalParents(root, STATE_PATH)
+        ? "conflict"
+        : pathEntryExists(join(root, STATE_PATH))
+          ? readOwnedRegularFile(root, STATE_PATH) === stateBytes
+            ? "unchanged"
+            : "conflict"
+          : "create";
       const changes = [
         ...(ciStatus === "create" ? [CI_PATH] : []),
         ...(stateStatus === "create" ? [STATE_PATH] : []),
