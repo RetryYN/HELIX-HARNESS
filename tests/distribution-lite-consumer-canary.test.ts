@@ -43,6 +43,7 @@ function buildFixture() {
     input: {
       ...built.paths,
       expected: {
+        source_repository: built.manifest.source_repository,
         source_head: built.manifest.source_head,
         requirements: built.manifest.requirements,
         profile: built.manifest.profile,

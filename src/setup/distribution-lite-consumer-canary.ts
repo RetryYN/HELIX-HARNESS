@@ -4,6 +4,7 @@ import { lstatSync, readFileSync, realpathSync } from "node:fs";
 import { basename, dirname, relative, resolve, sep } from "node:path";
 
 export interface LiteConsumerCanaryExpectedIdentity {
+  source_repository: "RetryYN/HELIX-HARNESS";
   source_head: string;
   requirements: { version: string; root_digest: string };
   profile: { id: string; version: string; digest: string };
@@ -36,6 +37,7 @@ export type LiteConsumerCanaryAdmission =
 
 interface PackageManifest {
   schema_version: string;
+  source_repository: "RetryYN/HELIX-HARNESS";
   source_head: string;
   requirements: { version: string; root_digest: string };
   profile: { id: string; version: string; digest: string } | null;
@@ -97,6 +99,7 @@ function parseManifest(bytes: Buffer): PackageManifest | null {
       "requirements",
       "schema_version",
       "source_head",
+      "source_repository",
       "tarball",
       "tarball_digest",
     ];
@@ -105,6 +108,7 @@ function parseManifest(bytes: Buffer): PackageManifest | null {
       typeof value !== "object" ||
       JSON.stringify(Object.keys(value).sort()) !== JSON.stringify(exactKeys) ||
       value.schema_version !== "helix-distribution-package-manifest.v1" ||
+      value.source_repository !== "RetryYN/HELIX-HARNESS" ||
       typeof value.source_head !== "string" ||
       typeof value.package_version !== "string" ||
       typeof value.distribution_repository !== "string" ||
@@ -181,6 +185,7 @@ export function admitLiteConsumerCanaryArtifact(input: {
     const expected = input.expected;
     if (
       manifest.source_head !== expected.source_head ||
+      manifest.source_repository !== expected.source_repository ||
       manifest.requirements.version !== expected.requirements.version ||
       manifest.requirements.root_digest !== expected.requirements.root_digest ||
       manifest.profile?.id !== expected.profile.id ||
