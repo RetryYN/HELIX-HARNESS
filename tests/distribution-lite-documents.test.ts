@@ -1,6 +1,6 @@
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -9,6 +9,7 @@ import {
   buildLiteDistributionPackage,
   LITE_DOCUMENT_SOURCES,
   loadLiteDistributionDocuments,
+  resolveTrackedSourceIdentity,
   validateLiteDistributionDocumentBytes,
 } from "../src/setup/distribution-lite-package";
 
@@ -91,6 +92,46 @@ describe("PLAN-L7-658: Lite consumer distribution documents", () => {
       expect(validateLiteDistributionDocumentBytes(missing), path).toContain(
         "document_exact_set_invalid",
       );
+    }
+  });
+
+  it("U-DISTDOC-004b: 5文書それぞれの1 byte欠落をsource HEAD driftとして拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-lite-doc-mutation-"));
+    roots.push(root);
+    const sources = Object.values(LITE_DOCUMENT_SOURCES);
+    for (const source of sources) {
+      const target = join(root, source);
+      mkdirSync(join(target, ".."), { recursive: true });
+      writeFileSync(target, readFileSync(source));
+    }
+    for (const args of [
+      ["init"],
+      ["add", ...sources],
+      [
+        "-c",
+        "user.name=HELIX Test",
+        "-c",
+        "user.email=helix@example.invalid",
+        "commit",
+        "-m",
+        "documents",
+      ],
+    ]) {
+      const git = spawnSync("git", args, { cwd: root, encoding: "utf8" });
+      expect(git.status, `${args.join(" ")}\n${git.stderr}`).toBe(0);
+    }
+    expect(resolveTrackedSourceIdentity(root)).toMatchObject({ ok: true });
+    for (const source of sources) {
+      const target = join(root, source);
+      const original = readFileSync(target);
+      expect(original.byteLength, source).toBeGreaterThan(1);
+      writeFileSync(target, original.subarray(0, original.byteLength - 1));
+      expect(resolveTrackedSourceIdentity(root), source).toEqual({
+        ok: false,
+        failure: "source_head_dirty",
+      });
+      writeFileSync(target, original);
+      expect(resolveTrackedSourceIdentity(root), `${source}:restore`).toMatchObject({ ok: true });
     }
   });
 
