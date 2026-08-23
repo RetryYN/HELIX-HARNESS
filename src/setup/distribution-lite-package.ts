@@ -30,6 +30,32 @@ function digest(bytes: Buffer | string): string {
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }
 
+const LITE_DOCUMENT_SOURCES = {
+  "README.md": "README-LITE.md",
+  LICENSE: "LICENSE",
+  "THIRD_PARTY_NOTICES.md": "THIRD_PARTY_NOTICES.md",
+  "PROVENANCE.md": "PROVENANCE.md",
+  "DISCLAIMER.md": "DISCLAIMER.md",
+} as const;
+
+export function loadLiteDistributionDocuments(repoRoot: string): Array<{
+  path: string;
+  source_path: string;
+  digest: string;
+  classification: "first_party" | "third_party_notice";
+}> | null {
+  try {
+    return Object.entries(LITE_DOCUMENT_SOURCES).map(([path, sourcePath]) => ({
+      path,
+      source_path: sourcePath,
+      digest: digest(readFileSync(join(repoRoot, sourcePath))),
+      classification: path === "THIRD_PARTY_NOTICES.md" ? "third_party_notice" : "first_party",
+    }));
+  } catch {
+    return null;
+  }
+}
+
 function buildLiteNodeArtifact(repoRoot: string, version: string): Buffer | null {
   try {
     const result = buildSync({
@@ -307,7 +333,8 @@ export function buildLiteDistributionPackage(input: {
   if (!version) return { ok: false, failures: ["package_identity_invalid"] };
   const nodeArtifact = buildLiteNodeArtifact(input.repo_root, version);
   const packageJson = litePackageJson(input.repo_root, version);
-  if (!nodeArtifact || !packageJson) {
+  const documents = loadLiteDistributionDocuments(input.repo_root);
+  if (!nodeArtifact || !packageJson || !documents) {
     return { ok: false, failures: ["package_identity_invalid"] };
   }
   const finalArtifactPaths = [...projection.artifact_paths, LITE_NODE_ARTIFACT_PATH].sort();
@@ -336,6 +363,13 @@ export function buildLiteDistributionPackage(input: {
     generated_artifacts: {
       [LITE_NODE_ARTIFACT_PATH]: { bytes: nodeArtifact, mode: 0o755 },
     },
-    transform_artifact: (artifactPath) => (artifactPath === "package.json" ? packageJson : null),
+    manifest_extensions: { distribution_documents: documents },
+    transform_artifact: (artifactPath) => {
+      if (artifactPath === "package.json") return packageJson;
+      const sourcePath = LITE_DOCUMENT_SOURCES[artifactPath as keyof typeof LITE_DOCUMENT_SOURCES];
+      return sourcePath && sourcePath !== artifactPath
+        ? readFileSync(join(input.repo_root, sourcePath))
+        : null;
+    },
   });
 }

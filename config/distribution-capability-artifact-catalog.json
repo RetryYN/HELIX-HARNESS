@@ -63,7 +63,11 @@
       "capability_id": "consumer_setup_and_status",
       "disposition": "consumer_safe",
       "artifact_paths": [
+        "DISCLAIMER.md",
+        "LICENSE",
+        "PROVENANCE.md",
         "README.md",
+        "THIRD_PARTY_NOTICES.md",
         "src/setup/distribution-consumer-cli.ts",
         "src/setup/distribution-consumer-command-composition.ts",
         "src/setup/distribution-consumer-command-registry.ts",
