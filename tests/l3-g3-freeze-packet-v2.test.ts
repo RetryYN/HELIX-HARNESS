@@ -760,7 +760,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
   // PLAN-L7-652-distribution-lite-artifact-projection — U-DISTART-005
   it("U-DISTART-005: Lite artifact projection設計登録をG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "840c287b0609567d10073e08f152854606ec448ef29e77cf337000e25be4b2e3";
+    const designCatalogDigest = "2282152391ad5dabaa3b669e14785a47665dc11585a32f9e6ff15c63847731de";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md",
