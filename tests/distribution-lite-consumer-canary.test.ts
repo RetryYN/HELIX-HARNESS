@@ -137,7 +137,14 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     roots.push(consumer);
     writeFileSync(
       join(consumer, "package.json"),
-      `${JSON.stringify({ name: "lite-canary-consumer", private: true })}\n`,
+      `${JSON.stringify({
+        name: "lite-canary-consumer",
+        private: true,
+        scripts: {
+          build:
+            "node -e \"require('node:fs').mkdirSync('dist',{recursive:true});require('node:fs').writeFileSync('dist/consumer-build.txt','consumer-build-ok\\n')\"",
+        },
+      })}\n`,
       "utf8",
     );
     const install = spawnSync("npm", ["install", "--ignore-scripts", fixture.input.tarball], {
@@ -146,6 +153,15 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       timeout: 60_000,
     });
     expect(install.status, install.stderr).toBe(0);
+    const build = spawnSync("npm", ["run", "build"], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 30_000,
+    });
+    expect(build.status, build.stderr).toBe(0);
+    expect(readFileSync(join(consumer, "dist", "consumer-build.txt"), "utf8")).toBe(
+      "consumer-build-ok\n",
+    );
     const executable = join(
       consumer,
       "node_modules",
