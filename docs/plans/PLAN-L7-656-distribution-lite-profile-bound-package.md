@@ -64,6 +64,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009j, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-010, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-011, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-011b, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-012, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009k, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009l, test_path: tests/distribution-lite-profile-package.test.ts }

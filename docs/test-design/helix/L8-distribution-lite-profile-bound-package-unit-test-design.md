@@ -20,6 +20,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-002 | projection／closure gate | いずれかがredならarchive作成前にtyped failure | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-003 | manifest identity | HEAD、requirements、profile、package、artifact set、DevOS identityをexact束縛 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-011 | prebuilt identity | prebuilt path／digestと生成bytesの不一致を拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-011b | generated provenance | identity無しgenerated artifactの混入を拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-004 | deterministic build | 独立2 buildのtarball／manifest／checksum bytes digestが一致 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-005 | mutation | 1 path追加と1 byte変更でそれぞれdigest不一致 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-006 | shared builder | Full commandとLite commandが同じarchive coreを呼ぶ | `tests/distribution-lite-profile-package.test.ts` |

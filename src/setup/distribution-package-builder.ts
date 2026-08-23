@@ -261,6 +261,13 @@ export function createDeterministicDistributionPackage(input: {
     failures.add("artifact_set_digest_mismatch");
   }
   const prebuilt = input.identity.prebuilt_node_artifact;
+  if (
+    (generatedEntries.length > 0 && prebuilt === null) ||
+    (prebuilt !== null &&
+      (generatedEntries.length !== 1 || generatedEntries[0]?.[0] !== prebuilt.path))
+  ) {
+    failures.add("prebuilt_node_artifact_invalid");
+  }
   if (prebuilt !== null) {
     const generated = input.generated_artifacts?.[prebuilt.path];
     if (

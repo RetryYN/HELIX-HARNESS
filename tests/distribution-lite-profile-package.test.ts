@@ -119,6 +119,25 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(result).toMatchObject({ ok: false, failures: ["prebuilt_node_artifact_invalid"] });
   });
 
+  it("U-DISTPKG-011b: identity無しgenerated artifactをarchiveへ混入させない", () => {
+    const sourceRoot = fixture();
+    const finalPaths = ["dist/helix.js", "src/entry.ts"];
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-generated-unbound"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity: {
+        ...identity,
+        artifact_set_digest: sha256Digest(canonicalJson(finalPaths)),
+      },
+      generated_artifacts: {
+        "dist/helix.js": { bytes: "#!/usr/bin/env node\n", mode: 0o755 },
+      },
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["prebuilt_node_artifact_invalid"] });
+  });
+
   it("U-DISTPKG-004: 独立2 buildのtarball／manifest／checksum digestが一致する", () => {
     const sourceRoot = fixture();
     const first = createDeterministicDistributionPackage({
