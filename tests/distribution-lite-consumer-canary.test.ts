@@ -1,4 +1,12 @@
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  linkSync,
+  mkdtempSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -99,5 +107,24 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
         failures: expect.arrayContaining(["manifest_identity_mismatch"]),
       });
     }
+  });
+
+  it("U-DISTCAN-005: symlink／hardlink artifactをbytes read前に拒否する", () => {
+    const linked = buildFixture();
+    const physicalTarball = `${linked.input.tarball}.physical`;
+    renameSync(linked.input.tarball, physicalTarball);
+    symlinkSync(physicalTarball, linked.input.tarball);
+    expect(admitLiteConsumerCanaryArtifact(linked.input)).toEqual({
+      ok: false,
+      failures: ["artifact_path_unsafe"],
+    });
+
+    const hardlinked = buildFixture();
+    const hardlink = `${hardlinked.input.tarball}.hardlink`;
+    linkSync(hardlinked.input.tarball, hardlink);
+    expect(admitLiteConsumerCanaryArtifact({ ...hardlinked.input, tarball: hardlink })).toEqual({
+      ok: false,
+      failures: ["artifact_path_unsafe"],
+    });
   });
 });
