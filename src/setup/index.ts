@@ -19,6 +19,12 @@ import { basename, dirname, isAbsolute, join, relative, sep } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { isRecord } from "../shared/value-guards";
 import {
+  type DistributionIdentityReceipt,
+  HELIX_DISTRIBUTION_REMOTE_URL,
+  HELIX_DISTRIBUTION_REPOSITORY,
+  resolveDistributionIdentity,
+} from "./distribution-identity";
+import {
   BUILTIN_GITHUB_TEMPLATES,
   COMMON_FILES,
   CONSUMER_CLAUDE_AGENT_NAMES,
@@ -29,9 +35,9 @@ import {
 } from "./templates";
 
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
-export const HELIX_DISTRIBUTION_REMOTE_URL = "https://github.com/RetryYN/HELIX-HARNESS-OS.git";
+export { HELIX_DISTRIBUTION_REMOTE_URL, HELIX_DISTRIBUTION_REPOSITORY };
 export const HELIX_DISTRIBUTION_REFERENCE = {
-  repo: "RetryYN/HELIX-HARNESS-OS",
+  repo: HELIX_DISTRIBUTION_REPOSITORY,
   mainHead: "unpublished",
   targetTag: "v0.1.4",
 } as const;
@@ -806,7 +812,7 @@ export interface HelixProjectDoctorBaseline {
     "helix setup project --dry-run --json",
     "helix completion decision-packet --json",
     "helix completion review-bundle --json",
-    "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+    "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
     "helix doctor --profile consumer",
     "helix rename plan --json",
     "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
@@ -854,6 +860,7 @@ export interface CleanDistributionPlan {
   channel: "clean-repo-plus-signed-tarball";
   sourceTag: string;
   cleanRepo: string;
+  distributionIdentity: DistributionIdentityReceipt;
   artifactPaths: string[];
   excludedPaths: string[];
   missingRequired: string[];
@@ -896,7 +903,7 @@ export interface ConsumerReadinessPlan {
     versionUpPacketCommand: "helix version-up activation-packet --json";
     cutoverPacketCommand: "helix rename plan --json";
     distributionReference: {
-      repo: "RetryYN/HELIX-HARNESS-OS";
+      repo: typeof HELIX_DISTRIBUTION_REPOSITORY;
       mainHead: "unpublished";
       targetTag: "v0.1.4";
     };
@@ -1221,7 +1228,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
     "helix setup project --dry-run --json",
     "helix completion decision-packet --json",
     "helix completion review-bundle --json",
-    "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+    "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
     "helix doctor --profile consumer",
     "helix rename plan --json",
     `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
@@ -1584,7 +1591,8 @@ export function buildCleanDistributionPlan(input: {
   cleanRepo?: string;
 }): CleanDistributionPlan {
   const sourceTag = input.sourceTag ?? "unreleased";
-  const cleanRepo = input.cleanRepo ?? "RetryYN/HELIX-HARNESS-OS";
+  const distributionIdentity = resolveDistributionIdentity(input.cleanRepo);
+  const cleanRepo = distributionIdentity.repository ?? distributionIdentity.input;
   const normalized = [...new Set(input.paths.map(normalizeDistributionPath))].sort();
   const includedSourcePaths = normalized.filter(
     (path) => isAllowedCleanPath(path) && !isDeniedCleanPath(path),
@@ -1596,10 +1604,11 @@ export function buildCleanDistributionPlan(input: {
   const includedSourceSet = new Set(includedSourcePaths);
   const excludedPaths = normalized.filter((path) => !includedSourceSet.has(path));
   return {
-    ok: missingRequired.length === 0 && denylistViolations.length === 0,
+    ok: distributionIdentity.ok && missingRequired.length === 0 && denylistViolations.length === 0,
     channel: "clean-repo-plus-signed-tarball",
     sourceTag,
     cleanRepo,
+    distributionIdentity,
     artifactPaths,
     excludedPaths,
     missingRequired,
@@ -1913,7 +1922,7 @@ export function buildConsumerReadinessPlan(input: {
           "npm run helix -- setup project --dry-run --json",
           "npm run helix -- completion decision-packet --json",
           "npm run helix -- completion review-bundle --json",
-          "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+          "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
           "npm run helix -- doctor --profile consumer --json",
           "npm run helix -- rename plan --json",
           `npm run helix -- team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
@@ -1950,7 +1959,7 @@ export function buildConsumerReadinessPlan(input: {
         "npm run helix -- status --json",
         "npm run helix -- completion decision-packet --json",
         "npm run helix -- completion review-bundle --json",
-        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "npm run helix -- version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
         "npm run helix -- doctor --profile consumer --json",
         "npm run helix -- rename plan --json",
         `npm run helix -- team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
@@ -1973,7 +1982,7 @@ export function buildConsumerReadinessPlan(input: {
     },
     contracts: {
       semver: "0.x may add capabilities; breaking public contract changes require migration notes",
-      tagPin: `github:RetryYN/HELIX-HARNESS-OS#${tag}`,
+      tagPin: `github:RetryYN/HELIX-HARNESS-DevOS#${tag}`,
       stable: [
         "CLI surface",
         "adapter managed markers",
@@ -2052,7 +2061,7 @@ function buildConsumerArtifactReadinessPlan(
     text.includes("helix completion decision-packet --json") &&
     text.includes("helix completion review-bundle --json") &&
     text.includes(
-      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+      "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
     ) &&
     text.includes("helix doctor --profile consumer") &&
     text.includes("helix rename plan --json") &&
@@ -2065,7 +2074,7 @@ function buildConsumerArtifactReadinessPlan(
       text.includes("helix completion decision-packet --json") &&
       text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       ) &&
       text.includes("helix doctor --profile consumer") &&
       text.includes("secret、credential、PII") &&
@@ -2081,7 +2090,7 @@ function buildConsumerArtifactReadinessPlan(
       text.includes("helix completion decision-packet --json") &&
       text.includes("helix completion review-bundle --json") &&
       text.includes(
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       ) &&
       text.includes("helix doctor --profile consumer") &&
       /[ぁ-んァ-ヶ一-龠]/.test(text)
@@ -2481,20 +2490,20 @@ function buildHelixProjectPostSetupWorkflow(input: {
       ? [
           "apply 前に importReport.skippedExistingPaths と importReport.skipSubDocs を確認し、consumer-owned config を merge または受容する",
           "import report 解消後に `helix setup project --dry-run` を再実行する",
-          `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+          `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
         ]
       : nextRoute === "fix_consumer_readiness"
         ? [
             ...failedBlockingChecks.map((check) => check.message),
             "readiness check が green になった後に `helix setup project --dry-run` を再実行する",
-            `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
+            `HELIX work 開始前に \`helix status --json\`、\`helix setup project --dry-run --json\`、\`helix completion decision-packet --json\`、\`helix completion review-bundle --json\`、\`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json\`、\`helix doctor --profile consumer\`、\`helix rename plan --json\`、\`helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json\` を実行する`,
           ]
         : [
             "`helix status --json` を実行する",
             "`helix setup project --dry-run --json` を実行し、githubPlan と consumerReadiness.ci.requires の read-only CI 境界を初回稼働証跡に保存する",
             "`helix completion decision-packet --json` を実行し、completionClaimAllowed=false と未完了 blocker queue を初回稼働証跡に保存する",
             "`helix completion review-bundle --json` を実行し、S4 / version-up / rename / action-binding の scoped review packet 束、exact digest、semantic digest を初回稼働証跡に保存する",
-            "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
+            "`helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json` を実行し、distribution tag 更新が plan-only / mustNotApply のまま rollback と idempotency evidence を返すことを確認する",
             "`helix doctor --profile consumer` を実行する",
             "`helix rename plan --json` を実行し、PLAN-M-02 承認前の HELIX alias/state が blocked packet のままであることを確認する",
             "`helix status --json` で DB-backed continuation または current PLAN route を確認して開始する",
@@ -2678,7 +2687,7 @@ function buildHelixProjectPostSetupVerificationMatrix(): HelixProjectPostSetupWo
     {
       phase: "version-up-dry-run",
       command:
-        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json",
+        "helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json",
       writePolicy: "no-write",
       availability: "dry-run-immediate",
       requiresMaterializedPaths: [],

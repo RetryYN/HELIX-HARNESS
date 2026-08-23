@@ -3,6 +3,7 @@
  * doc 間整合の自動化 = 手動 audit (A-51/52/54) の機械化。
  * PO 指摘「ドキュメント間の整合性チェックを自動化できるか」反映。
  */
+// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-008
 import { describe, expect, it } from "vitest";
 import {
   analyzeDocConsistency,
@@ -58,13 +59,13 @@ describe("doc consistency (doc 間整合の自動化)", () => {
     expect(checkHelixSetupReviewBundleConsistency(docs).missing).toEqual([]);
   });
 
-  it("HELIX setup の version-up dry-run target は配布 target と release remote に固定する", () => {
+  it("U-DISTID-008: HELIX setup の version-up dry-run target は配布 target と release remote に固定する", () => {
     expect(checkHelixSetupVersionUpTargetConsistency(docs).missing).toEqual([]);
   });
 
   it("HELIX setup の version-up dry-run target が古い配布 tag に戻ったら検出する", () => {
     const expectedCommand =
-      "--target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json";
+      "--target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json";
     const staleDocs = {
       ...docs,
       l6SetupSoloTeam: docs.l6SetupSoloTeam.split(expectedCommand).join("--target v0.1.3 --json"),

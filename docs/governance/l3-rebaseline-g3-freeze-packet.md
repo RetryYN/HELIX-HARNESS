@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:6a23f383fda18d4646c59874123ff6ae768b56ae5573bb49c9fa6594849074bc`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:840c287b0609567d10073e08f152854606ec448ef29e77cf337000e25be4b2e3`
+- design catalog digest候補: `sha256:2282152391ad5dabaa3b669e14785a47665dc11585a32f9e6ff15c63847731de`
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
@@ -230,7 +230,7 @@ current判定へ戻さない。
 | `docs/design/harness/L1-requirements/functional-requirements.md` | `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008` |
 | `docs/design/harness/L1-requirements/screen-requirements.md` | `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b` |
 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` |
-| `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | `68a7b624d7b0358edb67c1e8030f35f69a4e7524331b5f1ff456d3e2e1062f3d` |
+| `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | `665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393` |
 | `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md` | `ab6c9ceef3e80dcee39351c989ab4368acad122dc7421aaf97c729e63a6d6a93` |
 
 ### 2.4 freeze後の未解決downstream exact set
