@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterAll, afterEach, describe, expect, it } from "vitest";
 import { admitLiteConsumerCommand } from "../src/setup/distribution-consumer-command-registry";
 import {
   buildLiteDistributionPackage,
@@ -15,9 +15,32 @@ import {
 
 // PLAN-L7-658-lite-consumer-distribution-docs
 const roots: string[] = [];
+let cleanSourceFixture: string | null = null;
+
+afterAll(() => {
+  if (cleanSourceFixture) rmSync(cleanSourceFixture, { recursive: true, force: true });
+});
+
 afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
 });
+
+function cleanCurrentSourceRoot(): string {
+  if (cleanSourceFixture) return join(cleanSourceFixture, "repo");
+  cleanSourceFixture = mkdtempSync(join(tmpdir(), "helix-lite-docs-clean-source-"));
+  const sourceRoot = join(cleanSourceFixture, "repo");
+  const clone = spawnSync("git", ["clone", "--shared", process.cwd(), sourceRoot], {
+    encoding: "utf8",
+  });
+  if (clone.status !== 0) throw new Error(`clean document source clone failed: ${clone.stderr}`);
+  const remote = spawnSync(
+    "git",
+    ["remote", "set-url", "origin", "https://github.com/RetryYN/HELIX-HARNESS"],
+    { cwd: sourceRoot, encoding: "utf8" },
+  );
+  if (remote.status !== 0) throw new Error(`clean document source remote failed: ${remote.stderr}`);
+  return sourceRoot;
+}
 
 const digest = (bytes: Buffer | string): string =>
   `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
@@ -40,15 +63,16 @@ describe("PLAN-L7-658: Lite consumer distribution documents", () => {
   it("U-DISTDOC-002: artifactはdevelopment READMEをcurrent consumer guidanceへ再出力しない", () => {
     const out = mkdtempSync(join(tmpdir(), "helix-lite-docs-"));
     roots.push(out);
+    const sourceRoot = cleanCurrentSourceRoot();
     const result = buildLiteDistributionPackage({
-      repo_root: process.cwd(),
+      repo_root: sourceRoot,
       out_dir: out,
       profile_id: "consumer_core_v1",
     });
     expect(result.ok).toBe(true);
     if (!result.ok || !("paths" in result)) return;
     expect(result.manifest.distribution_documents).toEqual(
-      loadLiteDistributionDocuments(process.cwd()),
+      loadLiteDistributionDocuments(sourceRoot),
     );
     expect(result.manifest.runtime_third_party_inputs).toEqual([]);
     const extracted = mkdtempSync(join(tmpdir(), "helix-lite-docs-extracted-"));
