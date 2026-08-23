@@ -23,7 +23,16 @@ import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-pac
 
 const roots: string[] = [];
 let cleanSourceFixture: string | null = null;
-const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+
+function spawnNpm(args: string[], cwd: string, timeout: number = 60_000) {
+  const npmCli = process.env.npm_execpath;
+  if (!npmCli) throw new Error("npm_execpath_missing");
+  return spawnSync(process.execPath, [npmCli, ...args], {
+    cwd,
+    encoding: "utf8",
+    timeout,
+  });
+}
 
 afterAll(() => {
   if (cleanSourceFixture) rmSync(cleanSourceFixture, { recursive: true, force: true });
@@ -232,17 +241,9 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       })}\n`,
       "utf8",
     );
-    const install = spawnSync(npmCommand, ["install", "--ignore-scripts", fixture.input.tarball], {
-      cwd: consumer,
-      encoding: "utf8",
-      timeout: 60_000,
-    });
+    const install = spawnNpm(["install", "--ignore-scripts", fixture.input.tarball], consumer);
     expect(install.status, `${install.error?.message ?? ""}\n${install.stderr}`).toBe(0);
-    const build = spawnSync(npmCommand, ["run", "build"], {
-      cwd: consumer,
-      encoding: "utf8",
-      timeout: 30_000,
-    });
+    const build = spawnNpm(["run", "build"], consumer, 30_000);
     expect(build.status, build.stderr).toBe(0);
     expect(readFileSync(join(consumer, "dist", "consumer-build.txt"), "utf8")).toBe(
       "consumer-build-ok\n",
@@ -274,11 +275,7 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       timeout: 10_000,
     });
     expect(JSON.parse(secondSetup.stdout)).toMatchObject({ ok: true, idempotent: true });
-    const generatedCiInstall = spawnSync(npmCommand, ["ci", "--ignore-scripts"], {
-      cwd: consumer,
-      encoding: "utf8",
-      timeout: 60_000,
-    });
+    const generatedCiInstall = spawnNpm(["ci", "--ignore-scripts"], consumer);
     expect(generatedCiInstall.status, generatedCiInstall.stderr).toBe(0);
     const generatedCiDoctor = spawnSync(
       join(consumer, "node_modules", ".bin", process.platform === "win32" ? "helix.cmd" : "helix"),
@@ -299,11 +296,7 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       join(consumer, "package.json"),
       `${JSON.stringify({ name: "lite-windows-consumer", private: true })}\n`,
     );
-    const install = spawnSync(npmCommand, ["install", "--ignore-scripts", fixture.input.tarball], {
-      cwd: consumer,
-      encoding: "utf8",
-      timeout: 60_000,
-    });
+    const install = spawnNpm(["install", "--ignore-scripts", fixture.input.tarball], consumer);
     expect(install.status, `${install.error?.message ?? ""}\n${install.stderr}`).toBe(0);
     const entrypoint = join(consumer, "node_modules", ".bin", "helix.ps1");
     const commands = [
