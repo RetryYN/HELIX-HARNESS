@@ -114,6 +114,15 @@ review_evidence:
         evidence_path: tests/distribution-artifact-projection.test.ts
         output_digest: "sha256:1a4c877dbc0da896a107f71d157de64d2f316270477e80b6b14d9087259d11ed"
         result: "Luna reviewer runとTL post-review replayの双方でBiome exit 0、対象TS 2 files checked"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-23T02:18:24Z"
+  review_binding:
+    reviewer: "Codex CLI / gpt-5.6-luna"
+    reviewed_at: "2026-08-23T02:18:24Z"
+    evidence_digest: "sha256:6302292c1ea7095bdabb5f770b36679635a502aedd640cfe634a46f30016053a"
+  entries: []
 ---
 
 # PLAN-L7-652: Lite capability artifact projection実装
