@@ -12,7 +12,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { admitLiteConsumerCanaryArtifact } from "../src/setup/distribution-lite-consumer-canary";
-import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-package";
+import {
+  buildLiteDistributionPackage,
+  loadLiteDistributionDocuments,
+} from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-657-distribution-lite-consumer-canary
 // U-DISTCAN-008: Windowsではnpm生成PowerShell shimを同一Node artifactへ接続する。
@@ -51,6 +54,8 @@ function buildFixture() {
         distribution_repository: built.manifest.distribution_repository,
         artifact_set_digest: built.manifest.artifact_set_digest,
         prebuilt_node_artifact: built.manifest.prebuilt_node_artifact,
+        distribution_documents: loadLiteDistributionDocuments(process.cwd()) ?? [],
+        runtime_third_party_inputs: [],
         output_digests: built.output_digests,
       },
     },

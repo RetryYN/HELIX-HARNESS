@@ -12,6 +12,13 @@ export interface LiteConsumerCanaryExpectedIdentity {
   distribution_repository: string;
   artifact_set_digest: string;
   prebuilt_node_artifact: { path: string; digest: string };
+  distribution_documents: Array<{
+    path: string;
+    source_path: string;
+    digest: string;
+    classification: "first_party" | "third_party_notice";
+  }>;
+  runtime_third_party_inputs: string[];
   output_digests: { tarball: string; checksum: string; manifest: string };
 }
 
@@ -45,6 +52,8 @@ interface PackageManifest {
   distribution_repository: string;
   artifact_set_digest: string;
   prebuilt_node_artifact: { path: string; digest: string } | null;
+  distribution_documents: LiteConsumerCanaryExpectedIdentity["distribution_documents"];
+  runtime_third_party_inputs: string[];
   artifact_paths: string[];
   tarball: string;
   tarball_digest: string;
@@ -93,10 +102,12 @@ function parseManifest(bytes: Buffer): PackageManifest | null {
       "artifact_set_digest",
       "checksum",
       "distribution_repository",
+      "distribution_documents",
       "package_version",
       "prebuilt_node_artifact",
       "profile",
       "requirements",
+      "runtime_third_party_inputs",
       "schema_version",
       "source_head",
       "source_repository",
@@ -127,7 +138,19 @@ function parseManifest(bytes: Buffer): PackageManifest | null {
       !isDigest(value.profile.digest) ||
       !value.prebuilt_node_artifact ||
       !isPortableArtifactPath(value.prebuilt_node_artifact.path) ||
-      !isDigest(value.prebuilt_node_artifact.digest)
+      !isDigest(value.prebuilt_node_artifact.digest) ||
+      !Array.isArray(value.distribution_documents) ||
+      !value.distribution_documents.every(
+        (document) =>
+          document &&
+          typeof document.path === "string" &&
+          typeof document.source_path === "string" &&
+          isDigest(document.digest) &&
+          (document.classification === "first_party" ||
+            document.classification === "third_party_notice"),
+      ) ||
+      !Array.isArray(value.runtime_third_party_inputs) ||
+      !value.runtime_third_party_inputs.every((input) => typeof input === "string")
     ) {
       return null;
     }
@@ -196,6 +219,10 @@ export function admitLiteConsumerCanaryArtifact(input: {
       manifest.artifact_set_digest !== expected.artifact_set_digest ||
       manifest.prebuilt_node_artifact?.path !== expected.prebuilt_node_artifact.path ||
       manifest.prebuilt_node_artifact?.digest !== expected.prebuilt_node_artifact.digest ||
+      JSON.stringify(manifest.distribution_documents) !==
+        JSON.stringify(expected.distribution_documents) ||
+      JSON.stringify(manifest.runtime_third_party_inputs) !==
+        JSON.stringify(expected.runtime_third_party_inputs) ||
       manifest.tarball_digest !== expected.output_digests.tarball ||
       manifest.tarball !== basename(input.tarball) ||
       manifest.checksum !== basename(input.checksum)
