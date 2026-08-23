@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import {
   linkSync,
   mkdtempSync,
@@ -126,5 +127,50 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       ok: false,
       failures: ["artifact_path_unsafe"],
     });
+  });
+
+  it("U-DISTCAN-006: fresh Linux processでinstallからcompletion evidenceまでgreen", () => {
+    const fixture = buildFixture();
+    expect(admitLiteConsumerCanaryArtifact(fixture.input).ok).toBe(true);
+    const consumer = mkdtempSync(join(tmpdir(), "helix-lite-canary-consumer-"));
+    roots.push(consumer);
+    writeFileSync(
+      join(consumer, "package.json"),
+      `${JSON.stringify({ name: "lite-canary-consumer", private: true })}\n`,
+      "utf8",
+    );
+    const install = spawnSync("npm", ["install", "--ignore-scripts", fixture.input.tarball], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 60_000,
+    });
+    expect(install.status, install.stderr).toBe(0);
+    const executable = join(
+      consumer,
+      "node_modules",
+      ".bin",
+      process.platform === "win32" ? "helix.cmd" : "helix",
+    );
+    const commands = [
+      ["setup", "project", "--dry-run", "--json"],
+      ["setup", "project", "--json"],
+      ["setup", "project", "--json"],
+      ["status", "--json"],
+      ["doctor", "--profile", "consumer", "--json"],
+      ["codex", "--role", "se", "--task", "verify consumer", "--json"],
+      ["completion", "decision-packet", "--json"],
+      ["completion", "review-bundle", "--json"],
+    ] as const;
+    for (const argv of commands) {
+      const run = spawnSync(executable, argv, { cwd: consumer, encoding: "utf8", timeout: 10_000 });
+      expect(run.status, `${argv.join(" ")}\n${run.stderr}`).toBe(0);
+      expect(JSON.parse(run.stdout)).toMatchObject({ ok: true });
+    }
+    const secondSetup = spawnSync(executable, ["setup", "project", "--json"], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 10_000,
+    });
+    expect(JSON.parse(secondSetup.stdout)).toMatchObject({ ok: true, idempotent: true });
   });
 });
