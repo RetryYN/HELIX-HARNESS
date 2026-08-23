@@ -32,7 +32,7 @@ contract_invariants: "Full HELIX唯一正本、consumer所有bytes保全、同�
 contract_failures: "差替え、checksum、HEAD、profile、physical path、setup ownership、OS artifact driftをtyped拒否する"
 tdd_red_required: true
 red_test: "U-DISTCAN-001..004が未検証artifactの実行可能性を拒否する"
-red_at: 2026-08-23T16:49:00+09:00
+red_at: null
 green_at: null
 mutation_oracle_evidence: "tests/distribution-lite-consumer-canary.test.tsのtarballへ1 byteを追加するとU-DISTCAN-002がartifact_digest_mismatchでredになり、復元後4/4 green"
 complexity_effect: justified_positive
