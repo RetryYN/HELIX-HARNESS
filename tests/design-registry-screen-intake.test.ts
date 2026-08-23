@@ -228,6 +228,8 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
     expect(unknownRelation.unmapped_requirements[0]?.reason).toBe("relation_unmapped");
   });
 
+  // PLAN-L7-657-distribution-lite-consumer-canary / U-DRG-012c:
+  // canary設計のcatalog接続で増えたrequirement nodeをscreen nodeへ誤算入しない。
   it("U-DRG-012c: 実 repo 台帳に対して構造不変条件が成立する（reality fence）", (ctx) => {
     // 実 harness.db を read-only で当て、fixture では見えない現実の形（要求 family の不一致）を固定する。
     // 件数そのものは台帳更新で動くため pin せず、構造不変条件だけを検査する。
@@ -246,8 +248,10 @@ describe("design-registry screen intake (PLAN-L7-529)", () => {
       }
       const intake = unwrap(buildScreenIntake(inputs));
       // 台帳の全 screen が SCR ノードへ写り、元 ID が復元できる
-      expect(intake.nodes).toHaveLength(inputs.screens.length);
-      for (const node of intake.nodes) {
+      // intake.nodes は trace の端点となる requirement node も含むため、screenだけを比較する。
+      const screenNodes = intake.nodes.filter((node) => node.kind === "screen");
+      expect(screenNodes).toHaveLength(inputs.screens.length);
+      for (const node of screenNodes) {
         expect(node.entity_id).toMatch(/^SCR-[a-z0-9][a-z0-9-]*$/);
         expect(node.source_pointer).toMatch(/^screens:/);
       }

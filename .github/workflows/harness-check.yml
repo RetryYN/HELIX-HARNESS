@@ -30,7 +30,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lite-consumer-canary-artifact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.15"
+          cache: npm
+
+      - name: install deps (frozen)
+        run: npm ci
+
+      - name: build Lite canary artifact
+        run: |
+          mkdir -p "${RUNNER_TEMP}/lite-canary"
+          npx --no-install tsx src/cli.ts distribution package-profile \
+            --profile consumer_core_v1 \
+            --out "${RUNNER_TEMP}/lite-canary" \
+            --json > "${RUNNER_TEMP}/lite-canary/receipt.json"
+
+      - name: Linux Lite consumer canary
+        env:
+          HELIX_LITE_CANARY_RECEIPT: ${{ runner.temp }}/lite-canary/receipt.json
+        run: npm run test:fast -- tests/distribution-lite-consumer-canary.test.ts
+
+      - name: upload exact Lite canary artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: lite-consumer-canary
+          path: ${{ runner.temp }}/lite-canary
+          retention-days: 1
+
   windows-durability-smoke:
+    needs: lite-consumer-canary-artifact
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -49,17 +89,25 @@ jobs:
       - name: install deps (frozen)
         run: npm ci
 
+      - name: download Linux-validated Lite artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: lite-consumer-canary
+          path: ${{ runner.temp }}/lite-canary
+
       - name: Windows durability smoke
-        run: npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts
+        env:
+          HELIX_LITE_CANARY_RECEIPT: ${{ runner.temp }}/lite-canary/receipt.json
+        run: npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/distribution-lite-consumer-canary.test.ts
 
   harness-check:
-    needs: windows-durability-smoke
+    needs: [lite-consumer-canary-artifact, windows-durability-smoke]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
       - name: require Windows durability smoke
-        if: ${{ needs.windows-durability-smoke.result != 'success' }}
+        if: ${{ needs.lite-consumer-canary-artifact.result != 'success' || needs.windows-durability-smoke.result != 'success' }}
         run: exit 1
 
       - name: checkout
