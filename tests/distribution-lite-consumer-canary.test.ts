@@ -173,4 +173,26 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     });
     expect(JSON.parse(secondSetup.stdout)).toMatchObject({ ok: true, idempotent: true });
   });
+
+  it("U-DISTCAN-010: development state／PLAN／credential pathをartifactへ混入させない", () => {
+    const fixture = buildFixture();
+    const forbidden = [
+      /^\.helix(?:\/|$)/,
+      /^docs\/plans(?:\/|$)/,
+      /(?:^|\/)harness\.db$/,
+      /(?:^|\/)(?:credential|credentials|secrets?)(?:\/|\.|$)/i,
+      /^\/|^[A-Za-z]:[\\/]/,
+    ];
+    for (const path of fixture.built.manifest.artifact_paths) {
+      expect(
+        forbidden.some((pattern) => pattern.test(path)),
+        path,
+      ).toBe(false);
+    }
+    expect(fixture.built.manifest.artifact_paths).not.toContain("src/cli.ts");
+    expect(fixture.built.manifest.artifact_paths).not.toContain("src/runtime/resident-lane.ts");
+    expect(fixture.built.manifest.artifact_paths).not.toContain(
+      "src/workflow/routing-allocation.ts",
+    );
+  });
 });
