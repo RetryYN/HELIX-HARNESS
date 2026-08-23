@@ -38,6 +38,10 @@ describe("PLAN-L7-657: Lite consumer services", () => {
       exit_code: 0,
       payload: { ok: true, failures: [] },
     });
+    const workflow = readFileSync(join(root, ".github", "workflows", "helix-consumer.yml"), "utf8");
+    expect(workflow).toContain("npm ci --ignore-scripts");
+    expect(workflow).toContain("npx --no-install helix doctor --profile consumer --json");
+    expect(workflow).not.toContain("npm install");
   });
 
   it("U-DISTCAN-007a: consumer所有CIを上書きしない", () => {
