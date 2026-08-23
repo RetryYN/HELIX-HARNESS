@@ -64,7 +64,6 @@
       "disposition": "consumer_safe",
       "artifact_paths": [
         "DISCLAIMER.md",
-        "LICENSE",
         "PROVENANCE.md",
         "README.md",
         "THIRD_PARTY_NOTICES.md",

@@ -106,6 +106,7 @@ describe("PLAN-L7-658: Lite consumer distribution documents", () => {
     }
     for (const args of [
       ["init"],
+      ["remote", "add", "origin", "git@github.com:RetryYN/HELIX-HARNESS.git"],
       ["add", ...sources],
       [
         "-c",
