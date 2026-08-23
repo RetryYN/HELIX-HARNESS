@@ -33,7 +33,7 @@ contract_failures: "success不在、別HEAD、別PR、別workflow、newer succes
 tdd_red_required: true
 red_at: 2026-08-23T06:35:20+09:00
 green_at: 2026-08-23T06:39:53+09:00
-mutation_oracle_evidence: "U-GCRA-032でnon-success除外を削除するとPR #945と同型のnewer failureにより旧success receiptがstale化してred、U-GRCIGEN-001でsuccess predicateを削除するとnewer failureを選んでredになる"
+mutation_oracle_evidence: "2026-08-23T09:11:41+09:00にsrc/runtime/github-review-ci-generation.tsのcandidate.conclusion === success predicateを一時mutationで除去し、npx --no-install vitest run --project fast tests/github-review-ci-generation.test.tsを実測した。U-GRCIGEN-001はnewer failure id=4を誤選択、U-GRCIGEN-003はfailure-only入力をnullにせず返して2 failed / 1 passed、exit 1となりseeded defectをkillした。predicate復元後は3 passed、exit 0を確認した。"
 complexity_effect: net_negative
 complexity_justification: "CLI producerとadmission consumerの重複selectionを共有pure functionへ集約する"
 removal_trigger: "GitHub workflowがreviewとReady admissionを単一generation transactionとして提供する時"
