@@ -56,6 +56,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-006, test_path: tests/distribution-artifact-projection.test.ts }
 generates:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-652-distribution-lite-artifact-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, artifact_type: design_doc }
