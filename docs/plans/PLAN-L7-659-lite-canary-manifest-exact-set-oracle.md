@@ -47,31 +47,31 @@ review_evidence:
   - reviewer: "Claude Code / independent AI-B"
     review_kind: cross_agent
     reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
-    reviewed_at: "2026-08-23T19:22:40Z"
-    tests_green_at: "2026-08-23T19:21:19Z"
+    reviewed_at: "2026-08-23T20:03:04Z"
+    tests_green_at: "2026-08-23T20:01:09Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude-opus-5
-    reviewed_head_sha: ba0255408d7e91467b2524b0602ffb0b63b24ff2
-    scope: "PR #969 current exact HEAD ba0255408d7e91467b2524b0602ffb0b63b24ff2をClaude Codeが検収し、Issue #965のarchive／manifest exact-set oracle、U-DISTCAN-001a、CI／DB projection／replayを照合した。approve／blocker 0。Actions run 32659698019はfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreen。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/969#issuecomment-5388001830。receipt digest: sha256:c989973771c2d26407957480893b51f8f4b9d939545574e5c167f9223dec9604"
+    reviewed_head_sha: cb98936e9d8937974eab996283780271b0e53a44
+    scope: "PR #969 current exact HEAD cb98936e9d8937974eab996283780271b0e53a44をClaude Codeが検収し、Issue #965のarchive／manifest exact-set oracle、U-DISTCAN-001a、CI／DB projection／replayを照合した。approve／blocker 0。Actions run 32662050327はfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreen。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/969#issuecomment-5388178566。receipt digest: sha256:9ea7fa4530baa2a0479be020051bfe8ecd5f570c29a4729c497f5b66d948d708"
     green_commands:
       - kind: smoke
-        command: "gh run view 32659698019 --log"
+        command: "gh run view 32662050327 --log"
         runner: ci
         scope: full
         exit_code: 0
-        completed_at: "2026-08-23T19:21:19Z"
+        completed_at: "2026-08-23T20:01:09Z"
         evidence_path: tests/distribution-lite-consumer-canary.test.ts
-        output_digest: "sha256:006557ece2ea4c2236596f25f07c6d6263b5cdad4c0660dffe230775d98c4f50"
+        output_digest: "sha256:af4f9628b479d0f61a04a587b7df8c7b21d06883a631a180ffbe398a256ebb1e"
         result: "current HEADのfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreen。Claude current exact-HEAD reviewはapprove／blocker 0。"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-23T19:22:40Z"
+  assessed_at: "2026-08-23T20:03:04Z"
   review_binding:
     reviewer: "Claude Code / independent AI-B"
-    reviewed_at: "2026-08-23T19:22:40Z"
-    evidence_digest: "sha256:850642556c72706bae6655afd70406d8081129f434a6f17d1b7d8c7f86da58e1"
+    reviewed_at: "2026-08-23T20:03:04Z"
+    evidence_digest: "sha256:9cbac9e2b10f38d24b4c932af62077b33e4931ea7ba1dff94c14a70bf178014b"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-659-lite-canary-manifest-exact-set-oracle.md, artifact_type: markdown_doc }
