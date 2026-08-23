@@ -410,7 +410,7 @@ describe("source harness-check workflow", () => {
     expect(windowsJob["timeout-minutes"]).toBe(8);
     expect(windowsJob["continue-on-error"]).not.toBe(true);
     expect(smoke.run).toBe(
-      "npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts",
+      "npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/distribution-lite-consumer-canary.test.ts",
     );
     expect(smoke["continue-on-error"]).not.toBe(true);
     expect(job.needs).toBe("windows-durability-smoke");
