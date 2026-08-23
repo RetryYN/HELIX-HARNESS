@@ -22,7 +22,7 @@ responsibility_owner: distribution-lite-profile-package
 `distribution package`と同じdeterministic archive coreへ一方向に接続する。Full HELIXを唯一のsource authorityとし、
 Lite専用builder、別requirements、暗黙のFull package fallbackを作らない。
 
-## admission
+## admission境界
 
 - profile IDは必須で、catalog上のexact oneへ解決する。未指定・unknown・重複はarchive作成前に拒否する。
 - artifact projectionとdependency closureの両方が`ok=true`でなければfilesystem writeを0件にする。
@@ -35,7 +35,7 @@ Lite専用builder、別requirements、暗黙のFull package fallbackを作らな
   final fileはexclusive createする。
 - current distribution repositoryは`RetryYN/HELIX-HARNESS-DevOS`だけを出力する。旧OS identityは出力しない。
 
-## package identity
+## package identityの束縛
 
 manifestはsource HEAD、requirements version／root digest、profile ID／version／digest、package version、
 artifact exact set／digest、tarball digest、checksum filenameを束縛する。manifestはtarball外のreceiptであり、
@@ -43,7 +43,7 @@ artifact exact set／digest、tarball digest、checksum filenameを束縛する�
 runtime入力はtop-levelとnested requirements／profileの余剰identity keyを拒否し、blocked receiptにも余剰fieldを
 再投影しない。typed compile-time契約だけにauthority field保護を依存しない。
 
-## deterministic archive core
+## 決定的archive core
 
 Full packageとLite packageは同じarchive coreを使用する。path順、mtime epoch、uid／gid 0、numeric owner、
 volatile pax field除去を共通化し、同一inputの独立2 buildでtarball、manifest、checksum bytesを一致させる。

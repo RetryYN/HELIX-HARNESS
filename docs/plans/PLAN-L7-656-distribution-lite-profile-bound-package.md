@@ -93,7 +93,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-L7-656: Lite profile-bound deterministic package
+# PLAN-L7-656: Lite profile-bound決定的package
 
 ## 工程表
 
@@ -103,7 +103,7 @@ review_evidence: []
 | 2 | 既存archive処理をshared coreへ抽出 | Full packageの出力契約を維持 |
 | 3 | profile／projection／closureを接続 | current profileのみgreen |
 | 4 | 2 build＋mutation＋CLI検証 | digest一致と差分検出 |
-| 5 | full CI／doctor／Claude exact-HEAD review | blocker 0 |
+| 5 | 全CI／doctor／Claude exact-HEADレビュー | blocker 0 |
 
 ## 非対象
 
