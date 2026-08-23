@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -76,6 +76,7 @@ export type LiteDistributionPackageFailure =
   | "profile_required"
   | "profile_unknown"
   | "source_identity_unavailable"
+  | "source_head_dirty"
   | "requirements_identity_invalid"
   | "package_identity_invalid"
   | `profile:${DistributionProfileFailure}`
@@ -86,7 +87,11 @@ export type LiteDistributionPackageResult =
   | DistributionPackageResult
   | { ok: false; failures: LiteDistributionPackageFailure[] };
 
-function trackedPathsAndHead(repoRoot: string): { paths: string[]; head: string } | null {
+export function resolveTrackedSourceIdentity(
+  repoRoot: string,
+):
+  | { ok: true; paths: string[]; head: string }
+  | { ok: false; failure: "source_identity_unavailable" | "source_head_dirty" } {
   try {
     const paths = execFileSync("git", ["ls-files"], { cwd: repoRoot, encoding: "utf8" })
       .trim()
@@ -96,9 +101,18 @@ function trackedPathsAndHead(repoRoot: string): { paths: string[]; head: string 
       cwd: repoRoot,
       encoding: "utf8",
     }).trim();
-    return /^[0-9a-f]{40}$/.test(head) ? { paths, head } : null;
+    if (!/^[0-9a-f]{40}$/.test(head)) {
+      return { ok: false, failure: "source_identity_unavailable" };
+    }
+    const diff = spawnSync("git", ["diff", "--quiet", "HEAD", "--"], {
+      cwd: repoRoot,
+      stdio: "ignore",
+    });
+    if (diff.status === 1) return { ok: false, failure: "source_head_dirty" };
+    if (diff.status !== 0) return { ok: false, failure: "source_identity_unavailable" };
+    return { ok: true, paths, head };
   } catch {
-    return null;
+    return { ok: false, failure: "source_identity_unavailable" };
   }
 }
 
@@ -146,8 +160,8 @@ export function buildLiteDistributionPackage(input: {
     (candidate) => candidate.profile_id === input.profile_id,
   );
   if (!profile) return { ok: false, failures: ["profile_unknown"] };
-  const source = trackedPathsAndHead(input.repo_root);
-  if (!source) return { ok: false, failures: ["source_identity_unavailable"] };
+  const source = resolveTrackedSourceIdentity(input.repo_root);
+  if (!source.ok) return { ok: false, failures: [source.failure] };
   const projection = projectDistributionArtifacts({
     profile,
     catalog: loadDistributionCapabilityArtifactCatalog(input.repo_root),

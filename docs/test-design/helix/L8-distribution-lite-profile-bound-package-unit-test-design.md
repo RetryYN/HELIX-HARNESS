@@ -23,6 +23,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-011b | generated provenance | identity無しgenerated artifactの混入を拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-004 | deterministic build | 独立2 buildのtarball／manifest／checksum bytes digestが一致 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-005 | mutation | 1 path追加と1 byte変更でそれぞれdigest不一致 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-005b | source HEAD binding | tracked sourceの未commit mutationを古いHEADとして包装せず`source_head_dirty`で拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-006 | shared builder | Full commandとLite commandが同じarchive coreを呼ぶ | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-007 | current profile | current `consumer_core_v1`の独立2 buildを同一identityへ束縛 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-012 | prebuilt install | fresh package install後の`node_modules/.bin/helix --version`をbuild-sourceなしで起動 | `tests/distribution-lite-profile-package.test.ts` |

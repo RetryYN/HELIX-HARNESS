@@ -15,6 +15,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import {
   buildLiteDistributionPackage,
   resolveLiteRequirementsIdentity,
+  resolveTrackedSourceIdentity,
 } from "../src/setup/distribution-lite-package";
 import {
   createDeterministicDistributionPackage,
@@ -188,6 +189,32 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       identity,
     });
     expect(mutated.manifest.tarball_digest).not.toBe(first.manifest.tarball_digest);
+  });
+
+  it("U-DISTPKG-005b: tracked sourceの未commit mutationをsource HEADとして包装しない", () => {
+    const sourceRoot = fixture();
+    for (const args of [
+      ["init"],
+      ["add", "src/entry.ts"],
+      [
+        "-c",
+        "user.name=HELIX Test",
+        "-c",
+        "user.email=helix@example.invalid",
+        "commit",
+        "-m",
+        "fixture",
+      ],
+    ]) {
+      const git = spawnSync("git", args, { cwd: sourceRoot, encoding: "utf8" });
+      expect(git.status, `${args.join(" ")}\n${git.stderr}`).toBe(0);
+    }
+    expect(resolveTrackedSourceIdentity(sourceRoot)).toMatchObject({ ok: true });
+    writeFileSync(join(sourceRoot, "src", "entry.ts"), "export const value = 2;\n", "utf8");
+    expect(resolveTrackedSourceIdentity(sourceRoot)).toEqual({
+      ok: false,
+      failure: "source_head_dirty",
+    });
   });
 
   it("U-DISTPKG-006: Full commandとLite commandが同じdeterministic tar coreを呼ぶ", () => {
