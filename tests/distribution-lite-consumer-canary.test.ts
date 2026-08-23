@@ -23,6 +23,7 @@ import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-pac
 
 const roots: string[] = [];
 let cleanSourceFixture: string | null = null;
+const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
 
 afterAll(() => {
   if (cleanSourceFixture) rmSync(cleanSourceFixture, { recursive: true, force: true });
@@ -231,13 +232,13 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       })}\n`,
       "utf8",
     );
-    const install = spawnSync("npm", ["install", "--ignore-scripts", fixture.input.tarball], {
+    const install = spawnSync(npmCommand, ["install", "--ignore-scripts", fixture.input.tarball], {
       cwd: consumer,
       encoding: "utf8",
       timeout: 60_000,
     });
-    expect(install.status, install.stderr).toBe(0);
-    const build = spawnSync("npm", ["run", "build"], {
+    expect(install.status, `${install.error?.message ?? ""}\n${install.stderr}`).toBe(0);
+    const build = spawnSync(npmCommand, ["run", "build"], {
       cwd: consumer,
       encoding: "utf8",
       timeout: 30_000,
@@ -273,7 +274,7 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       timeout: 10_000,
     });
     expect(JSON.parse(secondSetup.stdout)).toMatchObject({ ok: true, idempotent: true });
-    const generatedCiInstall = spawnSync("npm", ["ci", "--ignore-scripts"], {
+    const generatedCiInstall = spawnSync(npmCommand, ["ci", "--ignore-scripts"], {
       cwd: consumer,
       encoding: "utf8",
       timeout: 60_000,
@@ -298,12 +299,12 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       join(consumer, "package.json"),
       `${JSON.stringify({ name: "lite-windows-consumer", private: true })}\n`,
     );
-    const install = spawnSync("npm", ["install", "--ignore-scripts", fixture.input.tarball], {
+    const install = spawnSync(npmCommand, ["install", "--ignore-scripts", fixture.input.tarball], {
       cwd: consumer,
       encoding: "utf8",
       timeout: 60_000,
     });
-    expect(install.status, install.stderr).toBe(0);
+    expect(install.status, `${install.error?.message ?? ""}\n${install.stderr}`).toBe(0);
     const entrypoint = join(consumer, "node_modules", ".bin", "helix.ps1");
     const commands = [
       ["--version"],
