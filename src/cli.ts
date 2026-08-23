@@ -456,7 +456,10 @@ import {
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
 import { findReference } from "./search/index";
-import { buildLiteDistributionPackage } from "./setup/distribution-lite-package";
+import {
+  buildLiteDistributionPackage,
+  resolveLiteRequirementsIdentity,
+} from "./setup/distribution-lite-package";
 import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
   buildCleanDistributionPlan,
@@ -15964,59 +15967,49 @@ distribution
       : join(repoRoot, ".helix", "release");
     const artifactStem = exportPlan.sourceTag.replace(/[^A-Za-z0-9._-]+/g, "-");
     const sourcePaths = collectDistributionCandidatePaths(repoRoot);
-    const requirementsDocument = readFileSync(
-      join(repoRoot, "docs/governance/helix-harness-requirements_v1.3.md"),
-      "utf8",
-    );
-    const requirementsVersion =
-      requirementsDocument.match(/^- \*\*Version\*\*: ([0-9]+\.[0-9]+\.[0-9]+)$/m)?.[1] ??
-      "unknown";
-    const requirementsRootDigest = (
-      JSON.parse(readFileSync(join(repoRoot, "requirements-ir/manifest.json"), "utf8")) as {
-        root_digest: string;
-      }
-    ).root_digest;
+    const requirementsIdentity = resolveLiteRequirementsIdentity(repoRoot);
     const sourceHead = execFileSync("git", ["rev-parse", "HEAD"], {
       cwd: repoRoot,
       encoding: "utf8",
     }).trim();
     const signature = join(outDir, `${artifactStem}.tar.gz.sig`);
-    const packageResult = exportPlan.ok
-      ? createDeterministicDistributionPackage({
-          source_root: repoRoot,
-          out_dir: outDir,
-          artifact_stem: artifactStem,
-          artifact_paths: exportPlan.artifactPaths,
-          identity: {
-            source_head: sourceHead,
-            requirements: { version: requirementsVersion, root_digest: requirementsRootDigest },
-            profile: null,
-            package_version: LOCAL_DISTRIBUTION_PACKAGE_VERSION,
-            distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
-            artifact_set_digest: `sha256:${createHash("sha256")
-              .update(JSON.stringify(exportPlan.artifactPaths))
-              .digest("hex")}`,
-          },
-          resolve_source_path: (artifactPath) =>
-            cleanDistributionSourcePath(artifactPath, sourcePaths),
-          transform_artifact: (artifactPath, content) =>
-            artifactPath === "package.json"
-              ? transformCleanDistributionArtifact(artifactPath, content.toString("utf8"))
-              : null,
-          manifest_extensions: {
-            ok: exportPlan.ok,
-            sourceTag: exportPlan.sourceTag,
-            cleanRepo: exportPlan.cleanRepo,
-            signature: basename(signature),
-            signatureRequired: true,
-            signatureCreated: false,
-            artifactCount: exportPlan.artifactPaths.length,
-            missingRequired: exportPlan.missingRequired,
-            denylistViolations: exportPlan.denylistViolations,
-          },
-          tarball_digest_aliases: ["artifactDigest"],
-        })
-      : null;
+    const packageResult =
+      exportPlan.ok && requirementsIdentity
+        ? createDeterministicDistributionPackage({
+            source_root: repoRoot,
+            out_dir: outDir,
+            artifact_stem: artifactStem,
+            artifact_paths: exportPlan.artifactPaths,
+            identity: {
+              source_head: sourceHead,
+              requirements: requirementsIdentity,
+              profile: null,
+              package_version: LOCAL_DISTRIBUTION_PACKAGE_VERSION,
+              distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
+              artifact_set_digest: `sha256:${createHash("sha256")
+                .update(JSON.stringify(exportPlan.artifactPaths))
+                .digest("hex")}`,
+            },
+            resolve_source_path: (artifactPath) =>
+              cleanDistributionSourcePath(artifactPath, sourcePaths),
+            transform_artifact: (artifactPath, content) =>
+              artifactPath === "package.json"
+                ? transformCleanDistributionArtifact(artifactPath, content.toString("utf8"))
+                : null,
+            manifest_extensions: {
+              ok: exportPlan.ok,
+              sourceTag: exportPlan.sourceTag,
+              cleanRepo: exportPlan.cleanRepo,
+              signature: basename(signature),
+              signatureRequired: true,
+              signatureCreated: false,
+              artifactCount: exportPlan.artifactPaths.length,
+              missingRequired: exportPlan.missingRequired,
+              denylistViolations: exportPlan.denylistViolations,
+            },
+            tarball_digest_aliases: ["artifactDigest"],
+          })
+        : null;
     const tarball = packageResult?.paths.tarball ?? join(outDir, `${artifactStem}.tar.gz`);
     const checksum = packageResult?.paths.checksum ?? `${tarball}.sha256`;
     const manifest = packageResult?.paths.manifest ?? join(outDir, `${artifactStem}.manifest.json`);

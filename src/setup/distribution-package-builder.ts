@@ -1,6 +1,8 @@
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
+  constants,
+  copyFileSync,
   cpSync,
   existsSync,
   lstatSync,
@@ -159,9 +161,23 @@ function identityHasExactKeys(identity: DistributionPackageIdentity): boolean {
     "distribution_repository",
     "artifact_set_digest",
   ]);
+  const requirementsKeys = new Set(["version", "root_digest"]);
+  const profileKeys = new Set(["id", "version", "digest"]);
+  const requirementsExact =
+    typeof identity.requirements === "object" &&
+    identity.requirements !== null &&
+    Object.keys(identity.requirements).length === requirementsKeys.size &&
+    Object.keys(identity.requirements).every((key) => requirementsKeys.has(key));
+  const profileExact =
+    identity.profile === null ||
+    (typeof identity.profile === "object" &&
+      Object.keys(identity.profile).length === profileKeys.size &&
+      Object.keys(identity.profile).every((key) => profileKeys.has(key)));
   return (
     Object.keys(identity).length === expected.size &&
-    Object.keys(identity).every((key) => expected.has(key))
+    Object.keys(identity).every((key) => expected.has(key)) &&
+    requirementsExact &&
+    profileExact
   );
 }
 
@@ -239,15 +255,32 @@ export function createDeterministicDistributionPackage(input: {
   const tarball = join(input.out_dir, `${input.artifact_stem}.tar.gz`);
   const checksum = `${tarball}.sha256`;
   const manifestPath = join(input.out_dir, `${input.artifact_stem}.manifest.json`);
+  if ([tarball, checksum, manifestPath].some((path) => existsSync(path))) {
+    failures.add("artifact_output_unsafe");
+  }
+  const safeExtensions = Object.keys(input.manifest_extensions ?? {}).some((key) =>
+    reservedManifestKeys.has(key),
+  )
+    ? {}
+    : (input.manifest_extensions ?? {});
   const manifest: DistributionPackageManifest = {
     schema_version: "helix-distribution-package-manifest.v1",
     source_head: input.identity.source_head,
-    requirements: input.identity.requirements,
-    profile: input.identity.profile,
+    requirements: {
+      version: input.identity.requirements.version,
+      root_digest: input.identity.requirements.root_digest,
+    },
+    profile: input.identity.profile
+      ? {
+          id: input.identity.profile.id,
+          version: input.identity.profile.version,
+          digest: input.identity.profile.digest,
+        }
+      : null,
     package_version: input.identity.package_version,
     distribution_repository: input.identity.distribution_repository,
     artifact_set_digest: input.identity.artifact_set_digest,
-    ...(input.manifest_extensions ?? {}),
+    ...safeExtensions,
     artifact_paths: admitted.paths,
     tarball: basename(tarball),
     tarball_digest: "sha256:pending",
@@ -264,6 +297,8 @@ export function createDeterministicDistributionPackage(input: {
   if (failures.size > 0) return blocked();
 
   const stage = mkdtempSync(join(tmpdir(), "helix-distribution-package-"));
+  const generated = mkdtempSync(join(tmpdir(), "helix-distribution-output-"));
+  const generatedTarball = join(generated, basename(tarball));
   let tarExitCode: number | null = null;
   let tarStderr = "";
   try {
@@ -280,29 +315,38 @@ export function createDeterministicDistributionPackage(input: {
         cpSync(from, to, { recursive: true });
       }
     }
-    const tar = spawnSync("tar", deterministicDistributionTarArgs(basename(tarball), stage), {
-      cwd: input.out_dir,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-    });
+    const tar = spawnSync(
+      "tar",
+      deterministicDistributionTarArgs(basename(generatedTarball), stage),
+      {
+        cwd: generated,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      },
+    );
     tarExitCode = tar.status;
     tarStderr = String(tar.stderr ?? "");
-    if (tar.status !== 0 || !existsSync(tarball)) {
+    if (tar.status !== 0 || !existsSync(generatedTarball)) {
       failures.add("tar_failed");
       return {
         ...blocked(),
         tar: { exit_code: tarExitCode, stderr: tarStderr },
       };
     }
-    manifest.tarball_digest = digest(readFileSync(tarball));
+    manifest.tarball_digest = digest(readFileSync(generatedTarball));
     for (const alias of input.tarball_digest_aliases ?? []) {
       manifest[alias] = manifest.tarball_digest;
     }
+    copyFileSync(generatedTarball, tarball, constants.COPYFILE_EXCL);
     writeFileSync(
       checksum,
       `${manifest.tarball_digest.slice("sha256:".length)}  ${basename(tarball)}\n`,
+      { flag: "wx" },
     );
-    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, {
+      encoding: "utf8",
+      flag: "wx",
+    });
     return {
       ok: true,
       failures: [],
@@ -317,5 +361,6 @@ export function createDeterministicDistributionPackage(input: {
     };
   } finally {
     rmSync(stage, { recursive: true, force: true });
+    rmSync(generated, { recursive: true, force: true });
   }
 }

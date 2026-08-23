@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 import {
   existsSync,
+  linkSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -330,6 +331,50 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(existsSync(outDir)).toBe(false);
   });
 
+  it("U-DISTPKG-009k: nested identity余剰keyをmanifestへ再投影しない", () => {
+    const sourceRoot = fixture();
+    const forgedIdentity = {
+      ...identity,
+      requirements: { ...identity.requirements, forged: "nested" },
+      profile: { ...identity.profile, forged: "nested" },
+    } as DistributionPackageIdentity;
+    const result = createDeterministicDistributionPackage({
+      source_root: sourceRoot,
+      out_dir: join(sourceRoot, "out-nested-identity"),
+      artifact_stem: "lite",
+      artifact_paths: ["src/entry.ts"],
+      identity: forgedIdentity,
+    });
+    expect(result).toMatchObject({ ok: false, failures: ["artifact_identity_invalid"] });
+    expect(result.manifest.requirements).not.toHaveProperty("forged");
+    expect(result.manifest.profile).not.toHaveProperty("forged");
+  });
+
+  it("U-DISTPKG-009l: 既存output symlink／hardlinkを外部上書き前に拒否する", () => {
+    for (const suffix of [".tar.gz", ".tar.gz.sha256", ".manifest.json"]) {
+      for (const linkKind of ["symlink", "hardlink"] as const) {
+        const sourceRoot = fixture();
+        const outside = fixture();
+        const outDir = join(sourceRoot, `out-${linkKind}-${suffix.replaceAll(".", "-")}`);
+        mkdirSync(outDir);
+        const external = join(outside, "external.bin");
+        writeFileSync(external, "outside-original\n", "utf8");
+        const output = join(outDir, `lite${suffix}`);
+        if (linkKind === "symlink") symlinkSync(external, output);
+        else linkSync(external, output);
+        const result = createDeterministicDistributionPackage({
+          source_root: sourceRoot,
+          out_dir: outDir,
+          artifact_stem: "lite",
+          artifact_paths: ["src/entry.ts"],
+          identity,
+        });
+        expect(result).toMatchObject({ ok: false, failures: ["artifact_output_unsafe"] });
+        expect(readFileSync(external, "utf8")).toBe("outside-original\n");
+      }
+    }
+  });
+
   it("U-DISTPKG-009j: canonical Requirement IR shard driftをpackage identityとして拒否する", () => {
     expect(resolveLiteRequirementsIdentity(process.cwd())).toMatchObject({
       version: "1.3.13",
@@ -349,6 +394,17 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       "utf8",
     );
     expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
+  });
+
+  it("U-DISTPKG-009m: Full package経路もcanonical Requirement IR resolverを共有する", () => {
+    const cli = readFileSync("src/cli.ts", "utf8");
+    expect(cli).toContain(
+      "const requirementsIdentity = resolveLiteRequirementsIdentity(repoRoot);",
+    );
+    expect(cli).toContain("const packageResult =\n      exportPlan.ok && requirementsIdentity");
+    expect(cli).not.toContain(
+      'JSON.parse(readFileSync(join(repoRoot, "requirements-ir/manifest.json"), "utf8"))',
+    );
   });
 
   it("U-DISTPKG-010: current package-profile CLIを実行してprofile-bound artifactを生成する", () => {
