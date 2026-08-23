@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTDOC-001..005が文書未投影をredにする"
 red_at: null
 green_at: null
-mutation_oracle_evidence: "tests/distribution-lite-documents.test.tsで文書欠落／README差替えmutationを実測予定"
+mutation_oracle_evidence: "U-DISTDOC-004で5文書のexact-set欠落を個別拒否し、U-DISTDOC-004bでREADME／LICENSE／attribution／provenance／免責を各1 byte削除して`source_head_dirty`を実測する。U-DISTDOC-005で旧guidance／absolute path／credential文字列をtyped拒否する"
 complexity_effect: justified_positive
 complexity_justification: "配布文書をartifact identityへ含めるdocument manifest projectionを追加する"
 removal_trigger: "全distribution profileが同一generated document registryへ統合された時"
@@ -47,6 +47,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-001, test_path: tests/distribution-lite-documents.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-002, test_path: tests/distribution-lite-documents.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-003, test_path: tests/distribution-lite-documents.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-004, test_path: tests/distribution-lite-documents.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-004b, test_path: tests/distribution-lite-documents.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, oracle_id: U-DISTDOC-005, test_path: tests/distribution-lite-documents.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-658-lite-consumer-distribution-docs.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md, artifact_type: design_doc }

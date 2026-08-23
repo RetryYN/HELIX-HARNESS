@@ -30,7 +30,8 @@ development checkout向けREADMEをそのままcurrent consumer guidanceへ再�
 - `DISCLAIMER.md`: 自動判断とconsumer責務の境界。
 
 各文書はoutput path、source path、bytes digest、first／third-party区分をmanifest extensionへ束縛する。
-source HEADが変わらない手編集archiveや、文書欠落を成功へ丸めない。
+source HEADが変わらない手編集source／archiveや、文書欠落を成功へ丸めない。5文書のいずれかに1 byteでも
+未commit差分があれば、親builderの`source_head_dirty` admissionでarchive write前に拒否する。
 
 ## READMEコマンド受理
 
