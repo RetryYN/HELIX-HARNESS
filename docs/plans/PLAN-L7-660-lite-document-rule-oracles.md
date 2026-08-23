@@ -68,6 +68,15 @@ review_evidence:
         evidence_path: tests/distribution-lite-documents.test.ts
         output_digest: "sha256:078e07b163951c3ec093946017a4b912e47f53eaaf8c87ae5c344be1ed0427e8"
         result: "全回帰のbulk 489 files / 4632 tests、stateful 1 file / 89 tests、slow 4 files / 137 testsがgreen。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-23T21:48:51Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-23T21:48:51Z"
+    evidence_digest: "sha256:17def635c966df67f55d5fdeac70e101577f7912084edf68832568718072dd09"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-660-lite-document-rule-oracles.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-consumer-documents-unit-test-design.md, artifact_type: test_design }
