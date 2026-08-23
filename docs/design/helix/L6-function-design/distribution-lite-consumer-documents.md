@@ -26,13 +26,13 @@ development checkout向けREADMEをそのままcurrent consumer guidanceへ再�
 - `README.md`: `README-LITE.md`から投影するconsumer guidance。
 - `LICENSE`: source licenseの同一bytes。
 - `THIRD_PARTY_NOTICES.md`: runtime同梱dependencyと外部tool非同梱境界。
-- `PROVENANCE.md`: source／requirements／profile／artifact identity。
+- `PROVENANCE.md`: source／requirements／profile／artifactの同一性証拠。
 - `DISCLAIMER.md`: 自動判断とconsumer責務の境界。
 
 各文書はoutput path、source path、bytes digest、first／third-party区分をmanifest extensionへ束縛する。
 source HEADが変わらない手編集archiveや、文書欠落を成功へ丸めない。
 
-## README command admission
+## READMEコマンド受理
 
 READMEに記載するHELIX commandは`consumer_core_v1` command registryのexact setだけとする。
 install／setup／status／consumer doctor／Codex・Claude dry-run／completion evidenceを案内し、team run、resident lane、

@@ -1,4 +1,4 @@
-# HELIX-HARNESS-LITE
+# HELIX-HARNESS-LITE配布ガイド
 
 HELIX-HARNESS-LITEは、requirements、L1–L12、typed workflow identity、CI／doctor、exact-HEAD review、
 completion evidenceをconsumer repositoryへ導入するstable subsetです。HELIX-HARNESSが唯一のsource authorityであり、
@@ -39,13 +39,13 @@ npx --no-install helix completion review-bundle --json
 
 Liteは`team run`、resident lane、provider自動配車を正規consumer commandとして公開しません。
 
-## upgrade／rollback／uninstall
+## 更新／復旧／削除
 
 engine versionはpackage managerのimmutable versionまたは検証済みtarball digestへpinします。upgrade前に現在pinを保存し、
 失敗時は直前pinだけへrollbackします。consumer sourceと`.helix/evidence`は巻き戻しません。uninstallではpackageとHELIX管理fileだけを
 対象とし、consumer所有fileやcompletion evidenceを削除しません。
 
-## proxy／CA／mirror
+## proxy／CA／mirror設定
 
 network設定はnpmとprovider公式CLIの標準設定を使用します。HELIXへproxy credential、CA private key、mirror tokenを
 書き込みません。offline CIでは`npm ci --ignore-scripts`と`npx --no-install`を使用し、暗黙downloadを許可しません。
