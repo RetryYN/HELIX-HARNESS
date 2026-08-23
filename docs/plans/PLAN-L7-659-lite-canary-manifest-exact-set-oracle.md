@@ -71,7 +71,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / independent AI-B"
     reviewed_at: "2026-08-23T19:22:40Z"
-    evidence_digest: "sha256:ee6680a92355beb70ed518c7d9c637ed659b7ba5279a17de8efd439fe66ac15c"
+    evidence_digest: "sha256:850642556c72706bae6655afd70406d8081129f434a6f17d1b7d8c7f86da58e1"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-659-lite-canary-manifest-exact-set-oracle.md, artifact_type: markdown_doc }
