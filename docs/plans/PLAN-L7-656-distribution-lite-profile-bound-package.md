@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTPKG-001..006が未実装shared builderとprofile admissionを検出する"
 red_at: 2026-08-23T05:50:31+09:00
 green_at: 2026-08-23T10:06:03+09:00
-mutation_oracle_evidence: "U-DISTPKG-005で1 byte mutationによりtarball digest不一致を実測し、U-DISTPKG-005b／005c／005dでtracked mutation、untracked source、hidden index flagによる古いsource HEAD包装を`source_head_dirty`へ固定した。resolvePhysicalSourceのsymlink拒否除去をU-DISTPKG-009bが検出した。fresh stack監査でWindows absolute、logical traversal、artifact stem逸脱、manifest extension／digest alias上書きをU-DISTPKG-009d／009eへ追加した。Luna/xhigh adversarial reviewでsource root symlink、output directory／final file symlink・hardlink、directory recursive収録、top-level／nested runtime余剰identity keyのok=true反例を実測し、U-DISTPKG-009f..009mでexclusive write前のtyped拒否とcanonical IR loader共有へ是正した。再レビューでdangling output symlink、source hardlink、旧distribution repository、未知source repository、ignored untracked混入、source remote未照合を実測し、U-DISTPKG-009n..009qへ固定した"
+mutation_oracle_evidence: "tests/distribution-lite-profile-package.test.tsでU-DISTPKG-005の1 byte mutationによりtarball digest不一致を実測し、U-DISTPKG-005b／005c／005dでtracked mutation、untracked source、hidden index flagによる古いsource HEAD包装を`source_head_dirty`へ固定してseeded defectsをkilledした。resolvePhysicalSourceのsymlink拒否除去をU-DISTPKG-009bが検出した。fresh stack監査でWindows absolute、logical traversal、artifact stem逸脱、manifest extension／digest alias上書きをU-DISTPKG-009d／009eへ追加した。Luna/xhigh adversarial reviewでsource root symlink、output directory／final file symlink・hardlink、directory recursive収録、top-level／nested runtime余剰identity keyのok=true反例を実測し、U-DISTPKG-009f..009mでexclusive write前のtyped拒否とcanonical IR loader共有へ是正した。再レビューでdangling output symlink、source hardlink、旧distribution repository、未知source repository、ignored untracked混入、source remote未照合を実測し、U-DISTPKG-009n..009qへ固定した"
 complexity_effect: net_neutral
 complexity_justification: "既存CLI内archive処理を共通coreへ抽出し、Lite専用builderの重複を作らない"
 removal_trigger: "distribution package identityが単一generated release transactionへ統合された時"
@@ -125,6 +125,15 @@ review_evidence:
         evidence_path: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md
         output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         result: "Luna verifier session内でexit 0、出力0 bytes。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-23T12:16:02Z"
+  review_binding:
+    reviewer: "Codex Luna / intra-runtime verifier"
+    reviewed_at: "2026-08-23T12:16:02Z"
+    evidence_digest: "sha256:a53130d0d1ce40a8c63a9f25987f5fc4e2c304f9866b78494a243d11dc03cfc3"
+  entries: []
 ---
 
 # PLAN-L7-656: Lite profile-bound決定的package
