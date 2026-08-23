@@ -82,6 +82,8 @@ function buildFixture() {
             distribution_repository: receipt.manifest.distribution_repository,
             artifact_set_digest: receipt.manifest.artifact_set_digest,
             prebuilt_node_artifact: receipt.manifest.prebuilt_node_artifact,
+            distribution_documents: receipt.manifest.distribution_documents,
+            runtime_third_party_inputs: receipt.manifest.runtime_third_party_inputs,
             output_digests: receipt.output_digests,
           },
         });
