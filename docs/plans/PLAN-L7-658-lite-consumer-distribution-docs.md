@@ -59,6 +59,7 @@ generates:
   - { artifact_path: THIRD_PARTY_NOTICES.md, artifact_type: markdown_doc }
   - { artifact_path: PROVENANCE.md, artifact_type: markdown_doc }
   - { artifact_path: DISCLAIMER.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/repository-structure.md, artifact_type: markdown_doc }
   - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }

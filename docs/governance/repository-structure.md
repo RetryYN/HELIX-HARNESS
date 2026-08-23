@@ -20,6 +20,10 @@ HELIX-HARNESS/
 │   ├── config.toml               #   enables project-local hooks
 │   └── hooks.json                #   hook adapter (.claude/settings.json guard parity, PLAN-L7-139)
 ├── README.md                     # project overview / onboarding entrypoint
+├── README-LITE.md                # consumer-safe Lite distribution guidance
+├── PROVENANCE.md                 # Lite artifact source／HEAD／profile provenance contract
+├── THIRD_PARTY_NOTICES.md        # Lite distribution attribution inventory
+├── DISCLAIMER.md                 # Lite consumer limitation／non-warranty boundary
 ├── package.json                  # Node依存 + scripts（cutover中はBun known-goodも保持）
 ├── tsconfig.json                 # TypeScript strict
 ├── package-lock.json             # target npm lockfile（HDS-HIL-13 cutoverで生成）
