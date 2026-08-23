@@ -35,7 +35,9 @@ source HEAD、requirements、profile、artifact、Linux／Windows receiptを一�
 
 Linuxはfresh temporary repositoryでchecksum検証、extract、package install、consumer所有build、setup dry-run／apply／idempotency、status、
 consumer doctor、Codex／Claude minimal workflow dry-run、generated CI、completion decision packet／review bundleを順に実測する。
-setupはconsumer所有fileの既存bytesを上書きせず、HELIX管理blockだけをexact ownershipで更新する。
+setupは専用CI pathをHELIX管理artifactとして新規作成する。同pathに既存bytesがある場合はexact一致だけを
+`unchanged`として受理し、異なるbytes、symlink、hardlink、ancestor symlinkを上書きせずconflictで拒否する。
+任意のconsumer fileへmanaged blockを暗黙mergeしない。
 
 WindowsはLinuxで検証した同一tarball digestとprebuilt Node artifactを使用し、PowerShell entrypoint、setup dry-run、
 status、consumer doctor、minimal workflow dry-runを検証する。Windows専用rebuildで代替しない。
