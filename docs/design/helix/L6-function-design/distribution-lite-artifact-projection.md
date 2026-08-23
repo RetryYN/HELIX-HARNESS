@@ -2,9 +2,9 @@
 title: "HELIX L6 機能設計 — Lite capability artifact projection"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-08-23
 owner: SE + TL
 plan: docs/plans/PLAN-L7-652-distribution-lite-artifact-projection.md
 pair_artifact: docs/test-design/helix/L8-distribution-lite-artifact-projection-unit-test-design.md

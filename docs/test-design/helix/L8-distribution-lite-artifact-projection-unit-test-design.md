@@ -4,9 +4,9 @@ layer: L8
 executed_at_layer: L7
 sub_doc: unit-test-design
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-08-23
 owner: QA / TL
 plan: docs/plans/PLAN-L7-652-distribution-lite-artifact-projection.md
 pair_artifact: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md

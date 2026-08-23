@@ -4,7 +4,7 @@ title: "PLAN-L7-652 (impl): Lite capabilityをexact artifact setへ投影する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #856を先行再開しconsumer_core_v1を実artifactへ投影する"
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-08-23
 owner: Codex / TL
 github_issue_id: 856
 behavior_contract_id: DISTRIBUTION-LITE-ARTIFACT-PROJECTION-001
@@ -75,7 +75,45 @@ dependencies:
     - issue:938
   blocks:
     - issue:856-profile-bound-builder
-review_evidence: []
+review_evidence:
+  - reviewer: "Codex CLI / gpt-5.6-luna"
+    review_kind: intra_runtime_subagent
+    reviewer_session_id: "01a02c65-985d-76a3-810b-bbae21be7e10"
+    reviewed_at: "2026-08-23T02:18:24Z"
+    tests_green_at: "2026-08-23T02:17:26Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex:gpt-5.6-luna
+    reviewed_head_sha: 3c814fdbca6c2c3f4aeb59c34e9223c113d2d8e3
+    scope: "PR #953 exact HEAD 3c814fdbca6c2c3f4aeb59c34e9223c113d2d8e3をread-only Luna/xhighが独立再reviewした。前回blockerだった複数failureに隠れるoracleをU-DISTART-003a..003cへ分離し、Windows absolute、credential filename 3種、非選択／excluded entryを含むcatalog全体duplicateを各単独入力で検出すること、PLAN mutation evidence／verification binding／L8 test designの一致を確認した。blocker 0、verdict approve。"
+    green_commands:
+      - kind: unit_test
+        command: "PATH=/home/tenni/.local/node24/bin:$PATH npx --no-install vitest run tests/distribution-artifact-projection.test.ts tests/digest.test.ts tests/l3-g3-freeze-packet-v2.test.ts -t 'U-DISTART|U-DIGEST-005'"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-23T02:18:56Z"
+        evidence_path: tests/distribution-artifact-projection.test.ts
+        output_digest: "sha256:9766175454265fdf9bcb788c3da665f7adfa0adc32dce5b7686ea12a5ec14f13"
+        result: "Luna reviewer runは3 files／10 tests passed、41 skipped。output_digestは同一HEAD・同一commandのTL post-review replayを束縛"
+      - kind: typecheck
+        command: "PATH=/home/tenni/.local/node24/bin:$PATH npm run typecheck"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-23T02:18:56Z"
+        evidence_path: src/setup/distribution-artifact-projection.ts
+        output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011"
+        result: "Luna reviewer runとTL post-review replayの双方でtsc --noEmit exit 0"
+      - kind: lint
+        command: "PATH=/home/tenni/.local/node24/bin:$PATH npx --no-install biome check tests/distribution-artifact-projection.test.ts docs/test-design/helix/L8-distribution-lite-artifact-projection-unit-test-design.md docs/plans/PLAN-L7-652-distribution-lite-artifact-projection.md src/setup/distribution-artifact-projection.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-23T02:18:56Z"
+        evidence_path: tests/distribution-artifact-projection.test.ts
+        output_digest: "sha256:1a4c877dbc0da896a107f71d157de64d2f316270477e80b6b14d9087259d11ed"
+        result: "Luna reviewer runとTL post-review replayの双方でBiome exit 0、対象TS 2 files checked"
 ---
 
 # PLAN-L7-652: Lite capability artifact projection実装
