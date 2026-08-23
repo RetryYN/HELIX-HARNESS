@@ -12,7 +12,10 @@ import {
 import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import { afterAll, afterEach, describe, expect, it } from "vitest";
-import { admitLiteConsumerCanaryArtifact } from "../src/setup/distribution-lite-consumer-canary";
+import {
+  admitLiteConsumerCanaryArtifact,
+  parsePortableArchivePaths,
+} from "../src/setup/distribution-lite-consumer-canary";
 import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-657-distribution-lite-consumer-canary
@@ -130,6 +133,14 @@ function buildFixture() {
 }
 
 describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
+  it("U-DISTCAN-008c: Windows tarのCRLF一覧をportable exact setへ正規化する", () => {
+    expect(parsePortableArchivePaths("./bin/helix.mjs\r\n./package.json\r\n")).toEqual({
+      ok: true,
+      paths: ["bin/helix.mjs", "package.json"],
+    });
+    expect(parsePortableArchivePaths("../escape\r\n")).toEqual({ ok: false });
+  });
+
   it("U-DISTCAN-001: builder receiptと三成果物を同一identityへ束縛する", () => {
     const fixture = buildFixture();
     expect(admitLiteConsumerCanaryArtifact(fixture.input)).toMatchObject({

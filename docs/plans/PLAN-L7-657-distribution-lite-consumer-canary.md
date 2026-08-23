@@ -58,6 +58,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-008, test_path: tests/distribution-lite-consumer-canary.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-008a, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-008b, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-008c, test_path: tests/distribution-lite-consumer-canary.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DRG-012c, test_path: tests/design-registry-screen-intake.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-010, test_path: tests/distribution-lite-consumer-canary.test.ts }
 generates:
