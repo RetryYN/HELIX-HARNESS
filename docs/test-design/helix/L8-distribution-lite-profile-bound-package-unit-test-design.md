@@ -27,5 +27,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-009 | physical source identity | symlink sourceでrepo外bytesを混入させずarchive write 0 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009b | symlink source identity | source root内を指すsymlinkもartifact sourceとして拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009c | missing source root | 例外化せずarchive write前にtyped拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009d | portable path／stem identity | Windows absolute、logical traversal、出力stem逸脱をwrite前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009e | manifest authority | extension／digest aliasによるidentity field上書きを拒否 | `tests/distribution-lite-profile-package.test.ts` |
 
 fixtureだけでなくcurrent `consumer_core_v1` projection／closureを入力したCLI integrationを同PRで検証する。

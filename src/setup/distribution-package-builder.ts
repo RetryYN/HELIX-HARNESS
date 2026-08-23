@@ -12,7 +12,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, dirname, isAbsolute, join, posix, relative, sep } from "node:path";
+import { basename, dirname, isAbsolute, join, posix, relative, sep, win32 } from "node:path";
 import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 
 const digest = (bytes: Buffer | string): string =>
@@ -37,11 +37,14 @@ export interface DistributionPackageManifest extends DistributionPackageIdentity
 }
 
 export type DistributionPackageFailure =
+  | "artifact_stem_invalid"
   | "artifact_path_invalid"
   | "artifact_path_duplicate"
   | "artifact_set_digest_mismatch"
   | "artifact_source_missing"
   | "artifact_source_unsafe"
+  | "manifest_extension_reserved"
+  | "tarball_digest_alias_reserved"
   | "tar_failed";
 
 export interface DistributionPackageResult {
@@ -74,8 +77,10 @@ function normalizedArtifactPaths(paths: readonly string[]): {
   failures: DistributionPackageFailure[];
 } {
   const failures = new Set<DistributionPackageFailure>();
-  const normalized = paths.map((path) => posix.normalize(path.replaceAll("\\", "/")));
+  const portable = paths.map((path) => path.replaceAll("\\", "/"));
+  const normalized = portable.map((path) => posix.normalize(path));
   if (
+    portable.some((path) => path.split("/").includes("..") || win32.isAbsolute(path)) ||
     normalized.some(
       (path) =>
         !path || path === "." || path === ".." || path.startsWith("../") || isAbsolute(path),
@@ -93,13 +98,16 @@ function pathInside(root: string, candidate: string): boolean {
 }
 
 function resolvePhysicalSource(root: string, sourcePath: string): string | null {
-  const normalized = posix.normalize(sourcePath.replaceAll("\\", "/"));
+  const portable = sourcePath.replaceAll("\\", "/");
+  const normalized = posix.normalize(portable);
   if (
     !normalized ||
     normalized === "." ||
     normalized === ".." ||
     normalized.startsWith("../") ||
-    isAbsolute(normalized)
+    portable.split("/").includes("..") ||
+    isAbsolute(normalized) ||
+    win32.isAbsolute(sourcePath)
   ) {
     return null;
   }
@@ -127,6 +135,32 @@ export function createDeterministicDistributionPackage(input: {
 }): DistributionPackageResult {
   const admitted = normalizedArtifactPaths(input.artifact_paths);
   const failures = new Set(admitted.failures);
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(input.artifact_stem)) {
+    failures.add("artifact_stem_invalid");
+  }
+  const reservedManifestKeys = new Set([
+    "schema_version",
+    "source_head",
+    "requirements",
+    "profile",
+    "package_version",
+    "distribution_repository",
+    "artifact_set_digest",
+    "artifact_paths",
+    "tarball",
+    "tarball_digest",
+    "checksum",
+  ]);
+  if (Object.keys(input.manifest_extensions ?? {}).some((key) => reservedManifestKeys.has(key))) {
+    failures.add("manifest_extension_reserved");
+  }
+  if (
+    (input.tarball_digest_aliases ?? []).some(
+      (alias) => reservedManifestKeys.has(alias) || !/^[A-Za-z][A-Za-z0-9_]*$/.test(alias),
+    )
+  ) {
+    failures.add("tarball_digest_alias_reserved");
+  }
   const computedSetDigest = sha256Digest(canonicalJson(admitted.paths));
   if (computedSetDigest !== input.identity.artifact_set_digest) {
     failures.add("artifact_set_digest_mismatch");

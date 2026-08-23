@@ -213,4 +213,48 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(result).toMatchObject({ ok: false, failures: ["artifact_source_missing"] });
     expect(existsSync(outDir)).toBe(false);
   });
+
+  it("U-DISTPKG-009d: portable path／stem逸脱をarchive write前に拒否する", () => {
+    const sourceRoot = fixture();
+    for (const [artifactPath, stem, failure] of [
+      ["C:\\tmp\\entry.ts", "lite", "artifact_path_invalid"],
+      ["src/../src/entry.ts", "lite", "artifact_path_invalid"],
+      ["src/entry.ts", "../escape", "artifact_stem_invalid"],
+    ] as const) {
+      const outDir = join(sourceRoot, `out-${failure}-${artifactPath.length}`);
+      const paths = [artifactPath];
+      const result = createDeterministicDistributionPackage({
+        source_root: sourceRoot,
+        out_dir: outDir,
+        artifact_stem: stem,
+        artifact_paths: paths,
+        identity: { ...identity, artifact_set_digest: sha256Digest(canonicalJson(paths)) },
+      });
+      expect(result.failures, `${artifactPath}:${stem}`).toContain(failure);
+      expect(existsSync(outDir)).toBe(false);
+    }
+  });
+
+  it("U-DISTPKG-009e: extension／aliasによるmanifest authority上書きを拒否する", () => {
+    const sourceRoot = fixture();
+    const paths = ["src/entry.ts"];
+    const base = {
+      source_root: sourceRoot,
+      artifact_stem: "lite",
+      artifact_paths: paths,
+      identity: { ...identity, artifact_set_digest: sha256Digest(canonicalJson(paths)) },
+    };
+    const extension = createDeterministicDistributionPackage({
+      ...base,
+      out_dir: join(sourceRoot, "out-extension"),
+      manifest_extensions: { source_head: "forged" },
+    });
+    expect(extension).toMatchObject({ ok: false, failures: ["manifest_extension_reserved"] });
+    const alias = createDeterministicDistributionPackage({
+      ...base,
+      out_dir: join(sourceRoot, "out-alias"),
+      tarball_digest_aliases: ["source_head"],
+    });
+    expect(alias).toMatchObject({ ok: false, failures: ["tarball_digest_alias_reserved"] });
+  });
 });

@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTPKG-001..006が未実装shared builderとprofile admissionを検出する"
 red_at: 2026-08-23T05:50:31+09:00
 green_at: 2026-08-23T10:06:03+09:00
-mutation_oracle_evidence: "U-DISTPKG-005で1 byte mutationによりtarball digest不一致を実測。resolvePhysicalSourceからlstatSync(...).isSymbolicLink()拒否を一時除去するとU-DISTPKG-009bがarchive生成ok=trueでred（1 failed / 8 passed）、復元後9/9 greenを実測"
+mutation_oracle_evidence: "U-DISTPKG-005で1 byte mutationによりtarball digest不一致を実測。resolvePhysicalSourceからlstatSync(...).isSymbolicLink()拒否を一時除去するとU-DISTPKG-009bがarchive生成ok=trueでred（1 failed / 8 passed）。fresh stack監査でWindows absolute、logical traversal、artifact stem逸脱、manifest extension／digest aliasによるauthority上書き反例を追加し、U-DISTPKG-009d／009eを含む39/39 greenへ復元した"
 complexity_effect: net_neutral
 complexity_justification: "既存CLI内archive処理を共通coreへ抽出し、Lite専用builderの重複を作らない"
 removal_trigger: "distribution package identityが単一generated release transactionへ統合された時"
@@ -55,6 +55,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009b, test_path: tests/distribution-lite-profile-package.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009c, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009d, test_path: tests/distribution-lite-profile-package.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, oracle_id: U-DISTPKG-009e, test_path: tests/distribution-lite-profile-package.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md, artifact_type: design_doc }
