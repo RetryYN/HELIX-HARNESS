@@ -45,6 +45,7 @@ admission後はcommand IDとhandler IDをexact一致させるconsumer compositio
 handlerを一件も起動しない。filesystem／process／DBは後続Node adapterだけが所有する。
 Node adapterはsetup、status、consumer doctor、completion packet／bundle、provider dry-runを既存domain functionへ
 接続する。provider実行は常に`execute:false`で、task-fileはrepo physical root内・64KiB以下に限定する。
+task-fileのlogical traversal、absolute path、symlink、non-fileはprompt read前に拒否する。
 
 ## 非対象
 

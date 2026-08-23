@@ -1,4 +1,4 @@
-import { readFileSync, realpathSync } from "node:fs";
+import { existsSync, lstatSync, readFileSync, realpathSync } from "node:fs";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 import type {
   LiteConsumerCommandExecution,
@@ -106,7 +106,20 @@ export function nodeLiteConsumerAdapterDeps(
     services,
     read_task_file(path: string): string {
       if (isAbsolute(path)) throw new Error("lite_consumer_task_file_outside_root");
-      const candidate = realpathSync(resolve(physicalRoot, path));
+      const logical = resolve(physicalRoot, path);
+      const logicalRel = relative(physicalRoot, logical);
+      if (logicalRel === ".." || logicalRel.startsWith(`..${sep}`)) {
+        throw new Error("lite_consumer_task_file_outside_root");
+      }
+      let cursor = physicalRoot;
+      for (const part of logicalRel.split(sep).filter(Boolean)) {
+        cursor = resolve(cursor, part);
+        if (!existsSync(cursor) || lstatSync(cursor).isSymbolicLink()) {
+          throw new Error("lite_consumer_task_file_unsafe");
+        }
+      }
+      if (!lstatSync(cursor).isFile()) throw new Error("lite_consumer_task_file_unsafe");
+      const candidate = realpathSync(cursor);
       const rel = relative(physicalRoot, candidate);
       if (rel === ".." || rel.startsWith(`..${sep}`)) {
         throw new Error("lite_consumer_task_file_outside_root");

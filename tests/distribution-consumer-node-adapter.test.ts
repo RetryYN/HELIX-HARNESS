@@ -1,6 +1,12 @@
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { dispatchLiteConsumerCommand } from "../src/setup/distribution-consumer-command-composition";
-import { createLiteConsumerNodeHandlers } from "../src/setup/distribution-consumer-node-adapter";
+import {
+  createLiteConsumerNodeHandlers,
+  nodeLiteConsumerAdapterDeps,
+} from "../src/setup/distribution-consumer-node-adapter";
 
 function services() {
   const unavailable = () => ({ payload: { ok: false }, exit_code: 1 });
@@ -62,5 +68,28 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Node adapter", () =>
     if (!result.ok) return;
     expect(result.execution.output).toContain("bounded task");
     expect(result.execution.output).not.toContain("task.md");
+  });
+
+  it("U-DISTCLOSE-013b: task-fileのtraversal／symlink／non-fileをread前に拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-lite-task-file-"));
+    try {
+      mkdirSync(join(root, "tasks"));
+      writeFileSync(join(root, "tasks", "task.md"), "bounded task", "utf8");
+      symlinkSync(join(root, "tasks"), join(root, "linked-tasks"), "dir");
+      mkdirSync(join(root, "task-dir"));
+      const deps = nodeLiteConsumerAdapterDeps(root, services());
+      expect(deps.read_task_file("tasks/task.md")).toBe("bounded task");
+      expect(() => deps.read_task_file("../outside.md")).toThrow(
+        "lite_consumer_task_file_outside_root",
+      );
+      expect(() => deps.read_task_file("linked-tasks/task.md")).toThrow(
+        "lite_consumer_task_file_unsafe",
+      );
+      expect(() => deps.read_task_file("task-dir")).toThrow(
+        "lite_consumer_task_file_unsafe",
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
