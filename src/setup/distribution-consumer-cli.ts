@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 import type { LiteConsumerCommandHandlers } from "./distribution-consumer-command-composition";
 import { dispatchLiteConsumerCommand } from "./distribution-consumer-command-composition";
+import {
+  createLiteConsumerNodeHandlers,
+  nodeLiteConsumerAdapterDeps,
+} from "./distribution-consumer-node-adapter";
+import { createLiteConsumerServices } from "./distribution-lite-consumer-services";
 
 declare const __HELIX_LITE_VERSION__: string;
 declare const __HELIX_LITE_EXECUTABLE__: boolean;
@@ -50,5 +55,9 @@ export async function runLiteConsumerCli(
 }
 
 if (typeof __HELIX_LITE_EXECUTABLE__ !== "undefined" && __HELIX_LITE_EXECUTABLE__) {
-  process.exitCode = await runLiteConsumerCli(process.argv.slice(2), null);
+  const services = createLiteConsumerServices(process.cwd());
+  const handlers = createLiteConsumerNodeHandlers(
+    nodeLiteConsumerAdapterDeps(process.cwd(), services),
+  );
+  process.exitCode = await runLiteConsumerCli(process.argv.slice(2), handlers);
 }

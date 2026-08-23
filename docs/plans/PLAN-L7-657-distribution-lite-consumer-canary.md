@@ -49,12 +49,19 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-003, test_path: tests/distribution-lite-consumer-canary.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-004, test_path: tests/distribution-lite-consumer-canary.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-005, test_path: tests/distribution-lite-consumer-canary.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-006a, test_path: tests/distribution-lite-consumer-services.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-006b, test_path: tests/distribution-lite-consumer-services.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-007a, test_path: tests/distribution-lite-consumer-services.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-657-distribution-lite-consumer-canary.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/setup/distribution-lite-consumer-canary.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/distribution-lite-consumer-services.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/distribution-consumer-cli.ts, artifact_type: source_module }
+  - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: json_catalog }
   - { artifact_path: tests/distribution-lite-consumer-canary.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/distribution-lite-consumer-services.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:

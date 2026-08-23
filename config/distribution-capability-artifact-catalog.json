@@ -66,7 +66,8 @@
         "src/setup/distribution-consumer-cli.ts",
         "src/setup/distribution-consumer-command-composition.ts",
         "src/setup/distribution-consumer-command-registry.ts",
-        "src/setup/distribution-consumer-node-adapter.ts"
+        "src/setup/distribution-consumer-node-adapter.ts",
+        "src/setup/distribution-lite-consumer-services.ts"
       ]
     },
     {
