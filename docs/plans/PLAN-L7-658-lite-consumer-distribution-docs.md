@@ -56,6 +56,9 @@ generates:
   - { artifact_path: PROVENANCE.md, artifact_type: markdown_doc }
   - { artifact_path: DISCLAIMER.md, artifact_type: markdown_doc }
   - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: json_catalog }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_catalog }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-lite-package.ts, artifact_type: source_module }
   - { artifact_path: tests/distribution-lite-documents.test.ts, artifact_type: test_code }
 dependencies:
