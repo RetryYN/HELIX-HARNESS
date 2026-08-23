@@ -82,31 +82,31 @@ review_evidence:
   - reviewer: "Claude Code / independent AI-B"
     review_kind: cross_agent
     reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
-    reviewed_at: "2026-08-23T17:59:26Z"
-    tests_green_at: "2026-08-23T17:48:50Z"
+    reviewed_at: "2026-08-23T19:44:49Z"
+    tests_green_at: "2026-08-23T19:43:57Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude-opus-5
-    reviewed_head_sha: db24d0995a75d2f64465d3af0e784a78f03e4d60
-    scope: "PR #963 exact HEAD db24d0995a75d2f64465d3af0e784a78f03e4d60をClaude Codeがread-onlyでpre-confirm検収した。Issue #958、文書exact set、単一source authority、development guidance非再出力、manifest／canary接合を照合し、内容blocker 0／非blocker 1でapprove。非blockerは規則単位mutation oracle不足としてIssue #970へ分離した。Actions run 32655109923はfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreenで、唯一のredは本PLANがreview前draftであることを拒否したmergedPlanStatus。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/963#issuecomment-5387595635"
+    reviewed_head_sha: ca994769aa795593df477a0fd5a6f5c04ed6c596
+    scope: "PR #963 current exact HEAD ca994769aa795593df477a0fd5a6f5c04ed6c596をClaude Codeが検収し、Issue #958の文書exact set、単一source authority、development guidance非再出力、manifest／canary接合、CI／DB projection／replayを照合した。approve／blocker 0。Actions run 32660919570はfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreen。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/963#issuecomment-5388099775。receipt digest: sha256:ad070951f5b204f396599c126e5414f1777390552a8d4cd6203796580e51dd98"
     green_commands:
       - kind: integration_test
-        command: "GitHub Actions harness-check run 32655109923 full regression vitest run"
+        command: "GitHub Actions harness-check run 32660919570 full regression vitest run"
         runner: ci
         scope: full
         exit_code: 0
-        completed_at: "2026-08-23T17:48:50Z"
+        completed_at: "2026-08-23T19:43:57Z"
         evidence_path: tests/distribution-lite-documents.test.ts
-        output_digest: "sha256:7baf83418b6f9342d610445e16d6adb351cc694bba26b81932589c030b02bee2"
-        result: "full regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQL green。doctorの唯一redはconfirm前mergedPlanStatusであり、本review evidence記録とconfirmed遷移で解消対象。"
+        output_digest: "sha256:a232c159a6ac628edb5a84cf751060ef0ca9e69dc883054ad4b59502698b5eea"
+        result: "current HEADのfull regression、Biome、pre/post DB rebuild、Linux／Windows Lite canary、CodeQLがgreen。Claude current exact-HEAD reviewはapprove／blocker 0。"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-23T17:59:26Z"
+  assessed_at: "2026-08-23T19:44:49Z"
   review_binding:
     reviewer: "Claude Code / independent AI-B"
-    reviewed_at: "2026-08-23T17:59:26Z"
-    evidence_digest: "sha256:631d3c5a349933c31f636ff02f2b46b18400dfd704a526d8f681caee06bcbe90"
+    reviewed_at: "2026-08-23T19:44:49Z"
+    evidence_digest: "sha256:11f32d1b77cae3e0d96ca7ac5564ca56c4f3c12cdfc77f1d7ce3a5e38cfd7db9"
   entries: []
 ---
 
