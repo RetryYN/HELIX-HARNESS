@@ -12,7 +12,10 @@ import {
 import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import { afterAll, afterEach, describe, expect, it } from "vitest";
-import { admitLiteConsumerCanaryArtifact } from "../src/setup/distribution-lite-consumer-canary";
+import {
+  admitLiteConsumerCanaryArtifact,
+  type LiteConsumerCanaryExpectedIdentity,
+} from "../src/setup/distribution-lite-consumer-canary";
 import {
   buildLiteDistributionPackage,
   loadLiteDistributionDocuments,
@@ -24,6 +27,29 @@ import {
 
 const roots: string[] = [];
 let cleanSourceFixture: string | null = null;
+
+function isDistributionDocuments(
+  value: unknown,
+): value is LiteConsumerCanaryExpectedIdentity["distribution_documents"] {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (document) =>
+        document !== null &&
+        typeof document === "object" &&
+        typeof document.path === "string" &&
+        typeof document.source_path === "string" &&
+        typeof document.digest === "string" &&
+        /^sha256:[0-9a-f]{64}$/.test(document.digest) &&
+        (document.classification === "first_party" ||
+          document.classification === "third_party_notice"),
+    )
+  );
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((entry) => typeof entry === "string");
+}
 
 afterAll(() => {
   if (cleanSourceFixture) rmSync(cleanSourceFixture, { recursive: true, force: true });
@@ -62,7 +88,12 @@ function buildFixture() {
         if (!receipt.ok || !("paths" in receipt) || !receipt.output_digests) {
           throw new Error("external canary receipt invalid");
         }
-        if (!receipt.manifest.profile || !receipt.manifest.prebuilt_node_artifact) {
+        if (
+          !receipt.manifest.profile ||
+          !receipt.manifest.prebuilt_node_artifact ||
+          !isDistributionDocuments(receipt.manifest.distribution_documents) ||
+          !isStringArray(receipt.manifest.runtime_third_party_inputs)
+        ) {
           throw new Error("external canary identity invalid");
         }
         const sourceRoot = dirname(externalReceipt);
