@@ -97,6 +97,34 @@ describe("Lite capability-to-artifact projection", () => {
     ).toContain("excluded_capability_selected");
   });
 
+  it("U-DISTART-002a: profile exclusionに依存せずcatalogのexcluded dispositionを拒否する", () => {
+    const excludedCatalog = catalog({
+      capabilities: [
+        {
+          capability_id: "quality_gates",
+          disposition: "excluded",
+          artifact_paths: ["src/doctor.ts"],
+        },
+      ],
+    });
+    const selected = {
+      ...profile,
+      capability_allowlist: ["quality_gates"],
+      capability_exclusions: [],
+    };
+    expect(
+      projectDistributionArtifacts({
+        profile: selected,
+        catalog: excludedCatalog,
+        source_paths: ["src/doctor.ts"],
+      }),
+    ).toMatchObject({
+      ok: false,
+      failures: ["excluded_capability_selected"],
+      artifact_paths: [],
+    });
+  });
+
   it("U-DISTART-003: duplicate／absolute／development state／credential pathを拒否する", () => {
     const invalid = structuredClone(catalog()) as { capabilities: Array<Record<string, unknown>> };
     invalid.capabilities[0].artifact_paths = [
@@ -173,6 +201,24 @@ describe("Lite capability-to-artifact projection", () => {
         source_paths: sourcePaths,
       }).failures,
     ).toContain("artifact_path_duplicate");
+  });
+
+  it("U-DISTART-003d: relative traversalを他のfailureに依存せず単独拒否する", () => {
+    const traversal = structuredClone(catalog()) as {
+      capabilities: Array<Record<string, unknown>>;
+    };
+    traversal.capabilities[0].artifact_paths = ["foo/../../bar"];
+    expect(
+      projectDistributionArtifacts({
+        profile,
+        catalog: traversal,
+        source_paths: [...sourcePaths, "../bar"],
+      }),
+    ).toMatchObject({
+      ok: false,
+      failures: ["artifact_path_absolute"],
+      artifact_paths: [],
+    });
   });
 
   it("U-DISTART-004: catalog不正とsource欠落を別failureで拒否する", () => {

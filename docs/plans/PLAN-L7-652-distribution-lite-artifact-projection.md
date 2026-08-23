@@ -31,10 +31,10 @@ contract_postconditions: "allowlist capabilityがsource tree上の決定的exact
 contract_invariants: "Full HELIXを唯一のauthorityとし、Lite専用builder、推測fallback、development state混入を許さない"
 contract_failures: "catalog、unknown／missing／excluded capability、duplicate／absolute／forbidden／missing source pathをtyped failureで拒否する"
 tdd_red_required: true
-red_test: "U-DISTART-002..004／003a..003cでfail-close境界の欠落を個別検出する"
+red_test: "U-DISTART-002..004／002a／003a..003dでfail-close境界の欠落を個別検出する"
 red_at: 2026-08-23T10:13:15+09:00
 green_at: 2026-08-23T10:13:24+09:00
-mutation_oracle_evidence: "tests/distribution-artifact-projection.test.tsでisForbiddenArtifactPath判定を一時除去するとU-DISTART-003がartifact_path_forbidden欠落でred（1 failed / 4 passed）。Luna独立reviewでWindows absolute、拡張子付きcredential filename、非選択capabilityとのpath重複が旧実装を通過する反例を実測。指摘後、win32 absolute判定除去でU-DISTART-003a、filename token判定除去でU-DISTART-003b、catalog全entry重複判定除去でU-DISTART-003cがそれぞれ単独1 failedとなることを実測し、各guardを復元した"
+mutation_oracle_evidence: "tests/distribution-artifact-projection.test.tsでisForbiddenArtifactPath判定を一時除去するとU-DISTART-003がartifact_path_forbidden欠落でred。Luna独立reviewでWindows absolute、拡張子付きcredential filename、非選択capabilityとのpath重複が旧実装を通過する反例を実測し、U-DISTART-003a..003cで各guardを単独検出した。Claude exact-HEAD reviewでcatalog disposition判定とrelative traversal判定のsurviving mutationを実測し、U-DISTART-002a／003dを追加して各guardの除去が単独redになるよう是正した。拒否時artifact集合も空へfail-closeした"
 complexity_effect: justified_positive
 complexity_justification: "汎用builderの前段をpure typed projectionへ限定し、手編集path allowlistと暗黙prefix包含を除去する"
 removal_trigger: "distribution profileとartifact catalogが同一Requirement IR generated projectionへ統合された時"
@@ -46,10 +46,12 @@ pair_artifact: docs/test-design/helix/L8-distribution-lite-artifact-projection-u
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-001, test_path: tests/distribution-artifact-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-002, test_path: tests/distribution-artifact-projection.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-002a, test_path: tests/distribution-artifact-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-003, test_path: tests/distribution-artifact-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-003a, test_path: tests/distribution-artifact-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-003b, test_path: tests/distribution-artifact-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-003c, test_path: tests/distribution-artifact-projection.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-003d, test_path: tests/distribution-artifact-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-004, test_path: tests/distribution-artifact-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-005, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md, oracle_id: U-DISTART-006, test_path: tests/distribution-artifact-projection.test.ts }

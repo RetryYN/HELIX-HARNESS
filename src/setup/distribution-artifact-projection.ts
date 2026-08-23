@@ -148,7 +148,8 @@ export function projectDistributionArtifacts(input: {
   }
   if (new Set(projected).size !== projected.length) failures.add("artifact_path_duplicate");
 
-  const artifactPaths = [...new Set(projected)].sort();
+  const projectedArtifactPaths = [...new Set(projected)].sort();
+  const artifactPaths = failures.size === 0 ? projectedArtifactPaths : [];
   return {
     ok: failures.size === 0,
     profile_id: input.profile.profile_id,
