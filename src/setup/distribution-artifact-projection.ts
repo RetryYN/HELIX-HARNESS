@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { isAbsolute, join, posix } from "node:path";
+import { join, posix, win32 } from "node:path";
 import { z } from "zod";
 import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 import type { DistributionProfile } from "./distribution-profile";
@@ -85,7 +85,19 @@ function isForbiddenArtifactPath(path: string): boolean {
   if (forbiddenPrefixes.some((prefix) => path === prefix.slice(0, -1) || path.startsWith(prefix))) {
     return true;
   }
-  return path.split("/").some((segment) => credentialSegments.has(segment.toLowerCase()));
+  return path.split("/").some((segment) => {
+    const lower = segment.toLowerCase();
+    if (lower === ".env" || lower.startsWith(".env.")) return true;
+    const tokens = lower.split(/[._-]+/).filter(Boolean);
+    return (
+      tokens.some((token) => credentialSegments.has(token)) ||
+      (tokens.includes("private") && tokens.includes("key"))
+    );
+  });
+}
+
+function isAbsoluteArtifactPath(path: string): boolean {
+  return posix.isAbsolute(path) || win32.isAbsolute(path);
 }
 
 export function projectDistributionArtifacts(input: {
@@ -100,6 +112,8 @@ export function projectDistributionArtifacts(input: {
   const entries = parsed.success ? parsed.data.capabilities : [];
   const capabilityIds = entries.map((entry) => entry.capability_id);
   if (new Set(capabilityIds).size !== capabilityIds.length) failures.add("capability_duplicate");
+  const catalogPaths = entries.flatMap((entry) => entry.artifact_paths.map(normalizeArtifactPath));
+  if (new Set(catalogPaths).size !== catalogPaths.length) failures.add("artifact_path_duplicate");
   const byCapability = new Map(entries.map((entry) => [entry.capability_id, entry]));
   const sourcePaths = new Set(input.source_paths.map(normalizeArtifactPath));
   const projected: string[] = [];
@@ -114,7 +128,12 @@ export function projectDistributionArtifacts(input: {
     if (entry.artifact_paths.length === 0) failures.add("capability_missing_artifacts");
     for (const rawPath of entry.artifact_paths) {
       const path = normalizeArtifactPath(rawPath);
-      if (isAbsolute(rawPath) || isAbsolute(path) || path === ".." || path.startsWith("../")) {
+      if (
+        isAbsoluteArtifactPath(rawPath) ||
+        isAbsoluteArtifactPath(path) ||
+        path === ".." ||
+        path.startsWith("../")
+      ) {
         failures.add("artifact_path_absolute");
       }
       if (isForbiddenArtifactPath(path)) failures.add("artifact_path_forbidden");

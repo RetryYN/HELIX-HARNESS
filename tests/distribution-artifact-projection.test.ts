@@ -102,8 +102,13 @@ describe("Lite capability-to-artifact projection", () => {
     invalid.capabilities[0].artifact_paths = [
       "src/setup/index.ts",
       "/tmp/escape",
+      "C:\\temp\\escape",
+      "foo/../../bar",
       ".helix/memory/harness.jsonl",
       "fixtures/credentials/token.json",
+      "fixtures/token.json",
+      "fixtures/private-key.pem",
+      ".env.production",
     ];
     expect(
       projectDistributionArtifacts({
@@ -112,8 +117,13 @@ describe("Lite capability-to-artifact projection", () => {
         source_paths: [
           ...sourcePaths,
           "/tmp/escape",
+          "C:/temp/escape",
+          "../bar",
           ".helix/memory/harness.jsonl",
           "fixtures/credentials/token.json",
+          "fixtures/token.json",
+          "fixtures/private-key.pem",
+          ".env.production",
         ],
       }).failures,
     ).toEqual(
@@ -123,6 +133,18 @@ describe("Lite capability-to-artifact projection", () => {
         "artifact_path_forbidden",
       ]),
     );
+
+    const crossCapabilityDuplicate = structuredClone(catalog()) as {
+      capabilities: Array<Record<string, unknown>>;
+    };
+    crossCapabilityDuplicate.capabilities[2].artifact_paths = ["src/doctor.ts"];
+    expect(
+      projectDistributionArtifacts({
+        profile,
+        catalog: crossCapabilityDuplicate,
+        source_paths: sourcePaths,
+      }).failures,
+    ).toContain("artifact_path_duplicate");
   });
 
   it("U-DISTART-004: catalog不正とsource欠落を別failureで拒否する", () => {

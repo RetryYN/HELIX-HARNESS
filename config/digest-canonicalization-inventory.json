@@ -4636,7 +4636,7 @@
     {
       "hit_id": "src/setup/distribution-artifact-projection.ts::projectDistributionArtifacts:sha256Digest()::1",
       "path": "src/setup/distribution-artifact-projection.ts",
-      "line": 138,
+      "line": 157,
       "symbol": "projectDistributionArtifacts",
       "algorithm": "sha256",
       "input_kind": "string",

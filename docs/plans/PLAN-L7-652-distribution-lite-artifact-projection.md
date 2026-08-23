@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTART-002..004でfail-close境界の欠落を検出する"
 red_at: 2026-08-23T10:13:15+09:00
 green_at: 2026-08-23T10:13:24+09:00
-mutation_oracle_evidence: "isForbiddenArtifactPath判定を一時除去するとU-DISTART-003がartifact_path_forbidden欠落でred（1 failed / 4 passed）、復元後5/5 greenを実測"
+mutation_oracle_evidence: "isForbiddenArtifactPath判定を一時除去するとU-DISTART-003がartifact_path_forbidden欠落でred（1 failed / 4 passed）。Luna独立reviewでWindows absolute、拡張子付きcredential filename、非選択capabilityとのpath重複が旧実装を通過する反例を実測し、portable absolute判定／token化secret判定／catalog全entry重複判定を追加。復元・是正後5/5 greenを実測"
 complexity_effect: justified_positive
 complexity_justification: "汎用builderの前段をpure typed projectionへ限定し、手編集path allowlistと暗黙prefix包含を除去する"
 removal_trigger: "distribution profileとartifact catalogが同一Requirement IR generated projectionへ統合された時"
