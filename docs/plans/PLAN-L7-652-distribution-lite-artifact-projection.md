@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-DISTART-002..004／003a..003cでfail-close境界の欠落を個別検出する"
 red_at: 2026-08-23T10:13:15+09:00
 green_at: 2026-08-23T10:13:24+09:00
-mutation_oracle_evidence: "isForbiddenArtifactPath判定を一時除去するとU-DISTART-003がartifact_path_forbidden欠落でred（1 failed / 4 passed）。Luna独立reviewでWindows absolute、拡張子付きcredential filename、非選択capabilityとのpath重複が旧実装を通過する反例を実測。指摘後、win32 absolute判定除去でU-DISTART-003a、filename token判定除去でU-DISTART-003b、catalog全entry重複判定除去でU-DISTART-003cがそれぞれ単独1 failedとなることを実測し、各guardを復元した"
+mutation_oracle_evidence: "tests/distribution-artifact-projection.test.tsでisForbiddenArtifactPath判定を一時除去するとU-DISTART-003がartifact_path_forbidden欠落でred（1 failed / 4 passed）。Luna独立reviewでWindows absolute、拡張子付きcredential filename、非選択capabilityとのpath重複が旧実装を通過する反例を実測。指摘後、win32 absolute判定除去でU-DISTART-003a、filename token判定除去でU-DISTART-003b、catalog全entry重複判定除去でU-DISTART-003cがそれぞれ単独1 failedとなることを実測し、各guardを復元した"
 complexity_effect: justified_positive
 complexity_justification: "汎用builderの前段をpure typed projectionへ限定し、手編集path allowlistと暗黙prefix包含を除去する"
 removal_trigger: "distribution profileとartifact catalogが同一Requirement IR generated projectionへ統合された時"
@@ -92,7 +92,7 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-23T02:18:56Z"
+        completed_at: "2026-08-23T02:17:26Z"
         evidence_path: tests/distribution-artifact-projection.test.ts
         output_digest: "sha256:9766175454265fdf9bcb788c3da665f7adfa0adc32dce5b7686ea12a5ec14f13"
         result: "Luna reviewer runは3 files／10 tests passed、41 skipped。output_digestは同一HEAD・同一commandのTL post-review replayを束縛"
@@ -101,7 +101,7 @@ review_evidence:
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-08-23T02:18:56Z"
+        completed_at: "2026-08-23T02:17:26Z"
         evidence_path: src/setup/distribution-artifact-projection.ts
         output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011"
         result: "Luna reviewer runとTL post-review replayの双方でtsc --noEmit exit 0"
@@ -110,7 +110,7 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-23T02:18:56Z"
+        completed_at: "2026-08-23T02:17:26Z"
         evidence_path: tests/distribution-artifact-projection.test.ts
         output_digest: "sha256:1a4c877dbc0da896a107f71d157de64d2f316270477e80b6b14d9087259d11ed"
         result: "Luna reviewer runとTL post-review replayの双方でBiome exit 0、対象TS 2 files checked"
