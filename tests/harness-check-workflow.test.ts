@@ -26,13 +26,17 @@ type HarnessJob = {
   "timeout-minutes"?: number;
   "continue-on-error"?: boolean;
   if?: string;
-  needs?: string;
+  needs?: string | string[];
   "runs-on"?: string;
 };
 
 type WorkflowRoot = {
   on?: { pull_request?: { types?: string[] } };
-  jobs?: { "harness-check"?: HarnessJob; "windows-durability-smoke"?: HarnessJob };
+  jobs?: {
+    "harness-check"?: HarnessJob;
+    "lite-consumer-canary-artifact"?: HarnessJob;
+    "windows-durability-smoke"?: HarnessJob;
+  };
 };
 
 function boundedTimeViolations(raw: string): string[] {
@@ -231,6 +235,7 @@ function laneCoverageViolations(raw: string): string[] {
 
 function loadWorkflow(): {
   job: HarnessJob;
+  liteCanaryJob: HarnessJob;
   windowsJob: HarnessJob;
   steps: Step[];
   raw: string;
@@ -240,6 +245,7 @@ function loadWorkflow(): {
   const job = parsed.jobs?.["harness-check"] ?? {};
   return {
     job,
+    liteCanaryJob: parsed.jobs?.["lite-consumer-canary-artifact"] ?? {},
     windowsJob: parsed.jobs?.["windows-durability-smoke"] ?? {},
     raw,
     steps: job.steps ?? [],
@@ -416,15 +422,32 @@ describe("source harness-check workflow", () => {
       "npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/distribution-lite-consumer-canary.test.ts",
     );
     expect(smoke["continue-on-error"]).not.toBe(true);
-    expect(job.needs).toBe("windows-durability-smoke");
+    expect(job.needs).toEqual(["lite-consumer-canary-artifact", "windows-durability-smoke"]);
     expect(job.if).toBe(`\${{ always() }}`);
-    expect(aggregate.if).toBe(`\${{ needs.windows-durability-smoke.result != 'success' }}`);
+    expect(aggregate.if).toBe(
+      `\${{ needs.lite-consumer-canary-artifact.result != 'success' || needs.windows-durability-smoke.result != 'success' }}`,
+    );
     expect(aggregate.run).toBe("exit 1");
   });
 
   it("U-DISTCAN-008a: required Windows jobへLite canaryを配線する", () => {
-    const { windowsJob } = loadWorkflow();
+    const { liteCanaryJob, windowsJob } = loadWorkflow();
+    const build = stepByName(liteCanaryJob.steps ?? [], "build Lite canary artifact");
+    const linux = stepByName(liteCanaryJob.steps ?? [], "Linux Lite consumer canary");
+    const upload = stepByName(liteCanaryJob.steps ?? [], "upload exact Lite canary artifact");
+    const download = stepByName(windowsJob.steps ?? [], "download Linux-validated Lite artifact");
     const smoke = stepByName(windowsJob.steps ?? [], "Windows durability smoke");
+    expect(liteCanaryJob["runs-on"]).toBe("ubuntu-latest");
+    expect(build.run).toContain("distribution package-profile");
+    expect(build.run).toContain(`> "\${RUNNER_TEMP}/lite-canary/receipt.json"`);
+    expect(linux.env?.HELIX_LITE_CANARY_RECEIPT).toContain("receipt.json");
+    expect(linux.run).toContain("tests/distribution-lite-consumer-canary.test.ts");
+    expect(upload.uses).toBe("actions/upload-artifact@v7");
+    expect(upload.with?.name).toBe("lite-consumer-canary");
+    expect(windowsJob.needs).toBe("lite-consumer-canary-artifact");
+    expect(download.uses).toBe("actions/download-artifact@v7");
+    expect(download.with?.name).toBe("lite-consumer-canary");
+    expect(smoke.env?.HELIX_LITE_CANARY_RECEIPT).toContain("receipt.json");
     expect(smoke.run).toContain("tests/distribution-lite-consumer-canary.test.ts");
     expect(smoke["continue-on-error"]).not.toBe(true);
   });
@@ -727,7 +750,7 @@ describe("source harness-check workflow", () => {
     const { job, steps } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
-    expect(job.needs).toBe("windows-durability-smoke");
+    expect(job.needs).toEqual(["lite-consumer-canary-artifact", "windows-durability-smoke"]);
     expect(regression.run).toContain("shard_names=(bulk stateful)");
     expect(regression.run?.match(/git worktree add --detach/g)).toHaveLength(1);
     expect(regression.run).toContain(
