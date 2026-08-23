@@ -57,6 +57,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-009a, test_path: tests/distribution-lite-consumer-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-008, test_path: tests/distribution-lite-consumer-canary.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-008a, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-008b, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DRG-012c, test_path: tests/design-registry-screen-intake.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, oracle_id: U-DISTCAN-010, test_path: tests/distribution-lite-consumer-canary.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-657-distribution-lite-consumer-canary.md, artifact_type: markdown_doc }
@@ -67,11 +69,17 @@ generates:
   - { artifact_path: src/setup/distribution-lite-consumer-lifecycle.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-cli.ts, artifact_type: source_module }
   - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: json_catalog }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_catalog }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: ci_workflow }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/distribution-lite-consumer-canary.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-lite-consumer-services.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-lite-consumer-lifecycle.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/design-registry-screen-intake.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-54-distribution-package-release.md
   requires:
