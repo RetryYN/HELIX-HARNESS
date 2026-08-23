@@ -166,9 +166,15 @@ function archivePaths(tarball: string): { ok: true; paths: string[] } | { ok: fa
     stdio: ["ignore", "pipe", "pipe"],
   });
   if (listed.status !== 0) return { ok: false };
-  const entries = String(listed.stdout)
+  return parsePortableArchivePaths(String(listed.stdout));
+}
+
+export function parsePortableArchivePaths(
+  output: string,
+): { ok: true; paths: string[] } | { ok: false } {
+  const entries = output
     .split("\n")
-    .map((entry) => entry.replace(/^\.\//, ""))
+    .map((entry) => entry.replace(/\r$/, "").replace(/^\.\//, ""))
     .filter(Boolean);
   if (entries.some((entry) => !isPortableArtifactPath(entry.replace(/\/$/, "")))) {
     return { ok: false };
