@@ -21,6 +21,10 @@ import {
 
 const LITE_ENTRYPOINTS = ["src/setup/distribution-consumer-cli.ts"] as const;
 const LITE_NODE_ARTIFACT_PATH = "dist/helix.js";
+const HELIX_SOURCE_REMOTES = new Set([
+  "git@github.com:RetryYN/HELIX-HARNESS.git",
+  "https://github.com/RetryYN/HELIX-HARNESS.git",
+]);
 
 function digest(bytes: Buffer | string): string {
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
@@ -101,6 +105,13 @@ export function resolveTrackedSourceIdentity(
       encoding: "utf8",
     }).trim();
     if (!/^[0-9a-f]{40}$/.test(head)) {
+      return { ok: false, failure: "source_identity_unavailable" };
+    }
+    const sourceRemote = execFileSync("git", ["remote", "get-url", "origin"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    }).trim();
+    if (!HELIX_SOURCE_REMOTES.has(sourceRemote)) {
       return { ok: false, failure: "source_identity_unavailable" };
     }
     const diff = spawnSync("git", ["diff", "--quiet", "HEAD", "--"], {

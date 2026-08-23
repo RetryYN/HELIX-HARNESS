@@ -34,6 +34,7 @@ Lite専用builder、別requirements、暗黙のFull package fallbackを作らな
   dangling symlinkを含むsymlink／hardlink／競合出力による物理出力先差し替えとしてwrite前にtyped拒否する。
   final fileはexclusive createする。
 - current distribution repositoryは`RetryYN/HELIX-HARNESS-DevOS`だけを出力する。旧OS identityは出力しない。
+- source repositoryは`origin`の実remoteを`RetryYN/HELIX-HARNESS`へ照合し、別repositoryのHEADへ正本名だけを付け替えない。
 
 ## package identityの束縛
 
@@ -42,7 +43,8 @@ artifact exact set／digest、tarball digest、checksum filenameを束縛する�
 自己digestを本文へ埋め込まない。呼出側receiptがmanifest bytesとchecksum bytesのdigestを返す。
 source HEADは`git rev-parse HEAD`の文字列だけで成立させず、追跡済みworking treeがそのHEADと一致する場合だけ受理する。
 未commit差分がある場合は`source_head_dirty`でarchive write前にfail-closeし、古いHEADで新しいbytesを包装しない。
-tracked差分だけでなく未追跡fileも同じdirty判定へ含め、filesystem walk由来のbytesをclean HEADへ混入させない。
+tracked差分だけでなく未追跡fileも同じdirty判定へ含める。Full経路の候補集合も`git ls-files`へ限定し、
+ignored untracked bytesをfilesystem walkからclean HEADへ混入させない。
 このresolverはLite profile経路とFull `distribution package`経路で共有し、片側だけにstale HEAD包装を残さない。
 requirements identityは`setup`からrequirements実装moduleへ逆依存せず、canonical manifestのexact shard set、
 各shard count／digest、baseline root digest、root digestをread-only projection adapterで再検証する。

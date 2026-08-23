@@ -197,6 +197,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     const sourceRoot = fixture();
     for (const args of [
       ["init"],
+      ["remote", "add", "origin", "git@github.com:RetryYN/HELIX-HARNESS.git"],
       ["add", "src/entry.ts"],
       [
         "-c",
@@ -223,6 +224,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     const sourceRoot = fixture();
     for (const args of [
       ["init"],
+      ["remote", "add", "origin", "git@github.com:RetryYN/HELIX-HARNESS.git"],
       ["add", "src/entry.ts"],
       [
         "-c",
@@ -247,7 +249,11 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
   it("U-DISTPKG-006: Full commandとLite commandが同じdeterministic tar coreを呼ぶ", () => {
     const cli = readFileSync("src/cli.ts", "utf8");
     const lite = readFileSync("src/setup/distribution-lite-package.ts", "utf8");
+    const packageCommand = cli.slice(cli.indexOf('distribution\n  .command("package")'));
     expect(cli).toContain("createDeterministicDistributionPackage({");
+    expect(cli).toContain("paths: sourceIdentity.ok ? sourceIdentity.paths : []");
+    expect(cli).toContain("const sourcePaths = sourceIdentity.ok ? sourceIdentity.paths : []");
+    expect(packageCommand).not.toContain("paths: collectDistributionCandidatePaths(repoRoot)");
     expect(lite).toContain("createDeterministicDistributionPackage({");
     expect(cli).not.toContain('"--pax-option=delete=atime,delete=ctime"');
     expect(lite).not.toContain('"--pax-option=delete=atime,delete=ctime"');
@@ -511,6 +517,31 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       });
       expect(result).toMatchObject({ ok: false, failures: ["artifact_identity_invalid"] });
     }
+  });
+
+  it("U-DISTPKG-009q: source remoteがHELIX-HARNESS authorityでなければ拒否する", () => {
+    const sourceRoot = fixture();
+    for (const args of [
+      ["init"],
+      ["remote", "add", "origin", "git@github.com:RetryYN/other-source.git"],
+      ["add", "src/entry.ts"],
+      [
+        "-c",
+        "user.name=HELIX Test",
+        "-c",
+        "user.email=helix@example.invalid",
+        "commit",
+        "-m",
+        "fixture",
+      ],
+    ]) {
+      const git = spawnSync("git", args, { cwd: sourceRoot, encoding: "utf8" });
+      expect(git.status, `${args.join(" ")}\n${git.stderr}`).toBe(0);
+    }
+    expect(resolveTrackedSourceIdentity(sourceRoot)).toEqual({
+      ok: false,
+      failure: "source_identity_unavailable",
+    });
   });
 
   it("U-DISTPKG-009k: nested identity余剰keyをmanifestへ再投影しない", () => {

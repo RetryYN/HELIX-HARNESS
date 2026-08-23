@@ -47,5 +47,6 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-009n | dangling output identity | dangling directory／final symlinkを例外化せずtyped拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009o | source hardlink identity | repo外inodeを共有するsource hardlinkをarchive混入前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009p | repository identity | source repositoryの未知値と旧distribution repositoryのcurrent再出力を拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009q | source remote authority | source `origin`がHELIX-HARNESSでないrepositoryを拒否 | `tests/distribution-lite-profile-package.test.ts` |
 
 fixtureだけでなくcurrent `consumer_core_v1` projection／closureを入力したCLI integrationを同PRで検証する。

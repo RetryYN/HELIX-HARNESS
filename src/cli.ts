@@ -15955,8 +15955,9 @@ distribution
       "./setup/distribution-lite-package"
     );
     const repoRoot = process.cwd();
+    const sourceIdentity = resolveTrackedSourceIdentity(repoRoot);
     const exportPlan = buildCleanDistributionPlan({
-      paths: collectDistributionCandidatePaths(repoRoot),
+      paths: sourceIdentity.ok ? sourceIdentity.paths : [],
       sourceTag: resolveDistributionTag(opts.tag),
       cleanRepo: opts.cleanRepo,
     });
@@ -15966,9 +15967,8 @@ distribution
         : join(repoRoot, opts.out)
       : join(repoRoot, ".helix", "release");
     const artifactStem = exportPlan.sourceTag.replace(/[^A-Za-z0-9._-]+/g, "-");
-    const sourcePaths = collectDistributionCandidatePaths(repoRoot);
+    const sourcePaths = sourceIdentity.ok ? sourceIdentity.paths : [];
     const requirementsIdentity = resolveLiteRequirementsIdentity(repoRoot);
-    const sourceIdentity = resolveTrackedSourceIdentity(repoRoot);
     const signature = join(outDir, `${artifactStem}.tar.gz.sig`);
     const packageResult =
       exportPlan.ok && requirementsIdentity && sourceIdentity.ok
