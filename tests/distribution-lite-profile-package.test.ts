@@ -364,6 +364,15 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       failures: ["manifest_extension_reserved"],
     });
     expect(compatibilityAlias.manifest).not.toHaveProperty("artifactDigest");
+    const computedCompatibilityAlias = createDeterministicDistributionPackage({
+      ...base,
+      out_dir: join(sourceRoot, "out-computed-compatibility-alias"),
+      tarball_digest_aliases: ["artifactDigest"],
+    });
+    expect(computedCompatibilityAlias.ok).toBe(true);
+    expect(computedCompatibilityAlias.manifest.artifactDigest).toBe(
+      computedCompatibilityAlias.manifest.tarball_digest,
+    );
   });
 
   it("U-DISTPKG-009f: source root symlinkをphysical authorityとして拒否する", () => {

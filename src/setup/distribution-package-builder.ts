@@ -226,7 +226,7 @@ export function createDeterministicDistributionPackage(input: {
   }
   if (!identityHasExactKeys(input.identity)) failures.add("artifact_identity_invalid");
   if (!outputPathIsSafe(input.out_dir)) failures.add("artifact_output_unsafe");
-  const reservedManifestKeys = new Set([
+  const canonicalManifestKeys = new Set([
     "schema_version",
     "source_head",
     "requirements",
@@ -239,8 +239,8 @@ export function createDeterministicDistributionPackage(input: {
     "tarball",
     "tarball_digest",
     "checksum",
-    "artifactDigest",
   ]);
+  const reservedManifestKeys = new Set([...canonicalManifestKeys, "artifactDigest"]);
   const digestAliases = new Set(input.tarball_digest_aliases ?? []);
   if (
     Object.keys(input.manifest_extensions ?? {}).some(
@@ -251,7 +251,7 @@ export function createDeterministicDistributionPackage(input: {
   }
   if (
     (input.tarball_digest_aliases ?? []).some(
-      (alias) => reservedManifestKeys.has(alias) || !/^[A-Za-z][A-Za-z0-9_]*$/.test(alias),
+      (alias) => canonicalManifestKeys.has(alias) || !/^[A-Za-z][A-Za-z0-9_]*$/.test(alias),
     )
   ) {
     failures.add("tarball_digest_alias_reserved");
