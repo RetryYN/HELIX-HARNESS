@@ -4,7 +4,7 @@ title: "PLAN-L7-661 (impl): Lite Requirement IR manifest宣言値のmutation ora
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-24
 updated: 2026-08-24
@@ -44,11 +44,40 @@ verification_bindings:
 agent_slots:
   - { role: qa, slot_label: "QA — manifest count／digest mutation oracle" }
   - { role: tl, slot_label: "TL — production source無変更とroot digest非退行確認" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
+    reviewed_at: "2026-08-23T23:23:32Z"
+    tests_green_at: "2026-08-23T23:24:32Z"
+    verdict: approve
+    worker_model: "codex:gpt-5.6-sol"
+    reviewer_model: "claude-opus-5"
+    reviewed_head_sha: "6fafdd55ec12a82e0d720ea37f7af29b6ad10ab8"
+    scope: "PR #974 current HEAD 6fafdd55ec12a82e0d720ea37f7af29b6ad10ab8をClaude Codeがread-onlyでpreflight検収し、Issue #964のcount／digest mutationを各1本ずつKILLED、復元後34 tests green、main同期後もproduction source無変更を確認した。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/974#issuecomment-5389058295。sealed receiptは最終HEADで別途発行し、receipt digestはこのPLANへ記録しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/distribution-lite-profile-package.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-23T23:24:32Z"
+        evidence_path: tests/distribution-lite-profile-package.test.ts
+        output_digest: "sha256:7e7326a41b61fa6e35910bef38b814437199644a8a0f2fdb4fbee8adc61b080f"
+        result: "2 test files / 34 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-23T23:23:32Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-23T23:23:32Z"
+    evidence_digest: "sha256:746b97cb6b07ef5c67a64e8fa3585186bdba6f3bc78ac10863e5d786f38ac4e3"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/distribution-lite-profile-package.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L7-656-distribution-lite-profile-bound-package.md
   requires:
