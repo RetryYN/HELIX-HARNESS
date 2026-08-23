@@ -69,11 +69,11 @@ generates:
   - { artifact_path: src/setup/distribution-lite-consumer-services.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-lite-consumer-lifecycle.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-consumer-cli.ts, artifact_type: source_module }
-  - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: json_catalog }
-  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_catalog }
+  - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
-  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: ci_workflow }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/distribution-lite-consumer-canary.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-lite-consumer-services.test.ts, artifact_type: test_code }
