@@ -30,13 +30,53 @@ function digest(bytes: Buffer | string): string {
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }
 
-const LITE_DOCUMENT_SOURCES = {
+export const LITE_DOCUMENT_SOURCES = {
   "README.md": "README-LITE.md",
   LICENSE: "LICENSE",
   "THIRD_PARTY_NOTICES.md": "THIRD_PARTY_NOTICES.md",
   "PROVENANCE.md": "PROVENANCE.md",
   "DISCLAIMER.md": "DISCLAIMER.md",
 } as const;
+
+export type LiteDistributionDocumentFailure =
+  | "document_exact_set_invalid"
+  | "document_empty"
+  | "consumer_readme_invalid"
+  | "document_sensitive_content";
+
+export function validateLiteDistributionDocumentBytes(
+  documents: Readonly<Partial<Record<keyof typeof LITE_DOCUMENT_SOURCES, Buffer | string>>>,
+): LiteDistributionDocumentFailure[] {
+  const failures = new Set<LiteDistributionDocumentFailure>();
+  const expected = Object.keys(LITE_DOCUMENT_SOURCES).sort();
+  const actual = Object.keys(documents).sort();
+  if (JSON.stringify(actual) !== JSON.stringify(expected))
+    failures.add("document_exact_set_invalid");
+  const text = (value: Buffer | string | undefined): string =>
+    typeof value === "string" ? value : (value?.toString("utf8") ?? "");
+  const values = Object.values(documents).map(text);
+  if (values.some((value) => value.trim().length === 0)) failures.add("document_empty");
+  const readme = text(documents["README.md"]);
+  if (
+    !readme.includes("RetryYN/HELIX-HARNESS-DevOS") ||
+    !readme.includes("compatibility input-only") ||
+    readme.includes("development / private") ||
+    readme.includes("node /path/to/HELIX-HARNESS") ||
+    readme.includes("helix team run")
+  ) {
+    failures.add("consumer_readme_invalid");
+  }
+  if (
+    values.some((value) =>
+      /(?:\/home\/[A-Za-z0-9._-]+\/|[A-Za-z]:\\Users\\|ghp_[A-Za-z0-9]+|sk-[A-Za-z0-9]{16,})/.test(
+        value,
+      ),
+    )
+  ) {
+    failures.add("document_sensitive_content");
+  }
+  return [...failures].sort();
+}
 
 export function loadLiteDistributionDocuments(repoRoot: string): Array<{
   path: string;
@@ -45,10 +85,17 @@ export function loadLiteDistributionDocuments(repoRoot: string): Array<{
   classification: "first_party" | "third_party_notice";
 }> | null {
   try {
+    const bytes = Object.fromEntries(
+      Object.entries(LITE_DOCUMENT_SOURCES).map(([path, sourcePath]) => [
+        path,
+        readFileSync(join(repoRoot, sourcePath)),
+      ]),
+    ) as Record<keyof typeof LITE_DOCUMENT_SOURCES, Buffer>;
+    if (validateLiteDistributionDocumentBytes(bytes).length > 0) return null;
     return Object.entries(LITE_DOCUMENT_SOURCES).map(([path, sourcePath]) => ({
       path,
       source_path: sourcePath,
-      digest: digest(readFileSync(join(repoRoot, sourcePath))),
+      digest: digest(bytes[path as keyof typeof LITE_DOCUMENT_SOURCES]),
       classification: path === "THIRD_PARTY_NOTICES.md" ? "third_party_notice" : "first_party",
     }));
   } catch {
@@ -108,6 +155,7 @@ export type LiteDistributionPackageFailure =
   | "source_head_dirty"
   | "requirements_identity_invalid"
   | "package_identity_invalid"
+  | "distribution_documents_invalid"
   | `profile:${DistributionProfileFailure}`
   | `projection:${DistributionArtifactProjectionFailure}`
   | "dependency_closure_failed";
@@ -334,7 +382,8 @@ export function buildLiteDistributionPackage(input: {
   const nodeArtifact = buildLiteNodeArtifact(input.repo_root, version);
   const packageJson = litePackageJson(input.repo_root, version);
   const documents = loadLiteDistributionDocuments(input.repo_root);
-  if (!nodeArtifact || !packageJson || !documents) {
+  if (!documents) return { ok: false, failures: ["distribution_documents_invalid"] };
+  if (!nodeArtifact || !packageJson) {
     return { ok: false, failures: ["package_identity_invalid"] };
   }
   const finalArtifactPaths = [...projection.artifact_paths, LITE_NODE_ARTIFACT_PATH].sort();
