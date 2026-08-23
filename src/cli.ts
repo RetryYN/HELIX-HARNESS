@@ -459,6 +459,7 @@ import { findReference } from "./search/index";
 import {
   buildLiteDistributionPackage,
   resolveLiteRequirementsIdentity,
+  resolveTrackedSourceIdentity,
 } from "./setup/distribution-lite-package";
 import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
@@ -15968,20 +15969,17 @@ distribution
     const artifactStem = exportPlan.sourceTag.replace(/[^A-Za-z0-9._-]+/g, "-");
     const sourcePaths = collectDistributionCandidatePaths(repoRoot);
     const requirementsIdentity = resolveLiteRequirementsIdentity(repoRoot);
-    const sourceHead = execFileSync("git", ["rev-parse", "HEAD"], {
-      cwd: repoRoot,
-      encoding: "utf8",
-    }).trim();
+    const sourceIdentity = resolveTrackedSourceIdentity(repoRoot);
     const signature = join(outDir, `${artifactStem}.tar.gz.sig`);
     const packageResult =
-      exportPlan.ok && requirementsIdentity
+      exportPlan.ok && requirementsIdentity && sourceIdentity.ok
         ? createDeterministicDistributionPackage({
             source_root: repoRoot,
             out_dir: outDir,
             artifact_stem: artifactStem,
             artifact_paths: exportPlan.artifactPaths,
             identity: {
-              source_head: sourceHead,
+              source_head: sourceIdentity.head,
               requirements: requirementsIdentity,
               profile: null,
               package_version: LOCAL_DISTRIBUTION_PACKAGE_VERSION,
@@ -16018,6 +16016,9 @@ distribution
     const output = {
       ok,
       export: exportPlan,
+      sourceIdentity: sourceIdentity.ok
+        ? { ok: true, head: sourceIdentity.head }
+        : { ok: false, failure: sourceIdentity.failure },
       artifacts: {
         tarball,
         checksum,

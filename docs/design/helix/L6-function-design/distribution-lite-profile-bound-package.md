@@ -42,6 +42,7 @@ artifact exact set／digest、tarball digest、checksum filenameを束縛する�
 自己digestを本文へ埋め込まない。呼出側receiptがmanifest bytesとchecksum bytesのdigestを返す。
 source HEADは`git rev-parse HEAD`の文字列だけで成立させず、追跡済みworking treeがそのHEADと一致する場合だけ受理する。
 未commit差分がある場合は`source_head_dirty`でarchive write前にfail-closeし、古いHEADで新しいbytesを包装しない。
+このresolverはLite profile経路とFull `distribution package`経路で共有し、片側だけにstale HEAD包装を残さない。
 runtime入力はtop-levelとnested requirements／profileの余剰identity keyを拒否し、blocked receiptにも余剰fieldを
 再投影しない。typed compile-time契約だけにauthority field保護を依存しない。
 

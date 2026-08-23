@@ -578,6 +578,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
 
   it("U-DISTPKG-009m: Full package経路もcanonical Requirement IR resolverを共有する", () => {
     const cli = readFileSync("src/cli.ts", "utf8");
+    const packageCommand = cli.slice(cli.indexOf('distribution\n  .command("package")'));
     expect(cli).toContain(
       "const requirementsIdentity = resolveLiteRequirementsIdentity(repoRoot);",
     );
@@ -585,6 +586,9 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     expect(cli).not.toContain(
       'JSON.parse(readFileSync(join(repoRoot, "requirements-ir/manifest.json"), "utf8"))',
     );
+    expect(cli).toContain("const sourceIdentity = resolveTrackedSourceIdentity(repoRoot);");
+    expect(cli).toContain("exportPlan.ok && requirementsIdentity && sourceIdentity.ok");
+    expect(packageCommand).not.toContain('execFileSync("git", ["rev-parse", "HEAD"]');
   });
 
   it("U-DISTPKG-010: current package-profile CLIを実行してprofile-bound artifactを生成する", () => {
