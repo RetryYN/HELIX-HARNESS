@@ -14,15 +14,43 @@ import { basename, dirname, join } from "node:path";
 import { afterAll, afterEach, describe, expect, it } from "vitest";
 import {
   admitLiteConsumerCanaryArtifact,
+  type LiteConsumerCanaryExpectedIdentity,
   parsePortableArchivePaths,
 } from "../src/setup/distribution-lite-consumer-canary";
-import { buildLiteDistributionPackage } from "../src/setup/distribution-lite-package";
+import {
+  buildLiteDistributionPackage,
+  loadLiteDistributionDocuments,
+} from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-657-distribution-lite-consumer-canary
+// PLAN-L7-658-lite-consumer-distribution-docs
 // U-DISTCAN-008: Windowsではnpm生成PowerShell shimを同一Node artifactへ接続する。
 
 const roots: string[] = [];
 let cleanSourceFixture: string | null = null;
+
+function isDistributionDocuments(
+  value: unknown,
+): value is LiteConsumerCanaryExpectedIdentity["distribution_documents"] {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (document) =>
+        document !== null &&
+        typeof document === "object" &&
+        typeof document.path === "string" &&
+        typeof document.source_path === "string" &&
+        typeof document.digest === "string" &&
+        /^sha256:[0-9a-f]{64}$/.test(document.digest) &&
+        (document.classification === "first_party" ||
+          document.classification === "third_party_notice"),
+    )
+  );
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((entry) => typeof entry === "string");
+}
 
 function spawnNpm(args: string[], cwd: string, timeout: number = 60_000) {
   const npmCli = process.env.npm_execpath;
@@ -71,7 +99,12 @@ function buildFixture() {
         if (!receipt.ok || !("paths" in receipt) || !receipt.output_digests) {
           throw new Error("external canary receipt invalid");
         }
-        if (!receipt.manifest.profile || !receipt.manifest.prebuilt_node_artifact) {
+        if (
+          !receipt.manifest.profile ||
+          !receipt.manifest.prebuilt_node_artifact ||
+          !isDistributionDocuments(receipt.manifest.distribution_documents) ||
+          !isStringArray(receipt.manifest.runtime_third_party_inputs)
+        ) {
           throw new Error("external canary identity invalid");
         }
         const sourceRoot = dirname(externalReceipt);
@@ -91,6 +124,8 @@ function buildFixture() {
             distribution_repository: receipt.manifest.distribution_repository,
             artifact_set_digest: receipt.manifest.artifact_set_digest,
             prebuilt_node_artifact: receipt.manifest.prebuilt_node_artifact,
+            distribution_documents: receipt.manifest.distribution_documents,
+            runtime_third_party_inputs: receipt.manifest.runtime_third_party_inputs,
             output_digests: receipt.output_digests,
           },
         });
@@ -136,6 +171,8 @@ function buildFixture() {
         distribution_repository: built.manifest.distribution_repository,
         artifact_set_digest: built.manifest.artifact_set_digest,
         prebuilt_node_artifact: built.manifest.prebuilt_node_artifact,
+        distribution_documents: loadLiteDistributionDocuments(process.cwd()) ?? [],
+        runtime_third_party_inputs: [],
         output_digests: built.output_digests,
       },
     },
@@ -159,6 +196,21 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       profile_id: "consumer_core_v1",
       tarball_digest: fixture.built.manifest.tarball_digest,
       artifact_paths: fixture.built.manifest.artifact_paths,
+    });
+  });
+
+  it("U-DISTDOC-006: document provenanceがreceiptと不一致なら拒否する", () => {
+    const fixture = buildFixture();
+    const expected = {
+      ...fixture.input.expected,
+      distribution_documents: fixture.input.expected.distribution_documents.map(
+        (document, index) =>
+          index === 0 ? { ...document, digest: `sha256:${"0".repeat(64)}` } : document,
+      ),
+    };
+    expect(admitLiteConsumerCanaryArtifact({ ...fixture.input, expected })).toMatchObject({
+      ok: false,
+      failures: expect.arrayContaining(["manifest_identity_mismatch"]),
     });
   });
 

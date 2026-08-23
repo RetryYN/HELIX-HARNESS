@@ -709,7 +709,7 @@
     {
       "hit_id": "src/lint/design-language.ts::sha256Text:createHash(sha256)::1",
       "path": "src/lint/design-language.ts",
-      "line": 166,
+      "line": 174,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4653,7 +4653,7 @@
     {
       "hit_id": "src/setup/distribution-lite-consumer-canary.ts::digest:createHash(sha256)::1",
       "path": "src/setup/distribution-lite-consumer-canary.ts",
-      "line": 55,
+      "line": 64,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4707,7 +4707,7 @@
       "line": 31,
       "symbol": "digest",
       "algorithm": "sha256",
-      "input_kind": "bytes",
+      "input_kind": "string",
       "output_encoding": "hex",
       "prefix": null,
       "truncation": null,
@@ -4721,7 +4721,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::resolveLiteRequirementsIdentity:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 217,
+      "line": 301,
       "symbol": "resolveLiteRequirementsIdentity",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4738,7 +4738,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::observedBaselineDigest:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 234,
+      "line": 318,
       "symbol": "observedBaselineDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4755,7 +4755,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::observedRootDigest:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 236,
+      "line": 320,
       "symbol": "observedRootDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4772,7 +4772,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::buildLiteDistributionPackage:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 331,
+      "line": 419,
       "symbol": "buildLiteDistributionPackage",
       "algorithm": "sha256",
       "input_kind": "string",
