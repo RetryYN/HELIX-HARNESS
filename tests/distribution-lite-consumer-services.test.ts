@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -23,12 +23,19 @@ describe("PLAN-L7-657: Lite consumer services", () => {
     const services = createLiteConsumerServices(root);
     expect(services.setup_project({ dry_run: true })).toMatchObject({
       exit_code: 0,
-      payload: { ok: true, dry_run: true },
+      payload: {
+        ok: true,
+        dry_run: true,
+        changes: [".github/workflows/helix-consumer.yml", ".helix/consumer-lite.json"],
+      },
     });
     expect(services.status().exit_code).toBe(1);
     expect(services.setup_project({ dry_run: false })).toMatchObject({
       exit_code: 0,
-      payload: { ok: true },
+      payload: {
+        ok: true,
+        changes: [".github/workflows/helix-consumer.yml", ".helix/consumer-lite.json"],
+      },
     });
     expect(services.setup_project({ dry_run: false })).toMatchObject({
       payload: { idempotent: true },
@@ -42,6 +49,15 @@ describe("PLAN-L7-657: Lite consumer services", () => {
     expect(workflow).toContain("npm ci --ignore-scripts");
     expect(workflow).toContain("npx --no-install helix doctor --profile consumer --json");
     expect(workflow).not.toContain("npm install");
+    writeFileSync(join(root, ".github", "workflows", "helix-consumer.yml"), "tampered\n");
+    expect(services.consumer_doctor()).toMatchObject({
+      exit_code: 1,
+      payload: { ok: false, failures: ["consumer_ci_missing_or_invalid"] },
+    });
+    expect(services.completion_decision_packet()).toMatchObject({
+      exit_code: 1,
+      payload: { ok: false, failures: ["consumer_ci_missing_or_invalid"] },
+    });
   });
 
   it("U-DISTCAN-007a: consumer所有CIを上書きしない", () => {
@@ -57,6 +73,19 @@ describe("PLAN-L7-657: Lite consumer services", () => {
     expect(readFileSync(join(root, ".github", "workflows", "helix-consumer.yml"), "utf8")).toBe(
       owned,
     );
+
+    const linkedRoot = fixture();
+    const canonicalRoot = fixture();
+    createLiteConsumerServices(canonicalRoot).setup_project({ dry_run: false });
+    mkdirSync(join(linkedRoot, ".github", "workflows"), { recursive: true });
+    symlinkSync(
+      join(canonicalRoot, ".github", "workflows", "helix-consumer.yml"),
+      join(linkedRoot, ".github", "workflows", "helix-consumer.yml"),
+    );
+    expect(createLiteConsumerServices(linkedRoot).setup_project({ dry_run: false })).toMatchObject({
+      exit_code: 1,
+      payload: { reason: "consumer_owned_file_conflict" },
+    });
   });
 
   it("U-DISTCAN-006b: delegationは実行せずproviderとtask digestだけをreceipt化する", () => {
