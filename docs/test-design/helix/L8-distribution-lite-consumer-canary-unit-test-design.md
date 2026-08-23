@@ -17,6 +17,7 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-consumer-c
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-DISTCAN-001 | manifest chain | builder receiptとtarball／manifest／checksum／exact setが一致した場合だけadmit | `tests/distribution-lite-consumer-canary.test.ts` |
+| U-DISTCAN-001a | archive／manifest exact set | tar実体に対するmanifest申告不足／過多を`archive_exact_set_mismatch`で拒否 | `tests/distribution-lite-consumer-canary.test.ts` |
 | U-DISTCAN-002 | artifact replacement | tarball 1 byte差替えをextract前に拒否 | `tests/distribution-lite-consumer-canary.test.ts` |
 | U-DISTCAN-003 | checksum drift | checksum bytes／filename／tarball digestの不一致を独立failureで拒否 | `tests/distribution-lite-consumer-canary.test.ts` |
 | U-DISTCAN-004 | source／profile identity | 別HEADまたは別profile receiptを拒否 | `tests/distribution-lite-consumer-canary.test.ts` |

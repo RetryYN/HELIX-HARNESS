@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import {
   cpSync,
   linkSync,
@@ -23,6 +24,7 @@ import {
 } from "../src/setup/distribution-lite-package";
 
 // PLAN-L7-657-distribution-lite-consumer-canary
+// PLAN-L7-659-lite-canary-manifest-exact-set-oracle
 // PLAN-L7-658-lite-consumer-distribution-docs
 // U-DISTCAN-008: Windowsではnpm生成PowerShell shimを同一Node artifactへ接続する。
 
@@ -197,6 +199,36 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       tarball_digest: fixture.built.manifest.tarball_digest,
       artifact_paths: fixture.built.manifest.artifact_paths,
     });
+  });
+
+  it("U-DISTCAN-001a: archive実体とmanifest申告の不足／過多をexact拒否する", () => {
+    for (const mutation of ["missing", "excess"] as const) {
+      const fixture = buildFixture();
+      const manifest = JSON.parse(readFileSync(fixture.input.manifest, "utf8")) as {
+        artifact_paths: string[];
+      };
+      manifest.artifact_paths =
+        mutation === "missing"
+          ? manifest.artifact_paths.slice(1)
+          : [...manifest.artifact_paths, "undeclared-extra.txt"].sort();
+      const manifestBytes = `${JSON.stringify(manifest, null, 2)}\n`;
+      writeFileSync(fixture.input.manifest, manifestBytes, "utf8");
+      const expected = {
+        ...fixture.input.expected,
+        output_digests: {
+          ...fixture.input.expected.output_digests,
+          manifest: `sha256:${createHash("sha256").update(manifestBytes).digest("hex")}`,
+        },
+      };
+
+      expect(
+        admitLiteConsumerCanaryArtifact({ ...fixture.input, expected }),
+        mutation,
+      ).toMatchObject({
+        ok: false,
+        failures: ["archive_exact_set_mismatch"],
+      });
+    }
   });
 
   it("U-DISTDOC-006: document provenanceがreceiptと不一致なら拒否する", () => {
