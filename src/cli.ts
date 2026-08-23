@@ -336,6 +336,7 @@ import {
   evaluateReviewedMergeReadAfter,
   persistReviewedMergeReadAfterReceipt,
 } from "./runtime/github-cross-review-admission";
+import { selectLatestSuccessfulReviewCiGeneration } from "./runtime/github-review-ci-generation";
 import { commitOverrideUse } from "./runtime/guard-override-transaction";
 import {
   buildHarnessTaxonomyCurationReport,
@@ -14095,33 +14096,30 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
       Number.isSafeInteger(run.databaseId) &&
       run.databaseId > 0,
   );
-  const terminal = matching
-    .filter(
-      (run) =>
-        run.status === "completed" &&
-        typeof run.conclusion === "string" &&
-        typeof run.attempt === "number" &&
-        Number.isSafeInteger(run.attempt) &&
-        run.attempt > 0 &&
-        parseClaudePrCiEvidenceGeneration(
-          `run:${String(run.databaseId)}:attempt:${String(run.attempt)}:${String(run.conclusion)}`,
-        ) !== null,
-    )
-    .map((run) => ({
-      databaseId: run.databaseId as number,
-      attempt: run.attempt as number,
-      conclusion: run.conclusion as string,
-      updatedAt: run.updatedAt,
-    }))
-    .sort((left, right) =>
-      String(left.updatedAt ?? "").localeCompare(String(right.updatedAt ?? "")),
-    );
-  const latest = terminal.at(-1);
+  const latest = selectLatestSuccessfulReviewCiGeneration(
+    matching.flatMap((run) => {
+      if (
+        typeof run.databaseId !== "number" ||
+        typeof run.attempt !== "number" ||
+        typeof run.status !== "string" ||
+        typeof run.conclusion !== "string" ||
+        typeof run.updatedAt !== "string"
+      )
+        return [];
+      return [
+        {
+          id: run.databaseId,
+          databaseId: run.databaseId,
+          attempt: run.attempt,
+          status: run.status,
+          conclusion: run.conclusion,
+          updatedAt: run.updatedAt,
+        },
+      ];
+    }),
+  );
   if (!latest) {
     throw new Error(matching.length > 0 ? "pr_ci_evidence_not_terminal" : "pr_ci_evidence_missing");
-  }
-  if (typeof latest.updatedAt !== "string" || !Number.isFinite(Date.parse(latest.updatedAt))) {
-    throw new Error("pr_ci_evidence_timestamp_invalid");
   }
   return {
     generation: `run:${String(latest.databaseId)}:attempt:${String(latest.attempt)}:${String(latest.conclusion)}`,

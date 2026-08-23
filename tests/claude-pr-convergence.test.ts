@@ -340,7 +340,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           'if [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
           '  printf \'%s\' \'{"url":"https://github.com/RetryYN/HELIX-HARNESS/pull/557","headRefOid":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","baseRefName":"main","state":"OPEN"}\'',
           'elif [ "$1" = "run" ] && [ "$2" = "list" ]; then',
-          '  printf \'%s\' \'[{"databaseId":31912034678,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"completed","conclusion":"success","attempt":2,"updatedAt":"2026-08-17T00:00:00Z","event":"pull_request","name":"harness-check"}]\'',
+          '  printf \'%s\' \'[{"databaseId":31912034679,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"completed","conclusion":"failure","attempt":1,"updatedAt":"2026-08-17T00:01:00Z","event":"pull_request","name":"harness-check"},{"databaseId":31912034678,"headSha":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","status":"completed","conclusion":"success","attempt":2,"updatedAt":"2026-08-17T00:00:00Z","event":"pull_request","name":"harness-check"}]\'',
           'elif [ "$1" = "api" ]; then',
           '  if [ "$AUTHOR_EVIDENCE" = "claude" ]; then',
           "    printf '1:0:%s\\n' 'ZmVhdDogY2xhdWRlCgpDby1BdXRob3JlZC1CeTogQ2xhdWRlIFggPHhAeT4='",

@@ -1,0 +1,111 @@
+---
+plan_id: PLAN-RECOVERY-65-review-generation-deadlock
+title: "PLAN-RECOVERY-65 (recovery): review CI generation deadlockを解消する"
+kind: recovery
+layer: cross
+drive: agent
+status: confirmed
+completion_claim_allowed: false
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
+  target_axis: workflow_model
+  target_id: RECOVERY
+entry_signals:
+  - "po_directive:Issue #949 PR #945 Ready admission generation deadlockを回復する"
+created: 2026-08-23
+updated: 2026-08-23
+owner: Codex / TL
+github_issue_id: 949
+behavior_contract_id: GITHUB-REVIEW-CI-GENERATION-001
+responsibility_owner: github-review-convergence
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+no_code_decision: modify
+ddd_modeling_decision: policy
+contract_preconditions: "同一HEADのterminal success CIとexact receiptが存在し、その後のadmission-only failureがlatest runになる"
+contract_postconditions: "producerとadmissionが同じlatest successful generation authorityを使い、#945 Ready E2Eが回復する"
+contract_invariants: "HEAD／PR／workflow／path／attempt／success exact bindingとrequired check redを維持する"
+contract_failures: "success不在、別HEAD、別PR、別workflow、newer success、invalid timestampをfail-closeする"
+tdd_red_required: true
+red_at: 2026-08-23T06:35:20+09:00
+green_at: 2026-08-23T06:39:53+09:00
+mutation_oracle_evidence: "2026-08-23T09:11:41+09:00にsrc/runtime/github-review-ci-generation.tsのcandidate.conclusion === success predicateを一時mutationで除去し、npx --no-install vitest run --project fast tests/github-review-ci-generation.test.tsを実測した。U-GRCIGEN-001はnewer failure id=4を誤選択、U-GRCIGEN-003はfailure-only入力をnullにせず返して2 failed / 1 passed、exit 1となりseeded defectをkillした。predicate復元後は3 passed、exit 0を確認した。"
+complexity_effect: net_negative
+complexity_justification: "CLI producerとadmission consumerの重複selectionを共有pure functionへ集約する"
+removal_trigger: "GitHub workflowがreviewとReady admissionを単一generation transactionとして提供する時"
+parent_design: docs/design/helix/L6-function-design/orchestration-memory.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-GCRA-032, test_path: tests/github-cross-review-admission.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-GRCIGEN-001, test_path: tests/github-review-ci-generation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-GRCIGEN-002, test_path: tests/github-review-ci-generation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-GRCIGEN-003, test_path: tests/github-review-ci-generation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/orchestration-memory.md, oracle_id: U-CPRCONV-023, test_path: tests/claude-pr-convergence.test.ts }
+agent_slots:
+  - { role: aim, slot_label: "AIM — deadlock事象とreopen point管理" }
+  - { role: se, slot_label: "SE — shared generation selector実装" }
+  - { role: qa, slot_label: "QA — failure／cancelled／new success mutation" }
+  - { role: tl, slot_label: "TL — required check非緩和監査" }
+generates:
+  - { artifact_path: docs/plans/PLAN-RECOVERY-65-review-generation-deadlock.md, artifact_type: markdown_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
+  - { artifact_path: src/runtime/github-review-ci-generation.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-review-ci-generation.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
+dependencies:
+  parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
+  requires: []
+  references:
+    - issue:949
+    - pr:945
+  blocks:
+    - pr:945
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5"
+    review_kind: cross_agent
+    reviewer_session_id: "809000c6-ec58-4362-85ae-4d9535a2d685"
+    reviewed_at: "2026-08-22T23:45:02Z"
+    tests_green_at: "2026-08-22T23:28:50Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-fable-5
+    reviewed_head_sha: 26039d2025b76756a829c7456bdf1e2ec58dd47d
+    scope: "PR #950 exact HEAD 26039d20をClaude Code Fable 5がread-only独立reviewした。13 path scope exact一致、producer／admissionのshared selector、non-success generation除外、newer successだけによるstale化、required check非緩和、mutation load-bearingを確認しblocker 0でapproveした。同HEADにsuccess CI generationが無いため機械receiptは設計上発行不能であり、本pre-confirm reviewからPLAN confirm後のgreen CI／正規receiptへ進む。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/950#issuecomment-5383206872"
+    green_commands:
+      - kind: integration_test
+        command: "GitHub Actions harness-check impact-ci: vitest run --project fast/slow shards"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-22T23:28:50Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:1a21f41866376f3c13539c49308eba953ecd129ccde10aadcfea61f258efadba"
+        result: "同一HEAD 26039d20の全回帰stepがexit 0。run全体は後続doctorのreview前PLAN lifecycle failureのみでfailureのためterminal CI successとは主張しない。Claudeは別途3 files / 74 testsを独立再測定した。"
+---
+
+# PLAN-RECOVERY-65: review CI generation deadlock回復
+
+## 工程表
+
+| Step | 作業 | 完了条件 |
+|---|---|---|
+| 1 | PR #945のrun／receipt世代を実測 | admission-only failure循環を再現 |
+| 2 | latest success selector共有 | producer／consumerが同じ純関数を使用 |
+| 3 | mutation／targeted回帰 | non-success除外とnew success stale化を固定 |
+| 4 | #945のread-after | Ready後のCI成功と正規マージ |
+
+## 非対象
+
+required checkのfailure無視、admin bypass merge、review要件の緩和は行わない。
