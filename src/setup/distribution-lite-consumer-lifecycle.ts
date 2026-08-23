@@ -4,6 +4,7 @@ import {
   lstatSync,
   mkdirSync,
   readFileSync,
+  realpathSync,
   renameSync,
   unlinkSync,
   writeFileSync,
@@ -15,6 +16,7 @@ const PIN_PATH = ".helix/engine-pin.json";
 export type LiteConsumerLifecycleFailure =
   | "pin_invalid"
   | "pin_not_direct_predecessor"
+  | "pin_identity_mismatch"
   | "consumer_path_unsafe"
   | "consumer_path_missing"
   | "consumer_bytes_changed";
@@ -41,8 +43,19 @@ function safeFile(root: string, path: string): string | null {
   const target = resolve(root, path);
   const rel = relative(root, target);
   if (!rel || rel === ".." || rel.startsWith(`..${sep}`) || !existsSync(target)) return null;
-  const stat = lstatSync(target);
-  return stat.isFile() && !stat.isSymbolicLink() && stat.nlink === 1 ? target : null;
+  try {
+    const stat = lstatSync(target);
+    return realpathSync(root) === root &&
+      realpathSync(dirname(target)) === dirname(target) &&
+      realpathSync(target) === target &&
+      stat.isFile() &&
+      !stat.isSymbolicLink() &&
+      stat.nlink === 1
+      ? target
+      : null;
+  } catch {
+    return null;
+  }
 }
 
 function snapshot(root: string, paths: readonly string[]): string | null {
@@ -94,14 +107,18 @@ export function rehearseLiteConsumerLifecycle(input: {
     return { ok: false, failures: ["pin_not_direct_predecessor"] };
   }
   const root = resolve(input.consumer_root);
+  const pinPath = join(root, PIN_PATH);
+  const currentPin = safeFile(root, PIN_PATH);
+  if (!currentPin) {
+    return { ok: false, failures: ["consumer_path_unsafe"] };
+  }
+  if (readFileSync(currentPin, "utf8") !== pinBytes(input.expected_previous_pin)) {
+    return { ok: false, failures: ["pin_identity_mismatch"] };
+  }
   const consumerBefore = snapshot(root, input.consumer_owned_paths);
   const evidenceBefore = snapshot(root, input.evidence_paths);
   if (!consumerBefore || !evidenceBefore) {
     return { ok: false, failures: ["consumer_path_missing"] };
-  }
-  const pinPath = join(root, PIN_PATH);
-  if (existsSync(pinPath) && !safeFile(root, PIN_PATH)) {
-    return { ok: false, failures: ["consumer_path_unsafe"] };
   }
 
   if (!atomicWrite(pinPath, pinBytes(input.target_pin))) {
