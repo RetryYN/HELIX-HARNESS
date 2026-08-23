@@ -172,6 +172,19 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
       timeout: 10_000,
     });
     expect(JSON.parse(secondSetup.stdout)).toMatchObject({ ok: true, idempotent: true });
+    const generatedCiInstall = spawnSync("npm", ["ci", "--ignore-scripts"], {
+      cwd: consumer,
+      encoding: "utf8",
+      timeout: 60_000,
+    });
+    expect(generatedCiInstall.status, generatedCiInstall.stderr).toBe(0);
+    const generatedCiDoctor = spawnSync(
+      join(consumer, "node_modules", ".bin", process.platform === "win32" ? "helix.cmd" : "helix"),
+      ["doctor", "--profile", "consumer", "--json"],
+      { cwd: consumer, encoding: "utf8", timeout: 10_000 },
+    );
+    expect(generatedCiDoctor.status, generatedCiDoctor.stderr).toBe(0);
+    expect(JSON.parse(generatedCiDoctor.stdout)).toMatchObject({ ok: true, failures: [] });
   });
 
   it("U-DISTCAN-010: development state／PLAN／credential pathをartifactへ混入させない", () => {
