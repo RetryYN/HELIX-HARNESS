@@ -100,7 +100,10 @@ export function loadLiteDistributionDocuments(repoRoot: string): Array<{
   }
 }
 
-function buildLiteNodeArtifact(repoRoot: string, version: string): Buffer | null {
+function buildLiteNodeArtifact(
+  repoRoot: string,
+  version: string,
+): { bytes: Buffer; runtime_third_party_inputs: string[] } | null {
   try {
     const result = buildSync({
       absWorkingDir: repoRoot,
@@ -110,13 +113,20 @@ function buildLiteNodeArtifact(repoRoot: string, version: string): Buffer | null
       format: "esm",
       target: "node24",
       write: false,
+      metafile: true,
       define: {
         __HELIX_LITE_VERSION__: JSON.stringify(version),
         __HELIX_LITE_EXECUTABLE__: "true",
       },
       legalComments: "none",
     });
-    return result.outputFiles.length === 1 ? Buffer.from(result.outputFiles[0].contents) : null;
+    if (result.outputFiles.length !== 1 || !result.metafile) return null;
+    return {
+      bytes: Buffer.from(result.outputFiles[0].contents),
+      runtime_third_party_inputs: Object.keys(result.metafile.inputs)
+        .filter((path) => path.replaceAll("\\", "/").includes("node_modules/"))
+        .sort(),
+    };
   } catch {
     return null;
   }
@@ -261,7 +271,9 @@ export function buildLiteDistributionPackage(input: {
   const nodeArtifact = buildLiteNodeArtifact(input.repo_root, version);
   const packageJson = litePackageJson(input.repo_root, version);
   const documents = loadLiteDistributionDocuments(input.repo_root);
-  if (!documents) return { ok: false, failures: ["distribution_documents_invalid"] };
+  if (!documents || (nodeArtifact?.runtime_third_party_inputs.length ?? 0) > 0) {
+    return { ok: false, failures: ["distribution_documents_invalid"] };
+  }
   if (!nodeArtifact || !packageJson) {
     return { ok: false, failures: ["package_identity_invalid"] };
   }
@@ -284,13 +296,16 @@ export function buildLiteDistributionPackage(input: {
       artifact_set_digest: sha256Digest(canonicalJson(finalArtifactPaths)),
       prebuilt_node_artifact: {
         path: LITE_NODE_ARTIFACT_PATH,
-        digest: digest(nodeArtifact),
+        digest: digest(nodeArtifact.bytes),
       },
     },
     generated_artifacts: {
-      [LITE_NODE_ARTIFACT_PATH]: { bytes: nodeArtifact, mode: 0o755 },
+      [LITE_NODE_ARTIFACT_PATH]: { bytes: nodeArtifact.bytes, mode: 0o755 },
     },
-    manifest_extensions: { distribution_documents: documents },
+    manifest_extensions: {
+      distribution_documents: documents,
+      runtime_third_party_inputs: nodeArtifact.runtime_third_party_inputs,
+    },
     transform_artifact: (artifactPath) => {
       if (artifactPath === "package.json") return packageJson;
       const sourcePath = LITE_DOCUMENT_SOURCES[artifactPath as keyof typeof LITE_DOCUMENT_SOURCES];

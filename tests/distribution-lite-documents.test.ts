@@ -49,6 +49,7 @@ describe("PLAN-L7-658: Lite consumer distribution documents", () => {
     expect(result.manifest.distribution_documents).toEqual(
       loadLiteDistributionDocuments(process.cwd()),
     );
+    expect(result.manifest.runtime_third_party_inputs).toEqual([]);
     const extracted = mkdtempSync(join(tmpdir(), "helix-lite-docs-extracted-"));
     roots.push(extracted);
     const tar = spawnSync("tar", ["-xzf", result.paths.tarball, "-C", extracted], {
