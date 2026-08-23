@@ -43,6 +43,7 @@ function fixture(): string {
 }
 
 const identity: DistributionPackageIdentity = {
+  source_repository: "RetryYN/HELIX-HARNESS",
   source_head: "a".repeat(40),
   requirements: { version: "1.3.13", root_digest: `sha256:${"b".repeat(64)}` },
   profile: {
@@ -212,6 +213,31 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     }
     expect(resolveTrackedSourceIdentity(sourceRoot)).toMatchObject({ ok: true });
     writeFileSync(join(sourceRoot, "src", "entry.ts"), "export const value = 2;\n", "utf8");
+    expect(resolveTrackedSourceIdentity(sourceRoot)).toEqual({
+      ok: false,
+      failure: "source_head_dirty",
+    });
+  });
+
+  it("U-DISTPKG-005c: untracked sourceをclean HEADとして包装しない", () => {
+    const sourceRoot = fixture();
+    for (const args of [
+      ["init"],
+      ["add", "src/entry.ts"],
+      [
+        "-c",
+        "user.name=HELIX Test",
+        "-c",
+        "user.email=helix@example.invalid",
+        "commit",
+        "-m",
+        "fixture",
+      ],
+    ]) {
+      const git = spawnSync("git", args, { cwd: sourceRoot, encoding: "utf8" });
+      expect(git.status, `${args.join(" ")}\n${git.stderr}`).toBe(0);
+    }
+    writeFileSync(join(sourceRoot, "src", "untracked.ts"), "untracked bytes\n", "utf8");
     expect(resolveTrackedSourceIdentity(sourceRoot)).toEqual({
       ok: false,
       failure: "source_head_dirty",
@@ -468,6 +494,23 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
       manifest: { schema_version: "helix-distribution-package-manifest.v1" },
     });
     expect(existsSync(outDir)).toBe(false);
+  });
+
+  it("U-DISTPKG-009p: source／distribution repositoryの旧・未知identityを拒否する", () => {
+    const sourceRoot = fixture();
+    for (const [field, value] of [
+      ["source_repository", "RetryYN/other-source"],
+      ["distribution_repository", "RetryYN/HELIX-HARNESS-OS"],
+    ] as const) {
+      const result = createDeterministicDistributionPackage({
+        source_root: sourceRoot,
+        out_dir: join(sourceRoot, `out-invalid-${field}`),
+        artifact_stem: "lite",
+        artifact_paths: ["src/entry.ts"],
+        identity: { ...identity, [field]: value } as DistributionPackageIdentity,
+      });
+      expect(result).toMatchObject({ ok: false, failures: ["artifact_identity_invalid"] });
+    }
   });
 
   it("U-DISTPKG-009k: nested identity余剰keyをmanifestへ再投影しない", () => {

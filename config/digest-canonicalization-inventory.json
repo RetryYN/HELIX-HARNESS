@@ -352,7 +352,7 @@
     {
       "hit_id": "src/cli.ts::packageResult:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 15986,
+      "line": 15987,
       "symbol": "packageResult",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4670,7 +4670,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::resolveLiteRequirementsIdentity:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 190,
+      "line": 195,
       "symbol": "resolveLiteRequirementsIdentity",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4687,7 +4687,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::observedBaselineDigest:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 207,
+      "line": 212,
       "symbol": "observedBaselineDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4704,7 +4704,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::observedRootDigest:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 209,
+      "line": 214,
       "symbol": "observedRootDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4721,7 +4721,7 @@
     {
       "hit_id": "src/setup/distribution-lite-package.ts::buildLiteDistributionPackage:sha256Digest()::1",
       "path": "src/setup/distribution-lite-package.ts",
-      "line": 303,
+      "line": 309,
       "symbol": "buildLiteDistributionPackage",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4755,7 +4755,7 @@
     {
       "hit_id": "src/setup/distribution-package-builder.ts::computedSetDigest:sha256Digest()::1",
       "path": "src/setup/distribution-package-builder.ts",
-      "line": 259,
+      "line": 267,
       "symbol": "computedSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",

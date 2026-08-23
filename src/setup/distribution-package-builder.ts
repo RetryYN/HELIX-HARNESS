@@ -31,6 +31,7 @@ const digest = (bytes: Buffer | string): string =>
   `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 
 export interface DistributionPackageIdentity {
+  source_repository: "RetryYN/HELIX-HARNESS";
   source_head: string;
   requirements: { version: string; root_digest: string };
   profile: { id: string; version: string; digest: string } | null;
@@ -165,6 +166,7 @@ function outputPathIsSafe(outDir: string): boolean {
 
 function identityHasExactKeys(identity: DistributionPackageIdentity): boolean {
   const expected = new Set([
+    "source_repository",
     "source_head",
     "requirements",
     "profile",
@@ -196,7 +198,12 @@ function identityHasExactKeys(identity: DistributionPackageIdentity): boolean {
     Object.keys(identity).every((key) => expected.has(key)) &&
     requirementsExact &&
     profileExact &&
-    nodeArtifactExact
+    nodeArtifactExact &&
+    identity.source_repository === "RetryYN/HELIX-HARNESS" &&
+    /^[0-9a-f]{40}$/.test(identity.source_head) &&
+    /^sha256:[0-9a-f]{64}$/.test(identity.requirements.root_digest) &&
+    identity.distribution_repository === "RetryYN/HELIX-HARNESS-DevOS" &&
+    /^sha256:[0-9a-f]{64}$/.test(identity.artifact_set_digest)
   );
 }
 
@@ -228,6 +235,7 @@ export function createDeterministicDistributionPackage(input: {
   if (!outputPathIsSafe(input.out_dir)) failures.add("artifact_output_unsafe");
   const canonicalManifestKeys = new Set([
     "schema_version",
+    "source_repository",
     "source_head",
     "requirements",
     "profile",
@@ -323,6 +331,7 @@ export function createDeterministicDistributionPackage(input: {
     : (input.manifest_extensions ?? {});
   const manifest: DistributionPackageManifest = {
     schema_version: "helix-distribution-package-manifest.v1",
+    source_repository: input.identity.source_repository,
     source_head: input.identity.source_head,
     requirements: {
       version: input.identity.requirements.version,

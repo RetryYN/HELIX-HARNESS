@@ -109,6 +109,11 @@ export function resolveTrackedSourceIdentity(
     });
     if (diff.status === 1) return { ok: false, failure: "source_head_dirty" };
     if (diff.status !== 0) return { ok: false, failure: "source_identity_unavailable" };
+    const status = execFileSync("git", ["status", "--porcelain", "--untracked-files=all"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    });
+    if (status.trim() !== "") return { ok: false, failure: "source_head_dirty" };
     return { ok: true, paths, head };
   } catch {
     return { ok: false, failure: "source_identity_unavailable" };
@@ -291,6 +296,7 @@ export function buildLiteDistributionPackage(input: {
     artifact_stem: `HELIX-HARNESS-LITE-${profile.profile_version}`,
     artifact_paths: projection.artifact_paths,
     identity: {
+      source_repository: "RetryYN/HELIX-HARNESS",
       source_head: source.head,
       requirements,
       profile: {

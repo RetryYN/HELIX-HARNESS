@@ -15978,6 +15978,7 @@ distribution
             artifact_stem: artifactStem,
             artifact_paths: exportPlan.artifactPaths,
             identity: {
+              source_repository: "RetryYN/HELIX-HARNESS",
               source_head: sourceIdentity.head,
               requirements: requirementsIdentity,
               profile: null,

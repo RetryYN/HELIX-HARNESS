@@ -39,6 +39,7 @@
       "disposition": "consumer_safe",
       "artifact_paths": [
         "biome.json",
+        "LICENSE",
         "package-lock.json",
         "package.json",
         "src/doctor/check-registry.ts",
