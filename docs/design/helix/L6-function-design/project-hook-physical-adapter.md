@@ -6,7 +6,7 @@ status: draft
 created: 2026-08-22
 updated: 2026-08-22
 owner: Codex / TL
-plan: docs/plans/PLAN-L7-652-project-hook-physical-adapter.md
+plan: docs/plans/PLAN-L7-662-project-hook-physical-adapter.md
 parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md
 pair_artifact: docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md
 ---

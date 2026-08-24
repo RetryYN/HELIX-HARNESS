@@ -8,7 +8,7 @@ status: draft
 created: 2026-08-22
 updated: 2026-08-22
 owner: QA / TL
-plan: docs/plans/PLAN-L7-652-project-hook-physical-adapter.md
+plan: docs/plans/PLAN-L7-662-project-hook-physical-adapter.md
 pair_artifact: docs/design/helix/L6-function-design/project-hook-physical-adapter.md
 ---
 

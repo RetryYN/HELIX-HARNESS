@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-652-project-hook-physical-adapter
-title: "PLAN-L7-652 (impl): project hook physical identity adapterを実装する"
+plan_id: PLAN-L7-662-project-hook-physical-adapter
+title: "PLAN-L7-662 (impl): project hook physical identity adapterを実装する"
 kind: impl
 layer: L7
 drive: agent
@@ -48,7 +48,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — symlink／worktree／unsupported platform oracle" }
   - { role: tl, slot_label: "TL — pure resolver境界とhost authority監査" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-652-project-hook-physical-adapter.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-662-project-hook-physical-adapter.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
