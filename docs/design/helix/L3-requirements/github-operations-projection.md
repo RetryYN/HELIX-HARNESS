@@ -99,11 +99,14 @@ PLAN の親子構造および駆動モデル (`forward` / `reverse` / `scrum_rev
 ### GOP-FR-05a Issue依存とPLAN参照の機械監査
 
 依存を持つIssue本文は`helix-issue-dependency.v1` blockで`depends_on`、`blocks`、`plan_id`を
-機械可読化する。`depends_on`先がopenのままIssueをcloseした状態、双方向関係の欠落、PLANの
-`github_issue_id`とIssueの`plan_id`の不一致をdoctor/CIでfail-visibleにする。既存proseの`Refs #N`を
+機械可読化する。1つのatomic PLANを所有するIssueは従来どおりscalar `plan_id`を使い、親・capability
+Issueが複数のatomic PLANを所有する場合は`plan_id: null`と明示的な`plan_ids: [...]`集合を使う。
+scalarと集合の同時指定や、集合外のPLANをIssueへ暗黙帰属させる推測は拒否する。`depends_on`先がopenのまま
+Issueをcloseした状態、双方向関係の欠落、PLANの`github_issue_id`とIssueの`plan_id`／`plan_ids`の不一致を
+doctor/CIでfail-visibleにする。既存proseの`Refs #N`を
 依存正本として推測せず、このblockを採用したIssueから段階的に強制する。PR admissionではclosure graphが
 参照するIssueとその依存componentだけを検査し、無関係なlive Issue driftで全open PRを停止しない。
-scheduled runと手動runでは採用Issue全件を検査し、candidate treeに存在しない`plan_id`もfail-closeする。
+scheduled runと手動runでは採用Issue全件を検査し、candidate treeに存在しない`plan_id`／`plan_ids`もfail-closeする。
 main pushはopen PRが持ち込み中のPLANをcandidate treeから観測できないため全件監査を実行せず、
 開発中PLANを恒常的なrequired-check failureへ誤変換しない。
 
