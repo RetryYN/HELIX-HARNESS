@@ -33,7 +33,7 @@ contract_failures: "Issue metadata finding、repository取得失敗、CLI失敗�
 tdd_red_required: true
 red_at: 2026-08-24T10:45:12Z
 green_at: 2026-08-24T10:45:25Z
-mutation_oracle_evidence: "tests/issue-metadata-audit-workflow.test.ts の U-IMETA-WF-001/002 に対し schedule の cron 23→24改変、continue-on-error式検査の除去、||\s*true検査の空白非対応化を実測し、各1 test failedでKILLED。production workflowとoracleを復元した後、issue metadata 2 suiteは6 tests passed。"
+mutation_oracle_evidence: "tests/issue-metadata-audit-workflow.test.ts の U-IMETA-WF-001/002 に対し schedule の cron 23→24改変、continue-on-error式検査の除去、論理ORとtrueの間に空白を持つ変種検査の無効化を実測し、各1 test failedでKILLED。production workflowとoracleを復元した後、issue metadata 2 suiteは6 tests passed。"
 complexity_effect: justified_positive
 complexity_justification: "既存のread-only classifier/CLIを独立scheduled workflowへ接続し、別のmetadata authorityやwrite adapterを追加しない"
 removal_trigger: "GitHub側の同一taxonomy監査がHELIXの必要受入条件を完全に代替した時"
