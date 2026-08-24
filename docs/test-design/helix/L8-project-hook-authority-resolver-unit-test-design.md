@@ -27,6 +27,9 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-resol
 | U-CNWHOOKSCHEMA-011 | failure precedence | schema→unsupported→stale→lifecycleの優先順を複合mutationで固定する | `tests/project-hook-authority.test.ts` |
 | U-CNWHOOKSCHEMA-012 | determinism | outer `ok:false/failure`とinner exact 6-field failure、side effect全0、input mutation 0、同一input同一resultを保つ | `tests/project-hook-authority.test.ts` |
 | U-CNWHOOKSCHEMA-013 | freeze catalog binding | resolverのL6/L8 pair登録とcatalog digestがG3 freeze packetへ伝播しない変更を拒否する | `tests/l3-g3-freeze-packet-v2.test.ts` |
+| U-CNWHOOKPROV-001 | 明示input転送 | providerのinputを変更せずpure resolverとbyte-equivalentなresolutionを返す | `tests/project-hook-authority-provider.test.ts` |
+| U-CNWHOOKPROV-002 | input取得不能 | 既存stale/foreign failure、固定pointer、side effect全0へ決定的に閉じる | `tests/project-hook-authority-provider.test.ts` |
+| U-CNWHOOKPROV-003 | provider境界 | throw／unknown field付きresultをcwd等へfallbackせず同一failureへ閉じ、例外本文を露出しない | `tests/project-hook-authority-provider.test.ts` |
 
 本sliceはpure resolverだけを実行する。unsupported platform capture、process timeout、notification handoff、terminal result、
 4 surface wiringのoracleは後続runtime pairへ分離し、未実装能力をgreenへ数えない。
