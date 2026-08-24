@@ -34,6 +34,16 @@ detailへ露出せず、stable reasonのcanonical digestだけを保持する。
 本sliceのruntime assetは`src/runtime/project-hook-authority.ts`、実行oracleは`tests/project-hook-authority.test.ts`である。
 physical capture、unsupported platform、timeout supervisor、terminal payload preservation、4 surface wiringは後続sliceが所有する。
 
+## 明示authority input provider
+
+`resolveProjectHookAuthorityFromProvider(provider)`はControl Plane所有の明示input providerだけを受け、
+`ok:true`のinputを変更せず`resolveProjectHookAuthority`へ渡す。provider結果は`ok/input`または
+`ok/reason=authority_input_unavailable`のexact setとし、unknown field、throw、malformed、取得不能は全て
+`project_hook_source_stale_or_foreign`、`/authority_input`、side effect全0へ決定的に閉じる。
+
+provider固有の例外本文、path、credentialをfailureへ入れず、cwd、環境変数、primary shared tree、remote、
+`origin/main`からauthority inputを生成しない。4 surface projectorは本portの同一resolution bytesだけを受ける後続責務とする。
+
 実装oracleのexact declarationはpair先L8 test designを正本とする。
 
 <!-- HELIX:design-reality-binding:v1 -->

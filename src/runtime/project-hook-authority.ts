@@ -164,6 +164,16 @@ function failure(
   };
 }
 
+/**
+ * 明示authority inputをproviderから取得できない場合の既存failure projection。
+ * provider固有の例外本文・path・credentialをdetailへ混ぜず、L5 exact failure setを維持する。
+ */
+export function projectHookAuthorityInputUnavailable(): ProjectHookAuthorityResolution {
+  return failure("project_hook_source_stale_or_foreign", "/authority_input", {
+    reason: "authority_input_unavailable",
+  });
+}
+
 function samePhysicalIdentity(
   left: z.infer<typeof rootIdentitySchema>,
   right: z.infer<typeof rootIdentitySchema>,
