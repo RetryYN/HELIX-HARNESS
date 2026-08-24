@@ -62,6 +62,8 @@ modifies:
   - { artifact_path: tests/plan-descent.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
   - { artifact_path: tests/relation-graph.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
 dependencies:
   parent: null
   requires: []
