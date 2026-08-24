@@ -42,6 +42,8 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-profile-bo
 | U-DISTPKG-009h | exact file set | directory指定による未列挙descendantの再帰収録を拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009i | runtime identity shape | 余剰identity keyによるmanifest schema上書きを拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009j | Requirement IR identity | canonical manifest／shard digest driftをpackage前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009r | Requirement IR identity／count | shard実体とroot digestを変えず、manifest `shards[].count` の宣言値だけをdriftさせた入力をpackage前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
+| U-DISTPKG-009s | Requirement IR identity／digest | shard実体とroot digestを変えず、manifest `shards[].digest` の宣言値だけをdriftさせた入力をpackage前に拒否 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-010 | current CLI integration | `package-profile`実CLIがcurrent profileからtarball／manifest／checksumを生成 | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009k | nested runtime identity | requirements／profileの余剰keyを拒否しblocked receiptへ再投影しない | `tests/distribution-lite-profile-package.test.ts` |
 | U-DISTPKG-009l | final output physical identity | 既存symlink／hardlink出力を外部bytes変更前に拒否 | `tests/distribution-lite-profile-package.test.ts` |

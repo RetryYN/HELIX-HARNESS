@@ -26,6 +26,7 @@ import { canonicalJson, sha256Digest } from "../src/shared/canonical-digest";
 import { ensureCliBundle } from "./tools/cli-bundle";
 
 // PLAN-L7-656-distribution-lite-profile-bound-package
+// PLAN-L7-661-lite-requirements-manifest-oracle
 // U-DISTPKG-001 U-DISTPKG-002 U-DISTPKG-003 U-DISTPKG-004
 // U-DISTPKG-005 U-DISTPKG-006 U-DISTPKG-007 U-DISTPKG-011 U-DISTPKG-012
 
@@ -704,6 +705,46 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     >;
     requirementShard[Object.keys(requirementShard)[0]] = { mutated: true };
     writeFileSync(requirementShardPath, JSON.stringify(requirementShard), "utf8");
+    expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
+  });
+
+  it("U-DISTPKG-009r: manifest shard count driftを実体変更なしで拒否する", () => {
+    const invalidRoot = fixture();
+    mkdirSync(join(invalidRoot, "docs", "governance"), { recursive: true });
+    cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });
+    writeFileSync(
+      join(invalidRoot, "docs", "governance", "helix-harness-requirements_v1.3.md"),
+      "- **Version**: 1.3.13\n",
+      "utf8",
+    );
+    const manifestPath = join(invalidRoot, "requirements-ir", "manifest.json");
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+      shards: Array<{ kind?: string; count?: number; digest?: string }>;
+    };
+    const shard = manifest.shards.find((entry) => entry.kind === "requirements");
+    if (!shard || typeof shard.count !== "number") throw new Error("requirements shard missing");
+    shard.count += 1;
+    writeFileSync(manifestPath, JSON.stringify(manifest), "utf8");
+    expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
+  });
+
+  it("U-DISTPKG-009s: manifest shard digest driftを実体変更なしで拒否する", () => {
+    const invalidRoot = fixture();
+    mkdirSync(join(invalidRoot, "docs", "governance"), { recursive: true });
+    cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });
+    writeFileSync(
+      join(invalidRoot, "docs", "governance", "helix-harness-requirements_v1.3.md"),
+      "- **Version**: 1.3.13\n",
+      "utf8",
+    );
+    const manifestPath = join(invalidRoot, "requirements-ir", "manifest.json");
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+      shards: Array<{ kind?: string; count?: number; digest?: string }>;
+    };
+    const shard = manifest.shards.find((entry) => entry.kind === "requirements");
+    if (!shard) throw new Error("requirements shard missing");
+    shard.digest = sha256Digest("declared shard digest drift");
+    writeFileSync(manifestPath, JSON.stringify(manifest), "utf8");
     expect(resolveLiteRequirementsIdentity(invalidRoot)).toBeNull();
   });
 
