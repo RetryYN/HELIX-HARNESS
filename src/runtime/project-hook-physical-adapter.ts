@@ -54,6 +54,19 @@ function sha256(bytes: Buffer): `sha256:${string}` {
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }
 
+function normalizePhysicalStatIdentity(value: unknown, field: "device" | "inode"): string {
+  const valid =
+    (typeof value === "bigint" && value >= 0n && (field !== "inode" || value > 0n)) ||
+    (typeof value === "number" &&
+      Number.isSafeInteger(value) &&
+      value >= 0 &&
+      (field !== "inode" || value > 0));
+  if (!valid) {
+    throw new UnsupportedPhysicalIdentityError(`invalid ${field} evidence`);
+  }
+  return String(value);
+}
+
 function repositoryIdentity(root: string, deps: ProjectHookPhysicalAdapterDeps) {
   if (deps.platform !== "linux" && deps.platform !== "darwin") {
     throw new UnsupportedPhysicalIdentityError(`unsupported platform: ${deps.platform}`);
@@ -63,17 +76,16 @@ function repositoryIdentity(root: string, deps: ProjectHookPhysicalAdapterDeps) 
   const commonPath = isAbsolute(commonRaw) ? commonRaw : resolve(canonical, commonRaw);
   const common = deps.realpath(commonPath);
   const stat = deps.stat(common);
-  if (String(stat.dev).length === 0 || String(stat.ino).length === 0) {
-    throw new UnsupportedPhysicalIdentityError("missing device or inode evidence");
-  }
+  const deviceId = normalizePhysicalStatIdentity(stat.dev, "device");
+  const fileId = normalizePhysicalStatIdentity(stat.ino, "inode");
   return {
     lexical_path: root,
     canonical_realpath: canonical,
     repository_common_dir: common,
     filesystem_identity: {
       platform: deps.platform,
-      device_id: String(stat.dev),
-      file_id: String(stat.ino),
+      device_id: deviceId,
+      file_id: fileId,
       evidence_kind: "stat" as const,
     },
   };

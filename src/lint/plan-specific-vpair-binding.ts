@@ -64,6 +64,7 @@ export interface PlanSpecificVpairPlan {
   pair_artifact: unknown;
   verification_bindings?: unknown;
   generates?: unknown;
+  /** 既存artifactの修正。既存testを検証bindingの対象として所有できる。 */
   modifies?: unknown;
   resolves_authority?: unknown;
   review_evidence?: unknown;
