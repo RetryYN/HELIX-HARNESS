@@ -22,7 +22,7 @@ behavior_contract_id: ISSUE-DEPENDENCY-DETECTOR-PARSER-SHAPE-001
 responsibility_owner: issue-dependency-governance
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: consolidate
+refactor_step: migrate_one_consumer
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
