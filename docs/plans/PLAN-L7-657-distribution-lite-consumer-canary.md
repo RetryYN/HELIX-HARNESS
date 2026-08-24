@@ -4,9 +4,8 @@ title: "PLAN-L7-657 (impl): Lite clean consumer canaryを成立させる"
 kind: impl
 layer: L7
 drive: agent
-status: completed
-backfill_state: complete
-completion_claim_allowed: true
+status: confirmed
+completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -16,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #948で同一Lite artifactのclean Linux consumerとWindows smokeを成立させる"
 created: 2026-08-23
-updated: 2026-08-24
+updated: 2026-08-23
 owner: Codex / TL
 github_issue_id: 948
 behavior_contract_id: DISTRIBUTION-LITE-CONSUMER-CANARY-001
@@ -135,16 +134,6 @@ left_arm_carry:
 | 3 | Linux fresh process E2E | installからgenerated CIまでgreen |
 | 4 | Windows＋rollback rehearsal | 同一artifactとconsumer bytes保全 |
 | 5 | 全CI／doctor／Claude exact-HEADレビュー | blocker 0 |
-
-## 終端収束
-
-PR #962 は canonical merge（merge commit `0e05e30bc66d9126d401446ac7ee94bb4c66e7ef`）され、
-最終 current HEAD `661f29fca65fec604d5b39dc6b63f497d9572ae7` に対する Claude Opus sealed receipt
-（[receipt comment](https://github.com/RetryYN/HELIX-HARNESS/pull/962#issuecomment-5387194434)、
-CI run `32651099223` success、DB projection/replay convergence）が成立した。
-Issue #948 の main read-after（[evidence](https://github.com/RetryYN/HELIX-HARNESS/issues/948#issuecomment-5387224494)）で
-同一artifactのLinux生成・Windows smoke・doctor・completion chainを再確認した。したがって本PLANの
-clean consumer canary契約は terminal とする。
 
 ## 非対象
 

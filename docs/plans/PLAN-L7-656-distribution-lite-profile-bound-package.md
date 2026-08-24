@@ -4,9 +4,8 @@ title: "PLAN-L7-656 (impl): Lite exact artifact setを共通deterministic builde
 kind: impl
 layer: L7
 drive: agent
-status: completed
-backfill_state: complete
-completion_claim_allowed: true
+status: confirmed
+completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -16,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #947 consumer_core_v1を既存builderへprofile-bound接続する"
 created: 2026-08-23
-updated: 2026-08-24
+updated: 2026-08-23
 owner: Codex / TL
 github_issue_id: 947
 behavior_contract_id: DISTRIBUTION-LITE-PROFILE-PACKAGE-001
@@ -150,16 +149,6 @@ left_arm_carry:
 | 3 | profile／projection／closureを接続 | current profileのみgreen |
 | 4 | 2 build＋mutation＋CLI検証 | digest一致と差分検出 |
 | 5 | 全CI／doctor／Claude exact-HEADレビュー | blocker 0 |
-
-## 終端収束
-
-PR #960 は canonical merge（merge commit `8f370966f8645d61ba0df016695d735ffe160103`）され、
-最終 current HEAD `88cd13b52f248483e911beb1b24a15dc5ef26a50` に対する Claude Opus sealed receipt
-（[receipt comment](https://github.com/RetryYN/HELIX-HARNESS/pull/960#issuecomment-5386523938)、
-CI run `32645261701` success、DB projection/replay convergence）が成立した。
-Issue #947 の main read-after（[evidence](https://github.com/RetryYN/HELIX-HARNESS/issues/947#issuecomment-5386675607)）で
-candidate merge が current main の ancestor であること、post-merge harness-check／Windows smoke success、
-profile-bound artifact の identity chain を再確認した。したがって本PLANの実装契約は terminal とする。
 
 ## 非対象
 
