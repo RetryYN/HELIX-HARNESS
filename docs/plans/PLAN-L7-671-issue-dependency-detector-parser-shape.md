@@ -52,8 +52,7 @@ modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: PLAN-L7-666-issue-dependency-contract-attribution
-  requires:
-    - PLAN-L7-666-issue-dependency-contract-attribution
+  requires: []
   blocks: []
   references:
     - "issue:1010"
