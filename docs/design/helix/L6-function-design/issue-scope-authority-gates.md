@@ -37,6 +37,7 @@ requirements:
 | `readyLeafIssues(nodes, findings)` | audit済みsnapshotを受ける | open、active、子0、未block、finding 0のtask/findingだけを番号順で返す | parent、parked、duplicate、blocked、invalid nodeを返さない |
 | `parseIssueDependencyContract(body)` | Issue本文に固定順の`helix-issue-dependency.v1` blockがある | `dependsOn`、`blocks`、`planId`の検証済みprojectionを返す | prose `Refs`を推測せず、不完全blockをfail-close |
 | `auditIssueDependencies(nodes, plans, options)` | block採用Issue snapshot、対応PLAN binding、任意のPR focus Issue集合を受ける | focus指定時は接続dependency componentだけ、未指定時は採用Issue全件についてopen依存close、非対称関係、PLAN双方向不一致をstable findingで返す | PR focus外driftを混入させず、scheduled/手動全件監査はmissing PLANをfail-close。main pushでは未merge PLANとの重なりを監査対象にしない。network/DB/filesystem副作用0、legacy Issueへ暗黙適用しない |
+| `collectIssueDependencyContracts(sources)` | GitHub Issue snapshotを受け、yaml fenced block先頭のexact markerだけを採用候補とする | valid blockはnode、不正な採用blockはIssue番号付き`issue_dependency_contract_invalid`へ分離する | prose marker言及をgoverned nodeへ昇格せず、1件のparse失敗でrepository audit全体をthrowしない |
 
 追加コードはこのpure parser／audit／selectorだけとし、GitHub client、DB schema、CI job、常駐処理は増やさない。
 後段Reverseまでは`completion_claim_allowed=false`とし、G7 trace確定を主張しない。

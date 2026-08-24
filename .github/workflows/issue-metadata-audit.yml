@@ -1,0 +1,38 @@
+name: issue-metadata-audit
+
+on:
+  schedule:
+    - cron: "23 3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  issue-metadata-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.15"
+          cache: npm
+
+      - name: install deps (frozen)
+        run: npm ci
+
+      - name: audit live Issue metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          npx --no-install tsx src/cli.ts github issue-metadata-audit
+          --repository "$GITHUB_REPOSITORY"
+          --stale-hours 48
+          --json
