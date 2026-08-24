@@ -102,6 +102,51 @@ describe("GitHub Issue dependency projection", () => {
       "issue_dependency_contract_missing_or_invalid",
     );
   });
+
+  it("U-IHIER-006: parent Issueの複数atomic PLANを明示的なplan_ids集合で束縛する", () => {
+    expect(
+      parseIssueDependencyContract(
+        `dependency\n\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: null\nplan_ids: [PLAN-L7-639-luna-worker-model-registry, PLAN-L7-640-luna-native-spawn-admission]\n\`\`\``,
+      ),
+    ).toEqual({
+      dependsOn: [],
+      blocks: [],
+      planId: null,
+      planIds: [
+        "PLAN-L7-639-luna-worker-model-registry",
+        "PLAN-L7-640-luna-native-spawn-admission",
+      ],
+    });
+
+    const report = auditIssueDependencies(
+      [
+        {
+          number: 624,
+          state: "open",
+          dependsOn: [],
+          blocks: [],
+          planId: null,
+          planIds: [
+            "PLAN-L7-638-xhigh-reasoning-effort-schema",
+            "PLAN-L7-639-luna-worker-model-registry",
+          ],
+        },
+      ],
+      [
+        { planId: "PLAN-L7-638-xhigh-reasoning-effort-schema", githubIssueId: 624 },
+        { planId: "PLAN-L7-639-luna-worker-model-registry", githubIssueId: 624 },
+      ],
+    );
+    expect(report).toMatchObject({ ok: true, checkedIssues: 1, checkedPlans: 2 });
+  });
+
+  it("U-IHIER-007: scalar plan_idとplan_idsの同時指定を拒否する", () => {
+    expect(() =>
+      parseIssueDependencyContract(
+        `\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: PLAN-L7-1-one\nplan_ids: [PLAN-L7-2-two]\n\`\`\``,
+      ),
+    ).toThrow("issue_plan_scalar_and_set_conflict");
+  });
 });
 
 describe("GitHub Issue hierarchy contract", () => {
