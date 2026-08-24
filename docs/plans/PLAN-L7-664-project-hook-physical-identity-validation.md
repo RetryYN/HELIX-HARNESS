@@ -60,11 +60,12 @@ generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-project-hook-physical-identity-validation-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/project-hook-physical-adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/project-hook-physical-adapter.test.ts, artifact_type: test_code }
 ---
 
-# PLAN-L7-664: project hook physical identity validation
+# PLAN-L7-664: project hook physical identityの退化値検証
 
 ## 工程表
 
