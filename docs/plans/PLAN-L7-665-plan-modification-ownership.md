@@ -88,3 +88,7 @@ agent_slots:
 本sliceは既存artifactの所有権表現を追加する。PR、review、status confirm、GitHub通知の権限を変更しない。
 PR本文は `helix-github-workflow-identity-contract.v1` を正規のIssue／PLAN由来identityとして束縛し、
 実装内容とworkflow admissionの対象を一致させる。
+
+catalog登録で変化した `docs/design/design-catalog.yaml` は、実体から再計算した
+`sha256:e223424954df123a32a93d50e2dd1e7ffb0958a17f4ee921c6c723b885dd3b9c` を
+L3 reviewed-digestへ再束縛し、旧digestのまま通過させない。
