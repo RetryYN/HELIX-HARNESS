@@ -59,7 +59,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: ".claude/CLAUDE.md",
-    contentDigest: "eb6fb8121567cbde082b05500f36f14211da2bec79e1813e43d3a9deecd89196",
+    contentDigest: "4cfc318f984bd2fc181a6435167086c1b52be607e93f21b30ed0973eccca374a",
     finalDisposition: "compatibility_labeled",
   },
   {

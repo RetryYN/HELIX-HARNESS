@@ -44,6 +44,7 @@ const plan = (overrides: Partial<PlanSpecificVpairPlan> = {}): PlanSpecificVpair
   pair_artifact: pair,
   verification_bindings: [{ parent_design: parent, oracle_id: oracle, test_path: testPath }],
   generates: [{ artifact_path: testPath, artifact_type: "test_code" }],
+  modifies: [],
   source: `---\nplan_id: ${planId}\n---\n\n# fixture\n`,
   ...overrides,
 });
@@ -203,6 +204,14 @@ describe("PLAN固有Vペアbinding", () => {
   it("U-PSPB-011: generates結合", () => {
     expect(reasons(input({ plans: [plan({ generates: [] })] }))).toContain("test_not_generated");
     expect(reasons(input({ testFiles: new Map() }))).toContain("test_path_missing");
+  });
+
+  it("U-PSPB-011a: 既存testの修正はmodifiesでもoracle bindingへ接続される", () => {
+    const modified = plan({
+      generates: [],
+      modifies: [{ artifact_path: testPath, artifact_type: "test_code" }],
+    });
+    expect(analyzePlanSpecificVpairBindings(input({ plans: [modified] })).ok).toBe(true);
   });
 
   it("U-PSPB-012: case単位citation", () => {

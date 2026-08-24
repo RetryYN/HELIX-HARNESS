@@ -102,6 +102,16 @@ export const generatesEntrySchema = z.object({
   artifact_type: artifactTypeSchema,
 });
 
+/**
+ * 既存artifactの修正所有を表すエントリ。
+ * `generates` と異なり、新規生成・完了所有を主張せず、既存のartifactへ
+ * このPLANが差分を適用することだけを記録する (Issue #855)。
+ */
+export const modifiesEntrySchema = z.object({
+  artifact_path: z.string().min(1),
+  artifact_type: artifactTypeSchema,
+});
+
 /** PLAN-L6-65: L7実装PLANのL6設計・L8 oracle・生成testを同一tupleへ拘束する。 */
 export const PLAN_SPECIFIC_ORACLE_ID_PATTERN =
   /^(?:U|IT)-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]?$/;
@@ -216,6 +226,8 @@ const frontmatterBaseSchema = z.object({
   promotion_strategy: promotionStrategySchema.nullable().optional(),
   agent_slots: z.array(agentSlotSchema).min(1, "agent_slots は 1 件以上 (§1.8)"),
   generates: z.array(generatesEntrySchema).default([]),
+  /** 既存artifactの修正。`generates` と混同せず、所有権の重複を表現する。 */
+  modifies: z.array(modifiesEntrySchema).default([]),
   verification_bindings: z.array(verificationBindingSchema).optional(),
   resolves_authority: resolvesAuthoritySchema.optional(),
   /** PLAN-L6-70: L7 reviewで発見した左腕矛盾と再凍結証拠をfinding単位で結合する。 */

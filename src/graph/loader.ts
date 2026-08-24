@@ -168,6 +168,7 @@ interface PlanFrontmatter {
   plan_id?: string;
   status?: string;
   generates?: { artifact_path?: string; artifact_type?: string }[];
+  modifies?: { artifact_path?: string; artifact_type?: string }[];
   dependencies?: { requires?: string[] };
 }
 
@@ -304,6 +305,14 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
             p.endsWith(".ts") &&
             !retiredArtifactPaths.has(normalizePath(p)),
         );
+      const modifiesSrc = (fm.modifies ?? [])
+        .map((g) => g.artifact_path ?? "")
+        .filter(
+          (p) =>
+            p.startsWith("src/") &&
+            p.endsWith(".ts") &&
+            !retiredArtifactPaths.has(normalizePath(p)),
+        );
       // requirements: frontmatter dependencies.requires の FR-L1-NN + 本文 FR refs
       const fmRequires = (fm.dependencies?.requires ?? []).filter((r) => /^FR-L\d+-\d+$/.test(r));
       const bodyRefs = extractFrRefs(content);
@@ -313,6 +322,7 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
         id: rp.plan_id,
         path: `docs/plans/${rp.file}`,
         generates: generatesSrc.length > 0 ? generatesSrc : undefined,
+        modifies: modifiesSrc.length > 0 ? modifiesSrc : undefined,
         requirements: allRefs.length > 0 ? allRefs : undefined,
       });
     }

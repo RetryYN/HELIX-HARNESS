@@ -7,6 +7,7 @@ import {
   analyzeMergedPlanStatus,
   loadMergedPlanStatusInput,
   publishedBaseRefs,
+  selectInvalidModifications,
   selectMergedArtifacts,
 } from "../src/lint/merged-plan-status";
 
@@ -19,6 +20,16 @@ describe("analyzeMergedPlanStatus", () => {
     expect(
       selectMergedArtifacts(["src/published.ts"], new Set(["src/published.ts"]), process.cwd()),
     ).toEqual(["src/published.ts"]);
+  });
+
+  it("rejects a modifies path that is absent from the published base", () => {
+    expect(
+      selectInvalidModifications(
+        ["src/existing.ts", "src/brand-new.ts"],
+        new Set(["src/existing.ts"]),
+        process.cwd(),
+      ),
+    ).toEqual(["src/brand-new.ts"]);
   });
 
   it("uses HEAD on main and the explicit PR base elsewhere, so a stale origin/main cannot mask main drift", () => {
@@ -167,6 +178,31 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
     );
   }
 
+  function writePlanWithModification(
+    root: string,
+    name: string,
+    status: string,
+    srcPath: string,
+  ): void {
+    writeFileSync(
+      join(root, "docs", "plans", name),
+      [
+        "---",
+        `plan_id: ${name.replace(/\.md$/, "")}`,
+        `status: ${status}`,
+        "kind: impl",
+        "modifies:",
+        `  - artifact_path: ${srcPath}`,
+        "    artifact_type: source_module",
+        "---",
+        "",
+        "body",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+  }
+
   it("detects a draft PLAN whose generated src exists on disk (merged)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-"));
     try {
@@ -186,6 +222,43 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
       const input = loadMergedPlanStatusInput(root);
       const merged = input.plans.find((p) => p.planId === "PLAN-TEST-90-merged");
       expect(merged?.mergedArtifacts).toContain("src/merged.ts");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("does not treat an existing source listed under modifies as a new merged deliverable", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-modifies-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "src"), { recursive: true });
+      writeFileSync(join(root, "src", "existing.ts"), "export const x = 1;\n", "utf8");
+      writePlanWithModification(root, "PLAN-TEST-855-modifies.md", "draft", "src/existing.ts");
+
+      const result = checkMergedPlanStatus(root);
+      expect(result.ok).toBe(true);
+      const input = loadMergedPlanStatusInput(root);
+      const plan = input.plans.find((p) => p.planId === "PLAN-TEST-855-modifies");
+      expect(plan?.mergedArtifacts).toEqual([]);
+      expect(plan?.invalidModifications).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("fails closed when modifies claims a new source path", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-modifies-new-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writePlanWithModification(root, "PLAN-TEST-855-new-modifies.md", "draft", "src/new.ts");
+
+      const result = checkMergedPlanStatus(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("src/new.ts");
+      const input = loadMergedPlanStatusInput(root);
+      expect(
+        input.plans.find((p) => p.planId === "PLAN-TEST-855-new-modifies")?.invalidModifications,
+      ).toEqual(["src/new.ts"]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
