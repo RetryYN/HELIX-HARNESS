@@ -359,10 +359,10 @@ import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-r
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
+  collectIssueDependencyContracts,
   type IssueDependencyNode,
   type IssueHierarchyNode,
   type IssuePlanBinding,
-  parseIssueDependencyContract,
 } from "./runtime/issue-hierarchy";
 import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
@@ -13697,6 +13697,7 @@ github
       }
       let nodes: IssueDependencyNode[];
       let plans: IssuePlanBinding[];
+      let contractFindings = [] as ReturnType<typeof collectIssueDependencyContracts>["findings"];
       if (opts.inputJson) {
         nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
         plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
@@ -13723,15 +13724,10 @@ github
           >
         )
           .flat()
-          .filter(
-            (issue) =>
-              issue.pull_request == null && issue.body?.includes("helix-issue-dependency.v1"),
-          );
-        nodes = issues.map((issue) => ({
-          number: issue.number,
-          state: issue.state,
-          ...parseIssueDependencyContract(issue.body ?? ""),
-        }));
+          .filter((issue) => issue.pull_request == null);
+        const collected = collectIssueDependencyContracts(issues);
+        nodes = collected.nodes;
+        contractFindings = collected.findings;
         const governedNumbers = new Set(nodes.map((node) => node.number));
         plans = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
@@ -13745,7 +13741,7 @@ github
             return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
           });
       }
-      const report = auditIssueDependencies(nodes, plans, {
+      const dependencyReport = auditIssueDependencies(nodes, plans, {
         // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.
         // Existing local PLANs remain bidirectionally enforced; a later PLAN merge cannot bypass
         // the binding because plan->issue is always checked below.
@@ -13755,6 +13751,21 @@ github
             ? undefined
             : [...new Set(parsedFocus as number[])].sort((a, b) => a - b),
       });
+      const focusedContractFindings =
+        parsedFocus === null
+          ? contractFindings
+          : contractFindings.filter((finding) =>
+              (parsedFocus as number[]).includes(finding.issueNumber),
+            );
+      const report = {
+        ...dependencyReport,
+        ok: dependencyReport.ok && focusedContractFindings.length === 0,
+        checkedIssues: dependencyReport.checkedIssues + focusedContractFindings.length,
+        findings: [...focusedContractFindings, ...dependencyReport.findings].sort(
+          (left, right) =>
+            left.issueNumber - right.issueNumber || left.code.localeCompare(right.code),
+        ),
+      };
       if (opts.json) process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
       else
         process.stdout.write(
