@@ -92,3 +92,4 @@ PR本文は `helix-github-workflow-identity-contract.v1` を正規のIssue／PLA
 catalog登録で変化した `docs/design/design-catalog.yaml` は、実体から再計算した
 `sha256:e223424954df123a32a93d50e2dd1e7ffb0958a17f4ee921c6c723b885dd3b9c` を
 L3 reviewed-digestへ再束縛し、旧digestのまま通過させない。
+この再束縛ファイルはPRの `Expected changed paths` にも明示し、実差分とscope authorityを一致させる。
