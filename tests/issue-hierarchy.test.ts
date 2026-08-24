@@ -138,6 +138,46 @@ describe("GitHub Issue dependency projection", () => {
       ],
     );
     expect(report).toMatchObject({ ok: true, checkedIssues: 1, checkedPlans: 2 });
+
+    const missingPlan = auditIssueDependencies(
+      [
+        {
+          number: 624,
+          state: "open",
+          dependsOn: [],
+          blocks: [],
+          planId: null,
+          planIds: ["PLAN-L7-999-absent", "PLAN-L7-638-x"],
+        },
+      ],
+      [{ planId: "PLAN-L7-638-x", githubIssueId: 624 }],
+    );
+    expect(missingPlan.ok).toBe(false);
+    expect(missingPlan.findings).toContainEqual({
+      issueNumber: 624,
+      code: "issue_plan_missing",
+      detail: "issue references absent plan PLAN-L7-999-absent",
+    });
+
+    const mismatchedPlan = auditIssueDependencies(
+      [
+        {
+          number: 624,
+          state: "open",
+          dependsOn: [],
+          blocks: [],
+          planId: null,
+          planIds: ["PLAN-L7-638-x"],
+        },
+      ],
+      [{ planId: "PLAN-L7-638-x", githubIssueId: 625 }],
+    );
+    expect(mismatchedPlan.ok).toBe(false);
+    expect(mismatchedPlan.findings).toContainEqual({
+      issueNumber: 624,
+      code: "issue_plan_binding_mismatch",
+      detail: "PLAN-L7-638-x binds github_issue_id=625, not 624",
+    });
   });
 
   it("U-IHIER-009: scalar plan_idとplan_idsの同時指定を拒否する", () => {
