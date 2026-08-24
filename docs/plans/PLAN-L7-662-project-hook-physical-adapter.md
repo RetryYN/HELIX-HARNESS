@@ -54,7 +54,6 @@ generates:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/project-hook-physical-adapter.ts, artifact_type: source_module }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/project-hook-physical-adapter.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-651-project-hook-authority-resolver.md
