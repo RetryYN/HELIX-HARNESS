@@ -64,6 +64,8 @@ export interface PlanSpecificVpairPlan {
   pair_artifact: unknown;
   verification_bindings?: unknown;
   generates?: unknown;
+  /** 既存artifactの修正。既存testを検証bindingの対象として所有できる。 */
+  modifies?: unknown;
   resolves_authority?: unknown;
   review_evidence?: unknown;
   title?: unknown;
@@ -519,10 +521,14 @@ function decodeBinding(raw: unknown): VerificationBinding | null {
   return record as unknown as VerificationBinding;
 }
 
-function generatedTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
-  if (!Array.isArray(plan.generates)) return new Set();
+function testArtifactPaths(
+  plan: PlanSpecificVpairPlan,
+  field: "generates" | "modifies",
+): Set<string> {
+  const artifacts = plan[field];
+  if (!Array.isArray(artifacts)) return new Set();
   return new Set(
-    plan.generates.flatMap((raw) => {
+    artifacts.flatMap((raw) => {
       if (!raw || typeof raw !== "object" || Array.isArray(raw)) return [];
       const item = raw as Record<string, unknown>;
       return item.artifact_type === "test_code" && typeof item.artifact_path === "string"
@@ -712,7 +718,9 @@ export function analyzePlanSpecificVpairBindings(
     }
     const valid = bindings.filter((entry): entry is VerificationBinding => entry !== null);
     const seen = new Set<string>();
-    const generated = generatedTestPaths(plan);
+    const generated = testArtifactPaths(plan, "generates");
+    const modified = testArtifactPaths(plan, "modifies");
+    const owned = new Set([...generated, ...modified]);
     const boundTestPaths = new Set(valid.map((entry) => entry.test_path));
     for (const generatedPath of generated) {
       if (!boundTestPaths.has(generatedPath))
@@ -754,7 +762,7 @@ export function analyzePlanSpecificVpairBindings(
           ),
         );
       }
-      if (!generated.has(binding.test_path))
+      if (!owned.has(binding.test_path))
         rawFindings.push(finding(planId, "test_not_generated", binding.test_path));
       const evidence = input.testFiles.get(binding.test_path);
       if (!evidence?.exists || !evidence.regular || evidence.symlink || !evidence.insideRepo) {

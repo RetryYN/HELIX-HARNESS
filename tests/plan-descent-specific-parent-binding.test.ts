@@ -911,6 +911,18 @@ describe("PLAN固有Vペアbinding", () => {
     );
   });
 
+  it("U-PSPB-027: modifiesの既存test_codeもbinding test pathとして所有できる", () => {
+    const modified = plan({
+      generates: [{ artifact_path: "src/example.ts", artifact_type: "source_module" }],
+      modifies: [{ artifact_path: testPath, artifact_type: "test_code" }],
+    });
+    const result = analyzePlanSpecificVpairBindings(input({ plans: [modified] }));
+    expect(result.findings).not.toContainEqual(
+      expect.objectContaining({ reason: "test_not_generated", detail: testPath }),
+    );
+    expect(result.ok).toBe(true);
+  });
+
   it("U-PSPB-018: 対象境界", () => {
     expect(
       analyzePlanSpecificVpairBindings(input({ plans: [plan({ status: "draft" })] })).checkedPlans,
