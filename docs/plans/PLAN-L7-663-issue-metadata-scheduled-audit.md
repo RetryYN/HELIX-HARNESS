@@ -4,7 +4,7 @@ title: "PLAN-L7-663 (add-impl): Issue metadata live監査のscheduled gate接続
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals: ["po_directive:Issue起票metadataのlive監査を常時強制する"]
@@ -34,6 +34,36 @@ tdd_red_required: true
 red_at: 2026-08-24T10:45:12Z
 green_at: 2026-08-24T10:45:25Z
 mutation_oracle_evidence: "tests/issue-metadata-audit-workflow.test.ts の U-IMETA-WF-001/002 に対し schedule の cron 23→24改変、continue-on-error式検査の除去、論理ORとtrueの間に空白を持つ変種検査の無効化を実測し、各1 test failedでKILLED。production workflowとoracleを復元した後、issue metadata 2 suiteは6 tests passed。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-24T16:43:08Z"
+    tests_green_at: "2026-08-24T16:40:19Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
+    reviewed_head_sha: 08e65c3b7eed13de5bd660fba075b694e7700a00
+    scope: "PR #982 HEAD 08e65c3b7eed13de5bd660fba075b694e7700a00をClaude Codeがread-only独立検収し、YAML parse、outstanding snapshot、関連76 tests、harness-check run 32748658849のsuccessを実測して内容blocker 0と判定した。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/982#issuecomment-5398374243"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32748658849 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-24T16:40:19Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:85b198ff8d5d1f355375f1e0eb5f34886763df5bf9a582425a72a4f08f171fb5"
+        result: "completed / success / HEAD 08e65c3b7eed13de5bd660fba075b694e7700a00"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-24T16:43:08Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-24T16:43:08Z"
+    evidence_digest: "sha256:e1eb3938c3e253a93734f31ec8c63bdf85b5dcb373ef11a736bb6906324a6fef"
+  entries: []
 complexity_effect: justified_positive
 complexity_justification: "既存のread-only classifier/CLIを独立scheduled workflowへ接続し、別のmetadata authorityやwrite adapterを追加しない"
 removal_trigger: "GitHub側の同一taxonomy監査がHELIXの必要受入条件を完全に代替した時"
