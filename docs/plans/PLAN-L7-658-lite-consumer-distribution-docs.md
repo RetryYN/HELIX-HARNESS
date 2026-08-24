@@ -4,8 +4,9 @@ title: "PLAN-L7-658 (impl): Lite consumer文書をartifactへ束縛する"
 kind: impl
 layer: L7
 drive: agent
-status: confirmed
-completion_claim_allowed: false
+status: completed
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -15,7 +16,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #958でLite consumer配布文書をartifactへ束縛する"
 created: 2026-08-23
-updated: 2026-08-23
+updated: 2026-08-24
 owner: Codex / TL
 github_issue_id: 958
 behavior_contract_id: DISTRIBUTION-LITE-CONSUMER-DOCUMENTS-001
@@ -33,7 +34,7 @@ contract_failures: "文書欠落、digest drift、旧identity、absolute path、
 tdd_red_required: true
 red_test: "U-DISTDOC-001..005が文書未投影をredにする"
 red_at: null
-green_at: null
+green_at: 2026-08-23T20:13:49Z
 mutation_oracle_evidence: "Claude pre-confirm reviewで9 seeded mutationを実測し、document exact-set検査除去をtests/distribution-lite-documents.test.tsのU-DISTDOC-004、sensitive-content検査除去を同U-DISTDOC-005、manifest document provenance照合除去をtests/distribution-lite-consumer-canary.test.tsのU-DISTDOC-006が各1 test redとしてKILLEDした。N9は等価変異、N2／N3／N4／N6／N7のSURVIVEDは非blocker Issue #970へ分離した"
 complexity_effect: justified_positive
 complexity_justification: "配布文書をartifact identityへ含めるdocument manifest projectionを追加する"
@@ -121,6 +122,16 @@ left_arm_carry:
 | 3 | manifest／archive接合 | sourceとoutput bytesが一致 |
 | 4 | negative oracle | 欠落／旧identity／absolute pathを拒否 |
 | 5 | CI／doctor／Claude review | blocker 0 |
+
+## 終端収束
+
+PR #963 は canonical merge（merge commit `fed0d57c64fa9c6f3929c52be414247b064c28f2`）され、
+最終 current HEAD `cb805bd655f61af8a15151f88a039d8da85eb148` に対する Claude Opus sealed receipt
+（[receipt comment](https://github.com/RetryYN/HELIX-HARNESS/pull/963#issuecomment-5388232242)、
+CI run `32662470388` success、DB projection/replay convergence）が成立した。さらに current main
+`d47148be43124d5bdd1daf02e3424ef8cbc57457` の post-merge harness-check／CodeQL success
+（run `32673218418`）で、文書exact set、license、provenance、README projectionの回帰がないことを
+read-after確認した。したがって本PLANのconsumer文書束縛契約は terminal とする。
 
 ## 非対象
 
