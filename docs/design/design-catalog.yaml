@@ -172,6 +172,7 @@ items:
       - docs/design/helix/L6-function-design/proposal-lane-effort-binding.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md
       - docs/design/helix/L6-function-design/project-hook-authority-resolver.md
+      - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/helix/L6-function-design/distribution-devos-instruction-authority.md
       - docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md
       - docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md
@@ -295,6 +296,7 @@ items:
       - docs/test-design/helix/L8-proposal-lane-effort-binding-unit-test-design.md
       - docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md
+      - docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md
       - docs/test-design/helix/L8-distribution-devos-instruction-authority-unit-test-design.md
       - docs/test-design/helix/L8-distribution-devos-runtime-identity-unit-test-design.md
       - docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md

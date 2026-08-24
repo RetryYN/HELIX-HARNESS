@@ -139,64 +139,65 @@ describe("project hook physical adapter", () => {
     });
   });
 
-  it.skipIf(process.platform === "win32")(
-    "U-CNWHOOKPHYS-006: native Git worktreeからrealpath／common-dir／stat／HEADを実測する",
-    () => {
-      const root = mkdtempSync(join(tmpdir(), "helix-hook-physical-"));
-      try {
-        mkdirSync(join(root, ".codex"), { recursive: true });
-        mkdirSync(join(root, "src/runtime"), { recursive: true });
-        writeFileSync(join(root, ".codex/hooks.json"), "{}\n");
-        writeFileSync(join(root, "src/runtime/agent-guard.ts"), "export {};\n");
-        writeFileSync(join(root, "src/runtime/codex-native-worker-policy.ts"), "export {};\n");
-        execFileSync("git", ["init", "-q"], { cwd: root });
-        execFileSync("git", ["config", "user.email", "helix-test@example.invalid"], {
-          cwd: root,
-        });
-        execFileSync("git", ["config", "user.name", "HELIX Test"], { cwd: root });
-        execFileSync(
-          "git",
-          [
-            "add",
-            ".codex/hooks.json",
-            "src/runtime/agent-guard.ts",
-            "src/runtime/codex-native-worker-policy.ts",
-          ],
-          { cwd: root },
-        );
-        execFileSync("git", ["commit", "-qm", "fixture"], { cwd: root });
-        const observedHead = execFileSync("git", ["rev-parse", "HEAD"], {
-          cwd: root,
-          encoding: "utf8",
-        }).trim();
+  it("U-CNWHOOKPHYS-006: native Git worktreeからrealpath／common-dir／stat／HEADを実測する", () => {
+    if (process.platform === "win32") {
+      expect(() =>
+        captureProjectHookAuthorityInput(request(), nodeProjectHookPhysicalAdapterDeps),
+      ).toThrow(UnsupportedPhysicalIdentityError);
+      return;
+    }
+    const root = mkdtempSync(join(tmpdir(), "helix-hook-physical-"));
+    try {
+      mkdirSync(join(root, ".codex"), { recursive: true });
+      mkdirSync(join(root, "src/runtime"), { recursive: true });
+      writeFileSync(join(root, ".codex/hooks.json"), "{}\n");
+      writeFileSync(join(root, "src/runtime/agent-guard.ts"), "export {};\n");
+      writeFileSync(join(root, "src/runtime/codex-native-worker-policy.ts"), "export {};\n");
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      execFileSync("git", ["config", "user.email", "helix-test@example.invalid"], {
+        cwd: root,
+      });
+      execFileSync("git", ["config", "user.name", "HELIX Test"], { cwd: root });
+      execFileSync(
+        "git",
+        [
+          "add",
+          ".codex/hooks.json",
+          "src/runtime/agent-guard.ts",
+          "src/runtime/codex-native-worker-policy.ts",
+        ],
+        { cwd: root },
+      );
+      execFileSync("git", ["commit", "-qm", "fixture"], { cwd: root });
+      const observedHead = execFileSync("git", ["rev-parse", "HEAD"], {
+        cwd: root,
+        encoding: "utf8",
+      }).trim();
 
-        const input = captureProjectHookAuthorityInput(
-          {
-            ...request(),
-            execution_root: root,
-            loader_root: root,
-            session_project_root: root,
-            current_authority_root: root,
-            candidate_base_head: observedHead,
-            current_authority_head: observedHead,
-          },
-          nodeProjectHookPhysicalAdapterDeps,
-        );
+      const input = captureProjectHookAuthorityInput(
+        {
+          ...request(),
+          execution_root: root,
+          loader_root: root,
+          session_project_root: root,
+          current_authority_root: root,
+          candidate_base_head: observedHead,
+          current_authority_head: observedHead,
+        },
+        nodeProjectHookPhysicalAdapterDeps,
+      );
 
-        expect(input.repository_head).toBe(observedHead);
-        expect(input.execution_root.canonical_realpath).toBe(root);
-        expect(input.execution_root.repository_common_dir).toBe(join(root, ".git"));
-        expect(input.execution_root.filesystem_identity).toMatchObject({
-          platform: process.platform,
-          evidence_kind: "stat",
-        });
-        expect(Number(input.execution_root.filesystem_identity.device_id)).toBeGreaterThanOrEqual(
-          0,
-        );
-        expect(Number(input.execution_root.filesystem_identity.file_id)).toBeGreaterThan(0);
-      } finally {
-        rmSync(root, { recursive: true, force: true });
-      }
-    },
-  );
+      expect(input.repository_head).toBe(observedHead);
+      expect(input.execution_root.canonical_realpath).toBe(root);
+      expect(input.execution_root.repository_common_dir).toBe(join(root, ".git"));
+      expect(input.execution_root.filesystem_identity).toMatchObject({
+        platform: process.platform,
+        evidence_kind: "stat",
+      });
+      expect(Number(input.execution_root.filesystem_identity.device_id)).toBeGreaterThanOrEqual(0);
+      expect(Number(input.execution_root.filesystem_identity.file_id)).toBeGreaterThan(0);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });
