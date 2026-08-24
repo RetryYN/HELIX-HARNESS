@@ -61,10 +61,13 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-project-hook-physical-identity-validation-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/plan-specific-vpair-binding.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/project-hook-physical-adapter.ts, artifact_type: source_module }
+  - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/project-hook-physical-adapter.test.ts, artifact_type: test_code }
 ---
