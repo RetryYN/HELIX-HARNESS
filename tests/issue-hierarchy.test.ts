@@ -4,6 +4,8 @@ import { describe, expect, it } from "vitest";
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
+  collectIssueDependencyContracts,
+  hasIssueDependencyContractBlock,
   type IssueHierarchyNode,
   parseIssueDependencyContract,
   parseIssueHierarchyContract,
@@ -186,6 +188,32 @@ describe("GitHub Issue dependency projection", () => {
         `\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: PLAN-L7-1-one\nplan_ids: [PLAN-L7-2-two]\n\`\`\``,
       ),
     ).toThrow("issue_plan_scalar_and_set_conflict");
+  });
+
+  // PLAN-L7-666-issue-dependency-contract-attribution / U-IHIER-010
+  it("U-IHIER-010: prose markerを無視し、不正な採用blockをIssue番号付きfindingへ投影する", () => {
+    const proseOnly =
+      "監査では helix-issue-dependency.v1 というmarkerを利用するが、このIssueは契約を採用しない。";
+    expect(hasIssueDependencyContractBlock(proseOnly)).toBe(false);
+
+    const malformed = `\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: [not-a-number]\nblocks: []\nplan_id: null\n\`\`\``;
+    const valid = `\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: null\n\`\`\``;
+    const collected = collectIssueDependencyContracts([
+      { number: 980, state: "open", body: proseOnly },
+      { number: 981, state: "open", body: malformed },
+      { number: 982, state: "open", body: valid },
+    ]);
+
+    expect(collected.nodes).toEqual([
+      { number: 982, state: "open", dependsOn: [], blocks: [], planId: null },
+    ]);
+    expect(collected.findings).toEqual([
+      {
+        issueNumber: 981,
+        code: "issue_dependency_contract_invalid",
+        detail: "issue dependency contract invalid: issue_relation_number_invalid",
+      },
+    ]);
   });
 });
 
