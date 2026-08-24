@@ -32,6 +32,9 @@ contract_invariants: "schema field順と既存U-IHIER-001..009を変更せず、
 contract_failures: "散文markerの誤採用、malformed blockによるaudit全体throw、原因Issue番号の欠落"
 tdd_red_required: true
 red_test: "U-IHIER-010のprose-only bodyとmalformed adopted blockを現行live selectionへ入力すると誤採用または全体throwになる"
+red_at: "2026-08-24T19:18:08Z"
+green_at: "2026-08-24T19:18:20Z"
+mutation_oracle_evidence: "2026-08-24T19:18:08ZにhasIssueDependencyContractBlockを旧includes判定へ一時変異し、tests/issue-hierarchy.test.tsのU-IHIER-010がprose-only bodyをtrueとして1 failed / 8 passed（exit 1）になるkillを実測した。正規fenced判定へ復元後、2026-08-24T19:18:20Zに9/9 greenを再確認した。"
 complexity_effect: net_negative
 complexity_justification: "CLI内の曖昧なincludes判定とunattributed exceptionをtyped selection resultへ集約する"
 removal_trigger: "Issue dependency contractがGitHub本文以外のversioned typed storeへ完全移行した時"
