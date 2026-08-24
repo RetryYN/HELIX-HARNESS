@@ -150,7 +150,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-operations-projection.md",
-    "14048b7e9a109aeeb5c31cf87ae3b6228fb54af08c2fd6fad0ce1e058afab88c",
+    "2074866581b2979c999e5ad28d4e21770636a2c20e69dbe46bfb639af33a1d12",
   ],
   [
     "docs/test-design/helix/github-operations-projection-acceptance.md",
