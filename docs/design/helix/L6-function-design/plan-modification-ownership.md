@@ -2,7 +2,7 @@
 title: "既存artifact修正sliceのPLAN所有権モデル機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-24
 updated: 2026-08-24
 owner: Codex / TL

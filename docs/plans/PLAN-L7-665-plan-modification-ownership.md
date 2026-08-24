@@ -4,7 +4,7 @@ title: "PLAN-L7-665 (impl): 既存artifact修正sliceのPLAN所有権を分離�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -26,6 +26,35 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-24T15:17:18Z"
+    tests_green_at: "2026-08-24T15:12:56Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    reviewed_head_sha: f80984f5da8554a92d18bd09835b59d13ec82ab0
+    scope: "PR #989 HEAD f80984f5da8554a92d18bd09835b59d13ec82ab0をClaude Codeがread-only独立検収し、published base不在pathのmodifies拒否、violation配線、seeded mutation 3件のkill、復元後typecheckを実測して内容blocker 0と判定した。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/989#issuecomment-5397322229"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32740714002 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-24T15:12:56Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:fcf1972fa850a1ad407ad0f6918dd21552b5f153b7447d801f1a5454fe7fbf20"
+        result: "completed / success / HEAD f80984f5da8554a92d18bd09835b59d13ec82ab0"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-24T15:17:18Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-24T15:17:18Z"
+    evidence_digest: "sha256:1a1fb729a29e2ee715e12cbf05b4ef920f4a8fb5919edc0dd2377f2cec1be76e"
+  entries: []
 contract_preconditions: "generatesが新規生成所有、既存差分は別のownership fieldを必要とする"
 contract_postconditions: "modifiesを用いる既存artifact修正PLANがdraftのreview前にmerged-plan-statusで停止せず、V-pair traceを保持する"
 contract_invariants: "generatesの完了所有とmodifiesの差分所有を混同しない。review evidenceやconfirmを自動生成しない"
