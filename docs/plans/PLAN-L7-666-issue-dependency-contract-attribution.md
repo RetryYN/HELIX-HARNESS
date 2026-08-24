@@ -53,7 +53,7 @@ modifies:
   - { artifact_path: tests/issue-hierarchy.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
-  parent: null
+  parent: PLAN-L7-556-issue-dependency-doctor
   requires: []
   blocks: []
   references:
