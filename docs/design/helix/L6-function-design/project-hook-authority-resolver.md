@@ -44,6 +44,13 @@ physical capture、unsupported platform、timeout supervisor、terminal payload 
 provider固有の例外本文、path、credentialをfailureへ入れず、cwd、環境変数、primary shared tree、remote、
 `origin/main`からauthority inputを生成しない。4 surface projectorは本portの同一resolution bytesだけを受ける後続責務とする。
 
+## 4 surface同一bytes projector
+
+`projectProjectHookAuthoritySurfaces(resolution)`は一度だけ解決済みのsuccess receiptまたはfailureをcanonical JSONへ変換し、
+`session_start`、`doctor`、`status`、`dispatch`のexact 4 keyへ同じbytesを投影する。各surfaceでresolverやserializerを
+再実行せず、repair hint、互換identity、surface固有fieldを追加しない。入力resolutionを変更せず、filesystem、process、DB、
+GitHub writeを持たないpure projectorとする。actual consumer wiringは後続sliceが所有する。
+
 実装oracleのexact declarationはpair先L8 test designを正本とする。
 
 <!-- HELIX:design-reality-binding:v1 -->
