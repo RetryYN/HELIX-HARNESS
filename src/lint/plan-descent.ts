@@ -48,6 +48,7 @@ export interface PlanDescentDoc {
   pairArtifactSubDoc?: string | null;
   pairArtifactType?: string | null;
   generatesArtifactTypes: string[];
+  modifiesArtifactTypes: string[];
 }
 
 export interface PlanDescentBaseline {
@@ -112,6 +113,7 @@ export function loadPlanDescentDocs(
         )
       : null;
     const generates = Array.isArray(raw.generates) ? raw.generates : [];
+    const modifies = Array.isArray(raw.modifies) ? raw.modifies : [];
     docs.push({
       file: rel,
       planId: stringField(raw.plan_id) ?? rel,
@@ -128,6 +130,13 @@ export function loadPlanDescentDocs(
       pairArtifactSubDoc: pairMeta ? stringField(pairMeta.sub_doc) : null,
       pairArtifactType: pairMeta ? stringField(pairMeta.artifact_type) : null,
       generatesArtifactTypes: generates
+        .map((g) =>
+          g && typeof g === "object"
+            ? stringField((g as Record<string, unknown>).artifact_type)
+            : null,
+        )
+        .filter((t): t is string => t !== null),
+      modifiesArtifactTypes: modifies
         .map((g) =>
           g && typeof g === "object"
             ? stringField((g as Record<string, unknown>).artifact_type)
@@ -219,8 +228,11 @@ function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
       detail: doc.pairArtifact,
     });
   }
-  if (!doc.generatesArtifactTypes.includes("test_code")) {
-    // ドキュメント・検証資産に残らない実装の起票を拒否する (missing-test-plan-id 再発の根本遮断)
+  if (
+    !doc.generatesArtifactTypes.includes("test_code") &&
+    !doc.modifiesArtifactTypes.includes("test_code")
+  ) {
+    // 新設はgenerates、既存test修正はmodifiesへ接続し、検証資産に残らない実装を拒否する。
     violations.push({
       planId: doc.planId,
       file: doc.file,
