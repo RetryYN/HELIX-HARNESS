@@ -57,6 +57,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md, oracle_id: U-CNWHOOKPHYS-007, test_path: tests/project-hook-physical-adapter.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-664-project-hook-physical-identity-validation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-project-hook-physical-identity-validation-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/project-hook-physical-adapter.ts, artifact_type: source_module }
