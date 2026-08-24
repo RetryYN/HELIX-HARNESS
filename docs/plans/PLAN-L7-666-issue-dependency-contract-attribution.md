@@ -57,8 +57,8 @@ dependencies:
   requires: []
   blocks: []
   references:
-    - issue:980
-    - issue:634
+    - issue: 980
+    - issue: 634
 agent_slots:
   - { role: se, slot_label: "SE — fenced contract selection and stable finding projection" }
   - { role: qa, slot_label: "QA — prose false-positive and malformed block regression" }
