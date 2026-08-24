@@ -5,6 +5,7 @@ kind: add-impl
 layer: L7
 drive: agent
 status: draft
+backfill_state: pending_reverse
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
