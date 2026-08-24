@@ -4,7 +4,7 @@ title: "PLAN-L7-667 (add-impl): project hook authority明示input providerを実
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 workflow_identity:
@@ -36,6 +36,36 @@ red_test: "U-CNWHOOKPROV-001..003がprovider module不在でsuite load failure�
 red_at: "2026-08-24T19:39:48Z"
 green_at: "2026-08-24T19:40:27Z"
 mutation_oracle_evidence: "2026-08-24T19:43:08Zにprovider unavailable分岐を空objectのschema resolverへ縮退させ、tests/project-hook-authority-provider.test.tsのU-CNWHOOKPROV-002が期待stale/foreign・/authority_inputに対するschema_invalid・/schema_versionを検出して1 failed / 2 passed（exit 1）となるkillを実測した。正規failure projectionへ復元後に3/3 greenを再確認した。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-24T21:23:25Z"
+    tests_green_at: "2026-08-24T21:18:13Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "c7895aff-da7e-47a0-944a-36c68bb4f251"
+    reviewed_head_sha: f986ebbbff6bf2ede1489659b79d4cf51c1b6f35
+    scope: "PR #1006 HEAD f986ebbbff6bf2ede1489659b79d4cf51c1b6f35をClaude Codeが独立検収し、harness-check run 32776959655、providerのno-fallback契約、DB projection／replay、checkpoint／replayの一致を実測してblocker 0と判定した。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/1006#issuecomment-5401557441"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32776959655 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-24T21:18:13Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:8db6416d6f7fed98d1253aa612c4a8b8d6a063d17cd85bada570b27c196e3462"
+        result: "completed / success / HEAD f986ebbbff6bf2ede1489659b79d4cf51c1b6f35"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-24T21:23:25Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-24T21:23:25Z"
+    evidence_digest: "sha256:48599f8c913b1b5dbaa874e078db15793576981a648aaaa2cc648671a8542734"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "4 surfaceが個別にcwdやcurrent authorityを推測する余地を一つの明示provider portへ集約する"
 removal_trigger: "Assignment kernelが同等のtyped provider portを所有し本adapter consumerが0になった時"
