@@ -49,7 +49,7 @@ review_evidence:
     review_kind: cross_agent
     reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
     reviewed_at: "2026-08-23T23:23:32Z"
-    tests_green_at: "2026-08-23T23:24:32Z"
+    tests_green_at: "2026-08-23T23:23:32Z"
     verdict: approve
     worker_model: "codex:gpt-5.6-sol"
     reviewer_model: "claude-opus-5"
@@ -61,7 +61,7 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-23T23:24:32Z"
+        completed_at: "2026-08-23T23:23:32Z"
         evidence_path: tests/distribution-lite-profile-package.test.ts
         output_digest: "sha256:7e7326a41b61fa6e35910bef38b814437199644a8a0f2fdb4fbee8adc61b080f"
         result: "2 test files / 34 tests passed"
@@ -72,7 +72,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-23T23:23:32Z"
-    evidence_digest: "sha256:746b97cb6b07ef5c67a64e8fa3585186bdba6f3bc78ac10863e5d786f38ac4e3"
+    evidence_digest: "sha256:4fbd651988857a6bb9de4078d7f633f50c132a81e7a72e255c0485d8480ebcfd"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md, artifact_type: markdown_doc }
