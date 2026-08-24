@@ -57,4 +57,4 @@ agent_slots:
 
 live Issueに既存のmetadata findingが残る間はworkflowをfailureとして可視化し、findingをsuccessへ変換しない。backfillの完了は別の#633終端条件で扱い、この配線sliceのmerge可否やPR required gateへ暗黙に混載しない。
 
-このworkflowをPR／Issueのworkflow identity契約へ接続する場合は、identity marker直後に単一の`json` fenced blockを置く。本文の宣言値を機械parserが一意に再取得できる形式を契約化し、自由記述や未構造化JSONを正本として扱わない。
+このworkflowをPR／Issueのworkflow identity契約へ接続する場合は、identity markerの次行に単一の`json` fenced blockを置く。本文の宣言値を機械parserが一意に再取得できる形式を契約化し、markerとJSON blockの間に空行を挿入せず、自由記述や未構造化JSONを正本として扱わない。
