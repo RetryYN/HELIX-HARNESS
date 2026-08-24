@@ -32,6 +32,9 @@ contract_invariants: "String coercionでunknownや退化値を成功へ丸めな
 contract_failures: "undefined、null、非有限数、非整数、安全範囲外number、負値、inode 0、0/0を成功へ丸めない"
 tdd_red_required: true
 red_test: "U-CNWHOOKPHYS-007がstat validation除去をredにする"
+red_at: "2026-08-24T08:59:29Z"
+green_at: "2026-08-24T08:58:12Z"
+mutation_oracle_evidence: "M0 baselineはU-CNWHOOKPHYS-001..007の7 tests passed。normalizePhysicalStatIdentityのdevice／inode validationをString(stat.*)へ置換したM1 mutantではU-CNWHOOKPHYS-007がthrowせずred（1 failed、他6 testsはskip）となり、validation分岐の除去を検出した。mutantは破棄し、production実装を復元した"
 complexity_effect: net_negative
 complexity_justification: "dead pathを実効的な入力境界へ置換し、physical identityのvalidity判定を一箇所へ集約する"
 removal_trigger: "後継cross-platform physical identity providerが同一validation contractを吸収し現adapter consumerが0になった時"
