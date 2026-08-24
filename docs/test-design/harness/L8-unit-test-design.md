@@ -112,6 +112,8 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-IHIER-003 | PLAN↔Issue binding | PLAN `github_issue_id`とIssue `plan_id`の双方向不一致を拒否する | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-005 | PR focus / repository full audit | PR focusはclosure graphから到達するdependency componentだけを検査して無関係driftを隔離する。scheduled/手動のfocusなし監査は全採用Issueを検査してmissing PLANをfail-closeし、main pushでは未merge PLANとの重なりを誤ってredにしない | `tests/issue-hierarchy.test.ts`、`tests/harness-check-workflow.test.ts` |
 | U-IHIER-006 | Issue依存audit workflow event境界 | PRはfocus付き監査、schedule／手動runは`--require-referenced-plans`付き全件監査とし、main pushではrepository full auditを起動しない | `tests/harness-check-workflow.test.ts` |
+| U-IHIER-008 | 複数PLAN Issue binding | parent/capability Issueは`plan_id: null`と明示的な`plan_ids`集合で複数atomic PLANを束縛し、全PLANを双方向監査する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-009 | PLAN binding表現の曖昧性 | scalar `plan_id`と`plan_ids`集合の同時指定をfail-closeし、暗黙のPLAN帰属推測を許可しない | `tests/issue-hierarchy.test.ts` |
 | U-IMETA-001 | GitHub Issue metadata audit | type/lifecycle欠落と48時間以上unlabeled openを拒否し、closedと閾値未満をstale findingへ誤算入しない | `tests/issue-metadata-audit.test.ts` |
 | U-CPRCONV-004 | canonical DB receipt束縛 | approve receiptをrepository-owned verifierのschema、projection/replay、checkpoint/replay、receipt digestへ束縛し、caller suppliedのad-hoc digestと非収束を拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-006 | required check effective state | `gh pr checks --required`のapp-bound latest effective集合だけを採用し、pass以外、0件、取得不能を拒否する | `tests/claude-pr-convergence.test.ts` |
