@@ -4,7 +4,7 @@ title: "PLAN-L7-663 (add-impl): Issue metadata live監査のscheduled gate接続
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals: ["po_directive:Issue起票metadataのlive監査を常時強制する"]
@@ -31,6 +31,9 @@ contract_postconditions: "schedule/workflow_dispatchでlive Issue metadata監査
 contract_invariants: "PR required gateへ全Issue監査を混載せず、Issue metadataを推測補完せず、GitHub writeを行わない"
 contract_failures: "Issue metadata finding、repository取得失敗、CLI失敗をsuccessへ変換せずfail-closeする"
 tdd_red_required: true
+red_at: 2026-08-24T10:45:12Z
+green_at: 2026-08-24T10:45:25Z
+mutation_oracle_evidence: "tests/issue-metadata-audit-workflow.test.ts の U-IMETA-WF-001 に対し workflow schedule の cron を 23 から 24 へ変更する seeded mutation を実測し、1 test failed で KILLED。production workflowを23へ復元した後、同テストは1 passed。N5/N6の continue-on-error／|| true 生存は非blocker Issue #988へ分離する"
 complexity_effect: justified_positive
 complexity_justification: "既存のread-only classifier/CLIを独立scheduled workflowへ接続し、別のmetadata authorityやwrite adapterを追加しない"
 removal_trigger: "GitHub側の同一taxonomy監査がHELIXの必要受入条件を完全に代替した時"
