@@ -80,8 +80,19 @@ export interface IssueDependencyContractSource {
   body: string | null;
 }
 
+function extractIssueDependencyContractBlock(body: string): string | null {
+  const fencedYamlBlock = /```yaml\b([\s\S]*?)```/g;
+  for (const match of body.matchAll(fencedYamlBlock)) {
+    const content = match[1] ?? "";
+    if (/^\s*# helix-issue-dependency\.v1[ \t]*(?:\r?\n|$)/.test(content)) {
+      return match[0];
+    }
+  }
+  return null;
+}
+
 export function hasIssueDependencyContractBlock(body: string): boolean {
-  return /```yaml[ \t]*\r?\n[ \t]*# helix-issue-dependency\.v1[ \t]*(?:\r?\n|$)/m.test(body);
+  return extractIssueDependencyContractBlock(body) !== null;
 }
 
 export function collectIssueDependencyContracts(
@@ -113,7 +124,9 @@ export function collectIssueDependencyContracts(
 export function parseIssueDependencyContract(
   body: string,
 ): Omit<IssueDependencyNode, "number" | "state"> {
-  const block = body.match(
+  const adoptedBlock = extractIssueDependencyContractBlock(body);
+  if (!adoptedBlock) throw new Error("issue_dependency_contract_missing_or_invalid");
+  const block = adoptedBlock.match(
     /```yaml\s+# helix-issue-dependency\.v1\s+depends_on:\s*\[([^\]]*)\]\s+blocks:\s*\[([^\]]*)\]\s+plan_id:\s*(null|PLAN-[A-Za-z0-9-]+)(?:\s+plan_ids:\s*\[([^\]]*)\])?\s*```/m,
   );
   if (!block) throw new Error("issue_dependency_contract_missing_or_invalid");
