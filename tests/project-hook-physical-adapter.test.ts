@@ -223,5 +223,14 @@ describe("project hook physical adapter", () => {
         captureProjectHookAuthorityInput(request(), fixtureDeps({ stat: () => stat })),
       ).toThrow(UnsupportedPhysicalIdentityError);
     }
+
+    const zeroDevice = captureProjectHookAuthorityInput(
+      request(),
+      fixtureDeps({ stat: () => ({ dev: 0, ino: 1 }) }),
+    );
+    expect(zeroDevice.execution_root.filesystem_identity).toMatchObject({
+      device_id: "0",
+      file_id: "1",
+    });
   });
 });
