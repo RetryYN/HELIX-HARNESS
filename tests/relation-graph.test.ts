@@ -29,6 +29,7 @@ describe("collectRelationGraphProjection (U-RELGRAPH-001..003)", () => {
           path: "docs/plans/PLAN-L7-32.md",
           requirements: ["FR-L1-18"],
           generates: ["src/lint/relation-graph.ts"],
+          modifies: ["src/lint/legacy-adapter.ts"],
         },
         // 重複 PLAN — dedup されること
         { id: "PLAN-L7-32", path: "docs/plans/PLAN-L7-32.md" },
@@ -58,12 +59,15 @@ describe("collectRelationGraphProjection (U-RELGRAPH-001..003)", () => {
     const rowKeys = projection.nodes.map((n) => `${n.kind}|${n.id}|${n.path ?? ""}`);
     expect(new Set(rowKeys).size).toBe(rowKeys.length);
 
-    // typed edge: derives-from / generates / pairs / covered-by
+    // typed edge: derives-from / generates / modifies / pairs / covered-by
     const edgeKey = (from: string, to: string, kind: string) => `${from}->${to}:${kind}`;
     const edges = projection.edges.map((e) => edgeKey(e.from, e.to, e.kind));
     expect(edges).toContain(edgeKey("plan:PLAN-L7-32", "requirement:FR-L1-18", "derives-from"));
     expect(edges).toContain(
       edgeKey("plan:PLAN-L7-32", "source:src/lint/relation-graph.ts", "generates"),
+    );
+    expect(edges).toContain(
+      edgeKey("plan:PLAN-L7-32", "source:src/lint/legacy-adapter.ts", "modifies"),
     );
     expect(edges).toContain(edgeKey("design:module-drift", "test-design:L7-unit", "pairs"));
     expect(edges).toContain(

@@ -182,6 +182,13 @@ export function collectRelationGraphProjection(
         kind: "generates",
       });
     }
+    for (const src of plan.modifies ?? []) {
+      pushEdge(edges, {
+        from: nodeId("plan", plan.id),
+        to: nodeId("source", src),
+        kind: "modifies",
+      });
+    }
   }
   for (const table of input.dbTables ?? []) {
     const id = nodeId("db-table", table.name);

@@ -148,7 +148,7 @@ function canonicalizeSemanticValue(value: unknown, key = ""): unknown {
   if (typeof value === "string") return value.normalize("NFC");
   if (Array.isArray(value)) {
     const normalized = value.map((entry) => canonicalizeSemanticValue(entry));
-    if (key === "generates")
+    if (key === "generates" || key === "modifies")
       return normalized.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
     if (key === "requires" || key === "references")
       return normalized.sort((a, b) => String(a).localeCompare(String(b)));
@@ -521,14 +521,10 @@ function decodeBinding(raw: unknown): VerificationBinding | null {
   return record as unknown as VerificationBinding;
 }
 
-function testArtifactPaths(
-  plan: PlanSpecificVpairPlan,
-  field: "generates" | "modifies",
-): Set<string> {
-  const artifacts = plan[field];
-  if (!Array.isArray(artifacts)) return new Set();
+function testPaths(plan: PlanSpecificVpairPlan, field: "generates" | "modifies"): Set<string> {
+  const declared = Array.isArray(plan[field]) ? plan[field] : [];
   return new Set(
-    artifacts.flatMap((raw) => {
+    declared.flatMap((raw) => {
       if (!raw || typeof raw !== "object" || Array.isArray(raw)) return [];
       const item = raw as Record<string, unknown>;
       return item.artifact_type === "test_code" && typeof item.artifact_path === "string"
@@ -536,6 +532,14 @@ function testArtifactPaths(
         : [];
     }),
   );
+}
+
+function generatedTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
+  return testPaths(plan, "generates");
+}
+
+function declaredTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
+  return new Set([...generatedTestPaths(plan), ...testPaths(plan, "modifies")]);
 }
 
 function validateAuthority(input: {
@@ -718,9 +722,8 @@ export function analyzePlanSpecificVpairBindings(
     }
     const valid = bindings.filter((entry): entry is VerificationBinding => entry !== null);
     const seen = new Set<string>();
-    const generated = testArtifactPaths(plan, "generates");
-    const modified = testArtifactPaths(plan, "modifies");
-    const owned = new Set([...generated, ...modified]);
+    const generated = generatedTestPaths(plan);
+    const declared = declaredTestPaths(plan);
     const boundTestPaths = new Set(valid.map((entry) => entry.test_path));
     for (const generatedPath of generated) {
       if (!boundTestPaths.has(generatedPath))
@@ -762,7 +765,7 @@ export function analyzePlanSpecificVpairBindings(
           ),
         );
       }
-      if (!owned.has(binding.test_path))
+      if (!declared.has(binding.test_path))
         rawFindings.push(finding(planId, "test_not_generated", binding.test_path));
       const evidence = input.testFiles.get(binding.test_path);
       if (!evidence?.exists || !evidence.regular || evidence.symlink || !evidence.insideRepo) {

@@ -63,6 +63,8 @@ export interface MergedPlanRow {
   hasReviewEvidence?: boolean;
   /** generates の deliverable (src/ tests/ scripts/ .claude/) のうち repo に実在する (= merged) パス集合。 */
   mergedArtifacts: string[];
+  /** modifies に宣言されたが published base に存在しないため、既存修正として扱えないパス集合。 */
+  invalidModifications?: string[];
 }
 
 export interface MergedPlanStatusInput {
@@ -73,6 +75,7 @@ export interface MergedPlanStatusViolation {
   planId: string;
   status: string;
   artifacts: string[];
+  invalidModifications?: string[];
 }
 
 export interface MergedPlanStatusResult {
@@ -87,11 +90,17 @@ export function analyzeMergedPlanStatus(input: MergedPlanStatusInput): MergedPla
   const violations = input.plans
     .filter(
       (p) =>
-        !isTerminalPlanStatus(p.status) &&
-        p.mergedArtifacts.length > 0 &&
-        !isS3VerifiedPocPendingDecision(p),
+        (p.invalidModifications?.length ?? 0) > 0 ||
+        (!isTerminalPlanStatus(p.status) &&
+          p.mergedArtifacts.length > 0 &&
+          !isS3VerifiedPocPendingDecision(p)),
     )
-    .map((p) => ({ planId: p.planId, status: p.status, artifacts: p.mergedArtifacts }))
+    .map((p) => ({
+      planId: p.planId,
+      status: p.status,
+      artifacts: p.mergedArtifacts,
+      ...(p.invalidModifications?.length ? { invalidModifications: p.invalidModifications } : {}),
+    }))
     .sort((a, b) => a.planId.localeCompare(b.planId));
   return { violations, ok: violations.length === 0 };
 }
@@ -107,6 +116,7 @@ function isS3VerifiedPocPendingDecision(p: MergedPlanRow): boolean {
 
 interface PlanFrontmatterGenerates {
   generates?: { artifact_path?: string }[];
+  modifies?: { artifact_path?: string }[];
 }
 
 /** 実行文脈に応じて公開baseを選ぶ。mainではremote-tracking refでなくHEADを正本にする。 */
@@ -170,6 +180,31 @@ function generatesMergedDeliverablePaths(content: string): string[] {
     .filter((p) => DELIVERABLE_ROOTS.some((root) => p.startsWith(root)));
 }
 
+function modifiesDeliverablePaths(content: string): string[] {
+  const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!m) return [];
+  let fm: PlanFrontmatterGenerates;
+  try {
+    fm = (parseYaml(m[1]) as PlanFrontmatterGenerates) ?? {};
+  } catch {
+    return [];
+  }
+  return (fm.modifies ?? [])
+    .map((g) => normalizePath(g.artifact_path ?? ""))
+    .filter((p) => DELIVERABLE_ROOTS.some((root) => p.startsWith(root)));
+}
+
+/** `modifies` は published base に実在する既存artifactだけを受け付ける。 */
+export function selectInvalidModifications(
+  artifactPaths: readonly string[],
+  publishedBasePaths: ReadonlySet<string> | null,
+  repoRoot: string,
+): string[] {
+  return artifactPaths.filter((path) =>
+    publishedBasePaths === null ? !existsSync(join(repoRoot, path)) : !publishedBasePaths.has(path),
+  );
+}
+
 export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInput {
   const plans: MergedPlanRow[] = [];
   let reviewPlans: ReturnType<typeof loadReviewPlans>;
@@ -193,6 +228,11 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
       publishedBasePaths,
       repoRoot,
     );
+    const invalidModifications = selectInvalidModifications(
+      modifiesDeliverablePaths(content),
+      publishedBasePaths,
+      repoRoot,
+    );
     plans.push({
       planId: rp.plan_id,
       status: rp.status,
@@ -200,6 +240,7 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
       workflowPhase: fmValue(content, "workflow_phase") ?? null,
       hasReviewEvidence: rp.hasEvidence,
       mergedArtifacts,
+      invalidModifications,
     });
   }
   return { plans };
@@ -211,8 +252,14 @@ export function mergedPlanStatusMessages(r: MergedPlanStatusResult): string[] {
       "merged-plan-status — OK (merged generated artifact を持つ全 PLAN が confirmed/completed)",
     ];
   }
-  return r.violations.map(
-    (v) =>
-      `merged-plan-status - violation: PLAN ${v.planId} は status=${v.status} (未 confirm) なのに generated deliverable が merge 済み: ${v.artifacts.join(", ")} → PLAN を confirm + review_evidence 記録せよ`,
-  );
+  return r.violations.map((v) => {
+    const parts: string[] = [];
+    if (v.artifacts.length > 0)
+      parts.push(`generated deliverable が merge 済み: ${v.artifacts.join(", ")}`);
+    if (v.invalidModifications && v.invalidModifications.length > 0)
+      parts.push(
+        `modifies に published base 不在の新規pathがある: ${v.invalidModifications.join(", ")}`,
+      );
+    return `merged-plan-status - violation: PLAN ${v.planId} は status=${v.status} (未 confirm または ownership不正) ${parts.join(" / ")} → generates/modifies の所有権とPLAN状態を是正せよ`;
+  });
 }

@@ -63,6 +63,22 @@ describe("frontmatter schema (§1.1 / §1.1.parent_design / §3.3 / §3.4)", () 
     }
   });
 
+  it("U-PLAN-855-001: 既存artifactの修正はgeneratesと分離したmodifiesへ記録できる", () => {
+    const r = frontmatterSchema.safeParse(
+      implBase({
+        modifies: [
+          { artifact_path: "src/runtime/existing.ts", artifact_type: "source_module" },
+          { artifact_path: "tests/existing.test.ts", artifact_type: "test_code" },
+        ],
+      }),
+    );
+    expect(r.success).toBe(true);
+    if (r.success) {
+      expect(r.data.modifies).toHaveLength(2);
+      expect(r.data.generates).toHaveLength(1);
+    }
+  });
+
   it("U-PSPB-013: verification binding はstrictなexact oracle/canonical test pathだけを許す", () => {
     const binding = {
       parent_design: "docs/design/harness/L6-function-design/example.md",

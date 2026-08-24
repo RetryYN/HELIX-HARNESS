@@ -13,6 +13,7 @@ type RelationNodeKind =
 type RelationEdgeKind =
   | "derives-from"
   | "generates"
+  | "modifies"
   | "pairs"
   | "covered-by"
   | "upstream"
@@ -60,6 +61,7 @@ interface PlanInput {
   path?: string;
   requirements?: string[];
   generates?: string[];
+  modifies?: string[];
 }
 
 interface DesignDocInput {

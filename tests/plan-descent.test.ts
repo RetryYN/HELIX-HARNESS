@@ -49,6 +49,7 @@ interface PlanSpec {
   parentDesign?: string | null;
   pairArtifact?: string | null;
   generatesTestCode?: boolean;
+  modifiesTestCode?: boolean;
   created?: string;
   routeMode?: string;
 }
@@ -77,6 +78,11 @@ function writePlan(root: string, spec: PlanSpec): void {
   lines.push(`  - artifact_path: docs/plans/${spec.planId}.md`);
   lines.push("    artifact_type: markdown_doc");
   if (spec.generatesTestCode !== false) {
+    lines.push(`  - artifact_path: tests/${spec.planId}.test.ts`);
+    lines.push("    artifact_type: test_code");
+  }
+  if (spec.modifiesTestCode === true) {
+    lines.push("modifies:");
     lines.push(`  - artifact_path: tests/${spec.planId}.test.ts`);
     lines.push("    artifact_type: test_code");
   }
@@ -298,6 +304,18 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
     writePlan(root, { planId: "PLAN-L7-912-notest", generatesTestCode: false });
     const result = analyze(root);
     expect(result.newViolations.map((v) => v.reason)).toContain("generates_missing_test_code");
+  });
+
+  it("U-PDESC-010a: 既存testの修正はmodifiesのtest_codeでpair義務を満たす", () => {
+    const root = makeRepo();
+    writePlan(root, {
+      planId: "PLAN-L7-913-modifies-test",
+      generatesTestCode: false,
+      modifiesTestCode: true,
+    });
+    const result = analyze(root);
+    expect(result.newViolations.map((v) => v.reason)).not.toContain("generates_missing_test_code");
+    expect(result.ok).toBe(true);
   });
 
   it("baseline 機械生成: buildPlanDescentBaseline は違反 plan_id を昇順で固定し、生成後 ok になる", () => {
