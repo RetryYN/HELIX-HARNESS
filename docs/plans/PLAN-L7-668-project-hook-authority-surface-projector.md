@@ -26,7 +26,7 @@ change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
-ddd_modeling_decision: service
+ddd_modeling_decision: pure_function
 contract_preconditions: "PLAN-L7-667 providerが一度だけ解決したauthority receiptまたはfailureを返す"
 contract_postconditions: "SessionStart／doctor／status／dispatchのexact 4 surfaceへ同じcanonical receipt/failure bytesを投影する"
 contract_invariants: "surface別のauthority再計算、field追加／欠落、repair hint、fallbackを行わない"
@@ -65,7 +65,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — no-recompute／no-fallback監査" }
 ---
 
-# project hook authority 4 surface projector
+# project hook authority 4 surface投影
 
 ## 工程表
 
@@ -75,7 +75,7 @@ agent_slots:
 | 2 | 4 surface exact set | SessionStart／doctor／status／dispatchだけ |
 | 3 | byte equality反証 | 1 surfaceだけの改変をoracleがkill |
 | 4 | targeted／typecheck／Biome | 全green |
-| 5 | Claude exact-HEAD review | blocker 0 |
+| 5 | Claude同一HEAD検収 | blocker 0 |
 
 本sliceはpure projectionだけを所有する。CLI／hook consumer接続、Assignment kernel adapter、process supervisor、
 Luna read-afterは後続sliceとし、projector自身はfilesystem、process、DB、GitHubへ触れない。

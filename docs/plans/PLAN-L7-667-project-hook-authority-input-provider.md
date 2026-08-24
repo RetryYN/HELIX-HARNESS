@@ -26,7 +26,7 @@ change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
-ddd_modeling_decision: service
+ddd_modeling_decision: port
 contract_preconditions: "Control Planeが12-field authority inputまたは取得不能の固定reason identityを明示する"
 contract_postconditions: "provider結果をpure resolverへ無変更で渡し、取得不能・throw・malformedを既存stale/foreign failureへ決定的に変換する"
 contract_invariants: "cwd、環境変数、primary tree、origin/main、provider例外本文からauthorityを補完しない"
@@ -77,7 +77,7 @@ agent_slots:
 | 2 | unavailable projection | 既存failure code、固定pointer、side effect 0 |
 | 3 | malformed／throw反証 | provider固有情報を出力せずfallback 0 |
 | 4 | targeted／typecheck／Biome | 全green |
-| 5 | mutation／Claude exact-HEAD review | blocker 0 |
+| 5 | mutation／Claude同一HEAD検収 | blocker 0 |
 
 本sliceはauthority input providerだけを所有する。4 surface projector、Assignment kernel adapter、
 process supervisor、Luna read-afterは依存順の後続sliceとし、current surfaceへcwd由来の暫定配線を作らない。
