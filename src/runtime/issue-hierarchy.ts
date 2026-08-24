@@ -69,8 +69,45 @@ export interface IssueDependencyFinding {
     | "issue_plan_missing"
     | "issue_plan_binding_mismatch"
     | "plan_issue_missing"
-    | "plan_issue_binding_mismatch";
+    | "plan_issue_binding_mismatch"
+    | "issue_dependency_contract_invalid";
   detail: string;
+}
+
+export interface IssueDependencyContractSource {
+  number: number;
+  state: "open" | "closed";
+  body: string | null;
+}
+
+export function hasIssueDependencyContractBlock(body: string): boolean {
+  return /```yaml[ \t]*\r?\n[ \t]*# helix-issue-dependency\.v1[ \t]*(?:\r?\n|$)/m.test(body);
+}
+
+export function collectIssueDependencyContracts(
+  sources: readonly IssueDependencyContractSource[],
+): { nodes: IssueDependencyNode[]; findings: IssueDependencyFinding[] } {
+  const nodes: IssueDependencyNode[] = [];
+  const findings: IssueDependencyFinding[] = [];
+  for (const source of sources) {
+    if (!hasIssueDependencyContractBlock(source.body ?? "")) continue;
+    try {
+      nodes.push({
+        number: source.number,
+        state: source.state,
+        ...parseIssueDependencyContract(source.body ?? ""),
+      });
+    } catch (error) {
+      findings.push({
+        issueNumber: source.number,
+        code: "issue_dependency_contract_invalid",
+        detail: `issue dependency contract invalid: ${
+          error instanceof Error ? error.message : "unknown_parser_failure"
+        }`,
+      });
+    }
+  }
+  return { nodes, findings };
 }
 
 export function parseIssueDependencyContract(
