@@ -85,3 +85,5 @@ agent_slots:
 | 4 | targeted／typecheck／doctor／CI | current HEADで全gateがgreen、Claude検収へ進める |
 
 本sliceは既存artifactの所有権表現を追加する。PR、review、status confirm、GitHub通知の権限を変更しない。
+PR本文は `helix-github-workflow-identity-contract.v1` を正規のIssue／PLAN由来identityとして束縛し、
+実装内容とworkflow admissionの対象を一致させる。
