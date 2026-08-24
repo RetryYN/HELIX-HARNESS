@@ -22,10 +22,10 @@ behavior_contract_id: CNW-HOOK-PHYSICAL-ADAPTER-001
 responsibility_owner: project-hook-authority
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: introduce_adapter
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
-ddd_modeling_decision: service
+ddd_modeling_decision: adapter
 contract_preconditions: "PLAN-L7-651のpure resolver input schemaがroot／HEAD／source identityをexact化している"
 contract_postconditions: "Linux/macOS adapterがrealpath、git common-dir、device／inode、HEAD、三source digestを観測値とcurrent authorityへ分離して返す"
 contract_invariants: "filesystem／Gitはread-only、request mutation 0、unsupported platformをsameへ推測しない"
