@@ -47,6 +47,12 @@ export interface IssueDependencyNode {
   dependsOn: number[];
   blocks: number[];
   planId: string | null;
+  /**
+   * A parent/capability Issue may own several atomic PLANs.  `plan_id` stays
+   * the compatibility scalar; new multi-PLAN contracts use `plan_id: null`
+   * plus this explicit set.
+   */
+  planIds?: string[];
 }
 
 export interface IssuePlanBinding {
@@ -71,7 +77,7 @@ export function parseIssueDependencyContract(
   body: string,
 ): Omit<IssueDependencyNode, "number" | "state"> {
   const block = body.match(
-    /```yaml\s+# helix-issue-dependency\.v1\s+depends_on:\s*\[([^\]]*)\]\s+blocks:\s*\[([^\]]*)\]\s+plan_id:\s*(null|PLAN-[A-Za-z0-9-]+)\s*```/m,
+    /```yaml\s+# helix-issue-dependency\.v1\s+depends_on:\s*\[([^\]]*)\]\s+blocks:\s*\[([^\]]*)\]\s+plan_id:\s*(null|PLAN-[A-Za-z0-9-]+)(?:\s+plan_ids:\s*\[([^\]]*)\])?\s*```/m,
   );
   if (!block) throw new Error("issue_dependency_contract_missing_or_invalid");
   const numbers = (raw: string): number[] =>
@@ -84,11 +90,33 @@ export function parseIssueDependencyContract(
             return value;
           }),
         );
+  const planIds = (raw: string): string[] =>
+    raw.trim() === ""
+      ? []
+      : uniqueStrings(
+          raw.split(",").map((item) => {
+            const value = item.trim();
+            if (!/^PLAN-[A-Za-z0-9-]+$/.test(value)) {
+              throw new Error("issue_plan_id_invalid");
+            }
+            return value;
+          }),
+        );
+  const planId = block[3] === "null" ? null : (block[3] ?? null);
+  const explicitPlanIds = planIds(block[4] ?? "");
+  if (planId !== null && explicitPlanIds.length > 0) {
+    throw new Error("issue_plan_scalar_and_set_conflict");
+  }
   return {
     dependsOn: numbers(block[1] ?? ""),
     blocks: numbers(block[2] ?? ""),
-    planId: block[3] === "null" ? null : (block[3] ?? null),
+    planId,
+    ...(explicitPlanIds.length > 0 ? { planIds: explicitPlanIds } : {}),
   };
+}
+
+function issuePlanIds(node: Pick<IssueDependencyNode, "planId" | "planIds">): string[] {
+  return uniqueStrings([...(node.planId === null ? [] : [node.planId]), ...(node.planIds ?? [])]);
 }
 
 export function auditIssueDependencies(
@@ -118,9 +146,7 @@ export function auditIssueDependencies(
   })();
   const scopedNodes =
     scopedNumbers === null ? [...nodes] : nodes.filter((node) => scopedNumbers.has(node.number));
-  const referencedPlanIds = new Set(
-    scopedNodes.flatMap((node) => (node.planId === null ? [] : [node.planId])),
-  );
+  const referencedPlanIds = new Set(scopedNodes.flatMap((node) => issuePlanIds(node)));
   const scopedPlans =
     scopedNumbers === null
       ? [...plans]
@@ -173,19 +199,19 @@ export function auditIssueDependencies(
         });
       }
     }
-    if (node.planId !== null) {
-      const plan = byPlan.get(node.planId);
+    for (const planId of issuePlanIds(node)) {
+      const plan = byPlan.get(planId);
       if (!plan && options.requireReferencedPlans !== false) {
         findings.push({
           issueNumber: node.number,
           code: "issue_plan_missing",
-          detail: `issue references absent plan ${node.planId}`,
+          detail: `issue references absent plan ${planId}`,
         });
       } else if (plan && plan.githubIssueId !== node.number) {
         findings.push({
           issueNumber: node.number,
           code: "issue_plan_binding_mismatch",
-          detail: `${node.planId} binds github_issue_id=${plan.githubIssueId}, not ${node.number}`,
+          detail: `${planId} binds github_issue_id=${plan.githubIssueId}, not ${node.number}`,
         });
       }
     }
@@ -199,11 +225,11 @@ export function auditIssueDependencies(
         code: "plan_issue_missing",
         detail: `${plan.planId} references absent issue #${plan.githubIssueId}`,
       });
-    } else if (issue.planId !== plan.planId) {
+    } else if (!issuePlanIds(issue).includes(plan.planId)) {
       findings.push({
         issueNumber: issue.number,
         code: "plan_issue_binding_mismatch",
-        detail: `${plan.planId} expects issue plan_id=${plan.planId}, found ${issue.planId ?? "null"}`,
+        detail: `${plan.planId} expects issue plan_id=${plan.planId}, found ${formatIssuePlanIds(issue)}`,
       });
     }
   }
@@ -219,6 +245,19 @@ export function auditIssueDependencies(
 
 function uniqueNumbers(values: number[]): number[] {
   return [...new Set(values)].sort((a, b) => a - b);
+}
+
+function uniqueStrings(values: string[]): string[] {
+  return [...new Set(values)].sort((a, b) => a.localeCompare(b));
+}
+
+function formatIssuePlanIds(node: Pick<IssueDependencyNode, "planId" | "planIds">): string {
+  const planIds = issuePlanIds(node);
+  return planIds.length === 0
+    ? "null"
+    : planIds.length === 1
+      ? planIds[0]
+      : `[${planIds.join(", ")}]`;
 }
 
 function isPositiveIssueNumber(value: number): boolean {
