@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-PLANMOD-001..004のmodifies ownership oracleを除去すると既存test修正sliceのtraceがredになる"
 red_at: "2026-08-24T11:28:12Z"
 green_at: "2026-08-24T11:28:26Z"
-mutation_oracle_evidence: "2026-08-24T11:28:12ZにdeclaredTestPathsからmodifies test_codeを一時除去し、tests/plan-modification-ownership.test.tsのU-PLANMOD-001がfailed（1 failed, 2 passed, exit 1）となるkillを実測した。復元後、関連6ファイル98 tests passedでgreenを再確認した。"
+mutation_oracle_evidence: "2026-08-24T11:28:12ZにdeclaredTestPathsからmodifies test_codeを一時除去し、tests/plan-modification-ownership.test.tsのU-PLANMOD-001がfailed（1 failed, 2 passed, exit 1）となるkillを実測した。2026-08-24T14:44:50ZにはselectInvalidModificationsを空集合へ変異し、U-PLANMOD-004がfailed（1 failed, 3 skipped, exit 1）となるkillを追加実測した。変異は破棄し、復元後に関連テストをgreenへ再確認した。"
 complexity_effect: net_negative
 complexity_justification: "既存artifact修正のための重複generates宣言とconfirm前review循環を除去する"
 removal_trigger: "全plan artifact ownershipがappend-only immutable manifestへ移行し、modifiesが不要になった時"
@@ -44,6 +44,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/plan-modification-ownership.md, oracle_id: U-PLANMOD-001, test_path: tests/plan-modification-ownership.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/plan-modification-ownership.md, oracle_id: U-PLANMOD-002, test_path: tests/plan-modification-ownership.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/plan-modification-ownership.md, oracle_id: U-PLANMOD-003, test_path: tests/plan-modification-ownership.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-modification-ownership.md, oracle_id: U-PLANMOD-004, test_path: tests/plan-modification-ownership.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-665-plan-modification-ownership.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/plan-modification-ownership.md, artifact_type: design_doc }
@@ -54,6 +55,7 @@ modifies:
   - { artifact_path: src/schema/frontmatter.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-descent.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-specific-vpair-binding.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/merged-plan-status.ts, artifact_type: source_module }
   - { artifact_path: src/graph/loader.ts, artifact_type: source_module }
   - { artifact_path: src/lint/relation-graph-types.ts, artifact_type: source_module }
   - { artifact_path: src/lint/relation-graph.ts, artifact_type: source_module }
@@ -61,6 +63,7 @@ modifies:
   - { artifact_path: tests/frontmatter.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-descent.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/merged-plan-status.test.ts, artifact_type: test_code }
   - { artifact_path: tests/relation-graph.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }

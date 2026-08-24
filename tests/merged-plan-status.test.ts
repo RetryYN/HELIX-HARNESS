@@ -7,6 +7,7 @@ import {
   analyzeMergedPlanStatus,
   loadMergedPlanStatusInput,
   publishedBaseRefs,
+  selectInvalidModifications,
   selectMergedArtifacts,
 } from "../src/lint/merged-plan-status";
 
@@ -19,6 +20,16 @@ describe("analyzeMergedPlanStatus", () => {
     expect(
       selectMergedArtifacts(["src/published.ts"], new Set(["src/published.ts"]), process.cwd()),
     ).toEqual(["src/published.ts"]);
+  });
+
+  it("rejects a modifies path that is absent from the published base", () => {
+    expect(
+      selectInvalidModifications(
+        ["src/existing.ts", "src/brand-new.ts"],
+        new Set(["src/existing.ts"]),
+        process.cwd(),
+      ),
+    ).toEqual(["src/brand-new.ts"]);
   });
 
   it("uses HEAD on main and the explicit PR base elsewhere, so a stale origin/main cannot mask main drift", () => {
@@ -229,6 +240,25 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
       const input = loadMergedPlanStatusInput(root);
       const plan = input.plans.find((p) => p.planId === "PLAN-TEST-855-modifies");
       expect(plan?.mergedArtifacts).toEqual([]);
+      expect(plan?.invalidModifications).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("fails closed when modifies claims a new source path", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-modifies-new-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writePlanWithModification(root, "PLAN-TEST-855-new-modifies.md", "draft", "src/new.ts");
+
+      const result = checkMergedPlanStatus(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("src/new.ts");
+      const input = loadMergedPlanStatusInput(root);
+      expect(
+        input.plans.find((p) => p.planId === "PLAN-TEST-855-new-modifies")?.invalidModifications,
+      ).toEqual(["src/new.ts"]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

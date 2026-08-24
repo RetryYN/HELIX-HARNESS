@@ -1,4 +1,8 @@
 import { describe, expect, it } from "vitest";
+import {
+  analyzeMergedPlanStatus,
+  selectInvalidModifications,
+} from "../src/lint/merged-plan-status";
 import { analyzePlanDescent, type PlanDescentDoc } from "../src/lint/plan-descent";
 import { analyzePlanSpecificVpairBindings } from "../src/lint/plan-specific-vpair-binding";
 import { collectRelationGraphProjection } from "../src/lint/relation-graph";
@@ -106,5 +110,28 @@ describe("既存artifact修正sliceのPLAN所有権", () => {
         { artifact_path: "src/existing.ts", artifact_type: "source_module" },
       ]);
     }
+  });
+
+  it("U-PLANMOD-004: modifiesの新規pathはpublished base不在として拒否する", () => {
+    expect(
+      selectInvalidModifications(
+        ["src/existing.ts", "src/brand-new.ts"],
+        new Set(["src/existing.ts"]),
+        process.cwd(),
+      ),
+    ).toEqual(["src/brand-new.ts"]);
+    const result = analyzeMergedPlanStatus({
+      plans: [
+        {
+          planId,
+          status: "draft",
+          kind: "impl",
+          mergedArtifacts: [],
+          invalidModifications: ["src/brand-new.ts"],
+        },
+      ],
+    });
+    expect(result.ok).toBe(false);
+    expect(result.violations[0]?.invalidModifications).toEqual(["src/brand-new.ts"]);
   });
 });
