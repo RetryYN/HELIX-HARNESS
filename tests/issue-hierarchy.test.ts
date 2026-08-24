@@ -215,6 +215,36 @@ describe("GitHub Issue dependency projection", () => {
       },
     ]);
   });
+
+  // PLAN-L7-671-issue-dependency-detector-parser-shape / U-IHIER-011
+  it("U-IHIER-011: parserが受理する空白形状をdetectorも同じ採用blockとして扱う", () => {
+    const immediate = `\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: null\n\`\`\``;
+    const blankLine = `\`\`\`yaml\n\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: null\n\`\`\``;
+    const sameLine = `\`\`\`yaml # helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: null\n\`\`\``;
+
+    for (const body of [immediate, blankLine, sameLine]) {
+      expect(parseIssueDependencyContract(body)).toMatchObject({
+        dependsOn: [],
+        blocks: [],
+        planId: null,
+      });
+      expect(hasIssueDependencyContractBlock(body)).toBe(true);
+    }
+
+    const malformedBlankLine = `\`\`\`yaml\n\n# helix-issue-dependency.v1\ndepends_on: [invalid]\nblocks: []\nplan_id: null\n\`\`\``;
+    expect(
+      collectIssueDependencyContracts([{ number: 1010, state: "open", body: malformedBlankLine }]),
+    ).toMatchObject({
+      nodes: [],
+      findings: [
+        {
+          issueNumber: 1010,
+          code: "issue_dependency_contract_invalid",
+          detail: "issue dependency contract invalid: issue_relation_number_invalid",
+        },
+      ],
+    });
+  });
 });
 
 describe("GitHub Issue hierarchy contract", () => {

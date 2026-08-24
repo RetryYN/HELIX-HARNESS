@@ -115,6 +115,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-IHIER-008 | 複数PLAN Issue binding | parent/capability Issueは`plan_id: null`と明示的な`plan_ids`集合で複数atomic PLANを束縛し、全PLANを双方向監査する | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-009 | PLAN binding表現の曖昧性 | scalar `plan_id`と`plan_ids`集合の同時指定をfail-closeし、暗黙のPLAN帰属推測を許可しない | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-010 | Issue依存契約の採用境界と失敗帰属 | prose markerだけのIssueを非採用とし、不正なyaml fenced blockを原因Issue番号付き`issue_dependency_contract_invalid`へ投影する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-011 | Issue依存契約のdetector／parser形状一致 | fence直後marker、marker前空行、same-line markerを同じ採用blockとして受理し、同形状のmalformed blockをIssue番号付きfindingへ投影する | `tests/issue-hierarchy.test.ts` |
 | U-IMETA-001 | GitHub Issue metadata audit | type/lifecycle欠落と48時間以上unlabeled openを拒否し、closedと閾値未満をstale findingへ誤算入しない | `tests/issue-metadata-audit.test.ts` |
 | U-IMETA-WF-001 | Issue metadata scheduled audit workflow | schedule/workflow_dispatchだけでread-only監査を起動し、PR required gateへ混載せず、finding・CLI失敗・権限不足をsuccessへ変換しない | `tests/issue-metadata-audit-workflow.test.ts` |
 | U-IMETA-WF-003 | Issue metadata audit fail-open shell oracle | 論理OR＋`true`／論理OR＋`:`（末尾`;`を含む）／`; true`／`set +e`を個別mutationで拒否する | `tests/issue-metadata-audit-workflow.test.ts` |
