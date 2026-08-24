@@ -10,7 +10,7 @@ completion_claim_allowed: false
 entry_signals:
   - "po_directive:2026-08-14 #633・#634を先行し、Issue依存とPLAN参照をharness・GitHub rulesで機械強制してopen PRを収束させる"
 created: 2026-08-14
-updated: 2026-08-14
+updated: 2026-08-24
 owner: Codex / TL
 github_issue_id: 634
 engineering_discipline_required: true
@@ -22,7 +22,7 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "block採用Issue snapshotと対応PLAN github_issue_id bindingが得られる"
-contract_postconditions: "open依存を残したcloseとPLAN双方向不一致がdoctor/CIでfail-visibleになり、PRはclosure graph focus、scheduled/手動runは全採用Issueを監査し、main pushは未merge PLAN重複を誤ってredにしない"
+contract_postconditions: "open依存を残したcloseとPLAN双方向不一致がdoctor/CIでfail-visibleになり、単一PLANはscalar plan_id、複数atomic PLANを所有するparent/capability Issueはplan_id: nullと明示的plan_ids集合で監査され、曖昧なscalar/set併記は拒否される。PRはclosure graph focus、scheduled/手動runは全採用Issueを監査し、main pushは未merge PLAN重複を誤ってredにしない"
 contract_invariants: "prose Refsを推測せず、既存hierarchy validatorを再利用し、PR focus外のlive driftを混入させず、legacy Issueへ一括強制しない"
 contract_failures: "欠落target、非対称関係、open dependency close、PLAN/Issue不一致、scheduled/手動全件監査のmissing PLANをstable findingにする"
 tdd_red_required: true
@@ -40,6 +40,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-003, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-005, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-006, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-008, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-009, test_path: tests/issue-hierarchy.test.ts }
 generates:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: config }
   - { artifact_path: docs/design/helix/L3-requirements/github-operations-projection.md, artifact_type: design_doc }

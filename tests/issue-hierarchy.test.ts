@@ -103,7 +103,7 @@ describe("GitHub Issue dependency projection", () => {
     );
   });
 
-  it("U-IHIER-006: parent Issueの複数atomic PLANを明示的なplan_ids集合で束縛する", () => {
+  it("U-IHIER-008: parent Issueの複数atomic PLANを明示的なplan_ids集合で束縛する", () => {
     expect(
       parseIssueDependencyContract(
         `dependency\n\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: null\nplan_ids: [PLAN-L7-639-luna-worker-model-registry, PLAN-L7-640-luna-native-spawn-admission]\n\`\`\``,
@@ -140,7 +140,7 @@ describe("GitHub Issue dependency projection", () => {
     expect(report).toMatchObject({ ok: true, checkedIssues: 1, checkedPlans: 2 });
   });
 
-  it("U-IHIER-007: scalar plan_idとplan_idsの同時指定を拒否する", () => {
+  it("U-IHIER-009: scalar plan_idとplan_idsの同時指定を拒否する", () => {
     expect(() =>
       parseIssueDependencyContract(
         `\`\`\`yaml\n# helix-issue-dependency.v1\ndepends_on: []\nblocks: []\nplan_id: PLAN-L7-1-one\nplan_ids: [PLAN-L7-2-two]\n\`\`\``,
