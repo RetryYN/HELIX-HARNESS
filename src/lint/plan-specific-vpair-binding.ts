@@ -64,6 +64,7 @@ export interface PlanSpecificVpairPlan {
   pair_artifact: unknown;
   verification_bindings?: unknown;
   generates?: unknown;
+  modifies?: unknown;
   resolves_authority?: unknown;
   review_evidence?: unknown;
   title?: unknown;
@@ -146,7 +147,7 @@ function canonicalizeSemanticValue(value: unknown, key = ""): unknown {
   if (typeof value === "string") return value.normalize("NFC");
   if (Array.isArray(value)) {
     const normalized = value.map((entry) => canonicalizeSemanticValue(entry));
-    if (key === "generates")
+    if (key === "generates" || key === "modifies")
       return normalized.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
     if (key === "requires" || key === "references")
       return normalized.sort((a, b) => String(a).localeCompare(String(b)));
@@ -519,10 +520,10 @@ function decodeBinding(raw: unknown): VerificationBinding | null {
   return record as unknown as VerificationBinding;
 }
 
-function generatedTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
-  if (!Array.isArray(plan.generates)) return new Set();
+function testPaths(plan: PlanSpecificVpairPlan, field: "generates" | "modifies"): Set<string> {
+  const declared = Array.isArray(plan[field]) ? plan[field] : [];
   return new Set(
-    plan.generates.flatMap((raw) => {
+    declared.flatMap((raw) => {
       if (!raw || typeof raw !== "object" || Array.isArray(raw)) return [];
       const item = raw as Record<string, unknown>;
       return item.artifact_type === "test_code" && typeof item.artifact_path === "string"
@@ -530,6 +531,14 @@ function generatedTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
         : [];
     }),
   );
+}
+
+function generatedTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
+  return testPaths(plan, "generates");
+}
+
+function declaredTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
+  return new Set([...generatedTestPaths(plan), ...testPaths(plan, "modifies")]);
 }
 
 function validateAuthority(input: {
@@ -713,6 +722,7 @@ export function analyzePlanSpecificVpairBindings(
     const valid = bindings.filter((entry): entry is VerificationBinding => entry !== null);
     const seen = new Set<string>();
     const generated = generatedTestPaths(plan);
+    const declared = declaredTestPaths(plan);
     const boundTestPaths = new Set(valid.map((entry) => entry.test_path));
     for (const generatedPath of generated) {
       if (!boundTestPaths.has(generatedPath))
@@ -754,7 +764,7 @@ export function analyzePlanSpecificVpairBindings(
           ),
         );
       }
-      if (!generated.has(binding.test_path))
+      if (!declared.has(binding.test_path))
         rawFindings.push(finding(planId, "test_not_generated", binding.test_path));
       const evidence = input.testFiles.get(binding.test_path);
       if (!evidence?.exists || !evidence.regular || evidence.symlink || !evidence.insideRepo) {

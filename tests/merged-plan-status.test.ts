@@ -167,6 +167,31 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
     );
   }
 
+  function writePlanWithModification(
+    root: string,
+    name: string,
+    status: string,
+    srcPath: string,
+  ): void {
+    writeFileSync(
+      join(root, "docs", "plans", name),
+      [
+        "---",
+        `plan_id: ${name.replace(/\.md$/, "")}`,
+        `status: ${status}`,
+        "kind: impl",
+        "modifies:",
+        `  - artifact_path: ${srcPath}`,
+        "    artifact_type: source_module",
+        "---",
+        "",
+        "body",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+  }
+
   it("detects a draft PLAN whose generated src exists on disk (merged)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-"));
     try {
@@ -186,6 +211,29 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
       const input = loadMergedPlanStatusInput(root);
       const merged = input.plans.find((p) => p.planId === "PLAN-TEST-90-merged");
       expect(merged?.mergedArtifacts).toContain("src/merged.ts");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("does not treat an existing source listed under modifies as a new merged deliverable", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-modifies-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "src"), { recursive: true });
+      writeFileSync(join(root, "src", "existing.ts"), "export const x = 1;\n", "utf8");
+      writePlanWithModification(
+        root,
+        "PLAN-TEST-855-modifies.md",
+        "draft",
+        "src/existing.ts",
+      );
+
+      const result = checkMergedPlanStatus(root);
+      expect(result.ok).toBe(true);
+      const input = loadMergedPlanStatusInput(root);
+      const plan = input.plans.find((p) => p.planId === "PLAN-TEST-855-modifies");
+      expect(plan?.mergedArtifacts).toEqual([]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
