@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-IMETA-WF-003が既存|| true専用regexでは|| :をfalse negativeとしてfailする"
 red_at: "2026-08-24T20:29:59Z"
 green_at: "2026-08-24T20:30:11Z"
-mutation_oracle_evidence: "tests/issue-metadata-audit-workflow.test.ts のU-IMETA-WF-003へ|| :、; true、set +eの3変異をseedし、既存regexで1 failed、拡張後3 passedを実測した"
+mutation_oracle_evidence: "tests/issue-metadata-audit-workflow.test.ts のU-IMETA-WF-003へ|| :、|| :;、|| true;、; true、set +eの5変異をseedし、旧regexのfalse negativeと初回拡張の|| true;退行を捕捉し、修正後5 passedを実測した"
 complexity_effect: net_neutral
 complexity_justification: "既存pure oracleのregexをAC exact setへ拡張するtest-only slice"
 removal_trigger: "workflow commandをtyped argvへ移行しshell fallback構文が表現不能になった時"

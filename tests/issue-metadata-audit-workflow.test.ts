@@ -77,6 +77,8 @@ describe("Issue metadata scheduled audit workflow", () => {
   it("U-IMETA-WF-003: shellの代表的な失敗握り潰し構文を個別に拒否する", () => {
     const mutants = [
       "--json || :",
+      "--json || :;",
+      "--json || true;",
       "--json; true",
       "set +e\n          npx --no-install tsx src/cli.ts github issue-metadata-audit --json",
     ];
@@ -92,6 +94,6 @@ function isFailOpenContinueOnError(value: unknown): boolean {
 function hasFailOpenShellFallback(value: unknown): boolean {
   return (
     typeof value === "string" &&
-    /(?:\|\|\s*(?:true\b|:)(?=\s|$)|;\s*true\b|(?:^|\n)\s*set\s+\+e(?:\s|$))/i.test(value)
+    /(?:\|\|\s*(?:true\b|:(?![\w-]))|;\s*true\b|(?:^|\n)\s*set\s+\+e(?:\s|$))/i.test(value)
   );
 }
