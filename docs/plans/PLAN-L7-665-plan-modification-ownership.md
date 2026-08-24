@@ -64,6 +64,7 @@ modifies:
   - { artifact_path: tests/relation-graph.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
 dependencies:
   parent: null
   requires: []
