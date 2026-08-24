@@ -29,9 +29,9 @@ describe("既存artifact修正sliceのPLAN所有権", () => {
       generatesArtifactTypes: ["markdown_doc"],
       modifiesArtifactTypes: ["test_code"],
     };
-    expect(analyzePlanDescent([descentDoc], { recorded: null, grandfathered: [] }).newViolations).toEqual(
-      [],
-    );
+    expect(
+      analyzePlanDescent([descentDoc], { recorded: null, grandfathered: [] }).newViolations,
+    ).toEqual([]);
 
     const source = `// ${planId}\nimport { it } from "vitest";\nit("U-PLANMOD-001: existing test", () => {});\n`;
     const result = analyzePlanSpecificVpairBindings({
@@ -42,12 +42,19 @@ describe("既存artifact修正sliceのPLAN所有権", () => {
           status: "draft",
           parent_design: parentDesign,
           pair_artifact: pairArtifact,
-          verification_bindings: [{ parent_design: parentDesign, oracle_id: "U-PLANMOD-001", test_path: testPath }],
+          verification_bindings: [
+            { parent_design: parentDesign, oracle_id: "U-PLANMOD-001", test_path: testPath },
+          ],
           generates: [],
           modifies: [{ artifact_path: testPath, artifact_type: "test_code" }],
         },
       ],
-      pairDocuments: new Map([[pairArtifact, `| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| U-PLANMOD-001 | test | 反例 | \`${testPath}\` |`]]),
+      pairDocuments: new Map([
+        [
+          pairArtifact,
+          `| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| U-PLANMOD-001 | test | 反例 | \`${testPath}\` |`,
+        ],
+      ]),
       testFiles: new Map([
         [
           testPath,

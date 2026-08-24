@@ -222,12 +222,7 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       mkdirSync(join(root, "src"), { recursive: true });
       writeFileSync(join(root, "src", "existing.ts"), "export const x = 1;\n", "utf8");
-      writePlanWithModification(
-        root,
-        "PLAN-TEST-855-modifies.md",
-        "draft",
-        "src/existing.ts",
-      );
+      writePlanWithModification(root, "PLAN-TEST-855-modifies.md", "draft", "src/existing.ts");
 
       const result = checkMergedPlanStatus(root);
       expect(result.ok).toBe(true);

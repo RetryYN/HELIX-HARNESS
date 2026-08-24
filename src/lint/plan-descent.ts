@@ -228,7 +228,10 @@ function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
       detail: doc.pairArtifact,
     });
   }
-  if (!doc.generatesArtifactTypes.includes("test_code") && !doc.modifiesArtifactTypes.includes("test_code")) {
+  if (
+    !doc.generatesArtifactTypes.includes("test_code") &&
+    !doc.modifiesArtifactTypes.includes("test_code")
+  ) {
     // 新設はgenerates、既存test修正はmodifiesへ接続し、検証資産に残らない実装を拒否する。
     violations.push({
       planId: doc.planId,
