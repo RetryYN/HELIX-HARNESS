@@ -2,9 +2,9 @@
 title: "project hook physical identity adapter 機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-08-24
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-662-project-hook-physical-adapter.md
 parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md
