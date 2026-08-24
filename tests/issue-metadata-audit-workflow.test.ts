@@ -2,7 +2,8 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
 
-// PLAN-L7-663-issue-metadata-scheduled-audit / U-IMETA-WF-001
+// PLAN-L7-663-issue-metadata-scheduled-audit / PLAN-L7-670-issue-metadata-fail-close-oracle
+// U-IMETA-WF-001 / U-IMETA-WF-003
 const WORKFLOW_PATH = ".github/workflows/issue-metadata-audit.yml";
 
 describe("Issue metadata scheduled audit workflow", () => {
@@ -72,6 +73,15 @@ describe("Issue metadata scheduled audit workflow", () => {
     );
     expect(hasFailOpenShellFallback(auditStep?.run)).toBe(true);
   });
+
+  it("U-IMETA-WF-003: shellの代表的な失敗握り潰し構文を個別に拒否する", () => {
+    const mutants = [
+      "--json || :",
+      "--json; true",
+      "set +e\n          npx --no-install tsx src/cli.ts github issue-metadata-audit --json",
+    ];
+    for (const mutant of mutants) expect(hasFailOpenShellFallback(mutant)).toBe(true);
+  });
 });
 
 function isFailOpenContinueOnError(value: unknown): boolean {
@@ -80,5 +90,8 @@ function isFailOpenContinueOnError(value: unknown): boolean {
 }
 
 function hasFailOpenShellFallback(value: unknown): boolean {
-  return typeof value === "string" && /\|\|\s*true\b/i.test(value);
+  return (
+    typeof value === "string" &&
+    /(?:\|\|\s*(?:true\b|:)(?=\s|$)|;\s*true\b|(?:^|\n)\s*set\s+\+e(?:\s|$))/i.test(value)
+  );
 }

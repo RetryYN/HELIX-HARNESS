@@ -116,6 +116,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-IHIER-009 | PLAN binding表現の曖昧性 | scalar `plan_id`と`plan_ids`集合の同時指定をfail-closeし、暗黙のPLAN帰属推測を許可しない | `tests/issue-hierarchy.test.ts` |
 | U-IMETA-001 | GitHub Issue metadata audit | type/lifecycle欠落と48時間以上unlabeled openを拒否し、closedと閾値未満をstale findingへ誤算入しない | `tests/issue-metadata-audit.test.ts` |
 | U-IMETA-WF-001 | Issue metadata scheduled audit workflow | schedule/workflow_dispatchだけでread-only監査を起動し、PR required gateへ混載せず、finding・CLI失敗・権限不足をsuccessへ変換しない | `tests/issue-metadata-audit-workflow.test.ts` |
+| U-IMETA-WF-003 | Issue metadata audit fail-open shell oracle | 論理OR＋`true`／論理OR＋`:`／`; true`／`set +e`を個別mutationで拒否する | `tests/issue-metadata-audit-workflow.test.ts` |
 | U-CPRCONV-004 | canonical DB receipt束縛 | approve receiptをrepository-owned verifierのschema、projection/replay、checkpoint/replay、receipt digestへ束縛し、caller suppliedのad-hoc digestと非収束を拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-006 | required check effective state | `gh pr checks --required`のapp-bound latest effective集合だけを採用し、pass以外、0件、取得不能を拒否する | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-007 | runtime独立性の対称化 | author=claude / reviewer=codexの向きでもreceiptを構築・検証・merge可能にする（PLAN-RECOVERY-41） | `tests/claude-pr-convergence.test.ts` |
