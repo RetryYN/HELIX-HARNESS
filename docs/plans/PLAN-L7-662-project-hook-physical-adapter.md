@@ -63,31 +63,31 @@ review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
-    reviewed_at: "2026-08-24T08:12:00Z"
-    tests_green_at: "2026-08-24T08:10:21Z"
+    reviewed_at: "2026-08-24T07:37:11Z"
+    tests_green_at: "2026-08-24T07:35:47Z"
     verdict: approve
     worker_model: "codex:gpt-5.6-sol"
     reviewer_model: "claude-opus-5"
     reviewed_head_sha: "4588f34b91dda85a76bb61cafa148d6ad3319af7"
-    scope: "PR #979 exact HEAD 4588f34b91dda85a76bb61cafa148d6ad3319af7をClaude Codeがdetached worktreeでread-only検収し、approve / blocker 0とした。design-catalog digest e4a1d721…がtest／governance doc／lint定数の3面と一致すること、4 seeded mutationのkill／等価判定、targeted 6 suite 162 passed、tsc exit 0、Biome cleanを実測した。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/979#issuecomment-5392104747。sealed receiptは run:32699042252:attempt:2:success で発行済みであり、receipt digestはこのPLANへ記録しない"
+    scope: "PR #979 sealed receipt run:32699042252:attempt:2:success と同一の review。exact HEAD 4588f34b91dda85a76bb61cafa148d6ad3319af7をClaude Codeがdetached worktreeでread-only検収し、approve / blocker 0とした。design-catalog digest e4a1d721…がtest／governance doc／lint定数の3面と一致すること、4 seeded mutationのkill／等価判定、targeted 6 suite 162 passed、tsc exit 0、Biome cleanを実測した。canonical comment: https://github.com/RetryYN/HELIX-HARNESS/pull/979#issuecomment-5392104747。sealed receiptは run:32699042252:attempt:2:success で発行済みであり、receipt digestはこのPLANへ記録しない"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/project-hook-physical-adapter.test.ts --reporter=json"
+        command: "npx --no-install vitest run --project fast tests/project-hook-physical-adapter.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/digest.test.ts tests/outstanding.test.ts tests/plan-lint.test.ts tests/design-reality-binding.test.ts"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-24T08:10:21Z"
+        completed_at: "2026-08-24T07:35:47Z"
         evidence_path: tests/project-hook-physical-adapter.test.ts
-        output_digest: "sha256:90989c9a7411eb826224caf5d3a75b54897c1b5e41680dfd1db5cd2246bf9ba7"
-        result: "1 test file / 6 tests passed"
+        output_digest: "sha256:1e44826e8cc6dd555caf286c9fd1e4e39be2b241ca90f40b1b24043976dc3207"
+        result: "6 test files / 162 tests passed"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-24T08:12:00Z"
+  assessed_at: "2026-08-24T07:37:11Z"
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-24T08:12:00Z"
-    evidence_digest: "sha256:e6de5e2952ead2090a07ea377123b9f75a95db38e71a1df5c0907bfe401dc3ed"
+    reviewed_at: "2026-08-24T07:37:11Z"
+    evidence_digest: "sha256:2ed01bfc4da3ea2017b2d9a374720b35be3a52f24c7272fec74212c2d81e604f"
   entries: []
 dependencies:
   parent: docs/plans/PLAN-L7-651-project-hook-authority-resolver.md
