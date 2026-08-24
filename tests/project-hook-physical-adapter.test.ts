@@ -12,6 +12,7 @@ import {
 } from "../src/runtime/project-hook-physical-adapter";
 
 // PLAN-L7-662-project-hook-physical-adapter
+// PLAN-L7-664-project-hook-physical-identity-validation
 
 const head = "a".repeat(40);
 function fixtureDeps(
@@ -199,5 +200,37 @@ describe("project hook physical adapter", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("U-CNWHOOKPHYS-007: 退化したdevice／inodeと型外のstat値をfail-closeする", () => {
+    const invalidStats = [
+      { dev: 0, ino: 0 },
+      { dev: 11, ino: 0 },
+      { dev: -1, ino: 22 },
+      { dev: 11, ino: -1 },
+      { dev: Number.NaN, ino: 22 },
+      { dev: 11, ino: 22.5 },
+      { dev: undefined, ino: 22 },
+      { dev: null, ino: 22 },
+      { dev: Number.MAX_SAFE_INTEGER + 1, ino: 22 },
+      { dev: 11n, ino: 0n },
+      { dev: Symbol("device"), ino: 22 },
+      { dev: 11, ino: Symbol("inode") },
+    ] as unknown as Array<{ dev: number | bigint; ino: number | bigint }>;
+
+    for (const stat of invalidStats) {
+      expect(() =>
+        captureProjectHookAuthorityInput(request(), fixtureDeps({ stat: () => stat })),
+      ).toThrow(UnsupportedPhysicalIdentityError);
+    }
+
+    const zeroDevice = captureProjectHookAuthorityInput(
+      request(),
+      fixtureDeps({ stat: () => ({ dev: 0, ino: 1 }) }),
+    );
+    expect(zeroDevice.execution_root.filesystem_identity).toMatchObject({
+      device_id: "0",
+      file_id: "1",
+    });
   });
 });
