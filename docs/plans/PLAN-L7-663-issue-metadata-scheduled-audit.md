@@ -56,3 +56,5 @@ agent_slots:
 既存の `auditIssueMetadata` と `helix github issue-metadata-audit` を、GitHub writeなしの独立workflowへ接続する。PRごとのrequired gateには全open Issueの監査を混載せず、scheduled / workflow_dispatchで全体状態をsurfaceする。
 
 live Issueに既存のmetadata findingが残る間はworkflowをfailureとして可視化し、findingをsuccessへ変換しない。backfillの完了は別の#633終端条件で扱い、この配線sliceのmerge可否やPR required gateへ暗黙に混載しない。
+
+このworkflowをPR／Issueのworkflow identity契約へ接続する場合は、identity marker直後に単一の`json` fenced blockを置く。本文の宣言値を機械parserが一意に再取得できる形式を契約化し、自由記述や未構造化JSONを正本として扱わない。
