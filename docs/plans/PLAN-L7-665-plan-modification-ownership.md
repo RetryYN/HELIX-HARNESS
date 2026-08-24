@@ -57,6 +57,7 @@ modifies:
   - { artifact_path: src/graph/loader.ts, artifact_type: source_module }
   - { artifact_path: src/lint/relation-graph-types.ts, artifact_type: source_module }
   - { artifact_path: src/lint/relation-graph.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/frontmatter.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-descent.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
