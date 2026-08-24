@@ -4,7 +4,7 @@ title: "PLAN-L7-663 (add-impl): Issue metadata live監査のscheduled gate接続
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals: ["po_directive:Issue起票metadataのlive監査を常時強制する"]
