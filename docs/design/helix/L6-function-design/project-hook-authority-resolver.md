@@ -92,7 +92,7 @@ GitHub writeを持たないpure projectorとする。actual consumer wiringは�
 }
 ```
 
-## Assignment kernel adapter
+## Assignment kernel接続
 
 `createAssignmentProjectHookAuthorityProvider`はControl Planeの明示Assignment snapshotを
 `ProjectHookCaptureRequest`へ一方向変換する。snapshotはassignment ID、専用worktree、loader/session root、

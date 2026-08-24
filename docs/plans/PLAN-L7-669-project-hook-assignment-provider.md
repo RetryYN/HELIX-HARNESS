@@ -67,7 +67,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — kernel境界とauthority監査" }
 ---
 
-# Assignment project hook authority provider
+# Assignment project hook authority接続
 
 ## 工程表
 
@@ -77,7 +77,7 @@ agent_slots:
 | 2 | fail-close | unavailable／malformed／capture errorを同一failureへ閉じる |
 | 3 | fallback反証 | primary cwd／env／origin mainを読まない |
 | 4 | targeted／typecheck／Biome | 全green |
-| 5 | Claude exact-HEAD review | blocker 0 |
+| 5 | Claude同一HEAD検収 | blocker 0 |
 
 本sliceは既存Assignment kernelを再実装しない。kernel reader portから受けたsnapshotだけを変換し、dispatch実行、
 hook source切替、Luna spawn canaryは後続read-afterへ分離する。
