@@ -42,6 +42,7 @@ generates:
   - { artifact_path: .github/workflows/issue-metadata-audit.yml, artifact_type: source_module }
   - { artifact_path: tests/issue-metadata-audit-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L7-555-issue-metadata-enforcement.md
   requires: [docs/plans/PLAN-L7-555-issue-metadata-enforcement.md]
