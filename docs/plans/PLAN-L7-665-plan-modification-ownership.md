@@ -34,6 +34,7 @@ review_evidence:
     verdict: approve
     worker_model: codex
     reviewer_model: claude-opus-5
+    reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
     reviewed_head_sha: f80984f5da8554a92d18bd09835b59d13ec82ab0
     scope: "PR #989 HEAD f80984f5da8554a92d18bd09835b59d13ec82ab0をClaude Codeがread-only独立検収し、published base不在pathのmodifies拒否、violation配線、seeded mutation 3件のkill、復元後typecheckを実測して内容blocker 0と判定した。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/989#issuecomment-5397322229"
     green_commands:
@@ -53,7 +54,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-24T15:17:18Z"
-    evidence_digest: "sha256:1a1fb729a29e2ee715e12cbf05b4ef920f4a8fb5919edc0dd2377f2cec1be76e"
+    evidence_digest: "sha256:17865ade5330a35eef53135bcd31aeb5b9b77ddcbf3b59958d707f43e00b6aef"
   entries: []
 contract_preconditions: "generatesが新規生成所有、既存差分は別のownership fieldを必要とする"
 contract_postconditions: "modifiesを用いる既存artifact修正PLANがdraftのreview前にmerged-plan-statusで停止せず、V-pair traceを保持する"
