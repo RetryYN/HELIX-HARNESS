@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-666-issue-dependency-contract-attribution
-title: "PLAN-L7-666 (add-impl): Issue依存契約の採用判定と失敗帰属を収束する"
-kind: add-impl
+title: "PLAN-L7-666 (impl): Issue依存契約の採用判定と失敗帰属を収束する"
+kind: impl
 layer: L7
 drive: agent
 status: draft
@@ -45,8 +45,10 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-666-issue-dependency-contract-attribution.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/issue-hierarchy.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
