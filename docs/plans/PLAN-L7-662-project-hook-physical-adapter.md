@@ -4,7 +4,7 @@ title: "PLAN-L7-662 (impl): project hook physical identity adapterを実装す�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #895 pure resolverへ実filesystem identityを供給する"
 created: 2026-08-22
-updated: 2026-08-22
+updated: 2026-08-24
 owner: Codex / TL
 github_issue_id: 895
 behavior_contract_id: CNW-HOOK-PHYSICAL-ADAPTER-001
@@ -47,6 +47,27 @@ agent_slots:
   - { role: se, slot_label: "SE — read-only filesystem／Git identity adapter実装" }
   - { role: qa, slot_label: "QA — symlink／worktree／unsupported platform oracle" }
   - { role: tl, slot_label: "TL — pure resolver境界とhost authority監査" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewer_session_id: "dc96b0e4-d8a6-4ba0-b7e9-a8e3c0d6ce8a"
+    reviewed_head_sha: 4588f34b91dda85a76bb61cafa148d6ad3319af7
+    tests_green_at: "2026-08-24T07:37:11Z"
+    reviewed_at: "2026-08-24T07:37:11Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    scope: "PR #979のcurrent HEAD 4588f34b91dda85a76bb61cafa148d6ad3319af7について、Claude Opusの独立検収receipt（https://github.com/RetryYN/HELIX-HARNESS/pull/979#issuecomment-5392111279）を束縛する。adapterのread-only境界、observed／authority digest分離、unsupported platform fail-close、targeted mutation結果を確認した。M2のdead pathは#983へ分離済みで、本PLANの実装sliceのblockerではない。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32699042252 --repo RetryYN/HELIX-HARNESS --json databaseId,status,conclusion,headSha,event"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-24T07:37:11Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:0e555b02701154b3ff2ae8ceaa6a9d1784da965ba863bb4ffc22b0b6a10e2977"
+        result: "run 32699042252 / attempt 2 / success / reviewed HEAD 4588f34b91dda85a76bb61cafa148d6ad3319af7"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-662-project-hook-physical-adapter.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-physical-adapter.md, artifact_type: design_doc }
