@@ -2,7 +2,7 @@
 title: "project hook physical identity validation 機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-24
 updated: 2026-08-24
 owner: Codex / TL
