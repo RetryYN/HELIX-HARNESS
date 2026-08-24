@@ -30,6 +30,8 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-resol
 | U-CNWHOOKPROV-001 | 明示input転送 | providerのinputを変更せずpure resolverとbyte-equivalentなresolutionを返す | `tests/project-hook-authority-provider.test.ts` |
 | U-CNWHOOKPROV-002 | input取得不能 | 既存stale/foreign failure、固定pointer、side effect全0へ決定的に閉じる | `tests/project-hook-authority-provider.test.ts` |
 | U-CNWHOOKPROV-003 | provider境界 | throw／unknown field付きresultをcwd等へfallbackせず同一failureへ閉じ、例外本文を露出しない | `tests/project-hook-authority-provider.test.ts` |
+| U-CNWHOOKPROJ-001 | success projection | receipt canonical bytesをSessionStart／doctor／status／dispatchのexact 4 surfaceへbyte-equivalentに投影する | `tests/project-hook-authority-surface-projector.test.ts` |
+| U-CNWHOOKPROJ-002 | failure projection | failure exact bytesを4 surfaceへ投影し、repair field追加やinput mutationを拒否する | `tests/project-hook-authority-surface-projector.test.ts` |
 
 本sliceはpure resolverだけを実行する。unsupported platform capture、process timeout、notification handoff、terminal result、
 4 surface wiringのoracleは後続runtime pairへ分離し、未実装能力をgreenへ数えない。
