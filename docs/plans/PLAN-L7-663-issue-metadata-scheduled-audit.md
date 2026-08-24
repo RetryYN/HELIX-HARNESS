@@ -5,10 +5,9 @@ kind: add-impl
 layer: L7
 drive: agent
 status: draft
-route_mode: add-feature
 backfill_state: pending_reverse
 completion_claim_allowed: false
-entry_signals: ["issue:633", "po_directive:Issue起票metadataのlive監査を常時強制する"]
+entry_signals: ["po_directive:Issue起票metadataのlive監査を常時強制する"]
 created: 2026-08-24
 updated: 2026-08-24
 owner: Codex / TL
@@ -21,6 +20,12 @@ refactor_step: introduce_adapter
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: adapter
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
+  target_axis: workflow_model
+  target_id: ADD_FEATURE
 contract_preconditions: "GitHub tokenでIssue read権限を持ち、repository名を明示できる"
 contract_postconditions: "schedule/workflow_dispatchでlive Issue metadata監査が実行され、finding時にworkflowがfailする"
 contract_invariants: "PR required gateへ全Issue監査を混載せず、Issue metadataを推測補完せず、GitHub writeを行わない"
@@ -36,6 +41,7 @@ verification_bindings:
 generates:
   - { artifact_path: .github/workflows/issue-metadata-audit.yml, artifact_type: source_module }
   - { artifact_path: tests/issue-metadata-audit-workflow.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
 dependencies:
   parent: docs/plans/PLAN-L7-555-issue-metadata-enforcement.md
   requires: [docs/plans/PLAN-L7-555-issue-metadata-enforcement.md]
