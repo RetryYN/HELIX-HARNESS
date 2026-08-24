@@ -211,8 +211,10 @@ describe("project hook physical adapter", () => {
       { dev: Number.NaN, ino: 22 },
       { dev: 11, ino: 22.5 },
       { dev: undefined, ino: 22 },
+      { dev: null, ino: 22 },
+      { dev: Number.MAX_SAFE_INTEGER + 1, ino: 22 },
       { dev: 11n, ino: 0n },
-    ] as Array<{ dev: number | bigint; ino: number | bigint }>;
+    ] as unknown as Array<{ dev: number | bigint; ino: number | bigint }>;
 
     for (const stat of invalidStats) {
       expect(() =>
