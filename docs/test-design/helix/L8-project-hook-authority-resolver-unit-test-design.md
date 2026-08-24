@@ -32,6 +32,9 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-resol
 | U-CNWHOOKPROV-003 | provider境界 | throw／unknown field付きresultをcwd等へfallbackせず同一failureへ閉じ、例外本文を露出しない | `tests/project-hook-authority-provider.test.ts` |
 | U-CNWHOOKPROJ-001 | success projection | receipt canonical bytesをSessionStart／doctor／status／dispatchのexact 4 surfaceへbyte-equivalentに投影する | `tests/project-hook-authority-surface-projector.test.ts` |
 | U-CNWHOOKPROJ-002 | failure projection | failure exact bytesを4 surfaceへ投影し、repair field追加やinput mutationを拒否する | `tests/project-hook-authority-surface-projector.test.ts` |
+| U-CNWHOOKASSIGN-001 | Assignment projection | 明示snapshotをassignment binding／root／HEADへexact変換する | `tests/project-hook-assignment-provider.test.ts` |
+| U-CNWHOOKASSIGN-002 | malformed snapshot | unavailable／empty lease／provider throwを同じunavailable resultへ閉じる | `tests/project-hook-assignment-provider.test.ts` |
+| U-CNWHOOKASSIGN-003 | no fallback | snapshot取得不能時にGit／filesystemを呼ばずprimary rootを推測しない | `tests/project-hook-assignment-provider.test.ts` |
 
 本sliceはpure resolverだけを実行する。unsupported platform capture、process timeout、notification handoff、terminal result、
 4 surface wiringのoracleは後続runtime pairへ分離し、未実装能力をgreenへ数えない。

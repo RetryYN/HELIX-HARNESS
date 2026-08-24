@@ -91,3 +91,11 @@ GitHub writeを持たないpure projectorとする。actual consumer wiringは�
   ]
 }
 ```
+
+## Assignment kernel adapter
+
+`createAssignmentProjectHookAuthorityProvider`はControl Planeの明示Assignment snapshotを
+`ProjectHookCaptureRequest`へ一方向変換する。snapshotはassignment ID、専用worktree、loader/session root、
+branch、candidate/current HEAD、lease/fence、assignment root digestをexactに持つ。取得不能、schema不正、
+physical capture失敗は既存`authority_input_unavailable` reasonへ閉じ、cwd、env、primary tree、origin/mainから
+補完しない。既存Assignment kernelのstate machineやlease更新は本adapterの責務外とする。
