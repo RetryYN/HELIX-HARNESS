@@ -13,6 +13,44 @@ related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
 
 # typed skill applicability runtime routing詳細設計
 
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "skill-applicability-value-object",
+      "classification": "existing_runtime",
+      "artifact_path": "src/schema/skill-applicability-registry.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "parseSkillApplicability",
+      "source_digest": "sha256:c6ad8c561ad6308dd8e9ff15382eade4bf60474487c41f7999e7a1f43b71c6ee",
+      "current_authority": true
+    },
+    {
+      "asset_id": "skill-assignment-analyzer",
+      "classification": "existing_runtime",
+      "artifact_path": "src/lint/skill-assignment.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "analyzeSkillAssignments",
+      "source_digest": "sha256:8dac5783e5f8eac45ca453c6fb3a3f1cdd74d9819ef666f1967697c3f545904c",
+      "current_authority": true
+    },
+    {
+      "asset_id": "skill-scaffold-generator",
+      "classification": "existing_runtime",
+      "artifact_path": "src/skill-engine/scaffold.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "scaffoldSkill",
+      "source_digest": "sha256:f2b9d2c8d762db21b75328c241ad627ae5f6ed3d004b79201fc1b4b1a063f90a",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```
+
 ## 0. authority変更
 
 本設計は、旧4 field固定案の`development_styles`、`case_driven_models`、`change_routes`、
@@ -70,6 +108,10 @@ applies_to:
 旧`drive_models`はcompatibility adapterだけが読む。一意変換可能tokenはtyped pairへ一方向変換し、
 `source_field`、`normalized_token`、warningを残す。`Forward`、`Scrum`は曖昧として拒否し、unknown tokenも
 推測しない。legacy-only skillは#322のbackfill完了までcurrent recommendation候補へ昇格しない。
+
+`helix skill create`のcurrent入力は`--applicable target_axis:target_id`と任意の`--exclude`である。
+`--drive-models`はcompatibility input-onlyとして一意tokenだけを変換し、typed入力との併記、`Forward`／`Scrum`、
+unknown tokenをfail-closeする。scaffoldは変換元tokenをmetadataへ残さずtyped pairだけを生成する。
 
 ## 4. DB projection
 
