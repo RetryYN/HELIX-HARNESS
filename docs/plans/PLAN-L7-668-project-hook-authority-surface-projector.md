@@ -4,7 +4,7 @@ title: "PLAN-L7-668 (add-impl): project hook authorityを4 surfaceへ同一bytes
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 workflow_identity:
@@ -36,6 +36,36 @@ red_test: "U-CNWHOOKPROJ-001/002がsurface projector module不在でsuite load f
 red_at: "2026-08-24T19:56:37Z"
 green_at: "2026-08-24T19:57:26Z"
 mutation_oracle_evidence: "src/runtime/project-hook-authority-surface-projector.ts の dispatch bytesだけへ改行を付加する変異を実測し、tests/project-hook-authority-surface-projector.test.ts の U-CNWHOOKPROJ-001/002 が2件ともSet不一致でfailしてkillした"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-24T23:17:58Z"
+    tests_green_at: "2026-08-24T23:16:31Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "c7895aff-da7e-47a0-944a-36c68bb4f251"
+    reviewed_head_sha: 1fafd3afd2a8c62e09b89ee0a226c9551c1a362f
+    scope: "PR #1007 HEAD 1fafd3afd2a8c62e09b89ee0a226c9551c1a362fをClaude Codeが独立検収し、harness-check run 32787104439、4 surface exact-byte投影、DB projection／replay、checkpoint／replayの一致を実測してblocker 0と判定した。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/1007#issuecomment-5402782985"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32787104439 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-24T23:16:31Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:247e82cda050d25114f1a4cbd31eec9ac10322217cf23fc3775f7098b2d9cfdd"
+        result: "completed / success / HEAD 1fafd3afd2a8c62e09b89ee0a226c9551c1a362f"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-24T23:17:58Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-24T23:17:58Z"
+    evidence_digest: "sha256:0801a90d5faa94b17c782e71c24f54c4254e0f06c1fd60759ba2c7e18d121ae1"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "4 consumerの個別serializationを単一pure projectorへ収束する"
 removal_trigger: "4 surfaceが同一typed envelopeをnative transportで共有しprojector consumerが0になった時"
