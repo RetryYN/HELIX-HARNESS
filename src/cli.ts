@@ -13740,7 +13740,6 @@ github
         contractFindings = collected.findings;
         const hierarchyNodes = collectIssueHierarchyContracts(issues);
         alignmentReport = auditIssueHierarchyDependencyAlignment(hierarchyNodes, nodes);
-        migrationCandidates = projectIssueDependencyMigrationCandidates(hierarchyNodes, nodes);
         const governedNumbers = new Set(nodes.map((node) => node.number));
         plans = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
@@ -13753,6 +13752,23 @@ github
             );
             return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
           });
+        const hierarchyNumbers = new Set(hierarchyNodes.map((node) => node.number));
+        const migrationPlans = readdirSync(join(process.cwd(), "docs", "plans"))
+          .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
+          .flatMap((name) => {
+            const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
+            const frontmatter = content.match(/^---\s*\n([\s\S]*?)\n---/)?.[1] ?? "";
+            const planId = frontmatter.match(/^plan_id:\s*["']?([^\s"']+)/m)?.[1];
+            const githubIssueId = Number(
+              frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
+            );
+            return planId && hierarchyNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
+          });
+        migrationCandidates = projectIssueDependencyMigrationCandidates(
+          hierarchyNodes,
+          nodes,
+          migrationPlans,
+        );
       }
       const dependencyReport = auditIssueDependencies(nodes, plans, {
         // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.

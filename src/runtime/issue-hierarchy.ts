@@ -120,8 +120,16 @@ export interface IssueDependencyMigrationCandidate {
 export function projectIssueDependencyMigrationCandidates(
   hierarchyNodes: readonly IssueHierarchyNode[],
   dependencyNodes: readonly IssueDependencyNode[],
+  plans: readonly IssuePlanBinding[] = [],
 ): IssueDependencyMigrationCandidate[] {
   const dependencyByNumber = new Map(dependencyNodes.map((node) => [node.number, node]));
+  const planIdsByIssue = new Map<number, string[]>();
+  for (const plan of plans) {
+    planIdsByIssue.set(
+      plan.githubIssueId,
+      uniqueStrings([...(planIdsByIssue.get(plan.githubIssueId) ?? []), plan.planId]),
+    );
+  }
   return hierarchyNodes
     .filter(
       (node) =>
@@ -138,13 +146,23 @@ export function projectIssueDependencyMigrationCandidates(
       ) {
         return [];
       }
-      const planIds = current?.planIds === undefined ? undefined : uniqueStrings(current.planIds);
+      const projectedPlanIds = planIdsByIssue.get(hierarchyNode.number) ?? [];
+      const planId = current
+        ? current.planId
+        : projectedPlanIds.length === 1
+          ? (projectedPlanIds[0] ?? null)
+          : null;
+      const planIds = current?.planIds
+        ? uniqueStrings(current.planIds)
+        : projectedPlanIds.length > 1
+          ? projectedPlanIds
+          : undefined;
       const candidate: IssueDependencyMigrationCandidate = {
         issueNumber: hierarchyNode.number,
         action: current ? "replace" : "add",
         dependsOn,
         blocks,
-        planId: current?.planId ?? null,
+        planId,
         ...(planIds && planIds.length > 0 ? { planIds } : {}),
       };
       return [candidate];

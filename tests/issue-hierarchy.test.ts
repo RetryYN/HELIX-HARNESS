@@ -71,6 +71,7 @@ describe("GitHub Issue dependency projection", () => {
         node({ number: 10, blocks: [30, 20], blockedBy: [5] }),
         node({ number: 20 }),
         node({ number: 30, blockedBy: [10] }),
+        node({ number: 40, blockedBy: [10] }),
       ],
       [
         {
@@ -83,6 +84,7 @@ describe("GitHub Issue dependency projection", () => {
         },
         { number: 30, state: "open", dependsOn: [10], blocks: [], planId: "PLAN-L7-2" },
       ],
+      [{ planId: "PLAN-L7-40", githubIssueId: 40 }],
     );
 
     expect(candidates).toEqual([
@@ -93,6 +95,13 @@ describe("GitHub Issue dependency projection", () => {
         blocks: [20, 30],
         planId: null,
         planIds: ["PLAN-L7-1"],
+      },
+      {
+        issueNumber: 40,
+        action: "add",
+        dependsOn: [10],
+        blocks: [],
+        planId: "PLAN-L7-40",
       },
     ]);
   });
