@@ -126,14 +126,15 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `requirements-ir/manifest.json`
 - 凍結済み基線Requirement JSON root digest: `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`
-- 現行Requirement JSON root digest: `sha256:98cbaf95a78481646bf03631c8c83a98c7de797b4f9b1828bf23149b6adb48d7`
-- 現行refinement contract count: `3`（schema v2のadmission partition。baseline 153/24/72/24は不変）
+- 現行Requirement JSON root digest: `sha256:d997212dc6f8792a7c2c4a85524a7d34bc973b7b7f5327d5d46d483fa82f5816`
+- 現行refinement contract count: `4`（schema v2のadmission partition。baseline 153/24/72/24は不変）
 - Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
-- 生成Markdown view digest: `sha256:6a23f383fda18d4646c59874123ff6ae768b56ae5573bb49c9fa6594849074bc`
+- 生成Markdown view digest: `sha256:add198c5bc876b18e749cbaa67b50af4ea79559c0364b623833cf249a263749f`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:0c8934d2ed831d739b29e15ea611bc8ced6297f38a30b03d188cbc26b22073c6`
-- この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
+- design catalog digest候補: `sha256:984dac5a5606c103a0e71d9ab10870e47feb8baee26a2f3526bbddb205984132`
+- この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録と#1033の
+  System Synthesis L3 requirement登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
