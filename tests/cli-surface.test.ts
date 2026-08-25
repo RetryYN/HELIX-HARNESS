@@ -1,3 +1,4 @@
+// PLAN-L7-672-current-location-summary-typed-output — U-CLSO-001..006
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-007
 // PLAN-L7-656-distribution-lite-profile-bound-package — U-DISTPKG-014
 // PLAN-L7-603-distribution-deterministic-archive
@@ -1967,7 +1968,7 @@ describe("L7 CLI surface closure", () => {
             completion_boundary: expect.any(String),
           }),
           current_location_frontier: expect.objectContaining({
-            schema_version: "current-location-frontier-summary.v1",
+            schema_version: "current-location-frontier-summary.v2",
             frontier_type: expect.any(String),
             commands: expect.objectContaining({
               current_location: "helix current-location --summary-json",
@@ -3110,14 +3111,14 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
-  it("makes a missing persistent current-location projection explicit", () => {
+  it("U-CLSO-002: PLAN-L7-672-current-location-summary-typed-output missing authorityを明示する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-missing-db-"));
     try {
       const run = runCliIn(root, ["current-location", "--from-db", "--summary-json"]);
       expect(run.status, run.stderr || run.stdout).toBe(0);
       const payload = JSON.parse(run.stdout);
       expect(payload).toMatchObject({
-        schema_version: "project-current-location-summary.v1",
+        schema_version: "project-current-location-summary.v2",
         source_clock: null,
         current: {
           layer: null,
@@ -3136,6 +3137,88 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   }, 15_000);
+
+  it("U-CLSO-001: PLAN-L7-672-current-location-summary-typed-output repository current-location routeをtyped identityへ投影する", () => {
+    const run = runCli(["current-location", "--summary-json"]);
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    const payload = JSON.parse(run.stdout);
+
+    expect(payload).toMatchObject({
+      schema_version: "project-current-location-summary.v2",
+      workflow_route: {
+        workflow_identity: {
+          target_axis: "workflow_model",
+          target_id: "RECOVERY",
+        },
+        workflow_identity_receipt: expect.objectContaining({
+          disposition: "converted",
+          emit_legacy_identity: false,
+        }),
+      },
+      current_location_frontier: {
+        schema_version: "current-location-frontier-summary.v2",
+        workflow_identity: {
+          target_axis: "workflow_model",
+          target_id: "RECOVERY",
+        },
+        workflow_route_status: "recovery_required",
+      },
+    });
+    expect(payload).not.toHaveProperty("drive_recommendation");
+    expect(payload).not.toHaveProperty("drive_route");
+    expect(payload.workflow_route).not.toHaveProperty("selected_model");
+    expect(payload.workflow_route).not.toHaveProperty("default_model");
+    expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
+    expect(payload.current_location_frontier).not.toHaveProperty("route_id");
+  }, 45_000);
+
+  it("U-CLSO-003: PLAN-L7-672-current-location-summary-typed-output legacy primary fieldsを出力しない", () => {
+    const run = runCli(["current-location", "--summary-json"]);
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    const payload = JSON.parse(run.stdout);
+
+    expect(payload).not.toHaveProperty("drive_recommendation");
+    expect(payload).not.toHaveProperty("drive_route");
+    expect(payload.workflow_route).not.toHaveProperty("selected_model");
+    expect(payload.workflow_route).not.toHaveProperty("default_model");
+    expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
+    expect(payload.current_location_frontier).not.toHaveProperty("route_id");
+  }, 45_000);
+
+  it("U-CLSO-004: PLAN-L7-672-current-location-summary-typed-output frontierをtyped routeへ揃える", () => {
+    const run = runCli(["current-location", "--summary-json"]);
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    const payload = JSON.parse(run.stdout);
+
+    expect(payload.current_location_frontier).toMatchObject({
+      schema_version: "current-location-frontier-summary.v2",
+      workflow_route_status: expect.any(String),
+      workflow_identity: expect.any(Object),
+      commands: {
+        current_location: "helix current-location --summary-json",
+        workflow_route: "helix current-location --summary-json",
+      },
+    });
+  }, 45_000);
+
+  it("U-CLSO-005: PLAN-L7-672-current-location-summary-typed-output textをtyped routeへ切り替える", () => {
+    const run = runCli(["current-location"]);
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    expect(run.stdout).toContain("workflow-route:");
+    expect(run.stdout).not.toContain("drive=");
+    expect(run.stdout).not.toContain("drive-route:");
+  }, 45_000);
+
+  it("U-CLSO-006: PLAN-L7-672-current-location-summary-typed-output schema v2を固定する", () => {
+    const run = runCli(["current-location", "--summary-json"]);
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    const payload = JSON.parse(run.stdout);
+
+    expect(payload.schema_version).toBe("project-current-location-summary.v2");
+    expect(payload.current_location_frontier.schema_version).toBe(
+      "current-location-frontier-summary.v2",
+    );
+  }, 45_000);
 
   it("exposes Project view current-location and drive recommendation from DB projection", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));
@@ -3377,22 +3460,29 @@ describe("L7 CLI surface closure", () => {
       const summaryFindingCount = summaryPayload.finding_count;
       expect(summaryJson.status).toBe(0);
       expect(summaryPayload).toMatchObject({
-        schema_version: "project-current-location-summary.v1",
+        schema_version: "project-current-location-summary.v2",
         current: {
           layer: "L14",
           l12_layer: "L12",
           status: "needs_recovery",
           completion_boundary: "contradicted",
         },
-        drive_recommendation: {
-          model: "Recovery",
+        workflow_recommendation: {
+          workflow_identity: null,
+          workflow_identity_receipt: expect.objectContaining({
+            disposition: "unsupported",
+            exit_code: 1,
+          }),
           reverse_targets: ["docs/design/**", "docs/test-design/**"],
         },
-        drive_route: {
-          route_id: "drive:Recovery:recover-current-location",
+        workflow_route: {
           status: "recovery_required",
-          selected_model: "Recovery",
           must_return_to_design: true,
+          workflow_identity: null,
+          workflow_identity_receipt: expect.objectContaining({
+            disposition: "unsupported",
+            exit_code: 1,
+          }),
           reverse: {
             required: true,
             queue_actions: ["collect_evidence"],
@@ -3400,13 +3490,13 @@ describe("L7 CLI surface closure", () => {
           },
         },
         current_location_frontier: {
-          schema_version: "current-location-frontier-summary.v1",
+          schema_version: "current-location-frontier-summary.v2",
           frontier_type: "recovery_frontier",
           status: "recovery_required",
           classification: "l14_claim_with_l7_work",
           completion_boundary: "contradicted",
-          selected_model: "Recovery",
-          route_id: "drive:Recovery:recover-current-location",
+          workflow_route_status: "recovery_required",
+          workflow_identity: null,
           must_return_to_design: true,
           open_l7_count: 1,
           terminal_l14_claim_count: 1,
@@ -3427,7 +3517,7 @@ describe("L7 CLI surface closure", () => {
           }),
           commands: {
             current_location: "helix current-location --summary-json",
-            drive_model: "helix drive model --summary-json",
+            workflow_route: "helix current-location --summary-json",
             recovery_plan: "helix recovery plan --summary-json",
             roadmap_current: "helix roadmap current --summary-json",
             vmodel_fit: "helix vmodel fit --summary-json",
@@ -3541,6 +3631,12 @@ describe("L7 CLI surface closure", () => {
         view_command: "helix progress tree-view --summary-json",
         full_view_command: "helix progress tree-view --json",
       });
+      expect(summaryPayload).not.toHaveProperty("drive_recommendation");
+      expect(summaryPayload).not.toHaveProperty("drive_route");
+      expect(summaryPayload.workflow_route).not.toHaveProperty("selected_model");
+      expect(summaryPayload.workflow_route).not.toHaveProperty("default_model");
+      expect(summaryPayload.current_location_frontier).not.toHaveProperty("selected_model");
+      expect(summaryPayload.current_location_frontier).not.toHaveProperty("route_id");
       expect(summaryFindingCount).toBeGreaterThanOrEqual(1);
       expect(summaryPayload.findings.map((finding: { code: string }) => finding.code)).toContain(
         "unresolved_design_reference",
@@ -3553,7 +3649,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.status).toBe(0);
       expect(text.stdout).toContain("current-location: layer=L14 l12=L12 status=needs_recovery");
       expect(text.stdout).toContain(
-        "drive-route: drive:Recovery:recover-current-location status=recovery_required model=Recovery default=Forward return_to_design=true write=read-only",
+        "workflow-route: status=recovery_required identity_disposition=unsupported return_to_design=true write=read-only",
       );
       expect(text.stdout).toContain(
         "drive-reverse-scope: targets=docs/design/**,docs/test-design/**",
@@ -3585,7 +3681,7 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain(
         "closure-automation: first=closure-batch:2:collect_evidence command=helix closure batch --action collect_evidence --json",
       );
-      expect(text.stdout).toContain("drive=Recovery");
+      expect(text.stdout).toContain("workflow=unknown");
       expect(text.stdout).toContain("reverse-targets=docs/design/**,docs/test-design/**");
 
       const driveModelJson = runCliIn(root, ["drive", "model", "--from-db", "--json"]);
@@ -4313,10 +4409,11 @@ describe("L7 CLI surface closure", () => {
           },
         },
         current_location_frontier: expect.objectContaining({
-          schema_version: "current-location-frontier-summary.v1",
+          schema_version: "current-location-frontier-summary.v2",
           frontier_type: "recovery_frontier",
           classification: "l14_claim_with_l7_work",
-          selected_model: "Recovery",
+          workflow_route_status: "recovery_required",
+          workflow_identity: null,
           commands: expect.objectContaining({
             current_location: "helix current-location --summary-json",
             project_frontier: "helix progress frontier --summary-json",
@@ -6219,12 +6316,12 @@ describe("L7 CLI surface closure", () => {
             completion_boundary: "contradicted",
           },
           current_location_frontier: expect.objectContaining({
-            schema_version: "current-location-frontier-summary.v1",
+            schema_version: "current-location-frontier-summary.v2",
             frontier_type: "recovery_frontier",
             status: "recovery_required",
             classification: "l14_claim_with_l7_work",
-            selected_model: "Recovery",
-            route_id: "drive:Recovery:recover-current-location",
+            workflow_route_status: "recovery_required",
+            workflow_identity: null,
             commands: expect.objectContaining({
               current_location: "helix current-location --summary-json",
               project_frontier: "helix progress frontier --summary-json",
@@ -6487,7 +6584,7 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-frontier-summary.v1",
         current: parsedTreeSummary.project_frontier_summary.current,
         current_location_frontier: expect.objectContaining({
-          schema_version: "current-location-frontier-summary.v1",
+          schema_version: "current-location-frontier-summary.v2",
           frontier_type: "recovery_frontier",
           classification: "l14_claim_with_l7_work",
           commands: expect.objectContaining({

@@ -76,8 +76,8 @@ export const SUMMARY_SURFACE_AUDIT_ALLOWED_FIELDS = [
 export const SUMMARY_SURFACE_SEMANTIC_REQUIREMENTS: SummarySurfaceSemanticRequirement[] = [
   {
     surface: "current-location",
-    path: "current_location_frontier.commands.drive_model",
-    reason: "Project view must retain current-location to drive-model navigation",
+    path: "current_location_frontier.commands.workflow_route",
+    reason: "Project view must retain current-location to typed workflow-route navigation",
   },
   {
     surface: "current-location",
@@ -153,11 +153,11 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
     payload: {
       source_command: "helix current-location --summary-json",
       current_location_frontier: {
-        schema_version: "current-location-frontier-summary.v1",
+        schema_version: "current-location-frontier-summary.v2",
         frontier_type: "recovery_frontier",
         commands: {
           current_location: "helix current-location --summary-json",
-          drive_model: "helix drive model --summary-json",
+          workflow_route: "helix current-location --summary-json",
           recovery_plan: "helix recovery plan --summary-json",
           roadmap_current: "helix roadmap current --summary-json",
           vmodel_fit: "helix vmodel fit --summary-json",
