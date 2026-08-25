@@ -23,7 +23,7 @@ responsibility_owner: typed-skill-applicability-runtime
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: compatibility_input_only
+legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "#1044のrequirements-owned skill applicability registryがcandidate branchに存在する"
