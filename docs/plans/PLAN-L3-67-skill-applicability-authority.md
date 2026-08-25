@@ -23,7 +23,7 @@ responsibility_owner: requirements-owned-skill-applicability
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: compatibility_input_only
+legacy_retirement_state: consumer_migration
 no_code_decision: no_change
 ddd_modeling_decision: value_object
 contract_preconditions: "workflow classification registry v1.1.5がtyped axis／identityの意味正本である"
@@ -48,8 +48,10 @@ generates:
   - { artifact_path: tests/skill-applicability-authority-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   requires: []
