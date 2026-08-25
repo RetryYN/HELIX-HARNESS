@@ -107,6 +107,51 @@ export interface IssueHierarchyDependencyAlignmentFinding {
   detail: string;
 }
 
+export interface IssueDependencyMigrationCandidate {
+  issueNumber: number;
+  action: "add" | "replace";
+  dependsOn: number[];
+  blocks: number[];
+  planId: string | null;
+  planIds?: string[];
+}
+
+/** Project the exact dependency contract required by the active hierarchy. */
+export function projectIssueDependencyMigrationCandidates(
+  hierarchyNodes: readonly IssueHierarchyNode[],
+  dependencyNodes: readonly IssueDependencyNode[],
+): IssueDependencyMigrationCandidate[] {
+  const dependencyByNumber = new Map(dependencyNodes.map((node) => [node.number, node]));
+  return hierarchyNodes
+    .filter(
+      (node) =>
+        node.disposition === "active" && (node.blocks.length > 0 || node.blockedBy.length > 0),
+    )
+    .flatMap((hierarchyNode) => {
+      const current = dependencyByNumber.get(hierarchyNode.number);
+      const dependsOn = uniqueNumbers(hierarchyNode.blockedBy);
+      const blocks = uniqueNumbers(hierarchyNode.blocks);
+      if (
+        current &&
+        JSON.stringify(uniqueNumbers(current.dependsOn)) === JSON.stringify(dependsOn) &&
+        JSON.stringify(uniqueNumbers(current.blocks)) === JSON.stringify(blocks)
+      ) {
+        return [];
+      }
+      const planIds = current?.planIds === undefined ? undefined : uniqueStrings(current.planIds);
+      const candidate: IssueDependencyMigrationCandidate = {
+        issueNumber: hierarchyNode.number,
+        action: current ? "replace" : "add",
+        dependsOn,
+        blocks,
+        planId: current?.planId ?? null,
+        ...(planIds && planIds.length > 0 ? { planIds } : {}),
+      };
+      return [candidate];
+    })
+    .sort((left, right) => left.issueNumber - right.issueNumber);
+}
+
 export function auditIssueHierarchyDependencyAlignment(
   hierarchyNodes: readonly IssueHierarchyNode[],
   dependencyNodes: readonly IssueDependencyNode[],

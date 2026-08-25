@@ -41,6 +41,7 @@ parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-012, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-013, test_path: tests/issue-hierarchy.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-675-issue-dependency-cross-contract-audit.md, artifact_type: markdown_doc }
 modifies:
@@ -83,3 +84,7 @@ current active Issueだけをcross-contract対象とし、legacy／historical集
 target欠落10、その他PLAN binding／malformed contract 4である。#204本線では#228／#229／#231／#243の集合差と、
 #235／#246／#248／#253／#322のcontract欠落を実測した。findingをallowlistで隠さず、typed migration inventoryへ
 固定して依存順にlive Issueを是正する。
+
+同日のdry-run projectionでは89 Issueを移行対象として固定した（add 81、replace 8）。projectionはhierarchyの
+exact relationを出力し、既存dependency contractの`plan_id`／`plan_ids`だけを保持する。GitHub writeはこの出力を
+直接正本にせず、適用直前のIssue body・HEAD・assignmentを再照合し、更新後read-afterを必須とする。
