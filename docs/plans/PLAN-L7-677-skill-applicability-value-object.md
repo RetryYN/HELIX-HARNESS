@@ -33,7 +33,7 @@ contract_failures: "unknown identity、axis mismatch、duplicate、polarity conf
 tdd_red_required: true
 red_at: "2026-08-26T04:28:02+09:00"
 green_at: "2026-08-26T04:28:35+09:00"
-mutation_oracle_evidence: "2026-08-26T04:29:03+09:00にpositive／negative polarity conflict拒否を除去し、tests/skill-applicability-registry.test.tsのrejects polarity conflictが1 failed・8 passedとなることを実測した。復元後はrequirements oracleと合わせ14 tests green、typecheck green。"
+mutation_oracle_evidence: "2026-08-26T04:29:03+09:00にpositive／negative polarity conflict拒否を除去し、tests/skill-applicability-registry.test.tsのrejects polarity conflictが1 failed・8 passedとなることを実測した。復元後はrequirements／design-language oracleを含む4 suite 35 tests green、typecheck green。"
 complexity_effect: net_negative
 complexity_justification: "旧4軸別enum／field案をregistry参照の同型pairへ統合し、意味軸自体はclassification registryに一元化する"
 removal_trigger: "skill applicabilityがworkflow classification registryの次期major schemaへ統合された時"

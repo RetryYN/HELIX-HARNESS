@@ -106,4 +106,47 @@ describe("skill applicability registry", () => {
     current.emit_legacy_identity = true;
     expect(() => skillApplicabilityRegistrySchema.parse(raw)).toThrow();
   });
+
+  it.each([
+    [
+      "duplicate allowed axis",
+      (raw: Record<string, unknown>) => {
+        const current = raw.current_contract as { allowed_axes: string[] };
+        current.allowed_axes.push(current.allowed_axes[0] ?? "workflow_model");
+      },
+      "duplicate skill applicability axis",
+    ],
+    [
+      "duplicate conversion token",
+      (raw: Record<string, unknown>) => {
+        const adapter = raw.legacy_input_adapter as { conversions: unknown[] };
+        adapter.conversions.push(structuredClone(adapter.conversions[0]));
+      },
+      "duplicate legacy skill applicability token",
+    ],
+    [
+      "convertible and ambiguous token",
+      (raw: Record<string, unknown>) => {
+        const adapter = raw.legacy_input_adapter as {
+          conversions: Array<{ token: string }>;
+          ambiguous_tokens: string[];
+        };
+        adapter.ambiguous_tokens.push(adapter.conversions[0]?.token ?? "discovery");
+      },
+      "cannot be convertible and ambiguous",
+    ],
+  ])("rejects %s registry drift", (_name, mutate, message) => {
+    const raw = JSON.parse(
+      readFileSync(resolve(process.cwd(), SKILL_APPLICABILITY_REGISTRY_PATH), "utf8"),
+    ) as Record<string, unknown>;
+    mutate(raw);
+    expect(() => skillApplicabilityRegistrySchema.parse(raw)).toThrow(message);
+  });
+
+  it("rejects an empty legacy token set instead of inferring applicability", () => {
+    expect(adaptLegacySkillApplicability([])).toEqual({
+      disposition: "unsupported",
+      token: "",
+    });
+  });
 });

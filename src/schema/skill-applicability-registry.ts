@@ -80,7 +80,49 @@ export const skillApplicabilityRegistrySchema = z
       })
       .strict(),
   })
-  .strict();
+  .strict()
+  .superRefine((registry, context) => {
+    const allowedAxes = new Set<string>();
+    for (const axis of registry.current_contract.allowed_axes) {
+      if (allowedAxes.has(axis)) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["current_contract", "allowed_axes"],
+          message: `duplicate skill applicability axis: ${axis}`,
+        });
+      }
+      allowedAxes.add(axis);
+    }
+    const conversionTokens = new Set<string>();
+    for (const conversion of registry.legacy_input_adapter.conversions) {
+      if (conversionTokens.has(conversion.token)) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["legacy_input_adapter", "conversions"],
+          message: `duplicate legacy skill applicability token: ${conversion.token}`,
+        });
+      }
+      conversionTokens.add(conversion.token);
+    }
+    const ambiguousTokens = new Set<string>();
+    for (const token of registry.legacy_input_adapter.ambiguous_tokens) {
+      if (ambiguousTokens.has(token)) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["legacy_input_adapter", "ambiguous_tokens"],
+          message: `duplicate ambiguous skill applicability token: ${token}`,
+        });
+      }
+      if (conversionTokens.has(token)) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["legacy_input_adapter", "ambiguous_tokens"],
+          message: `legacy skill applicability token cannot be convertible and ambiguous: ${token}`,
+        });
+      }
+      ambiguousTokens.add(token);
+    }
+  });
 
 export type SkillApplicabilityIdentity = z.infer<typeof skillApplicabilityIdentitySchema>;
 export type SkillApplicabilityRegistry = z.infer<typeof skillApplicabilityRegistrySchema>;
@@ -185,6 +227,7 @@ export function adaptLegacySkillApplicability(
   tokens: readonly string[],
   registry: SkillApplicabilityRegistry = loadSkillApplicabilityRegistry(),
 ): LegacySkillApplicabilityResult {
+  if (tokens.length === 0) return { disposition: "unsupported", token: "" };
   const conversions = new Map(
     registry.legacy_input_adapter.conversions.map((item) => [item.token, item] as const),
   );
