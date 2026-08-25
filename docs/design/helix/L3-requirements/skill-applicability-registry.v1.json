@@ -1,0 +1,55 @@
+{
+  "schema_version": "helix-skill-applicability-registry.v1",
+  "registry_version": "1.0.0",
+  "authority": {
+    "kind": "requirements",
+    "source": "docs/design/helix/L3-requirements/skill-applicability-authority.md",
+    "source_digest": "sha256:9814b8cc44d215b4975d33e22f8dcf32c54946c2b0f047435ac27743e5dcc75a"
+  },
+  "identity_reference": {
+    "source": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+    "schema_version": "helix-workflow-classification-registry.v1",
+    "registry_version": "1.1.5",
+    "registry_source_digest": "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db",
+    "binding_key": ["target_axis", "target_id"]
+  },
+  "current_contract": {
+    "positive_field": "applicable_identities",
+    "negative_field": "excluded_identities",
+    "item_fields": ["target_axis", "target_id"],
+    "allowed_axes": [
+      "development_style",
+      "case_driven_model",
+      "workflow_model",
+      "specialist_workflow",
+      "specialist_capability",
+      "specialist_drive",
+      "execution_mode"
+    ],
+    "implicit_default": false,
+    "duplicate_disposition": "fail_close",
+    "polarity_conflict_disposition": "fail_close",
+    "unknown_identity_disposition": "fail_close",
+    "emit_legacy_identity": false
+  },
+  "legacy_input_adapter": {
+    "semantic_role": "compatibility_input_only",
+    "accepted_fields": ["drive_models"],
+    "normalization": ["trim", "lowercase_en_us", "underscore_to_hyphen"],
+    "conversions": [
+      {"token": "discovery", "target_axis": "case_driven_model", "target_id": "DISCOVERY_POC"},
+      {"token": "reverse", "target_axis": "workflow_model", "target_id": "REVERSE"},
+      {"token": "recovery", "target_axis": "workflow_model", "target_id": "RECOVERY"},
+      {"token": "incident", "target_axis": "workflow_model", "target_id": "INCIDENT"},
+      {"token": "refactor", "target_axis": "workflow_model", "target_id": "REFACTOR"},
+      {"token": "retrofit", "target_axis": "workflow_model", "target_id": "RETROFIT"},
+      {"token": "research", "target_axis": "workflow_model", "target_id": "RESEARCH"},
+      {"token": "add-feature", "target_axis": "workflow_model", "target_id": "ADD_FEATURE"},
+      {"token": "version-up", "target_axis": "workflow_model", "target_id": "VERSION_UP"}
+    ],
+    "ambiguous_tokens": ["forward", "scrum"],
+    "unknown_disposition": "unsupported",
+    "ambiguity_disposition": "ambiguous",
+    "emit_legacy_identity": false
+  }
+}
