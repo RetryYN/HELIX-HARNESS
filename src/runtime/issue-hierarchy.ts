@@ -141,6 +141,7 @@ export function renderIssueHierarchyContract(
 
 export function projectIssueHierarchyRelationClosure(
   nodes: readonly IssueHierarchyNode[],
+  dependencyNodes: readonly IssueDependencyNode[] = [],
 ): IssueHierarchyRelationClosureCandidate[] {
   const desired = new Map(
     nodes.map((node) => [
@@ -148,9 +149,15 @@ export function projectIssueHierarchyRelationClosure(
       { blocks: new Set(node.blocks), blockedBy: new Set(node.blockedBy) },
     ]),
   );
-  for (const node of nodes) {
-    for (const target of node.blocks) desired.get(target)?.blockedBy.add(node.number);
-    for (const target of node.blockedBy) desired.get(target)?.blocks.add(node.number);
+  for (const dependency of dependencyNodes) {
+    const relation = desired.get(dependency.number);
+    if (!relation) continue;
+    for (const target of dependency.blocks) relation.blocks.add(target);
+    for (const target of dependency.dependsOn) relation.blockedBy.add(target);
+  }
+  for (const [issueNumber, relation] of desired) {
+    for (const target of relation.blocks) desired.get(target)?.blockedBy.add(issueNumber);
+    for (const target of relation.blockedBy) desired.get(target)?.blocks.add(issueNumber);
   }
   return nodes.flatMap((node) => {
     const relation = desired.get(node.number);
