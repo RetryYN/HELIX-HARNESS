@@ -80,6 +80,82 @@ export interface IssueDependencyContractSource {
   body: string | null;
 }
 
+export function collectIssueHierarchyContracts(
+  sources: readonly IssueDependencyContractSource[],
+): IssueHierarchyNode[] {
+  return sources.flatMap((source) => {
+    try {
+      return [
+        {
+          number: source.number,
+          state: source.state,
+          ...parseIssueHierarchyContract(source.body ?? ""),
+        },
+      ];
+    } catch {
+      return [];
+    }
+  });
+}
+
+export interface IssueHierarchyDependencyAlignmentFinding {
+  issueNumber: number;
+  code:
+    | "dependency_contract_missing_for_hierarchy_relation"
+    | "hierarchy_dependency_blocked_by_mismatch"
+    | "hierarchy_dependency_blocks_mismatch";
+  detail: string;
+}
+
+export function auditIssueHierarchyDependencyAlignment(
+  hierarchyNodes: readonly IssueHierarchyNode[],
+  dependencyNodes: readonly IssueDependencyNode[],
+) {
+  const findings: IssueHierarchyDependencyAlignmentFinding[] = [];
+  const dependencyByNumber = new Map(dependencyNodes.map((node) => [node.number, node]));
+  const governedHierarchyNodes = hierarchyNodes.filter(
+    (node) =>
+      node.disposition === "active" && (node.blocks.length > 0 || node.blockedBy.length > 0),
+  );
+
+  for (const hierarchyNode of governedHierarchyNodes) {
+    const dependencyNode = dependencyByNumber.get(hierarchyNode.number);
+    if (!dependencyNode) {
+      findings.push({
+        issueNumber: hierarchyNode.number,
+        code: "dependency_contract_missing_for_hierarchy_relation",
+        detail: `issue #${hierarchyNode.number} declares hierarchy relations but has no ${ISSUE_DEPENDENCY_SCHEMA} contract`,
+      });
+      continue;
+    }
+    const hierarchyBlockedBy = uniqueNumbers(hierarchyNode.blockedBy);
+    const dependencyDependsOn = uniqueNumbers(dependencyNode.dependsOn);
+    if (JSON.stringify(hierarchyBlockedBy) !== JSON.stringify(dependencyDependsOn)) {
+      findings.push({
+        issueNumber: hierarchyNode.number,
+        code: "hierarchy_dependency_blocked_by_mismatch",
+        detail: `hierarchy blocked_by=[${hierarchyBlockedBy.join(",")}] dependency depends_on=[${dependencyDependsOn.join(",")}]`,
+      });
+    }
+    const hierarchyBlocks = uniqueNumbers(hierarchyNode.blocks);
+    const dependencyBlocks = uniqueNumbers(dependencyNode.blocks);
+    if (JSON.stringify(hierarchyBlocks) !== JSON.stringify(dependencyBlocks)) {
+      findings.push({
+        issueNumber: hierarchyNode.number,
+        code: "hierarchy_dependency_blocks_mismatch",
+        detail: `hierarchy blocks=[${hierarchyBlocks.join(",")}] dependency blocks=[${dependencyBlocks.join(",")}]`,
+      });
+    }
+  }
+
+  return {
+    schemaVersion: ISSUE_DEPENDENCY_SCHEMA,
+    ok: findings.length === 0,
+    checkedIssues: governedHierarchyNodes.length,
+    findings,
+  };
+}
+
 function extractIssueDependencyContractBlock(body: string): string | null {
   const fencedYamlBlock = /```yaml\b([\s\S]*?)```/g;
   for (const match of body.matchAll(fencedYamlBlock)) {

@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest";
 // PLAN-L7-475-issue-hierarchy-contract / U-IHIER-001
 // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
+// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
+  auditIssueHierarchyDependencyAlignment,
   collectIssueDependencyContracts,
+  collectIssueHierarchyContracts,
   hasIssueDependencyContractBlock,
   type IssueHierarchyNode,
   parseIssueDependencyContract,
@@ -25,6 +28,69 @@ const node = (overrides: Partial<IssueHierarchyNode>): IssueHierarchyNode => ({
 });
 
 describe("GitHub Issue dependency projection", () => {
+  it("U-IHIER-012: hierarchy relationのdependency block欠落と集合差をfail-closeする", () => {
+    const hierarchy = [
+      node({ number: 204, role: "capability", parentIssue: 81, blocks: [228] }),
+      node({ number: 228, role: "task", parentIssue: 204, blockedBy: [204, 206] }),
+      node({ number: 206, role: "task", parentIssue: 204, blocks: [228] }),
+    ];
+    const report = auditIssueHierarchyDependencyAlignment(hierarchy, [
+      { number: 204, state: "open", dependsOn: [], blocks: [], planId: null },
+      { number: 228, state: "open", dependsOn: [], blocks: [], planId: null },
+    ]);
+
+    expect(report.ok).toBe(false);
+    expect(report.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          issueNumber: 206,
+          code: "dependency_contract_missing_for_hierarchy_relation",
+        }),
+        expect.objectContaining({
+          issueNumber: 228,
+          code: "hierarchy_dependency_blocked_by_mismatch",
+        }),
+        expect.objectContaining({
+          issueNumber: 204,
+          code: "hierarchy_dependency_blocks_mismatch",
+        }),
+      ]),
+    );
+
+    const parentOnly = auditIssueHierarchyDependencyAlignment(
+      [node({ number: 300, role: "task", parentIssue: 81 })],
+      [],
+    );
+    expect(parentOnly).toMatchObject({ ok: true, findings: [] });
+  });
+
+  it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {
+    const body = [
+      "```yaml",
+      "issue_role: task",
+      "parent_issue: 204",
+      "blocks: [228]",
+      "blocked_by: [206]",
+      "duplicate_search: completed",
+      "disposition: active",
+      "duplicate_of: null",
+      "```",
+    ].join("\n");
+    expect(
+      collectIssueHierarchyContracts([
+        { number: 243, state: "open", body },
+        { number: 244, state: "open", body: "legacy prose only" },
+      ]),
+    ).toEqual([
+      expect.objectContaining({
+        number: 243,
+        state: "open",
+        blocks: [228],
+        blockedBy: [206],
+      }),
+    ]);
+  });
+
   // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002
   it("U-IHIER-002: open依存を残したclosed Issueをfail-closeする", () => {
     const report = auditIssueDependencies(

@@ -359,7 +359,9 @@ import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-r
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
+  auditIssueHierarchyDependencyAlignment,
   collectIssueDependencyContracts,
+  collectIssueHierarchyContracts,
   type IssueDependencyNode,
   type IssueHierarchyNode,
   type IssuePlanBinding,
@@ -13703,6 +13705,7 @@ github
       let nodes: IssueDependencyNode[];
       let plans: IssuePlanBinding[];
       let contractFindings = [] as ReturnType<typeof collectIssueDependencyContracts>["findings"];
+      let alignmentReport: ReturnType<typeof auditIssueHierarchyDependencyAlignment> | null = null;
       if (opts.inputJson) {
         nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
         plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
@@ -13733,6 +13736,10 @@ github
         const collected = collectIssueDependencyContracts(issues);
         nodes = collected.nodes;
         contractFindings = collected.findings;
+        alignmentReport = auditIssueHierarchyDependencyAlignment(
+          collectIssueHierarchyContracts(issues),
+          nodes,
+        );
         const governedNumbers = new Set(nodes.map((node) => node.number));
         plans = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
@@ -13762,11 +13769,27 @@ github
           : contractFindings.filter((finding) =>
               (parsedFocus as number[]).includes(finding.issueNumber),
             );
+      const focusedAlignmentFindings =
+        alignmentReport === null
+          ? []
+          : parsedFocus === null
+            ? alignmentReport.findings
+            : alignmentReport.findings.filter((finding) =>
+                (parsedFocus as number[]).includes(finding.issueNumber),
+              );
       const report = {
         ...dependencyReport,
-        ok: dependencyReport.ok && focusedContractFindings.length === 0,
+        ok:
+          dependencyReport.ok &&
+          focusedContractFindings.length === 0 &&
+          focusedAlignmentFindings.length === 0,
         checkedIssues: dependencyReport.checkedIssues + focusedContractFindings.length,
-        findings: [...focusedContractFindings, ...dependencyReport.findings].sort(
+        checkedAlignmentIssues: alignmentReport?.checkedIssues ?? 0,
+        findings: [
+          ...focusedContractFindings,
+          ...focusedAlignmentFindings,
+          ...dependencyReport.findings,
+        ].sort(
           (left, right) =>
             left.issueNumber - right.issueNumber || left.code.localeCompare(right.code),
         ),
