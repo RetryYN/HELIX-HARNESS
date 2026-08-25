@@ -59,7 +59,7 @@ dependencies:
     - issue:243
 ---
 
-# skill applicability authority
+# skill applicability authority正本化
 
 ## §工程表
 

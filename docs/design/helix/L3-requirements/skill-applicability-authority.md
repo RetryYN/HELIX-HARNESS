@@ -50,12 +50,12 @@ unknown axis／IDはfail-closeする。未指定をall、Forward、現在選択�
 
 ## SKAPP-FR-002 current projectionと互換隔離
 
-#### SKAPP-R-04 current output
+#### SKAPP-R-04 current output契約
 
 recommendation、DB projection、visualization、JSON／text CLI、review／completion receiptはtyped pairと
 classification registry version／digestだけを返す。legacy token、旧field名、変換前identityを再出力しない。
 
-#### SKAPP-R-05 input-only adapter
+#### SKAPP-R-05 input-only adapter契約
 
 旧`drive_models`は既存artifactのcompatibility input-only adapterだけが読む。一意変換可能なtokenだけを
 requirements-owned exact tableで変換し、source field、normalized token、warningをreceiptへ残す。
@@ -66,7 +66,7 @@ requirements-owned exact tableで変換し、source field、normalized token、w
 compatibility parseの成功で、current applicability欠損、axis mismatch、unknown identity、polarity conflict、
 current projection failureを相殺しない。current authoringはtyped pairを必須とする。
 
-## §1 versioned registry
+## §1 versioned registry正本
 
 machine-readable正本は
 `docs/design/helix/L3-requirements/skill-applicability-registry.v1.json`とする。このregistryはworkflow classification
