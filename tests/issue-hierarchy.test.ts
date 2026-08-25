@@ -196,6 +196,15 @@ describe("GitHub Issue dependency projection", () => {
         },
       ),
     ).toThrow("issue_hierarchy_migration_edge_removal");
+
+    const dependencyUnion = projectIssueHierarchyRelationClosure(
+      [node({ number: 50 }), node({ number: 60 })],
+      [{ number: 50, state: "open", dependsOn: [60], blocks: [], planId: null }],
+    );
+    expect(dependencyUnion).toEqual([
+      expect.objectContaining({ issueNumber: 50, blockedBy: [60] }),
+      expect.objectContaining({ issueNumber: 60, blocks: [50] }),
+    ]);
   });
 
   it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {

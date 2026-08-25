@@ -94,5 +94,6 @@ candidate treeのPLAN frontmatterからexact bindingを導出し、単一PLANは
 pure body patchは`add`時に既存adopted blockがあれば拒否し、`replace`時にblockが消えていれば拒否するため、
 dry-run取得後にIssue bodyが変化した場合も暗黙の二重追加や別contract化を行わない。
 
-初回89件適用後に露出した片側edgeは、宣言済みrelationを削除してgreen化せず、存在する両端nodeへunion closureする。
-hierarchy metadataを保持したcanonical blockとdependency contractを同じcandidate集合から再投影し、片側だけの更新を禁止する。
+初回89件適用後に露出した片側edgeは、hierarchy／dependencyのどちらに存在しても削除してgreen化せず、存在する
+両端nodeへunion closureする。hierarchy metadataを保持したcanonical blockとdependency contractを同じcandidate集合から
+再投影し、片側だけの更新を禁止する。
