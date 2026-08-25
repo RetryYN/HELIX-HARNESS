@@ -35,6 +35,6 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-adm
 | U-GWIDADM-017 | migration owner boundary | owner PLANのbehavior contract／responsibility owner不一致を拒否                             | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-018 | foreign contract boundary | bundle内foreign PLANのbehavior contract／responsibility owner欠落を拒否                    | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-019 | terminal fullback positive | Forward／Reverseの異なるtyped identityを保持した同一Issueのterminal bundleを受理              | `tests/github-workflow-identity-admission.test.ts` |
-| U-GWIDADM-020 | terminal fullback negative | marker重複、migration marker併記、unsorted manifest、owner、digest、identity、Issue不一致を拒否 | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-020 | terminal fullback negative | marker重複、migration marker併記、unsorted manifest、owner、digest、identity、Issue不一致、changed PLANのmanifest未列挙、manifest内の未typed PLANを拒否 | `tests/github-workflow-identity-admission.test.ts` |
 
 prose、label、legacy identityの近似一致をpositive oracleにしない。

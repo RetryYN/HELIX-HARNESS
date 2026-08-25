@@ -32,7 +32,7 @@ contract_failures: "marker重複／併記、manifest／owner／PLAN identity／r
 tdd_red_required: true
 red_at: "2026-08-25T15:16:22Z"
 green_at: "2026-08-25T15:26:54Z"
-mutation_oracle_evidence: "tests/backfill-pairing.test.ts U-BACKFILL-006とtests/l3-g3-freeze-packet-v2.test.ts U-DESIGNCOV-016が、Reverse pairとcurrent L3 digestを欠落させたHEAD cf44b8a1のCI run 32862423304をfailedにして欠落変異をkillした。双方向linkとdigest pinを復元後、両suiteを含む82 testsがgreenへ復帰した。tests/github-workflow-identity-admission.test.ts U-GWIDADM-019／020はterminal marker、manifest、owner、registry digest、identity、Issue不一致を個別にrejectする。"
+mutation_oracle_evidence: "tests/backfill-pairing.test.ts U-BACKFILL-006とtests/l3-g3-freeze-packet-v2.test.ts U-DESIGNCOV-016が、Reverse pairとcurrent L3 digestを欠落させたHEAD cf44b8a1のCI run 32862423304をfailedにして欠落変異をkillした。双方向linkとdigest pinを復元後、両suiteを含む82 testsがgreenへ復帰した。tests/github-workflow-identity-admission.test.ts U-GWIDADM-019／020はterminal marker、sorted manifest、owner、registry digest、identity、Issue不一致、changed PLANのmanifest未列挙、manifest内の未typed PLANを個別にrejectする。2026-08-26にterminal bundle_path_mismatch guardをfalseへ変異するとmanifest_omissionがexpected workflow_identity_admission_bundle_path_mismatch／received okで1 failed・17 passed、terminal bundle_identity_mismatch guardをfalseへ変異するとuntyped_planがexpected workflow_identity_admission_bundle_identity_mismatch／received okで1 failed・17 passedとなり、各変異をkillした。復元後18 tests greenを再確認した。"
 complexity_effect: justified_positive
 complexity_justification: "複数typed PLANを許可する例外をmigrationとterminal fullbackへ明示分離し、GitHub workflow内の自由文推測を増やさず共通adapterへ集約する"
 removal_trigger: "GitHub workflow identity admission schema major version更新時にversioned successorへ移管する"

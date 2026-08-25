@@ -372,6 +372,7 @@ describe("GitHub workflow identity admission", () => {
   it("U-GWIDADM-020: terminal bundleのmanifest、owner、digest、identity、Issue、marker混同を拒否する", () => {
     const forward = PLAN_PATH;
     const reverse = "docs/plans/PLAN-REVERSE-568-issue-template-label-typed-authority.md";
+    const extra = "docs/plans/PLAN-L7-999-terminal-bundle-extra.md";
     const paths = [forward, reverse].sort();
     const ownerIdentity = { ...identity(), target_id: "ADD_FEATURE" } as const;
     for (const variant of [
@@ -381,6 +382,8 @@ describe("GitHub workflow identity admission", () => {
       "stale_digest",
       "unknown_identity",
       "issue_mismatch",
+      "manifest_omission",
+      "untyped_plan",
       "migration_marker",
     ] as const) {
       const root = fixtureRoot();
@@ -391,8 +394,22 @@ describe("GitHub workflow identity admission", () => {
         targetId: variant === "unknown_identity" ? "NOT_REGISTERED" : "REVERSE",
         registryDigest: variant === "stale_digest" ? `sha256:${"0".repeat(64)}` : undefined,
       });
+      if (variant === "manifest_omission") {
+        writePlan(root, { path: extra, targetId: "REVERSE" });
+      }
+      if (variant === "untyped_plan") {
+        writeFileSync(
+          join(root, extra),
+          "---\nplan_id: PLAN-L7-999-terminal-bundle-extra\ngithub_issue_id: 733\n---\n",
+        );
+      }
+      const manifestPaths = variant === "untyped_plan" ? [...paths, extra].sort() : paths;
+      const changedPaths =
+        variant === "manifest_omission" || variant === "untyped_plan"
+          ? [...paths, extra].sort()
+          : paths;
       let body = terminalBundleBody(
-        variant === "unsorted" ? [...paths].reverse() : paths,
+        variant === "unsorted" ? [...paths].reverse() : manifestPaths,
         variant === "owner_missing" ? "docs/plans/PLAN-L7-999-missing.md" : forward,
       ).replace(contractBody(), contractBody(ownerIdentity));
       if (variant === "duplicate_marker")
@@ -403,7 +420,7 @@ describe("GitHub workflow identity admission", () => {
         admitGithubWorkflowIdentity({
           repository: "RetryYN/HELIX-HARNESS",
           prBody: body,
-          changedPaths: paths,
+          changedPaths,
           repoRoot: root,
           ghApi: () => ({ number: 733, body: contractBody(ownerIdentity) }),
         }),
@@ -416,6 +433,8 @@ describe("GitHub workflow identity admission", () => {
           stale_digest: "workflow_identity_admission_bundle_identity_mismatch",
           unknown_identity: "workflow_identity_admission_bundle_identity_mismatch",
           issue_mismatch: "workflow_identity_admission_bundle_issue_mismatch",
+          manifest_omission: "workflow_identity_admission_bundle_path_mismatch",
+          untyped_plan: "workflow_identity_admission_bundle_identity_mismatch",
           migration_marker: "workflow_identity_admission_bundle_contract_invalid",
         }[variant],
       });
