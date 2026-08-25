@@ -4,7 +4,7 @@ title: "PLAN-L7-669 (add-impl): Assignment kernel snapshotをproject hook author
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 workflow_identity:
@@ -36,6 +36,36 @@ red_test: "U-CNWHOOKASSIGN-001..003がassignment provider module不在でsuite l
 red_at: "2026-08-24T20:03:13Z"
 green_at: "2026-08-24T20:04:09Z"
 mutation_oracle_evidence: "src/runtime/project-hook-assignment-provider.ts のstable ID schemaを任意stringへ緩和する変異を実測し、tests/project-hook-assignment-provider.test.ts のU-CNWHOOKASSIGN-002がempty lease IDの誤受理でfailしてkillした"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-25T00:34:08Z"
+    tests_green_at: "2026-08-25T00:30:39Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "c7895aff-da7e-47a0-944a-36c68bb4f251"
+    reviewed_head_sha: a988907081d5eee5367e86529ab485e7139e8fcf
+    scope: "PR #1008 current HEAD a988907081d5eee5367e86529ab485e7139e8fcfをClaude Codeが独立検収し、明示Assignment snapshotからproject hook authority providerへの一方向変換、no-fallback、失敗経路のfail-close、harness-check、DB projection/replayを確認してblocker 0と判定した。clean current-main Luna/xhigh read-afterは本PLANのcompletion claimへ含めない。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/1008#issuecomment-5403352978"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32792195421 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-25T00:30:39Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:1b69de889b3fdbeee3283f950cc0f9201db4d7b4817bad42df92d6c1a62e83c3"
+        result: "completed / success / HEAD a988907081d5eee5367e86529ab485e7139e8fcf"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-25T00:34:08Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-25T00:34:08Z"
+    evidence_digest: "sha256:b6632eed4f090c22597bce0e5a393634d7238a965f69e7df8c7077acc915d7a3"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "Assignment kernelとphysical adapter間の暗黙root推測を単一typed adapterへ置換する"
 removal_trigger: "Assignment kernelがProjectHookAuthorityInputV1をnative projectionしadapter consumerが0になった時"
