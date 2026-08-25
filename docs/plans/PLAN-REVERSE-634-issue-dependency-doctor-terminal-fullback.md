@@ -28,7 +28,7 @@ review_evidence:
     tests_green_at: "2026-08-25T02:34:02Z"
     verdict: approve
     worker_model: codex:gpt-5.4-codex
-    reviewer_model: claude:claude-opus-5
+    reviewer_model: claude-opus-5
     scope: "PR #1016 current HEAD 99979d10b5ece23fc86c9d2ab5c85e8a9ba0c474のR0〜R4現状照合。Issue dependency audit、PLAN lint、DB projection/replay、required CI、main read-afterの証拠を確認し、blocker 0。"
     green_commands:
       - kind: smoke
@@ -53,8 +53,9 @@ contract_preconditions: "PLAN-L7-556のIssue dependency doctor実装、main read
 contract_postconditions: "Issue #634とPLAN-L7-556の実装・依存graph・PLAN binding・main read-afterを一つのR4 evidenceへ束縛し、未成立のnative/fullback証拠をcompletion claimへ昇格しない"
 contract_invariants: "prose Refsを推測しない、open dependencyをclose済みと扱わない、Issue/PLANの不一致をlegacy greenで相殺しない、current canonical L1-L12だけを意味基準にする"
 contract_failures: "main HEAD不一致、Issue dependency audit finding、PLAN/Issue双方向不一致、実装PRのreview/CI/DB receipt欠落、snapshot drift、未解決依存を検出したらfail-closeする"
-tdd_red_required: true
-red_test: "既存のIssue hierarchy／closure graph／dependency／metadata workflow oracleがfullback evidenceまたはcurrent-main snapshot不在を検出する"
+tdd_red_required: false
+tdd_red_waiver_reason: "実装を変更しないReverse fullback照合sliceであり、既存のIssue hierarchy／closure graph／dependency／metadata workflowのred／greenとmain read-afterを再利用する。新しいRedを捏造しない"
+mutation_oracle_evidence: "PLAN-L7-556のtests/issue-hierarchy.test.ts U-IHIER-003でrequireReferencedPlans既定の反転を実測し、issue_plan_missingが消えてtest failureとなるkillを再利用する。本Reverseは実装mutationを追加せず、fullback evidence／current-main snapshot／Issue-PLAN双方向bindingの欠落をPLAN lint、dependency audit、targeted regressionでfail-closeする"
 parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 backprop_scope:
