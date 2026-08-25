@@ -84,6 +84,12 @@ dependencies:
 agent_slots:
   - { role: tl, slot_label: "TL — requirements authorityと#704 terminal境界" }
   - { role: qa, slot_label: "QA —旧identity再出力、digest drift、未検収evidenceの反例" }
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
+  target_axis: workflow_model
+  target_id: REVERSE
 ---
 
 # PLAN-REVERSE-704: execution policyの終端Reverse fullback
