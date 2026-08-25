@@ -735,7 +735,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "b00e0dd21defb232531ae344f76fe3ac1f3c0a895e5570b1f646f74ae82dbcb9",
     );
     const generatedRequirementViewDigest =
-      "add198c5bc876b18e749cbaa67b50af4ea79559c0364b623833cf249a263749f";
+      "7c63f56e3fbed5c37250b582a6df44b054796241b298e2695632cdf0b0a92cc8";
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
       generatedRequirementViewDigest,
     );
@@ -1111,7 +1111,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(new Set(ownerRows.map((row) => row.test_path)).size).toBe(19);
     // 初期missing-test 100件の8+92 snapshotとは別に、manifestは後続PLANが同じtest fileへ
     // 追加した独立oracleも含むcurrent case集合を追跡する。
-    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(95);
+    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(96);
     for (const planId of ["PLAN-L7-351", "PLAN-L7-349", "PLAN-L7-150"]) {
       expect(packet).toContain(planId);
     }

@@ -111,7 +111,7 @@ describe("L1-L12 canonical authority drift gate", () => {
 
     expect(new Set(inventoried).size).toBe(inventoried.length);
     expect(inventoried).toEqual(candidates);
-    expect(candidates).toHaveLength(176);
+    expect(candidates).toHaveLength(175);
     expect(candidates).not.toContain(
       "docs/generated/requirements/requirement-definition.generated.md",
     );

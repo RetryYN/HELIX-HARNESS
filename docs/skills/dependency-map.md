@@ -41,7 +41,7 @@ pair-freeze 時点で存在しない PLAN `generates` doc は governance violati
 `placeholder_deps` は設計中の forward reference を許すが、trace-freeze 前に解決しなければならない。
 
 **Source-level module dependencies（source level の module 依存）:**
-`src/` sub-module をまたぐ TypeScript `import` path。`bun run typecheck` で検出され、
+`src/` sub-module をまたぐ TypeScript `import` path。`npm run typecheck` で検出され、
 `helix graph`（module dependency view）で確認できる。
 
 ## mapping 手順
@@ -73,7 +73,7 @@ pair-freeze 前に次を確認する。
 
 - [ ] HEAD と base commit の両方で `helix graph` を実行し、external-facing module の edge が
       identical であることを確認する。
-- [ ] `bun run typecheck` が exit 0 になる。新しい import error がない。
+- [ ] `npm run typecheck` が exit 0 になる。新しい import error がない。
 - [ ] `helix doctor` が exit 0 になる。新しい orphan や dependency-drift finding がない。
 - [ ] `helix review --uncommitted` が新しい cross-module coupling finding を出さない。
 

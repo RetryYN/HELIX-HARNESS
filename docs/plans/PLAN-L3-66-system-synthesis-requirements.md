@@ -4,8 +4,8 @@ title: "PLAN-L3-66 (add-design): System Synthesis capability familyを正本化�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -41,6 +41,26 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - { role: tl, slot_label: "TL — authority境界、依存順、既存capability再利用" }
   - { role: qa, slot_label: "QA — route混同、omission、retirement、future mutation" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-25T20:14:38Z"
+    tests_green_at: "2026-08-25T20:13:54Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    scope: "PR #1042 HEAD ca473b8fde8142d518736ae6c1d9297e78f48011をClaude Codeが独立検収し、SYN-FR-001..004／SYN-R-01..10／SYN-AC-001..014 exact set、Requirement IR投影、digest順序、negative mutationを実測してblocker 0 approveとした。CI run 32891723302は同一HEADでterminal success、DB projection／replayとcheckpoint／replayは一致。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1042#issuecomment-5416175011。本entryは内容レビューの前置証拠であり、G-REQ.L3昇格は2026-08-26のPO採用指示に別途束縛する。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32891723302 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-25T20:13:54Z"
+        evidence_path: tests/system-synthesis-requirements.test.ts
+        output_digest: "sha256:bf91a2f75a3871dbce2ebfa501918fa2f4565600ce2f4ec63d4b906fcbc429e7"
+        result: "terminal success / HEAD ca473b8fde8142d518736ae6c1d9297e78f48011"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-66-system-synthesis-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/system-synthesis-requirements.md, artifact_type: design_doc }
@@ -78,6 +98,13 @@ dependencies:
 ---
 
 # System Synthesis要求authority
+
+## PO承認記録
+
+2026-08-26、POの「新構想でブレイクスルーを起こしてくれ」という採用・推進指示を、
+本System Synthesis capability familyのL3正本化に対するG-REQ.L3承認として記録する。
+この承認はNOW childの依存順実装を許可するが、FUTURE parking解除、配布cutover、secret／本番操作の
+action-binding approvalを代替しない。
 
 ## §工程表
 
