@@ -25,7 +25,7 @@ review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-08-25T06:23:29Z"
-    tests_green_at: "2026-08-25T06:20:41Z"
+    tests_green_at: "2026-08-25T06:20:42Z"
     verdict: approve
     worker_model: codex:gpt-5.4-codex
     reviewer_model: claude-opus-5
@@ -160,7 +160,7 @@ Issue #704の意図は、signal textから旧modeを推測することではな�
 
 初回candidateでは証拠未封緘のためdraft／pending_reverseを維持した。current-HEAD CI、Claude blocker 0 receipt、DB convergence、8 Forward PLANとのbindingが揃ったため、本PRの原子的更新で8 Forward PLANと本PLANを `status: confirmed` / `backfill_state: complete` / `completion_claim_allowed: true` へ遷移させる。canonical merge後のmain read-afterとIssue #704 closeは別の終端手順で実施し、未実施の証拠を先取りしない。
 
-## R4 current-candidate evidence
+## R4 現行候補の証跡
 
 PR #1020のcurrent HEAD `215f84e411dad9a86bb02fdfa1e4f94b0569d92e` は、PR #1019 merge後のmain `f5d70356cfadfc0f2880d9dbcf80295cc7c4225b` を祖先に持つ。harness-check `32814825028` はLite consumer、Windows durability、全回帰、Biome、doctor、full admissionをsuccessで完了し、Claude Code Opusのexact-HEAD receiptはblocker 0である。
 
