@@ -60,7 +60,7 @@ README の修正は、利用者の導線を直すために行う。accept / free
 HELIX README は最低限次を含む:
 
 1. **目的** — 1 段落。このコンポーネントが何を行い、どの system に仕えるか。
-2. **前提条件** — `bun`、`helix`、外部依存と最小 version。
+2. **前提条件** — Node.js、npm、`helix`、外部依存と最小 version。
 3. **quick start** — 動作状態を得るための最小コマンド列。
 4. **主要 command** — この context でよく使う `helix` commands の table。
 5. **troubleshooting** — 最も多い failure 2-3 件と remediation（まず `helix doctor` triage）。

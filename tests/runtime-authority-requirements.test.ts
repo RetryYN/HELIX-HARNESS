@@ -126,4 +126,32 @@ describe("Python + TypeScript/Node requirement authority", () => {
     expect(existsSync("bun.lockb")).toBe(false);
     expect(existsSync("package-lock.json")).toBe(true);
   });
+
+  it("current skill guidance has zero active Bun command", () => {
+    const skillPaths = [
+      "docs/skills/dependency-map.md",
+      "docs/skills/data-migration.md",
+      "docs/skills/documentation.md",
+      "docs/skills/poc.md",
+      "docs/skills/db.md",
+      "docs/skills/code-review-and-quality.md",
+      "docs/skills/ci-gate-design.md",
+      "docs/skills/ci-deploy-and-rollback.md",
+      "docs/skills/testing.md",
+      "docs/skills/debugging-and-error-recovery.md",
+      "docs/skills/security-and-hardening.md",
+      "docs/skills/deprecation-cutover.md",
+      "docs/skills/error-fix.md",
+      "docs/skills/code-review.md",
+    ];
+    const activeBunCommand = /\b(?:bunx|bun\s+(?:run|test|x|install|audit|add|build|pm))\b/i;
+    const violations = skillPaths.flatMap((path) =>
+      readFileSync(path, "utf8")
+        .split(/\r?\n/)
+        .flatMap((line, index) =>
+          activeBunCommand.test(line) ? [`${path}:${index + 1}: ${line.trim()}`] : [],
+        ),
+    );
+    expect(violations, violations.join("\n")).toEqual([]);
+  });
 });
