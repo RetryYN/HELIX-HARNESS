@@ -275,24 +275,31 @@ export function projectIssueDependencyMigrationCandidates(
       const current = dependencyByNumber.get(hierarchyNode.number);
       const dependsOn = uniqueNumbers(hierarchyNode.blockedBy);
       const blocks = uniqueNumbers(hierarchyNode.blocks);
+      const projectedPlanIds = planIdsByIssue.get(hierarchyNode.number) ?? [];
+      const planId =
+        projectedPlanIds.length === 1
+          ? (projectedPlanIds[0] ?? null)
+          : projectedPlanIds.length > 1
+            ? null
+            : (current?.planId ?? null);
+      const planIds =
+        projectedPlanIds.length > 1
+          ? projectedPlanIds
+          : projectedPlanIds.length === 1
+            ? undefined
+            : current?.planIds
+              ? uniqueStrings(current.planIds)
+              : undefined;
       if (
         current &&
         JSON.stringify(uniqueNumbers(current.dependsOn)) === JSON.stringify(dependsOn) &&
-        JSON.stringify(uniqueNumbers(current.blocks)) === JSON.stringify(blocks)
+        JSON.stringify(uniqueNumbers(current.blocks)) === JSON.stringify(blocks) &&
+        current.planId === planId &&
+        JSON.stringify(uniqueStrings(current.planIds ?? [])) ===
+          JSON.stringify(uniqueStrings(planIds ?? []))
       ) {
         return [];
       }
-      const projectedPlanIds = planIdsByIssue.get(hierarchyNode.number) ?? [];
-      const planId = current
-        ? current.planId
-        : projectedPlanIds.length === 1
-          ? (projectedPlanIds[0] ?? null)
-          : null;
-      const planIds = current?.planIds
-        ? uniqueStrings(current.planIds)
-        : projectedPlanIds.length > 1
-          ? projectedPlanIds
-          : undefined;
       const candidate: IssueDependencyMigrationCandidate = {
         issueNumber: hierarchyNode.number,
         action: current ? "replace" : "add",

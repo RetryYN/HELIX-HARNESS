@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 // PLAN-L7-475-issue-hierarchy-contract / U-IHIER-001
 // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
-// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012..U-IHIER-015
+// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012..U-IHIER-016
 import {
   applyIssueDependencyMigrationCandidate,
   applyIssueHierarchyRelationClosureCandidate,
@@ -232,6 +232,30 @@ after`;
       disposition: "active",
       duplicateOf: null,
     });
+  });
+
+  it("U-IHIER-016: candidate treeのPLAN bindingで既存null projectionを置換する", () => {
+    const candidates = projectIssueDependencyMigrationCandidates(
+      [node({ number: 503, role: "finding", parentIssue: 215, blocks: [504] })],
+      [{ number: 503, state: "closed", dependsOn: [], blocks: [504], planId: null }],
+      [
+        {
+          planId: "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
+          githubIssueId: 503,
+        },
+      ],
+    );
+
+    expect(candidates).toEqual([
+      expect.objectContaining({
+        issueNumber: 503,
+        action: "replace",
+        planId: "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
+      }),
+    ]);
+    expect(candidates[0]?.contractBlock).toContain(
+      "plan_id: PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
+    );
   });
 
   it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {
