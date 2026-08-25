@@ -90,3 +90,5 @@ exact relationを出力し、既存dependency contractの`plan_id`／`plan_ids`�
 candidate treeのPLAN frontmatterからexact bindingを導出し、単一PLANは`plan_id`、複数PLANは`plan_ids`へ投影する。GitHub writeはこの出力を
 直接正本にせず、candidateが描画するparser往復済みcanonical contract blockを使い、適用直前のIssue body・HEAD・assignmentを
 再照合して更新後read-afterを必須とする。
+pure body patchは`add`時に既存adopted blockがあれば拒否し、`replace`時にblockが消えていれば拒否するため、
+dry-run取得後にIssue bodyが変化した場合も暗黙の二重追加や別contract化を行わない。
