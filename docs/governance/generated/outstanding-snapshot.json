@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 29,
+  "decision_count": 28,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -24,7 +24,6 @@
     "PLAN-L7-448-qs4-test-infra-inventory",
     "PLAN-L7-541-codex-seal-egress",
     "PLAN-L7-666-issue-dependency-contract-attribution",
-    "PLAN-L7-668-project-hook-authority-surface-projector",
     "PLAN-L7-669-project-hook-assignment-provider",
     "PLAN-L7-670-issue-metadata-fail-close-oracle",
     "PLAN-L7-671-issue-dependency-detector-parser-shape",
