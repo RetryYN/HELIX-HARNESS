@@ -752,9 +752,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/system-synthesis-requirements.md",
-      "requirement_digest": "sha256:7984a26aca520035344755a8afb2ddb125ca76e3f96d6d94b5ac9c7ddc973cb6",
+      "requirement_digest": "sha256:69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
       "acceptance_path": "docs/test-design/helix/system-synthesis-acceptance.md",
-      "acceptance_digest": "sha256:aced69e40c8635ae60a9bccab62392312b3e5773fac038a1b851a8928b48c874"
+      "acceptance_digest": "sha256:ed09b52fd9f0b0ed95e924730bc9132c375588520ad7041777188c726d994c16"
     },
     "plan_id": "PLAN-L3-66-system-synthesis-requirements",
     "responsibility_owner": "system-synthesis-architecture",
@@ -1078,6 +1078,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:78729726489076d0b228676cc0178d05100aecf16983251fe19170c71eae46c7"
+    "semantic_digest": "sha256:26cab0bb56d8c7a6c534f24a14a931b54b7fd4ca6237759afff59c8db608a01e"
   }
 }
