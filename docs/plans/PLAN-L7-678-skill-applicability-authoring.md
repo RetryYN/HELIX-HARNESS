@@ -33,7 +33,7 @@ contract_failures: "unknown pair、axis mismatch、極性衝突、current／lega
 tdd_red_required: true
 red_at: "2026-08-26T04:48:30+09:00"
 green_at: "2026-08-26T04:51:49+09:00"
-mutation_oracle_evidence: "2026-08-26T04:54:10+09:00にcurrent／legacy field混在拒否を除去し、tests/skill-assignment.test.tsが1 failed・4 passedとなることを実測した。復元後はauthoring関連5 suite 40 testsとtypecheckをgreen化する。"
+mutation_oracle_evidence: "2026-08-26T04:54:10+09:00にcurrent／legacy field混在拒否を除去し、tests/skill-assignment.test.tsが1 failed・4 passedとなることを実測した。復元後はauthoring関連5 suite 45 testsとtypecheckをgreen化した。"
 complexity_effect: net_negative
 complexity_justification: "旧drive_models生成をtyped pairの単一authoring経路へ置換し、既存61 skillは#322までcompatibility-onlyとして明示する"
 removal_trigger: "#322で全skillがtyped metadataへbackfillされcompatibility inventoryが0件になった時"
