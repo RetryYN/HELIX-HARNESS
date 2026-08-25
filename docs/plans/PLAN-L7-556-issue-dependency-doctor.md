@@ -58,7 +58,8 @@ generates:
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-80-issue-hierarchy-contract.md
-  requires: []
+  requires:
+    - docs/plans/PLAN-REVERSE-634-issue-dependency-doctor-terminal-fullback.md
   references:
     - docs/plans/PLAN-REVERSE-634-issue-dependency-doctor-terminal-fullback.md
   blocks: [issue:635]
