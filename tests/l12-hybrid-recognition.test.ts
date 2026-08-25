@@ -95,7 +95,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(602);
+    expect(plans).toHaveLength(603);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -129,7 +129,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(519);
+    ).toHaveLength(508);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -148,16 +148,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 877 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 866 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(877);
+    expect(candidates).toHaveLength(866);
     expect(counts).toEqual({
-      conflict: 356,
+      conflict: 345,
       compatibility_labeled: 24,
       false_positive: 479,
       historical: 18,
@@ -235,7 +235,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 158,
+        conflict: 146,
         false_positive: 50,
         historical: 6,
       },
@@ -248,7 +248,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 173,
+        conflict: 174,
         false_positive: 428,
       },
     });
