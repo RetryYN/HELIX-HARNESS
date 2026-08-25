@@ -365,6 +365,7 @@ import {
   type IssueDependencyNode,
   type IssueHierarchyNode,
   type IssuePlanBinding,
+  projectIssueDependencyMigrationCandidates,
 } from "./runtime/issue-hierarchy";
 import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
@@ -13706,6 +13707,7 @@ github
       let plans: IssuePlanBinding[];
       let contractFindings = [] as ReturnType<typeof collectIssueDependencyContracts>["findings"];
       let alignmentReport: ReturnType<typeof auditIssueHierarchyDependencyAlignment> | null = null;
+      let migrationCandidates: ReturnType<typeof projectIssueDependencyMigrationCandidates> = [];
       if (opts.inputJson) {
         nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
         plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
@@ -13736,10 +13738,9 @@ github
         const collected = collectIssueDependencyContracts(issues);
         nodes = collected.nodes;
         contractFindings = collected.findings;
-        alignmentReport = auditIssueHierarchyDependencyAlignment(
-          collectIssueHierarchyContracts(issues),
-          nodes,
-        );
+        const hierarchyNodes = collectIssueHierarchyContracts(issues);
+        alignmentReport = auditIssueHierarchyDependencyAlignment(hierarchyNodes, nodes);
+        migrationCandidates = projectIssueDependencyMigrationCandidates(hierarchyNodes, nodes);
         const governedNumbers = new Set(nodes.map((node) => node.number));
         plans = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
@@ -13785,6 +13786,7 @@ github
           focusedAlignmentFindings.length === 0,
         checkedIssues: dependencyReport.checkedIssues + focusedContractFindings.length,
         checkedAlignmentIssues: alignmentReport?.checkedIssues ?? 0,
+        migrationCandidates,
         findings: [
           ...focusedContractFindings,
           ...focusedAlignmentFindings,

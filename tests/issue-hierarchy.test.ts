@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 // PLAN-L7-475-issue-hierarchy-contract / U-IHIER-001
 // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
-// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012
+// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012 / U-IHIER-013
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
@@ -12,6 +12,7 @@ import {
   type IssueHierarchyNode,
   parseIssueDependencyContract,
   parseIssueHierarchyContract,
+  projectIssueDependencyMigrationCandidates,
 } from "../src/runtime/issue-hierarchy";
 
 const node = (overrides: Partial<IssueHierarchyNode>): IssueHierarchyNode => ({
@@ -62,6 +63,38 @@ describe("GitHub Issue dependency projection", () => {
       [],
     );
     expect(parentOnly).toMatchObject({ ok: true, findings: [] });
+  });
+
+  it("U-IHIER-013: hierarchy正本からdependency migration candidateを決定的に投影する", () => {
+    const candidates = projectIssueDependencyMigrationCandidates(
+      [
+        node({ number: 10, blocks: [30, 20], blockedBy: [5] }),
+        node({ number: 20 }),
+        node({ number: 30, blockedBy: [10] }),
+      ],
+      [
+        {
+          number: 10,
+          state: "open",
+          dependsOn: [],
+          blocks: [20],
+          planId: null,
+          planIds: ["PLAN-L7-1"],
+        },
+        { number: 30, state: "open", dependsOn: [10], blocks: [], planId: "PLAN-L7-2" },
+      ],
+    );
+
+    expect(candidates).toEqual([
+      {
+        issueNumber: 10,
+        action: "replace",
+        dependsOn: [5],
+        blocks: [20, 30],
+        planId: null,
+        planIds: ["PLAN-L7-1"],
+      },
+    ]);
   });
 
   it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {
