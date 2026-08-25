@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
 // PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012 / U-IHIER-013
 import {
+  applyIssueDependencyMigrationCandidate,
   auditIssueDependencies,
   auditIssueHierarchy,
   auditIssueHierarchyDependencyAlignment,
@@ -123,6 +124,30 @@ describe("GitHub Issue dependency projection", () => {
         planIds: ["PLAN-L7-41"],
       }),
     ).toThrow("issue_plan_scalar_and_set_conflict");
+
+    const replaceCandidate = candidates[0];
+    const addCandidate = candidates[1];
+    if (!replaceCandidate || !addCandidate) throw new Error("migration_candidate_fixture_missing");
+    const added = applyIssueDependencyMigrationCandidate("Issue body\n", addCandidate);
+    expect(added).toBe(`Issue body\n\n${addCandidate.contractBlock}\n`);
+    expect(parseIssueDependencyContract(added)).toEqual({
+      dependsOn: [10],
+      blocks: [],
+      planId: "PLAN-L7-40",
+    });
+
+    const replaced = applyIssueDependencyMigrationCandidate(
+      `before\n${renderIssueDependencyContract({ dependsOn: [], blocks: [], planId: null })}\nafter`,
+      replaceCandidate,
+    );
+    expect(replaced).toContain(replaceCandidate.contractBlock);
+    expect(replaced).not.toContain("depends_on: []");
+    expect(() => applyIssueDependencyMigrationCandidate(added, addCandidate)).toThrow(
+      "issue_dependency_migration_expected_absent",
+    );
+    expect(() => applyIssueDependencyMigrationCandidate("no contract", replaceCandidate)).toThrow(
+      "issue_dependency_migration_expected_present",
+    );
   });
 
   it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {

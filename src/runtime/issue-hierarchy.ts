@@ -135,6 +135,24 @@ export function renderIssueDependencyContract(
   ].join("\n");
 }
 
+export function applyIssueDependencyMigrationCandidate(
+  body: string,
+  candidate: IssueDependencyMigrationCandidate,
+): string {
+  const adoptedBlock = extractIssueDependencyContractBlock(body);
+  if (candidate.action === "add" && adoptedBlock !== null) {
+    throw new Error("issue_dependency_migration_expected_absent");
+  }
+  if (candidate.action === "replace" && adoptedBlock === null) {
+    throw new Error("issue_dependency_migration_expected_present");
+  }
+  if (adoptedBlock !== null) {
+    return body.replace(adoptedBlock, candidate.contractBlock);
+  }
+  const prefix = body.trimEnd();
+  return `${prefix}${prefix === "" ? "" : "\n\n"}${candidate.contractBlock}\n`;
+}
+
 /** Project the exact dependency contract required by the active hierarchy. */
 export function projectIssueDependencyMigrationCandidates(
   hierarchyNodes: readonly IssueHierarchyNode[],
