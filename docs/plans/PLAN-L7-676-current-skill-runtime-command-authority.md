@@ -77,7 +77,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — active Bun command再出現mutation" }
 ---
 
-# current skill runtime command authority
+# current skill runtime command authority是正
 
 ## 目的
 
