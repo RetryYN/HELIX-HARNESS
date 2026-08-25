@@ -2,8 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 
-const requirementPath =
-  "docs/design/helix/L3-requirements/system-synthesis-requirements.md";
+const requirementPath = "docs/design/helix/L3-requirements/system-synthesis-requirements.md";
 const acceptancePath = "docs/test-design/helix/system-synthesis-acceptance.md";
 const roadmapPath = "docs/governance/system-synthesis-rollout-roadmap.md";
 
@@ -13,12 +12,8 @@ const roadmap = readFileSync(roadmapPath, "utf8");
 
 describe("System Synthesis requirements authority", () => {
   it("L3とL10を同じPLANとpairへ束縛する", () => {
-    expect(requirement).toContain(
-      "plan: PLAN-L3-66-system-synthesis-requirements",
-    );
-    expect(acceptance).toContain(
-      "plan: PLAN-L3-66-system-synthesis-requirements",
-    );
+    expect(requirement).toContain("plan: PLAN-L3-66-system-synthesis-requirements");
+    expect(acceptance).toContain("plan: PLAN-L3-66-system-synthesis-requirements");
     expect(requirement).toContain(`pair_artifact: ${acceptancePath}`);
     expect(acceptance).toContain(`pair_artifact: ${requirementPath}`);
   });
