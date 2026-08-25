@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L4-77-current-skill-runtime-command-authority
-title: "PLAN-L4-77 (refactor): current skill guidanceをNode/npm authorityへ収束"
+plan_id: PLAN-L7-676-current-skill-runtime-command-authority
+title: "PLAN-L7-676 (refactor): current skill guidanceをNode/npm authorityへ収束"
 kind: refactor
-layer: L4
+layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -29,13 +29,14 @@ mutation_oracle_evidence: "docs/skills/code-review.mdのcurrent commandをnpm ru
 complexity_effect: net_negative
 complexity_justification: "廃止済みruntimeの二重command guidanceを除去し、package scriptsとCI authorityへ一本化する"
 removal_trigger: "current skill guidanceが別のrequirements-owned runtime authorityへversion-upされ、同等のcross-surface oracleが移行した時"
-pair_artifact: docs/test-design/helix/L4-pillar-system-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
+parent_design: docs/design/helix/L6-function-design/node-runtime-cutover.md
 backprop_decision: not_required
 backprop_decision_reason: "requirementsとADR-009/010で確定済みのNode/npm authorityをcurrent skillへ投影するReverse是正で、上位意味を変更しない"
 entry_signals:
   - "po_directive:Issue #253 current skill surfaceからactive Bun commandを撤去する"
 generates:
-  - { artifact_path: docs/plans/PLAN-L4-77-current-skill-runtime-command-authority.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-676-current-skill-runtime-command-authority.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/skills/dependency-map.md, artifact_type: markdown_doc }
   - { artifact_path: docs/skills/data-migration.md, artifact_type: markdown_doc }
@@ -52,7 +53,7 @@ modifies:
   - { artifact_path: docs/skills/code-review.md, artifact_type: markdown_doc }
   - { artifact_path: tests/runtime-authority-requirements.test.ts, artifact_type: test_code }
 dependencies:
-  parent: docs/plans/PLAN-L3-44-authoring-style-case-authority.md
+  parent: docs/design/helix/L6-function-design/node-runtime-cutover.md
   requires:
     - docs/governance/helix-harness-requirements_v1.3.md
     - docs/adr/ADR-009-node-python-linux-runtime.md

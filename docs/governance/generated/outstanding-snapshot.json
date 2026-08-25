@@ -15,7 +15,6 @@
     "PLAN-L3-25-github-update-lifecycle",
     "PLAN-L3-26-github-plan-workflow-governance",
     "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
-    "PLAN-L4-77-current-skill-runtime-command-authority",
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
     "PLAN-L7-146-serverless-readonly-share",
@@ -29,6 +28,7 @@
     "PLAN-L7-671-issue-dependency-detector-parser-shape",
     "PLAN-L7-672-current-location-summary-typed-output",
     "PLAN-L7-674-terminal-fullback-bundle-admission",
+    "PLAN-L7-676-current-skill-runtime-command-authority",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
