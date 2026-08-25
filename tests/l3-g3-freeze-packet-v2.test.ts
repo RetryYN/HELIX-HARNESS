@@ -13,6 +13,7 @@
 // PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-006
 // PLAN-L7-642-distribution-lite-profile-manifest — U-DISTLITE-004
 // PLAN-L7-651-project-hook-authority-resolver — U-CNWHOOKSCHEMA-013
+// PLAN-L7-674-terminal-fullback-bundle-admission — U-DESIGNCOV-016
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -174,7 +175,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-    "8f6c1af2d9fdc8c9d2c392ce55498b278fc55563c21537033f35f743893da96a",
+    "cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8",
   ],
   [
     "docs/test-design/helix/github-merge-admission-system-test-design.md",
