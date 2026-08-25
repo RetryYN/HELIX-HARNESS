@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, parse, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import {
   assertWorkflowClassificationAuthorityDigest,
@@ -13,6 +14,22 @@ import {
 
 export const SKILL_APPLICABILITY_REGISTRY_PATH =
   "docs/design/helix/L3-requirements/skill-applicability-registry.v1.json";
+
+function findPackageRoot(modulePath: string): string {
+  let current = dirname(modulePath);
+  const filesystemRoot = parse(current).root;
+  while (current !== filesystemRoot) {
+    try {
+      readFileSync(resolve(current, "package.json"));
+      return current;
+    } catch {
+      current = dirname(current);
+    }
+  }
+  throw new Error("skill applicability package root not found");
+}
+
+const PACKAGE_ROOT = findPackageRoot(fileURLToPath(import.meta.url));
 
 const digestSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/u);
 const identityIdSchema = z.string().regex(/^[A-Z][A-Z0-9_]*$/u);
@@ -230,7 +247,7 @@ function revalidateInjectedBindings(
 }
 
 export function loadSkillApplicabilityRegistry(
-  repoRoot: string = process.cwd(),
+  repoRoot: string = PACKAGE_ROOT,
 ): SkillApplicabilityRegistry {
   const registry = skillApplicabilityRegistrySchema.parse(
     JSON.parse(readFileSync(resolve(repoRoot, SKILL_APPLICABILITY_REGISTRY_PATH), "utf8")),

@@ -1,15 +1,19 @@
 import {
   analyzeSkillAssignments,
-  VALID_SKILL_DRIVE_MODELS,
   VALID_SKILL_LAYERS,
   VALID_SKILL_TYPES,
 } from "../lint/skill-assignment";
+import {
+  loadSkillApplicabilityRegistry,
+  type SkillApplicabilityIdentity,
+} from "../schema/skill-applicability-registry.js";
 
 export interface SkillScaffoldInput {
   name: string;
   category: string;
   layers: readonly string[];
-  driveModels: readonly string[];
+  applicableIdentities: readonly SkillApplicabilityIdentity[];
+  excludedIdentities?: readonly SkillApplicabilityIdentity[];
   domainTags?: readonly string[];
   description?: string;
   /**
@@ -78,11 +82,21 @@ function yamlList(values: readonly string[]): string {
   return values.map((value) => `    - ${yamlScalar(value)}`).join("\n");
 }
 
+function yamlIdentityList(values: readonly SkillApplicabilityIdentity[]): string {
+  return values
+    .map(
+      (identity) =>
+        `    - target_axis: ${yamlScalar(identity.target_axis)}\n      target_id: ${yamlScalar(identity.target_id)}`,
+    )
+    .join("\n");
+}
+
 function generatedSkillMarkdown(input: {
   name: string;
   category: string;
   layers: readonly string[];
-  driveModels: readonly string[];
+  applicableIdentities: readonly SkillApplicabilityIdentity[];
+  excludedIdentities: readonly SkillApplicabilityIdentity[];
   domainTags: readonly string[];
   description: string;
 }): string {
@@ -101,8 +115,11 @@ function generatedSkillMarkdown(input: {
     "applies_to:",
     "  layers:",
     yamlList(input.layers),
-    "  drive_models:",
-    yamlList(input.driveModels),
+    "  applicable_identities:",
+    yamlIdentityList(input.applicableIdentities),
+    ...(input.excludedIdentities.length > 0
+      ? ["  excluded_identities:", yamlIdentityList(input.excludedIdentities)]
+      : ["  excluded_identities: []"]),
     domainTags.trimEnd(),
     "---",
     "",
@@ -158,7 +175,8 @@ export function scaffoldSkill(input: SkillScaffoldInput): SkillScaffoldResult {
   const name = input.name.trim();
   const category = input.category.trim();
   const layers = normalizeList(input.layers);
-  const driveModels = normalizeList(input.driveModels);
+  const applicableIdentities = input.applicableIdentities.map((identity) => ({ ...identity }));
+  const excludedIdentities = (input.excludedIdentities ?? []).map((identity) => ({ ...identity }));
   const domainTags = normalizeList(input.domainTags);
   const slug = slugifyName(name);
   const path = slug.length > 0 ? `docs/skills/${slug}.md` : "docs/skills/invalid-skill.md";
@@ -168,7 +186,8 @@ export function scaffoldSkill(input: SkillScaffoldInput): SkillScaffoldResult {
     skill_type: category,
     applies_to: {
       layers,
-      drive_models: driveModels,
+      applicable_identities: applicableIdentities,
+      excluded_identities: excludedIdentities,
     },
   };
   if (domainTags.length > 0) metadata.domain_tags = domainTags;
@@ -214,7 +233,8 @@ export function scaffoldSkill(input: SkillScaffoldInput): SkillScaffoldResult {
       name,
       category,
       layers,
-      driveModels,
+      applicableIdentities,
+      excludedIdentities,
       domainTags,
       description,
     }),
@@ -226,5 +246,5 @@ export function scaffoldSkill(input: SkillScaffoldInput): SkillScaffoldResult {
 export const SKILL_SCAFFOLD_ALLOWED_VALUES = {
   categories: VALID_SKILL_TYPES,
   layers: VALID_SKILL_LAYERS,
-  driveModels: VALID_SKILL_DRIVE_MODELS,
+  applicabilityAxes: loadSkillApplicabilityRegistry().current_contract.allowed_axes,
 } as const;

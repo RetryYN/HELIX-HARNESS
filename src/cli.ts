@@ -458,6 +458,10 @@ import {
 } from "./runtime/work-guard";
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
+import {
+  adaptLegacySkillApplicability,
+  type SkillApplicabilityIdentity,
+} from "./schema/skill-applicability-registry";
 import { findReference } from "./search/index";
 import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
@@ -10466,7 +10470,9 @@ skill
   .requiredOption("--name <name>", "skill display name")
   .requiredOption("--category <category>", "skill_type value")
   .requiredOption("--layers <list>", "comma-separated L layer list")
-  .requiredOption("--drive-models <list>", "comma-separated drive model list")
+  .option("--applicable <list>", "comma-separated target_axis:target_id identities")
+  .option("--exclude <list>", "comma-separated excluded target_axis:target_id identities")
+  .option("--drive-models <list>", "deprecated compatibility input-only drive model list")
   .option("--domain-tags <list>", "comma-separated domain tags")
   .option("--description <text>", "initial Japanese skill description")
   .option("--write", "write the scaffold file under docs/skills")
@@ -10477,7 +10483,9 @@ skill
       name: string;
       category: string;
       layers: string;
-      driveModels: string;
+      applicable?: string;
+      exclude?: string;
+      driveModels?: string;
       domainTags?: string;
       description?: string;
       write?: boolean;
@@ -10489,6 +10497,40 @@ skill
           .split(",")
           .map((part) => part.trim())
           .filter(Boolean);
+      const parseIdentities = (value: string | undefined): SkillApplicabilityIdentity[] =>
+        split(value).map((item) => {
+          const separator = item.indexOf(":");
+          if (
+            separator <= 0 ||
+            separator === item.length - 1 ||
+            item.indexOf(":", separator + 1) >= 0
+          ) {
+            throw new Error(`skill applicability identity must use target_axis:target_id: ${item}`);
+          }
+          return {
+            target_axis: item.slice(0, separator) as SkillApplicabilityIdentity["target_axis"],
+            target_id: item.slice(separator + 1),
+          };
+        });
+      if (opts.applicable && opts.driveModels) {
+        throw new Error("--applicable and deprecated --drive-models cannot be combined");
+      }
+      let applicableIdentities = parseIdentities(opts.applicable);
+      if (opts.driveModels) {
+        const adapted = adaptLegacySkillApplicability(split(opts.driveModels));
+        if (adapted.disposition !== "converted") {
+          throw new Error(`legacy skill applicability ${adapted.disposition}: ${adapted.token}`);
+        }
+        applicableIdentities = adapted.identities;
+        process.stderr.write(
+          "warning: --drive-models is compatibility input-only; emitted scaffold uses typed identities\n",
+        );
+      }
+      if (applicableIdentities.length === 0) {
+        throw new Error(
+          "--applicable is required unless a convertible --drive-models input is supplied",
+        );
+      }
       const skillDir = join(process.cwd(), "docs", "skills");
       const existingSlugs = existsSync(skillDir)
         ? readdirSync(skillDir)
@@ -10499,7 +10541,8 @@ skill
         name: opts.name,
         category: opts.category,
         layers: split(opts.layers),
-        driveModels: split(opts.driveModels),
+        applicableIdentities,
+        excludedIdentities: parseIdentities(opts.exclude),
         domainTags: split(opts.domainTags),
         description: opts.description,
         existingSlugs,

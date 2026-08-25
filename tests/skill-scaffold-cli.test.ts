@@ -38,8 +38,8 @@ describe("skill create CLI", () => {
         "quality-gate-review",
         "--layers",
         "L7,L8",
-        "--drive-models",
-        "Forward,Reverse",
+        "--applicable",
+        "workflow_model:REVERSE,execution_mode:HYBRID",
         "--domain-tags",
         "review,gate",
         "--json",
@@ -75,8 +75,8 @@ describe("skill create CLI", () => {
         "process",
         "--layers",
         "L12",
-        "--drive-models",
-        "Incident",
+        "--applicable",
+        "workflow_model:INCIDENT",
       ]);
 
       expect(run.status, run.stderr || run.stdout).toBe(0);
@@ -99,8 +99,8 @@ describe("skill create CLI", () => {
         "quality-gate-review",
         "--layers",
         "L7",
-        "--drive-models",
-        "Forward",
+        "--applicable",
+        "workflow_model:REVERSE",
         "--write",
         "--json",
       ];
@@ -140,8 +140,8 @@ describe("skill create CLI", () => {
         "quality-gate-review",
         "--layers",
         "L7",
-        "--drive-models",
-        "Forward",
+        "--applicable",
+        "workflow_model:REVERSE",
         "--write",
         "--force",
         "--json",

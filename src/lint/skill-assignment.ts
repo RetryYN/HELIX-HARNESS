@@ -1,10 +1,10 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { parseSkillApplicability } from "../schema/skill-applicability-registry.js";
 import { markdownFrontmatter } from "./shared";
 
 export const VALID_SKILL_LAYERS = [
-  "L0",
   "L1",
   "L2",
   "L3",
@@ -17,10 +17,11 @@ export const VALID_SKILL_LAYERS = [
   "L10",
   "L11",
   "L12",
-  "L13",
-  "L14",
 ] as const;
 
+export const LEGACY_SKILL_LAYERS = ["L0", ...VALID_SKILL_LAYERS, "L13", "L14"] as const;
+
+/** compatibility inventory専用。current scaffold／projectionへ再利用しない。 */
 export const VALID_SKILL_DRIVE_MODELS = [
   "Forward",
   "Discovery",
@@ -58,6 +59,9 @@ export interface SkillAssignmentViolation {
     | "unknown-skill-type"
     | "missing-layers"
     | "unknown-layer"
+    | "missing-applicable-identities"
+    | "invalid-current-applicability"
+    | "legacy-field-on-current-skill"
     | "missing-drive-models"
     | "unknown-drive-model";
   value?: string;
@@ -66,6 +70,8 @@ export interface SkillAssignmentViolation {
 export interface SkillAssignmentResult {
   ok: boolean;
   checked: number;
+  currentChecked: number;
+  compatibilityOnly: number;
   violations: SkillAssignmentViolation[];
 }
 
@@ -92,12 +98,14 @@ function parseMetadata(path: string): Record<string, unknown> {
 
 function stringList(value: unknown): string[] {
   if (Array.isArray(value)) {
-    return value.filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+    return value.filter(
+      (item): item is string => typeof item === "string" && item.trim().length > 0,
+    );
   }
   if (typeof value === "string" && value.trim().length > 0) {
     return value
       .split(",")
-      .map((v) => v.trim())
+      .map((item) => item.trim())
       .filter(Boolean);
   }
   return [];
@@ -114,8 +122,11 @@ export function loadSkillAssignmentDocs(repoRoot: string): SkillAssignmentDoc[] 
 export function analyzeSkillAssignments(docs: SkillAssignmentDoc[]): SkillAssignmentResult {
   const violations: SkillAssignmentViolation[] = [];
   const validSkillTypes = new Set<string>(VALID_SKILL_TYPES);
-  const validLayers = new Set<string>(VALID_SKILL_LAYERS);
-  const validDriveModels = new Set<string>(VALID_SKILL_DRIVE_MODELS);
+  const currentLayers = new Set<string>(VALID_SKILL_LAYERS);
+  const legacyLayers = new Set<string>(LEGACY_SKILL_LAYERS);
+  const legacyModels = new Set<string>(VALID_SKILL_DRIVE_MODELS);
+  let currentChecked = 0;
+  let compatibilityOnly = 0;
 
   for (const doc of docs) {
     const skillType = doc.metadata.skill_type;
@@ -131,23 +142,47 @@ export function analyzeSkillAssignments(docs: SkillAssignmentDoc[]): SkillAssign
         : {};
     const layers = stringList(appliesTo.layers);
     if (layers.length === 0) violations.push({ path: doc.path, kind: "missing-layers" });
+
+    const hasCurrent =
+      Object.hasOwn(appliesTo, "applicable_identities") ||
+      Object.hasOwn(appliesTo, "excluded_identities");
+    const legacyDriveModels = stringList(appliesTo.drive_models);
+    const layerAuthority = hasCurrent ? currentLayers : legacyLayers;
     for (const layer of layers) {
-      if (!validLayers.has(layer)) {
+      if (!layerAuthority.has(layer)) {
         violations.push({ path: doc.path, kind: "unknown-layer", value: layer });
       }
     }
 
-    const driveModels = stringList(appliesTo.drive_models);
-    if (driveModels.length === 0) {
-      violations.push({ path: doc.path, kind: "missing-drive-models" });
-    }
-    for (const driveModel of driveModels) {
-      if (!validDriveModels.has(driveModel)) {
+    if (hasCurrent) {
+      currentChecked += 1;
+      if (legacyDriveModels.length > 0) {
+        violations.push({ path: doc.path, kind: "legacy-field-on-current-skill" });
+      }
+      try {
+        parseSkillApplicability({
+          applicable_identities: appliesTo.applicable_identities,
+          excluded_identities: appliesTo.excluded_identities ?? [],
+        });
+      } catch (error) {
         violations.push({
           path: doc.path,
-          kind: "unknown-drive-model",
-          value: driveModel,
+          kind: "invalid-current-applicability",
+          value: error instanceof Error ? error.message : String(error),
         });
+      }
+      continue;
+    }
+
+    if (legacyDriveModels.length === 0) {
+      violations.push({ path: doc.path, kind: "missing-applicable-identities" });
+      violations.push({ path: doc.path, kind: "missing-drive-models" });
+      continue;
+    }
+    compatibilityOnly += 1;
+    for (const model of legacyDriveModels) {
+      if (!legacyModels.has(model)) {
+        violations.push({ path: doc.path, kind: "unknown-drive-model", value: model });
       }
     }
   }
@@ -155,19 +190,23 @@ export function analyzeSkillAssignments(docs: SkillAssignmentDoc[]): SkillAssign
   return {
     ok: docs.length > 0 && violations.length === 0,
     checked: docs.length,
+    currentChecked,
+    compatibilityOnly,
     violations,
   };
 }
 
 export function skillAssignmentMessages(result: SkillAssignmentResult): string[] {
   if (result.ok) {
-    return [`skill-assignment - OK (checked=${result.checked}, layer/drive-model metadata set)`];
+    return [
+      `skill-assignment - OK (checked=${result.checked}, current=${result.currentChecked}, compatibility_only=${result.compatibilityOnly})`,
+    ];
   }
   if (result.checked === 0) {
     return ["skill-assignment - violation: docs/skills has no skill definitions"];
   }
-  return result.violations.map((v) => {
-    const value = v.value ? ` value=${v.value}` : "";
-    return `skill-assignment - violation: ${v.path}: ${v.kind}${value}`;
+  return result.violations.map((violation) => {
+    const value = violation.value ? ` value=${violation.value}` : "";
+    return `skill-assignment - violation: ${violation.path}: ${violation.kind}${value}`;
   });
 }
