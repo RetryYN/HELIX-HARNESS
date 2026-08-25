@@ -100,7 +100,7 @@ main read-afterの基準点は、PR #1019 merge後の `f5d70356cfadfc0f2880d9dbc
 
 - requirements／registry境界：legacy identity昇格、unsupported、duplicate、injection、approval downgrade
 - generated projection：三重digest、raw command、旧identity、manual drift
-- resolver／consumer：`policy_unsupported`、`policy_ambiguous`、approval required、7 disposition／exit map
+- resolver／consumer：`policy_unsupported`、`policy_ambiguous`、承認要求、7種類の処理結果と終了コード対応
 - CLI：typed JSON、execution form、4 boolean、raw command／legacy identity非出力
 
 R1の採否は、Forward PLANの実測review evidence、merge済みHEAD、required harness-check、current-main read-afterで行い、proseや過去のdraft状態から成功を推測しない。
