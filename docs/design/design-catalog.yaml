@@ -95,6 +95,7 @@ items:
       - docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md
       - docs/design/helix/L3-requirements/distribution-package-release-requirements.md
       - docs/design/helix/L3-requirements/security-capability-broker-authority.md
+      - docs/design/helix/L3-requirements/system-synthesis-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
