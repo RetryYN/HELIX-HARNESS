@@ -51,6 +51,9 @@ modifies:
   - { artifact_path: docs/skills/deprecation-cutover.md, artifact_type: markdown_doc }
   - { artifact_path: docs/skills/error-fix.md, artifact_type: markdown_doc }
   - { artifact_path: docs/skills/code-review.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/runtime-authority-requirements.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/node-runtime-cutover.md
@@ -83,7 +86,7 @@ retirement detectorを書き換えず、current guidanceから廃止済みBun co
 
 ## 工程
 
-1. exact inventory内のactive Bun commandとTypeScript/Bun前提を採取する。
+1. exact inventory内のactive Bun commandと廃止済みcombined runtime前提を採取する。
 2. package scriptsと一致する`npm run typecheck`、`npm run lint`、`npm run test`、`npm audit`へ置換する。
 3. existing runtime authority oracleへexact skill inventoryを追加し、再導入をfail-closeする。
 4. PLAN lint、targeted test、typecheck、full CI、Claude exact-HEAD reviewで終端する。
