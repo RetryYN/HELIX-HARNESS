@@ -5,7 +5,7 @@ kind: reverse
 layer: cross
 workflow_phase: R4
 confirmed_reverse_type: fullback
-forward_routing: L7
+forward_routing: L5
 promotion_strategy: reuse-as-is
 drive: agent
 status: draft
