@@ -159,4 +159,86 @@ describe("skill create CLI", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("converts a unique legacy input without re-emitting drive_models", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-skill-create-legacy-"));
+    try {
+      const run = runCliIn(root, [
+        "skill",
+        "create",
+        "--name",
+        "Recovery Guide",
+        "--category",
+        "process",
+        "--layers",
+        "L7",
+        "--drive-models",
+        "Recovery",
+        "--json",
+      ]);
+
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(run.stderr).toContain("compatibility input-only");
+      const payload = JSON.parse(run.stdout);
+      expect(payload.metadata.applies_to).toMatchObject({
+        applicable_identities: [{ target_axis: "workflow_model", target_id: "RECOVERY" }],
+      });
+      expect(payload.content).not.toContain("drive_models");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each(["Forward", "Scrum", "unknown-model"])(
+    "fails closed for ambiguous or unsupported legacy input %s",
+    (legacy) => {
+      const root = mkdtempSync(join(tmpdir(), "helix-skill-create-legacy-reject-"));
+      try {
+        const run = runCliIn(root, [
+          "skill",
+          "create",
+          "--name",
+          "Rejected Guide",
+          "--category",
+          "process",
+          "--layers",
+          "L7",
+          "--drive-models",
+          legacy,
+          "--json",
+        ]);
+        expect(run.status).toBe(1);
+        expect(run.stderr).toMatch(/legacy skill applicability (ambiguous|unsupported)/u);
+        expect(run.stdout).toBe("");
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
+    },
+  );
+
+  it("fails closed when typed and legacy inputs are combined", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-skill-create-mixed-reject-"));
+    try {
+      const run = runCliIn(root, [
+        "skill",
+        "create",
+        "--name",
+        "Rejected Guide",
+        "--category",
+        "process",
+        "--layers",
+        "L7",
+        "--applicable",
+        "workflow_model:RECOVERY",
+        "--drive-models",
+        "Recovery",
+        "--json",
+      ]);
+      expect(run.status).toBe(1);
+      expect(run.stderr).toContain("cannot be combined");
+      expect(run.stdout).toBe("");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });
