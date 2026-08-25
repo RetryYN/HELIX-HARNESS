@@ -13,7 +13,7 @@ plan: docs/plans/PLAN-L7-672-current-location-summary-typed-output.md
 pair_artifact: docs/design/helix/L6-function-design/current-location-summary-typed-output.md
 ---
 
-# current-location summary typed workflow output単体テスト設計
+# current-location summary の typed workflow 出力・単体テスト設計
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|

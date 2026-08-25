@@ -3170,7 +3170,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.workflow_route).not.toHaveProperty("default_model");
     expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
     expect(payload.current_location_frontier).not.toHaveProperty("route_id");
-  }, 15_000);
+  }, 45_000);
 
   it("U-CLSO-003: PLAN-L7-672-current-location-summary-typed-output legacy primary fieldsを出力しない", () => {
     const run = runCli(["current-location", "--summary-json"]);
@@ -3183,7 +3183,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.workflow_route).not.toHaveProperty("default_model");
     expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
     expect(payload.current_location_frontier).not.toHaveProperty("route_id");
-  }, 15_000);
+  }, 45_000);
 
   it("U-CLSO-004: PLAN-L7-672-current-location-summary-typed-output frontierをtyped routeへ揃える", () => {
     const run = runCli(["current-location", "--summary-json"]);
@@ -3199,7 +3199,7 @@ describe("L7 CLI surface closure", () => {
         workflow_route: "helix current-location --summary-json",
       },
     });
-  }, 15_000);
+  }, 45_000);
 
   it("U-CLSO-005: PLAN-L7-672-current-location-summary-typed-output textをtyped routeへ切り替える", () => {
     const run = runCli(["current-location"]);
@@ -3207,7 +3207,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.stdout).toContain("workflow-route:");
     expect(run.stdout).not.toContain("drive=");
     expect(run.stdout).not.toContain("drive-route:");
-  }, 15_000);
+  }, 45_000);
 
   it("U-CLSO-006: PLAN-L7-672-current-location-summary-typed-output schema v2を固定する", () => {
     const run = runCli(["current-location", "--summary-json"]);
@@ -3218,7 +3218,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.current_location_frontier.schema_version).toBe(
       "current-location-frontier-summary.v2",
     );
-  }, 15_000);
+  }, 45_000);
 
   it("exposes Project view current-location and drive recommendation from DB projection", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));

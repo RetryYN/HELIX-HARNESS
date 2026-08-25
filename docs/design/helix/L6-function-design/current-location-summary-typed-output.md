@@ -12,7 +12,7 @@ plan: docs/plans/PLAN-L7-672-current-location-summary-typed-output.md
 pair_artifact: docs/test-design/helix/L8-current-location-summary-typed-output-unit-test-design.md
 ---
 
-# current-location summary typed workflow output
+# current-location summary の typed workflow 出力
 
 ## 目的
 
