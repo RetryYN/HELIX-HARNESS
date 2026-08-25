@@ -13778,6 +13778,12 @@ github
             : alignmentReport.findings.filter((finding) =>
                 (parsedFocus as number[]).includes(finding.issueNumber),
               );
+      const focusedMigrationCandidates =
+        parsedFocus === null
+          ? migrationCandidates
+          : migrationCandidates.filter((candidate) =>
+              (parsedFocus as number[]).includes(candidate.issueNumber),
+            );
       const report = {
         ...dependencyReport,
         ok:
@@ -13786,7 +13792,7 @@ github
           focusedAlignmentFindings.length === 0,
         checkedIssues: dependencyReport.checkedIssues + focusedContractFindings.length,
         checkedAlignmentIssues: alignmentReport?.checkedIssues ?? 0,
-        migrationCandidates,
+        migrationCandidates: focusedMigrationCandidates,
         findings: [
           ...focusedContractFindings,
           ...focusedAlignmentFindings,
