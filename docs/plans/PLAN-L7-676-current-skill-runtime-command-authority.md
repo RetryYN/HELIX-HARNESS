@@ -57,6 +57,7 @@ modifies:
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/runtime-authority-requirements.test.ts, artifact_type: test_code }
   - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/node-runtime-cutover.md
   requires:
