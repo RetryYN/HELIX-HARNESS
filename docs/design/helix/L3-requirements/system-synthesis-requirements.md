@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "System Synthesis capability family要件"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-26
 updated: 2026-08-26
 owner: PO / Codex TL
@@ -22,6 +22,9 @@ refines:
 ---
 
 # System Synthesis capability family要件
+
+> 2026-08-26、POの「新構想でブレイクスルーを起こしてくれ」という採用・推進指示により、
+> G-REQ.L3をconfirmedへ昇格した。FUTURE parking解除と外部副作用のaction-binding approvalは別境界として維持する。
 
 ## §0 authority境界
 
