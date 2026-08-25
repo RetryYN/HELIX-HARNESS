@@ -90,6 +90,15 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | skill pack 判断力uplift | PLAN-L6-65 / `skill-pack-uplift.md` | `U-SKUP-001..011`。PLAN-L7-419の実装済みskill catalog・判断frame・marker・CLI citation・言語/license/decision precedenceを固有test caseへ束縛する |
 | CI hard-gate integrity self-heal | PLAN-L7-423 / `function-spec.md` | `U-CISELF-001..008`。dependency boundary、compat shim、secret SSoT、human/technical review分離、L6逆trace、fresh-clone approval frontierを固有test caseへ束縛する |
 | document semantic diff local artifact | PLAN-L7-457 / `document-semantic-diff.md` §3.1 | `U-DOCDIFF-008` / `IT-DOCDIFF-003`。専用root、new-file-only、dry-run 0 write、durable receiptを固有testへ束縛する |
+| Reverse fullback scope全entry | PLAN-L7-673 / `governance-enforcement.md` §2.8 | `U-RFSCOPE-001..003`。必須外layerのinvalid decision、未生成`updated` evidence、valid `not_impacted`を検査し、追加layerの未検査を許可しない。必須3層限定へ戻すmutationをkillする | `tests/plan-lint.test.ts`, `tests/tools/reverse-fullback-scope-mutation/run-mutation.ts` |
+
+### Reverse fullback scope全entryのoracle（PLAN-L7-673）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-RFSCOPE-001 | 必須外`verification-design`の`decision: inferred` | 許可されないdecisionを`reverse_fullback_scope_missing`として拒否する | `tests/plan-lint.test.ts` |
+| U-RFSCOPE-002 | 必須外`verification-design`の未生成`updated` evidence | 同一PLANの`generates`に無いevidence pathを`reverse_fullback_scope_missing`として拒否する | `tests/plan-lint.test.ts` |
+| U-RFSCOPE-003 | 必須外`verification-design`の`not_impacted` | 変更が無いことを理由付きで宣言したscopeを受理する | `tests/plan-lint.test.ts` |
 
 ### active PLAN選択整合性のoracle
 

@@ -18,11 +18,11 @@ entry_signals:
   - "po_directive:2026-07-11『ハンドオーバーは廃止した』— session/prose handoverを廃止済みの正本判断として固定"
 backprop_scope:
   - layer: charter
-    decision: update_required
+    decision: updated
     evidence_path: docs/design/helix/L0-charter/helix-charter_v0.1.md
     reason: "P5のhandover要約契約をevent-first continuationへ置換する。"
   - layer: concept
-    decision: update_required
+    decision: updated
     evidence_path: docs/governance/helix-harness-concept_v3.1.md
     reason: "Handover aggregateをDB+memory continuationへ置換する。"
   - layer: requirements
@@ -30,19 +30,19 @@ backprop_scope:
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "handover必須、3層原則、CLI/CURRENT.json契約を廃止する。"
   - layer: L3-requirements
-    decision: update_required
+    decision: updated
     evidence_path: docs/design/helix/L3-requirements/pillar-functional-requirements.md
     reason: "session continuationをstatus/DB/memoryへ置換する。"
-  - layer: L4-basic-design
-    decision: update_required
+  - layer: L4-basic-design-harness
+    decision: updated
     evidence_path: docs/design/helix/L4-basic-design/pillar-basic-design.md
     reason: "handover block/flowをcontinuation stateへ置換する。"
-  - layer: L5-detailed-design
-    decision: update_required
+  - layer: L5-detailed-design-harness
+    decision: updated
     evidence_path: docs/design/helix/L5-detail/pillar-detail-design.md
     reason: "handover input/output/failure contractをDB+memoryへ置換する。"
   - layer: L6-function-design
-    decision: update_required
+    decision: updated
     evidence_path: docs/design/helix/L6-function-design/pillar-function-design.md
     reason: "mergeAnchoredHandoverとhandover resume/setup契約をevent-first continuation関数へ置換する。"
   - layer: L4-basic-design
@@ -54,8 +54,8 @@ backprop_scope:
     evidence_path: docs/design/harness/L5-detailed-design/module-decomposition.md
     reason: "CURRENT物理schemaとsrc/handover moduleを廃止する。"
   - layer: verification-design
-    decision: update_required
-    evidence_path: docs/test-design/
+    decision: updated
+    evidence_path: docs/test-design/harness/L8-unit-test-design.md
     reason: "L3-L6 pillar pairとharness L9 system/integrationへ正負oracleを追加する。"
 agent_slots:
   - role: se
