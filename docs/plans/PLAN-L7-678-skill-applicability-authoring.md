@@ -22,8 +22,8 @@ behavior_contract_id: SKILL-APPLICABILITY-AUTHORING-001
 responsibility_owner: typed-skill-authoring
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: migrate_consumer
-legacy_retirement_state: compatibility_input_only
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: policy
 contract_preconditions: "PLAN-L7-677のtyped value objectとrequirements-owned registryがcandidate branchに存在する"
@@ -50,6 +50,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-678-skill-applicability-authoring.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
