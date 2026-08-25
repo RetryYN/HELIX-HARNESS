@@ -6,6 +6,7 @@ layer: L3
 drive: agent
 status: confirmed
 completion_claim_allowed: false
+backfill_state: pending_reverse
 route_mode: version-up
 entry_signals:
   - "po_directive:Issue #704 runtime/CLI consumer prerequisite"
@@ -84,6 +85,7 @@ dependencies:
   references:
     - config/drive-route-catalog.json
     - src/cli/commands/route.ts
+    - docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md
   blocks: []
 ---
 

@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 completion_claim_allowed: false
+backfill_state: pending_reverse
 route_mode: version-up
 entry_signals: ["po_directive:Issue #704 typed policy resolver slice"]
 created: 2026-08-15
@@ -86,6 +87,7 @@ dependencies:
     - docs/plans/PLAN-L3-59-workflow-execution-disposition-map.md
   references:
     - docs/plans/PLAN-L7-563-workflow-execution-policy-projection.md
+    - docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md
   blocks: []
 ---
 

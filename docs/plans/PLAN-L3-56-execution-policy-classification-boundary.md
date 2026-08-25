@@ -6,6 +6,7 @@ layer: L3
 drive: agent
 status: confirmed
 completion_claim_allowed: false
+backfill_state: pending_reverse
 route_mode: version-up
 entry_signals:
   - "po_directive:Issue #704 requirements-owned execution policy prerequisite"
@@ -75,6 +76,7 @@ dependencies:
     - docs/governance/route-classification-surface-inventory-2026-08-15.md
     - src/schema/route-map.ts
     - config/drive-route-catalog.json
+    - docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md
   blocks: []
 ---
 

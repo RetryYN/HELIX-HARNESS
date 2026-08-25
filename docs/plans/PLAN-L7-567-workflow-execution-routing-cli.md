@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 completion_claim_allowed: false
+backfill_state: pending_reverse
 route_mode: version-up
 entry_signals: ["po_directive:Issue #704 current route CLI migration slice"]
 created: 2026-08-15
@@ -89,6 +90,7 @@ dependencies:
   references:
     - docs/plans/PLAN-L3-59-workflow-execution-disposition-map.md
     - docs/plans/PLAN-L7-477-route-action-approval-stage.md
+    - docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md
   blocks: []
 ---
 

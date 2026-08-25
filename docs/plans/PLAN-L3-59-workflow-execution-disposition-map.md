@@ -6,6 +6,7 @@ layer: L3
 drive: agent
 status: confirmed
 completion_claim_allowed: false
+backfill_state: pending_reverse
 route_mode: version-up
 entry_signals:
   - "po_directive:Issue #704 disposition-to-exit mapping gap"
@@ -84,6 +85,7 @@ dependencies:
     - docs/plans/PLAN-L3-58-workflow-execution-policy-consumer-contract.md
   references:
     - src/cli/commands/route.ts
+    - docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md
   blocks: []
 ---
 
