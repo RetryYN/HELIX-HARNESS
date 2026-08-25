@@ -79,7 +79,9 @@ generates:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L7-555-issue-metadata-enforcement.md
-  requires: [docs/plans/PLAN-L7-555-issue-metadata-enforcement.md]
+  requires:
+    - docs/plans/PLAN-L7-555-issue-metadata-enforcement.md
+    - docs/plans/PLAN-REVERSE-633-issue-metadata-terminal-fullback.md
   blocks: []
 agent_slots:
   - { role: se, slot_label: "SE — scheduled audit wiring" }

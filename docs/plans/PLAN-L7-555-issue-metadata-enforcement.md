@@ -41,7 +41,9 @@ generates:
   - { artifact_path: tests/issue-metadata-audit.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-475-issue-hierarchy-contract.md
-  requires: [docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md]
+  requires:
+    - docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md
+    - docs/plans/PLAN-REVERSE-633-issue-metadata-terminal-fullback.md
   blocks: [issue:633, issue:634]
 agent_slots:
   - { role: se, slot_label: "SE — metadata classifier/CLI" }
