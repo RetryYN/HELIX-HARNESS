@@ -41,22 +41,20 @@ backprop_scope:
     evidence_path: docs/governance/helix-harness-requirements_v1.3.md
     reason: "execution policyの意味authorityはrequirements v1.3.13にあり、Reverseは新しい分類語彙を追加しない。"
   - layer: L4-basic-design
-    decision: preserve
-    evidence_path: docs/design/helix/L4-basic-design/workflow-execution-policy.md
-    reason: "既存のtyped policy binding、approval境界、旧route-map非再出力の設計を再接着するだけである。"
+    decision: not_impacted
+    reason: "current mainにはこのexecution policyについて独立したL4設計artifactが存在せず、今回のdocs-only ReverseはL4のbehaviorを変更しない。実在するL6 function designを設計照合のauthorityとして使用する。"
   - layer: L5-detailed-design
-    decision: preserve
-    evidence_path: docs/design/helix/L5-detail/workflow-execution-policy.md
-    reason: "7 disposition、exit mapping、digest、legacy input-only境界はForward sliceで確定済みであり、新規schemaを追加しない。"
+    decision: not_impacted
+    reason: "current mainにはこのexecution policyについて独立したL5設計artifactが存在せず、今回のdocs-only ReverseはL5のschemaやbehaviorを変更しない。実装に対応するL6 function designと既存Forward PLANを照合する。"
   - layer: verification-design
     decision: preserve
     evidence_path: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md
     reason: "既存のregistry／projection／resolver／consumer／CLI negative oracleをcurrent-mainの再接着証拠として使用する。"
 verification_bindings:
-  - { parent_design: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md, oracle_id: U-WFEPROJ-001, test_path: tests/workflow-execution-policy-projection.test.ts }
-  - { parent_design: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md, oracle_id: U-WFEPOLRES-003, test_path: tests/workflow-execution-routing.test.ts }
-  - { parent_design: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md, oracle_id: U-WFROUTE-001, test_path: tests/workflow-execution-routing.test.ts }
-  - { parent_design: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md, oracle_id: U-ROUTE-CLI-001, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-projection.md, oracle_id: U-WFEPROJ-001, test_path: tests/workflow-execution-policy-projection.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md, oracle_id: U-WFEPOLRES-003, test_path: tests/workflow-execution-policy-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md, oracle_id: U-WFEXROUTE-001, test_path: tests/workflow-execution-routing.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-execution-routing-cli.md, oracle_id: U-WFEXCLI-001, test_path: tests/cli-surface.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
