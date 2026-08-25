@@ -52,9 +52,12 @@ modifies:
   - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   requires: []
