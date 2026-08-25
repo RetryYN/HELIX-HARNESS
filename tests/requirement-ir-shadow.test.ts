@@ -197,6 +197,7 @@ describe("Requirement IR shadow migration", () => {
       "MIC-FR-001",
       "CNW-FR-001",
       "DIST-LITE-FR-001",
+      "SYN-FR-001",
     ]);
   });
 });

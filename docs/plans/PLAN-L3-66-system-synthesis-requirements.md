@@ -59,6 +59,7 @@ modifies:
   - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   requires: []
