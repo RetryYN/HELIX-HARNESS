@@ -8,9 +8,9 @@ confirmed_reverse_type: fullback
 forward_routing: L3
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
-completion_claim_allowed: false
-backfill_state: pending_reverse
+status: confirmed
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-08-25
 updated: 2026-08-25
 owner: Codex / TL
@@ -21,6 +21,27 @@ change_slice: atomic
 refactor_step: introduce_contract
 no_code_decision: no_change
 legacy_retirement_state: consumer_migration
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-25T06:23:29Z"
+    tests_green_at: "2026-08-25T06:20:41Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    scope: "PR #1020 current HEAD 215f84e411dad9a86bb02fdfa1e4f94b0569d92eのR0〜R4証拠を独立再検収。4 verification bindingの実在性、L4/L5 not_impacted判断、full regression、doctor、DB projection/replay、checkpoint/replay、Issue/PLAN snapshotを確認し、blocker 0。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32814825028 --repo RetryYN/HELIX-HARNESS --json status,conclusion,jobs"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-25T06:20:42Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:7c691d34e4ee0a8be68fd0623ef34f91a85c3a4f4a29e15782b6675d2e8e0e73"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1020#issuecomment-5406400649"
+    reviewer_session_id: "c7895aff-da7e-47a0-944a-36c68bb4f251"
+    receipt_digest: "sha256:229893a76f50162090f8fb1064d93c6daea10b096234f5b0fec34e5ab24a1f29"
 parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md
 pair_artifact: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md
 entry_signals:
@@ -37,7 +58,7 @@ complexity_justification: "既存のrequirements registry、policy projection、
 removal_trigger: "Issue #704の8 Forward PLANがcompletion receiptとmain read-afterへ束縛され、#204の全surface収束監査へ統合された時点"
 backprop_scope:
   - layer: requirements
-    decision: preserve
+    decision: not_impacted
     evidence_path: docs/governance/helix-harness-requirements_v1.3.md
     reason: "execution policyの意味authorityはrequirements v1.3.13にあり、Reverseは新しい分類語彙を追加しない。"
   - layer: L4-basic-design
@@ -47,7 +68,7 @@ backprop_scope:
     decision: not_impacted
     reason: "current mainにはこのexecution policyについて独立したL5設計artifactが存在せず、今回のdocs-only ReverseはL5のschemaやbehaviorを変更しない。実装に対応するL6 function designと既存Forward PLANを照合する。"
   - layer: verification-design
-    decision: preserve
+    decision: updated
     evidence_path: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md
     reason: "既存のregistry／projection／resolver／consumer／CLI negative oracleをcurrent-mainの再接着証拠として使用する。"
 verification_bindings:
@@ -94,7 +115,7 @@ workflow_identity:
 
 ## R0 現状採取
 
-Issue #704が所有する8 PLANは、requirements-owned execution policyの設計、registry、projection、resolver、typed routing consumer、CLIを分担している。実装PRはそれぞれmainへmerge済みだが、8 PLANは `status: confirmed` / `completion_claim_allowed: false` のままであり、Forward実装とIssue終端の間にR4接着が残っている。
+Issue #704が所有する8 PLANは、requirements-owned execution policyの設計、registry、projection、resolver、typed routing consumer、CLIを分担している。実装PRはそれぞれmainへmerge済みだが、R4 fullbackが成立するまで8 PLANは `completion_claim_allowed: false` / `backfill_state: pending_reverse` を維持していた。本PRでcurrent candidateのR4証拠を受理し、8 PLANと本PLANを終端状態へ遷移させる。
 
 main read-afterの基準点は、PR #1019 merge後の `f5d70356cfadfc0f2880d9dbcf80295cc7c4225b` とする。current authorityはrequirements v1.3.13、classification registry v1.1.5、execution policy registry v1.2.2であり、旧15-route catalogと旧modeはcompatibility-onlyである。
 
@@ -137,4 +158,10 @@ Issue #704の意図は、signal textから旧modeを推測することではな�
 4. `mode`／`model`／旧15-route identityのcurrent output再出現がない。
 5. Claude Code OpusがこのReverse PRのcurrent HEADを独立reviewし、blocker 0のreceiptを残す。
 
-初回PRでは証拠未封緘のため `status: draft` / `completion_claim_allowed: false` / `backfill_state: pending_reverse` を維持する。current-HEAD CIとClaude receiptが揃った後の原子的更新でのみ、8 Forward PLANと本PLANを `backfill_state: complete` / `completion_claim_allowed: true` へ遷移させる。
+初回candidateでは証拠未封緘のためdraft／pending_reverseを維持した。current-HEAD CI、Claude blocker 0 receipt、DB convergence、8 Forward PLANとのbindingが揃ったため、本PRの原子的更新で8 Forward PLANと本PLANを `status: confirmed` / `backfill_state: complete` / `completion_claim_allowed: true` へ遷移させる。canonical merge後のmain read-afterとIssue #704 closeは別の終端手順で実施し、未実施の証拠を先取りしない。
+
+## R4 current-candidate evidence
+
+PR #1020のcurrent HEAD `215f84e411dad9a86bb02fdfa1e4f94b0569d92e` は、PR #1019 merge後のmain `f5d70356cfadfc0f2880d9dbcf80295cc7c4225b` を祖先に持つ。harness-check `32814825028` はLite consumer、Windows durability、全回帰、Biome、doctor、full admissionをsuccessで完了し、Claude Code Opusのexact-HEAD receiptはblocker 0である。
+
+同receiptで、live decision count 28、committed snapshotとの一致、DB projection／replay digest `sha256:f44a5cdf7f96f1b08784655443be7735a0b646dfd79334cd7c2586ed870ddbfa`、checkpoint／replay digest `sha256:9d6bf2f5440af9f82a46c2c3a50aba5f4a0955cccd354c94eb5c6df80e961276`、`converged=true`を確認した。canonical merge後はmain read-afterで同じ条件を再取得し、Issue #704を終端化する。
