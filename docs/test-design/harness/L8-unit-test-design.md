@@ -128,6 +128,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-IHIER-012 | hierarchy／dependency cross-contract | relationを宣言するactive hierarchy Issueだけを対象に、dependency block欠落、`blocked_by`／`depends_on`集合差、`blocks`集合差を個別findingで拒否し、parent-only Issueは対象外にする | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-013 | dependency migration dry-run | active hierarchy正本からadd／replace、exact `depends_on`／`blocks`、PLAN束縛、parser往復可能なcanonical contract blockを持つmigration candidateを決定的に投影し、既に一致するIssue、scalar／set競合、add／replace事前状態不一致を拒否する | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-014 | hierarchy／dependency relation union closure | どちらか片側projectionだけに宣言された既存edgeを削除せず、存在する両端nodeの`blocks`／`blocked_by`へunion closureし、metadata drift・edge removal・hierarchy block欠落を拒否する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-015 | hierarchy compatibility input normalization | compatibility-only `plan_id`を含む契約と複数行relation配列を入力時だけ受理し、current typed hierarchyへ正規化する | `tests/issue-hierarchy.test.ts` |
 | U-IMETA-001 | GitHub Issue metadata audit | type/lifecycle欠落と48時間以上unlabeled openを拒否し、closedと閾値未満をstale findingへ誤算入しない | `tests/issue-metadata-audit.test.ts` |
 | U-IMETA-WF-001 | Issue metadata scheduled audit workflow | schedule/workflow_dispatchだけでread-only監査を起動し、PR required gateへ混載せず、finding・CLI失敗・権限不足をsuccessへ変換しない | `tests/issue-metadata-audit-workflow.test.ts` |
 | U-IMETA-WF-003 | Issue metadata audit fail-open shell oracle | 論理OR＋`true`／論理OR＋`:`（末尾`;`を含む）／`; true`／`set +e`を個別mutationで拒否する | `tests/issue-metadata-audit-workflow.test.ts` |
