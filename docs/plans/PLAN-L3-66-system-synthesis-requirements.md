@@ -50,6 +50,7 @@ generates:
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
