@@ -14,7 +14,7 @@ pair_artifact: tests/scrum-reverse.test.ts
 forward_routing: L3
 promotion_strategy: reuse-with-hardening
 backprop_scope:
-  - layer: requirements
+  - layer: L3-requirements
     decision: updated
     evidence_path: docs/design/helix/L1-requirements/pillar-requirements.md
     reason: "L1 §2.8 の read-only deterministic visualization を confirmed PoC として維持する。"

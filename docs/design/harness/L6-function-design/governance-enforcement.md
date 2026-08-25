@@ -154,6 +154,19 @@ identity、schema、body、head/baseのいずれかが変わればfail-closeす�
 不正SHAもgreenへ縮退させない。既存jobへ入力adapterとして統合し、新job・detector・stateを増やさない。
 oracleは`U-PRSCOPE-006..007`とする。
 
+### §2.8 Reverse fullback scope全entry検証（PLAN-L7-673）
+
+`reverse` / `R4` / `fullback` / `confirmed|completed` のPLANにある
+`backprop_scope`は、必須の`requirements`、`L4-basic-design`、`L5-detailed-design`だけでなく、
+宣言された全entryを同じ契約で検査する。各entryは`decision ∈ {updated, not_impacted, deferred}`と、
+10文字以上の`reason`を持たなければならない。`decision: updated`の場合は、`evidence_path`が同一PLANの
+`generates`に含まれることを要求する。layer欠落・entry重複・不正decision・未生成evidenceは
+`reverse_fullback_scope_missing`へfail-closeする。
+
+この検査は必須層の存在検査と独立して全entryへ適用し、追加layerを無検査の逃げ道にしない。
+既存の必須3層の欠落・reason・generated evidence検査の意味は変更しない。oracleは
+`U-RFSCOPE-001..003`、実装は`src/plan/lint.ts`、回帰は`tests/plan-lint.test.ts`を正本とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。

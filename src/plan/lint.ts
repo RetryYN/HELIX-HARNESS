@@ -427,20 +427,27 @@ function reverseFullbackScopeViolations(
   }
 
   const byLayer = new Map<string, Record<string, unknown>>();
-  for (const entry of scope) {
-    if (!entry || typeof entry !== "object" || Array.isArray(entry)) continue;
-    const record = entry as Record<string, unknown>;
-    const layer = stringField(record.layer);
-    if (layer) byLayer.set(layer, record);
-  }
-
-  const missing: string[] = [];
-  for (const layer of REQUIRED_REVERSE_FULLBACK_SCOPE_LAYERS) {
-    const entry = byLayer.get(layer);
-    if (!entry) {
-      missing.push(`${layer}:missing`);
+  const malformed: string[] = [];
+  for (const [index, entry] of scope.entries()) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      malformed.push(`entry[${index}]:invalid`);
       continue;
     }
+    const record = entry as Record<string, unknown>;
+    const layer = stringField(record.layer);
+    if (!layer) {
+      malformed.push(`entry[${index}]:missing_layer`);
+      continue;
+    }
+    if (byLayer.has(layer)) {
+      malformed.push(`${layer}:duplicate`);
+      continue;
+    }
+    byLayer.set(layer, record);
+  }
+
+  const missing: string[] = [...malformed];
+  const validateEntry = (layer: string, entry: Record<string, unknown>) => {
     const decision = stringField(entry.decision);
     const reason = stringField(entry.reason);
     if (!decision || !VALID_REVERSE_FULLBACK_SCOPE_DECISIONS.has(decision)) {
@@ -454,6 +461,19 @@ function reverseFullbackScopeViolations(
       if (!evidencePath || !generatedPaths.includes(normalizeArtifactPath(evidencePath))) {
         missing.push(`${layer}:missing_generated_evidence`);
       }
+    }
+  };
+
+  // Every declared layer is part of the contract. Previously only the
+  // required three layers were validated, allowing an extra layer to bypass
+  // decision and generated-evidence checks.
+  for (const [layer, entry] of byLayer) {
+    validateEntry(layer, entry);
+  }
+
+  for (const layer of REQUIRED_REVERSE_FULLBACK_SCOPE_LAYERS) {
+    if (!byLayer.has(layer)) {
+      missing.push(`${layer}:missing`);
     }
   }
   return missing;

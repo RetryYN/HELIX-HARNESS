@@ -68,9 +68,8 @@ backprop_scope:
     decision: not_impacted
     reason: "current mainにはこのexecution policyについて独立したL5設計artifactが存在せず、今回のdocs-only ReverseはL5のschemaやbehaviorを変更しない。実装に対応するL6 function designと既存Forward PLANを照合する。"
   - layer: verification-design
-    decision: updated
-    evidence_path: docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md
-    reason: "既存のregistry／projection／resolver／consumer／CLI negative oracleをcurrent-mainの再接着証拠として使用する。"
+    decision: not_impacted
+    reason: "既存のregistry／projection／resolver／consumer／CLI negative oracleを参照しただけで、L8 test design自体は更新していない。"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-projection.md, oracle_id: U-WFEPROJ-001, test_path: tests/workflow-execution-policy-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md, oracle_id: U-WFEPOLRES-003, test_path: tests/workflow-execution-policy-registry.test.ts }
