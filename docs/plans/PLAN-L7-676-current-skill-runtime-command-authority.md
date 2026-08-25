@@ -14,10 +14,10 @@ engineering_discipline_required: true
 behavior_contract_id: AUTH-SURFACE-BUN-RETIREMENT-001
 responsibility_owner: current-skill-runtime-command-authority
 change_slice: atomic
-refactor_step: remove_indirection
-legacy_retirement_state: retired
+refactor_step: remove_legacy
+legacy_retirement_state: consumer_zero
 no_code_decision: modify
-ddd_modeling_decision: not_applicable
+ddd_modeling_decision: none
 contract_preconditions: "Node 24.15、npm、TypeScript、Vitest、Biomeがcurrent runtime authorityであり、Bunはhistorical detector以外のcurrent execution authorityを持たない"
 contract_postconditions: "Issue #253のexact skill inventoryがNode/npm commandだけを案内し、active Bun commandを0件へ収束する"
 contract_invariants: "historical receipt／retirement detectorは保持し、compatibility successでcurrent Node/npm failureを相殺しない"
@@ -52,9 +52,11 @@ modifies:
   - { artifact_path: docs/skills/error-fix.md, artifact_type: markdown_doc }
   - { artifact_path: docs/skills/code-review.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_data }
   - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/runtime-authority-requirements.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L6-function-design/node-runtime-cutover.md
   requires:

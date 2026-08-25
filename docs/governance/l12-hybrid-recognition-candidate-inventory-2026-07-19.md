@@ -222,7 +222,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 
 PLANはcompleted/confirmedでも後続PLANのcopy sourceになり得る。本文を無言で改変せず、`superseded_by`、authority delta、または明示的compatibility注記のいずれかを要求する。
 
-## 8. context-review対象（14）
+## 8. context-review対象（13）
 
 ### ADR（7）
 

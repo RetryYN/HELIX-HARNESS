@@ -67,7 +67,7 @@
     },
     {
       "test_path": "tests/l12-canonical-authority.test.ts",
-      "test_file_sha256": "b3962efcdbf30989c15aa37c1b6177c83ab869653038e2c096d02978b1ecadc6",
+      "test_file_sha256": "c21e138cd6c91b1edef4a8ac5a4faae4b5834080ba20b27954f744e18cb51c81",
       "expected_case_count": 6,
       "authority_paths": [
         "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
@@ -77,8 +77,8 @@
     },
     {
       "test_path": "tests/runtime-authority-requirements.test.ts",
-      "test_file_sha256": "ef75d8bb1339227106363b16a55d9e5f62a0d86e98532930436eb5bd199ff687",
-      "expected_case_count": 5,
+      "test_file_sha256": "f15fb1dbab045ccff3617da86206f29b24778057cef62e5cd174083c45967bef",
+      "expected_case_count": 6,
       "authority_paths": [
         "docs/adr/ADR-009-node-\u0070ython-linux-runtime.md",
         "docs/adr/ADR-010-\u0070ython-semantic-core-node-commit-boundary.md"
