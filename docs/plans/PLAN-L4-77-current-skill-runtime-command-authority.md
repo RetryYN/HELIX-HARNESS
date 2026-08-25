@@ -23,6 +23,9 @@ contract_postconditions: "Issue #253のexact skill inventoryがNode/npm command�
 contract_invariants: "historical receipt／retirement detectorは保持し、compatibility successでcurrent Node/npm failureを相殺しない"
 contract_failures: "current skillにbun run／bun test／bun audit／TypeScript-Bun前提が再出現した場合はruntime authority oracleでfail-closeする"
 tdd_red_required: true
+red_at: "2026-08-25T18:30:05Z"
+green_at: "2026-08-25T18:30:18Z"
+mutation_oracle_evidence: "docs/skills/code-review.mdのcurrent commandをnpm run testからbun run testへ一時変異し、tests/runtime-authority-requirements.test.tsがdocs/skills/code-review.md:40を列挙して1 failed／5 passed／exit 1となることを2026-08-25T18:30:05Zに実測した。Node/npm commandへ復元後、2026-08-25T18:30:18Zに6/6 greenへ戻り、tracked working treeがcleanであることを確認した。"
 complexity_effect: net_negative
 complexity_justification: "廃止済みruntimeの二重command guidanceを除去し、package scriptsとCI authorityへ一本化する"
 removal_trigger: "current skill guidanceが別のrequirements-owned runtime authorityへversion-upされ、同等のcross-surface oracleが移行した時"
