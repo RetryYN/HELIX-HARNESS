@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-675-issue-dependency-cross-contract-audit
-title: "PLAN-L7-675 (add-impl): Issue hierarchyとdependency contractをexact照合する"
-kind: add-impl
+title: "PLAN-L7-675 (refactor): Issue hierarchyとdependency contractをexact照合する"
+kind: refactor
 layer: L7
 drive: agent
 status: draft
@@ -26,6 +26,8 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
+backprop_decision: not_required
+backprop_decision_reason: "Issue #634のReverse監査で既存L6設計どおりhierarchyとdependency projectionを接合し、上位要求の意味を変更しない"
 contract_preconditions: "Issue hierarchy contractとhelix-issue-dependency.v1が別projectionとして取得できる"
 contract_postconditions: "relationを宣言するcurrent hierarchy Issueでdependency block欠落とblocks/blocked_by集合差をstable findingにする"
 contract_invariants: "parent/childだけのIssueやhistorical proseをdependency採用と推測せず、PR focusとrepository-wide auditの境界を維持する"
@@ -55,6 +57,8 @@ modifies:
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
 dependencies:
   parent: PLAN-L7-556-issue-dependency-doctor
   requires:
@@ -68,7 +72,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — adoption boundaryとrepository-wide wiring" }
 ---
 
-# Issue dependency cross-contract audit
+# Issue dependency cross-contract監査
 
 ## 工程表
 
@@ -83,7 +87,7 @@ agent_slots:
 relationを持たないhierarchy Issueへdependency blockを一律要求しない。`blocks`または`blocked_by`が非空の
 current active Issueだけをcross-contract対象とし、legacy／historical集合は明示的移行なしにcurrent greenへ使わない。
 
-## live Red baseline
+## live Red基準
 
 2026-08-26にGitHub repository-wide auditを実行し、hierarchy relationを持つ100 Issueに対して114 findingsを取得した。
 内訳はdependency block欠落81、`blocks`集合差5、`blocked_by`／`depends_on`集合差6、既存dependency非対称8、
