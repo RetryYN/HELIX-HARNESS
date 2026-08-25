@@ -1,3 +1,5 @@
+import { parse as parseYaml } from "yaml";
+
 export const ISSUE_HIERARCHY_SCHEMA = "helix-github-issue-hierarchy.v1" as const;
 
 export type IssueRole = "root" | "capability" | "task" | "finding";
@@ -186,9 +188,9 @@ export function applyIssueHierarchyRelationClosureCandidate(
   body: string,
   candidate: IssueHierarchyRelationClosureCandidate,
 ): string {
-  const currentMatch = matchIssueHierarchyContract(body);
-  if (!currentMatch) throw new Error("issue_hierarchy_migration_expected_present");
-  const current = parseIssueHierarchyContract(currentMatch[0]);
+  const currentBlock = extractIssueHierarchyContractBlock(body);
+  if (!currentBlock) throw new Error("issue_hierarchy_migration_expected_present");
+  const current = parseIssueHierarchyContract(currentBlock);
   const projected = parseIssueHierarchyContract(candidate.contractBlock);
   const metadataChanged =
     current.role !== projected.role ||
@@ -201,7 +203,7 @@ export function applyIssueHierarchyRelationClosureCandidate(
     current.blockedBy.some((number) => !candidate.blockedBy.includes(number));
   if (metadataChanged) throw new Error("issue_hierarchy_migration_metadata_drift");
   if (removesEdge) throw new Error("issue_hierarchy_migration_edge_removal");
-  return body.replace(currentMatch[0], candidate.contractBlock);
+  return body.replace(currentBlock, candidate.contractBlock);
 }
 
 export interface IssueDependencyMigrationCandidate {
@@ -588,35 +590,83 @@ function isPositiveIssueNumber(value: number): boolean {
   return Number.isSafeInteger(value) && value > 0;
 }
 
-function matchIssueHierarchyContract(body: string): RegExpMatchArray | null {
-  return body.match(
-    /```yaml\s+issue_role:\s*(root|capability|task|finding)\s+parent_issue:\s*(null|\d+)\s+blocks:\s*\[([^\]]*)\]\s+blocked_by:\s*\[([^\]]*)\]\s+duplicate_search:\s*(completed)\s+disposition:\s*(active|parked|duplicate|superseded)\s+duplicate_of:\s*(null|\d+)\s*```/m,
-  );
+function extractIssueHierarchyContractBlock(body: string): string | null {
+  for (const match of body.matchAll(/```yaml\b([\s\S]*?)```/g)) {
+    let value: unknown;
+    try {
+      value = parseYaml((match[1] ?? "").replace(/([[,]\s*)#(\d+)/g, "$1$2"));
+    } catch {
+      continue;
+    }
+    if (
+      typeof value === "object" &&
+      value !== null &&
+      "issue_role" in value &&
+      "parent_issue" in value &&
+      "blocks" in value &&
+      "blocked_by" in value &&
+      "duplicate_search" in value &&
+      "disposition" in value &&
+      "duplicate_of" in value
+    ) {
+      return match[0];
+    }
+  }
+  return null;
 }
 
 export function parseIssueHierarchyContract(
   body: string,
 ): Omit<IssueHierarchyNode, "number" | "state"> {
-  const block = matchIssueHierarchyContract(body);
+  const block = extractIssueHierarchyContractBlock(body);
   if (!block) throw new Error("issue_hierarchy_contract_missing_or_invalid");
-  const numbers = (raw: string): number[] =>
-    raw.trim() === ""
-      ? []
-      : uniqueNumbers(
-          raw.split(",").map((item) => {
-            const value = Number(item.trim().replace(/^#/, ""));
-            if (!isPositiveIssueNumber(value)) throw new Error("issue_relation_number_invalid");
-            return value;
-          }),
-        );
+  const value = parseYaml(
+    block
+      .slice(block.indexOf("\n") + 1, block.lastIndexOf("```"))
+      .replace(/([[,]\s*)#(\d+)/g, "$1$2"),
+  ) as Record<string, unknown>;
+  const enumValue = <T extends string>(
+    candidate: unknown,
+    allowed: readonly T[],
+    code: string,
+  ): T => {
+    if (typeof candidate !== "string" || !allowed.includes(candidate as T)) throw new Error(code);
+    return candidate as T;
+  };
+  const nullableIssue = (candidate: unknown): number | null => {
+    if (candidate === null) return null;
+    if (!isPositiveIssueNumber(candidate as number))
+      throw new Error("issue_relation_number_invalid");
+    return candidate as number;
+  };
+  const numbers = (candidate: unknown): number[] => {
+    if (!Array.isArray(candidate)) throw new Error("issue_relation_array_invalid");
+    return uniqueNumbers(
+      candidate.map((item) => {
+        const normalized = typeof item === "string" ? Number(item.replace(/^#/, "")) : item;
+        if (!isPositiveIssueNumber(normalized as number)) {
+          throw new Error("issue_relation_number_invalid");
+        }
+        return normalized as number;
+      }),
+    );
+  };
   return {
-    role: block[1] as IssueRole,
-    parentIssue: block[2] === "null" ? null : Number(block[2]),
-    blocks: numbers(block[3] ?? ""),
-    blockedBy: numbers(block[4] ?? ""),
-    duplicateSearch: "completed",
-    disposition: block[6] as IssueDisposition,
-    duplicateOf: block[7] === "null" ? null : Number(block[7]),
+    role: enumValue(
+      value.issue_role,
+      ["root", "capability", "task", "finding"],
+      "issue_role_invalid",
+    ),
+    parentIssue: nullableIssue(value.parent_issue),
+    blocks: numbers(value.blocks),
+    blockedBy: numbers(value.blocked_by),
+    duplicateSearch: enumValue(value.duplicate_search, ["completed"], "duplicate_search_invalid"),
+    disposition: enumValue(
+      value.disposition,
+      ["active", "parked", "duplicate", "superseded"],
+      "issue_disposition_invalid",
+    ),
+    duplicateOf: nullableIssue(value.duplicate_of),
   };
 }
 

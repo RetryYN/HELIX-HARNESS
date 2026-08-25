@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 // PLAN-L7-475-issue-hierarchy-contract / U-IHIER-001
 // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
-// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012 / U-IHIER-013 / U-IHIER-014
+// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012..U-IHIER-015
 import {
   applyIssueDependencyMigrationCandidate,
   applyIssueHierarchyRelationClosureCandidate,
@@ -205,6 +205,33 @@ describe("GitHub Issue dependency projection", () => {
       expect.objectContaining({ issueNumber: 50, blockedBy: [60] }),
       expect.objectContaining({ issueNumber: 60, blocks: [50] }),
     ]);
+  });
+
+  it("U-IHIER-015: compatibility fieldと複数行配列を含むhierarchy契約を正規化する", () => {
+    const compatibilityBody = `before
+\`\`\`yaml
+issue_role: task
+parent_issue: 204
+blocks:
+  - 635
+  - 694
+blocked_by: [#179]
+plan_id: PLAN-L7-compatibility-only
+duplicate_search: completed
+disposition: active
+duplicate_of: null
+\`\`\`
+after`;
+
+    expect(parseIssueHierarchyContract(compatibilityBody)).toEqual({
+      role: "task",
+      parentIssue: 204,
+      blocks: [635, 694],
+      blockedBy: [179],
+      duplicateSearch: "completed",
+      disposition: "active",
+      duplicateOf: null,
+    });
   });
 
   it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {
