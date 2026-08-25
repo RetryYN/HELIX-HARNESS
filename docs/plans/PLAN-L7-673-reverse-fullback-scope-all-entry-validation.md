@@ -56,6 +56,7 @@ modifies:
   - { artifact_path: docs/plans/PLAN-REVERSE-344-session-handover-retirement-backprop.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
 dependencies:
   parent: PLAN-L7-107-reverse-fullback-scope-gate
   requires:
