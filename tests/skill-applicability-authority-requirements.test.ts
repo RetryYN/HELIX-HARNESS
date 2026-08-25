@@ -2,12 +2,9 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-const requirementPath =
-  "docs/design/helix/L3-requirements/skill-applicability-authority.md";
-const registryPath =
-  "docs/design/helix/L3-requirements/skill-applicability-registry.v1.json";
-const acceptancePath =
-  "docs/test-design/helix/skill-applicability-authority-acceptance.md";
+const requirementPath = "docs/design/helix/L3-requirements/skill-applicability-authority.md";
+const registryPath = "docs/design/helix/L3-requirements/skill-applicability-registry.v1.json";
+const acceptancePath = "docs/test-design/helix/skill-applicability-authority-acceptance.md";
 
 const requirement = readFileSync(requirementPath, "utf8");
 const acceptance = readFileSync(acceptancePath, "utf8");
@@ -50,11 +47,13 @@ describe("skill applicability requirements authority", () => {
       "execution_mode",
     ]);
     expect(registry.current_contract.implicit_default).toBe(false);
-    expect(registry.identity_reference).toEqual(expect.objectContaining({
-      registry_version: "1.1.5",
-      registry_source_digest:
-        "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db",
-    }));
+    expect(registry.identity_reference).toEqual(
+      expect.objectContaining({
+        registry_version: "1.1.5",
+        registry_source_digest:
+          "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db",
+      }),
+    );
   });
 
   it("legacy入力を一意変換と曖昧拒否へ分離する", () => {
@@ -70,9 +69,11 @@ describe("skill applicability requirements authority", () => {
 
   it("registryをrequirements source digestへ束縛する", () => {
     const digest = createHash("sha256").update(requirement).digest("hex");
-    expect(registry.authority).toEqual(expect.objectContaining({
-      source: requirementPath,
-      source_digest: `sha256:${digest}`,
-    }));
+    expect(registry.authority).toEqual(
+      expect.objectContaining({
+        source: requirementPath,
+        source_digest: `sha256:${digest}`,
+      }),
+    );
   });
 });
