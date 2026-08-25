@@ -114,6 +114,25 @@ export interface IssueDependencyMigrationCandidate {
   blocks: number[];
   planId: string | null;
   planIds?: string[];
+  contractBlock: string;
+}
+
+export function renderIssueDependencyContract(
+  node: Pick<IssueDependencyNode, "dependsOn" | "blocks" | "planId" | "planIds">,
+): string {
+  const planIds = uniqueStrings(node.planIds ?? []);
+  if (node.planId !== null && planIds.length > 0) {
+    throw new Error("issue_plan_scalar_and_set_conflict");
+  }
+  return [
+    "```yaml",
+    `# ${ISSUE_DEPENDENCY_SCHEMA}`,
+    `depends_on: [${uniqueNumbers(node.dependsOn).join(", ")}]`,
+    `blocks: [${uniqueNumbers(node.blocks).join(", ")}]`,
+    `plan_id: ${node.planId ?? "null"}`,
+    ...(planIds.length > 0 ? [`plan_ids: [${planIds.join(", ")}]`] : []),
+    "```",
+  ].join("\n");
 }
 
 /** Project the exact dependency contract required by the active hierarchy. */
@@ -164,6 +183,7 @@ export function projectIssueDependencyMigrationCandidates(
         blocks,
         planId,
         ...(planIds && planIds.length > 0 ? { planIds } : {}),
+        contractBlock: renderIssueDependencyContract({ dependsOn, blocks, planId, planIds }),
       };
       return [candidate];
     })
