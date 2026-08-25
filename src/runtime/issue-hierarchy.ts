@@ -658,9 +658,10 @@ export function parseIssueHierarchyContract(
       }),
     );
   };
+  const normalizedRole = value.issue_role === "feature" ? "capability" : value.issue_role;
   return {
     role: enumValue(
-      value.issue_role,
+      normalizedRole,
       ["root", "capability", "task", "finding"],
       "issue_role_invalid",
     ),

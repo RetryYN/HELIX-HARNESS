@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 // PLAN-L7-475-issue-hierarchy-contract / U-IHIER-001
 // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
-// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012..U-IHIER-016
+// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012..U-IHIER-017
 import {
   applyIssueDependencyMigrationCandidate,
   applyIssueHierarchyRelationClosureCandidate,
@@ -255,6 +255,26 @@ after`;
     ]);
     expect(candidates[0]?.contractBlock).toContain(
       "plan_id: PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
+    );
+  });
+
+  it("U-IHIER-017: legacy feature roleをinput-onlyでcapabilityへ正規化する", () => {
+    expect(
+      parseIssueHierarchyContract(`\`\`\`yaml
+issue_role: feature
+parent_issue: 30
+blocks: []
+blocked_by: []
+duplicate_search: completed
+disposition: active
+duplicate_of: null
+\`\`\``),
+    ).toMatchObject({ role: "capability" });
+    expect(renderIssueHierarchyContract(node({ role: "capability" }))).toContain(
+      "issue_role: capability",
+    );
+    expect(renderIssueHierarchyContract(node({ role: "capability" }))).not.toContain(
+      "issue_role: feature",
     );
   });
 
