@@ -5,7 +5,6 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-route_mode: add-feature
 backfill_state: complete
 completion_claim_allowed: true
 entry_signals: ["po_directive:Issue #633のIssue起票metadataを機械強制する"]
@@ -13,6 +12,12 @@ created: 2026-08-14
 updated: 2026-08-25
 owner: Codex / TL
 github_issue_id: 633
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
+  target_axis: workflow_model
+  target_id: ADD_FEATURE
 engineering_discipline_required: true
 behavior_contract_id: ISSUE-METADATA-ENFORCEMENT-001
 responsibility_owner: github-issue-admission
