@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-678-skill-applicability-authoring
-title: "PLAN-L7-678 (redesign): typed skill applicability authoring"
-kind: redesign
+title: "PLAN-L7-678 (refactor): typed skill applicability authoring"
+kind: refactor
 layer: L7
 drive: agent
 status: draft
