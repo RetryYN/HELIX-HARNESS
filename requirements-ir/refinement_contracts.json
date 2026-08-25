@@ -553,9 +553,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
-    "requirement_digest": "sha256:afa44e49ca3949528261eafb7d2e27307f2529a8b463d61ae262297026cb8245",
+      "requirement_digest": "sha256:afa44e49ca3949528261eafb7d2e27307f2529a8b463d61ae262297026cb8245",
       "acceptance_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
-    "acceptance_digest": "sha256:3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc"
+      "acceptance_digest": "sha256:3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc"
     },
     "plan_id": "PLAN-L3-65-distribution-repository-devos-authority",
     "responsibility_owner": "distribution-repository-authority",
@@ -737,6 +737,347 @@
       }
     ],
     "approval": null,
-  "semantic_digest": "sha256:58490507851be6502fcbd0c5efecceee13ebf11677129489d56b43f6d323012b"
+    "semantic_digest": "sha256:58490507851be6502fcbd0c5efecceee13ebf11677129489d56b43f6d323012b"
+  },
+  "SYN-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "SYN-FR-001",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-02",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-05",
+      "HR-FR-HIL-06",
+      "HR-FR-HIL-08"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+      "requirement_digest": "sha256:7984a26aca520035344755a8afb2ddb125ca76e3f96d6d94b5ac9c7ddc973cb6",
+      "acceptance_path": "docs/test-design/helix/system-synthesis-acceptance.md",
+      "acceptance_digest": "sha256:aced69e40c8635ae60a9bccab62392312b3e5773fac038a1b851a8928b48c874"
+    },
+    "plan_id": "PLAN-L3-66-system-synthesis-requirements",
+    "responsibility_owner": "system-synthesis-architecture",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "SYN-R-01",
+        "source_projection": "markdown_h4_v1",
+        "statement": "接続identity\n\n各node／edgeはstable ID、revision、content digest、authority source、trace direction、lifecycleを保持する。\n曖昧、欠落、unknown、digest driftをLLM推測で補わずfail-closeする。通知、生成文書、DB rowを意味正本にしない。",
+        "acceptance_ids": [
+          "SYN-AC-001",
+          "SYN-AC-002"
+        ],
+        "semantic_digest": "sha256:33fe5a634c4fbf58ea4d2fae7eda5cca900f7b02fb769c996299b1a5fe93cd9b"
+      },
+      {
+        "requirement_id": "SYN-R-02",
+        "source_projection": "markdown_h4_v1",
+        "statement": "決定的部分合成\n\n次のprojectionを同一入力から決定的に再生成できなければならない。\n\n- requirement → validation candidate\n- requirement＋evidence → 設計portfolio候補\n- design graph → workflow候補\n- workflow＋verification → CI capability集合\n- finding → Reverse／Redesign候補\n- new capability → replacement候補\n\nLLMは候補と根拠を提案できるが、要求変更、required design／verification／CIの省略、capability retirement、\nmerge／completionを確定しない。",
+        "acceptance_ids": [
+          "SYN-AC-003",
+          "SYN-AC-004"
+        ],
+        "semantic_digest": "sha256:030150babbb4683678967d4dc0838ce04e5dda953da1bf1eb36912d66991497b"
+      },
+      {
+        "requirement_id": "SYN-R-03",
+        "source_projection": "markdown_h4_v1",
+        "statement": "project observationとrule promotion\n\n実projectの観測を`observation → candidate → human review → second project → counterexample →\nmutation/benchmark → rule candidate → human approval`で昇格する。単一project成功やagent自己評価を\ngeneral ruleへ昇格しない。",
+        "acceptance_ids": [
+          "SYN-AC-005"
+        ],
+        "semantic_digest": "sha256:dc3e5d82b63cd4c19be0eaf1f5993a88a6f3a1340159943386cc45d33bc9381d"
+      },
+      {
+        "requirement_id": "SYN-R-04",
+        "source_projection": "markdown_h4_v1",
+        "statement": "scopeと工程\n\nRefactoring scopeは`object`、`design`、`contract`、`data`、`code_clean`、`verification`、`ci`、\n`secure`、`performance`の直交集合とする。正規工程はRF0 inventory、RF1 eligibility、RF2 replacement design、\nRF3 atomic execution、RF4 parity/no-degradation、RF5 migration/retirement、RF6 read-afterとする。",
+        "acceptance_ids": [
+          "SYN-AC-006",
+          "SYN-AC-007"
+        ],
+        "semantic_digest": "sha256:47b7795763ff07ade3e5536501284e3dcba48e57cdbcf86dafef14ac59c6f46e"
+      },
+      {
+        "requirement_id": "SYN-R-05",
+        "source_projection": "markdown_h4_v1",
+        "statement": "置換lifecycle\n\ncapability追加時は比較対象、機能parity、trace、migration、rollbackを評価し、`retain`、`coexist`、\n`superseding`、`deprecated`、`retired`のいずれかを証拠付きで選ぶ。年齢、LOC、名称、AIの意見だけで削除しない。",
+        "acceptance_ids": [
+          "SYN-AC-008"
+        ],
+        "semantic_digest": "sha256:7d7d52c4a1c000dec02b0c246ceccd8efdc5b7ecb1fb15fd434f02b129f538bd"
+      },
+      {
+        "requirement_id": "SYN-R-06",
+        "source_projection": "markdown_h4_v1",
+        "statement": "V-pairとScrumへの束縛\n\nreplacementとno-degradation evidenceをL1↔L12からL6↔L7までの該当pairへ束縛する。Production Scrumの\nDoDへRefactoring Eligibilityを投影し、非自明なrefactorをfeature PRへ混載しない。",
+        "acceptance_ids": [
+          "SYN-AC-009"
+        ],
+        "semantic_digest": "sha256:ea821e0cd0a2f4cdc8f6bd965faf8715707800152f888bf542813fb505cbc68b"
+      },
+      {
+        "requirement_id": "SYN-R-07",
+        "source_projection": "markdown_h4_v1",
+        "statement": "影響profile\n\nchanged path、requirement、design、workflow、verification、refactor scopeから、固定registryに存在するCI\ncapability exact setを合成する。unknown／high-riskはfullへfallbackし、main、nightly、release candidateは\nfull verificationを必須とする。legacy greenでcurrent failureを相殺しない。",
+        "acceptance_ids": [
+          "SYN-AC-010",
+          "SYN-AC-011"
+        ],
+        "semantic_digest": "sha256:5049d5f3d57f0170f632e2cf20a51e9672f648c5963799bd6c5ece3e15da9fe5"
+      },
+      {
+        "requirement_id": "SYN-R-08",
+        "source_projection": "markdown_h4_v1",
+        "statement": "完了測定\n\ncompletionはLOC減少だけで判定せず、trace completeness、required verification coverage、mutation detection、\nrework、rollback readiness、lead time、defect escape、rule promotion精度を測定する。",
+        "acceptance_ids": [
+          "SYN-AC-012"
+        ],
+        "semantic_digest": "sha256:566b804d655b64ccbbff7e2c5210cd41f0d914ef48ca780f856817942bcb645f"
+      },
+      {
+        "requirement_id": "SYN-R-09",
+        "source_projection": "markdown_h4_v1",
+        "statement": "shadow限定の全体計画\n\nwhole-system synthesis manifest、minimum necessary optimization、incremental resynthesis、invalidation、semantic diffは\nshadow／parked capabilityとする。現行authorityと並走して精度、counterexample、rollbackを測定し、L3人間承認まで\n自動変更を行わない。",
+        "acceptance_ids": [
+          "SYN-AC-013"
+        ],
+        "semantic_digest": "sha256:a5644146ec507e82fb6e8fc25aba451534629ac7c9161e99e742fdcdefe7f248"
+      },
+      {
+        "requirement_id": "SYN-R-10",
+        "source_projection": "markdown_h4_v1",
+        "statement": "HELIX Development Modelの昇格条件\n\n小型判断modelは、rule-based baselineを上回る再現可能なbenchmark、複数project evidence、誤判定分類、\nfallback、versioned receiptが揃った後だけ別L3要求として提案できる。model出力を正本や暗黙fallbackにしない。",
+        "acceptance_ids": [
+          "SYN-AC-014"
+        ],
+        "semantic_digest": "sha256:22d2945fef2948690d4388d3672c038521727cbb0e0efff4cd002dfdb5c45709"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "SYN-AC-001",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-01"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: node／edgeのID、revision、digest、authorityを一件ずつ変異する\n合格条件: exact identityだけを接続する\nnegative mutation: lexical name一致やLLM推測で接続しない",
+        "semantic_digest": "sha256:2a8ba733422aa947842a6c78c29534b70f2575a144e63d5ebe1745d335ad502e"
+      },
+      {
+        "acceptance_id": "SYN-AC-002",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-01"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: DBを削除してauthorityから再構築する\n合格条件: semantic graphが同じdigestで再現する\nnegative mutation: DB rowを唯一の正本にしない",
+        "semantic_digest": "sha256:c5e323f23d5761abe8340316bf145844e4ade7b7de5b5c451572811590e530fa"
+      },
+      {
+        "acceptance_id": "SYN-AC-003",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 同一authority入力を2回合成する\n合格条件: candidate exact setとdigestが一致する\nnegative mutation: 非決定出力をcurrent projectionにしない",
+        "semantic_digest": "sha256:35ab9e0f80d5cb57cce5f2a9377e22d36223a3ccffd38caa6d34c007b949c420"
+      },
+      {
+        "acceptance_id": "SYN-AC-004",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: required verification／CIをLLM提案から除外する\n合格条件: omissionを拒否する\nnegative mutation: proposalだけで要求変更／retirementを確定しない",
+        "semantic_digest": "sha256:331142b20109c7f3b38ab82cf5b1065e685f852e5f6695943e5a3a0071b1dbcc"
+      },
+      {
+        "acceptance_id": "SYN-AC-005",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 単一projectの成功例をrule候補へ送る\n合格条件: second project、counterexample、mutation、human approvalまでpendingになる\nnegative mutation: 単発成功をgeneral ruleへ昇格しない",
+        "semantic_digest": "sha256:ced9b4bdb357fd23ecf07a60fb189ea65c04cfed9aa081c0ce87d5aef0d4a939"
+      },
+      {
+        "acceptance_id": "SYN-AC-006",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 9 scopeとRF0〜RF6を一件ずつ欠落させる\n合格条件: exact scope／phase contractを満たす\nnegative mutation: unknown scopeやphase skipを拒否する",
+        "semantic_digest": "sha256:53e939f0615b44b4b7318edb655eaf62704bb100c8d51c0ea15c11637ded4c72"
+      },
+      {
+        "acceptance_id": "SYN-AC-007",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: REFACTORINGと既存route identityを同一enumへ置く\n合格条件: specialist workflowとworkflow modelが分離される\nnegative mutation: route identityの吸収を拒否する",
+        "semantic_digest": "sha256:a5a77709d426143512ad21f4255d37218ddb4b910c18e828fe59d06352dfcb88"
+      },
+      {
+        "acceptance_id": "SYN-AC-008",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 新capabilityと既存候補を比較する\n合格条件: parity／migration／rollback付きlifecycleを返す\nnegative mutation: age／LOC／名称／AI意見だけのretireを拒否する",
+        "semantic_digest": "sha256:e6ceff3f2949c1a15888f6166bed921212cd4e21cc4bf24861b024791599c34a"
+      },
+      {
+        "acceptance_id": "SYN-AC-009",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-06"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: V-pairまたはScrum DoDからrefactor evidenceを外す\n合格条件: 該当pairとDoDが同じeligibilityを参照する\nnegative mutation: feature PRへの非自明refactor混載を拒否する",
+        "semantic_digest": "sha256:61677e57a97b562887414161b6b62a84837cad6ed5892ecc95fe7c056026fbfc"
+      },
+      {
+        "acceptance_id": "SYN-AC-010",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: unknown／high-risk変更を投入する\n合格条件: full profileへfail-safe fallbackする\nnegative mutation: empty／legacy profileでcurrent failureを相殺しない",
+        "semantic_digest": "sha256:dc477f20837cd7a87083c7c715b752b0c352f4dc1cc8862ab5d413e7cf830352"
+      },
+      {
+        "acceptance_id": "SYN-AC-011",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: main／nightly／release candidateを評価する\n合格条件: full verificationが必須になる\nnegative mutation: changed-path最適化だけでfullを省略しない",
+        "semantic_digest": "sha256:d60688eabcd3e723ce6f63adb1948a191efdb434a6c36324c02a5c064f6343ae"
+      },
+      {
+        "acceptance_id": "SYN-AC-012",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-08"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: LOC減少だけをcompletion evidenceにする\n合格条件: 複数の品質・運用metricを要求する\nnegative mutation: LOC単独の完了を拒否する",
+        "semantic_digest": "sha256:687c8c6e9fa4fa6b20ac6546ff0f85439d2b06594c3d26c7bbf53eb290bdaf57"
+      },
+      {
+        "acceptance_id": "SYN-AC-013",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-09"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: whole-system plannerをcurrent write pathへ接続する\n合格条件: shadow receiptだけを生成する\nnegative mutation: L3承認前のauthority変更を拒否する",
+        "semantic_digest": "sha256:54c0baadb3f5fabbaf06a3fe4ee05d9ad8773e06bfeaca8da93e4b1b6f02bb30"
+      },
+      {
+        "acceptance_id": "SYN-AC-014",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "SYN-R-10"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: benchmark不足のmodelを選択する\n合格条件: rule-based baselineとfail-closeを維持する\nnegative mutation: model出力を正本／silent fallbackにしない",
+        "semantic_digest": "sha256:ed898b0990255741cb14720ad55482486c99f65a4dfdb7f53119f18212c089be"
+      }
+    ],
+    "downstream_issue_ids": [
+      1036,
+      1039,
+      1035,
+      1040,
+      1038,
+      1041,
+      1034,
+      1037
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1036,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-001",
+          "SYN-AC-002"
+        ]
+      },
+      {
+        "issue_id": 1039,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-003",
+          "SYN-AC-004"
+        ]
+      },
+      {
+        "issue_id": 1035,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-005",
+          "SYN-AC-012"
+        ]
+      },
+      {
+        "issue_id": 1040,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-006",
+          "SYN-AC-007"
+        ]
+      },
+      {
+        "issue_id": 1038,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-008"
+        ]
+      },
+      {
+        "issue_id": 1041,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-009"
+        ]
+      },
+      {
+        "issue_id": 1034,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-010",
+          "SYN-AC-011"
+        ]
+      },
+      {
+        "issue_id": 1037,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "SYN-AC-013"
+        ]
+      },
+      {
+        "issue_id": 1033,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "SYN-AC-014"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:78729726489076d0b228676cc0178d05100aecf16983251fe19170c71eae46c7"
   }
 }

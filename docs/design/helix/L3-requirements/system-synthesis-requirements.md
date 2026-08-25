@@ -34,7 +34,7 @@ repo-owned authorityから再構築可能なprojectionに限定する。
 `DESIGN_REFACTOR`、`PERFORMANCE_REFACTOR`、`REDESIGN`、`RETROFIT`、`ADD_FEATURE`、`VERSION_UP`を
 同一identityへ畳み込まない。既存#179、#188、#204、#233、#234、#235の契約を再利用し、重複実装しない。
 
-### SYN-FR-001 安定した意味接続graph
+## SYN-FR-001 安定した意味接続graph
 
 要求、検証証拠、設計、workflow、verification、CI、finding、改善候補をstable identityで接続する。
 
@@ -63,7 +63,7 @@ merge／completionを確定しない。
 mutation/benchmark → rule candidate → human approval`で昇格する。単一project成功やagent自己評価を
 general ruleへ昇格しない。
 
-### SYN-FR-002 REFACTORING専門workflow
+## SYN-FR-002 REFACTORING専門workflow
 
 #### SYN-R-04 scopeと工程
 
@@ -81,7 +81,7 @@ capability追加時は比較対象、機能parity、trace、migration、rollback
 replacementとno-degradation evidenceをL1↔L12からL6↔L7までの該当pairへ束縛する。Production Scrumの
 DoDへRefactoring Eligibilityを投影し、非自明なrefactorをfeature PRへ混載しない。
 
-### SYN-FR-003 Impact CI compositionと測定
+## SYN-FR-003 Impact CI compositionと測定
 
 #### SYN-R-07 影響profile
 
@@ -94,7 +94,7 @@ full verificationを必須とする。legacy greenでcurrent failureを相殺し
 completionはLOC減少だけで判定せず、trace completeness、required verification coverage、mutation detection、
 rework、rollback readiness、lead time、defect escape、rule promotion精度を測定する。
 
-### SYN-FR-004 将来の合成frontier
+## SYN-FR-004 将来の合成frontier
 
 #### SYN-R-09 shadow限定の全体計画
 

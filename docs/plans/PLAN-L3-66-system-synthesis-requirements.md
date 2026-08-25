@@ -49,6 +49,12 @@ generates:
   - { artifact_path: tests/system-synthesis-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
+  - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
   requires: []

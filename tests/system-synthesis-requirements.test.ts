@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 
 const requirementPath =
   "docs/design/helix/L3-requirements/system-synthesis-requirements.md";
@@ -52,5 +53,18 @@ describe("System Synthesis requirements authority", () => {
     for (const issue of [1034, 1035, 1036, 1038, 1039, 1040, 1041]) {
       expect(roadmap).toContain(`#${issue}`);
     }
+  });
+
+  it("Requirement IRへstable refinementとして投影する", () => {
+    const source = loadCanonicalRequirementIrFromShards(process.cwd());
+    const refinement = source.refinement_contracts.find(
+      (record) => record.refinement_contract_id === "SYN-FR-001",
+    );
+    expect(refinement?.lifecycle_status).toBe("specified");
+    expect(refinement?.supporting_requirements).toHaveLength(10);
+    expect(refinement?.acceptance_cases).toHaveLength(14);
+    expect(refinement?.downstream_issue_ids).toEqual([
+      1036, 1039, 1035, 1040, 1038, 1041, 1034, 1037,
+    ]);
   });
 });
