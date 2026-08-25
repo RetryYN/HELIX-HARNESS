@@ -13741,7 +13741,7 @@ github
         const hierarchyNodes = collectIssueHierarchyContracts(issues);
         alignmentReport = auditIssueHierarchyDependencyAlignment(hierarchyNodes, nodes);
         const governedNumbers = new Set(nodes.map((node) => node.number));
-        plans = readdirSync(join(process.cwd(), "docs", "plans"))
+        const allPlanBindings = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
           .flatMap((name) => {
             const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
@@ -13750,20 +13750,13 @@ github
             const githubIssueId = Number(
               frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
             );
-            return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
+            return planId && Number.isSafeInteger(githubIssueId) ? [{ planId, githubIssueId }] : [];
           });
+        plans = allPlanBindings.filter((plan) => governedNumbers.has(plan.githubIssueId));
         const hierarchyNumbers = new Set(hierarchyNodes.map((node) => node.number));
-        const migrationPlans = readdirSync(join(process.cwd(), "docs", "plans"))
-          .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
-          .flatMap((name) => {
-            const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
-            const frontmatter = content.match(/^---\s*\n([\s\S]*?)\n---/)?.[1] ?? "";
-            const planId = frontmatter.match(/^plan_id:\s*["']?([^\s"']+)/m)?.[1];
-            const githubIssueId = Number(
-              frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
-            );
-            return planId && hierarchyNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
-          });
+        const migrationPlans = allPlanBindings.filter((plan) =>
+          hierarchyNumbers.has(plan.githubIssueId),
+        );
         migrationCandidates = projectIssueDependencyMigrationCandidates(
           hierarchyNodes,
           nodes,
