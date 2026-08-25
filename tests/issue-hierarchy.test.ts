@@ -13,6 +13,7 @@ import {
   parseIssueDependencyContract,
   parseIssueHierarchyContract,
   projectIssueDependencyMigrationCandidates,
+  renderIssueDependencyContract,
 } from "../src/runtime/issue-hierarchy";
 
 const node = (overrides: Partial<IssueHierarchyNode>): IssueHierarchyNode => ({
@@ -95,6 +96,8 @@ describe("GitHub Issue dependency projection", () => {
         blocks: [20, 30],
         planId: null,
         planIds: ["PLAN-L7-1"],
+        contractBlock:
+          "```yaml\n# helix-issue-dependency.v1\ndepends_on: [5]\nblocks: [20, 30]\nplan_id: null\nplan_ids: [PLAN-L7-1]\n```",
       },
       {
         issueNumber: 40,
@@ -102,8 +105,24 @@ describe("GitHub Issue dependency projection", () => {
         dependsOn: [10],
         blocks: [],
         planId: "PLAN-L7-40",
+        contractBlock:
+          "```yaml\n# helix-issue-dependency.v1\ndepends_on: [10]\nblocks: []\nplan_id: PLAN-L7-40\n```",
       },
     ]);
+
+    expect(parseIssueDependencyContract(candidates[1]?.contractBlock ?? "")).toEqual({
+      dependsOn: [10],
+      blocks: [],
+      planId: "PLAN-L7-40",
+    });
+    expect(() =>
+      renderIssueDependencyContract({
+        dependsOn: [],
+        blocks: [],
+        planId: "PLAN-L7-40",
+        planIds: ["PLAN-L7-41"],
+      }),
+    ).toThrow("issue_plan_scalar_and_set_conflict");
   });
 
   it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {

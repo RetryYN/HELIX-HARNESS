@@ -88,4 +88,5 @@ target欠落10、その他PLAN binding／malformed contract 4である。#204本
 同日のdry-run projectionでは89 Issueを移行対象として固定した（add 81、replace 8）。projectionはhierarchyの
 exact relationを出力し、既存dependency contractの`plan_id`／`plan_ids`を保持する。contract未採用Issueは
 candidate treeのPLAN frontmatterからexact bindingを導出し、単一PLANは`plan_id`、複数PLANは`plan_ids`へ投影する。GitHub writeはこの出力を
-直接正本にせず、適用直前のIssue body・HEAD・assignmentを再照合し、更新後read-afterを必須とする。
+直接正本にせず、candidateが描画するparser往復済みcanonical contract blockを使い、適用直前のIssue body・HEAD・assignmentを
+再照合して更新後read-afterを必須とする。
