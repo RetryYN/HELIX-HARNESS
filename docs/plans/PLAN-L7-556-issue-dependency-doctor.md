@@ -6,7 +6,7 @@ layer: L7
 drive: agent
 status: confirmed
 route_mode: add-feature
-completion_claim_allowed: false
+completion_claim_allowed: true
 entry_signals:
   - "po_directive:2026-08-14 #633・#634を先行し、Issue依存とPLAN参照をharness・GitHub rulesで機械強制してopen PRを収束させる"
 created: 2026-08-14
@@ -33,7 +33,7 @@ complexity_effect: net_neutral
 complexity_justification: "既存Issue hierarchy moduleと単一CLI/CI/doctor wiringを拡張し、新DB schemaや重複graphを追加しない"
 removal_trigger: "harness.db共通graph validatorがGitHub dependency projectionとPLAN bindingを同一transactionで検査する時点で統合する"
 parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md
-backfill_state: pending_reverse
+backfill_state: complete
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-002, test_path: tests/issue-hierarchy.test.ts }
@@ -58,7 +58,10 @@ generates:
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L6-80-issue-hierarchy-contract.md
-  requires: []
+  requires:
+    - docs/plans/PLAN-REVERSE-634-issue-dependency-doctor-terminal-fullback.md
+  references:
+    - docs/plans/PLAN-REVERSE-634-issue-dependency-doctor-terminal-fullback.md
   blocks: [issue:635]
 agent_slots:
   - { role: se, slot_label: "SE — dependency projectionとPLAN binding監査" }
@@ -100,3 +103,12 @@ left_arm_carry:
 
 `U-IHIER-006` はworkflow event境界を固定し、PRではfocus component、schedule／手動runでは
 repository full auditを実行する一方、main pushでは未merge PLANを理由にredへ戻さない。
+
+## Reverse fullback終端
+
+PLAN-REVERSE-634-issue-dependency-doctor-terminal-fullbackのR0〜R4で、Issue #634、Issue #633の解決済み
+metadata、実装PR #1016のcanonical merge、required CI、Claude exact-HEAD receipt、DB projection/replay、
+current-mainのIssue dependency auditを再照合した。main read-afterはPLAN lint、DB rebuild、依存監査でgreenとなり、
+`findings=[]`を確認したため、本PLANを`backfill_state: complete`、`completion_claim_allowed: true`へ遷移する。
+Issue #634のcloseはReverse PLANのmain read-afterと同一証拠を参照して実施し、Issueの終端状態をPLANの完了主張と
+混同しない。
