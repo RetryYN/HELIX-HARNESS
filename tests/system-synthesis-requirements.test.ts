@@ -5,10 +5,12 @@ import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requir
 const requirementPath = "docs/design/helix/L3-requirements/system-synthesis-requirements.md";
 const acceptancePath = "docs/test-design/helix/system-synthesis-acceptance.md";
 const roadmapPath = "docs/governance/system-synthesis-rollout-roadmap.md";
+const planPath = "docs/plans/PLAN-L3-66-system-synthesis-requirements.md";
 
 const requirement = readFileSync(requirementPath, "utf8");
 const acceptance = readFileSync(acceptancePath, "utf8");
 const roadmap = readFileSync(roadmapPath, "utf8");
+const plan = readFileSync(planPath, "utf8");
 
 describe("System Synthesis requirements authority", () => {
   it("L3とL10を同じPLANとpairへ束縛する", () => {
@@ -16,6 +18,14 @@ describe("System Synthesis requirements authority", () => {
     expect(acceptance).toContain("plan: PLAN-L3-66-system-synthesis-requirements");
     expect(requirement).toContain(`pair_artifact: ${acceptancePath}`);
     expect(acceptance).toContain(`pair_artifact: ${requirementPath}`);
+  });
+
+  it("PO承認後のL3・L10・PLANをconfirmedで一致させる", () => {
+    expect(requirement).toMatch(/^status: confirmed$/m);
+    expect(acceptance).toMatch(/^status: confirmed$/m);
+    expect(plan).toMatch(/^status: confirmed$/m);
+    expect(acceptance).toContain("FUTURE capabilityの実行");
+    expect(plan).toContain("completion_claim_allowed: true");
   });
 
   it("supporting requirementとacceptanceのexact setを閉じる", () => {

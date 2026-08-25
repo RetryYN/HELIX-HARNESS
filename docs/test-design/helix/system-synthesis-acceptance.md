@@ -4,7 +4,7 @@ canonical_layer_scheme: L1-L12
 layer: L10
 paired_requirement_layer: L3
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-26
 updated: 2026-08-26
 owner: QA / Codex TL
@@ -18,6 +18,9 @@ pair_artifact: docs/design/helix/L3-requirements/system-synthesis-requirements.m
 
 文書生成量や`System Synthesis`文字列の存在では合格にしない。既存authorityからの決定的接続、
 identity軸の非混同、negative mutation、FUTUREの非実行を検証する。
+
+POは2026-08-26に新構想をL3要求として進めることを承認した。FUTURE capabilityの実行、
+不可逆操作、配布cutoverは、この承認に含めず個別のaction-binding gateへ残す。
 
 ## §1 oracle完全一致集合
 
