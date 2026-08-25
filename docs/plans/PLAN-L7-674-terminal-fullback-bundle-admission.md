@@ -60,7 +60,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — migration／terminal bundle境界" }
 ---
 
-# typed PLAN terminal fullback bundle admission
+# typed PLAN終端束ねの受入
 
 ## 目的
 

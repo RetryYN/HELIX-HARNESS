@@ -1,5 +1,6 @@
 // PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-001..009
 // PLAN-L7-581-github-workflow-identity-migration-bundle-admission — U-GWIDADM-011..016
+// PLAN-L7-674-terminal-fullback-bundle-admission — U-GWIDADM-019..020
 import { copyFileSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
