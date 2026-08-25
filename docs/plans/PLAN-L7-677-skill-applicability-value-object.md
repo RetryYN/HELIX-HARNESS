@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-677-skill-applicability-value-object
-title: "PLAN-L7-677 (redesign): typed skill applicability value object"
-kind: redesign
+title: "PLAN-L7-677 (refactor): typed skill applicability value object"
+kind: refactor
 layer: L7
 drive: agent
 status: draft
