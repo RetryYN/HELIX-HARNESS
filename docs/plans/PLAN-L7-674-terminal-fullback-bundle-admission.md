@@ -8,7 +8,7 @@ status: draft
 completion_claim_allowed: false
 entry_signals: ["po_directive:Issue #1031 terminal fullback bundle admission"]
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 owner: Codex / TL
 github_issue_id: 1031
 behavior_contract_id: GWID-TERMINAL-BUNDLE-001
@@ -30,7 +30,9 @@ contract_postconditions: "同一IssueのForward／Reverse terminal fullbackだ�
 contract_invariants: "terminal bundleはmigration bundleへ偽装せず、registry authorityを増やさず、legacy identityを推測せず、manifestとcurrent HEADをexact照合する"
 contract_failures: "marker重複／併記、manifest／owner／PLAN identity／registry digest／catalog／Issue／PR／HEAD不一致、非typed PLAN、未登録identityを専用reasonでfail-closeする"
 tdd_red_required: true
-mutation_oracle_evidence: "U-GWIDADM-019／020でterminal bundleのpositiveとmarker、manifest、owner、digest、identity、Issue不一致のnegativeを実測し、confirm前に主要判定を変異killする"
+red_at: "2026-08-25T15:16:22Z"
+green_at: "2026-08-25T15:26:54Z"
+mutation_oracle_evidence: "tests/backfill-pairing.test.ts U-BACKFILL-006とtests/l3-g3-freeze-packet-v2.test.ts U-DESIGNCOV-016が、Reverse pairとcurrent L3 digestを欠落させたHEAD cf44b8a1のCI run 32862423304をfailedにして欠落変異をkillした。双方向linkとdigest pinを復元後、両suiteを含む82 testsがgreenへ復帰した。tests/github-workflow-identity-admission.test.ts U-GWIDADM-019／020はterminal marker、manifest、owner、registry digest、identity、Issue不一致を個別にrejectする。"
 complexity_effect: justified_positive
 complexity_justification: "複数typed PLANを許可する例外をmigrationとterminal fullbackへ明示分離し、GitHub workflow内の自由文推測を増やさず共通adapterへ集約する"
 removal_trigger: "GitHub workflow identity admission schema major version更新時にversioned successorへ移管する"
@@ -41,15 +43,20 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, oracle_id: U-GWIDADM-020, test_path: tests/github-workflow-identity-admission.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-674-terminal-fullback-bundle-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-REVERSE-674-terminal-fullback-bundle-admission.md, artifact_type: markdown_doc }
+modifies:
   - { artifact_path: docs/design/helix/L3-requirements/github-merge-admission-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/github-workflow-identity-admission.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
   requires:
     - docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
+    - docs/plans/PLAN-REVERSE-674-terminal-fullback-bundle-admission.md
     - docs/design/helix/L3-requirements/github-merge-admission-requirements.md
     - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
     - docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md
@@ -84,6 +91,7 @@ migration bundle契約は維持し、terminal fullbackを別の明示的なbundl
 3. U-GWIDADM-019／020とmutation oracleを実装し、既存migration／通常PRの反例を退行させない。
 4. `npm run typecheck`、targeted test、plan lint、全CI、Claude exact-HEAD reviewを同一HEADへ束縛する。
 5. dogfood PR #1030でForward／Reverse PLANをterminal bundleとして再検証する。
+6. 本add-implをReverse PLANと双方向に接続し、L3要件変更のcurrent digestをG3 freeze packetへ伝播する。
 
 ## 受入条件
 
