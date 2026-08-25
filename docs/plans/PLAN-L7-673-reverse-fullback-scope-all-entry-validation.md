@@ -4,8 +4,9 @@ title: "PLAN-L7-673 (impl): Reverse fullback backprop_scopeの全entry検証"
 kind: impl
 layer: L7
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -32,7 +33,39 @@ contract_invariants: "必須3層の検査を維持し、generated evidenceを同
 contract_failures: "invalid decision、layer欠落、重複layer、未生成updated evidenceを見逃さない"
 tdd_red_required: true
 red_test: "U-RFSCOPE-001/002が旧必須3層限定実装の必須外layer見逃しをfailにする"
+red_at: "2026-08-25T12:30:13Z"
+green_at: "2026-08-25T12:30:20Z"
 mutation_oracle_evidence: "2026-08-25T09:51:49Zにtests/tools/reverse-fullback-scope-mutation/run-mutation.tsを実行し、必須3層限定へ戻すmutantをKILLED、total=1 killed=1 survived=0 pattern_missing=0として実測した。復元後のtests/plan-lint.test.tsは55 passed。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-25T11:35:44Z"
+    tests_green_at: "2026-08-25T11:29:26Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "c7895aff-da7e-47a0-944a-36c68bb4f251"
+    scope: "PR #1025 current HEAD 0c2154ee658c369d71eb79ad4bc049736598a0bcをClaude Codeが独立検収し、必須外layerのdecision/evidence検査、negative oracle、mutation kill、CI、DB projection/replay、checkpoint/replayを確認した。blocker 0。review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1025#issuecomment-5409785164"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1025#issuecomment-5409785164"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32840778709 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-25T11:29:26Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:65f11495368cea6ddd51bae66e2dc0e93709b2172afdc881c89ece33e4fc277b"
+        result: "completed / success / HEAD 0c2154ee658c369d71eb79ad4bc049736598a0bc"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-25T11:35:44Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-25T11:35:44Z"
+    evidence_digest: "sha256:e8e684919935e92ec2aa506a49ef6384ad360a38447435a5d1d563154291f014"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "必須層専用ループを全entry共通validatorへ集約し、検査の抜け道を削除する"
 removal_trigger: "backprop_scopeがtyped schemaへ移行し、非構造化frontmatterを受理しなくなった時"
