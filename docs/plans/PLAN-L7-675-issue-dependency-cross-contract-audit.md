@@ -33,7 +33,7 @@ contract_failures: "dependency contract欠落、blocked_by/depends_on不一致�
 tdd_red_required: true
 red_at: "2026-08-26T01:25:00+09:00"
 green_at: "2026-08-26T01:26:46+09:00"
-mutation_oracle_evidence: "2026-08-26T01:27:13+09:00にgovernedHierarchyNodes filterを常にfalseへ変異し、U-IHIER-012がexpected false／received trueで1 failed・11 passedとなり、dependency block欠落とhierarchy/dependency集合差を黙ってskipする退行をkillした。filter復元後12 tests green、typecheck、Biome greenを再確認した。"
+mutation_oracle_evidence: "2026-08-26T01:27:13+09:00にgovernedHierarchyNodes filterを常にfalseへ変異し、U-IHIER-012がexpected false／received trueで1 failed・11 passedとなり、dependency block欠落とhierarchy/dependency集合差を黙ってskipする退行をkillした。01:36:43+09:00にはmigration projectionの既存contract lookupをundefinedへ変異し、U-IHIER-013がadd／replace・PLAN束縛差で1 failed・12 passedとなることを実測した。各変異復元後13 tests green、typecheck、Biome greenを再確認した。"
 complexity_effect: net_negative
 complexity_justification: "二つの既存projection間にpure比較を一つ追加し、黙ってskipされる依存graphを除去する"
 removal_trigger: "hierarchyとdependencyが単一versioned typed graphへ統合された時"
