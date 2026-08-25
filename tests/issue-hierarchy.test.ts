@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
 // PLAN-L7-475-issue-hierarchy-contract / U-IHIER-001
 // PLAN-L7-556-issue-dependency-doctor / U-IHIER-002 / U-IHIER-003
-// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012 / U-IHIER-013
+// PLAN-L7-675-issue-dependency-cross-contract-audit / U-IHIER-012 / U-IHIER-013 / U-IHIER-014
 import {
   applyIssueDependencyMigrationCandidate,
+  applyIssueHierarchyRelationClosureCandidate,
   auditIssueDependencies,
   auditIssueHierarchy,
   auditIssueHierarchyDependencyAlignment,
@@ -14,7 +15,9 @@ import {
   parseIssueDependencyContract,
   parseIssueHierarchyContract,
   projectIssueDependencyMigrationCandidates,
+  projectIssueHierarchyRelationClosure,
   renderIssueDependencyContract,
+  renderIssueHierarchyContract,
 } from "../src/runtime/issue-hierarchy";
 
 const node = (overrides: Partial<IssueHierarchyNode>): IssueHierarchyNode => ({
@@ -148,6 +151,51 @@ describe("GitHub Issue dependency projection", () => {
     expect(() => applyIssueDependencyMigrationCandidate("no contract", replaceCandidate)).toThrow(
       "issue_dependency_migration_expected_present",
     );
+  });
+
+  it("U-IHIER-014: 片側hierarchy edgeを削除せず両端へunion closureする", () => {
+    const candidates = projectIssueHierarchyRelationClosure([
+      node({ number: 10, blocks: [20, 99] }),
+      node({ number: 20 }),
+      node({ number: 30, blockedBy: [20] }),
+    ]);
+
+    expect(candidates).toEqual([
+      expect.objectContaining({
+        issueNumber: 20,
+        blocks: [30],
+        blockedBy: [10],
+        contractBlock: expect.stringContaining("blocks: [30]"),
+      }),
+    ]);
+    expect(candidates[0]?.contractBlock).toContain("blocked_by: [10]");
+    expect(candidates.some((candidate) => candidate.issueNumber === 99)).toBe(false);
+    expect(
+      auditIssueHierarchy([
+        node({ number: 10, blocks: [20, 99] }),
+        node({ number: 20, blocks: [30], blockedBy: [10] }),
+        node({ number: 30, blockedBy: [20] }),
+      ]).findings.filter((finding) => finding.code === "relation_not_symmetric"),
+    ).toEqual([]);
+
+    const candidate = candidates[0];
+    if (!candidate) throw new Error("hierarchy_closure_candidate_fixture_missing");
+    const sourceBody = renderIssueHierarchyContract(node({ number: 20 }));
+    const patched = applyIssueHierarchyRelationClosureCandidate(sourceBody, candidate);
+    expect(parseIssueHierarchyContract(patched)).toMatchObject({ blocks: [30], blockedBy: [10] });
+    expect(() => applyIssueHierarchyRelationClosureCandidate("no hierarchy", candidate)).toThrow(
+      "issue_hierarchy_migration_expected_present",
+    );
+    expect(() =>
+      applyIssueHierarchyRelationClosureCandidate(
+        renderIssueHierarchyContract(node({ number: 20, blocks: [30] })),
+        {
+          ...candidate,
+          blocks: [],
+          contractBlock: candidate.contractBlock.replace("blocks: [30]", "blocks: []"),
+        },
+      ),
+    ).toThrow("issue_hierarchy_migration_edge_removal");
   });
 
   it("live sourceからhierarchy contractだけをtyped projectionへ収集する", () => {

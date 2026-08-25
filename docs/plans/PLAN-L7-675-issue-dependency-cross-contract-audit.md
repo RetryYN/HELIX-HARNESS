@@ -42,6 +42,7 @@ pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-012, test_path: tests/issue-hierarchy.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-013, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-014, test_path: tests/issue-hierarchy.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-675-issue-dependency-cross-contract-audit.md, artifact_type: markdown_doc }
 modifies:
@@ -92,3 +93,6 @@ candidate treeのPLAN frontmatterからexact bindingを導出し、単一PLANは
 再照合して更新後read-afterを必須とする。
 pure body patchは`add`時に既存adopted blockがあれば拒否し、`replace`時にblockが消えていれば拒否するため、
 dry-run取得後にIssue bodyが変化した場合も暗黙の二重追加や別contract化を行わない。
+
+初回89件適用後に露出した片側edgeは、宣言済みrelationを削除してgreen化せず、存在する両端nodeへunion closureする。
+hierarchy metadataを保持したcanonical blockとdependency contractを同じcandidate集合から再投影し、片側だけの更新を禁止する。

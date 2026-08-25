@@ -107,6 +107,96 @@ export interface IssueHierarchyDependencyAlignmentFinding {
   detail: string;
 }
 
+export interface IssueHierarchyRelationClosureCandidate {
+  issueNumber: number;
+  blocks: number[];
+  blockedBy: number[];
+  contractBlock: string;
+}
+
+export function renderIssueHierarchyContract(
+  node: Pick<
+    IssueHierarchyNode,
+    | "role"
+    | "parentIssue"
+    | "blocks"
+    | "blockedBy"
+    | "duplicateSearch"
+    | "disposition"
+    | "duplicateOf"
+  >,
+): string {
+  return [
+    "```yaml",
+    `issue_role: ${node.role}`,
+    `parent_issue: ${node.parentIssue ?? "null"}`,
+    `blocks: [${uniqueNumbers(node.blocks).join(", ")}]`,
+    `blocked_by: [${uniqueNumbers(node.blockedBy).join(", ")}]`,
+    `duplicate_search: ${node.duplicateSearch}`,
+    `disposition: ${node.disposition}`,
+    `duplicate_of: ${node.duplicateOf ?? "null"}`,
+    "```",
+  ].join("\n");
+}
+
+export function projectIssueHierarchyRelationClosure(
+  nodes: readonly IssueHierarchyNode[],
+): IssueHierarchyRelationClosureCandidate[] {
+  const desired = new Map(
+    nodes.map((node) => [
+      node.number,
+      { blocks: new Set(node.blocks), blockedBy: new Set(node.blockedBy) },
+    ]),
+  );
+  for (const node of nodes) {
+    for (const target of node.blocks) desired.get(target)?.blockedBy.add(node.number);
+    for (const target of node.blockedBy) desired.get(target)?.blocks.add(node.number);
+  }
+  return nodes.flatMap((node) => {
+    const relation = desired.get(node.number);
+    if (!relation) return [];
+    const blocks = uniqueNumbers([...relation.blocks]);
+    const blockedBy = uniqueNumbers([...relation.blockedBy]);
+    if (
+      JSON.stringify(blocks) === JSON.stringify(uniqueNumbers(node.blocks)) &&
+      JSON.stringify(blockedBy) === JSON.stringify(uniqueNumbers(node.blockedBy))
+    ) {
+      return [];
+    }
+    const projected = { ...node, blocks, blockedBy };
+    return [
+      {
+        issueNumber: node.number,
+        blocks,
+        blockedBy,
+        contractBlock: renderIssueHierarchyContract(projected),
+      },
+    ];
+  });
+}
+
+export function applyIssueHierarchyRelationClosureCandidate(
+  body: string,
+  candidate: IssueHierarchyRelationClosureCandidate,
+): string {
+  const currentMatch = matchIssueHierarchyContract(body);
+  if (!currentMatch) throw new Error("issue_hierarchy_migration_expected_present");
+  const current = parseIssueHierarchyContract(currentMatch[0]);
+  const projected = parseIssueHierarchyContract(candidate.contractBlock);
+  const metadataChanged =
+    current.role !== projected.role ||
+    current.parentIssue !== projected.parentIssue ||
+    current.duplicateSearch !== projected.duplicateSearch ||
+    current.disposition !== projected.disposition ||
+    current.duplicateOf !== projected.duplicateOf;
+  const removesEdge =
+    current.blocks.some((number) => !candidate.blocks.includes(number)) ||
+    current.blockedBy.some((number) => !candidate.blockedBy.includes(number));
+  if (metadataChanged) throw new Error("issue_hierarchy_migration_metadata_drift");
+  if (removesEdge) throw new Error("issue_hierarchy_migration_edge_removal");
+  return body.replace(currentMatch[0], candidate.contractBlock);
+}
+
 export interface IssueDependencyMigrationCandidate {
   issueNumber: number;
   action: "add" | "replace";
@@ -491,12 +581,16 @@ function isPositiveIssueNumber(value: number): boolean {
   return Number.isSafeInteger(value) && value > 0;
 }
 
+function matchIssueHierarchyContract(body: string): RegExpMatchArray | null {
+  return body.match(
+    /```yaml\s+issue_role:\s*(root|capability|task|finding)\s+parent_issue:\s*(null|\d+)\s+blocks:\s*\[([^\]]*)\]\s+blocked_by:\s*\[([^\]]*)\]\s+duplicate_search:\s*(completed)\s+disposition:\s*(active|parked|duplicate|superseded)\s+duplicate_of:\s*(null|\d+)\s*```/m,
+  );
+}
+
 export function parseIssueHierarchyContract(
   body: string,
 ): Omit<IssueHierarchyNode, "number" | "state"> {
-  const block = body.match(
-    /```yaml\s+issue_role:\s*(root|capability|task|finding)\s+parent_issue:\s*(null|\d+)\s+blocks:\s*\[([^\]]*)\]\s+blocked_by:\s*\[([^\]]*)\]\s+duplicate_search:\s*(completed)\s+disposition:\s*(active|parked|duplicate|superseded)\s+duplicate_of:\s*(null|\d+)\s*```/m,
-  );
+  const block = matchIssueHierarchyContract(body);
   if (!block) throw new Error("issue_hierarchy_contract_missing_or_invalid");
   const numbers = (raw: string): number[] =>
     raw.trim() === ""
