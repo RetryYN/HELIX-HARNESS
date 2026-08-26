@@ -190,8 +190,6 @@ jobs:
 
   full-regression-preflight:
     outputs:
-      lane_disposition: ${{ steps.full-lane-status.outputs.disposition }}
-      skip_code: ${{ steps.full-lane-status.outputs.skip_code }}
       full: ${{ steps.impact-ci.outputs.full }}
       reuse: ${{ steps.impact-ci.outputs.reuse }}
       candidate_head: ${{ steps.impact-ci.outputs.candidate_head }}
@@ -644,122 +642,6 @@ jobs:
               --inventory-file "$RUNNER_TEMP/full-regression-shard-plan/inventory.json" \
               > "$RUNNER_TEMP/full-regression-shard-plan/plan.json"
             exit 0
-            # Job control gives each background lane its own process group so cancellation
-            # can address lane children as a group instead of only the subshell leader.
-            set -m
-            regression_start_epoch="$(date -u +%s)"
-            tested_head="$(git rev-parse HEAD)"
-            shard_root="$(mktemp -d "$RUNNER_TEMP/impact-ci-shards.XXXXXX")"
-            shard_names=(bulk stateful)
-            cleanup_shards() {
-              set +e
-              for name in "${shard_names[@]}"; do
-                git worktree remove --force "$shard_root/$name" >/dev/null 2>&1
-              done
-              set -e
-            }
-            trap cleanup_shards EXIT
-            for name in "${shard_names[@]}"; do
-              git worktree add --detach "$shard_root/$name" "$tested_head"
-              ln -s "$GITHUB_WORKSPACE/node_modules" "$shard_root/$name/node_modules"
-            done
-            mapfile -t bulk_files < <(
-              jq -r '.[] | select(. != "tests/cli-surface.test.ts" and (startswith("tests/slow/") | not))' \
-                <<< "$IMPACT_CI_TEST_FILES"
-            )
-            if [ "${#bulk_files[@]}" -eq 0 ]; then
-              echo "Impact CI produced an empty bulk lane" >&2
-              exit 1
-            fi
-            # Lane union must equal the tracked test inventory before any lane starts, so a
-            # future full-profile deferral cannot silently shrink the full admission
-            # (Issue #352 §1). Fail-close with the exact diff when they diverge.
-            mapfile -t stateful_slow_files < <(
-              git ls-files 'tests/slow/*.test.ts' 'tests/slow/**/*.test.ts' | LC_ALL=C sort -u
-            )
-            lane_union="$(printf '%s\n' "${bulk_files[@]}" tests/cli-surface.test.ts "${stateful_slow_files[@]}" | LC_ALL=C sort -u)"
-            full_inventory="$(git ls-files 'tests/*.test.ts' 'tests/**/*.test.ts' | LC_ALL=C sort -u)"
-            if [ "$lane_union" != "$full_inventory" ]; then
-              echo "lane union does not match full test inventory" >&2
-              diff <(printf '%s\n' "$full_inventory") <(printf '%s\n' "$lane_union") >&2 || :
-              exit 1
-            fi
-            (
-              cd "$shard_root/bulk"
-              # The stateful lane launches real CLI child processes with bounded per-case
-              # deadlines. Keep both lanes concurrent, but yield CPU to that latency-sensitive
-              # lane on the two-core hosted runner instead of extending test timeouts.
-              nice -n 10 npx --no-install vitest run --project fast "${bulk_files[@]}"
-            ) > "$RUNNER_TEMP/impact-ci-bulk.log" 2>&1 &
-            bulk_pid=$!
-            (
-              cd "$shard_root/stateful"
-              npx --no-install vitest run --project fast tests/cli-surface.test.ts
-              npx --no-install vitest run --project slow
-            ) > "$RUNNER_TEMP/impact-ci-stateful.log" 2>&1 &
-            stateful_pid=$!
-            # Runner cancellation sends INT/TERM to this step shell only. Each lane runs in its
-            # own process group (set -m), so the handler can stop lane children boundedly,
-            # finish worktree cleanup, and leave a cancellation receipt without masking the
-            # normal fail-close aggregation below.
-            terminate_lanes() {
-              lane_cancel_signal="$1"
-              cancel_epoch="$(date -u +%s)"
-              set +e
-              for lane_pid in "$bulk_pid" "$stateful_pid"; do
-                kill -TERM -- "-$lane_pid" 2>/dev/null
-              done
-              stop_deadline=$((SECONDS + 20))
-              while [ "$SECONDS" -lt "$stop_deadline" ]; do
-                if ! kill -0 "$bulk_pid" 2>/dev/null && ! kill -0 "$stateful_pid" 2>/dev/null; then
-                  break
-                fi
-                sleep 1
-              done
-              for lane_pid in "$bulk_pid" "$stateful_pid"; do
-                kill -KILL -- "-$lane_pid" 2>/dev/null
-              done
-              stopped_epoch="$(date -u +%s)"
-              cleanup_shards
-              # Buffered lane logs would otherwise vanish on cancel/timeout; surface their
-              # tails so the failure can be triaged from a cancelled run (Issue #352 §3).
-              for lane_log in "$RUNNER_TEMP/impact-ci-bulk.log" "$RUNNER_TEMP/impact-ci-stateful.log"; do
-                echo "--- partial lane log tail: ${lane_log##*/} ---"
-                tail -n 100 "$lane_log" 2>/dev/null
-              done
-              {
-                echo "## impact-ci cancellation receipt"
-                echo "- signal: ${lane_cancel_signal}"
-                echo "- cancel_epoch: ${cancel_epoch}"
-                echo "- stop_latency_seconds: $((stopped_epoch - cancel_epoch))"
-                echo "- billed_step_seconds: $((stopped_epoch - regression_start_epoch))"
-              } >> "$GITHUB_STEP_SUMMARY"
-              trap - TERM INT EXIT
-              if [ "$lane_cancel_signal" = "INT" ]; then
-                exit 130
-              fi
-              exit 143
-            }
-            trap 'terminate_lanes TERM' TERM
-            trap 'terminate_lanes INT' INT
-            set +e
-            wait "$bulk_pid"; bulk_status=$?
-            wait "$stateful_pid"; stateful_status=$?
-            set -e
-            trap - TERM INT
-            cat "$RUNNER_TEMP/impact-ci-bulk.log"
-            cat "$RUNNER_TEMP/impact-ci-stateful.log"
-            if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then
-              echo "isolated full regression failed: bulk=$bulk_status stateful=$stateful_status" >&2
-              exit 1
-            fi
-            # Written only after the full lanes aggregated green. The receipt binds the exact
-            # PR head and base SHA so a later same-head transition can prove this run really
-            # executed the full admission against the identical merge tree.
-            mkdir -p "$RUNNER_TEMP/impact-ci-full-receipt"
-            printf '{"head_sha":"%s","base_sha":"%s","tested_merge_head":"%s"}\n' \
-              "$IMPACT_CI_CANDIDATE_HEAD" "$IMPACT_CI_BASE_SHA" "$tested_head" \
-              > "$RUNNER_TEMP/impact-ci-full-receipt/impact-ci-full-receipt.json"
           else
             mapfile -t test_files < <(jq -r '.[]' <<< "$IMPACT_CI_TEST_FILES")
             if [ "${#test_files[@]}" -eq 0 ]; then
@@ -777,27 +659,6 @@ jobs:
           path: ${{ runner.temp }}/full-regression-shard-plan
           retention-days: 7
 
-      - name: lint (biome)
-        run: npm run lint
-
-      # Full regression tests exercise projection writers. Rebuild from source immediately before
-      # doctor so the hard gate compares two views of the same post-test deterministic snapshot.
-      - name: db rebuild (post-test projection refresh)
-        run: npx --no-install tsx src/cli.ts db rebuild --json
-
-      - name: doctor (governance hard gates)
-        run: npx --no-install tsx src/cli.ts doctor
-
-      - name: Full typed lane status
-        id: full-lane-status
-        if: ${{ success() }}
-        run: |
-          echo "disposition=success" >> "$GITHUB_OUTPUT"
-          echo "skip_code=none" >> "$GITHUB_OUTPUT"
-
-      # Published only when every prior step (full regression included) finished green on a
-      # pull_request run that actually executed the full admission live. A reused run must not
-      # republish, so receipts always chain back to a run that ran the tests for real.
   full-regression-bulk-1:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
