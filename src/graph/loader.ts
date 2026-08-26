@@ -180,6 +180,7 @@ const GOVERNANCE_DOCS = [
   "docs/governance/repository-structure.md",
   "docs/governance/document-system-map.md",
 ] as const;
+const DESIGN_CATALOG_DOC = "docs/design/design-catalog.yaml";
 const ROOT_CONFIG_DOCS = [
   ".codex/hooks.json",
   ".editorconfig",
@@ -407,6 +408,15 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
 
   for (const path of GOVERNANCE_DOCS) {
     addDesignDocIfAbsent(designDocs, path);
+  }
+
+  // design catalog は docs/design/ の走査対象外だったため、変更時に relation graph の
+  // missing-projection へ落ちていた。実在する catalog を design node として明示投影する。
+  try {
+    statSync(join(repoRoot, DESIGN_CATALOG_DOC));
+    addDesignDocIfAbsent(designDocs, DESIGN_CATALOG_DOC);
+  } catch {
+    // fail-open: consumer fixture などで catalog が未配置の場合は node を作らない。
   }
 
   for (const path of ROOT_CONFIG_DOCS) {

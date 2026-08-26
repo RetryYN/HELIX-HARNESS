@@ -183,6 +183,7 @@ items:
       - docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md
       - docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md
       - docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md
+      - docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
@@ -309,6 +310,7 @@ items:
       - docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md
       - docs/test-design/helix/L8-distribution-lite-consumer-documents-unit-test-design.md
       - docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md
+      - docs/test-design/helix/L8-lite-canary-ci-parallelization-unit-test-design.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
