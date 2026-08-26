@@ -479,6 +479,7 @@ describe("source harness-check workflow", () => {
     expect(selector.run).toContain("src/cli/lite-canary-selector.ts lite-canary-selector");
     expect(selector.run).toContain("selector_uncertain");
     expect(selector.run).toContain("jq -r '.disposition'");
+    expect(selector.run).toContain("jq -r '.skip_code // \"none\"'");
     expect(build.if).toContain("steps.lite-selector.outputs.disposition == 'required'");
     expect(linux.if).toContain("steps.lite-selector.outputs.disposition == 'required'");
     expect(upload.if).toContain("steps.lite-selector.outputs.disposition == 'required'");
@@ -488,6 +489,10 @@ describe("source harness-check workflow", () => {
     expect(status.run).toContain("LITE_BUILD_OUTCOME");
     expect(status.run).toContain("LINUX_CANARY_OUTCOME");
     expect(status.run).toContain("LITE_UPLOAD_OUTCOME");
+    expect(status.run).toContain(
+      'if [ "$LITE_DISPOSITION" = "authorized_skip" ] && [ "$LITE_SKIP_CODE" = "closure_unaffected" ]; then',
+    );
+    expect(status.run).toContain('echo "skip_code=closure_unaffected" >> "$GITHUB_OUTPUT"');
     expect(liteCanaryJob.needs).toBeUndefined();
   });
 
