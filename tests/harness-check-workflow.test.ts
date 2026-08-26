@@ -754,7 +754,7 @@ describe("source harness-check workflow", () => {
     expect(regression["continue-on-error"]).toBeUndefined();
   });
 
-  it("U-IMPACTCI-WF-005: workflow_dispatchでbefore SHAが空でも候補HEADの親からfull rangeを作る", () => {
+  it("U-LITECI-WF-005: workflow_dispatchでbefore SHAが空でも候補HEADの親からfull rangeを作る", () => {
     const { steps } = loadWorkflow();
     const selector = stepByName(steps, "Impact CI profile selection");
 
