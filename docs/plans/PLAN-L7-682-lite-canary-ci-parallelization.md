@@ -52,6 +52,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/runtime/impact-ci.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
   - { artifact_path: tests/impact-ci.test.ts, artifact_type: test_code }
