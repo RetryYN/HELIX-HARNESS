@@ -16,7 +16,15 @@ import {
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
 } from "../src/lint/outstanding";
+import {
+  buildOutstandingSnapshot,
+  inspectOutstandingSnapshot,
+  renderOutstandingSnapshot,
+  verifyOutstandingSnapshotText,
+} from "../src/lint/outstanding-snapshot";
 import { frontmatterSchema } from "../src/schema/frontmatter";
+
+// PLAN-L7-677-outstanding-snapshot-semantic-merge-guard: U-OUTMERGE-001..003, U-OUTMERGE-005
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
 
@@ -401,6 +409,120 @@ describe("outstanding synchronous run snapshot (PLAN-L7-433 C3)", () => {
       const third = computeOutstandingWork(root);
       expect(third).not.toBe(first);
       expect(third).toEqual(first);
+    } finally {
+      clearOutstandingWorkRunCache();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("outstanding snapshot semantic merge guard (Issue #1052)", () => {
+  it("U-OUTMERGE-001: count/listを別側から採用したsnapshotをfail-closeする", () => {
+    const outstanding = analyzeOutstandingWork(
+      [
+        { planId: "PLAN-L7-SNAPSHOT-A", layer: "L7", status: "draft" },
+        { planId: "PLAN-L7-SNAPSHOT-B", layer: "L7", status: "draft" },
+      ],
+      0,
+    );
+    const live = buildOutstandingSnapshot(outstanding);
+    const mixed = { ...live, decision_count: live.decision_count - 1 };
+
+    const violations = verifyOutstandingSnapshotText(renderOutstandingSnapshot(mixed), outstanding);
+
+    expect(violations).toContain(
+      "G-10: outstanding snapshot decision_count must equal 2 (actual=1)",
+    );
+    expect(violations).toContain(
+      "G-10: outstanding snapshot decision_count must equal plan_ids.length (actual=1/2)",
+    );
+  });
+
+  it("U-OUTMERGE-002: blocker/actionの片側採用とlive duplicateをfail-closeする", () => {
+    const outstanding = analyzeOutstandingWork(
+      [{ planId: "PLAN-L7-SNAPSHOT-C", layer: "L7", status: "draft" }],
+      0,
+    );
+    const live = buildOutstandingSnapshot(outstanding);
+    const mixed = { ...live, blockers: [], required_actions: [] };
+    const mixedViolations = verifyOutstandingSnapshotText(
+      renderOutstandingSnapshot(mixed),
+      outstanding,
+    );
+
+    expect(
+      mixedViolations.some((violation) =>
+        violation.includes("outstanding snapshot blockers must equal live blockers"),
+      ),
+    ).toBe(true);
+    expect(mixedViolations).toContain(
+      "G-10: outstanding snapshot required_actions must equal live required actions",
+    );
+
+    const duplicateOutstanding = analyzeOutstandingWork(
+      [
+        { planId: "PLAN-L7-SNAPSHOT-DUP", layer: "L7", status: "draft" },
+        { planId: "PLAN-L7-SNAPSHOT-DUP", layer: "L7", status: "draft" },
+      ],
+      0,
+    );
+    const duplicateViolations = verifyOutstandingSnapshotText(
+      renderOutstandingSnapshot(buildOutstandingSnapshot(duplicateOutstanding)),
+      duplicateOutstanding,
+    );
+    expect(duplicateViolations).toContain(
+      "G-10: live outstanding decision_count must equal plan_ids.length (actual=2/1)",
+    );
+  });
+
+  it("U-OUTMERGE-003: current repositoryの早期guardは修復書込みなしで状態を返す", () => {
+    const result = inspectOutstandingSnapshot(process.cwd());
+    expect(result).toMatchObject({
+      schemaVersion: "outstanding-snapshot-guard.v1",
+      ok: true,
+      snapshotPath: "docs/governance/generated/outstanding-snapshot.json",
+      repairCommand: "helix db rebuild",
+      violations: [],
+    });
+  });
+
+  it("U-OUTMERGE-005: driftしたsnapshotではguardのokをfalseにする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-guard-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "docs", "governance", "generated"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-SNAPSHOT-GUARD.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-SNAPSHOT-GUARD",
+          "layer: L7",
+          "kind: impl",
+          "status: draft",
+          "---",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+      clearOutstandingWorkRunCache();
+      const outstanding = computeOutstandingWork(root);
+      const snapshot = buildOutstandingSnapshot(outstanding);
+      writeFileSync(
+        join(root, "docs", "governance", "generated", "outstanding-snapshot.json"),
+        renderOutstandingSnapshot({
+          ...snapshot,
+          decision_count: snapshot.decision_count + 1,
+        }),
+        "utf8",
+      );
+
+      const result = inspectOutstandingSnapshot(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.violations.length).toBeGreaterThan(0);
+      expect(result.violations).toContain(
+        `G-10: outstanding snapshot decision_count must equal ${snapshot.decision_count} (actual=${snapshot.decision_count + 1})`,
+      );
     } finally {
       clearOutstandingWorkRunCache();
       rmSync(root, { recursive: true, force: true });

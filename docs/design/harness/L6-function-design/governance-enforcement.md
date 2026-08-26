@@ -167,6 +167,25 @@ oracleは`U-PRSCOPE-006..007`とする。
 既存の必須3層の欠落・reason・generated evidence検査の意味は変更しない。oracleは
 `U-RFSCOPE-001..003`、実装は`src/plan/lint.ts`、回帰は`tests/plan-lint.test.ts`を正本とする。
 
+### §2.9 outstanding snapshotのsemantic merge guard（Issue #1052）
+
+`docs/governance/generated/outstanding-snapshot.json`は、JSONとしてparseできることやGitのconflict markerが
+無いことだけでは正本とみなさない。`inspectOutstandingSnapshot(repoRoot)`は既存の
+`computeOutstandingWork`（`helix db rebuild`と同じlive projection）を使い、committed snapshotと次の意味集合を
+同時に照合する。
+
+- `decision_count`と`plan_ids.length`、およびlive projectionの件数をexact一致させる。
+- `plan_ids`を重複なしのexact PLAN集合として照合する。
+- `blockers`と`required_actions`を重複なしのexact sorted集合として照合する。
+- 不一致時はsnapshotを書き換えず、`helix db rebuild`を明示修復commandとして返す。
+- `previous`／legacy側の成功でcurrent projectionの失敗を相殺しない。
+
+`helix guard outstanding-snapshot`はpush／PR作成前の早期surfaceであり、GitHub merge-readinessも同じguard結果を
+AND条件で受け取る。parse成功、conflict-free、または片側の値だけが新しい状態をgreenへ縮退させない。
+oracleは`U-OUTMERGE-001..005`、実装は`src/lint/outstanding-snapshot.ts`と
+`src/audit/github-merge-readiness.ts`、回帰は`tests/outstanding.test.ts`と
+`tests/github-merge-readiness.test.ts`を正本とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。
