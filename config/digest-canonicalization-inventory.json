@@ -811,7 +811,7 @@
     {
       "hit_id": "src/lint/github-guards.ts::hex:createHash(sha256)::1",
       "path": "src/lint/github-guards.ts",
-      "line": 86,
+      "line": 87,
       "symbol": "hex",
       "algorithm": "sha256",
       "input_kind": "string",

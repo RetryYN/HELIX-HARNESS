@@ -24,6 +24,7 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
+irreversible_impact: none
 no_code_decision: modify
 ddd_modeling_decision: value_object
 backprop_decision: not_required
@@ -48,6 +49,7 @@ generates:
   - { artifact_path: src/schema/atomic-contract-id.ts, artifact_type: source_module }
   - { artifact_path: tests/atomic-contract-id.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L3-requirements/github-atomic-development-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/atomic-slice-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-atomic-slice-admission-runtime-unit-test-design.md, artifact_type: test_design }
@@ -56,6 +58,9 @@ modifies:
   - { artifact_path: src/runtime/atomic-slice-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/issue-closure-graph.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/github-l3-trace-authority-hygiene.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-494-atomic-slice-admission.md
   requires:
