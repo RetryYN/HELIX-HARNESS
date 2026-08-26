@@ -18,7 +18,7 @@ created: 2026-08-27
 updated: 2026-08-27
 owner: Codex / TL
 github_issue_id: 1070
-behavior_contract_id: GH-AC-017-FULL-SHARD-PARTITION-001
+behavior_contract_id: FULL-REGRESSION-SHARD-PARTITION-001
 responsibility_owner: impact-ci-recovery
 engineering_discipline_required: true
 change_slice: atomic
