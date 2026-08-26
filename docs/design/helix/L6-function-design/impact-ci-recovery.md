@@ -2,9 +2,9 @@
 title: "Impact CI Recovery機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-01
-updated: 2026-08-12
+updated: 2026-08-27
 owner: Codex / TL
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 parent_design: docs/design/helix/L5-detail/impact-ci-recovery.md
@@ -80,3 +80,29 @@ source module policy は `requirements -> shared` のみを明示許可する。
 `shared -> requirements` はdefault denyを維持し、共有utilityを理由に owner 間cycleや上位ownerへの逆依存を許さない。
 契約oracleは `U-TSLAZY-001`（遅延load）・`U-TSLAZY-002`（唯一実装とconsumer exact set）・
 `U-TSLAZY-003`（互換shimの理由付きdeferred分類）・`IT-SBOUND-007`（正負direction）で構成する。
+
+## 6. Full regression job shard契約
+
+`GH-NFR-010`／`GH-AC-017`のp95 3分目標へ近づけるため、同一2-core runner内のbackground process並列を
+GitHub Actionsの独立jobへ移行する。workflowへpartition意味を埋め込まず、
+`src/runtime/full-regression-shards.ts`のpure contractがtracked test inventoryを次へ分割する。
+
+- `bulk-1`／`bulk-2`: `cli-surface`と`tests/slow/**`を除くfast testをpath digestで安定分割する。
+- `stateful`: `tests/cli-surface.test.ts`と全slow testだけを保持する。
+
+partitionはcandidate HEAD、base SHA、inventory digest、shard ID、kind、canonical file exact set、file digestへ
+束縛する。全shardの和集合はtracked test inventoryと完全一致し、交差、欠落、余剰、空required shardを拒否する。
+各runnerのreceiptは同じpartition digestと自身のfile digest、exit code、output digest、開始／完了時刻を持つ。
+finalizeはreceipt exact setを再検証し、wrong HEAD／base／partition／files、nonzero、欠落、重複をfail-closeする。
+
+本pure contractはtest実行、filesystem列挙、GitHub API、artifact uploadを行わない。workflow job配線、cancel／timeout、
+post-test DB rebuild／doctor、実runのwall-clock計測はIssue #1071が所有する。
+
+| oracle ID | 設計上の観測点 |
+|---|---|
+| `U-FULLSHARD-001` | 入力順非依存のbulk 2件＋stateful安定partition |
+| `U-FULLSHARD-002` | inventory exact union、交差／欠落／余剰0 |
+| `U-FULLSHARD-003` | inventory／partition／shard fileの正規digest |
+| `U-FULLSHARD-004` | CLI／slow stateful固定とbulk補集合 |
+| `U-FULLSHARD-005` | receiptのHEAD／base／partition／shard／files exact binding |
+| `U-FULLSHARD-006` | receipt exact set、exit 0、時刻妥当性 |
