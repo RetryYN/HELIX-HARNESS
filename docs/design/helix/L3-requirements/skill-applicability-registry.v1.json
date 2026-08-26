@@ -4,7 +4,7 @@
   "authority": {
     "kind": "requirements",
     "source": "docs/design/helix/L3-requirements/skill-applicability-authority.md",
-    "source_digest": "sha256:92e8667983fdd4ca601d3ec0ebf5d8c00db068daaab146326765f95f0049956b"
+    "source_digest": "sha256:5598eea36f7e5a3635b22a9f8320f0b388f47d57ca1fbb01887eda5ccbe2be49"
   },
   "identity_reference": {
     "source": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
