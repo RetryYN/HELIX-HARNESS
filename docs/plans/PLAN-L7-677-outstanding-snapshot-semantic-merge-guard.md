@@ -4,8 +4,9 @@ title: "PLAN-L7-677 (impl): outstanding snapshotのsemantic merge driftをpush�
 kind: impl
 layer: L7
 drive: db
-status: draft
-completion_claim_allowed: false
+status: confirmed
+backfill_state: complete
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -31,6 +32,9 @@ contract_postconditions: "count/list、exact PLAN set、blockers、required_acti
 contract_invariants: "guard自身はsnapshot/DBを書き換えず、previous/legacy snapshotでcurrent failureを相殺しない"
 contract_failures: "JSON parse成功、Git conflict 0、または片側採用でもsemantic driftを見逃さない"
 tdd_red_required: true
+red_at: "2026-08-26T01:35:54Z"
+green_at: "2026-08-26T02:08:44Z"
+mutation_oracle_evidence: "Claude CodeのPR #1053独立レビューで、inspectOutstandingSnapshotのokを常にtrueへ変異した場合に既存54件が通過する欠落を検出し、count/listまたはblocker/actionの片側採用を検出するnegative oracleを追加してkillした。レビュー記録: https://github.com/RetryYN/HELIX-HARNESS/pull/1053#issuecomment-5419389093。"
 red_test: "U-OUTMERGE-001/002/005がcount/listまたはblocker/action片側採用、live duplicate、guard ok値の退行を検出する"
 complexity_effect: net_neutral
 complexity_justification: "既存snapshot writer/verifyとmerge-readinessへ同一pure guardを接続し、別owner/state/jobを増やさない"
@@ -43,6 +47,44 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-OUTMERGE-003, test_path: tests/outstanding.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-OUTMERGE-004, test_path: tests/github-merge-readiness.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-OUTMERGE-005, test_path: tests/outstanding.test.ts }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-26T02:10:24Z"
+    tests_green_at: "2026-08-26T02:08:44Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    scope: "PR #1053 final HEAD 5a5cce880a11b530d0f137ef0b2faad191427677をClaude Code Opusが独立検収し、semantic snapshot guard、negative mutation oracle、merge-readiness接続、DB projection／replayを確認してblocker 0 approveとした。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1053#issuecomment-5419627426"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32920383182 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-26T02:08:44Z"
+        evidence_path: tests/outstanding.test.ts
+        output_digest: "sha256:2a46b5fb9aab3e3755dca7deff5cd6de9af789ca965a846646147abb959d28d9"
+        result: "terminal success / HEAD 5a5cce880a11b530d0f137ef0b2faad191427677"
+      - kind: smoke
+        command: "gh run view 32935749811 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: main-read-after
+        exit_code: 0
+        completed_at: "2026-08-26T06:15:47Z"
+        evidence_path: docs/governance/generated/outstanding-snapshot.json
+        output_digest: "sha256:88b66b671663f192d4ece41ece6e2ac71aff572cf5d48ca731a3a904f2ec892d"
+        result: "terminal success / main HEAD 2ef1d3bffa5c9d6a49a3110e5e260b957ce97b2b"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-26T02:10:24Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-26T02:10:24Z"
+    evidence_digest: "sha256:5b48872adf4d5ffb520b2e6f904b75c83bb428902f923669f3a49b8085cf23de"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-677-outstanding-snapshot-semantic-merge-guard.md, artifact_type: markdown_doc }
 modifies:
