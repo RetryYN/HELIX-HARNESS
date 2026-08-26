@@ -65,7 +65,9 @@ contract_invariants: "既存の正規2〜6 segment ID、exactly-one behavior、o
 contract_failures: "7／8 segmentまたは不正文法を一つのsurfaceだけが受理する、あるいは正規6 segmentを拒否する"
 tdd_red_required: true
 red_test: "U-ATOMIC-ID-002でIssue closureの7 segment受理を再現し、共有parser切替前にredとする"
-mutation_oracle_evidence: "2026-08-27T04:47:09+09:00に共有parserの上限を6から8 segmentへ一時拡張し、U-ATOMIC-ID-002とU-ICGRAPH-006が7 segment受理を検出して2 failed／exit 1となるkillを実測した。apply_patchで上限6へ復元し、targeted 53 tests greenを再確認する"
+red_at: "2026-08-26T19:47:09Z"
+green_at: "2026-08-26T20:55:21Z"
+mutation_oracle_evidence: "tests/atomic-contract-id.test.tsとtests/issue-closure-graph.test.tsで、2026-08-27T04:47:09+09:00に共有parserの上限を6から8 segmentへ一時拡張し、U-ATOMIC-ID-002とU-ICGRAPH-006が7 segment受理を検出して2 failed／exit 1となるkillを実測した。apply_patchで上限6へ復元し、targeted 53 tests greenを再確認した"
 complexity_effect: net_negative
 complexity_justification: "3 consumerの重複regexを共有value-object parser 1件へ縮約し、新しいstate／DB／I/Oを追加しない"
 removal_trigger: "behavior contract ID schemaのversion-upで新しいrequirements-owned parserへatomic migrationする時"
