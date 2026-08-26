@@ -83,7 +83,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-26T02:10:24Z"
-    evidence_digest: "sha256:5b48872adf4d5ffb520b2e6f904b75c83bb428902f923669f3a49b8085cf23de"
+    evidence_digest: "sha256:d2396df4fd9a74b4759537dab297a7139623f712d673b663eb31e6393249f5fa"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-677-outstanding-snapshot-semantic-merge-guard.md, artifact_type: markdown_doc }
