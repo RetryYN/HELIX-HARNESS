@@ -18,7 +18,7 @@ describe("Release Module／Bundle composition requirements authority", () => {
     expect(acceptance).toContain("plan: PLAN-L3-68-release-module-bundle-composition");
     expect(requirement).toContain(`pair_artifact: ${acceptancePath}`);
     expect(acceptance).toContain(`pair_artifact: ${requirementPath}`);
-    expect(plan).toMatch(/^status: confirmed$/m);
+    expect(plan).toMatch(/^status: (?:draft|confirmed)$/m);
     expect(plan).toContain("completion_claim_allowed: false");
   });
 

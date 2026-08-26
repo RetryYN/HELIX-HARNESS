@@ -4,7 +4,7 @@ title: "PLAN-L3-68 (add-design): Release Module／Bundle compositionを正本化
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -50,7 +50,9 @@ generates:
   - { artifact_path: tests/release-module-bundle-composition-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/distribution-package-release-requirements.md
   requires:
