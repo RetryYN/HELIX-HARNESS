@@ -52,6 +52,7 @@ export const LITE_CANARY_COVERAGE_PATHS = [
   "src/orchestration/loop-store.ts",
   "tests/loop-store-durability.test.ts",
   "tests/loop-store-durability-node.test.ts",
+  "tests/distribution-lite-consumer-canary.test.ts",
 ] as const;
 
 function normalize(path: string): string {

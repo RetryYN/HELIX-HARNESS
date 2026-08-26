@@ -61,6 +61,7 @@ modifies:
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/distribution-lite-consumer-canary.test.ts, artifact_type: test_code }
   - { artifact_path: tests/impact-ci.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-dependency-closure.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
