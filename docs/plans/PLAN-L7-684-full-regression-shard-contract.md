@@ -26,8 +26,8 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
-backprop_decision: required
-backprop_decision_reason: "既存GH-NFR-010／GH-AC-017のp95 3分と検査非縮退を、独立jobへ渡せるtyped partition／receipt契約としてL6へ具体化する"
+backprop_decision: not_required
+backprop_decision_reason: "Forward L6設計とL8テスト設計を同一sliceで更新しており、Reverse R4からL1-L6へ戻す追加backpropは発生しない"
 contract_preconditions: "candidate HEAD、base SHA、tracked test inventory exact setを受け取る"
 contract_postconditions: "bulk 2 shardとstateful shardの和集合がinventory exact setとなり、全receiptを同じpartitionへ束縛できる"
 contract_invariants: "test削除、timeout緩和、same-root worker増加、targetedによるFull代替を行わない"
