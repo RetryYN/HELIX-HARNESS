@@ -2,7 +2,7 @@
 title: "Impact CI Recovery機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-01
 updated: 2026-08-27
 owner: Codex / TL
