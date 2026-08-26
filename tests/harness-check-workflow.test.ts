@@ -476,7 +476,7 @@ describe("source harness-check workflow", () => {
     const upload = stepByName(liteCanaryJob.steps ?? [], "upload exact Lite canary artifact");
     const status = stepByName(liteCanaryJob.steps ?? [], "Lite typed lane status");
 
-    expect(selector.run).toContain("src/runtime/impact-ci.ts lite-canary-selector");
+    expect(selector.run).toContain("src/cli/lite-canary-selector.ts lite-canary-selector");
     expect(selector.run).toContain("selector_uncertain");
     expect(selector.run).toContain("jq -r '.disposition'");
     expect(build.if).toContain("steps.lite-selector.outputs.disposition == 'required'");

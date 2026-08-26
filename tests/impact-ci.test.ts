@@ -54,7 +54,17 @@ describe("Impact CI pure contract", () => {
     manifest_ok: true,
     closure_ok: true,
     artifact_paths: ["src/setup/distribution-consumer-cli.ts"],
-    closure_paths: ["src/setup/distribution-consumer-cli.ts"],
+    closure_paths: [
+      "src/setup/distribution-consumer-cli.ts",
+      "README-LITE.md",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md",
+      "PROVENANCE.md",
+      "DISCLAIMER.md",
+      "src/orchestration/loop-store.ts",
+      "tests/loop-store-durability.test.ts",
+      "tests/loop-store-durability-node.test.ts",
+    ],
     source_head: "a".repeat(40),
     candidate_head: "a".repeat(40),
   };

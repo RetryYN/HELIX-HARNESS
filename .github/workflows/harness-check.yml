@@ -64,7 +64,7 @@ jobs:
         run: |
           set -euo pipefail
           candidate_head="${CANDIDATE_HEAD}"
-          if ! selection_json="$(EVENT_NAME="$EVENT_NAME" REF_NAME="$REF_NAME" CANDIDATE_HEAD="$candidate_head" BEFORE_SHA="${BEFORE_SHA:-}" PR_BASE_SHA="${PR_BASE_SHA:-}" npx --no-install tsx src/runtime/impact-ci.ts lite-canary-selector)"; then
+          if ! selection_json="$(EVENT_NAME="$EVENT_NAME" REF_NAME="$REF_NAME" CANDIDATE_HEAD="$candidate_head" BEFORE_SHA="${BEFORE_SHA:-}" PR_BASE_SHA="${PR_BASE_SHA:-}" npx --no-install tsx src/cli/lite-canary-selector.ts lite-canary-selector)"; then
             selection_json='{"disposition":"required","skip_code":null,"reason_codes":["selector_uncertain"]}'
           fi
           jq . <<< "$selection_json" >> "$GITHUB_STEP_SUMMARY"
