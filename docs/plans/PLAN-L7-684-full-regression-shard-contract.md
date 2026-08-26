@@ -71,7 +71,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — GH-NFR-010非縮退／workflow非混載境界" }
 ---
 
-# PLAN-L7-684: Full regression exact shard contract
+# PLAN-L7-684: Full regression shardの厳密契約
 
 ## 目的
 

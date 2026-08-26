@@ -106,7 +106,7 @@ output digest、exit code、時刻を入力境界で検証し、validatorの`ok=
 |---|---|
 | `U-FULLSHARD-001` | 入力順非依存のbulk 2件＋stateful安定partition |
 | `U-FULLSHARD-002` | inventory exact union、交差／欠落／余剰0 |
-| `U-FULLSHARD-003` | inventory／partition／shard file canonical digest |
+| `U-FULLSHARD-003` | inventory／partition／shard fileの正規digest |
 | `U-FULLSHARD-004` | CLI／slow stateful固定とbulk補集合 |
 | `U-FULLSHARD-005` | receiptのHEAD／base／partition／shard／files exact binding |
 | `U-FULLSHARD-006` | receipt exact set、exit 0、時刻妥当性 |
