@@ -4,7 +4,7 @@ layer: L6
 artifact_type: design
 status: confirmed
 created: 2026-08-16
-updated: 2026-08-25
+updated: 2026-08-26
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
 pair_artifact: docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md
@@ -39,7 +39,8 @@ Forward／Reverseのtyped identityは保持し、ownerのidentityへ再分類し
 - `U-GWIDADM-001`: PLANの`github_issue_id`だけをIssue authorityにし、Issue／PR／PLAN tupleのexact一致を受理する。
 - `U-GWIDADM-002`: typed PLANがないlegacy sliceは非適用とし、GitHub APIを呼ばない。
 - `U-GWIDADM-003`: 複数typed PLANをatomic slice違反として拒否する。
-- `U-GWIDADM-004`: IssueとPRのmissing／legacy／invalid contractをschema由来の別reasonでfail-closeする。
+- `U-GWIDADM-004`: IssueとPRのmissing／legacy／invalid contractをschema由来のsource-specific reasonでfail-closeする。
+- `U-GWIDADM-021`: Issue／PRの全parser failureを`issue_`／`pr_` surfaceへ写像し、両面比較failureはcomparison reasonとして保持する。
 - `U-GWIDADM-005`: Issue／PRが一致してもPLAN tupleが異なる場合は拒否する。
 - `U-GWIDADM-006`: PLAN read、GitHub API、classification authority loadの失敗を例外透過せず別reasonで閉じ、API失敗とinvalid Issue responseも分離する。
 - `U-GWIDADM-007`: required `harness-check`のPR context snapshot内でadmission CLIを実行する。
