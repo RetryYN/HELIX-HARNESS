@@ -34,7 +34,7 @@ contract_failures: "JSON parse成功、Git conflict 0、または片側採用で
 tdd_red_required: true
 red_at: "2026-08-26T01:35:54Z"
 green_at: "2026-08-26T02:08:44Z"
-mutation_oracle_evidence: "tests/outstanding.test.ts::U-OUTMERGE-001/002/005で、inspectOutstandingSnapshotのokを常にtrueへ変異したseeded mutantをcount/list、blocker/action、live duplicateのnegative oracleがkillした。レビュー記録: https://github.com/RetryYN/HELIX-HARNESS/pull/1053#issuecomment-5419389093。"
+mutation_oracle_evidence: "U-OUTMERGE-005が、inspectOutstandingSnapshotのokを常にtrueへ変異したseeded mutantをkillする（1 failed / 39 passed）。U-OUTMERGE-001/002はverifyOutstandingSnapshotTextのcount/list、blocker/action、live duplicateのsemantic driftを個別にkillする（各変異で1 failed）。レビュー記録: https://github.com/RetryYN/HELIX-HARNESS/pull/1053#issuecomment-5419389093。"
 red_test: "U-OUTMERGE-001/002/005がcount/listまたはblocker/action片側採用、live duplicate、guard ok値の退行を検出する"
 complexity_effect: net_neutral
 complexity_justification: "既存snapshot writer/verifyとmerge-readinessへ同一pure guardを接続し、別owner/state/jobを増やさない"
