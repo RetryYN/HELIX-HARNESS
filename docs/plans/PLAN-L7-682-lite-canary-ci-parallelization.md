@@ -11,7 +11,7 @@ workflow_identity:
   registry_version: 1.1.5
   registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
   target_axis: workflow_model
-  target_id: ADD_FEATURE
+  target_id: PERFORMANCE_REFACTOR
 entry_signals:
   - "po_directive:Issue #1002 Lite consumer canary CI parallelization"
 created: 2026-08-26
