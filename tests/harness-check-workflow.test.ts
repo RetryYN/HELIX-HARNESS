@@ -144,105 +144,6 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   return findings;
 }
 
-function boundedTimeViolations(raw: string): string[] {
-  let parsed: { jobs?: { "full-regression-preflight"?: HarnessJob } };
-  try {
-    parsed = parseYaml(raw) as typeof parsed;
-  } catch {
-    return ["workflow_yaml_invalid"];
-  }
-  const job = parsed.jobs?.["full-regression-preflight"];
-  if (!job || !Array.isArray(job.steps)) return ["harness_job_missing"];
-  const steps = job.steps;
-  const findings: string[] = [];
-  if (!Number.isInteger(job["timeout-minutes"]) || job["timeout-minutes"] !== 35)
-    findings.push("job_timeout_invalid");
-  if (job["continue-on-error"] !== undefined) findings.push("job_fail_open_field");
-  const regressions = steps.filter((step) => step.name === "test — 全回帰 (vitest run)");
-  if (regressions.length !== 1) return [...findings, "regression_step_not_unique"];
-  const regression = regressions[0] as Step;
-  if (!Number.isInteger(regression["timeout-minutes"]) || regression["timeout-minutes"] !== 25)
-    findings.push("regression_timeout_invalid");
-  if (
-    typeof regression["timeout-minutes"] === "number" &&
-    typeof job["timeout-minutes"] === "number" &&
-    regression["timeout-minutes"] >= job["timeout-minutes"]
-  )
-    findings.push("timeout_budget_inverted");
-  if (regression["continue-on-error"] !== undefined || regression.if !== undefined)
-    findings.push("regression_fail_open_field");
-  if (
-    !regression.run?.includes('if [ "$IMPACT_CI_FULL" = "true" ]') ||
-    !regression.run.includes(
-      'nice -n 10 npx --no-install vitest run --project fast "$' + '{bulk_files[@]}"',
-    ) ||
-    !regression.run.includes("vitest run --project fast tests/cli-surface.test.ts") ||
-    !regression.run.includes("vitest run --project slow") ||
-    !regression.run.includes("vitest run --project fast --project slow") ||
-    regression.run.includes("|| true")
-  )
-    findings.push("impact_ci_dispatch_invalid");
-  if (
-    !regression.run?.includes('tested_head="$(git rev-parse HEAD)"') ||
-    !regression.run.includes("shard_names=(bulk stateful)") ||
-    !regression.run.includes('git worktree add --detach "$shard_root/$name" "$tested_head"') ||
-    !regression.run.includes(
-      'select(. != "tests/cli-surface.test.ts" and (startswith("tests/slow/") | not))',
-    ) ||
-    !regression.run.includes(
-      'nice -n 10 npx --no-install vitest run --project fast "$' + '{bulk_files[@]}"',
-    ) ||
-    !regression.run.includes("vitest run --project fast tests/cli-surface.test.ts") ||
-    !regression.run.includes("vitest run --project slow") ||
-    !regression.run.includes('wait "$bulk_pid"; bulk_status=$?') ||
-    !regression.run.includes('wait "$stateful_pid"; stateful_status=$?') ||
-    !regression.run.includes('if [ "$bulk_status" -ne 0 ] || [ "$stateful_status" -ne 0 ]; then')
-  )
-    findings.push("isolated_shard_dispatch_invalid");
-  // U-IMPACTCI-WF-003: runner cancelを両lane process groupへboundedに伝播し、
-  // cleanupとcancellation receiptを残し、正常終了statusを上書きしない。
-  const handlerBody = regression.run?.slice(
-    regression.run.indexOf("terminate_lanes() {"),
-    regression.run.indexOf("trap 'terminate_lanes TERM' TERM"),
-  );
-  // 正常経路のtrap解除はwait以降の領域で判定する。handler内の
-  // `trap - TERM INT EXIT` と部分文字列が衝突するため、全文includesでは
-  // 正常経路解除の削除mutationを検出できない。
-  const waitTail = regression.run?.slice(regression.run.indexOf('wait "$bulk_pid"'));
-  if (
-    !regression.run?.includes("set -m") ||
-    !regression.run.includes("terminate_lanes() {") ||
-    !regression.run.includes("trap 'terminate_lanes TERM' TERM") ||
-    !regression.run.includes("trap 'terminate_lanes INT' INT") ||
-    !regression.run.includes('kill -TERM -- "-$lane_pid"') ||
-    !regression.run.includes('kill -KILL -- "-$lane_pid"') ||
-    !regression.run.includes("stop_latency_seconds") ||
-    !regression.run.includes("billed_step_seconds") ||
-    !regression.run.includes('while [ "$SECONDS" -lt "$stop_deadline" ]; do') ||
-    !handlerBody?.includes("cleanup_shards") ||
-    !handlerBody.includes("exit 143") ||
-    !handlerBody.includes("exit 130") ||
-    handlerBody.includes("exit 0") ||
-    !waitTail?.includes("trap - TERM INT\n")
-  )
-    findings.push("cancel_propagation_invalid");
-  const indexes = [
-    "lint (biome)",
-    "db rebuild (post-test projection refresh)",
-    "doctor (governance hard gates)",
-  ].map((name) => steps.findIndex((step) => step.name === name));
-  const [lintIndex = -1, refreshIndex = -1, doctorIndex = -1] = indexes;
-  if (
-    !(
-      steps.indexOf(regression) < lintIndex &&
-      lintIndex < refreshIndex &&
-      refreshIndex < doctorIndex
-    )
-  )
-    findings.push("post_test_gate_order_invalid");
-  return findings;
-}
-
 // U-IMPACTCI-WF-004: 同一HEAD transition event（ready_for_review / converted_to_draft）だけが
 // prior full-receipt付きgreen runを再利用できる。receiptはfull回帰をgreen完走したrunだけが
 // artifactとして残し、再利用はhead/base SHAの完全一致で判定、照会失敗はfull実行へfail-closeする。
@@ -288,54 +189,6 @@ function transitionReuseViolations(raw: string): string[] {
     !receipt.if.includes("success()")
   )
     findings.push("transition_reuse_invalid");
-  return findings;
-}
-
-// U-IMPACTCI-WF-005: bulk ∪ {cli-surface} ∪ slow配下tracked testsがgit tracked全test
-// inventoryと恒等であることをlane起動前にassertし（Issue #352 §1）、cancel/timeout時は
-// terminate_lanesがkill後・receipt前に両lane logのtailを出力する（同 §3）。
-function laneCoverageViolations(raw: string): string[] {
-  let parsed: WorkflowRoot;
-  try {
-    parsed = parseYaml(raw) as WorkflowRoot;
-  } catch {
-    return ["workflow_yaml_invalid"];
-  }
-  const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
-  const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
-  const run = regression?.run;
-  if (!run) return ["regression_step_missing"];
-  const findings: string[] = [];
-  const assertIndex = run.indexOf("lane union does not match full test inventory");
-  const launchIndex = run.indexOf("bulk_pid=$!");
-  if (
-    !run.includes("git ls-files 'tests/*.test.ts' 'tests/**/*.test.ts'") ||
-    !run.includes("git ls-files 'tests/slow/*.test.ts' 'tests/slow/**/*.test.ts'") ||
-    !run.includes(
-      `printf '%s\\n' "$` +
-        `{bulk_files[@]}" tests/cli-surface.test.ts "$` +
-        `{stateful_slow_files[@]}"`,
-    ) ||
-    !run.includes('if [ "$lane_union" != "$full_inventory" ]; then') ||
-    assertIndex === -1 ||
-    launchIndex === -1 ||
-    assertIndex > launchIndex
-  )
-    findings.push("lane_inventory_identity_invalid");
-  const handlerBody = run.slice(
-    run.indexOf("terminate_lanes() {"),
-    run.indexOf("trap 'terminate_lanes TERM' TERM"),
-  );
-  const tailIndex = handlerBody.indexOf("tail -n 100");
-  const receiptIndex = handlerBody.indexOf("impact-ci cancellation receipt");
-  if (
-    tailIndex === -1 ||
-    receiptIndex === -1 ||
-    tailIndex > receiptIndex ||
-    !handlerBody.includes("impact-ci-bulk.log") ||
-    !handlerBody.includes("impact-ci-stateful.log")
-  )
-    findings.push("partial_lane_log_invalid");
   return findings;
 }
 
@@ -914,6 +767,12 @@ describe("source harness-check workflow", () => {
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
     expect(regression["timeout-minutes"]).toBe(25);
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
+
+    const parsed = parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot;
+    expect(parsed.jobs?.["full-regression-bulk-1"]?.["timeout-minutes"]).toBe(20);
+    expect(parsed.jobs?.["full-regression-bulk-2"]?.["timeout-minutes"]).toBe(20);
+    expect(parsed.jobs?.["full-regression-stateful"]?.["timeout-minutes"]).toBe(20);
+    expect(parsed.jobs?.["full-regression-finalize"]?.["timeout-minutes"]).toBe(15);
   });
 
   it("U-CITIME-003: rejects fail-open fields and preserves post-test gates", () => {
