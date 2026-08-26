@@ -1,6 +1,7 @@
 // PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-001..009
 // PLAN-L7-581-github-workflow-identity-migration-bundle-admission — U-GWIDADM-011..016
 // PLAN-L7-674-terminal-fullback-bundle-admission — U-GWIDADM-019..020
+// PLAN-L7-681-github-identity-source-diagnostics — U-GWIDADM-021
 import { copyFileSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -50,15 +51,7 @@ function identity() {
   } as const;
 }
 
-function contractBody(
-  value: {
-    schema_version: string;
-    registry_version: string;
-    registry_source_digest: string;
-    target_axis: string;
-    target_id: string;
-  } = identity(),
-): string {
+function contractBody(value: unknown = identity()): string {
   return `${GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER}\n\`\`\`json\n${JSON.stringify(value)}\n\`\`\``;
 }
 
@@ -457,7 +450,7 @@ describe("GitHub workflow identity admission", () => {
       }),
     ).toMatchObject({
       ok: false,
-      reason: "workflow_identity_contract_missing",
+      reason: "pr_workflow_identity_contract_missing",
     });
     expect(
       admitGithubWorkflowIdentity({
@@ -470,7 +463,94 @@ describe("GitHub workflow identity admission", () => {
       }),
     ).toMatchObject({
       ok: false,
-      reason: "workflow_identity_contract_legacy_field_forbidden",
+      reason: "issue_workflow_identity_contract_legacy_field_forbidden",
+    });
+  });
+
+  it("U-GWIDADM-021: Issue／PR contract parser failureをsurface別reasonへ写像する", () => {
+    const root = fixtureRoot();
+    writePlan(root);
+    const valid = contractBody();
+    const parserFailures = [
+      ["workflow_identity_contract_missing", "missing"],
+      ["workflow_identity_contract_duplicate", `${valid}\n${valid}`],
+      [
+        "workflow_identity_contract_json_invalid",
+        `${GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER}\n${"```"}json\n{\n${"```"}`,
+      ],
+      [
+        "workflow_identity_contract_schema_invalid",
+        contractBody({ ...identity(), unexpected: true }),
+      ],
+      [
+        "workflow_identity_contract_legacy_field_forbidden",
+        contractBody({ ...identity(), mode: "reverse" }),
+      ],
+      [
+        "workflow_identity_contract_authority_drift",
+        contractBody({ ...identity(), registry_version: "9.9.9" }),
+      ],
+      [
+        "workflow_identity_contract_identity_unknown",
+        contractBody({ ...identity(), target_id: "NOT_REGISTERED" }),
+      ],
+      [
+        "workflow_identity_contract_signal_unknown",
+        contractBody({ ...identity(), signal_tokens: ["not_registered"] }),
+      ],
+      [
+        "workflow_identity_contract_signal_decision_required",
+        contractBody({ ...identity(), signal_tokens: ["user_feedback_iteration"] }),
+      ],
+      [
+        "workflow_identity_contract_signal_mismatch",
+        contractBody({ ...identity(), signal_tokens: ["drift"] }),
+      ],
+    ] as const;
+
+    for (const [genericReason, failureBody] of parserFailures) {
+      expect(
+        admitGithubWorkflowIdentity({
+          repository: "RetryYN/HELIX-HARNESS",
+          prBody: valid,
+          changedPaths: [PLAN_PATH],
+          repoRoot: root,
+          ghApi: () => ({ number: 733, body: failureBody }),
+        }),
+      ).toMatchObject({
+        ok: false,
+        reason: `issue_${genericReason}`,
+      });
+
+      expect(
+        admitGithubWorkflowIdentity({
+          repository: "RetryYN/HELIX-HARNESS",
+          prBody: failureBody,
+          changedPaths: [PLAN_PATH],
+          repoRoot: root,
+          ghApi: () => ({ number: 733, body: valid }),
+        }),
+      ).toMatchObject({
+        ok: false,
+        reason: `pr_${genericReason}`,
+      });
+    }
+  });
+
+  it("Issue／PR contractのtuple mismatchは両面由来のcomparison reasonを維持する", () => {
+    const root = fixtureRoot();
+    writePlan(root);
+    expect(
+      admitGithubWorkflowIdentity({
+        repository: "RetryYN/HELIX-HARNESS",
+        prBody: contractBody({ ...identity(), target_id: "RECOVERY" }),
+        changedPaths: [PLAN_PATH],
+        repoRoot: root,
+        ghApi: () => ({ number: 733, body: contractBody() }),
+      }),
+    ).toMatchObject({
+      ok: false,
+      reason: "workflow_identity_contract_issue_pr_mismatch",
     });
   });
 
