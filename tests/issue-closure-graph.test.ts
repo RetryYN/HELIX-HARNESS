@@ -139,6 +139,19 @@ describe("Issue closure graph", () => {
     ).toMatchObject({ canonical_contracts: [{ contract_id: "WCC-FR-05" }] });
   });
 
+  it("U-ICGRAPH-006: closure contractも共有ID authorityの6 segment上限でfail-closeする", () => {
+    const contract = (contractId: string) => `
+\`\`\`json
+{"schema_version":"helix-issue-closure-graph.v1","canonical_contracts":[{"contract_id":"${contractId}","owner_issue":227}],"child_issues":[{"number":227,"expected_state":"closed"}],"successor_issues":[]}
+\`\`\``;
+    expect(parseIssueClosureGraphContract(contract("A-B-C-D-E-F"))).toMatchObject({
+      canonical_contracts: [{ contract_id: "A-B-C-D-E-F" }],
+    });
+    expect(() => parseIssueClosureGraphContract(contract("A-B-C-D-E-F-G"))).toThrow(
+      "issue_closure_contract_invalid",
+    );
+  });
+
   it("U-ICGRAPH-005: #227/#194は未完contract receiptを残したままcloseできない", () => {
     for (const parent of [227, 194]) {
       const incomplete = snapshot();
