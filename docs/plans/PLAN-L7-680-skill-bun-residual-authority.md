@@ -49,6 +49,7 @@ modifies:
   - { artifact_path: docs/skills/tech-selection.md, artifact_type: markdown_doc }
   - { artifact_path: tests/runtime-authority-requirements.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/design/helix/L6-function-design/node-runtime-cutover.md
