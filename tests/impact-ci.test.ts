@@ -325,13 +325,25 @@ describe("Impact CI pure contract", () => {
       reason_codes: expect.arrayContaining(["selector_uncertain"]),
     });
 
-    const invalidRef = invoke({ PR_BASE_SHA: "a".repeat(40), REF_NAME: "feature/foo " });
-    expect(invalidRef.status).toBe(0);
-    expect(JSON.parse(invalidRef.stdout)).toMatchObject({
-      disposition: "required",
-      skip_code: null,
-      reason_codes: expect.arrayContaining(["selector_uncertain"]),
-    });
+    for (const refName of ["feature/foo ", "feature//foo", ".."]) {
+      const invalidRef = invoke({ PR_BASE_SHA: "a".repeat(40), REF_NAME: refName });
+      expect(invalidRef.status).toBe(0);
+      expect(JSON.parse(invalidRef.stdout)).toMatchObject({
+        disposition: "required",
+        skip_code: null,
+        reason_codes: expect.arrayContaining(["selector_uncertain"]),
+      });
+
+      expect(
+        selectLiteCanaryLane({
+          event_name: "pull_request",
+          ref_name: refName,
+          changed_paths: ["docs/notes/unrelated.md"],
+          change_kinds: [{ status: "M", path: "docs/notes/unrelated.md" }],
+          fast_check: liteFastCheck,
+        }),
+      ).toMatchObject({ disposition: "required", skip_code: null });
+    }
   });
 
   it("U-LITECI-007: 実際のLite artifact build入口をgenerated dependencyへ含める", () => {
