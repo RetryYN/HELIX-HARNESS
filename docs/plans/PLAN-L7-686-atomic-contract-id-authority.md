@@ -4,7 +4,7 @@ title: "PLAN-L7-686 (fix): atomic contract ID segment authorityを共有parser�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -27,6 +27,36 @@ legacy_retirement_state: retained
 irreversible_impact: none
 no_code_decision: modify
 ddd_modeling_decision: value_object
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-26T20:57:44Z"
+    tests_green_at: "2026-08-26T20:55:21Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    reviewed_head_sha: f35a905da6620c8bc8a91ae439af55a54194e9a9
+    scope: "PR #1089 current HEAD f35a905da6620c8bc8a91ae439af55a54194e9a9をClaude Code Opusが独立検収し、2〜6 segmentの共有parser、3 consumerのexact accept／reject集合、7 segment・小文字・空segmentのmutation killを確認した。類似regexは別概念として過剰統合せず、内容blocker 0と判定した。merge前のPLAN confirmed化のみを収束条件とした。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1089#issuecomment-5431027565"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33011095339 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-26T20:55:21Z"
+        evidence_path: tests/atomic-contract-id.test.ts
+        output_digest: "sha256:0c442da71e285e7c86d50d49567ca317597057484761338e6630d241236ed2b9"
+        result: "terminal success / HEAD f35a905da6620c8bc8a91ae439af55a54194e9a9"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-26T20:57:44Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-26T20:57:44Z"
+    evidence_digest: "sha256:7b7b6bf30b6828e6c54efe3494ad8a7dc45d74887a17cca4f8e8f397162933e4"
+  entries: []
 backprop_decision: not_required
 backprop_decision_reason: "ID文法のL3 backpropを本slice内でGH-AC-043へ直接反映済みであり、追加の上位集約taskは不要"
 contract_preconditions: "PR／atomic slice／Issue closureがbehavior contract IDを独立regexで判定している"
