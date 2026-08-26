@@ -26,8 +26,8 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
-backprop_decision: required
-backprop_decision_reason: "L3正本がID文法を未定義のままconsumer regexが6／8 segmentへ分岐していたため、GH-AC-043を追加する"
+backprop_decision: not_required
+backprop_decision_reason: "ID文法のL3 backpropを本slice内でGH-AC-043へ直接反映済みであり、追加の上位集約taskは不要"
 contract_preconditions: "PR／atomic slice／Issue closureがbehavior contract IDを独立regexで判定している"
 contract_postconditions: "L3正本の2〜6 segment文法を共有parserへ投影し、全consumerが同じaccept／reject集合を返す"
 contract_invariants: "既存の正規2〜6 segment ID、exactly-one behavior、owner、receipt照合の意味を変更しない"
