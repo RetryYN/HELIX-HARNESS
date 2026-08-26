@@ -6,7 +6,7 @@ sub_doc: unit-test-design
 artifact_type: test_design
 status: confirmed
 created: 2026-08-16
-updated: 2026-08-25
+updated: 2026-08-26
 owner: QA / TL
 plan: docs/plans/PLAN-L7-574-github-workflow-identity-admission.md
 pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-admission.md
@@ -19,7 +19,7 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-adm
 | U-GWIDADM-001 | exact authority           | PLAN指定IssueとIssue／PR／PLAN tupleの一致だけを受理                                                      | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-002 | legacy boundary           | typed PLANなしでは非適用、GitHub API未実行                                                                | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-003 | atomicity                 | 複数typed PLANを拒否                                                                                      | `tests/github-workflow-identity-admission.test.ts` |
-| U-GWIDADM-004 | contract failure          | PR marker欠落とIssue legacy fieldを別reasonで拒否                                                         | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-004 | contract failure          | PR marker欠落とIssue legacy fieldをsource-specific reasonで拒否                                           | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-005 | PLAN consistency          | Issue／PR一致でもPLAN identity不一致を拒否                                                                | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-006 | I/O failure               | PLAN／GitHub API／registry failureを別reasonでfail-closeし、invalid Issue responseとも分離                | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-007 | CI wiring                 | required workflowがPR bodyとmerge-base changed pathsをCLIへ渡す                                           | `tests/harness-check-workflow.test.ts`             |
@@ -36,5 +36,6 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-adm
 | U-GWIDADM-018 | foreign contract boundary | bundle内foreign PLANのbehavior contract／responsibility owner欠落を拒否                    | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-019 | terminal fullback positive | Forward／Reverseの異なるtyped identityを保持した同一Issueのterminal bundleを受理              | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-020 | terminal fullback negative | marker重複、migration marker併記、unsorted manifest、owner、digest、identity、Issue不一致、changed PLANのmanifest未列挙、manifest内の未typed PLANを拒否 | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-021 | source-aware failure      | generic parserの全failure reasonをIssue／PR surface別へ写像し、Issue／PR tuple mismatchはcomparison reasonを維持 | `tests/github-workflow-identity-admission.test.ts` |
 
 prose、label、legacy identityの近似一致をpositive oracleにしない。
