@@ -96,6 +96,7 @@ items:
       - docs/design/helix/L3-requirements/distribution-package-release-requirements.md
       - docs/design/helix/L3-requirements/security-capability-broker-authority.md
       - docs/design/helix/L3-requirements/system-synthesis-requirements.md
+      - docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
       - docs/design/helix/L3-requirements/skill-applicability-authority.md
   - id: basic-design
     name: 基本設計書
