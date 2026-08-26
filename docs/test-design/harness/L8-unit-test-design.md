@@ -452,6 +452,15 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-006 | current GitHub snapshot parser | 1回のAPI readからbody／head／base／identity digestを作り、別PR・schema不正・不正SHAをfail-closeする | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-007 | current GitHub snapshot workflow | API取得不能を非zeroとし、同一snapshotからdiffとguard inputを作り、guard前後のbody／head／base driftをfail-closeする | `tests/harness-check-workflow.test.ts` |
 
+### Issue #1052 outstanding snapshotのsemantic merge guard
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-OUTMERGE-001 | count/list exactness | `decision_count`と`plan_ids`を別側から採用したsnapshotを、件数不一致とcount/list不一致の双方でfail-closeする | `tests/outstanding.test.ts` |
+| U-OUTMERGE-002 | blocker/action/live invariant | blocker／required actionの片側採用、live duplicate PLANによる件数と集合の意味 driftを検出する | `tests/outstanding.test.ts` |
+| U-OUTMERGE-003 | early guard | 現行repoのcommitted snapshotをlive projectionと照合し、修復書込みなしで明示repair commandを返す | `tests/outstanding.test.ts` |
+| U-OUTMERGE-004 | merge-readiness integration | semantic violationがある場合、push／PR作成可能判定をfail-closeし、`helix db rebuild`を提示する | `tests/github-merge-readiness.test.ts` |
+
 scope expansionのunit oracleはreceipt pointerの構文と理由を検査する。外部commentの存在・内容・承認主体は
 同一HEADのAI-B review evidenceで検証し、unit greenだけで承認済みとは扱わない。
 

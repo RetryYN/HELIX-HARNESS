@@ -140,7 +140,7 @@ import {
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
 } from "./lint/outstanding";
-import { writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
+import { inspectOutstandingSnapshot, writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
@@ -4686,6 +4686,23 @@ guard
       process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     } else {
       for (const message of commitlintMessages(result)) process.stdout.write(`${message}\n`);
+    }
+    process.exitCode = result.ok ? 0 : 1;
+  });
+
+guard
+  .command("outstanding-snapshot")
+  .description("commit/rebase後のoutstanding snapshotとlive projectionをsemantic照合")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const result = inspectOutstandingSnapshot(process.cwd());
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    } else {
+      process.stdout.write(
+        `guard outstanding-snapshot: ${result.ok ? "pass" : "blocked"} path=${result.snapshotPath} repair=${result.repairCommand}\n`,
+      );
+      for (const violation of result.violations) process.stdout.write(`  - ${violation}\n`);
     }
     process.exitCode = result.ok ? 0 : 1;
   });

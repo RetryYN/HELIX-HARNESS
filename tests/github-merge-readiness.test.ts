@@ -7,6 +7,8 @@ import {
   verifyCreatedPrBody,
 } from "../src/audit/github-merge-readiness";
 
+// PLAN-L7-677-outstanding-snapshot-semantic-merge-guard: U-OUTMERGE-004
+
 describe("github merge readiness", () => {
   it("allows authenticated HELIX agents to proceed when local branch evidence is ready", () => {
     const result = analyzeGithubMergeReadiness({
@@ -113,6 +115,38 @@ describe("github merge readiness", () => {
         "gh_missing",
       ]),
     );
+  });
+
+  it("U-OUTMERGE-004: snapshot semantic driftはpush/PR作成前にfail-closeする", () => {
+    const result = analyzeGithubMergeReadiness({
+      baseBranch: "main",
+      currentBranch: "feature/snapshot-guard",
+      headSha: "abc123",
+      originUrl: "git@github.com:RetryYN/HELIX-HARNESS.git",
+      worktreeClean: true,
+      ahead: 2,
+      behind: 0,
+      outstandingSnapshotViolations: [
+        "G-10: outstanding snapshot decision_count must equal plan_ids.length (actual=30/31)",
+      ],
+      ghInstalled: true,
+      ghAuthenticated: true,
+      viewerPermission: "WRITE",
+    });
+
+    expect(result.localReady).toBe(false);
+    expect(result.canOpenPullRequest).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        code: "outstanding_snapshot_semantic_drift",
+        severity: "error",
+      }),
+    );
+    expect(result.commands.repairOutstandingSnapshot).toBe("helix db rebuild");
+    expect(
+      result.findings.find((finding) => finding.code === "outstanding_snapshot_semantic_drift")
+        ?.message,
+    ).toContain("helix db rebuild");
   });
 
   // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-003
