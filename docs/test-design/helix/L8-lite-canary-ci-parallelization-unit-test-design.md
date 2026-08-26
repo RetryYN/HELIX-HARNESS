@@ -23,6 +23,7 @@ pair_artifact: docs/design/helix/L6-function-design/lite-canary-ci-parallelizati
 | U-LITECI-005 | auxiliary coverage | Windows durability実装／テストまたはLite配布文書入力の変更をclosure接触として `required` にする | `tests/impact-ci.test.ts` |
 | U-DISTCLOSE-016 | fast check | 同一repo HEADでprofile、manifest projection、dependency closureを検査し、path read failureを型付きで返す | `tests/distribution-dependency-closure.test.ts` |
 | U-DISTCLOSE-017 | coverage source存在 | 配布文書／Windows durability coverage sourceの欠落を `path_read_failed` と `closure_ok=false` へ倒す | `tests/distribution-dependency-closure.test.ts` |
+| U-DISTCLOSE-018 | coverage transitive closure | Windows durability／Lite canary coverage pathから到達する推移import依存もclosureへ含め、変更時に `required` へ倒す | `tests/distribution-dependency-closure.test.ts` |
 | U-LITECI-WF-001 | selector wiring | workflowが毎回 `lite-canary-selector` を起動し、heavy stepsを `required` に限定し、typed lane statusへ束縛する | `tests/harness-check-workflow.test.ts` |
 | U-LITECI-WF-002 | job DAG | LiteとFullに相互 `needs` がなく、Windowsの依存先がLinux Lite jobだけである | `tests/harness-check-workflow.test.ts` |
 | U-LITECI-WF-003 | aggregate oracle | 全laneについて success または `authorized_skip:closure_unaffected` だけを受理し、untyped skipを拒否する | `tests/harness-check-workflow.test.ts` |

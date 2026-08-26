@@ -314,14 +314,27 @@ export function runLiteCanaryFastCheck(input: {
       sourcePaths,
       entrypoints: ["src/setup/distribution-consumer-cli.ts"],
     });
+    const coverageSourceEntrypoints = LITE_CANARY_COVERAGE_PATHS.filter((path) =>
+      /\.(?:ts|tsx|js|jsx|mjs|cjs)$/.test(path),
+    );
+    // coverage sourceはLite配布artifactの所有権とは別軸で、tracked source全体を探索対象にする。
+    // ここを入口だけの列挙にすると、coverage pathのimport先変更がauthorized skipへ抜ける。
+    const coverageClosure = analyzeDistributionDependencyClosure({
+      repoRoot: input.repoRoot,
+      artifactPaths: sourcePaths,
+      sourcePaths,
+      entrypoints: coverageSourceEntrypoints,
+    });
     const missingCoveragePaths = LITE_CANARY_COVERAGE_PATHS.filter(
       (path) => !sourcePaths.includes(path),
     );
-    result.closure_ok = closure.ok && missingCoveragePaths.length === 0;
+    result.closure_ok = closure.ok && coverageClosure.ok && missingCoveragePaths.length === 0;
     result.path_read_failed ||= missingCoveragePaths.length > 0;
     result.closure_paths = sortedUnique([
       ...closure.entrypoints,
       ...closure.visited_paths,
+      ...coverageClosure.entrypoints,
+      ...coverageClosure.visited_paths,
       ...LITE_CANARY_COVERAGE_PATHS,
     ]);
   } catch {

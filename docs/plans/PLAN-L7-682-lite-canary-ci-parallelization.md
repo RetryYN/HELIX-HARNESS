@@ -48,6 +48,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-WF-003, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-005, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-017, test_path: tests/distribution-dependency-closure.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-018, test_path: tests/distribution-dependency-closure.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli/lite-canary-selector.ts, artifact_type: source_module }
@@ -99,7 +100,8 @@ coverageとbranch protectionの意味は変更しない。
 ## §3 受入条件
 
 - `tests/impact-ci.test.ts` と `tests/distribution-dependency-closure.test.ts` が fast check、digest、
-  deletion／rename／manifest／generated dependency／uncertainty／path failureを実際に検査する。
+  deletion／rename／manifest／generated dependency／uncertainty／path failureとcoverage pathの
+  推移import依存を実際に検査する。
 - `tests/harness-check-workflow.test.ts` が独立job DAG、同一artifact搬送、typed output、aggregate
   exact acceptanceを検査する。
 - workflowに第二のbuilder、boolean skip、`continue-on-error`、required checkの追加がない。

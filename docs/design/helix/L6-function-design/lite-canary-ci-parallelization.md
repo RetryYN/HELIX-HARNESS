@@ -31,6 +31,7 @@ Linux が検証して upload した同一 artifact だけを消費する。
   HEAD digest不一致なら `required` を返す。
 - importで表現できない配布入力（`README-LITE.md`等）とWindows durability laneの実行対象
   （`loop-store`実装／対応テスト）は `LITE_CANARY_COVERAGE_PATHS` として有効closureへ含める。
+  TypeScript等のcoverage sourceは入口だけでなくtracked source上の推移import閉包まで展開し、
   そのpathがsourceから欠落した場合も `path_read_failed` として `required` へ倒し、変更を
   `authorized_skip` に丸めない。
 - pull request の変更が closure／artifact に接触、削除、rename、generated dependency、

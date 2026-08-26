@@ -4,6 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+import { selectLiteCanaryLane } from "../src/runtime/impact-ci";
 import {
   loadDistributionCapabilityArtifactCatalog,
   projectDistributionArtifacts,
@@ -187,6 +188,34 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
     const result = runLiteCanaryFastCheck({ repoRoot: root, candidateHead: "a".repeat(40) });
     expect(result.path_read_failed).toBe(true);
     expect(result.closure_ok).toBe(false);
+  });
+
+  it("U-DISTCLOSE-018: coverage pathの推移import依存もskip closureへ含める", () => {
+    const fastCheck = runLiteCanaryFastCheck({
+      repoRoot: process.cwd(),
+      candidateHead: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+    });
+    expect(fastCheck.closure_ok).toBe(true);
+    for (const path of [
+      "src/orchestration/durable-loop-epoch-node.ts",
+      "src/setup/distribution-lite-consumer-canary.ts",
+    ]) {
+      expect(fastCheck.closure_paths, path).toContain(path);
+      expect(
+        selectLiteCanaryLane({
+          event_name: "pull_request",
+          ref_name: "feature/issue-1002",
+          changed_paths: [path],
+          change_kinds: [{ status: "M", path }],
+          fast_check: fastCheck,
+        }),
+        path,
+      ).toMatchObject({
+        disposition: "required",
+        skip_code: null,
+        reason_codes: expect.arrayContaining(["changed_path_closure_contact"]),
+      });
+    }
   });
 
   it("U-DISTCLOSE-014: traversal／symlink sourceをrepo外read前にtyped拒否する", () => {
