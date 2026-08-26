@@ -70,7 +70,7 @@ review_evidence:
       - kind: smoke
         command: "gh run view 32935749811 --json status,conclusion,headSha,updatedAt,url"
         runner: ci
-        scope: main-read-after
+        scope: full
         exit_code: 0
         completed_at: "2026-08-26T06:15:47Z"
         evidence_path: docs/governance/generated/outstanding-snapshot.json
