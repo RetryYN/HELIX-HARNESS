@@ -100,6 +100,8 @@ export const LITE_CANARY_MANIFEST_PATHS = [
 
 export const LITE_CANARY_GENERATED_DEPENDENCY_PATHS = [
   "config/distribution-capability-artifact-catalog.json",
+  // Lite artifactの実ビルド入口。ここを変えたPRはcanaryを省略できない。
+  "src/cli.ts",
   "src/setup/distribution-artifact-projection.ts",
   "src/setup/distribution-dependency-closure.ts",
   "src/setup/distribution-lite-package.ts",

@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1002 Lite consumer canary CI parallelization"
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-08-27
 owner: Codex / TL
 github_issue_id: 1002
 behavior_contract_id: LITE-CANARY-CI-PARALLEL-001
@@ -29,9 +29,9 @@ ddd_modeling_decision: pure_function
 contract_preconditions: "既存のconsumer_core_v1 profile、artifact builder、Linux／Windows canary、Full harness gateが利用できる"
 contract_postconditions: "fast closure selectorとtyped lane aggregateを追加し、Lite heavy laneを安全にFull laneと並列起動できる"
 contract_invariants: "harness-check 1本、Full回帰、source／profile／artifact／digest binding、Linux artifact authority、Windows same-artifactを弱めない"
-contract_failures: "closure contact、配布文書／Windows durability coverage contact、削除／rename、generated dependency、manifest、uncertainty、path read failure、stale digest、fast check failureはrequiredまたはaggregate failureへ倒す"
+contract_failures: "closure contact、配布文書／Windows durability coverage contact、削除／rename、generated dependency（Lite artifact build入口src/cli.tsを含む）、manifest、uncertainty（PR base／head／ref欠落を含む）、path read failure、stale digest、fast check failureはrequiredまたはaggregate failureへ倒す"
 tdd_red_required: true
-red_test: "U-LITECI-001..005、U-DISTCLOSE-016..018、U-LITECI-WF-001..004でskip境界、coverage、fast check、relation graph、DAG、typed aggregateを先に固定する"
+red_test: "U-LITECI-001..007、U-DISTCLOSE-016..018、U-LITECI-WF-001..004でskip境界、PR context、build entrypoint coverage、fast check、relation graph、DAG、typed aggregateを先に固定する"
 red_at: "2026-08-26T14:22:34Z"
 green_at: "2026-08-26T14:22:44Z"
 mutation_oracle_evidence: "2026-08-26T14:22:34Zにsrc/runtime/impact-ci.tsのselectLiteCanaryLaneのfail-close分岐を一時的にif (true)へ変異し、tests/impact-ci.test.tsが5 failed / 18 passed (exit 1)となることを実測した。U-LITECI-002..005とrepository selector CLIのrequired判定がauthorized_skipへ退行したため変異をkillした。実装を復元し、2026-08-26T14:22:44Zに同テストを23 passed (exit 0)で再確認した。"
@@ -50,6 +50,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-WF-002, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-WF-003, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-005, test_path: tests/impact-ci.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-006, test_path: tests/impact-ci.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-007, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-017, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-018, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-WF-004, test_path: tests/relation-graph-loader.test.ts }

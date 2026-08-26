@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: confirmed
 created: 2026-08-26
-updated: 2026-08-26
+updated: 2026-08-27
 owner: SE + TL
 plan: docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md
 pair_artifact: docs/test-design/helix/L8-lite-canary-ci-parallelization-unit-test-design.md
@@ -37,6 +37,10 @@ Linux が検証して upload した同一 artifact だけを消費する。
 - pull request の変更が closure／artifact に接触、削除、rename、generated dependency、
   manifest に該当する場合も `required` とする。非接触かつ fast check が全て green の場合だけ
   `authorized_skip` とし、skip code は `closure_unaffected` の一種類に限定する。
+- pull request の base SHA、head SHA、head ref のいずれかが欠落または不正な場合は
+  `selector_uncertain` として `required` に倒し、candidate の親コミットを推測する fallbackを許可しない。
+  Lite artifact buildの実入口である `src/cli.ts` はgenerated dependencyとしてclosureへ含め、変更時は
+  `required` とする。
 - push main、nightly、release-candidate context は変更が非接触でも常に heavy Lite canary
   を実行する。無型 boolean skip、`continue-on-error`、別の artifact builder は導入しない。
 - Full lane は `harness-check-full` として Lite lane に `needs` を持たない。最終 `harness-check`

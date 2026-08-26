@@ -6,6 +6,7 @@ import {
   collectSourceImportConsumers,
   computeImpactDecision,
   computeReceiptPercentiles,
+  LITE_CANARY_GENERATED_DEPENDENCY_PATHS,
   selectLiteCanaryLane,
   type VerificationItem,
   validateCiProfileReceipt,
@@ -13,7 +14,7 @@ import {
 } from "../src/runtime/impact-ci";
 
 // PLAN-L7-493-impact-ci-recovery execution evidence.
-// PLAN-L7-682-lite-canary-ci-parallelization: U-LITECI-001..005.
+// PLAN-L7-682-lite-canary-ci-parallelization: U-LITECI-001..007.
 
 const inventory: VerificationItem[] = [
   {
@@ -112,6 +113,11 @@ describe("Impact CI pure contract", () => {
       [
         "generated dependency",
         { changed_paths: ["config/distribution-capability-artifact-catalog.json"] },
+        "generated_dependency_change",
+      ],
+      [
+        "artifact build entrypoint",
+        { changed_paths: ["src/cli.ts"] },
         "generated_dependency_change",
       ],
       [
@@ -279,6 +285,49 @@ describe("Impact CI pure contract", () => {
       disposition: "required",
       skip_code: null,
     });
+  });
+
+  it("U-LITECI-006: PR base/ref/candidate欠落は推測せずrequiredへ倒す", () => {
+    const candidateHead = spawnSync("git", ["rev-parse", "HEAD"], {
+      cwd: process.cwd(),
+      encoding: "utf8",
+    }).stdout.trim();
+    const invoke = (environment: Record<string, string>) =>
+      spawnSync(
+        process.execPath,
+        ["--import", "tsx", "src/cli/lite-canary-selector.ts", "lite-canary-selector"],
+        {
+          cwd: process.cwd(),
+          encoding: "utf8",
+          env: {
+            ...process.env,
+            EVENT_NAME: "pull_request",
+            REF_NAME: "feature/issue-1002",
+            CANDIDATE_HEAD: candidateHead,
+            ...environment,
+          },
+        },
+      );
+
+    const missingBase = invoke({});
+    expect(missingBase.status).toBe(0);
+    expect(JSON.parse(missingBase.stdout)).toMatchObject({
+      disposition: "required",
+      skip_code: null,
+      reason_codes: expect.arrayContaining(["selector_uncertain"]),
+    });
+
+    const missingRef = invoke({ PR_BASE_SHA: "a".repeat(40), REF_NAME: "" });
+    expect(missingRef.status).toBe(0);
+    expect(JSON.parse(missingRef.stdout)).toMatchObject({
+      disposition: "required",
+      skip_code: null,
+      reason_codes: expect.arrayContaining(["selector_uncertain"]),
+    });
+  });
+
+  it("U-LITECI-007: 実際のLite artifact build入口をgenerated dependencyへ含める", () => {
+    expect(LITE_CANARY_GENERATED_DEPENDENCY_PATHS).toContain("src/cli.ts");
   });
 
   it("U-IMPACTCI-000: test importをpath selectorへ決定的に投影する", () => {

@@ -43,25 +43,53 @@ function gitOutput(repoRoot: string, args: readonly string[]): string {
   return execFileSync("git", [...args], { cwd: repoRoot, encoding: "utf8" }).trim();
 }
 
+function isCommitSha(value: string | undefined): boolean {
+  return typeof value === "string" && /^[0-9a-f]{40}$/.test(value);
+}
+
 /** CLI composition root: Git metadataとsetup fast checkをpure selectorへ一方向に渡す。 */
 export function runLiteCanaryRepositorySelector(
   input: LiteCanaryRepositorySelectorInput,
 ): LiteCanarySelection {
   let pathReadFailed = false;
-  let baseHead = input.pull_request_base_head || input.before_head || "";
-  if (input.pull_request_base_head) {
-    try {
-      baseHead = gitOutput(input.repo_root, [
-        "merge-base",
-        input.pull_request_base_head,
-        input.candidate_head,
-      ]);
-    } catch {
+  const pullRequestContextUncertain =
+    input.event_name === "pull_request" &&
+    (!isCommitSha(input.pull_request_base_head) ||
+      !isCommitSha(input.candidate_head) ||
+      input.ref_name.trim().length === 0);
+  let baseHead = "";
+  if (input.event_name === "pull_request") {
+    // PRのbase/ref/candidateが欠落または不正な場合、推測した親HEADへfallbackしない。
+    if (!pullRequestContextUncertain && input.pull_request_base_head) {
+      try {
+        baseHead = gitOutput(input.repo_root, [
+          "merge-base",
+          input.pull_request_base_head,
+          input.candidate_head,
+        ]);
+      } catch {
+        pathReadFailed = true;
+        baseHead = "";
+      }
+    } else {
       pathReadFailed = true;
-      baseHead = "";
+    }
+  } else {
+    baseHead = input.pull_request_base_head || input.before_head || "";
+    if (input.pull_request_base_head) {
+      try {
+        baseHead = gitOutput(input.repo_root, [
+          "merge-base",
+          input.pull_request_base_head,
+          input.candidate_head,
+        ]);
+      } catch {
+        pathReadFailed = true;
+        baseHead = "";
+      }
     }
   }
-  if (!baseHead) {
+  if (!baseHead && input.event_name !== "pull_request") {
     try {
       baseHead = gitOutput(input.repo_root, ["rev-parse", `${input.candidate_head}^`]);
     } catch {
@@ -101,6 +129,7 @@ export function runLiteCanaryRepositorySelector(
     change_kinds: metadata.change_kinds,
     fast_check: fastCheck,
     path_read_failed: pathReadFailed || fastCheck.path_read_failed,
+    selector_uncertain: pullRequestContextUncertain,
   });
 }
 
