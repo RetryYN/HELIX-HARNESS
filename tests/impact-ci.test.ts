@@ -253,6 +253,34 @@ describe("Impact CI pure contract", () => {
     });
   });
 
+  it("repository selector CLIはtyped lane dispositionをJSONで返す", () => {
+    const candidateHead = spawnSync("git", ["rev-parse", "HEAD"], {
+      cwd: process.cwd(),
+      encoding: "utf8",
+    }).stdout.trim();
+    const result = spawnSync(
+      process.execPath,
+      ["--import", "tsx", "src/cli/lite-canary-selector.ts", "lite-canary-selector"],
+      {
+        cwd: process.cwd(),
+        encoding: "utf8",
+        env: {
+          ...process.env,
+          EVENT_NAME: "pull_request",
+          REF_NAME: "feature/issue-1002",
+          CANDIDATE_HEAD: candidateHead,
+          PR_BASE_SHA: "origin/main",
+        },
+      },
+    );
+    expect(result.stderr).toBe("");
+    expect(result.status).toBe(0);
+    expect(JSON.parse(result.stdout)).toMatchObject({
+      disposition: "required",
+      skip_code: null,
+    });
+  });
+
   it("U-IMPACTCI-000: test importをpath selectorへ決定的に投影する", () => {
     const projected = buildTestVerificationInventory([
       {

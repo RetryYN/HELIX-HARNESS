@@ -10,6 +10,7 @@ import {
 } from "../src/lint/relation-graph";
 
 // PLAN-L7-32 §9 discharge: repo→RelationGraphSourceSet loader の結合テスト。
+// PLAN-L7-682-lite-canary-ci-parallelization: U-LITECI-WF-004.
 // tmp repo に PLAN(generates)+src+test(import)+design(pair_artifact)+test-design を置き、
 // loader が plan→source(generates) / source→test(covered-by) / design→test-design(pairs)
 // の edge を生む source set を返すこと、純関数と結合して impact/export が動くことを検証する。
@@ -98,6 +99,11 @@ function buildRepo(root: string): void {
   writeFileSync(
     join(root, "docs", "governance", "document-system-map.md"),
     ["# document-system-map", "", "文書体系 map の fixture。", ""].join("\n"),
+    "utf8",
+  );
+  writeFileSync(
+    join(root, "docs", "design", "design-catalog.yaml"),
+    ["schema_version: design-catalog.v1", "project: fixture", ""].join("\n"),
     "utf8",
   );
   writeFileSync(
@@ -217,6 +223,13 @@ describe("loadRelationGraphSourceSet", () => {
         id: "docs/governance/document-system-map.md",
         path: "docs/governance/document-system-map.md",
       });
+      const designCatalog = sourceSet.designDocs?.find(
+        (d) => d.path === "docs/design/design-catalog.yaml",
+      );
+      expect(designCatalog).toMatchObject({
+        id: "docs/design/design-catalog.yaml",
+        path: "docs/design/design-catalog.yaml",
+      });
       const codexHooks = sourceSet.designDocs?.find((d) => d.path === ".codex/hooks.json");
       expect(codexHooks).toMatchObject({
         id: ".codex/hooks.json",
@@ -325,6 +338,16 @@ describe("loadRelationGraphSourceSet", () => {
         "missing-projection",
       );
 
+      const designCatalogImpact = analyzeRelationImpact({
+        changedPaths: ["docs/design/design-catalog.yaml"],
+        projection,
+      });
+      expect(designCatalogImpact.ok).toBe(true);
+      expect(designCatalogImpact.changedNodes.map((n) => n.id)).toContain(
+        "design:docs/design/design-catalog.yaml",
+      );
+      expect(designCatalogImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+
       const editorconfigImpact = analyzeRelationImpact({
         changedPaths: [".editorconfig"],
         projection,
@@ -345,6 +368,30 @@ describe("loadRelationGraphSourceSet", () => {
       const diagram = exportRelationDiagram({ snapshot: projection, format: "mermaid" });
       expect(diagram.ok).toBe(true);
       expect(diagram.content).toContain("flowchart TD");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-LITECI-WF-004: design catalog is projected before change-impact analysis", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-graph-loader-catalog-"));
+    try {
+      buildRepo(root);
+      const sourceSet = loadRelationGraphSourceSet(root);
+      const projection = collectRelationGraphProjection(sourceSet);
+      const impact = analyzeRelationImpact({
+        changedPaths: ["docs/design/design-catalog.yaml"],
+        projection,
+      });
+
+      expect(sourceSet.designDocs?.map((doc) => doc.path)).toContain(
+        "docs/design/design-catalog.yaml",
+      );
+      expect(impact.ok).toBe(true);
+      expect(impact.changedNodes.map((node) => node.id)).toContain(
+        "design:docs/design/design-catalog.yaml",
+      );
+      expect(impact.findings.map((finding) => finding.code)).not.toContain("missing-projection");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

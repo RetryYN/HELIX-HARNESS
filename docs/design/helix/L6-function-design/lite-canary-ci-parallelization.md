@@ -2,7 +2,7 @@
 title: "HELIX L6 機能設計 — Lite canary CI parallelization"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-26
 updated: 2026-08-26
 owner: SE + TL
@@ -59,8 +59,11 @@ Lite + Windows + Full ──→ harness-check aggregate
 Lite job が heavy lane を実行したときだけ artifact を生成・uploadする。Windows job は Lite
 job の成功後にだけ起動し、heavy success のときだけ download／smoke を行う。Lite skip時は
 Windowsも同じ typed skipを返すため、Windows側で別の成功判定や別 buildを持たない。
-ただしWindows durability coverageまたは配布文書入力に変更がある場合は、共通closure接触として
-Liteをrequiredにし、Linuxで検証済みartifactとWindows smokeを失わない。
+  ただしWindows durability coverageまたは配布文書入力に変更がある場合は、共通closure接触として
+  Liteをrequiredにし、Linuxで検証済みartifactとWindows smokeを失わない。
+- selector／closure／workflowの変更は relation graph の実在 node へ投影し、change-impact が
+  `missing-projection` で停止しないことを fast check と同じ受入対象にする。design catalog は
+  `docs/design/design-catalog.yaml` の design node として明示的に登録する。
 
 ## 代替案と採用理由
 

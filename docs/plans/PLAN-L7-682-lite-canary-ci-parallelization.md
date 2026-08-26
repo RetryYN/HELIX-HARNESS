@@ -4,7 +4,7 @@ title: "PLAN-L7-682 (impl): Lite canary CIをprofile closure条件で並列化�
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -31,7 +31,10 @@ contract_postconditions: "fast closure selectorとtyped lane aggregateを追加�
 contract_invariants: "harness-check 1本、Full回帰、source／profile／artifact／digest binding、Linux artifact authority、Windows same-artifactを弱めない"
 contract_failures: "closure contact、配布文書／Windows durability coverage contact、削除／rename、generated dependency、manifest、uncertainty、path read failure、stale digest、fast check failureはrequiredまたはaggregate failureへ倒す"
 tdd_red_required: true
-red_test: "U-LITECI-001..005、U-DISTCLOSE-016..017、U-LITECI-WF-001..003でskip境界、coverage、fast check、DAG、typed aggregateを先に固定する"
+red_test: "U-LITECI-001..005、U-DISTCLOSE-016..018、U-LITECI-WF-001..004でskip境界、coverage、fast check、relation graph、DAG、typed aggregateを先に固定する"
+red_at: "2026-08-26T14:22:34Z"
+green_at: "2026-08-26T14:22:44Z"
+mutation_oracle_evidence: "2026-08-26T14:22:34Zにsrc/runtime/impact-ci.tsのselectLiteCanaryLaneのfail-close分岐を一時的にif (true)へ変異し、tests/impact-ci.test.tsが5 failed / 18 passed (exit 1)となることを実測した。U-LITECI-002..005とrepository selector CLIのrequired判定がauthorized_skipへ退行したため変異をkillした。実装を復元し、2026-08-26T14:22:44Zに同テストを23 passed (exit 0)で再確認した。"
 complexity_effect: justified_positive
 complexity_justification: "既存artifact builderとFull laneを再利用し、selectorと最終typed aggregateだけを追加するため、並列実行境界の明示分だけを増やす"
 removal_trigger: "Lite canaryのprofile closure判定と全OS artifact admissionが単一の既存 gateへ統合され、独立job境界が不要になった時"
@@ -49,9 +52,12 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-005, test_path: tests/impact-ci.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-017, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-018, test_path: tests/distribution-dependency-closure.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-WF-004, test_path: tests/relation-graph-loader.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli/lite-canary-selector.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-lite-canary-ci-parallelization-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -60,14 +66,15 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/impact-ci.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
+  - { artifact_path: src/graph/loader.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/relation-graph.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-lite-consumer-canary.test.ts, artifact_type: test_code }
   - { artifact_path: tests/impact-ci.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-dependency-closure.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-lite-canary-ci-parallelization-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: tests/relation-graph-loader.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L7-657-distribution-lite-consumer-canary.md
   requires:

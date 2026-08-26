@@ -249,6 +249,7 @@ export const GRAPH_TRACKED_PATH_PREFIXES = [
 
 const GRAPH_TRACKED_EXACT_PATHS = new Set([
   ".codex/hooks.json",
+  "docs/design/design-catalog.yaml",
   "docs/governance/document-system-map.md",
   "docs/governance/repository-structure.md",
   ".editorconfig",

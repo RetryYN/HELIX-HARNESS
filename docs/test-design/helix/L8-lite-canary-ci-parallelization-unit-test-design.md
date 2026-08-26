@@ -4,7 +4,7 @@ layer: L8
 executed_at_layer: L7
 sub_doc: unit-test-design
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-26
 updated: 2026-08-26
 owner: QA / TL
@@ -27,6 +27,7 @@ pair_artifact: docs/design/helix/L6-function-design/lite-canary-ci-parallelizati
 | U-LITECI-WF-001 | selector wiring | workflowが毎回 `lite-canary-selector` を起動し、heavy stepsを `required` に限定し、typed lane statusへ束縛する | `tests/harness-check-workflow.test.ts` |
 | U-LITECI-WF-002 | job DAG | LiteとFullに相互 `needs` がなく、Windowsの依存先がLinux Lite jobだけである | `tests/harness-check-workflow.test.ts` |
 | U-LITECI-WF-003 | aggregate oracle | 全laneについて success または `authorized_skip:closure_unaffected` だけを受理し、untyped skipを拒否する | `tests/harness-check-workflow.test.ts` |
+| U-LITECI-WF-004 | relation graph projection | `docs/design/design-catalog.yaml` を design node として投影し、変更impactで `missing-projection` を返さない | `tests/relation-graph-loader.test.ts` |
 
 ## 検証方針
 
