@@ -4,8 +4,8 @@ title: "PLAN-L7-676 (refactor): current skill guidanceをNode/npm authorityへ�
 kind: refactor
 layer: L7
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 created: 2026-08-26
 updated: 2026-08-26
 owner: Codex / TL
@@ -78,6 +78,27 @@ workflow_identity:
 agent_slots:
   - { role: se, slot_label: "SE — skill command authorityの一方向移行" }
   - { role: qa, slot_label: "QA — active Bun command再出現mutation" }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-25T23:39:11.000Z"
+    tests_green_at: "2026-08-25T23:38:08Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    scope: >-
+      PR #1043の最終HEAD 94fb61e1fb5c7ac5595d5a7c4853e63ab6068ddaをClaude Codeが独立検収し、Issue #253が列挙する14件のexact skill inventoryについてactive Bun command 0、Node/npm authority、mutation oracle、DB projection／replay／checkpoint一致を確認してblocker 0 approveとした。PRのmerge commitは70c311562c0dcb8fb20ec0c2392b3645b9f5e90dであり、current mainの祖先としてread-after対象へ到達している。review receiptはhttps://github.com/RetryYN/HELIX-HARNESS/pull/1043#issuecomment-5418477260。
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32910176863 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url --jq '{status,conclusion,headSha,updatedAt,url}'"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-25T23:38:08Z"
+        evidence_path: tests/runtime-authority-requirements.test.ts
+        output_digest: "sha256:78e2b8c02161e057085a3cdbd0bdd8adf12c82742f94a74d99aadf9b398e51d4"
+        result: "terminal success / HEAD 94fb61e1fb5c7ac5595d5a7c4853e63ab6068dda"
 ---
 
 # current skill runtime command authority是正
