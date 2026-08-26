@@ -6,7 +6,7 @@
 # 本 workflow は §6.5 Phase 0-A 相当 (配備するが Required 化はしない / solo)。
 # トリガは §6.9 の `pull_request: [main]` に加え、solo main 直開発を即 dogfood するため `push: [main]` も含める。
 #
-# subjob は本 job 内 step として集約する。Required Status Checks は `harness-check` 1 本だけにする。
+# Lite／Windows／Full laneは独立jobとして実行し、最終aggregateへ集約する。Required Status Checks は `harness-check` 1 本だけにする。
 name: harness-check
 
 on:
@@ -31,6 +31,9 @@ concurrency:
 
 jobs:
   lite-consumer-canary-artifact:
+    outputs:
+      lane_disposition: ${{ steps.lite-lane-status.outputs.disposition }}
+      skip_code: ${{ steps.lite-lane-status.outputs.skip_code }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -38,6 +41,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
           persist-credentials: false
 
       - name: setup Node.js
@@ -49,7 +53,27 @@ jobs:
       - name: install deps (frozen)
         run: npm ci
 
+      - name: fast Lite profile manifest closure selector
+        id: lite-selector
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF_NAME: ${{ github.head_ref || github.ref_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          CANDIDATE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          candidate_head="${CANDIDATE_HEAD}"
+          if ! selection_json="$(EVENT_NAME="$EVENT_NAME" REF_NAME="$REF_NAME" CANDIDATE_HEAD="$candidate_head" BEFORE_SHA="${BEFORE_SHA:-}" PR_BASE_SHA="${PR_BASE_SHA:-}" npx --no-install tsx src/runtime/impact-ci.ts lite-canary-selector)"; then
+            selection_json='{"disposition":"required","skip_code":null,"reason_codes":["selector_uncertain"]}'
+          fi
+          jq . <<< "$selection_json" >> "$GITHUB_STEP_SUMMARY"
+          echo "disposition=$(jq -r '.disposition' <<< "$selection_json")" >> "$GITHUB_OUTPUT"
+          echo "skip_code=$(jq -r '.skip_code // \"none\"' <<< "$selection_json")" >> "$GITHUB_OUTPUT"
+
       - name: build Lite canary artifact
+        id: lite-build
+        if: ${{ steps.lite-selector.outputs.disposition == 'required' }}
         run: |
           mkdir -p "${RUNNER_TEMP}/lite-canary"
           npx --no-install tsx src/cli.ts distribution package-profile \
@@ -58,58 +82,118 @@ jobs:
             --json > "${RUNNER_TEMP}/lite-canary/receipt.json"
 
       - name: Linux Lite consumer canary
+        id: linux-lite-canary
+        if: ${{ steps.lite-selector.outputs.disposition == 'required' }}
         env:
           HELIX_LITE_CANARY_RECEIPT: ${{ runner.temp }}/lite-canary/receipt.json
         run: npm run test:fast -- tests/distribution-lite-consumer-canary.test.ts
 
       - name: upload exact Lite canary artifact
+        id: lite-upload
+        if: ${{ steps.lite-selector.outputs.disposition == 'required' }}
         uses: actions/upload-artifact@v7
         with:
           name: lite-consumer-canary
           path: ${{ runner.temp }}/lite-canary
           retention-days: 1
 
+      - name: authorized typed Lite canary skip
+        if: ${{ steps.lite-selector.outputs.disposition == 'authorized_skip' }}
+        env:
+          LITE_SKIP_CODE: ${{ steps.lite-selector.outputs.skip_code }}
+        run: |
+          set -euo pipefail
+          test "$LITE_SKIP_CODE" = "closure_unaffected"
+          echo "Lite canary authorized typed skip: ${LITE_SKIP_CODE}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Lite typed lane status
+        id: lite-lane-status
+        if: ${{ always() }}
+        env:
+          LITE_DISPOSITION: ${{ steps.lite-selector.outputs.disposition }}
+          LITE_SKIP_CODE: ${{ steps.lite-selector.outputs.skip_code }}
+          LITE_BUILD_OUTCOME: ${{ steps.lite-build.outcome }}
+          LINUX_CANARY_OUTCOME: ${{ steps.linux-lite-canary.outcome }}
+          LITE_UPLOAD_OUTCOME: ${{ steps.lite-upload.outcome }}
+        run: |
+          if [ "$LITE_DISPOSITION" = "authorized_skip" ] && [ "$LITE_SKIP_CODE" = "closure_unaffected" ]; then
+            echo "disposition=authorized_skip" >> "$GITHUB_OUTPUT"
+            echo "skip_code=closure_unaffected" >> "$GITHUB_OUTPUT"
+          elif [ "$LITE_DISPOSITION" = "required" ] && [ "$LITE_BUILD_OUTCOME" = "success" ] && [ "$LINUX_CANARY_OUTCOME" = "success" ] && [ "$LITE_UPLOAD_OUTCOME" = "success" ]; then
+            echo "disposition=success" >> "$GITHUB_OUTPUT"
+            echo "skip_code=none" >> "$GITHUB_OUTPUT"
+          else
+            echo "Lite lane did not produce success or an authorized typed skip" >&2
+            exit 1
+          fi
+
   windows-durability-smoke:
     needs: lite-consumer-canary-artifact
+    if: ${{ always() && needs.lite-consumer-canary-artifact.result == 'success' }}
+    outputs:
+      lane_disposition: ${{ steps.windows-lane-status.outputs.disposition }}
+      skip_code: ${{ steps.windows-lane-status.outputs.skip_code }}
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
       - name: checkout
+        if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
         uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
 
       - name: setup Node.js
+        if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
         uses: actions/setup-node@v4
         with:
           node-version: "24.15"
           cache: npm
 
       - name: install deps (frozen)
+        if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
         run: npm ci
 
       - name: download Linux-validated Lite artifact
+        if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
         uses: actions/download-artifact@v8
         with:
           name: lite-consumer-canary
           path: ${{ runner.temp }}/lite-canary
 
       - name: Windows durability smoke
+        id: windows-smoke
+        if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
         env:
           HELIX_LITE_CANARY_RECEIPT: ${{ runner.temp }}/lite-canary/receipt.json
         run: npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/distribution-lite-consumer-canary.test.ts
 
-  harness-check:
-    needs: [lite-consumer-canary-artifact, windows-durability-smoke]
-    if: ${{ always() }}
+      - name: Windows typed lane status
+        id: windows-lane-status
+        if: ${{ always() }}
+        env:
+          LITE_DISPOSITION: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition }}
+          WINDOWS_SMOKE_OUTCOME: ${{ steps.windows-smoke.outcome }}
+        run: |
+          if [ "$LITE_DISPOSITION" = "authorized_skip" ]; then
+            echo "disposition=authorized_skip" >> "$GITHUB_OUTPUT"
+            echo "skip_code=closure_unaffected" >> "$GITHUB_OUTPUT"
+            echo "Windows lane authorized typed skip: closure_unaffected" >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$LITE_DISPOSITION" = "success" ] && [ "$WINDOWS_SMOKE_OUTCOME" = "success" ]; then
+            echo "disposition=success" >> "$GITHUB_OUTPUT"
+            echo "skip_code=none" >> "$GITHUB_OUTPUT"
+          else
+            echo "Windows lane did not produce success or an authorized typed skip" >&2
+            exit 1
+          fi
+
+  harness-check-full:
+    outputs:
+      lane_disposition: ${{ steps.full-lane-status.outputs.disposition }}
+      skip_code: ${{ steps.full-lane-status.outputs.skip_code }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
-      - name: require Windows durability smoke
-        if: ${{ needs.lite-consumer-canary-artifact.result != 'success' || needs.windows-durability-smoke.result != 'success' }}
-        run: exit 1
-
       - name: checkout
         uses: actions/checkout@v7
         with:
@@ -679,6 +763,13 @@ jobs:
       - name: doctor (governance hard gates)
         run: npx --no-install tsx src/cli.ts doctor
 
+      - name: Full typed lane status
+        id: full-lane-status
+        if: ${{ success() }}
+        run: |
+          echo "disposition=success" >> "$GITHUB_OUTPUT"
+          echo "skip_code=none" >> "$GITHUB_OUTPUT"
+
       # Published only when every prior step (full regression included) finished green on a
       # pull_request run that actually executed the full admission live. A reused run must not
       # republish, so receipts always chain back to a run that ran the tests for real.
@@ -689,3 +780,39 @@ jobs:
           name: impact-ci-full-receipt
           path: ${{ runner.temp }}/impact-ci-full-receipt/impact-ci-full-receipt.json
           retention-days: 30
+
+  harness-check:
+    needs: [lite-consumer-canary-artifact, windows-durability-smoke, harness-check-full]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: require every required lane
+        env:
+          LITE_RESULT: ${{ needs.lite-consumer-canary-artifact.result }}
+          LITE_DISPOSITION: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition }}
+          LITE_SKIP_CODE: ${{ needs.lite-consumer-canary-artifact.outputs.skip_code }}
+          WINDOWS_RESULT: ${{ needs.windows-durability-smoke.result }}
+          WINDOWS_DISPOSITION: ${{ needs.windows-durability-smoke.outputs.lane_disposition }}
+          WINDOWS_SKIP_CODE: ${{ needs.windows-durability-smoke.outputs.skip_code }}
+          FULL_RESULT: ${{ needs.harness-check-full.result }}
+          FULL_DISPOSITION: ${{ needs.harness-check-full.outputs.lane_disposition }}
+          FULL_SKIP_CODE: ${{ needs.harness-check-full.outputs.skip_code }}
+        run: |
+          set -euo pipefail
+          check_lane() {
+            lane="$1"
+            result="$2"
+            disposition="$3"
+            skip_code="$4"
+            case "${result}:${disposition}:${skip_code}" in
+              success:success:none|success:authorized_skip:closure_unaffected) ;;
+              *)
+                echo "${lane} did not produce success or an authorized typed skip: ${result}:${disposition}:${skip_code}" >&2
+                exit 1
+                ;;
+            esac
+          }
+          check_lane lite "$LITE_RESULT" "$LITE_DISPOSITION" "$LITE_SKIP_CODE"
+          check_lane windows "$WINDOWS_RESULT" "$WINDOWS_DISPOSITION" "$WINDOWS_SKIP_CODE"
+          check_lane full "$FULL_RESULT" "$FULL_DISPOSITION" "$FULL_SKIP_CODE"

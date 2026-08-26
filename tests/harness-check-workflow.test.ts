@@ -9,6 +9,7 @@ import { parse as parseYaml } from "yaml";
 
 const WORKFLOW_PATH = ".github/workflows/harness-check.yml";
 // PLAN-L7-493-impact-ci-recovery execution evidence.
+// PLAN-L7-682-lite-canary-ci-parallelization: U-LITECI-WF-001..003.
 
 type Step = {
   name?: string;
@@ -34,19 +35,20 @@ type WorkflowRoot = {
   on?: { pull_request?: { types?: string[] } };
   jobs?: {
     "harness-check"?: HarnessJob;
+    "harness-check-full"?: HarnessJob;
     "lite-consumer-canary-artifact"?: HarnessJob;
     "windows-durability-smoke"?: HarnessJob;
   };
 };
 
 function boundedTimeViolations(raw: string): string[] {
-  let parsed: { jobs?: { "harness-check"?: HarnessJob } };
+  let parsed: { jobs?: { "harness-check-full"?: HarnessJob } };
   try {
     parsed = parseYaml(raw) as typeof parsed;
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const job = parsed.jobs?.["harness-check"];
+  const job = parsed.jobs?.["harness-check-full"];
   if (!job || !Array.isArray(job.steps)) return ["harness_job_missing"];
   const steps = job.steps;
   const findings: string[] = [];
@@ -148,7 +150,7 @@ function transitionReuseViolations(raw: string): string[] {
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
+  const steps = parsed.jobs?.["harness-check-full"]?.steps ?? [];
   const selector = steps.find((step) => step.name === "Impact CI profile selection");
   const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
   const receipt = steps.find((step) => step.name === "full admission receipt");
@@ -195,7 +197,7 @@ function laneCoverageViolations(raw: string): string[] {
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
+  const steps = parsed.jobs?.["harness-check-full"]?.steps ?? [];
   const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
   const run = regression?.run;
   if (!run) return ["regression_step_missing"];
@@ -235,6 +237,8 @@ function laneCoverageViolations(raw: string): string[] {
 
 function loadWorkflow(): {
   job: HarnessJob;
+  fullJob: HarnessJob;
+  aggregateJob: HarnessJob;
   liteCanaryJob: HarnessJob;
   windowsJob: HarnessJob;
   steps: Step[];
@@ -242,9 +246,11 @@ function loadWorkflow(): {
 } {
   const raw = readFileSync(WORKFLOW_PATH, "utf8");
   const parsed = parseYaml(raw) as WorkflowRoot;
-  const job = parsed.jobs?.["harness-check"] ?? {};
+  const job = parsed.jobs?.["harness-check-full"] ?? {};
   return {
     job,
+    fullJob: job,
+    aggregateJob: parsed.jobs?.["harness-check"] ?? {},
     liteCanaryJob: parsed.jobs?.["lite-consumer-canary-artifact"] ?? {},
     windowsJob: parsed.jobs?.["windows-durability-smoke"] ?? {},
     raw,
@@ -259,7 +265,7 @@ function reviewAdmissionViolations(raw: string): string[] {
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const steps = parsed.jobs?.["harness-check"]?.steps ?? [];
+  const steps = parsed.jobs?.["harness-check-full"]?.steps ?? [];
   const checkout = steps.find((candidate) => candidate.name === "checkout");
   const contextProjection =
     '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}';
@@ -310,7 +316,7 @@ describe("source harness-check workflow", () => {
     const raw = readFileSync(WORKFLOW_PATH, "utf8");
     expect(reviewAdmissionViolations(raw)).toEqual([]);
     const parsed = parseYaml(raw) as WorkflowRoot;
-    const checkout = parsed.jobs?.["harness-check"]?.steps?.find(
+    const checkout = parsed.jobs?.["harness-check-full"]?.steps?.find(
       (step) => step.name === "checkout",
     );
     expect(checkout?.with?.ref).toBe(`\${{ github.event.pull_request.head.sha || github.sha }}`);
@@ -388,7 +394,7 @@ describe("source harness-check workflow", () => {
     expect(install.run).toContain("Dir::Etc::sourceparts=-");
     expect(install.run).toContain("archive.ubuntu.com/ubuntu noble main universe");
     expect(install.run).toContain("security.ubuntu.com/ubuntu noble-security main universe");
-    expect(install.run).toContain("dpkg-query -W -f='${Status}' bubblewrap");
+    expect(install.run).toContain(`dpkg-query -W -f='\${Status}' bubblewrap`);
     expect(install.run).toContain("sudo timeout 180s");
     expect(install.run).toContain("Acquire::Retries=3");
     expect(install.run).toContain("Acquire::http::Timeout=30");
@@ -411,8 +417,8 @@ describe("source harness-check workflow", () => {
   });
 
   it("U-DUR-007: propagates Windows durability and Lite canary into the required check", () => {
-    const { job, windowsJob, steps } = loadWorkflow();
-    const aggregate = stepByName(steps, "require Windows durability smoke");
+    const { aggregateJob, job, windowsJob } = loadWorkflow();
+    const aggregate = stepByName(aggregateJob.steps ?? [], "require every required lane");
     const smoke = stepByName(windowsJob.steps ?? [], "Windows durability smoke");
 
     expect(windowsJob["runs-on"]).toBe("windows-latest");
@@ -422,12 +428,18 @@ describe("source harness-check workflow", () => {
       "npm run test:fast -- tests/loop-store-durability.test.ts tests/loop-store-durability-node.test.ts tests/distribution-lite-consumer-canary.test.ts",
     );
     expect(smoke["continue-on-error"]).not.toBe(true);
-    expect(job.needs).toEqual(["lite-consumer-canary-artifact", "windows-durability-smoke"]);
-    expect(job.if).toBe(`\${{ always() }}`);
-    expect(aggregate.if).toBe(
-      `\${{ needs.lite-consumer-canary-artifact.result != 'success' || needs.windows-durability-smoke.result != 'success' }}`,
-    );
-    expect(aggregate.run).toBe("exit 1");
+    expect(job.needs).toBeUndefined();
+    expect(aggregateJob.needs).toEqual([
+      "lite-consumer-canary-artifact",
+      "windows-durability-smoke",
+      "harness-check-full",
+    ]);
+    expect(aggregateJob.if).toBe(`\${{ always() }}`);
+    expect(aggregate.run).toContain("success:success:none");
+    expect(aggregate.run).toContain("success:authorized_skip:closure_unaffected");
+    expect(aggregate.run).toContain("check_lane lite");
+    expect(aggregate.run).toContain("check_lane windows");
+    expect(aggregate.run).toContain("check_lane full");
   });
 
   it("U-DISTCAN-008a: required Windows jobへLite canaryを配線する", () => {
@@ -450,6 +462,66 @@ describe("source harness-check workflow", () => {
     expect(smoke.env?.HELIX_LITE_CANARY_RECEIPT).toContain("receipt.json");
     expect(smoke.run).toContain("tests/distribution-lite-consumer-canary.test.ts");
     expect(smoke["continue-on-error"]).not.toBe(true);
+  });
+
+  it("U-LITECI-WF-001: fast selectorはprofile/manifest/closureを必ず実行し、typed statusへ接続する", () => {
+    const { liteCanaryJob } = loadWorkflow();
+    const selector = stepByName(
+      liteCanaryJob.steps ?? [],
+      "fast Lite profile manifest closure selector",
+    );
+    const build = stepByName(liteCanaryJob.steps ?? [], "build Lite canary artifact");
+    const linux = stepByName(liteCanaryJob.steps ?? [], "Linux Lite consumer canary");
+    const upload = stepByName(liteCanaryJob.steps ?? [], "upload exact Lite canary artifact");
+    const status = stepByName(liteCanaryJob.steps ?? [], "Lite typed lane status");
+
+    expect(selector.run).toContain("src/runtime/impact-ci.ts lite-canary-selector");
+    expect(selector.run).toContain("selector_uncertain");
+    expect(selector.run).toContain("jq -r '.disposition'");
+    expect(build.if).toContain("steps.lite-selector.outputs.disposition == 'required'");
+    expect(linux.if).toContain("steps.lite-selector.outputs.disposition == 'required'");
+    expect(upload.if).toContain("steps.lite-selector.outputs.disposition == 'required'");
+    expect(status.if).toBe(`\${{ always() }}`);
+    expect(status.run).toContain("authorized_skip");
+    expect(status.run).toContain("closure_unaffected");
+    expect(status.run).toContain("LITE_BUILD_OUTCOME");
+    expect(status.run).toContain("LINUX_CANARY_OUTCOME");
+    expect(status.run).toContain("LITE_UPLOAD_OUTCOME");
+    expect(liteCanaryJob.needs).toBeUndefined();
+  });
+
+  it("U-LITECI-WF-002: LiteとFullは独立し、WindowsはLinux laneの成果物だけに依存する", () => {
+    const { aggregateJob, fullJob, liteCanaryJob, windowsJob } = loadWorkflow();
+    expect(liteCanaryJob.needs).toBeUndefined();
+    expect(fullJob.needs).toBeUndefined();
+    expect(windowsJob.needs).toBe("lite-consumer-canary-artifact");
+    expect(windowsJob.if).toContain("needs.lite-consumer-canary-artifact.result == 'success'");
+    expect(windowsJob.if).not.toContain("harness-check-full");
+    expect(aggregateJob.needs).toEqual([
+      "lite-consumer-canary-artifact",
+      "windows-durability-smoke",
+      "harness-check-full",
+    ]);
+  });
+
+  it("U-LITECI-WF-003: aggregateは全laneのsuccessまたはclosure_unaffectedだけを受け入れる", () => {
+    const { aggregateJob, raw } = loadWorkflow();
+    const aggregate = stepByName(aggregateJob.steps ?? [], "require every required lane");
+    expect(aggregateJob.if).toBe(`\${{ always() }}`);
+    expect(aggregate.run).toContain(
+      "success:success:none|success:authorized_skip:closure_unaffected",
+    );
+    expect(aggregate.run).toContain("check_lane lite");
+    expect(aggregate.run).toContain("check_lane windows");
+    expect(aggregate.run).toContain("check_lane full");
+    expect(aggregate.run).toContain("did not produce success or an authorized typed skip");
+    expect(aggregate.env).toMatchObject({
+      LITE_RESULT: `\${{ needs.lite-consumer-canary-artifact.result }}`,
+      WINDOWS_RESULT: `\${{ needs.windows-durability-smoke.result }}`,
+      FULL_RESULT: `\${{ needs.harness-check-full.result }}`,
+    });
+    expect(raw.match(/distribution package-profile/g)).toHaveLength(1);
+    expect(aggregate["continue-on-error"]).toBeUndefined();
   });
 
   it("keeps the source workflow read-only and fetches enough history for PR gates", () => {
@@ -750,7 +822,7 @@ describe("source harness-check workflow", () => {
     const { job, steps } = loadWorkflow();
     const regression = stepByName(steps, "test — 全回帰 (vitest run)");
 
-    expect(job.needs).toEqual(["lite-consumer-canary-artifact", "windows-durability-smoke"]);
+    expect(job.needs).toBeUndefined();
     expect(regression.run).toContain("shard_names=(bulk stateful)");
     expect(regression.run?.match(/git worktree add --detach/g)).toHaveLength(1);
     expect(regression.run).toContain(

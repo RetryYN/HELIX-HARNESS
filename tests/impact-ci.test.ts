@@ -6,12 +6,14 @@ import {
   collectSourceImportConsumers,
   computeImpactDecision,
   computeReceiptPercentiles,
+  selectLiteCanaryLane,
   type VerificationItem,
   validateCiProfileReceipt,
   validateVerificationInventory,
 } from "../src/runtime/impact-ci";
 
 // PLAN-L7-493-impact-ci-recovery execution evidence.
+// PLAN-L7-682-lite-canary-ci-parallelization: U-LITECI-001..005.
 
 const inventory: VerificationItem[] = [
   {
@@ -47,6 +49,166 @@ const inventory: VerificationItem[] = [
 ];
 
 describe("Impact CI pure contract", () => {
+  const liteFastCheck = {
+    profile_ok: true,
+    manifest_ok: true,
+    closure_ok: true,
+    artifact_paths: ["src/setup/distribution-consumer-cli.ts"],
+    closure_paths: ["src/setup/distribution-consumer-cli.ts"],
+    source_head: "a".repeat(40),
+    candidate_head: "a".repeat(40),
+  };
+
+  it("U-LITECI-001: fast profile/manifest/closureが健全なPRの非接触変更だけをtyped skipにする", () => {
+    expect(
+      selectLiteCanaryLane({
+        event_name: "pull_request",
+        ref_name: "feature/issue-1002",
+        changed_paths: ["docs/notes/unrelated.md"],
+        change_kinds: [{ status: "M", path: "docs/notes/unrelated.md" }],
+        fast_check: liteFastCheck,
+      }),
+    ).toEqual({
+      disposition: "authorized_skip",
+      skip_code: "closure_unaffected",
+      reason_codes: ["closure_unaffected"],
+    });
+  });
+
+  it("U-LITECI-002: fail-close条件はheavy Lite canaryをrequiredにする", () => {
+    const cases = [
+      [
+        "closure contact",
+        { changed_paths: ["src/setup/distribution-consumer-cli.ts"] },
+        "changed_path_closure_contact",
+      ],
+      [
+        "deletion",
+        {
+          changed_paths: ["docs/notes/unrelated.md"],
+          change_kinds: [{ status: "D", path: "docs/notes/unrelated.md" }],
+        },
+        "deletion",
+      ],
+      [
+        "rename",
+        {
+          changed_paths: ["docs/notes/unrelated.md"],
+          change_kinds: [{ status: "R100", path: "docs/notes/unrelated.md" }],
+        },
+        "rename",
+      ],
+      [
+        "generated dependency",
+        { changed_paths: ["config/distribution-capability-artifact-catalog.json"] },
+        "generated_dependency_change",
+      ],
+      [
+        "manifest",
+        { changed_paths: ["config/distribution-profile-catalog.json"] },
+        "manifest_change",
+      ],
+      ["selector uncertainty", { selector_uncertain: true }, "selector_uncertain"],
+      [
+        "unknown change status",
+        { change_kinds: [{ status: "X", path: "docs/notes/unrelated.md" }] },
+        "selector_uncertain",
+      ],
+      ["path read failure", { path_read_failed: true }, "path_read_failure"],
+      ["stale digest", { stale_digest: true }, "stale_digest"],
+      [
+        "profile fast check failure",
+        { fast_check: { ...liteFastCheck, profile_ok: false } },
+        "fast_profile_check_failed",
+      ],
+      [
+        "manifest fast check failure",
+        { fast_check: { ...liteFastCheck, manifest_ok: false } },
+        "fast_manifest_check_failed",
+      ],
+      [
+        "closure fast check failure",
+        { fast_check: { ...liteFastCheck, closure_ok: false } },
+        "fast_closure_check_failed",
+      ],
+    ] as const;
+    for (const [label, overrides, reason] of cases) {
+      expect(
+        selectLiteCanaryLane({
+          event_name: "pull_request",
+          ref_name: "feature/issue-1002",
+          changed_paths: ["docs/notes/unrelated.md"],
+          change_kinds: [{ status: "M", path: "docs/notes/unrelated.md" }],
+          fast_check: liteFastCheck,
+          ...overrides,
+        }),
+        label,
+      ).toMatchObject({
+        disposition: "required",
+        skip_code: null,
+        reason_codes: expect.arrayContaining([reason]),
+      });
+    }
+  });
+
+  it("U-LITECI-003: main push・nightly・release dispatchはfull canaryをrequiredにする", () => {
+    const cases = [
+      ["main push", "push", "main"],
+      ["nightly", "schedule", "main"],
+      ["release candidate dispatch", "workflow_dispatch", "release-candidate"],
+    ] as const;
+    for (const [label, event_name, ref_name] of cases) {
+      expect(
+        selectLiteCanaryLane({
+          event_name,
+          ref_name,
+          changed_paths: ["docs/notes/unrelated.md"],
+          change_kinds: [{ status: "M", path: "docs/notes/unrelated.md" }],
+          fast_check: liteFastCheck,
+        }),
+        label,
+      ).toMatchObject({ disposition: "required", skip_code: null });
+    }
+  });
+
+  it("U-LITECI-004: source/candidate HEAD不一致をstale digestとしてrequiredにする", () => {
+    expect(
+      selectLiteCanaryLane({
+        event_name: "pull_request",
+        ref_name: "feature/issue-1002",
+        changed_paths: ["docs/notes/unrelated.md"],
+        change_kinds: [{ status: "M", path: "docs/notes/unrelated.md" }],
+        fast_check: { ...liteFastCheck, source_head: "b".repeat(40) },
+      }),
+    ).toMatchObject({
+      disposition: "required",
+      reason_codes: expect.arrayContaining(["stale_digest"]),
+    });
+  });
+
+  it("U-LITECI-005: canary coverage入力の変更をrequiredにする", () => {
+    for (const path of [
+      "src/orchestration/loop-store.ts",
+      "tests/loop-store-durability.test.ts",
+      "README-LITE.md",
+    ]) {
+      expect(
+        selectLiteCanaryLane({
+          event_name: "pull_request",
+          ref_name: "feature/issue-1002",
+          changed_paths: [path],
+          change_kinds: [{ status: "M", path }],
+          fast_check: liteFastCheck,
+        }),
+        path,
+      ).toMatchObject({
+        disposition: "required",
+        skip_code: null,
+        reason_codes: expect.arrayContaining(["changed_path_closure_contact"]),
+      });
+    }
+  });
+
   it("U-IMPACTCI-CLI-001: CLIはselected test exact listをJSON投影する", () => {
     const result = spawnSync(
       process.execPath,

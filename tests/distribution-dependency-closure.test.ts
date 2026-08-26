@@ -8,9 +8,14 @@ import {
   loadDistributionCapabilityArtifactCatalog,
   projectDistributionArtifacts,
 } from "../src/setup/distribution-artifact-projection";
-import { analyzeDistributionDependencyClosure } from "../src/setup/distribution-dependency-closure";
+import {
+  analyzeDistributionDependencyClosure,
+  LITE_CANARY_COVERAGE_PATHS,
+  runLiteCanaryFastCheck,
+} from "../src/setup/distribution-dependency-closure";
 import { loadDistributionProfileCatalog } from "../src/setup/distribution-profile";
 
+// PLAN-L7-682-lite-canary-ci-parallelization: U-DISTCLOSE-016..017.
 const roots: string[] = [];
 afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
@@ -155,6 +160,33 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
       unowned_dynamic_paths: [],
       unsafe_paths: [],
     });
+  });
+
+  it("U-DISTCLOSE-016: selector用fast checkはprofile／manifest／closureを同一HEADで検査する", () => {
+    expect(
+      runLiteCanaryFastCheck({ repoRoot: process.cwd(), candidateHead: "a".repeat(40) }),
+    ).toEqual(
+      expect.objectContaining({
+        profile_ok: true,
+        manifest_ok: true,
+        closure_ok: true,
+        source_head: expect.stringMatching(/^[0-9a-f]{40}$/),
+        candidate_head: "a".repeat(40),
+        path_read_failed: false,
+      }),
+    );
+    const result = runLiteCanaryFastCheck({
+      repoRoot: process.cwd(),
+      candidateHead: "a".repeat(40),
+    });
+    expect(result.closure_paths).toEqual(expect.arrayContaining([...LITE_CANARY_COVERAGE_PATHS]));
+  });
+
+  it("U-DISTCLOSE-017: coverage sourceの欠落をfast checkのpath read failureへ倒す", () => {
+    const root = fixture({});
+    const result = runLiteCanaryFastCheck({ repoRoot: root, candidateHead: "a".repeat(40) });
+    expect(result.path_read_failed).toBe(true);
+    expect(result.closure_ok).toBe(false);
   });
 
   it("U-DISTCLOSE-014: traversal／symlink sourceをrepo外read前にtyped拒否する", () => {

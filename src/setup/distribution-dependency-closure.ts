@@ -1,7 +1,13 @@
+import { execFileSync } from "node:child_process";
 import { existsSync, lstatSync, readFileSync, realpathSync } from "node:fs";
 import { extname, isAbsolute, join, posix, relative, sep, win32 } from "node:path";
 import type * as TS from "typescript";
 import ts from "../shared/typescript-lazy";
+import {
+  loadDistributionCapabilityArtifactCatalog,
+  projectDistributionArtifacts,
+} from "./distribution-artifact-projection";
+import { type DistributionProfile, loadDistributionProfileCatalog } from "./distribution-profile";
 
 export interface DistributionDependencyEdge {
   importer: string;
@@ -21,8 +27,41 @@ export interface DistributionDependencyClosure {
   unsafe_paths: string[];
 }
 
+export interface LiteCanaryFastCheck {
+  profile_ok: boolean;
+  manifest_ok: boolean;
+  closure_ok: boolean;
+  artifact_paths: string[];
+  closure_paths: string[];
+  source_head: string | null;
+  candidate_head: string;
+  path_read_failed: boolean;
+}
+
+/**
+ * Liteのimport closureだけでは表現できない実行対象も、canary skip判定のclosureに含める。
+ * README等の配布入力と、Windows durability laneのcoverageを落とすと、変更をauthorized skip
+ * と誤判定してしまうため、source artifactの依存関係として同じfail-close境界で扱う。
+ */
+export const LITE_CANARY_COVERAGE_PATHS = [
+  "README-LITE.md",
+  "LICENSE",
+  "THIRD_PARTY_NOTICES.md",
+  "PROVENANCE.md",
+  "DISCLAIMER.md",
+  "src/orchestration/loop-store.ts",
+  "tests/loop-store-durability.test.ts",
+  "tests/loop-store-durability-node.test.ts",
+] as const;
+
 function normalize(path: string): string {
   return posix.normalize(path.replaceAll("\\", "/")).replace(/^\.\//, "");
+}
+
+function sortedUnique(values: readonly string[]): string[] {
+  return [...new Set(values.map((value) => value.trim()).filter(Boolean))].sort((left, right) =>
+    left < right ? -1 : left > right ? 1 : 0,
+  );
 }
 
 function sourceKind(path: string): TS.ScriptKind {
@@ -214,4 +253,78 @@ export function analyzeDistributionDependencyClosure(input: {
     unowned_dynamic_paths: [...unownedDynamic].sort(),
     unsafe_paths: [...unsafe].sort(),
   };
+}
+
+/** profile、artifact manifest、dependency closureを一度に検査するCI用の軽量read surface。 */
+export function runLiteCanaryFastCheck(input: {
+  repoRoot: string;
+  candidateHead: string;
+}): LiteCanaryFastCheck {
+  const result: LiteCanaryFastCheck = {
+    profile_ok: false,
+    manifest_ok: false,
+    closure_ok: false,
+    artifact_paths: [],
+    closure_paths: [],
+    source_head: null,
+    candidate_head: input.candidateHead,
+    path_read_failed: false,
+  };
+  let sourcePaths: string[] = [];
+  try {
+    sourcePaths = execFileSync("git", ["ls-files"], {
+      cwd: input.repoRoot,
+      encoding: "utf8",
+    })
+      .split(/\r?\n/)
+      .filter(Boolean);
+    result.source_head = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: input.repoRoot,
+      encoding: "utf8",
+    }).trim();
+  } catch {
+    result.path_read_failed = true;
+  }
+
+  let profile: DistributionProfile | undefined;
+  try {
+    const profileResult = loadDistributionProfileCatalog(input.repoRoot);
+    profile = profileResult.catalog?.profiles.find(
+      (candidate) => candidate.profile_id === "consumer_core_v1",
+    );
+    result.profile_ok = profileResult.ok && profile !== undefined;
+    const projection = profile
+      ? projectDistributionArtifacts({
+          profile,
+          catalog: loadDistributionCapabilityArtifactCatalog(input.repoRoot),
+          source_paths: sourcePaths,
+        })
+      : null;
+    result.manifest_ok = profileResult.ok && projection?.ok === true;
+    result.artifact_paths = projection?.artifact_paths ?? [];
+  } catch {
+    result.path_read_failed = true;
+  }
+
+  try {
+    const closure = analyzeDistributionDependencyClosure({
+      repoRoot: input.repoRoot,
+      artifactPaths: result.artifact_paths,
+      sourcePaths,
+      entrypoints: ["src/setup/distribution-consumer-cli.ts"],
+    });
+    const missingCoveragePaths = LITE_CANARY_COVERAGE_PATHS.filter(
+      (path) => !sourcePaths.includes(path),
+    );
+    result.closure_ok = closure.ok && missingCoveragePaths.length === 0;
+    result.path_read_failed ||= missingCoveragePaths.length > 0;
+    result.closure_paths = sortedUnique([
+      ...closure.entrypoints,
+      ...closure.visited_paths,
+      ...LITE_CANARY_COVERAGE_PATHS,
+    ]);
+  } catch {
+    result.path_read_failed = true;
+  }
+  return result;
 }
