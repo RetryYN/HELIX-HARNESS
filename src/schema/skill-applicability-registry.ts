@@ -3,10 +3,12 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { z } from "zod";
 import {
+  assertWorkflowClassificationAuthorityDigest,
   loadWorkflowClassificationRegistry,
   WORKFLOW_CLASSIFICATION_REGISTRY_PATH,
   type WorkflowClassificationRegistry,
   workflowClassificationAxisSchema,
+  workflowClassificationRegistrySchema,
 } from "./workflow-classification-registry.js";
 
 export const SKILL_APPLICABILITY_REGISTRY_PATH =
@@ -55,7 +57,7 @@ export const skillApplicabilityRegistrySchema = z
         positive_field: z.literal("applicable_identities"),
         negative_field: z.literal("excluded_identities"),
         item_fields: z.tuple([z.literal("target_axis"), z.literal("target_id")]),
-        allowed_axes: z.array(workflowClassificationAxisSchema).min(1),
+        allowed_axes: z.array(workflowClassificationAxisSchema).min(1).readonly(),
         implicit_default: z.literal(false),
         duplicate_disposition: z.literal("fail_close"),
         polarity_conflict_disposition: z.literal("fail_close"),
@@ -72,8 +74,11 @@ export const skillApplicabilityRegistrySchema = z
           z.literal("lowercase_en_us"),
           z.literal("underscore_to_hyphen"),
         ]),
-        conversions: z.array(legacyConversionSchema).min(1),
-        ambiguous_tokens: z.array(z.string().regex(/^[a-z][a-z0-9-]*$/u)).min(1),
+        conversions: z.array(legacyConversionSchema).min(1).readonly(),
+        ambiguous_tokens: z
+          .array(z.string().regex(/^[a-z][a-z0-9-]*$/u))
+          .min(1)
+          .readonly(),
         unknown_disposition: z.literal("unsupported"),
         ambiguity_disposition: z.literal("ambiguous"),
         emit_legacy_identity: z.literal(false),
@@ -128,15 +133,18 @@ export type SkillApplicabilityIdentity = z.infer<typeof skillApplicabilityIdenti
 export type SkillApplicabilityRegistry = z.infer<typeof skillApplicabilityRegistrySchema>;
 
 export interface SkillApplicability {
-  applicable_identities: SkillApplicabilityIdentity[];
-  excluded_identities: SkillApplicabilityIdentity[];
+  applicable_identities: readonly SkillApplicabilityIdentity[];
+  excluded_identities: readonly SkillApplicabilityIdentity[];
 }
 
 export type LegacySkillApplicabilityResult =
   | {
       disposition: "converted";
-      identities: SkillApplicabilityIdentity[];
-      warnings: Array<{ source_field: "drive_models"; normalized_token: string }>;
+      identities: readonly SkillApplicabilityIdentity[];
+      warnings: ReadonlyArray<{
+        source_field: "drive_models";
+        normalized_token: string;
+      }>;
     }
   | { disposition: "ambiguous" | "unsupported"; token: string };
 
@@ -161,6 +169,64 @@ function assertIdentityReference(
   if (target.axis !== identity.target_axis) {
     throw new Error(`skill applicability axis mismatch: ${identityKey(identity)}`);
   }
+}
+
+function revalidateInjectedBindings(
+  registryInput: SkillApplicabilityRegistry,
+  workflowRegistryInput: WorkflowClassificationRegistry,
+  repoRoot: string,
+): { registry: SkillApplicabilityRegistry; workflowRegistry: WorkflowClassificationRegistry } {
+  const registry = skillApplicabilityRegistrySchema.parse(registryInput);
+  const workflowRegistry = workflowClassificationRegistrySchema.parse(workflowRegistryInput);
+
+  const authorityBytes = readFileSync(resolve(repoRoot, registry.authority.source));
+  if (digest(authorityBytes) !== registry.authority.source_digest) {
+    throw new Error("skill applicability requirements digest mismatch");
+  }
+  const workflowBytes = readFileSync(resolve(repoRoot, registry.identity_reference.source));
+  if (digest(workflowBytes) !== registry.identity_reference.registry_source_digest) {
+    throw new Error("skill applicability workflow registry digest mismatch");
+  }
+  const workflowAuthorityBytes = readFileSync(resolve(repoRoot, workflowRegistry.authority.source));
+  assertWorkflowClassificationAuthorityDigest(workflowRegistry, workflowAuthorityBytes);
+
+  if (workflowRegistry.schema_version !== registry.identity_reference.schema_version) {
+    throw new Error("skill applicability workflow registry schema version mismatch");
+  }
+  if (workflowRegistry.registry_version !== registry.identity_reference.registry_version) {
+    throw new Error("skill applicability workflow registry version mismatch");
+  }
+
+  const canonicalRegistry = loadSkillApplicabilityRegistry(repoRoot);
+  const canonicalWorkflowRegistry = loadWorkflowClassificationRegistry(repoRoot);
+  if (registry.registry_version !== canonicalRegistry.registry_version) {
+    throw new Error("skill applicability registry version mismatch");
+  }
+  if (registry.authority.source_digest !== canonicalRegistry.authority.source_digest) {
+    throw new Error("skill applicability requirements digest binding mismatch");
+  }
+  if (
+    registry.identity_reference.registry_version !==
+    canonicalRegistry.identity_reference.registry_version
+  ) {
+    throw new Error("skill applicability workflow registry version mismatch");
+  }
+  if (
+    registry.identity_reference.registry_source_digest !==
+    canonicalRegistry.identity_reference.registry_source_digest
+  ) {
+    throw new Error("skill applicability workflow registry digest binding mismatch");
+  }
+  if (workflowRegistry.registry_version !== canonicalWorkflowRegistry.registry_version) {
+    throw new Error("workflow classification registry version mismatch");
+  }
+  if (
+    workflowRegistry.authority.source_digest !== canonicalWorkflowRegistry.authority.source_digest
+  ) {
+    throw new Error("workflow classification requirements digest binding mismatch");
+  }
+
+  return { registry: canonicalRegistry, workflowRegistry: canonicalWorkflowRegistry };
 }
 
 export function loadSkillApplicabilityRegistry(
@@ -195,12 +261,23 @@ export function parseSkillApplicability(
     workflowRegistry?: WorkflowClassificationRegistry;
   } = {},
 ): SkillApplicability {
-  const registry = options.registry ?? loadSkillApplicabilityRegistry();
-  const workflowRegistry = options.workflowRegistry ?? loadWorkflowClassificationRegistry();
+  let registry =
+    options.registry === undefined ? loadSkillApplicabilityRegistry() : options.registry;
+  let workflowRegistry =
+    options.workflowRegistry === undefined
+      ? loadWorkflowClassificationRegistry()
+      : options.workflowRegistry;
+  if (options.registry !== undefined || options.workflowRegistry !== undefined) {
+    ({ registry, workflowRegistry } = revalidateInjectedBindings(
+      registry,
+      workflowRegistry,
+      process.cwd(),
+    ));
+  }
   const parsed = z
     .object({
-      applicable_identities: z.array(skillApplicabilityIdentitySchema).min(1),
-      excluded_identities: z.array(skillApplicabilityIdentitySchema).default([]),
+      applicable_identities: z.array(skillApplicabilityIdentitySchema).min(1).readonly(),
+      excluded_identities: z.array(skillApplicabilityIdentitySchema).readonly().default([]),
     })
     .strict()
     .parse(input);
@@ -251,5 +328,9 @@ export function adaptLegacySkillApplicability(
     }
     warnings.push({ source_field: "drive_models", normalized_token: token });
   }
-  return { disposition: "converted", identities, warnings };
+  return {
+    disposition: "converted",
+    identities: Object.freeze(identities),
+    warnings: Object.freeze(warnings),
+  };
 }
