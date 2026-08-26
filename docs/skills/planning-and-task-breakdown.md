@@ -63,7 +63,7 @@ schedule steps は numbered にし、execution mode を注釈する。
 2. [並列] Author L6 unit-test design doc — PLAN-L6-NN
 3. [直列] pair-freeze review: helix review --uncommitted
 4. [直列] implement src/ — PLAN-L7-NN
-5. [直列] trace-freeze: bun run test && helix doctor
+5. [直列] trace-freeze: npm run test && helix doctor
 6. [直列] accept: helix review --uncommitted (no blocking findings)
 ```
 
