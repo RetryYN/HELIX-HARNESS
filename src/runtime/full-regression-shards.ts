@@ -47,6 +47,13 @@ export interface FullRegressionShardValidation {
   errors: readonly string[];
 }
 
+interface PartitionDigestInput {
+  candidateHead: string;
+  baseSha: string;
+  inventoryDigest: Sha256Digest;
+  shards: readonly FullRegressionShard[];
+}
+
 const SHA_PATTERN = /^[0-9a-f]{40}$/;
 const DIGEST_PATTERN = /^sha256:[0-9a-f]{64}$/;
 const TEST_PATH_PATTERN = /^tests\/(?:.+\/)?[^/]+\.test\.ts$/;
@@ -66,19 +73,14 @@ function stableShardIndex(path: string, count: number): number {
   return Number(BigInt(`0x${digest.slice(0, 13)}`) % BigInt(count));
 }
 
-function partitionDigest(
-  candidateHead: string,
-  baseSha: string,
-  inventoryDigest: Sha256Digest,
-  shards: readonly FullRegressionShard[],
-): Sha256Digest {
+function partitionDigest(input: PartitionDigestInput): Sha256Digest {
   return sha256Digest(
     canonicalJson({
       schema_version: FULL_REGRESSION_SHARD_SCHEMA,
-      candidate_head: candidateHead,
-      base_sha: baseSha,
-      inventory_digest: inventoryDigest,
-      shards,
+      candidate_head: input.candidateHead,
+      base_sha: input.baseSha,
+      inventory_digest: input.inventoryDigest,
+      shards: input.shards,
     }),
   );
 }
@@ -135,7 +137,12 @@ export function createFullRegressionShardPlan(
     candidate_head: input.candidateHead,
     base_sha: input.baseSha,
     inventory_digest: inventoryDigest,
-    partition_digest: partitionDigest(input.candidateHead, input.baseSha, inventoryDigest, shards),
+    partition_digest: partitionDigest({
+      candidateHead: input.candidateHead,
+      baseSha: input.baseSha,
+      inventoryDigest,
+      shards,
+    }),
     shards,
   };
 }
@@ -198,7 +205,12 @@ export function validateFullRegressionShardPlan(
 
   if (
     plan.partition_digest !==
-    partitionDigest(plan.candidate_head, plan.base_sha, plan.inventory_digest, plan.shards)
+    partitionDigest({
+      candidateHead: plan.candidate_head,
+      baseSha: plan.base_sha,
+      inventoryDigest: plan.inventory_digest,
+      shards: plan.shards,
+    })
   ) {
     errors.push("partition_digest_mismatch");
   }
