@@ -34,7 +34,7 @@ contract_failures: "JSON parse成功、Git conflict 0、または片側採用で
 tdd_red_required: true
 red_at: "2026-08-26T01:35:54Z"
 green_at: "2026-08-26T02:08:44Z"
-mutation_oracle_evidence: "Claude CodeのPR #1053独立レビューで、inspectOutstandingSnapshotのokを常にtrueへ変異した場合に既存54件が通過する欠落を検出し、count/listまたはblocker/actionの片側採用を検出するnegative oracleを追加してkillした。レビュー記録: https://github.com/RetryYN/HELIX-HARNESS/pull/1053#issuecomment-5419389093。"
+mutation_oracle_evidence: "tests/outstanding.test.ts::U-OUTMERGE-001/002/005で、inspectOutstandingSnapshotのokを常にtrueへ変異したseeded mutantをcount/list、blocker/action、live duplicateのnegative oracleがkillした。レビュー記録: https://github.com/RetryYN/HELIX-HARNESS/pull/1053#issuecomment-5419389093。"
 red_test: "U-OUTMERGE-001/002/005がcount/listまたはblocker/action片側採用、live duplicate、guard ok値の退行を検出する"
 complexity_effect: net_neutral
 complexity_justification: "既存snapshot writer/verifyとmerge-readinessへ同一pure guardを接続し、別owner/state/jobを増やさない"
@@ -67,15 +67,6 @@ review_evidence:
         evidence_path: tests/outstanding.test.ts
         output_digest: "sha256:2a46b5fb9aab3e3755dca7deff5cd6de9af789ca965a846646147abb959d28d9"
         result: "terminal success / HEAD 5a5cce880a11b530d0f137ef0b2faad191427677"
-      - kind: smoke
-        command: "gh run view 32935749811 --json status,conclusion,headSha,updatedAt,url"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-08-26T06:15:47Z"
-        evidence_path: docs/governance/generated/outstanding-snapshot.json
-        output_digest: "sha256:88b66b671663f192d4ece41ece6e2ac71aff572cf5d48ca731a3a904f2ec892d"
-        result: "terminal success / main HEAD 2ef1d3bffa5c9d6a49a3110e5e260b957ce97b2b"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
@@ -83,7 +74,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-26T02:10:24Z"
-    evidence_digest: "sha256:d2396df4fd9a74b4759537dab297a7139623f712d673b663eb31e6393249f5fa"
+    evidence_digest: "sha256:fae311674d259603d3308321efb355c340c55adac61a898aec719e3f36115113"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-677-outstanding-snapshot-semantic-merge-guard.md, artifact_type: markdown_doc }
@@ -110,6 +101,13 @@ agent_slots:
 ---
 
 # outstanding snapshot semantic merge guard（意味照合）
+
+## main read-after 終端証拠
+
+Claudeのcurrent-HEADレビュー証拠と、後続のmain read-after証拠は別の時系列として保持する。
+main post-merge harness-check run `32935749811` は `2026-08-26T06:15:47Z` に
+main HEAD `2ef1d3bffa5c9d6a49a3110e5e260b957ce97b2b` でterminal successとなり、
+`docs/governance/generated/outstanding-snapshot.json` の検証を完了した。
 
 ## 目的
 
