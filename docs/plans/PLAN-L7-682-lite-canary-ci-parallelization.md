@@ -50,6 +50,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-017, test_path: tests/distribution-dependency-closure.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md, artifact_type: markdown_doc }
+  - { artifact_path: src/cli/lite-canary-selector.ts, artifact_type: source_module }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -57,7 +58,6 @@ modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/impact-ci.ts, artifact_type: source_module }
-  - { artifact_path: src/cli/lite-canary-selector.ts, artifact_type: source_module }
   - { artifact_path: src/setup/distribution-dependency-closure.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
