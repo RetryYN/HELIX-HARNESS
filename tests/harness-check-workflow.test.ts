@@ -62,6 +62,10 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   if (!finalize) findings.push("finalize_job_missing");
   if (findings.length > 0) return findings;
 
+  if ([preflight, ...shards, finalize].some((job) => job?.["continue-on-error"] !== undefined)) {
+    findings.push("job_fail_open_field");
+  }
+
   const preflightText = JSON.stringify(preflight);
   if (
     !preflightText.includes("full-regression-shard-plan") ||
@@ -122,7 +126,7 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   ].map((name) => finalizeSteps.findIndex((step) => step.name === name));
   if (
     ordered.some((index) => index < 0) ||
-    ordered.some((index, i) => i > 0 && index <= ordered[i - 1]!)
+    ordered.some((index, i) => i > 0 && index <= (ordered[i - 1] ?? -1))
   ) {
     findings.push("finalize_gate_order_invalid");
   }
@@ -404,6 +408,8 @@ function stepByName(steps: Step[], name: string): Step {
 }
 
 describe("source harness-check workflow", () => {
+  // PLAN-L7-685-full-regression-shard-jobs — U-FULLSHARD-WF-001
+  // PLAN-L7-685-full-regression-shard-jobs — U-FULLSHARD-WF-002
   it("U-GCRA-WF-001: required harness-check内でReady exact-HEAD review admissionをfail-closeする", () => {
     const raw = readFileSync(WORKFLOW_PATH, "utf8");
     expect(reviewAdmissionViolations(raw)).toEqual([]);
@@ -902,8 +908,46 @@ describe("source harness-check workflow", () => {
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
   });
 
+  it("U-CITIME-003: rejects fail-open fields and preserves post-test gates", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(fullRegressionShardJobViolations(raw)).toEqual([]);
+    expect(
+      fullRegressionShardJobViolations(
+        raw.replace(
+          "  full-regression-bulk-1:\n",
+          "  full-regression-bulk-1:\n    continue-on-error: true\n",
+        ),
+      ),
+    ).toContain("job_fail_open_field");
+    expect(
+      fullRegressionShardJobViolations(
+        raw.replace(
+          "- name: validate exact shard receipt set",
+          "- name: doctor (governance hard gates)\n        run: true\n      - name: validate exact shard receipt set",
+        ),
+      ),
+    ).toContain("finalize_gate_order_invalid");
+  });
+
   it("U-FULLSHARD-WF-001: preflight／3 shard／finalizeをtyped artifactで接続する", () => {
     expect(fullRegressionShardJobViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
+  });
+
+  it("U-FULLSHARD-WF-002: receipt exact set後のfinalizeとfail-closeを維持する", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(
+      fullRegressionShardJobViolations(
+        raw.replaceAll("full-regression-shard-receipt-stateful", "missing-stateful"),
+      ),
+    ).toContain("finalize_contract_invalid");
+    expect(
+      fullRegressionShardJobViolations(
+        raw.replace(
+          "- name: validate exact shard receipt set",
+          "- name: doctor (governance hard gates)\n        run: true\n      - name: validate exact shard receipt set",
+        ),
+      ),
+    ).toContain("finalize_gate_order_invalid");
   });
 
   it.each([

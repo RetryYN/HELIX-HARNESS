@@ -43,6 +43,8 @@ queue_id: L3Q-PC-039
 | U-FULLSHARD-CLI-002 | receipt identityをplanからだけ導出する | callerによるHEAD／base／partition／file digest差替えを許可しない |
 | U-FULLSHARD-CLI-003 | validator redをtyped JSONとexit 1へ写像する | receipt欠落をsuccess exitへ変換しない |
 | U-FULLSHARD-CLI-004 | output digest／exit code／時刻入力を境界検査する | malformed digest、負／非整数exit、invalid timeを拒否 |
+| U-FULLSHARD-WF-001 | preflight、3 shard、finalizeをtyped artifactと同一HEAD／baseへ接続 | job／artifact／identity／required aggregateの欠落を拒否 |
+| U-FULLSHARD-WF-002 | receipt exact set検証後だけDB／Biome／doctorを実行 | receipt欠落、wrong partition、fail-open、gate順序短絡を拒否 |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLIはcontext injection assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、routing semantics変更を拒否 |
 
@@ -76,6 +78,12 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-FULLSHARD-004 | stateful boundary | CLI欠落、slowのbulk混入、fastのstateful混入を拒否する | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-005 | receipt identity | wrong HEAD／base／partition／files／unknown shardを拒否する | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-006 | terminal exact set | shard欠落／重複、nonzero、invalid／reverse timeを拒否する | `tests/full-regression-shards.test.ts` |
+| U-FULLSHARD-CLI-001 | CLI plan | inventory JSONからtyped planとfile exact setを返す | `tests/full-regression-shards-cli.test.ts` |
+| U-FULLSHARD-CLI-002 | CLI receipt | identityをplanだけから導出する | `tests/full-regression-shards-cli.test.ts` |
+| U-FULLSHARD-CLI-003 | CLI validate | receipt欠落をtyped redとexit 1へ写像する | `tests/full-regression-shards-cli.test.ts` |
+| U-FULLSHARD-CLI-004 | CLI boundary | digest、exit code、時刻の不正値を拒否する | `tests/full-regression-shards-cli.test.ts` |
+| U-FULLSHARD-WF-001 | workflow DAG | 独立job、artifact、HEAD／base、required aggregateを検査 | `tests/harness-check-workflow.test.ts` |
+| U-FULLSHARD-WF-002 | workflow finalize | receipt exact setとpost-test gate順序を検査 | `tests/harness-check-workflow.test.ts` |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLI bounded deadline | provider-neutral manifest assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLI bounded deadline | context injection assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 

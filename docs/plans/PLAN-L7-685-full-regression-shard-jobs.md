@@ -39,6 +39,13 @@ complexity_justification: "同一runner内process管理を削除し、typed plan
 removal_trigger: "GitHub native matrixが同じtyped partition／receipt／finalize contractを直接表現でき、custom adapter consumerが0になった時"
 parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md
 pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-CLI-001, test_path: tests/full-regression-shards-cli.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-CLI-002, test_path: tests/full-regression-shards-cli.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-CLI-003, test_path: tests/full-regression-shards-cli.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-CLI-004, test_path: tests/full-regression-shards-cli.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-WF-001, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-WF-002, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-685-full-regression-shard-jobs.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli/full-regression-shards.ts, artifact_type: source_module }

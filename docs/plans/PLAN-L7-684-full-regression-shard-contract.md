@@ -4,7 +4,7 @@ title: "PLAN-L7-684 (impl): Full regression exact shard partition contract"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -26,6 +26,36 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-26T20:53:45Z"
+    tests_green_at: "2026-08-26T20:49:59Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    reviewed_head_sha: 6511fe568f49ed95383bd963211c8acd331ccd95
+    scope: "PR #1072 current HEAD 6511fe568f49ed95383bd963211c8acd331ccd95をClaude Code Opusが独立検収し、exact partition、duplicate、per-shard digest、candidate HEAD、nonzero receiptのfail-closeとmutation killを確認した。creation側の冗長guardを除去してもvalidatorが拒否することを実測し、内容blocker 0と判定した。merge前のPLAN confirmed化のみを収束条件とした。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1072#issuecomment-5430986655"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33010363100 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-26T20:49:59Z"
+        evidence_path: tests/full-regression-shards.test.ts
+        output_digest: "sha256:6990d57169e1454694ea16eb4941f9c8966568f5fba39798f451bcd860b7bb35"
+        result: "terminal success / HEAD 6511fe568f49ed95383bd963211c8acd331ccd95"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-26T20:53:45Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-26T20:53:45Z"
+    evidence_digest: "sha256:7371bd0a6c48edb12f1ef3c9b6d6d16cf4fff3192eb0c291d973f48cec58254d"
+  entries: []
 backprop_decision: not_required
 backprop_decision_reason: "Forward L6設計とL8テスト設計を同一sliceで更新しており、Reverse R4からL1-L6へ戻す追加backpropは発生しない"
 contract_preconditions: "candidate HEAD、base SHA、tracked test inventory exact setを受け取る"
@@ -34,7 +64,9 @@ contract_invariants: "test削除、timeout緩和、same-root worker増加、targ
 contract_failures: "missing／duplicate／unknown／wrong HEAD／base／digest／shard／file set／nonzero receiptをfail-closeする"
 tdd_red_required: true
 red_test: "U-FULLSHARD-001..006がpartition欠落、交差、digest改竄、identity mismatch、nonzero receiptを検出する"
-mutation_oracle_evidence: "2026-08-27T03:28:48+09:00にduplicate_test_path guardを一時除去し、U-FULLSHARD-002がexpected duplicate_test_path欠落で1 failed、exit 1となるkillを実測。2026-08-27T03:29:02+09:00にreceipt candidate HEAD照合を一時除去し、U-FULLSHARD-005がexpected receipt_head_mismatch:bulk-1欠落で1 failed、exit 1となる独立killを実測した。apply_patchで両guardを復元後、6 tests greenと製品コードの意図差分だけを再確認した"
+red_at: "2026-08-26T18:28:48Z"
+green_at: "2026-08-26T20:49:59Z"
+mutation_oracle_evidence: "tests/full-regression-shards.test.tsで、2026-08-27T03:28:48+09:00にduplicate_test_path guardを一時除去し、U-FULLSHARD-002がexpected duplicate_test_path欠落で1 failed、exit 1となるkillを実測。2026-08-27T03:29:02+09:00にreceipt candidate HEAD照合を一時除去し、U-FULLSHARD-005がexpected receipt_head_mismatch:bulk-1欠落で1 failed、exit 1となる独立killを実測した。apply_patchで両guardを復元後、6 tests greenと製品コードの意図差分だけを再確認した"
 complexity_effect: justified_positive
 complexity_justification: "workflow YAMLへ判定を複製せず、partitionとreceipt検証を単一pure moduleへ集約する"
 removal_trigger: "Impact CI inventory自身がversioned distributed execution planとreceipt validatorを直接生成するmajor migration時"

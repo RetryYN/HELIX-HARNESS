@@ -2,7 +2,7 @@
 title: "Impact CI Recovery機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-01
 updated: 2026-08-27
 owner: Codex / TL
@@ -110,3 +110,9 @@ output digest、exit code、時刻を入力境界で検証し、validatorの`ok=
 | `U-FULLSHARD-004` | CLI／slow stateful固定とbulk補集合 |
 | `U-FULLSHARD-005` | receiptのHEAD／base／partition／shard／files exact binding |
 | `U-FULLSHARD-006` | receipt exact set、exit 0、時刻妥当性 |
+| `U-FULLSHARD-CLI-001` | inventory JSONからtyped planとshard file exact setを返すCLI境界 |
+| `U-FULLSHARD-CLI-002` | receipt identityをplanだけから導出するCLI境界 |
+| `U-FULLSHARD-CLI-003` | validator redをtyped JSONとexit 1へ写像するCLI境界 |
+| `U-FULLSHARD-CLI-004` | output digest／exit code／時刻をfail-closeするCLI境界 |
+| `U-FULLSHARD-WF-001` | preflight／3 shard／finalizeのtyped artifact接続 |
+| `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／Biome／doctor／required aggregate順序 |
