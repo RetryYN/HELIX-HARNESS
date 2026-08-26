@@ -39,6 +39,10 @@ queue_id: L3Q-PC-039
 | U-FULLSHARD-004 | statefulはCLI surfaceとslowだけ、bulkはその補集合 | CLI欠落、slowのbulk混入、fastのstateful混入を拒否 |
 | U-FULLSHARD-005 | 全receiptがcandidate HEAD／base／partition／shard／filesへexact binding | wrong HEAD、base、partition、files、unknown shardを個別拒否 |
 | U-FULLSHARD-006 | receipt exact set、exit 0、有限かつ正順の時刻 | shard欠落／重複、nonzero、invalid／reverse timeを相殺せず拒否 |
+| U-FULLSHARD-CLI-001 | inventory JSONからtyped plan／shard file exact setを返す | malformed inventory、unknown shardを拒否 |
+| U-FULLSHARD-CLI-002 | receipt identityをplanからだけ導出する | callerによるHEAD／base／partition／file digest差替えを許可しない |
+| U-FULLSHARD-CLI-003 | validator redをtyped JSONとexit 1へ写像する | receipt欠落をsuccess exitへ変換しない |
+| U-FULLSHARD-CLI-004 | output digest／exit code／時刻入力を境界検査する | malformed digest、負／非整数exit、invalid timeを拒否 |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLIはcontext injection assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、routing semantics変更を拒否 |
 

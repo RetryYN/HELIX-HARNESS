@@ -98,6 +98,10 @@ finalizeはreceipt exact setを再検証し、wrong HEAD／base／partition／fi
 本pure contractはtest実行、filesystem列挙、GitHub API、artifact uploadを行わない。workflow job配線、cancel／timeout、
 post-test DB rebuild／doctor、実runのwall-clock計測はIssue #1071が所有する。
 
+Issue #1071のtransactional adapterは`plan`、`files`、`receipt`、`validate`の4 commandだけを公開し、partition意味を
+workflow YAMLへ複製しない。`receipt`はplanからHEAD／base／partition／file digestを継承し、caller入力を受理しない。
+output digest、exit code、時刻を入力境界で検証し、validatorの`ok=false`はprocess exit 1へ写像する。
+
 | oracle ID | 設計上の観測点 |
 |---|---|
 | `U-FULLSHARD-001` | 入力順非依存のbulk 2件＋stateful安定partition |
