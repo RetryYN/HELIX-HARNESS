@@ -35,7 +35,7 @@ Add-feature または Retrofit として route する。
 1. 変更対象 code の **observable boundary** は何か。
    exported functions、CLI exit codes、`.helix/` に書く files、DB rows など。
 2. 現在の test suite はすべての observable boundary behaviours を覆っているか。
-   `bun run test` を実行して coverage を確認する。覆っていない場合は先に characterisation tests を書く
+   `npm run test` を実行して coverage を確認する。覆っていない場合は先に characterisation tests を書く
    （testing skill 参照）。regression fence の無い refactor は safety net の無い behaviour change である。
 3. PLAN の `kind` value は `refactor` か。`kind=add-impl` がある場合、その PLAN は
    Reverse pairing obligation を持つため尊重する。
@@ -44,7 +44,7 @@ Add-feature または Retrofit として route する。
 
 ### Step 1 — regression fence を作る
 
-`bun run test` を実行し、baseline pass count を記録する。refactor scope 内に `.skip` または `.todo` の
+`npm run test` を実行し、baseline pass count を記録する。refactor scope 内に `.skip` または `.todo` の
 test がある場合は、un-skip するか、それを扱う PLAN を起票する。fence が complete かつ Green の場合だけ進む。
 
 ### Step 2 — structural change を 1 つだけ行う
@@ -53,7 +53,7 @@ test がある場合は、un-skip するか、それを扱う PLAN を起票す�
 equivalent branches の collapse、dead code removal など。各 change 後に full gate sequence を実行する。
 
 ```
-bun run typecheck && bun run lint && bun run test && helix doctor
+npm run typecheck && npm run lint && npm run test && helix doctor
 ```
 
 いずれかの gate が Red になった場合は、進む前に最後の change を戻す。
@@ -61,7 +61,7 @@ Red gate をまたいで複数 structural changes を蓄積しない。
 
 ### Step 3 — behaviour invariance を確認する
 
-- `bun run test` が baseline と同じ Green tests 数で pass する
+- `npm run test` が baseline と同じ Green tests 数で pass する
   （refactor 中は tests を追加・削除しない。追加・削除は後続 Add-feature または TDD work で行う）。
 - `helix doctor` exits 0.
 - refactor が public export signature に触れる場合、`helix review --uncommitted` を実行し、
@@ -77,7 +77,7 @@ refactor 後に paired design doc の無い source file が残る場合、それ
 
 - [ ] 最初の structural commit 前に regression fence が Green。
 - [ ] 各 commit が structural change を 1 つだけ含む。
-- [ ] `bun run typecheck && bun run lint && bun run test && helix doctor` green
+- [ ] `npm run typecheck && npm run lint && npm run test && helix doctor` green
       after every commit.
 - [ ] new exported API surface を追加していない
       （追加する場合は Add-feature routing が必要）。
