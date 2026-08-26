@@ -54,7 +54,7 @@ generates:
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_snapshot }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L7-493-impact-ci-recovery.md
   requires:
