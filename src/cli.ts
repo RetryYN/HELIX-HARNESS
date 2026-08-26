@@ -359,10 +359,13 @@ import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-r
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
+  auditIssueHierarchyDependencyAlignment,
   collectIssueDependencyContracts,
+  collectIssueHierarchyContracts,
   type IssueDependencyNode,
   type IssueHierarchyNode,
   type IssuePlanBinding,
+  projectIssueDependencyMigrationCandidates,
 } from "./runtime/issue-hierarchy";
 import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
@@ -13703,6 +13706,8 @@ github
       let nodes: IssueDependencyNode[];
       let plans: IssuePlanBinding[];
       let contractFindings = [] as ReturnType<typeof collectIssueDependencyContracts>["findings"];
+      let alignmentReport: ReturnType<typeof auditIssueHierarchyDependencyAlignment> | null = null;
+      let migrationCandidates: ReturnType<typeof projectIssueDependencyMigrationCandidates> = [];
       if (opts.inputJson) {
         nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
         plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
@@ -13733,8 +13738,10 @@ github
         const collected = collectIssueDependencyContracts(issues);
         nodes = collected.nodes;
         contractFindings = collected.findings;
+        const hierarchyNodes = collectIssueHierarchyContracts(issues);
+        alignmentReport = auditIssueHierarchyDependencyAlignment(hierarchyNodes, nodes);
         const governedNumbers = new Set(nodes.map((node) => node.number));
-        plans = readdirSync(join(process.cwd(), "docs", "plans"))
+        const allPlanBindings = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
           .flatMap((name) => {
             const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
@@ -13743,8 +13750,18 @@ github
             const githubIssueId = Number(
               frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
             );
-            return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
+            return planId && Number.isSafeInteger(githubIssueId) ? [{ planId, githubIssueId }] : [];
           });
+        plans = allPlanBindings.filter((plan) => governedNumbers.has(plan.githubIssueId));
+        const hierarchyNumbers = new Set(hierarchyNodes.map((node) => node.number));
+        const migrationPlans = allPlanBindings.filter((plan) =>
+          hierarchyNumbers.has(plan.githubIssueId),
+        );
+        migrationCandidates = projectIssueDependencyMigrationCandidates(
+          hierarchyNodes,
+          nodes,
+          migrationPlans,
+        );
       }
       const dependencyReport = auditIssueDependencies(nodes, plans, {
         // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.
@@ -13762,11 +13779,34 @@ github
           : contractFindings.filter((finding) =>
               (parsedFocus as number[]).includes(finding.issueNumber),
             );
+      const focusedAlignmentFindings =
+        alignmentReport === null
+          ? []
+          : parsedFocus === null
+            ? alignmentReport.findings
+            : alignmentReport.findings.filter((finding) =>
+                (parsedFocus as number[]).includes(finding.issueNumber),
+              );
+      const focusedMigrationCandidates =
+        parsedFocus === null
+          ? migrationCandidates
+          : migrationCandidates.filter((candidate) =>
+              (parsedFocus as number[]).includes(candidate.issueNumber),
+            );
       const report = {
         ...dependencyReport,
-        ok: dependencyReport.ok && focusedContractFindings.length === 0,
+        ok:
+          dependencyReport.ok &&
+          focusedContractFindings.length === 0 &&
+          focusedAlignmentFindings.length === 0,
         checkedIssues: dependencyReport.checkedIssues + focusedContractFindings.length,
-        findings: [...focusedContractFindings, ...dependencyReport.findings].sort(
+        checkedAlignmentIssues: alignmentReport?.checkedIssues ?? 0,
+        migrationCandidates: focusedMigrationCandidates,
+        findings: [
+          ...focusedContractFindings,
+          ...focusedAlignmentFindings,
+          ...dependencyReport.findings,
+        ].sort(
           (left, right) =>
             left.issueNumber - right.issueNumber || left.code.localeCompare(right.code),
         ),
