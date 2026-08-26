@@ -46,6 +46,8 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-677-outstanding-snapshot-semantic-merge-guard.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/harness/L6-function-design/governance-enforcement.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/outstanding-snapshot.ts, artifact_type: source_module }
   - { artifact_path: src/audit/github-merge-readiness.ts, artifact_type: source_module }
@@ -86,8 +88,9 @@ Issue #1052で確認された、JSONとしては妥当でも`decision_count`、`
 2. `inspectOutstandingSnapshot`へ既存live projectionとcommitted snapshotのsemantic照合を集約する。
 3. `helix guard outstanding-snapshot`へ早期surfaceを追加する。
 4. GitHub merge-readinessとPR作成前判定へ同じviolationをAND接続する。
-5. snapshot再生成後にtargeted test、typecheck、Biome、PLAN lint、DB rebuild／replayを実測する。
-6. current HEADのClaude独立検収、CI、main read-afterで終端する。
+5. CLI command追加で変動した既存source digest ownerだけを正本値へ更新し、他のrefactor候補や設計意味論は変更しない。
+6. snapshot再生成後にtargeted test、typecheck、Biome、PLAN lint、DB rebuild／replayを実測する。
+7. current HEADのClaude独立検収、CI、main read-afterで終端する。
 
 ## 受入条件
 

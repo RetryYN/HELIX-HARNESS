@@ -4691,23 +4691,6 @@ guard
   });
 
 guard
-  .command("outstanding-snapshot")
-  .description("commit/rebase後のoutstanding snapshotとlive projectionをsemantic照合")
-  .option("--json", "JSON output")
-  .action((opts: { json?: boolean }) => {
-    const result = inspectOutstandingSnapshot(process.cwd());
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    } else {
-      process.stdout.write(
-        `guard outstanding-snapshot: ${result.ok ? "pass" : "blocked"} path=${result.snapshotPath} repair=${result.repairCommand}\n`,
-      );
-      for (const violation of result.violations) process.stdout.write(`  - ${violation}\n`);
-    }
-    process.exitCode = result.ok ? 0 : 1;
-  });
-
-guard
   .command("pr-context")
   .description("check PR-only GitHub operation rules such as poc and hotfix merge constraints")
   .option("--event-name <name>", "GitHub event name (defaults to GITHUB_EVENT_NAME)")
@@ -16084,6 +16067,23 @@ distribution
     process.stdout.write(`  checksum: ${checksum}\n`);
     process.stdout.write("  signature: required but not created (external signing boundary)\n");
     process.stdout.write("  publish: requires PO approval\n");
+  });
+
+guard
+  .command("outstanding-snapshot")
+  .description("commit/rebase後のoutstanding snapshotとlive projectionをsemantic照合")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const result = inspectOutstandingSnapshot(process.cwd());
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    } else {
+      process.stdout.write(
+        `guard outstanding-snapshot: ${result.ok ? "pass" : "blocked"} path=${result.snapshotPath} repair=${result.repairCommand}\n`,
+      );
+      for (const violation of result.violations) process.stdout.write(`  - ${violation}\n`);
+    }
+    process.exitCode = result.ok ? 0 : 1;
   });
 
 program.parseAsync(process.argv).catch((e: unknown) => {
