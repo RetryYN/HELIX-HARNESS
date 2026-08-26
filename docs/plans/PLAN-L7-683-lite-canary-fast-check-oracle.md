@@ -48,6 +48,7 @@ generates:
 modifies:
   - { artifact_path: docs/test-design/helix/L8-lite-canary-ci-parallelization-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/distribution-dependency-closure.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md
   requires:
