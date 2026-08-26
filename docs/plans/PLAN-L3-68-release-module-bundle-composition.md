@@ -47,7 +47,6 @@ generates:
   - { artifact_path: docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/release-module-bundle-composition-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/governance/release-module-bundle-rollout-roadmap.md, artifact_type: markdown_doc }
-  - { artifact_path: tests/release-module-bundle-composition-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
