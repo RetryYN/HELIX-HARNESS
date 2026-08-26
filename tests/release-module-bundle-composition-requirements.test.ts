@@ -67,7 +67,7 @@ describe("Release Module／Bundle composition requirements authority", () => {
   });
 
   it("static verificationをtrusted executionより先に固定する", () => {
-    expect(requirement).toContain("static-before-trusted verification");
+    expect(requirement).toContain("信頼実行前のstatic検証");
     expect(requirement).toContain("未信頼artifactはcode実行前");
     expect(acceptance).toContain("static検査後だけtrusted consumerを起動");
   });

@@ -38,10 +38,10 @@ setup／status／doctor／DB、Requirement IR、Design／Workflow registry、Imp
 ### RLS-R-01 Module schemaとlifecycle
 
 Moduleはstable ID、独立SemVer、source full SHA、tree／authority／semantic digest、責務／除外、public／internal surface、
-artifact exact set、required／optional／conflict dependency、compatibility、acceptance／security profile、migration／rollback、
+artifact完全集合、required／optional／conflict依存、互換性、受入／security profile、移行／rollback、
 replacementを保持する。lifecycleは`shadow → preview → rc → stable → deprecated → retired`の一方向を正本とする。
 
-### RLS-R-02 initial Module exact set
+### RLS-R-02 初期Module完全集合
 
 初期候補は次の11件とする。
 
@@ -51,7 +51,7 @@ replacementを保持する。lifecycleは`shadow → preview → rc → stable �
 候補登録はstable到達を意味しない。Designは#290等、Workflowは#204／#206／#188、RefactoringはSystem Synthesis、
 Agent RuntimeはResident Lane／security／72時間soakの既存ownerをrelease blockerとして参照し、未完機能をmodule実装へ混載しない。
 
-### RLS-R-03 path ownership
+### RLS-R-03 path所有権
 
 全release pathはexactly-one `primary_module_id`を持ち、secondary consumer、artifact role、authority roleを記録する。
 orphan、primary重複、scope外混入、required artifact欠落、shared semantic copy、generated view正本化をfail-closeする。
@@ -71,21 +71,21 @@ compatibility／rollback profile、bundle digestを持つ。初期候補は`heli
 `helix-quality`、`helix-refactoring`、`helix-autonomous-dev`、`helix-lite`、`helix-full`の8件とする。
 Bundle固有責務はcomposition、installer、default configuration、acceptance profileに限定し、module sourceの意味を変更しない。
 
-### RLS-R-06 Lite baseline migration
+### RLS-R-06 Lite基準線の移行
 
 現行`consumer_core_v1`はsource commit、artifact／file inventory／authority digest、Linux／Windows receiptを持つ
 `frozen_baseline`とする。全path分類、shadow package、new `helix-lite` parity、1 stable cycle併存、supersede、retirement approvalの
 順に移行する。旧Liteへ新Design／Refactoring／Runtimeを継ぎ足さず、先行削除やnew greenによるold failure相殺を禁止する。
 
-## RLS-FR-003 Build、verification、promotion
+## RLS-FR-003 Build、検証、昇格
 
 ### RLS-R-07 deterministic buildとrelease packet
 
 既存builderを拡張し、同一source／registry／profile入力から同一Module／Bundle artifactを生成する。release packetはsource full SHA、
-tree／module／bundle registry digest、artifact digest、checksums、SBOM、compatibility、acceptance、independent review、rollback、
+tree／module／bundle registry digest、artifact digest、checksums、SBOM、互換性、受入、独立review、rollback、
 release noteを束縛する。Module別・Lite専用の重複builderを作らない。
 
-### RLS-R-08 static-before-trusted verification
+### RLS-R-08 信頼実行前のstatic検証
 
 未信頼artifactはcode実行前にmanifest exact set、hash、schema、source lock、secret、unexpected executable、permission、Action SHA、
 path traversal、symlink／junction、duplicate／case collision、archive bombを検査する。static failureをtrusted executionのgreenで
@@ -95,13 +95,13 @@ acceptance、upgrade、uninstall／rollbackを行い、consumer所有bytesを保
 ### RLS-R-09 DevOS promotionとactor separation
 
 promotionは`R0 inventory → R1 ownership compile → R2 shadow package → R3 bundle composition → R4 packet seal →
-R5 DevOS candidate PR → R6 static verification → R7 trusted consumer → R8 independent verification → R9 RC →
+R5 DevOS候補PR → R6 static検証 → R7 trusted consumer検証 → R8 独立検証 → R9 RC →
 R10 canary → R11 stable／rollback`とする。producer、reviewer、verifier、final acceptance authorityを分離し、candidate HEADと
 artifact digestへ束縛する。DevOS candidate PRはgenerated exact setだけを変更する。
 
-## RLS-FR-004 Wave、CI、feedback
+## RLS-FR-004 Wave、CI、フィードバック
 
-### RLS-R-10 channel、SemVer、release wave
+### RLS-R-10 channel、SemVer、release wave管理
 
 ModuleとBundleのSemVerを独立管理する。Waveは全Module shadow、Foundation RC、Workflow／CI／Recovery、Lite RC、
 Requirements／Design Preview、Refactoring Preview、Runtime／Autonomous／Fullの依存順とする。preview moduleをstable Fullへ
@@ -114,7 +114,7 @@ module-static／unit／integration、bundle composition、consumer install、cro
 dependent closureを展開する。unknown／ambiguousはfullへfallbackし、main／nightly／releaseはfullを維持する。selection mutation、
 inventory union、LinuxからWindowsへのexact artifact handoffを必須にし、無関係fullの直列増殖を禁止する。
 
-### RLS-R-12 feedback、replacement、terminal convergence
+### RLS-R-12 フィードバック、置換、終端収束
 
 release finding、rollback、compatibility、false positive／negative、consumer evidenceをSystem Synthesis observationとReverse／Recoveryへ
 戻す。module／bundle registry、release index、Git、GitHub、`harness.db`を再構築可能なprojectionとして収束し、mainとDevOSの

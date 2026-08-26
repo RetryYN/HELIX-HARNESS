@@ -19,7 +19,7 @@ pair_artifact: docs/design/helix/L3-requirements/release-module-bundle-compositi
 文書上の分類やfile countだけでは合格にしない。既存authorityの再利用、exact ownership、dependency closure、再現可能artifact、
 static-before-trusted順序、consumer behavior parity、rollback、actor分離、main／DevOS read-afterを検証する。
 
-## §1 oracle exact set
+## §1 oracle完全集合
 
 | AC ID | 対応requirement | 合格条件 | negative mutation |
 |---|---|---|---|
@@ -44,4 +44,4 @@ static-before-trusted順序、consumer behavior parity、rollback、actor分離�
 - feature contract: `RLS-FR-001..004` exact 4件。
 - supporting requirement: `RLS-R-01..12` exact 12件。
 - acceptance: `RLS-AC-001..015` exact 15件。
-- issue decomposition: parent #1073、RLS-01〜13 = #1074〜#1086。
+- Issue分解: 親 #1073、RLS-01〜13 = #1074〜#1086。
