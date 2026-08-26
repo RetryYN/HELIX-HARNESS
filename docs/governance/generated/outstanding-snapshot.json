@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 35,
+  "decision_count": 36,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -33,6 +33,7 @@
     "PLAN-L7-679-codex-luna-xhigh-adapter-transport",
     "PLAN-L7-680-skill-bun-residual-authority",
     "PLAN-L7-681-github-identity-source-diagnostics",
+    "PLAN-L7-683-lite-canary-fast-check-oracle",
     "PLAN-L7-684-full-regression-shard-contract",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
