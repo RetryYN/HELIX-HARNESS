@@ -4,6 +4,8 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+
+// PLAN-L7-683-lite-canary-fast-check-oracle — U-DISTCLOSE-019／U-DISTCLOSE-020
 import { selectLiteCanaryLane } from "../src/runtime/impact-ci";
 import {
   loadDistributionCapabilityArtifactCatalog,
@@ -29,6 +31,14 @@ function fixture(files: Record<string, string>): string {
     mkdirSync(join(root, path, ".."), { recursive: true });
     writeFileSync(join(root, path), content, "utf8");
   }
+  return root;
+}
+
+function currentRepositoryFixture(): string {
+  const parent = mkdtempSync(join(tmpdir(), "helix-lite-fast-check-"));
+  roots.push(parent);
+  const root = join(parent, "repo");
+  execFileSync("git", ["clone", "--quiet", "--shared", process.cwd(), root]);
   return root;
 }
 
@@ -216,6 +226,52 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
         reason_codes: expect.arrayContaining(["changed_path_closure_contact"]),
       });
     }
+  });
+
+  it("U-DISTCLOSE-019: primary distribution closureのfailureをfast checkが相殺しない", () => {
+    const root = currentRepositoryFixture();
+    const consumerPath = join(root, "src/setup/distribution-consumer-cli.ts");
+    writeFileSync(
+      consumerPath,
+      `${readFileSync(consumerPath, "utf8")}\nimport "../runtime/worker-isolation-broker";\n`,
+      "utf8",
+    );
+    const candidateHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: root,
+      encoding: "utf8",
+    }).trim();
+
+    expect(runLiteCanaryFastCheck({ repoRoot: root, candidateHead })).toMatchObject({
+      profile_ok: true,
+      manifest_ok: true,
+      closure_ok: false,
+      source_head: candidateHead,
+      candidate_head: candidateHead,
+      path_read_failed: false,
+    });
+  });
+
+  it("U-DISTCLOSE-020: coverage closureのdynamic import failureをfast checkが相殺しない", () => {
+    const root = currentRepositoryFixture();
+    const coveragePath = join(root, "tests/loop-store-durability.test.ts");
+    writeFileSync(
+      coveragePath,
+      `${readFileSync(coveragePath, "utf8")}\nvoid import("../src/runtime/digest");\n`,
+      "utf8",
+    );
+    const candidateHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: root,
+      encoding: "utf8",
+    }).trim();
+
+    expect(runLiteCanaryFastCheck({ repoRoot: root, candidateHead })).toMatchObject({
+      profile_ok: true,
+      manifest_ok: true,
+      closure_ok: false,
+      source_head: candidateHead,
+      candidate_head: candidateHead,
+      path_read_failed: false,
+    });
   });
 
   it("U-DISTCLOSE-014: traversal／symlink sourceをrepo外read前にtyped拒否する", () => {
