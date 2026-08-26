@@ -60,7 +60,7 @@ contract_postconditions: "fast closure selectorとtyped lane aggregateを追加�
 contract_invariants: "harness-check 1本、Full回帰、source／profile／artifact／digest binding、Linux artifact authority、Windows same-artifactを弱めない"
 contract_failures: "closure contact、配布文書／Windows durability coverage contact、削除／rename、generated dependency（Lite artifact build入口src/cli.tsを含む）、manifest、uncertainty（PR base／head／ref欠落またはGit branch ref形式違反を含む）、path read failure、stale digest、fast check failureはrequiredまたはaggregate failureへ倒す"
 tdd_red_required: true
-red_test: "U-LITECI-001..007、U-DISTCLOSE-016..018、U-LITECI-WF-001..004でskip境界、PR context、build entrypoint coverage、fast check、relation graph、DAG、typed aggregateを先に固定する"
+red_test: "U-LITECI-001..007、U-DISTCLOSE-016..018、U-LITECI-WF-001..005でskip境界、PR context、build entrypoint coverage、非PRのbase導出、fast check、relation graph、DAG、typed aggregateを先に固定する"
 red_at: "2026-08-26T14:22:34Z"
 green_at: "2026-08-26T14:22:44Z"
 mutation_oracle_evidence: "2026-08-26T14:22:34Zにsrc/runtime/impact-ci.tsのselectLiteCanaryLaneのfail-close分岐を一時的にif (true)へ変異し、tests/impact-ci.test.tsが5 failed / 18 passed (exit 1)となることを実測した。U-LITECI-002..005とrepository selector CLIのrequired判定がauthorized_skipへ退行したため変異をkillした。実装を復元し、2026-08-26T14:22:44Zに同テストを23 passed (exit 0)で再確認した。"
@@ -84,6 +84,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-017, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-DISTCLOSE-018, test_path: tests/distribution-dependency-closure.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-WF-004, test_path: tests/relation-graph-loader.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md, oracle_id: U-LITECI-WF-005, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli/lite-canary-selector.ts, artifact_type: source_module }

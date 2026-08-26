@@ -47,6 +47,9 @@ Linux が検証して upload した同一 artifact だけを消費する。
   aggregate は Lite、Windows、Full の各 job result と typed disposition／skip code の組を
   exact に検査し、`success:success:none` または
   `success:authorized_skip:closure_unaffected` 以外を拒否する。
+- PR以外の `push`／`schedule`／`workflow_dispatch` では、イベントの `before` SHA が空または
+  zero SHA の場合に候補HEADの直前コミットを `base_head` として明示導出する。PRではこの
+  fallbackを許可せず、PR base／head／refの欠落・不正を引き続き `required` へ倒す。
 
 ## job境界とデータ流
 

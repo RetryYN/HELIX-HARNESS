@@ -30,6 +30,7 @@ pair_artifact: docs/design/helix/L6-function-design/lite-canary-ci-parallelizati
 | U-LITECI-WF-002 | job DAG | LiteとFullに相互 `needs` がなく、Windowsの依存先がLinux Lite jobだけである | `tests/harness-check-workflow.test.ts` |
 | U-LITECI-WF-003 | aggregate oracle | 全laneについて success または `authorized_skip:closure_unaffected` だけを受理し、untyped skipを拒否する | `tests/harness-check-workflow.test.ts` |
 | U-LITECI-WF-004 | relation graph projection | `docs/design/design-catalog.yaml` を design node として投影し、変更impactで `missing-projection` を返さない | `tests/relation-graph-loader.test.ts` |
+| U-LITECI-WF-005 | non-PR base derivation | `workflow_dispatch`で`before` SHAが空でも候補HEADの親からfull rangeを作り、`snapshot_unavailable`へ落とさない | `tests/harness-check-workflow.test.ts` |
 
 ## 検証方針
 

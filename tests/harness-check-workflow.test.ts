@@ -754,6 +754,17 @@ describe("source harness-check workflow", () => {
     expect(regression["continue-on-error"]).toBeUndefined();
   });
 
+  it("U-IMPACTCI-WF-005: workflow_dispatchでbefore SHAが空でも候補HEADの親からfull rangeを作る", () => {
+    const { steps } = loadWorkflow();
+    const selector = stepByName(steps, "Impact CI profile selection");
+
+    expect(selector.run).toContain(
+      'if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then',
+    );
+    expect(selector.run).toContain(`base_head="$(git rev-parse "\${HEAD_SHA}^")"`);
+    expect(selector.run).toContain(`range="\${base_head}..\${candidate_head}"`);
+  });
+
   it("U-IMPACTCI-WF-004: 同一HEAD transition eventだけがprior green full receiptを再利用できる", () => {
     const { steps } = loadWorkflow();
     const selector = stepByName(steps, "Impact CI profile selection");

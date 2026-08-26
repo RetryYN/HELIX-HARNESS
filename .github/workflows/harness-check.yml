@@ -532,7 +532,7 @@ jobs:
           else
             profile="post_merge_full"
             candidate_head="$HEAD_SHA"
-            if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
               base_head="$(git rev-parse "${HEAD_SHA}^")"
             else
               base_head="$BEFORE_SHA"
