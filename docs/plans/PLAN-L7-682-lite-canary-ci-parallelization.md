@@ -29,7 +29,7 @@ ddd_modeling_decision: pure_function
 contract_preconditions: "既存のconsumer_core_v1 profile、artifact builder、Linux／Windows canary、Full harness gateが利用できる"
 contract_postconditions: "fast closure selectorとtyped lane aggregateを追加し、Lite heavy laneを安全にFull laneと並列起動できる"
 contract_invariants: "harness-check 1本、Full回帰、source／profile／artifact／digest binding、Linux artifact authority、Windows same-artifactを弱めない"
-contract_failures: "closure contact、配布文書／Windows durability coverage contact、削除／rename、generated dependency（Lite artifact build入口src/cli.tsを含む）、manifest、uncertainty（PR base／head／ref欠落を含む）、path read failure、stale digest、fast check failureはrequiredまたはaggregate failureへ倒す"
+contract_failures: "closure contact、配布文書／Windows durability coverage contact、削除／rename、generated dependency（Lite artifact build入口src/cli.tsを含む）、manifest、uncertainty（PR base／head／ref欠落またはGit branch ref形式違反を含む）、path read failure、stale digest、fast check failureはrequiredまたはaggregate failureへ倒す"
 tdd_red_required: true
 red_test: "U-LITECI-001..007、U-DISTCLOSE-016..018、U-LITECI-WF-001..004でskip境界、PR context、build entrypoint coverage、fast check、relation graph、DAG、typed aggregateを先に固定する"
 red_at: "2026-08-26T14:22:34Z"

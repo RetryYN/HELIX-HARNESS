@@ -287,7 +287,7 @@ describe("Impact CI pure contract", () => {
     });
   });
 
-  it("U-LITECI-006: PR base/ref/candidate欠落は推測せずrequiredへ倒す", () => {
+  it("U-LITECI-006: PR base/ref/candidate欠落・不正は推測せずrequiredへ倒す", () => {
     const candidateHead = spawnSync("git", ["rev-parse", "HEAD"], {
       cwd: process.cwd(),
       encoding: "utf8",
@@ -320,6 +320,14 @@ describe("Impact CI pure contract", () => {
     const missingRef = invoke({ PR_BASE_SHA: "a".repeat(40), REF_NAME: "" });
     expect(missingRef.status).toBe(0);
     expect(JSON.parse(missingRef.stdout)).toMatchObject({
+      disposition: "required",
+      skip_code: null,
+      reason_codes: expect.arrayContaining(["selector_uncertain"]),
+    });
+
+    const invalidRef = invoke({ PR_BASE_SHA: "a".repeat(40), REF_NAME: "feature/foo " });
+    expect(invalidRef.status).toBe(0);
+    expect(JSON.parse(invalidRef.stdout)).toMatchObject({
       disposition: "required",
       skip_code: null,
       reason_codes: expect.arrayContaining(["selector_uncertain"]),

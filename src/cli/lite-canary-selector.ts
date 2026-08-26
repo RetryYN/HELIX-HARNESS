@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import {
+  isValidPullRequestRef,
   type LiteCanaryRepositorySelectorInput,
   type LiteCanarySelection,
   selectLiteCanaryLane,
@@ -56,7 +57,7 @@ export function runLiteCanaryRepositorySelector(
     input.event_name === "pull_request" &&
     (!isCommitSha(input.pull_request_base_head) ||
       !isCommitSha(input.candidate_head) ||
-      input.ref_name.trim().length === 0);
+      !isValidPullRequestRef(input.ref_name));
   let baseHead = "";
   if (input.event_name === "pull_request") {
     // PRのbase/ref/candidateが欠落または不正な場合、推測した親HEADへfallbackしない。

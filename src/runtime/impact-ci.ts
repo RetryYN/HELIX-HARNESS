@@ -247,6 +247,40 @@ function sortedUnique(values: readonly string[]): string[] {
 }
 
 /**
+ * PR head refをskip判定へ渡す前の保守的なGit branch ref検証。
+ * 判定不能なrefはrequiredへ倒すため、Gitが受理する全ての表記を再現する必要はない。
+ */
+export function isValidPullRequestRef(refName: string): boolean {
+  const invalidRefCharacters = new Set(["~", "^", ":", "?", "*", "[", "\\"]);
+  if (
+    refName.length === 0 ||
+    refName !== refName.trim() ||
+    refName === "@" ||
+    refName.startsWith("-") ||
+    refName.includes("..") ||
+    refName.includes("@{") ||
+    refName.includes("//")
+  ) {
+    return false;
+  }
+  for (const character of refName) {
+    const codePoint = character.codePointAt(0) ?? 0;
+    if (codePoint <= 0x20 || codePoint === 0x7f || invalidRefCharacters.has(character)) {
+      return false;
+    }
+  }
+  return refName
+    .split("/")
+    .every(
+      (component) =>
+        component.length > 0 &&
+        !component.startsWith(".") &&
+        !component.endsWith(".") &&
+        !component.endsWith(".lock"),
+    );
+}
+
+/**
  * Lite artifactを省略できる唯一の境界を決定する。fast check自体はcallerが必ず実行し、
  * その結果と変更metadataが一つでも不確実ならtyped requiredへ倒す。
  */
@@ -271,6 +305,9 @@ export function selectLiteCanaryLane(input: LiteCanarySelectorInput): LiteCanary
     input.ref_name.startsWith("release-candidate/")
   ) {
     reasons.add("full_context");
+  }
+  if (input.event_name === "pull_request" && !isValidPullRequestRef(input.ref_name)) {
+    reasons.add("selector_uncertain");
   }
   if ([...observedChangePaths].some((path) => closurePaths.has(path))) {
     reasons.add("changed_path_closure_contact");

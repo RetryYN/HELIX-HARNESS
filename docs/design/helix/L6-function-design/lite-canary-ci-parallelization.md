@@ -37,7 +37,7 @@ Linux が検証して upload した同一 artifact だけを消費する。
 - pull request の変更が closure／artifact に接触、削除、rename、generated dependency、
   manifest に該当する場合も `required` とする。非接触かつ fast check が全て green の場合だけ
   `authorized_skip` とし、skip code は `closure_unaffected` の一種類に限定する。
-- pull request の base SHA、head SHA、head ref のいずれかが欠落または不正な場合は
+- pull request の base SHA、head SHA、head ref のいずれかが欠落または不正（Git branch ref形式違反を含む）の場合は
   `selector_uncertain` として `required` に倒し、candidate の親コミットを推測する fallbackを許可しない。
   Lite artifact buildの実入口である `src/cli.ts` はgenerated dependencyとしてclosureへ含め、変更時は
   `required` とする。
