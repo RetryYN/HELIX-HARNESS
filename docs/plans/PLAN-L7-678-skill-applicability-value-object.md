@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-677-skill-applicability-value-object
-title: "PLAN-L7-677 (refactor): typed skill applicability value object"
+plan_id: PLAN-L7-678-skill-applicability-value-object
+title: "PLAN-L7-678 (refactor): typed skill applicability value object"
 kind: refactor
 layer: L7
 drive: agent
@@ -33,7 +33,7 @@ contract_failures: "unknown identity、axis mismatch、duplicate、polarity conf
 tdd_red_required: true
 red_at: "2026-08-26T04:28:02+09:00"
 green_at: "2026-08-26T04:28:35+09:00"
-mutation_oracle_evidence: "2026-08-26T04:29:03+09:00にpositive／negative polarity conflict拒否を除去し、tests/skill-applicability-registry.test.tsのrejects polarity conflictが1 failed・8 passedとなることを実測した。復元後はrequirements／design-language oracleを含む4 suite 35 tests green、typecheck green。"
+mutation_oracle_evidence: "2026-08-26T04:29:03+09:00にpositive／negative polarity conflict拒否を除去し、tests/skill-applicability-registry.test.tsのrejects polarity conflictが1 failed・8 passedとなることを実測した。追加したloader oracleではrequirements digest、workflow digest、workflow versionの各照合を個別に検証し、各throwを除去したmutationが失敗することを確認する。"
 complexity_effect: net_negative
 complexity_justification: "旧4軸別enum／field案をregistry参照の同型pairへ統合し、意味軸自体はclassification registryに一元化する"
 removal_trigger: "skill applicabilityがworkflow classification registryの次期major schemaへ統合された時"
@@ -48,7 +48,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — axis／polarity／legacy mutation" }
   - { role: tl, slot_label: "TL — requirementsとruntimeの境界" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-677-skill-applicability-value-object.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-678-skill-applicability-value-object.md, artifact_type: markdown_doc }
   - { artifact_path: src/schema/skill-applicability-registry.ts, artifact_type: source_module }
   - { artifact_path: tests/skill-applicability-registry.test.ts, artifact_type: test_code }
 modifies:

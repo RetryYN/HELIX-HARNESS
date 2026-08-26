@@ -1,5 +1,6 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   adaptLegacySkillApplicability,
@@ -8,6 +9,36 @@ import {
   SKILL_APPLICABILITY_REGISTRY_PATH,
   skillApplicabilityRegistrySchema,
 } from "../src/schema/skill-applicability-registry.js";
+import { WORKFLOW_CLASSIFICATION_REGISTRY_PATH } from "../src/schema/workflow-classification-registry.js";
+
+const SKILL_APPLICABILITY_AUTHORITY_PATH =
+  "docs/design/helix/L3-requirements/skill-applicability-authority.md";
+const REQUIREMENTS_AUTHORITY_PATH = "docs/governance/helix-harness-requirements_v1.3.md";
+
+function makeRegistryLoaderFixture(): {
+  root: string;
+  registryPath: string;
+  raw: Record<string, unknown>;
+} {
+  const root = mkdtempSync(join(tmpdir(), "helix-skill-applicability-loader-"));
+  for (const relativePath of [
+    SKILL_APPLICABILITY_REGISTRY_PATH,
+    SKILL_APPLICABILITY_AUTHORITY_PATH,
+    REQUIREMENTS_AUTHORITY_PATH,
+    WORKFLOW_CLASSIFICATION_REGISTRY_PATH,
+  ]) {
+    const target = join(root, relativePath);
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, readFileSync(resolve(process.cwd(), relativePath)));
+  }
+  const registryPath = join(root, SKILL_APPLICABILITY_REGISTRY_PATH);
+  const raw = JSON.parse(readFileSync(registryPath, "utf8")) as Record<string, unknown>;
+  return { root, registryPath, raw };
+}
+
+function writeRegistryFixture(registryPath: string, raw: Record<string, unknown>): void {
+  writeFileSync(registryPath, `${JSON.stringify(raw, null, 2)}\n`, "utf8");
+}
 
 describe("skill applicability registry", () => {
   it("loads requirements-owned authority and binds the workflow registry", () => {
@@ -22,6 +53,51 @@ describe("skill applicability registry", () => {
         emit_legacy_identity: false,
       }),
     );
+  });
+
+  it("rejects a requirements authority digest drift through the loader", () => {
+    const fixture = makeRegistryLoaderFixture();
+    try {
+      const authority = fixture.raw.authority as Record<string, unknown>;
+      authority.source_digest = `sha256:${"0".repeat(64)}`;
+      writeRegistryFixture(fixture.registryPath, fixture.raw);
+
+      expect(() => loadSkillApplicabilityRegistry(fixture.root)).toThrow(
+        "skill applicability requirements digest mismatch",
+      );
+    } finally {
+      rmSync(fixture.root, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects a workflow registry digest drift through the loader", () => {
+    const fixture = makeRegistryLoaderFixture();
+    try {
+      const identityReference = fixture.raw.identity_reference as Record<string, unknown>;
+      identityReference.registry_source_digest = `sha256:${"1".repeat(64)}`;
+      writeRegistryFixture(fixture.registryPath, fixture.raw);
+
+      expect(() => loadSkillApplicabilityRegistry(fixture.root)).toThrow(
+        "skill applicability workflow registry digest mismatch",
+      );
+    } finally {
+      rmSync(fixture.root, { recursive: true, force: true });
+    }
+  });
+
+  it("rejects a workflow registry version drift through the loader", () => {
+    const fixture = makeRegistryLoaderFixture();
+    try {
+      const identityReference = fixture.raw.identity_reference as Record<string, unknown>;
+      identityReference.registry_version = "0.0.0";
+      writeRegistryFixture(fixture.registryPath, fixture.raw);
+
+      expect(() => loadSkillApplicabilityRegistry(fixture.root)).toThrow(
+        "skill applicability workflow registry version mismatch",
+      );
+    } finally {
+      rmSync(fixture.root, { recursive: true, force: true });
+    }
   });
 
   it("accepts separate typed identities without folding their axes", () => {

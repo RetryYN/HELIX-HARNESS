@@ -17,7 +17,7 @@ pair_artifact: docs/design/helix/L5-detail/development-model-runtime-routing.md
 
 | Oracle | 正例 | 反例／mutation |
 |---|---|---|
-| U-SKAPP-001 | requirementsとclassification registryのversion／digestを同時検証 | 片方のdigest、version、source pathを変えたregistryを拒否 |
+| U-SKAPP-001 | requirementsとclassification registryのversion／digestをloaderで同時検証 | requirements digest、classification digest、classification version、source pathを変えたregistryを拒否 |
 | U-SKAPP-002 | positive／negative typed pairを別集合で受理 | unknown identity、axis mismatch、duplicate、polarity conflict、空positiveを拒否 |
 | U-SKAPP-003 | legacy一意tokenをtyped pairへ変換しsource warningを返す | `Forward`／`Scrum`をambiguous、unknownをunsupportedとして拒否 |
 | U-SKAPP-004 | scaffoldがtyped pairと極性だけを生成 | `drive_models`または旧4軸固定fieldの再生成を拒否 |
@@ -47,5 +47,5 @@ current catalog digestへ束縛する責務だけを持ち、reviewed ownerの�
 
 ## Mutation閉鎖
 
-registry digestをずらす、polarity conflict拒否を外す、legacy columnをscoreへ戻す、`scrum_type`必須条件を戻す、
+registry digest／versionをずらす、polarity conflict拒否を外す、legacy columnをscoreへ戻す、`scrum_type`必須条件を戻す、
 CLI legacy keyを1件復活させる各mutationが最低1 oracleをredにする。
