@@ -64,7 +64,9 @@ contract_invariants: "test削除、timeout緩和、same-root worker増加、targ
 contract_failures: "missing／duplicate／unknown／wrong HEAD／base／digest／shard／file set／nonzero receiptをfail-closeする"
 tdd_red_required: true
 red_test: "U-FULLSHARD-001..006がpartition欠落、交差、digest改竄、identity mismatch、nonzero receiptを検出する"
-mutation_oracle_evidence: "2026-08-27T03:28:48+09:00にduplicate_test_path guardを一時除去し、U-FULLSHARD-002がexpected duplicate_test_path欠落で1 failed、exit 1となるkillを実測。2026-08-27T03:29:02+09:00にreceipt candidate HEAD照合を一時除去し、U-FULLSHARD-005がexpected receipt_head_mismatch:bulk-1欠落で1 failed、exit 1となる独立killを実測した。apply_patchで両guardを復元後、6 tests greenと製品コードの意図差分だけを再確認した"
+red_at: "2026-08-26T18:28:48Z"
+green_at: "2026-08-26T20:49:59Z"
+mutation_oracle_evidence: "tests/full-regression-shards.test.tsで、2026-08-27T03:28:48+09:00にduplicate_test_path guardを一時除去し、U-FULLSHARD-002がexpected duplicate_test_path欠落で1 failed、exit 1となるkillを実測。2026-08-27T03:29:02+09:00にreceipt candidate HEAD照合を一時除去し、U-FULLSHARD-005がexpected receipt_head_mismatch:bulk-1欠落で1 failed、exit 1となる独立killを実測した。apply_patchで両guardを復元後、6 tests greenと製品コードの意図差分だけを再確認した"
 complexity_effect: justified_positive
 complexity_justification: "workflow YAMLへ判定を複製せず、partitionとreceipt検証を単一pure moduleへ集約する"
 removal_trigger: "Impact CI inventory自身がversioned distributed execution planとreceipt validatorを直接生成するmajor migration時"
