@@ -26,6 +26,35 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
+review_evidence:
+  - reviewer: "codex-intra-runtime"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-26T16:11:17Z"
+    tests_green_at: "2026-08-26T16:10:26Z"
+    verdict: approve
+    worker_model: "gpt-5.4-codex"
+    reviewer_model: "gpt-5.6-luna"
+    reviewer_session_id: "01a03ed6-9bbe-7912-834c-86076f60fa91"
+    reviewed_head_sha: 2b71311fdc709d49a5661afcd2a2ad7341bb0218
+    scope: "PR #1066のcurrent HEAD 2b71311fdc709d49a5661afcd2a2ad7341bb0218について、Lunaが提示packetを基に静的な独立レビューを実施。PR base／head／refの欠落・不正時のfail-close、candidate-parent fallbackの禁止、src/cli.tsのgenerated dependency、invalid Git refの拒否、Lite／Windows／Fullのtyped aggregateを確認し、前回3 blockerを解消済みと判定した。テスト・CI・GitHub証跡は提示事実としてのみ扱い、Luna自身は実行していない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/impact-ci.test.ts tests/distribution-dependency-closure.test.ts tests/harness-check-workflow.test.ts tests/relation-graph-loader.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-26T16:10:26Z"
+        evidence_path: tests/impact-ci.test.ts
+        output_digest: "sha256:3589b069e4588d7561c7d8b71cf9df78e16aca4febd8e108b972b6997fb89ffb"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-26T16:11:17Z"
+  review_binding:
+    reviewer: "codex-intra-runtime"
+    reviewed_at: "2026-08-26T16:11:17Z"
+    evidence_digest: "sha256:ab6372652f3d4e3594120ad5802c246809304fc2306967b35cdffd45945c82ed"
+  entries: []
 contract_preconditions: "既存のconsumer_core_v1 profile、artifact builder、Linux／Windows canary、Full harness gateが利用できる"
 contract_postconditions: "fast closure selectorとtyped lane aggregateを追加し、Lite heavy laneを安全にFull laneと並列起動できる"
 contract_invariants: "harness-check 1本、Full回帰、source／profile／artifact／digest binding、Linux artifact authority、Windows same-artifactを弱めない"
