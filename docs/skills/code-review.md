@@ -35,9 +35,9 @@ trace-freeze と accept gate における HELIX implementation artifacts の fiv
 file を開く前に次を実行する:
 
 ```
-bun run typecheck
-bun run lint
-bun run test
+npm run typecheck
+npm run lint
+npm run test
 helix doctor
 helix review --uncommitted
 ```

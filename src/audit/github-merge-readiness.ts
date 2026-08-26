@@ -1,6 +1,10 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  inspectOutstandingSnapshot,
+  OUTSTANDING_SNAPSHOT_REPAIR_COMMAND,
+} from "../lint/outstanding-snapshot";
 import { parseMarkdownFrontmatter } from "../lint/shared";
 import { shellQuote } from "../shared/shell-quote";
 
@@ -12,6 +16,8 @@ export interface GithubMergeReadinessInput {
   worktreeClean: boolean;
   ahead: number;
   behind: number;
+  /** branch sync後のcommitted outstanding snapshotとlive projectionのsemantic guard。 */
+  outstandingSnapshotViolations?: readonly string[];
   ghInstalled: boolean;
   ghAuthenticated: boolean;
   viewerPermission?: GithubViewerPermission | null;
@@ -38,6 +44,7 @@ export interface GithubMergeReadinessResult {
     createDraftPullRequest: string;
     inspectAuth: string;
     inspectRepositoryPermission: string;
+    repairOutstandingSnapshot: string;
   };
 }
 
@@ -47,6 +54,7 @@ export interface GithubMergeReadinessFinding {
     | "on_base_branch"
     | "base_not_ancestor"
     | "no_branch_delta"
+    | "outstanding_snapshot_semantic_drift"
     | "gh_missing"
     | "gh_auth_required"
     | "repo_write_permission_required";
@@ -194,6 +202,14 @@ export function analyzeGithubMergeReadiness(
       message: "base branch に対する差分 commit がない",
     });
   }
+  const outstandingSnapshotViolations = input.outstandingSnapshotViolations ?? [];
+  if (outstandingSnapshotViolations.length > 0) {
+    findings.push({
+      code: "outstanding_snapshot_semantic_drift",
+      severity: "error",
+      message: `committed outstanding snapshotとlive projectionのsemantic guardに失敗。${OUTSTANDING_SNAPSHOT_REPAIR_COMMAND} 実行後に再確認: ${outstandingSnapshotViolations.slice(0, 4).join("; ")}`,
+    });
+  }
   if (!input.ghInstalled) {
     findings.push({
       code: "gh_missing",
@@ -257,6 +273,7 @@ export function analyzeGithubMergeReadiness(
       createDraftPullRequest: `gh pr create --draft --base ${shellQuote(input.baseBranch)} --head ${shellQuote(input.currentBranch)} --title <title>`,
       inspectAuth: "gh auth status",
       inspectRepositoryPermission: "gh repo view --json viewerPermission --jq .viewerPermission",
+      repairOutstandingSnapshot: OUTSTANDING_SNAPSHOT_REPAIR_COMMAND,
     },
   };
 }
@@ -316,6 +333,7 @@ export function loadGithubMergeReadiness(
   const aheadBehind = parseAheadBehind(
     git(repoRoot, ["rev-list", "--left-right", "--count", `origin/${baseBranch}...HEAD`], "0 0"),
   );
+  const outstandingSnapshot = inspectOutstandingSnapshot(repoRoot);
   return analyzeGithubMergeReadiness({
     baseBranch,
     currentBranch,
@@ -324,6 +342,7 @@ export function loadGithubMergeReadiness(
     worktreeClean: status.length === 0,
     ahead: aheadBehind.ahead,
     behind: aheadBehind.behind,
+    outstandingSnapshotViolations: outstandingSnapshot.violations,
     ghInstalled,
     ghAuthenticated: ghAuth?.status === 0,
     viewerPermission,
@@ -784,6 +803,7 @@ export function renderGithubMergeReadiness(result: GithubMergeReadinessResult): 
     `  - access=${result.githubAccessState} viewerPermission=${result.viewerPermission ?? "unknown"} canOpenPullRequest=${result.canOpenPullRequest} delegatedAuthRequired=${result.delegatedAuthRequired}`,
     `  - push: ${result.commands.push}`,
     `  - draft-pr: ${result.commands.createDraftPullRequest}`,
+    `  - repair-outstanding-snapshot: ${result.commands.repairOutstandingSnapshot}`,
     `  - inspect-permission: ${result.commands.inspectRepositoryPermission}`,
   ];
   for (const finding of result.findings) {

@@ -34,9 +34,9 @@ passing `harness-check` なしに deploy を開始しない。rollback criteria 
 すべて green でなければならない。failure は deploy を block する。
 
 ```
-bun run lint          # Biome check（full output。tail へ pipe しない）
-bun run test          # Vitest
-bun run typecheck     # tsc --noEmit
+npm run lint          # Biome check（full output。tail へ pipe しない）
+npm run test          # Vitest
+npm run typecheck     # tsc --noEmit
 helix doctor         # harness structural health + plan governance
 helix plan lint      # PLAN schema、steps、dependency existence
 helix review --uncommitted

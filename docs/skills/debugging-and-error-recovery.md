@@ -28,7 +28,7 @@ error-fix skill を適用する。
 ## この skill を読む条件
 
 - `helix doctor` が non-zero で終了し、root cause が明らかではない。
-- `bun run test`、`bun run typecheck`、`bun run lint` が CI または local で失敗する。
+- `npm run test`、`npm run typecheck`、`npm run lint` が CI または local で失敗する。
 - `.helix/` state または hook entrypoint に runtime error が出る。
 - agent/subagent output が expected harness state と一致しない。
 - forced stop または unexpected session termination が発生した
@@ -57,7 +57,7 @@ failure が次のどれかを判断する。
   `CLAUDE_PROJECT_DIR` 未設定。最初に `helix doctor` environment checks を確認する。
 - **Governance** — orphaned PLAN、design doc 欠落、broken dependency link、
   schema mismatch。`helix doctor` governance checks と `helix plan lint` を確認する。
-- **Implementation** — `src/` の logic error。`bun run test` と targeted test run で確認する。
+- **Implementation** — `src/` の logic error。`npm run test` と targeted test run で確認する。
 - **Test oracle** — test が誤った内容を assert している、または false-green が受け入れられた。
   test と、その test が検証すべき spec を読んで確認する。
 
@@ -80,9 +80,9 @@ user による forced stop は、見かけの technical severity に関係なく
 PLAN を開く前に、failure が reproducible であることを確認する。
 
 ```
-bun run typecheck
-bun run lint
-bun run test
+npm run typecheck
+npm run lint
+npm run test
 helix doctor
 helix status
 ```
