@@ -585,14 +585,17 @@ export function isProviderCommandSpawnable(
 }
 
 export function normalizeProviderEffort(
-  _provider: AdapterProvider,
+  provider: AdapterProvider,
   effort: string | undefined,
 ): string | undefined {
   if (!effort) return undefined;
   const normalized = effort.trim().toLowerCase();
   if (normalized.length === 0) return undefined;
   if (normalized === "middle") return "medium";
-  if (normalized === "xhigh") return "high";
+  // xhigh is a current Codex-native worker value. Claude's CLI compatibility
+  // surface still treats it as the historical high alias; do not let that
+  // compatibility rule downgrade policy-derived Luna work on the Codex path.
+  if (normalized === "xhigh") return provider === "codex" ? "xhigh" : "high";
   return normalized;
 }
 
