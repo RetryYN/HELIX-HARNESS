@@ -81,6 +81,10 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   for (const [index, job] of shards.entries()) {
     const text = JSON.stringify(job);
     const shardId = ["bulk-1", "bulk-2", "stateful"][index];
+    const checkout = job?.steps?.find((step) => step.name === "checkout");
+    if (checkout?.with?.["fetch-depth"] !== 0) {
+      findings.push(`shard_checkout_history_invalid:${shardId}`);
+    }
     if (
       !text.includes("full-regression-shard-plan") ||
       !text.includes(`--shard-id ${shardId}`) ||
@@ -92,6 +96,10 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     }
   }
   const finalizeText = JSON.stringify(finalize);
+  const finalizeCheckout = finalize?.steps?.find((step) => step.name === "checkout");
+  if (finalizeCheckout?.with?.["fetch-depth"] !== 0) {
+    findings.push("finalize_checkout_history_invalid");
+  }
   if (
     !finalizeText.includes("full-regression-shards.ts validate") ||
     !finalizeText.includes("full-regression-shard-receipt-bulk-1") ||
@@ -948,6 +956,14 @@ describe("source harness-check workflow", () => {
         ),
       ),
     ).toContain("finalize_gate_order_invalid");
+    expect(
+      fullRegressionShardJobViolations(
+        raw.replace(
+          "          ref: ${{ needs.full-regression-preflight.outputs.candidate_head }}\n          fetch-depth: 0",
+          "          ref: ${{ needs.full-regression-preflight.outputs.candidate_head }}",
+        ),
+      ),
+    ).toContain("shard_checkout_history_invalid:bulk-1");
   });
 
   it.each([
