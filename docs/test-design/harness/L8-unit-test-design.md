@@ -460,6 +460,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-OUTMERGE-002 | blocker/action/live invariant | blocker／required actionの片側採用、live duplicate PLANによる件数と集合の意味 driftを検出する | `tests/outstanding.test.ts` |
 | U-OUTMERGE-003 | early guard | 現行repoのcommitted snapshotをlive projectionと照合し、修復書込みなしで明示repair commandを返す | `tests/outstanding.test.ts` |
 | U-OUTMERGE-004 | merge-readiness integration | semantic violationがある場合、push／PR作成可能判定をfail-closeし、`helix db rebuild`を提示する | `tests/github-merge-readiness.test.ts` |
+| U-OUTMERGE-005 | guard negative oracle | driftしたsnapshotを早期guardへ渡した場合、`ok=false`かつsemantic violationを返す | `tests/outstanding.test.ts` |
 
 scope expansionのunit oracleはreceipt pointerの構文と理由を検査する。外部commentの存在・内容・承認主体は
 同一HEADのAI-B review evidenceで検証し、unit greenだけで承認済みとは扱わない。

@@ -182,7 +182,7 @@ oracleは`U-PRSCOPE-006..007`とする。
 
 `helix guard outstanding-snapshot`はpush／PR作成前の早期surfaceであり、GitHub merge-readinessも同じguard結果を
 AND条件で受け取る。parse成功、conflict-free、または片側の値だけが新しい状態をgreenへ縮退させない。
-oracleは`U-OUTMERGE-001..004`、実装は`src/lint/outstanding-snapshot.ts`と
+oracleは`U-OUTMERGE-001..005`、実装は`src/lint/outstanding-snapshot.ts`と
 `src/audit/github-merge-readiness.ts`、回帰は`tests/outstanding.test.ts`と
 `tests/github-merge-readiness.test.ts`を正本とする。
 

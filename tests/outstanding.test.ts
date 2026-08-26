@@ -24,7 +24,7 @@ import {
 } from "../src/lint/outstanding-snapshot";
 import { frontmatterSchema } from "../src/schema/frontmatter";
 
-// PLAN-L7-677-outstanding-snapshot-semantic-merge-guard: U-OUTMERGE-001..003
+// PLAN-L7-677-outstanding-snapshot-semantic-merge-guard: U-OUTMERGE-001..003, U-OUTMERGE-005
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
 
@@ -484,6 +484,49 @@ describe("outstanding snapshot semantic merge guard (Issue #1052)", () => {
       repairCommand: "helix db rebuild",
       violations: [],
     });
+  });
+
+  it("U-OUTMERGE-005: driftしたsnapshotではguardのokをfalseにする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-guard-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "docs", "governance", "generated"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-SNAPSHOT-GUARD.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-SNAPSHOT-GUARD",
+          "layer: L7",
+          "kind: impl",
+          "status: draft",
+          "---",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+      clearOutstandingWorkRunCache();
+      const outstanding = computeOutstandingWork(root);
+      const snapshot = buildOutstandingSnapshot(outstanding);
+      writeFileSync(
+        join(root, "docs", "governance", "generated", "outstanding-snapshot.json"),
+        renderOutstandingSnapshot({
+          ...snapshot,
+          decision_count: snapshot.decision_count + 1,
+        }),
+        "utf8",
+      );
+
+      const result = inspectOutstandingSnapshot(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.violations.length).toBeGreaterThan(0);
+      expect(result.violations).toContain(
+        `G-10: outstanding snapshot decision_count must equal ${snapshot.decision_count} (actual=${snapshot.decision_count + 1})`,
+      );
+    } finally {
+      clearOutstandingWorkRunCache();
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 

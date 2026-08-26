@@ -31,7 +31,7 @@ contract_postconditions: "count/list、exact PLAN set、blockers、required_acti
 contract_invariants: "guard自身はsnapshot/DBを書き換えず、previous/legacy snapshotでcurrent failureを相殺しない"
 contract_failures: "JSON parse成功、Git conflict 0、または片側採用でもsemantic driftを見逃さない"
 tdd_red_required: true
-red_test: "U-OUTMERGE-001/002がcount/listまたはblocker/action片側採用とlive duplicateを検出する"
+red_test: "U-OUTMERGE-001/002/005がcount/listまたはblocker/action片側採用、live duplicate、guard ok値の退行を検出する"
 complexity_effect: net_neutral
 complexity_justification: "既存snapshot writer/verifyとmerge-readinessへ同一pure guardを接続し、別owner/state/jobを増やさない"
 removal_trigger: "outstanding snapshotがDB projectionへ完全統合され、独立generated surfaceが廃止された時"
@@ -42,6 +42,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-OUTMERGE-002, test_path: tests/outstanding.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-OUTMERGE-003, test_path: tests/outstanding.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-OUTMERGE-004, test_path: tests/github-merge-readiness.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-OUTMERGE-005, test_path: tests/outstanding.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-677-outstanding-snapshot-semantic-merge-guard.md, artifact_type: markdown_doc }
 modifies:
