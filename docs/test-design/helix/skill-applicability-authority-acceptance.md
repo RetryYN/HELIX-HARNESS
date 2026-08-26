@@ -12,6 +12,9 @@ plan: PLAN-L3-67-skill-applicability-authority
 pair_artifact: docs/design/helix/L3-requirements/skill-applicability-authority.md
 ---
 
+> 本書はL10の受入設計であり、実行可能な`tests/`配下のoracleはL3 PLAN確認後に#248/#1047へ追加する。
+> draft PLANがmainへmerged test deliverableを先取りしないよう、設計と実装の所有権を分離する。
+
 # HELIX L10 受入テスト設計 — skill applicability authority
 
 ## §0 合否境界

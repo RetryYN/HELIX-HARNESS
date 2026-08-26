@@ -75,10 +75,15 @@ registryを参照するprojection contractであり、workflow identityを複製
 ## §2 移行順
 
 1. 本L3↔L10 authorityとversioned registryをfreezeする。
-2. #248でschema、runtime、DB、recommendation、CLI／visualizationをtyped pairへ移行する。
+2. L3 PLAN確認後、#248でschema、runtime、DB、recommendation、CLI／visualizationと実行可能なL10 oracleをtyped pairへ移行する。
 3. legacy adapterをinput-onlyへ隔離し、current outputから旧fieldを撤去する。
 4. #322でrecommendable skill 60件をexact backfillする。
 5. #243でcurrent authoringからcompletionまでread-after監査する。
+
+本PRはrequirements・registry・L10受入設計までを対象とし、実行可能な`tests/`配下のrequirements oracleを
+先取りしない。L3 PLAN確認前にdraft PLANが新規test deliverableを所有してmainへ入ると、merged-plan-status
+の完了状態を不正に見せるためである。実行oracleは#248/#1047のruntime sliceで、同一registry digestへ
+束縛して追加する。
 
 ## §3 非対象
 

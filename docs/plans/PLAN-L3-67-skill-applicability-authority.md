@@ -31,7 +31,7 @@ contract_postconditions: "skill applicabilityがtyped pair、極性、input-only
 contract_invariants: "workflow identityを複製せず、legacy successでcurrent failureを相殺しない"
 contract_failures: "axis mismatch、unknown identity、polarity conflict、implicit default、legacy再出力をfail-closeする"
 tdd_red_required: false
-tdd_red_waiver_reason: "本sliceはrequirements、versioned registry、acceptanceだけを追加しruntime実装を#248へ分離する"
+tdd_red_waiver_reason: "本sliceはrequirements、versioned registry、acceptance設計だけを追加し、実行可能なtests/配下のoracleはL3 PLAN確認後の#248/#1047へ分離する"
 complexity_effect: net_neutral
 complexity_justification: "旧混在enumを増やさず、既存classification identityへのtyped参照を定義する"
 removal_trigger: "skill applicability contractが後続requirements major versionへ統合された時"
@@ -45,7 +45,6 @@ generates:
   - { artifact_path: docs/design/helix/L3-requirements/skill-applicability-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L3-requirements/skill-applicability-registry.v1.json, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/skill-applicability-authority-acceptance.md, artifact_type: test_design }
-  - { artifact_path: tests/skill-applicability-authority-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
@@ -69,7 +68,11 @@ dependencies:
 |---|---|---|
 | 1 | 旧runtimeとL5設計の軸混同を棚卸し | current／compatibility／supersededが分離される |
 | 2 | L3 requirementsとversioned registryを追加 | typed pair、極性、legacy adapterがexact化される |
-| 3 | L10 acceptanceへnegative oracleを束縛 | axis mismatch、default、再出力を検出する |
+| 3 | L10 acceptance設計へnegative oracleを束縛 | axis mismatch、default、再出力を検出する。実行可能なoracleは#248/#1047へ分離する |
 | 4 | targeted test、PLAN lint、独立review | blocker 0、#248の実装入力が確定する |
 
 #248のruntime／DB／CLI実装と#322のmetadata backfillは本PLANへ混載しない。
+本PLANはL3 requirements・registry・L10受入設計のfreezeだけを担当する。`tests/`配下の実行可能な
+requirements oracleは、draft PLANがmainへmerged deliverableを持たないよう本sliceから分離し、L3 PLANの
+確認後に#248/#1047のruntime sliceで追加する。ここでテスト実装を分離することはoracleの破棄ではなく、
+承認境界を越えないための所有権分離である。
