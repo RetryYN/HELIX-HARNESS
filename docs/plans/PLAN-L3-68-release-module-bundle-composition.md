@@ -50,6 +50,7 @@ generates:
   - { artifact_path: tests/release-module-bundle-composition-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 dependencies:
   parent: docs/design/helix/L3-requirements/distribution-package-release-requirements.md
   requires:
