@@ -20,6 +20,7 @@ type Step = {
   with?: Record<string, unknown>;
   "timeout-minutes"?: number;
   "continue-on-error"?: boolean;
+  shell?: string;
 };
 
 type HarnessJob = {
@@ -492,11 +493,14 @@ describe("source harness-check workflow", () => {
 
   it("U-LITECI-WF-002: LiteとFullは独立し、WindowsはLinux laneの成果物だけに依存する", () => {
     const { aggregateJob, fullJob, liteCanaryJob, windowsJob } = loadWorkflow();
+    const windowsStatus = stepByName(windowsJob.steps ?? [], "Windows typed lane status");
     expect(liteCanaryJob.needs).toBeUndefined();
     expect(fullJob.needs).toBeUndefined();
     expect(windowsJob.needs).toBe("lite-consumer-canary-artifact");
     expect(windowsJob.if).toContain("needs.lite-consumer-canary-artifact.result == 'success'");
     expect(windowsJob.if).not.toContain("harness-check-full");
+    expect(windowsStatus.shell).toBe("bash");
+    expect(windowsStatus.if).toBe(`\${{ always() }}`);
     expect(aggregateJob.needs).toEqual([
       "lite-consumer-canary-artifact",
       "windows-durability-smoke",

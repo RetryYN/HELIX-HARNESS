@@ -174,6 +174,7 @@ jobs:
         env:
           LITE_DISPOSITION: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition }}
           WINDOWS_SMOKE_OUTCOME: ${{ steps.windows-smoke.outcome }}
+        shell: bash
         run: |
           if [ "$LITE_DISPOSITION" = "authorized_skip" ]; then
             echo "disposition=authorized_skip" >> "$GITHUB_OUTPUT"
