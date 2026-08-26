@@ -91,8 +91,7 @@ review_evidence:
       PR #1043の最終HEAD 94fb61e1fb5c7ac5595d5a7c4853e63ab6068ddaをClaude Codeが独立検収し、Issue #253が列挙する14件のexact skill inventoryについてactive Bun command 0、Node/npm authority、mutation oracle、DB projection／replay／checkpoint一致を確認してblocker 0 approveとした。PRのmerge commitは70c311562c0dcb8fb20ec0c2392b3645b9f5e90dであり、current mainの祖先としてread-after対象へ到達している。review receiptはhttps://github.com/RetryYN/HELIX-HARNESS/pull/1043#issuecomment-5418477260。
     green_commands:
       - kind: smoke
-        command: >-
-          gh run view 32910176863 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url --jq '{status,conclusion,headSha,updatedAt,url}'
+        command: "gh run view 32910176863 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url --jq '{status,conclusion,headSha,updatedAt,url}'"
         runner: ci
         scope: full
         exit_code: 0
