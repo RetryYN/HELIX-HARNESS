@@ -52,6 +52,7 @@ generates:
 modifies:
   - { artifact_path: src/runtime/adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/runtime-adapter.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/orchestration/loop-bridge.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-xhigh-reasoning-effort-schema-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-context-authority.md, artifact_type: design_doc }
