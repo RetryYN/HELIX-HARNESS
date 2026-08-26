@@ -36,20 +36,79 @@ type WorkflowRoot = {
   on?: { pull_request?: { types?: string[] } };
   jobs?: {
     "harness-check"?: HarnessJob;
-    "harness-check-full"?: HarnessJob;
     "lite-consumer-canary-artifact"?: HarnessJob;
     "windows-durability-smoke"?: HarnessJob;
+    "full-regression-preflight"?: HarnessJob;
+    "full-regression-bulk-1"?: HarnessJob;
+    "full-regression-bulk-2"?: HarnessJob;
+    "full-regression-stateful"?: HarnessJob;
+    "full-regression-finalize"?: HarnessJob;
   };
 };
 
+function fullRegressionShardJobViolations(raw: string): string[] {
+  const parsed = parseYaml(raw) as WorkflowRoot;
+  const jobs = parsed.jobs ?? {};
+  const preflight = jobs["full-regression-preflight"];
+  const shards = [
+    jobs["full-regression-bulk-1"],
+    jobs["full-regression-bulk-2"],
+    jobs["full-regression-stateful"],
+  ];
+  const finalize = jobs["full-regression-finalize"];
+  const findings: string[] = [];
+  if (!preflight) findings.push("preflight_job_missing");
+  if (shards.some((job) => !job)) findings.push("shard_job_missing");
+  if (!finalize) findings.push("finalize_job_missing");
+  if (findings.length > 0) return findings;
+
+  const preflightText = JSON.stringify(preflight);
+  if (
+    !preflightText.includes("full-regression-shard-plan") ||
+    !preflightText.includes("full-regression-shards.ts plan") ||
+    !preflightText.includes("candidate-head") ||
+    !preflightText.includes("base-sha")
+  ) {
+    findings.push("preflight_partition_contract_missing");
+  }
+  for (const [index, job] of shards.entries()) {
+    const text = JSON.stringify(job);
+    const shardId = ["bulk-1", "bulk-2", "stateful"][index];
+    if (
+      !text.includes("full-regression-shard-plan") ||
+      !text.includes(`--shard-id ${shardId}`) ||
+      !text.includes("full-regression-shards.ts receipt") ||
+      !text.includes("full-regression-shard-receipt") ||
+      text.includes("continue-on-error")
+    ) {
+      findings.push(`shard_contract_invalid:${shardId}`);
+    }
+  }
+  const finalizeText = JSON.stringify(finalize);
+  if (
+    !finalizeText.includes("full-regression-shards.ts validate") ||
+    !finalizeText.includes("full-regression-shard-receipt-bulk-1") ||
+    !finalizeText.includes("full-regression-shard-receipt-bulk-2") ||
+    !finalizeText.includes("full-regression-shard-receipt-stateful") ||
+    !finalizeText.includes("db rebuild (post-test projection refresh)") ||
+    !finalizeText.includes("doctor (governance hard gates)")
+  ) {
+    findings.push("finalize_contract_invalid");
+  }
+  const aggregateNeeds = jobs["harness-check"]?.needs;
+  const needs = Array.isArray(aggregateNeeds) ? aggregateNeeds : [aggregateNeeds];
+  if (!needs.includes("full-regression-finalize")) findings.push("required_check_wiring_invalid");
+  return findings;
+}
+
 function boundedTimeViolations(raw: string): string[] {
-  let parsed: { jobs?: { "harness-check-full"?: HarnessJob } };
+  let parsed: { jobs?: { "full-regression-preflight"?: HarnessJob } };
   try {
     parsed = parseYaml(raw) as typeof parsed;
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const job = parsed.jobs?.["harness-check-full"];
+  const job = parsed.jobs?.["full-regression-preflight"];
   if (!job || !Array.isArray(job.steps)) return ["harness_job_missing"];
   const steps = job.steps;
   const findings: string[] = [];
@@ -151,10 +210,12 @@ function transitionReuseViolations(raw: string): string[] {
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const steps = parsed.jobs?.["harness-check-full"]?.steps ?? [];
+  const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
   const selector = steps.find((step) => step.name === "Impact CI profile selection");
   const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
-  const receipt = steps.find((step) => step.name === "full admission receipt");
+  const receipt = parsed.jobs?.["full-regression-finalize"]?.steps?.find(
+    (step) => step.name === "full admission receipt",
+  );
   if (!selector?.run || !regression?.run || !receipt) return ["transition_reuse_invalid"];
   const findings: string[] = [];
   if (
@@ -180,8 +241,8 @@ function transitionReuseViolations(raw: string): string[] {
     !receipt.uses?.startsWith("actions/upload-artifact@") ||
     receipt.with?.name !== "impact-ci-full-receipt" ||
     !receipt.if?.includes("github.event_name == 'pull_request'") ||
-    !receipt.if.includes("steps.impact-ci.outputs.full == 'true'") ||
-    !receipt.if.includes("steps.impact-ci.outputs.reuse != 'true'") ||
+    !receipt.if.includes("needs.full-regression-preflight.outputs.full == 'true'") ||
+    !receipt.if.includes("needs.full-regression-preflight.outputs.reuse != 'true'") ||
     !receipt.if.includes("success()")
   )
     findings.push("transition_reuse_invalid");
@@ -198,7 +259,7 @@ function laneCoverageViolations(raw: string): string[] {
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const steps = parsed.jobs?.["harness-check-full"]?.steps ?? [];
+  const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
   const regression = steps.find((step) => step.name === "test — 全回帰 (vitest run)");
   const run = regression?.run;
   if (!run) return ["regression_step_missing"];
@@ -247,7 +308,7 @@ function loadWorkflow(): {
 } {
   const raw = readFileSync(WORKFLOW_PATH, "utf8");
   const parsed = parseYaml(raw) as WorkflowRoot;
-  const job = parsed.jobs?.["harness-check-full"] ?? {};
+  const job = parsed.jobs?.["full-regression-preflight"] ?? {};
   return {
     job,
     fullJob: job,
@@ -266,7 +327,7 @@ function reviewAdmissionViolations(raw: string): string[] {
   } catch {
     return ["workflow_yaml_invalid"];
   }
-  const steps = parsed.jobs?.["harness-check-full"]?.steps ?? [];
+  const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
   const checkout = steps.find((candidate) => candidate.name === "checkout");
   const contextProjection =
     '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}';
@@ -317,7 +378,7 @@ describe("source harness-check workflow", () => {
     const raw = readFileSync(WORKFLOW_PATH, "utf8");
     expect(reviewAdmissionViolations(raw)).toEqual([]);
     const parsed = parseYaml(raw) as WorkflowRoot;
-    const checkout = parsed.jobs?.["harness-check-full"]?.steps?.find(
+    const checkout = parsed.jobs?.["full-regression-preflight"]?.steps?.find(
       (step) => step.name === "checkout",
     );
     expect(checkout?.with?.ref).toBe(`\${{ github.event.pull_request.head.sha || github.sha }}`);
@@ -433,7 +494,7 @@ describe("source harness-check workflow", () => {
     expect(aggregateJob.needs).toEqual([
       "lite-consumer-canary-artifact",
       "windows-durability-smoke",
-      "harness-check-full",
+      "full-regression-finalize",
     ]);
     expect(aggregateJob.if).toBe(`\${{ always() }}`);
     expect(aggregate.run).toContain("success:success:none");
@@ -503,13 +564,13 @@ describe("source harness-check workflow", () => {
     expect(fullJob.needs).toBeUndefined();
     expect(windowsJob.needs).toBe("lite-consumer-canary-artifact");
     expect(windowsJob.if).toContain("needs.lite-consumer-canary-artifact.result == 'success'");
-    expect(windowsJob.if).not.toContain("harness-check-full");
+    expect(windowsJob.if).not.toContain("full-regression-preflight");
     expect(windowsStatus.shell).toBe("bash");
     expect(windowsStatus.if).toBe(`\${{ always() }}`);
     expect(aggregateJob.needs).toEqual([
       "lite-consumer-canary-artifact",
       "windows-durability-smoke",
-      "harness-check-full",
+      "full-regression-finalize",
     ]);
   });
 
@@ -527,7 +588,7 @@ describe("source harness-check workflow", () => {
     expect(aggregate.env).toMatchObject({
       LITE_RESULT: `\${{ needs.lite-consumer-canary-artifact.result }}`,
       WINDOWS_RESULT: `\${{ needs.windows-durability-smoke.result }}`,
-      FULL_RESULT: `\${{ needs.harness-check-full.result }}`,
+      FULL_RESULT: `\${{ needs.full-regression-finalize.result }}`,
     });
     expect(raw.match(/distribution package-profile/g)).toHaveLength(1);
     expect(aggregate["continue-on-error"]).toBeUndefined();
@@ -716,7 +777,7 @@ describe("source harness-check workflow", () => {
     expect(regression.run).toContain("vitest run --project fast --project slow");
 
     const regressionIndex = steps.indexOf(regression);
-    expect(stepByName(steps, "lint (biome)")).toBe(steps[regressionIndex + 1]);
+    expect(stepByName(steps, "upload full regression shard plan")).toBe(steps[regressionIndex + 1]);
     expect(steps.indexOf(stepByName(steps, "doctor (governance hard gates)"))).toBeGreaterThan(
       regressionIndex,
     );
@@ -821,11 +882,19 @@ describe("source harness-check workflow", () => {
     ["照会失敗フォールバックの欠落", (raw: string) => raw.replace(' || prior_runs=""', "")],
     [
       "receipt発行のreuse除外欠落",
-      (raw: string) => raw.replace("steps.impact-ci.outputs.reuse != 'true'", "true"),
+      (raw: string) =>
+        raw.replace(
+          "needs.full-regression-preflight.outputs.reuse != 'true' }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
+          "true }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
+        ),
     ],
     [
       "receipt発行のfull限定欠落",
-      (raw: string) => raw.replace("steps.impact-ci.outputs.full == 'true'", "true"),
+      (raw: string) =>
+        raw.replace(
+          "needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
+          "true }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
+        ),
     ],
     [
       "reuse run id検証の欠落",
@@ -981,7 +1050,7 @@ describe("source harness-check workflow", () => {
     [
       "inventory導出のgit ls-files欠落",
       (raw: string) =>
-        raw.replace(
+        raw.replaceAll(
           "git ls-files 'tests/*.test.ts' 'tests/**/*.test.ts'",
           'printf "%s\\n" "$' + '{bulk_files[@]}"',
         ),
@@ -1097,5 +1166,31 @@ describe("source harness-check workflow", () => {
     ],
   ])("U-CITIME-003: rejects %s", (_label, mutate) => {
     expect(boundedTimeViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).not.toEqual([]);
+  });
+
+  it("U-FULLSHARD-WF-001: preflight／3 shard／finalizeをtyped artifactで接続する", () => {
+    expect(fullRegressionShardJobViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
+  });
+
+  it.each([
+    [
+      "finalizeからstateful receiptを除去",
+      (raw: string) => raw.replaceAll("full-regression-shard-receipt-stateful", "missing-stateful"),
+      "finalize_contract_invalid",
+    ],
+    [
+      "bulk-2を別partitionへすり替え",
+      (raw: string) => raw.replaceAll("--shard-id bulk-2", "--shard-id bulk-1"),
+      "shard_contract_invalid:bulk-2",
+    ],
+    [
+      "required checkをpreflightへ短絡",
+      (raw: string) => raw.replace("full-regression-finalize]", "full-regression-preflight]"),
+      "required_check_wiring_invalid",
+    ],
+  ])("U-FULLSHARD-WF-002: %s mutationを拒否する", (_label, mutate, expected) => {
+    expect(fullRegressionShardJobViolations(mutate(readFileSync(WORKFLOW_PATH, "utf8")))).toContain(
+      expected,
+    );
   });
 });
