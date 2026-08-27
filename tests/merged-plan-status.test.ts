@@ -392,4 +392,51 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("fails closed when PLAN frontmatter cannot be parsed for generates or modifies", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-parse-failure-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "src"), { recursive: true });
+      writeFileSync(join(root, "src", "merged.ts"), "export const merged = true;\n", "utf8");
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-TEST-1001-malformed.md"),
+        [
+          "---",
+          "plan_id: PLAN-TEST-1001-malformed",
+          "status: draft",
+          "kind: impl",
+          "generates:",
+          "  - artifact_path: src/merged.ts",
+          "    artifact_type: source_module",
+          "modifies:",
+          "  - artifact_path: src/existing.ts",
+          "    artifact_type: source_module",
+          String.raw`broken: "\s"`,
+          "---",
+          "",
+          "body",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const result = checkMergedPlanStatus(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("PLAN-TEST-1001-malformed");
+      expect(result.messages.join("\n")).toContain("PLAN_FRONTMATTER_PARSE_FAILED");
+
+      const input = loadMergedPlanStatusInput(root);
+      expect(input.parseFailures).toEqual([
+        {
+          planId: "PLAN-TEST-1001-malformed",
+          failure_code: "PLAN_FRONTMATTER_PARSE_FAILED",
+        },
+      ]);
+      expect(input.plans[0]?.mergedArtifacts).toEqual([]);
+      expect(input.plans[0]?.invalidModifications).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });
