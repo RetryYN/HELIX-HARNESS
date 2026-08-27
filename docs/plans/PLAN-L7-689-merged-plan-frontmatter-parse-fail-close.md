@@ -4,8 +4,8 @@ title: "PLAN-L7-689: merged-plan-status の PLAN frontmatter parse failure を f
 kind: troubleshoot
 layer: L7
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1001 merged-plan-status parse failure fail-close"
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-08-28
 owner: Codex / TL
 github_issue_id: 1001
 behavior_contract_id: PLAN-FRONTMATTER-PARSE-FAIL-CLOSE-001
@@ -36,6 +36,36 @@ complexity_effect: net_neutral
 complexity_justification: "既存の merged-plan-status の YAML parse failure を空集合として扱う経路だけを、型付き violation と回帰oracleへ置換する。"
 tdd_red_required: false
 tdd_red_waiver_reason: "Issue #1001 と PR #982 の独立レビューで既存Red（壊れたfrontmatterがgate対象から消える）を実測済み。改修と回帰oracleを同一atomic sliceで追加し、未記録のRed時刻を捏造しない。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-27T16:00:55Z"
+    tests_green_at: "2026-08-27T16:00:30Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    reviewed_head_sha: e664b2c22e9e14b3fc49ec72a016287a72981f00
+    scope: "PR #1108 exact HEAD e664b2c22e9e14b3fc49ec72a016287a72981f00をClaude Code Opusが独立検収し、frontmatter parse failureのtyped violation、generates／modifies共通fail-close、redaction、S3例外維持、mutation oracle、DB projection／checkpoint replay一致を確認してblocker 0と判定した。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1108#issuecomment-5441806713"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33088906502 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-27T16:00:30Z"
+        evidence_path: tests/merged-plan-status.test.ts
+        output_digest: "sha256:700e815c78456995e122511c41a0445f752a934c473440bc38de27bb5591b4e0"
+        result: "terminal success / HEAD e664b2c22e9e14b3fc49ec72a016287a72981f00 / DB converged"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-27T16:00:55Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-27T16:00:55Z"
+    evidence_digest: "sha256:b5df7bb1f893873e9afbf946031b8b4608ac2caf4716a8afb2dd70051f8b1849"
+  entries: []
 parent_design: docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
 pair_artifact: docs/test-design/helix/L8-merged-plan-frontmatter-parse-fail-close-unit-test-design.md
 refines:
@@ -93,12 +123,12 @@ parse 不能ならその事実を型付き violation として surface し、gat
 
 ## 受入条件
 
-- [ ] frontmatter parse failure は `ok=false` となり、空集合による偽の成功を返さない。
-- [ ] `generates` と `modifies` の両経路を同じ fail-close 契約で覆う。
-- [ ] violation に PLAN ID と `PLAN_FRONTMATTER_PARSE_FAILED` を含め、raw YAMLやsecretを出力しない。
-- [ ] parse failureを `return []` へ戻すmutationを回帰テストが検出する。
-- [ ] 正常系と existing `modifies` ownership gate は退行しない。
-- [ ] typecheck、Biome、targeted Vitest、current-head CI、独立レビューを完了する。
+- [x] frontmatter parse failure は `ok=false` となり、空集合による偽の成功を返さない。
+- [x] `generates` と `modifies` の両経路を同じ fail-close 契約で覆う。
+- [x] violation に PLAN ID と `PLAN_FRONTMATTER_PARSE_FAILED` を含め、raw YAMLやsecretを出力しない。
+- [x] parse failureを `return []` へ戻すmutationを回帰テストが検出する。
+- [x] 正常系と existing `modifies` ownership gate は退行しない。
+- [x] typecheck、Biome、targeted Vitest、current-head CI、独立レビューを完了する。
 
 ## 非対象
 
