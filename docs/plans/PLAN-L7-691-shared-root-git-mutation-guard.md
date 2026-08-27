@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-691-shared-root-git-mutation-guard
 title: "PLAN-L7-691: 共有rootのforeign dirtyに対するGit mutationをfail-closeする"
-kind: add-impl
+kind: impl
 layer: L7
 drive: agent
 status: draft
@@ -22,7 +22,7 @@ behavior_contract_id: GIT-MUTATION-SHARED-ROOT-GUARD-001
 responsibility_owner: destructive-command-guard
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: extract_shared_state_source
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "requirements v1.3.13のHR-FR-HYB-004がforeign worktree／stage／HEAD／work-guard／git-command-guardの同一episodeとdestructive git拒否を所有し、SEC-FR-CAP-002/003/006がrepository physical identity、provenance、hook coverageのfail-closeを所有する。本sliceはその既存正本を共有root Git mutationへ具体化するため、新FRを重複追加しない。"
@@ -60,6 +60,7 @@ generates:
   - { artifact_path: src/runtime/worktree-state.ts, artifact_type: source_module }
 modifies:
   - { artifact_path: .claude/hooks/git-command-guard.ts, artifact_type: source_module }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/harness/L5-detailed-design/destructive-command-guard.md, artifact_type: design_doc }
   - { artifact_path: docs/design/harness/L6-function-design/destructive-command-guard.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }

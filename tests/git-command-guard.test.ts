@@ -282,6 +282,7 @@ describe("git-command-guard", () => {
     }
   });
 
+  // IT-GITGUARD-006: clean primary／linked worktree allowも同じ実repository fixtureで検証する。
   it("IT-GITGUARD-005/006: 非重複foreign dirtyのshared rootをblockしclean rootとlinked worktreeを通す", () => {
     const fixture = createWorktreeFixture();
     try {
