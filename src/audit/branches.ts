@@ -1,7 +1,17 @@
 import { execFileSync } from "node:child_process";
 
 export type BranchAuditStatus = "keep" | "delete-candidate" | "review";
-export type BranchAuditReason = "current" | "protected" | "gone" | "merged" | "stale" | "active";
+export type BranchAuditReason =
+  | "current"
+  | "protected"
+  | "worktree-in-use"
+  | "gone-merged"
+  | "gone-unmerged"
+  | "merged"
+  | "main-ref-unresolved"
+  | "shallow-history"
+  | "stale"
+  | "active";
 
 export interface BranchAuditRow {
   name: string;
@@ -9,6 +19,7 @@ export interface BranchAuditRow {
   upstream: string;
   upstreamTrack: string;
   merged: boolean;
+  checkedOutInWorktree: boolean;
   commitDate: string;
   ageDays: number;
   status: BranchAuditStatus;
@@ -17,6 +28,11 @@ export interface BranchAuditRow {
 
 export interface BranchAuditResult {
   ok: boolean;
+  authority: {
+    mainRef: string | null;
+    mainRefResolved: boolean;
+    historyComplete: boolean;
+  };
   total: number;
   byStatus: Record<BranchAuditStatus, number>;
   rows: BranchAuditRow[];
@@ -50,16 +66,24 @@ export function analyzeBranches(input: {
   currentBranch: string;
   branches: RawBranchRef[];
   mergedBranchNames: string[];
+  checkedOutBranchNames: string[];
+  mainRef: string | null;
+  mainRefResolved: boolean;
+  historyComplete: boolean;
   staleDays?: number;
   now?: Date;
 }): BranchAuditResult {
   const staleDays = input.staleDays ?? 60;
   const now = input.now ?? new Date();
   const merged = new Set(input.mergedBranchNames);
+  const checkedOut = new Set(input.checkedOutBranchNames);
+  const mainRefResolved = input.mainRefResolved;
+  const historyComplete = input.historyComplete;
   const rows = input.branches.map((branch): BranchAuditRow => {
     const current = branch.name === input.currentBranch;
     const branchAge = ageDays(branch.commitDate, now);
     const branchMerged = merged.has(branch.name);
+    const checkedOutInWorktree = checkedOut.has(branch.name);
     let status: BranchAuditStatus = "keep";
     let reason: BranchAuditReason = "active";
     if (current) {
@@ -68,12 +92,21 @@ export function analyzeBranches(input: {
     } else if (isProtected(branch.name)) {
       status = "keep";
       reason = "protected";
-    } else if (branch.upstreamTrack.includes("gone")) {
-      status = "delete-candidate";
-      reason = "gone";
+    } else if (checkedOutInWorktree) {
+      status = "keep";
+      reason = "worktree-in-use";
+    } else if (!mainRefResolved) {
+      status = "review";
+      reason = "main-ref-unresolved";
+    } else if (!historyComplete) {
+      status = "review";
+      reason = "shallow-history";
     } else if (branchMerged) {
       status = "delete-candidate";
-      reason = "merged";
+      reason = branch.upstreamTrack.includes("gone") ? "gone-merged" : "merged";
+    } else if (branch.upstreamTrack.includes("gone")) {
+      status = "review";
+      reason = "gone-unmerged";
     } else if (branchAge >= staleDays) {
       status = "review";
       reason = "stale";
@@ -84,6 +117,7 @@ export function analyzeBranches(input: {
       upstream: branch.upstream,
       upstreamTrack: branch.upstreamTrack,
       merged: branchMerged,
+      checkedOutInWorktree,
       commitDate: branch.commitDate,
       ageDays: branchAge,
       status,
@@ -97,7 +131,12 @@ export function analyzeBranches(input: {
   };
   for (const row of rows) byStatus[row.status] += 1;
   return {
-    ok: true,
+    ok: mainRefResolved && historyComplete,
+    authority: {
+      mainRef: input.mainRef,
+      mainRefResolved,
+      historyComplete,
+    },
     total: rows.length,
     byStatus,
     rows: rows.sort(
@@ -129,6 +168,33 @@ export function parseBranchRefs(output: string): RawBranchRef[] {
     .filter((row) => row.name.length > 0);
 }
 
+/** `git worktree list --porcelain` からnamed branchだけを抽出し、detached worktreeは除外する。 */
+export function parseWorktreeBranches(output: string): string[] {
+  return output
+    .split(/\r?\n/)
+    .filter((line) => line.startsWith("branch refs/heads/"))
+    .map((line) => line.slice("branch refs/heads/".length).trim())
+    .filter(Boolean);
+}
+
+function gitRefExists(repoRoot: string, ref: string): boolean {
+  try {
+    execFileSync("git", ["-C", repoRoot, "rev-parse", "--verify", "--quiet", `${ref}^{commit}`], {
+      encoding: "utf8",
+      stdio: ["ignore", "ignore", "ignore"],
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function resolveMainRef(repoRoot: string): string | null {
+  if (gitRefExists(repoRoot, "refs/remotes/origin/main")) return "origin/main";
+  if (gitRefExists(repoRoot, "refs/heads/main")) return "main";
+  return null;
+}
+
 export function loadBranchAudit(
   repoRoot: string,
   opts: { staleDays?: number; now?: Date } = {},
@@ -141,14 +207,26 @@ export function loadBranchAudit(
       "--format=%(refname:short)%09%(upstream:short)%09%(upstream:track)%09%(committerdate:iso8601-strict)",
     ]),
   );
-  const mergedBranchNames = git(repoRoot, ["branch", "--merged", "HEAD"])
-    .split(/\r?\n/)
-    .map((line) => line.replace(/^\*\s*/, "").trim())
-    .filter(Boolean);
+  const mainRef = resolveMainRef(repoRoot);
+  const historyComplete = git(repoRoot, ["rev-parse", "--is-shallow-repository"]).trim() !== "true";
+  const mergedBranchNames =
+    mainRef !== null && historyComplete
+      ? git(repoRoot, ["branch", "--format=%(refname:short)", "--merged", mainRef])
+          .split(/\r?\n/)
+          .map((line) => line.trim())
+          .filter(Boolean)
+      : [];
+  const checkedOutBranchNames = parseWorktreeBranches(
+    git(repoRoot, ["worktree", "list", "--porcelain"]),
+  );
   return analyzeBranches({
     currentBranch,
     branches: refs,
     mergedBranchNames,
+    checkedOutBranchNames,
+    mainRef,
+    mainRefResolved: mainRef !== null,
+    historyComplete,
     staleDays: opts.staleDays,
     now: opts.now,
   });
@@ -156,7 +234,7 @@ export function loadBranchAudit(
 
 export function renderBranchAudit(result: BranchAuditResult, limit = 50): string {
   const lines = [
-    `branch audit: total=${result.total} keep=${result.byStatus.keep} delete-candidate=${result.byStatus["delete-candidate"]} review=${result.byStatus.review}`,
+    `branch audit: total=${result.total} keep=${result.byStatus.keep} delete-candidate=${result.byStatus["delete-candidate"]} review=${result.byStatus.review} main-ref=${result.authority.mainRef ?? "unresolved"} history=${result.authority.historyComplete ? "complete" : "shallow"}`,
   ];
   for (const row of result.rows.slice(0, limit)) {
     lines.push(
