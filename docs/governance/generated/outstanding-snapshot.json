@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 35,
+  "decision_count": 36,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -16,6 +16,7 @@
     "PLAN-L3-26-github-plan-workflow-governance",
     "PLAN-L3-67-skill-applicability-authority",
     "PLAN-L3-68-release-module-bundle-composition",
+    "PLAN-L3-69-worker-context-boundary-compiler",
     "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
