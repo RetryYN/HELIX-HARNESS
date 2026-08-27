@@ -1,3 +1,5 @@
+import { parse as parseYaml } from "yaml";
+
 export const ISSUE_HIERARCHY_SCHEMA = "helix-github-issue-hierarchy.v1" as const;
 
 export type IssueRole = "root" | "capability" | "task" | "finding";
@@ -78,6 +80,287 @@ export interface IssueDependencyContractSource {
   number: number;
   state: "open" | "closed";
   body: string | null;
+}
+
+export function collectIssueHierarchyContracts(
+  sources: readonly IssueDependencyContractSource[],
+): IssueHierarchyNode[] {
+  return sources.flatMap((source) => {
+    try {
+      return [
+        {
+          number: source.number,
+          state: source.state,
+          ...parseIssueHierarchyContract(source.body ?? ""),
+        },
+      ];
+    } catch {
+      return [];
+    }
+  });
+}
+
+export interface IssueHierarchyDependencyAlignmentFinding {
+  issueNumber: number;
+  code:
+    | "dependency_contract_missing_for_hierarchy_relation"
+    | "hierarchy_dependency_blocked_by_mismatch"
+    | "hierarchy_dependency_blocks_mismatch";
+  detail: string;
+}
+
+export interface IssueHierarchyRelationClosureCandidate {
+  issueNumber: number;
+  blocks: number[];
+  blockedBy: number[];
+  contractBlock: string;
+}
+
+export function renderIssueHierarchyContract(
+  node: Pick<
+    IssueHierarchyNode,
+    | "role"
+    | "parentIssue"
+    | "blocks"
+    | "blockedBy"
+    | "duplicateSearch"
+    | "disposition"
+    | "duplicateOf"
+  >,
+): string {
+  return [
+    "```yaml",
+    `issue_role: ${node.role}`,
+    `parent_issue: ${node.parentIssue ?? "null"}`,
+    `blocks: [${uniqueNumbers(node.blocks).join(", ")}]`,
+    `blocked_by: [${uniqueNumbers(node.blockedBy).join(", ")}]`,
+    `duplicate_search: ${node.duplicateSearch}`,
+    `disposition: ${node.disposition}`,
+    `duplicate_of: ${node.duplicateOf ?? "null"}`,
+    "```",
+  ].join("\n");
+}
+
+export function projectIssueHierarchyRelationClosure(
+  nodes: readonly IssueHierarchyNode[],
+  dependencyNodes: readonly IssueDependencyNode[] = [],
+): IssueHierarchyRelationClosureCandidate[] {
+  const desired = new Map(
+    nodes.map((node) => [
+      node.number,
+      { blocks: new Set(node.blocks), blockedBy: new Set(node.blockedBy) },
+    ]),
+  );
+  for (const dependency of dependencyNodes) {
+    const relation = desired.get(dependency.number);
+    if (!relation) continue;
+    for (const target of dependency.blocks) relation.blocks.add(target);
+    for (const target of dependency.dependsOn) relation.blockedBy.add(target);
+  }
+  for (const [issueNumber, relation] of desired) {
+    for (const target of relation.blocks) desired.get(target)?.blockedBy.add(issueNumber);
+    for (const target of relation.blockedBy) desired.get(target)?.blocks.add(issueNumber);
+  }
+  return nodes.flatMap((node) => {
+    const relation = desired.get(node.number);
+    if (!relation) return [];
+    const blocks = uniqueNumbers([...relation.blocks]);
+    const blockedBy = uniqueNumbers([...relation.blockedBy]);
+    if (
+      JSON.stringify(blocks) === JSON.stringify(uniqueNumbers(node.blocks)) &&
+      JSON.stringify(blockedBy) === JSON.stringify(uniqueNumbers(node.blockedBy))
+    ) {
+      return [];
+    }
+    const projected = { ...node, blocks, blockedBy };
+    return [
+      {
+        issueNumber: node.number,
+        blocks,
+        blockedBy,
+        contractBlock: renderIssueHierarchyContract(projected),
+      },
+    ];
+  });
+}
+
+export function applyIssueHierarchyRelationClosureCandidate(
+  body: string,
+  candidate: IssueHierarchyRelationClosureCandidate,
+): string {
+  const currentBlock = extractIssueHierarchyContractBlock(body);
+  if (!currentBlock) throw new Error("issue_hierarchy_migration_expected_present");
+  const current = parseIssueHierarchyContract(currentBlock);
+  const projected = parseIssueHierarchyContract(candidate.contractBlock);
+  const metadataChanged =
+    current.role !== projected.role ||
+    current.parentIssue !== projected.parentIssue ||
+    current.duplicateSearch !== projected.duplicateSearch ||
+    current.disposition !== projected.disposition ||
+    current.duplicateOf !== projected.duplicateOf;
+  const removesEdge =
+    current.blocks.some((number) => !candidate.blocks.includes(number)) ||
+    current.blockedBy.some((number) => !candidate.blockedBy.includes(number));
+  if (metadataChanged) throw new Error("issue_hierarchy_migration_metadata_drift");
+  if (removesEdge) throw new Error("issue_hierarchy_migration_edge_removal");
+  return body.replace(currentBlock, candidate.contractBlock);
+}
+
+export interface IssueDependencyMigrationCandidate {
+  issueNumber: number;
+  action: "add" | "replace";
+  dependsOn: number[];
+  blocks: number[];
+  planId: string | null;
+  planIds?: string[];
+  contractBlock: string;
+}
+
+export function renderIssueDependencyContract(
+  node: Pick<IssueDependencyNode, "dependsOn" | "blocks" | "planId" | "planIds">,
+): string {
+  const planIds = uniqueStrings(node.planIds ?? []);
+  if (node.planId !== null && planIds.length > 0) {
+    throw new Error("issue_plan_scalar_and_set_conflict");
+  }
+  return [
+    "```yaml",
+    `# ${ISSUE_DEPENDENCY_SCHEMA}`,
+    `depends_on: [${uniqueNumbers(node.dependsOn).join(", ")}]`,
+    `blocks: [${uniqueNumbers(node.blocks).join(", ")}]`,
+    `plan_id: ${node.planId ?? "null"}`,
+    ...(planIds.length > 0 ? [`plan_ids: [${planIds.join(", ")}]`] : []),
+    "```",
+  ].join("\n");
+}
+
+export function applyIssueDependencyMigrationCandidate(
+  body: string,
+  candidate: IssueDependencyMigrationCandidate,
+): string {
+  const adoptedBlock = extractIssueDependencyContractBlock(body);
+  if (candidate.action === "add" && adoptedBlock !== null) {
+    throw new Error("issue_dependency_migration_expected_absent");
+  }
+  if (candidate.action === "replace" && adoptedBlock === null) {
+    throw new Error("issue_dependency_migration_expected_present");
+  }
+  if (adoptedBlock !== null) {
+    return body.replace(adoptedBlock, candidate.contractBlock);
+  }
+  const prefix = body.trimEnd();
+  return `${prefix}${prefix === "" ? "" : "\n\n"}${candidate.contractBlock}\n`;
+}
+
+/** Project the exact dependency contract required by the active hierarchy. */
+export function projectIssueDependencyMigrationCandidates(
+  hierarchyNodes: readonly IssueHierarchyNode[],
+  dependencyNodes: readonly IssueDependencyNode[],
+  plans: readonly IssuePlanBinding[] = [],
+): IssueDependencyMigrationCandidate[] {
+  const dependencyByNumber = new Map(dependencyNodes.map((node) => [node.number, node]));
+  const planIdsByIssue = new Map<number, string[]>();
+  for (const plan of plans) {
+    planIdsByIssue.set(
+      plan.githubIssueId,
+      uniqueStrings([...(planIdsByIssue.get(plan.githubIssueId) ?? []), plan.planId]),
+    );
+  }
+  return hierarchyNodes
+    .filter(
+      (node) =>
+        node.disposition === "active" && (node.blocks.length > 0 || node.blockedBy.length > 0),
+    )
+    .flatMap((hierarchyNode) => {
+      const current = dependencyByNumber.get(hierarchyNode.number);
+      const dependsOn = uniqueNumbers(hierarchyNode.blockedBy);
+      const blocks = uniqueNumbers(hierarchyNode.blocks);
+      const projectedPlanIds = planIdsByIssue.get(hierarchyNode.number) ?? [];
+      const planId =
+        projectedPlanIds.length === 1
+          ? (projectedPlanIds[0] ?? null)
+          : projectedPlanIds.length > 1
+            ? null
+            : (current?.planId ?? null);
+      const planIds =
+        projectedPlanIds.length > 1
+          ? projectedPlanIds
+          : projectedPlanIds.length === 1
+            ? undefined
+            : current?.planIds
+              ? uniqueStrings(current.planIds)
+              : undefined;
+      if (
+        current &&
+        JSON.stringify(uniqueNumbers(current.dependsOn)) === JSON.stringify(dependsOn) &&
+        JSON.stringify(uniqueNumbers(current.blocks)) === JSON.stringify(blocks) &&
+        current.planId === planId &&
+        JSON.stringify(uniqueStrings(current.planIds ?? [])) ===
+          JSON.stringify(uniqueStrings(planIds ?? []))
+      ) {
+        return [];
+      }
+      const candidate: IssueDependencyMigrationCandidate = {
+        issueNumber: hierarchyNode.number,
+        action: current ? "replace" : "add",
+        dependsOn,
+        blocks,
+        planId,
+        ...(planIds && planIds.length > 0 ? { planIds } : {}),
+        contractBlock: renderIssueDependencyContract({ dependsOn, blocks, planId, planIds }),
+      };
+      return [candidate];
+    })
+    .sort((left, right) => left.issueNumber - right.issueNumber);
+}
+
+export function auditIssueHierarchyDependencyAlignment(
+  hierarchyNodes: readonly IssueHierarchyNode[],
+  dependencyNodes: readonly IssueDependencyNode[],
+) {
+  const findings: IssueHierarchyDependencyAlignmentFinding[] = [];
+  const dependencyByNumber = new Map(dependencyNodes.map((node) => [node.number, node]));
+  const governedHierarchyNodes = hierarchyNodes.filter(
+    (node) =>
+      node.disposition === "active" && (node.blocks.length > 0 || node.blockedBy.length > 0),
+  );
+
+  for (const hierarchyNode of governedHierarchyNodes) {
+    const dependencyNode = dependencyByNumber.get(hierarchyNode.number);
+    if (!dependencyNode) {
+      findings.push({
+        issueNumber: hierarchyNode.number,
+        code: "dependency_contract_missing_for_hierarchy_relation",
+        detail: `issue #${hierarchyNode.number} declares hierarchy relations but has no ${ISSUE_DEPENDENCY_SCHEMA} contract`,
+      });
+      continue;
+    }
+    const hierarchyBlockedBy = uniqueNumbers(hierarchyNode.blockedBy);
+    const dependencyDependsOn = uniqueNumbers(dependencyNode.dependsOn);
+    if (JSON.stringify(hierarchyBlockedBy) !== JSON.stringify(dependencyDependsOn)) {
+      findings.push({
+        issueNumber: hierarchyNode.number,
+        code: "hierarchy_dependency_blocked_by_mismatch",
+        detail: `hierarchy blocked_by=[${hierarchyBlockedBy.join(",")}] dependency depends_on=[${dependencyDependsOn.join(",")}]`,
+      });
+    }
+    const hierarchyBlocks = uniqueNumbers(hierarchyNode.blocks);
+    const dependencyBlocks = uniqueNumbers(dependencyNode.blocks);
+    if (JSON.stringify(hierarchyBlocks) !== JSON.stringify(dependencyBlocks)) {
+      findings.push({
+        issueNumber: hierarchyNode.number,
+        code: "hierarchy_dependency_blocks_mismatch",
+        detail: `hierarchy blocks=[${hierarchyBlocks.join(",")}] dependency blocks=[${dependencyBlocks.join(",")}]`,
+      });
+    }
+  }
+
+  return {
+    schemaVersion: ISSUE_DEPENDENCY_SCHEMA,
+    ok: findings.length === 0,
+    checkedIssues: governedHierarchyNodes.length,
+    findings,
+  };
 }
 
 function extractIssueDependencyContractBlock(body: string): string | null {
@@ -314,31 +597,84 @@ function isPositiveIssueNumber(value: number): boolean {
   return Number.isSafeInteger(value) && value > 0;
 }
 
+function extractIssueHierarchyContractBlock(body: string): string | null {
+  for (const match of body.matchAll(/```yaml\b([\s\S]*?)```/g)) {
+    let value: unknown;
+    try {
+      value = parseYaml((match[1] ?? "").replace(/([[,]\s*)#(\d+)/g, "$1$2"));
+    } catch {
+      continue;
+    }
+    if (
+      typeof value === "object" &&
+      value !== null &&
+      "issue_role" in value &&
+      "parent_issue" in value &&
+      "blocks" in value &&
+      "blocked_by" in value &&
+      "duplicate_search" in value &&
+      "disposition" in value &&
+      "duplicate_of" in value
+    ) {
+      return match[0];
+    }
+  }
+  return null;
+}
+
 export function parseIssueHierarchyContract(
   body: string,
 ): Omit<IssueHierarchyNode, "number" | "state"> {
-  const block = body.match(
-    /```yaml\s+issue_role:\s*(root|capability|task|finding)\s+parent_issue:\s*(null|\d+)\s+blocks:\s*\[([^\]]*)\]\s+blocked_by:\s*\[([^\]]*)\]\s+duplicate_search:\s*(completed)\s+disposition:\s*(active|parked|duplicate|superseded)\s+duplicate_of:\s*(null|\d+)\s*```/m,
-  );
+  const block = extractIssueHierarchyContractBlock(body);
   if (!block) throw new Error("issue_hierarchy_contract_missing_or_invalid");
-  const numbers = (raw: string): number[] =>
-    raw.trim() === ""
-      ? []
-      : uniqueNumbers(
-          raw.split(",").map((item) => {
-            const value = Number(item.trim().replace(/^#/, ""));
-            if (!isPositiveIssueNumber(value)) throw new Error("issue_relation_number_invalid");
-            return value;
-          }),
-        );
+  const value = parseYaml(
+    block
+      .slice(block.indexOf("\n") + 1, block.lastIndexOf("```"))
+      .replace(/([[,]\s*)#(\d+)/g, "$1$2"),
+  ) as Record<string, unknown>;
+  const enumValue = <T extends string>(
+    candidate: unknown,
+    allowed: readonly T[],
+    code: string,
+  ): T => {
+    if (typeof candidate !== "string" || !allowed.includes(candidate as T)) throw new Error(code);
+    return candidate as T;
+  };
+  const nullableIssue = (candidate: unknown): number | null => {
+    if (candidate === null) return null;
+    if (!isPositiveIssueNumber(candidate as number))
+      throw new Error("issue_relation_number_invalid");
+    return candidate as number;
+  };
+  const numbers = (candidate: unknown): number[] => {
+    if (!Array.isArray(candidate)) throw new Error("issue_relation_array_invalid");
+    return uniqueNumbers(
+      candidate.map((item) => {
+        const normalized = typeof item === "string" ? Number(item.replace(/^#/, "")) : item;
+        if (!isPositiveIssueNumber(normalized as number)) {
+          throw new Error("issue_relation_number_invalid");
+        }
+        return normalized as number;
+      }),
+    );
+  };
+  const normalizedRole = value.issue_role === "feature" ? "capability" : value.issue_role;
   return {
-    role: block[1] as IssueRole,
-    parentIssue: block[2] === "null" ? null : Number(block[2]),
-    blocks: numbers(block[3] ?? ""),
-    blockedBy: numbers(block[4] ?? ""),
-    duplicateSearch: "completed",
-    disposition: block[6] as IssueDisposition,
-    duplicateOf: block[7] === "null" ? null : Number(block[7]),
+    role: enumValue(
+      normalizedRole,
+      ["root", "capability", "task", "finding"],
+      "issue_role_invalid",
+    ),
+    parentIssue: nullableIssue(value.parent_issue),
+    blocks: numbers(value.blocks),
+    blockedBy: numbers(value.blocked_by),
+    duplicateSearch: enumValue(value.duplicate_search, ["completed"], "duplicate_search_invalid"),
+    disposition: enumValue(
+      value.disposition,
+      ["active", "parked", "duplicate", "superseded"],
+      "issue_disposition_invalid",
+    ),
+    duplicateOf: nullableIssue(value.duplicate_of),
   };
 }
 

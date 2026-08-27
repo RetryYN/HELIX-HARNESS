@@ -9,7 +9,7 @@ route_mode: forward
 entry_signals:
   - "po_directive:2026-07-25 PRファイル増加対策をGitHub運用規律へ追加する"
 created: 2026-07-25
-updated: 2026-07-25
+updated: 2026-08-27
 owner: Codex / TL
 engineering_discipline_required: true
 behavior_contract_id: GH-AC-040
@@ -20,13 +20,13 @@ legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "pull_request本文とbase/head SHAの実変更pathが利用可能である"
-contract_postconditions: "1 behavior、1 owner、許可path family、予定変更path全集合、必須companion PLANのcontract/owner、scope expansion receiptが実差分と一致する"
-contract_invariants: "固定ファイル数上限を原子性とみなさず、既存pr-contextと単一harness-check jobを再利用する"
-contract_failures: "manifest欠落・複数責務・unsafe path・予定pathと実差分の不一致・companion欠落・review可能なreceipt pointerを欠く拡張を非zeroでfail-closeする"
+contract_postconditions: "1 behavior、1 owner、許可path family、予定変更path全集合、必須companion PLANのcontract/owner、scope expansion receiptが実差分と一致し、不一致時は実差分の貼り付け用exact path列を提示する"
+contract_invariants: "固定ファイル数上限を原子性とみなさず、既存pr-contextと単一harness-check jobを再利用する。診断の提案はmanifestを自動承認せず、scope拡張は別途レビュー対象とする"
+contract_failures: "manifest欠落・複数責務・unsafe path・予定pathと実差分の不一致・companion欠落・review可能なreceipt pointerを欠く拡張を非zeroでfail-closeし、不一致の修正方向を診断する"
 tdd_red_required: true
 red_at: "2026-07-25T07:34:00+09:00"
 green_at: "2026-07-25T07:37:00+09:00"
-mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/005でduplicate contract、unsafe glob、予定外/未変更path、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/005でduplicate contract、unsafe glob、予定外/未変更path、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled。U-PRSCOPE-002でundeclared/absent双方の実差分exact path列と修正方向の診断を固定する"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context純関数と既存CI stepへ入力検査を追加し、新detector/job/dependency/stateを増やさない"
 removal_trigger: "typed PR metadata APIが同じscope manifestをimmutableに束縛した時点でPR本文parserを統合または削除する"

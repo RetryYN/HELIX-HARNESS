@@ -101,7 +101,7 @@ acceptance-criteria-thinking §2）を含め、特に probing する failure mod
 5. reviewer identity と outcome とともに、finding を PLAN `review_evidence` に記録する。
 
 **G4/G5（trace-freeze: 実装完了）:**
-1. `bun run typecheck`、`bun run lint`、`bun run test` がすべて HEAD で exit 0 になる。
+1. `npm run typecheck`、`npm run lint`、`npm run test` がすべて HEAD で exit 0 になる。
 2. `helix doctor` が exit 0 になる。
 3. PLAN rationale なしの `.skip` または `todo` が Vitest scope に無いことを確認する。
 4. test assertion を3件 spot-check する。指定された behaviour を実際に exercise しているか、

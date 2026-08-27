@@ -203,6 +203,29 @@ export const leftArmCarrySchema = z
   })
   .strict();
 
+/**
+ * L3 要件を terminal 化するための PO 承認記録。
+ *
+ * `review_evidence` は技術レビューの証跡であり、要件の人間承認を表さない。
+ * そのため別ブロックに分離し、承認の型・対象 PLAN・外部記録を必須にする。
+ * 人間 actor の認証・署名検証は後続の approval provenance slice が担う。
+ */
+export const l3HumanApprovalSchema = z
+  .object({
+    schema_version: z.literal("helix-l3-human-approval.v1"),
+    approval_kind: z.literal("human_po"),
+    decision: z.literal("approve"),
+    approver: z.string().min(1),
+    approved_at: z.string().datetime(),
+    plan_id: planIdSchema,
+    approval_record_id: z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:/#-]{2,127}$/u),
+    approval_source: z.enum(["github_issue_comment", "human_gate_record"]),
+    approval_source_url: z.string().url(),
+  })
+  .strict();
+
+export type L3HumanApproval = z.infer<typeof l3HumanApprovalSchema>;
+
 /** §1.1 全 variant 共通フィールド (variant 固有制約は superRefine で fail-close) */
 const frontmatterBaseSchema = z.object({
   plan_id: planIdSchema,
@@ -232,6 +255,8 @@ const frontmatterBaseSchema = z.object({
   resolves_authority: resolvesAuthoritySchema.optional(),
   /** PLAN-L6-70: L7 reviewで発見した左腕矛盾と再凍結証拠をfinding単位で結合する。 */
   left_arm_carry: leftArmCarrySchema.optional(),
+  /** #1097: L3 要件の terminal 化は技術 review と分離した PO 承認を要求する。 */
+  l3_human_approval: l3HumanApprovalSchema.optional(),
   dependencies: dependenciesSchema,
   /** §6.8.2 Issue 起点スパイン: 解決対象 GitHub Issue 番号 (任意、Phase 0-B で recommended)。
    *  feature/hotfix branch の close 漏れ機械検知 + PR `Closes #NN` 連携に使う。 */

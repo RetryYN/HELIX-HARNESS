@@ -23,6 +23,8 @@ pair_artifact: docs/design/helix/L6-function-design/xhigh-reasoning-effort-schem
 | U-XHIGH-001 | team schemaのeffort exact set | `xhigh`はparse後も保持し、未知値はreject | `tests/team-schema.test.ts` |
 | U-XHIGH-002 | policy導出前後のhigh／xhigh境界 | generic high→high、explicit xhigh→xhigh、tooSlow xhigh→highから逸脱したらfail | `tests/model-effort.test.ts` |
 | U-XHIGH-003 | registry validatorのeffort exact set | `xhigh`はpass、未知値または旧3値validatorはfail | `tests/model-registry.test.ts` |
+| U-CNWADAPTER-001 | Codex adapterのcurrent transport | `gpt-5.6-luna`のCodex adapter planは`model_reasoning_effort=xhigh`を保持し、`high`へ縮退しない | `tests/runtime-adapter.test.ts` |
+| U-CNWADAPTER-002 | provider別compatibility | Claudeの`middle → medium`、`xhigh → high`、空値・case・周辺空白のcompatibilityを維持し、Codex current valueの規則と混同しない | `tests/runtime-adapter.test.ts` |
 
 ## mutation
 

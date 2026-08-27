@@ -26,7 +26,7 @@ HELIX の V-model 各レベルをまたぐテスト戦略、fixture 設計、Vit
 
 - pair-freeze 前に PLAN の test coverage（テスト被覆）を設計または audit するとき。
 - suite に新しい test level (unit / integration / system) を追加するとき。
-- 単純な assertion error ではない `bun run test` failure を調査するとき。
+- 単純な assertion error ではない `npm run test` failure を調査するとき。
 - Retrofit または Reverse PLAN で、design docs の back-fill 前に existing code の
   baseline coverage を確立する必要があるとき。
 
@@ -48,17 +48,17 @@ HELIX の V-model 各レベルをまたぐテスト戦略、fixture 設計、Vit
 **suite を実行:**
 
 ```
-bun run test           # Vitest — CI canonical runner
-bun run test --watch   # local feedback loop
+npm run test           # Vitest — CI canonical runner
+npm run test -- --watch # local feedback loop
 ```
 
-`bun test` を CI substitute として使わない。5 秒の sync timeout により、async Vitest
+Node組み込みtest runnerを CI substitute として使わない。Vitest固有の設定とfixtureを迂回するため、
 suites で false failure が発生する。
 
 **PLAN 向け scoped run:**
 
 ```
-bun run test tests/<module>.test.ts
+npm run test -- tests/<module>.test.ts
 ```
 
 **Coverage（gate を追加するとき）:**
@@ -100,7 +100,7 @@ assertion を強める。
 
 Retrofit または Reverse PLAN の下で既存コードへテストを後付けするとき:
 
-1. `bun run test` を実行し、現在の pass/fail 状態を記録する。
+1. `npm run test` を実行し、現在の pass/fail 状態を記録する。
 2. `helix graph` または手動レビューで、被覆すべきコードパスを特定する。
 3. 設計変更より前に characterisation test（現在の振る舞いを oracle として記述するテスト）を書く。
    これが regression fence になる。

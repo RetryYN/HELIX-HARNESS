@@ -33,14 +33,14 @@ automated quality gate を追加・変更・debug する場合に適用する
 canonical CI run は `harness-check`。CI を pass させるために sub-gate を skip しない。
 
 ```
-bun run typecheck      # tsc --noEmit、error 0
-bun run lint           # Biome check (format + lint)、violation 0
-bun run test           # Vitest。bun test ではない（5s sync timeout が flaky）
+npm run typecheck      # tsc --noEmit、error 0
+npm run lint           # Biome check (format + lint)、violation 0
+npm run test           # Vitest。Node組み込みtest runnerで代替しない
 helix doctor          # every harness gate を fail-close
 ```
 
-`bun run lint` は Biome を check mode（format + lint）で実行する。
-`biome lint` だけでは formatting を検査しない。push 前は必ず `bun run lint` を使う。
+`npm run lint` は Biome を check mode（format + lint）で実行する。
+`biome lint` だけでは formatting を検査しない。push 前は必ず `npm run lint` を使う。
 
 ## new gate が必要な条件
 

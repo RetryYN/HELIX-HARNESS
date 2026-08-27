@@ -4,7 +4,7 @@ layer: L3
 kind: add-design
 status: draft
 created: 2026-07-22
-updated: 2026-08-16
+updated: 2026-08-25
 owner: PO / TL
 pair_artifact: docs/test-design/helix/github-merge-admission-system-test-design.md
 ---
@@ -62,6 +62,14 @@ requirements-owned workflow分類registryとexact一致しなければならな�
 exactly oneの`VERSION_UP` owner PLAN、sorted uniqueなchanged PLAN path全件、同一の新registry version／digest、
 新catalogに存在する各typed identityを宣言し、canonical registryとgenerated catalogを同時変更する場合だけ受理する。
 manifest外PLAN、owner欠落／複数、旧新version／digest混在、未知identity、authority path欠落はfail-closeする。
+また、Forward PLANとReverse fullback PLANを同一Issueの終端closureへ束ねる場合は、migrationとは別の
+terminal fullback bundle contractを使用する。terminal bundleはrequirements version-upを主張せず、sorted uniqueな
+changed PLAN manifest、exactly oneのowner PLAN、全PLANのcurrent registry version／digest／catalog identity、
+全PLANの同一`github_issue_id`、Issue／PR／PLANの同一tuple、current HEADを要求する。ForwardとReverseの
+`target_id`はそれぞれ保持し、ownerのidentityへ潰してはならない。registry authority pathの同時変更を要求せず、
+migration markerとの併記、manifest／owner／identity／Issue／HEADの欠落・不一致、legacy推測は専用reasonで
+fail-closeする。terminal bundleはIssueとPLANの終端を許可する契約ではなく、終端fullbackを検査可能にする
+admission契約であり、completion claimは別のcurrent-head review、CI、main read-afterを満たすまで禁止する。
 marker欠落・重複、JSON／schema不正、legacy field、authority drift、未知identity、signalのunknown／
 decision待ち／ambiguity／identity矛盾、Issue／PR／PLAN不一致を別reasonでfail-closeする。changed PLANが
 legacy compatibility-onlyでcurrent `workflow_identity`を持たない場合に限り本追加gateを非適用とし、
@@ -122,7 +130,7 @@ immutable conflictとしてfail-closeする。legacy mode／model、prose route�
 | GH-AC-015 | 隔離DB再構築でsource HEAD、event、projection、checkpoint、schemaが一致し、stale/orphan 0の場合だけDB追従receiptを受理する                                                                                                                                                                                                                                                                                                                                   |
 | GH-AC-016 | AI-Aの内部CIと、修正後HEADのread-only AI-B review、内部CI、GitHub Actions、DB追従が全て同じHEADへ収束するまでmergeをblockする。AI-Bの編集・push・Ready化とnative auto-mergeを拒否し、AI-Aによるreview receiptの機械転記とAI-Bによる最終HEAD再照合を要求する                                                                                                                                                                                                 |
 | GH-AC-017 | current contract内の局所correctness/security findingはcurrent PRで修正し、独立責務・別設計・lifecycle・性能改善だけを後続Issueへ分離する。後続Issueをcurrent PRへ再流入させない                                                                                                                                                                                                                                                                             |
-| GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。複数PLANは通常拒否し、registry version-up時だけexact owner／path manifest／新version・digest／catalog identity／authority pathsを満たすstrict migration bundleとして受理する。欠落、混在、未知identity、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
+| GH-AC-018 | current workflow identityを持つchanged PLANが1件の場合、PLANの`github_issue_id`で束縛したIssue本文・PR本文・PLAN tuple・requirements registryがexact一致するときだけadmissionをgreenにする。複数PLANは通常拒否し、registry version-up時だけexact owner／path manifest／新version・digest／catalog identity／authority pathsを満たすstrict migration bundle、または同一IssueのForward／Reverse終端fullback時だけterminal fullback bundleとして受理する。terminal bundleは異なるtyped identityを保持し、全PLANのcurrent version／digest／catalog identity／Issue、manifest、owner、HEADをexact照合する。欠落、混在、未知identity、legacy field、drift、曖昧・不一致を専用reasonで拒否する |
 | GH-AC-019 | workflow identityと別の`episode_id`へsource event、Issue、PLAN、branch、PR、base／HEAD、owner、behavior contractをexact束縛し、別episode／旧HEAD／旧ownerのevidence、resource重複、legacy補完を拒否する。複数active episodeはepisode別locationへ全件投影し、global current-locationで代表一件を推測しない                                                                                                                                                   |
 | GH-AC-020 | append-only event＋transactional outboxのreplayが同じepisode stateを返し、retry／crash／duplicate delivery／partial closureをexactly onceでreconcileする。順序飛越し、terminal再利用、未送達outbox、closure receipt／main read-after欠落を拒否する                                                                                                                                                                                                          |
 | GH-AC-021 | G8〜G12 evidenceをcurrent episode／HEAD／owner／contract／workflow identityへexact束縛したappend-only recordとして受理する。別episode、旧HEAD、別owner／contract／identity、非repository-relative artifact、同一ID改変を拒否する                                                                                                                                                                                                                            |

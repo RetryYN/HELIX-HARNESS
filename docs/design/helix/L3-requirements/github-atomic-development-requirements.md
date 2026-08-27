@@ -44,6 +44,11 @@ scope expansion receiptを機械可読に宣言し、base HEADからhead HEADま
 予定変更path全集合と実差分の不一致、複数behavior/owner、unsafe path、実差分に無いcompanion、
 根拠のないscope拡張はCIでfail-closeする。
 
+behavior contract IDの正規文法は、単一hyphenで区切った**2〜6個のuppercase alphanumeric segment**とする。
+先頭segmentは英大文字で開始し、空segment、小文字、空白、underscore、連続hyphen、7 segment以上を拒否する。
+PR本文、PLAN admission、atomic slice runtime、Issue closure contract、DB／doctor projectionは同じ共有parserを使い、
+surfaceごとの独自regexや互換拡張で受理範囲を広げてはならない。
+
 ### GH-FR-025 impact選択CIとfull回収
 
 PR CIはsource HEADとbase HEADからversion管理されたimpact DAGを評価し、typecheck、変更behaviorのtargeted oracle、
@@ -113,6 +118,7 @@ heartbeat欠落、releaseなしtakeoverを検出した場合はfail-closeし、R
 | GH-AC-038 | GitHub、PLAN工程、workflow schedule、DB next actionが同一HEAD・contract・owner・dependency frontierへ収束し、不一致時はRecoveryになる |
 | GH-AC-039 | 2 AIの同時write、read-only reviewerのpush、観測だけでの作業開始、stale lease横取り、旧HEAD token、相反するactive takeoverを拒否し、15分poll/heartbeat・45分TTLを守り、旧leaseをatomicにconsume/supersedeしたrelease/acquire済み同一HEAD handoffだけを受理する |
 | GH-AC-040 | PRの1 behavior／1 owner、許可path family、予定変更path全集合をbase..head実差分へ照合し、予定外/未変更path、unsafe path、PLAN/test companion漏れ、無証拠scope expansionを拒否する |
+| GH-AC-043 | behavior contract IDを2〜6個のuppercase alphanumeric segmentへ正規化し、PR／PLAN／runtime／Issue closure／DB／doctorが共有parserで同じ値を受理し、7 segment以上と不正文法をfail-closeする |
 
 ## 5. freeze境界
 

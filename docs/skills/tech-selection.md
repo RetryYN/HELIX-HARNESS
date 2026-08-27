@@ -51,8 +51,8 @@ research workflow の output は、正確に次の 2 generated artifacts であ�
   pillar（foundation-first、type-safety、observability など）へ結びつける。
 - "popularity" や "community" を単独 criterion として使わない。これらは proxy なので、
   何の proxy かを明示する（maintenance risk、hiring、ecosystem maturity など）。
-- 少なくとも 1 criterion は HELIX operational constraint にする。例: Windows/Bun compatibility、
-hook integration、`bun run test` / Biome compatibility を含める。
+- 少なくとも 1 criterion は HELIX operational constraint にする。例: Windows/Node.js compatibility、
+hook integration、`npm run test` / Biome compatibility を含める。
 
 ## HELIX における ADR lifecycle
 

@@ -93,4 +93,13 @@ PR #351のisolated lane分割は現状coverage等価だが、次の構造的リ�
 
 - lane分割・profile決定ロジック（computeImpactDecision）の変更
 - cancellation伝播（PLAN-RECOVERY-14）・transition reuse（PLAN-RECOVERY-15）の変更
+
+## 訂正・後継（2026-08-27）
+
+本PLANが前提にした同一step内のlane inventory assert、`terminate_lanes` による部分ログ出力、
+および `U-IMPACTCI-WF-005` は、独立GitHub Actions job DAGのtyped partition／receiptへ
+移行した現行契約では使用しない。旧verification／mutation evidenceは過去の実装履歴として
+残すが、現行のinventory完全性やcancel処理を証明しない。現行の後継は
+`PLAN-L7-685-full-regression-shard-jobs` であり、partition／receiptの境界は
+`U-FULLSHARD-001`〜`006` と `U-FULLSHARD-WF-001`〜`003` が所有する。
 - vitest project構成の変更

@@ -1,5 +1,7 @@
 // PLAN-L7-574-github-workflow-identity-admission — U-GWIDADM-001..009
 // PLAN-L7-581-github-workflow-identity-migration-bundle-admission — U-GWIDADM-011..016
+// PLAN-L7-674-terminal-fullback-bundle-admission — U-GWIDADM-019..020
+// PLAN-L7-681-github-identity-source-diagnostics — U-GWIDADM-021
 import { copyFileSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -8,6 +10,7 @@ import {
   admitGithubWorkflowIdentity,
   GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER,
   GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER,
+  GITHUB_WORKFLOW_IDENTITY_TERMINAL_BUNDLE_MARKER,
 } from "../src/adapters/github-workflow-identity-admission";
 import { analyzePrContext } from "../src/lint/github-guards";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
@@ -48,15 +51,7 @@ function identity() {
   } as const;
 }
 
-function contractBody(
-  value: {
-    schema_version: string;
-    registry_version: string;
-    registry_source_digest: string;
-    target_axis: string;
-    target_id: string;
-  } = identity(),
-): string {
+function contractBody(value: unknown = identity()): string {
   return `${GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER}\n\`\`\`json\n${JSON.stringify(value)}\n\`\`\``;
 }
 
@@ -68,6 +63,18 @@ function migrationBundleBody(planPaths: string[], ownerPlan = PLAN_PATH): string
       plan_paths: planPaths,
     },
   )}\n\`\`\``;
+}
+
+function terminalBundleBody(planPaths: string[], ownerPlan = PLAN_PATH): string {
+  return `${contractBody()}
+${GITHUB_WORKFLOW_IDENTITY_TERMINAL_BUNDLE_MARKER}
+\`\`\`json
+${JSON.stringify({
+  schema_version: "helix-github-workflow-identity-terminal-bundle.v1",
+  owner_plan: ownerPlan,
+  plan_paths: planPaths,
+})}
+\`\`\``;
 }
 
 function writePlan(
@@ -327,6 +334,106 @@ describe("GitHub workflow identity admission", () => {
     }
   });
 
+  it("U-GWIDADM-019: terminal fullback bundleは異なるtyped identityを潰さずに受理する", () => {
+    const root = fixtureRoot();
+    const forward = PLAN_PATH;
+    const reverse = "docs/plans/PLAN-REVERSE-568-issue-template-label-typed-authority.md";
+    const ownerIdentity = { ...identity(), target_id: "ADD_FEATURE" } as const;
+    writePlan(root, { targetId: "ADD_FEATURE" });
+    writePlan(root, { path: reverse, targetId: "REVERSE" });
+    const paths = [forward, reverse].sort();
+    const result = admitGithubWorkflowIdentity({
+      repository: "RetryYN/HELIX-HARNESS",
+      prBody: terminalBundleBody(paths, forward).replace(
+        contractBody(),
+        contractBody(ownerIdentity),
+      ),
+      changedPaths: paths,
+      repoRoot: root,
+      ghApi: () => ({ number: 733, body: contractBody(ownerIdentity) }),
+    });
+    expect(result).toMatchObject({
+      ok: true,
+      applicable: true,
+      plan_id: "PLAN-L7-574-github-workflow-identity-admission",
+      target_axis: "workflow_model",
+      target_id: "ADD_FEATURE",
+      terminal_bundle: true,
+    });
+  });
+
+  it("U-GWIDADM-020: terminal bundleのmanifest、owner、digest、identity、Issue、marker混同を拒否する", () => {
+    const forward = PLAN_PATH;
+    const reverse = "docs/plans/PLAN-REVERSE-568-issue-template-label-typed-authority.md";
+    const extra = "docs/plans/PLAN-L7-999-terminal-bundle-extra.md";
+    const paths = [forward, reverse].sort();
+    const ownerIdentity = { ...identity(), target_id: "ADD_FEATURE" } as const;
+    for (const variant of [
+      "duplicate_marker",
+      "unsorted",
+      "owner_missing",
+      "stale_digest",
+      "unknown_identity",
+      "issue_mismatch",
+      "manifest_omission",
+      "untyped_plan",
+      "migration_marker",
+    ] as const) {
+      const root = fixtureRoot();
+      writePlan(root, { targetId: "ADD_FEATURE" });
+      writePlan(root, {
+        path: reverse,
+        issue: variant === "issue_mismatch" ? 734 : 733,
+        targetId: variant === "unknown_identity" ? "NOT_REGISTERED" : "REVERSE",
+        registryDigest: variant === "stale_digest" ? `sha256:${"0".repeat(64)}` : undefined,
+      });
+      if (variant === "manifest_omission") {
+        writePlan(root, { path: extra, targetId: "REVERSE" });
+      }
+      if (variant === "untyped_plan") {
+        writeFileSync(
+          join(root, extra),
+          "---\nplan_id: PLAN-L7-999-terminal-bundle-extra\ngithub_issue_id: 733\n---\n",
+        );
+      }
+      const manifestPaths = variant === "untyped_plan" ? [...paths, extra].sort() : paths;
+      const changedPaths =
+        variant === "manifest_omission" || variant === "untyped_plan"
+          ? [...paths, extra].sort()
+          : paths;
+      let body = terminalBundleBody(
+        variant === "unsorted" ? [...paths].reverse() : manifestPaths,
+        variant === "owner_missing" ? "docs/plans/PLAN-L7-999-missing.md" : forward,
+      ).replace(contractBody(), contractBody(ownerIdentity));
+      if (variant === "duplicate_marker")
+        body += `\n${GITHUB_WORKFLOW_IDENTITY_TERMINAL_BUNDLE_MARKER}`;
+      if (variant === "migration_marker")
+        body += `\n${GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER}`;
+      expect(
+        admitGithubWorkflowIdentity({
+          repository: "RetryYN/HELIX-HARNESS",
+          prBody: body,
+          changedPaths,
+          repoRoot: root,
+          ghApi: () => ({ number: 733, body: contractBody(ownerIdentity) }),
+        }),
+      ).toMatchObject({
+        ok: false,
+        reason: {
+          duplicate_marker: "workflow_identity_admission_bundle_contract_invalid",
+          unsorted: "workflow_identity_admission_bundle_contract_invalid",
+          owner_missing: "workflow_identity_admission_bundle_owner_invalid",
+          stale_digest: "workflow_identity_admission_bundle_identity_mismatch",
+          unknown_identity: "workflow_identity_admission_bundle_identity_mismatch",
+          issue_mismatch: "workflow_identity_admission_bundle_issue_mismatch",
+          manifest_omission: "workflow_identity_admission_bundle_path_mismatch",
+          untyped_plan: "workflow_identity_admission_bundle_identity_mismatch",
+          migration_marker: "workflow_identity_admission_bundle_contract_invalid",
+        }[variant],
+      });
+    }
+  });
+
   it("U-GWIDADM-004: PR marker欠落とIssue legacy fieldを別reasonでfail-closeする", () => {
     const root = fixtureRoot();
     writePlan(root);
@@ -343,7 +450,7 @@ describe("GitHub workflow identity admission", () => {
       }),
     ).toMatchObject({
       ok: false,
-      reason: "workflow_identity_contract_missing",
+      reason: "pr_workflow_identity_contract_missing",
     });
     expect(
       admitGithubWorkflowIdentity({
@@ -356,7 +463,94 @@ describe("GitHub workflow identity admission", () => {
       }),
     ).toMatchObject({
       ok: false,
-      reason: "workflow_identity_contract_legacy_field_forbidden",
+      reason: "issue_workflow_identity_contract_legacy_field_forbidden",
+    });
+  });
+
+  it("U-GWIDADM-021: Issue／PR contract parser failureをsurface別reasonへ写像する", () => {
+    const root = fixtureRoot();
+    writePlan(root);
+    const valid = contractBody();
+    const parserFailures = [
+      ["workflow_identity_contract_missing", "missing"],
+      ["workflow_identity_contract_duplicate", `${valid}\n${valid}`],
+      [
+        "workflow_identity_contract_json_invalid",
+        `${GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER}\n${"```"}json\n{\n${"```"}`,
+      ],
+      [
+        "workflow_identity_contract_schema_invalid",
+        contractBody({ ...identity(), unexpected: true }),
+      ],
+      [
+        "workflow_identity_contract_legacy_field_forbidden",
+        contractBody({ ...identity(), mode: "reverse" }),
+      ],
+      [
+        "workflow_identity_contract_authority_drift",
+        contractBody({ ...identity(), registry_version: "9.9.9" }),
+      ],
+      [
+        "workflow_identity_contract_identity_unknown",
+        contractBody({ ...identity(), target_id: "NOT_REGISTERED" }),
+      ],
+      [
+        "workflow_identity_contract_signal_unknown",
+        contractBody({ ...identity(), signal_tokens: ["not_registered"] }),
+      ],
+      [
+        "workflow_identity_contract_signal_decision_required",
+        contractBody({ ...identity(), signal_tokens: ["user_feedback_iteration"] }),
+      ],
+      [
+        "workflow_identity_contract_signal_mismatch",
+        contractBody({ ...identity(), signal_tokens: ["drift"] }),
+      ],
+    ] as const;
+
+    for (const [genericReason, failureBody] of parserFailures) {
+      expect(
+        admitGithubWorkflowIdentity({
+          repository: "RetryYN/HELIX-HARNESS",
+          prBody: valid,
+          changedPaths: [PLAN_PATH],
+          repoRoot: root,
+          ghApi: () => ({ number: 733, body: failureBody }),
+        }),
+      ).toMatchObject({
+        ok: false,
+        reason: `issue_${genericReason}`,
+      });
+
+      expect(
+        admitGithubWorkflowIdentity({
+          repository: "RetryYN/HELIX-HARNESS",
+          prBody: failureBody,
+          changedPaths: [PLAN_PATH],
+          repoRoot: root,
+          ghApi: () => ({ number: 733, body: valid }),
+        }),
+      ).toMatchObject({
+        ok: false,
+        reason: `pr_${genericReason}`,
+      });
+    }
+  });
+
+  it("Issue／PR contractのtuple mismatchは両面由来のcomparison reasonを維持する", () => {
+    const root = fixtureRoot();
+    writePlan(root);
+    expect(
+      admitGithubWorkflowIdentity({
+        repository: "RetryYN/HELIX-HARNESS",
+        prBody: contractBody({ ...identity(), target_id: "RECOVERY" }),
+        changedPaths: [PLAN_PATH],
+        repoRoot: root,
+        ghApi: () => ({ number: 733, body: contractBody() }),
+      }),
+    ).toMatchObject({
+      ok: false,
+      reason: "workflow_identity_contract_issue_pr_mismatch",
     });
   });
 

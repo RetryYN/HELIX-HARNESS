@@ -53,9 +53,9 @@ W-gate は coverage count（被覆数）だけでは close しない。test-desi
 **Step 1 — 機械検査（Machine checks）:**
 
 ```
-bun run typecheck
-bun run lint
-bun run test
+npm run typecheck
+npm run lint
+npm run test
 helix doctor
 helix vmodel lint
 helix review --uncommitted
@@ -104,4 +104,4 @@ timestamp: <ISO-8601>
 
 - test file の存在だけを確認し、paired design doc の scenario を cover しているか確認せずに W-gate を close する。
 - retrograde check（退行確認）なしに Refactor PLAN を accept する。refactor では test が静かに削除されやすい。
-- `bun run lint` の代わりに `biome lint` だけを使う。format violation が蓄積し、次の CI push で fail する。
+- `npm run lint` の代わりに `biome lint` だけを使う。format violation が蓄積し、次の CI push で fail する。

@@ -21,6 +21,8 @@ import {
   CLAUDE_EFFORT_ENV,
   CLAUDE_PERMISSION_ARGS,
   CLAUDE_STDIN_ARGS,
+  CODEX_EFFORT_CONFIG_KEY,
+  CODEX_EFFORT_FLAG,
   CODEX_MODEL_FLAG,
   CODEX_STDIN_ARGS,
   DELEGATION_MEMORY_BUDGET,
@@ -288,7 +290,8 @@ describe("runtime adapter plan", () => {
 
   it("U-ADAPTER-010: normalizes provider effort aliases before adapter argv and env are built", () => {
     expect(normalizeProviderEffort("claude", "middle")).toBe("medium");
-    expect(normalizeProviderEffort("codex", "xhigh")).toBe("high");
+    expect(normalizeProviderEffort("codex", "xhigh")).toBe("xhigh");
+    expect(normalizeProviderEffort("claude", "xhigh")).toBe("high");
     expect(normalizeProviderEffort("claude", " HIGH ")).toBe("high");
     expect(normalizeProviderEffort("claude", "")).toBeUndefined();
 
@@ -312,6 +315,33 @@ describe("runtime adapter plan", () => {
     ]);
     expect(plan.effort).toBe("medium");
     expect(plan.env).toEqual({ [CLAUDE_EFFORT_ENV]: "medium" });
+  });
+
+  // PLAN-L7-679-codex-luna-xhigh-adapter-transport / U-CNWADAPTER-001
+  it("U-CNWADAPTER-001: preserves policy-derived Luna xhigh in Codex adapter argv", () => {
+    const plan = buildAdapterPlan(
+      {
+        provider: "codex",
+        role: "worker",
+        task: "implement bounded task",
+        model: "gpt-5.6-luna",
+        effort: "xhigh",
+      },
+      "hybrid",
+    );
+
+    expect(plan.effort).toBe("xhigh");
+    expect(plan.args).toContain(CODEX_EFFORT_FLAG);
+    expect(plan.args).toContain(`${CODEX_EFFORT_CONFIG_KEY}=xhigh`);
+    expect(plan.args).not.toContain(`${CODEX_EFFORT_CONFIG_KEY}=high`);
+  });
+
+  // PLAN-L7-679-codex-luna-xhigh-adapter-transport / U-CNWADAPTER-002
+  it("U-CNWADAPTER-002: keeps Claude effort compatibility provider-local", () => {
+    expect(normalizeProviderEffort("claude", "middle")).toBe("medium");
+    expect(normalizeProviderEffort("claude", "xhigh")).toBe("high");
+    expect(normalizeProviderEffort("claude", " HIGH ")).toBe("high");
+    expect(normalizeProviderEffort("claude", "")).toBeUndefined();
   });
 
   it("U-ADAPTER-002: honors HELIX_CODEX_BIN before PATH lookup", () => {

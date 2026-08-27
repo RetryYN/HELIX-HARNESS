@@ -90,6 +90,15 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | skill pack 判断力uplift | PLAN-L6-65 / `skill-pack-uplift.md` | `U-SKUP-001..011`。PLAN-L7-419の実装済みskill catalog・判断frame・marker・CLI citation・言語/license/decision precedenceを固有test caseへ束縛する |
 | CI hard-gate integrity self-heal | PLAN-L7-423 / `function-spec.md` | `U-CISELF-001..008`。dependency boundary、compat shim、secret SSoT、human/technical review分離、L6逆trace、fresh-clone approval frontierを固有test caseへ束縛する |
 | document semantic diff local artifact | PLAN-L7-457 / `document-semantic-diff.md` §3.1 | `U-DOCDIFF-008` / `IT-DOCDIFF-003`。専用root、new-file-only、dry-run 0 write、durable receiptを固有testへ束縛する |
+| Reverse fullback scope全entry | PLAN-L7-673 / `governance-enforcement.md` §2.8 | `U-RFSCOPE-001..003`。必須外layerのinvalid decision、未生成`updated` evidence、valid `not_impacted`を検査し、追加layerの未検査を許可しない。必須3層限定へ戻すmutationをkillする | `tests/plan-lint.test.ts`, `tests/tools/reverse-fullback-scope-mutation/run-mutation.ts` |
+
+### Reverse fullback scope全entryのoracle（PLAN-L7-673）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-RFSCOPE-001 | 必須外`verification-design`の`decision: inferred` | 許可されないdecisionを`reverse_fullback_scope_missing`として拒否する | `tests/plan-lint.test.ts` |
+| U-RFSCOPE-002 | 必須外`verification-design`の未生成`updated` evidence | 同一PLANの`generates`に無いevidence pathを`reverse_fullback_scope_missing`として拒否する | `tests/plan-lint.test.ts` |
+| U-RFSCOPE-003 | 必須外`verification-design`の`not_impacted` | 変更が無いことを理由付きで宣言したscopeを受理する | `tests/plan-lint.test.ts` |
 
 ### active PLAN選択整合性のoracle
 
@@ -116,6 +125,12 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-IHIER-009 | PLAN binding表現の曖昧性 | scalar `plan_id`と`plan_ids`集合の同時指定をfail-closeし、暗黙のPLAN帰属推測を許可しない | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-010 | Issue依存契約の採用境界と失敗帰属 | prose markerだけのIssueを非採用とし、不正なyaml fenced blockを原因Issue番号付き`issue_dependency_contract_invalid`へ投影する | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-011 | Issue依存契約のdetector／parser形状一致 | fence直後marker、marker前空行、same-line markerを同じ採用blockとして受理し、同形状のmalformed blockをIssue番号付きfindingへ投影する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-012 | hierarchy／dependency cross-contract | relationを宣言するactive hierarchy Issueだけを対象に、dependency block欠落、`blocked_by`／`depends_on`集合差、`blocks`集合差を個別findingで拒否し、parent-only Issueは対象外にする | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-013 | dependency migration dry-run | active hierarchy正本からadd／replace、exact `depends_on`／`blocks`、PLAN束縛、parser往復可能なcanonical contract blockを持つmigration candidateを決定的に投影し、既に一致するIssue、scalar／set競合、add／replace事前状態不一致を拒否する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-014 | hierarchy／dependency relation union closure | どちらか片側projectionだけに宣言された既存edgeを削除せず、存在する両端nodeの`blocks`／`blocked_by`へunion closureし、metadata drift・edge removal・hierarchy block欠落を拒否する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-015 | hierarchy compatibility input normalization | compatibility-only `plan_id`を含む契約と複数行relation配列を入力時だけ受理し、current typed hierarchyへ正規化する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-016 | PLAN binding migration projection | candidate treeのexact PLAN bindingで既存dependency contractの`plan_id: null`／stale bindingを置換し、GitHub IssueとPLAN正本を収束する | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-017 | legacy Issue role adapter | 旧`issue_role: feature`をinput-onlyでcurrent `capability`へ変換し、current rendererへ旧roleを再出力しない | `tests/issue-hierarchy.test.ts` |
 | U-IMETA-001 | GitHub Issue metadata audit | type/lifecycle欠落と48時間以上unlabeled openを拒否し、closedと閾値未満をstale findingへ誤算入しない | `tests/issue-metadata-audit.test.ts` |
 | U-IMETA-WF-001 | Issue metadata scheduled audit workflow | schedule/workflow_dispatchだけでread-only監査を起動し、PR required gateへ混載せず、finding・CLI失敗・権限不足をsuccessへ変換しない | `tests/issue-metadata-audit-workflow.test.ts` |
 | U-IMETA-WF-003 | Issue metadata audit fail-open shell oracle | 論理OR＋`true`／論理OR＋`:`（末尾`;`を含む）／`; true`／`set +e`を個別mutationで拒否する | `tests/issue-metadata-audit-workflow.test.ts` |
@@ -442,6 +457,16 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-005 | PLAN contract一致 | PR manifestのbehavior／ownerと必須PLAN companionの`behavior_contract_id`／`responsibility_owner`がexact一致しない場合にfail-closeする | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-006 | current GitHub snapshot parser | 1回のAPI readからbody／head／base／identity digestを作り、別PR・schema不正・不正SHAをfail-closeする | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-007 | current GitHub snapshot workflow | API取得不能を非zeroとし、同一snapshotからdiffとguard inputを作り、guard前後のbody／head／base driftをfail-closeする | `tests/harness-check-workflow.test.ts` |
+
+### Issue #1052 outstanding snapshotのsemantic merge guard
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-OUTMERGE-001 | count/list exactness | `decision_count`と`plan_ids`を別側から採用したsnapshotを、件数不一致とcount/list不一致の双方でfail-closeする | `tests/outstanding.test.ts` |
+| U-OUTMERGE-002 | blocker/action/live invariant | blocker／required actionの片側採用、live duplicate PLANによる件数と集合の意味 driftを検出する | `tests/outstanding.test.ts` |
+| U-OUTMERGE-003 | early guard | 現行repoのcommitted snapshotをlive projectionと照合し、修復書込みなしで明示repair commandを返す | `tests/outstanding.test.ts` |
+| U-OUTMERGE-004 | merge-readiness integration | semantic violationがある場合、push／PR作成可能判定をfail-closeし、`helix db rebuild`を提示する | `tests/github-merge-readiness.test.ts` |
+| U-OUTMERGE-005 | guard negative oracle | driftしたsnapshotを早期guardへ渡した場合、`ok=false`かつsemantic violationを返す | `tests/outstanding.test.ts` |
 
 scope expansionのunit oracleはreceipt pointerの構文と理由を検査する。外部commentの存在・内容・承認主体は
 同一HEADのAI-B review evidenceで検証し、unit greenだけで承認済みとは扱わない。

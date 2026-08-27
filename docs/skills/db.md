@@ -80,4 +80,4 @@ migration が destructive（DROP COLUMN、data transformation）の場合は rol
 - [ ] `helix plan lint` exits 0.
 - [ ] `helix doctor` exits 0.
 - [ ] harness.db changes の場合、`helix db rebuild` が成功し、projection-writer tests が green
-      （`bun run test`）。
+      （`npm run test`）。

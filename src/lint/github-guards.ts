@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { isAtomicContractId } from "../schema/atomic-contract-id";
 import { auditIssueClosureGraph, type IssueClosureGraphSnapshot } from "./issue-closure-graph";
 
 export interface CommitlintFinding {
@@ -153,7 +154,6 @@ const ISSUE_CLOSURE_OUTCOME = new RegExp(
   `(^|\\n)[ \\t]*(?:[-*][ \\t]*)?(?:Issue closure outcome|Outcome):[ \\t]*(resolved|rejected|quarantined|superseded|cancelled)${TRAILING_INLINE_COMMENT}`,
   "i",
 );
-const ATOMIC_ID = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){1,5}$/;
 const RESPONSIBILITY_OWNER = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const SAFE_SCOPE_PATH =
   /^(?!\/)(?!.*(?:^|\/)\.\.(?:\/|$))(?!.*[\\*?[\]{}])[\p{L}\p{N}_.@/+ -]+\/?$/u;
@@ -234,6 +234,27 @@ function isSafeScopePath(path: string): boolean {
 
 function pathCovered(path: string, family: string): boolean {
   return family.endsWith("/") ? path.startsWith(family) : path === family;
+}
+
+function expectedPathMismatchMessage(
+  undeclared: readonly string[],
+  absent: readonly string[],
+  actual: readonly string[],
+): string {
+  const guidance =
+    `suggested Expected changed paths: ${actual.join(", ")}; ` +
+    "replace the PR body's Expected changed paths with this exact sorted set";
+  const direction =
+    undeclared.length > 0 && absent.length === 0
+      ? "all actual paths are additions to the declaration"
+      : absent.length > 0 && undeclared.length === 0
+        ? "remove stale paths that are absent from the actual diff"
+        : "reconcile both added and stale paths before rerunning CI";
+  return [
+    `actual diff must exactly match Expected changed paths (undeclared=${undeclared.join(", ") || "none"}; absent=${absent.join(", ") || "none"})`,
+    guidance,
+    direction,
+  ].join("; ");
 }
 
 function frontmatterScalar(text: string, field: string): string | null {
@@ -360,7 +381,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
       });
     } else {
       const contract = contractValues[0] ?? "";
-      if (contractValues.length !== 1 || !ATOMIC_ID.test(contract)) {
+      if (contractValues.length !== 1 || !isAtomicContractId(contract)) {
         findings.push({
           code: "pr_scope_contract_invalid",
           severity: "error",
@@ -420,7 +441,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           findings.push({
             code: "pr_scope_changed_paths_mismatch",
             severity: "error",
-            message: `actual diff must exactly match Expected changed paths (undeclared=${undeclared.join(", ") || "none"}; absent=${absent.join(", ") || "none"})`,
+            message: expectedPathMismatchMessage(undeclared, absent, changedPaths),
           });
         }
       }
