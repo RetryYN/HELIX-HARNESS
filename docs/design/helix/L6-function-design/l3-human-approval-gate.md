@@ -41,6 +41,19 @@ L3 PLAN が `confirmed` または `completed` へ到達する際、基準日
 対象 `plan_id` はPLAN自身とexact一致し、schema不一致・対象違い・欠落はfail-closeする。
 技術 `review_evidence` の有無、reviewer名、model名だけではこのrecordを代替できない。
 
+## §1.1 grandfather境界のGit provenance
+
+承認要否の基準日判定に、PLAN authorが書き換えられるfrontmatterの`created`／`updated`だけを
+使ってはならない。`review-evidence` loaderは`docs/plans/<PLAN file>`のGit履歴から、初出commitの
+日付をcreated相当、最新変更commitの日付をupdated相当として取得する。CIはこの判定を再現できる
+よう`fetch-depth: 0`を必須とする。
+
+対象ファイルが未追跡、Git履歴が浅い／取得不能、初出または最新変更日が欠落・不正、または日付順序が
+不整合の場合、L3 terminal PLANは承認recordの有無にかかわらずfail-closeする。frontmatter日付は
+暦日整合性と表示のために検査するが、基準日前のgrandfather判定をauthor入力から推測しない。
+基準日前のGit履歴を持つ既存PLANは承認を遡及要求せず、基準日以降にGitで作成・変更されたPLANは
+typed PO approvalを要求する。
+
 ## §2 移行境界
 
 既存の基準日前に確定したL3 PLANへ、後付けの承認記録を捏造させない。基準日前の履歴は
@@ -61,6 +74,8 @@ failure reasonは次のexact setとする。
 
 - `missing_human_po_approval`
 - `invalid_human_po_approval`
-- `invalid_l3_plan_dates`（日付欠落・暦日不正・`updated < created`）
+- `invalid_l3_plan_dates`（frontmatterの日付欠落・暦日不正・`updated < created`）
+- `missing_l3_plan_git_provenance`（未追跡・履歴取得不能・Git日付欠落）
+- `invalid_l3_plan_git_provenance`（Git日付不正・Git日付順序不整合）
 
 現時点ではwarningへ縮退させず、L3 terminal化をfail-closeする。
