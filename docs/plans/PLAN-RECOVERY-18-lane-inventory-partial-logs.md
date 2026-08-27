@@ -93,5 +93,4 @@ PR #351のisolated lane分割は現状coverage等価だが、次の構造的リ�
 
 - lane分割・profile決定ロジック（computeImpactDecision）の変更
 - cancellation伝播（PLAN-RECOVERY-14）・transition reuse（PLAN-RECOVERY-15）の変更
-
 - vitest project構成の変更
