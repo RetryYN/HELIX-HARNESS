@@ -5,7 +5,7 @@ import type { GitMutationContext } from "./git-command-guard";
 import { normalizeRepoRelative } from "./work-guard";
 
 function gitOutput(cwd: string, args: string[]): string {
-  return execFileSync("git", args, { cwd, encoding: "utf8" }).trim();
+  return execFileSync("git", args, { cwd, encoding: "utf8" });
 }
 
 function samePhysicalDirectory(left: string, right: string): boolean {
@@ -73,17 +73,17 @@ function resolveSingleGitMutationContext(opts: {
 }): GitMutationContext {
   try {
     gitOutput(opts.repoRoot, ["rev-parse", "--show-toplevel"]);
-    const executionRoot = gitOutput(opts.executionCwd, ["rev-parse", "--show-toplevel"]);
+    const executionRoot = gitOutput(opts.executionCwd, ["rev-parse", "--show-toplevel"]).trim();
     const governedCommonDir = gitOutput(opts.repoRoot, [
       "rev-parse",
       "--path-format=absolute",
       "--git-common-dir",
-    ]);
+    ]).trim();
     const executionCommonDir = gitOutput(opts.executionCwd, [
       "rev-parse",
       "--path-format=absolute",
       "--git-common-dir",
-    ]);
+    ]).trim();
     if (!samePhysicalDirectory(governedCommonDir, executionCommonDir)) {
       return { worktreeIdentity: "unknown", foreignUncommittedCount: null };
     }
