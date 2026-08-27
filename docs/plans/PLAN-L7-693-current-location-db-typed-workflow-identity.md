@@ -23,7 +23,7 @@ responsibility_owner: current-location-db-projection
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: retained
+legacy_retirement_state: consumer_migration
 backprop_decision: not_required
 backprop_decision_reason: "requirements v1.3.13 §4.2.1〜4.2.4がtyped identity、legacy input-only、current DB再出力禁止を所有する。本sliceは既存要件をDB consumerへ具体化し、新FRを重複追加しない。"
 no_code_decision: modify
