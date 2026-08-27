@@ -98,6 +98,10 @@ finalizeはreceipt exact setを再検証し、wrong HEAD／base／partition／fi
 本pure contractはtest実行、filesystem列挙、GitHub API、artifact uploadを行わない。workflow job配線、cancel／timeout、
 post-test DB rebuild／doctor、実runのwall-clock計測はIssue #1071が所有する。
 
+Issue #1071のtransactional adapterは`plan`、`files`、`receipt`、`validate`の4 commandだけを公開し、partition意味を
+workflow YAMLへ複製しない。`receipt`はplanからHEAD／base／partition／file digestを継承し、caller入力を受理しない。
+output digest、exit code、時刻を入力境界で検証し、validatorの`ok=false`はprocess exit 1へ写像する。
+
 | oracle ID | 設計上の観測点 |
 |---|---|
 | `U-FULLSHARD-001` | 入力順非依存のbulk 2件＋stateful安定partition |
@@ -106,3 +110,9 @@ post-test DB rebuild／doctor、実runのwall-clock計測はIssue #1071が所有
 | `U-FULLSHARD-004` | CLI／slow stateful固定とbulk補集合 |
 | `U-FULLSHARD-005` | receiptのHEAD／base／partition／shard／files exact binding |
 | `U-FULLSHARD-006` | receipt exact set、exit 0、時刻妥当性 |
+| `U-FULLSHARD-CLI-001` | inventory JSONからtyped planとshard file exact setを返すCLI境界 |
+| `U-FULLSHARD-CLI-002` | receipt identityをplanだけから導出するCLI境界 |
+| `U-FULLSHARD-CLI-003` | validator redをtyped JSONとexit 1へ写像するCLI境界 |
+| `U-FULLSHARD-CLI-004` | output digest／exit code／時刻をfail-closeするCLI境界 |
+| `U-FULLSHARD-WF-001` | preflight／3 shard／finalizeのtyped artifact接続。schedule／workflow_dispatchではPR由来のcandidate HEADをcheckout refへ流さず、PR headまたはtrusted `github.sha`へ限定する |
+| `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／Biome／doctor／required aggregate順序 |
