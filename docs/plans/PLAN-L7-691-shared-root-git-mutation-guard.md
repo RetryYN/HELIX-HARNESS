@@ -36,7 +36,7 @@ tdd_red_required: true
 red_test: "U-GITGUARD-011..015とIT-GITGUARD-005..007を先行追加し、旧classifierがmerge等をsafe扱いしshared root identityを見ない状態でRedを確認する"
 red_at: "2026-08-28T03:37:38+09:00"
 green_at: "2026-08-28T03:50:22+09:00"
-mutation_oracle_evidence: "2026-08-28T03:48:57+09:00にmerge分類を除去してU-GITGUARD-011が1 failed、03:49:06にshared-root foreign count条件を反転してU-GITGUARD-012/013が1 failed、03:49:43にgit -C target解決を無効化してIT-GITGUARD-005/006が1 failed、03:50:09にsession touched除外を無効化してU-GITGUARD-014/015とU-GITGUARD-015が2 failedとなることをNode 24.15.0で個別実測した。全mutantをapply_patchで復元し、03:50:22開始のgit/work/override 3 suite 63 testsがgreenとなった。"
+mutation_oracle_evidence: "tests/git-command-guard.test.ts／tests/work-guard.test.tsで2026-08-28T03:48:57+09:00にmerge分類を除去してU-GITGUARD-011が1 failed、03:49:06にshared-root foreign count条件を反転してU-GITGUARD-012/013が1 failed、03:49:43にgit -C target解決を無効化してIT-GITGUARD-005/006が1 failed、03:50:09にsession touched除外を無効化してU-GITGUARD-014/015が2 failedとなり、各seeded mutationがoracleにkillされることをNode 24.15.0で個別実測した。全mutantをapply_patchで復元し、03:50:22開始のgit/work/override 3 suite 63 testsがgreenとなった。"
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
@@ -58,6 +58,15 @@ review_evidence:
         evidence_path: tests/git-command-guard.test.ts
         output_digest: "sha256:f18d0ee9e4a17fa0dcd56a333ce0da29997238ba79f16c40b67169b958595d09"
         result: "terminal success / HEAD 79fe7e454849c9139f4239defe1ace7c4f3d143e / all required lanes green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-27T20:11:00Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-27T20:11:00Z"
+    evidence_digest: "sha256:9cad08bd0df815863a92fbfe8345fe12d3545bf69879742c298bea852389dd3d"
+  entries: []
 complexity_effect: justified_positive
 complexity_justification: "既存work-guardのgit status／session touched収集を共有moduleへ抽出し、git-command-guardへcontextだけを注入する。別guard、別audit store、別overrideを増やさない。"
 removal_trigger: "#679 capability brokerがrepository/worktree physical identityとGit mutation policyを同一以上のoracleで置換し、全hook consumer移行が完了した時"
