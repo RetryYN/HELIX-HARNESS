@@ -35,11 +35,13 @@ complexity_justification: "既存の merged-plan-status の YAML parse failure �
 tdd_red_required: false
 tdd_red_waiver_reason: "Issue #1001 と PR #982 の独立レビューで既存Red（壊れたfrontmatterがgate対象から消える）を実測済み。改修と回帰oracleを同一atomic sliceで追加し、未記録のRed時刻を捏造しない。"
 parent_design: docs/design/harness/L6-function-design/function-spec.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-merged-plan-frontmatter-parse-fail-close-unit-test-design.md
 refines:
   - PLAN-L7-54-merged-plan-status-gate
   - PLAN-L7-87-merged-plan-status-kind-independent
 agent_slots:
+  - role: aim
+    slot_label: "AIM — parse failureの帰責とfail-close境界を監査"
   - role: tl
     slot_label: "TL — merged-plan-status の parse failure provenance と fail-close"
   - role: qa
@@ -51,6 +53,8 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/merged-plan-status.test.ts
     artifact_type: test_code
+  - artifact_path: docs/test-design/helix/L8-merged-plan-frontmatter-parse-fail-close-unit-test-design.md
+    artifact_type: test_design
 modifies: []
 dependencies:
   parent: PLAN-L7-87-merged-plan-status-kind-independent
