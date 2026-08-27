@@ -18,7 +18,7 @@ created: 2026-08-27
 updated: 2026-08-27
 owner: Codex / TL
 github_issue_id: 1001
-behavior_contract_id: MERGED-PLAN-FRONTMATTER-PARSE-FAIL-CLOSE-001
+behavior_contract_id: PLAN-FRONTMATTER-PARSE-FAIL-CLOSE-001
 responsibility_owner: merged-plan-status
 engineering_discipline_required: true
 change_slice: atomic
