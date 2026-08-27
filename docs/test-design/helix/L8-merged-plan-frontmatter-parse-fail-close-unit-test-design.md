@@ -10,7 +10,7 @@ created: 2026-08-27
 updated: 2026-08-27
 owner: QA / Codex TL
 plan: docs/plans/PLAN-L7-689-merged-plan-frontmatter-parse-fail-close.md
-pair_artifact: docs/design/harness/L6-function-design/function-spec.md
+pair_artifact: docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
 github_issue_id: 1001
 behavior_contract_id: PLAN-FRONTMATTER-PARSE-FAIL-CLOSE-001
 responsibility_owner: merged-plan-status

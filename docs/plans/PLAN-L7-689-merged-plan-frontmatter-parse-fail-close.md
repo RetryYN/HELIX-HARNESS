@@ -22,7 +22,7 @@ behavior_contract_id: PLAN-FRONTMATTER-PARSE-FAIL-CLOSE-001
 responsibility_owner: merged-plan-status
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: harden_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
@@ -34,7 +34,7 @@ complexity_effect: net_neutral
 complexity_justification: "既存の merged-plan-status の YAML parse failure を空集合として扱う経路だけを、型付き violation と回帰oracleへ置換する。"
 tdd_red_required: false
 tdd_red_waiver_reason: "Issue #1001 と PR #982 の独立レビューで既存Red（壊れたfrontmatterがgate対象から消える）を実測済み。改修と回帰oracleを同一atomic sliceで追加し、未記録のRed時刻を捏造しない。"
-parent_design: docs/design/harness/L6-function-design/function-spec.md
+parent_design: docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
 pair_artifact: docs/test-design/helix/L8-merged-plan-frontmatter-parse-fail-close-unit-test-design.md
 refines:
   - PLAN-L7-54-merged-plan-status-gate
@@ -49,13 +49,18 @@ agent_slots:
 generates:
   - artifact_path: docs/plans/PLAN-L7-689-merged-plan-frontmatter-parse-fail-close.md
     artifact_type: markdown_doc
+  - artifact_path: docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
+    artifact_type: design_doc
   - artifact_path: src/lint/merged-plan-status.ts
     artifact_type: source_module
   - artifact_path: tests/merged-plan-status.test.ts
     artifact_type: test_code
   - artifact_path: docs/test-design/helix/L8-merged-plan-frontmatter-parse-fail-close-unit-test-design.md
     artifact_type: test_design
-modifies: []
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 dependencies:
   parent: PLAN-L7-87-merged-plan-status-kind-independent
   requires:
