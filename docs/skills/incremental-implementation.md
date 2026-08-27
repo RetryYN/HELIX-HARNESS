@@ -49,7 +49,7 @@ coding 前に L5 doc を読み、implementation questions（実装上の疑問�
   `Result<T, E>` pattern の方が明確な場合、`T | null | undefined` は避ける。
 - external inputs（parsed JSON、CLI args）には `any` より `unknown` を優先する。
   使用前に type guard で narrow する。
-- 各 commit 後に `bun run typecheck` が 0 で終了しなければならない。
+- 各 commit 後に `npm run typecheck` が 0 で終了しなければならない。
   commits をまたいで type debt を貯めない。
 
 ## Naming discipline（命名規律）
@@ -87,9 +87,9 @@ coding 前に L5 doc を読み、implementation questions（実装上の疑問�
 ## Trace-freeze checklist（trace-freeze 確認）
 
 - [ ] すべての new source files が paired L5 design doc と L6 test design doc を持つ。
-- [ ] `bun run typecheck` exits 0.
-- [ ] `bun run lint` が exit 0（Biome check: format + lint）。
-- [ ] `bun run test` が 0 で終了し、PLAN-linked rationale の無い `.skip` / `.todo` が残っていない。
+- [ ] `npm run typecheck` exits 0.
+- [ ] `npm run lint` が exit 0（Biome check: format + lint）。
+- [ ] `npm run test` が 0 で終了し、PLAN-linked rationale の無い `.skip` / `.todo` が残っていない。
 - [ ] `helix doctor` exits 0.
 - [ ] new terms が L0 glossary に追加されている。
 - [ ] PLAN `review_evidence` が trace-freeze commit SHA を参照している。

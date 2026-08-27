@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 33,
+  "decision_count": 35,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -15,6 +15,7 @@
     "PLAN-L3-25-github-update-lifecycle",
     "PLAN-L3-26-github-plan-workflow-governance",
     "PLAN-L3-67-skill-applicability-authority",
+    "PLAN-L3-68-release-module-bundle-composition",
     "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
@@ -29,9 +30,10 @@
     "PLAN-L7-671-issue-dependency-detector-parser-shape",
     "PLAN-L7-672-current-location-summary-typed-output",
     "PLAN-L7-674-terminal-fullback-bundle-admission",
-    "PLAN-L7-676-current-skill-runtime-command-authority",
-    "PLAN-L7-677-outstanding-snapshot-semantic-merge-guard",
     "PLAN-L7-679-codex-luna-xhigh-adapter-transport",
+    "PLAN-L7-680-skill-bun-residual-authority",
+    "PLAN-L7-681-github-identity-source-diagnostics",
+    "PLAN-L7-683-lite-canary-fast-check-oracle",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"

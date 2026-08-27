@@ -36,7 +36,7 @@ gate は skippable checklist ではなく machine-checked boundary である。
 
 unit of work は、次のすべてを満たす場合だけ complete である:
 
-1. `bun run typecheck`、`bun run lint`（Biome check）、`bun run test`（Vitest）が green。
+1. `npm run typecheck`、`npm run lint`（Biome check）、`npm run test`（Vitest）が green。
 2. `helix doctor` が 0 で終了する（governance violation なし）。
 3. `helix plan lint` が 0 で終了する（PLAN schema valid、dependencies exist、
    `§工程表` schedule section checked）。
@@ -51,7 +51,7 @@ unit of work は、次のすべてを満たす場合だけ complete である:
 ## gate 設計 rule
 
 - **反証可能な condition.** "Passes review" は falsifiable ではない。
-  "`helix doctor` exits 0 and `bun run test` passes with no skipped tests" は falsifiable である。
+  "`helix doctor` exits 0 and `npm run test` passes with no skipped tests" は falsifiable である。
 - **検査 command を明記する。** すべての condition を `helix` / CI command、
   または明示的な human review action へ map する。
 - **意図ではなく結果を記録する。** evidence は `.helix/audit/` または PLAN `review_evidence`
@@ -80,7 +80,7 @@ Judgement gates は hybrid mode では cross-agent review evidence を、single-
 
 ## enforcement を壊す anti-pattern
 
-- `bun run test`（Vitest）の代わりに `bun test` を使う。native runner には sync-timeout flakiness があり、
+- `npm run test`（Vitest）の代わりに Vitest の native runner を直接使う。native runner には sync-timeout flakiness があり、
   CI は Vitest を使う。
 - `biome check` なしに `biome lint` だけを使う。format violation が蓄積し、次の push を壊す。
 - `helix doctor` green を "design is correct" と扱う。doctor が検査するのは structural governance であり、

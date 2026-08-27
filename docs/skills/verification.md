@@ -54,9 +54,9 @@ design doc を読み、その claim が body で substantiated されている�
 helix doctor              # structural governance: orphan、missing pair、PLAN schema
 helix vmodel lint         # V-model layer obligations: absence-fail-close
 helix plan lint           # PLAN schema、dependency existence、schedule section
-bun run typecheck          # TypeScript: error 0
-bun run lint               # Biome check: format + lint violation 0
-bun run test               # Vitest: rationale の無い skipped test なし
+npm run typecheck          # TypeScript: error 0
+npm run lint               # Biome check: format + lint violation 0
+npm run test               # Vitest: rationale の無い skipped test なし
 ```
 
 これらを `| tail` に pipe しない。truncation は root error を隠す。

@@ -7,6 +7,7 @@ import {
   compareIssuePrWorkflowIdentityContracts,
   GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER,
   type GithubWorkflowIdentityContractFailureReason,
+  type GithubWorkflowIdentityContractResult,
   parseGithubWorkflowIdentityContract,
 } from "../schema/github-workflow-identity-contract.js";
 import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog.js";
@@ -64,7 +65,13 @@ export type GithubWorkflowIdentityAdmissionReason =
   | "workflow_identity_admission_bundle_owner_invalid"
   | "workflow_identity_admission_bundle_identity_mismatch"
   | "workflow_identity_admission_bundle_issue_mismatch"
+  | GithubWorkflowIdentityAdmissionContractFailureReason
   | GithubWorkflowIdentityContractFailureReason;
+
+export type GithubWorkflowIdentityContractSurface = "issue" | "pr";
+
+export type GithubWorkflowIdentityAdmissionContractFailureReason =
+  `${GithubWorkflowIdentityContractSurface}_${GithubWorkflowIdentityContractFailureReason}`;
 
 export type GithubWorkflowIdentityAdmissionResult =
   | {
@@ -93,6 +100,23 @@ function object(value: unknown): Record<string, unknown> | null {
   return value !== null && typeof value === "object" && !Array.isArray(value)
     ? (value as Record<string, unknown>)
     : null;
+}
+
+type GithubWorkflowIdentityContractFailure = Extract<
+  GithubWorkflowIdentityContractResult,
+  { ok: false }
+>;
+
+function mapContractFailure(
+  surface: GithubWorkflowIdentityContractSurface,
+  failure: GithubWorkflowIdentityContractFailure,
+): Extract<GithubWorkflowIdentityAdmissionResult, { ok: false }> {
+  return {
+    ok: false,
+    applicable: true,
+    reason: `${surface}_${failure.reason}` as GithubWorkflowIdentityAdmissionContractFailureReason,
+    detail: failure.detail,
+  };
 }
 
 function defaultGhApi(endpoint: string): unknown {
@@ -439,9 +463,9 @@ export function admitGithubWorkflowIdentity(input: {
     }
   }
   const issueContract = parseGithubWorkflowIdentityContract(issue.body, catalog);
-  if (!issueContract.ok) return { ...issueContract, applicable: true };
+  if (!issueContract.ok) return mapContractFailure("issue", issueContract);
   const prContract = parseGithubWorkflowIdentityContract(input.prBody, catalog);
-  if (!prContract.ok) return { ...prContract, applicable: true };
+  if (!prContract.ok) return mapContractFailure("pr", prContract);
   const pair = compareIssuePrWorkflowIdentityContracts(issueContract.contract, prContract.contract);
   if (!pair.ok) return { ...pair, applicable: true };
   const planIdentity = plan.data.workflow_identity;

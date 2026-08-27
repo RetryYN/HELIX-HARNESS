@@ -34,6 +34,10 @@ queue_id: L3Q-IT-023
 | U-ATOMIC-011 | `selectAtomicSliceDesignCandidate` | oracle 99%、非有限値、4観測量欠落をunqualified | `tests/atomic-slice-admission.test.ts` |
 | U-ATOMIC-012 | `evaluateAtomicSlice` | lifecycle／invariant 0でpure_function／noneを受理 | `tests/atomic-slice-admission.test.ts` |
 | U-ATOMIC-013 | `evaluateAtomicSlice` | HEAD／manifest drift後の旧receipt再利用を拒否 | `tests/atomic-slice-admission.test.ts` |
+| U-ATOMIC-ID-001 | `isAtomicContractId` | 2〜6 segmentのuppercase alphanumeric IDを境界値込みで受理 | `tests/atomic-contract-id.test.ts` |
+| U-ATOMIC-ID-002 | `isAtomicContractId`／全consumer | 7／8 segment、小文字、空・連続hyphen、空白、underscoreを拒否し、Issue closureだけが広く受理する退行を検出 | `tests/atomic-contract-id.test.ts`、`tests/issue-closure-graph.test.ts` |
 
 `tests/atomic-slice-admission.test.ts`の13 executable casesをprimary citationとする。Redはproduction module未存在、
 Greenは13/13、Refactorはcanonical JSON、集合差分、failure orderingを単一helperへ集約した状態である。
+ID authority追加時は共有parser suiteとPR／runtime／Issue closure consumer suiteを同時にgreenとし、
+各consumerへregexを再導入するmutationを許可しない。

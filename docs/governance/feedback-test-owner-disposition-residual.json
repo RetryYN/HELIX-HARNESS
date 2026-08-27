@@ -77,7 +77,7 @@
     },
     {
       "test_path": "tests/runtime-authority-requirements.test.ts",
-      "test_file_sha256": "f15fb1dbab045ccff3617da86206f29b24778057cef62e5cd174083c45967bef",
+      "test_file_sha256": "a3d53012592f0b548bdce98968ec92a72d8b2643f901267bbb4ea2488f76859d",
       "expected_case_count": 6,
       "authority_paths": [
         "docs/adr/ADR-009-node-\u0070ython-linux-runtime.md",
