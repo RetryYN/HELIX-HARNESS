@@ -339,7 +339,7 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(requirementSpec, "catalog に requirement-spec item がある").toBeDefined();
     expect(requirementSpec?.artifact).toContain(docPath);
     expect(detailedDesign?.artifact).toContain(
-      "docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md",
+      "docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md",
     );
     expect(input.catalog?.baseline ?? [], "baseline へ退避させていない").not.toContain(docPath);
 

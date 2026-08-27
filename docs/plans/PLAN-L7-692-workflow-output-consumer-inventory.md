@@ -40,13 +40,13 @@ mutation_oracle_evidence: "2026-08-28T06:48:00+09:00にconfig/workflow-output-co
 complexity_effect: justified_positive
 complexity_justification: "既存sourceを変更せずmachine-readable台帳と単一oracleで後続migration scopeを固定する"
 removal_trigger: "#206の全successor migrationがmain到達し、legacy workflow output fieldのcurrent consumerが0になった時"
-parent_design: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md
+parent_design: docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md
 pair_artifact: docs/test-design/harness/L8-workflow-output-consumer-inventory.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-001, test_path: tests/workflow-output-consumer-inventory.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-002, test_path: tests/workflow-output-consumer-inventory.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-003, test_path: tests/workflow-output-consumer-inventory.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-004, test_path: tests/workflow-output-consumer-inventory.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-001, test_path: tests/workflow-output-consumer-inventory.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-002, test_path: tests/workflow-output-consumer-inventory.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-003, test_path: tests/workflow-output-consumer-inventory.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md, oracle_id: U-WFOCI-004, test_path: tests/workflow-output-consumer-inventory.test.ts }
 dependencies:
   parent: PLAN-L7-482-drive-model-closure
   requires:
@@ -62,7 +62,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — workflow identityとprovider model語彙の分離" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-692-workflow-output-consumer-inventory.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-workflow-output-consumer-inventory.md, artifact_type: test_design }
   - { artifact_path: config/workflow-output-consumer-inventory.json, artifact_type: json_config }
   - { artifact_path: tests/workflow-output-consumer-inventory.test.ts, artifact_type: test_code }

@@ -5,7 +5,7 @@ layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
 plan: PLAN-L7-692-workflow-output-consumer-inventory
-pair_artifact: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md
+pair_artifact: docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md
 behavior_contract_id: WORKFLOW-OUTPUT-CONSUMER-INVENTORY-001
 responsibility_owner: workflow-output-consumer-inventory
 ---

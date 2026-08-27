@@ -156,7 +156,7 @@ items:
       - docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md
       - docs/design/helix/L6-function-design/workflow-execution-routing-cli.md
       - docs/design/helix/L6-function-design/typed-plan-workflow-identity.md
-      - docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md
+      - docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md
       - docs/design/helix/L6-function-design/github-workflow-identity-contract.md
       - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
       - docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md
