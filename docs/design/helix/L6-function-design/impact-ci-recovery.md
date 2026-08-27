@@ -98,6 +98,10 @@ finalizeはreceipt exact setを再検証し、wrong HEAD／base／partition／fi
 本pure contractはtest実行、filesystem列挙、GitHub API、artifact uploadを行わない。workflow job配線、cancel／timeout、
 post-test DB rebuild／doctor、実runのwall-clock計測はIssue #1071が所有する。
 
+Issue #1071のtransactional adapterは`plan`、`files`、`receipt`、`validate`の4 commandだけを公開し、partition意味を
+workflow YAMLへ複製しない。`receipt`はplanからHEAD／base／partition／file digestを継承し、caller入力を受理しない。
+output digest、exit code、時刻を入力境界で検証し、validatorの`ok=false`はprocess exit 1へ写像する。
+
 | oracle ID | 設計上の観測点 |
 |---|---|
 | `U-FULLSHARD-001` | 入力順非依存のbulk 2件＋stateful安定partition |
@@ -106,3 +110,28 @@ post-test DB rebuild／doctor、実runのwall-clock計測はIssue #1071が所有
 | `U-FULLSHARD-004` | CLI／slow stateful固定とbulk補集合 |
 | `U-FULLSHARD-005` | receiptのHEAD／base／partition／shard／files exact binding |
 | `U-FULLSHARD-006` | receipt exact set、exit 0、時刻妥当性 |
+| `U-FULLSHARD-CLI-001` | inventory JSONからtyped planとshard file exact setを返すCLI境界 |
+| `U-FULLSHARD-CLI-002` | receipt identityをplanだけから導出するCLI境界 |
+| `U-FULLSHARD-CLI-003` | validator redをtyped JSONとexit 1へ写像するCLI境界 |
+| `U-FULLSHARD-CLI-004` | output digest／exit code／時刻をfail-closeするCLI境界 |
+| `U-FULLSHARD-WF-001` | preflight／3 shard／finalizeのtyped artifact接続。schedule／workflow_dispatchではPR由来のcandidate HEADをcheckout refへ流さず、PR headまたはtrusted `github.sha`へ限定する |
+| `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／Biome／doctor／required aggregate順序 |
+| `U-FULLSHARD-WF-003` | preflight／shard／finalize各jobのbounded timeoutを固定し、timeout延長を性能改善やmerge greenへ偽装しない |
+
+### 6.1 旧Recovery oracleの退役とキャンセル境界
+
+従来の同一runner内laneを前提とした U-IMPACTCI-WF-002（lane集約）、
+U-IMPACTCI-WF-003（local process groupへのTERM/INT伝播）、および
+U-IMPACTCI-WF-005（同一step内のlane inventory／部分ログ）は、独立したGitHub Actions
+job DAGへ移行したため現行workflow契約から退役させる。これらのIDと過去のgreen evidenceは
+旧Recovery PLANの履歴としてのみ保持し、現行のverification bindingには使用しない。
+
+現行のキャンセル境界はGitHub Actions jobの状態である。キャンセル・timeout・起動失敗した
+shardは成功receiptを発行できず、finalize の always() jobがreceipt exact setと各statusを
+検証してfail-closeする。したがって本sliceはlocal shellのprocess-group signal伝播や
+cancellation receiptを実装したとは主張しない。独立jobの欠落／非0／timeoutを
+U-FULLSHARD-WF-001〜003とfinalize contractで扱う。
+
+この訂正・後継関係は PLAN-L7-685-full-regression-shard-jobs が
+PLAN-RECOVERY-11、PLAN-RECOVERY-14、PLAN-RECOVERY-18 を supersede し、各旧PLANの
+末尾に相互訂正注記を持つことで固定する。
