@@ -96,3 +96,12 @@ lane status fail-close集約をそのまま使い、timeout延長・test除外�
 - 同一HEADのDraft/Ready遷移における重複full admission抑止（#93の別スライス）
 - body-only是正時のtest receipt再利用
 - #388のstateful deadline（`nice -n 10`）変更
+
+## 訂正・後継（2026-08-27）
+
+本PLANが固定した同一step内のTERM/INT trap、process group停止、local cancellation receiptは、
+独立GitHub Actions job DAGへ移行した現行workflowの契約ではない。GitHub Actions jobの
+cancel／timeout／起動失敗は成功receiptを生成できず、finalizeのreceipt exact set検証で
+fail-closeする。`U-IMPACTCI-WF-003` と本PLANの過去evidenceは履歴としてのみ保持し、
+local process-group signal伝播の現行実装を証明するものとして扱わない。
+現行の後継は `PLAN-L7-685-full-regression-shard-jobs` である。
