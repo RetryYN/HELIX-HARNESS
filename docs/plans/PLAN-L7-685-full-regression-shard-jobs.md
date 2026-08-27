@@ -29,11 +29,14 @@ ddd_modeling_decision: domain_service
 backprop_decision: not_required
 backprop_decision_reason: "既存GH-NFR-010／GH-AC-017とL6設計を変更せず、確定済みpartition contractをGitHub Actionsへ配線するL7 sliceである"
 contract_preconditions: "#1070のtyped partition／receipt contract、Impact CI full decision、candidate HEAD／base SHAが存在する"
-contract_postconditions: "preflight、bulk-1、bulk-2、stateful、finalizeが独立jobとなり、全receiptのexact validation後だけDB／Biome／doctor／full receiptへ進む"
-contract_invariants: "tracked test inventory exact union、same HEAD／base、required harness-check、main／nightly／RC full、targeted selection、same-HEAD reuse、schedule／workflow_dispatchでもPR由来のcandidate HEADをcheckout refへ流さないtrigger-safe refを維持する"
+contract_postconditions: "preflight、bulk-1、bulk-2、stateful、finalizeが独立jobとなり、各jobのbounded timeoutを適用し、全receiptのexact validation後だけDB／Biome／doctor／full receiptへ進む"
+contract_invariants: "tracked test inventory exact union、same HEAD／base、required harness-check、main／nightly／RC full、targeted selection、same-HEAD reuse、各jobのtimeout-minutes（preflight 35、各shard 20、finalize 15）、schedule／workflow_dispatchでもPR由来のcandidate HEADをcheckout refへ流さないtrigger-safe refを維持する"
 contract_failures: "missing／duplicate／wrong identity／nonzero／cancel／timeout／artifact欠落を相殺せずfail-closeする"
 tdd_red_required: true
-red_test: "U-FULLSHARD-CLI-001..004とU-FULLSHARD-WF-001..006がadapter／job／receipt／aggregate欠落を検出する"
+red_test: "U-FULLSHARD-CLI-001..004、U-FULLSHARD-WF-001..003、およびU-FULLSHARD-001..006がadapter／job／receipt／aggregate欠落を検出する"
+red_at: "2026-08-27T00:50:51Z"
+green_at: "2026-08-27T00:51:13Z"
+mutation_oracle_evidence: "tests/harness-check-workflow.test.ts::U-FULLSHARD-WF-003でfull-regression-bulk-1のtimeout-minutes 20→21 mutationを投入し、job_timeout_invalid:full-regression-bulk-1を期待するRed testがexit 1になることを実測した。validator復元後、同一targeted suiteがexit 0となるGreenを確認した"
 complexity_effect: justified_positive
 complexity_justification: "同一runner内process管理を削除し、typed plan／receiptを介する独立job DAGへ置換してcritical pathを短縮する"
 removal_trigger: "GitHub native matrixが同じtyped partition／receipt／finalize contractを直接表現でき、custom adapter consumerが0になった時"
@@ -46,6 +49,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-CLI-004, test_path: tests/full-regression-shards-cli.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-WF-001, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-WF-002, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-WF-003, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-685-full-regression-shard-jobs.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli/full-regression-shards.ts, artifact_type: source_module }

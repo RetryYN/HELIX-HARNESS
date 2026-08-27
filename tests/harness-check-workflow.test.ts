@@ -80,6 +80,18 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   if ([preflight, ...shards, finalize].some((job) => job?.["continue-on-error"] !== undefined)) {
     findings.push("job_fail_open_field");
   }
+  const timeoutChecks: Array<[string, HarnessJob | undefined, number]> = [
+    ["full-regression-preflight", preflight, 35],
+    ["full-regression-bulk-1", shards[0], 20],
+    ["full-regression-bulk-2", shards[1], 20],
+    ["full-regression-stateful", shards[2], 20],
+    ["full-regression-finalize", finalize, 15],
+  ];
+  for (const [jobName, job, expectedTimeout] of timeoutChecks) {
+    if (job?.["timeout-minutes"] !== expectedTimeout) {
+      findings.push(`job_timeout_invalid:${jobName}`);
+    }
+  }
 
   const preflightText = JSON.stringify(preflight);
   if (
@@ -856,6 +868,17 @@ describe("source harness-check workflow", () => {
         ),
       ),
     ).toContain("shard_checkout_ref_invalid:bulk-1");
+  });
+
+  it("U-FULLSHARD-WF-003: shard job timeoutをbounded contractへ固定する", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(
+      fullRegressionShardJobViolations(
+        mutateWorkflowJob(raw, "full-regression-bulk-1", (job) =>
+          job.replace("    timeout-minutes: 20", "    timeout-minutes: 21"),
+        ),
+      ),
+    ).toContain("job_timeout_invalid:full-regression-bulk-1");
   });
 
   it.each([
