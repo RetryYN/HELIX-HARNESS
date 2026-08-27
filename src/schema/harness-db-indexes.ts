@@ -208,12 +208,7 @@ export const HARNESS_DB_INDEXES: IndexDef[] = [
   {
     name: "idx_project_current_location_status",
     table: "project_current_location",
-    columns: ["current_status", "selected_drive_model", "drive_route_status"],
-  },
-  {
-    name: "idx_project_drive_model_candidates_status",
-    table: "project_drive_model_candidates",
-    columns: ["snapshot_id", "status", "rank"],
+    columns: ["current_status", "workflow_target_axis", "workflow_target_id"],
   },
   {
     name: "idx_project_roadmap_current_actions_status",

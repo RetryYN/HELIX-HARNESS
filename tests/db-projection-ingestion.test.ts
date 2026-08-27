@@ -35,7 +35,6 @@ describe("db projection ingestion detector", () => {
       expect(result.rowCounts.design_impact).toBeGreaterThan(0);
       expect(result.rowCounts.test_cases).toBeGreaterThan(0);
       expect(result.rowCounts.project_current_location).toBeGreaterThan(0);
-      expect(result.rowCounts.project_drive_model_candidates).toBeGreaterThan(0);
       expect(result.rowCounts.project_roadmap_current_actions).toBeGreaterThan(0);
       expect(result.rowCounts.project_zip_adoption_decisions).toBe(11);
       expect(result.rowCounts.project_tailoring_decisions).toBe(8);
@@ -102,36 +101,6 @@ describe("db projection ingestion detector", () => {
         | undefined;
       expect(l12Remap?.zip_source_binding_ids).toContain("zip-source:l12-level-definition");
       expect(l12Remap?.tailoring_rule_ids).toContain("HVM-TAILOR-OPERATION");
-      const reverseDriveCandidate = db
-        .prepare(
-          `SELECT doc_dependencies, implementation_dependencies
-           FROM project_drive_model_candidates
-           WHERE model = ?`,
-        )
-        .get("Reverse") as
-        | {
-            doc_dependencies?: string;
-            implementation_dependencies?: string;
-          }
-        | undefined;
-      const recoveryDriveCandidate = db
-        .prepare(
-          `SELECT doc_dependencies, implementation_dependencies
-           FROM project_drive_model_candidates
-           WHERE model = ?`,
-        )
-        .get("Recovery") as
-        | {
-            doc_dependencies?: string;
-            implementation_dependencies?: string;
-          }
-        | undefined;
-      for (const candidate of [reverseDriveCandidate, recoveryDriveCandidate]) {
-        expect(candidate?.doc_dependencies).toContain("docs/design/**");
-        expect(candidate?.doc_dependencies).toContain("docs/test-design/**");
-        expect(candidate?.implementation_dependencies).toContain("design_declarations");
-        expect(candidate?.implementation_dependencies).toContain("design_references");
-      }
       const driveRouteAction = db
         .prepare(
           `SELECT category, status, automation_class, command, doc_dependencies, implementation_dependencies
@@ -539,7 +508,6 @@ describe("db projection ingestion detector", () => {
       test_artifact_edges: 1,
       artifact_progress: 1,
       project_current_location: 1,
-      project_drive_model_candidates: 1,
       project_roadmap_current_actions: 1,
       project_zip_adoption_decisions: 1,
       project_tailoring_decisions: 1,
@@ -625,7 +593,6 @@ describe("db projection ingestion detector", () => {
       test_artifact_edges: 1,
       artifact_progress: 1,
       project_current_location: 1,
-      project_drive_model_candidates: 1,
       project_roadmap_current_actions: 1,
       project_zip_adoption_decisions: 1,
       project_tailoring_decisions: 1,
