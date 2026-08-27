@@ -14,11 +14,13 @@ import { migrate, SCHEMA_VERSION } from "../state-db/migration";
 import {
   containsDirectGithubPrLifecycleMutation,
   containsDirectGithubPrMerge,
+  contextualMutationExecutionDirectories,
   evaluateGitCommandGuard,
   extractShellCommand,
   resolveDestructiveGitOverride,
 } from "./git-command-guard";
 import { commitOverrideUse, type OverrideAuditPort } from "./guard-override-transaction";
+import { resolveGitMutationContext, resolveHookExecutionCwd } from "./worktree-state";
 
 export interface GitCommandGuardHookOutcome {
   exitCode: 0 | 2;
@@ -90,6 +92,7 @@ export function runGitCommandGuardHook(opts: {
   repoRoot: string;
   rawInput: string;
   env?: NodeJS.ProcessEnv;
+  executionCwd?: string;
 }): GitCommandGuardHookOutcome {
   let input: { tool_input?: unknown; session_id?: string };
   try {
@@ -112,7 +115,20 @@ export function runGitCommandGuardHook(opts: {
         "[helix-git-command-guard] BLOCK: direct PR close/reopen is forbidden because it cancels active CI and invalidates convergence evidence",
     };
   }
-  const base = evaluateGitCommandGuard({ command, bypass: false });
+  let base = evaluateGitCommandGuard({ command, bypass: false });
+  if (base.reason === "mutation-context-required") {
+    const executionCwd = resolveHookExecutionCwd(
+      input.tool_input,
+      opts.executionCwd ?? process.cwd(),
+    );
+    const executionCwds = contextualMutationExecutionDirectories(command, executionCwd);
+    const mutationContext = resolveGitMutationContext({
+      repoRoot: opts.repoRoot,
+      executionCwds: executionCwds ?? [],
+      sessionId: input.session_id ?? "unknown",
+    });
+    base = evaluateGitCommandGuard({ command, bypass: false, mutationContext });
+  }
   if (base.decision === "pass") return { exitCode: 0, reason: base.reason };
   const markerPath = join(opts.repoRoot, ".helix", "state", "destructive-git-override");
   let markerReason: string | null = null;

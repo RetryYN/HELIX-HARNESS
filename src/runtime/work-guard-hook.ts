@@ -6,7 +6,6 @@
  * override marker のone-shot消費とauditを担う。入力解析、git、state、transactionを検証できない場合は
  * fail-closeし、adapterが例外をpassへ縮退させない。
  */
-import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, rmSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { defaultHarnessDbPath, openHarnessDb } from "../state-db";
@@ -21,43 +20,11 @@ import {
   resolveForeignEditOverride,
   type WorkGuardResult,
 } from "./work-guard";
+import { gitUncommittedFiles, sessionTouchedFiles } from "./worktree-state";
 
 export interface WorkGuardHookOutcome {
   exitCode: 0 | 2;
   message?: string;
-}
-
-function gitUncommittedFiles(repoRoot: string): string[] {
-  // porcelain v1: "XY <path>" / rename "R  old -> new"。path 部のみを repo-relative で取る。
-  const out = execFileSync("git", ["status", "--porcelain"], {
-    cwd: repoRoot,
-    encoding: "utf8",
-  });
-  const files: string[] = [];
-  for (const line of out.split("\n")) {
-    if (!line.trim()) continue;
-    const rest = line.slice(3).trim();
-    const path = rest.includes(" -> ") ? rest.split(" -> ")[1] : rest;
-    files.push(normalizeRepoRelative(path.replace(/^"|"$/g, ""), repoRoot));
-  }
-  return files;
-}
-
-function sessionTouchedFiles(repoRoot: string, sessionId: string): string[] {
-  const safe = sessionId.replace(/[\\/]+/g, "_");
-  const file = join(repoRoot, ".helix", "logs", "session", `${safe}.jsonl`);
-  if (!existsSync(file)) return [];
-  const touched: string[] = [];
-  for (const line of readFileSync(file, "utf8").split("\n")) {
-    if (!line.trim()) continue;
-    try {
-      const ev = JSON.parse(line) as { target?: string };
-      if (ev.target) touched.push(normalizeRepoRelative(ev.target, repoRoot));
-    } catch {
-      // 壊れ行は skip (fail-open)。
-    }
-  }
-  return touched;
 }
 
 /** agent-accessible override marker の本文 (=理由) を読む。 */

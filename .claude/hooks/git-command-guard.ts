@@ -46,6 +46,7 @@ try {
     repoRoot,
     rawInput,
     env: process.env,
+    executionCwd: process.cwd(),
   });
   const foreignOutcome = runWorkGuardHook({ repoRoot, rawInput, env: process.env });
   if (foreignOutcome.exitCode === 2) {
