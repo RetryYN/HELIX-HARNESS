@@ -26,7 +26,7 @@ contract_failures: "manifest欠落・複数責務・unsafe path・予定pathと�
 tdd_red_required: true
 red_at: "2026-07-25T07:34:00+09:00"
 green_at: "2026-07-25T07:37:00+09:00"
-mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/005でduplicate contract、unsafe glob、予定外/未変更path、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled。U-PRSCOPE-006でundeclared/absent双方の実差分exact path列と修正方向の診断を固定する"
+mutation_oracle_evidence: "tests/branch-kind.test.ts U-PRSCOPE-002..003/005でduplicate contract、unsafe glob、予定外/未変更path、missing PLAN/test companion、receipt pointer欠落 expansion、PLAN contract/owner不一致のseeded mutationをkilled。U-PRSCOPE-002でundeclared/absent双方の実差分exact path列と修正方向の診断を固定する"
 complexity_effect: net_neutral
 complexity_justification: "既存pr-context純関数と既存CI stepへ入力検査を追加し、新detector/job/dependency/stateを増やさない"
 removal_trigger: "typed PR metadata APIが同じscope manifestをimmutableに束縛した時点でPR本文parserを統合または削除する"
@@ -47,7 +47,6 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-003, test_path: tests/harness-check-workflow.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-004, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-005, test_path: tests/branch-kind.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-006, test_path: tests/branch-kind.test.ts }
 agent_slots:
   - role: aim
     slot_label: "AIM — PR原子性とscope expansion境界"
