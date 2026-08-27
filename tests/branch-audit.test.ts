@@ -6,8 +6,9 @@ import {
   renderBranchAudit,
 } from "../src/audit/branches";
 
+// PLAN-L7-690-branch-audit-delete-candidate-safety
 describe("branch audit", () => {
-  it("keeps current/protected branches and marks gone or merged branches as delete candidates", () => {
+  it("U-BRAS-001: marks only main-reachable and unoccupied branches as delete candidates", () => {
     const result = analyzeBranches({
       currentBranch: "main",
       now: new Date("2026-06-23T00:00:00.000Z"),
@@ -81,7 +82,7 @@ describe("branch audit", () => {
     expect(result.rows[0]).toMatchObject({ status: "review", reason: "stale" });
   });
 
-  it("never treats a gone upstream as deletable without main reachability proof", () => {
+  it("U-BRAS-002: never treats a gone upstream as deletable without main reachability proof", () => {
     const result = analyzeBranches({
       currentBranch: "main",
       now: new Date("2026-08-28T00:00:00.000Z"),
@@ -109,7 +110,39 @@ describe("branch audit", () => {
     });
   });
 
-  it("keeps branches checked out by any worktree even when merged and gone", () => {
+  it("U-BRAS-003: keeps current and protected branches despite merged evidence", () => {
+    const result = analyzeBranches({
+      currentBranch: "main",
+      now: new Date("2026-08-28T00:00:00.000Z"),
+      staleDays: 30,
+      mergedBranchNames: ["main", "release/1.0"],
+      checkedOutBranchNames: [],
+      mainRef: "origin/main",
+      mainRefResolved: true,
+      historyComplete: true,
+      branches: [
+        {
+          name: "main",
+          upstream: "origin/main",
+          upstreamTrack: "",
+          commitDate: "2026-08-27T00:00:00.000Z",
+        },
+        {
+          name: "release/1.0",
+          upstream: "origin/release/1.0",
+          upstreamTrack: "",
+          commitDate: "2026-06-01T00:00:00.000Z",
+        },
+      ],
+    });
+
+    expect(result.rows).toEqual([
+      expect.objectContaining({ name: "main", status: "keep", reason: "current" }),
+      expect.objectContaining({ name: "release/1.0", status: "keep", reason: "protected" }),
+    ]);
+  });
+
+  it("U-BRAS-004: keeps branches checked out by any worktree even when merged and gone", () => {
     const result = analyzeBranches({
       currentBranch: "main",
       now: new Date("2026-08-28T00:00:00.000Z"),
@@ -135,20 +168,7 @@ describe("branch audit", () => {
     });
   });
 
-  it.each([
-    {
-      name: "missing main ref",
-      mainRefResolved: false,
-      historyComplete: true,
-      reason: "main-ref-unresolved",
-    },
-    {
-      name: "shallow history",
-      mainRefResolved: true,
-      historyComplete: false,
-      reason: "shallow-history",
-    },
-  ])("fails closed when $name prevents reachability proof", (fixture) => {
+  it("U-BRAS-005: fails closed when the canonical main ref is unresolved", () => {
     const result = analyzeBranches({
       currentBranch: "main",
       branches: [
@@ -161,14 +181,37 @@ describe("branch audit", () => {
       ],
       mergedBranchNames: ["feature/candidate"],
       checkedOutBranchNames: [],
-      mainRef: fixture.mainRefResolved ? "origin/main" : null,
-      mainRefResolved: fixture.mainRefResolved,
-      historyComplete: fixture.historyComplete,
+      mainRef: null,
+      mainRefResolved: false,
+      historyComplete: true,
     });
 
     expect(result.ok).toBe(false);
     expect(result.byStatus["delete-candidate"]).toBe(0);
-    expect(result.rows[0]).toMatchObject({ status: "review", reason: fixture.reason });
+    expect(result.rows[0]).toMatchObject({ status: "review", reason: "main-ref-unresolved" });
+  });
+
+  it("U-BRAS-006: fails closed when shallow history prevents reachability proof", () => {
+    const result = analyzeBranches({
+      currentBranch: "main",
+      branches: [
+        {
+          name: "feature/candidate",
+          upstream: "origin/feature/candidate",
+          upstreamTrack: "[gone]",
+          commitDate: "2026-06-01T00:00:00.000Z",
+        },
+      ],
+      mergedBranchNames: ["feature/candidate"],
+      checkedOutBranchNames: [],
+      mainRef: "origin/main",
+      mainRefResolved: true,
+      historyComplete: false,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.byStatus["delete-candidate"]).toBe(0);
+    expect(result.rows[0]).toMatchObject({ status: "review", reason: "shallow-history" });
   });
 
   it("parses git for-each-ref rows", () => {
@@ -192,7 +235,7 @@ describe("branch audit", () => {
     ]);
   });
 
-  it("parses only named branches from worktree porcelain output", () => {
+  it("U-BRAS-007: parses only named branches from worktree porcelain output", () => {
     expect(
       parseWorktreeBranches(
         [

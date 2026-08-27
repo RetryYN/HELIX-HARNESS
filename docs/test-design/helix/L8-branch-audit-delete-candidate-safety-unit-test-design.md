@@ -21,18 +21,18 @@ responsibility_owner: branch-audit
 本書は、local branchの削除候補をcanonical main到達性とworktree非占有へ束縛するL6契約を、
 `tests/branch-audit.test.ts`と`tests/cli-surface.test.ts`へ降ろすoracleである。
 
-| U-ID | 対象 | 正例 | 反例／mutation | 実行先 |
-|---|---|---|---|---|
-| U-BRAS-001 | merged candidate | main到達かつ非占有を`delete-candidate`にする | merge済みbranchをactiveへ落とす | `tests/branch-audit.test.ts` |
-| U-BRAS-002 | gone evidence | goneかつmain到達を`gone-merged`にする | goneだけで削除候補にする | 同上 |
-| U-BRAS-003 | current／protected | currentと保護branchを`keep`にする | merge証拠で保護を上書きする | 同上 |
-| U-BRAS-004 | worktree occupancy | 任意worktree占有を`keep`にする | merged／goneで占有を相殺する | 同上 |
-| U-BRAS-005 | missing main | unresolvedを`ok=false`／`review`にする | merged入力を信じて削除候補にする | 同上 |
-| U-BRAS-006 | shallow history | shallowを`ok=false`／`review`にする | 不完全履歴のmerge集合を採用する | 同上 |
-| U-BRAS-007 | worktree parser | named branchを抽出する | detached entryをbranchへ捏造する | 同上 |
-| U-BRAS-008 | CLI fail-close | main無しrepoでexit 1とtyped authorityを返す | JSONを返してexit 0にする | `tests/cli-surface.test.ts` |
-| U-BRAS-009 | CLI正常系 | current repoでexit 0と完全authorityを返す | authority fieldを欠落させる | 同上 |
-| U-BRAS-010 | design freeze trace | L6設計pathとcatalog digestを一致させる | catalogだけ更新しfreeze pinを残す | `tests/l3-g3-freeze-packet-v2.test.ts` |
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-BRAS-001 | merged candidate | main未到達またはworktree占有なら削除候補へ入れず、main到達かつ非占有だけを`delete-candidate`にする | `tests/branch-audit.test.ts` |
+| U-BRAS-002 | gone evidence | goneだけでは削除候補にせず、main未到達なら`review / gone-unmerged`にする | `tests/branch-audit.test.ts` |
+| U-BRAS-003 | current／protected | merge証拠があってもcurrentと保護branchを`keep`にする | `tests/branch-audit.test.ts` |
+| U-BRAS-004 | worktree occupancy | merged／goneでも任意worktree占有branchを`keep`にする | `tests/branch-audit.test.ts` |
+| U-BRAS-005 | missing main | unresolved時にmerged入力を採用せず、`ok=false`／`review`にする | `tests/branch-audit.test.ts` |
+| U-BRAS-006 | shallow history | 不完全履歴のmerge集合を採用せず、`ok=false`／`review`にする | `tests/branch-audit.test.ts` |
+| U-BRAS-007 | worktree parser | detached entryをbranchへ捏造せず、named branchだけを抽出する | `tests/branch-audit.test.ts` |
+| U-BRAS-008 | CLI fail-close | main無しrepoでJSONを返してもexit 0にせず、exit 1とtyped authorityを返す | `tests/cli-surface.test.ts` |
+| U-BRAS-009 | CLI正常系 | current repoでauthority fieldを欠落させず、exit 0と完全authorityを返す | `tests/cli-surface.test.ts` |
+| U-BRAS-010 | design freeze trace | catalogだけ更新してfreeze pinを残さず、L6設計pathとcatalog digestを一致させる | `tests/l3-g3-freeze-packet-v2.test.ts` |
 
 ## Red／Green／mutation境界
 

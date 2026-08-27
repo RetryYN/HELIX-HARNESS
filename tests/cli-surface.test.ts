@@ -7936,7 +7936,8 @@ describe("L7 CLI surface closure", () => {
     expect(payload).toHaveProperty("byCode");
   }, 20_000);
 
-  it("exposes branch audit as a read-only JSON command surface", () => {
+  // PLAN-L7-690-branch-audit-delete-candidate-safety
+  it("U-BRAS-009: exposes branch audit as a read-only JSON command surface", () => {
     const run = runCli(["branch", "audit", "--json"]);
     const payload = JSON.parse(run.stdout);
 
@@ -7953,7 +7954,7 @@ describe("L7 CLI surface closure", () => {
     expect(Array.isArray(payload.rows)).toBe(true);
   }, 20_000);
 
-  it("fails branch audit closed when the canonical main ref cannot be resolved", () => {
+  it("U-BRAS-008: fails branch audit closed when the canonical main ref cannot be resolved", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-branch-audit-no-main-"));
     try {
       const init = spawnSync("git", ["init", "-b", "topic"], { cwd: root, encoding: "utf8" });

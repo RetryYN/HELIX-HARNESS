@@ -42,6 +42,17 @@ complexity_justification: "既存pure analyzerへmain authorityとworktree occup
 removal_trigger: "#1110のtyped lifecycle inventoryが本read-only判定を同等以上のmain／worktree証拠付きで置換し、helix branch auditのconsumer移行が完了した時"
 parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md
 pair_artifact: docs/test-design/helix/L8-branch-audit-delete-candidate-safety-unit-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-001, test_path: tests/branch-audit.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-002, test_path: tests/branch-audit.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-003, test_path: tests/branch-audit.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-004, test_path: tests/branch-audit.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-005, test_path: tests/branch-audit.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-006, test_path: tests/branch-audit.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-007, test_path: tests/branch-audit.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-008, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-009, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md, oracle_id: U-BRAS-010, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 refines:
   - PLAN-L7-138-quality-branch-audit
 agent_slots:
@@ -61,6 +72,7 @@ generates:
   - artifact_path: docs/test-design/helix/L8-branch-audit-delete-candidate-safety-unit-test-design.md
     artifact_type: test_design
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
