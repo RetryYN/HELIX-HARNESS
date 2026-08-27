@@ -4,7 +4,7 @@ title: "PLAN-L7-691: 共有rootのforeign dirtyに対するGit mutationをfail-c
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -37,6 +37,27 @@ red_test: "U-GITGUARD-011..015とIT-GITGUARD-005..007を先行追加し、旧cla
 red_at: "2026-08-28T03:37:38+09:00"
 green_at: "2026-08-28T03:50:22+09:00"
 mutation_oracle_evidence: "2026-08-28T03:48:57+09:00にmerge分類を除去してU-GITGUARD-011が1 failed、03:49:06にshared-root foreign count条件を反転してU-GITGUARD-012/013が1 failed、03:49:43にgit -C target解決を無効化してIT-GITGUARD-005/006が1 failed、03:50:09にsession touched除外を無効化してU-GITGUARD-014/015とU-GITGUARD-015が2 failedとなることをNode 24.15.0で個別実測した。全mutantをapply_patchで復元し、03:50:22開始のgit/work/override 3 suite 63 testsがgreenとなった。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-27T20:11:00Z"
+    tests_green_at: "2026-08-27T20:02:23Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
+    reviewed_head_sha: 79fe7e454849c9139f4239defe1ace7c4f3d143e
+    scope: "PR #1116 exact HEAD 79fe7e454849c9139f4239defe1ace7c4f3d143eをClaude Codeが独立検収し、二段context評価、physical worktree identity、foreign dirty共有collector、one-shot override、consumer/Codex parity、PLAN／設計／テスト整合を確認して内容blocker 0 approveとした。PLAN draftとPR draftはmerge readiness blockerとして本commitで解消する。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1116#issuecomment-5444661794"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33109536432 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-27T20:02:23Z"
+        evidence_path: tests/git-command-guard.test.ts
+        output_digest: "sha256:f18d0ee9e4a17fa0dcd56a333ce0da29997238ba79f16c40b67169b958595d09"
+        result: "terminal success / HEAD 79fe7e454849c9139f4239defe1ace7c4f3d143e / all required lanes green"
 complexity_effect: justified_positive
 complexity_justification: "既存work-guardのgit status／session touched収集を共有moduleへ抽出し、git-command-guardへcontextだけを注入する。別guard、別audit store、別overrideを増やさない。"
 removal_trigger: "#679 capability brokerがrepository/worktree physical identityとGit mutation policyを同一以上のoracleで置換し、全hook consumer移行が完了した時"
