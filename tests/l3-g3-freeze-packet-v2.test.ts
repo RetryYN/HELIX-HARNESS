@@ -223,7 +223,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-    "c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8",
+    "52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756",
   ],
   [
     "docs/test-design/helix/github-atomic-development-system-test-design.md",

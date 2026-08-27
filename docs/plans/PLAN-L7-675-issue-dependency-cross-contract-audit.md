@@ -4,8 +4,8 @@ title: "PLAN-L7-675 (refactor): Issue hierarchyとdependency contractをexact照
 kind: refactor
 layer: L7
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
@@ -26,6 +26,36 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-26T05:46:30Z"
+    tests_green_at: "2026-08-26T05:43:38Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    reviewed_head_sha: 64493b9124878b79a4a86d6440569d4ada289f85
+    scope: "PR #1060 exact HEAD 64493b9124878b79a4a86d6440569d4ada289f85をClaude Code Opusが独立検収し、Issue hierarchyとdependency contractのcross audit、89 Issue migration、union closure、repository-wide findings 0、DB projection／replay一致を確認してblocker 0 approveとした。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1060#issuecomment-5421155151"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32933281416 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-26T05:43:38Z"
+        evidence_path: tests/issue-hierarchy.test.ts
+        output_digest: "sha256:e6ea320ac22e883df33807c6a56adf0d26e07a21d36288662af6de587f255d1c"
+        result: "terminal success / HEAD 64493b9124878b79a4a86d6440569d4ada289f85"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-26T05:46:30Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-26T05:46:30Z"
+    evidence_digest: "sha256:4cd45b98c4be741a60022b145589ff9fa079b6d4aa43736ba34ac716345adfe8"
+  entries: []
 backprop_decision: not_required
 backprop_decision_reason: "Issue #634のReverse監査で既存L6設計どおりhierarchyとdependency projectionを接合し、上位要求の意味を変更しない"
 contract_preconditions: "Issue hierarchy contractとhelix-issue-dependency.v1が別projectionとして取得できる"
@@ -35,7 +65,7 @@ contract_failures: "dependency contract欠落、blocked_by/depends_on不一致�
 tdd_red_required: true
 red_at: "2026-08-26T01:25:00+09:00"
 green_at: "2026-08-26T01:26:46+09:00"
-mutation_oracle_evidence: "2026-08-26T01:27:13+09:00にgovernedHierarchyNodes filterを常にfalseへ変異し、U-IHIER-012がexpected false／received trueで1 failed・11 passedとなり、dependency block欠落とhierarchy/dependency集合差を黙ってskipする退行をkillした。01:36:43+09:00にはmigration projectionの既存contract lookupをundefinedへ変異し、U-IHIER-013がadd／replace・PLAN束縛差で1 failed・12 passedとなることを実測した。各変異復元後13 tests green、typecheck、Biome greenを再確認した。"
+mutation_oracle_evidence: "tests/issue-hierarchy.test.tsで、2026-08-26T01:27:13+09:00にgovernedHierarchyNodes filterを常にfalseへ変異し、U-IHIER-012がexpected false／received trueで1 failed・11 passedとなり、dependency block欠落とhierarchy/dependency集合差を黙ってskipする退行をkillした。01:36:43+09:00にはmigration projectionの既存contract lookupをundefinedへ変異し、U-IHIER-013がadd／replace・PLAN束縛差で1 failed・12 passedとなることを実測した。各変異復元後13 tests green、typecheck、Biome greenを再確認した。"
 complexity_effect: net_negative
 complexity_justification: "二つの既存projection間にpure比較を一つ追加し、黙ってskipされる依存graphを除去する"
 removal_trigger: "hierarchyとdependencyが単一versioned typed graphへ統合された時"

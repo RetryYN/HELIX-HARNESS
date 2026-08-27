@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { isAtomicContractId } from "../schema/atomic-contract-id";
 import { auditIssueClosureGraph, type IssueClosureGraphSnapshot } from "./issue-closure-graph";
 
 export interface CommitlintFinding {
@@ -153,7 +154,6 @@ const ISSUE_CLOSURE_OUTCOME = new RegExp(
   `(^|\\n)[ \\t]*(?:[-*][ \\t]*)?(?:Issue closure outcome|Outcome):[ \\t]*(resolved|rejected|quarantined|superseded|cancelled)${TRAILING_INLINE_COMMENT}`,
   "i",
 );
-const ATOMIC_ID = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){1,5}$/;
 const RESPONSIBILITY_OWNER = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const SAFE_SCOPE_PATH =
   /^(?!\/)(?!.*(?:^|\/)\.\.(?:\/|$))(?!.*[\\*?[\]{}])[\p{L}\p{N}_.@/+ -]+\/?$/u;
@@ -360,7 +360,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
       });
     } else {
       const contract = contractValues[0] ?? "";
-      if (contractValues.length !== 1 || !ATOMIC_ID.test(contract)) {
+      if (contractValues.length !== 1 || !isAtomicContractId(contract)) {
         findings.push({
           code: "pr_scope_contract_invalid",
           severity: "error",
