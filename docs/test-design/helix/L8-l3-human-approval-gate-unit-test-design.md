@@ -32,6 +32,8 @@ typed recordの型・対象PLAN・外部記録が揃う場合だけ、基準日�
 | U-L3APP-003 | typed approval | `approval_kind`、decision、対象PLAN、承認者、時刻、record、sourceが一致すれば受理する | `tests/review-evidence.test.ts` |
 | U-L3APP-004 | migration boundary | 基準日前に確定したL3 PLANへ遡及違反を出さない | `tests/review-evidence.test.ts` |
 | U-L3APP-005 | schema／binding mutation | malformed recordまたは別PLANのrecordを`invalid_human_po_approval`で拒否する | `tests/review-evidence.test.ts` |
+| U-L3APP-006 | 日付順序 | 基準日以降に作成したL3 PLANの`updated`を過去へ戻す時系列逆転は、承認recordがあっても`invalid_l3_plan_dates`で拒否する | `tests/review-evidence.test.ts` |
+| U-L3APP-007 | 日付整合性 | 日付欠落または暦日不正は承認recordがあっても`invalid_l3_plan_dates`で拒否する | `tests/review-evidence.test.ts` |
 
 ## §2 非対象
 

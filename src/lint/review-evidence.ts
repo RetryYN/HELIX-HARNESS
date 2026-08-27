@@ -109,7 +109,7 @@ export interface ReviewEvidenceResult {
    * receipt 側では 1 件も発生していない。
    */
   reviewerIdentityViolations: { plan_id: string; reason: string }[];
-  /** 基準日以降に terminal 化・更新された L3 PLAN の typed PO 承認欠落/不正。 */
+  /** 基準日以降に terminal 化・作成/更新された L3 PLAN の typed PO 承認欠落/不正。 */
   l3HumanApprovalViolations: { plan_id: string; reason: string }[];
   ok: boolean;
 }
@@ -135,6 +135,7 @@ export const REVIEWER_SESSION_ENFORCEMENT_DATE = "2026-08-22";
  * 既存の確定履歴を捏造的に書き換えず、以後の L3 terminal 化・更新だけを対象にする。
  */
 export const L3_HUMAN_APPROVAL_ENFORCEMENT_DATE = "2026-08-27";
+const ISO_CALENDAR_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/u;
 /** session 単位で主体が定まる review_kind。human は session を持たないため対象外。 */
 const SESSION_IDENTIFIED_REVIEW_KINDS = new Set<string>(["cross_agent", "intra_runtime_subagent"]);
 /** session 識別子として受理する形。空白・引用・prose 混入を拒否する。 */
@@ -260,11 +261,33 @@ function requiresGreenCommands(plan: ParsedReviewPlan): boolean {
 
 function requiresL3HumanApproval(plan: ParsedReviewPlan): boolean {
   if (plan.layer !== "L3" || !STATUS_REVIEW_REQUIRED.has(plan.status)) return false;
+  const createdDate = plan.created.slice(0, 10);
   const updatedDate = plan.updated.slice(0, 10);
-  // 日付欠落/不正も新規 L3 terminal 化の抜け道にしない。
+  // 作成日だけを過去に固定し、更新日だけを後ろ倒しにする回避を許さない。
   return (
-    !/^\d{4}-\d{2}-\d{2}$/u.test(updatedDate) || updatedDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE
+    createdDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE ||
+    updatedDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE
   );
+}
+
+function isCalendarDate(value: string): boolean {
+  if (!ISO_CALENDAR_DATE_PATTERN.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return (
+    date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day
+  );
+}
+
+function l3HumanApprovalDateViolationReason(plan: ParsedReviewPlan): string | null {
+  if (plan.layer !== "L3" || !STATUS_REVIEW_REQUIRED.has(plan.status)) return null;
+  const createdDate = plan.created.slice(0, 10);
+  const updatedDate = plan.updated.slice(0, 10);
+  // 欠落/不正/時系列逆転は、承認recordの有無にかかわらず fail-close する。
+  if (!isCalendarDate(createdDate) || !isCalendarDate(updatedDate) || updatedDate < createdDate) {
+    return "invalid_l3_plan_dates";
+  }
+  return null;
 }
 
 export function greenCommandViolationReason(entry: ReviewEntry): string | null {
@@ -363,7 +386,10 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   }
   for (const p of plans) {
     if (p.status === "archived") continue;
-    if (requiresL3HumanApproval(p)) {
+    const l3DateViolation = l3HumanApprovalDateViolationReason(p);
+    if (l3DateViolation) {
+      l3HumanApprovalViolations.push({ plan_id: p.plan_id, reason: l3DateViolation });
+    } else if (requiresL3HumanApproval(p)) {
       if (p.l3HumanApprovalInvalid === true) {
         l3HumanApprovalViolations.push({
           plan_id: p.plan_id,

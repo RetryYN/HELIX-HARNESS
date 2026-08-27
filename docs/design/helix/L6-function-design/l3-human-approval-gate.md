@@ -61,5 +61,6 @@ failure reasonは次のexact setとする。
 
 - `missing_human_po_approval`
 - `invalid_human_po_approval`
+- `invalid_l3_plan_dates`（日付欠落・暦日不正・`updated < created`）
 
 現時点ではwarningへ縮退させず、L3 terminal化をfail-closeする。

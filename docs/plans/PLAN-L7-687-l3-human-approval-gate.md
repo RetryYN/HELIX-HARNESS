@@ -42,6 +42,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/l3-human-approval-gate.md, oracle_id: U-L3APP-003, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/l3-human-approval-gate.md, oracle_id: U-L3APP-004, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/l3-human-approval-gate.md, oracle_id: U-L3APP-005, test_path: tests/review-evidence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/l3-human-approval-gate.md, oracle_id: U-L3APP-006, test_path: tests/review-evidence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/l3-human-approval-gate.md, oracle_id: U-L3APP-007, test_path: tests/review-evidence.test.ts }
 agent_slots:
   - { role: tl, slot_label: "TL — L3承認境界と移行日付の統制" }
   - { role: se, slot_label: "SE — frontmatter schemaとreview-evidence loader" }

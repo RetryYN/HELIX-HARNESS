@@ -686,6 +686,7 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
         "layer: L3",
         "kind: design",
         "status: confirmed",
+        "created: 2026-08-27",
         `updated: ${L3_HUMAN_APPROVAL_ENFORCEMENT_DATE}`,
         "l3_human_approval:",
         "  schema_version: helix-l3-human-approval.v1",
@@ -706,6 +707,56 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
     expect(analyzeReviewEvidence([parsed]).l3HumanApprovalViolations).toEqual([
       { plan_id: planId, reason: "invalid_human_po_approval" },
     ]);
+  });
+
+  it("U-L3APP-006: created以後にupdatedを戻す時系列逆転は承認recordがあっても拒否する", () => {
+    const planId = "PLAN-L3-95-l3-human-approval-created-date";
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: planId,
+        layer: "L3",
+        status: "confirmed",
+        created: L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
+        updated: "2026-08-26",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [technicalReview()],
+        l3HumanApproval: l3Approval(planId),
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([
+      { plan_id: planId, reason: "invalid_l3_plan_dates" },
+    ]);
+    expect(result.ok).toBe(false);
+  });
+
+  it("U-L3APP-007: L3 terminal PLANの日付欠落・暦日不正は承認recordがあっても拒否する", () => {
+    const cases = [
+      { plan_id: "PLAN-L3-96-l3-human-approval-missing-date", created: "", updated: "2026-08-27" },
+      {
+        plan_id: "PLAN-L3-97-l3-human-approval-invalid-date",
+        created: "2026-08-99",
+        updated: "2026-08-27",
+      },
+    ];
+    for (const candidate of cases) {
+      const result = analyzeReviewEvidence([
+        plan({
+          ...candidate,
+          layer: "L3",
+          status: "confirmed",
+          kind: "design",
+          hasEvidence: true,
+          crossEntries: [technicalReview()],
+          l3HumanApproval: l3Approval(candidate.plan_id),
+        }),
+      ]);
+      expect(result.l3HumanApprovalViolations).toEqual([
+        { plan_id: candidate.plan_id, reason: "invalid_l3_plan_dates" },
+      ]);
+      expect(result.ok).toBe(false);
+    }
   });
 });
 
