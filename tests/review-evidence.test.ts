@@ -4,6 +4,7 @@ import {
   BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST,
   bunHistoricalReceiptInventoryDigest,
   extractReviewEntries,
+  type GitPlanDateProvenance,
   hasReviewEvidence,
   L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
   type L3HumanApproval,
@@ -12,6 +13,7 @@ import {
   parseReviewPlan,
   REVIEWER_SESSION_ENFORCEMENT_DATE,
   type ReviewEntry,
+  readGitPlanDateProvenance,
 } from "../src/lint/review-evidence";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../src/schema";
 
@@ -591,7 +593,8 @@ describe("review-evidence lint (review 前置の機械強制、IMP-071)", () => 
 });
 
 describe("L3 typed PO approval gate (Issue #1097)", () => {
-  // PLAN-L7-687-l3-human-approval-gate の verification_bindings がこの test file を所有する。
+  // PLAN-L7-687-l3-human-approval-gate と PLAN-L7-688-l3-human-approval-git-provenance の
+  // verification_bindings がこの test file を所有する。
   it("U-L3APP-001: AI technical reviewだけでは基準日以降のL3 terminal化を許可しない", () => {
     const planId = "PLAN-L3-90-l3-human-approval-gate";
     const result = analyzeReviewEvidence([
@@ -757,6 +760,124 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
       ]);
       expect(result.ok).toBe(false);
     }
+  });
+
+  it("U-L3APP-008: frontmatterをbackdateしてもGit初出日が基準日以降なら承認欠落を拒否する", () => {
+    const planId = "PLAN-L3-98-l3-human-approval-git-created";
+    const gitDateProvenance: GitPlanDateProvenance = {
+      source: "git",
+      firstCommitDate: "2026-08-27T09:00:00Z",
+      lastCommitDate: "2026-08-27T09:00:00Z",
+    };
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: planId,
+        layer: "L3",
+        status: "confirmed",
+        created: "2020-01-01",
+        updated: "2020-01-02",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [technicalReview()],
+        gitDateProvenance,
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([
+      { plan_id: planId, reason: "missing_human_po_approval" },
+    ]);
+    expect(result.ok).toBe(false);
+  });
+
+  it("U-L3APP-009: frontmatterをbackdateしてもGit最終変更日が基準日以降なら承認欠落を拒否する", () => {
+    const planId = "PLAN-L3-99-l3-human-approval-git-updated";
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: planId,
+        layer: "L3",
+        status: "confirmed",
+        created: "2020-01-01",
+        updated: "2020-01-02",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [technicalReview()],
+        gitDateProvenance: {
+          source: "git",
+          firstCommitDate: "2026-08-26T09:00:00Z",
+          lastCommitDate: "2026-08-27T09:00:00Z",
+        },
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([
+      { plan_id: planId, reason: "missing_human_po_approval" },
+    ]);
+    expect(result.ok).toBe(false);
+  });
+
+  it("U-L3APP-010: Git provenance取得不能は承認recordがあってもfail-closeする", () => {
+    const planId = "PLAN-L3-100-l3-human-approval-git-missing";
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: planId,
+        layer: "L3",
+        status: "confirmed",
+        created: "2026-08-27",
+        updated: "2026-08-27",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [technicalReview()],
+        l3HumanApproval: l3Approval(planId),
+        gitDateProvenance: { source: "git", error: "history_unavailable" },
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([
+      { plan_id: planId, reason: "missing_l3_plan_git_provenance" },
+    ]);
+    expect(result.ok).toBe(false);
+  });
+
+  it("U-L3APP-011: 基準日前のGit provenanceを持つ既存L3 PLANには承認を遡及要求しない", () => {
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-L3-101-l3-human-approval-grandfather",
+        layer: "L3",
+        status: "confirmed",
+        created: "2026-08-26",
+        updated: "2026-08-27",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [{ ...technicalReview(), reviewer_session_id: "codex-test-session" }],
+        gitDateProvenance: {
+          source: "git",
+          firstCommitDate: "2026-08-26T09:00:00Z",
+          lastCommitDate: "2026-08-26T10:00:00Z",
+        },
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it("U-L3APP-012: loaderはtracked PLANのGit初出／最終変更日を取得する", () => {
+    const provenance = readGitPlanDateProvenance(
+      process.cwd(),
+      "docs/plans/PLAN-L7-687-l3-human-approval-gate.md",
+    );
+
+    expect(provenance.source).toBe("git");
+    expect(provenance.error).toBeUndefined();
+    expect(provenance.firstCommitDate).toMatch(/^2026-08-27T/u);
+    expect(provenance.lastCommitDate).toMatch(/^2026-08-27T/u);
+
+    const loaded = loadReviewPlans(process.cwd()).find(
+      (candidate) => candidate.plan_id === "PLAN-L3-00-master",
+    );
+    expect(loaded?.gitDateProvenance?.source).toBe("git");
+    expect(loaded?.gitDateProvenance?.error).toBeUndefined();
+    expect(loaded?.gitDateProvenance?.firstCommitDate).toMatch(/^2026-06-28T/u);
   });
 });
 
