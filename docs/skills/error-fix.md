@@ -38,7 +38,7 @@ source を変更する前に、error を reproduce する failing test を書く
 これは fix の Red step であり、defect が real であることを確認し、regression fence を与える。
 
 ```
-bun run test tests/<affected>.test.ts
+npm run test -- tests/<affected>.test.ts
 ```
 
 test は current HEAD で、修正対象と同じ exact error により fail しなければならない。
@@ -63,7 +63,7 @@ scope creep は review を難しくし、secondary defect を入れた場合の 
 full gate sequence を実行する。
 
 ```
-bun run typecheck && bun run lint && bun run test && helix doctor
+npm run typecheck && npm run lint && npm run test && helix doctor
 ```
 
 fix commit 前にすべての gates が Green でなければならない。
@@ -80,7 +80,7 @@ fix commit 前にすべての gates が Green でなければならない。
 Recovery または Incident 配下の fix PLAN は、次を満たす場合だけ close する。
 
 - [ ] regression test が Green で、fix commit 前に commit 済み。
-- [ ] `bun run typecheck && bun run lint && bun run test && helix doctor`
+- [ ] `npm run typecheck && npm run lint && npm run test && helix doctor`
       が fix HEAD ですべて green。
 - [ ] root cause を PLAN または `.helix/audit/` entry に記録済み
       （defect の内容だけでなく、それを許した条件を書く）。

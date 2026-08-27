@@ -55,6 +55,8 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/process/modes/refactor.md
     artifact_type: markdown_doc
+  - artifact_path: src/workflow/contracts.ts
+    artifact_type: source_module
 dependencies:
   parent: docs/plans/PLAN-L7-133-refactor-brush-up-workflow.md
   requires:

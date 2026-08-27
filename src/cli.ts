@@ -140,7 +140,7 @@ import {
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
 } from "./lint/outstanding";
-import { writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
+import { inspectOutstandingSnapshot, writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
@@ -359,10 +359,13 @@ import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-r
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
+  auditIssueHierarchyDependencyAlignment,
   collectIssueDependencyContracts,
+  collectIssueHierarchyContracts,
   type IssueDependencyNode,
   type IssueHierarchyNode,
   type IssuePlanBinding,
+  projectIssueDependencyMigrationCandidates,
 } from "./runtime/issue-hierarchy";
 import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
@@ -639,6 +642,13 @@ function buildCliCurrentLocationSnapshot(repoRoot: string, db: HarnessDb) {
       repoRoot,
     ),
   });
+}
+
+function currentLocationWorkflowIdentityProjection(snapshot: ProjectCurrentLocationSnapshot) {
+  return {
+    workflow_identity: snapshot.drive_route.workflowIdentity ?? null,
+    workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt ?? null,
+  };
 }
 
 function truncateCliText(value: string, limit: number): string {
@@ -5129,10 +5139,10 @@ function summarizeCurrentLocationFrontier(snapshot: ProjectCurrentLocationSnapsh
   const nextRecoveryCommand =
     recovery?.reentry_forecast.next_command ??
     recovery?.automation_runway.next_machine_command ??
-    "helix drive model --summary-json";
+    "helix current-location --summary-json";
 
   return {
-    schema_version: "current-location-frontier-summary.v1",
+    schema_version: "current-location-frontier-summary.v2",
     frontier_type: activeRecovery ? "recovery_frontier" : "forward_frontier",
     status: activeRecovery ? "recovery_required" : "current",
     classification: hasL14L7Contradiction
@@ -5141,8 +5151,8 @@ function summarizeCurrentLocationFrontier(snapshot: ProjectCurrentLocationSnapsh
         ? "recovery_queue"
         : "no_current_location_contradiction",
     completion_boundary: snapshot.current.completion_boundary,
-    selected_model: snapshot.drive_route.selectedModel,
-    route_id: snapshot.drive_route.routeId,
+    ...currentLocationWorkflowIdentityProjection(snapshot),
+    workflow_route_status: snapshot.drive_route.status,
     must_return_to_design: snapshot.drive_route.mustReturnToDesign,
     open_l7_count: snapshot.closure.l7_open_plan_ids.length,
     terminal_l14_claim_count: snapshot.closure.terminal_l14_plan_ids.length,
@@ -5180,7 +5190,7 @@ function summarizeCurrentLocationFrontier(snapshot: ProjectCurrentLocationSnapsh
       : null,
     commands: {
       current_location: "helix current-location --summary-json",
-      drive_model: "helix drive model --summary-json",
+      workflow_route: "helix current-location --summary-json",
       recovery_plan: "helix recovery plan --summary-json",
       roadmap_current: "helix roadmap current --summary-json",
       vmodel_fit: "helix vmodel fit --summary-json",
@@ -5189,7 +5199,7 @@ function summarizeCurrentLocationFrontier(snapshot: ProjectCurrentLocationSnapsh
     required_action: hasL14L7Contradiction
       ? "L14 claim と open L7 を closure/recovery frontier として照合し、Recovery lane を消化してから completion claim を再評価する"
       : activeRecovery
-        ? "Recovery lane を消化し、current-location / drive model / vmodel fit を再計算する"
+        ? "Recovery lane を消化し、current-location / workflow route / vmodel fit を再計算する"
         : "current-location frontier は現時点で contradiction を持たない",
   };
 }
@@ -5242,20 +5252,18 @@ function summarizeProjectCurrentLocation(
       ? null
       : `helix closure review-bundle --action close_ready --limit ${closeReadyReviewBundle.limit} --offset ${closeReadyReviewBundle.window.next_offset} --summary-json`;
   return {
-    schema_version: "project-current-location-summary.v1",
+    schema_version: "project-current-location-summary.v2",
     source_clock: snapshot.source_clock,
     current: snapshot.current,
     counts: snapshot.counts,
-    drive_recommendation: {
-      model: snapshot.drive_recommendation.model,
+    workflow_recommendation: {
+      ...currentLocationWorkflowIdentityProjection(snapshot),
       reason: snapshot.drive_recommendation.reason,
       reverse_targets: snapshot.drive_recommendation.reverseTargets,
     },
-    drive_route: {
-      route_id: snapshot.drive_route.routeId,
+    workflow_route: {
+      ...currentLocationWorkflowIdentityProjection(snapshot),
       status: snapshot.drive_route.status,
-      selected_model: snapshot.drive_route.selectedModel,
-      default_model: snapshot.drive_route.defaultModel,
       must_return_to_design: snapshot.drive_route.mustReturnToDesign,
       forward: {
         allowed: snapshot.drive_route.forward.allowed,
@@ -5441,7 +5449,7 @@ function summarizeProjectCurrentLocation(
     write_policy: "read-only",
     commands: {
       current_location: "helix current-location --summary-json",
-      drive_model: "helix drive model --summary-json",
+      workflow_route: "helix current-location --summary-json",
       recovery_plan: "helix recovery plan --summary-json",
       closure_review_window: closeReadyCurrentWindowCommand,
       closure_transition_window: closeReadyTransitionWindowCommand,
@@ -5534,7 +5542,7 @@ function summarizeProjectSkillBinding(payload: ReturnType<typeof projectSkillBin
 
 program
   .command("current-location")
-  .description("Project view current location and drive-model recommendation from DB projection")
+  .description("Project view current location and typed workflow route from DB projection")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for review and handoff surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
@@ -5564,19 +5572,22 @@ program
         return;
       }
       const current = snapshot.current;
+      // The snapshot still carries a compatibility-shaped drive_route field internally, but
+      // the primary text projection must speak in typed workflow-route vocabulary.
+      const workflowRoute = snapshot.drive_route;
       process.stdout.write(
-        `current-location: layer=${current.layer ?? "unknown"} l12=${current.l12_layer ?? "unknown"} status=${current.status} boundary=${current.completion_boundary} drive=${snapshot.drive_recommendation.model} findings=${snapshot.findings.length}\n`,
+        `current-location: layer=${current.layer ?? "unknown"} l12=${current.l12_layer ?? "unknown"} status=${current.status} boundary=${current.completion_boundary} workflow=${workflowRoute.workflowIdentity ? `${workflowRoute.workflowIdentity.target_axis}:${workflowRoute.workflowIdentity.target_id}` : "unknown"} findings=${snapshot.findings.length}\n`,
       );
       process.stdout.write(
-        `  drive-route: ${snapshot.drive_route.routeId} status=${snapshot.drive_route.status} model=${snapshot.drive_route.selectedModel} default=${snapshot.drive_route.defaultModel} return_to_design=${snapshot.drive_route.mustReturnToDesign} write=${snapshot.drive_route.writePolicy}\n`,
+        `  workflow-route: status=${workflowRoute.status} identity_disposition=${workflowRoute.workflowIdentityReceipt?.disposition ?? "missing"} return_to_design=${workflowRoute.mustReturnToDesign} write=${workflowRoute.writePolicy}\n`,
       );
-      if (snapshot.drive_route.reverse.required) {
+      if (workflowRoute.reverse.required) {
         process.stdout.write(
-          `  drive-reverse-scope: targets=${snapshot.drive_route.reverse.targets.join(",") || "-"} l12=${snapshot.drive_route.reverse.l12Layers.join(",") || "-"} actions=${snapshot.drive_route.reverse.queueActions.join(",") || "-"} ledgers=${snapshot.drive_route.reverse.ledgerIds.length}\n`,
+          `  workflow-route-reverse-scope: targets=${workflowRoute.reverse.targets.join(",") || "-"} l12=${workflowRoute.reverse.l12Layers.join(",") || "-"} actions=${workflowRoute.reverse.queueActions.join(",") || "-"} ledgers=${workflowRoute.reverse.ledgerIds.length}\n`,
         );
       } else {
         process.stdout.write(
-          `  drive-forward-scope: allowed=${snapshot.drive_route.forward.allowed} roadmap=${snapshot.drive_route.forward.roadmapStatus} frontier=${snapshot.drive_route.forward.frontier.join(",") || "-"}\n`,
+          `  workflow-route-forward-scope: allowed=${workflowRoute.forward.allowed} roadmap=${workflowRoute.forward.roadmapStatus} frontier=${workflowRoute.forward.frontier.join(",") || "-"}\n`,
         );
       }
       if (snapshot.recovery) {
@@ -13698,6 +13709,8 @@ github
       let nodes: IssueDependencyNode[];
       let plans: IssuePlanBinding[];
       let contractFindings = [] as ReturnType<typeof collectIssueDependencyContracts>["findings"];
+      let alignmentReport: ReturnType<typeof auditIssueHierarchyDependencyAlignment> | null = null;
+      let migrationCandidates: ReturnType<typeof projectIssueDependencyMigrationCandidates> = [];
       if (opts.inputJson) {
         nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
         plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
@@ -13728,8 +13741,10 @@ github
         const collected = collectIssueDependencyContracts(issues);
         nodes = collected.nodes;
         contractFindings = collected.findings;
+        const hierarchyNodes = collectIssueHierarchyContracts(issues);
+        alignmentReport = auditIssueHierarchyDependencyAlignment(hierarchyNodes, nodes);
         const governedNumbers = new Set(nodes.map((node) => node.number));
-        plans = readdirSync(join(process.cwd(), "docs", "plans"))
+        const allPlanBindings = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
           .flatMap((name) => {
             const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
@@ -13738,8 +13753,18 @@ github
             const githubIssueId = Number(
               frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
             );
-            return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
+            return planId && Number.isSafeInteger(githubIssueId) ? [{ planId, githubIssueId }] : [];
           });
+        plans = allPlanBindings.filter((plan) => governedNumbers.has(plan.githubIssueId));
+        const hierarchyNumbers = new Set(hierarchyNodes.map((node) => node.number));
+        const migrationPlans = allPlanBindings.filter((plan) =>
+          hierarchyNumbers.has(plan.githubIssueId),
+        );
+        migrationCandidates = projectIssueDependencyMigrationCandidates(
+          hierarchyNodes,
+          nodes,
+          migrationPlans,
+        );
       }
       const dependencyReport = auditIssueDependencies(nodes, plans, {
         // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.
@@ -13757,11 +13782,34 @@ github
           : contractFindings.filter((finding) =>
               (parsedFocus as number[]).includes(finding.issueNumber),
             );
+      const focusedAlignmentFindings =
+        alignmentReport === null
+          ? []
+          : parsedFocus === null
+            ? alignmentReport.findings
+            : alignmentReport.findings.filter((finding) =>
+                (parsedFocus as number[]).includes(finding.issueNumber),
+              );
+      const focusedMigrationCandidates =
+        parsedFocus === null
+          ? migrationCandidates
+          : migrationCandidates.filter((candidate) =>
+              (parsedFocus as number[]).includes(candidate.issueNumber),
+            );
       const report = {
         ...dependencyReport,
-        ok: dependencyReport.ok && focusedContractFindings.length === 0,
+        ok:
+          dependencyReport.ok &&
+          focusedContractFindings.length === 0 &&
+          focusedAlignmentFindings.length === 0,
         checkedIssues: dependencyReport.checkedIssues + focusedContractFindings.length,
-        findings: [...focusedContractFindings, ...dependencyReport.findings].sort(
+        checkedAlignmentIssues: alignmentReport?.checkedIssues ?? 0,
+        migrationCandidates: focusedMigrationCandidates,
+        findings: [
+          ...focusedContractFindings,
+          ...focusedAlignmentFindings,
+          ...dependencyReport.findings,
+        ].sort(
           (left, right) =>
             left.issueNumber - right.issueNumber || left.code.localeCompare(right.code),
         ),
@@ -16062,6 +16110,23 @@ distribution
     process.stdout.write(`  checksum: ${checksum}\n`);
     process.stdout.write("  signature: required but not created (external signing boundary)\n");
     process.stdout.write("  publish: requires PO approval\n");
+  });
+
+guard
+  .command("outstanding-snapshot")
+  .description("commit/rebase後のoutstanding snapshotとlive projectionをsemantic照合")
+  .option("--json", "JSON output")
+  .action((opts: { json?: boolean }) => {
+    const result = inspectOutstandingSnapshot(process.cwd());
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    } else {
+      process.stdout.write(
+        `guard outstanding-snapshot: ${result.ok ? "pass" : "blocked"} path=${result.snapshotPath} repair=${result.repairCommand}\n`,
+      );
+      for (const violation of result.violations) process.stdout.write(`  - ${violation}\n`);
+    }
+    process.exitCode = result.ok ? 0 : 1;
   });
 
 program.parseAsync(process.argv).catch((e: unknown) => {

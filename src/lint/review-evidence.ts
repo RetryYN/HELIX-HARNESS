@@ -12,11 +12,16 @@
  * 実 repo 履歴 15 件 back-fill 完了 = missing 0 安定を確認後に hard 昇格)。
  * 純関数 (analyze) + I/O loader を分離 (backfill-pairing / vmodel-pair と同方針)。
  */
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { type CrossAgentModelIssue, checkCrossAgentModelPair } from "../schema";
+import { type L3HumanApproval, l3HumanApprovalSchema } from "../schema/frontmatter";
+
+export type { L3HumanApproval } from "../schema/frontmatter";
+
 import {
   GREEN_COMMAND_KINDS,
   GREEN_COMMAND_RUNNERS,
@@ -71,6 +76,7 @@ export interface ParsedReviewPlan {
   file: string;
   plan_id: string;
   kind: string;
+  layer?: string;
   status: string;
   updated: string;
   /** frontmatter の `created`。reviewer session 強制は作成日で gate する (既存 PLAN の遡及改変を避ける)。 */
@@ -83,6 +89,19 @@ export interface ParsedReviewPlan {
    * 消費側 (checkReviewEvidence / checkGuardrailInvariants) が entry.review_kind で個別に scope する。
    */
   crossEntries: ReviewEntry[];
+  /** L3 要件の terminal 化に必要な、技術 review と分離された PO 承認記録。 */
+  l3HumanApproval?: L3HumanApproval;
+  /** approval ブロックが存在するが schema または plan_id binding に違反している。 */
+  l3HumanApprovalInvalid?: boolean;
+  /** L3 grandfather境界をauthor制御の日付から分離するGit provenance。 */
+  gitDateProvenance?: GitPlanDateProvenance;
+}
+
+export interface GitPlanDateProvenance {
+  source: "git";
+  firstCommitDate?: string;
+  lastCommitDate?: string;
+  error?: "not_tracked" | "history_unavailable" | "missing_date" | "invalid_date" | "order";
 }
 
 export interface ReviewEvidenceResult {
@@ -100,6 +119,8 @@ export interface ReviewEvidenceResult {
    * receipt 側では 1 件も発生していない。
    */
   reviewerIdentityViolations: { plan_id: string; reason: string }[];
+  /** 基準日以降に terminal 化・作成/更新された L3 PLAN の typed PO 承認欠落/不正。 */
+  l3HumanApprovalViolations: { plan_id: string; reason: string }[];
   ok: boolean;
 }
 
@@ -119,10 +140,17 @@ export const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fi
  * (GREEN_COMMAND_ENFORCEMENT_DATE と同じ date-gated 移行)。
  */
 export const REVIEWER_SESSION_ENFORCEMENT_DATE = "2026-08-22";
+/**
+ * L3 PLAN の人間承認を強制する開始日 (Issue #1097)。
+ * 既存の確定履歴を捏造的に書き換えず、以後の L3 terminal 化・更新だけを対象にする。
+ */
+export const L3_HUMAN_APPROVAL_ENFORCEMENT_DATE = "2026-08-27";
+const ISO_CALENDAR_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/u;
 /** session 単位で主体が定まる review_kind。human は session を持たないため対象外。 */
 const SESSION_IDENTIFIED_REVIEW_KINDS = new Set<string>(["cross_agent", "intra_runtime_subagent"]);
 /** session 識別子として受理する形。空白・引用・prose 混入を拒否する。 */
 const REVIEWER_SESSION_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$/;
+const GIT_PLAN_COMMIT_MARKER = "__HELIX_PLAN_COMMIT__";
 
 /** entry 単位の reviewer session 違反理由 (repo 横断の衝突検査は analyze 側が担う)。 */
 export function reviewerSessionViolationReason(entry: ReviewEntry): string | null {
@@ -199,16 +227,176 @@ export function extractReviewEntries(content: string): ReviewEntry[] {
   }
 }
 
-export function parseReviewPlan(file: string, content: string): ParsedReviewPlan {
+function extractL3HumanApproval(
+  content: string,
+  planId: string,
+): { value?: L3HumanApproval; invalid: boolean } {
+  const m = content.match(/^---\n([\s\S]*?)\n---/);
+  if (!m) return { invalid: false };
+  try {
+    const fm = parseYaml(m[1]) as Record<string, unknown> | null;
+    if (!fm || !Object.hasOwn(fm, "l3_human_approval")) return { invalid: false };
+    const parsed = l3HumanApprovalSchema.safeParse(fm.l3_human_approval);
+    if (!parsed.success || parsed.data.plan_id !== planId) return { invalid: true };
+    return { value: parsed.data, invalid: false };
+  } catch {
+    return { invalid: true };
+  }
+}
+
+function gitDatePath(file: string): string {
+  const normalized = file.replaceAll("\\", "/").replace(/^\.\//u, "");
+  return normalized.startsWith("docs/plans/")
+    ? normalized
+    : join("docs", "plans", normalized).replaceAll("\\", "/");
+}
+
+function gitOutput(repoRoot: string, args: string[]): string | null {
+  try {
+    return execFileSync("git", ["-C", repoRoot, ...args], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return null;
+  }
+}
+
+function gitProvenanceFromDates(
+  firstCommitDate: string | undefined,
+  lastCommitDate: string | undefined,
+): GitPlanDateProvenance {
+  if (!firstCommitDate || !lastCommitDate) {
+    return { source: "git", error: "history_unavailable" };
+  }
+  if (
+    !isCalendarDate(firstCommitDate.slice(0, 10)) ||
+    !isCalendarDate(lastCommitDate.slice(0, 10))
+  ) {
+    return { source: "git", firstCommitDate, lastCommitDate, error: "invalid_date" };
+  }
+  if (Date.parse(lastCommitDate) < Date.parse(firstCommitDate)) {
+    return { source: "git", firstCommitDate, lastCommitDate, error: "order" };
+  }
+  return { source: "git", firstCommitDate, lastCommitDate };
+}
+
+function parseGitPlanLogDates(output: string | null, keepFirst: boolean): Map<string, string> {
+  const dates = new Map<string, string>();
+  if (!output) return dates;
+  let commitDate: string | undefined;
+  for (const rawLine of output.split(/\r?\n/u)) {
+    const line = rawLine.trimEnd();
+    if (line.startsWith(GIT_PLAN_COMMIT_MARKER)) {
+      commitDate = line.slice(GIT_PLAN_COMMIT_MARKER.length);
+      continue;
+    }
+    if (!commitDate || line === "" || !line.startsWith("docs/plans/")) continue;
+    if (keepFirst || !dates.has(line)) dates.set(line, commitDate);
+  }
+  return dates;
+}
+
+/** L3 PLANのgrandfather判定に使う、authorが編集できないGit path provenanceを読む。 */
+export function readGitPlanDateProvenance(repoRoot: string, file: string): GitPlanDateProvenance {
+  const path = gitDatePath(file);
+  const tracked = gitOutput(repoRoot, ["ls-files", "--error-unmatch", "--", path]);
+  if (!tracked) return { source: "git", error: "not_tracked" };
+  if (gitOutput(repoRoot, ["rev-parse", "--is-shallow-repository"]) !== "false") {
+    return { source: "git", error: "history_unavailable" };
+  }
+
+  const firstOutput = gitOutput(repoRoot, [
+    "log",
+    "--diff-filter=A",
+    "--follow",
+    "--format=%cI",
+    "--",
+    path,
+  ]);
+  const firstCommitDate = firstOutput?.split(/\r?\n/u).filter(Boolean).at(-1);
+  const lastCommitDate =
+    gitOutput(repoRoot, ["log", "-1", "--format=%cI", "--", path]) || undefined;
+  return gitProvenanceFromDates(firstCommitDate, lastCommitDate);
+}
+
+/**
+ * 同一プロセスで大量のPLANを読むCI/CLI向けのbulk lookup。
+ * PLANごとに `git log` processを起動すると current-location等のsurfaceが数十秒単位で遅くなるため、
+ * docs/plans 全体の追加履歴・変更履歴を各1回読み、pathごとの初出／最終変更日へ分解する。
+ */
+function readGitPlanDateProvenanceBatch(
+  repoRoot: string,
+  files: string[],
+): Map<string, GitPlanDateProvenance> {
+  const result = new Map<string, GitPlanDateProvenance>();
+  const paths = files.map(gitDatePath);
+  if (paths.length === 0) return result;
+  const trackedOutput = gitOutput(repoRoot, ["ls-files", "--", "docs/plans"]);
+  const tracked = new Set(trackedOutput?.split(/\r?\n/u).filter(Boolean) ?? []);
+  const shallow = gitOutput(repoRoot, ["rev-parse", "--is-shallow-repository"]);
+  for (const [file, path] of files.map((file, index) => [file, paths[index]] as const)) {
+    if (!tracked.has(path)) result.set(file, { source: "git", error: "not_tracked" });
+    else if (shallow !== "false") result.set(file, { source: "git", error: "history_unavailable" });
+  }
+  const historyPaths = files.filter((file) => !result.has(file));
+  if (historyPaths.length === 0) return result;
+
+  const firstDates = parseGitPlanLogDates(
+    gitOutput(repoRoot, [
+      "log",
+      "--diff-filter=A",
+      `--format=${GIT_PLAN_COMMIT_MARKER}%cI`,
+      "--name-only",
+      "--",
+      "docs/plans",
+    ]),
+    true,
+  );
+  const lastDates = parseGitPlanLogDates(
+    gitOutput(repoRoot, [
+      "log",
+      `--format=${GIT_PLAN_COMMIT_MARKER}%cI`,
+      "--name-only",
+      "--",
+      "docs/plans",
+    ]),
+    false,
+  );
+  for (const file of historyPaths) {
+    const path = gitDatePath(file);
+    const first = firstDates.get(path);
+    const last = lastDates.get(path);
+    if (first && last) {
+      result.set(file, gitProvenanceFromDates(first, last));
+      continue;
+    }
+    // rename/follow等の例外は既存の単一path lookupへフォールバックし、精度を落とさない。
+    result.set(file, readGitPlanDateProvenance(repoRoot, file));
+  }
+  return result;
+}
+
+export function parseReviewPlan(
+  file: string,
+  content: string,
+  gitDateProvenance?: GitPlanDateProvenance,
+): ParsedReviewPlan {
+  const planId = fmValue(content, "plan_id") ?? file.replace(/\.md$/, "");
+  const l3HumanApproval = extractL3HumanApproval(content, planId);
   return {
     file,
-    plan_id: fmValue(content, "plan_id") ?? file.replace(/\.md$/, ""),
+    plan_id: planId,
     kind: fmValue(content, "kind") ?? "unknown",
+    layer: fmValue(content, "layer") ?? "unknown",
     status: fmValue(content, "status") ?? "unknown",
     updated: fmValue(content, "updated") ?? fmValue(content, "created") ?? "",
     created: fmValue(content, "created") ?? "",
     hasEvidence: hasReviewEvidence(content),
     crossEntries: extractReviewEntries(content),
+    ...(l3HumanApproval.value ? { l3HumanApproval: l3HumanApproval.value } : {}),
+    l3HumanApprovalInvalid: l3HumanApproval.invalid,
+    ...(gitDateProvenance ? { gitDateProvenance } : {}),
   };
 }
 
@@ -218,6 +406,62 @@ function requiresGreenCommands(plan: ParsedReviewPlan): boolean {
     plan.updated >= GREEN_COMMAND_ENFORCEMENT_DATE &&
     (plan.crossEntries ?? []).length > 0
   );
+}
+
+function requiresL3HumanApproval(plan: ParsedReviewPlan): boolean {
+  if (plan.layer !== "L3" || !STATUS_REVIEW_REQUIRED.has(plan.status)) return false;
+  const createdDate =
+    plan.gitDateProvenance?.firstCommitDate?.slice(0, 10) ?? plan.created.slice(0, 10);
+  const updatedDate =
+    plan.gitDateProvenance?.lastCommitDate?.slice(0, 10) ?? plan.updated.slice(0, 10);
+  // 作成日・更新日をfrontmatterで過去に固定する回避を許さない。
+  return (
+    createdDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE ||
+    updatedDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE
+  );
+}
+
+function isCalendarDate(value: string): boolean {
+  if (!ISO_CALENDAR_DATE_PATTERN.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return (
+    date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day
+  );
+}
+
+function l3HumanApprovalDateViolationReason(plan: ParsedReviewPlan): string | null {
+  if (plan.layer !== "L3" || !STATUS_REVIEW_REQUIRED.has(plan.status)) return null;
+  const provenance = plan.gitDateProvenance;
+  if (provenance) {
+    if (
+      provenance.error === "not_tracked" ||
+      provenance.error === "history_unavailable" ||
+      provenance.error === "missing_date"
+    ) {
+      return "missing_l3_plan_git_provenance";
+    }
+    if (provenance.error === "invalid_date" || provenance.error === "order") {
+      return "invalid_l3_plan_git_provenance";
+    }
+    if (!provenance.firstCommitDate || !provenance.lastCommitDate) {
+      return "missing_l3_plan_git_provenance";
+    }
+    if (
+      !isCalendarDate(provenance.firstCommitDate.slice(0, 10)) ||
+      !isCalendarDate(provenance.lastCommitDate.slice(0, 10)) ||
+      provenance.lastCommitDate < provenance.firstCommitDate
+    ) {
+      return "invalid_l3_plan_git_provenance";
+    }
+  }
+  const createdDate = plan.created.slice(0, 10);
+  const updatedDate = plan.updated.slice(0, 10);
+  // 欠落/不正/時系列逆転は、承認recordの有無にかかわらず fail-close する。
+  if (!isCalendarDate(createdDate) || !isCalendarDate(updatedDate) || updatedDate < createdDate) {
+    return "invalid_l3_plan_dates";
+  }
+  return null;
 }
 
 export function greenCommandViolationReason(entry: ReviewEntry): string | null {
@@ -302,6 +546,7 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   const greenCommandViolations: { plan_id: string; reason: string }[] = [];
   const staleApprovalViolations: { plan_id: string; reason: string }[] = [];
   const reviewerIdentityViolations: { plan_id: string; reason: string }[] = [];
+  const l3HumanApprovalViolations: { plan_id: string; reason: string }[] = [];
   /** session -> 観測した reviewer_model 群。同一 session が別 model を名乗る記録は矛盾する。 */
   const sessionModels = new Map<string, Map<string, string>>();
   if (
@@ -315,6 +560,22 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   }
   for (const p of plans) {
     if (p.status === "archived") continue;
+    const l3DateViolation = l3HumanApprovalDateViolationReason(p);
+    if (l3DateViolation) {
+      l3HumanApprovalViolations.push({ plan_id: p.plan_id, reason: l3DateViolation });
+    } else if (requiresL3HumanApproval(p)) {
+      if (p.l3HumanApprovalInvalid === true) {
+        l3HumanApprovalViolations.push({
+          plan_id: p.plan_id,
+          reason: "invalid_human_po_approval",
+        });
+      } else if (!p.l3HumanApproval) {
+        l3HumanApprovalViolations.push({
+          plan_id: p.plan_id,
+          reason: "missing_human_po_approval",
+        });
+      }
+    }
     // presence (IMP-071)
     if (
       KIND_REVIEW_REQUIRED.has(p.kind) &&
@@ -423,13 +684,15 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
     greenCommandViolations,
     staleApprovalViolations,
     reviewerIdentityViolations,
+    l3HumanApprovalViolations,
     ok:
       missing.length === 0 &&
       crossReviewViolations.length === 0 &&
       testBeforeReviewViolations.length === 0 &&
       greenCommandViolations.length === 0 &&
       staleApprovalViolations.length === 0 &&
-      reviewerIdentityViolations.length === 0,
+      reviewerIdentityViolations.length === 0 &&
+      l3HumanApprovalViolations.length === 0,
   };
 }
 
@@ -445,6 +708,20 @@ export function loadReviewPlans(repoRoot: string = process.cwd()): ParsedReviewP
     if (!f.endsWith(".md") || !f.startsWith("PLAN-")) continue;
     plans.push(parseReviewPlan(f, readFileSync(join(plansDir, f), "utf8")));
   }
+  const terminalL3 = plans.filter(
+    (plan): plan is ParsedReviewPlan & { layer: "L3" } =>
+      plan.layer === "L3" && STATUS_REVIEW_REQUIRED.has(plan.status),
+  );
+  const provenance = readGitPlanDateProvenanceBatch(
+    repoRoot,
+    terminalL3.map((plan) => plan.file),
+  );
+  for (const plan of terminalL3) {
+    plan.gitDateProvenance = provenance.get(plan.file) ?? {
+      source: "git",
+      error: "history_unavailable",
+    };
+  }
   return plans;
 }
 
@@ -456,7 +733,8 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
     result.testBeforeReviewViolations.length === 0 &&
     result.greenCommandViolations.length === 0 &&
     result.staleApprovalViolations.length === 0 &&
-    result.reviewerIdentityViolations.length === 0
+    result.reviewerIdentityViolations.length === 0 &&
+    result.l3HumanApprovalViolations.length === 0
   ) {
     return [
       "review-evidence — OK (review_evidence あり / cross_agent は worker≠reviewer / 定量テスト→定性レビュー順序 tests_green_at≤reviewed_at)",
@@ -491,6 +769,12 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
     const ids = result.reviewerIdentityViolations.map((v) => `${v.plan_id}:${v.reason}`).join(", ");
     out.push(
       `review-evidence — ⚠ reviewer 主体が構造化フィールドで一意に定まらない ${result.reviewerIdentityViolations.length} 件 (${ids}): 2026-08-22 以降の confirmed AI review entry は reviewer_session_id / reviewer_model を prose ではなく型付きで記録 (Issue #923)`,
+    );
+  }
+  if (result.l3HumanApprovalViolations.length > 0) {
+    const ids = result.l3HumanApprovalViolations.map((v) => `${v.plan_id}:${v.reason}`).join(", ");
+    out.push(
+      `review-evidence — violation: L3 terminal PLAN の承認またはGit provenanceが不正 ${result.l3HumanApprovalViolations.length} 件 (${ids}): typed PO approvalと対象PLANのGit初出/最終変更履歴を確認 (Issue #1097/#1102)`,
     );
   }
   if (result.staleApprovalViolations.length > 0) {

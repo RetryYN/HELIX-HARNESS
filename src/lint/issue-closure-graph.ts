@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { isAtomicContractId } from "../schema/atomic-contract-id";
 
 export const ISSUE_CLOSURE_GRAPH_SCHEMA = "helix-issue-closure-graph.v1" as const;
 export const ISSUE_COMPLETION_RECEIPT_SCHEMA = "helix-issue-completion-receipt.v1" as const;
@@ -76,7 +77,6 @@ export interface IssueClosureGraphReport {
   snapshot_digest: `sha256:${string}`;
 }
 
-const ATOMIC_CONTRACT_ID = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){1,7}$/;
 const SHA_40 = /^[0-9a-f]{40}$/;
 const SHA256 = /^sha256:[0-9a-f]{64}$/;
 
@@ -158,7 +158,7 @@ export function parseIssueClosureGraphContract(body: string): IssueClosureGraphC
       return (
         exactKeys(item, ["contract_id", "owner_issue"]) &&
         typeof item.contract_id === "string" &&
-        ATOMIC_CONTRACT_ID.test(item.contract_id) &&
+        isAtomicContractId(item.contract_id) &&
         isPositiveInteger(item.owner_issue)
       );
     }) ||

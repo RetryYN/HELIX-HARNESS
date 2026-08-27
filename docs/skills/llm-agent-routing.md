@@ -57,7 +57,7 @@ L6 unit test が contract に対して assert できるように、chunking boun
 
 ## L7 implementation gates（L7 実装 gate）
 
-- `bun run typecheck` が clean。model-call path に `any` を残さない。
+- `npm run typecheck` が clean。model-call path に `any` を残さない。
 - Unit test は normal response、API error / timeout、context-overflow truncation を cover する。
 - 実装後に `helix review --uncommitted` を実行し、`model_runs` telemetry を review evidence として捕捉する。
 

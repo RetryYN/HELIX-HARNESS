@@ -44,6 +44,13 @@ physical capture、unsupported platform、timeout supervisor、terminal payload 
 provider固有の例外本文、path、credentialをfailureへ入れず、cwd、環境変数、primary shared tree、remote、
 `origin/main`からauthority inputを生成しない。4 surface projectorは本portの同一resolution bytesだけを受ける後続責務とする。
 
+## 4 surface同一bytes projector
+
+`projectProjectHookAuthoritySurfaces(resolution)`は一度だけ解決済みのsuccess receiptまたはfailureをcanonical JSONへ変換し、
+`session_start`、`doctor`、`status`、`dispatch`のexact 4 keyへ同じbytesを投影する。各surfaceでresolverやserializerを
+再実行せず、repair hint、互換identity、surface固有fieldを追加しない。入力resolutionを変更せず、filesystem、process、DB、
+GitHub writeを持たないpure projectorとする。actual consumer wiringは後続sliceが所有する。
+
 実装oracleのexact declarationはpair先L8 test designを正本とする。
 
 <!-- HELIX:design-reality-binding:v1 -->
@@ -84,3 +91,11 @@ provider固有の例外本文、path、credentialをfailureへ入れず、cwd、
   ]
 }
 ```
+
+## Assignment kernel接続
+
+`createAssignmentProjectHookAuthorityProvider`はControl Planeの明示Assignment snapshotを
+`ProjectHookCaptureRequest`へ一方向変換する。snapshotはassignment ID、専用worktree、loader/session root、
+branch、candidate/current HEAD、lease/fence、assignment root digestをexactに持つ。取得不能、schema不正、
+physical capture失敗は既存`authority_input_unavailable` reasonへ閉じ、cwd、env、primary tree、origin/mainから
+補完しない。既存Assignment kernelのstate machineやlease更新は本adapterの責務外とする。

@@ -5,11 +5,12 @@ kind: impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
+backfill_state: complete
 route_mode: version-up
 entry_signals: ["po_directive:Issue #704 generated execution-policy projection slice"]
 created: 2026-08-15
-updated: 2026-08-15
+updated: 2026-08-25
 owner: Codex / TL
 github_issue_id: 704
 behavior_contract_id: WFEXEC-POLICY-PROJECTION-001
@@ -85,6 +86,7 @@ dependencies:
     - docs/design/helix/L6-function-design/workflow-execution-policy-projection.md
   references:
     - src/schema/route-map.ts
+    - docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md
   blocks: []
 ---
 

@@ -40,8 +40,8 @@ accept gate 前に次の順で実行する:
 
 ```
 helix guardrail          # 全 text file の secret pattern scan
-bun run lint              # Biome check: security-adjacent lint rule を含む
-bun run test              # Vitest: fixture file が credential を漏らしていないことを確認
+npm run lint              # Biome check: security-adjacent lint rule を含む
+npm run test              # Vitest: fixture file が credential を漏らしていないことを確認
 helix doctor             # structural governance: orphaned hook / agent path が無いことを確認
 ```
 
@@ -51,7 +51,7 @@ helix doctor             # structural governance: orphaned hook / agent path が
 
 - [ ] package が既知の registry（npmjs.com）から来ていることを確認する。PO 承認なしに
       `file:`、`git+ssh:`、`http:` protocol reference を使わない。
-- [ ] `bun audit`（または同等手段）を実行し、critical / high severity advisory が 0 件であることを確認する。
+- [ ] `npm audit`（または同等手段）を実行し、critical / high severity advisory が 0 件であることを確認する。
       advisory がある場合は、accept 前に `docs/design/L5/<plan-id>-dependency-risk.md` へ accepted risk を記録する。
 - [ ] version pin が floating range でないことを確認する（`^x.y.z` は可。
       production dependency で `*` または `latest` は禁止）。
@@ -67,7 +67,7 @@ helix doctor             # structural governance: orphaned hook / agent path が
 
 ### 3. Biome security-lint surface の確認
 
-- [ ] `bun run lint` が 0 で終了し、pre-change count を超える suppression が追加されていない。
+- [ ] `npm run lint` が 0 で終了し、pre-change count を超える suppression が追加されていない。
 - [ ] 新しい `// biome-ignore` line は、同じ行に PLAN-linked comment を持つ。
 - [ ] `// @ts-ignore` と `// @ts-expect-error` line は 0 件、または PLAN で正当化されている。
 

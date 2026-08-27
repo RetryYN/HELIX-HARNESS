@@ -5,12 +5,13 @@ kind: add-design
 layer: L3
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
+backfill_state: complete
 route_mode: version-up
 entry_signals:
   - "po_directive:Issue #704 runtime/CLI consumer prerequisite"
 created: 2026-08-15
-updated: 2026-08-15
+updated: 2026-08-25
 owner: Codex / TL
 github_issue_id: 704
 behavior_contract_id: WFEXEC-CONSUMER-CONTRACT-001
@@ -84,6 +85,7 @@ dependencies:
   references:
     - config/drive-route-catalog.json
     - src/cli/commands/route.ts
+    - docs/plans/PLAN-REVERSE-704-workflow-execution-policy-terminal-fullback.md
   blocks: []
 ---
 

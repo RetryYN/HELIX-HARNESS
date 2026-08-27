@@ -2,9 +2,9 @@
 title: "Impact CI Recovery機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-01
-updated: 2026-08-12
+updated: 2026-08-27
 owner: Codex / TL
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 parent_design: docs/design/helix/L5-detail/impact-ci-recovery.md
@@ -80,3 +80,58 @@ source module policy は `requirements -> shared` のみを明示許可する。
 `shared -> requirements` はdefault denyを維持し、共有utilityを理由に owner 間cycleや上位ownerへの逆依存を許さない。
 契約oracleは `U-TSLAZY-001`（遅延load）・`U-TSLAZY-002`（唯一実装とconsumer exact set）・
 `U-TSLAZY-003`（互換shimの理由付きdeferred分類）・`IT-SBOUND-007`（正負direction）で構成する。
+
+## 6. Full regression job shard契約
+
+`GH-NFR-010`／`GH-AC-017`のp95 3分目標へ近づけるため、同一2-core runner内のbackground process並列を
+GitHub Actionsの独立jobへ移行する。workflowへpartition意味を埋め込まず、
+`src/runtime/full-regression-shards.ts`のpure contractがtracked test inventoryを次へ分割する。
+
+- `bulk-1`／`bulk-2`: `cli-surface`と`tests/slow/**`を除くfast testをpath digestで安定分割する。
+- `stateful`: `tests/cli-surface.test.ts`と全slow testだけを保持する。
+
+partitionはcandidate HEAD、base SHA、inventory digest、shard ID、kind、canonical file exact set、file digestへ
+束縛する。全shardの和集合はtracked test inventoryと完全一致し、交差、欠落、余剰、空required shardを拒否する。
+各runnerのreceiptは同じpartition digestと自身のfile digest、exit code、output digest、開始／完了時刻を持つ。
+finalizeはreceipt exact setを再検証し、wrong HEAD／base／partition／files、nonzero、欠落、重複をfail-closeする。
+
+本pure contractはtest実行、filesystem列挙、GitHub API、artifact uploadを行わない。workflow job配線、cancel／timeout、
+post-test DB rebuild／doctor、実runのwall-clock計測はIssue #1071が所有する。
+
+Issue #1071のtransactional adapterは`plan`、`files`、`receipt`、`validate`の4 commandだけを公開し、partition意味を
+workflow YAMLへ複製しない。`receipt`はplanからHEAD／base／partition／file digestを継承し、caller入力を受理しない。
+output digest、exit code、時刻を入力境界で検証し、validatorの`ok=false`はprocess exit 1へ写像する。
+
+| oracle ID | 設計上の観測点 |
+|---|---|
+| `U-FULLSHARD-001` | 入力順非依存のbulk 2件＋stateful安定partition |
+| `U-FULLSHARD-002` | inventory exact union、交差／欠落／余剰0 |
+| `U-FULLSHARD-003` | inventory／partition／shard fileの正規digest |
+| `U-FULLSHARD-004` | CLI／slow stateful固定とbulk補集合 |
+| `U-FULLSHARD-005` | receiptのHEAD／base／partition／shard／files exact binding |
+| `U-FULLSHARD-006` | receipt exact set、exit 0、時刻妥当性 |
+| `U-FULLSHARD-CLI-001` | inventory JSONからtyped planとshard file exact setを返すCLI境界 |
+| `U-FULLSHARD-CLI-002` | receipt identityをplanだけから導出するCLI境界 |
+| `U-FULLSHARD-CLI-003` | validator redをtyped JSONとexit 1へ写像するCLI境界 |
+| `U-FULLSHARD-CLI-004` | output digest／exit code／時刻をfail-closeするCLI境界 |
+| `U-FULLSHARD-WF-001` | preflight／3 shard／finalizeのtyped artifact接続。schedule／workflow_dispatchではPR由来のcandidate HEADをcheckout refへ流さず、PR headまたはtrusted `github.sha`へ限定する |
+| `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／Biome／doctor／required aggregate順序 |
+| `U-FULLSHARD-WF-003` | preflight／shard／finalize各jobのbounded timeoutを固定し、timeout延長を性能改善やmerge greenへ偽装しない |
+
+### 6.1 旧Recovery oracleの退役とキャンセル境界
+
+従来の同一runner内laneを前提とした U-IMPACTCI-WF-002（lane集約）、
+U-IMPACTCI-WF-003（local process groupへのTERM/INT伝播）、および
+U-IMPACTCI-WF-005（同一step内のlane inventory／部分ログ）は、独立したGitHub Actions
+job DAGへ移行したため現行workflow契約から退役させる。これらのIDと過去のgreen evidenceは
+旧Recovery PLANの履歴としてのみ保持し、現行のverification bindingには使用しない。
+
+現行のキャンセル境界はGitHub Actions jobの状態である。キャンセル・timeout・起動失敗した
+shardは成功receiptを発行できず、finalize の always() jobがreceipt exact setと各statusを
+検証してfail-closeする。したがって本sliceはlocal shellのprocess-group signal伝播や
+cancellation receiptを実装したとは主張しない。独立jobの欠落／非0／timeoutを
+U-FULLSHARD-WF-001〜003とfinalize contractで扱う。
+
+この訂正・後継関係は PLAN-L7-685-full-regression-shard-jobs が
+PLAN-RECOVERY-11、PLAN-RECOVERY-14、PLAN-RECOVERY-18 を supersede し、各旧PLANの
+末尾に相互訂正注記を持つことで固定する。

@@ -62,7 +62,7 @@ current phase は PLAN `status` と design doc に記録する。commit ごと�
 
 - [ ] `grep -r "<deprecated-identifier>" docs/ src/ tests/` が zero hit を返す。
 - [ ] `helix doctor` が zero `asset-drift` finding で pass する。
-- [ ] `bun run typecheck` が pass する。dangling type reference を残さない。
+- [ ] `npm run typecheck` が pass する。dangling type reference を残さない。
 - [ ] removed path を参照する test は更新するか、rationale comment 付きで削除する（silent `.skip` は不可）。
 - [ ] merge 前に `helix review --uncommitted` evidence を記録する。
 

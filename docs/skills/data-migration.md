@@ -64,7 +64,7 @@ test-design trace が無い migration PLAN は `helix doctor` が flag する。
 
 ## L7 implementation rules（L7 実装ルール）
 
-- [ ] Migration code は TypeScript/Bun。harness traceability から外れる ad-hoc shell / Python は使わない。
+- [ ] Migration code は TypeScript/Node。harness traceability から外れる ad-hoc shell / Python は使わない。
 - [ ] Idempotent: migrated 済み target へ再実行しても安全。
 - [ ] 明示的な error handling: row failure では row id を log し、summary まで継続する。
       silently skip しない。

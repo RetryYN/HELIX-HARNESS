@@ -2256,7 +2256,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-REVERSE-133-refactor-brush-up-workflow.md",
-    contentDigest: "0cea8fc9dfe1757d5294b20ad4c57c769b40cc1a2b03a9551cf7284ca64891ea",
+    contentDigest: "f0bb190d0dc996ea6fae5a176a91bbd82a971c4b6a71acf2810ea4e562948671",
     finalDisposition: "false_positive",
   },
   {
@@ -2401,7 +2401,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-REVERSE-343-asset-visualization-fullback.md",
-    contentDigest: "2fd425e241b3493fd52ae2985f3c557540cc36e8afd7d7a7c987836b07d8b9fc",
+    contentDigest: "c80b3f97c70bd0295b1519f2695fd119d0a8328ceaa5f6df174d6c15ef5a84fc",
     finalDisposition: "false_positive",
   },
   {

@@ -4,13 +4,21 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+
+// PLAN-L7-683-lite-canary-fast-check-oracle — U-DISTCLOSE-019／U-DISTCLOSE-020
+import { selectLiteCanaryLane } from "../src/runtime/impact-ci";
 import {
   loadDistributionCapabilityArtifactCatalog,
   projectDistributionArtifacts,
 } from "../src/setup/distribution-artifact-projection";
-import { analyzeDistributionDependencyClosure } from "../src/setup/distribution-dependency-closure";
+import {
+  analyzeDistributionDependencyClosure,
+  LITE_CANARY_COVERAGE_PATHS,
+  runLiteCanaryFastCheck,
+} from "../src/setup/distribution-dependency-closure";
 import { loadDistributionProfileCatalog } from "../src/setup/distribution-profile";
 
+// PLAN-L7-682-lite-canary-ci-parallelization: U-DISTCLOSE-016..017.
 const roots: string[] = [];
 afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
@@ -23,6 +31,14 @@ function fixture(files: Record<string, string>): string {
     mkdirSync(join(root, path, ".."), { recursive: true });
     writeFileSync(join(root, path), content, "utf8");
   }
+  return root;
+}
+
+function currentRepositoryFixture(): string {
+  const parent = mkdtempSync(join(tmpdir(), "helix-lite-fast-check-"));
+  roots.push(parent);
+  const root = join(parent, "repo");
+  execFileSync("git", ["clone", "--quiet", "--shared", process.cwd(), root]);
   return root;
 }
 
@@ -154,6 +170,107 @@ describe("PLAN-L7-653-distribution-lite-dependency-closure: Lite consumer depend
       reachable_excluded_paths: [],
       unowned_dynamic_paths: [],
       unsafe_paths: [],
+    });
+  });
+
+  it("U-DISTCLOSE-016: selector用fast checkはprofile／manifest／closureを同一HEADで検査する", () => {
+    expect(
+      runLiteCanaryFastCheck({ repoRoot: process.cwd(), candidateHead: "a".repeat(40) }),
+    ).toEqual(
+      expect.objectContaining({
+        profile_ok: true,
+        manifest_ok: true,
+        closure_ok: true,
+        source_head: expect.stringMatching(/^[0-9a-f]{40}$/),
+        candidate_head: "a".repeat(40),
+        path_read_failed: false,
+      }),
+    );
+    const result = runLiteCanaryFastCheck({
+      repoRoot: process.cwd(),
+      candidateHead: "a".repeat(40),
+    });
+    expect(result.closure_paths).toEqual(expect.arrayContaining([...LITE_CANARY_COVERAGE_PATHS]));
+  });
+
+  it("U-DISTCLOSE-017: coverage sourceの欠落をfast checkのpath read failureへ倒す", () => {
+    const root = fixture({});
+    const result = runLiteCanaryFastCheck({ repoRoot: root, candidateHead: "a".repeat(40) });
+    expect(result.path_read_failed).toBe(true);
+    expect(result.closure_ok).toBe(false);
+  });
+
+  it("U-DISTCLOSE-018: coverage pathの推移import依存もskip closureへ含める", () => {
+    const fastCheck = runLiteCanaryFastCheck({
+      repoRoot: process.cwd(),
+      candidateHead: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
+    });
+    expect(fastCheck.closure_ok).toBe(true);
+    for (const path of [
+      "src/orchestration/durable-loop-epoch-node.ts",
+      "src/setup/distribution-lite-consumer-canary.ts",
+    ]) {
+      expect(fastCheck.closure_paths, path).toContain(path);
+      expect(
+        selectLiteCanaryLane({
+          event_name: "pull_request",
+          ref_name: "feature/issue-1002",
+          changed_paths: [path],
+          change_kinds: [{ status: "M", path }],
+          fast_check: fastCheck,
+        }),
+        path,
+      ).toMatchObject({
+        disposition: "required",
+        skip_code: null,
+        reason_codes: expect.arrayContaining(["changed_path_closure_contact"]),
+      });
+    }
+  });
+
+  it("U-DISTCLOSE-019: primary distribution closureのfailureをfast checkが相殺しない", () => {
+    const root = currentRepositoryFixture();
+    const consumerPath = join(root, "src/setup/distribution-consumer-cli.ts");
+    writeFileSync(
+      consumerPath,
+      `${readFileSync(consumerPath, "utf8")}\nimport "../runtime/worker-isolation-broker";\n`,
+      "utf8",
+    );
+    const candidateHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: root,
+      encoding: "utf8",
+    }).trim();
+
+    expect(runLiteCanaryFastCheck({ repoRoot: root, candidateHead })).toMatchObject({
+      profile_ok: true,
+      manifest_ok: true,
+      closure_ok: false,
+      source_head: candidateHead,
+      candidate_head: candidateHead,
+      path_read_failed: false,
+    });
+  });
+
+  it("U-DISTCLOSE-020: coverage closureのdynamic import failureをfast checkが相殺しない", () => {
+    const root = currentRepositoryFixture();
+    const coveragePath = join(root, "tests/loop-store-durability.test.ts");
+    writeFileSync(
+      coveragePath,
+      `${readFileSync(coveragePath, "utf8")}\nvoid import("../src/runtime/digest");\n`,
+      "utf8",
+    );
+    const candidateHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: root,
+      encoding: "utf8",
+    }).trim();
+
+    expect(runLiteCanaryFastCheck({ repoRoot: root, candidateHead })).toMatchObject({
+      profile_ok: true,
+      manifest_ok: true,
+      closure_ok: false,
+      source_head: candidateHead,
+      candidate_head: candidateHead,
+      path_read_failed: false,
     });
   });
 

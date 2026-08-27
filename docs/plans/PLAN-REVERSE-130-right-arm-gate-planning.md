@@ -18,8 +18,8 @@ backprop_scope:
     evidence_path: docs/governance/helix-harness-requirements_v1.2.md
     reason: "The existing requirement already records G8-G14 as future mechanization; this slice mechanizes the planning route."
   - layer: process-gates
-    decision: updated-by-plan-evidence
-    evidence_path: docs/plans/PLAN-L7-130-right-arm-gate-planning.md
+    decision: updated
+    evidence_path: docs/process/gates.md
     reason: "The carry now has a concrete PLAN, official source ledger, and doctor lint checks the route."
   - layer: L4-basic-design
     decision: not_impacted

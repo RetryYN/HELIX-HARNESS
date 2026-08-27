@@ -126,14 +126,15 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `requirements-ir/manifest.json`
 - 凍結済み基線Requirement JSON root digest: `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`
-- 現行Requirement JSON root digest: `sha256:98cbaf95a78481646bf03631c8c83a98c7de797b4f9b1828bf23149b6adb48d7`
-- 現行refinement contract count: `3`（schema v2のadmission partition。baseline 153/24/72/24は不変）
+- 現行Requirement JSON root digest: `sha256:5f2e7e3568c10027e7dd5a237492b81fb6b9d9acfb017f87a36f244a83a32b5d`
+- 現行refinement contract count: `4`（schema v2のadmission partition。baseline 153/24/72/24は不変）
 - Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
-- 生成Markdown view digest: `sha256:6a23f383fda18d4646c59874123ff6ae768b56ae5573bb49c9fa6594849074bc`
+- 生成Markdown view digest: `sha256:7c63f56e3fbed5c37250b582a6df44b054796241b298e2695632cdf0b0a92cc8`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:4762b97a95657e307872789f86cf975e393810d345829d61716eb6f2458188f3`
-- この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
+- design catalog digest候補: `sha256:66545dc566e9beb01e1f2ec210666ba218a58700b58ec43292659eb4fe126b84`
+- この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録と#1033の
+  System Synthesis L3 requirement登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -203,13 +204,13 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | GitHub運用投影（GOP-FR-01..14） | `2074866581b2979c999e5ad28d4e21770636a2c20e69dbe46bfb639af33a1d12` | `7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600` |
 | GitHub自律運用（GH-FR-001..017） | `b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f` | `192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0` |
 | delivery route（L12R-FR-001..014） | `7da3f49682819b5e6f3e68b5ebd55ae5e84f7561e1b7e6f4ada49c1a41a2f730` | `f584c65a126e3a1389131451192c5efe5f1bb59bb2c032714f003e87f8093df6` |
-| merge admission（GH-FR-018..023） | `8f6c1af2d9fdc8c9d2c392ce55498b278fc55563c21537033f35f743893da96a` | `301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1` |
+| merge admission（GH-FR-018..023） | `cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8` | `301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1` |
 | approval / recovery（GH-FR-020） | `ddd7159e9ece094ff7ac1320395dabe8c0f83ebb291c1983559d7b605cf42a0c` | `74792349b5b0a8669f4e4b1228c775a57e44e6d85cbd292b562d1dcb83b69e86` |
 | CI performance（GH-NFR-009..012） | `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` |
 | environment promotion（GH-FR-021 / GH-NFR-013..014） | `f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410` | `2267f75d68599d2e3f5c559b4400174604836599d8c32a37ea2af4c418f3a691` |
 | Update lifecycle（GH-FR-022 / GH-FR-030） | `03bdf1060bc0ca9eec468f72f3b2b81328779695b95f95fd014662fd17fc1ab5` | `8272df56f1f876c784637de5caf0985f6a45923e9dc7f8aa661e245010818d99` |
 | PLAN governance（GH-FR-023） | `3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617` | `4d28725768506a67fa119d8851aa010114ddcde5c1cd8f315a68c5a369e13202` |
-| 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `c025741e505bc244da7319448f2396aab1930d35c6877f1f16c403d342fddbf8` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
+| 原子的開発・CI・リファクタリング・PR排他（GH-FR-024..028 / GH-NFR-015..018） | `52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756` | `a36eff5d2becc09bdb4c83f6b9ddf17423ca93e33486c2f0e20246aa5762168e` |
 | PM/TL管理・統合セル＋paired work cell（MIC-FR-001） | `f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6` | `fc9c2312019d59554d921c808b36c2a8f4422ceab89dd8af918c08d5dc04b34c` |
 | 工程完了ゴール（STAGE-GOAL-FR-001） | `21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406` | `72c193a904027ed118433a92a049b7330a9da0cfdfac7a5a06dc0887a54e7f65` |
 | HELIX-Bench（HELIX-BENCH-FR-001） | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` |

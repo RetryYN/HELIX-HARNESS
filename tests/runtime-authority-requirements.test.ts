@@ -126,4 +126,19 @@ describe("Python + TypeScript/Node requirement authority", () => {
     expect(existsSync("bun.lockb")).toBe(false);
     expect(existsSync("package-lock.json")).toBe(true);
   });
+
+  it("all current skill guidance has zero active Bun command", () => {
+    const skillPaths = filesUnder("docs/skills")
+      .filter((path) => path.endsWith(".md"))
+      .sort();
+    const activeBunCommand = /\b(?:bunx|bun\s+(?:run|test|x|install|audit|add|build|pm))\b/i;
+    const violations = skillPaths.flatMap((path) =>
+      readFileSync(path, "utf8")
+        .split(/\r?\n/)
+        .flatMap((line, index) =>
+          activeBunCommand.test(line) ? [`${path}:${index + 1}: ${line.trim()}`] : [],
+        ),
+    );
+    expect(violations, violations.join("\n")).toEqual([]);
+  });
 });
