@@ -79,12 +79,3 @@ timeout延長、test除外、retry、直列化、runner/job追加は行わない
 ## Featureレーン復帰
 
 本Recovery merge後はPR #387を最新mainへ一度だけ再束縛し、Feature #92のworker lifecycle closureへ戻る。
-
-## 訂正・後継（2026-08-27）
-
-本PLANが前提にした同一runner内のbulk／stateful laneと `nice -n 10` による期限対策は、
-独立GitHub Actions job DAGへ移行した現行契約では使用しない。`U-IMPACTCI-WF-002` と、
-本PLANのverification／mutation evidenceは当時のRecovery実装履歴としてのみ保持する。
-現行のpartition、bounded timeout、receipt exact setは
-`PLAN-L7-685-full-regression-shard-jobs` が後継として所有する。したがって本PLANの旧oracleを
-現行workflowの実装・検証証拠として再利用してはならない。
