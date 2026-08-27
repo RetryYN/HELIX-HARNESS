@@ -37,7 +37,7 @@ describe("PLAN-L3-31 residual test owner disposition", () => {
     expect(manifest.disposition).toBe("successor_backprop");
     expect(manifest.bindings).toHaveLength(9);
     expect(new Set(manifest.bindings.map((row) => row.test_path)).size).toBe(9);
-    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(37);
+    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(38);
   });
 
   it("matches every current digest, case count, and authority path", () => {
