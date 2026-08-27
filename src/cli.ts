@@ -5572,19 +5572,22 @@ program
         return;
       }
       const current = snapshot.current;
+      // The snapshot still carries a compatibility-shaped drive_route field internally, but
+      // the primary text projection must speak in typed workflow-route vocabulary.
+      const workflowRoute = snapshot.drive_route;
       process.stdout.write(
-        `current-location: layer=${current.layer ?? "unknown"} l12=${current.l12_layer ?? "unknown"} status=${current.status} boundary=${current.completion_boundary} workflow=${snapshot.drive_route.workflowIdentity ? `${snapshot.drive_route.workflowIdentity.target_axis}:${snapshot.drive_route.workflowIdentity.target_id}` : "unknown"} findings=${snapshot.findings.length}\n`,
+        `current-location: layer=${current.layer ?? "unknown"} l12=${current.l12_layer ?? "unknown"} status=${current.status} boundary=${current.completion_boundary} workflow=${workflowRoute.workflowIdentity ? `${workflowRoute.workflowIdentity.target_axis}:${workflowRoute.workflowIdentity.target_id}` : "unknown"} findings=${snapshot.findings.length}\n`,
       );
       process.stdout.write(
-        `  workflow-route: status=${snapshot.drive_route.status} identity_disposition=${snapshot.drive_route.workflowIdentityReceipt?.disposition ?? "missing"} return_to_design=${snapshot.drive_route.mustReturnToDesign} write=${snapshot.drive_route.writePolicy}\n`,
+        `  workflow-route: status=${workflowRoute.status} identity_disposition=${workflowRoute.workflowIdentityReceipt?.disposition ?? "missing"} return_to_design=${workflowRoute.mustReturnToDesign} write=${workflowRoute.writePolicy}\n`,
       );
-      if (snapshot.drive_route.reverse.required) {
+      if (workflowRoute.reverse.required) {
         process.stdout.write(
-          `  drive-reverse-scope: targets=${snapshot.drive_route.reverse.targets.join(",") || "-"} l12=${snapshot.drive_route.reverse.l12Layers.join(",") || "-"} actions=${snapshot.drive_route.reverse.queueActions.join(",") || "-"} ledgers=${snapshot.drive_route.reverse.ledgerIds.length}\n`,
+          `  workflow-route-reverse-scope: targets=${workflowRoute.reverse.targets.join(",") || "-"} l12=${workflowRoute.reverse.l12Layers.join(",") || "-"} actions=${workflowRoute.reverse.queueActions.join(",") || "-"} ledgers=${workflowRoute.reverse.ledgerIds.length}\n`,
         );
       } else {
         process.stdout.write(
-          `  drive-forward-scope: allowed=${snapshot.drive_route.forward.allowed} roadmap=${snapshot.drive_route.forward.roadmapStatus} frontier=${snapshot.drive_route.forward.frontier.join(",") || "-"}\n`,
+          `  workflow-route-forward-scope: allowed=${workflowRoute.forward.allowed} roadmap=${workflowRoute.forward.roadmapStatus} frontier=${workflowRoute.forward.frontier.join(",") || "-"}\n`,
         );
       }
       if (snapshot.recovery) {

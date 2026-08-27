@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #206 current-location summary consumer migration"
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-27
 owner: Codex / TL
 github_issue_id: 1022
 behavior_contract_id: CURRENT-LOCATION-SUMMARY-TYPED-OUTPUT-001
@@ -31,10 +31,10 @@ contract_postconditions: "summary／frontier／textのprimary outputがtyped wor
 contract_invariants: "requirements registryを意味authorityとし、legacy modelをcurrent outputへ再出力しない"
 contract_failures: "authority欠落、stale、unknown、ambiguous、unsupportedを推測せずnull identityとreason付きreceiptで閉じる"
 tdd_red_required: true
-red_test: "U-CLSO-006でproject-current-location-summary.v2をv1へ変異させるとproduction-root current-location regressionが失敗する"
-red_at: "2026-08-25T08:24:10Z"
-green_at: "2026-08-25T08:16:57Z"
-mutation_oracle_evidence: "2026-08-25T08:24:10Zにsrc/cli.tsのsummary schema v2をv1へ一時変異し、U-CLSO-006が1 failed / 93 skipped（exit 1）となることを実測した。変異を復元した後、U-CLSO-001〜006がgreenになった。"
+red_test: "U-CLSO-005でcurrent-location textのlegacy drive prefix labelを1つ戻すとproduction-root current-location regressionが失敗する"
+red_at: "2026-08-27T10:13:15Z"
+green_at: "2026-08-27T10:15:35Z"
+mutation_oracle_evidence: "2026-08-25T08:24:10Zにsrc/cli.tsのsummary schema v2をv1へ一時変異し、U-CLSO-006が1 failed / 93 skipped（exit 1）となることを実測した。2026-08-27T10:13Zにcurrent-location textのreverse labelをdrive-reverse-scopeへ一時変異し、U-CLSO-005が1 failed（exit 1）となることを実測した。変異を復元した後、2026-08-27T10:15ZにU-CLSO-001〜006が6 passedとなった。"
 complexity_effect: net_negative
 complexity_justification: "summary projectionからlegacy primary fieldを除去し、typed identity projection helperへ集約する"
 removal_trigger: "current-locationの全consumerがtyped identityへ移行しlegacy input adapterのretention期限が満了した時"
@@ -70,6 +70,7 @@ dependencies:
   blocks: []
   references:
     - "issue:1022"
+    - "issue:1024"
     - "issue:206"
     - "issue:204"
 agent_slots:
@@ -85,10 +86,19 @@ agent_slots:
 | Step | 作業 | 完了条件 |
 |---|---|---|
 | 1 | authority-backed／missing-authorityのsummary回帰を固定 | typed identityまたはfail-close receiptを返す |
-| 2 | frontier／text outputをv2契約へ移行 | 旧drive/model primary fieldを出力しない |
+| 2 | frontier／text outputをv2契約へ移行 | 旧drive/model primary fieldとdrive prefix labelを出力しない |
 | 3 | summary surface auditを更新 | current-location navigationがtyped workflow routeを指す |
 | 4 | typecheck／Biome／targeted test／PLAN lint | 全green |
 | 5 | Claude exact-HEAD検収とmain read-after | blocker 0、DB／doctor／projection確認 |
 
 本sliceは#206のsummary consumerだけを扱う。DB、schema、visualization tree、skill binding、
 compatibility commandの全surface移行は後続PLANへ分離する。
+
+## #1024 後続原子 slice
+
+`current-location` text projectionの範囲ラベルは、内部snapshotが保持するcompatibility形の
+`drive_route`を意味authorityへ再昇格させず、`workflow-route-reverse-scope`／
+`workflow-route-forward-scope`として出力する。`U-CLSO-005`は実行可能な3出力面に加えて
+sourceの両分岐を検査し、legacy labelを1つ戻したmutationを検出する。`--json`の内部
+compatibility field全体、DB／schema、visualization tree、`helix drive model` commandは
+この原子sliceの対象外であり、後続の#206 consumer migrationで扱う。
