@@ -4,7 +4,7 @@ title: "PLAN-L7-685 (impl): Full regression shard jobsとfinalize aggregate"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -26,6 +26,36 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-27T02:30:55.000Z"
+    tests_green_at: "2026-08-27T02:28:30Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "c7895aff-da7e-47a0-944a-36c68bb4f251"
+    reviewed_head_sha: 95b2a0ef713fac63c613fc7e28a1cfb0a3456b92
+    scope: "PR #1093 current HEAD 95b2a0ef713fac63c613fc7e28a1cfb0a3456b92をClaude Code Opusが独立検収し、full regression shard DAG、exact inventory partition、trigger-safe ref、timeout、finalize gate、DB projection/replayを実測して内容blocker 0と判定した。merge前のPLAN confirmed化を収束条件とした。canonical receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1093#issuecomment-5433614448"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33032561763 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-27T02:28:30Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:f7e70303c1bfb92feee07e0b8e02bb0f05568f59d5cb6144ad2bbf31e52e098b"
+        result: "terminal success / HEAD 95b2a0ef713fac63c613fc7e28a1cfb0a3456b92"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-27T02:30:55.000Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-27T02:30:55.000Z"
+    evidence_digest: "sha256:36c75c4d703146d6895881c5e9bb21709ba2f2a1d652ae92b36c125640a8fb15"
+  entries: []
 backprop_decision: not_required
 backprop_decision_reason: "既存GH-NFR-010／GH-AC-017とL6設計を変更せず、確定済みpartition contractをGitHub Actionsへ配線するL7 sliceである"
 contract_preconditions: "#1070のtyped partition／receipt contract、Impact CI full decision、candidate HEAD／base SHAが存在する"
