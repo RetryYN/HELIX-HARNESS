@@ -56,6 +56,7 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-progression-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/vmodel-pair.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
   requires:

@@ -10,6 +10,9 @@ updated: 2026-08-27
 owner: QA / Codex TL
 plan: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
 pair_artifact: docs/design/helix/L6-function-design/windows-lite-canary-admission.md
+pair_freeze_exempt: true
+pair_freeze_exempt_kind: cross_layer_meta
+pair_freeze_exempt_reason: "L6設計のprimary pairはL8単体設計とし、本書は同一L6契約を補完するL9結合設計として明示的に別artifact化する"
 related_l3: docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
 ---
 
