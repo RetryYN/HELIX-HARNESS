@@ -533,6 +533,46 @@ describe("branch-kind-check", () => {
     expect(diagnostic.findings[0]?.message).toContain(
       "reconcile both added and stale paths before rerunning CI",
     );
+
+    const additionsOnly = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/design/current.md", "docs/test-design/current.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/design/, docs/test-design/",
+        "Expected changed paths: docs/design/current.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+
+    expect(additionsOnly.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_changed_paths_mismatch",
+        message: expect.stringContaining("all actual paths are additions to the declaration"),
+      }),
+    );
+
+    const staleOnly = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/design/current.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/design/, docs/test-design/",
+        "Expected changed paths: docs/design/current.md, docs/old.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+
+    expect(staleOnly.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_changed_paths_mismatch",
+        message: expect.stringContaining("remove stale paths that are absent from the actual diff"),
+      }),
+    );
   });
 
   it("U-PRSCOPE-003: requires declared PLAN and test companions for source changes", () => {
