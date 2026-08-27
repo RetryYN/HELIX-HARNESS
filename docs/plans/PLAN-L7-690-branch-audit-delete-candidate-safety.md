@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-690-branch-audit-delete-candidate-safety
 title: "PLAN-L7-690: branch auditの削除候補判定をmain到達性とworktree非占有へ束縛する"
-kind: troubleshoot
+kind: impl
 layer: L7
 drive: agent
 status: draft
