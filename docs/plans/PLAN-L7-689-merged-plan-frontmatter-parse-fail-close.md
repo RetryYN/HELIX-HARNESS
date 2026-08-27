@@ -24,6 +24,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
+backprop_decision: not_required
+backprop_decision_reason: "既存の merged-plan-status gate に parse failure の fail-close 検出を追加する harness 内部の欠陥是正であり、新しい product requirement、公開 runtime semantics、上位 design contract は追加・変更しないため、upstream backprop は不要。"
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
 contract_preconditions: "docs/plans 配下の PLAN frontmatter を merged-plan-status loader が読み取る"
@@ -51,10 +53,6 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
     artifact_type: design_doc
-  - artifact_path: src/lint/merged-plan-status.ts
-    artifact_type: source_module
-  - artifact_path: tests/merged-plan-status.test.ts
-    artifact_type: test_code
   - artifact_path: docs/test-design/helix/L8-merged-plan-frontmatter-parse-fail-close-unit-test-design.md
     artifact_type: test_design
 modifies:
@@ -63,6 +61,8 @@ modifies:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: src/lint/merged-plan-status.ts, artifact_type: source_module }
+  - { artifact_path: tests/merged-plan-status.test.ts, artifact_type: test_code }
 dependencies:
   parent: PLAN-L7-87-merged-plan-status-kind-independent
   requires:
