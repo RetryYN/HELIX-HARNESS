@@ -13571,6 +13571,7 @@ branch
       const result = loadBranchAudit(process.cwd(), {
         staleDays: Number.isFinite(opts.staleDays) ? opts.staleDays : undefined,
       });
+      process.exitCode = result.ok ? 0 : 1;
       if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
       else {
         process.stdout.write(

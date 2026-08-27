@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:7c63f56e3fbed5c37250b582a6df44b054796241b298e2695632cdf0b0a92cc8`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:9a6359473833ed1c7c905dccde53ac9075d697ba6f277ec82ee96cec02cf5734`
+- design catalog digest候補: `sha256:7aee81f22cec88f0b576e756b4d462d314f55a24faf0c834b11446434f0715fd`
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録と#1033の
   System Synthesis L3 requirement登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
 - historical catalog pin: PR #100最終receipt
@@ -155,6 +155,8 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   既存`detailed-design` itemへadmitした結果である。
 - 2026-08-03 WCC-FR-02 descent: `worker-wrapper-admission.md`のL5／L6を同itemへadmitし、raw／copy plan、
   provider、plan digest、invocation digestを実sourceとexecutable witnessへ束縛した結果である。
+- 2026-08-28 Issue #1110 slice A: `branch-audit-delete-candidate-safety.md`のL6機能設計を
+  既存`detailed-design` itemへadmitし、goneだけでは削除候補へ昇格しないmain／worktree証拠境界を登録した結果である。
   上記current digestは本PR conversationのcurrent same-HEAD AI-B review、full CI、DB convergence receiptで再固定する
 - final DB convergence receipt: packet PR current HEADのtracked authority projection rebuild 2回一致を
   GitHub receiptへ外部束縛する。policy記載のruntime観測8入力をprojectionから明示除外する。このうち
