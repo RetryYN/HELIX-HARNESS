@@ -121,7 +121,7 @@ JSONとtextは`matched_identities`、`source_applicable_identities`、`source_ex
       "artifact_path": "src/schema/skill-applicability-registry.ts",
       "resource_kind": "typescript_export",
       "resource_name": "loadSkillApplicabilityRegistry",
-      "source_digest": "sha256:1ba5227a54543cc3ffb0a5be39bcd729c9052f9f4293e7a783dc3001b2172ac6",
+      "source_digest": "sha256:5e1fd8e1935b702ff1e2f97542e92d2c56b547a677023ad58a70e377b62ab684",
       "current_authority": true
     }
   ],
