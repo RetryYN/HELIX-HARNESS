@@ -56,6 +56,10 @@ dependencies:
     - "issue:1119"
     - "issue:206"
     - "issue:204"
+agent_slots:
+  - { role: aim, slot_label: "AIM — #204/#206 current output境界とsuccessor責務を監査" }
+  - { role: qa, slot_label: "QA — surface×token閉包とcount drift mutation" }
+  - { role: tl, slot_label: "TL — workflow identityとprovider model語彙の分離" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-692-workflow-output-consumer-inventory.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/workflow-output-consumer-inventory.md, artifact_type: design_doc }
@@ -63,10 +67,13 @@ generates:
   - { artifact_path: config/workflow-output-consumer-inventory.json, artifact_type: json_config }
   - { artifact_path: tests/workflow-output-consumer-inventory.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
 ---
 
-# PLAN-L7-692: workflow output consumer inventory
+# PLAN-L7-692: workflow output consumer棚卸し
 
 ## 目的
 

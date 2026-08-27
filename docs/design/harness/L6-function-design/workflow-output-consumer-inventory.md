@@ -36,3 +36,15 @@ identityは`path + field_token`で一意とし、tokenはidentifier境界で数�
 unknownや複数dispositionへの推測は許可しない。初期6 surfaceの対象fieldはdrive/current-location/closure/
 skill-binding read model上で旧workflow identityを返すため、後続ownerを分けてもdispositionは
 `workflow_primary_identity_migrate`とする。provider実行modelのfieldはこの集合へ混ぜない。
+
+## 単体契約
+
+`verifyWorkflowOutputConsumerInventory(inventory, sources) => InventoryVerificationResult`
+
+| DbC | 条件 | failure／oracle |
+|---|---|---|
+| pre | authority、measured HEAD、6 surface、7 tokenをexact setで受け取る | 欠落・追加はU-WFOCI-001で拒否する |
+| post | 22 entryと実sourceの152 occurrenceが一致する | 件数ずれはU-WFOCI-002で拒否する |
+| invariant | 実出現があるsurface×tokenはexactly one entryが所有する | 未記載hit、stale entry、重複はU-WFOCI-002／003で拒否する |
+| invariant | producer symbolは対象sourceに実在する | 架空producerはU-WFOCI-003で拒否する |
+| invariant | dispositionはallowlist exact setだけを使う | unknownはU-WFOCI-004で拒否する |
