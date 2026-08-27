@@ -7,17 +7,27 @@
  * 判定は command token ベース。通常の status/diff/log/commit/push、branch switch、
  * index-only reset/restore は通す。
  */
+import { resolve } from "node:path";
 
 export type GitCommandGuardReason =
   | "no-command"
   | "non-git"
   | "safe-git"
   | "bypass"
-  | "destructive-git";
+  | "destructive-git"
+  | "mutation-context-required"
+  | "mutation-context-unresolved"
+  | "shared-root-foreign-dirty";
+
+export interface GitMutationContext {
+  worktreeIdentity: "shared-root" | "linked-worktree" | "unknown";
+  foreignUncommittedCount: number | null;
+}
 
 export interface GitCommandGuardInput {
   command: string;
   bypass?: boolean;
+  mutationContext?: GitMutationContext;
 }
 
 export interface GitCommandGuardResult {
@@ -172,6 +182,20 @@ function commandGitSlices(command: string, depth = 0): { slices: string[][]; com
 
 function withoutGlobalOptions(args: string[]): string[] {
   const out = [...args];
+  const noValueOptions = new Set([
+    "-p",
+    "-P",
+    "--paginate",
+    "--no-pager",
+    "--no-replace-objects",
+    "--literal-pathspecs",
+    "--glob-pathspecs",
+    "--noglob-pathspecs",
+    "--icase-pathspecs",
+    "--no-optional-locks",
+    "--no-advice",
+    "--bare",
+  ]);
   while (out.length > 0) {
     const head = out[0] ?? "";
     if (head === "-C" || head === "-c") {
@@ -182,15 +206,27 @@ function withoutGlobalOptions(args: string[]): string[] {
       out.shift();
       continue;
     }
-    if (head.startsWith("--git-dir=") || head.startsWith("--work-tree=")) {
+    if (
+      head.startsWith("--git-dir=") ||
+      head.startsWith("--work-tree=") ||
+      head.startsWith("--namespace=") ||
+      head.startsWith("--config-env=") ||
+      head.startsWith("--exec-path=")
+    ) {
       out.shift();
       continue;
     }
-    if (head === "--git-dir" || head === "--work-tree") {
+    if (
+      head === "--git-dir" ||
+      head === "--work-tree" ||
+      head === "--namespace" ||
+      head === "--config-env" ||
+      head === "--exec-path"
+    ) {
       out.splice(0, 2);
       continue;
     }
-    if (["--no-pager", "--paginate", "--no-replace-objects", "--bare"].includes(head)) {
+    if (noValueOptions.has(head)) {
       out.shift();
       continue;
     }
@@ -220,6 +256,16 @@ function isStagedOnlyRestore(rest: string[]): boolean {
 }
 
 function destructiveOperation(args: string[]): string | null {
+  if (
+    args.some(
+      (arg, index) =>
+        /^alias\.[^=]+=/.test(arg) &&
+        (args[index - 1] === "-c" || (args[index - 1] ?? "").startsWith("-c")),
+    ) ||
+    args.some((arg) => /^-calias\.[^=]+=/.test(arg))
+  ) {
+    return "git alias override";
+  }
   const normalized = withoutGlobalOptions(args);
   const sub = normalized[0];
   const rest = normalized.slice(1);
@@ -274,6 +320,132 @@ function destructiveOperation(args: string[]): string | null {
   return null;
 }
 
+function contextualMutationOperation(args: string[]): string | null {
+  const normalized = withoutGlobalOptions(args);
+  const sub = normalized[0];
+  const rest = normalized.slice(1);
+  if (!sub) return null;
+  if (rest.includes("--help") || rest.includes("-h")) return null;
+  if (sub === "merge") return "git merge";
+  if (sub === "rebase") {
+    if (rest.includes("--show-current-patch")) return null;
+    return "git rebase";
+  }
+  if (sub === "cherry-pick") return "git cherry-pick";
+  if (sub === "stash") {
+    const action = rest.find((arg) => !arg.startsWith("-"));
+    if (action === "pop" || action === "apply") return `git stash ${action}`;
+    return null;
+  }
+  if (sub === "am") {
+    if (rest.includes("--show-current-patch")) return null;
+    return "git am";
+  }
+  if (sub === "apply") {
+    if (hasAny(rest, ["--check", "--stat", "--numstat", "--summary"])) return null;
+    return "git apply";
+  }
+  return null;
+}
+
+function mutationTargetCwd(args: string[], fallbackCwd: string): string | null {
+  let cwd = resolve(fallbackCwd);
+  let workTree: string | null = null;
+  let gitDirWithoutWorkTree = false;
+  for (let index = 0; index < args.length; index += 1) {
+    const token = args[index] ?? "";
+    if (token === "-C") {
+      const value = args[index + 1];
+      if (!value) return null;
+      cwd = resolve(cwd, value);
+      index += 1;
+      continue;
+    }
+    if (token.startsWith("-C") && token.length > 2) {
+      cwd = resolve(cwd, token.slice(2));
+      continue;
+    }
+    if (token === "-c") {
+      if (!args[index + 1]) return null;
+      index += 1;
+      continue;
+    }
+    if (token.startsWith("-c") && token.length > 2) continue;
+    if (token === "--work-tree") {
+      const value = args[index + 1];
+      if (!value) return null;
+      workTree = value;
+      gitDirWithoutWorkTree = false;
+      index += 1;
+      continue;
+    }
+    if (token.startsWith("--work-tree=")) {
+      workTree = token.slice("--work-tree=".length);
+      gitDirWithoutWorkTree = false;
+      continue;
+    }
+    if (token === "--git-dir") {
+      if (!args[index + 1]) return null;
+      gitDirWithoutWorkTree = workTree === null;
+      index += 1;
+      continue;
+    }
+    if (token.startsWith("--git-dir=")) {
+      gitDirWithoutWorkTree = workTree === null;
+      continue;
+    }
+    if (
+      [
+        "-p",
+        "-P",
+        "--no-pager",
+        "--paginate",
+        "--no-replace-objects",
+        "--literal-pathspecs",
+        "--glob-pathspecs",
+        "--noglob-pathspecs",
+        "--icase-pathspecs",
+        "--no-optional-locks",
+        "--no-advice",
+      ].includes(token)
+    ) {
+      continue;
+    }
+    if (
+      token.startsWith("--namespace=") ||
+      token.startsWith("--config-env=") ||
+      token.startsWith("--exec-path=")
+    ) {
+      continue;
+    }
+    if (token === "--namespace" || token === "--config-env" || token === "--exec-path") {
+      if (!args[index + 1]) return null;
+      index += 1;
+      continue;
+    }
+    if (token === "--bare") return null;
+    break;
+  }
+  if (gitDirWithoutWorkTree) return null;
+  return workTree === null ? cwd : resolve(cwd, workTree);
+}
+
+export function contextualMutationExecutionDirectories(
+  command: string,
+  fallbackCwd: string,
+): string[] | null {
+  const parsed = commandGitSlices(command);
+  if (!parsed.complete) return null;
+  const targets: string[] = [];
+  for (const slice of parsed.slices) {
+    if (!contextualMutationOperation(slice)) continue;
+    const target = mutationTargetCwd(slice, fallbackCwd);
+    if (!target) return null;
+    targets.push(target);
+  }
+  return targets;
+}
+
 export function extractShellCommand(toolInput: unknown): string {
   if (typeof toolInput === "string") return toolInput;
   if (!toolInput || typeof toolInput !== "object") return "";
@@ -303,16 +475,55 @@ export function evaluateGitCommandGuard(input: GitCommandGuardInput): GitCommand
   if (slices.length === 0) return { decision: "pass", reason: "non-git", message: "" };
   for (const slice of slices) {
     const op = destructiveOperation(slice);
-    if (!op) continue;
-    return {
-      decision: "block",
-      reason: "destructive-git",
-      destructiveOperation: op,
-      message:
-        `[helix-git-command-guard] BLOCK: ${op} は hybrid runtime の相手 commit / branch を破壊し得るため、理由付き override / audit evidence なしに実行できません。` +
-        " 先に git status / git log / git reflog で出所を確認し、相手 runtime の commit を残したまま上に積んでください。" +
-        " 意図的に実行する場合のみ HELIX_ALLOW_DESTRUCTIVE_GIT=1 または .helix/state/destructive-git-override に理由を記録してください。",
-    };
+    if (op) {
+      return {
+        decision: "block",
+        reason: "destructive-git",
+        destructiveOperation: op,
+        message:
+          `[helix-git-command-guard] BLOCK: ${op} は hybrid runtime の相手 commit / branch を破壊し得るため、理由付き override / audit evidence なしに実行できません。` +
+          " 先に git status / git log / git reflog で出所を確認し、相手 runtime の commit を残したまま上に積んでください。" +
+          " 意図的に実行する場合のみ HELIX_ALLOW_DESTRUCTIVE_GIT=1 または .helix/state/destructive-git-override に理由を記録してください。",
+      };
+    }
+    const mutation = contextualMutationOperation(slice);
+    if (!mutation) continue;
+    const context = input.mutationContext;
+    if (!context) {
+      return {
+        decision: "block",
+        reason: "mutation-context-required",
+        destructiveOperation: mutation,
+        message:
+          `[helix-git-command-guard] BLOCK: ${mutation} の実行先worktree contextが未注入のためfail-closeしました。` +
+          " 実効cwd、repository identity、foreign dirtyを再取得してください。",
+      };
+    }
+    if (
+      context.worktreeIdentity === "unknown" ||
+      (context.foreignUncommittedCount === null && context.worktreeIdentity === "shared-root") ||
+      (context.foreignUncommittedCount !== null &&
+        (!Number.isSafeInteger(context.foreignUncommittedCount) ||
+          context.foreignUncommittedCount < 0))
+    ) {
+      return {
+        decision: "block",
+        reason: "mutation-context-unresolved",
+        destructiveOperation: mutation,
+        message: `[helix-git-command-guard] BLOCK: ${mutation} のrepository/worktree identityまたはforeign dirtyを解決できないためfail-closeしました。`,
+      };
+    }
+    if (context.worktreeIdentity === "shared-root" && (context.foreignUncommittedCount ?? 0) > 0) {
+      return {
+        decision: "block",
+        reason: "shared-root-foreign-dirty",
+        destructiveOperation: mutation,
+        message:
+          `[helix-git-command-guard] BLOCK: ${mutation} はforeign uncommitted変更があるshared rootのindex／working treeを変更します。` +
+          " mutation対象とのpath重複有無に関係なく隔離worktreeへ移動してください。" +
+          " 意図的に実行する場合のみ HELIX_ALLOW_DESTRUCTIVE_GIT=1 または .helix/state/destructive-git-override に理由を記録してください。",
+      };
+    }
   }
   return { decision: "pass", reason: "safe-git", message: "" };
 }

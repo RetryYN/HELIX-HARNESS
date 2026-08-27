@@ -12,11 +12,18 @@ import {
   resolveForeignEditOverride,
 } from "../src/runtime/work-guard";
 import { runWorkGuardHook as runWorkGuardCore } from "../src/runtime/work-guard-hook";
+import {
+  foreignUncommittedFiles,
+  gitUncommittedFiles,
+  sessionTouchedFiles,
+} from "../src/runtime/worktree-state";
 import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 
 const hookRepoRoot = process.cwd();
 const workGuardHook = join(hookRepoRoot, ".claude", "hooks", "work-guard.ts");
 const cliPath = join(hookRepoRoot, "src", "cli.ts");
+
+// PLAN-L7-691-shared-root-git-mutation-guard / U-GITGUARD-015
 
 /** work-guard hook を temp repo の cwd で spawn する (win32 は System32 canonical な cmd 経由)。 */
 function runWorkGuardHook(cwd: string, input: unknown) {
@@ -39,6 +46,41 @@ function runWorkGuardHook(cwd: string, input: unknown) {
 }
 
 describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
+  it("U-GITGUARD-015: Git guardとwork-guardが同じdirty／session touched sourceを使う", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-worktree-state-source-"));
+    try {
+      execFileSync("git", ["init", "-b", "main"], { cwd });
+      writeFileSync(join(cwd, ".gitignore"), ".helix/\n");
+      writeFileSync(join(cwd, "tracked.txt"), "base\n");
+      execFileSync("git", ["add", ".gitignore", "tracked.txt"], { cwd });
+      execFileSync(
+        "git",
+        [
+          "-c",
+          "user.name=HELIX Test",
+          "-c",
+          "user.email=helix@example.invalid",
+          "commit",
+          "-m",
+          "test: seed",
+        ],
+        { cwd },
+      );
+      writeFileSync(join(cwd, "owned.txt"), "owned\n");
+      writeFileSync(join(cwd, "foreign.txt"), "foreign\n");
+      mkdirSync(join(cwd, ".helix", "logs", "session"), { recursive: true });
+      writeFileSync(
+        join(cwd, ".helix", "logs", "session", "s-source.jsonl"),
+        `${JSON.stringify({ target: `Write ${join(cwd, "owned.txt")}` })}\n`,
+      );
+      expect(gitUncommittedFiles(cwd).sort()).toEqual(["foreign.txt", "owned.txt"]);
+      expect(sessionTouchedFiles(cwd, "s-source")).toContain("owned.txt");
+      expect(foreignUncommittedFiles(cwd, "s-source")).toEqual(["foreign.txt"]);
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
   it("blocks editing an uncommitted file this session never touched (他ランタイムの in-flight)", () => {
     const result = evaluateWorkGuard({
       targetPath: "src/plan/lint.ts",

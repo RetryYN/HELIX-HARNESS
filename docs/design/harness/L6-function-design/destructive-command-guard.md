@@ -14,6 +14,8 @@ plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 - `authorizeGuardOverride(classification: GuardBlockClassification, marker): OverrideAuthorization`
 - `commitOverrideUse(authorization, ports): OverrideCommitResult`
 - `evaluateMachineSafetyGuard({ command, repoRoot }): MachineSafetyGuardResult`
+- `resolveGitMutationContext({ repoRoot, executionCwd, sessionId }): GitMutationContext`
+- `evaluateGitCommandGuard({ command, mutationContext? }): GitCommandGuardResult`
 - `runMachineSafetyGuardHook({ repoRoot, rawInput }): MachineSafetyGuardResult`
 - `runSecretEgressHook({ repoRoot, rawInput }): SecretEgressHookOutcome`
 
@@ -36,6 +38,19 @@ shell token、compound separator、nested shell、Git global optionを正規化�
 support matrixは `sh|bash|zsh -c`、`command`、`eval`、`env KEY=value`、`git -C`、`--git-dir`、
 `--work-tree`、`-c`、compound separator、最大4段のcommand substitutionを明示対応とする。解析深度超過、
 unclosed quote、未知executable alias、非literal wrapperは`indeterminate`でblockする。
+
+`merge`、`rebase`、`cherry-pick`、`stash pop|apply`、`am`、`apply`はcontextual mutationとして
+別分類する。context未注入、repository/worktree identity不明、foreign dirty count不明はblockする。
+primary shared rootかつforeign dirty countが1以上の場合もblockし、primary root cleanまたは同一common-dirの
+linked worktreeだけをpassする。`--help`、`rebase --show-current-patch`、`am --show-current-patch`、
+`apply --check|--stat|--numstat|--summary`はread-onlyとしてpassする。
+
+`resolveGitMutationContext`はhook processの実効cwd、payloadの`cwd|workdir`明示値、command内の`git -C`／
+`--work-tree`、`git rev-parse
+--show-toplevel`、`--git-common-dir`、`git worktree list --porcelain`を照合する。path文字列一致だけを
+identity証拠にせずrealpathとdevice/inodeを一致させる。`--git-dir`だけでworktreeを確定できない場合は
+unknownへ閉じる。primary rootのforeign dirtyはwork-guardと同じ
+`git status --porcelain`／session log collectorから導出し、raw pathをGit guard resultやDBへ投影しない。
 
 ## 3. transaction 事前・事後条件
 
@@ -84,6 +99,7 @@ exit 0/2へ変換する。adapterごとのbest-effort auditは禁止する。
 | classifier | `classifyDestructiveGitCommand(command) => GitCommandClassification` | commandはbounded文字列 | safe/blocked/indeterminateを返す | parse不能をsafeへ縮退しない | U-GITGUARD-003/004 |
 | override transaction | `commitOverrideUse(input) => OverrideCommitResult` | block分類、nonce、理由、audit/marker portが存在 | audit commit後かつconsume成功時だけallowed | exception/partial write/retryをpassへ変換しない | U-GITGUARD-005/006/008/009 |
 | Git adapter | `runGitCommandGuardHook(input) => GitCommandGuardHookOutcome` | hook JSONとrepo rootが与えられる | safe=0、block/failure=2 | dev/CLI/consumerで同じprimitiveを使う | U-GITGUARD-007 |
+| worktree context | `resolveGitMutationContext(input) => GitMutationContext` | repo root、実効cwd、session IDが与えられる | primary/linked/unknownとforeign dirty countを返す | common-dir不一致、identity/status不明をcleanへ縮退しない | U-GITGUARD-011..015 |
 | machine classifier | `evaluateMachineSafetyGuard(input) => MachineSafetyGuardResult` | commandとrepo rootが与えられる | 静的単一fileだけpassし、wrapper/interpreter経由を含む動的削除、truncate・shred・destructive sync、host停止・host root mountをblock | 検証不能や別frontendをsafeへ縮退しない | U-SAFETY-001..003 |
 | script runner | `runMachineSafetyGuardHook(input) => MachineSafetyGuardResult` | hook JSONとrepo rootが与えられる | interpreter script本文の削除APIを起動前block | raw script内容をmessageへ出さない | U-SAFETY-004 |
 | secret egress | `runSecretEgressHook(input) => SecretEgressHookOutcome` | hook JSON、Git repoが与えられる | write/working/index/outgoing blobのsecretを値非表示block | scope不明と`--no-verify`をpassしない | U-SAFETY-005/006 |
