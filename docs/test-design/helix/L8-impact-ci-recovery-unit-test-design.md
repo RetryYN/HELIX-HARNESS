@@ -30,8 +30,6 @@ queue_id: L3Q-PC-039
 | U-IMPACTCI-010 | post-mergeがcandidate deferred exact setを回収し、空集合receiptも発行 | deferred欠落、selected再実行による回収偽装、nightly成功によるfailure消去を拒否 |
 | U-IMPACTCI-011 | profile/execution surface/environment/cache class別のterminal母集団でp50/p95計算 | internal/GitHub混在、cold/warm混在、cancelled/superseded混入、母集団数欠落を拒否 |
 | U-IMPACTCI-012 | correctness green＋budget超過をmerge greenとRecovery evidenceへ分離 | timeout延長、test除外、threshold緩和、`continue-on-error`を改善扱いするmutationを拒否 |
-| U-IMPACTCI-WF-002 | full admissionは同一tested HEADの独立worktreeでbulk fastとstateful（cli-surface→slow）を並列実行し、2結果を単一required checkへ集約 | 同一rootのworker増加、cli-surface／slow／bulk欠落、別HEAD、lane failureのsoft-pass、targeted profileへの強制lane化を拒否 |
-| U-IMPACTCI-WF-003 | runner cancel（TERM/INT）を両lane process groupへboundedに伝播し、worktree cleanup完了とcancellation receipt（signal・latency・課金時間）を残し、正常経路のfail-close集約を変えない | TERM/INT trap欠落、group宛TERM欠落、KILL escalation欠落、cancel時cleanup欠落、receipt欠落、cancel exitの0偽装を拒否 |
 | U-IMPACTCI-WF-004 | full回帰をgreen完走したrunだけがhead/base SHA束縛のfull receipt artifactを発行し、同一head SHAのready_for_review／converted_to_draft遷移eventはreceiptの両SHA完全一致時だけ再利用してreuse receipt（reused_run_id・tested_head）を残す | transition event限定の欠落、success絞り込みの欠落、full receipt照合の欠落、base SHA一致検査の欠落、照会失敗フォールバックの欠落、run id検証の欠落、receipt発行のfull限定／reuse除外の欠落を拒否 |
 | U-FULLSHARD-001 | 入力順に依存せずfast bulkを2 shard、CLI／slowをstatefulへ安定分割 | 入力順でpartition digestが変わる、stateful pathがbulkへ移るmutationを拒否 |
 | U-FULLSHARD-002 | shard unionがtracked inventory exact setで交差0 | missing、duplicate、unknown pathを拒否 |
@@ -48,6 +46,21 @@ queue_id: L3Q-PC-039
 | U-FULLSHARD-WF-003 | preflight 35分、各shard 20分、finalize 15分のbounded job timeoutを固定 | shard timeout 20→21などの延長、timeout検査の削除、job単位の無制限化を拒否 |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLIはcontext injection assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、routing semantics変更を拒否 |
+
+## 退役済みの旧workflow oracle
+
+次のIDは、同一runner内process group／lane logを現行契約として扱わないことを明示するための
+履歴参照であり、実行対象のoracle一覧・現行PLANのverification bindingではない。
+
+| 旧oracle | 退役理由 | 現行の境界 |
+|---|---|---|
+| `U-IMPACTCI-WF-002` | 独立GitHub Actions job DAGへ移行し、旧同一runner lane集約を廃止 | `U-FULLSHARD-WF-001`／`U-FULLSHARD-WF-002` |
+| `U-IMPACTCI-WF-003` | local TERM/INT process-group伝播を現行sliceの契約にしない | cancel／timeout／欠落receiptをfinalizeでfail-close |
+| `U-IMPACTCI-WF-005` | jobごとのtyped partition／receiptへ移行し、旧step内inventory／tail logを廃止 | `U-FULLSHARD-001`〜`006`／`U-FULLSHARD-WF-001`〜`003` |
+
+対応する旧PLAN（`PLAN-RECOVERY-11`／`14`／`18`）は、後継の
+`PLAN-L7-685-full-regression-shard-jobs` と相互訂正注記を持つ。旧PLANに残るred／green／
+review evidenceは過去の実装履歴であり、現行job DAGの実装・キャンセル伝播を証明しない。
 
 ## 実行単位
 
@@ -70,8 +83,6 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-001 | inventory validator | duplicate IDを`invalid_inventory`として拒否 | `tests/impact-ci.test.ts` |
 | U-IMPACTCI-012 | correctness／performance分離 | budget超過をcorrectness redへ偽装するmutationを拒否 | `tests/impact-ci.test.ts` |
 | U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |
-| U-IMPACTCI-WF-002 | isolated full lane集約 | bulk fast＋stateful（cli-surface→slow）のexact 2 lane、tested HEAD一致、全status 0、targeted経路維持 | `tests/harness-check-workflow.test.ts` |
-| U-IMPACTCI-WF-003 | isolated lane cancellation伝播 | TERM/INT trap欠落、group宛signal欠落、bounded KILL escalation欠落、cancel時cleanup欠落、receipt欠落、cancel statusの0偽装を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-FULLSHARD-001 | deterministic partition | 入力順に依存せずbulk 2件とstatefulへexact partitionする | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-002 | inventory exact set | missing／duplicate／unknown pathを拒否する | `tests/full-regression-shards.test.ts` |

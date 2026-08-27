@@ -57,6 +57,9 @@ generates:
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-11-impact-ci-stateful-deadline.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-14-impact-ci-cancel-propagation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-18-lane-inventory-partial-logs.md, artifact_type: markdown_doc }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: yaml_config }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -68,6 +71,10 @@ dependencies:
     - issue:1069
     - issue:1071
   blocks: []
+supersedes:
+  - PLAN-RECOVERY-11-impact-ci-stateful-deadline
+  - PLAN-RECOVERY-14-impact-ci-cancel-propagation
+  - PLAN-RECOVERY-18-lane-inventory-partial-logs
 agent_slots:
   - { role: se, slot_label: "SE — workflow DAG／artifact handoff／finalize" }
   - { role: qa, slot_label: "QA — wrong HEAD／receipt欠落／cancel／timeout mutation" }
