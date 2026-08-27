@@ -17,6 +17,10 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { type CrossAgentModelIssue, checkCrossAgentModelPair } from "../schema";
+import { type L3HumanApproval, l3HumanApprovalSchema } from "../schema/frontmatter";
+
+export type { L3HumanApproval } from "../schema/frontmatter";
+
 import {
   GREEN_COMMAND_KINDS,
   GREEN_COMMAND_RUNNERS,
@@ -71,6 +75,7 @@ export interface ParsedReviewPlan {
   file: string;
   plan_id: string;
   kind: string;
+  layer?: string;
   status: string;
   updated: string;
   /** frontmatter の `created`。reviewer session 強制は作成日で gate する (既存 PLAN の遡及改変を避ける)。 */
@@ -83,6 +88,10 @@ export interface ParsedReviewPlan {
    * 消費側 (checkReviewEvidence / checkGuardrailInvariants) が entry.review_kind で個別に scope する。
    */
   crossEntries: ReviewEntry[];
+  /** L3 要件の terminal 化に必要な、技術 review と分離された PO 承認記録。 */
+  l3HumanApproval?: L3HumanApproval;
+  /** approval ブロックが存在するが schema または plan_id binding に違反している。 */
+  l3HumanApprovalInvalid?: boolean;
 }
 
 export interface ReviewEvidenceResult {
@@ -100,6 +109,8 @@ export interface ReviewEvidenceResult {
    * receipt 側では 1 件も発生していない。
    */
   reviewerIdentityViolations: { plan_id: string; reason: string }[];
+  /** 基準日以降に terminal 化・作成/更新された L3 PLAN の typed PO 承認欠落/不正。 */
+  l3HumanApprovalViolations: { plan_id: string; reason: string }[];
   ok: boolean;
 }
 
@@ -119,6 +130,12 @@ export const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fi
  * (GREEN_COMMAND_ENFORCEMENT_DATE と同じ date-gated 移行)。
  */
 export const REVIEWER_SESSION_ENFORCEMENT_DATE = "2026-08-22";
+/**
+ * L3 PLAN の人間承認を強制する開始日 (Issue #1097)。
+ * 既存の確定履歴を捏造的に書き換えず、以後の L3 terminal 化・更新だけを対象にする。
+ */
+export const L3_HUMAN_APPROVAL_ENFORCEMENT_DATE = "2026-08-27";
+const ISO_CALENDAR_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/u;
 /** session 単位で主体が定まる review_kind。human は session を持たないため対象外。 */
 const SESSION_IDENTIFIED_REVIEW_KINDS = new Set<string>(["cross_agent", "intra_runtime_subagent"]);
 /** session 識別子として受理する形。空白・引用・prose 混入を拒否する。 */
@@ -199,16 +216,38 @@ export function extractReviewEntries(content: string): ReviewEntry[] {
   }
 }
 
+function extractL3HumanApproval(
+  content: string,
+  planId: string,
+): { value?: L3HumanApproval; invalid: boolean } {
+  const m = content.match(/^---\n([\s\S]*?)\n---/);
+  if (!m) return { invalid: false };
+  try {
+    const fm = parseYaml(m[1]) as Record<string, unknown> | null;
+    if (!fm || !Object.hasOwn(fm, "l3_human_approval")) return { invalid: false };
+    const parsed = l3HumanApprovalSchema.safeParse(fm.l3_human_approval);
+    if (!parsed.success || parsed.data.plan_id !== planId) return { invalid: true };
+    return { value: parsed.data, invalid: false };
+  } catch {
+    return { invalid: true };
+  }
+}
+
 export function parseReviewPlan(file: string, content: string): ParsedReviewPlan {
+  const planId = fmValue(content, "plan_id") ?? file.replace(/\.md$/, "");
+  const l3HumanApproval = extractL3HumanApproval(content, planId);
   return {
     file,
-    plan_id: fmValue(content, "plan_id") ?? file.replace(/\.md$/, ""),
+    plan_id: planId,
     kind: fmValue(content, "kind") ?? "unknown",
+    layer: fmValue(content, "layer") ?? "unknown",
     status: fmValue(content, "status") ?? "unknown",
     updated: fmValue(content, "updated") ?? fmValue(content, "created") ?? "",
     created: fmValue(content, "created") ?? "",
     hasEvidence: hasReviewEvidence(content),
     crossEntries: extractReviewEntries(content),
+    ...(l3HumanApproval.value ? { l3HumanApproval: l3HumanApproval.value } : {}),
+    l3HumanApprovalInvalid: l3HumanApproval.invalid,
   };
 }
 
@@ -218,6 +257,37 @@ function requiresGreenCommands(plan: ParsedReviewPlan): boolean {
     plan.updated >= GREEN_COMMAND_ENFORCEMENT_DATE &&
     (plan.crossEntries ?? []).length > 0
   );
+}
+
+function requiresL3HumanApproval(plan: ParsedReviewPlan): boolean {
+  if (plan.layer !== "L3" || !STATUS_REVIEW_REQUIRED.has(plan.status)) return false;
+  const createdDate = plan.created.slice(0, 10);
+  const updatedDate = plan.updated.slice(0, 10);
+  // 作成日だけを過去に固定し、更新日だけを後ろ倒しにする回避を許さない。
+  return (
+    createdDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE ||
+    updatedDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE
+  );
+}
+
+function isCalendarDate(value: string): boolean {
+  if (!ISO_CALENDAR_DATE_PATTERN.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return (
+    date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day
+  );
+}
+
+function l3HumanApprovalDateViolationReason(plan: ParsedReviewPlan): string | null {
+  if (plan.layer !== "L3" || !STATUS_REVIEW_REQUIRED.has(plan.status)) return null;
+  const createdDate = plan.created.slice(0, 10);
+  const updatedDate = plan.updated.slice(0, 10);
+  // 欠落/不正/時系列逆転は、承認recordの有無にかかわらず fail-close する。
+  if (!isCalendarDate(createdDate) || !isCalendarDate(updatedDate) || updatedDate < createdDate) {
+    return "invalid_l3_plan_dates";
+  }
+  return null;
 }
 
 export function greenCommandViolationReason(entry: ReviewEntry): string | null {
@@ -302,6 +372,7 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   const greenCommandViolations: { plan_id: string; reason: string }[] = [];
   const staleApprovalViolations: { plan_id: string; reason: string }[] = [];
   const reviewerIdentityViolations: { plan_id: string; reason: string }[] = [];
+  const l3HumanApprovalViolations: { plan_id: string; reason: string }[] = [];
   /** session -> 観測した reviewer_model 群。同一 session が別 model を名乗る記録は矛盾する。 */
   const sessionModels = new Map<string, Map<string, string>>();
   if (
@@ -315,6 +386,22 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   }
   for (const p of plans) {
     if (p.status === "archived") continue;
+    const l3DateViolation = l3HumanApprovalDateViolationReason(p);
+    if (l3DateViolation) {
+      l3HumanApprovalViolations.push({ plan_id: p.plan_id, reason: l3DateViolation });
+    } else if (requiresL3HumanApproval(p)) {
+      if (p.l3HumanApprovalInvalid === true) {
+        l3HumanApprovalViolations.push({
+          plan_id: p.plan_id,
+          reason: "invalid_human_po_approval",
+        });
+      } else if (!p.l3HumanApproval) {
+        l3HumanApprovalViolations.push({
+          plan_id: p.plan_id,
+          reason: "missing_human_po_approval",
+        });
+      }
+    }
     // presence (IMP-071)
     if (
       KIND_REVIEW_REQUIRED.has(p.kind) &&
@@ -423,13 +510,15 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
     greenCommandViolations,
     staleApprovalViolations,
     reviewerIdentityViolations,
+    l3HumanApprovalViolations,
     ok:
       missing.length === 0 &&
       crossReviewViolations.length === 0 &&
       testBeforeReviewViolations.length === 0 &&
       greenCommandViolations.length === 0 &&
       staleApprovalViolations.length === 0 &&
-      reviewerIdentityViolations.length === 0,
+      reviewerIdentityViolations.length === 0 &&
+      l3HumanApprovalViolations.length === 0,
   };
 }
 
@@ -456,7 +545,8 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
     result.testBeforeReviewViolations.length === 0 &&
     result.greenCommandViolations.length === 0 &&
     result.staleApprovalViolations.length === 0 &&
-    result.reviewerIdentityViolations.length === 0
+    result.reviewerIdentityViolations.length === 0 &&
+    result.l3HumanApprovalViolations.length === 0
   ) {
     return [
       "review-evidence — OK (review_evidence あり / cross_agent は worker≠reviewer / 定量テスト→定性レビュー順序 tests_green_at≤reviewed_at)",
@@ -491,6 +581,12 @@ export function reviewEvidenceMessages(result: ReviewEvidenceResult): string[] {
     const ids = result.reviewerIdentityViolations.map((v) => `${v.plan_id}:${v.reason}`).join(", ");
     out.push(
       `review-evidence — ⚠ reviewer 主体が構造化フィールドで一意に定まらない ${result.reviewerIdentityViolations.length} 件 (${ids}): 2026-08-22 以降の confirmed AI review entry は reviewer_session_id / reviewer_model を prose ではなく型付きで記録 (Issue #923)`,
+    );
+  }
+  if (result.l3HumanApprovalViolations.length > 0) {
+    const ids = result.l3HumanApprovalViolations.map((v) => `${v.plan_id}:${v.reason}`).join(", ");
+    out.push(
+      `review-evidence — violation: L3 terminal PLAN に typed PO 承認がない/不正 ${result.l3HumanApprovalViolations.length} 件 (${ids}): l3_human_approval に approval_kind=human_po、decision=approve、対象 plan_id、承認者、時刻、外部記録を記録 (Issue #1097)`,
     );
   }
   if (result.staleApprovalViolations.length > 0) {
