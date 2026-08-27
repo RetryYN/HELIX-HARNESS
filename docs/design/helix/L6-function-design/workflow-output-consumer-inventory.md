@@ -1,6 +1,6 @@
 ---
 title: "workflow output consumer inventory関数設計"
-status: draft
+status: confirmed
 layer: L6
 plan: PLAN-L7-692-workflow-output-consumer-inventory
 pair_artifact: docs/test-design/harness/L8-workflow-output-consumer-inventory.md

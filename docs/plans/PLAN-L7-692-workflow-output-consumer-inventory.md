@@ -4,7 +4,7 @@ title: "PLAN-L7-692: workflow output consumerの旧model fieldをexact inventory
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -37,6 +37,36 @@ red_test: "U-WFOCI-001..004を先行追加し、inventory未存在／count drift
 red_at: "2026-08-28T06:43:19+09:00"
 green_at: "2026-08-28T06:47:52+09:00"
 mutation_oracle_evidence: "2026-08-28T06:48:00+09:00にconfig/workflow-output-consumer-inventory.jsonのsrc/cli.ts:selected_model expected_occurrencesを32から31へseedし、tests/workflow-output-consumer-inventory.test.tsのU-WFOCI-002がactual 32との差を検出して1 fail／3 passとなった。値を32へ戻し、同一oracleを再green化する。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-27T23:11:37Z"
+    tests_green_at: "2026-08-27T23:05:54Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
+    reviewed_head_sha: 7e357d6ed15d6701569d6029dbeb2a585c074f1f
+    scope: "PR #1122 exact HEAD 7e357d6ed15d6701569d6029dbeb2a585c074f1fをClaude Codeが独立検収し、6 surface x 7 token、22 entry、152 occurrence、producer symbol、disposition allowlist、5 suite 126 testsを確認して内容blocker 0 approveとした。PLAN draftとPR draftはmerge readiness blockerとして本commitで解消する。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1122#issuecomment-5446313108"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33123541390 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-27T23:05:54Z"
+        evidence_path: tests/workflow-output-consumer-inventory.test.ts
+        output_digest: "sha256:258f98016ec5d61854d2bf1439729bcd2cd1a36b683724389f2a8fc36291bb22"
+        result: "terminal success / HEAD 7e357d6ed15d6701569d6029dbeb2a585c074f1f / all required lanes green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-27T23:11:37Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-27T23:11:37Z"
+    evidence_digest: "sha256:9a743d2985c16ee7056972e549a8f01c22b86d9289bddf87f6a736d968e0eb43"
+  entries: []
 complexity_effect: justified_positive
 complexity_justification: "既存sourceを変更せずmachine-readable台帳と単一oracleで後続migration scopeを固定する"
 removal_trigger: "#206の全successor migrationがmain到達し、legacy workflow output fieldのcurrent consumerが0になった時"

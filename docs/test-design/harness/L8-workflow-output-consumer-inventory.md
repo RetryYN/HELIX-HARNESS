@@ -1,6 +1,6 @@
 ---
 title: "workflow output consumer inventory単体テスト設計"
-status: draft
+status: confirmed
 layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
