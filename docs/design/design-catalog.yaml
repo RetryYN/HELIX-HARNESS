@@ -98,6 +98,7 @@ items:
       - docs/design/helix/L3-requirements/system-synthesis-requirements.md
       - docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
       - docs/design/helix/L3-requirements/skill-applicability-authority.md
+      - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -314,6 +315,7 @@ items:
       - docs/test-design/helix/L8-distribution-lite-consumer-documents-unit-test-design.md
       - docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md
       - docs/test-design/helix/L8-lite-canary-ci-parallelization-unit-test-design.md
+      - docs/test-design/helix/worker-context-boundary-compiler-acceptance.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
