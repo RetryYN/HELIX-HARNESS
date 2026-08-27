@@ -1,3 +1,4 @@
+import { isAtomicContractId } from "../schema/atomic-contract-id";
 import { sha256Digest } from "./digest";
 
 export type AdmissionDisposition = "admitted" | "split_required" | "recovery_required";
@@ -91,7 +92,6 @@ export type DesignCandidateSelection =
 
 const DIGEST = /^sha256:[0-9a-f]{64}$/;
 const HEAD = /^[0-9a-f]{40}$/;
-const ATOMIC_ID = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+){1,5}$/;
 const OWNER = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const PATH =
   /^(?!\/)(?!.*(?:^|\/)\.\.(?:\/|$))(?!.*\\)(?!.*\0)[\p{L}\p{N}_.@+ -]+(?:\/[\p{L}\p{N}_.@+ -]+)*$/u;
@@ -307,7 +307,7 @@ export function evaluateAtomicSlice(
   ) {
     failures.add("unknown_responsibility");
   }
-  if (snapshot.behaviorContractIds.some((contract) => !ATOMIC_ID.test(contract))) {
+  if (snapshot.behaviorContractIds.some((contract) => !isAtomicContractId(contract))) {
     failures.add("binding_mismatch");
   }
   if (!sameSet(snapshot.requiredCompanionPaths, snapshot.actualCompanionPaths)) {

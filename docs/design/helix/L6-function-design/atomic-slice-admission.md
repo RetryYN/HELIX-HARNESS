@@ -21,6 +21,10 @@ queue_id: L3Q-IT-023
 parser、clockを参照しない。既存`github-guards`、`ddd-tdd-rules`、PLAN lintのownerを置換せず、結果の
 合成境界だけを所有する。
 
+behavior contract IDの文法判定は`src/schema/atomic-contract-id.ts`だけが所有する。同moduleはL3 `GH-AC-043`を
+2〜6個のuppercase alphanumeric segmentへ投影し、PR scope、atomic slice、Issue closureの各consumerは
+`isAtomicContractId`を共有する。consumer固有regex、7 segment以上のcompatibility受理、入力値の補正は行わない。
+
 ## 2. 公開関数
 
 | 関数 | 入力 | 正常出力 | fail-close |
