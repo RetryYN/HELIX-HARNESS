@@ -675,7 +675,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24.15"
-          cache: npm
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
@@ -726,7 +725,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24.15"
-          cache: npm
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
@@ -775,7 +773,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24.15"
-          cache: npm
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
@@ -845,7 +842,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24.15"
-          cache: npm
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
