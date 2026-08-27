@@ -236,6 +236,27 @@ function pathCovered(path: string, family: string): boolean {
   return family.endsWith("/") ? path.startsWith(family) : path === family;
 }
 
+function expectedPathMismatchMessage(
+  undeclared: readonly string[],
+  absent: readonly string[],
+  actual: readonly string[],
+): string {
+  const guidance =
+    `suggested Expected changed paths: ${actual.join(", ")}; ` +
+    "replace the PR body's Expected changed paths with this exact sorted set";
+  const direction =
+    undeclared.length > 0 && absent.length === 0
+      ? "all actual paths are additions to the declaration"
+      : absent.length > 0 && undeclared.length === 0
+        ? "remove stale paths that are absent from the actual diff"
+        : "reconcile both added and stale paths before rerunning CI";
+  return [
+    `actual diff must exactly match Expected changed paths (undeclared=${undeclared.join(", ") || "none"}; absent=${absent.join(", ") || "none"})`,
+    guidance,
+    direction,
+  ].join("; ");
+}
+
 function frontmatterScalar(text: string, field: string): string | null {
   const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const value = text.match(new RegExp(`^${escaped}:[ \\t]*(.+)$`, "m"))?.[1]?.trim() ?? "";
@@ -420,7 +441,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           findings.push({
             code: "pr_scope_changed_paths_mismatch",
             severity: "error",
-            message: `actual diff must exactly match Expected changed paths (undeclared=${undeclared.join(", ") || "none"}; absent=${absent.join(", ") || "none"})`,
+            message: expectedPathMismatchMessage(undeclared, absent, changedPaths),
           });
         }
       }
