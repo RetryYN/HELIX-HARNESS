@@ -22,7 +22,7 @@ behavior_contract_id: L3-HUMAN-APPROVAL-GIT-PROVENANCE-001
 responsibility_owner: l3-human-approval-git-provenance
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: harden_gate
+refactor_step: introduce_contract
 legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: pure_function
