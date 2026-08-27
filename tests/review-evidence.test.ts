@@ -5,6 +5,8 @@ import {
   bunHistoricalReceiptInventoryDigest,
   extractReviewEntries,
   hasReviewEvidence,
+  L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
+  type L3HumanApproval,
   loadReviewPlans,
   type ParsedReviewPlan,
   parseReviewPlan,
@@ -19,11 +21,13 @@ const plan = (o: Partial<ParsedReviewPlan>): ParsedReviewPlan => ({
   file: "x.md",
   plan_id: "PLAN-X",
   kind: "design",
+  layer: "unknown",
   status: "confirmed",
   updated: "2026-06-05",
   created: "2026-06-05",
   hasEvidence: false,
   crossEntries: [],
+  l3HumanApprovalInvalid: false,
   ...o,
 });
 
@@ -37,6 +41,30 @@ const technicalCommand = {
   output_digest: `sha256:${"0".repeat(64)}`,
   completed_at: "2026-06-23",
 };
+
+const l3Approval = (planId: string): L3HumanApproval => ({
+  schema_version: "helix-l3-human-approval.v1",
+  approval_kind: "human_po",
+  decision: "approve",
+  approver: "RetryYN",
+  approved_at: "2026-08-27T12:00:00Z",
+  plan_id: planId,
+  approval_record_id: "L3-PO-1097-001",
+  approval_source: "github_issue_comment",
+  approval_source_url:
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/1097#issuecomment-1234567890",
+});
+
+const technicalReview = (): ReviewEntry => ({
+  reviewer: "independent-reviewer",
+  review_kind: "cross_agent",
+  reviewed_at: "2026-06-23T00:00:01Z",
+  tests_green_at: "2026-06-23T00:00:00Z",
+  verdict: "approve",
+  worker_model: "gpt-5.4-codex",
+  reviewer_model: "claude-opus-5",
+  green_commands: [technicalCommand],
+});
 
 describe("green command evidence (IMP-108)", () => {
   it("pins every pre-retirement Bun receipt by semantic content, not a backdatable timestamp", () => {
@@ -559,6 +587,125 @@ describe("review-evidence lint (review 前置の機械強制、IMP-071)", () => 
     const missingIds = new Set(r.missing.map((m) => m.plan_id));
     expect(missingIds.has("PLAN-L4-05-workflow-orchestration")).toBe(false);
     expect(missingIds.has("PLAN-L7-13-review-evidence")).toBe(false);
+  });
+});
+
+describe("L3 typed PO approval gate (Issue #1097)", () => {
+  // PLAN-L7-687-l3-human-approval-gate の verification_bindings がこの test file を所有する。
+  it("U-L3APP-001: AI technical reviewだけでは基準日以降のL3 terminal化を許可しない", () => {
+    const planId = "PLAN-L3-90-l3-human-approval-gate";
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: planId,
+        layer: "L3",
+        status: "confirmed",
+        updated: L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [technicalReview()],
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([
+      { plan_id: planId, reason: "missing_human_po_approval" },
+    ]);
+    expect(result.ok).toBe(false);
+  });
+
+  it("U-L3APP-002: review_kind=humanを混ぜてもtyped PO approvalの代替にはならない", () => {
+    const planId = "PLAN-L3-91-l3-human-approval-gate";
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: planId,
+        layer: "L3",
+        status: "completed",
+        updated: "2026-08-28",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [
+          {
+            ...technicalReview(),
+            review_kind: "human",
+            reviewer: "PO",
+            reviewer_model: undefined,
+            worker_model: undefined,
+            green_commands: undefined,
+          },
+        ],
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([
+      { plan_id: planId, reason: "missing_human_po_approval" },
+    ]);
+  });
+
+  it("U-L3APP-003: typed PO approvalが対象PLANへ束縛されていれば通過する", () => {
+    const planId = "PLAN-L3-92-l3-human-approval-gate";
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: planId,
+        layer: "L3",
+        status: "confirmed",
+        updated: "2026-08-27",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [technicalReview()],
+        l3HumanApproval: l3Approval(planId),
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it("U-L3APP-004: 過去に確定済みのL3 PLANは遡及的に承認記録を捏造させない", () => {
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-L3-93-l3-human-approval-legacy",
+        layer: "L3",
+        status: "confirmed",
+        updated: "2026-08-26",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [technicalReview()],
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it("U-L3APP-005: malformed approvalまたは別PLANのapprovalはfail-closeする", () => {
+    const planId = "PLAN-L3-94-l3-human-approval-invalid";
+    const parsed = parseReviewPlan(
+      "PLAN-L3-94-l3-human-approval-invalid.md",
+      [
+        "---",
+        `plan_id: ${planId}`,
+        "layer: L3",
+        "kind: design",
+        "status: confirmed",
+        `updated: ${L3_HUMAN_APPROVAL_ENFORCEMENT_DATE}`,
+        "l3_human_approval:",
+        "  schema_version: helix-l3-human-approval.v1",
+        "  approval_kind: human_po",
+        "  decision: approve",
+        "  approver: RetryYN",
+        "  approved_at: 2026-08-27T12:00:00Z",
+        "  plan_id: PLAN-L3-95-other-plan",
+        "  approval_record_id: L3-PO-1097-002",
+        "  approval_source: github_issue_comment",
+        "  approval_source_url: https://github.com/RetryYN/HELIX-HARNESS/issues/1097#issuecomment-1234567890",
+        "---",
+        "body",
+      ].join("\n"),
+    );
+
+    expect(parsed.l3HumanApprovalInvalid).toBe(true);
+    expect(analyzeReviewEvidence([parsed]).l3HumanApprovalViolations).toEqual([
+      { plan_id: planId, reason: "invalid_human_po_approval" },
+    ]);
   });
 });
 

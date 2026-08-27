@@ -178,6 +178,7 @@ items:
       - docs/design/helix/L6-function-design/project-hook-authority-resolver.md
       - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md
+      - docs/design/helix/L6-function-design/l3-human-approval-gate.md
       - docs/design/helix/L6-function-design/plan-modification-ownership.md
       - docs/design/helix/L6-function-design/distribution-devos-instruction-authority.md
       - docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md
@@ -305,6 +306,7 @@ items:
       - docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-identity-validation-unit-test-design.md
+      - docs/test-design/helix/L8-l3-human-approval-gate-unit-test-design.md
       - docs/test-design/helix/L8-plan-modification-ownership-unit-test-design.md
       - docs/test-design/helix/L8-distribution-devos-instruction-authority-unit-test-design.md
       - docs/test-design/helix/L8-distribution-devos-runtime-identity-unit-test-design.md
