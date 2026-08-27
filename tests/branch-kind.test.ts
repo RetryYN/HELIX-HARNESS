@@ -548,6 +548,37 @@ describe("branch-kind-check", () => {
     ]);
     expect(result.findings[0]?.message).toContain("undeclared=docs/extra.md");
     expect(result.findings[0]?.message).toContain("absent=docs/phantom.md");
+    expect(result.findings[0]?.message).toContain(
+      "suggested Expected changed paths: docs/extra.md, docs/plans/PLAN-L7-466-pr-scope-contract.md",
+    );
+  });
+
+  it("U-PRSCOPE-006: mismatch診断が実差分の貼り付け用exact path列を提示する", () => {
+    const result = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/design/current.md", "docs/test-design/current.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/design/, docs/test-design/",
+        "Expected changed paths: docs/design/current.md, docs/old.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_changed_paths_mismatch",
+        message: expect.stringContaining(
+          "suggested Expected changed paths: docs/design/current.md, docs/test-design/current.md",
+        ),
+      }),
+    );
+    expect(result.findings[0]?.message).toContain(
+      "reconcile both added and stale paths before rerunning CI",
+    );
   });
 
   it("U-PRSCOPE-005: rejects a PR manifest whose required PLAN binds a different behavior or owner", () => {
