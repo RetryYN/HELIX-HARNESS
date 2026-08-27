@@ -13,7 +13,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: ADD_FEATURE
 entry_signals:
-  - "issue:1102 author制御のcreated／updatedをL3承認gateの判定鍵にしない"
+  - "po_directive:Issue #1102 author制御のcreated／updatedをL3承認gateの判定鍵にしない"
 created: 2026-08-27
 updated: 2026-08-27
 owner: Codex / TL
