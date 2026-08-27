@@ -53,6 +53,7 @@ modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-progression-authority.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
   requires:
