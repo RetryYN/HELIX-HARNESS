@@ -114,5 +114,5 @@ output digest、exit code、時刻を入力境界で検証し、validatorの`ok=
 | `U-FULLSHARD-CLI-002` | receipt identityをplanだけから導出するCLI境界 |
 | `U-FULLSHARD-CLI-003` | validator redをtyped JSONとexit 1へ写像するCLI境界 |
 | `U-FULLSHARD-CLI-004` | output digest／exit code／時刻をfail-closeするCLI境界 |
-| `U-FULLSHARD-WF-001` | preflight／3 shard／finalizeのtyped artifact接続 |
+| `U-FULLSHARD-WF-001` | preflight／3 shard／finalizeのtyped artifact接続。schedule／workflow_dispatchではPR由来のcandidate HEADをcheckout refへ流さず、PR headまたはtrusted `github.sha`へ限定する |
 | `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／Biome／doctor／required aggregate順序 |

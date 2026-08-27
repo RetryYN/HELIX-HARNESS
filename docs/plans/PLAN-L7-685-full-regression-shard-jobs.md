@@ -30,7 +30,7 @@ backprop_decision: not_required
 backprop_decision_reason: "既存GH-NFR-010／GH-AC-017とL6設計を変更せず、確定済みpartition contractをGitHub Actionsへ配線するL7 sliceである"
 contract_preconditions: "#1070のtyped partition／receipt contract、Impact CI full decision、candidate HEAD／base SHAが存在する"
 contract_postconditions: "preflight、bulk-1、bulk-2、stateful、finalizeが独立jobとなり、全receiptのexact validation後だけDB／Biome／doctor／full receiptへ進む"
-contract_invariants: "tracked test inventory exact union、same HEAD／base、required harness-check、main／nightly／RC full、targeted selection、same-HEAD reuseを維持する"
+contract_invariants: "tracked test inventory exact union、same HEAD／base、required harness-check、main／nightly／RC full、targeted selection、same-HEAD reuse、schedule／workflow_dispatchでもPR由来のcandidate HEADをcheckout refへ流さないtrigger-safe refを維持する"
 contract_failures: "missing／duplicate／wrong identity／nonzero／cancel／timeout／artifact欠落を相殺せずfail-closeする"
 tdd_red_required: true
 red_test: "U-FULLSHARD-CLI-001..004とU-FULLSHARD-WF-001..006がadapter／job／receipt／aggregate欠落を検出する"

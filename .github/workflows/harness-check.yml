@@ -665,7 +665,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
         with:
-          ref: ${{ needs.full-regression-preflight.outputs.candidate_head }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js
@@ -715,7 +715,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
         with:
-          ref: ${{ needs.full-regression-preflight.outputs.candidate_head }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js
@@ -763,7 +763,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
         with:
-          ref: ${{ needs.full-regression-preflight.outputs.candidate_head }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js
@@ -832,7 +832,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v7
         with:
-          ref: ${{ needs.full-regression-preflight.outputs.candidate_head || github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js

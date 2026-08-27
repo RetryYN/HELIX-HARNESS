@@ -46,6 +46,21 @@ type WorkflowRoot = {
   };
 };
 
+const PR_OR_MAIN_CHECKOUT_REF = "${{ github.event.pull_request.head.sha || github.sha }}";
+const PREFLIGHT_CHECKOUT_REF = "${{ needs.full-regression-preflight.outputs.candidate_head }}";
+
+function mutateWorkflowJob(raw: string, jobName: string, mutate: (job: string) => string): string {
+  const startMarker = `  ${jobName}:`;
+  const start = raw.indexOf(startMarker);
+  if (start < 0) return raw;
+  const nextJobPattern = /\n  [^\s][^\n]*:\n/g;
+  nextJobPattern.lastIndex = start + startMarker.length;
+  const nextJob = nextJobPattern.exec(raw);
+  const end = nextJob?.index ?? raw.length;
+  if (end < 0) return raw;
+  return `${raw.slice(0, start)}${mutate(raw.slice(start, end))}${raw.slice(end)}`;
+}
+
 function fullRegressionShardJobViolations(raw: string): string[] {
   const parsed = parseYaml(raw) as WorkflowRoot;
   const jobs = parsed.jobs ?? {};
@@ -85,6 +100,9 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     if (checkout?.with?.["fetch-depth"] !== 0) {
       findings.push(`shard_checkout_history_invalid:${shardId}`);
     }
+    if (checkout?.with?.ref !== PR_OR_MAIN_CHECKOUT_REF) {
+      findings.push(`shard_checkout_ref_invalid:${shardId}`);
+    }
     if (
       !text.includes("full-regression-shard-plan") ||
       !text.includes(`--shard-id ${shardId}`) ||
@@ -99,6 +117,9 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   const finalizeCheckout = finalize?.steps?.find((step) => step.name === "checkout");
   if (finalizeCheckout?.with?.["fetch-depth"] !== 0) {
     findings.push("finalize_checkout_history_invalid");
+  }
+  if (finalizeCheckout?.with?.ref !== PR_OR_MAIN_CHECKOUT_REF) {
+    findings.push("finalize_checkout_ref_invalid");
   }
   if (
     !finalizeText.includes("full-regression-shards.ts validate") ||
@@ -817,12 +838,24 @@ describe("source harness-check workflow", () => {
     ).toContain("finalize_gate_order_invalid");
     expect(
       fullRegressionShardJobViolations(
-        raw.replace(
-          "          ref: ${{ needs.full-regression-preflight.outputs.candidate_head }}\n          fetch-depth: 0",
-          "          ref: ${{ needs.full-regression-preflight.outputs.candidate_head }}",
+        mutateWorkflowJob(raw, "full-regression-bulk-1", (job) =>
+          job.replace(
+            `          ref: ${PR_OR_MAIN_CHECKOUT_REF}\n          fetch-depth: 0`,
+            `          ref: ${PR_OR_MAIN_CHECKOUT_REF}`,
+          ),
         ),
       ),
     ).toContain("shard_checkout_history_invalid:bulk-1");
+    expect(
+      fullRegressionShardJobViolations(
+        mutateWorkflowJob(raw, "full-regression-bulk-1", (job) =>
+          job.replace(
+            `          ref: ${PR_OR_MAIN_CHECKOUT_REF}`,
+            `          ref: ${PREFLIGHT_CHECKOUT_REF}`,
+          ),
+        ),
+      ),
+    ).toContain("shard_checkout_ref_invalid:bulk-1");
   });
 
   it.each([
