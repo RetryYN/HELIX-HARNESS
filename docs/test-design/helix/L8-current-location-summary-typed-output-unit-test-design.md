@@ -21,7 +21,7 @@ pair_artifact: docs/design/helix/L6-function-design/current-location-summary-typ
 | U-CLSO-002 | missing authority | registry無しfixtureはidentityを推測せずnullと`unsupported` receiptを返す | `tests/cli-surface.test.ts` |
 | U-CLSO-003 | legacy output exclusion | summary／frontierに旧drive/model fieldを再出力しない | `tests/cli-surface.test.ts` |
 | U-CLSO-004 | frontier contract | frontier schema v2、typed identity、workflow route status、workflow commandを返す | `tests/cli-surface.test.ts` |
-| U-CLSO-005 | text contract | text出力が旧`drive=...`／旧drive-routeを出さずtyped workflow routeを表示する | `tests/cli-surface.test.ts` |
+| U-CLSO-005 | text contract | `--summary-json`／`--json`／textの全出力面とsourceの両分岐で旧`drive` prefix labelを出さず、typed workflow route scopeを表示する | `tests/cli-surface.test.ts` |
 | U-CLSO-006 | schema mutation | summary schema v2をv1へ退行させるmutationをproduction-root regressionが検出する | `tests/cli-surface.test.ts` |
 
 旧compatibility commandの内部出力をpositive oracleにしない。legacy greenでcurrent summaryの
