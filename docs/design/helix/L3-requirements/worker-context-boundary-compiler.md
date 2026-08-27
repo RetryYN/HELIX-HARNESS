@@ -37,7 +37,7 @@ boundary JSONを作成する正規CLIが存在しないため、provider委譲�
 本sliceは要件・L10受入設計だけを追加する。CLI実装、既存4経路（codex、claude、loop、pair-agent、team）の
 配線、provider起動、secret／network権限変更は後続のL6実装sliceへ分離する。
 
-## §1 behavior contract
+## §1 behavior契約
 
 ### WCTXCLI-FR-001 boundary作成・検証入口
 

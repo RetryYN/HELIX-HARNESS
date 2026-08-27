@@ -53,6 +53,8 @@ modifies:
   - { artifact_path: tests/l3-progression-authority.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_config }
+  - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/design/helix/L3-requirements/worker-common-contract.md
   requires: []
