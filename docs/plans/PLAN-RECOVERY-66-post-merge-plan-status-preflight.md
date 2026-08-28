@@ -36,7 +36,7 @@ tdd_red_required: true
 red_test: "U-MPS-PRE-001..003を先行追加し、candidate HEAD modeとworkflow stepの欠落をRedで確認する"
 red_at: "2026-08-28T13:39:24+09:00"
 green_at: "2026-08-28T13:40:20+09:00"
-mutation_oracle_evidence: "2026-08-28T13:40:32+09:00にcandidate_head分岐をHEADからorigin/main／mainへ一時退行させ、U-MPS-PRE-001がexpected HEAD／received origin/main,mainで1 failed・30 passed・exit 1となるkillを実測した。実装をHEADへ復元後、merged-plan-statusとworkflowの2 suite 86 tests、typecheck、post-merge-status gate greenを再確認する。"
+mutation_oracle_evidence: "2026-08-28T13:40:32+09:00にcandidate_head分岐をHEADからorigin/main／mainへ一時退行させ、U-MPS-PRE-001がexpected HEAD／received origin/main,mainで1 failed・30 passed・exit 1となるkillを実測した。2026-08-28T14:31:18+09:00にはgate resultをresult.okからtrueへ丸めるmutationを投入し、U-MPS-PRE-002がexpected false／received trueで1 failed・31 passed・exit 1となるkillを実測した。両実装を正規形へ復元後、merged-plan-statusとworkflowの2 suite 87 tests、Biome、typecheck、post-merge-status gate greenを再確認する。"
 complexity_effect: net_neutral
 complexity_justification: "既存loaderへ明示base modeを1つ追加し、既存analyzerをpreflightから再利用する"
 removal_trigger: "全PR admissionが常にmerge-result treeを直接検査し、明示candidate modeが不要になった時"
