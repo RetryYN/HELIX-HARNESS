@@ -4,7 +4,7 @@ title: "PLAN-L7-695: 既存state DBからlegacy workflow objectを除去する"
 kind: retrofit
 layer: L7
 drive: db
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
