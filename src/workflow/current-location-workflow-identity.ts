@@ -1,4 +1,4 @@
-import { resolveCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver.js";
+import { resolvePackageCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver.js";
 import type { ProjectCurrentLocationSnapshot } from "../state-db/current-location.js";
 
 export * from "../schema/current-location-workflow-identity-resolver.js";
@@ -6,12 +6,9 @@ export * from "../schema/current-location-workflow-identity-resolver.js";
 /** Composition boundary for CLI/read-model consumers; state-db remains independent of workflow. */
 export function attachCurrentLocationWorkflowIdentity(
   snapshot: ProjectCurrentLocationSnapshot,
-  repoRoot: string = process.cwd(),
+  _consumerRepoRoot?: string,
 ): ProjectCurrentLocationSnapshot {
-  const receipt = resolveCurrentLocationWorkflowIdentity({
-    legacy_model: snapshot.drive_route.selectedModel,
-    repo_root: repoRoot,
-  });
+  const receipt = resolvePackageCurrentLocationWorkflowIdentity(snapshot.drive_route.selectedModel);
   return {
     ...snapshot,
     drive_route: {
