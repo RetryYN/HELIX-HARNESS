@@ -11,7 +11,7 @@ workflow_identity:
   registry_version: 1.1.5
   registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
   target_axis: workflow_model
-  target_id: RETROFIT
+  target_id: REDESIGN
 entry_signals:
   - "po_directive:Issue #1125 CLI legacy workflow output convergence"
 created: 2026-08-28
