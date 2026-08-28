@@ -5752,6 +5752,37 @@ function summarizeProjectDriveModelReport(
   };
 }
 
+function summarizeProjectFrontierDriveModelReport(
+  report: ProjectDriveModelReport,
+  snapshot: ProjectCurrentLocationSnapshot,
+) {
+  try {
+    return {
+      ...summarizeProjectDriveModelReport(report, snapshot),
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+    };
+  } catch (cause) {
+    if (!(cause instanceof Error) || cause.message !== "cli_workflow_identity_invalid") {
+      throw cause;
+    }
+    return {
+      schema_version: "project-workflow-identity-summary.v2",
+      source_clock: report.source_clock,
+      workflow_identity: null,
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+      selection_status: report.selection_status,
+      current: report.current,
+      blocking_finding_codes: report.blocking_finding_codes,
+      postcheck_commands: report.postcheck_commands.map(summaryJsonCommand),
+      write_policy: report.write_policy,
+      source_command: "helix drive model --summary-json",
+      full_source_command: report.source_command,
+      view_command: summaryJsonCommand(report.view_command),
+      full_view_command: report.view_command,
+    };
+  }
+}
+
 drive
   .command("model")
   .description("emit selected drive model and candidate routes from current-location projection")
@@ -5932,6 +5963,36 @@ function summarizeProjectRecoveryPlan(
     view_command: summaryJsonCommand(plan.view_command),
     full_view_command: plan.view_command,
   };
+}
+
+function summarizeProjectFrontierRecoveryPlan(
+  plan: ProjectRecoveryPlan,
+  snapshot: ProjectCurrentLocationSnapshot,
+) {
+  try {
+    return {
+      ...summarizeProjectRecoveryPlan(plan, snapshot),
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+    };
+  } catch (cause) {
+    if (!(cause instanceof Error) || cause.message !== "cli_workflow_identity_invalid") {
+      throw cause;
+    }
+    return {
+      schema_version: "project-recovery-workflow-identity-summary.v2",
+      source_clock: plan.source_clock,
+      status: plan.status,
+      current: plan.current,
+      workflow_identity: null,
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+      selected_closure_action: plan.selected_closure_action,
+      write_policy: plan.write_policy,
+      source_command: "helix recovery plan --summary-json",
+      full_source_command: plan.source_command,
+      view_command: summaryJsonCommand(plan.view_command),
+      full_view_command: plan.view_command,
+    };
+  }
 }
 
 recovery
@@ -6198,7 +6259,10 @@ function buildSummarySurfaceCommandAudit(
     },
     {
       surface: "drive-model",
-      payload: summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot), snapshot),
+      payload: summarizeProjectFrontierDriveModelReport(
+        buildProjectDriveModelReport(snapshot),
+        snapshot,
+      ),
     },
     {
       surface: "skill-binding",
@@ -6206,7 +6270,7 @@ function buildSummarySurfaceCommandAudit(
     },
     {
       surface: "recovery-plan",
-      payload: summarizeProjectRecoveryPlan(
+      payload: summarizeProjectFrontierRecoveryPlan(
         buildProjectRecoveryPlan(snapshot, { limit: 1 }),
         snapshot,
       ),
@@ -6335,9 +6399,10 @@ function buildSummarySurfaceCommandAudit(
 }
 
 function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentLocationSnapshot) {
-  // Project frontier remains a separate #1125 successor consumer. Keep its compatibility
-  // producer local until that surface receives its own typed projection oracle.
-  const driveModel = buildProjectDriveModelReport(snapshot);
+  const driveModel = summarizeProjectFrontierDriveModelReport(
+    buildProjectDriveModelReport(snapshot),
+    snapshot,
+  );
   const functionDesignPolicy = summarizeProjectFunctionDesignPolicy(snapshot);
   const closeReadyReview = summarizeClosureReviewBundle(
     buildProjectClosureReviewBundle(snapshot, {
@@ -6389,23 +6454,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
             .length,
         }
       : null,
-    drive_model: {
-      forward_spine_model: driveModel.forward_spine_model,
-      registered_entry_models: driveModel.registered_entry_models,
-      registered_entry_model_count: driveModel.registered_entry_model_count,
-      missing_registered_entry_models: driveModel.missing_registered_entry_models,
-      selected_model: driveModel.selected_model,
-      selected_route_id: driveModel.selected_candidate.route_id,
-      selection_status: driveModel.selection_status,
-      default_model: driveModel.default_model,
-      candidate_count: driveModel.candidates.length,
-      candidate_models: driveModel.candidates.map((candidate) => candidate.model),
-      available_models: driveModel.available_models,
-      blocked_models: driveModel.blocked_models,
-      must_return_to_design: snapshot.drive_route.mustReturnToDesign,
-      selected_route_command: driveModel.selected_candidate.command,
-      source_command: driveModel.source_command,
-    },
+    drive_model: driveModel,
     closure_frontier: {
       action: closeReadyReview.action,
       approval_required: closeReadyReview.approval_required,
@@ -6593,13 +6642,8 @@ function buildProjectViewOutline(
       command: "helix roadmap current --summary-json",
     },
     drive_model: {
-      selected_model: projectFrontierSummary.drive_model.selected_model,
+      workflow_identity: projectFrontierSummary.drive_model.workflow_identity,
       selection_status: projectFrontierSummary.drive_model.selection_status,
-      forward_spine_model: projectFrontierSummary.drive_model.forward_spine_model,
-      registered_entry_model_count: projectFrontierSummary.drive_model.registered_entry_model_count,
-      missing_registered_entry_models:
-        projectFrontierSummary.drive_model.missing_registered_entry_models,
-      candidate_count: projectFrontierSummary.drive_model.candidate_count,
       command: "helix drive model --summary-json",
     },
     scrum_operation: projectFrontierSummary.scrum_operation
@@ -10107,8 +10151,9 @@ progress
         process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
         return;
       }
+      const identity = summary.drive_model.workflow_identity;
       process.stdout.write(
-        `progress frontier: current=${summary.current.layer}->${summary.current.l12_layer} status=${summary.current.status} model=${summary.drive_model.selected_model} closure=${summary.closure_frontier.action}:${summary.closure_frontier.total} skill=${summary.skill_binding.status} function_policy=${summary.function_design_policy.independent_layer_policy}\n`,
+        `progress frontier: current=${summary.current.layer}->${summary.current.l12_layer} status=${summary.current.status} workflow=${identity ? `${identity.target_axis}:${identity.target_id}` : "unresolved"} registry=${identity?.registry_version ?? "-"} closure=${summary.closure_frontier.action}:${summary.closure_frontier.total} skill=${summary.skill_binding.status} function_policy=${summary.function_design_policy.independent_layer_policy}\n`,
       );
     } finally {
       db.close();

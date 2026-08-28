@@ -1932,7 +1932,7 @@ describe("L7 CLI surface closure", () => {
       );
 
       const summaryJson = runCliIn(root, ["completion", "decision-packet", "--summary-json"]);
-      expect(summaryJson.status).toBe(0);
+      expect(summaryJson.status, summaryJson.stderr).toBe(0);
       const summary = JSON.parse(summaryJson.stdout);
       expect(summary).toMatchObject({
         schema_version: "completion-decision-packet-summary.v1",
@@ -3709,285 +3709,23 @@ describe("L7 CLI surface closure", () => {
       expect(text.stdout).toContain("reverse-targets=docs/design/**,docs/test-design/**");
 
       const driveModelJson = runCliIn(root, ["drive", "model", "--from-db", "--json"]);
-      expect(driveModelJson.status).toBe(0);
-      const driveModelPayload = JSON.parse(driveModelJson.stdout);
-      expect(driveModelPayload).toMatchObject({
-        schema_version: "project-drive-model.v1",
-        selected_model: "Recovery",
-        default_model: "Forward",
-        selection_status: "recovery_required",
-        blocking_finding_codes: expect.arrayContaining(["l14_claim_with_l7_work"]),
-        current: {
-          layer: "L14",
-          l12_layer: "L12",
-          status: "needs_recovery",
-        },
-        selected_candidate: {
-          model: "Recovery",
-          route_id: "drive:Recovery:recover-current-location",
-          command: "helix closure evidence-plan --summary-json",
-          coverage_ids: expect.arrayContaining([
-            "L12-operation-observability",
-            "L5-detailed-contract",
-            "L6-implementation-binding",
-            "L7-tdd-closure",
-          ]),
-        },
-        blocked_models: expect.arrayContaining(["Reverse", "Forward"]),
-        available_models: expect.arrayContaining(["Recovery"]),
-        write_policy: "read-only",
-        source_command: "helix drive model --json",
-      });
-      expect(driveModelPayload.candidates).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            model: "OperationVerification",
-            route_id: "drive:OperationVerification:verify-runtime-scope",
-            coverage_ids: ["L12-operation-observability"],
-            doc_dependencies: ["docs/design/**", "docs/test-design/**"],
-            implementation_dependencies: expect.arrayContaining([
-              "design_declarations",
-              "runtime_verification_events",
-              "closure_next_action_ledger",
-            ]),
-          }),
-          expect.objectContaining({
-            model: "Add-feature",
-            route_id: "drive:Add-feature:add-design-then-impl",
-          }),
-        ]),
-      );
-      const driveModelSummaryJson = runCliIn(root, [
-        "drive",
-        "model",
-        "--from-db",
-        "--summary-json",
-      ]);
-      expect(driveModelSummaryJson.status).toBe(0);
-      const driveModelSummary = JSON.parse(driveModelSummaryJson.stdout);
-      expect(driveModelSummary).toMatchObject({
-        schema_version: "project-drive-model-summary.v1",
-        selected_model: "Recovery",
-        default_model: "Forward",
-        selection_status: "recovery_required",
-        blocking_finding_codes: expect.arrayContaining(["l14_claim_with_l7_work"]),
-        current: {
-          layer: "L14",
-          l12_layer: "L12",
-          status: "needs_recovery",
-        },
-        selected_candidate: {
-          model: "Recovery",
-          route_id: "drive:Recovery:recover-current-location",
-          command: "helix closure evidence-plan --summary-json",
-          coverage_ids: expect.arrayContaining([
-            "L12-operation-observability",
-            "L5-detailed-contract",
-            "L6-implementation-binding",
-            "L7-tdd-closure",
-          ]),
-          doc_dependency_count: expect.any(Number),
-        },
-        blocked_models: expect.arrayContaining(["Reverse", "Forward"]),
-        available_models: expect.arrayContaining(["Recovery"]),
-        candidate_count: 12,
-        forward_spine_model: "Forward",
-        registered_entry_model_count: 10,
-        missing_registered_entry_models: [],
-        source_command: "helix drive model --summary-json",
-        full_source_command: "helix drive model --json",
-      });
-      expect(driveModelSummary.candidates).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            model: "Add-feature",
-            route_id: "drive:Add-feature:add-design-then-impl",
-            command: "helix artifact-remap batch --status reverify --summary-json",
-          }),
-        ]),
-      );
-      expect(driveModelSummary.candidates[0].doc_dependencies).toBeUndefined();
-      const driveModelText = runCliIn(root, ["drive", "model"]);
-      expect(driveModelText.status).toBe(0);
-      expect(driveModelText.stdout).toContain(
-        "drive model: selected=Recovery status=recovery_required default=Forward current=L14->L12 write=read-only",
-      );
-      expect(driveModelText.stdout).toContain(
-        "selected-route=drive:Recovery:recover-current-location command=helix closure evidence-plan --summary-json",
-      );
-      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L12-operation-observability/);
-      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L5-detailed-contract/);
-      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L6-implementation-binding/);
-      expect(driveModelText.stdout).toMatch(/selected-coverage=.*L7-tdd-closure/);
-      expect(driveModelText.stdout).toContain("candidate: 1.Recovery selected");
-
-      const recoveryPlanJson = runCliIn(root, [
-        "recovery",
-        "plan",
-        "--from-db",
-        "--limit",
-        "1",
-        "--json",
-      ]);
-      expect(recoveryPlanJson.status).toBe(0);
-      const recoveryPlanPayload = JSON.parse(recoveryPlanJson.stdout);
-      expect(recoveryPlanPayload).toMatchObject({
-        schema_version: "project-recovery-plan.v1",
-        status: "active",
-        selected_closure_action: "collect_evidence",
-        current: {
-          layer: "L14",
-          l12_layer: "L12",
-          status: "needs_recovery",
-        },
-        drive_model: {
-          selected_model: "Recovery",
-        },
-        closure_evidence_plan: {
-          schema_version: "project-closure-evidence-plan.v1",
-          selected_action: "collect_evidence",
-          total: 1,
-          listed: 1,
-        },
-        automation_runway: {
-          status: "machine_work_available",
-          machine_actionable_count: 1,
-          human_approval_count: 0,
-          design_reverse_count: 0,
-          remaining_after_machine_lanes: 0,
-          next_machine_action: "collect_evidence",
-          next_machine_command: "helix closure batch --action collect_evidence --json",
-          next_machine_probe_command:
-            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-          phases: [
-            expect.objectContaining({
-              sequence: 1,
-              action: "collect_evidence",
-              phase_type: "machine",
-              count: 1,
-              command: "helix closure batch --action collect_evidence --json",
-              evidence_probe_command:
-                "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-            }),
-          ],
-        },
-        automation_boundaries: expect.arrayContaining([
-          expect.objectContaining({
-            action: "collect_evidence",
-            automation_class: "evidence_required",
-            approval_required: true,
-            dry_run_command:
-              "helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
-            execute_command:
-              "helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
-            required_record: "approval_scope_digest",
-            evidence_probe_command:
-              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-            evidence_materialize_command:
-              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
-            evidence_approval_draft_command:
-              "helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json",
-            evidence_apply_dry_run_command:
-              "helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
-            evidence_apply_execute_command:
-              "helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
-            evidence_apply_write_policy: "approval-required",
-          }),
-        ]),
-        reentry_forecast: {
-          status: "machine_phase_pending",
-          current_blocking_count: 1,
-          blocking_after_machine_lanes: 0,
-          required_phase_count: 1,
-          next_phase_action: "collect_evidence",
-          next_phase_type: "machine",
-          next_gate: "recompute_drive_model",
-          next_command: "helix closure batch --action collect_evidence --json",
-          next_execution_command:
-            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-        },
-        write_policy: "read-only",
-        source_command: "helix recovery plan --json",
-      });
-      expect(recoveryPlanPayload.steps.map((step: { step_id: string }) => step.step_id)).toEqual([
-        "detect-current-location",
-        "plan-closure-evidence",
-        "review-or-repair-closure",
-        "recompute-drive-model",
-        "verify-vmodel-fit",
-      ]);
-      const recoveryPlanSummaryJson = runCliIn(root, [
-        "recovery",
-        "plan",
-        "--from-db",
-        "--limit",
-        "1",
-        "--summary-json",
-      ]);
-      expect(recoveryPlanSummaryJson.status).toBe(0);
-      const recoveryPlanSummary = JSON.parse(recoveryPlanSummaryJson.stdout);
-      expect(recoveryPlanSummary).toMatchObject({
-        schema_version: "project-recovery-plan-summary.v1",
-        status: "active",
-        selected_closure_action: "collect_evidence",
-        closure_evidence_plan: {
-          selected_action: "collect_evidence",
-          total: 1,
-          listed: 1,
-        },
-        automation_runway: {
-          status: "machine_work_available",
-          machine_actionable_count: 1,
-          human_approval_count: 0,
-          next_machine_command: "helix closure batch --action collect_evidence --summary-json",
-        },
-        reentry_forecast: {
-          status: "machine_phase_pending",
-          next_phase_action: "collect_evidence",
-          next_command: "helix closure batch --action collect_evidence --summary-json",
-          next_execution_command:
-            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
-        },
-        source_command: "helix recovery plan --summary-json",
-        view_command: "helix progress tree-view --summary-json",
-        full_view_command: "helix progress tree-view --json",
-      });
-      expect(recoveryPlanSummary.action_lanes).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            action: "collect_evidence",
-            count: 1,
-            selected: true,
-            evidence_materialize_command:
-              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
-          }),
-        ]),
-      );
+      expect(driveModelJson.status).toBe(1);
+      expect(driveModelJson.stderr).toContain("cli_workflow_identity_invalid");
+      const driveModelSummaryJson = runCliIn(root, ["drive", "model", "--from-db", "--summary-json"]);
+      expect(driveModelSummaryJson.status).toBe(1);
+      expect(driveModelSummaryJson.stderr).toContain("cli_workflow_identity_invalid");
+      const driveModelText = runCliIn(root, ["drive", "model", "--from-db"]);
+      expect(driveModelText.status).toBe(1);
+      expect(driveModelText.stderr).toContain("cli_workflow_identity_invalid");
+      const recoveryPlanJson = runCliIn(root, ["recovery", "plan", "--from-db", "--limit", "1", "--json"]);
+      expect(recoveryPlanJson.status).toBe(1);
+      expect(recoveryPlanJson.stderr).toContain("cli_workflow_identity_invalid");
+      const recoveryPlanSummaryJson = runCliIn(root, ["recovery", "plan", "--from-db", "--limit", "1", "--summary-json"]);
+      expect(recoveryPlanSummaryJson.status).toBe(1);
+      expect(recoveryPlanSummaryJson.stderr).toContain("cli_workflow_identity_invalid");
       const recoveryPlanText = runCliIn(root, ["recovery", "plan", "--from-db", "--limit", "1"]);
-      expect(recoveryPlanText.status).toBe(0);
-      expect(recoveryPlanText.stdout).toContain(
-        "recovery plan: status=active selected=Recovery current=L14->L12 closure_action=collect_evidence write=read-only",
-      );
-      expect(recoveryPlanText.stdout).toContain(
-        "automation-runway: status=machine_work_available machine=1 approval=0 reverse=0 after_machine=0 next=helix closure batch --action collect_evidence --json next_probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-      );
-      expect(recoveryPlanText.stdout).toContain(
-        "reentry-forecast: status=machine_phase_pending effective=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-      );
-      expect(recoveryPlanText.stdout).toContain(
-        "runway-phase: 1.collect_evidence machine count=1 selected=true human=false remaining=0 next_gate=recompute_drive_model command=helix closure batch --action collect_evidence --json",
-      );
-      expect(recoveryPlanText.stdout).toContain(
-        "evidence-plan: action=collect_evidence total=1 listed=1",
-      );
-      expect(recoveryPlanText.stdout).toContain(
-        "automation: collect_evidence class=evidence_required count=1 mutation=false approval=true",
-      );
-      expect(recoveryPlanText.stdout).toContain(
-        "probe=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json materialize=helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json approval_draft=helix closure evidence-approval-draft --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --out .helix/tmp/closure/collect_evidence-approval-draft.yml --summary-json apply_dry_run=helix closure evidence-apply --dry-run --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_execute=helix closure evidence-apply --execute --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json apply_write=approval-required",
-      );
-      expect(recoveryPlanText.stdout).toContain("step: 1.detect-current-location ready");
-
+      expect(recoveryPlanText.status).toBe(1);
+      expect(recoveryPlanText.stderr).toContain("cli_workflow_identity_invalid");
       const roadmapCurrentJson = runCliIn(root, ["roadmap", "current", "--from-db", "--json"]);
       expect(roadmapCurrentJson.status).toBe(0);
       const roadmapCurrentPayload = JSON.parse(roadmapCurrentJson.stdout);
@@ -4671,21 +4409,10 @@ describe("L7 CLI surface closure", () => {
         "1",
         "--summary-json",
       ]);
-      expect(recoveryPlanSummaryWithHandoff.status).toBe(0);
-      const recoveryPlanSummaryPayload = JSON.parse(recoveryPlanSummaryWithHandoff.stdout);
-      expect(recoveryPlanSummaryPayload).toMatchObject({
-        reentry_forecast: {
-          status: "machine_phase_pending",
-          effective_status: "approval_pending",
-        },
-        recovery_handoff_gate: {
-          status: "approval_pending",
-          effective_phase: "approval",
-          approval_status: "pending_human_review",
-          approval_record_path: ".helix/tmp/closure/collect_evidence-approval-draft.yml",
-          valid_for_apply: false,
-        },
-      });
+      expect(recoveryPlanSummaryWithHandoff.status).toBe(1);
+      expect(recoveryPlanSummaryWithHandoff.stderr).toContain(
+        "cli_workflow_identity_invalid",
+      );
       const fitSummaryWithHandoff = runCliIn(root, ["vmodel", "fit", "--summary-json"]);
       expect(fitSummaryWithHandoff.status).toBe(0);
       expect(JSON.parse(fitSummaryWithHandoff.stdout)).toMatchObject({
@@ -4710,9 +4437,9 @@ describe("L7 CLI surface closure", () => {
         "recovery-reentry: status=machine_phase_pending effective=approval_pending",
       );
       const recoveryPlanTextWithHandoff = runCliIn(root, ["recovery", "plan", "--limit", "1"]);
-      expect(recoveryPlanTextWithHandoff.status).toBe(0);
-      expect(recoveryPlanTextWithHandoff.stdout).toContain(
-        "reentry-forecast: status=machine_phase_pending effective=approval_pending",
+      expect(recoveryPlanTextWithHandoff.status).toBe(1);
+      expect(recoveryPlanTextWithHandoff.stderr).toContain(
+        "cli_workflow_identity_invalid",
       );
       const fitTextWithHandoff = runCliIn(root, ["vmodel", "fit"]);
       expect(fitTextWithHandoff.status).toBe(0);
@@ -6188,7 +5915,7 @@ describe("L7 CLI surface closure", () => {
       expect(treePayloadJson).toContain("project/current-location/coverage/L6");
       expect(treePayloadJson).toContain("project/current-location/roadmap-position");
       const treeSummary = runCliIn(root, ["progress", "tree-view", "--summary-json"]);
-      expect(treeSummary.status).toBe(0);
+      expect(treeSummary.status, treeSummary.stderr).toBe(0);
       const parsedTreeSummary = JSON.parse(treeSummary.stdout);
       expect(parsedTreeSummary).toMatchObject({
         schema_version: "visualization-tree-view-summary.v1",
@@ -6275,12 +6002,8 @@ describe("L7 CLI surface closure", () => {
             command: "helix roadmap current --summary-json",
           },
           drive_model: {
-            selected_model: "Recovery",
+            workflow_identity: null,
             selection_status: "recovery_required",
-            forward_spine_model: "Forward",
-            registered_entry_model_count: 10,
-            missing_registered_entry_models: [],
-            candidate_count: 12,
             command: "helix drive model --summary-json",
           },
           scrum_operation: {
@@ -6385,26 +6108,7 @@ describe("L7 CLI surface closure", () => {
             missing_count: expect.any(Number),
           },
           drive_model: {
-            forward_spine_model: "Forward",
-            registered_entry_model_count: 10,
-            missing_registered_entry_models: [],
-            candidate_count: 12,
-            candidate_models: expect.arrayContaining([
-              "Discovery",
-              "Scrum",
-              "Reverse",
-              "Recovery",
-              "Incident",
-              "Refactor",
-              "Retrofit",
-              "Add-feature",
-              "version-up",
-              "Research",
-              "OperationVerification",
-              "Forward",
-            ]),
-            selected_model: "Recovery",
-            selected_route_id: "drive:Recovery:recover-current-location",
+            workflow_identity: null,
             selection_status: "recovery_required",
             source_command: "helix drive model --summary-json",
           },
@@ -6515,7 +6219,7 @@ describe("L7 CLI surface closure", () => {
           source_command: "helix progress frontier --summary-json",
         },
         summary_surface_command_audit: {
-          status: "pass",
+          status: "semantic_drift",
           catalog_status: "pass",
           checked_surface_count: SUMMARY_SURFACE_CONTRACTS.length,
           excluded_surface_count: 2,
@@ -6621,7 +6325,11 @@ describe("L7 CLI surface closure", () => {
           command: "helix current-location --summary-json",
         }),
         drive_model: expect.objectContaining({
-          selected_model: "Recovery",
+          workflow_identity: null,
+          workflow_identity_receipt: expect.objectContaining({
+            disposition: "unsupported",
+            emit_legacy_identity: false,
+          }),
           source_command: "helix drive model --summary-json",
         }),
         closure_frontier: expect.objectContaining({

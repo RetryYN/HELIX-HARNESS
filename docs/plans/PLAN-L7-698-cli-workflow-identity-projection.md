@@ -29,7 +29,7 @@ backprop_decision_reason: "requirements v1.3.13 §4.2.1〜4.2.4がtyped identity
 no_code_decision: modify
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L7-692のconsumer inventory、PLAN-L7-693のtyped DB projection、PLAN-L7-694のvisualization projectionがcurrent mainで成立する"
-contract_postconditions: "drive modelとrecoveryのJSON／summary／textがregistry version、registry digest、target_axis、target_idだけをcurrent workflow identityとして返す"
+contract_postconditions: "drive model、recovery、completion／Project frontier、tree viewがregistry version、registry digest、target_axis、target_idだけをcurrent workflow identityとして返す"
 contract_invariants: "provider model、specialist drive、skill applicabilityをworkflow identityへ畳み込まず、#1044/#1059の所有surfaceへ触れない"
 contract_failures: "旧selected_model／default_model／available_models／drive_modelの再出力、partial tuple、unknown axis／ID、stale digest、receipt不一致をfail-closeする"
 tdd_red_required: true
@@ -76,6 +76,7 @@ modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 ---
 
 # CLI typed workflow identity projection

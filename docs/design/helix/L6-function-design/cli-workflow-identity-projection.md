@@ -15,7 +15,7 @@ pair_artifact: docs/test-design/helix/L8-cli-workflow-identity-projection-unit-t
 
 ## 目的
 
-`helix drive model`と`helix recovery plan`のcurrent outputを、current-location composition boundaryで
+`helix drive model`、`helix recovery plan`、completion frontier、Project frontier／tree viewのcurrent outputを、current-location composition boundaryで
 検証済みのtyped workflow identityへ一方向投影する。旧`selected_model`、`default_model`、
 `available_models`、`drive_model`をcurrent identityとして再出力しない。
 
@@ -28,7 +28,7 @@ pair_artifact: docs/test-design/helix/L8-cli-workflow-identity-projection-unit-t
 
 ## 出力契約
 
-- JSONとsummaryは`workflow_identity`を一度だけcurrent primary identityとして返す。
+- JSONとsummary、およびそれらを包むfrontier／tree viewは`workflow_identity`をcurrent primary identityとして返す。
 - textは`axis:id`とregistry versionを表示し、旧model名をidentity labelとして表示しない。
 - candidate、availability、default等の旧workflow model集合をcurrent outputへ残さない。
 - provider model、specialist drive、skill applicabilityは別schema／別ownerに保持し、本value objectへ入れない。
@@ -41,4 +41,5 @@ partial tuple、unknown axis／ID、stale digest、identity／receipt不一致�
 ## 移行境界
 
 本sliceはdrive-model reportの内部compatibility producerを即時削除しないが、CLI current outputからは完全に
-隔離する。skill bindingは#1044/#1059、frontier／Project view／vmodel fitは#1125の後続sliceが所有する。
+隔離する。completion frontier／Project frontier／tree viewが旧producerを再包装する経路も同じcurrent-output
+境界として閉じる。skill bindingは#1044/#1059、vmodel fit内部判定は#1125の後続sliceが所有する。

@@ -25,5 +25,6 @@ responsibility_owner: workflow-output-cli-projection
 | U-CLIWI-002 | `helix recovery plan`のJSON／summary／text | 同じtyped tupleを返し、nested `drive_model`やlegacy selected labelを再出力しない | `tests/cli-workflow-identity-projection.test.ts` |
 | U-CLIWI-003 | typed tupleへlegacy keyを再注入するseed mutation | 深さ優先検査がexact pathを返しmutationをkillする | `tests/cli-workflow-identity-projection.test.ts` |
 | U-CLIWI-004 | stale digest、partial tuple、identity／receipt不一致 | `cli_workflow_identity_invalid`で個別にfail-closeする | `tests/cli-workflow-identity-projection.test.ts` |
+| U-CLIWI-005 | completion frontier／Project frontier／tree view | nested legacy model集合を再包装せずtyped tupleを投影する。identity unsupported fixtureは全surfaceでfail-closeする | `tests/cli-surface.test.ts` |
 
 CLI subprocessの成功だけでtyped identity成立を主張せず、pure value objectへ退行を直接注入する。
