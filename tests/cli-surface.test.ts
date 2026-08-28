@@ -3711,16 +3711,35 @@ describe("L7 CLI surface closure", () => {
       const driveModelJson = runCliIn(root, ["drive", "model", "--from-db", "--json"]);
       expect(driveModelJson.status).toBe(1);
       expect(driveModelJson.stderr).toContain("cli_workflow_identity_invalid");
-      const driveModelSummaryJson = runCliIn(root, ["drive", "model", "--from-db", "--summary-json"]);
+      const driveModelSummaryJson = runCliIn(root, [
+        "drive",
+        "model",
+        "--from-db",
+        "--summary-json",
+      ]);
       expect(driveModelSummaryJson.status).toBe(1);
       expect(driveModelSummaryJson.stderr).toContain("cli_workflow_identity_invalid");
       const driveModelText = runCliIn(root, ["drive", "model", "--from-db"]);
       expect(driveModelText.status).toBe(1);
       expect(driveModelText.stderr).toContain("cli_workflow_identity_invalid");
-      const recoveryPlanJson = runCliIn(root, ["recovery", "plan", "--from-db", "--limit", "1", "--json"]);
+      const recoveryPlanJson = runCliIn(root, [
+        "recovery",
+        "plan",
+        "--from-db",
+        "--limit",
+        "1",
+        "--json",
+      ]);
       expect(recoveryPlanJson.status).toBe(1);
       expect(recoveryPlanJson.stderr).toContain("cli_workflow_identity_invalid");
-      const recoveryPlanSummaryJson = runCliIn(root, ["recovery", "plan", "--from-db", "--limit", "1", "--summary-json"]);
+      const recoveryPlanSummaryJson = runCliIn(root, [
+        "recovery",
+        "plan",
+        "--from-db",
+        "--limit",
+        "1",
+        "--summary-json",
+      ]);
       expect(recoveryPlanSummaryJson.status).toBe(1);
       expect(recoveryPlanSummaryJson.stderr).toContain("cli_workflow_identity_invalid");
       const recoveryPlanText = runCliIn(root, ["recovery", "plan", "--from-db", "--limit", "1"]);
@@ -4410,9 +4429,7 @@ describe("L7 CLI surface closure", () => {
         "--summary-json",
       ]);
       expect(recoveryPlanSummaryWithHandoff.status).toBe(1);
-      expect(recoveryPlanSummaryWithHandoff.stderr).toContain(
-        "cli_workflow_identity_invalid",
-      );
+      expect(recoveryPlanSummaryWithHandoff.stderr).toContain("cli_workflow_identity_invalid");
       const fitSummaryWithHandoff = runCliIn(root, ["vmodel", "fit", "--summary-json"]);
       expect(fitSummaryWithHandoff.status).toBe(0);
       expect(JSON.parse(fitSummaryWithHandoff.stdout)).toMatchObject({
@@ -4438,9 +4455,7 @@ describe("L7 CLI surface closure", () => {
       );
       const recoveryPlanTextWithHandoff = runCliIn(root, ["recovery", "plan", "--limit", "1"]);
       expect(recoveryPlanTextWithHandoff.status).toBe(1);
-      expect(recoveryPlanTextWithHandoff.stderr).toContain(
-        "cli_workflow_identity_invalid",
-      );
+      expect(recoveryPlanTextWithHandoff.stderr).toContain("cli_workflow_identity_invalid");
       const fitTextWithHandoff = runCliIn(root, ["vmodel", "fit"]);
       expect(fitTextWithHandoff.status).toBe(0);
       expect(fitTextWithHandoff.stdout).toContain(
