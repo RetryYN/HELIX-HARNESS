@@ -358,5 +358,19 @@ describe("Windows Lite canary bounded queue／expiry", () => {
         candidate: queueBinding("30"),
       }),
     ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" });
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: true, active: [], waiting: [], unknown: true },
+        candidate: queueBinding("31"),
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" });
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: true, active: [], waiting: [] },
+        candidate: { ...queueBinding("32"), run_attempt: 0 },
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_INVALID" });
   });
 });

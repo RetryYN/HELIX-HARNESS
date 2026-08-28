@@ -101,6 +101,7 @@ const POLICY_KEYS = [
   "schema_version",
 ] as const;
 const WINDOW_KEYS = ["sample_limit", "window_id"] as const;
+const QUEUE_STATE_KEYS = ["active", "state_known", "waiting"] as const;
 const BINDING_KEYS = [
   "assignment_id",
   "candidate_head",
@@ -289,6 +290,7 @@ export function evaluateWindowsCanaryQueue(input: {
   if (!policy.ok) return policy;
   if (
     !isRecord(input.state) ||
+    !exactKeys(input.state, QUEUE_STATE_KEYS) ||
     typeof input.state.state_known !== "boolean" ||
     !Array.isArray(input.state.active) ||
     !Array.isArray(input.state.waiting) ||
@@ -299,9 +301,10 @@ export function evaluateWindowsCanaryQueue(input: {
   const active = validatedBindings(input.state.active);
   const waiting = validatedBindings(input.state.waiting);
   const candidate = validateWindowsCanaryLeaseBinding(input.candidate);
-  if (!active || !waiting || !candidate.ok) {
+  if (!active || !waiting) {
     return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
   }
+  if (!candidate.ok) return candidate;
   if (active.length > policy.policy.max_active || waiting.length > policy.policy.max_waiting) {
     return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
   }
