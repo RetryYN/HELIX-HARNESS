@@ -38,7 +38,7 @@ function schemaNames(db: ReturnType<typeof openHarnessDb>): string[] {
     .map((row) => String(row.name));
 }
 
-describe("STATE-DB-LEGACY-WORKFLOW-OBJECT-RETIREMENT-001", () => {
+describe("STATE-DB-WORKFLOW-RETIREMENT-001", () => {
   it("U-SDLW-001: revision 46から旧workflow objectを除去する", () => {
     const db = seedRevision46LegacyDb();
     try {

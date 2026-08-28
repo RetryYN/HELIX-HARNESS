@@ -18,7 +18,7 @@ created: 2026-08-28
 updated: 2026-08-28
 owner: Codex / TL
 github_issue_id: 1129
-behavior_contract_id: STATE-DB-LEGACY-WORKFLOW-OBJECT-RETIREMENT-001
+behavior_contract_id: STATE-DB-WORKFLOW-RETIREMENT-001
 responsibility_owner: state-db-schema-migration
 engineering_discipline_required: true
 change_slice: atomic
