@@ -38,7 +38,7 @@ related_l9: docs/test-design/helix/L9-windows-lite-canary-admission-integration-
 | U-WLCA-014 | input immutability | evaluatorが入力を変更せず、返却値をdeep freeze | shallow alias、入力凍結、副作用を拒否 | 同上 |
 | U-WLCA-015 | failure precedence | policy→queue→lease→binding→measurementの順で最初のfailureを返す | 後段successやretryで先行failureを相殺しない | 同上 |
 
-## PLAN-L7-696 executable oracle binding
+## PLAN-L7-696 実行可能oracle束縛
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
