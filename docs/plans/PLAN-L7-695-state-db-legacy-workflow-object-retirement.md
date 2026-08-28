@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-695-state-db-legacy-workflow-object-retirement
 title: "PLAN-L7-695: 既存state DBからlegacy workflow objectを除去する"
-kind: impl
+kind: retrofit
 layer: L7
 drive: db
 status: draft
