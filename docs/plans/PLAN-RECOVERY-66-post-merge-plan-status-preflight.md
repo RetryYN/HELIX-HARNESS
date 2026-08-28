@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L7-696-post-merge-plan-status-preflight
-title: "PLAN-L7-696: merged-plan-statusをPRのpost-merge候補へ前倒しする"
+plan_id: PLAN-RECOVERY-66-post-merge-plan-status-preflight
+title: "PLAN-RECOVERY-66: merged-plan-statusをPRのpost-merge候補へ前倒しする"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -50,7 +50,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — merged-plan-status既存authorityの再利用境界" }
   - { role: qa, slot_label: "QA — branch-only deliverableとworkflow mutation" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-696-post-merge-plan-status-preflight.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-66-post-merge-plan-status-preflight.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/post-merge-plan-status-preflight.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-post-merge-plan-status-preflight-unit-test-design.md, artifact_type: test_design }
 modifies:

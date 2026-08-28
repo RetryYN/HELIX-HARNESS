@@ -9,7 +9,7 @@ status: draft
 created: 2026-08-28
 updated: 2026-08-28
 owner: QA / Codex TL
-plan: docs/plans/PLAN-L7-696-post-merge-plan-status-preflight.md
+plan: docs/plans/PLAN-RECOVERY-66-post-merge-plan-status-preflight.md
 pair_artifact: docs/design/helix/L6-function-design/post-merge-plan-status-preflight.md
 github_issue_id: 1132
 behavior_contract_id: POST-MERGE-PLAN-STATUS-PREFLIGHT-001
