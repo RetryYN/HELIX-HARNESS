@@ -13,7 +13,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REDESIGN
 entry_signals:
-  - "po_directive:HELIX_技術環境継続追従_新要求.mdを正本へ分解して取り込む"
+  - "po_directive:HELIX_技術環境継続追従_新要求 (1).mdを後勝ち原稿として正本へ分解して取り込む"
 created: 2026-08-29
 updated: 2026-08-29
 owner: Codex / TL
@@ -24,8 +24,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
-backprop_decision: required
-backprop_decision_reason: "外部technology semantic driftをversion pin更新ではなくRequirement/Definition/OPS lifecycleへ再束縛する新Feature契約のため。"
+backprop_decision: not_required
+backprop_decision_reason: "本PLAN自身が新Feature authorityをL3/L10へ追加する上流sliceであり、既存下流artifactからのbackpropではない。"
 no_code_decision: design_only
 ddd_modeling_decision: aggregate
 contract_preconditions: "Technology Stack Authority、WCC、OPS Backflow、System Synthesisのstable IDと責務境界が読める"
@@ -40,13 +40,10 @@ mutation_oracle_evidence: "pending: FR/R/AC欠落、edge dangling、stage skip�
 complexity_effect: justified_positive
 complexity_justification: "既存4 authorityを別実装へ複製せず、一つのreconciliation lifecycleで接続するための最小追加aggregate"
 removal_trigger: "外部技術追従をSystem SynthesisとOPS lifecycleが同じtyped contractで完全内包した時"
-parent_design: docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md
+parent_design: docs/design/helix/L3-requirements/technology-stack-authority.md
 pair_artifact: docs/test-design/helix/technology-environment-reconciliation-acceptance.md
-verification_bindings:
-  - { parent_design: docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md, oracle_id: TER-AC-001, test_path: tests/technology-environment-reconciliation-requirements.test.ts }
-  - { parent_design: docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md, oracle_id: TER-AC-018, test_path: tests/technology-environment-reconciliation-requirements.test.ts }
 dependencies:
-  parent: null
+  parent: docs/design/helix/L3-requirements/technology-stack-authority.md
   requires: []
   blocks: []
   references:
@@ -54,6 +51,8 @@ dependencies:
     - "issue:1172"
     - "issue:1160"
     - "issue:1033"
+    - "issue:1185"
+    - "issue:1184"
 agent_slots:
   - { role: aim, slot_label: "AIM — external semantic driftとauthority edge" }
   - { role: qa, slot_label: "QA — 6/12/18 exact setとnegative oracle" }

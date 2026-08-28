@@ -47,5 +47,8 @@ describe("Technology Environment Reconciliation Authority", () => {
     }
     expect([...requirement.matchAll(/^\| TER-(\d{2}) \| #(\d+) /gm)]).toHaveLength(7);
     expect(requirement).toContain("別DB正本、別workflow分類、provider固有Coreを作らない");
+    expect(requirement).toContain("Action full SHA、runner/toolchain effective identity");
+    expect(requirement).toContain("#1185はTERの新しいCore sliceではなく");
+    expect(requirement).toContain("Bootstrap Trust Root #1186");
   });
 });

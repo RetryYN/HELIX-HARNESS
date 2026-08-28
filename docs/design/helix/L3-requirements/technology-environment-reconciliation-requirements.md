@@ -47,6 +47,8 @@ HELIX外部で独立更新されるAI provider、CLI、SDK、IDE、MCP、GitHub 
 - `TER-R-03 Event-driven Detection`: version、schema、default、deprecation、EOL、permission、hook、memory、sandbox、network、credential、API、support policy変化でReconciliation episodeを起動する。changelog文字列だけを証拠にしない。
 - `TER-R-04 Periodic Full Reconciliation`: release wave、期間、provider admission更新、障害再発、unknown/stale attestation増加をtriggerに全inventoryを再検証する。周期だけで自動更新しない。
 
+current GitHub Actionsのmutable tag、runner alias、unpinned OS packageは初期reconciliation対象である。是正実装#1185は#270のGitHub Security Admissionと本authorityを共同前提とし、Action full SHA、runner/toolchain effective identity、同一environment再現性を証明する。mutable environmentで得た別世代greenを同一候補の再現証拠へ流用しない。
+
 ### TER-FR-003 Semantic DiffとHELIX invariant影響解析
 
 - `TER-R-05 Semantic Diff`: 設定意味、default、permission、persistence、I/O、failure mode、sandbox、network、cost、performance、reproducibility、security、privacy、compatibilityを比較し、version不変のbehavior driftも検出する。
@@ -103,6 +105,8 @@ Inventory / Current Baseline
 | TER-07 | #1181 | HELIX self-dogfood E2E |
 
 依存順はTER-01→02→03→04→05→06→07とする。既存Technology Stack Authority、WCC、Product Lifecycle Operations、System Synthesisを再利用し、別DB正本、別workflow分類、provider固有Coreを作らない。
+
+#1185はTERの新しいCore sliceではなく、confirmed security requirementとcurrent workflowの矛盾を閉じる初期consumerである。Bootstrap Trust Root #1186、Repository Authority DR #1187、retention/purge #1188は#1184が所有し、本authorityへ混載しない。
 
 ## 4. 非対象
 
