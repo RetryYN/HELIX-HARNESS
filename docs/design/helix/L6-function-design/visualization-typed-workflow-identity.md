@@ -2,7 +2,7 @@
 title: "visualization typed workflow identity projection"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-28
 updated: 2026-08-28
 owner: Codex / TL

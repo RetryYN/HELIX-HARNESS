@@ -4,7 +4,7 @@ title: "PLAN-L7-694: visualizationをtyped workflow identityへ移行する"
 kind: impl
 layer: L7
 drive: fullstack
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
