@@ -93,7 +93,7 @@ standalone debt PLAN の discharge steps:
 1. [直列] V-model gap を特定する: どの layer doc または test が欠落/破損しているか
 2. [直列] 欠落 artifact（design doc / test design）を作成または修復する
 3. [並列] `debt_reason` の範囲に限定して `src/` の fix を実装する
-4. [並列] `bun run typecheck && bun run lint && bun run test` を green にする
+4. [並列] `npm run typecheck && npm run lint && npm run test` を green にする
 5. [直列] `helix doctor` で新規 governance failure が無いことを確認する
 6. [直列] `helix review --uncommitted` で debt PLAN `review_evidence` を埋める
 7. [直列] `status: done` にし、session boundary なら `helix status` で continuation projection を確認する
@@ -105,7 +105,7 @@ standalone debt PLAN の discharge steps:
 
 - `dependencies` に Reverse back-fill PLAN を持たない `add-impl` PLAN。
 - same file 内に PLAN-linked rationale が無い `@ts-ignore` または `// biome-ignore` comment
-  （`bun run lint` で検出可能）。
+  （`npm run lint` で検出可能）。
 - PLAN `generates` field に列挙された design doc path が disk 上に存在しない。
 - `review_evidence: []` のままの `trace-freeze` PLAN。
 

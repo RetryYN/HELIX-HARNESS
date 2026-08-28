@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
@@ -40,6 +41,12 @@ describe("L3 progression authority rebaseline", () => {
     expect(authority).toContain(
       "Bunはhistorical evidenceとnegative detector vocabularyにだけ隔離し、active、fallback、rollbackのauthorityへ再昇格させない",
     );
+  });
+
+  it("keeps the catalog reviewed digest pinned to the current artifact bytes", () => {
+    const catalogPath = "docs/design/design-catalog.yaml";
+    const actualDigest = createHash("sha256").update(readFileSync(catalogPath)).digest("hex");
+    expect(L3_PROGRESSION_REVIEWED_DIGESTS[catalogPath]).toBe(actualDigest);
   });
 
   it("adds canonical metadata to every legacy physical L0-L3 frontmatter artifact", () => {

@@ -146,10 +146,17 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
       expect.arrayContaining([
         "snapshot_id",
         "current_status",
-        "selected_drive_model",
+        "workflow_identity_schema_version",
+        "workflow_registry_version",
+        "workflow_registry_source_digest",
+        "workflow_target_axis",
+        "workflow_target_id",
         "operation_observed_gap",
         "snapshot_hash",
       ]),
+    );
+    expect(currentLocationColumns).not.toEqual(
+      expect.arrayContaining(["selected_drive_model", "default_drive_model"]),
     );
     const artifactRemapColumns = db
       .prepare("PRAGMA table_info(project_artifact_remap)")
@@ -266,7 +273,6 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     );
     const vmodelReadModelTables = [
       "project_current_location",
-      "project_drive_model_candidates",
       "project_roadmap_current_actions",
       "project_zip_adoption_decisions",
       "project_tailoring_decisions",

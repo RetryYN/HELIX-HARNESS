@@ -392,4 +392,172 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("fails closed when PLAN frontmatter cannot be parsed for generates or modifies", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-merged-plan-parse-failure-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "src"), { recursive: true });
+      writeFileSync(join(root, "src", "merged.ts"), "export const merged = true;\n", "utf8");
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-TEST-1001-malformed.md"),
+        [
+          "---",
+          "plan_id: PLAN-TEST-1001-malformed",
+          "status: draft",
+          "kind: impl",
+          "generates:",
+          "  - artifact_path: src/merged.ts",
+          "    artifact_type: source_module",
+          "modifies:",
+          "  - artifact_path: src/existing.ts",
+          "    artifact_type: source_module",
+          String.raw`broken: "\s"`,
+          "---",
+          "",
+          "body",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+
+      const result = checkMergedPlanStatus(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("PLAN-TEST-1001-malformed");
+      expect(result.messages.join("\n")).toContain("PLAN_FRONTMATTER_PARSE_FAILED");
+
+      const input = loadMergedPlanStatusInput(root);
+      expect(input.parseFailures).toEqual([
+        {
+          planId: "PLAN-TEST-1001-malformed",
+          failure_code: "PLAN_FRONTMATTER_PARSE_FAILED",
+        },
+      ]);
+      expect(input.plans[0]?.mergedArtifacts).toEqual([]);
+      expect(input.plans[0]?.invalidModifications).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each([
+    [
+      "missing-frontmatter",
+      [
+        "plan_id: PLAN-TEST-1001-missing-frontmatter",
+        "status: draft",
+        "kind: impl",
+        "generates:",
+        "  - artifact_path: src/merged.ts",
+      ],
+    ],
+    ["sequence-root", ["---", "- not", "- a-mapping", "---", "", "body"]],
+    ["scalar-root", ["---", "not-a-mapping", "---", "", "body"]],
+    [
+      "generates-not-array",
+      [
+        "---",
+        "plan_id: PLAN-TEST-1001-generates-not-array",
+        "status: draft",
+        "kind: impl",
+        "generates: src/merged.ts",
+        "---",
+      ],
+    ],
+    [
+      "modifies-not-array",
+      [
+        "---",
+        "plan_id: PLAN-TEST-1001-modifies-not-array",
+        "status: draft",
+        "kind: impl",
+        "modifies:",
+        "  artifact_path: src/existing.ts",
+        "---",
+      ],
+    ],
+    [
+      "artifact-entry-scalar",
+      [
+        "---",
+        "plan_id: PLAN-TEST-1001-artifact-entry-scalar",
+        "status: draft",
+        "kind: impl",
+        "generates:",
+        "  - src/merged.ts",
+        "---",
+      ],
+    ],
+    [
+      "artifact-entry-sequence",
+      [
+        "---",
+        "plan_id: PLAN-TEST-1001-artifact-entry-sequence",
+        "status: draft",
+        "kind: impl",
+        "modifies:",
+        "  - - src/existing.ts",
+        "---",
+      ],
+    ],
+    [
+      "artifact-path-missing",
+      [
+        "---",
+        "plan_id: PLAN-TEST-1001-artifact-path-missing",
+        "status: draft",
+        "kind: impl",
+        "generates:",
+        "  - artifact_type: source_module",
+        "---",
+      ],
+    ],
+    [
+      "artifact-path-non-string",
+      [
+        "---",
+        "plan_id: PLAN-TEST-1001-artifact-path-non-string",
+        "status: draft",
+        "kind: impl",
+        "generates:",
+        "  - artifact_path: 42",
+        "    artifact_type: source_module",
+        "---",
+      ],
+    ],
+    [
+      "artifact-path-blank",
+      [
+        "---",
+        "plan_id: PLAN-TEST-1001-artifact-path-blank",
+        "status: draft",
+        "kind: impl",
+        'generates: [{ artifact_path: "   ", artifact_type: source_module }]',
+        "---",
+      ],
+    ],
+  ])("fails closed for invalid PLAN shape: %s", (caseId, planLines) => {
+    const root = mkdtempSync(join(tmpdir(), `helix-merged-plan-${caseId}-`));
+    const planId = `PLAN-TEST-1001-${caseId}`;
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(join(root, "docs", "plans", `${planId}.md`), planLines.join("\n"), "utf8");
+
+      const result = checkMergedPlanStatus(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages).toEqual([
+        `merged-plan-status - violation: PLAN ${planId} の frontmatter を parse できないため fail-close (PLAN_FRONTMATTER_PARSE_FAILED)`,
+      ]);
+
+      const input = loadMergedPlanStatusInput(root);
+      expect(input.parseFailures).toEqual([
+        { planId, failure_code: "PLAN_FRONTMATTER_PARSE_FAILED" },
+      ]);
+      expect(input.plans).toHaveLength(1);
+      expect(input.plans[0]?.mergedArtifacts).toEqual([]);
+      expect(input.plans[0]?.invalidModifications).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

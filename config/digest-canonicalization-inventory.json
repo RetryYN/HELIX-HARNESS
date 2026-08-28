@@ -80,7 +80,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 741,
+      "line": 744,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -97,7 +97,7 @@
     {
       "hit_id": "src/cli.ts::runClosureEvidenceProbeCommand:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 750,
+      "line": 753,
       "symbol": "runClosureEvidenceProbeCommand",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -114,7 +114,7 @@
     {
       "hit_id": "src/cli.ts::outputDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 782,
+      "line": 785,
       "symbol": "outputDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -131,7 +131,7 @@
     {
       "hit_id": "src/cli.ts::provenanceDigest:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 789,
+      "line": 792,
       "symbol": "provenanceDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -148,7 +148,7 @@
     {
       "hit_id": "src/cli.ts::sessionRef:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1259,
+      "line": 1262,
       "symbol": "sessionRef",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -165,7 +165,7 @@
     {
       "hit_id": "src/cli.ts::maintainFeedbackLifecycle:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1274,
+      "line": 1277,
       "symbol": "maintainFeedbackLifecycle",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -182,7 +182,7 @@
     {
       "hit_id": "src/cli.ts::feedbackSurfaceInputsFromRefs:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1303,
+      "line": 1306,
       "symbol": "feedbackSurfaceInputsFromRefs",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -199,7 +199,7 @@
     {
       "hit_id": "src/cli.ts::receiptSession:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1332,
+      "line": 1335,
       "symbol": "receiptSession",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -216,7 +216,7 @@
     {
       "hit_id": "src/cli.ts::sha256Text:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 1417,
+      "line": 1420,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -233,7 +233,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 2618,
+      "line": 2621,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -250,7 +250,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 4828,
+      "line": 4831,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -267,7 +267,7 @@
     {
       "hit_id": "src/cli.ts::initialSetDigest:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 6988,
+      "line": 6994,
       "symbol": "initialSetDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -284,7 +284,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 8384,
+      "line": 8390,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -301,7 +301,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::2",
       "path": "src/cli.ts",
-      "line": 9191,
+      "line": 9197,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -318,7 +318,7 @@
     {
       "hit_id": "src/cli.ts::module:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 9568,
+      "line": 9574,
       "symbol": "module",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -335,7 +335,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 15210,
+      "line": 15254,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -352,7 +352,7 @@
     {
       "hit_id": "src/cli.ts::packageResult:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 16003,
+      "line": 16047,
       "symbol": "packageResult",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -811,7 +811,7 @@
     {
       "hit_id": "src/lint/github-guards.ts::hex:createHash(sha256)::1",
       "path": "src/lint/github-guards.ts",
-      "line": 86,
+      "line": 87,
       "symbol": "hex",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -1151,7 +1151,7 @@
     {
       "hit_id": "src/lint/review-evidence.ts::bunHistoricalReceiptInventoryDigest:createHash(sha256)::1",
       "path": "src/lint/review-evidence.ts",
-      "line": 284,
+      "line": 528,
       "symbol": "bunHistoricalReceiptInventoryDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2798,9 +2798,60 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/runtime/full-regression-shards.ts::filesDigest:sha256Digest()::1",
+      "path": "src/runtime/full-regression-shards.ts",
+      "line": 68,
+      "symbol": "filesDigest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/full-regression-shards.ts filesDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/runtime/full-regression-shards.ts::digest:sha256Digest()::1",
+      "path": "src/runtime/full-regression-shards.ts",
+      "line": 72,
+      "symbol": "digest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": 13,
+      "canonicalization": "none",
+      "variant": "truncated_identity",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/full-regression-shards.ts digest sha256Digest() occurrence 1 preserves truncated_identity output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/runtime/full-regression-shards.ts::partitionDigest:sha256Digest()::1",
+      "path": "src/runtime/full-regression-shards.ts",
+      "line": 77,
+      "symbol": "partitionDigest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/full-regression-shards.ts partitionDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/runtime/git-command-guard-hook.ts::guardOverrideDigest:createHash(sha256)::1",
       "path": "src/runtime/git-command-guard-hook.ts",
-      "line": 30,
+      "line": 32,
       "symbol": "guardOverrideDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2953,7 +3004,7 @@
     {
       "hit_id": "src/runtime/impact-ci.ts::digest:createHash(sha256)::1",
       "path": "src/runtime/impact-ci.ts",
-      "line": 186,
+      "line": 364,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -5503,7 +5554,7 @@
     {
       "hit_id": "src/state-db/projection-writer.ts::stableHash:createHash(sha256)::1",
       "path": "src/state-db/projection-writer.ts",
-      "line": 326,
+      "line": 327,
       "symbol": "stableHash",
       "algorithm": "sha256",
       "input_kind": "string",

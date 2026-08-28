@@ -36,7 +36,9 @@ requirements-owned registryのtyped workflow identityをprimary outputへ投影�
 `project-current-location-summary.v2`と`current-location-frontier-summary.v2`は、typed identity、
 identity receipt、workflow route statusを持つ。authority-backed repositoryではregistry tupleを
 返し、authorityが無いfixtureやconsumerではnull identityとfail-close receiptを返す。text出力は
-typed workflow routeの状態とreceipt dispositionだけを表示し、旧model名を表示しない。
+typed workflow routeの状態とreceipt dispositionを表示し、reverse／forwardの範囲も
+`workflow-route-reverse-scope`／`workflow-route-forward-scope`として表示する。旧model名や
+`drive-*` prefixのprimary labelは表示しない。
 
 ## 非対象と後続
 

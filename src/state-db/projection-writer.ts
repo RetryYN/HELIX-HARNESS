@@ -43,6 +43,7 @@ import {
 } from "../lint/verification-profile";
 import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
 import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
+import { resolvePackageCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import { planWorkflowIdentitySchema } from "../schema/frontmatter";
 import {
@@ -4654,6 +4655,19 @@ function projectVmodelReadModels(
   const visualizationSnapshot = buildVisualizationSnapshot(db, { repoRoot });
   const snapshot = visualizationSnapshot.project_current_location;
   const driveModel = buildProjectDriveModelReport(snapshot);
+  const workflowIdentityReceipt = resolvePackageCurrentLocationWorkflowIdentity(
+    driveModel.selected_model,
+  );
+  const workflowIdentity = workflowIdentityReceipt.identity;
+  if (
+    workflowIdentityReceipt.exit_code !== 0 ||
+    workflowIdentity === null ||
+    workflowIdentityReceipt.emit_legacy_identity !== false
+  ) {
+    throw new Error(
+      `project current-location workflow identity is not canonical: ${workflowIdentityReceipt.disposition}`,
+    );
+  }
   const roadmapCurrent = buildProjectRoadmapCurrentReport(snapshot);
   const vmodelFit = buildVmodelFitReport(snapshot, visualizationSnapshot.vmodel_zip_manifest, {
     repoRoot,
@@ -4691,9 +4705,12 @@ function projectVmodelReadModels(
     l12_layer: snapshot.current.l12_layer ?? "",
     current_status: snapshot.current.status,
     completion_boundary: snapshot.current.completion_boundary,
-    selected_drive_model: driveModel.selected_model,
+    workflow_identity_schema_version: workflowIdentity.schema_version,
+    workflow_registry_version: workflowIdentity.registry_version,
+    workflow_registry_source_digest: workflowIdentity.registry_source_digest,
+    workflow_target_axis: workflowIdentity.target_axis,
+    workflow_target_id: workflowIdentity.target_id,
     drive_route_status: snapshot.drive_route.status,
-    default_drive_model: driveModel.default_model,
     roadmap_status: snapshot.roadmap_position.status,
     plans_total: snapshot.counts.plans_total,
     open_l7_plans: snapshot.counts.open_l7_plans,
@@ -4727,32 +4744,6 @@ function projectVmodelReadModels(
     id: snapshotId,
     row: currentLocationRow,
   });
-
-  for (const candidate of driveModel.candidates) {
-    const candidateId = stableId("drive-model-candidate", candidate.model);
-    recordProjectionEvent(db, {
-      table: "project_drive_model_candidates",
-      id: candidateId,
-      row: {
-        candidate_id: candidateId,
-        snapshot_id: snapshotId,
-        model: candidate.model,
-        rank: candidate.rank,
-        status: candidate.status,
-        selected: candidate.status === "selected" ? 1 : 0,
-        route_id: candidate.route_id,
-        trigger: candidate.trigger,
-        required_action: candidate.required_action,
-        command: candidate.command,
-        coverage_ids: csv(candidate.coverage_ids),
-        coverage_labels: csv(candidate.coverage_labels),
-        doc_dependencies: csv(candidate.doc_dependencies),
-        implementation_dependencies: csv(candidate.implementation_dependencies),
-        reasons: csv(candidate.reasons),
-        indexed_at: indexedAt,
-      },
-    });
-  }
 
   for (const action of roadmapCurrent.actions) {
     recordProjectionEvent(db, {

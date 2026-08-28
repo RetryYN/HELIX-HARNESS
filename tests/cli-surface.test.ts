@@ -3201,13 +3201,37 @@ describe("L7 CLI surface closure", () => {
     });
   }, 45_000);
 
-  it("U-CLSO-005: PLAN-L7-672-current-location-summary-typed-output textをtyped routeへ切り替える", () => {
-    const run = runCli(["current-location"]);
-    expect(run.status, run.stderr || run.stdout).toBe(0);
-    expect(run.stdout).toContain("workflow-route:");
-    expect(run.stdout).not.toContain("drive=");
-    expect(run.stdout).not.toContain("drive-route:");
-  }, 45_000);
+  it("U-CLSO-005: PLAN-L7-672-current-location-summary-typed-output text全体をtyped route語彙へ固定する", () => {
+    const legacyTextLabel = /^\s+drive(?:[-=])/m;
+    const outputs = [
+      ["current-location"],
+      ["current-location", "--json"],
+      ["current-location", "--summary-json"],
+    ].map((args) => ({ args, run: runCli(args) }));
+    for (const { run } of outputs) {
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(run.stdout).not.toMatch(legacyTextLabel);
+    }
+
+    const text = outputs[0].run;
+    expect(text.stdout).toContain("workflow-route:");
+    expect(text.stdout).toContain("workflow-route-reverse-scope:");
+    expect(text.stdout).not.toContain("drive=");
+    expect(text.stdout).not.toContain("drive-route:");
+    expect(text.stdout).not.toContain("drive-reverse-scope:");
+    expect(text.stdout).not.toContain("drive-forward-scope:");
+
+    // The repository fixture currently takes the reverse branch; inspect the source literal too
+    // so a legacy label reintroduced only in the forward branch is still caught.
+    const cliSource = readFileSync(join(repoRoot, "src", "cli.ts"), "utf8");
+    const currentLocationStart = cliSource.indexOf('.command("current-location")');
+    const nextCommandStart = cliSource.indexOf("const roadmap =", currentLocationStart);
+    expect(currentLocationStart).toBeGreaterThanOrEqual(0);
+    expect(nextCommandStart).toBeGreaterThan(currentLocationStart);
+    expect(cliSource.slice(currentLocationStart, nextCommandStart)).not.toMatch(
+      /`\x20{2}drive(?:[-=])/,
+    );
+  }, 120_000);
 
   it("U-CLSO-006: PLAN-L7-672-current-location-summary-typed-output schema v2を固定する", () => {
     const run = runCli(["current-location", "--summary-json"]);
@@ -3652,7 +3676,7 @@ describe("L7 CLI surface closure", () => {
         "workflow-route: status=recovery_required identity_disposition=unsupported return_to_design=true write=read-only",
       );
       expect(text.stdout).toContain(
-        "drive-reverse-scope: targets=docs/design/**,docs/test-design/**",
+        "workflow-route-reverse-scope: targets=docs/design/**,docs/test-design/**",
       );
       expect(text.stdout).toContain(
         "recovery-exit: status=blocked remaining=1 blockers=2 next=helix closure batch --action collect_evidence --json",
@@ -7912,14 +7936,63 @@ describe("L7 CLI surface closure", () => {
     expect(payload).toHaveProperty("byCode");
   }, 20_000);
 
-  it("exposes branch audit as a read-only JSON command surface", () => {
+  // PLAN-L7-690-branch-audit-delete-candidate-safety
+  it("U-BRAS-009: exposes branch audit as a read-only JSON command surface", () => {
     const run = runCli(["branch", "audit", "--json"]);
     const payload = JSON.parse(run.stdout);
 
     expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      ok: true,
+      authority: {
+        mainRefResolved: true,
+        historyComplete: true,
+      },
+    });
     expect(payload).toHaveProperty("byStatus");
     expect(payload.byStatus).toHaveProperty("delete-candidate");
     expect(Array.isArray(payload.rows)).toBe(true);
+  }, 20_000);
+
+  it("U-BRAS-008: fails branch audit closed when the canonical main ref cannot be resolved", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-branch-audit-no-main-"));
+    try {
+      const init = spawnSync("git", ["init", "-b", "topic"], { cwd: root, encoding: "utf8" });
+      expect(init.status).toBe(0);
+      writeFileSync(join(root, "README.md"), "branch audit fixture\n");
+      expect(spawnSync("git", ["add", "README.md"], { cwd: root }).status).toBe(0);
+      expect(
+        spawnSync(
+          "git",
+          [
+            "-c",
+            "user.name=HELIX Test",
+            "-c",
+            "user.email=helix-test@example.invalid",
+            "commit",
+            "-m",
+            "test: initialize topic-only repository",
+          ],
+          { cwd: root, encoding: "utf8" },
+        ).status,
+      ).toBe(0);
+
+      const run = runCliIn(root, ["branch", "audit", "--json"]);
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status).toBe(1);
+      expect(payload).toMatchObject({
+        ok: false,
+        authority: {
+          mainRef: null,
+          mainRefResolved: false,
+          historyComplete: true,
+        },
+      });
+      expect(payload.byStatus["delete-candidate"]).toBe(0);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   }, 20_000);
 
   it("exposes team run as a shared Claude/Codex dry-run launch plan", () => {

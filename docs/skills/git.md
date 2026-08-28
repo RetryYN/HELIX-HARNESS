@@ -78,13 +78,13 @@ CI は every push で `harness-check` を実行する。push 前に次の 4 つ�
 
 | 確認項目 | Command | よくある failure |
 |---|---|---|
-| Type check | `bun run typecheck` | type declaration 欠落 |
-| Vitest | `bun run test` | bare `bun test` は使わない。sync-timeout flakiness がある |
-| Biome | `bun run lint` | `biome check` なしの `biome lint` による format violation 見落とし |
+| Type check | `npm run typecheck` | type declaration 欠落 |
+| Vitest | `npm run test` | Vitest の native runner は使わない。sync-timeout flakiness がある |
+| Biome | `npm run lint` | `biome check` なしの `biome lint` による format violation 見落とし |
 | Doctor | `helix doctor` | governance violation、PLAN dependency 欠落 |
 
 push 前に 4 つすべてを local で実行する。`biome lint` だけでは formatting を検査しない。
-両方を捕捉するため、`biome check` を呼ぶ `bun run lint` を実行する。
+両方を捕捉するため、`biome check` を呼ぶ `npm run lint` を実行する。
 
 ## Branch strategy（branch 戦略）
 
@@ -102,9 +102,9 @@ workflow-scoped token を config file や environment variable に永続化し�
 
 ## Pre-push checklist（push 前 checklist）
 
-- [ ] `bun run typecheck` が 0 で終了する。
-- [ ] `bun run lint`（Biome check + format）が 0 で終了する。
-- [ ] `bun run test`（Vitest）が 0 で終了し、PLAN scope 内に skipped test が無い。
+- [ ] `npm run typecheck` が 0 で終了する。
+- [ ] `npm run lint`（Biome check + format）が 0 で終了する。
+- [ ] `npm run test`（Vitest）が 0 で終了し、PLAN scope 内に skipped test が無い。
 - [ ] `helix doctor` が 0 で終了する。
 - [ ] `git diff --stat HEAD` が PLAN-scoped files だけを示す。
 - [ ] commit message が `commit-msg` hook（Conventional Commits）に受理される。

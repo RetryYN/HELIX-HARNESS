@@ -90,6 +90,81 @@ export interface TestSource {
 
 export type SourceModule = TestSource;
 
+export const LITE_CANARY_MANIFEST_PATHS = [
+  "config/distribution-profile-catalog.json",
+  "requirements-ir/manifest.json",
+  "requirements-ir/refinement_contracts.json",
+  "package.json",
+  "package-lock.json",
+] as const;
+
+export const LITE_CANARY_GENERATED_DEPENDENCY_PATHS = [
+  "config/distribution-capability-artifact-catalog.json",
+  // Lite artifactの実ビルド入口。ここを変えたPRはcanaryを省略できない。
+  "src/cli.ts",
+  "src/setup/distribution-artifact-projection.ts",
+  "src/setup/distribution-dependency-closure.ts",
+  "src/setup/distribution-lite-package.ts",
+  "src/runtime/impact-ci.ts",
+  "src/cli/lite-canary-selector.ts",
+  ".github/workflows/harness-check.yml",
+] as const;
+
+export type LiteCanaryDisposition = "required" | "authorized_skip";
+export type LiteCanarySkipCode = "closure_unaffected";
+export type LiteCanaryReasonCode =
+  | "closure_unaffected"
+  | "full_context"
+  | "changed_path_closure_contact"
+  | "deletion"
+  | "rename"
+  | "generated_dependency_change"
+  | "manifest_change"
+  | "selector_uncertain"
+  | "path_read_failure"
+  | "stale_digest"
+  | "fast_profile_check_failed"
+  | "fast_manifest_check_failed"
+  | "fast_closure_check_failed";
+
+export interface LiteCanaryFastCheck {
+  profile_ok: boolean;
+  manifest_ok: boolean;
+  closure_ok: boolean;
+  artifact_paths: readonly string[];
+  closure_paths: readonly string[];
+  source_head: string | null;
+  candidate_head: string;
+}
+
+export interface LiteCanarySelectorInput {
+  event_name: "pull_request" | "push" | "schedule" | "workflow_dispatch";
+  ref_name: string;
+  changed_paths: readonly string[];
+  change_kinds: readonly { status: string; path: string }[];
+  fast_check: LiteCanaryFastCheck;
+  manifest_paths?: readonly string[];
+  generated_dependency_paths?: readonly string[];
+  selector_uncertain?: boolean;
+  path_read_failed?: boolean;
+  stale_digest?: boolean;
+}
+
+export interface LiteCanarySelection {
+  disposition: LiteCanaryDisposition;
+  skip_code: LiteCanarySkipCode | null;
+  reason_codes: readonly LiteCanaryReasonCode[];
+}
+
+export interface LiteCanaryRepositorySelectorInput {
+  repo_root: string;
+  event_name: "pull_request" | "push" | "schedule" | "workflow_dispatch";
+  ref_name: string;
+  candidate_head: string;
+  before_head?: string;
+  pull_request_base_head?: string;
+}
+
 const PROFILES = new Set<CiProfile>([
   "draft_preflight",
   "candidate_admission",
@@ -169,6 +244,109 @@ function sortedUnique(values: readonly string[]): string[] {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))].sort((a, b) =>
     a < b ? -1 : a > b ? 1 : 0,
   );
+}
+
+/**
+ * PR head refをskip判定へ渡す前の保守的なGit branch ref検証。
+ * 判定不能なrefはrequiredへ倒すため、Gitが受理する全ての表記を再現する必要はない。
+ */
+export function isValidPullRequestRef(refName: string): boolean {
+  const invalidRefCharacters = new Set(["~", "^", ":", "?", "*", "[", "\\"]);
+  if (
+    refName.length === 0 ||
+    refName !== refName.trim() ||
+    refName === "@" ||
+    refName.startsWith("-") ||
+    refName.includes("..") ||
+    refName.includes("@{") ||
+    refName.includes("//")
+  ) {
+    return false;
+  }
+  for (const character of refName) {
+    const codePoint = character.codePointAt(0) ?? 0;
+    if (codePoint <= 0x20 || codePoint === 0x7f || invalidRefCharacters.has(character)) {
+      return false;
+    }
+  }
+  return refName
+    .split("/")
+    .every(
+      (component) =>
+        component.length > 0 &&
+        !component.startsWith(".") &&
+        !component.endsWith(".") &&
+        !component.endsWith(".lock"),
+    );
+}
+
+/**
+ * Lite artifactを省略できる唯一の境界を決定する。fast check自体はcallerが必ず実行し、
+ * その結果と変更metadataが一つでも不確実ならtyped requiredへ倒す。
+ */
+export function selectLiteCanaryLane(input: LiteCanarySelectorInput): LiteCanarySelection {
+  const reasons = new Set<LiteCanaryReasonCode>();
+  const changedPaths = new Set(sortedUnique(input.changed_paths));
+  const observedChangePaths = new Set(
+    sortedUnique([...input.changed_paths, ...input.change_kinds.map((change) => change.path)]),
+  );
+  const closurePaths = new Set(
+    sortedUnique([...input.fast_check.artifact_paths, ...input.fast_check.closure_paths]),
+  );
+  const manifestPaths = new Set(sortedUnique(input.manifest_paths ?? LITE_CANARY_MANIFEST_PATHS));
+  const generatedDependencyPaths = new Set(
+    sortedUnique(input.generated_dependency_paths ?? LITE_CANARY_GENERATED_DEPENDENCY_PATHS),
+  );
+
+  if (
+    input.event_name !== "pull_request" ||
+    input.ref_name === "main" ||
+    input.ref_name === "release-candidate" ||
+    input.ref_name.startsWith("release-candidate/")
+  ) {
+    reasons.add("full_context");
+  }
+  if (input.event_name === "pull_request" && !isValidPullRequestRef(input.ref_name)) {
+    reasons.add("selector_uncertain");
+  }
+  if ([...observedChangePaths].some((path) => closurePaths.has(path))) {
+    reasons.add("changed_path_closure_contact");
+  }
+  for (const change of input.change_kinds) {
+    const status = change.status.trim().toUpperCase();
+    if (!/^(?:A|M|D|T|R[0-9]+|C[0-9]+)$/.test(status)) reasons.add("selector_uncertain");
+    if (status === "D" || status.startsWith("D")) reasons.add("deletion");
+    if (status === "R" || status.startsWith("R")) reasons.add("rename");
+  }
+  if ([...changedPaths].some((path) => generatedDependencyPaths.has(path))) {
+    reasons.add("generated_dependency_change");
+  }
+  if ([...changedPaths].some((path) => manifestPaths.has(path))) reasons.add("manifest_change");
+  if (input.selector_uncertain) reasons.add("selector_uncertain");
+  if (input.path_read_failed) reasons.add("path_read_failure");
+  if (
+    input.stale_digest ||
+    !/^[0-9a-f]{40}$/.test(input.fast_check.candidate_head) ||
+    input.fast_check.source_head !== input.fast_check.candidate_head
+  ) {
+    reasons.add("stale_digest");
+  }
+  if (!input.fast_check.profile_ok) reasons.add("fast_profile_check_failed");
+  if (!input.fast_check.manifest_ok) reasons.add("fast_manifest_check_failed");
+  if (!input.fast_check.closure_ok) reasons.add("fast_closure_check_failed");
+
+  if (reasons.size === 0) {
+    return {
+      disposition: "authorized_skip",
+      skip_code: "closure_unaffected",
+      reason_codes: ["closure_unaffected"],
+    };
+  }
+  return {
+    disposition: "required",
+    skip_code: null,
+    reason_codes: sortedUnique([...reasons]) as LiteCanaryReasonCode[],
+  };
 }
 
 function canonical(value: unknown): string {

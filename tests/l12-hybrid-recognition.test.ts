@@ -95,7 +95,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(603);
+    expect(plans).toHaveLength(604);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -129,7 +129,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(508);
+    ).toHaveLength(500);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -148,16 +148,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 866 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 858 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(866);
+    expect(candidates).toHaveLength(858);
     expect(counts).toEqual({
-      conflict: 345,
+      conflict: 337,
       compatibility_labeled: 24,
       false_positive: 479,
       historical: 18,
@@ -235,11 +235,11 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 146,
+        conflict: 136,
         false_positive: 50,
         historical: 6,
       },
-      executable_surface_review: { conflict: 6, historical: 1 },
+      executable_surface_review: { conflict: 7, historical: 1 },
       historical_context_review: {
         conflict: 19,
         false_positive: 1,
@@ -248,7 +248,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 174,
+        conflict: 175,
         false_positive: 428,
       },
     });

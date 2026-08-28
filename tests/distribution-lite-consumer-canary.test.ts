@@ -392,11 +392,14 @@ describe("PLAN-L7-657: Lite clean consumer canary admission", () => {
     ] as const;
     for (const argv of commands) {
       const powershell = spawnSync(
-        "powershell.exe",
+        "pwsh.exe",
         ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", entrypoint, ...argv],
         { cwd: consumer, encoding: "utf8", timeout: 10_000 },
       );
-      expect(powershell.status, `${argv.join(" ")}\n${powershell.stderr}`).toBe(0);
+      expect(
+        powershell.status,
+        `${argv.join(" ")}\n${powershell.error?.message ?? ""}\n${powershell.stderr}`,
+      ).toBe(0);
       if (argv[0] === "--version") expect(powershell.stdout.trim()).toBe("0.1.0");
       else expect(JSON.parse(powershell.stdout)).toMatchObject({ ok: true });
     }

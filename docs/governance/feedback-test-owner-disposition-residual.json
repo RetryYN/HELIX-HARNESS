@@ -77,7 +77,7 @@
     },
     {
       "test_path": "tests/runtime-authority-requirements.test.ts",
-      "test_file_sha256": "f15fb1dbab045ccff3617da86206f29b24778057cef62e5cd174083c45967bef",
+      "test_file_sha256": "a3d53012592f0b548bdce98968ec92a72d8b2643f901267bbb4ea2488f76859d",
       "expected_case_count": 6,
       "authority_paths": [
         "docs/adr/ADR-009-node-\u0070ython-linux-runtime.md",
@@ -87,8 +87,8 @@
     },
     {
       "test_path": "tests/l3-progression-authority.test.ts",
-      "test_file_sha256": "f451b8ac3b40aa18d5b52156a9a464defc9db52a07cb682751f5bac168284791",
-      "expected_case_count": 3,
+      "test_file_sha256": "0f35c3ebe67ad49f086cdc47667e4ab34a4de71a5e55b6b9409a0e21ed640651",
+      "expected_case_count": 4,
       "authority_paths": [
         "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
         "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"

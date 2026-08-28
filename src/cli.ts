@@ -359,10 +359,13 @@ import { buildIsolatedWorktreePlan } from "./runtime/isolated-worktree-sandbox-r
 import {
   auditIssueDependencies,
   auditIssueHierarchy,
+  auditIssueHierarchyDependencyAlignment,
   collectIssueDependencyContracts,
+  collectIssueHierarchyContracts,
   type IssueDependencyNode,
   type IssueHierarchyNode,
   type IssuePlanBinding,
+  projectIssueDependencyMigrationCandidates,
 } from "./runtime/issue-hierarchy";
 import { auditIssueMetadata, type IssueMetadataInput } from "./runtime/issue-metadata-audit";
 import { inspectLane } from "./runtime/lane-hygiene";
@@ -5569,19 +5572,22 @@ program
         return;
       }
       const current = snapshot.current;
+      // The snapshot still carries a compatibility-shaped drive_route field internally, but
+      // the primary text projection must speak in typed workflow-route vocabulary.
+      const workflowRoute = snapshot.drive_route;
       process.stdout.write(
-        `current-location: layer=${current.layer ?? "unknown"} l12=${current.l12_layer ?? "unknown"} status=${current.status} boundary=${current.completion_boundary} workflow=${snapshot.drive_route.workflowIdentity ? `${snapshot.drive_route.workflowIdentity.target_axis}:${snapshot.drive_route.workflowIdentity.target_id}` : "unknown"} findings=${snapshot.findings.length}\n`,
+        `current-location: layer=${current.layer ?? "unknown"} l12=${current.l12_layer ?? "unknown"} status=${current.status} boundary=${current.completion_boundary} workflow=${workflowRoute.workflowIdentity ? `${workflowRoute.workflowIdentity.target_axis}:${workflowRoute.workflowIdentity.target_id}` : "unknown"} findings=${snapshot.findings.length}\n`,
       );
       process.stdout.write(
-        `  workflow-route: status=${snapshot.drive_route.status} identity_disposition=${snapshot.drive_route.workflowIdentityReceipt?.disposition ?? "missing"} return_to_design=${snapshot.drive_route.mustReturnToDesign} write=${snapshot.drive_route.writePolicy}\n`,
+        `  workflow-route: status=${workflowRoute.status} identity_disposition=${workflowRoute.workflowIdentityReceipt?.disposition ?? "missing"} return_to_design=${workflowRoute.mustReturnToDesign} write=${workflowRoute.writePolicy}\n`,
       );
-      if (snapshot.drive_route.reverse.required) {
+      if (workflowRoute.reverse.required) {
         process.stdout.write(
-          `  drive-reverse-scope: targets=${snapshot.drive_route.reverse.targets.join(",") || "-"} l12=${snapshot.drive_route.reverse.l12Layers.join(",") || "-"} actions=${snapshot.drive_route.reverse.queueActions.join(",") || "-"} ledgers=${snapshot.drive_route.reverse.ledgerIds.length}\n`,
+          `  workflow-route-reverse-scope: targets=${workflowRoute.reverse.targets.join(",") || "-"} l12=${workflowRoute.reverse.l12Layers.join(",") || "-"} actions=${workflowRoute.reverse.queueActions.join(",") || "-"} ledgers=${workflowRoute.reverse.ledgerIds.length}\n`,
         );
       } else {
         process.stdout.write(
-          `  drive-forward-scope: allowed=${snapshot.drive_route.forward.allowed} roadmap=${snapshot.drive_route.forward.roadmapStatus} frontier=${snapshot.drive_route.forward.frontier.join(",") || "-"}\n`,
+          `  workflow-route-forward-scope: allowed=${workflowRoute.forward.allowed} roadmap=${workflowRoute.forward.roadmapStatus} frontier=${workflowRoute.forward.frontier.join(",") || "-"}\n`,
         );
       }
       if (snapshot.recovery) {
@@ -13565,6 +13571,7 @@ branch
       const result = loadBranchAudit(process.cwd(), {
         staleDays: Number.isFinite(opts.staleDays) ? opts.staleDays : undefined,
       });
+      process.exitCode = result.ok ? 0 : 1;
       if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
       else {
         process.stdout.write(
@@ -13703,6 +13710,8 @@ github
       let nodes: IssueDependencyNode[];
       let plans: IssuePlanBinding[];
       let contractFindings = [] as ReturnType<typeof collectIssueDependencyContracts>["findings"];
+      let alignmentReport: ReturnType<typeof auditIssueHierarchyDependencyAlignment> | null = null;
+      let migrationCandidates: ReturnType<typeof projectIssueDependencyMigrationCandidates> = [];
       if (opts.inputJson) {
         nodes = JSON.parse(opts.inputJson) as IssueDependencyNode[];
         plans = JSON.parse(opts.plansJson) as IssuePlanBinding[];
@@ -13733,8 +13742,10 @@ github
         const collected = collectIssueDependencyContracts(issues);
         nodes = collected.nodes;
         contractFindings = collected.findings;
+        const hierarchyNodes = collectIssueHierarchyContracts(issues);
+        alignmentReport = auditIssueHierarchyDependencyAlignment(hierarchyNodes, nodes);
         const governedNumbers = new Set(nodes.map((node) => node.number));
-        plans = readdirSync(join(process.cwd(), "docs", "plans"))
+        const allPlanBindings = readdirSync(join(process.cwd(), "docs", "plans"))
           .filter((name) => name.startsWith("PLAN-") && name.endsWith(".md"))
           .flatMap((name) => {
             const content = readFileSync(join(process.cwd(), "docs", "plans", name), "utf8");
@@ -13743,8 +13754,18 @@ github
             const githubIssueId = Number(
               frontmatter.match(/^github_issue_id:\s*(\d+)\s*$/m)?.[1] ?? Number.NaN,
             );
-            return planId && governedNumbers.has(githubIssueId) ? [{ planId, githubIssueId }] : [];
+            return planId && Number.isSafeInteger(githubIssueId) ? [{ planId, githubIssueId }] : [];
           });
+        plans = allPlanBindings.filter((plan) => governedNumbers.has(plan.githubIssueId));
+        const hierarchyNumbers = new Set(hierarchyNodes.map((node) => node.number));
+        const migrationPlans = allPlanBindings.filter((plan) =>
+          hierarchyNumbers.has(plan.githubIssueId),
+        );
+        migrationCandidates = projectIssueDependencyMigrationCandidates(
+          hierarchyNodes,
+          nodes,
+          migrationPlans,
+        );
       }
       const dependencyReport = auditIssueDependencies(nodes, plans, {
         // Live CI can overlap open PRs whose referenced PLAN is not in this candidate tree yet.
@@ -13762,11 +13783,34 @@ github
           : contractFindings.filter((finding) =>
               (parsedFocus as number[]).includes(finding.issueNumber),
             );
+      const focusedAlignmentFindings =
+        alignmentReport === null
+          ? []
+          : parsedFocus === null
+            ? alignmentReport.findings
+            : alignmentReport.findings.filter((finding) =>
+                (parsedFocus as number[]).includes(finding.issueNumber),
+              );
+      const focusedMigrationCandidates =
+        parsedFocus === null
+          ? migrationCandidates
+          : migrationCandidates.filter((candidate) =>
+              (parsedFocus as number[]).includes(candidate.issueNumber),
+            );
       const report = {
         ...dependencyReport,
-        ok: dependencyReport.ok && focusedContractFindings.length === 0,
+        ok:
+          dependencyReport.ok &&
+          focusedContractFindings.length === 0 &&
+          focusedAlignmentFindings.length === 0,
         checkedIssues: dependencyReport.checkedIssues + focusedContractFindings.length,
-        findings: [...focusedContractFindings, ...dependencyReport.findings].sort(
+        checkedAlignmentIssues: alignmentReport?.checkedIssues ?? 0,
+        migrationCandidates: focusedMigrationCandidates,
+        findings: [
+          ...focusedContractFindings,
+          ...focusedAlignmentFindings,
+          ...dependencyReport.findings,
+        ].sort(
           (left, right) =>
             left.issueNumber - right.issueNumber || left.code.localeCompare(right.code),
         ),

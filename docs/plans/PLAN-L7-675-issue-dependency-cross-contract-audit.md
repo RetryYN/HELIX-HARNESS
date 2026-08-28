@@ -1,0 +1,138 @@
+---
+plan_id: PLAN-L7-675-issue-dependency-cross-contract-audit
+title: "PLAN-L7-675 (refactor): Issue hierarchyとdependency contractをexact照合する"
+kind: refactor
+layer: L7
+drive: agent
+status: confirmed
+completion_claim_allowed: true
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.5
+  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
+  target_axis: workflow_model
+  target_id: REVERSE
+entry_signals:
+  - "po_directive:Issue #634のcurrent-main read-afterでhierarchy blocked_byとmachine depends_onの乖離を検出した"
+created: 2026-08-26
+updated: 2026-08-26
+owner: Codex / TL
+github_issue_id: 634
+behavior_contract_id: ISSUE-DEPENDENCY-CROSS-CONTRACT-001
+responsibility_owner: github-issue-hierarchy
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+no_code_decision: add_code
+ddd_modeling_decision: value_object
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-26T05:46:30Z"
+    tests_green_at: "2026-08-26T05:43:38Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c7895aff-da7e-47a0-944a-36c68bb4f251
+    reviewed_head_sha: 64493b9124878b79a4a86d6440569d4ada289f85
+    scope: "PR #1060 exact HEAD 64493b9124878b79a4a86d6440569d4ada289f85をClaude Code Opusが独立検収し、Issue hierarchyとdependency contractのcross audit、89 Issue migration、union closure、repository-wide findings 0、DB projection／replay一致を確認してblocker 0 approveとした。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1060#issuecomment-5421155151"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 32933281416 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-26T05:43:38Z"
+        evidence_path: tests/issue-hierarchy.test.ts
+        output_digest: "sha256:e6ea320ac22e883df33807c6a56adf0d26e07a21d36288662af6de587f255d1c"
+        result: "terminal success / HEAD 64493b9124878b79a4a86d6440569d4ada289f85"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-26T05:46:30Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-26T05:46:30Z"
+    evidence_digest: "sha256:4cd45b98c4be741a60022b145589ff9fa079b6d4aa43736ba34ac716345adfe8"
+  entries: []
+backprop_decision: not_required
+backprop_decision_reason: "Issue #634のReverse監査で既存L6設計どおりhierarchyとdependency projectionを接合し、上位要求の意味を変更しない"
+contract_preconditions: "Issue hierarchy contractとhelix-issue-dependency.v1が別projectionとして取得できる"
+contract_postconditions: "relationを宣言するcurrent hierarchy Issueでdependency block欠落とblocks/blocked_by集合差をstable findingにする"
+contract_invariants: "parent/childだけのIssueやhistorical proseをdependency採用と推測せず、PR focusとrepository-wide auditの境界を維持する"
+contract_failures: "dependency contract欠落、blocked_by/depends_on不一致、blocks集合不一致を個別reasonでfail-closeする"
+tdd_red_required: true
+red_at: "2026-08-26T01:25:00+09:00"
+green_at: "2026-08-26T01:26:46+09:00"
+mutation_oracle_evidence: "tests/issue-hierarchy.test.tsで、2026-08-26T01:27:13+09:00にgovernedHierarchyNodes filterを常にfalseへ変異し、U-IHIER-012がexpected false／received trueで1 failed・11 passedとなり、dependency block欠落とhierarchy/dependency集合差を黙ってskipする退行をkillした。01:36:43+09:00にはmigration projectionの既存contract lookupをundefinedへ変異し、U-IHIER-013がadd／replace・PLAN束縛差で1 failed・12 passedとなることを実測した。各変異復元後13 tests green、typecheck、Biome greenを再確認した。"
+complexity_effect: net_negative
+complexity_justification: "二つの既存projection間にpure比較を一つ追加し、黙ってskipされる依存graphを除去する"
+removal_trigger: "hierarchyとdependencyが単一versioned typed graphへ統合された時"
+parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-012, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-013, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-014, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-015, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-016, test_path: tests/issue-hierarchy.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, oracle_id: U-IHIER-017, test_path: tests/issue-hierarchy.test.ts }
+generates:
+  - { artifact_path: docs/plans/PLAN-L7-675-issue-dependency-cross-contract-audit.md, artifact_type: markdown_doc }
+modifies:
+  - { artifact_path: src/runtime/issue-hierarchy.ts, artifact_type: source_module }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: tests/issue-hierarchy.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+dependencies:
+  parent: PLAN-L7-556-issue-dependency-doctor
+  requires:
+    - docs/plans/PLAN-L7-556-issue-dependency-doctor.md
+  blocks: [issue:635]
+  references:
+    - "issue:634"
+agent_slots:
+  - { role: se, slot_label: "SE — hierarchy/dependency pure cross audit" }
+  - { role: qa, slot_label: "QA — missing/mismatch mutation oracle" }
+  - { role: tl, slot_label: "TL — adoption boundaryとrepository-wide wiring" }
+---
+
+# Issue dependency cross-contract監査
+
+## 工程表
+
+| Step | 作業 | 完了条件 |
+|---|---|---|
+| 1 | hierarchy relationとdependency projectionの差をRed化 | 欠落・両方向集合差が既存auditを通過することを実測 |
+| 2 | pure cross-contract auditを実装 | stable findingを個別に返す |
+| 3 | live CLIへ接続 | PR focusとscheduled full auditを維持 |
+| 4 | live Issueを依存順に是正 | repository-wide findingsが0になる |
+| 5 | CI・Claude review・main read-after | #634のcompletion claimを再証明 |
+
+relationを持たないhierarchy Issueへdependency blockを一律要求しない。`blocks`または`blocked_by`が非空の
+current active Issueだけをcross-contract対象とし、legacy／historical集合は明示的移行なしにcurrent greenへ使わない。
+
+## live Red基準
+
+2026-08-26にGitHub repository-wide auditを実行し、hierarchy relationを持つ100 Issueに対して114 findingsを取得した。
+内訳はdependency block欠落81、`blocks`集合差5、`blocked_by`／`depends_on`集合差6、既存dependency非対称8、
+target欠落10、その他PLAN binding／malformed contract 4である。#204本線では#228／#229／#231／#243の集合差と、
+#235／#246／#248／#253／#322のcontract欠落を実測した。findingをallowlistで隠さず、typed migration inventoryへ
+固定して依存順にlive Issueを是正する。
+
+同日のdry-run projectionでは89 Issueを移行対象として固定した（add 81、replace 8）。projectionはhierarchyの
+exact relationを出力し、既存dependency contractの`plan_id`／`plan_ids`を保持する。contract未採用Issueは
+candidate treeのPLAN frontmatterからexact bindingを導出し、単一PLANは`plan_id`、複数PLANは`plan_ids`へ投影する。GitHub writeはこの出力を
+直接正本にせず、candidateが描画するparser往復済みcanonical contract blockを使い、適用直前のIssue body・HEAD・assignmentを
+再照合して更新後read-afterを必須とする。
+pure body patchは`add`時に既存adopted blockがあれば拒否し、`replace`時にblockが消えていれば拒否するため、
+dry-run取得後にIssue bodyが変化した場合も暗黙の二重追加や別contract化を行わない。
+
+初回89件適用後に露出した片側edgeは、hierarchy／dependencyのどちらに存在しても削除してgreen化せず、存在する
+両端nodeへunion closureする。hierarchy metadataを保持したcanonical blockとdependency contractを同じcandidate集合から
+再投影し、片側だけの更新を禁止する。

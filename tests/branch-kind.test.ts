@@ -507,6 +507,72 @@ describe("branch-kind-check", () => {
       "pr_scope_source_companions_missing",
       "pr_scope_expansion_invalid",
     ]);
+
+    const diagnostic = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/design/current.md", "docs/test-design/current.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/design/, docs/test-design/",
+        "Expected changed paths: docs/design/current.md, docs/old.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+
+    expect(diagnostic.ok).toBe(false);
+    expect(diagnostic.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_changed_paths_mismatch",
+        message: expect.stringContaining(
+          "suggested Expected changed paths: docs/design/current.md, docs/test-design/current.md",
+        ),
+      }),
+    );
+    expect(diagnostic.findings[0]?.message).toContain(
+      "reconcile both added and stale paths before rerunning CI",
+    );
+
+    const additionsOnly = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/design/current.md", "docs/test-design/current.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/design/, docs/test-design/",
+        "Expected changed paths: docs/design/current.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+
+    expect(additionsOnly.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_changed_paths_mismatch",
+        message: expect.stringContaining("all actual paths are additions to the declaration"),
+      }),
+    );
+
+    const staleOnly = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/design/current.md"],
+      body: [
+        "Behavior contract: GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/design/, docs/test-design/",
+        "Expected changed paths: docs/design/current.md, docs/old.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+
+    expect(staleOnly.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_changed_paths_mismatch",
+        message: expect.stringContaining("remove stale paths that are absent from the actual diff"),
+      }),
+    );
   });
 
   it("U-PRSCOPE-003: requires declared PLAN and test companions for source changes", () => {
@@ -548,6 +614,9 @@ describe("branch-kind-check", () => {
     ]);
     expect(result.findings[0]?.message).toContain("undeclared=docs/extra.md");
     expect(result.findings[0]?.message).toContain("absent=docs/phantom.md");
+    expect(result.findings[0]?.message).toContain(
+      "suggested Expected changed paths: docs/extra.md, docs/plans/PLAN-L7-466-pr-scope-contract.md",
+    );
   });
 
   it("U-PRSCOPE-005: rejects a PR manifest whose required PLAN binds a different behavior or owner", () => {
