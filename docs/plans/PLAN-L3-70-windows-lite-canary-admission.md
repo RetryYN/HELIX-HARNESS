@@ -54,22 +54,23 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    tests_green_at: "2026-08-28T02:57:47Z"
+    tests_green_at: "2026-08-28T02:57:48Z"
     reviewed_at: "2026-08-28T03:05:34Z"
     verdict: approve
     worker_model: gpt-5.4-codex
     reviewer_model: claude-opus-5
     reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
-    scope: "POのL3承認指示に基づき、PR #1107 current HEAD a63f6a4fe85ae5fc0f9abbebe8c4fee42fe674cbをClaude Codeが独立検収した。Windows Lite canary admissionのbounded policy、queue／lease、same-artifact binding、fail-close、p95／p99母集団、既存authority再利用を確認しblocker 0でapprove。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1107#issuecomment-5447889973"
+    scope: "PR #1107 current HEAD a63f6a4fe85ae5fc0f9abbebe8c4fee42fe674cbをClaude Codeが独立検収した。Windows Lite canary admissionのbounded policy、queue／lease、same-artifact binding、fail-close、p95／p99母集団、既存authority再利用を確認しblocker 0でapprove。L3 human approvalはreviewer判断ではなく独立したl3_human_approval recordが所有する。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1107#issuecomment-5447889973"
     green_commands:
-      - kind: unit_test
-        command: "npm test"
+      - kind: smoke
+        command: "gh run view 33136415754 --json status,conclusion,headSha,updatedAt,url"
         runner: ci
         scope: full
         exit_code: 0
-        completed_at: "2026-08-28T02:57:47Z"
+        completed_at: "2026-08-28T02:57:48Z"
         evidence_path: docs/test-design/helix/windows-lite-canary-admission-acceptance.md
-        output_digest: "sha256:b62ad1a0848b563d16c8b22a5bbe752ff8f2cb63d55d3f094040d600b75b7e4d"
+        output_digest: "sha256:5b1e5508802385a606348fd80c7faa48d4e3b52297bb3e23cff8c1818c684efd"
+        result: "terminal success / HEAD a63f6a4fe85ae5fc0f9abbebe8c4fee42fe674cb / all required lanes green"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md, artifact_type: design_doc }
