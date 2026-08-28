@@ -22,8 +22,8 @@ behavior_contract_id: PENDING-REVERSE-PAIRING-READINESS-001
 responsibility_owner: plan-backfill-pairing-governance
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: clarify_contract
-legacy_retirement_state: input_only
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "L3 pending Reverse pairing要件へcurrent契約を直接正本化し、旧requires方式をcompatibility inputへ隔離する。"
 no_code_decision: modify
@@ -36,7 +36,7 @@ tdd_red_required: true
 red_test: "PR #1139 CI run 33173316295のU-BACKFILL-006がPLAN-L7-696→PLAN-REVERSE-696の双方向referencesをreverseLinkMissingとしてRed固定した"
 red_at: "2026-08-28T22:09:04+09:00"
 green_at: "2026-08-28T22:19:33+09:00"
-mutation_oracle_evidence: "2026-08-28T22:21:01+09:00にpending Reverse判定からbackfill_state条件を除去するmutationを実測し、U-BACKFILL-008のstate不一致oracleが1 failed／3 passed（exit 1）でkillした。条件を復元後、全33 testsをgreenへ戻した。"
+mutation_oracle_evidence: "2026-08-28T22:21:01+09:00にsrc/lint/backfill-pairing.tsのpending Reverse判定からbackfill_state条件を除去するmutationを実測し、tests/backfill-pairing.test.tsのU-BACKFILL-008がstate不一致を1 failed／3 passed（exit 1）でkillした。条件を復元後、全33 testsをgreenへ戻した。"
 complexity_effect: net_neutral
 complexity_justification: "link identityとexecution dependencyを一つのstate-aware判定へ集約し、相反gateを除去する"
 removal_trigger: "PLAN dependency schemaがtyped pairing edgeを第一級fieldとして持ち、references compatibilityを廃止できる時"
@@ -56,7 +56,6 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements／dependency readiness整合" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-699-pending-reverse-pairing-readiness.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/pending-reverse-pairing-readiness.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/design/harness/L6-function-design/backfill-pairing.md, artifact_type: design_doc }
