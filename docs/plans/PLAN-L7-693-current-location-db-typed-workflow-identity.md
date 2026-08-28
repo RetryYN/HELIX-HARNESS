@@ -4,7 +4,7 @@ title: "PLAN-L7-693: current-location DB projectionをtyped workflow identityへ
 kind: impl
 layer: L7
 drive: db
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -37,6 +37,36 @@ red_test: "U-CLDB-001..003を先行追加し、typed列欠落、legacy table残�
 red_at: "2026-08-28T08:12:43+09:00"
 green_at: "2026-08-28T08:15:22+09:00"
 mutation_oracle_evidence: "2026-08-28T08:12:43+09:00に未実装baseでtests/current-location-db-workflow-identity.test.tsを実行し、typed列欠落、project_drive_model_candidates残存、実DB列欠落の3 failedを確認した。実装後、同testとstate-db／db-projection-ingestion／inventoryの4 suite 28 testsがgreenとなった。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-28T01:36:44Z"
+    tests_green_at: "2026-08-28T01:29:03Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
+    reviewed_head_sha: 16c7a4c09a8c7d2f5d75d9008228f6621de7b116
+    scope: "PR #1127 exact HEAD 16c7a4c09a8c7d2f5d75d9008228f6621de7b116をClaude Codeが独立検収し、typed／legacy XOR、package authority、stale／unknown fail-close、transaction rollback、schema exact set、inventory追従を確認した。exact HEADの6 suite 82 testsとinventory 4 tests、CI全laneがgreenで内容blocker 0 approve。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1127#issuecomment-5447304129"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33131819307 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-28T01:29:03Z"
+        evidence_path: tests/current-location-db-workflow-identity.test.ts
+        output_digest: "sha256:0afb9d2166dcf716b295ffeb2f96d136538085a6207b9dc221f2c2283f30b30b"
+        result: "terminal success / HEAD 16c7a4c09a8c7d2f5d75d9008228f6621de7b116 / all required lanes green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-28T01:36:44Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-28T01:36:44Z"
+    evidence_digest: "sha256:41775f8abbcec1560ab47667ad165223c23f2b646e6ec0e0afbd7d63e9b078de"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "legacy 2列、candidate table、candidate index、candidate projection loopを削除し、既存typed identity resolverと単一tupleへ集約する"
 removal_trigger: "current-location内部のlegacy drive-model producerがtyped routingへ置換され、input-only adapter retention期限が満了した時"
