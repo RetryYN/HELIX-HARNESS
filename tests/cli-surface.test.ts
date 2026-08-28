@@ -3244,7 +3244,7 @@ describe("L7 CLI surface closure", () => {
     );
   }, 45_000);
 
-  it("exposes Project view current-location and drive recommendation from DB projection", () => {
+  it("U-CLIWI-005: exposes Project view current-location and drive recommendation from DB projection", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
