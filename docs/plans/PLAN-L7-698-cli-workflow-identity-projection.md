@@ -47,6 +47,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/cli-workflow-identity-projection.md, oracle_id: U-CLIWI-002, test_path: tests/cli-workflow-identity-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/cli-workflow-identity-projection.md, oracle_id: U-CLIWI-003, test_path: tests/cli-workflow-identity-projection.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/cli-workflow-identity-projection.md, oracle_id: U-CLIWI-004, test_path: tests/cli-workflow-identity-projection.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/cli-workflow-identity-projection.md, oracle_id: U-CLIWI-005, test_path: tests/cli-surface.test.ts }
 dependencies:
   parent: PLAN-L7-692-workflow-output-consumer-inventory
   requires:
@@ -85,8 +86,9 @@ modifies:
 
 # CLI typed workflow identity投影工程
 
-Issue #1125のCLI ownerをconsumer単位で移行する第一sliceである。`helix drive model`と、その同じ
-legacy reportを直接包む`helix recovery plan`のJSON／summary／textを対象とする。
+Issue #1125のCLI ownerをconsumer単位で移行するsliceである。`helix drive model`と、その同じ
+legacy reportを直接包む`helix recovery plan`のJSON／summary／textに加え、同じ値を合成する
+completion frontier、Project frontier／tree viewを対象とする。
 
 skill bindingのapplicability語彙は#1044/#1059が所有するため、本PLANで名称置換や削除を行わない。
-後続のfrontier／Project view／vmodel fitは、本value objectのgreen後に別の原子sliceとして接続する。
+vmodel fit内部のlegacy判定は、本value objectのgreen後に別の原子sliceとして接続する。

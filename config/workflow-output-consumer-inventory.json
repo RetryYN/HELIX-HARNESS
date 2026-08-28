@@ -23,7 +23,7 @@
     {
       "path": "src/cli.ts",
       "field_token": "selected_model",
-      "expected_occurrences": 26,
+      "expected_occurrences": 21,
       "disposition": "workflow_primary_identity_migrate",
       "responsibility_owner": "workflow-output-cli-projection",
       "producer_symbols": ["buildProjectFrontierSummary", "projectSkillBindingCliPayload", "summarizeProjectCurrentLocation", "summarizeVmodelFitReport"],
@@ -33,7 +33,7 @@
     {
       "path": "src/cli.ts",
       "field_token": "default_model",
-      "expected_occurrences": 8,
+      "expected_occurrences": 6,
       "disposition": "workflow_primary_identity_migrate",
       "responsibility_owner": "workflow-output-cli-projection",
       "producer_symbols": ["summarizeClosureOverview", "summarizeProjectDriveModelReport", "summarizeVmodelFitReport"],
@@ -43,7 +43,7 @@
     {
       "path": "src/cli.ts",
       "field_token": "available_models",
-      "expected_occurrences": 5,
+      "expected_occurrences": 3,
       "disposition": "workflow_primary_identity_migrate",
       "responsibility_owner": "workflow-output-cli-projection",
       "producer_symbols": ["buildProjectFrontierSummary", "summarizeProjectDriveModelReport", "summarizeVmodelFitReport"],
@@ -53,7 +53,7 @@
     {
       "path": "src/cli.ts",
       "field_token": "drive_model",
-      "expected_occurrences": 24,
+      "expected_occurrences": 20,
       "disposition": "workflow_primary_identity_migrate",
       "responsibility_owner": "workflow-output-cli-projection",
       "producer_symbols": ["buildCompletionFrontierSummary", "buildProjectViewOutline", "summarizeClosureTransitionPlan", "summarizeProjectRecoveryPlan"],
