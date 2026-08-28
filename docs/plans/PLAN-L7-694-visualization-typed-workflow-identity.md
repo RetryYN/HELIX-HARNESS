@@ -58,6 +58,15 @@ review_evidence:
         evidence_path: tests/visualization-typed-workflow-identity.test.ts
         output_digest: "sha256:fe37b636b6d31b6077d4c8dcdacf238e0fb292ca0cc36c1ecdec358f91b57010"
         result: "terminal success / HEAD 020a6301a6d1c3e07593e054fe9934f0e498699a / all required lanes green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-28T04:08:39Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-28T04:08:39Z"
+    evidence_digest: "sha256:949fc890161f2ca0bc85d4e8f5942d39daacd61e69d67748dce468b760325804"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "複数のlegacy model fieldとcandidate projectionを単一typed tupleへ集約する"
 removal_trigger: "visualization compatibility consumerが0となりlegacy adapter retention期限が満了した時"
