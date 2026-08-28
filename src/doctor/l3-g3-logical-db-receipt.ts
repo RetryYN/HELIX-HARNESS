@@ -70,7 +70,7 @@ const ROW_ORDER_CONTRACT = {
 } as const;
 const NORMALIZATION_MARKER = "<rebuild-observation>";
 const OBSERVATION_COLUMNS_DIGEST =
-  "sha256:75bf22b6d9fbe4467aa3474c6df11c85eed1e7e0d34d75306730830c426381d4";
+  "sha256:ffc07b28f618078f3ff4966203e5cf4317221891b8e95e4ce9a59bf66ee87455";
 const EXCLUDED_RUNTIME_LOG_PATHS = [
   ".helix/logs/plan/*.digest.json",
   ".helix/logs/session/*.jsonl",

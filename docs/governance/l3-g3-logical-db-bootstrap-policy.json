@@ -43,7 +43,6 @@
     "project_current_location.indexed_at",
     "project_current_location.snapshot_hash",
     "project_current_location.source_clock",
-    "project_drive_model_candidates.indexed_at",
     "project_l12_layer_coverage.indexed_at",
     "project_operation_scopes.indexed_at",
     "project_roadmap_current_actions.indexed_at",

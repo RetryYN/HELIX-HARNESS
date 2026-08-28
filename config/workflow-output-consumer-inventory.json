@@ -212,36 +212,6 @@
       "producer_symbols": ["buildProjectCurrentLocationView"],
       "consumer_surfaces": ["visualization recovery", "closure outcome", "layer progress"],
       "successor_issues": [206]
-    },
-    {
-      "path": "src/schema/harness-db-tables-design.ts",
-      "field_token": "selected_drive_model",
-      "expected_occurrences": 1,
-      "disposition": "workflow_primary_identity_migrate",
-      "responsibility_owner": "workflow-output-db-schema",
-      "producer_symbols": ["HARNESS_DB_DESIGN_TABLES"],
-      "consumer_surfaces": ["project_current_location table design"],
-      "successor_issues": [206]
-    },
-    {
-      "path": "src/schema/harness-db-tables-design.ts",
-      "field_token": "default_drive_model",
-      "expected_occurrences": 1,
-      "disposition": "workflow_primary_identity_migrate",
-      "responsibility_owner": "workflow-output-db-schema",
-      "producer_symbols": ["HARNESS_DB_DESIGN_TABLES"],
-      "consumer_surfaces": ["project_current_location table design"],
-      "successor_issues": [206]
-    },
-    {
-      "path": "src/schema/harness-db-tables-design.ts",
-      "field_token": "project_drive_model_candidates",
-      "expected_occurrences": 1,
-      "disposition": "workflow_primary_identity_migrate",
-      "responsibility_owner": "workflow-output-db-schema",
-      "producer_symbols": ["HARNESS_DB_DESIGN_TABLES"],
-      "consumer_surfaces": ["project_drive_model_candidates table design"],
-      "successor_issues": [206]
     }
   ]
 }
