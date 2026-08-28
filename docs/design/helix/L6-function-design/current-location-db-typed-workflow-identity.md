@@ -11,7 +11,7 @@ plan: docs/plans/PLAN-L7-693-current-location-db-typed-workflow-identity.md
 pair_artifact: docs/test-design/helix/L8-current-location-db-typed-workflow-identity.md
 ---
 
-# current-location DB typed workflow identity projection
+# current-location DB typed workflow identity投影
 
 ## 目的
 

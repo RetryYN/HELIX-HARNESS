@@ -66,7 +66,10 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/current-location-db-typed-workflow-identity.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-current-location-db-typed-workflow-identity.md, artifact_type: test_design }
   - { artifact_path: tests/current-location-db-workflow-identity.test.ts, artifact_type: test_code }
+  - { artifact_path: src/schema/current-location-workflow-identity-resolver.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/workflow-classification-legacy-adapter.ts, artifact_type: source_module }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: config/workflow-output-consumer-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
@@ -81,6 +84,7 @@ modifies:
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
   - { artifact_path: src/workflow/current-location-workflow-identity.ts, artifact_type: source_module }
+  - { artifact_path: src/workflow/workflow-classification-legacy-adapter.ts, artifact_type: source_module }
   - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }
   - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
