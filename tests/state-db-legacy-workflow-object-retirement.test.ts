@@ -12,9 +12,13 @@ function seedRevision46LegacyDb() {
   db.exec(`
     CREATE TABLE project_current_location (
       snapshot_id TEXT PRIMARY KEY,
+      current_status TEXT,
       selected_drive_model TEXT,
-      default_drive_model TEXT
+      default_drive_model TEXT,
+      drive_route_status TEXT
     );
+    CREATE INDEX idx_project_current_location_status
+      ON project_current_location (current_status, selected_drive_model, drive_route_status);
     CREATE TABLE project_drive_model_candidates (
       candidate_id TEXT PRIMARY KEY,
       snapshot_id TEXT,
@@ -24,7 +28,7 @@ function seedRevision46LegacyDb() {
       ON project_drive_model_candidates (model);
     CREATE TABLE event_log (event_id TEXT PRIMARY KEY, payload_json TEXT);
     INSERT INTO event_log VALUES ('event-1', '{"authority":"keep"}');
-    INSERT INTO project_current_location VALUES ('latest', 'Reverse', 'Forward');
+    INSERT INTO project_current_location VALUES ('latest', 'active', 'Reverse', 'Forward', 'ready');
     INSERT INTO project_drive_model_candidates VALUES ('candidate-1', 'latest', 'Reverse');
   `);
   db.setUserVersion(46);
@@ -53,6 +57,15 @@ describe("STATE-DB-WORKFLOW-RETIREMENT-001", () => {
       expect(columns).not.toContain("default_drive_model");
       expect(schemaNames(db)).not.toContain("project_drive_model_candidates");
       expect(schemaNames(db)).not.toContain("idx_project_drive_model_candidates_status");
+      expect(
+        db
+          .prepare("SELECT sql FROM sqlite_schema WHERE name='idx_project_current_location_status'")
+          .get(),
+      ).toEqual({
+        sql: expect.stringMatching(
+          /ON project_current_location \(current_status, workflow_target_axis, workflow_target_id\)/,
+        ),
+      });
     } finally {
       db.close();
     }

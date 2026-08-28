@@ -86,14 +86,31 @@ function addMissingColumns(db: HarnessDb): number {
 }
 
 const LEGACY_WORKFLOW_SCHEMA_RETIREMENT_VERSION = 47;
+const LEGACY_WORKFLOW_LOCATION_COLUMNS = new Set(["selected_drive_model", "default_drive_model"]);
+
+function dropIndexesReferencingLegacyWorkflowColumns(db: HarnessDb): void {
+  const indexes = db.prepare("PRAGMA index_list(project_current_location)").all();
+  for (const row of indexes) {
+    if (String(row.origin) !== "c") continue;
+    const indexName = String(row.name);
+    assertSqlIdentifier(indexName);
+    const indexedColumns = db
+      .prepare(`PRAGMA index_info(${indexName})`)
+      .all()
+      .map((column) => String(column.name));
+    if (!indexedColumns.some((column) => LEGACY_WORKFLOW_LOCATION_COLUMNS.has(column))) continue;
+    db.exec(`DROP INDEX ${indexName}`);
+  }
+}
 
 function retireLegacyWorkflowSchemaObjects(db: HarnessDb, fromVersion: number): void {
   if (fromVersion >= LEGACY_WORKFLOW_SCHEMA_RETIREMENT_VERSION) return;
   db.exec("DROP INDEX IF EXISTS idx_project_drive_model_candidates_status");
   db.exec("DROP TABLE IF EXISTS project_drive_model_candidates");
   if (!tableNames(db).includes("project_current_location")) return;
+  dropIndexesReferencingLegacyWorkflowColumns(db);
   const columns = columnNames(db, "project_current_location");
-  for (const column of ["selected_drive_model", "default_drive_model"]) {
+  for (const column of LEGACY_WORKFLOW_LOCATION_COLUMNS) {
     if (columns.has(column)) db.exec(`ALTER TABLE project_current_location DROP COLUMN ${column}`);
   }
 }
