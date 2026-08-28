@@ -149,14 +149,24 @@ interface PlanDeliverableParseFailure {
 type PlanDeliverableParseResult = PlanDeliverableParseSuccess | PlanDeliverableParseFailure;
 
 /** 実行文脈に応じて公開baseを選ぶ。mainではremote-tracking refでなくHEADを正本にする。 */
-export function publishedBaseRefs(env: NodeJS.ProcessEnv, currentBranch: string | null): string[] {
+export type MergedPlanStatusBaseMode = "published" | "candidate_head";
+
+export function publishedBaseRefs(
+  env: NodeJS.ProcessEnv,
+  currentBranch: string | null,
+  mode: MergedPlanStatusBaseMode = "published",
+): string[] {
+  if (mode === "candidate_head") return ["HEAD"];
   if (env.GITHUB_REF_NAME === "main" || currentBranch === "main") return ["HEAD"];
   const base = env.GITHUB_BASE_REF;
   return base ? [`origin/${base}`, base] : ["origin/main", "main"];
 }
 
 /** PR worktreeの実在を「mainへmerge済み」と誤認しないため、公開base treeを一度だけ読む。 */
-function loadPublishedBasePaths(repoRoot: string): ReadonlySet<string> | null {
+function loadPublishedBasePaths(
+  repoRoot: string,
+  mode: MergedPlanStatusBaseMode,
+): ReadonlySet<string> | null {
   let currentBranch: string | null = null;
   try {
     currentBranch =
@@ -168,7 +178,7 @@ function loadPublishedBasePaths(repoRoot: string): ReadonlySet<string> | null {
   } catch {
     // Gitなしfixtureは下のfallbackを使う。
   }
-  for (const ref of publishedBaseRefs(process.env, currentBranch)) {
+  for (const ref of publishedBaseRefs(process.env, currentBranch, mode)) {
     try {
       execFileSync("git", ["rev-parse", "--verify", ref], { cwd: repoRoot, stdio: "ignore" });
       const output = execFileSync("git", ["ls-tree", "-r", "--name-only", ref], {
@@ -246,7 +256,10 @@ export function selectInvalidModifications(
   );
 }
 
-export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInput {
+export function loadMergedPlanStatusInput(
+  repoRoot: string,
+  options: { baseMode?: MergedPlanStatusBaseMode } = {},
+): MergedPlanStatusInput {
   const plans: MergedPlanRow[] = [];
   const parseFailures: MergedPlanStatusParseFailure[] = [];
   let reviewPlans: ReturnType<typeof loadReviewPlans>;
@@ -256,7 +269,7 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
     return { plans: [] }; // docs/plans 不在は空 (fail-open、他 lint と同方針)
   }
   const plansDir = join(repoRoot, "docs", "plans");
-  const publishedBasePaths = loadPublishedBasePaths(repoRoot);
+  const publishedBasePaths = loadPublishedBasePaths(repoRoot, options.baseMode ?? "published");
   for (const rp of reviewPlans) {
     if (rp.status === "archived") continue;
     let content = "";

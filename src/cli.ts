@@ -4772,7 +4772,7 @@ plan
   .description("PLAN lint")
   .option(
     "--gate <id>",
-    "run a named PLAN gate lint (schedule, descent, entry-routing, governance/frontmatter, G1-trace, G3-trace)",
+    "run a named PLAN gate lint (schedule, descent, entry-routing, governance/frontmatter, post-merge-status, G1-trace, G3-trace)",
   )
   .option("--write-baseline", "write a machine-generated baseline for the selected gate")
   .action((path?: string, opts?: { gate?: string; writeBaseline?: boolean }) => {

@@ -554,6 +554,23 @@ describe("source harness-check workflow", () => {
     expect(authority["continue-on-error"]).toBeUndefined();
   });
 
+  it("U-MPS-PRE-003: runs post-merge PLAN status before authority and full regression", () => {
+    const { steps } = loadWorkflow();
+    const planLintIndex = steps.findIndex((step) => step.name === "plan-lint");
+    const postMergeIndex = steps.findIndex((step) => step.name === "post-merge PLAN status");
+    const authorityIndex = steps.findIndex(
+      (step) => step.name === "L1-L12 canonical authority drift gate",
+    );
+    const postMerge = steps[postMergeIndex];
+
+    expect(postMerge?.run).toBe(
+      "npx --no-install tsx src/cli.ts plan lint --gate post-merge-status",
+    );
+    expect(postMerge?.["continue-on-error"]).toBeUndefined();
+    expect(postMergeIndex).toBe(planLintIndex + 1);
+    expect(postMergeIndex).toBeLessThan(authorityIndex);
+  });
+
   it("implements the §6.3 branch-type subjob matrix inside the single required check", () => {
     const { steps, raw } = loadWorkflow();
     const matrix = stepByName(steps, "branch type matrix");

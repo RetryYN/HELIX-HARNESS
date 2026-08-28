@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -10,6 +11,7 @@ import {
   selectInvalidModifications,
   selectMergedArtifacts,
 } from "../src/lint/merged-plan-status";
+import { lintPlanWithGate } from "../src/plan/lint";
 
 // PO 指摘 2026-06-15: merge 済み generated artifact を持つのに owning PLAN が draft のまま
 // 放置される V-model state 不整合 (PLAN-L7-53 の実例) を機械検出する gate の回帰。
@@ -38,6 +40,12 @@ describe("analyzeMergedPlanStatus", () => {
       "origin/release",
       "release",
     ]);
+  });
+
+  it("U-MPS-PRE-001: explicitly treats candidate HEAD as the post-merge published tree", () => {
+    expect(
+      publishedBaseRefs({ GITHUB_BASE_REF: "main" }, "recovery/1132-preflight", "candidate_head"),
+    ).toEqual(["HEAD"]);
   });
 
   it("flags an artifact-producing PLAN that is draft but whose src is merged", () => {
@@ -267,6 +275,30 @@ describe("loadMergedPlanStatusInput + checkMergedPlanStatus", () => {
   it("fails closed when repo root cannot be read", () => {
     const result = checkMergedPlanStatus(join(tmpdir(), "helix-merged-plan-nope-zzz"));
     expect(result.ok).toBe(false);
+  });
+
+  it("U-MPS-PRE-002: candidate gate returns the existing analyzer violation without rounding it to success", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-post-merge-plan-gate-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "src"), { recursive: true });
+      writeFileSync(join(root, "src", "candidate.ts"), "export const candidate = true;\n", "utf8");
+      writePlan(root, "PLAN-TEST-1132-candidate.md", "draft", "src/candidate.ts");
+      execFileSync("git", ["init", "--quiet"], { cwd: root });
+      execFileSync("git", ["config", "user.email", "helix-test@example.invalid"], { cwd: root });
+      execFileSync("git", ["config", "user.name", "HELIX Test"], { cwd: root });
+      execFileSync("git", ["add", "docs/plans/PLAN-TEST-1132-candidate.md", "src/candidate.ts"], {
+        cwd: root,
+      });
+      execFileSync("git", ["commit", "--quiet", "-m", "test: seed candidate"], { cwd: root });
+
+      const result = lintPlanWithGate(undefined, root, "post-merge-status");
+
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("PLAN-TEST-1132-candidate");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   // Regression for the L7-71 detection hole (2026-06-19): an impl PLAN that ships a
