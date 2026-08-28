@@ -1,3 +1,5 @@
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import type {
   CurrentLocationWorkflowIdentity,
   CurrentLocationWorkflowIdentityReceipt,
@@ -16,6 +18,16 @@ import {
   adaptLegacyWorkflowClassification,
   type WorkflowClassificationLegacyReceipt,
 } from "./workflow-classification-legacy-adapter.js";
+
+/**
+ * Workflow classification authority belongs to the installed HELIX package, not to the
+ * governed consumer repository. The test CLI bundle fixes import.meta.url to the logical
+ * package root, so this remains stable across linked worktrees and consumer cwd changes.
+ */
+export const WORKFLOW_CLASSIFICATION_PACKAGE_ROOT = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  "../..",
+);
 
 export type {
   CurrentLocationWorkflowIdentity,
@@ -226,6 +238,16 @@ export function resolveCurrentLocationWorkflowIdentity(
     emit_legacy_identity: false,
     exit_code: 0,
   };
+}
+
+/** Resolve a project observation against the installed HELIX authority, never consumer cwd. */
+export function resolvePackageCurrentLocationWorkflowIdentity(
+  legacyModel: string,
+): CurrentLocationWorkflowIdentityReceipt {
+  return resolveCurrentLocationWorkflowIdentity({
+    legacy_model: legacyModel,
+    repo_root: WORKFLOW_CLASSIFICATION_PACKAGE_ROOT,
+  });
 }
 
 /** Composition boundary for CLI/read-model consumers; state-db remains independent of workflow. */
