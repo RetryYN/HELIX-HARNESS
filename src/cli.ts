@@ -65,7 +65,6 @@ import { registerReviewFallbackCommand } from "./cli/commands/review-fallback";
 import { registerRouteCommands } from "./cli/commands/route";
 import { registerWorkflowCommands } from "./cli/commands/workflow";
 import { packetFreshnessLine, verificationSourceLines, writeRecordTemplates } from "./cli/helpers";
-import { buildCliWorkflowIdentityProjection } from "./cli/workflow-identity-projection";
 import { rebuildHarnessDb } from "./composition/db-rebuild-composition";
 import {
   designRegistryTablesInitialized,
@@ -619,6 +618,7 @@ import { lintVmodel } from "./vmodel/lint";
 import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";
 import { helixVscodePackageManifest } from "./vscode/extension-manifest";
 import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
+import { buildCliWorkflowIdentityProjection } from "./workflow/cli-workflow-identity-projection";
 import { buildCommandCatalog } from "./workflow/contracts";
 import { attachCurrentLocationWorkflowIdentity } from "./workflow/current-location-workflow-identity";
 import { evaluateAutomationReadiness } from "./workflow/readiness";

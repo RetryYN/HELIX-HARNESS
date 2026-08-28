@@ -11,7 +11,7 @@ plan: docs/plans/PLAN-L7-698-cli-workflow-identity-projection.md
 pair_artifact: docs/test-design/helix/L8-cli-workflow-identity-projection-unit-test-design.md
 ---
 
-# CLI typed workflow identity projection
+# CLI typed workflow identity投影設計
 
 ## 目的
 

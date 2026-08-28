@@ -1,10 +1,10 @@
 import { spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
-import { buildCliWorkflowIdentityProjection } from "../src/cli/workflow-identity-projection";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
 import { openHarnessDb } from "../src/state-db";
 import { buildProjectCurrentLocationSnapshot } from "../src/state-db/current-location";
 import { migrate } from "../src/state-db/migration";
+import { buildCliWorkflowIdentityProjection } from "../src/workflow/cli-workflow-identity-projection";
 import { attachCurrentLocationWorkflowIdentity } from "../src/workflow/current-location-workflow-identity";
 import { ensureCliBundle } from "./tools/cli-bundle";
 

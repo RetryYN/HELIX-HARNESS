@@ -4,7 +4,7 @@ title: "PLAN-L7-698: CLI workflow identity projectionをtyped authorityへ移行
 kind: impl
 layer: L7
 drive: fullstack
-status: confirmed
+status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -69,17 +69,21 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/cli-workflow-identity-projection.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-cli-workflow-identity-projection-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/cli-workflow-identity-projection.test.ts, artifact_type: test_code }
-  - { artifact_path: src/cli/workflow-identity-projection.ts, artifact_type: source_module }
+  - { artifact_path: src/workflow/cli-workflow-identity-projection.ts, artifact_type: source_module }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: config/workflow-output-consumer-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 ---
 
-# CLI typed workflow identity projection
+# CLI typed workflow identity投影工程
 
 Issue #1125のCLI ownerをconsumer単位で移行する第一sliceである。`helix drive model`と、その同じ
 legacy reportを直接包む`helix recovery plan`のJSON／summary／textを対象とする。
