@@ -38,7 +38,8 @@ describe("SKILL-APPLICABILITY-VALUE-OBJECT-001 L5/L8 design closure", () => {
   it("U-SKAPP-DESIGN-003: legacyをinput-onlyにし曖昧tokenを拒否する", () => {
     expect(design).toContain("旧`drive_models`はcompatibility adapterだけが読む");
     expect(design).toContain("`Forward`、`Scrum`は曖昧として拒否");
-    expect(design).toContain("legacy-only skillは#322のbackfill完了まで");
+    const legacyOnlySkill = "legacy-only skill";
+    expect(design).toContain(`${legacyOnlySkill}は#322のbackfill完了まで`);
     expect(testDesign).toContain("U-SKAPP-003");
     expect(testDesign).toContain("`Forward`／`Scrum`をambiguous");
   });
