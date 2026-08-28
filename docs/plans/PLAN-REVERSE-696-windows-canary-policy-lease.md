@@ -54,6 +54,7 @@ backprop_scope:
     reason: "U-WLCA-001／005／009／014とmutation evidenceをcurrent HEADへ束縛する。"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md, artifact_type: markdown_doc }
+modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
