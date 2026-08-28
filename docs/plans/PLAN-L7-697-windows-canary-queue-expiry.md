@@ -4,7 +4,7 @@ title: "PLAN-L7-697 (impl): Windows canary bounded queue／expiryを実装する
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
