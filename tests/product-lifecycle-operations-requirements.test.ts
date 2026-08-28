@@ -32,6 +32,14 @@ describe("製品ライフサイクル運用L3↔L10 authority", () => {
     expect(uniqueIds(acceptance, /OPS-AC-\d{3}/gu)).toEqual(
       Array.from({ length: 18 }, (_, index) => `OPS-AC-${String(index + 1).padStart(3, "0")}`),
     );
+    for (const requirementId of Array.from(
+      { length: 12 },
+      (_, index) => `OPS-R-${String(index + 1).padStart(2, "0")}`,
+    )) {
+      expect(acceptance, `${requirementId}に対応するacceptanceが必要`).toMatch(
+        new RegExp("\\| `OPS-AC-\\d{3}` \\| `" + requirementId + "` \\|", "u"),
+      );
+    }
   });
 
   it("OPS-AUTH-002: ReleaseとDeployment、change classとrouteを別authorityに保つ", () => {

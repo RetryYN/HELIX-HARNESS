@@ -39,87 +39,87 @@ trace、notification、provider control plane、DevOS、`harness.db`は証拠ま
 Evidenceを伴う`implementation_ops → definition_review → requirement_change`の上位昇格だけを許可し、観測から上位authorityを直接変更しない。
 Reverse、Recovery、Incident等のworkflow routeと上記change classを同じenumへ畳み込まない。
 
-## OPS-FR-001 typed lifecycle contract
+## OPS-FR-001 型付きライフサイクルcontract
 
-### OPS-R-01 EnvironmentContract
+### OPS-R-01 環境contract（EnvironmentContract）
 
-environment ID、class、provider adapter ID／version、current state digest、endpoint reference、resource constraint、permission、
+環境ごとにenvironment ID、class、provider adapter ID／version、current state digest、endpoint reference、resource constraint、permission、
 credential reference、network sink、data classification、dependency resource、owner、expiryを保持する。secret値は保持しない。
 targetを一意に物理同定できない場合、logical targetとphysical targetが不一致の場合、credentialが期限切れの場合はfail-closeする。
 
-### OPS-R-02 Deployment contract
+### OPS-R-02 配備contract（Deployment）
 
 `DeploymentManifest`はRelease artifact full SHA／digest、configuration digest、target environment、migration、health check、
 compatibility、required capabilityを保持する。`DeploymentPlan`はpreflight、staging、apply order、approval、stop condition、rollback、
 observation windowを保持する。`DeploymentReceipt`はactor、assignment、target identity、before／after state、artifact、差分、時刻、結果、
 evidence、provider receiptを束縛する。Plan、apply、receiptを同一状態へ畳み込まない。
 
-### OPS-R-03 Rollback contract
+### OPS-R-03 巻き戻しcontract（Rollback）
 
 `RollbackPlan`と`RollbackReceipt`をDeploymentとは別contractとして保持する。irreversible migration、backup欠落、rollback target不明、
 consumer-owned bytes破壊、rollback後health未確認を拒否する。rollback successをincident closureやforward fix completionとして扱わない。
 
-## OPS-FR-002 deployment planningとpromotion
+## OPS-FR-002 配備計画と段階昇格
 
-### OPS-R-04 provider-neutral planner
+### OPS-R-04 provider中立planner
 
 Requirement、Design、dependency、Release Artifact、Environment current stateからDeployment Planを決定的に生成する。
 local、VPS、container、serverless、AWS、Azure、GCP等はtyped adapter portで接続し、provider固有schemaやcommandをCoreへ埋め込まない。
 unknown capability、ambiguous target、artifact／config digest欠落、migration互換不明、health check欠落、権限不足をfail-closeする。
 
-### OPS-R-05 staged promotion
+### OPS-R-05 段階的promotion
 
 同一artifact digestを`staging／equivalent → canary → bounded exposure → production`へ昇格する。blue-green等のstrategyはrisk、
 blast radius、health model、rollback latencyから決定する。stage skip、OS別rebuild、review前artifact差替え、observation window省略を拒否する。
 production apply、cloud destructive operation、credential sinkは既存action-binding approvalとsecurity broker authorityへ従う。
 
-## OPS-FR-003 operationとincident
+## OPS-FR-003 運用とincident
 
-### OPS-R-06 OperationPolicyとObservation
+### OPS-R-06 運用policyと観測（OperationPolicy／Observation）
 
 `OperationPolicy`はSLO、availability、latency、error rate、process／job／queue、API／DB／MCP接続、CPU／memory／storage／network、
 retry／timeout／circuit breaker、certificate／credential validity、post-deploy delta、cost、alert、Runbook、recovery authorityを保持する。
 `OperationalObservation`はpolicy version、environment、window、source、quality、correlation、payload digest、findingを保持する。
 
-### OPS-R-07 IncidentRecord
+### OPS-R-07 障害記録（IncidentRecord）
 
 異常を関連Release、Deployment、Requirement、Contract、変更差分へ相関し、symptom、impact、start／detect／recover time、直前変更、
 containment、rollback、root-cause state、recurrence preventionを記録する。duplicate／out-of-order observationは冪等処理し、stale correlation、
 missing provenance、insufficient qualityからroot causeを推測確定しない。自動復旧はversioned Runbookとbounded authority内だけとする。
 
-## OPS-FR-004 maintenance
+## OPS-FR-004 保守
 
-### OPS-R-08 MaintenanceObligation
+### OPS-R-08 保守義務（MaintenanceObligation）
 
-dependency／runtime update、vulnerability、secret／certificate rotation、backup／restore／migration rehearsal、configuration drift、deprecated
+保守対象としてdependency／runtime update、vulnerability、secret／certificate rotation、backup／restore／migration rehearsal、configuration drift、deprecated
 API／schema／workflow retirement、flaky test、CI／runner、retention、capacity／performance、Runbook、dead code／connectionを期限、周期、owner、
 target、required evidence、risk、overdue effectへ束縛する。schedulerのduplicate、clock drift、timezone boundary、missed cycleを検出する。
 
-### OPS-R-09 structural escalation
+### OPS-R-09 構造問題の上位昇格
 
 保守中にresponsibility、contract、data ownership、dependency directionの構造原因を検出した場合、局所patchだけで閉じず
 `definition_review`へ昇格する。value、behavior、acceptanceを変える必要がある場合だけ`requirement_change`へ昇格する。
 
-## OPS-FR-005 diagnosisと修正箇所特定
+## OPS-FR-005 診断と修正箇所特定
 
-### OPS-R-10 ChangeDiagnosis
+### OPS-R-10 変更診断（ChangeDiagnosis）
 
-`symptom／user outcome → Runtime／Deployment／CI Evidence → Release／PR／Commit／diff → Requirement／Definition → Contract／dependency →
+症状から修正箇所を特定するため、`symptom／user outcome → Runtime／Deployment／CI Evidence → Release／PR／Commit／diff → Requirement／Definition → Contract／dependency →
 Module／Code／Test／Config／Infrastructure`を追跡する。診断はchange class、evidence refs、suspected IDs／modules／files／infrastructure、
 affected component、confidence、blast radius、regression scope、migration／rollback／escalation decisionを持つ。
 
 候補が複数なら順位、根拠、反証条件を示す。単純な文字列一致、最新commit、単一logだけで確定しない。confidence不足時は追加観測または
 再現試験をPLANへ返し、ambiguousな修正対象を自動編集しない。
 
-### OPS-R-11 closure evidence
+### OPS-R-11 終端証拠
 
 commandやDeployment APIのsuccessだけで完了としない。実environment health check、observation window、SLO、rollback readiness、
 regression、independent review、main／deployment target／GitHub／DB read-afterが一致して初めてcompletion evidenceを成立させる。
 incident close後もMaintenanceObligationまたはReverse／Recovery findingが残る場合は終端差をsurfaceする。
 
-## OPS-FR-006 release responsibilityとdogfood
+## OPS-FR-006 release責務と自己適用検証
 
-### OPS-R-12 Module／Bundle integration
+### OPS-R-12 Module／Bundle統合
 
 Release Module責務を`helix-deployment`、`helix-operations`、`helix-maintenance`、`helix-diagnosis`へ分離し、各release pathの
 primary ownerをexactly oneにする。`helix-lifecycle-ops` Bundleは4 Moduleとrequired core／verification／security dependencyを

@@ -51,7 +51,35 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 agent_slots:
   - { role: tl, slot_label: "TL — authority／state／responsibility／release integration" }
   - { role: qa, slot_label: "QA — target／rollback／health／diagnosis／ownership mutation" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-28T18:30:48Z"
+    reviewed_at: "2026-08-28T18:40:01Z"
+    verdict: reject
+    worker_model: codex-runtime
+    reviewer_model: claude-opus-5
+    reviewer_session_id: 2b7369e1-12e1-491e-aca8-850ab68d7545
+    scope: "PR #1168 HEAD bbf9c8142efb41578825c321452a15df46d92284をClaude Codeが独立検収し、requirements／Issue graph／L3↔L10／digest接合を是認した一方、design-language 23件とconfirmed PLANのreview evidence欠落をblocker 2件としてrejectした。指摘は後続commitで日本語化し、本entry自体が実reviewの帰属と時系列を保全する。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1168#issuecomment-5456366108"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/product-lifecycle-operations-requirements.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-28T18:30:48Z"
+        evidence_path: tests/product-lifecycle-operations-requirements.test.ts
+        output_digest: "sha256:71b2b68ae0f6c3d3814399a9253fa8337b1cb2009390fdae3dc9bb5e9b08d574"
+        result: "2 files / 40 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-28T18:40:01Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-28T18:40:01Z"
+    evidence_digest: "sha256:886c170bc77083e352df424d1516bf0cd6a877405646b2fff2c3c212ac655aab"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-71-product-lifecycle-operations.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md, artifact_type: design_doc }
