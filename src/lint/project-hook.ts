@@ -113,6 +113,10 @@ function commandOk(command: string, parts: readonly string[]): boolean {
   return parts.every((part) => command.includes(part));
 }
 
+function agentFrontmatter(content: string): string {
+  return /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(content)?.[1] ?? "";
+}
+
 export function analyzeProjectHooks(
   docs: ProjectHookDoc[],
   agentDocs: ProjectHookDoc[] = [],
@@ -181,7 +185,7 @@ export function analyzeProjectHooks(
     violations.push({ file: join(".claude", "settings.json"), reason: "missing_settings" });
   }
   for (const agentDoc of agentDocs) {
-    if (/^memory:\s*(?:project|user|local)\s*$/m.test(agentDoc.content)) {
+    if (/^memory:\s*(?:project|user|local)\s*$/m.test(agentFrontmatter(agentDoc.content))) {
       violations.push({ file: agentDoc.file, reason: "native_agent_memory_enabled" });
     }
   }

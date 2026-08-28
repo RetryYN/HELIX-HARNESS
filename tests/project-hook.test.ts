@@ -47,6 +47,21 @@ describe("project-hook lint", () => {
     });
   });
 
+  it("does not treat a prose mention as an active native memory declaration", () => {
+    const settings = readFileSync(join(process.cwd(), ".claude", "settings.json"), "utf8");
+    const result = analyzeProjectHooks(
+      [{ file: ".claude/settings.json", content: settings }],
+      [
+        {
+          file: ".claude/agents/example.md",
+          content: "---\nname: example\n---\nDo not add `memory: project` to frontmatter.\n",
+        },
+      ],
+    );
+
+    expect(result.violations).toEqual([]);
+  });
+
   it("rejects missing team-standard project hook entries", () => {
     const settings = JSON.parse(
       readFileSync(join(process.cwd(), ".claude", "settings.json"), "utf8"),
