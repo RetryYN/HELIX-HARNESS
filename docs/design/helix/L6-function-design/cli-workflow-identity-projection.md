@@ -43,3 +43,23 @@ partial tuple、unknown axis／ID、stale digest、identity／receipt不一致�
 本sliceはdrive-model reportの内部compatibility producerを即時削除しないが、CLI current outputからは完全に
 隔離する。completion frontier／Project frontier／tree viewが旧producerを再包装する経路も同じcurrent-output
 境界として閉じる。skill bindingは#1044/#1059、vmodel fit内部判定は#1125の後続sliceが所有する。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": ["cli_workflow_identity_invalid"],
+  "assets": [
+    "src/workflow/cli-workflow-identity-projection.ts",
+    "tests/cli-workflow-identity-projection.test.ts",
+    "tests/cli-surface.test.ts"
+  ],
+  "failure_reachability": [
+    {
+      "failure_code": "cli_workflow_identity_invalid",
+      "oracle_id": "U-CLIWI-004",
+      "test_path": "tests/cli-workflow-identity-projection.test.ts"
+    }
+  ]
+}
+```
