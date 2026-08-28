@@ -12,7 +12,7 @@ related_l12:
   - docs/design/helix/L12-vmodel/vmodel-layer-coverage.md
   - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
 pair_artifact: docs/test-design/helix/vmodel-docgen-fit-acceptance.md
-source_package: ハイブリッド設計ドキュメントv1-fixed.zip
+source_package: hybrid-vmodel-source.v1
 zip_sources:
   - docs/catalog.yaml
   - docs/profiles.yaml

@@ -1,7 +1,15 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-export const VMODEL_ZIP_FILENAME = "ハイブリッド設計ドキュメントv1-fixed.zip";
+/** current output／DBで使うsource identity。archive filenameをauthorityへ再出力しない。 */
+export const VMODEL_SOURCE_FAMILY_ID = "hybrid-vmodel-source.v1";
+export const VMODEL_SOURCE_MANIFEST_PATH =
+  "docs/migration/source-manifests/hybrid-vmodel-source.v1.json";
+
+/** compatibility input-only。current treeにarchive実体を要求しない。 */
+export const VMODEL_LEGACY_ZIP_FILENAME = "ハイブリッド設計ドキュメントv1-fixed.zip";
+/** @deprecated compatibility input-only。 */
+export const VMODEL_ZIP_FILENAME = VMODEL_LEGACY_ZIP_FILENAME;
 
 export const VMODEL_ZIP_REQUIRED_PATHS = [
   "docs/107_Vモデル・レベル定義.yaml",
@@ -372,6 +380,113 @@ export interface VmodelZipManifestResult {
   }>;
 }
 
+interface VmodelSourceManifest {
+  source_family_id?: unknown;
+  root_prefix?: unknown;
+  entry_count?: unknown;
+  by_extension?: unknown;
+  adopted_entries?: unknown;
+}
+
+function analyzeVmodelSourceManifest(repoRoot: string): VmodelZipManifestResult | null {
+  const manifestPath = join(repoRoot, VMODEL_SOURCE_MANIFEST_PATH);
+  if (!existsSync(manifestPath)) return null;
+  try {
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as VmodelSourceManifest;
+    const adoptedEntries = Array.isArray(manifest.adopted_entries)
+      ? manifest.adopted_entries.filter(
+          (entry): entry is { path: string } =>
+            Boolean(entry) && typeof entry === "object" && typeof entry.path === "string",
+        )
+      : [];
+    const adoptedPaths = new Set(adoptedEntries.map((entry) => entry.path));
+    const rootPrefix = typeof manifest.root_prefix === "string" ? manifest.root_prefix : null;
+    const entriesTotal =
+      typeof manifest.entry_count === "number" && Number.isSafeInteger(manifest.entry_count)
+        ? manifest.entry_count
+        : 0;
+    const byExtension =
+      manifest.by_extension && typeof manifest.by_extension === "object"
+        ? Object.fromEntries(
+            Object.entries(manifest.by_extension).filter(
+              (entry): entry is [string, number] =>
+                typeof entry[1] === "number" && Number.isSafeInteger(entry[1]),
+            ),
+          )
+        : {};
+    const required = VMODEL_ZIP_REQUIRED_PATHS.map((path) => ({
+      path,
+      present: adoptedPaths.has(path),
+      actualPath: adoptedPaths.has(path) ? path : null,
+    }));
+    const findings: VmodelZipManifestResult["findings"] = required
+      .filter((entry) => !entry.present)
+      .map((entry) => ({
+        code: "required_entry_missing",
+        severity: "error",
+        detail: `required source manifest entry is missing: ${entry.path}`,
+      }));
+    if (manifest.source_family_id !== VMODEL_SOURCE_FAMILY_ID) {
+      findings.push({
+        code: "archive_parse_error",
+        severity: "error",
+        detail: `source_family_id mismatch: ${String(manifest.source_family_id ?? "missing")}`,
+      });
+    }
+    const inventorySignature = buildVmodelZipInventorySignature({
+      present: true,
+      rootPrefix,
+      entriesTotal,
+      byExtension,
+    });
+    if (inventorySignature.status !== "match") {
+      findings.push({
+        code: "archive_parse_error",
+        severity: "error",
+        detail: "source manifest inventory signature does not match the admitted source family",
+      });
+    }
+    return {
+      ok: findings.length === 0,
+      archivePath: manifestPath,
+      present: true,
+      rootPrefix,
+      entriesTotal,
+      byExtension,
+      inventorySignature,
+      required,
+      findings,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      archivePath: manifestPath,
+      present: true,
+      rootPrefix: null,
+      entriesTotal: 0,
+      byExtension: {},
+      inventorySignature: buildVmodelZipInventorySignature({
+        present: true,
+        rootPrefix: null,
+        entriesTotal: 0,
+        byExtension: {},
+      }),
+      required: VMODEL_ZIP_REQUIRED_PATHS.map((path) => ({
+        path,
+        present: false,
+        actualPath: null,
+      })),
+      findings: [
+        {
+          code: "archive_parse_error",
+          severity: "error",
+          detail: `source manifest parse failed: ${String(error)}`,
+        },
+      ],
+    };
+  }
+}
+
 function extensionOf(path: string): string {
   if (path.endsWith("/")) return "(directory)";
   const base = path.split("/").pop() ?? path;
@@ -533,6 +648,10 @@ export function analyzeVmodelZipManifest(
   const archivePath = join(repoRoot, filename);
   const requiredPaths = input.requiredPaths ?? VMODEL_ZIP_REQUIRED_PATHS;
   if (!existsSync(archivePath)) {
+    if (filename === VMODEL_ZIP_FILENAME) {
+      const sourceManifest = analyzeVmodelSourceManifest(repoRoot);
+      if (sourceManifest) return sourceManifest;
+    }
     return {
       ok: true,
       archivePath,

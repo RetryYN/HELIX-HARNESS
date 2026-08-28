@@ -2873,7 +2873,7 @@ export function checkProjectSkillBinding(
         if (binding.status !== "ready") {
           violations.push(`status=${binding.status}`);
         }
-        if (binding.sourcePackage !== "ハイブリッド設計ドキュメントv1-fixed.zip") {
+        if (binding.sourcePackage !== "hybrid-vmodel-source.v1") {
           violations.push(`source_package=${binding.sourcePackage}`);
         }
         if (binding.command !== "helix skill suggest --current-location --summary-json") {

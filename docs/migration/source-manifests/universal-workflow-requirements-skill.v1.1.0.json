@@ -1,0 +1,25 @@
+{
+  "schema_version": "helix-source-manifest.v1",
+  "source_family_id": "universal-workflow-requirements-skill.v1.1.0",
+  "legacy_archive_filename": "UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip",
+  "archive_sha256": "b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26",
+  "authority": "migration_source_only",
+  "canonical_projection": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+  "entry_count": 14,
+  "entries": [
+    { "path": "README.md", "size": 1799, "sha256": "d7d0c862c8442a1bc567656640dd272dd28e8315ec93339c82978718ba57aec4" },
+    { "path": "SKILL.md", "size": 4011, "sha256": "8404f7926814171ffbdaa30927cb5291c81a17e73a2a91beda5d3268eaf9cd75" },
+    { "path": "catalogs/base-question-catalog.md", "size": 1208, "sha256": "e3792cb1d62db0ea23097bced7e985351e2257a04ef7359b75284453c0f9375b" },
+    { "path": "catalogs/conditional-question-catalog.yaml", "size": 2372, "sha256": "568129425a016144d028bddda523a42030ed82860712bb7925419f5ae26b1cec" },
+    { "path": "catalogs/runtime-orchestration-question-catalog.md", "size": 1633, "sha256": "c8176370f425b9409e5137c6fa88642cb719b008d34a308ceca309981fa3efc0" },
+    { "path": "contracts/derived-mapping.md", "size": 1194, "sha256": "d2aa3864f6b4a632200f8dcce4b753de73b4a837f77f915018589445bf8f5894" },
+    { "path": "contracts/requirement-contract.schema.json", "size": 1699, "sha256": "277db0d25cc1bcc824ebd7134109ff3859682d433c14d488062bac0caf067dfd" },
+    { "path": "contracts/runtime-orchestration-contract.md", "size": 2284, "sha256": "30f975bc054fe5f054e5416f2476ff5f974c08c68127c8ee10299b96a0270f36" },
+    { "path": "contracts/workflow-to-requirement-contract.md", "size": 1864, "sha256": "56609bc0f9c41f315c9767790d03c462b36bc0eabaf63625fe4573aa63942886" },
+    { "path": "examples/approval-workflow.example.json", "size": 4604, "sha256": "d29adddf911770be7a949c8dccd644b50431abf1f0d6ebe4efa10cd2deedd25d" },
+    { "path": "examples/runtime-orchestration.example.json", "size": 2979, "sha256": "ea360a0c9d9cea33d585f4cff515ef9feb0253bd09550f7534f49dc6f9d5e3fb" },
+    { "path": "prompts/workflow-extraction-prompt.md", "size": 992, "sha256": "2d9f8729914845f7e61255c6868f8bce98851e1e5d5ab056bce6cb48141a39e1" },
+    { "path": "schemas/derived-requirements.schema.json", "size": 1239, "sha256": "bba19443b5d440743f24e2d52bd5cf7548988d7c218265f02c34a8c2e5989585" },
+    { "path": "schemas/workflow-model.schema.json", "size": 16583, "sha256": "27517ed8bbef8501c77a41130bc7fb6f7f0eae9ded91b6d355d126e4c9cc7229" }
+  ]
+}

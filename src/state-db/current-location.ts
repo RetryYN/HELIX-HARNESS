@@ -4,7 +4,10 @@ import type {
   CurrentLocationWorkflowIdentity,
   CurrentLocationWorkflowIdentityReceipt,
 } from "../schema/current-location-workflow-identity";
-import { VMODEL_ZIP_FILENAME, VMODEL_ZIP_SOURCE_BINDINGS } from "../schema/hybrid-vmodel-manifest";
+import {
+  VMODEL_SOURCE_FAMILY_ID,
+  VMODEL_ZIP_SOURCE_BINDINGS,
+} from "../schema/hybrid-vmodel-manifest";
 import type { HarnessDb } from "./index";
 
 export type ProjectDriveModel =
@@ -5011,7 +5014,7 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
 
   return {
     status,
-    sourcePackage: VMODEL_ZIP_FILENAME,
+    sourcePackage: VMODEL_SOURCE_FAMILY_ID,
     sourceBindings: sourceBindings.map((binding) => binding.bindingId),
     backlogItems: rowsByCategory.backlog.length,
     sprintItems: rowsByCategory.sprint.length,
@@ -5190,7 +5193,7 @@ function buildProjectSkillBinding(
   if (rows.length === 0) {
     return {
       status: "catalog_missing",
-      sourcePackage: VMODEL_ZIP_FILENAME,
+      sourcePackage: VMODEL_SOURCE_FAMILY_ID,
       selectedModel,
       workflowModes,
       l12Layers,
@@ -5242,7 +5245,7 @@ function buildProjectSkillBinding(
 
   return {
     status: items.length > 0 ? "ready" : "no_match",
-    sourcePackage: VMODEL_ZIP_FILENAME,
+    sourcePackage: VMODEL_SOURCE_FAMILY_ID,
     selectedModel,
     workflowModes,
     l12Layers,
@@ -5335,7 +5338,7 @@ function buildZipAdoptionMatrix(db: HarnessDb): ProjectZipAdoptionMatrix {
     rejected: items.filter((item) => item.category === "reject" && item.status === "declared")
       .length,
     missing: items.filter((item) => item.status === "missing").length,
-    sourcePackage: VMODEL_ZIP_FILENAME,
+    sourcePackage: VMODEL_SOURCE_FAMILY_ID,
     sourceDocument: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
     docDependencies: unique(items.flatMap((item) => item.docDependencies)),
     implementationDependencies: unique(items.flatMap((item) => item.implementationDependencies)),

@@ -125,7 +125,7 @@ spec:
 
 ## §0 位置づけ
 
-本書は `ハイブリッド設計ドキュメントv1-fixed.zip` の `107_Vモデル・レベル定義` を HELIX の機械検出 gate へ写すための
+本書は `hybrid-vmodel-source.v1` の `107_Vモデル・レベル定義` を HELIX の機械検出 gate へ写すための
 層カバレッジ設計である。ここで定義する ID は実装完了の主張ではない。各 L 層が `design_declarations` へ
 投影され、Project view と `current-location` が heuristic ではなく typed declaration を根拠に現在地を描くための
 検出契約である。
