@@ -24,6 +24,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: consumer_migration
+backprop_decision: not_required
+backprop_decision_reason: "requirements-owned applicability registryと承認済みtyped workflow identityをruntime value objectへ投影するrefactorで、上位要求の意味を変更しない"
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "#1044のrequirements-owned skill applicability registryとL3承認provenanceがcurrent mainに存在する"
