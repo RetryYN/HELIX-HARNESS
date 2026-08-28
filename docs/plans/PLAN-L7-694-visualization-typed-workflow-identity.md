@@ -35,8 +35,8 @@ contract_failures: "old field、partial tuple、unknown axis／ID、stale digest
 tdd_red_required: true
 red_test: "U-VTWI-001..005を先行追加し、typed tuple欠落とlegacy output残存を実測する"
 red_at: "2026-08-28T09:03:56+09:00"
-green_at: ""
-mutation_oracle_evidence: "2026-08-28T09:03:56+09:00に#1123 stacked HEADでU-VTWI-001..005を実行し、typed contract欠落、legacy output残存、fail-close marker欠落、tree typed tuple欠落の4 failedと、legacy復活mutation検出1 passedを確認した。"
+green_at: "2026-08-28T10:38:25+09:00"
+mutation_oracle_evidence: "2026-08-28T09:03:56+09:00に#1123 stacked HEADでU-VTWI-001..005を実行し、typed contract欠落、legacy output残存、fail-close marker欠落、tree typed tuple欠落の4 failedと、legacy復活mutation検出1 passedを確認した。実装後はidentity／receipt同時unknown、同時stale、partial tuple、receipt単独driftを個別mutationとし、visualization focused 3 suite 26 testsで全てgreenを確認した。"
 complexity_effect: net_negative
 complexity_justification: "複数のlegacy model fieldとcandidate projectionを単一typed tupleへ集約する"
 removal_trigger: "visualization compatibility consumerが0となりlegacy adapter retention期限が満了した時"

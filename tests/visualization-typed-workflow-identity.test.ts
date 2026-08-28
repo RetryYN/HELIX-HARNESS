@@ -72,18 +72,47 @@ describe("visualization typed workflow identity", () => {
   });
 
   it("U-VTWI-003: stale／unknown／partial／receipt不一致をfail-closeする", () => {
-    const stale = structuredClone(snapshot);
-    const receipt = stale.project_current_location.drive_route.workflowIdentityReceipt;
-    const receiptIdentity = receipt?.identity;
-    if (!receipt || !receiptIdentity) throw new Error("fixture typed receipt is missing");
-    stale.project_current_location.drive_route.workflowIdentityReceipt = {
-      ...receipt,
-      identity: { ...receiptIdentity, registry_source_digest: "sha256:stale" },
+    const expectInvalid = (mutate: (candidate: VisualizationSnapshot) => void) => {
+      const candidate = structuredClone(snapshot);
+      mutate(candidate);
+      expect(() => buildVisualizationViewModel(candidate)).toThrowError(
+        "visualization_workflow_identity_invalid",
+      );
+    };
+    const requireIdentity = (candidate: VisualizationSnapshot) => {
+      const identity = candidate.project_current_location.drive_route.workflowIdentity;
+      const receipt = candidate.project_current_location.drive_route.workflowIdentityReceipt;
+      if (!identity || !receipt?.identity) throw new Error("fixture typed receipt is missing");
+      return { identity, receipt, receiptIdentity: receipt.identity };
     };
 
-    expect(() => buildVisualizationViewModel(stale)).toThrowError(
-      "visualization_workflow_identity_invalid",
-    );
+    expectInvalid((candidate) => {
+      const { receipt, receiptIdentity } = requireIdentity(candidate);
+      candidate.project_current_location.drive_route.workflowIdentityReceipt = {
+        ...receipt,
+        identity: { ...receiptIdentity, registry_source_digest: "sha256:stale" },
+      };
+    });
+    expectInvalid((candidate) => {
+      const { identity, receipt, receiptIdentity } = requireIdentity(candidate);
+      identity.registry_source_digest = "sha256:stale";
+      candidate.project_current_location.drive_route.workflowIdentityReceipt = {
+        ...receipt,
+        identity: { ...receiptIdentity, registry_source_digest: "sha256:stale" },
+      };
+    });
+    expectInvalid((candidate) => {
+      const { identity, receipt, receiptIdentity } = requireIdentity(candidate);
+      identity.target_id = "UNKNOWN_WORKFLOW";
+      candidate.project_current_location.drive_route.workflowIdentityReceipt = {
+        ...receipt,
+        identity: { ...receiptIdentity, target_id: "UNKNOWN_WORKFLOW" },
+      };
+    });
+    expectInvalid((candidate) => {
+      const { identity } = requireIdentity(candidate);
+      (identity as { target_axis?: string }).target_axis = undefined;
+    });
   });
 
   it("U-VTWI-004: generic treeとVS Code treeのtyped identityを一致させる", () => {

@@ -1,3 +1,7 @@
+import {
+  resolveCurrentLocationWorkflowIdentity,
+  WORKFLOW_CLASSIFICATION_PACKAGE_ROOT,
+} from "../schema/current-location-workflow-identity-resolver";
 import type {
   DesignTestPairView,
   Drilldown,
@@ -404,6 +408,17 @@ export function buildProjectCurrentLocationView(
   const current = snapshot.project_current_location;
   const workflowIdentity = current.drive_route.workflowIdentity;
   const workflowIdentityReceipt = current.drive_route.workflowIdentityReceipt;
+  const authorityReceipt = workflowIdentity
+    ? resolveCurrentLocationWorkflowIdentity({
+        identity: {
+          registry_version: workflowIdentity.registry_version,
+          registry_source_digest: workflowIdentity.registry_source_digest,
+          target_axis: workflowIdentity.target_axis,
+          target_id: workflowIdentity.target_id,
+        },
+        repo_root: WORKFLOW_CLASSIFICATION_PACKAGE_ROOT,
+      })
+    : null;
   if (
     workflowIdentity === undefined ||
     workflowIdentity === null ||
@@ -415,7 +430,14 @@ export function buildProjectCurrentLocationView(
     workflowIdentityReceipt.identity.registry_source_digest !==
       workflowIdentity.registry_source_digest ||
     workflowIdentityReceipt.identity.target_axis !== workflowIdentity.target_axis ||
-    workflowIdentityReceipt.identity.target_id !== workflowIdentity.target_id
+    workflowIdentityReceipt.identity.target_id !== workflowIdentity.target_id ||
+    authorityReceipt === null ||
+    authorityReceipt.exit_code !== 0 ||
+    authorityReceipt.identity === null ||
+    authorityReceipt.identity.registry_version !== workflowIdentity.registry_version ||
+    authorityReceipt.identity.registry_source_digest !== workflowIdentity.registry_source_digest ||
+    authorityReceipt.identity.target_axis !== workflowIdentity.target_axis ||
+    authorityReceipt.identity.target_id !== workflowIdentity.target_id
   ) {
     throw new Error("visualization_workflow_identity_invalid");
   }
