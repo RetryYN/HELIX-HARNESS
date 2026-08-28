@@ -58,6 +58,7 @@ dependencies:
   references:
     - "issue:1135"
     - "issue:1106"
+    - docs/plans/PLAN-REVERSE-697-windows-canary-queue-expiry.md
 agent_slots:
   - { role: se, slot_label: "SE — bounded queue／lease expiry pure evaluator" }
   - { role: qa, slot_label: "QA — duplicate／capacity／heartbeat／binding mutation" }
