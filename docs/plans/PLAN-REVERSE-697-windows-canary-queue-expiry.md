@@ -54,7 +54,8 @@ backprop_scope:
     reason: "U-WLCA-002〜010／015とcapacity mutation evidenceをcurrent HEADへ束縛する。"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-697-windows-canary-queue-expiry.md, artifact_type: markdown_doc }
-modifies: []
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
   requires:
