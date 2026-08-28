@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-696-post-merge-plan-status-preflight
 title: "PLAN-L7-696: merged-plan-statusをPRのpost-merge候補へ前倒しする"
-kind: troubleshoot
+kind: recovery
 layer: L7
 drive: agent
 status: draft
