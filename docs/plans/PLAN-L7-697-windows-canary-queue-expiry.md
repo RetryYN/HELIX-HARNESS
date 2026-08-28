@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-WLCA-002〜010／015を先行追加し、evaluator不在で5 tests Redを確認する"
 red_at: "2026-08-28T16:44:35+09:00"
 green_at: "2026-08-28T16:46:54+09:00"
-mutation_oracle_evidence: "tests/windows-lite-canary-admission.test.tsで2026-08-28T16:48:13+09:00にwaiting.length>=max_waitingを>へ変異し、U-WLCA-002〜004が1 failed／8 passed（exit 1）として満杯queueへの誤追加をkillした。境界復元後に9 tests greenを再確認した。"
+mutation_oracle_evidence: "tests/windows-lite-canary-admission.test.tsで2026-08-28T16:48:13+09:00にwaiting.length>=max_waitingを>へ変異し、U-WLCA-002〜004が1 failed／8 passed（exit 1）として満杯queueへの誤追加をkillした。2026-08-28T19:39:00+09:00にobservedAt<issuedAt guardを無効化するとU-WLCA-006が1 failed／15 passedでfailure分類退行をkillし、19:39:12+09:00にheartbeatAt<issuedAt guardを無効化すると同oracleが発行前heartbeatの成功化を1 failed／15 passedでkillした。全mutantを復元後に同suiteをgreenへ戻した。"
 complexity_effect: justified_positive
 complexity_justification: "Windows固有snapshot照合を副作用なしkernelへ閉じ、Actions adapterが独自queue／lease判定を持つことを防ぐ"
 removal_trigger: "Windows heavy laneが汎用host-global admission evaluatorへ型互換のまま統合された時"
