@@ -11,7 +11,7 @@ plan: docs/plans/PLAN-L7-694-visualization-typed-workflow-identity.md
 pair_artifact: docs/test-design/helix/L8-visualization-typed-workflow-identity.md
 ---
 
-# visualization typed workflow identity projection
+# visualization typed workflow identity 投影
 
 ## 目的
 

@@ -9,10 +9,11 @@ created: 2026-08-28
 updated: 2026-08-28
 owner: Codex / TL
 parent_design: docs/design/helix/L6-function-design/visualization-typed-workflow-identity.md
+pair_artifact: docs/design/helix/L6-function-design/visualization-typed-workflow-identity.md
 plan: docs/plans/PLAN-L7-694-visualization-typed-workflow-identity.md
 ---
 
-# visualization typed workflow identity test design
+# visualization typed workflow identity テスト設計
 
 ## oracle
 

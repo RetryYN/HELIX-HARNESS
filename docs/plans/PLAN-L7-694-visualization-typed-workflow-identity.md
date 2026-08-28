@@ -69,6 +69,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-visualization-typed-workflow-identity.md, artifact_type: test_design }
   - { artifact_path: tests/visualization-typed-workflow-identity.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: config/workflow-output-consumer-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
