@@ -36,7 +36,7 @@ tdd_red_required: true
 red_test: "U-VTWI-001..005を先行追加し、typed tuple欠落とlegacy output残存を実測する"
 red_at: "2026-08-28T09:03:56+09:00"
 green_at: "2026-08-28T10:38:25+09:00"
-mutation_oracle_evidence: "2026-08-28T09:03:56+09:00に#1123 stacked HEADでU-VTWI-001..005を実行し、typed contract欠落、legacy output残存、fail-close marker欠落、tree typed tuple欠落の4 failedと、legacy復活mutation検出1 passedを確認した。実装後はidentity／receipt同時unknown、同時stale、partial tuple、receipt単独driftを個別mutationとし、visualization focused 3 suite 26 testsで全てgreenを確認した。"
+mutation_oracle_evidence: "2026-08-28T09:03:56+09:00に#1123 stacked HEADでU-VTWI-001..005を実行し、typed contract欠落、legacy output残存、fail-close marker欠落、tree typed tuple欠落の4 failedと、legacy復活mutation検出1 passedを確認した。tests/visualization-typed-workflow-identity.test.tsのU-VTWI-005ではdrive_modelを復活させるseeded mutationを投入し、legacyIdentityPathsが$.drive_modelを返してmutationをkilledした。実装後はidentity／receipt同時unknown、同時stale、partial tuple、receipt単独driftを個別mutationとし、visualization focused 3 suite 26 testsで全てgreenを確認した。"
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
@@ -97,6 +97,7 @@ modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/left-arm-carry-log.ts, artifact_type: source_module }
   - { artifact_path: src/schema/visualization-current-location-contract.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/visualization-read-model.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/visualization-view-model.ts, artifact_type: source_module }
