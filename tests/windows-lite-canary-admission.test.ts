@@ -277,6 +277,24 @@ describe("Windows Lite canary bounded queue／expiry", () => {
         policy: policy(),
         binding: current,
         current,
+        observed_at: "2026-08-28T07:29:59.999Z",
+        last_heartbeat_at: "2026-08-28T07:29:59.999Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" });
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current,
+        observed_at: "2026-08-28T07:30:10.000Z",
+        last_heartbeat_at: "2026-08-28T07:29:59.999Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" });
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current,
         observed_at: current.expires_at,
         last_heartbeat_at: current.issued_at,
       }),

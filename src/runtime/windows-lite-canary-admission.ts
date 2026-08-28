@@ -359,10 +359,18 @@ export function evaluateWindowsCanaryLease(input: {
   }
   const observedAt = Date.parse(input.observed_at);
   const heartbeatAt = Date.parse(input.last_heartbeat_at);
+  const issuedAt = Date.parse(binding.binding.issued_at);
+  if (observedAt < issuedAt) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
+  }
   if (observedAt >= Date.parse(binding.binding.expires_at)) {
     return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" };
   }
-  if (heartbeatAt > observedAt || observedAt - heartbeatAt > policy.policy.heartbeat_interval_ms) {
+  if (
+    heartbeatAt < issuedAt ||
+    heartbeatAt > observedAt ||
+    observedAt - heartbeatAt > policy.policy.heartbeat_interval_ms
+  ) {
     return { ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" };
   }
   if (binding.binding.fence_token !== current.binding.fence_token) {
