@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L7-700-claude-native-memory-isolation
-title: "PLAN-L7-700: Claude native memoryを共有memory authorityから隔離する"
+plan_id: PLAN-RECOVERY-67-claude-native-memory-isolation
+title: "PLAN-RECOVERY-67: Claude native memoryを共有memory authorityから隔離する"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -41,10 +41,12 @@ complexity_effect: net_negative
 complexity_justification: "21個のprovider-native memory silo入口を除去し、既存project-hook doctorへ単一検査として集約する"
 removal_trigger: "Provider Native Configuration Attestation #1172が同一検査をeffective runtime attestationとして置換した時"
 parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
-pair_artifact: docs/test-design/helix/L6-pillar-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-claude-native-memory-isolation-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pillar-function-design.md, oracle_id: U-PNCM-001, test_path: tests/project-hook.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pillar-function-design.md, oracle_id: U-PNCM-002, test_path: tests/project-hook.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pillar-function-design.md, oracle_id: U-PNCM-003, test_path: tests/project-hook.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pillar-function-design.md, oracle_id: U-PNCM-004, test_path: tests/setup.test.ts }
 dependencies:
   parent: null
   requires: []
@@ -55,10 +57,12 @@ dependencies:
     - "requirement:HR-FR-P7-01"
     - "acceptance:HAC-P7-01b"
 agent_slots:
+  - { role: aim, slot_label: "AIM — provider native stateとshared memory authorityの競合監査" }
   - { role: qa, slot_label: "QA — native memory再出現mutation" }
   - { role: tl, slot_label: "TL — HELIX shared memory authority境界" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-700-claude-native-memory-isolation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L8-claude-native-memory-isolation-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: .claude/settings.json, artifact_type: json_config }
   - { artifact_path: .claude/agents/advisor-fable.md, artifact_type: markdown_doc }
@@ -83,7 +87,6 @@ modifies:
   - { artifact_path: .claude/agents/refactor-scout.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/agents/security-audit.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/pillar-function-design.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L6-pillar-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: src/lint/project-hook.ts, artifact_type: source_module }
   - { artifact_path: src/setup/templates.ts, artifact_type: source_module }
