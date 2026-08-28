@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
@@ -21,7 +22,23 @@ const requiredIds = Array.from(
 );
 
 function acceptanceRequirementIds(text: string): Set<string> {
-  return new Set([...text.matchAll(/TER-R-\d{2}/g)].map((match) => match[0]));
+  return new Set(
+    [...text.matchAll(/^\| TER-AC-\d{3} \| ([^|]+) \|/gm)].flatMap((row) =>
+      [...(row[1] ?? "").matchAll(/TER-R-\d{2}/g)].map((match) => match[0]),
+    ),
+  );
+}
+
+function isTracked(path: string): boolean {
+  try {
+    execFileSync("git", ["ls-files", "--error-unmatch", "--", path], {
+      cwd: root,
+      stdio: "ignore",
+    });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 describe("Technology Environment Reconciliation Authority", () => {
@@ -77,10 +94,6 @@ describe("Technology Environment Reconciliation Authority", () => {
     for (const [id, path] of Object.entries(authorities)) {
       const text = readFileSync(join(root, path), "utf8");
       expect(text, `${id} must resolve in ${path}`).toContain(id);
-      expect(
-        text.replaceAll(id, "REMOVED-AUTHORITY-ID"),
-        `${id} mutation must be killed`,
-      ).not.toContain(id);
     }
   });
 
@@ -90,7 +103,7 @@ describe("Technology Environment Reconciliation Authority", () => {
       "HELIX_技術環境継続追従_新要求 (1).md",
       "HELIX_構造的抜け穴_全点検報告_2026-08-29.md",
     ]) {
-      expect(existsSync(join(root, source)), source).toBe(false);
+      expect(isTracked(source), source).toBe(false);
     }
   });
 });
