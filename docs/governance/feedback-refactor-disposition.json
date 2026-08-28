@@ -84,7 +84,7 @@
       "signal_type": "refactor_candidate:externalize-policy",
       "source_id": "refactor-candidate:externalize-policy:src-vmodel-visualization-tree-projector.ts-policy:sha256:7a9291a2778f:policy-terms-phase-route-approval-policy-model-tier-profile-skill-agent-appear-with-4-branch-point-s-consider-catalog-config-rule-externalization",
       "source_path": "src/vmodel/visualization-tree-projector.ts",
-      "source_file_sha256": "101d56bf876ebc61ced98e7671edf83ae78393884bdcc393354bbedb1a8fadf8",
+      "source_file_sha256": "d26ae58be84aee06ee2905004e358c6b5d000fa14381b06b63bea4aaa41656e4",
       "family": "literal_policy_externalization"
     },
     {
@@ -133,7 +133,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-doctor-index.ts:module-has-7370-nonblank-line-s-and-141-export-s-",
       "source_path": "src/doctor/index.ts",
-      "source_file_sha256": "e7833e74d6a5021fa3919f37cd05fe868ca4aba5530eae9e63605897a4b58676",
+      "source_file_sha256": "6e8ce372cb169a0b051aa1424d17e969600571dc88c471128df01cb1a76c4b9d",
       "family": "non_cli_module_decomposition"
     },
     {
