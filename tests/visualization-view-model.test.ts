@@ -6,6 +6,38 @@ import {
   buildVisualizationViewModel,
 } from "../src/state-db/visualization-view-model";
 
+const WORKFLOW_REGISTRY_VERSION = "1.1.5";
+const WORKFLOW_REGISTRY_DIGEST =
+  "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db";
+
+function typedWorkflowRoute(
+  target_axis: "development_style" | "workflow_model",
+  target_id: string,
+): Pick<
+  ProjectCurrentLocationSnapshot["drive_route"],
+  "workflowIdentity" | "workflowIdentityReceipt"
+> {
+  const identity = {
+    schema_version: "helix-current-location-workflow-identity.v1" as const,
+    registry_version: WORKFLOW_REGISTRY_VERSION,
+    registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
+    target_axis,
+    target_id,
+  };
+  return {
+    workflowIdentity: identity,
+    workflowIdentityReceipt: {
+      schema_version: "helix-current-location-workflow-identity-receipt.v1",
+      disposition: "typed",
+      identity,
+      source: { kind: "typed", field: null, token: target_id },
+      warnings: [],
+      emit_legacy_identity: false,
+      exit_code: 0,
+    },
+  };
+}
+
 function emptyClosureAutoApproval(): ProjectCurrentLocationSnapshot["closure"]["auto_approval"] {
   return {
     schema_version: "project-closure-auto-approval-readiness.v1",
@@ -777,6 +809,7 @@ function forwardCurrentLocation(): ProjectCurrentLocationSnapshot {
       implementationDependencies: [],
     },
     drive_route: {
+      ...typedWorkflowRoute("development_style", "FULL_L1_L12_V"),
       routeId: "drive:Forward:advance-roadmap-frontier",
       status: "forward_frontier",
       selectedModel: "Forward",
@@ -975,6 +1008,7 @@ function unknownCurrentLocation(): ProjectCurrentLocationSnapshot {
       items: [],
     },
     drive_route: {
+      ...typedWorkflowRoute("development_style", "FULL_L1_L12_V"),
       routeId: "drive:Forward:unknown-current-location",
       status: "unknown",
       selectedModel: "Forward",
@@ -1209,14 +1243,18 @@ describe("buildVisualizationViewModel", () => {
     expect(vm.project.relation_graph.node_count).toBe(snapshot.graph.latest_node_count);
     expect(vm.project.relation_graph.edge_count).toBe(snapshot.graph.latest_edge_count);
     expect(vm.project.current_location).toMatchObject({
+      workflow_identity: {
+        schema_version: "helix-current-location-workflow-identity.v1",
+        workflow_registry_version: WORKFLOW_REGISTRY_VERSION,
+        workflow_registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
+        workflow_target_axis: "development_style",
+        workflow_target_id: "FULL_L1_L12_V",
+      },
       layer: "L7",
       l12_layer: "L6",
-      drive_model: "OperationVerification",
       drive_route: expect.objectContaining({
         route_id: "drive:Forward:advance-roadmap-frontier",
         status: "forward_frontier",
-        selected_model: "Forward",
-        default_model: "Forward",
         write_policy: "read-only",
         must_return_to_design: false,
         forward: {
@@ -1245,23 +1283,6 @@ describe("buildVisualizationViewModel", () => {
         design_declaration_drifts: 0,
       },
       coverage_counts: { done: 1, missing: 10, reverify: 1 },
-      drive_model_candidates: expect.arrayContaining([
-        expect.objectContaining({
-          model: "OperationVerification",
-          status: "selected",
-          trigger:
-            "ログ設計、runtime verification、class/method contract など L12 運用 scope の不足",
-          command: "helix current-location --json",
-          coverage_ids: ["L12-operation-observability"],
-        }),
-        expect.objectContaining({
-          model: "Forward",
-          trigger: "原則駆動モデル。blocker が無ければ工程表 frontier を前進させる",
-          required_action:
-            "roadmap current と design coverage が一致している範囲を Forward で進める",
-          command: "helix roadmap current --json",
-        }),
-      ]),
       design_coverage_gate: expect.objectContaining({
         status: "needs_design",
         covered: 2,
@@ -1341,9 +1362,8 @@ describe("buildVisualizationViewModel", () => {
           roadmap_terminal_l12_layers: [],
           command: "helix roadmap current --json",
         }),
-        drive_model_gate: expect.objectContaining({
+        workflow_policy_gate: expect.objectContaining({
           status: "pass",
-          selected_model: "OperationVerification",
           selected_route_id: "drive:OperationVerification:verify-runtime-scope",
           selected_command: "helix current-location --json",
           selected_coverage_ids: expect.arrayContaining(["L12-operation-observability"]),
@@ -1824,14 +1844,12 @@ describe("buildVisualizationViewModel", () => {
         expect.objectContaining({
           layer: "L6",
           status: "reverify",
-          drive_model: "Reverse",
           artifact_ids: ["PLAN-L7-fixture"],
           batch_command: "helix artifact-remap batch --status reverify --layer L6 --json",
         }),
         expect.objectContaining({
           layer: "L7",
           status: "missing",
-          drive_model: "Reverse",
           artifact_ids: ["missing:L7"],
           batch_command: "helix artifact-remap batch --status missing --layer L7 --json",
         }),

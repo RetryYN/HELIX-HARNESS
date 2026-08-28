@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { resolvePackageCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver";
 import {
   analyzeVmodelZipManifest,
   VMODEL_ZIP_EXPECTED_INVENTORY_SIGNATURE,
@@ -104,6 +105,20 @@ export interface VisualizationSnapshot {
     search_command: "helix find <query> --json";
   };
   warnings: string[];
+}
+
+function attachPackageWorkflowIdentity(
+  snapshot: ProjectCurrentLocationSnapshot,
+): ProjectCurrentLocationSnapshot {
+  const receipt = resolvePackageCurrentLocationWorkflowIdentity(snapshot.drive_route.selectedModel);
+  return {
+    ...snapshot,
+    drive_route: {
+      ...snapshot.drive_route,
+      workflowIdentity: receipt.identity,
+      workflowIdentityReceipt: receipt,
+    },
+  };
 }
 
 export interface VisualizationRecoveryHandoffArtifact {
@@ -781,7 +796,9 @@ export function buildVisualizationSnapshot(
     repoRoot?: string;
   } = {},
 ): VisualizationSnapshot {
-  const baseProjectCurrentLocation = buildProjectCurrentLocationSnapshot(db);
+  const baseProjectCurrentLocation = attachPackageWorkflowIdentity(
+    buildProjectCurrentLocationSnapshot(db),
+  );
   const projectCurrentLocation = input.repoRoot
     ? attachProjectClosureAutoApprovalReadinessFromAuthority({
         repoRoot: input.repoRoot,

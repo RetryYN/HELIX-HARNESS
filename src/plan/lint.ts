@@ -17,6 +17,11 @@ import { analyzeSnapshot } from "../lint/effect-intent";
 import { analyzeG1Trace, g1TraceMessages, g1TraceOk, loadG1TraceDocs } from "../lint/g1-trace";
 import { analyzeG3Trace, g3TraceMessages, g3TraceOk, loadDocs } from "../lint/g3-trace";
 import {
+  analyzeMergedPlanStatus,
+  loadMergedPlanStatusInput,
+  mergedPlanStatusMessages,
+} from "../lint/merged-plan-status";
+import {
   analyzePlanDescent,
   loadPlanDescentBaseline,
   loadPlanDescentDocs,
@@ -1070,6 +1075,28 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
   if (gate === "governance" || gate === "frontmatter") {
     const result = analyzePlanGovernance(loadPlanGovernanceDocs(repoRoot, path), repoRoot);
     return { ok: result.ok, messages: planGovernanceMessages(result) };
+  }
+
+  if (gate === "post-merge-status") {
+    if (path) {
+      return {
+        ok: false,
+        messages: ["post-merge-status - violation: repository-level gate does not accept path"],
+      };
+    }
+    try {
+      const result = analyzeMergedPlanStatus(
+        loadMergedPlanStatusInput(repoRoot, { baseMode: "candidate_head" }),
+      );
+      return { ok: result.ok, messages: mergedPlanStatusMessages(result) };
+    } catch (error) {
+      return {
+        ok: false,
+        messages: [
+          `post-merge-status - violation: candidate HEAD could not be evaluated (${String(error)})`,
+        ],
+      };
+    }
   }
 
   if (path) {

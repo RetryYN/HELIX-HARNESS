@@ -87,8 +87,8 @@
     },
     {
       "test_path": "tests/l3-progression-authority.test.ts",
-      "test_file_sha256": "0f35c3ebe67ad49f086cdc47667e4ab34a4de71a5e55b6b9409a0e21ed640651",
-      "expected_case_count": 4,
+      "test_file_sha256": "292b69b9d18af20e7e62276d71c8b9e1e0357f7d2016aacdc8e5459970a22bdb",
+      "expected_case_count": 5,
       "authority_paths": [
         "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
         "docs/plans/PLAN-L3-13-vmodel-docgen-fit.md"

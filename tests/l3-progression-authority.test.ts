@@ -49,6 +49,19 @@ describe("L3 progression authority rebaseline", () => {
     expect(L3_PROGRESSION_REVIEWED_DIGESTS[catalogPath]).toBe(actualDigest);
   });
 
+  it("registers the Windows canary admission artifact set in the design catalog", () => {
+    const catalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
+    for (const path of [
+      "docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md",
+      "docs/design/helix/L6-function-design/windows-lite-canary-admission.md",
+      "docs/test-design/helix/L8-windows-lite-canary-admission-unit-test-design.md",
+      "docs/test-design/helix/L9-windows-lite-canary-admission-integration-test-design.md",
+      "docs/test-design/helix/windows-lite-canary-admission-acceptance.md",
+    ]) {
+      expect(catalog).toContain(`- ${path}`);
+    }
+  });
+
   it("adds canonical metadata to every legacy physical L0-L3 frontmatter artifact", () => {
     for (const path of L3_PROGRESSION_BLOCKER_PATHS) {
       const body = readFileSync(path, "utf8");
