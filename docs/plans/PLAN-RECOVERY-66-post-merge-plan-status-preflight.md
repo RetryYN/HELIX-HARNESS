@@ -54,7 +54,11 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/post-merge-plan-status-preflight.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-post-merge-plan-status-preflight-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/lint/merged-plan-status.ts, artifact_type: source_module }
   - { artifact_path: src/plan/lint.ts, artifact_type: source_module }
@@ -62,6 +66,7 @@ modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: yaml_config }
   - { artifact_path: tests/merged-plan-status.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: PLAN-L7-54-merged-plan-status-gate
   requires:
