@@ -225,10 +225,14 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
   const children = [
     node({
       id: "project/current-location/drive",
-      label: "Drive model",
-      description: `${current.drive_model} / ${current.drive_route.status}`,
-      tooltip: current.drive_reason,
-      contextValue: "current-location.drive",
+      label: "Workflow identity",
+      description: `${current.workflow_identity.workflow_target_axis}:${current.workflow_identity.workflow_target_id}`,
+      tooltip: tooltipLines([
+        `registry=${current.workflow_identity.workflow_registry_version}`,
+        `digest=${current.workflow_identity.workflow_registry_source_digest}`,
+        current.workflow_reason,
+      ]),
+      contextValue: `current-location.workflow.${current.workflow_identity.workflow_target_axis}`,
       children: [
         node({
           id: "project/current-location/drive/current-location-frontier",
@@ -276,33 +280,6 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
               commandPointer: current.current_location_frontier.reentry.next_command,
             }),
           ],
-        }),
-        node({
-          id: "project/current-location/drive/model-candidates",
-          label: "model candidates",
-          description: "helix drive model --json",
-          tooltip:
-            "Forward spine + 10 entry drive models + OperationVerification の候補と blocker を表示する read-only report",
-          contextValue: "drive-model.candidates",
-          commandPointer: "helix drive model --json",
-          children: current.drive_model_candidates.map((candidate) =>
-            node({
-              id: `project/current-location/drive/model-candidates/${candidate.rank}-${candidate.model}`,
-              label: candidate.model,
-              description: `${candidate.status} ${candidate.coverage_ids.join(",") || "-"}`,
-              tooltip: tooltipLines([
-                `trigger=${candidate.trigger}`,
-                `action=${candidate.required_action}`,
-                `route=${candidate.route_id}`,
-                `command=${candidate.command}`,
-                `docs=${candidate.doc_dependencies.join(",") || "-"}`,
-                `impl=${candidate.implementation_dependencies.join(",") || "-"}`,
-                ...candidate.reasons,
-              ]),
-              contextValue: `drive-model.candidate.${candidate.status}`,
-              commandPointer: candidate.command,
-            }),
-          ),
         }),
         node({
           id: "project/current-location/drive/recovery-plan",
@@ -783,7 +760,7 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
     node({
       id: "project/current-location/vmodel-fit",
       label: "V-model fit",
-      description: `${current.vmodel_fit.status} design=${current.vmodel_fit.design_coverage_status} ac=${current.vmodel_fit.acceptance_traceability_status} zip=${current.vmodel_fit.zip_adoption_status} manifest=${current.vmodel_fit.zip_manifest_status} tailoring=${current.vmodel_fit.tailoring_gate_status} function=${current.vmodel_fit.function_design_absorption.status} roadmap=${current.vmodel_fit.roadmap_current_gate.status} drive=${current.vmodel_fit.drive_model_gate.selected_model} current=${current.vmodel_fit.current_location_status} handoff=${current.vmodel_fit.handoff_summary.status}`,
+      description: `${current.vmodel_fit.status} design=${current.vmodel_fit.design_coverage_status} ac=${current.vmodel_fit.acceptance_traceability_status} zip=${current.vmodel_fit.zip_adoption_status} manifest=${current.vmodel_fit.zip_manifest_status} tailoring=${current.vmodel_fit.tailoring_gate_status} function=${current.vmodel_fit.function_design_absorption.status} roadmap=${current.vmodel_fit.roadmap_current_gate.status} workflow=${current.vmodel_fit.workflow_policy_gate.status} current=${current.vmodel_fit.current_location_status} handoff=${current.vmodel_fit.handoff_summary.status}`,
       tooltip: current.vmodel_fit.reasons.join("\n"),
       contextValue: `current-location.vmodel-fit.${current.vmodel_fit.status}`,
       commandPointer: current.vmodel_fit.source_command,
@@ -1046,12 +1023,12 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
           commandPointer: current.vmodel_fit.roadmap_current_gate.command,
         }),
         node({
-          id: "project/current-location/vmodel-fit/drive-model",
-          label: "drive model",
-          description: `${current.vmodel_fit.drive_model_gate.selected_model}/${current.vmodel_fit.drive_model_gate.status} ${current.vmodel_fit.drive_model_gate.selected_coverage_ids.join(",") || "-"}`,
-          tooltip: `${current.vmodel_fit.drive_model_gate.required_action}\nroute=${current.vmodel_fit.drive_model_gate.selected_route_id}\ncoverage=${current.vmodel_fit.drive_model_gate.selected_coverage_ids.join(",") || "-"}\nblocked=${current.vmodel_fit.drive_model_gate.blocked_models.join(",") || "-"}\navailable=${current.vmodel_fit.drive_model_gate.available_models.join(",") || "-"}\n${current.vmodel_fit.drive_model_gate.reasons.join("\n")}`,
-          contextValue: `vmodel-fit.drive-model.${current.vmodel_fit.drive_model_gate.status}`,
-          commandPointer: current.vmodel_fit.drive_model_gate.command,
+          id: "project/current-location/vmodel-fit/workflow-policy",
+          label: "workflow policy",
+          description: `${current.vmodel_fit.workflow_policy_gate.status} ${current.vmodel_fit.workflow_policy_gate.selected_coverage_ids.join(",") || "-"}`,
+          tooltip: `${current.vmodel_fit.workflow_policy_gate.required_action}\nroute=${current.vmodel_fit.workflow_policy_gate.selected_route_id}\ncoverage=${current.vmodel_fit.workflow_policy_gate.selected_coverage_ids.join(",") || "-"}\n${current.vmodel_fit.workflow_policy_gate.reasons.join("\n")}`,
+          contextValue: `vmodel-fit.workflow-policy.${current.vmodel_fit.workflow_policy_gate.status}`,
+          commandPointer: current.vmodel_fit.workflow_policy_gate.command,
         }),
         node({
           id: "project/current-location/vmodel-fit/current-location",
@@ -1177,7 +1154,7 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
             `next-transition=${current.vmodel_fit.approval_review_gate.next_transition_window_command ?? "-"}`,
             ...current.vmodel_fit.approval_review_gate.outcome_routes.map(
               (route) =>
-                `outcome-route=${route.outcome}->${route.target_action ?? "-"} drive=${route.drive_model} command=${route.command}`,
+                `outcome-route=${route.outcome}->${route.target_action ?? "-"} command=${route.command}`,
             ),
             ...current.vmodel_fit.approval_review_gate.reasons,
           ]),
@@ -1266,7 +1243,7 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
                 node({
                   id: `project/current-location/vmodel-fit/approval-review/outcome-routes/${route.outcome}`,
                   label: route.outcome,
-                  description: `${route.target_action ?? "-"} ${route.drive_model}`,
+                  description: `${route.target_action ?? "-"}`,
                   tooltip: tooltipLines([
                     `projection=${route.projection_type}`,
                     `human=${route.human_required}`,
@@ -1389,7 +1366,6 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
       tooltip: tooltipLines(
         [
           current.skill_binding.source_package,
-          `selected=${current.skill_binding.selected_model}`,
           `workflow=${current.skill_binding.workflow_modes.join(",") || "-"}`,
           `layers=${current.skill_binding.l12_layers.join(",") || "-"}`,
           `bindings=${current.skill_binding.source_bindings.join(",") || "-"}`,
@@ -2170,7 +2146,7 @@ function projectCurrentLocation(vm: VisualizationContract): GenericTreeNode {
             node({
               id: `project/current-location/artifact-remap/layers/${layer.layer}`,
               label: `${layer.layer} ${layer.label}`,
-              description: `${layer.status} ${layer.drive_model} total=${layer.total} done=${layer.done} missing=${layer.missing} reverify=${layer.reverify}`,
+              description: `${layer.status} total=${layer.total} done=${layer.done} missing=${layer.missing} reverify=${layer.reverify}`,
               tooltip: `${layer.required_action}\n${summaryJsonPointer(layer.batch_command)}\n${layer.reasons.join("; ")}`,
               contextValue: `artifact-remap.layer.${layer.status}`,
               commandPointer: summaryJsonPointer(layer.batch_command),

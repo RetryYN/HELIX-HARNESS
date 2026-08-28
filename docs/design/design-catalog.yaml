@@ -166,6 +166,8 @@ items:
       - docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md
       - docs/design/helix/L6-function-design/current-location-workflow-identity.md
       - docs/design/helix/L6-function-design/current-location-db-typed-workflow-identity.md
+      - docs/design/helix/L6-function-design/visualization-typed-workflow-identity.md
+      - docs/design/helix/L6-function-design/state-db-legacy-workflow-object-retirement.md
       - docs/design/helix/L6-function-design/current-location-summary-typed-output.md
       - docs/design/helix/L6-function-design/design-elicitation-typed-classification.md
       - docs/design/helix/L6-function-design/derived-requirement-trace.md
@@ -185,6 +187,7 @@ items:
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
       - docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md
       - docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
+      - docs/design/helix/L6-function-design/post-merge-plan-status-preflight.md
       - docs/design/helix/L6-function-design/plan-modification-ownership.md
       - docs/design/helix/L6-function-design/distribution-devos-instruction-authority.md
       - docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md

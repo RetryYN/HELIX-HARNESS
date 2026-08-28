@@ -25,10 +25,7 @@ const EXPECTED_TOKENS = [
 const EXPECTED_SURFACE_PATHS = [
   "src/cli.ts",
   "src/schema/harness-db-tables-design.ts",
-  "src/schema/visualization-current-location-contract.ts",
   "src/state-db/current-location.ts",
-  "src/state-db/visualization-view-model.ts",
-  "src/vmodel/visualization-tree-projector.ts",
 ];
 
 interface Entry {
