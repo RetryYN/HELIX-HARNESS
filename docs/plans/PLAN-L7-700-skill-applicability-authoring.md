@@ -49,7 +49,10 @@ agent_slots:
   - { role: tl, slot_label: "TL — current／compatibility境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-700-skill-applicability-authoring.md, artifact_type: markdown_doc }
+  - { artifact_path: src/workflow/skill-applicability-authoring.ts, artifact_type: source_module }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md, artifact_type: test_design }

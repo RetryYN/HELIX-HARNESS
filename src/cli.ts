@@ -458,10 +458,6 @@ import {
 } from "./runtime/work-guard";
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
-import {
-  adaptLegacySkillApplicability,
-  type SkillApplicabilityIdentity,
-} from "./schema/skill-applicability-registry";
 import { findReference } from "./search/index";
 import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
@@ -625,6 +621,10 @@ import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
 import { buildCommandCatalog } from "./workflow/contracts";
 import { attachCurrentLocationWorkflowIdentity } from "./workflow/current-location-workflow-identity";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
+import {
+  adaptLegacySkillApplicability,
+  type SkillApplicabilityIdentity,
+} from "./workflow/skill-applicability-authoring";
 import { buildWorkflowGuide, renderWorkflowGuideText } from "./workflow/workflow-guide";
 
 const HOOK_EVENT_SESSION_START = "SessionStart";

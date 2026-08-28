@@ -1,7 +1,10 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { parseSkillApplicability } from "../schema/skill-applicability-registry.js";
+import {
+  loadSkillApplicabilityRegistry,
+  parseSkillApplicability,
+} from "../schema/skill-applicability-registry.js";
 import { markdownFrontmatter } from "./shared";
 
 export const VALID_SKILL_LAYERS = [
@@ -46,6 +49,10 @@ export const VALID_SKILL_TYPES = [
   "testing",
   "verification",
 ] as const;
+
+export function currentSkillApplicabilityAxes(): readonly string[] {
+  return loadSkillApplicabilityRegistry().current_contract.allowed_axes;
+}
 
 export interface SkillAssignmentDoc {
   path: string;

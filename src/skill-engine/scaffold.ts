@@ -1,12 +1,14 @@
 import {
   analyzeSkillAssignments,
+  currentSkillApplicabilityAxes,
   VALID_SKILL_LAYERS,
   VALID_SKILL_TYPES,
 } from "../lint/skill-assignment";
-import {
-  loadSkillApplicabilityRegistry,
-  type SkillApplicabilityIdentity,
-} from "../schema/skill-applicability-registry.js";
+
+export interface SkillApplicabilityIdentity {
+  target_axis: string;
+  target_id: string;
+}
 
 export interface SkillScaffoldInput {
   name: string;
@@ -246,5 +248,5 @@ export function scaffoldSkill(input: SkillScaffoldInput): SkillScaffoldResult {
 export const SKILL_SCAFFOLD_ALLOWED_VALUES = {
   categories: VALID_SKILL_TYPES,
   layers: VALID_SKILL_LAYERS,
-  applicabilityAxes: loadSkillApplicabilityRegistry().current_contract.allowed_axes,
+  applicabilityAxes: currentSkillApplicabilityAxes(),
 } as const;
