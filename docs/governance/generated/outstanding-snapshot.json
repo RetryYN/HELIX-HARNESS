@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 42,
+  "decision_count": 41,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -30,7 +30,6 @@
     "PLAN-L7-671-issue-dependency-detector-parser-shape",
     "PLAN-L7-672-current-location-summary-typed-output",
     "PLAN-L7-674-terminal-fullback-bundle-admission",
-    "PLAN-L7-678-skill-applicability-value-object",
     "PLAN-L7-679-codex-luna-xhigh-adapter-transport",
     "PLAN-L7-680-skill-bun-residual-authority",
     "PLAN-L7-681-github-identity-source-diagnostics",

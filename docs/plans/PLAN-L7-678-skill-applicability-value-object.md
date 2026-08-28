@@ -4,7 +4,7 @@ title: "PLAN-L7-678 (refactor): typed skill applicability value object"
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -26,7 +26,7 @@ refactor_step: introduce_contract
 legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: value_object
-contract_preconditions: "#1044のrequirements-owned skill applicability registryがcandidate branchに存在する"
+contract_preconditions: "#1044のrequirements-owned skill applicability registryとL3承認provenanceがcurrent mainに存在する"
 contract_postconditions: "typed pair、極性、registry digest、legacy input-only変換をruntime value objectがfail-closeで検証する"
 contract_invariants: "workflow identityを複製せず、4軸固定fieldやlegacy model tokenをcurrent outputにしない"
 contract_failures: "unknown identity、axis mismatch、duplicate、polarity conflict、implicit default、legacy ambiguityを個別拒否する"
