@@ -43,9 +43,9 @@ related_l9: docs/test-design/helix/L9-windows-lite-canary-admission-integration-
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-WLCA-001 | policy exact schema | missing／unknown key、zero／negative bound、heartbeat≥TTLを拒否する | `tests/windows-lite-canary-admission.test.ts` |
-| U-WLCA-005 | lease binding | wrong HEAD／artifact／owner／fenceとextra keyを拒否する | `tests/windows-lite-canary-admission.test.ts` |
-| U-WLCA-009 | attempt identity | zero／fraction／missing attemptとtime inversionを拒否する | `tests/windows-lite-canary-admission.test.ts` |
-| U-WLCA-014 | input immutability | 入力を変更せずdeep-frozen copyとcanonical digestを返す | `tests/windows-lite-canary-admission.test.ts` |
+| U-WLCA-005 | lease binding | 全required key欠落、wrong schema／HEAD／artifact／profile／lane／owner／fenceとextra keyを拒否し、共有WorkGraph lease shapeへ束縛する | `tests/windows-lite-canary-admission.test.ts`、`tests/work-graph-receipt-acceptance.test.ts` |
+| U-WLCA-009 | attempt identity | zero／fraction／missing attempt、time inversion、非canonical／存在しないUTC timestampを拒否する | `tests/windows-lite-canary-admission.test.ts` |
+| U-WLCA-014 | input immutability | 入力を変更せずdeep-frozen copyを返し、key順非依存かつ既知byteのcanonical digestを固定する | `tests/windows-lite-canary-admission.test.ts` |
 
 ## Red／Green／mutation の実行方針
 

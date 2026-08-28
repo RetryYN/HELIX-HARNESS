@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-WLCA-001／005／009／014を先行追加し、typed validator不在でRedを確認する"
 red_at: "2026-08-28T16:32:33+09:00"
 green_at: "2026-08-28T16:36:54+09:00"
-mutation_oracle_evidence: "2026-08-28T16:36:40+09:00にheartbeat_interval_ms>=lease_ttl_ms拒否分岐をfalseへ変異し、U-WLCA-001が1 failed／3 passed（exit 1）としてequal TTLの誤受理をkillした。分岐復元後、Windows policy／leaseと既存WorkGraph leaseの2 suite 49 tests greenを再確認した。"
+mutation_oracle_evidence: "2026-08-28T16:36:40+09:00にheartbeat_interval_ms>=lease_ttl_ms拒否分岐をfalseへ変異し、U-WLCA-001が1 failed／3 passed（exit 1）としてequal TTLの誤受理をkillした。2026-08-28T18:56:19+09:00にcanonical UTC round-trip検証をDate.parse成功だけへ弱め、U-WLCA-009が存在しない2026-02-30を受理して1 failed／3 passed（exit 1）となることを確認した。両分岐を復元し、共有validateWorkGraphLeaseの静的negative oracleを含むWindows／WorkGraph suiteをgreenへ戻した。"
 complexity_effect: justified_positive
 complexity_justification: "Windows lane固有bindingを単一value objectへ閉じ、後続queue／Actions adapterの重複validationを防ぐ"
 removal_trigger: "Windows heavy laneが汎用host-global admission contractへ型互換のまま統合された時"
@@ -67,6 +67,8 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/windows-lite-canary-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-windows-lite-canary-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
+  - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
 ---
 
 # Windows canary policy／lease binding typed化

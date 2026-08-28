@@ -3633,7 +3633,7 @@
     {
       "hit_id": "src/runtime/windows-lite-canary-admission.ts::validateWindowsCanaryAdmissionPolicy:sha256Digest()::1",
       "path": "src/runtime/windows-lite-canary-admission.ts",
-      "line": 171,
+      "line": 173,
       "symbol": "validateWindowsCanaryAdmissionPolicy",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3650,7 +3650,7 @@
     {
       "hit_id": "src/runtime/windows-lite-canary-admission.ts::validateWindowsCanaryLeaseBinding:sha256Digest()::1",
       "path": "src/runtime/windows-lite-canary-admission.ts",
-      "line": 235,
+      "line": 232,
       "symbol": "validateWindowsCanaryLeaseBinding",
       "algorithm": "sha256",
       "input_kind": "string",
