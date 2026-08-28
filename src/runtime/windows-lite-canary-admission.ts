@@ -11,6 +11,7 @@ export type WindowsCanaryAdmissionFailureCode =
   | "WINDOWS_CANARY_HEARTBEAT_STALE"
   | "WINDOWS_CANARY_STALE_FENCE"
   | "WINDOWS_CANARY_LEASE_OWNER_MISMATCH"
+  | "WINDOWS_CANARY_LEASE_BINDING_MISMATCH"
   | "WINDOWS_CANARY_COMPLETION_BINDING_MISMATCH";
 
 export interface WindowsCanaryAdmissionPolicyV1 {
@@ -375,6 +376,21 @@ export function evaluateWindowsCanaryLease(input: {
     binding.binding.lease_id !== current.binding.lease_id
   ) {
     return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_OWNER_MISMATCH" };
+  }
+  if (
+    binding.binding.assignment_id !== current.binding.assignment_id ||
+    binding.binding.pr_number !== current.binding.pr_number ||
+    binding.binding.candidate_head !== current.binding.candidate_head ||
+    binding.binding.linux_artifact_digest !== current.binding.linux_artifact_digest ||
+    binding.binding.profile_digest !== current.binding.profile_digest ||
+    binding.binding.lane_id !== current.binding.lane_id ||
+    binding.binding.run_id !== current.binding.run_id ||
+    binding.binding.run_attempt !== current.binding.run_attempt ||
+    binding.binding.correlation_id !== current.binding.correlation_id ||
+    binding.binding.issued_at !== current.binding.issued_at ||
+    binding.binding.expires_at !== current.binding.expires_at
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_MISMATCH" };
   }
   return { ok: true, binding: binding.binding };
 }

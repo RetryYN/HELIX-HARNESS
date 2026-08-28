@@ -304,8 +304,25 @@ describe("Windows Lite canary bounded queue／expiry", () => {
     ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STALE_FENCE" });
   });
 
-  it("U-WLCA-008: wrong artifact completionを拒否する", () => {
+  it("U-WLCA-008: leaseとcompletionのwrong bindingを拒否する", () => {
     const current = queueBinding("29");
+    for (const stale of [
+      { ...current, assignment_id: "assignment-other" },
+      { ...current, candidate_head: "b".repeat(40) },
+      { ...current, linux_artifact_digest: digest("wrong") },
+      { ...current, profile_digest: digest("wrong-profile") },
+      { ...current, run_attempt: current.run_attempt + 1 },
+    ]) {
+      expect(
+        evaluateWindowsCanaryLease({
+          policy: policy(),
+          binding: stale,
+          current,
+          observed_at: "2026-08-28T07:31:00.000Z",
+          last_heartbeat_at: "2026-08-28T07:30:45.000Z",
+        }),
+      ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_MISMATCH" });
+    }
     expect(
       evaluateWindowsCanaryCompletion({
         expected: current,
