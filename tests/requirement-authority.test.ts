@@ -134,6 +134,7 @@ describe("Requirement JSON authority", () => {
       "CNW-FR-001",
       "DIST-LITE-FR-001",
       "SYN-FR-001",
+      "OPS-FR-001",
     ]);
     expect(source.baseline_root_digest).toBe(
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
@@ -190,8 +191,8 @@ describe("Requirement JSON authority", () => {
         rebuildHarnessDb({ repoRoot: process.cwd(), db, runtimeLogPolicy: "exclude" }).findings,
       ).toEqual([]);
       expect(db.prepare("SELECT COUNT(*) AS value FROM requirement_ir").get()).toEqual({
-        // 273 baseline/current rows + 82 refinement rows。
-        value: 355,
+        // 273 baseline/current rows + 122 refinement rows。
+        value: 395,
       });
       expect(
         db
