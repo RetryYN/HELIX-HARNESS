@@ -43,6 +43,7 @@ import {
 } from "../lint/verification-profile";
 import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
 import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
+import { resolvePackageCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import { planWorkflowIdentitySchema } from "../schema/frontmatter";
 import {
@@ -64,7 +65,6 @@ import {
 import type { VisualizationContract } from "../schema/visualization-view-contract";
 import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
 import { nowIso } from "../shared/time-utils";
-import { resolvePackageCurrentLocationWorkflowIdentity } from "../workflow/current-location-workflow-identity";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
