@@ -18,7 +18,7 @@ created: 2026-08-28
 updated: 2026-08-28
 owner: Codex / TL
 github_issue_id: 1123
-behavior_contract_id: CURRENT-LOCATION-DB-TYPED-WORKFLOW-IDENTITY-001
+behavior_contract_id: CLDB-TYPED-WORKFLOW-IDENTITY-001
 responsibility_owner: current-location-db-projection
 engineering_discipline_required: true
 change_slice: atomic
