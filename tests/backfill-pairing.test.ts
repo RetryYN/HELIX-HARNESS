@@ -261,8 +261,9 @@ describe("U-BACKFILL-004a required backfill bidirectional pairing", () => {
         references: ["docs/plans/PLAN-L7-696-forward.md"],
       }),
     ];
-    expect(analyzeBackfill(plans, glossary).reverseLinkMissing).toEqual([]);
-    expect(analyzeBackfill(plans, glossary).ok).toBe(true);
+    const result = analyzeBackfill(plans, glossary);
+    expect(result.reverseLinkMissing).toEqual([]);
+    expect(result.ok).toBe(true);
   });
 
   it.each([
