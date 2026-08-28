@@ -22,7 +22,7 @@ behavior_contract_id: WINDOWS-LITE-CANARY-QUEUE-EXPIRY-001
 responsibility_owner: windows-lite-canary-admission
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: add_behavior
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
@@ -34,7 +34,7 @@ tdd_red_required: true
 red_test: "U-WLCA-002〜010／015を先行追加し、evaluator不在で5 tests Redを確認する"
 red_at: "2026-08-28T16:44:35+09:00"
 green_at: "2026-08-28T16:46:54+09:00"
-mutation_oracle_evidence: "2026-08-28T16:48:13+09:00にwaiting.length>=max_waitingを>へ変異し、U-WLCA-002〜004が1 failed／8 passed（exit 1）として満杯queueへの誤追加をkillした。境界復元後に9 tests greenを再確認した。"
+mutation_oracle_evidence: "tests/windows-lite-canary-admission.test.tsで2026-08-28T16:48:13+09:00にwaiting.length>=max_waitingを>へ変異し、U-WLCA-002〜004が1 failed／8 passed（exit 1）として満杯queueへの誤追加をkillした。境界復元後に9 tests greenを再確認した。"
 complexity_effect: justified_positive
 complexity_justification: "Windows固有snapshot照合を副作用なしkernelへ閉じ、Actions adapterが独自queue／lease判定を持つことを防ぐ"
 removal_trigger: "Windows heavy laneが汎用host-global admission evaluatorへ型互換のまま統合された時"
