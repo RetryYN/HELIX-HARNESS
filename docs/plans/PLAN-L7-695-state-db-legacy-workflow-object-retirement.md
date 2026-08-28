@@ -37,6 +37,27 @@ red_test: "U-SDLW-001..006を先行追加し、旧object残存とdoctor未接続
 red_at: "2026-08-28T10:59:00+09:00"
 green_at: "2026-08-28T11:10:38+09:00"
 mutation_oracle_evidence: "2026-08-28に旧migration相当のmutant（legacy列を参照する明示indexをDROPせずALTER TABLE DROP COLUMNへ進む）へ、別名index idx_execution_episodes_legacy_modelを持つrevision 45 DBを投入し、SQLite error in index ... after drop column: no such column: drive_modelでmigrationが失敗することを独立再現した。dropIndexesReferencingLegacyWorkflowColumnsを復元すると、PRAGMA index_list/index_infoでorigin=cかつ退役列参照indexだけを先行DROPし、canonical indexを保持したまま同seedが完走する。tests/state-db-legacy-workflow-object-retirement.test.tsのU-SDLW-001がこのmutantをkillし、修正後は関連5 suite 79 tests greenを再確認した。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-28T03:57:00Z"
+    tests_green_at: "2026-08-28T03:53:25Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
+    reviewed_head_sha: f22e3a942f320998e490c3547af6280f2cf9e92a
+    scope: "PR #1131 exact HEAD f22e3a942f320998e490c3547af6280f2cf9e92aをClaude Codeが独立検収し、未知名legacy indexの一般除去、canonical index再生成、authoritative row保持、再適用冪等性を独立seedで確認した。exact HEADの5 suite 79 testsとCI全laneがgreenで内容blocker 0 approve。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1131#issuecomment-5448207503"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33139149338 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-28T03:53:25Z"
+        evidence_path: tests/state-db-legacy-workflow-object-retirement.test.ts
+        output_digest: "sha256:ca785346939d8a1e5db9d3fdb8e8990a096a6dbbc6ecf006604d0cc8b4751b8b"
+        result: "terminal success / HEAD f22e3a942f320998e490c3547af6280f2cf9e92a / all required lanes green"
 complexity_effect: justified_positive
 complexity_justification: "legacy schema objectを除去し、single migration＋doctor authorityへ集約する"
 removal_trigger: "legacy revision upgrade対象がretention期限を満了し、migration compatibility codeを削除できる時"
