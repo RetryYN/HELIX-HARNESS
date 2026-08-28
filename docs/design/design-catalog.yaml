@@ -99,6 +99,7 @@ items:
       - docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
       - docs/design/helix/L3-requirements/skill-applicability-authority.md
       - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
+      - docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -194,6 +195,7 @@ items:
       - docs/design/helix/L6-function-design/distribution-lite-consumer-documents.md
       - docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md
       - docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md
+      - docs/design/helix/L6-function-design/windows-lite-canary-admission.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
@@ -323,6 +325,8 @@ items:
       - docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md
       - docs/test-design/helix/L8-lite-canary-ci-parallelization-unit-test-design.md
       - docs/test-design/helix/worker-context-boundary-compiler-acceptance.md
+      - docs/test-design/helix/L8-windows-lite-canary-admission-unit-test-design.md
+      - docs/test-design/helix/windows-lite-canary-admission-acceptance.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
@@ -384,6 +388,7 @@ items:
       - docs/test-design/helix/L5-source-capability-capture-integration-test-design.md
       - docs/test-design/helix/L5-three-stage-ci-quarantine-integration-test-design.md
       - docs/test-design/helix/L5-universal-reverse-redesign-integration-test-design.md
+      - docs/test-design/helix/L9-windows-lite-canary-admission-integration-test-design.md
   - id: system-test-design
     name: 総合テスト設計書
     category: test

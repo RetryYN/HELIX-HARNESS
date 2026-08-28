@@ -391,6 +391,7 @@ pair_group:
       "docs/test-design/helix/L8-semantic-contract-revalidator-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-ui-domain-pattern-profile-unit-test-design.md:cross_layer_meta",
       "docs/test-design/helix/L8-workflow-classification-terminal-fullback-unit-test-design.md:cross_layer_meta",
+      "docs/test-design/helix/L9-windows-lite-canary-admission-integration-test-design.md:cross_layer_meta",
     ]);
   });
 
