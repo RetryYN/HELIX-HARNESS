@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1155 PR #1139 backfill-pairing／dependency readiness contradiction"
 created: 2026-08-28
-updated: 2026-08-28
+updated: 2026-08-29
 owner: Codex / TL
 github_issue_id: 1155
 behavior_contract_id: PENDING-REVERSE-PAIRING-READINESS-001
