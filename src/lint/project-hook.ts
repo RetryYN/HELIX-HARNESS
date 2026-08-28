@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 export interface ProjectHookDoc {
@@ -15,6 +15,8 @@ export interface ProjectHookViolation {
     | "missing_hook"
     | "missing_project_dir"
     | "missing_block_on_failure"
+    | "native_memory_not_disabled"
+    | "native_agent_memory_enabled"
     | "forbidden_path";
 }
 
@@ -36,6 +38,7 @@ interface HookEntry {
 }
 
 interface ClaudeSettings {
+  autoMemoryEnabled?: boolean;
   hooks?: Record<string, HookEntry[]>;
 }
 
@@ -110,7 +113,10 @@ function commandOk(command: string, parts: readonly string[]): boolean {
   return parts.every((part) => command.includes(part));
 }
 
-export function analyzeProjectHooks(docs: ProjectHookDoc[]): ProjectHookResult {
+export function analyzeProjectHooks(
+  docs: ProjectHookDoc[],
+  agentDocs: ProjectHookDoc[] = [],
+): ProjectHookResult {
   const violations: ProjectHookViolation[] = [];
   for (const doc of docs) {
     const settings = parseSettings(doc);
@@ -119,6 +125,9 @@ export function analyzeProjectHooks(docs: ProjectHookDoc[]): ProjectHookResult {
       continue;
     }
     const hooks = settings.hooks ?? {};
+    if (settings.autoMemoryEnabled !== false) {
+      violations.push({ file: doc.file, reason: "native_memory_not_disabled" });
+    }
     for (const [event, entries] of Object.entries(hooks)) {
       for (const entry of entries ?? []) {
         for (const hook of entry.hooks ?? []) {
@@ -171,13 +180,29 @@ export function analyzeProjectHooks(docs: ProjectHookDoc[]): ProjectHookResult {
   if (docs.length === 0) {
     violations.push({ file: join(".claude", "settings.json"), reason: "missing_settings" });
   }
-  return { checked: docs.length, violations, ok: violations.length === 0 };
+  for (const agentDoc of agentDocs) {
+    if (/^memory:\s*(?:project|user|local)\s*$/m.test(agentDoc.content)) {
+      violations.push({ file: agentDoc.file, reason: "native_agent_memory_enabled" });
+    }
+  }
+  return { checked: docs.length + agentDocs.length, violations, ok: violations.length === 0 };
 }
 
 export function loadProjectHookDocs(repoRoot: string = process.cwd()): ProjectHookDoc[] {
   const target = join(repoRoot, ".claude", "settings.json");
   if (!existsSync(target)) return [];
   return [{ file: join(".claude", "settings.json"), content: readFileSync(target, "utf8") }];
+}
+
+export function loadClaudeAgentDocs(repoRoot: string = process.cwd()): ProjectHookDoc[] {
+  const directory = join(repoRoot, ".claude", "agents");
+  if (!existsSync(directory)) return [];
+  return readdirSync(directory, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+    .map((entry) => ({
+      file: join(".claude", "agents", entry.name),
+      content: readFileSync(join(directory, entry.name), "utf8"),
+    }));
 }
 
 export function projectHookMessages(result: ProjectHookResult): string[] {
