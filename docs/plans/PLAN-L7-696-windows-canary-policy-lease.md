@@ -56,6 +56,15 @@ review_evidence:
         evidence_path: tests/windows-lite-canary-admission.test.ts
         output_digest: "sha256:06aa8a5cddf5edd3d409305e0527ff371df5b05cc956ffa9da73ad2a5d7007b6"
         result: "3 suites / 59 tests passed"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-28T10:05:52Z"
+  review_binding:
+    reviewer: "Codex intra-runtime / Anscombe"
+    reviewed_at: "2026-08-28T10:05:52Z"
+    evidence_digest: "sha256:eb7e4571396c6d34ba0d9574a70f3e90184e62324cb8460791cb4c2e52d28366"
+  entries: []
 complexity_effect: justified_positive
 complexity_justification: "Windows lane固有bindingを単一value objectへ閉じ、後続queue／Actions adapterの重複validationを防ぐ"
 removal_trigger: "Windows heavy laneが汎用host-global admission contractへ型互換のまま統合された時"
@@ -87,6 +96,10 @@ modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/windows-lite-canary-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-windows-lite-canary-admission-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/slot-scheduler-quota-handover.md, artifact_type: design_doc }
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
   - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
 ---
