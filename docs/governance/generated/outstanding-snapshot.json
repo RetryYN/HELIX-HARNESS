@@ -42,6 +42,7 @@
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill",
+    "PLAN-REVERSE-696-windows-canary-policy-lease",
     "PLAN-REVERSE-697-windows-canary-queue-expiry"
   ],
   "blockers": [
