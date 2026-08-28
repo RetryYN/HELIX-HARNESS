@@ -813,6 +813,11 @@ fail-close する。
 - **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜010** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT + canonical source-boundary matrix の機械検出。doctor hard guard。孤児 0)
 - **team.ts §2.2 schema / 関数 (teamDefinitionSchema/mustSerialize) + team/launch-policy.ts → U-TEAM-001〜003** (add-feature 差分、IMP-050。孤児 0)
 - **backfill-pairing.md §2.3 関数 (parseRequires/parseGlossaryTerms/normalizeTerm/parsePlan/analyzeBackfill/loadBackfillDocs/backfillMessages/checkBackfill) → U-BACKFILL-001〜006** (add-feature 差分、IMP-051。normalizeTerm は parseGlossaryTerms/analyzeBackfill の内部パス経由で被覆。checkBackfill は doctor/index.ts の try-catch ラッパーで U-BACKFILL-006 実 repo ガードに内包。孤児 0)
+- **U-BACKFILL-008 pending Reverse pairing**: `status=draft`かつ
+  `backfill_state=pending_reverse`のcurrent Reverseは、Forward／Reverse双方のexact
+  `dependencies.references`でpairingする。片方向、wrong Reverse ID、draft／state不一致を
+  `reverseLinkMissing`としてfail-closeし、`backfill_state`条件を除去するmutationを拒否する。
+  実装oracleは`tests/backfill-pairing.test.ts`が所有する。
 - **vmodel-pair-freeze.md §1-§3 関数 (loadPairDocs/analyzePairFreeze/pairFreezeMessages/lintVmodel) → U-VPAIR-001〜006** (add-feature 差分、PLAN-L7-11/IMP-067。lintVmodel は loadPairDocs→analyzePairFreeze→pairFreezeMessages の orchestration で U-VPAIR-005 実 repo ガードに内包。孤児 0)
 - **vmodel-pair-freeze.md §7 関数 (analyzeVerificationGroups/verificationGroupMessages、loadPairDocs status 拡張) → U-VTRIG-001〜005** (add-feature 差分、PLAN-L7-12/IMP-068。doctor checkVerificationGroups は U-VTRIG-005 実 repo ガードに内包。孤児 0)
 - **review-evidence.md §2-§4 関数 (hasReviewEvidence/parseReviewPlan/analyzeReviewEvidence/loadReviewPlans/reviewEvidenceMessages、schema review_evidence、doctor checkReviewEvidence、greenCommandMatchesKind) → U-REVIEW-001〜006 + U-GREENDEF-005〜006** (add-feature 差分、PLAN-L7-13/IMP-071 + PLAN-L7-232/IMP-108。reviewEvidenceMessages は U-REVIEW-003/006 経路で被覆、checkReviewEvidence は doctor try-catch ラッパーで U-REVIEW-006 実 repo ガードに内包。green command kind/command 意味一致と 64 桁 digest schema は schema と lint の両方で fail-close。孤児 0)

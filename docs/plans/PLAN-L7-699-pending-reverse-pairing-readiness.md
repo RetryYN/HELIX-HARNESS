@@ -41,7 +41,7 @@ complexity_effect: net_neutral
 complexity_justification: "link identityとexecution dependencyを一つのstate-aware判定へ集約し、相反gateを除去する"
 removal_trigger: "PLAN dependency schemaがtyped pairing edgeを第一級fieldとして持ち、references compatibilityを廃止できる時"
 parent_design: docs/design/harness/L6-function-design/backfill-pairing.md
-pair_artifact: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-test-design.md
+pair_artifact: docs/test-design/harness/L7-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/backfill-pairing.md, oracle_id: U-BACKFILL-008, test_path: tests/backfill-pairing.test.ts }
 dependencies:
@@ -56,14 +56,14 @@ agent_slots:
   - { role: tl, slot_label: "TL — requirements／dependency readiness整合" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-699-pending-reverse-pairing-readiness.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/design/harness/L6-function-design/backfill-pairing.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/backfill-pairing.ts, artifact_type: source_module }
   - { artifact_path: tests/backfill-pairing.test.ts, artifact_type: test_code }
 ---
 
-# pending Reverse pairing readiness
+# pending Reverse pairing readiness工程
 
 ## 工程表
 
