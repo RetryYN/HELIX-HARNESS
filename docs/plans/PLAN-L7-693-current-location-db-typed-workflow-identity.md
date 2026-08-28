@@ -57,7 +57,7 @@ dependencies:
     - "issue:206"
     - "issue:204"
 agent_slots:
-  - { role: db, slot_label: "DB — current-location schema／projection／replay exact tuple" }
+  - { role: se, slot_label: "SE — current-location schema／projection／replay exact tuple" }
   - { role: qa, slot_label: "QA — legacy field resurrection mutation" }
   - { role: tl, slot_label: "TL — requirements §4.2 typed identity境界" }
 generates:
