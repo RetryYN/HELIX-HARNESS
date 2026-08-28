@@ -11,7 +11,7 @@ plan: docs/plans/PLAN-L7-695-state-db-legacy-workflow-object-retirement.md
 pair_artifact: docs/test-design/helix/L8-state-db-legacy-workflow-object-retirement.md
 ---
 
-# state DB legacy workflow object retirement
+# state DBの旧workflow object除去
 
 ## 目的
 

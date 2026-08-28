@@ -22,8 +22,8 @@ behavior_contract_id: STATE-DB-LEGACY-WORKFLOW-OBJECT-RETIREMENT-001
 responsibility_owner: state-db-schema-migration
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: retire_legacy
-legacy_retirement_state: removing
+refactor_step: remove_legacy
+legacy_retirement_state: consumer_zero
 backprop_decision: not_required
 backprop_decision_reason: "requirements v1.3.13 §4.2がlegacy identityのcurrent DB再出力禁止を所有する。本sliceは既存DB migrationとdoctorを同authorityへ追従する。"
 no_code_decision: modify
@@ -60,7 +60,7 @@ dependencies:
     - "issue:206"
     - "issue:204"
 agent_slots:
-  - { role: dba, slot_label: "DBA — versioned schema retirement／transaction" }
+  - { role: se, slot_label: "DBA — versioned schema retirement／transaction" }
   - { role: qa, slot_label: "QA — legacy object resurrection／rollback mutation" }
   - { role: tl, slot_label: "TL — requirements §4.2 current DB authority" }
 generates:
