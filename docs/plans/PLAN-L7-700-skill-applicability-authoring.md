@@ -55,10 +55,12 @@ modifies:
   - { artifact_path: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/lint/skill-assignment.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/schema/skill-applicability-registry.ts, artifact_type: source_module }
   - { artifact_path: src/skill-engine/scaffold.ts, artifact_type: source_module }
   - { artifact_path: tests/skill-assignment.test.ts, artifact_type: test_code }
   - { artifact_path: tests/skill-quality.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/skill-scaffold-cli.test.ts, artifact_type: test_code }
   - { artifact_path: tests/skill-scaffold.test.ts, artifact_type: test_code }
 dependencies:
