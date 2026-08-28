@@ -40,6 +40,6 @@ describe("source package manifest migration", () => {
     );
     expect(research).toContain("non-authoritative disposition");
     expect(research).toContain("#1033");
-    expect(research).toContain("raw prose authority: none");
+    expect(research).toContain("raw proseのauthority: なし");
   });
 });

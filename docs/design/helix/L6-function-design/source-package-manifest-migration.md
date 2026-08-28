@@ -6,7 +6,7 @@ parent_plan: docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md
 pair_artifact: docs/test-design/helix/L8-source-package-manifest-migration-unit-test-design.md
 ---
 
-# Source Package Manifest Migration
+# Source Package Manifest移行
 
 current identityは`source_family_id`、履歴再現は`legacy archive SHA + entry digest + Git blob`、意味authorityは
 現行requirements／design／testとする。archive parserは明示filenameを受けるcompatibility inspectionに限定し、

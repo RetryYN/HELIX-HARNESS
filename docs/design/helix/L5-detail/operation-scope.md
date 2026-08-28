@@ -103,3 +103,32 @@ spec:
 - `class_method_contract` は単語一致だけで observed にしない。設計 ID と accepted runtime evidence の結合を要求する。
 - `runtime_verification_events` の projection-only / incomplete row は accepted runtime evidence として扱わない。
 - Project view は `Operation scope` 子ノードに status だけでなく design count と observed count を出す。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "operation-scope-current-location",
+      "classification": "existing_runtime",
+      "artifact_path": "src/state-db/current-location.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "buildProjectCurrentLocationSnapshot",
+      "source_digest": "sha256:dcc61fd59ac8265de3890453f1d713cc12ad8e5022cb3ee941a31141ab7198b7",
+      "current_authority": true
+    },
+    {
+      "asset_id": "operation-scope-vmodel-fit",
+      "classification": "existing_runtime",
+      "artifact_path": "src/state-db/vmodel-fit.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "buildVmodelFitReport",
+      "source_digest": "sha256:23ce56e2b8d9f0fd4472f66188167a0c7e23dcb909743228c6afa9d84cad5b41",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```

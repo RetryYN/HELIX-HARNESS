@@ -22,8 +22,8 @@ behavior_contract_id: SOURCE-PACKAGE-MANIFEST-001
 responsibility_owner: source-intake-governance
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: migrate_consumer
-legacy_retirement_state: compatibility_input_only
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
 backprop_decision: not_required
 backprop_decision_reason: "既存L3/L10へ採用済みsourceの物理配置とidentityを是正し、新しい製品挙動は追加しない。"
 no_code_decision: modify
@@ -36,8 +36,8 @@ tdd_red_required: true
 red_test: "U-SRCMAN-001..004がroot ZIP存在、manifest欠落、legacy current identity、raw citation昇格を検出する"
 red_at: "2026-08-29T06:30:00+09:00"
 green_at: "2026-08-29T07:08:25+09:00"
-mutation_oracle_evidence: "U-SRCMAN-001..004とDB projection回帰でmanifest欠落、root ZIP再混入、legacy current identity、source binding欠落を個別に検出した。"
-complexity_effect: reduces
+mutation_oracle_evidence: "tests/source-package-manifest.test.ts の U-SRCMAN-001..004 は、manifest欠落、root ZIP再混入、legacy current identity、source binding欠落のseeded mutationを個別にkillしてredにする。"
+complexity_effect: net_negative
 complexity_justification: "binary source packageをcurrent treeとruntime identityから除き、2個のversioned manifestと既存canonical projectionへ集約する。"
 removal_trigger: "source-family manifestがRequirement IRの標準intake receiptへ統合された時"
 parent_design: docs/design/helix/L6-function-design/source-package-manifest-migration.md
@@ -92,16 +92,20 @@ modifies:
   - { artifact_path: tests/source-package-manifest.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tracked-canonical.test.ts, artifact_type: test_code }
   - { artifact_path: tests/universal-workflow-requirements-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-multimodal-design-harness-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: tests/visualization-treeview.test.ts, artifact_type: test_code }
   - { artifact_path: tests/visualization-view-model.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: ハイブリッド設計ドキュメントv1-fixed.zip, artifact_type: other }
 ---
 
-# source package manifest migration
+# source package manifest移行
 
 rootへ置かれたbinary archiveをcurrent authorityとして利用せず、意味採用済みprojectionとversioned source manifestへ分離する。
 旧archive名は履歴とcompatibility inputにだけ残し、DB／CLI／Project viewは`hybrid-vmodel-source.v1`を返す。

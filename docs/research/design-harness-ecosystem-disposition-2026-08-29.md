@@ -31,6 +31,6 @@ non-authoritative dispositionである。全章のexact atomization正本は`doc
 
 - source filename: `deep-research-report.md`
 - source SHA-256: `a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39`
-- raw prose authority: none
+- raw proseのauthority: なし
 - retained value: 上表のcapability候補と責務境界
 - omitted: 再現不能citation marker、日付固定roadmap、未検証の製品・license・価格主張

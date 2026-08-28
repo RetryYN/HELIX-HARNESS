@@ -263,7 +263,7 @@ const pairedArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
-    "2849eaef786d6e2014cc2369c3cbf994ed66c0e09244a447f2da536a4d6db1f5",
+    "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
   ],
   [
     "docs/test-design/helix/multimodal-design-harness-authority-acceptance.md",
