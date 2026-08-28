@@ -15,7 +15,7 @@ pair_artifact: docs/test-design/helix/product-lifecycle-operations-acceptance.md
 refines:
   - RLS-R-09
   - RLS-R-12
-  - HR-FR-VMFIT-07
+requirement_ir_refinement: OPS-FR-001
 ---
 
 # 製品ライフサイクル運用要件
@@ -30,11 +30,35 @@ Requirement、Definition、Contract、Release、Deploymentの意味authorityはH
 trace、notification、provider control plane、DevOS、`harness.db`は証拠またはprojectionであり、意味authorityとして手編集しない。
 大容量log、dump、動画、traceはdigest付きartifact referenceへ分離し、state正本には構造化state、判断、参照だけを保存する。
 
-案件分類は次の別軸を正本とする。
+本要件の上流関係は、単一の`refines`へ畳み込まず次のtyped relationとして固定する。
+
+| relation | authority | 本要件での意味 |
+|---|---|---|
+| `extends` | `RLS-R-09`／`RLS-R-12` | Release promotion／feedbackの後段へDeployment以降のsystem lifecycleを追加する |
+| `derives_from` | `HR-FR-HIL-07`／`HR-FR-HIL-10`／`HR-FR-VMFIT-07` | repair promotion、detector、運用後log／KPIの既存能力から運用・保守・診断義務を導く |
+| `governed_by` | `HR-FR-HIL-02`／`HR-FR-HIL-04`／`HR-FR-HIL-24`／`SEC-FR-CAP-005` | Forward収束、Universal Reverse／Redesign re-entry、release package、安全な外部作用の既存authorityへ従う |
+
+`HR-FR-VMFIT-07`は`docs/design/helix/L3-requirements/vmodel-docgen-fit.md`でconfirmedな運用後検証要件である。
+ただし製品ライフサイクル全体の意味ownerではなく、本要件を導く既存観測契約としてだけ参照する。
+
+system変更分類は次の独立軸を正本とする。
 
 - `implementation_ops`: code、connection、CI、build、deployment、configuration、performance、monitoring、dependency、security patch、backup／restoreの日常改善。
 - `definition_review`: responsibility、boundary、data ownership、contract、dependency direction、module structureの見直し。
 - `requirement_change`: value、feature、behavior、usage condition、acceptanceの追加・変更。
+
+能力増築はsystem変更分類へ混在させず、別の`capability_expansion_kind`軸で表す。
+
+- `none`: 能力assetを追加しない。
+- `skill`: 判断・作業skillを追加または昇格する。
+- `template`: requirement／design／test等のtemplate表現能力を追加または昇格する。
+- `workflow`: workflow model／specialist workflowの実行能力を追加または昇格する。
+- `detector`: findingを生成する検出能力を追加または昇格する。
+- `gate`: admission／completionを機械強制するgate能力を追加または昇格する。
+
+`system_change_class`と`capability_expansion_kind`は直積として併記できる。`ADD_FEATURE`はworkflow modelであり、
+能力種別やsystem変更分類へ再利用しない。新しい能力assetは既存HIL learning／template improvement authorityに従い、
+shadow、独立review、効果測定、rollbackを経ずにcurrentへ昇格しない。
 
 Evidenceを伴う`implementation_ops → definition_review → requirement_change`の上位昇格だけを許可し、観測から上位authorityを直接変更しない。
 Reverse、Recovery、Incident等のworkflow routeと上記change classを同じenumへ畳み込まない。
@@ -116,6 +140,24 @@ affected component、confidence、blast radius、regression scope、migration／
 commandやDeployment APIのsuccessだけで完了としない。実environment health check、observation window、SLO、rollback readiness、
 regression、independent review、main／deployment target／GitHub／DB read-afterが一致して初めてcompletion evidenceを成立させる。
 incident close後もMaintenanceObligationまたはReverse／Recovery findingが残る場合は終端差をsurfaceする。
+
+### OPS-R-13 診断backflow／再入（BackflowDecision）
+
+Troubleshootingを新しいworkflow routeにせず、`Observation + Incident／Recovery + Diagnosis + BackflowDecision`の横断能力とする。
+`BackflowDecision`は最低限、diagnosis ID、system change class、capability expansion kind、workflow route、affected／return layer、
+affected requirement／design ID、evidence reference、base revision、stale target、human decision要否、Forward再入条件を保持する。
+
+| system change class | 既存route候補 | adaptive return／再入条件 |
+|---|---|---|
+| `implementation_ops` | `RECOVERY`／`REVERSE`／`REFACTOR`／`RETROFIT` | 原因が存在するL4〜L7へ戻し、該当pair、regression、receiptをcurrent化する |
+| `definition_review` | `REDESIGN`／`DESIGN_REFACTOR`／`RETROFIT` | 影響するL3〜L5と全downstreamをstale化し、設計／contractを再freezeする |
+| `requirement_change` | `REDESIGN`＋Requirement Discovery | L12 evidenceからL1価値またはL2要求へbackflowし、Proposal→Candidate→human decision→L3 recompile／re-freezeを閉じる |
+
+戻り先をchange classだけで固定せず、原因、変更意味、affected authority、pair closureから最小の連続layer集合を決定する。
+Full Vは`HR-FR-HIL-04`のUniversal Reverse／Redesign re-entryを使い、Production Scrum／Hybridだけが必要に応じて
+`SCRUM_REVERSE` SR0〜SR4をsubrouteとして使う。rollback／containment成功はBackflowDecision、stale closure、re-freeze、
+Forward再入、Release／Redeployment／再観測を代替しない。曖昧なroute、非連続return layer、旧revision receipt、
+re-freeze前のForward joinをfail-closeする。
 
 ## OPS-FR-006 release責務と自己適用検証
 

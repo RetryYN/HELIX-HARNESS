@@ -735,7 +735,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "b00e0dd21defb232531ae344f76fe3ac1f3c0a895e5570b1f646f74ae82dbcb9",
     );
     const generatedRequirementViewDigest =
-      "7c63f56e3fbed5c37250b582a6df44b054796241b298e2695632cdf0b0a92cc8";
+      "dc81d30fb7fae384102e26770a830762c84abadeebc89d47ea6a4ad95d0e2f50";
     expect(sha256("docs/generated/requirements/requirement-definition.generated.md")).toBe(
       generatedRequirementViewDigest,
     );

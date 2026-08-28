@@ -37,8 +37,8 @@ legacy_retirement_state: retained
 no_code_decision: no_change
 ddd_modeling_decision: value_object
 contract_preconditions: "Release Module／Bundle、distribution、operation evidence、security authorityが既存ownerとして存在する"
-contract_postconditions: "OPS-FR-001..006、OPS-R-01..12、OPS-AC-001..018、#1160〜#1167がL3↔L10とrelease roadmapへ束縛される"
-contract_invariants: "ReleaseとDeployment、change classとworkflow route、Module／Bundle／adapter identityを混同せず、観測はauthorityを直接変更しない"
+contract_postconditions: "OPS-FR-001..006、OPS-R-01..13、OPS-AC-001..021、#1160〜#1167がcanonical Requirement IR、L3↔L10、release roadmapへ束縛される"
+contract_invariants: "ReleaseとDeployment、system change classとcapability expansion kindとworkflow route、Module／Bundle／adapter identityを混同せず、観測はauthorityを直接変更しない"
 contract_failures: "ambiguous target、digest／rollback／health／approval欠落、raw telemetry正本化、推測診断、command successだけのcloseをfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "本sliceは要求、受入、責務、Issue graph、rollout authorityだけを追加し、runtime／adapter／production applyをchildへ分離する"
@@ -96,6 +96,13 @@ generates:
   - { artifact_path: docs/test-design/helix/product-lifecycle-operations-acceptance.md, artifact_type: test_design }
   - { artifact_path: tests/product-lifecycle-operations-requirements.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
+  - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/release-module-bundle-composition-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/governance/release-module-bundle-rollout-roadmap.md, artifact_type: markdown_doc }
