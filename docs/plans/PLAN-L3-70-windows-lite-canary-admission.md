@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-08-28T03:34:25Z"
+  plan_id: PLAN-L3-70-windows-lite-canary-admission
+  approval_record_id: L3-PO-1106-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1106#issuecomment-5448070863"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.5
