@@ -338,20 +338,21 @@ export function evaluateWindowsCanaryQueue(input: {
 }
 
 export function evaluateWindowsCanaryLease(input: {
+  readonly policy: unknown;
   readonly binding: unknown;
   readonly current: unknown;
   readonly observed_at: string;
   readonly last_heartbeat_at: string;
-  readonly heartbeat_interval_ms: number;
 }): WindowsCanaryLeaseResult {
+  const policy = validateWindowsCanaryAdmissionPolicy(input.policy);
+  if (!policy.ok) return policy;
   const binding = validateWindowsCanaryLeaseBinding(input.binding);
   const current = validateWindowsCanaryLeaseBinding(input.current);
   if (
     !binding.ok ||
     !current.ok ||
     !validTimestamp(input.observed_at) ||
-    !validTimestamp(input.last_heartbeat_at) ||
-    !positiveInteger(input.heartbeat_interval_ms)
+    !validTimestamp(input.last_heartbeat_at)
   ) {
     return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
   }
@@ -360,7 +361,10 @@ export function evaluateWindowsCanaryLease(input: {
   if (observedAt >= Date.parse(binding.binding.expires_at)) {
     return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" };
   }
-  if (heartbeatAt > observedAt || observedAt - heartbeatAt > input.heartbeat_interval_ms) {
+  if (
+    heartbeatAt > observedAt ||
+    observedAt - heartbeatAt > policy.policy.heartbeat_interval_ms
+  ) {
     return { ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" };
   }
   if (binding.binding.fence_token !== current.binding.fence_token) {

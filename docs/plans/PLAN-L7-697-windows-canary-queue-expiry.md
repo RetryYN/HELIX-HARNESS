@@ -65,6 +65,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-697-windows-canary-queue-expiry.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/design/helix/L6-function-design/windows-lite-canary-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-windows-lite-canary-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/windows-lite-canary-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/windows-lite-canary-admission.test.ts, artifact_type: test_code }

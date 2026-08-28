@@ -49,7 +49,7 @@ related_l9: docs/test-design/helix/L9-windows-lite-canary-admission-integration-
 | U-WLCA-002 | active bound | active上限をexact評価する | `tests/windows-lite-canary-admission.test.ts` |
 | U-WLCA-003 | waiting bound | waiting満杯をbackpressureにする | `tests/windows-lite-canary-admission.test.ts` |
 | U-WLCA-004 | deterministic queue | 入力順を維持しduplicateを拒否する | `tests/windows-lite-canary-admission.test.ts` |
-| U-WLCA-006 | expiry／heartbeat | expiryとheartbeat遅延を拒否する | `tests/windows-lite-canary-admission.test.ts` |
+| U-WLCA-006 | expiry／heartbeat | expiryとpolicy由来intervalを超えるheartbeat遅延を拒否し、呼出側の自由値で緩和できない | `tests/windows-lite-canary-admission.test.ts` |
 | U-WLCA-007 | fence ownership | stale owner／fenceを拒否する | `tests/windows-lite-canary-admission.test.ts` |
 | U-WLCA-008 | same artifact | HEAD／artifact／profile不一致を拒否する | `tests/windows-lite-canary-admission.test.ts` |
 | U-WLCA-010 | state uncertainty | unknown／invalid stateを拒否する | `tests/windows-lite-canary-admission.test.ts` |

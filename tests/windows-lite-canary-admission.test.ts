@@ -183,29 +183,29 @@ describe("Windows Lite canary bounded queue／expiry", () => {
     const current = queueBinding("4");
     expect(
       evaluateWindowsCanaryLease({
+        policy: policy(),
         binding: current,
         current,
         observed_at: "2026-08-28T07:31:00.000Z",
         last_heartbeat_at: "2026-08-28T07:30:45.000Z",
-        heartbeat_interval_ms: 30_000,
       }),
     ).toMatchObject({ ok: true });
     expect(
       evaluateWindowsCanaryLease({
+        policy: policy(),
         binding: current,
         current,
         observed_at: current.expires_at,
         last_heartbeat_at: "2026-08-28T07:31:59.000Z",
-        heartbeat_interval_ms: 30_000,
       }),
     ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" });
     expect(
       evaluateWindowsCanaryLease({
+        policy: policy(),
         binding: current,
         current: { ...current, fence_token: current.fence_token + 1 },
         observed_at: "2026-08-28T07:31:00.000Z",
         last_heartbeat_at: "2026-08-28T07:30:45.000Z",
-        heartbeat_interval_ms: 30_000,
       }),
     ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STALE_FENCE" });
   });
@@ -273,11 +273,11 @@ describe("Windows Lite canary bounded queue／expiry", () => {
     const current = queueBinding("27");
     expect(
       evaluateWindowsCanaryLease({
+        policy: policy(),
         binding: current,
         current,
         observed_at: current.expires_at,
         last_heartbeat_at: current.issued_at,
-        heartbeat_interval_ms: 30_000,
       }),
     ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" });
   });
@@ -286,11 +286,11 @@ describe("Windows Lite canary bounded queue／expiry", () => {
     const current = queueBinding("28");
     expect(
       evaluateWindowsCanaryLease({
+        policy: policy(),
         binding: current,
         current: { ...current, fence_token: 8 },
         observed_at: "2026-08-28T07:31:00.000Z",
         last_heartbeat_at: "2026-08-28T07:30:45.000Z",
-        heartbeat_interval_ms: 30_000,
       }),
     ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STALE_FENCE" });
   });
@@ -303,6 +303,19 @@ describe("Windows Lite canary bounded queue／expiry", () => {
         completed: { ...current, linux_artifact_digest: digest("wrong") },
       }),
     ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_COMPLETION_BINDING_MISMATCH" });
+  });
+
+  it("U-WLCA-006: heartbeat intervalを呼出側入力で緩和できない", () => {
+    const current = queueBinding("31");
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: { ...policy(), heartbeat_interval_ms: 30_000 },
+        binding: current,
+        current,
+        observed_at: "2026-08-28T07:31:00.001Z",
+        last_heartbeat_at: "2026-08-28T07:30:30.000Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" });
   });
 
   it("U-WLCA-010: unknown stateを拒否する", () => {
