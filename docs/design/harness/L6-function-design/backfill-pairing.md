@@ -142,7 +142,6 @@ generates pair: `docs/test-design/harness/L7-unit-test-design.md` **§1.11 U-BAC
 | U-BACKFILL-005 | `backfillMessages` | 孤児なし → OK 文言 / 孤児あり → warn 文言 |
 | U-BACKFILL-006 | `loadBackfillDocs` + `analyzeBackfill` | 実 repo 完全性回帰ガード (orphan 0 / glossary gap 0) |
 | U-BACKFILL-007 | `analyzeBackfill` | Add-feature Route B＋`pending_reverse`だけを先行buildとして許可し、Forward／marker欠落はorphan |
-| U-BACKFILL-008 | `analyzeBackfill` | draft／pending Reverseの双方向`references`だけを受理し、片方向、wrong ID、state不一致をfail-close |
 
 ## §4 carry / 次工程
 
