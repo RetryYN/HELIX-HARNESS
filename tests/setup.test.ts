@@ -520,11 +520,14 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     const templates = loadTemplates(repo);
     try {
       const claude = JSON.parse(templates["adapter/.claude/settings.json"]) as {
+        autoMemoryEnabled?: boolean;
         hooks: Record<
           string,
           { matcher?: string; hooks: { command: string; blockOnFailure?: boolean }[] }[]
         >;
       };
+      // U-PNCM-004
+      expect(claude.autoMemoryEnabled).toBe(false);
       const codex = JSON.parse(templates["adapter/.codex/hooks.json"]) as {
         hooks: Record<
           string,

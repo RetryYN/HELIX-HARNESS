@@ -301,6 +301,7 @@ import {
 } from "../lint/plan-supersession";
 import {
   analyzeProjectHooks,
+  loadClaudeAgentDocs,
   loadProjectHookDocs,
   projectHookMessages,
 } from "../lint/project-hook";
@@ -4924,7 +4925,7 @@ export function checkProjectHooks(repoRoot: string): {
     };
   }
   try {
-    const r = analyzeProjectHooks(loadProjectHookDocs(repoRoot));
+    const r = analyzeProjectHooks(loadProjectHookDocs(repoRoot), loadClaudeAgentDocs(repoRoot));
     return { messages: projectHookMessages(r), ok: r.ok };
   } catch {
     return {
