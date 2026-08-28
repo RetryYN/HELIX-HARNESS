@@ -18,6 +18,7 @@ describe("project-hook lint", () => {
     expect(result.violations).toEqual([]);
   });
 
+  // U-PNCM-001
   it("rejects Claude auto memory when it is not explicitly disabled", () => {
     const settings = JSON.parse(
       readFileSync(join(process.cwd(), ".claude", "settings.json"), "utf8"),
@@ -34,6 +35,7 @@ describe("project-hook lint", () => {
     });
   });
 
+  // U-PNCM-002
   it("rejects provider-native agent memory declarations", () => {
     const settings = readFileSync(join(process.cwd(), ".claude", "settings.json"), "utf8");
     const result = analyzeProjectHooks(
@@ -47,6 +49,7 @@ describe("project-hook lint", () => {
     });
   });
 
+  // U-PNCM-003
   it("does not treat a prose mention as an active native memory declaration", () => {
     const settings = readFileSync(join(process.cwd(), ".claude", "settings.json"), "utf8");
     const result = analyzeProjectHooks(

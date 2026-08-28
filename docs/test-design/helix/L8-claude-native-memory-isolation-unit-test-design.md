@@ -8,7 +8,8 @@ status: confirmed
 created: 2026-08-29
 updated: 2026-08-29
 owner: QA / TL
-parent_design: docs/design/helix/L6-function-design/pillar-function-design.md
+parent_design: docs/design/helix/L6-function-design/claude-native-memory-isolation.md
+pair_artifact: docs/design/helix/L6-function-design/claude-native-memory-isolation.md
 plan: PLAN-RECOVERY-67-claude-native-memory-isolation
 ---
 
