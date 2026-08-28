@@ -79,11 +79,11 @@ dependencies:
   parent: PLAN-L3-70-windows-lite-canary-admission
   requires:
     - docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
-    - docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md
   blocks: []
   references:
     - "issue:1134"
     - "issue:1106"
+    - docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md
 agent_slots:
   - { role: se, slot_label: "SE — exact schema／canonical digest／WorkGraph fence reuse" }
   - { role: qa, slot_label: "QA — missing／unknown／boundary／immutability mutation" }
