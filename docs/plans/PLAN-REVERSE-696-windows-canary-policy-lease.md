@@ -14,7 +14,7 @@ backfill_state: pending_reverse
 created: 2026-08-28
 updated: 2026-08-28
 owner: Codex / TL
-github_issue_id: 1134
+github_issue_id: 1144
 behavior_contract_id: WINDOWS-LITE-CANARY-POLICY-LEASE-001
 responsibility_owner: windows-lite-canary-admission
 change_slice: atomic
@@ -28,7 +28,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REVERSE
 entry_signals:
-  - "po_directive:Issue #1134 Windows canary policy／lease bindingのReverse vehicle"
+  - "po_directive:Issue #1144 Windows canary policy／lease bindingのReverse vehicle"
 contract_preconditions: "PLAN-L3-70のconfirmed authorityと#1134の原子実装scopeが存在する"
 contract_postconditions: "将来のPLAN-L7-696実装証拠をL3／L6／L8へ再接着するReverse vehicleがmain上で一意になる"
 contract_invariants: "Forward実装や#1141の初期policy値を先取りせず、status draft／pending_reverseを維持する"
