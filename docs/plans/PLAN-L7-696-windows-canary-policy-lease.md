@@ -49,7 +49,6 @@ dependencies:
   parent: PLAN-L3-70-windows-lite-canary-admission
   requires:
     - docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
-    - docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md
   blocks: []
   references:
     - "issue:1134"
