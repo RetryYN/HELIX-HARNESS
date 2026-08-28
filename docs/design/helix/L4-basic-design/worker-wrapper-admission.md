@@ -146,7 +146,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/cli.ts",
       "resource_kind": "cli_command",
       "resource_name": "codex",
-      "source_digest": "sha256:5c9e1fa836f8a857115d297ad7e67d09d96dbdf503d1b3dc8508f2e600a6925c",
+      "source_digest": "sha256:823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "current_authority": true
     },
     {
@@ -155,7 +155,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/cli.ts",
       "resource_kind": "cli_command",
       "resource_name": "claude",
-      "source_digest": "sha256:5c9e1fa836f8a857115d297ad7e67d09d96dbdf503d1b3dc8508f2e600a6925c",
+      "source_digest": "sha256:823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "current_authority": true
     },
     {
@@ -164,7 +164,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/cli.ts",
       "resource_kind": "cli_command",
       "resource_name": "team",
-      "source_digest": "sha256:5c9e1fa836f8a857115d297ad7e67d09d96dbdf503d1b3dc8508f2e600a6925c",
+      "source_digest": "sha256:823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "current_authority": true
     }
   ],

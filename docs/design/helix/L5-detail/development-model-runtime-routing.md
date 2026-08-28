@@ -25,7 +25,7 @@ related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
       "artifact_path": "src/schema/skill-applicability-registry.ts",
       "resource_kind": "typescript_export",
       "resource_name": "parseSkillApplicability",
-      "source_digest": "sha256:c6ad8c561ad6308dd8e9ff15382eade4bf60474487c41f7999e7a1f43b71c6ee",
+      "source_digest": "sha256:e5484076dd1b6760b20c94a192c723da0fb401ac57be9d2faeb990ddda2ed199",
       "current_authority": true
     },
     {
@@ -34,7 +34,7 @@ related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
       "artifact_path": "src/lint/skill-assignment.ts",
       "resource_kind": "typescript_export",
       "resource_name": "analyzeSkillAssignments",
-      "source_digest": "sha256:8dac5783e5f8eac45ca453c6fb3a3f1cdd74d9819ef666f1967697c3f545904c",
+      "source_digest": "sha256:51e90fbb27dcbf9c93e5b599b4c8515cd73b82f2cc98aae373cd8613245ebc92",
       "current_authority": true
     },
     {
@@ -43,7 +43,7 @@ related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
       "artifact_path": "src/skill-engine/scaffold.ts",
       "resource_kind": "typescript_export",
       "resource_name": "scaffoldSkill",
-      "source_digest": "sha256:f2b9d2c8d762db21b75328c241ad627ae5f6ed3d004b79201fc1b4b1a063f90a",
+      "source_digest": "sha256:f7086772f335ecbc8e0302b14d0525cb8a06e5a4bd2cd8d2e8884f14a38454cd",
       "current_authority": true
     }
   ],

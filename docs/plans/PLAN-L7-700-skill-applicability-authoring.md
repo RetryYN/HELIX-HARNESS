@@ -52,6 +52,8 @@ generates:
   - { artifact_path: src/workflow/skill-applicability-authoring.ts, artifact_type: source_module }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
@@ -60,6 +62,7 @@ modifies:
   - { artifact_path: src/lint/skill-assignment.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/schema/skill-applicability-registry.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/index.ts, artifact_type: source_module }
   - { artifact_path: src/skill-engine/scaffold.ts, artifact_type: source_module }
   - { artifact_path: tests/skill-assignment.test.ts, artifact_type: test_code }
   - { artifact_path: tests/skill-quality.test.ts, artifact_type: test_code }
