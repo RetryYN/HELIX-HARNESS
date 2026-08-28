@@ -36,7 +36,7 @@ tdd_red_required: true
 red_test: "U-SDLW-001..006を先行追加し、旧object残存とdoctor未接続をRedで確認する"
 red_at: "2026-08-28T10:59:00+09:00"
 green_at: "2026-08-28T11:10:38+09:00"
-mutation_oracle_evidence: "2026-08-28T10:59:00+09:00にU-SDLW-001..006を先行追加し、doctor schema authority module不在でsuite loadがRedとなることを確認した。実装後はexisting upgrade、authoritative row保持、rollback、idempotency、live extra object、full doctor wiringを個別oracleとして再実行する。"
+mutation_oracle_evidence: "2026-08-28に旧migration相当のmutant（legacy列を参照する明示indexをDROPせずALTER TABLE DROP COLUMNへ進む）へ、別名index idx_execution_episodes_legacy_modelを持つrevision 45 DBを投入し、SQLite error in index ... after drop column: no such column: drive_modelでmigrationが失敗することを独立再現した。dropIndexesReferencingLegacyWorkflowColumnsを復元すると、PRAGMA index_list/index_infoでorigin=cかつ退役列参照indexだけを先行DROPし、canonical indexを保持したまま同seedが完走する。tests/state-db-legacy-workflow-object-retirement.test.tsのU-SDLW-001がこのmutantをkillし、修正後は関連5 suite 79 tests greenを再確認した。"
 complexity_effect: justified_positive
 complexity_justification: "legacy schema objectを除去し、single migration＋doctor authorityへ集約する"
 removal_trigger: "legacy revision upgrade対象がretention期限を満了し、migration compatibility codeを削除できる時"
