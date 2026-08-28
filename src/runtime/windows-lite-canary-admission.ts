@@ -362,10 +362,7 @@ export function evaluateWindowsCanaryLease(input: {
   if (observedAt >= Date.parse(binding.binding.expires_at)) {
     return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" };
   }
-  if (
-    heartbeatAt > observedAt ||
-    observedAt - heartbeatAt > policy.policy.heartbeat_interval_ms
-  ) {
+  if (heartbeatAt > observedAt || observedAt - heartbeatAt > policy.policy.heartbeat_interval_ms) {
     return { ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" };
   }
   if (binding.binding.fence_token !== current.binding.fence_token) {
