@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 40,
+  "decision_count": 39,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -38,7 +38,6 @@
     "PLAN-L7-687-l3-human-approval-gate",
     "PLAN-L7-688-l3-human-approval-git-provenance",
     "PLAN-L7-690-branch-audit-delete-candidate-safety",
-    "PLAN-L7-695-state-db-legacy-workflow-object-retirement",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill"
