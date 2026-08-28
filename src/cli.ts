@@ -10515,7 +10515,9 @@ skill
       if (opts.applicable && opts.driveModels) {
         throw new Error("--applicable and deprecated --drive-models cannot be combined");
       }
-      let applicableIdentities = parseIdentities(opts.applicable);
+      let applicableIdentities: readonly SkillApplicabilityIdentity[] = parseIdentities(
+        opts.applicable,
+      );
       if (opts.driveModels) {
         const adapted = adaptLegacySkillApplicability(split(opts.driveModels));
         if (adapted.disposition !== "converted") {

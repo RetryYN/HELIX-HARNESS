@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-678-skill-applicability-authoring
-title: "PLAN-L7-678 (refactor): typed skill applicability authoring"
+plan_id: PLAN-L7-700-skill-applicability-authoring
+title: "PLAN-L7-700 (refactor): typed skill applicability authoring"
 kind: refactor
 layer: L7
 drive: agent
@@ -26,7 +26,7 @@ refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: policy
-contract_preconditions: "PLAN-L7-677のtyped value objectとrequirements-owned registryがcandidate branchに存在する"
+contract_preconditions: "PLAN-L7-678のtyped value objectとrequirements-owned registryがcurrent mainに存在する"
 contract_postconditions: "current assignment／scaffold／CLIがtyped identityだけを生成し、既存legacy skillをcompatibility-onlyへ隔離する"
 contract_invariants: "L1-L12とclassification exact pairを正本とし、legacy drive modelをcurrent metadataへ再出力しない"
 contract_failures: "unknown pair、axis mismatch、極性衝突、current／legacy混在、L0／L13／L14、曖昧legacy入力を個別拒否する"
@@ -48,7 +48,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — legacy混在と曖昧入力mutation" }
   - { role: tl, slot_label: "TL — current／compatibility境界" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-678-skill-applicability-authoring.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-700-skill-applicability-authoring.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
@@ -63,7 +63,7 @@ modifies:
   - { artifact_path: tests/skill-scaffold.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-83-development-model-runtime-routing.md
-  requires: [docs/plans/PLAN-L7-677-skill-applicability-value-object.md]
+  requires: [docs/plans/PLAN-L7-678-skill-applicability-value-object.md]
   blocks: [issue:322, issue:243]
 ---
 

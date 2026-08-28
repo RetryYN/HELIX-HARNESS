@@ -282,7 +282,7 @@ export function parseSkillApplicability(
     options.registry === undefined ? loadSkillApplicabilityRegistry() : options.registry;
   let workflowRegistry =
     options.workflowRegistry === undefined
-      ? loadWorkflowClassificationRegistry()
+      ? loadWorkflowClassificationRegistry(PACKAGE_ROOT)
       : options.workflowRegistry;
   if (options.registry !== undefined || options.workflowRegistry !== undefined) {
     ({ registry, workflowRegistry } = revalidateInjectedBindings(
