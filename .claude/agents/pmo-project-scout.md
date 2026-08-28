@@ -5,7 +5,6 @@ tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-haiku-4-5-20251001
 effort: low
 judgment_core: v2
-memory: project
 maxTurns: 10
 ---
 
@@ -46,4 +45,3 @@ maxTurns: 10
 
 - 再利用可否、依存設計、実装整合などが必要な場合は `pmo-project-explorer` へ引き継ぐ。
 - Scout は初期候補抽出で完了し、追加精査対象を短文で列挙する。
-

@@ -209,6 +209,7 @@ export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   ].join("\n"),
   "adapter/.claude/settings.json": [
     "{",
+    '  "autoMemoryEnabled": false,',
     '  "hooks": {',
     '    "PreToolUse": [',
     "      {",
