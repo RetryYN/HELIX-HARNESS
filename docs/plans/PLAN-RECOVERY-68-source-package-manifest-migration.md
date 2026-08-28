@@ -71,6 +71,7 @@ modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L3-requirements/vmodel-docgen-fit.md, artifact_type: design_doc }
