@@ -579,6 +579,7 @@ import { doctorFailure, doctorFailureMessage } from "./failure";
 import { checkNfrRegistry } from "./nfr-registry-check";
 import { checkNodeEngineRuntime } from "./node-engine-runtime";
 import type { DoctorOptions, DoctorResult } from "./result";
+import { checkStateDbSchemaAuthority } from "./state-db-schema-authority";
 import { checkWorkflowGuideAuthority } from "./workflow-guide-authority";
 
 function buildDoctorCurrentLocationSnapshot(
@@ -7243,6 +7244,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const dbProjectionCoverage = checkDbProjectionCoverage(deps.repoRoot);
   const dbProjectionIngestion = checkDbProjectionIngestion(deps.repoRoot, sharedProjectionDb);
   const projectCurrentLocation = checkProjectCurrentLocation(deps.repoRoot, sharedProjectionDb);
+  const stateDbSchemaAuthority = checkStateDbSchemaAuthority({ repoRoot: deps.repoRoot });
   const visualizationViewModelBoundary = checkVisualizationViewModelBoundary(
     deps.repoRoot,
     sharedProjectionDb,
@@ -7408,6 +7410,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["dbProjectionCoverage", dbProjectionCoverage.ok],
     ["dbProjectionIngestion", dbProjectionIngestion.ok],
     ["projectCurrentLocation", projectCurrentLocation.ok],
+    ["stateDbSchemaAuthority", stateDbSchemaAuthority.ok],
     ["visualizationViewModelBoundary", visualizationViewModelBoundary.ok],
     ["visualizationTreeViewBoundary", visualizationTreeViewBoundary.ok],
     ["visualizationTreeViewSummarySurface", visualizationTreeViewSummarySurface.ok],
@@ -7554,6 +7557,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       dbProjectionCoverage.ok &&
       dbProjectionIngestion.ok &&
       projectCurrentLocation.ok &&
+      stateDbSchemaAuthority.ok &&
       visualizationViewModelBoundary.ok &&
       visualizationTreeViewBoundary.ok &&
       visualizationTreeViewSummarySurface.ok &&
@@ -7703,6 +7707,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...dbProjectionCoverage.messages.map((m) => `doctor: ${m}`),
       ...dbProjectionIngestion.messages.map((m) => `doctor: ${m}`),
       ...projectCurrentLocation.messages.map((m) => `doctor: ${m}`),
+      ...stateDbSchemaAuthority.messages.map((m) => `doctor: ${m}`),
       ...visualizationViewModelBoundary.messages.map((m) => `doctor: ${m}`),
       ...visualizationTreeViewBoundary.messages.map((m) => `doctor: ${m}`),
       ...visualizationTreeViewSummarySurface.messages.map((m) => `doctor: ${m}`),
