@@ -36,7 +36,7 @@ tdd_red_required: true
 red_test: "PR #1139 CI run 33173316295のU-BACKFILL-006がPLAN-L7-696→PLAN-REVERSE-696の双方向referencesをreverseLinkMissingとしてRed固定した"
 red_at: "2026-08-28T22:09:04+09:00"
 green_at: "2026-08-28T22:19:33+09:00"
-mutation_oracle_evidence: "2026-08-28T22:21:01+09:00にsrc/lint/backfill-pairing.tsのpending Reverse判定からbackfill_state条件を除去するmutationを実測し、tests/backfill-pairing.test.tsのU-BACKFILL-008がstate不一致を1 failed／3 passed（exit 1）でkillした。条件を復元後、全33 testsをgreenへ戻した。"
+mutation_oracle_evidence: "2026-08-29T01:55:16+09:00のClaude exact-HEAD独立reviewで、pending Reverse判定からbackfill_state条件を除去するmutationをU-BACKFILL-008が1 failed／32 passed（exit 1）でkillする一方、pending時にrequiresも許容するmutationが33/33 greenで生存すると実測した。requires-only負例追加後、同mutationを対象test filterで実測して1 failed／33 skipped（exit 1）でkillし、復元後の全34 testsをgreenへ戻した。"
 complexity_effect: net_neutral
 complexity_justification: "link identityとexecution dependencyを一つのstate-aware判定へ集約し、相反gateを除去する"
 removal_trigger: "PLAN dependency schemaがtyped pairing edgeを第一級fieldとして持ち、references compatibilityを廃止できる時"

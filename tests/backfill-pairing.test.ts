@@ -266,6 +266,33 @@ describe("U-BACKFILL-004a required backfill bidirectional pairing", () => {
     expect(result.ok).toBe(true);
   });
 
+  it("U-BACKFILL-008: draft pending Reverseをrequiresだけへ載せた場合はfail-closeする", () => {
+    const plans = [
+      plan({
+        plan_id: "PLAN-L7-696-forward",
+        kind: "add-impl",
+        updated: "2026-08-28",
+        requires: ["docs/plans/PLAN-REVERSE-696-forward.md"],
+      }),
+      plan({
+        plan_id: "PLAN-REVERSE-696-forward",
+        kind: "reverse",
+        status: "draft",
+        backfillState: "pending_reverse",
+        created: "2026-08-28",
+        updated: "2026-08-28",
+        references: ["docs/plans/PLAN-L7-696-forward.md"],
+      }),
+    ];
+    expect(analyzeBackfill(plans, glossary).reverseLinkMissing).toEqual([
+      {
+        plan_id: "PLAN-L7-696-forward",
+        reverse_plan_id: "PLAN-REVERSE-696-forward",
+      },
+    ]);
+    expect(analyzeBackfill(plans, glossary).ok).toBe(false);
+  });
+
   it.each([
     ["forward reference欠落", [], "draft", "pending_reverse"],
     ["wrong Reverse ID", ["docs/plans/PLAN-REVERSE-999-wrong.md"], "draft", "pending_reverse"],
