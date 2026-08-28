@@ -6,7 +6,7 @@ layer: cross
 workflow_phase: R0
 confirmed_reverse_type: fullback
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-28
@@ -29,7 +29,7 @@ entry_signals:
   - "po_directive:Issue #1144 Windows canary policy／lease bindingのReverse vehicle"
 contract_preconditions: "PLAN-L3-70のconfirmed authorityと#1134の原子実装scopeが存在する"
 contract_postconditions: "将来のPLAN-L7-696実装証拠をL3／L6／L8へ再接着するReverse vehicleがmain上で一意になる"
-contract_invariants: "Forward実装や#1141の初期policy値を先取りせず、pending_reverse／completion_claim_allowed=falseを維持する"
+contract_invariants: "Forward実装や#1141の初期policy値を先取りせず、status draft／pending_reverse／completion_claim_allowed=falseを維持する"
 contract_failures: "wrong HEAD、stale review、双方向link欠落、DB divergence、#1141責務混載をfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "Forward実装前にReverse pairing vehicleだけを登録するdocs-only sliceであり、未実装kernelのRedを捏造しない"
