@@ -36,7 +36,7 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "本PLAN自身が新Feature authorityをL3/L10へ追加する上流sliceであり、既存下流artifactからのbackpropではない。"
-no_code_decision: design_only
+no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "Technology Stack Authority、WCC、OPS Backflow、System Synthesisのstable IDと責務境界が読める"
 contract_postconditions: "TER 6 FR／12 R／18 ACと7実装sliceがL3/L10でexact対応し、既存authorityへtyped edgeで接続される"
