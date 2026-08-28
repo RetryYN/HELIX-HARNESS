@@ -8,6 +8,7 @@ import {
   VMODEL_ZIP_REQUIRED_PATHS,
   type VmodelZipManifestResult,
 } from "../schema/hybrid-vmodel-manifest";
+import { attachCurrentLocationWorkflowIdentity } from "../workflow/current-location-workflow-identity";
 import { attachProjectClosureAutoApprovalReadinessFromAuthority } from "./closure-auto-approval";
 import {
   buildProjectClosureBatchReport,
@@ -781,7 +782,10 @@ export function buildVisualizationSnapshot(
     repoRoot?: string;
   } = {},
 ): VisualizationSnapshot {
-  const baseProjectCurrentLocation = buildProjectCurrentLocationSnapshot(db);
+  const baseProjectCurrentLocation = attachCurrentLocationWorkflowIdentity(
+    buildProjectCurrentLocationSnapshot(db),
+    input.repoRoot ?? process.cwd(),
+  );
   const projectCurrentLocation = input.repoRoot
     ? attachProjectClosureAutoApprovalReadinessFromAuthority({
         repoRoot: input.repoRoot,

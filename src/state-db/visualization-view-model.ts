@@ -402,6 +402,23 @@ export function buildProjectCurrentLocationView(
   snapshot: VisualizationSnapshot,
 ): ProjectCurrentLocationView {
   const current = snapshot.project_current_location;
+  const workflowIdentity = current.drive_route.workflowIdentity;
+  const workflowIdentityReceipt = current.drive_route.workflowIdentityReceipt;
+  if (
+    workflowIdentity === undefined ||
+    workflowIdentity === null ||
+    workflowIdentityReceipt === undefined ||
+    workflowIdentityReceipt.exit_code !== 0 ||
+    workflowIdentityReceipt.emit_legacy_identity !== false ||
+    workflowIdentityReceipt.identity === null ||
+    workflowIdentityReceipt.identity.registry_version !== workflowIdentity.registry_version ||
+    workflowIdentityReceipt.identity.registry_source_digest !==
+      workflowIdentity.registry_source_digest ||
+    workflowIdentityReceipt.identity.target_axis !== workflowIdentity.target_axis ||
+    workflowIdentityReceipt.identity.target_id !== workflowIdentity.target_id
+  ) {
+    throw new Error("visualization_workflow_identity_invalid");
+  }
   const scrumOperation = current.scrum_operation ?? emptyScrumOperation();
   const skillBinding = current.skill_binding ?? emptySkillBinding();
   const closureOverview = buildProjectClosureOverview(current);
@@ -513,6 +530,13 @@ export function buildProjectCurrentLocationView(
     };
   });
   return {
+    workflow_identity: {
+      schema_version: workflowIdentity.schema_version,
+      workflow_registry_version: workflowIdentity.registry_version,
+      workflow_registry_source_digest: workflowIdentity.registry_source_digest,
+      workflow_target_axis: workflowIdentity.target_axis,
+      workflow_target_id: workflowIdentity.target_id,
+    },
     layer: current.current.layer,
     l12_layer: current.current.l12_layer,
     status: current.current.status,
@@ -529,7 +553,6 @@ export function buildProjectCurrentLocationView(
           ? "recovery_queue"
           : "no_current_location_contradiction",
       completion_boundary: current.current.completion_boundary,
-      selected_model: current.drive_route.selectedModel,
       route_id: current.drive_route.routeId,
       must_return_to_design: current.drive_route.mustReturnToDesign,
       open_l7_count: current.closure.l7_open_plan_ids.length,
@@ -562,7 +585,7 @@ export function buildProjectCurrentLocationView(
       },
       commands: {
         current_location: "helix current-location --summary-json",
-        drive_model: "helix drive model --summary-json",
+        workflow_evaluation: "helix drive model --summary-json",
         recovery_plan: "helix recovery plan --summary-json",
         roadmap_current: "helix roadmap current --summary-json",
         vmodel_fit: "helix vmodel fit --summary-json",
@@ -973,7 +996,6 @@ export function buildProjectCurrentLocationView(
           outcome: route.outcome,
           projection_type: route.projection_type,
           target_action: route.target_action,
-          drive_model: route.drive_model,
           human_required: route.human_required,
           command: route.command,
           transition_command: route.transition_command,
@@ -1091,18 +1113,14 @@ export function buildProjectCurrentLocationView(
         required_action: vmodelFit.roadmap_current_gate.required_action,
         reasons: [...vmodelFit.roadmap_current_gate.reasons],
       },
-      drive_model_gate: {
+      workflow_policy_gate: {
         status: vmodelFit.drive_model_gate.status,
-        selected_model: vmodelFit.drive_model_gate.selected_model,
-        default_model: vmodelFit.drive_model_gate.default_model,
         selection_status: vmodelFit.drive_model_gate.selection_status,
         selected_route_id: vmodelFit.drive_model_gate.selected_route_id,
         selected_command: vmodelFit.drive_model_gate.selected_command,
         selected_coverage_ids: [...vmodelFit.drive_model_gate.selected_coverage_ids],
         selected_coverage_labels: [...vmodelFit.drive_model_gate.selected_coverage_labels],
         candidate_count: vmodelFit.drive_model_gate.candidate_count,
-        blocked_models: [...vmodelFit.drive_model_gate.blocked_models],
-        available_models: [...vmodelFit.drive_model_gate.available_models],
         command: vmodelFit.drive_model_gate.command,
         required_action: vmodelFit.drive_model_gate.required_action,
         reasons: [...vmodelFit.drive_model_gate.reasons],
@@ -1236,7 +1254,6 @@ export function buildProjectCurrentLocationView(
     skill_binding: {
       status: skillBinding.status,
       source_package: skillBinding.sourcePackage,
-      selected_model: skillBinding.selectedModel,
       workflow_modes: [...skillBinding.workflowModes],
       l12_layers: [...skillBinding.l12Layers],
       required_skills: skillBinding.requiredSkills,
@@ -1721,7 +1738,6 @@ export function buildProjectCurrentLocationView(
           coverage_id: item.coverageId,
           coverage_label: item.coverageLabel,
           priority: item.priority,
-          drive_model: item.driveModel,
           remediation_status: item.remediationStatus,
           next_action: item.nextAction,
           required_action: item.requiredAction,
@@ -1769,7 +1785,6 @@ export function buildProjectCurrentLocationView(
           packet_id: packet.packetId,
           next_action: packet.nextAction,
           label: packet.label,
-          drive_model: packet.driveModel,
           l12_layer: packet.l12Layer,
           count: packet.count,
           plan_ids: [...packet.planIds],
@@ -1800,7 +1815,6 @@ export function buildProjectCurrentLocationView(
           packet_id: entry.packetId,
           next_action: entry.nextAction,
           status: entry.status,
-          drive_model: entry.driveModel,
           l12_layer: entry.l12Layer,
           count: entry.count,
           primary_command: entry.primaryCommand,
@@ -1926,7 +1940,6 @@ export function buildProjectCurrentLocationView(
         layer: layer.layer,
         label: layer.label,
         status: layer.status,
-        drive_model: layer.driveModel,
         total: layer.total,
         done: layer.done,
         missing: layer.missing,
@@ -1940,28 +1953,11 @@ export function buildProjectCurrentLocationView(
       missing: current.artifact_remap.missing,
       reverify: current.artifact_remap.reverify,
     },
-    drive_model: driveModel.selected_model,
-    drive_reason: driveModel.selected_candidate.required_action,
-    drive_model_candidates: driveModel.candidates.map((candidate) => ({
-      model: candidate.model,
-      rank: candidate.rank,
-      status: candidate.status,
-      route_id: candidate.route_id,
-      trigger: candidate.trigger,
-      required_action: candidate.required_action,
-      command: candidate.command,
-      coverage_ids: [...candidate.coverage_ids],
-      coverage_labels: [...candidate.coverage_labels],
-      doc_dependencies: [...candidate.doc_dependencies],
-      implementation_dependencies: [...candidate.implementation_dependencies],
-      reasons: [...candidate.reasons],
-    })),
+    workflow_reason: driveModel.selected_candidate.required_action,
     reverse_targets: [...current.drive_recommendation.reverseTargets],
     drive_route: {
       route_id: current.drive_route.routeId,
       status: current.drive_route.status,
-      selected_model: current.drive_route.selectedModel,
-      default_model: current.drive_route.defaultModel,
       reason: current.drive_route.reason,
       write_policy: current.drive_route.writePolicy,
       source_command: current.drive_route.sourceCommand,

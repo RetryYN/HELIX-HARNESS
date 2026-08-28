@@ -2,6 +2,13 @@
 import type { ClosureReviewScopeView, ClosureReviewWindowView } from "./visualization-contract";
 
 export interface ProjectCurrentLocationView {
+  workflow_identity: {
+    schema_version: "helix-current-location-workflow-identity.v1";
+    workflow_registry_version: string;
+    workflow_registry_source_digest: string;
+    workflow_target_axis: string;
+    workflow_target_id: string;
+  };
   layer: string | null;
   l12_layer: string | null;
   status: string;
@@ -16,7 +23,6 @@ export interface ProjectCurrentLocationView {
       | "recovery_queue"
       | "no_current_location_contradiction";
     completion_boundary: string;
-    selected_model: string;
     route_id: string;
     must_return_to_design: boolean;
     open_l7_count: number;
@@ -48,7 +54,7 @@ export interface ProjectCurrentLocationView {
     };
     commands: {
       current_location: "helix current-location --summary-json";
-      drive_model: "helix drive model --summary-json";
+      workflow_evaluation: "helix drive model --summary-json";
       recovery_plan: "helix recovery plan --summary-json";
       roadmap_current: "helix roadmap current --summary-json";
       vmodel_fit: "helix vmodel fit --summary-json";
@@ -528,7 +534,6 @@ export interface ProjectCurrentLocationView {
         outcome: string;
         projection_type: string;
         target_action: string | null;
-        drive_model: string;
         human_required: boolean;
         command: string;
         transition_command: string;
@@ -647,18 +652,14 @@ export interface ProjectCurrentLocationView {
       required_action: string;
       reasons: string[];
     };
-    drive_model_gate: {
+    workflow_policy_gate: {
       status: string;
-      selected_model: string;
-      default_model: string;
       selection_status: string;
       selected_route_id: string;
       selected_command: string;
       selected_coverage_ids: string[];
       selected_coverage_labels: string[];
       candidate_count: number;
-      blocked_models: string[];
-      available_models: string[];
       command: string;
       required_action: string;
       reasons: string[];
@@ -767,7 +768,6 @@ export interface ProjectCurrentLocationView {
   skill_binding: {
     status: string;
     source_package: string;
-    selected_model: string;
     workflow_modes: string[];
     l12_layers: string[];
     required_skills: number;
@@ -1204,7 +1204,6 @@ export interface ProjectCurrentLocationView {
         coverage_id: string | null;
         coverage_label: string | null;
         priority: number;
-        drive_model: string;
         remediation_status: string;
         next_action: string;
         required_action: string;
@@ -1252,7 +1251,6 @@ export interface ProjectCurrentLocationView {
         packet_id: string;
         next_action: string;
         label: string;
-        drive_model: string;
         l12_layer: string;
         count: number;
         plan_ids: string[];
@@ -1283,7 +1281,6 @@ export interface ProjectCurrentLocationView {
         packet_id: string;
         next_action: string;
         status: string;
-        drive_model: string;
         l12_layer: string;
         count: number;
         primary_command: string;
@@ -1387,7 +1384,6 @@ export interface ProjectCurrentLocationView {
       layer: string;
       label: string;
       status: string;
-      drive_model: string;
       total: number;
       done: number;
       missing: number;
@@ -1401,28 +1397,11 @@ export interface ProjectCurrentLocationView {
     missing: number;
     reverify: number;
   };
-  drive_model: string;
-  drive_reason: string;
-  drive_model_candidates: Array<{
-    model: string;
-    rank: number;
-    status: string;
-    route_id: string;
-    trigger: string;
-    required_action: string;
-    command: string;
-    coverage_ids: string[];
-    coverage_labels: string[];
-    doc_dependencies: string[];
-    implementation_dependencies: string[];
-    reasons: string[];
-  }>;
+  workflow_reason: string;
   reverse_targets: string[];
   drive_route: {
     route_id: string;
     status: string;
-    selected_model: string;
-    default_model: string;
     reason: string;
     write_policy: string;
     source_command: string;

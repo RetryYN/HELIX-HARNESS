@@ -8,6 +8,35 @@ import { HELIX_COPY_POINTER_COMMAND } from "../src/vscode/extension-manifest";
 import { decorateVscodeTree } from "../src/vscode/tree-decoration";
 import { buildVisualizationTreeView, type TreeViewNode } from "../src/vscode/tree-view-provider";
 
+const WORKFLOW_REGISTRY_VERSION = "1.1.5";
+const WORKFLOW_REGISTRY_DIGEST =
+  "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db";
+
+function typedWorkflowRoute(): Pick<
+  ProjectCurrentLocationSnapshot["drive_route"],
+  "workflowIdentity" | "workflowIdentityReceipt"
+> {
+  const identity = {
+    schema_version: "helix-current-location-workflow-identity.v1" as const,
+    registry_version: WORKFLOW_REGISTRY_VERSION,
+    registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
+    target_axis: "workflow_model" as const,
+    target_id: "RECOVERY",
+  };
+  return {
+    workflowIdentity: identity,
+    workflowIdentityReceipt: {
+      schema_version: "helix-current-location-workflow-identity-receipt.v1",
+      disposition: "typed",
+      identity,
+      source: { kind: "typed", field: null, token: identity.target_id },
+      warnings: [],
+      emit_legacy_identity: false,
+      exit_code: 0,
+    },
+  };
+}
+
 function emptyClosureAutoApproval(): ProjectCurrentLocationSnapshot["closure"]["auto_approval"] {
   return {
     schema_version: "project-closure-auto-approval-readiness.v1",
@@ -1013,6 +1042,7 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
       implementationDependencies: ["plan_registry"],
     },
     drive_route: {
+      ...typedWorkflowRoute(),
       routeId: "drive:Recovery:recover-current-location",
       status: "recovery_required",
       selectedModel: "Recovery",
@@ -1271,12 +1301,11 @@ describe("visualization Tree View adapter", () => {
     });
     const drive = current?.children.find((child) => child.id === "project/current-location/drive");
     expect(drive).toMatchObject({
-      label: "Drive model",
-      description: "Recovery / recovery_required",
+      label: "Workflow identity",
+      description: "workflow_model:RECOVERY",
     });
     expect(drive?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/drive/current-location-frontier:recovery_frontier / l14_claim_with_l7_work",
-      "project/current-location/drive/model-candidates:helix drive model --json",
       "project/current-location/drive/recovery-plan:blocked remaining=1 handoff=generate_approval_draft",
       "project/current-location/drive/route:return-to-design L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
       "project/current-location/drive/reverse:L5/L6/L7/L12 L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability actions=repair_failed_evidence",
@@ -1296,55 +1325,28 @@ describe("visualization Tree View adapter", () => {
         "project/current-location/drive/current-location-frontier/reentry:machine_phase_pending -> recompute_drive_model",
       ],
     );
-    expect(drive?.children[3]?.tooltip).toContain(
+    expect(drive?.children[2]?.tooltip).toContain(
       "reverse_coverage=L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
     );
-    expect(drive?.children[4]?.tooltip).toContain(
+    expect(drive?.children[3]?.tooltip).toContain(
       "coverage=L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
     );
-    expect(drive?.children[4]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+    expect(drive?.children[3]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
         "project/current-location/drive/reverse/doc-dependencies:3",
         "project/current-location/drive/reverse/implementation-dependencies:2",
         "project/current-location/drive/reverse/closure-links:1/1",
       ],
     );
-    expect(drive?.children[4]?.children[0]?.tooltip).toContain("docs/design/**");
-    expect(drive?.children[4]?.children[1]?.tooltip).toContain("design_declarations");
-    expect(drive?.children[4]?.children[2]?.tooltip).toContain("action=repair_failed_evidence");
+    expect(drive?.children[3]?.children[0]?.tooltip).toContain("docs/design/**");
+    expect(drive?.children[3]?.children[1]?.tooltip).toContain("design_declarations");
+    expect(drive?.children[3]?.children[2]?.tooltip).toContain("action=repair_failed_evidence");
     expect(drive?.children[1]?.command).toEqual({
-      title: "Copy pointer",
-      command: "helix.copyPointer",
-      arguments: ["helix drive model --summary-json"],
-    });
-    expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
-      [
-        "project/current-location/drive/model-candidates/1-Recovery:selected L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
-        "project/current-location/drive/model-candidates/2-Reverse:blocked L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
-        "project/current-location/drive/model-candidates/3-OperationVerification:blocked L12-operation-observability",
-        "project/current-location/drive/model-candidates/4-Forward:blocked L6-implementation-binding,L7-tdd-closure",
-        "project/current-location/drive/model-candidates/5-Discovery:blocked L1-planning-intent,L2-requirements-screen",
-        "project/current-location/drive/model-candidates/6-Scrum:blocked L1-planning-intent,L11-acceptance-test-design,L2-requirements-screen,L3-requirements-freeze",
-        "project/current-location/drive/model-candidates/7-Incident:blocked L10-system-test-design,L12-operation-observability,L9-integration-test-design",
-        "project/current-location/drive/model-candidates/8-Refactor:blocked L5-detailed-contract",
-        "project/current-location/drive/model-candidates/9-Retrofit:blocked L4-basic-design,L5-detailed-contract,L6-implementation-binding",
-        "project/current-location/drive/model-candidates/10-Add-feature:blocked L3-requirements-freeze,L6-implementation-binding,L7-tdd-closure",
-        "project/current-location/drive/model-candidates/11-version-up:blocked L3-requirements-freeze,L6-implementation-binding,L7-tdd-closure",
-        "project/current-location/drive/model-candidates/12-Research:blocked L1-planning-intent,L3-requirements-freeze",
-      ],
-    );
-    expect(drive?.children[1]?.children[0]?.tooltip).toContain(
-      "trigger=L14 claim と L7/open evidence の矛盾",
-    );
-    expect(drive?.children[1]?.children[3]?.tooltip).toContain(
-      "action=roadmap current と design coverage が一致している範囲を Forward で進める",
-    );
-    expect(drive?.children[2]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix recovery plan --summary-json"],
     });
-    expect(drive?.children[2]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
+    expect(drive?.children[1]?.children.map((child) => `${child.id}:${child.description}`)).toEqual(
       [
         "project/current-location/drive/recovery-plan/exit-forecast:blocked remaining=1 lanes=repair_failed_evidence",
         "project/current-location/drive/recovery-plan/handoff-gate:generate_approval_draft phase=machine approval=missing scope=missing",
@@ -1360,23 +1362,23 @@ describe("visualization Tree View adapter", () => {
     );
     expect(reentryForecast?.tooltip).toContain("raw=machine_phase_pending");
     expect(reentryForecast?.tooltip).toContain("effective=machine_phase_pending");
-    const automationRunway = drive?.children[2]?.children.find(
+    const automationRunway = drive?.children[1]?.children.find(
       (child) => child.id === "project/current-location/drive/recovery-plan/automation-runway",
     );
     expect(automationRunway?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/drive/recovery-plan/automation-runway/1-repair_failed_evidence:machine count=1 remaining=0",
     ]);
+    expect(drive?.children[2]?.command).toEqual({
+      title: "Copy pointer",
+      command: "helix.copyPointer",
+      arguments: ["helix current-location --summary-json"],
+    });
     expect(drive?.children[3]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix current-location --summary-json"],
     });
     expect(drive?.children[4]?.command).toEqual({
-      title: "Copy pointer",
-      command: "helix.copyPointer",
-      arguments: ["helix current-location --summary-json"],
-    });
-    expect(drive?.children[5]?.command).toEqual({
       title: "Copy pointer",
       command: "helix.copyPointer",
       arguments: ["helix progress tree-view --summary-json"],
@@ -1449,7 +1451,7 @@ describe("visualization Tree View adapter", () => {
     expect(vmodelFit).toMatchObject({
       label: "V-model fit",
       description:
-        "needs_fit design=needs_design ac=needs_trace zip=complete manifest=advisory_missing tailoring=pass function=needs_absorption roadmap=needs_sync drive=Recovery current=needs_recovery handoff=machine_pending",
+        "needs_fit design=needs_design ac=needs_trace zip=complete manifest=advisory_missing tailoring=pass function=needs_absorption roadmap=needs_sync workflow=pass current=needs_recovery handoff=machine_pending",
       contextValue: "current-location.vmodel-fit.needs_fit",
       command: {
         title: "Copy pointer",
@@ -1468,7 +1470,7 @@ describe("visualization Tree View adapter", () => {
       "project/current-location/vmodel-fit/tailoring-gate:pass",
       "project/current-location/vmodel-fit/function-design-absorption:needs_absorption policy=abolished",
       "project/current-location/vmodel-fit/roadmap-current:needs_sync aligned=false correlation=independent basis=frontier",
-      "project/current-location/vmodel-fit/drive-model:Recovery/pass L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
+      "project/current-location/vmodel-fit/workflow-policy:pass L5-detailed-contract,L6-implementation-binding,L7-tdd-closure,L12-operation-observability",
       "project/current-location/vmodel-fit/current-location:needs_recovery/contradicted reentry=machine_phase_pending",
       "project/current-location/vmodel-fit/recovery-runway:machine_work_available machine=1 approval=0",
       "project/current-location/vmodel-fit/recovery-handoff:generate_approval_draft phase=machine approval=missing scope=missing valid=false",
@@ -1492,7 +1494,7 @@ describe("visualization Tree View adapter", () => {
       "transition-window=helix closure transition-plan --action close_ready --limit 20 --offset 0 --summary-json",
     );
     expect(approvalReview?.tooltip).toContain(
-      "outcome-route=reject_to_collect_evidence->collect_evidence drive=Recovery",
+      "outcome-route=reject_to_collect_evidence->collect_evidence command=helix closure evidence-probe",
     );
     expect(approvalReview?.children?.map((child) => child.id)).toEqual([
       "project/current-location/vmodel-fit/approval-review/current-window",
@@ -2066,9 +2068,9 @@ describe("visualization Tree View adapter", () => {
         )
         .map((child) => `${child.id}:${child.description}`),
     ).toEqual([
-      "project/current-location/artifact-remap/layers/L3:done Forward total=1 done=1 missing=0 reverify=0",
-      "project/current-location/artifact-remap/layers/L6:reverify Reverse total=1 done=0 missing=0 reverify=1",
-      "project/current-location/artifact-remap/layers/L7:missing Reverse total=1 done=0 missing=1 reverify=0",
+      "project/current-location/artifact-remap/layers/L3:done total=1 done=1 missing=0 reverify=0",
+      "project/current-location/artifact-remap/layers/L6:reverify total=1 done=0 missing=0 reverify=1",
+      "project/current-location/artifact-remap/layers/L7:missing total=1 done=0 missing=1 reverify=0",
     ]);
     expect(artifactRemap?.children[1]).toMatchObject({
       id: "project/current-location/artifact-remap/batch/reverify",
