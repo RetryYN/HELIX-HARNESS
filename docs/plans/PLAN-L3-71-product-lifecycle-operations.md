@@ -71,15 +71,25 @@ review_evidence:
         evidence_path: tests/product-lifecycle-operations-requirements.test.ts
         output_digest: "sha256:71b2b68ae0f6c3d3814399a9253fa8337b1cb2009390fdae3dc9bb5e9b08d574"
         result: "2 files / 40 tests passed"
-left_arm_carry:
-  schema_version: left-arm-carry.v1
-  decision: no_pushback
-  assessed_at: "2026-08-28T18:40:01Z"
-  review_binding:
-    reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-28T18:40:01Z"
-    evidence_digest: "sha256:886c170bc77083e352df424d1516bf0cd6a877405646b2fff2c3c212ac655aab"
-  entries: []
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-28T18:56:46Z"
+    reviewed_at: "2026-08-28T19:05:00Z"
+    verdict: approve_after_fixes
+    worker_model: codex-runtime
+    reviewer_model: claude-opus-5
+    reviewer_session_id: ea744a06-7afc-4026-b642-8568317b096e
+    scope: "PR #1168 HEAD d175bec4e08aad6876c7ae271c0a8a90c14ada99をClaude Codeが独立検収。design-language blockerの解消（english prose 0）、OPS-R↔OPS-AC被覆oracleの追加、前回rejectの事実記録を実測是認し、review evidenceのtechnical approval追記とleft_arm_carry bindingの是正のみをReady条件として approve_after_fixes とした。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/product-lifecycle-operations-requirements.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-28T18:56:46Z"
+        evidence_path: tests/product-lifecycle-operations-requirements.test.ts
+        output_digest: "sha256:f44f48cc0c980f37fa10d070a329435a4a2d2708a00553404d1171f0021a47cc"
+        result: "2 files / 40 tests passed"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-71-product-lifecycle-operations.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md, artifact_type: design_doc }
