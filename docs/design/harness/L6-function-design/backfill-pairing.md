@@ -111,7 +111,7 @@ export const KIND_BACKFILL: Record<string, BackfillReq> = {
 | `parseRequires` | `(content: string) => string[]` | **純関数**。`requires:\n  - <path>` の YAML list を抽出。`requires: []` / section 無し → `[]` |
 | `parseGlossaryTerms` | `(content: string) => string[]` | **純関数**。`§6 用語更新` 見出し以降〜次 heading or EOF を section とし `- **term**:` の term を返す。**`/m` を付けず `$` を文字列末尾の意味で使う** (`/m` だと section が空になる罠) |
 | `parsePlan` | `(file: string, content: string) => ParsedPlan` | **純関数**。frontmatter の `plan_id`/`kind`/`status` + `parseRequires` + `parseGlossaryTerms` を合成。`plan_id` 不在 → ファイル名 (拡張子除く) で代替 |
-| `analyzeBackfill` | `(plans: ParsedPlan[], glossaryText: string) => BackfillResult` | **純関数**。① `status === "archived"` を除外 → active。② reverse PLAN の参照集合を構築。③ requiredかつ未Reverseは原則`reverseOrphans`。ただし`kind=add-impl`、`routeMode=add-feature`、`backfillState=pending_reverse`の完全一致だけはRoute B先行buildとして`conditionalPending`へ置く。④ conditional未リンクも`conditionalPending`。⑤用語差分を`glossaryGaps`へ置く。通常Forwardや状態marker欠落を保留扱いにしない。 |
+| `analyzeBackfill` | `(plans: ParsedPlan[], glossaryText: string) => BackfillResult` | **純関数**。① `status === "archived"` を除外 → active。② reverse PLAN の参照集合を構築。③ requiredかつ未Reverseは原則`reverseOrphans`。④ current pending Reverseは`status=draft`＋`backfillState=pending_reverse`の完全一致を要求し、Forward／Reverse双方の`references`でpair identityを検証する。片方向、wrong ID、state不整合は`reverseLinkMissing`。⑤ terminal／legacy pairingは適用時点のdependency契約を維持する。⑥ conditional未リンクも`conditionalPending`。⑦用語差分を`glossaryGaps`へ置く。通常Forwardや状態marker欠落を保留扱いにしない。 |
 | `loadBackfillDocs` | `(repoRoot?: string) => BackfillDocs` | I/O。`docs/plans/*.md` を全読み (archive/template dir は含まれない flat ファイル想定)。concept §10 用語集を正規表現 (`#\s*§10[\s\S]*?(?=\n#\s*§11|$)`) で抽出 |
 | `backfillMessages` | `(result: BackfillResult) => string[]` | **純関数**。① reverseOrphans > 0 → warn 文言。② glossaryGaps > 0 → warn 文言。③ conditionalPending > 0 → note 文言。④ すべて 0 → OK 文言。複数メッセージを配列で返す |
 | `checkBackfill` (doctor) | `(repoRoot: string) => string[]` | fail-close。`loadBackfillDocs` → `analyzeBackfill` → `backfillMessages` を実行し、I/O / parse 失敗は `violation` message として返す。doctor は `backfill` violation を hard gate に集約し、PLAN/glossary を読めない状態を skip しない。 |
@@ -122,7 +122,10 @@ export const KIND_BACKFILL: Record<string, BackfillReq> = {
 
 **`normalizeTerm` 複合ラベル**: `"agent-slot / peak_parallel"` → `"agent-slot"`、`"handover discipline (規律) surface"` → `"handover discipline"` のようにコア語を取り出し、表記ゆれを吸収する。
 
-**`analyzeBackfill` 向き**: Reverse PLAN が impl PLAN を **`requires` する向き** を正とする (`reverse → impl`)。impl PLAN が reverse を参照するのではなく、reverse が impl を参照することで「この impl は back-fill 済」と判定する。
+**`analyzeBackfill` 向き**: Reverse PLANからimpl PLANへのlinkを必須とする。current pending Reverseは
+Reverse→ForwardとForward→Reverseの双方向`references`を正とし、link identityを未readyなexecution dependencyへ
+変換しない。legacy Reverseはcreated時点の`requires`入力を読み取る。terminal Reverseのdependency化はPLAN dependency
+readinessへ従い、pairing lintが状態を推測して昇格しない。
 
 **`ok` 判定**: `reverseOrphans.length === 0 && glossaryGaps.length === 0`。`conditionalPending` は warn のみで ok を落とさない (人間判断が必要な軽度の注意)。
 
@@ -139,6 +142,7 @@ generates pair: `docs/test-design/harness/L7-unit-test-design.md` **§1.11 U-BAC
 | U-BACKFILL-005 | `backfillMessages` | 孤児なし → OK 文言 / 孤児あり → warn 文言 |
 | U-BACKFILL-006 | `loadBackfillDocs` + `analyzeBackfill` | 実 repo 完全性回帰ガード (orphan 0 / glossary gap 0) |
 | U-BACKFILL-007 | `analyzeBackfill` | Add-feature Route B＋`pending_reverse`だけを先行buildとして許可し、Forward／marker欠落はorphan |
+| U-BACKFILL-008 | `analyzeBackfill` | draft／pending Reverseの双方向`references`だけを受理し、片方向、wrong ID、state不一致をfail-close |
 
 ## §4 carry / 次工程
 
