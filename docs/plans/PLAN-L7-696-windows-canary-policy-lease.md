@@ -61,7 +61,6 @@ agent_slots:
   - { role: tl, slot_label: "TL — WLCA authorityと後続slice境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-696-windows-canary-policy-lease.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/windows-lite-canary-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/windows-lite-canary-admission.test.ts, artifact_type: test_code }
 modifies:
