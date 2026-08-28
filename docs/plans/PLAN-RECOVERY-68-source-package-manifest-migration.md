@@ -67,6 +67,7 @@ generates:
   - { artifact_path: docs/migration/source-manifests/universal-workflow-requirements-skill.v1.1.0.json, artifact_type: json_config }
   - { artifact_path: docs/migration/source-manifests/hybrid-vmodel-source.v1.json, artifact_type: json_config }
   - { artifact_path: docs/research/design-harness-ecosystem-disposition-2026-08-29.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/source-package-manifest.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
@@ -89,7 +90,6 @@ modifies:
   - { artifact_path: src/state-db/vmodel-fit.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/summary-surface-audit.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
-  - { artifact_path: tests/source-package-manifest.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tracked-canonical.test.ts, artifact_type: test_code }
   - { artifact_path: tests/universal-workflow-requirements-binding.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-multimodal-design-harness-authority.test.ts, artifact_type: test_code }
