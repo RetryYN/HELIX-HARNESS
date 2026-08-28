@@ -22,7 +22,7 @@ behavior_contract_id: POST-MERGE-PLAN-STATUS-PREFLIGHT-001
 responsibility_owner: merged-plan-status
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: connect_existing_contract
+refactor_step: migrate_one_consumer
 legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "既存merged-plan-status契約の実行時点をpost-mergeからPR preflightへ前倒しするRecoveryであり、新しいproduct requirementやmerge policyを追加しない。"
@@ -57,6 +57,7 @@ modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
