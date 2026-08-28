@@ -5,7 +5,7 @@ canonical_pair: L7
 title: "Windows Lite canary bounded admission 機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-27
 updated: 2026-08-27
 owner: SE / Codex TL

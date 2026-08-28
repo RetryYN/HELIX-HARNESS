@@ -4,7 +4,7 @@ canonical_layer_scheme: L1-L12
 layer: L9
 artifact_type: test_design
 sub_doc: integration-test-design
-status: draft
+status: confirmed
 created: 2026-08-27
 updated: 2026-08-27
 owner: QA / Codex TL

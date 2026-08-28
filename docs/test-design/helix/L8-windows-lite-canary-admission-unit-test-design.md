@@ -5,7 +5,7 @@ layer: L8
 executed_at_layer: L7
 artifact_type: test_design
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 created: 2026-08-27
 updated: 2026-08-27
 owner: QA / Codex TL

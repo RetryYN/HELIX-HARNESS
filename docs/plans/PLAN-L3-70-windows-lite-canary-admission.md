@@ -4,7 +4,7 @@ title: "PLAN-L3-70 (add-design): Windows Lite canary PR横断 bounded admission�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -41,7 +41,25 @@ agent_slots:
   - { role: tl, slot_label: "TL — #1002既存artifact authorityとcross-PR lease責務境界" }
   - { role: se, slot_label: "SE — typed policy／queue／Actions adapterのL3→L6降下" }
   - { role: qa, slot_label: "QA — stale fence、same-artifact、p95/p99母集団、mutation oracle" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    tests_green_at: "2026-08-28T02:57:47Z"
+    reviewed_at: "2026-08-28T03:05:34Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
+    scope: "POのL3承認指示に基づき、PR #1107 current HEAD a63f6a4fe85ae5fc0f9abbebe8c4fee42fe674cbをClaude Codeが独立検収した。Windows Lite canary admissionのbounded policy、queue／lease、same-artifact binding、fail-close、p95／p99母集団、既存authority再利用を確認しblocker 0でapprove。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1107#issuecomment-5447889973"
+    green_commands:
+      - kind: unit_test
+        command: "npm test"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-28T02:57:47Z"
+        evidence_path: docs/test-design/helix/windows-lite-canary-admission-acceptance.md
+        output_digest: "sha256:b62ad1a0848b563d16c8b22a5bbe752ff8f2cb63d55d3f094040d600b75b7e4d"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md, artifact_type: design_doc }

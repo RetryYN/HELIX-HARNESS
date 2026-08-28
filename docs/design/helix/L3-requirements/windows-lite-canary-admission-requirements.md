@@ -7,7 +7,7 @@ l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-20
 title: "Windows Lite canary PR横断 bounded admission 要件"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-27
 updated: 2026-08-27
 owner: PO / Codex TL
