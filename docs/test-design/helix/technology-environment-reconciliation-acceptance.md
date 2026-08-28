@@ -9,6 +9,7 @@ created: 2026-08-29
 updated: 2026-08-29
 owner: QA / TL
 parent_design: docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md
+pair_artifact: docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md
 plan: PLAN-L3-72-technology-environment-reconciliation
 ---
 
