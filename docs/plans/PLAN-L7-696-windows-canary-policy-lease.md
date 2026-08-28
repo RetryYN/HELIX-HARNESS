@@ -4,7 +4,7 @@ title: "PLAN-L7-696 (impl): Windows canary policy／lease bindingをtyped化す�
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -49,19 +49,23 @@ dependencies:
   parent: PLAN-L3-70-windows-lite-canary-admission
   requires:
     - docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
+    - docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md
   blocks: []
   references:
     - "issue:1134"
     - "issue:1106"
+    - docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md
 agent_slots:
   - { role: se, slot_label: "SE — exact schema／canonical digest／WorkGraph fence reuse" }
   - { role: qa, slot_label: "QA — missing／unknown／boundary／immutability mutation" }
   - { role: tl, slot_label: "TL — WLCA authorityと後続slice境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-696-windows-canary-policy-lease.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/windows-lite-canary-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/windows-lite-canary-admission.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/windows-lite-canary-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-windows-lite-canary-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
@@ -80,3 +84,5 @@ modifies:
 | 4 | mutation／全gate／独立review | current HEAD blocker 0、main read-afterまで成立する |
 
 queue、expiry evaluator、Actions adapter、measurement projectionは#1135以降へ分離する。
+実装後のrequirements／L6／L8再接着とmain read-afterは
+`PLAN-REVERSE-696-windows-canary-policy-lease`でfullbackする。
