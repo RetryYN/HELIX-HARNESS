@@ -108,16 +108,48 @@ describe("STATE-DB-LEGACY-WORKFLOW-OBJECT-RETIREMENT-001", () => {
     }
   });
 
-  it("U-SDLW-005: live DBのauthority外objectをdoctor hard gateが拒否する", () => {
-    const db = openHarnessDb(":memory:");
-    try {
-      migrate(db);
-      db.exec("CREATE TABLE project_drive_model_candidates (candidate_id TEXT PRIMARY KEY)");
-      const result = checkStateDbSchemaAuthority({ actualDb: db });
-      expect(result.ok).toBe(false);
-      expect(result.messages.join("\n")).toContain("project_drive_model_candidates");
-    } finally {
-      db.close();
+  it("U-SDLW-005: 各legacy objectの復活をdoctor hard gateが個別に拒否する", () => {
+    const mutations = [
+      {
+        name: "旧candidate table",
+        mutate: (db: ReturnType<typeof openHarnessDb>) =>
+          db.exec("CREATE TABLE project_drive_model_candidates (candidate_id TEXT PRIMARY KEY)"),
+        marker: "project_drive_model_candidates",
+      },
+      {
+        name: "旧candidate index",
+        mutate: (db: ReturnType<typeof openHarnessDb>) =>
+          db.exec(`
+          CREATE TABLE project_drive_model_candidates (candidate_id TEXT PRIMARY KEY, status TEXT);
+          CREATE INDEX idx_project_drive_model_candidates_status
+            ON project_drive_model_candidates (status);
+        `),
+        marker: "idx_project_drive_model_candidates_status",
+      },
+      {
+        name: "旧selected drive model列",
+        mutate: (db: ReturnType<typeof openHarnessDb>) =>
+          db.exec("ALTER TABLE project_current_location ADD COLUMN selected_drive_model TEXT"),
+        marker: "project_current_location",
+      },
+      {
+        name: "旧default drive model列",
+        mutate: (db: ReturnType<typeof openHarnessDb>) =>
+          db.exec("ALTER TABLE project_current_location ADD COLUMN default_drive_model TEXT"),
+        marker: "project_current_location",
+      },
+    ];
+    for (const { name, mutate, marker } of mutations) {
+      const db = openHarnessDb(":memory:");
+      try {
+        migrate(db);
+        mutate(db);
+        const result = checkStateDbSchemaAuthority({ actualDb: db });
+        expect(result.ok, name).toBe(false);
+        expect(result.messages.join("\n"), name).toContain(marker);
+      } finally {
+        db.close();
+      }
     }
   });
 
