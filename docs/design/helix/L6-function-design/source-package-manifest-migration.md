@@ -2,7 +2,7 @@
 title: "Source Package Manifest Migration"
 layer: L6
 status: draft
-parent_plan: docs/plans/PLAN-L7-701-source-package-manifest-migration.md
+parent_plan: docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md
 pair_artifact: docs/test-design/helix/L8-source-package-manifest-migration-unit-test-design.md
 ---
 

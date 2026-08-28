@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L7-701-source-package-manifest-migration
-title: "PLAN-L7-701: source ZIP正本をmanifest identityへ移行する"
+plan_id: PLAN-RECOVERY-68-source-package-manifest-migration
+title: "PLAN-RECOVERY-68: source ZIP正本をmanifest identityへ移行する"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: false
@@ -56,16 +56,17 @@ dependencies:
     - "issue:1033"
     - "issue:1174"
 agent_slots:
+  - { role: aim, slot_label: "AIM — source採否と上流authority trace" }
   - { role: se, slot_label: "SE — source identityとmanifest migration" }
   - { role: qa, slot_label: "QA — ZIP再混入とlegacy output反例" }
   - { role: tl, slot_label: "TL — authority／research disposition境界" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-701-source-package-manifest-migration.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/source-package-manifest-migration.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-source-package-manifest-migration-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/migration/source-manifests/universal-workflow-requirements-skill.v1.1.0.json, artifact_type: json_config }
   - { artifact_path: docs/migration/source-manifests/hybrid-vmodel-source.v1.json, artifact_type: json_config }
-  - { artifact_path: docs/research/design-harness-ecosystem-disposition-2026-08-29.md, artifact_type: research_doc }
+  - { artifact_path: docs/research/design-harness-ecosystem-disposition-2026-08-29.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
@@ -79,8 +80,7 @@ modifies:
   - { artifact_path: docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/operation-scope.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/helix/vmodel-docgen-fit-acceptance.md, artifact_type: test_design }
-  - { artifact_path: docs/research/design-harness-deep-research-coverage-2026-07-29.md, artifact_type: research_doc }
+  - { artifact_path: docs/research/design-harness-deep-research-coverage-2026-07-29.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/repository-structure.md, artifact_type: markdown_doc }
   - { artifact_path: src/schema/hybrid-vmodel-manifest.ts, artifact_type: source_module }
@@ -97,7 +97,7 @@ modifies:
   - { artifact_path: tests/visualization-treeview.test.ts, artifact_type: test_code }
   - { artifact_path: tests/visualization-view-model.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: ハイブリッド設計ドキュメントv1-fixed.zip, artifact_type: binary_archive }
+  - { artifact_path: ハイブリッド設計ドキュメントv1-fixed.zip, artifact_type: other }
 ---
 
 # source package manifest migration

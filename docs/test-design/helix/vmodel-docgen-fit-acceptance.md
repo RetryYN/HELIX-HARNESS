@@ -1,5 +1,5 @@
 ---
-title: "HELIX L12 受入テスト設計 — hybrid-vmodel-source.v1 適合"
+title: "HELIX L12 受入テスト設計 — ハイブリッド設計ドキュメントv1-fixed.zip 適合"
 layer: L3
 executed_at_layer: L12
 artifact_type: test_design
@@ -268,7 +268,7 @@ spec:
       kind: verifies
 ---
 
-# HELIX L12 受入テスト設計 — hybrid-vmodel-source.v1 適合
+# HELIX L12 受入テスト設計 — ハイブリッド設計ドキュメントv1-fixed.zip 適合
 
 ## §0 位置づけ
 
