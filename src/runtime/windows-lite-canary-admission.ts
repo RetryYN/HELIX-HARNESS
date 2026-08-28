@@ -408,6 +408,8 @@ const COMPLETION_BINDING_FIELDS: readonly (keyof WindowsCanaryLeaseBindingV1)[] 
   "lease_id",
   "fence_token",
   "correlation_id",
+  "issued_at",
+  "expires_at",
 ];
 
 export function evaluateWindowsCanaryCompletion(input: {

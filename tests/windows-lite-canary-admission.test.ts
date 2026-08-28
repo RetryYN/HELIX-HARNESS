@@ -222,6 +222,7 @@ describe("Windows Lite canary bounded queue／expiry", () => {
       { ...current, linux_artifact_digest: digest("other") },
       { ...current, profile_digest: digest("other-profile") },
       { ...current, run_attempt: 2 },
+      { ...current, expires_at: "2026-08-28T07:33:00.000Z" },
     ]) {
       expect(evaluateWindowsCanaryCompletion({ expected: current, completed })).toEqual({
         ok: false,
