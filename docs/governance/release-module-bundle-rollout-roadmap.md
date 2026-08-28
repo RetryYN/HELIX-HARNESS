@@ -35,6 +35,24 @@ CI planner等を並行化できる。新規module repositoryや別builderを先�
 5. Wave 4: #292／#1017／#176／#290後にRequirements／Design Preview。
 6. Wave 5: System Synthesisと3実案件dogfood後にRefactoring Preview。
 7. Wave 6: Resident Lane、security、72時間soak後にRuntime／Autonomous／Full。
+8. Wave 7: #1161〜#1166後にDeployment／Operations／Maintenance／Diagnosis shadow、#1167のHELIX dogfoodと
+   rollback／redeployment／health observation成立後に`helix-lifecycle-ops` Preview。
 
 各waveのrequirements正本化とlocal shadow buildはremote publish許可ではない。tag、release、cutoverは現行release policyと
 credential target authorityへ従う。
+
+## Release後ライフサイクル拡張
+
+| 順序 | Issue | 責務 | 前提 |
+|---:|---:|---|---|
+| 14 | #1160 | OPS L3↔L10 authority／release integration | #1073 |
+| 15 | #1161 | typed lifecycle schema／state machine | #1160 |
+| 16 | #1162 | provider-neutral deployment／rollback planner | #1161 |
+| 17 | #1163 | observation／incident／SLO projection | #1162 |
+| 18 | #1164 | maintenance obligation scheduler | #1163 |
+| 19 | #1165 | symptom-to-change diagnosis trace | #1164 |
+| 20 | #1166 | environment adapter／secret authority | #1165、#679 |
+| 21 | #1167 | Module ownership／Bundle／HELIX lifecycle E2E | #1166、#1079〜#1086 |
+
+OPS系はRLS implementationへ便乗させない。RLSはartifact compositionとpromotionを所有し、OPSはenvironment state、operation、
+maintenance、diagnosisを所有する。#1167だけが両者のcontractをE2Eで接続する。
