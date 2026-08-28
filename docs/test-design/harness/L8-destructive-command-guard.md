@@ -17,6 +17,11 @@ plan: docs/plans/PLAN-L6-77-destructive-command-guard-design.md
 | U-GITGUARD-007 | adapter parity | dev hook、work guard、CLI、consumer templateが同じtransaction primitiveとclassificationを使い、foreign-editもDB rowへredacted auditする | `tests/hook-contract.test.ts`、`tests/work-guard.test.ts` |
 | U-GITGUARD-008 | concurrent CAS | 同一nonceへbarrier付き2並行呼出しを行い、allowが1以下、敗者が`blocked_reuse`、restart後も再利用不可 | `tests/guard-override-transaction.test.ts`、`tests/git-command-guard.test.ts` |
 | U-GITGUARD-009 | crash point | durable commit前のSQLite rollbackはrow未commit・marker保持・lock release後retry可。DB corruptionはfail-closeしてstate recoveryへ送り、commit後consume前crashはrestart後`blocked_reuse` | `tests/guard-override-transaction.test.ts`、`tests/git-command-guard.test.ts` |
+| U-GITGUARD-011 | contextual mutation taxonomy | merge／rebase／cherry-pick／stash pop・apply／am／applyをcontext必須へ分類し、read-only inspectionを誤blockしない | `tests/git-command-guard.test.ts` |
+| U-GITGUARD-012 | shared root foreign dirty | merge対象と重ならないforeign dirtyがあるprimary rootでも全contextual mutationをblockする | `tests/git-command-guard.test.ts` |
+| U-GITGUARD-013 | clean／linked allow | clean primary rootと同一common-dirのlinked worktreeでは同じcommandをpassする | `tests/git-command-guard.test.ts` |
+| U-GITGUARD-014 | cwd／identity fail-close | cwd未指定時はhook実効cwdを使い、common-dir不一致、unknown identity、status取得失敗をsafeへ縮退しない | `tests/git-command-guard.test.ts` |
+| U-GITGUARD-015 | foreign source parity | Git guardとwork-guardが同一git status／session touched collectorを使い、session touched済みdirtyをforeignとしない | `tests/work-guard.test.ts`、`tests/git-command-guard.test.ts` |
 | U-SAFETY-001 | narrow delete fence | repo内の静的な単一ファイル削除はpassし、recursive/複数/glob/変数/repo外をblockする。`sudo -u`等の引数付きoption、`timeout` / `nohup` / `nice` / `ionice` / `setsid` / `stdbuf` / `time` / `doas` / `busybox` / `watch` prefix、`bash -lc`等の結合short flag、`bash -i -c` / `sh --posix -c` / `su -c` / `script -c`等のpayload optionでも判定を維持する | `tests/machine-safety-guard.test.ts` |
 | U-SAFETY-002 | machine deletion | Python/Node/PowerShell/Perl/Ruby inline、find/xargsによる対象計算削除をblockする | `tests/machine-safety-guard.test.ts` |
 | U-SAFETY-003 | host destructive taxonomy | block/raw device write、recursive permission mutation、forced broad process kill、truncate/shred/rsync delete、host停止、host root mountをblockする | `tests/machine-safety-guard.test.ts` |

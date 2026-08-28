@@ -69,6 +69,14 @@ export interface MergedPlanRow {
 
 export interface MergedPlanStatusInput {
   plans: MergedPlanRow[];
+  parseFailures?: MergedPlanStatusParseFailure[];
+}
+
+export type MergedPlanStatusParseFailureCode = "PLAN_FRONTMATTER_PARSE_FAILED";
+
+export interface MergedPlanStatusParseFailure {
+  planId: string;
+  failure_code: MergedPlanStatusParseFailureCode;
 }
 
 export interface MergedPlanStatusViolation {
@@ -76,6 +84,7 @@ export interface MergedPlanStatusViolation {
   status: string;
   artifacts: string[];
   invalidModifications?: string[];
+  failure_code?: MergedPlanStatusParseFailureCode;
 }
 
 export interface MergedPlanStatusResult {
@@ -87,7 +96,13 @@ export interface MergedPlanStatusResult {
  * 未 confirm かつ merged deliverable 実在の PLAN を violation として返す (kind 非依存、deliverable-driven)。
  */
 export function analyzeMergedPlanStatus(input: MergedPlanStatusInput): MergedPlanStatusResult {
-  const violations = input.plans
+  const parseViolations = (input.parseFailures ?? []).map((failure) => ({
+    planId: failure.planId,
+    status: "unknown",
+    artifacts: [],
+    failure_code: failure.failure_code,
+  }));
+  const planViolations = input.plans
     .filter(
       (p) =>
         (p.invalidModifications?.length ?? 0) > 0 ||
@@ -100,8 +115,10 @@ export function analyzeMergedPlanStatus(input: MergedPlanStatusInput): MergedPla
       status: p.status,
       artifacts: p.mergedArtifacts,
       ...(p.invalidModifications?.length ? { invalidModifications: p.invalidModifications } : {}),
-    }))
-    .sort((a, b) => a.planId.localeCompare(b.planId));
+    }));
+  const violations = [...parseViolations, ...planViolations].sort((a, b) =>
+    a.planId.localeCompare(b.planId),
+  );
   return { violations, ok: violations.length === 0 };
 }
 
@@ -114,10 +131,22 @@ function isS3VerifiedPocPendingDecision(p: MergedPlanRow): boolean {
   );
 }
 
-interface PlanFrontmatterGenerates {
-  generates?: { artifact_path?: string }[];
-  modifies?: { artifact_path?: string }[];
+interface PlanDeliverablePaths {
+  generates: string[];
+  modifies: string[];
 }
+
+interface PlanDeliverableParseSuccess {
+  ok: true;
+  deliverables: PlanDeliverablePaths;
+}
+
+interface PlanDeliverableParseFailure {
+  ok: false;
+  failure_code: MergedPlanStatusParseFailureCode;
+}
+
+type PlanDeliverableParseResult = PlanDeliverableParseSuccess | PlanDeliverableParseFailure;
 
 /** 実行文脈に応じて公開baseを選ぶ。mainではremote-tracking refでなくHEADを正本にする。 */
 export function publishedBaseRefs(env: NodeJS.ProcessEnv, currentBranch: string | null): string[] {
@@ -164,34 +193,46 @@ export function selectMergedArtifacts(
   );
 }
 
-function generatesMergedDeliverablePaths(content: string): string[] {
+function parsePlanDeliverables(content: string): PlanDeliverableParseResult {
   // CRLF 許容 (Windows-first)。`\n` 固定だと CRLF 保存の PLAN を無言 skip し検出漏れ (PLAN-L7-55
   // review I-1、plan-artifact-existence と同一様式)。
   const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!m) return [];
-  let fm: PlanFrontmatterGenerates;
+  if (!m) return { ok: false, failure_code: "PLAN_FRONTMATTER_PARSE_FAILED" };
+  let fm: Record<string, unknown>;
   try {
-    fm = (parseYaml(m[1]) as PlanFrontmatterGenerates) ?? {};
+    const parsed = parseYaml(m[1]);
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+      return { ok: false, failure_code: "PLAN_FRONTMATTER_PARSE_FAILED" };
+    }
+    fm = parsed as Record<string, unknown>;
   } catch {
-    return [];
+    return { ok: false, failure_code: "PLAN_FRONTMATTER_PARSE_FAILED" };
   }
-  return (fm.generates ?? [])
-    .map((g) => normalizePath(g.artifact_path ?? ""))
-    .filter((p) => DELIVERABLE_ROOTS.some((root) => p.startsWith(root)));
+
+  const pathsFor = (key: "generates" | "modifies"): string[] | null => {
+    const raw = fm[key];
+    if (raw === undefined) return [];
+    if (!Array.isArray(raw)) return null;
+    const paths: string[] = [];
+    for (const entry of raw) {
+      if (typeof entry !== "object" || entry === null || Array.isArray(entry)) return null;
+      const artifactPath = (entry as Record<string, unknown>).artifact_path;
+      if (typeof artifactPath !== "string" || artifactPath.trim().length === 0) return null;
+      paths.push(normalizePath(artifactPath));
+    }
+    return paths;
+  };
+
+  const generates = pathsFor("generates");
+  const modifies = pathsFor("modifies");
+  if (generates === null || modifies === null) {
+    return { ok: false, failure_code: "PLAN_FRONTMATTER_PARSE_FAILED" };
+  }
+  return { ok: true, deliverables: { generates, modifies } };
 }
 
-function modifiesDeliverablePaths(content: string): string[] {
-  const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!m) return [];
-  let fm: PlanFrontmatterGenerates;
-  try {
-    fm = (parseYaml(m[1]) as PlanFrontmatterGenerates) ?? {};
-  } catch {
-    return [];
-  }
-  return (fm.modifies ?? [])
-    .map((g) => normalizePath(g.artifact_path ?? ""))
-    .filter((p) => DELIVERABLE_ROOTS.some((root) => p.startsWith(root)));
+function mergedDeliverablePaths(artifactPaths: readonly string[]): string[] {
+  return artifactPaths.filter((p) => DELIVERABLE_ROOTS.some((root) => p.startsWith(root)));
 }
 
 /** `modifies` は published base に実在する既存artifactだけを受け付ける。 */
@@ -207,6 +248,7 @@ export function selectInvalidModifications(
 
 export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInput {
   const plans: MergedPlanRow[] = [];
+  const parseFailures: MergedPlanStatusParseFailure[] = [];
   let reviewPlans: ReturnType<typeof loadReviewPlans>;
   try {
     reviewPlans = loadReviewPlans(repoRoot);
@@ -223,13 +265,27 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
     } catch {
       continue;
     }
+    const parsedDeliverables = parsePlanDeliverables(content);
+    if (!parsedDeliverables.ok) {
+      parseFailures.push({ planId: rp.plan_id, failure_code: parsedDeliverables.failure_code });
+      plans.push({
+        planId: rp.plan_id,
+        status: rp.status,
+        kind: rp.kind,
+        workflowPhase: fmValue(content, "workflow_phase") ?? null,
+        hasReviewEvidence: rp.hasEvidence,
+        mergedArtifacts: [],
+        invalidModifications: [],
+      });
+      continue;
+    }
     const mergedArtifacts = selectMergedArtifacts(
-      generatesMergedDeliverablePaths(content),
+      mergedDeliverablePaths(parsedDeliverables.deliverables.generates),
       publishedBasePaths,
       repoRoot,
     );
     const invalidModifications = selectInvalidModifications(
-      modifiesDeliverablePaths(content),
+      mergedDeliverablePaths(parsedDeliverables.deliverables.modifies),
       publishedBasePaths,
       repoRoot,
     );
@@ -243,7 +299,7 @@ export function loadMergedPlanStatusInput(repoRoot: string): MergedPlanStatusInp
       invalidModifications,
     });
   }
-  return { plans };
+  return { plans, parseFailures };
 }
 
 export function mergedPlanStatusMessages(r: MergedPlanStatusResult): string[] {
@@ -253,6 +309,9 @@ export function mergedPlanStatusMessages(r: MergedPlanStatusResult): string[] {
     ];
   }
   return r.violations.map((v) => {
+    if (v.failure_code === "PLAN_FRONTMATTER_PARSE_FAILED") {
+      return `merged-plan-status - violation: PLAN ${v.planId} の frontmatter を parse できないため fail-close (${v.failure_code})`;
+    }
     const parts: string[] = [];
     if (v.artifacts.length > 0)
       parts.push(`generated deliverable が merge 済み: ${v.artifacts.join(", ")}`);

@@ -335,8 +335,12 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     const docPath =
       "docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md";
     const requirementSpec = input.catalog?.items.find((item) => item.id === "requirement-spec");
+    const detailedDesign = input.catalog?.items.find((item) => item.id === "detailed-design");
     expect(requirementSpec, "catalog に requirement-spec item がある").toBeDefined();
     expect(requirementSpec?.artifact).toContain(docPath);
+    expect(detailedDesign?.artifact).toContain(
+      "docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md",
+    );
     expect(input.catalog?.baseline ?? [], "baseline へ退避させていない").not.toContain(docPath);
 
     // catalog を触ると L3 進行の blocker digest pin が失効する。pin が実ファイルと一致しない

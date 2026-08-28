@@ -23,11 +23,12 @@ runtime / hook caller、対象 tool は shell/edit、Git command、foreign-edit 
 | override authorizer | block classification と非空理由付き marker を結合する | audit 成功前に allow を返すこと |
 | override transaction | `harness.db`へのaudit+nonce durable commit、marker one-shot consume、結果確定を直列化する | I/O failure の握り潰し、sidecar二重store |
 | hook adapter | payload 正規化と exit/message 変換 | classifier/transaction logic の複製 |
+| worktree state source | 実効cwd、Git common-dir、primary/linked worktree、git status、session touched pathsを一度だけ収集する | runtime別foreign判定、path文字列だけのroot同一性判定 |
 | machine safety classifier | 静的単一ファイルと動的・広域・host破壊操作を分離する | 対象を推測してsafeへ倒すこと |
 | secret egress runner | proposed write、working/index/outgoing blobを値非表示でscanする | raw secretをmessage/auditへ含めること |
 
-依存方向は `hook/CLI -> transaction -> classifier` とする。classifier は pure、transaction は注入した
-`AuditPort` / `MarkerPort` だけを使う。
+依存方向は `hook/CLI -> worktree state source -> classifier -> transaction` とする。classifier はpure、
+state sourceはread-only Git/filesystem port、transactionは注入した`AuditPort` / `MarkerPort`だけを使う。
 
 ## 3. 破壊操作 taxonomy
 
@@ -36,6 +37,23 @@ runtime / hook caller、対象 tool は shell/edit、Git command、foreign-edit 
 - `clean` の force option（`-f` を含む short option cluster、`--force`）。`-n` / `--dry-run` は pass。
 - `branch -D`、`branch --delete --force`。
 - `stash drop`、`stash clear`。
+
+`merge`、`rebase`、`cherry-pick`、`stash pop|apply`、`am`、`apply`は、常時blockするdestructive
+taxonomyではなく**working-tree context付きmutation**として分類する。`apply --check`等のread-only
+inspectionはmutationへ含めない。context付きmutationは次のAND条件でだけpassする。
+
+```text
+repository identity resolved
+AND effective cwd belongs to the same Git common-dir
+AND (
+  linked worktree
+  OR (primary shared root AND foreign uncommitted count == 0)
+)
+```
+
+primary shared rootに、このsessionがtouchしていないdirty pathが1件でもあれば、mutation対象とのpath重複に
+関係なくblockする。identity、git status、session touched sourceのいずれかが取得不能ならunknownとして
+fail-closeする。foreign判定はwork-guardと同じstate collectorを使い、Git guardへ別実装を作らない。
 
 global option、nested shell、compound command 内でも同じ分類を維持する。未知・不完全 quote、解析上限超過、
 destructive Git slice の可能性を排除できない parser state は fail-close とする。単なる文字列引数中の

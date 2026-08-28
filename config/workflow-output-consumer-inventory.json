@@ -1,0 +1,217 @@
+{
+  "schema_version": "helix-workflow-output-consumer-inventory.v1",
+  "authority": "docs/governance/helix-harness-requirements_v1.3.md",
+  "registry_source": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+  "measured_head": "e1a9ffc2ed745235472e3fc54102d4177af52265",
+  "issue": 1119,
+  "parent_issues": [206, 204],
+  "surface_paths": [
+    "src/cli.ts",
+    "src/schema/harness-db-tables-design.ts",
+    "src/schema/visualization-current-location-contract.ts",
+    "src/state-db/current-location.ts",
+    "src/state-db/visualization-view-model.ts",
+    "src/vmodel/visualization-tree-projector.ts"
+  ],
+  "tokens": [
+    "available_models",
+    "default_drive_model",
+    "default_model",
+    "drive_model",
+    "project_drive_model_candidates",
+    "selected_drive_model",
+    "selected_model"
+  ],
+  "entries": [
+    {
+      "path": "src/cli.ts",
+      "field_token": "selected_model",
+      "expected_occurrences": 32,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-cli-projection",
+      "producer_symbols": ["buildProjectFrontierSummary", "projectSkillBindingCliPayload", "summarizeProjectCurrentLocation", "summarizeVmodelFitReport"],
+      "consumer_surfaces": ["helix project current-location", "helix project skill-binding", "helix vmodel fit", "summary-json"],
+      "successor_issues": [206, 1044]
+    },
+    {
+      "path": "src/cli.ts",
+      "field_token": "default_model",
+      "expected_occurrences": 13,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-cli-projection",
+      "producer_symbols": ["summarizeClosureOverview", "summarizeProjectDriveModelReport", "summarizeVmodelFitReport"],
+      "consumer_surfaces": ["closure summary", "drive model summary", "vmodel fit summary"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/cli.ts",
+      "field_token": "available_models",
+      "expected_occurrences": 10,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-cli-projection",
+      "producer_symbols": ["buildProjectFrontierSummary", "summarizeProjectDriveModelReport", "summarizeVmodelFitReport"],
+      "consumer_surfaces": ["project frontier", "drive model summary", "vmodel fit summary"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/cli.ts",
+      "field_token": "drive_model",
+      "expected_occurrences": 32,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-cli-projection",
+      "producer_symbols": ["buildCompletionFrontierSummary", "buildProjectViewOutline", "summarizeClosureTransitionPlan", "summarizeProjectRecoveryPlan"],
+      "consumer_surfaces": ["completion frontier", "Project view", "closure transition", "recovery summary"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/vmodel/visualization-tree-projector.ts",
+      "field_token": "selected_model",
+      "expected_occurrences": 3,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-visualization-projection",
+      "producer_symbols": ["projectCurrentLocation"],
+      "consumer_surfaces": ["Project tree drive-model gate", "Project tree skill binding"],
+      "successor_issues": [206, 1044]
+    },
+    {
+      "path": "src/vmodel/visualization-tree-projector.ts",
+      "field_token": "available_models",
+      "expected_occurrences": 1,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-visualization-projection",
+      "producer_symbols": ["projectCurrentLocation"],
+      "consumer_surfaces": ["Project tree drive-model gate tooltip"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/vmodel/visualization-tree-projector.ts",
+      "field_token": "drive_model",
+      "expected_occurrences": 4,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-visualization-projection",
+      "producer_symbols": ["projectCurrentLocation"],
+      "consumer_surfaces": ["Project tree current-location", "closure outcome", "layer progress"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/schema/visualization-current-location-contract.ts",
+      "field_token": "selected_model",
+      "expected_occurrences": 4,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-schema",
+      "producer_symbols": ["ProjectCurrentLocationView"],
+      "consumer_surfaces": ["current-location JSON schema", "skill binding schema", "drive gate schema"],
+      "successor_issues": [206, 1044]
+    },
+    {
+      "path": "src/schema/visualization-current-location-contract.ts",
+      "field_token": "default_model",
+      "expected_occurrences": 2,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-schema",
+      "producer_symbols": ["ProjectCurrentLocationView"],
+      "consumer_surfaces": ["current-location JSON schema", "drive gate schema"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/schema/visualization-current-location-contract.ts",
+      "field_token": "available_models",
+      "expected_occurrences": 1,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-schema",
+      "producer_symbols": ["ProjectCurrentLocationView"],
+      "consumer_surfaces": ["drive gate schema"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/schema/visualization-current-location-contract.ts",
+      "field_token": "drive_model",
+      "expected_occurrences": 7,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-schema",
+      "producer_symbols": ["ProjectCurrentLocationView"],
+      "consumer_surfaces": ["current-location JSON schema", "closure schema", "recovery schema"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/state-db/current-location.ts",
+      "field_token": "selected_model",
+      "expected_occurrences": 6,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-current-location",
+      "producer_symbols": ["ProjectDriveModelReport", "buildProjectDriveModelReport"],
+      "consumer_surfaces": ["current-location projection", "recovery planner", "skill binding fallback"],
+      "successor_issues": [206, 1044]
+    },
+    {
+      "path": "src/state-db/current-location.ts",
+      "field_token": "default_model",
+      "expected_occurrences": 2,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-current-location",
+      "producer_symbols": ["ProjectDriveModelReport", "buildProjectDriveModelReport"],
+      "consumer_surfaces": ["current-location projection"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/state-db/current-location.ts",
+      "field_token": "available_models",
+      "expected_occurrences": 2,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-current-location",
+      "producer_symbols": ["ProjectDriveModelReport", "buildProjectDriveModelReport"],
+      "consumer_surfaces": ["current-location projection"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/state-db/current-location.ts",
+      "field_token": "drive_model",
+      "expected_occurrences": 11,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-current-location",
+      "producer_symbols": ["ProjectRecoveryPlan", "ProjectClosureOutcomeRoute", "closureDecisionOutcomeRoute", "closureTransitionPlannedSteps"],
+      "consumer_surfaces": ["recovery projection", "closure outcome", "transition plan"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/state-db/visualization-view-model.ts",
+      "field_token": "selected_model",
+      "expected_occurrences": 6,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-view-model",
+      "producer_symbols": ["buildProjectCurrentLocationView"],
+      "consumer_surfaces": ["visualization current-location", "drive gate", "skill binding"],
+      "successor_issues": [206, 1044]
+    },
+    {
+      "path": "src/state-db/visualization-view-model.ts",
+      "field_token": "default_model",
+      "expected_occurrences": 3,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-view-model",
+      "producer_symbols": ["buildProjectCurrentLocationView"],
+      "consumer_surfaces": ["visualization current-location", "drive gate"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/state-db/visualization-view-model.ts",
+      "field_token": "available_models",
+      "expected_occurrences": 2,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-view-model",
+      "producer_symbols": ["buildProjectCurrentLocationView"],
+      "consumer_surfaces": ["visualization drive gate"],
+      "successor_issues": [206]
+    },
+    {
+      "path": "src/state-db/visualization-view-model.ts",
+      "field_token": "drive_model",
+      "expected_occurrences": 8,
+      "disposition": "workflow_primary_identity_migrate",
+      "responsibility_owner": "workflow-output-view-model",
+      "producer_symbols": ["buildProjectCurrentLocationView"],
+      "consumer_surfaces": ["visualization recovery", "closure outcome", "layer progress"],
+      "successor_issues": [206]
+    }
+  ]
+}

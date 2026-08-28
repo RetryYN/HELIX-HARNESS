@@ -61,10 +61,6 @@ export const AUTOMATIC_DB_PROJECTION_REQUIREMENTS: DbProjectionIngestionRequirem
       "L12 current location is derived from roadmap, design declarations, and evidence tables",
   },
   {
-    table: "project_drive_model_candidates",
-    reason: "drive model candidates are derived from the current-location read model",
-  },
-  {
     table: "project_roadmap_current_actions",
     reason: "roadmap current actions are derived from roadmap position and drive-route decisions",
   },

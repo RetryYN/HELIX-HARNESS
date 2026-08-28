@@ -30,6 +30,8 @@ import {
 import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 import { migrate } from "../src/state-db/migration";
 
+// PLAN-L7-691-shared-root-git-mutation-guard / U-GITGUARD-011..014 / IT-GITGUARD-005..007
+
 function overrideRows(cwd: string): Record<string, unknown>[] {
   const db = openHarnessDb(defaultHarnessDbPath(cwd), { repoRoot: cwd });
   try {
@@ -47,13 +49,49 @@ function runCliGuard(input: unknown, cwd = process.cwd()) {
   });
 }
 
-function runHook(input: unknown, cwd: string) {
+function runHook(input: unknown, cwd: string, projectRoot = cwd) {
   return spawnSync(process.execPath, [HOOK_BUNDLE_PATH], {
     cwd,
     encoding: "utf8",
-    env: { ...process.env, CLAUDE_PROJECT_DIR: cwd },
+    env: { ...process.env, CLAUDE_PROJECT_DIR: projectRoot },
     input: JSON.stringify(input),
   });
+}
+
+function git(cwd: string, args: string[]): string {
+  const result = spawnSync("git", args, { cwd, encoding: "utf8" });
+  if (result.status !== 0) {
+    throw new Error(`git ${args.join(" ")} failed: ${result.stderr}`);
+  }
+  return result.stdout.trim();
+}
+
+function createWorktreeFixture(): { root: string; linked: string; cleanup: () => void } {
+  const root = mkdtempSync(join(tmpdir(), "helix-shared-root-gitguard-"));
+  const linkedParent = mkdtempSync(join(tmpdir(), "helix-linked-gitguard-"));
+  const linked = join(linkedParent, "worktree");
+  git(root, ["init", "-b", "main"]);
+  git(root, ["config", "user.name", "HELIX Test"]);
+  git(root, ["config", "user.email", "helix-test@example.invalid"]);
+  writeFileSync(join(root, "base.txt"), "base\n");
+  writeFileSync(join(root, ".gitignore"), ".helix/\n");
+  git(root, ["add", "base.txt", ".gitignore"]);
+  git(root, ["commit", "-m", "test: seed"]);
+  git(root, ["worktree", "add", "-b", "feature", linked]);
+  writeFileSync(join(linked, "feature-only.txt"), "feature\n");
+  git(linked, ["add", "feature-only.txt"]);
+  git(linked, ["commit", "-m", "test: feature"]);
+  return {
+    root,
+    linked,
+    cleanup() {
+      try {
+        git(root, ["worktree", "remove", "--force", linked]);
+      } catch {}
+      rmSync(linkedParent, { recursive: true, force: true });
+      rmSync(root, { recursive: true, force: true });
+    },
+  };
 }
 
 describe("git-command-guard", () => {
@@ -142,6 +180,229 @@ describe("git-command-guard", () => {
       "git restore --staged src/cli.ts",
     ]) {
       expect(evaluateGitCommandGuard({ command }).decision, command).toBe("pass");
+    }
+  });
+
+  it("U-GITGUARD-011: contextual mutationはcontext無しでfail-closeしread-only inspectionだけを通す", () => {
+    for (const command of [
+      "git merge --no-commit feature",
+      "git rebase main",
+      "git cherry-pick HEAD~1",
+      "git stash pop",
+      "git stash apply stash@{0}",
+      "git am patch.mbox",
+      "git apply patch.diff",
+      "git --namespace=helix merge feature",
+      "git -p merge feature",
+      "git --no-optional-locks merge feature",
+    ]) {
+      const result = evaluateGitCommandGuard({ command });
+      expect(result.decision, command).toBe("block");
+      expect(result.reason, command).toBe("mutation-context-required");
+    }
+    expect(evaluateGitCommandGuard({ command: "git -c alias.m=merge m feature" })).toMatchObject({
+      decision: "block",
+      reason: "destructive-git",
+      destructiveOperation: "git alias override",
+    });
+    for (const command of [
+      "git merge --help",
+      "git rebase --show-current-patch",
+      "git cherry-pick --help",
+      "git am --show-current-patch",
+      "git apply --check patch.diff",
+      "git apply --stat patch.diff",
+      "git apply --numstat patch.diff",
+      "git apply --summary patch.diff",
+    ]) {
+      expect(evaluateGitCommandGuard({ command }).decision, command).toBe("pass");
+    }
+  });
+
+  it("U-GITGUARD-012: shared-root foreign dirtyを全contextual mutationでblockする", () => {
+    const commands = [
+      "git merge --no-commit feature",
+      "git rebase main",
+      "git cherry-pick HEAD~1",
+      "git stash pop",
+      "git stash apply stash@{0}",
+      "git am patch.mbox",
+      "git apply patch.diff",
+    ];
+    for (const command of commands) {
+      expect(
+        evaluateGitCommandGuard({
+          command,
+          mutationContext: { worktreeIdentity: "shared-root", foreignUncommittedCount: 1 },
+        }).decision,
+        command,
+      ).toBe("block");
+    }
+  });
+
+  it("U-GITGUARD-013: clean shared rootとlinked worktreeではcontextual mutationを通す", () => {
+    const commands = [
+      "git merge --no-commit feature",
+      "git rebase main",
+      "git cherry-pick HEAD~1",
+      "git stash pop",
+      "git stash apply stash@{0}",
+      "git am patch.mbox",
+      "git apply patch.diff",
+    ];
+    for (const command of commands) {
+      expect(
+        evaluateGitCommandGuard({
+          command,
+          mutationContext: { worktreeIdentity: "shared-root", foreignUncommittedCount: 0 },
+        }).decision,
+        command,
+      ).toBe("pass");
+      expect(
+        evaluateGitCommandGuard({
+          command,
+          mutationContext: { worktreeIdentity: "linked-worktree", foreignUncommittedCount: null },
+        }).decision,
+        command,
+      ).toBe("pass");
+    }
+  });
+
+  it("U-GITGUARD-014: unknown worktree identityとdirty count欠落をsafeへ縮退しない", () => {
+    for (const mutationContext of [
+      { worktreeIdentity: "unknown", foreignUncommittedCount: null },
+      { worktreeIdentity: "shared-root", foreignUncommittedCount: null },
+    ] as const) {
+      const result = evaluateGitCommandGuard({
+        command: "git merge --no-commit feature",
+        mutationContext,
+      });
+      expect(result.decision).toBe("block");
+      expect(result.reason).toBe("mutation-context-unresolved");
+    }
+  });
+
+  // IT-GITGUARD-006: clean primary／linked worktree allowも同じ実repository fixtureで検証する。
+  it("IT-GITGUARD-005/006: 非重複foreign dirtyのshared rootをblockしclean rootとlinked worktreeを通す", () => {
+    const fixture = createWorktreeFixture();
+    try {
+      const input = {
+        session_id: "s-shared-root",
+        tool_input: { command: "git merge --no-commit --no-ff feature" },
+      };
+      writeFileSync(join(fixture.root, "foreign-unrelated.txt"), "foreign\n");
+      const blocked = runHook(input, fixture.root);
+      expect(blocked.status).toBe(2);
+      expect(blocked.stderr).toContain("shared root");
+      expect(blocked.stderr).toContain("foreign uncommitted");
+
+      const explicitShared = runHook(
+        {
+          ...input,
+          tool_input: {
+            command: `git -C ${fixture.root} merge --no-commit --no-ff feature`,
+          },
+        },
+        fixture.linked,
+        fixture.root,
+      );
+      expect(explicitShared.status).toBe(2);
+      expect(explicitShared.stderr).toContain("shared root");
+
+      const explicitLinked = runHook(
+        {
+          ...input,
+          tool_input: {
+            command: `git -C ${fixture.linked} merge --no-commit --no-ff feature`,
+          },
+        },
+        fixture.root,
+      );
+      expect(explicitLinked.status).toBe(0);
+
+      const declaredLinked = runHook(
+        {
+          ...input,
+          tool_input: {
+            command: "git merge --no-commit --no-ff feature",
+            workdir: fixture.linked,
+          },
+        },
+        fixture.root,
+      );
+      expect(declaredLinked.status).toBe(0);
+
+      const unresolvedGitDir = runHook(
+        {
+          ...input,
+          tool_input: {
+            command: `git --git-dir=${join(fixture.root, ".git")} merge --no-commit feature`,
+          },
+        },
+        fixture.linked,
+        fixture.root,
+      );
+      expect(unresolvedGitDir.status).toBe(2);
+      expect(unresolvedGitDir.stderr).toContain("identity");
+
+      rmSync(join(fixture.root, "foreign-unrelated.txt"));
+      expect(runHook(input, fixture.root).status).toBe(0);
+      expect(runHook(input, fixture.linked, fixture.root).status).toBe(0);
+      expect(runHook(input, fixture.linked).status).toBe(0);
+    } finally {
+      fixture.cleanup();
+    }
+  });
+
+  it("U-GITGUARD-014/015: cwd resetを実効cwdで検出しsession touched dirtyはforeign扱いしない", () => {
+    const fixture = createWorktreeFixture();
+    try {
+      const sessionId = "s-cwd-reset";
+      const dirty = join(fixture.root, "owned-uncommitted.txt");
+      writeFileSync(dirty, "owned\n");
+      mkdirSync(join(fixture.root, ".helix", "logs", "session"), { recursive: true });
+      writeFileSync(
+        join(fixture.root, ".helix", "logs", "session", `${sessionId}.jsonl`),
+        `${JSON.stringify({ target: `Write ${dirty}` })}\n`,
+      );
+      const input = {
+        session_id: sessionId,
+        tool_input: { command: "git merge --no-commit --no-ff feature" },
+      };
+      expect(runHook(input, fixture.root).status).toBe(0);
+
+      writeFileSync(join(fixture.root, "foreign-after-reset.txt"), "foreign\n");
+      const resetToSharedRoot = runHook(input, fixture.root, fixture.root);
+      expect(resetToSharedRoot.status).toBe(2);
+      expect(resetToSharedRoot.stderr).toContain("shared root");
+    } finally {
+      fixture.cleanup();
+    }
+  });
+
+  it("IT-GITGUARD-007: shared-root mutation overrideは既存DB transactionでone-shotになる", () => {
+    const fixture = createWorktreeFixture();
+    try {
+      writeFileSync(join(fixture.root, "foreign.txt"), "foreign\n");
+      const markerPath = join(fixture.root, ".helix", "state", "destructive-git-override");
+      mkdirSync(join(fixture.root, ".helix", "state"), { recursive: true });
+      writeFileSync(markerPath, "reviewed shared-root recovery");
+      const input = {
+        session_id: "s-shared-override",
+        tool_input: { command: "git merge --no-commit --no-ff feature" },
+      };
+      expect(runHook(input, fixture.root).status).toBe(0);
+      expect(existsSync(markerPath)).toBe(false);
+      expect(overrideRows(fixture.root)).toHaveLength(1);
+      expect(overrideRows(fixture.root)[0]).toMatchObject({
+        guard_kind: "git",
+        operation_class: "git merge",
+        status: "committed",
+      });
+      const second = runHook(input, fixture.root);
+      expect(second.status).toBe(2);
+    } finally {
+      fixture.cleanup();
     }
   });
 
