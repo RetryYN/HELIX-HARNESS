@@ -12,7 +12,7 @@ related_l12:
   - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
   - docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md
 pair_artifact: docs/test-design/helix/operation-scope.md
-source_package: ハイブリッド設計ドキュメントv1-fixed.zip
+source_package: hybrid-vmodel-source.v1
 spec:
   defines:
     - id: HOD-OPS-LOG-DESIGN
@@ -74,7 +74,7 @@ spec:
 
 # HELIX L5 詳細設計 — L12 operation scope 契約
 
-本書は `ハイブリッド設計ドキュメントv1-fixed.zip` の運用・ログ・KPI・保守・インシデント設計を、HELIX の L5 詳細設計へ吸収する。
+本書は `hybrid-vmodel-source.v1` の運用・ログ・KPI・保守・インシデント設計を、HELIX の L5 詳細設計へ吸収する。
 独立した重い機能設計は復活させず、L12 運用後検証で必要な契約を typed declaration と DB projection で検出できる粒度に固定する。
 
 ## §1 Scope 契約

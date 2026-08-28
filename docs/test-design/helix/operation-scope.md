@@ -14,7 +14,7 @@ pair_group:
   members:
     - docs/design/helix/L5-detail/operation-scope.md
 related_l7_oracles: docs/test-design/harness/L7-unit-test-design.md
-source_package: ハイブリッド設計ドキュメントv1-fixed.zip
+source_package: hybrid-vmodel-source.v1
 ---
 
 # HELIX L5 operation scope テスト・検証設計

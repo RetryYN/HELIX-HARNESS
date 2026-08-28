@@ -5,7 +5,7 @@ canonical_pair: L10
 legacy_physical_layer: L3
 l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
 l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
-title: "HELIX L3 要件 — ハイブリッド設計ドキュメントv1-fixed.zip 適合構想"
+title: "HELIX L3 要件 — hybrid-vmodel-source.v1 適合構想"
 layer: L3
 kind: add-design
 status: confirmed
@@ -113,11 +113,11 @@ spec:
       status: confirmed
 ---
 
-# HELIX L3 要件 — ハイブリッド設計ドキュメントv1-fixed.zip 適合構想
+# HELIX L3 要件 — hybrid-vmodel-source.v1 適合構想
 
 ## §0 位置づけ
 
-本書は `ハイブリッド設計ドキュメントv1-fixed.zip` を HELIX に適合させるための L3 構想正本である。
+本書は `hybrid-vmodel-source.v1` の採用済みbehaviorをHELIXへ適合させるL3構想正本である。旧archive filenameとbytesはmigration provenanceであり、実行authorityではない。
 結論は **置換ではなく統合** である。ZIP は個人開発向けに軽い L12 Vモデル、型付き設計宣言、
 impact、成果物 catalog、tailoring、工程表を持つ。一方で現行 HELIX は harness.db projection、
 runtime evidence、VSCode visualization read-model、review/gate、doctor を既に持つ。

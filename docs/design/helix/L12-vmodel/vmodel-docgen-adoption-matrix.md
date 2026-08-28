@@ -11,7 +11,7 @@ related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
 related_l12: docs/design/helix/L12-vmodel/vmodel-layer-coverage.md
 tailoring_profile: docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md
 pair_artifact: docs/test-design/helix/vmodel-docgen-fit-acceptance.md
-source_package: ハイブリッド設計ドキュメントv1-fixed.zip
+source_package: hybrid-vmodel-source.v1
 spec:
   defines:
     - id: HVM-ADOPT-01
@@ -138,7 +138,7 @@ spec:
 
 ## §0 位置づけ
 
-本書は `ハイブリッド設計ドキュメントv1-fixed.zip` を HELIX へ取り込む際の、共通点・差異・採用判断・補完判断の
+本書は `hybrid-vmodel-source.v1` を HELIX へ取り込む際の、共通点・差異・採用判断・補完判断の
 正本である。`docs/design/helix/L3-requirements/vmodel-docgen-fit.md` が構想と要件を定義し、本書はその判断を
 L12 の機械検出対象として固定する。
 

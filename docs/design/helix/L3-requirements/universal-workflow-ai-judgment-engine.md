@@ -14,7 +14,8 @@ pair_artifact: docs/test-design/helix/universal-workflow-ai-judgment-engine-acce
 
 ## 1. 入力正本の結合と採否
 
-- source: `UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`
+- source family: `universal-workflow-requirements-skill.v1.1.0`
+- source manifest: `docs/migration/source-manifests/universal-workflow-requirements-skill.v1.1.0.json`
 - SHA-256: `b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26`
 - inventory: 14ファイル（README、SKILL、カタログ3、契約4、schema 2、prompt 1、example 2）
 - authority: source packageは意味source。HELIX要件、versioned schema、gate、Node transaction境界が実行authorityである。

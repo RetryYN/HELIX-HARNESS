@@ -30,15 +30,14 @@ describe("analyzeTrackedCanonical (U-TCAN-001..003)", () => {
     expect(r.ok).toBe(true);
   });
 
-  it("U-TCAN-006: UTF-8 の top-level ファイル名は canonical 記載と一致する", () => {
-    const zipName = "ハイブリッド設計ドキュメントv1-fixed.zip";
+  it("U-TCAN-006: source ZIPをtracked top-level authorityとして許可しない", () => {
     const r = analyzeTrackedCanonical({
-      trackedTopLevels: [zipName],
-      canonicalText: `├── ${zipName} # reference package`,
+      trackedTopLevels: ["ハイブリッド設計ドキュメントv1-fixed.zip"],
+      canonicalText,
       baseline: new Set(),
     });
-    expect(r.drift).toEqual([]);
-    expect(r.ok).toBe(true);
+    expect(r.drift).toEqual(["ハイブリッド設計ドキュメントv1-fixed.zip"]);
+    expect(r.ok).toBe(false);
   });
 
   it("U-TCAN-003: baseline 済 top-level は drift でない (known-exception)", () => {
