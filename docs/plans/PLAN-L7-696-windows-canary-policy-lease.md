@@ -34,7 +34,28 @@ tdd_red_required: true
 red_test: "U-WLCA-001／005／009／014を先行追加し、typed validator不在でRedを確認する"
 red_at: "2026-08-28T16:32:33+09:00"
 green_at: "2026-08-28T16:36:54+09:00"
-mutation_oracle_evidence: "2026-08-28T16:36:40+09:00にheartbeat_interval_ms>=lease_ttl_ms拒否分岐をfalseへ変異し、U-WLCA-001が1 failed／3 passed（exit 1）としてequal TTLの誤受理をkillした。分岐復元後、Windows policy／leaseと既存WorkGraph leaseの2 suite 49 tests greenを再確認した。"
+mutation_oracle_evidence: "tests/windows-lite-canary-admission.test.tsで2026-08-28T16:36:40+09:00にheartbeat_interval_ms>=lease_ttl_ms拒否分岐をfalseへ変異し、U-WLCA-001が1 failed／3 passed（exit 1）としてequal TTLの誤受理をkillした。2026-08-28T18:56:19+09:00にcanonical UTC round-trip検証をDate.parse成功だけへ弱め、U-WLCA-009が存在しない2026-02-30を受理して1 failed／3 passed（exit 1）となることを確認した。両分岐を復元し、共有validateWorkGraphLeaseの静的negative oracleを含むWindows／WorkGraph suiteをgreenへ戻した。"
+review_evidence:
+  - reviewer: "Codex intra-runtime / Anscombe"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-28T10:05:52Z"
+    tests_green_at: "2026-08-28T10:05:52Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: codex:gpt-5.4-codex
+    reviewer_session_id: 01a047c7-3780-7893-9958-131b1c9d5859
+    reviewed_head_sha: 8e7a8f2c986cc1d19630e0f74180fc7289fd8a43
+    scope: "PR #1139候補HEAD 8e7a8f2c986cc1d19630e0f74180fc7289fd8a43をread-only再検収し、fake self-CASを共有validateWorkGraphLeaseへ置換したこと、canonical UTC round-trip、全required key、known digest byte、immutability／authority oracleを確認した。初回REJECTの2 blockerとmedium所見は全て解消し、対象変更blocker 0 approve。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/windows-lite-canary-admission.test.ts tests/work-graph-receipt-acceptance.test.ts tests/digest.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-28T10:05:52Z"
+        evidence_path: tests/windows-lite-canary-admission.test.ts
+        output_digest: "sha256:06aa8a5cddf5edd3d409305e0527ff371df5b05cc956ffa9da73ad2a5d7007b6"
+        result: "3 suites / 59 tests passed"
 complexity_effect: justified_positive
 complexity_justification: "Windows lane固有bindingを単一value objectへ閉じ、後続queue／Actions adapterの重複validationを防ぐ"
 removal_trigger: "Windows heavy laneが汎用host-global admission contractへ型互換のまま統合された時"
@@ -53,6 +74,7 @@ dependencies:
   references:
     - "issue:1134"
     - "issue:1106"
+    - docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md
 agent_slots:
   - { role: se, slot_label: "SE — exact schema／canonical digest／WorkGraph fence reuse" }
   - { role: qa, slot_label: "QA — missing／unknown／boundary／immutability mutation" }
@@ -62,10 +84,11 @@ generates:
   - { artifact_path: src/runtime/windows-lite-canary-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/windows-lite-canary-admission.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/windows-lite-canary-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-windows-lite-canary-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
 ---
 
 # Windows canary policy／lease binding typed化
@@ -80,3 +103,5 @@ modifies:
 | 4 | mutation／全gate／独立review | current HEAD blocker 0、main read-afterまで成立する |
 
 queue、expiry evaluator、Actions adapter、measurement projectionは#1135以降へ分離する。
+実装後のrequirements／L6／L8再接着とmain read-afterは
+`PLAN-REVERSE-696-windows-canary-policy-lease`でfullbackする。

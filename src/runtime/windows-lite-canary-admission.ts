@@ -1,5 +1,5 @@
 import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
-import { acquireWorkGraphLease } from "./work-graph-receipt-acceptance";
+import { validateWorkGraphLease } from "./work-graph-receipt-acceptance";
 
 export type WindowsCanaryAdmissionFailureCode =
   | "WINDOWS_CANARY_POLICY_INVALID"
@@ -145,7 +145,9 @@ function positiveInteger(value: unknown): value is number {
 }
 
 function validTimestamp(value: unknown): value is string {
-  return typeof value === "string" && value.length > 0 && Number.isFinite(Date.parse(value));
+  if (typeof value !== "string") return false;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) && new Date(parsed).toISOString() === value;
 }
 
 function deepFreeze<T>(value: T): T {
@@ -231,18 +233,13 @@ export function validateWindowsCanaryLeaseBinding(
   ) {
     return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_INVALID" };
   }
-  const leaseValidation = acquireWorkGraphLease({
-    laneId: value.lane_id,
-    currentLease: {
+  if (
+    !validateWorkGraphLease({
       acquired_at: value.issued_at,
       fence_token: value.fence_token,
       owner: value.owner,
-    },
-    expectedFenceToken: value.fence_token,
-    owner: value.owner,
-    acquiredAt: value.issued_at,
-  });
-  if (!leaseValidation.ok) {
+    })
+  ) {
     return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_INVALID" };
   }
   if (Date.parse(value.expires_at) <= Date.parse(value.issued_at)) {

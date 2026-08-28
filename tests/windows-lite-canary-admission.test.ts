@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { sha256Digest } from "../src/runtime/digest";
 import {
@@ -84,18 +85,38 @@ describe("Windows Lite canary admission policy／lease binding", () => {
   });
 
   it("U-WLCA-005: lease bindingのidentity／HEAD／artifact／owner／fenceをexact照合する", () => {
+    const source = readFileSync("src/runtime/windows-lite-canary-admission.ts", "utf8");
+    expect(source).toContain("validateWorkGraphLease");
+    expect(source).not.toContain("acquireWorkGraphLease");
+
     const valid = validateWindowsCanaryLeaseBinding(binding());
     expect(valid.ok).toBe(true);
     if (!valid.ok) throw new Error(valid.failure_code);
     expect(Object.isFrozen(valid.binding)).toBe(true);
 
     for (const invalid of [
+      { ...binding(), schema_version: "helix-windows-lite-canary-lease-binding.v2" },
+      { ...binding(), pr_number: 0 },
       { ...binding(), candidate_head: "bad" },
       { ...binding(), linux_artifact_digest: "sha256:bad" },
+      { ...binding(), profile_digest: "sha256:bad" },
+      { ...binding(), lane_id: "other-lane" },
+      { ...binding(), run_id: "" },
+      { ...binding(), lease_id: "" },
       { ...binding(), fence_token: 0 },
       { ...binding(), owner: "" },
+      { ...binding(), correlation_id: "" },
       { ...binding(), extra: "not-allowed" },
     ]) {
+      expect(validateWindowsCanaryLeaseBinding(invalid)).toEqual({
+        ok: false,
+        failure_code: "WINDOWS_CANARY_LEASE_BINDING_INVALID",
+      });
+    }
+
+    for (const key of Object.keys(binding())) {
+      const invalid = { ...binding() } as Record<string, unknown>;
+      delete invalid[key];
       expect(validateWindowsCanaryLeaseBinding(invalid)).toEqual({
         ok: false,
         failure_code: "WINDOWS_CANARY_LEASE_BINDING_INVALID",
@@ -110,6 +131,10 @@ describe("Windows Lite canary admission policy／lease binding", () => {
       { ...binding(), run_attempt: undefined },
       { ...binding(), expires_at: "2026-08-28T07:29:59.000Z" },
       { ...binding(), issued_at: "not-a-time" },
+      { ...binding(), issued_at: "2026-02-30T00:00:00.000Z" },
+      { ...binding(), issued_at: "2026-08-28" },
+      { ...binding(), issued_at: "08/28/2026" },
+      { ...binding(), issued_at: "2026-08-28T07:30:00+00:00" },
     ]) {
       expect(validateWindowsCanaryLeaseBinding(invalid)).toEqual({
         ok: false,
@@ -127,7 +152,33 @@ describe("Windows Lite canary admission policy／lease binding", () => {
     expect(Object.isFrozen(input)).toBe(false);
     if (!result.ok) throw new Error(result.failure_code);
     expect(result.policy).not.toBe(input);
-    expect(result.policy_digest).toMatch(/^sha256:[a-f0-9]{64}$/u);
+    expect(result.policy_digest).toBe(
+      "sha256:a671e28fc8539a04e4abeb535dd9d5885d1bc976494b78f307cdfaf45386e5a2",
+    );
+
+    const reversedPolicy = Object.fromEntries(Object.entries(policy()).reverse());
+    const reorderedPolicy = validateWindowsCanaryAdmissionPolicy(reversedPolicy);
+    expect(reorderedPolicy.ok).toBe(true);
+    if (!reorderedPolicy.ok) throw new Error(reorderedPolicy.failure_code);
+    expect(reorderedPolicy.policy_digest).toBe(result.policy_digest);
+
+    const bindingInput = binding();
+    const bindingBefore = structuredClone(bindingInput);
+    const bindingResult = validateWindowsCanaryLeaseBinding(bindingInput);
+    expect(bindingResult.ok).toBe(true);
+    expect(bindingInput).toEqual(bindingBefore);
+    expect(Object.isFrozen(bindingInput)).toBe(false);
+    if (!bindingResult.ok) throw new Error(bindingResult.failure_code);
+    expect(Object.isFrozen(bindingResult.binding)).toBe(true);
+    expect(bindingResult.binding_digest).toBe(
+      "sha256:6d81ee2c11608a4c7465b05ef6bd382f52a1cbb3cd5ef660ed0e871e6245fbe8",
+    );
+    const reorderedBinding = validateWindowsCanaryLeaseBinding(
+      Object.fromEntries(Object.entries(binding()).reverse()),
+    );
+    expect(reorderedBinding.ok).toBe(true);
+    if (!reorderedBinding.ok) throw new Error(reorderedBinding.failure_code);
+    expect(reorderedBinding.binding_digest).toBe(bindingResult.binding_digest);
   });
 });
 
