@@ -490,6 +490,9 @@ jobs:
       - name: plan-lint
         run: npx --no-install tsx src/cli.ts plan lint --gate governance
 
+      - name: post-merge PLAN status
+        run: npx --no-install tsx src/cli.ts plan lint --gate post-merge-status
+
       - name: L1-L12 canonical authority drift gate
         # Authority判定をtarget runtimeのNodeで実行する。
         run: npx --no-install vitest run --project fast tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-progression-authority.test.ts tests/canonical-reuse-authority.test.ts tests/runtime-authority-requirements.test.ts tests/frontmatter.test.ts tests/schema.test.ts

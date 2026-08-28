@@ -184,6 +184,7 @@ items:
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
       - docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md
       - docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
+      - docs/design/helix/L6-function-design/post-merge-plan-status-preflight.md
       - docs/design/helix/L6-function-design/plan-modification-ownership.md
       - docs/design/helix/L6-function-design/distribution-devos-instruction-authority.md
       - docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md

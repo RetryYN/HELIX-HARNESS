@@ -40,6 +40,12 @@ describe("analyzeMergedPlanStatus", () => {
     ]);
   });
 
+  it("U-MPS-PRE-001: explicitly treats candidate HEAD as the post-merge published tree", () => {
+    expect(
+      publishedBaseRefs({ GITHUB_BASE_REF: "main" }, "recovery/1132-preflight", "candidate_head"),
+    ).toEqual(["HEAD"]);
+  });
+
   it("flags an artifact-producing PLAN that is draft but whose src is merged", () => {
     const r = analyzeMergedPlanStatus({
       plans: [{ planId: "PLAN-X", status: "draft", kind: "impl", mergedArtifacts: ["src/x.ts"] }],
