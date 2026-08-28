@@ -5,7 +5,7 @@ layer: L8
 executed_at_layer: L7
 artifact_type: test_design
 sub_doc: unit-test-design
-status: confirmed
+status: draft
 created: 2026-08-27
 updated: 2026-08-27
 owner: QA / Codex TL
@@ -16,7 +16,7 @@ related_l9: docs/test-design/helix/L9-windows-lite-canary-admission-integration-
 
 # Windows Lite canary bounded admission L8単体テスト設計
 
-本書はL3要件とL6 pure kernelの反証oracleを定義する。実行可能な`tests/`への追加は、L3確認後の実装PRが
+本書はL3要件とL6 pure kernelの反証oracle候補を定義する。実行可能な`tests/`への追加と本書のconfirmは、L3確認後の実装PRが
 本書のIDを引き継いで行う。既存scheduler／measurementのoracleを再定義せず、Windows lane固有の差分だけを持つ。
 
 | U-ID | 対象 | 正例 | 反例／mutation | 実行先 |
@@ -39,6 +39,6 @@ related_l9: docs/test-design/helix/L9-windows-lite-canary-admission-integration-
 
 ## Red／Green／mutation の実行方針
 
-L3 confirmation前は実行可能oracleを追加しない。L6実装PRではU-WLCA-001〜015をRed先行で固定し、
+L3 confirmationは成立済みである。L6実装PRではU-WLCA-001〜015をRed先行で固定し、
 policy上限、lease fence、same-artifact binding、percentile母集団、append-only chainの各チェックを一件ずつ
 弱めるmutationが最低一つずつkillされることを要求する。timeoutを延長してRedを回避した場合は失敗とする。

@@ -4,7 +4,7 @@ canonical_layer_scheme: L1-L12
 layer: L9
 artifact_type: test_design
 sub_doc: integration-test-design
-status: confirmed
+status: draft
 created: 2026-08-27
 updated: 2026-08-27
 owner: QA / Codex TL
@@ -16,7 +16,7 @@ pair_freeze_exempt_reason: "L6設計のprimary pairはL8単体設計とし、本
 related_l3: docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
 ---
 
-# Windows Lite canary bounded admission L9結合テスト設計
+# Windows Lite canary bounded admission L9結合テスト設計（実装待ち）
 
 L6 kernel、既存slot／work-graph lease、event journal、Linux artifact receipt、GitHub Actions adapter、
 既存aggregateの接合だけを検証する。GitHub Actionsの一時的な成功表示や通知本文はreceiptの代わりにしない。
