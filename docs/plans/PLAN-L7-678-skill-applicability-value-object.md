@@ -52,6 +52,7 @@ generates:
   - { artifact_path: src/schema/skill-applicability-registry.ts, artifact_type: source_module }
   - { artifact_path: tests/skill-applicability-registry.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/development-model-runtime-routing-design.test.ts, artifact_type: test_code }
