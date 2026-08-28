@@ -5,8 +5,9 @@ import { HARNESS_DB_TABLES } from "../src/schema/harness-db-catalog";
 import { HARNESS_DB_INDEXES } from "../src/schema/harness-db-indexes";
 import { openHarnessDb } from "../src/state-db";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
+import { resolvePackageCurrentLocationWorkflowIdentity } from "../src/workflow/current-location-workflow-identity";
 
-// PLAN-L7-693-current-location-db-typed-workflow-identity / U-CLDB-001..003
+// PLAN-L7-693-current-location-db-typed-workflow-identity / U-CLDB-001..004
 
 const LEGACY_CURRENT_LOCATION_FIELDS = ["selected_drive_model", "default_drive_model"];
 
@@ -71,5 +72,19 @@ describe("current-location DB typed workflow identity", () => {
     } finally {
       db.close();
     }
+  });
+
+  it("U-CLDB-004: consumer cwdではなくinstalled HELIX packageの分類authorityを使う", () => {
+    const receipt = resolvePackageCurrentLocationWorkflowIdentity("Reverse");
+
+    expect(receipt).toMatchObject({
+      disposition: "converted",
+      exit_code: 0,
+      emit_legacy_identity: false,
+      identity: {
+        target_axis: "workflow_model",
+        target_id: "REVERSE",
+      },
+    });
   });
 });

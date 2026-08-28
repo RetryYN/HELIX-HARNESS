@@ -23,6 +23,8 @@ pair_artifact: docs/test-design/helix/L8-current-location-db-typed-workflow-iden
 - current rowは`workflow_identity_schema_version`、`workflow_registry_version`、
   `workflow_registry_source_digest`、`workflow_target_axis`、`workflow_target_id`を必須投影する。
 - typed tupleはcurrent classification catalogでversion、digest、axis、IDを再検証する。
+- classification catalog／registryはgoverned consumer repositoryではなくinstalled HELIX packageの
+  requirements authorityから読む。consumer cwdやfixture rootを意味正本として扱わない。
 - current-location内部に残るlegacy inputは既存input-only adapterを通し、DB rowへ旧identityや変換元を再出力しない。
 - missing、stale、unknown、ambiguous、unsupportedは空値やForward fallbackへ縮退せず、projection transactionを失敗させる。
 - `project_drive_model_candidates`は旧model enumをDB authorityへ再投影するため削除する。候補判断の後継は

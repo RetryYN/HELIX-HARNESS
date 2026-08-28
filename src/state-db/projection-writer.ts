@@ -64,7 +64,7 @@ import {
 import type { VisualizationContract } from "../schema/visualization-view-contract";
 import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
 import { nowIso } from "../shared/time-utils";
-import { resolveCurrentLocationWorkflowIdentity } from "../workflow/current-location-workflow-identity";
+import { resolvePackageCurrentLocationWorkflowIdentity } from "../workflow/current-location-workflow-identity";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
 import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
@@ -4655,10 +4655,9 @@ function projectVmodelReadModels(
   const visualizationSnapshot = buildVisualizationSnapshot(db, { repoRoot });
   const snapshot = visualizationSnapshot.project_current_location;
   const driveModel = buildProjectDriveModelReport(snapshot);
-  const workflowIdentityReceipt = resolveCurrentLocationWorkflowIdentity({
-    legacy_model: driveModel.selected_model,
-    repo_root: repoRoot,
-  });
+  const workflowIdentityReceipt = resolvePackageCurrentLocationWorkflowIdentity(
+    driveModel.selected_model,
+  );
   const workflowIdentity = workflowIdentityReceipt.identity;
   if (
     workflowIdentityReceipt.exit_code !== 0 ||
