@@ -69,27 +69,6 @@ dependencies:
 agent_slots:
   - { role: qa, slot_label: "QA — Forward／Reverse証拠とmain read-after" }
   - { role: tl, slot_label: "TL — #1134終端と#1141責務境界" }
-review_evidence:
-  - reviewer: "Claude Code / Opus"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-28T09:33:06Z"
-    tests_green_at: "2026-08-28T09:32:01Z"
-    verdict: approve
-    worker_model: codex:gpt-5.4-codex
-    reviewer_model: claude-opus-5
-    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
-    reviewed_head_sha: 76786926a5fe29d490e5d419e4ab32bd356d9051
-    scope: "PR #1143のReverse vehicle exact HEADを独立検収し、blocker 0でapprove。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/1143#issuecomment-5450896186。confirmedは計画の検収済み状態だけを表し、backfill_state=pending_reverseとcompletion_claim_allowed=falseはForward merge後のR4まで維持する。"
-    green_commands:
-      - kind: smoke
-        command: "gh run view 33157861227 --json status,conclusion,headSha,updatedAt,url"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-08-28T09:32:01Z"
-        evidence_path: .github/workflows/harness-check.yml
-        output_digest: "sha256:05347ba630f8bb9938f1e00499e83fa51ad2857605955be9f0a80722e0933f28"
-        result: "status=completed conclusion=success headSha=76786926a5fe29d490e5d419e4ab32bd356d9051"
 ---
 
 # Windows canary policy／lease bindingの再接着
