@@ -85,6 +85,19 @@ function addMissingColumns(db: HarnessDb): number {
   return added;
 }
 
+const LEGACY_WORKFLOW_SCHEMA_RETIREMENT_VERSION = 47;
+
+function retireLegacyWorkflowSchemaObjects(db: HarnessDb, fromVersion: number): void {
+  if (fromVersion >= LEGACY_WORKFLOW_SCHEMA_RETIREMENT_VERSION) return;
+  db.exec("DROP INDEX IF EXISTS idx_project_drive_model_candidates_status");
+  db.exec("DROP TABLE IF EXISTS project_drive_model_candidates");
+  if (!tableNames(db).includes("project_current_location")) return;
+  const columns = columnNames(db, "project_current_location");
+  for (const column of ["selected_drive_model", "default_drive_model"]) {
+    if (columns.has(column)) db.exec(`ALTER TABLE project_current_location DROP COLUMN ${column}`);
+  }
+}
+
 function ensurePrimaryKeyCompatibilityIndexes(db: HarnessDb): void {
   const present = new Set(tableNames(db));
   for (const table of HARNESS_DB_TABLES) {
@@ -216,18 +229,28 @@ function ensureMeasurementHistoryImmutability(db: HarnessDb): void {
  */
 export function migrate(db: HarnessDb): MigrationResult {
   const fromVersion = db.userVersion();
-  if (fromVersion < 36) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
-  const ddls = schemaDdl();
-  for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
-  const addedColumns = addMissingColumns(db);
-  ensurePrimaryKeyCompatibilityIndexes(db);
-  ensureGateRunReceiptImmutability(db);
-  ensureClosureEvidenceImmutability(db);
-  ensureExecutionEpisodeRightArmEvidenceImmutability(db);
-  ensureOrchestrationEventProjectionImmutability(db);
-  ensureMeasurementHistoryImmutability(db);
-  for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
-  if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);
+  let addedColumns = 0;
+  db.exec("SAVEPOINT helix_schema_migration");
+  try {
+    if (fromVersion < 36) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
+    retireLegacyWorkflowSchemaObjects(db, fromVersion);
+    const ddls = schemaDdl();
+    for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
+    addedColumns = addMissingColumns(db);
+    ensurePrimaryKeyCompatibilityIndexes(db);
+    ensureGateRunReceiptImmutability(db);
+    ensureClosureEvidenceImmutability(db);
+    ensureExecutionEpisodeRightArmEvidenceImmutability(db);
+    ensureOrchestrationEventProjectionImmutability(db);
+    ensureMeasurementHistoryImmutability(db);
+    for (const ddl of ddls.filter((s) => /^CREATE (?:UNIQUE )?INDEX/.test(s))) db.exec(ddl);
+    if (fromVersion < SCHEMA_VERSION) db.setUserVersion(SCHEMA_VERSION);
+    db.exec("RELEASE SAVEPOINT helix_schema_migration");
+  } catch (error) {
+    db.exec("ROLLBACK TO SAVEPOINT helix_schema_migration");
+    db.exec("RELEASE SAVEPOINT helix_schema_migration");
+    throw error;
+  }
   const toVersion = fromVersion > SCHEMA_VERSION ? fromVersion : SCHEMA_VERSION;
   return {
     fromVersion,
