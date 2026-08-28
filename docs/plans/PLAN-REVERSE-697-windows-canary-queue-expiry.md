@@ -6,17 +6,17 @@ layer: cross
 workflow_phase: R0
 confirmed_reverse_type: fullback
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-28
 updated: 2026-08-28
 owner: Codex / TL
-github_issue_id: 1145
+github_issue_id: 1151
 behavior_contract_id: WINDOWS-LITE-CANARY-QUEUE-EXPIRY-001
 responsibility_owner: windows-lite-canary-admission
 change_slice: atomic
-refactor_step: add_behavior
+refactor_step: introduce_contract
 no_code_decision: no_change
 legacy_retirement_state: retained
 workflow_identity:
@@ -29,7 +29,7 @@ entry_signals:
   - "po_directive:Issue #1145 Windows canary bounded queue／expiryのReverse vehicle"
 contract_preconditions: "PLAN-L3-70のconfirmed authorityと#1135の原子実装scopeが存在する"
 contract_postconditions: "将来のPLAN-L7-697実装証拠をL3／L6／L8へ再接着するReverse vehicleがmain上で一意になる"
-contract_invariants: "Forward実装や#1141の初期policy値を先取りせず、status draft／pending_reverseを維持する"
+contract_invariants: "Forward実装や#1141の初期policy値を先取りせず、pending_reverse／completion_claim_allowed=falseを維持する"
 contract_failures: "wrong HEAD、stale review、双方向link欠落、DB divergence、#1136責務混載をfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "Forward実装前にReverse pairing vehicleだけを登録するdocs-only sliceであり、未実装kernelのRedを捏造しない"
@@ -54,13 +54,13 @@ backprop_scope:
     reason: "U-WLCA-002〜010／015とcapacity mutation evidenceをcurrent HEADへ束縛する。"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-697-windows-canary-queue-expiry.md, artifact_type: markdown_doc }
-modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
   requires:
     - docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
   references:
+    - "issue:1145"
     - docs/plans/PLAN-L7-697-windows-canary-queue-expiry.md
     - src/runtime/windows-lite-canary-admission.ts
     - tests/windows-lite-canary-admission.test.ts
@@ -68,6 +68,27 @@ dependencies:
 agent_slots:
   - { role: qa, slot_label: "QA — Forward／Reverse証拠とmain read-after" }
   - { role: tl, slot_label: "TL — #1135終端と#1136責務境界" }
+review_evidence:
+  - reviewer: "Claude Code / Opus"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-28T08:55:20Z"
+    tests_green_at: "2026-08-28T08:52:54Z"
+    verdict: approve
+    worker_model: codex:gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
+    reviewed_head_sha: 8ab9bf4e03cfcfd8b749df1118084fbcc4f828d7
+    scope: "PR #1146のReverse vehicle exact HEADを独立検収し、blocker 0でapprove。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/1146#issuecomment-5450503358。confirmedは計画の検収済み状態だけを表し、backfill_state=pending_reverseとcompletion_claim_allowed=falseはForward merge後のR4まで維持する。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33155597731 --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-28T08:52:54Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:d1bad7bfaf731af4159cf498b0ae3117e3fd0ce58c60c391b9165eab053b88a2"
+        result: "status=completed conclusion=success headSha=8ab9bf4e03cfcfd8b749df1118084fbcc4f828d7"
 ---
 
 # Windows canary bounded queue／expiryの再接着
