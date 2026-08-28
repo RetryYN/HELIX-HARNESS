@@ -76,5 +76,5 @@ modifies:
 |---|---|---|
 | 1 | requirementsへlink identityとdependency readinessを分離 | current契約が一意になる |
 | 2 | U-BACKFILL-008 Red→Green | pending双方向referencesとnegative stateを被覆 |
-| 3 | design catalog登録とreviewed digest cascadeを更新 | dedicated V-pairがcatalog／freeze packetで同一digestへ収束 |
+| 3 | design catalog登録とreviewed digest cascadeを更新 | dedicated V-pair、PR scope exact 10 paths、catalog／freeze packetが同一digestへ収束 |
 | 4 | doctor／全回帰／独立review | #1139を正規に解放できる |
