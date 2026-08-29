@@ -22,7 +22,7 @@ behavior_contract_id: SKILL-APPLICABILITY-ORACLE-RECOVERY-001
 responsibility_owner: typed-skill-db-projection
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: add_oracle
+refactor_step: characterize
 legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "本Recovery内でL8 test designと実testを同時に是正し、別の上流backprop episodeを残さない。"
