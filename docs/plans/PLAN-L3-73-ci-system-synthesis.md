@@ -24,8 +24,6 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
-backprop_decision: required
-backprop_decision_reason: "現行Impact CIと固定shardの実測から、path中心選定では証明責務、実行cost、延期義務を一つのplanへ閉じられないことが判明したため、SYN-R-07/08とGH-NFR-009..011へ上流還流する。"
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "System Synthesis、Impact CI、Module Registry、Lite selector、full regression shard authorityが存在する"
