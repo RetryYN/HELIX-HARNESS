@@ -66,6 +66,7 @@ modifies:
   - { artifact_path: docs/test-design/helix/L8-node-engine-runtime-gate-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: src/doctor/node-engine-runtime.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/node-engine-runtime.test.ts, artifact_type: test_code }
 ---
