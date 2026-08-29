@@ -1,0 +1,89 @@
+---
+plan_id: PLAN-L7-700-skill-applicability-authoring
+title: "PLAN-L7-700 (refactor): typed skill applicability authoring"
+kind: refactor
+layer: L7
+drive: agent
+status: confirmed
+completion_claim_allowed: false
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  target_axis: workflow_model
+  target_id: REDESIGN
+entry_signals:
+  - "po_directive:typed skill applicabilityをauthoring surfaceへ接続する"
+created: 2026-08-26
+updated: 2026-08-26
+owner: Codex / TL
+github_issue_id: 248
+behavior_contract_id: SKILL-APPLICABILITY-AUTHORING-001
+responsibility_owner: typed-skill-authoring
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
+backprop_decision: not_required
+backprop_decision_reason: "L3 typed skill applicability authorityとL5 runtime routing設計を変更せず、既存authoring consumerだけを既にfreeze済みのtyped pairへ移行する。"
+no_code_decision: add_code
+ddd_modeling_decision: policy
+contract_preconditions: "PLAN-L7-678のtyped value objectとrequirements-owned registryがcurrent mainに存在する"
+contract_postconditions: "current assignment／scaffold／CLIがtyped identityだけを生成し、既存legacy skillをcompatibility-onlyへ隔離する"
+contract_invariants: "L1-L12とclassification exact pairを正本とし、legacy drive modelをcurrent metadataへ再出力しない"
+contract_failures: "unknown pair、axis mismatch、極性衝突、current／legacy混在、L0／L13／L14、曖昧legacy入力を個別拒否する"
+tdd_red_required: true
+red_at: "2026-08-26T04:48:30+09:00"
+green_at: "2026-08-26T04:51:49+09:00"
+mutation_oracle_evidence: "2026-08-26T04:54:10+09:00にcurrent／legacy field混在拒否を除去し、tests/skill-assignment.test.tsが1 failed・4 passedとなることを実測した。復元後はauthoring関連5 suite 45 testsとtypecheckをgreen化した。"
+complexity_effect: net_negative
+complexity_justification: "旧drive_models生成をtyped pairの単一authoring経路へ置換し、既存61 skillは#322までcompatibility-onlyとして明示する"
+removal_trigger: "#322で全skillがtyped metadataへbackfillされcompatibility inventoryが0件になった時"
+parent_design: docs/design/helix/L5-detail/development-model-runtime-routing.md
+pair_artifact: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L5-detail/development-model-runtime-routing.md, oracle_id: U-SKAPP-004, test_path: tests/skill-scaffold.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/development-model-runtime-routing.md, oracle_id: U-SKAPP-009, test_path: tests/skill-assignment.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/development-model-runtime-routing.md, oracle_id: U-SKAPP-010, test_path: tests/skill-scaffold-cli.test.ts }
+agent_slots:
+  - { role: se, slot_label: "SE — assignment／scaffold／CLI接合" }
+  - { role: qa, slot_label: "QA — legacy混在と曖昧入力mutation" }
+  - { role: tl, slot_label: "TL — current／compatibility境界" }
+generates:
+  - { artifact_path: docs/plans/PLAN-L7-700-skill-applicability-authoring.md, artifact_type: markdown_doc }
+  - { artifact_path: src/workflow/skill-applicability-authoring.ts, artifact_type: source_module }
+modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: config/distribution-capability-artifact-catalog.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/skill-assignment.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/skill-applicability-registry.ts, artifact_type: source_module }
+  - { artifact_path: src/setup/index.ts, artifact_type: source_module }
+  - { artifact_path: src/skill-engine/scaffold.ts, artifact_type: source_module }
+  - { artifact_path: tests/skill-assignment.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/skill-quality.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/skill-scaffold-cli.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/skill-scaffold.test.ts, artifact_type: test_code }
+dependencies:
+  parent: docs/plans/PLAN-L5-83-development-model-runtime-routing.md
+  requires: [docs/plans/PLAN-L7-678-skill-applicability-value-object.md]
+  blocks: [issue:322, issue:243]
+---
+
+# typed skill applicability authoring実装
+
+| Step | 作業 | 完了条件 |
+|---|---|---|
+| 1 | assignmentをcurrent／compatibilityへ分離 | currentはtyped pair、legacyは隔離件数として可視化 |
+| 2 | scaffold／CLIをtyped入力へ移行 | current outputに`drive_models`が存在しない |
+| 3 | legacy CLI adapterをinput-only化 | 一意tokenだけ変換し曖昧tokenを拒否 |
+| 4 | mutation、targeted test、typecheck | 混在拒否mutation killと全targeted green |
+
+本sliceはDB、recommendation、61 skillのbackfillを完了主張しない。

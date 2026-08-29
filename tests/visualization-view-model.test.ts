@@ -6,9 +6,9 @@ import {
   buildVisualizationViewModel,
 } from "../src/state-db/visualization-view-model";
 
-const WORKFLOW_REGISTRY_VERSION = "1.1.5";
+const WORKFLOW_REGISTRY_VERSION = "1.1.6";
 const WORKFLOW_REGISTRY_DIGEST =
-  "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db";
+  "sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89";
 
 function typedWorkflowRoute(
   target_axis: "development_style" | "workflow_model",
@@ -68,7 +68,7 @@ function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
     complemented: 3,
     rejected: 1,
     missing: 0,
-    sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+    sourcePackage: "hybrid-vmodel-source.v1",
     sourceDocument: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
     docDependencies: ["docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md"],
     implementationDependencies: [
@@ -1481,7 +1481,7 @@ describe("buildVisualizationViewModel", () => {
         complemented: 3,
         rejected: 1,
         missing: 0,
-        source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+        source_package: "hybrid-vmodel-source.v1",
         source_document: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
         items: [
           expect.objectContaining({

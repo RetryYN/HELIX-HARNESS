@@ -45,7 +45,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       (entry) => entry.path === terminalPlanPath,
     );
     expect(terminalPlan?.contentDigest).toBe(
-      "64ae27ef0c355c318c84221b0eff0434e6f7c87ca15b8dd87aa9da81c81e9c3a",
+      "54c84350abedd8512cc3b58473d0b08c9b938eb3c4d0387485e5e15050b39057",
     );
   });
 
@@ -95,7 +95,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(604);
+    expect(plans).toHaveLength(605);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -236,7 +236,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       current_authority_review: {
         compatibility_labeled: 17,
         conflict: 136,
-        false_positive: 50,
+        false_positive: 49,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, historical: 1 },
@@ -249,7 +249,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       plan_review: {
         compatibility_labeled: 1,
         conflict: 175,
-        false_positive: 428,
+        false_positive: 429,
       },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));

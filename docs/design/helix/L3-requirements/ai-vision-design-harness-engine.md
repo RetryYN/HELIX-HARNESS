@@ -14,7 +14,7 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 
 ## 1. 入力正本の結合と裁定
 
-- canonical source: `docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.1.zip`
+- source family receipt: `docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.1.json`
 - SHA-256: `1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd`
 - inventory: 211 physical files。Design HARNESS主要sourceは`17-design-harness-integration.md`、`design-harness/` 11件、schema 6件、template 6件、skill、example、53件の変換元snapshot。
 - intake差異: workspace添付同名ZIP `04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61`（208 entries）は再監査前の中間物であり、正本へ昇格しない。
@@ -36,7 +36,7 @@ pair_artifact: docs/test-design/helix/ai-vision-design-harness-engine-acceptance
 
 | ID | 要件 | 受入ID |
 |---|---|---|
-| VDH-FR-001 | source filename、digest、211-file inventory、添付中間物との差異、atom dispositionをintake receiptへ固定する | VDH-AC-001 |
+| VDH-FR-001 | source family ID、digest、211-file inventory、添付中間物との差異、atom dispositionをintake receiptへ固定する | VDH-AC-001 |
 | VDH-FR-002 | product visionをExperience、UI、Frontendの三契約へ分解し同一revisionで連鎖させる | VDH-AC-002 |
 | VDH-FR-003 | `screen/region/slot/action/state/binding` semantic IDを意味主キーとし、class名やfile pathを主キーにしない | VDH-AC-003 |
 | VDH-FR-004 | UI対象はL2 prototype agreementとscreen ledgerを必須化し、purpose、persona、frequency、criticality、region、state、responsive、motion、trace、evidenceを保持する。framework、component class、API、props、state ownerはL2で固定しない。非UIは証拠付きN/Aを必須化する | VDH-AC-004 |

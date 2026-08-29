@@ -11,7 +11,7 @@ related_l3: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
 related_l12: docs/design/helix/L12-vmodel/vmodel-layer-coverage.md
 tailoring_profile: docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md
 pair_artifact: docs/test-design/helix/vmodel-docgen-fit-acceptance.md
-source_package: ハイブリッド設計ドキュメントv1-fixed.zip
+source_package: hybrid-vmodel-source.v1
 spec:
   defines:
     - id: HVM-ADOPT-01
@@ -138,7 +138,7 @@ spec:
 
 ## §0 位置づけ
 
-本書は `ハイブリッド設計ドキュメントv1-fixed.zip` を HELIX へ取り込む際の、共通点・差異・採用判断・補完判断の
+本書は `hybrid-vmodel-source.v1` を HELIX へ取り込む際の、共通点・差異・採用判断・補完判断の
 正本である。`docs/design/helix/L3-requirements/vmodel-docgen-fit.md` が構想と要件を定義し、本書はその判断を
 L12 の機械検出対象として固定する。
 
@@ -206,7 +206,7 @@ ZIP がある場合は必須 source 不足を violation とする。
 
 ### §4.1 REBASELINE v0.5.0差分の追突
 
-`docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip`は、本マトリクスを置換する正本ではなく差分sourceとして扱う。
+`docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.0.json`は、本マトリクスを置換する正本ではなく差分sourceの履歴receiptとして扱う。
 source digest、追加5 requirement、追加6 AC、追加47 trace edge及び変更集合は
 `docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md`へ投影する。package内L0–L14は
 L1–L12へremapし、Production Scrum／Discovery PoC／完全Vのdelivery routeを欠いたままcanonicalへ昇格しない。

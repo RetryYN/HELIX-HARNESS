@@ -15,7 +15,7 @@ pair_artifact: docs/test-design/helix/distribution-package-release-system-test-d
 ## 1. authority
 
 要件正本は`docs/governance/helix-harness-requirements_v1.3.md` §4.6.1の`HR-FR-HYB-008`と
-`HR-AC-HYB-008-01..09`である。本書のrevision 3はrequirements v1.3.13とcanonical Requirement IR
+`HR-AC-HYB-008-01..09`である。本書のrevision 3はrequirements v1.3.14とcanonical Requirement IR
 refinementとして`HELIX-HARNESS-LITE`／`consumer_core_v1`の配布先を`HELIX-HARNESS-DevOS`へ更新する。L3↔L10 pairと
 下位設計への入口を固定し、別製品authorityを追加しない。
 

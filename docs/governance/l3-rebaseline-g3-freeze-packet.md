@@ -126,15 +126,17 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `requirements-ir/manifest.json`
 - 凍結済み基線Requirement JSON root digest: `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`
-- 現行Requirement JSON root digest: `sha256:5f2e7e3568c10027e7dd5a237492b81fb6b9d9acfb017f87a36f244a83a32b5d`
-- 現行refinement contract count: `4`（schema v2のadmission partition。baseline 153/24/72/24は不変）
+- 現行Requirement JSON root digest: `sha256:5fd8d1827a41821aa114037998c035dfa6ed8df56dceb1cdfce4006642056a03`
+- 現行refinement contract count: `5`（schema v2のadmission partition。baseline 153/24/72/24は不変）
 - Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
-- 生成Markdown view digest: `sha256:7c63f56e3fbed5c37250b582a6df44b054796241b298e2695632cdf0b0a92cc8`
+- 生成Markdown view digest: `sha256:d8028266c7563c56db4067aa976cfafae634395f82ac8bb2703c7b8afc8df86e`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:8dcb150d951dc7a1f173073c029ed5e529e933aa89aa265447b466fa2a50d40d`
-- この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact登録と#1033の
-  System Synthesis L3 requirement登録を反映して再計測した値であり、旧digestをcurrent証拠へ再利用しない。
+- design catalog digest候補: `sha256:f6ee15d60e76e188ca2be390d41932861c38d058731b9bc5f792b496cd6ad0b1`
+- この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact、#1033のSystem Synthesis、
+  #1073のRelease Module／Bundle、#1160の製品ライフサイクル運用、#1174のTechnology Environment
+  Reconciliation L3 requirement登録を反映して再計測した値であり、
+  旧digestをcurrent証拠へ再利用しない。
 - historical catalog pin: PR #100最終receipt
   `https://github.com/RetryYN/HELIX-HARNESS/pull/100#issuecomment-5054328000`
   （HEAD `df952e6975f317c2c1d5bc7f5a7ef1febbefa3d3`の旧digestに対する履歴証拠であり、現候補のreview証拠には流用しない）
@@ -217,7 +219,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | 工程完了ゴール（STAGE-GOAL-FR-001） | `21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406` | `72c193a904027ed118433a92a049b7330a9da0cfdfac7a5a06dc0887a54e7f65` |
 | HELIX-Bench（HELIX-BENCH-FR-001） | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` |
 | 技術スタック正本（TECH-STACK-FR-001） | `a37579d6e1ac48895fce5efdcbaafa42d416ceaf94c1b0e6fe1d044785ab4fb1` | `ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d` |
-| マルチモーダルDesign HARNESS正本（VDH-MULTIMODAL-FR-001） | `2849eaef786d6e2014cc2369c3cbf994ed66c0e09244a447f2da536a4d6db1f5` | `d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951` |
+| マルチモーダルDesign HARNESS正本（VDH-MULTIMODAL-FR-001） | `baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2` | `d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951` |
 | GitHubセキュリティ受入（GH-FR-029 / GH-NFR-019..022） | `0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72` | `6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b` |
 
 ### 2.3 開発style・case-driven model・専門工程の別軸authority
@@ -234,7 +236,7 @@ current判定へ戻さない。
 | `docs/design/harness/L1-requirements/screen-requirements.md` | `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b` |
 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` |
 | `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | `665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393` |
-| `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md` | `ab6c9ceef3e80dcee39351c989ab4368acad122dc7421aaf97c729e63a6d6a93` |
+| `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md` | `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d` |
 
 ### 2.4 freeze後の未解決downstream exact set
 

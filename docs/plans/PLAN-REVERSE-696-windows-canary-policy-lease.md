@@ -6,7 +6,7 @@ layer: cross
 workflow_phase: R0
 confirmed_reverse_type: fullback
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-08-28
@@ -21,15 +21,15 @@ no_code_decision: no_change
 legacy_retirement_state: retained
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.5
-  registry_source_digest: sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
   target_id: REVERSE
 entry_signals:
   - "po_directive:Issue #1144 Windows canary policy／lease bindingのReverse vehicle"
 contract_preconditions: "PLAN-L3-70のconfirmed authorityと#1134の原子実装scopeが存在する"
 contract_postconditions: "将来のPLAN-L7-696実装証拠をL3／L6／L8へ再接着するReverse vehicleがmain上で一意になる"
-contract_invariants: "Forward実装や#1141の初期policy値を先取りせず、pending_reverse／completion_claim_allowed=falseを維持する"
+contract_invariants: "Forward実装や#1141の初期policy値を先取りせず、status draft／pending_reverse／completion_claim_allowed=falseを維持する"
 contract_failures: "wrong HEAD、stale review、双方向link欠落、DB divergence、#1141責務混載をfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "Forward実装前にReverse pairing vehicleだけを登録するdocs-only sliceであり、未実装kernelのRedを捏造しない"
@@ -54,6 +54,7 @@ backprop_scope:
     reason: "U-WLCA-001／005／009／014とmutation evidenceをcurrent HEADへ束縛する。"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-696-windows-canary-policy-lease.md, artifact_type: markdown_doc }
+modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md
@@ -68,27 +69,6 @@ dependencies:
 agent_slots:
   - { role: qa, slot_label: "QA — Forward／Reverse証拠とmain read-after" }
   - { role: tl, slot_label: "TL — #1134終端と#1141責務境界" }
-review_evidence:
-  - reviewer: "Claude Code / Opus"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-28T09:33:06Z"
-    tests_green_at: "2026-08-28T09:32:01Z"
-    verdict: approve
-    worker_model: codex:gpt-5.4-codex
-    reviewer_model: claude-opus-5
-    reviewer_session_id: c18c830c-b048-4a74-8821-23282016d4db
-    reviewed_head_sha: 76786926a5fe29d490e5d419e4ab32bd356d9051
-    scope: "PR #1143のReverse vehicle exact HEADを独立検収し、blocker 0でapprove。receipt=https://github.com/RetryYN/HELIX-HARNESS/pull/1143#issuecomment-5450896186。confirmedは計画の検収済み状態だけを表し、backfill_state=pending_reverseとcompletion_claim_allowed=falseはForward merge後のR4まで維持する。"
-    green_commands:
-      - kind: smoke
-        command: "gh run view 33157861227 --json status,conclusion,headSha,updatedAt,url"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-08-28T09:32:01Z"
-        evidence_path: .github/workflows/harness-check.yml
-        output_digest: "sha256:05347ba630f8bb9938f1e00499e83fa51ad2857605955be9f0a80722e0933f28"
-        result: "status=completed conclusion=success headSha=76786926a5fe29d490e5d419e4ab32bd356d9051"
 ---
 
 # Windows canary policy／lease bindingの再接着

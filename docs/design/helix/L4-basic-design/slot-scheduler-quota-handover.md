@@ -132,7 +132,7 @@ per-task 判定を再実装しない。逆に #213 側へ 4 軸のバッチ判�
       "artifact_path": "src/runtime/work-graph-receipt-acceptance.ts",
       "resource_kind": "typescript_export",
       "resource_name": "acquireWorkGraphLease",
-      "source_digest": "sha256:0b5a260dca11d477e3b0c2573cdf78a1f001bc6d633f6470f1682fd9dd44e36f",
+      "source_digest": "sha256:629e516db0b29a0f7b657f26cc7bd7646775eb70fa376015241d522f4a7c0063",
       "current_authority": true
     },
     {
@@ -141,7 +141,7 @@ per-task 判定を再実装しない。逆に #213 側へ 4 軸のバッチ判�
       "artifact_path": "src/runtime/work-graph-receipt-acceptance.ts",
       "resource_kind": "typescript_export",
       "resource_name": "releaseWorkGraphLease",
-      "source_digest": "sha256:0b5a260dca11d477e3b0c2573cdf78a1f001bc6d633f6470f1682fd9dd44e36f",
+      "source_digest": "sha256:629e516db0b29a0f7b657f26cc7bd7646775eb70fa376015241d522f4a7c0063",
       "current_authority": true
     },
     {

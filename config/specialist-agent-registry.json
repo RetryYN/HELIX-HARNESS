@@ -99,7 +99,7 @@
       "sync_source": {
         "kind": "repository_file",
         "path": ".claude/agents/fe-ui.md",
-        "digest": "sha256:2075027c351f064dbeccb94542de871a397ac7b1be9da3453d203fb9e635d284"
+        "digest": "sha256:78be74aac7bc3f006d500c77b38de500b24f31344d2b71640a8b315c96335590"
       },
       "allowlist_source": "claude_subagent"
     },
@@ -116,7 +116,7 @@
       "sync_source": {
         "kind": "repository_file",
         "path": ".claude/agents/code-reviewer.md",
-        "digest": "sha256:05e4372a3a660d927ec48070c9ad0437d691099df1c03046cd078d5fd24688ba"
+        "digest": "sha256:fe7dc9040cb1c89ca1440852542f2aba11ea13b0e961d562f027a716b0d0824a"
       },
       "allowlist_source": "claude_subagent"
     },
@@ -133,7 +133,7 @@
       "sync_source": {
         "kind": "repository_file",
         "path": ".claude/agents/qa-test.md",
-        "digest": "sha256:7bd29a34c63da6598273191a4d3e91ca5349ce651340d0ec9d502bbb9ced39ba"
+        "digest": "sha256:f03e7296497fa5f7be0247923f0aee4408924bd0aca39c7c65fd02d75daa5f4f"
       },
       "allowlist_source": "claude_subagent"
     },
@@ -150,7 +150,7 @@
       "sync_source": {
         "kind": "repository_file",
         "path": ".claude/agents/security-audit.md",
-        "digest": "sha256:4d26818e5119ddc28223f0830b3fc6ac017dabad137dde9d9ea0b87601e5bbab"
+        "digest": "sha256:fdedf0641aaf0a6a8439ef72128fcbd0a036d51095156283f06b4a1a134c2d3d"
       },
       "allowlist_source": "claude_subagent"
     }

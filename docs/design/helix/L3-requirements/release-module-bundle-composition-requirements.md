@@ -7,7 +7,7 @@ layer: L3
 kind: add-design
 status: confirmed
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-08-29
 owner: PO / Codex TL
 plan: PLAN-L3-68-release-module-bundle-composition
 parent_design: docs/design/helix/L3-requirements/distribution-package-release-requirements.md
@@ -120,14 +120,26 @@ release finding、rollback、compatibility、false positive／negative、consume
 戻す。module／bundle registry、release index、Git、GitHub、`harness.db`を再構築可能なprojectionとして収束し、mainとDevOSの
 read-after、supersede／retire evidenceまで閉じる。
 
+### RLS-R-13 Release後ライフサイクル責務
+
+`product-lifecycle-operations-requirements.md`を意味authorityとして、`helix-deployment`、`helix-operations`、
+`helix-maintenance`、`helix-diagnosis`の4 Module候補と`helix-lifecycle-ops` Bundle候補を登録する。Release artifact確定と
+environment Deploymentを別stateとし、provider adapter、change class、workflow routeをModule identityへ畳み込まない。
+
+4 Moduleは#1161〜#1166のschema／runtime／security境界と#1167 E2Eがgreenになるまでshadowに固定する。既存11 Moduleの
+stable判定やLite parityへ暗黙包含せず、Wave 7でHELIX dogfood、health observation、incident diagnosis、rollback／redeployment、
+main／DevOS read-afterを閉じてからpreviewへ昇格する。
+
 ## §1 非対象
 
 - HELIX-HARNESSのmodule repository分割。
 - Whole-System Synthesis Planner、全工程一括自動合成、Development Model学習。
 - #204、#206、#188、#290、#292、#1017、#176、Resident Lane、security broker本体の再実装。
 - 本要件追加だけを根拠にしたtag、publish、cutover、consumer data破壊。
+- 本要件追加だけを根拠にしたproduction deployment、cloud resource変更、secret rotation。
 
 ## §2 実装owner
 
-親Issue #1073配下の#1074〜#1086へRLS-01〜13を原子的に割り当てる。#659／#856は配布baseline owner、
-#1033はpartial synthesis observation ownerとして維持し、同義registryや別authorityを追加しない。
+親Issue #1073配下の#1074〜#1086へRLS-01〜13を原子的に割り当てる。Release後ライフサイクルは#1160〜#1167へ分離する。
+#659／#856は配布baseline owner、#1033はpartial synthesis observation owner、#410はoperation evidence ownerとして維持し、
+同義registryや別authorityを追加しない。

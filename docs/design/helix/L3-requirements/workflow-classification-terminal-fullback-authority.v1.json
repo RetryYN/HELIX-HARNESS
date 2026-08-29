@@ -1,11 +1,11 @@
 {
   "schema_version": "helix-workflow-classification-terminal-fullback-authority.v1",
   "authority_version": "1.0.0",
-  "requirements_version": "1.3.13",
+  "requirements_version": "1.3.14",
   "authority": {
     "kind": "requirements",
     "source": "docs/governance/helix-harness-requirements_v1.3.md",
-    "source_digest": "sha256:b00e0dd21defb232531ae344f76fe3ac1f3c0a895e5570b1f646f74ae82dbcb9",
+    "source_digest": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
     "sections": ["4.2.1", "4.2.3"]
   },
   "forward_slices": [

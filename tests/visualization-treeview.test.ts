@@ -8,9 +8,9 @@ import { HELIX_COPY_POINTER_COMMAND } from "../src/vscode/extension-manifest";
 import { decorateVscodeTree } from "../src/vscode/tree-decoration";
 import { buildVisualizationTreeView, type TreeViewNode } from "../src/vscode/tree-view-provider";
 
-const WORKFLOW_REGISTRY_VERSION = "1.1.5";
+const WORKFLOW_REGISTRY_VERSION = "1.1.6";
 const WORKFLOW_REGISTRY_DIGEST =
-  "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db";
+  "sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89";
 
 function typedWorkflowRoute(): Pick<
   ProjectCurrentLocationSnapshot["drive_route"],
@@ -67,7 +67,7 @@ function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
     complemented: 3,
     rejected: 1,
     missing: 0,
-    sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+    sourcePackage: "hybrid-vmodel-source.v1",
     sourceDocument: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
     docDependencies: ["docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md"],
     implementationDependencies: [
@@ -346,7 +346,7 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
     tailoring_gate: tailoringGate(),
     scrum_operation: {
       status: "active",
-      sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      sourcePackage: "hybrid-vmodel-source.v1",
       sourceBindings: [
         "zip-source:scrum-product-backlog",
         "zip-source:scrum-story-mapping",
@@ -405,7 +405,7 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
     },
     skill_binding: {
       status: "ready",
-      sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      sourcePackage: "hybrid-vmodel-source.v1",
       selectedModel: "Recovery",
       workflowModes: ["Recovery", "Scrum"],
       l12Layers: ["L3", "L7", "L12"],

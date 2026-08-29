@@ -38,7 +38,7 @@ interface DriveRunRow {
 }
 
 const WORKFLOW_REGISTRY_DIGEST =
-  "sha256:26815116aff167badab605071e73320e5269ba62c9f6545acbe9525af00259db";
+  "sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89";
 
 function typedIdentityFixtureRepo(): string {
   const root = join(tmpdir(), `helix-plan-identity-${randomUUID()}`);
@@ -78,7 +78,7 @@ ${
   identity
     ? `workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.5
+  registry_version: 1.1.6
   registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
   target_axis: workflow_model
   target_id: RETROFIT
@@ -569,7 +569,7 @@ status: draft
 layer: L7
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.5
+  registry_version: 1.1.6
   registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
   target_axis: workflow_model
   target_id: RETROFIT
@@ -598,7 +598,7 @@ dependencies:
           .get("PLAN-L7-999-typed"),
       ).toEqual({
         workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
-        workflow_registry_version: "1.1.5",
+        workflow_registry_version: "1.1.6",
         workflow_registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
         workflow_target_axis: "workflow_model",
         workflow_target_id: "RETROFIT",
@@ -622,7 +622,7 @@ status: draft
 layer: L7
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.5
+  registry_version: 1.1.6
   target_axis: workflow_model
   target_id: RETROFIT
 agent_slots:
@@ -705,7 +705,7 @@ status: draft
 layer: L7
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
-  registry_version: 1.1.5
+  registry_version: 1.1.6
   registry_source_digest: ${WORKFLOW_REGISTRY_DIGEST}
   target_axis: workflow_model
   target_id: MADE_UP
@@ -815,7 +815,7 @@ dependencies:
           .get("PLAN-L7-999-drive-run"),
       ).toEqual({
         workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
-        workflow_registry_version: "1.1.5",
+        workflow_registry_version: "1.1.6",
         workflow_registry_source_digest: WORKFLOW_REGISTRY_DIGEST,
         workflow_target_axis: "workflow_model",
         workflow_target_id: "RETROFIT",
@@ -2649,7 +2649,7 @@ dependencies:
       expect(typedDriveRun).toMatchObject({
         mode: "",
         workflow_identity_schema_version: "helix-plan-workflow-identity.v1",
-        workflow_registry_version: "1.1.5",
+        workflow_registry_version: "1.1.6",
         workflow_target_axis: "workflow_model",
         workflow_target_id: "REFACTOR",
       });

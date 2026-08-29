@@ -1,199 +1,150 @@
 ---
-title: "Development model runtime routing 詳細設計"
+title: "typed skill applicability runtime routing詳細設計"
 layer: L5
-kind: add-design
+kind: redesign
 status: draft
 created: 2026-08-01
-updated: 2026-08-01
+updated: 2026-08-26
 owner: SE / TL
 plan: PLAN-L5-83-development-model-runtime-routing
 pair_artifact: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md
 related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
 ---
 
-# Development model runtime routing 詳細設計
+# typed skill applicability runtime routing詳細設計
 
-## 1. 責務と境界
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "skill-applicability-value-object",
+      "classification": "existing_runtime",
+      "artifact_path": "src/schema/skill-applicability-registry.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "parseSkillApplicability",
+      "source_digest": "sha256:e5484076dd1b6760b20c94a192c723da0fb401ac57be9d2faeb990ddda2ed199",
+      "current_authority": true
+    },
+    {
+      "asset_id": "skill-assignment-analyzer",
+      "classification": "existing_runtime",
+      "artifact_path": "src/lint/skill-assignment.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "analyzeSkillAssignments",
+      "source_digest": "sha256:51e90fbb27dcbf9c93e5b599b4c8515cd73b82f2cc98aae373cd8613245ebc92",
+      "current_authority": true
+    },
+    {
+      "asset_id": "skill-scaffold-generator",
+      "classification": "existing_runtime",
+      "artifact_path": "src/skill-engine/scaffold.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "scaffoldSkill",
+      "source_digest": "sha256:f7086772f335ecbc8e0302b14d0525cb8a06e5a4bd2cd8d2e8884f14a38454cd",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```
 
-`development-model-runtime-routing`は、PLANとskill metadataの直交4軸を型検証し、DB、推薦、
-current-location、CLIへ同じ意味で投影する。development styleをworkflow kind、case、変更経路、専門工程、
-runtime modeから推定してはならない。
+## 0. authority変更
 
-この責務はskill本文の意味backfill（Issue #322）とactive Bun command撤去（Issue #253）を行わない。
-旧`drive_models`と`scrum_type`は既存artifactを読むcompatibility inputに限定し、current projectionを生成しない。
+本設計は、旧4 field固定案の`development_styles`、`case_driven_models`、`change_routes`、
+`specialist_processes`をcurrent authorityとして廃止する。current identityはL3
+`skill-applicability-authority.md`と`skill-applicability-registry.v1.json`が定める
+`target_axis`＋`target_id`参照であり、workflow classification registryへ存在するexact pairだけを扱う。
 
-## 2. 値オブジェクト
+旧`drive_models`、`applies_drive_models`、`matched_drive_models`、4 field固定案、`scrum_type`は
+compatibility inputまたはhistorical design sourceに限る。current DB、推薦理由、receipt、CLIへ再出力しない。
+
+## 1. 値オブジェクト
 
 ```ts
-type DevelopmentStyle =
-  | "FULL_L1_L12_V"
-  | "PRODUCTION_SCRUM"
-  | "V_DESIGN_SCRUM_IMPLEMENTATION";
-
-type CaseDrivenModel = "Discovery" | "PoC";
-
-type ChangeRoute =
-  | "Reverse"
-  | "Recovery"
-  | "Incident"
-  | "Refactor"
-  | "Retrofit"
-  | "Add-feature"
-  | "version-up"
-  | "Research";
-
-type AdmittedSpecialistProcess = string & { readonly __specialistProcess: "admitted" };
-type SpecialistProcess = "Design HARNESS" | AdmittedSpecialistProcess;
-
-type ParsedRuntimeRoutingAxes = {
-  developmentStyleCandidates: readonly DevelopmentStyle[];
-  caseDrivenModel: CaseDrivenModel | null;
-  changeRoute: ChangeRoute | null;
-  specialistProcesses: readonly SpecialistProcess[];
-  compatibilityInputs: readonly string[];
-};
-
-type RuntimeRoutingAxes = {
-  developmentStyle: DevelopmentStyle;
-  caseDrivenModel: CaseDrivenModel | null;
-  changeRoute: ChangeRoute | null;
-  specialistProcesses: readonly SpecialistProcess[];
-  compatibilityInputs: readonly string[];
+type SkillApplicabilityIdentity = {
+  target_axis: WorkflowClassificationAxis;
+  target_id: WorkflowClassificationIdentityId;
 };
 
 type SkillApplicability = {
-  layers: readonly string[];
-  developmentStyles: readonly DevelopmentStyle[];
-  caseDrivenModels: readonly CaseDrivenModel[];
-  changeRoutes: readonly ChangeRoute[];
-  specialistProcesses: readonly string[];
+  applicable_identities: readonly SkillApplicabilityIdentity[];
+  excluded_identities: readonly SkillApplicabilityIdentity[];
 };
 ```
 
-`ParsedRuntimeRoutingAxes`はparse段だけの表現である。current projection／recommendationへ渡す前に、L6正本の
-`projectWorkflowAxes(WorkflowAxisInput) => WorkflowAxisProjection`を呼び、`RuntimeRoutingAxes`へ解決する。
-style候補はexactly oneへ解決し、unknown／複合／分類衝突は`FULL_L1_L12_V`へfail-closeする。
-parse途中の未選択をcurrent projectionへ流してはならない。候補空集合はcurrent task packetとして
-non-admitとし、`projectWorkflowAxes`へ渡さずaxis加点0でfail-closeする。候補空集合をFull Vへ補完しない。
+`applicable_identities`は1件以上を必須とし、暗黙のall／Forwardを持たない。
+`excluded_identities`は0件以上で、positive集合と同一pairを持てない。各集合の重複、unknown identity、
+axis mismatch、registryで許可されないaxisを個別にfail-closeする。
 
-projection cardinalityは`developmentStyle=exactly 1`、`caseDrivenModel=0..1`、`changeRoute=0..1`、
-`specialistProcesses=0..N`とする。case／change routeの非発動はTypeScriptとcurrent JSONで`null`、
-SQLite TEXT列で空文字を正本表現とし、文字列`"none"`をcurrent値として出力しない。skill metadataでは
-`development_styles=1..3`をcurrent recommendation admissionの必須条件とする。
-旧route／layer名は`compatibilityInputs`へ隔離し、L6 `projectWorkflowAxes`がcurrent fieldへ変換しない。
-specialist processのregistry admissionとbrand付与もL6が解決し、L5 parseは未admitted文字列をcurrent projectionへ渡さない。
-L4に残る文字列`none`は移行中のcompatibility inputとしてだけ読み、case／change routeのcurrent projectionでは
-`null`へ正規化する。`none`をcurrent enum、DB token、CLI receiptへ再出力しない。
+## 2. registry loader検証
 
-## 3. Authoring／parse契約
+`src/schema/skill-applicability-registry.ts`が次を一度に検証する。
 
-### 3.1 PLAN frontmatter
+1. skill applicability registryのschema versionとrequirements source digest。
+2. workflow classification registryのversionとsource digest。
+3. legacy conversion targetがcurrent classification registryの同一axisに実在すること。
+4. current contractがlegacy identityを出力せず、default、重複、極性衝突をfail-closeすること。
 
-current fieldは`development_style`、`case_driven_model`、`change_route`、`specialist_processes`とする。
-既存PLANの段階移行中はoptional parseを許すが、欠落をplan ID、`kind`、`route_mode`、`workflow_phase`から
-補完しない。current task packetとしてadmitする場合だけL6 `projectWorkflowAxes`へ候補を渡し、styleを
-exactly oneへfail-close解決する。compatibility-only PLANをcurrent recommendation入力へ昇格させない。
-新規PLAN template／generatorは4 fieldを明示出力する。
+片方のregistryだけがgreenでも受理しない。classification version-up時はskill applicability registryを
+同一migration transactionで再束縛する。
 
-`kind=poc`と`workflow_phase=S0..S4`はDiscovery／PoC case lifecycleでありScrum phaseではない。
-currentの仮説分類は任意`case_type`へ置く。旧`scrum_type`はparseできるが、S3/S4の必須条件、
-current receipt、DB projection、推薦理由へ使わない。
+## 3. authoringとcompatibility
 
-### 3.2 skillメタデータ
-
-current `applies_to`は次を使う。
+current skill metadataは次だけを生成する。
 
 ```yaml
 applies_to:
   layers: [L5, L8]
-  development_styles: [FULL_L1_L12_V, PRODUCTION_SCRUM, V_DESIGN_SCRUM_IMPLEMENTATION]
-  case_driven_models: [Discovery, PoC]
-  change_routes: [Add-feature]
-  specialist_processes: []
+  applicable_identities:
+    - { target_axis: development_style, target_id: PRODUCTION_SCRUM }
+    - { target_axis: case_driven_model, target_id: DISCOVERY_POC }
+  excluded_identities:
+    - { target_axis: workflow_model, target_id: INCIDENT }
 ```
 
-旧`drive_models`はcompatibility parserが妥当性検査にだけ使用する。`development_styles`欠落skillは
-`compatibility_only`であり、legacy値を変換してcurrent recommendationへ入れない。`SKILL_MAP.md`は
-`compatibility_index`として非recommendableを維持する。
+旧`drive_models`はcompatibility adapterだけが読む。一意変換可能tokenはtyped pairへ一方向変換し、
+`source_field`、`normalized_token`、warningを残す。`Forward`、`Scrum`は曖昧として拒否し、unknown tokenも
+推測しない。legacy-only skillは#322のbackfill完了までcurrent recommendation候補へ昇格しない。
+
+`helix skill create`のcurrent入力は`--applicable target_axis:target_id`と任意の`--exclude`である。
+`--drive-models`はcompatibility input-onlyとして一意tokenだけを変換し、typed入力との併記、`Forward`／`Scrum`、
+unknown tokenをfail-closeする。scaffoldは変換元tokenをmetadataへ残さずtyped pairだけを生成する。
 
 ## 4. DB projection
 
-`plan_registry`へ次の列を追加する。
+`automation_assets`のcurrent projectionはregistry version／digestとpositive／negative identity集合を保持する。
+identity集合は`target_axis`、`target_id`、polarityを行単位で正規化し、CSVや単一model fieldへ畳み込まない。
+旧`applies_drive_models`列はmigration中に物理保持できるが、current query、search token、recommendation、
+current-location、receiptの入力に使わない。
 
-- `development_style`
-- `case_driven_model`
-- `change_route`
-- `specialist_processes`
+## 5. recommendation
 
-`automation_assets`へ次の列を追加する。
+task／PLAN側のtyped workflow identityとskill applicability pairをexact照合する。positive一致だけを候補理由にし、
+negative一致は候補から除外する。別axis一致で不一致を相殺せず、legacy token一致は0点である。
+receiptはclassification registry version／digest、matched typed pair、excluded typed pairだけを返す。
 
-- `applies_development_styles`
-- `applies_case_driven_models`
-- `applies_change_routes`
-- `applies_specialist_processes`
+## 6. current-location／CLI出力
 
-配列はtrim、重複除去、lexicographic sort後のCSVとする。旧`applies_drive_models`列はmigration互換のため
-物理schemaに残せるが、current rebuildでは空文字を記録し、current query、search token、recommendation、
-current-location、CLI responseへ選択しない。schema revisionを1だけ進め、rebuild/replayの同一digestを要求する。
+JSONとtextは`matched_identities`、`source_applicable_identities`、`source_excluded_identities`を返す。
+各itemは`target_axis`と`target_id`を保持し、`matched_drive_models`、`source_drive_models`、
+`selected_model`、`workflow_modes`をskill binding current responseへ出力しない。
 
-## 5. Recommendation契約
+## 7. 実装順
 
-推薦入力は`RuntimeRoutingAxes + layer + technical drive + kind`である。technical `drive`は専門職選択であり、
-skill applicability axisではない。
+1. requirements-owned registry loaderとtyped value object。
+2. skill assignment schema／scaffoldをtyped metadataへ切替。
+3. normalized DB projectionとrebuild／replay。
+4. recommendation、current-location、visualization、CLI／JSONをtyped pairへ切替。
+5. compatibility adapterをinput-onlyへ隔離。
+6. #322でcurrent skill metadataをexact backfill。
+7. #243でauthoringからcompletionまでread-afterする。
 
-1. `applies_development_styles`が空のskillをcurrent candidateから除外する。
-2. development style一致、case一致、change route一致、specialist intersection、layer一致を独立加点する。
-3. 不一致fieldを別axis一致で相殺しない。特に旧`drive_models`一致は0点である。
-4. reason／receiptは`development_style`、`case_driven_model`、`change_route`、
-   `specialist_processes`、`layer`だけを出し、`drive_model`を出さない。
-5. PLANに4軸が無ければ暗黙推定せず、axis加点0でfail-closeする。
+## 8. 非対象
 
-## 6. Current-location／CLI契約
-
-`ProjectSkillBinding`はL6 `WorkflowAxisProjection`と同型の`routingAxes`を持ち、itemは次を返す。
-
-- `matchedDevelopmentStyles` / `sourceDevelopmentStyles`
-- `matchedCaseDrivenModels` / `sourceCaseDrivenModels`
-- `matchedChangeRoutes` / `sourceChangeRoutes`
-- `matchedSpecialistProcesses` / `sourceSpecialistProcesses`
-- `matchedLayers` / `sourceLayers`
-
-JSONは対応するsnake_case fieldを返す。`selected_model`、`workflow_modes`、`matched_drive_models`、
-`source_drive_models`をskill-binding current responseへ出力しない。projectのhistorical drive-model view自体は
-別責務として残せるが、sourceはcompatibility parserが原artifactから得たread-only材料に限る。
-空文字化したcurrent DB列をsourceにせず、skill選択のcurrent authorityにしてはならない。
-
-## 7. 実装exact inventory
-
-| owner | path | 変更責務 |
-|---|---|---|
-| field schema | `src/schema/index.ts` | 4軸とcase typeのenum |
-| PLAN parser | `src/schema/frontmatter.ts` | current field parse、PoC／scrum_type分離 |
-| skill検査 | `src/lint/skill-assignment.ts` | current／compatibilityの区分 |
-| authoring | `src/skill-engine/scaffold.ts` | current fieldだけ生成 |
-| CLI作成／receipt | `src/cli.ts` | current option／JSON field |
-| asset projection | `src/assets/catalog.ts` | current metadata列 |
-| recommendation | `src/skills/recommend.ts` | 4軸scoreとlegacy polarity |
-| DB schema | `src/schema/harness-db.ts` | schema revision |
-| DB tables | `src/schema/harness-db-tables-core.ts` | PLAN／asset current列 |
-| 再構築 | `src/state-db/projection-writer.ts` | current PLAN／asset／recommendationの投影 |
-| 現在位置 | `src/state-db/current-location.ts` | current skillの束縛 |
-| 表示契約 | `src/schema/visualization-current-location-contract.ts` | current JSON schema |
-| 表示モデル | `src/state-db/visualization-view-model.ts` | current fieldの写像 |
-| tree表示 | `src/vmodel/visualization-tree-projector.ts` | current fieldのlabel |
-| oracle | 既存の対応test | exact-set／polarity／legacy-output mutation |
-
-この14 source外の責務が必要になった場合は現在PRへ混載せずsuccessor Issueへ送る。
-
-## 8. 状態遷移とerror
-
-| 入力 | disposition | current recommendation | error/finding |
-|---|---|---:|---|
-| current field valid | `current` | 可 | なし |
-| current field unknown | `invalid_current` | 不可 | unknown field value |
-| `development_styles`欠落、legacyあり | `compatibility_only` | 不可 | backfill pending (#322) |
-| current/legacy両方欠落 | `invalid_current` | 不可 | missing current applicability |
-| legacy unknown | `invalid_compatibility` | 不可 | unknown legacy value |
-| `SKILL_MAP.md` | `compatibility_index` | 不可 | なし |
-
-current DB／CLIにlegacy fieldが1件でも出た場合、またはlegacy-only skillが推薦された場合はfail-closeする。
+- #188 switching／routing／allocation。
+- #635 workflow guide生成。
+- HELIX-Benchによるtask適性推定。
+- resident lane、provider selection、execution modeの再設計。

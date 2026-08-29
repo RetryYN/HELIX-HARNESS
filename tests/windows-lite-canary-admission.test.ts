@@ -63,6 +63,22 @@ function binding() {
 }
 
 describe("Windows Lite canary admission policy／lease binding", () => {
+  for (const oracleId of [
+    "U-WLCA-002",
+    "U-WLCA-003",
+    "U-WLCA-004",
+    "U-WLCA-006",
+    "U-WLCA-007",
+    "U-WLCA-008",
+    "U-WLCA-010",
+    "U-WLCA-011",
+    "U-WLCA-012",
+    "U-WLCA-013",
+    "U-WLCA-015",
+  ]) {
+    it.todo(`${oracleId}: 後続queue／expiry／measurement sliceで実装する`);
+  }
+
   it("U-WLCA-001: exact policy schemaとbound／TTL関係だけを受理する", () => {
     const valid = validateWindowsCanaryAdmissionPolicy(policy());
     expect(valid.ok).toBe(true);
