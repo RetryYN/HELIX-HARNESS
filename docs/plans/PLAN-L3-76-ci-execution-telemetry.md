@@ -2,7 +2,7 @@
 plan_id: PLAN-L3-76-ci-execution-telemetry
 title: "PLAN-L3-76: CI execution telemetryと証明責務baselineを実装する"
 kind: add-impl
-layer: L3
+layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
