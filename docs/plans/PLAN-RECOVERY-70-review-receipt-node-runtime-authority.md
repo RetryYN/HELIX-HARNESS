@@ -72,7 +72,7 @@ modifies:
   - { artifact_path: tests/node-engine-runtime.test.ts, artifact_type: test_code }
 ---
 
-# review receipt Node runtime authority recovery
+# review receiptのNode runtime authority復旧
 
 PR #1140で、同一HEADのreview receiptをNode22、Ready CIをNode24で生成した結果、logical DB digestが
 一致せずmerge admissionが停止した。本PLANはDB digestを緩めず、不正runtime側のreceipt writeを入口で拒否する。
