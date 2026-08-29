@@ -4,7 +4,7 @@ title: "PLAN-L7-698: CLI workflow identity projectionをtyped authorityへ移行
 kind: impl
 layer: L7
 drive: fullstack
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1125 CLI legacy workflow output convergence"
 created: 2026-08-28
-updated: 2026-08-28
+updated: 2026-08-29
 owner: Codex / TL
 github_issue_id: 1125
 behavior_contract_id: CLI-TYPED-WORKFLOW-IDENTITY-001
