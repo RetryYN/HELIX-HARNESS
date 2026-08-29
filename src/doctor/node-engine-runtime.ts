@@ -124,6 +124,35 @@ export function nodeEngineRuntimeMessages(result: NodeEngineRuntimeResult): stri
   );
 }
 
+/**
+ * 証拠を書き込むcommand boundary向けのhard gate。
+ *
+ * doctorはfindingを集約するためresultを返すが、review receiptのような外部証拠writeは
+ * 範囲外runtimeで一行も書いてはならない。既存のrange解釈を再利用し、呼出側が検査を
+ * 忘れたりwarningへ降格したりできないthrow境界を提供する。
+ */
+export function assertNodeEngineRuntimeAuthority(
+  repoRoot: string = process.cwd(),
+  runtimeVersion: string = process.version,
+): NodeEngineRuntimeResult {
+  let declaredRange: string | null;
+  try {
+    const manifest = JSON.parse(
+      readFileSync(resolve(repoRoot, "package.json"), "utf8"),
+    ) as Partial<{ engines: { node?: string } }>;
+    declaredRange = manifest.engines?.node ?? null;
+  } catch (error) {
+    const failure = new Error("node_engine_runtime_authority_read_failed", { cause: error });
+    throw failure;
+  }
+  const result = analyzeNodeEngineRuntime({ runtimeVersion, declaredRange });
+  if (!result.ok) {
+    const codes = result.findings.map((finding) => finding.code).join(",");
+    throw new Error(`node_engine_runtime_authority_rejected:${codes}`);
+  }
+  return result;
+}
+
 export function checkNodeEngineRuntime(repoRoot: string = process.cwd()): {
   messages: string[];
   ok: boolean;
