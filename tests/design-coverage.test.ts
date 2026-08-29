@@ -338,6 +338,9 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     const detailedDesign = input.catalog?.items.find((item) => item.id === "detailed-design");
     expect(requirementSpec, "catalog に requirement-spec item がある").toBeDefined();
     expect(requirementSpec?.artifact).toContain(docPath);
+    expect(requirementSpec?.artifact).toContain(
+      "docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+    );
     expect(detailedDesign?.artifact).toContain(
       "docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md",
     );
