@@ -78,6 +78,11 @@ describe("node engine runtime gate", () => {
         "node_engine_runtime_authority_rejected:node_engine_runtime_out_of_range",
       );
       expect(assertNodeEngineRuntimeAuthority(root, "v24.15.0")).toMatchObject({ ok: true });
+
+      writeFileSync(join(root, "package.json"), `${JSON.stringify({})}\n`);
+      expect(() => assertNodeEngineRuntimeAuthority(root, "v24.15.0")).toThrow(
+        "node_engine_runtime_authority_rejected:node_engine_declaration_missing",
+      );
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

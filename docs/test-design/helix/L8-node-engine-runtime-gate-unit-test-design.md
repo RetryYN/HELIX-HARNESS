@@ -26,7 +26,7 @@ pair_artifact: docs/design/helix/L6-function-design/node-engine-runtime-gate.md
 | U-NODEENG-003 | range解釈 | caret・tilde・OR結合・x-range・latest と壊れたruntime表記を`node_engine_range_unsupported`で閉じる | `tests/node-engine-runtime.test.ts` |
 | U-NODEENG-004 | version正規化 | `v24.15.0` / `24.15` / `24` を正規化し、prerelease表記を受理しない | `tests/node-engine-runtime.test.ts` |
 | U-NODEENG-005 | comparator解釈 | comparator列をAND連結として解釈し、演算子省略を完全一致として扱う | `tests/node-engine-runtime.test.ts` |
-| U-NODEENG-006 | evidence write hard gate | Node22.23.1を固有failureでthrowし、Node24.15.0だけを受理する | `tests/node-engine-runtime.test.ts` |
+| U-NODEENG-006 | evidence write hard gate | Node22.23.1と`engines.node`宣言欠落を固有failureでthrowし、宣言済みNode24.15.0だけを受理する | `tests/node-engine-runtime.test.ts` |
 | U-NODEENG-007 | receipt配線順序 | runtime authority検査がinput解析、slot claim、GitHub操作より前に存在する | `tests/node-engine-runtime.test.ts` |
 
 ## §1 検出力（mutation実測）
