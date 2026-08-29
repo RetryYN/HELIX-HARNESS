@@ -141,8 +141,9 @@ export function assertNodeEngineRuntimeAuthority(
       readFileSync(resolve(repoRoot, "package.json"), "utf8"),
     ) as Partial<{ engines: { node?: string } }>;
     declaredRange = manifest.engines?.node ?? null;
-  } catch {
-    throw new Error("node_engine_runtime_authority_read_failed");
+  } catch (error) {
+    const failure = new Error("node_engine_runtime_authority_read_failed", { cause: error });
+    throw failure;
   }
   const result = analyzeNodeEngineRuntime({ runtimeVersion, declaredRange });
   if (!result.ok) {
