@@ -4,9 +4,9 @@ layer: L8
 executed_at_layer: L7
 sub_doc: unit-test-design
 artifact_type: test_design
-status: draft
+status: confirmed
 created: 2026-08-21
-updated: 2026-08-21
+updated: 2026-08-29
 owner: QA / TL
 plan: docs/plans/PLAN-L7-643-node-engine-runtime-gate.md
 pair_artifact: docs/design/helix/L6-function-design/node-engine-runtime-gate.md
@@ -26,6 +26,8 @@ pair_artifact: docs/design/helix/L6-function-design/node-engine-runtime-gate.md
 | U-NODEENG-003 | range解釈 | caret・tilde・OR結合・x-range・latest と壊れたruntime表記を`node_engine_range_unsupported`で閉じる | `tests/node-engine-runtime.test.ts` |
 | U-NODEENG-004 | version正規化 | `v24.15.0` / `24.15` / `24` を正規化し、prerelease表記を受理しない | `tests/node-engine-runtime.test.ts` |
 | U-NODEENG-005 | comparator解釈 | comparator列をAND連結として解釈し、演算子省略を完全一致として扱う | `tests/node-engine-runtime.test.ts` |
+| U-NODEENG-006 | evidence write hard gate | Node22.23.1を固有failureでthrowし、Node24.15.0だけを受理する | `tests/node-engine-runtime.test.ts` |
+| U-NODEENG-007 | receipt配線順序 | runtime authority検査がinput解析、slot claim、GitHub操作より前に存在する | `tests/node-engine-runtime.test.ts` |
 
 ## §1 検出力（mutation実測）
 
@@ -45,4 +47,4 @@ pair_artifact: docs/design/helix/L6-function-design/node-engine-runtime-gate.md
 
 - failure code: `node_engine_declaration_missing` / `node_engine_range_unsupported` /
   `node_engine_runtime_out_of_range` の exact 3 件。
-- oracle: `U-NODEENG-001`〜`U-NODEENG-005` の exact 5 件。
+- oracle: `U-NODEENG-001`〜`U-NODEENG-007` の exact 7 件。
