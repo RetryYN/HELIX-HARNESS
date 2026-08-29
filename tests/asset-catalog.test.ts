@@ -3,6 +3,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { catalogAutomationAssets } from "../src/assets/catalog";
+import {
+  loadSkillApplicabilityRegistry,
+  skillApplicabilityRegistrySourceDigest,
+} from "../src/schema/skill-applicability-registry";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate, rowCounts } from "../src/state-db/migration";
 
@@ -80,15 +84,27 @@ describe("IT-ASSET-DB-01: automation asset catalog", () => {
       expect(
         db
           .prepare(
-            `SELECT target_axis, target_id, polarity
+            `SELECT registry_version, registry_source_digest, target_axis, target_id, polarity
              FROM automation_asset_applicability
              WHERE asset_id = ?
              ORDER BY polarity DESC`,
           )
           .all("skill:review-checklist"),
       ).toEqual([
-        { target_axis: "workflow_model", target_id: "INCIDENT", polarity: "excluded" },
-        { target_axis: "workflow_model", target_id: "REVERSE", polarity: "applicable" },
+        {
+          registry_version: loadSkillApplicabilityRegistry().registry_version,
+          registry_source_digest: skillApplicabilityRegistrySourceDigest(),
+          target_axis: "workflow_model",
+          target_id: "INCIDENT",
+          polarity: "excluded",
+        },
+        {
+          registry_version: loadSkillApplicabilityRegistry().registry_version,
+          registry_source_digest: skillApplicabilityRegistrySourceDigest(),
+          target_axis: "workflow_model",
+          target_id: "REVERSE",
+          polarity: "applicable",
+        },
       ]);
       expect(
         db
