@@ -37,6 +37,36 @@ red_test: "U-CLIWI-001..003を先行追加し、drive model／recovery current o
 red_at: "2026-08-28T22:07:04+09:00"
 green_at: "2026-08-28T22:34:55+09:00"
 mutation_oracle_evidence: "2026-08-28T22:07:04+09:00にcurrent main bddf9029fでtests/cli-workflow-identity-projection.test.tsのU-CLIWI-001／002がtyped tuple欠落を2 failedとしてRed固定した。実装後、JSON／summary／textの6実CLI経路を含む4 testsが2026-08-28T22:34:55+09:00にgreen。2026-08-28T22:35:36+09:00にreceipt target_id exact照合を除去するmutationを実測し、U-CLIWI-004が1 failed（exit 1）でkillした後に照合を復元した。Claude pre-reviewのfindingを受け、2026-08-29T17:56:30+09:00にemit_legacy_identity条件を除去するmutationを実測し、新しい単独反例が1 failed／3 passedでkillした後に条件を復元した。U-CLIWI-003はlegacy drive_model＋selected_model seedのexact pathを継続検出する。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-29T08:52:07Z"
+    tests_green_at: "2026-08-29T08:52:07Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: 4281ba76-20e0-4183-ac2b-9964c44cfd02
+    reviewed_head_sha: 527d1354a0c3190f224543ffa3696b8e03bef86c
+    scope: "PR #1159 HEAD 527d1354a0c3190f224543ffa3696b8e03bef86cをClaude Codeが独立pre-reviewし、typed tuple、legacy current output禁止、scope、digest、feedback disposition、fail-closeを確認した。blocker 0、non-blocker 3で、emit_legacy_identity反例とL8の過大な個別固定表現は後続HEAD 94e1f2dda93cefa0756e440a88dfce6297040d6aで是正した。これはpre-review証跡であり、current exact-HEAD最終receiptを代替しない。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1159#issuecomment-5461399890"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/cli-workflow-identity-projection.test.ts tests/current-location.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-29T08:52:07Z"
+        evidence_path: tests/cli-workflow-identity-projection.test.ts
+        output_digest: "sha256:8bcb536277b22233f9bb12f4643d4a5efb0709e7ec01cf1c5137856b4c2b16b1"
+        result: "reviewer実測26 tests passed、復元後worktree clean"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-29T08:52:07Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-29T08:52:07Z"
+    evidence_digest: "sha256:cc1ddf7f1701cd13191f52d22fe1da45c8293370c33ac8490b37fba2d9769caa"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "CLIごとのlegacy model projectionを既存current-location typed receipt由来の単一value objectへ集約する"
 removal_trigger: "CLI current outputのlegacy workflow identity consumerが0となりinput-only adapter retention期限が満了した時"
