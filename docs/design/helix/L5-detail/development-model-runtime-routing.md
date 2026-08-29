@@ -13,6 +13,44 @@ related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
 
 # typed skill applicability runtime routing詳細設計
 
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "skill-applicability-value-object",
+      "classification": "existing_runtime",
+      "artifact_path": "src/schema/skill-applicability-registry.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "parseSkillApplicability",
+      "source_digest": "sha256:e5484076dd1b6760b20c94a192c723da0fb401ac57be9d2faeb990ddda2ed199",
+      "current_authority": true
+    },
+    {
+      "asset_id": "skill-assignment-analyzer",
+      "classification": "existing_runtime",
+      "artifact_path": "src/lint/skill-assignment.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "analyzeSkillAssignments",
+      "source_digest": "sha256:51e90fbb27dcbf9c93e5b599b4c8515cd73b82f2cc98aae373cd8613245ebc92",
+      "current_authority": true
+    },
+    {
+      "asset_id": "skill-scaffold-generator",
+      "classification": "existing_runtime",
+      "artifact_path": "src/skill-engine/scaffold.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "scaffoldSkill",
+      "source_digest": "sha256:f7086772f335ecbc8e0302b14d0525cb8a06e5a4bd2cd8d2e8884f14a38454cd",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```
+
 ## 0. authority変更
 
 本設計は、旧4 field固定案の`development_styles`、`case_driven_models`、`change_routes`、
@@ -71,6 +109,10 @@ applies_to:
 `source_field`、`normalized_token`、warningを残す。`Forward`、`Scrum`は曖昧として拒否し、unknown tokenも
 推測しない。legacy-only skillは#322のbackfill完了までcurrent recommendation候補へ昇格しない。
 
+`helix skill create`のcurrent入力は`--applicable target_axis:target_id`と任意の`--exclude`である。
+`--drive-models`はcompatibility input-onlyとして一意tokenだけを変換し、typed入力との併記、`Forward`／`Scrum`、
+unknown tokenをfail-closeする。scaffoldは変換元tokenをmetadataへ残さずtyped pairだけを生成する。
+
 ## 4. DB projection
 
 `automation_assets`のcurrent projectionはregistry version／digestとpositive／negative identity集合を保持する。
@@ -106,25 +148,3 @@ JSONとtextは`matched_identities`、`source_applicable_identities`、`source_ex
 - #635 workflow guide生成。
 - HELIX-Benchによるtask適性推定。
 - resident lane、provider selection、execution modeの再設計。
-
-## 9. 設計実在性束縛
-
-<!-- HELIX:design-reality-binding:v1 -->
-```json
-{
-  "schema_version": "helix-design-reality-binding.v1",
-  "declared_failure_codes": [],
-  "assets": [
-    {
-      "asset_id": "skill-applicability-registry-loader",
-      "classification": "existing_runtime",
-      "artifact_path": "src/schema/skill-applicability-registry.ts",
-      "resource_kind": "typescript_export",
-      "resource_name": "loadSkillApplicabilityRegistry",
-      "source_digest": "sha256:5e1fd8e1935b702ff1e2f97542e92d2c56b547a677023ad58a70e377b62ab684",
-      "current_authority": true
-    }
-  ],
-  "failure_reachability": []
-}
-```

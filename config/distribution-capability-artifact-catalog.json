@@ -22,6 +22,8 @@
         "config/workflow-execution-policy.v1.json",
         "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
         "docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
+        "docs/design/helix/L3-requirements/skill-applicability-authority.md",
+        "docs/design/helix/L3-requirements/skill-applicability-registry.v1.json",
         "src/schema/workflow-classification-catalog.ts",
         "src/schema/workflow-classification-registry.ts",
         "src/schema/workflow-execution-policy-projection.ts",
