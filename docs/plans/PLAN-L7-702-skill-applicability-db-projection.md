@@ -4,7 +4,7 @@ title: "PLAN-L7-702 (refactor): typed skill applicability DB projection"
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -36,6 +36,36 @@ tdd_red_required: true
 red_at: "2026-08-29T17:28:53+09:00"
 green_at: "2026-08-29T17:29:52+09:00"
 mutation_oracle_evidence: "2026-08-29T17:31:36+09:00にexcluded行のpolarityをapplicableへ弱め、tests/asset-catalog.test.tsが1 failed／1 passedでkillした。自主再監査でincremental catalog時のstale row残存を検出し、legacy-only metadataへ変更する反例とasset単位のexact replaceを追加した。2026-08-29T18:15:01+09:00にDELETEを除去するmutationが旧2行残存を1 failed／1 passedでkillし、復元後にtargeted testsとtypecheckを再実行した。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-29T09:33:21Z"
+    tests_green_at: "2026-08-29T09:33:21Z"
+    verdict: approve
+    worker_model: gpt-5.4-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: 4281ba76-20e0-4183-ac2b-9964c44cfd02
+    reviewed_head_sha: 75e7666a2be056db8b9c963b53eaac086b7bff9e
+    scope: "PR #1213 exact HEAD 75e7666a2be056db8b9c963b53eaac086b7bff9eをClaude Codeが独立pre-reviewし、normalized DB projection、registry digest、polarity、legacy-only非昇格、incremental exact replaceを確認した。独立mutationはM1／M2／M3／M5をkill、M4はschemaが同一identityの両polarityを禁止するためequivalentと判定。blocker 0、non-blocker 2はcatalog全体のorphan pruneとしてIssue #1218へ分離した。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1213#issuecomment-5461571471"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/asset-catalog.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-29T09:33:21Z"
+        evidence_path: tests/asset-catalog.test.ts
+        output_digest: "sha256:abfaf73abe13c6da7dd9f5c00024c833f1124bf71832d08fb6e9e1b36cf37682"
+        result: "reviewer実測2 passed、4 non-equivalent mutations killed、復元後worktree clean"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-29T09:33:21Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-29T09:33:21Z"
+    evidence_digest: "sha256:755d2b4bb96745a5cb2450dd179186f9a575b251f9c7f56a1aa6c1f3a8f52ef2"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "旧model CSVを増築せず、既存typed value objectから単一のnormalized projectionを生成する。"
 removal_trigger: "automation_assetsのlegacy applies_drive_models列と全consumerがretireされた時"
@@ -63,6 +93,7 @@ dependencies:
   parent: docs/plans/PLAN-L5-83-development-model-runtime-routing.md
   requires: [docs/plans/PLAN-L7-678-skill-applicability-value-object.md]
   blocks: [issue:322, issue:243]
+  references: ["issue:1218"]
 ---
 
 # typed skill applicability DB projection実装
