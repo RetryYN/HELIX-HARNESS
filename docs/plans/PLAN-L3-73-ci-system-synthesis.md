@@ -59,7 +59,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-73-ci-system-synthesis.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/ci-system-synthesis-acceptance.md, artifact_type: test_design }
-  - { artifact_path: tests/ci-system-synthesis-requirements.test.ts, artifact_type: test_code }
 modifies: []
 ---
 
