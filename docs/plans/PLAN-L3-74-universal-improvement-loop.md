@@ -61,7 +61,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-74-universal-improvement-loop.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/universal-improvement-loop-acceptance.md, artifact_type: test_design }
-  - { artifact_path: tests/universal-improvement-loop-requirements.test.ts, artifact_type: test_code }
 ---
 
 # Universal Improvement Loop authorityのfreeze
