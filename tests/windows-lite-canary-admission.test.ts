@@ -2,11 +2,15 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { sha256Digest } from "../src/runtime/digest";
 import {
+  evaluateWindowsCanaryCompletion,
+  evaluateWindowsCanaryLease,
+  evaluateWindowsCanaryQueue,
   validateWindowsCanaryAdmissionPolicy,
   validateWindowsCanaryLeaseBinding,
 } from "../src/runtime/windows-lite-canary-admission";
 
 // PLAN-L7-696-windows-canary-policy-lease / Issue #1134
+// PLAN-L7-697-windows-canary-queue-expiry / Issue #1135
 
 const HEAD = "a".repeat(40);
 const digest = (seed: string) => sha256Digest(seed);
@@ -23,6 +27,18 @@ function policy() {
     heartbeat_interval_ms: 30_000,
     backpressure_disposition: "retryable",
     measurement_window: { window_id: "rolling-100", sample_limit: 100 },
+  };
+}
+
+function queueBinding(seed: string, overrides: Record<string, unknown> = {}) {
+  return {
+    ...binding(),
+    assignment_id: `assignment-${seed}`,
+    pr_number: Number(seed),
+    run_id: `run-${seed}`,
+    lease_id: `lease-${seed}`,
+    correlation_id: `correlation-${seed}`,
+    ...overrides,
   };
 }
 
@@ -179,5 +195,249 @@ describe("Windows Lite canary admission policy／lease binding", () => {
     expect(reorderedBinding.ok).toBe(true);
     if (!reorderedBinding.ok) throw new Error(reorderedBinding.failure_code);
     expect(reorderedBinding.binding_digest).toBe(bindingResult.binding_digest);
+  });
+});
+
+describe("Windows Lite canary bounded queue／expiry", () => {
+  it("bounded queueの統合挙動を決定的に評価する", () => {
+    const first = queueBinding("1");
+    const second = queueBinding("2");
+    const admitted = evaluateWindowsCanaryQueue({
+      policy: policy(),
+      state: { state_known: true, active: [first], waiting: [] },
+      candidate: second,
+    });
+    expect(admitted.ok).toBe(true);
+    if (!admitted.ok) throw new Error(admitted.failure_code);
+    expect(admitted.disposition).toBe("queued");
+    expect(admitted.waiting.map((item) => item.assignment_id)).toEqual(["assignment-2"]);
+
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: { ...policy(), max_waiting: 1 },
+        state: { state_known: true, active: [queueBinding("7")], waiting: [first] },
+        candidate: second,
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_QUEUE_BACKPRESSURED" });
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: true, active: [first], waiting: [] },
+        candidate: second,
+      }),
+    ).toMatchObject({ ok: true, disposition: "queued" });
+  });
+
+  it("duplicateと不確実stateをfail-closeする", () => {
+    const candidate = queueBinding("3");
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: false, active: [], waiting: [] },
+        candidate,
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" });
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: true, active: [candidate], waiting: [] },
+        candidate,
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_DUPLICATE_ASSIGNMENT" });
+  });
+
+  it("expiry、heartbeat、owner、fenceをcurrent snapshotへ照合する", () => {
+    const current = queueBinding("4");
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current,
+        observed_at: "2026-08-28T07:31:00.000Z",
+        last_heartbeat_at: "2026-08-28T07:30:45.000Z",
+      }),
+    ).toMatchObject({ ok: true });
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current,
+        observed_at: current.expires_at,
+        last_heartbeat_at: "2026-08-28T07:31:59.000Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" });
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current: { ...current, fence_token: current.fence_token + 1 },
+        observed_at: "2026-08-28T07:31:00.000Z",
+        last_heartbeat_at: "2026-08-28T07:30:45.000Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STALE_FENCE" });
+  });
+
+  it("completionをHEAD／artifact／profile／attemptへexact bindする", () => {
+    const current = queueBinding("5");
+    expect(
+      evaluateWindowsCanaryCompletion({ expected: current, completed: current }),
+    ).toMatchObject({
+      ok: true,
+    });
+    for (const completed of [
+      { ...current, candidate_head: "b".repeat(40) },
+      { ...current, linux_artifact_digest: digest("other") },
+      { ...current, profile_digest: digest("other-profile") },
+      { ...current, run_attempt: 2 },
+      { ...current, expires_at: "2026-08-28T07:33:00.000Z" },
+    ]) {
+      expect(evaluateWindowsCanaryCompletion({ expected: current, completed })).toEqual({
+        ok: false,
+        failure_code: "WINDOWS_CANARY_COMPLETION_BINDING_MISMATCH",
+      });
+    }
+  });
+
+  it("U-WLCA-015: policy failureを後段のqueue successで相殺しない", () => {
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: { ...policy(), max_active: 0 },
+        state: { state_known: true, active: [], waiting: [] },
+        candidate: queueBinding("6"),
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_POLICY_INVALID" });
+  });
+
+  it("U-WLCA-002: active bound到達時はcandidateをwaitingへ送る", () => {
+    const result = evaluateWindowsCanaryQueue({
+      policy: policy(),
+      state: { state_known: true, active: [queueBinding("21")], waiting: [] },
+      candidate: queueBinding("22"),
+    });
+    expect(result).toMatchObject({ ok: true, disposition: "queued" });
+  });
+
+  it("U-WLCA-003: waiting bound到達時はbackpressureする", () => {
+    const result = evaluateWindowsCanaryQueue({
+      policy: { ...policy(), max_waiting: 1 },
+      state: { state_known: true, active: [queueBinding("23")], waiting: [queueBinding("24")] },
+      candidate: queueBinding("25"),
+    });
+    expect(result).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_QUEUE_BACKPRESSURED" });
+  });
+
+  it("U-WLCA-004: duplicate assignmentを拒否する", () => {
+    const candidate = queueBinding("26");
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: true, active: [candidate], waiting: [] },
+        candidate,
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_DUPLICATE_ASSIGNMENT" });
+  });
+
+  it("U-WLCA-006: expiryとpolicy由来heartbeat interval超過を拒否する", () => {
+    const current = queueBinding("27");
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current,
+        observed_at: "2026-08-28T07:29:59.999Z",
+        last_heartbeat_at: "2026-08-28T07:29:59.999Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" });
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current,
+        observed_at: "2026-08-28T07:30:10.000Z",
+        last_heartbeat_at: "2026-08-28T07:29:59.999Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" });
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current,
+        observed_at: current.expires_at,
+        last_heartbeat_at: current.issued_at,
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" });
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: { ...policy(), heartbeat_interval_ms: 30_000 },
+        binding: current,
+        current,
+        observed_at: "2026-08-28T07:31:00.001Z",
+        last_heartbeat_at: "2026-08-28T07:30:30.000Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" });
+  });
+
+  it("U-WLCA-007: stale fenceを拒否する", () => {
+    const current = queueBinding("28");
+    expect(
+      evaluateWindowsCanaryLease({
+        policy: policy(),
+        binding: current,
+        current: { ...current, fence_token: 8 },
+        observed_at: "2026-08-28T07:31:00.000Z",
+        last_heartbeat_at: "2026-08-28T07:30:45.000Z",
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STALE_FENCE" });
+  });
+
+  it("U-WLCA-008: leaseとcompletionのwrong bindingを拒否する", () => {
+    const current = queueBinding("29");
+    for (const stale of [
+      { ...current, assignment_id: "assignment-other" },
+      { ...current, candidate_head: "b".repeat(40) },
+      { ...current, linux_artifact_digest: digest("wrong") },
+      { ...current, profile_digest: digest("wrong-profile") },
+      { ...current, run_attempt: current.run_attempt + 1 },
+    ]) {
+      expect(
+        evaluateWindowsCanaryLease({
+          policy: policy(),
+          binding: stale,
+          current,
+          observed_at: "2026-08-28T07:31:00.000Z",
+          last_heartbeat_at: "2026-08-28T07:30:45.000Z",
+        }),
+      ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_MISMATCH" });
+    }
+    expect(
+      evaluateWindowsCanaryCompletion({
+        expected: current,
+        completed: { ...current, linux_artifact_digest: digest("wrong") },
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_COMPLETION_BINDING_MISMATCH" });
+  });
+
+  it("U-WLCA-010: unknown stateを拒否する", () => {
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: false, active: [], waiting: [] },
+        candidate: queueBinding("30"),
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" });
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: true, active: [], waiting: [], unknown: true },
+        candidate: queueBinding("31"),
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" });
+    expect(
+      evaluateWindowsCanaryQueue({
+        policy: policy(),
+        state: { state_known: true, active: [], waiting: [] },
+        candidate: { ...queueBinding("32"), run_attempt: 0 },
+      }),
+    ).toEqual({ ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_INVALID" });
   });
 });
