@@ -4,7 +4,7 @@ layer: L6
 artifact_type: design
 status: confirmed
 created: 2026-08-21
-updated: 2026-08-21
+updated: 2026-08-29
 owner: Claude / TL
 authority: docs/governance/helix-harness-requirements_v1.3.md
 runtime_authority: docs/adr/ADR-009-node-python-linux-runtime.md
@@ -43,6 +43,10 @@ ADR-009はNode.js LTS範囲をruntime前提として定めており、`package.j
 - `U-NODEENG-004`: version表記の省略形（`v24.15.0` / `24.15` / `24`）を正規化し、
   prerelease表記は受理しない。
 - `U-NODEENG-005`: comparator列をAND連結として解釈し、演算子省略は完全一致として扱う。
+- `U-NODEENG-006`: GitHub review receiptなど外部証拠writeの前にhard gateを実行し、範囲外runtimeでは
+  warningではなく固有codeでthrowする。
+- `U-NODEENG-007`: `pr-review-receipt`ではinput解析、GitHub read/write、receipt slot claim、DB projection
+  より前にruntime authorityを検査し、部分証拠を残さない。
 
 ## §range解釈の範囲を狭く取る理由
 
@@ -52,5 +56,6 @@ semver全機能を実装して解釈を誤るより、**解釈できないrange�
 
 ## §境界
 
-`engines.node`の値自体は変更しない。ローカル環境の修復手段（Node導入手順）も本sliceの範囲外とし、
-gateは「乖離を可視化する」ところまでを担う。
+`engines.node`の値自体は変更しない。ローカル環境の修復手段（Node導入手順）も本sliceの範囲外とする。
+doctorでは乖離を可視化し、外部証拠write commandでは同じ判定コアをhard preconditionとして使う。
+doctorを先に手動実行したという申告でwrite boundaryの検査を省略してはならない。
