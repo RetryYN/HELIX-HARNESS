@@ -99,6 +99,7 @@ items:
       - docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
       - docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md
       - docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md
+      - docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md
       - docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md
       - docs/design/helix/L3-requirements/skill-applicability-authority.md
       - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
