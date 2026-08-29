@@ -81,6 +81,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-702-skill-applicability-db-projection.md, artifact_type: markdown_doc }
   - { artifact_path: src/state-db/skill-applicability-projection.ts, artifact_type: source_module }
 modifies:
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-development-model-runtime-routing-unit-test-design.md, artifact_type: test_design }
@@ -88,6 +89,7 @@ modifies:
   - { artifact_path: src/schema/harness-db-tables-core.ts, artifact_type: source_module }
   - { artifact_path: src/schema/skill-applicability-registry.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/asset-catalog.test.ts, artifact_type: test_code }
   - { artifact_path: tests/development-model-runtime-routing-design.test.ts, artifact_type: test_code }
 dependencies:
