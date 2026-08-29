@@ -8,7 +8,7 @@ import { buildCliWorkflowIdentityProjection } from "../src/workflow/cli-workflow
 import { attachCurrentLocationWorkflowIdentity } from "../src/workflow/current-location-workflow-identity";
 import { ensureCliBundle } from "./tools/cli-bundle";
 
-// PLAN-L7-698-cli-workflow-identity-projection — U-CLIWI-001..003
+// PLAN-L7-698-cli-workflow-identity-projection — U-CLIWI-001..005
 
 const LEGACY_WORKFLOW_IDENTITY_KEYS = new Set([
   "available_models",
@@ -131,6 +131,19 @@ describe("CLI typed workflow identity projection", () => {
           mismatch.drive_route.workflowIdentity?.target_id === "RECOVERY" ? "INCIDENT" : "RECOVERY",
       };
       expect(() => buildCliWorkflowIdentityProjection(mismatch)).toThrowError(
+        "cli_workflow_identity_invalid",
+      );
+
+      const legacyEmission = structuredClone(baseline);
+      if (!legacyEmission.drive_route.workflowIdentityReceipt) {
+        throw new Error("fixture receipt missing");
+      }
+      (
+        legacyEmission.drive_route.workflowIdentityReceipt as {
+          emit_legacy_identity: boolean;
+        }
+      ).emit_legacy_identity = true;
+      expect(() => buildCliWorkflowIdentityProjection(legacyEmission)).toThrowError(
         "cli_workflow_identity_invalid",
       );
     } finally {

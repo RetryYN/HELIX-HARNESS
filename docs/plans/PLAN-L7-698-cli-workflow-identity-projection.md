@@ -36,7 +36,7 @@ tdd_red_required: true
 red_test: "U-CLIWI-001..003を先行追加し、drive model／recovery current outputのtyped tuple欠落とlegacy field残存を実測する"
 red_at: "2026-08-28T22:07:04+09:00"
 green_at: "2026-08-28T22:34:55+09:00"
-mutation_oracle_evidence: "2026-08-28T22:07:04+09:00にcurrent main bddf9029fでtests/cli-workflow-identity-projection.test.tsのU-CLIWI-001／002がtyped tuple欠落を2 failedとしてRed固定した。実装後、JSON／summary／textの6実CLI経路を含む4 testsが2026-08-28T22:34:55+09:00にgreen。2026-08-28T22:35:36+09:00にreceipt target_id exact照合を除去するmutationを実測し、U-CLIWI-004が1 failed（exit 1）でkillした後に照合を復元した。U-CLIWI-003はlegacy drive_model＋selected_model seedのexact pathを継続検出する。"
+mutation_oracle_evidence: "2026-08-28T22:07:04+09:00にcurrent main bddf9029fでtests/cli-workflow-identity-projection.test.tsのU-CLIWI-001／002がtyped tuple欠落を2 failedとしてRed固定した。実装後、JSON／summary／textの6実CLI経路を含む4 testsが2026-08-28T22:34:55+09:00にgreen。2026-08-28T22:35:36+09:00にreceipt target_id exact照合を除去するmutationを実測し、U-CLIWI-004が1 failed（exit 1）でkillした後に照合を復元した。Claude pre-reviewのfindingを受け、2026-08-29T17:56:30+09:00にemit_legacy_identity条件を除去するmutationを実測し、新しい単独反例が1 failed／3 passedでkillした後に条件を復元した。U-CLIWI-003はlegacy drive_model＋selected_model seedのexact pathを継続検出する。"
 complexity_effect: net_negative
 complexity_justification: "CLIごとのlegacy model projectionを既存current-location typed receipt由来の単一value objectへ集約する"
 removal_trigger: "CLI current outputのlegacy workflow identity consumerが0となりinput-only adapter retention期限が満了した時"
