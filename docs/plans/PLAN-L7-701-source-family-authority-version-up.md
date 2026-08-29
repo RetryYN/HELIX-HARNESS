@@ -68,6 +68,7 @@ modifies:
   - { artifact_path: config/workflow-execution-policy.v1.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L3-requirements/skill-applicability-registry.v1.json, artifact_type: json_config }
   - { artifact_path: config/nfr-registry.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/schema/hybrid-vmodel-manifest.ts, artifact_type: source_module }
   - { artifact_path: tests/source-package-manifest.test.ts, artifact_type: test_code }
