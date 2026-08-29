@@ -210,7 +210,7 @@ function validPathList(value: unknown): value is string[] {
   );
 }
 
-function validLease(value: unknown): value is WorkGraphLeaseV1 {
+export function validateWorkGraphLease(value: unknown): value is WorkGraphLeaseV1 {
   return (
     isRecord(value) &&
     exactKeys(value, LEASE_KEYS) &&
@@ -243,7 +243,7 @@ function validCellBinding(value: unknown): value is RequiredCellBindingV1 {
     validDigest(value.effective_rule_packet_digest) &&
     validPathList(value.allowed_paths) &&
     validPathList(value.forbidden_paths) &&
-    validLease(value.writer_lease) &&
+    validateWorkGraphLease(value.writer_lease) &&
     validLaneReady(value.lane_ready_receipt)
   );
 }
@@ -276,7 +276,7 @@ export function acquireWorkGraphLease(
     !validIdentifier(request.owner) ||
     !Number.isInteger(request.expectedFenceToken) ||
     request.expectedFenceToken < 0 ||
-    (request.currentLease !== null && !validLease(request.currentLease))
+    (request.currentLease !== null && !validateWorkGraphLease(request.currentLease))
   ) {
     return { ok: false, failure_code: "WORK_GRAPH_INPUT_INVALID" };
   }
@@ -297,7 +297,7 @@ export function acquireWorkGraphLease(
 export function releaseWorkGraphLease(
   request: WorkGraphLeaseReleaseRequest,
 ): WorkGraphLeaseReleaseResult {
-  if (!validLease(request.lease)) {
+  if (!validateWorkGraphLease(request.lease)) {
     return { ok: false, failure_code: "WORK_GRAPH_INPUT_INVALID" };
   }
   if (request.terminal === null || !verifyWorkerLifecycleReceipt(canonicalJson(request.terminal))) {
@@ -339,7 +339,7 @@ export function evaluateDelegationRequestOrdering(
     return { ok: false, failure_code: "WORK_GRAPH_SCOPE_PATH_VIOLATION" };
   }
   if (
-    !validLease(request.lease) ||
+    !validateWorkGraphLease(request.lease) ||
     request.lease.fence_token !== binding.writer_lease.fence_token ||
     request.lease.owner !== binding.writer_lease.owner
   ) {

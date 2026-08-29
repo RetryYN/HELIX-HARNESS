@@ -55,6 +55,7 @@ interface WindowsCanaryAdmissionPolicyV1 {
 }
 
 interface WindowsCanaryLeaseBindingV1 {
+  schema_version: "helix-windows-lite-canary-lease-binding.v1";
   assignment_id: string;
   pr_number: number;
   candidate_head: string;
@@ -65,7 +66,7 @@ interface WindowsCanaryLeaseBindingV1 {
   run_attempt: number;
   owner: string;
   lease_id: string;
-  fence_token: string;
+  fence_token: number;
   correlation_id: string;
   issued_at: string;
   expires_at: string;
@@ -73,7 +74,12 @@ interface WindowsCanaryLeaseBindingV1 {
 ```
 
 各recordはexact key set、canonical serialization、入力不変性を持つ。`candidate_head`、artifact、attempt、
-lease、fenceのどれかを省略して別fieldから推測しない。
+lease、fenceのどれかを省略して別fieldから推測しない。`fence_token`は既存`WorkGraphLeaseV1`と同じ
+lane内単調整数CASとして検証し、Windows用の第二fence authorityや文字列tokenへ再定義しない。
+bindingの構文検証は共有`validateWorkGraphLease`へowner／fence／acquired timeを投影し、自己生成した
+current leaseへの`acquireWorkGraphLease`呼出しをvalidationとして扱わない。current fenceとのCAS／stale照合は
+後続`evaluateWindowsCanaryLease`がHELIX snapshotを入力として担い、binding単体からcurrent値を推測しない。
+時刻は`Date#toISOString()`とbyte一致するcanonical UTC millisecond形式だけを受理する。
 
 ## §2 pure evaluator の責務
 
