@@ -2673,7 +2673,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // typed skill authoringがL0／L13／L14とlegacy drive modelを明示拒否するnegative contractであり、
     // 旧V-modelまたは旧mode authorityをcurrentへ再採用する記述ではない。
     path: "docs/plans/PLAN-L7-700-skill-applicability-authoring.md",
-    contentDigest: "7073a9647cbbc5fd3f302d2e323e2423cfc6b0783a4137d8f959255b1dec23b3",
+    contentDigest: "78f482c3b3a3d7bb6b06df190cbd9b5e64fb01596bcd69a06d47f086ddc58e0a",
     finalDisposition: "false_positive",
   },
 ] as const;
