@@ -34,7 +34,7 @@ full regression shard、GitHub aggregate admissionを下位adapterとして再�
 高速化はrequired verificationの削除、timeout緩和、risk downgrade、main／nightlyへの無記録先送りでは成立しない。
 LLMはplan候補と説明を提案できるが、required obligation、N/A、full fallback解除を確定しない。
 
-## CIS-FR-001 CI execution telemetry
+## CIS-FR-001 CI実行telemetry
 
 #### CIS-R-01 実行identity
 
@@ -51,14 +51,14 @@ queue、wall time、runner time、CPU／memory class、cache、retry、timeout�
 receiptはsecret、credential、PII、任意log本文を保持せず、repo authorityとGitHub run metadataから再構築可能な
 projectionに限定する。欠落、時間逆転、wrong HEAD、未知runnerを明示DEGRADEDまたはfail-closeする。
 
-## CIS-FR-002 CI Responsibility Registry
+## CIS-FR-002 CI責務registry
 
 #### CIS-R-04 証明責務identity
 
 verification capabilityはstable ID、owner、oracle、environment、cost class、risk class、parallelism、artifact入出力、
 freshness、applicabilityを持つ。pathやtest filenameだけを意味主キーにしない。
 
-#### CIS-R-05 semantic impact graph
+#### CIS-R-05 意味影響graph
 
 Issue／PLAN／changed artifactからrequirement、design、contract、Module、Bundle、V-pair、runtime、DB、distribution、
 securityのaffected nodeを導出する。名称類似やLLM推測でedgeを補わない。
@@ -68,14 +68,14 @@ securityのaffected nodeを導出する。名称類似やLLM推測でedgeを補�
 `local`、`boundary`、`global_invariant`、`release_only`を別classとして保持する。unknown identity、orphan、循環、
 owner欠落、重複ownerはfail-closeし、legacy greenでcurrent obligation欠落を相殺しない。
 
-## CIS-FR-003 Verification Plan composition
+## CIS-FR-003 検証plan合成
 
-#### CIS-R-07 plan exact partition
+#### CIS-R-07 planの完全分割
 
 同一work authority、candidate/base HEAD、registry digestから、local、boundary、global、deferredのexact partitionと
 execution dependencyを決定的に生成し、plan digestへ束縛する。
 
-#### CIS-R-08 full fallback
+#### CIS-R-08 全量fallback
 
 changed testは必ず含める。unknown／high-risk、selector／registry／security／schema／migration／rollback／lockfileの
 変更はfullへfail-closeし、別greenや平均scoreでrequired oracleを相殺しない。
@@ -85,7 +85,7 @@ changed testは必ず含める。unknown／high-risk、selector／registry／sec
 現行Impact CIのtargeted／full／reuse receiptはinput-only adapterで一方向変換する。current outputはpath-only test listを
 primary identityにせず、typed Verification Planを返す。
 
-## CIS-FR-004 Critical-path scheduling
+## CIS-FR-004 クリティカルパスschedule
 
 #### CIS-R-10 obligation不変
 
@@ -102,7 +102,7 @@ stateful resourceはlease／fenceなしに並列化せず、artifactはHEAD、lo
 cost model不明、telemetry stale、quota不足時は安全な既定DAGへfallbackする。局所failure時は未開始heavy jobをboundedに
 cancelできるが、terminal obligationをsuccessとして捏造しない。
 
-## CIS-FR-005 Deferred obligation recovery
+## CIS-FR-005 延期obligation回収
 
 #### CIS-R-13 exactly-once回収
 
@@ -114,7 +114,7 @@ obligation ID、最初のterminal runへ接続する。receipt成立まで未完
 後段failureはorigin selector decision、registry edge、first detecting oracleへbackpropし、Reverse／Redesign／
 Performance Refactor候補を作る。観測からcurrent authorityを直接変更しない。
 
-#### CIS-R-15 safety measurement
+#### CIS-R-15 安全性measurement
 
 wall-clock、runner-minute、failure feedback latencyだけでなく、escaped defect、mutation detection、flake、deferred expiryを
 同時に測る。安全性を低下させた時間短縮を完了と認めない。
