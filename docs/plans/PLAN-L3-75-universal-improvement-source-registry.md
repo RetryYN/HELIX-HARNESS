@@ -36,8 +36,8 @@ contract_failures: "required source kind欠落、source／detector不在また�
 tdd_red_required: true
 red_test: "U-UILSRC-001..009でsource kind欠落、duplicate、source lifecycle metadata欠落、digest drift、unsafe path、observation identity、doctor未配線を個別に検出する"
 red_at: null
-green_at: null
-mutation_oracle_evidence: null
+green_at: 2026-08-30T07:09:05+09:00
+mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にU-UILSRC-002／003／005の実装内変異（source kind重複、evidence contractのsource_revision欠落、digest drift、unsafe path、malformed／null observation）を実行し、対応するfail-close oracleを通過させた。targeted 2 files／9 tests passed、output_digest=sha256:904d13f50b3c881792745dca332f21e6150cdc68828e00871d30f346633d3cca。"
 complexity_effect: justified_positive
 complexity_justification: "既存10 detectorを再実装せず、requirements-owned source registryと共通read-only admissionを一つのaggregateとして追加する。"
 removal_trigger: "Universal Improvement Loopのsource／detector／evidence tupleが既存System Synthesis registryへ完全吸収され、UIL source registryの独立consumerがなくなった時"

@@ -39,7 +39,7 @@ AIはproposal-onlyで、detector evidenceや意味authorityを代替しない。
 
 各entryは次の正規tuple（複合識別単位）を持つ。
 
-source_id、source_kind、owner、authority、schema_version、revision、retention、redaction、failure_disposition、
+各項目として `source_id`、`source_kind`、`owner`、`authority`、`schema_version`、`revision`、`retention`、`redaction`、`failure_disposition`、
 detector、evidence_contract、freshnessの各項目を持ち、environments、trigger_events、statusを含む。sourceごとに
 観測保持方針、redaction方針、失敗時のfail-close処理を宣言し、宣言されたevidence contractのidentity／digest／
 required fieldをadmissionで再検証する。
