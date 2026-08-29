@@ -2,7 +2,7 @@
 
 - status: directive（PO 方向決定の記録。実 cutover は既存 L3 要件の gate に従う）
 - decided: 2026-07-19（PO チャット決定）
-- 正本定義 source: `ハイブリッド設計ドキュメントv1-fixed.zip` 内 `hybrid-docgen/docs/107_Vモデル・レベル定義.yaml`
+- source provenance: `hybrid-vmodel-source.v1` の `docs/107_Vモデル・レベル定義.yaml`。旧archive bytesとentry digestは`docs/migration/source-manifests/hybrid-vmodel-source.v1.json`へ隔離し、current layer authorityは本directiveと現行requirementsが持つ。
 - 関連正本: `docs/design/helix/L3-requirements/vmodel-docgen-fit.md`（HR-FR-VMFIT-02）/
   `docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md` /
   `docs/design/helix/L3-requirements/hybrid-rebaseline-v0.5.0-collision.md`（HR-FR-V050-06）

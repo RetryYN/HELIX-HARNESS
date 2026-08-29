@@ -17,7 +17,7 @@
     },
     {
       "test_path": "tests/universal-workflow-requirements-binding.test.ts",
-      "test_file_sha256": "236f7eca6ba40fd72eff5914c3f6501aba9d10f1cda7022576edc597548b324f",
+      "test_file_sha256": "ac363216262ea9ab8a01785182b220bb03ac8da9a6b7bd2bcb34ee82ea4580da",
       "expected_case_count": 5,
       "authority_paths": [
         "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",

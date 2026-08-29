@@ -147,9 +147,7 @@ describe("db projection ingestion detector", () => {
       expect(zipAdoptionDecisions.filter((row) => row.category === "reject")).toHaveLength(3);
       expect(zipAdoptionDecisions.every((row) => row.status === "declared")).toBe(true);
       expect(
-        zipAdoptionDecisions.every(
-          (row) => row.source_package === "ハイブリッド設計ドキュメントv1-fixed.zip",
-        ),
+        zipAdoptionDecisions.every((row) => row.source_package === "hybrid-vmodel-source.v1"),
       ).toBe(true);
       expect(
         zipAdoptionDecisions.every(

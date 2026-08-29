@@ -15,7 +15,8 @@ canonical_authority: false
 
 ```yaml
 source:
-  path: deep-research-report.md
+  local_path: null
+  retired_local_input: deep-research-report.md
   line_count: 620
   byte_count: 49243
   digest: sha256:a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39
@@ -29,6 +30,7 @@ source:
 immutable snapshotはGitHub comment本文全体のdigestではなく、`<details>`内payloadの先頭49,243 bytesを
 原文とbyte比較し、原文digestと一致することを確認した。包装文とpayload末尾にGitHub comment用の改行を
 加えた差だけを許可し、章名・要約・抜粋だけのsnapshotを全量取得証拠にしない。
+rootのlocal inputはIssue #1195で退役し、以後は上記immutable snapshot、digest、本ledgerを再検証境界とする。
 
 ## 2. 全章coverage
 

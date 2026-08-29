@@ -2749,7 +2749,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     expect(payload).toMatchObject({
       schema_version: "project-skill-binding.v1",
-      source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      source_package: "hybrid-vmodel-source.v1",
       status: "ready",
       selected_model: "Recovery",
       source_command: "helix skill suggest --current-location --json",
@@ -2790,7 +2790,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     expect(payload).toMatchObject({
       schema_version: "project-skill-binding-summary.v1",
-      source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      source_package: "hybrid-vmodel-source.v1",
       status: "ready",
       selected_model: "Recovery",
       source_command: "helix skill suggest --current-location --summary-json",
@@ -4504,7 +4504,7 @@ describe("L7 CLI surface closure", () => {
         },
         scrum_operation: {
           status: expect.any(String),
-          source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+          source_package: "hybrid-vmodel-source.v1",
           source_binding_count: expect.any(Number),
           observed_count: expect.any(Number),
           missing_count: expect.any(Number),
@@ -6285,7 +6285,7 @@ describe("L7 CLI surface closure", () => {
           },
           scrum_operation: {
             status: expect.any(String),
-            source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+            source_package: "hybrid-vmodel-source.v1",
             observed_count: expect.any(Number),
             missing_count: expect.any(Number),
             command: "helix current-location --summary-json",
@@ -6379,7 +6379,7 @@ describe("L7 CLI surface closure", () => {
           },
           scrum_operation: {
             status: expect.any(String),
-            source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+            source_package: "hybrid-vmodel-source.v1",
             source_binding_count: expect.any(Number),
             observed_count: expect.any(Number),
             missing_count: expect.any(Number),

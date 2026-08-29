@@ -29,7 +29,7 @@ function ids(text: string, prefix: string): string[] {
 describe("Universal Workflow AI judgment requirements binding", () => {
   it("binds the exact v1.1.0 source identity and 14-file inventory", () => {
     const design = readFileSync(DESIGN, "utf8");
-    expect(design).toContain("UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip");
+    expect(design).toContain("universal-workflow-requirements-skill.v1.1.0");
     expect(design).toContain("b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26");
     for (const path of SOURCE_FILES) expect(design, `${path} missing`).toContain(path);
   });

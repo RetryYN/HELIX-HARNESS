@@ -305,7 +305,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
-    contentDigest: "69adc741009492b27c23b9f8636f5f0b067ade9a2fb1a70c1c4cbf4ebdadcf0a",
+    contentDigest: "c151e56dbd9ddca67a68b42f595e53114a63166be38c74c321bc9349e602866f",
     finalDisposition: "compatibility_labeled",
   },
   {
