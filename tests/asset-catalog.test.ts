@@ -97,6 +97,27 @@ describe("IT-ASSET-DB-01: automation asset catalog", () => {
           )
           .get("skill:testing"),
       ).toMatchObject({ count: 0 });
+
+      writeFileSync(
+        join(repo, "docs", "skills", "review-checklist.yaml"),
+        [
+          "schema_version: review-checklist.v1",
+          "name: review-checklist",
+          "skill_type: quality-gate-review",
+          "applies_to:",
+          "  layers: [L7]",
+          "  drive_models: [Reverse]",
+          "description: compatibility-only review skill",
+        ].join("\n"),
+      );
+      catalogAutomationAssets({ repoRoot: repo, db });
+      expect(
+        db
+          .prepare(
+            "SELECT COUNT(*) AS count FROM automation_asset_applicability WHERE asset_id = ?",
+          )
+          .get("skill:review-checklist"),
+      ).toMatchObject({ count: 0 });
     } finally {
       db.close();
       rmSync(repo, { recursive: true, force: true });

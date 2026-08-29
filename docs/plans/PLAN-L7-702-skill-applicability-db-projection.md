@@ -29,13 +29,13 @@ backprop_decision_reason: "confirmed L3/L5 authorityを変更せず、DB consume
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "PLAN-L7-678のrequirements-owned registry loaderとtyped value objectがcurrent mainに存在する"
-contract_postconditions: "typed metadataだけがregistry version／digest付きの正規化行へ投影され、legacy-only metadataはcurrent行へ昇格しない"
+contract_postconditions: "typed metadataだけがregistry version／digest付きの正規化行へexact replace投影され、legacy-only metadataへの変更時は旧current行を残さない"
 contract_invariants: "target_axis／target_id／polarityをCSVまたは単一model fieldへ畳み込まず、registry bindingを各行で再現できる"
 contract_failures: "unknown pair、axis mismatch、極性衝突、空positive、legacy-only metadataのcurrent投影をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-29T17:28:53+09:00"
 green_at: "2026-08-29T17:29:52+09:00"
-mutation_oracle_evidence: "2026-08-29T17:31:36+09:00にexcluded行のpolarityをapplicableへ弱め、tests/asset-catalog.test.tsが1 failed／1 passedでkillした。復元後にtargeted testsとtypecheckを再実行する。"
+mutation_oracle_evidence: "2026-08-29T17:31:36+09:00にexcluded行のpolarityをapplicableへ弱め、tests/asset-catalog.test.tsが1 failed／1 passedでkillした。自主再監査でincremental catalog時のstale row残存を検出し、legacy-only metadataへ変更する反例とasset単位のexact replaceを追加した。2026-08-29T18:15:01+09:00にDELETEを除去するmutationが旧2行残存を1 failed／1 passedでkillし、復元後にtargeted testsとtypecheckを再実行した。"
 complexity_effect: net_negative
 complexity_justification: "旧model CSVを増築せず、既存typed value objectから単一のnormalized projectionを生成する。"
 removal_trigger: "automation_assetsのlegacy applies_drive_models列と全consumerがretireされた時"

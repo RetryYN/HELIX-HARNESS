@@ -169,6 +169,9 @@ export function catalogAutomationAssets(input: CatalogAutomationAssetsInput): As
         },
       });
       if (source.type === "skill") {
+        input.db
+          .prepare("DELETE FROM automation_asset_applicability WHERE asset_id = ?")
+          .run(assetId);
         for (const row of projectSkillApplicabilityRows(assetId, appliesTo)) {
           upsertRow(input.db, {
             table: "automation_asset_applicability",
