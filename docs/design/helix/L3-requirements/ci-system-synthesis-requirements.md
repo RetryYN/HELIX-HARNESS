@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "CI System Synthesis要件"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-29
 updated: 2026-08-29
 owner: PO / Codex TL

@@ -4,8 +4,18 @@ title: "PLAN-L3-73 (add-design): CI System SynthesisをL3/L10へ分解する"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-08-29T14:23:37Z"
+  plan_id: PLAN-L3-73-ci-system-synthesis
+  approval_record_id: L3-PO-1034-001
+  approval_source: github_pr_comment
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1209#issuecomment-5462941573"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -59,7 +69,11 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-73-ci-system-synthesis.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/ci-system-synthesis-acceptance.md, artifact_type: test_design }
-modifies: []
+modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 ---
 
 # CI System Synthesis要求差分
@@ -71,7 +85,7 @@ modifies: []
 | 1 | 現行Impact CI／Lite／Module／shard責務を棚卸し | 重複ownerと不足責務が分類される |
 | 2 | telemetry、registry、plan、scheduler、recoveryを分離 | 5 FR／15 R／15 ACがexact対応する |
 | 3 | #1204〜#1208へ原子分割 | 実装順と非対象がmachine-readableになる |
-| 4 | L3人間確認 | `l3_human_approval`を記録するまでconfirmedへ進めない |
+| 4 | L3人間確認 | PO承認を`l3_human_approval`へ束縛しconfirmedへ進める |
 | 5 | child実装／mutation／GitHub read-after | 安全性を縮退せずwall-clockを短縮する |
 
 本PLANはCI高速化を検査削減と同義にしない。required verification exact setの導出と実行配置を分離し、
