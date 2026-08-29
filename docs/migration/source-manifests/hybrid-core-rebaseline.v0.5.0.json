@@ -1,0 +1,27 @@
+{
+  "schema_version": "helix-source-manifest.v1",
+  "source_family_id": "hybrid-core-rebaseline.v0.5.0",
+  "legacy_archive_filename": "docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip",
+  "legacy_git_blob": "d1fbeccaf8c4006f5ba0ee077d9c1e887caff6c0",
+  "archive_sha256": "04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61",
+  "entry_set_sha256": "7906acee0afd710f3f1a6b1c97fd09043d48cdd23c8a1adc23a80008455423d9",
+  "entry_digest_algorithm": "sha256(canonical-json(sorted[{path,size,sha256}]))",
+  "authority": "migration_source_only",
+  "root_prefix": "HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1",
+  "entry_count": 208,
+  "provenance_findings": [
+    "archive filenameはv0.5.0だが内部rootはv0.5.1であるため、version identityを推測昇格しない"
+  ],
+  "by_extension": {
+    "csv": 1,
+    "json": 39,
+    "log": 5,
+    "md": 97,
+    "mmd": 6,
+    "py": 9,
+    "pyc": 2,
+    "sh": 2,
+    "sql": 1,
+    "yaml": 46
+  }
+}

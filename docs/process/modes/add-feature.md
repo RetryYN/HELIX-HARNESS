@@ -1,10 +1,10 @@
 <!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=ADD_FEATURE -->
-> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.13) → registry v1.1.5 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.14) → registry v1.1.6 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
 > **evidence boundary**: selected identity、owner、HEAD、contract、pair、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
 # Add-feature ワークフロー（機能追加）
 
-出典: concept v3.1 §2.5 (Add-feature workflow) / requirements v1.3.13 §4、§9.2、§10 / workflow classification registry v1.1.5。`add-design`／`add-impl`はPLAN kindであり、workflow model identityとは別axisである。
+出典: concept v3.1 §2.5 (Add-feature workflow) / requirements v1.3.14 §4、§9.2、§10 / workflow classification registry v1.1.6。`add-design`／`add-impl`はPLAN kindであり、workflow model identityとは別axisである。
 
 ---
 

@@ -2749,7 +2749,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     expect(payload).toMatchObject({
       schema_version: "project-skill-binding.v1",
-      source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      source_package: "hybrid-vmodel-source.v1",
       status: "ready",
       selected_model: "Recovery",
       source_command: "helix skill suggest --current-location --json",
@@ -2781,7 +2781,8 @@ describe("L7 CLI surface closure", () => {
       reasons: expect.arrayContaining(["scrum_operation_gap_signal"]),
     });
     expect(payload.items[0].skill_path).toMatch(/^docs\/skills\//);
-  }, 30_000);
+    // stateful shardの並列負荷下でもCLI_CHILD_TIMEOUT_MSより先にtest wrapperが切れないよう揃える。
+  }, 45_000);
 
   it("exposes Project current-location skill binding as a summary JSON command surface", () => {
     const run = runCli(["skill", "suggest", "--current-location", "--summary-json"]);
@@ -2790,7 +2791,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     expect(payload).toMatchObject({
       schema_version: "project-skill-binding-summary.v1",
-      source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      source_package: "hybrid-vmodel-source.v1",
       status: "ready",
       selected_model: "Recovery",
       source_command: "helix skill suggest --current-location --summary-json",
@@ -2808,7 +2809,7 @@ describe("L7 CLI surface closure", () => {
       skill_path: expect.stringMatching(/^docs\/skills\//),
       sample_reasons: expect.arrayContaining(["scrum_operation_gap_signal"]),
     });
-  }, 30_000);
+  }, 45_000);
 
   it("exposes Project current-location skill binding as an injection manifest", () => {
     const run = runCli(["skill", "suggest", "--current-location", "--inject", "--json"]);
@@ -2827,7 +2828,7 @@ describe("L7 CLI surface closure", () => {
       tier: "required",
       inject_at: "before_work",
     });
-  }, 30_000);
+  }, 45_000);
 
   it("U-CLI-SKILL-DEADLINE-001: PLAN-RECOVERY-63-cli-surface-bounded-deadline exposes skill injection as a provider-neutral JSON manifest", () => {
     const run = runCli([
@@ -3244,6 +3245,7 @@ describe("L7 CLI surface closure", () => {
     );
   }, 45_000);
 
+  // PLAN-L7-698-cli-workflow-identity-projection / U-CLIWI-005
   it("U-CLIWI-005: exposes Project view current-location and drive recommendation from DB projection", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));
     try {
@@ -4261,7 +4263,7 @@ describe("L7 CLI surface closure", () => {
         },
         scrum_operation: {
           status: expect.any(String),
-          source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+          source_package: "hybrid-vmodel-source.v1",
           source_binding_count: expect.any(Number),
           observed_count: expect.any(Number),
           missing_count: expect.any(Number),
@@ -6023,7 +6025,7 @@ describe("L7 CLI surface closure", () => {
           },
           scrum_operation: {
             status: expect.any(String),
-            source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+            source_package: "hybrid-vmodel-source.v1",
             observed_count: expect.any(Number),
             missing_count: expect.any(Number),
             command: "helix current-location --summary-json",
@@ -6117,7 +6119,7 @@ describe("L7 CLI surface closure", () => {
           },
           scrum_operation: {
             status: expect.any(String),
-            source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+            source_package: "hybrid-vmodel-source.v1",
             source_binding_count: expect.any(Number),
             observed_count: expect.any(Number),
             missing_count: expect.any(Number),

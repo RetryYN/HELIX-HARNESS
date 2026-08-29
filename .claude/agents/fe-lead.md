@@ -4,7 +4,6 @@ description: フロントエンド リード (Opus)。FE 設計・アーキテ�
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-opus-5
 judgment_core: v2
-memory: project
 maxTurns: 30
 ---
 

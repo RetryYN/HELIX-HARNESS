@@ -334,7 +334,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     }
     expect(second.output_digests).toEqual(first.output_digests);
     expect(first.manifest).toMatchObject({
-      requirements: { version: "1.3.13" },
+      requirements: { version: "1.3.14" },
       profile: { id: "consumer_core_v1", version: "1.0.0" },
       package_version: "0.1.0",
       distribution_repository: "RetryYN/HELIX-HARNESS-DevOS",
@@ -687,7 +687,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
 
   it("U-DISTPKG-009j: canonical Requirement IR shard driftをpackage identityとして拒否する", () => {
     expect(resolveLiteRequirementsIdentity(process.cwd())).toMatchObject({
-      version: "1.3.13",
+      version: "1.3.14",
       root_digest: expect.stringMatching(/^sha256:[0-9a-f]{64}$/),
     });
     const invalidRoot = fixture();
@@ -695,7 +695,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });
     writeFileSync(
       join(invalidRoot, "docs", "governance", "helix-harness-requirements_v1.3.md"),
-      "- **Version**: 1.3.13\n",
+      "- **Version**: 1.3.14\n",
       "utf8",
     );
     const requirementShardPath = join(invalidRoot, "requirements-ir", "requirements.json");
@@ -714,7 +714,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });
     writeFileSync(
       join(invalidRoot, "docs", "governance", "helix-harness-requirements_v1.3.md"),
-      "- **Version**: 1.3.13\n",
+      "- **Version**: 1.3.14\n",
       "utf8",
     );
     const manifestPath = join(invalidRoot, "requirements-ir", "manifest.json");
@@ -734,7 +734,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     cpSync("requirements-ir", join(invalidRoot, "requirements-ir"), { recursive: true });
     writeFileSync(
       join(invalidRoot, "docs", "governance", "helix-harness-requirements_v1.3.md"),
-      "- **Version**: 1.3.13\n",
+      "- **Version**: 1.3.14\n",
       "utf8",
     );
     const manifestPath = join(invalidRoot, "requirements-ir", "manifest.json");

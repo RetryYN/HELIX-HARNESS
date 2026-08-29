@@ -1,10 +1,10 @@
 <!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=RETROFIT -->
-> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.13) → registry v1.1.5 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.14) → registry v1.1.6 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
 > **evidence boundary**: migration scope、rollback、owner、HEAD、contract、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
 # Retrofit workflow（移行適用）
 
-出典: concept v3.1 §2.5 (Retrofit workflow) / §2.6.1 / §2.6.3 (config_drift 承認者) / requirements v1.3.13 §9.2、§10 / workflow classification registry v1.1.5
+出典: concept v3.1 §2.5 (Retrofit workflow) / §2.6.1 / §2.6.3 (config_drift 承認者) / requirements v1.3.14 §9.2、§10 / workflow classification registry v1.1.6
 
 ---
 

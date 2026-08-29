@@ -9,7 +9,7 @@ legacy_input: design-bottomup
 ---
 
 <!-- HELIX:workflow-model-process-authority:v1 axis=specialist_workflow id=SCREEN_DESIGN -->
-> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.13) → registry v1.1.5 → generated projection。`design-bottomup`はcompatibility-only inputであり、workflow modelへ昇格しない。
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.14) → registry v1.1.6 → generated projection。`design-bottomup`はcompatibility-only inputであり、workflow modelへ昇格しない。
 > **evidence boundary**: screen designのidentity、prototype/no-UI receipt、owner、pair、CIを束縛し、L1-L12へForward再入する。
 
 # Design elicitation specialist workflow（画面設計ヒアリング）

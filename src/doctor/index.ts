@@ -301,6 +301,7 @@ import {
 } from "../lint/plan-supersession";
 import {
   analyzeProjectHooks,
+  loadClaudeAgentDocs,
   loadProjectHookDocs,
   projectHookMessages,
 } from "../lint/project-hook";
@@ -2873,7 +2874,7 @@ export function checkProjectSkillBinding(
         if (binding.status !== "ready") {
           violations.push(`status=${binding.status}`);
         }
-        if (binding.sourcePackage !== "ハイブリッド設計ドキュメントv1-fixed.zip") {
+        if (binding.sourcePackage !== "hybrid-vmodel-source.v1") {
           violations.push(`source_package=${binding.sourcePackage}`);
         }
         if (binding.command !== "helix skill suggest --current-location --summary-json") {
@@ -4924,7 +4925,7 @@ export function checkProjectHooks(repoRoot: string): {
     };
   }
   try {
-    const r = analyzeProjectHooks(loadProjectHookDocs(repoRoot));
+    const r = analyzeProjectHooks(loadProjectHookDocs(repoRoot), loadClaudeAgentDocs(repoRoot));
     return { messages: projectHookMessages(r), ok: r.ok };
   } catch {
     return {

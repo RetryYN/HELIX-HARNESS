@@ -18,21 +18,21 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #206 の旧Scrum mode廃止PLAN。legacy_vmodel_span、removed layer、旧runtime名への言及は
     // 再導入を拒否するnegative contractであり、旧authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-561-scrum-discovery-typed-process.md",
-    contentDigest: "c4e77a8e8ca876854db1d14cd733d95d9d1343ed49c08fd36149b12384cb3dca",
+    contentDigest: "154714639c686ca1240d1f0e40f7aeb5ed77cabaf0e574a95a41d5817a2cd732",
     finalDisposition: "false_positive",
   },
   {
     // Issue #205のReverse統合PLAN。旧mode／model／L14等の語はcurrent authorityとして
     // 採用する記述ではなく、legacy再出力と旧層authorityを拒否した5契約の監査入力である。
     path: "docs/plans/PLAN-REVERSE-559-github-typed-workflow-identity-projection-backfill.md",
-    contentDigest: "8f9174196fbe4716c8b391c03339517cc0c228bb6244ba76e1026854da673eab",
+    contentDigest: "efea864cc74a71b41f26db94e565f614be5ccdf542813fce368bfd5fab44b0e7",
     finalDisposition: "false_positive",
   },
   {
     // G13を正規gateとして採用する記述ではなく、G8-G12以外を拒否できることを実測した
     // mutation kill証跡であるため、removed gate authorityの再導入ではない。
     path: "docs/plans/PLAN-L7-578-github-execution-episode-right-arm-evidence.md",
-    contentDigest: "64ae27ef0c355c318c84221b0eff0434e6f7c87ca15b8dd87aa9da81c81e9c3a",
+    contentDigest: "54c84350abedd8512cc3b58473d0b08c9b938eb3c4d0387485e5e15050b39057",
     finalDisposition: "false_positive",
   },
   {
@@ -184,11 +184,6 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "compatibility_labeled",
   },
   {
-    path: "docs/design/helix/L5-detail/development-model-runtime-routing.md",
-    contentDigest: "08b5fd74fc6a4a4380d6207f7fd09f0c648196aa88e39e26a3dfb3b33460905b",
-    finalDisposition: "false_positive",
-  },
-  {
     path: "docs/design/helix/L5-detail/harness-agent-lifecycle.md",
     contentDigest: "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
     finalDisposition: "false_positive",
@@ -260,7 +255,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/hybrid-rebaseline-v0.5.0-intake-audit-2026-07-18.md",
-    contentDigest: "90ef610613a91d19ca58345903654b169cf4057f37d0dda6ac8604a69153779f",
+    contentDigest: "dc9aff4ab72ccaaab45d257799c30124604fb01e073f1c5749b57e04a565b93b",
     finalDisposition: "historical",
   },
   {
@@ -310,7 +305,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
-    contentDigest: "69adc741009492b27c23b9f8636f5f0b067ade9a2fb1a70c1c4cbf4ebdadcf0a",
+    contentDigest: "c151e56dbd9ddca67a68b42f595e53114a63166be38c74c321bc9349e602866f",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -2671,7 +2666,14 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #186のReverse fullback PLAN。旧L3↔L12表記は移行前証拠の観測対象を示す引用であり、
     // current L1-L12 authorityへの回帰や旧runtime authorityの採用ではない。
     path: "docs/plans/PLAN-REVERSE-186-derived-requirement-trace-backfill.md",
-    contentDigest: "7680a63aef474e343cbcb6b7f240261ee4c2b71e218b1f8cad0cfb75c5981326",
+    contentDigest: "86e3840a919bbc18e584ba5f078081712e66f6380e7a0c57e28d3ef4b2c0687a",
+    finalDisposition: "false_positive",
+  },
+  {
+    // typed skill authoringがL0／L13／L14とlegacy drive modelを明示拒否するnegative contractであり、
+    // 旧V-modelまたは旧mode authorityをcurrentへ再採用する記述ではない。
+    path: "docs/plans/PLAN-L7-700-skill-applicability-authoring.md",
+    contentDigest: "b2e5e3c788364ae480e1694c65be0fa94e19f2beb22aea9ef9f3c709e713e164",
     finalDisposition: "false_positive",
   },
 ] as const;

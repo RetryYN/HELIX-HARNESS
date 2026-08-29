@@ -6,7 +6,7 @@ paired_requirement_layer: L3
 artifact_type: test_design
 status: confirmed
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-08-29
 owner: QA / Codex TL
 plan: PLAN-L3-68-release-module-bundle-composition
 pair_artifact: docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
@@ -38,10 +38,11 @@ static-before-trusted順序、consumer behavior parity、rollback、actor分離�
 | `RLS-AC-013` | `RLS-R-12` | findingからReverse、release index、DB、GitHub、両repo read-afterが収束 | notification／DB／DevOSを意味正本にしない |
 | `RLS-AC-014` | §0 | capability、workflow、Module、Bundle、repository軸が分離 | route／mode／drive enumへの吸収を拒否 |
 | `RLS-AC-015` | §1 | 非対象ownerへ参照だけを張る | 未完機能、whole-system planner、repo splitを混載しない |
+| `RLS-AC-016` | `RLS-R-13` | 4 lifecycle Moduleと1 Bundleをshadowでexact登録 | Release＝Deployment、provider／route／change class混同、stable先行を拒否 |
 
 ## §2 量閉じ
 
 - feature contract: `RLS-FR-001..004` exact 4件。
-- supporting requirement: `RLS-R-01..12` exact 12件。
-- acceptance: `RLS-AC-001..015` exact 15件。
+- supporting requirement: `RLS-R-01..13` exact 13件。
+- acceptance: `RLS-AC-001..016` exact 16件。
 - Issue分解: 親 #1073、RLS-01〜13 = #1074〜#1086。
