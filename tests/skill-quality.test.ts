@@ -221,7 +221,7 @@ describe("skill-quality lint (PLAN-L7-420)", () => {
       name: "incident-drill",
       category: "process",
       layers: ["L12"],
-      driveModels: ["Incident"],
+      applicableIdentities: [{ target_axis: "workflow_model", target_id: "INCIDENT" }],
       existingSlugs: [],
     });
     expect(scaffold.ok).toBe(true);

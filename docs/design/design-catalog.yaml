@@ -97,6 +97,8 @@ items:
       - docs/design/helix/L3-requirements/security-capability-broker-authority.md
       - docs/design/helix/L3-requirements/system-synthesis-requirements.md
       - docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
+      - docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md
+      - docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md
       - docs/design/helix/L3-requirements/skill-applicability-authority.md
       - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
       - docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
@@ -184,11 +186,14 @@ items:
       - docs/design/helix/L6-function-design/project-hook-authority-resolver.md
       - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md
+      - docs/design/helix/L6-function-design/claude-native-memory-isolation.md
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
       - docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md
       - docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
       - docs/design/helix/L6-function-design/post-merge-plan-status-preflight.md
       - docs/design/helix/L6-function-design/plan-modification-ownership.md
+      - docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md
+      - docs/design/helix/L6-function-design/source-package-manifest-migration.md
       - docs/design/helix/L6-function-design/distribution-devos-instruction-authority.md
       - docs/design/helix/L6-function-design/distribution-devos-runtime-identity.md
       - docs/design/helix/L6-function-design/distribution-lite-profile-bound-package.md

@@ -4,7 +4,6 @@ description: strategy options、engineering operating model、technical adoption
 tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
 model: claude-opus-5
 judgment_core: v2
-memory: project
 maxTurns: 30
 ---
 

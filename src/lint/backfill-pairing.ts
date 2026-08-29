@@ -213,7 +213,7 @@ export function analyzeBackfill(
 ): BackfillResult {
   const active = plans.filter((p) => p.status !== "archived");
   const reverseTargets = new Set<string>();
-  const reverseBackfillers = new Map<string, string[]>();
+  const reverseBackfillers = new Map<string, ParsedPlan[]>();
 
   for (const p of active) {
     if (p.kind !== "reverse") continue;
@@ -222,7 +222,7 @@ export function analyzeBackfill(
     for (const r of targets) {
       reverseTargets.add(r);
       const refId = normalizedPlanRef(r);
-      reverseBackfillers.set(refId, [...(reverseBackfillers.get(refId) ?? []), p.plan_id]);
+      reverseBackfillers.set(refId, [...(reverseBackfillers.get(refId) ?? []), p]);
     }
   }
 
@@ -241,9 +241,18 @@ export function analyzeBackfill(
     if (isBackfilled(p)) {
       if (req === "required" && requiresBidirectionalBackfillLink(p)) {
         const ownRequires = new Set(p.requires.map(normalizedPlanRef));
-        for (const reverseId of reverseBackfillers.get(p.plan_id) ?? []) {
-          if (!ownRequires.has(reverseId)) {
-            reverseLinkMissing.push({ plan_id: p.plan_id, reverse_plan_id: reverseId });
+        const ownReferences = new Set(p.references.map(normalizedPlanRef));
+        for (const reverse of reverseBackfillers.get(p.plan_id) ?? []) {
+          const pendingReverse =
+            reverse.status === "draft" && reverse.backfillState === "pending_reverse";
+          const linked = pendingReverse
+            ? ownReferences.has(reverse.plan_id)
+            : ownRequires.has(reverse.plan_id);
+          if (!linked) {
+            reverseLinkMissing.push({
+              plan_id: p.plan_id,
+              reverse_plan_id: reverse.plan_id,
+            });
           }
         }
       }
@@ -349,7 +358,7 @@ export function backfillMessages(result: BackfillResult): string[] {
       .map((o) => `${o.plan_id}->${o.reverse_plan_id}`)
       .join(", ");
     msgs.push(
-      `backfill - violation: required add-impl missing bidirectional Reverse requires ${result.reverseLinkMissing.length}件 (${ids})`,
+      `backfill - violation: required add-impl missing state-aware bidirectional Reverse link ${result.reverseLinkMissing.length}件 (${ids})`,
     );
   }
   if (result.legacyAuditGaps.length > 0) {

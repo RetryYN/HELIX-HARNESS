@@ -2,7 +2,9 @@
 
 ## 結論
 
-`docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip`は全memberを展開・確認した。
+当時受領したv0.5.0添付snapshot（SHA-256: `a8c011502d2e9313ea9fbbad38aba45a00312dc5053468da832e3a9d8757a0e9`）は全memberを展開・確認した。
+後にGitへ収容された同名archiveとは別物であり、現行treeから退役したarchiveの履歴identityは
+`docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.0.json`を参照する。
 source integrityはPASS、current HELIXへの無条件昇格はFAIL、差分sourceとしての追突採用はCONDITIONAL PASSである。
 
 ## source識別情報

@@ -1079,5 +1079,535 @@
     ],
     "approval": null,
     "semantic_digest": "sha256:26cab0bb56d8c7a6c534f24a14a931b54b7fd4ca6237759afff59c8db608a01e"
+  },
+  "OPS-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "OPS-FR-001",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-04",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-02",
+      "HR-FR-HIL-07",
+      "HR-FR-HIL-10",
+      "HR-FR-HIL-24"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "requirement_digest": "sha256:ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "acceptance_path": "docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "acceptance_digest": "sha256:19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58"
+    },
+    "plan_id": "PLAN-L3-71-product-lifecycle-operations",
+    "responsibility_owner": "product-lifecycle-operations-authority",
+    "contract_requirement": {
+      "requirement_id": "OPS-FR-001",
+      "source_projection": "markdown_atx_section_v2",
+      "statement": "型付きライフサイクルcontract\n\n### OPS-R-01 環境contract（EnvironmentContract）\n\n環境ごとにenvironment ID、class、provider adapter ID／version、current state digest、endpoint reference、resource constraint、permission、\ncredential reference、network sink、data classification、dependency resource、owner、expiryを保持する。secret値は保持しない。\ntargetを一意に物理同定できない場合、logical targetとphysical targetが不一致の場合、credentialが期限切れの場合はfail-closeする。\n\n### OPS-R-02 配備contract（Deployment）\n\n`DeploymentManifest`はRelease artifact full SHA／digest、configuration digest、target environment、migration、health check、\ncompatibility、required capabilityを保持する。`DeploymentPlan`はpreflight、staging、apply order、approval、stop condition、rollback、\nobservation windowを保持する。`DeploymentReceipt`はactor、assignment、target identity、before／after state、artifact、差分、時刻、結果、\nevidence、provider receiptを束縛する。Plan、apply、receiptを同一状態へ畳み込まない。\n\n### OPS-R-03 巻き戻しcontract（Rollback）\n\n`RollbackPlan`と`RollbackReceipt`をDeploymentとは別contractとして保持する。irreversible migration、backup欠落、rollback target不明、\nconsumer-owned bytes破壊、rollback後health未確認を拒否する。rollback successをincident closureやforward fix completionとして扱わない。",
+      "acceptance_ids": [
+        "OPS-AC-001",
+        "OPS-AC-002",
+        "OPS-AC-003"
+      ],
+      "semantic_digest": "sha256:9f79a243963dbd88fb4bd67598cfd5d128cdd7296411035934c2d32d504b84a4"
+    },
+    "supporting_requirements": [
+      {
+        "requirement_id": "OPS-FR-002",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "配備計画と段階昇格\n\n### OPS-R-04 provider中立planner\n\nRequirement、Design、dependency、Release Artifact、Environment current stateからDeployment Planを決定的に生成する。\nlocal、VPS、container、serverless、AWS、Azure、GCP等はtyped adapter portで接続し、provider固有schemaやcommandをCoreへ埋め込まない。\nunknown capability、ambiguous target、artifact／config digest欠落、migration互換不明、health check欠落、権限不足をfail-closeする。\n\n### OPS-R-05 段階的promotion\n\n同一artifact digestを`staging／equivalent → canary → bounded exposure → production`へ昇格する。blue-green等のstrategyはrisk、\nblast radius、health model、rollback latencyから決定する。stage skip、OS別rebuild、review前artifact差替え、observation window省略を拒否する。\nproduction apply、cloud destructive operation、credential sinkは既存action-binding approvalとsecurity broker authorityへ従う。",
+        "acceptance_ids": [
+          "OPS-AC-004",
+          "OPS-AC-005",
+          "OPS-AC-006"
+        ],
+        "semantic_digest": "sha256:9d73b77fe7f49f5fd008574f4ead6bcc0ab74bf73661976a563ba870fe7d8308"
+      },
+      {
+        "requirement_id": "OPS-FR-003",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "運用とincident\n\n### OPS-R-06 運用policyと観測（OperationPolicy／Observation）\n\n`OperationPolicy`はSLO、availability、latency、error rate、process／job／queue、API／DB／MCP接続、CPU／memory／storage／network、\nretry／timeout／circuit breaker、certificate／credential validity、post-deploy delta、cost、alert、Runbook、recovery authorityを保持する。\n`OperationalObservation`はpolicy version、environment、window、source、quality、correlation、payload digest、findingを保持する。\n\n### OPS-R-07 障害記録（IncidentRecord）\n\n異常を関連Release、Deployment、Requirement、Contract、変更差分へ相関し、symptom、impact、start／detect／recover time、直前変更、\ncontainment、rollback、root-cause state、recurrence preventionを記録する。duplicate／out-of-order observationは冪等処理し、stale correlation、\nmissing provenance、insufficient qualityからroot causeを推測確定しない。自動復旧はversioned Runbookとbounded authority内だけとする。",
+        "acceptance_ids": [
+          "OPS-AC-007",
+          "OPS-AC-008",
+          "OPS-AC-009"
+        ],
+        "semantic_digest": "sha256:02ca011a4adbc201f24cc88bdc1f9babd2d8cceecba34bb3888a0a7d64dccc44"
+      },
+      {
+        "requirement_id": "OPS-FR-004",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "保守\n\n### OPS-R-08 保守義務（MaintenanceObligation）\n\n保守対象としてdependency／runtime update、vulnerability、secret／certificate rotation、backup／restore／migration rehearsal、configuration drift、deprecated\nAPI／schema／workflow retirement、flaky test、CI／runner、retention、capacity／performance、Runbook、dead code／connectionを期限、周期、owner、\ntarget、required evidence、risk、overdue effectへ束縛する。schedulerのduplicate、clock drift、timezone boundary、missed cycleを検出する。\n\n### OPS-R-09 構造問題の上位昇格\n\n保守中にresponsibility、contract、data ownership、dependency directionの構造原因を検出した場合、局所patchだけで閉じず\n`definition_review`へ昇格する。value、behavior、acceptanceを変える必要がある場合だけ`requirement_change`へ昇格する。",
+        "acceptance_ids": [
+          "OPS-AC-010",
+          "OPS-AC-011",
+          "OPS-AC-019"
+        ],
+        "semantic_digest": "sha256:c33d308da637b89f1f187c494d5c22f9441e79e465349b6d8a5acc2bbbb29f82"
+      },
+      {
+        "requirement_id": "OPS-FR-005",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "診断と修正箇所特定\n\n### OPS-R-10 変更診断（ChangeDiagnosis）\n\n症状から修正箇所を特定するため、`symptom／user outcome → Runtime／Deployment／CI Evidence → Release／PR／Commit／diff → Requirement／Definition → Contract／dependency →\nModule／Code／Test／Config／Infrastructure`を追跡する。診断はchange class、evidence refs、suspected IDs／modules／files／infrastructure、\naffected component、confidence、blast radius、regression scope、migration／rollback／escalation decisionを持つ。\n\n候補が複数なら順位、根拠、反証条件を示す。単純な文字列一致、最新commit、単一logだけで確定しない。confidence不足時は追加観測または\n再現試験をPLANへ返し、ambiguousな修正対象を自動編集しない。\n\n### OPS-R-11 終端証拠\n\ncommandやDeployment APIのsuccessだけで完了としない。実environment health check、observation window、SLO、rollback readiness、\nregression、independent review、main／deployment target／GitHub／DB read-afterが一致して初めてcompletion evidenceを成立させる。\nincident close後もMaintenanceObligationまたはReverse／Recovery findingが残る場合は終端差をsurfaceする。\n\n### OPS-R-13 診断backflow／再入（BackflowDecision）\n\nTroubleshootingを新しいworkflow routeにせず、`Observation + Incident／Recovery + Diagnosis + BackflowDecision`の横断能力とする。\n`BackflowDecision`は最低限、diagnosis ID、system change class、capability expansion kind、workflow route、affected／return layer、\naffected requirement／design ID、evidence reference、base revision、stale target、human decision要否、Forward再入条件を保持する。\n\n| system change class | 既存route候補 | adaptive return／再入条件 |\n|---|---|---|\n| `implementation_ops` | `RECOVERY`／`REVERSE`／`REFACTOR`／`RETROFIT` | 原因が存在するL4〜L7へ戻し、該当pair、regression、receiptをcurrent化する |\n| `definition_review` | `REDESIGN`／`DESIGN_REFACTOR`／`RETROFIT` | 影響するL3〜L5と全downstreamをstale化し、設計／contractを再freezeする |\n| `requirement_change` | `REDESIGN`＋Requirement Discovery | L12 evidenceからL1価値またはL2要求へbackflowし、Proposal→Candidate→human decision→L3 recompile／re-freezeを閉じる |\n\n戻り先をchange classだけで固定せず、原因、変更意味、affected authority、pair closureから最小の連続layer集合を決定する。\nFull Vは`HR-FR-HIL-04`のUniversal Reverse／Redesign re-entryを使い、Production Scrum／Hybridだけが必要に応じて\n`SCRUM_REVERSE` SR0〜SR4をsubrouteとして使う。rollback／containment成功はBackflowDecision、stale closure、re-freeze、\nForward再入、Release／Redeployment／再観測を代替しない。曖昧なroute、非連続return layer、旧revision receipt、\nre-freeze前のForward joinをfail-closeする。",
+        "acceptance_ids": [
+          "OPS-AC-012",
+          "OPS-AC-013",
+          "OPS-AC-014",
+          "OPS-AC-020",
+          "OPS-AC-021"
+        ],
+        "semantic_digest": "sha256:0b44afc98c78f52adc7a3a358d4ac15291c7d9d9403404903b14868d8cb80ef6"
+      },
+      {
+        "requirement_id": "OPS-FR-006",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "release責務と自己適用検証\n\n### OPS-R-12 Module／Bundle統合\n\nRelease Module責務を`helix-deployment`、`helix-operations`、`helix-maintenance`、`helix-diagnosis`へ分離し、各release pathの\nprimary ownerをexactly oneにする。`helix-lifecycle-ops` Bundleは4 Moduleとrequired core／verification／security dependencyを\nexact lockする。Module、Bundle、workflow route、change class、provider adapterを同一identityへ畳み込まない。\n\nHELIX自身を通常consumerとして、`Release → Deployment → Observation → Incident → Diagnosis → Fix → Release → Redeployment → Close`を\n実証する。self-host専用の例外contract、silent credential fallback、手編集receiptを作らない。",
+        "acceptance_ids": [
+          "OPS-AC-015",
+          "OPS-AC-016",
+          "OPS-AC-017",
+          "OPS-AC-018"
+        ],
+        "semantic_digest": "sha256:2b807cb02a76ee0aa70be2b618148510f8715406e9ee63668d63f5693879fbc4"
+      },
+      {
+        "requirement_id": "OPS-R-01",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "環境contract（EnvironmentContract）\n\n環境ごとにenvironment ID、class、provider adapter ID／version、current state digest、endpoint reference、resource constraint、permission、\ncredential reference、network sink、data classification、dependency resource、owner、expiryを保持する。secret値は保持しない。\ntargetを一意に物理同定できない場合、logical targetとphysical targetが不一致の場合、credentialが期限切れの場合はfail-closeする。",
+        "acceptance_ids": [
+          "OPS-AC-001"
+        ],
+        "semantic_digest": "sha256:45465b8de8a0223af78cabfba109cef54bd9094246b3c529ad0edb88d9ee973f"
+      },
+      {
+        "requirement_id": "OPS-R-02",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "配備contract（Deployment）\n\n`DeploymentManifest`はRelease artifact full SHA／digest、configuration digest、target environment、migration、health check、\ncompatibility、required capabilityを保持する。`DeploymentPlan`はpreflight、staging、apply order、approval、stop condition、rollback、\nobservation windowを保持する。`DeploymentReceipt`はactor、assignment、target identity、before／after state、artifact、差分、時刻、結果、\nevidence、provider receiptを束縛する。Plan、apply、receiptを同一状態へ畳み込まない。",
+        "acceptance_ids": [
+          "OPS-AC-002"
+        ],
+        "semantic_digest": "sha256:0c83a73c614cc514a28019ae52766e58b800c6b32149a4b910c10843352b827a"
+      },
+      {
+        "requirement_id": "OPS-R-03",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "巻き戻しcontract（Rollback）\n\n`RollbackPlan`と`RollbackReceipt`をDeploymentとは別contractとして保持する。irreversible migration、backup欠落、rollback target不明、\nconsumer-owned bytes破壊、rollback後health未確認を拒否する。rollback successをincident closureやforward fix completionとして扱わない。",
+        "acceptance_ids": [
+          "OPS-AC-003"
+        ],
+        "semantic_digest": "sha256:6820a996c4ae9e42ef3013b285035ac92db0dcc3e3dea8dcacadb32c07be24ee"
+      },
+      {
+        "requirement_id": "OPS-R-04",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "provider中立planner\n\nRequirement、Design、dependency、Release Artifact、Environment current stateからDeployment Planを決定的に生成する。\nlocal、VPS、container、serverless、AWS、Azure、GCP等はtyped adapter portで接続し、provider固有schemaやcommandをCoreへ埋め込まない。\nunknown capability、ambiguous target、artifact／config digest欠落、migration互換不明、health check欠落、権限不足をfail-closeする。",
+        "acceptance_ids": [
+          "OPS-AC-004"
+        ],
+        "semantic_digest": "sha256:27503f1f2c94818dc289c4b9d33c60fb20de9368a04862aa9706dc59b1904c71"
+      },
+      {
+        "requirement_id": "OPS-R-05",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "段階的promotion\n\n同一artifact digestを`staging／equivalent → canary → bounded exposure → production`へ昇格する。blue-green等のstrategyはrisk、\nblast radius、health model、rollback latencyから決定する。stage skip、OS別rebuild、review前artifact差替え、observation window省略を拒否する。\nproduction apply、cloud destructive operation、credential sinkは既存action-binding approvalとsecurity broker authorityへ従う。",
+        "acceptance_ids": [
+          "OPS-AC-005",
+          "OPS-AC-006"
+        ],
+        "semantic_digest": "sha256:107850a089f3cbdcf0fb89b929b6f7e131c2e59352914891323d66ce6007b676"
+      },
+      {
+        "requirement_id": "OPS-R-06",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "運用policyと観測（OperationPolicy／Observation）\n\n`OperationPolicy`はSLO、availability、latency、error rate、process／job／queue、API／DB／MCP接続、CPU／memory／storage／network、\nretry／timeout／circuit breaker、certificate／credential validity、post-deploy delta、cost、alert、Runbook、recovery authorityを保持する。\n`OperationalObservation`はpolicy version、environment、window、source、quality、correlation、payload digest、findingを保持する。",
+        "acceptance_ids": [
+          "OPS-AC-007"
+        ],
+        "semantic_digest": "sha256:2937c0955515bad878d59d296ef76156e05741c7fc3d95238f4e7df3e7776b16"
+      },
+      {
+        "requirement_id": "OPS-R-07",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "障害記録（IncidentRecord）\n\n異常を関連Release、Deployment、Requirement、Contract、変更差分へ相関し、symptom、impact、start／detect／recover time、直前変更、\ncontainment、rollback、root-cause state、recurrence preventionを記録する。duplicate／out-of-order observationは冪等処理し、stale correlation、\nmissing provenance、insufficient qualityからroot causeを推測確定しない。自動復旧はversioned Runbookとbounded authority内だけとする。",
+        "acceptance_ids": [
+          "OPS-AC-008",
+          "OPS-AC-009"
+        ],
+        "semantic_digest": "sha256:363626dabf5b389fd28ab08c8c63f4fb136546aa6e68143a13583071b6c863f0"
+      },
+      {
+        "requirement_id": "OPS-R-08",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "保守義務（MaintenanceObligation）\n\n保守対象としてdependency／runtime update、vulnerability、secret／certificate rotation、backup／restore／migration rehearsal、configuration drift、deprecated\nAPI／schema／workflow retirement、flaky test、CI／runner、retention、capacity／performance、Runbook、dead code／connectionを期限、周期、owner、\ntarget、required evidence、risk、overdue effectへ束縛する。schedulerのduplicate、clock drift、timezone boundary、missed cycleを検出する。",
+        "acceptance_ids": [
+          "OPS-AC-010"
+        ],
+        "semantic_digest": "sha256:ac504c7f7dd9e75637002be1f667e18dab6dc6a6e4165041ad4b6457e33406df"
+      },
+      {
+        "requirement_id": "OPS-R-09",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "構造問題の上位昇格\n\n保守中にresponsibility、contract、data ownership、dependency directionの構造原因を検出した場合、局所patchだけで閉じず\n`definition_review`へ昇格する。value、behavior、acceptanceを変える必要がある場合だけ`requirement_change`へ昇格する。",
+        "acceptance_ids": [
+          "OPS-AC-011",
+          "OPS-AC-019"
+        ],
+        "semantic_digest": "sha256:c6fcb0de63cbf1dc25a855d4d07c2d9c347f176f40bf96afeb28385514c03742"
+      },
+      {
+        "requirement_id": "OPS-R-10",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "変更診断（ChangeDiagnosis）\n\n症状から修正箇所を特定するため、`symptom／user outcome → Runtime／Deployment／CI Evidence → Release／PR／Commit／diff → Requirement／Definition → Contract／dependency →\nModule／Code／Test／Config／Infrastructure`を追跡する。診断はchange class、evidence refs、suspected IDs／modules／files／infrastructure、\naffected component、confidence、blast radius、regression scope、migration／rollback／escalation decisionを持つ。\n\n候補が複数なら順位、根拠、反証条件を示す。単純な文字列一致、最新commit、単一logだけで確定しない。confidence不足時は追加観測または\n再現試験をPLANへ返し、ambiguousな修正対象を自動編集しない。",
+        "acceptance_ids": [
+          "OPS-AC-012",
+          "OPS-AC-013"
+        ],
+        "semantic_digest": "sha256:79d509a337d687874ff6e21c1a1afc220696123bbc6fae09a2f9bdf2a2c0bcb0"
+      },
+      {
+        "requirement_id": "OPS-R-11",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "終端証拠\n\ncommandやDeployment APIのsuccessだけで完了としない。実environment health check、observation window、SLO、rollback readiness、\nregression、independent review、main／deployment target／GitHub／DB read-afterが一致して初めてcompletion evidenceを成立させる。\nincident close後もMaintenanceObligationまたはReverse／Recovery findingが残る場合は終端差をsurfaceする。",
+        "acceptance_ids": [
+          "OPS-AC-014"
+        ],
+        "semantic_digest": "sha256:0126f8bf06db58e9e13c5fa8f875ca636fc1f16db3e0587610368669840e302f"
+      },
+      {
+        "requirement_id": "OPS-R-12",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "Module／Bundle統合\n\nRelease Module責務を`helix-deployment`、`helix-operations`、`helix-maintenance`、`helix-diagnosis`へ分離し、各release pathの\nprimary ownerをexactly oneにする。`helix-lifecycle-ops` Bundleは4 Moduleとrequired core／verification／security dependencyを\nexact lockする。Module、Bundle、workflow route、change class、provider adapterを同一identityへ畳み込まない。\n\nHELIX自身を通常consumerとして、`Release → Deployment → Observation → Incident → Diagnosis → Fix → Release → Redeployment → Close`を\n実証する。self-host専用の例外contract、silent credential fallback、手編集receiptを作らない。",
+        "acceptance_ids": [
+          "OPS-AC-015",
+          "OPS-AC-016",
+          "OPS-AC-017"
+        ],
+        "semantic_digest": "sha256:b1a4d7ef555230158c6fe6d95c558e726d4b8ae61d1953a0b0c7f11fc6ee2721"
+      },
+      {
+        "requirement_id": "OPS-R-13",
+        "source_projection": "markdown_atx_section_v2",
+        "statement": "診断backflow／再入（BackflowDecision）\n\nTroubleshootingを新しいworkflow routeにせず、`Observation + Incident／Recovery + Diagnosis + BackflowDecision`の横断能力とする。\n`BackflowDecision`は最低限、diagnosis ID、system change class、capability expansion kind、workflow route、affected／return layer、\naffected requirement／design ID、evidence reference、base revision、stale target、human decision要否、Forward再入条件を保持する。\n\n| system change class | 既存route候補 | adaptive return／再入条件 |\n|---|---|---|\n| `implementation_ops` | `RECOVERY`／`REVERSE`／`REFACTOR`／`RETROFIT` | 原因が存在するL4〜L7へ戻し、該当pair、regression、receiptをcurrent化する |\n| `definition_review` | `REDESIGN`／`DESIGN_REFACTOR`／`RETROFIT` | 影響するL3〜L5と全downstreamをstale化し、設計／contractを再freezeする |\n| `requirement_change` | `REDESIGN`＋Requirement Discovery | L12 evidenceからL1価値またはL2要求へbackflowし、Proposal→Candidate→human decision→L3 recompile／re-freezeを閉じる |\n\n戻り先をchange classだけで固定せず、原因、変更意味、affected authority、pair closureから最小の連続layer集合を決定する。\nFull Vは`HR-FR-HIL-04`のUniversal Reverse／Redesign re-entryを使い、Production Scrum／Hybridだけが必要に応じて\n`SCRUM_REVERSE` SR0〜SR4をsubrouteとして使う。rollback／containment成功はBackflowDecision、stale closure、re-freeze、\nForward再入、Release／Redeployment／再観測を代替しない。曖昧なroute、非連続return layer、旧revision receipt、\nre-freeze前のForward joinをfail-closeする。",
+        "acceptance_ids": [
+          "OPS-AC-020",
+          "OPS-AC-021"
+        ],
+        "semantic_digest": "sha256:ad8015101959aa333adc929c2302c8eb491bb2739d8193e64608cecf49eee79c"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "OPS-AC-001",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-001",
+          "OPS-R-01"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: environment identity、provider adapter、resource、permission、credential referenceがexact\nnegative mutation: ambiguous／logical-only target、secret値保存を拒否",
+        "semantic_digest": "sha256:e97e9882000f81e23ea1e0ea57f072acff510fe9a0c28f6f06906f78f9b0a189"
+      },
+      {
+        "acceptance_id": "OPS-AC-002",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-001",
+          "OPS-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: Manifest／Plan／Receiptが別schemaとstateを持つ\nnegative mutation: Release＝Deployment、plan＝receiptを拒否",
+        "semantic_digest": "sha256:92088576582e2250f585979a1a8b37cb79d84bd92f51898f8a038d3ab365b468"
+      },
+      {
+        "acceptance_id": "OPS-AC-003",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-001",
+          "OPS-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: rollback plan／receipt、backup、consumer bytes保全が成立\nnegative mutation: irreversible／unbound rollback、health未確認を拒否",
+        "semantic_digest": "sha256:6959540e050dec20e42036ae58a6d69dabbf526f9a76603449a1f6ac63c6b925"
+      },
+      {
+        "acceptance_id": "OPS-AC-004",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-002",
+          "OPS-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 同一入力から同一Deployment Planを生成\nnegative mutation: provider command埋込み、unknown capability、digest欠落を拒否",
+        "semantic_digest": "sha256:15c5922a8dc7ada2fbea26279f02125f690b28921df33ea07314682de991ca35"
+      },
+      {
+        "acceptance_id": "OPS-AC-005",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-002",
+          "OPS-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 同一artifactがstaging→canary→productionへ昇格\nnegative mutation: stage skip、OS別rebuild、artifact差替えを拒否",
+        "semantic_digest": "sha256:f0eeb20bd881820c0200865d7f85223e839884fa3dce6d00fa02e5af878d584a"
+      },
+      {
+        "acceptance_id": "OPS-AC-006",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-002",
+          "OPS-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: destructive／credential operationがapprovalとtargetへ束縛\nnegative mutation: PAT／host fallback、wrong target、expired approvalを拒否",
+        "semantic_digest": "sha256:3a5fb566841d61f35aa5b98cb492ad7339ff4148fc067b5f8129edc03b5bc1d4"
+      },
+      {
+        "acceptance_id": "OPS-AC-007",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-003",
+          "OPS-R-06"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: SLO／resource／connection／credential／cost observationをpolicyへ照合\nnegative mutation: policy version、window、source quality欠落を拒否",
+        "semantic_digest": "sha256:a03efe3f5bec65f3085dedbee2ab18fc4d7b6abca8a7f408f24eca1291f11d5a"
+      },
+      {
+        "acceptance_id": "OPS-AC-008",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-003",
+          "OPS-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: IncidentがRelease／Deployment／Requirement／diffへ相関\nnegative mutation: stale／duplicate／out-of-orderをroot causeへ誤昇格しない",
+        "semantic_digest": "sha256:36576ec668080846d0e551b30ac24e08bcb1a74392e0e0f89e5d4b6c8d3c3424"
+      },
+      {
+        "acceptance_id": "OPS-AC-009",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-003",
+          "OPS-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: bounded Runbook内だけ自動復旧\nnegative mutation: Runbook外、権限外、rollback不能の自動操作を拒否",
+        "semantic_digest": "sha256:1917b7f2286d329c7060492ea4351b8297b8fce1894abe6439d34bfe1626640d"
+      },
+      {
+        "acceptance_id": "OPS-AC-010",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-004",
+          "OPS-R-08"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: obligationの期限、周期、owner、Evidence、overdue effectを再現\nnegative mutation: duplicate schedule、timezone／clock drift、missed cycleを検出",
+        "semantic_digest": "sha256:2bf916d0b2bd6ec64501de295df011724258faf5fab4b592cab2ef94b4e0d0d0"
+      },
+      {
+        "acceptance_id": "OPS-AC-011",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-004",
+          "OPS-R-09"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 構造原因をdefinition、価値変更をrequirementへ根拠付き昇格\nnegative mutation: local patchによる構造findingの隠蔽を拒否",
+        "semantic_digest": "sha256:4789c910769b09d680bdb1f6dcd031a400f36efc1472d68045a682c51cdbcf8a"
+      },
+      {
+        "acceptance_id": "OPS-AC-012",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-005",
+          "OPS-R-10"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: symptomから全authority／artifact層へtraceできる\nnegative mutation: file文字列一致、最新commitだけの確定を拒否",
+        "semantic_digest": "sha256:f712e157c48c54e42e4c999b473ba27ce9a78c63974875e5a893a447c753d0bf"
+      },
+      {
+        "acceptance_id": "OPS-AC-013",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-005",
+          "OPS-R-10"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: candidate順位、根拠、反証、confidence、blast radiusを出力\nnegative mutation: ambiguityを単一修正先へ推測確定しない",
+        "semantic_digest": "sha256:e2c61abffde51836b80e887fd0e68f3ccd67a3a5426ff8eba863b01cbbbc9fb3"
+      },
+      {
+        "acceptance_id": "OPS-AC-014",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-005",
+          "OPS-R-11"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: health window、SLO、regression、review、read-after後にcompletion\nnegative mutation: command／API successだけのcloseを拒否",
+        "semantic_digest": "sha256:4c800df30556722f8ebe35697844ad383e4c4c599c9708cbecf98f4207281013"
+      },
+      {
+        "acceptance_id": "OPS-AC-015",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-006",
+          "OPS-R-12"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 4 Moduleのprimary ownershipとdependency closureがexact\nnegative mutation: owner重複、orphan、route／providerとのidentity混同を拒否",
+        "semantic_digest": "sha256:e75cab6387f5445273f0dd36aff449e736516c566beeb227a52951c2bb9c97f0"
+      },
+      {
+        "acceptance_id": "OPS-AC-016",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-006",
+          "OPS-R-12"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: lifecycle-ops Bundleがexact lockとrollback profileを持つ\nnegative mutation: preview moduleのstable暗黙包含を拒否",
+        "semantic_digest": "sha256:26723a76e3aae043963f9e6e9945a4c15fdf2893d14dd8a416802405f7074f71"
+      },
+      {
+        "acceptance_id": "OPS-AC-017",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-006",
+          "OPS-R-12"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: HELIX dogfoodがfull lifecycleを同一traceで完走\nnegative mutation: self-host例外、手編集receipt、観測省略を拒否",
+        "semantic_digest": "sha256:b1a3bda18d5f4fe7174cab8895d971525b2da4f00827c5ae73f2553b41110b65"
+      },
+      {
+        "acceptance_id": "OPS-AC-018",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-006"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: raw telemetryはartifact、state／decisionはDB projection\nnegative mutation: log／notification／DevOSを意味正本にしない",
+        "semantic_digest": "sha256:bf1db1b617433610a976a045f26935243000cb14f0b3704271b78c8d700fa850"
+      },
+      {
+        "acceptance_id": "OPS-AC-019",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-004",
+          "OPS-R-09"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: system change classとcapability expansion kindを別fieldで同時保持\nnegative mutation: Skill／Template／Workflowを`requirement_change`または`ADD_FEATURE`へ畳み込む出力を拒否",
+        "semantic_digest": "sha256:5aefd9e2608a4812caed4ef5bf11d26a42daa04923f5c427219c380d520c26f7"
+      },
+      {
+        "acceptance_id": "OPS-AC-020",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-005",
+          "OPS-R-13"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: diagnosisからchange class、既存route、最小return layer、stale targetを一意に導出\nnegative mutation: troubleshooting新route、固定return layer、曖昧route／非連続layerを拒否",
+        "semantic_digest": "sha256:77d3d9253e0da3c09bea9b36e74911894052defac9febb26eb2f7ec8b4c93227"
+      },
+      {
+        "acceptance_id": "OPS-AC-021",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "OPS-FR-005",
+          "OPS-R-13"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: Requirement変更はL1/L2再整理、human decision、L3 recompile／re-freeze後だけForward再入\nnegative mutation: rollback成功、旧freeze receipt、stale残存、Scrum ReverseだけによるFull V終端を拒否",
+        "semantic_digest": "sha256:a7ace5d5b801798758e0af8a9573d286e6ecfa3347c9430994752f5b28f0e732"
+      }
+    ],
+    "downstream_issue_ids": [
+      1161,
+      1162,
+      1163,
+      1164,
+      1165,
+      1166,
+      1167
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1161,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "OPS-AC-001",
+          "OPS-AC-002",
+          "OPS-AC-003"
+        ]
+      },
+      {
+        "issue_id": 1162,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "OPS-AC-004",
+          "OPS-AC-005"
+        ]
+      },
+      {
+        "issue_id": 1163,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "OPS-AC-007",
+          "OPS-AC-008",
+          "OPS-AC-009"
+        ]
+      },
+      {
+        "issue_id": 1164,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "OPS-AC-010",
+          "OPS-AC-011",
+          "OPS-AC-019"
+        ]
+      },
+      {
+        "issue_id": 1165,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "OPS-AC-012",
+          "OPS-AC-013",
+          "OPS-AC-014",
+          "OPS-AC-020",
+          "OPS-AC-021"
+        ]
+      },
+      {
+        "issue_id": 1166,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "OPS-AC-006"
+        ]
+      },
+      {
+        "issue_id": 1167,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "OPS-AC-015",
+          "OPS-AC-016",
+          "OPS-AC-017"
+        ]
+      },
+      {
+        "issue_id": 1160,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "OPS-AC-018"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:96f1676a7e49a5b4394af70d2cf35d6fe8b99a6e2bc71c4891d1a4f86a1c705c"
   }
 }

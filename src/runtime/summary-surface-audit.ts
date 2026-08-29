@@ -401,7 +401,7 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
         items: [],
       },
       scrum_operation: {
-        source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+        source_package: "hybrid-vmodel-source.v1",
       },
       skill_binding: {
         source_command: "helix skill suggest --current-location --summary-json",
@@ -448,7 +448,7 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
         items: [],
       },
       scrum_operation: {
-        source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+        source_package: "hybrid-vmodel-source.v1",
       },
       vmodel_fit: {
         regression_guards: {

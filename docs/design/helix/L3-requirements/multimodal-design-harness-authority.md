@@ -155,7 +155,8 @@ OCR、CV、MLLM、screenshot-to-codeはproposal generatorであってauthority�
 
 ```yaml
 research_source:
-  path: deep-research-report.md
+  local_path: null
+  retired_local_input: deep-research-report.md
   digest: sha256:a94aa99e0f22c40e75816beb46105b0c2f75173ccf430577df5355635f2dca39
   role: research_input
   source_snapshot: https://github.com/RetryYN/HELIX-HARNESS/issues/255#issuecomment-5108796110

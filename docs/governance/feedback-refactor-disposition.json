@@ -28,56 +28,56 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:652f891af74e:literal-appears-22-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:cbfc9b6fc8fc:literal-appears-14-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-runtime-summary-surface-audit.ts-literal:sha256:420e30828a04:literal-appears-21-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/runtime/summary-surface-audit.ts",
-      "source_file_sha256": "5cc21ad2c37a66b23bffdf700491663f5144800892cd080cbf8f0247c90538c0",
+      "source_file_sha256": "d2e383c9a331ffe071da0654b00a4b5a5b8dd1433e4d35c0ebeb941558865e65",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-runtime-summary-surface-audit.ts-literal:sha256:c450933e9b92:literal-appears-20-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/runtime/summary-surface-audit.ts",
-      "source_file_sha256": "5cc21ad2c37a66b23bffdf700491663f5144800892cd080cbf8f0247c90538c0",
+      "source_file_sha256": "d2e383c9a331ffe071da0654b00a4b5a5b8dd1433e4d35c0ebeb941558865e65",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-schema-hybrid-vmodel-manifest.ts-literal:sha256:f57991404ac6:literal-appears-15-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/schema/hybrid-vmodel-manifest.ts",
-      "source_file_sha256": "af3407238904e63f0be941a3609786d17d11140c1f3096d2fd5e40755c4b6a7c",
+      "source_file_sha256": "486536265741dea9bfc6b6f78f1e68a7ab846cb41dff0c74f70c461ba65a639f",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:c450933e9b92:literal-appears-41-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "51ce97585ad4b72eaa15db0d72218f3d7dc4d523c99d4c0aadcdd69fde8f6934",
+      "source_file_sha256": "dcc61fd59ac8265de3890453f1d713cc12ad8e5022cb3ee941a31141ab7198b7",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:ff4d1f75e1ae:literal-appears-27-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "51ce97585ad4b72eaa15db0d72218f3d7dc4d523c99d4c0aadcdd69fde8f6934",
+      "source_file_sha256": "dcc61fd59ac8265de3890453f1d713cc12ad8e5022cb3ee941a31141ab7198b7",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-vmodel-fit.ts-literal:sha256:ff4d1f75e1ae:literal-appears-16-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/vmodel-fit.ts",
-      "source_file_sha256": "60380dc1202ff293d2cfbbba302903ca749b994053ca2ace4cab375145001810",
+      "source_file_sha256": "23ce56e2b8d9f0fd4472f66188167a0c7e23dcb909743228c6afa9d84cad5b41",
       "family": "literal_policy_externalization"
     },
     {
@@ -91,49 +91,49 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-cli.ts:module-has-13584-nonblank-line-s-and-3-export-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildProjectViewOutline:function-buildProjectViewOutline-has-156-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildSummarySurfaceCommandAudit:function-buildSummarySurfaceCommandAudit-has-162-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectCurrentLocation:function-summarizeProjectCurrentLocation-has-213-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectRecoveryPlan:function-summarizeProjectRecoveryPlan-has-148-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeVmodelFitReport:function-summarizeVmodelFitReport-has-370-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "b0b397e996fafa426365e47bbd13423d902aaee275e222c7c7342cd7c9251072",
+      "source_file_sha256": "823871e2a97720f1cd5d0eba1d2c6f631e7c01b0e9fa30435150dcdc0f66eaa4",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-doctor-index.ts:module-has-7370-nonblank-line-s-and-141-export-s-",
       "source_path": "src/doctor/index.ts",
-      "source_file_sha256": "6e8ce372cb169a0b051aa1424d17e969600571dc88c471128df01cb1a76c4b9d",
+      "source_file_sha256": "8b3e13accb20e50534b6b0429de62a47e8c977e7b3507154b847aa7d3dfe67ec",
       "family": "non_cli_module_decomposition"
     },
     {
@@ -147,14 +147,14 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-setup-index.ts:module-has-3015-nonblank-line-s-and-70-export-s-",
       "source_path": "src/setup/index.ts",
-      "source_file_sha256": "6fa5ddb2933d92863d7c9c309bd804e2f99d2d0a0ad4f3dd8c4ec5bbbe55a851",
+      "source_file_sha256": "11b50cfa96a11aee27d0c9a6270b016250b0d358012b3d7831dfbe7fd944fcec",
       "family": "non_cli_module_decomposition"
     },
     {
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-current-location.ts:module-has-9384-nonblank-line-s-and-127-export-s-",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "51ce97585ad4b72eaa15db0d72218f3d7dc4d523c99d4c0aadcdd69fde8f6934",
+      "source_file_sha256": "dcc61fd59ac8265de3890453f1d713cc12ad8e5022cb3ee941a31141ab7198b7",
       "family": "non_cli_module_decomposition"
     },
     {
