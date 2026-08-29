@@ -47,7 +47,7 @@ describe("skill applicability registry", () => {
   it("loads requirements-owned authority and binds the workflow registry", () => {
     const registry = loadSkillApplicabilityRegistry();
     expect(registry.registry_version).toBe("1.0.0");
-    expect(registry.identity_reference.registry_version).toBe("1.1.5");
+    expect(registry.identity_reference.registry_version).toBe("1.1.6");
     expect(registry.current_contract).toEqual(
       expect.objectContaining({
         positive_field: "applicable_identities",

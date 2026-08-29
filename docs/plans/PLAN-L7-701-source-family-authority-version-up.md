@@ -68,11 +68,20 @@ modifies:
   - { artifact_path: config/workflow-execution-policy.v1.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L3-requirements/skill-applicability-registry.v1.json, artifact_type: json_config }
   - { artifact_path: config/nfr-registry.json, artifact_type: json_config }
+  - { artifact_path: config/distribution-profile-catalog.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/refinement_contracts.json, artifact_type: json_config }
+  - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
+  - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/schema/hybrid-vmodel-manifest.ts, artifact_type: source_module }
   - { artifact_path: tests/source-package-manifest.test.ts, artifact_type: test_code }
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/distribution-lite-profile-package.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/skill-applicability-registry.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/workflow-classification-catalog-lint.test.ts, artifact_type: test_code }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 ---
 
 # Source family authorityのversion-up

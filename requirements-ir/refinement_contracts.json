@@ -553,7 +553,7 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
-      "requirement_digest": "sha256:afa44e49ca3949528261eafb7d2e27307f2529a8b463d61ae262297026cb8245",
+      "requirement_digest": "sha256:c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
       "acceptance_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
       "acceptance_digest": "sha256:3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc"
     },
@@ -737,7 +737,7 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:58490507851be6502fcbd0c5efecceee13ebf11677129489d56b43f6d323012b"
+    "semantic_digest": "sha256:603f0693c9da14b94de2cf791856a4a4cf0857bf6ded7d27276eaef6e03b81bf"
   },
   "SYN-FR-001": {
     "schema_version": "helix-requirement-refinement.v1",
