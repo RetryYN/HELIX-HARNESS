@@ -36,6 +36,11 @@ review_evidence:
         completed_at: "2026-08-29T17:22:46Z"
         evidence_path: tests/l3-g3-freeze-packet-v2.test.ts
         output_digest: "sha256:8850797dc0c7728f155cb5a28f219e07abb014b960d975b9e23b908c425c3eea"
+verification_bindings:
+  - { parent_design: docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md, oracle_id: U-UIL-AUTH-001, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md, oracle_id: U-UIL-AUTH-002, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md, oracle_id: U-UIL-AUTH-003, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
+  - { parent_design: docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md, oracle_id: U-UIL-AUTH-004, test_path: tests/l3-g3-freeze-packet-v2.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6

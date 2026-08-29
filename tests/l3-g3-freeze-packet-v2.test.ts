@@ -29,6 +29,35 @@ const PLAN_PATH = "docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md";
 const packet = readFileSync(PACKET_PATH, "utf8");
 const plan = readFileSync(PLAN_PATH, "utf8");
 
+const UIL_REQUIREMENTS_PATH =
+  "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md";
+const UIL_ACCEPTANCE_PATH = "docs/test-design/helix/universal-improvement-loop-acceptance.md";
+const UIL_PLAN_PATH = "docs/plans/PLAN-L3-74-universal-improvement-loop.md";
+const uilRequirements = readFileSync(UIL_REQUIREMENTS_PATH, "utf8");
+const uilAcceptance = readFileSync(UIL_ACCEPTANCE_PATH, "utf8");
+const uilPlan = readFileSync(UIL_PLAN_PATH, "utf8");
+
+const uilFeatureIds = Array.from(
+  { length: 7 },
+  (_, index) => `UIL-FR-${String(index + 1).padStart(3, "0")}`,
+);
+const uilRequirementIds = Array.from(
+  { length: 14 },
+  (_, index) => `UIL-R-${String(index + 1).padStart(2, "0")}`,
+);
+const uilAcceptanceIds = Array.from(
+  { length: 22 },
+  (_, index) => `UIL-AC-${String(index + 1).padStart(3, "0")}`,
+);
+const uilSliceIds = Array.from(
+  { length: 8 },
+  (_, index) => `UIL-${String(index + 1).padStart(2, "0")}`,
+);
+
+function exactUilIds(document: string, pattern: RegExp): string[] {
+  return Array.from(document.matchAll(pattern), (match) => match[1] ?? "");
+}
+
 const requiredFreezeTargetPlans = [
   "PLAN-L3-15-requirements-authority-chain-remediation",
   "PLAN-L3-16-scrum-reverse-entity-requirements",
@@ -1179,6 +1208,41 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(claude).toContain("GitHub native auto-mergeは禁止");
     expect(audit).not.toContain("safe なら auto-merge");
     expect(audit).not.toContain("safe → auto-merge");
+  });
+
+  it("U-UIL-AUTH-001: keeps the Universal Improvement Loop L3/L10 identity sets exact", () => {
+    expect(exactUilIds(uilRequirements, /^## (UIL-FR-\d{3})\s/gmu)).toEqual(uilFeatureIds);
+    expect(exactUilIds(uilRequirements, /^### (UIL-R-\d{2})\s/gmu)).toEqual(uilRequirementIds);
+    expect(exactUilIds(uilAcceptance, /^\| (UIL-AC-\d{3}) \|/gmu)).toEqual(uilAcceptanceIds);
+  });
+
+  it("U-UIL-AUTH-002: maps every Universal Improvement Loop acceptance row to the exact requirement set", () => {
+    const rows = Array.from(
+      uilAcceptance.matchAll(/^\| (UIL-AC-\d{3}) \| (UIL-R-\d{2}) \|/gmu),
+      (match) => [match[1] ?? "", match[2] ?? ""] as const,
+    );
+
+    expect(rows).toHaveLength(uilAcceptanceIds.length);
+    expect(rows.map(([acceptanceId]) => acceptanceId)).toEqual(uilAcceptanceIds);
+    expect([...new Set(rows.map(([, requirementId]) => requirementId))].sort()).toEqual(
+      uilRequirementIds,
+    );
+  });
+
+  it("U-UIL-AUTH-003: binds confirmed L3/L10 status and reciprocal PLAN identity", () => {
+    expect(uilRequirements).toMatch(/^status: confirmed$/m);
+    expect(uilAcceptance).toMatch(/^status: confirmed$/m);
+    expect(uilPlan).toMatch(/^status: confirmed$/m);
+    expect(uilPlan).toMatch(/^completion_claim_allowed: false$/m);
+    expect(uilPlan).toContain(`pair_artifact: ${UIL_ACCEPTANCE_PATH}`);
+    expect(uilPlan).toContain(`github_issue_id: 1210`);
+  });
+
+  it("U-UIL-AUTH-004: keeps the eight implementation slices explicit and unique", () => {
+    const sliceIds = exactUilIds(uilRequirements, /^\| (UIL-\d{2}) \|/gmu);
+
+    expect(sliceIds).toEqual(uilSliceIds);
+    expect(new Set(sliceIds)).toHaveLength(uilSliceIds.length);
   });
 });
 // PLAN-L7-577-github-execution-episode-location-projection — U-GHEPL-008
