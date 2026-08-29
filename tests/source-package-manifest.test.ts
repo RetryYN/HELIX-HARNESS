@@ -22,6 +22,37 @@ describe("source package manifest migration", () => {
     expect(workflow.entries).toHaveLength(14);
   });
 
+  it("U-SRCMAN-005..007: migration source ZIP is retired behind exact manifests", () => {
+    const v050 = JSON.parse(
+      readFileSync("docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.0.json", "utf8"),
+    );
+    const v051 = JSON.parse(
+      readFileSync("docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.1.json", "utf8"),
+    );
+    expect(
+      existsSync("docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip"),
+    ).toBe(false);
+    expect(
+      existsSync("docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.1.zip"),
+    ).toBe(false);
+    expect(v050).toMatchObject({
+      source_family_id: "hybrid-core-rebaseline.v0.5.0",
+      legacy_git_blob: "d1fbeccaf8c4006f5ba0ee077d9c1e887caff6c0",
+      archive_sha256: "04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61",
+      entry_set_sha256: "7906acee0afd710f3f1a6b1c97fd09043d48cdd23c8a1adc23a80008455423d9",
+      root_prefix: "HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1",
+      entry_count: 208,
+    });
+    expect(v050.provenance_findings).toHaveLength(1);
+    expect(v051).toMatchObject({
+      source_family_id: "hybrid-core-rebaseline.v0.5.1",
+      legacy_git_blob: "a20f09e0888e80f0e13374ef10dab52e1e6aeee7",
+      archive_sha256: "1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd",
+      entry_set_sha256: "3eacded2534c049e54361bba5811ceac9383102dc7b586c4efe1ee0af5382790",
+      entry_count: 211,
+    });
+  });
+
   it("U-SRCMAN-002: raw root source files are retired", () => {
     expect(existsSync(VMODEL_LEGACY_ZIP_FILENAME)).toBe(false);
     expect(existsSync("UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip")).toBe(false);

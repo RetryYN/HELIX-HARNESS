@@ -255,7 +255,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/governance/hybrid-rebaseline-v0.5.0-intake-audit-2026-07-18.md",
-    contentDigest: "90ef610613a91d19ca58345903654b169cf4057f37d0dda6ac8604a69153779f",
+    contentDigest: "dc9aff4ab72ccaaab45d257799c30124604fb01e073f1c5749b57e04a565b93b",
     finalDisposition: "historical",
   },
   {

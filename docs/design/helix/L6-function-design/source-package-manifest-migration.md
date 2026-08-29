@@ -13,3 +13,7 @@ current identityは`source_family_id`、履歴再現は`legacy archive SHA + ent
 archive欠落をcurrent runtime failureにしない。Universal Workflow 14件とHybrid採用21件を個別digestへ固定する。
 
 `deep-research-report.md`はraw authorityにせず、検証可能なcapability候補と責務境界だけをresearch dispositionへ残す。
+
+`docs/migration/source-packages/`のbinary sourceもcurrent treeへ保持しない。Git blob、archive SHA、全entryの
+`path／size／sha256`から作るentry-set digest、内部root、拡張子分布をmanifestへ固定する。filenameがv0.5.0でも
+内部rootがv0.5.1の場合は不一致をfindingとして保持し、version identityを推測しない。
