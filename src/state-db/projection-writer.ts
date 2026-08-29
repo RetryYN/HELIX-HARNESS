@@ -2,7 +2,6 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { isAbsolute, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { projectSkillApplicabilityRows } from "../assets/skill-applicability-projection";
 import type { DocumentExportProjectionRows } from "../export/document-export";
 import {
   buildDocumentExportDataset,
@@ -91,6 +90,7 @@ import {
   upsertRow,
 } from "./index";
 import { migrate, rowCounts } from "./migration";
+import { projectSkillApplicabilityRows } from "./skill-applicability-projection";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
 import {

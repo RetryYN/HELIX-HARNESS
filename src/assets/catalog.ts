@@ -5,7 +5,7 @@ import { fmValueOrEmpty as frontmatterValue, markdownFrontmatter } from "../lint
 import { upsertSearchReference } from "../search/index";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
-import { projectSkillApplicabilityRows } from "./skill-applicability-projection";
+import { projectSkillApplicabilityRows } from "../state-db/skill-applicability-projection";
 
 export interface CatalogAutomationAssetsInput {
   repoRoot?: string;

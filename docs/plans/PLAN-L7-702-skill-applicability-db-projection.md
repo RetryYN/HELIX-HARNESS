@@ -79,7 +79,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — registry bindingと原子scope" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-702-skill-applicability-db-projection.md, artifact_type: markdown_doc }
-  - { artifact_path: src/assets/skill-applicability-projection.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/skill-applicability-projection.ts, artifact_type: source_module }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L5-detail/development-model-runtime-routing.md, artifact_type: design_doc }
