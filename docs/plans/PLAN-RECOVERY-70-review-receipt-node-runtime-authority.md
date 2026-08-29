@@ -22,7 +22,7 @@ behavior_contract_id: REVIEW-RECEIPT-NODE-AUTHORITY-001
 responsibility_owner: review-receipt-runtime-admission
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: close_gate_bypass
+refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
 backprop_decision: not_required
 backprop_decision_reason: "ADR-009とrequirements §8およびIssue #660がNode runtime authorityを既に所有する。本sliceはreview receipt write consumerの迂回を閉じ、要求意味を変更しない。"
@@ -63,6 +63,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-70-review-receipt-node-runtime-authority.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/node-engine-runtime-gate.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-node-engine-runtime-gate-unit-test-design.md, artifact_type: test_design }
