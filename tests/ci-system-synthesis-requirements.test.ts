@@ -1,8 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-const requirementPath =
-  "docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md";
+const requirementPath = "docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md";
 const acceptancePath = "docs/test-design/helix/ci-system-synthesis-acceptance.md";
 const planPath = "docs/plans/PLAN-L3-73-ci-system-synthesis.md";
 
