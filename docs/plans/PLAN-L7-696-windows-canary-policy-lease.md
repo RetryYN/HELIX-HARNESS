@@ -100,6 +100,7 @@ modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/event-projection-checkpoint-replay.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/slot-scheduler-quota-handover.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md, artifact_type: design_doc }
   - { artifact_path: src/runtime/work-graph-receipt-acceptance.ts, artifact_type: source_module }
   - { artifact_path: tests/work-graph-receipt-acceptance.test.ts, artifact_type: test_code }
 ---
