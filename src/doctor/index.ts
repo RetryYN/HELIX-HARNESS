@@ -581,6 +581,7 @@ import { checkNfrRegistry } from "./nfr-registry-check";
 import { checkNodeEngineRuntime } from "./node-engine-runtime";
 import type { DoctorOptions, DoctorResult } from "./result";
 import { checkStateDbSchemaAuthority } from "./state-db-schema-authority";
+import { checkUniversalImprovementSourceRegistry } from "./universal-improvement-source-registry-check";
 import { checkWorkflowGuideAuthority } from "./workflow-guide-authority";
 
 function buildDoctorCurrentLocationSnapshot(
@@ -7142,6 +7143,7 @@ export function checkG10UxWorkflow(repoRoot: string): {
 function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
   const nfrRegistry = checkNfrRegistry(deps.repoRoot);
+  const universalImprovementSourceRegistry = checkUniversalImprovementSourceRegistry(deps.repoRoot);
   // handover / agent-slots are warning surfaces. Verification profile is a hard gate.
   const backfill = checkBackfillResult(deps.repoRoot);
   const scrumRev = checkScrumReverse(deps.repoRoot);
@@ -7328,6 +7330,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const forwardConvergenceAudit = checkForwardConvergenceAudit(deps.repoRoot);
   const doctorCheckStates: Array<[string, boolean]> = [
     ["nfrRegistry", nfrRegistry.ok],
+    ["universalImprovementSourceRegistry", universalImprovementSourceRegistry.ok],
     ["backfill", backfill.ok],
     ["scrumRev", scrumRev.ok],
     ["planSupersession", planSupersession.ok],
@@ -7475,6 +7478,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   return {
     ok:
       nfrRegistry.ok &&
+      universalImprovementSourceRegistry.ok &&
       backfill.ok &&
       scrumRev.ok &&
       planSupersession.ok &&
@@ -7768,6 +7772,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...semanticFrontierConsistency.messages.map((m) => `doctor: ${m}`),
       ...forwardConvergenceAudit.messages.map((m) => `doctor: ${m}`),
       ...nfrRegistry.messages.map((m) => `doctor: ${m}`),
+      ...universalImprovementSourceRegistry.messages.map((m) => `doctor: ${m}`),
     ],
   };
 }

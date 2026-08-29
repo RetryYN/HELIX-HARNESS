@@ -1,0 +1,652 @@
+{
+  "schema_version": "helix-universal-improvement-source-registry.v1",
+  "registry_id": "universal-improvement-source-registry",
+  "registry_version": "1.0.0",
+  "authority": {
+    "kind": "requirements",
+    "artifact_path": "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+    "locator": "§0, §UIL-FR-001..007, §UIL-R-01..14, §UIL-AC-001..022",
+    "source_digest": "sha256:ef612f7b120e3322d43cdb39aaa08e31d36fd9ff7994fdd0fd06efa92ef13f3e",
+    "requirement_ids": [
+      "UIL-FR-001",
+      "UIL-FR-002",
+      "UIL-FR-003",
+      "UIL-FR-004",
+      "UIL-FR-005",
+      "UIL-FR-006",
+      "UIL-FR-007",
+      "UIL-R-01",
+      "UIL-R-02",
+      "UIL-R-03",
+      "UIL-R-04",
+      "UIL-R-05",
+      "UIL-R-06",
+      "UIL-R-07",
+      "UIL-R-08",
+      "UIL-R-09",
+      "UIL-R-10",
+      "UIL-R-11",
+      "UIL-R-12",
+      "UIL-R-13",
+      "UIL-R-14",
+      "UIL-AC-001",
+      "UIL-AC-002",
+      "UIL-AC-003",
+      "UIL-AC-004",
+      "UIL-AC-005",
+      "UIL-AC-006",
+      "UIL-AC-007",
+      "UIL-AC-008",
+      "UIL-AC-009",
+      "UIL-AC-010",
+      "UIL-AC-011",
+      "UIL-AC-012",
+      "UIL-AC-013",
+      "UIL-AC-014",
+      "UIL-AC-015",
+      "UIL-AC-016",
+      "UIL-AC-017",
+      "UIL-AC-018",
+      "UIL-AC-019",
+      "UIL-AC-020",
+      "UIL-AC-021",
+      "UIL-AC-022"
+    ]
+  },
+  "required_source_kinds": [
+    "ci",
+    "db",
+    "requirements",
+    "definition",
+    "dependency",
+    "review",
+    "operations",
+    "provider",
+    "distribution",
+    "resource_security"
+  ],
+  "admission_policy": {
+    "unknown_source": "fail_close",
+    "duplicate_source_id": "fail_close",
+    "duplicate_detector_id": "fail_close",
+    "missing_owner": "fail_close",
+    "invalid_authority": "fail_close",
+    "unsupported_schema": "fail_close",
+    "stale_evidence": "fail_close",
+    "digest_mismatch": "fail_close",
+    "read_only": true,
+    "ai_role": "proposal_only"
+  },
+  "entries": [
+    {
+      "source_id": "UIL-SRC-001",
+      "source_kind": "ci",
+      "owner": "ci-system-synthesis",
+      "authority": {
+        "kind": "ci",
+        "artifact_path": "docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+        "locator": "CI System Synthesisのtelemetry／wall-clock／queue観測",
+        "source_digest": "sha256:7bdd77ca10e324ff578a53a79660e1ffe9f781af82354f97cb9ed5ddcd1fb736"
+      },
+      "schema_version": "ci-execution-telemetry.v1",
+      "detector": {
+        "detector_id": "UIL-DET-001",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/lint/telemetry-closure.ts",
+          "digest": "sha256:15059c60d04dedddd1da7a61148442d2f1cc0f709d2d61acdee68a70794c65ff"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "ci_wall_clock_budget_exceeded",
+        "ci_queue_growth",
+        "ci_flake_or_retry_growth"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-002",
+      "source_kind": "db",
+      "owner": "state-db",
+      "authority": {
+        "kind": "database",
+        "artifact_path": "docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+        "locator": "DB projection／replay／checkpoint integrity",
+        "source_digest": "sha256:69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79"
+      },
+      "schema_version": "db-projection-replay.v1",
+      "detector": {
+        "detector_id": "UIL-DET-002",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/composition/db-rebuild-composition.ts",
+          "digest": "sha256:652b3ec7c6537110c57cce7532a5b6a5f751e627e29cf352031286bc1505ec18"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "db_projection_mismatch",
+        "db_replay_drift",
+        "checkpoint_gap"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-003",
+      "source_kind": "requirements",
+      "owner": "requirements-authority",
+      "authority": {
+        "kind": "requirements",
+        "artifact_path": "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+        "locator": "Requirement／Definition duplicate／overlap／orphan／stale",
+        "source_digest": "sha256:ef612f7b120e3322d43cdb39aaa08e31d36fd9ff7994fdd0fd06efa92ef13f3e"
+      },
+      "schema_version": "requirements-definition-graph.v1",
+      "detector": {
+        "detector_id": "UIL-DET-003",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/requirements/requirement-authority-gate.ts",
+          "digest": "sha256:bd8f155216ae5b1f59b5c9cd31bcfe5c55a649026e3bb443c28fed4023996581"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "requirement_duplicate_growth",
+        "requirement_orphan_detected",
+        "requirement_semantic_drift"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-004",
+      "source_kind": "definition",
+      "owner": "semantic-integrity",
+      "authority": {
+        "kind": "design",
+        "artifact_path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "locator": "Definition／semantic contract／V-pair整合",
+        "source_digest": "sha256:8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6"
+      },
+      "schema_version": "definition-semantic-integrity.v1",
+      "detector": {
+        "detector_id": "UIL-DET-004",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/semantic/semantic-contract-revalidator.ts",
+          "digest": "sha256:67500c8594ee574f7bbaf47e3d6edaaa052266e1465aeae09c2ee29e9298d110"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "definition_contract_drift",
+        "v_pair_mismatch",
+        "semantic_revalidation_failure"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-005",
+      "source_kind": "dependency",
+      "owner": "dependency-governance",
+      "authority": {
+        "kind": "dependency",
+        "artifact_path": "docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+        "locator": "dependency cycle／fan-out／change amplification",
+        "source_digest": "sha256:69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79"
+      },
+      "schema_version": "dependency-graph-drift.v1",
+      "detector": {
+        "detector_id": "UIL-DET-005",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/lint/dependency-drift.ts",
+          "digest": "sha256:e8c66f4b3f73d9dbc2daefd688fc2700d3647ead8c0308b8ca77ea43cbd9daba"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "dependency_cycle_detected",
+        "dependency_fanout_growth",
+        "change_amplification_growth"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-006",
+      "source_kind": "review",
+      "owner": "review-governance",
+      "authority": {
+        "kind": "review",
+        "artifact_path": "docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+        "locator": "review／rework／rollback／incident evidence",
+        "source_digest": "sha256:69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79"
+      },
+      "schema_version": "review-rework-evidence.v1",
+      "detector": {
+        "detector_id": "UIL-DET-006",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/lint/review-evidence.ts",
+          "digest": "sha256:16d724e341fb13d421df0e52b6b977d7efeb7eb73d37ace7cbd5d8a538954e72"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "review_rework_growth",
+        "rollback_recurrence",
+        "incident_recurrence"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-007",
+      "source_kind": "operations",
+      "owner": "product-lifecycle-operations",
+      "authority": {
+        "kind": "operation",
+        "artifact_path": "docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+        "locator": "operation／incident／maintenance lifecycle evidence",
+        "source_digest": "sha256:ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "schema_version": "operations-lifecycle-observation.v1",
+      "detector": {
+        "detector_id": "UIL-DET-007",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/state-db/maintenance.ts",
+          "digest": "sha256:2c930036af4891cb4c8414432a9787369df546cfbd2941108491a68f84e1f81b"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "incident_opened",
+        "maintenance_due",
+        "rollback_observed"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-008",
+      "source_kind": "provider",
+      "owner": "technology-environment-reconciliation",
+      "authority": {
+        "kind": "provider",
+        "artifact_path": "docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md",
+        "locator": "provider／toolchain／native configuration drift",
+        "source_digest": "sha256:65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc"
+      },
+      "schema_version": "provider-environment-attestation.v1",
+      "detector": {
+        "detector_id": "UIL-DET-008",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/lint/toolchain-pin.ts",
+          "digest": "sha256:05ff501b6a0bec24ee5e23a311b6aca764a5034e666e8b815799b9031c6e068a"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 604800,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "provider_version_changed",
+        "native_config_schema_changed",
+        "toolchain_pin_drift"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-009",
+      "source_kind": "distribution",
+      "owner": "distribution-consumer",
+      "authority": {
+        "kind": "distribution",
+        "artifact_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+        "locator": "distribution consumer／artifact／promotion evidence",
+        "source_digest": "sha256:c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c"
+      },
+      "schema_version": "distribution-consumer-result.v1",
+      "detector": {
+        "detector_id": "UIL-DET-009",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/setup/distribution-lite-consumer-canary.ts",
+          "digest": "sha256:b4296d5ebd1050b404449b169254b6b5445fb0207072ef1bf1330d579dbceaf0"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "consumer_canary_failed",
+        "artifact_dependency_drift",
+        "promotion_boundary_reached"
+      ],
+      "status": "active"
+    },
+    {
+      "source_id": "UIL-SRC-010",
+      "source_kind": "resource_security",
+      "owner": "security-capability-broker",
+      "authority": {
+        "kind": "security",
+        "artifact_path": "docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "locator": "resource／cost／security finding evidence",
+        "source_digest": "sha256:161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7"
+      },
+      "schema_version": "resource-security-policy-observation.v1",
+      "detector": {
+        "detector_id": "UIL-DET-010",
+        "detector_version": "1.0.0",
+        "implementation": {
+          "kind": "repository_module",
+          "path": "src/runtime/security-credential-egress-guard.ts",
+          "digest": "sha256:8a6c1b9f86c04964a88a637986d91de708bac939612c8619d8f223d9e518cd07"
+        },
+        "deterministic": true
+      },
+      "evidence_contract": {
+        "required_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision",
+          "observed_at",
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "identity_fields": [
+          "source_id",
+          "schema_version",
+          "detector_id",
+          "source_revision"
+        ],
+        "digest_fields": [
+          "payload_digest",
+          "evidence_digest"
+        ],
+        "read_only": true
+      },
+      "freshness": {
+        "max_age_seconds": 86400,
+        "policy_ref": "UIL-R-03"
+      },
+      "environments": [
+        "node24-linux"
+      ],
+      "trigger_events": [
+        "security_finding_opened",
+        "resource_budget_exceeded",
+        "credential_egress_attempt"
+      ],
+      "status": "active"
+    }
+  ]
+}
