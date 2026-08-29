@@ -236,6 +236,15 @@ describe("CI execution telemetry contract", () => {
       },
     });
     expect(validateCiExecutionTelemetryEvent(artifact)).toEqual({ ok: true, errors: [] });
+    if (!artifact.artifact) throw new Error("artifact fixture missing");
+
+    const wrongDirection = {
+      ...artifact,
+      artifact: { ...artifact.artifact, direction: "download" as const },
+    };
+    expect(validateCiExecutionTelemetryEvent(wrongDirection).errors).toContain(
+      "artifact_operation_direction_mismatch",
+    );
 
     const artifactOnStep = {
       ...setup,
