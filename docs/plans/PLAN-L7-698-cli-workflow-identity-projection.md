@@ -5,7 +5,8 @@ kind: impl
 layer: L7
 drive: fullstack
 status: confirmed
-completion_claim_allowed: false
+completion_claim_allowed: true
+backfill_state: complete
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
