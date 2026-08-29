@@ -81,6 +81,7 @@ import {
 import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
+import { assertNodeEngineRuntimeAuthority } from "./doctor/node-engine-runtime";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
@@ -14376,6 +14377,15 @@ github
   .option("--apply", "post the receipt comment and persist the shared ACK")
   .option("--json", "JSON output")
   .action((opts: { inputJson: string; apply?: boolean; json?: boolean }) => {
+    try {
+      assertNodeEngineRuntimeAuthority(process.cwd());
+    } catch (error) {
+      process.stderr.write(
+        `github pr-review-receipt: ${error instanceof Error ? error.message : "node_engine_runtime_authority_rejected"}\n`,
+      );
+      process.exitCode = 1;
+      return;
+    }
     const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
     const prUrl = String(raw.prUrl ?? "");
     const prNumber = Number(raw.prNumber);
