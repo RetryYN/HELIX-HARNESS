@@ -8,9 +8,9 @@ confirmed_reverse_type: fullback
 forward_routing: L3
 promotion_strategy: reuse-as-is
 drive: agent
-status: draft
-completion_claim_allowed: false
-backfill_state: pending_reverse
+status: confirmed
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-08-29
 updated: 2026-08-29
 owner: Codex / TL
@@ -21,6 +21,27 @@ change_slice: atomic
 refactor_step: introduce_contract
 no_code_decision: no_change
 legacy_retirement_state: consumer_migration
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-29T16:18:00Z"
+    tests_green_at: "2026-08-29T15:20:14Z"
+    verdict: approve
+    worker_model: codex:gpt-5-codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "4281ba76-20e0-4183-ac2b-9964c44cfd02"
+    reviewed_head_sha: 0b42ab71cdd5ed8e487f4ff3a274d663965e095f
+    scope: "PR #1224 HEAD 0b42ab71cdd5ed8e487f4ff3a274d663965e095fのR0〜R4、Forwardとの双方向接着、CLI typed identity、legacy output禁止、CI／DB収束を独立照合しblocker 0。終端stateだけを更新するconfirmation commitはfresh exact-HEAD receiptで再封緘する。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1224#issuecomment-5463530291"
+    green_commands:
+      - kind: integration_test
+        command: "GitHub Actions harness-check run 33259017384"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-29T15:20:14Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:4a80777382704935d133b395dc707f5cd03526a4f964e1920920af423af4cdb0"
+        result: "full regression、doctor、DB rebuild、Lite consumer、Windows smokeを含むrequired CIがterminal success。"
 entry_signals:
   - "po_directive:Issue #1125のmerge済みCLI typed projectionをmain反映後確認へ束縛し、Issue #206の依存を解放する"
 contract_preconditions: "PR #1159がcurrent mainへmergeされ、PLAN-L7-698の実装、negative oracle、同一HEAD独立review receiptが存在する"
@@ -69,6 +90,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — legacy field再出現、digest drift、未成立証拠の反例" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-698-cli-workflow-identity-terminal-fullback.md, artifact_type: markdown_doc }
+modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -113,8 +135,11 @@ Issue #1125の目的は名称置換ではなく、CLI consumerのprimary identit
 4. Issue #1125、PLAN-L7-698、本PLAN、PR、main HEADの参照が一致する。
 5. canonical merge後にmain反映後確認を行い、Issue #1125をcloseする。
 
-現時点ではmain required CIのterminal確認と本Reverseの独立reviewが未成立のため、draft、
-`pending_reverse`、`completion_claim_allowed: false`を維持する。
+PR #1224 HEAD `0b42ab71cdd5ed8e487f4ff3a274d663965e095f`ではrequired CI run
+`33259017384`がterminal successとなり、Claude Code Opusの独立reviewとmixed-author dual receiptも
+成立した。これによりForward／Reverse双方をconfirmed、`backfill_state: complete`、
+`completion_claim_allowed: true`へ遷移する。終端state更新後のHEADはfresh CIとexact-HEAD reviewで
+再封緘し、canonical merge後のmain read-afterまでIssue #1125をcloseしない。
 
 ## §工程表 schedule
 
