@@ -2,7 +2,7 @@
 plan_id: PLAN-RECOVERY-71-skill-applicability-oracle-closure
 title: "PLAN-RECOVERY-71: skill applicability registry bindingとrebuild oracleをpost-merge回収する"
 kind: recovery
-layer: L7
+layer: cross
 drive: db
 status: draft
 completion_claim_allowed: false
@@ -24,8 +24,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: add_oracle
 legacy_retirement_state: retained
-backprop_decision: required
-backprop_decision_reason: "PR #1213の実装後レビューでU-SKAPP-005の検証不足を実測したため、L8 test designへcatalog／rebuild両経路のexact oracleを還流する。"
+backprop_decision: not_required
+backprop_decision_reason: "本Recovery内でL8 test designと実testを同時に是正し、別の上流backprop episodeを残さない。"
 no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "PR #1213はmainへmerge済みだが、registry version／digest定数化とrebuild projection block削除の3 mutationが既存testを生存する"
@@ -55,8 +55,9 @@ dependencies:
     - "issue:248"
     - "pr:1213"
 agent_slots:
+  - { role: aim, slot_label: "AIM — post-merge findingとForward再合流範囲" }
   - { role: qa, slot_label: "QA — registry binding／rebuild exact set mutation oracle" }
-  - { role: db, slot_label: "DB — deterministic rebuild正本経路" }
+  - { role: se, slot_label: "SE — deterministic rebuild正本経路" }
   - { role: tl, slot_label: "TL — post-merge RecoveryとForward再合流" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-71-skill-applicability-oracle-closure.md, artifact_type: markdown_doc }
