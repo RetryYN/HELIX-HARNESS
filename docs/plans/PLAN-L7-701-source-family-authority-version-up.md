@@ -88,6 +88,7 @@ modifies:
   - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 ---
 
 # Source family authorityのversion-up
