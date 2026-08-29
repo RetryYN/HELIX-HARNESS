@@ -1,6 +1,10 @@
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeNodeEngineRuntime,
+  assertNodeEngineRuntimeAuthority,
   parseNodeEngineRange,
   parseNodeVersion,
 } from "../src/doctor/node-engine-runtime.js";
@@ -60,5 +64,36 @@ describe("node engine runtime gate", () => {
     // 演算子省略は完全一致として扱う。
     expect(parseNodeEngineRange("24.15.0")).toEqual([{ operator: "=", version: [24, 15, 0] }]);
     expect(parseNodeEngineRange("^24")).toBeNull();
+  });
+
+  it("U-NODEENG-006: evidence write boundaryは範囲外runtimeをthrowで停止する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-node-authority-"));
+    try {
+      writeFileSync(
+        join(root, "package.json"),
+        `${JSON.stringify({ engines: { node: ">=24.15.0 <25" } })}\n`,
+      );
+
+      expect(() => assertNodeEngineRuntimeAuthority(root, "v22.23.1")).toThrow(
+        "node_engine_runtime_authority_rejected:node_engine_runtime_out_of_range",
+      );
+      expect(assertNodeEngineRuntimeAuthority(root, "v24.15.0")).toMatchObject({ ok: true });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-NODEENG-007: review receipt CLIは入力解析・slot・GitHub writeより前にruntimeを検査する", () => {
+    const source = readFileSync(join(process.cwd(), "src/cli.ts"), "utf8");
+    const start = source.indexOf('.command("pr-review-receipt")');
+    const end = source.indexOf('.command("pr-review-admission")', start);
+    const command = source.slice(start, end);
+    const authority = command.indexOf("assertNodeEngineRuntimeAuthority(process.cwd())");
+
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(authority).toBeGreaterThanOrEqual(0);
+    expect(authority).toBeLessThan(command.indexOf("JSON.parse(opts.inputJson)"));
+    expect(authority).toBeLessThan(command.indexOf("claimClaudePrReviewReceiptSlot"));
+    expect(authority).toBeLessThan(command.indexOf("claudePrAuthorRuntimeAttestation"));
   });
 });
