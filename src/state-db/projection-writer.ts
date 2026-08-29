@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { isAbsolute, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { projectSkillApplicabilityRows } from "../assets/skill-applicability-projection";
 import type { DocumentExportProjectionRows } from "../export/document-export";
 import {
   buildDocumentExportDataset,
@@ -3963,6 +3964,15 @@ function projectAutomationAssets(repoRoot: string, db: HarnessDb): void {
           indexed_at: indexedAt,
         },
       });
+      if (source.type === "skill") {
+        for (const row of projectSkillApplicabilityRows(assetId, appliesTo)) {
+          recordProjectionEvent(db, {
+            table: "automation_asset_applicability",
+            id: row.applicability_key,
+            row: { ...row },
+          });
+        }
+      }
       recordProjectionEvent(db, {
         table: "search_index",
         id: stableId("automation-asset", assetId),

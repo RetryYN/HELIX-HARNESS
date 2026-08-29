@@ -5,6 +5,7 @@ import { fmValueOrEmpty as frontmatterValue, markdownFrontmatter } from "../lint
 import { upsertSearchReference } from "../search/index";
 import type { HarnessDb } from "../state-db/index";
 import { upsertRow } from "../state-db/index";
+import { projectSkillApplicabilityRows } from "./skill-applicability-projection";
 
 export interface CatalogAutomationAssetsInput {
   repoRoot?: string;
@@ -167,6 +168,15 @@ export function catalogAutomationAssets(input: CatalogAutomationAssetsInput): As
           indexed_at: indexedAt,
         },
       });
+      if (source.type === "skill") {
+        for (const row of projectSkillApplicabilityRows(assetId, appliesTo)) {
+          upsertRow(input.db, {
+            table: "automation_asset_applicability",
+            primaryKey: "applicability_key",
+            row: { ...row },
+          });
+        }
+      }
       upsertSearchReference(input.db, {
         subject_type: "automation_asset",
         subject_id: assetId,

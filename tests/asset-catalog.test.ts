@@ -39,7 +39,10 @@ describe("IT-ASSET-DB-01: automation asset catalog", () => {
           "skill_type: quality-gate-review",
           "applies_to:",
           "  layers: [L7]",
-          "  drive_models: [Forward]",
+          "  applicable_identities:",
+          "    - { target_axis: workflow_model, target_id: REVERSE }",
+          "  excluded_identities:",
+          "    - { target_axis: workflow_model, target_id: INCIDENT }",
           "description: YAML review skill",
         ].join("\n"),
       );
@@ -52,6 +55,7 @@ describe("IT-ASSET-DB-01: automation asset catalog", () => {
 
       expect(result.ok).toBe(true);
       expect(rowCounts(db).automation_assets).toBe(3);
+      expect(rowCounts(db).automation_asset_applicability).toBe(2);
       expect(rowCounts(db).search_index).toBe(3);
       const stored = db
         .prepare("SELECT capability FROM automation_assets WHERE asset_id = ?")
@@ -71,8 +75,28 @@ describe("IT-ASSET-DB-01: automation asset catalog", () => {
       ).toMatchObject({
         skill_type: "quality-gate-review",
         applies_layers: "L7",
-        applies_drive_models: "Forward",
+        applies_drive_models: "",
       });
+      expect(
+        db
+          .prepare(
+            `SELECT target_axis, target_id, polarity
+             FROM automation_asset_applicability
+             WHERE asset_id = ?
+             ORDER BY polarity DESC`,
+          )
+          .all("skill:review-checklist"),
+      ).toEqual([
+        { target_axis: "workflow_model", target_id: "INCIDENT", polarity: "excluded" },
+        { target_axis: "workflow_model", target_id: "REVERSE", polarity: "applicable" },
+      ]);
+      expect(
+        db
+          .prepare(
+            "SELECT COUNT(*) AS count FROM automation_asset_applicability WHERE asset_id = ?",
+          )
+          .get("skill:testing"),
+      ).toMatchObject({ count: 0 });
     } finally {
       db.close();
       rmSync(repo, { recursive: true, force: true });

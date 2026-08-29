@@ -763,4 +763,16 @@ export const HARNESS_DB_CORE_TABLES: TableDef[] = [
       col("indexed_at"),
     ],
   },
+  {
+    name: "automation_asset_applicability",
+    columns: [
+      pk("applicability_key"),
+      col("asset_id"),
+      col("registry_version"),
+      col("registry_source_digest"),
+      col("target_axis"),
+      col("target_id"),
+      col("polarity"),
+    ],
+  },
 ];
