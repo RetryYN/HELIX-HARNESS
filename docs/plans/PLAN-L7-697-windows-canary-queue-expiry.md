@@ -42,7 +42,7 @@ review_evidence:
     tests_green_at: "2026-08-29T08:09:04Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
-    reviewer_model: claude:claude-opus-5
+    reviewer_model: claude-opus-5
     reviewer_session_id: "4281ba76-20e0-4183-ac2b-9964c44cfd02"
     reviewed_head_sha: 35d061de00e24fab9f1b00e0b866e2616f2fef60
     scope: "PR #1140 exact HEAD 35d061de00e24fab9f1b00e0b866e2616f2fef60をClaude Code Opusが独立検収し、queue bound、duplicate、lease expiry／heartbeat／fence／owner、completion bindingへ別系統10 mutationを投入して全件kill、復元後cleanを確認した。blocker 0。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/1140#issuecomment-5461222588"
@@ -63,7 +63,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-29T08:09:04Z"
-    evidence_digest: "sha256:c81d71a14a4911341b07f65af7e391091bc8eaf4faf000e85debdd347f9a778b"
+    evidence_digest: "sha256:133cd992963fe27d4f0b5ae058f801da6c4ba497918321a55f8058cca0b4df59"
   entries: []
 complexity_effect: justified_positive
 complexity_justification: "Windows固有snapshot照合を副作用なしkernelへ閉じ、Actions adapterが独自queue／lease判定を持つことを防ぐ"
