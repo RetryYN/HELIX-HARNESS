@@ -62,6 +62,7 @@ generates:
   - { artifact_path: docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.1.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/governance/hybrid-rebaseline-v0.5.0-intake-audit-2026-07-18.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/source-package-manifest-migration.md, artifact_type: design_doc }
