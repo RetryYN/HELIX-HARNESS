@@ -4,7 +4,7 @@ title: "PLAN-L3-73 (add-design): CI System SynthesisをL3/L10へ分解する"
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
