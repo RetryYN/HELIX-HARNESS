@@ -1,12 +1,22 @@
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  currentSourceFamilyAuthorityFindings,
+  LEGACY_SOURCE_ARCHIVE_FILENAMES,
+  sourceManifestIdentityFindings,
   VMODEL_LEGACY_ZIP_FILENAME,
   VMODEL_SOURCE_FAMILY_ID,
   VMODEL_SOURCE_MANIFEST_PATH,
 } from "../src/schema/hybrid-vmodel-manifest";
 
 describe("source package manifest migration", () => {
+  const requirementsPath = "docs/governance/helix-harness-requirements_v1.3.md";
+  const legacyCurrentIdentities = [
+    "ハイブリッド設計ドキュメントv1-fixed.zip",
+    "UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip",
+    "HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip",
+  ] as const;
+
   it("U-SRCMAN-001: source manifests bind exact family and inventory", () => {
     const hybrid = JSON.parse(readFileSync(VMODEL_SOURCE_MANIFEST_PATH, "utf8"));
     const workflow = JSON.parse(
@@ -20,6 +30,11 @@ describe("source package manifest migration", () => {
     expect(hybrid.adopted_entries).toHaveLength(21);
     expect(workflow.entry_count).toBe(14);
     expect(workflow.entries).toHaveLength(14);
+    expect(sourceManifestIdentityFindings(hybrid)).toEqual([]);
+    expect(sourceManifestIdentityFindings(workflow)).toEqual([]);
+    expect(sourceManifestIdentityFindings({ ...workflow, archive_sha256: "0".repeat(64) })).toEqual(
+      ["source family archive digest mismatch: universal-workflow-requirements-skill.v1.1.0"],
+    );
   });
 
   it("U-SRCMAN-005..007: migration source ZIP is retired behind exact manifests", () => {
@@ -62,6 +77,28 @@ describe("source package manifest migration", () => {
   it("U-SRCMAN-003: current identity is not the legacy archive filename", () => {
     expect(VMODEL_SOURCE_FAMILY_ID).toBe("hybrid-vmodel-source.v1");
     expect(VMODEL_SOURCE_FAMILY_ID).not.toBe(VMODEL_LEGACY_ZIP_FILENAME);
+  });
+
+  it("U-SRCMAN-008: requirementsはversioned source familyだけをcurrent identityとして出力する", () => {
+    const requirements = readFileSync(requirementsPath, "utf8");
+    expect(requirements).toContain("hybrid-vmodel-source.v1");
+    expect(requirements).toContain("universal-workflow-requirements-skill.v1.1.0");
+    expect(requirements).toContain("hybrid-core-rebaseline.v0.5.1");
+    for (const legacyIdentity of legacyCurrentIdentities) {
+      expect(requirements).not.toContain(legacyIdentity);
+    }
+  });
+
+  it("U-SRCMAN-009: old filename current emission mutationを個別にkillする", () => {
+    const requirements = readFileSync(requirementsPath, "utf8");
+    const mutated = requirements.replace(
+      "universal-workflow-requirements-skill.v1.1.0",
+      "UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip",
+    );
+    expect(currentSourceFamilyAuthorityFindings(requirements)).toEqual([]);
+    expect(currentSourceFamilyAuthorityFindings(mutated)).toContain(
+      `legacy archive filename emitted by current requirements: ${LEGACY_SOURCE_ARCHIVE_FILENAMES[1]}`,
+    );
   });
 
   it("U-SRCMAN-004: research is non-authoritative and routed to System Synthesis", () => {

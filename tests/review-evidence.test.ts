@@ -861,6 +861,30 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
     expect(result.ok).toBe(true);
   });
 
+  it("U-L3APP-013: strict registry tuple migrationだけでは既存L3へPO再承認を遡及要求しない", () => {
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-L3-102-l3-human-approval-registry-migration",
+        layer: "L3",
+        status: "confirmed",
+        created: "2026-08-26",
+        updated: "2026-08-26",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [{ ...technicalReview(), reviewer_session_id: "codex-test-session" }],
+        gitDateProvenance: {
+          source: "git",
+          firstCommitDate: "2026-08-26T09:00:00Z",
+          lastCommitDate: "2026-08-29T09:00:00Z",
+          lastAuthorityCommitDate: "2026-08-26T10:00:00Z",
+        },
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
   it("U-L3APP-012: loaderはtracked PLANのGit初出／最終変更日を取得する", () => {
     const provenance = readGitPlanDateProvenance(
       process.cwd(),
@@ -870,7 +894,9 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
     expect(provenance.source).toBe("git");
     expect(provenance.error).toBeUndefined();
     expect(provenance.firstCommitDate).toMatch(/^2026-08-27T/u);
-    expect(provenance.lastCommitDate).toMatch(/^2026-08-27T/u);
+    expect(Date.parse(provenance.lastCommitDate ?? "")).toBeGreaterThanOrEqual(
+      Date.parse(provenance.firstCommitDate ?? ""),
+    );
 
     const loaded = loadReviewPlans(process.cwd()).find(
       (candidate) => candidate.plan_id === "PLAN-L3-00-master",

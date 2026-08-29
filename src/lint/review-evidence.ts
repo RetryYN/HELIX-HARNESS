@@ -101,6 +101,8 @@ export interface GitPlanDateProvenance {
   source: "git";
   firstCommitDate?: string;
   lastCommitDate?: string;
+  /** workflow registry tupleだけのstrict migrationを除いた、意味authorityの最終変更日。 */
+  lastAuthorityCommitDate?: string;
   error?: "not_tracked" | "history_unavailable" | "missing_date" | "invalid_date" | "order";
 }
 
@@ -297,6 +299,68 @@ function parseGitPlanLogDates(output: string | null, keepFirst: boolean): Map<st
   return dates;
 }
 
+const WORKFLOW_IDENTITY_MIGRATION_LINE = /^\s*(registry_version|registry_source_digest):/u;
+
+/**
+ * registry version-upで既存L3の意味を変えずtupleだけを再束縛したcommitを、PO再承認の発火から除外する。
+ * status、本文、target axis/id等が同時に変われば通常のauthority変更として扱い、fail-closeを維持する。
+ */
+function readLastAuthorityCommitDates(repoRoot: string, files: string[]): Map<string, string> {
+  const dates = new Map<string, string>();
+  if (files.length === 0) return dates;
+  const wanted = new Set(files.map(gitDatePath));
+  const output = gitOutput(repoRoot, [
+    "log",
+    `--since=${L3_HUMAN_APPROVAL_ENFORCEMENT_DATE}T00:00:00Z`,
+    `--format=${GIT_PLAN_COMMIT_MARKER}%cI`,
+    "--patch",
+    "--no-ext-diff",
+    "--",
+    ...wanted,
+  ]);
+  if (!output) return dates;
+  let commitDate: string | undefined;
+  let currentPath: string | undefined;
+  const authorityChanged = new Set<string>();
+  const flush = (): void => {
+    if (!commitDate) return;
+    for (const path of authorityChanged) {
+      if (!dates.has(path)) dates.set(path, commitDate);
+    }
+  };
+  for (const rawLine of output.split(/\r?\n/u)) {
+    if (rawLine.startsWith(GIT_PLAN_COMMIT_MARKER)) {
+      flush();
+      commitDate = rawLine.slice(GIT_PLAN_COMMIT_MARKER.length);
+      currentPath = undefined;
+      authorityChanged.clear();
+      continue;
+    }
+    if (rawLine.startsWith("diff --git a/")) {
+      const match = /^diff --git a\/(.+?) b\//u.exec(rawLine);
+      currentPath = match?.[1];
+      continue;
+    }
+    if (
+      !commitDate ||
+      !currentPath ||
+      !wanted.has(currentPath) ||
+      (!rawLine.startsWith("+") && !rawLine.startsWith("-"))
+    )
+      continue;
+    if (rawLine.startsWith("+++") || rawLine.startsWith("---")) continue;
+    const changed = rawLine.slice(1);
+    if (!WORKFLOW_IDENTITY_MIGRATION_LINE.test(changed)) authorityChanged.add(currentPath);
+  }
+  flush();
+  return new Map(
+    [...dates].flatMap(([path, date]) => {
+      const file = files.find((candidate) => gitDatePath(candidate) === path);
+      return file ? [[file, date] as const] : [];
+    }),
+  );
+}
+
 /** L3 PLANのgrandfather判定に使う、authorが編集できないGit path provenanceを読む。 */
 export function readGitPlanDateProvenance(repoRoot: string, file: string): GitPlanDateProvenance {
   const path = gitDatePath(file);
@@ -363,12 +427,33 @@ function readGitPlanDateProvenanceBatch(
     ]),
     false,
   );
+  const migrationCandidates = historyPaths.filter((file) => {
+    const path = gitDatePath(file);
+    const first = firstDates.get(path);
+    const last = lastDates.get(path);
+    return Boolean(
+      first &&
+        last &&
+        first.slice(0, 10) < L3_HUMAN_APPROVAL_ENFORCEMENT_DATE &&
+        last.slice(0, 10) >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
+    );
+  });
+  const lastAuthorityDates = readLastAuthorityCommitDates(repoRoot, migrationCandidates);
   for (const file of historyPaths) {
     const path = gitDatePath(file);
     const first = firstDates.get(path);
     const last = lastDates.get(path);
     if (first && last) {
-      result.set(file, gitProvenanceFromDates(first, last));
+      const provenance = gitProvenanceFromDates(first, last);
+      if (
+        !provenance.error &&
+        first.slice(0, 10) < L3_HUMAN_APPROVAL_ENFORCEMENT_DATE &&
+        last.slice(0, 10) >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE
+      ) {
+        // enforcement後の全patchがtuple-onlyなら、実在するGit初出日をgrandfather根拠に使う。
+        provenance.lastAuthorityCommitDate = lastAuthorityDates.get(file) ?? first;
+      }
+      result.set(file, provenance);
       continue;
     }
     // rename/follow等の例外は既存の単一path lookupへフォールバックし、精度を落とさない。
@@ -413,7 +498,9 @@ function requiresL3HumanApproval(plan: ParsedReviewPlan): boolean {
   const createdDate =
     plan.gitDateProvenance?.firstCommitDate?.slice(0, 10) ?? plan.created.slice(0, 10);
   const updatedDate =
-    plan.gitDateProvenance?.lastCommitDate?.slice(0, 10) ?? plan.updated.slice(0, 10);
+    plan.gitDateProvenance?.lastAuthorityCommitDate?.slice(0, 10) ??
+    plan.gitDateProvenance?.lastCommitDate?.slice(0, 10) ??
+    plan.updated.slice(0, 10);
   // 作成日・更新日をfrontmatterで過去に固定する回避を許さない。
   return (
     createdDate >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE ||
@@ -450,6 +537,8 @@ function l3HumanApprovalDateViolationReason(plan: ParsedReviewPlan): string | nu
     if (
       !isCalendarDate(provenance.firstCommitDate.slice(0, 10)) ||
       !isCalendarDate(provenance.lastCommitDate.slice(0, 10)) ||
+      (provenance.lastAuthorityCommitDate !== undefined &&
+        !isCalendarDate(provenance.lastAuthorityCommitDate.slice(0, 10))) ||
       provenance.lastCommitDate < provenance.firstCommitDate
     ) {
       return "invalid_l3_plan_git_provenance";
