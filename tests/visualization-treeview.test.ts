@@ -67,7 +67,7 @@ function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
     complemented: 3,
     rejected: 1,
     missing: 0,
-    sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+    sourcePackage: "hybrid-vmodel-source.v1",
     sourceDocument: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
     docDependencies: ["docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md"],
     implementationDependencies: [
@@ -346,7 +346,7 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
     tailoring_gate: tailoringGate(),
     scrum_operation: {
       status: "active",
-      sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      sourcePackage: "hybrid-vmodel-source.v1",
       sourceBindings: [
         "zip-source:scrum-product-backlog",
         "zip-source:scrum-story-mapping",
@@ -405,7 +405,7 @@ function currentLocation(): ProjectCurrentLocationSnapshot {
     },
     skill_binding: {
       status: "ready",
-      sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+      sourcePackage: "hybrid-vmodel-source.v1",
       selectedModel: "Recovery",
       workflowModes: ["Recovery", "Scrum"],
       l12Layers: ["L3", "L7", "L12"],

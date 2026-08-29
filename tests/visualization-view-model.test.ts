@@ -68,7 +68,7 @@ function zipAdoptionMatrix(): ProjectCurrentLocationSnapshot["zip_adoption"] {
     complemented: 3,
     rejected: 1,
     missing: 0,
-    sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+    sourcePackage: "hybrid-vmodel-source.v1",
     sourceDocument: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
     docDependencies: ["docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md"],
     implementationDependencies: [
@@ -1481,7 +1481,7 @@ describe("buildVisualizationViewModel", () => {
         complemented: 3,
         rejected: 1,
         missing: 0,
-        source_package: "ハイブリッド設計ドキュメントv1-fixed.zip",
+        source_package: "hybrid-vmodel-source.v1",
         source_document: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
         items: [
           expect.objectContaining({

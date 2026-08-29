@@ -3,8 +3,8 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import {
   buildVmodelZipSourceBindings,
+  VMODEL_SOURCE_FAMILY_ID,
   VMODEL_ZIP_EXPECTED_INVENTORY_SIGNATURE,
-  VMODEL_ZIP_FILENAME,
   type VmodelZipInventorySignature,
   type VmodelZipManifestResult,
 } from "../schema/hybrid-vmodel-manifest";
@@ -1078,7 +1078,7 @@ function buildVmodelFitBlockers(input: {
       count: zip.required_total - zip.required_present,
       command: "helix doctor",
       required_action: "必須 ZIP source を確認し、manifest violation を解消する",
-      doc_dependencies: [VMODEL_ZIP_FILENAME],
+      doc_dependencies: [VMODEL_SOURCE_FAMILY_ID],
       implementation_dependencies: ["src/vmodel/zip-manifest.ts"],
     });
   }
@@ -1090,7 +1090,7 @@ function buildVmodelFitBlockers(input: {
       command: "helix doctor",
       required_action:
         "ZIP の entries/root/拡張子分布が採用済み source package signature と一致するか確認する",
-      doc_dependencies: [VMODEL_ZIP_FILENAME],
+      doc_dependencies: [VMODEL_SOURCE_FAMILY_ID],
       implementation_dependencies: ["src/vmodel/zip-manifest.ts"],
     });
   }
@@ -2306,7 +2306,7 @@ function buildVmodelRegressionGuards(input: {
             : "pass",
       scope: "ZIP source manifest and HELIX bindings",
       command: "helix doctor",
-      protected_surface: [VMODEL_ZIP_FILENAME, "zip_source_bindings"],
+      protected_surface: [VMODEL_SOURCE_FAMILY_ID, "zip_source_bindings"],
       count:
         input.zip.findings.length +
         input.zip.inventory_signature.mismatches.length +

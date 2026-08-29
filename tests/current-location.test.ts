@@ -247,7 +247,7 @@ describe("project current-location read model", () => {
         complemented: 0,
         rejected: 0,
         missing: 11,
-        sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+        sourcePackage: "hybrid-vmodel-source.v1",
         sourceDocument: "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
       });
       expect(snapshot.tailoring_gate).toMatchObject({
@@ -515,7 +515,7 @@ describe("project current-location read model", () => {
 
       expect(scrumOperation).toMatchObject({
         status: "active",
-        sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+        sourcePackage: "hybrid-vmodel-source.v1",
         backlogItems: 1,
         sprintItems: 1,
         acceptanceItems: 1,
@@ -573,7 +573,7 @@ describe("project current-location read model", () => {
       expect(snapshot.skill_binding).toBeDefined();
       expect(snapshot.skill_binding).toMatchObject({
         status: "ready",
-        sourcePackage: "ハイブリッド設計ドキュメントv1-fixed.zip",
+        sourcePackage: "hybrid-vmodel-source.v1",
       });
       expect(snapshot.skill_binding?.workflowModes).toContain("Scrum");
       expect(snapshot.skill_binding?.items[0]).toMatchObject({

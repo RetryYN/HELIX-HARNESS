@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:dc81d30fb7fae384102e26770a830762c84abadeebc89d47ea6a4ad95d0e2f50`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:33c0009bc4b999e877e701a27fec38d4e282d3a72f31c4873f1ed2b944922a80`
+- design catalog digest候補: `sha256:f6ee15d60e76e188ca2be390d41932861c38d058731b9bc5f792b496cd6ad0b1`
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact、#1033のSystem Synthesis、
   #1073のRelease Module／Bundle、#1160の製品ライフサイクル運用、#1174のTechnology Environment
   Reconciliation L3 requirement登録を反映して再計測した値であり、
@@ -219,7 +219,7 @@ delivery routeのschema、router、DB projectionはL6/L7未実装であり、要
 | 工程完了ゴール（STAGE-GOAL-FR-001） | `21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406` | `72c193a904027ed118433a92a049b7330a9da0cfdfac7a5a06dc0887a54e7f65` |
 | HELIX-Bench（HELIX-BENCH-FR-001） | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` |
 | 技術スタック正本（TECH-STACK-FR-001） | `a37579d6e1ac48895fce5efdcbaafa42d416ceaf94c1b0e6fe1d044785ab4fb1` | `ead7e3197c21cdc843c098d8ceb5f00d442800002d1c34792f5e160e9e38039d` |
-| マルチモーダルDesign HARNESS正本（VDH-MULTIMODAL-FR-001） | `2849eaef786d6e2014cc2369c3cbf994ed66c0e09244a447f2da536a4d6db1f5` | `d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951` |
+| マルチモーダルDesign HARNESS正本（VDH-MULTIMODAL-FR-001） | `baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2` | `d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951` |
 | GitHubセキュリティ受入（GH-FR-029 / GH-NFR-019..022） | `0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72` | `6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b` |
 
 ### 2.3 開発style・case-driven model・専門工程の別軸authority
