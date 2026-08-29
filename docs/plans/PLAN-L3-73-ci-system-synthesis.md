@@ -4,7 +4,7 @@ title: "PLAN-L3-73 (add-design): CI System SynthesisをL3/L10へ分解する"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -16,6 +16,26 @@ l3_human_approval:
   approval_record_id: L3-PO-1034-001
   approval_source: human_gate_record
   approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1209#issuecomment-5462941573"
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-29T17:24:17Z"
+    tests_green_at: "2026-08-29T17:24:17Z"
+    verdict: approve_after_fixes
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: "01a04e88-9b49-7e53-82b4-53b56c30ca25"
+    reviewed_head_sha: 9efc14df7b24f3be2006059fc7b6325373bf9c80
+    scope: "draft HEADのL3/L10と新規要求閉包oracleをconfirmed昇格前に独立監査した。5 FR／15 R／15 AC、R↔AC一対一、pair、#1204〜#1208 owner、安全非縮退、catalog／G3 digestに内容blocker 0。status遷移、evidence束縛、全6 oracle greenをconfirmation条件とした。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/ci-system-synthesis-requirements.test.ts -t 'CIS-AUTH-00[2-6]' --reporter=verbose"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-29T17:21:42Z"
+        evidence_path: tests/ci-system-synthesis-requirements.test.ts
+        output_digest: "sha256:5e1808816526bb7862d6ef23a48bd3abf4a937c5d344a91a75d8a89135676ea3"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
