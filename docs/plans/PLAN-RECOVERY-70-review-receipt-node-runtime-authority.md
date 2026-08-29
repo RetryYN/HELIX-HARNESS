@@ -2,7 +2,7 @@
 plan_id: PLAN-RECOVERY-70-review-receipt-node-runtime-authority
 title: "PLAN-RECOVERY-70: review receipt生成をNode runtime authorityへ束縛する"
 kind: recovery
-layer: L7
+layer: cross
 drive: fullstack
 status: draft
 completion_claim_allowed: false
@@ -55,6 +55,7 @@ dependencies:
     - "issue:660"
     - "pr:1140"
 agent_slots:
+  - { role: aim, slot_label: "AIM — recovery scopeとForward再合流判定" }
   - { role: se, slot_label: "SE — review receipt transaction precondition" }
   - { role: qa, slot_label: "QA — Node22反例とwrite-before-check mutation" }
   - { role: tl, slot_label: "TL — ADR-009 runtime authority再利用境界" }
