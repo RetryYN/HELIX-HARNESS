@@ -9,6 +9,10 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-583-workflow-classification-drive-run-projection — U-DBWID-007..010
 import { REQUIRED_DRIVE_MODELS } from "../../src/lint/drive-db-registration";
 import type { RelationGraphProjection } from "../../src/lint/relation-graph";
+import {
+  loadSkillApplicabilityRegistry,
+  skillApplicabilityRegistrySourceDigest,
+} from "../../src/schema/skill-applicability-registry";
 import { deriveArtifactProgressDecision } from "../../src/state-db/artifact-progress-decision";
 import { projectRefactorCandidateSignals } from "../../src/state-db/feedback-projections";
 import { type HarnessDb, isSecretLike, openHarnessDb } from "../../src/state-db/index";
@@ -2969,6 +2973,104 @@ dependencies:
           .get() as { confirmed_count?: number; total_count?: number } | undefined;
         expect(Number(evaluation?.confirmed_count)).toBe(1);
         expect(Number(evaluation?.total_count)).toBe(1);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
+  it("U-SKAPP-005: deterministic rebuild projects the exact typed skill applicability row set", () => {
+    const repoRoot = join(tmpdir(), `helix-skill-applicability-rebuild-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, "docs", "skills"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-SKAPP-RECOVERY.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-SKAPP-RECOVERY",
+          "kind: recovery",
+          "layer: L7",
+          "drive: db",
+          "status: confirmed",
+          "updated: 2026-08-29",
+          "---",
+          "",
+          "# Skill applicability rebuild fixture",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(repoRoot, "docs", "skills", "typed-recovery.yaml"),
+        [
+          "schema_version: typed-recovery.v1",
+          "name: typed-recovery",
+          "skill_type: recovery",
+          "applies_to:",
+          "  applicable_identities:",
+          "    - { target_axis: workflow_model, target_id: RECOVERY }",
+          "  excluded_identities:",
+          "    - { target_axis: workflow_model, target_id: INCIDENT }",
+          "description: deterministic rebuild fixture",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const emptyInputs = {
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true as const,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true as const,
+          },
+        };
+        const first = rebuildHarnessDb({ repoRoot, db, ...emptyInputs });
+        const second = rebuildHarnessDb({ repoRoot, db, ...emptyInputs });
+        expect(first.ok).toBe(true);
+        expect(second.ok).toBe(true);
+
+        const registry = loadSkillApplicabilityRegistry();
+        const registrySourceDigest = skillApplicabilityRegistrySourceDigest();
+        expect(
+          db
+            .prepare(
+              `SELECT asset_id, registry_version, registry_source_digest,
+                      target_axis, target_id, polarity
+               FROM automation_asset_applicability
+               ORDER BY polarity DESC`,
+            )
+            .all(),
+        ).toEqual([
+          {
+            asset_id: "skill:typed-recovery",
+            registry_version: registry.registry_version,
+            registry_source_digest: registrySourceDigest,
+            target_axis: "workflow_model",
+            target_id: "INCIDENT",
+            polarity: "excluded",
+          },
+          {
+            asset_id: "skill:typed-recovery",
+            registry_version: registry.registry_version,
+            registry_source_digest: registrySourceDigest,
+            target_axis: "workflow_model",
+            target_id: "RECOVERY",
+            polarity: "applicable",
+          },
+        ]);
       } finally {
         db.close();
       }
