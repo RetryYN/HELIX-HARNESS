@@ -271,6 +271,10 @@ export function loadSkillApplicabilityRegistry(
   return registry;
 }
 
+export function skillApplicabilityRegistrySourceDigest(repoRoot: string = PACKAGE_ROOT): string {
+  return digest(readFileSync(resolve(repoRoot, SKILL_APPLICABILITY_REGISTRY_PATH)));
+}
+
 export function parseSkillApplicability(
   input: unknown,
   options: {

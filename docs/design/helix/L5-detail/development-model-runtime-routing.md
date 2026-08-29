@@ -25,7 +25,7 @@ related_l4: docs/design/helix/L4-basic-design/pillar-basic-design.md
       "artifact_path": "src/schema/skill-applicability-registry.ts",
       "resource_kind": "typescript_export",
       "resource_name": "parseSkillApplicability",
-      "source_digest": "sha256:e5484076dd1b6760b20c94a192c723da0fb401ac57be9d2faeb990ddda2ed199",
+      "source_digest": "sha256:108a9f4004087853fe9549e44a05f5e3c68f6025818f9046c1d85840689b1a3f",
       "current_authority": true
     },
     {
