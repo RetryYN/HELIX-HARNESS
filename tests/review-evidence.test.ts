@@ -861,6 +861,30 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
     expect(result.ok).toBe(true);
   });
 
+  it("U-L3APP-013: strict registry tuple migrationだけでは既存L3へPO再承認を遡及要求しない", () => {
+    const result = analyzeReviewEvidence([
+      plan({
+        plan_id: "PLAN-L3-102-l3-human-approval-registry-migration",
+        layer: "L3",
+        status: "confirmed",
+        created: "2026-08-26",
+        updated: "2026-08-26",
+        kind: "design",
+        hasEvidence: true,
+        crossEntries: [{ ...technicalReview(), reviewer_session_id: "codex-test-session" }],
+        gitDateProvenance: {
+          source: "git",
+          firstCommitDate: "2026-08-26T09:00:00Z",
+          lastCommitDate: "2026-08-29T09:00:00Z",
+          lastAuthorityCommitDate: "2026-08-26T10:00:00Z",
+        },
+      }),
+    ]);
+
+    expect(result.l3HumanApprovalViolations).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
   it("U-L3APP-012: loaderはtracked PLANのGit初出／最終変更日を取得する", () => {
     const provenance = readGitPlanDateProvenance(
       process.cwd(),

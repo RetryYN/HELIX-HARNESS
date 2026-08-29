@@ -56,7 +56,7 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-schema-hybrid-vmodel-manifest.ts-literal:sha256:f57991404ac6:literal-appears-15-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/schema/hybrid-vmodel-manifest.ts",
-      "source_file_sha256": "486536265741dea9bfc6b6f78f1e68a7ab846cb41dff0c74f70c461ba65a639f",
+      "source_file_sha256": "5bf17dea79a384f0470442e77c37236af5bbc99a2f593a35a1f8819dff0c98b0",
       "family": "literal_policy_externalization"
     },
     {
