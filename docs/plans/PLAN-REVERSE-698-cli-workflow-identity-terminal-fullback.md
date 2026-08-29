@@ -34,7 +34,7 @@ review_evidence:
     scope: "PR #1224 HEAD 0b42ab71cdd5ed8e487f4ff3a274d663965e095fのR0〜R4、Forwardとの双方向接着、CLI typed identity、legacy output禁止、CI／DB収束を独立照合しblocker 0。終端stateだけを更新するconfirmation commitはfresh exact-HEAD receiptで再封緘する。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1224#issuecomment-5463530291"
     green_commands:
       - kind: integration_test
-        command: "GitHub Actions harness-check run 33259017384"
+        command: "GitHub Actions integration test harness-check run 33259017384"
         runner: ci
         scope: full
         exit_code: 0
@@ -90,6 +90,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — legacy field再出現、digest drift、未成立証拠の反例" }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-698-cli-workflow-identity-terminal-fullback.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/cli-workflow-identity-terminal-fullback-evidence.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 workflow_identity:
