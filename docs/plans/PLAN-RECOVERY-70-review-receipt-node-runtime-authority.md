@@ -62,6 +62,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-70-review-receipt-node-runtime-authority.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_json }
   - { artifact_path: docs/design/helix/L6-function-design/node-engine-runtime-gate.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-node-engine-runtime-gate-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }

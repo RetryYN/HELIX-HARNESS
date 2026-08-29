@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 44,
+  "decision_count": 45,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -43,6 +43,7 @@
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
     "PLAN-RECOVERY-67-claude-native-memory-isolation",
     "PLAN-RECOVERY-69-migration-source-zip-retirement",
+    "PLAN-RECOVERY-70-review-receipt-node-runtime-authority",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill",
     "PLAN-REVERSE-696-windows-canary-policy-lease",
     "PLAN-REVERSE-697-windows-canary-queue-expiry"
