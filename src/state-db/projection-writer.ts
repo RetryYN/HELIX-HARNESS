@@ -90,6 +90,7 @@ import {
   upsertRow,
 } from "./index";
 import { migrate, rowCounts } from "./migration";
+import { projectSkillApplicabilityRows } from "./skill-applicability-projection";
 import { parseGreenCommandEvidence } from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
 import {
@@ -3963,6 +3964,15 @@ function projectAutomationAssets(repoRoot: string, db: HarnessDb): void {
           indexed_at: indexedAt,
         },
       });
+      if (source.type === "skill") {
+        for (const row of projectSkillApplicabilityRows(assetId, appliesTo)) {
+          recordProjectionEvent(db, {
+            table: "automation_asset_applicability",
+            id: row.applicability_key,
+            row: { ...row },
+          });
+        }
+      }
       recordProjectionEvent(db, {
         table: "search_index",
         id: stableId("automation-asset", assetId),

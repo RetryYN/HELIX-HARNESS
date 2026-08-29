@@ -171,6 +171,7 @@ items:
       - docs/design/helix/L6-function-design/current-location-db-typed-workflow-identity.md
       - docs/design/helix/L6-function-design/visualization-typed-workflow-identity.md
       - docs/design/helix/L6-function-design/state-db-legacy-workflow-object-retirement.md
+      - docs/design/helix/L6-function-design/cli-workflow-identity-projection.md
       - docs/design/helix/L6-function-design/current-location-summary-typed-output.md
       - docs/design/helix/L6-function-design/design-elicitation-typed-classification.md
       - docs/design/helix/L6-function-design/derived-requirement-trace.md

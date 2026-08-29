@@ -81,6 +81,7 @@ import {
 import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
 import { runConsumerDoctor, runDoctor } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
+import { assertNodeEngineRuntimeAuthority } from "./doctor/node-engine-runtime";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
@@ -618,6 +619,7 @@ import { lintVmodel } from "./vmodel/lint";
 import { analyzeVmodelZipManifest } from "./vmodel/zip-manifest";
 import { helixVscodePackageManifest } from "./vscode/extension-manifest";
 import { buildVisualizationTreeView } from "./vscode/tree-view-provider";
+import { buildCliWorkflowIdentityProjection } from "./workflow/cli-workflow-identity-projection";
 import { buildCommandCatalog } from "./workflow/contracts";
 import { attachCurrentLocationWorkflowIdentity } from "./workflow/current-location-workflow-identity";
 import { evaluateAutomationReadiness } from "./workflow/readiness";
@@ -5735,48 +5737,17 @@ program
 
 const drive = program.command("drive").description("Project drive-model read-only surfaces");
 
-function summarizeProjectDriveModelReport(report: ProjectDriveModelReport) {
+function summarizeProjectDriveModelReport(
+  report: ProjectDriveModelReport,
+  snapshot: ProjectCurrentLocationSnapshot,
+) {
   return {
-    schema_version: "project-drive-model-summary.v1",
+    schema_version: "project-workflow-identity-summary.v2",
     source_clock: report.source_clock,
-    forward_spine_model: report.forward_spine_model,
-    registered_entry_models: report.registered_entry_models,
-    registered_entry_model_count: report.registered_entry_model_count,
-    missing_registered_entry_models: report.missing_registered_entry_models,
-    selected_model: report.selected_model,
-    default_model: report.default_model,
+    ...buildCliWorkflowIdentityProjection(snapshot),
     selection_status: report.selection_status,
     current: report.current,
     blocking_finding_codes: report.blocking_finding_codes,
-    selected_candidate: {
-      model: report.selected_candidate.model,
-      rank: report.selected_candidate.rank,
-      status: report.selected_candidate.status,
-      route_id: report.selected_candidate.route_id,
-      trigger: report.selected_candidate.trigger,
-      required_action: report.selected_candidate.required_action,
-      command: summaryJsonCommand(report.selected_candidate.command),
-      coverage_ids: report.selected_candidate.coverage_ids,
-      doc_dependency_count: report.selected_candidate.doc_dependencies.length,
-      implementation_dependency_count: report.selected_candidate.implementation_dependencies.length,
-      reason_count: report.selected_candidate.reasons.length,
-    },
-    blocked_models: report.blocked_models,
-    available_models: report.available_models,
-    candidate_count: report.candidates.length,
-    candidates: report.candidates.map((candidate) => ({
-      model: candidate.model,
-      rank: candidate.rank,
-      status: candidate.status,
-      route_id: candidate.route_id,
-      trigger: candidate.trigger,
-      required_action: candidate.required_action,
-      command: summaryJsonCommand(candidate.command),
-      coverage_ids: candidate.coverage_ids,
-      doc_dependency_count: candidate.doc_dependencies.length,
-      implementation_dependency_count: candidate.implementation_dependencies.length,
-      reason_count: candidate.reasons.length,
-    })),
     postcheck_commands: report.postcheck_commands.map(summaryJsonCommand),
     write_policy: report.write_policy,
     source_command: "helix drive model --summary-json",
@@ -5784,6 +5755,37 @@ function summarizeProjectDriveModelReport(report: ProjectDriveModelReport) {
     view_command: summaryJsonCommand(report.view_command),
     full_view_command: report.view_command,
   };
+}
+
+function summarizeProjectFrontierDriveModelReport(
+  report: ProjectDriveModelReport,
+  snapshot: ProjectCurrentLocationSnapshot,
+) {
+  try {
+    return {
+      ...summarizeProjectDriveModelReport(report, snapshot),
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+    };
+  } catch (cause) {
+    if (!(cause instanceof Error) || cause.message !== "cli_workflow_identity_invalid") {
+      throw cause;
+    }
+    return {
+      schema_version: "project-workflow-identity-summary.v2",
+      source_clock: report.source_clock,
+      workflow_identity: null,
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+      selection_status: report.selection_status,
+      current: report.current,
+      blocking_finding_codes: report.blocking_finding_codes,
+      postcheck_commands: report.postcheck_commands.map(summaryJsonCommand),
+      write_policy: report.write_policy,
+      source_command: "helix drive model --summary-json",
+      full_source_command: report.source_command,
+      view_command: summaryJsonCommand(report.view_command),
+      full_view_command: report.view_command,
+    };
+  }
 }
 
 drive
@@ -5801,35 +5803,16 @@ drive
       else rebuildHarnessDb({ repoRoot, db });
       const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const report = buildProjectDriveModelReport(snapshot);
-      if (opts.summaryJson) {
-        process.stdout.write(
-          `${JSON.stringify(summarizeProjectDriveModelReport(report), null, 2)}\n`,
-        );
+      const currentOutput = summarizeProjectDriveModelReport(report, snapshot);
+      if (opts.summaryJson || opts.json) {
+        process.stdout.write(`${JSON.stringify(currentOutput, null, 2)}\n`);
         return;
       }
-      if (opts.json) {
-        process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
-        return;
-      }
+      const identity = currentOutput.workflow_identity;
       process.stdout.write(
-        `drive model: selected=${report.selected_model} status=${report.selection_status} default=${report.default_model} current=${report.current.layer ?? "unknown"}->${report.current.l12_layer ?? "unknown"} write=${report.write_policy}\n`,
-      );
-      process.stdout.write(
-        `  selected-route=${report.selected_candidate.route_id} command=${report.selected_candidate.command}\n`,
-      );
-      process.stdout.write(
-        `  selected-coverage=${report.selected_candidate.coverage_ids.join(",") || "-"}\n`,
-      );
-      process.stdout.write(
-        `  available=${report.available_models.join(",") || "-"} blocked=${report.blocked_models.join(",") || "-"}\n`,
+        `drive workflow: workflow=${identity.target_axis}:${identity.target_id} registry=${identity.registry_version} status=${report.selection_status} current=${report.current.layer ?? "unknown"}->${report.current.l12_layer ?? "unknown"} write=${report.write_policy}\n`,
       );
       process.stdout.write(`  postcheck=${report.postcheck_commands.join(" && ")}\n`);
-      for (const candidate of report.candidates) {
-        process.stdout.write(
-          `  candidate: ${candidate.rank}.${candidate.model} ${candidate.status} route=${candidate.route_id} coverage=${candidate.coverage_ids.join(",") || "-"} command=${candidate.command}\n`,
-        );
-        process.stdout.write(`    required=${candidate.required_action}\n`);
-      }
     } finally {
       db.close();
     }
@@ -5839,6 +5822,7 @@ const recovery = program.command("recovery").description("Project recovery read-
 
 function summarizeProjectRecoveryPlan(
   plan: ProjectRecoveryPlan,
+  snapshot: ProjectCurrentLocationSnapshot,
   options: {
     recoveryHandoffGate?: VmodelFitReport["recovery_handoff_gate"] | null;
   } = {},
@@ -5848,14 +5832,7 @@ function summarizeProjectRecoveryPlan(
     source_clock: plan.source_clock,
     status: plan.status,
     current: plan.current,
-    drive_model: {
-      selected_model: plan.drive_model.selected_model,
-      selected_route_id: plan.drive_model.selected_candidate.route_id,
-      default_model: plan.drive_model.default_model,
-      candidate_count: plan.drive_model.candidates.length,
-      blocked_models: plan.drive_model.blocked_models,
-      available_models: plan.drive_model.available_models,
-    },
+    ...buildCliWorkflowIdentityProjection(snapshot),
     selected_closure_action: plan.selected_closure_action,
     recovery_handoff_gate: summarizeRecoveryHandoffGateForCli(options.recoveryHandoffGate ?? null),
     closure_evidence_plan: plan.closure_evidence_plan
@@ -5993,6 +5970,36 @@ function summarizeProjectRecoveryPlan(
   };
 }
 
+function summarizeProjectFrontierRecoveryPlan(
+  plan: ProjectRecoveryPlan,
+  snapshot: ProjectCurrentLocationSnapshot,
+) {
+  try {
+    return {
+      ...summarizeProjectRecoveryPlan(plan, snapshot),
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+    };
+  } catch (cause) {
+    if (!(cause instanceof Error) || cause.message !== "cli_workflow_identity_invalid") {
+      throw cause;
+    }
+    return {
+      schema_version: "project-recovery-workflow-identity-summary.v2",
+      source_clock: plan.source_clock,
+      status: plan.status,
+      current: plan.current,
+      workflow_identity: null,
+      workflow_identity_receipt: snapshot.drive_route.workflowIdentityReceipt,
+      selected_closure_action: plan.selected_closure_action,
+      write_policy: plan.write_policy,
+      source_command: "helix recovery plan --summary-json",
+      full_source_command: plan.source_command,
+      view_command: summaryJsonCommand(plan.view_command),
+      full_view_command: plan.view_command,
+    };
+  }
+}
+
 recovery
   .command("plan")
   .description("emit recovery plan from selected drive model and closure evidence queue")
@@ -6017,24 +6024,16 @@ recovery
       const snapshot = buildCliCurrentLocationSnapshot(repoRoot, db);
       const plan = buildProjectRecoveryPlan(snapshot, { limit });
       const recoveryHandoffGate = projectRecoveryHandoffGate(snapshot, repoRoot);
-      if (opts.summaryJson) {
-        process.stdout.write(
-          `${JSON.stringify(
-            summarizeProjectRecoveryPlan(plan, {
-              recoveryHandoffGate,
-            }),
-            null,
-            2,
-          )}\n`,
-        );
+      const currentOutput = summarizeProjectRecoveryPlan(plan, snapshot, {
+        recoveryHandoffGate,
+      });
+      if (opts.summaryJson || opts.json) {
+        process.stdout.write(`${JSON.stringify(currentOutput, null, 2)}\n`);
         return;
       }
-      if (opts.json) {
-        process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
-        return;
-      }
+      const identity = currentOutput.workflow_identity;
       process.stdout.write(
-        `recovery plan: status=${plan.status} selected=${plan.drive_model.selected_model} current=${plan.current.layer ?? "unknown"}->${plan.current.l12_layer ?? "unknown"} closure_action=${plan.selected_closure_action ?? "-"} write=${plan.write_policy}\n`,
+        `recovery plan: status=${plan.status} workflow=${identity.target_axis}:${identity.target_id} registry=${identity.registry_version} current=${plan.current.layer ?? "unknown"}->${plan.current.l12_layer ?? "unknown"} closure_action=${plan.selected_closure_action ?? "-"} write=${plan.write_policy}\n`,
       );
       process.stdout.write(
         `  exit-forecast: status=${plan.exit_forecast.status} remaining=${plan.exit_forecast.remaining_queue_items} blockers=${plan.exit_forecast.blockers.length} next=${plan.exit_forecast.next_command}\n`,
@@ -6265,7 +6264,10 @@ function buildSummarySurfaceCommandAudit(
     },
     {
       surface: "drive-model",
-      payload: summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot)),
+      payload: summarizeProjectFrontierDriveModelReport(
+        buildProjectDriveModelReport(snapshot),
+        snapshot,
+      ),
     },
     {
       surface: "skill-binding",
@@ -6273,7 +6275,10 @@ function buildSummarySurfaceCommandAudit(
     },
     {
       surface: "recovery-plan",
-      payload: summarizeProjectRecoveryPlan(buildProjectRecoveryPlan(snapshot, { limit: 1 })),
+      payload: summarizeProjectFrontierRecoveryPlan(
+        buildProjectRecoveryPlan(snapshot, { limit: 1 }),
+        snapshot,
+      ),
     },
     {
       surface: "roadmap-current",
@@ -6399,7 +6404,10 @@ function buildSummarySurfaceCommandAudit(
 }
 
 function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentLocationSnapshot) {
-  const driveModel = summarizeProjectDriveModelReport(buildProjectDriveModelReport(snapshot));
+  const driveModel = summarizeProjectFrontierDriveModelReport(
+    buildProjectDriveModelReport(snapshot),
+    snapshot,
+  );
   const functionDesignPolicy = summarizeProjectFunctionDesignPolicy(snapshot);
   const closeReadyReview = summarizeClosureReviewBundle(
     buildProjectClosureReviewBundle(snapshot, {
@@ -6451,23 +6459,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
             .length,
         }
       : null,
-    drive_model: {
-      forward_spine_model: driveModel.forward_spine_model,
-      registered_entry_models: driveModel.registered_entry_models,
-      registered_entry_model_count: driveModel.registered_entry_model_count,
-      missing_registered_entry_models: driveModel.missing_registered_entry_models,
-      selected_model: driveModel.selected_model,
-      selected_route_id: driveModel.selected_candidate.route_id,
-      selection_status: driveModel.selection_status,
-      default_model: driveModel.default_model,
-      candidate_count: driveModel.candidate_count,
-      candidate_models: driveModel.candidates.map((candidate) => candidate.model),
-      available_models: driveModel.available_models,
-      blocked_models: driveModel.blocked_models,
-      must_return_to_design: snapshot.drive_route.mustReturnToDesign,
-      selected_route_command: driveModel.selected_candidate.command,
-      source_command: driveModel.source_command,
-    },
+    drive_model: driveModel,
     closure_frontier: {
       action: closeReadyReview.action,
       approval_required: closeReadyReview.approval_required,
@@ -6655,13 +6647,8 @@ function buildProjectViewOutline(
       command: "helix roadmap current --summary-json",
     },
     drive_model: {
-      selected_model: projectFrontierSummary.drive_model.selected_model,
+      workflow_identity: projectFrontierSummary.drive_model.workflow_identity,
       selection_status: projectFrontierSummary.drive_model.selection_status,
-      forward_spine_model: projectFrontierSummary.drive_model.forward_spine_model,
-      registered_entry_model_count: projectFrontierSummary.drive_model.registered_entry_model_count,
-      missing_registered_entry_models:
-        projectFrontierSummary.drive_model.missing_registered_entry_models,
-      candidate_count: projectFrontierSummary.drive_model.candidate_count,
       command: "helix drive model --summary-json",
     },
     scrum_operation: projectFrontierSummary.scrum_operation
@@ -10169,8 +10156,9 @@ progress
         process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
         return;
       }
+      const identity = summary.drive_model.workflow_identity;
       process.stdout.write(
-        `progress frontier: current=${summary.current.layer}->${summary.current.l12_layer} status=${summary.current.status} model=${summary.drive_model.selected_model} closure=${summary.closure_frontier.action}:${summary.closure_frontier.total} skill=${summary.skill_binding.status} function_policy=${summary.function_design_policy.independent_layer_policy}\n`,
+        `progress frontier: current=${summary.current.layer}->${summary.current.l12_layer} status=${summary.current.status} workflow=${identity ? `${identity.target_axis}:${identity.target_id}` : "unresolved"} registry=${identity?.registry_version ?? "-"} closure=${summary.closure_frontier.action}:${summary.closure_frontier.total} skill=${summary.skill_binding.status} function_policy=${summary.function_design_policy.independent_layer_policy}\n`,
       );
     } finally {
       db.close();
@@ -14389,6 +14377,15 @@ github
   .option("--apply", "post the receipt comment and persist the shared ACK")
   .option("--json", "JSON output")
   .action((opts: { inputJson: string; apply?: boolean; json?: boolean }) => {
+    try {
+      assertNodeEngineRuntimeAuthority(process.cwd());
+    } catch (error) {
+      process.stderr.write(
+        `github pr-review-receipt: ${error instanceof Error ? error.message : "node_engine_runtime_authority_rejected"}\n`,
+      );
+      process.exitCode = 1;
+      return;
+    }
     const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
     const prUrl = String(raw.prUrl ?? "");
     const prNumber = Number(raw.prNumber);
