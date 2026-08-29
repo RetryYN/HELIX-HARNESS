@@ -236,7 +236,7 @@ current判定へ戻さない。
 | `docs/design/harness/L1-requirements/screen-requirements.md` | `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b` |
 | `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` |
 | `docs/design/helix/L3-requirements/pillar-functional-requirements.md` | `665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393` |
-| `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md` | `ab6c9ceef3e80dcee39351c989ab4368acad122dc7421aaf97c729e63a6d6a93` |
+| `docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md` | `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d` |
 
 ### 2.4 freeze後の未解決downstream exact set
 

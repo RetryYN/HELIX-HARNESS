@@ -298,7 +298,7 @@ const styleCaseAuthorityArtifacts = [
   ],
   [
     "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
-    "ab6c9ceef3e80dcee39351c989ab4368acad122dc7421aaf97c729e63a6d6a93",
+    "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
   ],
 ] as const;
 

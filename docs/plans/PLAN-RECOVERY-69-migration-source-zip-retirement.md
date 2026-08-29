@@ -22,8 +22,8 @@ behavior_contract_id: MIGRATION-SOURCE-ZIP-RETIREMENT-001
 responsibility_owner: source-intake-governance
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: retire_legacy
-legacy_retirement_state: removed
+refactor_step: remove_legacy
+legacy_retirement_state: consumer_zero
 backprop_decision: not_required
 backprop_decision_reason: "既存sourceのGit物理配置だけを退役し、採用済みrequirements／designの意味を変更しない。"
 no_code_decision: modify
@@ -62,6 +62,7 @@ generates:
   - { artifact_path: docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.1.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/hybrid-rebaseline-v0.5.0-intake-audit-2026-07-18.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md, artifact_type: design_doc }
@@ -69,6 +70,7 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/source-package-manifest-migration.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-source-package-manifest-migration-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/source-package-manifest.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip, artifact_type: other }
   - { artifact_path: docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.1.zip, artifact_type: other }
 ---
