@@ -68,7 +68,7 @@ modifies:
   - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
 ---
 
-# skill applicability post-merge oracle Recovery
+# skill applicabilityのマージ後oracle Recovery
 
 PR #1213のproduction実装はmainへ着地したが、その後に完了したOpus exact-HEAD reviewが、PLAN-L7-702の
 registry binding再現性とcatalog／deterministic rebuild同一行集合に対するoracle不足を検出した。本PLANは
@@ -82,4 +82,4 @@ registry binding再現性とcatalog／deterministic rebuild同一行集合に対
 | 2 | deterministic rebuild用typed skill fixtureとexact row oracleを追加 | [並列] | M5 kill |
 | 3 | L8 test designへ両経路とmutation責務を還流 | [直列] | U-SKAPP-005 claimとtestが一致 |
 | 4 | targeted、mutation、typecheck、PLAN lint、全回帰 | [直列] | 全green |
-| 5 | Claude Opus exact-HEAD review、merge、main read-after | [review] | blocker 0、DB convergence |
+| 5 | Claude Opusによる同一HEADレビュー、merge、main反映後確認 | [review] | blocker 0、DB収束 |
