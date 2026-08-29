@@ -102,6 +102,7 @@ items:
       - docs/design/helix/L3-requirements/skill-applicability-authority.md
       - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
       - docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
+      - docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
