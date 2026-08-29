@@ -29,8 +29,9 @@ pair_artifact: docs/design/helix/L5-detail/development-model-runtime-routing.md
 | U-SKAPP-010 | CLIがtyped pairをscaffoldへ渡し、legacy一意tokenはinput-only変換する | current／legacy併記、曖昧`Forward`／`Scrum`、unknown tokenを拒否 |
 
 U-SKAPP-001〜003は`tests/skill-applicability-registry.test.ts`、U-SKAPP-004／009／010は
-assignment／scaffold／CLIのtargeted testへ接続済み。U-SKAPP-005〜008は#248の後続原子sliceで接続し、
-authoringだけでDB／recommendation移行完了を主張しない。
+assignment／scaffold／CLIのtargeted testへ接続済み。U-SKAPP-005は`tests/asset-catalog.test.ts`で
+normalized row、極性、legacy-only非昇格を検証する。U-SKAPP-006〜008は#248の後続原子sliceで接続し、
+DB projectionだけでrecommendation／CLI移行完了を主張しない。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
