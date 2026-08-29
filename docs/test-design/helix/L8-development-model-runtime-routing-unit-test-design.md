@@ -26,9 +26,11 @@ pair_artifact: docs/design/helix/L5-detail/development-model-runtime-routing.md
 | U-SKAPP-007 | current-location／CLIがtyped pairとregistry bindingを出力 | `matched_drive_models`／`source_drive_models`再出力を拒否 |
 | U-SKAPP-008 | `kind=poc` S3/S4を`scrum_type`無しで受理 | PoCをScrum phase化、scrum_type必須化を拒否 |
 | U-SKAPP-009 | legacy-only skillを`compatibility_only`として除外 | #322前のskillをcurrent candidateへ混入するmutationを拒否 |
+| U-SKAPP-010 | CLIがtyped pairをscaffoldへ渡し、legacy一意tokenはinput-only変換する | current／legacy併記、曖昧`Forward`／`Scrum`、unknown tokenを拒否 |
 
-U-SKAPP-001〜003は`tests/skill-applicability-registry.test.ts`へ接続済み。U-SKAPP-004以降は#248の
-後続原子sliceで接続し、value objectだけでDB／CLI移行完了を主張しない。
+U-SKAPP-001〜003は`tests/skill-applicability-registry.test.ts`、U-SKAPP-004／009／010は
+assignment／scaffold／CLIのtargeted testへ接続済み。U-SKAPP-005〜008は#248の後続原子sliceで接続し、
+authoringだけでDB／recommendation移行完了を主張しない。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
