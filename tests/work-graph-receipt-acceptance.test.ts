@@ -9,6 +9,7 @@ import {
   isParentAcceptanceReceipt,
   type RequiredCellBindingV1,
   releaseWorkGraphLease,
+  validateWorkGraphLease,
   type WorkGraphActorV1,
 } from "../src/runtime/work-graph-receipt-acceptance";
 import type { WorkerIsolationExecutionOrigin } from "../src/runtime/worker-isolation-broker";
@@ -284,6 +285,13 @@ function bindingWithout(field: keyof RequiredCellBindingV1) {
 }
 
 describe("work graph と三段 receipt 検収 (U-WGR-001..045)", () => {
+  it("U-WGR-046: 共有lease shape validatorはexact key／owner／fenceを検証する", () => {
+    expect(validateWorkGraphLease(lease())).toBe(true);
+    expect(validateWorkGraphLease({ ...lease(), extra: true })).toBe(false);
+    expect(validateWorkGraphLease({ ...lease(), fence_token: -1 })).toBe(false);
+    expect(validateWorkGraphLease({ ...lease(), owner: "" })).toBe(false);
+  });
+
   it("U-WGR-001: READY・exact set・CAS 成立で delegation receipt を 1 件 seal する", () => {
     const result = evaluateDelegationRequestOrdering(delegationRequest());
     expect(result.ok).toBe(true);
