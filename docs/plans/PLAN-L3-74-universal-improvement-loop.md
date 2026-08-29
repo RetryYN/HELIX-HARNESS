@@ -14,7 +14,7 @@ l3_human_approval:
   approved_at: "2026-08-29T14:24:46Z"
   plan_id: PLAN-L3-74-universal-improvement-loop
   approval_record_id: L3-PO-1210-001
-  approval_source: github_pr_comment
+  approval_source: human_gate_record
   approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1222#issuecomment-5462947224"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
