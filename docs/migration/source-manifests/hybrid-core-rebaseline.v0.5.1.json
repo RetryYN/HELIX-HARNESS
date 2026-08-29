@@ -1,0 +1,25 @@
+{
+  "schema_version": "helix-source-manifest.v1",
+  "source_family_id": "hybrid-core-rebaseline.v0.5.1",
+  "legacy_archive_filename": "docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.1.zip",
+  "legacy_git_blob": "a20f09e0888e80f0e13374ef10dab52e1e6aeee7",
+  "archive_sha256": "1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd",
+  "entry_set_sha256": "3eacded2534c049e54361bba5811ceac9383102dc7b586c4efe1ee0af5382790",
+  "entry_digest_algorithm": "sha256(canonical-json(sorted[{path,size,sha256}]))",
+  "authority": "migration_source_only",
+  "root_prefix": "HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1",
+  "entry_count": 211,
+  "canonical_projection": "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+  "by_extension": {
+    "csv": 1,
+    "json": 40,
+    "log": 5,
+    "md": 97,
+    "mmd": 6,
+    "py": 11,
+    "pyc": 2,
+    "sh": 2,
+    "sql": 1,
+    "yaml": 46
+  }
+}
