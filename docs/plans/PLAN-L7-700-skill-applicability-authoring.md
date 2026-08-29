@@ -24,6 +24,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
 legacy_retirement_state: consumer_migration
+backprop_decision: not_required
+backprop_decision_reason: "L3 typed skill applicability authorityとL5 runtime routing設計を変更せず、既存authoring consumerだけを既にfreeze済みのtyped pairへ移行する。"
 no_code_decision: add_code
 ddd_modeling_decision: policy
 contract_preconditions: "PLAN-L7-678のtyped value objectとrequirements-owned registryがcurrent mainに存在する"
