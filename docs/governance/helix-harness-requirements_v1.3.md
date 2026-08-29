@@ -5,9 +5,9 @@
 
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
-- **Version**: 1.3.13
+- **Version**: 1.3.14
 - **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）
-- **設計コア**: `ハイブリッド設計ドキュメントv1-fixed.zip`、`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`、`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`
+- **設計コア**: `hybrid-vmodel-source.v1`、`universal-workflow-requirements-skill.v1.1.0`、`hybrid-core-rebaseline.v0.5.1`。旧archive filename、archive SHA、Git blobは`docs/migration/source-manifests/`のprovenance input-onlyであり、current source identityとして再出力しない。
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
 - **継承**: v1.2のうち、本書と衝突しない安全・証跡・駆動モデル・agent・DB・GitHub要件は継承する。
 
@@ -237,7 +237,7 @@ current fieldとして再出力せず、generated catalog、current DB projectio
 
 ### 4.4 Universal Workflow AI判断エンジン
 
-`UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip`を、自然言語の業務を要求へ翻訳し、実行時の候補選択を提案するAI判断エンジンのsource packageとして採用する。source SHA-256は`b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26`へ固定し、詳細な採否とhardeningは`docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md`を正とする。
+`universal-workflow-requirements-skill.v1.1.0`を、自然言語の業務を要求へ翻訳し、実行時の候補選択を提案するAI判断エンジンのversioned source familyとして採用する。archive由来のidentityとdigestは`docs/migration/source-manifests/universal-workflow-requirements-skill.v1.1.0.json`へinput-onlyで隔離し、詳細な採否とhardeningは`docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md`を正とする。
 
 判断の正規形は`current_state × trigger × condition → candidate actions/routes/resources → proposed decision → next_state`とする。AIは業務事実、候補、根拠、confidence、unresolved item、反証可能なoracleを提案できるが、要求の確定、権限付与、high-impact action、正本state更新、gate passを自己承認しない。Node transaction境界がschema、authority、policy、HEAD、evidence digestを再検証して初めてcommitする。
 
@@ -245,11 +245,11 @@ Full Vではsystem全体のworkflow modelをL1〜L5で段階的に凍結し、�
 
 L1ではtarget、actor、価値、正常/取消/失敗/期限切れterminalを定義する。L2では要求と操作可能prototypeをworkflow state/transitionへ接続し、画面、API、DBを状態遷移より先に独立確定しない。L3ではworkflowからFR、NFR、AC、test scenario、unresolved itemを生成してfreezeする。L4ではscreen/API/data/permission/notification/auditと外部境界を派生する。L5ではversioned schema、loop/exception、switching/routing/allocation、fallback/dead-letter、test/measurement contractを先行凍結する。L6〜L7で実装/TDD、L8〜L10で局所・接続・system判断、L11で利用者受入、L12でSLO、配分効果、誤判断率、drift、改善還流を検証する。
 
-ZIP原文の`workflow-model.schema.json`と`derived-requirements.schema.json`は採用sourceであって、そのままHELIX正本schemaにはしない。5出力を包むenvelope schema、runtime orchestration schema、authority/decision/evidence/measurement fieldを追加する。runtime orchestration exampleがworkflow schema単体へ適合しない既知gapをgreenにせず、schema分離またはversioned compositionをL5で確定する。
+source family manifestが列挙する`workflow-model.schema.json`と`derived-requirements.schema.json`は採用sourceであって、そのままHELIX正本schemaにはしない。5出力を包むenvelope schema、runtime orchestration schema、authority/decision/evidence/measurement fieldを追加する。runtime orchestration exampleがworkflow schema単体へ適合しない既知gapをgreenにせず、schema分離またはversioned compositionをL5で確定する。
 
 ### 4.5 AI Vision Design HARNESSエンジン
 
-`HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip`のDesign HARNESSを、利用者の価値・体験意図を画面表現とfrontend実装へ連続させる **AI Vision Design HARNESSエンジン** の意味sourceとして採用する。正本sourceは再監査済みpackage SHA-256 `1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd`（211 physical files）へ固定し、詳細な採否とhardeningは`docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md`を正とする。
+`hybrid-core-rebaseline.v0.5.1`のDesign HARNESSを、利用者の価値・体験意図を画面表現とfrontend実装へ連続させる **AI Vision Design HARNESSエンジン** のversioned source familyとして採用する。archive由来のidentity、digest、211件のinventoryは`docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.1.json`へinput-onlyで隔離し、詳細な採否とhardeningは`docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md`を正とする。
 
 エンジンはExperience Contract（誰が何をなぜ達成するか）、UI Contract（情報、状態、操作、responsive、motion、accessibility）、Frontend Contract（data、state owner、event、permission、logging、error）を、`screen_id / region_id / slot_id / action_id / state_id / binding_id`で連続させる。描画ツール、独立V-model layer、別文書体系、一般検証基盤ではない。
 
@@ -259,7 +259,7 @@ Discovery PoCはS0〜S4でvision/prototype仮説を探索できるが、S4の人
 
 AIはprototype、profile、ledger、binding、component role、UX evidence、deltaと改善候補を生成・比較・検査できる。ただしproduct vision、brand、体験上の優先順位、L2 prototype agreement、L3要求凍結、L11利用者受入、L12改善採否を自己承認しない。`implemented`はL6↔L7 receipt、`ux_verified`はL10〜L12のreal-data evidenceと人間評価から別々に導出し、画面数、route数、placeholder、generic table、screenshot単体を完成証拠にしない。
 
-ZIP原文のL0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missionはL5 test contract、旧L7 implementationはL6↔L7へ再配置する。Design HARNESSの意味判定はADR-010に従いPython意味コアを恒久正本とし、Nodeへ複製しない。Nodeはschema、authority、policy、HEAD、digestを再検証して`harness.db`／Git／GitHubへcommitする唯一のtransaction境界である。既存Python path名は実装authorityにせず、UT CLI/state/DB/PLAN/roleとBun前提は採用しない。
+source family manifestが示す旧L0〜L14配置は本書のL1〜L12へexact mappingし、旧L6 missionはL5 test contract、旧L7 implementationはL6↔L7へ再配置する。Design HARNESSの意味判定はADR-010に従いPython意味コアを恒久正本とし、Nodeへ複製しない。Nodeはschema、authority、policy、HEAD、digestを再検証して`harness.db`／Git／GitHubへcommitする唯一のtransaction境界である。既存Python path名は実装authorityにせず、UT CLI/state/DB/PLAN/roleとBun前提は採用しない。
 
 ### 4.6 ハイブリッド制御面のReverse backfill
 

@@ -8,6 +8,24 @@ export const VMODEL_SOURCE_MANIFEST_PATH =
 
 /** compatibility input-only。current treeにarchive実体を要求しない。 */
 export const VMODEL_LEGACY_ZIP_FILENAME = "ハイブリッド設計ドキュメントv1-fixed.zip";
+export const SOURCE_FAMILY_REQUIREMENTS_PATH = "docs/governance/helix-harness-requirements_v1.3.md";
+export const CURRENT_SOURCE_FAMILY_IDS = [
+  VMODEL_SOURCE_FAMILY_ID,
+  "universal-workflow-requirements-skill.v1.1.0",
+  "hybrid-core-rebaseline.v0.5.1",
+] as const;
+export const LEGACY_SOURCE_ARCHIVE_FILENAMES = [
+  VMODEL_LEGACY_ZIP_FILENAME,
+  "UNIVERSAL-WORKFLOW-REQUIREMENTS-SKILL_v1.1.0.zip",
+  "HELIX-HYBRID-CORE-REQUIREMENTS-REBASELINE_v0.5.1.zip",
+] as const;
+export const SOURCE_FAMILY_ARCHIVE_DIGESTS = {
+  "hybrid-vmodel-source.v1": "9c547ba8bc9eaf3a12f27254fd3eb6d04b37fb8c899f13d56ceb0d2cff179fb3",
+  "universal-workflow-requirements-skill.v1.1.0":
+    "b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26",
+  "hybrid-core-rebaseline.v0.5.1":
+    "1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd",
+} as const;
 /** @deprecated compatibility input-only。 */
 export const VMODEL_ZIP_FILENAME = VMODEL_LEGACY_ZIP_FILENAME;
 
@@ -382,10 +400,39 @@ export interface VmodelZipManifestResult {
 
 interface VmodelSourceManifest {
   source_family_id?: unknown;
+  archive_sha256?: unknown;
   root_prefix?: unknown;
   entry_count?: unknown;
   by_extension?: unknown;
   adopted_entries?: unknown;
+}
+
+export function sourceManifestIdentityFindings(manifest: {
+  source_family_id?: unknown;
+  archive_sha256?: unknown;
+}): string[] {
+  if (
+    typeof manifest.source_family_id !== "string" ||
+    !(manifest.source_family_id in SOURCE_FAMILY_ARCHIVE_DIGESTS)
+  ) {
+    return [`unknown source family identity: ${String(manifest.source_family_id ?? "missing")}`];
+  }
+  const sourceFamily = manifest.source_family_id as keyof typeof SOURCE_FAMILY_ARCHIVE_DIGESTS;
+  const expectedDigest = SOURCE_FAMILY_ARCHIVE_DIGESTS[sourceFamily];
+  return manifest.archive_sha256 === expectedDigest
+    ? []
+    : [`source family archive digest mismatch: ${sourceFamily}`];
+}
+
+export function currentSourceFamilyAuthorityFindings(requirements: string): string[] {
+  return [
+    ...CURRENT_SOURCE_FAMILY_IDS.filter((identity) => !requirements.includes(identity)).map(
+      (identity) => `current source family identity missing: ${identity}`,
+    ),
+    ...LEGACY_SOURCE_ARCHIVE_FILENAMES.filter((filename) => requirements.includes(filename)).map(
+      (filename) => `legacy archive filename emitted by current requirements: ${filename}`,
+    ),
+  ];
 }
 
 function analyzeVmodelSourceManifest(repoRoot: string): VmodelZipManifestResult | null {
@@ -426,13 +473,19 @@ function analyzeVmodelSourceManifest(repoRoot: string): VmodelZipManifestResult 
         severity: "error",
         detail: `required source manifest entry is missing: ${entry.path}`,
       }));
-    if (manifest.source_family_id !== VMODEL_SOURCE_FAMILY_ID) {
+    findings.push(
+      ...sourceManifestIdentityFindings(manifest).map((detail) => ({
+        code: "archive_parse_error" as const,
+        severity: "error" as const,
+        detail,
+      })),
+    );
+    if (manifest.source_family_id !== VMODEL_SOURCE_FAMILY_ID)
       findings.push({
         code: "archive_parse_error",
         severity: "error",
         detail: `source_family_id mismatch: ${String(manifest.source_family_id ?? "missing")}`,
       });
-    }
     const inventorySignature = buildVmodelZipInventorySignature({
       present: true,
       rootPrefix,
@@ -445,6 +498,18 @@ function analyzeVmodelSourceManifest(repoRoot: string): VmodelZipManifestResult 
         severity: "error",
         detail: "source manifest inventory signature does not match the admitted source family",
       });
+    }
+    const requirementsPath = join(repoRoot, SOURCE_FAMILY_REQUIREMENTS_PATH);
+    if (existsSync(requirementsPath)) {
+      findings.push(
+        ...currentSourceFamilyAuthorityFindings(readFileSync(requirementsPath, "utf8")).map(
+          (detail) => ({
+            code: "archive_parse_error" as const,
+            severity: "error" as const,
+            detail,
+          }),
+        ),
+      );
     }
     return {
       ok: findings.length === 0,
