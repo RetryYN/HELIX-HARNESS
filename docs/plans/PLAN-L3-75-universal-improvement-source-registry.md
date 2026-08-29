@@ -4,7 +4,7 @@ title: "PLAN-L3-75 (add-impl): Universal Improvement source registryをauthority
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 workflow_identity:
@@ -34,7 +34,7 @@ contract_postconditions: "10種類の観測sourceがrequirements-owned registry�
 contract_invariants: "registryはread-only、AIはproposal-only、unknown／duplicate／digest drift／unsafe path／不正observationはfail-close、候補生成やauthority writeを実行しない"
 contract_failures: "required source kind欠落、source／detector不在またはdigest不一致、schema／identity不一致、必須evidence欠落、invalid digest／timestampをgreenへ縮退しない"
 tdd_red_required: true
-red_test: "U-UILSRC-001..009でsource kind欠落、duplicate、digest drift、unsafe path、observation identity、doctor未配線を個別に検出する"
+red_test: "U-UILSRC-001..009でsource kind欠落、duplicate、source lifecycle metadata欠落、digest drift、unsafe path、observation identity、doctor未配線を個別に検出する"
 red_at: null
 green_at: null
 mutation_oracle_evidence: null
@@ -96,17 +96,57 @@ admitし、後続の観測正規化・finding適格化・候補合成へ安全�
 ## 実装範囲
 
 1. 10種類の初期source（CI、DB、requirements、definition、dependency、review、operations、provider、
-   distribution、resource/security）をregistryへ登録する。
+   distribution、resource/security）をregistryへ登録し、revision、retention、redaction、failure dispositionを
+   sourceごとに宣言する。
 2. source／detectorのrepository-relative path、実体digest、重複ID、required kindを検証する。
 3. observationのsource、schema、detector、revision、timestamp、payload／evidence digestをread-onlyで検証する。
 4. helix doctorへ同じloader／analyzerを接続し、registry不在、JSON破損、digest driftをfail-closeする。
 5. candidate生成、Issue／PLAN／DB書込み、detectorの再実装、後続UIL-02以降を本sliceへ混載しない。
 
+## §3 工程表
+
+### Step 1: requirements authorityとsource lifecycle metadataのschemaを固定 [直列]
+
+UIL-R-01のsource_id、source_kind、revision、retention、redaction、freshness、failure dispositionと、
+evidence contractのrequired／identity／digest fieldをrequirementsへ束縛する。後続のregistry entryはこの境界に
+依存するため `downstream_dependency` とする。
+
+### Step 2: registry entryとread-only admissionを実装し、red oracleをgreenへ戻す [直列]
+
+10 source kindのexactly-one、実体digest、repository path、source lifecycle metadata、observation identityと
+freshnessを一つのanalyzerで検査する。runtimeとdoctorが同じ判定を使うため `shared_state` とする。
+
+### Step 3: doctorへのhard配線とmutation oracleを確定する [直列]
+
+registry欠落、JSON破損、source／detector drift、duplicate kind、contract欠落、unsafe pathをwarningへ縮退させず
+fail-closeする。doctorのstate／ok／message接続は実装確定後にのみ検証できるため `shared_state` とする。
+
+### Step 4: targeted／typecheck／format／全回帰を同一HEADで実測する [直列]
+
+U-UILSRC／IT-UILSRCのtargeted test、typecheck、Biome、PLAN lint、DB／doctorを実行し、output digest付きで記録する。
+検証対象が同一HEADへ収束した後にだけ意味を持つため `shared_state` とする。
+
+### Step 5: 独立review、current HEAD CI、main read-afterで次sliceを解放する [直列]
+
+Claude exact-HEAD review、必要なruntime内subagent review、CI、DB replay、Reverse fullbackを順に確認する。reviewと
+main着地後の判定は候補HEADを共有するため `shared_state` とする。
+
+## §3.1 実装計画
+
+- **source registry runtime**（情報源: Universal Improvement Loop L3要件 UIL-R-01、L6設計）: schema、requirements
+  authority、10 source kind、source lifecycle metadata、observation admissionを実装する。
+- **source registry doctor**（情報源: source registry runtimeのanalyzer、既存doctor contract）: loaderと同じ判定を
+  hard gateとして接続し、registry欠落・破損・drift・unsafe pathをfail-closeする。
+- **unit／doctor test**（情報源: L8テスト設計）: duplicate、欠落、contract退化、digest、identity、freshness、
+  doctor wiringの反例をmutation oracleとして固定する。
+- **完了境界**: 本PLANは観測sourceのadmissionまでとし、normalization、finding、candidate、counterfactual、route、
+  Issue／PLAN／Requirement書込みはUIL-02以降へ残す。
+
 ## 検証順
 
 | Step | 作業 | 完了条件 |
 |---|---|---|
-| 1 | registry schemaとrequirements authorityを固定 | 10 source kindとID／digest tupleが一意になる |
+| 1 | registry schemaとrequirements authorityを固定 | 10 source kindとID／digest tuple、source lifecycle metadataが一意になる |
 | 2 | runtime loader／analyzer／observation admissionを実装 | unknown、duplicate、drift、invalid evidenceが個別にredになる |
 | 3 | doctorへ接続 | current registryがgreen、欠落／破損がredになる |
 | 4 | targeted test、typecheck、Biome、PLAN lint | U-UILSRC／IT-UILSRC oracleがgreenになる |

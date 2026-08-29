@@ -84,6 +84,23 @@ const SCHEMA_VERSION_PATTERN = /^[a-z][a-z0-9-]*\.v\d+$/u;
 const FIELD_PATTERN = /^[a-z][a-z0-9_]*$/u;
 const OWNER_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/u;
 
+const REQUIRED_OBSERVATION_FIELDS = [
+  "source_id",
+  "schema_version",
+  "detector_id",
+  "source_revision",
+  "observed_at",
+  "payload_digest",
+  "evidence_digest",
+] as const;
+const IDENTITY_OBSERVATION_FIELDS = [
+  "source_id",
+  "schema_version",
+  "detector_id",
+  "source_revision",
+] as const;
+const DIGEST_OBSERVATION_FIELDS = ["payload_digest", "evidence_digest"] as const;
+
 const digestSchema = z.string().regex(DIGEST_PATTERN);
 const sourceIdSchema = z.string().regex(SOURCE_ID_PATTERN);
 const detectorIdSchema = z.string().regex(DETECTOR_ID_PATTERN);
@@ -179,6 +196,20 @@ const sourceEntrySchema = z
     owner: z.string().regex(OWNER_PATTERN),
     authority: authoritySchema,
     schema_version: z.string().regex(SCHEMA_VERSION_PATTERN),
+    revision: z.number().int().positive(),
+    retention: z
+      .object({
+        policy_ref: z.string().min(1),
+        max_age_seconds: z.number().int().positive(),
+      })
+      .strict(),
+    redaction: z
+      .object({
+        policy_ref: z.string().min(1),
+        mode: z.enum(["digest_only", "metadata_only"]),
+      })
+      .strict(),
+    failure_disposition: z.literal("fail_close"),
     detector: detectorSchema,
     evidence_contract: evidenceContractSchema,
     freshness: z
@@ -194,6 +225,18 @@ const sourceEntrySchema = z
   .strict();
 
 const authorityRequirementIdSchema = z.string().regex(/^UIL-(?:FR-\d{3}|R-\d{2}|AC-\d{3})$/u);
+
+const universalImprovementSourceObservationSchema = z
+  .object({
+    source_id: z.string(),
+    schema_version: z.string(),
+    detector_id: z.string(),
+    source_revision: z.string(),
+    observed_at: z.string(),
+    payload_digest: z.string(),
+    evidence_digest: z.string(),
+  })
+  .catchall(z.unknown());
 
 export const universalImprovementSourceRegistrySchema = z
   .object({
@@ -239,6 +282,7 @@ export type UniversalImprovementSourceRegistryFailureCode =
   | "registry_schema_invalid"
   | "duplicate_source_id"
   | "duplicate_detector_id"
+  | "duplicate_source_kind"
   | "missing_source_kind"
   | "unsafe_source_path"
   | "source_missing"
@@ -425,7 +469,53 @@ export function analyzeUniversalImprovementSourceRegistry(
       findings.push(finding("duplicate_source_id", entry.source_id, "source_id must be unique"));
     }
     sourceIds.add(entry.source_id);
+    if (sourceKinds.has(entry.source_kind)) {
+      findings.push(
+        finding(
+          "duplicate_source_kind",
+          entry.source_kind,
+          "source_kind must have exactly one active registry entry",
+        ),
+      );
+    }
     sourceKinds.add(entry.source_kind);
+
+    const requiredFields = new Set(entry.evidence_contract.required_fields);
+    const identityFields = new Set(entry.evidence_contract.identity_fields);
+    const digestFields = new Set(entry.evidence_contract.digest_fields);
+    for (const field of REQUIRED_OBSERVATION_FIELDS) {
+      if (!requiredFields.has(field)) {
+        findings.push(
+          finding(
+            "registry_schema_invalid",
+            `${entry.source_id}.evidence_contract.required_fields`,
+            `required observation field is missing from contract: ${field}`,
+          ),
+        );
+      }
+    }
+    for (const field of IDENTITY_OBSERVATION_FIELDS) {
+      if (!identityFields.has(field)) {
+        findings.push(
+          finding(
+            "registry_schema_invalid",
+            `${entry.source_id}.evidence_contract.identity_fields`,
+            `identity observation field is missing from contract: ${field}`,
+          ),
+        );
+      }
+    }
+    for (const field of DIGEST_OBSERVATION_FIELDS) {
+      if (!digestFields.has(field)) {
+        findings.push(
+          finding(
+            "registry_schema_invalid",
+            `${entry.source_id}.evidence_contract.digest_fields`,
+            `digest observation field is missing from contract: ${field}`,
+          ),
+        );
+      }
+    }
 
     if (detectorIds.has(entry.detector.detector_id)) {
       findings.push(
@@ -543,8 +633,26 @@ export function admitUniversalImprovementSource(
     return { ok: false, ...base, findings: [...registryResult.findings] };
   }
 
+  const parsedObservation = universalImprovementSourceObservationSchema.safeParse(observation);
+  if (!parsedObservation.success) {
+    return {
+      ok: false,
+      ...base,
+      findings: [
+        finding(
+          "observation_field_missing",
+          "observation",
+          parsedObservation.error.issues
+            .map((issue) => `${issue.path.join(".")}:${issue.message}`)
+            .join("; "),
+        ),
+      ],
+    };
+  }
+  const admittedObservation = parsedObservation.data;
+
   const entry = registryResult.registry.entries.find(
-    (candidate) => candidate.source_id === observation.source_id,
+    (candidate) => candidate.source_id === admittedObservation.source_id,
   );
   if (!entry) {
     return {
@@ -553,7 +661,7 @@ export function admitUniversalImprovementSource(
       findings: [
         finding(
           "unknown_source",
-          observation.source_id,
+          admittedObservation.source_id,
           "source_id is not registered by the current authority",
         ),
       ],
@@ -561,61 +669,61 @@ export function admitUniversalImprovementSource(
   }
 
   const findings: UniversalImprovementSourceRegistryFinding[] = [];
-  if (observation.schema_version !== entry.schema_version) {
+  if (admittedObservation.schema_version !== entry.schema_version) {
     findings.push(
       finding(
         "source_schema_mismatch",
-        observation.source_id,
-        `expected=${entry.schema_version} actual=${observation.schema_version}`,
+        admittedObservation.source_id,
+        `expected=${entry.schema_version} actual=${admittedObservation.schema_version}`,
       ),
     );
   }
-  if (observation.detector_id !== entry.detector.detector_id) {
+  if (admittedObservation.detector_id !== entry.detector.detector_id) {
     findings.push(
       finding(
         "detector_identity_mismatch",
-        observation.source_id,
-        `expected=${entry.detector.detector_id} actual=${observation.detector_id}`,
+        admittedObservation.source_id,
+        `expected=${entry.detector.detector_id} actual=${admittedObservation.detector_id}`,
       ),
     );
   }
   for (const field of entry.evidence_contract.required_fields) {
-    const value = observation[field];
+    const value = admittedObservation[field];
     if (typeof value !== "string" || value.trim().length === 0) {
       findings.push(
         finding(
           "observation_field_missing",
-          observation.source_id,
+          admittedObservation.source_id,
           `required observation field is missing: ${field}`,
         ),
       );
     }
   }
-  if (!DIGEST_PATTERN.test(observation.payload_digest)) {
+  if (!DIGEST_PATTERN.test(admittedObservation.payload_digest)) {
     findings.push(
       finding(
         "observation_digest_invalid",
-        observation.source_id,
+        admittedObservation.source_id,
         "payload_digest must be a sha256 digest",
       ),
     );
   }
-  if (!DIGEST_PATTERN.test(observation.evidence_digest)) {
+  if (!DIGEST_PATTERN.test(admittedObservation.evidence_digest)) {
     findings.push(
       finding(
         "observation_digest_invalid",
-        observation.source_id,
+        admittedObservation.source_id,
         "evidence_digest must be a sha256 digest",
       ),
     );
   }
-  const observedAt = Date.parse(observation.observed_at);
-  const nowAt = now.getTime();
+  const observedAt = Date.parse(admittedObservation.observed_at);
+  const nowAt = now instanceof Date ? now.getTime() : Number.NaN;
   if (!Number.isFinite(observedAt) || !Number.isFinite(nowAt) || observedAt > nowAt) {
     findings.push(
       finding(
         "observation_timestamp_invalid",
-        observation.source_id,
+        admittedObservation.source_id,
         "observed_at must be an ISO-compatible timestamp",
       ),
     );
@@ -623,7 +731,7 @@ export function admitUniversalImprovementSource(
     findings.push(
       finding(
         "observation_stale",
-        observation.source_id,
+        admittedObservation.source_id,
         "max_age_seconds=" +
           entry.freshness.max_age_seconds +
           " age_seconds=" +

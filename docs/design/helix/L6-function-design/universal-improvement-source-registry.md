@@ -39,8 +39,10 @@ AIはproposal-onlyで、detector evidenceや意味authorityを代替しない。
 
 各entryは次の正規tuple（複合識別単位）を持つ。
 
-source_id、source_kind、owner、authority、schema_version、detector、evidence_contract、freshnessの各項目を持ち、
-environments、trigger_events、statusを含む。
+source_id、source_kind、owner、authority、schema_version、revision、retention、redaction、failure_disposition、
+detector、evidence_contract、freshnessの各項目を持ち、environments、trigger_events、statusを含む。sourceごとに
+観測保持方針、redaction方針、失敗時のfail-close処理を宣言し、宣言されたevidence contractのidentity／digest／
+required fieldをadmissionで再検証する。
 
 初期source kindは ci、db、requirements、definition、dependency、review、operations、provider、
 distribution、resource_security の10種とする。既存detectorの実体pathとdigestを参照し、
@@ -51,6 +53,8 @@ detector実装を本sliceで再実装しない。
 - repository外、絶対path、空path、symlink経由のauthority／detectorを読む前に拒否する。
 - registryのrequired source kindはcanonical setと完全一致させる。
 - source／detector identityはregistry entryとobservationで完全一致させる。
+- 各source kindは一つのactive entryだけを持ち、重複source kindを拒否する。
+- observationのrequired／identity／digest fieldはregistry宣言の欠落を許容せず、source_revisionを必須とする。
 - observationのtimestampが未来、またはentryのfreshness windowを超える場合は拒否する。
 - digestは形式だけでなくregistryが指す実体bytesと比較する。
 - 全判定は候補生成前のread-only admissionで、authorityへの副作用を持たない。

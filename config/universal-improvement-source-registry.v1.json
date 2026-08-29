@@ -89,6 +89,10 @@
         "source_digest": "sha256:7bdd77ca10e324ff578a53a79660e1ffe9f781af82354f97cb9ed5ddcd1fb736"
       },
       "schema_version": "ci-execution-telemetry.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-001",
         "detector_version": "1.0.0",
@@ -146,6 +150,10 @@
         "source_digest": "sha256:69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79"
       },
       "schema_version": "db-projection-replay.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-002",
         "detector_version": "1.0.0",
@@ -203,6 +211,10 @@
         "source_digest": "sha256:ef612f7b120e3322d43cdb39aaa08e31d36fd9ff7994fdd0fd06efa92ef13f3e"
       },
       "schema_version": "requirements-definition-graph.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-003",
         "detector_version": "1.0.0",
@@ -260,6 +272,10 @@
         "source_digest": "sha256:8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6"
       },
       "schema_version": "definition-semantic-integrity.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-004",
         "detector_version": "1.0.0",
@@ -317,6 +333,10 @@
         "source_digest": "sha256:69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79"
       },
       "schema_version": "dependency-graph-drift.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-005",
         "detector_version": "1.0.0",
@@ -374,6 +394,10 @@
         "source_digest": "sha256:69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79"
       },
       "schema_version": "review-rework-evidence.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-006",
         "detector_version": "1.0.0",
@@ -431,6 +455,10 @@
         "source_digest": "sha256:ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
       },
       "schema_version": "operations-lifecycle-observation.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-007",
         "detector_version": "1.0.0",
@@ -488,6 +516,10 @@
         "source_digest": "sha256:65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc"
       },
       "schema_version": "provider-environment-attestation.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-008",
         "detector_version": "1.0.0",
@@ -545,6 +577,10 @@
         "source_digest": "sha256:c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c"
       },
       "schema_version": "distribution-consumer-result.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-009",
         "detector_version": "1.0.0",
@@ -602,6 +638,10 @@
         "source_digest": "sha256:161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7"
       },
       "schema_version": "resource-security-policy-observation.v1",
+      "revision": 1,
+      "retention": { "policy_ref": "UIL-R-01", "max_age_seconds": 604800 },
+      "redaction": { "policy_ref": "UIL-R-01", "mode": "digest_only" },
+      "failure_disposition": "fail_close",
       "detector": {
         "detector_id": "UIL-DET-010",
         "detector_version": "1.0.0",

@@ -76,6 +76,45 @@ describe("Universal Improvement source registry", () => {
     expect(missingRequirementResult.findings).toMatchObject([
       { code: "registry_schema_invalid", subject: "authority.requirement_ids" },
     ]);
+
+    const duplicateKind = structuredClone(registry);
+    duplicateKind.entries[1].source_id = "UIL-SRC-011";
+    duplicateKind.entries[1].detector.detector_id = "UIL-DET-011";
+    duplicateKind.entries[1].source_kind = duplicateKind.entries[0].source_kind;
+    const duplicateKindResult = analyzeUniversalImprovementSourceRegistry(duplicateKind);
+    expect(duplicateKindResult.ok).toBe(false);
+    expect(duplicateKindResult.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "duplicate_source_kind",
+          subject: duplicateKind.entries[1].source_kind,
+        }),
+      ]),
+    );
+
+    const incompleteContract = structuredClone(registry);
+    incompleteContract.entries[0].evidence_contract.required_fields =
+      incompleteContract.entries[0].evidence_contract.required_fields.filter(
+        (field) => field !== "source_revision",
+      );
+    incompleteContract.entries[0].evidence_contract.identity_fields =
+      incompleteContract.entries[0].evidence_contract.identity_fields.filter(
+        (field) => field !== "source_revision",
+      );
+    const incompleteContractResult = analyzeUniversalImprovementSourceRegistry(incompleteContract);
+    expect(incompleteContractResult.ok).toBe(false);
+    expect(incompleteContractResult.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "registry_schema_invalid",
+          subject: "UIL-SRC-001.evidence_contract.required_fields",
+        }),
+        expect.objectContaining({
+          code: "registry_schema_invalid",
+          subject: "UIL-SRC-001.evidence_contract.identity_fields",
+        }),
+      ]),
+    );
   });
 
   it("U-UILSRC-003: authority／detector digest driftとrepository外pathを拒否する", () => {
@@ -159,6 +198,16 @@ describe("Universal Improvement source registry", () => {
         "observation_timestamp_invalid",
       ]),
     );
+
+    const malformed = admitUniversalImprovementSource(
+      result,
+      null as unknown as UniversalImprovementSourceObservation,
+      new Date("2026-08-30T12:00:00.000Z"),
+    );
+    expect(malformed.ok).toBe(false);
+    expect(malformed.findings).toMatchObject([
+      { code: "observation_field_missing", subject: "observation" },
+    ]);
   });
 
   it("U-UILSRC-006: freshness windowを超えたobservationをstaleとして拒否する", () => {

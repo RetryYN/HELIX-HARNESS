@@ -24,7 +24,7 @@ responsibility_owner: universal-improvement-source-registry
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-UILSRC-001 | current registry | 10 source kind、source／detector ID、version、read-only policyをexactly oneずつ返す | `tests/universal-improvement-source-registry.test.ts` |
-| U-UILSRC-002 | uniqueness／completeness | duplicate source／detectorとrequired source kind欠落を個別にfail-closeする | `tests/universal-improvement-source-registry.test.ts` |
+| U-UILSRC-002 | uniqueness／completeness | duplicate source／detector／source kind、required source kind欠落、evidence contractのsource_revision欠落を個別にfail-closeする | `tests/universal-improvement-source-registry.test.ts` |
 | U-UILSRC-003 | physical authority | registry／source／detectorのdigest driftとrepository外pathをgreenへ縮退しない | `tests/universal-improvement-source-registry.test.ts` |
 | U-UILSRC-004 | valid admission | registered source、schema、detector、revision、evidenceが一致するobservationだけadmitする | `tests/universal-improvement-source-registry.test.ts` |
 | U-UILSRC-005 | malformed admission | unknown source、wrong schema／detector、必須field欠落、invalid digest／timestampを個別に拒否する | `tests/universal-improvement-source-registry.test.ts` |
