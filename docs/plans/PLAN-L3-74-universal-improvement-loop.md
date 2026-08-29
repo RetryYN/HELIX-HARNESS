@@ -4,8 +4,18 @@ title: "PLAN-L3-74: Universal Improvement LoopをL3/L10へfreezeする"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-08-29T14:24:46Z"
+  plan_id: PLAN-L3-74-universal-improvement-loop
+  approval_record_id: L3-PO-1210-001
+  approval_source: github_pr_comment
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1222#issuecomment-5462947224"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -61,13 +71,18 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-74-universal-improvement-loop.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/universal-improvement-loop-acceptance.md, artifact_type: test_design }
+modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 ---
 
 # Universal Improvement Loop authorityのfreeze
 
-本PLANはIssue #1210のscope authorityをL3↔L10へ降ろす起草sliceである。POのL3 human approval、独立review、
-G3 freezeまでは`draft`を維持し、Issue本文だけをruntime実装authorityとして使わない。
+本PLANはIssue #1210のscope authorityをL3↔L10へ降ろす起草sliceである。POのL3 human approvalは記録済みであり、
+独立reviewとG3 freezeを経て後続runtime sliceへ進む。Issue本文だけをruntime実装authorityとして使わない。
 
 ## §工程表
 

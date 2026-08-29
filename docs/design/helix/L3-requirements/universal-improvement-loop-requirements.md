@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "Universal Improvement Loop要件"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-29
 updated: 2026-08-29
 owner: PO / TL
@@ -82,6 +82,7 @@ required_fields:
   - detector_version
   - invariant_ids
   - finding_class
+  - candidate_scope_class
   - confidence_and_counterevidence
   - affected_requirements
   - affected_designs
@@ -110,6 +111,12 @@ required_fields:
 verification cost、defect escape、migration costへの影響をstable IDで算出する。意味変更を意味保存refactorとして
 扱わず、影響不明は推測せずhuman decisionまたはfail-closeへ送る。
 
+候補の作用域は`local_issue`、`system_synthesis`、`requirement_portfolio_resynthesis`へtyped分類する。
+一つの局所責務で閉じるものだけをIssue候補とし、複数Module／V-pairの境界再編はSystem Synthesis候補、
+Requirement／Definition集合のsplit、merge、supersede、ownership再編、Requirement Re-entryを伴うものは
+Requirement Portfolio Resynthesis候補へ昇格する。この分類は新しいworkflow routeではなく、既存routeへ配車する前の
+影響scopeである。Issue件数やfile overlapだけで上位候補を確定せず、stable IDの影響graphと反例を要求する。
+
 ### UIL-R-06 反実仮想と全体最適評価
 
 current baseline、提案後予測、反例、局所効果、他Module／V-pair／consumer／security／operationへの副作用、rollbackを
@@ -124,6 +131,10 @@ current baseline、提案後予測、反例、局所効果、他Module／V-pair�
 REFACTORING、要求・価値・挙動・AC変更はRequirement Re-entry／REDESIGN、実装・運用誤りはRECOVERY／REVERSE／
 RETROFIT／REFACTOR、性能・CI・resourceはPERFORMANCE_REFACTOR、新能力はADD_FEATURE、外部技術driftは
 Technology Environment Reconciliationへ送る。曖昧な候補を推測配車しない。
+
+`candidate_scope_class`は`system_change_class`、`capability_expansion_kind`、`workflow_route`から独立させる。
+Requirement Portfolio Resynthesis候補はRequirement Discovery／Requirement Re-entryとSystem Synthesisの既存authorityを
+再利用し、要求集合の意味変更を自動承認しない。
 
 ### UIL-R-08 authority書込guard
 

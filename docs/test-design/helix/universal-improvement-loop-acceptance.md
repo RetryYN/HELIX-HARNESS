@@ -4,7 +4,7 @@ canonical_layer: L10
 canonical_pair: L3
 title: "Universal Improvement Loop受入テスト設計"
 layer: L10
-status: draft
+status: confirmed
 created: 2026-08-29
 updated: 2026-08-29
 owner: QA / TL
@@ -24,11 +24,11 @@ plan: PLAN-L3-74-universal-improvement-loop
 | UIL-AC-005 | UIL-R-03 | 同一原因・scope・baselineの候補をdedupeしexpiryを持つ | rejected候補を無限再生成しない |
 | UIL-AC-006 | UIL-R-04 | candidate必須fieldのexact setを検証する | 必須field欠落、wrong revision、stale evidenceを個別拒否 |
 | UIL-AC-007 | UIL-R-05 | value、behavior、AC、responsibility、ownership、public boundary mutationを意味変更として検出する | 意味変更をREFACTORINGへ送らない |
-| UIL-AC-008 | UIL-R-05 | affected Requirement／Design／Contract／Module／V-pairをstable IDで算出する | 名称一致や単一logで影響確定しない |
+| UIL-AC-008 | UIL-R-05 | affected Requirement／Design／Contract／Module／V-pairをstable IDで算出し、`local_issue`／`system_synthesis`／`requirement_portfolio_resynthesis`を別scopeとして導出する | 名称一致、Issue件数、file overlap、単一logだけで上位scopeへ昇格しない |
 | UIL-AC-009 | UIL-R-06 | baseline、予測、反例、副作用、rollbackを比較する | 予測を実測完了証拠にしない |
 | UIL-AC-010 | UIL-R-06 | 局所metric改善と全体metric悪化を同時評価する | test時間短縮だけでadoptedにしない |
 | UIL-AC-011 | UIL-R-07 | change class、capability expansion、routeを別fieldにする | 同一enumへ畳み込まない |
-| UIL-AC-012 | UIL-R-07 | finding classから既存routeとverification obligationを決定的に導出する | ambiguous findingを推測配車しない |
+| UIL-AC-012 | UIL-R-07 | candidate scope、change class、capability expansionから既存routeとverification obligationを決定的に導出する | scope classを新routeにせず、ambiguous findingを推測配車しない |
 | UIL-AC-013 | UIL-R-08 | candidate生成だけではauthorityが変わらない | Requirement、merge、publishを直接実行しない |
 | UIL-AC-014 | UIL-R-08 | route先のPLAN、V-pair、approval、review、CIを再利用する | 独自completion gateを作らない |
 | UIL-AC-015 | UIL-R-09 | 同一scope／revision／artifactでbefore-afterとside effectを測る | 件数減少、局所green、自己評価で効果確定しない |
