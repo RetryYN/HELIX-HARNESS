@@ -3,7 +3,16 @@ import { validateWorkGraphLease } from "./work-graph-receipt-acceptance";
 
 export type WindowsCanaryAdmissionFailureCode =
   | "WINDOWS_CANARY_POLICY_INVALID"
-  | "WINDOWS_CANARY_LEASE_BINDING_INVALID";
+  | "WINDOWS_CANARY_LEASE_BINDING_INVALID"
+  | "WINDOWS_CANARY_STATE_UNCERTAIN"
+  | "WINDOWS_CANARY_DUPLICATE_ASSIGNMENT"
+  | "WINDOWS_CANARY_QUEUE_BACKPRESSURED"
+  | "WINDOWS_CANARY_LEASE_EXPIRED"
+  | "WINDOWS_CANARY_HEARTBEAT_STALE"
+  | "WINDOWS_CANARY_STALE_FENCE"
+  | "WINDOWS_CANARY_LEASE_OWNER_MISMATCH"
+  | "WINDOWS_CANARY_LEASE_BINDING_MISMATCH"
+  | "WINDOWS_CANARY_COMPLETION_BINDING_MISMATCH";
 
 export interface WindowsCanaryAdmissionPolicyV1 {
   readonly schema_version: "helix-windows-lite-canary-admission.v1";
@@ -55,6 +64,30 @@ export type WindowsCanaryLeaseBindingValidationResult =
     }
   | { readonly ok: false; readonly failure_code: "WINDOWS_CANARY_LEASE_BINDING_INVALID" };
 
+export interface WindowsCanaryQueueStateV1 {
+  readonly state_known: boolean;
+  readonly active: readonly WindowsCanaryLeaseBindingV1[];
+  readonly waiting: readonly WindowsCanaryLeaseBindingV1[];
+}
+
+export type WindowsCanaryQueueResult =
+  | {
+      readonly ok: true;
+      readonly disposition: "admitted" | "queued";
+      readonly active: readonly WindowsCanaryLeaseBindingV1[];
+      readonly waiting: readonly WindowsCanaryLeaseBindingV1[];
+      readonly state_digest: Sha256Digest;
+    }
+  | { readonly ok: false; readonly failure_code: WindowsCanaryAdmissionFailureCode };
+
+export type WindowsCanaryLeaseResult =
+  | { readonly ok: true; readonly binding: WindowsCanaryLeaseBindingV1 }
+  | { readonly ok: false; readonly failure_code: WindowsCanaryAdmissionFailureCode };
+
+export type WindowsCanaryCompletionResult =
+  | { readonly ok: true; readonly completion_digest: Sha256Digest }
+  | { readonly ok: false; readonly failure_code: WindowsCanaryAdmissionFailureCode };
+
 const POLICY_KEYS = [
   "backpressure_disposition",
   "heartbeat_interval_ms",
@@ -68,6 +101,7 @@ const POLICY_KEYS = [
   "schema_version",
 ] as const;
 const WINDOW_KEYS = ["sample_limit", "window_id"] as const;
+const QUEUE_STATE_KEYS = ["active", "state_known", "waiting"] as const;
 const BINDING_KEYS = [
   "assignment_id",
   "candidate_head",
@@ -230,4 +264,172 @@ export function validateWindowsCanaryLeaseBinding(
     expires_at: value.expires_at,
   } satisfies WindowsCanaryLeaseBindingV1);
   return { ok: true, binding, binding_digest: sha256Digest(canonicalJson(binding)) };
+}
+
+function validatedBindings(
+  values: readonly unknown[],
+): readonly WindowsCanaryLeaseBindingV1[] | null {
+  const bindings: WindowsCanaryLeaseBindingV1[] = [];
+  for (const value of values) {
+    const validated = validateWindowsCanaryLeaseBinding(value);
+    if (!validated.ok) return null;
+    bindings.push(validated.binding);
+  }
+  return bindings;
+}
+
+export function evaluateWindowsCanaryQueue(input: {
+  readonly policy: unknown;
+  readonly state: unknown;
+  readonly candidate: unknown;
+}): WindowsCanaryQueueResult {
+  const policy = validateWindowsCanaryAdmissionPolicy(input.policy);
+  if (!policy.ok) return policy;
+  if (
+    !isRecord(input.state) ||
+    !exactKeys(input.state, QUEUE_STATE_KEYS) ||
+    typeof input.state.state_known !== "boolean" ||
+    !Array.isArray(input.state.active) ||
+    !Array.isArray(input.state.waiting) ||
+    !input.state.state_known
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
+  }
+  const active = validatedBindings(input.state.active);
+  const waiting = validatedBindings(input.state.waiting);
+  const candidate = validateWindowsCanaryLeaseBinding(input.candidate);
+  if (!active || !waiting) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
+  }
+  if (!candidate.ok) return candidate;
+  if (active.length > policy.policy.max_active || waiting.length > policy.policy.max_waiting) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
+  }
+  const assignmentIds = [...active, ...waiting].map((item) => item.assignment_id);
+  if (
+    new Set(assignmentIds).size !== assignmentIds.length ||
+    assignmentIds.includes(candidate.binding.assignment_id)
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_DUPLICATE_ASSIGNMENT" };
+  }
+
+  if (active.length < policy.policy.max_active) {
+    const nextActive = deepFreeze([...active, candidate.binding]);
+    const nextWaiting = deepFreeze([...waiting]);
+    return deepFreeze({
+      ok: true,
+      disposition: "admitted",
+      active: nextActive,
+      waiting: nextWaiting,
+      state_digest: sha256Digest(canonicalJson({ active: nextActive, waiting: nextWaiting })),
+    });
+  }
+  if (waiting.length >= policy.policy.max_waiting) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_QUEUE_BACKPRESSURED" };
+  }
+  const nextActive = deepFreeze([...active]);
+  const nextWaiting = deepFreeze([...waiting, candidate.binding]);
+  return deepFreeze({
+    ok: true,
+    disposition: "queued",
+    active: nextActive,
+    waiting: nextWaiting,
+    state_digest: sha256Digest(canonicalJson({ active: nextActive, waiting: nextWaiting })),
+  });
+}
+
+export function evaluateWindowsCanaryLease(input: {
+  readonly policy: unknown;
+  readonly binding: unknown;
+  readonly current: unknown;
+  readonly observed_at: string;
+  readonly last_heartbeat_at: string;
+}): WindowsCanaryLeaseResult {
+  const policy = validateWindowsCanaryAdmissionPolicy(input.policy);
+  if (!policy.ok) return policy;
+  const binding = validateWindowsCanaryLeaseBinding(input.binding);
+  const current = validateWindowsCanaryLeaseBinding(input.current);
+  if (
+    !binding.ok ||
+    !current.ok ||
+    !validTimestamp(input.observed_at) ||
+    !validTimestamp(input.last_heartbeat_at)
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
+  }
+  const observedAt = Date.parse(input.observed_at);
+  const heartbeatAt = Date.parse(input.last_heartbeat_at);
+  const issuedAt = Date.parse(binding.binding.issued_at);
+  if (observedAt < issuedAt) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_STATE_UNCERTAIN" };
+  }
+  if (observedAt >= Date.parse(binding.binding.expires_at)) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_EXPIRED" };
+  }
+  if (
+    heartbeatAt < issuedAt ||
+    heartbeatAt > observedAt ||
+    observedAt - heartbeatAt > policy.policy.heartbeat_interval_ms
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_HEARTBEAT_STALE" };
+  }
+  if (binding.binding.fence_token !== current.binding.fence_token) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_STALE_FENCE" };
+  }
+  if (
+    binding.binding.owner !== current.binding.owner ||
+    binding.binding.lease_id !== current.binding.lease_id
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_OWNER_MISMATCH" };
+  }
+  if (
+    binding.binding.assignment_id !== current.binding.assignment_id ||
+    binding.binding.pr_number !== current.binding.pr_number ||
+    binding.binding.candidate_head !== current.binding.candidate_head ||
+    binding.binding.linux_artifact_digest !== current.binding.linux_artifact_digest ||
+    binding.binding.profile_digest !== current.binding.profile_digest ||
+    binding.binding.lane_id !== current.binding.lane_id ||
+    binding.binding.run_id !== current.binding.run_id ||
+    binding.binding.run_attempt !== current.binding.run_attempt ||
+    binding.binding.correlation_id !== current.binding.correlation_id ||
+    binding.binding.issued_at !== current.binding.issued_at ||
+    binding.binding.expires_at !== current.binding.expires_at
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_LEASE_BINDING_MISMATCH" };
+  }
+  return { ok: true, binding: binding.binding };
+}
+
+const COMPLETION_BINDING_FIELDS: readonly (keyof WindowsCanaryLeaseBindingV1)[] = [
+  "assignment_id",
+  "pr_number",
+  "candidate_head",
+  "linux_artifact_digest",
+  "profile_digest",
+  "lane_id",
+  "run_id",
+  "run_attempt",
+  "owner",
+  "lease_id",
+  "fence_token",
+  "correlation_id",
+  "issued_at",
+  "expires_at",
+];
+
+export function evaluateWindowsCanaryCompletion(input: {
+  readonly expected: unknown;
+  readonly completed: unknown;
+}): WindowsCanaryCompletionResult {
+  const expected = validateWindowsCanaryLeaseBinding(input.expected);
+  const completed = validateWindowsCanaryLeaseBinding(input.completed);
+  if (!expected.ok || !completed.ok) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_COMPLETION_BINDING_MISMATCH" };
+  }
+  if (
+    COMPLETION_BINDING_FIELDS.some((field) => expected.binding[field] !== completed.binding[field])
+  ) {
+    return { ok: false, failure_code: "WINDOWS_CANARY_COMPLETION_BINDING_MISMATCH" };
+  }
+  return { ok: true, completion_digest: sha256Digest(canonicalJson(completed.binding)) };
 }
