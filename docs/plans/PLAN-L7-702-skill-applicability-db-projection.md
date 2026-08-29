@@ -89,6 +89,7 @@ modifies:
   - { artifact_path: src/schema/skill-applicability-registry.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: tests/asset-catalog.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/development-model-runtime-routing-design.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L5-83-development-model-runtime-routing.md
   requires: [docs/plans/PLAN-L7-678-skill-applicability-value-object.md]

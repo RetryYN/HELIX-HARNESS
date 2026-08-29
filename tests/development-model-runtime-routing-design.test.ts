@@ -75,7 +75,7 @@ describe("SKILL-APPLICABILITY-VALUE-OBJECT-001 L5/L8 design closure", () => {
       "U-SKAPP-009",
       "U-SKAPP-010",
     ]);
-    expect(testDesign).toContain("U-SKAPP-005〜008は#248の後続原子slice");
-    expect(testDesign).toContain("authoringだけでDB／recommendation移行完了を主張しない");
+    expect(testDesign).toContain("U-SKAPP-006〜008は#248の後続原子slice");
+    expect(testDesign).toContain("DB projectionだけでrecommendation／CLI移行完了を主張しない");
   });
 });
