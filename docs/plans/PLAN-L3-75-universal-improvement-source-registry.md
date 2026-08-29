@@ -4,7 +4,7 @@ title: "PLAN-L3-75 (add-impl): Universal Improvement source registryをauthority
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 backfill_state: pending_reverse
 completion_claim_allowed: false
 workflow_identity:
