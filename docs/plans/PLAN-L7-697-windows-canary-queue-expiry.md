@@ -4,7 +4,7 @@ title: "PLAN-L7-697 (impl): Windows canary bounded queue／expiryを実装する
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -35,6 +35,36 @@ red_test: "U-WLCA-002〜010／015を先行追加し、evaluator不在で5 tests 
 red_at: "2026-08-28T16:44:35+09:00"
 green_at: "2026-08-28T16:46:54+09:00"
 mutation_oracle_evidence: "tests/windows-lite-canary-admission.test.tsで2026-08-28T16:48:13+09:00にwaiting.length>=max_waitingを>へ変異し、U-WLCA-002〜004が1 failed／8 passed（exit 1）として満杯queueへの誤追加をkillした。2026-08-28T19:39:00+09:00にobservedAt<issuedAt guardを無効化するとU-WLCA-006が1 failed／15 passedでfailure分類退行をkillし、19:39:12+09:00にheartbeatAt<issuedAt guardを無効化すると同oracleが発行前heartbeatの成功化を1 failed／15 passedでkillした。全mutantを復元後に同suiteをgreenへ戻した。"
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-29T08:09:04Z"
+    tests_green_at: "2026-08-29T08:09:04Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "4281ba76-20e0-4183-ac2b-9964c44cfd02"
+    reviewed_head_sha: 35d061de00e24fab9f1b00e0b866e2616f2fef60
+    scope: "PR #1140 exact HEAD 35d061de00e24fab9f1b00e0b866e2616f2fef60をClaude Code Opusが独立検収し、queue bound、duplicate、lease expiry／heartbeat／fence／owner、completion bindingへ別系統10 mutationを投入して全件kill、復元後cleanを確認した。blocker 0。canonical review: https://github.com/RetryYN/HELIX-HARNESS/pull/1140#issuecomment-5461222588"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/windows-lite-canary-admission.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-29T08:09:04Z"
+        evidence_path: tests/windows-lite-canary-admission.test.ts
+        output_digest: "sha256:c81d71a14a4911341b07f65af7e391091bc8eaf4faf000e85debdd347f9a778b"
+        result: "canonical review comment body digest。baseline／復元後16 passed、独立10 mutationは各1〜3 failedへ反転。"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-29T08:09:04Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-29T08:09:04Z"
+    evidence_digest: "sha256:c81d71a14a4911341b07f65af7e391091bc8eaf4faf000e85debdd347f9a778b"
+  entries: []
 complexity_effect: justified_positive
 complexity_justification: "Windows固有snapshot照合を副作用なしkernelへ閉じ、Actions adapterが独自queue／lease判定を持つことを防ぐ"
 removal_trigger: "Windows heavy laneが汎用host-global admission evaluatorへ型互換のまま統合された時"
