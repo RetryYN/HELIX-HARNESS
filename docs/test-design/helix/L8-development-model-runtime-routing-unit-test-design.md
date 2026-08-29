@@ -30,7 +30,9 @@ pair_artifact: docs/design/helix/L5-detail/development-model-runtime-routing.md
 
 U-SKAPP-001〜003は`tests/skill-applicability-registry.test.ts`、U-SKAPP-004／009／010は
 assignment／scaffold／CLIのtargeted testへ接続済み。U-SKAPP-005は`tests/asset-catalog.test.ts`で
-normalized row、極性、legacy-only非昇格を検証する。U-SKAPP-006〜008は#248の後続原子sliceで接続し、
+catalog経路のnormalized row、極性、registry version／digest、legacy-only非昇格を検証し、
+`tests/slow/projection-writer.test.ts`でdeterministic rebuild経路の同一exact row setを検証する。
+version／digest定数化とrebuild投影block削除のmutationを個別にkillする。U-SKAPP-006〜008は#248の後続原子sliceで接続し、
 DB projectionだけでrecommendation／CLI移行完了を主張しない。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
