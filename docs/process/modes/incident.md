@@ -1,10 +1,10 @@
 <!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=INCIDENT -->
-> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.13) → registry v1.1.5 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.14) → registry v1.1.6 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
 > **evidence boundary**: production impact、approval、owner、HEAD、rollback、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
 # Incident workflow（本番障害対応）
 
-出典: concept v3.1 §2.5 / §2.6.1 signal binding (`production_incident`/`hotfix_required`/`regression_prod`) / §2.6.5 env=prod 分岐 / requirements v1.3.13 §9.2、§10 / workflow classification registry v1.1.5。
+出典: concept v3.1 §2.5 / §2.6.1 signal binding (`production_incident`/`hotfix_required`/`regression_prod`) / §2.6.5 env=prod 分岐 / requirements v1.3.14 §9.2、§10 / workflow classification registry v1.1.6。
 
 ---
 
@@ -93,8 +93,8 @@ hotfix を打ちっぱなしにせず、Reverse fullback (R0-R4、`confirmed_rev
 | Discovery post-deploy trigger | 本番後の問題を「検証候補化」するのみ (検出止まり)。緊急対応が要る場合は Incident へ |
 | Reverse fullback | 事後昇華の手段。hotfix の恒久対策を V-model 体系へ統合するために使用 |
 
-分類注記: `incident`のworkflow identityはregistry v1.1.5の`workflow_model:INCIDENT`であり、`troubleshoot`／`recovery` PLANの組合せをcurrent identityへ再出力しない。
+分類注記: `incident`のworkflow identityはregistry v1.1.6の`workflow_model:INCIDENT`であり、`troubleshoot`／`recovery` PLANの組合せをcurrent identityへ再出力しない。
 
 ---
 
-出典再掲: concept v3.1 §2.5/§2.6.3/§2.6.5 / requirements v1.3.13 §9.2/§10 / workflow classification registry v1.1.5
+出典再掲: concept v3.1 §2.5/§2.6.3/§2.6.5 / requirements v1.3.14 §9.2/§10 / workflow classification registry v1.1.6

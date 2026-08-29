@@ -1,10 +1,10 @@
 <!-- HELIX:workflow-model-process-authority:v1 axis=workflow_model id=RECOVERY -->
-> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.13) → registry v1.1.5 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
+> **current authority**: `docs/governance/helix-harness-requirements_v1.3.md` (requirements v1.3.14) → registry v1.1.6 → generated projection。旧定義は compatibility-only であり、current identityへ再出力しない。
 > **evidence boundary**: trigger、reopen point、owner、HEAD、contract、CI、独立reviewを同じreceiptへ束縛し、L1-L12へForward再入する。
 
 # Recovery workflow（復旧）
 
-出典: concept v3.1 §2.5 / §2.6.1 signal binding (`agent_runaway`/`context_exhaustion`/`regression_dev`) / requirements v1.3.13 §9.2、§10 / workflow classification registry v1.1.5。
+出典: concept v3.1 §2.5 / §2.6.1 signal binding (`agent_runaway`/`context_exhaustion`/`regression_dev`) / requirements v1.3.14 §9.2、§10 / workflow classification registry v1.1.6。
 
 ---
 
@@ -149,4 +149,4 @@ Step 1: 全部拾う ──────► Step 2: 認識確認 (PO) ──► S
 
 ---
 
-出典再掲: docs/process/modes/README.md / concept v3.1 §2.5/§2.6.3 / requirements v1.3.13 §9.2/§10 / workflow classification registry v1.1.5
+出典再掲: docs/process/modes/README.md / concept v3.1 §2.5/§2.6.3 / requirements v1.3.14 §9.2/§10 / workflow classification registry v1.1.6

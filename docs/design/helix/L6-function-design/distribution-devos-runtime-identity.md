@@ -13,7 +13,7 @@ pair_artifact: docs/test-design/helix/L8-distribution-devos-runtime-identity-uni
 
 # DevOS distribution runtime identity機能設計
 
-requirements v1.3.13の正式配布先`RetryYN/HELIX-HARNESS-DevOS`を、runtime、CLI、setup、update-check、
+requirements v1.3.14の正式配布先`RetryYN/HELIX-HARNESS-DevOS`を、runtime、CLI、setup、update-check、
 doctor、generated consumer artifactへ一方向に投影する。current repository名とremote URLは
 `src/setup/distribution-identity.ts`だけが所有し、各consumerは定数またはtyped receiptを参照する。
 

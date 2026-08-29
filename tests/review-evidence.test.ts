@@ -870,7 +870,9 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
     expect(provenance.source).toBe("git");
     expect(provenance.error).toBeUndefined();
     expect(provenance.firstCommitDate).toMatch(/^2026-08-27T/u);
-    expect(provenance.lastCommitDate).toMatch(/^2026-08-27T/u);
+    expect(Date.parse(provenance.lastCommitDate ?? "")).toBeGreaterThanOrEqual(
+      Date.parse(provenance.firstCommitDate ?? ""),
+    );
 
     const loaded = loadReviewPlans(process.cwd()).find(
       (candidate) => candidate.plan_id === "PLAN-L3-00-master",
