@@ -80,7 +80,7 @@ modifies:
   - { artifact_path: tests/distribution-lite-profile-package.test.ts, artifact_type: test_code }
   - { artifact_path: tests/skill-applicability-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/workflow-classification-catalog-lint.test.ts, artifact_type: test_code }
-  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_code }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 ---
 
