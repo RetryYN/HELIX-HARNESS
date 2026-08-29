@@ -29,8 +29,12 @@ describe("source package manifest migration", () => {
     const v051 = JSON.parse(
       readFileSync("docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.1.json", "utf8"),
     );
-    expect(existsSync("docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip")).toBe(false);
-    expect(existsSync("docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.1.zip")).toBe(false);
+    expect(
+      existsSync("docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.0.zip"),
+    ).toBe(false);
+    expect(
+      existsSync("docs/migration/source-packages/hybrid-core-requirements-rebaseline-v0.5.1.zip"),
+    ).toBe(false);
     expect(v050).toMatchObject({
       source_family_id: "hybrid-core-rebaseline.v0.5.0",
       legacy_git_blob: "d1fbeccaf8c4006f5ba0ee077d9c1e887caff6c0",
