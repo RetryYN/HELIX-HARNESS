@@ -26,7 +26,7 @@ pair_artifact: docs/design/helix/L6-function-design/ci-execution-telemetry.md
 | U-TELE-006 | setup、test、artifact upload/downloadを別cost nodeへ分類する | artifact field欠落で例外化せず、方向・operation・lockfile／transfer digest欠落を拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-007 | statusとexit code、first detectorを整合させる | passed非0、failed detector欠落、timeout非null exit、非failure detectorを拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-008 | 一つのrun/attemptの依存DAGとartifact edgeを検証する | cache/resource drift、時間逆転、cycle、artifact input/output／lockfile不一致を拒否する | `tests/ci-execution-telemetry.test.ts` |
-| U-TELE-009 | critical path、重複setup、rerun failureを保持する | 重複setupを1回へ潰さず、過去failureをrerun successで消さない | `tests/ci-execution-telemetry.test.ts` |
+| U-TELE-009 | critical path、重複setup、rerun failureを保持する | 重複setupを1回へ潰さず、過去failureをrerun successで消さない。全nodeが0msでも最長依存鎖を空pathへ縮退させず、同値時のnode数／bytewise順を決定的に適用する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-010 | profile/surface/runner/environment/cache/resource別にp50/p95/p99を算出する | 有効標本やfailureがない状態を0ms／検出率100%と表示しない | `tests/ci-execution-telemetry.test.ts` |
 
 このtest設計はselector、scheduler、workflow、DB、GitHub APIの実行証明ではない。それらの接続は後続Issue #1205〜#1208

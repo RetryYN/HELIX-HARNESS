@@ -94,7 +94,7 @@ OS、architecture、Node version、toolchain digest、environment digest、cache
 時間逆転も拒否する。projectorはrun/attemptごとに次を計算する。
 
 - `execution_wall_time_ms`: 全nodeの最初のqueuedから最後のcompletedまで
-- `critical_path_ms`／`critical_path_node_ids`: dependency DAGのwall time最長経路
+- `critical_path_ms`／`critical_path_node_ids`: dependency DAGのwall time最長経路。合計時間が同じ場合はnode数が多い依存鎖を優先し、さらに同値ならbytewise順で決定する。全nodeが0msでも、非空DAGを空pathへ縮退させない
 - `duplicate_setup_count`／`duplicate_setup_wall_time_ms`: 同じoperationとstable identityの2個目以降
 - failure、timeout、cancel、superseded、retry、flakeの件数
 - first detecting oracleの集合とfailure detection yield
