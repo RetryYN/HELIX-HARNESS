@@ -73,3 +73,4 @@ agent_slots:
 # setup guide Node/npm収束
 
 Issue #1253のruntime guidance責務だけを実施し、旧L08-L14、dynamic workflow guide、Release/cutoverへ責務を広げない。L8 oracleとL12 reviewed dispositionは同じ意味契約の派生projectionとして同一HEADへ束縛する。
+既存L6/L8の意味契約を変更しないconsumer migrationであるため、Reverse backpropは不要と判定し、active setup guideだけをNode.js 24＋npm authorityへ収束する。
