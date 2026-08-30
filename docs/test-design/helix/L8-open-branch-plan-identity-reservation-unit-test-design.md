@@ -8,7 +8,7 @@ created: 2026-08-30
 updated: 2026-08-30
 owner: QA / Codex TL
 plan: docs/plans/PLAN-L7-710-open-branch-plan-identity-reservation.md
-pair_artifact: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md
+pair_artifact: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md
 ---
 
 # open branch PLAN identity reservation L8単体テスト設計

@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
+import { sha256Digest } from "../src/runtime/digest";
 import {
   OPEN_BRANCH_PLAN_RESERVATION_SCHEMA,
   type OpenBranchPlanReservation,
   type OpenBranchPlanReservationSnapshot,
   projectOpenBranchPlanReservations,
-} from "../src/lint/open-branch-plan-identity-reservation";
-import { sha256Digest } from "../src/runtime/digest";
+} from "../src/runtime/open-branch-plan-identity-reservation";
 
 // PLAN-L7-710-open-branch-plan-identity-reservation
 const MAIN_HEAD = "1".repeat(40);

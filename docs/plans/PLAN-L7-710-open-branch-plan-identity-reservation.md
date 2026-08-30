@@ -24,7 +24,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: RECOVERY
+  target_id: ADD_FEATURE
 entry_signals:
   - "po_directive:Issue #1255 open branch間のPLAN identity予約競合をfail-closeする"
 contract_preconditions: "current main、open PR heads、active assignment／writer branchesのtyped snapshotが同じcapture epochに束縛される"
@@ -39,7 +39,9 @@ mutation_oracle_evidence: "2026-08-30 21:47-21:49 JSTに単一mutationを順次�
 complexity_effect: justified_positive
 complexity_justification: "既存local gateを変更せず、cross-branch reservation判断を一つのpure projectionへ収束する"
 removal_trigger: "PLAN identityが単一transactional allocatorからlease付きで発行され、open branch観測projectionが不要になった時"
-parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md
+backprop_decision: not_required
+backprop_decision_reason: "新しいcross-branch reservation projectionを追加するsliceであり、既存local uniqueness契約の意味を変更しない。"
+parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md
 pair_artifact: docs/test-design/helix/L8-open-branch-plan-identity-reservation-unit-test-design.md
 dependencies:
   parent: docs/plans/PLAN-L7-535-plan-number-uniqueness.md
@@ -49,36 +51,27 @@ dependencies:
     - issue:1255
   blocks: []
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-001, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-002, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-003, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-004, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-005, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-006, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-007, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-008, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-001, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-002, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-003, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-004, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-005, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-006, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-007, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-008, test_path: tests/open-branch-plan-identity-reservation.test.ts }
 review_evidence:
-  - reviewer: codex-hosted-tl
+  - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-30T13:07:10Z"
     tests_green_at: "2026-08-30T13:07:10Z"
     verdict: approve
     worker_model: codex
-    reviewer_model: codex:gpt-5
-    reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
-    scope: >-
-      exact HEAD d5b81236cb9d2998630d216c3e414cf10c65202b の source/test/L6/L8/PLAN を
-      静的レビューし、identity、lifecycle、current main、stack inheritance、
-      conflict precedence、projection digest、provider/branch 非 authority と
-      Issue #1256 境界を確認した。blocker は 0 件。
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: "01a05061-f2fc-7073-b0e2-f6693b71cb25"
+    scope: "exact HEAD d5b81236cb9d2998630d216c3e414cf10c65202bのsource/test/L6/L8/PLANを静的レビューし、identity、lifecycle、current main、stack inheritance、conflict precedence、projection digest、provider/branch非authorityとIssue #1256境界を確認した。blockerは0件。"
     green_commands:
       - kind: unit_test
-        command: >-
-          npm exec -- vitest run tests/open-branch-plan-identity-reservation.test.ts
-          tests/plan-number-uniqueness.test.ts && npm run typecheck && npm exec -- biome
-          check src/lint/open-branch-plan-identity-reservation.ts
-          tests/open-branch-plan-identity-reservation.test.ts && npm exec -- tsx src/cli.ts
-          plan lint docs/plans/PLAN-L7-710-open-branch-plan-identity-reservation.md
+        command: "npm exec -- vitest run tests/open-branch-plan-identity-reservation.test.ts tests/plan-number-uniqueness.test.ts && npm run typecheck && npm exec -- biome check src/lint/open-branch-plan-identity-reservation.ts tests/open-branch-plan-identity-reservation.test.ts && npm exec -- tsx src/cli.ts plan lint docs/plans/PLAN-L7-710-open-branch-plan-identity-reservation.md"
         runner: node
         scope: targeted
         exit_code: 0
@@ -90,22 +83,24 @@ left_arm_carry:
   decision: no_pushback
   assessed_at: "2026-08-30T13:07:10Z"
   review_binding:
-    reviewer: codex-hosted-tl
+    reviewer: codex-intra-runtime
     reviewed_at: "2026-08-30T13:07:10Z"
-    evidence_digest: "sha256:f86610552bd5a04e1efee03232dc5859df07f8d610be9ad18a7fc3e64c0ec4e4"
+    evidence_digest: "sha256:256809e84f00ef41fd9a20208c3fb0c1747087f2b4ec9615887d8cbfa7896ef4"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-710-open-branch-plan-identity-reservation.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-open-branch-plan-identity-reservation-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: src/lint/open-branch-plan-identity-reservation.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/open-branch-plan-identity-reservation.ts, artifact_type: source_module }
   - { artifact_path: tests/open-branch-plan-identity-reservation.test.ts, artifact_type: test_code }
+modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
 agent_slots:
   - { role: se, slot_label: "SE — reservation identity／lifecycle projection" }
   - { role: qa, slot_label: "QA — conflict／inheritance／degraded／release mutation" }
 ---
 
-# open branch PLAN identity reservation
+# open branch PLAN identity reservation実装
 
 ## §工程表
 

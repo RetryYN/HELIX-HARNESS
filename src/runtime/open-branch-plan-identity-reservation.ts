@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { canonicalJson, compareBytewise, type Sha256Digest, sha256Digest } from "../runtime/digest";
+import { canonicalJson, compareBytewise, type Sha256Digest, sha256Digest } from "./digest";
 
 export const OPEN_BRANCH_PLAN_RESERVATION_SCHEMA =
   "helix-open-branch-plan-reservation-snapshot.v1" as const;

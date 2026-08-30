@@ -1,5 +1,6 @@
 ---
 title: "open branch PLAN identity reservation機能設計"
+canonical_layer_scheme: L1-L12
 layer: L6
 artifact_type: design
 status: confirmed
@@ -18,7 +19,7 @@ pair_artifact: docs/test-design/helix/L8-open-branch-plan-identity-reservation-u
 typed evidenceを一つのread-only reservation projectionへ正規化する。既存`plan-number-uniqueness`のlocal
 `docs/plans`検査を置換せず、merge前のcross-branch競合だけを補完する。自動採番、branch cleanup、GitHub／DB writeは行わない。
 
-## 2. reservation identity
+## 2. reservation identity契約
 
 各reservationはstable `plan_id`、PLAN family＋number、owner Issue、responsibility owner、PLAN path／blob digest、branch、
 candidate HEAD、ancestor HEAD exact setを持つ。active writerはassignment ID、lease ID、fence tokenも必須とする。
@@ -36,13 +37,13 @@ at-least-onceで同一reservationが重複してもcanonical identityで一件�
 current main、open PR heads、active writer branchesの三surfaceをすべてavailableにできた場合だけ`admitted`を返す。
 一つでも取得不能ならlocal結果へfallbackせず`degraded`、競合またはevidence不正なら`blocked`とし、どちらも`ok=false`とする。
 
-## 4. effect port
+## 4. effect port境界
 
 GitHub API／assignment kernelからの取得はeffect adapterが行い、本projectionにはstrict snapshotだけを渡す。provider名や
 branch名をPLAN authorityにせず、GitHub取得失敗は`error_digest`だけを保持する。PR preflight／doctor／DB replayは同じprojection
 resultをconsumerとし、別counterや別競合規則を実装しない。
 
-## 5. oracle binding
+## 5. oracle binding一覧
 
 | oracle | 契約 | test citation |
 |---|---|---|
@@ -53,4 +54,4 @@ resultをconsumerとし、別counterや別競合規則を実装しない。
 | `U-OBPIR-005` | terminal evidence release | `tests/open-branch-plan-identity-reservation.test.ts` |
 | `U-OBPIR-006` | unavailable degraded | `tests/open-branch-plan-identity-reservation.test.ts` |
 | `U-OBPIR-007` | replay dedupe／schema race拒否 | `tests/open-branch-plan-identity-reservation.test.ts` |
-| `U-OBPIR-008` | conflict precedence／main completeness | `tests/open-branch-plan-identity-reservation.test.ts` |
+| `U-OBPIR-008` | conflict precedence／main completeness検証 | `tests/open-branch-plan-identity-reservation.test.ts` |
