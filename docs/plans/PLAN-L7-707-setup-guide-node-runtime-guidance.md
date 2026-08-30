@@ -62,7 +62,7 @@ modifies:
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/current-runtime-guidance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_evidence }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: se, slot_label: "SE — package runtime authorityとconsumer guidance境界" }
   - { role: qa, slot_label: "QA — Bun残存とnpm command mutation" }
