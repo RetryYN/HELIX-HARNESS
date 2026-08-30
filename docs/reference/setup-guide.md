@@ -13,8 +13,8 @@
 
 | 項目 | 必須条件 |
 |---|---|
-| runtime | Bun、Git、利用する AI provider CLI が実行可能であること |
-| package | `package.json` と lockfile が存在し、`bun install --frozen-lockfile` が通ること |
+| runtime | Node.js >=24.15.0 <25、Git、利用する AI provider CLI が実行可能であること |
+| package | `package.json` と `package-lock.json` が存在し、`npm ci` が通ること |
 | command | 現行 cutover 前は `helix` wrapper を使うこと |
 | state | `.helix/` は現行 runtime state。`.helix/` への移動は PLAN-M-02 承認後 |
 | secrets | setup docs、audit、handover、example に credential / PII / secret を書かないこと |
@@ -22,10 +22,10 @@
 ## 3. 新規 repository への導入
 
 1. package root で依存関係を用意する。
-2. `bun run helix setup project --dry-run --json` を実行し、生成予定の adapter、hooks、VS Code tasks、
+2. `npm run helix -- setup project --dry-run --json` を実行し、生成予定の adapter、hooks、VS Code tasks、
    GitHub templates、handover baseline を確認する。
-3. `bun run helix doctor --profile consumer --json` で consumer profile の不足を確認する。
-4. `bun run helix status --json` で outstanding と decision packet route を確認する。
+3. `npm run helix -- doctor --profile consumer --json` で consumer profile の不足を確認する。
+4. `npm run helix -- status --json` で outstanding と decision packet route を確認する。
 5. 生成物を適用する場合は、既存 project-owned instruction と衝突しないことを review してから取り込む。
 
 ## 4. 既存 repository への導入
@@ -46,12 +46,12 @@
 consumer setup 後は、少なくとも次を dry-run / read-only で確認する。
 
 ```bash
-bun run helix status --json
-bun run helix completion decision-packet --json
-bun run helix completion review-bundle --json
-bun run helix doctor --profile consumer --json
-bun run helix rename plan --json
-bun run helix setup project --dry-run --json
+npm run helix -- status --json
+npm run helix -- completion decision-packet --json
+npm run helix -- completion review-bundle --json
+npm run helix -- doctor --profile consumer --json
+npm run helix -- rename plan --json
+npm run helix -- setup project --dry-run --json
 ```
 
 `rename plan` は plan-only packet であり、apply 権限を持たない。approval record、snapshot binding、
@@ -67,7 +67,7 @@ HELIX setup はそれらの判断材料を作るが、GitHub 権限変更その�
 
 | 症状 | 初動 |
 |---|---|
-| `helix` が PATH に無い | package-local `bun run helix ...` で smoke し、install/link 手順を確認する |
+| `helix` が PATH に無い | package-local `npm run helix -- <command>` で smoke し、install/link 手順を確認する |
 | consumer doctor が dogfood docs を要求する | `--profile consumer` を指定しているか確認する |
 | CI が secret を要求する | generated `harness-check.yml` から secret 参照が混入していないか確認する |
 | rename が blocked | `PLAN-M-02` の approval packet、cutover snapshot、rollback evidence を確認する |
