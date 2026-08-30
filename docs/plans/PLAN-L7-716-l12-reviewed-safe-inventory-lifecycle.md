@@ -76,3 +76,4 @@ agent_slots:
 
 Issue #1276だけを対象に、reviewed-safe registryとauthority-review inventoryの非対称を修正する。
 一般inventory全体を一律retireせず、明示したartifact familyから段階的に適用する。
+PR scope manifestは本PLANの`generates`／`modifies` exact setと一致させ、別familyへ拡張しない。
