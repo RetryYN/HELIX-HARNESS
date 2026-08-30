@@ -51,6 +51,8 @@ dependencies:
     - issue:1208
     - docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md
   blocks: []
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-707-ci-critical-path-scheduler.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-ci-critical-path-scheduler-reverse-vehicle-test-design.md, artifact_type: test_design }
