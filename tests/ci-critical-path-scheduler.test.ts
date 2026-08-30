@@ -65,12 +65,7 @@ function input(
     evaluated_at: "2026-08-30T00:00:01.000Z",
     artifacts: [],
     exclusive_resources: [],
-    expected_artifact_identity: {
-      lockfile_digest: D1,
-      node_version: "24.15.0",
-      toolchain_digest: D2,
-      platform: "linux-x64",
-    },
+    expected_artifact_identities: [],
     resource_requirements: [
       {
         capability_id: "verification:a",
@@ -179,14 +174,32 @@ describe("CI critical-path scheduler", () => {
       { ...valid, platform: "windows-x64" },
       { ...valid, input_digest: "bad" as `sha256:${string}` },
       { ...valid, output_digest: "bad" as `sha256:${string}` },
+      { ...valid, input_digest: D2 },
+      { ...valid, output_digest: D1 },
     ]) {
-      const result = scheduleCiCriticalPath(input({ artifacts: [artifact] }));
+      const result = scheduleCiCriticalPath(
+        input({
+          artifacts: [artifact],
+          expected_artifact_identities: [
+            {
+              artifact_id: valid.artifact_id,
+              capability_id: valid.capability_id,
+              lockfile_digest: valid.lockfile_digest,
+              node_version: valid.node_version,
+              toolchain_digest: valid.toolchain_digest,
+              platform: valid.platform,
+              input_digest: valid.input_digest,
+              output_digest: valid.output_digest,
+            },
+          ],
+        }),
+      );
       expect(result.findings).toContainEqual(
         expect.objectContaining({ code: "artifact_identity_invalid" }),
       );
     }
     const missingExpected = scheduleCiCriticalPath(
-      input({ artifacts: [valid], expected_artifact_identity: undefined as never }),
+      input({ artifacts: [valid], expected_artifact_identities: [] }),
     );
     expect(missingExpected.findings).toContainEqual(
       expect.objectContaining({ code: "artifact_identity_invalid" }),
@@ -305,6 +318,18 @@ describe("CI critical-path scheduler", () => {
     const result = scheduleCiCriticalPath(
       input({
         artifacts: [artifact],
+        expected_artifact_identities: [
+          {
+            artifact_id: artifact.artifact_id,
+            capability_id: artifact.capability_id,
+            lockfile_digest: artifact.lockfile_digest,
+            node_version: artifact.node_version,
+            toolchain_digest: artifact.toolchain_digest,
+            platform: artifact.platform,
+            input_digest: artifact.input_digest,
+            output_digest: artifact.output_digest,
+          },
+        ],
       }),
     );
     expect(result.reused_artifact_ids).toEqual(["artifact:build"]);
@@ -330,6 +355,76 @@ describe("CI critical-path scheduler", () => {
       expect.arrayContaining([expect.objectContaining({ code: "runtime_context_invalid" })]),
     );
     expect(result.fallback_reasons).toContain("backpressure_conservative");
+  });
+
+  it("U-CISCHED-009: group単位のCPUとmemory budgetを超過させない", () => {
+    const result = scheduleCiCriticalPath(
+      input({
+        obligations: [
+          {
+            capability_id: "verification:a",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+          {
+            capability_id: "verification:b",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+        ],
+        available_cpu_units: 2,
+        available_memory_mb: 1024,
+        resource_requirements: [
+          {
+            capability_id: "verification:a",
+            runner_os: "linux",
+            cpu_units: 2,
+            memory_mb: 1024,
+            timeout_ms: 60_000,
+          },
+          {
+            capability_id: "verification:b",
+            runner_os: "linux",
+            cpu_units: 2,
+            memory_mb: 1024,
+            timeout_ms: 60_000,
+          },
+        ],
+      }),
+    );
+    expect(result.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
+  });
+
+  it("U-CISCHED-009: telemetry欠落とbackpressureで保守的fallbackを選ぶ", () => {
+    const missing = scheduleCiCriticalPath(input({ estimates: [input().estimates[0]] }));
+    expect(missing.fallback_reasons).toContain("telemetry_missing:verification:b");
+    expect(
+      missing.execution_dag.find((node) => node.capability_id === "verification:b")
+        ?.estimated_duration_ms,
+    ).toBe(60_000);
+
+    const pressured = scheduleCiCriticalPath(
+      input({
+        obligations: [
+          {
+            capability_id: "verification:a",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+          {
+            capability_id: "verification:b",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+        ],
+        backpressure_active: true,
+      }),
+    );
+    expect(pressured.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
   });
 
   it("U-CISCHED-010: 後段classから前段classへのdependencyを拒否する", () => {
