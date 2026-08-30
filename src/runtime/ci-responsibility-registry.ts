@@ -56,6 +56,8 @@ export interface VerificationCapability {
   status: "active" | "retired";
   replacement_capability_id: string | null;
   rollback_capability_id: string | null;
+  retirement_consumer_capability_ids: readonly string[];
+  retirement_history_refs: readonly string[];
 }
 
 export interface CiResponsibilityRegistry {
@@ -224,13 +226,17 @@ export function validateCiResponsibilityRegistry(
     }
     if (
       capability.status === "retired" &&
-      (!capability.replacement_capability_id || !capability.rollback_capability_id)
+      (!capability.replacement_capability_id ||
+        !capability.rollback_capability_id ||
+        capability.retirement_consumer_capability_ids.length === 0 ||
+        capability.retirement_history_refs.length === 0 ||
+        capability.retirement_history_refs.some((reference) => !ID.test(reference)))
     ) {
       addFinding(
         findings,
         "retirement_contract_invalid",
         capability.capability_id,
-        "replacement and rollback are required",
+        "replacement, rollback, consumer exact set, and history trace are required",
       );
     }
   }
@@ -246,6 +252,11 @@ export function validateCiResponsibilityRegistry(
     ]) {
       if (replacement && !capabilities.has(replacement)) {
         addFinding(findings, "unknown_node", replacement, capability.capability_id);
+      }
+    }
+    for (const consumer of capability.retirement_consumer_capability_ids) {
+      if (!capabilities.has(consumer)) {
+        addFinding(findings, "unknown_node", consumer, capability.capability_id);
       }
     }
   }

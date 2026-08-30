@@ -52,7 +52,9 @@
       "depends_on_capability_ids": [],
       "status": "active",
       "replacement_capability_id": null,
-      "rollback_capability_id": null
+      "rollback_capability_id": null,
+      "retirement_consumer_capability_ids": [],
+      "retirement_history_refs": []
     },
     {
       "capability_id": "verification:impact-ci-boundary",
@@ -71,7 +73,9 @@
       "depends_on_capability_ids": ["verification:ci-responsibility-unit"],
       "status": "active",
       "replacement_capability_id": null,
-      "rollback_capability_id": null
+      "rollback_capability_id": null,
+      "retirement_consumer_capability_ids": [],
+      "retirement_history_refs": []
     },
     {
       "capability_id": "verification:ci-authority-global",
@@ -90,7 +94,9 @@
       "depends_on_capability_ids": [],
       "status": "active",
       "replacement_capability_id": null,
-      "rollback_capability_id": null
+      "rollback_capability_id": null,
+      "retirement_consumer_capability_ids": [],
+      "retirement_history_refs": []
     }
   ]
 }

@@ -33,10 +33,11 @@ CIはadapterであり、pathやtest filenameを新しい意味正本へ昇格さ
 
 registry admissionはunknown identity、orphan、owner欠落、同一responsibilityの複数owner、dependency cycle、oracle欠落、
 不完全なretirementを個別findingでfail-closeする。導出はIssue／PLANとchanged artifactのtyped nodeをseedとして明示edgeの
-双方向closureを計算し、active capabilityのapplicabilityとのintersectionを4 classへexact partitionする。未知artifactは
+有向closureを計算し、active capabilityのapplicabilityとのintersectionを4 classへexact partitionする。逆向き探索で
+unrelated consumer／releaseを混入させない。未知artifactは
 空集合へ落とさずfail-closeする。registry digestは同一bytes意味集合へ束縛し、legacy greenでcurrent欠落を相殺しない。
 
 ## §4 retirement
 
-retired capabilityにはreplacementとrollback capabilityを必須とし、consumer／dependency edgeを履歴として保持する。
+retired capabilityにはreplacement、rollback、consumer exact set、履歴receiptを必須とし、consumer／dependency edgeを履歴として保持する。
 replacementが無い削除やownerの後勝ちは禁止する。

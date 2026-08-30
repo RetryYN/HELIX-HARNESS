@@ -69,6 +69,8 @@ function fixture(): CiResponsibilityRegistry {
         status: "active",
         replacement_capability_id: null,
         rollback_capability_id: null,
+        retirement_consumer_capability_ids: [],
+        retirement_history_refs: [],
       },
       {
         capability_id: "verification:consumer-boundary",
@@ -88,6 +90,8 @@ function fixture(): CiResponsibilityRegistry {
         status: "active",
         replacement_capability_id: null,
         rollback_capability_id: null,
+        retirement_consumer_capability_ids: [],
+        retirement_history_refs: [],
       },
       {
         capability_id: "verification:authority-global",
@@ -113,6 +117,8 @@ function fixture(): CiResponsibilityRegistry {
         status: "active",
         replacement_capability_id: null,
         rollback_capability_id: null,
+        retirement_consumer_capability_ids: [],
+        retirement_history_refs: [],
       },
       {
         capability_id: "verification:release-lite",
@@ -132,6 +138,8 @@ function fixture(): CiResponsibilityRegistry {
         status: "active",
         replacement_capability_id: null,
         rollback_capability_id: null,
+        retirement_consumer_capability_ids: [],
+        retirement_history_refs: [],
       },
     ],
   };
@@ -235,19 +243,53 @@ describe("CI Responsibility Registry", () => {
   });
 
   it("U-CIREG-007: retired capabilityはreplacement／rollback／consumer traceを失えない", () => {
-    const registry = fixture();
-    registry.capabilities = [
+    const missingTrace = fixture();
+    missingTrace.capabilities = [
       {
-        ...registry.capabilities[0],
+        ...missingTrace.capabilities[0],
         status: "retired",
-        replacement_capability_id: null,
-        rollback_capability_id: null,
+        replacement_capability_id: "verification:consumer-boundary",
+        rollback_capability_id: "verification:release-lite",
+        retirement_consumer_capability_ids: [],
+        retirement_history_refs: [],
       },
-      ...registry.capabilities.slice(1),
+      ...missingTrace.capabilities.slice(1),
     ];
-    const result = validateCiResponsibilityRegistry(registry);
-    expect(result.findings).toContainEqual(
+    expect(validateCiResponsibilityRegistry(missingTrace).findings).toContainEqual(
       expect.objectContaining({ code: "retirement_contract_invalid" }),
+    );
+
+    const completeTrace = fixture();
+    completeTrace.capabilities = [
+      {
+        ...completeTrace.capabilities[0],
+        status: "retired",
+        replacement_capability_id: "verification:consumer-boundary",
+        rollback_capability_id: "verification:release-lite",
+        retirement_consumer_capability_ids: ["verification:consumer-boundary"],
+        retirement_history_refs: ["receipt:retirement-core-unit-v1"],
+      },
+      ...completeTrace.capabilities.slice(1),
+    ];
+    expect(validateCiResponsibilityRegistry(completeTrace)).toMatchObject({
+      ok: true,
+      findings: [],
+    });
+
+    const unknownConsumer = fixture();
+    unknownConsumer.capabilities = [
+      {
+        ...unknownConsumer.capabilities[0],
+        status: "retired",
+        replacement_capability_id: "verification:consumer-boundary",
+        rollback_capability_id: "verification:release-lite",
+        retirement_consumer_capability_ids: ["verification:unknown-consumer"],
+        retirement_history_refs: ["receipt:retirement-core-unit-v1"],
+      },
+      ...unknownConsumer.capabilities.slice(1),
+    ];
+    expect(validateCiResponsibilityRegistry(unknownConsumer).findings).toContainEqual(
+      expect.objectContaining({ code: "unknown_node", subject: "verification:unknown-consumer" }),
     );
   });
 

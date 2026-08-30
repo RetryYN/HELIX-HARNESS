@@ -33,7 +33,7 @@ tdd_red_required: true
 tdd_red_evidence: "2026-08-30T12:00:49+09:00 tests/ci-responsibility-registry.test.ts initial red: production contract未成立によりU-CIREG-001／002がfail"
 tdd_green_evidence: "2026-08-30T12:02:29+09:00 tests/ci-responsibility-registry.test.ts 9 tests green、typecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/ci-responsibility-registry.test.ts U-CIREG-004〜007でunknown／orphan／owner欠落／重複owner／dependency cycle／retirement欠落mutationが個別findingを生成し、削除するとredになる"
+mutation_oracle_evidence: "tests/ci-responsibility-registry.test.ts U-CIREG-002／004〜007で逆向きrelease混入、unknown／orphan、owner欠落／重複owner、dependency cycle、retirement replacement／rollback／consumer／history欠落を個別mutationし、削除するとredになる"
 complexity_effect: net_negative
 complexity_justification: "Impact CI、Lite、Module／Bundle adapterの分散path判断を単一typed registryへ収束する"
 removal_trigger: "CI System Synthesisがretireされreplacement registryへ全consumerとrollback traceが移行した時"
