@@ -235,8 +235,8 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 136,
-        false_positive: 49,
+        conflict: 137,
+        false_positive: 48,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, historical: 1 },
@@ -248,8 +248,8 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 176,
-        false_positive: 430,
+        conflict: 175,
+        false_positive: 431,
       },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));

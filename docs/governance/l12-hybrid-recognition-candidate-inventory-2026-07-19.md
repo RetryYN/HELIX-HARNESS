@@ -123,7 +123,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L5-detail/layer-ledger-pair-gate.md`
 - `docs/design/helix/L5-detail/pillar-detail-design.md`
 - `docs/design/helix/L5-detail/python-worker-runtime.md`
-- `docs/design/helix/L6-function-design/document-semantic-diff.md`
 - `docs/design/helix/L6-function-design/layer-ledger-pair-gate.md`
 - `docs/design/helix/L6-function-design/orchestration-memory.md`
 - `docs/design/helix/L6-function-design/pillar-function-design.md`
@@ -208,6 +207,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L7-460-l12-dual-projection.md`
 - `docs/plans/PLAN-L7-62-runtime-portability-guard.md`
 - `docs/plans/PLAN-L7-70-skill-pack-curation.md`
+- `docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md`
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
 - `docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md`
 - `docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md`
