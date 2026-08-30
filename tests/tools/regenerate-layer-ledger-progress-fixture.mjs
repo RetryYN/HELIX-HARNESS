@@ -64,7 +64,7 @@ const EXPECTED = Object.freeze({
   integrationCount: 360,
   mutationCount: 12,
   sliceCount: 19,
-  unitCount: 475,
+  unitCount: 476,
 });
 
 const EXPECTED_DIGEST_CONTRACT = Object.freeze({

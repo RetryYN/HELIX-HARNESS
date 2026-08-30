@@ -5,7 +5,7 @@ executed_at_layer: L7
 artifact_type: test_design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-08-30
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 related_l3: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -27,6 +27,10 @@ next_pair_freeze: L6
 # HELIX L7単体テスト設計 — 連鎖台帳・pair gate
 
 pure functionへ固定port resultを注入し、stale、分母改竄、片方向edge、adjacency bypass、snapshot/oracle不一致、未実行verification、fake completion、behavior変更refactorを個別に検証する。未実装である。
+
+current fixtureはcanonical L1–L12 exact setと正規6 pairだけを生成する。L0は層外anchor projectionの反例として独立検査し、
+旧L0–L14 pairをcurrent failure identityへ混在させない。canonical pairを1件欠落させ、同時に対応するlegacy pairをgreenへ
+変異してもfailureとreceipt 0を維持する。
 
 ## primary atomic assertion台帳
 
@@ -57,13 +61,13 @@ pure functionへ固定port resultを注入し、stale、分母改竄、片方向
 | `HST-CASE-031-08` | `ledger_ready` | `stale` | `HIL_LAYER_VERTICAL_SNAPSHOT_MISMATCH` | `IT-LLPG-023` | `U-LLPG-023` |
 | `HST-CASE-031-09` | `assertion_input_ready` | `assertion_pass` | `HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | `IT-LLPG-024` | `U-LLPG-024` |
 | `HST-CASE-032-01` | `ledger_ready` | `verified` | `なし（正常系）` | `IT-LLPG-025` | `U-LLPG-025` |
-| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L0_L14_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
-| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L14_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
-| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
-| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L12_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
-| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
-| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
-| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-032` | `U-LLPG-032` |
+| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L12_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
+| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L11_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
+| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
+| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
+| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
+| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
+| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID` | `IT-LLPG-032` | `U-LLPG-032` |
 | `HST-CASE-032-09` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_REVERSE_MISSING` | `IT-LLPG-033` | `U-LLPG-033` |
 | `HST-CASE-032-10` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_ORACLE_MISMATCH` | `IT-LLPG-034` | `U-LLPG-034` |
 | `HST-CASE-032-11` | `paired` | `paired` | `HIL_LAYER_VPAIR_EXECUTION_MISSING` | `IT-LLPG-035` | `U-LLPG-035` |
@@ -95,14 +99,14 @@ pure functionへ固定port resultを注入し、stale、分母改竄、片方向
 
 | oracle | exact API | fixture／mutation | 反証assertion |
 |---|---|---|---|
-| `U-LLPG-S01`（supporting） | `calculateFixedDesignProgress`、`commitDesignProgress`、`reconcileDesignProgress` | exact 19 slice、76 artifact、canonical U 475/IT 360/quartet 835/HST 411/total 1,246、5 stage receiptを正例とし、ID list欠落/重複/20件目、count/list/digest/rate不一致、fake numerator、stale/superseded authority、receipt swap、axis mixing、missing receipt、reviewer同一runtime-model、sliceごとのfreeze receipt 2件未満、freezeのslice/snapshot join差、包含逆転、supporting混入、source commit/treeまたはdesign digest swap、projection digest差を一つずつmutateする | 正例だけ5独立axisを返す。各反例はtyped failure、authoritative numerator/receipt増分0。artifact 19/19でも後段を推定しない。U/IT S01はmeta receiptに残るがcanonical list/count/digest/rateへ入らない |
+| `U-LLPG-S01`（supporting） | `calculateFixedDesignProgress`、`commitDesignProgress`、`reconcileDesignProgress` | exact 19 slice、76 artifact、canonical U 476/IT 360/quartet 836/HST 411/total 1,247、5 stage receiptを正例とし、ID list欠落/重複/20件目、count/list/digest/rate不一致、fake numerator、stale/superseded authority、receipt swap、axis mixing、missing receipt、reviewer同一runtime-model、sliceごとのfreeze receipt 2件未満、freezeのslice/snapshot join差、包含逆転、supporting混入、source commit/treeまたはdesign digest swap、projection digest差を一つずつmutateする | 正例だけ5独立axisを返す。各反例はtyped failure、authoritative numerator/receipt増分0。artifact 19/19でも後段を推定しない。U/IT S01はmeta receiptに残るがcanonical list/count/digest/rateへ入らない |
 | `U-LLPG-S01`（supporting fault） | `commitDesignProgress`、`reconcileDesignProgress` | atomic transaction port内部の6 store read後、revision再検証前、event/projection/terminal receipt append境界のfault、same operation/digest retry、異digest retry、event-head CAS loser、public `commitCurrent`探索 | authority-owned portが6 current evidenceを再読・write直前再検証し、generated event＋projection＋terminal receiptをexactly-once収束する。低水準直書きAPIはpublic contractに0、partial current 0、異digest/CAS loser増分0、replay projection digest一致 |
 
 stale cascade fixtureはregistry/denominator、artifact、audit policy/input、freeze receipt、implementation commit/test/command、source tree、
 design digestを個別変更し、当該stage＋全downstream stageが同一eventでstale、upstream unaffected、旧receipt再利用不可になることを検証する。
 
 fixture正本は`docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest`、fixture IDは
-`llpg-progress-s01-v1`である。同manifest単体に列挙したexact 19 ID list、76 path/content digest、U 475/IT 360/HST 411のexact ID array/set digest、
+`llpg-progress-s01-v1`である。同manifest単体に列挙したexact 19 ID list、76 path/content digest、U 476/IT 360/HST 411のexact ID array/set digest、
 固定source commit/tree/design snapshot、supporting U/IT S01 receipt digestをfixture load時に再計測する。globや外部source文字列から分母を補完せず、
 期待terminal receipt `DPR-LLPG-S01-V1`とdigestをfixture load時に再計測し、不一致なら実行前にfail-closeする。
 loaderは`helix-llpg-s01-digest.v1`を独立実装し、UTF-8/BOMなし、LF separator、aggregate末尾LFなし、ASCII byte sort、duplicate 0を検査する。
@@ -113,7 +117,7 @@ L6 §3固定8 recordだけを使う。listed field以外、YAML key、count、al
 | mutation（変異） | exact failure code | expected receipt |
 |---|---|---|
 | authority欠落、未承認 | `HIL_LAYER_PROGRESS_DENOMINATOR_UNAUTHORIZED` | なし |
-| 19/76、U 475、IT 360、HST 411のlist/count/set digest差 | `HIL_LAYER_PROGRESS_DENOMINATOR_MISMATCH` | なし |
+| 19/76、U 476、IT 360、HST 411のlist/count/set digest差 | `HIL_LAYER_PROGRESS_DENOMINATOR_MISMATCH` | なし |
 | pair freezeのslice IDまたは固定snapshot join差 | `HIL_LAYER_PROGRESS_RECEIPT_MISMATCH` | なし |
 | atomic port外の`commitCurrent`直呼びを試行 | 型／contract上到達不能 | なし |
 | separator／sort／末尾LF／包含fieldを一つ変更 | `HIL_LAYER_MANIFEST_INVALID` | なし |
@@ -160,13 +164,13 @@ fixture manifest artifact pathを個別検証する。refactor Uはcandidate、r
 | `HST-CASE-031-08` | `llpg-hst-case-031-08` | 1 | `evaluateVerticalLedgerPair` | `before_commit:HIL_LAYER_VERTICAL_SNAPSHOT_MISMATCH` | `none` | `sha256:7b30200f201324af28ed118c4088a30f5f9be9b8f0780f95c35668fe3187dd3a` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
 | `HST-CASE-031-09` | `llpg-hst-case-031-09` | 1 | `evaluateVerticalLedgerPair` | `before_commit:HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | `none` | `sha256:eb2c5d0bd7efb6d29eb7c7d30c32ed41dacf8b2e44d2bcad07519a6ef9d6177f` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
 | `HST-CASE-032-01` | `llpg-hst-case-032-01` | 1 | `commitLedgerRefactorBundle+reconcileLedgerRefactorBundle` | `after_pair_receipt_append:reconcile` | `event+projection+pair_receipt` | `sha256:25f74571d4de780b9fb30acfe7cbcf83dd05729b3d594ddf03ada596af190204` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
-| `HST-CASE-032-02` | `llpg-hst-case-032-02` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L0_L14_MISSING` | `none` | `sha256:601507f15bc6ea8eb6384e1ca481b503e04e8cc4e4eb1d159aaffe7110639f1d` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
-| `HST-CASE-032-03` | `llpg-hst-case-032-03` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L1_L14_MISSING` | `none` | `sha256:bdee1d027a19d6210043b7fb2a92f5b58ed803aa85b900b955bc04eb7a02db6c` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
-| `HST-CASE-032-04` | `llpg-hst-case-032-04` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L2_L10_MISSING` | `none` | `sha256:4fd294f6dedb14e969472079d7f4b26d39cf9c2618284749e4df14dd1c04563f` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
-| `HST-CASE-032-05` | `llpg-hst-case-032-05` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L3_L12_MISSING` | `none` | `sha256:5ab88f9a0cb282eb435fe1b1e029b0d7946ede1ebd3bc40b1a6cabe08fa929e2` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
-| `HST-CASE-032-06` | `llpg-hst-case-032-06` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L4_L9_MISSING` | `none` | `sha256:a4785857f967201806a2a586bf9e964b37f705935f3e28fba7eaa8be4c4319cb` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
-| `HST-CASE-032-07` | `llpg-hst-case-032-07` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L5_L8_MISSING` | `none` | `sha256:9614c5d8252178963ab769d77738bd31c3894dbf12861474d82ed4bad5165968` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
-| `HST-CASE-032-08` | `llpg-hst-case-032-08` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L6_L7_MISSING` | `none` | `sha256:67fb17b9f6d7ad854c6bba9206ef051f3dc3c6a89a3060f22b1a6ca47305da38` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+| `HST-CASE-032-02` | `llpg-hst-case-032-02` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L1_L12_MISSING` | `none` | `sha256:3ee375068e118078fa733128ac20af2ae1ba554bbd8b8abef471cacf761beed6` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+| `HST-CASE-032-03` | `llpg-hst-case-032-03` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L2_L11_MISSING` | `none` | `sha256:5b2f3d97326082cc22733f268dac950da975936b2c156ba293c8cd3a408246e1` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+| `HST-CASE-032-04` | `llpg-hst-case-032-04` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L3_L10_MISSING` | `none` | `sha256:252b3b5d8706604051d588e4e3bfd647a546a26f72a816529cb665c11cc569a3` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+| `HST-CASE-032-05` | `llpg-hst-case-032-05` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L4_L9_MISSING` | `none` | `sha256:49e7dbe8d94aa087a6e4f3ee537e5c534713128303cd30c4dbb5769fecf83728` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+| `HST-CASE-032-06` | `llpg-hst-case-032-06` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L5_L8_MISSING` | `none` | `sha256:db1825d969960ac7bb3754d43ddb5acc37afc01da40491e4e7716498a5fb7007` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+| `HST-CASE-032-07` | `llpg-hst-case-032-07` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_L6_L7_MISSING` | `none` | `sha256:830f13629c451bb1a9c33de0028e2ea4776799bb303c852f3aad8038151e8b5a` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
+| `HST-CASE-032-08` | `llpg-hst-case-032-08` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID` | `none` | `sha256:6dac67c66a1981365f045350726a2237580c1b8901a603d1ebf05b4ebe9bf81b` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
 | `HST-CASE-032-09` | `llpg-hst-case-032-09` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_REVERSE_MISSING` | `none` | `sha256:68075061ca1793f06b0990119f5e033d5db54375d128973b540300f898660590` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
 | `HST-CASE-032-10` | `llpg-hst-case-032-10` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_ORACLE_MISMATCH` | `none` | `sha256:b444403990fa89d2ac4426184426897715070709c5d3ee4cef83417ba5a77a12` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
 | `HST-CASE-032-11` | `llpg-hst-case-032-11` | 1 | `evaluateHorizontalVPair` | `before_commit:HIL_LAYER_VPAIR_EXECUTION_MISSING` | `none` | `sha256:dbb10c149c787574a901d7713ce62f7aaae36681188633d1a3cf388432f9345d` | `docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest` |
@@ -212,3 +216,7 @@ composition/mutationとして実行し、第2 ownerまたはcanonical分母に�
 | `parseLayerLedgerWriteSet` | `U-LLPG-052` | `IT-LLPG-052` |
 
 runnerはL6のclosed API/pipeline unionとtyped fixture pathへexact joinし、未知API、alias、空名、別pathをfixture load前に拒否する。
+
+## §4 canonical authority移行oracle
+
+`PLAN-L7-713`の3-case authority oracle（`tests/layer-ledger-canonical-authority.test.ts`）をL7 executable authority oracleとしてbindする。旧pair failure identity混入、L0 pair化、legacy greenによる相殺、fixture canonical bytesまたはdigestの単独改変を個別にfail-closeする。この補助oracleは既存primary U/IT分母へ加算しない。
