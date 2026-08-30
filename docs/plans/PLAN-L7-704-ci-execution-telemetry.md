@@ -5,8 +5,8 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-backfill_state: pending_reverse
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 entry_signals:
   - "po_directive:Issue #1204 CI実行をcost nodeと証明責務へ束縛し、CI改革の実測基盤を作る"
 created: 2026-08-30
@@ -102,6 +102,7 @@ dependencies:
   requires:
     - docs/design/helix/L6-function-design/impact-ci-recovery.md
     - src/runtime/full-regression-shards.ts
+    - docs/plans/PLAN-REVERSE-705-ci-execution-telemetry.md
   blocks:
     - issue:1205
 references:
@@ -116,6 +117,16 @@ references:
 ---
 
 # CI execution telemetryと証明責務baseline
+
+## Reverse candidate接続証拠
+
+Reverse candidateはPR #1243のHEAD `723fe6053803159a75256a3786f3365379e1e083`としてClaude exact-HEAD
+review blocker 0、Ready CI run `33304028439` terminal successを成立させ、canonical reviewed merge
+`79c6d67c14023990ca1de97f1639257e7da514df`へ到達した。read-after receipt
+`sha256:17ff82f34d87b75acf9e8a3fc11be80c4cd122f0657ba9cc1004a0cc23d8e691`でmerge stateとcandidate HEADを
+再取得済みである。本sliceは双方向terminal dependencyだけを確定し、Forwardの
+`status: confirmed`を維持し、Reverseとの原子的terminal bundleとして`backfill_state: complete`、
+`completion_claim_allowed: true`へ遷移する。Issue closeは本bundleのcanonical merge後read-afterまで先取りしない。
 
 ## §工程表
 
