@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-08-30
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 related_l3: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -31,6 +31,11 @@ next_pair_freeze: L7
 `commitLedgerRefactorBundle`と`reconcileLedgerRefactorBundle`だけがrefactor/reroute/pair/rollback receiptをNode storeへcommitする。
 
 progressは固定分母revisionとcurrent snapshotへbindし、artifact、semantic closure、audit、pair freeze、implementation verificationの値を混合しない。
+
+layer inputはcurrent canonical L1–L12とcompatibility input-onlyをschemaで分離する。current判定は正規6 pairのexact setを
+要求し、一つでも欠ければ対応する`HIL_LAYER_VPAIR_L*_L*_MISSING`でfail-closeする。L0は層外anchorからL1へのprojectionだけを
+検証し、pair edgeを生成しない。不正projectionは`HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID`とする。legacy pairの成功、
+legacy receipt、旧failure identityはcanonical failureを相殺しない。compatibility inputをcurrent outputへ再出力しない。
 
 ## primary atomic assertion台帳
 
@@ -61,13 +66,13 @@ progressは固定分母revisionとcurrent snapshotへbindし、artifact、semant
 | `HST-CASE-031-08` | `ledger_ready` | `stale` | `HIL_LAYER_VERTICAL_SNAPSHOT_MISMATCH` | `IT-LLPG-023` | `U-LLPG-023` |
 | `HST-CASE-031-09` | `assertion_input_ready` | `assertion_pass` | `HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | `IT-LLPG-024` | `U-LLPG-024` |
 | `HST-CASE-032-01` | `ledger_ready` | `verified` | `なし（正常系）` | `IT-LLPG-025` | `U-LLPG-025` |
-| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L0_L14_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
-| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L14_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
-| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
-| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L12_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
-| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
-| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
-| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-032` | `U-LLPG-032` |
+| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L12_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
+| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L11_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
+| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
+| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
+| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
+| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
+| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID` | `IT-LLPG-032` | `U-LLPG-032` |
 | `HST-CASE-032-09` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_REVERSE_MISSING` | `IT-LLPG-033` | `U-LLPG-033` |
 | `HST-CASE-032-10` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_ORACLE_MISMATCH` | `IT-LLPG-034` | `U-LLPG-034` |
 | `HST-CASE-032-11` | `paired` | `paired` | `HIL_LAYER_VPAIR_EXECUTION_MISSING` | `IT-LLPG-035` | `U-LLPG-035` |
@@ -147,10 +152,10 @@ type LayerGateFailureCodeV1 =
   | "HIL_LAYER_VPAIR_EXECUTION_MISSING"
   | "HIL_LAYER_VPAIR_FORWARD_MISSING"
   | "HIL_LAYER_VPAIR_INCOMPLETE"
-  | "HIL_LAYER_VPAIR_L0_L14_MISSING"
-  | "HIL_LAYER_VPAIR_L1_L14_MISSING"
-  | "HIL_LAYER_VPAIR_L2_L10_MISSING"
-  | "HIL_LAYER_VPAIR_L3_L12_MISSING"
+  | "HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID"
+  | "HIL_LAYER_VPAIR_L1_L12_MISSING"
+  | "HIL_LAYER_VPAIR_L2_L11_MISSING"
+  | "HIL_LAYER_VPAIR_L3_L10_MISSING"
   | "HIL_LAYER_VPAIR_L4_L9_MISSING"
   | "HIL_LAYER_VPAIR_L5_L8_MISSING"
   | "HIL_LAYER_VPAIR_L6_L7_MISSING"
@@ -213,7 +218,7 @@ type DesignProgressStageV1 = "artifact_created" | "semantic_closed" | "independe
 type QuartetArtifactKindV1 = "l5_design" | "l8_integration_test_design" | "l6_function_design" | "l7_unit_test_design";
 interface MeasurementProvenanceV1 { source_commit: string; source_tree_digest: string; measurement_command: string; measurement_tool: string; measurement_version: string; measured_at: string; output_digest: string }
 interface SnapshotDigestV1 { snapshot_digest: string; registry_revision: number; registry_digest: string; denominator_digest: string; source_commit: string; source_tree_digest: string; design_digest: string; event_head: string; measured_at: string }
-interface CanonicalOracleInventoryV1 { unit_ids: readonly string[]; unit_count: 475; unit_set_digest: string; integration_ids: readonly string[]; integration_count: 360; integration_set_digest: string; hst_ids: readonly string[]; hst_count: 411; hst_set_digest: string; quartet_count: 835; total_count: 1246; combined_set_digest: string }
+interface CanonicalOracleInventoryV1 { unit_ids: readonly string[]; unit_count: 476; unit_set_digest: string; integration_ids: readonly string[]; integration_count: 360; integration_set_digest: string; hst_ids: readonly string[]; hst_count: 411; hst_set_digest: string; quartet_count: 836; total_count: 1247; combined_set_digest: string }
 interface DenominatorArtifactInventoryV1 { slice_id: DesignSliceIdV1; kind: QuartetArtifactKindV1; path: string; content_digest: string }
 interface ApprovedDenominatorV1 {
   schema_version: "helix-design-progress-denominator.v1";
@@ -330,7 +335,7 @@ interface LayerLedgerExecutableCaseV1 { case_id: `HST-CASE-${string}`; fixture_i
 progress APIはstore current値とrequested値の一致、authority freshness、supersession終端、event head CASを必須とする。
 `calculateFixedDesignProgress`はhintをauthorityとして採用せず、6 evidence storeからcurrent authority、artifact、semantic、audit、freeze、
 implementation evidenceとcurrent snapshotを同じrevision/head vectorで読み直す。fixed exact 19 ID集合、76 artifact path/digest集合、
-canonical U 475/IT 360/HST 411のexact ID list/set digest、registry revision/digest、denominator digest、source commit/tree、design digestのいずれかが
+canonical U 476/IT 360/HST 411のexact ID list/set digest、registry revision/digest、denominator digest、source commit/tree、design digestのいずれかが
 不一致ならprojectionを返さない。各stageの分子はexact slice ID集合であり、重複、registry外ID、後段だけのID、別stage receiptの差し替えを
 拒否する。包含不変条件は`implementation_verified ⊆ pair_frozen ⊆ independent_audited ⊆ semantic_closed ⊆ artifact_created`
 である。ただし各率は独立軸のまま保持し、包含を理由に前段receiptを合成しない。
@@ -340,7 +345,7 @@ bindする。`independent_audited`はauthorとreviewerのruntime-model組が異�
 `pair_frozen`は同一slice ID、quartet digest、固定`SnapshotDigestV1`に対するcurrentなL5↔L8とL6↔L7の2 receiptを要求する。receiptごとに
 snapshot/registry/denominator/source commit/tree/design/event headをexact joinし、別sliceまたは別snapshot receiptの組合せを拒否する。`implementation_verified`はslice配下の
 全canonical U/IT/HSTをcommand、command version、exit 0、output digest、source commit/tree、design digest、artifact/DB evidenceへbindする。
-全19 slice完了時だけcanonical U 475、IT 360、HST 411とのexact集合一致を追加検査する。`U-LLPG-S01`と`IT-LLPG-S01`は
+全19 slice完了時だけcanonical U 476、IT 360、HST 411とのexact集合一致を追加検査する。`U-LLPG-S01`と`IT-LLPG-S01`は
 supporting存在inventoryであり、stage分母、canonical execution分母、完了集合へ混入させない。
 
 registry/denominator、artifact、audit policy/input、freeze receipt、implementation commit/test/command、source tree、design digestの変更は、
