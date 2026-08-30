@@ -12,7 +12,7 @@ backfill_state: pending_reverse
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / TL
-github_issue_id: 1204
+github_issue_id: 1238
 behavior_contract_id: CI-EXECUTION-TELEMETRY-001
 responsibility_owner: ci-execution-telemetry
 change_slice: atomic
@@ -59,6 +59,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L3-73-ci-system-synthesis.md
   references:
+    - "issue:1238"
     - "issue:1204"
     - docs/plans/PLAN-L7-704-ci-execution-telemetry.md
     - src/runtime/ci-execution-telemetry.ts
