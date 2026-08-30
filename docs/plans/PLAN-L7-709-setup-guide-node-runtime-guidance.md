@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-707-setup-guide-node-runtime-guidance
-title: "PLAN-L7-707: setup guideをNode.js 24＋npm authorityへ収束する"
+plan_id: PLAN-L7-709-setup-guide-node-runtime-guidance
+title: "PLAN-L7-709: setup guideをNode.js 24＋npm authorityへ収束する"
 kind: refactor
 layer: L7
 drive: agent
@@ -55,7 +55,7 @@ dependencies:
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/current-runtime-guidance.md, oracle_id: U-CRG-004, test_path: tests/current-runtime-guidance.test.ts }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-707-setup-guide-node-runtime-guidance.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-709-setup-guide-node-runtime-guidance.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/reference/setup-guide.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-current-runtime-guidance-test-design.md, artifact_type: test_design }
