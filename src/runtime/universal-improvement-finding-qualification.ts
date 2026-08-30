@@ -186,7 +186,8 @@ function parseEvidence(
     !Array.isArray(raw.recurrence_lineage) ||
     raw.recurrence_lineage.some(
       (findingId) => typeof findingId !== "string" || !FINDING_ID_PATTERN.test(findingId),
-    )
+    ) ||
+    !isCanonicalExactSet(raw.recurrence_lineage as readonly string[])
   ) {
     errors.push(`recurrence_lineage_invalid:${index}`);
   } else if (
@@ -366,7 +367,8 @@ function validateNormalizedEvent(raw: unknown, index: number): string[] {
     !Array.isArray(raw.counterevidence_digests) ||
     raw.counterevidence_digests.some(
       (digest) => typeof digest !== "string" || !DIGEST_PATTERN.test(digest),
-    )
+    ) ||
+    !isCanonicalExactSet(raw.counterevidence_digests as readonly string[])
   ) {
     errors.push(`normalized_event_counterevidence_invalid:${index}`);
   }

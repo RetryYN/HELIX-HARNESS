@@ -275,6 +275,14 @@ describe("Universal Improvement finding qualification", () => {
       ...withNestedUnknownWithoutDigest,
       event_digest: sha256Digest(canonicalJson(withNestedUnknownWithoutDigest)),
     } as unknown as UniversalImprovementNormalizedEventV1;
+    const duplicatedCounterevidenceWithoutDigest = {
+      ...withoutDigest,
+      counterevidence_digests: [sha256Digest("duplicate"), sha256Digest("duplicate")],
+    };
+    const duplicatedCounterevidence = {
+      ...duplicatedCounterevidenceWithoutDigest,
+      event_digest: sha256Digest(canonicalJson(duplicatedCounterevidenceWithoutDigest)),
+    } as UniversalImprovementNormalizedEventV1;
     const outerUnknown = {
       ...valid,
       unexpected_field: true,
@@ -284,9 +292,16 @@ describe("Universal Improvement finding qualification", () => {
       duplicate,
       resealEvents([withUnknown]),
       resealEvents([withNestedUnknown]),
+      resealEvents([duplicatedCounterevidence]),
       outerUnknown,
     ]) {
       expect(qualifyUniversalImprovementFindings(forged, [evidence()], NOW).ok).toBe(false);
     }
+
+    const duplicateLineage = evidence({
+      trigger_kind: "recurrence",
+      recurrence_lineage: [PRIOR_FINDING, PRIOR_FINDING],
+    });
+    expect(qualifyUniversalImprovementFindings(valid, [duplicateLineage], NOW).ok).toBe(false);
   });
 });
