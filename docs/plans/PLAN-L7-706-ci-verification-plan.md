@@ -65,6 +65,7 @@ dependencies:
     - src/runtime/ci-responsibility-registry.ts
   references:
     - "issue:1206"
+    - docs/plans/PLAN-REVERSE-706-ci-verification-plan.md
     - "issue:1205"
     - "issue:1002"
     - "issue:1084"
