@@ -3,7 +3,6 @@ plan_id: PLAN-L7-706-ci-verification-plan
 title: "PLAN-L7-706: CI Verification Planの決定的合成"
 kind: add-impl
 layer: L7
-workflow_phase: implement
 drive: agent
 status: draft
 completion_claim_allowed: false
