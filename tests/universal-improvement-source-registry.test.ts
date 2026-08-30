@@ -219,15 +219,19 @@ describe("Universal Improvement source registry", () => {
       ).findings,
     ).toMatchObject([{ code: "physical_binding_required" }]);
 
-    (result as { registry_bytes_digest: string | null }).registry_bytes_digest =
-      `sha256:${"f".repeat(64)}`;
+    expect(() => {
+      (result as { registry_bytes_digest: string | null }).registry_bytes_digest =
+        `sha256:${"f".repeat(64)}`;
+    }).toThrow();
+    expect(Object.isFrozen(result)).toBe(true);
+    expect(Object.isFrozen(result.registry)).toBe(true);
     expect(
       admitUniversalImprovementSource(
         result,
         validObservation(entry.source_id, entry.schema_version, entry.detector.detector_id),
         new Date("2026-08-30T12:00:00.000Z"),
-      ).findings,
-    ).toMatchObject([{ code: "physical_binding_required" }]);
+      ).ok,
+    ).toBe(true);
   });
 
   it("U-UILSRC-005: wrong identity、必須field、digest、timestampを個別に拒否する", () => {

@@ -346,6 +346,12 @@ export interface UniversalImprovementSourceAdmission {
 
 const repositoryBoundResults = new WeakMap<UniversalImprovementSourceRegistryResult, string>();
 
+function deepFreeze<T>(value: T): T {
+  if (typeof value !== "object" || value === null || Object.isFrozen(value)) return value;
+  for (const child of Object.values(value)) deepFreeze(child);
+  return Object.freeze(value);
+}
+
 function registryResultProofDigest(
   result: UniversalImprovementSourceRegistryResult,
 ): string | null {
@@ -926,13 +932,13 @@ export function analyzeUniversalImprovementSourceRegistry(
       ),
     );
   }
-  const result: UniversalImprovementSourceRegistryResult = {
+  const result = deepFreeze<UniversalImprovementSourceRegistryResult>({
     ok: findings.length === 0,
     registry: structural.registry,
     physical_binding_verified: findings.length === 0,
     registry_bytes_digest: registryBytesDigest,
     findings,
-  };
+  });
   if (result.ok && result.physical_binding_verified) {
     const proofDigest = registryResultProofDigest(result);
     if (proofDigest !== null) repositoryBoundResults.set(result, proofDigest);
