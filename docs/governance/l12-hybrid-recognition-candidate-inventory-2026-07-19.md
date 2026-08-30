@@ -124,7 +124,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L5-detail/pillar-detail-design.md`
 - `docs/design/helix/L5-detail/python-worker-runtime.md`
 - `docs/design/helix/L6-function-design/document-semantic-diff.md`
-- `docs/design/helix/L6-function-design/layer-ledger-pair-gate.md`
 - `docs/design/helix/L6-function-design/orchestration-memory.md`
 - `docs/design/helix/L6-function-design/pillar-function-design.md`
 - `docs/design/helix/L6-function-design/universal-reverse-redesign.md`
@@ -142,7 +141,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/test-design/harness/proposal-document-coverage-routing.md`
 - `docs/test-design/helix/L1-pillar-operational-test-design.md`
 - `docs/test-design/helix/L2-screen-ux-test-design.md`
-- `docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md`
 - `docs/test-design/helix/L5-universal-reverse-redesign-integration-test-design.md`
 - `docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md`
 - `docs/test-design/helix/L6-universal-reverse-redesign-unit-test-design.md`
@@ -208,6 +206,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L7-460-l12-dual-projection.md`
 - `docs/plans/PLAN-L7-62-runtime-portability-guard.md`
 - `docs/plans/PLAN-L7-70-skill-pack-curation.md`
+- `docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md`
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
 - `docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md`
 - `docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md`
