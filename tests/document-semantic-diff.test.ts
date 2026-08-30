@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   buildSemanticDocumentSnapshot,
@@ -24,6 +25,27 @@ ${history}`;
 }
 
 describe("semantic document diff (U-DOCDIFF)", () => {
+  // PLAN-L7-712-document-semantic-diff-node-authority
+  it("U-DOCDIFF-009: current設計をNode transactional boundaryとPython semantic coreへ固定する", () => {
+    const l6 = readFileSync(
+      "docs/design/helix/L6-function-design/document-semantic-diff.md",
+      "utf8",
+    );
+    const l8 = readFileSync(
+      "docs/test-design/helix/L8-document-semantic-diff-contracts.md",
+      "utf8",
+    );
+    const authority = `${l6}\n${l8}`;
+
+    expect(l6).toContain("TypeScript/Node transactional boundary");
+    expect(l6).toContain("Python semantic core");
+    expect(l6).toContain("strict JSONL");
+    expect(l6).toContain("DB path、credential、repository、`.helix/`");
+    expect(l8).toContain("U-DOCDIFF-009");
+    expect(authority).not.toMatch(/TypeScript\/Bun|TS\/Bun|Bun runtime/i);
+    expect(authority).not.toMatch(/\bbun(?:x|\s+(?:run|test|install|build|x))\b/i);
+  });
+
   it("U-DOCDIFF-001 / U-DOCDIFF-007: 同一内容と入力順でstable snapshotを返す", () => {
     const first = buildSemanticDocumentSnapshot([
       { path: "docs/b.md", content: document("B-001", "本文") },

@@ -217,7 +217,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/design/helix/L6-function-design/document-semantic-diff.md",
-    contentDigest: "bfd428b9977649e3c3f76018591cf9cd78897d0f06b16014b415a3088107baff",
+    contentDigest: "e3ee6bc03b3d056e94df55010f5901ca70216b355c72811457fc0323c097c799",
     finalDisposition: "false_positive",
   },
   {
