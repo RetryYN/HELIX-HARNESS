@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-706-universal-improvement-finding-qualification
-title: "PLAN-L7-706: Universal Improvement finding適格化・dedupe・expiry"
+plan_id: PLAN-L7-708-universal-improvement-finding-qualification
+title: "PLAN-L7-708: Universal Improvement finding適格化・dedupe・expiry"
 kind: add-impl
 layer: L7
 drive: agent
@@ -28,16 +28,16 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1246 UIL-03 finding適格化・dedupe・expiry"
 contract_preconditions: "#1232のnormalized exact setとUIL-R-03／UIL-AC-004..005がcurrent authorityである"
-contract_postconditions: "detector-bound trigger evidenceを決定的findingへ適格化し、dedupe、expiry、supersession、counterevidenceを分離する"
+contract_postconditions: "detector／evidence exact set／recurrence lineage-bound trigger evidenceを決定的findingへ適格化し、dedupe、expiry、supersession、counterevidenceを分離する"
 contract_invariants: "scheduled単独、AI感想、Issue件数、file overlapをfinding正本にせず、semantic impact／candidate／authority writeを混載しない"
-contract_failures: "unknown event／detector、wrong baseline、digest drift、欠落invariant、時刻不正、同一identity矛盾をfail-closeする"
+contract_failures: "normalized schema／内部event digest／重複／unknown field、unknown event／detector、wrong baseline、digest drift、欠落invariant、時刻不正、同一identity矛盾をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-30T19:07:13+09:00"
 green_at: "2026-08-30T19:09:04+09:00"
 tdd_red_evidence: "2026-08-30T19:07:13+09:00 tests/universal-improvement-finding-qualification.test.ts initial red: production module未作成でimport failure"
-tdd_green_evidence: "2026-08-30T19:09:04+09:00 tests/universal-improvement-finding-qualification.test.ts 7 tests green、typecheck／Biome green"
+tdd_green_evidence: "2026-08-30T21:17:35+09:00 pre-confirm blocker修正後にfinding qualification 7＋#1236 normalizer 7の14 tests、typecheckをgreen実測した。PLANはdraft／completion falseを維持する"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-08-30T19:09:34+09:00 scheduled_safety_net guardを無効化するmutationでU-UILFQ-003が1 failed／6 passedとなり、単独scheduled triggerのqualified昇格を捕捉。復元後7 tests green"
+mutation_oracle_evidence: "2026-08-30T21:13..21:14+09:00に単一mutationをapply_patchで適用し、各targetedを実測後に復元した。trigger kindのfinal identity除去→U-UILFQ-003、source evidence dedupe除去→U-UILFQ-002、expiry分岐除去→U-UILFQ-005、normalized counterevidence集約除去→U-UILFQ-005、baseline照合除去→U-UILFQ-004がそれぞれ1 failed／6 skippedで個別killした。復元後のgreen commandを再実測し、PLANはdraft／completion falseを維持する"
 complexity_effect: net_negative
 complexity_justification: "分散した再発／budget／drift判定の重複生成を一つのtyped qualification境界へ収束する"
 removal_trigger: "Universal Improvement Loopがretireされ、finding lineageと全consumerがreplacementへ移行した時"
@@ -66,7 +66,7 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-706-universal-improvement-finding-qualification.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-708-universal-improvement-finding-qualification.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/universal-improvement-finding-qualification.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-universal-improvement-finding-qualification-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/universal-improvement-finding-qualification.ts, artifact_type: source_module }

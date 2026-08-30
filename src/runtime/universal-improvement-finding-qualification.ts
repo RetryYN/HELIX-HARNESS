@@ -1,7 +1,8 @@
 import { canonicalJson, compareBytewise, type Sha256Digest, sha256Digest } from "./digest";
-import type {
-  UniversalImprovementNormalizationResult,
-  UniversalImprovementNormalizedEventV1,
+import {
+  UNIVERSAL_IMPROVEMENT_NORMALIZED_EVENT_SCHEMA_VERSION,
+  type UniversalImprovementNormalizationResult,
+  type UniversalImprovementNormalizedEventV1,
 } from "./universal-improvement-observation-normalizer";
 
 export const UNIVERSAL_IMPROVEMENT_FINDING_SCHEMA_VERSION =
@@ -10,6 +11,7 @@ export const UNIVERSAL_IMPROVEMENT_FINDING_SCHEMA_VERSION =
 const DIGEST_PATTERN = /^sha256:[0-9a-f]{64}$/u;
 const IDENTIFIER_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$/u;
 const EVENT_ID_PATTERN = /^uil-event-[0-9a-f]{64}$/u;
+const FINDING_ID_PATTERN = /^uil-finding-[0-9a-f]{64}$/u;
 const TRIGGER_KINDS = [
   "invariant_violation",
   "recurrence",
@@ -45,6 +47,7 @@ export interface UniversalImprovementTriggerEvidenceV1 {
   expires_at: string;
   counterevidence_digests: readonly Sha256Digest[];
   superseded_by: string | null;
+  recurrence_lineage: readonly string[];
 }
 
 export interface UniversalImprovementFindingV1 {
@@ -65,6 +68,7 @@ export interface UniversalImprovementFindingV1 {
   disposition_reason: string;
   expires_at: string;
   superseded_by: string | null;
+  recurrence_lineage: readonly string[];
   finding_digest: Sha256Digest;
 }
 
@@ -97,12 +101,43 @@ function sameExactSet(left: readonly string[], right: readonly string[]): boolea
   return a.length === b.length && a.every((value, index) => value === b[index]);
 }
 
+function isCanonicalExactSet(values: readonly string[]): boolean {
+  const canonical = sortedUnique(values);
+  return (
+    values.length === canonical.length && values.every((value, index) => value === canonical[index])
+  );
+}
+
+function hasExactKeys(record: Record<string, unknown>, expected: readonly string[]): boolean {
+  return sameExactSet(Object.keys(record), expected);
+}
+
+const EVIDENCE_KEYS = [
+  "evidence_id",
+  "detector_id",
+  "detector_version",
+  "trigger_kind",
+  "invariant_id",
+  "root_cause_id",
+  "scope_authority",
+  "baseline_revision",
+  "event_ids",
+  "event_digests",
+  "trigger_verdict",
+  "observed_at",
+  "expires_at",
+  "counterevidence_digests",
+  "superseded_by",
+  "recurrence_lineage",
+] as const;
+
 function parseEvidence(
   raw: unknown,
   index: number,
 ): { evidence: UniversalImprovementTriggerEvidenceV1 | null; errors: string[] } {
   if (!isRecord(raw)) return { evidence: null, errors: [`trigger_evidence_invalid:${index}`] };
   const errors: string[] = [];
+  if (!hasExactKeys(raw, EVIDENCE_KEYS)) errors.push(`trigger_evidence_schema_invalid:${index}`);
   const requiredIds = [
     "evidence_id",
     "detector_id",
@@ -139,12 +174,26 @@ function parseEvidence(
     !Array.isArray(raw.counterevidence_digests) ||
     raw.counterevidence_digests.some(
       (digest) => typeof digest !== "string" || !DIGEST_PATTERN.test(digest),
-    )
+    ) ||
+    !isCanonicalExactSet(raw.counterevidence_digests as readonly string[])
   ) {
     errors.push(`counterevidence_invalid:${index}`);
   }
   if (raw.superseded_by !== null && !isIdentifier(raw.superseded_by)) {
     errors.push(`superseded_by_invalid:${index}`);
+  }
+  if (
+    !Array.isArray(raw.recurrence_lineage) ||
+    raw.recurrence_lineage.some(
+      (findingId) => typeof findingId !== "string" || !FINDING_ID_PATTERN.test(findingId),
+    )
+  ) {
+    errors.push(`recurrence_lineage_invalid:${index}`);
+  } else if (
+    (raw.trigger_kind === "recurrence" && raw.recurrence_lineage.length === 0) ||
+    (raw.trigger_kind !== "recurrence" && raw.recurrence_lineage.length > 0)
+  ) {
+    errors.push(`recurrence_lineage_trigger_mismatch:${index}`);
   }
   const observedAt = typeof raw.observed_at === "string" ? Date.parse(raw.observed_at) : Number.NaN;
   const expiresAt = typeof raw.expires_at === "string" ? Date.parse(raw.expires_at) : Number.NaN;
@@ -158,7 +207,7 @@ function parseEvidence(
   };
 }
 
-function findingIdentity(evidence: UniversalImprovementTriggerEvidenceV1): string {
+function groupingIdentity(evidence: UniversalImprovementTriggerEvidenceV1): string {
   return `uil-finding-${sha256Digest(
     canonicalJson({
       root_cause_id: evidence.root_cause_id,
@@ -166,6 +215,30 @@ function findingIdentity(evidence: UniversalImprovementTriggerEvidenceV1): strin
       baseline_revision: evidence.baseline_revision,
       invariant_id: evidence.invariant_id,
       trigger_kind: evidence.trigger_kind,
+    }),
+  ).slice("sha256:".length)}`;
+}
+
+function findingIdentity(input: {
+  evidence: UniversalImprovementTriggerEvidenceV1;
+  eventIds: readonly string[];
+  eventDigests: readonly Sha256Digest[];
+  sourceEvidenceIds: readonly string[];
+  recurrenceLineage: readonly string[];
+}): string {
+  return `uil-finding-${sha256Digest(
+    canonicalJson({
+      root_cause_id: input.evidence.root_cause_id,
+      scope_authority: input.evidence.scope_authority,
+      baseline_revision: input.evidence.baseline_revision,
+      invariant_id: input.evidence.invariant_id,
+      trigger_kind: input.evidence.trigger_kind,
+      detector_id: input.evidence.detector_id,
+      detector_version: input.evidence.detector_version,
+      event_ids: input.eventIds,
+      event_digests: input.eventDigests,
+      source_evidence_ids: input.sourceEvidenceIds,
+      recurrence_lineage: input.recurrenceLineage,
     }),
   ).slice("sha256:".length)}`;
 }
@@ -186,12 +259,175 @@ function disposition(
   return { disposition: "qualified", reason: "substantive_trigger" };
 }
 
+const NORMALIZATION_RESULT_KEYS = ["ok", "events", "exact_set_digest", "errors"] as const;
+const NORMALIZED_EVENT_KEYS = [
+  "schema_version",
+  "event_id",
+  "registry_version",
+  "registry_source_digest",
+  "registry_bytes_digest",
+  "source_id",
+  "source_kind",
+  "source_schema_version",
+  "source_revision",
+  "detector_id",
+  "detector_version",
+  "baseline",
+  "observed",
+  "predicted",
+  "correlation_id",
+  "causation_id",
+  "confidence",
+  "counterevidence_digests",
+  "event_digest",
+] as const;
+
+function validateNormalizedEvent(raw: unknown, index: number): string[] {
+  if (!isRecord(raw)) return [`normalized_event_invalid:${index}`];
+  const errors: string[] = [];
+  if (!hasExactKeys(raw, NORMALIZED_EVENT_KEYS))
+    errors.push(`normalized_event_schema_invalid:${index}`);
+  if (raw.schema_version !== UNIVERSAL_IMPROVEMENT_NORMALIZED_EVENT_SCHEMA_VERSION)
+    errors.push(`normalized_event_schema_version_invalid:${index}`);
+  if (typeof raw.event_id !== "string" || !EVENT_ID_PATTERN.test(raw.event_id))
+    errors.push(`normalized_event_id_invalid:${index}`);
+  for (const field of [
+    "registry_version",
+    "source_id",
+    "source_kind",
+    "source_schema_version",
+    "source_revision",
+    "detector_id",
+    "detector_version",
+    "correlation_id",
+  ] as const) {
+    if (!isIdentifier(raw[field])) errors.push(`normalized_event_${field}_invalid:${index}`);
+  }
+  for (const field of [
+    "registry_source_digest",
+    "registry_bytes_digest",
+    "event_digest",
+  ] as const) {
+    if (typeof raw[field] !== "string" || !DIGEST_PATTERN.test(raw[field]))
+      errors.push(`normalized_event_${field}_invalid:${index}`);
+  }
+  if (
+    !isRecord(raw.baseline) ||
+    !hasExactKeys(raw.baseline, ["state", "revision", "payload_digest"])
+  ) {
+    errors.push(`normalized_event_baseline_invalid:${index}`);
+  } else if (
+    raw.baseline.state !== "current" ||
+    !isIdentifier(raw.baseline.revision) ||
+    typeof raw.baseline.payload_digest !== "string" ||
+    !DIGEST_PATTERN.test(raw.baseline.payload_digest)
+  ) {
+    errors.push(`normalized_event_baseline_not_current:${index}`);
+  }
+  if (
+    !isRecord(raw.observed) ||
+    !hasExactKeys(raw.observed, ["revision", "observed_at", "payload_digest", "evidence_digest"])
+  ) {
+    errors.push(`normalized_event_observed_invalid:${index}`);
+  } else if (
+    !isIdentifier(raw.observed.revision) ||
+    typeof raw.observed.observed_at !== "string" ||
+    !Number.isFinite(Date.parse(raw.observed.observed_at)) ||
+    typeof raw.observed.payload_digest !== "string" ||
+    !DIGEST_PATTERN.test(raw.observed.payload_digest) ||
+    typeof raw.observed.evidence_digest !== "string" ||
+    !DIGEST_PATTERN.test(raw.observed.evidence_digest)
+  ) {
+    errors.push(`normalized_event_observed_invalid:${index}`);
+  }
+  if (
+    raw.predicted !== null &&
+    (!isRecord(raw.predicted) ||
+      !hasExactKeys(raw.predicted, ["revision", "payload_digest"]) ||
+      !isIdentifier(raw.predicted.revision) ||
+      typeof raw.predicted.payload_digest !== "string" ||
+      !DIGEST_PATTERN.test(raw.predicted.payload_digest))
+  ) {
+    errors.push(`normalized_event_prediction_invalid:${index}`);
+  }
+  if (
+    !isRecord(raw.confidence) ||
+    !hasExactKeys(raw.confidence, ["score", "basis_digest"]) ||
+    typeof raw.confidence.score !== "number" ||
+    !Number.isFinite(raw.confidence.score) ||
+    raw.confidence.score < 0 ||
+    raw.confidence.score > 1 ||
+    typeof raw.confidence.basis_digest !== "string" ||
+    !DIGEST_PATTERN.test(raw.confidence.basis_digest)
+  ) {
+    errors.push(`normalized_event_confidence_invalid:${index}`);
+  }
+  if (
+    !Array.isArray(raw.counterevidence_digests) ||
+    raw.counterevidence_digests.some(
+      (digest) => typeof digest !== "string" || !DIGEST_PATTERN.test(digest),
+    )
+  ) {
+    errors.push(`normalized_event_counterevidence_invalid:${index}`);
+  }
+  if (
+    raw.causation_id !== null &&
+    (typeof raw.causation_id !== "string" || !EVENT_ID_PATTERN.test(raw.causation_id))
+  )
+    errors.push(`normalized_event_causation_invalid:${index}`);
+  if (errors.length === 0) {
+    const { event_digest: eventDigest, ...withoutDigest } = raw;
+    if (sha256Digest(canonicalJson(withoutDigest)) !== eventDigest)
+      errors.push(`normalized_event_digest_mismatch:${index}`);
+    const observed = raw.observed as Record<string, unknown>;
+    const expectedId = `uil-event-${sha256Digest(
+      canonicalJson({
+        source_id: raw.source_id,
+        source_revision: observed.revision,
+        observed_at: observed.observed_at,
+        payload_digest: observed.payload_digest,
+        evidence_digest: observed.evidence_digest,
+      }),
+    ).slice("sha256:".length)}`;
+    if (raw.event_id !== expectedId) errors.push(`normalized_event_identity_mismatch:${index}`);
+  }
+  return errors;
+}
+
 function validateNormalizedResult(result: UniversalImprovementNormalizationResult): string[] {
-  if (!result.ok || result.events.length === 0 || result.exact_set_digest === null) {
+  if (!isRecord(result) || !hasExactKeys(result, NORMALIZATION_RESULT_KEYS))
+    return ["normalized_result_schema_invalid"];
+  if (
+    result.ok !== true ||
+    !Array.isArray(result.events) ||
+    result.events.length === 0 ||
+    typeof result.exact_set_digest !== "string" ||
+    !DIGEST_PATTERN.test(result.exact_set_digest) ||
+    !Array.isArray(result.errors) ||
+    result.errors.length > 0
+  ) {
     return ["normalized_result_not_admitted"];
   }
+  const errors = result.events.flatMap((event, index) => validateNormalizedEvent(event, index));
+  const eventIds = result.events.map((event) => event.event_id);
+  if (new Set(eventIds).size !== eventIds.length) errors.push("normalized_event_id_duplicate");
+  if (
+    !eventIds.every(
+      (eventId, index) => index === 0 || compareBytewise(eventIds[index - 1] ?? "", eventId) < 0,
+    )
+  )
+    errors.push("normalized_event_order_invalid");
+  const eventById = new Map(result.events.map((event) => [event.event_id, event]));
+  for (const event of result.events) {
+    if (event.causation_id === null) continue;
+    const cause = eventById.get(event.causation_id);
+    if (!cause) errors.push(`normalized_causation_unresolved:${event.causation_id}`);
+    else if (cause.correlation_id !== event.correlation_id)
+      errors.push(`normalized_causation_correlation_mismatch:${event.event_id}`);
+  }
   const expected = sha256Digest(canonicalJson(result.events));
-  return expected === result.exact_set_digest ? [] : ["normalized_exact_set_digest_mismatch"];
+  if (expected !== result.exact_set_digest) errors.push("normalized_exact_set_digest_mismatch");
+  return errors;
 }
 
 export function qualifyUniversalImprovementFindings(
@@ -200,8 +436,16 @@ export function qualifyUniversalImprovementFindings(
   now: Date = new Date(),
 ): UniversalImprovementFindingQualificationResult {
   const errors = validateNormalizedResult(normalized);
-  if (!Array.isArray(rawEvidence) || rawEvidence.length === 0)
-    errors.push("trigger_evidence_empty");
+  if (errors.length > 0)
+    return { ok: false, findings: [], exact_set_digest: null, errors: sortedUnique(errors) };
+  if (!Array.isArray(rawEvidence) || rawEvidence.length === 0) {
+    return {
+      ok: false,
+      findings: [],
+      exact_set_digest: null,
+      errors: ["trigger_evidence_empty"],
+    };
+  }
   const eventById = new Map(normalized.events.map((event) => [event.event_id, event]));
   const evidence: UniversalImprovementTriggerEvidenceV1[] = [];
   const evidenceById = new Map<string, string>();
@@ -249,11 +493,11 @@ export function qualifyUniversalImprovementFindings(
   }
   const groups = new Map<string, UniversalImprovementTriggerEvidenceV1[]>();
   for (const item of evidence) {
-    const id = findingIdentity(item);
+    const id = groupingIdentity(item);
     groups.set(id, [...(groups.get(id) ?? []), item]);
   }
   const findings: UniversalImprovementFindingV1[] = [];
-  for (const [findingId, group] of groups) {
+  for (const [groupKey, group] of groups) {
     const first = group[0];
     if (!first) continue;
     const conflictFields = [
@@ -265,15 +509,30 @@ export function qualifyUniversalImprovementFindings(
     ] as const;
     for (const field of conflictFields) {
       if (group.some((item) => item[field] !== first[field]))
-        errors.push(`finding_identity_conflict:${findingId}:${field}`);
+        errors.push(`finding_identity_conflict:${groupKey}:${field}`);
     }
     const eventIds = sortedUnique(group.flatMap((item) => item.event_ids));
     const eventDigests = sortedUniqueDigests(group.flatMap((item) => item.event_digests));
     const sourceEvidenceIds = sortedUnique(group.map((item) => item.evidence_id));
     const counterevidence = sortedUniqueDigests(
-      group.flatMap((item) => item.counterevidence_digests),
+      group.flatMap((item) => [
+        ...item.counterevidence_digests,
+        ...item.event_ids.flatMap(
+          (eventId) => eventById.get(eventId)?.counterevidence_digests ?? [],
+        ),
+      ]),
     );
+    const recurrenceLineage = sortedUnique(group.flatMap((item) => item.recurrence_lineage));
+    if (group.some((item) => !sameExactSet(item.recurrence_lineage, first.recurrence_lineage)))
+      errors.push(`finding_identity_conflict:${groupKey}:recurrence_lineage`);
     const outcome = disposition({ ...first, counterevidence_digests: counterevidence }, now);
+    const findingId = findingIdentity({
+      evidence: first,
+      eventIds,
+      eventDigests,
+      sourceEvidenceIds,
+      recurrenceLineage,
+    });
     const withoutDigest = {
       schema_version: UNIVERSAL_IMPROVEMENT_FINDING_SCHEMA_VERSION,
       finding_id: findingId,
@@ -292,6 +551,7 @@ export function qualifyUniversalImprovementFindings(
       disposition_reason: outcome.reason,
       expires_at: first.expires_at,
       superseded_by: first.superseded_by,
+      recurrence_lineage: recurrenceLineage,
     };
     findings.push({ ...withoutDigest, finding_digest: sha256Digest(canonicalJson(withoutDigest)) });
   }
