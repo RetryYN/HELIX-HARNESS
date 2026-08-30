@@ -27,12 +27,14 @@ function input(overrides: Partial<VerificationPlanInput> = {}): VerificationPlan
     expected_registry_digest: ciResponsibilityRegistryDigest(current),
     work_authority: { kind: "issue", id: "issue:1206" },
     candidate_head: HEAD,
+    expected_candidate_head: HEAD,
     base_head: BASE,
     execution_context: "pull_request",
     authority_node_ids: [],
     changed_artifact_node_ids: ["artifact:src/runtime/ci-responsibility-registry.ts"],
     changed_test_capability_ids: [],
     risk_signals: [],
+    required_obligation_ids: [],
     defer_assignments: [],
     ...overrides,
   };
@@ -65,7 +67,16 @@ describe("CI Verification Plan", () => {
   });
 
   it("U-CIVPLAN-003: high-risk／selector／registry変更はactive exact setへfull fallbackする", () => {
-    for (const reason of ["high_risk", "selector_change", "registry_change"] as const) {
+    for (const reason of [
+      "high_risk",
+      "selector_change",
+      "registry_change",
+      "security_change",
+      "schema_change",
+      "migration_change",
+      "rollback_change",
+      "lockfile_change",
+    ] as const) {
       const plan = composeCiVerificationPlan(
         input({ changed_artifact_node_ids: [], risk_signals: [reason] }),
       );
@@ -124,7 +135,14 @@ describe("CI Verification Plan", () => {
       input({
         registry: current,
         expected_registry_digest: ciResponsibilityRegistryDigest(current),
-        defer_assignments: [{ capability_id: "verification:release-candidate", target: "main" }],
+        defer_assignments: [
+          {
+            capability_id: "verification:release-candidate",
+            target: "main",
+            candidate_head: HEAD,
+            receipt_status: "pending",
+          },
+        ],
       }),
     );
     expect(forbidden.findings).toContainEqual(
@@ -137,12 +155,24 @@ describe("CI Verification Plan", () => {
       input({
         registry: current,
         expected_registry_digest: ciResponsibilityRegistryDigest(current),
-        defer_assignments: [{ capability_id: "verification:release-candidate", target: "release" }],
+        defer_assignments: [
+          {
+            capability_id: "verification:release-candidate",
+            target: "release",
+            candidate_head: HEAD,
+            receipt_status: "pending",
+          },
+        ],
       }),
     );
     expect(assigned.ok).toBe(true);
     expect(assigned.deferred_obligations).toEqual([
-      { capability_id: "verification:release-candidate", target: "release" },
+      {
+        capability_id: "verification:release-candidate",
+        target: "release",
+        candidate_head: HEAD,
+        receipt_status: "pending",
+      },
     ]);
   });
 
@@ -158,8 +188,18 @@ describe("CI Verification Plan", () => {
         registry: current,
         expected_registry_digest: ciResponsibilityRegistryDigest(current),
         defer_assignments: [
-          { capability_id: "verification:ci-responsibility-unit", target: "main" },
-          { capability_id: "verification:ci-responsibility-unit", target: "nightly" },
+          {
+            capability_id: "verification:ci-responsibility-unit",
+            target: "main",
+            candidate_head: HEAD,
+            receipt_status: "pending",
+          },
+          {
+            capability_id: "verification:ci-responsibility-unit",
+            target: "nightly",
+            candidate_head: HEAD,
+            receipt_status: "pending",
+          },
         ],
       }),
     );
@@ -231,6 +271,119 @@ describe("CI Verification Plan", () => {
         expect.objectContaining({ code: "unknown_capability", subject: "test:unknown" }),
         expect.objectContaining({ code: "duplicate_obligation" }),
       ]),
+    );
+  });
+
+  it("U-CIVPLAN-010: exact HEAD束縛とunknown riskを個別fail-closeする", () => {
+    const plan = composeCiVerificationPlan(
+      input({
+        candidate_head: "c".repeat(40),
+        risk_signals: ["future_unknown_signal"],
+      }),
+    );
+    expect(plan.ok).toBe(false);
+    expect(plan.full_fallback_reasons).toContain("unknown_identity");
+    expect(plan.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: "head_mismatch" }),
+        expect.objectContaining({ code: "unknown_risk_signal" }),
+      ]),
+    );
+  });
+
+  it("U-CIVPLAN-011: deferred receiptをHEAD・state・digestへ束縛する", () => {
+    const current = registry();
+    current.capabilities = current.capabilities.map((capability) =>
+      capability.capability_id === "verification:ci-responsibility-unit"
+        ? { ...capability, defer_targets: ["main"] }
+        : capability,
+    );
+    const wrongHead = composeCiVerificationPlan(
+      input({
+        registry: current,
+        expected_registry_digest: ciResponsibilityRegistryDigest(current),
+        defer_assignments: [
+          {
+            capability_id: "verification:ci-responsibility-unit",
+            target: "main",
+            candidate_head: BASE,
+            receipt_status: "pending",
+          },
+        ],
+      }),
+    );
+    expect(wrongHead.findings).toContainEqual(
+      expect.objectContaining({ code: "deferred_receipt_invalid" }),
+    );
+    const missingTerminalDigest = composeCiVerificationPlan(
+      input({
+        registry: current,
+        expected_registry_digest: ciResponsibilityRegistryDigest(current),
+        defer_assignments: [
+          {
+            capability_id: "verification:ci-responsibility-unit",
+            target: "main",
+            candidate_head: HEAD,
+            receipt_status: "succeeded",
+          },
+        ],
+      }),
+    );
+    expect(missingTerminalDigest.ok).toBe(false);
+    expect(missingTerminalDigest.findings).toContainEqual(
+      expect.objectContaining({
+        code: "deferred_receipt_invalid",
+        detail: "terminal digest required",
+      }),
+    );
+    const unknownState = composeCiVerificationPlan(
+      input({
+        registry: current,
+        expected_registry_digest: ciResponsibilityRegistryDigest(current),
+        defer_assignments: [
+          {
+            capability_id: "verification:ci-responsibility-unit",
+            target: "main",
+            candidate_head: HEAD,
+            receipt_status: "failed" as "pending",
+          },
+        ],
+      }),
+    );
+    expect(unknownState.ok).toBe(false);
+    expect(unknownState.findings).toContainEqual(
+      expect.objectContaining({
+        code: "deferred_receipt_invalid",
+        detail: "unknown status=failed",
+      }),
+    );
+  });
+
+  it("U-CIVPLAN-012: required obligationを一件削るaggregate mutationを拒否する", () => {
+    const plan = composeCiVerificationPlan(
+      input({
+        changed_artifact_node_ids: [],
+        required_obligation_ids: ["verification:ci-responsibility-unit"],
+      }),
+    );
+    expect(plan.ok).toBe(false);
+    expect(plan.findings).toContainEqual(
+      expect.objectContaining({
+        code: "required_obligation_missing",
+        subject: "verification:ci-responsibility-unit",
+      }),
+    );
+    const duplicate = composeCiVerificationPlan(
+      input({
+        required_obligation_ids: [
+          "verification:ci-responsibility-unit",
+          "verification:ci-responsibility-unit",
+        ],
+      }),
+    );
+    expect(duplicate.ok).toBe(false);
+    expect(duplicate.findings).toContainEqual(
+      expect.objectContaining({ code: "duplicate_obligation" }),
     );
   });
 });

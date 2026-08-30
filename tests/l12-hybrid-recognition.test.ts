@@ -95,7 +95,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(605);
+    expect(plans).toHaveLength(606);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -157,9 +157,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     }, {});
     expect(candidates).toHaveLength(858);
     expect(counts).toEqual({
-      conflict: 337,
+      conflict: 336,
       compatibility_labeled: 24,
-      false_positive: 479,
+      false_positive: 480,
       historical: 18,
     });
   });
@@ -221,7 +221,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(521);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(522);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -235,7 +235,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(cross).toEqual({
       current_authority_review: {
         compatibility_labeled: 17,
-        conflict: 136,
+        conflict: 135,
         false_positive: 49,
         historical: 6,
       },
@@ -249,7 +249,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       plan_review: {
         compatibility_labeled: 1,
         conflict: 175,
-        false_positive: 429,
+        false_positive: 430,
       },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
