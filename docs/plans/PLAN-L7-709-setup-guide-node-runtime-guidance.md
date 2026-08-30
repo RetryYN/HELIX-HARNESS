@@ -19,6 +19,8 @@ engineering_discipline_required: true
 no_code_decision: modify
 ddd_modeling_decision: value_object
 legacy_retirement_state: consumer_migration
+backprop_decision: not_required
+backprop_decision_reason: "ADR-009と既存current-runtime-guidance L6/L8の意味を変更せず、setup guideという既存consumerのactive command projectionだけをNode.js 24＋npm authorityへ収束する。"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
