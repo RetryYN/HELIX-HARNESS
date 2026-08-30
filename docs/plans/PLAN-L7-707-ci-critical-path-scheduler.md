@@ -3,7 +3,6 @@ plan_id: PLAN-L7-707-ci-critical-path-scheduler
 title: "PLAN-L7-707: required obligationを保存するCI critical-path scheduler"
 kind: add-impl
 layer: L7
-workflow_phase: implement
 drive: agent
 status: draft
 completion_claim_allowed: false
