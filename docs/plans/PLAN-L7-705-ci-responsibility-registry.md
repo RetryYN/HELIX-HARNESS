@@ -64,7 +64,9 @@ verification_bindings:
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-705-ci-responsibility-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/ci-responsibility-registry.md, artifact_type: design_doc }
