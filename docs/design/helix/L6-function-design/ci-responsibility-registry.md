@@ -19,7 +19,7 @@ pair_artifact: docs/test-design/helix/L8-ci-responsibility-registry-unit-test-de
 実行順序、runner選択、required obligation省略は所有しない。`src/runtime/impact-ci.ts`、Lite selector、Module／Bundle
 CIはadapterであり、pathやtest filenameを新しい意味正本へ昇格させない。
 
-## §2 typed contract
+## §2 型付き契約
 
 - semantic nodeはIssue、PLAN、requirement、design、contract、Module、Bundle、V-pair、runtime、DB、distribution、
   security、artifactを別kindで保持する。

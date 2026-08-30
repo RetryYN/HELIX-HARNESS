@@ -80,6 +80,6 @@ agent_slots:
   - { role: qa, slot_label: "QA — unknown／orphan／cycle／ownership mutation" }
 ---
 
-# CI Responsibility Registry
+# CI責務registry
 
 CIS-R-04〜06だけを原子的に実装する。selection plan、scheduler、runner、deferred recoveryは#1206以降へ残す。
