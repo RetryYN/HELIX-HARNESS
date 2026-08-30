@@ -133,6 +133,14 @@ describe("Universal Improvement observation normalizer", () => {
         "correlation_id_invalid:0",
       ]),
     );
+
+    for (const score of [2, -0.1, Number.NaN]) {
+      const invalidScore = input(1);
+      invalidScore.confidence = { ...invalidScore.confidence, score };
+      expect(normalizeUniversalImprovementObservations([invalidScore], NOW).errors).toContain(
+        "confidence_invalid:0",
+      );
+    }
   });
 
   it("U-UILNORM-007: malformed outer／nested inputとregistry resultをthrowせずfail-closeする", () => {

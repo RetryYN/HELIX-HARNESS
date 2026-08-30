@@ -31,7 +31,7 @@ tdd_red_required: true
 red_test: "U-UILNORM-001..007で未実装module、forged registry、baseline混同、順序依存、duplicate／causation不整合、malformed inputを検出する"
 red_at: 2026-08-30T17:46:03+09:00
 green_at: 2026-08-30T17:46:35+09:00
-mutation_oracle_evidence: "tests/universal-improvement-observation-normalizer.test.tsのU-UILNORM-003..007でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlation、correlation_id欠落／非string、outer／nested input破壊を変異し、throwや型強制によるsilent acceptへ縮退せずfail-closeする。2026-08-30T17:46:03+09:00にcorrelation_id型guardを弱めるmutationを実測し、U-UILNORM-007が1 failed／6 passedでkillした。guard復元後の17:46:35+09:00に同suite 7 tests greenを実測した。"
+mutation_oracle_evidence: "tests/universal-improvement-observation-normalizer.test.tsのU-UILNORM-003..007でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlation、correlation_id欠落／非string、outer／nested input破壊を変異し、throwや型強制によるsilent acceptへ縮退せずfail-closeする。2026-08-30T17:46:03+09:00にcorrelation_id型guardを弱めるmutationを実測し、U-UILNORM-007が1 failed／6 passedでkillした。guard復元後の17:46:35+09:00に同suite 7 tests greenを実測した。2026-08-30T19:39:16+09:00にconfidence.scoreの上限／下限／finite判定を個別に弱めても検出できるよう、valid basis_digestのまま2／-0.1／NaNを与える独立反例をU-UILNORM-006へ追加し、normalizer＋source registry 15 tests greenを実測した。"
 complexity_effect: justified_positive
 complexity_justification: "UIL-01 admissionを再利用し、後続finding/candidate責務を混載せず、正規化境界を一つ追加する。"
 removal_trigger: "後継normalized event schemaへ全consumerが移行し、本schemaのeventが0件になった時。"
