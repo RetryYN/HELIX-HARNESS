@@ -35,7 +35,7 @@ tdd_red_required: true
 red_at: "2026-08-30T21:42:00+09:00"
 green_at: "2026-08-30T21:49:00+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-08-30 21:47-21:49 JSTに単一mutationを順次適用し、U-OBPIR-002(number conflict)、003(ancestry)、005/007(terminal evidence)、006(unavailable)、007(dedupe)が各exit 1でkillした。各mutationは直後に復元した"
+mutation_oracle_evidence: "tests/open-branch-plan-identity-reservation.test.ts に2026-08-30 21:47-21:49 JSTで単一mutationを順次適用し、U-OBPIR-002(number conflict)、003(ancestry)、005/007(terminal evidence)、006(unavailable)、007(dedupe)が各exit 1でkilledとなることを実測した。各mutationは直後に復元した"
 complexity_effect: justified_positive
 complexity_justification: "既存local gateを変更せず、cross-branch reservation判断を一つのpure projectionへ収束する"
 removal_trigger: "PLAN identityが単一transactional allocatorからlease付きで発行され、open branch観測projectionが不要になった時"
