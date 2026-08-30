@@ -297,6 +297,7 @@ export type UniversalImprovementSourceRegistryFailureCode =
   | "detector_digest_mismatch"
   | "unknown_source"
   | "source_schema_mismatch"
+  | "source_revision_mismatch"
   | "detector_identity_mismatch"
   | "observation_field_missing"
   | "observation_digest_invalid"
@@ -967,6 +968,15 @@ export function admitUniversalImprovementSource(
         "detector_identity_mismatch",
         admittedObservation.source_id,
         `expected=${entry.detector.detector_id} actual=${admittedObservation.detector_id}`,
+      ),
+    );
+  }
+  if (admittedObservation.source_revision !== String(entry.revision)) {
+    findings.push(
+      finding(
+        "source_revision_mismatch",
+        admittedObservation.source_id,
+        `expected=${entry.revision} actual=${admittedObservation.source_revision}`,
       ),
     );
   }

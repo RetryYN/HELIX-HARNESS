@@ -32,12 +32,12 @@ ddd_modeling_decision: aggregate
 contract_preconditions: "PLAN-L3-74、Universal Improvement Loop L3/L10要求、既存detectorとread-only doctorが利用可能である"
 contract_postconditions: "10種類の観測sourceがrequirements-owned registry、registry exact-bytes integrity、実体digest、detector identity、evidence contractへ束縛され、doctorとruntime admissionが同じ結果を返す"
 contract_invariants: "registryはread-only、registry bytesはintegrity recordへexactに束縛、AIはproposal-only、unknown／duplicate／digest drift／unsafe path／不正observationはfail-close、候補生成やauthority writeを実行しない"
-contract_failures: "required source kind欠落、registry integrity欠落・破損・bytes digest不一致、source／detector不在またはdigest不一致、schema／identity不一致、必須evidence欠落、sensitive field、invalid／future digest／timestampをgreenへ縮退しない"
+contract_failures: "required source kind欠落、registry integrity欠落・破損・bytes digest不一致、source／detector不在またはdigest不一致、schema／detector／source revision不一致、必須evidence欠落、sensitive field、invalid／future digest／timestampをgreenへ縮退しない"
 tdd_red_required: true
 red_test: "U-UILSRC-001..010でsource kind欠落、duplicate、source lifecycle metadata欠落、registry bytes integrity、digest drift、unsafe path、observation identity、strict timestamp、sensitive field、doctor未配線、未bound admissionを個別に検出する"
-red_at: null
-green_at: 2026-08-30T07:09:05+09:00
-mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にU-UILSRC-002／003／005の実装内変異（source kind重複、evidence contractのsource_revision欠落、digest drift、unsafe path、malformed／null observation）を実行し、対応するfail-close oracleを通過させた。targeted 2 files／9 tests passed、output_digest=sha256:904d13f50b3c881792745dca332f21e6150cdc68828e00871d30f346633d3cca。"
+red_at: 2026-08-30T10:19:52+09:00
+green_at: 2026-08-30T10:21:22+09:00
+mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にU-UILSRC-002／003／005の実装内変異（source kind重複、evidence contractのsource_revision欠落、digest drift、unsafe path、malformed／null observation）を実行し、対応するfail-close oracleを通過させた。2026-08-30T10:19:52+09:00にentryと異なるsource_revisionが誤ってadmitされる反例をredで実測し、exact revision照合追加後の10:21:22+09:00にtargeted 1 file／7 testsがgreen、output_digest=sha256:8f2761178ff3a970f5bd65f604748347f9194ad9d14da0a36909dcb1c30fd94b。"
 complexity_effect: justified_positive
 complexity_justification: "既存10 detectorを再実装せず、requirements-owned source registryと共通read-only admissionを一つのaggregateとして追加する。"
 removal_trigger: "Universal Improvement Loopのsource／detector／evidence tupleが既存System Synthesis registryへ完全吸収され、UIL source registryの独立consumerがなくなった時"

@@ -27,7 +27,7 @@ responsibility_owner: universal-improvement-source-registry
 | U-UILSRC-002 | uniqueness／completeness | duplicate source／detector／source kind、required source kind欠落、evidence contractのsource_revision欠落を個別にfail-closeする | `tests/universal-improvement-source-registry.test.ts` |
 | U-UILSRC-003 | physical authority | registry／source／detectorのdigest driftとrepository外pathをgreenへ縮退しない | `tests/universal-improvement-source-registry.test.ts` |
 | U-UILSRC-004 | valid admission | registered source、schema、detector、revision、evidenceが一致するobservationだけadmitする | `tests/universal-improvement-source-registry.test.ts` |
-| U-UILSRC-005 | malformed admission | unknown source、wrong schema／detector、必須field欠落、invalid digest／timestampを個別に拒否する | `tests/universal-improvement-source-registry.test.ts` |
+| U-UILSRC-005 | malformed admission | unknown source、wrong schema／detector／source revision、必須field欠落、invalid digest／timestampを個別に拒否する | `tests/universal-improvement-source-registry.test.ts` |
 | U-UILSRC-006 | freshness | freshness windowを超えたobservationをstaleとして拒否する | `tests/universal-improvement-source-registry.test.ts` |
 | U-UILSRC-007 | doctor happy path | current registryのschema、実体digest、source kindをdoctorがgreen判定する | `tests/universal-improvement-source-registry-doctor.test.ts` |
 | U-UILSRC-008 | doctor failure | registry欠落とJSON破損をwarningや空registryへ丸めずredにする | `tests/universal-improvement-source-registry-doctor.test.ts` |

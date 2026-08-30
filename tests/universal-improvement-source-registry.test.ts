@@ -26,12 +26,13 @@ function validObservation(
   sourceId: string,
   schemaVersion: string,
   detectorId: string,
+  sourceRevision = "1",
 ): UniversalImprovementSourceObservation {
   return {
     source_id: sourceId,
     schema_version: schemaVersion,
     detector_id: detectorId,
-    source_revision: "main:2754b9168bdd0f63bf4f6e39c1ab5c30f073b992",
+    source_revision: sourceRevision,
     observed_at: "2026-08-30T00:00:00.000Z",
     payload_digest: `sha256:${"1".repeat(64)}`,
     evidence_digest: `sha256:${"2".repeat(64)}`,
@@ -226,6 +227,21 @@ describe("Universal Improvement source registry", () => {
         "observation_timestamp_invalid",
       ]),
     );
+
+    const wrongRevision = admitUniversalImprovementSource(
+      result,
+      validObservation(
+        entry.source_id,
+        entry.schema_version,
+        entry.detector.detector_id,
+        String(entry.revision + 1),
+      ),
+      new Date("2026-08-30T12:00:00.000Z"),
+    );
+    expect(wrongRevision.ok).toBe(false);
+    expect(wrongRevision.findings).toMatchObject([
+      { code: "source_revision_mismatch", subject: entry.source_id },
+    ]);
 
     const future = validObservation(
       entry.source_id,

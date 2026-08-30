@@ -52,9 +52,9 @@ detector実装を本sliceで再実装しない。
 
 - repository外、絶対path、空path、symlink経由のauthority／detectorを読む前に拒否する。
 - registryのrequired source kindはcanonical setと完全一致させる。
-- source／detector identityはregistry entryとobservationで完全一致させる。
+- source／detector identityとsource revisionはregistry entryとobservationで完全一致させる。
 - 各source kindは一つのactive entryだけを持ち、重複source kindを拒否する。
-- observationのrequired／identity／digest fieldはregistry宣言の欠落を許容せず、source_revisionを必須とする。
+- observationのrequired／identity／digest fieldはregistry宣言の欠落を許容せず、source_revisionを必須化してentryの`revision`とexact照合する。
 - observationのtimestampがRFC3339形式・実在日付でない、未来、またはentryのfreshness windowを超える場合は拒否する。
 - observationへraw log、stdout／stderr、credential、secret、token、PII相当のfieldを混入させない。
 - digestは形式だけでなくregistryが指す実体bytesと比較する。
