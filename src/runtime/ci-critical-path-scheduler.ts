@@ -5,6 +5,8 @@ export const CI_CRITICAL_PATH_SCHEDULER_SCHEMA = "helix-ci-critical-path-schedul
 export interface SchedulerObligation {
   capability_id: string;
   depends_on_capability_ids: readonly string[];
+  obligation_class: "local" | "boundary" | "global_invariant" | "release_only";
+  heavy: boolean;
 }
 
 export interface SchedulerEstimate {
@@ -87,6 +89,11 @@ export interface CiCriticalPathSchedule {
   predicted_runner_minutes: number;
   predicted_failure_feedback_latency_ms: number;
   reused_artifact_ids: readonly string[];
+  bounded_cancel_policy: {
+    trigger: "local_or_boundary_failure";
+    cancellable_unstarted_capability_ids: readonly string[];
+    preserves_required_obligations: true;
+  };
   fallback_reasons: readonly string[];
   findings: readonly SchedulerFinding[];
   schedule_digest: `sha256:${string}`;
@@ -95,6 +102,12 @@ export interface CiCriticalPathSchedule {
 
 const SHA = /^[a-f0-9]{40}$/;
 const DIGEST = /^sha256:[a-f0-9]{64}$/;
+const OBLIGATION_CLASS_RANK = {
+  local: 0,
+  boundary: 1,
+  global_invariant: 2,
+  release_only: 3,
+} as const;
 
 function finding(code: SchedulerFindingCode, subject: string, detail: string): SchedulerFinding {
   return { code, subject, detail };
@@ -120,10 +133,20 @@ function topoSort(
       consumers.set(dependency, [...(consumers.get(dependency) ?? []), id]);
     }
   }
+  const compareReady = (left: string, right: string): number => {
+    const leftItem = obligations.get(left);
+    const rightItem = obligations.get(right);
+    const rank =
+      OBLIGATION_CLASS_RANK[leftItem?.obligation_class ?? "release_only"] -
+      OBLIGATION_CLASS_RANK[rightItem?.obligation_class ?? "release_only"];
+    if (rank !== 0) return rank;
+    if (Boolean(leftItem?.heavy) !== Boolean(rightItem?.heavy)) return leftItem?.heavy ? 1 : -1;
+    return left.localeCompare(right);
+  };
   const ready = [...indegree]
     .filter(([, degree]) => degree === 0)
     .map(([id]) => id)
-    .sort();
+    .sort(compareReady);
   const ordered: string[] = [];
   while (ready.length > 0) {
     const id = ready.shift();
@@ -134,7 +157,7 @@ function topoSort(
       indegree.set(consumer, next);
       if (next === 0) ready.push(consumer);
     }
-    ready.sort();
+    ready.sort(compareReady);
   }
   if (ordered.length !== obligations.size) {
     findings.push(finding("dependency_cycle", "execution_dag", "topological order incomplete"));
@@ -198,6 +221,7 @@ export function scheduleCiCriticalPath(
   const predecessor = new Map<string, string | null>();
   const group = new Map<string, number>();
   const groupCounts = new Map<number, number>();
+  const maxGroupByClassRank = new Map<number, number>();
   const quota = Math.max(
     1,
     Number.isInteger(input.max_parallel_jobs) ? input.max_parallel_jobs : 1,
@@ -208,6 +232,8 @@ export function scheduleCiCriticalPath(
       telemetryFresh && estimate?.sample_count && estimate.sample_count >= 3 ? estimate.p95_ms : 1;
     duration.set(id, nodeDuration);
     const dependencies = obligations.get(id)?.depends_on_capability_ids ?? [];
+    const classRank =
+      OBLIGATION_CLASS_RANK[obligations.get(id)?.obligation_class ?? "release_only"];
     let criticalDependency: string | null = null;
     let dependencyFinish = 0;
     let candidateGroup = 0;
@@ -222,9 +248,20 @@ export function scheduleCiCriticalPath(
       }
       candidateGroup = Math.max(candidateGroup, (group.get(dependency) ?? -1) + 1);
     }
+    const priorClassMax = Math.max(
+      -1,
+      ...[...maxGroupByClassRank]
+        .filter(([rank]) => rank < classRank)
+        .map(([, maxGroup]) => maxGroup),
+    );
+    candidateGroup = Math.max(candidateGroup, priorClassMax + 1);
     while ((groupCounts.get(candidateGroup) ?? 0) >= quota) candidateGroup += 1;
     group.set(id, candidateGroup);
     groupCounts.set(candidateGroup, (groupCounts.get(candidateGroup) ?? 0) + 1);
+    maxGroupByClassRank.set(
+      classRank,
+      Math.max(maxGroupByClassRank.get(classRank) ?? -1, candidateGroup),
+    );
     finish.set(id, dependencyFinish + nodeDuration);
     predecessor.set(id, criticalDependency);
   }
@@ -295,10 +332,22 @@ export function scheduleCiCriticalPath(
     depends_on_capability_ids: [
       ...(obligations.get(capability_id)?.depends_on_capability_ids ?? []),
     ].sort(),
+    obligation_class: obligations.get(capability_id)?.obligation_class ?? "release_only",
+    heavy: obligations.get(capability_id)?.heavy ?? true,
     parallel_group: group.get(capability_id) ?? 0,
     estimated_duration_ms: duration.get(capability_id) ?? 1,
   }));
   const runnerMs = [...duration.values()].reduce((sum, value) => sum + value, 0);
+  const cancellableUnstarted = ordered
+    .filter((id) => {
+      const obligation = obligations.get(id);
+      return (
+        Boolean(obligation?.heavy) ||
+        obligation?.obligation_class === "global_invariant" ||
+        obligation?.obligation_class === "release_only"
+      );
+    })
+    .sort();
   const base = {
     schema_version: CI_CRITICAL_PATH_SCHEDULER_SCHEMA,
     candidate_head: input.candidate_head,
@@ -312,6 +361,11 @@ export function scheduleCiCriticalPath(
     predicted_failure_feedback_latency_ms:
       criticalPath.length > 0 ? (duration.get(criticalPath[0]) ?? 0) : 0,
     reused_artifact_ids: reusedArtifacts.sort(),
+    bounded_cancel_policy: {
+      trigger: "local_or_boundary_failure",
+      cancellable_unstarted_capability_ids: cancellableUnstarted,
+      preserves_required_obligations: true,
+    },
     fallback_reasons: [...fallbackReasons].sort(),
     findings: findings.sort((a, b) =>
       `${a.code}:${a.subject}:${a.detail}`.localeCompare(`${b.code}:${b.subject}:${b.detail}`),

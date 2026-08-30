@@ -23,9 +23,12 @@ skipして高速化してはならない。
 - job placement、parallel group、resource class、artifact reuse decision
 - critical path予測、runner-minute予測、failure feedback latency予測
 - fallback reason、rejected artifact/resource finding、plan digest
+- local→boundary→global/releaseのphase順と、先行phase failure時に未開始heavy nodeだけを止めるbounded cancel policy
 
 artifact reuseはsource HEAD、lockfile、Node/toolchain、platform、input/output digestの全一致を要求する。statefulまたはglobal
 mutable resourceはactive leaseとfence tokenなしに並列配置しない。
+bounded cancelはrequired obligationを削除せず、同一runで未開始のheavy nodeを停止対象としてreceiptへ残し、後続terminal
+recovery obligationを#1208へ引き渡す。
 
 ## failure境界
 

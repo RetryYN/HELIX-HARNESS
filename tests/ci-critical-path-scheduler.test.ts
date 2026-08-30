@@ -22,8 +22,18 @@ function input(
     verification_plan_digest: D1,
     registry_digest: D2,
     obligations: [
-      { capability_id: "verification:a", depends_on_capability_ids: [] },
-      { capability_id: "verification:b", depends_on_capability_ids: ["verification:a"] },
+      {
+        capability_id: "verification:a",
+        depends_on_capability_ids: [],
+        obligation_class: "local",
+        heavy: false,
+      },
+      {
+        capability_id: "verification:b",
+        depends_on_capability_ids: ["verification:a"],
+        obligation_class: "boundary",
+        heavy: false,
+      },
     ],
     estimates: [
       { capability_id: "verification:a", p50_ms: 10, p95_ms: 20, sample_count: 5 },
@@ -55,6 +65,43 @@ describe("CI critical-path scheduler", () => {
     const result = scheduleCiCriticalPath(input());
     expect(result.predicted_critical_path_ms).toBe(60);
     expect(result.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
+    const prioritized = scheduleCiCriticalPath(
+      input({
+        obligations: [
+          {
+            capability_id: "verification:global-a",
+            depends_on_capability_ids: [],
+            obligation_class: "global_invariant",
+            heavy: true,
+          },
+          {
+            capability_id: "verification:local-z",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+        ],
+        estimates: [
+          {
+            capability_id: "verification:global-a",
+            p50_ms: 10,
+            p95_ms: 20,
+            sample_count: 5,
+          },
+          {
+            capability_id: "verification:local-z",
+            p50_ms: 10,
+            p95_ms: 20,
+            sample_count: 5,
+          },
+        ],
+      }),
+    );
+    expect(prioritized.execution_dag.map((node) => node.capability_id)).toEqual([
+      "verification:local-z",
+      "verification:global-a",
+    ]);
+    expect(prioritized.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
   });
 
   it("U-CISCHED-003: wrong artifact identityを個別拒否する", () => {
@@ -90,8 +137,18 @@ describe("CI critical-path scheduler", () => {
     const result = scheduleCiCriticalPath(
       input({
         obligations: [
-          { capability_id: "verification:a", depends_on_capability_ids: [] },
-          { capability_id: "verification:b", depends_on_capability_ids: [] },
+          {
+            capability_id: "verification:a",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+          {
+            capability_id: "verification:b",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
         ],
         exclusive_resources: [
           {
@@ -123,13 +180,37 @@ describe("CI critical-path scheduler", () => {
   });
 
   it("U-CISCHED-006: quotaと不正HEADをboundedに拒否する", () => {
-    const result = scheduleCiCriticalPath(input({ candidate_head: "stale", max_parallel_jobs: 0 }));
+    const result = scheduleCiCriticalPath(
+      input({
+        candidate_head: "stale",
+        max_parallel_jobs: 0,
+        obligations: [
+          {
+            capability_id: "verification:a",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+          {
+            capability_id: "verification:b",
+            depends_on_capability_ids: ["verification:a"],
+            obligation_class: "global_invariant",
+            heavy: true,
+          },
+        ],
+      }),
+    );
     expect(result.findings).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ code: "head_invalid" }),
         expect.objectContaining({ code: "parallel_quota_invalid" }),
       ]),
     );
+    expect(result.bounded_cancel_policy).toEqual({
+      trigger: "local_or_boundary_failure",
+      cancellable_unstarted_capability_ids: ["verification:b"],
+      preserves_required_obligations: true,
+    });
   });
 
   it("U-CISCHED-007: exact identity一致時だけartifactをreuseする", () => {
@@ -165,8 +246,18 @@ describe("CI critical-path scheduler", () => {
     const changed = scheduleCiCriticalPath(
       input({
         obligations: [
-          { capability_id: "verification:a", depends_on_capability_ids: [] },
-          { capability_id: "verification:b", depends_on_capability_ids: [] },
+          {
+            capability_id: "verification:a",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
+          {
+            capability_id: "verification:b",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: false,
+          },
         ],
         max_parallel_jobs: 1,
       }),

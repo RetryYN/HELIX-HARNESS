@@ -33,7 +33,7 @@ tdd_red_required: true
 tdd_red_evidence: "2026-08-30T12:55:50+09:00 tests/ci-critical-path-scheduler.test.ts initial red: ci-critical-path-scheduler module不在"
 tdd_green_evidence: "2026-08-30T12:59:45+09:00 tests/ci-critical-path-scheduler.test.ts 8 tests green、typecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CISCHED-003〜008でwrong artifact HEAD、unfenced exclusive resource、stale telemetry、invalid quota/HEAD、artifact exact identity、placement digest差を個別変異する"
+mutation_oracle_evidence: "U-CISCHED-002〜008でglobal先行、wrong artifact HEAD、unfenced exclusive resource、stale telemetry、invalid quota/HEAD、heavy cancel exact set、artifact exact identity、placement digest差を個別変異する"
 complexity_effect: net_negative
 complexity_justification: "workflow内へ散在するjob配置とsetup重複判断をtyped schedulerへ収束する"
 removal_trigger: "後継System Synthesis schedulerへ全consumerとrollback traceが移行した時"
@@ -59,6 +59,12 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-006, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-007, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-008, test_path: tests/ci-critical-path-scheduler.test.ts }
+modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, artifact_type: design_doc }
