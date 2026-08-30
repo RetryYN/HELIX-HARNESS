@@ -106,6 +106,7 @@ describe("CI Verification Plan", () => {
         capability_id: "verification:release-candidate",
         responsibility_id: "responsibility:release-candidate",
         obligation_class: "release_only",
+        defer_targets: ["release"],
         applicability_node_ids: ["module:ci-system-synthesis"],
         depends_on_capability_ids: ["verification:ci-responsibility-unit"],
       },
@@ -118,6 +119,19 @@ describe("CI Verification Plan", () => {
     );
     expect(missing.findings).toContainEqual(
       expect.objectContaining({ code: "defer_assignment_invalid" }),
+    );
+    const forbidden = composeCiVerificationPlan(
+      input({
+        registry: current,
+        expected_registry_digest: ciResponsibilityRegistryDigest(current),
+        defer_assignments: [{ capability_id: "verification:release-candidate", target: "main" }],
+      }),
+    );
+    expect(forbidden.findings).toContainEqual(
+      expect.objectContaining({
+        code: "defer_assignment_invalid",
+        detail: "target_not_allowed:main",
+      }),
     );
     const assigned = composeCiVerificationPlan(
       input({
@@ -133,8 +147,16 @@ describe("CI Verification Plan", () => {
   });
 
   it("U-CIVPLAN-006: duplicate assignmentとdeferred dependencyを拒否する", () => {
+    const current = registry();
+    current.capabilities = current.capabilities.map((capability) =>
+      capability.capability_id === "verification:ci-responsibility-unit"
+        ? { ...capability, defer_targets: ["main", "nightly"] }
+        : capability,
+    );
     const plan = composeCiVerificationPlan(
       input({
+        registry: current,
+        expected_registry_digest: ciResponsibilityRegistryDigest(current),
         defer_assignments: [
           { capability_id: "verification:ci-responsibility-unit", target: "main" },
           { capability_id: "verification:ci-responsibility-unit", target: "nightly" },

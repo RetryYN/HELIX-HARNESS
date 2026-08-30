@@ -20,7 +20,7 @@ pair_artifact: docs/design/helix/L6-function-design/ci-verification-plan.md
 | U-CIVPLAN-002 | changed test | graph外でもrequired capabilityへ追加 | `tests/ci-verification-plan.test.ts` |
 | U-CIVPLAN-003 | full fallback | high-risk／selector／registryをactive exact setへ展開 | `tests/ci-verification-plan.test.ts` |
 | U-CIVPLAN-004 | identity | unknown／wrong HEAD／stale registryを個別拒否 | `tests/ci-verification-plan.test.ts` |
-| U-CIVPLAN-005 | deferred | release-onlyをexactly-once targetへ割当 | `tests/ci-verification-plan.test.ts` |
+| U-CIVPLAN-005 | deferred | release-onlyをRegistry許可targetへexactly-once割当 | `tests/ci-verification-plan.test.ts` |
 | U-CIVPLAN-006 | dependency | duplicate assignmentとdeferred dependencyを拒否 | `tests/ci-verification-plan.test.ts` |
 | U-CIVPLAN-007 | authority | Issue／PLAN kind mismatchを拒否 | `tests/ci-verification-plan.test.ts` |
 | U-CIVPLAN-008 | compatibility | legacy itemをcapability IDへ一方向変換 | `tests/ci-verification-plan.test.ts` |

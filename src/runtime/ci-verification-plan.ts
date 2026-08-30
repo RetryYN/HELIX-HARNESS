@@ -3,6 +3,7 @@ import {
   type CiResponsibilityRegistry,
   ciResponsibilityRegistryDigest,
   deriveVerificationObligations,
+  type VerificationDeferTarget,
   type VerificationObligationClass,
 } from "./ci-responsibility-registry";
 import { canonicalJson, sha256Digest } from "./digest";
@@ -15,7 +16,7 @@ export type VerificationExecutionContext =
   | "main"
   | "nightly"
   | "release_candidate";
-export type DeferredExecutionTarget = "main" | "nightly" | "release";
+export type DeferredExecutionTarget = VerificationDeferTarget;
 export type FullFallbackReason =
   | "unknown_identity"
   | "high_risk"
@@ -268,6 +269,17 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
     }
     if (!closed.has(assignment.capability_id)) {
       findings.push(finding("defer_assignment_invalid", assignment.capability_id, "not selected"));
+    }
+    const capability = capabilities.get(assignment.capability_id);
+    if (!capability?.defer_targets.includes(assignment.target)) {
+      findings.push(
+        finding(
+          "defer_assignment_invalid",
+          assignment.capability_id,
+          `target_not_allowed:${assignment.target}`,
+        ),
+      );
+      continue;
     }
     assignments.set(assignment.capability_id, assignment.target);
   }

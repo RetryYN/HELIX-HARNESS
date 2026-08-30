@@ -25,8 +25,8 @@ risk、deferred assignmentからtyped Verification Planを決定的に合成す�
 - changed test capabilityはgraph選定外でも必須とし、dependency closureを追加する。
 - unknown／high-risk、selector／registry／security／schema／migration／rollback／lockfileはactive capability exact setへ
   full fallbackする。fallbackはfindingを相殺しない。
-- PRで延期するobligationはmain／nightly／releaseのいずれかへexactly-once割り当て、dependencyを延期したままconsumerを
-  即時実行しない。
+- PRで延期するobligationはRegistryの`defer_targets` allowlist内でmain／nightly／releaseのいずれかへexactly-once
+  割り当て、dependencyを延期したままconsumerを即時実行しない。
 - 同一入力とregistry digestは配列順を含む同一plan digestを返す。
 
 ## §3 compatibility境界
