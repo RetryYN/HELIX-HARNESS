@@ -566,9 +566,7 @@ describe("CI critical-path scheduler", () => {
         resource_requirements: [input().resource_requirements[0]],
       }),
     );
-    expect(result.findings).toContainEqual(
-      expect.objectContaining({ code: "dependency_unknown" }),
-    );
+    expect(result.findings).toContainEqual(expect.objectContaining({ code: "dependency_unknown" }));
     expect(result.findings).not.toContainEqual(
       expect.objectContaining({ code: "dependency_cycle" }),
     );
