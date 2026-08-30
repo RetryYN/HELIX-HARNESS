@@ -7505,8 +7505,10 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["forwardConvergenceAudit", forwardConvergenceAudit.ok],
   ];
   const doctorFailingChecks = doctorCheckStates.filter(([, ok]) => !ok).map(([name]) => name);
+  const doctorAllChecksOk = doctorFailingChecks.length === 0;
   return {
     ok:
+      doctorAllChecksOk &&
       nfrRegistry.ok &&
       universalImprovementSourceRegistry.ok &&
       backfill.ok &&

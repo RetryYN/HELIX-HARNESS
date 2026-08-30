@@ -23,6 +23,8 @@ L12 hybrid recognition inventoryのL6 design、L8 test design、PLANを、同じ
 いずれかが不一致ならfindingを返し、doctorはfail-closeする。一般inventoryに存在する
 `safe-current`等の別dispositionを一律retireせず、明示familyだけを対象にする。
 doctorは同じanalyzerを直接呼び、単体oracleと統合gateの判定分岐を複製しない。
+doctor全体の`ok`はnamed check stateの失敗集合と既存boolean chainの両方へ束縛し、どちらか片側の
+配線が欠落してもinventory lifecycle違反を合格へ降格させない。
 
 ## 出力
 

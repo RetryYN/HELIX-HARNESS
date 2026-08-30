@@ -38,9 +38,9 @@ tdd_red_required: true
 red_at: "2026-08-31T04:55:19+09:00"
 green_at: "2026-08-31T04:58:12+09:00"
 tdd_red_evidence: "U-L12INV-001がPLAN-L7-712のreviewed_safe_member_still_authority_reviewを検出し1 failed / 1 passed"
-tdd_green_evidence: "PLANを§7からretireし表示件数を65→64へ収束後、U-L12INV-001/002の2 tests green、typecheck green"
+tdd_green_evidence: "PLANを§7からretireし表示件数を65→64へ収束し、doctor全体okをnamed check stateへ束縛後、U-L12INV-001/002/003の3 tests green、typecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-L12INV-002でPLAN再挿入、section件数drift、L8 reviewed-safe欠落を個別に注入しtyped findingでkillする"
+mutation_oracle_evidence: "U-L12INV-002でPLAN再挿入、section件数drift、L8 reviewed-safe欠落をtyped findingでkillし、U-L12INV-003でdoctor check state・全体ok・message配線の欠落をkillする"
 complexity_effect: net_negative
 complexity_justification: "手作業の3面同期を1つのfamily契約とdoctor gateへ集約する"
 removal_trigger: "inventoryがreviewed-safe registryから完全生成され、同じ不変条件をgeneratorが強制した時"
@@ -57,6 +57,7 @@ dependencies:
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, oracle_id: U-L12INV-001, test_path: tests/l12-hybrid-inventory-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, oracle_id: U-L12INV-002, test_path: tests/l12-hybrid-inventory-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, oracle_id: U-L12INV-003, test_path: tests/l12-hybrid-inventory-lifecycle.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L7-716-l12-reviewed-safe-inventory-lifecycle.md, artifact_type: markdown_doc }

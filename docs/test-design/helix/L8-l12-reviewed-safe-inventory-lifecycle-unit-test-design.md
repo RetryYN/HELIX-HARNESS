@@ -21,9 +21,14 @@ authority-review一覧から全てretireされ、doctor checkがgreenになる�
 - bulletを増やして表示件数を追従させない。
 - L8だけreviewed-safe registryから除外する。
 
+### U-L12INV-003 doctor集約配線の固定
+
+inventory lifecycle checkがdoctorのcheck state、全体`ok`、違反messageへ全て接続されていることを
+source wiring oracleで固定する。check stateまたは従来のboolean chainの片側だけを削除しても、
+`doctorAllChecksOk`との二重束縛により違反を合格へ変換できないことを確認する。
+
 ## 受入条件
 
 - 実inventoryがgreen。
 - family memberの片側登録、retire漏れ、件数driftがtyped findingとして検出される。
 - doctorの集約判定へ接続され、単体lintだけのdead gateにならない。
-

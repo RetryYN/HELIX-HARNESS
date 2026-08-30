@@ -42,4 +42,16 @@ describe("L12 reviewed-safe inventory lifecycle", () => {
       }),
     );
   });
+
+  it("U-L12INV-003: inventory lifecycle違反をdoctor全体の失敗へ配線する", () => {
+    const doctorSource = readFileSync("src/doctor/index.ts", "utf8");
+    expect(doctorSource).toContain(
+      '["l12HybridInventoryLifecycle", l12HybridInventoryLifecycle.ok]',
+    );
+    expect(doctorSource).toContain("doctorAllChecksOk &&\n      nfrRegistry.ok &&");
+    expect(doctorSource).toContain("l12HybridInventoryLifecycle.ok &&");
+    expect(doctorSource).toContain(
+      "...l12HybridInventoryLifecycle.messages.map((m) => `doctor: $" + "{m}`)",
+    );
+  });
 });
