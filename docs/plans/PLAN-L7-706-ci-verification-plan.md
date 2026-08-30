@@ -63,11 +63,13 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-711-ci-responsibility-registry.md
     - src/runtime/ci-responsibility-registry.ts
+    - docs/plans/PLAN-REVERSE-706-ci-verification-plan.md
   references:
     - "issue:1206"
     - "issue:1205"
     - "issue:1002"
     - "issue:1084"
+    - docs/plans/PLAN-REVERSE-706-ci-verification-plan.md
   blocks:
     - "issue:1207"
     - "issue:1208"
