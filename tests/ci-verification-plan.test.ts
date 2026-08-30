@@ -298,7 +298,7 @@ describe("CI Verification Plan", () => {
         ? { ...capability, defer_targets: ["main"] }
         : capability,
     );
-    const invalid = composeCiVerificationPlan(
+    const wrongHead = composeCiVerificationPlan(
       input({
         registry: current,
         expected_registry_digest: ciResponsibilityRegistryDigest(current),
@@ -307,13 +307,34 @@ describe("CI Verification Plan", () => {
             capability_id: "verification:ci-responsibility-unit",
             target: "main",
             candidate_head: BASE,
+            receipt_status: "pending",
+          },
+        ],
+      }),
+    );
+    expect(wrongHead.findings).toContainEqual(
+      expect.objectContaining({ code: "deferred_receipt_invalid" }),
+    );
+    const missingTerminalDigest = composeCiVerificationPlan(
+      input({
+        registry: current,
+        expected_registry_digest: ciResponsibilityRegistryDigest(current),
+        defer_assignments: [
+          {
+            capability_id: "verification:ci-responsibility-unit",
+            target: "main",
+            candidate_head: HEAD,
             receipt_status: "succeeded",
           },
         ],
       }),
     );
-    expect(invalid.findings).toContainEqual(
-      expect.objectContaining({ code: "deferred_receipt_invalid" }),
+    expect(missingTerminalDigest.ok).toBe(false);
+    expect(missingTerminalDigest.findings).toContainEqual(
+      expect.objectContaining({
+        code: "deferred_receipt_invalid",
+        detail: "terminal digest required",
+      }),
     );
     const unknownState = composeCiVerificationPlan(
       input({
