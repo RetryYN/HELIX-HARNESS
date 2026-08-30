@@ -5,6 +5,10 @@ export const CANONICAL_REUSE_CONSUMER_BASELINE = [
   "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md::docs/test-design/harness/L3-acceptance-test-design.md",
   "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md::docs/test-design/harness/L7-unit-test-design.md",
   "docs/plans/PLAN-REVERSE-564-vmodel-pair-exact-target.md::docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+  // PLAN-L7-713 is the dedicated layer-ledger authority delta. The two blocked
+  // test-designs are migration outputs being rewritten to canonical L1-L12 pair identity.
+  "docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md::docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md",
+  "docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md::docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md",
   "docs/plans/PLAN-DISCOVERY-10-helix-asset-visualization.md::docs/test-design/helix/L1-pillar-operational-test-design.md",
   "docs/plans/PLAN-L1-01-business-requirements.md::docs/test-design/harness/L1-operational-test-design.md",
   "docs/plans/PLAN-L1-02-functional-requirements.md::docs/test-design/harness/L1-operational-test-design.md",
