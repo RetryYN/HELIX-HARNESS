@@ -4,12 +4,14 @@ import { describe, expect, it } from "vitest";
 const read = (path: string): string => readFileSync(path, "utf8");
 const packageJson = JSON.parse(read("package.json")) as {
   bin?: { helix?: string };
+  engines?: { node?: string };
   scripts?: Record<string, string>;
 };
 
 const surfaces = {
   l13: "docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
   l7: "docs/process/forward/L07-implementation.md",
+  setup: "docs/reference/setup-guide.md",
 } as const;
 
 describe("current runtime command guidance", () => {
@@ -34,5 +36,16 @@ describe("current runtime command guidance", () => {
     expect(packageJson.bin?.helix).toBe("./dist/helix.js");
     expect(l13).toContain("npm run build && node ./dist/helix.js doctor");
     expect(l13).toContain("npm run helix -- rename dist-smoke --no-write --target helix --json");
+  });
+
+  it("U-CRG-004: keeps consumer setup guidance on the package Node/npm authority", () => {
+    const body = read(surfaces.setup);
+    expect(body).toContain(`Node.js ${packageJson.engines?.node}`);
+    expect(body).toContain("`npm ci`");
+    expect(body).toContain("`npm run helix -- setup project --dry-run --json`");
+    expect(body).toContain("`npm run helix -- doctor --profile consumer --json`");
+    expect(body).toContain("package-local `npm run helix -- <command>`");
+    expect(body).not.toMatch(/\bnpm run helix(?! --(?:\s|$))/u);
+    expect(body).not.toMatch(/\bbun\b/i);
   });
 });

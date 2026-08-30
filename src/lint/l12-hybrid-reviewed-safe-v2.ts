@@ -1,6 +1,13 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // Issue #1253のcurrent runtime guidance収束PLAN。retired runtime／旧L08-L14への言及は
+    // active authorityへの再採用ではなく、再導入を拒否するnegative contractである。
+    path: "docs/plans/PLAN-L7-709-setup-guide-node-runtime-guidance.md",
+    contentDigest: "c982d2ebe22a30428cac7f7b4f85876884abd5695e6b3783661352df11fd7db8",
+    finalDisposition: "false_positive",
+  },
+  {
     // #660 の current L6 設計。ADR-009 の path に含まれる Python は runtime authority の
     // 再定義ではなく、Node engines 適合gateが従う既存authorityへの参照である。
     path: "docs/design/helix/L6-function-design/node-engine-runtime-gate.md",
