@@ -16,19 +16,20 @@ pair_artifact: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-
 
 ## 目的
 
-current Reverseが`draft`かつ`backfill_state=pending_reverse`である間、pair identityとexecution
-dependencyを混同せず、Forward／Reverse双方のexact `dependencies.references`だけをpair成立として扱う。
+current Reverseが`backfill_state=pending_reverse`である間、pair identityとexecution dependencyを混同しない。`draft`は
+Forward／Reverse双方のexact `dependencies.references`だけをpair成立とし、`confirmed`はreferencesによるidentityまたは
+明示済みrequiresによるready dependencyのどちらかを受理する。statusからrequiresを推測生成してはならない。
 
 ## 関数契約
 
 | 関数 | シグネチャ | 事前条件 | 事後条件 | 失敗契約 |
 |---|---|---|---|---|
-| `analyzeBackfill` | `(plans: ParsedPlan[], glossaryText: string) => BackfillResult` | ForwardとReverseのPLAN identity、status、backfill state、referencesが解析済み | pending Reverseは双方向references一致時だけ`reverseLinkMissing`を生成しない | 片方向、wrong Reverse ID、draft／state不一致を`reverseLinkMissing`としてfail-close |
+| `analyzeBackfill` | `(plans: ParsedPlan[], glossaryText: string) => BackfillResult` | ForwardとReverseのPLAN identity、status、backfill state、references/requiresが解析済み | draft pendingはreferences、confirmed pendingはreferencesまたは明示requires、terminalはrequiresでpairingする | 片方向、wrong Reverse ID、state不一致を`reverseLinkMissing`としてfail-close |
 
-terminal／legacy Reverseは既存の`requires`契約を維持する。pending pairの成立をexecution dependency readyへ
-昇格させず、legacy greenでcurrent failureを相殺しない。
+`backfill_state=complete`のterminal／legacy Reverseは既存の`requires`契約を維持する。pending pairのreferences成立をexecution
+dependency readyへ昇格させず、confirmed PLANが明示requiresを持つ場合だけready dependencyとして受理する。
 
 ## 検証接続
 
-`U-BACKFILL-008`を`tests/backfill-pairing.test.ts`が所有し、双方向正例と片方向、wrong ID、state不一致、
-`backfill_state`条件除去mutationを検査する。
+`U-BACKFILL-008..010`を`tests/backfill-pairing.test.ts`が所有し、draft／confirmed pendingの双方向正例、
+片方向、wrong ID、state不一致、terminal requires昇格、`backfill_state`条件除去mutationを検査する。
