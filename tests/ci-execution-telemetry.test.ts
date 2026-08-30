@@ -612,6 +612,30 @@ describe("CI execution telemetry contract", () => {
         p99_critical_path_ms: 250,
       }),
     ]);
+
+    const zeroDurationDag = projectCiExecutionTelemetry([
+      makeEvent({
+        eventId: "event-zero-root",
+        nodeId: "zero-root",
+        startedMs: 0,
+        completedMs: 0,
+        runId: "zero-duration-run",
+      }),
+      makeEvent({
+        eventId: "event-zero-leaf",
+        nodeId: "zero-leaf",
+        dependsOn: ["zero-root"],
+        startedMs: 0,
+        completedMs: 0,
+        runId: "zero-duration-run",
+      }),
+    ]);
+    expect(zeroDurationDag.projection?.runs).toEqual([
+      expect.objectContaining({
+        critical_path_ms: 0,
+        critical_path_node_ids: ["zero-root", "zero-leaf"],
+      }),
+    ]);
   });
 
   it("U-TELE-010: series軸を混在させずpercentileと順序決定性を保持する", () => {
