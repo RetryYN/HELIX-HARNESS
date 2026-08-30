@@ -72,6 +72,7 @@ dependencies:
 agent_slots:
   - { role: qa, slot_label: "QA — telemetry／failure history／artifact edgeのmain再照合" }
   - { role: tl, slot_label: "TL — CI System Synthesis接着と#1205解放" }
+  - { role: po, slot_label: "PO — R3で要求意味不変とL7 Forward再入境界を確認" }
 ---
 
 # CI execution telemetryのReverse fullback
