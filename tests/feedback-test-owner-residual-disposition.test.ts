@@ -31,13 +31,13 @@ function caseCount(text: string): number {
 }
 
 describe("PLAN-L3-31 residual test owner disposition", () => {
-  it("pins nine unique files and the 38-case denominator", () => {
+  it("pins nine unique files and the 40-case denominator", () => {
     expect(manifest.schema_version).toBe("feedback-test-owner-disposition.v1");
     expect(manifest.issue_id).toBe(74);
     expect(manifest.disposition).toBe("successor_backprop");
     expect(manifest.bindings).toHaveLength(9);
     expect(new Set(manifest.bindings.map((row) => row.test_path)).size).toBe(9);
-    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(39);
+    expect(manifest.bindings.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(40);
   });
 
   it("matches every current digest, case count, and authority path", () => {

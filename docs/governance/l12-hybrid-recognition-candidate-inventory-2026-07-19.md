@@ -2,9 +2,9 @@
 
 ## 1. 対象と判定
 
-旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は175文書。
+旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は174文書。
 
-この175件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは866 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
+この174件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは866 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
 ```bash
 npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts
@@ -123,15 +123,13 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L5-detail/layer-ledger-pair-gate.md`
 - `docs/design/helix/L5-detail/pillar-detail-design.md`
 - `docs/design/helix/L5-detail/python-worker-runtime.md`
-- `docs/design/helix/L6-function-design/document-semantic-diff.md`
-- `docs/design/helix/L6-function-design/layer-ledger-pair-gate.md`
 - `docs/design/helix/L6-function-design/orchestration-memory.md`
 - `docs/design/helix/L6-function-design/pillar-function-design.md`
 - `docs/design/helix/L6-function-design/universal-reverse-redesign.md`
 
 `vmodel-canonical-authority-cutover`と`hybrid-rebaseline-v0.5.0-collision`は`safe-current`。L0 charterは層外anchorとして`safe-current`にできるが、旧pairを工程正本として再提示していないことが条件。他はdesign/test traceへ直接使われるため`authority-review`。
 
-## 6. authority-review対象: test-design（18）
+## 6. authority-review対象: test-design（17）
 
 - `docs/test-design/harness/L1-operational-test-design.md`
 - `docs/test-design/harness/L3-acceptance-test-design.md`
@@ -142,7 +140,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/test-design/harness/proposal-document-coverage-routing.md`
 - `docs/test-design/helix/L1-pillar-operational-test-design.md`
 - `docs/test-design/helix/L2-screen-ux-test-design.md`
-- `docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md`
 - `docs/test-design/helix/L5-universal-reverse-redesign-integration-test-design.md`
 - `docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md`
 - `docs/test-design/helix/L6-universal-reverse-redesign-unit-test-design.md`
@@ -154,7 +151,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示しており`safe-current`。残りは旧pairをoracleとして固定していないか確認必須。
 
-## 7. authority-review対象: PLAN（63）
+## 7. authority-review対象: PLAN（65）
 
 - `docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md`
 - `docs/plans/PLAN-DISCOVERY-04-process-workflows.md`
@@ -208,6 +205,8 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L7-460-l12-dual-projection.md`
 - `docs/plans/PLAN-L7-62-runtime-portability-guard.md`
 - `docs/plans/PLAN-L7-70-skill-pack-curation.md`
+- `docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md`
+- `docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md`
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
 - `docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md`
 - `docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md`
@@ -259,7 +258,7 @@ skillは実行時に読まれるため`context-review`。旧layerを例として
 
 ## 9. seed集合の閉包条件
 
-175件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
+174件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
 
 1. canonicalへ本文改訂済み
 2. compatibility sectionへ隔離済み

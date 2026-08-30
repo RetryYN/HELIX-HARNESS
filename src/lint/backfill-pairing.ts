@@ -243,10 +243,10 @@ export function analyzeBackfill(
         const ownRequires = new Set(p.requires.map(normalizedPlanRef));
         const ownReferences = new Set(p.references.map(normalizedPlanRef));
         for (const reverse of reverseBackfillers.get(p.plan_id) ?? []) {
-          const pendingReverse =
-            reverse.status === "draft" && reverse.backfillState === "pending_reverse";
+          const pendingReverse = reverse.backfillState === "pending_reverse";
           const linked = pendingReverse
-            ? ownReferences.has(reverse.plan_id)
+            ? ownReferences.has(reverse.plan_id) ||
+              (reverse.status === "confirmed" && ownRequires.has(reverse.plan_id))
             : ownRequires.has(reverse.plan_id);
           if (!linked) {
             reverseLinkMissing.push({
