@@ -32,9 +32,11 @@ responsibility_owner: universal-improvement-source-registry
 | U-UILSRC-007 | doctor happy path | current registryのschema、実体digest、source kindをdoctorがgreen判定する | `tests/universal-improvement-source-registry-doctor.test.ts` |
 | U-UILSRC-008 | doctor failure | registry欠落とJSON破損をwarningや空registryへ丸めずredにする | `tests/universal-improvement-source-registry-doctor.test.ts` |
 | U-UILSRC-009 | doctor wiring | full doctorのstate、ok判定、messageへ同じcheckをexactly once接続する | `tests/universal-improvement-source-registry-doctor.test.ts` |
+| U-UILSRC-010 | physical admission boundary | 構造検査だけの結果、registry integrity欠落・bytes driftをadmissionへ渡さずfail-closeする | `tests/universal-improvement-source-registry.test.ts` / `tests/universal-improvement-source-registry-doctor.test.ts` |
 
 ## Red／Green／mutation境界
 
-required source kindを1件削除、source／detector digestを0へ変異、unknown identityを注入、freshness判定を
-除去、doctorのok接続を外す変異は、対応するU-UILSRC oracleをredにする。テストはsource registryや
+required source kindを1件削除、registry versionまたはbytesをintegrity更新なしに変異、source／detector digestを0へ
+変異、unknown identityを注入、freshness判定を除去、構造検査結果をadmissionへ渡す、doctorのok接続を外す変異は、
+対応するU-UILSRC oracleをredにする。テストはsource registryや
 repository authorityを書き換えず、一時rootのfixtureだけを終了時に破棄する。

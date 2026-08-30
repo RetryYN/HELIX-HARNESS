@@ -8,12 +8,15 @@ import {
   loadUniversalImprovementSourceRegistry,
   UNIVERSAL_IMPROVEMENT_SOURCE_KINDS,
   type UniversalImprovementSourceObservation,
+  validateUniversalImprovementSourceRegistryStructure,
 } from "../src/runtime/universal-improvement-source-registry";
 
 // PLAN-L7-703-universal-improvement-source-registry
 function loadedRegistry() {
   const result = loadUniversalImprovementSourceRegistry(process.cwd());
   expect(result.ok).toBe(true);
+  expect(result.physical_binding_verified).toBe(true);
+  expect(result.registry_bytes_digest).toMatch(/^sha256:[a-f0-9]{64}$/u);
   expect(result.registry).not.toBeNull();
   if (!result.registry) throw new Error("test registry did not load");
   return { result, registry: result.registry };
@@ -56,7 +59,7 @@ describe("Universal Improvement source registry", () => {
     const { registry } = loadedRegistry();
     const duplicate = structuredClone(registry);
     duplicate.entries.push(structuredClone(duplicate.entries[0]));
-    const duplicateResult = analyzeUniversalImprovementSourceRegistry(duplicate);
+    const duplicateResult = validateUniversalImprovementSourceRegistryStructure(duplicate);
     expect(duplicateResult.ok).toBe(false);
     expect(duplicateResult.findings.map((item) => item.code)).toEqual(
       expect.arrayContaining(["duplicate_source_id", "duplicate_detector_id"]),
@@ -64,7 +67,7 @@ describe("Universal Improvement source registry", () => {
 
     const missingKind = structuredClone(registry);
     missingKind.entries = missingKind.entries.filter((entry) => entry.source_kind !== "review");
-    const missingResult = analyzeUniversalImprovementSourceRegistry(missingKind);
+    const missingResult = validateUniversalImprovementSourceRegistryStructure(missingKind);
     expect(missingResult.ok).toBe(false);
     expect(missingResult.findings).toMatchObject([
       { code: "missing_source_kind", subject: "review" },
@@ -73,7 +76,8 @@ describe("Universal Improvement source registry", () => {
     const missingRequirement = structuredClone(registry);
     missingRequirement.authority.requirement_ids =
       missingRequirement.authority.requirement_ids.slice(1);
-    const missingRequirementResult = analyzeUniversalImprovementSourceRegistry(missingRequirement);
+    const missingRequirementResult =
+      validateUniversalImprovementSourceRegistryStructure(missingRequirement);
     expect(missingRequirementResult.ok).toBe(false);
     expect(missingRequirementResult.findings).toMatchObject([
       { code: "registry_schema_invalid", subject: "authority.requirement_ids" },
@@ -83,7 +87,7 @@ describe("Universal Improvement source registry", () => {
     duplicateKind.entries[1].source_id = "UIL-SRC-011";
     duplicateKind.entries[1].detector.detector_id = "UIL-DET-011";
     duplicateKind.entries[1].source_kind = duplicateKind.entries[0].source_kind;
-    const duplicateKindResult = analyzeUniversalImprovementSourceRegistry(duplicateKind);
+    const duplicateKindResult = validateUniversalImprovementSourceRegistryStructure(duplicateKind);
     expect(duplicateKindResult.ok).toBe(false);
     expect(duplicateKindResult.findings).toEqual(
       expect.arrayContaining([
@@ -103,7 +107,8 @@ describe("Universal Improvement source registry", () => {
       incompleteContract.entries[0].evidence_contract.identity_fields.filter(
         (field) => field !== "source_revision",
       );
-    const incompleteContractResult = analyzeUniversalImprovementSourceRegistry(incompleteContract);
+    const incompleteContractResult =
+      validateUniversalImprovementSourceRegistryStructure(incompleteContract);
     expect(incompleteContractResult.ok).toBe(false);
     expect(incompleteContractResult.findings).toEqual(
       expect.arrayContaining([
@@ -126,13 +131,16 @@ describe("Universal Improvement source registry", () => {
     drifted.entries[0].detector.implementation.digest = `sha256:${"0".repeat(64)}`;
     const driftResult = analyzeUniversalImprovementSourceRegistry(drifted, process.cwd());
     expect(driftResult.ok).toBe(false);
-    expect(driftResult.findings.map((item) => item.code)).toEqual(
-      expect.arrayContaining(["source_digest_mismatch", "detector_digest_mismatch"]),
-    );
+    expect(driftResult.findings).toMatchObject([
+      {
+        code: "registry_input_mismatch",
+        subject: "config/universal-improvement-source-registry.v1.json",
+      },
+    ]);
 
     const unsafe = structuredClone(registry);
     unsafe.entries[0].authority.artifact_path = "../outside.md";
-    const unsafeResult = analyzeUniversalImprovementSourceRegistry(unsafe);
+    const unsafeResult = validateUniversalImprovementSourceRegistryStructure(unsafe);
     expect(unsafeResult.ok).toBe(false);
     expect(unsafeResult.registry).toBeNull();
     expect(unsafeResult.findings).toMatchObject([{ code: "registry_schema_invalid" }]);
@@ -165,6 +173,7 @@ describe("Universal Improvement source registry", () => {
     expect(admitted.entry?.source_id).toBe(entry.source_id);
     expect(admitted.registry_version).toBe(registry.registry_version);
     expect(admitted.registry_source_digest).toBe(registry.authority.source_digest);
+    expect(admitted.registry_bytes_digest).toBe(result.registry_bytes_digest);
 
     const unknown = admitUniversalImprovementSource(
       result,
@@ -173,6 +182,23 @@ describe("Universal Improvement source registry", () => {
     );
     expect(unknown.ok).toBe(false);
     expect(unknown.findings).toMatchObject([{ code: "unknown_source" }]);
+  });
+
+  it("U-UILSRC-010: 構造検査だけの結果を物理authority-bound admissionへ渡せない", () => {
+    const { registry } = loadedRegistry();
+    const structural = validateUniversalImprovementSourceRegistryStructure(registry);
+    expect(structural.ok).toBe(true);
+    expect(structural.physical_binding_verified).toBe(false);
+    const entry = registry.entries[0];
+    const admitted = admitUniversalImprovementSource(
+      structural,
+      validObservation(entry.source_id, entry.schema_version, entry.detector.detector_id),
+      new Date("2026-08-30T12:00:00.000Z"),
+    );
+    expect(admitted.ok).toBe(false);
+    expect(admitted.findings).toMatchObject([
+      { code: "physical_binding_required", subject: "registry" },
+    ]);
   });
 
   it("U-UILSRC-005: wrong identity、必須field、digest、timestampを個別に拒否する", () => {

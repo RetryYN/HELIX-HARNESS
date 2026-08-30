@@ -30,11 +30,11 @@ backprop_decision_reason: "UIL-01はconfirmed済みのUniversal Improvement Loop
 no_code_decision: add_code
 ddd_modeling_decision: aggregate
 contract_preconditions: "PLAN-L3-74、Universal Improvement Loop L3/L10要求、既存detectorとread-only doctorが利用可能である"
-contract_postconditions: "10種類の観測sourceがrequirements-owned registry、実体digest、detector identity、evidence contractへ束縛され、doctorとruntime admissionが同じ結果を返す"
-contract_invariants: "registryはread-only、AIはproposal-only、unknown／duplicate／digest drift／unsafe path／不正observationはfail-close、候補生成やauthority writeを実行しない"
-contract_failures: "required source kind欠落、source／detector不在またはdigest不一致、schema／identity不一致、必須evidence欠落、sensitive field、invalid／future digest／timestampをgreenへ縮退しない"
+contract_postconditions: "10種類の観測sourceがrequirements-owned registry、registry exact-bytes integrity、実体digest、detector identity、evidence contractへ束縛され、doctorとruntime admissionが同じ結果を返す"
+contract_invariants: "registryはread-only、registry bytesはintegrity recordへexactに束縛、AIはproposal-only、unknown／duplicate／digest drift／unsafe path／不正observationはfail-close、候補生成やauthority writeを実行しない"
+contract_failures: "required source kind欠落、registry integrity欠落・破損・bytes digest不一致、source／detector不在またはdigest不一致、schema／identity不一致、必須evidence欠落、sensitive field、invalid／future digest／timestampをgreenへ縮退しない"
 tdd_red_required: true
-red_test: "U-UILSRC-001..009でsource kind欠落、duplicate、source lifecycle metadata欠落、digest drift、unsafe path、observation identity、strict timestamp、sensitive field、doctor未配線を個別に検出する"
+red_test: "U-UILSRC-001..010でsource kind欠落、duplicate、source lifecycle metadata欠落、registry bytes integrity、digest drift、unsafe path、observation identity、strict timestamp、sensitive field、doctor未配線、未bound admissionを個別に検出する"
 red_at: null
 green_at: 2026-08-30T07:09:05+09:00
 mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にU-UILSRC-002／003／005の実装内変異（source kind重複、evidence contractのsource_revision欠落、digest drift、unsafe path、malformed／null observation）を実行し、対応するfail-close oracleを通過させた。targeted 2 files／9 tests passed、output_digest=sha256:904d13f50b3c881792745dca332f21e6150cdc68828e00871d30f346633d3cca。"
@@ -70,11 +70,13 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-007, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-008, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-009, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-010, test_path: tests/universal-improvement-source-registry.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-703-universal-improvement-source-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: json_config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: json_config }
   - { artifact_path: src/runtime/universal-improvement-source-registry.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/universal-improvement-source-registry-check.ts, artifact_type: source_module }
   - { artifact_path: tests/universal-improvement-source-registry.test.ts, artifact_type: test_code }
@@ -113,13 +115,15 @@ evidence contractのrequired／identity／digest fieldをrequirementsへ束縛�
 
 ### Step 2: registry entryとread-only admissionを実装し、red oracleをgreenへ戻す [直列]
 
-10 source kindのexactly-one、実体digest、repository path、source lifecycle metadata、observation identityと
-freshnessを一つのanalyzerで検査する。runtimeとdoctorが同じ判定を使うため `shared_state` とする。
+10 source kindのexactly-one、registry bytes digest、実体digest、repository path、source lifecycle metadata、
+observation identityとfreshnessを一つのanalyzerで検査する。runtimeとdoctorが同じ判定を使うため `shared_state`
+とする。構造検査の結果だけをadmissionへ渡すことは許可しない。
 
 ### Step 3: doctorへのhard配線とmutation oracleを確定する [直列]
 
-registry欠落、JSON破損、source／detector drift、duplicate kind、contract欠落、unsafe pathをwarningへ縮退させず
-fail-closeする。doctorのstate／ok／message接続は実装確定後にのみ検証できるため `shared_state` とする。
+registry欠落、integrity欠落・JSON破損・bytes drift、source／detector drift、duplicate kind、contract欠落、unsafe
+pathをwarningへ縮退させずfail-closeする。doctorのstate／ok／message接続は実装確定後にのみ検証できるため
+`shared_state` とする。
 
 ### Step 4: targeted／typecheck／format／全回帰を同一HEADで実測する [直列]
 
@@ -134,11 +138,11 @@ main着地後の判定は候補HEADを共有するため `shared_state` とす�
 ## §3.1 実装計画
 
 - **source registry runtime**（情報源: Universal Improvement Loop L3要件 UIL-R-01、L6設計）: schema、requirements
-  authority、10 source kind、source lifecycle metadata、observation admissionを実装する。
+  authority、registry exact-bytes integrity、10 source kind、source lifecycle metadata、observation admissionを実装する。
 - **source registry doctor**（情報源: source registry runtimeのanalyzer、既存doctor contract）: loaderと同じ判定を
-  hard gateとして接続し、registry欠落・破損・drift・unsafe pathをfail-closeする。
-- **unit／doctor test**（情報源: L8テスト設計）: duplicate、欠落、contract退化、digest、identity、freshness、
-  doctor wiringの反例をmutation oracleとして固定する。
+  hard gateとして接続し、registry欠落・integrity欠落・破損・bytes drift・source drift・unsafe pathをfail-closeする。
+- **unit／doctor test**（情報源: L8テスト設計）: duplicate、欠落、contract退化、registry bytes integrity、digest、
+  identity、freshness、構造結果のadmission流用、doctor wiringの反例をmutation oracleとして固定する。
 - **完了境界**: 本PLANは観測sourceのadmissionまでとし、normalization、finding、candidate、counterfactual、route、
   Issue／PLAN／Requirement書込みはUIL-02以降へ残す。
 

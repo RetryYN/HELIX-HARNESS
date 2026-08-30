@@ -29,11 +29,11 @@ AIはproposal-onlyで、detector evidenceや意味authorityを代替しない。
 
 | 境界 | 入力 | 出力 | 契約 |
 |---|---|---|---|
-| registry loader | repository内のversioned JSON | parsed registryまたはtyped failure | JSON欠落・破損・schema違反をfail-closeする |
-| authority binding | registryのartifact path／digest | source authority tuple | repository-relative path、実体digest、symlink境界を検証する |
+| registry loader | repository内のversioned JSONとexact-bytes integrity record | parsed registryまたはtyped failure | JSON欠落・破損・schema違反・registry bytes driftをfail-closeする |
+| authority binding | registryのartifact path／digestとregistry bytes digest | source authority tuple | repository-relative path、registry exact bytes、実体digest、symlink境界を検証する |
 | source inventory | 10種のsource kind | unique source／detector集合 | required kind欠落、duplicate source／detectorを拒否する |
 | observation admission | source／schema／detector／revision／evidence | admission result | unknown、wrong identity、必須field欠落、digest不正、staleを拒否する |
-| doctor adapter | repository root | LintResult | runtime loaderと同じ結果を返し、欠落やdriftをwarningへ丸めない |
+| doctor adapter | repository root | LintResult | runtime loaderと同じ結果を返し、欠落やbytes driftをwarningへ丸めない |
 
 ## 正規source tuple
 
@@ -58,6 +58,10 @@ detector実装を本sliceで再実装しない。
 - observationのtimestampがRFC3339形式・実在日付でない、未来、またはentryのfreshness windowを超える場合は拒否する。
 - observationへraw log、stdout／stderr、credential、secret、token、PII相当のfieldを混入させない。
 - digestは形式だけでなくregistryが指す実体bytesと比較する。
+- registry JSONのexact bytesは `config/universal-improvement-source-registry.v1.integrity.json` の
+  `registry_bytes_digest`へ束縛する。integrity recordが欠落・破損するか、registry bytesが記録値と異なる場合は、
+  registry versionを含む意味変更を再計算なしに受理しない。構造検査の結果は物理検証済みとは扱わず、admissionへ
+  渡すにはloaderの `physical_binding_verified` が必須である。
 - 全判定は候補生成前のread-only admissionで、authorityへの副作用を持たない。
 
 ## 再構築と責務境界

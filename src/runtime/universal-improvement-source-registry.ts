@@ -1,12 +1,16 @@
 import { readFileSync, realpathSync } from "node:fs";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 import { z } from "zod";
-import { sha256Digest } from "./digest";
+import { canonicalJson, sha256Digest } from "./digest";
 
 export const UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH =
   "config/universal-improvement-source-registry.v1.json" as const;
+export const UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_PATH =
+  "config/universal-improvement-source-registry.v1.integrity.json" as const;
 export const UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_SCHEMA_VERSION =
   "helix-universal-improvement-source-registry.v1" as const;
+export const UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_SCHEMA_VERSION =
+  "helix-universal-improvement-source-registry-integrity.v1" as const;
 export const UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_ID =
   "universal-improvement-source-registry" as const;
 export const UNIVERSAL_IMPROVEMENT_REQUIREMENTS_PATH =
@@ -262,10 +266,26 @@ export type UniversalImprovementSourceRegistry = z.infer<
 >;
 export type UniversalImprovementSourceEntry = z.infer<typeof sourceEntrySchema>;
 
+const universalImprovementSourceRegistryIntegritySchema = z
+  .object({
+    schema_version: z.literal(UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_SCHEMA_VERSION),
+    registry_path: z.literal(UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH),
+    registry_bytes_digest: digestSchema,
+    integrity_policy: z.literal("exact_bytes"),
+  })
+  .strict();
+
 export type UniversalImprovementSourceRegistryFailureCode =
   | "registry_missing"
   | "registry_json_invalid"
   | "registry_schema_invalid"
+  | "repository_root_required"
+  | "registry_integrity_missing"
+  | "registry_integrity_json_invalid"
+  | "registry_integrity_schema_invalid"
+  | "registry_bytes_digest_mismatch"
+  | "registry_input_mismatch"
+  | "physical_binding_required"
   | "duplicate_source_id"
   | "duplicate_detector_id"
   | "duplicate_source_kind"
@@ -294,6 +314,8 @@ export interface UniversalImprovementSourceRegistryFinding {
 export interface UniversalImprovementSourceRegistryResult {
   ok: boolean;
   registry: UniversalImprovementSourceRegistry | null;
+  physical_binding_verified: boolean;
+  registry_bytes_digest: string | null;
   findings: UniversalImprovementSourceRegistryFinding[];
 }
 
@@ -313,6 +335,7 @@ export interface UniversalImprovementSourceAdmission {
   entry: UniversalImprovementSourceEntry | null;
   registry_version: string | null;
   registry_source_digest: string | null;
+  registry_bytes_digest: string | null;
   findings: UniversalImprovementSourceRegistryFinding[];
 }
 
@@ -417,7 +440,7 @@ function collectForbiddenObservationFields(value: unknown, path: string, paths: 
 
 interface BoundSourceInput {
   findings: UniversalImprovementSourceRegistryFinding[];
-  repoRoot: string | undefined;
+  repoRoot: string;
   path: string;
   expectedDigest: string;
   subject: string;
@@ -427,7 +450,6 @@ interface BoundSourceInput {
 
 function checkBoundSource(input: BoundSourceInput): void {
   const { findings, repoRoot, path, expectedDigest, subject, missingCode, mismatchCode } = input;
-  if (!repoRoot) return;
   const actual = repositoryFileDigest(repoRoot, path);
   if (actual.kind === "unsafe") {
     findings.push(finding("unsafe_source_path", subject, `unsafe repository path: ${path}`));
@@ -444,15 +466,16 @@ function checkBoundSource(input: BoundSourceInput): void {
   }
 }
 
-export function analyzeUniversalImprovementSourceRegistry(
+function analyzeUniversalImprovementSourceRegistryStructure(
   input: unknown,
-  repoRoot?: string,
 ): UniversalImprovementSourceRegistryResult {
   const parsed = universalImprovementSourceRegistrySchema.safeParse(input);
   if (!parsed.success) {
     return {
       ok: false,
       registry: null,
+      physical_binding_verified: false,
+      registry_bytes_digest: null,
       findings: [
         finding(
           "registry_schema_invalid",
@@ -560,7 +583,210 @@ export function analyzeUniversalImprovementSourceRegistry(
       );
     }
     detectorIds.add(entry.detector.detector_id);
+  }
 
+  for (const sourceKind of UNIVERSAL_IMPROVEMENT_SOURCE_KINDS) {
+    if (!sourceKinds.has(sourceKind)) {
+      findings.push(
+        finding(
+          "missing_source_kind",
+          sourceKind,
+          "required source kind has no active registry entry",
+        ),
+      );
+    }
+  }
+
+  return {
+    ok: findings.length === 0,
+    registry,
+    physical_binding_verified: false,
+    registry_bytes_digest: null,
+    findings,
+  };
+}
+
+export function validateUniversalImprovementSourceRegistryStructure(
+  input: unknown,
+): UniversalImprovementSourceRegistryResult {
+  return analyzeUniversalImprovementSourceRegistryStructure(input);
+}
+
+export function analyzeUniversalImprovementSourceRegistry(
+  input: unknown,
+  repoRoot: string,
+): UniversalImprovementSourceRegistryResult {
+  const structural = analyzeUniversalImprovementSourceRegistryStructure(input);
+  if (!repoRoot || repoRoot.trim().length === 0) {
+    return {
+      ...structural,
+      ok: false,
+      findings: [
+        ...structural.findings,
+        finding(
+          "repository_root_required",
+          "repository",
+          "repository root is required for authority binding",
+        ),
+      ],
+    };
+  }
+  if (!structural.registry || structural.findings.length > 0) return structural;
+
+  const registryFile = resolveRepositoryFile(repoRoot, UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH);
+  if (registryFile.kind === "missing") {
+    return {
+      ...structural,
+      ok: false,
+      findings: [
+        ...structural.findings,
+        finding(
+          "registry_missing",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH,
+          "universal improvement source registry is missing",
+        ),
+      ],
+    };
+  }
+  if (registryFile.kind === "unsafe") {
+    return {
+      ...structural,
+      ok: false,
+      findings: [
+        ...structural.findings,
+        finding(
+          "unsafe_source_path",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH,
+          "registry path resolves outside the repository",
+        ),
+      ],
+    };
+  }
+
+  let registryBytes: Buffer;
+  let currentRaw: unknown;
+  try {
+    registryBytes = readFileSync(registryFile.path);
+    currentRaw = JSON.parse(registryBytes.toString("utf8")) as unknown;
+  } catch {
+    return {
+      ...structural,
+      ok: false,
+      findings: [
+        ...structural.findings,
+        finding(
+          "registry_json_invalid",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH,
+          "registry JSON is invalid",
+        ),
+      ],
+    };
+  }
+
+  const registryBytesDigest = sha256Digest(registryBytes);
+  const currentParsed = universalImprovementSourceRegistrySchema.safeParse(currentRaw);
+  if (
+    !currentParsed.success ||
+    canonicalJson(currentParsed.data) !== canonicalJson(structural.registry)
+  ) {
+    return {
+      ...structural,
+      ok: false,
+      registry_bytes_digest: registryBytesDigest,
+      findings: [
+        ...structural.findings,
+        finding(
+          "registry_input_mismatch",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH,
+          "analyzed registry input does not match the current repository registry bytes",
+        ),
+      ],
+    };
+  }
+
+  const integrityFile = resolveRepositoryFile(
+    repoRoot,
+    UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_PATH,
+  );
+  if (integrityFile.kind === "missing") {
+    return {
+      ...structural,
+      ok: false,
+      registry_bytes_digest: registryBytesDigest,
+      findings: [
+        ...structural.findings,
+        finding(
+          "registry_integrity_missing",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_PATH,
+          "registry exact-bytes integrity record is missing",
+        ),
+      ],
+    };
+  }
+  if (integrityFile.kind === "unsafe") {
+    return {
+      ...structural,
+      ok: false,
+      registry_bytes_digest: registryBytesDigest,
+      findings: [
+        ...structural.findings,
+        finding(
+          "unsafe_source_path",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_PATH,
+          "registry integrity path resolves outside the repository",
+        ),
+      ],
+    };
+  }
+
+  let integrityRaw: unknown;
+  try {
+    integrityRaw = JSON.parse(readFileSync(integrityFile.path, "utf8")) as unknown;
+  } catch {
+    return {
+      ...structural,
+      ok: false,
+      registry_bytes_digest: registryBytesDigest,
+      findings: [
+        ...structural.findings,
+        finding(
+          "registry_integrity_json_invalid",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_PATH,
+          "registry exact-bytes integrity JSON is invalid",
+        ),
+      ],
+    };
+  }
+  const integrity = universalImprovementSourceRegistryIntegritySchema.safeParse(integrityRaw);
+  if (!integrity.success) {
+    return {
+      ...structural,
+      ok: false,
+      registry_bytes_digest: registryBytesDigest,
+      findings: [
+        ...structural.findings,
+        finding(
+          "registry_integrity_schema_invalid",
+          UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_PATH,
+          integrity.error.issues
+            .map((issue) => `${issue.path.join(".")}:${issue.message}`)
+            .join("; "),
+        ),
+      ],
+    };
+  }
+
+  const findings: UniversalImprovementSourceRegistryFinding[] = [];
+  if (integrity.data.registry_bytes_digest !== registryBytesDigest) {
+    findings.push(
+      finding(
+        "registry_bytes_digest_mismatch",
+        UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH,
+        `expected=${integrity.data.registry_bytes_digest} actual=${registryBytesDigest}`,
+      ),
+    );
+  }
+  for (const entry of structural.registry.entries) {
     checkBoundSource({
       findings,
       repoRoot,
@@ -580,30 +806,22 @@ export function analyzeUniversalImprovementSourceRegistry(
       mismatchCode: "detector_digest_mismatch",
     });
   }
-
-  for (const sourceKind of UNIVERSAL_IMPROVEMENT_SOURCE_KINDS) {
-    if (!sourceKinds.has(sourceKind)) {
-      findings.push(
-        finding(
-          "missing_source_kind",
-          sourceKind,
-          "required source kind has no active registry entry",
-        ),
-      );
-    }
-  }
-
   checkBoundSource({
     findings,
     repoRoot,
-    path: registry.authority.artifact_path,
-    expectedDigest: registry.authority.source_digest,
+    path: structural.registry.authority.artifact_path,
+    expectedDigest: structural.registry.authority.source_digest,
     subject: "registry-authority",
     missingCode: "source_missing",
     mismatchCode: "source_digest_mismatch",
   });
-
-  return { ok: findings.length === 0, registry, findings };
+  return {
+    ok: findings.length === 0,
+    registry: structural.registry,
+    physical_binding_verified: true,
+    registry_bytes_digest: registryBytesDigest,
+    findings,
+  };
 }
 
 export function loadUniversalImprovementSourceRegistry(
@@ -614,6 +832,8 @@ export function loadUniversalImprovementSourceRegistry(
     return {
       ok: false,
       registry: null,
+      physical_binding_verified: false,
+      registry_bytes_digest: null,
       findings: [
         finding(
           "registry_missing",
@@ -627,6 +847,8 @@ export function loadUniversalImprovementSourceRegistry(
     return {
       ok: false,
       registry: null,
+      physical_binding_verified: false,
+      registry_bytes_digest: null,
       findings: [
         finding(
           "unsafe_source_path",
@@ -644,6 +866,8 @@ export function loadUniversalImprovementSourceRegistry(
     return {
       ok: false,
       registry: null,
+      physical_binding_verified: false,
+      registry_bytes_digest: null,
       findings: [
         finding(
           "registry_json_invalid",
@@ -665,9 +889,20 @@ export function admitUniversalImprovementSource(
     entry: null,
     registry_version: registryResult.registry?.registry_version ?? null,
     registry_source_digest: registryResult.registry?.authority.source_digest ?? null,
+    registry_bytes_digest: registryResult.registry_bytes_digest,
   };
-  if (!registryResult.ok || !registryResult.registry) {
-    return { ok: false, ...base, findings: [...registryResult.findings] };
+  if (!registryResult.ok || !registryResult.registry || !registryResult.physical_binding_verified) {
+    const findings = [...registryResult.findings];
+    if (!registryResult.physical_binding_verified) {
+      findings.push(
+        finding(
+          "physical_binding_required",
+          "registry",
+          "source admission requires a repository-bound registry result",
+        ),
+      );
+    }
+    return { ok: false, ...base, findings };
   }
 
   const parsedObservation = universalImprovementSourceObservationSchema.safeParse(observation);
@@ -801,6 +1036,7 @@ export function admitUniversalImprovementSource(
     entry: findings.length === 0 ? entry : null,
     registry_version: registryResult.registry.registry_version,
     registry_source_digest: registryResult.registry.authority.source_digest,
+    registry_bytes_digest: registryResult.registry_bytes_digest,
     findings,
   };
 }

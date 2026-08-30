@@ -3633,7 +3633,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::repositoryFileDigest:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 375,
+      "line": 386,
       "symbol": "repositoryFileDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3644,6 +3644,23 @@
       "variant": "prefixed_sha256",
       "disposition": "explicit_nonmigration",
       "rationale": "src/runtime/universal-improvement-source-registry.ts repositoryFileDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
+      "hit_id": "src/runtime/universal-improvement-source-registry.ts::registryBytesDigest:sha256Digest()::1",
+      "path": "src/runtime/universal-improvement-source-registry.ts",
+      "line": 686,
+      "symbol": "registryBytesDigest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/runtime/universal-improvement-source-registry.ts registryBytesDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
       "expected_test": "tests/digest.test.ts",
       "citation": "U-DIGEST-005"
     },
