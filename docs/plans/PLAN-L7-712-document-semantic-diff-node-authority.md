@@ -4,11 +4,26 @@ title: "PLAN-L7-712: document semantic diffをNode transactional authorityへ収
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-08-31
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: 01a05061-f4c3-7b50-8fc4-b148dbd5375a
+    reviewed_head_sha: 49456bb115a2c9f3ab5b36186bc5dcbb0e849625
+    reviewed_at: "2026-08-31T00:49:00+09:00"
+    tests_green_at: "2026-08-31T00:49:00+09:00"
+    verdict: approve
+    scope: "PR #1261 pre-confirm review。L6/L8/PLAN recognition disposition、Node再検証、artifact write単一境界、Git/GitHub write authority非移譲、Issue/PLAN identityを反例再検証しBLOCKER 0。receipt sealは行っていない。"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run --project fast tests/document-semantic-diff.test.ts tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:49:00+09:00", evidence_path: tests/document-semantic-diff.test.ts, output_digest: "sha256:078e641c164a1e6df1112caa300c9e43f1ee46a8acccc5223b83972952fc8df7" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:49:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011" }
+      - { kind: lint, command: "npx biome check src/lint/l12-hybrid-reviewed-safe-v2.ts tests/document-semantic-diff.test.ts tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:49:00+09:00", evidence_path: biome.json, output_digest: "sha256:9ed169dcae7c90190a86bffc63b6ab95070c5cb26d5c10fbfccc54d35c802248" }
 owner: Codex / TL
 github_issue_id: 1260
 behavior_contract_id: DOCUMENT-SEMANTIC-DIFF-RUNTIME-AUTHORITY-001

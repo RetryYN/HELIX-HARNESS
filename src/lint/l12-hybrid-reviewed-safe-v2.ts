@@ -219,7 +219,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // Issue #1260 の移行PLAN。retired combined runtime labelは旧L6 authorityを観測して拒否する
     // migration evidenceであり、current runtime authorityへの再採用ではない。
     path: "docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md",
-    contentDigest: "6508e94f408e9e1794dd611bf2da1f532e56516ab69b8666601870c3e3c99acb",
+    contentDigest: "02e2cf065daa1575ccdc1ff31f2cc2945e4cb365a9d83a769a60d1584eed9f11",
     finalDisposition: "false_positive",
   },
   {
