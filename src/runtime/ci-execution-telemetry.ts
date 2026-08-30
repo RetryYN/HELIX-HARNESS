@@ -297,12 +297,13 @@ function isIdentifier(value: unknown): value is string {
   return typeof value === "string" && IDENTIFIER_PATTERN.test(value);
 }
 
-function addUnknownKeys(
-  value: UnknownRecord,
-  allowed: readonly string[],
-  path: string,
-  errors: string[],
-): void {
+function addUnknownKeys(input: {
+  value: UnknownRecord;
+  allowed: readonly string[];
+  path: string;
+  errors: string[];
+}): void {
+  const { value, allowed, path, errors } = input;
   const allowedSet = new Set(allowed);
   for (const key of Object.keys(value)) {
     if (!allowedSet.has(key)) errors.push(`unknown_field:${path}.${key}`);
@@ -379,18 +380,19 @@ function evidenceDigest(value: UnknownRecord): Sha256Digest {
   );
 }
 
-function validateNestedShape(
-  event: UnknownRecord,
-  key: "runner" | "timing" | "resource" | "cache" | "outcome",
-  allowed: readonly string[],
-  errors: string[],
-): UnknownRecord | null {
+function validateNestedShape(input: {
+  event: UnknownRecord;
+  key: "runner" | "timing" | "resource" | "cache" | "outcome";
+  allowed: readonly string[];
+  errors: string[];
+}): UnknownRecord | null {
+  const { event, key, allowed, errors } = input;
   const value = event[key];
   if (!isRecord(value)) {
     errors.push(`${key}_invalid`);
     return null;
   }
-  addUnknownKeys(value, allowed, key, errors);
+  addUnknownKeys({ value, allowed, path: key, errors });
   return value;
 }
 
@@ -400,7 +402,7 @@ export function validateCiExecutionTelemetryEvent(
   const errors: string[] = [];
   if (!isRecord(event)) return { ok: false, errors: ["event_invalid"] };
 
-  addUnknownKeys(event, EVENT_KEYS, "event", errors);
+  addUnknownKeys({ value: event, allowed: EVENT_KEYS, path: "event", errors });
   collectForbiddenKeys(event, "event", errors);
 
   if (event.schema_version !== CI_EXECUTION_TELEMETRY_SCHEMA_VERSION) {
@@ -444,7 +446,7 @@ export function validateCiExecutionTelemetryEvent(
   }
   if (!Number.isSafeInteger(event.attempt) || event.attempt < 1) errors.push("attempt_invalid");
 
-  const runner = validateNestedShape(event, "runner", RUNNER_KEYS, errors);
+  const runner = validateNestedShape({ event, key: "runner", allowed: RUNNER_KEYS, errors });
   if (runner) {
     if (!RUNNER_OSES.has(runner.os as CiTelemetryRunnerOs)) errors.push("runner_os_invalid");
     if (!ARCHITECTURES.has(runner.architecture as CiTelemetryArchitecture)) {
@@ -460,7 +462,7 @@ export function validateCiExecutionTelemetryEvent(
     if (!isDigest(runner.environment_digest)) errors.push("runner_environment_digest_invalid");
   }
 
-  const timing = validateNestedShape(event, "timing", TIMING_KEYS, errors);
+  const timing = validateNestedShape({ event, key: "timing", allowed: TIMING_KEYS, errors });
   const timestamps = timing
     ? (["queued_at", "started_at", "completed_at"] as const).map((key) =>
         parseTimestamp(timing[key]),
@@ -498,7 +500,7 @@ export function validateCiExecutionTelemetryEvent(
     }
   }
 
-  const resource = validateNestedShape(event, "resource", RESOURCE_KEYS, errors);
+  const resource = validateNestedShape({ event, key: "resource", allowed: RESOURCE_KEYS, errors });
   if (resource) {
     if (!CPU_CLASSES.has(resource.cpu_class as CiTelemetryCpuClass))
       errors.push("resource_cpu_class_invalid");
@@ -507,7 +509,7 @@ export function validateCiExecutionTelemetryEvent(
     }
   }
 
-  const cache = validateNestedShape(event, "cache", CACHE_KEYS, errors);
+  const cache = validateNestedShape({ event, key: "cache", allowed: CACHE_KEYS, errors });
   if (cache) {
     if (!CACHE_CLASSES.has(cache.class as CiTelemetryCacheClass))
       errors.push("cache_class_invalid");
@@ -515,7 +517,7 @@ export function validateCiExecutionTelemetryEvent(
     if (cache.class === "cold" && cache.hit === true) errors.push("cold_cache_hit_invalid");
   }
 
-  const outcome = validateNestedShape(event, "outcome", OUTCOME_KEYS, errors);
+  const outcome = validateNestedShape({ event, key: "outcome", allowed: OUTCOME_KEYS, errors });
   if (outcome) {
     if (!STATUSES.has(outcome.status as CiTelemetryStatus)) errors.push("outcome_status_invalid");
     if (
@@ -568,7 +570,12 @@ export function validateCiExecutionTelemetryEvent(
     if (!isRecord(event.artifact)) {
       errors.push("artifact_invalid");
     } else {
-      addUnknownKeys(event.artifact, ARTIFACT_KEYS, "artifact", errors);
+      addUnknownKeys({
+        value: event.artifact,
+        allowed: ARTIFACT_KEYS,
+        path: "artifact",
+        errors,
+      });
       if (event.artifact.direction !== "upload" && event.artifact.direction !== "download") {
         errors.push("artifact_direction_invalid");
       }

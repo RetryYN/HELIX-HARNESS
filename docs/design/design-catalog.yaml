@@ -284,6 +284,7 @@ items:
       - docs/design/helix/L6-function-design/requirement-generated-view-projection.md
       - docs/design/helix/L6-function-design/requirement-json-authority-cutover.md
       - docs/design/helix/L6-function-design/impact-ci-recovery.md
+      - docs/design/helix/L6-function-design/ci-execution-telemetry.md
       - docs/design/helix/L6-function-design/design-template-json-authority.md
       - docs/design/helix/L5-detail/layer-ledger-pair-gate.md
       - docs/design/helix/L6-function-design/layer-ledger-pair-gate.md

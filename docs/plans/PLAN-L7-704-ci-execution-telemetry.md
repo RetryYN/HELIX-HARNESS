@@ -56,11 +56,12 @@ verification_bindings:
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-30T10:58:18+09:00"
-    tests_green_at: "2026-08-30T10:58:18+09:00"
-    verdict: approve_after_fixes
+    reviewed_at: "2026-08-30T01:58:18Z"
+    tests_green_at: "2026-08-30T01:58:18Z"
+    verdict: approve
     worker_model: codex
     reviewer_model: codex-intra-runtime
+    reviewer_session_id: "01a05061-f4c3-7b50-8fc4-b148dbd5375a"
     scope: "exact HEAD 291f76a6e。artifact field欠落拒否、lockfile edge、cache/resource batch・series分離、failure 0件ratio=nullを確認し、既知blocker解消・新規blocker 0。"
     green_commands:
       - kind: unit_test
@@ -68,9 +69,18 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-30T10:58:18+09:00"
+        completed_at: "2026-08-30T01:58:18Z"
         evidence_path: tests/ci-execution-telemetry.test.ts
         output_digest: "sha256:090f985a6b41f866755e6495335538fd59e70c8125cd835782a664e5a88bfb54"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-30T01:58:18Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-30T01:58:18Z"
+    evidence_digest: "sha256:b08dafb2de1e5e979670fba718455cda514086a275253246f3aa18af9de9b641"
+  entries: []
 agent_slots:
   - { role: se, slot_label: "SE — typed event、canonical digest、既存Impact CIとの責務境界" }
   - { role: qa, slot_label: "QA — time／runner／secret／DAG／percentile反例" }
@@ -96,6 +106,7 @@ references:
   - issue:1208
   - issue:1002
   - issue:1084
+  - docs/plans/PLAN-REVERSE-705-ci-execution-telemetry.md
 ---
 
 # CI execution telemetryと証明責務baseline
