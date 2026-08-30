@@ -81,6 +81,7 @@ modifies:
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/document-semantic-diff.test.ts, artifact_type: test_code }
   - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — document semantic diff runtime authority境界" }
