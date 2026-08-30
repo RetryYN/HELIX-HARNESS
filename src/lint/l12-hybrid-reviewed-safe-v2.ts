@@ -216,7 +216,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // Issue #1260 の移行PLAN。TypeScript/Bun は旧L6 authorityを観測して拒否する
+    // Issue #1260 の移行PLAN。retired combined runtime labelは旧L6 authorityを観測して拒否する
     // migration evidenceであり、current runtime authorityへの再採用ではない。
     path: "docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md",
     contentDigest: "cd36f49f811c8fdd0705a25f6437db31b3df1aee315b3f1ecceb5221fde05283",
