@@ -54,7 +54,7 @@ green_at: "2026-08-30T23:44:48+09:00"
 tdd_red_evidence: "tests/layer-ledger-canonical-authority.test.tsで旧L0-L14 failure identityとcanonical authority欠落を2 failedとして検出"
 tdd_green_evidence: "2026-08-30T23:44:48+09:00にnpx vitest run --project fast tests/layer-ledger-canonical-authority.test.tsを実行し、3 tests greenを確認"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-LLPG-053..055が5 artifact各々のcanonical 6 pair exact set欠落・旧pair identity混入、L0 pair化、legacy相殺文言欠落、case/receipt digest改変を判別する"
+mutation_oracle_evidence: "tests/layer-ledger-canonical-authority.test.ts のU-LLPG-053..055は5 artifact各々からcanonical 6 pair exact setを欠落させる、旧pair identityを混入する、L0をpair化する、legacy相殺禁止文言を欠落させる、case/receipt digestを改変する各seeded defectでfailし、mutationをkillする"
 complexity_effect: net_negative
 complexity_justification: "current判定から旧4 failure identityを除去し、canonical 6 pairとL0 anchor projectionへ一本化する"
 removal_trigger: "layer ledger設計が実装済みruntime authorityへ置換され、同oracleがruntime testへ移管された時"
@@ -77,6 +77,7 @@ generates:
   - { artifact_path: tests/layer-ledger-canonical-authority.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L5-detail/layer-ledger-pair-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md, artifact_type: test_design }
