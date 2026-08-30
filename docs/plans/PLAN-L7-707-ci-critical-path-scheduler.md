@@ -4,10 +4,10 @@ title: "PLAN-L7-707: required obligationを保存するCI critical-path schedule
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-08-31
 owner: Codex / TL
 github_issue_id: 1207
 behavior_contract_id: CI-CRITICAL-PATH-SCHEDULER-001
