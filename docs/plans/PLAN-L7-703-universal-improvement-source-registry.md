@@ -1,0 +1,199 @@
+---
+plan_id: PLAN-L7-703-universal-improvement-source-registry
+title: "PLAN-L7-703 (add-impl): Universal Improvement source registryをauthority admissionへ接続する"
+kind: add-impl
+layer: L7
+drive: agent
+status: confirmed
+backfill_state: pending_reverse
+completion_claim_allowed: false
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  target_axis: workflow_model
+  target_id: ADD_FEATURE
+entry_signals:
+  - "po_directive:Issue #1231 Universal Improvement Loopの観測source registryとauthority admissionを実装する"
+created: 2026-08-30
+updated: 2026-08-30
+owner: Codex / TL
+github_issue_id: 1231
+behavior_contract_id: UNIVERSAL-IMPROVEMENT-SOURCE-REGISTRY-001
+responsibility_owner: universal-improvement-source-registry
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+backprop_decision: not_required
+backprop_decision_reason: "UIL-01はconfirmed済みのUniversal Improvement Loop要求へ新しい観測sourceの入口を実装するsliceであり、既存sourceの意味authorityを変更しない。"
+no_code_decision: add_code
+ddd_modeling_decision: aggregate
+contract_preconditions: "PLAN-L3-74、Universal Improvement Loop L3/L10要求、既存detectorとread-only doctorが利用可能である"
+contract_postconditions: "10種類の観測sourceがrequirements-owned registry、registry exact-bytes integrity、実体digest、detector identity、evidence contractへ束縛され、doctorとruntime admissionが同じ結果を返す"
+contract_invariants: "registryはread-only、registry bytesはintegrity recordへexactに束縛、AIはproposal-only、unknown／duplicate／digest drift／unsafe path／不正observationはfail-close、候補生成やauthority writeを実行しない"
+contract_failures: "required source kind欠落、registry integrity欠落・破損・bytes digest不一致、source／detector不在またはdigest不一致、schema／detector／source revision不一致、必須evidence欠落、sensitive field、invalid／future digest／timestampをgreenへ縮退しない"
+tdd_red_required: true
+red_test: "U-UILSRC-001..010でsource kind欠落、duplicate、source lifecycle metadata欠落、registry bytes integrity、digest drift、unsafe path、observation identity、strict timestamp、sensitive field、doctor未配線、未bound admissionを個別に検出する"
+red_at: 2026-08-30T10:19:52+09:00
+green_at: 2026-08-30T10:40:45+09:00
+mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にsource kind重複、digest drift、unsafe path、malformed observationを検証した。10:19:52+09:00にtests/universal-improvement-source-registry.test.tsのwrong source_revision mutationがredになることを実測してexact照合を追加した。current sliceでは独立内部レビューが、realpath-only物理検証と公開booleanによるproof偽装をblockerとして検出したため、共通physical-filesystem-identityとmodule-private proof digestへ置換した。10:40:45+09:00にU-UILSRC-011を含むtargeted 2 files／12 tests、typecheck、Biome、PLAN lintがgreen。"
+complexity_effect: justified_positive
+complexity_justification: "既存10 detectorを再実装せず、requirements-owned source registryと共通read-only admissionを一つのaggregateとして追加する。"
+removal_trigger: "Universal Improvement Loopのsource／detector／evidence tupleが既存System Synthesis registryへ完全吸収され、UIL source registryの独立consumerがなくなった時"
+parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md
+pair_artifact: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md
+dependencies:
+  parent: docs/plans/PLAN-L3-74-universal-improvement-loop.md
+  requires:
+    - docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md
+  blocks:
+    - issue:1232
+  references:
+    - "issue:1210"
+    - "issue:1231"
+    - "issue:1035"
+    - "issue:1036"
+    - "issue:1174"
+    - "issue:1204"
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-30T01:58:18Z"
+    tests_green_at: "2026-08-30T01:58:18Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: 01a05061-f2fc-7073-b0e2-f6693b71cb25
+    scope: "exact HEAD fb05dd521。source revision exact照合、共通physical identityのTOCTOU再検証、deep-freeze済みplain resultとmodule-private proofを確認し、既知blocker解消・新規blocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec -- vitest run tests/universal-improvement-source-registry.test.ts tests/universal-improvement-source-registry-doctor.test.ts && npm run typecheck && npm exec -- biome check src/runtime/universal-improvement-source-registry.ts tests/universal-improvement-source-registry.test.ts && npm exec -- tsx src/cli.ts plan lint docs/plans/PLAN-L7-703-universal-improvement-source-registry.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-30T01:58:18Z"
+        evidence_path: tests/universal-improvement-source-registry.test.ts
+        output_digest: "sha256:2f345d2b89849deb9f8e539716dfad58c85e141ee0287a41970ba373cbb527bc"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-30T01:58:18Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-30T01:58:18Z"
+    evidence_digest: "sha256:9e9c67f4e801967e3b550086a003cb1d2d02f037882d1bc7a0ae61a9fd1f37c8"
+  entries: []
+agent_slots:
+  - { role: se, slot_label: "SE — requirements-owned registry、実体digest、detector tuple" }
+  - { role: qa, slot_label: "QA — duplicate／missing／unsafe path／observation mutation" }
+  - { role: tl, slot_label: "TL — read-only admissionと既存detector責務境界" }
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-001, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-002, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-003, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-004, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-005, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-006, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-007, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-008, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-009, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-010, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-011, test_path: tests/universal-improvement-source-registry.test.ts }
+generates:
+  - { artifact_path: docs/plans/PLAN-L7-703-universal-improvement-source-registry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: json_config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: json_config }
+  - { artifact_path: src/runtime/universal-improvement-source-registry.ts, artifact_type: source_module }
+  - { artifact_path: src/doctor/universal-improvement-source-registry-check.ts, artifact_type: source_module }
+  - { artifact_path: tests/universal-improvement-source-registry.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/universal-improvement-source-registry-doctor.test.ts, artifact_type: test_code }
+modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+---
+
+# PLAN-L7-703: Universal Improvement source registryのauthority admission実装
+
+## 目的
+
+Universal Improvement Loopの観測sourceを任意のログやAI出力から切り離し、requirements-ownedのversioned registryへ
+登録する。各sourceの入力authority、detector実体、schema、freshness、evidence identityを一つのtyped tupleとして
+admitし、後続の観測正規化・finding適格化・候補合成へ安全に渡せる入口を作る。
+
+## 実装範囲
+
+1. 10種類の初期source（CI、DB、requirements、definition、dependency、review、operations、provider、
+   distribution、resource/security）をregistryへ登録し、revision、retention、redaction、failure dispositionを
+   sourceごとに宣言する。
+2. source／detectorのrepository-relative path、実体digest、重複ID、required kindを検証する。
+3. observationのsource、schema、detector、revision、timestamp、payload／evidence digestをread-onlyで検証する。
+4. helix doctorへ同じloader／analyzerを接続し、registry不在、JSON破損、digest driftをfail-closeする。
+5. candidate生成、Issue／PLAN／DB書込み、detectorの再実装、後続UIL-02以降を本sliceへ混載しない。
+
+## §3 工程表
+
+### Step 1: requirements authorityとsource lifecycle metadataのschemaを固定 [直列]
+
+UIL-R-01のsource_id、source_kind、revision、retention、redaction、freshness、failure dispositionと、
+evidence contractのrequired／identity／digest fieldをrequirementsへ束縛する。後続のregistry entryはこの境界に
+依存するため `downstream_dependency` とする。
+
+### Step 2: registry entryとread-only admissionを実装し、red oracleをgreenへ戻す [直列]
+
+10 source kindのexactly-one、registry bytes digest、実体digest、repository path、source lifecycle metadata、
+observation identityとfreshnessを一つのanalyzerで検査する。runtimeとdoctorが同じ判定を使うため `shared_state`
+とする。構造検査の結果だけをadmissionへ渡すことは許可しない。
+
+### Step 3: doctorへのhard配線とmutation oracleを確定する [直列]
+
+registry欠落、integrity欠落・JSON破損・bytes drift、source／detector drift、duplicate kind、contract欠落、unsafe
+pathをwarningへ縮退させずfail-closeする。doctorのstate／ok／message接続は実装確定後にのみ検証できるため
+`shared_state` とする。
+
+### Step 4: targeted／typecheck／format／全回帰を同一HEADで実測する [直列]
+
+U-UILSRC／IT-UILSRCのtargeted test、typecheck、Biome、PLAN lint、DB／doctorを実行し、output digest付きで記録する。
+検証対象が同一HEADへ収束した後にだけ意味を持つため `shared_state` とする。
+
+### Step 5: 独立review、current HEAD CI、main read-afterで次sliceを解放する [直列]
+
+Claude exact-HEAD review、必要なruntime内subagent review、CI、DB replay、Reverse fullbackを順に確認する。reviewと
+main着地後の判定は候補HEADを共有するため `shared_state` とする。
+
+## §3.1 実装計画
+
+- **source registry runtime**（情報源: Universal Improvement Loop L3要件 UIL-R-01、L6設計）: schema、requirements
+  authority、registry exact-bytes integrity、10 source kind、source lifecycle metadata、observation admissionを実装する。
+- **source registry doctor**（情報源: source registry runtimeのanalyzer、既存doctor contract）: loaderと同じ判定を
+  hard gateとして接続し、registry欠落・integrity欠落・破損・bytes drift・source drift・unsafe pathをfail-closeする。
+- **unit／doctor test**（情報源: L8テスト設計）: duplicate、欠落、contract退化、registry bytes integrity、digest、
+  identity、freshness、構造結果のadmission流用、doctor wiringの反例をmutation oracleとして固定する。
+- **完了境界**: 本PLANは観測sourceのadmissionまでとし、normalization、finding、candidate、counterfactual、route、
+  Issue／PLAN／Requirement書込みはUIL-02以降へ残す。
+
+## 検証順
+
+| Step | 作業 | 完了条件 |
+|---|---|---|
+| 1 | registry schemaとrequirements authorityを固定 | 10 source kindとID／digest tuple、source lifecycle metadataが一意になる |
+| 2 | runtime loader／analyzer／observation admissionを実装 | unknown、duplicate、drift、invalid evidenceが個別にredになる |
+| 3 | doctorへ接続 | current registryがgreen、欠落／破損がredになる |
+| 4 | targeted test、typecheck、Biome、PLAN lint | U-UILSRC／IT-UILSRC oracleがgreenになる |
+| 5 | full CI、Claude exact-HEAD review、main read-after | current HEADの証拠でのみ次のUIL sliceを解放する |
+
+## 非対象
+
+- UIL-02以降の観測正規化、finding、candidate、counterfactual、route、recipe、E2E
+- 既存detectorの内部挙動変更または重複実装
+- source registryからの自動Issue／PLAN／Requirement変更
+- AI provider、resident lane、Notification Fabric、#1037 whole-system plannerは非対象とする
+- GitHubへの書込み、publish、tag、cutover
