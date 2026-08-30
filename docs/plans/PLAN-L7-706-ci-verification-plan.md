@@ -4,10 +4,25 @@ title: "PLAN-L7-706: CI Verification Planの決定的合成"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-30
 updated: 2026-08-31
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: 01a05061-f4c3-7b50-8fc4-b148dbd5375a
+    reviewed_head_sha: 0eb5707fbe112cc6188bb0a492977106eaf06e5e
+    reviewed_at: "2026-08-31T00:20:53+09:00"
+    tests_green_at: "2026-08-31T00:20:53+09:00"
+    verdict: approve
+    scope: "PR #1240 pre-confirm review。4巡の反例監査でexact HEAD、unknown risk、deferred receipt、required obligation削除・重複を検証し、最終HEADでBLOCKER 0。receipt sealは行っていない。"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run --project fast tests/ci-verification-plan.test.ts tests/ci-responsibility-registry.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:20:53+09:00", evidence_path: tests/ci-verification-plan.test.ts, output_digest: "sha256:ef18c6503965fcb1be5d766e54d68a619409103eec3a20ab02a257fa1a250c8e" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:20:53+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011" }
+      - { kind: lint, command: "npx biome check src/runtime/ci-verification-plan.ts tests/ci-verification-plan.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:20:53+09:00", evidence_path: biome.json, output_digest: "sha256:4c483b1ac160082a6c6a917381e82511d512ec00b152656ec5727c87673e260e" }
 owner: Codex / TL
 github_issue_id: 1206
 behavior_contract_id: CI-VERIFICATION-PLAN-001
