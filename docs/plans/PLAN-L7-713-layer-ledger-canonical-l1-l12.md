@@ -76,6 +76,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md, artifact_type: markdown_doc }
   - { artifact_path: tests/layer-ledger-canonical-authority.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/layer-ledger-pair-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md, artifact_type: test_design }
@@ -86,6 +87,7 @@ modifies:
   - { artifact_path: tests/canonical-reuse-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/tools/regenerate-layer-ledger-progress-fixture.mjs, artifact_type: script }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — canonical layer/pair authority境界" }
   - { role: qa, slot_label: "QA — legacy混入とdigest mutation" }
@@ -93,4 +95,4 @@ agent_slots:
 
 # layer ledger canonical L1-L12収束
 
-Issue #1259のlayer ledger authority consumerだけを変更する。L0-L14 compatibility sourceの削除、runtime実装、release/tag/cutover、他PR責務は含めない。PLANはpre-confirmのためdraftかつcompletion claim falseを維持する。
+Issue #1259のlayer ledger authority consumerだけを変更する。L0-L14 compatibility sourceの削除、runtime実装、release/tag/cutover、他PR責務は含めない。Forward後に旧authority候補から外れたL6／L8文書をrecognition inventoryから除外し、移行PLANをreview対象へ追加した。PLANはconfirmedだがcompletion claim falseを維持する。
