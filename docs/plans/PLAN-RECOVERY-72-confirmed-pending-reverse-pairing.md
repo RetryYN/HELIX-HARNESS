@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L7-715-confirmed-pending-reverse-pairing
-title: "PLAN-L7-715: confirmed pending Reverseのpair identityをdependency readinessから分離する"
-kind: impl
-layer: L7
+plan_id: PLAN-RECOVERY-72-confirmed-pending-reverse-pairing
+title: "PLAN-RECOVERY-72: confirmed pending Reverseのpair identityをdependency readinessから分離する"
+kind: recovery
+layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: false
@@ -59,7 +59,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-BACKFILL-009, test_path: tests/backfill-pairing.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-BACKFILL-010, test_path: tests/backfill-pairing.test.ts }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-715-confirmed-pending-reverse-pairing.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-72-confirmed-pending-reverse-pairing.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-test-design.md, artifact_type: test_design }
