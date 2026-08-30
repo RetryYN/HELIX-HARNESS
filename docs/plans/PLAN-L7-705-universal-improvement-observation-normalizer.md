@@ -101,7 +101,8 @@ dependencies:
   parent: docs/plans/PLAN-L3-74-universal-improvement-loop.md
   requires:
     - docs/plans/PLAN-L7-703-universal-improvement-source-registry.md
-  blocks: []
+  blocks:
+    - issue:1246
 references:
   - issue:1210
   - issue:1231

@@ -41,5 +41,5 @@ counterevidenceはdigest exact setとしてbytewise sortする。
 
 ## 4. 後続接続
 
-normalized eventは#1211のfinding適格化へread-onlyで渡す。baseline比較のmetric意味判定、dedupe／expiry、semantic impact、
+normalized eventは#1246のfinding適格化へread-onlyで渡す。baseline比較のmetric意味判定、dedupe／expiry、semantic impact、
 counterfactual、route、authority writeは後続sliceへ残す。
