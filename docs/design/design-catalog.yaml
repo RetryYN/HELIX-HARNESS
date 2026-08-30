@@ -205,6 +205,7 @@ items:
       - docs/design/helix/L6-function-design/lite-canary-ci-parallelization.md
       - docs/design/helix/L6-function-design/windows-lite-canary-admission.md
       - docs/design/helix/L6-function-design/universal-improvement-source-registry.md
+      - docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
