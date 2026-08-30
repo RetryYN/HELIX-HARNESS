@@ -4,7 +4,7 @@ title: "PLAN-L7-710: open branch PLAN identity reservation"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 created: 2026-08-30
@@ -57,6 +57,43 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-006, test_path: tests/open-branch-plan-identity-reservation.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-007, test_path: tests/open-branch-plan-identity-reservation.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, oracle_id: U-OBPIR-008, test_path: tests/open-branch-plan-identity-reservation.test.ts }
+review_evidence:
+  - reviewer: codex-hosted-tl
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-30T13:07:10Z"
+    tests_green_at: "2026-08-30T13:07:10Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex:gpt-5
+    reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
+    scope: >-
+      exact HEAD d5b81236cb9d2998630d216c3e414cf10c65202b の source/test/L6/L8/PLAN を
+      静的レビューし、identity、lifecycle、current main、stack inheritance、
+      conflict precedence、projection digest、provider/branch 非 authority と
+      Issue #1256 境界を確認した。blocker は 0 件。
+    green_commands:
+      - kind: unit_test
+        command: >-
+          npm exec -- vitest run tests/open-branch-plan-identity-reservation.test.ts
+          tests/plan-number-uniqueness.test.ts && npm run typecheck && npm exec -- biome
+          check src/lint/open-branch-plan-identity-reservation.ts
+          tests/open-branch-plan-identity-reservation.test.ts && npm exec -- tsx src/cli.ts
+          plan lint docs/plans/PLAN-L7-710-open-branch-plan-identity-reservation.md
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-30T13:07:10Z"
+        evidence_path: tests/open-branch-plan-identity-reservation.test.ts
+        output_digest: "sha256:c730a7806e71d2057262669ca5b1b0ae525a38032281f6a0faea37ef61e2231b"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-30T13:07:10Z"
+  review_binding:
+    reviewer: codex-hosted-tl
+    reviewed_at: "2026-08-30T13:07:10Z"
+    evidence_digest: "sha256:f86610552bd5a04e1efee03232dc5859df07f8d610be9ad18a7fc3e64c0ec4e4"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-710-open-branch-plan-identity-reservation.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/harness/L6-function-design/open-branch-plan-identity-reservation.md, artifact_type: design_doc }
