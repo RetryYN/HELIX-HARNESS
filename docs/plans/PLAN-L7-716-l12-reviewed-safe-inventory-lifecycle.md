@@ -40,7 +40,7 @@ green_at: "2026-08-31T04:58:12+09:00"
 tdd_red_evidence: "U-L12INV-001がPLAN-L7-712のreviewed_safe_member_still_authority_reviewを検出し1 failed / 1 passed"
 tdd_green_evidence: "PLANを§7からretireし表示件数を65→64へ収束し、doctor全体okをnamed check stateへ束縛後、U-L12INV-001/002/003の3 tests green、typecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-L12INV-002でPLAN再挿入、section件数drift、L8 reviewed-safe欠落をtyped findingでkillし、U-L12INV-003でdoctor check state・全体ok・message配線の欠落をkillする"
+mutation_oracle_evidence: "U-L12INV-002でPLAN再挿入、section件数drift、L8 reviewed-safe欠落をtyped findingでkillし、U-L12INV-003でfalse check stateの集約挙動とdoctor check state・全体ok・message配線の欠落をkillする。隣接行・空白へは依存しない"
 complexity_effect: net_negative
 complexity_justification: "手作業の3面同期を1つのfamily契約とdoctor gateへ集約する"
 removal_trigger: "inventoryがreviewed-safe registryから完全生成され、同じ不変条件をgeneratorが強制した時"

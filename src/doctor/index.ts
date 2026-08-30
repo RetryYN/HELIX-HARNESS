@@ -7168,6 +7168,13 @@ export function checkG10UxWorkflow(repoRoot: string): {
   }
 }
 
+export function aggregateDoctorCheckStates(
+  states: ReadonlyArray<readonly [name: string, ok: boolean]>,
+): { allOk: boolean; failingChecks: string[] } {
+  const failingChecks = states.filter(([, ok]) => !ok).map(([name]) => name);
+  return { allOk: failingChecks.length === 0, failingChecks };
+}
+
 function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
   const nfrRegistry = checkNfrRegistry(deps.repoRoot);
@@ -7504,8 +7511,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["semanticFrontierConsistency", semanticFrontierConsistency.ok],
     ["forwardConvergenceAudit", forwardConvergenceAudit.ok],
   ];
-  const doctorFailingChecks = doctorCheckStates.filter(([, ok]) => !ok).map(([name]) => name);
-  const doctorAllChecksOk = doctorFailingChecks.length === 0;
+  const { allOk: doctorAllChecksOk, failingChecks: doctorFailingChecks } =
+    aggregateDoctorCheckStates(doctorCheckStates);
   return {
     ok:
       doctorAllChecksOk &&

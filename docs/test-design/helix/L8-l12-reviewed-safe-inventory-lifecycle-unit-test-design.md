@@ -23,9 +23,10 @@ authority-review一覧から全てretireされ、doctor checkがgreenになる�
 
 ### U-L12INV-003 doctor集約配線の固定
 
-inventory lifecycle checkがdoctorのcheck state、全体`ok`、違反messageへ全て接続されていることを
-source wiring oracleで固定する。check stateまたは従来のboolean chainの片側だけを削除しても、
-`doctorAllChecksOk`との二重束縛により違反を合格へ変換できないことを確認する。
+inventory lifecycle checkがdoctorのcheck state、全体`ok`、違反messageへ全て接続されていることを固定する。
+集約helperへfalse stateを入力して全体失敗へ変換する振る舞いを検査し、実配線は意味token単位で確認する。
+隣接check名、空白、コメント等の無関係なsource layoutへ依存しない。check stateまたは従来のboolean chainの
+片側だけを削除しても、`doctorAllChecksOk`との二重束縛により違反を合格へ変換できないことを確認する。
 
 ## 受入条件
 

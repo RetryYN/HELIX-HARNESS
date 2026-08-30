@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { checkL12HybridInventoryLifecycle } from "../src/doctor/index";
+import { aggregateDoctorCheckStates, checkL12HybridInventoryLifecycle } from "../src/doctor/index";
 import {
   analyzeReviewedSafeInventoryLifecycle,
   REVIEWED_SAFE_ARTIFACT_FAMILIES,
@@ -44,11 +44,19 @@ describe("L12 reviewed-safe inventory lifecycle", () => {
   });
 
   it("U-L12INV-003: inventory lifecycle違反をdoctor全体の失敗へ配線する", () => {
+    expect(
+      aggregateDoctorCheckStates([
+        ["unrelated", true],
+        ["l12HybridInventoryLifecycle", false],
+      ]),
+    ).toEqual({ allOk: false, failingChecks: ["l12HybridInventoryLifecycle"] });
+
     const doctorSource = readFileSync("src/doctor/index.ts", "utf8");
     expect(doctorSource).toContain(
       '["l12HybridInventoryLifecycle", l12HybridInventoryLifecycle.ok]',
     );
-    expect(doctorSource).toContain("doctorAllChecksOk &&\n      nfrRegistry.ok &&");
+    expect(doctorSource).toContain("aggregateDoctorCheckStates(doctorCheckStates)");
+    expect(doctorSource).toContain("doctorAllChecksOk &&");
     expect(doctorSource).toContain("l12HybridInventoryLifecycle.ok &&");
     expect(doctorSource).toContain(
       "...l12HybridInventoryLifecycle.messages.map((m) => `doctor: $" + "{m}`)",
