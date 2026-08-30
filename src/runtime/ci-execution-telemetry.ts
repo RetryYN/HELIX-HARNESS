@@ -848,7 +848,9 @@ function criticalPath(events: readonly CiExecutionTelemetryEventV1[]): {
       const currentKey = nodePath.join("\0");
       if (
         candidateDuration > nodeDuration ||
-        (candidateDuration === nodeDuration && candidateKey < currentKey)
+        (candidateDuration === nodeDuration &&
+          (candidatePath.length > nodePath.length ||
+            (candidatePath.length === nodePath.length && candidateKey < currentKey)))
       ) {
         nodeDuration = candidateDuration;
         nodePath = candidatePath;
@@ -858,7 +860,13 @@ function criticalPath(events: readonly CiExecutionTelemetryEventV1[]): {
     paths.set(nodeId, nodePath);
     const pathKey = nodePath.join("\0");
     const bestKey = bestPath.join("\0");
-    if (nodeDuration > bestDuration || (nodeDuration === bestDuration && pathKey < bestKey)) {
+    if (
+      bestPath.length === 0 ||
+      nodeDuration > bestDuration ||
+      (nodeDuration === bestDuration &&
+        (nodePath.length > bestPath.length ||
+          (nodePath.length === bestPath.length && pathKey < bestKey)))
+    ) {
       bestDuration = nodeDuration;
       bestPath = nodePath;
     }
