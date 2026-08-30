@@ -1,3 +1,16 @@
+---
+title: "L12 reviewed-safe inventory lifecycle 関数設計"
+layer: L6
+kind: function-design
+status: confirmed
+created: 2026-08-31
+updated: 2026-08-31
+owner: Codex / TL
+plan: PLAN-L7-716-l12-reviewed-safe-inventory-lifecycle
+parent_design: docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md
+pair_artifact: docs/test-design/helix/L8-l12-reviewed-safe-inventory-lifecycle-unit-test-design.md
+---
+
 # L12 reviewed-safe inventory lifecycle 関数設計
 
 ## 目的

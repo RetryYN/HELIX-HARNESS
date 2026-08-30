@@ -53,9 +53,9 @@ tdd_red_required: true
 red_at: "2026-08-31T04:55:19+09:00"
 green_at: "2026-08-31T04:58:12+09:00"
 tdd_red_evidence: "U-L12INV-001がPLAN-L7-712のreviewed_safe_member_still_authority_reviewを検出し1 failed / 1 passed"
-tdd_green_evidence: "PLANを§7からretireし表示件数を65→64へ収束し、doctor全体okをnamed check stateへ束縛後、U-L12INV-001/002/003の3 tests green、typecheck green"
+tdd_green_evidence: "PLANを§7からretireし表示件数を65→64へ収束し、doctor全体okをnamed check stateへ束縛後、U-L12INV-001/002/003とcanonical closure U-L12INV-004がgreen、typecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-L12INV-002でPLAN再挿入、section件数drift、L8 reviewed-safe欠落をtyped findingでkillし、U-L12INV-003でfalse check stateの集約挙動とdoctor check state・全体ok・message配線の欠落をkillする。隣接行・空白へは依存しない"
+mutation_oracle_evidence: "tests/l12-hybrid-inventory-lifecycle.test.ts U-L12INV-002でPLAN再挿入、section件数drift、L8 reviewed-safe欠落をtyped findingでkillし、U-L12INV-003でfalse check stateの集約挙動とdoctor check state・全体ok・message配線の欠落をkillする。tests/l12-canonical-authority.test.ts U-L12INV-004でraw candidate件数を維持しつつ明示familyだけを除外し、未登録candidate欠落と一般dispositionの暗黙除外を拒否する。隣接行・空白へは依存しない"
 complexity_effect: net_negative
 complexity_justification: "手作業の3面同期を1つのfamily契約とdoctor gateへ集約する"
 removal_trigger: "inventoryがreviewed-safe registryから完全生成され、同じ不変条件をgeneratorが強制した時"
@@ -73,6 +73,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, oracle_id: U-L12INV-001, test_path: tests/l12-hybrid-inventory-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, oracle_id: U-L12INV-002, test_path: tests/l12-hybrid-inventory-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, oracle_id: U-L12INV-003, test_path: tests/l12-hybrid-inventory-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, oracle_id: U-L12INV-004, test_path: tests/l12-canonical-authority.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L7-716-l12-reviewed-safe-inventory-lifecycle.md, artifact_type: markdown_doc }
@@ -81,8 +82,8 @@ generates:
   - { artifact_path: tests/l12-hybrid-inventory-lifecycle.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — reviewed-safe family lifecycle設計" }
   - { role: qa, slot_label: "QA — 片側更新と件数drift mutation" }

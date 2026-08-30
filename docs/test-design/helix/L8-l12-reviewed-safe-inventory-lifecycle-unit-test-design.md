@@ -1,3 +1,17 @@
+---
+title: "L12 reviewed-safe inventory lifecycle 単体テスト設計"
+layer: L8
+artifact_type: test_design
+sub_doc: unit-test-design
+status: confirmed
+created: 2026-08-31
+updated: 2026-08-31
+owner: Codex / QA
+plan: PLAN-L7-716-l12-reviewed-safe-inventory-lifecycle
+parent_design: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md
+pair_artifact: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md
+---
+
 # L12 reviewed-safe inventory lifecycle 単体テスト設計
 
 ## 対応設計
@@ -28,8 +42,15 @@ inventory lifecycle checkがdoctorのcheck state、全体`ok`、違反messageへ
 隣接check名、空白、コメント等の無関係なsource layoutへ依存しない。check stateまたは従来のboolean chainの
 片側だけを削除しても、`doctorAllChecksOk`との二重束縛により違反を合格へ変換できないことを確認する。
 
+### U-L12INV-004 canonical candidate closureとの接合
+
+旧authority tokenを含むraw candidate集合の件数は維持しつつ、明示したreviewed-safe familyだけを
+authority-review対象から除外する。未登録candidateの欠落を許さず、一般的なreviewed-safe dispositionを
+暗黙に一括除外しない。
+
 ## 受入条件
 
 - 実inventoryがgreen。
 - family memberの片側登録、retire漏れ、件数driftがtyped findingとして検出される。
 - doctorの集約判定へ接続され、単体lintだけのdead gateにならない。
+- canonical candidate closureがraw候補と明示family除外後の対象を別々に固定する。
