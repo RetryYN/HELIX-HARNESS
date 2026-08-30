@@ -60,6 +60,8 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-universal-improvement-observation-normalizer-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/universal-improvement-observation-normalizer.ts, artifact_type: source_module }
   - { artifact_path: tests/universal-improvement-observation-normalizer.test.ts, artifact_type: test_code }
+modifies:
+  - config/digest-canonicalization-inventory.json
 dependencies:
   parent: docs/plans/PLAN-L3-74-universal-improvement-loop.md
   requires:
