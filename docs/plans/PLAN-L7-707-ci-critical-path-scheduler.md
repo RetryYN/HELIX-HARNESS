@@ -14,7 +14,9 @@ behavior_contract_id: CI-CRITICAL-PATH-SCHEDULER-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
 refactor_step: introduce_contract
+engineering_discipline_required: true
 no_code_decision: add_code
+ddd_modeling_decision: domain_service
 legacy_retirement_state: retained
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -29,6 +31,8 @@ contract_postconditions: "required obligation exact setを変えず、runner互�
 contract_invariants: "schedulerはobligationを追加削除せず、配置・並列度・artifact reuseだけを決定し、unknown/stale telemetryでは安全な既定DAGへfallbackする"
 contract_failures: "wrong expected HEAD／platform／lockfile／toolchain artifact、resource conflict、lease/fence欠落、runner/resource/timeout非互換、quota超過を個別fail-closeする"
 tdd_red_required: true
+red_at: "2026-08-30T12:55:50+09:00"
+green_at: "2026-08-30T12:59:45+09:00"
 tdd_red_evidence: "2026-08-30T12:55:50+09:00 tests/ci-critical-path-scheduler.test.ts initial red: ci-critical-path-scheduler module不在"
 tdd_green_evidence: "2026-08-30T12:59:45+09:00 tests/ci-critical-path-scheduler.test.ts 8 tests green、typecheck green"
 mutation_oracle_required: true
@@ -67,6 +71,7 @@ modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/left-arm-carry-log.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md, artifact_type: markdown_doc }

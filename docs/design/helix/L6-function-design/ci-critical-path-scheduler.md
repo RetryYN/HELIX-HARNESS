@@ -1,3 +1,16 @@
+---
+title: "CI Critical-path Scheduler機能設計"
+layer: L6
+kind: function-design
+status: confirmed
+created: 2026-08-30
+updated: 2026-08-31
+owner: Codex / TL
+plan: PLAN-L7-707-ci-critical-path-scheduler
+parent_design: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md
+pair_artifact: docs/test-design/helix/L8-ci-critical-path-scheduler-unit-test-design.md
+---
+
 # CI Critical-path Scheduler L6設計
 
 ## 責務
