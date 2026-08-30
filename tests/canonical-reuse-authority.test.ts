@@ -50,9 +50,7 @@ describe("downstream canonical reuse authority", () => {
       "docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md",
     ]) {
       const result = lintPlanGate({ gate: "governance", path });
-      expect(result.messages.join("\n"), path).not.toContain(
-        "canonical_reuse_blocked_reference",
-      );
+      expect(result.messages.join("\n"), path).not.toContain("canonical_reuse_blocked_reference");
     }
   });
 });

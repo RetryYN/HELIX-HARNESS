@@ -218,7 +218,7 @@ type DesignProgressStageV1 = "artifact_created" | "semantic_closed" | "independe
 type QuartetArtifactKindV1 = "l5_design" | "l8_integration_test_design" | "l6_function_design" | "l7_unit_test_design";
 interface MeasurementProvenanceV1 { source_commit: string; source_tree_digest: string; measurement_command: string; measurement_tool: string; measurement_version: string; measured_at: string; output_digest: string }
 interface SnapshotDigestV1 { snapshot_digest: string; registry_revision: number; registry_digest: string; denominator_digest: string; source_commit: string; source_tree_digest: string; design_digest: string; event_head: string; measured_at: string }
-interface CanonicalOracleInventoryV1 { unit_ids: readonly string[]; unit_count: 475; unit_set_digest: string; integration_ids: readonly string[]; integration_count: 360; integration_set_digest: string; hst_ids: readonly string[]; hst_count: 411; hst_set_digest: string; quartet_count: 835; total_count: 1246; combined_set_digest: string }
+interface CanonicalOracleInventoryV1 { unit_ids: readonly string[]; unit_count: 476; unit_set_digest: string; integration_ids: readonly string[]; integration_count: 360; integration_set_digest: string; hst_ids: readonly string[]; hst_count: 411; hst_set_digest: string; quartet_count: 836; total_count: 1247; combined_set_digest: string }
 interface DenominatorArtifactInventoryV1 { slice_id: DesignSliceIdV1; kind: QuartetArtifactKindV1; path: string; content_digest: string }
 interface ApprovedDenominatorV1 {
   schema_version: "helix-design-progress-denominator.v1";
@@ -335,7 +335,7 @@ interface LayerLedgerExecutableCaseV1 { case_id: `HST-CASE-${string}`; fixture_i
 progress APIはstore current値とrequested値の一致、authority freshness、supersession終端、event head CASを必須とする。
 `calculateFixedDesignProgress`はhintをauthorityとして採用せず、6 evidence storeからcurrent authority、artifact、semantic、audit、freeze、
 implementation evidenceとcurrent snapshotを同じrevision/head vectorで読み直す。fixed exact 19 ID集合、76 artifact path/digest集合、
-canonical U 475/IT 360/HST 411のexact ID list/set digest、registry revision/digest、denominator digest、source commit/tree、design digestのいずれかが
+canonical U 476/IT 360/HST 411のexact ID list/set digest、registry revision/digest、denominator digest、source commit/tree、design digestのいずれかが
 不一致ならprojectionを返さない。各stageの分子はexact slice ID集合であり、重複、registry外ID、後段だけのID、別stage receiptの差し替えを
 拒否する。包含不変条件は`implementation_verified ⊆ pair_frozen ⊆ independent_audited ⊆ semantic_closed ⊆ artifact_created`
 である。ただし各率は独立軸のまま保持し、包含を理由に前段receiptを合成しない。
@@ -345,7 +345,7 @@ bindする。`independent_audited`はauthorとreviewerのruntime-model組が異�
 `pair_frozen`は同一slice ID、quartet digest、固定`SnapshotDigestV1`に対するcurrentなL5↔L8とL6↔L7の2 receiptを要求する。receiptごとに
 snapshot/registry/denominator/source commit/tree/design/event headをexact joinし、別sliceまたは別snapshot receiptの組合せを拒否する。`implementation_verified`はslice配下の
 全canonical U/IT/HSTをcommand、command version、exit 0、output digest、source commit/tree、design digest、artifact/DB evidenceへbindする。
-全19 slice完了時だけcanonical U 475、IT 360、HST 411とのexact集合一致を追加検査する。`U-LLPG-S01`と`IT-LLPG-S01`は
+全19 slice完了時だけcanonical U 476、IT 360、HST 411とのexact集合一致を追加検査する。`U-LLPG-S01`と`IT-LLPG-S01`は
 supporting存在inventoryであり、stage分母、canonical execution分母、完了集合へ混入させない。
 
 registry/denominator、artifact、audit policy/input、freeze receipt、implementation commit/test/command、source tree、design digestの変更は、

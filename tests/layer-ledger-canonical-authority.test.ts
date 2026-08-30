@@ -23,20 +23,12 @@ const canonicalFailures = [
 
 describe("layer ledger canonical L1-L12 authority (PLAN-L7-713)", () => {
   it("U-LLPG-053: current設計・L8・fixtureを正規6 pairへ固定する", () => {
-    const current = [paths.l5, paths.l6, paths.l8, paths.l7, paths.fixture].map(read).join("\n");
-
-    for (const failure of canonicalFailures) {
-      expect(current.match(new RegExp(failure, "g"))?.length ?? 0, failure).toBeGreaterThanOrEqual(
-        5,
-      );
-    }
-    for (const retired of [
-      "HIL_LAYER_VPAIR_L0_L14_MISSING",
-      "HIL_LAYER_VPAIR_L1_L14_MISSING",
-      "HIL_LAYER_VPAIR_L2_L10_MISSING",
-      "HIL_LAYER_VPAIR_L3_L12_MISSING",
-    ]) {
-      expect(current, retired).not.toContain(retired);
+    for (const path of [paths.l5, paths.l6, paths.l8, paths.l7, paths.fixture]) {
+      const current = read(path);
+      const actual = [
+        ...new Set(current.match(/HIL_LAYER_VPAIR_L[0-9]+_L[0-9]+_MISSING/g) ?? []),
+      ].sort();
+      expect(actual, path).toEqual([...canonicalFailures].sort());
     }
   });
 
