@@ -1,6 +1,6 @@
 schema_version: helix-layer-ledger-progress-s01.v2
 fixture_id: llpg-progress-s01-v1
-fixture_revision: 4
+fixture_revision: 5
 digest_contract:
   algorithm_id: helix-llpg-s01-digest.v1
   hash: SHA-256
@@ -167,9 +167,9 @@ digest_contract:
         - digest_contract
         - all_unspecified_fields
 snapshot_binding:
-  source_commit: 596ef1e6fbfd4a2149e9b5a1961ef7b2ca6a7a85
-  source_tree: af85a06497aba23b7d5f741452ee129f554579f7
-  design_snapshot_digest: sha256:1f8a69b7bd9a11790f2c03ff9f80aaca6e58aefe14b0662765ac463a3370bfaf
+  source_commit: b43ff60d53344c7d361834ddb6f2feed4798f137
+  source_tree: 1522d2e399ba351cfd3b5e25dc3d90209cf69ddd
+  design_snapshot_digest: sha256:9aae4248c1c289d7de78b7a70cbff1efdb1e068aacd90e374c69eb3efad9bbac
   digest_algorithm: helix-llpg-s01-digest.v1
 slice_ids:
   - HDS-HIL-01
@@ -412,7 +412,7 @@ artifact_inventory:
     content_digest: sha256:81f1e3945b04fa33aeae11daf77e06b63d7d0e90ce11ea7a16348af2bbd8a479
   - slice_id: HDS-HIL-18
     path: docs/design/helix/L5-detail/layer-ledger-pair-gate.md
-    content_digest: sha256:d0569026c044432980a8fc776cb39c79a41c1ff30b644462ca5354679e661dc7
+    content_digest: sha256:3f53a132d2102ac8bc3fde14d2023e7c2f37c19d1d05fa414b833960837fe70e
   - slice_id: HDS-HIL-18
     path: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md
     content_digest: sha256:2ee6854d21029b35d5856fe580ed794afabb7c556edb2344c9878e795301e615
@@ -423,7 +423,7 @@ artifact_inventory:
     path: docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md
     content_digest: sha256:13d751ed7093be7ff81d077d4464f8061223b4545a8cf985a6d07aae0c69aafd
 artifact_count: 76
-artifact_path_content_set_digest: sha256:10671d807ef1b8a4f6aa84d2af1c942bd05a9a0dde8234d4a81c77577483bdeb
+artifact_path_content_set_digest: sha256:3b1eae0c44eba5f4df0f757b624f4da3f28741cab6f21acda3b09b45e7f07fea
 canonical_unit_ids:
   - U-AGLC-001
   - U-AGLC-002
@@ -1685,15 +1685,15 @@ canonical_total_count: 1247
 canonical_combined_set_digest: sha256:a0fdbe796cf66cacb61e5e9a8ca509f3551c47c0425eae37afbf00eefc1da82d
 supporting_meta_oracle_receipt:
   receipt_id: SMOR-LLPG-S01-V1
-  receipt_digest: sha256:89ee2a60faced61a30e233bc2d15e3ee45864b3d3a98bf091e075150de2be001
+  receipt_digest: sha256:7370205c8c05be035155a856c8d4ac4c5d0b06c96a194c94a32e0bde378dedff
   oracle_ids:
     - U-LLPG-S01
     - IT-LLPG-S01
   status: designed_not_implemented
   canonical_denominator_included: false
-  snapshot_digest: sha256:1f8a69b7bd9a11790f2c03ff9f80aaca6e58aefe14b0662765ac463a3370bfaf
+  snapshot_digest: sha256:9aae4248c1c289d7de78b7a70cbff1efdb1e068aacd90e374c69eb3efad9bbac
 expected_terminal_receipt_id: DPR-LLPG-S01-V1
-expected_terminal_receipt_digest: sha256:853c8225f18578677cb65e4243d721f5bdf4aaa233254f95742a0e880df015c7
+expected_terminal_receipt_digest: sha256:2d3a817ef65d31f11060e040f6ecb0ad842ec80614945851ccd646f0965a217d
 expected_terminal_receipt_digest_algorithm: helix-llpg-s01-digest.v1
 expected_status: designed_not_implemented
 mutations:
