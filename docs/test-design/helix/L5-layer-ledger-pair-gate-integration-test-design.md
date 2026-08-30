@@ -5,7 +5,7 @@ executed_at_layer: L8
 artifact_type: test_design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-08-30
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 related_l3: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -57,13 +57,13 @@ isolated harness.db、固定registry/template/pair/snapshot/oracle fixtureを使
 | `HST-CASE-031-08` | `ledger_ready` | `stale` | `HIL_LAYER_VERTICAL_SNAPSHOT_MISMATCH` | `IT-LLPG-023` | `U-LLPG-023` |
 | `HST-CASE-031-09` | `assertion_input_ready` | `assertion_pass` | `HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | `IT-LLPG-024` | `U-LLPG-024` |
 | `HST-CASE-032-01` | `ledger_ready` | `verified` | `なし（正常系）` | `IT-LLPG-025` | `U-LLPG-025` |
-| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L0_L14_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
-| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L14_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
-| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
-| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L12_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
-| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
-| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
-| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-032` | `U-LLPG-032` |
+| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L12_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
+| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L11_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
+| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
+| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
+| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
+| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
+| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID` | `IT-LLPG-032` | `U-LLPG-032` |
 | `HST-CASE-032-09` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_REVERSE_MISSING` | `IT-LLPG-033` | `U-LLPG-033` |
 | `HST-CASE-032-10` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_ORACLE_MISMATCH` | `IT-LLPG-034` | `U-LLPG-034` |
 | `HST-CASE-032-11` | `paired` | `paired` | `HIL_LAYER_VPAIR_EXECUTION_MISSING` | `IT-LLPG-035` | `U-LLPG-035` |
@@ -91,9 +91,9 @@ isolated harness.db、固定registry/template/pair/snapshot/oracle fixtureを使
 
 | fixture | 操作 | assertion |
 |---|---|---|
-| L0–L14 template、空/TBD/unknown field | extraction | provenance付きatomic row、反例proposal 0 |
+| canonical L1–L12 template、空/TBD/unknown field、compatibility input | extraction | provenance付きatomic row、反例proposal 0。compatibilityはcanonicalへ一方向変換し再出力0 |
 | missing backprop、bypass、旧revision | vertical gate | pair receipt 0、gap/stale exact |
-| canonical 7 V-pair、片edge、oracle/snapshot差、未実行 | horizontal gate | execution済み同一snapshotだけverified |
+| canonical 6 V-pair、L0 anchor projection、旧pairだけgreen、片edge、oracle/snapshot差、未実行 | horizontal gate | 正規6 pairがexecution済み同一snapshotのときだけverified。legacy greenによる相殺0 |
 | externalize/commonize/objectize/renameとbehavior/schema変更 | refactor | behavior不変だけverified、他はRedesign/Retrofit |
 | denominator変更、aggregate親、fake green | progress | approved固定分母不変、5 stageを別率で返す |
 | transaction各insert後faultとretry | commit | partial 0、same digest exactly-once、異digest 0 |
@@ -159,3 +159,7 @@ composition/mutationであり、API ownerまたはcanonical分母へ重複加算
 | `parseLayerLedgerWriteSet` | `U-LLPG-052` | `IT-LLPG-052` |
 
 integration runnerはL6のclosed API/pipeline unionとtyped fixture pathを使用し、未知API、暗黙alias、別pathを実行前に拒否する。
+
+## §4 canonical authority retrofit oracle
+
+`PLAN-L7-713`の`U-LLPG-AUTH-001..003`（`tests/layer-ledger-canonical-authority.test.ts`）をL8 authority projectionとしてbindする。正規6 pair exact set、L0層外anchor、legacy green非相殺、case/receipt digest再計算を同時に満たさない限りgreenにしない。

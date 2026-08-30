@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-08-30
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 related_l3: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -31,6 +31,11 @@ next_pair_freeze: L7
 `commitLedgerRefactorBundle`と`reconcileLedgerRefactorBundle`だけがrefactor/reroute/pair/rollback receiptをNode storeへcommitする。
 
 progressは固定分母revisionとcurrent snapshotへbindし、artifact、semantic closure、audit、pair freeze、implementation verificationの値を混合しない。
+
+layer inputはcurrent canonical L1–L12とcompatibility input-onlyをschemaで分離する。current判定は正規6 pairのexact setを
+要求し、一つでも欠ければ対応する`HIL_LAYER_VPAIR_L*_L*_MISSING`でfail-closeする。L0は層外anchorからL1へのprojectionだけを
+検証し、pair edgeを生成しない。不正projectionは`HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID`とする。legacy pairの成功、
+legacy receipt、旧failure identityはcanonical failureを相殺しない。compatibility inputをcurrent outputへ再出力しない。
 
 ## primary atomic assertion台帳
 
@@ -61,13 +66,13 @@ progressは固定分母revisionとcurrent snapshotへbindし、artifact、semant
 | `HST-CASE-031-08` | `ledger_ready` | `stale` | `HIL_LAYER_VERTICAL_SNAPSHOT_MISMATCH` | `IT-LLPG-023` | `U-LLPG-023` |
 | `HST-CASE-031-09` | `assertion_input_ready` | `assertion_pass` | `HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | `IT-LLPG-024` | `U-LLPG-024` |
 | `HST-CASE-032-01` | `ledger_ready` | `verified` | `なし（正常系）` | `IT-LLPG-025` | `U-LLPG-025` |
-| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L0_L14_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
-| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L14_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
-| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
-| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L12_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
-| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
-| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
-| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-032` | `U-LLPG-032` |
+| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L12_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
+| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L11_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
+| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
+| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
+| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
+| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
+| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID` | `IT-LLPG-032` | `U-LLPG-032` |
 | `HST-CASE-032-09` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_REVERSE_MISSING` | `IT-LLPG-033` | `U-LLPG-033` |
 | `HST-CASE-032-10` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_ORACLE_MISMATCH` | `IT-LLPG-034` | `U-LLPG-034` |
 | `HST-CASE-032-11` | `paired` | `paired` | `HIL_LAYER_VPAIR_EXECUTION_MISSING` | `IT-LLPG-035` | `U-LLPG-035` |
@@ -147,10 +152,10 @@ type LayerGateFailureCodeV1 =
   | "HIL_LAYER_VPAIR_EXECUTION_MISSING"
   | "HIL_LAYER_VPAIR_FORWARD_MISSING"
   | "HIL_LAYER_VPAIR_INCOMPLETE"
-  | "HIL_LAYER_VPAIR_L0_L14_MISSING"
-  | "HIL_LAYER_VPAIR_L1_L14_MISSING"
-  | "HIL_LAYER_VPAIR_L2_L10_MISSING"
-  | "HIL_LAYER_VPAIR_L3_L12_MISSING"
+  | "HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID"
+  | "HIL_LAYER_VPAIR_L1_L12_MISSING"
+  | "HIL_LAYER_VPAIR_L2_L11_MISSING"
+  | "HIL_LAYER_VPAIR_L3_L10_MISSING"
   | "HIL_LAYER_VPAIR_L4_L9_MISSING"
   | "HIL_LAYER_VPAIR_L5_L8_MISSING"
   | "HIL_LAYER_VPAIR_L6_L7_MISSING"
