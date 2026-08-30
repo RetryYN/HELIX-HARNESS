@@ -124,17 +124,15 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L5-detail/pillar-detail-design.md`
 - `docs/design/helix/L5-detail/python-worker-runtime.md`
 - `docs/design/helix/L6-function-design/layer-ledger-pair-gate.md`
-- `docs/design/helix/L6-function-design/document-semantic-diff.md`
 - `docs/design/helix/L6-function-design/orchestration-memory.md`
 - `docs/design/helix/L6-function-design/pillar-function-design.md`
 - `docs/design/helix/L6-function-design/universal-reverse-redesign.md`
 
 `vmodel-canonical-authority-cutover`と`hybrid-rebaseline-v0.5.0-collision`は`safe-current`。L0 charterは層外anchorとして`safe-current`にできるが、旧pairを工程正本として再提示していないことが条件。他はdesign/test traceへ直接使われるため`authority-review`。
 
-## 6. authority-review対象: test-design（19）
+## 6. authority-review対象: test-design（18）
 
 - `docs/test-design/harness/L1-operational-test-design.md`
-- `docs/test-design/helix/L8-document-semantic-diff-contracts.md`
 - `docs/test-design/harness/L3-acceptance-test-design.md`
 - `docs/test-design/harness/L7-unit-test-design.md`
 - `docs/test-design/harness/L8-integration-test-design.md`

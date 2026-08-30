@@ -223,14 +223,14 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
-    // Issue #1260 current L6。Bun tokenはnegative detector vocabularyとしてcurrent guidanceへの
-    // 再出力を拒否する文脈だけにあり、runtime authorityはNode transactional boundaryである。
+    // Issue #1260 current L6。retired runtime tokenはnegative detector vocabularyとして
+    // current guidanceへの再出力を拒否する文脈だけにあり、authorityはNode boundaryである。
     path: "docs/design/helix/L6-function-design/document-semantic-diff.md",
     contentDigest: "e3ee6bc03b3d056e94df55010f5901ca70216b355c72811457fc0323c097c799",
     finalDisposition: "false_positive",
   },
   {
-    // Issue #1260 current L8。Bun tokenはnegative oracleの対象であり、実行runtime guidanceではない。
+    // Issue #1260 current L8。retired runtime tokenはnegative oracle専用である。
     path: "docs/test-design/helix/L8-document-semantic-diff-contracts.md",
     contentDigest: "c0c9fa2491bfafd1323f9ce4c53b126aa6cb51eeaa946df7d711677b076896ee",
     finalDisposition: "false_positive",
