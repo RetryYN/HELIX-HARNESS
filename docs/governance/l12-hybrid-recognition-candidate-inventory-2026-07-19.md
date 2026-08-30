@@ -151,7 +151,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示しており`safe-current`。残りは旧pairをoracleとして固定していないか確認必須。
 
-## 7. authority-review対象: PLAN（65）
+## 7. authority-review対象: PLAN（64）
 
 - `docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md`
 - `docs/plans/PLAN-DISCOVERY-04-process-workflows.md`
@@ -205,7 +205,6 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-L7-460-l12-dual-projection.md`
 - `docs/plans/PLAN-L7-62-runtime-portability-guard.md`
 - `docs/plans/PLAN-L7-70-skill-pack-curation.md`
-- `docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md`
 - `docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md`
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
 - `docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md`
