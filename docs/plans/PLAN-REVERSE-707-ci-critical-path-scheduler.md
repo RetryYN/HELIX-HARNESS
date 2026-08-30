@@ -5,6 +5,7 @@ kind: reverse
 layer: cross
 workflow_phase: R0
 confirmed_reverse_type: fullback
+pair_artifact: docs/test-design/helix/L8-ci-critical-path-scheduler-unit-test-design.md
 drive: agent
 status: draft
 completion_claim_allowed: false
