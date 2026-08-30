@@ -327,6 +327,23 @@ describe("CI execution telemetry contract", () => {
       "missing_dependency:node-14:missing-node",
     );
 
+    const dependency = makeEvent({
+      eventId: "event-14-temporal-a",
+      nodeId: "temporal-a",
+      startedMs: 0,
+      completedMs: 100,
+    });
+    const dependentBeforeCompletion = makeEvent({
+      eventId: "event-14-temporal-b",
+      nodeId: "temporal-b",
+      dependsOn: ["temporal-a"],
+      startedMs: 50,
+      completedMs: 150,
+    });
+    expect(
+      validateCiExecutionTelemetryBatch([dependency, dependentBeforeCompletion]).errors,
+    ).toContain("dependency_timing_order_invalid:temporal-b:temporal-a");
+
     const cycleA = makeEvent({ eventId: "event-15", nodeId: "cycle-a", dependsOn: ["cycle-b"] });
     const cycleB = makeEvent({ eventId: "event-16", nodeId: "cycle-b", dependsOn: ["cycle-a"] });
     expect(validateCiExecutionTelemetryBatch([cycleA, cycleB]).errors).toEqual(
@@ -550,5 +567,26 @@ describe("CI execution telemetry contract", () => {
         expect.objectContaining({ cache_class: "cold", sample_count: 1 }),
       ]),
     );
+
+    const excludedOnly = projectCiExecutionTelemetry([
+      makeEvent({
+        eventId: "event-30",
+        nodeId: "excluded-only",
+        status: "superseded",
+        runId: "series-excluded-only",
+      }),
+    ]);
+    expect(excludedOnly.projection?.series).toEqual([
+      expect.objectContaining({
+        sample_count: 0,
+        excluded_count: 1,
+        p50_wall_time_ms: null,
+        p95_wall_time_ms: null,
+        p99_wall_time_ms: null,
+        p50_critical_path_ms: null,
+        p95_critical_path_ms: null,
+        p99_critical_path_ms: null,
+      }),
+    ]);
   });
 });

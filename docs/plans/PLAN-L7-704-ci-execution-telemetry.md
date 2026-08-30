@@ -24,8 +24,8 @@ no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L3-73のCI System Synthesis、Impact CI、full-regression shard、canonical digest authorityが存在する"
 contract_postconditions: "job／step／test／setup／artifact_transfer eventのstrict validatorとrun/attempt projectionが再利用可能になる"
-contract_invariants: "required verificationを変更せず、raw log／secretを保持せず、rerun successで過去failureを消さず、profile／surface／environment／cacheを混在させない"
-contract_failures: "wrong HEAD、unknown runner、invalid time、sensitive field、duplicate node、missing/cyclic dependency、digest driftをfail-closeする"
+contract_invariants: "required verificationを変更せず、raw log／secretを保持せず、rerun successで過去failureを消さず、profile／surface／environment／cacheを混在させず、標本なしの系列を0msと解釈させない"
+contract_failures: "wrong HEAD、unknown runner、invalid time、sensitive field、duplicate node、missing/cyclic dependency、依存時間逆転、digest driftをfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "既存Impact CIの選定変更ではなく、純粋なtelemetry schema／validator／projectionを追加する。"
 green_at: 2026-08-29T22:57:41Z

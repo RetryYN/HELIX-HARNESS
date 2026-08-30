@@ -87,7 +87,8 @@ API key、PIIに相当するkeyは明示的に拒否する。拒否理由はdige
 ## 5. batchとread model
 
 batchは一つの `workflow_id/run_id/attempt`、profile、execution surface、HEAD対、runner環境へ束縛する。
-依存nodeは同一batch内に存在し、自己依存・重複node・cycleを許さない。projectorはrun/attemptごとに次を計算する。
+依存nodeは同一batch内に存在し、自己依存・重複node・cycleを許さない。依存先の完了時刻より前に依存元nodeが開始する
+時間逆転も拒否する。projectorはrun/attemptごとに次を計算する。
 
 - `execution_wall_time_ms`: 全nodeの最初のqueuedから最後のcompletedまで
 - `critical_path_ms`／`critical_path_node_ids`: dependency DAGのwall time最長経路
@@ -97,6 +98,7 @@ batchは一つの `workflow_id/run_id/attempt`、profile、execution surface、H
 
 performance seriesは `profile + execution_surface + environment_digest + cache_class` で分け、terminal runの
 wall timeとcritical pathからp50、p95、p99を計算する。別profile、別surface、別environment、cold/warmを混ぜない。
+series内に有効なterminal runがない場合、percentileは `null` とし、観測された0msとして扱わない。
 selectionのcorrectness判定やrequired obligationをこのread modelで上書きしない。
 
 ## 6. 後続接続と非対象

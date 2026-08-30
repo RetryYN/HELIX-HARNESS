@@ -121,12 +121,12 @@ export interface CiTelemetrySeries {
   cache_class: CiTelemetryCacheClass;
   sample_count: number;
   excluded_count: number;
-  p50_wall_time_ms: number;
-  p95_wall_time_ms: number;
-  p99_wall_time_ms: number;
-  p50_critical_path_ms: number;
-  p95_critical_path_ms: number;
-  p99_critical_path_ms: number;
+  p50_wall_time_ms: number | null;
+  p95_wall_time_ms: number | null;
+  p99_wall_time_ms: number | null;
+  p50_critical_path_ms: number | null;
+  p95_critical_path_ms: number | null;
+  p99_critical_path_ms: number | null;
 }
 
 export interface CiExecutionTelemetryProjectionV1 {
@@ -666,15 +666,30 @@ export function validateCiExecutionTelemetryBatch(
   }
 
   const dependencies = new Map(events.map((event) => [event.node_id, event.depends_on_node_ids]));
+  const eventsByNodeId = new Map(events.map((event) => [event.node_id, event]));
   for (const event of events) {
     const dependencyIds = event.depends_on_node_ids;
     if (new Set(dependencyIds).size !== dependencyIds.length) {
       errors.push(`duplicate_dependency:${event.node_id}`);
     }
     for (const dependency of dependencyIds) {
-      if (!nodeIds.has(dependency))
+      if (!nodeIds.has(dependency)) {
         errors.push(`missing_dependency:${event.node_id}:${dependency}`);
+        continue;
+      }
       if (dependency === event.node_id) errors.push(`self_dependency:${event.node_id}`);
+      const dependencyEvent = eventsByNodeId.get(dependency);
+      if (dependencyEvent) {
+        const dependencyCompletedAt = parseTimestamp(dependencyEvent.timing.completed_at);
+        const eventStartedAt = parseTimestamp(event.timing.started_at);
+        if (
+          dependencyCompletedAt !== null &&
+          eventStartedAt !== null &&
+          eventStartedAt < dependencyCompletedAt
+        ) {
+          errors.push(`dependency_timing_order_invalid:${event.node_id}:${dependency}`);
+        }
+      }
     }
   }
 
@@ -698,7 +713,8 @@ export function validateCiExecutionTelemetryBatch(
   return { ok: errors.length === 0, errors: sortedUnique(errors) };
 }
 
-function percentile(values: readonly number[], fraction: number): number {
+function percentile(values: readonly number[], fraction: number): number | null {
+  if (values.length === 0) return null;
   const sorted = [...values].sort((left, right) => left - right);
   return sorted[Math.max(0, Math.ceil(sorted.length * fraction) - 1)] ?? 0;
 }
