@@ -95,4 +95,4 @@ agent_slots:
 
 # layer ledger canonical L1-L12収束
 
-Issue #1259のlayer ledger authority consumerだけを変更する。L0-L14 compatibility sourceの削除、runtime実装、release/tag/cutover、他PR責務は含めない。Forward後に旧authority候補から外れたL6／L8文書をrecognition inventoryから除外し、移行PLANをreview対象へ追加した。PLANはconfirmedだがcompletion claim falseを維持する。
+Issue #1259のlayer ledger authority consumerだけを変更する。L0-L14 compatibility sourceの削除、runtime実装、release/tag/cutover、他PR責務は含めない。Forward後に旧authority候補から外れたL6／L8文書をrecognition inventoryから除外し、移行PLANをreview対象へ追加した。このinventory追従は同一authority責務内であり、PR scope expansionではない。PLANはconfirmedだがcompletion claim falseを維持する。
