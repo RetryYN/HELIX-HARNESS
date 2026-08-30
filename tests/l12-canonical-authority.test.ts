@@ -98,7 +98,7 @@ describe("L1-L12 canonical authority drift gate", () => {
     );
   });
 
-  it("keeps the recognition-risk inventory closed over every old-authority candidate", () => {
+  it("U-L12INV-004: keeps the recognition-risk inventory closed over every old-authority candidate", () => {
     const oldAuthority =
       /(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-only worker|Python code port|TypeScript\/Bun|TS\/Bun|reject.to.TS)/;
     const inventoryPath =

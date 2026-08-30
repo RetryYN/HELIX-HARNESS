@@ -6463,7 +6463,7 @@ export function checkL12HybridInventoryLifecycle(repoRoot: string): {
           ),
           ok: false,
         };
-  } catch {
+  } catch (_error) {
     return {
       messages: ["l12-hybrid-inventory-lifecycle - violation: inventory could not be read"],
       ok: false,

@@ -81,9 +81,15 @@ generates:
   - { artifact_path: src/lint/l12-hybrid-inventory-lifecycle.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-inventory-lifecycle.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: registry }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: evidence_json }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: evidence_json }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_doc }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — reviewed-safe family lifecycle設計" }
   - { role: qa, slot_label: "QA — 片側更新と件数drift mutation" }
