@@ -2,9 +2,9 @@
 
 ## 1. 対象と判定
 
-旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は174文書。
+旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は173文書。
 
-この174件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは866 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
+この173件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは866 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
 ```bash
 npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts
@@ -257,7 +257,7 @@ skillは実行時に読まれるため`context-review`。旧layerを例として
 
 ## 9. seed集合の閉包条件
 
-174件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
+173件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
 
 1. canonicalへ本文改訂済み
 2. compatibility sectionへ隔離済み

@@ -7515,8 +7515,8 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     aggregateDoctorCheckStates(doctorCheckStates);
   return {
     ok:
-      doctorAllChecksOk &&
       nfrRegistry.ok &&
+      doctorAllChecksOk &&
       universalImprovementSourceRegistry.ok &&
       backfill.ok &&
       scrumRev.ok &&
