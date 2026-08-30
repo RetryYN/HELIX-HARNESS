@@ -206,6 +206,7 @@ items:
       - docs/design/helix/L6-function-design/windows-lite-canary-admission.md
       - docs/design/helix/L6-function-design/universal-improvement-source-registry.md
       - docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md
+      - docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
@@ -287,6 +288,7 @@ items:
       - docs/design/helix/L6-function-design/requirement-json-authority-cutover.md
       - docs/design/helix/L6-function-design/impact-ci-recovery.md
       - docs/design/helix/L6-function-design/ci-execution-telemetry.md
+      - docs/design/helix/L6-function-design/ci-responsibility-registry.md
       - docs/design/helix/L6-function-design/design-template-json-authority.md
       - docs/design/helix/L5-detail/layer-ledger-pair-gate.md
       - docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
