@@ -7,7 +7,7 @@ status: confirmed
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / QA
-plan: PLAN-L7-705-ci-responsibility-registry
+plan: PLAN-L7-711-ci-responsibility-registry
 parent_design: docs/design/helix/L6-function-design/ci-responsibility-registry.md
 pair_artifact: docs/design/helix/L6-function-design/ci-responsibility-registry.md
 ---

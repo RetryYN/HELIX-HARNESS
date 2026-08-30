@@ -6,7 +6,7 @@ import {
   validateCiResponsibilityRegistry,
 } from "../src/runtime/ci-responsibility-registry";
 
-// PLAN-L7-705-ci-responsibility-registry / U-CIREG-001..009
+// PLAN-L7-711-ci-responsibility-registry / U-CIREG-001..009
 
 function fixture(): CiResponsibilityRegistry {
   return {

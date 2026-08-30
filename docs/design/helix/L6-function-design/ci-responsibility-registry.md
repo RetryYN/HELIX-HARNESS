@@ -6,7 +6,7 @@ status: confirmed
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / TL
-plan: PLAN-L7-705-ci-responsibility-registry
+plan: PLAN-L7-711-ci-responsibility-registry
 parent_design: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md
 pair_artifact: docs/test-design/helix/L8-ci-responsibility-registry-unit-test-design.md
 ---
