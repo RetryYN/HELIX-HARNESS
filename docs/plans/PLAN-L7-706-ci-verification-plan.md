@@ -32,7 +32,7 @@ tdd_red_required: true
 tdd_red_evidence: "2026-08-30T12:28:00+09:00 tests/ci-verification-plan.test.ts initial red: ci-verification-plan module不在"
 tdd_green_evidence: "2026-08-31 tests/ci-verification-plan.test.ts 12 tests green、typecheck green（再検証予定）"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CIVPLAN-002〜012でrequired test／aggregate obligation削除、全high-risk downgrade、unknown risk、valid-shape wrong HEAD、stale digest、defer receipt欠落／重複／dependency、legacy unknown／overlapを個別mutationする"
+mutation_oracle_evidence: "U-CIVPLAN-002〜012でrequired test／aggregate obligation削除・重複、全high-risk downgrade、unknown risk、valid-shape wrong HEAD、stale digest、defer receipt未知state／欠落／重複／dependency、legacy unknown／overlapを個別mutationする"
 complexity_effect: net_negative
 complexity_justification: "Impact CI／Lite／Module別のpath decisionを一つのtyped Verification Planへ収束する"
 removal_trigger: "CI System Synthesis replacementへ全consumer、legacy adapter、rollback traceが移行した時"

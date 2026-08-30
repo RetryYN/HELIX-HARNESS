@@ -315,6 +315,27 @@ describe("CI Verification Plan", () => {
     expect(invalid.findings).toContainEqual(
       expect.objectContaining({ code: "deferred_receipt_invalid" }),
     );
+    const unknownState = composeCiVerificationPlan(
+      input({
+        registry: current,
+        expected_registry_digest: ciResponsibilityRegistryDigest(current),
+        defer_assignments: [
+          {
+            capability_id: "verification:ci-responsibility-unit",
+            target: "main",
+            candidate_head: HEAD,
+            receipt_status: "failed" as "pending",
+          },
+        ],
+      }),
+    );
+    expect(unknownState.ok).toBe(false);
+    expect(unknownState.findings).toContainEqual(
+      expect.objectContaining({
+        code: "deferred_receipt_invalid",
+        detail: "unknown status=failed",
+      }),
+    );
   });
 
   it("U-CIVPLAN-012: required obligationを一件削るaggregate mutationを拒否する", () => {
@@ -330,6 +351,18 @@ describe("CI Verification Plan", () => {
         code: "required_obligation_missing",
         subject: "verification:ci-responsibility-unit",
       }),
+    );
+    const duplicate = composeCiVerificationPlan(
+      input({
+        required_obligation_ids: [
+          "verification:ci-responsibility-unit",
+          "verification:ci-responsibility-unit",
+        ],
+      }),
+    );
+    expect(duplicate.ok).toBe(false);
+    expect(duplicate.findings).toContainEqual(
+      expect.objectContaining({ code: "duplicate_obligation" }),
     );
   });
 });

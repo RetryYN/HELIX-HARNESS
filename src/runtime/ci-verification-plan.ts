@@ -283,6 +283,11 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
   }
 
   const closed = dependencyClosure(input.registry, selected);
+  if (new Set(input.required_obligation_ids).size !== input.required_obligation_ids.length) {
+    findings.push(
+      finding("duplicate_obligation", "required_obligation_ids", "duplicate required obligation"),
+    );
+  }
   for (const id of sortedUnique(input.required_obligation_ids)) {
     if (!closed.has(id)) {
       findings.push(finding("required_obligation_missing", id, "not present in selected closure"));
@@ -316,6 +321,16 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
           "deferred_receipt_invalid",
           assignment.capability_id,
           `candidate_head=${assignment.candidate_head}`,
+        ),
+      );
+      continue;
+    }
+    if (assignment.receipt_status !== "pending" && assignment.receipt_status !== "succeeded") {
+      findings.push(
+        finding(
+          "deferred_receipt_invalid",
+          assignment.capability_id,
+          `unknown status=${String(assignment.receipt_status)}`,
         ),
       );
       continue;
