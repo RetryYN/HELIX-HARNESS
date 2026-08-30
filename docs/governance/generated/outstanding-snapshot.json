@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 47,
+  "decision_count": 46,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -47,8 +47,7 @@
     "PLAN-RECOVERY-71-skill-applicability-oracle-closure",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill",
     "PLAN-REVERSE-696-windows-canary-policy-lease",
-    "PLAN-REVERSE-697-windows-canary-queue-expiry",
-    "PLAN-REVERSE-705-ci-execution-telemetry"
+    "PLAN-REVERSE-697-windows-canary-queue-expiry"
   ],
   "blockers": [
     "active_draft",
