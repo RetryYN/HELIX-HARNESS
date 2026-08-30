@@ -340,6 +340,14 @@ describe("Universal Improvement source registry", () => {
       "gh_token",
       "tokens",
       "user_pii",
+      "github.token",
+      "token.value",
+      "access token",
+      "user.pii",
+      "token[0]",
+      "accessToken",
+      "userPii",
+      "piiData",
     ]) {
       const snakeCaseSensitive = validObservation(
         entry.source_id,
@@ -361,6 +369,21 @@ describe("Universal Improvement source registry", () => {
           }),
         ]),
       );
+    }
+
+    for (const allowedField of ["tokenizer", "summary", "source_id"]) {
+      const safeObservation = validObservation(
+        entry.source_id,
+        entry.schema_version,
+        entry.detector.detector_id,
+      );
+      safeObservation.metadata = { [allowedField]: "non-sensitive-value" };
+      const safeResult = admitUniversalImprovementSource(
+        result,
+        safeObservation,
+        new Date("2026-08-30T12:00:00.000Z"),
+      );
+      expect(safeResult.ok, allowedField).toBe(true);
     }
 
     const malformed = admitUniversalImprovementSource(
