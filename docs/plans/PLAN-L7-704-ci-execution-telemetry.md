@@ -29,7 +29,7 @@ contract_failures: "wrong HEAD、unknown runner、batch内のNode/cache/resource
 tdd_red_required: false
 tdd_red_waiver_reason: "既存Impact CIの選定変更ではなく、純粋なtelemetry schema／validator／projectionを追加する。"
 green_at: 2026-08-30T10:40:45+09:00
-mutation_oracle_evidence: "独立内部レビューでartifact field欠落時例外、lockfile未束縛、batch内cache/resource drift、failure 0件を検出率1とする反例をblockerとして検出した。artifact欠落をtyped failureへ変換し、lockfile digest edge、cache hit／CPU／memory batch bindingとseries軸、failureなしratio=nullを追加した。2026-08-30T10:40:45+09:00に全反例を含むtargeted 1 file／10 tests、typecheck、Biome、PLAN lintがgreen。"
+mutation_oracle_evidence: "独立内部レビューでartifact field欠落時例外、lockfile未束縛、batch内cache/resource drift、failure 0件を検出率1とする反例をblockerとして検出した。初回修正後のexact-HEADレビューで通常nodeのartifact field省略が残ることを再検出し、全nodeでfield欠落をfail-closeした。lockfile digest edge、cache hit／CPU／memory batch bindingとseries軸、failureなしratio=nullを追加し、targeted 1 file／10 tests、typecheck、Biome、PLAN lintを再検証する。"
 complexity_effect: justified_positive
 complexity_justification: "既存selection／shard責務を再実装せず、後続のCI局所最適とcritical-path統制へ共通の観測境界を一つ追加する。"
 removal_trigger: "後継CI telemetry schemaが全consumerを移行し、本schemaのevent／projectionが0件になった時。"

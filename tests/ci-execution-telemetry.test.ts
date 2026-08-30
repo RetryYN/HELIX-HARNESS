@@ -209,6 +209,12 @@ describe("CI execution telemetry contract", () => {
     expect(
       validateCiExecutionTelemetryEvent(null as unknown as CiExecutionTelemetryEventV1),
     ).toEqual({ ok: false, errors: ["event_invalid"] });
+
+    const missingArtifactField = { ...event } as Record<string, unknown>;
+    delete missingArtifactField.artifact;
+    expect(
+      validateCiExecutionTelemetryEvent(asUntrustedEvent(missingArtifactField)).errors,
+    ).toContain("artifact_field_missing");
   });
 
   it("U-TELE-006: setup／test／artifact transferのcost node種別を独立して束縛する", () => {

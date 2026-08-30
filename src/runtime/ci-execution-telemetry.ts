@@ -562,7 +562,9 @@ export function validateCiExecutionTelemetryEvent(
     }
   }
 
-  if (event.artifact !== null && event.artifact !== undefined) {
+  if (event.artifact === undefined) {
+    errors.push("artifact_field_missing");
+  } else if (event.artifact !== null) {
     if (!isRecord(event.artifact)) {
       errors.push("artifact_invalid");
     } else {

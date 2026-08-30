@@ -22,7 +22,7 @@ pair_artifact: docs/design/helix/L6-function-design/ci-execution-telemetry.md
 | U-TELE-002 | payload/evidence digestをcanonical bytesから再計算する | operation、HEAD、evidence digestだけを改竄したeventを拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-003 | queue、wall、runner時間が日時差と一致する | 時刻逆転、queue/wall差替え、runner time超過を拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-004 | allowlist済みrunner、profile、attemptを受理する | 未知OS、未知profile、0 attempt、同一batch内のNode version driftを拒否する | `tests/ci-execution-telemetry.test.ts` |
-| U-TELE-005 | metadataだけのeventを投影する | raw log、credential、unknown keyを持つeventを拒否する | `tests/ci-execution-telemetry.test.ts` |
+| U-TELE-005 | strict event shapeを投影する | raw log、credential、unknown key、通常nodeを含むartifact field欠落を拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-006 | setup、test、artifact upload/downloadを別cost nodeへ分類する | artifact field欠落で例外化せず、方向・operation・lockfile／transfer digest欠落を拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-007 | statusとexit code、first detectorを整合させる | passed非0、failed detector欠落、timeout非null exit、非failure detectorを拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-008 | 一つのrun/attemptの依存DAGとartifact edgeを検証する | cache/resource drift、時間逆転、cycle、artifact input/output／lockfile不一致を拒否する | `tests/ci-execution-telemetry.test.ts` |
