@@ -1,7 +1,7 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
-    // Issue #1253のcurrent runtime guidance収束PLAN。Bun／旧L08-L14への言及は
+    // Issue #1253のcurrent runtime guidance収束PLAN。retired runtime／旧L08-L14への言及は
     // active authorityへの再採用ではなく、再導入を拒否するnegative contractである。
     path: "docs/plans/PLAN-L7-707-setup-guide-node-runtime-guidance.md",
     contentDigest: "8e1a76ca6a3123228b347de7ccf5a0204294dd9649e1b8ceae1aebd5efe81702",
