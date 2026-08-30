@@ -12,7 +12,7 @@ backfill_state: pending_reverse
 created: 2026-08-31
 updated: 2026-08-31
 owner: Codex / TL
-github_issue_id: 1206
+github_issue_id: 1269
 behavior_contract_id: CI-VERIFICATION-PLAN-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
@@ -30,7 +30,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REVERSE
 entry_signals:
-  - "po_directive:Issue #1206 Verification PlanのReverse fullback"
+  - "po_directive:Issue #1269 Verification PlanのReverse fullback（親 #1206）"
 contract_preconditions: "PLAN-L7-706、L6／L8 pair、PR #1240 exact-HEAD review、canonical merge、post-main CIが存在する"
 contract_postconditions: "Verification Planのrequired obligation exact partitionをL3／L6／L8へ再照合し、#1207／#1208へ正規入力として渡す"
 contract_invariants: "scheduler、deferred E2E、workflow配線を本Reverseへ混載せず、terminal bundleのreview／merge／read-after前にcompletion claimを許可しない"
@@ -66,14 +66,13 @@ backprop_scope:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-706-ci-verification-plan.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/ci-verification-plan-terminal-fullback-evidence.md, artifact_type: markdown_doc }
-modifies:
-  - { artifact_path: docs/plans/PLAN-L7-706-ci-verification-plan.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:
     - docs/plans/PLAN-L3-73-ci-system-synthesis.md
     - docs/plans/PLAN-L7-706-ci-verification-plan.md
   references:
+    - issue:1269
     - issue:1206
     - issue:1207
     - issue:1208
