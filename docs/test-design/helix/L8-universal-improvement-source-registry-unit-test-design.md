@@ -33,7 +33,7 @@ responsibility_owner: universal-improvement-source-registry
 | U-UILSRC-008 | doctor failure | registry欠落とJSON破損をwarningや空registryへ丸めずredにする | `tests/universal-improvement-source-registry-doctor.test.ts` |
 | U-UILSRC-009 | doctor wiring | full doctorのstate、ok判定、messageへ同じcheckをexactly once接続する | `tests/universal-improvement-source-registry-doctor.test.ts` |
 | U-UILSRC-010 | physical admission boundary | 構造検査だけの結果、registry integrity欠落・bytes driftをadmissionへ渡さずfail-closeする | `tests/universal-improvement-source-registry.test.ts` / `tests/universal-improvement-source-registry-doctor.test.ts` |
-| U-UILSRC-011 | non-forgeable admission proof | 構造結果のboolean偽装とloader成功後のresult改竄をrepository-bound resultとして再利用させない | `tests/universal-improvement-source-registry.test.ts` |
+| U-UILSRC-011 | non-forgeable admission proof | 構造結果のboolean偽装とloader成功後のresult改竄をrepository-bound resultとして再利用させず、共通physical identityのTOCTOU再検証を維持する | `tests/universal-improvement-source-registry.test.ts` |
 
 ## Red／Green／mutation境界
 

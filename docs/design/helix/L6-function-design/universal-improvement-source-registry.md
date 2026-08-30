@@ -63,6 +63,7 @@ detector実装を本sliceで再実装しない。
   registry versionを含む意味変更を再計算なしに受理しない。構造検査の結果は物理検証済みとは扱わず、admissionへ
   渡すにはloaderの `physical_binding_verified` が必須である。
 - loader成功結果はmodule-private proofへ束縛し、構造検査結果のboolean偽装や成功後のresult改竄をadmissionで拒否する。
+- registry／integrityの再読込と全targetのphysical identity再検証を行い、検査中のTOCTOU driftを成功へ縮退しない。
 - 全判定は候補生成前のread-only admissionで、authorityへの副作用を持たない。
 
 ## 再構築と責務境界

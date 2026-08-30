@@ -2,7 +2,10 @@ import { readFileSync, realpathSync } from "node:fs";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 import { z } from "zod";
 import { canonicalJson, sha256Digest } from "./digest";
-import { attestPhysicalFilesystemIdentity } from "./physical-filesystem-identity";
+import {
+  attestPhysicalFilesystemIdentity,
+  revalidatePhysicalFilesystemIdentity,
+} from "./physical-filesystem-identity";
 
 export const UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH =
   "config/universal-improvement-source-registry.v1.json" as const;
@@ -343,7 +346,9 @@ export interface UniversalImprovementSourceAdmission {
 
 const repositoryBoundResults = new WeakMap<UniversalImprovementSourceRegistryResult, string>();
 
-function registryResultProofDigest(result: UniversalImprovementSourceRegistryResult): string | null {
+function registryResultProofDigest(
+  result: UniversalImprovementSourceRegistryResult,
+): string | null {
   try {
     return sha256Digest(
       canonicalJson({
@@ -826,6 +831,44 @@ export function analyzeUniversalImprovementSourceRegistry(
       ],
     };
   }
+  try {
+    const postAttestationRegistryBytes = readFileSync(registryFile.path);
+    const postAttestationIntegrity = JSON.parse(
+      readFileSync(integrityFile.path, "utf8"),
+    ) as unknown;
+    if (
+      sha256Digest(postAttestationRegistryBytes) !== registryBytesDigest ||
+      canonicalJson(postAttestationIntegrity) !== canonicalJson(integrity.data)
+    ) {
+      return {
+        ...structural,
+        ok: false,
+        physical_binding_verified: false,
+        registry_bytes_digest: registryBytesDigest,
+        findings: [
+          finding(
+            "physical_binding_required",
+            "registry",
+            "registry or integrity bytes changed across physical attestation",
+          ),
+        ],
+      };
+    }
+  } catch {
+    return {
+      ...structural,
+      ok: false,
+      physical_binding_verified: false,
+      registry_bytes_digest: registryBytesDigest,
+      findings: [
+        finding(
+          "physical_binding_required",
+          "registry",
+          "registry or integrity bytes became unreadable across physical attestation",
+        ),
+      ],
+    };
+  }
 
   const findings: UniversalImprovementSourceRegistryFinding[] = [];
   if (integrity.data.registry_bytes_digest !== registryBytesDigest) {
@@ -866,6 +909,23 @@ export function analyzeUniversalImprovementSourceRegistry(
     missingCode: "source_missing",
     mismatchCode: "source_digest_mismatch",
   });
+  const revalidatedIdentity = revalidatePhysicalFilesystemIdentity(
+    {
+      repo_root: repoRoot,
+      lexical_targets: physicalTargets,
+      expected_target_count: physicalTargets.length,
+    },
+    physicalIdentity.binding,
+  );
+  if (!revalidatedIdentity.ok) {
+    findings.push(
+      finding(
+        "physical_binding_required",
+        "registry",
+        `physical filesystem identity drifted during admission: ${revalidatedIdentity.failure_code}`,
+      ),
+    );
+  }
   const result: UniversalImprovementSourceRegistryResult = {
     ok: findings.length === 0,
     registry: structural.registry,
