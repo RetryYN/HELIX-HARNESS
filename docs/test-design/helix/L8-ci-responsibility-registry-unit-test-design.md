@@ -16,7 +16,7 @@ pair_artifact: docs/design/helix/L6-function-design/ci-responsibility-registry.m
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-CIREG-001 | admission | 全typed fieldとstable digestを受理 | `tests/ci-responsibility-registry.test.ts` |
+| U-CIREG-001 | admission | 全typed field、defer target authority、stable digestを受理 | `tests/ci-responsibility-registry.test.ts` |
 | U-CIREG-002 | shared core | 有向consumer closureだけを選び、逆向きのglobal／release混入を拒否 | `tests/ci-responsibility-registry.test.ts` |
 | U-CIREG-003 | mutation classes | requirement／PLAN／schema／workflow／lockfileを別責務へ導出 | `tests/ci-responsibility-registry.test.ts` |
 | U-CIREG-004 | unknown／orphan | 個別findingでfail-close | `tests/ci-responsibility-registry.test.ts` |

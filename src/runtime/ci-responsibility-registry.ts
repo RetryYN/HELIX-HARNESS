@@ -25,6 +25,7 @@ export type VerificationEnvironment = "linux" | "windows" | "repository" | "cons
 export type VerificationCostClass = "fast" | "bounded" | "heavy";
 export type VerificationRiskClass = "low" | "medium" | "high" | "critical";
 export type VerificationParallelism = "parallel_safe" | "exclusive_state" | "serial";
+export type VerificationDeferTarget = "main" | "nightly" | "release";
 
 export interface CiSemanticNode {
   id: string;
@@ -51,6 +52,7 @@ export interface VerificationCapability {
   artifact_inputs: readonly string[];
   artifact_outputs: readonly string[];
   freshness: "same_candidate_head" | "same_main_head" | "release_candidate";
+  defer_targets: readonly VerificationDeferTarget[];
   applicability_node_ids: readonly string[];
   depends_on_capability_ids: readonly string[];
   status: "active" | "retired";
@@ -219,6 +221,13 @@ export function validateCiResponsibilityRegistry(
         capability.capability_id,
         "artifact identity",
       );
+    }
+    if (
+      new Set(capability.defer_targets).size !== capability.defer_targets.length ||
+      (capability.obligation_class === "release_only" &&
+        !capability.defer_targets.includes("release"))
+    ) {
+      addFinding(findings, "schema_invalid", capability.capability_id, "defer target authority");
     }
     for (const id of capability.applicability_node_ids) {
       if (!nodes.has(id)) addFinding(findings, "unknown_node", id, capability.capability_id);
