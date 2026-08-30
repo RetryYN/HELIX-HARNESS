@@ -80,7 +80,7 @@ agent_slots:
 ## R0 現状採取
 
 Forward実装はPR #1234のHEAD `b43838cd7d09afde6f35bc4bf237d495c2bea2da`で収束し、required CI
-`33295591264`、Ready admission `33297003371`、Claude exact-HEAD receipt
+`33295591264`、Ready移行後CI `33297003371`、Claude同一HEADレビュー証跡
 `sha256:ba216325fb0844d833615921f674068ef60d176dd9b4a75f2d8d27de2fedae21`が成立した。canonical merge
 `0a20b1aebd6fdf2f4a0b267d6d665545047209d8`とread-after receipt
 `sha256:74eb705beb1fd051cf035d1ce37b9ec2c01b8c0ddd7cc1baad65255af3447a66`をR0の事実基準とする。
