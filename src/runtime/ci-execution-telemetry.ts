@@ -58,6 +58,7 @@ export interface CiTelemetryOutcomeV1 {
 
 export interface CiTelemetryArtifactV1 {
   direction: "upload" | "download";
+  lockfile_digest: Sha256Digest;
   input_digest: Sha256Digest;
   output_digest: Sha256Digest;
 }
@@ -109,6 +110,9 @@ export interface CiTelemetryRunSummary {
   toolchain_digest: Sha256Digest;
   environment_digest: Sha256Digest;
   cache_class: CiTelemetryCacheClass;
+  cache_hit: boolean;
+  cpu_class: CiTelemetryCpuClass;
+  memory_class: CiTelemetryMemoryClass;
   event_count: number;
   execution_wall_time_ms: number;
   critical_path_ms: number;
@@ -127,6 +131,9 @@ export interface CiTelemetrySeries {
   toolchain_digest: Sha256Digest;
   environment_digest: Sha256Digest;
   cache_class: CiTelemetryCacheClass;
+  cache_hit: boolean;
+  cpu_class: CiTelemetryCpuClass;
+  memory_class: CiTelemetryMemoryClass;
   sample_count: number;
   excluded_count: number;
   p50_wall_time_ms: number | null;
@@ -158,7 +165,7 @@ export interface CiExecutionTelemetryProjectionV1 {
   failure_detection_yield: {
     failure_count: number;
     detected_failure_count: number;
-    ratio: number;
+    ratio: number | null;
   };
   runs: readonly CiTelemetryRunSummary[];
   series: readonly CiTelemetrySeries[];
@@ -270,7 +277,7 @@ const OUTCOME_KEYS = [
   "flaky",
   "first_detecting_oracle_id",
 ] as const;
-const ARTIFACT_KEYS = ["direction", "input_digest", "output_digest"] as const;
+const ARTIFACT_KEYS = ["direction", "lockfile_digest", "input_digest", "output_digest"] as const;
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -555,7 +562,7 @@ export function validateCiExecutionTelemetryEvent(
     }
   }
 
-  if (event.artifact !== null) {
+  if (event.artifact !== null && event.artifact !== undefined) {
     if (!isRecord(event.artifact)) {
       errors.push("artifact_invalid");
     } else {
@@ -563,18 +570,31 @@ export function validateCiExecutionTelemetryEvent(
       if (event.artifact.direction !== "upload" && event.artifact.direction !== "download") {
         errors.push("artifact_direction_invalid");
       }
+      if (!isDigest(event.artifact.lockfile_digest))
+        errors.push("artifact_lockfile_digest_invalid");
       if (!isDigest(event.artifact.input_digest)) errors.push("artifact_input_digest_invalid");
       if (!isDigest(event.artifact.output_digest)) errors.push("artifact_output_digest_invalid");
     }
   }
-  if (event.node_kind === "artifact_transfer" && event.artifact === null) {
+  if (
+    event.node_kind === "artifact_transfer" &&
+    (event.artifact === null || event.artifact === undefined)
+  ) {
     errors.push("artifact_required");
   }
-  if (event.node_kind !== "artifact_transfer" && event.artifact !== null) {
+  if (
+    event.node_kind !== "artifact_transfer" &&
+    event.artifact !== null &&
+    event.artifact !== undefined
+  ) {
     errors.push("artifact_only_transfer_node");
   }
   if (event.operation === "artifact_upload" || event.operation === "artifact_download") {
-    if (event.node_kind !== "artifact_transfer" || event.artifact === null) {
+    if (
+      event.node_kind !== "artifact_transfer" ||
+      event.artifact === null ||
+      event.artifact === undefined
+    ) {
       errors.push("artifact_operation_requires_transfer_node");
     } else if (
       (event.operation === "artifact_upload" && event.artifact.direction !== "upload") ||
@@ -688,6 +708,18 @@ export function validateCiExecutionTelemetryBatch(
     if (events.some((event) => event.runner.node_version !== first.runner.node_version)) {
       errors.push("batch_binding_mismatch:runner_node_version");
     }
+    if (events.some((event) => event.cache.class !== first.cache.class)) {
+      errors.push("batch_binding_mismatch:cache_class");
+    }
+    if (events.some((event) => event.cache.hit !== first.cache.hit)) {
+      errors.push("batch_binding_mismatch:cache_hit");
+    }
+    if (events.some((event) => event.resource.cpu_class !== first.resource.cpu_class)) {
+      errors.push("batch_binding_mismatch:cpu_class");
+    }
+    if (events.some((event) => event.resource.memory_class !== first.resource.memory_class)) {
+      errors.push("batch_binding_mismatch:memory_class");
+    }
   }
 
   const dependencies = new Map(events.map((event) => [event.node_id, event.depends_on_node_ids]));
@@ -722,6 +754,15 @@ export function validateCiExecutionTelemetryBatch(
           event.artifact.input_digest !== dependencyEvent.artifact.output_digest
         ) {
           errors.push(`artifact_dependency_digest_mismatch:${event.node_id}:${dependency}`);
+        }
+        if (
+          event.node_kind === "artifact_transfer" &&
+          event.artifact !== null &&
+          dependencyEvent.node_kind === "artifact_transfer" &&
+          dependencyEvent.artifact !== null &&
+          event.artifact.lockfile_digest !== dependencyEvent.artifact.lockfile_digest
+        ) {
+          errors.push(`artifact_dependency_lockfile_mismatch:${event.node_id}:${dependency}`);
         }
       }
     }
@@ -862,6 +903,9 @@ function summarizeRun(events: readonly CiExecutionTelemetryEventV1[]): CiTelemet
     toolchain_digest: first.runner.toolchain_digest,
     environment_digest: first.runner.environment_digest,
     cache_class: first.cache.class,
+    cache_hit: first.cache.hit,
+    cpu_class: first.resource.cpu_class,
+    memory_class: first.resource.memory_class,
     event_count: events.length,
     execution_wall_time_ms: Math.max(...completed) - Math.min(...queued),
     critical_path_ms: path.duration,
@@ -923,6 +967,9 @@ export function projectCiExecutionTelemetry(
       summary.toolchain_digest,
       summary.environment_digest,
       summary.cache_class,
+      String(summary.cache_hit),
+      summary.cpu_class,
+      summary.memory_class,
     ].join("\0");
     const current = seriesGroups.get(key) ?? [];
     current.push(summary);
@@ -943,6 +990,9 @@ export function projectCiExecutionTelemetry(
         toolchain_digest: representative.toolchain_digest,
         environment_digest: representative.environment_digest,
         cache_class: representative.cache_class,
+        cache_hit: representative.cache_hit,
+        cpu_class: representative.cpu_class,
+        memory_class: representative.memory_class,
         sample_count: included.length,
         excluded_count: summaries.length - included.length,
         p50_wall_time_ms: percentile(
@@ -1016,7 +1066,7 @@ export function projectCiExecutionTelemetry(
       failure_detection_yield: {
         failure_count: failures.length,
         detected_failure_count: detectedFailures.length,
-        ratio: failures.length === 0 ? 1 : detectedFailures.length / failures.length,
+        ratio: failures.length === 0 ? null : detectedFailures.length / failures.length,
       },
       runs: runSummaries,
       series,

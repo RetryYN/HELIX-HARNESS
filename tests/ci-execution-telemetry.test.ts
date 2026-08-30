@@ -16,6 +16,7 @@ const HEAD = "a".repeat(40);
 const BASE = "b".repeat(40);
 const ENVIRONMENT = sha256Digest("environment:linux");
 const TOOLCHAIN = sha256Digest("toolchain:node24");
+const LOCKFILE = sha256Digest("lockfile:package-lock");
 const EPOCH = Date.parse("2026-08-30T00:00:00.000Z");
 
 type EventOptions = {
@@ -44,6 +45,8 @@ type EventOptions = {
   runnerOs?: CiExecutionTelemetryEventInput["runner"]["os"];
   runnerNodeVersion?: string;
   environmentDigest?: CiExecutionTelemetryEventInput["runner"]["environment_digest"];
+  cpuClass?: CiExecutionTelemetryEventInput["resource"]["cpu_class"];
+  memoryClass?: CiExecutionTelemetryEventInput["resource"]["memory_class"];
 };
 
 function iso(offsetMs: number): string {
@@ -86,7 +89,10 @@ function makeEvent(options: EventOptions): CiExecutionTelemetryEventV1 {
       wall_time_ms: completedMs - startedMs,
       runner_time_ms: options.runnerMs ?? completedMs - startedMs,
     },
-    resource: { cpu_class: "2-core", memory_class: "medium" },
+    resource: {
+      cpu_class: options.cpuClass ?? "2-core",
+      memory_class: options.memoryClass ?? "medium",
+    },
     cache: { class: options.cacheClass ?? "warm", hit: options.cacheHit ?? true },
     outcome: {
       status,
@@ -232,6 +238,7 @@ describe("CI execution telemetry contract", () => {
       operation: "artifact_upload",
       artifact: {
         direction: "upload",
+        lockfile_digest: LOCKFILE,
         input_digest: sha256Digest("input"),
         output_digest: sha256Digest("output"),
       },
@@ -251,6 +258,7 @@ describe("CI execution telemetry contract", () => {
       ...setup,
       artifact: {
         direction: "upload" as const,
+        lockfile_digest: LOCKFILE,
         input_digest: sha256Digest("input-step"),
         output_digest: sha256Digest("output-step"),
       },
@@ -266,12 +274,21 @@ describe("CI execution telemetry contract", () => {
       operation: "artifact_download",
       artifact: {
         direction: "download",
+        lockfile_digest: LOCKFILE,
         input_digest: sha256Digest("input-9"),
         output_digest: sha256Digest("output-9"),
       },
     });
     const missingArtifact = { ...validArtifact, artifact: null };
     expect(validateCiExecutionTelemetryEvent(missingArtifact).errors).toContain(
+      "artifact_required",
+    );
+    const omittedArtifact = { ...validArtifact } as Record<string, unknown>;
+    delete omittedArtifact.artifact;
+    expect(() =>
+      validateCiExecutionTelemetryEvent(asUntrustedEvent(omittedArtifact)),
+    ).not.toThrow();
+    expect(validateCiExecutionTelemetryEvent(asUntrustedEvent(omittedArtifact)).errors).toContain(
       "artifact_required",
     );
 
@@ -288,6 +305,7 @@ describe("CI execution telemetry contract", () => {
       operation: "artifact_upload",
       artifact: {
         direction: "upload",
+        lockfile_digest: LOCKFILE,
         input_digest: sha256Digest("upload-input"),
         output_digest: uploadedDigest,
       },
@@ -302,6 +320,7 @@ describe("CI execution telemetry contract", () => {
       completedMs: 210,
       artifact: {
         direction: "download",
+        lockfile_digest: LOCKFILE,
         input_digest: uploadedDigest,
         output_digest: sha256Digest("download-output"),
       },
@@ -317,12 +336,31 @@ describe("CI execution telemetry contract", () => {
       completedMs: 210,
       artifact: {
         direction: "download",
+        lockfile_digest: LOCKFILE,
         input_digest: sha256Digest("different-upload"),
         output_digest: sha256Digest("download-output"),
       },
     });
     expect(validateCiExecutionTelemetryBatch([upload, mismatchedDownload]).errors).toContain(
       "artifact_dependency_digest_mismatch:artifact-download-mismatch:artifact-upload",
+    );
+    const wrongLockfile = makeEvent({
+      eventId: "event-9-download-lockfile",
+      nodeId: "artifact-download-lockfile",
+      nodeKind: "artifact_transfer",
+      operation: "artifact_download",
+      dependsOn: ["artifact-upload"],
+      startedMs: 110,
+      completedMs: 210,
+      artifact: {
+        direction: "download",
+        lockfile_digest: sha256Digest("different-lockfile"),
+        input_digest: uploadedDigest,
+        output_digest: sha256Digest("download-output"),
+      },
+    });
+    expect(validateCiExecutionTelemetryBatch([upload, wrongLockfile]).errors).toContain(
+      "artifact_dependency_lockfile_mismatch:artifact-download-lockfile:artifact-upload",
     );
   });
 
@@ -426,6 +464,26 @@ describe("CI execution telemetry contract", () => {
     });
     expect(validateCiExecutionTelemetryBatch([first, differentNodeVersion]).errors).toContain(
       "batch_binding_mismatch:runner_node_version",
+    );
+    const differentCacheHit = makeEvent({
+      eventId: "event-18-cache",
+      nodeId: "node-18-cache",
+      cacheHit: false,
+    });
+    expect(validateCiExecutionTelemetryBatch([first, differentCacheHit]).errors).toContain(
+      "batch_binding_mismatch:cache_hit",
+    );
+    const differentResource = makeEvent({
+      eventId: "event-18-resource",
+      nodeId: "node-18-resource",
+      cpuClass: "4-core",
+      memoryClass: "large",
+    });
+    expect(validateCiExecutionTelemetryBatch([first, differentResource]).errors).toEqual(
+      expect.arrayContaining([
+        "batch_binding_mismatch:cpu_class",
+        "batch_binding_mismatch:memory_class",
+      ]),
     );
   });
 
@@ -670,5 +728,14 @@ describe("CI execution telemetry contract", () => {
         p99_critical_path_ms: null,
       }),
     ]);
+
+    const noFailure = projectCiExecutionTelemetry([
+      makeEvent({ eventId: "event-31", nodeId: "no-failure", runId: "no-failure-run" }),
+    ]);
+    expect(noFailure.projection?.failure_detection_yield).toEqual({
+      failure_count: 0,
+      detected_failure_count: 0,
+      ratio: null,
+    });
   });
 });

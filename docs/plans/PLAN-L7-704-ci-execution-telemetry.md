@@ -24,12 +24,12 @@ no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L3-73のCI System Synthesis、Impact CI、full-regression shard、canonical digest authorityが存在する"
 contract_postconditions: "job／step／test／setup／artifact_transfer eventのstrict validatorとrun/attempt projectionが、runner identityとartifact edgeを含めて再利用可能になる"
-contract_invariants: "required verificationを変更せず、raw log／secretを保持せず、rerun successで過去failureを消さず、profile／surface／runner／environment／cacheを混在させず、標本なしの系列を0msと解釈させず、artifact input/output digestの不整合を許容しない"
-contract_failures: "wrong HEAD、unknown runner、batch内のNode version drift、invalid time、sensitive field、duplicate node、missing/cyclic dependency、依存時間逆転、artifact transfer種別・edge・digest drift、非failure detector、digest driftをfail-closeする"
+contract_invariants: "required verificationを変更せず、raw log／secretを保持せず、rerun successで過去failureを消さず、profile／surface／runner／environment／cache／resourceを混在させず、標本なしを0msまたは検出率100%と解釈させず、artifact input/output/lockfile digestの不整合を許容しない"
+contract_failures: "wrong HEAD、unknown runner、batch内のNode/cache/resource drift、invalid time、sensitive field、duplicate node、missing/cyclic dependency、依存時間逆転、artifact field欠落・edge・lockfile/digest drift、非failure detector、digest driftをfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "既存Impact CIの選定変更ではなく、純粋なtelemetry schema／validator／projectionを追加する。"
-green_at: 2026-08-29T22:57:41Z
-mutation_oracle_evidence: "2026-08-30T00:00:00ZにU-TELE-002／003／004／005／006／007／008／009／010のdigest drift、HEAD誤り、時間逆転と不正日付、未知runner、Node version drift、sensitive field、cost node誤分類、artifact transfer／edge digest不整合、非failure detector、結果不整合、依存DAG破壊、重複setup／rerun failure、series軸混在を実装内変異として検証し、fail-close oracleを通過させた。targeted 1 file／10 tests passed。"
+green_at: 2026-08-30T10:40:45+09:00
+mutation_oracle_evidence: "独立内部レビューでartifact field欠落時例外、lockfile未束縛、batch内cache/resource drift、failure 0件を検出率1とする反例をblockerとして検出した。artifact欠落をtyped failureへ変換し、lockfile digest edge、cache hit／CPU／memory batch bindingとseries軸、failureなしratio=nullを追加した。2026-08-30T10:40:45+09:00に全反例を含むtargeted 1 file／10 tests、typecheck、Biome、PLAN lintがgreen。"
 complexity_effect: justified_positive
 complexity_justification: "既存selection／shard責務を再実装せず、後続のCI局所最適とcritical-path統制へ共通の観測境界を一つ追加する。"
 removal_trigger: "後継CI telemetry schemaが全consumerを移行し、本schemaのevent／projectionが0件になった時。"
