@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-715-confirmed-pending-reverse-pairing
 title: "PLAN-L7-715: confirmed pending Reverseのpair identityをdependency readinessから分離する"
-kind: recovery
+kind: impl
 layer: L7
 drive: agent
 status: confirmed
@@ -66,6 +66,7 @@ modifies:
   - { artifact_path: src/lint/backfill-pairing.ts, artifact_type: source_module }
   - { artifact_path: tests/backfill-pairing.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — Recovery分類とpairing authority整合" }
   - { role: qa, slot_label: "QA — confirmed pending／terminal state mutation" }
   - { role: tl, slot_label: "TL — pair identityとdependency readiness分離" }
 ---
