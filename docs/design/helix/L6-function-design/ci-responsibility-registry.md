@@ -24,7 +24,7 @@ CIはadapterであり、pathやtest filenameを新しい意味正本へ昇格さ
 - semantic nodeはIssue、PLAN、requirement、design、contract、Module、Bundle、V-pair、runtime、DB、distribution、
   security、artifactを別kindで保持する。
 - capabilityはstable ID、responsibility ID、単一owner、typed oracle exact set、environment、cost、risk、
-  obligation class、parallelism、artifact I/O、freshness、applicability、dependency、retirement traceを必須とする。
+  obligation class、parallelism、artifact I/O、freshness、defer target allowlist、applicability、dependency、retirement traceを必須とする。
 - obligation classは`local`、`boundary`、`global_invariant`、`release_only`へ分離する。
 - graph edgeはrepo authorityから明示された`refines／implements／verifies／contains／consumes／depends_on`だけを受理する。
   名称類似、path近接、LLM推測でedgeを追加しない。

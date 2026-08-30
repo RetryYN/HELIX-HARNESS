@@ -64,6 +64,7 @@ function fixture(): CiResponsibilityRegistry {
         artifact_inputs: ["artifact:src/core.ts"],
         artifact_outputs: ["receipt:core-unit"],
         freshness: "same_candidate_head",
+        defer_targets: [],
         applicability_node_ids: ["module:shared-core"],
         depends_on_capability_ids: [],
         status: "active",
@@ -85,6 +86,7 @@ function fixture(): CiResponsibilityRegistry {
         artifact_inputs: ["artifact:src/core.ts"],
         artifact_outputs: ["receipt:consumer-boundary"],
         freshness: "same_candidate_head",
+        defer_targets: [],
         applicability_node_ids: ["module:consumer-a"],
         depends_on_capability_ids: ["verification:core-unit"],
         status: "active",
@@ -106,6 +108,7 @@ function fixture(): CiResponsibilityRegistry {
         artifact_inputs: ["artifact:docs/requirement.md"],
         artifact_outputs: ["receipt:authority-global"],
         freshness: "same_candidate_head",
+        defer_targets: [],
         applicability_node_ids: [
           "requirement:cis-r-04",
           "plan:ci-responsibility",
@@ -133,6 +136,7 @@ function fixture(): CiResponsibilityRegistry {
         artifact_inputs: ["artifact:package-lock.json"],
         artifact_outputs: ["receipt:release-lite"],
         freshness: "release_candidate",
+        defer_targets: ["release"],
         applicability_node_ids: ["distribution:lite"],
         depends_on_capability_ids: ["verification:consumer-boundary"],
         status: "active",
@@ -151,6 +155,16 @@ describe("CI Responsibility Registry", () => {
     expect(result.ok).toBe(true);
     expect(result.findings).toEqual([]);
     expect(result.registry_digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+
+    const missingDeferAuthority = fixture();
+    missingDeferAuthority.capabilities = missingDeferAuthority.capabilities.map((capability) =>
+      capability.capability_id === "verification:release-lite"
+        ? { ...capability, defer_targets: [] }
+        : capability,
+    );
+    expect(validateCiResponsibilityRegistry(missingDeferAuthority).findings).toContainEqual(
+      expect.objectContaining({ code: "schema_invalid", subject: "verification:release-lite" }),
+    );
   });
 
   it("U-CIREG-002: changed sourceからshared coreと全consumer obligationをexact導出する", () => {
