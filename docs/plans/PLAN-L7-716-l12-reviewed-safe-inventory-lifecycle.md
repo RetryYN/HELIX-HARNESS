@@ -17,14 +17,14 @@ review_evidence:
     reviewer_session_id: a02813c9-9bc1-41f4-9c86-0f943ece4270
     reviewed_head_sha: 6eff2f29f6df8373932a9914a3f3c7884fc513e5
     reviewed_at: "2026-08-31T05:43:32+09:00"
-    tests_green_at: "2026-08-31T05:44:39+09:00"
+    tests_green_at: "2026-08-31T05:43:00+09:00"
     verdict: approve
     scope: "PR #1278 exact HEAD 6eff2f29f6df8373932a9914a3f3c7884fc513e5をClaude Code Opusが独立pre-confirm reviewした。reviewed-safe familyの対称retire、過剰retire不在、section count、doctor二重配線、false state集約behavior、byte tripwire除去、scope exact setをmutation込みで再実測しBLOCKER 0／NON-BLOCKER 0。receipt sealは行っていない。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1278#issuecomment-5471146967"
     green_commands:
-      - { kind: unit_test, command: "npx vitest run tests/l12-hybrid-inventory-lifecycle.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T05:44:39+09:00", evidence_path: tests/l12-hybrid-inventory-lifecycle.test.ts, output_digest: "sha256:69a08726fdb07144fde9d402645a8a2d8d30ee094dbe70be41dc5d545c288f9b", result: "3 tests passed" }
-      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-31T05:44:39+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011", result: "exit 0" }
-      - { kind: lint, command: "npx biome check src/doctor/index.ts tests/l12-hybrid-inventory-lifecycle.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T05:44:39+09:00", evidence_path: biome.json, output_digest: "sha256:3bd415ecbc77609409fa604d26b283b22619b231575d7dcc31098e55cec055ee", result: "2 files checked" }
-      - { kind: lint, command: "npx tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-31T05:44:39+09:00", evidence_path: docs/plans/PLAN-L7-716-l12-reviewed-safe-inventory-lifecycle.md, output_digest: "sha256:4d13a83d3eb18f582c362093a5ce144e54b2e093db7a5835ecda6f559fe3760a", result: "all plan gates OK" }
+      - { kind: unit_test, command: "npx vitest run tests/l12-hybrid-inventory-lifecycle.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T05:43:00+09:00", evidence_path: tests/l12-hybrid-inventory-lifecycle.test.ts, output_digest: "sha256:69a08726fdb07144fde9d402645a8a2d8d30ee094dbe70be41dc5d545c288f9b", result: "3 tests passed" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-31T05:43:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011", result: "exit 0" }
+      - { kind: lint, command: "npx biome check src/doctor/index.ts tests/l12-hybrid-inventory-lifecycle.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T05:43:00+09:00", evidence_path: biome.json, output_digest: "sha256:3bd415ecbc77609409fa604d26b283b22619b231575d7dcc31098e55cec055ee", result: "2 files checked" }
+      - { kind: lint, command: "npx tsx src/cli.ts plan lint", runner: node, scope: full, exit_code: 0, completed_at: "2026-08-31T05:43:00+09:00", evidence_path: docs/plans/PLAN-L7-716-l12-reviewed-safe-inventory-lifecycle.md, output_digest: "sha256:4d13a83d3eb18f582c362093a5ce144e54b2e093db7a5835ecda6f559fe3760a", result: "all plan gates OK" }
 owner: Codex / TL
 github_issue_id: 1276
 behavior_contract_id: L12-REVIEWED-SAFE-INVENTORY-LIFECYCLE-001
