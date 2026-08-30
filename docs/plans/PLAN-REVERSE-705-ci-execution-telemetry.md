@@ -3,12 +3,12 @@ plan_id: PLAN-REVERSE-705-ci-execution-telemetry
 title: "PLAN-REVERSE-705: CI execution telemetryをCI System Synthesisへ再接着する"
 kind: reverse
 layer: cross
-workflow_phase: R3
+workflow_phase: R4
 confirmed_reverse_type: fullback
 drive: agent
-status: draft
-completion_claim_allowed: false
-backfill_state: pending_reverse
+status: confirmed
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / TL
@@ -19,6 +19,8 @@ change_slice: atomic
 refactor_step: introduce_contract
 no_code_decision: no_change
 legacy_retirement_state: retained
+forward_routing: L5
+promotion_strategy: reuse-as-is
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -39,6 +41,28 @@ complexity_justification: "telemetryを再実装せず、requirements／design�
 removal_trigger: "CI System Synthesis終端Reverseが本証拠を統合し、個別fullback参照が不要になった時"
 parent_design: docs/design/helix/L6-function-design/ci-execution-telemetry.md
 pair_artifact: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-30T09:22:05Z"
+    tests_green_at: "2026-08-30T08:57:00Z"
+    verdict: approve
+    worker_model: codex:gpt-5-codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "64a9c2f7-288e-4703-acb6-c908ce64abfb"
+    reviewed_head_sha: 723fe6053803159a75256a3786f3365379e1e083
+    scope: "PR #1243 exact HEADをClaude Codeが独立reviewし、PR固有docs 3件、0ms DAG実装照合、Forward merge証拠、CI、DB convergenceを確認した。blocker 0。terminal state更新は後続bundleで別途検収する。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1243#issuecomment-5467873719"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33302705162 --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-30T08:57:00Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:247632c3de8124934f8c58ea6da8b4b03a2f281e87aeb95f0fa8ae3a2d333376"
+        result: "exact HEAD 723fe6053803159a75256a3786f3365379e1e083のCI run 33302705162がterminal success、receipt DB convergence=true"
 backprop_scope:
   - layer: requirements
     decision: not_impacted
@@ -52,8 +76,16 @@ backprop_scope:
     decision: not_impacted
     evidence_path: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md
     reason: "U-TELE-001〜010の意味を変更せず、U-TELE-009へ実装済み0ms DAG反例を明文化してcurrent HEADへ束縛する。"
+  - layer: L4-basic-design
+    decision: not_impacted
+    reason: "telemetry eventの外部system boundary、provider interface、利用者契約を変更せず、既存L6責務の実測だけを再接着する。"
+  - layer: L5-detailed-design
+    decision: not_impacted
+    reason: "event schemaとprojectionの詳細契約はForward実装と既存L6設計で一致し、新しい内部責務やdata flowを追加しない。"
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-705-ci-execution-telemetry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/ci-execution-telemetry-terminal-fullback-evidence.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/ci-execution-telemetry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md, artifact_type: test_design }
@@ -61,6 +93,7 @@ dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:
     - docs/plans/PLAN-L3-73-ci-system-synthesis.md
+    - docs/plans/PLAN-L7-704-ci-execution-telemetry.md
   references:
     - "issue:1238"
     - "issue:1204"
@@ -111,3 +144,10 @@ Forward側のClaude独立review、required CI、canonical merge、DB convergence
 本Reverse candidateではForward／Reverse PLANの双方向link、L6／L8 backfill、targeted／全回帰、Claude exact-HEAD
 reviewを揃えた後にcanonical mergeする。merge後のmain read-afterで同じ状態を再取得してからIssue #1204／#1238を
 closeし、#1205をcurrent mainへ再接着する。未実施のReverse merge後read-afterやIssue closeは先取りしない。
+
+## R4 confirmation
+
+PR #1243はcanonical reviewed merge `79c6d67c14023990ca1de97f1639257e7da514df`へ到達し、read-after receipt
+`sha256:17ff82f34d87b75acf9e8a3fc11be80c4cd122f0657ba9cc1004a0cc23d8e691`でcandidate HEADとmerge stateを
+再取得した。本terminal bundleではForward／Reverseの双方向dependency、R4 scope、completion stateだけを原子的に
+確定する。bundle自身のcurrent-HEAD CI、独立review、canonical merge後read-afterが成立するまでIssue closeを行わない。
