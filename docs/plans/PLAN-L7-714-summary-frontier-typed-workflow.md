@@ -58,7 +58,7 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-714-summary-frontier-typed-workflow.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_view }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-current-location-summary-typed-output-unit-test-design.md, artifact_type: test_design }
