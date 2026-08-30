@@ -749,8 +749,6 @@ export function admitUniversalImprovementSource(
   };
 }
 
-export const parseUniversalImprovementSourceRegistry = analyzeUniversalImprovementSourceRegistry;
-
 export function universalImprovementSourceRegistryMessages(
   result: UniversalImprovementSourceRegistryResult,
 ): string[] {
