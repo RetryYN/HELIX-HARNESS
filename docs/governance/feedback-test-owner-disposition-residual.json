@@ -27,8 +27,8 @@
     },
     {
       "test_path": "tests/document-semantic-diff.test.ts",
-      "test_file_sha256": "53c3c8183f1e596b07e68c9718b48669186f1680b419b88c3f175d0b9825d96a",
-      "expected_case_count": 3,
+      "test_file_sha256": "a7d312c10f1255a6dc4acdc06261829a917782715a066b3e075c449fd9411151",
+      "expected_case_count": 4,
       "authority_paths": [
         "docs/design/helix/L5-detail/document-semantic-diff.md",
         "docs/test-design/helix/L8-document-semantic-diff-contracts.md"
@@ -57,7 +57,7 @@
     },
     {
       "test_path": "tests/canonical-reuse-authority.test.ts",
-      "test_file_sha256": "6ac4acf8f7cfa99fe319b20d7c02660fac78565cbeb036916c956de53f60b6ef",
+      "test_file_sha256": "0e18b068ad409544cb5edf6c59c9ff9a087f4feaf5b81ce8172f7651c416b614",
       "expected_case_count": 4,
       "authority_paths": [
         "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
@@ -67,7 +67,7 @@
     },
     {
       "test_path": "tests/l12-canonical-authority.test.ts",
-      "test_file_sha256": "c21e138cd6c91b1edef4a8ac5a4faae4b5834080ba20b27954f744e18cb51c81",
+      "test_file_sha256": "7cd420cb1ab45270514667273b86c802f27eab615de65fa1557b8a5a922fd9f6",
       "expected_case_count": 6,
       "authority_paths": [
         "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",

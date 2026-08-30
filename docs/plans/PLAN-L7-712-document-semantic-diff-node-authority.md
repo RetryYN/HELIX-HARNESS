@@ -1,0 +1,95 @@
+---
+plan_id: PLAN-L7-712-document-semantic-diff-node-authority
+title: "PLAN-L7-712: document semantic diffをNode transactional authorityへ収束する"
+kind: refactor
+layer: L7
+drive: agent
+status: confirmed
+backfill_state: pending_reverse
+completion_claim_allowed: false
+created: 2026-08-30
+updated: 2026-08-31
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: 01a05061-f4c3-7b50-8fc4-b148dbd5375a
+    reviewed_head_sha: 49456bb115a2c9f3ab5b36186bc5dcbb0e849625
+    reviewed_at: "2026-08-31T00:49:00+09:00"
+    tests_green_at: "2026-08-31T00:49:00+09:00"
+    verdict: approve
+    scope: "PR #1261 pre-confirm review。L6/L8/PLAN recognition disposition、Node再検証、artifact write単一境界、Git/GitHub write authority非移譲、Issue/PLAN identityを反例再検証しBLOCKER 0。receipt sealは行っていない。"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run --project fast tests/document-semantic-diff.test.ts tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:49:00+09:00", evidence_path: tests/document-semantic-diff.test.ts, output_digest: "sha256:078e641c164a1e6df1112caa300c9e43f1ee46a8acccc5223b83972952fc8df7" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:49:00+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011" }
+      - { kind: lint, command: "npx biome check src/lint/l12-hybrid-reviewed-safe-v2.ts tests/document-semantic-diff.test.ts tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:49:00+09:00", evidence_path: biome.json, output_digest: "sha256:9ed169dcae7c90190a86bffc63b6ab95070c5cb26d5c10fbfccc54d35c802248" }
+owner: Codex / TL
+github_issue_id: 1260
+behavior_contract_id: DOCUMENT-SEMANTIC-DIFF-RUNTIME-AUTHORITY-001
+responsibility_owner: document-semantic-diff
+change_slice: atomic
+refactor_step: migrate_one_consumer
+engineering_discipline_required: true
+no_code_decision: modify
+ddd_modeling_decision: value_object
+legacy_retirement_state: consumer_migration
+backprop_decision: not_required
+backprop_decision_reason: "ADR-009/010の確定済みruntime authorityを既存document semantic diff L6/L8へ投影するRETROFITであり、意味diff契約や上位要求を変更しない。"
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  target_axis: workflow_model
+  target_id: RETROFIT
+entry_signals:
+  - "po_directive:Issue #1260 document semantic diffのcurrent TypeScript/Bun authorityをADR-009/010へ収束"
+contract_preconditions: "ADR-009/010、既存document semantic diff L6/L8 pair、TypeScript/Node実装がcurrent authorityである"
+contract_postconditions: "L6/L8がTypeScript/Node transactional boundaryとPython semantic coreの層別authorityを表し、Bun current guidanceを再出力しない"
+contract_invariants: "semantic diff runtime behavior、CLI identity、artifact write契約、historical/compatibility evidenceを変更しない"
+contract_failures: "TypeScript/Bun current authority、Pythonへのwrite authority移譲、Node再検証欠落、Bun command再出力をfail-closeする"
+tdd_red_required: true
+red_at: "2026-08-30T23:27:59+09:00"
+green_at: "2026-08-30T23:28:40+09:00"
+tdd_red_evidence: "tests/document-semantic-diff.test.ts U-DOCDIFF-009が旧L6のTypeScript/Bun authorityを検出して1 failed／3 passed"
+tdd_green_evidence: "2026-08-30T23:28:40+09:00にU-DOCDIFF-001..004/006/007/009の4 tests greenを実測し、Node/Python layered authorityとBun current guidance不在を確認した"
+mutation_oracle_required: true
+mutation_oracle_evidence: "tests/document-semantic-diff.test.ts U-DOCDIFF-009でNode boundary、Python semantic core、strict JSONL、Node再検証、artifact write単一境界、Git/GitHub authority非移譲、L8 citation、retired runtime label、active Bun commandの各mutationをredとしてkillする"
+complexity_effect: net_negative
+complexity_justification: "current TypeScript/Bun authority 1件を除去し、runtime authorityをADR-009/010へ一元化する"
+removal_trigger: "document semantic diff設計がgenerated authority projectionへ完全移行し、同oracleがreplacementへ移った時"
+parent_design: docs/design/helix/L6-function-design/document-semantic-diff.md
+pair_artifact: docs/test-design/helix/L8-document-semantic-diff-contracts.md
+dependencies:
+  parent: docs/plans/PLAN-REVERSE-567-current-runtime-guidance.md
+  requires:
+    - docs/adr/ADR-009-node-python-linux-runtime.md
+    - docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md
+  references:
+    - issue:1260
+    - issue:206
+  blocks: []
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/document-semantic-diff.md, oracle_id: U-DOCDIFF-009, test_path: tests/document-semantic-diff.test.ts }
+generates:
+  - { artifact_path: docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md, artifact_type: markdown_doc }
+modifies:
+  - { artifact_path: docs/design/helix/L6-function-design/document-semantic-diff.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: config }
+  - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L8-document-semantic-diff-contracts.md, artifact_type: test_design }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/document-semantic-diff.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+agent_slots:
+  - { role: se, slot_label: "SE — document semantic diff runtime authority境界" }
+  - { role: qa, slot_label: "QA — Bun再出力とPython/Node authority mutation" }
+---
+
+# document semantic diff Node authority収束
+
+Issue #1260のdocument semantic diff責務だけを実施し、#1259、layer ledger、DB旧identity、Release/cutoverへ
+責務を広げない。既存runtime挙動を変えず、L6、L8、targeted oracle、reviewed-safe digestを同一HEADへ束縛する。
+PLANはpre-confirmのためdraftとcompletion claim falseを維持する。

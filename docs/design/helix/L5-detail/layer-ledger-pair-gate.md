@@ -4,7 +4,7 @@ layer: L5
 kind: add-design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-08-30
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 related_l3: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
@@ -23,11 +23,16 @@ requirements:
 pair_artifact: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md
 next_pair_freeze: L8
 ---
+
 # HELIX L5詳細設計 — 連鎖台帳・pair gate
 
 ## §0 境界
 
-L0–L14 workflow、design/progress/requirement/assertion ledger、V-model pair metadata、HC-CHAT-039〜041を正本とする。新しいCLIや別DB instanceは増やさず、以下のtableは既存harness.db内のappend-only schemaとして追加する。
+current authorityはcanonical L1–L12 exact setと`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、
+`L5↔L8`、`L6↔L7`の正規6 pairだけとする。L0は層外authority anchorとしてL1企画へ投影し、layer registryや
+horizontal pairへ含めない。旧L0–L14は明示したcompatibility/historical inputからcanonicalへ変換する読取り専用境界に隔離し、
+current generated output、failure identity、fixtureへ再出力しない。新しいCLIや別DB instanceは増やさず、以下のtableは
+既存harness.db内のappend-only schemaとして追加する。
 
 ## §1 DB・event・projection
 
@@ -71,13 +76,13 @@ event headをCAS検証して固定分母を解決する。5 stageは固定分母
 | `HST-CASE-031-08` | `ledger_ready` | `stale` | `HIL_LAYER_VERTICAL_SNAPSHOT_MISMATCH` | `IT-LLPG-023` | `U-LLPG-023` |
 | `HST-CASE-031-09` | `assertion_input_ready` | `assertion_pass` | `HIL_LAYER_VERTICAL_PAIR_INCOMPLETE` | `IT-LLPG-024` | `U-LLPG-024` |
 | `HST-CASE-032-01` | `ledger_ready` | `verified` | `なし（正常系）` | `IT-LLPG-025` | `U-LLPG-025` |
-| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L0_L14_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
-| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L14_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
-| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
-| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L12_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
-| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
-| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
-| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-032` | `U-LLPG-032` |
+| `HST-CASE-032-02` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L1_L12_MISSING` | `IT-LLPG-026` | `U-LLPG-026` |
+| `HST-CASE-032-03` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L2_L11_MISSING` | `IT-LLPG-027` | `U-LLPG-027` |
+| `HST-CASE-032-04` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L3_L10_MISSING` | `IT-LLPG-028` | `U-LLPG-028` |
+| `HST-CASE-032-05` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L4_L9_MISSING` | `IT-LLPG-029` | `U-LLPG-029` |
+| `HST-CASE-032-06` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L5_L8_MISSING` | `IT-LLPG-030` | `U-LLPG-030` |
+| `HST-CASE-032-07` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_L6_L7_MISSING` | `IT-LLPG-031` | `U-LLPG-031` |
+| `HST-CASE-032-08` | `ledger_ready` | `failed` | `HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID` | `IT-LLPG-032` | `U-LLPG-032` |
 | `HST-CASE-032-09` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_REVERSE_MISSING` | `IT-LLPG-033` | `U-LLPG-033` |
 | `HST-CASE-032-10` | `ledger_ready` | `failed` | `HIL_LAYER_VPAIR_ORACLE_MISMATCH` | `IT-LLPG-034` | `U-LLPG-034` |
 | `HST-CASE-032-11` | `paired` | `paired` | `HIL_LAYER_VPAIR_EXECUTION_MISSING` | `IT-LLPG-035` | `U-LLPG-035` |
@@ -105,12 +110,12 @@ event headをCAS検証して固定分母を解決する。5 stageは固定分母
 
 | table | PK／必須field | unique／FK／不変条件 |
 |---|---|---|
-| layer_ledger_registry | layer_id、type/version、authority、entry/exit digest | layer+version unique、L0–L14欠落禁止 |
+| layer_ledger_registry | layer_id、type/version、authority、entry/exit digest | layer+version unique、canonical L1–L12 exact set欠落禁止。L0はregistry外 |
 | `layer_obligation_rows`（義務台帳） | `row_id`、layer/revision、source kind/span、semantic digest、状態 | registry外部key、原子的、operation/digest一意 |
 | vertical_pair_edges | edge_id、parent/child row revision、derived/backprop digest | 隣接layerのみ、双方向同revision |
 | horizontal_vpair_edges | edge_id、design/verification revision、oracle、snapshot、execution receipt | canonical pairのみ、双方向current |
 | design_refactor_candidates | candidate_id、before/after、consumer set、route、rollback | diff/provenance必須、behavior変更はreroute |
-| design_progress_denominators | denominator ID、exact 19 slice ID、exact 76 artifact path/digest、canonical U 475/IT 360/HST 411 exact ID list/set digest、registry revision/digest、authority/freshness/supersession、source commit/tree/design snapshot、measurement command/version/time | immutable、current authorityだけ有効、supporting U/IT各S01は分母外 |
+| design_progress_denominators | denominator ID、exact 19 slice ID、exact 76 artifact path/digest、canonical U 476/IT 360/HST 411 exact ID list/set digest、registry revision/digest、authority/freshness/supersession、source commit/tree/design snapshot、measurement command/version/time | immutable、current authorityだけ有効、supporting U/IT各S01は分母外 |
 | design_stage_receipts | receipt ID/digest、denominator digest、stage、exact numerator slice ID/digest、evidence receipt ID/digest、snapshot | artifact_created/semantic_closed/independent_audited/pair_frozen/implementation_verifiedを独立row保存 |
 | design_artifact_quartets | slice ID、exact 4 path/digest、quartet digest、source/design digest | 19 slice×4＝76、kind重複・欠落禁止 |
 | design_audit_evidence | slice ID、author/reviewer runtime-model、policy/version、finding closure、quartet digest | runtime-model分離、open finding 0、currentのみ |
@@ -126,7 +131,7 @@ progress固定分母は`HDS-HIL-01`〜`08`、`09A`、`09B`、`10`〜`18`のexact
 5 stageは同じ分母を共有する独立axisで、分子はexact slice ID一覧、一覧digest、count、rate、evidence receipt ID/digestを持つ。
 包含不変条件はimplementation_verified⊆pair_frozen⊆independent_audited⊆semantic_closed⊆artifact_createdである。
 artifactはsliceごとの4 path/digest、auditはauthor/reviewer分離とfinding closure、freezeはsliceごとのcurrent 2 pair receipt、
-implementationは全canonical U/IT/HSTの実行evidenceを要求する。U 475、IT 360、HST 411、quartet 835、全canonical 1,246を固定し、
+implementationは全canonical U/IT/HSTの実行evidenceを要求する。U 476、IT 360、HST 411、quartet 836、全canonical 1,247を固定し、
 `U-LLPG-S01`と`IT-LLPG-S01`はsupporting meta-oracle receiptで追跡するがcanonical分母へ加えない。
 
 registry/denominator、artifact、audit policy/input、freeze、implementation commit/test/command、source tree、design digest変更時は、該当stageと
@@ -173,3 +178,17 @@ composition/mutationであり、API ownerまたはcanonical分母へ重複加算
 | `parseLayerLedgerWriteSet` | `U-LLPG-052` | `IT-LLPG-052` |
 
 executable caseのAPI名とfixture pathはL6のclosed V1 unionだけを受理し、自由文字列をauthorityにしない。
+
+## 設計実在性束縛
+
+本sliceはauthority設計とfixtureを収束し、runtime assetの実装済み主張を行わない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```

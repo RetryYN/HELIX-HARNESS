@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-07-14
-updated: 2026-07-14
+updated: 2026-08-30
 pair_artifact: docs/design/helix/L6-function-design/document-semantic-diff.md
 owner: QA / TL
 ---
@@ -23,3 +23,4 @@ owner: QA / TL
 | U-DOCDIFF-007 | input順/改行/NFC | 同一の決定論的結果 | `tests/document-semantic-diff.test.ts` |
 | U-DOCDIFF-008 | local artifact port | canonical相対path・専用root・new-file-only・symlink/traversal/digest/atomic publishを強制し、dry-runはwrite 0 | `tests/document-report-write-port.test.ts` |
 | IT-DOCDIFF-003 | CLI artifact output | 専用root外・既存targetを拒否し、dry-runはwrite 0 | `tests/cli-surface.test.ts` |
+| U-DOCDIFF-009 | runtime layered authority | current設計をTypeScript/Node transactional boundaryへ固定し、Python semantic core接続時のstrict JSONL・Node再検証・write authority非移譲を要求する。historical/compatibility以外のBun current guidance再出力はfail-close | `tests/document-semantic-diff.test.ts` |
