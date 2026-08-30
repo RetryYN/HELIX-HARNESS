@@ -54,7 +54,7 @@ green_at: "2026-08-30T23:28:40+09:00"
 tdd_red_evidence: "tests/document-semantic-diff.test.ts U-DOCDIFF-009が旧L6のTypeScript/Bun authorityを検出して1 failed／3 passed"
 tdd_green_evidence: "2026-08-30T23:28:40+09:00にU-DOCDIFF-001..004/006/007/009の4 tests greenを実測し、Node/Python layered authorityとBun current guidance不在を確認した"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-DOCDIFF-009がNode boundary、Python semantic core、strict JSONL、NodeによるPython出力再検証、artifact write単一transactional boundary、Git/GitHub write authority非移譲、L8 citation、retired combined runtime labelおよびactive Bun commandを個別に拘束する"
+mutation_oracle_evidence: "tests/document-semantic-diff.test.ts U-DOCDIFF-009でNode boundary、Python semantic core、strict JSONL、Node再検証、artifact write単一境界、Git/GitHub authority非移譲、L8 citation、retired runtime label、active Bun commandの各mutationをredとしてkillする"
 complexity_effect: net_negative
 complexity_justification: "current TypeScript/Bun authority 1件を除去し、runtime authorityをADR-009/010へ一元化する"
 removal_trigger: "document semantic diff設計がgenerated authority projectionへ完全移行し、同oracleがreplacementへ移った時"
@@ -75,11 +75,13 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/document-semantic-diff.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: config }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
   - { artifact_path: docs/test-design/helix/L8-document-semantic-diff-contracts.md, artifact_type: test_design }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/document-semantic-diff.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — document semantic diff runtime authority境界" }
