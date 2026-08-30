@@ -24,7 +24,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: REFACTORING
+  target_id: REFACTOR
 entry_signals:
   - "po_directive:Issue #1253 setup guideのactive Bun guidanceをcurrent Node/npm authorityへ収束"
 contract_preconditions: "ADR-009、package.json engines/scripts/bin、既存current-runtime-guidance L6/L8 pairがcurrent authorityである"
