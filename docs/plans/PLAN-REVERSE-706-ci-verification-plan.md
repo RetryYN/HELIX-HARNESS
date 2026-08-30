@@ -38,7 +38,7 @@ contract_failures: "wrong HEAD、stale review、双方向link欠落、required o
 tdd_red_required: false
 tdd_red_waiver_reason: "Forward実装とU-CIVPLAN-001〜012を再利用するdocs-only Reverse vehicleであり、新しいRedを捏造しない"
 mutation_oracle_required: true
-mutation_oracle_evidence: "Forward双方向link欠落mutationとU-CIVPLAN-002〜012のrequired削除・重複・wrong HEAD・stale digest・deferred receipt不整合を再実行する"
+mutation_oracle_evidence: "tests/backfill-pairing.test.tsでForward双方向link欠落mutationをredとしてkillし、tests/ci-verification-plan.test.ts U-CIVPLAN-002〜012でrequired削除・重複・wrong HEAD・stale digest・deferred receipt不整合mutationを個別にkillする"
 complexity_effect: net_neutral
 complexity_justification: "Verification Planを再実装せず、requirements／design／verification／main evidenceの再接着だけを所有する"
 removal_trigger: "CI System Synthesis終端Reverseが本証拠を統合し、個別fullback参照が不要になった時"
