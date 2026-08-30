@@ -61,7 +61,7 @@ generates:
   - { artifact_path: src/runtime/universal-improvement-observation-normalizer.ts, artifact_type: source_module }
   - { artifact_path: tests/universal-improvement-observation-normalizer.test.ts, artifact_type: test_code }
 modifies:
-  - config/digest-canonicalization-inventory.json
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L3-74-universal-improvement-loop.md
   requires:
