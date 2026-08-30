@@ -14,7 +14,7 @@ behavior_contract_id: CI-VERIFICATION-PLAN-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
 refactor_step: introduce_contract
-no_code_decision: no_change
+no_code_decision: add_code
 legacy_retirement_state: input_only
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
