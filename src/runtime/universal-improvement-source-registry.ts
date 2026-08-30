@@ -282,6 +282,7 @@ export type UniversalImprovementSourceRegistryFailureCode =
   | "observation_digest_invalid"
   | "observation_timestamp_invalid"
   | "observation_timestamp_future"
+  | "observation_sensitive_field_forbidden"
   | "observation_stale";
 
 export interface UniversalImprovementSourceRegistryFinding {
@@ -362,6 +363,55 @@ function repositoryFileDigest(
     return { kind: "ok", digest: sha256Digest(readFileSync(resolved.path)) };
   } catch {
     return { kind: "missing" };
+  }
+}
+
+function parseStrictTimestamp(value: unknown): number | null {
+  if (typeof value !== "string") return null;
+  const match =
+    /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/u.exec(value);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const hour = Number(match[4]);
+  const minute = Number(match[5]);
+  const second = Number(match[6]);
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (
+    month < 1 ||
+    month > 12 ||
+    day < 1 ||
+    day > (daysInMonth[month - 1] ?? 0) ||
+    hour > 23 ||
+    minute > 59 ||
+    second > 59
+  ) {
+    return null;
+  }
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function collectForbiddenObservationFields(value: unknown, path: string, paths: Set<string>): void {
+  if (Array.isArray(value)) {
+    for (const [index, child] of value.entries()) {
+      collectForbiddenObservationFields(child, `${path}[${index}]`, paths);
+    }
+    return;
+  }
+  if (typeof value !== "object" || value === null) return;
+  for (const [key, child] of Object.entries(value)) {
+    const childPath = `${path}.${key}`;
+    if (
+      /(?:raw[_-]?log|stdout|stderr|credential|secret|password|passwd|api[_-]?key|private[_-]?key|\btoken\b|\bpii\b)/iu.test(
+        key,
+      )
+    ) {
+      paths.add(childPath);
+    }
+    collectForbiddenObservationFields(child, childPath, paths);
   }
 }
 
@@ -656,6 +706,17 @@ export function admitUniversalImprovementSource(
   }
 
   const findings: UniversalImprovementSourceRegistryFinding[] = [];
+  const forbiddenObservationFields = new Set<string>();
+  collectForbiddenObservationFields(admittedObservation, "observation", forbiddenObservationFields);
+  for (const path of [...forbiddenObservationFields].sort()) {
+    findings.push(
+      finding(
+        "observation_sensitive_field_forbidden",
+        admittedObservation.source_id,
+        `sensitive observation field is forbidden: ${path}`,
+      ),
+    );
+  }
   if (admittedObservation.schema_version !== entry.schema_version) {
     findings.push(
       finding(
@@ -704,9 +765,9 @@ export function admitUniversalImprovementSource(
       ),
     );
   }
-  const observedAt = Date.parse(admittedObservation.observed_at);
+  const observedAt = parseStrictTimestamp(admittedObservation.observed_at);
   const nowAt = now instanceof Date ? now.getTime() : Number.NaN;
-  if (!Number.isFinite(observedAt) || !Number.isFinite(nowAt)) {
+  if (observedAt === null || !Number.isFinite(nowAt)) {
     findings.push(
       finding(
         "observation_timestamp_invalid",

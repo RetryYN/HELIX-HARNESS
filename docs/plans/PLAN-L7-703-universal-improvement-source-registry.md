@@ -32,9 +32,9 @@ ddd_modeling_decision: aggregate
 contract_preconditions: "PLAN-L3-74、Universal Improvement Loop L3/L10要求、既存detectorとread-only doctorが利用可能である"
 contract_postconditions: "10種類の観測sourceがrequirements-owned registry、実体digest、detector identity、evidence contractへ束縛され、doctorとruntime admissionが同じ結果を返す"
 contract_invariants: "registryはread-only、AIはproposal-only、unknown／duplicate／digest drift／unsafe path／不正observationはfail-close、候補生成やauthority writeを実行しない"
-contract_failures: "required source kind欠落、source／detector不在またはdigest不一致、schema／identity不一致、必須evidence欠落、invalid digest／timestampをgreenへ縮退しない"
+contract_failures: "required source kind欠落、source／detector不在またはdigest不一致、schema／identity不一致、必須evidence欠落、sensitive field、invalid／future digest／timestampをgreenへ縮退しない"
 tdd_red_required: true
-red_test: "U-UILSRC-001..009でsource kind欠落、duplicate、source lifecycle metadata欠落、digest drift、unsafe path、observation identity、doctor未配線を個別に検出する"
+red_test: "U-UILSRC-001..009でsource kind欠落、duplicate、source lifecycle metadata欠落、digest drift、unsafe path、observation identity、strict timestamp、sensitive field、doctor未配線を個別に検出する"
 red_at: null
 green_at: 2026-08-30T07:09:05+09:00
 mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にU-UILSRC-002／003／005の実装内変異（source kind重複、evidence contractのsource_revision欠落、digest drift、unsafe path、malformed／null observation）を実行し、対応するfail-close oracleを通過させた。targeted 2 files／9 tests passed、output_digest=sha256:904d13f50b3c881792745dca332f21e6150cdc68828e00871d30f346633d3cca。"

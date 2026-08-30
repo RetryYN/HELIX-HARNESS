@@ -55,7 +55,8 @@ detector実装を本sliceで再実装しない。
 - source／detector identityはregistry entryとobservationで完全一致させる。
 - 各source kindは一つのactive entryだけを持ち、重複source kindを拒否する。
 - observationのrequired／identity／digest fieldはregistry宣言の欠落を許容せず、source_revisionを必須とする。
-- observationのtimestampが未来、またはentryのfreshness windowを超える場合は拒否する。
+- observationのtimestampがRFC3339形式・実在日付でない、未来、またはentryのfreshness windowを超える場合は拒否する。
+- observationへraw log、stdout／stderr、credential、secret、token、PII相当のfieldを混入させない。
 - digestは形式だけでなくregistryが指す実体bytesと比較する。
 - 全判定は候補生成前のread-only admissionで、authorityへの副作用を持たない。
 

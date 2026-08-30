@@ -217,6 +217,48 @@ describe("Universal Improvement source registry", () => {
       { code: "observation_timestamp_future", subject: entry.source_id },
     ]);
 
+    const invalidCalendar = validObservation(
+      entry.source_id,
+      entry.schema_version,
+      entry.detector.detector_id,
+    );
+    invalidCalendar.observed_at = "2026-02-30T00:00:00.000Z";
+    const invalidCalendarResult = admitUniversalImprovementSource(
+      result,
+      invalidCalendar,
+      new Date("2026-08-30T12:00:00.000Z"),
+    );
+    expect(invalidCalendarResult.ok).toBe(false);
+    expect(invalidCalendarResult.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "observation_timestamp_invalid",
+          subject: entry.source_id,
+        }),
+      ]),
+    );
+
+    const sensitive = validObservation(
+      entry.source_id,
+      entry.schema_version,
+      entry.detector.detector_id,
+    );
+    sensitive.metadata = { secret: "must not be retained" };
+    const sensitiveResult = admitUniversalImprovementSource(
+      result,
+      sensitive,
+      new Date("2026-08-30T12:00:00.000Z"),
+    );
+    expect(sensitiveResult.ok).toBe(false);
+    expect(sensitiveResult.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "observation_sensitive_field_forbidden",
+          subject: entry.source_id,
+        }),
+      ]),
+    );
+
     const malformed = admitUniversalImprovementSource(
       result,
       null as unknown as UniversalImprovementSourceObservation,
