@@ -85,7 +85,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — critical pathと安全fallback境界" }
 ---
 
-# CI critical-path scheduler
+# CI critical-path scheduler実装
 
 ## §工程表
 

@@ -33,9 +33,9 @@ skipして高速化してはならない。
 ## 出力契約
 
 - obligation exact setとdependency closureを保存したexecution DAG
-- job placement、parallel group、resource class、artifact reuse decision
+- job配置、並列group、resource class、artifact再利用の判定
 - critical path予測、runner-minute予測、failure feedback latency予測
-- fallback reason、rejected artifact/resource finding、plan digest
+- fallback理由、拒否したartifact／resourceのfinding、plan digest
 - local→boundary→global/releaseのphase順と、先行phase failure時に未開始heavy nodeだけを止めるbounded cancel policy
 
 artifact reuseはsource HEAD、lockfile、Node/toolchain、platform、input/output digestの全一致を要求する。statefulまたはglobal
