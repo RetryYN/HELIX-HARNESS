@@ -31,4 +31,3 @@ mutable resourceはactive leaseとfence tokenなしに並列配置しない。
 
 wrong HEAD/platform/lockfile/toolchain artifact、dependency逆転、cycle、resource conflict、quota超過、stale telemetry、
 lease/fence欠落を別findingでfail-closeする。安全fallbackが成立する場合もfindingとfallback reasonをreceiptへ残す。
-
