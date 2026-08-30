@@ -40,6 +40,7 @@ mutation_oracle_evidence: "backfill-pairingの双方向reference mutationとForw
 complexity_effect: net_neutral
 complexity_justification: "exactly-one PLANを保ったままForwardとReverseの責務を分離する"
 removal_trigger: "CI System Synthesis全体Reverseが本証拠を統合し、個別vehicle参照が不要になった時"
+pair_artifact: docs/test-design/helix/L8-ci-critical-path-scheduler-reverse-vehicle-test-design.md
 dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:
@@ -52,6 +53,7 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-707-ci-critical-path-scheduler.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L8-ci-critical-path-scheduler-reverse-vehicle-test-design.md, artifact_type: test_design }
 agent_slots:
   - { role: qa, slot_label: "QA — obligation保存とfallbackのR0〜R4再検証" }
   - { role: tl, slot_label: "TL — Forward双方向linkと#1208再接着" }
