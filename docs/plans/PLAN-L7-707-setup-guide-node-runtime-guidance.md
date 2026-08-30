@@ -58,6 +58,8 @@ generates:
   - { artifact_path: docs/plans/PLAN-L7-707-setup-guide-node-runtime-guidance.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/reference/setup-guide.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L8-current-runtime-guidance-test-design.md, artifact_type: test_design }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/current-runtime-guidance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 agent_slots:
@@ -67,4 +69,4 @@ agent_slots:
 
 # setup guide Node/npm収束
 
-Issue #1253の3-path原子sliceだけを実施し、旧L08-L14、dynamic workflow guide、Release/cutoverへ責務を広げない。
+Issue #1253のruntime guidance責務だけを実施し、旧L08-L14、dynamic workflow guide、Release/cutoverへ責務を広げない。L8 oracleとL12 reviewed dispositionは同じ意味契約の派生projectionとして同一HEADへ束縛する。
