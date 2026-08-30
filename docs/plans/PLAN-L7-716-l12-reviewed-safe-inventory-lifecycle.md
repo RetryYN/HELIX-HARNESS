@@ -65,6 +65,7 @@ generates:
   - { artifact_path: tests/l12-hybrid-inventory-lifecycle.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
 agent_slots:
   - { role: se, slot_label: "SE — reviewed-safe family lifecycle設計" }
