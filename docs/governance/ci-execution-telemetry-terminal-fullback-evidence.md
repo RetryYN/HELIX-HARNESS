@@ -7,7 +7,7 @@ owner: Codex / TL
 plan: PLAN-REVERSE-705-ci-execution-telemetry
 ---
 
-# CI execution telemetry terminal fullback evidence
+# CI実行telemetry終端fullback証拠
 
 ## 事実基準
 
