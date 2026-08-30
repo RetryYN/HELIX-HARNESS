@@ -5,6 +5,7 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
+backfill_state: pending_reverse
 completion_claim_allowed: false
 created: 2026-08-30
 updated: 2026-08-31
@@ -15,7 +16,7 @@ review_evidence:
     reviewer_model: codex-intra-runtime
     reviewer_session_id: 01a05061-f4c3-7b50-8fc4-b148dbd5375a
     reviewed_head_sha: 0eb5707fbe112cc6188bb0a492977106eaf06e5e
-    reviewed_at: "2026-08-31T00:20:53+09:00"
+    reviewed_at: "2026-08-30T15:20:53Z"
     tests_green_at: "2026-08-31T00:20:53+09:00"
     verdict: approve
     scope: "PR #1240 pre-confirm review。4巡の反例監査でexact HEAD、unknown risk、deferred receipt、required obligation削除・重複を検証し、最終HEADでBLOCKER 0。receipt sealは行っていない。"
@@ -29,8 +30,10 @@ behavior_contract_id: CI-VERIFICATION-PLAN-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
 refactor_step: introduce_contract
+engineering_discipline_required: true
 no_code_decision: add_code
-legacy_retirement_state: input_only
+ddd_modeling_decision: domain_service
+legacy_retirement_state: retained
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -44,10 +47,12 @@ contract_postconditions: "work authorityとexact candidate HEADからlocal／bou
 contract_invariants: "path-only identity、LLM省略、別green相殺、scheduler／runner選択をcurrent planへ混載しない"
 contract_failures: "wrong／mismatched HEAD、stale registry、unknown capability／risk、required obligation欠落、duplicate／missing defer、deferred receipt／dependency不整合をfail-closeする"
 tdd_red_required: true
+red_at: "2026-08-30T12:28:00+09:00"
+green_at: "2026-08-31T00:20:53+09:00"
 tdd_red_evidence: "2026-08-30T12:28:00+09:00 tests/ci-verification-plan.test.ts initial red: ci-verification-plan module不在"
 tdd_green_evidence: "2026-08-31 tests/ci-verification-plan.test.ts 12 tests green、typecheck green（再検証予定）"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CIVPLAN-002〜012でrequired test／aggregate obligation削除・重複、全high-risk downgrade、unknown risk、valid-shape wrong HEAD、stale digest、defer receipt未知state／欠落／重複／dependency、legacy unknown／overlapを個別mutationする"
+mutation_oracle_evidence: "tests/ci-verification-plan.test.tsのU-CIVPLAN-002〜012でrequired obligation削除・重複、全high-risk downgrade、unknown risk、wrong HEAD、stale digest、defer receipt不整合を個別にmutation killedとして実測した"
 complexity_effect: net_negative
 complexity_justification: "Impact CI／Lite／Module別のpath decisionを一つのtyped Verification Planへ収束する"
 removal_trigger: "CI System Synthesis replacementへ全consumer、legacy adapter、rollback traceが移行した時"
@@ -94,8 +99,17 @@ generates:
 agent_slots:
   - { role: se, slot_label: "SE — typed Verification Plan composition" }
   - { role: qa, slot_label: "QA — fallback／defer／legacy mutation" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-30T15:20:53Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-30T15:20:53Z"
+    evidence_digest: "sha256:81f65828aee053a8185a975ab6c8a7143966c21bb52b8ebb9b1a4077d0fe02dd"
+  entries: []
 ---
 
-# CI Verification Plan
+# CI Verification Plan実装
 
 CIS-R-07〜09だけを実装する。scheduler、runner、telemetry recoveryは#1207以降へ残す。

@@ -38,7 +38,7 @@ risk、deferred assignmentからtyped Verification Planを決定的に合成す�
 拒否し、旧path、test list、reason textをcurrent planのprimary identityへ再出力しない。旧full admissionは
 `legacy_full_admission`としてfull fallbackへ変換する。
 
-## §4 fail-close
+## §4 fail-close境界
 
 wrong／mismatched HEAD、同一base／candidate、stale registry digest、unknown capability／risk、required obligation欠落、
 duplicate assignment、missing release target、deferred receipt不整合、deferred dependency、registry admission failureを
