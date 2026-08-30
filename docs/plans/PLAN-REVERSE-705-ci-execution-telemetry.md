@@ -3,14 +3,12 @@ plan_id: PLAN-REVERSE-705-ci-execution-telemetry
 title: "PLAN-REVERSE-705: CI execution telemetryをCI System Synthesisへ再接着する"
 kind: reverse
 layer: cross
-workflow_phase: R4
+workflow_phase: R3
 confirmed_reverse_type: fullback
-forward_routing: L7
-promotion_strategy: reuse-with-hardening
 drive: agent
-status: confirmed
-completion_claim_allowed: true
-backfill_state: complete
+status: draft
+completion_claim_allowed: false
+backfill_state: pending_reverse
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / TL
@@ -57,10 +55,8 @@ backprop_scope:
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-705-ci-execution-telemetry.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/plans/PLAN-L7-704-ci-execution-telemetry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/ci-execution-telemetry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:

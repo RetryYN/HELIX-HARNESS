@@ -5,8 +5,8 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-backfill_state: complete
-completion_claim_allowed: true
+backfill_state: pending_reverse
+completion_claim_allowed: false
 entry_signals:
   - "po_directive:Issue #1204 CI実行をcost nodeと証明責務へ束縛し、CI改革の実測基盤を作る"
 created: 2026-08-30
@@ -30,7 +30,7 @@ contract_failures: "wrong HEAD、unknown runner、batch内のNode/cache/resource
 tdd_red_required: false
 tdd_red_waiver_reason: "既存Impact CIの選定変更ではなく、純粋なtelemetry schema／validator／projectionを追加する。"
 green_at: 2026-08-30T10:40:45+09:00
-mutation_oracle_evidence: "独立内部レビューでartifact field欠落時例外、lockfile未束縛、batch内cache/resource drift、failure 0件を検出率1とする反例をblockerとして検出した。初回修正後のexact-HEADレビューで通常nodeのartifact field省略が残ることを再検出し、全nodeでfield欠落をfail-closeした。lockfile digest edge、cache hit／CPU／memory batch bindingとseries軸、failureなしratio=nullを追加した。さらにClaude exact-HEADレビューで全node 0ms時にcritical pathが空になる反例を検出し、duration同値時は長い依存鎖、次にbytewise順で決定する実装とoracleへ修正した。"
+mutation_oracle_evidence: "独立内部レビューでartifact field欠落時例外、lockfile未束縛、batch内cache/resource drift、failure 0件を検出率1とする反例をblockerとして検出した。初回修正後のexact-HEADレビューで通常nodeのartifact field省略が残ることを再検出し、全nodeでfield欠落をfail-closeした。lockfile digest edge、cache hit／CPU／memory batch bindingとseries軸、failureなしratio=nullを追加し、targeted 1 file／10 tests、typecheck、Biome、PLAN lintを再検証する。"
 complexity_effect: justified_positive
 complexity_justification: "既存selection／shard責務を再実装せず、後続のCI局所最適とcritical-path統制へ共通の観測境界を一つ追加する。"
 removal_trigger: "後継CI telemetry schemaが全consumerを移行し、本schemaのevent／projectionが0件になった時。"
@@ -72,34 +72,14 @@ review_evidence:
         completed_at: "2026-08-30T01:58:18Z"
         evidence_path: tests/ci-execution-telemetry.test.ts
         output_digest: "sha256:090f985a6b41f866755e6495335538fd59e70c8125cd835782a664e5a88bfb54"
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-08-30T06:24:00Z"
-    tests_green_at: "2026-08-30T06:24:00Z"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: "claude-opus-5[1m]"
-    reviewer_session_id: "d12b4c7f-2060-428d-98ad-af769d40bd80"
-    scope: "PR #1234 exact HEAD b43838cd7d09afde6f35bc4bf237d495c2bea2da。required verification非変更、fail-close境界、全0ms DAGの非空最長依存鎖、design catalog digest、PLAN scopeを独立再検収しblocker 0。"
-    green_commands:
-      - kind: smoke
-        command: "gh run view 33295591264 --repo RetryYN/HELIX-HARNESS --json status,conclusion,jobs"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-08-30T06:24:00Z"
-        evidence_path: .github/workflows/harness-check.yml
-        output_digest: "sha256:ba216325fb0844d833615921f674068ef60d176dd9b4a75f2d8d27de2fedae21"
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1234#issuecomment-5467141120"
-    receipt_digest: "sha256:ba216325fb0844d833615921f674068ef60d176dd9b4a75f2d8d27de2fedae21"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-08-30T06:24:00Z"
+  assessed_at: "2026-08-30T01:58:18Z"
   review_binding:
-    reviewer: "Claude Code / claude-opus-5"
-    reviewed_at: "2026-08-30T06:24:00Z"
-    evidence_digest: "sha256:ba216325fb0844d833615921f674068ef60d176dd9b4a75f2d8d27de2fedae21"
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-30T01:58:18Z"
+    evidence_digest: "sha256:b08dafb2de1e5e979670fba718455cda514086a275253246f3aa18af9de9b641"
   entries: []
 agent_slots:
   - { role: se, slot_label: "SE — typed event、canonical digest、既存Impact CIとの責務境界" }
@@ -122,7 +102,6 @@ dependencies:
   requires:
     - docs/design/helix/L6-function-design/impact-ci-recovery.md
     - src/runtime/full-regression-shards.ts
-    - docs/plans/PLAN-REVERSE-705-ci-execution-telemetry.md
   blocks:
     - issue:1205
 references:
