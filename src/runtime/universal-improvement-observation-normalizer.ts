@@ -99,7 +99,7 @@ function validateInput(
   }
   if (errors.length > 0) return { errors, input: null };
   const input = raw as unknown as UniversalImprovementNormalizationInput;
-  if (!IDENTIFIER_PATTERN.test(input.correlation_id))
+  if (typeof input.correlation_id !== "string" || !IDENTIFIER_PATTERN.test(input.correlation_id))
     errors.push(`correlation_id_invalid:${index}`);
   if (input.causation_id !== null && !/^uil-event-[0-9a-f]{64}$/u.test(input.causation_id)) {
     errors.push(`causation_id_invalid:${index}`);

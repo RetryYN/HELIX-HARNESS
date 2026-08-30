@@ -157,5 +157,19 @@ describe("Universal Improvement observation normalizer", () => {
     expect(normalizeUniversalImprovementObservations([malformedRegistry]).errors).toContain(
       "source_admission_failed:UIL-SRC-001:registry_result_invalid",
     );
+
+    const missingCorrelation = input(1) as unknown as Record<string, unknown>;
+    delete missingCorrelation.correlation_id;
+    expect(normalizeUniversalImprovementObservations([missingCorrelation]).errors).toContain(
+      "correlation_id_invalid:0",
+    );
+
+    const nonStringCorrelation = {
+      ...input(1),
+      correlation_id: 123,
+    } as unknown as UniversalImprovementNormalizationInput;
+    expect(normalizeUniversalImprovementObservations([nonStringCorrelation]).errors).toContain(
+      "correlation_id_invalid:0",
+    );
   });
 });
