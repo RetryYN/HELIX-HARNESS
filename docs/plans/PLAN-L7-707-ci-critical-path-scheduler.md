@@ -60,6 +60,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-008, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-009, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-010, test_path: tests/ci-critical-path-scheduler.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-011, test_path: tests/ci-critical-path-scheduler.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-012, test_path: tests/ci-critical-path-scheduler.test.ts }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }

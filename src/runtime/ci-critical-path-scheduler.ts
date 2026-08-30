@@ -208,10 +208,14 @@ export function scheduleCiCriticalPath(
       finding("parallel_quota_invalid", "max_parallel_jobs", String(input.max_parallel_jobs)),
     );
   }
-  const expectedArtifacts = new Map(
-    input.expected_artifact_identities.map((item) => [item.artifact_id, item]),
-  );
+  const expectedArtifacts = new Map<string, (typeof input.expected_artifact_identities)[number]>();
   for (const expectedArtifact of input.expected_artifact_identities) {
+    if (expectedArtifacts.has(expectedArtifact.artifact_id)) {
+      findings.push(
+        finding("artifact_identity_invalid", expectedArtifact.artifact_id, "expected_duplicate"),
+      );
+    }
+    expectedArtifacts.set(expectedArtifact.artifact_id, expectedArtifact);
     if (
       !DIGEST.test(expectedArtifact.lockfile_digest) ||
       !DIGEST.test(expectedArtifact.toolchain_digest) ||

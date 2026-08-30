@@ -204,6 +204,24 @@ describe("CI critical-path scheduler", () => {
     expect(missingExpected.findings).toContainEqual(
       expect.objectContaining({ code: "artifact_identity_invalid" }),
     );
+    for (const duplicate of [
+      { ...valid },
+      { ...valid, capability_id: "verification:b", input_digest: D2 },
+    ]) {
+      const result = scheduleCiCriticalPath(
+        input({
+          artifacts: [valid],
+          expected_artifact_identities: [{ ...valid }, { ...duplicate }],
+        }),
+      );
+      expect(result.findings).toContainEqual(
+        expect.objectContaining({
+          code: "artifact_identity_invalid",
+          detail: "expected_duplicate",
+        }),
+      );
+      expect(result.ok).toBe(false);
+    }
   });
 
   it("U-CISCHED-004: exclusive resourceをlease/fenceなしに並列化しない", () => {
@@ -357,7 +375,7 @@ describe("CI critical-path scheduler", () => {
     expect(result.fallback_reasons).toContain("backpressure_conservative");
   });
 
-  it("U-CISCHED-009: group単位のCPUとmemory budgetを超過させない", () => {
+  it("U-CISCHED-011: group単位のCPUとmemory budgetを超過させない", () => {
     const result = scheduleCiCriticalPath(
       input({
         obligations: [
@@ -397,7 +415,7 @@ describe("CI critical-path scheduler", () => {
     expect(result.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
   });
 
-  it("U-CISCHED-009: telemetry欠落とbackpressureで保守的fallbackを選ぶ", () => {
+  it("U-CISCHED-012: telemetry欠落とbackpressureで保守的fallbackを選ぶ", () => {
     const missing = scheduleCiCriticalPath(input({ estimates: [input().estimates[0]] }));
     expect(missing.fallback_reasons).toContain("telemetry_missing:verification:b");
     expect(
