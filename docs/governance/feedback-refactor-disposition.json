@@ -133,7 +133,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-doctor-index.ts:module-has-7370-nonblank-line-s-and-141-export-s-",
       "source_path": "src/doctor/index.ts",
-      "source_file_sha256": "8b3e13accb20e50534b6b0429de62a47e8c977e7b3507154b847aa7d3dfe67ec",
+      "source_file_sha256": "2959abb3e379f01c1c929f1b5782a21fd16af97f8932ed6886312f2406c71d20",
       "family": "non_cli_module_decomposition"
     },
     {

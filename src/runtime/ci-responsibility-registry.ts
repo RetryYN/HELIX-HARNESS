@@ -121,13 +121,8 @@ export function ciResponsibilityRegistryDigest(
   return sha256Digest(canonicalJson(registry));
 }
 
-function addFinding(
-  findings: CiResponsibilityFinding[],
-  code: CiResponsibilityFindingCode,
-  subject: string,
-  detail: string,
-): void {
-  findings.push({ code, subject, detail });
+function addFinding(findings: CiResponsibilityFinding[], finding: CiResponsibilityFinding): void {
+  findings.push(finding);
 }
 
 function cycleNodes(capabilities: readonly VerificationCapability[]): string[] {
@@ -164,19 +159,31 @@ export function validateCiResponsibilityRegistry(
 ): CiResponsibilityRegistryResult {
   const findings: CiResponsibilityFinding[] = [];
   if (registry.schema_version !== CI_RESPONSIBILITY_REGISTRY_SCHEMA) {
-    addFinding(findings, "schema_invalid", "registry", registry.schema_version);
+    addFinding(findings, {
+      code: "schema_invalid",
+      subject: "registry",
+      detail: registry.schema_version,
+    });
   }
   const nodes = new Map<string, CiSemanticNode>();
   for (const node of registry.nodes) {
-    if (!ID.test(node.id)) addFinding(findings, "identity_invalid", node.id, "node id");
-    if (!node.owner.trim()) addFinding(findings, "owner_missing", node.id, "node owner");
-    if (nodes.has(node.id)) addFinding(findings, "duplicate_identity", node.id, "node");
+    if (!ID.test(node.id))
+      addFinding(findings, { code: "identity_invalid", subject: node.id, detail: "node id" });
+    if (!node.owner.trim())
+      addFinding(findings, { code: "owner_missing", subject: node.id, detail: "node owner" });
+    if (nodes.has(node.id))
+      addFinding(findings, { code: "duplicate_identity", subject: node.id, detail: "node" });
     else nodes.set(node.id, node);
   }
   const edgeParticipants = new Set<string>();
   for (const edge of registry.edges) {
     for (const id of [edge.from, edge.to]) {
-      if (!nodes.has(id)) addFinding(findings, "unknown_node", id, `edge:${edge.from}->${edge.to}`);
+      if (!nodes.has(id))
+        addFinding(findings, {
+          code: "unknown_node",
+          subject: id,
+          detail: `edge:${edge.from}->${edge.to}`,
+        });
       edgeParticipants.add(id);
     }
   }
@@ -184,53 +191,71 @@ export function validateCiResponsibilityRegistry(
   const responsibilityOwners = new Map<string, string>();
   for (const capability of registry.capabilities) {
     if (!ID.test(capability.capability_id) || !ID.test(capability.responsibility_id)) {
-      addFinding(
-        findings,
-        "identity_invalid",
-        capability.capability_id,
-        "capability/responsibility",
-      );
+      addFinding(findings, {
+        code: "identity_invalid",
+        subject: capability.capability_id,
+        detail: "capability/responsibility",
+      });
     }
     if (!capability.owner.trim()) {
-      addFinding(findings, "owner_missing", capability.capability_id, "capability owner");
+      addFinding(findings, {
+        code: "owner_missing",
+        subject: capability.capability_id,
+        detail: "capability owner",
+      });
     }
     if (capabilities.has(capability.capability_id)) {
-      addFinding(findings, "duplicate_identity", capability.capability_id, "capability");
+      addFinding(findings, {
+        code: "duplicate_identity",
+        subject: capability.capability_id,
+        detail: "capability",
+      });
     } else capabilities.set(capability.capability_id, capability);
     const existingOwner = responsibilityOwners.get(capability.responsibility_id);
     if (existingOwner && existingOwner !== capability.owner && capability.status === "active") {
-      addFinding(
-        findings,
-        "duplicate_responsibility_owner",
-        capability.responsibility_id,
-        `${existingOwner},${capability.owner}`,
-      );
+      addFinding(findings, {
+        code: "duplicate_responsibility_owner",
+        subject: capability.responsibility_id,
+        detail: `${existingOwner},${capability.owner}`,
+      });
     } else if (capability.status === "active") {
       responsibilityOwners.set(capability.responsibility_id, capability.owner);
     }
     if (capability.oracle_ids.length === 0 || capability.oracle_ids.some((id) => !ID.test(id))) {
-      addFinding(findings, "oracle_missing", capability.capability_id, "typed oracle exact set");
+      addFinding(findings, {
+        code: "oracle_missing",
+        subject: capability.capability_id,
+        detail: "typed oracle exact set",
+      });
     }
     if (
       capability.artifact_inputs.some((id) => !ID.test(id)) ||
       capability.artifact_outputs.some((id) => !ID.test(id))
     ) {
-      addFinding(
-        findings,
-        "artifact_contract_invalid",
-        capability.capability_id,
-        "artifact identity",
-      );
+      addFinding(findings, {
+        code: "artifact_contract_invalid",
+        subject: capability.capability_id,
+        detail: "artifact identity",
+      });
     }
     if (
       new Set(capability.defer_targets).size !== capability.defer_targets.length ||
       (capability.obligation_class === "release_only" &&
         !capability.defer_targets.includes("release"))
     ) {
-      addFinding(findings, "schema_invalid", capability.capability_id, "defer target authority");
+      addFinding(findings, {
+        code: "schema_invalid",
+        subject: capability.capability_id,
+        detail: "defer target authority",
+      });
     }
     for (const id of capability.applicability_node_ids) {
-      if (!nodes.has(id)) addFinding(findings, "unknown_node", id, capability.capability_id);
+      if (!nodes.has(id))
+        addFinding(findings, {
+          code: "unknown_node",
+          subject: id,
+          detail: capability.capability_id,
+        });
       edgeParticipants.add(id);
     }
     if (
@@ -241,18 +266,21 @@ export function validateCiResponsibilityRegistry(
         capability.retirement_history_refs.length === 0 ||
         capability.retirement_history_refs.some((reference) => !ID.test(reference)))
     ) {
-      addFinding(
-        findings,
-        "retirement_contract_invalid",
-        capability.capability_id,
-        "replacement, rollback, consumer exact set, and history trace are required",
-      );
+      addFinding(findings, {
+        code: "retirement_contract_invalid",
+        subject: capability.capability_id,
+        detail: "replacement, rollback, consumer exact set, and history trace are required",
+      });
     }
   }
   for (const capability of registry.capabilities) {
     for (const dependency of capability.depends_on_capability_ids) {
       if (!capabilities.has(dependency)) {
-        addFinding(findings, "unknown_node", dependency, capability.capability_id);
+        addFinding(findings, {
+          code: "unknown_node",
+          subject: dependency,
+          detail: capability.capability_id,
+        });
       }
     }
     for (const replacement of [
@@ -260,20 +288,33 @@ export function validateCiResponsibilityRegistry(
       capability.rollback_capability_id,
     ]) {
       if (replacement && !capabilities.has(replacement)) {
-        addFinding(findings, "unknown_node", replacement, capability.capability_id);
+        addFinding(findings, {
+          code: "unknown_node",
+          subject: replacement,
+          detail: capability.capability_id,
+        });
       }
     }
     for (const consumer of capability.retirement_consumer_capability_ids) {
       if (!capabilities.has(consumer)) {
-        addFinding(findings, "unknown_node", consumer, capability.capability_id);
+        addFinding(findings, {
+          code: "unknown_node",
+          subject: consumer,
+          detail: capability.capability_id,
+        });
       }
     }
   }
   for (const node of registry.nodes) {
-    if (!edgeParticipants.has(node.id)) addFinding(findings, "orphan_node", node.id, node.kind);
+    if (!edgeParticipants.has(node.id))
+      addFinding(findings, { code: "orphan_node", subject: node.id, detail: node.kind });
   }
   for (const id of cycleNodes(registry.capabilities)) {
-    addFinding(findings, "dependency_cycle", id, "capability dependency");
+    addFinding(findings, {
+      code: "dependency_cycle",
+      subject: id,
+      detail: "capability dependency",
+    });
   }
   return {
     ok: findings.length === 0,
@@ -292,7 +333,9 @@ export function deriveVerificationObligations(
   const nodes = new Map(input.registry.nodes.map((node) => [node.id, node]));
   const seeds = sortedUnique([...input.authority_node_ids, ...input.changed_artifact_node_ids]);
   for (const id of seeds) {
-    if (!nodes.has(id)) addFinding(findings, "unknown_node", id, "derivation input");
+    if (!nodes.has(id)) {
+      addFinding(findings, { code: "unknown_node", subject: id, detail: "derivation input" });
+    }
   }
   const adjacency = new Map<string, Set<string>>();
   for (const edge of input.registry.edges) {
