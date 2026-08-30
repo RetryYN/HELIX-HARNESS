@@ -22,6 +22,7 @@ L12 hybrid recognition inventoryのL6 design、L8 test design、PLANを、同じ
 
 いずれかが不一致ならfindingを返し、doctorはfail-closeする。一般inventoryに存在する
 `safe-current`等の別dispositionを一律retireせず、明示familyだけを対象にする。
+doctorは同じanalyzerを直接呼び、単体oracleと統合gateの判定分岐を複製しない。
 
 ## 出力
 
@@ -33,4 +34,3 @@ L12 hybrid recognition inventoryのL6 design、L8 test design、PLANを、同じ
 - reviewed-safe registryとauthority-review inventoryを共同正本にしない。
 - historical／compatibility entryを本契約だけで削除しない。
 - family追加は明示的なexact set追加とoracleを必要とする。
-
