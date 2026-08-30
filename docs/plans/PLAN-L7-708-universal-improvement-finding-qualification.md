@@ -4,7 +4,7 @@ title: "PLAN-L7-708: Universal Improvement finding適格化・dedupe・expiry"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 created: 2026-08-30
