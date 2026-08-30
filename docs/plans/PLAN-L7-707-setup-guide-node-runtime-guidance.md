@@ -37,7 +37,7 @@ green_at: "2026-08-30T19:36:51+09:00"
 tdd_red_evidence: "tests/current-runtime-guidance.test.ts U-CRG-004が旧setup guideのNode/npm authority欠落を検出して1 failed／3 passed"
 tdd_green_evidence: "2026-08-30T19:36:51+09:00にU-CRG-001..004の4 tests greenを実測し、setup guideのNode engine、npm ci、npm run helix --、Bun不在を確認した"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CRG-004がNode engine、npm ci、setup/doctor command、package-local command、Bun残存を別々に拘束する"
+mutation_oracle_evidence: "U-CRG-004がNode engine、npm ci、setup/doctor command、全inline／fenced package-local commandのseparator、Bun残存を別々に拘束し、fenced commandからseparatorだけを除くmutationを検出する"
 complexity_effect: net_negative
 complexity_justification: "旧Bun command 11件とactive Bun token 12件を削除し、package authorityへ案内を一元化する"
 removal_trigger: "setup guide自体がgenerated consumer documentationへ完全移行し、同oracleがreplacementへ移った時"

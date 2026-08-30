@@ -45,7 +45,7 @@ describe("current runtime command guidance", () => {
     expect(body).toContain("`npm run helix -- setup project --dry-run --json`");
     expect(body).toContain("`npm run helix -- doctor --profile consumer --json`");
     expect(body).toContain("package-local `npm run helix -- <command>`");
-    expect(body).not.toMatch(/`npm run helix (?!-- )/u);
+    expect(body).not.toMatch(/\bnpm run helix(?! --(?:\s|$))/u);
     expect(body).not.toMatch(/\bbun\b/i);
   });
 });

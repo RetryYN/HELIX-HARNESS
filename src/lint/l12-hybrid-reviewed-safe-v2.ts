@@ -4,7 +4,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // Issue #1253のcurrent runtime guidance収束PLAN。retired runtime／旧L08-L14への言及は
     // active authorityへの再採用ではなく、再導入を拒否するnegative contractである。
     path: "docs/plans/PLAN-L7-707-setup-guide-node-runtime-guidance.md",
-    contentDigest: "8e1a76ca6a3123228b347de7ccf5a0204294dd9649e1b8ceae1aebd5efe81702",
+    contentDigest: "324a9c3c35a2a9c896538e4937fceb7cfbeb7743b3d490d6f23a4a7ac0dcc7ca",
     finalDisposition: "false_positive",
   },
   {
