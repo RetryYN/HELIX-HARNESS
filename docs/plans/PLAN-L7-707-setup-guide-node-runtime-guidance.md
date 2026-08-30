@@ -14,11 +14,11 @@ github_issue_id: 1253
 behavior_contract_id: CURRENT-RUNTIME-GUIDANCE-002
 responsibility_owner: current-runtime-guidance
 change_slice: atomic
-refactor_step: migrate_consumer_guidance
+refactor_step: migrate_one_consumer
 engineering_discipline_required: true
 no_code_decision: modify
 ddd_modeling_decision: value_object
-legacy_retirement_state: retired
+legacy_retirement_state: consumer_migration
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
