@@ -7,7 +7,7 @@ status: draft
 created: 2026-08-30
 updated: 2026-08-30
 owner: QA
-plan: docs/plans/PLAN-L3-76-ci-execution-telemetry.md
+plan: docs/plans/PLAN-L7-704-ci-execution-telemetry.md
 pair_artifact: docs/design/helix/L6-function-design/ci-execution-telemetry.md
 ---
 

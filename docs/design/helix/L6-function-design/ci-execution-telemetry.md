@@ -6,7 +6,7 @@ status: draft
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / TL
-plan: docs/plans/PLAN-L3-76-ci-execution-telemetry.md
+plan: docs/plans/PLAN-L7-704-ci-execution-telemetry.md
 pair_artifact: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md
 related_l3: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md
 ---

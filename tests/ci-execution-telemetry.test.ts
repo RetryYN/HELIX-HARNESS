@@ -10,7 +10,7 @@ import {
 } from "../src/runtime/ci-execution-telemetry";
 import { sha256Digest } from "../src/runtime/digest";
 
-// PLAN-L3-76-ci-execution-telemetry — U-TELE-001..U-TELE-010
+// PLAN-L7-704-ci-execution-telemetry — U-TELE-001..U-TELE-010
 
 const HEAD = "a".repeat(40);
 const BASE = "b".repeat(40);

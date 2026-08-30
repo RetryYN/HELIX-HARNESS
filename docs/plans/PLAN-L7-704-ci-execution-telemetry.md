@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L3-76-ci-execution-telemetry
-title: "PLAN-L3-76: CI execution telemetryと証明責務baselineを実装する"
+plan_id: PLAN-L7-704-ci-execution-telemetry
+title: "PLAN-L7-704: CI execution telemetryと証明責務baselineを実装する"
 kind: add-impl
 layer: L7
 drive: agent
@@ -57,7 +57,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — time／runner／secret／DAG／percentile反例" }
   - { role: tl, slot_label: "TL — required obligation非縮退とrerun failure保持" }
 generates:
-  - { artifact_path: docs/plans/PLAN-L3-76-ci-execution-telemetry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-704-ci-execution-telemetry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/ci-execution-telemetry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/ci-execution-telemetry.ts, artifact_type: source_module }
