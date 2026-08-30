@@ -4,10 +4,26 @@ title: "PLAN-L7-707: required obligationを保存するCI critical-path schedule
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-30
 updated: 2026-08-31
+review_evidence:
+  - reviewer: claude-code-opus
+    review_kind: cross_agent
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: a02813c9-9bc1-41f4-9c86-0f943ece4270
+    reviewed_head_sha: 8e67b2f0af0d4982296b424c642a617527dc47bb
+    reviewed_at: "2026-08-30T22:10:09Z"
+    tests_green_at: "2026-08-30T22:10:09Z"
+    verdict: approve
+    scope: "PR #1241 exact pre-confirm review。quota／bounded cancel／CPU・memory次元／unknown dependency／digest pin／Reverse back-referenceを反例付きで再検証し、BLOCKER 0。GitHub comment: https://github.com/RetryYN/HELIX-HARNESS/pull/1241#issuecomment-5471564235"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run tests/ci-critical-path-scheduler.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T22:10:09Z", evidence_path: tests/ci-critical-path-scheduler.test.ts, output_digest: "sha256:7007d04f73d70fa52f70a903f21fa20c0a0cca3f8faed6f29871c360be96cff9" }
+      - { kind: unit_test, command: "npx vitest run tests/digest.test.ts -t \"exact production hit set\"", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T22:10:09Z", evidence_path: tests/digest.test.ts, output_digest: "sha256:b9b20c0f4b6ca3af9ae824a7d57263f10d872fa33f8a39494c13de79a1fb5d41" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T22:10:09Z", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011" }
+      - { kind: lint, command: "npx tsx src/cli.ts plan lint", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T22:10:09Z", evidence_path: docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md, output_digest: "sha256:d45834613aa16eb1962a5fc5e6bef2d16b5b582fd690006f0b018a233f9c7dae" }
 owner: Codex / TL
 github_issue_id: 1207
 behavior_contract_id: CI-CRITICAL-PATH-SCHEDULER-001
