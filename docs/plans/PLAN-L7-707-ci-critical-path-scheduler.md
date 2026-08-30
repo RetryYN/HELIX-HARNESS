@@ -36,7 +36,7 @@ green_at: "2026-08-30T12:59:45+09:00"
 tdd_red_evidence: "2026-08-30T12:55:50+09:00 tests/ci-critical-path-scheduler.test.ts initial red: ci-critical-path-scheduler module不在"
 tdd_green_evidence: "2026-08-30T12:59:45+09:00 tests/ci-critical-path-scheduler.test.ts 8 tests green、typecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/ci-critical-path-scheduler.test.ts U-CISCHED-002〜010でclass/resource barrier、valid-shaped wrong HEAD、artifact identity各dimension、exclusive resource、telemetry、quota、runner/resource/timeout、backpressure、phase逆依存を個別mutationしredになる"
+mutation_oracle_evidence: "tests/ci-critical-path-scheduler.test.ts U-CISCHED-002〜014でclass/resource barrier、valid-shaped wrong HEAD、artifact identity各dimension、exclusive resource、telemetry、有効quota、CPU／memory個別budget、runner/resource/timeout、backpressure、phase逆依存、heavy後段cancel exact set、unknown dependency分類を個別mutationしredになる"
 complexity_effect: net_negative
 complexity_justification: "workflow内へ散在するjob配置とsetup重複判断をtyped schedulerへ収束する"
 removal_trigger: "後継System Synthesis schedulerへ全consumerとrollback traceが移行した時"
@@ -66,6 +66,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-010, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-011, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-012, test_path: tests/ci-critical-path-scheduler.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-013, test_path: tests/ci-critical-path-scheduler.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-014, test_path: tests/ci-critical-path-scheduler.test.ts }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }

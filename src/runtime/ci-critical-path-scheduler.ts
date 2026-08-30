@@ -148,7 +148,10 @@ function topoSort(
   const indegree = new Map<string, number>();
   const consumers = new Map<string, string[]>();
   for (const [id, item] of obligations) {
-    indegree.set(id, item.depends_on_capability_ids.length);
+    indegree.set(
+      id,
+      item.depends_on_capability_ids.filter((dependency) => obligations.has(dependency)).length,
+    );
     for (const dependency of item.depends_on_capability_ids) {
       if (!obligations.has(dependency)) {
         findings.push(finding("dependency_unknown", id, dependency));
@@ -322,6 +325,7 @@ export function scheduleCiCriticalPath(
       findings.push(
         finding("runtime_context_invalid", requirement.capability_id, "runner/resource/timeout"),
       );
+      continue;
     }
     requirements.set(requirement.capability_id, requirement);
   }
@@ -473,9 +477,9 @@ export function scheduleCiCriticalPath(
     .filter((id) => {
       const obligation = obligations.get(id);
       return (
-        Boolean(obligation?.heavy) ||
-        obligation?.obligation_class === "global_invariant" ||
-        obligation?.obligation_class === "release_only"
+        Boolean(obligation?.heavy) &&
+        (obligation?.obligation_class === "global_invariant" ||
+          obligation?.obligation_class === "release_only")
       );
     })
     .sort();

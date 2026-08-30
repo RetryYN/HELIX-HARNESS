@@ -21,13 +21,16 @@ pair_artifact: docs/design/helix/L6-function-design/ci-critical-path-scheduler.m
 | U-CISCHED-003 | artifact identity | artifact/capability別expected identity欠落とwrong HEAD/platform/lockfile/toolchain/input/output digestを個別拒否する | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-004 | resource safety | exclusive stateをlease/fenceなしに並列化しない | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-005 | fallback | stale/unknown/obligation欠落telemetryでrequired obligationを維持した既定DAGへfallbackする | `tests/ci-critical-path-scheduler.test.ts` |
-| U-CISCHED-006 | bounded execution | quota／stale HEADを拒否し、先行failure時の未開始heavy cancel exact setを返す | `tests/ci-critical-path-scheduler.test.ts` |
+| U-CISCHED-006 | bounded execution | quota／stale HEADを拒否し、有効quotaでparallel groupの要素数を拘束する | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-007 | artifact reuse | exact identity一致時だけsetup/build artifactをreuseする | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-008 | plan digest | 同一入力から同一plan digest、配置変更で異なるdigestを返す | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-009 | runtime context | runner OS／CPU／memory／timeout不整合を拒否し、group資源合計とbackpressureを保守配置する | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-010 | phase dependency | global/releaseからlocal/boundaryへの逆向きdependencyを拒否する | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-011 | group resource | parallel groupのCPU／memory合計をbudget以内へ配置する | `tests/ci-critical-path-scheduler.test.ts` |
 | U-CISCHED-012 | conservative placement | telemetry欠落時はtimeout duration、backpressure時は並列度1へ保守化する | `tests/ci-critical-path-scheduler.test.ts` |
+| U-CISCHED-013 | bounded cancel | 先行phase failure時に未開始が保証されるheavy後段nodeだけをcancel候補へ返す | `tests/ci-critical-path-scheduler.test.ts` |
+| U-CISCHED-014 | dependency finding | unknown dependencyをcycleと誤分類せず、fail-close時も入力obligationをDAGへ保存する | `tests/ci-critical-path-scheduler.test.ts` |
 
-mutationはobligation削除、dependency edge削除、artifact identity一項目変更、lease/fence欠落、telemetry時刻超過、quota超過を
-個別に注入する。wall-clock短縮だけではgreenにせず、required obligation exact setとresource safetyを同時に検証する。
+mutationはobligation削除、dependency edge削除、artifact identity一項目変更、lease/fence欠落、telemetry時刻超過、
+有効quota無視、CPU／memory budgetの片側無視、cancel対象のheavy／phase次元混同を個別に注入する。wall-clock短縮だけでは
+greenにせず、required obligation exact setとresource safetyを同時に検証する。

@@ -4,7 +4,7 @@ import {
   scheduleCiCriticalPath,
 } from "../src/runtime/ci-critical-path-scheduler";
 
-// PLAN-L7-707-ci-critical-path-scheduler / U-CISCHED-001..008
+// PLAN-L7-707-ci-critical-path-scheduler / U-CISCHED-001..014
 // U-CISCHED-002 U-CISCHED-003 U-CISCHED-004 U-CISCHED-005
 // U-CISCHED-006 U-CISCHED-007 U-CISCHED-008
 
@@ -320,6 +320,84 @@ describe("CI critical-path scheduler", () => {
       cancellable_unstarted_capability_ids: ["verification:b"],
       preserves_required_obligations: true,
     });
+
+    const quotaBound = scheduleCiCriticalPath(
+      input({
+        max_parallel_jobs: 1,
+        obligations: ["a", "b", "c"].map((id) => ({
+          capability_id: `verification:${id}`,
+          depends_on_capability_ids: [],
+          obligation_class: "local" as const,
+          heavy: false,
+        })),
+        estimates: ["a", "b", "c"].map((id) => ({
+          capability_id: `verification:${id}`,
+          p50_ms: 10,
+          p95_ms: 20,
+          variance_ms: 2,
+          flake_rate: 0,
+          queue_ms: 1,
+          cache_state: "hit" as const,
+          sample_count: 5,
+        })),
+        resource_requirements: ["a", "b", "c"].map((id) => ({
+          capability_id: `verification:${id}`,
+          runner_os: "linux",
+          cpu_units: 0.5,
+          memory_mb: 128,
+          timeout_ms: 60_000,
+        })),
+      }),
+    );
+    expect(quotaBound.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1, 2]);
+  });
+
+  it("U-CISCHED-013: bounded cancelは未開始が保証されるheavy後段nodeだけを返す", () => {
+    const result = scheduleCiCriticalPath(
+      input({
+        obligations: [
+          {
+            capability_id: "verification:heavy-local",
+            depends_on_capability_ids: [],
+            obligation_class: "local",
+            heavy: true,
+          },
+          {
+            capability_id: "verification:light-global",
+            depends_on_capability_ids: [],
+            obligation_class: "global_invariant",
+            heavy: false,
+          },
+          {
+            capability_id: "verification:heavy-global",
+            depends_on_capability_ids: [],
+            obligation_class: "global_invariant",
+            heavy: true,
+          },
+        ],
+        estimates: ["heavy-local", "light-global", "heavy-global"].map((id) => ({
+          capability_id: `verification:${id}`,
+          p50_ms: 10,
+          p95_ms: 20,
+          variance_ms: 2,
+          flake_rate: 0,
+          queue_ms: 1,
+          cache_state: "hit" as const,
+          sample_count: 5,
+        })),
+        resource_requirements: ["heavy-local", "light-global", "heavy-global"].map((id) => ({
+          capability_id: `verification:${id}`,
+          runner_os: "linux",
+          cpu_units: 0.5,
+          memory_mb: 128,
+          timeout_ms: 60_000,
+        })),
+      }),
+    );
+    expect(result.bounded_cancel_policy.cancellable_unstarted_capability_ids).toEqual([
+      "verification:heavy-global",
+    ]);
+    expect(result.ok).toBe(true);
   });
 
   it("U-CISCHED-007: exact identity一致時だけartifactをreuseする", () => {
@@ -374,6 +452,27 @@ describe("CI critical-path scheduler", () => {
       expect.arrayContaining([expect.objectContaining({ code: "runtime_context_invalid" })]),
     );
     expect(result.fallback_reasons).toContain("backpressure_conservative");
+
+    const rejectedDuplicate = scheduleCiCriticalPath(
+      input({
+        estimates: [input().estimates[1]],
+        resource_requirements: [
+          input().resource_requirements[0],
+          {
+            capability_id: "verification:a",
+            runner_os: "windows",
+            cpu_units: 99,
+            memory_mb: 99_999,
+            timeout_ms: 1,
+          },
+          input().resource_requirements[1],
+        ],
+      }),
+    );
+    expect(
+      rejectedDuplicate.execution_dag.find((node) => node.capability_id === "verification:a")
+        ?.estimated_duration_ms,
+    ).toBe(60_000);
   });
 
   it("U-CISCHED-011: group単位のCPUとmemory budgetを超過させない", () => {
@@ -414,6 +513,67 @@ describe("CI critical-path scheduler", () => {
       }),
     );
     expect(result.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
+
+    const cpuOnly = scheduleCiCriticalPath(
+      input({
+        obligations: input({}).obligations.map((item) => ({
+          ...item,
+          depends_on_capability_ids: [],
+          obligation_class: "local" as const,
+        })),
+        available_cpu_units: 2,
+        available_memory_mb: 4096,
+        resource_requirements: input({}).resource_requirements.map((item) => ({
+          ...item,
+          cpu_units: 2,
+          memory_mb: 128,
+        })),
+      }),
+    );
+    expect(cpuOnly.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
+
+    const memoryOnly = scheduleCiCriticalPath(
+      input({
+        obligations: input({}).obligations.map((item) => ({
+          ...item,
+          depends_on_capability_ids: [],
+          obligation_class: "local" as const,
+        })),
+        available_cpu_units: 8,
+        available_memory_mb: 1024,
+        resource_requirements: input({}).resource_requirements.map((item) => ({
+          ...item,
+          cpu_units: 0.5,
+          memory_mb: 1024,
+        })),
+      }),
+    );
+    expect(memoryOnly.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
+  });
+
+  it("U-CISCHED-014: unknown dependencyをcycleと誤分類せずobligationを保存する", () => {
+    const result = scheduleCiCriticalPath(
+      input({
+        obligations: [
+          {
+            capability_id: "verification:a",
+            depends_on_capability_ids: ["verification:missing"],
+            obligation_class: "local",
+            heavy: false,
+          },
+        ],
+        estimates: [input().estimates[0]],
+        resource_requirements: [input().resource_requirements[0]],
+      }),
+    );
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "dependency_unknown" }),
+    );
+    expect(result.findings).not.toContainEqual(
+      expect.objectContaining({ code: "dependency_cycle" }),
+    );
+    expect(result.execution_dag.map((node) => node.capability_id)).toEqual(["verification:a"]);
+    expect(result.ok).toBe(false);
   });
 
   it("U-CISCHED-012: telemetry欠落とbackpressureで保守的fallbackを選ぶ", () => {
