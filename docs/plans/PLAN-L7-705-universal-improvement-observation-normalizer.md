@@ -4,7 +4,7 @@ title: "PLAN-L7-705 (add-impl): Universal Improvement観測正規化とbaseline�
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 entry_signals:
@@ -28,9 +28,9 @@ contract_postconditions: "admit済みsource eventだけをstable identity、base
 contract_invariants: "read-only、入力順非依存、baseline／observed／predicted非混同、AI非依存、部分成功なし、authority writeなし"
 contract_failures: "forged source、wrong revision、invalid baseline／prediction／confidence／digest、duplicate event、unresolved causationをfail-closeする"
 tdd_red_required: true
-red_test: "U-UILNORM-001..006で未実装module、forged registry、baseline混同、順序依存、duplicate／causation不整合を検出する"
+red_test: "U-UILNORM-001..007で未実装module、forged registry、baseline混同、順序依存、duplicate／causation不整合、malformed inputを検出する"
 green_at: 2026-08-30T11:08:10+09:00
-mutation_oracle_evidence: "U-UILNORM-003..007でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlation、outer／nested input破壊を変異し、throwへ縮退せずfail-closeする。"
+mutation_oracle_evidence: "U-UILNORM-003..007でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlation、correlation_id欠落／非string、outer／nested input破壊を変異し、throwや型強制によるsilent acceptへ縮退せずfail-closeする。"
 complexity_effect: justified_positive
 complexity_justification: "UIL-01 admissionを再利用し、後続finding/candidate責務を混載せず、正規化境界を一つ追加する。"
 removal_trigger: "後継normalized event schemaへ全consumerが移行し、本schemaのeventが0件になった時。"
@@ -50,6 +50,36 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md, oracle_id: U-UILNORM-005, test_path: tests/universal-improvement-observation-normalizer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md, oracle_id: U-UILNORM-006, test_path: tests/universal-improvement-observation-normalizer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md, oracle_id: U-UILNORM-007, test_path: tests/universal-improvement-observation-normalizer.test.ts }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-30T08:17:37Z"
+    tests_green_at: "2026-08-30T08:17:37Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 62f1d495-e49d-4944-ac26-dc9c09e1814e
+    reviewed_head_sha: 94375455105ce771c3a4412fac57d2e46efdf7ae
+    scope: "PR #1236 HEAD 94375455105ce771c3a4412fac57d2e46efdf7aeをClaude Codeが独立pre-confirm reviewした。旧HEADのcorrelation_id型強制blockerを欠落／数値mutationで再現し、typeof guardと2反例で解消、UIL-02責務境界とauthority write 0を確認した。blocker 0、non-blocker 6。最終exact-HEAD merge receiptは別途取得する。review: https://github.com/RetryYN/HELIX-HARNESS/pull/1236#issuecomment-5467592090"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec -- vitest run tests/universal-improvement-observation-normalizer.test.ts tests/universal-improvement-source-registry.test.ts && npm exec -- tsc --noEmit && npm exec -- biome check src/runtime/universal-improvement-observation-normalizer.ts tests/universal-improvement-observation-normalizer.test.ts && npm exec -- tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-30T08:17:37Z"
+        evidence_path: tests/universal-improvement-observation-normalizer.test.ts
+        output_digest: "sha256:39be4b8107b0d00e41a59f5727f8c05ce6fc4d9d1049343148397726186d33cb"
+        result: "normalizer 7＋source registry 8の15 tests、typecheck、Biome、PLAN governanceがgreen"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-30T08:17:37Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-30T08:17:37Z"
+    evidence_digest: "sha256:df7e37766343a55207482b637de9b602c3b7c9c7a92758999c4acbe3cd6a1b37"
+  entries: []
 agent_slots:
   - { role: se, slot_label: "SE — admitted source、stable event、baseline separation" }
   - { role: qa, slot_label: "QA — forgery／missing／duplicate／causation mutation" }
