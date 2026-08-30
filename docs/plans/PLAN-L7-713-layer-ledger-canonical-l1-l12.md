@@ -68,6 +68,7 @@ modifies:
   - { artifact_path: docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest, artifact_type: fixture_manifest }
   - { artifact_path: docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest, artifact_type: fixture_manifest }
   - { artifact_path: tests/tools/regenerate-layer-ledger-progress-fixture.mjs, artifact_type: test_tool }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — canonical layer/pair authority境界" }
   - { role: qa, slot_label: "QA — legacy混入とdigest mutation" }

@@ -23,6 +23,8 @@ requirements:
 pair_artifact: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md
 next_pair_freeze: L8
 ---
+
+<!-- HELIX:design-reality-binding:v1 -->
 # HELIX L5詳細設計 — 連鎖台帳・pair gate
 
 ## §0 境界
