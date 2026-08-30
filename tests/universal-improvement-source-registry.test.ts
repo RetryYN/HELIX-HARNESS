@@ -333,6 +333,36 @@ describe("Universal Improvement source registry", () => {
       ]),
     );
 
+    for (const forbiddenField of [
+      "access_token",
+      "refresh_token",
+      "auth_token",
+      "gh_token",
+      "tokens",
+      "user_pii",
+    ]) {
+      const snakeCaseSensitive = validObservation(
+        entry.source_id,
+        entry.schema_version,
+        entry.detector.detector_id,
+      );
+      snakeCaseSensitive.metadata = { [forbiddenField]: "redacted-value" };
+      const snakeCaseResult = admitUniversalImprovementSource(
+        result,
+        snakeCaseSensitive,
+        new Date("2026-08-30T12:00:00.000Z"),
+      );
+      expect(snakeCaseResult.ok, forbiddenField).toBe(false);
+      expect(snakeCaseResult.findings, forbiddenField).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            code: "observation_sensitive_field_forbidden",
+            subject: entry.source_id,
+          }),
+        ]),
+      );
+    }
+
     const malformed = admitUniversalImprovementSource(
       result,
       null as unknown as UniversalImprovementSourceObservation,

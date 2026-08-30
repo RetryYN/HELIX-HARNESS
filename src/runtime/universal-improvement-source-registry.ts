@@ -459,7 +459,7 @@ function collectForbiddenObservationFields(value: unknown, path: string, paths: 
   for (const [key, child] of Object.entries(value)) {
     const childPath = `${path}.${key}`;
     if (
-      /(?:raw[_-]?log|stdout|stderr|credential|secret|password|passwd|api[_-]?key|private[_-]?key|\btoken\b|\bpii\b)/iu.test(
+      /(?:raw[_-]?log|stdout|stderr|credential|secret|password|passwd|api[_-]?key|private[_-]?key|(?:^|[_-])tokens?(?:$|[_-])|(?:^|[_-])pii(?:$|[_-]))/iu.test(
         key,
       )
     ) {
