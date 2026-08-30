@@ -17,6 +17,7 @@ change_slice: atomic
 refactor_step: introduce_contract
 engineering_discipline_required: true
 no_code_decision: add_code
+ddd_modeling_decision: domain_service
 legacy_retirement_state: retained
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -31,6 +32,8 @@ contract_postconditions: "versioned capability registryとsemantic obligation gr
 contract_invariants: "path／test名／LLM推測を意味authorityにせず、required obligation省略、runner選択、schedule最適化を混載しない"
 contract_failures: "unknown identity、orphan、cycle、owner欠落、重複owner、oracle欠落、不完全retirementをfail-closeする"
 tdd_red_required: true
+red_at: "2026-08-30T12:00:49+09:00"
+green_at: "2026-08-30T12:02:29+09:00"
 tdd_red_evidence: "2026-08-30T12:00:49+09:00 tests/ci-responsibility-registry.test.ts initial red: production contract未成立によりU-CIREG-001／002がfail"
 tdd_green_evidence: "2026-08-30T12:02:29+09:00 tests/ci-responsibility-registry.test.ts 9 tests green、typecheck green"
 mutation_oracle_required: true
@@ -92,6 +95,15 @@ review_evidence:
       - { kind: typecheck, command: "npm exec -- tsc --noEmit", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: src/runtime/ci-responsibility-registry.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
       - { kind: lint, command: "npm exec -- biome check src/runtime/ci-responsibility-registry.ts tests/ci-responsibility-registry.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: src/runtime/ci-responsibility-registry.ts, output_digest: "sha256:cfc44eee29bc0c3e74191c4443141ef74fcc5cdf5d6335942c98d2d05ab84aa1" }
       - { kind: lint, command: "npm exec -- tsx src/cli.ts plan lint --gate governance", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: docs/plans/PLAN-L7-705-ci-responsibility-registry.md, output_digest: "sha256:b6c5b081cd44d6b5c0693e57856766e8613d2fe90543752ae15b38ae36b64445" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-30T09:48:07Z"
+  review_binding:
+    reviewer: Claude Code
+    reviewed_at: "2026-08-30T09:48:07Z"
+    evidence_digest: "sha256:391f1ef3645f6bca5c8a1ef1e27c10b09ac40f3b36ce868bf02d8078694c85bc"
+  entries: []
 agent_slots:
   - { role: se, slot_label: "SE — typed capability registry／semantic graph" }
   - { role: qa, slot_label: "QA — unknown／orphan／cycle／ownership mutation" }
