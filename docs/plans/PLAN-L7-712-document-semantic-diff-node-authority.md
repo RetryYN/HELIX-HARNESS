@@ -61,6 +61,7 @@ generates:
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/document-semantic-diff.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
   - { artifact_path: docs/test-design/helix/L8-document-semantic-diff-contracts.md, artifact_type: test_design }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/document-semantic-diff.test.ts, artifact_type: test_code }
