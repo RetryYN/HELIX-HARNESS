@@ -91,6 +91,9 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/ci-execution-telemetry.ts, artifact_type: source_module }
   - { artifact_path: tests/ci-execution-telemetry.test.ts, artifact_type: test_code }
+modifies:
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:
