@@ -2,6 +2,7 @@ import { readFileSync, realpathSync } from "node:fs";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 import { z } from "zod";
 import { canonicalJson, sha256Digest } from "./digest";
+import { attestPhysicalFilesystemIdentity } from "./physical-filesystem-identity";
 
 export const UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH =
   "config/universal-improvement-source-registry.v1.json" as const;
@@ -338,6 +339,24 @@ export interface UniversalImprovementSourceAdmission {
   registry_source_digest: string | null;
   registry_bytes_digest: string | null;
   findings: UniversalImprovementSourceRegistryFinding[];
+}
+
+const repositoryBoundResults = new WeakMap<UniversalImprovementSourceRegistryResult, string>();
+
+function registryResultProofDigest(result: UniversalImprovementSourceRegistryResult): string | null {
+  try {
+    return sha256Digest(
+      canonicalJson({
+        ok: result.ok,
+        registry: result.registry,
+        physical_binding_verified: result.physical_binding_verified,
+        registry_bytes_digest: result.registry_bytes_digest,
+        findings: result.findings,
+      }),
+    );
+  } catch {
+    return null;
+  }
 }
 
 function finding(
@@ -777,6 +796,37 @@ export function analyzeUniversalImprovementSourceRegistry(
     };
   }
 
+  const physicalTargets = [
+    UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_PATH,
+    UNIVERSAL_IMPROVEMENT_SOURCE_REGISTRY_INTEGRITY_PATH,
+    structural.registry.authority.artifact_path,
+    ...structural.registry.entries.flatMap((entry) => [
+      entry.authority.artifact_path,
+      entry.detector.implementation.path,
+    ]),
+  ].filter((path, index, paths) => paths.indexOf(path) === index);
+  const physicalIdentity = attestPhysicalFilesystemIdentity({
+    repo_root: repoRoot,
+    lexical_targets: physicalTargets,
+    expected_target_count: physicalTargets.length,
+  });
+  if (!physicalIdentity.ok) {
+    return {
+      ...structural,
+      ok: false,
+      physical_binding_verified: false,
+      registry_bytes_digest: registryBytesDigest,
+      findings: [
+        ...structural.findings,
+        finding(
+          "physical_binding_required",
+          "registry",
+          `physical filesystem identity rejected: ${physicalIdentity.failure_code}`,
+        ),
+      ],
+    };
+  }
+
   const findings: UniversalImprovementSourceRegistryFinding[] = [];
   if (integrity.data.registry_bytes_digest !== registryBytesDigest) {
     findings.push(
@@ -816,13 +866,18 @@ export function analyzeUniversalImprovementSourceRegistry(
     missingCode: "source_missing",
     mismatchCode: "source_digest_mismatch",
   });
-  return {
+  const result: UniversalImprovementSourceRegistryResult = {
     ok: findings.length === 0,
     registry: structural.registry,
-    physical_binding_verified: true,
+    physical_binding_verified: findings.length === 0,
     registry_bytes_digest: registryBytesDigest,
     findings,
   };
+  if (result.ok && result.physical_binding_verified) {
+    const proofDigest = registryResultProofDigest(result);
+    if (proofDigest !== null) repositoryBoundResults.set(result, proofDigest);
+  }
+  return result;
 }
 
 export function loadUniversalImprovementSourceRegistry(
@@ -892,9 +947,17 @@ export function admitUniversalImprovementSource(
     registry_source_digest: registryResult.registry?.authority.source_digest ?? null,
     registry_bytes_digest: registryResult.registry_bytes_digest,
   };
-  if (!registryResult.ok || !registryResult.registry || !registryResult.physical_binding_verified) {
+  const proofDigest = repositoryBoundResults.get(registryResult);
+  const proofValid =
+    proofDigest !== undefined && proofDigest === registryResultProofDigest(registryResult);
+  if (
+    !registryResult.ok ||
+    !registryResult.registry ||
+    !registryResult.physical_binding_verified ||
+    !proofValid
+  ) {
     const findings = [...registryResult.findings];
-    if (!registryResult.physical_binding_verified) {
+    if (!registryResult.physical_binding_verified || !proofValid) {
       findings.push(
         finding(
           "physical_binding_required",

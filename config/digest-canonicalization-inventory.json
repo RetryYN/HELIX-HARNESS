@@ -3633,7 +3633,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::repositoryFileDigest:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 387,
+      "line": 406,
       "symbol": "repositoryFileDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -3650,10 +3650,10 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::registryBytesDigest:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 687,
+      "line": 706,
       "symbol": "registryBytesDigest",
       "algorithm": "sha256",
-      "input_kind": "string",
+      "input_kind": "bytes",
       "output_encoding": "hex",
       "prefix": "sha256:",
       "truncation": null,

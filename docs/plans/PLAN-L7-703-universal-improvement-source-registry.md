@@ -36,8 +36,8 @@ contract_failures: "required source kind欠落、registry integrity欠落・破�
 tdd_red_required: true
 red_test: "U-UILSRC-001..010でsource kind欠落、duplicate、source lifecycle metadata欠落、registry bytes integrity、digest drift、unsafe path、observation identity、strict timestamp、sensitive field、doctor未配線、未bound admissionを個別に検出する"
 red_at: 2026-08-30T10:19:52+09:00
-green_at: 2026-08-30T10:21:22+09:00
-mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にU-UILSRC-002／003／005の実装内変異（source kind重複、evidence contractのsource_revision欠落、digest drift、unsafe path、malformed／null observation）を実行し、対応するfail-close oracleを通過させた。2026-08-30T10:19:52+09:00にentryと異なるsource_revisionが誤ってadmitされる反例をredで実測し、exact revision照合追加後の10:21:22+09:00にtargeted 1 file／7 testsがgreen、output_digest=sha256:8f2761178ff3a970f5bd65f604748347f9194ad9d14da0a36909dcb1c30fd94b。"
+green_at: 2026-08-30T10:40:45+09:00
+mutation_oracle_evidence: "2026-08-30T07:09:05+09:00にsource kind重複、digest drift、unsafe path、malformed observationを検証した。10:19:52+09:00にwrong source_revisionのredを実測してexact照合を追加した。current sliceでは独立内部レビューが、realpath-only物理検証と公開booleanによるproof偽装をblockerとして検出したため、共通physical-filesystem-identityとmodule-private proof digestへ置換した。10:40:45+09:00にU-UILSRC-011を含むtargeted 2 files／12 tests、typecheck、Biome、PLAN lintがgreen。"
 complexity_effect: justified_positive
 complexity_justification: "既存10 detectorを再実装せず、requirements-owned source registryと共通read-only admissionを一つのaggregateとして追加する。"
 removal_trigger: "Universal Improvement Loopのsource／detector／evidence tupleが既存System Synthesis registryへ完全吸収され、UIL source registryの独立consumerがなくなった時"
@@ -71,6 +71,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-008, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-009, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-010, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-011, test_path: tests/universal-improvement-source-registry.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-703-universal-improvement-source-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, artifact_type: design_doc }

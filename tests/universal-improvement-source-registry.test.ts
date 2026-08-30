@@ -202,6 +202,34 @@ describe("Universal Improvement source registry", () => {
     ]);
   });
 
+  it("U-UILSRC-011: forged／変更済みresultをrepository-bound proofとして再利用できない", () => {
+    const { result, registry } = loadedRegistry();
+    const entry = registry.entries[0];
+    const forged = {
+      ...validateUniversalImprovementSourceRegistryStructure(registry),
+      ok: true,
+      physical_binding_verified: true,
+      registry_bytes_digest: result.registry_bytes_digest,
+    };
+    expect(
+      admitUniversalImprovementSource(
+        forged,
+        validObservation(entry.source_id, entry.schema_version, entry.detector.detector_id),
+        new Date("2026-08-30T12:00:00.000Z"),
+      ).findings,
+    ).toMatchObject([{ code: "physical_binding_required" }]);
+
+    (result as { registry_bytes_digest: string | null }).registry_bytes_digest =
+      `sha256:${"f".repeat(64)}`;
+    expect(
+      admitUniversalImprovementSource(
+        result,
+        validObservation(entry.source_id, entry.schema_version, entry.detector.detector_id),
+        new Date("2026-08-30T12:00:00.000Z"),
+      ).findings,
+    ).toMatchObject([{ code: "physical_binding_required" }]);
+  });
+
   it("U-UILSRC-005: wrong identity、必須field、digest、timestampを個別に拒否する", () => {
     const { result, registry } = loadedRegistry();
     const entry = registry.entries[0];

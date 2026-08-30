@@ -30,7 +30,7 @@ AIはproposal-onlyで、detector evidenceや意味authorityを代替しない。
 | 境界 | 入力 | 出力 | 契約 |
 |---|---|---|---|
 | registry loader | repository内のversioned JSONとexact-bytes integrity record | parsed registryまたはtyped failure | JSON欠落・破損・schema違反・registry bytes driftをfail-closeする |
-| authority binding | registryのartifact path／digestとregistry bytes digest | source authority tuple | repository-relative path、registry exact bytes、実体digest、symlink境界を検証する |
+| authority binding | registryのartifact path／digestとregistry bytes digest | source authority tuple | 共通physical filesystem identityでdevice/inode、mount、symlink、hardlink、TOCTOUと実体digestを検証する |
 | source inventory | 10種のsource kind | unique source／detector集合 | required kind欠落、duplicate source／detectorを拒否する |
 | observation admission | source／schema／detector／revision／evidence | admission result | unknown、wrong identity、必須field欠落、digest不正、staleを拒否する |
 | doctor adapter | repository root | LintResult | runtime loaderと同じ結果を返し、欠落やbytes driftをwarningへ丸めない |
@@ -62,6 +62,7 @@ detector実装を本sliceで再実装しない。
   `registry_bytes_digest`へ束縛する。integrity recordが欠落・破損するか、registry bytesが記録値と異なる場合は、
   registry versionを含む意味変更を再計算なしに受理しない。構造検査の結果は物理検証済みとは扱わず、admissionへ
   渡すにはloaderの `physical_binding_verified` が必須である。
+- loader成功結果はmodule-private proofへ束縛し、構造検査結果のboolean偽装や成功後のresult改竄をadmissionで拒否する。
 - 全判定は候補生成前のread-only admissionで、authorityへの副作用を持たない。
 
 ## 再構築と責務境界
