@@ -1,4 +1,4 @@
-# CI Verification Plan terminal fullback evidence
+# CI Verification Plan終端fullback証拠
 
 ## 事実基準
 
@@ -8,8 +8,8 @@
 - review receipt: `sha256:9fed5ec73911409b7a5dddae4db09291ed1b28737790ed9a6f03e72a36e9ace7`
 - Ready CI: `33323968657` success
 - canonical merge: `e6293f074736e388f6020cffff0e16741f3bdc88`
-- post-main harness-check: `33324321701` success
-- post-main CodeQL: `33324321840` success
+- post-main harness-check: `33324321701` 成功
+- post-main CodeQL: `33324321840` 成功
 
 ## R0〜R3判定
 
