@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: confirmed
 created: 2026-07-14
-updated: 2026-07-14
+updated: 2026-08-30
 owner: Codex / TL
 related_l12: docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md
 pair_artifact: docs/test-design/helix/L8-document-semantic-diff-contracts.md
@@ -15,8 +15,15 @@ related_l9: docs/test-design/helix/L9-document-semantic-diff-integration.md
 
 ## §1 目的と境界
 
-ZIP正本 `tools/diff_report.py` の二時点文書比較を、TypeScript/Bunのread-only機能として移植する。
+ZIP正本 `tools/diff_report.py` の二時点文書比較atomを、TypeScript/Node transactional boundaryの
+read-only機能として再実装する。
 入力は明示した基準snapshot（git revisionまたはread-only docs root）と現在snapshotだけであり、PLAN状態、harness.db、tag、release、GitHub releaseを変更しない。
+
+現在の実装はTypeScript/Node内で完結する。将来、見出し・表・改版履歴の意味解析をPython semantic coreへ
+降ろす場合も、registry済みdescriptor、strict JSONL、bounded resource、network default denyを必須とする。
+Nodeは入力schemaとPython出力を再検証し、artifact writeを含む副作用を単一transactional boundaryからだけ実行する。
+PythonへDB path、credential、repository、`.helix/`、Git/GitHub write authorityを渡さず、Python出力のcommand、
+SQL、absolute path、codeを実行しない。Python未接続の現状を接続済みとして扱わない。
 
 ## §2 契約
 
@@ -35,6 +42,8 @@ ZIP正本 `tools/diff_report.py` の二時点文書比較を、TypeScript/Bunの
 - git基準解決は引数固定のprocess adapter、revision形式検査、timeout、一時dir cleanupを用いる。shell文字列を組まない。
 - outputはstdoutのみを既定とする。`--out` は明示artifact write portと許可rootを要求し、dry-runは書込み0件である。
 - source本文・secret・provider payloadをreportへ転載しない。digestと構造化finding provenanceだけを残す。
+- Bunはhistorical/compatibility evidenceまたはnegative detector vocabularyでのみ読取り可能とし、current command、
+  runtime、fallback、rollback guidanceへ再出力しない。
 
 ## §3.1 local artifactの出力
 

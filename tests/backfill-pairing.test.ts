@@ -266,6 +266,65 @@ describe("U-BACKFILL-004a required backfill bidirectional pairing", () => {
     expect(result.ok).toBe(true);
   });
 
+  it("U-BACKFILL-009: confirmed pending Reverseもpair identityをreferencesで維持する", () => {
+    const plans = [
+      plan({
+        plan_id: "PLAN-L7-706-forward",
+        kind: "add-impl",
+        updated: "2026-08-31",
+        references: ["docs/plans/PLAN-REVERSE-706-forward.md"],
+      }),
+      plan({
+        plan_id: "PLAN-REVERSE-706-forward",
+        kind: "reverse",
+        status: "confirmed",
+        backfillState: "pending_reverse",
+        created: "2026-08-31",
+        updated: "2026-08-31",
+        references: ["docs/plans/PLAN-L7-706-forward.md"],
+      }),
+    ];
+    expect(analyzeBackfill(plans, glossary).reverseLinkMissing).toEqual([]);
+    expect(analyzeBackfill(plans, glossary).ok).toBe(true);
+
+    plans[0] = plan({
+      plan_id: "PLAN-L7-706-forward",
+      kind: "add-impl",
+      updated: "2026-08-31",
+      requires: ["docs/plans/PLAN-REVERSE-706-forward.md"],
+    });
+    expect(analyzeBackfill(plans, glossary).reverseLinkMissing).toEqual([]);
+    expect(analyzeBackfill(plans, glossary).ok).toBe(true);
+  });
+
+  it("U-BACKFILL-010: terminal ReverseはForward requiresへ昇格する", () => {
+    const reverse = plan({
+      plan_id: "PLAN-REVERSE-706-forward",
+      kind: "reverse",
+      status: "confirmed",
+      backfillState: "complete",
+      created: "2026-08-31",
+      updated: "2026-08-31",
+      references: ["docs/plans/PLAN-L7-706-forward.md"],
+    });
+    const referencesOnly = plan({
+      plan_id: "PLAN-L7-706-forward",
+      kind: "add-impl",
+      updated: "2026-08-31",
+      references: ["docs/plans/PLAN-REVERSE-706-forward.md"],
+    });
+    expect(analyzeBackfill([referencesOnly, reverse], glossary).reverseLinkMissing).toHaveLength(1);
+
+    const required = plan({
+      plan_id: "PLAN-L7-706-forward",
+      kind: "add-impl",
+      updated: "2026-08-31",
+      requires: ["docs/plans/PLAN-REVERSE-706-forward.md"],
+    });
+    expect(analyzeBackfill([required, reverse], glossary).reverseLinkMissing).toEqual([]);
+    expect(analyzeBackfill([required, reverse], glossary).ok).toBe(true);
+  });
+
   it("U-BACKFILL-008: draft pending Reverseをrequiresだけへ載せた場合はfail-closeする", () => {
     const plans = [
       plan({

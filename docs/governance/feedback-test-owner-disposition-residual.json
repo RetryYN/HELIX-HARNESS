@@ -27,8 +27,8 @@
     },
     {
       "test_path": "tests/document-semantic-diff.test.ts",
-      "test_file_sha256": "53c3c8183f1e596b07e68c9718b48669186f1680b419b88c3f175d0b9825d96a",
-      "expected_case_count": 3,
+      "test_file_sha256": "a7d312c10f1255a6dc4acdc06261829a917782715a066b3e075c449fd9411151",
+      "expected_case_count": 4,
       "authority_paths": [
         "docs/design/helix/L5-detail/document-semantic-diff.md",
         "docs/test-design/helix/L8-document-semantic-diff-contracts.md"
