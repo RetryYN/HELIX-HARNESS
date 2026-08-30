@@ -289,6 +289,7 @@ items:
       - docs/design/helix/L6-function-design/requirement-json-authority-cutover.md
       - docs/design/helix/L6-function-design/impact-ci-recovery.md
       - docs/design/helix/L6-function-design/ci-execution-telemetry.md
+      - docs/design/helix/L6-function-design/ci-critical-path-scheduler.md
       - docs/design/helix/L6-function-design/ci-responsibility-registry.md
       - docs/design/helix/L6-function-design/ci-verification-plan.md
       - docs/design/helix/L6-function-design/design-template-json-authority.md
