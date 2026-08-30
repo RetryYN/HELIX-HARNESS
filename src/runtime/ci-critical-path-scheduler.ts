@@ -209,8 +209,10 @@ export function scheduleCiCriticalPath(
     );
   }
   const expectedArtifacts = new Map<string, (typeof input.expected_artifact_identities)[number]>();
+  const ambiguousArtifactIds = new Set<string>();
   for (const expectedArtifact of input.expected_artifact_identities) {
     if (expectedArtifacts.has(expectedArtifact.artifact_id)) {
+      ambiguousArtifactIds.add(expectedArtifact.artifact_id);
       findings.push(
         finding("artifact_identity_invalid", expectedArtifact.artifact_id, "expected_duplicate"),
       );
@@ -415,6 +417,7 @@ export function scheduleCiCriticalPath(
     const expected = expectedArtifacts.get(artifact.artifact_id);
     const valid =
       expected !== undefined &&
+      !ambiguousArtifactIds.has(artifact.artifact_id) &&
       expected.capability_id === artifact.capability_id &&
       obligations.has(artifact.capability_id) &&
       artifact.source_head === input.candidate_head &&

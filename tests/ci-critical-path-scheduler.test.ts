@@ -221,6 +221,7 @@ describe("CI critical-path scheduler", () => {
         }),
       );
       expect(result.ok).toBe(false);
+      expect(result.reused_artifact_ids).toEqual([]);
     }
   });
 
