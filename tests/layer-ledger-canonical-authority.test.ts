@@ -22,7 +22,7 @@ const canonicalFailures = [
 ] as const;
 
 describe("layer ledger canonical L1-L12 authority (PLAN-L7-713)", () => {
-  it("AUTH-LLPG-001: current設計・L8・fixtureを正規6 pairへ固定する", () => {
+  it("U-LLPG-053: current設計・L8・fixtureを正規6 pairへ固定する", () => {
     const current = [paths.l5, paths.l6, paths.l8, paths.l7, paths.fixture].map(read).join("\n");
 
     for (const failure of canonicalFailures) {
@@ -40,7 +40,7 @@ describe("layer ledger canonical L1-L12 authority (PLAN-L7-713)", () => {
     }
   });
 
-  it("AUTH-LLPG-002: L0を層外anchor inputへ隔離しlegacy greenで相殺しない", () => {
+  it("U-LLPG-054: L0を層外anchor inputへ隔離しlegacy greenで相殺しない", () => {
     const l5 = read(paths.l5);
     const l6 = read(paths.l6);
     const fixture = read(paths.fixture);
@@ -52,7 +52,7 @@ describe("layer ledger canonical L1-L12 authority (PLAN-L7-713)", () => {
     expect(fixture).toContain("HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID");
   });
 
-  it("AUTH-LLPG-003: canonical pair fixtureのreceipt/case digestをbytesから再計算する", () => {
+  it("U-LLPG-055: canonical pair fixtureのreceipt/case digestをbytesから再計算する", () => {
     const rows = read(paths.fixture)
       .split("\n")
       .filter((line) => /^\| `HST-CASE-032-0[2-8]`/.test(line));

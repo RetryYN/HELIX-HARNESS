@@ -39,7 +39,7 @@ green_at: "2026-08-30T23:44:48+09:00"
 tdd_red_evidence: "tests/layer-ledger-canonical-authority.test.tsで旧L0-L14 failure identityとcanonical authority欠落を2 failedとして検出"
 tdd_green_evidence: "2026-08-30T23:44:48+09:00にnpx vitest run --project fast tests/layer-ledger-canonical-authority.test.tsを実行し、3 tests greenを確認"
 mutation_oracle_required: true
-mutation_oracle_evidence: "AUTH-LLPG-001..003が旧pair identity混入、L0 pair化、legacy相殺文言欠落、case/receipt digest改変を判別する"
+mutation_oracle_evidence: "U-LLPG-053..055が旧pair identity混入、L0 pair化、legacy相殺文言欠落、case/receipt digest改変を判別する"
 complexity_effect: net_negative
 complexity_justification: "current判定から旧4 failure identityを除去し、canonical 6 pairとL0 anchor projectionへ一本化する"
 removal_trigger: "layer ledger設計が実装済みruntime authorityへ置換され、同oracleがruntime testへ移管された時"
@@ -54,9 +54,9 @@ dependencies:
     - issue:206
   blocks: []
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, oracle_id: AUTH-LLPG-001, test_path: tests/layer-ledger-canonical-authority.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, oracle_id: AUTH-LLPG-002, test_path: tests/layer-ledger-canonical-authority.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, oracle_id: AUTH-LLPG-003, test_path: tests/layer-ledger-canonical-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, oracle_id: U-LLPG-053, test_path: tests/layer-ledger-canonical-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, oracle_id: U-LLPG-054, test_path: tests/layer-ledger-canonical-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, oracle_id: U-LLPG-055, test_path: tests/layer-ledger-canonical-authority.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-713-layer-ledger-canonical-l1-l12.md, artifact_type: markdown_doc }
   - { artifact_path: tests/layer-ledger-canonical-authority.test.ts, artifact_type: test_code }
@@ -65,9 +65,11 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest, artifact_type: fixture_manifest }
-  - { artifact_path: docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest, artifact_type: fixture_manifest }
-  - { artifact_path: tests/tools/regenerate-layer-ledger-progress-fixture.mjs, artifact_type: test_tool }
+  - { artifact_path: docs/test-design/helix/fixtures/layer-ledger-pair-gate-case.manifest, artifact_type: config }
+  - { artifact_path: docs/test-design/helix/fixtures/layer-ledger-pair-gate-progress-s01.manifest, artifact_type: config }
+  - { artifact_path: src/lint/canonical-reuse-consumer-baseline.ts, artifact_type: source_module }
+  - { artifact_path: tests/canonical-reuse-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/tools/regenerate-layer-ledger-progress-fixture.mjs, artifact_type: script }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — canonical layer/pair authority境界" }
