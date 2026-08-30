@@ -71,8 +71,34 @@ function validRevision(value: unknown): value is string {
   return typeof value === "string" && IDENTIFIER_PATTERN.test(value);
 }
 
-function validateInput(input: UniversalImprovementNormalizationInput, index: number): string[] {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function validateInput(
+  raw: unknown,
+  index: number,
+): { errors: string[]; input: UniversalImprovementNormalizationInput | null } {
   const errors: string[] = [];
+  if (!isRecord(raw)) {
+    return { errors: [`normalization_input_invalid:${index}`], input: null };
+  }
+  const registryResult = raw.registry_result;
+  const observation = raw.observation;
+  const baseline = raw.baseline;
+  const predicted = raw.predicted;
+  const confidence = raw.confidence;
+  const counterevidenceDigests = raw.counterevidence_digests;
+  if (!isRecord(registryResult)) errors.push(`registry_result_invalid:${index}`);
+  if (!isRecord(observation)) errors.push(`observation_invalid:${index}`);
+  if (!isRecord(baseline)) errors.push(`baseline_invalid:${index}`);
+  if (predicted !== null && !isRecord(predicted)) errors.push(`prediction_invalid:${index}`);
+  if (!isRecord(confidence)) errors.push(`confidence_invalid:${index}`);
+  if (!Array.isArray(counterevidenceDigests)) {
+    errors.push(`counterevidence_digest_invalid:${index}`);
+  }
+  if (errors.length > 0) return { errors, input: null };
+  const input = raw as unknown as UniversalImprovementNormalizationInput;
   if (!IDENTIFIER_PATTERN.test(input.correlation_id))
     errors.push(`correlation_id_invalid:${index}`);
   if (input.causation_id !== null && !/^uil-event-[0-9a-f]{64}$/u.test(input.causation_id)) {
@@ -110,7 +136,7 @@ function validateInput(input: UniversalImprovementNormalizationInput, index: num
   ) {
     errors.push(`prediction_invalid:${index}`);
   }
-  return errors;
+  return { errors, input };
 }
 
 function eventIdentity(input: UniversalImprovementNormalizationInput): string {
@@ -134,7 +160,7 @@ function sortedUniqueDigests(values: readonly Sha256Digest[]): Sha256Digest[] {
 }
 
 export function normalizeUniversalImprovementObservations(
-  inputs: readonly UniversalImprovementNormalizationInput[],
+  inputs: readonly unknown[],
   now: Date = new Date(),
 ): UniversalImprovementNormalizationResult {
   if (!Array.isArray(inputs) || inputs.length === 0) {
@@ -142,13 +168,18 @@ export function normalizeUniversalImprovementObservations(
   }
   const errors: string[] = [];
   const events: UniversalImprovementNormalizedEventV1[] = [];
-  for (const [index, input] of inputs.entries()) {
-    errors.push(...validateInput(input, index));
-    const admission = admitUniversalImprovementSource(
-      input.registry_result,
-      input.observation,
-      now,
-    );
+  for (const [index, raw] of inputs.entries()) {
+    const validation = validateInput(raw, index);
+    errors.push(...validation.errors);
+    const input = validation.input;
+    if (!input || validation.errors.length > 0) continue;
+    let admission: ReturnType<typeof admitUniversalImprovementSource>;
+    try {
+      admission = admitUniversalImprovementSource(input.registry_result, input.observation, now);
+    } catch {
+      errors.push(`source_admission_failed:${input.observation.source_id}:registry_result_invalid`);
+      continue;
+    }
     if (
       !admission.ok ||
       !admission.entry ||
@@ -161,7 +192,6 @@ export function normalizeUniversalImprovementObservations(
       }
       continue;
     }
-    if (validateInput(input, index).length > 0) continue;
     const counterevidence = sortedUniqueDigests(input.counterevidence_digests);
     const eventWithoutDigest = {
       schema_version: UNIVERSAL_IMPROVEMENT_NORMALIZED_EVENT_SCHEMA_VERSION,

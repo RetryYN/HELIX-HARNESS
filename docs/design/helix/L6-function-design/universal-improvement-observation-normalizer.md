@@ -35,6 +35,7 @@ counterevidenceはdigest exact setとしてbytewise sortする。
 - forged／stale registry result、unknown source、wrong source revision、digest／timestamp不正はUIL-01 admissionで拒否する。
 - baseline stateとrevision／digestの矛盾、prediction不正、confidence範囲外、counterevidence digest不正を拒否する。
 - duplicate event ID、未解決causation、cross-correlation causationを拒否する。
+- outer／nested inputまたはregistry resultが構造破壊されていてもthrowへ縮退せず、typed errorとしてfail-closeする。
 - event集合はevent IDで決定的にsortし、同じ入力集合から同じexact set digestを返す。
 - validation errorが1件でもあれば部分event集合を返さず、errorsだけを返す。
 

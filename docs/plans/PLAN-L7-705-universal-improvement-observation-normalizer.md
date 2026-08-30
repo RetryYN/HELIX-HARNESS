@@ -30,7 +30,7 @@ contract_failures: "forged source、wrong revision、invalid baseline／predicti
 tdd_red_required: true
 red_test: "U-UILNORM-001..006で未実装module、forged registry、baseline混同、順序依存、duplicate／causation不整合を検出する"
 green_at: 2026-08-30T11:08:10+09:00
-mutation_oracle_evidence: "U-UILNORM-003..006でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlationを変異し、targeted 1 file／6 testsでfail-closeを確認した。"
+mutation_oracle_evidence: "U-UILNORM-003..007でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlation、outer／nested input破壊を変異し、throwへ縮退せずfail-closeする。"
 complexity_effect: justified_positive
 complexity_justification: "UIL-01 admissionを再利用し、後続finding/candidate責務を混載せず、正規化境界を一つ追加する。"
 removal_trigger: "後継normalized event schemaへ全consumerが移行し、本schemaのeventが0件になった時。"
@@ -49,6 +49,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md, oracle_id: U-UILNORM-004, test_path: tests/universal-improvement-observation-normalizer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md, oracle_id: U-UILNORM-005, test_path: tests/universal-improvement-observation-normalizer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md, oracle_id: U-UILNORM-006, test_path: tests/universal-improvement-observation-normalizer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-observation-normalizer.md, oracle_id: U-UILNORM-007, test_path: tests/universal-improvement-observation-normalizer.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — admitted source、stable event、baseline separation" }
   - { role: qa, slot_label: "QA — forgery／missing／duplicate／causation mutation" }

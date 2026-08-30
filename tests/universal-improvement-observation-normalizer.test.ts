@@ -134,4 +134,28 @@ describe("Universal Improvement observation normalizer", () => {
       ]),
     );
   });
+
+  it("U-UILNORM-007: malformed outer／nested inputとregistry resultをthrowせずfail-closeする", () => {
+    const malformedNested = {
+      ...input(1),
+      baseline: null,
+      confidence: null,
+      counterevidence_digests: null,
+    };
+    const malformedRegistry = { ...input(1), registry_result: { ok: true } };
+
+    expect(normalizeUniversalImprovementObservations([null]).errors).toEqual([
+      "normalization_input_invalid:0",
+    ]);
+    expect(normalizeUniversalImprovementObservations([malformedNested]).errors).toEqual(
+      expect.arrayContaining([
+        "baseline_invalid:0",
+        "confidence_invalid:0",
+        "counterevidence_digest_invalid:0",
+      ]),
+    );
+    expect(normalizeUniversalImprovementObservations([malformedRegistry]).errors).toContain(
+      "source_admission_failed:UIL-SRC-001:registry_result_invalid",
+    );
+  });
 });

@@ -21,5 +21,6 @@ pair_artifact: docs/design/helix/L6-function-design/universal-improvement-observ
 | U-UILNORM-004 | baseline separation | missing baselineにrevisionを混入させず、predictionとobservedを混同しない | `tests/universal-improvement-observation-normalizer.test.ts` |
 | U-UILNORM-005 | event graph | duplicate event、unresolved／cross-correlation causationを拒否する | `tests/universal-improvement-observation-normalizer.test.ts` |
 | U-UILNORM-006 | confidence／counterevidence | 範囲外score、invalid digest、invalid correlationを拒否する | `tests/universal-improvement-observation-normalizer.test.ts` |
+| U-UILNORM-007 | malformed boundary | outer／nested inputとregistry resultの構造破壊をthrowせずfail-closeする | `tests/universal-improvement-observation-normalizer.test.ts` |
 
 本設計はfinding適格化、candidate生成、route、authority writeをgreenと主張しない。
