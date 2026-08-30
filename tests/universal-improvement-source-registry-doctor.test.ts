@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
 import { checkUniversalImprovementSourceRegistry } from "../src/doctor/universal-improvement-source-registry-check";
 
-// PLAN-L3-75-universal-improvement-source-registry
+// PLAN-L7-703-universal-improvement-source-registry
 const roots: string[] = [];
 
 function makeRoot(): string {

@@ -65,18 +65,6 @@
     "distribution",
     "resource_security"
   ],
-  "admission_policy": {
-    "unknown_source": "fail_close",
-    "duplicate_source_id": "fail_close",
-    "duplicate_detector_id": "fail_close",
-    "missing_owner": "fail_close",
-    "invalid_authority": "fail_close",
-    "unsupported_schema": "fail_close",
-    "stale_evidence": "fail_close",
-    "digest_mismatch": "fail_close",
-    "read_only": true,
-    "ai_role": "proposal_only"
-  },
   "entries": [
     {
       "source_id": "UIL-SRC-001",

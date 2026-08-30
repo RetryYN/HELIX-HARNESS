@@ -9,7 +9,7 @@ status: draft
 created: 2026-08-30
 updated: 2026-08-30
 owner: QA / Codex TL
-plan: docs/plans/PLAN-L3-75-universal-improvement-source-registry.md
+plan: docs/plans/PLAN-L7-703-universal-improvement-source-registry.md
 pair_artifact: docs/design/helix/L6-function-design/universal-improvement-source-registry.md
 github_issue_id: 1231
 behavior_contract_id: UNIVERSAL-IMPROVEMENT-SOURCE-REGISTRY-001

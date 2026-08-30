@@ -10,7 +10,7 @@ import {
   type UniversalImprovementSourceObservation,
 } from "../src/runtime/universal-improvement-source-registry";
 
-// PLAN-L3-75-universal-improvement-source-registry
+// PLAN-L7-703-universal-improvement-source-registry
 function loadedRegistry() {
   const result = loadUniversalImprovementSourceRegistry(process.cwd());
   expect(result.ok).toBe(true);
@@ -46,8 +46,10 @@ describe("Universal Improvement source registry", () => {
     ]);
     expect(new Set(registry.entries.map((entry) => entry.source_id)).size).toBe(10);
     expect(new Set(registry.entries.map((entry) => entry.detector.detector_id)).size).toBe(10);
-    expect(registry.admission_policy.read_only).toBe(true);
-    expect(registry.admission_policy.ai_role).toBe("proposal_only");
+    expect(registry.entries.every((entry) => entry.failure_disposition === "fail_close")).toBe(
+      true,
+    );
+    expect(registry.entries.every((entry) => entry.evidence_contract.read_only)).toBe(true);
   });
 
   it("U-UILSRC-002: duplicate source/detectorとrequired kind欠落をfail-closeする", () => {
@@ -198,6 +200,22 @@ describe("Universal Improvement source registry", () => {
         "observation_timestamp_invalid",
       ]),
     );
+
+    const future = validObservation(
+      entry.source_id,
+      entry.schema_version,
+      entry.detector.detector_id,
+    );
+    future.observed_at = "2099-01-01T00:00:00.000Z";
+    const futureResult = admitUniversalImprovementSource(
+      result,
+      future,
+      new Date("2026-08-30T12:00:00.000Z"),
+    );
+    expect(futureResult.ok).toBe(false);
+    expect(futureResult.findings).toMatchObject([
+      { code: "observation_timestamp_future", subject: entry.source_id },
+    ]);
 
     const malformed = admitUniversalImprovementSource(
       result,

@@ -253,20 +253,6 @@ export const universalImprovementSourceRegistrySchema = z
       })
       .strict(),
     required_source_kinds: z.array(z.enum(UNIVERSAL_IMPROVEMENT_SOURCE_KINDS)).min(1),
-    admission_policy: z
-      .object({
-        unknown_source: z.literal("fail_close"),
-        duplicate_source_id: z.literal("fail_close"),
-        duplicate_detector_id: z.literal("fail_close"),
-        missing_owner: z.literal("fail_close"),
-        invalid_authority: z.literal("fail_close"),
-        unsupported_schema: z.literal("fail_close"),
-        stale_evidence: z.literal("fail_close"),
-        digest_mismatch: z.literal("fail_close"),
-        read_only: z.literal(true),
-        ai_role: z.literal("proposal_only"),
-      })
-      .strict(),
     entries: z.array(sourceEntrySchema).min(1),
   })
   .strict();
@@ -295,6 +281,7 @@ export type UniversalImprovementSourceRegistryFailureCode =
   | "observation_field_missing"
   | "observation_digest_invalid"
   | "observation_timestamp_invalid"
+  | "observation_timestamp_future"
   | "observation_stale";
 
 export interface UniversalImprovementSourceRegistryFinding {
@@ -719,12 +706,20 @@ export function admitUniversalImprovementSource(
   }
   const observedAt = Date.parse(admittedObservation.observed_at);
   const nowAt = now instanceof Date ? now.getTime() : Number.NaN;
-  if (!Number.isFinite(observedAt) || !Number.isFinite(nowAt) || observedAt > nowAt) {
+  if (!Number.isFinite(observedAt) || !Number.isFinite(nowAt)) {
     findings.push(
       finding(
         "observation_timestamp_invalid",
         admittedObservation.source_id,
-        "observed_at must be an ISO-compatible timestamp",
+        "observed_at and evaluation time must be valid timestamps",
+      ),
+    );
+  } else if (observedAt > nowAt) {
+    findings.push(
+      finding(
+        "observation_timestamp_future",
+        admittedObservation.source_id,
+        "observed_at must not be in the future",
       ),
     );
   } else if ((nowAt - observedAt) / 1000 > entry.freshness.max_age_seconds) {

@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L3-75-universal-improvement-source-registry
-title: "PLAN-L3-75 (add-impl): Universal Improvement source registryをauthority admissionへ接続する"
+plan_id: PLAN-L7-703-universal-improvement-source-registry
+title: "PLAN-L7-703 (add-impl): Universal Improvement source registryをauthority admissionへ接続する"
 kind: add-impl
 layer: L7
 drive: agent
@@ -71,7 +71,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-008, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSRC-009, test_path: tests/universal-improvement-source-registry-doctor.test.ts }
 generates:
-  - { artifact_path: docs/plans/PLAN-L3-75-universal-improvement-source-registry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-703-universal-improvement-source-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: json_config }
@@ -85,7 +85,7 @@ modifies:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
 ---
 
-# PLAN-L3-75: Universal Improvement source registryのauthority admission実装
+# PLAN-L7-703: Universal Improvement source registryのauthority admission実装
 
 ## 目的
 
