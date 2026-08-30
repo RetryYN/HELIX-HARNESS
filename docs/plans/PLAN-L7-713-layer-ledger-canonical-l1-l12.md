@@ -4,11 +4,26 @@ title: "PLAN-L7-713: layer ledger pair gateをcanonical L1-L12へ収束する"
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-08-31
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: 01a05061-f4c3-7b50-8fc4-b148dbd5375a
+    reviewed_head_sha: 9ef1d7b8081d484959b82ff06dd0696387096683
+    reviewed_at: "2026-08-31T00:37:16+09:00"
+    tests_green_at: "2026-08-31T00:37:16+09:00"
+    verdict: approve
+    scope: "PR #1263 pre-confirm review。分母authority、5 artifact別canonical pair exact set、Biome、Issue/PLAN identityを反例再検証しBLOCKER 0。receipt sealは行っていない。"
+    green_commands:
+      - { kind: unit_test, command: "npx vitest run --project fast tests/layer-ledger-canonical-authority.test.ts tests/canonical-reuse-authority.test.ts tests/l12-hybrid-recognition.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:37:16+09:00", evidence_path: tests/layer-ledger-canonical-authority.test.ts, output_digest: "sha256:88843c67fa5523c5879d818e0d0c041aae7bccab2501736ecd208f6888e093a2" }
+      - { kind: typecheck, command: "npm run typecheck", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:37:16+09:00", evidence_path: tsconfig.json, output_digest: "sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011" }
+      - { kind: lint, command: "npx biome check src/lint/canonical-reuse-consumer-baseline.ts tests/canonical-reuse-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/layer-ledger-canonical-authority.test.ts tests/tools/regenerate-layer-ledger-progress-fixture.mjs", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T00:37:16+09:00", evidence_path: biome.json, output_digest: "sha256:25ba39f7257d94a8f0999745242cb4387509a372f2467d9c9f131206190387e0" }
 owner: Codex / worker
 github_issue_id: 1259
 behavior_contract_id: LAYER-LEDGER-CANONICAL-PAIR-001
