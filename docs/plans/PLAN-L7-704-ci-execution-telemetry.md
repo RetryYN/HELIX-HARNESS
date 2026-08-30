@@ -23,13 +23,13 @@ backprop_decision_reason: "既存Impact CIの選定とfull-regression shardを�
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L3-73のCI System Synthesis、Impact CI、full-regression shard、canonical digest authorityが存在する"
-contract_postconditions: "job／step／test／setup／artifact_transfer eventのstrict validatorとrun/attempt projectionが再利用可能になる"
-contract_invariants: "required verificationを変更せず、raw log／secretを保持せず、rerun successで過去failureを消さず、profile／surface／environment／cacheを混在させず、標本なしの系列を0msと解釈させない"
-contract_failures: "wrong HEAD、unknown runner、invalid time、sensitive field、duplicate node、missing/cyclic dependency、依存時間逆転、digest driftをfail-closeする"
+contract_postconditions: "job／step／test／setup／artifact_transfer eventのstrict validatorとrun/attempt projectionが、runner identityとartifact edgeを含めて再利用可能になる"
+contract_invariants: "required verificationを変更せず、raw log／secretを保持せず、rerun successで過去failureを消さず、profile／surface／runner／environment／cacheを混在させず、標本なしの系列を0msと解釈させず、artifact input/output digestの不整合を許容しない"
+contract_failures: "wrong HEAD、unknown runner、batch内のNode version drift、invalid time、sensitive field、duplicate node、missing/cyclic dependency、依存時間逆転、artifact transfer種別・edge・digest drift、非failure detector、digest driftをfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "既存Impact CIの選定変更ではなく、純粋なtelemetry schema／validator／projectionを追加する。"
 green_at: 2026-08-29T22:57:41Z
-mutation_oracle_evidence: "2026-08-29T22:57:41ZにU-TELE-002／003／004／005／006／007／008／009／010のdigest drift、HEAD誤り、時間逆転と不正日付、未知runner、sensitive field、cost node誤分類、結果不整合、依存DAG破壊、重複setup／rerun failure、series軸混在を実装内変異として検証し、fail-close oracleを通過させた。targeted 1 file／10 tests passed、output_digest=sha256:9de77dc165b10ebd5dc8a0fb787b100dec9f6113d0264cc7aa16f917d0cf5dc9。"
+mutation_oracle_evidence: "2026-08-30T00:00:00ZにU-TELE-002／003／004／005／006／007／008／009／010のdigest drift、HEAD誤り、時間逆転と不正日付、未知runner、Node version drift、sensitive field、cost node誤分類、artifact transfer／edge digest不整合、非failure detector、結果不整合、依存DAG破壊、重複setup／rerun failure、series軸混在を実装内変異として検証し、fail-close oracleを通過させた。targeted 1 file／10 tests passed。"
 complexity_effect: justified_positive
 complexity_justification: "既存selection／shard責務を再実装せず、後続のCI局所最適とcritical-path統制へ共通の観測境界を一つ追加する。"
 removal_trigger: "後継CI telemetry schemaが全consumerを移行し、本schemaのevent／projectionが0件になった時。"

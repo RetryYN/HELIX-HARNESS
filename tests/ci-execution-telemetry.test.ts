@@ -42,6 +42,7 @@ type EventOptions = {
   cacheHit?: boolean;
   artifact?: CiExecutionTelemetryEventInput["artifact"];
   runnerOs?: CiExecutionTelemetryEventInput["runner"]["os"];
+  runnerNodeVersion?: string;
   environmentDigest?: CiExecutionTelemetryEventInput["runner"]["environment_digest"];
 };
 
@@ -73,7 +74,7 @@ function makeEvent(options: EventOptions): CiExecutionTelemetryEventV1 {
     runner: {
       os: options.runnerOs ?? "linux",
       architecture: "x64",
-      node_version: "v24.15.0",
+      node_version: options.runnerNodeVersion ?? "v24.15.0",
       toolchain_digest: TOOLCHAIN,
       environment_digest: options.environmentDigest ?? ENVIRONMENT,
     },
@@ -273,6 +274,56 @@ describe("CI execution telemetry contract", () => {
     expect(validateCiExecutionTelemetryEvent(missingArtifact).errors).toContain(
       "artifact_required",
     );
+
+    const invalidTransferOperation = { ...artifact, operation: "checkout" as const };
+    expect(validateCiExecutionTelemetryEvent(invalidTransferOperation).errors).toContain(
+      "artifact_transfer_operation_invalid",
+    );
+
+    const uploadedDigest = sha256Digest("uploaded-artifact");
+    const upload = makeEvent({
+      eventId: "event-9-upload",
+      nodeId: "artifact-upload",
+      nodeKind: "artifact_transfer",
+      operation: "artifact_upload",
+      artifact: {
+        direction: "upload",
+        input_digest: sha256Digest("upload-input"),
+        output_digest: uploadedDigest,
+      },
+    });
+    const download = makeEvent({
+      eventId: "event-9-download",
+      nodeId: "artifact-download",
+      nodeKind: "artifact_transfer",
+      operation: "artifact_download",
+      dependsOn: ["artifact-upload"],
+      startedMs: 110,
+      completedMs: 210,
+      artifact: {
+        direction: "download",
+        input_digest: uploadedDigest,
+        output_digest: sha256Digest("download-output"),
+      },
+    });
+    expect(validateCiExecutionTelemetryBatch([upload, download])).toEqual({ ok: true, errors: [] });
+    const mismatchedDownload = makeEvent({
+      eventId: "event-9-download-mismatch",
+      nodeId: "artifact-download-mismatch",
+      nodeKind: "artifact_transfer",
+      operation: "artifact_download",
+      dependsOn: ["artifact-upload"],
+      startedMs: 110,
+      completedMs: 210,
+      artifact: {
+        direction: "download",
+        input_digest: sha256Digest("different-upload"),
+        output_digest: sha256Digest("download-output"),
+      },
+    });
+    expect(validateCiExecutionTelemetryBatch([upload, mismatchedDownload]).errors).toContain(
+      "artifact_dependency_digest_mismatch:artifact-download-mismatch:artifact-upload",
+    );
   });
 
   it("U-TELE-007: status、exit code、first detecting oracleの欠落を相殺しない", () => {
@@ -313,6 +364,14 @@ describe("CI execution telemetry contract", () => {
     };
     expect(validateCiExecutionTelemetryEvent(timedOutWithExit).errors).toContain(
       "nonterminal_exit_code_invalid",
+    );
+
+    const passedWithDetector = {
+      ...validPassed,
+      outcome: { ...validPassed.outcome, first_detecting_oracle_id: "oracle-not-a-failure" },
+    };
+    expect(validateCiExecutionTelemetryEvent(passedWithDetector).errors).toContain(
+      "nonfailure_detector_forbidden",
     );
   });
 
@@ -358,6 +417,15 @@ describe("CI execution telemetry contract", () => {
     const context = makeEvent({ eventId: "event-17", nodeId: "node-17", runId: "run-2" });
     expect(validateCiExecutionTelemetryBatch([first, context]).errors).toContain(
       "batch_binding_mismatch:run_id",
+    );
+
+    const differentNodeVersion = makeEvent({
+      eventId: "event-18-node-version",
+      nodeId: "node-18-node-version",
+      runnerNodeVersion: "v22.0.0",
+    });
+    expect(validateCiExecutionTelemetryBatch([first, differentNodeVersion]).errors).toContain(
+      "batch_binding_mismatch:runner_node_version",
     );
   });
 
@@ -519,6 +587,13 @@ describe("CI execution telemetry contract", () => {
       environmentDigest: sha256Digest("environment:other"),
       runId: "series-d-1",
     });
+    const differentNodeVersion = makeEvent({
+      eventId: "event-28-node-version",
+      nodeId: "node-28-node-version",
+      completedMs: 820,
+      runnerNodeVersion: "v22.0.0",
+      runId: "series-node-version-1",
+    });
     const differentCache = makeEvent({
       eventId: "event-29",
       nodeId: "node-29",
@@ -533,6 +608,7 @@ describe("CI execution telemetry contract", () => {
       differentProfile,
       differentSurface,
       differentEnvironment,
+      differentNodeVersion,
       differentCache,
     ]);
     const reverse = projectCiExecutionTelemetry([
@@ -540,12 +616,13 @@ describe("CI execution telemetry contract", () => {
       differentEnvironment,
       differentSurface,
       differentProfile,
+      differentNodeVersion,
       second,
       first,
     ]);
 
     expect(reverse).toEqual(forward);
-    expect(forward.projection?.series).toHaveLength(5);
+    expect(forward.projection?.series).toHaveLength(6);
     expect(forward.projection?.series).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -562,6 +639,11 @@ describe("CI execution telemetry contract", () => {
         expect.objectContaining({ execution_surface: "local_internal", sample_count: 1 }),
         expect.objectContaining({
           environment_digest: sha256Digest("environment:other"),
+          sample_count: 1,
+        }),
+        expect.objectContaining({
+          runner_node_version: "v22.0.0",
+          environment_digest: ENVIRONMENT,
           sample_count: 1,
         }),
         expect.objectContaining({ cache_class: "cold", sample_count: 1 }),

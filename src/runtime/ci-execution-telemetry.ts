@@ -103,6 +103,10 @@ export interface CiTelemetryRunSummary {
   attempt: number;
   profile: CiProfile;
   execution_surface: ExecutionSurface;
+  runner_os: CiTelemetryRunnerOs;
+  runner_architecture: CiTelemetryArchitecture;
+  runner_node_version: string;
+  toolchain_digest: Sha256Digest;
   environment_digest: Sha256Digest;
   cache_class: CiTelemetryCacheClass;
   event_count: number;
@@ -117,6 +121,10 @@ export interface CiTelemetryRunSummary {
 export interface CiTelemetrySeries {
   profile: CiProfile;
   execution_surface: ExecutionSurface;
+  runner_os: CiTelemetryRunnerOs;
+  runner_architecture: CiTelemetryArchitecture;
+  runner_node_version: string;
+  toolchain_digest: Sha256Digest;
   environment_digest: Sha256Digest;
   cache_class: CiTelemetryCacheClass;
   sample_count: number;
@@ -538,6 +546,13 @@ export function validateCiExecutionTelemetryEvent(
     ) {
       errors.push("failure_detector_required");
     }
+    if (
+      outcome.status !== "failed" &&
+      outcome.status !== "timed_out" &&
+      outcome.first_detecting_oracle_id !== null
+    ) {
+      errors.push("nonfailure_detector_forbidden");
+    }
   }
 
   if (event.artifact !== null) {
@@ -567,6 +582,13 @@ export function validateCiExecutionTelemetryEvent(
     ) {
       errors.push("artifact_operation_direction_mismatch");
     }
+  }
+  if (
+    event.node_kind === "artifact_transfer" &&
+    event.operation !== "artifact_upload" &&
+    event.operation !== "artifact_download"
+  ) {
+    errors.push("artifact_transfer_operation_invalid");
   }
   if (event.node_kind === "test" && event.operation !== "test")
     errors.push("test_operation_mismatch");
@@ -663,6 +685,9 @@ export function validateCiExecutionTelemetryBatch(
     if (events.some((event) => event.runner.architecture !== first.runner.architecture)) {
       errors.push("batch_binding_mismatch:runner_architecture");
     }
+    if (events.some((event) => event.runner.node_version !== first.runner.node_version)) {
+      errors.push("batch_binding_mismatch:runner_node_version");
+    }
   }
 
   const dependencies = new Map(events.map((event) => [event.node_id, event.depends_on_node_ids]));
@@ -688,6 +713,15 @@ export function validateCiExecutionTelemetryBatch(
           eventStartedAt < dependencyCompletedAt
         ) {
           errors.push(`dependency_timing_order_invalid:${event.node_id}:${dependency}`);
+        }
+        if (
+          event.node_kind === "artifact_transfer" &&
+          event.artifact !== null &&
+          dependencyEvent.node_kind === "artifact_transfer" &&
+          dependencyEvent.artifact !== null &&
+          event.artifact.input_digest !== dependencyEvent.artifact.output_digest
+        ) {
+          errors.push(`artifact_dependency_digest_mismatch:${event.node_id}:${dependency}`);
         }
       }
     }
@@ -822,6 +856,10 @@ function summarizeRun(events: readonly CiExecutionTelemetryEventV1[]): CiTelemet
     attempt: first.attempt,
     profile: first.profile,
     execution_surface: first.execution_surface,
+    runner_os: first.runner.os,
+    runner_architecture: first.runner.architecture,
+    runner_node_version: first.runner.node_version,
+    toolchain_digest: first.runner.toolchain_digest,
     environment_digest: first.runner.environment_digest,
     cache_class: first.cache.class,
     event_count: events.length,
@@ -879,6 +917,10 @@ export function projectCiExecutionTelemetry(
     const key = [
       summary.profile,
       summary.execution_surface,
+      summary.runner_os,
+      summary.runner_architecture,
+      summary.runner_node_version,
+      summary.toolchain_digest,
       summary.environment_digest,
       summary.cache_class,
     ].join("\0");
@@ -895,6 +937,10 @@ export function projectCiExecutionTelemetry(
       return {
         profile: representative.profile,
         execution_surface: representative.execution_surface,
+        runner_os: representative.runner_os,
+        runner_architecture: representative.runner_architecture,
+        runner_node_version: representative.runner_node_version,
+        toolchain_digest: representative.toolchain_digest,
         environment_digest: representative.environment_digest,
         cache_class: representative.cache_class,
         sample_count: included.length,
