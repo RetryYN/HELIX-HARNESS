@@ -37,6 +37,9 @@ export interface VerificationWorkAuthority {
 export interface DeferredObligationAssignment {
   capability_id: string;
   target: DeferredExecutionTarget;
+  candidate_head: string;
+  receipt_status: "pending" | "succeeded";
+  receipt_digest?: `sha256:${string}`;
 }
 
 export interface VerificationPlanInput {
@@ -44,12 +47,14 @@ export interface VerificationPlanInput {
   expected_registry_digest: `sha256:${string}`;
   work_authority: VerificationWorkAuthority;
   candidate_head: string;
+  expected_candidate_head: string;
   base_head: string;
   execution_context: VerificationExecutionContext;
   authority_node_ids: readonly string[];
   changed_artifact_node_ids: readonly string[];
   changed_test_capability_ids: readonly string[];
-  risk_signals: readonly FullFallbackReason[];
+  risk_signals: readonly string[];
+  required_obligation_ids: readonly string[];
   defer_assignments: readonly DeferredObligationAssignment[];
   compatibility_capability_ids?: readonly string[];
 }
@@ -62,16 +67,23 @@ export interface VerificationDagNode {
 export interface DeferredVerificationObligation {
   capability_id: string;
   target: DeferredExecutionTarget;
+  candidate_head: string;
+  receipt_status: "pending" | "succeeded";
+  receipt_digest?: `sha256:${string}`;
 }
 
 export type VerificationPlanFindingCode =
   | "head_invalid"
+  | "head_mismatch"
   | "work_authority_invalid"
   | "registry_digest_stale"
   | "unknown_capability"
   | "duplicate_obligation"
   | "defer_assignment_invalid"
   | "deferred_dependency_invalid"
+  | "deferred_receipt_invalid"
+  | "unknown_risk_signal"
+  | "required_obligation_missing"
   | "registry_invalid";
 
 export interface VerificationPlanFinding {
@@ -199,6 +211,14 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
   if (!SHA.test(input.candidate_head)) {
     findings.push(finding("head_invalid", input.candidate_head, "candidate_head"));
   }
+  if (
+    !SHA.test(input.expected_candidate_head) ||
+    input.candidate_head !== input.expected_candidate_head
+  ) {
+    findings.push(
+      finding("head_mismatch", input.candidate_head, `expected=${input.expected_candidate_head}`),
+    );
+  }
   if (!SHA.test(input.base_head) || input.base_head === input.candidate_head) {
     findings.push(finding("head_invalid", input.base_head, "base_head"));
   }
@@ -246,11 +266,15 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
     }
   }
 
-  const fallbackReasons = new Set(
-    input.risk_signals.filter((reason): reason is FullFallbackReason =>
-      FULL_REASON_SET.has(reason),
-    ),
-  );
+  const fallbackReasons = new Set<FullFallbackReason>();
+  for (const reason of input.risk_signals) {
+    if (FULL_REASON_SET.has(reason as FullFallbackReason)) {
+      fallbackReasons.add(reason as FullFallbackReason);
+    } else {
+      findings.push(finding("unknown_risk_signal", reason, "risk signal is not registered"));
+      fallbackReasons.add("unknown_identity");
+    }
+  }
   if (derived.findings.some((item) => item.code === "unknown_node")) {
     fallbackReasons.add("unknown_identity");
   }
@@ -259,7 +283,12 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
   }
 
   const closed = dependencyClosure(input.registry, selected);
-  const assignments = new Map<string, DeferredExecutionTarget>();
+  for (const id of sortedUnique(input.required_obligation_ids)) {
+    if (!closed.has(id)) {
+      findings.push(finding("required_obligation_missing", id, "not present in selected closure"));
+    }
+  }
+  const assignments = new Map<string, DeferredObligationAssignment>();
   for (const assignment of input.defer_assignments) {
     if (assignments.has(assignment.capability_id)) {
       findings.push(
@@ -281,7 +310,32 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
       );
       continue;
     }
-    assignments.set(assignment.capability_id, assignment.target);
+    if (assignment.candidate_head !== input.candidate_head) {
+      findings.push(
+        finding(
+          "deferred_receipt_invalid",
+          assignment.capability_id,
+          `candidate_head=${assignment.candidate_head}`,
+        ),
+      );
+      continue;
+    }
+    if (
+      assignment.receipt_status === "succeeded" &&
+      !/^sha256:[a-f0-9]{64}$/.test(assignment.receipt_digest ?? "")
+    ) {
+      findings.push(
+        finding("deferred_receipt_invalid", assignment.capability_id, "terminal digest required"),
+      );
+      continue;
+    }
+    if (assignment.receipt_status === "pending" && assignment.receipt_digest !== undefined) {
+      findings.push(
+        finding("deferred_receipt_invalid", assignment.capability_id, "pending receipt has digest"),
+      );
+      continue;
+    }
+    assignments.set(assignment.capability_id, assignment);
   }
 
   const partitions = partitionCapabilityIds(input.registry, closed);
@@ -292,9 +346,9 @@ export function composeCiVerificationPlan(input: VerificationPlanInput): CiVerif
       }
     }
   }
-  const deferred = [...assignments]
-    .filter(([id]) => closed.has(id))
-    .map(([capability_id, target]) => ({ capability_id, target }))
+  const deferred = [...assignments.values()]
+    .filter((assignment) => closed.has(assignment.capability_id))
+    .map((assignment) => ({ ...assignment }))
     .sort((a, b) => a.capability_id.localeCompare(b.capability_id));
   const deferredIds = new Set(deferred.map((item) => item.capability_id));
   const immediate = new Set([...closed].filter((id) => !deferredIds.has(id)));
@@ -359,7 +413,12 @@ export function adaptLegacyImpactCiDecision(
     candidate_head: input.decision.candidateHead,
     base_head: input.decision.baseHead,
     compatibility_capability_ids: sortedUnique([...selected, ...deferred]),
-    defer_assignments: deferred.map((capability_id) => ({ capability_id, target: "main" })),
+    defer_assignments: deferred.map((capability_id) => ({
+      capability_id,
+      target: "main",
+      candidate_head: input.decision.candidateHead,
+      receipt_status: "pending",
+    })),
     risk_signals: input.decision.fullAdmissionRequired ? ["legacy_full_admission"] : [],
     findings,
   };

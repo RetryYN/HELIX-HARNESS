@@ -25,3 +25,6 @@ pair_artifact: docs/design/helix/L6-function-design/ci-verification-plan.md
 | U-CIVPLAN-007 | authority | Issue／PLAN kind mismatchを拒否 | `tests/ci-verification-plan.test.ts` |
 | U-CIVPLAN-008 | compatibility | legacy itemをcapability IDへ一方向変換 | `tests/ci-verification-plan.test.ts` |
 | U-CIVPLAN-009 | legacy mutation | unknown／overlapをcurrent planへ混入させない | `tests/ci-verification-plan.test.ts` |
+| U-CIVPLAN-010 | HEAD／risk | 形状が正しい別HEADと未登録riskを個別拒否しfull fallback | `tests/ci-verification-plan.test.ts` |
+| U-CIVPLAN-011 | deferred receipt | wrong HEAD、terminal digest欠落を拒否 | `tests/ci-verification-plan.test.ts` |
+| U-CIVPLAN-012 | aggregate mutation | required obligationを一件削るとaggregate admissionがred | `tests/ci-verification-plan.test.ts` |

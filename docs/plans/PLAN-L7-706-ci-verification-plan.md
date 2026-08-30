@@ -7,7 +7,7 @@ drive: agent
 status: draft
 completion_claim_allowed: false
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-08-31
 owner: Codex / TL
 github_issue_id: 1206
 behavior_contract_id: CI-VERIFICATION-PLAN-001
@@ -25,14 +25,14 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1206 Verification Plan deterministic composition"
 contract_preconditions: "#1205 CI Responsibility Registryがtyped capability、semantic graph、registry digestを提供する"
-contract_postconditions: "work authorityとcandidate HEADからlocal／boundary／global／deferred exact partitionとplan digestを生成する"
+contract_postconditions: "work authorityとexact candidate HEADからlocal／boundary／global／deferred receipt exact partitionとplan digestを生成する"
 contract_invariants: "path-only identity、LLM省略、別green相殺、scheduler／runner選択をcurrent planへ混載しない"
-contract_failures: "wrong HEAD、stale registry、unknown capability、duplicate／missing defer、deferred dependencyをfail-closeする"
+contract_failures: "wrong／mismatched HEAD、stale registry、unknown capability／risk、required obligation欠落、duplicate／missing defer、deferred receipt／dependency不整合をfail-closeする"
 tdd_red_required: true
 tdd_red_evidence: "2026-08-30T12:28:00+09:00 tests/ci-verification-plan.test.ts initial red: ci-verification-plan module不在"
-tdd_green_evidence: "2026-08-30T12:31:55+09:00 tests/ci-verification-plan.test.ts 9 tests green、typecheck green"
+tdd_green_evidence: "2026-08-31 tests/ci-verification-plan.test.ts 12 tests green、typecheck green（再検証予定）"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CIVPLAN-002〜009でrequired test削除、risk downgrade、unknown／wrong HEAD／stale digest、defer欠落／重複／dependency、legacy unknown／overlapを個別mutationする"
+mutation_oracle_evidence: "U-CIVPLAN-002〜012でrequired test／aggregate obligation削除、全high-risk downgrade、unknown risk、valid-shape wrong HEAD、stale digest、defer receipt欠落／重複／dependency、legacy unknown／overlapを個別mutationする"
 complexity_effect: net_negative
 complexity_justification: "Impact CI／Lite／Module別のpath decisionを一つのtyped Verification Planへ収束する"
 removal_trigger: "CI System Synthesis replacementへ全consumer、legacy adapter、rollback traceが移行した時"
@@ -61,6 +61,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-verification-plan.md, oracle_id: U-CIVPLAN-007, test_path: tests/ci-verification-plan.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-verification-plan.md, oracle_id: U-CIVPLAN-008, test_path: tests/ci-verification-plan.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-verification-plan.md, oracle_id: U-CIVPLAN-009, test_path: tests/ci-verification-plan.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-verification-plan.md, oracle_id: U-CIVPLAN-010, test_path: tests/ci-verification-plan.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-verification-plan.md, oracle_id: U-CIVPLAN-011, test_path: tests/ci-verification-plan.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-verification-plan.md, oracle_id: U-CIVPLAN-012, test_path: tests/ci-verification-plan.test.ts }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
