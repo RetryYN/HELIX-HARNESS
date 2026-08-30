@@ -162,4 +162,4 @@ integration runnerはL6のclosed API/pipeline unionとtyped fixture pathを使�
 
 ## §4 canonical authority retrofit oracle
 
-`PLAN-L7-713`の`U-LLPG-AUTH-001..003`（`tests/layer-ledger-canonical-authority.test.ts`）をL8 authority projectionとしてbindする。正規6 pair exact set、L0層外anchor、legacy green非相殺、case/receipt digest再計算を同時に満たさない限りgreenにしない。
+`PLAN-L7-713`の3-case authority oracle（`tests/layer-ledger-canonical-authority.test.ts`）をL8 authority projectionとしてbindする。正規6 pair exact set、L0層外anchor、legacy green非相殺、case/receipt digest再計算を同時に満たさない限りgreenにしない。この補助oracleは既存primary U/IT分母へ加算しない。

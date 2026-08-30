@@ -219,4 +219,4 @@ runnerはL6のclosed API/pipeline unionとtyped fixture pathへexact joinし、�
 
 ## §4 canonical authority retrofit oracle
 
-`PLAN-L7-713`の`U-LLPG-AUTH-001..003`（`tests/layer-ledger-canonical-authority.test.ts`）をL7 executable authority oracleとしてbindする。旧pair failure identity混入、L0 pair化、legacy greenによる相殺、fixture canonical bytesまたはdigestの単独改変を個別にfail-closeする。
+`PLAN-L7-713`の3-case authority oracle（`tests/layer-ledger-canonical-authority.test.ts`）をL7 executable authority oracleとしてbindする。旧pair failure identity混入、L0 pair化、legacy greenによる相殺、fixture canonical bytesまたはdigestの単独改変を個別にfail-closeする。この補助oracleは既存primary U/IT分母へ加算しない。
