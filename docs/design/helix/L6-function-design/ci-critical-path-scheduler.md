@@ -8,11 +8,11 @@ deferred obligation回収は所有しない。
 
 ## 入力authority
 
-- candidate/base HEAD、Verification Plan digest、Registry digest
+- candidate/base HEAD、Verification Plan receipt由来のexpected candidate HEAD、Registry digest
 - obligation DAGとobligation class
 - source HEAD、lockfile、Node/toolchain、platform、artifact digest
-- p50/p95、variance、queue、flake、cache、CPU/memoryのbounded telemetry
-- runner quota、最大並列度、exclusive resourceのlease/fence token
+- p50/p95、variance、queue、flake、cacheのbounded telemetry
+- runner OS compatibility、CPU/memory budget、timeout、backpressure、最大並列度、exclusive resourceのlease/fence token
 
 telemetryがstale、標本不足、identity不一致の場合は推測値で最適化せず、安全な既定DAGへfallbackする。required obligationを
 skipして高速化してはならない。
@@ -27,10 +27,13 @@ skipして高速化してはならない。
 
 artifact reuseはsource HEAD、lockfile、Node/toolchain、platform、input/output digestの全一致を要求する。statefulまたはglobal
 mutable resourceはactive leaseとfence tokenなしに並列配置しない。
+expected candidate HEADとartifact identityのいずれかが欠落した場合は、形式上validな別HEADや部分identityから推測せず
+fail-closeする。critical path、makespan、quotaはclass/resource barrier適用後の最終parallel groupから再計算する。
 bounded cancelはrequired obligationを削除せず、同一runで未開始のheavy nodeを停止対象としてreceiptへ残し、後続terminal
 recovery obligationを#1208へ引き渡す。
 
 ## failure境界
 
 wrong HEAD/platform/lockfile/toolchain artifact、dependency逆転、cycle、resource conflict、quota超過、stale telemetry、
-lease/fence欠落を別findingでfail-closeする。安全fallbackが成立する場合もfindingとfallback reasonをreceiptへ残す。
+lease/fence欠落、runner/resource/timeout非互換を別findingでfail-closeする。unknown cache、high variance/flake、backpressureは
+required setを維持したconservative fallbackとしてreceiptへ残す。

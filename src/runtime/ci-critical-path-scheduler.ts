@@ -13,7 +13,19 @@ export interface SchedulerEstimate {
   capability_id: string;
   p50_ms: number;
   p95_ms: number;
+  variance_ms: number;
+  flake_rate: number;
+  queue_ms: number;
+  cache_state: "hit" | "miss" | "unknown";
   sample_count: number;
+}
+
+export interface SchedulerResourceRequirement {
+  capability_id: string;
+  runner_os: string;
+  cpu_units: number;
+  memory_mb: number;
+  timeout_ms: number;
 }
 
 export interface SchedulerArtifact {
@@ -37,6 +49,7 @@ export interface SchedulerExclusiveResource {
 
 export interface CiCriticalPathSchedulerInput {
   candidate_head: string;
+  expected_candidate_head: string;
   base_head: string;
   verification_plan_digest: `sha256:${string}`;
   registry_digest: `sha256:${string}`;
@@ -48,12 +61,17 @@ export interface CiCriticalPathSchedulerInput {
   evaluated_at: string;
   artifacts: readonly SchedulerArtifact[];
   exclusive_resources: readonly SchedulerExclusiveResource[];
-  expected_artifact_identity?: {
+  expected_artifact_identity: {
     lockfile_digest: `sha256:${string}`;
     node_version: string;
     toolchain_digest: `sha256:${string}`;
     platform: string;
   };
+  resource_requirements: readonly SchedulerResourceRequirement[];
+  compatible_runner_os: readonly string[];
+  available_cpu_units: number;
+  available_memory_mb: number;
+  backpressure_active: boolean;
 }
 
 export type SchedulerFindingCode =
@@ -61,10 +79,12 @@ export type SchedulerFindingCode =
   | "obligation_duplicate"
   | "dependency_unknown"
   | "dependency_cycle"
+  | "dependency_class_inversion"
   | "estimate_invalid"
   | "parallel_quota_invalid"
   | "artifact_identity_invalid"
-  | "exclusive_resource_unfenced";
+  | "exclusive_resource_unfenced"
+  | "runtime_context_invalid";
 
 export interface SchedulerFinding {
   code: SchedulerFindingCode;
@@ -172,6 +192,8 @@ export function scheduleCiCriticalPath(
   const fallbackReasons = new Set<string>();
   if (
     !SHA.test(input.candidate_head) ||
+    !SHA.test(input.expected_candidate_head) ||
+    input.candidate_head !== input.expected_candidate_head ||
     !SHA.test(input.base_head) ||
     input.candidate_head === input.base_head
   ) {
@@ -182,6 +204,27 @@ export function scheduleCiCriticalPath(
       finding("parallel_quota_invalid", "max_parallel_jobs", String(input.max_parallel_jobs)),
     );
   }
+  const expectedArtifact = input.expected_artifact_identity;
+  if (
+    expectedArtifact === undefined ||
+    !DIGEST.test(expectedArtifact.lockfile_digest) ||
+    !DIGEST.test(expectedArtifact.toolchain_digest) ||
+    !expectedArtifact.node_version.trim() ||
+    !expectedArtifact.platform.trim()
+  ) {
+    findings.push(
+      finding("artifact_identity_invalid", "expected_artifact_identity", "missing_or_invalid"),
+    );
+  }
+  if (
+    !Number.isFinite(input.available_cpu_units) ||
+    input.available_cpu_units <= 0 ||
+    !Number.isInteger(input.available_memory_mb) ||
+    input.available_memory_mb <= 0 ||
+    input.compatible_runner_os.length === 0
+  ) {
+    findings.push(finding("runtime_context_invalid", "runtime_budget", "missing_or_invalid"));
+  }
   const obligations = new Map<string, SchedulerObligation>();
   for (const obligation of input.obligations) {
     if (obligations.has(obligation.capability_id)) {
@@ -189,12 +232,32 @@ export function scheduleCiCriticalPath(
     }
     obligations.set(obligation.capability_id, obligation);
   }
+  for (const obligation of obligations.values()) {
+    for (const dependencyId of obligation.depends_on_capability_ids) {
+      const dependency = obligations.get(dependencyId);
+      if (
+        dependency &&
+        OBLIGATION_CLASS_RANK[dependency.obligation_class] >
+          OBLIGATION_CLASS_RANK[obligation.obligation_class]
+      ) {
+        findings.push(
+          finding("dependency_class_inversion", obligation.capability_id, dependencyId),
+        );
+      }
+    }
+  }
   const estimates = new Map<string, SchedulerEstimate>();
   for (const estimate of input.estimates) {
     if (
       !obligations.has(estimate.capability_id) ||
       !finiteDuration(estimate.p50_ms) ||
       !finiteDuration(estimate.p95_ms) ||
+      !finiteDuration(estimate.variance_ms) ||
+      !finiteDuration(estimate.queue_ms) ||
+      !Number.isFinite(estimate.flake_rate) ||
+      estimate.flake_rate < 0 ||
+      estimate.flake_rate > 1 ||
+      !new Set(["hit", "miss", "unknown"]).has(estimate.cache_state) ||
       estimate.p95_ms < estimate.p50_ms ||
       !Number.isInteger(estimate.sample_count) ||
       estimate.sample_count < 1
@@ -214,58 +277,44 @@ export function scheduleCiCriticalPath(
   if (!telemetryFresh || input.estimates.some((item) => item.sample_count < 3)) {
     fallbackReasons.add("telemetry_stale_or_insufficient");
   }
-
-  const ordered = topoSort(obligations, findings);
-  const duration = new Map<string, number>();
-  const finish = new Map<string, number>();
-  const predecessor = new Map<string, string | null>();
-  const group = new Map<string, number>();
-  const groupCounts = new Map<number, number>();
-  const maxGroupByClassRank = new Map<number, number>();
-  const quota = Math.max(
-    1,
-    Number.isInteger(input.max_parallel_jobs) ? input.max_parallel_jobs : 1,
-  );
-  for (const id of ordered) {
-    const estimate = estimates.get(id);
-    const nodeDuration =
-      telemetryFresh && estimate?.sample_count && estimate.sample_count >= 3 ? estimate.p95_ms : 1;
-    duration.set(id, nodeDuration);
-    const dependencies = obligations.get(id)?.depends_on_capability_ids ?? [];
-    const classRank =
-      OBLIGATION_CLASS_RANK[obligations.get(id)?.obligation_class ?? "release_only"];
-    let criticalDependency: string | null = null;
-    let dependencyFinish = 0;
-    let candidateGroup = 0;
-    for (const dependency of dependencies) {
-      const value = finish.get(dependency) ?? 0;
-      if (
-        value > dependencyFinish ||
-        (value === dependencyFinish && dependency < (criticalDependency ?? "~"))
-      ) {
-        dependencyFinish = value;
-        criticalDependency = dependency;
-      }
-      candidateGroup = Math.max(candidateGroup, (group.get(dependency) ?? -1) + 1);
-    }
-    const priorClassMax = Math.max(
-      -1,
-      ...[...maxGroupByClassRank]
-        .filter(([rank]) => rank < classRank)
-        .map(([, maxGroup]) => maxGroup),
-    );
-    candidateGroup = Math.max(candidateGroup, priorClassMax + 1);
-    while ((groupCounts.get(candidateGroup) ?? 0) >= quota) candidateGroup += 1;
-    group.set(id, candidateGroup);
-    groupCounts.set(candidateGroup, (groupCounts.get(candidateGroup) ?? 0) + 1);
-    maxGroupByClassRank.set(
-      classRank,
-      Math.max(maxGroupByClassRank.get(classRank) ?? -1, candidateGroup),
-    );
-    finish.set(id, dependencyFinish + nodeDuration);
-    predecessor.set(id, criticalDependency);
+  if (
+    input.estimates.some(
+      (item) =>
+        item.cache_state === "unknown" || item.flake_rate > 0.1 || item.variance_ms > item.p95_ms,
+    )
+  ) {
+    fallbackReasons.add("telemetry_quality_conservative");
   }
 
+  const requirements = new Map<string, SchedulerResourceRequirement>();
+  for (const requirement of input.resource_requirements) {
+    const valid =
+      obligations.has(requirement.capability_id) &&
+      !requirements.has(requirement.capability_id) &&
+      input.compatible_runner_os.includes(requirement.runner_os) &&
+      Number.isFinite(requirement.cpu_units) &&
+      requirement.cpu_units > 0 &&
+      requirement.cpu_units <= input.available_cpu_units &&
+      Number.isInteger(requirement.memory_mb) &&
+      requirement.memory_mb > 0 &&
+      requirement.memory_mb <= input.available_memory_mb &&
+      Number.isInteger(requirement.timeout_ms) &&
+      requirement.timeout_ms > 0;
+    if (!valid) {
+      findings.push(
+        finding("runtime_context_invalid", requirement.capability_id, "runner/resource/timeout"),
+      );
+    }
+    requirements.set(requirement.capability_id, requirement);
+  }
+  for (const capabilityId of obligations.keys()) {
+    if (!requirements.has(capabilityId)) {
+      findings.push(finding("runtime_context_invalid", capabilityId, "requirement_missing"));
+    }
+  }
+  if (input.backpressure_active) fallbackReasons.add("backpressure_conservative");
+
+  const resourcesByCapability = new Map<string, Set<string>>();
   for (const resource of input.exclusive_resources) {
     if (
       !obligations.has(resource.capability_id) ||
@@ -276,38 +325,78 @@ export function scheduleCiCriticalPath(
         finding("exclusive_resource_unfenced", resource.capability_id, resource.resource_id),
       );
     }
+    const resourceIds = resourcesByCapability.get(resource.capability_id) ?? new Set<string>();
+    resourceIds.add(resource.resource_id);
+    resourcesByCapability.set(resource.capability_id, resourceIds);
   }
-  const resourcesById = new Map<string, SchedulerExclusiveResource[]>();
-  for (const resource of input.exclusive_resources) {
-    resourcesById.set(resource.resource_id, [
-      ...(resourcesById.get(resource.resource_id) ?? []),
-      resource,
-    ]);
-  }
-  for (const resources of resourcesById.values()) {
-    resources.sort((a, b) => a.capability_id.localeCompare(b.capability_id));
-    for (let index = 1; index < resources.length; index += 1) {
-      const previous = resources[index - 1];
-      const current = resources[index];
-      if (group.get(previous.capability_id) === group.get(current.capability_id)) {
-        group.set(current.capability_id, (group.get(current.capability_id) ?? 0) + 1);
-      }
+
+  const ordered = topoSort(obligations, findings);
+  const duration = new Map<string, number>();
+  const group = new Map<string, number>();
+  const groupCounts = new Map<number, number>();
+  const groupResources = new Map<number, Set<string>>();
+  const maxGroupByClassRank = new Map<number, number>();
+  const quota = Math.max(
+    1,
+    Number.isInteger(input.max_parallel_jobs) ? input.max_parallel_jobs : 1,
+  );
+  for (const id of ordered) {
+    const estimate = estimates.get(id);
+    const nodeDuration =
+      telemetryFresh && estimate?.sample_count && estimate.sample_count >= 3
+        ? estimate.p95_ms + estimate.queue_ms
+        : 1;
+    duration.set(id, nodeDuration);
+    const dependencies = obligations.get(id)?.depends_on_capability_ids ?? [];
+    const classRank =
+      OBLIGATION_CLASS_RANK[obligations.get(id)?.obligation_class ?? "release_only"];
+    let candidateGroup = 0;
+    for (const dependency of dependencies) {
+      candidateGroup = Math.max(candidateGroup, (group.get(dependency) ?? -1) + 1);
     }
+    const priorClassMax = Math.max(
+      -1,
+      ...[...maxGroupByClassRank]
+        .filter(([rank]) => rank < classRank)
+        .map(([, maxGroup]) => maxGroup),
+    );
+    candidateGroup = Math.max(candidateGroup, priorClassMax + 1);
+    const nodeResources = resourcesByCapability.get(id) ?? new Set<string>();
+    while (
+      (groupCounts.get(candidateGroup) ?? 0) >= quota ||
+      [...nodeResources].some((resource) => groupResources.get(candidateGroup)?.has(resource))
+    ) {
+      candidateGroup += 1;
+    }
+    group.set(id, candidateGroup);
+    groupCounts.set(candidateGroup, (groupCounts.get(candidateGroup) ?? 0) + 1);
+    groupResources.set(
+      candidateGroup,
+      new Set([...(groupResources.get(candidateGroup) ?? []), ...nodeResources]),
+    );
+    maxGroupByClassRank.set(
+      classRank,
+      Math.max(maxGroupByClassRank.get(classRank) ?? -1, candidateGroup),
+    );
   }
 
   const reusedArtifacts: string[] = [];
   for (const artifact of input.artifacts) {
     const expected = input.expected_artifact_identity;
     const valid =
+      expected !== undefined &&
       obligations.has(artifact.capability_id) &&
       artifact.source_head === input.candidate_head &&
       DIGEST.test(artifact.input_digest) &&
       DIGEST.test(artifact.output_digest) &&
-      (!expected ||
-        (artifact.lockfile_digest === expected.lockfile_digest &&
-          artifact.node_version === expected.node_version &&
-          artifact.toolchain_digest === expected.toolchain_digest &&
-          artifact.platform === expected.platform));
+      DIGEST.test(expected.lockfile_digest) &&
+      DIGEST.test(expected.toolchain_digest) &&
+      expected.node_version.trim().length > 0 &&
+      expected.platform.trim().length > 0 &&
+      artifact.lockfile_digest === expected.lockfile_digest &&
+      artifact.node_version === expected.node_version &&
+      artifact.toolchain_digest === expected.toolchain_digest &&
+      artifact.platform === expected.platform;
     if (!valid) {
       findings.push(
         finding("artifact_identity_invalid", artifact.artifact_id, artifact.capability_id),
@@ -317,16 +406,22 @@ export function scheduleCiCriticalPath(
     }
   }
 
-  let criticalEnd = ordered[0] ?? null;
-  for (const id of ordered) {
-    if ((finish.get(id) ?? 0) > (finish.get(criticalEnd ?? "") ?? 0)) criticalEnd = id;
-  }
+  const orderedGroups = [...new Set(group.values())].sort((a, b) => a - b);
+  const groupDurations = new Map<number, number>();
   const criticalPath: string[] = [];
-  let cursor: string | null = criticalEnd;
-  while (cursor !== null) {
-    criticalPath.unshift(cursor);
-    cursor = predecessor.get(cursor) ?? null;
+  for (const groupId of orderedGroups) {
+    const members = ordered.filter((id) => group.get(id) === groupId);
+    const criticalMember = members.sort((left, right) => {
+      const delta = (duration.get(right) ?? 0) - (duration.get(left) ?? 0);
+      return delta !== 0 ? delta : left.localeCompare(right);
+    })[0];
+    if (criticalMember) criticalPath.push(criticalMember);
+    groupDurations.set(groupId, Math.max(0, ...members.map((id) => duration.get(id) ?? 0)));
   }
+  const predictedCriticalPathMs = [...groupDurations.values()].reduce(
+    (sum, value) => sum + value,
+    0,
+  );
   const executionDag = ordered.map((capability_id) => ({
     capability_id,
     depends_on_capability_ids: [
@@ -356,7 +451,7 @@ export function scheduleCiCriticalPath(
     registry_digest: input.registry_digest,
     execution_dag: executionDag,
     critical_path_capability_ids: criticalPath,
-    predicted_critical_path_ms: finish.get(criticalEnd ?? "") ?? 0,
+    predicted_critical_path_ms: predictedCriticalPathMs,
     predicted_runner_minutes: runnerMs / 60_000,
     predicted_failure_feedback_latency_ms:
       criticalPath.length > 0 ? (duration.get(criticalPath[0]) ?? 0) : 0,

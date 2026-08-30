@@ -27,12 +27,12 @@ entry_signals:
 contract_preconditions: "#1204のtyped telemetryと#1206のimmutable Verification Planがcandidate HEADへexactに束縛される"
 contract_postconditions: "required obligation exact setを変えず、runner互換性・resource・lease・artifact localityからbounded execution DAGを決定的に生成する"
 contract_invariants: "schedulerはobligationを追加削除せず、配置・並列度・artifact reuseだけを決定し、unknown/stale telemetryでは安全な既定DAGへfallbackする"
-contract_failures: "wrong HEAD／platform／lockfile／toolchain artifact、resource conflict、lease/fence欠落、quota超過、stale costを個別fail-closeする"
+contract_failures: "wrong expected HEAD／platform／lockfile／toolchain artifact、resource conflict、lease/fence欠落、runner/resource/timeout非互換、quota超過を個別fail-closeする"
 tdd_red_required: true
 tdd_red_evidence: "2026-08-30T12:55:50+09:00 tests/ci-critical-path-scheduler.test.ts initial red: ci-critical-path-scheduler module不在"
 tdd_green_evidence: "2026-08-30T12:59:45+09:00 tests/ci-critical-path-scheduler.test.ts 8 tests green、typecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CISCHED-002〜008でglobal先行、wrong artifact HEAD、unfenced exclusive resource、stale telemetry、invalid quota/HEAD、heavy cancel exact set、artifact exact identity、placement digest差を個別変異する"
+mutation_oracle_evidence: "tests/ci-critical-path-scheduler.test.ts U-CISCHED-002〜010でclass/resource barrier、valid-shaped wrong HEAD、artifact identity各dimension、exclusive resource、telemetry、quota、runner/resource/timeout、backpressure、phase逆依存を個別mutationしredになる"
 complexity_effect: net_negative
 complexity_justification: "workflow内へ散在するjob配置とsetup重複判断をtyped schedulerへ収束する"
 removal_trigger: "後継System Synthesis schedulerへ全consumerとrollback traceが移行した時"
@@ -58,6 +58,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-006, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-007, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-008, test_path: tests/ci-critical-path-scheduler.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-009, test_path: tests/ci-critical-path-scheduler.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-010, test_path: tests/ci-critical-path-scheduler.test.ts }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }

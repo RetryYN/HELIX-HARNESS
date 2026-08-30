@@ -10,6 +10,7 @@ import {
 
 const HEAD = "b".repeat(40);
 const BASE = "a".repeat(40);
+const OTHER_HEAD = "c".repeat(40);
 const D1 = `sha256:${"1".repeat(64)}` as const;
 const D2 = `sha256:${"2".repeat(64)}` as const;
 
@@ -18,6 +19,7 @@ function input(
 ): CiCriticalPathSchedulerInput {
   return {
     candidate_head: HEAD,
+    expected_candidate_head: HEAD,
     base_head: BASE,
     verification_plan_digest: D1,
     registry_digest: D2,
@@ -36,8 +38,26 @@ function input(
       },
     ],
     estimates: [
-      { capability_id: "verification:a", p50_ms: 10, p95_ms: 20, sample_count: 5 },
-      { capability_id: "verification:b", p50_ms: 30, p95_ms: 40, sample_count: 5 },
+      {
+        capability_id: "verification:a",
+        p50_ms: 10,
+        p95_ms: 20,
+        variance_ms: 2,
+        flake_rate: 0,
+        queue_ms: 1,
+        cache_state: "hit",
+        sample_count: 5,
+      },
+      {
+        capability_id: "verification:b",
+        p50_ms: 30,
+        p95_ms: 40,
+        variance_ms: 3,
+        flake_rate: 0,
+        queue_ms: 1,
+        cache_state: "miss",
+        sample_count: 5,
+      },
     ],
     max_parallel_jobs: 2,
     telemetry_max_age_ms: 86_400_000,
@@ -45,6 +65,32 @@ function input(
     evaluated_at: "2026-08-30T00:00:01.000Z",
     artifacts: [],
     exclusive_resources: [],
+    expected_artifact_identity: {
+      lockfile_digest: D1,
+      node_version: "24.15.0",
+      toolchain_digest: D2,
+      platform: "linux-x64",
+    },
+    resource_requirements: [
+      {
+        capability_id: "verification:a",
+        runner_os: "linux",
+        cpu_units: 1,
+        memory_mb: 512,
+        timeout_ms: 60_000,
+      },
+      {
+        capability_id: "verification:b",
+        runner_os: "linux",
+        cpu_units: 1,
+        memory_mb: 512,
+        timeout_ms: 60_000,
+      },
+    ],
+    compatible_runner_os: ["linux"],
+    available_cpu_units: 2,
+    available_memory_mb: 2048,
+    backpressure_active: false,
     ...overrides,
   };
 }
@@ -63,7 +109,7 @@ describe("CI critical-path scheduler", () => {
 
   it("U-CISCHED-002: dependencyとdurationからcritical pathを決定する", () => {
     const result = scheduleCiCriticalPath(input());
-    expect(result.predicted_critical_path_ms).toBe(60);
+    expect(result.predicted_critical_path_ms).toBe(62);
     expect(result.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
     const prioritized = scheduleCiCriticalPath(
       input({
@@ -86,12 +132,20 @@ describe("CI critical-path scheduler", () => {
             capability_id: "verification:global-a",
             p50_ms: 10,
             p95_ms: 20,
+            variance_ms: 2,
+            flake_rate: 0,
+            queue_ms: 1,
+            cache_state: "hit",
             sample_count: 5,
           },
           {
             capability_id: "verification:local-z",
             p50_ms: 10,
             p95_ms: 20,
+            variance_ms: 2,
+            flake_rate: 0,
+            queue_ms: 1,
+            cache_state: "miss",
             sample_count: 5,
           },
         ],
@@ -102,33 +156,39 @@ describe("CI critical-path scheduler", () => {
       "verification:global-a",
     ]);
     expect(prioritized.execution_dag.map((node) => node.parallel_group)).toEqual([0, 1]);
+    expect(prioritized.predicted_critical_path_ms).toBe(42);
   });
 
   it("U-CISCHED-003: wrong artifact identityを個別拒否する", () => {
-    const result = scheduleCiCriticalPath(
-      input({
-        expected_artifact_identity: {
-          lockfile_digest: D1,
-          node_version: "24.15.0",
-          toolchain_digest: D2,
-          platform: "linux-x64",
-        },
-        artifacts: [
-          {
-            artifact_id: "artifact:build",
-            capability_id: "verification:a",
-            source_head: BASE,
-            lockfile_digest: D1,
-            node_version: "24.15.0",
-            toolchain_digest: D2,
-            platform: "linux-x64",
-            input_digest: D1,
-            output_digest: D2,
-          },
-        ],
-      }),
+    const valid = {
+      artifact_id: "artifact:build",
+      capability_id: "verification:a",
+      source_head: HEAD,
+      lockfile_digest: D1,
+      node_version: "24.15.0",
+      toolchain_digest: D2,
+      platform: "linux-x64",
+      input_digest: D1,
+      output_digest: D2,
+    } as const;
+    for (const artifact of [
+      { ...valid, source_head: BASE },
+      { ...valid, lockfile_digest: D2 },
+      { ...valid, node_version: "25.0.0" },
+      { ...valid, toolchain_digest: D1 },
+      { ...valid, platform: "windows-x64" },
+      { ...valid, input_digest: "bad" as `sha256:${string}` },
+      { ...valid, output_digest: "bad" as `sha256:${string}` },
+    ]) {
+      const result = scheduleCiCriticalPath(input({ artifacts: [artifact] }));
+      expect(result.findings).toContainEqual(
+        expect.objectContaining({ code: "artifact_identity_invalid" }),
+      );
+    }
+    const missingExpected = scheduleCiCriticalPath(
+      input({ artifacts: [valid], expected_artifact_identity: undefined as never }),
     );
-    expect(result.findings).toContainEqual(
+    expect(missingExpected.findings).toContainEqual(
       expect.objectContaining({ code: "artifact_identity_invalid" }),
     );
   });
@@ -164,12 +224,29 @@ describe("CI critical-path scheduler", () => {
             fence_token: "",
           },
         ],
+        resource_requirements: [
+          {
+            capability_id: "verification:a",
+            runner_os: "linux",
+            cpu_units: 1,
+            memory_mb: 512,
+            timeout_ms: 60_000,
+          },
+          {
+            capability_id: "verification:b",
+            runner_os: "linux",
+            cpu_units: 1,
+            memory_mb: 512,
+            timeout_ms: 60_000,
+          },
+        ],
       }),
     );
     expect(result.findings).toContainEqual(
       expect.objectContaining({ code: "exclusive_resource_unfenced" }),
     );
     expect(result.execution_dag[0].parallel_group).not.toBe(result.execution_dag[1].parallel_group);
+    expect(result.predicted_critical_path_ms).toBe(62);
   });
 
   it("U-CISCHED-005: stale telemetryでrequired setを保存してfallbackする", () => {
@@ -182,7 +259,7 @@ describe("CI critical-path scheduler", () => {
   it("U-CISCHED-006: quotaと不正HEADをboundedに拒否する", () => {
     const result = scheduleCiCriticalPath(
       input({
-        candidate_head: "stale",
+        candidate_head: OTHER_HEAD,
         max_parallel_jobs: 0,
         obligations: [
           {
@@ -228,16 +305,71 @@ describe("CI critical-path scheduler", () => {
     const result = scheduleCiCriticalPath(
       input({
         artifacts: [artifact],
-        expected_artifact_identity: {
-          lockfile_digest: D1,
-          node_version: "24.15.0",
-          toolchain_digest: D2,
-          platform: "linux-x64",
-        },
       }),
     );
     expect(result.reused_artifact_ids).toEqual(["artifact:build"]);
     expect(result.ok).toBe(true);
+  });
+
+  it("U-CISCHED-009: runner/resource/timeout不整合とbackpressureを保守的に扱う", () => {
+    const result = scheduleCiCriticalPath(
+      input({
+        resource_requirements: [
+          {
+            capability_id: "verification:a",
+            runner_os: "windows",
+            cpu_units: 3,
+            memory_mb: 4096,
+            timeout_ms: 0,
+          },
+        ],
+        backpressure_active: true,
+      }),
+    );
+    expect(result.findings).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: "runtime_context_invalid" })]),
+    );
+    expect(result.fallback_reasons).toContain("backpressure_conservative");
+  });
+
+  it("U-CISCHED-010: 後段classから前段classへのdependencyを拒否する", () => {
+    const result = scheduleCiCriticalPath(
+      input({
+        obligations: [
+          {
+            capability_id: "verification:global",
+            depends_on_capability_ids: [],
+            obligation_class: "global_invariant",
+            heavy: true,
+          },
+          {
+            capability_id: "verification:local",
+            depends_on_capability_ids: ["verification:global"],
+            obligation_class: "local",
+            heavy: false,
+          },
+        ],
+        resource_requirements: [
+          {
+            capability_id: "verification:global",
+            runner_os: "linux",
+            cpu_units: 1,
+            memory_mb: 512,
+            timeout_ms: 60_000,
+          },
+          {
+            capability_id: "verification:local",
+            runner_os: "linux",
+            cpu_units: 1,
+            memory_mb: 512,
+            timeout_ms: 60_000,
+          },
+        ],
+      }),
+    );
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "dependency_class_inversion" }),
+    );
   });
 
   it("U-CISCHED-008: 同一入力のplan digestを決定的にする", () => {
