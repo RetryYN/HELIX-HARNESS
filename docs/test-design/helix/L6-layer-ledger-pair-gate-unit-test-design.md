@@ -217,6 +217,6 @@ composition/mutationとして実行し、第2 ownerまたはcanonical分母に�
 
 runnerはL6のclosed API/pipeline unionとtyped fixture pathへexact joinし、未知API、alias、空名、別pathをfixture load前に拒否する。
 
-## §4 canonical authority retrofit oracle
+## §4 canonical authority移行oracle
 
 `PLAN-L7-713`の3-case authority oracle（`tests/layer-ledger-canonical-authority.test.ts`）をL7 executable authority oracleとしてbindする。旧pair failure identity混入、L0 pair化、legacy greenによる相殺、fixture canonical bytesまたはdigestの単独改変を個別にfail-closeする。この補助oracleは既存primary U/IT分母へ加算しない。
