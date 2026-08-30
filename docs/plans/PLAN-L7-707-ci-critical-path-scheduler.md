@@ -68,6 +68,25 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-012, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-013, test_path: tests/ci-critical-path-scheduler.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-critical-path-scheduler.md, oracle_id: U-CISCHED-014, test_path: tests/ci-critical-path-scheduler.test.ts }
+review_evidence:
+  - reviewer: claude-code
+    review_kind: cross_agent
+    reviewed_at: "2026-08-30T19:05:43Z"
+    tests_green_at: "2026-08-30T19:05:43Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "a02813c9-9bc1-41f4-9c86-0f943ece4270"
+    scope: "exact HEAD e4f8997556787a9345b820f256d40d16f7933f89。quota、bounded cancel、CPU／memory、unknown dependency、invalid resourceの旧blockerを再計測し、BLOCKER 0／NON-BLOCKER 0。GitHub comment 5470669288。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/ci-critical-path-scheduler.test.ts && npx --no-install tsc --noEmit && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-30T19:05:43Z"
+        evidence_path: tests/ci-critical-path-scheduler.test.ts
+        output_digest: "sha256:0c9aff5e89c03086db43735b5c1afb8b8303fe49998e27c5ac24295058d1d44d"
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
