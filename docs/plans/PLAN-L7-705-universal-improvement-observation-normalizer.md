@@ -29,8 +29,9 @@ contract_invariants: "read-only、入力順非依存、baseline／observed／pre
 contract_failures: "forged source、wrong revision、invalid baseline／prediction／confidence／digest、duplicate event、unresolved causationをfail-closeする"
 tdd_red_required: true
 red_test: "U-UILNORM-001..007で未実装module、forged registry、baseline混同、順序依存、duplicate／causation不整合、malformed inputを検出する"
-green_at: 2026-08-30T11:08:10+09:00
-mutation_oracle_evidence: "U-UILNORM-003..007でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlation、correlation_id欠落／非string、outer／nested input破壊を変異し、throwや型強制によるsilent acceptへ縮退せずfail-closeする。"
+red_at: 2026-08-30T17:46:03+09:00
+green_at: 2026-08-30T17:46:35+09:00
+mutation_oracle_evidence: "tests/universal-improvement-observation-normalizer.test.tsのU-UILNORM-003..007でregistry proof偽装、wrong revision、missing baselineへのrevision混入、duplicate event、unresolved causation、invalid confidence／digest／correlation、correlation_id欠落／非string、outer／nested input破壊を変異し、throwや型強制によるsilent acceptへ縮退せずfail-closeする。2026-08-30T17:46:03+09:00にcorrelation_id型guardを弱めるmutationを実測し、U-UILNORM-007が1 failed／6 passedでkillした。guard復元後の17:46:35+09:00に同suite 7 tests greenを実測した。"
 complexity_effect: justified_positive
 complexity_justification: "UIL-01 admissionを再利用し、後続finding/candidate責務を混載せず、正規化境界を一つ追加する。"
 removal_trigger: "後継normalized event schemaへ全consumerが移行し、本schemaのeventが0件になった時。"
@@ -78,7 +79,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-30T08:17:37Z"
-    evidence_digest: "sha256:df7e37766343a55207482b637de9b602c3b7c9c7a92758999c4acbe3cd6a1b37"
+    evidence_digest: "sha256:216781efa84a277fe29c02ceb6224c83304d7e0d91ac259da7d7d5d240498aaa"
   entries: []
 agent_slots:
   - { role: se, slot_label: "SE — admitted source、stable event、baseline separation" }
@@ -92,6 +93,10 @@ generates:
   - { artifact_path: tests/universal-improvement-observation-normalizer.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
   parent: docs/plans/PLAN-L3-74-universal-improvement-loop.md
   requires:
