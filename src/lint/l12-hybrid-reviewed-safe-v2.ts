@@ -219,7 +219,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // Issue #1260 の移行PLAN。TypeScript/Bun は旧L6 authorityを観測して拒否する
     // migration evidenceであり、current runtime authorityへの再採用ではない。
     path: "docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md",
-    contentDigest: "46aa4b9b89d292d07822fa1576a88ffe31a1fad486ea954b78cc86deb2a6de85",
+    contentDigest: "cd36f49f811c8fdd0705a25f6437db31b3df1aee315b3f1ecceb5221fde05283",
     finalDisposition: "false_positive",
   },
   {
