@@ -37,7 +37,36 @@ green_at: "2026-08-30T19:09:04+09:00"
 tdd_red_evidence: "2026-08-30T19:07:13+09:00 tests/universal-improvement-finding-qualification.test.ts initial red: production module未作成でimport failure"
 tdd_green_evidence: "2026-08-30T21:17:35+09:00 pre-confirm blocker修正後にfinding qualification 7＋#1236 normalizer 7の14 tests、typecheckをgreen実測した。PLANはdraft／completion falseを維持する"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-08-30T21:13..21:14+09:00に単一mutationをapply_patchで適用し、各targetedを実測後に復元した。trigger kindのfinal identity除去→U-UILFQ-003、source evidence dedupe除去→U-UILFQ-002、expiry分岐除去→U-UILFQ-005、normalized counterevidence集約除去→U-UILFQ-005、baseline照合除去→U-UILFQ-004がそれぞれ1 failed／6 skippedで個別killした。復元後のgreen commandを再実測し、PLANはdraft／completion falseを維持する"
+mutation_oracle_evidence: "tests/universal-improvement-finding-qualification.test.ts: 2026-08-30T21:13..21:14+09:00に単一mutationを適用し、trigger kind identity除去→U-UILFQ-003、source evidence dedupe除去→U-UILFQ-002、expiry分岐除去→U-UILFQ-005、counterevidence集約除去→U-UILFQ-005、baseline照合除去→U-UILFQ-004が各々failedとなりmutantをkilledした。復元後greenを再実測した"
+review_evidence:
+  - reviewer: codex-tl-sol
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-30T13:06:00Z"
+    tests_green_at: "2026-08-30T12:17:35Z"
+    verdict: approve
+    worker_model: gpt-5.6-luna
+    reviewer_model: codex:gpt-5.6-sol
+    reviewer_session_id: 019febe1-8983-7820-bee4-4cd62876f9b6
+    reviewed_head_sha: 0f91cc182f75cc710a5b13da8bade109e3a84f6a
+    scope: "Luna実装をSol TLがcurrent HEADで再検査した。旧Claude pre-confirm blocker、normalized event counterevidence／recurrence lineageのcanonical exact set、duplicate counterevidence／lineage拒否、PLAN identity 708への収束を確認し、blocker 0。Claude独立exact-HEAD reviewは成功CI後に別途要求する。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec -- vitest run tests/universal-improvement-finding-qualification.test.ts tests/universal-improvement-observation-normalizer.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-30T12:17:35Z"
+        evidence_path: tests/universal-improvement-finding-qualification.test.ts
+        output_digest: "sha256:67ff6637cbd14241ba3913e340d68df1cf88aa6b1d0e7e26828a43fbcb7b2703"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-30T13:06:00Z"
+  review_binding:
+    reviewer: codex-tl-sol
+    reviewed_at: "2026-08-30T13:06:00Z"
+    evidence_digest: "sha256:1e5dd602462a888363faa0b928f2aded685bb42b4647c6a6d1d9a0875f046e91"
+  entries: []
 complexity_effect: net_negative
 complexity_justification: "分散した再発／budget／drift判定の重複生成を一つのtyped qualification境界へ収束する"
 removal_trigger: "Universal Improvement Loopがretireされ、finding lineageと全consumerがreplacementへ移行した時"
@@ -61,6 +90,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-finding-qualification.md, oracle_id: U-UILFQ-006, test_path: tests/universal-improvement-finding-qualification.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-finding-qualification.md, oracle_id: U-UILFQ-007, test_path: tests/universal-improvement-finding-qualification.test.ts }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
