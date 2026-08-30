@@ -12,7 +12,7 @@ backfill_state: complete
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / TL
-github_issue_id: 1238
+github_issue_id: 1204
 behavior_contract_id: CI-EXECUTION-TELEMETRY-001
 responsibility_owner: ci-execution-telemetry
 change_slice: atomic
