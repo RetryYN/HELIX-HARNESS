@@ -4,7 +4,8 @@ title: "PLAN-L7-705: CI Responsibility RegistryとVerification Obligation graph"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
+backfill_state: pending_reverse
 completion_claim_allowed: false
 created: 2026-08-30
 updated: 2026-08-30
@@ -14,7 +15,8 @@ behavior_contract_id: CI-RESPONSIBILITY-REGISTRY-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
 refactor_step: introduce_contract
-no_code_decision: no_change
+engineering_discipline_required: true
+no_code_decision: add_code
 legacy_retirement_state: retained
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
