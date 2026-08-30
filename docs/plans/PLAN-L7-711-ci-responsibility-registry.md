@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-705-ci-responsibility-registry
-title: "PLAN-L7-705: CI Responsibility RegistryとVerification Obligation graph"
+plan_id: PLAN-L7-711-ci-responsibility-registry
+title: "PLAN-L7-711: CI Responsibility RegistryとVerification Obligation graph"
 kind: add-impl
 layer: L7
 drive: agent
@@ -72,7 +72,7 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-705-ci-responsibility-registry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-711-ci-responsibility-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/ci-responsibility-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-ci-responsibility-registry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/ci-responsibility-registry.v1.json, artifact_type: json_config }
@@ -94,7 +94,7 @@ review_evidence:
       - { kind: unit_test, command: "npm exec -- vitest run tests/ci-responsibility-registry.test.ts tests/coding-rules.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: tests/ci-responsibility-registry.test.ts, output_digest: "sha256:85a686a0ce238f06d8255f5721705ebe55af2133a966c4c0a029ac38b7202008" }
       - { kind: typecheck, command: "npm exec -- tsc --noEmit", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: src/runtime/ci-responsibility-registry.ts, output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" }
       - { kind: lint, command: "npm exec -- biome check src/runtime/ci-responsibility-registry.ts tests/ci-responsibility-registry.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: src/runtime/ci-responsibility-registry.ts, output_digest: "sha256:cfc44eee29bc0c3e74191c4443141ef74fcc5cdf5d6335942c98d2d05ab84aa1" }
-      - { kind: lint, command: "npm exec -- tsx src/cli.ts plan lint --gate governance", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: docs/plans/PLAN-L7-705-ci-responsibility-registry.md, output_digest: "sha256:b6c5b081cd44d6b5c0693e57856766e8613d2fe90543752ae15b38ae36b64445" }
+      - { kind: lint, command: "npm exec -- tsx src/cli.ts plan lint --gate governance", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-30T09:48:07Z", evidence_path: docs/plans/PLAN-L7-711-ci-responsibility-registry.md, output_digest: "sha256:b6c5b081cd44d6b5c0693e57856766e8613d2fe90543752ae15b38ae36b64445" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback

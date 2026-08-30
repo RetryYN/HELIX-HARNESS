@@ -41,7 +41,7 @@ pair_artifact: docs/test-design/helix/L8-ci-verification-plan-unit-test-design.m
 dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:
-    - docs/plans/PLAN-L7-705-ci-responsibility-registry.md
+    - docs/plans/PLAN-L7-711-ci-responsibility-registry.md
     - src/runtime/ci-responsibility-registry.ts
   references:
     - "issue:1206"
