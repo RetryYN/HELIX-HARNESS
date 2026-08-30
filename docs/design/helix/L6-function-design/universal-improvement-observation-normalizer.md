@@ -2,7 +2,7 @@
 title: "Universal Improvement観測正規化機能設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-08-30
 updated: 2026-08-30
 owner: Codex / TL
