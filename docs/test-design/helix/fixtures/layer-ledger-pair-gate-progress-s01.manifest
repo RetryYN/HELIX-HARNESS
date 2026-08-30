@@ -1,6 +1,6 @@
 schema_version: helix-layer-ledger-progress-s01.v2
 fixture_id: llpg-progress-s01-v1
-fixture_revision: 3
+fixture_revision: 4
 digest_contract:
   algorithm_id: helix-llpg-s01-digest.v1
   hash: SHA-256
@@ -167,9 +167,9 @@ digest_contract:
         - digest_contract
         - all_unspecified_fields
 snapshot_binding:
-  source_commit: f38f55dc118a9689d2060aed2c669ba321252d2c
-  source_tree: 1f66bb6ac0acc303d054513317dbdd42c5e32825
-  design_snapshot_digest: sha256:afa5ffa79ed3986200cea82d460428c9bf4576b22630807a203e08137812f0bc
+  source_commit: 596ef1e6fbfd4a2149e9b5a1961ef7b2ca6a7a85
+  source_tree: af85a06497aba23b7d5f741452ee129f554579f7
+  design_snapshot_digest: sha256:1f8a69b7bd9a11790f2c03ff9f80aaca6e58aefe14b0662765ac463a3370bfaf
   digest_algorithm: helix-llpg-s01-digest.v1
 slice_ids:
   - HDS-HIL-01
@@ -220,16 +220,16 @@ artifact_inventory:
     content_digest: sha256:10d5ea03aea0c10fd01e96c94176f2d55165bae7c9b8c16f00953ed44fb2f7ce
   - slice_id: HDS-HIL-03
     path: docs/design/helix/L5-detail/github-pr-audit-promotion.md
-    content_digest: sha256:027f4678c4327a5f5b914daeb3b79907554434303351b5711e764ec7c8b5a690
+    content_digest: sha256:bbb2f1662d44196d399066da8c4f29ba2dfdea4815a9d4a58f3f898925800eb2
   - slice_id: HDS-HIL-03
     path: docs/test-design/helix/L5-github-pr-audit-promotion-integration-test-design.md
-    content_digest: sha256:bfb55197e3f85f254b60a9fe403f49c64e94b048f3d0e0694541271828910d26
+    content_digest: sha256:c954f863359e29bf06db35f07d9f4cbff0f450284efd87505a648ee078e6e520
   - slice_id: HDS-HIL-03
     path: docs/design/helix/L6-function-design/github-pr-audit-promotion.md
     content_digest: sha256:fb0bd2a8d3a37f5b4eabf125fd9244a18c8921d7570549736900e62c4f630759
   - slice_id: HDS-HIL-03
     path: docs/test-design/helix/L6-github-pr-audit-promotion-unit-test-design.md
-    content_digest: sha256:3516f3c7ce52dd29effcc8db59879e023f90a60b067bc36c1304f51c3ea43801
+    content_digest: sha256:67eeaf6982d0add231041cc62fdc77a145eb1c222be5a68b975ac58b8d011694
   - slice_id: HDS-HIL-04
     path: docs/design/helix/L5-detail/universal-reverse-redesign.md
     content_digest: sha256:5011184937299239c092d7e3d33e87e50b90a00dbad4c0e89dd7c40f49260cf5
@@ -250,10 +250,10 @@ artifact_inventory:
     content_digest: sha256:ea15e6e242f6550e14d6ba9c667e3c2806472ba4422f0adc1df72cf972ba1f96
   - slice_id: HDS-HIL-05
     path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md
-    content_digest: sha256:b2ce96ee3fb5038bc275a828d0cb39f4f65920cd45eafb231cc34fd47b424583
+    content_digest: sha256:fe18cb41d58fec65e041231078dc8b34f861d1a15e2851d05113396cdec77f6b
   - slice_id: HDS-HIL-05
     path: docs/test-design/helix/L6-issue-scope-authority-gates-unit-test-design.md
-    content_digest: sha256:50bb2c81d26cc8ecc08bdb46cdc4f02e032b5a3e83014c3eb9d02f52e77c73c3
+    content_digest: sha256:42b7877b345cf9544e3f9e1632b370580f11ddc51a07d56c765a30120333c52b
   - slice_id: HDS-HIL-06
     path: docs/design/helix/L5-detail/three-stage-ci-quarantine.md
     content_digest: sha256:ffaa415d0f2a098f0eed16c17da4c86863a8365a816b657a66915230268e2ca6
@@ -292,13 +292,13 @@ artifact_inventory:
     content_digest: sha256:224bc00a7e225287033310972204bc9fff3efbc3b379758e9540139e16d46faa
   - slice_id: HDS-HIL-09A
     path: docs/design/helix/L5-detail/source-capability-capture.md
-    content_digest: sha256:5a32de1be9c30997e1c8b054374ba6e4fb92c6fdde8c5fda2e0703dc8873b0be
+    content_digest: sha256:2a6f0f0794031e876a5a5855fa48279d129d188d0d1ef74d8159519f87d439c0
   - slice_id: HDS-HIL-09A
     path: docs/test-design/helix/L5-source-capability-capture-integration-test-design.md
     content_digest: sha256:5e8a7707259eb4e44881be81c353b5371b86e08722ae345baca6537e27c43ef4
   - slice_id: HDS-HIL-09A
     path: docs/design/helix/L6-function-design/source-capability-capture.md
-    content_digest: sha256:008e6d408aa937a5259bac51d962b495766346e97e126f19dd153c06ab3d8cab
+    content_digest: sha256:03df7007eb66b575ed263c2ad3c1fd8019ae2b04eb76c477352a4bc9d7efd8e3
   - slice_id: HDS-HIL-09A
     path: docs/test-design/helix/L6-source-capability-capture-unit-test-design.md
     content_digest: sha256:f77c04770e1abf17ad20f0665522ef54329a820db5e0076373599d8b88f14e53
@@ -340,25 +340,25 @@ artifact_inventory:
     content_digest: sha256:a245ed54bc0fc941877ef5b29224c4fb9c70e98f1f62dacbbb8c71d92ac9389d
   - slice_id: HDS-HIL-12
     path: docs/design/helix/L5-detail/python-worker-runtime.md
-    content_digest: sha256:643a668ebbe335ef2ca5b2c5eb67055975c1c3f65e633ffff20c9df4b6ea7881
+    content_digest: sha256:4240cca9a51bdeec2d377d7aef6d60129cef25d501d01d6907c0ac21941a9357
   - slice_id: HDS-HIL-12
     path: docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md
     content_digest: sha256:06f494572775b32583fc4d1a23e4a602f088aa08c65f59ba93fac4e84dfa0c7c
   - slice_id: HDS-HIL-12
     path: docs/design/helix/L6-function-design/python-worker-runtime.md
-    content_digest: sha256:80a93f39ea4c61c0cec17efcc69700b577ad9eda23a477d1b18163a98e60a289
+    content_digest: sha256:f80c88da9c498ef1fa2b4b1ecdbb605951b52a4f435524cb494a5c46382f7d14
   - slice_id: HDS-HIL-12
     path: docs/test-design/helix/L6-python-worker-runtime-unit-test-design.md
     content_digest: sha256:291d8bb12e386558af74b0bd087ca26540a4e88a6b31b50319a3e157222772b1
   - slice_id: HDS-HIL-13
     path: docs/design/helix/L5-detail/node-runtime-cutover.md
-    content_digest: sha256:023eeb01fef0bfd99941c611b9d9ff5245f2168be926caf819a3b2de0f51b188
+    content_digest: sha256:49f3e4c324b19e728f7c05787bbd698f841728a526eedc7cec3f756b3601e9f9
   - slice_id: HDS-HIL-13
     path: docs/test-design/helix/L5-node-runtime-cutover-integration-test-design.md
     content_digest: sha256:b89080f8726709d68f0eef7a714b36df63df294caf944dc49a555abbd4c16d22
   - slice_id: HDS-HIL-13
     path: docs/design/helix/L6-function-design/node-runtime-cutover.md
-    content_digest: sha256:de5230d8fe9e30e48db2e26cd06e8270e323c2651132fd3709e0533c501b1f57
+    content_digest: sha256:50e5f918079220551310bb8aaf8431e640a91ce13fd83ccb1de480ba1b9b88c1
   - slice_id: HDS-HIL-13
     path: docs/test-design/helix/L6-node-runtime-cutover-unit-test-design.md
     content_digest: sha256:b96c4765faae73ff5ba695bbb47fb8ab216dae82d96f2703667afae1aa4d3bc5
@@ -382,7 +382,7 @@ artifact_inventory:
     content_digest: sha256:16a40c2952c2e69b42147f6f08994352d6188d5d8a68e72f1d4d618fc9784b07
   - slice_id: HDS-HIL-15
     path: docs/design/helix/L6-function-design/screen-applicability-prototype.md
-    content_digest: sha256:aaa40b7ff38d407bd3ed41752766a4e73621578b3608cd8535903fd390fbcd56
+    content_digest: sha256:3f92059a9854d774c0278e51138396536bcbf55f6132478576d2064f836d2b64
   - slice_id: HDS-HIL-15
     path: docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md
     content_digest: sha256:d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f
@@ -412,18 +412,18 @@ artifact_inventory:
     content_digest: sha256:81f1e3945b04fa33aeae11daf77e06b63d7d0e90ce11ea7a16348af2bbd8a479
   - slice_id: HDS-HIL-18
     path: docs/design/helix/L5-detail/layer-ledger-pair-gate.md
-    content_digest: sha256:2046501f6cc5a7c4f241fd97b8d061a2bd0d148274f6801261b5fca099b71b1a
+    content_digest: sha256:d0569026c044432980a8fc776cb39c79a41c1ff30b644462ca5354679e661dc7
   - slice_id: HDS-HIL-18
     path: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test-design.md
-    content_digest: sha256:bfc5e7ba3a2e88fcb4c0baaba990be2074a71110676db8eb7481dbe002446c27
+    content_digest: sha256:2ee6854d21029b35d5856fe580ed794afabb7c556edb2344c9878e795301e615
   - slice_id: HDS-HIL-18
     path: docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
-    content_digest: sha256:423a651eff2bccc1a6e299b6f200075ffed63696303f8e1fee16f2f13afd0c66
+    content_digest: sha256:e51fa43b88fe6f713a9f2dd9929e2a713a57273ae4ffb83babdbe24c8f0989d7
   - slice_id: HDS-HIL-18
     path: docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md
-    content_digest: sha256:dfa0d5325671b99b8eb65727f25ddced3d9ad041011b0584effae017e7a0884f
+    content_digest: sha256:13d751ed7093be7ff81d077d4464f8061223b4545a8cf985a6d07aae0c69aafd
 artifact_count: 76
-artifact_path_content_set_digest: sha256:2f7fdf7d34967144e4a36f2277441327e7f4f8faaa04ae51f1e60645485627f7
+artifact_path_content_set_digest: sha256:10671d807ef1b8a4f6aa84d2af1c942bd05a9a0dde8234d4a81c77577483bdeb
 canonical_unit_ids:
   - U-AGLC-001
   - U-AGLC-002
@@ -1680,20 +1680,20 @@ canonical_hst_ids:
   - HST-CASE-033-14
 canonical_hst_count: 411
 canonical_hst_set_digest: sha256:1558c473cac4c1948d73fbf008e1d46059f788771909b80f43344120384f9bb4
-canonical_quartet_count: 835
+canonical_quartet_count: 836
 canonical_total_count: 1247
 canonical_combined_set_digest: sha256:a0fdbe796cf66cacb61e5e9a8ca509f3551c47c0425eae37afbf00eefc1da82d
 supporting_meta_oracle_receipt:
   receipt_id: SMOR-LLPG-S01-V1
-  receipt_digest: sha256:f5a67a40694f6d6ea3f938f97bf421f1f562ccb3e03f192adef2fc53998be281
+  receipt_digest: sha256:89ee2a60faced61a30e233bc2d15e3ee45864b3d3a98bf091e075150de2be001
   oracle_ids:
     - U-LLPG-S01
     - IT-LLPG-S01
   status: designed_not_implemented
   canonical_denominator_included: false
-  snapshot_digest: sha256:afa5ffa79ed3986200cea82d460428c9bf4576b22630807a203e08137812f0bc
+  snapshot_digest: sha256:1f8a69b7bd9a11790f2c03ff9f80aaca6e58aefe14b0662765ac463a3370bfaf
 expected_terminal_receipt_id: DPR-LLPG-S01-V1
-expected_terminal_receipt_digest: sha256:9137299464544be4b8cf21824a3612ba61f158770a7ba3fc694c7cfb2edb3fa6
+expected_terminal_receipt_digest: sha256:853c8225f18578677cb65e4243d721f5bdf4aaa233254f95742a0e880df015c7
 expected_terminal_receipt_digest_algorithm: helix-llpg-s01-digest.v1
 expected_status: designed_not_implemented
 mutations:
