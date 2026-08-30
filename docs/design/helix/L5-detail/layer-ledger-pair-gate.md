@@ -24,7 +24,6 @@ pair_artifact: docs/test-design/helix/L5-layer-ledger-pair-gate-integration-test
 next_pair_freeze: L8
 ---
 
-<!-- HELIX:design-reality-binding:v1 -->
 # HELIX L5詳細設計 — 連鎖台帳・pair gate
 
 ## §0 境界
@@ -179,3 +178,17 @@ composition/mutationであり、API ownerまたはcanonical分母へ重複加算
 | `parseLayerLedgerWriteSet` | `U-LLPG-052` | `IT-LLPG-052` |
 
 executable caseのAPI名とfixture pathはL6のclosed V1 unionだけを受理し、自由文字列をauthorityにしない。
+
+## 設計実在性束縛
+
+本sliceはauthority設計とfixtureを収束し、runtime assetの実装済み主張を行わない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```
