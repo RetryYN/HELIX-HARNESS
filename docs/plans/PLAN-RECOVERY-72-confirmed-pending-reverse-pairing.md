@@ -13,7 +13,7 @@ github_issue_id: 1273
 behavior_contract_id: PENDING-REVERSE-PAIRING-READINESS-001
 responsibility_owner: plan-backfill-pairing-governance
 change_slice: atomic
-refactor_step: repair_contract
+refactor_step: introduce_contract
 engineering_discipline_required: true
 no_code_decision: modify
 ddd_modeling_decision: pure_function
@@ -36,7 +36,7 @@ green_at: "2026-08-31T04:00:00+09:00"
 tdd_red_evidence: "PR #1271 CI run 33329257688がconfirmed pending Reverseへのrequires_missingでRed、PR #1267はreferences欠落でRedとなる循環を実測した"
 tdd_green_evidence: "tests/backfill-pairing.test.ts U-BACKFILL-008..010とtypecheck green"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-BACKFILL-009でconfirmed pending references/requiresの片側受理を除去するmutation、U-BACKFILL-010でpending/terminal分岐を除去するmutationをkillする"
+mutation_oracle_evidence: "2026-08-31T04:37:14+09:00にsrc/lint/backfill-pairing.tsからconfirmed pending Reverseのreferences受理分岐を一時除去し、`npx --no-install vitest run --project fast tests/backfill-pairing.test.ts -t 'U-BACKFILL-009'`を実測した。U-BACKFILL-009がreverseLinkMissingへPLAN-L7-706-forward／PLAN-REVERSE-706-forwardを検出して1 failed・35 skipped、exit 1となりseeded defectをkillした。分岐復元後は同oracleを含むtargeted suiteを再green化する。"
 complexity_effect: net_negative
 complexity_justification: "PLAN statusとbackfill lifecycleを混同した二重判定をbackfill_state authorityへ収束する"
 removal_trigger: "typed pairing edgeとexecution dependency edgeが別fieldとしてschema正本化された時"
