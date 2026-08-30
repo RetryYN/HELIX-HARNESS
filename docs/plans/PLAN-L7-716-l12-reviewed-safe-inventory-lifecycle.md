@@ -12,8 +12,8 @@ updated: 2026-08-31
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
-    worker_model: gpt-5.6-sol
-    reviewer_model: claude-opus-5
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
     reviewer_session_id: a02813c9-9bc1-41f4-9c86-0f943ece4270
     reviewed_head_sha: 6eff2f29f6df8373932a9914a3f3c7884fc513e5
     reviewed_at: "2026-08-31T05:43:32+09:00"
