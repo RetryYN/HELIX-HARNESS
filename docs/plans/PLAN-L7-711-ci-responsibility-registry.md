@@ -102,7 +102,7 @@ left_arm_carry:
   review_binding:
     reviewer: Claude Code
     reviewed_at: "2026-08-30T09:48:07Z"
-    evidence_digest: "sha256:391f1ef3645f6bca5c8a1ef1e27c10b09ac40f3b36ce868bf02d8078694c85bc"
+    evidence_digest: "sha256:10d9843d0106918ba6cf22de666bb60323f6884ef9389de78d628b54362c3338"
   entries: []
 agent_slots:
   - { role: se, slot_label: "SE — typed capability registry／semantic graph" }
