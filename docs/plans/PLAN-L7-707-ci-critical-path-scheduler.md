@@ -48,6 +48,7 @@ dependencies:
     - docs/plans/PLAN-L7-704-ci-execution-telemetry.md
     - docs/plans/PLAN-L7-706-ci-verification-plan.md
   references:
+    - docs/plans/PLAN-REVERSE-707-ci-critical-path-scheduler.md
     - "issue:1207"
     - "issue:1204"
     - "issue:1206"
