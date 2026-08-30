@@ -40,7 +40,10 @@ describe("semantic document diff (U-DOCDIFF)", () => {
     expect(l6).toContain("TypeScript/Node transactional boundary");
     expect(l6).toContain("Python semantic core");
     expect(l6).toContain("strict JSONL");
+    expect(l6).toContain("Nodeは入力schemaとPython出力を再検証し");
+    expect(l6).toContain("artifact writeを含む副作用を単一transactional boundaryからだけ実行する");
     expect(l6).toContain("DB path、credential、repository、`.helix/`");
+    expect(l6).toContain("Git/GitHub write authorityを渡さず");
     expect(l8).toContain("U-DOCDIFF-009");
     expect(authority).not.toMatch(/TypeScript\/Bun|TS\/Bun|Bun runtime/i);
     expect(authority).not.toMatch(/\bbun(?:x|\s+(?:run|test|install|build|x))\b/i);

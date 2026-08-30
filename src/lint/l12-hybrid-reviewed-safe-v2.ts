@@ -219,7 +219,20 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // Issue #1260 の移行PLAN。retired combined runtime labelは旧L6 authorityを観測して拒否する
     // migration evidenceであり、current runtime authorityへの再採用ではない。
     path: "docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md",
-    contentDigest: "e76c7727792ec58306a9f503c026291fd6b10427123d8ea6fdc911d28f089332",
+    contentDigest: "6508e94f408e9e1794dd611bf2da1f532e56516ab69b8666601870c3e3c99acb",
+    finalDisposition: "false_positive",
+  },
+  {
+    // Issue #1260 current L6。Bun tokenはnegative detector vocabularyとしてcurrent guidanceへの
+    // 再出力を拒否する文脈だけにあり、runtime authorityはNode transactional boundaryである。
+    path: "docs/design/helix/L6-function-design/document-semantic-diff.md",
+    contentDigest: "e3ee6bc03b3d056e94df55010f5901ca70216b355c72811457fc0323c097c799",
+    finalDisposition: "false_positive",
+  },
+  {
+    // Issue #1260 current L8。Bun tokenはnegative oracleの対象であり、実行runtime guidanceではない。
+    path: "docs/test-design/helix/L8-document-semantic-diff-contracts.md",
+    contentDigest: "c0c9fa2491bfafd1323f9ce4c53b126aa6cb51eeaa946df7d711677b076896ee",
     finalDisposition: "false_positive",
   },
   {

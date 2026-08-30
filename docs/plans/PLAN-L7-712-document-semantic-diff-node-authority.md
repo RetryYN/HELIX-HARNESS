@@ -39,7 +39,7 @@ green_at: "2026-08-30T23:28:40+09:00"
 tdd_red_evidence: "tests/document-semantic-diff.test.ts U-DOCDIFF-009が旧L6のTypeScript/Bun authorityを検出して1 failed／3 passed"
 tdd_green_evidence: "2026-08-30T23:28:40+09:00にU-DOCDIFF-001..004/006/007/009の4 tests greenを実測し、Node/Python layered authorityとBun current guidance不在を確認した"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-DOCDIFF-009がNode boundary、Python semantic core、strict JSONL、write authority非移譲、L8 citation、TypeScript/Bunおよびactive Bun commandを判別的に拘束する"
+mutation_oracle_evidence: "U-DOCDIFF-009がNode boundary、Python semantic core、strict JSONL、NodeによるPython出力再検証、artifact write単一transactional boundary、Git/GitHub write authority非移譲、L8 citation、retired combined runtime labelおよびactive Bun commandを個別に拘束する"
 complexity_effect: net_negative
 complexity_justification: "current TypeScript/Bun authority 1件を除去し、runtime authorityをADR-009/010へ一元化する"
 removal_trigger: "document semantic diff設計がgenerated authority projectionへ完全移行し、同oracleがreplacementへ移った時"
