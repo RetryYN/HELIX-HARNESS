@@ -72,7 +72,6 @@ dependencies:
   parent: docs/plans/PLAN-L3-74-universal-improvement-loop.md
   requires:
     - docs/plans/PLAN-L3-74-universal-improvement-loop.md
-    - docs/plans/PLAN-L7-718-universal-improvement-sensitive-field-policy.md
   references:
     - issue:1244
     - issue:1308
