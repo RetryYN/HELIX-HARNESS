@@ -34,7 +34,7 @@ tdd_red_required: true
 red_at: "2026-08-31T23:31:00+09:00"
 green_at: "2026-08-31T23:34:10+09:00"
 tdd_red_evidence: "U-CIDEFER-001..006を先行作成し、ci-deferred-obligation-recovery module欠落でimport failureとなった"
-tdd_green_evidence: "npx vitest run tests/ci-deferred-obligation-recovery.test.tsで7 passed、npx tsc --noEmitもgreen"
+tdd_green_evidence: "npx vitest run tests/ci-deferred-obligation-recovery.test.tsで9 passed、npx vitest run tests/ci-deferred-obligation-recovery.test.ts tests/ci-verification-plan.test.tsで21 passed、npx tsc --noEmitもgreen"
 mutation_oracle_required: true
 mutation_oracle_evidence: "U-CIDEFER-002..006でterminal run削除／重複、profile／HEAD／origin変異、cancel、backprop edge欠落、期限切れquarantine、escaped defectとmutation未検出を個別にkillする"
 complexity_effect: net_neutral
@@ -82,7 +82,7 @@ agent_slots:
 
 | Step | 作業 | 並列/直列 | 完了条件 |
 |---|---|---|---|
-| 1 | typed recovery contractと反例oracle | 並列 | U-CIDEFER-001..007 green |
+| 1 | typed recovery contractと反例oracle | 並列 | U-CIDEFER-001..009 green |
 | 2 | workflow adapterとjournal／receipt接続 | 直列 | main／nightly／release candidate E2E green |
 | 3 | selector fault injection exact set | 直列 | 5 mutation全検出 |
 | 4 | Reverse fullbackとmain read-after | 直列 | #1208 terminal closure |

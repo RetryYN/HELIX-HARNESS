@@ -16,7 +16,7 @@ pair_artifact: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-te
 
 ## 責務
 
-PRで延期した検証義務を、`main`、`nightly`、`release_candidate`のexactly one targetと最初のterminal runへ接続する。
+PRで延期した検証義務を、Verification Plan正本と同じ`main`、`nightly`、`release`のexactly one targetと最初のterminal runへ接続する。
 schedulerの順序最適化とは分離し、origin PR、candidate HEAD、obligation、selector decision、registry edge、
 first detecting oracleを保持する。観測結果は改善候補を生成できるが、要求・registry authorityを直接変更しない。
 
@@ -27,6 +27,7 @@ first detecting oracleを保持する。観測結果は改善候補を生成で�
 - failureはselector decision、registry edge、first detecting oracleへ`reverse_candidate`として戻す。
 - quarantineはowner、期限、replacement oracleが全て有効な場合だけ受理する。
 - wall-clock短縮だけでは完了せず、escaped defectとmutation detectionを同時に判定する。
+- target identityを独自enumへ再定義せず、Verification Planのdeferred obligationから一方向投影する。
 
 ## 境界
 
