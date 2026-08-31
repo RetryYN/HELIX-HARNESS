@@ -49,6 +49,36 @@ describe("summary surface audit", () => {
     );
   });
 
+  it("U-CLSO-007: downstream summary navigation keeps typed workflow identity primary", () => {
+    const downstream = buildSummarySurfaceContractPayloads().filter((payload) =>
+      ["vmodel-fit", "project-frontier"].includes(payload.surface),
+    );
+
+    for (const entry of downstream) {
+      const serialized = JSON.stringify(entry.payload);
+      expect(serialized).not.toContain('"drive_model"');
+      expect(serialized).not.toContain("helix drive model --summary-json");
+      expect(entry.payload).toMatchObject({
+        current_location_frontier: {
+          commands: {
+            workflow_route: "helix current-location --summary-json",
+          },
+        },
+      });
+    }
+    expect(downstream.find((entry) => entry.surface === "project-frontier")?.payload).toMatchObject(
+      {
+        workflow_identity: expect.anything(),
+        workflow_route: expect.objectContaining({
+          source_command: "helix current-location --summary-json",
+        }),
+        commands: {
+          workflow_route: "helix current-location --summary-json",
+        },
+      },
+    );
+  });
+
   it("fails closed on catalog drift even when raw json commands are otherwise clean", () => {
     const [first, ...rest] = buildSummarySurfaceContractPayloads();
     const audit = buildSummarySurfaceCommandAudit([
