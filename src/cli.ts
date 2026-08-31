@@ -4779,8 +4779,8 @@ guard
 const plan = program.command("plan").description("PLAN 操作");
 plan
   .command("author-forward")
-  .description("allocator receiptからForward／pending Reverse PLANを同一transactionで作成")
-  .requiredOption("--input <path>", "authoring input JSON（allocator receipt必須）")
+  .description("allocator exact ID発行とForward／pending Reverse PLANを同一transactionで作成")
+  .requiredOption("--input <path>", "authoring input JSON")
   .option("--dry-run", "検証とtransaction planだけを返し、fileを書かない")
   .option("--json", "JSON output")
   .action((opts: { input: string; dryRun?: boolean; json?: boolean }) => {
@@ -4792,6 +4792,7 @@ plan
       const result = authorForwardPlanTransaction({
         repoRoot: process.cwd(),
         reservationInput: source.reservationInput,
+        reservationAuthorityPath: source.reservationAuthorityPath,
         forwardDocument: source.forwardDocument,
         reverseDocument: source.reverseDocument,
         dryRun: Boolean(opts.dryRun),

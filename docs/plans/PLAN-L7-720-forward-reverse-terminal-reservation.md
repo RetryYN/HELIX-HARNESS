@@ -27,10 +27,10 @@ workflow_identity:
   target_id: ADD_FEATURE
 entry_signals:
   - "po_directive:Issue #1297 Forward／pending Reverse vehicleを同一transactionで予約する"
-contract_preconditions: "typed ADD_FEATUREのadd-impl、allocator receipt、current main HEAD、assignment／lease付きreservation snapshotが存在する"
-contract_postconditions: "ForwardとReverseのexact identity、同一owner、双方向reference、pending stateを既存reservation projectionへ同時追加し、production authoring transactionで両PLANを同時materializeする"
+contract_preconditions: "typed ADD_FEATURE exact allocation要求、live origin/main、assignment／lease付き既存reservation authorityが一致し、caller receiptを含まない"
+contract_postconditions: "Forward／Reverse PLAN、issuer receipt、更新reservation authorityをsealed durable transactionで同時materializeし再読込projectionを照合する"
 contract_invariants: "Reverse本文／review evidence／完了証拠を捏造せず、Forward merge前にReverse完了を要求せず、legacy modeを出力しない"
-contract_failures: "wrong allocator identity、stale main／candidate HEAD、document digest drift、片方向、active collision、旧identity再出力をfail-closeする"
+contract_failures: "caller自己署名、stale main／HEAD、authority／digest drift、TOCTOU collision、seal／lock／realpath不正、片方向をfail-closeする"
 tdd_red_required: true
 red_test: "#1206／#1207／#1208でForward実装後にReverse vehicleを後付けし、PLAN confirmとCIが循環した実測をRed fixtureとする"
 red_at: "2026-08-31T16:58:10Z"
@@ -62,6 +62,12 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-004, test_path: tests/forward-plan-authoring-transaction.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-005, test_path: tests/forward-plan-authoring-transaction.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-006, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-007, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-008, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-009, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-010, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-011, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-012, test_path: tests/forward-plan-authoring-transaction.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-720-forward-reverse-terminal-reservation.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/forward-reverse-terminal-reservation.ts, artifact_type: source_module }
@@ -82,11 +88,11 @@ agent_slots:
 
 ## 工程表
 
-1. allocator receiptとmain／assignment／lease境界をtyped inputへ固定する。
+1. exact allocation要求とmain／assignment／lease境界をtyped inputへ固定し、caller receiptを禁止する。
 2. Forward／Reverseの2予約を既存projectionへ同時追加する。
-3. `helix plan author-forward`からjournal付きNode transactionへ接続し、両PLANを同時materializeする。
-4. identity、stale main／candidate HEAD、digest drift、collision、legacy output、冪等retryの負極性oracleを通す。
+3. `helix plan author-forward`からjournal付きNode transaction内issuerへ接続し、両PLAN、receipt、reservation authorityを同時materializeする。
+4. identity、stale main／candidate HEAD、digest drift、collision、legacy output、冪等retry、prepared外部write、path非正規allocation IDの負極性oracleを通す。
 5. mutation、Claude exact-HEAD review、CI後にconfirmし、Forward merge後は別ReverseでR0〜R4とmain read-afterを行う。
 
-本PLANは予約kernelとその最小production authoring consumerを所有する。allocator生成、Reverse検証、Issue close、review省略、
+本PLANは予約kernel、exact ID receipt発行境界、その最小production authoring consumerを所有する。allocator ID選定policy、Reverse検証、Issue close、review省略、
 provider routing、PLAN completionは非対象とする。

@@ -14,6 +14,7 @@ const digestSchema = z.custom<Sha256Digest>(
   (value) => typeof value === "string" && /^sha256:[a-f0-9]{64}$/u.test(value),
 );
 const headSchema = z.string().regex(/^[a-f0-9]{40}$/u);
+const allocationIdSchema = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u);
 const forwardPlanSchema = z.string().regex(/^PLAN-L7-\d+-[a-z0-9-]+$/u);
 const reversePlanSchema = z.string().regex(/^PLAN-REVERSE-\d+-[a-z0-9-]+$/u);
 
@@ -32,7 +33,7 @@ const inputSchema = z
       .strict(),
     allocation: z
       .object({
-        allocation_id: z.string().min(1),
+        allocation_id: allocationIdSchema,
         forward_plan_id: forwardPlanSchema,
         reverse_plan_id: reversePlanSchema,
         reverse_plan_blob_digest: digestSchema,
