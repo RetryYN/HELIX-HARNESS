@@ -38,7 +38,7 @@ describe("Requirement IR harness.db shadow projection", () => {
       expect(first.findings).toEqual([]);
       expect(second.findings).toEqual([]);
       expect(secondRows).toEqual(firstRows);
-      expect(firstRows).toHaveLength(395);
+      expect(firstRows).toHaveLength(404);
       expect(
         db
           .prepare(
@@ -47,9 +47,9 @@ describe("Requirement IR harness.db shadow projection", () => {
           .all(),
       ).toEqual([
         { kind: "acceptance", count: 72 },
-        { kind: "refinement_acceptance", count: 69 },
-        { kind: "refinement_contract", count: 5 },
-        { kind: "refinement_requirement", count: 48 },
+        { kind: "refinement_acceptance", count: 73 },
+        { kind: "refinement_contract", count: 6 },
+        { kind: "refinement_requirement", count: 52 },
         { kind: "requirement", count: 153 },
         { kind: "system_contract", count: 24 },
         { kind: "system_test", count: 24 },

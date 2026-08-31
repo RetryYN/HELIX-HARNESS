@@ -1609,5 +1609,135 @@
     ],
     "approval": null,
     "semantic_digest": "sha256:96f1676a7e49a5b4394af70d2cf35d6fe8b99a6e2bc71c4891d1a4f86a1c705c"
+  },
+  "RLO-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "RLO-FR-001",
+    "revision": 1,
+    "lifecycle_status": "draft",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-21",
+      "HR-FR-HIL-22"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "requirement_digest": "sha256:75f13b2ae3b4a79f4da06d131bbf31efc7fffaafc77e9d02de7c15a5f243331c",
+      "acceptance_path": "docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "acceptance_digest": "sha256:a330eb9351fa77bd988112186c5e9e73be44cc188587b7a5427d39ce4e2ce07b"
+    },
+    "plan_id": "PLAN-L3-75-resident-lane-orchestration-authority",
+    "responsibility_owner": "resident-lane-requirements-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "RLO-FR-037",
+        "source_projection": "markdown_h4_v1",
+        "statement": "Resident／native／CLI identityの分離\n\nresident lane、native subagent、CLI worker invocationを別identity、別capacity、別receipt fieldとして保持し、\nprovider名、model名、session IDをlogical lane authorityへ使用してはならない。",
+        "acceptance_ids": [
+          "RLO-AC-027"
+        ],
+        "semantic_digest": "sha256:7bfc3faeb5b3ab890ec60dfe8f8426faa729ef4a359b175a08cea4bc4f5fce85"
+      },
+      {
+        "requirement_id": "RLO-FR-038",
+        "source_projection": "markdown_h4_v1",
+        "statement": "Codex resident laneの親子authority\n\nCodex resident laneはSolを親TL／管制、Lunaをnative workerとして扱う。Lunaは親assignmentのscope、branch、\nbudgetを継承し、terminal／review／merge authorityを持たない。Terraをcurrent候補やsilent fallbackへ戻してはならない。",
+        "acceptance_ids": [
+          "RLO-AC-028"
+        ],
+        "semantic_digest": "sha256:5928d074d74d6666ea4068906d5ab3b8d76806d53e78e6da884c12640648b215"
+      },
+      {
+        "requirement_id": "RLO-FR-039",
+        "source_projection": "markdown_h4_v1",
+        "statement": "Cursor Cloud workerのmodel receipt\n\nCursor Cloud workerはrequested/effective modelを分離し、初期policyとして標準Grok、上位Kimi、下位Composerを扱う。\nmodel availability、provider response、candidate HEAD、usage、charged costをread-afterできないrunを成功にしてはならない。",
+        "acceptance_ids": [
+          "RLO-AC-029"
+        ],
+        "semantic_digest": "sha256:626866308305ff14272a1ed066842fdb8beb4b862ce7aee7689c9fc91b6e2cfe"
+      },
+      {
+        "requirement_id": "RLO-FR-040",
+        "source_projection": "markdown_h4_v1",
+        "statement": "HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。\n\n---",
+        "acceptance_ids": [
+          "RLO-AC-030"
+        ],
+        "semantic_digest": "sha256:35320cbf9b68ed08e7d28fb8a282b6cc551f51e7b04c2d8e0f531da58f364fb3"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "RLO-AC-027",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "RLO-FR-037"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: 同一runへresident lane、native subagent、CLI workerのidentity候補を与える\n合格条件: exactly oneのexecution identityと親lane参照を保持する\nnegative mutation: 同一runを複数execution identityへ同時分類したら拒否する",
+        "semantic_digest": "sha256:e37de3b85fde8ac44022832c64b78b3bb52d0895395c0816ba41dcdc2d73c396"
+      },
+      {
+        "acceptance_id": "RLO-AC-028",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "RLO-FR-038"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: Sol親からLunaへbounded taskを委譲しTerra fallback候補を混入する\n合格条件: Lunaは親scope／branch／budgetだけを継承しterminal／review／merge authorityを持たない\nnegative mutation: Lunaの権限昇格、Solのnative worker化、Terra silent fallbackを拒否する",
+        "semantic_digest": "sha256:ca5db614a0e475500b424d754654137472473cea1e9a79f1be0d693d1235b0b6"
+      },
+      {
+        "acceptance_id": "RLO-AC-029",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "RLO-FR-039"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: Cursor Cloud runへtask classとmodel tierを指定する\n合格条件: requested/effective model、availability、response、HEAD、usage、charged costを別fieldでread-afterする\nnegative mutation: wrong tier、model field同一化、HEAD／usage／cost欠落を拒否する",
+        "semantic_digest": "sha256:8dc321ce8b08a491ab4a0b2baf2b9106039258c2a9e88f9cfca590daeea32e79"
+      },
+      {
+        "acceptance_id": "RLO-AC-030",
+        "source_projection": "markdown_table_v1",
+        "requirement_ids": [
+          "RLO-FR-040"
+        ],
+        "polarity": "boundary",
+        "statement": "入力／操作: HELIX-Bench evidenceが無いtask classのeffortを解決する\n合格条件: `provider_default_unbenchmarked`を記録しauthorityを変更しない\nnegative mutation: effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する",
+        "semantic_digest": "sha256:48c806df717c73ec6784cbbc5a16879f94fa054f5d19d3e1e7c34e6311eecc01"
+      }
+    ],
+    "downstream_issue_ids": [
+      860,
+      1293
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 860,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "RLO-AC-028"
+        ]
+      },
+      {
+        "issue_id": 1293,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "RLO-AC-029",
+          "RLO-AC-030"
+        ]
+      },
+      {
+        "issue_id": 819,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "RLO-AC-027"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:0b31171864393dae1e6e07ebccc7367163778c0ad0373e0fff2afde8acc1d3f6"
   }
 }
