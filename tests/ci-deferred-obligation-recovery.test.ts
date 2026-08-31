@@ -238,6 +238,28 @@ describe("CI deferred obligation recovery", () => {
     ]);
   });
 
+  it("U-CIDEFER-013: failed terminal runのoracle欠落と不正identityをfail-closeする", () => {
+    const run = input().terminal_runs[0];
+    for (const firstDetectingOracleId of [null, "invalid oracle"] as const) {
+      const result = reconcileDeferredObligations(
+        input({
+          terminal_runs: [
+            {
+              ...run,
+              result: "failed",
+              first_detecting_oracle_id: firstDetectingOracleId,
+            },
+          ],
+        }),
+      );
+      expect(result.ok).toBe(false);
+      expect(result.findings).toContainEqual(
+        expect.objectContaining({ code: "recovery_oracle_missing" }),
+      );
+      expect(result.backprop_candidates).toEqual([]);
+    }
+  });
+
   it("U-CIDEFER-005: quarantineはowner、期限、replacement oracleを必須化する", () => {
     const result = reconcileDeferredObligations(
       input({
