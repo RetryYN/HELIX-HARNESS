@@ -39,7 +39,7 @@ contract_failures: "Forward双方向reference欠落、wrong HEAD、stale review�
 tdd_red_required: false
 tdd_red_waiver_reason: "実装を持たないReverse vehicleの先行定義であり、Forward oracleを捏造して再実行しない"
 mutation_oracle_required: true
-mutation_oracle_evidence: "backfill-pairingの双方向reference mutationとForward U-CISCHED oracleを実装merge後のR0〜R4で再実行する"
+mutation_oracle_evidence: "2026-08-31T13:56Zに実測kill。M1: src/runtime/ci-critical-path-scheduler.tsのtopoSort結果を.slice(0,-1)へ改変しobligationを1件脱落させると、npx vitest run tests/ci-critical-path-scheduler.test.ts がU-CISCHED-001を含む10/14 failedでmutationをkillする。M2: Forward PLAN-L7-707のreferencesからPLAN-REVERSE-707を削除すると、npx vitest run tests/backfill-pairing.test.ts がreverse_plan_id欠落を検出し1件failedでkillする。両mutationとも復元後は再びgreen。"
 complexity_effect: net_neutral
 complexity_justification: "exactly-one PLANを保ったままForwardとReverseの責務を分離する"
 removal_trigger: "CI System Synthesis全体Reverseが本証拠を統合し、個別vehicle参照が不要になった時"

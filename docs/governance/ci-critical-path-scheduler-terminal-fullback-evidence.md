@@ -18,6 +18,19 @@
 required obligation exact set、artifact identity、resource budget、lease／fence、conservative fallback、bounded cancelは要求、
 L6、L8、runtime、U-CISCHED-001〜014で一致する。schedulerはverification選定やworkflow実行を所有しない。
 
+## Mutation oracle 実測（2026-08-31T13:56Z）
+
+Reverseをconfirmedへ上げる前提として、oracleが実際にseeded defectをkillすることをworktree
+`claude-pr1281`（HEAD `5895532e3a317a683e6e9cf4b6e1169a1d8b7a3a`）で実測した。将来の再実行約束ではない。
+
+| id | seeded defect | oracle command | 実測結果 |
+| --- | --- | --- | --- |
+| M1 | `src/runtime/ci-critical-path-scheduler.ts` の `topoSort(obligations, findings)` を `.slice(0, -1)` へ改変し、required obligationを1件脱落させる | `npx vitest run tests/ci-critical-path-scheduler.test.ts` | 10 failed / 4 passed（14）。U-CISCHED-001「required obligation exact setを変更しない」を含む10 caseがkillした |
+| M2 | Forward `docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md` の `references` から `PLAN-REVERSE-707` 行を削除する | `npx vitest run tests/backfill-pairing.test.ts` | 1 failed / 35 passed（36）。`reverse_plan_id` 欠落としてReverse合流oracleがkillした |
+
+両mutationとも改変を戻した後は当該oracleが再びgreenになることを確認済みで、kill判定がmutation起因で
+あることを分離している。
+
 ## 未終端境界
 
 本evidenceはReverse candidateの入力であり、本Reverse PRのcurrent-HEAD review、canonical merge、post-main read-afterを代替しない。
