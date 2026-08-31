@@ -34,7 +34,7 @@ tdd_red_required: true
 red_at: "2026-08-31T23:31:00+09:00"
 green_at: "2026-08-31T23:34:10+09:00"
 tdd_red_evidence: "U-CIDEFER-001..006を先行作成し、ci-deferred-obligation-recovery module欠落でimport failureとなった"
-tdd_green_evidence: "npx vitest run tests/ci-deferred-obligation-recovery.test.tsで6 passed、npx tsc --noEmitもgreen"
+tdd_green_evidence: "npx vitest run tests/ci-deferred-obligation-recovery.test.tsで7 passed、npx tsc --noEmitもgreen"
 mutation_oracle_required: true
 mutation_oracle_evidence: "U-CIDEFER-002..006でterminal run削除／重複、profile／HEAD／origin変異、cancel、backprop edge欠落、期限切れquarantine、escaped defectとmutation未検出を個別にkillする"
 complexity_effect: net_neutral
@@ -59,12 +59,16 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-004, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-005, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-006, test_path: tests/ci-deferred-obligation-recovery.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-007, test_path: tests/ci-deferred-obligation-recovery.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/ci-deferred-obligation-recovery.ts, artifact_type: source_module }
   - { artifact_path: tests/ci-deferred-obligation-recovery.test.ts, artifact_type: test_code }
+modifies:
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
 agent_slots:
   - { role: se, slot_label: "SE — exactly-once recovery domain設計" }
   - { role: qa, slot_label: "QA — selector fault injectionと安全性oracle" }
@@ -76,7 +80,7 @@ agent_slots:
 
 | Step | 作業 | 並列/直列 | 完了条件 |
 |---|---|---|---|
-| 1 | typed recovery contractと反例oracle | 並列 | U-CIDEFER-001..006 green |
+| 1 | typed recovery contractと反例oracle | 並列 | U-CIDEFER-001..007 green |
 | 2 | workflow adapterとjournal／receipt接続 | 直列 | main／nightly／release candidate E2E green |
 | 3 | selector fault injection exact set | 直列 | 5 mutation全検出 |
 | 4 | Reverse fullbackとmain read-after | 直列 | #1208 terminal closure |

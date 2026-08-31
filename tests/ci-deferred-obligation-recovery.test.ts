@@ -154,4 +154,35 @@ describe("CI deferred obligation recovery", () => {
     });
     expect(result.findings).toContainEqual(expect.objectContaining({ code: "safety_regression" }));
   });
+
+  it("U-CIDEFER-007: CLI adapterはprojectionをJSON出力しfinding時に非zeroで停止する", () => {
+    const directory = mkdtempSync(join(tmpdir(), "helix-ci-deferred-"));
+    try {
+      const greenPath = join(directory, "green.json");
+      const redPath = join(directory, "red.json");
+      writeFileSync(greenPath, JSON.stringify(input()), "utf8");
+      writeFileSync(redPath, JSON.stringify(input({ terminal_runs: [] })), "utf8");
+      const run = (path: string) =>
+        spawnSync(
+          process.execPath,
+          ["--import", "tsx", "src/cli.ts", "ci", "deferred-recovery", "--input", path, "--json"],
+          { cwd: process.cwd(), encoding: "utf8" },
+        );
+      const green = run(greenPath);
+      expect(green.status).toBe(0);
+      expect(JSON.parse(green.stdout)).toMatchObject({ ok: true, receipts: [{ origin_pr: 1208 }] });
+      const red = run(redPath);
+      expect(red.status).toBe(1);
+      expect(JSON.parse(red.stdout).findings).toContainEqual(
+        expect.objectContaining({ code: "recovery_missing" }),
+      );
+    } finally {
+      rmSync(directory, { recursive: true, force: true });
+    }
+  });
 });
+
+import { spawnSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";

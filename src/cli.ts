@@ -260,6 +260,10 @@ import {
   type ChangePackageStatus,
 } from "./runtime/change-package-delta-archive";
 import {
+  type DeferredRecoveryInput,
+  reconcileDeferredObligations,
+} from "./runtime/ci-deferred-obligation-recovery";
+import {
   buildClaudeInboxEntry,
   claudeWakeMessageDigest,
   publishClaudeInboxEntry,
@@ -4192,6 +4196,28 @@ ci.command("impact-plan")
       }
     },
   );
+
+ci.command("deferred-recovery")
+  .description("reconcile deferred verification obligations with their first terminal run")
+  .requiredOption("--input <path>", "DeferredRecoveryInput JSON path")
+  .option("--json", "JSON output")
+  .action((opts: { input: string; json?: boolean }) => {
+    try {
+      const input = JSON.parse(
+        readFileSync(resolve(process.cwd(), opts.input), "utf8"),
+      ) as DeferredRecoveryInput;
+      const projection = reconcileDeferredObligations(input);
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(projection, null, 2)}\n`
+          : `ci deferred-recovery: receipts=${projection.receipts.length} findings=${projection.findings.length} ok=${projection.ok}\n`,
+      );
+      if (!projection.ok) process.exitCode = 1;
+    } catch (error) {
+      process.stderr.write(`ci deferred-recovery failed: ${String(error)}\n`);
+      process.exitCode = 1;
+    }
+  });
 
 // PLAN-L7-32 §9 discharge: cross-artifact relation graph CLI (ADR-002 A-124 surface)。
 // 純関数 (collect/analyze/export) は src/lint/relation-graph.ts、repo→source set loader は
