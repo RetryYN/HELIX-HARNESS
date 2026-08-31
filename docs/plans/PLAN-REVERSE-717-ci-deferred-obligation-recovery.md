@@ -6,7 +6,7 @@ layer: cross
 workflow_phase: R4
 confirmed_reverse_type: fullback
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-09-01
@@ -44,6 +44,27 @@ complexity_justification: "実装を複製せず、要求・設計・検証・ma
 removal_trigger: "CI System Synthesis全体のterminal Reverseが個別fullbackを統合した時"
 parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md
 pair_artifact: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md
+review_evidence:
+  - reviewer: "Codex intra-runtime / Curie"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-31T21:24:44Z"
+    tests_green_at: "2026-08-31T21:24:44Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: "01a05952-7817-7643-b88b-3d706f117bc0"
+    reviewed_head_sha: 8d110e46baed461b5c4a1870775dedd16fe572f2
+    scope: "PR #1305 exact HEADのReverse authority、CIS-R-13〜15、U-CIDEFER-013、terminal evidence、branch-kind、親Forwardとのcompanion境界をread-only再確認した。BLOCKER 0。no_code_decisionとmutation claimの過大記述はcurrent HEADで解消済み。CI全回帰は別のcurrent-HEAD gateとして完走を要求する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/ci-deferred-obligation-recovery.test.ts tests/branch-kind.test.ts && npm run typecheck && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-31T21:24:44Z"
+        evidence_path: tests/ci-deferred-obligation-recovery.test.ts
+        output_digest: "sha256:418d687c25652cdb75b6b68a4cf8ae6134e1b26ce9a0f1a5fd06eff41958e373"
+        result: "2 test files / 45 tests、typecheck、PLAN lintがgreen"
 backprop_scope:
   - layer: requirements
     decision: not_impacted
