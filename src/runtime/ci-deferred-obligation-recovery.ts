@@ -75,6 +75,7 @@ export type DeferredRecoveryFindingCode =
   | "recovery_expired"
   | "recovery_cancelled"
   | "recovery_evidence_invalid"
+  | "recovery_oracle_missing"
   | "quarantine_invalid"
   | "safety_regression";
 
@@ -311,6 +312,12 @@ export function reconcileDeferredObligations(
         first_detecting_oracle_id: run.first_detecting_oracle_id,
         source_run_id: run.run_id,
         disposition: "reverse_candidate",
+      });
+    } else if (failed) {
+      findings.push({
+        code: "recovery_oracle_missing",
+        obligation_id: assignment.obligation_id,
+        detail: "failed terminal run requires a valid first detecting oracle",
       });
     }
   }
