@@ -68,6 +68,7 @@ generates:
   - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
