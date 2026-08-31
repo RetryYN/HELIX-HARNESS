@@ -27,11 +27,21 @@ const MAIN = "1".repeat(40),
   VERSION = "1.1.6",
   REGISTRY = `sha256:${"5".repeat(64)}`;
 const roots: string[] = [];
+const providerSnapshots = new Map<
+  string,
+  ForwardPlanAuthoringTransactionInput["reservationInput"]["reservation_snapshot"]
+>();
 const deps = (
   overrides: Partial<ForwardPlanAuthoringTransactionDeps> = {},
 ): ForwardPlanAuthoringTransactionDeps => ({
   currentHead: () => HEAD,
   remoteMainHead: () => MAIN,
+  freshReservationAuthority: (root) => {
+    const snapshot = providerSnapshots.get(root);
+    if (!snapshot) throw new Error("fixture_provider_unavailable");
+    const fresh = structuredClone(snapshot);
+    return { snapshot: fresh, snapshot_digest: sha256Digest(canonicalJson(fresh)) };
+  },
   acquireLock: () => ({ path: "fixture", token: "fixture", processStartId: "fixture" }),
   releaseLock: () => undefined,
   ...overrides,
@@ -120,6 +130,7 @@ function input(): ForwardPlanAuthoringTransactionInput {
     ],
   };
   writeFileSync(join(root, OPEN_BRANCH_RESERVATION_AUTHORITY_PATH), `${canonicalJson(snapshot)}\n`);
+  providerSnapshots.set(root, structuredClone(snapshot));
   return {
     repoRoot: root,
     reservationAuthorityPath: OPEN_BRANCH_RESERVATION_AUTHORITY_PATH,
@@ -149,7 +160,10 @@ function input(): ForwardPlanAuthoringTransactionInput {
   };
 }
 afterEach(() => {
-  for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
+  for (const root of roots.splice(0)) {
+    providerSnapshots.delete(root);
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 describe("Forward PLAN authoring transaction", () => {
   it("U-FPATR-001: dry-runはauthorityを検証してwriteしない", () => {
@@ -194,6 +208,7 @@ describe("Forward PLAN authoring transaction", () => {
     const authority = JSON.parse(
       readFileSync(join(v.repoRoot, OPEN_BRANCH_RESERVATION_AUTHORITY_PATH), "utf8"),
     );
+    providerSnapshots.set(v.repoRoot, structuredClone(authority));
     expect(authority.reservations.map((r: { plan_id: string }) => r.plan_id)).toEqual(
       expect.arrayContaining(["PLAN-L7-720-forward", "PLAN-REVERSE-901-forward"]),
     );
@@ -403,6 +418,7 @@ describe("Forward PLAN authoring transaction", () => {
       join(v.repoRoot, v.reservationAuthorityPath),
       `${canonicalJson(v.reservationInput.reservation_snapshot)}\n`,
     );
+    providerSnapshots.set(v.repoRoot, structuredClone(v.reservationInput.reservation_snapshot));
     expect(authorForwardPlanTransaction(v, deps())).toMatchObject({
       ok: false,
       findings: ["allocator_writer_authority_anchor_missing"],
@@ -427,5 +443,76 @@ describe("Forward PLAN authoring transaction", () => {
       true,
     );
     expect(existsSync(join(v.repoRoot, ".helix/tmp/forward-plan-authoring"))).toBe(false);
+    const retry = authorForwardPlanTransaction(v, deps());
+    expect(retry).toMatchObject({ ok: true, status: "committed" });
+    expect(existsSync(join(v.repoRoot, ".helix/state/forward-plan-authoring-journal.json"))).toBe(
+      false,
+    );
+  });
+  it("U-FPATR-015: fresh provider unavailable／stale／wrong lease／wrong head／collisionを拒否する", () => {
+    const unavailable = input();
+    expect(
+      authorForwardPlanTransaction(
+        unavailable,
+        deps({
+          freshReservationAuthority: () => {
+            throw new Error("fresh_reservation_authority_provider_unavailable");
+          },
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      findings: ["fresh_reservation_authority_provider_unavailable"],
+    });
+    for (const mutate of [
+      (snapshot: typeof unavailable.reservationInput.reservation_snapshot) => {
+        snapshot.captured_at = "2026-09-02T00:00:00.000Z";
+      },
+      (snapshot: typeof unavailable.reservationInput.reservation_snapshot) => {
+        const anchor = snapshot.reservations.find((entry) => entry.source.kind === "active_writer");
+        if (anchor?.source.kind === "active_writer") anchor.source.lease_id = "wrong-lease";
+      },
+      (snapshot: typeof unavailable.reservationInput.reservation_snapshot) => {
+        const anchor = snapshot.reservations.find((entry) => entry.source.kind === "active_writer");
+        if (anchor) anchor.head_sha = "3".repeat(40);
+      },
+    ]) {
+      const v = input();
+      expect(
+        authorForwardPlanTransaction(
+          v,
+          deps({
+            freshReservationAuthority: () => {
+              const snapshot = structuredClone(
+                providerSnapshots.get(v.repoRoot) as typeof v.reservationInput.reservation_snapshot,
+              );
+              mutate(snapshot);
+              return { snapshot, snapshot_digest: sha256Digest(canonicalJson(snapshot)) };
+            },
+          }),
+        ),
+      ).toMatchObject({ ok: false, findings: ["fresh_reservation_authority_mismatch"] });
+    }
+    const collision = input(),
+      conflicting = {
+        ...structuredClone(collision.reservationInput.reservation_snapshot.reservations[0]),
+        plan_id: "PLAN-REVERSE-900-conflict",
+        plan_path: "docs/plans/PLAN-REVERSE-900-conflict.md",
+        source: { kind: "open_pr" as const, branch: "feature/conflict", pr_number: 1300 },
+        lifecycle: "open" as const,
+      };
+    collision.reservationInput.reservation_snapshot.reservations.push(conflicting);
+    writeFileSync(
+      join(collision.repoRoot, collision.reservationAuthorityPath),
+      `${canonicalJson(collision.reservationInput.reservation_snapshot)}\n`,
+    );
+    providerSnapshots.set(
+      collision.repoRoot,
+      structuredClone(collision.reservationInput.reservation_snapshot),
+    );
+    expect(authorForwardPlanTransaction(collision, deps())).toMatchObject({
+      ok: false,
+      findings: ["reservation_authority_invalid"],
+    });
   });
 });

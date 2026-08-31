@@ -97,9 +97,14 @@ export interface ForwardPlanAuthoringTransactionResult {
   transaction_digest: Sha256Digest | null;
   reservation_authority_digest: Sha256Digest | null;
 }
+export interface FreshReservationAuthority {
+  snapshot: OpenBranchPlanReservationSnapshot;
+  snapshot_digest: Sha256Digest;
+}
 export interface ForwardPlanAuthoringTransactionDeps {
   currentHead(root: string): string;
   remoteMainHead(root: string): string;
+  freshReservationAuthority(root: string): FreshReservationAuthority;
   acquireLock(root: string): ClosureMaterializationLock;
   releaseLock(lock: ClosureMaterializationLock): void;
   beforeCommit?(): void;
@@ -123,6 +128,9 @@ const defaults: ForwardPlanAuthoringTransactionDeps = {
     const head = output.split(/\s+/u)[0];
     if (!head || !/^[a-f0-9]{40}$/u.test(head)) throw new Error("remote_main_invalid");
     return head;
+  },
+  freshReservationAuthority: () => {
+    throw new Error("fresh_reservation_authority_provider_unavailable");
   },
   acquireLock: acquireClosureMaterializationLock,
   releaseLock: releaseClosureMaterializationLock,
@@ -402,9 +410,16 @@ export function authorForwardPlanTransaction(
     if (input.reservationAuthorityPath !== OPEN_BRANCH_RESERVATION_AUTHORITY_PATH)
       return blocked(["reservation_authority_path_invalid"]);
     authorityBytes = readFileSync(existing(root, input.reservationAuthorityPath), "utf8");
-    authority = JSON.parse(authorityBytes) as OpenBranchPlanReservationSnapshot;
-    if (canonicalJson(authority) !== canonicalJson(input.reservationInput.reservation_snapshot))
+    const localExpected = JSON.parse(authorityBytes) as OpenBranchPlanReservationSnapshot,
+      fresh = deps.freshReservationAuthority(root),
+      freshCanonical = canonicalJson(fresh.snapshot);
+    if (fresh.snapshot_digest !== sha256Digest(freshCanonical))
+      return blocked(["fresh_reservation_authority_digest_invalid"]);
+    if (canonicalJson(localExpected) !== canonicalJson(input.reservationInput.reservation_snapshot))
       return blocked(["reservation_authority_input_drift"]);
+    if (freshCanonical !== canonicalJson(localExpected))
+      return blocked(["fresh_reservation_authority_mismatch"]);
+    authority = fresh.snapshot;
     if (!projectOpenBranchPlanReservations(authority).ok)
       return blocked(["reservation_authority_invalid"]);
   } catch (error) {

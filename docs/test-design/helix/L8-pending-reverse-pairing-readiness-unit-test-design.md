@@ -38,7 +38,8 @@ pair_artifact: docs/design/helix/L6-function-design/pending-reverse-pairing-read
 | U-FPATR-011 | prepared ownership | prepared中はcreate finalが不存在の場合だけcompensate | 同digestの外部finalをtransaction所有と誤認して削除したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-012 | semantic request | bounded lowercase semantic slugを受理 | slash、backslash、dot segment、過長、制御文字、colonを受理したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-013 | allocator anchor | exact branch／HEAD／assignment／lease／fenceのactive_writerをauthority anchorにする | anchor欠落またはevidence unavailableでexact IDを発行したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
-| U-FPATR-014 | journal-first staging | prepared journalのdurable作成後だけstageを作成し、commit前にexact set／digestを検証 | journal作成直後crashでjournalなしstaged orphanを残したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
+| U-FPATR-014 | journal-first staging | prepared journalのdurable作成後だけstageを作成し、crash後のretryがrecoveryしてcommitする | journal作成直後crashでjournalなしstaged orphanを残す、または次回retryが収束しなければfail | `tests/forward-plan-authoring-transaction.test.ts` |
+| U-FPATR-015 | fresh authority provider | provider snapshot／digest、local expected、caller expectedのexact一致だけを受理 | provider unavailable、stale、wrong lease、wrong head、collisionを拒否せずlocal/callerへfallbackしたらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
@@ -59,7 +60,9 @@ pair_artifact: docs/design/helix/L6-function-design/pending-reverse-pairing-read
 | U-FPATR-011 | prepared ownership | prepared中に出現した同digest finalを削除したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-012 | semantic request | path非正規またはboundedでないsemantic slugを受理したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-013 | allocator anchor | exact active_writer anchorなしでIDを発行したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
-| U-FPATR-014 | journal-first staging | journal作成直後crashでstaged orphanが残ったらfail | `tests/forward-plan-authoring-transaction.test.ts` |
+| U-FPATR-014 | journal-first staging | journal作成直後crashでstaged orphanが残る、またはretry recovery→commitできなければfail | `tests/forward-plan-authoring-transaction.test.ts` |
+| U-FPATR-015 | fresh authority provider | unavailable／stale／wrong lease／wrong head／collision時にlocal snapshotへfallbackしたらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 
 pending Reverseのpair成立をterminal／legacy `requires`契約の代替にせず、execution dependency readyも推測しない。
 authoring transactionのgreenをallocator ID選定policy、review、completion、Reverse検証の完了証拠へ拡張しない。
+#1256 adapter未接続中のgreenはinjected provider contractのunit evidenceであり、production write admissionやIssue #1297 completionを意味しない。

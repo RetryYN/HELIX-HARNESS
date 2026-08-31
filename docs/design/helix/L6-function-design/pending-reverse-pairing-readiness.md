@@ -44,6 +44,12 @@ transaction内allocatorはavailableな`current_main`／`open_pr`／`active_write
 `.helix/state/open-branch-plan-reservations.json`だけを認める。production defaultのmain authorityはtracking refでなく
 `git ls-remote origin refs/heads/main`から取得する。CLIは固定git command以外を入力から組み立てない。
 
+#1258のlocal snapshotはpure projectionかつexpected valueであり、fresh authorityではない。transactionは
+`FreshReservationAuthority` providerが同時取得したsnapshot exact setとそのdigestを必須とし、provider値、local expected file、
+caller expected snapshotの3者がexact一致するときだけ採番する。#1256のlive GitHub／assignment adapterは未実装であるため、
+production default providerは明示fail-closeし、CLI production writeは#1256接続まで非admittedとする。local fileやcaller inputへの
+fallbackは禁止する。
+
 apply時はForward／Reverse／receiptの最終pathがすべて不存在であることを確認し、prepared journalを先にdurable作成してから
 4 staged fileをfsyncする。commit前にstage exact setと全digest、HEAD、remote mainを再検証し、3 create artifactを
 hard-link no-clobberで作成してreservation authorityをCAS更新する。journalはHEAD、main、issuer receipt、
@@ -56,6 +62,6 @@ roll-forwardし、未収束時は`recovery_required`を返す。全artifactと�
 
 `U-BACKFILL-008..010`を`tests/backfill-pairing.test.ts`が所有し、draft／confirmed pendingの双方向正例、
 片方向、wrong ID、state不一致、terminal requires昇格、`backfill_state`条件除去mutationを検査する。
-`U-FPATR-001..014`が4 artifact同時永続化／再読込、remote main、caller exact-ID拒否、deterministic allocation、no-clobber、exact references／workflow identity、
+`U-FPATR-001..015`が4 artifact同時永続化／再読込、remote main、fresh provider、caller exact-ID拒否、deterministic allocation、no-clobber、exact references／workflow identity、
 process-start／host／token lock、realpath、snapshot／digest drift、journal seal／HEAD binding、journal後parent symlink swap、
-prepared external write保持、bounded semantic slug、writer anchor、journal-first crash windowを列挙検証する。
+prepared external write保持、bounded semantic slug、writer anchor、journal-first crash recovery、provider unavailable／stale／wrong lease／wrong head／collisionを列挙検証する。
