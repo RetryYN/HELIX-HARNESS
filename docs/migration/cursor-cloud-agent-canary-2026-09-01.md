@@ -94,7 +94,7 @@ CI 結果の read-after は PR 作成後に Codex / Claude レーンで実施す
 |---|---|
 | AGENTS.md / CLAUDE.md 読了と遵守記録 | 本 §3 |
 | 専用 branch で exactly one file 追加 | 完了（1 file / 107 lines） |
-| PR 作成（merge しない） | PR 作成後に URL 追記 |
+| PR 作成（merge しない） | 完了 — Draft PR #1288（merge 保留） |
 | PR が Issue / HEAD / runtime / model へ追跡可能 | PR body に記載 |
 | Codex local verification | **未実施**（後続レーン） |
 | Claude exact-HEAD 独立 review | **未実施**（後続レーン） |
