@@ -100,6 +100,64 @@ describe("HELIX-Bench task dataset", () => {
       ok: false,
       failure_code: "DATASET_INVALID",
     });
+
+    const duplicateFixture = registries();
+    duplicateFixture.fixtureRegistry.fixtures.push(
+      structuredClone(duplicateFixture.fixtureRegistry.fixtures[0]),
+    );
+    expect(validateHelixBenchDataset(duplicateFixture)).toMatchObject({
+      ok: false,
+      failure_code: "DATASET_INVALID",
+    });
+
+    const duplicateOracle = registries();
+    duplicateOracle.hiddenRegistry.oracles.push(
+      structuredClone(duplicateOracle.hiddenRegistry.oracles[0]),
+    );
+    expect(validateHelixBenchDataset(duplicateOracle)).toMatchObject({
+      ok: false,
+      failure_code: "DATASET_INVALID",
+    });
+
+    const categoryDrift = registries();
+    categoryDrift.publicRegistry.tasks[0].category = categoryDrift.publicRegistry.tasks[2].category;
+    expect(validateHelixBenchDataset(categoryDrift)).toMatchObject({
+      ok: false,
+      failure_code: "TASK_CATEGORY_COVERAGE_INVALID",
+    });
+  });
+
+  it("U-HBDATA-007: public taskと15-field snapshotの型driftをfail-closeする", () => {
+    for (const mutate of [
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.dataset_version = 7;
+      },
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.tasks[0].prompt = 7;
+      },
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.tasks[0].external_worker_candidate = "true";
+      },
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.tasks[0].snapshot.requirement_ids = [7];
+      },
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.tasks[0].snapshot.acceptance_ids = [7];
+      },
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.tasks[0].snapshot.allowed_paths = [7];
+      },
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.tasks[0].snapshot.forbidden_paths = [7];
+      },
+      (input: ReturnType<typeof registries>) => {
+        input.publicRegistry.tasks[0].snapshot.toolchain_versions.node = 7;
+      },
+    ]) {
+      const input = registries();
+      mutate(input);
+      expect(validateHelixBenchDataset(input).ok).toBe(false);
+    }
   });
 
   it("U-HBDATA-004: historical resultをcurrent task証拠へ再利用しない", () => {

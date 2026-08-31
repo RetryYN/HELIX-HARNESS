@@ -115,21 +115,29 @@ function isDigest(value: unknown): value is Sha256Digest {
   return typeof value === "string" && /^sha256:[a-f0-9]{64}$/u.test(value);
 }
 
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((entry) => typeof entry === "string");
+}
+
+function isStringRecord(value: unknown): value is Record<string, string> {
+  return isRecord(value) && Object.values(value).every((entry) => typeof entry === "string");
+}
+
 function validateSnapshot(value: unknown): value is HelixBenchTaskSnapshot {
   if (!isRecord(value) || !exactKeys(value, HELIX_BENCH_TASK_FIELDS)) return false;
   return (
     typeof value.task_id === "string" &&
     typeof value.task_version === "string" &&
     isDigest(value.fixture_digest) &&
-    Array.isArray(value.requirement_ids) &&
-    Array.isArray(value.acceptance_ids) &&
+    isStringArray(value.requirement_ids) &&
+    isStringArray(value.acceptance_ids) &&
     typeof value.base_head === "string" &&
     /^[a-f0-9]{40}$/u.test(value.base_head) &&
-    Array.isArray(value.allowed_paths) &&
-    Array.isArray(value.forbidden_paths) &&
+    isStringArray(value.allowed_paths) &&
+    isStringArray(value.forbidden_paths) &&
     isDigest(value.hidden_oracle_digest) &&
     Number.isSafeInteger(value.seed) &&
-    isRecord(value.toolchain_versions) &&
+    isStringRecord(value.toolchain_versions) &&
     typeof value.timeout_policy === "string" &&
     typeof value.retry_policy === "string" &&
     typeof value.cache_policy === "string" &&
@@ -163,13 +171,19 @@ export function validateHelixBenchDataset(input: {
   const fixtureRegistry = input.fixtureRegistry as unknown as FixtureRegistry;
   const hiddenRegistry = input.hiddenRegistry as unknown as HiddenRegistry;
   if (
+    !exactKeys(input.publicRegistry, ["schema_version", "dataset_version", "tasks"]) ||
+    !exactKeys(input.fixtureRegistry, ["schema_version", "fixtures"]) ||
+    !exactKeys(input.hiddenRegistry, ["schema_version", "oracles"]) ||
     publicRegistry.schema_version !== "helix-bench-public-tasks.v1" ||
+    typeof publicRegistry.dataset_version !== "string" ||
     fixtureRegistry.schema_version !== "helix-bench-fixtures.v1" ||
     hiddenRegistry.schema_version !== "helix-bench-hidden-oracles.v1" ||
     !Array.isArray(publicRegistry.tasks) ||
     !Array.isArray(fixtureRegistry.fixtures) ||
     !Array.isArray(hiddenRegistry.oracles) ||
-    publicRegistry.tasks.length !== 10
+    publicRegistry.tasks.length !== 10 ||
+    fixtureRegistry.fixtures.length > 10 ||
+    hiddenRegistry.oracles.length > 10
   )
     return { ok: false, failure_code: "DATASET_INVALID" };
 
@@ -187,6 +201,8 @@ export function validateHelixBenchDataset(input: {
     if (containsHiddenMaterial(raw)) return { ok: false, failure_code: "HIDDEN_ORACLE_LEAKAGE" };
     if (
       !HELIX_BENCH_CATEGORIES.includes(raw.category as Category) ||
+      typeof raw.external_worker_candidate !== "boolean" ||
+      typeof raw.prompt !== "string" ||
       !validateSnapshot(raw.snapshot)
     ) {
       return { ok: false, failure_code: "TASK_FIELD_SET_INVALID" };
@@ -233,7 +249,11 @@ export function validateHelixBenchDataset(input: {
     categories.add(task.category);
     tasks.push(Object.freeze(task));
   }
-  if (HELIX_BENCH_CATEGORIES.some((category) => !categories.has(category))) {
+  if (
+    HELIX_BENCH_CATEGORIES.some(
+      (category) => tasks.filter((task) => task.category === category).length !== 2,
+    )
+  ) {
     return { ok: false, failure_code: "TASK_CATEGORY_COVERAGE_INVALID" };
   }
   if (fixtures.size !== 10 || oracles.size !== 10) {
