@@ -84,11 +84,11 @@ export function checkFrozenBaselineMaterialReceipt(
 
   let manifestText: string;
   try {
-    manifestText = execFileSync(
-      "git",
-      ["show", `${materialHead}:requirements-ir/manifest.json`],
-      { cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
-    );
+    manifestText = execFileSync("git", ["show", `${materialHead}:requirements-ir/manifest.json`], {
+      cwd: repoRoot,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
   } catch {
     return ["canonical frozen baseline material manifest is unreachable"];
   }

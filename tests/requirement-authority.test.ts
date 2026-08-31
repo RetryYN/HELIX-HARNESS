@@ -47,11 +47,13 @@ describe("Requirement JSON authority", () => {
     return result.stdout.trim();
   }
 
-  function withMaterialReceiptRepo(run: (input: {
-    repoRoot: string;
-    materialHead: string;
-    rootDigest: `sha256:${string}`;
-  }) => void): void {
+  function withMaterialReceiptRepo(
+    run: (input: {
+      repoRoot: string;
+      materialHead: string;
+      rootDigest: `sha256:${string}`;
+    }) => void,
+  ): void {
     const repoRoot = mkdtempSync(join(tmpdir(), "helix-material-receipt-"));
     try {
       git(repoRoot, ["init", "--quiet"]);
@@ -173,11 +175,14 @@ describe("Requirement JSON authority", () => {
     withMaterialReceiptRepo(({ repoRoot, materialHead, rootDigest }) => {
       expect(checkFrozenBaselineMaterialReceipt(repoRoot, materialHead, rootDigest)).toEqual([]);
 
-      expect(
-        checkFrozenBaselineMaterialReceipt(repoRoot, "0".repeat(40), rootDigest),
-      ).toEqual(["canonical frozen baseline material commit is unreachable"]);
+      expect(checkFrozenBaselineMaterialReceipt(repoRoot, "0".repeat(40), rootDigest)).toEqual([
+        "canonical frozen baseline material commit is unreachable",
+      ]);
 
-      const unrelatedHead = git(repoRoot, ["commit-tree", "4b825dc642cb6eb9a060e54bf8d69288fbee4904"]);
+      const unrelatedHead = git(repoRoot, [
+        "commit-tree",
+        "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      ]);
       expect(checkFrozenBaselineMaterialReceipt(repoRoot, unrelatedHead, rootDigest)).toEqual([
         "canonical frozen baseline material commit is not an ancestor of current HEAD",
       ]);
@@ -194,16 +199,12 @@ describe("Requirement JSON authority", () => {
       git(repoRoot, ["add", "requirements-ir/manifest.json"]);
       git(repoRoot, ["commit", "--quiet", "-m", "invalid manifest"]);
       const invalidManifestHead = git(repoRoot, ["rev-parse", "HEAD"]);
-      expect(
-        checkFrozenBaselineMaterialReceipt(repoRoot, invalidManifestHead, rootDigest),
-      ).toEqual(["canonical frozen baseline material manifest is invalid"]);
+      expect(checkFrozenBaselineMaterialReceipt(repoRoot, invalidManifestHead, rootDigest)).toEqual(
+        ["canonical frozen baseline material manifest is invalid"],
+      );
 
       expect(
-        checkFrozenBaselineMaterialReceipt(
-          repoRoot,
-          materialHead,
-          `sha256:${"b".repeat(64)}`,
-        ),
+        checkFrozenBaselineMaterialReceipt(repoRoot, materialHead, `sha256:${"b".repeat(64)}`),
       ).toEqual(["canonical frozen baseline material receipt differs"]);
     });
   });
