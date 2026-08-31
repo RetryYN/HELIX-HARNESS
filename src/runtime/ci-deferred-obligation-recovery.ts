@@ -75,6 +75,7 @@ export type DeferredRecoveryFindingCode =
   | "recovery_expired"
   | "recovery_cancelled"
   | "recovery_evidence_invalid"
+  | "recovery_oracle_missing"
   | "quarantine_invalid"
   | "safety_regression";
 

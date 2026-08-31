@@ -36,7 +36,7 @@ contract_postconditions: "deferred obligationのexactly-once回収、origin back
 contract_invariants: "要求意味を変更せず、failureを要求変更へ自動昇格せず、publish／cutoverを混載しない"
 contract_failures: "wrong HEAD、stale review、双方向link欠落、profile相殺、selector mutation未検出をfail-closeする"
 tdd_red_required: false
-tdd_red_waiver_reason: "Forward実装とU-CIDEFER-001〜012を再利用するdocs-only Reverseであり、新しいRedを捏造しない"
+tdd_red_waiver_reason: "独立レビューでfailed terminal runのoracle欠落がfail-openになる反例を実測し、corrective regression U-CIDEFER-013と最小runtime修正を同一Reverseへ追加した。事後にRedを捏造せず、レビュー反例をfailure evidenceとして保持する。"
 mutation_oracle_required: true
 mutation_oracle_evidence: "U-CIDEFER-001〜013がmissing、duplicate、expired、wrong profile、stale HEAD、quarantine、selector edge削除、failed runのoracle欠落を個別にkillする。"
 complexity_effect: net_neutral
@@ -56,7 +56,7 @@ backprop_scope:
   - layer: verification-design
     decision: not_impacted
     evidence_path: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md
-    reason: "U-CIDEFER-001〜012がfail-close境界を個別に検出する。"
+    reason: "U-CIDEFER-001〜013がfail-close境界を個別に検出する。"
   - layer: L4-basic-design
     decision: not_impacted
     reason: "外部system boundaryとprovider interfaceを変更しない。"
