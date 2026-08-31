@@ -27,7 +27,7 @@ workflow_identity:
   target_id: ADD_FEATURE
 entry_signals:
   - "po_directive:Issue #1297 Forward／pending Reverse vehicleを同一transactionで予約する"
-contract_preconditions: "typed ADD_FEATURE exact allocation要求、live origin/main、assignment／lease付き既存reservation authorityが一致し、caller receiptを含まない"
+contract_preconditions: "typed ADD_FEATURE semantic slug、remote main、availableな既存reservation authority、同branch／HEAD／assignment／lease／fenceのactive_writer anchorが一致し、caller exact ID／receiptを含まない"
 contract_postconditions: "Forward／Reverse PLAN、issuer receipt、更新reservation authorityをsealed durable transactionで同時materializeし再読込projectionを照合する"
 contract_invariants: "Reverse本文／review evidence／完了証拠を捏造せず、Forward merge前にReverse完了を要求せず、legacy modeを出力しない"
 contract_failures: "caller自己署名、stale main／HEAD、authority／digest drift、TOCTOU collision、seal／lock／realpath不正、片方向をfail-closeする"
@@ -68,6 +68,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-010, test_path: tests/forward-plan-authoring-transaction.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-011, test_path: tests/forward-plan-authoring-transaction.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-012, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-013, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-014, test_path: tests/forward-plan-authoring-transaction.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-720-forward-reverse-terminal-reservation.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/forward-reverse-terminal-reservation.ts, artifact_type: source_module }
@@ -88,11 +90,11 @@ agent_slots:
 
 ## 工程表
 
-1. exact allocation要求とmain／assignment／lease境界をtyped inputへ固定し、caller receiptを禁止する。
+1. semantic slugとremote main／assignment／lease境界をtyped inputへ固定し、caller exact ID／receiptを禁止する。
 2. Forward／Reverseの2予約を既存projectionへ同時追加する。
 3. `helix plan author-forward`からjournal付きNode transaction内issuerへ接続し、両PLAN、receipt、reservation authorityを同時materializeする。
-4. identity、stale main／candidate HEAD、digest drift、collision、legacy output、冪等retry、prepared外部write、path非正規allocation IDの負極性oracleを通す。
+4. identity、remote main／candidate HEAD、digest drift、collision、legacy output、冪等retry、prepared外部write、path非正規slug、anchor欠落、journal-first crashの負極性oracleを通す。
 5. mutation、Claude exact-HEAD review、CI後にconfirmし、Forward merge後は別ReverseでR0〜R4とmain read-afterを行う。
 
-本PLANは予約kernel、exact ID receipt発行境界、その最小production authoring consumerを所有する。allocator ID選定policy、Reverse検証、Issue close、review省略、
+本PLANは予約kernel、open-branch authorityからnext free familyを選ぶexact ID receipt発行境界、その最小production authoring consumerを所有する。汎用allocator policy、Reverse検証、Issue close、review省略、
 provider routing、PLAN completionは非対象とする。

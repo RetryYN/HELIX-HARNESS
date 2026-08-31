@@ -31,7 +31,7 @@ const deps = (
   overrides: Partial<ForwardPlanAuthoringTransactionDeps> = {},
 ): ForwardPlanAuthoringTransactionDeps => ({
   currentHead: () => HEAD,
-  originMainHead: () => MAIN,
+  remoteMainHead: () => MAIN,
   acquireLock: () => ({ path: "fixture", token: "fixture", processStartId: "fixture" }),
   releaseLock: () => undefined,
   ...overrides,
@@ -62,9 +62,7 @@ function input(): ForwardPlanAuthoringTransactionInput {
   );
   const d = docs(),
     allocation = {
-      allocation_id: "allocation-1297",
-      forward_plan_id: "PLAN-L7-720-forward",
-      reverse_plan_id: "PLAN-REVERSE-901-forward",
+      reverse_slug: "forward",
       reverse_plan_blob_digest: sha256Digest(d.reverse),
     };
   const snapshot = {
@@ -77,6 +75,36 @@ function input(): ForwardPlanAuthoringTransactionInput {
       active_writer_branches: { status: "available" as const, error_digest: null },
     },
     reservations: [
+      {
+        plan_id: "PLAN-REVERSE-900-previous",
+        owner_issue: 1200,
+        responsibility_owner: "main-plan",
+        plan_path: "docs/plans/PLAN-REVERSE-900-previous.md",
+        plan_blob_digest: sha256Digest("previous"),
+        head_sha: MAIN,
+        ancestor_head_shas: [],
+        source: { kind: "current_main" as const, branch: "main" as const },
+        lifecycle: "current" as const,
+        terminal_evidence: null,
+      },
+      {
+        plan_id: "PLAN-L7-719-authority-anchor",
+        owner_issue: 1296,
+        responsibility_owner: "authority-anchor",
+        plan_path: "docs/plans/PLAN-L7-719-authority-anchor.md",
+        plan_blob_digest: sha256Digest("anchor"),
+        head_sha: HEAD,
+        ancestor_head_shas: [MAIN],
+        source: {
+          kind: "active_writer" as const,
+          branch: "feature/1297",
+          assignment_id: "assignment-1297",
+          lease_id: "lease-1297",
+          fence_token: "fence-1297",
+        },
+        lifecycle: "active" as const,
+        terminal_evidence: null,
+      },
       {
         plan_id: "PLAN-L7-700-main",
         owner_issue: 1200,
@@ -139,9 +167,11 @@ describe("Forward PLAN authoring transaction", () => {
       result = authorForwardPlanTransaction(v, deps());
     expect(result).toMatchObject({ ok: true, status: "committed" });
     expect(result.written_paths).toHaveLength(4);
+    const receiptFiles = readdirSync(join(v.repoRoot, ".helix/state/plan-allocator-receipts"));
+    expect(receiptFiles).toHaveLength(1);
     const receipt = JSON.parse(
       readFileSync(
-        join(v.repoRoot, ".helix/state/plan-allocator-receipts/allocation-1297.json"),
+        join(v.repoRoot, ".helix/state/plan-allocator-receipts", receiptFiles[0] as string),
         "utf8",
       ),
     );
@@ -154,11 +184,13 @@ describe("Forward PLAN authoring transaction", () => {
       lease_id: "lease-1297",
       fence_token: "fence-1297",
       allocation: {
+        allocation_id: expect.stringMatching(/^allocation-[a-f0-9]{24}$/u),
         forward_plan_id: "PLAN-L7-720-forward",
         reverse_plan_id: "PLAN-REVERSE-901-forward",
       },
     });
     expect(receiptDigest).toBe(sha256Digest(canonicalJson(receiptPayload)));
+    expect(receipt.allocation.allocation_id).not.toContain(":");
     const authority = JSON.parse(
       readFileSync(join(v.repoRoot, OPEN_BRANCH_RESERVATION_AUTHORITY_PATH), "utf8"),
     );
@@ -171,10 +203,11 @@ describe("Forward PLAN authoring transaction", () => {
     );
     expect(retry.findings).toEqual([]);
     expect(retry).toMatchObject({ ok: true, status: "idempotent" });
+    expect(retry.transaction_digest).toBe(result.transaction_digest);
   });
   it("U-FPATR-003: live main driftとcaller自己署名receiptを拒否する", () => {
     expect(
-      authorForwardPlanTransaction(input(), deps({ originMainHead: () => "3".repeat(40) })),
+      authorForwardPlanTransaction(input(), deps({ remoteMainHead: () => "3".repeat(40) })),
     ).toMatchObject({ ok: false, findings: ["origin_main_authority_mismatch"] });
     const v = input();
     Object.assign(v.reservationInput.allocation, {
@@ -339,19 +372,60 @@ describe("Forward PLAN authoring transaction", () => {
     });
     expect(readFileSync(forwardPath, "utf8")).toBe(v.forwardDocument);
     expect(existsSync(join(v.repoRoot, "docs/plans/PLAN-REVERSE-901-forward.md"))).toBe(false);
-    expect(
-      existsSync(join(v.repoRoot, ".helix/state/plan-allocator-receipts/allocation-1297.json")),
-    ).toBe(false);
+    expect(readdirSync(join(v.repoRoot, ".helix/state/plan-allocator-receipts"))).toEqual([]);
   });
-  it.each(["foo/bar", "foo\\bar", ".", "..", "foo/../bar", "a".repeat(129), "foo\u0000bar"])(
-    "U-FPATR-012: path非正規allocation_id %jを拒否する",
-    (allocationId) => {
+  it("U-FPATR-012: path非正規semantic slugを列挙拒否する", () => {
+    for (const reverseSlug of [
+      "foo/bar",
+      "foo\\bar",
+      ".",
+      "..",
+      "foo/../bar",
+      "a".repeat(65),
+      "foo\u0000bar",
+      "foo:bar",
+    ]) {
       const v = input();
-      v.reservationInput.allocation.allocation_id = allocationId;
+      v.reservationInput.allocation.reverse_slug = reverseSlug;
       const result = authorForwardPlanTransaction(v, deps());
       expect(result).toMatchObject({ ok: false, status: "blocked" });
-      expect(result.findings).toContain("input_invalid:allocation.allocation_id");
+      expect(result.findings).toContain("reverse_slug_invalid");
       expect(readdirSync(join(v.repoRoot, ".helix/state/plan-allocator-receipts"))).toEqual([]);
-    },
-  );
+    }
+  });
+  it("U-FPATR-013: exact active_writer authority anchor欠落を拒否する", () => {
+    const v = input();
+    v.reservationInput.reservation_snapshot.reservations =
+      v.reservationInput.reservation_snapshot.reservations.filter(
+        (entry) => entry.source.kind !== "active_writer",
+      );
+    writeFileSync(
+      join(v.repoRoot, v.reservationAuthorityPath),
+      `${canonicalJson(v.reservationInput.reservation_snapshot)}\n`,
+    );
+    expect(authorForwardPlanTransaction(v, deps())).toMatchObject({
+      ok: false,
+      findings: ["allocator_writer_authority_anchor_missing"],
+    });
+  });
+  it("U-FPATR-014: journal-first crashはstaged orphanを残さない", () => {
+    const v = input(),
+      result = authorForwardPlanTransaction(
+        v,
+        deps({
+          afterJournal: () => {
+            throw new Error("simulated_after_journal_crash");
+          },
+        }),
+      );
+    expect(result).toMatchObject({
+      ok: false,
+      status: "recovery_required",
+      findings: ["simulated_after_journal_crash"],
+    });
+    expect(existsSync(join(v.repoRoot, ".helix/state/forward-plan-authoring-journal.json"))).toBe(
+      true,
+    );
+    expect(existsSync(join(v.repoRoot, ".helix/tmp/forward-plan-authoring"))).toBe(false);
+  });
 });

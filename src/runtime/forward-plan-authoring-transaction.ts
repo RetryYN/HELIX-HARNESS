@@ -7,6 +7,7 @@ import {
   lstatSync,
   mkdirSync,
   openSync,
+  readdirSync,
   readFileSync,
   realpathSync,
   renameSync,
@@ -79,7 +80,7 @@ interface Journal extends JournalPayload {
 export interface ForwardPlanAuthoringTransactionInput {
   repoRoot: string;
   reservationInput: Omit<ForwardReverseTerminalReservationInput, "allocation"> & {
-    allocation: Omit<Allocation, "receipt_digest">;
+    allocation: { reverse_slug: string; reverse_plan_blob_digest: Sha256Digest };
   };
   reservationAuthorityPath: typeof OPEN_BRANCH_RESERVATION_AUTHORITY_PATH;
   forwardDocument: string;
@@ -98,10 +99,11 @@ export interface ForwardPlanAuthoringTransactionResult {
 }
 export interface ForwardPlanAuthoringTransactionDeps {
   currentHead(root: string): string;
-  originMainHead(root: string): string;
+  remoteMainHead(root: string): string;
   acquireLock(root: string): ClosureMaterializationLock;
   releaseLock(lock: ClosureMaterializationLock): void;
   beforeCommit?(): void;
+  afterJournal?(): void;
 }
 
 const git = (root: string, ref: string) =>
@@ -112,7 +114,16 @@ const git = (root: string, ref: string) =>
   }).trim();
 const defaults: ForwardPlanAuthoringTransactionDeps = {
   currentHead: (root) => git(root, "HEAD"),
-  originMainHead: (root) => git(root, "refs/remotes/origin/main"),
+  remoteMainHead: (root) => {
+    const output = execFileSync("git", ["ls-remote", "--exit-code", "origin", "refs/heads/main"], {
+      cwd: root,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    const head = output.split(/\s+/u)[0];
+    if (!head || !/^[a-f0-9]{40}$/u.test(head)) throw new Error("remote_main_invalid");
+    return head;
+  },
   acquireLock: acquireClosureMaterializationLock,
   releaseLock: releaseClosureMaterializationLock,
 };
@@ -370,7 +381,7 @@ export function authorForwardPlanTransaction(
     root = realpathSync(input.repoRoot);
     if (resolve(input.repoRoot) !== root) return blocked(["repository_realpath_mismatch"]);
     head = deps.currentHead(root);
-    main = deps.originMainHead(root);
+    main = deps.remoteMainHead(root);
   } catch {
     return blocked(["git_or_repository_authority_unavailable"]);
   }
@@ -382,7 +393,11 @@ export function authorForwardPlanTransaction(
     return blocked(["origin_main_authority_mismatch"]);
   let authorityBytes: string, authority: OpenBranchPlanReservationSnapshot;
   try {
-    if (Object.hasOwn(input.reservationInput.allocation, "receipt_digest"))
+    if (
+      ["receipt_digest", "allocation_id", "forward_plan_id", "reverse_plan_id"].some((field) =>
+        Object.hasOwn(input.reservationInput.allocation, field),
+      )
+    )
       return blocked(["caller_allocator_receipt_forbidden"]);
     if (input.reservationAuthorityPath !== OPEN_BRANCH_RESERVATION_AUTHORITY_PATH)
       return blocked(["reservation_authority_path_invalid"]);
@@ -401,7 +416,63 @@ export function authorForwardPlanTransaction(
     return blocked(["forward_document_digest_drift"]);
   if (reverseDigest !== input.reservationInput.allocation.reverse_plan_blob_digest)
     return blocked(["reverse_document_digest_drift"]);
-  const allocationPayload = { ...input.reservationInput.allocation };
+  const reverseSlug = input.reservationInput.allocation.reverse_slug;
+  if (!/^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/u.test(reverseSlug))
+    return blocked(["reverse_slug_invalid"]);
+  const writerMatches = (entry: OpenBranchPlanReservationSnapshot["reservations"][number]) =>
+      entry.source.kind === "active_writer" &&
+      entry.source.branch === input.reservationInput.branch &&
+      entry.source.assignment_id === input.reservationInput.assignment_id &&
+      entry.source.lease_id === input.reservationInput.lease_id &&
+      entry.source.fence_token === input.reservationInput.fence_token &&
+      entry.head_sha === head &&
+      entry.lifecycle === "active",
+    writerEntries = authority.reservations.filter(writerMatches);
+  if (
+    Object.values(authority.evidence).some((surface) => surface.status !== "available") ||
+    writerEntries.length === 0
+  )
+    return blocked(["allocator_writer_authority_anchor_missing"]);
+  const existingForward = writerEntries.find(
+      (entry) => entry.plan_id === input.reservationInput.forward.plan_id,
+    ),
+    reversePattern = new RegExp(`^PLAN-REVERSE-(\\d+)-${reverseSlug}$`, "u"),
+    existingReverse = writerEntries.filter(
+      (entry) =>
+        reversePattern.test(entry.plan_id) &&
+        entry.owner_issue === input.reservationInput.forward.owner_issue &&
+        entry.responsibility_owner === input.reservationInput.forward.responsibility_owner &&
+        entry.plan_blob_digest === reverseDigest,
+    );
+  if ((existingForward && existingReverse.length !== 1) || existingReverse.length > 1)
+    return blocked(["allocator_existing_pair_ambiguous"]);
+  const reverseNumber = existingReverse[0]
+      ? Number(reversePattern.exec(existingReverse[0].plan_id)?.[1])
+      : Math.max(
+          0,
+          ...authority.reservations.map((entry) =>
+            Number(/^PLAN-REVERSE-(\d+)-/u.exec(entry.plan_id)?.[1] ?? 0),
+          ),
+        ) + 1,
+    reversePlanId = existingReverse[0]?.plan_id ?? `PLAN-REVERSE-${reverseNumber}-${reverseSlug}`,
+    allocationId = `allocation-${sha256Digest(
+      canonicalJson({
+        repository: authority.repository,
+        forward_plan_id: input.reservationInput.forward.plan_id,
+        reverse_plan_id: reversePlanId,
+        branch: input.reservationInput.branch,
+        assignment_id: input.reservationInput.assignment_id,
+        lease_id: input.reservationInput.lease_id,
+        fence_token: input.reservationInput.fence_token,
+        candidate_head: head,
+      }),
+    ).slice(7, 31)}`,
+    allocationPayload = {
+      allocation_id: allocationId,
+      forward_plan_id: input.reservationInput.forward.plan_id,
+      reverse_plan_id: reversePlanId,
+      reverse_plan_blob_digest: input.reservationInput.allocation.reverse_plan_blob_digest,
+    };
   const allocation: Allocation = {
     ...allocationPayload,
     receipt_digest: sha256Digest(canonicalJson(allocationPayload)),
@@ -539,7 +610,7 @@ export function authorForwardPlanTransaction(
       head,
       main,
       allocator: receipt.receipt_digest,
-      beforeDigest,
+      beforeDigest: receipt.reservation_authority_before_digest,
       afterDigest,
       plans: [
         [forwardPath, forwardDigest],
@@ -572,7 +643,7 @@ export function authorForwardPlanTransaction(
     const authorityPath = existing(root, input.reservationAuthorityPath);
     if (sha256Digest(readFileSync(authorityPath, "utf8")) !== beforeDigest)
       return blocked(["reservation_authority_cas_drift"], reservation);
-    if (deps.currentHead(root) !== head || deps.originMainHead(root) !== main)
+    if (deps.currentHead(root) !== head || deps.remoteMainHead(root) !== main)
       return blocked(["git_authority_drift"], reservation);
     mkdirSync(resolve(root, RECEIPT_ROOT), { recursive: true });
     existing(root, RECEIPT_ROOT);
@@ -632,10 +703,6 @@ export function authorForwardPlanTransaction(
         bytes: nextBytes,
       },
     ];
-    for (const file of files) {
-      mkdirSync(dirname(resolve(root, file.staged)), { recursive: true });
-      create(target(root, file.staged), file.bytes);
-    }
     const payload: JournalPayload = {
       schema_version: FORWARD_PLAN_AUTHORING_TRANSACTION_SCHEMA,
       state: "prepared",
@@ -648,10 +715,24 @@ export function authorForwardPlanTransaction(
       files: files.map(({ bytes: _bytes, ...file }) => file),
     };
     create(target(root, JOURNAL), `${canonicalJson(seal(payload))}\n`);
+    deps.afterJournal?.();
+    for (const file of files) {
+      mkdirSync(dirname(resolve(root, file.staged)), { recursive: true });
+      create(target(root, file.staged), file.bytes);
+    }
+    const expectedStages = files.map((file) => file.staged.split("/").at(-1)).sort(),
+      actualStages = readdirSync(existing(root, txRoot)).sort();
+    if (
+      canonicalJson(actualStages) !== canonicalJson(expectedStages) ||
+      files.some(
+        (file) => sha256Digest(readFileSync(existing(root, file.staged), "utf8")) !== file.digest,
+      )
+    )
+      throw new Error("authoring_stage_set_invalid");
     deps.beforeCommit?.();
     if (
       deps.currentHead(root) !== head ||
-      deps.originMainHead(root) !== main ||
+      deps.remoteMainHead(root) !== main ||
       sha256Digest(readFileSync(authorityPath, "utf8")) !== beforeDigest ||
       createPaths.some((path) => existsSync(resolve(root, path)))
     ) {

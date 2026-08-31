@@ -26,7 +26,7 @@ Forward／Reverse双方のexact `dependencies.references`だけをpair成立と�
 |---|---|---|---|---|
 | `analyzeBackfill` | `(plans: ParsedPlan[], glossaryText: string) => BackfillResult` | ForwardとReverseのPLAN identity、status、backfill state、references/requiresが解析済み | draft pendingはreferences、confirmed pendingはreferencesまたは明示requires、terminalはrequiresでpairingする | 片方向、wrong Reverse ID、state不一致を`reverseLinkMissing`としてfail-close |
 | `reserveForwardReverseTerminalPair` | `(input) => ForwardReverseTerminalReservationResult` | typed `ADD_FEATURE`の`add-impl`、allocator receipt、main HEAD、既存reservation snapshotが一致 | Forwardとpending Reverseのidentity、双方向reference、ownershipを同一projectionへ原子的に予約する | wrong allocator identity、stale main、collisionでは予約を生成せずfail-close |
-| `authorForwardPlanTransaction` | `(input, deps?) => ForwardPlanAuthoringTransactionResult` | exact allocation要求、live origin/main、Forward／Reverse原稿、既存reservation authorityが一致する | transaction内issuerがreceiptを発行し、PLAN 2件、receipt、更新済みreservation authorityをsealed journalの同一transactionでmaterializeして再読込する | caller署名receipt、authority drift、symlink、collision、seal不正、partial commitをfail-close／roll-forwardする |
+| `authorForwardPlanTransaction` | `(input, deps?) => ForwardPlanAuthoringTransactionResult` | semantic Reverse slug、remote main、Forward／Reverse原稿、availableな既存reservation authority、同writer anchorが一致する | authority exact setからnext free Reverse familyとallocation IDを決定し、PLAN 2件、receipt、更新authorityを同一transactionでmaterializeして再読込する | caller exact ID、anchor欠落、authority drift、symlink、collision、seal不正、partial commitをfail-close／roll-forwardする |
 
 `backfill_state=complete`のterminal／legacy Reverseは既存の`requires`契約を維持する。pending pairのreferences成立をexecution
 dependency readyへ昇格させず、confirmed PLANが明示requiresを持つ場合だけready dependencyとして受理する。
@@ -36,14 +36,17 @@ terminal contractとして残し、予約だけでIssue closeを許可しない�
 ## production authoring境界
 
 `helix plan author-forward --input <json>`を唯一のproduction consumerとする。input JSONは
-`reservationInput`、`reservationAuthorityPath`、両documentを必須とする。`allocation_id`は1〜128文字の
-`[A-Za-z0-9][A-Za-z0-9._:-]*`だけを受理する。caller提供`receipt_digest`は拒否し、live authorityと
-既存reservation projectionを検証したtransaction内issuerだけがexact ID receiptを発行する。receiptは
+`reservationInput`、`reservationAuthorityPath`、両documentを必須とする。callerはbounded lowercase
+`reverse_slug`だけを要求し、`allocation_id`、Forward／Reverse exact allocation ID、`receipt_digest`の提供を禁止する。
+transaction内allocatorはavailableな`current_main`／`open_pr`／`active_writer` exact setのReverse最大番号+1を選び、
+同一branch／HEAD／assignment／lease／fenceのactive_writer anchorが存在するときだけexact ID receiptを発行する。receiptは
 `.helix/state/plan-allocator-receipts/<allocation_id>.json`、reservation authorityは既存
-`.helix/state/open-branch-plan-reservations.json`だけを認める。CLIは固定git command以外を入力から組み立てない。
+`.helix/state/open-branch-plan-reservations.json`だけを認める。production defaultのmain authorityはtracking refでなく
+`git ls-remote origin refs/heads/main`から取得する。CLIは固定git command以外を入力から組み立てない。
 
-apply時はForward／Reverse／receiptの最終pathがすべて不存在であることを確認し、一時fileをfsyncしてjournalを保存した後、HEADを
-再検証して3 create artifactをhard-link no-clobberで作成し、reservation authorityをCAS更新する。journalはHEAD、main、issuer receipt、
+apply時はForward／Reverse／receiptの最終pathがすべて不存在であることを確認し、prepared journalを先にdurable作成してから
+4 staged fileをfsyncする。commit前にstage exact setと全digest、HEAD、remote mainを再検証し、3 create artifactを
+hard-link no-clobberで作成してreservation authorityをCAS更新する。journalはHEAD、main、issuer receipt、
 authority before/after、4 artifactをsealする。recoveryはfinal／stagedのphysical pathをアクセスごとに再検証する。prepared中に
 create finalが出現した場合はdigest一致でも外部writeとして保持してfail-closeする。preparedはcompensate、commit marker後は
 roll-forwardし、未収束時は`recovery_required`を返す。全artifactと再読込authorityが一致するretryだけを
@@ -53,6 +56,6 @@ roll-forwardし、未収束時は`recovery_required`を返す。全artifactと�
 
 `U-BACKFILL-008..010`を`tests/backfill-pairing.test.ts`が所有し、draft／confirmed pendingの双方向正例、
 片方向、wrong ID、state不一致、terminal requires昇格、`backfill_state`条件除去mutationを検査する。
-`U-FPATR-001..012`が4 artifact同時永続化／再読込、live main、caller-forge拒否、no-clobber、exact references／workflow identity、
+`U-FPATR-001..014`が4 artifact同時永続化／再読込、remote main、caller exact-ID拒否、deterministic allocation、no-clobber、exact references／workflow identity、
 process-start／host／token lock、realpath、snapshot／digest drift、journal seal／HEAD binding、journal後parent symlink swap、
-prepared external write保持、bounded allocation IDを列挙検証する。
+prepared external write保持、bounded semantic slug、writer anchor、journal-first crash windowを列挙検証する。
