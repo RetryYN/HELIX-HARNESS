@@ -12,7 +12,7 @@ backfill_state: complete
 created: 2026-08-31
 updated: 2026-08-31
 owner: Codex / TL
-github_issue_id: 1269
+github_issue_id: 1206
 behavior_contract_id: CI-VERIFICATION-PLAN-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
