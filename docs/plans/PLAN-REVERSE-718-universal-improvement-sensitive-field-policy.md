@@ -90,10 +90,10 @@ agent_slots:
 ## R0 現状採取
 
 Forward PR #1301は最終candidate HEAD `3b7c6e334e227efb4be5a7ed3b57dc15a3bc4077`からmerge commit
-`898bf66333c47155bd251228d1945ecf8b8d4485`へcanonical mergeされた。Claude exact-head receiptはreview対象
-`6415e1a6d8bb21f34cac9c7838dbd0d295b97d46`、receipt
-`sha256:f85959723502c8d304f5fb35b7b45181d62aeb16bc4f52cdbccf69812080374c`へ束縛される。最終candidateの
-draft CI `33436421318`とReady CI `33438369682`はsuccessである。review receiptと最終candidate CIを同一HEADと偽装しない。
+`898bf66333c47155bd251228d1945ecf8b8d4485`へcanonical mergeされた。Claude exact-head receiptは同じ最終HEAD、
+receipt `sha256:af832a358fa5a469575049a2c0147624bc82a3242535552c6c894228b46ba56a`へ束縛される。draft CI
+`33436421318`とReady CI `33438369682`はsuccessである。旧HEAD `6415e1a6d8bb21f34cac9c7838dbd0d295b97d46`の
+receiptはpre-sync historical evidenceへ降格し、current authorityへ再利用しない。
 
 ## R1 観測契約
 

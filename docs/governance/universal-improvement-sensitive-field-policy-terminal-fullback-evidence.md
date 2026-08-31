@@ -13,10 +13,10 @@ plan: PLAN-REVERSE-718-universal-improvement-sensitive-field-policy
 
 - Forward PR: #1301
 - 最終candidate HEAD: `3b7c6e334e227efb4be5a7ed3b57dc15a3bc4077`
-- Claude exact-head review対象: `6415e1a6d8bb21f34cac9c7838dbd0d295b97d46`
-- Claude review: https://github.com/RetryYN/HELIX-HARNESS/pull/1301#issuecomment-5484064612
-- Claude receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1301#issuecomment-5484079413
-- receipt digest: `sha256:f85959723502c8d304f5fb35b7b45181d62aeb16bc4f52cdbccf69812080374c`
+- Claude exact-head review対象: `3b7c6e334e227efb4be5a7ed3b57dc15a3bc4077`
+- Claude receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1301#issuecomment-5484400677
+- receipt digest: `sha256:af832a358fa5a469575049a2c0147624bc82a3242535552c6c894228b46ba56a`
+- 同期前の履歴receipt: HEAD `6415e1a6d8bb21f34cac9c7838dbd0d295b97d46` / `sha256:f85959723502c8d304f5fb35b7b45181d62aeb16bc4f52cdbccf69812080374c`
 - draft CI: [`33436421318`](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33436421318) success
 - Ready CI: [`33438369682`](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33438369682) success
 - canonical merge: `898bf66333c47155bd251228d1945ecf8b8d4485`
