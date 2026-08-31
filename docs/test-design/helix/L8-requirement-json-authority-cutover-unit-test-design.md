@@ -23,5 +23,6 @@ pair_artifact: docs/design/helix/L6-function-design/requirement-json-authority-c
 | U-RAC-005 | DB cutover | v41、273 row、owner/oracle 0 orphan、旧shadow table 0 | `tests/requirement-authority.test.ts` |
 | U-RAC-006 | legacy境界 | shadow再生成先とallowlist外legacy semantic readを拒否 | `tests/requirement-authority.test.ts` |
 | U-RAC-008 | 合成pathのlegacy read | `join()`等でpathを組み立てたallowlist外legacy semantic readを拒否する。同一file内のconst束縛を解決し、未解決の接頭辞はsuffix一致で判定する。canonical JSON readとgenerated view readは誤検知しない | `tests/requirement-authority.test.ts` |
+| U-RAC-009 | frozen material Git receipt | material commit object欠落、non-ancestor、manifest欠落、invalid JSON、root digest driftを個別findingで拒否し、ancestorかつmanifest digest一致だけを受理する | `tests/requirement-authority.test.ts` |
 
 DB検証は既存schema registryとprojection writerを使い、別DB／別schema実装をテスト側へ作らない。

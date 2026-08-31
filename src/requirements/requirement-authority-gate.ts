@@ -57,6 +57,53 @@ export interface RequirementAuthorityGateResult {
   messages: string[];
 }
 
+export function checkFrozenBaselineMaterialReceipt(
+  repoRoot: string,
+  materialHead: string,
+  expectedRootDigest: string,
+): string[] {
+  if (!existsSync(join(repoRoot, ".git"))) return [];
+
+  try {
+    execFileSync("git", ["cat-file", "-e", `${materialHead}^{commit}`], {
+      cwd: repoRoot,
+      stdio: "ignore",
+    });
+  } catch {
+    return ["canonical frozen baseline material commit is unreachable"];
+  }
+
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", materialHead, "HEAD"], {
+      cwd: repoRoot,
+      stdio: "ignore",
+    });
+  } catch {
+    return ["canonical frozen baseline material commit is not an ancestor of current HEAD"];
+  }
+
+  let manifestText: string;
+  try {
+    manifestText = execFileSync(
+      "git",
+      ["show", `${materialHead}:requirements-ir/manifest.json`],
+      { cwd: repoRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
+    );
+  } catch {
+    return ["canonical frozen baseline material manifest is unreachable"];
+  }
+
+  let rootDigest: unknown;
+  try {
+    rootDigest = (JSON.parse(manifestText) as { root_digest?: unknown }).root_digest;
+  } catch {
+    return ["canonical frozen baseline material manifest is invalid"];
+  }
+  return rootDigest === expectedRootDigest
+    ? []
+    : ["canonical frozen baseline material receipt differs"];
+}
+
 const READ_API = /(readFileSync|readFile|createReadStream)/;
 const READ_API_NAMES = new Set(["readFileSync", "readFile", "createReadStream"]);
 const PATH_JOIN_NAMES = new Set(["join", "resolve"]);
@@ -284,27 +331,13 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
     if (canonical.baseline_root_digest !== config.frozen_baseline_root_digest) {
       violations.push("canonical frozen baseline differs from the external material receipt");
     }
-    if (existsSync(join(repoRoot, ".git"))) {
-      try {
-        execFileSync(
-          "git",
-          ["merge-base", "--is-ancestor", config.frozen_baseline_material_head, "HEAD"],
-          { cwd: repoRoot, stdio: "ignore" },
-        );
-        const materialManifest = JSON.parse(
-          execFileSync(
-            "git",
-            ["show", `${config.frozen_baseline_material_head}:requirements-ir/manifest.json`],
-            { cwd: repoRoot, encoding: "utf8" },
-          ),
-        ) as { root_digest?: string };
-        if (materialManifest.root_digest !== config.frozen_baseline_root_digest) {
-          violations.push("canonical frozen baseline material receipt differs");
-        }
-      } catch {
-        violations.push("canonical frozen baseline material receipt is unreachable");
-      }
-    }
+    violations.push(
+      ...checkFrozenBaselineMaterialReceipt(
+        repoRoot,
+        config.frozen_baseline_material_head,
+        config.frozen_baseline_root_digest,
+      ),
+    );
     if (canonical.refinement_contracts.length > 0) {
       const requiresHeadBinding = canonical.refinement_contracts.some(
         (record) => record.lifecycle_status === "approved" || record.lifecycle_status === "frozen",
