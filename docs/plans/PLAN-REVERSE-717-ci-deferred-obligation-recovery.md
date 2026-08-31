@@ -57,9 +57,9 @@ review_evidence:
     scope: "PR #1305 final exact HEADのReverse fullback、U-CIDEFER-013、Forward／Reverse pair、非終端境界を独立reviewし、BLOCKER 0を確認した。CI、DB projection／checkpoint、receiptは同一HEADへ束縛済み。"
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1305#issuecomment-5485900343"
     green_commands:
-      - kind: ci
+      - kind: integration_test
         command: "GitHub Actions harness-check run 33446819961"
-        runner: github-actions
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-08-31T22:57:49Z"
