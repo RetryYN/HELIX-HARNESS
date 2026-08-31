@@ -12,7 +12,7 @@ backfill_state: pending_reverse
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
-github_issue_id: 1208
+github_issue_id: 1306
 behavior_contract_id: CI-DEFERRED-OBLIGATION-RECOVERY-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
