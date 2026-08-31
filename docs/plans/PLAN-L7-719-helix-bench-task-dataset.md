@@ -32,6 +32,8 @@ contract_postconditions: "10 task、5カテゴリ、15-field snapshot、public�
 contract_invariants: "runner／scorer／provider／routingを実装せず、future answer／secret／PII／private review contextをpublicへ含めない"
 contract_failures: "missing fixture、digest drift、hidden leakage、historical reuse、provider authority化をfail-closeする"
 tdd_red_required: true
+red_at: "2026-09-01T04:32+09:00"
+green_at: "2026-09-01T04:32+09:00"
 red_test: "U-HBDATA-001..008をdataset実装前に追加し、registry欠落と型・denominator・nested entry driftでRedになる"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-01T04:32+09:00にsrc/runtime/helix-bench-task-dataset.tsのfixture digest drift checkを一時除去すると、npx vitest run tests/helix-bench-task-dataset.test.tsでU-HBDATA-002が1 failed／4 passedとなりmutationをkillした。直後に復元し同command 5 tests greenを実測した。"
