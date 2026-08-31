@@ -28,9 +28,9 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1297 Forward／pending Reverse vehicleを同一transactionで予約する"
 contract_preconditions: "typed ADD_FEATUREのadd-impl、allocator receipt、current main HEAD、assignment／lease付きreservation snapshotが存在する"
-contract_postconditions: "ForwardとReverseのexact identity、同一owner、双方向reference、pending stateを既存reservation projectionへ同時追加する"
+contract_postconditions: "ForwardとReverseのexact identity、同一owner、双方向reference、pending stateを既存reservation projectionへ同時追加し、production authoring transactionで両PLANを同時materializeする"
 contract_invariants: "Reverse本文／review evidence／完了証拠を捏造せず、Forward merge前にReverse完了を要求せず、legacy modeを出力しない"
-contract_failures: "wrong allocator identity、stale main、片方向、active collision、旧identity再出力をfail-closeする"
+contract_failures: "wrong allocator identity、stale main／candidate HEAD、document digest drift、片方向、active collision、旧identity再出力をfail-closeする"
 tdd_red_required: true
 red_test: "#1206／#1207／#1208でForward実装後にReverse vehicleを後付けし、PLAN confirmとCIが循環した実測をRed fixtureとする"
 red_at: "2026-08-31T16:58:10Z"
@@ -56,12 +56,21 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FRTR-002, test_path: tests/forward-reverse-terminal-reservation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FRTR-003, test_path: tests/forward-reverse-terminal-reservation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FRTR-004, test_path: tests/forward-reverse-terminal-reservation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-001, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-002, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-003, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-004, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-005, test_path: tests/forward-plan-authoring-transaction.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, oracle_id: U-FPATR-006, test_path: tests/forward-plan-authoring-transaction.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-720-forward-reverse-terminal-reservation.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/forward-reverse-terminal-reservation.ts, artifact_type: source_module }
   - { artifact_path: tests/forward-reverse-terminal-reservation.test.ts, artifact_type: test_code }
+  - { artifact_path: src/runtime/forward-plan-authoring-transaction.ts, artifact_type: source_module }
+  - { artifact_path: tests/forward-plan-authoring-transaction.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-test-design.md, artifact_type: test_design }
 agent_slots:
@@ -75,7 +84,9 @@ agent_slots:
 
 1. allocator receiptとmain／assignment／lease境界をtyped inputへ固定する。
 2. Forward／Reverseの2予約を既存projectionへ同時追加する。
-3. identity、stale main、collision、legacy outputの負極性oracleを通す。
-4. mutation、Claude exact-HEAD review、CI後にconfirmし、Forward merge後は別ReverseでR0〜R4とmain read-afterを行う。
+3. `helix plan author-forward`からjournal付きNode transactionへ接続し、両PLANを同時materializeする。
+4. identity、stale main／candidate HEAD、digest drift、collision、legacy output、冪等retryの負極性oracleを通す。
+5. mutation、Claude exact-HEAD review、CI後にconfirmし、Forward merge後は別ReverseでR0〜R4とmain read-afterを行う。
 
-本PLANは予約kernelだけを所有する。Reverse検証、Issue close、review省略、provider routingは非対象とする。
+本PLANは予約kernelとその最小production authoring consumerを所有する。allocator生成、Reverse検証、Issue close、review省略、
+provider routing、PLAN completionは非対象とする。
