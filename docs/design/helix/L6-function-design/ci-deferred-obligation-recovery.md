@@ -25,7 +25,7 @@ first detecting oracleを保持する。観測結果は改善候補を生成で�
 - missing、duplicate、expired、cancelled、wrong profile、stale HEAD、wrong originをsuccessへ相殺しない。
 - `evaluated_at`が有効なtimestampでない場合は期限判定へ流さず、入力全体をfail-closeする。
 - terminal runは完了時刻、run identity、attemptの決定順で最初の1件を選び、複数件自体をfindingにする。
-- failureはselector decision、registry edge、first detecting oracleへ`reverse_candidate`として戻す。
+- failureはselector decision、registry edge、first detecting oracleへ`reverse_candidate`として戻す。first detecting oracleが欠落または不正なら`recovery_oracle_missing`でfail-closeし、追跡不能な候補を生成しない。
 - quarantineはowner、期限、replacement oracleが全て有効な場合だけ受理する。
 - wall-clock短縮だけでは完了せず、escaped defectとmutation detectionを同時に判定する。
 - target identityを独自enumへ再定義せず、Verification Planのdeferred obligationから一方向投影する。
