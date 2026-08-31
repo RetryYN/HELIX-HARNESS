@@ -72,7 +72,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-31T16:58:10Z"
-    evidence_digest: "sha256:599b179737a829fdcd38a5a19df8d03b16745977290da6ee45c6d3c0e6088d46"
+    evidence_digest: "sha256:f593c47e660d179fdbfae2f6b7af030c303c35e88bb00228c6f11bb638fa0dc2"
   entries: []
 dependencies:
   parent: docs/plans/PLAN-L7-706-ci-verification-plan.md
@@ -109,6 +109,8 @@ modifies:
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — exactly-once recovery domain設計" }
   - { role: qa, slot_label: "QA — selector fault injectionと安全性oracle" }
