@@ -5,8 +5,8 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-backfill_state: pending_reverse
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 created: 2026-08-30
 updated: 2026-08-31
 review_evidence:
@@ -63,6 +63,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-711-ci-responsibility-registry.md
     - src/runtime/ci-responsibility-registry.ts
+    - docs/plans/PLAN-REVERSE-706-ci-verification-plan.md
   references:
     - "issue:1206"
     - docs/plans/PLAN-REVERSE-706-ci-verification-plan.md
@@ -114,3 +115,13 @@ left_arm_carry:
 # CI Verification Plan実装
 
 CIS-R-07〜09だけを実装する。scheduler、runner、telemetry recoveryは#1207以降へ残す。
+
+## Reverse candidate接続証拠
+
+Reverse candidateはPR #1267のHEAD `71db459b577d7f3bcd213ef1c546d5eed01dffd3`でClaude exact-HEAD review
+BLOCKER 0 / NON-BLOCKER 0、draft CI `33341306513`とReady CI `33342436154`のterminal successを成立させ、
+canonical reviewed merge `c2f818ddaa0b3155e26df0a61551a617c25a0d4e`へ到達した。read-after receipt
+`sha256:e977a6a9e08a815aa8b479308154656ebca67afabcacc99f69575b1e8d147401`でmerge stateとcandidate HEADを
+再取得し、post-main harness-check `33342748021`もsuccessである。よってForwardの`status: confirmed`を維持したまま、
+Reverseとの双方向terminal dependencyを確定し、`backfill_state: complete`、`completion_claim_allowed: true`へ遷移する。
+Issue #1206のcloseは本closure bundleのcanonical mergeとmain read-afterまで先取りしない。
