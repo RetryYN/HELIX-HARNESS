@@ -4,7 +4,7 @@ title: "PLAN-L7-720: Forward作成時にpending Reverse終端契約を予約す�
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-09-01

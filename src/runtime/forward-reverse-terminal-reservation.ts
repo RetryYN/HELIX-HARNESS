@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Sha256Digest } from "./digest";
+import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
   type OpenBranchPlanReservation,
   type OpenBranchPlanReservationProjection,
@@ -71,10 +71,6 @@ export interface ForwardReverseTerminalReservationResult {
   reservation_projection: OpenBranchPlanReservationProjection | null;
 }
 
-function planFamily(planId: string): string | null {
-  return /^(?:PLAN-L7|PLAN-REVERSE)-(\d+)-([a-z0-9-]+)$/u.exec(planId)?.slice(1).join(":") ?? null;
-}
-
 export function reserveForwardReverseTerminalPair(
   rawInput: ForwardReverseTerminalReservationInput,
 ): ForwardReverseTerminalReservationResult {
@@ -94,9 +90,15 @@ export function reserveForwardReverseTerminalPair(
   const findings: string[] = [];
   if (input.forward.plan_id !== input.allocation.forward_plan_id)
     findings.push("allocator_forward_identity_mismatch");
-  if (planFamily(input.forward.plan_id) !== planFamily(input.allocation.reverse_plan_id))
-    findings.push("allocator_reverse_identity_mismatch");
+  const { receipt_digest: _receiptDigest, ...allocationPayload } = input.allocation;
+  if (sha256Digest(canonicalJson(allocationPayload)) !== input.allocation.receipt_digest)
+    findings.push("allocator_receipt_invalid");
   if (input.expected_main_head !== input.observed_main_head) findings.push("stale_main");
+  const snapshotMain = input.reservation_snapshot.reservations.find(
+    (reservation) => reservation.source.kind === "current_main",
+  );
+  if (!snapshotMain || snapshotMain.head_sha !== input.observed_main_head)
+    findings.push("snapshot_main_mismatch");
   if (findings.length > 0) {
     return {
       schema_version: FORWARD_REVERSE_TERMINAL_RESERVATION_SCHEMA,
@@ -143,7 +145,17 @@ export function reserveForwardReverseTerminalPair(
     ...input.reservation_snapshot,
     reservations: [...input.reservation_snapshot.reservations, ...reservations],
   });
-  if (!reservationProjection.ok) findings.push("reservation_projection_rejected");
+  if (!reservationProjection.ok) {
+    return {
+      schema_version: FORWARD_REVERSE_TERMINAL_RESERVATION_SCHEMA,
+      ok: false,
+      findings: ["reservation_projection_rejected"],
+      forward: null,
+      reverse: null,
+      reservations: [],
+      reservation_projection: reservationProjection,
+    };
+  }
   const forwardPath = `docs/plans/${input.forward.plan_id}.md`;
   const reversePath = `docs/plans/${input.allocation.reverse_plan_id}.md`;
   return {

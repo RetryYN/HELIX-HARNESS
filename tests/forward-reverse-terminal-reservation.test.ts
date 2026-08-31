@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sha256Digest } from "../src/runtime/digest";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import { reserveForwardReverseTerminalPair } from "../src/runtime/forward-reverse-terminal-reservation";
 import {
   OPEN_BRANCH_PLAN_RESERVATION_SCHEMA,
@@ -39,6 +39,12 @@ function snapshot(): OpenBranchPlanReservationSnapshot {
 }
 
 function input() {
+  const allocationPayload = {
+    allocation_id: "allocation-1297",
+    forward_plan_id: "PLAN-L7-720-forward-reverse-reservation",
+    reverse_plan_id: "PLAN-REVERSE-901-allocator-exact-identity",
+    reverse_plan_blob_digest: sha256Digest("reverse"),
+  };
   return {
     forward: {
       plan_id: "PLAN-L7-720-forward-reverse-reservation",
@@ -50,11 +56,8 @@ function input() {
       plan_blob_digest: sha256Digest("forward"),
     },
     allocation: {
-      allocation_id: "allocation-1297",
-      forward_plan_id: "PLAN-L7-720-forward-reverse-reservation",
-      reverse_plan_id: "PLAN-REVERSE-720-forward-reverse-reservation",
-      reverse_plan_blob_digest: sha256Digest("reverse"),
-      receipt_digest: sha256Digest("allocation"),
+      ...allocationPayload,
+      receipt_digest: sha256Digest(canonicalJson(allocationPayload)),
     },
     branch: "feature/1297-forward-reverse-reservation",
     assignment_id: "assignment-1297",
@@ -75,11 +78,12 @@ describe("Forward／pending Reverse terminal reservation", () => {
     expect(result.forward).toMatchObject({
       backfill_state: "pending_reverse",
       completion_claim_allowed: false,
-      references: ["docs/plans/PLAN-REVERSE-720-forward-reverse-reservation.md"],
+      references: ["docs/plans/PLAN-REVERSE-901-allocator-exact-identity.md"],
     });
     expect(result.reverse).toMatchObject({
       backfill_state: "pending_reverse",
       completion_claim_allowed: false,
+      plan_id: "PLAN-REVERSE-901-allocator-exact-identity",
       references: ["docs/plans/PLAN-L7-720-forward-reverse-reservation.md"],
     });
     expect(result.reservations).toHaveLength(2);
@@ -94,11 +98,21 @@ describe("Forward／pending Reverse terminal reservation", () => {
         "allocator_forward_identity_mismatch",
       ],
       [
-        "wrong Reverse family",
+        "tampered allocator receipt",
         { allocation: { ...input().allocation, reverse_plan_id: "PLAN-REVERSE-721-wrong" } },
-        "allocator_reverse_identity_mismatch",
+        "allocator_receipt_invalid",
+      ],
+      [
+        "tampered allocation id",
+        { allocation: { ...input().allocation, allocation_id: "allocation-tampered" } },
+        "allocator_receipt_invalid",
       ],
       ["stale main", { observed_main_head: "3".repeat(40) }, "stale_main"],
+      [
+        "caller repeats a stale main",
+        { expected_main_head: "3".repeat(40), observed_main_head: "3".repeat(40) },
+        "snapshot_main_mismatch",
+      ],
     ] as const) {
       const result = reserveForwardReverseTerminalPair({ ...input(), ...override });
       expect(result.ok).toBe(false);
@@ -138,6 +152,9 @@ describe("Forward／pending Reverse terminal reservation", () => {
     });
     expect(result.ok).toBe(false);
     expect(result.findings).toContain("reservation_projection_rejected");
+    expect(result.forward).toBeNull();
+    expect(result.reverse).toBeNull();
+    expect(result.reservations).toEqual([]);
   });
 
   it("U-FRTR-004: legacy route identityとReverse証拠を予約出力へ生成しない", () => {
