@@ -56,9 +56,9 @@ review_evidence:
     scope: "PR #1290 pre-confirm exact HEADについて、5 mutation exact set、exactly-once recovery、main/nightly/release full contract、origin backprop、quarantine、metricsを独立reviewし、実装BLOCKER 0を確認した。"
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1290#issuecomment-5481632156"
     green_commands:
-      - kind: test
+      - kind: unit_test
         command: "npx vitest run tests/ci-deferred-obligation-recovery.test.ts tests/ci-verification-plan.test.ts tests/ci-critical-path-scheduler.test.ts tests/ci-responsibility-registry.test.ts"
-        runner: local
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-08-31T16:58:10Z"
