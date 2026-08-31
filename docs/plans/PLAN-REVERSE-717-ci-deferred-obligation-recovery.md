@@ -48,7 +48,7 @@ review_evidence:
   - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-08-31T22:57:50Z"
-    tests_green_at: "2026-08-31T22:57:49Z"
+    tests_green_at: "2026-08-31T21:51:50Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
@@ -57,15 +57,15 @@ review_evidence:
     scope: "PR #1305 final exact HEADのReverse fullback、U-CIDEFER-013、Forward／Reverse pair、非終端境界を独立reviewし、BLOCKER 0を確認した。CI、DB projection／checkpoint、receiptは同一HEADへ束縛済み。"
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1305#issuecomment-5485900343"
     green_commands:
-      - kind: integration_test
-        command: "GitHub Actions harness-check run 33446819961"
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/ddd-tdd-rules.test.ts tests/backfill-pairing.test.ts --reporter=verbose && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md"
         runner: node
-        scope: full
+        scope: targeted
         exit_code: 0
-        completed_at: "2026-08-31T22:57:49Z"
-        evidence_path: docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md
-        output_digest: "sha256:48b1d29bba233c2b439a26a6e69c3ac6ceee7e4e6daca6e5e41210ac8a129795"
-        result: "run 33446819961 success、DB projection／checkpoint replay一致、approve／BLOCKER 0"
+        completed_at: "2026-08-31T21:51:50Z"
+        evidence_path: tests/ci-deferred-obligation-recovery.test.ts
+        output_digest: "sha256:f0657f19493747e2a1ede2048a2a13de02afbe3d327cbbf86d96e6e65a008489"
+        result: "2 test files / 57 testsとForward／Reverse PLAN lintがgreen"
   - reviewer: "Codex intra-runtime / Nietzsche"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-31T21:52:04Z"
