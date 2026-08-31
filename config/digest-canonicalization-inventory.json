@@ -3939,7 +3939,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::registryBytesDigest:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 718,
+      "line": 767,
       "symbol": "registryBytesDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3956,7 +3956,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::analyzeUniversalImprovementSourceRegistry:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 847,
+      "line": 896,
       "symbol": "analyzeUniversalImprovementSourceRegistry",
       "algorithm": "sha256",
       "input_kind": "string",

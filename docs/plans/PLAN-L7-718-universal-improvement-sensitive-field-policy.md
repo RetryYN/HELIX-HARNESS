@@ -53,13 +53,15 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-718-universal-improvement-sensitive-field-policy.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/universal-improvement-source-registry.ts, artifact_type: source_module }
   - { artifact_path: tests/universal-improvement-source-registry.test.ts, artifact_type: test_code }
 ---
 
-# PLAN-L7-718: sensitive observation field policy
+# PLAN-L7-718: sensitive observation fieldポリシー
 
 ## 工程表
 
