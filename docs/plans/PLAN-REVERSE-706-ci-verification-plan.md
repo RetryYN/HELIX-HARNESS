@@ -140,3 +140,5 @@ PR #1267はcanonical reviewed merge `c2f818ddaa0b3155e26df0a61551a617c25a0d4e`�
 review receipt帰属を再取得した。post-main harness-check `33342748021`もsuccessである。本closure bundleは
 Forward／Reverseの双方向dependency、R4 scope、completion stateだけを原子的に確定する。bundle自身の
 current-HEAD CI、独立review、canonical merge後read-afterが成立するまでIssue #1206をcloseしない。
+Issue #1269は本Reverse vehicleを起票した子Issueであり、primary completion authorityは親Issue #1206へ束縛する。
+両Issueは同一bundleのcanonical mergeとmain read-after後にのみ、同じ終端証拠を引用してcloseする。

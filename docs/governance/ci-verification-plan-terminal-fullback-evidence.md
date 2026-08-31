@@ -32,4 +32,4 @@ Reverse candidateはexact-HEAD独立review、draft／Ready CI、reviewed merge�
 
 ## 終端境界
 
-Issue #1206のcloseは、本closure bundle自身のcurrent-HEAD CI、Claude exact-HEAD review、canonical merge、main read-after後にのみ行う。
+Issue #1206と、本Reverse vehicleを所有する子Issue #1269のcloseは、本closure bundle自身のcurrent-HEAD CI、Claude exact-HEAD review、canonical merge、main read-after後にのみ行う。Reverse PLANのprimary `github_issue_id`はterminal bundle authorityである親#1206へ束縛し、#1269を未終端のまま残さない。
