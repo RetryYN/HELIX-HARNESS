@@ -14,7 +14,10 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { checkRequirementAuthority } from "../src/requirements/requirement-authority-gate";
+import {
+  checkFrozenBaselineMaterialReceipt,
+  checkRequirementAuthority,
+} from "../src/requirements/requirement-authority-gate";
 import {
   loadCanonicalRequirementIrFromShards,
   renderRequirementGeneratedView,
@@ -26,6 +29,53 @@ import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 // PLAN-L7-490-requirement-json-authority-cutover
 
 describe("Requirement JSON authority", () => {
+  function git(repoRoot: string, args: string[]): string {
+    const result = spawnSync("git", args, {
+      cwd: repoRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        GIT_AUTHOR_NAME: "HELIX Test",
+        GIT_AUTHOR_EMAIL: "helix-test@example.invalid",
+        GIT_COMMITTER_NAME: "HELIX Test",
+        GIT_COMMITTER_EMAIL: "helix-test@example.invalid",
+      },
+    });
+    if (result.status !== 0) {
+      throw new Error(`git ${args.join(" ")} failed: ${result.stderr}`);
+    }
+    return result.stdout.trim();
+  }
+
+  function withMaterialReceiptRepo(
+    run: (input: {
+      repoRoot: string;
+      materialHead: string;
+      rootDigest: `sha256:${string}`;
+    }) => void,
+  ): void {
+    const repoRoot = mkdtempSync(join(tmpdir(), "helix-material-receipt-"));
+    try {
+      git(repoRoot, ["init", "--quiet"]);
+      mkdirSync(join(repoRoot, "requirements-ir"));
+      const rootDigest = `sha256:${"a".repeat(64)}` as const;
+      writeFileSync(
+        join(repoRoot, "requirements-ir/manifest.json"),
+        `${JSON.stringify({ root_digest: rootDigest })}\n`,
+        "utf8",
+      );
+      git(repoRoot, ["add", "requirements-ir/manifest.json"]);
+      git(repoRoot, ["commit", "--quiet", "-m", "material"]);
+      const materialHead = git(repoRoot, ["rev-parse", "HEAD"]);
+      writeFileSync(join(repoRoot, "current.txt"), "current\n", "utf8");
+      git(repoRoot, ["add", "current.txt"]);
+      git(repoRoot, ["commit", "--quiet", "-m", "current"]);
+      run({ repoRoot, materialHead, rootDigest });
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  }
+
   function withAuthorityFixture(
     mutate: (authority: Record<string, unknown>, fixtureRoot: string) => void,
     run: (repoRoot: string) => void,
@@ -119,6 +169,44 @@ describe("Requirement JSON authority", () => {
         expect(result.messages.join("\n")).toContain("authority validation failed");
       },
     );
+  });
+
+  it("U-RAC-009: material receiptの到達性・ancestor・manifest・digestを個別判定する", () => {
+    withMaterialReceiptRepo(({ repoRoot, materialHead, rootDigest }) => {
+      expect(checkFrozenBaselineMaterialReceipt(repoRoot, materialHead, rootDigest)).toEqual([]);
+
+      expect(checkFrozenBaselineMaterialReceipt(repoRoot, "0".repeat(40), rootDigest)).toEqual([
+        "canonical frozen baseline material commit is unreachable",
+      ]);
+
+      const unrelatedHead = git(repoRoot, [
+        "commit-tree",
+        "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      ]);
+      expect(checkFrozenBaselineMaterialReceipt(repoRoot, unrelatedHead, rootDigest)).toEqual([
+        "canonical frozen baseline material commit is not an ancestor of current HEAD",
+      ]);
+
+      rmSync(join(repoRoot, "requirements-ir/manifest.json"));
+      git(repoRoot, ["add", "-u", "requirements-ir/manifest.json"]);
+      git(repoRoot, ["commit", "--quiet", "-m", "remove manifest"]);
+      const noManifestHead = git(repoRoot, ["rev-parse", "HEAD"]);
+      expect(checkFrozenBaselineMaterialReceipt(repoRoot, noManifestHead, rootDigest)).toEqual([
+        "canonical frozen baseline material manifest is unreachable",
+      ]);
+
+      writeFileSync(join(repoRoot, "requirements-ir/manifest.json"), "{invalid\n", "utf8");
+      git(repoRoot, ["add", "requirements-ir/manifest.json"]);
+      git(repoRoot, ["commit", "--quiet", "-m", "invalid manifest"]);
+      const invalidManifestHead = git(repoRoot, ["rev-parse", "HEAD"]);
+      expect(checkFrozenBaselineMaterialReceipt(repoRoot, invalidManifestHead, rootDigest)).toEqual(
+        ["canonical frozen baseline material manifest is invalid"],
+      );
+
+      expect(
+        checkFrozenBaselineMaterialReceipt(repoRoot, materialHead, `sha256:${"b".repeat(64)}`),
+      ).toEqual(["canonical frozen baseline material receipt differs"]);
+    });
   });
 
   it("U-RAC-003: loads the exact canonical denominator and stable root digest", () => {
