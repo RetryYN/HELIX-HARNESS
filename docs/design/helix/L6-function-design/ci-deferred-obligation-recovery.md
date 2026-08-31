@@ -12,7 +12,7 @@ plan: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md
 pair_artifact: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md
 ---
 
-# CI deferred obligation recovery
+# CI deferred obligation recovery設計
 
 ## 責務
 

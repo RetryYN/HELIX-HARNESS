@@ -12,7 +12,7 @@ plan: PLAN-L7-717-ci-deferred-obligation-recovery
 pair_artifact: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md
 ---
 
-# CI deferred obligation recovery unit test design
+# CI deferred obligation recovery単体テスト設計
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|

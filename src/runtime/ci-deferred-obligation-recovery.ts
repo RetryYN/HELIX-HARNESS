@@ -1,5 +1,5 @@
-import { canonicalJson, sha256Digest } from "./digest";
 import type { CiVerificationPlan } from "./ci-verification-plan";
+import { canonicalJson, sha256Digest } from "./digest";
 
 export const CI_DEFERRED_RECOVERY_SCHEMA = "helix-ci-deferred-recovery.v1" as const;
 
