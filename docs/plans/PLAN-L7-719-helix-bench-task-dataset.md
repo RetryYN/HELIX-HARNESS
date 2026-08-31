@@ -54,6 +54,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-003, test_path: tests/helix-bench-task-dataset.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-004, test_path: tests/helix-bench-task-dataset.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-005, test_path: tests/helix-bench-task-dataset.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-006, test_path: tests/helix-bench-task-dataset.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-719-helix-bench-task-dataset.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, artifact_type: design_doc }

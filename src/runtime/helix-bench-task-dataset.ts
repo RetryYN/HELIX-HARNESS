@@ -36,6 +36,7 @@ type FailureCode =
   | "FIXTURE_MISSING"
   | "FIXTURE_DIGEST_DRIFT"
   | "HIDDEN_ORACLE_MISSING"
+  | "HIDDEN_ORACLE_INVALID"
   | "HIDDEN_ORACLE_DIGEST_DRIFT"
   | "HIDDEN_ORACLE_LEAKAGE"
   | "HISTORICAL_RESULT_REUSE";
@@ -168,8 +169,7 @@ export function validateHelixBenchDataset(input: {
     !Array.isArray(publicRegistry.tasks) ||
     !Array.isArray(fixtureRegistry.fixtures) ||
     !Array.isArray(hiddenRegistry.oracles) ||
-    publicRegistry.tasks.length < 10 ||
-    publicRegistry.tasks.length > 20
+    publicRegistry.tasks.length !== 10
   )
     return { ok: false, failure_code: "DATASET_INVALID" };
 
@@ -201,6 +201,25 @@ export function validateHelixBenchDataset(input: {
     const oracle = oracles.get(task.snapshot.task_id);
     if (!oracle)
       return { ok: false, failure_code: "HIDDEN_ORACLE_MISSING", task_id: task.snapshot.task_id };
+    if (
+      !isRecord(oracle) ||
+      !exactKeys(oracle, [
+        "task_id",
+        "expected_failure_class",
+        "negative_mutations",
+        "historical_result_refs",
+      ]) ||
+      typeof oracle.expected_failure_class !== "string" ||
+      oracle.expected_failure_class.length === 0 ||
+      !Array.isArray(oracle.negative_mutations) ||
+      oracle.negative_mutations.length === 0 ||
+      !oracle.negative_mutations.every(
+        (mutation) => typeof mutation === "string" && mutation.length > 0,
+      ) ||
+      !Array.isArray(oracle.historical_result_refs)
+    ) {
+      return { ok: false, failure_code: "HIDDEN_ORACLE_INVALID", task_id: task.snapshot.task_id };
+    }
     if (oracle.historical_result_refs.length !== 0) {
       return { ok: false, failure_code: "HISTORICAL_RESULT_REUSE", task_id: task.snapshot.task_id };
     }
@@ -216,6 +235,9 @@ export function validateHelixBenchDataset(input: {
   }
   if (HELIX_BENCH_CATEGORIES.some((category) => !categories.has(category))) {
     return { ok: false, failure_code: "TASK_CATEGORY_COVERAGE_INVALID" };
+  }
+  if (fixtures.size !== 10 || oracles.size !== 10) {
+    return { ok: false, failure_code: "DATASET_INVALID" };
   }
   const digestInput = {
     dataset_version: publicRegistry.dataset_version,

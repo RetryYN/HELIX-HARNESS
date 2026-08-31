@@ -27,6 +27,14 @@ describe("HELIX-Bench task dataset", () => {
     expect(new Set(result.public_tasks.map((task) => task.category))).toEqual(
       new Set(HELIX_BENCH_CATEGORIES),
     );
+    expect(
+      Object.fromEntries(
+        HELIX_BENCH_CATEGORIES.map((category) => [
+          category,
+          result.public_tasks.filter((task) => task.category === category).length,
+        ]),
+      ),
+    ).toEqual(Object.fromEntries(HELIX_BENCH_CATEGORIES.map((category) => [category, 2])));
     for (const task of result.public_tasks) {
       expect(Object.keys(task.snapshot).sort()).toEqual([...HELIX_BENCH_TASK_FIELDS].sort());
     }
@@ -59,6 +67,17 @@ describe("HELIX-Bench task dataset", () => {
       failure_code: "HIDDEN_ORACLE_MISSING",
     });
 
+    const emptyNegativeOracle = registries();
+    emptyNegativeOracle.hiddenRegistry.oracles[0].negative_mutations = [];
+    const hidden = emptyNegativeOracle.hiddenRegistry.oracles[0];
+    emptyNegativeOracle.publicRegistry.tasks[0].snapshot.hidden_oracle_digest = `sha256:${"0".repeat(64)}`;
+    const digestDriftResult = validateHelixBenchDataset(emptyNegativeOracle);
+    expect(digestDriftResult).toMatchObject({
+      ok: false,
+      failure_code: "HIDDEN_ORACLE_INVALID",
+      task_id: hidden.task_id,
+    });
+
     const drift = registries();
     drift.hiddenRegistry.oracles[0].negative_mutations.push("future_answer");
     expect(validateHelixBenchDataset(drift)).toMatchObject({
@@ -71,6 +90,15 @@ describe("HELIX-Bench task dataset", () => {
     expect(validateHelixBenchDataset(leakage)).toMatchObject({
       ok: false,
       failure_code: "HIDDEN_ORACLE_LEAKAGE",
+    });
+  });
+
+  it("U-HBDATA-006: 初期datasetをexact 10 taskへ固定する", () => {
+    const extra = registries();
+    extra.publicRegistry.tasks.push(structuredClone(extra.publicRegistry.tasks[0]));
+    expect(validateHelixBenchDataset(extra)).toMatchObject({
+      ok: false,
+      failure_code: "DATASET_INVALID",
     });
   });
 

@@ -23,8 +23,8 @@ version付きregistryとして検証する。runner、scorer、routing、worker 
 - config/helix-bench/hidden/hidden-oracles.v1.json: blind judge専用の負極性oracle。
 
 public taskはhidden oracleのdigestだけを持つ。hidden field名、期待failure、mutation、過去scoreを
-public promptへ再出力しない。loaderは10〜20 task、5カテゴリ被覆、exact field set、fixture／oracle
-digest、historical result非再利用をAND条件で検査する。
+public promptへ再出力しない。初期loaderはexact 10 task、各カテゴリ2件、exact field set、fixture／oracle
+digest、hidden oracleごとの非空negative mutation、historical result非再利用をAND条件で検査する。
 
 ## Cursor canary正規化
 

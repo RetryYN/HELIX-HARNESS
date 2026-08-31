@@ -23,8 +23,9 @@ responsibility_owner: helix-bench-task-dataset
 |---|---|---|---|
 | U-HBDATA-001 | snapshot exact set | 10 task、5カテゴリ、15-field exact setを正例とし、task数、カテゴリ、field set driftを拒否 | `tests/helix-bench-task-dataset.test.ts` |
 | U-HBDATA-002 | fixture binding | fixture digest一致を正例とし、fixture欠落、内容driftを拒否 | `tests/helix-bench-task-dataset.test.ts` |
-| U-HBDATA-003 | blind separation | public／hidden物理分離を正例とし、oracle欠落、digest drift、field漏洩を拒否 | `tests/helix-bench-task-dataset.test.ts` |
+| U-HBDATA-003 | blind separation | public／hidden物理分離を正例とし、oracle欠落、非空negative mutation欠落、digest drift、field漏洩を拒否 | `tests/helix-bench-task-dataset.test.ts` |
 | U-HBDATA-004 | history boundary | historical refs空を正例とし、過去scoreのcurrent証拠流用を拒否 | `tests/helix-bench-task-dataset.test.ts` |
 | U-HBDATA-005 | external worker normalization | external worker候補を正例とし、provider名のauthority固定を拒否 | `tests/helix-bench-task-dataset.test.ts` |
+| U-HBDATA-006 | initial denominator | 初期datasetの11件化、fixture／oracle件数driftを拒否しexact 10件を維持 | `tests/helix-bench-task-dataset.test.ts` |
 
 datasetのgreenをrunner、scorer、provider採用、routing判断の完成証拠へ拡張しない。
