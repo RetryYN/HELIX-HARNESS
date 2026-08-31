@@ -38,7 +38,7 @@ contract_failures: "wrong HEAD、stale review、双方向link欠落、profile相
 tdd_red_required: false
 tdd_red_waiver_reason: "独立レビューでfailed terminal runのoracle欠落がfail-openになる反例を実測し、corrective regression U-CIDEFER-013と最小runtime修正を同一Reverseへ追加した。事後にRedを捏造せず、レビュー反例をfailure evidenceとして保持する。"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CIDEFER-001〜013がmissing、duplicate、expired、wrong profile、stale HEAD、quarantine、selector edge削除、failed runのoracle欠落を個別の負例として検出する。mutation killの完了証拠には拡張しない。"
+mutation_oracle_evidence: "tests/ci-deferred-obligation-recovery.test.ts のU-CIDEFER-013はfailed terminal runのoracle欠落／不正identityをseedし、recovery_oracle_missingでfailすることを実測した。U-CIDEFER-001〜012もmissing、duplicate、expired、wrong profile、stale HEAD、quarantine、selector edge削除を個別の負例として検出する。"
 complexity_effect: net_neutral
 complexity_justification: "実装を複製せず、要求・設計・検証・main証拠の再接着だけを所有する"
 removal_trigger: "CI System Synthesis全体のterminal Reverseが個別fullbackを統合した時"
@@ -94,6 +94,7 @@ modifies:
   - { artifact_path: tests/ci-deferred-obligation-recovery.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:
@@ -134,4 +135,4 @@ requirements／L4／L5／L6／L8の意味変更は不要である。Forward再�
 
 ## R4 候補終端条件
 
-targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。本Reverse PRではbranch-kind authorityに従いForward add-impl PLANを変更しない。Reverse canonical merge後、同一#1208レーンの原子的companion PRでPLAN-L7-717へReverse linkとU-CIDEFER-013 bindingを追加する。companion mergeとmain read-afterで双方向linkを確認するまで、completion claimとIssue closeを禁止する。
+targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。PLAN-L7-717にはpending Reverseの双方向linkだけを`references`として接着し、Forwardのstatus、completion claim、実装契約は変更しない。Reverse canonical merge後、同一#1208レーンの原子的companion PRでU-CIDEFER-013 bindingと終端証拠を追加する。companion mergeとmain read-afterまでIssue closeを禁止する。
