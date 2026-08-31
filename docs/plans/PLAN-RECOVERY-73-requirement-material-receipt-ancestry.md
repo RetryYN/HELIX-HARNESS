@@ -13,7 +13,7 @@ github_issue_id: 1283
 behavior_contract_id: REQUIREMENT-MATERIAL-RECEIPT-ANCESTRY-001
 responsibility_owner: requirement-json-authority
 change_slice: atomic
-refactor_step: modify
+refactor_step: not_applicable
 engineering_discipline_required: true
 no_code_decision: modify
 ddd_modeling_decision: policy
