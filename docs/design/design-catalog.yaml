@@ -294,6 +294,7 @@ items:
       - docs/design/helix/L6-function-design/ci-critical-path-scheduler.md
       - docs/design/helix/L6-function-design/ci-responsibility-registry.md
       - docs/design/helix/L6-function-design/ci-verification-plan.md
+      - docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md
       - docs/design/helix/L6-function-design/design-template-json-authority.md
       - docs/design/helix/L5-detail/layer-ledger-pair-gate.md
       - docs/design/helix/L6-function-design/layer-ledger-pair-gate.md
