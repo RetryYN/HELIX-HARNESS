@@ -18,7 +18,7 @@ responsibility_owner: ci-system-synthesis
 change_slice: atomic
 refactor_step: introduce_contract
 engineering_discipline_required: true
-no_code_decision: no_change
+no_code_decision: modify
 ddd_modeling_decision: domain_service
 legacy_retirement_state: retained
 forward_routing: L5
@@ -38,7 +38,7 @@ contract_failures: "wrong HEAD、stale review、双方向link欠落、profile相
 tdd_red_required: false
 tdd_red_waiver_reason: "独立レビューでfailed terminal runのoracle欠落がfail-openになる反例を実測し、corrective regression U-CIDEFER-013と最小runtime修正を同一Reverseへ追加した。事後にRedを捏造せず、レビュー反例をfailure evidenceとして保持する。"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CIDEFER-001〜013がmissing、duplicate、expired、wrong profile、stale HEAD、quarantine、selector edge削除、failed runのoracle欠落を個別にkillする。"
+mutation_oracle_evidence: "U-CIDEFER-001〜013がmissing、duplicate、expired、wrong profile、stale HEAD、quarantine、selector edge削除、failed runのoracle欠落を個別の負例として検出する。mutation killの完了証拠には拡張しない。"
 complexity_effect: net_neutral
 complexity_justification: "実装を複製せず、要求・設計・検証・main証拠の再接着だけを所有する"
 removal_trigger: "CI System Synthesis全体のterminal Reverseが個別fullbackを統合した時"
