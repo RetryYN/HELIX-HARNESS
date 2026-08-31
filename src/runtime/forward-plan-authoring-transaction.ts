@@ -331,8 +331,9 @@ function journal(root: string): Journal {
     )
       throw new Error("authoring_journal_seal_invalid");
     return parsed;
-  } catch {
-    throw new Error("authoring_journal_seal_invalid");
+  } catch (cause) {
+    const converted = new Error("authoring_journal_seal_invalid", { cause });
+    throw converted;
   }
 }
 function recover(root: string) {
