@@ -35,6 +35,19 @@ tdd_red_required: true
 red_test: "U-HBDATA-001..008をdataset実装前に追加し、registry欠落と型・denominator・nested entry driftでRedになる"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-01T04:32+09:00にsrc/runtime/helix-bench-task-dataset.tsのfixture digest drift checkを一時除去すると、npx vitest run tests/helix-bench-task-dataset.test.tsでU-HBDATA-002が1 failed／4 passedとなりmutationをkillした。直後に復元し同command 5 tests greenを実測した。"
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: 01a05976-447d-7d81-8c3e-e8bb07c44169
+    reviewed_head_sha: aad5c8dbea49a313b3a29fd573919eb469f3a887
+    reviewed_at: "2026-09-01T05:32:00+09:00"
+    tests_green_at: "2026-09-01T05:34:12+09:00"
+    verdict: approve
+    scope: "PR #1303 pre-confirm review。15-field型境界、カテゴリexact 2、fixture／oracle物理件数、nested malformed entry、hidden oracle分離、provider非authorityを独立mutationで再検証しBLOCKER 0。cross-runtime receiptの代替とはしない。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/helix-bench-task-dataset.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-09-01T05:34:12+09:00", evidence_path: tests/helix-bench-task-dataset.test.ts, output_digest: "sha256:39ad6eeee8201ed0fe9764f1b6ea428ff7a74f40583a9e8dd8cd5cc8a6e968f0" }
 complexity_effect: justified_positive
 complexity_justification: "3 registryの物理分離でblind境界を守り、runner／scorerとの責務混載を防ぐ"
 removal_trigger: "versioned benchmark packageが同一contractを置換しconsumer移行が完了した時"

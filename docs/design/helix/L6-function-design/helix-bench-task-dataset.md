@@ -2,7 +2,7 @@
 title: "HELIX-Bench task dataset機能設計"
 layer: L6
 kind: function-design
-status: draft
+status: confirmed
 plan: PLAN-L7-719-helix-bench-task-dataset
 parent_design: docs/design/helix/L3-requirements/helix-bench-evaluation.md
 pair_artifact: docs/test-design/helix/L8-helix-bench-task-dataset-unit-test-design.md
