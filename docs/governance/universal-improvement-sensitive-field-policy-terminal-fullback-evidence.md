@@ -1,6 +1,6 @@
 ---
 title: "Universal Improvement sensitive field policy終端fullback証拠"
-status: draft
+status: terminal
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
@@ -29,8 +29,14 @@ U-UILSFP-001〜003はboundary class、benign key、raw key/value非漏洩を個�
 exact setのdriftを検出する。UIL-R-01、L6、L8、runtimeの責務は一致し、要求意味、route、source authority、観測schema、
 DB schemaの変更は不要である。
 
-## 未成立の終端証拠
+## Reverse終端証拠
 
-Reverse candidateのexact-HEAD CI、独立review、canonical merge、post-main read-after、および同一#1244レーンcompanionによる
-Forward reverse-link／status／evidence更新は未成立である。companion mergeとmain read-afterまでForward／Reverseの
-completion claimと親Issue #1244 closeを禁止する。
+- Reverse PR: #1309
+- 最終candidate HEAD: `77036a77db373885c04177c816771e3e6e294f77`
+- Claude receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1309#issuecomment-5486234298
+- receipt digest: `sha256:374c47886c1df0281b155cfb64f387ac0a9396e2bc6c1f5e9b4971b2ce69e9bc`
+- draft CI: [`33449299678`](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33449299678) success
+- Ready CI: [`33451075414`](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33451075414) success
+- canonical merge: `e97260df6a660751038bb21846992eeb5d8c9586`
+
+本companionのcanonical mergeとmain read-afterを最後の終端境界とする。それ以前にIssue #1308／#1244をcloseしない。
