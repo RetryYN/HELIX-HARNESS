@@ -7,8 +7,8 @@ workflow_phase: R4
 confirmed_reverse_type: fullback
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
@@ -45,6 +45,27 @@ removal_trigger: "CI System Synthesis全体のterminal Reverseが個別fullback�
 parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md
 pair_artifact: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md
 review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-31T22:57:50Z"
+    tests_green_at: "2026-08-31T22:57:49Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 1cfa3817b8211237b6ac162a610d2488576353c8
+    scope: "PR #1305 final exact HEADのReverse fullback、U-CIDEFER-013、Forward／Reverse pair、非終端境界を独立reviewし、BLOCKER 0を確認した。CI、DB projection／checkpoint、receiptは同一HEADへ束縛済み。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1305#issuecomment-5485900343"
+    green_commands:
+      - kind: ci
+        command: "GitHub Actions harness-check run 33446819961"
+        runner: github-actions
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-31T22:57:49Z"
+        evidence_path: docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md
+        output_digest: "sha256:48b1d29bba233c2b439a26a6e69c3ac6ceee7e4e6daca6e5e41210ac8a129795"
+        result: "run 33446819961 success、DB projection／checkpoint replay一致、approve／BLOCKER 0"
   - reviewer: "Codex intra-runtime / Nietzsche"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-31T21:52:04Z"
@@ -132,6 +153,6 @@ CIS-R-13〜15、L6／L8、runtime、U-CIDEFER-001〜013は同じexactly-once rec
 
 requirements／L4／L5／L6／L8の意味変更は不要である。Forward再入先をL5とし、公開・release cutoverは非対象を維持する。
 
-## R4 候補終端条件
+## R4 終端接着
 
-targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。branch-kind authorityに従い、本Reverse PRからForward add-impl PLANを変更しない。同一#1208レーンの原子的Forward companionを先行mergeしてpending Reverseの双方向linkを接着し、本Reverseを最新mainへ同期する。Reverse merge後のcompanionでU-CIDEFER-013 bindingと終端証拠を追加し、main read-afterまでIssue closeを禁止する。
+PR #1305 final HEAD `1cfa3817b8211237b6ac162a610d2488576353c8`はtargeted oracle、CI run `33446819961`、Claude exact-HEAD review、DB convergenceを満たし、Ready CI run `33448649188`後にmerge `d597df0c0ebcd29e6068f8394059ac3d38b84a1f`としてmainへ到達した。本companionでForwardへU-CIDEFER-013 bindingとterminal Reverse dependencyを接着する。companion自身のcanonical mergeとpost-main read-after、Issue #1306／#1208 closeは先取りせず、mainでterminal fieldを再読込してから実施する。Issue #1304はzero-injection admissionを所有する別契約としてopenを維持する。
