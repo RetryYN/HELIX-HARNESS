@@ -94,7 +94,6 @@ modifies:
   - { artifact_path: tests/ci-deferred-obligation-recovery.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }
 dependencies:
   parent: docs/plans/PLAN-L3-73-ci-system-synthesis.md
   requires:
@@ -135,4 +134,4 @@ requirements／L4／L5／L6／L8の意味変更は不要である。Forward再�
 
 ## R4 候補終端条件
 
-targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。PLAN-L7-717にはpending Reverseの双方向linkだけを`references`として接着し、Forwardのstatus、completion claim、実装契約は変更しない。Reverse canonical merge後、同一#1208レーンの原子的companion PRでU-CIDEFER-013 bindingと終端証拠を追加する。companion mergeとmain read-afterまでIssue closeを禁止する。
+targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。branch-kind authorityに従い、本Reverse PRからForward add-impl PLANを変更しない。同一#1208レーンの原子的Forward companionを先行mergeしてpending Reverseの双方向linkを接着し、本Reverseを最新mainへ同期する。Reverse merge後のcompanionでU-CIDEFER-013 bindingと終端証拠を追加し、main read-afterまでIssue closeを禁止する。
