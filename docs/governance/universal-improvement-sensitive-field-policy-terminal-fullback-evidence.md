@@ -21,7 +21,7 @@ plan: PLAN-REVERSE-718-universal-improvement-sensitive-field-policy
 - Ready CI: [`33438369682`](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33438369682) success
 - canonical merge: `898bf66333c47155bd251228d1945ecf8b8d4485`
 
-Claude receiptはpre-sync review HEAD、2件のCIは最終candidate HEADへ束縛される。異なるHEADの証拠をexact-head一致として扱わない。
+current Claude receiptと2件のCIは最終candidate HEADへ束縛される。同期前の履歴receiptはcurrent exact-head証拠として再利用しない。
 
 ## R0〜R3判定
 
