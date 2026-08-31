@@ -136,6 +136,16 @@ export const SUMMARY_SURFACE_SEMANTIC_REQUIREMENTS: SummarySurfaceSemanticRequir
   },
   {
     surface: "project-frontier",
+    path: "workflow_identity.target_axis",
+    reason: "Project frontier must expose the requirements-owned typed workflow axis",
+  },
+  {
+    surface: "project-frontier",
+    path: "workflow_route.source_command",
+    reason: "Project frontier must navigate through the typed current-location route surface",
+  },
+  {
+    surface: "project-frontier",
     path: "vmodel_fit.regression_guards.attention_boundary",
     reason: "Project frontier must project V-model attention boundary to views",
   },
@@ -389,7 +399,7 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
         frontier_type: "recovery_frontier",
         commands: {
           current_location: "helix current-location --summary-json",
-          drive_model: "helix drive model --summary-json",
+          workflow_route: "helix current-location --summary-json",
           recovery_plan: "helix recovery plan --summary-json",
           roadmap_current: "helix roadmap current --summary-json",
           vmodel_fit: "helix vmodel fit --summary-json",
@@ -436,7 +446,7 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
         frontier_type: "recovery_frontier",
         commands: {
           current_location: "helix current-location --summary-json",
-          drive_model: "helix drive model --summary-json",
+          workflow_route: "helix current-location --summary-json",
           recovery_plan: "helix recovery plan --summary-json",
           roadmap_current: "helix roadmap current --summary-json",
           vmodel_fit: "helix vmodel fit --summary-json",
@@ -460,10 +470,21 @@ export const SUMMARY_SURFACE_CONTRACTS: SummarySurfaceContract[] = [
       skill_binding: {
         top_items: [],
       },
+      workflow_identity: {
+        registry_version: "1.1.6",
+        registry_source_digest:
+          "sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89",
+        target_axis: "workflow_model",
+        target_id: "RETROFIT",
+      },
+      workflow_route: {
+        selection_status: "recovery_required",
+        source_command: "helix current-location --summary-json",
+      },
       commands: {
         project_frontier: "helix progress frontier --summary-json",
         current_location: "helix current-location --summary-json",
-        drive_model: "helix drive model --summary-json",
+        workflow_route: "helix current-location --summary-json",
         vmodel_fit: "helix vmodel fit --summary-json",
         skill_binding: "helix skill suggest --current-location --summary-json",
       },

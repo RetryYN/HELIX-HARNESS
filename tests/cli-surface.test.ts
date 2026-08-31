@@ -1975,8 +1975,13 @@ describe("L7 CLI surface closure", () => {
               project_frontier: "helix progress frontier --summary-json",
             }),
           }),
-          drive_model: expect.objectContaining({
-            source_command: "helix drive model --summary-json",
+          workflow_identity: null,
+          workflow_identity_receipt: expect.objectContaining({
+            disposition: "unsupported",
+            emit_legacy_identity: false,
+          }),
+          workflow_route: expect.objectContaining({
+            source_command: "helix current-location --summary-json",
           }),
           recovery_runway: expect.objectContaining({
             status: expect.any(String),
@@ -1994,6 +1999,7 @@ describe("L7 CLI surface closure", () => {
           }),
           commands: expect.objectContaining({
             project_frontier: "helix progress frontier --summary-json",
+            workflow_route: "helix current-location --summary-json",
             closure_review_window: expect.stringContaining("helix closure review-bundle"),
             closure_decision_draft: expect.stringContaining("helix closure decision-draft"),
           }),
@@ -5970,9 +5976,9 @@ describe("L7 CLI surface closure", () => {
               command: "helix roadmap current --summary-json",
             }),
             expect.objectContaining({
-              id: "drive-model",
+              id: "workflow-route",
               status: "recovery_required",
-              command: "helix drive model --summary-json",
+              command: "helix current-location --summary-json",
             }),
             expect.objectContaining({
               id: "scrum-operation",
@@ -6018,10 +6024,10 @@ describe("L7 CLI surface closure", () => {
             frontier: expect.any(Array),
             command: "helix roadmap current --summary-json",
           },
-          drive_model: {
-            workflow_identity: null,
+          workflow_identity: null,
+          workflow_route: {
             selection_status: "recovery_required",
-            command: "helix drive model --summary-json",
+            command: "helix current-location --summary-json",
           },
           scrum_operation: {
             status: expect.any(String),
@@ -6124,10 +6130,10 @@ describe("L7 CLI surface closure", () => {
             observed_count: expect.any(Number),
             missing_count: expect.any(Number),
           },
-          drive_model: {
-            workflow_identity: null,
+          workflow_identity: null,
+          workflow_route: {
             selection_status: "recovery_required",
-            source_command: "helix drive model --summary-json",
+            source_command: "helix current-location --summary-json",
           },
           closure_frontier: {
             action: "close_ready",
@@ -6220,7 +6226,7 @@ describe("L7 CLI surface closure", () => {
           commands: {
             project_frontier: "helix progress frontier --summary-json",
             current_location: "helix current-location --summary-json",
-            drive_model: "helix drive model --summary-json",
+            workflow_route: "helix current-location --summary-json",
             closure_review_window:
               "helix closure review-bundle --action close_ready --limit 20 --offset 0 --summary-json",
             closure_transition_window:
@@ -6341,13 +6347,14 @@ describe("L7 CLI surface closure", () => {
           independent_layer_policy: "abolished",
           command: "helix current-location --summary-json",
         }),
-        drive_model: expect.objectContaining({
-          workflow_identity: null,
-          workflow_identity_receipt: expect.objectContaining({
-            disposition: "unsupported",
-            emit_legacy_identity: false,
-          }),
-          source_command: "helix drive model --summary-json",
+        workflow_identity: null,
+        workflow_identity_receipt: expect.objectContaining({
+          disposition: "unsupported",
+          emit_legacy_identity: false,
+        }),
+        workflow_route: expect.objectContaining({
+          selection_status: "recovery_required",
+          source_command: "helix current-location --summary-json",
         }),
         closure_frontier: expect.objectContaining({
           action: "close_ready",
@@ -6359,6 +6366,7 @@ describe("L7 CLI surface closure", () => {
         commands: expect.objectContaining({
           project_frontier: "helix progress frontier --summary-json",
           current_location: "helix current-location --summary-json",
+          workflow_route: "helix current-location --summary-json",
           vmodel_fit: "helix vmodel fit --summary-json",
         }),
         write_policy: "read-only",

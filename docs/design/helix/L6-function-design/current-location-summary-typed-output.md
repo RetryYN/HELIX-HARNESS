@@ -4,7 +4,7 @@ layer: L6
 artifact_type: design
 status: draft
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-31
 owner: Codex / TL
 authority: docs/governance/helix-harness-requirements_v1.3.md
 registry: docs/design/helix/L3-requirements/workflow-classification-registry.v1.json
@@ -19,7 +19,8 @@ pair_artifact: docs/test-design/helix/L8-current-location-summary-typed-output-u
 既存のcurrent-location snapshotが持つ内部compatibility情報から、利用者向けsummaryを分離し、
 requirements-owned registryのtyped workflow identityをprimary outputへ投影する。本sliceは
 `helix current-location --summary-json`、current-location frontier、同コマンドのread-only text
-出力だけを対象とする。
+出力を正本とし、後続summary consumerであるproject-frontier／tree-view outlineのprimary workflow
+identityとnavigation commandも同じtyped tupleへ収束する。
 
 ## 正本と境界
 
@@ -30,6 +31,8 @@ requirements-owned registryのtyped workflow identityをprimary outputへ投影�
 - registry欠落、stale、unknown、ambiguous、unsupportedは推測せずfail-closeする。
 - current summary、frontier、textへ旧`drive_recommendation`、`drive_route`、`selected_model`、
   `default_model`、`route_id`、`commands.drive_model`を再出力しない。
+- project-frontier／tree-view outlineへtop-level `drive_model` objectを別identityとして再投影せず、
+  `workflow_identity`と`workflow_route`を返す。navigation先は`helix current-location`へ固定する。
 
 ## 出力契約
 
@@ -42,6 +45,6 @@ typed workflow routeの状態とreceipt dispositionを表示し、reverse／forw
 
 ## 非対象と後続
 
-DB／schemaのlegacy列、visualization tree全体、skill binding、`helix drive model` compatibility
+DB／schemaのlegacy列、visualization treeのskill binding、`helix drive model` compatibility
 command、snapshot内部型の全面改名、#206全体の終端は後続atomic sliceとする。本sliceのgreenを
 #206全体の完了として扱わない。

@@ -7,12 +7,12 @@ workflow_phase: R4
 confirmed_reverse_type: fullback
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-08-31
 updated: 2026-08-31
 owner: Codex / TL
-github_issue_id: 1269
+github_issue_id: 1206
 behavior_contract_id: CI-VERIFICATION-PLAN-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
@@ -44,6 +44,28 @@ complexity_justification: "Verification Planを再実装せず、requirements／
 removal_trigger: "CI System Synthesis終端Reverseが本証拠を統合し、個別fullback参照が不要になった時"
 parent_design: docs/design/helix/L6-function-design/ci-verification-plan.md
 pair_artifact: docs/test-design/helix/L8-ci-verification-plan-unit-test-design.md
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-30T23:38:11Z"
+    tests_green_at: "2026-08-30T23:36:32Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "a02813c9-9bc1-41f4-9c86-0f943ece4270"
+    reviewed_head_sha: 71db459b577d7f3bcd213ef1c546d5eed01dffd3
+    scope: "PR #1267 exact HEADのForward／Reverse双方向link、mutation oracle、fullback evidence、CI generationをClaude Codeが独立reviewし、BLOCKER 0 / NON-BLOCKER 0を確認した。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1267#issuecomment-5471973602"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33341306513 --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-08-30T23:36:32Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:1b3d714530fdb24fbe2da55daf5baab3f3e2b3c633b05cb4402302efe74313f6"
+        result: "exact HEAD 71db459b577d7f3bcd213ef1c546d5eed01dffd3のCI run 33341306513がterminal success。"
 backprop_scope:
   - layer: requirements
     decision: not_impacted
@@ -110,3 +132,13 @@ CIS-R-07〜09、L6 Verification Plan、L8 U-CIVPLAN-001〜012はruntimeの責務
 ## R4 候補終端条件
 
 Forward／Reverse PLANの双方向link、targeted oracle、PLAN gates、current-HEAD CI、Claude exact-HEAD reviewを揃える。Reverse candidateのcanonical mergeとpost-main read-afterが成立するまで`completion_claim_allowed:false`と`backfill_state:pending_reverse`を維持し、Issue #1206を先取りcloseしない。
+
+## R4 confirmation
+
+PR #1267はcanonical reviewed merge `c2f818ddaa0b3155e26df0a61551a617c25a0d4e`へ到達し、read-after receipt
+`sha256:e977a6a9e08a815aa8b479308154656ebca67afabcacc99f69575b1e8d147401`でcandidate HEAD、merge state、
+review receipt帰属を再取得した。post-main harness-check `33342748021`もsuccessである。本closure bundleは
+Forward／Reverseの双方向dependency、R4 scope、completion stateだけを原子的に確定する。bundle自身の
+current-HEAD CI、独立review、canonical merge後read-afterが成立するまでIssue #1206をcloseしない。
+Issue #1269は本Reverse vehicleを起票した子Issueであり、primary completion authorityは親Issue #1206へ束縛する。
+両Issueは同一bundleのcanonical mergeとmain read-after後にのみ、同じ終端証拠を引用してcloseする。

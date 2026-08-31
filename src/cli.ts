@@ -6422,6 +6422,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
     summarizeCurrentLocationFrontier(snapshot),
   );
   const skillBinding = summarizeProjectSkillBinding(projectSkillBindingCliPayload(snapshot));
+  const workflowIdentity = currentLocationWorkflowIdentityProjection(snapshot);
 
   return {
     schema_version: "project-frontier-summary.v1",
@@ -6459,7 +6460,18 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
             .length,
         }
       : null,
-    drive_model: driveModel,
+    ...workflowIdentity,
+    workflow_route: {
+      selection_status: driveModel.selection_status,
+      current: driveModel.current,
+      blocking_finding_codes: driveModel.blocking_finding_codes,
+      postcheck_commands: driveModel.postcheck_commands,
+      write_policy: driveModel.write_policy,
+      source_command: "helix current-location --summary-json",
+      full_source_command: "helix current-location --json",
+      view_command: "helix progress tree-view --summary-json",
+      full_view_command: "helix progress tree-view --json",
+    },
     closure_frontier: {
       action: closeReadyReview.action,
       approval_required: closeReadyReview.approval_required,
@@ -6507,7 +6519,7 @@ function buildProjectFrontierSummary(repoRoot: string, snapshot: ProjectCurrentL
     commands: {
       project_frontier: "helix progress frontier --summary-json",
       current_location: "helix current-location --summary-json",
-      drive_model: driveModel.source_command,
+      workflow_route: "helix current-location --summary-json",
       closure_review_window: closeReadyReview.current_window_command,
       closure_transition_window: closeReadyReview.transition_window_command,
       closure_decision_draft: closeReadyReview.decision_draft_command,
@@ -6567,12 +6579,12 @@ function buildProjectViewOutline(
       command: "helix roadmap current --summary-json",
     },
     {
-      id: "drive-model",
+      id: "workflow-route",
       tree_node_id: driveNode?.id ?? "project/current-location/drive",
-      label: driveNode?.label ?? "Drive model",
-      status: projectFrontierSummary.drive_model.selection_status,
+      label: driveNode?.label ?? "Workflow identity",
+      status: projectFrontierSummary.workflow_route.selection_status,
       description: driveNode?.description ?? "",
-      command: "helix drive model --summary-json",
+      command: "helix current-location --summary-json",
     },
     {
       id: "scrum-operation",
@@ -6646,10 +6658,10 @@ function buildProjectViewOutline(
       frontier: projectFrontierSummary.current.roadmap_frontier,
       command: "helix roadmap current --summary-json",
     },
-    drive_model: {
-      workflow_identity: projectFrontierSummary.drive_model.workflow_identity,
-      selection_status: projectFrontierSummary.drive_model.selection_status,
-      command: "helix drive model --summary-json",
+    workflow_identity: projectFrontierSummary.workflow_identity,
+    workflow_route: {
+      selection_status: projectFrontierSummary.workflow_route.selection_status,
+      command: "helix current-location --summary-json",
     },
     scrum_operation: projectFrontierSummary.scrum_operation
       ? {
@@ -6709,7 +6721,9 @@ function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed
       current: projectFrontier.current,
       current_location_frontier: projectFrontier.current_location_frontier,
       function_design_policy: projectFrontier.function_design_policy,
-      drive_model: projectFrontier.drive_model,
+      workflow_identity: projectFrontier.workflow_identity,
+      workflow_identity_receipt: projectFrontier.workflow_identity_receipt,
+      workflow_route: projectFrontier.workflow_route,
       recovery_runway: {
         status: recoveryRunway.status,
         machine_actionable_count: recoveryRunway.machine_actionable_count,
@@ -6733,6 +6747,7 @@ function buildCompletionFrontierSummary(repoRoot: string, completionClaimAllowed
       commands: {
         project_frontier: projectFrontier.source_command,
         current_location: projectFrontier.commands.current_location,
+        workflow_route: projectFrontier.commands.workflow_route,
         vmodel_fit: projectFrontier.commands.vmodel_fit,
         closure_review_window: projectFrontier.commands.closure_review_window,
         closure_transition_window: projectFrontier.commands.closure_transition_window,
@@ -10156,7 +10171,7 @@ progress
         process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
         return;
       }
-      const identity = summary.drive_model.workflow_identity;
+      const identity = summary.workflow_identity;
       process.stdout.write(
         `progress frontier: current=${summary.current.layer}->${summary.current.l12_layer} status=${summary.current.status} workflow=${identity ? `${identity.target_axis}:${identity.target_id}` : "unresolved"} registry=${identity?.registry_version ?? "-"} closure=${summary.closure_frontier.action}:${summary.closure_frontier.total} skill=${summary.skill_binding.status} function_policy=${summary.function_design_policy.independent_layer_policy}\n`,
       );
