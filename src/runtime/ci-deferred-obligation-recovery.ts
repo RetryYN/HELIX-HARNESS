@@ -312,6 +312,12 @@ export function reconcileDeferredObligations(
         source_run_id: run.run_id,
         disposition: "reverse_candidate",
       });
+    } else if (failed) {
+      findings.push({
+        code: "recovery_oracle_missing",
+        obligation_id: assignment.obligation_id,
+        detail: "failed terminal run requires a valid first detecting oracle",
+      });
     }
   }
 
