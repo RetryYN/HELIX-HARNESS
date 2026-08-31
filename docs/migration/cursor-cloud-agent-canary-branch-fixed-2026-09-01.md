@@ -6,7 +6,7 @@ status: worker-authored evidence（外部 receipt 待ち）
 
 Issue #1287（Attempt 2 authority addendum）に従い、Cursor Cloud Agent を HELIX 外部 worker 候補として bounded 実測した。Attempt 1 で観測した HELIX 発行 branch 固定と成果物内 self-HEAD 記録禁止の修復再試行である。
 
-## Issue authority
+## Issue正本
 
 - Issue: https://github.com/RetryYN/HELIX-HARNESS/issues/1287
 - behavior_contract_id: `CURSOR-CLOUD-AGENT-CANARY-001`
@@ -17,7 +17,7 @@ Issue #1287（Attempt 2 authority addendum）に従い、Cursor Cloud Agent を 
 
 | 項目 | 値 |
 | --- | --- |
-| runtime | Cursor Cloud Agent |
+| 実行環境 | Cursor Cloud Agent |
 | 要求 model | `composer-2.5` |
 | HELIX 発行 branch | `docs/1287-cursor-cloud-agent-canary-2` |
 | base | canonical main |
@@ -40,7 +40,7 @@ Issue #1287（Attempt 2 authority addendum）に従い、Cursor Cloud Agent を 
 
 以下の identity は HELIX が commit 後に外部 read-after で seal する。本 worker は成果物へ記録しない。
 
-- candidate HEAD / resulting HEAD
+- 作業開始時HEAD／成果HEAD
 - PR 番号
 - provider session ID
 - token usage / cost
