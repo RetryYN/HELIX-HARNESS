@@ -18,7 +18,7 @@ deferred obligationのexactly-once回収、origin backprop、profile非相殺、
 
 - Reverse PR: #1305
 - final candidate HEAD: `1cfa3817b8211237b6ac162a610d2488576353c8`
-- Claude exact-HEAD review receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1305#issuecomment-5485900343
+- Claudeによるexact-HEAD独立レビューreceipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1305#issuecomment-5485900343
 - receipt digest: `sha256:48b1d29bba233c2b439a26a6e69c3ac6ceee7e4e6daca6e5e41210ac8a129795`
 - review CI: [`33446819961`](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33446819961) success
 - Ready CI: [`33448649188`](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33448649188) success
