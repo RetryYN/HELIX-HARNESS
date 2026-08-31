@@ -56,9 +56,9 @@ review_evidence:
     reviewed_head_sha: 77036a77db373885c04177c816771e3e6e294f77
     scope: "PR #1309 exact HEADのpost-main fullbackを独立検収し、BLOCKER 0。"
     green_commands:
-      - kind: ci
+      - kind: integration_test
         command: "GitHub Actions harness-check run 33449299678 attempt 1"
-        runner: github_actions
+        runner: node
         scope: full
         exit_code: 0
         completed_at: "2026-08-31T23:29:00Z"
