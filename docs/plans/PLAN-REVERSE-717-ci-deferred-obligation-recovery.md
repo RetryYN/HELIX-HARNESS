@@ -113,4 +113,4 @@ requirements／L4／L5／L6／L8の意味変更は不要である。Forward再�
 
 ## R4 候補終端条件
 
-Forward／Reverse双方向link、targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。Reverse merge後のmain read-afterまでcompletion claimとIssue closeを先取りしない。
+targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。本Reverse PRではbranch-kind authorityに従いForward add-impl PLANを変更しない。Reverse canonical merge後、同一#1208レーンの原子的companion PRでPLAN-L7-717へReverse linkとU-CIDEFER-013 bindingを追加する。companion mergeとmain read-afterで双方向linkを確認するまで、completion claimとIssue closeを禁止する。
