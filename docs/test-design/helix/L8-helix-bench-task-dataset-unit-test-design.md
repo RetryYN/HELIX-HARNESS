@@ -28,5 +28,6 @@ responsibility_owner: helix-bench-task-dataset
 | U-HBDATA-005 | external worker normalization | external worker候補を正例とし、provider名のauthority固定を拒否 | `tests/helix-bench-task-dataset.test.ts` |
 | U-HBDATA-006 | initial denominator | 初期datasetの11件化、fixture／oracle件数driftを拒否しexact 10件を維持 | `tests/helix-bench-task-dataset.test.ts` |
 | U-HBDATA-007 | typed field boundary | public taskおよび15-field snapshotのstring／boolean／array／record型driftを個別に拒否 | `tests/helix-bench-task-dataset.test.ts` |
+| U-HBDATA-008 | nested registry boundary | malformed fixture／oracle entryを例外化せずtyped failureで拒否 | `tests/helix-bench-task-dataset.test.ts` |
 
 datasetのgreenをrunner、scorer、provider採用、routing判断の完成証拠へ拡張しない。

@@ -160,6 +160,24 @@ describe("HELIX-Bench task dataset", () => {
     }
   });
 
+  it("U-HBDATA-008: malformed fixture／oracle entryを例外化せずfail-closeする", () => {
+    const malformedFixture = registries();
+    malformedFixture.fixtureRegistry.fixtures[0] = null;
+    expect(() => validateHelixBenchDataset(malformedFixture)).not.toThrow();
+    expect(validateHelixBenchDataset(malformedFixture)).toMatchObject({
+      ok: false,
+      failure_code: "DATASET_INVALID",
+    });
+
+    const malformedOracle = registries();
+    malformedOracle.hiddenRegistry.oracles[0] = null;
+    expect(() => validateHelixBenchDataset(malformedOracle)).not.toThrow();
+    expect(validateHelixBenchDataset(malformedOracle)).toMatchObject({
+      ok: false,
+      failure_code: "HIDDEN_ORACLE_INVALID",
+    });
+  });
+
   it("U-HBDATA-004: historical resultをcurrent task証拠へ再利用しない", () => {
     const input = registries();
     input.hiddenRegistry.oracles[0].historical_result_refs.push("PR-262-score");

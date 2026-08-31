@@ -32,7 +32,7 @@ contract_postconditions: "10 task、5カテゴリ、15-field snapshot、public�
 contract_invariants: "runner／scorer／provider／routingを実装せず、future answer／secret／PII／private review contextをpublicへ含めない"
 contract_failures: "missing fixture、digest drift、hidden leakage、historical reuse、provider authority化をfail-closeする"
 tdd_red_required: true
-red_test: "U-HBDATA-001..007をdataset実装前に追加し、registry欠落と型・denominator driftでRedになる"
+red_test: "U-HBDATA-001..008をdataset実装前に追加し、registry欠落と型・denominator・nested entry driftでRedになる"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-01T04:32+09:00にsrc/runtime/helix-bench-task-dataset.tsのfixture digest drift checkを一時除去すると、npx vitest run tests/helix-bench-task-dataset.test.tsでU-HBDATA-002が1 failed／4 passedとなりmutationをkillした。直後に復元し同command 5 tests greenを実測した。"
 complexity_effect: justified_positive
@@ -56,6 +56,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-005, test_path: tests/helix-bench-task-dataset.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-006, test_path: tests/helix-bench-task-dataset.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-007, test_path: tests/helix-bench-task-dataset.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-008, test_path: tests/helix-bench-task-dataset.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-719-helix-bench-task-dataset.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, artifact_type: design_doc }

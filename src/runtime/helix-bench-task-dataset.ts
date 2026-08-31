@@ -187,6 +187,21 @@ export function validateHelixBenchDataset(input: {
   )
     return { ok: false, failure_code: "DATASET_INVALID" };
 
+  for (const fixture of fixtureRegistry.fixtures) {
+    if (
+      !isRecord(fixture) ||
+      !exactKeys(fixture, ["task_id", "payload"]) ||
+      typeof fixture.task_id !== "string"
+    ) {
+      return { ok: false, failure_code: "DATASET_INVALID" };
+    }
+  }
+  for (const oracle of hiddenRegistry.oracles) {
+    if (!isRecord(oracle) || typeof oracle.task_id !== "string") {
+      return { ok: false, failure_code: "HIDDEN_ORACLE_INVALID" };
+    }
+  }
+
   const fixtures = new Map(fixtureRegistry.fixtures.map((entry) => [entry.task_id, entry]));
   const oracles = new Map(hiddenRegistry.oracles.map((entry) => [entry.task_id, entry]));
   const categories = new Set<Category>();
