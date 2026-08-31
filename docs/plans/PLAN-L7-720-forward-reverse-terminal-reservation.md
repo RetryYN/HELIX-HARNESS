@@ -64,6 +64,9 @@ modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-test-design.md, artifact_type: test_design }
+agent_slots:
+  - { role: se, slot_label: "SE — Forward／Reverse identityとreservation transaction" }
+  - { role: qa, slot_label: "QA — stale main／collision／片方向／legacy mutation" }
 ---
 
 # Forward／pending Reverse終端予約
