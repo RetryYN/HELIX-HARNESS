@@ -39,7 +39,7 @@ contract_failures: "Forward双方向reference欠落、wrong HEAD、stale review�
 tdd_red_required: false
 tdd_red_waiver_reason: "実装を持たないReverse vehicleの先行定義であり、Forward oracleを捏造して再実行しない"
 mutation_oracle_required: true
-mutation_oracle_evidence: "backfill-pairingの双方向reference mutationとForward U-CISCHED oracleを実装merge後のR0〜R4で再実行する"
+mutation_oracle_evidence: "tests/ci-critical-path-scheduler.test.ts U-CISCHED-002〜014がclass/resource barrier、wrong HEAD、artifact identity、lease/fence、telemetry、quota、CPU/memory budget、backpressure、phase逆依存、bounded cancel、unknown dependencyの各mutationを個別にredへ戻す"
 complexity_effect: net_neutral
 complexity_justification: "exactly-one PLANを保ったままForwardとReverseの責務を分離する"
 removal_trigger: "CI System Synthesis全体Reverseが本証拠を統合し、個別vehicle参照が不要になった時"
@@ -123,7 +123,7 @@ Forward candidateはPR #1241のHEAD `cc278ba36a279fc755dc0dc14c48004f22318258`�
 exact-HEAD reviewはBLOCKER 0、receipt digest `sha256:d5c6c2fd2cca253471d8d5252102e23a20cb491f308ebd313fdfb4f3a69b2d29`、
 draft CI `33339684343`とReady CI `33340806736`はterminal successである。canonical merge
 `3ab64eb5aabb8e8b1163de73bfc29bad8719421f`とread-after receipt
-`sha256:723ee1b654ff9a2ca2b211e091f3e0534e4a12e8420c041edeb2b9a24e25d51b`、post-main harness-check
+`sha256:723ee1b654ff9a2ca2b211e091f3e0534e4a12e8420c041edeb2b9a24e25d51b`、main反映後のharness-check
 `33341128585` successをR0の事実基準とする。
 
 ## R1 観測契約

@@ -10,8 +10,8 @@
 - Ready CI: `33340806736` success
 - canonical merge: `3ab64eb5aabb8e8b1163de73bfc29bad8719421f`
 - read-after receipt: `sha256:723ee1b654ff9a2ca2b211e091f3e0534e4a12e8420c041edeb2b9a24e25d51b`
-- post-main harness-check: `33341128585` success
-- post-main CodeQL: `33341128519` success
+- main反映後のharness-check: `33341128585` success
+- main反映後のCodeQL: `33341128519` success
 
 ## R0〜R3判定
 
