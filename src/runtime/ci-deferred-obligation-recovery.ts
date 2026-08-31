@@ -64,6 +64,7 @@ export interface DeferredAssignmentProjection {
 }
 
 export type DeferredRecoveryFindingCode =
+  | "evaluation_invalid"
   | "assignment_invalid"
   | "duplicate_assignment"
   | "recovery_missing"
@@ -185,8 +186,19 @@ export function reconcileDeferredObligations(
   const findings: DeferredRecoveryFinding[] = [];
   const receipts: DeferredRecoveryReceipt[] = [];
   const backprop: DeferredBackpropCandidate[] = [];
-  const evaluatedAt = Date.parse(input.evaluated_at);
+  const parsedEvaluatedAt = Date.parse(input.evaluated_at);
+  const evaluatedAt = Number.isFinite(parsedEvaluatedAt)
+    ? parsedEvaluatedAt
+    : Number.NEGATIVE_INFINITY;
   const assignments = new Map<string, DeferredRecoveryAssignment>();
+
+  if (!Number.isFinite(parsedEvaluatedAt)) {
+    findings.push({
+      code: "evaluation_invalid",
+      obligation_id: "ci-system",
+      detail: "evaluated_at must be a valid timestamp",
+    });
+  }
 
   for (const assignment of input.assignments) {
     if (assignments.has(assignment.obligation_id)) {

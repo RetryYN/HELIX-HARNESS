@@ -179,6 +179,20 @@ describe("CI deferred obligation recovery", () => {
     );
   });
 
+  it("U-CIDEFER-002A: invalid evaluated_atを期限判定へ流さずfail-closeする", () => {
+    const result = reconcileDeferredObligations(
+      input({ terminal_runs: [], evaluated_at: "not-a-timestamp" }),
+    );
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "evaluation_invalid", obligation_id: "ci-system" }),
+    );
+    expect(result.findings).toContainEqual(expect.objectContaining({ code: "recovery_missing" }));
+    expect(result.findings).not.toContainEqual(
+      expect.objectContaining({ code: "recovery_expired" }),
+    );
+  });
+
   it("U-CIDEFER-003: wrong profile、stale HEAD、wrong origin、cancelを個別拒否する", () => {
     const run = input().terminal_runs[0];
     const result = reconcileDeferredObligations(
@@ -256,8 +270,14 @@ describe("CI deferred obligation recovery", () => {
     try {
       const greenPath = join(directory, "green.json");
       const redPath = join(directory, "red.json");
+      const invalidEvaluationPath = join(directory, "invalid-evaluation.json");
       writeFileSync(greenPath, JSON.stringify(input()), "utf8");
       writeFileSync(redPath, JSON.stringify(input({ terminal_runs: [] })), "utf8");
+      writeFileSync(
+        invalidEvaluationPath,
+        JSON.stringify(input({ evaluated_at: "not-a-timestamp" })),
+        "utf8",
+      );
       const run = (path: string) =>
         spawnSync(
           process.execPath,
@@ -271,6 +291,11 @@ describe("CI deferred obligation recovery", () => {
       expect(red.status).toBe(1);
       expect(JSON.parse(red.stdout).findings).toContainEqual(
         expect.objectContaining({ code: "recovery_missing" }),
+      );
+      const invalidEvaluation = run(invalidEvaluationPath);
+      expect(invalidEvaluation.status).toBe(1);
+      expect(JSON.parse(invalidEvaluation.stdout).findings).toContainEqual(
+        expect.objectContaining({ code: "evaluation_invalid" }),
       );
     } finally {
       rmSync(directory, { recursive: true, force: true });

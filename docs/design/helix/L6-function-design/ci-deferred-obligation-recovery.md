@@ -23,6 +23,7 @@ first detecting oracleを保持する。観測結果は改善候補を生成で�
 ## 不変条件
 
 - missing、duplicate、expired、cancelled、wrong profile、stale HEAD、wrong originをsuccessへ相殺しない。
+- `evaluated_at`が有効なtimestampでない場合は期限判定へ流さず、入力全体をfail-closeする。
 - terminal runは完了時刻、run identity、attemptの決定順で最初の1件を選び、複数件自体をfindingにする。
 - failureはselector decision、registry edge、first detecting oracleへ`reverse_candidate`として戻す。
 - quarantineはowner、期限、replacement oracleが全て有効な場合だけ受理する。
