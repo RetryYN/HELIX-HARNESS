@@ -3,7 +3,7 @@ title: CI deferred obligation recovery
 layer: L6
 kind: function-design
 artifact_type: design_doc
-status: draft
+status: confirmed
 created: 2026-08-31
 updated: 2026-08-31
 owner: Codex / TL
@@ -28,6 +28,9 @@ first detecting oracleを保持する。観測結果は改善候補を生成で�
 - quarantineはowner、期限、replacement oracleが全て有効な場合だけ受理する。
 - wall-clock短縮だけでは完了せず、escaped defectとmutation detectionを同時に判定する。
 - target identityを独自enumへ再定義せず、Verification Planのdeferred obligationから一方向投影する。
+- selector edge削除、risk downgrade、Module closure欠落、test owner誤配線、artifact reuse誤りのexact setを、
+  Responsibility Registry、Verification Plan、Scheduler、Recoveryのいずれかで必ずfail-closeする。
+- `main`、`nightly`、`release`は同じ回収契約を共有し、profile別の成功で別profileの欠落を相殺しない。
 
 ## 境界
 

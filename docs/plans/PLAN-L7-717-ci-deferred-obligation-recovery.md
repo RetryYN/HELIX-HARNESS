@@ -4,7 +4,7 @@ title: "PLAN-L7-717: CI deferred obligation exactly-once回収"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-31
 updated: 2026-08-31
@@ -34,9 +34,9 @@ tdd_red_required: true
 red_at: "2026-08-31T23:31:00+09:00"
 green_at: "2026-08-31T23:34:10+09:00"
 tdd_red_evidence: "U-CIDEFER-001..006を先行作成し、ci-deferred-obligation-recovery module欠落でimport failureとなった"
-tdd_green_evidence: "npx vitest run tests/ci-deferred-obligation-recovery.test.tsで9 passed、npx vitest run tests/ci-deferred-obligation-recovery.test.ts tests/ci-verification-plan.test.tsで21 passed、npx tsc --noEmitもgreen"
+tdd_green_evidence: "npx vitest run tests/ci-deferred-obligation-recovery.test.ts tests/ci-verification-plan.test.ts tests/ci-critical-path-scheduler.test.ts tests/ci-responsibility-registry.test.tsで46 passed、npm run typecheckもgreen"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CIDEFER-002..006でterminal run削除／重複、profile／HEAD／origin変異、cancel、backprop edge欠落、期限切れquarantine、escaped defectとmutation未検出を個別にkillする"
+mutation_oracle_evidence: "U-CIDEFER-002..006に加え、U-CIDEFER-010でselector edge削除、risk downgrade、Module closure欠落、test owner誤配線、artifact reuse誤りのexact 5 mutationをRegistry→Verification Plan→Scheduler実合成へ注入し全件killした"
 complexity_effect: net_neutral
 complexity_justification: "schedulerへ回収責務を混載せず、既存Verification Plan出力を単一domain projectionへ閉じる"
 removal_trigger: "Verification Planと実行journalが同じexactly-once state machineへ統合された時"
@@ -62,6 +62,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-007, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-008, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-009, test_path: tests/ci-deferred-obligation-recovery.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-010, test_path: tests/ci-deferred-obligation-recovery.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-011, test_path: tests/ci-deferred-obligation-recovery.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }
