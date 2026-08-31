@@ -1,8 +1,9 @@
 import { canonicalJson, sha256Digest } from "./digest";
+import type { CiVerificationPlan } from "./ci-verification-plan";
 
 export const CI_DEFERRED_RECOVERY_SCHEMA = "helix-ci-deferred-recovery.v1" as const;
 
-export type DeferredRecoveryProfile = "main" | "nightly" | "release_candidate";
+export type DeferredRecoveryProfile = "main" | "nightly" | "release";
 export type DeferredTerminalResult = "succeeded" | "failed" | "cancelled";
 
 export interface DeferredRecoveryAssignment {
@@ -46,6 +47,20 @@ export interface DeferredRecoveryInput {
   mutation_detection_count: number;
   injected_mutation_count: number;
   flake_count: number;
+}
+
+export interface DeferredAssignmentProjectionInput {
+  verification_plan: Pick<CiVerificationPlan, "candidate_head" | "deferred_obligations">;
+  origin_pr: number;
+  selector_decision_id: string;
+  registry_edge_ids: Readonly<Record<string, string>>;
+  expires_at_by_profile: Readonly<Record<DeferredRecoveryProfile, string>>;
+}
+
+export interface DeferredAssignmentProjection {
+  assignments: readonly DeferredRecoveryAssignment[];
+  findings: readonly DeferredRecoveryFinding[];
+  ok: boolean;
 }
 
 export type DeferredRecoveryFindingCode =
@@ -123,6 +138,45 @@ function compareRun(a: DeferredRecoveryRun, b: DeferredRecoveryRun): number {
     a.run_id.localeCompare(b.run_id) ||
     a.attempt - b.attempt
   );
+}
+
+export function projectDeferredRecoveryAssignments(
+  input: DeferredAssignmentProjectionInput,
+): DeferredAssignmentProjection {
+  const findings: DeferredRecoveryFinding[] = [];
+  const assignments: DeferredRecoveryAssignment[] = [];
+  for (const obligation of [...input.verification_plan.deferred_obligations].sort((a, b) =>
+    a.capability_id.localeCompare(b.capability_id),
+  )) {
+    const registryEdgeId = input.registry_edge_ids[obligation.capability_id];
+    const expiresAt = input.expires_at_by_profile[obligation.target];
+    if (
+      obligation.receipt_status !== "pending" ||
+      !registryEdgeId ||
+      !ID.test(registryEdgeId) ||
+      !ID.test(input.selector_decision_id) ||
+      !Number.isInteger(input.origin_pr) ||
+      input.origin_pr < 1 ||
+      !validDate(expiresAt)
+    ) {
+      findings.push({
+        code: "assignment_invalid",
+        obligation_id: obligation.capability_id,
+        detail: "verification plan assignment projection is incomplete or already terminal",
+      });
+      continue;
+    }
+    assignments.push({
+      obligation_id: obligation.capability_id,
+      origin_pr: input.origin_pr,
+      candidate_head: input.verification_plan.candidate_head,
+      target_profile: obligation.target,
+      selector_decision_id: input.selector_decision_id,
+      registry_edge_id: registryEdgeId,
+      expires_at: expiresAt,
+    });
+  }
+  return { assignments, findings, ok: findings.length === 0 };
 }
 
 export function reconcileDeferredObligations(

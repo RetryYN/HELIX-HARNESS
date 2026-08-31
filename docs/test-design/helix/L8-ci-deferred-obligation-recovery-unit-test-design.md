@@ -23,6 +23,8 @@ pair_artifact: docs/design/helix/L6-function-design/ci-deferred-obligation-recov
 | U-CIDEFER-005 | quarantine | owner、期限、replacement oracle欠落を拒否する | `tests/ci-deferred-obligation-recovery.test.ts` |
 | U-CIDEFER-006 | safety metrics | escaped defectまたはmutation未検出があれば時間短縮を拒否する | `tests/ci-deferred-obligation-recovery.test.ts` |
 | U-CIDEFER-007 | CLI adapter | projection JSONを出力しfinding時は非zeroでfail-closeする | `tests/ci-deferred-obligation-recovery.test.ts` |
+| U-CIDEFER-008 | Verification Plan接合 | canonical `main / nightly / release` targetをassignmentへ一方向投影する | `tests/ci-deferred-obligation-recovery.test.ts` |
+| U-CIDEFER-009 | assignment projection | edge欠落またはterminal receiptの再割当を拒否する | `tests/ci-deferred-obligation-recovery.test.ts` |
 
 後続E2Eではselector edge削除、risk downgrade、Module closure欠落、test owner誤配線、artifact reuse誤りを
 workflow inputへ注入し、selector、aggregate、recoveryのいずれかが全件検出することを確認する。

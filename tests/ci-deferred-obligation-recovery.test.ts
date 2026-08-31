@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
   type DeferredRecoveryInput,
+  projectDeferredRecoveryAssignments,
   reconcileDeferredObligations,
 } from "../src/runtime/ci-deferred-obligation-recovery";
 
 // PLAN-L7-717-ci-deferred-obligation-recovery / U-CIDEFER-001..006
 const HEAD = "b".repeat(40);
-const DIGEST = `sha256:${"c".repeat(64)}`;
+const DIGEST = `sha256:${"c".repeat(64)}` as const;
 
 function input(overrides: Partial<DeferredRecoveryInput> = {}): DeferredRecoveryInput {
   return {
@@ -179,6 +180,71 @@ describe("CI deferred obligation recovery", () => {
     } finally {
       rmSync(directory, { recursive: true, force: true });
     }
+  });
+
+  it("U-CIDEFER-008: Verification Planのcanonical targetをRecovery assignmentへ投影する", () => {
+    const result = projectDeferredRecoveryAssignments({
+      verification_plan: {
+        candidate_head: HEAD,
+        deferred_obligations: [
+          {
+            capability_id: "verification:release-candidate",
+            target: "release",
+            candidate_head: HEAD,
+            receipt_status: "pending",
+          },
+        ],
+      },
+      origin_pr: 1208,
+      selector_decision_id: "selector:decision-1",
+      registry_edge_ids: {
+        "verification:release-candidate": "edge:release-candidate",
+      },
+      expires_at_by_profile: {
+        main: "2026-09-02T00:00:00Z",
+        nightly: "2026-09-03T00:00:00Z",
+        release: "2026-09-04T00:00:00Z",
+      },
+    });
+    expect(result).toMatchObject({
+      ok: true,
+      assignments: [
+        {
+          obligation_id: "verification:release-candidate",
+          target_profile: "release",
+          registry_edge_id: "edge:release-candidate",
+        },
+      ],
+    });
+  });
+
+  it("U-CIDEFER-009: edge欠落またはterminal receiptの再割当を拒否する", () => {
+    const result = projectDeferredRecoveryAssignments({
+      verification_plan: {
+        candidate_head: HEAD,
+        deferred_obligations: [
+          {
+            capability_id: "verification:release-candidate",
+            target: "release",
+            candidate_head: HEAD,
+            receipt_status: "succeeded",
+            receipt_digest: DIGEST,
+          },
+        ],
+      },
+      origin_pr: 1208,
+      selector_decision_id: "selector:decision-1",
+      registry_edge_ids: {},
+      expires_at_by_profile: {
+        main: "2026-09-02T00:00:00Z",
+        nightly: "2026-09-03T00:00:00Z",
+        release: "2026-09-04T00:00:00Z",
+      },
+    });
+    expect(result.ok).toBe(false);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({ code: "assignment_invalid" }),
+    );
   });
 });
 
