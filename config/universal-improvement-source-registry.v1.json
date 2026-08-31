@@ -209,7 +209,7 @@
         "implementation": {
           "kind": "repository_module",
           "path": "src/requirements/requirement-authority-gate.ts",
-          "digest": "sha256:bd8f155216ae5b1f59b5c9cd31bcfe5c55a649026e3bb443c28fed4023996581"
+          "digest": "sha256:e03892a15108e08ae974086d0422faa3eb312ba7ff57b8ff0b7b2a1690170736"
         },
         "deterministic": true
       },
