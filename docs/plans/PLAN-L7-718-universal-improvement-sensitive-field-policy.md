@@ -15,7 +15,7 @@ behavior_contract_id: UIL-SENSITIVE-FIELD-POLICY-001
 responsibility_owner: universal-improvement-sensitive-field-policy
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: replace_conditionals_with_policy
+refactor_step: introduce_contract
 legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: policy

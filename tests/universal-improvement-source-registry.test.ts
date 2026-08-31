@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   admitUniversalImprovementSource,
   analyzeUniversalImprovementSourceRegistry,
+  classifySensitiveObservationField,
   loadUniversalImprovementSourceRegistry,
   SENSITIVE_OBSERVATION_FIELD_POLICY_VERSION,
   SENSITIVE_OBSERVATION_FIELD_TOKEN_FAMILIES,
@@ -42,6 +43,49 @@ function validObservation(
 }
 
 describe("Universal Improvement source registry", () => {
+  it("U-UILSFP-001: separator／camel／結合／数字接尾辞をfamily分類する", () => {
+    expect(
+      ["access_token", "accessToken", "githubtoken", "githubtoken7", "privatekey3"].map(
+        classifySensitiveObservationField,
+      ),
+    ).toEqual(["token", "token", "token", "token", "key"]);
+  });
+
+  it("U-UILSFP-002: benign keyを部分文字列だけで拒否しない", () => {
+    expect(
+      ["tokenizer", "tokenization", "secretary", "summary", "source_id"].map(
+        classifySensitiveObservationField,
+      ),
+    ).toEqual([null, null, null, null, null]);
+  });
+
+  it("U-UILSFP-003: sensitive failureへraw key/valueを展開しない", () => {
+    const { result, registry } = loadedRegistry();
+    const entry = registry.entries[0];
+    const observation = validObservation(
+      entry.source_id,
+      entry.schema_version,
+      entry.detector.detector_id,
+    );
+    observation.metadata = { accessToken7: "raw-sensitive-value" };
+    const admitted = admitUniversalImprovementSource(
+      result,
+      observation,
+      new Date("2026-08-30T12:00:00.000Z"),
+    );
+    expect(admitted.ok).toBe(false);
+    expect(admitted.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "observation_sensitive_field_forbidden",
+          message: "sensitive observation field family is forbidden: token",
+        }),
+      ]),
+    );
+    expect(JSON.stringify(admitted.findings)).not.toContain("accessToken7");
+    expect(JSON.stringify(admitted.findings)).not.toContain("raw-sensitive-value");
+  });
+
   it("U-UILSFP-004: sensitive field policy versionとfamily exact setを固定する", () => {
     expect(SENSITIVE_OBSERVATION_FIELD_POLICY_VERSION).toBe("1.0.0");
     expect(SENSITIVE_OBSERVATION_FIELD_TOKEN_FAMILIES.map((rule) => rule.family)).toEqual([

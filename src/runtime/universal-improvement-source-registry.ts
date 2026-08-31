@@ -502,20 +502,18 @@ export function classifySensitiveObservationField(key: string): string | null {
   return null;
 }
 
-function collectForbiddenObservationFields(value: unknown, path: string, paths: Set<string>): void {
+function collectForbiddenObservationFieldFamilies(value: unknown, families: Set<string>): void {
   if (Array.isArray(value)) {
-    for (const [index, child] of value.entries()) {
-      collectForbiddenObservationFields(child, `${path}[${index}]`, paths);
+    for (const child of value) {
+      collectForbiddenObservationFieldFamilies(child, families);
     }
     return;
   }
   if (typeof value !== "object" || value === null) return;
   for (const [key, child] of Object.entries(value)) {
-    const childPath = `${path}.${key}`;
-    if (classifySensitiveObservationField(key) !== null) {
-      paths.add(childPath);
-    }
-    collectForbiddenObservationFields(child, childPath, paths);
+    const family = classifySensitiveObservationField(key);
+    if (family !== null) families.add(family);
+    collectForbiddenObservationFieldFamilies(child, families);
   }
 }
 
@@ -1121,14 +1119,14 @@ export function admitUniversalImprovementSource(
   }
 
   const findings: UniversalImprovementSourceRegistryFinding[] = [];
-  const forbiddenObservationFields = new Set<string>();
-  collectForbiddenObservationFields(admittedObservation, "observation", forbiddenObservationFields);
-  for (const path of [...forbiddenObservationFields].sort()) {
+  const forbiddenObservationFieldFamilies = new Set<string>();
+  collectForbiddenObservationFieldFamilies(admittedObservation, forbiddenObservationFieldFamilies);
+  for (const family of [...forbiddenObservationFieldFamilies].sort()) {
     findings.push(
       finding(
         "observation_sensitive_field_forbidden",
         admittedObservation.source_id,
-        `sensitive observation field is forbidden: ${path}`,
+        `sensitive observation field family is forbidden: ${family}`,
       ),
     );
   }
