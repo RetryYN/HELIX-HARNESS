@@ -17,9 +17,9 @@
 - Reverse draft CI: `33341306513` success
 - Reverse Ready CI: `33342436154` success
 - Reverse canonical merge: `c2f818ddaa0b3155e26df0a61551a617c25a0d4e`
-- Reverse read-after receipt: `sha256:e977a6a9e08a815aa8b479308154656ebca67afabcacc99f69575b1e8d147401`
-- Reverse post-main harness-check: `33342748021` success
-- Reverse post-main CodeQL: `33342747821` success
+- Reverseのread-after receipt: `sha256:e977a6a9e08a815aa8b479308154656ebca67afabcacc99f69575b1e8d147401`
+- Reverseのpost-main harness-check: `33342748021` 成功
+- Reverseのpost-main CodeQL: `33342747821` 成功
 
 ## R0〜R3判定
 
