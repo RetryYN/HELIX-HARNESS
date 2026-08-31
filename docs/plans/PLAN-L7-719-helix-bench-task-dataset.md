@@ -70,7 +70,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — missing／drift／leakage／historical mutation" }
 ---
 
-# HELIX-Bench task dataset
+# HELIX-Benchタスクデータセット
 
 ## 工程表
 
