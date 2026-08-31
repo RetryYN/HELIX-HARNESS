@@ -41,3 +41,11 @@ required source kindを1件削除、registry versionまたはbytesをintegrity�
 変異、unknown identityを注入、freshness判定を除去、構造検査結果のphysical flagを偽装、loader結果を改竄、doctorのok接続を外す変異は、
 対応するU-UILSRC oracleをredにする。テストはsource registryや
 repository authorityを書き換えず、一時rootのfixtureだけを終了時に破棄する。
+## sensitive fieldポリシーoracle
+
+| Oracle | 正例 | 負極性mutation |
+|---|---|---|
+| `U-UILSFP-001` | separator／camel／結合／数字接尾辞をfamily分類する | 結合keyまたは数字接尾辞だけを通過させたらfail |
+| `U-UILSFP-002` | benign keyを許可する | 部分文字列だけで`tokenizer`等を拒否したらfail |
+| `U-UILSFP-003` | sensitive fieldを既存reasonへ畳み込む | raw keyまたは値をfailureへ展開したらfail |
+| `U-UILSFP-004` | policy versionとfamily exact setを固定する | version不変でfamilyを変更したらfail |
