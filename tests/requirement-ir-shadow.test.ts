@@ -199,6 +199,7 @@ describe("Requirement IR shadow migration", () => {
       "DIST-LITE-FR-001",
       "SYN-FR-001",
       "OPS-FR-001",
+      "RLO-FR-001",
     ]);
   });
 });

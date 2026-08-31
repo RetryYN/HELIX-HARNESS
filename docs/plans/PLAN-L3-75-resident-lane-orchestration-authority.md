@@ -81,7 +81,7 @@ modifies:
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 ---
 
-# Resident lane requirements authority convergence
+# Resident lane requirements authority収束
 
 ## 工程
 

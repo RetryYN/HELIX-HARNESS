@@ -21,7 +21,7 @@ pair_artifact: docs/design/helix/L3-requirements/resident-lane-orchestration-req
 Issue #819、#826、#859の決定をL3の`RLO-INV-001..009`、`RLO-FR-001..040`、
 `RLO-NFR-001..008`から検証する。Issue本文、provider session、通知本文を要件正本として使わない。
 
-## Exact acceptance set
+## Exact acceptance setの検証
 
 | Acceptance | 主な対象 | Oracle |
 |---|---|---|
@@ -33,7 +33,7 @@ Issue #819、#826、#859の決定をL3の`RLO-INV-001..009`、`RLO-FR-001..040`�
 | `RLO-AC-024`〜`RLO-AC-026` | multi-HEAD | lane別HEAD/checkpointとmain/candidate authority分離を検証 |
 | `RLO-AC-027`〜`RLO-AC-030` | runtime/model policy | resident/native/CLI混同、Luna権限昇格、Terra silent fallback、Cursor model/effort receipt欠落を拒否 |
 
-## Requirement IR acceptance projection
+## Requirement IR acceptance projectionの検証
 
 | AC ID | 対応 Requirement | 入力／操作 | 合格条件 | Negative mutation |
 |---|---|---|---|---|
@@ -42,7 +42,7 @@ Issue #819、#826、#859の決定をL3の`RLO-INV-001..009`、`RLO-FR-001..040`�
 | `RLO-AC-029` | `RLO-FR-039` | Cursor Cloud runへtask classとmodel tierを指定する | requested/effective model、availability、response、HEAD、usage、charged costを別fieldでread-afterする | wrong tier、model field同一化、HEAD／usage／cost欠落を拒否する |
 | `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |
 
-## Negative oracle
+## Negative oracleの検証
 
 - IssueとPLANの二重正本を許可するmutation。
 - branchなし、同一branch二重writer、stale fence、foreign candidate HEADを許可するmutation。

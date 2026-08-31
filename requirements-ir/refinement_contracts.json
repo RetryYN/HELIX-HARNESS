@@ -1622,9 +1622,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
-      "requirement_digest": "sha256:75f13b2ae3b4a79f4da06d131bbf31efc7fffaafc77e9d02de7c15a5f243331c",
+      "requirement_digest": "sha256:4024771048f8633682d1b93d3c29a3b3879d584391b9e611687d8a65217f4a28",
       "acceptance_path": "docs/test-design/helix/resident-lane-orchestration-acceptance.md",
-      "acceptance_digest": "sha256:a330eb9351fa77bd988112186c5e9e73be44cc188587b7a5427d39ce4e2ce07b"
+      "acceptance_digest": "sha256:3bd1308ea065ccf0cfdc121cecdd612b22f0c7158a72f83b54dc4da86ec1cae8"
     },
     "plan_id": "PLAN-L3-75-resident-lane-orchestration-authority",
     "responsibility_owner": "resident-lane-requirements-authority",
@@ -1738,6 +1738,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:0b31171864393dae1e6e07ebccc7367163778c0ad0373e0fff2afde8acc1d3f6"
+    "semantic_digest": "sha256:196d24ee5c7f108a8195b288965577a7d04bd25f61b158ce23f3ea8e4782ea7e"
   }
 }

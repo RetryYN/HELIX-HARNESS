@@ -201,7 +201,7 @@ BR を実現するためにシステムが備えるべき能力。要件（FR）
 | SR-4 | バックグラウンド control plane（daemon、heartbeat、event、checkpoint、復元） | BR-4 | RLO-FR-001〜003, 027〜029 |
 | SR-5 | worker completion packet（typed field＋digest、自然言語非正本） | BR-3 | RLO-FR-012〜013, §13 |
 | SR-6 | blind review dispatch と元 worker 差戻し循環 | BR-3, BR-5 | RLO-FR-014〜018 |
-| SR-7 | merge admission（exact HEAD＋CI generation＋receipt＋DB convergence） | BR-3 | RLO-FR-019〜020 |
+| SR-7 | merge admission（exact HEAD＋CI generation＋receipt＋DB convergenceの統合判定） | BR-3 | RLO-FR-019〜020 |
 | SR-8 | WIP／review 在庫の backpressure（初期 worker 2・在庫 2） | BR-1 | RLO-FR-021〜024 |
 | SR-9 | 既存通知経路 adapter（Codex 委譲 wrapper／Claude hook surface）への配線 | BR-5 | RLO-FR-014, 016（搬送路の実装面） |
 | SR-10 | lane 単位 HEAD／checkpoint の多 branch 並行管理 | BR-1, BR-4 | §14.1, RLO-AC-024〜026 |

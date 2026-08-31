@@ -52,10 +52,10 @@ next_pair_freeze: L10
 現在までに次が実装または完成域へ到達している。
 
 - 外部worker共通admission、隔離、proposal-only境界
-- Work Graph、dependency、scope、lease／fence
+- Work Graph、dependency、scope、lease／fenceの統制
 - 最大8-slot scheduler、bounded queue、quota handover、failure isolation
 - worker／reviewer／parent acceptanceの分離
-- exact-HEAD review receipt
+- exact-HEAD review receiptの束縛
 - event envelope、因果順、重複、状態遷移、projection drift、checkpoint replayのpure判定
 - 再現可能な配布archiveのprimitive
 - requirements-owned workflow identityとguide生成
@@ -212,7 +212,7 @@ Codex、Grok Build、Cursor、Claudeの個別sessionは終了・compact・再起
 
 ## 7. 役割定義
 
-### 7.1 HELIX Control Plane
+### 7.1 HELIX Control Planeの責務
 
 保有する権限:
 
@@ -234,7 +234,7 @@ Codex、Grok Build、Cursor、Claudeの個別sessionは終了・compact・再起
 - Issueなしでtaskを生成する
 - leaseなしでbranch writerを切り替える
 
-### 7.2 Codex TL Resident Lane
+### 7.2 Codex TL Resident Laneの責務
 
 責務:
 
@@ -253,7 +253,7 @@ Codex、Grok Build、Cursor、Claudeの個別sessionは終了・compact・再起
 - worker会話をreviewerへ渡す
 - provider session内の記憶を正本化する
 
-### 7.3 Worker Resident Lane
+### 7.3 Worker Resident Laneの責務
 
 対象:
 
@@ -281,7 +281,7 @@ Codex、Grok Build、Cursor、Claudeの個別sessionは終了・compact・再起
 - credential／secretの無断取得
 - provider会話だけを完了証拠にする
 
-### 7.4 Claude Review Resident Lane
+### 7.4 Claude Review Resident Laneの責務
 
 責務:
 
@@ -299,7 +299,7 @@ Codex、Grok Build、Cursor、Claudeの個別sessionは終了・compact・再起
 - CI未完了HEADの承認
 - 古いHEAD／古いCI generationのreceipt再利用
 
-### 7.5 Sub-agent
+### 7.5 Sub-agentの境界
 
 sub-agentは親レーン内部の実装手段であり、HELIX上の独立workerではない。
 
@@ -369,11 +369,11 @@ Codex TLへ戻すのは次の場合だけとする。
 
 provider session IDはprovenanceとして記録するが、queue、task、branch、lease、完了状態の正本にしない。
 
-### RLO-INV-008: provider optional
+### RLO-INV-008: provider optionalの原則
 
 Grok Build、Cursor等が未導入・停止中でも、Codex＋Claudeの既存経路は同じ結果で動かなければならない。
 
-### RLO-INV-009: lane-local failure
+### RLO-INV-009: lane-local failureの隔離
 
 通常障害は該当laneだけを停止する。
 
@@ -492,7 +492,7 @@ MERGED
 
 ## 11. 機能要件
 
-### 11.1 Control Plane
+### 11.1 Control Planeの要件
 
 **RLO-FR-001**
 HELIXはバックグラウンドdaemonとして、assignment、lease、heartbeat、PR、review、CI、merge状態を保持しなければならない。
@@ -503,7 +503,7 @@ daemon再起動後、provider会話を参照せずevent／checkpoint／GitHub re
 **RLO-FR-003**
 同じassignment eventの重複受信は冪等に吸収しなければならない。
 
-### 11.2 Runtime Capability
+### 11.2 Runtime Capabilityの要件
 
 **RLO-FR-004**
 各runtime adapterは、`installed / authenticated / available / busy / paused / unavailable`をtyped状態で返さなければならない。
@@ -529,7 +529,7 @@ Issue依存関係が未完了の場合、assignmentをREADYへ進めてはなら
 **RLO-FR-010**
 workerはassignmentで指定されたbranch以外へpushできないようにしなければならない。
 
-### 11.4 Worker Execution
+### 11.4 Worker Executionの要件
 
 **RLO-FR-011**
 workerはIssue本文、受入条件、branch、base SHA、allowed／forbidden path、検証commandを受け取らなければならない。
@@ -540,7 +540,7 @@ worker完了時は、PR番号、exact HEAD、changed paths、test evidence、wor
 **RLO-FR-013**
 workerの「完了しました」という自然言語だけで状態を`review_ready`へ進めてはならない。
 
-### 11.5 Review Loop
+### 11.5 Review Loopの要件
 
 **RLO-FR-014**
 PRがreview readyになったら、Issue、PR番号、exact HEAD、diff、受入条件だけをClaudeへ渡さなければならない。
@@ -574,7 +574,7 @@ mergeには次を必須とする。
 **RLO-FR-020**
 workerにmerge authorityを与えてはならない。
 
-### 11.7 WIP／Backpressure
+### 11.7 WIP／Backpressureの要件
 
 **RLO-FR-021**
 初期運用のactive worker assignment上限を2とする。
@@ -588,7 +588,7 @@ review在庫が上限に達した場合、新規worker dispatchを停止しな�
 **RLO-FR-024**
 8-slotは能力上限であり、初期の常時稼働数として扱ってはならない。
 
-### 11.8 Sub-agent
+### 11.8 Sub-agentの要件
 
 **RLO-FR-025**
 sub-agentは親assignmentのIssue、branch、scope、budget、lease ownerを継承しなければならない。
@@ -685,7 +685,7 @@ reasoning effortはHELIX-Benchのtask class別evidenceから導出する。未�
   設計成果の統合判断とL層へのfreeze（正本化）は進行レーン（Codex TL）が保持し、
   委譲先はbenchで設計適性evidenceを得たworkerに限る。
 - worker適性（FE実装／BE実装／設計）の判定は既存bench契約
-  `HR-FR-HIL-22`（blind benchmark admit/retire）／`HIL-FR-61`（Worker Acceptance Bench）／
+`HR-FR-HIL-22`（blind benchmark admit/retireの判定）／`HIL-FR-61`（Worker Acceptance Benchの受入）／
   worker共通契約（PLAN-L3-18）に従う。本Capabilityで新規benchを発明しない。
   Cursorはモデル世代単位で適性を記録し、モデル変更検知時に再benchする。
 
@@ -827,7 +827,7 @@ daemonまたはprovider processが終了しても、確定済みassignment、lea
 - runtime availability
 - active assignment
 - Issue／branch／HEAD
-- lease owner／fence／expiry
+- lease owner／fence／expiryの検証
 - last heartbeat
 - PR／review状態
 - queue長
@@ -847,7 +847,7 @@ daemonまたはprovider processが終了しても、確定済みassignment、lea
 
 Grok Build、Cursor等が存在しない環境では、Codex TL＋Codex worker＋Claude review経路が従来どおりgreenでなければならない。
 
-### RLO-NFR-008: Portability
+### RLO-NFR-008: Portabilityの要件
 
 provider adapterはcontrol plane coreから分離し、Windows／WSL／Linux／remote VMの差をadapterで吸収する。
 
@@ -893,13 +893,13 @@ provider adapterはcontrol plane coreから分離し、Windows／WSL／Linux／r
 - **RLO-AC-022** review待ち2件で新規dispatchを停止する
 - **RLO-AC-023** review在庫減少後にdispatchを再開する
 
-### Multi-branch HEAD
+### Multi-branch HEADの前提
 
 - **RLO-AC-024** 異なるbranch HEADを持つ2laneのeventを同じjournalへ保存できる
 - **RLO-AC-025** lane AのHEAD変更がlane Bのcheckpointをstaleにしない
 - **RLO-AC-026** merge後main HEADとworker candidate HEADを別authorityとして保持する
 
-### Runtime identity／model policy
+### Runtime identity／model policyの前提
 
 - **RLO-AC-027** 同一runをresident lane、native subagent、CLI workerへ同時分類するmutationが失敗する
 - **RLO-AC-028** Lunaが独立branch／terminal／review／merge authorityを取得するmutationとTerra silent fallbackが失敗する
@@ -918,9 +918,9 @@ provider adapterはcontrol plane coreから分離し、Windows／WSL／Linux／r
 | #213 | Work Graph、dependency、lease／fence、三段receipt |
 | #214 | 8-slot上限、bounded queue、quota handover、failure isolation |
 | #215 / #636 | eventのpure判定 |
-| #499 | durable journal、projection、checkpoint、replay |
+| #499 | durable journal、projection、checkpoint、replayの永続化 |
 | #769 | CI generation付きreview receipt |
-| #694 | requirements-owned workflow identity |
+| #694 | requirements-owned workflow identityの正本化 |
 | #188 | 将来のswitching／routing／allocation／measurement |
 
 ### 17.2 Issue #819の推奨再編
@@ -956,7 +956,7 @@ behavior_contract_id: RESIDENT-LANE-ORCHESTRATION-001
 
 ## 18. 原子的実装分割
 
-### Slice 1: Requirements authority
+### Slice 1: Requirements authorityの確定
 
 - 本要件をL3へ正本化
 - #819を#92配下へ再編
@@ -964,39 +964,39 @@ behavior_contract_id: RESIDENT-LANE-ORCHESTRATION-001
 - role／authority分離
 - L4/L9 acceptance skeleton
 
-### Slice 2: Assignment／Branch Lease Kernel
+### Slice 2: Assignment／Branch Lease Kernelの実装
 
 - `ResidentLaneAssignmentV1`
 - Issue read-after
 - branch発行
 - base SHA束縛
 - 一branch一writer lease
-- duplicate／stale／scope oracle
+- duplicate／stale／scope oracleの検証
 
-### Slice 3: Runtime Capability Registry
+### Slice 3: Runtime Capability Registryの実装
 
 - adapter interface
 - installed／authenticated／available状態
 - Codex、Claude、Grok Build、Cursor adapterを別PR化
 - 未導入runtimeの互換oracle
 
-### Slice 4: Resident Lane Supervisor
+### Slice 4: Resident Lane Supervisorの実装
 
 - background daemon
 - heartbeat
 - session restart
 - budget／pause／resume
-- lane-local failure isolation
+- lane-local failure isolationの検証
 
-### Slice 5: Worker→PR→Claude→Worker Loop
+### Slice 5: Worker→PR→Claude→Worker Loopの実装
 
 - worker completion packet
 - PR自動作成
 - Claude review dispatch
 - changes requestedを元workerへ返す
-- exact HEAD／CI generation／review receipt
+- exact HEAD／CI generation／review receiptの束縛
 
-### Slice 6: Recovery／Reassignment
+### Slice 6: Recovery／Reassignmentの実装
 
 - lease expiry
 - reassignment receipt
@@ -1004,14 +1004,14 @@ behavior_contract_id: RESIDENT-LANE-ORCHESTRATION-001
 - stale session拒否
 - checkpoint再開
 
-### Slice 7: WIP／Backpressure
+### Slice 7: WIP／Backpressureの実装
 
 - active worker上限2
 - review在庫上限2
 - queue pause／resume
 - metrics
 
-### Slice 8: Provider Canary
+### Slice 8: Provider Canaryの実施
 
 - Grok Build 1 lane
 - Cursor 1 lane
@@ -1020,7 +1020,7 @@ behavior_contract_id: RESIDENT-LANE-ORCHESTRATION-001
 - 同時worker 2件まで
 - 実Issue／実branch／実PRでE2E
 
-### Slice 9: Advisory Router
+### Slice 9: Advisory Routerの実装
 
 - #188のcandidate／capacity／cost／quality入力
 - dispatch候補の提案のみ
@@ -1060,11 +1060,11 @@ Codex TL
 
 active worker 2、review在庫2でbackpressureを実証する。
 
-### Release 3: Durable Recovery
+### Release 3: Durable Recoveryの段階
 
 #499のjournal／projection／checkpointを接続し、daemon／provider再起動後の復元を実証する。
 
-### Release 4: Advisory Routing
+### Release 4: Advisory Routingの段階
 
 worker候補、capacity、所要時間、差戻し率を使い、候補だけを提案する。
 
@@ -1103,13 +1103,13 @@ worker候補、capacity、所要時間、差戻し率を使い、候補だけを
 - 1 dedicated branch
 - `change_slice: atomic`
 - L4/L9、L5/L8、L6/L7の該当pair
-- targeted positive／negative oracle
+- targeted positive／negative oracleの実行
 - mutation oracle
 -全回帰
 - doctor
 - DB convergence
-- Claude exact-HEAD independent review
-- post-merge main read-after
+- Claude exact-HEAD independent reviewの実行
+- post-merge main read-afterの実行
 
 さらに、本Capabilityでは次のpre-merge simulationを必須とする。
 
