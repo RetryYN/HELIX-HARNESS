@@ -18,18 +18,19 @@
 required obligation exact set、artifact identity、resource budget、lease／fence、conservative fallback、bounded cancelは要求、
 L6、L8、runtime、U-CISCHED-001〜014で一致する。schedulerはverification選定やworkflow実行を所有しない。
 
-## Mutation oracle 実測（2026-08-31T13:56Z）
+## Mutation oracleの独立再測定
 
-Reverseをconfirmedへ上げる前提として、oracleが実際にseeded defectをkillすることをworktree
-`claude-pr1281`（HEAD `5895532e3a317a683e6e9cf4b6e1169a1d8b7a3a`）で実測した。将来の再実行約束ではない。
+Codex TLは2026-08-31T15:14Z、PR #1286の専用worktree（基準HEAD
+`419c39494e89dc61c4119536c1bf649f1c7cda51`）で、次の変異を一件ずつ適用した。これは旧PRの測定値を
+転記したものではなく、各変異のredと復元後greenをcurrent treeで再取得した記録である。
 
-| id | seeded defect | oracle command | 実測結果 |
-| --- | --- | --- | --- |
-| M1 | `src/runtime/ci-critical-path-scheduler.ts` の `topoSort(obligations, findings)` を `.slice(0, -1)` へ改変し、required obligationを1件脱落させる | `npx vitest run tests/ci-critical-path-scheduler.test.ts` | 10 failed / 4 passed（14）。U-CISCHED-001「required obligation exact setを変更しない」を含む10 caseがkillした |
-| M2 | Forward `docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md` の `references` から `PLAN-REVERSE-707` 行を削除する | `npx vitest run tests/backfill-pairing.test.ts` | 1 failed / 35 passed（36）。`reverse_plan_id` 欠落としてReverse合流oracleがkillした |
+| mutation | 注入内容 | 検出結果 |
+| --- | --- | --- |
+| M1 | schedulerのtopological orderへ`.slice(0, -1)`を加え、最後のrequired obligationを欠落させた | `tests/ci-critical-path-scheduler.test.ts`: 10 failed / 4 passed。U-CISCHED-001を含むexact-set oracleが検出 |
+| M2 | Forward PLAN-L7-707の`references`からReverse PLANへのedgeを除去した | `tests/backfill-pairing.test.ts`: 1 failed / 35 passed。`reverseLinkMissing`へPLAN-L7-707を投影して検出 |
 
-両mutationとも改変を戻した後は当該oracleが再びgreenになることを確認済みで、kill判定がmutation起因で
-あることを分離している。
+M1とM2は同時適用せず、それぞれ検出後に元の正本へ戻した。復元後の合同実行は2 suites、50 testsすべてgreenで、
+redが既存failureではなく注入した差分に起因することを確認した。
 
 ## 未終端境界
 
