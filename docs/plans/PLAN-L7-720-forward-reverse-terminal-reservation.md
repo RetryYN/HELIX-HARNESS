@@ -4,7 +4,7 @@ title: "PLAN-L7-720: Forward作成時にpending Reverse終端契約を予約す�
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-09-01
@@ -37,6 +37,35 @@ red_at: "2026-08-31T16:58:10Z"
 green_at: "2026-09-01T03:48:31+09:00"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-01T04:19+09:00にsrc/runtime/forward-reverse-terminal-reservation.tsのReverse family checkを一時除去すると、npx vitest run tests/forward-reverse-terminal-reservation.test.tsでU-FRTR-002が1 failed／3 passedとなりmutationをkillした。直後に復元し同command 4 tests greenを実測した。"
+review_evidence:
+  - reviewer: codex-intra-runtime
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-31T22:38:00Z"
+    tests_green_at: "2026-08-31T22:37:54Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: "01a05952-7817-7643-b88b-3d706f117bc0"
+    reviewed_head_sha: 159061f08ce3e9748c9754e3bbc75020965fdfd4
+    scope: "PR #1302 pre-confirm HEADのfresh authority provider fail-close、local/caller fallback禁止、deterministic allocation、journal-first recovery、U-FPATR-001..015を独立reviewし、実装BLOCKER 0を確認した。#1256未接続のproduction write非admittedとcompletion_claim_allowed=falseを維持する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/forward-plan-authoring-transaction.test.ts tests/forward-reverse-terminal-reservation.test.ts tests/backfill-pairing.test.ts tests/oracle-test-trace.test.ts && npm run typecheck"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-31T22:37:54Z"
+        evidence_path: tests/forward-plan-authoring-transaction.test.ts
+        output_digest: "sha256:e3a83cb66fcd1dcbf17ef2854c4be5115b0b6f460055bb6a873f6db92b450227"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-31T22:38:00Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-31T22:38:00Z"
+    evidence_digest: "sha256:e3a83cb66fcd1dcbf17ef2854c4be5115b0b6f460055bb6a873f6db92b450227"
+  entries: []
 complexity_effect: net_neutral
 complexity_justification: "新ledgerを作らず、既存open-branch reservation projectionへpair transactionだけを追加する"
 removal_trigger: "PLAN authoring transactionがForward／Reverseの物理文書作成まで同じDB transactionで所有する時"
@@ -80,6 +109,7 @@ generates:
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/pending-reverse-pairing-readiness.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-pending-reverse-pairing-readiness-unit-test-design.md, artifact_type: test_design }
 agent_slots:
