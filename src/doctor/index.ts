@@ -223,6 +223,7 @@ import {
   l7CompletionMessages,
   loadL7CompletionDocs,
 } from "../lint/l7-completion";
+import { analyzeReviewedSafeInventoryLifecycle } from "../lint/l12-hybrid-inventory-lifecycle";
 import {
   classifyFinalRecognitionDisposition,
   scanL12HybridRecognitionCandidates,
@@ -6443,6 +6444,33 @@ export function checkL12HybridRecognition(repoRoot: string): {
   }
 }
 
+export function checkL12HybridInventoryLifecycle(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const inventory = readFileSync(
+      join(repoRoot, "docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md"),
+      "utf8",
+    );
+    const result = analyzeReviewedSafeInventoryLifecycle(inventory);
+    return result.ok
+      ? { messages: ["l12-hybrid-inventory-lifecycle - OK"], ok: true }
+      : {
+          messages: result.findings.map(
+            (finding) =>
+              `l12-hybrid-inventory-lifecycle - violation: ${finding.code} ${finding.path ?? finding.section ?? finding.familyId ?? "unknown"}`,
+          ),
+          ok: false,
+        };
+  } catch (_error) {
+    return {
+      messages: ["l12-hybrid-inventory-lifecycle - violation: inventory could not be read"],
+      ok: false,
+    };
+  }
+}
+
 export function checkL3ProgressionAuthority(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -7140,6 +7168,13 @@ export function checkG10UxWorkflow(repoRoot: string): {
   }
 }
 
+export function aggregateDoctorCheckStates(
+  states: ReadonlyArray<readonly [name: string, ok: boolean]>,
+): { allOk: boolean; failingChecks: string[] } {
+  const failingChecks = states.filter(([, ok]) => !ok).map(([name]) => name);
+  return { allOk: failingChecks.length === 0, failingChecks };
+}
+
 function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
   const nfrRegistry = checkNfrRegistry(deps.repoRoot);
@@ -7297,6 +7332,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const rightArmGatePlanning = checkRightArmGatePlanning(deps.repoRoot);
   const rightArmVerificationStrategy = checkRightArmVerificationStrategy(deps.repoRoot);
   const l12HybridRecognition = checkL12HybridRecognition(deps.repoRoot);
+  const l12HybridInventoryLifecycle = checkL12HybridInventoryLifecycle(deps.repoRoot);
   const l3ProgressionAuthority = checkL3ProgressionAuthority(deps.repoRoot);
   const g8IntegrationWorkflow = checkG8IntegrationWorkflow(deps.repoRoot);
   const g9SystemWorkflow = checkG9SystemWorkflow(deps.repoRoot);
@@ -7445,6 +7481,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["rightArmGatePlanning", rightArmGatePlanning.ok],
     ["rightArmVerificationStrategy", rightArmVerificationStrategy.ok],
     ["l12HybridRecognition", l12HybridRecognition.ok],
+    ["l12HybridInventoryLifecycle", l12HybridInventoryLifecycle.ok],
     ["l3ProgressionAuthority", l3ProgressionAuthority.ok],
     ["g8IntegrationWorkflow", g8IntegrationWorkflow.ok],
     ["g9SystemWorkflow", g9SystemWorkflow.ok],
@@ -7474,10 +7511,12 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["semanticFrontierConsistency", semanticFrontierConsistency.ok],
     ["forwardConvergenceAudit", forwardConvergenceAudit.ok],
   ];
-  const doctorFailingChecks = doctorCheckStates.filter(([, ok]) => !ok).map(([name]) => name);
+  const { allOk: doctorAllChecksOk, failingChecks: doctorFailingChecks } =
+    aggregateDoctorCheckStates(doctorCheckStates);
   return {
     ok:
       nfrRegistry.ok &&
+      doctorAllChecksOk &&
       universalImprovementSourceRegistry.ok &&
       backfill.ok &&
       scrumRev.ok &&
@@ -7593,6 +7632,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       rightArmGatePlanning.ok &&
       rightArmVerificationStrategy.ok &&
       l12HybridRecognition.ok &&
+      l12HybridInventoryLifecycle.ok &&
       l3ProgressionAuthority.ok &&
       g8IntegrationWorkflow.ok &&
       g9SystemWorkflow.ok &&
@@ -7743,6 +7783,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...rightArmGatePlanning.messages.map((m) => `doctor: ${m}`),
       ...rightArmVerificationStrategy.messages.map((m) => `doctor: ${m}`),
       ...l12HybridRecognition.messages.map((m) => `doctor: ${m}`),
+      ...l12HybridInventoryLifecycle.messages.map((m) => `doctor: ${m}`),
       ...l3ProgressionAuthority.messages.map((m) => `doctor: ${m}`),
       ...g8IntegrationWorkflow.messages.map((m) => `doctor: ${m}`),
       ...g9SystemWorkflow.messages.map((m) => `doctor: ${m}`),
