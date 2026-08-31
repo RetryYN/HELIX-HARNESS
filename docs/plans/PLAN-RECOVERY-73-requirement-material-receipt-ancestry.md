@@ -62,6 +62,7 @@ modifies:
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
+  - { role: aim, slot_label: "AIM — scheduled main failureの原因分離とForward再合流判定" }
   - { role: qa, slot_label: "QA — Git topologyとreceipt failure taxonomy" }
   - { role: tl, slot_label: "TL — fixed baseline authorityと加法的履歴接続" }
 ---
