@@ -107,6 +107,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-intake.md`
 - `docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md`
 - `docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md`
+- `docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md`
 - `docs/design/helix/L12-acceptance/acceptance-evidence-index.md`
 - `docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md`
 - `docs/design/helix/L2-screen/screen-mock-boundary.md`
