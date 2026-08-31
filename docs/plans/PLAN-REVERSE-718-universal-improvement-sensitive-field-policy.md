@@ -12,7 +12,7 @@ backfill_state: complete
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
-github_issue_id: 1308
+github_issue_id: 1244
 behavior_contract_id: UIL-SENSITIVE-FIELD-POLICY-001
 responsibility_owner: universal-improvement-sensitive-field-policy
 change_slice: atomic
