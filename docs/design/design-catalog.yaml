@@ -289,6 +289,7 @@ items:
       - docs/design/helix/L6-function-design/requirement-json-authority-cutover.md
       - docs/design/helix/L6-function-design/impact-ci-recovery.md
       - docs/design/helix/L6-function-design/ci-execution-telemetry.md
+      - docs/design/helix/L6-function-design/ci-critical-path-scheduler.md
       - docs/design/helix/L6-function-design/ci-responsibility-registry.md
       - docs/design/helix/L6-function-design/ci-verification-plan.md
       - docs/design/helix/L6-function-design/design-template-json-authority.md
@@ -297,6 +298,7 @@ items:
       - docs/design/helix/L5-detail/document-semantic-diff.md
       - docs/design/helix/L6-function-design/document-agent-metadata-contract.md
       - docs/design/helix/L6-function-design/document-semantic-diff.md
+      - docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-lifecycle.md
       - docs/design/helix/L5-detail/development-model-runtime-routing.md
       - docs/design/helix/L5-detail/impact-ci-recovery.md
       - docs/design/helix/L5-detail/worker-lifecycle-receipt.md

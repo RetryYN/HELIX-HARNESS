@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { REVIEWED_SAFE_ARTIFACT_FAMILIES } from "../src/lint/l12-hybrid-inventory-lifecycle";
 import { CANONICAL_LAYERS, V_MODEL_PAIRS } from "../src/schema";
 
 const read = (path: string): string => readFileSync(path, "utf8");
@@ -97,7 +98,7 @@ describe("L1-L12 canonical authority drift gate", () => {
     );
   });
 
-  it("keeps the recognition-risk inventory closed over every old-authority candidate", () => {
+  it("U-L12INV-004: keeps the recognition-risk inventory closed over every old-authority candidate", () => {
     const oldAuthority =
       /(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-only worker|Python code port|TypeScript\/Bun|TS\/Bun|reject.to.TS)/;
     const inventoryPath =
@@ -106,12 +107,22 @@ describe("L1-L12 canonical authority drift gate", () => {
       .filter((path) => !path.startsWith("docs/governance/l12-hybrid-"))
       .filter((path) => oldAuthority.test(read(path)))
       .sort();
+    const reviewedSafeFamilyPaths = new Set<string>(
+      REVIEWED_SAFE_ARTIFACT_FAMILIES.flatMap((family) => [...family.paths]),
+    );
+    const authorityReviewCandidates = candidates.filter(
+      (path) => !reviewedSafeFamilyPaths.has(path),
+    );
     const inventory = read(inventoryPath);
     const inventoried = [...inventory.matchAll(/^- `([^`]+)`$/gm)].map((match) => match[1]).sort();
 
     expect(new Set(inventoried).size).toBe(inventoried.length);
-    expect(inventoried).toEqual(candidates);
+    expect(inventoried).toEqual(authorityReviewCandidates);
     expect(candidates).toHaveLength(174);
+    expect(authorityReviewCandidates).toHaveLength(173);
+    expect(authorityReviewCandidates).not.toContain(
+      "docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md",
+    );
     expect(candidates).not.toContain(
       "docs/generated/requirements/requirement-definition.generated.md",
     );
