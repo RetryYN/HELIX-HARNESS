@@ -71,3 +71,9 @@ detector実装を本sliceで再実装しない。
 同じrepository authority、registry bytes、detector digestを与えた場合、loader／analyzerの結果は同じ
 failure code集合になる。DBや通知本文を意味正本にせず、後続UIL-02の観測正規化へadmission済みtupleだけを渡す。
 candidate合成、global counterfactual、route、terminal outcomeはUIL-04以降へ分離する。
+## sensitive field token familyポリシー
+
+観測metadataのfield名はversion付きtoken familyへ正規化し、separator、camel boundary、結合key、
+numeric suffixを同じ規則で検査する。raw field名や値をreceiptへ展開せず、検出結果だけを既存の
+`observation_sensitive_field_forbidden`へ畳み込む。token familyの追加・削除はpolicy version更新を
+要求し、`tokenizer`、`tokenization`、`secretary`等の明示benign keyを誤拒否しない。
