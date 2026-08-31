@@ -4,7 +4,7 @@ title: "PLAN-L7-717: CI deferred obligation exactly-once回収"
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-08-31
 updated: 2026-08-31
@@ -73,6 +73,9 @@ generates:
 modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 agent_slots:
   - { role: se, slot_label: "SE — exactly-once recovery domain設計" }
   - { role: qa, slot_label: "QA — selector fault injectionと安全性oracle" }
