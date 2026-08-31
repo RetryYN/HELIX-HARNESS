@@ -33,7 +33,7 @@
 | base commit message | `Merge pull request #1279 from RetryYN/docs/1206-verification-plan-terminal-closure` |
 | 作業 branch | `cursor/helix-cursor-worker-canary-1287-a362` |
 | worker 作業開始時 HEAD | `f1fd9853885c37ef79aef179525601b2551371bf`（base と同一） |
-| resulting HEAD | **commit 後に追記**（PR 作成後の branch tip） |
+| resulting HEAD | `de0da4c34fb9fde11d11d7d635f1340a929ea54a` |
 
 ## 3. 遵守した AGENTS.md / CLAUDE.md ルール（要約）
 
@@ -69,14 +69,17 @@
 | `cursor-cloud-run-info`（MCP） | — | bcId / branch / model / run URL を §1 に転記 |
 | `cursor-cloud-environment-info`（MCP） | — | environment / build 情報を §1 に転記 |
 
-### 4.2 作業後（read-only、commit / push 前後に実施予定）
+### 4.2 作業後（read-only）
 
-commit / push / PR 作成後、Codex local verification 向けに以下を実施し、結果を PR コメントまたは本節追記で残す。
+| コマンド | exit | 結果要約 |
+|---|---|---|
+| `git status --porcelain`（commit 直後） | 0 | 出力なし（clean） |
+| `git rev-parse HEAD` | 0 | `de0da4c34fb9fde11d11d7d635f1340a929ea54a` |
+| `git diff --name-only origin/main...HEAD` | 0 | `docs/migration/cursor-cloud-agent-canary-2026-09-01.md` のみ |
+| `rg -c 'secret\|credential\|password\|api_key\|BEGIN PRIVATE' docs/migration/cursor-cloud-agent-canary-2026-09-01.md` | 0 | 5 件（すべて境界宣言・検証手順の prose。実 secret 値なし） |
+| `git add docs/migration/cursor-cloud-agent-canary-2026-09-01.md && git diff --staged --stat` | 0 | staged 1 file / 107 insertions（初回 commit 前確認） |
 
-- `git status --porcelain`（変更が許可 1 path のみであること）
-- `git diff --name-only origin/main...HEAD`（exact scope 確認）
-- 本ファイルへの secret-like 文字列スキャン（`rg`）
-- CI 結果の read-after（PR 作成後）
+CI 結果の read-after は PR 作成後に Codex / Claude レーンで実施する。
 
 ## 5. 明示宣言（canary 境界）
 
@@ -90,7 +93,7 @@ commit / push / PR 作成後、Codex local verification 向けに以下を実施
 | 受入条件 | worker 側状態 |
 |---|---|
 | AGENTS.md / CLAUDE.md 読了と遵守記録 | 本 §3 |
-| 専用 branch で exactly one file 追加 | commit 後に確定 |
+| 専用 branch で exactly one file 追加 | 完了（1 file / 107 lines） |
 | PR 作成（merge しない） | PR 作成後に URL 追記 |
 | PR が Issue / HEAD / runtime / model へ追跡可能 | PR body に記載 |
 | Codex local verification | **未実施**（後続レーン） |
