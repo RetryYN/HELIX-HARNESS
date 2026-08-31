@@ -50,6 +50,15 @@ review_evidence:
     scope: "PR #1303 exact HEAD再レビュー。15-field型境界、カテゴリexact 2、fixture／oracle物理件数、nested malformed entry、hidden oracle分離、provider非authority、design catalog、digest inventory、left-arm／freeze pinを再検証しBLOCKER 0。旧review evidenceは再利用しない。cross-runtime receiptの代替とはしない。"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/digest.test.ts tests/helix-bench-task-dataset.test.ts --reporter=verbose", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-31T21:40:09Z", evidence_path: tests/helix-bench-task-dataset.test.ts, output_digest: "sha256:ecceae6cdff3cde571e0d69eb14f39eed593c6504f7e8f4fa489b700e0767c90" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-31T21:40:29Z"
+  review_binding:
+    reviewer: codex-intra-runtime
+    reviewed_at: "2026-08-31T21:40:29Z"
+    evidence_digest: "sha256:d94631c0c5f60f75cf1613d67988c021599e9b2658c48928f520d725ed5c3bd2"
+  entries: []
 complexity_effect: justified_positive
 complexity_justification: "3 registryの物理分離でblind境界を守り、runner／scorerとの責務混載を防ぐ"
 removal_trigger: "versioned benchmark packageが同一contractを置換しconsumer移行が完了した時"
