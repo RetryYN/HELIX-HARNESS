@@ -67,7 +67,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/ci-deferred-obligation-recovery.ts, artifact_type: source_module }
