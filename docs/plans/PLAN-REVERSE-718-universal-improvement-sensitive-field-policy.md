@@ -6,7 +6,7 @@ layer: cross
 workflow_phase: R4
 confirmed_reverse_type: fullback
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-09-01
@@ -38,12 +38,33 @@ contract_failures: "wrong HEAD、stale receipt、policy/version drift、raw leak
 tdd_red_required: false
 tdd_red_waiver_reason: "Forward実装とU-UILSFP-001〜003を再利用するdocs-only Reverseであり、新しいRedを捏造しない"
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/universal-improvement-source-registry.test.tsのU-UILSFP-001〜003が結合key／numeric suffix通過、benign誤拒否、raw key/value漏洩を個別に検出する"
+mutation_oracle_evidence: "tests/universal-improvement-source-registry.test.tsのU-UILSFP-001〜003が結合key／numeric suffix通過、benign誤拒否、raw key/value漏洩のseeded mutationを個別にfailさせる"
 complexity_effect: net_neutral
 complexity_justification: "Forward実装を複製せず、要求／設計／検証／main証拠の再接着だけを所有する"
 removal_trigger: "Universal Improvement Loop全体のterminal Reverseが本fullbackを統合した時"
 parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md
 pair_artifact: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md
+review_evidence:
+  - reviewer: "Codex intra-runtime / Curie"
+    review_kind: intra_runtime_subagent
+    reviewed_at: "2026-08-31T21:58:47Z"
+    tests_green_at: "2026-08-31T21:58:37Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: "01a05952-7817-7643-b88b-3d706f117bc0"
+    reviewed_head_sha: 5a75e912df72d050a2d0801f8aceb00f4fdef3a9
+    scope: "PR #1309 exact HEADでForward最終HEAD receipt、旧receiptの履歴降格、U-UILSFP-001〜004、completion非許可、companion／親Issue終端境界をread-only再確認した。BLOCKER 0 / NON-BLOCKER 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/universal-improvement-source-registry.test.ts tests/oracle-test-trace.test.ts tests/outstanding.test.ts tests/goal-evidence-audit.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/backfill-pairing.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-31T21:58:37Z"
+        evidence_path: tests/universal-improvement-source-registry.test.ts
+        output_digest: "sha256:4e2929d045b4191d8f55f83e16c4142050355ec9d9eacfe3a602a718fbbfb265"
+        result: "7 test files / 143 testsがgreen"
 backprop_scope:
   - layer: requirements
     decision: not_impacted
