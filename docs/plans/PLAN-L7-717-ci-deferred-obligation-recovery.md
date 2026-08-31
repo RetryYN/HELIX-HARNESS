@@ -66,9 +66,14 @@ review_evidence:
         output_digest: "sha256:599b179737a829fdcd38a5a19df8d03b16745977290da6ee45c6d3c0e6088d46"
         result: "Claude独立reviewで4 files / 46 tests green。Codex TLも同一commandを再実行して同件数greenを確認した。"
 left_arm_carry:
-  status: resolved
-  resolved_at: "2026-08-31T16:58:10Z"
-  evidence: "Claude pre-confirm reviewで実装BLOCKER 0。Reverse fullbackはpending_reverseとしてStep 4へ保持し、completion claimを許可しない。"
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-08-31T16:58:10Z"
+  review_binding:
+    reviewer: "Claude Code / claude-opus-5"
+    reviewed_at: "2026-08-31T16:58:10Z"
+    evidence_digest: "sha256:599b179737a829fdcd38a5a19df8d03b16745977290da6ee45c6d3c0e6088d46"
+  entries: []
 dependencies:
   parent: docs/plans/PLAN-L7-706-ci-verification-plan.md
   requires:
