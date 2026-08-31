@@ -6,6 +6,8 @@ import {
   admitUniversalImprovementSource,
   analyzeUniversalImprovementSourceRegistry,
   loadUniversalImprovementSourceRegistry,
+  SENSITIVE_OBSERVATION_FIELD_POLICY_VERSION,
+  SENSITIVE_OBSERVATION_FIELD_TOKEN_FAMILIES,
   UNIVERSAL_IMPROVEMENT_SOURCE_KINDS,
   type UniversalImprovementSourceObservation,
   validateUniversalImprovementSourceRegistryStructure,
@@ -40,6 +42,19 @@ function validObservation(
 }
 
 describe("Universal Improvement source registry", () => {
+  it("U-UILSFP-004: sensitive field policy versionとfamily exact setを固定する", () => {
+    expect(SENSITIVE_OBSERVATION_FIELD_POLICY_VERSION).toBe("1.0.0");
+    expect(SENSITIVE_OBSERVATION_FIELD_TOKEN_FAMILIES.map((rule) => rule.family)).toEqual([
+      "raw_output",
+      "credential",
+      "secret",
+      "password",
+      "key",
+      "token",
+      "pii",
+    ]);
+  });
+
   it("U-UILSRC-001: requirements-owned registryが10 source kindをexactly oneずつ束縛する", () => {
     const { registry } = loadedRegistry();
     expect(registry.schema_version).toBe("helix-universal-improvement-source-registry.v1");
@@ -348,6 +363,11 @@ describe("Universal Improvement source registry", () => {
       "accessToken",
       "userPii",
       "piiData",
+      "accessToken2",
+      "githubtoken7",
+      "privatekey3",
+      "myRefreshToken",
+      "buildcredential",
     ]) {
       const snakeCaseSensitive = validObservation(
         entry.source_id,
@@ -371,7 +391,7 @@ describe("Universal Improvement source registry", () => {
       );
     }
 
-    for (const allowedField of ["tokenizer", "summary", "source_id"]) {
+    for (const allowedField of ["tokenizer", "tokenization", "secretary", "summary", "source_id"]) {
       const safeObservation = validObservation(
         entry.source_id,
         entry.schema_version,

@@ -448,6 +448,60 @@ function parseStrictTimestamp(value: unknown): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+export const SENSITIVE_OBSERVATION_FIELD_POLICY_VERSION = "1.0.0" as const;
+
+export const SENSITIVE_OBSERVATION_FIELD_TOKEN_FAMILIES = [
+  { family: "raw_output", forms: ["rawlog", "stdout", "stderr"] },
+  { family: "credential", forms: ["credential", "credentials"] },
+  { family: "secret", forms: ["secret", "secrets"] },
+  { family: "password", forms: ["password", "passwd"] },
+  { family: "key", forms: ["apikey", "privatekey"] },
+  {
+    family: "token",
+    forms: [
+      "token",
+      "tokens",
+      "apitoken",
+      "accesstoken",
+      "refreshtoken",
+      "authtoken",
+      "ghtoken",
+      "githubtoken",
+    ],
+  },
+  { family: "pii", forms: ["pii", "userpii"] },
+] as const;
+
+function normalizedObservationFieldSegments(key: string): {
+  segments: string[];
+  collapsed: string;
+} {
+  const normalized = key
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+    .normalize("NFKC")
+    .toLowerCase();
+  const segments = normalized.split(/[^a-z0-9]+/u).filter(Boolean);
+  return { segments, collapsed: segments.join("") };
+}
+
+export function classifySensitiveObservationField(key: string): string | null {
+  const { segments, collapsed } = normalizedObservationFieldSegments(key);
+  for (const rule of SENSITIVE_OBSERVATION_FIELD_TOKEN_FAMILIES) {
+    for (const form of rule.forms) {
+      const numericSuffix = new RegExp(`^${form}[0-9]+$`, "u");
+      if (
+        segments.includes(form) ||
+        collapsed === form ||
+        numericSuffix.test(collapsed) ||
+        (collapsed.endsWith(form) && collapsed !== `tokenizer`)
+      ) {
+        return rule.family;
+      }
+    }
+  }
+  return null;
+}
+
 function collectForbiddenObservationFields(value: unknown, path: string, paths: Set<string>): void {
   if (Array.isArray(value)) {
     for (const [index, child] of value.entries()) {
@@ -458,12 +512,7 @@ function collectForbiddenObservationFields(value: unknown, path: string, paths: 
   if (typeof value !== "object" || value === null) return;
   for (const [key, child] of Object.entries(value)) {
     const childPath = `${path}.${key}`;
-    const normalizedKey = key.replace(/([a-z0-9])([A-Z])/g, "$1_$2");
-    if (
-      /(?:raw[_-]?log|stdout|stderr|credential|secret|password|passwd|api[_-]?key|private[_-]?key|(?<![a-z0-9])(?:(?:api|access|refresh|auth|gh)[_-]?)?tokens?(?![a-z0-9])|(?<![a-z0-9])(?:user[_-]?)?pii(?![a-z0-9]))/iu.test(
-        normalizedKey,
-      )
-    ) {
+    if (classifySensitiveObservationField(key) !== null) {
       paths.add(childPath);
     }
     collectForbiddenObservationFields(child, childPath, paths);
