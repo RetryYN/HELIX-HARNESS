@@ -67,6 +67,7 @@ generates:
   - { artifact_path: requirements-ir/manifest.json, artifact_type: json_config }
   - { artifact_path: docs/generated/requirements/requirement-definition.generated.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/resident-lane-orchestration-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
@@ -75,7 +76,6 @@ modifies:
   - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-  - { artifact_path: tests/resident-lane-orchestration-requirements.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-generated-view-db.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
