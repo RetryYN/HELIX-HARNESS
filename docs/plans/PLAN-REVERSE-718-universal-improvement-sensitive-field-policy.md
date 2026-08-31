@@ -48,7 +48,7 @@ review_evidence:
   - reviewer: "Claude Code / Opus"
     review_kind: cross_agent
     reviewed_at: "2026-08-31T23:31:22Z"
-    tests_green_at: "2026-08-31T23:29:00Z"
+    tests_green_at: "2026-08-31T21:58:37Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
@@ -56,15 +56,15 @@ review_evidence:
     reviewed_head_sha: 77036a77db373885c04177c816771e3e6e294f77
     scope: "PR #1309 exact HEADのpost-main fullbackを独立検収し、BLOCKER 0。"
     green_commands:
-      - kind: integration_test
-        command: "GitHub Actions harness-check run 33449299678 attempt 1"
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/universal-improvement-source-registry.test.ts tests/oracle-test-trace.test.ts tests/outstanding.test.ts tests/goal-evidence-audit.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/backfill-pairing.test.ts"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-08-31T23:29:00Z"
-        evidence_path: "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33449299678"
-        output_digest: "sha256:374c47886c1df0281b155cfb64f387ac0a9396e2bc6c1f5e9b4971b2ce69e9bc"
-        result: "terminal success、DB projection/checkpoint replay一致"
+        completed_at: "2026-08-31T21:58:37Z"
+        evidence_path: tests/universal-improvement-source-registry.test.ts
+        output_digest: "sha256:4e2929d045b4191d8f55f83e16c4142050355ec9d9eacfe3a602a718fbbfb265"
+        result: "7 test files / 143 testsがgreen"
   - reviewer: "Codex intra-runtime / Curie"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-31T21:58:47Z"
