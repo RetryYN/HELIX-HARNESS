@@ -33,7 +33,7 @@
 | base commit message | `Merge pull request #1279 from RetryYN/docs/1206-verification-plan-terminal-closure` |
 | 作業 branch | `cursor/helix-cursor-worker-canary-1287-a362` |
 | worker 作業開始時 HEAD | `f1fd9853885c37ef79aef179525601b2551371bf`（base と同一） |
-| resulting HEAD | `de0da4c34fb9fde11d11d7d635f1340a929ea54a` |
+| resulting HEAD | `fe170c75b9bafdedba89cb8990d6a0e58f083c1c` |
 
 ## 3. 遵守した AGENTS.md / CLAUDE.md ルール（要約）
 
