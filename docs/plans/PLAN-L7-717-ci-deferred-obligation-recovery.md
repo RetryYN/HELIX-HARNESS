@@ -96,6 +96,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-009, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-010, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-011, test_path: tests/ci-deferred-obligation-recovery.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-012, test_path: tests/ci-deferred-obligation-recovery.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }

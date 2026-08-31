@@ -18,7 +18,7 @@ pair_artifact: docs/design/helix/L6-function-design/ci-deferred-obligation-recov
 |---|---|---|---|
 | U-CIDEFER-001 | exactly-once receipt | assignmentを最初のterminal runへ接続しdigestを固定する | `tests/ci-deferred-obligation-recovery.test.ts` |
 | U-CIDEFER-002 | terminal cardinality | missing、duplicate、expiredを個別にfail-closeする | `tests/ci-deferred-obligation-recovery.test.ts` |
-| U-CIDEFER-002A | evaluation timestamp | 不正な`evaluated_at`を期限判定へ流さずAPI／CLIの両方でfail-closeする | `tests/ci-deferred-obligation-recovery.test.ts` |
+| U-CIDEFER-012 | evaluation timestamp | 不正な`evaluated_at`を期限判定へ流さずAPI／CLIの両方でfail-closeする | `tests/ci-deferred-obligation-recovery.test.ts` |
 | U-CIDEFER-003 | recovery identity | wrong profile、stale HEAD、wrong origin、cancelledを相殺しない | `tests/ci-deferred-obligation-recovery.test.ts` |
 | U-CIDEFER-004 | backprop | failureをselector、registry edge、oracleへbackpropする | `tests/ci-deferred-obligation-recovery.test.ts` |
 | U-CIDEFER-005 | quarantine | owner、期限、replacement oracle欠落を拒否する | `tests/ci-deferred-obligation-recovery.test.ts` |

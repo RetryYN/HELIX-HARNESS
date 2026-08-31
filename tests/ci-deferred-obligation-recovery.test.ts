@@ -179,7 +179,7 @@ describe("CI deferred obligation recovery", () => {
     );
   });
 
-  it("U-CIDEFER-002A: invalid evaluated_atを期限判定へ流さずfail-closeする", () => {
+  it("U-CIDEFER-012: invalid evaluated_atを期限判定へ流さずfail-closeする", () => {
     const result = reconcileDeferredObligations(
       input({ terminal_runs: [], evaluated_at: "not-a-timestamp" }),
     );
