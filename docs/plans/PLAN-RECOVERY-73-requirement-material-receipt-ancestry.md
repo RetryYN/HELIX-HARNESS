@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-73: frozen baseline material receiptのancestor接続を�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-08-31
 updated: 2026-08-31
@@ -32,7 +32,9 @@ contract_invariants: "固定HEAD／digestを緩めず、履歴を書き換えず
 contract_failures: "object欠落、non-ancestor、manifest欠落、invalid JSON、digest drift、material parent未接続をfail-closeする"
 tdd_red_required: true
 red_at: "2026-08-31T23:08:56+09:00"
+green_at: "2026-08-31T23:16:20+09:00"
 tdd_red_evidence: "tests/requirement-authority.test.ts U-RAC-009を先行し、helper欠落でTypeError、current repoの非ancestorをU-RAC-001が検出して2 failed／9 passedとなった"
+tdd_green_evidence: "tests/requirement-authority.test.ts、tests/requirements-binding-config.test.ts、tests/design-language.test.tsは28 passed。typecheck、PLAN lint、checkRequirementsBindingConfigもgreenで、material HEAD 434ef587がcurrent candidate HEADのancestorになった"
 mutation_oracle_required: true
 mutation_oracle_evidence: "tests/requirement-authority.test.ts U-RAC-009でmaterial objectをzero SHA、unrelated commit、manifest削除、wrong root digestへ個別mutationし、固有finding不一致でredへ戻す"
 complexity_effect: net_negative
