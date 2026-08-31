@@ -45,26 +45,26 @@ removal_trigger: "CI System Synthesis全体のterminal Reverseが個別fullback�
 parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md
 pair_artifact: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md
 review_evidence:
-  - reviewer: "Codex intra-runtime / Curie"
+  - reviewer: "Codex intra-runtime / Nietzsche"
     review_kind: intra_runtime_subagent
-    reviewed_at: "2026-08-31T21:24:44Z"
-    tests_green_at: "2026-08-31T21:24:44Z"
+    reviewed_at: "2026-08-31T21:52:04Z"
+    tests_green_at: "2026-08-31T21:51:50Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: codex-intra-runtime
-    reviewer_session_id: "01a05952-7817-7643-b88b-3d706f117bc0"
-    reviewed_head_sha: 8d110e46baed461b5c4a1870775dedd16fe572f2
-    scope: "PR #1305 exact HEADのReverse authority、CIS-R-13〜15、U-CIDEFER-013、terminal evidence、branch-kind、親Forwardとのcompanion境界をread-only再確認した。BLOCKER 0。no_code_decisionとmutation claimの過大記述はcurrent HEADで解消済み。CI全回帰は別のcurrent-HEAD gateとして完走を要求する。"
+    reviewer_session_id: "f5d602da-904a-4ce7-8d62-b0a4757b5622"
+    reviewed_head_sha: b93c3d7a011222f65607eb9ae42cd6583250290c
+    scope: "PR #1305 exact HEADでForward／pending Reverseの双方向references、U-CIDEFER-013のseeded failure、mutation証拠、completion非許可、後続companion境界をread-only再確認した。BLOCKER 0 / NON-BLOCKER 0。"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/ci-deferred-obligation-recovery.test.ts tests/branch-kind.test.ts && npm run typecheck && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md"
+        command: "npx --no-install vitest run --project fast tests/ddd-tdd-rules.test.ts tests/backfill-pairing.test.ts --reporter=verbose && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-08-31T21:24:44Z"
+        completed_at: "2026-08-31T21:51:50Z"
         evidence_path: tests/ci-deferred-obligation-recovery.test.ts
-        output_digest: "sha256:418d687c25652cdb75b6b68a4cf8ae6134e1b26ce9a0f1a5fd06eff41958e373"
-        result: "2 test files / 45 tests、typecheck、PLAN lintがgreen"
+        output_digest: "sha256:f0657f19493747e2a1ede2048a2a13de02afbe3d327cbbf86d96e6e65a008489"
+        result: "2 test files / 57 testsとForward／Reverse PLAN lintがgreen"
 backprop_scope:
   - layer: requirements
     decision: not_impacted
