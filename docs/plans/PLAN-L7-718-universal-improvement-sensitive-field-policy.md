@@ -7,6 +7,8 @@ drive: agent
 status: draft
 completion_claim_allowed: false
 backfill_state: pending_reverse
+backprop_decision: not_required
+backprop_decision_reason: "confirmed済みUIL-01の機密field拒否境界をtoken family policyへ局所置換するRETROFITであり、上位要求・観測schema・DB契約の意味を変更しない。"
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
