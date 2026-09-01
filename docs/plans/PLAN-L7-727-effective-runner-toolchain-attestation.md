@@ -16,7 +16,7 @@ responsibility_owner: ci-execution-telemetry
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: compatibility_only
+legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 workflow_identity:
