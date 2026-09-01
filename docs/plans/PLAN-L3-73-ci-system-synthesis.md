@@ -6,7 +6,7 @@ layer: L3
 drive: agent
 status: confirmed
 backfill_state: complete
-completion_claim_allowed: true
+completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
   approval_kind: human_po
@@ -128,6 +128,7 @@ modifies:
 - #1208: terminal fullback `1127933d`、post-main harness-check `33460518940` success
 
 Telemetry、Responsibility Registry、Verification Plan、critical-path scheduler、deferred obligation recoveryを
-Forward／Reverse／main read-afterまで一巡したため、要求意味を変更せず`backfill_state: complete`および
-`completion_claim_allowed: true`へ遷移する。Issue #1034のcloseは本変更のClaude exact-HEAD review、CI、DB convergence、
-canonical merge後のmain read-afterを記録してから行う。
+Forward／Reverse／main read-afterまで一巡したため、要求意味を変更せず`backfill_state: complete`へ遷移する。
+一方、現行project current-locationは`l14_claim_with_l7_work` Recoveryを要求しているため、全体完了claimと
+Issue #1034 closeは行わず、`completion_claim_allowed: false`を維持する。Claude exact-HEAD review、CI、DB convergence、
+canonical merge後のmain read-afterは、child exact setの実装fullback証拠として記録する。
