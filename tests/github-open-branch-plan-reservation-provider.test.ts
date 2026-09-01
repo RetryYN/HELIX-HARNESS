@@ -183,4 +183,21 @@ describe("GitHub open branch PLAN reservation provider", () => {
       ],
     });
   });
+
+  it("U-OBPRGH-006: providerのraw error／response bodyをstable digest材料へ入れない", () => {
+    const first = loadGithubOpenBranchPlanReservationMaterial({
+      repository: "RetryYN/HELIX-HARNESS",
+      api() {
+        throw new Error("Command failed: gh api repos/secret-a\nprovider response A");
+      },
+    });
+    const second = loadGithubOpenBranchPlanReservationMaterial({
+      repository: "RetryYN/HELIX-HARNESS",
+      api() {
+        throw new Error("Command failed: gh api repos/secret-b\nprovider response B");
+      },
+    });
+    expect(first.current_main).toEqual(second.current_main);
+    expect(first.open_pr_heads).toEqual(second.open_pr_heads);
+  });
 });

@@ -20,5 +20,6 @@ pair_artifact: docs/design/helix/L6-function-design/github-open-branch-plan-rese
 | U-OBPRGH-003 | main ref／tree完全性 | ref raceまたはtruncated treeをlocal greenへ縮退する | `tests/github-open-branch-plan-reservation-provider.test.ts` |
 | U-OBPRGH-004 | pagination／identity | 終端pageを読まない、または重複PRを受理する | `tests/github-open-branch-plan-reservation-provider.test.ts` |
 | U-OBPRGH-005 | terminal lifecycle | list後のmerge／closeを証拠なしで消失させる | `tests/github-open-branch-plan-reservation-provider.test.ts` |
+| U-OBPRGH-006 | unavailable reason正規化 | provider raw error、endpoint、response bodyの差でdigestが変わる | `tests/github-open-branch-plan-reservation-provider.test.ts` |
 
 mutationはopen PR exact-set比較を除去し、U-OBPRGH-002が退行を捕捉することを実測する。

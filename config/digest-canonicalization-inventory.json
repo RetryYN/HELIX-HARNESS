@@ -29,7 +29,7 @@
     {
       "hit_id": "src/adapters/github-open-branch-plan-reservation-provider.ts::unavailable:sha256Digest()::1",
       "path": "src/adapters/github-open-branch-plan-reservation-provider.ts",
-      "line": 52,
+      "line": 55,
       "symbol": "unavailable",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -46,7 +46,7 @@
     {
       "hit_id": "src/adapters/github-open-branch-plan-reservation-provider.ts::planMaterial:sha256Digest()::1",
       "path": "src/adapters/github-open-branch-plan-reservation-provider.ts",
-      "line": 97,
+      "line": 100,
       "symbol": "planMaterial",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -63,7 +63,7 @@
     {
       "hit_id": "src/adapters/github-open-branch-plan-reservation-provider.ts::prReadAfter:sha256Digest()::1",
       "path": "src/adapters/github-open-branch-plan-reservation-provider.ts",
-      "line": 209,
+      "line": 212,
       "symbol": "prReadAfter",
       "algorithm": "sha256",
       "input_kind": "string",

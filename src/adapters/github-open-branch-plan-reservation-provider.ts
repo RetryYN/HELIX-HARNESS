@@ -46,7 +46,10 @@ function head(value: unknown, code: string): string {
 }
 
 function unavailable(surface: string, error: unknown) {
-  const reason = error instanceof Error ? error.message : "unknown_error";
+  const reason =
+    error instanceof Error && /^github_reservation_[a-z0-9_]+(?::.*)?$/u.test(error.message)
+      ? (error.message.split(":", 1)[0] ?? "provider_call_failed")
+      : "provider_call_failed";
   return {
     status: "unavailable" as const,
     error_digest: sha256Digest(canonicalJson({ surface, reason })),

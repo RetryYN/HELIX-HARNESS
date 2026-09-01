@@ -55,6 +55,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-003, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-004, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-005, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-006, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
 review_evidence: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-723-github-open-branch-plan-reservation-provider.md, artifact_type: markdown_doc }
