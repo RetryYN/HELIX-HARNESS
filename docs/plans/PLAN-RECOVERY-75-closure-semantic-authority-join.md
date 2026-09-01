@@ -26,7 +26,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: RECOVERY
 entry_signals:
-  - "recovery_gap:probe green後もsemantic authorityをjoinする正規portがなくclosureが恒久blockする"
+  - "po_directive:Issue #1345 probe green後もsemantic authorityをjoinする正規portがなくclosureが恒久blockする"
 contract_preconditions: "probe executionはprocess値だけを証明し、semantic値を発明しない"
 contract_postconditions: "validated bundleだけがPLAN＋artifact kindへexact joinされapproval scopeへdigest束縛される"
 contract_invariants: "bundle欠落、wrong PLAN／HEAD／oracle、unaccepted runtimeは従来どおりfail-closeする"
@@ -57,7 +57,11 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-closure-semantic-authority-join-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/state-db/closure-evidence-semantic-authority.ts, artifact_type: source_module }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
@@ -65,7 +69,9 @@ modifies:
   - { artifact_path: src/cli.ts, artifact_type: cli_extension }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: tests/closure-evidence-semantic-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/visualization-treeview.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — closure authorityと推測禁止境界" }
   - { role: se, slot_label: "SE — typed bundleとexact join" }
@@ -74,7 +80,7 @@ agent_slots:
 review_evidence: []
 ---
 
-# Closure semantic authority exact join
+# closure semantic authority exact joinの復旧
 
 Probeが証明できない意味値を発明せず、既存authority artifactの実体とdigestを検証してからだけ
 evidence candidateへ投影する。approval／apply境界は変更しない。

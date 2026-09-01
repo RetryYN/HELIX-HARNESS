@@ -1,4 +1,17 @@
-# Closure Semantic Authority Join Unit Test Design
+---
+title: "closure semantic authority join L8単体テスト設計"
+layer: L8
+artifact_type: test_design
+sub_doc: unit-test-design
+status: confirmed
+created: 2026-09-01
+updated: 2026-09-01
+owner: QA
+plan: docs/plans/PLAN-RECOVERY-75-closure-semantic-authority-join.md
+pair_artifact: docs/design/helix/L6-function-design/closure-semantic-authority-join.md
+---
+
+# closure semantic authority join L8単体テスト設計
 
 - U-CESA-006: exact PLAN＋artifact kindの3 authorityで全candidateがreadyになる。
 - U-CESA-007: wrong PLANはreview placeholderを解決しない。

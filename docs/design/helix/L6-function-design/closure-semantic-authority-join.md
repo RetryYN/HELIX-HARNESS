@@ -1,4 +1,16 @@
-# Closure Semantic Authority Join
+---
+title: "closure semantic authority join機能設計"
+layer: L6
+artifact_type: design
+status: confirmed
+created: 2026-09-01
+updated: 2026-09-01
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-75-closure-semantic-authority-join.md
+pair_artifact: docs/test-design/helix/L8-closure-semantic-authority-join-unit-test-design.md
+---
+
+# closure semantic authority join機能設計
 
 ## 目的
 
