@@ -178,4 +178,40 @@ describe("Forward／pending Reverse terminal reservation", () => {
     const result = reserveForwardReverseTerminalPair(input());
     expect(JSON.stringify(result)).not.toMatch(/route_mode|review_evidence|mode/);
   });
+
+  it("U-FRTR-005: malformed reservation snapshotを例外化せずtyped findingで拒否する", () => {
+    const malformedSnapshots: readonly [string, unknown][] = [
+      ["undefined", undefined],
+      ["null", null],
+      ["primitive", 42],
+      ["missing reservations", { ...snapshot(), reservations: undefined }],
+      [
+        "malformed reservation",
+        {
+          ...snapshot(),
+          reservations: [{ ...snapshot().reservations[0], plan_id: "not-a-plan" }],
+        },
+      ],
+      ["unknown field", { ...snapshot(), unexpected: true }],
+    ];
+
+    for (const [name, reservationSnapshot] of malformedSnapshots) {
+      expect(() =>
+        reserveForwardReverseTerminalPair({
+          ...input(),
+          reservation_snapshot: reservationSnapshot as OpenBranchPlanReservationSnapshot,
+        }),
+      ).not.toThrow();
+      const result = reserveForwardReverseTerminalPair({
+        ...input(),
+        reservation_snapshot: reservationSnapshot as OpenBranchPlanReservationSnapshot,
+      });
+      expect(result.ok, name).toBe(false);
+      expect(
+        result.findings.some((finding) => finding.startsWith("input_invalid:reservation_snapshot")),
+        name,
+      ).toBe(true);
+      expect(result.reservation_projection, name).toBeNull();
+    }
+  });
 });
