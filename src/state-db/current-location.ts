@@ -7573,17 +7573,17 @@ function escapeDoubleQuotedEvidenceValue(value: string): string {
   return value.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
 
-function materializePreviewLines(
-  candidate: ProjectClosureEvidencePatchPacketCandidate,
-  _action: ProjectClosureQueueNextAction | null,
-  execution: ProjectClosureEvidenceProbeExecution,
-  semanticAuthority: ClosureSemanticAuthority | null,
-  semanticAuthoritySourceDigest: string | null,
-): {
+function materializePreviewLines(input: {
+  candidate: ProjectClosureEvidencePatchPacketCandidate;
+  execution: ProjectClosureEvidenceProbeExecution;
+  semanticAuthority: ClosureSemanticAuthority | null;
+  semanticAuthoritySourceDigest: string | null;
+}): {
   lines: string[];
   filledPlaceholders: string[];
   resolutionSources: ProjectClosureEvidenceMaterializeCandidate["placeholder_resolution_sources"];
 } {
+  const { candidate, execution, semanticAuthority, semanticAuthoritySourceDigest } = input;
   const digestValue = execution.output_digest.replace(/^sha256:/i, "");
   const replacements: Array<{
     placeholder: string;
@@ -7760,13 +7760,12 @@ export function buildProjectClosureEvidenceMaterializePacket(
             const semantic = semanticAuthorityByCandidate.get(
               `${candidate.plan_id}:${candidate.artifact_kind}`,
             );
-            const materialized = materializePreviewLines(
+            const materialized = materializePreviewLines({
               candidate,
-              selectedAction,
               execution,
-              semantic?.authority ?? null,
-              semantic?.source_digest ?? null,
-            );
+              semanticAuthority: semantic?.authority ?? null,
+              semanticAuthoritySourceDigest: semantic?.source_digest ?? null,
+            });
             const remaining = closureEvidencePatchPlaceholders(materialized.lines);
             return {
               candidate_id: candidate.candidate_id,

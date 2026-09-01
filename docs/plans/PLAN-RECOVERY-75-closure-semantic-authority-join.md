@@ -36,7 +36,7 @@ red_test: "semantic authority receiptの入力portがないため実receiptが�
 red_at: "2026-09-01T21:12:00+09:00"
 green_at: "2026-09-01T21:53:12+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CESA-010のoracle exact join条件を`!==`から`===`へ反転すると、wrong oracle bundleを拒否できず1 failed／exit 1となることを2026-09-01T21:52:56+09:00に実測した。production条件へ復元後、同testは1 passed／exit 0。加えてsemantic authority 9/9、CLI targeted 2/2、G3 freeze targeted 5/5、typecheck、PLAN governance checked=1120、Biome error 0を実測した。"
+mutation_oracle_evidence: "tests/closure-evidence-semantic-authority.test.ts のU-CESA-010のoracle exact join条件を`!==`から`===`へ反転すると、wrong oracle bundleを拒否できず1 failed／exit 1となることを2026-09-01T21:52:56+09:00に実測した。production条件へ復元後、同testは1 passed／exit 0。加えてsemantic authority 9/9、CLI targeted 2/2、G3 freeze targeted 5/5、typecheck、PLAN governance checked=1120、Biome error 0を実測した。"
 complexity_effect: justified_positive
 complexity_justification: "既存probe materializerへtyped bundle loaderを一つ追加し、別authority DBや別closure engineを作らない"
 removal_trigger: "closure authority projectionが同じtyped bundleをDBから完全供給する時"
