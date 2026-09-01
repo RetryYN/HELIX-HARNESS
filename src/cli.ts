@@ -332,6 +332,10 @@ import {
   scanDanglingStops,
 } from "./runtime/forced-stop";
 import {
+  authorForwardPlanTransaction,
+  type ForwardPlanAuthoringTransactionInput,
+} from "./runtime/forward-plan-authoring-transaction";
+import {
   createGuardOverrideAuditPort,
   runGitCommandGuardHook,
 } from "./runtime/git-command-guard-hook";
@@ -4799,6 +4803,41 @@ guard
   );
 
 const plan = program.command("plan").description("PLAN 操作");
+plan
+  .command("author-forward")
+  .description("allocator exact ID発行とForward／pending Reverse PLANを同一transactionで作成")
+  .requiredOption("--input <path>", "authoring input JSON")
+  .option("--dry-run", "検証とtransaction planだけを返し、fileを書かない")
+  .option("--json", "JSON output")
+  .action((opts: { input: string; dryRun?: boolean; json?: boolean }) => {
+    try {
+      const source = JSON.parse(readFileSync(resolve(process.cwd(), opts.input), "utf8")) as Omit<
+        ForwardPlanAuthoringTransactionInput,
+        "repoRoot" | "dryRun"
+      >;
+      const result = authorForwardPlanTransaction({
+        repoRoot: process.cwd(),
+        reservationInput: source.reservationInput,
+        reservationAuthorityPath: source.reservationAuthorityPath,
+        forwardDocument: source.forwardDocument,
+        reverseDocument: source.reverseDocument,
+        dryRun: Boolean(opts.dryRun),
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else {
+        process.stdout.write(
+          `plan author-forward: ${result.status} writes=${result.written_paths.length} digest=${result.transaction_digest ?? "-"}\n`,
+        );
+        for (const finding of result.findings) process.stdout.write(`  - ${finding}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) process.stdout.write(`${JSON.stringify({ ok: false, error: message })}\n`);
+      else process.stderr.write(`plan author-forward failed: ${message}\n`);
+      process.exitCode = 1;
+    }
+  });
 plan
   .command("lint [path]")
   .description("PLAN lint")
