@@ -56,6 +56,23 @@ source eventをstable event ID、baseline revision、observed revision、payload
 counterevidenceへ正規化する。同一event集合とregistry versionから同一normalized exact setとdigestを生成し、
 current baseline、観測値、欠測、予測を別fieldにする。
 
+### UIL-R-15 観測generationとhistorical baseline保全
+
+normalized observationは`baseline`、`candidate`、`post_main`を別generationとして保持し、同じHEAD、event payload、
+source IDでもgeneration identityを統合しない。各generationはrepository、source HEAD、base／candidate HEAD、source
+registry version／digest、detector ID／version／digest、environment／toolchain digest、physical binding applicability、
+観測時刻、親generationへ束縛する。
+
+historical baselineは生成時のregistry、detector、environment identityでsealedし、candidate側変更で再解釈または
+in-place rewriteしない。detector semantics、source event class、evidence boundary、environment、physical bindingの
+比較条件が一致しない場合は、`comparison_compatible`、`reobservation_required`、`baseline_incomparable`、
+`detector_transition_required`のtyped dispositionへ送る。比較不能をno-change、改善、悪化なし、greenへ変換しない。
+
+正規lifecycleは`current baseline → candidate observation → comparison／migration decision → canonical merge →
+post-main observation → new baseline promotion`とする。post-main read-afterなしにcandidateを次baselineへ昇格せず、
+candidate close／abandon時はhistorical baselineを変更しない。source admission failureはfirst cause、rejected source/event、
+normalizer disposition、downstream skip/deferをlineageとして保持し、genericな`normalized event missing`だけへ崩さない。
+
 ## UIL-FR-002 findingの適格化と改善候補
 
 ### UIL-R-03 finding適格化、dedupe、expiry
