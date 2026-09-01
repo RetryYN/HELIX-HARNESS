@@ -57,6 +57,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-review-db-candidate-tree-binding-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
 agent_slots:

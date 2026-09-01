@@ -1,3 +1,18 @@
+---
+title: "Review DB candidate tree binding 詳細設計"
+layer: L6
+artifact_type: design
+status: confirmed
+created: 2026-09-02
+updated: 2026-09-02
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-79-review-db-candidate-tree-binding.md
+pair_artifact: docs/test-design/helix/L8-review-db-candidate-tree-binding-unit-test-design.md
+github_issue_id: 1383
+behavior_contract_id: REVIEW-DB-CANDIDATE-TREE-BINDING-001
+responsibility_owner: claude-pr-convergence
+---
+
 # Review DB candidate tree binding 詳細設計
 
 ## 責務

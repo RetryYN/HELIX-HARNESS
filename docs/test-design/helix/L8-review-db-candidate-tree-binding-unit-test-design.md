@@ -1,3 +1,17 @@
+---
+title: "Review DB candidate tree binding 単体テスト設計"
+layer: L8
+artifact_type: test_design
+sub_doc: unit-test-design
+status: confirmed
+created: 2026-09-02
+updated: 2026-09-02
+owner: Codex / QA
+plan: docs/plans/PLAN-RECOVERY-79-review-db-candidate-tree-binding.md
+parent_design: docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md
+pair_artifact: docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md
+---
+
 # Review DB candidate tree binding 単体テスト設計
 
 ## 対象
