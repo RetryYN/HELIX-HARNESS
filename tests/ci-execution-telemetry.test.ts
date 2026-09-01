@@ -11,11 +11,15 @@ import {
 import { sha256Digest } from "../src/runtime/digest";
 
 // PLAN-L7-704-ci-execution-telemetry — U-TELE-001..U-TELE-010
+// PLAN-L7-727-effective-runner-toolchain-attestation — U-TELE-001/004/008/010/011
 
 const HEAD = "a".repeat(40);
 const BASE = "b".repeat(40);
 const ENVIRONMENT = sha256Digest("environment:linux");
 const TOOLCHAIN = sha256Digest("toolchain:node24");
+const RUNNER_IMAGE = sha256Digest("runner-image:ubuntu-24.04");
+const SYSTEM_DEPENDENCIES = sha256Digest("system-dependencies:bwrap");
+const ACTION_REGISTRY = sha256Digest("github-action-immutable-ref-registry");
 const LOCKFILE = sha256Digest("lockfile:package-lock");
 const EPOCH = Date.parse("2026-08-30T00:00:00.000Z");
 
@@ -42,9 +46,11 @@ type EventOptions = {
   cacheClass?: CiExecutionTelemetryEventInput["cache"]["class"];
   cacheHit?: boolean;
   artifact?: CiExecutionTelemetryEventInput["artifact"];
-  runnerOs?: CiExecutionTelemetryEventInput["runner"]["os"];
+  runnerOs?: CiExecutionTelemetryEventInput["runner"]["observed"]["os"];
   runnerNodeVersion?: string;
-  environmentDigest?: CiExecutionTelemetryEventInput["runner"]["environment_digest"];
+  runnerNpmVersion?: string;
+  runnerImageDigest?: CiExecutionTelemetryEventInput["runner"]["observed"]["runner_image_digest"];
+  environmentDigest?: CiExecutionTelemetryEventInput["runner"]["observed"]["environment_digest"];
   cpuClass?: CiExecutionTelemetryEventInput["resource"]["cpu_class"];
   memoryClass?: CiExecutionTelemetryEventInput["resource"]["memory_class"];
 };
@@ -75,11 +81,30 @@ function makeEvent(options: EventOptions): CiExecutionTelemetryEventV1 {
     run_id: options.runId ?? "run-1",
     attempt: options.attempt ?? 1,
     runner: {
-      os: options.runnerOs ?? "linux",
-      architecture: "x64",
-      node_version: options.runnerNodeVersion ?? "v24.15.0",
-      toolchain_digest: TOOLCHAIN,
-      environment_digest: options.environmentDigest ?? ENVIRONMENT,
+      observed: {
+        runner_image_id: "github-hosted:ubuntu-24.04",
+        runner_image_digest: options.runnerImageDigest ?? RUNNER_IMAGE,
+        os: options.runnerOs ?? "linux",
+        architecture: "x64",
+        node_version: options.runnerNodeVersion ?? "v24.15.0",
+        npm_version: options.runnerNpmVersion ?? "11.6.0",
+        system_dependency_digest: SYSTEM_DEPENDENCIES,
+        action_registry_digest: ACTION_REGISTRY,
+        toolchain_digest: TOOLCHAIN,
+        environment_digest: options.environmentDigest ?? ENVIRONMENT,
+      },
+      authority: {
+        runner_image_id: "github-hosted:ubuntu-24.04",
+        runner_image_digest: options.runnerImageDigest ?? RUNNER_IMAGE,
+        os: options.runnerOs ?? "linux",
+        architecture: "x64",
+        node_version: options.runnerNodeVersion ?? "v24.15.0",
+        npm_version: options.runnerNpmVersion ?? "11.6.0",
+        system_dependency_digest: SYSTEM_DEPENDENCIES,
+        action_registry_digest: ACTION_REGISTRY,
+        toolchain_digest: TOOLCHAIN,
+        environment_digest: options.environmentDigest ?? ENVIRONMENT,
+      },
     },
     timing: {
       queued_at: iso(queuedMs),
@@ -176,10 +201,13 @@ describe("CI execution telemetry contract", () => {
     const event = makeEvent({ eventId: "event-4", nodeId: "node-4" });
     const unknownRunner = {
       ...event,
-      runner: { ...event.runner, os: "solaris" as const },
+      runner: {
+        ...event.runner,
+        observed: { ...event.runner.observed, os: "solaris" as const },
+      },
     };
     expect(validateCiExecutionTelemetryEvent(asUntrustedEvent(unknownRunner)).errors).toContain(
-      "runner_os_invalid",
+      "runner.observed_os_invalid",
     );
 
     const invalidAttempt = { ...event, attempt: 0 };
@@ -188,6 +216,62 @@ describe("CI execution telemetry contract", () => {
     const invalidProfile = { ...event, profile: "unknown" };
     expect(validateCiExecutionTelemetryEvent(asUntrustedEvent(invalidProfile)).errors).toContain(
       "profile_invalid",
+    );
+  });
+
+  it("U-TELE-011: effective runnerとauthorityのimage／toolchain／Action registry差異を個別にfail-closeする", () => {
+    const base = makeEvent({ eventId: "event-11", nodeId: "node-11" });
+    const wrongImage = {
+      ...base,
+      runner: {
+        ...base.runner,
+        authority: {
+          ...base.runner.authority,
+          runner_image_digest: sha256Digest("runner-image:other"),
+        },
+      },
+    };
+    expect(validateCiExecutionTelemetryEvent(wrongImage).errors).toContain(
+      "runner_authority_mismatch:runner_image_digest",
+    );
+
+    const wrongToolchain = {
+      ...base,
+      runner: {
+        ...base.runner,
+        authority: {
+          ...base.runner.authority,
+          toolchain_digest: sha256Digest("toolchain:other"),
+        },
+      },
+    };
+    expect(validateCiExecutionTelemetryEvent(wrongToolchain).errors).toContain(
+      "runner_authority_mismatch:toolchain_digest",
+    );
+
+    const wrongRegistry = {
+      ...base,
+      runner: {
+        ...base.runner,
+        authority: {
+          ...base.runner.authority,
+          action_registry_digest: sha256Digest("registry:other"),
+        },
+      },
+    };
+    expect(validateCiExecutionTelemetryEvent(wrongRegistry).errors).toContain(
+      "runner_authority_mismatch:action_registry_digest",
+    );
+
+    const forgedDigest = {
+      ...base,
+      runner: {
+        ...base.runner,
+        attestation_digest: sha256Digest("forged-attestation"),
+      },
+    };
+    expect(validateCiExecutionTelemetryEvent(forgedDigest).errors).toEqual(
+      expect.arrayContaining(["runner_attestation_digest_mismatch", "payload_digest_mismatch"]),
     );
   });
 
@@ -469,7 +553,7 @@ describe("CI execution telemetry contract", () => {
       runnerNodeVersion: "v22.0.0",
     });
     expect(validateCiExecutionTelemetryBatch([first, differentNodeVersion]).errors).toContain(
-      "batch_binding_mismatch:runner_node_version",
+      "batch_binding_mismatch:runner_attestation_digest",
     );
     const differentCacheHit = makeEvent({
       eventId: "event-18-cache",

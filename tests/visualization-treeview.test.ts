@@ -1955,7 +1955,7 @@ describe("visualization Tree View adapter", () => {
     expect(evidenceApply?.children.map((child) => `${child.id}:${child.description}`)).toEqual([
       "project/current-location/closure/evidence-apply/dry-run:helix closure evidence-apply --dry-run --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
       "project/current-location/closure/evidence-apply/execute:helix closure evidence-apply --execute --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --approval-record <approved-approval-record-path> --summary-json",
-      "project/current-location/closure/evidence-apply/approval:decision_id: closure-evidence-materialize:repair_failed_evidence, outcome: <approve_materialized_evidence | reject_materialized_evidence>, approval_scope_digest: sha256:6125218508883c82bcf433f3cb7ebbeb6f5f6d258443f7f4f4bc9e4c8d5af749, reason: <日本語で判断理由>",
+      "project/current-location/closure/evidence-apply/approval:decision_id: closure-evidence-materialize:repair_failed_evidence, outcome: <approve_materialized_evidence | reject_materialized_evidence>, approval_scope_digest: sha256:5ce0702768365fce93a50558622ab435995655e39052c199259affa0224ba3ce, reason: <日本語で判断理由>",
       "project/current-location/closure/evidence-apply/approval-draft:helix closure evidence-approval-draft --action repair_failed_evidence --limit 1 --probe-record .helix/tmp/closure/repair_failed_evidence-probe-record.json --out .helix/tmp/closure/repair_failed_evidence-approval-draft.yml --summary-json",
     ]);
     const applyReadiness = closure?.children.find(
