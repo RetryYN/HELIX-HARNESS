@@ -7,12 +7,12 @@ workflow_phase: R4
 confirmed_reverse_type: fullback
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
-github_issue_id: 1306
+github_issue_id: 1208
 behavior_contract_id: CI-DEFERRED-OBLIGATION-RECOVERY-001
 responsibility_owner: ci-system-synthesis
 change_slice: atomic
@@ -45,6 +45,27 @@ removal_trigger: "CI System Synthesis全体のterminal Reverseが個別fullback�
 parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md
 pair_artifact: docs/test-design/helix/L8-ci-deferred-obligation-recovery-unit-test-design.md
 review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-31T22:57:50Z"
+    tests_green_at: "2026-08-31T21:51:50Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 1cfa3817b8211237b6ac162a610d2488576353c8
+    scope: "PR #1305 final exact HEADのReverse fullback、U-CIDEFER-013、Forward／Reverse pair、非終端境界を独立reviewし、BLOCKER 0を確認した。CI、DB projection／checkpoint、receiptは同一HEADへ束縛済み。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1305#issuecomment-5485900343"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/ddd-tdd-rules.test.ts tests/backfill-pairing.test.ts --reporter=verbose && npx --no-install tsx src/cli.ts plan lint docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-31T21:51:50Z"
+        evidence_path: tests/ci-deferred-obligation-recovery.test.ts
+        output_digest: "sha256:f0657f19493747e2a1ede2048a2a13de02afbe3d327cbbf86d96e6e65a008489"
+        result: "2 test files / 57 testsとForward／Reverse PLAN lintがgreen"
   - reviewer: "Codex intra-runtime / Nietzsche"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-31T21:52:04Z"
@@ -132,6 +153,10 @@ CIS-R-13〜15、L6／L8、runtime、U-CIDEFER-001〜013は同じexactly-once rec
 
 requirements／L4／L5／L6／L8の意味変更は不要である。Forward再入先をL5とし、公開・release cutoverは非対象を維持する。
 
-## R4 候補終端条件
+## R4 終端接着
 
-targeted oracle、PLAN gate、current-HEAD CI、Claude exact-HEAD reviewを揃える。branch-kind authorityに従い、本Reverse PRからForward add-impl PLANを変更しない。同一#1208レーンの原子的Forward companionを先行mergeしてpending Reverseの双方向linkを接着し、本Reverseを最新mainへ同期する。Reverse merge後のcompanionでU-CIDEFER-013 bindingと終端証拠を追加し、main read-afterまでIssue closeを禁止する。
+terminal bundleではForward／Reverseを親Issue #1208の単一責務として閉じるため、Reverse PLANのIssue所有をchild #1306から
+parent #1208へ正式にrebindした。GitHub metadataも同一transactionとして、#1208の`plan_id`を本Reverse PLANへ、#1306の
+`plan_id`を`null`へ更新済みである。child #1306はReverse起票・履歴参照として保持し、current PLAN authorityを主張しない。
+
+PR #1305 final HEAD `1cfa3817b8211237b6ac162a610d2488576353c8`はtargeted oracle、CI run `33446819961`、Claude exact-HEAD review、DB convergenceを満たし、Ready CI run `33448649188`後にmerge `d597df0c0ebcd29e6068f8394059ac3d38b84a1f`としてmainへ到達した。本companionでForwardへU-CIDEFER-013 bindingとterminal Reverse dependencyを接着する。companion自身のcanonical mergeとpost-main read-after、Issue #1306／#1208 closeは先取りせず、mainでterminal fieldを再読込してから実施する。Issue #1304はzero-injection admissionを所有する別契約としてopenを維持する。
