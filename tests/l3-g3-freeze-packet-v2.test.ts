@@ -41,12 +41,17 @@ const uilFeatureIds = Array.from(
   { length: 7 },
   (_, index) => `UIL-FR-${String(index + 1).padStart(3, "0")}`,
 );
-const uilRequirementIds = Array.from(
-  { length: 14 },
-  (_, index) => `UIL-R-${String(index + 1).padStart(2, "0")}`,
-);
+const uilRequirementIds = [
+  "UIL-R-01",
+  "UIL-R-02",
+  "UIL-R-15",
+  ...Array.from(
+    { length: 12 },
+    (_, index) => `UIL-R-${String(index + 3).padStart(2, "0")}`,
+  ),
+];
 const uilAcceptanceIds = Array.from(
-  { length: 22 },
+  { length: 25 },
   (_, index) => `UIL-AC-${String(index + 1).padStart(3, "0")}`,
 );
 const uilSliceIds = Array.from(
