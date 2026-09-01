@@ -355,14 +355,19 @@ export function analyzeConsumerCiWorkflowContract(
   const stepRecords = steps
     .map(recordFromUnknown)
     .filter((step): step is Record<string, unknown> => Boolean(step));
-  const requiredUses = ["actions/checkout@v4", "actions/setup-node@v4"];
+  const requiredUses = [
+    "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+  ];
   const requiredRuns = [...CONSUMER_CI_RUN_COMMANDS];
   const expectedSteps = [
     ...requiredUses.map((use) => ({ key: "uses", value: use })),
     ...requiredRuns.map((run) => ({ key: "run", value: run })),
   ];
   const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
-  const checkoutStep = stepRecords.find((step) => step.uses === "actions/checkout@v4");
+  const checkoutStep = stepRecords.find(
+    (step) => step.uses === "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+  );
   const checkoutWith = recordFromUnknown(checkoutStep?.with);
   const checkoutPersistCredentialsFalse =
     checkoutWith?.["persist-credentials"] === false ||
@@ -371,7 +376,9 @@ export function analyzeConsumerCiWorkflowContract(
     checkoutWith !== null &&
     Object.keys(checkoutWith).length === 1 &&
     Object.hasOwn(checkoutWith, "persist-credentials");
-  const setupNodeStep = stepRecords.find((step) => step.uses === "actions/setup-node@v4");
+  const setupNodeStep = stepRecords.find(
+    (step) => step.uses === "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+  );
   const setupNodeWith = recordFromUnknown(setupNodeStep?.with);
   const setupNodeInputsEmpty = setupNodeWith === null || Object.keys(setupNodeWith).length === 0;
   const actualUses = stepRecords
@@ -488,7 +495,10 @@ export function analyzeConsumerEscalationWorkflowContract(
   const stepRecords = steps
     .map(recordFromUnknown)
     .filter((step): step is Record<string, unknown> => Boolean(step));
-  const requiredUses = ["actions/checkout@v4", "actions/setup-node@v4"];
+  const requiredUses = [
+    "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+  ];
   const requiredRuns = [...CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS];
   const expectedSteps = [
     ...requiredUses.map((use) => ({ key: "uses", value: use })),
@@ -500,7 +510,9 @@ export function analyzeConsumerEscalationWorkflowContract(
   const missingUses = requiredUses.filter((use) => !stepRecords.some((step) => step.uses === use));
   const unexpectedUses = actualUses.filter((use) => !requiredUses.includes(use));
   const missingRuns = requiredRuns.filter((run) => !stepRecords.some((step) => step.run === run));
-  const checkoutStep = stepRecords.find((step) => step.uses === "actions/checkout@v4");
+  const checkoutStep = stepRecords.find(
+    (step) => step.uses === "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+  );
   const checkoutWith = recordFromUnknown(checkoutStep?.with);
   const checkoutPersistCredentialsFalse =
     checkoutWith?.["persist-credentials"] === false ||
@@ -509,7 +521,9 @@ export function analyzeConsumerEscalationWorkflowContract(
     checkoutWith !== null &&
     Object.keys(checkoutWith).length === 1 &&
     Object.hasOwn(checkoutWith, "persist-credentials");
-  const setupNodeStep = stepRecords.find((step) => step.uses === "actions/setup-node@v4");
+  const setupNodeStep = stepRecords.find(
+    (step) => step.uses === "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+  );
   const setupNodeWith = recordFromUnknown(setupNodeStep?.with);
   const setupNodeInputsEmpty = setupNodeWith === null || Object.keys(setupNodeWith).length === 0;
   const workflowOnKeys = workflowOn ? Object.keys(workflowOn).sort() : [];
@@ -1954,8 +1968,8 @@ export function buildConsumerReadinessPlan(input: {
       },
       distributionPackageSurface,
       requires: [
-        "actions/checkout@v4 with persist-credentials=false",
-        "actions/setup-node@v4",
+        "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 with persist-credentials=false",
+        "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
         "npm ci",
         "npm run helix -- --version",
         "npm run helix -- setup project --dry-run --json",

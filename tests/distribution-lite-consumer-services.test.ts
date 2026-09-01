@@ -46,6 +46,13 @@ describe("PLAN-L7-657: Lite consumer services", () => {
       payload: { ok: true, failures: [] },
     });
     const workflow = readFileSync(join(root, ".github", "workflows", "helix-consumer.yml"), "utf8");
+    expect(workflow).toContain(
+      "uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+    );
+    expect(workflow).toContain(
+      "uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+    );
+    expect(workflow).not.toMatch(/uses:\s+actions\/(?:checkout|setup-node)@v\d+/u);
     expect(workflow).toContain("npm ci --ignore-scripts");
     expect(workflow).toContain("npx --no-install helix doctor --profile consumer --json");
     expect(workflow).not.toContain("npm install");
