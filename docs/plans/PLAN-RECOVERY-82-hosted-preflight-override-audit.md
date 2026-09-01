@@ -40,8 +40,8 @@ mutation_oracle_evidence: "2026-09-02T07:54+09:00にreason必須分岐を無効�
 complexity_effect: net_negative
 complexity_justification: "hook側と同じcommitOverrideUse／guard_override_transactionsを共有し、CLI専用auditを作らない"
 removal_trigger: "なし。hosted enforcement境界の恒久不変条件"
-backprop_decision: required
-backprop_decision_reason: "hosted preflightの旧boolean自己申告を監査可能receiptへ置換する"
+backprop_decision: not_required
+backprop_decision_reason: "既存guard override authorityの意味を変えず、hosted preflightの旧boolean自己申告を監査可能receiptへ置換する"
 parent_design: docs/design/helix/L6-function-design/hosted-preflight-override-audit.md
 pair_artifact: docs/test-design/helix/L8-hosted-preflight-override-audit-unit-test-design.md
 dependencies:
@@ -64,6 +64,7 @@ modifies:
   - { artifact_path: tests/hosted-preflight.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — hosted非hook surfaceとoverride authorityのRecovery監査" }
   - { role: se, slot_label: "SE — override transaction共有" }
   - { role: qa, slot_label: "QA — reason／nonce／ack反例" }
   - { role: tl, slot_label: "TL — hosted enforcement終端" }
