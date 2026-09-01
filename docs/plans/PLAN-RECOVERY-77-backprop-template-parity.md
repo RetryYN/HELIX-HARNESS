@@ -14,12 +14,15 @@ behavior_contract_id: PLAN-BACKPROP-DECISION-TEMPLATE-PARITY-001
 responsibility_owner: plan-authoring-template-parity
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: simplify
-legacy_retirement_state: retired
+refactor_step: introduce_contract
+legacy_retirement_state: removed
 backprop_decision: not_required
 backprop_decision_reason: "schemaとtemplateの既存契約を一致させるRecoveryであり、新しい上位要求意味を追加しない。"
 no_code_decision: add_code
-ddd_modeling_decision: not_applicable
+ddd_modeling_decision: none
+complexity_effect: net_negative
+complexity_justification: "schema外値を案内する旧template契約を除去し、2件の小さなparity oracleで再発経路を閉じるため、意味上の分岐と保守負債は純減する。"
+removal_trigger: "templateがfrontmatter schemaのexact setから決定的に生成され、同じparityを生成器側oracleが保証した時点で本専用testを統合または削除できる。"
 contract_preconditions: "current frontmatter schemaがbackprop_decisionのexact setをnot_requiredだけに制限する"
 contract_postconditions: "PLAN templateがschema外値requiredを案内せず、上流意味変更はgenerates artifactで表す"
 contract_invariants: "schemaを緩和せず、historical evidenceを書き換えず、要求還流をnot_requiredで相殺しない"
@@ -88,7 +91,7 @@ review_evidence:
         output_digest: "sha256:a777b0bb00a49ec9bce32dcbfecca450a67c852116a611f2ad3b09f262d4d9d5"
 ---
 
-# backprop decision template parity Recovery
+# backprop decision templateのschema parity回復
 
 schemaで受理不能な値をauthoring templateから除去する。上流意味変更が必要な場合は
 \`backprop_decision\`へ別値を発明せず、変更するL1〜L6 artifactを\`generates\`へ明示する。
