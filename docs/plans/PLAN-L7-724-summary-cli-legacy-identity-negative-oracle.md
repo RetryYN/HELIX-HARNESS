@@ -11,7 +11,7 @@ created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
 github_issue_id: 1277
-behavior_contract_id: SUMMARY-CLI-LEGACY-IDENTITY-NEGATIVE-ORACLE-001
+behavior_contract_id: SUMMARY-CLI-NEGATIVE-ORACLE-001
 responsibility_owner: summary-frontier-workflow-identity
 engineering_discipline_required: true
 change_slice: atomic
