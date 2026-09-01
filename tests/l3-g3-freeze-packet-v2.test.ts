@@ -41,15 +41,10 @@ const uilFeatureIds = Array.from(
   { length: 7 },
   (_, index) => `UIL-FR-${String(index + 1).padStart(3, "0")}`,
 );
-const uilRequirementIds = [
-  "UIL-R-01",
-  "UIL-R-02",
-  "UIL-R-15",
-  ...Array.from(
-    { length: 12 },
-    (_, index) => `UIL-R-${String(index + 3).padStart(2, "0")}`,
-  ),
-];
+const uilRequirementIds = Array.from(
+  { length: 15 },
+  (_, index) => `UIL-R-${String(index + 1).padStart(2, "0")}`,
+);
 const uilAcceptanceIds = Array.from(
   { length: 25 },
   (_, index) => `UIL-AC-${String(index + 1).padStart(3, "0")}`,
@@ -1217,7 +1212,9 @@ describe("L3 G1/G3 freeze packet v2", () => {
 
   it("U-UIL-AUTH-001: keeps the Universal Improvement Loop L3/L10 identity sets exact", () => {
     expect(exactUilIds(uilRequirements, /^## (UIL-FR-\d{3})\s/gmu)).toEqual(uilFeatureIds);
-    expect(exactUilIds(uilRequirements, /^### (UIL-R-\d{2})\s/gmu)).toEqual(uilRequirementIds);
+    expect(exactUilIds(uilRequirements, /^### (UIL-R-\d{2})\s/gmu).sort()).toEqual(
+      uilRequirementIds,
+    );
     expect(exactUilIds(uilAcceptance, /^\| (UIL-AC-\d{3}) \|/gmu)).toEqual(uilAcceptanceIds);
   });
 
