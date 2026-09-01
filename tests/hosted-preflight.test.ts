@@ -292,4 +292,28 @@ describe("HC-AC hosted/API preflight", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it("HU-PILLAR-NAC-06: legacy env overrideへ暗黙fallbackしない", () => {
+    const result = spawnSync(
+      "npx",
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        "src/cli.ts",
+        "guard",
+        "preflight",
+        "--acknowledge-hook-non-enforcement",
+        "--json",
+      ],
+      {
+        cwd: process.cwd(),
+        encoding: "utf8",
+        env: { ...process.env, HELIX_ALLOW_FOREIGN_EDIT: "1" },
+      },
+    );
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain("requires explicit --allow-foreign-edit and --reason");
+  });
 });

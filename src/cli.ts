@@ -463,7 +463,6 @@ import {
   evaluateWorkGuardTargets,
   extractEditTargets,
   normalizeRepoRelative,
-  resolveForeignEditOverride,
 } from "./runtime/work-guard";
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
@@ -4643,7 +4642,18 @@ guard
       let auditRecord = `git-status:${createHash("sha256")
         .update(JSON.stringify([...changedFiles].sort()))
         .digest("hex")}`;
-      let override = resolveForeignEditOverride({ env: process.env.HELIX_ALLOW_FOREIGN_EDIT });
+      let override: { bypass: boolean; source: string; reason: string } = {
+        bypass: false,
+        source: "none",
+        reason: "",
+      };
+      if (process.env.HELIX_ALLOW_FOREIGN_EDIT === "1" && !opts.allowForeignEdit) {
+        process.stderr.write(
+          "guard preflight: legacy env override requires explicit --allow-foreign-edit and --reason\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
       if (opts.allowForeignEdit) {
         const reason = opts.reason?.trim() ?? "";
         if (!reason) {
@@ -4688,7 +4698,7 @@ guard
           process.exitCode = 2;
           return;
         }
-        override = { bypass: true, source: "env", reason };
+        override = { bypass: true, source: "explicit-cli-audited", reason };
         auditRecord = `guard_override_transactions:${nonce}`;
         result = evaluateWorkGuardTargets({
           targetPaths,
