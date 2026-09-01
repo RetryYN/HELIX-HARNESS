@@ -57,7 +57,27 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md, oracle_id: U-OBPRA-003, test_path: tests/open-branch-plan-reservation-authority.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md, oracle_id: U-OBPRA-004, test_path: tests/open-branch-plan-reservation-authority.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md, oracle_id: U-OBPIR-009, test_path: tests/open-branch-plan-identity-reservation.test.ts }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Opus"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-01T04:51:30Z"
+    tests_green_at: "2026-09-01T04:50:58Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 09ef962385ae8ee6798490b8cb9b3927d438bc62
+    scope: "PR #1325 exact HEADのadapter境界、isSameWriterPrMirror免除範囲、digest inventory追従、mutation killを独立検証しBLOCKER 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/digest.test.ts tests/ddd-tdd-rules.test.ts tests/open-branch-plan-reservation-authority.test.ts tests/open-branch-plan-identity-reservation.test.ts tests/backfill-pairing.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-01T04:50:58Z"
+        evidence_path: tests/open-branch-plan-reservation-authority.test.ts
+        output_digest: "sha256:fd1624d18a593b348c3f4391eba437d7bfba38400b57dd9d21b314d4e4ecf0a3"
+        result: "5 test files / 79 tests green"
 generates:
   - { artifact_path: docs/plans/PLAN-L7-722-open-branch-plan-reservation-production-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md, artifact_type: design_doc }
