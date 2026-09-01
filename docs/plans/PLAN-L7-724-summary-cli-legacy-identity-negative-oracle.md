@@ -15,7 +15,7 @@ behavior_contract_id: SUMMARY-CLI-LEGACY-IDENTITY-NEGATIVE-ORACLE-001
 responsibility_owner: summary-frontier-workflow-identity
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_oracle
+refactor_step: characterize
 legacy_retirement_state: consumer_migration
 no_code_decision: modify
 ddd_modeling_decision: value_object
