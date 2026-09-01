@@ -1,11 +1,18 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  appendFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
-  appendRunnerAttestation,
   applyClosureAutoApprovalAtomic,
   buildProjectClosureAutoApprovalReadiness,
   type ClosureAutoApprovalManifest,
@@ -36,6 +43,65 @@ const CLI_BUNDLE_PATH = ensureCliBundle(process.cwd());
 // PLAN-L7-433-closure-auto-approval
 const sha = (value: string | Buffer) =>
   `sha256:${createHash("sha256").update(value).digest("hex")}` as const;
+
+function appendFixtureRunnerAttestation(input: {
+  repoRoot: string;
+  db: ReturnType<typeof openHarnessDb>;
+  receipt: {
+    run_id: string;
+    session_id: string;
+    plan_id: string;
+    kind: "test" | "gate";
+    oracle_id: string;
+    command: string;
+    exit_code: number;
+    status: string;
+    evidence_path: string;
+    completed_at: string;
+  };
+}): void {
+  const path = join(input.repoRoot, ".helix/evidence/runner-attestations.jsonl");
+  const previousDigest = existsSync(path)
+    ? String(
+        JSON.parse(readFileSync(path, "utf8").trim().split("\n").at(-1) ?? "{}")
+          .event_digest ?? "",
+      ) || null
+    : null;
+  const payload = {
+    schema_version: "runner-attestation.v1",
+    previous_digest: previousDigest,
+    ...input.receipt,
+    repository_head: currentRepositoryHead(input.repoRoot),
+    output_digest: sha(readFileSync(join(input.repoRoot, input.receipt.evidence_path))),
+  };
+  const eventDigest = sha(JSON.stringify(payload));
+  const event = { ...payload, event_digest: eventDigest, signature: eventDigest };
+  appendFileSync(path, `${JSON.stringify(event)}\n`);
+  input.db
+    .prepare(
+      `INSERT INTO runner_attestations
+       (event_digest, previous_digest, run_id, session_id, plan_id, kind, oracle_id,
+        repository_head, command, exit_code, status, evidence_path, output_digest,
+        completed_at, signature) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    )
+    .run(
+      eventDigest,
+      previousDigest,
+      input.receipt.run_id,
+      input.receipt.session_id,
+      input.receipt.plan_id,
+      input.receipt.kind,
+      input.receipt.oracle_id,
+      event.repository_head,
+      input.receipt.command,
+      input.receipt.exit_code,
+      input.receipt.status,
+      input.receipt.evidence_path,
+      event.output_digest,
+      input.receipt.completed_at,
+      eventDigest,
+    );
+}
 
 function fixture(count = 1) {
   const root = mkdtempSync(join(tmpdir(), "helix-closure-auto-"));
@@ -182,7 +248,7 @@ function fixture(count = 1) {
       sha(readFileSync(join(root, gateOutput))),
       `fixture:${item.planId}`,
     );
-    appendRunnerAttestation({
+    appendFixtureRunnerAttestation({
       repoRoot: root,
       db,
       receipt: {
@@ -198,7 +264,7 @@ function fixture(count = 1) {
         completed_at: completedAt,
       },
     });
-    appendRunnerAttestation({
+    appendFixtureRunnerAttestation({
       repoRoot: root,
       db,
       receipt: {
@@ -284,6 +350,14 @@ const githubReceipt = (f: ReturnType<typeof fixture>) => ({
 });
 
 describe("closure auto approval authority", () => {
+  it("U-CAUTO-019: DB attestationがあるのにJSONLが欠落した場合はfail-closeする", () => {
+    const f = fixture();
+    rmSync(join(f.root, ".helix/evidence/runner-attestations.jsonl"));
+    const result = evaluate(f);
+    expect(result.allowed).toBe(false);
+    expect(result.blockers.join("\n")).toContain("runner attestation JSONL欠落");
+  });
+
   it("U-CAUTO-001: typed bytes/run authorityだけでdry-runを許可する", () => {
     const f = fixture();
     const result = evaluate(f);
@@ -316,7 +390,7 @@ describe("closure auto approval authority", () => {
         "INSERT INTO test_cases (test_case_id, test_run_id, plan_id, oracle_id, status) VALUES (?, ?, ?, 'U-FIXTURE', 'failed')",
       )
       .run(`old-case:${planId}`, `old-test-run:${planId}`, planId);
-    appendRunnerAttestation({
+    appendFixtureRunnerAttestation({
       repoRoot: f.root,
       db: f.db,
       receipt: {

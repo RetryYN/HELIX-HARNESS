@@ -255,6 +255,11 @@ describe("closure evidence materialization transaction", () => {
     ).toBe("classified");
   });
 
+  it("U-CMAT-013: test-only runner attestation writerをproduction exportへ残さない", () => {
+    const source = readFileSync("src/state-db/closure-auto-approval.ts", "utf8");
+    expect(source).not.toContain("export function appendRunnerAttestation");
+  });
+
   it("U-CMAT-006: 未commit失敗はDB/JSONL/files/manifestをall-or-none rollbackする", async () => {
     for (const crashAt of ["before-db" as const]) {
       const { root, db, input } = fixture();
