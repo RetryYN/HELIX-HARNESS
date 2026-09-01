@@ -5,7 +5,7 @@ canonical_pair: L1
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査認識設計"
 layer: L12
 kind: redesign
-status: draft_candidate
+status: approved_pending_canonical_promotion
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / QA
@@ -29,5 +29,5 @@ L1の9要求を、実PR throughput、Cursor billing-cycle、Codex control reserv
 - model revisionごとの資格・称号・権限を追跡し、更新時に失効する。
 - Cursor停止時に明示DEGRADEDで既存Codex＋Claude経路へ縮退する。
 
-本書はcandidate recognitionであり、plan固有の人間承認とcanonical promotionが成立するまで
+本書はplan固有の人間承認済みcandidate recognitionであり、canonical promotionが成立するまで
 current completionへ加算しない。

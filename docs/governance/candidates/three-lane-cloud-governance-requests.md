@@ -5,7 +5,7 @@ canonical_pair: L12
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査要求"
 layer: L1
 kind: redesign
-status: draft_candidate
+status: approved_pending_canonical_promotion
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / Codex TL
@@ -19,7 +19,7 @@ next_pair_freeze: L12
 
 - 文書ID: `HELIX-3LANE-BRQ-001`
 - バージョン: `0.4.0-candidate`
-- 状態: `requirement-reentry-draft / L3未承認`
+- 状態: `requirement-reentry-approved / canonical promotion待ち`
 - 置換候補: `HELIX-RLO-BRQ-001 v0.3.0`
 - Behavior Contract: `THREE-LANE-CLOUD-CAPACITY-ORCHESTRATION-001`
 
@@ -70,4 +70,4 @@ Cursor WIP=2の7日canaryとbilling-cycle read-afterにより、accepted merge�
 - model revision変更時に旧資格・称号・権限を継承しない。
 - Cursor停止時に明示DEGRADEDでCodex＋Claudeへ縮退する。
 
-本candidateはPOの明示L3承認、独立review、CI、DB convergence後にだけv0.3 current authorityを置換する。
+本candidateはplan固有のPO L3承認済みである。独立review、CI、DB convergenceと別のcanonical promotionが成立するまで、v0.3 current authorityを置換しない。

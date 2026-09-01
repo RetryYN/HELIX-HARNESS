@@ -5,21 +5,21 @@ canonical_pair: L10
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査要件"
 layer: L3
 kind: redesign
-status: draft_candidate
+status: approved_pending_canonical_promotion
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / Codex TL
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
 parent_design: docs/governance/candidates/three-lane-cloud-governance-requests.md
 pair_artifact: docs/governance/candidates/three-lane-cloud-governance-acceptance.md
-next_pair_freeze: L10_after_po_approval
+next_pair_freeze: L10_during_canonical_promotion
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査要件
 
 - 文書ID: `HELIX-3LANE-REQ-001`
 - バージョン: `0.4.0-candidate`
-- 状態: `requirements-reentry-draft / L3未承認`
+- 状態: `requirements-reentry-approved / canonical promotion待ち`
 - 置換候補: resident lane authority v0.3
 - 主Issue: `#1358`
 
