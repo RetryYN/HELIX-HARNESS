@@ -209,10 +209,11 @@ describe("GitHub open branch PLAN reservation provider", () => {
     expect(callFixture.calls).toHaveLength(1);
 
     const openThresholdFixture = fixture({
-      "repos/RetryYN/HELIX-HARNESS/pulls?state=open&sort=created&direction=asc&per_page=100&page=1": [
-        { number: 1325, head: { ref: "feature/1256-provider", sha: PR_HEAD } },
-        { number: 1326, head: { ref: "feature/1331-bounded", sha: "d".repeat(40) } },
-      ],
+      "repos/RetryYN/HELIX-HARNESS/pulls?state=open&sort=created&direction=asc&per_page=100&page=1":
+        [
+          { number: 1325, head: { ref: "feature/1256-provider", sha: PR_HEAD } },
+          { number: 1326, head: { ref: "feature/1331-bounded", sha: "d".repeat(40) } },
+        ],
     });
     const openThreshold = loadGithubOpenBranchPlanReservationMaterialWithReceipt({
       repository: "RetryYN/HELIX-HARNESS",
@@ -224,9 +225,7 @@ describe("GitHub open branch PLAN reservation provider", () => {
     expect(openThreshold.receipt.failure_codes).toContain(
       "github_reservation_open_pr_threshold_exceeded",
     );
-    expect(openThresholdFixture.calls).not.toContain(
-      "repos/RetryYN/HELIX-HARNESS/pulls/1325",
-    );
+    expect(openThresholdFixture.calls).not.toContain("repos/RetryYN/HELIX-HARNESS/pulls/1325");
 
     let processNow = 0;
     const processBudget = loadGithubOpenBranchPlanReservationMaterialWithReceipt({
