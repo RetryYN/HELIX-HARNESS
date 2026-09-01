@@ -181,7 +181,7 @@ Allowlist（正本 = `src/runtime/agent-guard-policy.ts` の `SUBAGENT_ALLOWLIST
 
 ### Fable advisor（最上位セカンドオピニオン、PLAN-L7-306）
 
-`advisor-fable`（model=claude-fable-5、advisory-only・read-only）は TL advisor の一段上。
+`advisor-fable`（model=claude-fable-5-1、advisory-only・read-only）は TL advisor の一段上。
 呼び出し条件（いずれか該当時のみ。日常判断には呼ばない）:
 
 1. TL advisor 相談後も技術判断の疑問が残る（tl_advisor_evidence があるのに結論が出ない）。

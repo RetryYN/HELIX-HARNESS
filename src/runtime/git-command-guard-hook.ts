@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
@@ -17,6 +18,7 @@ import {
   contextualMutationExecutionDirectories,
   evaluateGitCommandGuard,
   extractShellCommand,
+  gitCheckoutTargets,
   resolveDestructiveGitOverride,
 } from "./git-command-guard";
 import { commitOverrideUse, type OverrideAuditPort } from "./guard-override-transaction";
@@ -116,6 +118,38 @@ export function runGitCommandGuardHook(opts: {
     };
   }
   let base = evaluateGitCommandGuard({ command, bypass: false });
+  if (base.reason === "checkout-target-context-required") {
+    const executionCwd = resolveHookExecutionCwd(
+      input.tool_input,
+      opts.executionCwd ?? process.cwd(),
+    );
+    const targets = gitCheckoutTargets(command);
+    let resolution: "refs-only" | "path-or-ambiguous" | "unresolved" = "refs-only";
+    if (!targets || targets.length === 0) {
+      resolution = "unresolved";
+    } else {
+      for (const target of targets) {
+        const pathExists = existsSync(join(executionCwd, target));
+        const ref = spawnSync("git", ["rev-parse", "--verify", "--quiet", `${target}^{commit}`], {
+          cwd: executionCwd,
+          encoding: "utf8",
+        });
+        if (pathExists) {
+          resolution = "path-or-ambiguous";
+          break;
+        }
+        if (ref.error || ref.status !== 0) {
+          resolution = "unresolved";
+          break;
+        }
+      }
+    }
+    base = evaluateGitCommandGuard({
+      command,
+      bypass: false,
+      checkoutTargetContext: { resolution },
+    });
+  }
   if (base.reason === "mutation-context-required") {
     const executionCwd = resolveHookExecutionCwd(
       input.tool_input,
