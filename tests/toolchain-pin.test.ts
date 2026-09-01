@@ -1,4 +1,4 @@
-// PLAN-L7-727-immutable-github-action-ref-registry
+// PLAN-RECOVERY-74-immutable-github-action-ref-registry
 import { describe, expect, it } from "vitest";
 import {
   analyzeToolchainPin,

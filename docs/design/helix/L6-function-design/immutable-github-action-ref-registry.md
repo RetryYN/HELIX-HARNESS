@@ -6,7 +6,7 @@ status: draft
 created: 2026-09-01
 updated: 2026-09-01
 owner: Security / CI
-plan: PLAN-L7-727-immutable-github-action-ref-registry
+plan: PLAN-RECOVERY-74-immutable-github-action-ref-registry
 pair_artifact: docs/test-design/helix/L8-immutable-github-action-ref-registry-unit-test-design.md
 ---
 

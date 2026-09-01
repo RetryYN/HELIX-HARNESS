@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L7-727-immutable-github-action-ref-registry
-title: "PLAN-L7-727: immutable GitHub Action ref registry"
+plan_id: PLAN-RECOVERY-74-immutable-github-action-ref-registry
+title: "PLAN-RECOVERY-74: immutable GitHub Action ref registry"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: false
@@ -61,7 +61,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/immutable-github-action-ref-registry.md, oracle_id: U-IAR-003, test_path: tests/toolchain-pin.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/immutable-github-action-ref-registry.md, oracle_id: U-IAR-004, test_path: tests/toolchain-pin.test.ts }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-727-immutable-github-action-ref-registry.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-74-immutable-github-action-ref-registry.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/immutable-github-action-ref-registry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-immutable-github-action-ref-registry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/github-action-immutable-ref-registry.json, artifact_type: json_config }
@@ -78,17 +78,18 @@ modifies:
   - { artifact_path: tests/distribution-acceptance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/distribution-lite-consumer-services.test.ts, artifact_type: test_code }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
-  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow }
-  - { artifact_path: .github/workflows/escalation-stale.yml, artifact_type: workflow }
-  - { artifact_path: .github/workflows/issue-metadata-audit.yml, artifact_type: workflow }
-  - { artifact_path: docs/templates/github/common/harness-check.yml, artifact_type: workflow }
-  - { artifact_path: docs/templates/github/common/escalation-stale.yml, artifact_type: workflow }
-  - { artifact_path: docs/templates/github/common/pack-harness-check.yml, artifact_type: workflow }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
+  - { artifact_path: .github/workflows/escalation-stale.yml, artifact_type: workflow_config }
+  - { artifact_path: .github/workflows/issue-metadata-audit.yml, artifact_type: workflow_config }
+  - { artifact_path: docs/templates/github/common/harness-check.yml, artifact_type: template }
+  - { artifact_path: docs/templates/github/common/escalation-stale.yml, artifact_type: template }
+  - { artifact_path: docs/templates/github/common/pack-harness-check.yml, artifact_type: template }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — P0 security driftの既存authority回復と非対象境界確認" }
   - { role: se, slot_label: "SE — immutable action identity／registry projection" }
   - { role: qa, slot_label: "QA — mutable ref／wrong SHA／unknown action mutation" }
   - { role: tl, slot_label: "TL — GitHub Security／TER再利用とconsumer surface収束" }
