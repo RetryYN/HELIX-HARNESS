@@ -1,6 +1,19 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // Issue #859のcurrent resident lane要求。旧route／mode等への言及は再採用ではなく、
+    // resident/native/CLI identityを分離してlegacy推測を拒否するnegative contractである。
+    path: "docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+    contentDigest: "e1f8c57ceccdabac91779545f046887f8b7609dc77c7c601afffc7f64618aec0",
+    finalDisposition: "false_positive",
+  },
+  {
+    // 同authorityをL1/L3/L10/L12へ投影するPLAN。legacy identityは拒否境界の説明だけである。
+    path: "docs/plans/PLAN-L3-75-resident-lane-orchestration-authority.md",
+    contentDigest: "4252e47532fce4e6b3ffa04fbd4539bbaa37a0fb18588abc35f2428b29b80127",
+    finalDisposition: "false_positive",
+  },
+  {
     // Issue #1253のcurrent runtime guidance収束PLAN。retired runtime／旧L08-L14への言及は
     // active authorityへの再採用ではなく、再導入を拒否するnegative contractである。
     path: "docs/plans/PLAN-L7-709-setup-guide-node-runtime-guidance.md",
