@@ -64,7 +64,7 @@ left_arm_carry:
   review_binding:
     reviewer: codex-intra-runtime
     reviewed_at: "2026-08-31T22:38:00Z"
-    evidence_digest: "sha256:e3a83cb66fcd1dcbf17ef2854c4be5115b0b6f460055bb6a873f6db92b450227"
+    evidence_digest: "sha256:da2e8aed86dda3982b8f1c8fc1dc6acbf369a8bb12d259f41874e1715bbbd9e9"
   entries: []
 complexity_effect: net_neutral
 complexity_justification: "新ledgerを作らず、既存open-branch reservation projectionへpair transactionだけを追加する"
@@ -108,6 +108,7 @@ generates:
   - { artifact_path: tests/forward-plan-authoring-transaction.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
