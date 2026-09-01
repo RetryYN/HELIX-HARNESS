@@ -11,7 +11,7 @@ created: 2026-09-02
 updated: 2026-09-02
 owner: Codex / TL
 github_issue_id: 1386
-behavior_contract_id: CLAUDE-FABLE-5-1-PROVIDER-DRIFT-001
+behavior_contract_id: CLAUDE-FABLE51-PROVIDER-DRIFT-001
 responsibility_owner: provider-configuration-attestation
 engineering_discipline_required: true
 change_slice: atomic
