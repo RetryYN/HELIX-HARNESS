@@ -59,14 +59,14 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md, oracle_id: U-CURSOR-ENV-003, test_path: tests/cursor-cloud-environment.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md, oracle_id: U-CURSOR-ENV-004, test_path: tests/cursor-cloud-environment.test.ts }
 generates:
-  - { artifact_path: .cursor/Dockerfile, artifact_type: container_config }
+  - { artifact_path: .cursor/Dockerfile, artifact_type: config }
   - { artifact_path: docs/plans/PLAN-RECOVERY-76-cursor-cloud-environment-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-cursor-cloud-environment-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/cursor-cloud-environment.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: .cursor/environment.json, artifact_type: json_config }
-  - { artifact_path: .cursor/install.sh, artifact_type: shell_script }
+  - { artifact_path: .cursor/install.sh, artifact_type: script }
 agent_slots:
   - { role: aim, slot_label: "AIM — TER／host side-effect authority再利用" }
   - { role: se, slot_label: "SE — digest-pinned Cursor Build境界" }
