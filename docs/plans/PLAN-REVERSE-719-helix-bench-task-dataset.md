@@ -48,7 +48,7 @@ review_evidence:
   - reviewer: "Claude Code / Opus"
     review_kind: cross_agent
     reviewed_at: "2026-09-01T00:07:58Z"
-    tests_green_at: "2026-09-01T00:07:50Z"
+    tests_green_at: "2026-09-01T00:02:42Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
@@ -56,15 +56,15 @@ review_evidence:
     reviewed_head_sha: 72d6d1b15398523f52e618961cc379d162fe75e7
     scope: "PR #1303 exact HEADのdataset、fixture、hidden oracle、digest、negative oracleを独立検収し、BLOCKER 0。"
     green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run --project fast tests/digest.test.ts tests/helix-bench-task-dataset.test.ts --reporter=verbose"
-        runner: node
-        scope: targeted
+      - kind: smoke
+        command: "gh run view 33451601694 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
         exit_code: 0
-        completed_at: "2026-09-01T00:07:50Z"
-        evidence_path: tests/helix-bench-task-dataset.test.ts
-        output_digest: "sha256:ecceae6cdff3cde571e0d69eb14f39eed593c6504f7e8f4fa489b700e0767c90"
-        result: "Forward PLANに束縛済みの2 test files green。Claude exact-HEAD review approve / blocker 0、CI run 33451601694 terminal success。"
+        completed_at: "2026-09-01T00:02:42Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:1ec69e3bcd90601edc7c7832c25dd6e7b711efd0b032ebd60ec8ffe0bafe1c9c"
+        result: "CI run 33451601694はHEAD 72d6d1b15398523f52e618961cc379d162fe75e7でterminal success。Claudeは別途実行したdataset/L3 freeze/left-arm oracleとexact-HEAD差分を独立検収しapprove / blocker 0とした。"
 backprop_scope:
   - layer: requirements
     decision: not_impacted
