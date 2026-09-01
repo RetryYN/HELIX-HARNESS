@@ -25,13 +25,18 @@ Forward／Reverse双方のexact `dependencies.references`だけをpair成立と�
 | 関数 | シグネチャ | 事前条件 | 事後条件 | 失敗契約 |
 |---|---|---|---|---|
 | `analyzeBackfill` | `(plans: ParsedPlan[], glossaryText: string) => BackfillResult` | ForwardとReverseのPLAN identity、status、backfill state、references/requiresが解析済み | draft pendingはreferences、confirmed pendingはreferencesまたは明示requires、terminalはrequiresでpairingする | 片方向、wrong Reverse ID、state不一致を`reverseLinkMissing`としてfail-close |
-| `reserveForwardReverseTerminalPair` | `(input) => ForwardReverseTerminalReservationResult` | typed `ADD_FEATURE`の`add-impl`、Forward由来semantic slugとallocatorが独立採番したReverse ID、allocator receipt、main HEAD、既存reservation snapshotが一致 | Forwardとpending Reverseのsemantic identity、双方向reference、ownershipを同一projectionへ原子的に予約する | wrong Forward、wrong Reverse slug、receipt不整合、stale main、collisionでは予約を生成せずfail-close |
+| `reserveForwardReverseTerminalPair` | `(input) => ForwardReverseTerminalReservationResult` | typed `ADD_FEATURE`の`add-impl`、Forward由来semantic slugとallocatorが独立採番したReverse ID、allocator receipt、main HEAD、既存reservation snapshotが一致 | Forwardとpending Reverseのsemantic identity、双方向reference、ownershipを同一projectionへ原子的に予約する | wrong Forward、wrong Reverse slug、receipt不整合、stale main、collision、malformed snapshotでは予約を生成せずtyped findingでfail-close |
 | `authorForwardPlanTransaction` | `(input, deps?) => ForwardPlanAuthoringTransactionResult` | semantic Reverse slug、remote main、Forward／Reverse原稿、availableな既存reservation authority、同writer anchorが一致する | authority exact setからnext free Reverse familyとallocation IDを決定し、PLAN 2件、receipt、更新authorityを同一transactionでmaterializeして再読込する | caller exact ID、anchor欠落、authority drift、symlink、collision、seal不正、partial commitをfail-close／roll-forwardする |
 
 `backfill_state=complete`のterminal／legacy Reverseは既存の`requires`契約を維持する。pending pairのreferences成立をexecution
 dependency readyへ昇格させず、confirmed PLANが明示requiresを持つ場合だけready dependencyとして受理する。
 予約時点ではReverse本文、review evidence、完了証拠を生成しない。Forward merge後のR0〜R4、独立review、main read-afterは
 terminal contractとして残し、予約だけでIssue closeを許可しない。
+
+`reservation_snapshot`は`openBranchPlanReservationSnapshotSchema`を唯一のvalidation authorityとして再利用する。
+schema version、repository、captured time、3 evidence surface、reservation exact array、nested reservation、unknown fieldを
+同じschemaで検査し、malformed入力を未捕捉例外へ漏らさず`input_invalid:reservation_snapshot...`へ正規化する。
+consumer側でsnapshot構造を複製してはならない。
 
 ## production authoring境界
 
@@ -66,3 +71,4 @@ roll-forwardし、未収束時は`recovery_required`を返す。全artifactと�
 `U-FPATR-001..015`が4 artifact同時永続化／再読込、remote main、fresh provider、caller exact-ID拒否、deterministic allocation、no-clobber、exact references／workflow identity、
 process-start／host／token lock、realpath、snapshot／digest drift、journal seal／HEAD binding、journal後parent symlink swap、
 prepared external write保持、bounded semantic slug、writer anchor、journal-first crash recovery、provider unavailable／stale／wrong lease／wrong head／collisionを列挙検証する。
+`U-FRTR-005`はundefined、null、primitive、reservations欠落、nested reservation不正、unknown fieldを個別入力し、例外なしのtyped findingを固定する。

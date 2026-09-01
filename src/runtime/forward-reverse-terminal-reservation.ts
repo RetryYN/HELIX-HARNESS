@@ -3,7 +3,7 @@ import { canonicalJson, type Sha256Digest, sha256Digest } from "./digest";
 import {
   type OpenBranchPlanReservation,
   type OpenBranchPlanReservationProjection,
-  type OpenBranchPlanReservationSnapshot,
+  openBranchPlanReservationSnapshotSchema,
   projectOpenBranchPlanReservations,
 } from "./open-branch-plan-identity-reservation";
 
@@ -53,7 +53,7 @@ const inputSchema = z
     ancestor_head_shas: z.array(headSchema),
     expected_main_head: headSchema,
     observed_main_head: headSchema,
-    reservation_snapshot: z.custom<OpenBranchPlanReservationSnapshot>(),
+    reservation_snapshot: openBranchPlanReservationSnapshotSchema,
   })
   .strict();
 

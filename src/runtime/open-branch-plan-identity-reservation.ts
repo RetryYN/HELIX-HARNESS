@@ -101,7 +101,7 @@ const evidenceSurfaceSchema = z
       context.addIssue({ code: "custom", message: "availability/error_digest mismatch" });
     }
   });
-const snapshotSchema = z
+export const openBranchPlanReservationSnapshotSchema = z
   .object({
     schema_version: z.literal(OPEN_BRANCH_PLAN_RESERVATION_SCHEMA),
     repository: z.string().regex(/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u),
@@ -118,7 +118,9 @@ const snapshotSchema = z
   .strict();
 
 export type OpenBranchPlanReservation = z.infer<typeof reservationSchema>;
-export type OpenBranchPlanReservationSnapshot = z.infer<typeof snapshotSchema>;
+export type OpenBranchPlanReservationSnapshot = z.infer<
+  typeof openBranchPlanReservationSnapshotSchema
+>;
 export type OpenBranchPlanReservationStatus = "admitted" | "blocked" | "degraded";
 
 export interface OpenBranchPlanReservationConflict {
@@ -220,7 +222,7 @@ function projectionDigest(
 export function projectOpenBranchPlanReservations(
   rawSnapshot: unknown,
 ): OpenBranchPlanReservationProjection {
-  const parsed = snapshotSchema.safeParse(rawSnapshot);
+  const parsed = openBranchPlanReservationSnapshotSchema.safeParse(rawSnapshot);
   if (!parsed.success) {
     const value: Omit<OpenBranchPlanReservationProjection, "projection_digest"> = {
       schema_version: OPEN_BRANCH_PLAN_RESERVATION_PROJECTION_SCHEMA,

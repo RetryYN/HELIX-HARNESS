@@ -25,6 +25,7 @@ pair_artifact: docs/design/helix/L6-function-design/pending-reverse-pairing-read
 | U-FRTR-002 | identity／HEAD | allocator独立採番とForward由来semantic slugが一致するReverse、current mainを受理 | wrong Forward、receipt-validなwrong Reverse slug、stale mainを個別拒否 | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FRTR-003 | collision | 既存reservation projectionへ2予約を追加 | 異ownerのactive collisionを拒否 | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FRTR-004 | current output | typed identityとpending stateだけを出力 | legacy `route_mode`、旧mode、未実測review evidenceを出力しない | `tests/forward-reverse-terminal-reservation.test.ts` |
+| U-FRTR-005 | snapshot schema | canonical snapshot schemaを再利用してvalid production snapshotを受理 | undefined、null、primitive、reservations欠落、nested reservation不正、unknown fieldを未捕捉例外へ漏らさず`input_invalid:reservation_snapshot...`で拒否 | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FPATR-001 | dry-run boundary | semantic slug、両原稿、HEAD／snapshotを検証してdeterministic allocationを計画する | `docs/plans/`、`.helix/`を変更したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-002 | production materialization | Forward／pending Reverse／issuer receipt／reservation authorityを同時materializeし、read-afterと同一bytes retryを検証する | 4 artifactの一部だけを生成する、同一retryで再writeしたらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-003 | issuer authority | remote mainに束縛したtransaction内issuerだけがreceiptを生成する | remote main driftまたはcaller exact ID／自己署名`receipt_digest`を受理したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
@@ -47,6 +48,7 @@ pair_artifact: docs/design/helix/L6-function-design/pending-reverse-pairing-read
 | U-FRTR-002 | identity／HEAD | wrong Forward、wrong Reverse、stale mainを個別拒否する | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FRTR-003 | collision | 異ownerのactive collisionを既存projectionで拒否する | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FRTR-004 | current output | legacy identityと未実測証拠を生成しない | `tests/forward-reverse-terminal-reservation.test.ts` |
+| U-FRTR-005 | snapshot schema | malformed snapshotを例外化する、またはconsumer独自schemaでcanonical authorityと乖離したらfail | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FPATR-001 | dry-run boundary | validationだけでfilesystem writeが発生したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-002 | production materialization | 4 artifactの欠落、receipt／projection再読込不一致、同一bytes retryで再writeしたらfail | `tests/forward-plan-authoring-transaction.test.ts` |
 | U-FPATR-003 | issuer authority | remote main driftまたはcaller exact ID／自己署名receiptをauthorityとして受理したらfail | `tests/forward-plan-authoring-transaction.test.ts` |
