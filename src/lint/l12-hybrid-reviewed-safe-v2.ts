@@ -1,6 +1,20 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // Issue #1370のmachine-readable gap inventory。旧epoch語は再導入対象ではなく、
+    // ownerとterminal conditionへ束縛した拒否対象である。
+    path: "docs/governance/effective-agent-startup-followup-registry.json",
+    contentDigest: "609c8aa887dca0d015b637aab32e339c2cd62a906c9be526b9cb3a64761f08da",
+    finalDisposition: "false_positive",
+  },
+  {
+    // Issue #1370のRecovery inventory。旧L0-L14、drive/mode、旧pairへの言及は
+    // startup/consumerへの再注入を拒否するgapとterminal conditionであり、再採用ではない。
+    path: "docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md",
+    contentDigest: "10b2224aa85cdef174d7bc0e4596003e3afae96770f8a42446d69f12d0662184",
+    finalDisposition: "false_positive",
+  },
+  {
     // Issue #859のcurrent resident lane要求。旧route／mode等への言及は再採用ではなく、
     // resident/native/CLI identityを分離してlegacy推測を拒否するnegative contractである。
     path: "docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
