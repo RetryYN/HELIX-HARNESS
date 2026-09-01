@@ -155,4 +155,8 @@ requirements／L4／L5／L6／L8の意味変更は不要である。Forward再�
 
 ## R4 終端接着
 
+terminal bundleではForward／Reverseを親Issue #1208の単一責務として閉じるため、Reverse PLANのIssue所有をchild #1306から
+parent #1208へ正式にrebindした。GitHub metadataも同一transactionとして、#1208の`plan_id`を本Reverse PLANへ、#1306の
+`plan_id`を`null`へ更新済みである。child #1306はReverse起票・履歴参照として保持し、current PLAN authorityを主張しない。
+
 PR #1305 final HEAD `1cfa3817b8211237b6ac162a610d2488576353c8`はtargeted oracle、CI run `33446819961`、Claude exact-HEAD review、DB convergenceを満たし、Ready CI run `33448649188`後にmerge `d597df0c0ebcd29e6068f8394059ac3d38b84a1f`としてmainへ到達した。本companionでForwardへU-CIDEFER-013 bindingとterminal Reverse dependencyを接着する。companion自身のcanonical mergeとpost-main read-after、Issue #1306／#1208 closeは先取りせず、mainでterminal fieldを再読込してから実施する。Issue #1304はzero-injection admissionを所有する別契約としてopenを維持する。
