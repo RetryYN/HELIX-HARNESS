@@ -56,9 +56,13 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/hosted-preflight-override-audit.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-hosted-preflight-override-audit-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/hosted-preflight.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — override transaction共有" }
   - { role: qa, slot_label: "QA — reason／nonce／ack反例" }
