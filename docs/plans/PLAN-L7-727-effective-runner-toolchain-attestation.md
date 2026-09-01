@@ -34,12 +34,10 @@ contract_failures: "欠落、unknown field、wrong image／OS／architecture／N
 tdd_red_required: false
 tdd_red_waiver_reason: "confirmed済みCI execution telemetryのversioned identity拡張であり、既存11 oracleとmutationによる退行検出を必須とする"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-01T22:32:44+09:00にrunner observed／authority比較を!==から===へ反転し、U-TELE-011が1 failed／10 skipped、exit 1でkillした。mutation除去後に11 tests greenへ復帰した。"
+mutation_oracle_evidence: "2026-09-01T22:32:44+09:00にtests/ci-execution-telemetry.test.tsのrunner observed／authority比較を!==から===へ反転し、U-TELE-011が1 failed／10 skipped、exit 1でkillした。mutation除去後に11 tests greenへ復帰した。"
 complexity_effect: justified_positive
 complexity_justification: "既存runner identityをobserved／authority exact pairへ拡張し、別adapterやDBを増やさず再現証拠の意味を強化する"
 removal_trigger: "後継telemetry schemaへ全consumerが移行し、v2 receipt consumerが0になった時"
-backprop_decision: required
-backprop_decision_reason: "CIS-R-01／R-03とCIS-AC-003へeffective runner authorityの必須fieldとnegative mutationを追記する"
 parent_design: docs/design/helix/L6-function-design/ci-execution-telemetry.md
 pair_artifact: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md
 dependencies:
@@ -61,7 +59,7 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-727-effective-runner-toolchain-attestation.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md, artifact_type: requirements_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md, artifact_type: doc_update }
   - { artifact_path: docs/design/helix/L6-function-design/ci-execution-telemetry.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/ci-system-synthesis-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md, artifact_type: test_design }
