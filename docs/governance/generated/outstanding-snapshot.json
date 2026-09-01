@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 49,
+  "decision_count": 48,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -39,7 +39,6 @@
     "PLAN-L7-690-branch-audit-delete-candidate-safety",
     "PLAN-L7-701-source-family-authority-version-up",
     "PLAN-L7-709-setup-guide-node-runtime-guidance",
-    "PLAN-L7-714-summary-frontier-typed-workflow",
     "PLAN-L7-721-reservation-snapshot-schema-fail-close",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
