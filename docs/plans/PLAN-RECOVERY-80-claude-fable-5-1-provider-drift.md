@@ -71,6 +71,6 @@ agent_slots:
 review_evidence: []
 ---
 
-# Claude Fable 5.1 provider drift Recovery
+# Claude Fable 5.1プロバイダーdrift復旧
 
 公式current IDへ更新し、過去evidenceは不変のままhistory lookupだけを維持する。API固有のforced tool choice、thinking、refusal、retention差分はnative CLI実測とProvider Attestationの後続fixtureへ送る。

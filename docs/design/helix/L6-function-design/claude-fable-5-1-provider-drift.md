@@ -1,4 +1,19 @@
-# Claude Fable 5.1 provider drift Recovery
+---
+title: "Claude Fable 5.1プロバイダーdrift復旧設計"
+layer: L6
+artifact_type: design
+status: confirmed
+created: 2026-09-02
+updated: 2026-09-02
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-80-claude-fable-5-1-provider-drift.md
+pair_artifact: docs/test-design/helix/L8-claude-fable-5-1-provider-drift-unit-test-design.md
+github_issue_id: 1386
+behavior_contract_id: CLAUDE-FABLE51-PROVIDER-DRIFT-001
+responsibility_owner: provider-configuration-attestation
+---
+
+# Claude Fable 5.1プロバイダーdrift復旧設計
 
 ## 境界
 
