@@ -13,7 +13,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REDESIGN
 entry_signals:
-  - "requirements_audit:Issue本文がsource authorityより先行する4件を#825で再確認"
+  - "po_directive:Issue #825で確認したIssue本文先行4件をsource authorityへmaterializeする"
 created: 2026-09-02
 updated: 2026-09-02
 owner: Codex / TL
