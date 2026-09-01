@@ -6,7 +6,7 @@ plan: docs/plans/PLAN-L7-723-github-open-branch-plan-reservation-provider.md
 pair_artifact: docs/test-design/helix/L8-github-open-branch-plan-reservation-provider-unit-test-design.md
 ---
 
-# GitHub open branch PLAN reservation provider
+# GitHub open branch PLAN予約provider
 
 ## 責務
 
