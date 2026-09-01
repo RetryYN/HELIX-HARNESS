@@ -71,7 +71,7 @@ review_evidence: []
 generates:
   - { artifact_path: docs/plans/PLAN-REVERSE-720-summary-cli-legacy-identity-negative-oracle.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_projection }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: qa, slot_label: "QA — legacy identity不在とmutation証拠のR0〜R4再照合" }
   - { role: tl, slot_label: "TL — Forward双方向linkとterminal fullback順序" }
