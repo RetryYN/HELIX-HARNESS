@@ -62,6 +62,34 @@ dependencies:
 agent_slots:
   - { role: tl, slot_label: "TL — UIL／System Synthesis／Universal Workflow責務境界" }
   - { role: qa, slot_label: "QA — trigger policy／admission／anti-starvation mutation" }
+review_evidence:
+  - reviewer: claude-code
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-02T05:00:30+09:00"
+    tests_green_at: "2026-09-02T04:59:37+09:00"
+    verdict: approve
+    scope: "PLAN-L3-77 exact-HEAD 78a6965dd 独立検収。前回検収HEADとの差分が承認record差し替えだけであること、canonical requirements無変更のcandidate隔離、RTG-R-01..06とRTG-AC-001..012のexact対応、承認とcanonical promotionの境界分離、verification緩和拒否を確認した。承認判断自体は本evidenceの射程外。"
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewed_head_sha: 78a6965ddf6e9569941337937f20d22e77935aad
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/design-language.test.ts tests/design-coverage.test.ts tests/oracle-test-trace.test.ts tests/ddd-tdd-rules.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-02T04:59:37+09:00"
+        evidence_path: tests/design-language.test.ts
+        output_digest: "sha256:bd06cb2cf9986e76079bb88f7758fd9e5ac6ccf0fe463a895e3b456ac875a19a"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T04:59:37+09:00"
+        evidence_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md
+        output_digest: "sha256:2f279fd5db8d5b9f62e1bc861a4c29f0ae1169894351e4964eacc099eb91187c"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/refactoring-trigger-admission-requirements.md, artifact_type: markdown_doc }
