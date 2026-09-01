@@ -68,6 +68,7 @@ items:
       - docs/design/harness/L1-requirements/functional-requirements.md
       - docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
       - docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md
+      - docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
   - id: requirement-spec
     name: 要件定義書
     category: req
@@ -106,6 +107,7 @@ items:
       - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
       - docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
       - docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md
+      - docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
