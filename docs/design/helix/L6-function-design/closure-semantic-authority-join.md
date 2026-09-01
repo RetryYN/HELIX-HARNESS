@@ -21,4 +21,3 @@ PLANとartifact kindへexact joinしてclosure evidenceをmaterializeする。
 absolute／repository外path、source digest不一致、payload不一致、重複record、wrong HEAD、
 wrong oracle、unapproved review、unaccepted runtimeはfail-closeする。bundle欠落時は既存の
 blocked_placeholdersを維持し、推測fallbackしない。
-
