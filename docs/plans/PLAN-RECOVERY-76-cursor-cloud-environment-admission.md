@@ -67,6 +67,8 @@ generates:
 modifies:
   - { artifact_path: .cursor/environment.json, artifact_type: json_config }
   - { artifact_path: .cursor/install.sh, artifact_type: script }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 agent_slots:
   - { role: aim, slot_label: "AIM — TER／host side-effect authority再利用" }
   - { role: se, slot_label: "SE — digest-pinned Cursor Build境界" }

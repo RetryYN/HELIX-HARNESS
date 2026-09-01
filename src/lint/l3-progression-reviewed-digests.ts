@@ -2,7 +2,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/adr/ADR-001-helix-harness-redesign-and-language.md":
     "0e037a7716dd8890fff812ac0560664f97ba693a7a04f76b339edd13bfd71b5d",
   "docs/design/design-catalog.yaml":
-    "850afd9ff5e934b7175a282b707b51d1a22a881f7a13ff5d09f8fbaf6971ab2a",
+    "f63fd40f7f765ed3883e95bb73af3ce7c6a9246c2741522b67a6f08771c5c188",
   "docs/design/harness/L1-requirements/business-requirements.md":
     "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
   "docs/design/harness/L1-requirements/functional-requirements.md":
