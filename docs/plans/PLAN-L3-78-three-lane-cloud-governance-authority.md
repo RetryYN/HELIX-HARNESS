@@ -65,7 +65,6 @@ generates:
   - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L8-three-lane-cloud-governance-candidate-projection.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-recognition.md, artifact_type: test_design }
-  - { artifact_path: tests/three-lane-cloud-governance-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
