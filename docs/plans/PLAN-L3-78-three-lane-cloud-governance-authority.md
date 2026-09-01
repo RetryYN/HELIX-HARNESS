@@ -78,7 +78,34 @@ agent_slots:
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }
   - { role: qa, slot_label: "QA — 24 AC、critical miss、budget UNKNOWN、model revision" }
   - { role: tl, slot_label: "TL — 既存owner再利用とruntime解放境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: claude-code
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-02T05:00:30+09:00"
+    tests_green_at: "2026-09-02T04:59:37+09:00"
+    verdict: approve
+    scope: "PLAN-L3-78 exact-HEAD d11ac017b 独立検収。前回検収HEADとの差分が承認record差し替えだけであること、canonical無変更のcandidate stagingとL12/L1/L3/L10 pair整合、3L-FR-001..008と24 ACのexact対応、圧力軸分離とUNKNOWN明示、authority sliceとruntime sliceの分離を確認した。承認判断自体は本evidenceの射程外。"
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewed_head_sha: d11ac017b5a8b58280379ec1a0c47edbb7db0f6b
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/design-language.test.ts tests/design-coverage.test.ts tests/oracle-test-trace.test.ts tests/ddd-tdd-rules.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-02T04:59:37+09:00"
+        evidence_path: tests/design-coverage.test.ts
+        output_digest: "sha256:ce45f4e6da11034620cd797b9aa492e57f96b85bf139d196c650dde07a9f57f7"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T04:59:37+09:00"
+        evidence_path: docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md
+        output_digest: "sha256:2f279fd5db8d5b9f62e1bc861a4c29f0ae1169894351e4964eacc099eb91187c"
 ---
 
 # 三社固定レーンauthority Requirement Re-entry
