@@ -1,7 +1,7 @@
 ---
 title: "GitHub open branch PLAN reservation provider L6機能設計"
 layer: L6
-status: draft
+status: confirmed
 plan: docs/plans/PLAN-L7-723-github-open-branch-plan-reservation-provider.md
 pair_artifact: docs/test-design/helix/L8-github-open-branch-plan-reservation-provider-unit-test-design.md
 ---

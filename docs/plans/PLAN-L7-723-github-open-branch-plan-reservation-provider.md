@@ -4,7 +4,7 @@ title: "PLAN-L7-723: GitHub open branch PLAN reservation provider"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-09-01
@@ -56,7 +56,37 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-004, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-005, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-006, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Opus"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-01T07:16:40Z"
+    tests_green_at: "2026-09-01T07:16:09Z"
+    verdict: approve
+    worker_model: "codex:gpt-5.6-sol"
+    reviewer_model: "claude:claude-opus-5"
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 50cfa45df467bf755457c4d8ccbdd843336d7d5d
+    scope: "PR #1326 exact HEADのGitHub provider取得契約、read-after 2段のrace fail-close、truncated tree拒否、error_digest正規化、design catalog digest cascadeを独立検証しBLOCKER 0。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1326#issuecomment-5490322520"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/github-open-branch-plan-reservation-provider.test.ts tests/digest.test.ts tests/design-coverage.test.ts tests/left-arm-carry-log.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-01T07:16:09Z"
+        evidence_path: tests/github-open-branch-plan-reservation-provider.test.ts
+        output_digest: "sha256:593820a837d37b32bc48fbf14e3358f2cafe8123cd7d8e98cdfc3887d3a1f08b"
+        result: "7 test files / 123 tests green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-09-01T07:16:40Z"
+  review_binding:
+    reviewer: "Claude Code / Opus"
+    reviewed_at: "2026-09-01T07:16:40Z"
+    evidence_digest: "sha256:f78feb1d4ec47a203e1c6755413c42b68d8d07c0779f72fbec031e5b0fcb3c63"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-723-github-open-branch-plan-reservation-provider.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, artifact_type: design_doc }

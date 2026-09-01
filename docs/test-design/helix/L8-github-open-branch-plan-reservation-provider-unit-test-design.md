@@ -3,7 +3,7 @@ title: "GitHub open branch PLAN reservation provider L8単体テスト設計"
 layer: L8
 artifact_type: test_design
 sub_doc: unit-test-design
-status: draft
+status: confirmed
 created: 2026-09-01
 updated: 2026-09-01
 owner: QA / Codex TL
