@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "REFACTORING Trigger Policy／RF0 Admission要件"
 layer: L3
 kind: add-design
-status: approved_pending_canonical_promotion
+status: draft_candidate
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / TL
