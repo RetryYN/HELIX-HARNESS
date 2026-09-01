@@ -110,7 +110,7 @@ agent_slots:
 
 Issue #1264のsummary／frontier consumerだけを変更する。skill applicability consumerは#1265、DB legacy object retirement、release／cutoverは含めない。
 
-## terminal convergence
+## 終端収束
 
 - Forward candidate HEAD `bc99740b35f14e7466143888edd42f6373e92f22`はCI run `33345301361`でterminal successとなり、Claude Code Opusのexact-HEAD独立レビューとsealed receiptでBLOCKER 0を確認した。
 - merge commit `66d001fa457f455925e80314ba284b0de83f5be3`のpost-main `harness-check` run `33347158321`もterminal successであり、main read-afterを完了した。
