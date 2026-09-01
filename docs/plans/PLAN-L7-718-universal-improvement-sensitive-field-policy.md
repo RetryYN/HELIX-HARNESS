@@ -4,9 +4,9 @@ title: "PLAN-L7-718 (refactor): sensitive observation fieldをtoken family polic
 kind: refactor
 layer: L7
 drive: agent
-status: draft
-completion_claim_allowed: false
-backfill_state: pending_reverse
+status: confirmed
+completion_claim_allowed: true
+backfill_state: complete
 backprop_decision: not_required
 backprop_decision_reason: "confirmed済みUIL-01の機密field拒否境界をtoken family policyへ局所置換するRETROFITであり、上位要求・観測schema・DB契約の意味を変更しない。"
 created: 2026-09-01
@@ -27,6 +27,9 @@ contract_invariants: "raw key/valueをreceiptへ出さず、UIL routeとDB schem
 contract_failures: "結合key、numeric suffix、benign key誤拒否、policy version driftをfail-closeする"
 tdd_red_required: true
 red_test: "U-UILSFP-001で結合keyと数字接尾辞の通過を検出する"
+red_at: "2026-09-01T03:27:28+09:00"
+green_at: "2026-09-01T04:19:04+09:00"
+mutation_oracle_evidence: "tests/universal-improvement-source-registry.test.tsのU-UILSFP-001〜004が、結合key／数字接尾辞の見逃し、benign key誤拒否、raw key/value漏洩、policy version／family exact set driftのseeded mutationを個別にfailさせ、復元後のtargeted suiteがgreenになった。"
 complexity_effect: net_neutral
 complexity_justification: "単一regexをversion付きfamily policyへ置換して境界追加を局所化する"
 removal_trigger: "観測schemaがfield classificationを上流で署名済み供給する時"
@@ -48,10 +51,13 @@ dependencies:
   requires: []
   references:
     - issue:1231
+    - docs/plans/PLAN-REVERSE-718-universal-improvement-sensitive-field-policy.md
   blocks: []
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSFP-001, test_path: tests/universal-improvement-source-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSFP-002, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSFP-003, test_path: tests/universal-improvement-source-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md, oracle_id: U-UILSFP-004, test_path: tests/universal-improvement-source-registry.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-718-universal-improvement-sensitive-field-policy.md, artifact_type: markdown_doc }
 modifies:
@@ -70,4 +76,9 @@ modifies:
 - [x] 既存regexとreview findingを棚卸しする。
 - [x] version付きtoken family matcherへ置換する。
 - [x] 結合key、numeric suffix、benign keyを回帰固定する。
-- [ ] mutation、全gate、独立reviewを完了する。
+- [x] mutation、全gate、独立reviewを完了する。
+
+## 終端証拠
+
+- Forward PR #1301は候補HEAD `3b7c6e334e227efb4be5a7ed3b57dc15a3bc4077`に対し、draft CI `33436421318`、Ready CI `33438369682`、Claudeのexact-HEAD承認（blocker 0）、receipt `sha256:af832a358fa5a469575049a2c0147624bc82a3242535552c6c894228b46ba56a`を成立させ、`898bf66333c47155bd251228d1945ecf8b8d4485`として統合された。
+- Reverse PR #1309は候補HEAD `77036a77db373885c04177c816771e3e6e294f77`に対し、draft CI `33449299678`、Ready CI `33451075414`、Claudeのexact-HEAD承認（blocker 0）、receipt `sha256:374c47886c1df0281b155cfb64f387ac0a9396e2bc6c1f5e9b4971b2ce69e9bc`を成立させ、`e97260df6a660751038bb21846992eeb5d8c9586`として統合された。
