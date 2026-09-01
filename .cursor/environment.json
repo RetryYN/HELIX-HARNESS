@@ -1,0 +1,4 @@
+{
+  "name": "HELIX-HARNESS",
+  "install": "bash .cursor/install.sh"
+}
