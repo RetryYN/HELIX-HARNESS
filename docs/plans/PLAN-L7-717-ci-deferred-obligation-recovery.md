@@ -5,8 +5,8 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-08-31
 updated: 2026-08-31
 owner: Codex / TL
@@ -79,6 +79,7 @@ dependencies:
   requires:
     - docs/plans/PLAN-L7-706-ci-verification-plan.md
     - docs/plans/PLAN-L7-707-ci-critical-path-scheduler.md
+    - docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md
   references:
     - issue:1208
     - issue:1206
@@ -98,6 +99,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-010, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-011, test_path: tests/ci-deferred-obligation-recovery.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-012, test_path: tests/ci-deferred-obligation-recovery.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, oracle_id: U-CIDEFER-013, test_path: tests/ci-deferred-obligation-recovery.test.ts }
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/ci-deferred-obligation-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L7-717-ci-deferred-obligation-recovery.md, artifact_type: markdown_doc }
