@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-77: backprop decision templateをschema exact setへ回復
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-02
 updated: 2026-09-02
@@ -26,6 +26,9 @@ contract_invariants: "schemaを緩和せず、historical evidenceを書き換え
 contract_failures: "templateがrequiredを再案内する、schema exact setがdriftする、上流artifact欠落を説明文で相殺する"
 tdd_red_required: true
 red_test: "templateがschemaで必ず拒否されるrequired値を有効な選択肢として案内している"
+red_at: "2026-09-02T05:15:52+09:00"
+green_at: "2026-09-02T05:16:16+09:00"
+mutation_oracle_evidence: "修正前templateの2行を一時復元し、tests/plan-template-backprop-parity.test.tsを実行すると2 testsがRed（exit 1、output sha256:4282ccdea8eab3753a0d0a1e06a0a497c6761f63b532ea421ad3805547154d45）。現行fixへ戻した直後は2 tests green（exit 0、output sha256:2cc8a3b5867141a2b9c322dec1f5de84d4d9e89f7ce71fb68454c026171bacd8）を実測した。履歴やhistorical evidenceは変更していない。"
 parent_design: docs/templates/plan/impl/template.md
 pair_artifact: tests/plan-template-backprop-parity.test.ts
 workflow_identity:
@@ -55,7 +58,34 @@ generates:
 modifies:
   - { artifact_path: docs/templates/plan/impl/template.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: claude-code
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewer_model: claude:claude-opus-5
+    review_kind: cross_agent
+    reviewed_at: "2026-09-02T05:12:30+09:00"
+    tests_green_at: "2026-09-02T05:11:44+09:00"
+    reviewed_head_sha: c9ca9307eb94224dce47b0bd755d133fd6db7928
+    verdict: approve
+    scope: "PLAN-RECOVERY-77 exact-HEAD c9ca9307e 独立検収。schema外値requiredの案内除去、意味変更時のgenerates要求、schema parity oracle、PR identity/scope exact一致を確認した。"
+    worker_model: codex
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/plan-template-backprop-parity.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-02T05:11:44+09:00"
+        evidence_path: tests/plan-template-backprop-parity.test.ts
+        output_digest: "sha256:60f7b2bf85f2811e19e4e21ad969c878bea80cc5ee8eb0cb2f44edf484a4d5f9"
+      - kind: lint
+        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T05:11:44+09:00"
+        evidence_path: docs/plans/PLAN-RECOVERY-77-backprop-template-parity.md
+        output_digest: "sha256:a777b0bb00a49ec9bce32dcbfecca450a67c852116a611f2ad3b09f262d4d9d5"
 ---
 
 # backprop decision template parity Recovery
