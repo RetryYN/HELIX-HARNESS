@@ -21,7 +21,7 @@ engineering_discipline_required: true
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 legacy_retirement_state: not_applicable
-forward_routing: L7
+forward_routing: L5
 promotion_strategy: reuse-as-is
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
