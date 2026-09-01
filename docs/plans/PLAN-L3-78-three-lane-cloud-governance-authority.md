@@ -4,8 +4,18 @@ title: "PLAN-L3-78 (redesign): 三社固定レーン・Cursor資源分散・GitH
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-01T19:56:11Z"
+  plan_id: PLAN-L3-78-three-lane-cloud-governance-authority
+  approval_record_id: L3-PO-1358-002
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5499608679"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -82,5 +92,5 @@ review_evidence: []
 
 ## Freeze境界
 
-本PLAN固有のPO L3承認は未成立である。candidateはplan固有承認前の隔離を維持し、承認後の独立exact-HEAD review、CI、doctor、DB convergence後に
+本PLAN固有のPO L3承認は新しいplan固有recordで成立した。candidateはcanonical promotion前の隔離を維持し、独立exact-HEAD review、CI、doctor、DB convergence後に
 v0.3 current authorityを置換する別の原子的promotion PRへ進む。
