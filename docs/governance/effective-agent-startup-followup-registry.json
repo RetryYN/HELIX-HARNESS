@@ -5,6 +5,14 @@
     "observed_at": "2026-09-02T05:20:00+09:00",
     "parent_issue": 1370,
     "document_authority_census_issue": 1372,
+    "child_issues": {
+      "startup_read_order": 1376,
+      "semantic_obligation_registry": 1375,
+      "agent_command_taxonomy": 1374,
+      "provider_hook_attestation": 1373,
+      "worker_startup_packet": 1377,
+      "consumer_propagation": 1378
+    },
     "plan_id": "PLAN-RECOVERY-78-effective-agent-startup-authority"
   },
   "authority_target": {
