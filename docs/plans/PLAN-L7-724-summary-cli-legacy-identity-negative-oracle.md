@@ -52,6 +52,7 @@ dependencies:
     - issue:1277
     - issue:1264
     - issue:206
+    - docs/plans/PLAN-REVERSE-720-summary-cli-legacy-identity-negative-oracle.md
   blocks:
     - issue:206
 verification_bindings:
@@ -59,6 +60,7 @@ verification_bindings:
 review_evidence: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-724-summary-cli-legacy-identity-negative-oracle.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-REVERSE-720-summary-cli-legacy-identity-negative-oracle.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/test-design/helix/L8-current-location-summary-typed-output-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
