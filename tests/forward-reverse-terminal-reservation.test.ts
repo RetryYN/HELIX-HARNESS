@@ -42,7 +42,7 @@ function input() {
   const allocationPayload = {
     allocation_id: "allocation-1297",
     forward_plan_id: "PLAN-L7-720-forward-reverse-reservation",
-    reverse_plan_id: "PLAN-REVERSE-720-forward-reverse-reservation",
+    reverse_plan_id: "PLAN-REVERSE-901-forward-reverse-reservation",
     reverse_plan_blob_digest: sha256Digest("reverse"),
   };
   return {
@@ -78,12 +78,12 @@ describe("Forward／pending Reverse terminal reservation", () => {
     expect(result.forward).toMatchObject({
       backfill_state: "pending_reverse",
       completion_claim_allowed: false,
-      references: ["docs/plans/PLAN-REVERSE-720-forward-reverse-reservation.md"],
+      references: ["docs/plans/PLAN-REVERSE-901-forward-reverse-reservation.md"],
     });
     expect(result.reverse).toMatchObject({
       backfill_state: "pending_reverse",
       completion_claim_allowed: false,
-      plan_id: "PLAN-REVERSE-720-forward-reverse-reservation",
+      plan_id: "PLAN-REVERSE-901-forward-reverse-reservation",
       references: ["docs/plans/PLAN-L7-720-forward-reverse-reservation.md"],
     });
     expect(result.reservations).toHaveLength(2);

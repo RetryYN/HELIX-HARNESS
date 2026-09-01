@@ -25,7 +25,7 @@ Forward／Reverse双方のexact `dependencies.references`だけをpair成立と�
 | 関数 | シグネチャ | 事前条件 | 事後条件 | 失敗契約 |
 |---|---|---|---|---|
 | `analyzeBackfill` | `(plans: ParsedPlan[], glossaryText: string) => BackfillResult` | ForwardとReverseのPLAN identity、status、backfill state、references/requiresが解析済み | draft pendingはreferences、confirmed pendingはreferencesまたは明示requires、terminalはrequiresでpairingする | 片方向、wrong Reverse ID、state不一致を`reverseLinkMissing`としてfail-close |
-| `reserveForwardReverseTerminalPair` | `(input) => ForwardReverseTerminalReservationResult` | typed `ADD_FEATURE`の`add-impl`、allocator receipt、main HEAD、既存reservation snapshotが一致 | Forwardとpending Reverseのidentity、双方向reference、ownershipを同一projectionへ原子的に予約する | wrong allocator identity、stale main、collisionでは予約を生成せずfail-close |
+| `reserveForwardReverseTerminalPair` | `(input) => ForwardReverseTerminalReservationResult` | typed `ADD_FEATURE`の`add-impl`、Forward由来semantic slugとallocatorが独立採番したReverse ID、allocator receipt、main HEAD、既存reservation snapshotが一致 | Forwardとpending Reverseのsemantic identity、双方向reference、ownershipを同一projectionへ原子的に予約する | wrong Forward、wrong Reverse slug、receipt不整合、stale main、collisionでは予約を生成せずfail-close |
 | `authorForwardPlanTransaction` | `(input, deps?) => ForwardPlanAuthoringTransactionResult` | semantic Reverse slug、remote main、Forward／Reverse原稿、availableな既存reservation authority、同writer anchorが一致する | authority exact setからnext free Reverse familyとallocation IDを決定し、PLAN 2件、receipt、更新authorityを同一transactionでmaterializeして再読込する | caller exact ID、anchor欠落、authority drift、symlink、collision、seal不正、partial commitをfail-close／roll-forwardする |
 
 `backfill_state=complete`のterminal／legacy Reverseは既存の`requires`契約を維持する。pending pairのreferences成立をexecution
@@ -39,6 +39,7 @@ terminal contractとして残し、予約だけでIssue closeを許可しない�
 `reservationInput`、`reservationAuthorityPath`、両documentを必須とする。callerはbounded lowercase
 `reverse_slug`だけを要求し、`allocation_id`、Forward／Reverse exact allocation ID、`receipt_digest`の提供を禁止する。
 transaction内allocatorはavailableな`current_main`／`open_pr`／`active_writer` exact setのReverse最大番号+1を選び、
+Forward PLANとReverse PLANの番号一致は要求せず、callerが指定したbounded `reverse_slug`がForward PLANから導出したsemantic slugとexact一致することを要求する。
 同一branch／HEAD／assignment／lease／fenceのactive_writer anchorが存在するときだけexact ID receiptを発行する。receiptは
 `.helix/state/plan-allocator-receipts/<allocation_id>.json`、reservation authorityは既存
 `.helix/state/open-branch-plan-reservations.json`だけを認める。production defaultのmain authorityはtracking refでなく

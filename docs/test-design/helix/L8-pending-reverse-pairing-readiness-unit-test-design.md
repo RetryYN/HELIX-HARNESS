@@ -22,7 +22,7 @@ pair_artifact: docs/design/helix/L6-function-design/pending-reverse-pairing-read
 | U-BACKFILL-009 | confirmed pending pair | `confirmed`かつ`pending_reverse`では双方向referencesまたは明示requiresでpair identityを維持 | statusだけからrequiresを推測せず、link欠落を拒否 | `tests/backfill-pairing.test.ts` |
 | U-BACKFILL-010 | terminal dependency | `backfill_state=complete`ではForward `requires`でpairingする | terminal Reverseをreferences-onlyのまま残した場合は拒否 | `tests/backfill-pairing.test.ts` |
 | U-FRTR-001 | atomic reservation | allocator receiptからForward／Reverseの双方向pending予約を同時生成 | Forward単独生成を許可しない | `tests/forward-reverse-terminal-reservation.test.ts` |
-| U-FRTR-002 | identity／HEAD | exact allocator familyとcurrent mainを受理 | wrong Forward、wrong Reverse、stale mainを個別拒否 | `tests/forward-reverse-terminal-reservation.test.ts` |
+| U-FRTR-002 | identity／HEAD | allocator独立採番とForward由来semantic slugが一致するReverse、current mainを受理 | wrong Forward、receipt-validなwrong Reverse slug、stale mainを個別拒否 | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FRTR-003 | collision | 既存reservation projectionへ2予約を追加 | 異ownerのactive collisionを拒否 | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FRTR-004 | current output | typed identityとpending stateだけを出力 | legacy `route_mode`、旧mode、未実測review evidenceを出力しない | `tests/forward-reverse-terminal-reservation.test.ts` |
 | U-FPATR-001 | dry-run boundary | semantic slug、両原稿、HEAD／snapshotを検証してdeterministic allocationを計画する | `docs/plans/`、`.helix/`を変更したらfail | `tests/forward-plan-authoring-transaction.test.ts` |

@@ -36,7 +36,7 @@ red_test: "#1206／#1207／#1208でForward実装後にReverse vehicleを後付�
 red_at: "2026-08-31T16:58:10Z"
 green_at: "2026-09-01T03:48:31+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-01T04:19+09:00にsrc/runtime/forward-reverse-terminal-reservation.tsのReverse family checkを一時除去すると、npx vitest run tests/forward-reverse-terminal-reservation.test.tsでU-FRTR-002が1 failed／3 passedとなりmutationをkillした。直後に復元し同command 4 tests greenを実測した。"
+mutation_oracle_evidence: "2026-09-01T04:19+09:00にsrc/runtime/forward-reverse-terminal-reservation.tsのForward由来semantic slugとReverse allocator IDの照合を一時除去すると、npx vitest run tests/forward-reverse-terminal-reservation.test.tsでU-FRTR-002が1 failed／3 passedとなりmutationをkillした。直後に復元し同command 4 tests greenを実測した。"
 review_evidence:
   - reviewer: codex-intra-runtime
     review_kind: intra_runtime_subagent
