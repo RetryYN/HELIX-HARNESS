@@ -73,8 +73,6 @@ generates:
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-acceptance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-recognition.md, artifact_type: markdown_doc }
-modifies:
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — v0.3→v0.4 Requirement Re-entryと旧approval非流用" }
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }
