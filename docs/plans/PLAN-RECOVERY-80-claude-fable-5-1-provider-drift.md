@@ -45,10 +45,10 @@ backprop_decision_reason: "既存Provider Config Attestationのcurrent identity�
 parent_design: docs/design/helix/L6-function-design/claude-fable-5-1-provider-drift.md
 pair_artifact: docs/test-design/helix/L8-claude-fable-5-1-provider-drift-unit-test-design.md
 dependencies:
-  parent: PLAN-RECOVERY-67-claude-native-memory-isolation
-  requires:
-    - docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md
+  parent: null
+  requires: []
   references:
+    - docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md
     - "issue:1173"
     - "issue:1384"
     - "issue:1386"
@@ -58,11 +58,12 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-claude-fable-5-1-provider-drift-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: src/schema/model-registry.ts, artifact_type: source_module }
-  - { artifact_path: .claude/agents/advisor-fable.md, artifact_type: agent_manifest }
+  - { artifact_path: .claude/agents/advisor-fable.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/CLAUDE.md, artifact_type: markdown_doc }
   - { artifact_path: tests/model-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/fe-roster-orchestration.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — provider version driftとnative runtime互換境界の監査" }
   - { role: se, slot_label: "SE — current/historical model identity分離" }
   - { role: qa, slot_label: "QA — registry/agent/pricing drift oracle" }
   - { role: tl, slot_label: "TL — provider migration差分と非対象境界" }
