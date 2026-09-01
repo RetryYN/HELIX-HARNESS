@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-722-open-branch-plan-reservation-production-authority
 title: "PLAN-L7-722: PLAN reservation production authority adapter"
-kind: add-impl
+kind: recovery
 layer: L7
 drive: agent
 status: draft
