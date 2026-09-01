@@ -80,24 +80,24 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / Opus"
     review_kind: cross_agent
-    reviewed_at: "2026-09-01T14:29:40Z"
-    tests_green_at: "2026-09-01T14:29:13Z"
+    reviewed_at: "2026-09-01T15:38:10Z"
+    tests_green_at: "2026-09-01T15:37:41Z"
     verdict: approve
     worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
-    reviewed_head_sha: 70d88ea9729a456d603fde3fee9134cc737d0daf
-    scope: "PR #1347 exact HEADのsemantic authority bundle 7段fail-close、canonical digest置換、probe値で意味値を埋めない設計、approval scopeへのsemantic bundle digest束縛、oracle test citation、digest 3系統の追従を独立検証しBLOCKER 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1347#issuecomment-5495567935"
+    reviewed_head_sha: b31912f082442899eb2cb6a5ab8b04fcffd7750d
+    scope: "PR #1347 main取り込み後のexact HEADでsemantic authority bundle 7段fail-close、canonical digest置換、probe値で意味値を埋めない設計、approval scopeへのsemantic bundle digest束縛、oracle test citation、#1348由来のdigest系との非干渉を独立検証しBLOCKER 0。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1347#issuecomment-5496459692"
     green_commands:
       - kind: unit_test
-        command: "npx --no-install vitest run tests/design-language.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/coding-rules.test.ts tests/current-location.test.ts tests/ddd-tdd-rules.test.ts tests/closure-evidence-semantic-authority.test.ts tests/design-coverage.test.ts tests/left-arm-carry-log.test.ts tests/source-boundary-integration.test.ts tests/visualization-treeview.test.ts"
+        command: "npx --no-install vitest run tests/design-language.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/coding-rules.test.ts tests/current-location.test.ts tests/ddd-tdd-rules.test.ts tests/closure-evidence-semantic-authority.test.ts tests/design-coverage.test.ts tests/left-arm-carry-log.test.ts tests/source-boundary-integration.test.ts tests/visualization-treeview.test.ts tests/ci-execution-telemetry.test.ts"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-01T14:29:13Z"
+        completed_at: "2026-09-01T15:37:41Z"
         evidence_path: tests/closure-evidence-semantic-authority.test.ts
-        output_digest: "sha256:0ecb0c8ceb9be0b7da568ed13b8613058b8cf7d70c1bea4fdc783196217b0c25"
-        result: "11 test files / 141 tests green"
+        output_digest: "sha256:eea72262535e8ae91a0489edddf3cacd636e916c99f4949d45169f2decb053d9"
+        result: "12 test files / 152 tests green"
 ---
 
 # closure semantic authority exact joinの復旧
