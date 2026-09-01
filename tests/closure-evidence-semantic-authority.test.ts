@@ -121,6 +121,7 @@ describe("closure evidence semantic authority", () => {
       bundle_digest: closureSemanticAuthorityBundleDigestPayload(wrongHeadPayload),
     };
     writeFileSync(bundlePath, JSON.stringify(wrongHead));
+    // U-CESA-009: 同一PLANでもcandidate HEAD不一致は拒否する。
     expect(() => loadClosureSemanticAuthorityBundle(root, bundlePath)).toThrow(
       /candidate HEAD mismatch/,
     );
@@ -295,6 +296,7 @@ describe("closure evidence semantic authority", () => {
         probeExecution: execution,
         semanticAuthorityBundle,
       });
+      // U-CESA-011: semantic bundleを含む同一approval scope digestをdraftとapplyで再利用する。
       expect(draft.approval.approval_scope_digest).toBe(packet.approval.approval_scope_digest);
       const apply = buildProjectClosureEvidenceApplyPlan(snapshot, {
         action: "collect_evidence",
