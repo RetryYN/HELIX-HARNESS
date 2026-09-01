@@ -34,6 +34,47 @@
     "review_merge_release_deployment_authority_changed",
     "setup_or_distribution_profile_changed"
   ],
+  "document_authority_census": {
+    "owner_issue": 1372,
+    "authority_order": [
+      "l1_l3_l10_source_authority",
+      "canonical_main_read_after",
+      "requirement_ir_admission",
+      "tracked_document_inventory",
+      "authority_binding_and_reverse_consumer_graph",
+      "doctor_baseline_and_new_debt_ratchet"
+    ],
+    "required_oracles": [
+      "document_authority_census",
+      "document_semantic_drift",
+      "document_consumer_closure",
+      "document_generator_propagation"
+    ],
+    "priority_policy": {
+      "p0": [
+        "startup_authority_leak",
+        "active_consumer_stale_doc",
+        "generator_propagation_drift"
+      ],
+      "p1": [
+        "document_dual_authority",
+        "document_overclaim",
+        "semantic_epoch_drift",
+        "declared_state_drift"
+      ],
+      "p2": [
+        "document_unbound",
+        "missing_lifecycle",
+        "missing_owner"
+      ]
+    },
+    "fail_close_rules": [
+      "issue_prose_is_not_requirement_authority",
+      "reference_or_historical_document_cannot_feed_active_decision",
+      "source_fix_cannot_mask_stale_generated_consumer",
+      "unknown_document_lifecycle_cannot_be_new_current_authority"
+    ]
+  },
   "findings": [
     {"id":"EASC-01","severity":"P0","surface":"startup_read_order","evidence_paths":["AGENTS.md","CLAUDE.md","docs/governance/README.md"],"gap":"Markdown v1.3を要件正本としてfirst-readする","owners":[206,397,1364],"terminal_condition":"Requirement IR rootとdigestだけをcurrent semantic authorityとして投影"},
     {"id":"EASC-02","severity":"P0","surface":"l3_progression_authority","evidence_paths":["docs/governance/l3-progression-authority-rebaseline-2026-07-19.md"],"gap":"旧58文書とMarkdownをcurrent freeze authority扱いする","owners":[206,825],"terminal_condition":"compatibility inventoryへ降格しcurrent freezeをIRへ束縛"},

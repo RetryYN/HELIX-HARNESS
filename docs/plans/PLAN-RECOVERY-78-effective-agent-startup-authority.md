@@ -79,7 +79,9 @@ agentが読むAGENTS/CLAUDE、subagent/command、hook、worker-context、setup/c
 2. startup read-order、semantic obligation、agent/command taxonomy、hook parity、worker-context、consumer propagationを分割する。
 3. requirements/IR、workflow、provider、hook、roster、V-pair、review authority、distributionの変更を追従trigger化する。
 4. 各既存Issueのterminal evidenceをaggregateし、未収束surfaceをdoctorでfail-closeする。
-5. Reverse fullbackとcurrent-main read-afterでinventoryを閉じる。
+5. Issue #1372のDocument Authority Censusをauthority-firstで接続し、文書class、lifecycle、逆向きconsumer graph、
+   generator propagationを別oracleとして追跡する。
+6. Reverse fullbackとcurrent-main read-afterでinventoryを閉じる。
 
 ## §4 受入条件 / DoD
 
@@ -89,6 +91,7 @@ agentが読むAGENTS/CLAUDE、subagent/command、hook、worker-context、setup/c
 - [ ] provider API schemaとguard required payloadの不一致を起動前に拒否する
 - [ ] 本体のblocked/degraded capabilityをconsumerへ再配布しない
 - [ ] wrong root/worktree/HEAD/digestを個別にfail-closeする
+- [ ] active consumerとgeneratorからstale/compatibility/historical文書へ到達するedgeをfail-closeする
 - [ ] doctor、full regression、consumer smoke、独立exact-HEAD reviewがgreen
 - [ ] Reverse fullbackとmain read-afterが完了する
 
@@ -97,6 +100,7 @@ agentが読むAGENTS/CLAUDE、subagent/command、hook、worker-context、setup/c
 - 親Issue: #1370
 - 既存owner: #581 / #248 / #322 / #1215 / #1098 / #895 / #206 / #863 / #864
 - 要求authority連携: #825 / #1364 / #397
+- 文書authority全数監査: #1372
 
 ## §6 用語更新
 
