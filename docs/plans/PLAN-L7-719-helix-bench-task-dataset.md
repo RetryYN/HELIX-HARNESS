@@ -5,8 +5,8 @@ kind: add-impl
 layer: L7
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
@@ -68,9 +68,11 @@ dependencies:
   parent: docs/plans/PLAN-L3-49-helix-bench-evaluation.md
   requires:
     - docs/plans/PLAN-L3-49-helix-bench-evaluation.md
+    - docs/plans/PLAN-REVERSE-719-helix-bench-task-dataset.md
   references:
     - issue:1294
     - issue:1287
+    - docs/plans/PLAN-REVERSE-719-helix-bench-task-dataset.md
   blocks: []
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/helix-bench-task-dataset.md, oracle_id: U-HBDATA-001, test_path: tests/helix-bench-task-dataset.test.ts }
@@ -105,3 +107,8 @@ agent_slots:
 2. public、fixture、hidden oracleを物理分離する。
 3. exact snapshotとdigestを検証するpure loaderを実装する。
 4. mutation、CI、Claude exact-HEAD review後にconfirmする。
+
+## 終端証拠
+
+- Forward PR #1303はcandidate HEAD `72d6d1b15398523f52e618961cc379d162fe75e7`に対し、draft CI `33451601694`、Ready CI `33453562491`、Claude exact-HEAD approve / blocker 0、receipt `sha256:c901ae69b02c847a1539ec6e5f28b3cbcddb2dff7b6e845123f50f08094236df`を成立させ、`3813fa4ccfa788f787905d2080f7e3c1a017edfe`としてmainへ統合された。
+- `PLAN-REVERSE-719-helix-bench-task-dataset`が、要求・L6・L8・runtime・dataset registry・hidden oracle境界をmain read-afterで再照合し、同一Issue #1294のterminal fullbackを所有する。
