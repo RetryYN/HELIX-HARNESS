@@ -10,6 +10,7 @@ export interface ToolchainPinFile {
 
 export interface ToolchainPinInput {
   packageJson?: ToolchainPinFile;
+  actionRegistry?: ToolchainPinFile;
   lockfiles: string[];
   workflowFiles: ToolchainPinFile[];
 }
@@ -32,9 +33,27 @@ type PackageJson = {
   engines?: { node?: string };
 };
 
+interface GithubActionRegistryEntry {
+  action: string;
+  release: string;
+  commit_sha: string;
+  source_url: string;
+}
+
+interface GithubActionRegistry {
+  schema_version: "helix-github-action-immutable-ref-registry.v1";
+  registry_version: string;
+  verified_at: string;
+  entries: GithubActionRegistryEntry[];
+}
+
 const WORKFLOW_DIRS = [".github/workflows", "docs/templates/github/common"] as const;
-const SOURCE_SETUP_NODE_REF_ALLOWLIST = new Set(["actions/setup-node@v4", "actions/setup-node@v7"]);
 const SETUP_NODE_ACTION_PATTERN = /^actions\/setup-node(?:@.*)?$/u;
+const ACTION_ID = /^[a-z0-9_.-]+\/[a-z0-9_.-]+$/u;
+const ACTION_RELEASE = /^v[1-9][0-9]*$/u;
+const COMMIT_SHA = /^[a-f0-9]{40}$/u;
+const REGISTRY_VERSION = /^\d+\.\d+\.\d+$/u;
+const IMMUTABLE_ACTION_REF = /^(?<action>[a-z0-9_.-]+\/[a-z0-9_.-]+)@(?<sha>[a-f0-9]{40})$/u;
 
 function readIfExists(root: string, path: string): ToolchainPinFile | undefined {
   const full = join(root, path);
@@ -60,9 +79,98 @@ export function loadToolchainPinInput(root = process.cwd()): ToolchainPinInput {
   const lockfiles = ["package-lock.json"].filter((path) => existsSync(join(root, path)));
   return {
     packageJson: readIfExists(root, "package.json"),
+    actionRegistry: readIfExists(root, "config/github-action-immutable-ref-registry.json"),
     lockfiles,
     workflowFiles: collectWorkflowFiles(root),
   };
+}
+
+function parseActionRegistry(doc: ToolchainPinFile | undefined): {
+  entries: Map<string, GithubActionRegistryEntry>;
+  violations: ToolchainPinViolation[];
+} {
+  const path = doc?.path ?? "config/github-action-immutable-ref-registry.json";
+  const violations: ToolchainPinViolation[] = [];
+  if (!doc) {
+    return {
+      entries: new Map(),
+      violations: [
+        {
+          path,
+          rule: "github-action-registry-missing",
+          message: "immutable GitHub Action ref registry is required.",
+        },
+      ],
+    };
+  }
+  let value: unknown;
+  try {
+    value = JSON.parse(doc.text);
+  } catch {
+    return {
+      entries: new Map(),
+      violations: [
+        {
+          path,
+          rule: "github-action-registry-invalid",
+          message: "immutable GitHub Action ref registry must be valid JSON.",
+        },
+      ],
+    };
+  }
+  const registry = value as Partial<GithubActionRegistry>;
+  if (
+    registry.schema_version !== "helix-github-action-immutable-ref-registry.v1" ||
+    typeof registry.registry_version !== "string" ||
+    !REGISTRY_VERSION.test(registry.registry_version) ||
+    typeof registry.verified_at !== "string" ||
+    !Number.isFinite(Date.parse(registry.verified_at)) ||
+    !Array.isArray(registry.entries)
+  ) {
+    violations.push({
+      path,
+      rule: "github-action-registry-schema-invalid",
+      message: "immutable GitHub Action ref registry metadata is invalid.",
+    });
+    return { entries: new Map(), violations };
+  }
+  const entries = new Map<string, GithubActionRegistryEntry>();
+  for (const candidate of registry.entries) {
+    if (
+      !candidate ||
+      typeof candidate !== "object" ||
+      !ACTION_ID.test(String(candidate.action)) ||
+      !ACTION_RELEASE.test(String(candidate.release)) ||
+      !COMMIT_SHA.test(String(candidate.commit_sha)) ||
+      !String(candidate.source_url).startsWith("https://api.github.com/repos/") ||
+      !String(candidate.source_url).endsWith(String(candidate.commit_sha))
+    ) {
+      violations.push({
+        path,
+        rule: "github-action-registry-entry-invalid",
+        message:
+          "each GitHub Action registry entry must bind action, release, full SHA, and source URL.",
+      });
+      continue;
+    }
+    if (entries.has(candidate.action)) {
+      violations.push({
+        path,
+        rule: "github-action-registry-entry-duplicate",
+        message: `GitHub Action registry contains duplicate action identity (${candidate.action}).`,
+      });
+      continue;
+    }
+    entries.set(candidate.action, candidate as GithubActionRegistryEntry);
+  }
+  if (entries.size === 0) {
+    violations.push({
+      path,
+      rule: "github-action-registry-empty",
+      message: "immutable GitHub Action ref registry must contain at least one action.",
+    });
+  }
+  return { entries, violations };
 }
 
 function parsePackageJson(doc: ToolchainPinFile | undefined): {
@@ -133,20 +241,23 @@ function collectWorkflowSteps(parsed: unknown): Array<Record<string, unknown>> {
   return steps;
 }
 
-function inspectSourceSetupNode(steps: Array<Record<string, unknown>>): {
+function inspectSourceSetupNode(
+  steps: Array<Record<string, unknown>>,
+  registry: ReadonlyMap<string, GithubActionRegistryEntry>,
+): {
   nodeVersions: Array<string | undefined>;
   unsupportedRef?: string;
 } {
   const setupNodeSteps = steps.filter(
     (step) => typeof step.uses === "string" && SETUP_NODE_ACTION_PATTERN.test(step.uses),
   );
-  const unsupported = setupNodeSteps.find(
-    (step) => !SOURCE_SETUP_NODE_REF_ALLOWLIST.has(String(step.uses)),
-  );
+  const expected = registry.get("actions/setup-node");
+  const expectedRef = expected ? `${expected.action}@${expected.commit_sha}` : null;
+  const unsupported = setupNodeSteps.find((step) => String(step.uses) !== expectedRef);
   return {
     ...(unsupported ? { unsupportedRef: String(unsupported.uses) } : {}),
     nodeVersions: setupNodeSteps
-      .filter((step) => SOURCE_SETUP_NODE_REF_ALLOWLIST.has(String(step.uses)))
+      .filter((step) => String(step.uses) === expectedRef)
       .map((step) => {
         const withBlock = step.with;
         if (!withBlock || typeof withBlock !== "object") return undefined;
@@ -168,6 +279,7 @@ function majorMinor(version: string): string {
 function workflowViolations(
   doc: ToolchainPinFile,
   engine: string | undefined,
+  registry: ReadonlyMap<string, GithubActionRegistryEntry>,
 ): ToolchainPinViolation[] {
   const parsed = yamlDoc(doc);
   if (!parsed) {
@@ -181,6 +293,32 @@ function workflowViolations(
   }
   const steps = collectWorkflowSteps(parsed);
   const violations: ToolchainPinViolation[] = [];
+  for (const step of steps) {
+    if (typeof step.uses !== "string" || step.uses.startsWith("./")) continue;
+    const match = IMMUTABLE_ACTION_REF.exec(step.uses);
+    if (!match?.groups) {
+      violations.push({
+        path: doc.path,
+        rule: "github-action-ref-mutable",
+        message: `GitHub Action ref (${step.uses}) must use a full 40-character commit SHA.`,
+      });
+      continue;
+    }
+    const expected = registry.get(match.groups.action);
+    if (!expected) {
+      violations.push({
+        path: doc.path,
+        rule: "github-action-identity-unknown",
+        message: `GitHub Action identity (${match.groups.action}) is not in the immutable ref registry.`,
+      });
+    } else if (expected.commit_sha !== match.groups.sha) {
+      violations.push({
+        path: doc.path,
+        rule: "github-action-ref-registry-mismatch",
+        message: `GitHub Action ref (${match.groups.action}) does not match the registry SHA.`,
+      });
+    }
+  }
   const runCommands = steps.flatMap((step) => (typeof step.run === "string" ? [step.run] : []));
   for (const command of runCommands) {
     if (/\bnpm\s+install\b/.test(command) && !/\bnpm\s+ci\b/.test(command)) {
@@ -194,13 +332,13 @@ function workflowViolations(
 
   const sourceHarnessCheck = doc.path === ".github/workflows/harness-check.yml";
   if (sourceHarnessCheck) {
-    const setupNode = inspectSourceSetupNode(steps);
+    const setupNode = inspectSourceSetupNode(steps, registry);
     const floor = nodeEngineFloor(engine);
     if (setupNode.unsupportedRef) {
       violations.push({
         path: doc.path,
         rule: "source-harness-check-setup-node-ref-unsupported",
-        message: `source harness-check setup-node ref (${setupNode.unsupportedRef}) must be one of actions/setup-node@v4 or actions/setup-node@v7 during the #596 transition.`,
+        message: `source harness-check setup-node ref (${setupNode.unsupportedRef}) must match the immutable registry SHA.`,
       });
     } else if (
       setupNode.nodeVersions.length === 0 ||
@@ -231,6 +369,8 @@ function workflowViolations(
 
 export function analyzeToolchainPin(input: ToolchainPinInput): ToolchainPinResult {
   const violations: ToolchainPinViolation[] = [];
+  const actionRegistry = parseActionRegistry(input.actionRegistry);
+  violations.push(...actionRegistry.violations);
   const parsedPackage = parsePackageJson(input.packageJson);
   if (parsedPackage.violation) violations.push(parsedPackage.violation);
   const nodeEngine = parsedPackage.pkg?.engines?.node;
@@ -246,7 +386,7 @@ export function analyzeToolchainPin(input: ToolchainPinInput): ToolchainPinResul
   }
 
   for (const doc of input.workflowFiles) {
-    violations.push(...workflowViolations(doc, nodeEngine));
+    violations.push(...workflowViolations(doc, nodeEngine, actionRegistry.entries));
   }
 
   return {

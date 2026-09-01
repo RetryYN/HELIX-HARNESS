@@ -74,7 +74,7 @@
         "kind": "ci",
         "artifact_path": "docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
         "locator": "CI System Synthesisのtelemetry／wall-clock／queue観測",
-        "source_digest": "sha256:7bdd77ca10e324ff578a53a79660e1ffe9f781af82354f97cb9ed5ddcd1fb736"
+        "source_digest": "sha256:65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb"
       },
       "schema_version": "ci-execution-telemetry.v1",
       "revision": 1,
@@ -209,7 +209,7 @@
         "implementation": {
           "kind": "repository_module",
           "path": "src/requirements/requirement-authority-gate.ts",
-          "digest": "sha256:bd8f155216ae5b1f59b5c9cd31bcfe5c55a649026e3bb443c28fed4023996581"
+          "digest": "sha256:c813a73093394012e89123914aab692de4262e82a5d4a37c808d5c2de737db18"
         },
         "deterministic": true
       },
@@ -514,7 +514,7 @@
         "implementation": {
           "kind": "repository_module",
           "path": "src/lint/toolchain-pin.ts",
-          "digest": "sha256:05ff501b6a0bec24ee5e23a311b6aca764a5034e666e8b815799b9031c6e068a"
+          "digest": "sha256:09f084d91a2dac4c9981ca0ecf494437ecd9cdc37c54319ae20cf6d2c786256e"
         },
         "deterministic": true
       },

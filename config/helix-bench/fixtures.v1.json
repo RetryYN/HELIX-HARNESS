@@ -1,0 +1,15 @@
+{
+  "schema_version": "helix-bench-fixtures.v1",
+  "fixtures": [
+    { "task_id": "HB-REQ-001", "payload": { "case": "typed-axis-separation", "source_issue": 635 } },
+    { "task_id": "HB-REQ-002", "payload": { "case": "legacy-taxonomy-isolation", "source_issue": 694 } },
+    { "task_id": "HB-DES-001", "payload": { "case": "plan-exact-scope", "source_issue": 855 } },
+    { "task_id": "HB-DES-002", "payload": { "case": "design-harness-drift", "source_issue": 204 } },
+    { "task_id": "HB-IMP-001", "payload": { "case": "right-arm-negative-oracle", "source_issue": 693 } },
+    { "task_id": "HB-IMP-002", "payload": { "case": "external-worker-admission", "source_issue": 1287 } },
+    { "task_id": "HB-REV-001", "payload": { "case": "exact-head-review", "source_issue": 712 } },
+    { "task_id": "HB-REV-002", "payload": { "case": "ci-local-repair", "source_issue": 1208 } },
+    { "task_id": "HB-CAP-001", "payload": { "case": "reverse-fullback", "source_issue": 220 } },
+    { "task_id": "HB-CAP-002", "payload": { "case": "review-round-capacity", "source_issue": 769 } }
+  ]
+}

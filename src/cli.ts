@@ -260,6 +260,10 @@ import {
   type ChangePackageStatus,
 } from "./runtime/change-package-delta-archive";
 import {
+  type DeferredRecoveryInput,
+  reconcileDeferredObligations,
+} from "./runtime/ci-deferred-obligation-recovery";
+import {
   buildClaudeInboxEntry,
   claudeWakeMessageDigest,
   publishClaudeInboxEntry,
@@ -327,6 +331,10 @@ import {
   recordFeedback,
   scanDanglingStops,
 } from "./runtime/forced-stop";
+import {
+  authorForwardPlanTransaction,
+  type ForwardPlanAuthoringTransactionInput,
+} from "./runtime/forward-plan-authoring-transaction";
 import {
   createGuardOverrideAuditPort,
   runGitCommandGuardHook,
@@ -538,6 +546,7 @@ import {
   ClosureEvidenceRunner,
   type ClosureGateAllowlistEntry,
 } from "./state-db/closure-evidence-runner";
+import { loadClosureSemanticAuthorityBundle } from "./state-db/closure-evidence-semantic-authority";
 import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
@@ -4193,6 +4202,28 @@ ci.command("impact-plan")
     },
   );
 
+ci.command("deferred-recovery")
+  .description("reconcile deferred verification obligations with their first terminal run")
+  .requiredOption("--input <path>", "DeferredRecoveryInput JSON path")
+  .option("--json", "JSON output")
+  .action((opts: { input: string; json?: boolean }) => {
+    try {
+      const input = JSON.parse(
+        readFileSync(resolve(process.cwd(), opts.input), "utf8"),
+      ) as DeferredRecoveryInput;
+      const projection = reconcileDeferredObligations(input);
+      process.stdout.write(
+        opts.json
+          ? `${JSON.stringify(projection, null, 2)}\n`
+          : `ci deferred-recovery: receipts=${projection.receipts.length} findings=${projection.findings.length} ok=${projection.ok}\n`,
+      );
+      if (!projection.ok) process.exitCode = 1;
+    } catch (error) {
+      process.stderr.write(`ci deferred-recovery failed: ${String(error)}\n`);
+      process.exitCode = 1;
+    }
+  });
+
 // PLAN-L7-32 §9 discharge: cross-artifact relation graph CLI (ADR-002 A-124 surface)。
 // 純関数 (collect/analyze/export) は src/lint/relation-graph.ts、repo→source set loader は
 // src/graph/loader.ts。doc/source graph に集中し db-table node は projection-writer 経由で別供給。
@@ -4773,6 +4804,41 @@ guard
   );
 
 const plan = program.command("plan").description("PLAN 操作");
+plan
+  .command("author-forward")
+  .description("allocator exact ID発行とForward／pending Reverse PLANを同一transactionで作成")
+  .requiredOption("--input <path>", "authoring input JSON")
+  .option("--dry-run", "検証とtransaction planだけを返し、fileを書かない")
+  .option("--json", "JSON output")
+  .action((opts: { input: string; dryRun?: boolean; json?: boolean }) => {
+    try {
+      const source = JSON.parse(readFileSync(resolve(process.cwd(), opts.input), "utf8")) as Omit<
+        ForwardPlanAuthoringTransactionInput,
+        "repoRoot" | "dryRun"
+      >;
+      const result = authorForwardPlanTransaction({
+        repoRoot: process.cwd(),
+        reservationInput: source.reservationInput,
+        reservationAuthorityPath: source.reservationAuthorityPath,
+        forwardDocument: source.forwardDocument,
+        reverseDocument: source.reverseDocument,
+        dryRun: Boolean(opts.dryRun),
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else {
+        process.stdout.write(
+          `plan author-forward: ${result.status} writes=${result.written_paths.length} digest=${result.transaction_digest ?? "-"}\n`,
+        );
+        for (const finding of result.findings) process.stdout.write(`  - ${finding}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (opts.json) process.stdout.write(`${JSON.stringify({ ok: false, error: message })}\n`);
+      else process.stderr.write(`plan author-forward failed: ${message}\n`);
+      process.exitCode = 1;
+    }
+  });
 plan
   .command("lint [path]")
   .description("PLAN lint")
@@ -8450,6 +8516,10 @@ closure
   )
   .option("--limit <n>", "maximum queue items to inspect", "20")
   .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+  .option(
+    "--semantic-authority-bundle <path>",
+    "typed review/oracle/runtime authority bundle with exact source digests",
+  )
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
@@ -8458,6 +8528,7 @@ closure
       action?: string;
       limit?: string;
       probeRecord?: string;
+      semanticAuthorityBundle?: string;
       json?: boolean;
       summaryJson?: boolean;
       fromDb?: boolean;
@@ -8476,8 +8547,14 @@ closure
         return;
       }
       let probeExecution = null;
+      let semanticAuthorityBundle = null;
       try {
         probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+        if (opts.semanticAuthorityBundle)
+          semanticAuthorityBundle = loadClosureSemanticAuthorityBundle(
+            process.cwd(),
+            opts.semanticAuthorityBundle,
+          );
       } catch (error) {
         process.stderr.write(`closure evidence-materialize: ${String(error)}\n`);
         process.exitCode = 2;
@@ -8494,6 +8571,7 @@ closure
           action: opts.action,
           limit,
           probeExecution,
+          semanticAuthorityBundle,
         });
         if (opts.summaryJson) {
           process.stdout.write(
@@ -9111,6 +9189,7 @@ closure
   )
   .option("--limit <n>", "maximum queue items to inspect", "20")
   .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+  .option("--semantic-authority-bundle <path>", "validated semantic authority bundle")
   .option("--out <path>", "write the non-authorizing pending approval draft to a new local file")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for approval and view surfaces")
@@ -9120,6 +9199,7 @@ closure
       action?: string;
       limit?: string;
       probeRecord?: string;
+      semanticAuthorityBundle?: string;
       out?: string;
       json?: boolean;
       summaryJson?: boolean;
@@ -9141,8 +9221,14 @@ closure
         return;
       }
       let probeExecution = null;
+      let semanticAuthorityBundle = null;
       try {
         probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+        if (opts.semanticAuthorityBundle)
+          semanticAuthorityBundle = loadClosureSemanticAuthorityBundle(
+            process.cwd(),
+            opts.semanticAuthorityBundle,
+          );
       } catch (error) {
         process.stderr.write(`closure evidence-approval-draft: ${String(error)}\n`);
         process.exitCode = 2;
@@ -9160,6 +9246,7 @@ closure
           action: opts.action,
           limit,
           probeExecution,
+          semanticAuthorityBundle,
         });
         let approvalRecordOutput: {
           requested: boolean;
@@ -9247,6 +9334,7 @@ closure
   .option("--execute", "apply approved materialized evidence")
   .option("--limit <n>", "maximum queue items to inspect", "20")
   .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+  .option("--semantic-authority-bundle <path>", "validated semantic authority bundle")
   .option("--approval-record <path>", "approval record containing materialize decision")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for approval and view surfaces")
@@ -9258,6 +9346,7 @@ closure
       execute?: boolean;
       limit?: string;
       probeRecord?: string;
+      semanticAuthorityBundle?: string;
       approvalRecord?: string;
       json?: boolean;
       summaryJson?: boolean;
@@ -9284,8 +9373,14 @@ closure
         return;
       }
       let probeExecution = null;
+      let semanticAuthorityBundle = null;
       try {
         probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+        if (opts.semanticAuthorityBundle)
+          semanticAuthorityBundle = loadClosureSemanticAuthorityBundle(
+            process.cwd(),
+            opts.semanticAuthorityBundle,
+          );
       } catch (error) {
         process.stderr.write(`closure evidence-apply: ${String(error)}\n`);
         process.exitCode = 2;
@@ -9306,6 +9401,7 @@ closure
           action: opts.action,
           limit,
           probeExecution,
+          semanticAuthorityBundle,
           approvalRecordPath: opts.approvalRecord ?? null,
           approvalRecordText,
         });

@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-01
 owner: QA
 plan: docs/plans/PLAN-L7-704-ci-execution-telemetry.md
 pair_artifact: docs/design/helix/L6-function-design/ci-execution-telemetry.md
@@ -28,6 +28,7 @@ pair_artifact: docs/design/helix/L6-function-design/ci-execution-telemetry.md
 | U-TELE-008 | 一つのrun/attemptの依存DAGとartifact edgeを検証する | cache/resource drift、時間逆転、cycle、artifact input/output／lockfile不一致を拒否する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-009 | critical path、重複setup、rerun failureを保持する | 重複setupを1回へ潰さず、過去failureをrerun successで消さない。全nodeが0msでも最長依存鎖を空pathへ縮退させず、同値時のnode数／bytewise順を決定的に適用する | `tests/ci-execution-telemetry.test.ts` |
 | U-TELE-010 | profile/surface/runner/environment/cache/resource別にp50/p95/p99を算出する | 有効標本やfailureがない状態を0ms／検出率100%と表示しない | `tests/ci-execution-telemetry.test.ts` |
+| U-TELE-011 | effective runnerのobserved identityとcurrent authorityをexact照合する | runner image、toolchain、Action registry、attestation digestを個別に改竄して拒否する | `tests/ci-execution-telemetry.test.ts` |
 
 このtest設計はselector、scheduler、workflow、DB、GitHub APIの実行証明ではない。それらの接続は後続Issue #1205〜#1208
 で、同じevent schemaとprojectionを再利用して検証する。

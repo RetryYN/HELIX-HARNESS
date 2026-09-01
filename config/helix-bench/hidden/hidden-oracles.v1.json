@@ -1,0 +1,15 @@
+{
+  "schema_version": "helix-bench-hidden-oracles.v1",
+  "oracles": [
+    { "task_id": "HB-REQ-001", "expected_failure_class": "axis_conflation", "negative_mutations": ["scrum_as_workflow_model"], "historical_result_refs": [] },
+    { "task_id": "HB-REQ-002", "expected_failure_class": "legacy_authority_reentry", "negative_mutations": ["legacy_mode_in_current_output"], "historical_result_refs": [] },
+    { "task_id": "HB-DES-001", "expected_failure_class": "scope_contract_drift", "negative_mutations": ["undeclared_changed_path"], "historical_result_refs": [] },
+    { "task_id": "HB-DES-002", "expected_failure_class": "design_trace_drift", "negative_mutations": ["unpaired_design_change"], "historical_result_refs": [] },
+    { "task_id": "HB-IMP-001", "expected_failure_class": "negative_oracle_missing", "negative_mutations": ["directory_prefix_as_exact_pair"], "historical_result_refs": [] },
+    { "task_id": "HB-IMP-002", "expected_failure_class": "external_worker_provenance", "negative_mutations": ["provider_name_as_authority"], "historical_result_refs": [] },
+    { "task_id": "HB-REV-001", "expected_failure_class": "stale_review", "negative_mutations": ["review_wrong_head"], "historical_result_refs": [] },
+    { "task_id": "HB-REV-002", "expected_failure_class": "ci_repair_scope", "negative_mutations": ["rerun_without_repair"], "historical_result_refs": [] },
+    { "task_id": "HB-CAP-001", "expected_failure_class": "terminal_fullback_missing", "negative_mutations": ["rollback_as_closure"], "historical_result_refs": [] },
+    { "task_id": "HB-CAP-002", "expected_failure_class": "capacity_underreporting", "negative_mutations": ["failed_round_omitted"], "historical_result_refs": [] }
+  ]
+}

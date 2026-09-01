@@ -491,8 +491,8 @@ describe("clean distribution local acceptance smoke", () => {
           "team-run-dry-run",
         ]);
         expect(setupJson.consumerReadiness.ci.requires).toEqual([
-          "actions/checkout@v4 with persist-credentials=false",
-          "actions/setup-node@v4",
+          "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 with persist-credentials=false",
+          "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
           ...CONSUMER_CI_RUN_COMMANDS,
         ]);
         expect(setupJson.consumerReadiness.ci.packagePreflight).toMatchObject({
@@ -574,7 +574,9 @@ describe("clean distribution local acceptance smoke", () => {
         expect(extractWorkflowRunCommands(workflow)).toEqual([...CONSUMER_CI_RUN_COMMANDS]);
         expect(workflow).toContain("permissions:");
         expect(workflow).toContain("contents: read");
-        expect(workflow).toContain("uses: actions/checkout@v4");
+        expect(workflow).toContain(
+          "uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        );
         expect(workflow).toContain("persist-credentials: false");
         expect(workflow).toContain("npm run helix -- --version");
         expect(workflow).toContain("npm run helix -- setup project --dry-run --json");
@@ -605,7 +607,9 @@ describe("clean distribution local acceptance smoke", () => {
         expect(escalationWorkflow).toContain("name: escalation-stale");
         expect(escalationWorkflow).toContain("permissions:");
         expect(escalationWorkflow).toContain("contents: read");
-        expect(escalationWorkflow).toContain("uses: actions/checkout@v4");
+        expect(escalationWorkflow).toContain(
+          "uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        );
         expect(escalationWorkflow).toContain("persist-credentials: false");
         expect(escalationWorkflow).not.toMatch(/\b(?:placeholder|TODO|TBD|FIXME)\b/i);
         for (const command of CONSUMER_ESCALATION_WORKFLOW_RUN_COMMANDS) {

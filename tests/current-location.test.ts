@@ -2908,25 +2908,26 @@ describe("project current-location read model", () => {
         materialize_readiness: {
           status: "blocked_placeholders",
           allowed_to_apply: false,
-          remaining_placeholder_count: 10,
+          remaining_placeholder_count: 12,
           blocked_candidate_count: 3,
         },
       });
       expect(materializeWithProvenance.materialized_candidates[2]).toMatchObject({
-        filled_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
         remaining_placeholders: expect.arrayContaining([
           "<requirement_id>",
           "<test_oracle_id>",
           "<runtime verification claim>",
+          "<session_id>",
+          "<correlation_id>",
         ]),
         ready_for_approval: false,
       });
       expect(
         materializeWithProvenance.materialized_candidates[2]?.materialized_preview_lines.join("\n"),
-      ).toContain('"session_id": "closure-probe:session1234"');
+      ).toContain('"session_id": "<session_id>"');
       expect(
         materializeWithProvenance.materialized_candidates[2]?.materialized_preview_lines.join("\n"),
-      ).toContain('"correlation_id": "closure-correlation:corr1234"');
+      ).toContain('"correlation_id": "<correlation_id>"');
       const approvalDraft = buildProjectClosureEvidenceApprovalDraftPacket(snapshot, {
         action: "repair_failed_evidence",
         limit: 1,

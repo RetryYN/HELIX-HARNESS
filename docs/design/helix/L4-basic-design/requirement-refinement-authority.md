@@ -31,6 +31,9 @@ responsibility_owner: requirement-json-delta-admission
 baseline digestは可変manifestだけへ自己申告せず、G3 JSON freeze material commit `434ef587…`と
 `sha256:3351a371…eb75`をauthority config＋schema literalへ二面固定する。Git履歴が利用できる環境では
 material commitがcurrent HEADのancestorで、当時manifestのroot digestが固定値と一致することも検査する。
+検査はmaterial commit objectの到達性、current HEADとのancestor関係、当時manifestの到達性／JSON妥当性、
+root digest一致を別findingとして返す。非ancestorをobject到達不能へ畳み込まず、固定material commitは
+履歴書換えではなく加法的なmerge parentとしてcurrent mainへ接続する。
 
 ## 3. 正本グラフ
 
