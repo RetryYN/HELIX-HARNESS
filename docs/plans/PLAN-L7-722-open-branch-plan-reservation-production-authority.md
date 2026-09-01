@@ -11,7 +11,7 @@ created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
 github_issue_id: 1256
-behavior_contract_id: OPEN-BRANCH-PLAN-RESERVATION-PRODUCTION-AUTHORITY-001
+behavior_contract_id: OBPRA-AC-001
 responsibility_owner: open-branch-plan-reservation-production-authority
 engineering_discipline_required: true
 change_slice: atomic
