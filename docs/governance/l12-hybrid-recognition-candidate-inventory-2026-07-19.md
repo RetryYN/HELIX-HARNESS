@@ -210,6 +210,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-M-01-cutover-backfill.md`
 - `docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md`
 - `docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md`
+- `docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md`
 - `docs/plans/PLAN-REVERSE-01-process-docs.md`
 - `docs/plans/PLAN-REVERSE-02-session-log.md`
 - `docs/plans/PLAN-REVERSE-10-vmodel-pair-lint.md`
