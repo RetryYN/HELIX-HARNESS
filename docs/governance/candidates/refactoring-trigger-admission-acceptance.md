@@ -4,7 +4,7 @@ candidate_layer: L10
 canonical_pair: L3
 title: "REFACTORING Trigger Policy／RF0 Admission受入テスト設計"
 layer: L10
-status: draft_candidate
+status: approved_pending_canonical_promotion
 created: 2026-09-02
 updated: 2026-09-02
 owner: QA / TL

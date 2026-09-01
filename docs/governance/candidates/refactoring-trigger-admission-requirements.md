@@ -5,14 +5,14 @@ canonical_pair: L10
 title: "REFACTORING Trigger Policy／RF0 Admission要件"
 layer: L3
 kind: add-design
-status: draft_candidate
+status: approved_pending_canonical_promotion
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / TL
 plan: PLAN-L3-77-refactoring-trigger-authority
 parent_design: docs/design/helix/L3-requirements/system-synthesis-requirements.md
 pair_artifact: docs/governance/candidates/refactoring-trigger-admission-acceptance.md
-next_pair_freeze: L10_after_po_approval
+next_pair_freeze: L10_during_canonical_promotion
 refines:
   - SYN-R-03
   - SYN-R-04
@@ -25,8 +25,9 @@ extends:
 
 # REFACTORING Trigger Policy／RF0 Admission要件
 
-> 2026-09-02、POの取り込み・最適化指示を受けてdraftを起草した。これはPLAN-L3-77に対する
-> G-REQ.L3承認ではない。runtime completion、authority自動write、merge／publish／release／cutoverは別境界に残す。
+> 2026-09-02、PLAN-L3-77固有のPO L3承認が成立した。本書は承認済みcandidateだが、
+> canonical promotionとG3再freezeが成立するまではcurrent authorityではない。runtime completion、
+> authority自動write、merge／publish／release／cutoverは別境界に残す。
 
 ## 0. authority境界
 

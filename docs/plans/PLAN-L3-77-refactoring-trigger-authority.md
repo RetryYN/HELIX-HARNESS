@@ -4,8 +4,18 @@ title: "PLAN-L3-77: REFACTORING trigger policyとRF0 admissionをL3/L10へfreeze
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-01T19:23:27Z"
+  plan_id: PLAN-L3-77-refactoring-trigger-authority
+  approval_record_id: L3-PO-1353-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1353#issuecomment-5499200514"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -71,6 +81,7 @@ modifies:
 | 3 | 元指示書を処分 | root原稿をcurrent authorityとして残さない |
 | 4 | PO L3 approval、independent review、G3再freeze | 後続runtime sliceを開始できる |
 
-本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approval前は`docs/governance/candidates/`へdraft候補として隔離し、
-canonical design catalog、current authority、G3 freezeへ投影しない。承認後に正規L3へ移動してから、後続をpolicy、evaluator、admission、projection、anti-starvation、
+本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approvalはplan固有recordとして成立したが、
+`docs/governance/candidates/`の成果物はcanonical promotion前の隔離を維持し、current authorityやG3 freezeへ先行投影しない。
+後続のpromotion sliceで正規L3/L10へ移動してから、policy、evaluator、admission、projection、anti-starvation、
 dogfood／Reverseへ原子的に分割する。
