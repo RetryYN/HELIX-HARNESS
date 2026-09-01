@@ -59,7 +59,7 @@ review_evidence:
       - kind: unit_test
         command: "npx --no-install vitest run tests/universal-improvement-source-registry.test.ts tests/oracle-test-trace.test.ts tests/outstanding.test.ts tests/goal-evidence-audit.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/backfill-pairing.test.ts"
         runner: node
-        scope: full
+        scope: targeted
         exit_code: 0
         completed_at: "2026-08-31T21:58:37Z"
         evidence_path: tests/universal-improvement-source-registry.test.ts
@@ -152,6 +152,10 @@ UIL-R-01、L6、L8、runtime、U-UILSFP-001〜003は、versioned policyによる
 refactorであり、Universal Improvement route、source authority、観測schema、DB schemaへbackpropする変更はない。
 
 ## R4 終端判定
+
+terminal bundleではForward／Reverseを親Issue #1244の単一責務として閉じるため、Reverse PLANのIssue所有をchild #1308から
+parent #1244へ正式にrebindした。GitHub metadataも同一transactionとして、#1244の`plan_id`を本Reverse PLANへ、#1308の
+`plan_id`を`null`へ更新済みである。child #1308はReverse起票・履歴参照として保持し、current PLAN authorityを主張しない。
 
 PR #1309はcandidate HEAD `77036a77db373885c04177c816771e3e6e294f77`でdraft CI `33449299678`、Ready CI
 `33451075414`、Claude exact-HEAD approve / blocker 0を成立させ、merge commit
