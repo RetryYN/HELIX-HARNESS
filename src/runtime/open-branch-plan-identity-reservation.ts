@@ -171,6 +171,26 @@ function isStackInheritance(
   );
 }
 
+function isSameWriterPrMirror(
+  left: OpenBranchPlanReservation,
+  right: OpenBranchPlanReservation,
+): boolean {
+  const sourceKinds = new Set([left.source.kind, right.source.kind]);
+  if (!sourceKinds.has("open_pr") || !sourceKinds.has("active_writer")) return false;
+  const openPr = left.source.kind === "open_pr" ? left : right;
+  const writer = left.source.kind === "active_writer" ? left : right;
+  return (
+    openPr.source.kind === "open_pr" &&
+    writer.source.kind === "active_writer" &&
+    openPr.source.branch === writer.source.branch &&
+    openPr.head_sha === writer.head_sha &&
+    openPr.plan_id === writer.plan_id &&
+    openPr.plan_blob_digest === writer.plan_blob_digest &&
+    openPr.owner_issue === writer.owner_issue &&
+    openPr.responsibility_owner === writer.responsibility_owner
+  );
+}
+
 function canonicalReservations(
   values: readonly OpenBranchPlanReservation[],
 ): OpenBranchPlanReservation[] {
@@ -204,7 +224,8 @@ function conflictForGroup(
       if (
         leftReservation &&
         rightReservation &&
-        !isStackInheritance(leftReservation, rightReservation)
+        !isStackInheritance(leftReservation, rightReservation) &&
+        !isSameWriterPrMirror(leftReservation, rightReservation)
       ) {
         return { code, key, reservations };
       }
