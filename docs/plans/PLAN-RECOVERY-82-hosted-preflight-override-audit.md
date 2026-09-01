@@ -36,7 +36,7 @@ red_test: "HU-PILLAR-NAC-03..05追加前は理由なしbypassと同一override�
 red_at: "2026-09-02T07:49:00+09:00"
 green_at: "2026-09-02T07:52:04+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "reason必須分岐を除去するとHU-PILLAR-NAC-03がfailedし、nonceを固定せず再生成するとHU-PILLAR-NAC-05がfailedする設計。production復元後はtests/hosted-preflight.test.ts 9 tests green／exit 0。"
+mutation_oracle_evidence: "2026-09-02T07:54+09:00にreason必須分岐を無効化するとHU-PILLAR-NAC-03が1 failed／exit 1。2026-09-02T08:00+09:00にnonce seedへDate.now()を混入するとHU-PILLAR-NAC-05が1 failed／exit 1で再利用許可をkillした。production復元後はtests/hosted-preflight.test.ts 10 tests green／exit 0。"
 complexity_effect: net_negative
 complexity_justification: "hook側と同じcommitOverrideUse／guard_override_transactionsを共有し、CLI専用auditを作らない"
 removal_trigger: "なし。hosted enforcement境界の恒久不変条件"
