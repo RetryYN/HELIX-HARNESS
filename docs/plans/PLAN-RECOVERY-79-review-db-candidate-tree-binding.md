@@ -36,7 +36,7 @@ red_test: "U-CPRCONV-038/039がproduction source check不在により2件failed"
 red_at: "2026-09-02T06:07:15+09:00"
 green_at: "2026-09-02T06:18:58+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "source_head比較を!==から===へ反転するとU-CPRCONV-038が1/1 failedし、復元後はclaude-pr-convergence 49/49 green"
+mutation_oracle_evidence: "2026-09-02T06:16:00+09:00にsrc/runtime/claude-pr-convergence.tsのsource_head比較を!==から===へ反転するmutationを実測し、tests/claude-pr-convergence.test.ts U-CPRCONV-038が1 failed／exit 1でwrong candidate tree受理のseeded defectをkillした。production比較へ復元後は同file 49 tests green／exit 0。"
 complexity_effect: net_negative
 complexity_justification: "既存canonical DB receiptに既に存在するsource/workspace attestationをproducer境界で再利用し、別receipt系を作らない"
 removal_trigger: "なし。review provenanceの恒久不変条件"
