@@ -36,7 +36,7 @@ red_test: "U-CAUTO-019追加時はDB attestation存在下でJSONL削除後もall
 red_at: "2026-09-02T08:36:39+09:00"
 green_at: "2026-09-02T08:37:08+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "verifyRunnerAttestationChainのJSONL不存在分岐を旧return nullへ戻すとU-CAUTO-019がallowed=trueでfailedし、DB count照合へ復元後はgreen。追加のjournal boundary mutationは本PLAN終端前に実測する。"
+mutation_oracle_evidence: "verifyRunnerAttestationChainのJSONL不存在分岐を旧return nullへ戻すとU-CAUTO-019がallowed=trueでfailedし、DB count照合へ復元後はgreen。recoverClosureEvidenceMaterializationのcommitted分岐を無効化するとU-CMAT-012がmanifest ENOENTでred、復元後はU-CMAT-011/012を含む13 tests green。"
 complexity_effect: net_negative
 complexity_justification: "test-only dead writerを削除し、既存production materialization journalだけをwrite authorityとして残す"
 removal_trigger: "なし。runner attestation durabilityの恒久不変条件"
@@ -63,6 +63,7 @@ modifies:
   - { artifact_path: tests/closure-evidence-materialization.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — runner attestation durabilityとjournal authorityのRecovery監査" }
   - { role: se, slot_label: "SE — production writerとjournal recovery一本化" }
   - { role: qa, slot_label: "QA — JSONL欠落とdurability boundary mutation" }
   - { role: tl, slot_label: "TL — closure判定前fail-closeとdead path退役" }

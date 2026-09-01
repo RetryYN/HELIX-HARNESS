@@ -155,6 +155,35 @@ function fixture() {
   return { root, db, input, createRunner };
 }
 
+function writeRecoveryJournal(input: {
+  root: string;
+  materializationId: string;
+  state?: "prepared" | "complete";
+  manifestBytes: string;
+  jsonlSize: number;
+}): { journalPath: string; jsonlPath: string; manifestPath: string; stagedManifest: string } {
+  const journalPath = join(input.root, ".helix/evidence/closure-materialization-journal.json");
+  const jsonlPath = join(input.root, ".helix/evidence/runner-attestations.jsonl");
+  const manifestPath = `.helix/evidence/closure-auto-approval-manifest-${input.materializationId}.json`;
+  const stagedManifest = `.helix/tmp/closure-materialization/${input.materializationId}/manifest.json`;
+  mkdirSync(join(input.root, ".helix/evidence"), { recursive: true });
+  mkdirSync(join(input.root, stagedManifest, ".."), { recursive: true });
+  writeFileSync(join(input.root, stagedManifest), input.manifestBytes);
+  const payload = {
+    schema_version: "closure-materialization-journal.v2",
+    state: input.state ?? "prepared",
+    materialization_id: input.materializationId,
+    jsonl_path: ".helix/evidence/runner-attestations.jsonl",
+    jsonl_size: input.jsonlSize,
+    manifest_path: manifestPath,
+    staged_manifest: stagedManifest,
+    manifest_digest: sha(input.manifestBytes),
+    files: [],
+  };
+  writeFileSync(journalPath, JSON.stringify({ ...payload, journal_digest: sha(JSON.stringify(payload)) }));
+  return { journalPath, jsonlPath, manifestPath, stagedManifest };
+}
+
 describe("closure evidence materialization transaction", () => {
   it("U-CMAT-003: scope・HEAD・clean境界をfail-closeする", async () => {
     const { input } = fixture();
@@ -258,6 +287,49 @@ describe("closure evidence materialization transaction", () => {
   it("U-CMAT-013: test-only runner attestation writerをproduction exportへ残さない", () => {
     const source = readFileSync("src/state-db/closure-auto-approval.ts", "utf8");
     expect(source).not.toContain("export function appendRunnerAttestation");
+  });
+
+  it("U-CMAT-011: prepared journalを独立recoveryでJSONL開始byteへrollbackする", () => {
+    const { root, db } = fixture();
+    const recovery = writeRecoveryJournal({
+      root,
+      materializationId: "recovery-prepared-0001",
+      manifestBytes: '{"prepared":true}',
+      jsonlSize: 0,
+    });
+    writeFileSync(recovery.jsonlPath, '{"partial":true}\n');
+    recoverClosureEvidenceMaterialization(root, db);
+    expect(readFileSync(recovery.jsonlPath)).toHaveLength(0);
+    expect(existsSync(recovery.stagedManifest)).toBe(false);
+    expect(existsSync(recovery.manifestPath)).toBe(false);
+    expect(existsSync(recovery.journalPath)).toBe(false);
+  });
+
+  it("U-CMAT-012: committed markerを独立recoveryでmanifestへfinish-forwardする", () => {
+    const { root, db } = fixture();
+    const materializationId = "recovery-committed-0001";
+    const manifestBytes = '{"committed":true}';
+    const recovery = writeRecoveryJournal({
+      root,
+      materializationId,
+      manifestBytes,
+      jsonlSize: 0,
+    });
+    db.prepare(
+      "INSERT INTO closure_materializations(materialization_id,repository_head,status,journal_path,manifest_path,committed_at) VALUES(?,?,?,?,?,?)",
+    ).run(
+      materializationId,
+      "a".repeat(40),
+      "committed",
+      ".helix/evidence/closure-materialization-journal.json",
+      recovery.manifestPath,
+      "2026-09-02T00:00:00.000Z",
+    );
+    recoverClosureEvidenceMaterialization(root, db);
+    expect(readFileSync(join(root, recovery.manifestPath), "utf8")).toBe(manifestBytes);
+    expect(existsSync(join(root, recovery.stagedManifest))).toBe(false);
+    const journal = JSON.parse(readFileSync(recovery.journalPath, "utf8"));
+    expect(journal.state).toBe("complete");
   });
 
   it("U-CMAT-006: 未commit失敗はDB/JSONL/files/manifestをall-or-none rollbackする", async () => {
