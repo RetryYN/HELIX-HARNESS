@@ -34,9 +34,11 @@ contract_postconditions: "project-frontier／tree-view summaryとsummary contrac
 contract_invariants: "legacy drive model commandはcompatibility surfaceに限定し、current summary failureをlegacy greenで相殺しない"
 contract_failures: "drive_model object／command key再混入、registry tuple欠落、wrong navigation commandをfail-closeする"
 tdd_red_required: true
-tdd_red_evidence: "tests/summary-surface-audit.test.tsとtests/cli-surface.test.tsへ旧drive object／command再混入を拒否するoracleを先行追加する"
+tdd_red_evidence: "2026-09-01T17:19:40+09:00にvmodel-fitのproduction summary contractへcommands.drive_modelを一時seedし、npm exec vitest run -- tests/summary-surface-audit.test.ts -t U-CLSO-007が1 failed／4 skippedでlegacy keyを検出した。seed除去後は1 passed／4 skippedへ復帰した。"
+red_at: "2026-09-01T17:19:40+09:00"
+green_at: "2026-09-01T17:19:50+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "drive_model object、commands.drive_model、旧command literalのいずれかを戻すとU-CLSO-007がfailする"
+mutation_oracle_evidence: "src/runtime/summary-surface-audit.tsのvmodel-fit current_location_frontier.commandsへdrive_model: helix drive model --summary-jsonを一時投入した。2026-09-01T17:19:40+09:00にtests/summary-surface-audit.test.tsのU-CLSO-007がexpected serialized payload not to contain drive_modelで1 failed／4 skippedとなりmutationをkillした。apply_patchでseedを除去後、2026-09-01T17:19:50+09:00に同oracleが1 passed／4 skipped、source diff 0へ復帰した。"
 complexity_effect: net_negative
 complexity_justification: "同じtyped identityをdrive_model wrapperへ重複投影する経路と旧navigation keyを除去する"
 removal_trigger: "summary surfaceが後継generated view contractへ完全移行し同oracleが移管された時"
@@ -85,7 +87,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / claude-opus-5"
     reviewed_at: "2026-08-31T01:07:03Z"
-    evidence_digest: "sha256:fd442de107ac09862ea1d90cbc3a821fa288d80cefc40b944e9880381726f532"
+    evidence_digest: "sha256:731a608b8ce33d9c5bb09086783c42c96b03e8f66457942b65bc4749eb7881fe"
   entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-714-summary-frontier-typed-workflow.md, artifact_type: markdown_doc }
