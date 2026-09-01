@@ -5,7 +5,8 @@ kind: add-design
 layer: L3
 drive: agent
 status: confirmed
-completion_claim_allowed: false
+backfill_state: complete
+completion_claim_allowed: true
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
   approval_kind: human_po
@@ -82,6 +83,10 @@ dependencies:
     - issue:1002
     - issue:1084
     - docs/design/helix/L3-requirements/github-ci-performance-requirements.md
+    - docs/plans/PLAN-REVERSE-705-ci-execution-telemetry.md
+    - docs/plans/PLAN-REVERSE-706-ci-verification-plan.md
+    - docs/plans/PLAN-REVERSE-707-ci-critical-path-scheduler.md
+    - docs/plans/PLAN-REVERSE-717-ci-deferred-obligation-recovery.md
 agent_slots:
   - { role: tl, slot_label: "TL — CI責務境界、既存selector再利用、依存順" }
   - { role: qa, slot_label: "QA — obligation omission、stale receipt、deferred欠落mutation" }
@@ -111,3 +116,18 @@ modifies:
 
 本PLANはCI高速化を検査削減と同義にしない。required verification exact setの導出と実行配置を分離し、
 省略した義務を後段で回収できない場合は高速化を拒否する。
+
+## 終端収束
+
+2026-09-01にchild exact set #1204〜#1208がcompletedへ収束した。
+
+- #1204: terminal fullback `e2dc7325`、post-main harness-check `33311317459` success
+- #1205: merge `68269322`、post-main harness-check `33317560785` success
+- #1206: merge `f1fd9853`、Ready CI `33349953595`、post-main harness-check `33350345875` success
+- #1207: merge `db991c0b`、post-main harness-check `33412283392` success
+- #1208: terminal fullback `1127933d`、post-main harness-check `33460518940` success
+
+Telemetry、Responsibility Registry、Verification Plan、critical-path scheduler、deferred obligation recoveryを
+Forward／Reverse／main read-afterまで一巡したため、要求意味を変更せず`backfill_state: complete`および
+`completion_claim_allowed: true`へ遷移する。Issue #1034のcloseは本変更のClaude exact-HEAD review、CI、DB convergence、
+canonical merge後のmain read-afterを記録してから行う。
