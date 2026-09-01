@@ -4,7 +4,7 @@ layer: L6
 artifact_type: design
 status: confirmed
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-09-01
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-704-ci-execution-telemetry.md
 pair_artifact: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md
@@ -38,7 +38,9 @@ credential、secret、PIIは入力・出力のいずれにも保持しない。
 
 ## 3. event契約
 
-`schema_version` は `helix-ci-execution-telemetry.v1` に固定する。`verification_identity` はtest file名に
+current `schema_version` は `helix-ci-execution-telemetry.v2`、runner attestationは
+`helix-ci-effective-runner-attestation.v1` に固定する。v1はhistorical receiptとして保持するがcurrent outputへ
+再生成しない。`verification_identity` はtest file名に
 依存しないstable identityとし、shard移動やrenameで履歴を切断しない。`node_id` は一つのrun/attempt内の
 実行nodeを一意に識別し、retryやrerunは新しいrun/attemptのeventとして保持する。
 
@@ -49,13 +51,17 @@ event_id / node_id / node_kind / verification_identity / operation
 profile / execution_surface
 source_head / base_head / candidate_head
 workflow_id / run_id / attempt
-runner.os / runner.architecture / runner.node_version
-runner.toolchain_digest / runner.environment_digest
+runner.observed / runner.authority:
+  runner_image_id / runner_image_digest / os / architecture
+  node_version / npm_version / system_dependency_digest
+  action_registry_digest / toolchain_digest / environment_digest
+runner.attestation_digest
 ```
 
-`source_head` と `candidate_head` は一致しなければならない。runner OS、architecture、Node version、
-toolchain digest、environment digestはeffective execution environmentとして保持する。unknown runner、
-不正HEAD、別sourceのeventはadmissionを通さない。
+`source_head` と `candidate_head` は一致しなければならない。runnerのobserved identityとauthority identityは
+canonical bytesで完全一致し、attestation digestは両identityとschema versionから再計算する。runner image、OS、
+architecture、Node／npm、system dependency、immutable Action registry、toolchain、environmentのいずれかが
+欠落・未知・driftしたeventはadmissionを通さない。
 
 `operation` は `checkout`、`dependency_install`、`build`、`db_rebuild`、`doctor`、`test`、
 `artifact_upload`、`artifact_download`、`workflow_control` のいずれかとする。これによりcheckout、
@@ -89,7 +95,7 @@ API key、PIIに相当するkeyは明示的に拒否する。拒否理由はdige
 ## 5. batchとread model
 
 batchは一つの `workflow_id/run_id/attempt`、profile、execution surface、HEAD対、runner環境へ束縛する。runner環境は
-OS、architecture、Node version、toolchain digest、environment digest、cache class/hit、CPU／memory classの全てを同一にする。
+effective runner attestation digest、cache class/hit、CPU／memory classの全てを同一にする。
 依存nodeは同一batch内に存在し、自己依存・重複node・cycleを許さない。依存先の完了時刻より前に依存元nodeが開始する
 時間逆転も拒否する。projectorはrun/attemptごとに次を計算する。
 
@@ -99,8 +105,8 @@ OS、architecture、Node version、toolchain digest、environment digest、cache
 - failure、timeout、cancel、superseded、retry、flakeの件数
 - first detecting oracleの集合とfailure detection yield
 
-performance seriesは `profile + execution_surface + runner_os + runner_architecture + runner_node_version +
-toolchain_digest + environment_digest + cache_class + cache_hit + cpu_class + memory_class` で分け、terminal runの
+performance seriesは `profile + execution_surface + runner image + runner OS/architecture + Node/npm +
+system dependency/action registry/toolchain/environment digest + attestation digest + cache/resource` で分け、terminal runの
 wall timeとcritical pathからp50、p95、p99を計算する。別profile、別surface、別environment、cold/warmを混ぜない。
 series内に有効なterminal runがない場合、percentileは `null` とし、観測された0msとして扱わない。
 failureが0件の場合のfailure detection yieldも`null`とし、100%検出したとは表示しない。

@@ -1,7 +1,9 @@
 import { canonicalJson, compareBytewise, type Sha256Digest, sha256Digest } from "./digest";
 import type { CiProfile, ExecutionSurface } from "./impact-ci";
 
-export const CI_EXECUTION_TELEMETRY_SCHEMA_VERSION = "helix-ci-execution-telemetry.v1" as const;
+export const CI_EXECUTION_TELEMETRY_SCHEMA_VERSION = "helix-ci-execution-telemetry.v2" as const;
+export const CI_EFFECTIVE_RUNNER_ATTESTATION_SCHEMA_VERSION =
+  "helix-ci-effective-runner-attestation.v1" as const;
 
 export type CiTelemetryNodeKind = "job" | "step" | "test" | "setup" | "artifact_transfer";
 export type CiTelemetryOperation =
@@ -21,13 +23,26 @@ export type CiTelemetryCacheClass = "cold" | "warm";
 export type CiTelemetryCpuClass = "2-core" | "4-core" | "8-core" | "16-core";
 export type CiTelemetryMemoryClass = "small" | "medium" | "large" | "xlarge";
 
-export interface CiTelemetryRunnerV1 {
+export interface CiTelemetryRunnerIdentityV1 {
+  runner_image_id: string;
+  runner_image_digest: Sha256Digest;
   os: CiTelemetryRunnerOs;
   architecture: CiTelemetryArchitecture;
   node_version: string;
+  npm_version: string;
+  system_dependency_digest: Sha256Digest;
+  action_registry_digest: Sha256Digest;
   toolchain_digest: Sha256Digest;
   environment_digest: Sha256Digest;
 }
+
+export interface CiTelemetryRunnerV2 {
+  observed: CiTelemetryRunnerIdentityV1;
+  authority: CiTelemetryRunnerIdentityV1;
+  attestation_digest: Sha256Digest;
+}
+
+export type CiTelemetryRunnerInputV2 = Omit<CiTelemetryRunnerV2, "attestation_digest">;
 
 export interface CiTelemetryTimingV1 {
   queued_at: string;
@@ -79,7 +94,7 @@ export interface CiExecutionTelemetryEventV1 {
   workflow_id: string;
   run_id: string;
   attempt: number;
-  runner: CiTelemetryRunnerV1;
+  runner: CiTelemetryRunnerV2;
   timing: CiTelemetryTimingV1;
   resource: CiTelemetryResourceV1;
   cache: CiTelemetryCacheV1;
@@ -91,8 +106,8 @@ export interface CiExecutionTelemetryEventV1 {
 
 export type CiExecutionTelemetryEventInput = Omit<
   CiExecutionTelemetryEventV1,
-  "schema_version" | "payload_digest" | "evidence_digest"
->;
+  "schema_version" | "runner" | "payload_digest" | "evidence_digest"
+> & { runner: CiTelemetryRunnerInputV2 };
 
 export interface CiTelemetryValidation {
   ok: boolean;
@@ -106,7 +121,13 @@ export interface CiTelemetryRunSummary {
   execution_surface: ExecutionSurface;
   runner_os: CiTelemetryRunnerOs;
   runner_architecture: CiTelemetryArchitecture;
+  runner_image_id: string;
+  runner_image_digest: Sha256Digest;
   runner_node_version: string;
+  runner_npm_version: string;
+  system_dependency_digest: Sha256Digest;
+  action_registry_digest: Sha256Digest;
+  runner_attestation_digest: Sha256Digest;
   toolchain_digest: Sha256Digest;
   environment_digest: Sha256Digest;
   cache_class: CiTelemetryCacheClass;
@@ -127,7 +148,13 @@ export interface CiTelemetrySeries {
   execution_surface: ExecutionSurface;
   runner_os: CiTelemetryRunnerOs;
   runner_architecture: CiTelemetryArchitecture;
+  runner_image_id: string;
+  runner_image_digest: Sha256Digest;
   runner_node_version: string;
+  runner_npm_version: string;
+  system_dependency_digest: Sha256Digest;
+  action_registry_digest: Sha256Digest;
+  runner_attestation_digest: Sha256Digest;
   toolchain_digest: Sha256Digest;
   environment_digest: Sha256Digest;
   cache_class: CiTelemetryCacheClass;
@@ -253,10 +280,16 @@ const EVENT_KEYS = [
   "payload_digest",
   "evidence_digest",
 ] as const;
-const RUNNER_KEYS = [
+const RUNNER_KEYS = ["observed", "authority", "attestation_digest"] as const;
+const RUNNER_IDENTITY_KEYS = [
+  "runner_image_id",
+  "runner_image_digest",
   "os",
   "architecture",
   "node_version",
+  "npm_version",
+  "system_dependency_digest",
+  "action_registry_digest",
   "toolchain_digest",
   "environment_digest",
 ] as const;
@@ -380,6 +413,55 @@ function evidenceDigest(value: UnknownRecord): Sha256Digest {
   );
 }
 
+function runnerAttestationDigest(runner: CiTelemetryRunnerInputV2): Sha256Digest {
+  return sha256Digest(
+    canonicalJson({
+      schema_version: CI_EFFECTIVE_RUNNER_ATTESTATION_SCHEMA_VERSION,
+      observed: runner.observed,
+      authority: runner.authority,
+    }),
+  );
+}
+
+function validateRunnerIdentity(
+  identity: unknown,
+  path: "runner.observed" | "runner.authority",
+  errors: string[],
+): identity is CiTelemetryRunnerIdentityV1 {
+  if (!isRecord(identity)) {
+    errors.push(`${path.replace(".", "_")}_invalid`);
+    return false;
+  }
+  addUnknownKeys({ value: identity, allowed: RUNNER_IDENTITY_KEYS, path, errors });
+  if (!isIdentifier(identity.runner_image_id)) errors.push(`${path}_image_id_invalid`);
+  if (!isDigest(identity.runner_image_digest)) errors.push(`${path}_image_digest_invalid`);
+  if (!RUNNER_OSES.has(identity.os as CiTelemetryRunnerOs)) errors.push(`${path}_os_invalid`);
+  if (!ARCHITECTURES.has(identity.architecture as CiTelemetryArchitecture)) {
+    errors.push(`${path}_architecture_invalid`);
+  }
+  if (
+    typeof identity.node_version !== "string" ||
+    !NODE_VERSION_PATTERN.test(identity.node_version)
+  ) {
+    errors.push(`${path}_node_version_invalid`);
+  }
+  if (
+    typeof identity.npm_version !== "string" ||
+    !NODE_VERSION_PATTERN.test(identity.npm_version)
+  ) {
+    errors.push(`${path}_npm_version_invalid`);
+  }
+  for (const key of [
+    "system_dependency_digest",
+    "action_registry_digest",
+    "toolchain_digest",
+    "environment_digest",
+  ] as const) {
+    if (!isDigest(identity[key])) errors.push(`${path}_${key}_invalid`);
+  }
+  return true;
+}
+
 function validateNestedShape(input: {
   event: UnknownRecord;
   key: "runner" | "timing" | "resource" | "cache" | "outcome";
@@ -448,18 +530,24 @@ export function validateCiExecutionTelemetryEvent(
 
   const runner = validateNestedShape({ event, key: "runner", allowed: RUNNER_KEYS, errors });
   if (runner) {
-    if (!RUNNER_OSES.has(runner.os as CiTelemetryRunnerOs)) errors.push("runner_os_invalid");
-    if (!ARCHITECTURES.has(runner.architecture as CiTelemetryArchitecture)) {
-      errors.push("runner_architecture_invalid");
+    const observedValid = validateRunnerIdentity(runner.observed, "runner.observed", errors);
+    const authorityValid = validateRunnerIdentity(runner.authority, "runner.authority", errors);
+    if (!isDigest(runner.attestation_digest)) {
+      errors.push("runner_attestation_digest_invalid");
+    } else if (observedValid && authorityValid) {
+      const input = {
+        observed: runner.observed,
+        authority: runner.authority,
+      } as CiTelemetryRunnerInputV2;
+      if (runner.attestation_digest !== runnerAttestationDigest(input)) {
+        errors.push("runner_attestation_digest_mismatch");
+      }
+      for (const key of RUNNER_IDENTITY_KEYS) {
+        if (input.observed[key] !== input.authority[key]) {
+          errors.push(`runner_authority_mismatch:${key}`);
+        }
+      }
     }
-    if (
-      typeof runner.node_version !== "string" ||
-      !NODE_VERSION_PATTERN.test(runner.node_version)
-    ) {
-      errors.push("runner_node_version_invalid");
-    }
-    if (!isDigest(runner.toolchain_digest)) errors.push("runner_toolchain_digest_invalid");
-    if (!isDigest(runner.environment_digest)) errors.push("runner_environment_digest_invalid");
   }
 
   const timing = validateNestedShape({ event, key: "timing", allowed: TIMING_KEYS, errors });
@@ -653,6 +741,14 @@ export function createCiExecutionTelemetryEvent(
   const normalized: UnknownRecord = {
     ...rest,
     schema_version: CI_EXECUTION_TELEMETRY_SCHEMA_VERSION,
+    runner: isRecord(rest.runner)
+      ? {
+          ...rest.runner,
+          attestation_digest: runnerAttestationDigest(
+            rest.runner as unknown as CiTelemetryRunnerInputV2,
+          ),
+        }
+      : rest.runner,
     depends_on_node_ids: Array.isArray(rest.depends_on_node_ids)
       ? sortedUnique(rest.depends_on_node_ids.filter((id): id is string => typeof id === "string"))
       : rest.depends_on_node_ids,
@@ -702,20 +798,9 @@ export function validateCiExecutionTelemetryBatch(
       }
     }
     if (
-      events.some((event) => event.runner.environment_digest !== first.runner.environment_digest)
+      events.some((event) => event.runner.attestation_digest !== first.runner.attestation_digest)
     ) {
-      errors.push("batch_binding_mismatch:environment_digest");
-    }
-    if (events.some((event) => event.runner.toolchain_digest !== first.runner.toolchain_digest)) {
-      errors.push("batch_binding_mismatch:toolchain_digest");
-    }
-    if (events.some((event) => event.runner.os !== first.runner.os))
-      errors.push("batch_binding_mismatch:runner_os");
-    if (events.some((event) => event.runner.architecture !== first.runner.architecture)) {
-      errors.push("batch_binding_mismatch:runner_architecture");
-    }
-    if (events.some((event) => event.runner.node_version !== first.runner.node_version)) {
-      errors.push("batch_binding_mismatch:runner_node_version");
+      errors.push("batch_binding_mismatch:runner_attestation_digest");
     }
     if (events.some((event) => event.cache.class !== first.cache.class)) {
       errors.push("batch_binding_mismatch:cache_class");
@@ -914,11 +999,17 @@ function summarizeRun(events: readonly CiExecutionTelemetryEventV1[]): CiTelemet
     attempt: first.attempt,
     profile: first.profile,
     execution_surface: first.execution_surface,
-    runner_os: first.runner.os,
-    runner_architecture: first.runner.architecture,
-    runner_node_version: first.runner.node_version,
-    toolchain_digest: first.runner.toolchain_digest,
-    environment_digest: first.runner.environment_digest,
+    runner_os: first.runner.observed.os,
+    runner_architecture: first.runner.observed.architecture,
+    runner_image_id: first.runner.observed.runner_image_id,
+    runner_image_digest: first.runner.observed.runner_image_digest,
+    runner_node_version: first.runner.observed.node_version,
+    runner_npm_version: first.runner.observed.npm_version,
+    system_dependency_digest: first.runner.observed.system_dependency_digest,
+    action_registry_digest: first.runner.observed.action_registry_digest,
+    runner_attestation_digest: first.runner.attestation_digest,
+    toolchain_digest: first.runner.observed.toolchain_digest,
+    environment_digest: first.runner.observed.environment_digest,
     cache_class: first.cache.class,
     cache_hit: first.cache.hit,
     cpu_class: first.resource.cpu_class,
@@ -980,7 +1071,13 @@ export function projectCiExecutionTelemetry(
       summary.execution_surface,
       summary.runner_os,
       summary.runner_architecture,
+      summary.runner_image_id,
+      summary.runner_image_digest,
       summary.runner_node_version,
+      summary.runner_npm_version,
+      summary.system_dependency_digest,
+      summary.action_registry_digest,
+      summary.runner_attestation_digest,
       summary.toolchain_digest,
       summary.environment_digest,
       summary.cache_class,
@@ -1003,7 +1100,13 @@ export function projectCiExecutionTelemetry(
         execution_surface: representative.execution_surface,
         runner_os: representative.runner_os,
         runner_architecture: representative.runner_architecture,
+        runner_image_id: representative.runner_image_id,
+        runner_image_digest: representative.runner_image_digest,
         runner_node_version: representative.runner_node_version,
+        runner_npm_version: representative.runner_npm_version,
+        system_dependency_digest: representative.system_dependency_digest,
+        action_registry_digest: representative.action_registry_digest,
+        runner_attestation_digest: representative.runner_attestation_digest,
         toolchain_digest: representative.toolchain_digest,
         environment_digest: representative.environment_digest,
         cache_class: representative.cache_class,
