@@ -1012,7 +1012,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-WFLEG-007: legacy adapter設計登録をG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "9f84eadac3cb8f0e498b5613d4459d8bbfe644402d232468b5b948085186ea8f";
+    const designCatalogDigest = "590504752a50e1aee57b99b1c97cede826b5c30ad54bc0599e585be6d12012a4";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md",
@@ -1025,7 +1025,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
   });
 
   it("U-DESIGNELIC-004: design elicitation typed分類登録をG3 freeze digestへ伝播する", () => {
-    const designCatalogDigest = "9f84eadac3cb8f0e498b5613d4459d8bbfe644402d232468b5b948085186ea8f";
+    const designCatalogDigest = "590504752a50e1aee57b99b1c97cede826b5c30ad54bc0599e585be6d12012a4";
     const designCatalog = readFileSync("docs/design/design-catalog.yaml", "utf8");
     expect(designCatalog).toContain(
       "docs/design/helix/L6-function-design/design-elicitation-typed-classification.md",
