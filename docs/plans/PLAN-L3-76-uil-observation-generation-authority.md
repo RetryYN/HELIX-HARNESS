@@ -11,7 +11,7 @@ l3_human_approval:
   approval_kind: human_po
   decision: approve
   approver: RetryYN
-  approved_at: "2026-09-02T01:15:00+09:00"
+  approved_at: "2026-09-01T16:15:00Z"
   plan_id: PLAN-L3-76-uil-observation-generation-authority
   approval_record_id: L3-PO-1344-001
   approval_source: human_gate_record
@@ -63,7 +63,26 @@ agent_slots:
   - { role: aim, slot_label: "AIM — generation identityとhistorical baseline境界" }
   - { role: qa, slot_label: "QA — three-generation negative oracle" }
   - { role: tl, slot_label: "TL — UIL／TER／toolchain attestation責務分離" }
-review_evidence: []
+review_evidence:
+  - reviewer: codex-tl
+    review_kind: intra_runtime_subagent
+    tests_green_at: "2026-09-01T16:30:26Z"
+    reviewed_at: "2026-09-01T16:30:42Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: codex-intra-runtime
+    reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
+    reviewed_head_sha: 505ac5b5f9e811da9bc40402021c6a5375ec1631
+    scope: "PO承認を記録したcontent HEADを独立再検収し、baseline／candidate／post_main generationの分離、historical baseline sealing、比較不能のfail-close、post-main promotion境界、L3↔L10の3 AC、runtime非混載にblocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/universal-improvement-observation-generation-requirements.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-01T16:30:26Z"
+        evidence_path: tests/universal-improvement-observation-generation-requirements.test.ts
+        output_digest: "sha256:35e30b00e9d16367cbef2ff84cc6dce6e09b1bc4f25f318c872e3a7a7a561180"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-76-uil-observation-generation-authority.md, artifact_type: markdown_doc }
   - { artifact_path: tests/universal-improvement-observation-generation-requirements.test.ts, artifact_type: test_code }
