@@ -28,7 +28,7 @@ describe("resident lane requirements authority", () => {
     expect(l12).toContain(`pair_artifact: ${l1Path}`);
     expect(l3).toContain(`pair_artifact: ${l10Path}`);
     expect(l10).toContain(`pair_artifact: ${l3Path}`);
-    expect(plan).toMatch(/^status: draft$/m);
+    expect(plan).toMatch(/^status: confirmed$/m);
   });
 
   it("RLO-AUTH-002: BR/SR/CNとL3 exact setを欠落させない", () => {
@@ -62,8 +62,8 @@ describe("resident lane requirements authority", () => {
   });
 
   it("RLO-AUTH-005: L3承認前のruntime着手を許可しない", () => {
-    expect(l3).toMatch(/^status: draft$/m);
-    expect(l10).toMatch(/^status: draft$/m);
+    expect(l3).toMatch(/^status: confirmed$/m);
+    expect(l10).toMatch(/^status: confirmed$/m);
     expect(plan).toContain("runtime実装を#860/#821/#854/#1293へ分離");
     expect(plan).toContain("PO L3 approval");
   });
@@ -74,7 +74,7 @@ describe("resident lane requirements authority", () => {
       (candidate) => candidate.refinement_contract_id === "RLO-FR-001",
     ) as RequirementRefinementRecord | undefined;
     expect(record).toBeDefined();
-    expect(record?.lifecycle_status).toBe("draft");
+    expect(record?.lifecycle_status).toBe("specified");
     expect(record?.supporting_requirements.map((item) => item.requirement_id)).toEqual([
       "RLO-FR-037",
       "RLO-FR-038",
@@ -94,7 +94,7 @@ describe("resident lane requirements authority", () => {
           canonical.system_contracts.map((contract) => contract.system_contract_id),
         ),
         currentHead: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
-        planStatus: "draft",
+        planStatus: "confirmed",
       }),
     ).toEqual({ ok: true, failureCodes: [] });
   });

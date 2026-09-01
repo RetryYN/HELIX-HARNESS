@@ -546,6 +546,7 @@ import {
   ClosureEvidenceRunner,
   type ClosureGateAllowlistEntry,
 } from "./state-db/closure-evidence-runner";
+import { loadClosureSemanticAuthorityBundle } from "./state-db/closure-evidence-semantic-authority";
 import {
   buildProjectArtifactRemapBatchReport,
   buildProjectClosureApplyPlan,
@@ -8515,6 +8516,10 @@ closure
   )
   .option("--limit <n>", "maximum queue items to inspect", "20")
   .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+  .option(
+    "--semantic-authority-bundle <path>",
+    "typed review/oracle/runtime authority bundle with exact source digests",
+  )
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for approval and view surfaces")
   .option("--from-db", "read persisted harness.db instead of rebuilding an in-memory projection")
@@ -8523,6 +8528,7 @@ closure
       action?: string;
       limit?: string;
       probeRecord?: string;
+      semanticAuthorityBundle?: string;
       json?: boolean;
       summaryJson?: boolean;
       fromDb?: boolean;
@@ -8541,8 +8547,14 @@ closure
         return;
       }
       let probeExecution = null;
+      let semanticAuthorityBundle = null;
       try {
         probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+        if (opts.semanticAuthorityBundle)
+          semanticAuthorityBundle = loadClosureSemanticAuthorityBundle(
+            process.cwd(),
+            opts.semanticAuthorityBundle,
+          );
       } catch (error) {
         process.stderr.write(`closure evidence-materialize: ${String(error)}\n`);
         process.exitCode = 2;
@@ -8559,6 +8571,7 @@ closure
           action: opts.action,
           limit,
           probeExecution,
+          semanticAuthorityBundle,
         });
         if (opts.summaryJson) {
           process.stdout.write(
@@ -9176,6 +9189,7 @@ closure
   )
   .option("--limit <n>", "maximum queue items to inspect", "20")
   .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+  .option("--semantic-authority-bundle <path>", "validated semantic authority bundle")
   .option("--out <path>", "write the non-authorizing pending approval draft to a new local file")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for approval and view surfaces")
@@ -9185,6 +9199,7 @@ closure
       action?: string;
       limit?: string;
       probeRecord?: string;
+      semanticAuthorityBundle?: string;
       out?: string;
       json?: boolean;
       summaryJson?: boolean;
@@ -9206,8 +9221,14 @@ closure
         return;
       }
       let probeExecution = null;
+      let semanticAuthorityBundle = null;
       try {
         probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+        if (opts.semanticAuthorityBundle)
+          semanticAuthorityBundle = loadClosureSemanticAuthorityBundle(
+            process.cwd(),
+            opts.semanticAuthorityBundle,
+          );
       } catch (error) {
         process.stderr.write(`closure evidence-approval-draft: ${String(error)}\n`);
         process.exitCode = 2;
@@ -9225,6 +9246,7 @@ closure
           action: opts.action,
           limit,
           probeExecution,
+          semanticAuthorityBundle,
         });
         let approvalRecordOutput: {
           requested: boolean;
@@ -9312,6 +9334,7 @@ closure
   .option("--execute", "apply approved materialized evidence")
   .option("--limit <n>", "maximum queue items to inspect", "20")
   .option("--probe-record <path>", "JSON output from closure evidence-probe --execute --json")
+  .option("--semantic-authority-bundle <path>", "validated semantic authority bundle")
   .option("--approval-record <path>", "approval record containing materialize decision")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for approval and view surfaces")
@@ -9323,6 +9346,7 @@ closure
       execute?: boolean;
       limit?: string;
       probeRecord?: string;
+      semanticAuthorityBundle?: string;
       approvalRecord?: string;
       json?: boolean;
       summaryJson?: boolean;
@@ -9349,8 +9373,14 @@ closure
         return;
       }
       let probeExecution = null;
+      let semanticAuthorityBundle = null;
       try {
         probeExecution = readClosureEvidenceProbeExecution(opts.probeRecord);
+        if (opts.semanticAuthorityBundle)
+          semanticAuthorityBundle = loadClosureSemanticAuthorityBundle(
+            process.cwd(),
+            opts.semanticAuthorityBundle,
+          );
       } catch (error) {
         process.stderr.write(`closure evidence-apply: ${String(error)}\n`);
         process.exitCode = 2;
@@ -9371,6 +9401,7 @@ closure
           action: opts.action,
           limit,
           probeExecution,
+          semanticAuthorityBundle,
           approvalRecordPath: opts.approvalRecord ?? null,
           approvalRecordText,
         });

@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "常駐マルチランタイム・レーン オーケストレーション要件"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-08-20
 updated: 2026-09-01
 owner: PO / Codex TL
@@ -19,10 +19,10 @@ next_pair_freeze: L10
 # HELIX 常駐マルチランタイム・レーン オーケストレーション要件定義書
 
 - 文書ID: `HELIX-RLO-REQ-001`
-- バージョン: `0.3.0-draft`
+- バージョン: `0.3.0`
 - 作成日: `2026-08-20`
 - 最終更新: `2026-09-01`（Issue #826、#1293、#1294〜#1296の現行決定を反映）
-- 状態: `requirements-draft / L3承認待ち`
+- 状態: `requirements-confirmed / L3承認済み`
 - 要求正本: `docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md`（`HELIX-RLO-BRQ-001`、L1 粒度）
 - 対象リポジトリ: `RetryYN/HELIX-HARNESS`
 - 主対象Issue: `#819`

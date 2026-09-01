@@ -4,6 +4,15 @@
 > 2026-09-01のv0.3 current draftやL3 approval recordではない。現行候補は
 > `PLAN-L3-75-resident-lane-orchestration-authority`が所有し、POの明示L3承認まではdraftを維持する。
 
+## 現行v0.3 L3承認記録（2026-09-02）
+
+POは`PLAN-L3-75-resident-lane-orchestration-authority`が所有するv0.3のL1↔L12／L3↔L10要求pairを
+L3正本へ登録する判断を承認した。判断はchat上のPO発話、記録はAIのhuman gate recordとして分離し、
+`helix-l3-human-approval.v1`をPLANへ束縛する。承認記録は
+`https://github.com/RetryYN/HELIX-HARNESS/pull/1299#issuecomment-5497074795`、
+承認対象HEADは`6a6968ec84da999b7839a7a4fbc95055d86baffe`である。本承認は要求freezeだけを対象とし、
+#860／#821／#854／#1293のruntime完成、merge、release、外部side effectを承認しない。
+
 - 作成: Claude（session 76a039fc）、Codex TL 壁打ち receipt 取得済み（T0 セカンドオピニオン、2026-08-20）
 - 目的: resident-lane orchestration（RLO）の Forward 進行と関連 Issue の disposition について、
   PO の最終判断を一括で受けるための packet。承認までは Issue 本文・IR・PLAN status を変更しない。

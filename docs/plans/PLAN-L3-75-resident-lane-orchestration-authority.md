@@ -4,8 +4,18 @@ title: "PLAN-L3-75 (add-design): resident laneのL1/L3 authorityを正本化す�
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-01T16:15:00Z"
+  plan_id: PLAN-L3-75-resident-lane-orchestration-authority
+  approval_record_id: L3-PO-859-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1299#issuecomment-5497074795"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -42,6 +52,7 @@ pair_artifact: docs/test-design/helix/resident-lane-orchestration-acceptance.md
 agent_slots:
   - { role: tl, slot_label: "TL — resident/native/CLI責務境界とruntime解放条件" }
   - { role: qa, slot_label: "QA — scope択一、worker権限、model/effort negative oracle" }
+review_evidence: []
 dependencies:
   parent: docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md
   requires: []

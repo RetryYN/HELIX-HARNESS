@@ -1614,7 +1614,7 @@
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "RLO-FR-001",
     "revision": 1,
-    "lifecycle_status": "draft",
+    "lifecycle_status": "specified",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-21",
@@ -1622,9 +1622,9 @@
     ],
     "source": {
       "requirement_path": "docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
-      "requirement_digest": "sha256:4024771048f8633682d1b93d3c29a3b3879d584391b9e611687d8a65217f4a28",
+      "requirement_digest": "sha256:17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
       "acceptance_path": "docs/test-design/helix/resident-lane-orchestration-acceptance.md",
-      "acceptance_digest": "sha256:3bd1308ea065ccf0cfdc121cecdd612b22f0c7158a72f83b54dc4da86ec1cae8"
+      "acceptance_digest": "sha256:63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707"
     },
     "plan_id": "PLAN-L3-75-resident-lane-orchestration-authority",
     "responsibility_owner": "resident-lane-requirements-authority",
@@ -1738,6 +1738,6 @@
       }
     ],
     "approval": null,
-    "semantic_digest": "sha256:196d24ee5c7f108a8195b288965577a7d04bd25f61b158ce23f3ea8e4782ea7e"
+    "semantic_digest": "sha256:c2db0e67e377ff0b0a5a829655ae52fec373de695287193ae40bd31e5fe98fa9"
   }
 }

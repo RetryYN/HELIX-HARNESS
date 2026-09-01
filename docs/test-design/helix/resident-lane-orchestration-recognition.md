@@ -5,7 +5,7 @@ canonical_pair: L1
 title: "常駐レーン要求の利用者受入・認識設計"
 layer: L12
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-09-01
 updated: 2026-09-01
 owner: PO / QA

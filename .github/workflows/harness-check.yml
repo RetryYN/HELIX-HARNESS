@@ -38,14 +38,14 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
 
       - name: setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: "24.15"
 
@@ -90,7 +90,7 @@ jobs:
       - name: upload exact Lite canary artifact
         id: lite-upload
         if: ${{ steps.lite-selector.outputs.disposition == 'required' }}
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: lite-consumer-canary
           path: ${{ runner.temp }}/lite-canary
@@ -137,14 +137,14 @@ jobs:
     steps:
       - name: checkout
         if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
 
       - name: setup Node.js
         if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: "24.15"
 
@@ -154,7 +154,7 @@ jobs:
 
       - name: download Linux-validated Lite artifact
         if: ${{ needs.lite-consumer-canary-artifact.outputs.lane_disposition == 'success' }}
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: lite-consumer-canary
           path: ${{ runner.temp }}/lite-canary
@@ -196,14 +196,14 @@ jobs:
     timeout-minutes: 35
     steps:
       - name: checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
 
       - name: setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: "24.15"
 
@@ -653,7 +653,7 @@ jobs:
 
       - name: upload full regression shard plan
         if: ${{ steps.impact-ci.outputs.full == 'true' && steps.impact-ci.outputs.reuse != 'true' }}
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: full-regression-shard-plan
           path: ${{ runner.temp }}/full-regression-shard-plan
@@ -666,19 +666,19 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: full-regression-shard-plan
           path: ${{ runner.temp }}/full-regression-shard-plan
@@ -703,7 +703,7 @@ jobs:
           exit "$exit_code"
       - name: upload bulk-1 receipt
         if: ${{ always() }}
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: full-regression-shard-receipt-bulk-1
           path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-1/receipt.json
@@ -716,19 +716,19 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: full-regression-shard-plan
           path: ${{ runner.temp }}/full-regression-shard-plan
@@ -751,7 +751,7 @@ jobs:
           exit "$exit_code"
       - name: upload bulk-2 receipt
         if: ${{ always() }}
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: full-regression-shard-receipt-bulk-2
           path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-2/receipt.json
@@ -764,19 +764,19 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: full-regression-shard-plan
           path: ${{ runner.temp }}/full-regression-shard-plan
@@ -813,7 +813,7 @@ jobs:
           exit "$exit_code"
       - name: upload stateful receipt
         if: ${{ always() }}
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: full-regression-shard-receipt-stateful
           path: ${{ runner.temp }}/full-regression-shard-receipt-stateful/receipt.json
@@ -833,38 +833,38 @@ jobs:
       skip_code: ${{ steps.final-status.outputs.skip_code }}
     steps:
       - name: checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
       - name: download full regression shard plan
         if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: full-regression-shard-plan
           path: ${{ runner.temp }}/full-regression-shard-plan
       - name: download bulk-1 receipt
         if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: full-regression-shard-receipt-bulk-1
           path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-1
       - name: download bulk-2 receipt
         if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: full-regression-shard-receipt-bulk-2
           path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-2
       - name: download stateful receipt
         if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
           name: full-regression-shard-receipt-stateful
           path: ${{ runner.temp }}/full-regression-shard-receipt-stateful
@@ -899,7 +899,7 @@ jobs:
           fi
       - name: full admission receipt
         if: ${{ success() && github.event_name == 'pull_request' && needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: impact-ci-full-receipt
           path: ${{ runner.temp }}/impact-ci-full-receipt/impact-ci-full-receipt.json

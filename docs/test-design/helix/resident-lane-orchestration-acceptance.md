@@ -5,7 +5,7 @@ canonical_pair: L3
 title: "常駐マルチランタイム・レーン オーケストレーション受入設計"
 layer: L10
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-09-01
 updated: 2026-09-01
 owner: QA / Codex TL

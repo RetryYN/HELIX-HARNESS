@@ -8,6 +8,10 @@ import {
   VMODEL_SOURCE_FAMILY_ID,
   VMODEL_ZIP_SOURCE_BINDINGS,
 } from "../schema/hybrid-vmodel-manifest";
+import type {
+  ClosureSemanticAuthority,
+  ClosureSemanticAuthorityBundle,
+} from "./closure-evidence-semantic-authority";
 import type { HarnessDb } from "./index";
 
 export type ProjectDriveModel =
@@ -1057,8 +1061,9 @@ export interface ProjectClosureEvidenceMaterializeCandidate {
   filled_placeholders: string[];
   placeholder_resolution_sources: Array<{
     placeholder: string;
-    source: "probe_execution" | "deterministic_closure_rule";
+    source: "probe_execution" | "deterministic_closure_rule" | "semantic_authority_receipt";
     value_digest: string;
+    authority_source_digest?: string;
   }>;
   remaining_placeholders: string[];
   remaining_placeholder_count: number;
@@ -1071,6 +1076,7 @@ export interface ProjectClosureEvidenceMaterializePacket {
   source_clock: string | null;
   selected_action: ProjectClosureQueueNextAction | null;
   probe_execution: ProjectClosureEvidenceProbeExecution | null;
+  semantic_authority_bundle_digest: string | null;
   queue_total: number;
   queue_listed: number;
   queue_omitted: number;
@@ -7567,20 +7573,23 @@ function escapeDoubleQuotedEvidenceValue(value: string): string {
   return value.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
 
-function materializePreviewLines(
-  candidate: ProjectClosureEvidencePatchPacketCandidate,
-  _action: ProjectClosureQueueNextAction | null,
-  execution: ProjectClosureEvidenceProbeExecution,
-): {
+function materializePreviewLines(input: {
+  candidate: ProjectClosureEvidencePatchPacketCandidate;
+  execution: ProjectClosureEvidenceProbeExecution;
+  semanticAuthority: ClosureSemanticAuthority | null;
+  semanticAuthoritySourceDigest: string | null;
+}): {
   lines: string[];
   filledPlaceholders: string[];
   resolutionSources: ProjectClosureEvidenceMaterializeCandidate["placeholder_resolution_sources"];
 } {
+  const { candidate, execution, semanticAuthority, semanticAuthoritySourceDigest } = input;
   const digestValue = execution.output_digest.replace(/^sha256:/i, "");
   const replacements: Array<{
     placeholder: string;
     value: string;
-    source: "probe_execution" | "deterministic_closure_rule";
+    source: "probe_execution" | "deterministic_closure_rule" | "semantic_authority_receipt";
+    authority_source_digest?: string;
   }> = [
     {
       placeholder: "<green command>",
@@ -7593,7 +7602,7 @@ function materializePreviewLines(
       source: "probe_execution",
     },
     { placeholder: "<output>", value: digestValue, source: "probe_execution" },
-    ...(execution.session_id
+    ...(execution.session_id && candidate.artifact_kind !== "runtime_verification_evidence"
       ? [
           {
             placeholder: "<session_id>",
@@ -7602,7 +7611,7 @@ function materializePreviewLines(
           },
         ]
       : []),
-    ...(execution.correlation_id
+    ...(execution.correlation_id && candidate.artifact_kind !== "runtime_verification_evidence"
       ? [
           {
             placeholder: "<correlation_id>",
@@ -7611,23 +7620,66 @@ function materializePreviewLines(
           },
         ]
       : []),
+    ...(semanticAuthority?.authority_kind === "review"
+      ? [
+          ["<reviewer>", semanticAuthority.reviewer],
+          ["<reviewed_at>", semanticAuthority.reviewed_at],
+          ["<worker_model>", semanticAuthority.worker_model],
+          ["<reviewer_model>", semanticAuthority.reviewer_model],
+        ].map(([placeholder, value]) => ({
+          placeholder,
+          value: escapeDoubleQuotedEvidenceValue(value),
+          source: "semantic_authority_receipt" as const,
+          authority_source_digest: semanticAuthoritySourceDigest ?? undefined,
+        }))
+      : []),
+    ...(semanticAuthority?.authority_kind === "structured_test"
+      ? [
+          ["<recorded_at>", semanticAuthority.recorded_at],
+          ["<test case name>", semanticAuthority.case_name],
+          ["<oracle_id>", semanticAuthority.oracle_id],
+        ].map(([placeholder, value]) => ({
+          placeholder,
+          value: escapeDoubleQuotedEvidenceValue(value),
+          source: "semantic_authority_receipt" as const,
+          authority_source_digest: semanticAuthoritySourceDigest ?? undefined,
+        }))
+      : []),
+    ...(semanticAuthority?.authority_kind === "runtime"
+      ? [
+          ["<timestamp>", semanticAuthority.occurred_at],
+          ["<requirement_id>", semanticAuthority.requirement_id],
+          ["<test_oracle_id>", semanticAuthority.test_oracle_id],
+          ["<runtime verification claim>", semanticAuthority.claim],
+          ["<session_id>", semanticAuthority.session_id],
+          ["<correlation_id>", semanticAuthority.correlation_id],
+          ["<runtime_occurred_at>", semanticAuthority.occurred_at],
+        ].map(([placeholder, value]) => ({
+          placeholder,
+          value: escapeDoubleQuotedEvidenceValue(value),
+          source: "semantic_authority_receipt" as const,
+          authority_source_digest: semanticAuthoritySourceDigest ?? undefined,
+        }))
+      : []),
   ];
   const filled = new Map<
     string,
     {
       placeholder: string;
-      source: "probe_execution" | "deterministic_closure_rule";
+      source: "probe_execution" | "deterministic_closure_rule" | "semantic_authority_receipt";
       value_digest: string;
+      authority_source_digest?: string;
     }
   >();
   const materialized = candidate.preview_lines.map((line) => {
     let next = line;
-    for (const { placeholder, value, source } of replacements) {
+    for (const { placeholder, value, source, authority_source_digest } of replacements) {
       if (next.includes(placeholder)) {
         filled.set(placeholder, {
           placeholder,
           source,
           value_digest: evidenceValueDigest(value),
+          ...(authority_source_digest ? { authority_source_digest } : {}),
         });
         next = next.split(placeholder).join(value);
       }
@@ -7648,6 +7700,7 @@ function materializeApprovalDigest(input: {
   action: ProjectClosureQueueNextAction | null;
   candidates: ProjectClosureEvidenceMaterializeCandidate[];
   execution: ProjectClosureEvidenceProbeExecution | null;
+  semanticAuthorityBundleDigest: string | null;
 }): string {
   const payload = {
     action: input.action,
@@ -7662,6 +7715,7 @@ function materializeApprovalDigest(input: {
           status: input.execution.status,
         }
       : null,
+    semantic_authority_bundle_digest: input.semanticAuthorityBundleDigest,
     candidates: input.candidates.map((candidate) => ({
       candidate_id: candidate.candidate_id,
       digest: candidate.materialized_preview_digest,
@@ -7669,6 +7723,7 @@ function materializeApprovalDigest(input: {
         placeholder: source.placeholder,
         source: source.source,
         value_digest: source.value_digest,
+        authority_source_digest: source.authority_source_digest ?? null,
       })),
       remaining_placeholders: [...candidate.remaining_placeholders].sort(),
     })),
@@ -7682,6 +7737,7 @@ export function buildProjectClosureEvidenceMaterializePacket(
     action?: ProjectClosureQueueNextAction;
     limit?: number;
     probeExecution?: ProjectClosureEvidenceProbeExecution | null;
+    semanticAuthorityBundle?: ClosureSemanticAuthorityBundle | null;
   } = {},
 ): ProjectClosureEvidenceMaterializePacket {
   const selectedAction = input.action ?? defaultClosureEvidencePlanAction(snapshot);
@@ -7690,11 +7746,26 @@ export function buildProjectClosureEvidenceMaterializePacket(
     limit: input.limit,
   });
   const execution = input.probeExecution ?? null;
+  const semanticBundle = input.semanticAuthorityBundle ?? null;
+  const semanticAuthorityByCandidate = new Map(
+    (semanticBundle?.records ?? []).map((record) => [
+      `${record.authority.plan_id}:${record.authority.artifact_kind}`,
+      record,
+    ]),
+  );
   const materializedCandidates =
     execution?.status === "passed"
       ? patchPacket.patch_candidates.map(
           (candidate): ProjectClosureEvidenceMaterializeCandidate => {
-            const materialized = materializePreviewLines(candidate, selectedAction, execution);
+            const semantic = semanticAuthorityByCandidate.get(
+              `${candidate.plan_id}:${candidate.artifact_kind}`,
+            );
+            const materialized = materializePreviewLines({
+              candidate,
+              execution,
+              semanticAuthority: semantic?.authority ?? null,
+              semanticAuthoritySourceDigest: semantic?.source_digest ?? null,
+            });
             const remaining = closureEvidencePatchPlaceholders(materialized.lines);
             return {
               candidate_id: candidate.candidate_id,
@@ -7736,6 +7807,7 @@ export function buildProjectClosureEvidenceMaterializePacket(
     action: selectedAction,
     candidates: materializedCandidates,
     execution,
+    semanticAuthorityBundleDigest: semanticBundle?.bundle_digest ?? null,
   });
 
   return {
@@ -7743,6 +7815,7 @@ export function buildProjectClosureEvidenceMaterializePacket(
     source_clock: snapshot.source_clock,
     selected_action: selectedAction,
     probe_execution: execution,
+    semantic_authority_bundle_digest: semanticBundle?.bundle_digest ?? null,
     queue_total: patchPacket.queue_total,
     queue_listed: patchPacket.queue_listed,
     queue_omitted: patchPacket.queue_omitted,
@@ -7788,12 +7861,14 @@ export function buildProjectClosureEvidenceApprovalDraftPacket(
     action?: ProjectClosureQueueNextAction;
     limit?: number;
     probeExecution?: ProjectClosureEvidenceProbeExecution | null;
+    semanticAuthorityBundle?: ClosureSemanticAuthorityBundle | null;
   } = {},
 ): ProjectClosureEvidenceApprovalDraftPacket {
   const materialize = buildProjectClosureEvidenceMaterializePacket(snapshot, {
     action: input.action,
     limit: input.limit,
     probeExecution: input.probeExecution ?? null,
+    semanticAuthorityBundle: input.semanticAuthorityBundle ?? null,
   });
   const approvalRecordTemplate = [
     `decision_id: ${materialize.approval.decision_id}`,
@@ -7894,6 +7969,7 @@ export function buildProjectClosureEvidenceApplyPlan(
     action?: ProjectClosureQueueNextAction;
     limit?: number;
     probeExecution?: ProjectClosureEvidenceProbeExecution | null;
+    semanticAuthorityBundle?: ClosureSemanticAuthorityBundle | null;
     approvalRecordPath?: string | null;
     approvalRecordText?: string | null;
   } = {},
@@ -7902,6 +7978,7 @@ export function buildProjectClosureEvidenceApplyPlan(
     action: input.action,
     limit: input.limit,
     probeExecution: input.probeExecution ?? null,
+    semanticAuthorityBundle: input.semanticAuthorityBundle ?? null,
   });
   const approval = parseMaterializedEvidenceApprovalRecord({
     text: input.approvalRecordText ?? null,
