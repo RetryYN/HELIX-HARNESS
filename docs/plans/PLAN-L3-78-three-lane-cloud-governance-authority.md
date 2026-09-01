@@ -37,8 +37,8 @@ tdd_red_waiver_reason: "本sliceはrequirements candidateとacceptance／Issue r
 complexity_effect: net_negative
 complexity_justification: "open-ended N-provider構想をexact 3 laneへ縮小し、provider lane／model／auditor／budgetの混在を別軸へ分離する。"
 removal_trigger: "v0.4がPO承認・canonical mergeされ、v0.3 current consumerがcompatibility-onlyへ退役した時"
-parent_design: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
-pair_artifact: docs/test-design/helix/three-lane-cloud-governance-acceptance.md
+parent_design: docs/governance/candidates/three-lane-cloud-governance-requests.md
+pair_artifact: docs/governance/candidates/three-lane-cloud-governance-acceptance.md
 dependencies:
   parent: PLAN-L3-75-resident-lane-orchestration-authority
   requires:
@@ -59,16 +59,12 @@ dependencies:
     - issue:1362
 generates:
   - { artifact_path: docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/three-lane-cloud-governance-candidate-projection.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-acceptance.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/helix/L8-three-lane-cloud-governance-candidate-projection.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-recognition.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-requests.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-requirements.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-acceptance.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-recognition.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 agent_slots:
   - { role: aim, slot_label: "AIM — v0.3→v0.4 Requirement Re-entryと旧approval非流用" }
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }

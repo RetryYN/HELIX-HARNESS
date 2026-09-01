@@ -1,17 +1,17 @@
 ---
 canonical_vmodel: L1-L12
-canonical_layer: L10
+candidate_layer: L10
 canonical_pair: L3
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査受入設計"
 layer: L10
 kind: redesign
-status: draft
+status: draft_candidate
 created: 2026-09-02
 updated: 2026-09-02
 owner: QA / Codex TL
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
-parent_design: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
-pair_artifact: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
+parent_design: docs/governance/candidates/three-lane-cloud-governance-requirements.md
+pair_artifact: docs/governance/candidates/three-lane-cloud-governance-requirements.md
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査受入設計
