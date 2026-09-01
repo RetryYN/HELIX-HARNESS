@@ -7,6 +7,8 @@ import {
   projectOpenBranchPlanReservations,
 } from "../src/runtime/open-branch-plan-identity-reservation";
 
+// PLAN-L7-722-open-branch-plan-reservation-production-authority extends U-OBPIR-009.
+
 // PLAN-L7-710-open-branch-plan-identity-reservation
 const MAIN_HEAD = "1".repeat(40);
 const PR_HEAD = "2".repeat(40);
@@ -293,5 +295,55 @@ describe("open branch PLAN identity reservation", () => {
     const noMain = projectOpenBranchPlanReservations(snapshot([reservation()], {}, false));
     expect(noMain).toMatchObject({ ok: false, status: "blocked" });
     expect(noMain.errors).toContain("current_main_reservation_missing");
+  });
+
+  it("U-OBPIR-009: 同一branch／HEADのopen PRとactive writer mirrorだけを同一予約として許可する", () => {
+    const openPr = reservation({
+      head_sha: PR_HEAD,
+      ancestor_head_shas: [MAIN_HEAD],
+      source: { kind: "open_pr", branch: "recovery/1256", pr_number: 1321 },
+      lifecycle: "open",
+    });
+    const writer = reservation({
+      head_sha: PR_HEAD,
+      ancestor_head_shas: [MAIN_HEAD],
+      source: {
+        kind: "active_writer",
+        branch: "recovery/1256",
+        assignment_id: "assignment-1256",
+        lease_id: "lease-1256",
+        fence_token: "fence-1",
+      },
+      lifecycle: "active",
+    });
+    expect(projectOpenBranchPlanReservations(snapshot([openPr, writer])).ok).toBe(true);
+    expect(
+      projectOpenBranchPlanReservations(
+        snapshot([
+          openPr,
+          {
+            ...writer,
+            head_sha: "c".repeat(40),
+          },
+        ]),
+      ).status,
+    ).toBe("blocked");
+    expect(
+      projectOpenBranchPlanReservations(
+        snapshot([
+          openPr,
+          {
+            ...writer,
+            source: {
+              kind: "active_writer",
+              branch: "recovery/other",
+              assignment_id: "assignment-1256",
+              lease_id: "lease-1256",
+              fence_token: "fence-1",
+            },
+          },
+        ]),
+      ).status,
+    ).toBe("blocked");
   });
 });

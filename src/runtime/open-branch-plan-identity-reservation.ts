@@ -101,7 +101,7 @@ const evidenceSurfaceSchema = z
       context.addIssue({ code: "custom", message: "availability/error_digest mismatch" });
     }
   });
-const snapshotSchema = z
+export const openBranchPlanReservationSnapshotSchema = z
   .object({
     schema_version: z.literal(OPEN_BRANCH_PLAN_RESERVATION_SCHEMA),
     repository: z.string().regex(/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u),
@@ -118,7 +118,9 @@ const snapshotSchema = z
   .strict();
 
 export type OpenBranchPlanReservation = z.infer<typeof reservationSchema>;
-export type OpenBranchPlanReservationSnapshot = z.infer<typeof snapshotSchema>;
+export type OpenBranchPlanReservationSnapshot = z.infer<
+  typeof openBranchPlanReservationSnapshotSchema
+>;
 export type OpenBranchPlanReservationStatus = "admitted" | "blocked" | "degraded";
 
 export interface OpenBranchPlanReservationConflict {
@@ -169,6 +171,26 @@ function isStackInheritance(
   );
 }
 
+function isSameWriterPrMirror(
+  left: OpenBranchPlanReservation,
+  right: OpenBranchPlanReservation,
+): boolean {
+  const sourceKinds = new Set([left.source.kind, right.source.kind]);
+  if (!sourceKinds.has("open_pr") || !sourceKinds.has("active_writer")) return false;
+  const openPr = left.source.kind === "open_pr" ? left : right;
+  const writer = left.source.kind === "active_writer" ? left : right;
+  return (
+    openPr.source.kind === "open_pr" &&
+    writer.source.kind === "active_writer" &&
+    openPr.source.branch === writer.source.branch &&
+    openPr.head_sha === writer.head_sha &&
+    openPr.plan_id === writer.plan_id &&
+    openPr.plan_blob_digest === writer.plan_blob_digest &&
+    openPr.owner_issue === writer.owner_issue &&
+    openPr.responsibility_owner === writer.responsibility_owner
+  );
+}
+
 function canonicalReservations(
   values: readonly OpenBranchPlanReservation[],
 ): OpenBranchPlanReservation[] {
@@ -202,7 +224,8 @@ function conflictForGroup(
       if (
         leftReservation &&
         rightReservation &&
-        !isStackInheritance(leftReservation, rightReservation)
+        !isStackInheritance(leftReservation, rightReservation) &&
+        !isSameWriterPrMirror(leftReservation, rightReservation)
       ) {
         return { code, key, reservations };
       }
@@ -220,7 +243,7 @@ function projectionDigest(
 export function projectOpenBranchPlanReservations(
   rawSnapshot: unknown,
 ): OpenBranchPlanReservationProjection {
-  const parsed = snapshotSchema.safeParse(rawSnapshot);
+  const parsed = openBranchPlanReservationSnapshotSchema.safeParse(rawSnapshot);
   if (!parsed.success) {
     const value: Omit<OpenBranchPlanReservationProjection, "projection_digest"> = {
       schema_version: OPEN_BRANCH_PLAN_RESERVATION_PROJECTION_SCHEMA,

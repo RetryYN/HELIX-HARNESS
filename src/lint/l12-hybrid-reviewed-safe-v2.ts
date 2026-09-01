@@ -10,7 +10,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 同authorityをL1/L3/L10/L12へ投影するPLAN。legacy identityは拒否境界の説明だけである。
     path: "docs/plans/PLAN-L3-75-resident-lane-orchestration-authority.md",
-    contentDigest: "fe76b9d6014d3fb89dec038d986c40cdfaa823bcc344874ead3658200776c83c",
+    contentDigest: "9d9a3c03cea171da652efc83ffd28f2d54b5bf62e33ea7f887d2242092c51bd5",
     finalDisposition: "false_positive",
   },
   {
