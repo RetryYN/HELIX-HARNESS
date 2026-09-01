@@ -5,10 +5,10 @@ kind: recovery
 layer: cross
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-01
-updated: 2026-09-01
+updated: 2026-09-02
 owner: Codex / TL
 github_issue_id: 1345
 behavior_contract_id: CLOSURE-SEMANTIC-AUTHORITY-JOIN-001
@@ -104,3 +104,17 @@ review_evidence:
 
 Probeが証明できない意味値を発明せず、既存authority artifactの実体とdigestを検証してからだけ
 evidence candidateへ投影する。approval／apply境界は変更しない。
+
+## Reverse fullbackとmain read-after
+
+- canonical merge: PR #1347、merge commit `8f615b2a1c4d0d93b976c1d006aaf8522e90f28f`
+- independent review: Claude Code / Opus、BLOCKER 0、receipt
+  `https://github.com/RetryYN/HELIX-HARNESS/pull/1347#issuecomment-5496814257`
+- Ready admission: run `33529802454` terminal success
+- post-main read-after: run `33530537308`が同一main HEADでpreflight、bulk-1、bulk-2、stateful、finalize、
+  doctor、aggregateをすべてterminal success
+- post-main CodeQL: run `33530536422` terminal success
+
+R0の実装・fixture、R1のtyped semantic bundle、R2のL6責務、R3の推測禁止意図、R4のcurrent-main
+再接着を照合し、上流要求変更は不要と判定した。approvalなしapply、close-ready不可逆境界、#1299 L3承認は
+非対象のまま維持する。
