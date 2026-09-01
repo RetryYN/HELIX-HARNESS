@@ -5137,13 +5137,15 @@ describe("L7 CLI surface closure", () => {
         materialize_readiness: {
           status: "blocked_placeholders",
           allowed_to_apply: false,
-          remaining_placeholder_count: 10,
+          remaining_placeholder_count: 12,
           blocked_candidate_count: 3,
         },
       });
       expect(materializeReadyPayload.materialized_candidates[2]).toMatchObject({
-        filled_placeholders: expect.arrayContaining(["<session_id>", "<correlation_id>"]),
+        filled_placeholders: [],
         remaining_placeholders: expect.arrayContaining([
+          "<session_id>",
+          "<correlation_id>",
           "<requirement_id>",
           "<runtime verification claim>",
           "<runtime_occurred_at>",
@@ -5171,7 +5173,7 @@ describe("L7 CLI surface closure", () => {
         materialized_candidate_count: 3,
         materialize_readiness: {
           status: "blocked_placeholders",
-          remaining_placeholder_count: 10,
+          remaining_placeholder_count: 12,
           blocked_candidate_count: 3,
         },
         approval: {
@@ -5294,7 +5296,7 @@ describe("L7 CLI surface closure", () => {
         selected_action: "collect_evidence",
         materialize_readiness: {
           status: "blocked_placeholders",
-          remaining_placeholder_count: 10,
+          remaining_placeholder_count: 12,
           blocked_candidate_count: 3,
         },
         approval: {
