@@ -57,6 +57,7 @@ export const UNIVERSAL_IMPROVEMENT_REQUIREMENT_IDS = [
   "UIL-R-12",
   "UIL-R-13",
   "UIL-R-14",
+  "UIL-R-15",
   "UIL-AC-001",
   "UIL-AC-002",
   "UIL-AC-003",
@@ -79,6 +80,9 @@ export const UNIVERSAL_IMPROVEMENT_REQUIREMENT_IDS = [
   "UIL-AC-020",
   "UIL-AC-021",
   "UIL-AC-022",
+  "UIL-AC-023",
+  "UIL-AC-024",
+  "UIL-AC-025",
 ] as const;
 
 export type UniversalImprovementRequirementId =

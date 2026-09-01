@@ -5,8 +5,8 @@
   "authority": {
     "kind": "requirements",
     "artifact_path": "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
-    "locator": "§0, §UIL-FR-001..007, §UIL-R-01..14, §UIL-AC-001..022",
-    "source_digest": "sha256:ef612f7b120e3322d43cdb39aaa08e31d36fd9ff7994fdd0fd06efa92ef13f3e",
+    "locator": "§0, §UIL-FR-001..007, §UIL-R-01..15, §UIL-AC-001..025",
+    "source_digest": "sha256:01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
     "requirement_ids": [
       "UIL-FR-001",
       "UIL-FR-002",
@@ -29,6 +29,7 @@
       "UIL-R-12",
       "UIL-R-13",
       "UIL-R-14",
+      "UIL-R-15",
       "UIL-AC-001",
       "UIL-AC-002",
       "UIL-AC-003",
@@ -50,7 +51,10 @@
       "UIL-AC-019",
       "UIL-AC-020",
       "UIL-AC-021",
-      "UIL-AC-022"
+      "UIL-AC-022",
+      "UIL-AC-023",
+      "UIL-AC-024",
+      "UIL-AC-025"
     ]
   },
   "required_source_kinds": [
@@ -196,7 +200,7 @@
         "kind": "requirements",
         "artifact_path": "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
         "locator": "Requirement／Definition duplicate／overlap／orphan／stale",
-        "source_digest": "sha256:ef612f7b120e3322d43cdb39aaa08e31d36fd9ff7994fdd0fd06efa92ef13f3e"
+        "source_digest": "sha256:01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4"
       },
       "schema_version": "requirements-definition-graph.v1",
       "revision": 1,

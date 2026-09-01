@@ -39,5 +39,8 @@ plan: PLAN-L3-74-universal-improvement-loop
 | UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |
 | UIL-AC-021 | UIL-R-14 | AIなしのdetectorだけでcandidate→route→verificationを生成する | AI proposal除去でcontrol loopを壊さない |
 | UIL-AC-022 | UIL-R-14 | AI利用時にruntime／model／session／context／HEAD／scopeをreceiptへ束縛する | AI出力をdetector evidenceとして偽装しない |
+| UIL-AC-023 | UIL-R-15 | 同一payload／HEADでもbaseline、candidate、post-mainを別generation ID／digestへ投影し、各registry／detector／environment identityを保持する | generation kindをidentityから除去して同一eventへ畳み込まない |
+| UIL-AC-024 | UIL-R-15 | historical baselineを生成時identityで再構築し、compatible／reobservation required／incomparable／detector transitionを個別判定する | candidate registryで旧baselineを再解釈せず、比較不能をgreenへ変換しない |
+| UIL-AC-025 | UIL-R-15 | canonical merge後のpost-main read-afterだけがnew baseline promotionを許可し、source admissionのfirst causeからdownstream dispositionまでlineageを保持する | candidate close／abandonやgeneric missing errorからbaselineを更新しない |
 
-22件すべてを独立oracleとして保持し、単一happy-pathでfailure classを相殺しない。
+25件すべてを独立oracleとして保持し、単一happy-pathでfailure classを相殺しない。
