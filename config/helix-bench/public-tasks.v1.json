@@ -1,0 +1,226 @@
+{
+  "schema_version": "helix-bench-public-tasks.v1",
+  "dataset_version": "1.0.0",
+  "tasks": [
+    {
+      "category": "Requirement Binding",
+      "external_worker_candidate": false,
+      "prompt": "typed axis分離を要求正本へ束縛する",
+      "snapshot": {
+        "task_id": "HB-REQ-001",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:4d400b6c1bf4be26ae2a2ec8f19f8f7779ca56db936116eb27065a731385ce17",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-001"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:38e539640962a020213d185a0dc3b7c7280f7460ebdc0967f80ca8199fab0463",
+        "seed": 129400,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Requirement Binding",
+      "external_worker_candidate": false,
+      "prompt": "legacy taxonomyをcompatibility-onlyへ隔離する",
+      "snapshot": {
+        "task_id": "HB-REQ-002",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:216b07dcbb4152d4ed9cc82223f1b9ff4be81b67f92379d53c23d9f3a024a39a",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-002"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:05928dd726b3f8c8b377898a23f32a40dc373b3ae07f74be6833acbe8da12914",
+        "seed": 129401,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Design Trace",
+      "external_worker_candidate": false,
+      "prompt": "PLAN metadataとexact scopeを整合させる",
+      "snapshot": {
+        "task_id": "HB-DES-001",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:e563366eaf65e48375180797718b3a305f1e0aaa30afe0b3f7263f375a0e9909",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-003"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:9527bb85e0a352702329f734af9a0f1a8e25a3c2c5920418949efae839d45016",
+        "seed": 129402,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Design Trace",
+      "external_worker_candidate": false,
+      "prompt": "Design HARNESS driftをV-pairへ再接着する",
+      "snapshot": {
+        "task_id": "HB-DES-002",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:234cc71196634d89ffd1bf4fe3c265f6a1da588f6376240226845ead94b6c274",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-004"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:5f3d949c1ba576f8d13176f69ce74b2110da25b48d2cbdc5d5aadab089bdfee9",
+        "seed": 129403,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Controlled Implementation",
+      "external_worker_candidate": false,
+      "prompt": "right-arm negative oracleの欠落を修正する",
+      "snapshot": {
+        "task_id": "HB-IMP-001",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:5a065adf94d7e9ead692d71a270ca603bd32da5d2c5fa75a31d5aac6b098566c",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-005"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:49d4a46552d2518f5616814be0b596856f90b2a919c82193654192cf275c39bc",
+        "seed": 129404,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Controlled Implementation",
+      "external_worker_candidate": true,
+      "prompt": "外部worker admissionをprovider中立に修正する",
+      "snapshot": {
+        "task_id": "HB-IMP-002",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:8d80d8257fbcd25f6aafde5f0c928bead0c2b206c3ba4cb809ca0bfbc5e5fadb",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-006"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:6b1907754057afd670affb5b6517fa851e724fe71b41bef634b1934ab19f7315",
+        "seed": 129405,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Review Convergence",
+      "external_worker_candidate": false,
+      "prompt": "exact-HEAD review evidenceを収束させる",
+      "snapshot": {
+        "task_id": "HB-REV-001",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:e785121fe30750903f3e97d68379da6636d5d2e4ec3f3cfc7567c9589e451f14",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-007"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:15aae1d91e432eea9ea2a3630a859a75604910b98deeb5d9c9f5c6103f3e32d4",
+        "seed": 129406,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Review Convergence",
+      "external_worker_candidate": false,
+      "prompt": "CI failureを局所修正して再検収する",
+      "snapshot": {
+        "task_id": "HB-REV-002",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:fb6acd2f12dd82165654643cccb7a1ea0fab05929f71d5914a06f85af32b1cf4",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-008"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:d9645fe5849d4345a7598c9c7cebf7a5bfdeeb3b6776719244561e0277efc9d1",
+        "seed": 129407,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Cost & Capacity",
+      "external_worker_candidate": false,
+      "prompt": "Reverse fullbackをcurrent styleへ再接続する",
+      "snapshot": {
+        "task_id": "HB-CAP-001",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:aa26c7455f372b3e1d394516d2dafa4b237ca654f498bf94e80b1a20e147351d",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-009"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:819e0c390128e7ea6e991cdc3a71ed8edd63e782bf2d48be500fab2efca720ce",
+        "seed": 129408,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    },
+    {
+      "category": "Cost & Capacity",
+      "external_worker_candidate": false,
+      "prompt": "失敗roundを含むreview capacityを保持する",
+      "snapshot": {
+        "task_id": "HB-CAP-002",
+        "task_version": "1.0.0",
+        "fixture_digest": "sha256:40fd57a0a087f0024272a180d85b8d41329edd32003c24fe69bdb4deaa85f92e",
+        "requirement_ids": ["HELIX-BENCH-FR-001"],
+        "acceptance_ids": ["HELIX-BENCH-AC-010"],
+        "base_head": "ec4e8120f275fbf041a8f0b3f7169346f3dbe045",
+        "allowed_paths": ["src/", "tests/", "docs/"],
+        "forbidden_paths": [".helix/", "config/helix-bench/hidden/"],
+        "hidden_oracle_digest": "sha256:8c44de194c9405a67cc04d03e4e6317b1a91b0c61aab306585b583cbfe5835aa",
+        "seed": 129409,
+        "toolchain_versions": { "node": "24.15.0", "typescript": "5.9.3", "vitest": "4.1.10" },
+        "timeout_policy": "bounded_15m",
+        "retry_policy": "no_retry",
+        "cache_policy": "cold",
+        "hardware_class": "linux_x64_standard"
+      }
+    }
+  ]
+}
