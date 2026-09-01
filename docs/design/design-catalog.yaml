@@ -180,6 +180,7 @@ items:
       - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
       - docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md
       - docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md
+      - docs/design/helix/L6-function-design/immutable-github-action-ref-registry.md
       - docs/design/helix/L6-function-design/github-plan-reservation-bounded-fetch.md
       - docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md
