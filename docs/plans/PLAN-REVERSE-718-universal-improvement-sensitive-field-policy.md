@@ -7,12 +7,12 @@ workflow_phase: R4
 confirmed_reverse_type: fullback
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-01
 updated: 2026-09-01
 owner: Codex / TL
-github_issue_id: 1308
+github_issue_id: 1244
 behavior_contract_id: UIL-SENSITIVE-FIELD-POLICY-001
 responsibility_owner: universal-improvement-sensitive-field-policy
 change_slice: atomic
@@ -45,6 +45,26 @@ removal_trigger: "Universal Improvement Loop全体のterminal Reverseが本fullb
 parent_design: docs/design/helix/L6-function-design/universal-improvement-source-registry.md
 pair_artifact: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md
 review_evidence:
+  - reviewer: "Claude Code / Opus"
+    review_kind: cross_agent
+    reviewed_at: "2026-08-31T23:31:22Z"
+    tests_green_at: "2026-08-31T21:58:37Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 77036a77db373885c04177c816771e3e6e294f77
+    scope: "PR #1309 exact HEADのpost-main fullbackを独立検収し、BLOCKER 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/universal-improvement-source-registry.test.ts tests/oracle-test-trace.test.ts tests/outstanding.test.ts tests/goal-evidence-audit.test.ts tests/ddd-tdd-rules.test.ts tests/design-language.test.ts tests/backfill-pairing.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-08-31T21:58:37Z"
+        evidence_path: tests/universal-improvement-source-registry.test.ts
+        output_digest: "sha256:4e2929d045b4191d8f55f83e16c4142050355ec9d9eacfe3a602a718fbbfb265"
+        result: "7 test files / 143 testsがgreen"
   - reviewer: "Codex intra-runtime / Curie"
     review_kind: intra_runtime_subagent
     reviewed_at: "2026-08-31T21:58:47Z"
@@ -131,9 +151,13 @@ UIL-R-01、L6、L8、runtime、U-UILSFP-001〜003は、versioned policyによる
 要求、L4、L5、L6、L8の意味変更は不要である。既存UIL-01のredaction／fail-close要求をtoken-family policyへ局所化した
 refactorであり、Universal Improvement route、source authority、観測schema、DB schemaへbackpropする変更はない。
 
-## R4 候補終端条件
+## R4 終端判定
 
-本Reverse PRではbranch-kind authorityに従いForward refactor PLANを変更しない。current-HEAD targeted検証、PLAN gate、
-CI、独立review、canonical mergeを成立させた後、同一#1244レーンの原子的companion PRでPLAN-L7-718へReverse link、
-terminal status、review／CI／merge evidenceを追加する。companion mergeとmain read-afterで双方向linkを確認するまで、
-Forward／Reverseのcompletion claimと親Issue #1244 closeを禁止する。
+terminal bundleではForward／Reverseを親Issue #1244の単一責務として閉じるため、Reverse PLANのIssue所有をchild #1308から
+parent #1244へ正式にrebindした。GitHub metadataも同一transactionとして、#1244の`plan_id`を本Reverse PLANへ、#1308の
+`plan_id`を`null`へ更新済みである。child #1308はReverse起票・履歴参照として保持し、current PLAN authorityを主張しない。
+
+PR #1309はcandidate HEAD `77036a77db373885c04177c816771e3e6e294f77`でdraft CI `33449299678`、Ready CI
+`33451075414`、Claude exact-HEAD approve / blocker 0を成立させ、merge commit
+`e97260df6a660751038bb21846992eeb5d8c9586`としてmainへ到達した。本companionでForward／Reverseの双方向linkと
+terminal statusを確定し、main read-after後に子Issue #1308、続いて親Issue #1244を閉じる。
