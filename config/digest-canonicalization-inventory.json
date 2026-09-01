@@ -4551,7 +4551,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::registryResultProofDigest:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 359,
+      "line": 363,
       "symbol": "registryResultProofDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4568,7 +4568,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::repositoryFileDigest:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 417,
+      "line": 421,
       "symbol": "repositoryFileDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -4585,7 +4585,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::registryBytesDigest:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 765,
+      "line": 769,
       "symbol": "registryBytesDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -4602,7 +4602,7 @@
     {
       "hit_id": "src/runtime/universal-improvement-source-registry.ts::analyzeUniversalImprovementSourceRegistry:sha256Digest()::1",
       "path": "src/runtime/universal-improvement-source-registry.ts",
-      "line": 894,
+      "line": 898,
       "symbol": "analyzeUniversalImprovementSourceRegistry",
       "algorithm": "sha256",
       "input_kind": "string",
