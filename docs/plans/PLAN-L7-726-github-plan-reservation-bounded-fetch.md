@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-726-github-plan-reservation-bounded-fetch
 title: "PLAN-L7-726: GitHub PLAN reservation bounded fetch"
-kind: add-impl
+kind: refactor
 layer: L7
 drive: agent
 status: draft
