@@ -1,7 +1,7 @@
-import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { isAbsolute, relative, resolve } from "node:path";
 import { z } from "zod";
+import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 
 const DIGEST = /^sha256:[0-9a-f]{64}$/u;
 const HEAD = /^[0-9a-f]{40}$/u;
@@ -84,18 +84,11 @@ export interface ClosureSemanticAuthorityBundle {
 }
 
 function stable(value: unknown): string {
-  if (Array.isArray(value)) return `[${value.map(stable).join(",")}]`;
-  if (value && typeof value === "object") {
-    return `{${Object.entries(value as Record<string, unknown>)
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([key, entry]) => `${JSON.stringify(key)}:${stable(entry)}`)
-      .join(",")}}`;
-  }
-  return JSON.stringify(value);
+  return canonicalJson(value, "semantic authority value is not canonical JSON");
 }
 
 function digest(value: string | Buffer): string {
-  return `sha256:${createHash("sha256").update(value).digest("hex")}`;
+  return sha256Digest(value);
 }
 
 function canonicalRepoPath(repoRoot: string, sourcePath: string): string {

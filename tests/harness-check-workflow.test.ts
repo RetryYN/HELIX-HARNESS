@@ -446,10 +446,12 @@ describe("source harness-check workflow", () => {
     expect(build.run).toContain(`> "\${RUNNER_TEMP}/lite-canary/receipt.json"`);
     expect(linux.env?.HELIX_LITE_CANARY_RECEIPT).toContain("receipt.json");
     expect(linux.run).toContain("tests/distribution-lite-consumer-canary.test.ts");
-    expect(upload.uses).toBe("actions/upload-artifact@v7");
+    expect(upload.uses).toBe("actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a");
     expect(upload.with?.name).toBe("lite-consumer-canary");
     expect(windowsJob.needs).toBe("lite-consumer-canary-artifact");
-    expect(download.uses).toBe("actions/download-artifact@v8");
+    expect(download.uses).toBe(
+      "actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+    );
     expect(download.with?.name).toBe("lite-consumer-canary");
     expect(smoke.env?.HELIX_LITE_CANARY_RECEIPT).toContain("receipt.json");
     expect(smoke.run).toContain("tests/distribution-lite-consumer-canary.test.ts");
@@ -785,16 +787,16 @@ describe("source harness-check workflow", () => {
       "receipt発行のreuse除外欠落",
       (raw: string) =>
         raw.replace(
-          "needs.full-regression-preflight.outputs.reuse != 'true' }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
-          "true }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
+          "needs.full-regression-preflight.outputs.reuse != 'true' }}\n        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a\n        with:\n          name: impact-ci-full-receipt",
+          "true }}\n        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a\n        with:\n          name: impact-ci-full-receipt",
         ),
     ],
     [
       "receipt発行のfull限定欠落",
       (raw: string) =>
         raw.replace(
-          "needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
-          "true }}\n        uses: actions/upload-artifact@v7\n        with:\n          name: impact-ci-full-receipt",
+          "needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}\n        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a\n        with:\n          name: impact-ci-full-receipt",
+          "true }}\n        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a\n        with:\n          name: impact-ci-full-receipt",
         ),
     ],
     [
