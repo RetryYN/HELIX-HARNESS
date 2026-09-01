@@ -11,7 +11,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // Issue #1370のRecovery inventory。旧L0-L14、drive/mode、旧pairへの言及は
     // startup/consumerへの再注入を拒否するgapとterminal conditionであり、再採用ではない。
     path: "docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md",
-    contentDigest: "094d3a89f6c847d6bd97bda1039c1fea09067768f21f338185d5b9ad5e4b5770",
+    contentDigest: "10b2224aa85cdef174d7bc0e4596003e3afae96770f8a42446d69f12d0662184",
     finalDisposition: "false_positive",
   },
   {
