@@ -208,6 +208,26 @@ describe("GitHub open branch PLAN reservation provider", () => {
     });
     expect(callFixture.calls).toHaveLength(1);
 
+    const openThresholdFixture = fixture({
+      "repos/RetryYN/HELIX-HARNESS/pulls?state=open&sort=created&direction=asc&per_page=100&page=1": [
+        { number: 1325, head: { ref: "feature/1256-provider", sha: PR_HEAD } },
+        { number: 1326, head: { ref: "feature/1331-bounded", sha: "d".repeat(40) } },
+      ],
+    });
+    const openThreshold = loadGithubOpenBranchPlanReservationMaterialWithReceipt({
+      repository: "RetryYN/HELIX-HARNESS",
+      api: openThresholdFixture.api,
+      budget: { max_open_pull_requests: 1 },
+      now_ms: () => 0,
+    });
+    expect(openThreshold.material.open_pr_heads).toMatchObject({ status: "unavailable" });
+    expect(openThreshold.receipt.failure_codes).toContain(
+      "github_reservation_open_pr_threshold_exceeded",
+    );
+    expect(openThresholdFixture.calls).not.toContain(
+      "repos/RetryYN/HELIX-HARNESS/pulls/1325",
+    );
+
     let processNow = 0;
     const processBudget = loadGithubOpenBranchPlanReservationMaterialWithReceipt({
       repository: "RetryYN/HELIX-HARNESS",
@@ -346,7 +366,7 @@ responsibility_owner: github-plan-reservation-fetch-budget
     });
     expect(threshold.material.current_main).toMatchObject({ status: "unavailable" });
     expect(thresholdFixture.calls).not.toContain(
-      `repos/RetryYN/HELIX-HARNESS/git/blobs/${PLAN_BLOB}`,
+      `repos/RetryYN/HELIX-HARNESS/git/blobs/${SECOND_PLAN_BLOB}`,
     );
     expect(threshold.receipt.failure_codes).toContain("github_reservation_plan_threshold_exceeded");
 
