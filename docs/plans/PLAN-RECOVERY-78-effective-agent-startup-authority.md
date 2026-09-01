@@ -41,6 +41,8 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/effective-agent-startup-followup-registry.json, artifact_type: json_document }
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: null
   requires: []
