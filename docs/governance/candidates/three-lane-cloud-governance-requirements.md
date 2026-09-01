@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査要件"
 layer: L3
 kind: redesign
-status: approved_pending_canonical_promotion
+status: draft_candidate
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / Codex TL
