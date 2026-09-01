@@ -4,6 +4,7 @@
     "source_head": "19d0bffd44fc51ba13922d953dd73f9d47af8dff",
     "observed_at": "2026-09-02T05:20:00+09:00",
     "parent_issue": 1370,
+    "document_authority_census_issue": 1372,
     "plan_id": "PLAN-RECOVERY-78-effective-agent-startup-authority"
   },
   "authority_target": {
