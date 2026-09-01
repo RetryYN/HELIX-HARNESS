@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L3-76-uil-observation-generation-authority
 title: "PLAN-L3-76: UIL observation generation authorityをL3/L10へ追加する"
-kind: recovery
+kind: add-design
 layer: L3
 drive: agent
 status: draft
@@ -24,8 +24,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: consumer_migration
-backprop_decision: required
-backprop_decision_reason: "PR #1343のsupply-chain変更でbaseline証拠がcandidate identityにより再解釈されたFindingを、UIL-R-02の上流要求欠落へ還流する。"
+backprop_decision: not_required
+backprop_decision_reason: "本PLAN自身がPR #1343のFindingをUIL-R-02の上流要求欠落へ還流してL3を変更するため、これより上流への追加backprop artifactは不要。"
 no_code_decision: no_change
 ddd_modeling_decision: value_object
 contract_preconditions: "UIL-R-01/R-02、TER、immutable Action registry、effective runner/toolchain attestationの責務境界が読める"
