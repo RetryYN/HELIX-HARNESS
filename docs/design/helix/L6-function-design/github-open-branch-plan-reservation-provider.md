@@ -15,6 +15,11 @@ GitHubのcurrent mainとopen PR全件をeffect境界で取得し、
 競合、stack inheritance、release、reservation countは既存production authorityとsemantic coreの責務であり、
 このproviderへ複製しない。
 
+effect providerとprojection adapterは互いをimportしない。共有する
+`OpenBranchPlanReservationAuthorityInput`のschema／typeは
+`src/schema/open-branch-plan-reservation-authority.ts`を正本とし、両adapterが下位schemaへ依存する。
+これによりGitHub effect取得とcanonical snapshot変換を別責務のまま維持する。
+
 ## 取得契約
 
 - main refはPLAN tree取得の前後で同一exact HEADでなければならない。

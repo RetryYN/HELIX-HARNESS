@@ -56,6 +56,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-004, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-005, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-006, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, oracle_id: U-OBPRGH-007, test_path: tests/github-open-branch-plan-reservation-provider.test.ts }
 review_evidence:
   - reviewer: "Claude Code / Opus"
     review_kind: cross_agent
@@ -92,6 +93,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-open-branch-plan-reservation-provider-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/adapters/github-open-branch-plan-reservation-provider.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/open-branch-plan-reservation-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/github-open-branch-plan-reservation-provider.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
@@ -100,6 +102,7 @@ modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: src/adapters/open-branch-plan-reservation-authority.ts, artifact_type: source_module }
 agent_slots:
   - { role: se, slot_label: "SE — GitHub pagination／read-after effect provider" }
   - { role: qa, slot_label: "QA — race／truncation／pagination／terminal反例" }

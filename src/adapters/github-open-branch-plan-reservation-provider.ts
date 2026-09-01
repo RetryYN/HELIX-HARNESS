@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { parse as parseYaml } from "yaml";
 import { canonicalJson, compareBytewise, sha256Digest } from "../runtime/digest";
-import type { OpenBranchPlanReservationAuthorityInput } from "./open-branch-plan-reservation-authority";
+import type { OpenBranchPlanReservationAuthorityInput } from "../schema/open-branch-plan-reservation-authority";
 
 type GithubReservationMaterial = Pick<
   OpenBranchPlanReservationAuthorityInput,

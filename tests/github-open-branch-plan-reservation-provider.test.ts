@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadGithubOpenBranchPlanReservationMaterial } from "../src/adapters/github-open-branch-plan-reservation-provider";
 
@@ -199,5 +200,19 @@ describe("GitHub open branch PLAN reservation provider", () => {
     });
     expect(first.current_main).toEqual(second.current_main);
     expect(first.open_pr_heads).toEqual(second.open_pr_heads);
+  });
+
+  it("U-OBPRGH-007: effect providerとprojection adapterは共有schemaだけを介して接続する", () => {
+    const provider = readFileSync(
+      "src/adapters/github-open-branch-plan-reservation-provider.ts",
+      "utf8",
+    );
+    const projection = readFileSync(
+      "src/adapters/open-branch-plan-reservation-authority.ts",
+      "utf8",
+    );
+    expect(provider).toContain('from "../schema/open-branch-plan-reservation-authority"');
+    expect(provider).not.toContain('from "./open-branch-plan-reservation-authority"');
+    expect(projection).toContain('from "../schema/open-branch-plan-reservation-authority"');
   });
 });
