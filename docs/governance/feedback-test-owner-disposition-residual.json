@@ -67,7 +67,7 @@
     },
     {
       "test_path": "tests/l12-canonical-authority.test.ts",
-      "test_file_sha256": "76a3f65adacd99a21f49c3520e8c0f035e55a1ddd80d314caf79282809c58ef2",
+      "test_file_sha256": "b4a7901109cf6d5e764ed90c8c4d9f9f5f5ca3e79f28450e83479cd18f110446",
       "expected_case_count": 6,
       "authority_paths": [
         "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
