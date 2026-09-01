@@ -91,9 +91,11 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 2026-07-25 PLAN-L7-464: family 標準 effort 記述を opus=medium へ同期 (disposition 据え置き)。
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
+    // 2026-09-02 PLAN-RECOVERY-80: Fable current identityを5.1へ追従。旧identityは
+    // historical互換説明だけに残り、recognition signal集合とdispositionは不変。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: ".claude/CLAUDE.md",
-    contentDigest: "4cfc318f984bd2fc181a6435167086c1b52be607e93f21b30ed0973eccca374a",
+    contentDigest: "a8dd3ed8854e85ee4e749eb0e3e83195d076586611b697727099f946f42dfaa9",
     finalDisposition: "compatibility_labeled",
   },
   {
