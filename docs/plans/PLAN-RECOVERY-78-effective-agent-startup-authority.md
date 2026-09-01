@@ -21,10 +21,10 @@ engineering_discipline_required: true
 behavior_contract_id: EFFECTIVE-AGENT-STARTUP-AUTHORITY-001
 responsibility_owner: effective-agent-startup-authority
 change_slice: atomic
-refactor_step: inventory
+refactor_step: not_applicable
 legacy_retirement_state: retained
-no_code_decision: document_only
-ddd_modeling_decision: required
+no_code_decision: no_change
+ddd_modeling_decision: none
 contract_preconditions: "Requirement IR、workflow registry、provider hook、agent roster、worker-context、setup templateは存在するが、agentが最初に読むeffective contractへ同一HEAD・digestで合成されていない"
 contract_postconditions: "監査gap、既存owner、更新trigger、追従義務、終端条件がmachine-readable inventoryへ束縛され、後続authority/runtime sliceがexact partitionされる"
 contract_invariants: "Issue本文やMarkdownをRequirement IRの代替正本にせず、既存Issueのruntime責務を重複実装せず、release/tag/cutover approval境界を変更しない"
@@ -42,6 +42,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/effective-agent-startup-followup-registry.json, artifact_type: json_config }
 modifies:
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
