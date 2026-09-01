@@ -55,9 +55,13 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/refactoring-trigger-admission-requirements.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/refactoring-trigger-candidate-projection.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-refactoring-trigger-candidate-projection.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/refactoring-trigger-admission-acceptance.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 ---
 
 # REFACTORING trigger authorityのfreeze
@@ -71,6 +75,6 @@ modifies:
 | 3 | 元指示書を処分 | root原稿をcurrent authorityとして残さない |
 | 4 | PO L3 approval、independent review、G3再freeze | 後続runtime sliceを開始できる |
 
-本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approval前はdraft authorityとして保持し、current design
-catalogやG3 freezeへ投影しない。承認後に後続をpolicy、evaluator、admission、projection、anti-starvation、
+本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approval前はdraft authorityとして保持する。design catalogは
+物理所在だけを登録し、current authorityやG3 freezeへ投影しない。承認後に後続をpolicy、evaluator、admission、projection、anti-starvation、
 dogfood／Reverseへ原子的に分割する。
