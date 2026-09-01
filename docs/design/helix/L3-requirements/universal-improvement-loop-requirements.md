@@ -60,7 +60,7 @@ current baseline、観測値、欠測、予測を別fieldにする。
 
 normalized observationは`baseline`、`candidate`、`post_main`を別generationとして保持し、同じHEAD、event payload、
 source IDでもgeneration identityを統合しない。各generationはrepository、source HEAD、base／candidate HEAD、source
-registry version／digest、detector ID／version／digest、environment／toolchain digest、physical binding applicability、
+registryのversion／digest、detectorのID／version／digest、environment／toolchain digest、物理bindingの適用可否、
 観測時刻、親generationへ束縛する。
 
 historical baselineは生成時のregistry、detector、environment identityでsealedし、candidate側変更で再解釈または

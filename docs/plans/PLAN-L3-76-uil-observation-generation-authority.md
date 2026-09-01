@@ -4,8 +4,18 @@ title: "PLAN-L3-76: UIL observation generation authorityをL3/L10へ追加する
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-02T01:15:00+09:00"
+  plan_id: PLAN-L3-76-uil-observation-generation-authority
+  approval_record_id: L3-PO-1344-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1351#issuecomment-5497075122"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6

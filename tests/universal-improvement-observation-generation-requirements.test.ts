@@ -41,7 +41,7 @@ describe("UIL observation generation L3↔L10 authority", () => {
   });
 
   it("UIL-GEN-AUTH-004: runtime実装と別authorityの再実装をこのL3 sliceへ混載しない", () => {
-    expect(plan).toContain("status: draft");
+    expect(plan).toContain("status: confirmed");
     expect(plan).toContain("completion_claim_allowed: false");
     expect(plan).toContain("runtime Red/Greenは後続UIL-GEN-01以降へ分離");
     expect(plan).toContain("別DB・別scanner・新workflow routeを作らない");
