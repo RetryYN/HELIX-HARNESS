@@ -84,7 +84,6 @@ modifies:
   - { artifact_path: docs/templates/github/common/harness-check.yml, artifact_type: template }
   - { artifact_path: docs/templates/github/common/escalation-stale.yml, artifact_type: template }
   - { artifact_path: docs/templates/github/common/pack-harness-check.yml, artifact_type: template }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
