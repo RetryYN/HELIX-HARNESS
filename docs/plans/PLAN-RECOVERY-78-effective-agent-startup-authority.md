@@ -33,14 +33,14 @@ tdd_red_required: false
 complexity_effect: net_neutral
 complexity_justification: "本sliceは追跡authorityと責務分割のみを追加し、runtime実装は既存ownerと後続原子sliceへ委譲する"
 removal_trigger: "Effective Agent Startup Contractがcanonical registry、compiler、doctor、consumer smokeへ実装され、本inventory全findingがterminal evidence付きでclosedになった時"
-parent_design: null
 pair_artifact: docs/governance/effective-agent-startup-followup-registry.json
 agent_slots:
   - { role: tl, slot_label: "TL — 横断authorityと責務分割" }
+  - { role: aim, slot_label: "AIM — startup authority driftの原因分類と再発経路の同定" }
   - { role: qa, slot_label: "QA — startup/consumer再注入gapの反例設計" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/effective-agent-startup-followup-registry.json, artifact_type: json_document }
+  - { artifact_path: docs/governance/effective-agent-startup-followup-registry.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
