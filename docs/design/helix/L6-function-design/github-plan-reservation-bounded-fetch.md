@@ -74,5 +74,5 @@ local green として扱わない。
 
 ## 非対象
 
-PR preflight、doctor、harness DB、assignment kernel、active writer、GitHub PR／merge／Issue close、reservation semantic
-判定はこの slice に含めない。これらは同じ typed material を利用する後続 slice の責務とする。
+対象外の外部surfaceは、PR preflight、doctor、harness DB、assignment kernel、active writer、
+GitHub PR／merge／Issue close、reservation semanticの判定である。これらは同じtyped materialを利用する後続sliceの責務とする。

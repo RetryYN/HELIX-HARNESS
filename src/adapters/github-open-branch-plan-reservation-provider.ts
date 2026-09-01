@@ -429,18 +429,30 @@ function planTreeEntries(
   return plans.sort((left, right) => compareBytewise(left.path, right.path));
 }
 
-function plansAtHead(
-  api: GithubApi,
-  repository: string,
-  headSha: string,
-  controller: FetchBudgetController,
-  cacheBlobs: Record<string, GithubPlanReservationBlobCacheEntry> | undefined,
-  cacheCaptures: Record<string, GithubPlanReservationCapture> | undefined,
-  operationCache: Map<string, string>,
-  nextBlobs: Record<string, GithubPlanReservationBlobCacheEntry>,
-  capturedAt: string,
-  budget: GithubPlanReservationFetchBudget,
-): HeadPlanCapture {
+function plansAtHead(input: {
+  api: GithubApi;
+  repository: string;
+  headSha: string;
+  controller: FetchBudgetController;
+  cacheBlobs: Record<string, GithubPlanReservationBlobCacheEntry> | undefined;
+  cacheCaptures: Record<string, GithubPlanReservationCapture> | undefined;
+  operationCache: Map<string, string>;
+  nextBlobs: Record<string, GithubPlanReservationBlobCacheEntry>;
+  capturedAt: string;
+  budget: GithubPlanReservationFetchBudget;
+}): HeadPlanCapture {
+  const {
+    api,
+    repository,
+    headSha,
+    controller,
+    cacheBlobs,
+    cacheCaptures,
+    operationCache,
+    nextBlobs,
+    capturedAt,
+    budget,
+  } = input;
   const treePayload = record(
     controller.call(api, `repos/${repository}/git/trees/${headSha}?recursive=1`),
     "github_reservation_tree_invalid",
@@ -520,15 +532,16 @@ function mainHead(api: GithubApi, repository: string, controller: FetchBudgetCon
   );
 }
 
-function paged(
-  api: GithubApi,
-  endpoint: (page: number) => string,
-  code: string,
-  controller: FetchBudgetController,
-  maxPages: number,
-  maxItems: number,
-  thresholdCode: string,
-): unknown[] {
+function paged(input: {
+  api: GithubApi;
+  endpoint: (page: number) => string;
+  code: string;
+  controller: FetchBudgetController;
+  maxPages: number;
+  maxItems: number;
+  thresholdCode: string;
+}): unknown[] {
+  const { api, endpoint, code, controller, maxPages, maxItems, thresholdCode } = input;
   const values: unknown[] = [];
   for (let page = 1; page <= maxPages; page += 1) {
     const payload = controller.call(api, endpoint(page));
@@ -541,22 +554,23 @@ function paged(
   throw new Error(`${code}_page_limit_exceeded`);
 }
 
-function openPullRequests(
-  api: GithubApi,
-  repository: string,
-  controller: FetchBudgetController,
-  budget: GithubPlanReservationFetchBudget,
-) {
-  const values = paged(
+function openPullRequests(input: {
+  api: GithubApi;
+  repository: string;
+  controller: FetchBudgetController;
+  budget: GithubPlanReservationFetchBudget;
+}) {
+  const { api, repository, controller, budget } = input;
+  const values = paged({
     api,
-    (page) =>
+    endpoint: (page) =>
       `repos/${repository}/pulls?state=open&sort=created&direction=asc&per_page=${PAGE_SIZE}&page=${page}`,
-    "github_reservation_open_pr_page",
+    code: "github_reservation_open_pr_page",
     controller,
-    budget.max_pages,
-    budget.max_open_pull_requests,
-    "github_reservation_open_pr_threshold_exceeded",
-  );
+    maxPages: budget.max_pages,
+    maxItems: budget.max_open_pull_requests,
+    thresholdCode: "github_reservation_open_pr_threshold_exceeded",
+  });
   controller.threshold(
     values.length,
     budget.max_open_pull_requests,
@@ -573,22 +587,24 @@ function openPullRequests(
   });
 }
 
-function prCommitHeads(
-  api: GithubApi,
-  repository: string,
-  prNumber: number,
-  controller: FetchBudgetController,
-  budget: GithubPlanReservationFetchBudget,
-): string[] {
-  const commits = paged(
+function prCommitHeads(input: {
+  api: GithubApi;
+  repository: string;
+  prNumber: number;
+  controller: FetchBudgetController;
+  budget: GithubPlanReservationFetchBudget;
+}): string[] {
+  const { api, repository, prNumber, controller, budget } = input;
+  const commits = paged({
     api,
-    (page) => `repos/${repository}/pulls/${prNumber}/commits?per_page=${PAGE_SIZE}&page=${page}`,
-    "github_reservation_pr_commits_page",
+    endpoint: (page) =>
+      `repos/${repository}/pulls/${prNumber}/commits?per_page=${PAGE_SIZE}&page=${page}`,
+    code: "github_reservation_pr_commits_page",
     controller,
-    budget.max_pages,
-    budget.max_commits_per_pull_request,
-    "github_reservation_commit_threshold_exceeded",
-  );
+    maxPages: budget.max_pages,
+    maxItems: budget.max_commits_per_pull_request,
+    thresholdCode: "github_reservation_commit_threshold_exceeded",
+  });
   controller.threshold(
     commits.length,
     budget.max_commits_per_pull_request,
@@ -606,12 +622,13 @@ function prCommitHeads(
   ].sort(compareBytewise);
 }
 
-function prReadAfter(
-  api: GithubApi,
-  repository: string,
-  listed: ReturnType<typeof openPullRequests>[number],
-  controller: FetchBudgetController,
-) {
+function prReadAfter(input: {
+  api: GithubApi;
+  repository: string;
+  listed: ReturnType<typeof openPullRequests>[number];
+  controller: FetchBudgetController;
+}) {
+  const { api, repository, listed, controller } = input;
   const value = record(
     controller.call(api, `repos/${repository}/pulls/${listed.number}`),
     "github_reservation_pr_read_after_invalid",
@@ -644,14 +661,15 @@ function prReadAfter(
   } as const;
 }
 
-function receipt(
-  budget: GithubPlanReservationFetchBudget,
-  stats: FetchStats,
-  currentMain: GithubReservationMaterial["current_main"],
-  openPrHeads: GithubReservationMaterial["open_pr_heads"],
-  failures: Set<string>,
-  captures: GithubPlanReservationCapture[],
-): GithubPlanReservationFetchReceipt {
+function receipt(input: {
+  budget: GithubPlanReservationFetchBudget;
+  stats: FetchStats;
+  currentMain: GithubReservationMaterial["current_main"];
+  openPrHeads: GithubReservationMaterial["open_pr_heads"];
+  failures: Set<string>;
+  captures: GithubPlanReservationCapture[];
+}): GithubPlanReservationFetchReceipt {
+  const { budget, stats, currentMain, openPrHeads, failures, captures } = input;
   return {
     schema_version: GITHUB_PLAN_RESERVATION_FETCH_RECEIPT_SCHEMA,
     status:
@@ -688,19 +706,27 @@ function receipt(
   };
 }
 
-function unavailableResult(
-  error: unknown,
-  budget: GithubPlanReservationFetchBudget,
-  stats: FetchStats,
-  failures: Set<string>,
-): GithubPlanReservationFetchResult {
+function unavailableResult(input: {
+  error: unknown;
+  budget: GithubPlanReservationFetchBudget;
+  stats: FetchStats;
+  failures: Set<string>;
+}): GithubPlanReservationFetchResult {
+  const { error, budget, stats, failures } = input;
   const reason = failureReason(error);
   failures.add(reason);
   const currentMain = unavailable("current_main", error);
   const openPrHeads = unavailable("open_pr_heads", error);
   return {
     material: { current_main: currentMain, open_pr_heads: openPrHeads },
-    receipt: receipt(budget, stats, currentMain, openPrHeads, failures, []),
+    receipt: receipt({
+      budget,
+      stats,
+      currentMain,
+      openPrHeads,
+      failures,
+      captures: [],
+    }),
     next_cache: null,
   };
 }
@@ -717,32 +743,32 @@ export function loadGithubOpenBranchPlanReservationMaterialWithReceipt(
   try {
     budget = resolveBudget(input.budget);
   } catch (error) {
-    return unavailableResult(
+    return unavailableResult({
       error,
-      DEFAULT_GITHUB_PLAN_RESERVATION_FETCH_BUDGET,
-      emptyStats(),
+      budget: DEFAULT_GITHUB_PLAN_RESERVATION_FETCH_BUDGET,
+      stats: emptyStats(),
       failures,
-    );
+    });
   }
   let controller: FetchBudgetController;
   try {
     controller = new FetchBudgetController(budget, input.now_ms ?? (() => Date.now()));
   } catch (error) {
-    return unavailableResult(error, budget, emptyStats(), failures);
+    return unavailableResult({ error, budget, stats: emptyStats(), failures });
   }
   try {
     validateCache(input.cache);
   } catch (error) {
-    return unavailableResult(error, budget, controller.stats, failures);
+    return unavailableResult({ error, budget, stats: controller.stats, failures });
   }
   const capturedAt = input.captured_at ?? new Date().toISOString();
   if (!Number.isFinite(Date.parse(capturedAt))) {
-    return unavailableResult(
-      new Error("github_reservation_captured_at_invalid"),
+    return unavailableResult({
+      error: new Error("github_reservation_captured_at_invalid"),
       budget,
-      controller.stats,
+      stats: controller.stats,
       failures,
-    );
+    });
   }
   const api = input.api ?? defaultGithubApi(budget.max_process_ms);
   const operationCache = new Map<string, string>();
@@ -751,18 +777,18 @@ export function loadGithubOpenBranchPlanReservationMaterialWithReceipt(
   let currentMain: GithubReservationMaterial["current_main"];
   try {
     const before = mainHead(api, input.repository, controller);
-    const captured = plansAtHead(
+    const captured = plansAtHead({
       api,
-      input.repository,
-      before,
+      repository: input.repository,
+      headSha: before,
       controller,
-      input.cache?.blobs,
-      input.cache?.captures,
+      cacheBlobs: input.cache?.blobs,
+      cacheCaptures: input.cache?.captures,
       operationCache,
       nextBlobs,
       capturedAt,
       budget,
-    );
+    });
     const after = mainHead(api, input.repository, controller);
     if (before !== after) throw new Error("github_reservation_main_head_race");
     captured.capture.read_after_head_sha = after;
@@ -776,26 +802,37 @@ export function loadGithubOpenBranchPlanReservationMaterialWithReceipt(
 
   let openPrHeads: GithubReservationMaterial["open_pr_heads"];
   try {
-    const listed = openPullRequests(api, input.repository, controller, budget);
+    const listed = openPullRequests({ api, repository: input.repository, controller, budget });
     const uniqueNumbers = new Set(listed.map((entry) => entry.number));
     if (uniqueNumbers.size !== listed.length) {
       throw new Error("github_reservation_open_pr_duplicate");
     }
     const pullRequests = listed.map((entry) => {
-      const readAfter = prReadAfter(api, input.repository, entry, controller);
-      const commits = prCommitHeads(api, input.repository, entry.number, controller, budget);
-      const captured = plansAtHead(
+      const readAfter = prReadAfter({
         api,
-        input.repository,
-        readAfter.currentHeadSha,
+        repository: input.repository,
+        listed: entry,
         controller,
-        input.cache?.blobs,
-        input.cache?.captures,
+      });
+      const commits = prCommitHeads({
+        api,
+        repository: input.repository,
+        prNumber: entry.number,
+        controller,
+        budget,
+      });
+      const captured = plansAtHead({
+        api,
+        repository: input.repository,
+        headSha: readAfter.currentHeadSha,
+        controller,
+        cacheBlobs: input.cache?.blobs,
+        cacheCaptures: input.cache?.captures,
         operationCache,
         nextBlobs,
         capturedAt,
         budget,
-      );
+      });
       captures.push(captured.capture);
       return {
         pr_number: entry.number,
@@ -807,7 +844,12 @@ export function loadGithubOpenBranchPlanReservationMaterialWithReceipt(
         plans: captured.plans,
       };
     });
-    const readAfterList = openPullRequests(api, input.repository, controller, budget);
+    const readAfterList = openPullRequests({
+      api,
+      repository: input.repository,
+      controller,
+      budget,
+    });
     const expectedOpen = listed.filter(
       (entry) =>
         pullRequests.find((pullRequest) => pullRequest.pr_number === entry.number)?.lifecycle ===
@@ -833,7 +875,14 @@ export function loadGithubOpenBranchPlanReservationMaterialWithReceipt(
   const complete = currentMain.status === "available" && openPrHeads.status === "available";
   return {
     material: { current_main: currentMain, open_pr_heads: openPrHeads },
-    receipt: receipt(budget, controller.stats, currentMain, openPrHeads, failures, captures),
+    receipt: receipt({
+      budget,
+      stats: controller.stats,
+      currentMain,
+      openPrHeads,
+      failures,
+      captures,
+    }),
     next_cache: complete
       ? {
           schema_version: GITHUB_PLAN_RESERVATION_MATERIAL_CACHE_SCHEMA,
