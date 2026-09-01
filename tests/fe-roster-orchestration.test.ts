@@ -37,8 +37,11 @@ describe("FE roster orchestration", () => {
     expect(SUBAGENT_ALLOWLIST.has("fe-ui")).toBe(true);
     expect([...FABLE_APEX_SUBAGENTS]).toEqual(["advisor-fable"]);
     expect(advisor.name).toBe("advisor-fable");
+    expect(advisor.model).toBe(MODEL_IDS.claude.fable);
     expect(String(advisor.description)).toContain("advisory-only");
     expect(String(advisor.tools)).not.toMatch(/\b(?:Edit|Write)\b/);
+    expect(MODEL_IDS.claude.fable).toBe("claude-fable-5-1");
+    expect(CLAUDE_PRICING[MODEL_IDS.claude.fable]).toEqual({ input: 10, output: 50 });
     const sharedAllowlist =
       shared.match(/Allowlist（正本[\s\S]*?\n([\s\S]*?)\n### Fable advisor/)?.[1] ?? "";
     expect(sharedAllowlist).toMatch(/^- `fe-lead`$/m);
