@@ -93,6 +93,7 @@
     {"id":"EASC-15","severity":"P1","surface":"subagent_api_guard","evidence_paths":["src/runtime/agent-guard-policy.ts",".codex/hooks.json"],"gap":"guard必須agent_typeがhosted spawn_agent API schemaになく起動不能","owners":[581],"terminal_condition":"provider capability schemaとguard payload contractが起動前に一致"}
   ],
   "aggregate_terminal_requirements": [
+    "parent_issue_remains_open_until_all_child_slices_are_terminal",
     "all_findings_terminal_with_evidence",
     "startup_packet_exact_head_read_after",
     "doctor_and_mutation_green",
