@@ -4,7 +4,7 @@ title: "PLAN-L7-722: PLAN reservation production authority adapter"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-09-01
