@@ -32,6 +32,8 @@ contract_postconditions: "progress frontier --summary-jsonの実出力top-level�
 contract_invariants: "fixtureだけの検証やtoMatchObjectの部分一致をcurrent outputのlegacy不在証拠として扱わない"
 contract_failures: "top-level keyへdrive_modelが現れた場合をfail-closeし、別責務のnested compatibility観測を誤検出しない"
 tdd_red_required: true
+red_at: "2026-09-01T16:20:40+09:00"
+green_at: "2026-09-01T18:14:56+09:00"
 tdd_red_evidence: "2026-09-01T16:20:40+09:00にbuildProjectFrontierSummaryへdrive_modelを一時seedし、npm exec vitest run -- tests/cli-surface.test.ts -t U-CLSO-009でtop-level key negative assertionが1 failed／95 skippedとなることを実測した。直後にseedを除去した。"
 mutation_oracle_required: true
 mutation_oracle_evidence: "buildProjectFrontierSummaryへlegacy drive_modelをseedしたmutantを、tests/cli-surface.test.ts:U-CLSO-009がexpected keys not to include drive_modelとしてkillした（1 failed／95 skipped）。"
