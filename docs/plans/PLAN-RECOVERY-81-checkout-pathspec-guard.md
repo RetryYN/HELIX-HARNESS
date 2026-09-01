@@ -15,7 +15,7 @@ behavior_contract_id: GIT-CHECKOUT-PATHSPEC-GUARD-001
 responsibility_owner: git-command-guard
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_boundary
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
@@ -55,9 +55,13 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/checkout-pathspec-guard.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-checkout-pathspec-guard-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/git-command-guard.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/git-command-guard-hook.ts, artifact_type: source_module }
   - { artifact_path: tests/git-command-guard.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — ref/path identity境界" }
   - { role: qa, slot_label: "QA — pathspec／衝突／ref regression" }
