@@ -3251,6 +3251,15 @@ describe("L7 CLI surface closure", () => {
     );
   }, 45_000);
 
+  // PLAN-L7-724-summary-cli-legacy-identity-negative-oracle / U-CLSO-009
+  it("U-CLSO-009: actual frontier CLI output rejects top-level legacy drive identity", () => {
+    const run = runCli(["progress", "frontier", "--summary-json"]);
+    expect(run.status, run.stderr || run.stdout).toBe(0);
+    const payload = JSON.parse(run.stdout);
+
+    expect(Object.keys(payload)).not.toContain("drive_model");
+  }, 45_000);
+
   // PLAN-L7-698-cli-workflow-identity-projection / U-CLIWI-005
   it("U-CLIWI-005: exposes Project view current-location and drive recommendation from DB projection", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-current-location-"));
