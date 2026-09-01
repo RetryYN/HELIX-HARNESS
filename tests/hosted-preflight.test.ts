@@ -264,8 +264,13 @@ describe("HC-AC hosted/API preflight", () => {
       ];
       const first = spawnSync("npx", args, { cwd: root, encoding: "utf8" });
       expect(first.status, first.stderr).toBe(0);
-      const parsed = JSON.parse(first.stdout) as { hostedPreflight?: { kind?: string } };
+      const parsed = JSON.parse(first.stdout) as {
+        hostedPreflight?: { kind?: string };
+        override?: { reason?: string; reason_digest?: string };
+      };
       expect(parsed.hostedPreflight?.kind).toBe("allow");
+      expect(parsed.override?.reason).toBeUndefined();
+      expect(parsed.override?.reason_digest).toMatch(/^sha256:[0-9a-f]{64}$/);
 
       const db = openHarnessDb(defaultHarnessDbPath(root), { repoRoot: root });
       try {

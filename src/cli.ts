@@ -4642,10 +4642,10 @@ guard
       let auditRecord = `git-status:${createHash("sha256")
         .update(JSON.stringify([...changedFiles].sort()))
         .digest("hex")}`;
-      let override: { bypass: boolean; source: string; reason: string } = {
+      let override: { bypass: boolean; source: string; reason_digest: string | null } = {
         bypass: false,
         source: "none",
-        reason: "",
+        reason_digest: null,
       };
       if (process.env.HELIX_ALLOW_FOREIGN_EDIT === "1" && !opts.allowForeignEdit) {
         process.stderr.write(
@@ -4698,7 +4698,11 @@ guard
           process.exitCode = 2;
           return;
         }
-        override = { bypass: true, source: "explicit-cli-audited", reason };
+        override = {
+          bypass: true,
+          source: "explicit-cli-audited",
+          reason_digest: `sha256:${createHash("sha256").update(reason).digest("hex")}`,
+        };
         auditRecord = `guard_override_transactions:${nonce}`;
         result = evaluateWorkGuardTargets({
           targetPaths,
