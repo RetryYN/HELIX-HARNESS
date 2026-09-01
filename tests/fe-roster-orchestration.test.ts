@@ -24,6 +24,7 @@ const frontmatter = (path: string): Record<string, unknown> => {
 
 describe("FE roster orchestration", () => {
   it("U-FEROSTER-001: Opus lead・Sonnet worker・Fable advisory-only境界を固定する", () => {
+    // PLAN-RECOVERY-80 / U-FABLE51-002: advisor projectionをcurrent registry identityへ束縛する。
     const lead = frontmatter(".claude/agents/fe-lead.md");
     const worker = frontmatter(".claude/agents/fe-ui.md");
     const advisor = frontmatter(".claude/agents/advisor-fable.md");

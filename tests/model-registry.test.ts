@@ -41,6 +41,7 @@ function validRegistry() {
 
 describe("U-MREG: model registry 外部化 loader (PLAN-L7-464)", () => {
   it("U-MREG-001: config 正本が読み込まれ opus=opus-5 / opus 標準 effort=medium / opus-5 単価が取れる", () => {
+    // PLAN-RECOVERY-80 / U-FABLE51-001: current identityとcurrent pricingを同じregistryへ束縛する。
     expect(MODEL_IDS.claude.opus).toBe("claude-opus-5");
     expect(MODEL_IDS.claude.fable).toBe("claude-fable-5-1");
     expect(MODEL_IDS.codex.frontier).toBe("gpt-5.6-sol");
@@ -50,7 +51,7 @@ describe("U-MREG: model registry 外部化 loader (PLAN-L7-464)", () => {
     expect(EXACT_MODEL_STANDARD_EFFORT["claude-sonnet-5"]).toBe("medium");
     expect(CLAUDE_PRICING["claude-opus-5"]).toEqual({ input: 5, output: 25 });
     expect(CLAUDE_PRICING[MODEL_IDS.claude.fable]).toEqual({ input: 10, output: 50 });
-    // historical usage計算では旧Fable 5 IDを再解釈せず保持する。
+    // PLAN-RECOVERY-80 / U-FABLE51-003: historical usageの旧Fable 5 IDを再解釈せず保持する。
     expect(CLAUDE_PRICING["claude-fable-5"]).toEqual({ input: 10, output: 50 });
     // 歴史 usage 計算のため旧 opus 単価も残置。
     expect(CLAUDE_PRICING["claude-opus-4-8"]).toEqual({ input: 5, output: 25 });

@@ -15,8 +15,8 @@ behavior_contract_id: CLAUDE-FABLE51-PROVIDER-DRIFT-001
 responsibility_owner: provider-configuration-attestation
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: replace
-legacy_retirement_state: compatibility_only
+refactor_step: migrate_one_consumer
+legacy_retirement_state: consumer_migration
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 workflow_identity:
@@ -33,11 +33,11 @@ contract_invariants: "native CLI経路、advisory-only、過去receipt不変、�
 contract_failures: "旧ID current再出力、agent drift、historical改変、API client無断追加、qualification無条件継承を拒否する"
 tdd_red_required: true
 red_test: "current MODEL_IDSとadvisor frontmatterがclaude-fable-5のためU-FABLE51-001/002が失敗する"
-red_at: "2026-09-02T06:31:00+09:00"
+red_at: "2026-09-02T06:27:00+09:00"
 green_at: "2026-09-02T06:28:58+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "current registryをclaude-fable-5へ戻すmutationでU-FEROSTER-001とU-MREG-001が2/2 failedし、復元後は4 files/24 tests green"
-complexity_effect: neutral
+mutation_oracle_evidence: "2026-09-02T06:27:00+09:00にsrc/schema/model-registry.tsのcurrent Fable selectorをclaude-fable-5へ戻すmutationを実測し、tests/model-registry.test.ts U-FABLE51-001とtests/fe-roster-orchestration.test.ts U-FABLE51-002が2 failed／exit 1でseeded旧identityをkillした。production selectorへ復元後、同2 filesを含む4 files／24 testsはgreen／exit 0。"
+complexity_effect: net_neutral
 complexity_justification: "current identityを置換し、historical lookupを互換入力として維持する最小変更"
 removal_trigger: "なし。provider current identity追従の証拠"
 backprop_decision: not_required
@@ -60,9 +60,13 @@ modifies:
   - { artifact_path: src/schema/model-registry.ts, artifact_type: source_module }
   - { artifact_path: .claude/agents/advisor-fable.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/CLAUDE.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/model-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/fe-roster-orchestration.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — provider version driftとnative runtime互換境界の監査" }
   - { role: se, slot_label: "SE — current/historical model identity分離" }
