@@ -59,8 +59,12 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-727-effective-runner-toolchain-attestation.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: json_config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md, artifact_type: doc_update }
   - { artifact_path: docs/design/helix/L6-function-design/ci-execution-telemetry.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/ci-system-synthesis-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L8-ci-execution-telemetry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/ci-execution-telemetry.ts, artifact_type: source_module }
@@ -72,7 +76,7 @@ agent_slots:
 review_evidence: []
 ---
 
-# effective runner／toolchain attestation
+# 実効runner／toolchain attestation
 
 ## 工程表
 

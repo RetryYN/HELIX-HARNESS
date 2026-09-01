@@ -38,8 +38,8 @@ LLMはplan候補と説明を提案できるが、required obligation、N/A、ful
 
 #### CIS-R-01 実行identity
 
-job、step、test、setup、artifact transferをstable verification identity、candidate/base/source HEAD、workflow、
-run／attempt、effective runner image、OS、architecture、Node／npm、system dependency、immutable Action registry、
+job、step、test、setup、artifact transferを安定したverification identity、candidate/base/source HEAD、workflow、
+run／attempt、実効runner image、OS、architecture、Node／npm、system dependency、immutable Action registry、
 toolchain、environment、開始／終了へ束縛する。観測値とcurrent authorityが一致しない実行を同一再現証拠として
 扱わず、名称変更やshard移動で履歴identityを作り直さない。
 
