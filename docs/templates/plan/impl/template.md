@@ -10,8 +10,8 @@ updated: 2026-MM-DD
 owner: PM (Opus)
 parent_design: docs/plans/PLAN-XXX.md   # kind=impl は必須 (§1.1.parent_design)。設計の出典を指す
 pair_artifact: tests/<module>.test.ts   # 検証ペア (TDD red-first で先行作成)
-backprop_decision: not_required         # 上位設計へ意味変更が無い場合。ある場合は required + 理由
-backprop_decision_reason: "(なぜ上位設計の変更が不要/必要か)"
+backprop_decision: not_required         # 本PLAN自身が上流還流artifact、または上位意味変更が無い場合だけ使用
+backprop_decision_reason: "(なぜ別の上流artifactが不要か。意味変更がある場合は該当artifactをgeneratesへ含める)"
 agent_slots:
   - role: po
     slot_label: "PO — スコープ判断・受入承認"
