@@ -60,6 +60,7 @@ modifies:
   - { artifact_path: src/schema/model-registry.ts, artifact_type: source_module }
   - { artifact_path: .claude/agents/advisor-fable.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/CLAUDE.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/model-registry.test.ts, artifact_type: test_code }
   - { artifact_path: tests/fe-roster-orchestration.test.ts, artifact_type: test_code }
 agent_slots:
