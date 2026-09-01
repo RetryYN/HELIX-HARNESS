@@ -53,13 +53,13 @@ agent_slots:
   - { role: tl, slot_label: "TL — resident/native/CLI責務境界とruntime解放条件" }
   - { role: qa, slot_label: "QA — scope択一、worker権限、model/effort negative oracle" }
 review_evidence:
-  - reviewer: codex-tl
+  - reviewer: "Codex TL / Sol"
     review_kind: intra_runtime_subagent
     tests_green_at: "2026-09-01T16:43:30Z"
     reviewed_at: "2026-09-01T16:43:55Z"
     verdict: approve
-    worker_model: codex
-    reviewer_model: codex-intra-runtime
+    worker_model: codex:gpt-5.6-luna
+    reviewer_model: codex:gpt-5.6-sol
     reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
     reviewed_head_sha: 094ccb9f7f9260d7231a34baf6a44038bc2ef586
     scope: "PO承認後のcurrent-main同期HEADを独立再検収し、resident／native／CLI identity分離、Issue/PLAN択一＋専用branch、Sol親→Luna bounded worker、Terra非fallback、Cursor model receipt、HELIX-Bench effort境界、L1↔L12／L3↔L10／Requirement IR specified projectionにblocker 0。"
