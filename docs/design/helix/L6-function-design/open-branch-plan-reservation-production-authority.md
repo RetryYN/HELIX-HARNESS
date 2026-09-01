@@ -6,7 +6,7 @@ plan: docs/plans/PLAN-L7-722-open-branch-plan-reservation-production-authority.m
 pair_artifact: docs/test-design/helix/L8-open-branch-plan-reservation-production-authority-unit-test-design.md
 ---
 
-# open branch PLAN reservation production authority
+# open branch PLAN予約のproduction authority
 
 ## 責務
 
@@ -17,8 +17,8 @@ degraded判定は`projectOpenBranchPlanReservations`だけを意味正本とし�
 ## 入力境界
 
 - current main: exact HEADとPLAN material exact set。
-- PR: number、branch、HEAD、ancestor HEAD、lifecycle、terminal evidence、PLAN material。
-- active writer: assignment ID、branch、HEAD、lease、fence token、PLAN material。
+- PR観測面: PR番号、branch、HEAD、ancestor HEAD、lifecycle、terminal evidence、PLAN material。
+- active writer観測面: assignment ID、branch、HEAD、lease、fence token、PLAN material。
 - unavailable surface: secretやprovider error本文ではなくstable error digest。
 
 同一branch／同一HEADのopen PRとactive writerは同じ作業の異なる観測面である。同一PLAN blob、owner Issue、

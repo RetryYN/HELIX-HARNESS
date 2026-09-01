@@ -95,7 +95,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — production authority接続と後続slice境界" }
 ---
 
-# PLAN reservation production authority adapter
+# PLAN予約のproduction authority adapter
 
 ## 工程表
 
