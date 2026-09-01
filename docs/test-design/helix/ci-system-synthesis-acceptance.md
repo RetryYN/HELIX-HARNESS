@@ -25,7 +25,7 @@ wrong-HEAD拒否、mutation detectionを維持した上でcritical pathが短縮
 |---|---|---|---|---|
 | `CIS-AC-001` | `CIS-R-01` | testをrename／別shardへ移動する | stable verification identityで履歴が連続する | filenameを意味主キーにしない |
 | `CIS-AC-002` | `CIS-R-02` | failure後に同一HEADをrerunしてgreenにする | failure、retry、greenを別eventとして保持する | 最終greenで元failureを消さない |
-| `CIS-AC-003` | `CIS-R-03` | wrong HEAD、時間逆転、secret-like logを投入する | rejectまたはredacted DEGRADEDになる | raw log／secretをprojectionへ保存しない |
+| `CIS-AC-003` | `CIS-R-01`,`CIS-R-03` | wrong HEAD、時間逆転、secret-like log、別runner image／Node／npm／system dependency／Action registry digestを投入する | candidate/base/source HEADとeffective runner authorityのexact不一致を個別にrejectする | raw log／secretをprojectionへ保存せず、別environment greenをcurrent証拠にしない |
 | `CIS-AC-004` | `CIS-R-04` | owner／oracle／environmentを一件ずつ除去する | registry admissionがfail-closeする | pathだけでcapabilityを補完しない |
 | `CIS-AC-005` | `CIS-R-05` | shared coreと局所Moduleを変更する | consumer closureと局所ownerをそれぞれexact導出する | lexical similarityでedgeを増減しない |
 | `CIS-AC-006` | `CIS-R-06` | orphan、循環、重複ownerを注入する | 各findingを個別拒否する | legacy ownerでcurrent欠落を相殺しない |

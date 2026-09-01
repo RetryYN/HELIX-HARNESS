@@ -38,8 +38,10 @@ LLMはplan候補と説明を提案できるが、required obligation、N/A、ful
 
 #### CIS-R-01 実行identity
 
-job、step、test、setup、artifact transferをstable verification identity、candidate/base HEAD、run／attempt、runner、
-toolchain、開始／終了へ束縛する。名称変更やshard移動で履歴identityを作り直さない。
+job、step、test、setup、artifact transferをstable verification identity、candidate/base/source HEAD、workflow、
+run／attempt、effective runner image、OS、architecture、Node／npm、system dependency、immutable Action registry、
+toolchain、environment、開始／終了へ束縛する。観測値とcurrent authorityが一致しない実行を同一再現証拠として
+扱わず、名称変更やshard移動で履歴identityを作り直さない。
 
 #### CIS-R-02 costと結果
 
@@ -50,6 +52,8 @@ queue、wall time、runner time、CPU／memory class、cache、retry、timeout�
 
 receiptはsecret、credential、PII、任意log本文を保持せず、repo authorityとGitHub run metadataから再構築可能な
 projectionに限定する。欠落、時間逆転、wrong HEAD、未知runnerを明示DEGRADEDまたはfail-closeする。
+runner attestationの欠落、別image／別toolchain artifact、Action registry digest driftも個別にfail-closeし、
+mutable environment上の別実行greenでcurrent証拠を相殺しない。
 
 ## CIS-FR-002 CI責務registry
 
