@@ -31,4 +31,7 @@ pair_artifact: docs/governance/candidates/requirements-authority-materialization
 | `RAMG-AC-011` | RAMG-R-11 | 全対象がexactly-one disposition | 未分類、複数分類、件数だけの相殺を拒否 |
 | `RAMG-AC-012` | RAMG-R-12 | PR高速検査とscheduled全数監査を分離 | PRごとの全件live走査とscheduled省略を拒否 |
 
-12 oracleを独立failure classとして保持し、単一happy pathで相殺しない。
+| RAMG-AC-013 | RAMG-R-13 | semantic consumerがcanonical Requirement IR JSONだけを読む | confirmed Markdown、DB、generated viewによるdual authorityを拒否 |
+| RAMG-AC-014 | RAMG-R-14 | auto-admissionとhuman freezeを別state／receiptで保持 | AI auto_admitだけでfrozen遷移や下流解放を行わない |
+
+14 oracleを独立failure classとして保持し、単一happy pathで相殺しない。

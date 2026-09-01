@@ -50,6 +50,11 @@ next_pair_freeze: L10_after_po_approval
 - `RAMG-R-11`: dispositionを`materialized_current/authority_backlog_tracked/proposal_non_authoritative/runtime_ahead_of_authority/ir_ahead_of_source/trace_orphan/stale_source_revision/rejected_or_deferred`のexact setへ分類する。
 - `RAMG-R-12`: PR admissionはchanged scope closure、scheduled auditはfull inventoryを検査し、外部取得不能時は推測せずfail-closeまたは明示DEGRADEDにする。
 
+### RAMG-FR-006 authority epochとfreeze境界
+
+- RAMG-R-13: JSON cutover後のcurrent semantic read authorityはcanonical Requirement IR JSONだけとし、L1/L3/L10 Markdownはsource-of-derivation、generated/reference、compatibility/historicalのexactly oneへ分類する。confirmed MarkdownやDB projectionを第二意味正本にしない。
+- RAMG-R-14: proposal/auto_admitted/canonical_specified/frozenを別stateとして保持する。AIの可逆auto-admissionは人間のplan固有freeze approvalを代替せず、意味authority変更またはfrozen遷移はapproval receiptとmain read-afterを要求する。
+
 ## 初期owner
 
 | Capability | Authority Slice owner | Runtime解放条件 |

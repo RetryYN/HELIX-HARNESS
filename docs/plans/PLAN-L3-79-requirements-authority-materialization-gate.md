@@ -29,9 +29,9 @@ backprop_decision_reason: "本PLAN自身がIssue-only意味契約をsource L1/L3
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "#825のexact 4件inventoryと#397のsemantic synthesis non-scopeをread-afterできる"
-contract_postconditions: "L1/L3/L10 candidateと12 oracleがplan固有承認境界へ束縛され、承認前はcurrent authorityへ投影されない"
-contract_invariants: "Issue prose非正本、source authority先行、IR一方向投影、composite非相殺、slice dependency分離を維持する"
-contract_failures: "Issue直IR、candidate直runtime、stale digest、複合coverage相殺、過剰block、依存漏れを拒否する"
+contract_postconditions: "L1/L3/L10 candidateと14 oracleがplan固有承認境界へ束縛され、JSON-only semantic authorityとhuman freezeを分離する"
+contract_invariants: "Issue prose非正本、source-of-derivation先行、IR JSON一方向投影、dual authority禁止、auto-admit/freeze分離、composite非相殺、slice dependency分離を維持する"
+contract_failures: "Issue直IR、candidate直runtime、confirmed Markdownの第二正本化、AI自己freeze、stale digest、複合coverage相殺、過剰block、依存漏れを拒否する"
 tdd_red_required: false
 tdd_red_waiver_reason: "本sliceは未承認requirements candidateだけを起草し、runtime gateとtest codeは承認後のL4以降へ分離する。"
 complexity_effect: net_negative

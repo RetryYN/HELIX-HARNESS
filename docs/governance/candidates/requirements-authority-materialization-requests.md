@@ -42,6 +42,16 @@ runtime、schema、DB、CLI current output、generated docsを変更する前に
 
 PRではchanged scopeとdependency closureを高速検査し、scheduled auditでは全Issue、PLAN、source authority、IR、runtime consumerを照合する。漏れを件数だけで隠さずtyped findingへする。
 
+### RAMG-BR-006 source文書と意味正本を混同しない
+
+L1/L3/L10 Markdownは要求意味の由来、レビュー対象、traceを保持するsource-of-derivationであり、JSON cutover後のcurrent semantic read authorityではない。
+confirmed frontmatter、DB projection、generated viewだけでcurrent意味正本を主張せず、canonical Requirement IR JSONへのadmissionとread-afterを必須にする。
+
+### RAMG-BR-007 AIの可逆admissionと人間freezeを別状態にする
+
+AIが可逆proposalを検査・admitできる境界と、要求意味またはfrozen baselineを変更する人間承認境界を分離する。
+auto_admitやcanonical/specifedをfrozenと同義にせず、plan固有approvalなしにfreeze済みとして下流を解放しない。
+
 ## 初期監査fixture
 
 - #1169 Requirement Re-entry
@@ -49,4 +59,5 @@ PRではchanged scopeとdependency closureを高速検査し、scheduled audit�
 - #1292 Agile Prototype Triangle
 - #1318 Responsibility System TDD
 
-#1358/#1363系列は初期fixtureへ含めない。本candidateはplan固有承認とcanonical promotionが成立するまでcurrent authorityへ加算しない。
+#1358/#1363系列は初期fixtureへ含めない。authority collision監査のC-01/C-02を本gateのepoch／freeze oracleとして扱う。
+本candidateはplan固有承認とcanonical promotionが成立するまでcurrent authorityへ加算しない。
