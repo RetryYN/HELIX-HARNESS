@@ -15,7 +15,7 @@ behavior_contract_id: FORWARD-REVERSE-RESERVATION-SNAPSHOT-SCHEMA-001
 responsibility_owner: forward-reverse-terminal-reservation
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: consolidate_validation_authority
+refactor_step: migrate_one_consumer
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
