@@ -132,11 +132,12 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:2229eaf7f608c13439b3a98532d8c005db68492bae23b188bd0f47d9da85bfcb`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:850afd9ff5e934b7175a282b707b51d1a22a881f7a13ff5d09f8fbaf6971ab2a`
+- design catalog digest候補: `sha256:f63fd40f7f765ed3883e95bb73af3ce7c6a9246c2741522b67a6f08771c5c188`
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact、#1033のSystem Synthesis、
   #1073のRelease Module／Bundle、#1160の製品ライフサイクル運用、#1174のTechnology Environment
   Reconciliation、#1210のUniversal Improvement Loop、#1034のCI System Synthesis、#1339のimmutable
-  GitHub Action ref registry、#1345のclosure semantic authority exact join設計登録を反映して
+  GitHub Action ref registry、#1345のclosure semantic authority exact join、#1356のCursor Cloud
+  environment admission設計登録を反映して
   再計測した値であり、
   旧digestをcurrent証拠へ再利用しない。
 - historical catalog pin: PR #100最終receipt
