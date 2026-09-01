@@ -25,6 +25,10 @@ degraded判定は`projectOpenBranchPlanReservations`だけを意味正本とし�
 responsibilityが一致する場合だけmirrorとして許可する。HEAD、branch、blob、owner、responsibilityのいずれかが
 異なる場合は既存semantic coreが競合としてfail-closeする。
 
+入力schema違反はadapterのprogramming／provider contract violationとして同期例外を返す。production callerは
+この例外を成功snapshotとして扱わず、surface unavailableのstable error digestへ変換して同じsemantic coreへ渡す。
+本sliceの`OBPRA-AC-001`はこのeffect境界を所有し、raw provider errorや部分snapshotへのfallbackを許可しない。
+
 ## 非対象
 
 本sliceはGitHub API pagination、workflow wiring、doctor、DB projectionを実装しない。これらは同じtyped inputと

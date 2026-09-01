@@ -1,8 +1,8 @@
 ---
 plan_id: PLAN-L7-722-open-branch-plan-reservation-production-authority
 title: "PLAN-L7-722: PLAN reservation production authority adapter"
-kind: recovery
-layer: cross
+kind: add-impl
+layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -24,7 +24,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: RECOVERY
+  target_id: ADD_FEATURE
 entry_signals:
   - "po_directive:Issue #1256 reservation pure coreをproduction authorityへ接続する"
 contract_preconditions: "GitHub current main／PR headsとassignment active writerがtyped materialとして同一capture epochへ束縛される"
@@ -67,9 +67,9 @@ generates:
 modifies:
   - { artifact_path: src/runtime/open-branch-plan-identity-reservation.ts, artifact_type: source_module }
   - { artifact_path: tests/open-branch-plan-identity-reservation.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
-  - { role: aim, slot_label: "AIM — production接続gapとForward再合流範囲" }
   - { role: se, slot_label: "SE — GitHub／assignment material adapter" }
   - { role: qa, slot_label: "QA — mirror／unavailable／wrong identity mutation" }
   - { role: tl, slot_label: "TL — production authority接続と後続slice境界" }

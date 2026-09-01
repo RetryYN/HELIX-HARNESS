@@ -25,7 +25,7 @@ function input() {
       pull_requests: [
         {
           pr_number: 1321,
-          branch: "recovery/1256-plan-reservation-production-integration",
+          branch: "feature/1256-plan-reservation-production-authority",
           head_sha: HEAD,
           ancestor_head_shas: [MAIN],
           lifecycle: "open",
@@ -39,7 +39,7 @@ function input() {
       writers: [
         {
           assignment_id: "assignment-1256",
-          branch: "recovery/1256-plan-reservation-production-integration",
+          branch: "feature/1256-plan-reservation-production-authority",
           head_sha: HEAD,
           ancestor_head_shas: [MAIN],
           lease_id: "lease-1256",
