@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "REFACTORING Trigger Policy／RF0 Admission要件"
 layer: L3
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / TL
@@ -24,6 +24,9 @@ extends:
 ---
 
 # REFACTORING Trigger Policy／RF0 Admission要件
+
+> 2026-09-02、POの取り込み・最適化指示をG-REQ.L3承認として記録し、6 Rをconfirmedへ昇格した。
+> runtime completion、authority自動write、merge／publish／release／cutoverは別境界に残す。
 
 ## 0. authority境界
 

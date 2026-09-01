@@ -4,8 +4,18 @@ title: "PLAN-L3-77: REFACTORING trigger policyとRF0 admissionをL3/L10へfreeze
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-01T17:26:20Z"
+  plan_id: PLAN-L3-77-refactoring-trigger-authority
+  approval_record_id: L3-PO-1353-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1353#issuecomment-5497790356"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
