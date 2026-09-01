@@ -2,7 +2,7 @@
 plan_id: PLAN-L7-722-open-branch-plan-reservation-production-authority
 title: "PLAN-L7-722: PLAN reservation production authority adapter"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -69,8 +69,10 @@ modifies:
   - { artifact_path: tests/open-branch-plan-identity-reservation.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
+  - { role: aim, slot_label: "AIM — production接続gapとForward再合流範囲" }
   - { role: se, slot_label: "SE — GitHub／assignment material adapter" }
   - { role: qa, slot_label: "QA — mirror／unavailable／wrong identity mutation" }
+  - { role: tl, slot_label: "TL — production authority接続と後続slice境界" }
 ---
 
 # PLAN reservation production authority adapter
