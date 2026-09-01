@@ -60,6 +60,7 @@ modifies:
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — review receipt provenanceとcandidate workspace境界の監査" }
   - { role: se, slot_label: "SE — candidate treeとDB receipt source拘束" }
   - { role: qa, slot_label: "QA — wrong HEAD／dirty workspace mutation" }
   - { role: tl, slot_label: "TL — #1357正規再封緘と#769境界" }
