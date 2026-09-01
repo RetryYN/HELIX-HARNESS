@@ -97,8 +97,7 @@ export function reserveForwardReverseTerminalPair(
   if (input.forward.plan_id !== input.allocation.forward_plan_id)
     findings.push("allocator_forward_identity_mismatch");
   if (
-    planSemanticSlug(input.forward.plan_id) !==
-    planSemanticSlug(input.allocation.reverse_plan_id)
+    planSemanticSlug(input.forward.plan_id) !== planSemanticSlug(input.allocation.reverse_plan_id)
   )
     findings.push("allocator_reverse_identity_mismatch");
   const { receipt_digest: _receiptDigest, ...allocationPayload } = input.allocation;
