@@ -22,8 +22,8 @@ behavior_contract_id: THREE-LANE-CLOUD-CAPACITY-ORCHESTRATION-001
 responsibility_owner: three-lane-cloud-governance-authority
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: replace_legacy
-legacy_retirement_state: consumer_zero_pending
+refactor_step: dual_green
+legacy_retirement_state: dual_green
 backprop_decision: not_required
 backprop_decision_reason: "本PLAN自身がresident lane v0.3のN-provider意味をL1/L3へ戻し、exact 3レーンと資源・監査authorityへ再freezeするRequirement Re-entryである。"
 no_code_decision: no_change
@@ -61,7 +61,9 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/three-lane-cloud-governance-candidate-projection.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-three-lane-cloud-governance-candidate-projection.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-recognition.md, artifact_type: test_design }
   - { artifact_path: tests/three-lane-cloud-governance-requirements.test.ts, artifact_type: test_code }
 modifies:

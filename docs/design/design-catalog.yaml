@@ -198,6 +198,7 @@ items:
       - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md
       - docs/design/helix/L6-function-design/claude-native-memory-isolation.md
+      - docs/design/helix/L6-function-design/three-lane-cloud-governance-candidate-projection.md
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
       - docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md
       - docs/design/helix/L6-function-design/merged-plan-frontmatter-parse-fail-close.md
