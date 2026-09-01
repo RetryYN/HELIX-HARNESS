@@ -67,6 +67,7 @@ generates:
 modifies:
   - { artifact_path: .cursor/environment.json, artifact_type: json_config }
   - { artifact_path: .cursor/install.sh, artifact_type: script }
+  - { artifact_path: docs/governance/repository-structure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
