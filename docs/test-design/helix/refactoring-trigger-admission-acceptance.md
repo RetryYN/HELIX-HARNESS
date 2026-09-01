@@ -4,7 +4,7 @@ canonical_layer: L10
 canonical_pair: L3
 title: "REFACTORING Trigger Policy／RF0 Admission受入テスト設計"
 layer: L10
-status: confirmed
+status: draft
 created: 2026-09-02
 updated: 2026-09-02
 owner: QA / TL

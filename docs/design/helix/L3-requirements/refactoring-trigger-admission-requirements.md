@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "REFACTORING Trigger Policy／RF0 Admission要件"
 layer: L3
 kind: add-design
-status: confirmed
+status: draft
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / TL
@@ -25,8 +25,8 @@ extends:
 
 # REFACTORING Trigger Policy／RF0 Admission要件
 
-> 2026-09-02、POの取り込み・最適化指示をG-REQ.L3承認として記録し、6 Rをconfirmedへ昇格した。
-> runtime completion、authority自動write、merge／publish／release／cutoverは別境界に残す。
+> 2026-09-02、POの取り込み・最適化指示を受けてdraftを起草した。これはPLAN-L3-77に対する
+> G-REQ.L3承認ではない。runtime completion、authority自動write、merge／publish／release／cutoverは別境界に残す。
 
 ## 0. authority境界
 
@@ -34,7 +34,7 @@ extends:
 UILはsource、normalization、finding、candidateを、System SynthesisはscopeとRF0〜RF6を所有し、最終routeは
 Universal Workflow authorityを通す。新route、DB authority、event bus、queueを作らない。
 
-### RTG-R-01 versioned Trigger Policy
+### RTG-R-01 versioned trigger policyの版管理
 
 UILで正規化されたeventとfindingからRF0候補を導出する規則を、version、authority digest、source／detector identity、
 baseline revision、比較演算、threshold source、観測window、minimum sample、hysteresis、cooldown、expiry、severity、
@@ -47,10 +47,10 @@ scheduled safety-netを別trigger identityとして扱う。LOC、file size、Is
 蓄積評価はversioned windowとminimum sampleを満たし、lifecycle boundaryは評価契機であって悪化証拠なしにrefactorを強制しない。
 scheduled safety-net単独ではsubstantive findingを作らず、評価実施receiptだけを残す。
 
-### RTG-R-03 RF0 admission
+### RTG-R-03 RF0のadmission境界
 
 UIL candidateからRF0へ渡すadmissionはcandidate／finding／trigger evidenceのexact identityとdigest、source registry、
-trigger policy、baseline、primary scope exactly one、related scope、semantic parity、route candidate、suppression、
+trigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、
 required verification、expiryを保持する。意味変更はREFACTORINGへadmitせずREDESIGN／Requirement Re-entryへ、
 実装故障はRECOVERYへ、外部技術driftはTechnology Environment Reconciliationへ送る。unknownを推測配車しない。
 
@@ -60,7 +60,7 @@ required verification、expiryを保持する。意味変更はREFACTORINGへadm
 閉じられない候補は分割するかSystem Synthesisへ昇格する。`requirement`／`definition` scopeはIssue #1170のL3/L10が
 mainで再freezeされるまで`authority_pending`とし、現行exact setへ暗黙追加しない。
 
-### RTG-R-05 anti-starvation coverage
+### RTG-R-05 anti-starvationの被覆
 
 current scopeごとにlast evaluated revision、source exact set、policy digest、finding countを持つcoverage receiptを生成する。
 期限超過、source欠落、partial scan、stale policyを全scope評価済みとして扱わない。異常なしはterminal `no_action`と混同せず、

@@ -4,18 +4,8 @@ title: "PLAN-L3-77: REFACTORING trigger policyとRF0 admissionをL3/L10へfreeze
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
-l3_human_approval:
-  schema_version: helix-l3-human-approval.v1
-  approval_kind: human_po
-  decision: approve
-  approver: RetryYN
-  approved_at: "2026-09-01T17:26:20Z"
-  plan_id: PLAN-L3-77-refactoring-trigger-authority
-  approval_record_id: L3-PO-1353-001
-  approval_source: human_gate_record
-  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1353#issuecomment-5497790356"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -66,12 +56,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/refactoring-trigger-admission-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/refactoring-trigger-admission-acceptance.md, artifact_type: test_design }
-  - { artifact_path: tests/refactoring-trigger-authority.test.ts, artifact_type: test_code }
-modifies:
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
-  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 ---
 
 # REFACTORING trigger authorityのfreeze
@@ -85,5 +69,6 @@ modifies:
 | 3 | 元指示書を処分 | root原稿をcurrent authorityとして残さない |
 | 4 | PO L3 approval、independent review、G3再freeze | 後続runtime sliceを開始できる |
 
-本PLANではruntime、registry、DB、CLIを変更しない。後続をpolicy、evaluator、admission、projection、anti-starvation、
+本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approval前はdraft authorityとして保持し、current design
+catalogやG3 freezeへ投影しない。承認後に後続をpolicy、evaluator、admission、projection、anti-starvation、
 dogfood／Reverseへ原子的に分割する。
