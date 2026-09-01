@@ -1,16 +1,16 @@
 ---
 canonical_vmodel: L1-L12
-canonical_layer: L10
+candidate_layer: L10
 canonical_pair: L3
 title: "REFACTORING Trigger Policy／RF0 Admission受入テスト設計"
 layer: L10
-status: draft
+status: draft_candidate
 created: 2026-09-02
 updated: 2026-09-02
 owner: QA / TL
 plan: PLAN-L3-77-refactoring-trigger-authority
-parent_design: docs/design/helix/L3-requirements/refactoring-trigger-admission-requirements.md
-pair_artifact: docs/design/helix/L3-requirements/refactoring-trigger-admission-requirements.md
+parent_design: docs/governance/candidates/refactoring-trigger-admission-requirements.md
+pair_artifact: docs/governance/candidates/refactoring-trigger-admission-requirements.md
 ---
 
 # REFACTORING Trigger Policy／RF0 Admission受入テスト設計

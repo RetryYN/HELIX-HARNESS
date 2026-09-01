@@ -1,18 +1,18 @@
 ---
 canonical_vmodel: L1-L12
-canonical_layer: L3
+candidate_layer: L3
 canonical_pair: L10
 title: "REFACTORING Trigger Policy／RF0 Admission要件"
 layer: L3
 kind: add-design
-status: draft
+status: draft_candidate
 created: 2026-09-02
 updated: 2026-09-02
 owner: PO / TL
 plan: PLAN-L3-77-refactoring-trigger-authority
 parent_design: docs/design/helix/L3-requirements/system-synthesis-requirements.md
-pair_artifact: docs/test-design/helix/refactoring-trigger-admission-acceptance.md
-next_pair_freeze: L10
+pair_artifact: docs/governance/candidates/refactoring-trigger-admission-acceptance.md
+next_pair_freeze: L10_after_po_approval
 refines:
   - SYN-R-03
   - SYN-R-04

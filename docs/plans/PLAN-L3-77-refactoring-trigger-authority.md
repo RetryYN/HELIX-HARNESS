@@ -38,7 +38,7 @@ complexity_effect: justified_positive
 complexity_justification: "既存UIL event／findingとSystem Synthesis RF0を2契約で接続し、251行の独立指示書を新正本として残さない。"
 removal_trigger: "System Synthesisのcurrent requirements baselineへ吸収され、後続runtime全sliceがmain read-afterまで終端した時。"
 parent_design: docs/design/helix/L3-requirements/system-synthesis-requirements.md
-pair_artifact: docs/test-design/helix/refactoring-trigger-admission-acceptance.md
+pair_artifact: docs/governance/candidates/refactoring-trigger-admission-acceptance.md
 dependencies:
   parent: docs/design/helix/L3-requirements/system-synthesis-requirements.md
   requires: []
@@ -54,14 +54,10 @@ agent_slots:
   - { role: qa, slot_label: "QA — trigger policy／admission／anti-starvation mutation" }
 generates:
   - { artifact_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L3-requirements/refactoring-trigger-admission-requirements.md, artifact_type: design_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/refactoring-trigger-candidate-projection.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-refactoring-trigger-candidate-projection.md, artifact_type: test_design }
-  - { artifact_path: docs/test-design/helix/refactoring-trigger-admission-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/candidates/refactoring-trigger-admission-requirements.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/refactoring-trigger-admission-acceptance.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 ---
 
 # REFACTORING trigger authorityのfreeze
@@ -75,6 +71,6 @@ modifies:
 | 3 | 元指示書を処分 | root原稿をcurrent authorityとして残さない |
 | 4 | PO L3 approval、independent review、G3再freeze | 後続runtime sliceを開始できる |
 
-本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approval前はdraft authorityとして保持する。design catalogは
-物理所在だけを登録し、current authorityやG3 freezeへ投影しない。承認後に後続をpolicy、evaluator、admission、projection、anti-starvation、
+本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approval前は`docs/governance/candidates/`へdraft候補として隔離し、
+canonical design catalog、current authority、G3 freezeへ投影しない。承認後に正規L3へ移動してから、後続をpolicy、evaluator、admission、projection、anti-starvation、
 dogfood／Reverseへ原子的に分割する。
