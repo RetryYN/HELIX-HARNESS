@@ -25,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1344 UIL observationのbaseline／candidate generation分離"
 created: 2026-09-01
-updated: 2026-09-01
+updated: 2026-09-02
 owner: Codex / TL
 github_issue_id: 1344
 behavior_contract_id: UIL-OBSERVATION-GENERATION-SEPARATION-001
@@ -64,13 +64,13 @@ agent_slots:
   - { role: qa, slot_label: "QA — three-generation negative oracle" }
   - { role: tl, slot_label: "TL — UIL／TER／toolchain attestation責務分離" }
 review_evidence:
-  - reviewer: codex-tl
+  - reviewer: "Codex TL / Sol"
     review_kind: intra_runtime_subagent
     tests_green_at: "2026-09-01T16:30:26Z"
     reviewed_at: "2026-09-01T16:30:42Z"
     verdict: approve
-    worker_model: codex
-    reviewer_model: codex-intra-runtime
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: codex:gpt-5.6-sol
     reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
     reviewed_head_sha: 505ac5b5f9e811da9bc40402021c6a5375ec1631
     scope: "PO承認を記録したcontent HEADを独立再検収し、baseline／candidate／post_main generationの分離、historical baseline sealing、比較不能のfail-close、post-main promotion境界、L3↔L10の3 AC、runtime非混載にblocker 0。"
@@ -87,8 +87,11 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-76-uil-observation-generation-authority.md, artifact_type: markdown_doc }
   - { artifact_path: tests/universal-improvement-observation-generation-requirements.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/universal-improvement-loop-acceptance.md, artifact_type: test_design }
+  - { artifact_path: src/runtime/universal-improvement-source-registry.ts, artifact_type: source_module }
 ---
 
 # UIL observation generation authorityのRecovery
