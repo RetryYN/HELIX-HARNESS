@@ -63,6 +63,7 @@ modifies:
   - { artifact_path: tests/git-command-guard.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — ref/path identityとdestructive boundaryのRecovery監査" }
   - { role: se, slot_label: "SE — ref/path identity境界" }
   - { role: qa, slot_label: "QA — pathspec／衝突／ref regression" }
   - { role: tl, slot_label: "TL — destructive boundary終端" }
