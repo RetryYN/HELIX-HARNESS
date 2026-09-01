@@ -178,6 +178,7 @@ items:
       - docs/design/helix/L6-function-design/derived-requirement-trace.md
       - docs/design/helix/L6-function-design/ai-decision-proposal-authority.md
       - docs/design/helix/L6-function-design/state-db-schema-ddl-authority.md
+      - docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md
       - docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md
       - docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md
       - docs/design/helix/L6-function-design/work-graph-receipt-acceptance.md

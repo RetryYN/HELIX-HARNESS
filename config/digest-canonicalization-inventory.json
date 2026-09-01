@@ -44,6 +44,23 @@
       "citation": "U-DIGEST-005"
     },
     {
+      "hit_id": "src/adapters/open-branch-plan-reservation-authority.ts::reservationAuthorityUnavailableDigest:sha256Digest()::1",
+      "path": "src/adapters/open-branch-plan-reservation-authority.ts",
+      "line": 190,
+      "symbol": "reservationAuthorityUnavailableDigest",
+      "algorithm": "sha256",
+      "input_kind": "string",
+      "output_encoding": "hex",
+      "prefix": "sha256:",
+      "truncation": null,
+      "canonicalization": "none",
+      "variant": "prefixed_sha256",
+      "disposition": "explicit_nonmigration",
+      "rationale": "src/adapters/open-branch-plan-reservation-authority.ts reservationAuthorityUnavailableDigest sha256Digest() occurrence 1 preserves prefixed_sha256 output until its byte oracle is frozen",
+      "expected_test": "tests/digest.test.ts",
+      "citation": "U-DIGEST-005"
+    },
+    {
       "hit_id": "src/audit/handover-resurrection-source.ts::sha256:createHash(sha256)::1",
       "path": "src/audit/handover-resurrection-source.ts",
       "line": 91,
@@ -3939,7 +3956,7 @@
     {
       "hit_id": "src/runtime/open-branch-plan-identity-reservation.ts::projectionDigest:sha256Digest()::1",
       "path": "src/runtime/open-branch-plan-identity-reservation.ts",
-      "line": 219,
+      "line": 240,
       "symbol": "projectionDigest",
       "algorithm": "sha256",
       "input_kind": "string",
