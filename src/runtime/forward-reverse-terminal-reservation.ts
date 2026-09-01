@@ -18,6 +18,11 @@ const allocationIdSchema = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/
 const forwardPlanSchema = z.string().regex(/^PLAN-L7-\d+-[a-z0-9-]+$/u);
 const reversePlanSchema = z.string().regex(/^PLAN-REVERSE-\d+-[a-z0-9-]+$/u);
 
+function planFamily(planId: string): string | null {
+  const match = planId.match(/^PLAN-(?:L7|REVERSE)-(\d+)-([a-z0-9-]+)$/u);
+  return match ? `${match[1]}:${match[2]}` : null;
+}
+
 const inputSchema = z
   .object({
     forward: z
@@ -91,6 +96,8 @@ export function reserveForwardReverseTerminalPair(
   const findings: string[] = [];
   if (input.forward.plan_id !== input.allocation.forward_plan_id)
     findings.push("allocator_forward_identity_mismatch");
+  if (planFamily(input.forward.plan_id) !== planFamily(input.allocation.reverse_plan_id))
+    findings.push("allocator_reverse_identity_mismatch");
   const { receipt_digest: _receiptDigest, ...allocationPayload } = input.allocation;
   if (sha256Digest(canonicalJson(allocationPayload)) !== input.allocation.receipt_digest)
     findings.push("allocator_receipt_invalid");
