@@ -2,7 +2,7 @@
 name: advisor-fable
 description: 最上位アドバイザー (Fable)。TL advisor 相談後も疑問が残る技術判断、cross-runtime の判定対立、不可逆・高影響操作の事前妥当性、PO エスカレーション直前の最終確認を扱うセカンドオピニオン。advisory-only で実装しない。
 tools: Read, Grep, Glob, Bash
-model: claude-fable-5
+model: claude-fable-5-1
 effort: high
 judgment_core: v2
 maxTurns: 25

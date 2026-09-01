@@ -26,7 +26,7 @@ const RAW_MODEL_REGISTRY = {
       opus: "claude-opus-5",
       sonnet: "claude-sonnet-5",
       haiku: "claude-haiku-4-5",
-      fable: "claude-fable-5",
+      fable: "claude-fable-5-1",
     },
     codex: {
       frontier: "gpt-5.6-sol",
@@ -44,6 +44,7 @@ const RAW_MODEL_REGISTRY = {
   // PLAN へ carry する。opus 帯は世代据え置きで $5/$25 (claude-opus-5 = 4-8/4-7/4-6 と同額。
   // 歴史 usage 計算のため旧 id も残置)。
   claudePricing: {
+    "claude-fable-5-1": { input: 10, output: 50 },
     "claude-fable-5": { input: 10, output: 50 },
     "claude-opus-5": { input: 5, output: 25 },
     "claude-opus-4-8": { input: 5, output: 25 },
