@@ -514,7 +514,7 @@
         "implementation": {
           "kind": "repository_module",
           "path": "src/lint/toolchain-pin.ts",
-          "digest": "sha256:05ff501b6a0bec24ee5e23a311b6aca764a5034e666e8b815799b9031c6e068a"
+          "digest": "sha256:09f084d91a2dac4c9981ca0ecf494437ecd9cdc37c54319ae20cf6d2c786256e"
         },
         "deterministic": true
       },
