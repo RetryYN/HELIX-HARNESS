@@ -34,8 +34,8 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
-backprop_decision: required
-backprop_decision_reason: "既存L3のREFACTORING eligibilityを観測可能なtrigger policyとRF0 admissionへ強化するRequirement Re-entry。"
+backprop_decision: not_required
+backprop_decision_reason: "本PLAN自体がRequirement Re-entryのauthority sliceであり、L3/L10 pairへ直接再freezeするため追加backprop vehicleは不要。"
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "System Synthesis、UIL、Universal Workflow、REFACTORING RF0-RF6のauthorityがcurrent mainに存在する"
