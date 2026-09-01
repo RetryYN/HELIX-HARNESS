@@ -66,6 +66,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-immutable-github-action-ref-registry-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/github-action-immutable-ref-registry.json, artifact_type: json_config }
 modifies:
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: json_config }
   - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
