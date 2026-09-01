@@ -29,4 +29,5 @@ L1の9要求を、実PR throughput、Cursor billing-cycle、Codex control reserv
 - model revisionごとの資格・称号・権限を追跡し、更新時に失効する。
 - Cursor停止時に明示DEGRADEDで既存Codex＋Claude経路へ縮退する。
 
-本書はcandidate recognitionであり、L3承認前にcurrent L12 completionへ加算しない。
+本書はcandidate recognitionであり、plan固有の人間承認とcanonical promotionが成立するまで
+current completionへ加算しない。
