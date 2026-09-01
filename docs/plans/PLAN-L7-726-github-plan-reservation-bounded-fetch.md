@@ -77,6 +77,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/github-plan-reservation-bounded-fetch.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-plan-reservation-bounded-fetch-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_projection }
   - { artifact_path: src/adapters/github-open-branch-plan-reservation-provider.ts, artifact_type: source_module }
   - { artifact_path: tests/github-open-branch-plan-reservation-provider.test.ts, artifact_type: test_code }
 agent_slots:
