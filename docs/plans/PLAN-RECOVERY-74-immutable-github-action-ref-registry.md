@@ -94,7 +94,27 @@ agent_slots:
   - { role: se, slot_label: "SE — immutable action identity／registry projection" }
   - { role: qa, slot_label: "QA — mutable ref／wrong SHA／unknown action mutation" }
   - { role: tl, slot_label: "TL — GitHub Security／TER再利用とconsumer surface収束" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Opus"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-01T11:25:40Z"
+    tests_green_at: "2026-09-01T11:25:06Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 1842abfeb01c30b7c682befc8c098e0b57ed2cfd
+    scope: "PR #1343 exact HEADのimmutable action ref registry、4 SHAのupstream tag照合、mutable ref残存ゼロ、toolchain-pin fail-close、UIL-DET-008 detector digest追従、PLAN identity整合を独立検証しBLOCKER 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/universal-improvement-source-registry.test.ts tests/universal-improvement-finding-qualification.test.ts tests/toolchain-pin.test.ts tests/harness-check-workflow.test.ts tests/setup.test.ts tests/distribution-acceptance.test.ts tests/distribution-lite-consumer-services.test.ts tests/design-coverage.test.ts tests/design-language.test.ts tests/ddd-tdd-rules.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-01T11:25:06Z"
+        evidence_path: tests/toolchain-pin.test.ts
+        output_digest: "sha256:ab117ea96e784515e2edd0981ee14b0561d4d9a5ee0a66f8f7d98e05799edb83"
+        result: "10 test files / 188 tests green"
 ---
 
 # immutable GitHub Action ref registry実装
