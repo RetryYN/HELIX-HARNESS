@@ -78,6 +78,15 @@ review_evidence:
         evidence_path: tests/open-branch-plan-reservation-authority.test.ts
         output_digest: "sha256:fd1624d18a593b348c3f4391eba437d7bfba38400b57dd9d21b314d4e4ecf0a3"
         result: "5 test files / 79 tests green"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-09-01T04:51:30Z"
+  review_binding:
+    reviewer: "Claude Code / Opus"
+    reviewed_at: "2026-09-01T04:51:30Z"
+    evidence_digest: "sha256:6f735ebd2e3ba7b4e3556a33c2f1cfa7b3c32a208adf05fa8fd9228088f480e6"
+  entries: []
 generates:
   - { artifact_path: docs/plans/PLAN-L7-722-open-branch-plan-reservation-production-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md, artifact_type: design_doc }
@@ -85,6 +94,10 @@ generates:
   - { artifact_path: src/adapters/open-branch-plan-reservation-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/open-branch-plan-reservation-authority.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: design_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: src/runtime/open-branch-plan-identity-reservation.ts, artifact_type: source_module }
   - { artifact_path: tests/open-branch-plan-identity-reservation.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
