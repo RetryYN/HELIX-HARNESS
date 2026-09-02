@@ -51,8 +51,8 @@ describe("STATE-DB-WORKFLOW-RETIREMENT-001", () => {
         .prepare("PRAGMA table_info(project_current_location)")
         .all()
         .map((row) => String(row.name));
-      expect(SCHEMA_VERSION).toBe(48);
-      expect(db.userVersion()).toBe(48);
+      expect(SCHEMA_VERSION).toBe(49);
+      expect(db.userVersion()).toBe(49);
       expect(columns).not.toContain("selected_drive_model");
       expect(columns).not.toContain("default_drive_model");
       expect(schemaNames(db)).not.toContain("project_drive_model_candidates");

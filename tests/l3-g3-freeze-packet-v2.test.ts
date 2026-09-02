@@ -393,7 +393,7 @@ describe("L3 G1/G3 freeze packet v2", () => {
       "docs/test-design/helix/L8-github-execution-episode-location-projection-unit-test-design.md",
       "utf8",
     );
-    expect(SCHEMA_VERSION).toBe(48);
+    expect(SCHEMA_VERSION).toBe(49);
     expect(executionPlan).toContain(
       "parent_design: docs/design/helix/L6-function-design/github-execution-episode-state.md",
     );
