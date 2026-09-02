@@ -34,7 +34,7 @@ contract_failures: "timeout、cancel、skip、missing receipt、wrong generation
 tdd_red_required: true
 red_test: "U-FULLSHARD-WF-003のbulk budget mutation、4-shard exact partition mutation、budget telemetry欠落mutationがexit 1になることを実測する"
 red_at: "2026-09-03T00:00:00Z"
-green_at: null
+green_at: "2026-09-02T23:29:45Z"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-03のworktree実測で、tests/harness-check-workflow.test.tsのU-FULLSHARD-WF-003においてfull-regression-bulk-1のtimeout-minutesを25から26へ変更するmutationがjob_timeout_invalid:full-regression-bulk-1でexit 1となり、U-CITIME-003ではcontinue-on-error追加とfinalize gate順序短絡の各mutationがexit 1となった。tests/full-regression-shards.test.tsのU-FULLSHARD-001〜006では、4-shard partitionの欠落・重複・unknown、wrong HEAD/base/partition/files、nonzero/invalid時刻・receipt欠落を各validatorが拒否することを確認した。いずれも実装を復元した対象testはgreenであり、timeout延長、fail-open、partition/receipt相殺を改善扱いできないことを実測した。"
 complexity_effect: justified_positive
@@ -90,24 +90,6 @@ review_evidence:
         evidence_path: .github/workflows/harness-check.yml
         output_digest: "sha256:28382a1a28329f929ac212cfacc8817bb61e74b69880db4f50f20edf940f261a"
         result: "exact HEAD b586d14e3e24aebc9d20f314941b1290f1b91c79のCI run 33686645297がterminal success、DB convergence=true"
-      - kind: smoke
-        command: "gh run view 33693162040 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,url"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-02T23:29:45Z"
-        evidence_path: .github/workflows/harness-check.yml
-        output_digest: "sha256:78d452c059ada3e4c64031bd129aa055cc996d32b526b7826d178b050a78e2d0"
-        result: "canonical merge後のmain d105a15c68aee71d754f538186be3cb51b0246f0で全shard、DB rebuild、doctor、Full typed lane statusを含むpost-main harness-checkがterminal success"
-      - kind: smoke
-        command: "gh api repos/RetryYN/HELIX-HARNESS/actions/runs/33693162252 --jq '.status + \" \" + (.conclusion // \"\") + \" \" + .head_sha'"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-02T23:29:45Z"
-        evidence_path: .github/workflows/codeql.yml
-        output_digest: "sha256:bb397aba4104ddc1febc49e09f4e9d6ab837478e70fe66e709e0ea3a05e78092"
-        result: "main d105a15c68aee71d754f538186be3cb51b0246f0のCodeQL run 33693162252がterminal success"
 ---
 
 # CI shard実行予算と負荷再分配 Recovery
