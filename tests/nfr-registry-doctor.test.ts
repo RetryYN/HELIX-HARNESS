@@ -75,7 +75,8 @@ describe("NFR registry doctor", () => {
       1,
     );
     expect(source.match(/\["nfrRegistry", nfrRegistry\.ok\]/gu)).toHaveLength(1);
-    expect(source).toMatch(/return \{\s+ok:\s+nfrRegistry\.ok &&/u);
+    expect(source).toContain("aggregateInternalDoctorChecks(doctorCheckDefinitions)");
+    expect(source).toContain("ok: doctorAllChecksOk");
     expect(source.match(/\.\.\.nfrRegistry\.messages\.map\(/gu)).toHaveLength(1);
   });
 });
