@@ -24,6 +24,7 @@ describe("git argument boundary", () => {
     "ext::sh -c 'touch /tmp/pwned'",
     "EXT::sh -c 'touch /tmp/pwned'",
     "--upload-pack=/tmp/pwn",
+    "-upload-pack=id",
     "file:///tmp/repo",
     "https://user:secret@example.com/repo.git",
     "https://user@example.com/repo.git",
@@ -39,7 +40,7 @@ describe("git argument boundary", () => {
     },
   );
 
-  it.each(["--output=/tmp/x", "HEAD --output=/tmp/x", "HEAD..", "HEAD@{1}", ""])(
+  it.each(["-foo", "-p", "--output=/tmp/x", "HEAD --output=/tmp/x", "HEAD..", "HEAD@{1}", ""])(
     "rejects an option-shaped or malformed revision before process execution: %s",
     (range) => {
       expect(() => requireSafeGitRevisionRange(range)).toThrow("unsafe_git_revision_range");
