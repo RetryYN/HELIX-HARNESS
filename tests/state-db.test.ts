@@ -523,18 +523,22 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
       db.setUserVersion(47);
 
       expect(() => migrate(db)).not.toThrow();
+      expect(db.prepare("SELECT process_receipt_key FROM closure_process_receipts").all()).toEqual([
+        { process_receipt_key: "receipt:a" },
+      ]);
       expect(
-        db.prepare("SELECT process_receipt_key FROM closure_process_receipts").all(),
-      ).toEqual([{ process_receipt_key: "receipt:a" }]);
-      expect(
-        db.prepare(`SELECT process_receipt_key, canonical_process_receipt_key, stdout_digest,
-          archive_reason FROM closure_process_receipt_migration_conflicts`).all(),
-      ).toEqual([{
-        process_receipt_key: "receipt:b",
-        canonical_process_receipt_key: "receipt:a",
-        stdout_digest: "digest:b",
-        archive_reason: "legacy_duplicate_dedupe_tuple",
-      }]);
+        db
+          .prepare(`SELECT process_receipt_key, canonical_process_receipt_key, stdout_digest,
+          archive_reason FROM closure_process_receipt_migration_conflicts`)
+          .all(),
+      ).toEqual([
+        {
+          process_receipt_key: "receipt:b",
+          canonical_process_receipt_key: "receipt:a",
+          stdout_digest: "digest:b",
+          archive_reason: "legacy_duplicate_dedupe_tuple",
+        },
+      ]);
       expect(() =>
         insert.run("receipt:c", "a".repeat(40), "same", "2026-09-02T00:00:00Z", "digest:c"),
       ).toThrow();
