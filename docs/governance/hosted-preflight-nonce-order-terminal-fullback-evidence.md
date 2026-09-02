@@ -13,7 +13,8 @@ plan: PLAN-REVERSE-87-hosted-preflight-nonce-order
 
 - Recovery実装PR #1455のreviewed HEADは`f174f7b5ef428ff6800a9d13a6cbc2c347c062f2`である。
 - Claude独立reviewはblocker 0、receipt digestは`sha256:93ca20f5deeeac689fd02e93338dea682c41c889cfa077dd0011d7f6fa642f6c`である。
-- draft CI `33626819164`とReady CI `33640355004`はterminal successである。
+- draft CI `33626819164`はterminal successである。Ready遷移時のrun
+  `33640355004`はsupersededによりcancelledであり、terminal判定の根拠には使用しない。
 - canonical merge commitは`b2c84de73254c358d8b4fc9f979f34a64ddf9223`である。
 - main read-afterの`harness-check`はsuccessである。
 
