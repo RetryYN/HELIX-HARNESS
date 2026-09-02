@@ -39,7 +39,7 @@ export interface FullRegressionShardPlanInput {
   candidateHead: string;
   baseSha: string;
   testFiles: readonly string[];
-  bulkShardCount?: 2;
+  bulkShardCount?: 3;
 }
 
 export interface FullRegressionShardValidation {
@@ -58,7 +58,7 @@ const SHA_PATTERN = /^[0-9a-f]{40}$/;
 const DIGEST_PATTERN = /^sha256:[0-9a-f]{64}$/;
 const TEST_PATH_PATTERN = /^tests\/(?:.+\/)?[^/]+\.test\.ts$/;
 const CLI_SURFACE_PATH = "tests/cli-surface.test.ts";
-const EXPECTED_SHARD_IDS = ["bulk-1", "bulk-2", "stateful"] as const;
+const EXPECTED_SHARD_IDS = ["bulk-1", "bulk-2", "bulk-3", "stateful"] as const;
 
 function sortedUnique(values: readonly string[]): string[] {
   return [...new Set(values)].sort(compareBytewise);
@@ -88,8 +88,8 @@ function partitionDigest(input: PartitionDigestInput): Sha256Digest {
 export function createFullRegressionShardPlan(
   input: FullRegressionShardPlanInput,
 ): FullRegressionShardPlan {
-  const bulkShardCount = input.bulkShardCount ?? 2;
-  if (bulkShardCount !== 2) {
+  const bulkShardCount = input.bulkShardCount ?? 3;
+  if (bulkShardCount !== 3) {
     throw new Error("invalid_bulk_shard_count");
   }
   if (!SHA_PATTERN.test(input.candidateHead)) throw new Error("invalid_candidate_head");

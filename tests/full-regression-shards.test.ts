@@ -18,6 +18,7 @@ const INVENTORY = [
   "tests/bravo.test.ts",
   "tests/charlie.test.ts",
   "tests/delta.test.ts",
+  "tests/echo.test.ts",
   "tests/cli-surface.test.ts",
   "tests/slow/acceptance.test.ts",
 ];
@@ -46,7 +47,7 @@ function receipts(value: FullRegressionShardPlan): FullRegressionShardReceipt[] 
 }
 
 describe("Full regression exact shard contract", () => {
-  it("U-FULLSHARD-001: 入力順に依存せずbulk 2件とstatefulへexact partitionする", () => {
+  it("U-FULLSHARD-001: 入力順に依存せずbulk 3件とstatefulへexact partitionする", () => {
     const first = plan();
     const reversed = createFullRegressionShardPlan({
       candidateHead: HEAD,
@@ -55,7 +56,12 @@ describe("Full regression exact shard contract", () => {
     });
 
     expect(reversed).toEqual(first);
-    expect(first.shards.map((shard) => shard.shard_id)).toEqual(["bulk-1", "bulk-2", "stateful"]);
+    expect(first.shards.map((shard) => shard.shard_id)).toEqual([
+      "bulk-1",
+      "bulk-2",
+      "bulk-3",
+      "stateful",
+    ]);
     expect(first.shards.at(-1)?.files).toEqual([
       "tests/cli-surface.test.ts",
       "tests/slow/acceptance.test.ts",
@@ -86,7 +92,7 @@ describe("Full regression exact shard contract", () => {
       shards: [
         ...value.shards,
         {
-          shard_id: "bulk-3",
+          shard_id: "bulk-4",
           kind: "bulk" as const,
           files: [],
           files_digest: sha256Digest("[]"),

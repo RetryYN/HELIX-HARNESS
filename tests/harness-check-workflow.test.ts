@@ -41,6 +41,7 @@ type WorkflowRoot = {
     "full-regression-preflight"?: HarnessJob;
     "full-regression-bulk-1"?: HarnessJob;
     "full-regression-bulk-2"?: HarnessJob;
+    "full-regression-bulk-3"?: HarnessJob;
     "full-regression-stateful"?: HarnessJob;
     "full-regression-finalize"?: HarnessJob;
   };
@@ -68,6 +69,7 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   const shards = [
     jobs["full-regression-bulk-1"],
     jobs["full-regression-bulk-2"],
+    jobs["full-regression-bulk-3"],
     jobs["full-regression-stateful"],
   ];
   const finalize = jobs["full-regression-finalize"];
@@ -82,9 +84,10 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   }
   const timeoutChecks: Array<[string, HarnessJob | undefined, number]> = [
     ["full-regression-preflight", preflight, 35],
-    ["full-regression-bulk-1", shards[0], 20],
-    ["full-regression-bulk-2", shards[1], 20],
-    ["full-regression-stateful", shards[2], 20],
+    ["full-regression-bulk-1", shards[0], 25],
+    ["full-regression-bulk-2", shards[1], 25],
+    ["full-regression-bulk-3", shards[2], 25],
+    ["full-regression-stateful", shards[3], 30],
     ["full-regression-finalize", finalize, 15],
   ];
   for (const [jobName, job, expectedTimeout] of timeoutChecks) {
@@ -107,7 +110,7 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   }
   for (const [index, job] of shards.entries()) {
     const text = JSON.stringify(job);
-    const shardId = ["bulk-1", "bulk-2", "stateful"][index];
+    const shardId = ["bulk-1", "bulk-2", "bulk-3", "stateful"][index];
     const checkout = job?.steps?.find((step) => step.name === "checkout");
     if (checkout?.with?.["fetch-depth"] !== 0) {
       findings.push(`shard_checkout_history_invalid:${shardId}`);
@@ -120,6 +123,8 @@ function fullRegressionShardJobViolations(raw: string): string[] {
       !text.includes(`--shard-id ${shardId}`) ||
       !text.includes("full-regression-shards.ts receipt") ||
       !text.includes("full-regression-shard-receipt") ||
+      !text.includes("record shard budget telemetry") ||
+      !text.includes("SHARD_TIMEOUT_MINUTES") ||
       text.includes("continue-on-error")
     ) {
       findings.push(`shard_contract_invalid:${shardId}`);
@@ -137,7 +142,9 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     !finalizeText.includes("full-regression-shards.ts validate") ||
     !finalizeText.includes("full-regression-shard-receipt-bulk-1") ||
     !finalizeText.includes("full-regression-shard-receipt-bulk-2") ||
+    !finalizeText.includes("full-regression-shard-receipt-bulk-3") ||
     !finalizeText.includes("full-regression-shard-receipt-stateful") ||
+    !finalizeText.includes("classify shard outcome telemetry") ||
     !finalizeText.includes("db rebuild (post-test projection refresh)") ||
     !finalizeText.includes("doctor (governance hard gates)")
   ) {
@@ -150,6 +157,7 @@ function fullRegressionShardJobViolations(raw: string): string[] {
       "full-regression-preflight",
       "full-regression-bulk-1",
       "full-regression-bulk-2",
+      "full-regression-bulk-3",
       "full-regression-stateful",
     ].every((name) => finalizeNeeds.includes(name)) ||
     !finalizeText.includes("impact-ci-full-receipt") ||
@@ -821,9 +829,10 @@ describe("source harness-check workflow", () => {
     expect(regression["timeout-minutes"]).toBeLessThan(job["timeout-minutes"] as number);
 
     const parsed = parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot;
-    expect(parsed.jobs?.["full-regression-bulk-1"]?.["timeout-minutes"]).toBe(20);
-    expect(parsed.jobs?.["full-regression-bulk-2"]?.["timeout-minutes"]).toBe(20);
-    expect(parsed.jobs?.["full-regression-stateful"]?.["timeout-minutes"]).toBe(20);
+    expect(parsed.jobs?.["full-regression-bulk-1"]?.["timeout-minutes"]).toBe(25);
+    expect(parsed.jobs?.["full-regression-bulk-2"]?.["timeout-minutes"]).toBe(25);
+    expect(parsed.jobs?.["full-regression-bulk-3"]?.["timeout-minutes"]).toBe(25);
+    expect(parsed.jobs?.["full-regression-stateful"]?.["timeout-minutes"]).toBe(30);
     expect(parsed.jobs?.["full-regression-finalize"]?.["timeout-minutes"]).toBe(15);
   });
 
@@ -894,7 +903,7 @@ describe("source harness-check workflow", () => {
     expect(
       fullRegressionShardJobViolations(
         mutateWorkflowJob(raw, "full-regression-bulk-1", (job) =>
-          job.replace("    timeout-minutes: 20", "    timeout-minutes: 21"),
+          job.replace("    timeout-minutes: 25", "    timeout-minutes: 26"),
         ),
       ),
     ).toContain("job_timeout_invalid:full-regression-bulk-1");
