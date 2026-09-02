@@ -1,10 +1,14 @@
 import { spawnSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   requireHostedSurfacePreflight,
   validateAdapterParityMap,
 } from "../src/runtime/hosted-preflight";
 import { evaluateWorkGuardTargets } from "../src/runtime/work-guard";
+import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
 
 describe("HC-AC hosted/API preflight", () => {
   it("HU-PILLAR-P2-03: separates direct hook coverage from hosted preflight-only surfaces", () => {
@@ -159,6 +163,7 @@ describe("HC-AC hosted/API preflight", () => {
         "src/cli.ts",
         "guard",
         "preflight",
+        "--acknowledge-hook-non-enforcement",
         "--json",
       ],
       {
@@ -181,5 +186,137 @@ describe("HC-AC hosted/API preflight", () => {
       hookCovered: false,
       apiToolPathEnforced: false,
     });
+  });
+
+  it("HU-PILLAR-NAC-03: hosted foreign-edit overrideはreasonなしで拒否する", () => {
+    const result = spawnSync(
+      "npx",
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        "src/cli.ts",
+        "guard",
+        "preflight",
+        "--target",
+        "src/cli.ts",
+        "--allow-foreign-edit",
+        "--acknowledge-hook-non-enforcement",
+        "--json",
+      ],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain("requires --reason");
+  });
+
+  it("HU-PILLAR-NAC-04: hook非強制の明示ackなしではhosted preflightを拒否する", () => {
+    const result = spawnSync(
+      "npx",
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        "src/cli.ts",
+        "guard",
+        "preflight",
+        "--json",
+      ],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+    expect(result.status).toBe(2);
+    const parsed = JSON.parse(result.stdout) as { hostedPreflight?: { findings?: string[] } };
+    expect(parsed.hostedPreflight?.findings).toContain("missing_hook_non_enforcement_ack");
+  });
+
+  it("HU-PILLAR-NAC-05: reason付きoverrideをDBへ記録し同一nonce再利用を拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-hosted-preflight-"));
+    try {
+      const git = (args: string[]) =>
+        spawnSync("git", args, { cwd: root, encoding: "utf8", stdio: "pipe" });
+      expect(git(["init", "-b", "main"]).status).toBe(0);
+      expect(git(["config", "user.name", "HELIX Test"]).status).toBe(0);
+      expect(git(["config", "user.email", "helix-test@example.invalid"]).status).toBe(0);
+      writeFileSync(join(root, "owned.txt"), "base\n");
+      expect(git(["add", "owned.txt"]).status).toBe(0);
+      expect(git(["commit", "-m", "test: seed"]).status).toBe(0);
+      writeFileSync(join(root, "owned.txt"), "foreign\n");
+
+      const args = [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        join(process.cwd(), "src/cli.ts"),
+        "guard",
+        "preflight",
+        "--target",
+        "owned.txt",
+        "--allow-foreign-edit",
+        "--reason",
+        "bounded recovery test",
+        "--acknowledge-hook-non-enforcement",
+        "--session",
+        "test-session",
+        "--json",
+      ];
+      const first = spawnSync("npx", args, { cwd: root, encoding: "utf8" });
+      expect(first.status, first.stderr).toBe(0);
+      const parsed = JSON.parse(first.stdout) as {
+        hostedPreflight?: { kind?: string };
+        override?: { reason?: string; reason_digest?: string };
+      };
+      expect(parsed.hostedPreflight?.kind).toBe("allow");
+      expect(parsed.override?.reason).toBeUndefined();
+      expect(parsed.override?.reason_digest).toMatch(/^sha256:[0-9a-f]{64}$/);
+
+      const db = openHarnessDb(defaultHarnessDbPath(root), { repoRoot: root });
+      try {
+        const rows = db
+          .prepare("SELECT guard_kind, operation_class, status FROM guard_override_transactions")
+          .all() as Array<Record<string, unknown>>;
+        expect(rows).toEqual([
+          expect.objectContaining({
+            guard_kind: "foreign_edit",
+            operation_class: "hosted preflight foreign edit",
+            status: "committed",
+          }),
+        ]);
+      } finally {
+        db.close();
+      }
+
+      const second = spawnSync("npx", args, { cwd: root, encoding: "utf8" });
+      expect(second.status).toBe(2);
+      expect(second.stderr).toContain("nonce was reused");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("HU-PILLAR-NAC-06: legacy env overrideへ暗黙fallbackしない", () => {
+    const result = spawnSync(
+      "npx",
+      [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        "src/cli.ts",
+        "guard",
+        "preflight",
+        "--acknowledge-hook-non-enforcement",
+        "--json",
+      ],
+      {
+        cwd: process.cwd(),
+        encoding: "utf8",
+        env: { ...process.env, HELIX_ALLOW_FOREIGN_EDIT: "1" },
+      },
+    );
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain("requires explicit --allow-foreign-edit and --reason");
   });
 });
