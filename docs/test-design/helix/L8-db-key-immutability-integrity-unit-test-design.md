@@ -1,3 +1,12 @@
+---
+layer: L8
+artifact_type: test_design
+status: confirmed
+pair_artifact: docs/design/helix/L6-function-design/db-key-immutability-integrity.md
+created: 2026-09-02
+plan: docs/plans/PLAN-RECOVERY-90-db-key-immutability.md
+---
+
 # DB key／immutability整合 L8検証設計
 
 対応PLAN: `PLAN-RECOVERY-90-db-key-immutability`

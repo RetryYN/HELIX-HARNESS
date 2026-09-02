@@ -1,3 +1,12 @@
+---
+layer: L6
+artifact_type: design_doc
+status: confirmed
+pair_artifact: docs/test-design/helix/L8-db-key-immutability-integrity-unit-test-design.md
+created: 2026-09-02
+plan: docs/plans/PLAN-RECOVERY-90-db-key-immutability.md
+---
+
 # DB key／immutability整合 L6機能設計
 
 ## 責務
