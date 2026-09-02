@@ -69,6 +69,27 @@ const baseInput = {
   reviewedAt: "2026-07-27T00:00:00.000Z",
 };
 
+function canonicalDbReceipt(overrides: Record<string, unknown> = {}) {
+  return {
+    schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
+    source_head: baseInput.headSha,
+    source_tree: "c".repeat(40),
+    workspace_attestation: {
+      tracked_workspace_required: true,
+      status_entry_count: 0,
+      status_digest: `sha256:${"0".repeat(64)}`,
+      clean: true,
+    },
+    projection_digest: baseInput.dbProjectionDigest,
+    replay_projection_digest: baseInput.dbReplayProjectionDigest,
+    checkpoint_digest: baseInput.dbCheckpointDigest,
+    replay_checkpoint_digest: baseInput.dbReplayCheckpointDigest,
+    receipt_digest: baseInput.dbReceiptDigest,
+    converged: true,
+    ...overrides,
+  };
+}
+
 function legacyV2Receipt() {
   const {
     authorModel: _authorModel,
@@ -594,15 +615,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(() =>
       bindCanonicalLogicalDbReceipt(
         { ...baseInput, dbCheckpointDigest: rowCountsOnly },
-        {
-          schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
-          projection_digest: baseInput.dbProjectionDigest,
-          replay_projection_digest: baseInput.dbReplayProjectionDigest,
-          checkpoint_digest: baseInput.dbCheckpointDigest,
-          replay_checkpoint_digest: baseInput.dbReplayCheckpointDigest,
-          receipt_digest: baseInput.dbReceiptDigest,
-          converged: true,
-        },
+        canonicalDbReceipt(),
       ),
     ).toThrow("caller_db_claim_mismatch:dbCheckpointDigest");
 
@@ -616,15 +629,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       dbReceiptDigest: null,
       dbConverged: true,
     };
-    const bound = bindCanonicalLogicalDbReceipt(input, {
-      schema_version: "helix-l3-g3-logical-db-bootstrap-receipt.v2",
-      projection_digest: baseInput.dbProjectionDigest,
-      replay_projection_digest: baseInput.dbReplayProjectionDigest,
-      checkpoint_digest: baseInput.dbCheckpointDigest,
-      replay_checkpoint_digest: baseInput.dbReplayCheckpointDigest,
-      receipt_digest: baseInput.dbReceiptDigest,
-      converged: true,
-    });
+    const bound = bindCanonicalLogicalDbReceipt(input, canonicalDbReceipt());
     expect(buildClaudePrReviewReceipt(bound)).toMatchObject({
       dbProjectionDigest: baseInput.dbProjectionDigest,
       dbReplayProjectionDigest: baseInput.dbProjectionDigest,
@@ -632,6 +637,31 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       dbReplayCheckpointDigest: baseInput.dbCheckpointDigest,
       dbConverged: true,
     });
+  });
+
+  it("U-CPRCONV-038: DB receiptのsource HEADがreview対象HEADと異なる場合は拒否する", () => {
+    expect(() =>
+      bindCanonicalLogicalDbReceipt(
+        { ...baseInput, dbProjectionDigest: null },
+        canonicalDbReceipt({ source_head: "d".repeat(40) }),
+      ),
+    ).toThrow("canonical_db_source_head_mismatch");
+  });
+
+  it("U-CPRCONV-039: dirty working tree由来のDB receiptは拒否する", () => {
+    expect(() =>
+      bindCanonicalLogicalDbReceipt(
+        { ...baseInput, dbProjectionDigest: null },
+        canonicalDbReceipt({
+          workspace_attestation: {
+            tracked_workspace_required: true,
+            status_entry_count: 1,
+            status_digest: `sha256:${"9".repeat(64)}`,
+            clean: false,
+          },
+        }),
+      ),
+    ).toThrow("canonical_db_workspace_dirty");
   });
 
   it("別HEADのCI receiptをmerge拒否する", () => {
