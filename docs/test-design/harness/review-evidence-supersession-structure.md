@@ -2,7 +2,7 @@
 layer: L7
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/harness/L6-function-design/review-evidence.md
+pair_artifact: docs/design/harness/L6-function-design/review-evidence-supersession-structure.md
 created: 2026-09-02
 plan: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md
 ---
