@@ -36,7 +36,7 @@ red_test: "U-FULLSHARD-WF-003のbulk budget mutation、4-shard exact partition m
 red_at: "2026-09-03T00:00:00Z"
 green_at: null
 mutation_oracle_required: true
-mutation_oracle_evidence: "CIでfull regressionが完走するまで更新する"
+mutation_oracle_evidence: "2026-09-03のworktree実測で、tests/harness-check-workflow.test.tsのU-FULLSHARD-WF-003においてfull-regression-bulk-1のtimeout-minutesを25から26へ変更するmutationがjob_timeout_invalid:full-regression-bulk-1でexit 1となり、U-CITIME-003ではcontinue-on-error追加とfinalize gate順序短絡の各mutationがexit 1となった。tests/full-regression-shards.test.tsのU-FULLSHARD-001〜006では、4-shard partitionの欠落・重複・unknown、wrong HEAD/base/partition/files、nonzero/invalid時刻・receipt欠落を各validatorが拒否することを確認した。いずれも実装を復元した対象testはgreenであり、timeout延長、fail-open、partition/receipt相殺を改善扱いできないことを実測した。"
 complexity_effect: justified_positive
 complexity_justification: "20分境界へ張り付く3系統を有限budgetへ再設定し、fast bulkを3系統へ分けてcritical pathの負荷偏りを下げ、job resultを原因調査可能なsummaryへ残す"
 removal_trigger: "CI System Synthesisのdynamic schedulerが同じinventory／receipt／budget telemetry契約を提供し、固定shard budgetのconsumerが0になった時"
