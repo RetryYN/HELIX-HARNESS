@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-102-web-dashboard-phase-b
+superseded_by: [PLAN-L7-141-web-dashboard-component-derived]
 title: "PLAN-L7-102 (impl): src/web 中央 UI Phase B — 15 画面 read-only ダッシュボード (L2 screen-list 実装)"
 kind: impl
 layer: L7

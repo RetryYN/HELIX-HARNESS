@@ -175,7 +175,7 @@ function reviewViolationReason(issue: CrossAgentModelIssue | undefined): string 
  * presence 検出のみ (shape 検証は zod frontmatterSchema が担う)。
  */
 export function hasReviewEvidence(content: string): boolean {
-  return /^review_evidence:\s*\n\s+-\s+reviewer:/m.test(content);
+  return extractReviewEntries(content).length > 0;
 }
 
 /**
@@ -299,7 +299,13 @@ function parseGitPlanLogDates(output: string | null, keepFirst: boolean): Map<st
   return dates;
 }
 
-const WORKFLOW_IDENTITY_MIGRATION_LINE = /^\s*(registry_version|registry_source_digest):/u;
+const NON_SEMANTIC_L3_METADATA_MIGRATION_LINE =
+  /^\s*(registry_version|registry_source_digest|superseded_by|supersession_metadata_only):/u;
+
+/** L3の要求意味を変えず、既存authorityのprovenanceを再承認対象へしないtyped metadata差分。 */
+export function isNonSemanticL3MetadataMigrationLine(line: string): boolean {
+  return NON_SEMANTIC_L3_METADATA_MIGRATION_LINE.test(line);
+}
 
 /**
  * registry version-upで既存L3の意味を変えずtupleだけを再束縛したcommitを、PO再承認の発火から除外する。
@@ -350,7 +356,7 @@ function readLastAuthorityCommitDates(repoRoot: string, files: string[]): Map<st
       continue;
     if (rawLine.startsWith("+++") || rawLine.startsWith("---")) continue;
     const changed = rawLine.slice(1);
-    if (!WORKFLOW_IDENTITY_MIGRATION_LINE.test(changed)) authorityChanged.add(currentPath);
+    if (!isNonSemanticL3MetadataMigrationLine(changed)) authorityChanged.add(currentPath);
   }
   flush();
   return new Map(

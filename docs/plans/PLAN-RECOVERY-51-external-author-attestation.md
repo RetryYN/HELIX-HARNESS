@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-RECOVERY-51-external-author-attestation
+superseded_by: [PLAN-RECOVERY-53-external-invariant-errata]
 title: "PLAN-RECOVERY-51 (recovery): bot 著 PR を external として実測する attestation"
 kind: recovery
 layer: cross

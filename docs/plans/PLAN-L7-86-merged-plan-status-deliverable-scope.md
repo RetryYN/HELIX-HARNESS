@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-86-merged-plan-status-deliverable-scope
+superseded_by: [PLAN-L7-87-merged-plan-status-kind-independent]
 title: "PLAN-L7-86 (troubleshoot): merged-plan-status の merged-artifact 検出を src/*.ts から出荷物ルート全体へ拡張 (L7-71 drift 見逃しの根治)"
 kind: troubleshoot
 layer: L7

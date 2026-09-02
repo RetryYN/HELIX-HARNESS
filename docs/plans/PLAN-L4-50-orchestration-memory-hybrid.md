@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L4-50-orchestration-memory-hybrid
+superseded_by: [PLAN-L6-50-helix-orchestration-memory]
 title: "PLAN-L4-50: P2 hybrid orchestration + P7 共有メモリ 機能追加 (Claude+Codex 前提)"
 kind: research
 layer: L4
