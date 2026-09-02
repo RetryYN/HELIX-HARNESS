@@ -336,6 +336,10 @@ import {
   type ForwardPlanAuthoringTransactionInput,
 } from "./runtime/forward-plan-authoring-transaction";
 import {
+  requireSafeGitRemoteUrl,
+  requireSafeGitRevisionRange,
+} from "./runtime/git-argument-boundary";
+import {
   createGuardOverrideAuditPort,
   runGitCommandGuardHook,
 } from "./runtime/git-command-guard-hook";
@@ -463,7 +467,6 @@ import {
   evaluateWorkGuardTargets,
   extractEditTargets,
   normalizeRepoRelative,
-  resolveForeignEditOverride,
 } from "./runtime/work-guard";
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
@@ -1031,7 +1034,8 @@ function loadBranchKindInputForGuard(opts: {
 }
 
 function gitCommitSubjectsForRange(range: string): string[] {
-  return execFileSync("git", ["log", "--format=%s", range], {
+  const safeRange = requireSafeGitRevisionRange(range);
+  return execFileSync("git", ["log", "--format=%s", safeRange, "--"], {
     encoding: "utf8",
     stdio: ["ignore", "pipe", "inherit"],
   })
@@ -3550,8 +3554,9 @@ function gitRefExists(ref: string | null): boolean {
 
 function gitRemoteRefExists(remoteUrl: string | undefined, ref: string | null): boolean {
   if (!remoteUrl || !ref) return false;
+  const safeRemoteUrl = requireSafeGitRemoteUrl(remoteUrl);
   try {
-    const stdout = execFileSync("git", ["ls-remote", "--tags", remoteUrl, ref], {
+    const stdout = execFileSync("git", ["ls-remote", "--tags", "--", safeRemoteUrl, ref], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
     });
@@ -4604,6 +4609,11 @@ guard
   .option("--session <id>", "session_id used to load already-touched files")
   .option("--json", "JSON output")
   .option("--allow-foreign-edit", "intentional bypass; equivalent to an explicit guard override")
+  .option("--reason <text>", "required bounded reason for --allow-foreign-edit")
+  .option(
+    "--acknowledge-hook-non-enforcement",
+    "acknowledge that hosted/API tools do not execute repo-local hooks",
+  )
   .action(
     (opts: {
       target?: string[];
@@ -4612,6 +4622,8 @@ guard
       session?: string;
       json?: boolean;
       allowForeignEdit?: boolean;
+      reason?: string;
+      acknowledgeHookNonEnforcement?: boolean;
     }) => {
       const repoRoot = process.cwd();
       const targetPaths = (opts.target ?? []).map((target) =>
@@ -4625,15 +4637,86 @@ guard
       if (opts.stdin) {
         targetPaths.push(...guardTargetsFromPatchText(readStdin(), repoRoot));
       }
-      const override = resolveForeignEditOverride({
-        env: opts.allowForeignEdit ? "1" : process.env.HELIX_ALLOW_FOREIGN_EDIT,
-      });
-      const result = evaluateWorkGuardTargets({
+      const changedFiles = loadChangedFiles(repoRoot);
+      const initial = evaluateWorkGuardTargets({
         targetPaths,
-        uncommittedFiles: loadChangedFiles(repoRoot),
+        uncommittedFiles: changedFiles,
         sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
-        bypass: override.bypass,
+        bypass: false,
       });
+      let result = initial;
+      let auditRecord = `git-status:${createHash("sha256")
+        .update(JSON.stringify([...changedFiles].sort()))
+        .digest("hex")}`;
+      let override: { bypass: boolean; source: string; reason_digest: string | null } = {
+        bypass: false,
+        source: "none",
+        reason_digest: null,
+      };
+      if (process.env.HELIX_ALLOW_FOREIGN_EDIT === "1" && !opts.allowForeignEdit) {
+        process.stderr.write(
+          "guard preflight: legacy env override requires explicit --allow-foreign-edit and --reason\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      if (opts.allowForeignEdit) {
+        const reason = opts.reason?.trim() ?? "";
+        if (!reason) {
+          process.stderr.write("guard preflight: --allow-foreign-edit requires --reason\n");
+          process.exitCode = 2;
+          return;
+        }
+        const nonce = createHash("sha256")
+          .update(
+            `hosted-preflight:${opts.session ?? "cli"}:${reason}:${[...targetPaths].sort().join("\0")}`,
+          )
+          .digest("hex");
+        let db: ReturnType<typeof openHarnessDb> | null = null;
+        let committed = false;
+        try {
+          db = openHarnessDb(defaultHarnessDbPath(repoRoot), {
+            repoRoot,
+            skipPersistentPragmas: true,
+          });
+          if (db.userVersion() < SCHEMA_VERSION) migrate(db);
+          const receipt = commitOverrideUse({
+            nonce,
+            reason,
+            classification: {
+              guardKind: "foreign_edit",
+              operationClass: "hosted preflight foreign edit",
+              subjectDigest: `sha256:${createHash("sha256")
+                .update(JSON.stringify([...targetPaths].sort()))
+                .digest("hex")}`,
+            },
+            audit: createGuardOverrideAuditPort(db),
+            marker: { consume: (expectedNonce) => expectedNonce === nonce },
+          });
+          committed = receipt.status === "allowed";
+        } catch {
+          committed = false;
+        } finally {
+          db?.close();
+        }
+        if (!committed) {
+          process.stderr.write("guard preflight: override audit failed or nonce was reused\n");
+          process.exitCode = 2;
+          return;
+        }
+        override = {
+          bypass: true,
+          source: "explicit-cli-audited",
+          reason_digest: `sha256:${createHash("sha256").update(reason).digest("hex")}`,
+        };
+        auditRecord = `guard_override_transactions:${nonce}`;
+        result = evaluateWorkGuardTargets({
+          targetPaths,
+          uncommittedFiles: changedFiles,
+          sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
+          bypass: true,
+        });
+      }
       const adapterParity = validateAdapterParityMap({
         surface: "codex-hosted-api",
         toolName: opts.patchFile || opts.stdin ? "apply_patch" : "manual",
@@ -4641,12 +4724,12 @@ guard
       const hostedPreflight = requireHostedSurfacePreflight({
         surface: "codex-hosted-api",
         operation: targetPaths.length > 0 ? "edit" : "dry_run",
-        hookNonEnforcementAcknowledged: true,
+        hookNonEnforcementAcknowledged: Boolean(opts.acknowledgeHookNonEnforcement),
         gitStatusChecked: true,
         targetPaths,
         workGuardDecision: result,
         preflightCommand: "helix guard preflight",
-        auditRecord: opts.session ?? "cli-stdout",
+        auditRecord,
       });
       if (opts.json) {
         process.stdout.write(
