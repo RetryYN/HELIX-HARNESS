@@ -56,5 +56,6 @@ next_pair_freeze: L10_after_plan_specific_approval
 - `AVS-R-13`: AI解釈、GitHub actor名、memory authorだけからhuman provenanceを確定しない。
 - `AVS-R-14`: historical evidenceは改竄せずcompatibility/historicalへ隔離し、新規出力・新規memory・current authorityへ再流入させない。
 - `AVS-R-15`: reusable knowledgeはResponsibility-Centric Learning Systemのadmissionを経てSkill／Knowledge authorityへ置き、memoryから直接昇格しない。
+- `AVS-R-16`: requirements-owned workflow classification authorityはauthority semantic drift／vocabulary separationを`REDESIGN`へ解決するcanonical signal bindingを定義する。current PLANはそのexact tokenを使用し、`po_directive`をcompatibility input-onlyへ隔離する。
 
 本candidateを承認前にruntime、schema、DB current output、Claude/Codex managed ruleへ投影しない。

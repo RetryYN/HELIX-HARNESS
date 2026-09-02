@@ -37,5 +37,6 @@ pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md
 | `AVS-AC-013` | AVS-R-13 | human provenanceをtyped sourceで照合する | actor名やAI要約からhuman attributionを作らない |
 | `AVS-AC-014` | AVS-R-14 | historical tokenはcurrentへ逆流しない | historical greenでcanonical failureを相殺しない |
 | `AVS-AC-015` | AVS-R-15 | long-term knowledgeがLearning admissionを通る | memory本文を直接Skill正本へ昇格しない |
+| `AVS-AC-016` | AVS-R-16 | canonical signalがREDESIGNへexactに解決され、PLAN entryへ投影される | signal未定義、wrong-axis、decision-required、legacy `po_directive`再出力を拒否 |
 
-19 oracleを独立failure classとして保持し、単一happy pathで相殺しない。
+20 oracleを独立failure classとして保持し、単一happy pathで相殺しない。

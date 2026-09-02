@@ -48,4 +48,8 @@ AIはdirectiveの目的を満たす手段を正本と証拠から選び、より
 
 harness memoryはTTL付きagent coordination envelopeとtyped pointerだけを運ぶ。decision本文、approval本文、project要求・設計、利用者profileを保存せず、長期authorityは各正本へ置く。
 
+### AVS-BR-006 PLAN開始理由をhuman directiveへ偽装しない
+
+authority語彙の不整合やsemantic driftから開始するPLANは、requirements-owned workflow classification authorityが定義するcanonical signalを使用する。開始理由を`PO指示`等のhuman provenanceへ偽装せず、旧`po_directive`はcompatibility input-onlyへ隔離する。
+
 本candidateはplan固有承認とcanonical promotionまでcurrent authority、runtime出力、memory admissionへ加算しない。
