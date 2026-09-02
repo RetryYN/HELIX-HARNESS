@@ -282,6 +282,14 @@ export interface ClaudePrReviewReceiptInput {
 
 export interface CanonicalLogicalDbReceipt {
   schema_version: string;
+  source_head: string;
+  source_tree: string;
+  workspace_attestation: {
+    tracked_workspace_required: boolean;
+    status_entry_count: number;
+    status_digest: string;
+    clean: boolean;
+  };
   projection_digest: string;
   replay_projection_digest: string;
   checkpoint_digest: string;
@@ -580,6 +588,20 @@ export function bindCanonicalLogicalDbReceipt(
   input: ClaudePrReviewReceiptInput,
   canonical: CanonicalLogicalDbReceipt,
 ): ClaudePrReviewReceiptInput {
+  if (canonical.source_head !== input.headSha) {
+    throw new Error("canonical_db_source_head_mismatch");
+  }
+  if (!/^[0-9a-f]{40}$/u.test(canonical.source_tree)) {
+    throw new Error("canonical_db_source_tree_invalid");
+  }
+  if (
+    canonical.workspace_attestation.tracked_workspace_required !== true ||
+    canonical.workspace_attestation.clean !== true ||
+    canonical.workspace_attestation.status_entry_count !== 0
+  ) {
+    throw new Error("canonical_db_workspace_dirty");
+  }
+  assertSha256(canonical.workspace_attestation.status_digest, "workspace_status_digest");
   const claimed = {
     dbReceiptSchemaVersion: input.dbReceiptSchemaVersion,
     dbProjectionDigest: input.dbProjectionDigest,

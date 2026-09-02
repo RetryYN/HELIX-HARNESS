@@ -33,4 +33,27 @@ describe("quality audit", () => {
     expect(result.ok).toBe(true);
     expect(result.total).toBe(0);
   });
+
+  it("fails closed when a user-shaped value is passed directly to git", () => {
+    const result = analyzeQualityText([
+      {
+        path: "src/cli.ts",
+        text: 'execFileSync("git", ["log", "--format=%s", range], { encoding: "utf8" });',
+      },
+    ]);
+
+    expect(result.ok).toBe(false);
+    expect(result.byCode.unsafe_git_argument_boundary).toBe(1);
+  });
+
+  it("accepts a value whose typed boundary is visible at the process call", () => {
+    const result = analyzeQualityText([
+      {
+        path: "src/cli.ts",
+        text: 'execFileSync("git", ["log", "--format=%s", safeRange, "--"]);',
+      },
+    ]);
+
+    expect(result.ok).toBe(true);
+  });
 });

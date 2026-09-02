@@ -8,6 +8,39 @@ export interface DoctorCheckDefinition {
   run: () => LintResult;
 }
 
+export type DoctorCheckSeverity = "hard" | "advisory";
+
+export interface InternalDoctorCheckDefinition {
+  id: string;
+  severity: DoctorCheckSeverity;
+  run: () => LintResult;
+}
+
+export interface InternalDoctorCheckAggregate {
+  allOk: boolean;
+  failingChecks: string[];
+  registeredHardCount: number;
+  evaluatedHardCount: number;
+}
+
+/** full doctor内部checkの唯一のok集計境界。advisoryはmessage専用で判定へ参加しない。 */
+export function aggregateInternalDoctorChecks(
+  definitions: readonly InternalDoctorCheckDefinition[],
+): InternalDoctorCheckAggregate {
+  const hardDefinitions = definitions.filter((definition) => definition.severity === "hard");
+  const evaluated = hardDefinitions.map((definition) => ({
+    id: definition.id,
+    result: definition.run(),
+  }));
+  const failingChecks = evaluated.filter(({ result }) => !result.ok).map(({ id }) => id);
+  return {
+    allOk: failingChecks.length === 0,
+    failingChecks,
+    registeredHardCount: hardDefinitions.length,
+    evaluatedHardCount: evaluated.length,
+  };
+}
+
 export interface DoctorCheckRuntime {
   deps: { repoRoot: string };
   fullDoctor: () => LintResult;

@@ -1,0 +1,105 @@
+{
+  "schema_version": "helix-effective-agent-startup-followup.v1",
+  "baseline": {
+    "source_head": "19d0bffd44fc51ba13922d953dd73f9d47af8dff",
+    "observed_at": "2026-09-02T05:20:00+09:00",
+    "parent_issue": 1370,
+    "document_authority_census_issue": 1372,
+    "child_issues": {
+      "startup_read_order": 1376,
+      "semantic_obligation_registry": 1375,
+      "agent_command_taxonomy": 1374,
+      "provider_hook_attestation": 1373,
+      "worker_startup_packet": 1377,
+      "consumer_propagation": 1378
+    },
+    "plan_id": "PLAN-RECOVERY-78-effective-agent-startup-authority"
+  },
+  "authority_target": {
+    "requirement_root": "requirements-ir/manifest.json",
+    "semantic_read": "canonical_json_only",
+    "canonical_layers": "L1-L12",
+    "canonical_pairs": ["L1-L12", "L2-L11", "L3-L10", "L4-L9", "L5-L8", "L6-L7"],
+    "legacy_markdown": "migration_and_compatibility_read_only",
+    "dual_authority": "forbidden"
+  },
+  "followup_triggers": [
+    "requirements_ir_version_or_digest_changed",
+    "workflow_registry_version_or_digest_changed",
+    "provider_or_cli_version_changed",
+    "provider_native_config_schema_changed",
+    "hook_event_or_capability_changed",
+    "agent_roster_or_model_effort_policy_changed",
+    "canonical_layer_or_pair_changed",
+    "review_merge_release_deployment_authority_changed",
+    "setup_or_distribution_profile_changed"
+  ],
+  "document_authority_census": {
+    "owner_issue": 1372,
+    "authority_order": [
+      "l1_l3_l10_source_authority",
+      "canonical_main_read_after",
+      "requirement_ir_admission",
+      "tracked_document_inventory",
+      "authority_binding_and_reverse_consumer_graph",
+      "doctor_baseline_and_new_debt_ratchet"
+    ],
+    "required_oracles": [
+      "document_authority_census",
+      "document_semantic_drift",
+      "document_consumer_closure",
+      "document_generator_propagation"
+    ],
+    "priority_policy": {
+      "p0": [
+        "startup_authority_leak",
+        "active_consumer_stale_doc",
+        "generator_propagation_drift"
+      ],
+      "p1": [
+        "document_dual_authority",
+        "document_overclaim",
+        "semantic_epoch_drift",
+        "declared_state_drift"
+      ],
+      "p2": [
+        "document_unbound",
+        "missing_lifecycle",
+        "missing_owner"
+      ]
+    },
+    "fail_close_rules": [
+      "issue_prose_is_not_requirement_authority",
+      "reference_or_historical_document_cannot_feed_active_decision",
+      "source_fix_cannot_mask_stale_generated_consumer",
+      "unknown_document_lifecycle_cannot_be_new_current_authority"
+    ]
+  },
+  "findings": [
+    {"id":"EASC-01","severity":"P0","surface":"startup_read_order","evidence_paths":["AGENTS.md","CLAUDE.md","docs/governance/README.md"],"gap":"Markdown v1.3を要件正本としてfirst-readする","owners":[206,397,1364],"terminal_condition":"Requirement IR rootとdigestだけをcurrent semantic authorityとして投影"},
+    {"id":"EASC-02","severity":"P0","surface":"l3_progression_authority","evidence_paths":["docs/governance/l3-progression-authority-rebaseline-2026-07-19.md"],"gap":"旧58文書とMarkdownをcurrent freeze authority扱いする","owners":[206,825],"terminal_condition":"compatibility inventoryへ降格しcurrent freezeをIRへ束縛"},
+    {"id":"EASC-03","severity":"P0","surface":"judgment_core","evidence_paths":["docs/skills/judgment-core.md"],"gap":"L0-L14と旧drive_modelsを全agentへ注入する","owners":[248,322],"terminal_condition":"typed axisとL1-L12 projectionへ収束"},
+    {"id":"EASC-04","severity":"P0","surface":"frontend_agents","evidence_paths":[".claude/agents/fe-lead.md",".claude/agents/fe-ui.md","docs/design/helix/L10-ux"],"gap":"L2-L10 pairを再注入する","owners":[206],"terminal_condition":"L2-L11とL3-L10を責務別に投影"},
+    {"id":"EASC-05","severity":"P0","surface":"claude_commands","evidence_paths":[".claude/commands/spec.md",".claude/commands/test.md",".claude/commands/build.md",".claude/commands/sdd-review.md"],"gap":"旧L5/L6-L6/L8 pairを実行時注入する","owners":[206],"terminal_condition":"全commandがcanonical pair registryから導出"},
+    {"id":"EASC-06","severity":"P1","surface":"qa_agent","evidence_paths":[".claude/agents/qa-test.md"],"gap":"旧gateと固定NFR thresholdを独自正本化する","owners":[206],"terminal_condition":"Requirement/NFR policy参照、unknown fail-closeへ収束"},
+    {"id":"EASC-07","severity":"P1","surface":"rule_drift","evidence_paths":["src/lint/rule-drift.ts","tests/rule-drift.test.ts"],"gap":"意味ではなく旧marker文字列のpresenceを同期する","owners":[581],"terminal_condition":"obligation ID/source digest/effective value/applicability比較へ置換"},
+    {"id":"EASC-08","severity":"P1","surface":"codex_hook","evidence_paths":["AGENTS.md",".codex/hooks.json","tests/codex-hook-adapter.test.ts"],"gap":"0.128/SubagentStop N/Aと0.144/SubagentStop必須が矛盾する","owners":[581,895],"terminal_condition":"effective runtime capability attestationとexact root/HEAD binding"},
+    {"id":"EASC-09","severity":"P1","surface":"claude_memory_wake","evidence_paths":[".claude/settings.json"],"gap":"Stop hookで7230秒memory wakeを実行する","owners":[1215],"terminal_condition":"bounded timeoutとterminal receiptを実測"},
+    {"id":"EASC-10","severity":"P1","surface":"setup_memory_wake","evidence_paths":["src/setup/templates.ts"],"gap":"既知の長時間hookをconsumerへ再配布する","owners":[1215,206],"terminal_condition":"source/template/consumerの同一digest smoke"},
+    {"id":"EASC-11","severity":"P1","surface":"agent_roster_guard","evidence_paths":[".claude/agents","src/runtime/agent-guard-policy.ts","src/setup/templates.ts"],"gap":"Claude agentとして配置・生成するroleをguardがdenyする","owners":[581],"terminal_condition":"roster/runtime/guard/generated template exact set一致"},
+    {"id":"EASC-12","severity":"P1","surface":"worker_context","evidence_paths":["AGENTS.md","CLAUDE.md","src/cli.ts"],"gap":"sealed context必須だが生成CLIが存在しない","owners":[1098],"terminal_condition":"generator/seal/read-afterとexact assignment/HEAD binding"},
+    {"id":"EASC-13","severity":"P1","surface":"ship_command","evidence_paths":[".claude/commands/ship.md"],"gap":"intra-runtime helperとindependent review/merge/release/deploy authorityが未分離","owners":[206],"terminal_condition":"各authorityを別receiptとして明示し独自GOを禁止"},
+    {"id":"EASC-14","severity":"P2","surface":"legacy_team_setup","evidence_paths":["src/setup/templates.ts","AGENTS.md","CLAUDE.md"],"gap":"default-hybrid/team runをcurrent control planeとして生成する","owners":[863,864,206],"terminal_condition":"compatibility-onlyへ隔離しcurrent outputから除去"},
+    {"id":"EASC-15","severity":"P1","surface":"subagent_api_guard","evidence_paths":["src/runtime/agent-guard-policy.ts",".codex/hooks.json"],"gap":"guard必須agent_typeがhosted spawn_agent API schemaになく起動不能","owners":[581],"terminal_condition":"provider capability schemaとguard payload contractが起動前に一致"}
+  ],
+  "aggregate_terminal_requirements": [
+    "parent_issue_remains_open_until_all_child_slices_are_terminal",
+    "all_findings_terminal_with_evidence",
+    "startup_packet_exact_head_read_after",
+    "doctor_and_mutation_green",
+    "consumer_setup_smoke_green",
+    "claude_exact_head_review_green",
+    "reverse_fullback_complete",
+    "current_main_read_after_complete"
+  ]
+}

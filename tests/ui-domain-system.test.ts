@@ -83,7 +83,8 @@ describe("UI domain real-asset L9 gate system assertion (PLAN-L7-540)", () => {
     // ok 集計・全体 ok・メッセージ集約の 3 点で uiDomainBundle を参照することを機械確認する。
     const doctorSource = readFileSync(join(process.cwd(), "src/doctor/index.ts"), "utf8");
     expect(doctorSource).toContain('["uiDomainBundle", uiDomainBundle.ok]');
-    expect(doctorSource).toContain("uiDomainBundle.ok &&");
+    expect(doctorSource).toContain("aggregateInternalDoctorChecks(doctorCheckDefinitions)");
+    expect(doctorSource).toContain("ok: doctorAllChecksOk");
     expect(doctorSource).toContain("...uiDomainBundle.messages.map(");
   });
 
