@@ -414,6 +414,11 @@ function installImmutability(db: HarnessDb): void {
     BEFORE DELETE ON closure_terminal_boundaries BEGIN SELECT RAISE(ABORT, 'closure terminal boundary immutable projection'); END`);
 }
 
+/** Controlled projection replacement後にDB-level immutabilityを再設置する。 */
+export function ensureClosureTerminalBoundaryImmutability(db: HarnessDb): void {
+  installImmutability(db);
+}
+
 export function replaceClosureTerminalBoundaryProjection(
   db: HarnessDb,
   rows: readonly ClosureTerminalBoundaryRow[],

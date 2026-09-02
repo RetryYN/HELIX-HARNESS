@@ -78,8 +78,8 @@ describe("U-CMAT-011: closure physical process receipt schema", () => {
         "2026-07-12T00:00:00Z",
       ];
       insert.run(...values);
-      insert.run("receipt-2", ...values.slice(1));
-      expect(db.prepare("SELECT COUNT(*) AS n FROM closure_process_receipts").get()?.n).toBe(2);
+      expect(() => insert.run("receipt-2", ...values.slice(1))).toThrow(/UNIQUE constraint failed/);
+      expect(db.prepare("SELECT COUNT(*) AS n FROM closure_process_receipts").get()?.n).toBe(1);
       expect(() =>
         db
           .prepare("UPDATE closure_process_receipts SET exit_code=1 WHERE process_receipt_key=?")

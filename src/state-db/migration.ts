@@ -184,6 +184,12 @@ function ensureClosureEvidenceImmutability(db: HarnessDb): void {
     db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipts_no_delete
       BEFORE DELETE ON closure_process_receipts BEGIN SELECT RAISE(ABORT, 'closure process receipt immutable'); END`);
   }
+  if (tableNames(db).includes("closure_process_receipt_migration_conflicts")) {
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipt_migration_conflicts_no_update
+      BEFORE UPDATE ON closure_process_receipt_migration_conflicts BEGIN SELECT RAISE(ABORT, 'closure process receipt migration conflict immutable'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS closure_process_receipt_migration_conflicts_no_delete
+      BEFORE DELETE ON closure_process_receipt_migration_conflicts BEGIN SELECT RAISE(ABORT, 'closure process receipt migration conflict immutable'); END`);
+  }
   if (tableNames(db).includes("closure_authority_review_receipts")) {
     db.exec(`CREATE TRIGGER IF NOT EXISTS closure_authority_review_receipts_no_update
       BEFORE UPDATE ON closure_authority_review_receipts BEGIN SELECT RAISE(ABORT, 'closure authority review receipt immutable'); END`);
@@ -207,6 +213,69 @@ function ensureClosureEvidenceImmutability(db: HarnessDb): void {
       BEFORE UPDATE ON closure_materializations BEGIN SELECT RAISE(ABORT, 'closure materialization immutable'); END`);
     db.exec(`CREATE TRIGGER IF NOT EXISTS closure_materializations_no_delete
       BEFORE DELETE ON closure_materializations BEGIN SELECT RAISE(ABORT, 'closure materialization immutable'); END`);
+  }
+}
+
+/**
+ * v48以前はdedupe tupleが非uniqueだった。unique index作成前に、決定的な最小keyを
+ * canonical rowとして残し、それ以外をappend-only監査表へ退避する。
+ */
+function archiveLegacyClosureProcessReceiptDuplicates(db: HarnessDb, fromVersion: number): void {
+  if (fromVersion >= 48 || !tableNames(db).includes("closure_process_receipts")) return;
+  db.exec("DROP TRIGGER IF EXISTS closure_process_receipts_no_update");
+  db.exec("DROP TRIGGER IF EXISTS closure_process_receipts_no_delete");
+  db.exec(`INSERT OR IGNORE INTO closure_process_receipt_migration_conflicts (
+      archive_key, process_receipt_key, canonical_process_receipt_key, schema_version,
+      materialization_id, kind, repository_head, executable, argv_json, dedupe_key,
+      exit_code, signal, timed_out, stdout_digest, stderr_digest, stdout_path, stderr_path,
+      completed_at, archive_reason, archived_at
+    )
+    SELECT
+      'legacy-dedupe:' || receipt.process_receipt_key,
+      receipt.process_receipt_key,
+      duplicates.canonical_process_receipt_key,
+      receipt.schema_version, receipt.materialization_id, receipt.kind,
+      receipt.repository_head, receipt.executable, receipt.argv_json, receipt.dedupe_key,
+      receipt.exit_code, receipt.signal, receipt.timed_out, receipt.stdout_digest,
+      receipt.stderr_digest, receipt.stdout_path, receipt.stderr_path, receipt.completed_at,
+      'legacy_duplicate_dedupe_tuple', 'schema-v48-migration'
+    FROM closure_process_receipts AS receipt
+    JOIN (
+      SELECT repository_head, dedupe_key, completed_at,
+             MIN(process_receipt_key) AS canonical_process_receipt_key
+      FROM closure_process_receipts
+      WHERE repository_head IS NOT NULL AND dedupe_key IS NOT NULL AND completed_at IS NOT NULL
+      GROUP BY repository_head, dedupe_key, completed_at
+      HAVING COUNT(*) > 1
+    ) AS duplicates
+      ON receipt.repository_head = duplicates.repository_head
+     AND receipt.dedupe_key = duplicates.dedupe_key
+     AND receipt.completed_at = duplicates.completed_at
+    WHERE receipt.process_receipt_key <> duplicates.canonical_process_receipt_key`);
+  db.exec(`DELETE FROM closure_process_receipts
+    WHERE process_receipt_key IN (
+      SELECT process_receipt_key FROM closure_process_receipt_migration_conflicts
+      WHERE archive_reason = 'legacy_duplicate_dedupe_tuple'
+    )`);
+}
+
+/**
+ * SQLiteのlegacy TEXT PRIMARY KEYはNULLを暗黙拒否しない。既存tableを破壊的に作り直さず、
+ * canonical DDLと同じNOT NULL境界をINSERT/UPDATE triggerで補強する。
+ */
+function ensurePrimaryKeyNotNullTriggers(db: HarnessDb): void {
+  for (const table of HARNESS_DB_TABLES) {
+    const primaryKey = table.columns.find((column) => column.primaryKey);
+    if (!primaryKey || !tableNames(db).includes(table.name)) continue;
+    const triggerPrefix = `${table.name}_${primaryKey.name}_pk_not_null`;
+    db.exec(`CREATE TRIGGER IF NOT EXISTS ${triggerPrefix}_insert
+      BEFORE INSERT ON ${table.name}
+      WHEN NEW.${primaryKey.name} IS NULL
+      BEGIN SELECT RAISE(ABORT, 'primary key must not be null'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS ${triggerPrefix}_update
+      BEFORE UPDATE OF ${primaryKey.name} ON ${table.name}
+      WHEN NEW.${primaryKey.name} IS NULL
+      BEGIN SELECT RAISE(ABORT, 'primary key must not be null'); END`);
   }
 }
 
@@ -249,12 +318,14 @@ export function migrate(db: HarnessDb): MigrationResult {
   let addedColumns = 0;
   db.exec("SAVEPOINT helix_schema_migration");
   try {
-    if (fromVersion < 36) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
+    if (fromVersion < 48) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
     retireLegacyWorkflowSchemaObjects(db, fromVersion);
     const ddls = schemaDdl();
     for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
     addedColumns = addMissingColumns(db);
+    archiveLegacyClosureProcessReceiptDuplicates(db, fromVersion);
     ensurePrimaryKeyCompatibilityIndexes(db);
+    ensurePrimaryKeyNotNullTriggers(db);
     ensureGateRunReceiptImmutability(db);
     ensureClosureEvidenceImmutability(db);
     ensureExecutionEpisodeRightArmEvidenceImmutability(db);
