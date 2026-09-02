@@ -87,7 +87,7 @@ source module policy は `requirements -> shared` のみを明示許可する。
 GitHub Actionsの独立jobへ移行する。workflowへpartition意味を埋め込まず、
 `src/runtime/full-regression-shards.ts`のpure contractがtracked test inventoryを次へ分割する。
 
-- `bulk-1`／`bulk-2`: `cli-surface`と`tests/slow/**`を除くfast testをpath digestで安定分割する。
+- `bulk-1`／`bulk-2`／`bulk-3`: `cli-surface`と`tests/slow/**`を除くfast testをpath digestで安定分割する。
 - `stateful`: `tests/cli-surface.test.ts`と全slow testだけを保持する。
 
 partitionはcandidate HEAD、base SHA、inventory digest、shard ID、kind、canonical file exact set、file digestへ
@@ -104,7 +104,7 @@ output digest、exit code、時刻を入力境界で検証し、validatorの`ok=
 
 | oracle ID | 設計上の観測点 |
 |---|---|
-| `U-FULLSHARD-001` | 入力順非依存のbulk 2件＋stateful安定partition |
+| `U-FULLSHARD-001` | 入力順非依存のbulk 3件＋stateful安定partition |
 | `U-FULLSHARD-002` | inventory exact union、交差／欠落／余剰0 |
 | `U-FULLSHARD-003` | inventory／partition／shard fileの正規digest |
 | `U-FULLSHARD-004` | CLI／slow stateful固定とbulk補集合 |
@@ -114,9 +114,9 @@ output digest、exit code、時刻を入力境界で検証し、validatorの`ok=
 | `U-FULLSHARD-CLI-002` | receipt identityをplanだけから導出するCLI境界 |
 | `U-FULLSHARD-CLI-003` | validator redをtyped JSONとexit 1へ写像するCLI境界 |
 | `U-FULLSHARD-CLI-004` | output digest／exit code／時刻をfail-closeするCLI境界 |
-| `U-FULLSHARD-WF-001` | preflight／3 shard／finalizeのtyped artifact接続。schedule／workflow_dispatchではPR由来のcandidate HEADをcheckout refへ流さず、PR headまたはtrusted `github.sha`へ限定する |
+| `U-FULLSHARD-WF-001` | preflight／4 shard／finalizeのtyped artifact接続。schedule／workflow_dispatchではPR由来のcandidate HEADをcheckout refへ流さず、PR headまたはtrusted `github.sha`へ限定する |
 | `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／Biome／doctor／required aggregate順序 |
-| `U-FULLSHARD-WF-003` | preflight／shard／finalize各jobのbounded timeoutを固定し、timeout延長を性能改善やmerge greenへ偽装しない |
+| `U-FULLSHARD-WF-003` | preflight 35分、bulk各25分、stateful 30分、finalize 15分のbounded timeoutとbudget telemetryを固定し、timeout変更を性能改善やmerge greenへ偽装しない |
 
 ### 6.1 旧Recovery oracleの退役とキャンセル境界
 

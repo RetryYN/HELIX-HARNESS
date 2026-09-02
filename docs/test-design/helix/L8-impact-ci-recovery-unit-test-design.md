@@ -31,7 +31,7 @@ queue_id: L3Q-PC-039
 | U-IMPACTCI-011 | profile/execution surface/environment/cache class別のterminal母集団でp50/p95計算 | internal/GitHub混在、cold/warm混在、cancelled/superseded混入、母集団数欠落を拒否 |
 | U-IMPACTCI-012 | correctness green＋budget超過をmerge greenとRecovery evidenceへ分離 | timeout延長、test除外、threshold緩和、`continue-on-error`を改善扱いするmutationを拒否 |
 | U-IMPACTCI-WF-004 | full回帰をgreen完走したrunだけがhead/base SHA束縛のfull receipt artifactを発行し、同一head SHAのready_for_review／converted_to_draft遷移eventはreceiptの両SHA完全一致時だけ再利用してreuse receipt（reused_run_id・tested_head）を残す | transition event限定の欠落、success絞り込みの欠落、full receipt照合の欠落、base SHA一致検査の欠落、照会失敗フォールバックの欠落、run id検証の欠落、receipt発行のfull限定／reuse除外の欠落を拒否 |
-| U-FULLSHARD-001 | 入力順に依存せずfast bulkを2 shard、CLI／slowをstatefulへ安定分割 | 入力順でpartition digestが変わる、stateful pathがbulkへ移るmutationを拒否 |
+| U-FULLSHARD-001 | 入力順に依存せずfast bulkを3 shard、CLI／slowをstatefulへ安定分割 | 入力順でpartition digestが変わる、stateful pathがbulkへ移るmutationを拒否 |
 | U-FULLSHARD-002 | shard unionがtracked inventory exact setで交差0 | missing、duplicate、unknown pathを拒否 |
 | U-FULLSHARD-003 | inventory／partition／shard file digestがcanonical bytesへ一致 | digest据置きのfile変更、partition digest改竄を拒否 |
 | U-FULLSHARD-004 | statefulはCLI surfaceとslowだけ、bulkはその補集合 | CLI欠落、slowのbulk混入、fastのstateful混入を拒否 |
@@ -41,9 +41,9 @@ queue_id: L3Q-PC-039
 | U-FULLSHARD-CLI-002 | receipt identityをplanからだけ導出する | callerによるHEAD／base／partition／file digest差替えを許可しない |
 | U-FULLSHARD-CLI-003 | validator redをtyped JSONとexit 1へ写像する | receipt欠落をsuccess exitへ変換しない |
 | U-FULLSHARD-CLI-004 | output digest／exit code／時刻入力を境界検査する | malformed digest、負／非整数exit、invalid timeを拒否 |
-| U-FULLSHARD-WF-001 | preflight、3 shard、finalizeをtyped artifactと同一HEAD／baseへ接続し、checkout refはPR headまたはtrusted `github.sha`へ限定 | job／artifact／identity／required aggregateの欠落、schedule／workflow_dispatchでneeds由来candidate HEADをcheckoutする経路を拒否 |
+| U-FULLSHARD-WF-001 | preflight、4 shard、finalizeをtyped artifactと同一HEAD／baseへ接続し、checkout refはPR headまたはtrusted `github.sha`へ限定 | job／artifact／identity／required aggregateの欠落、schedule／workflow_dispatchでneeds由来candidate HEADをcheckoutする経路を拒否 |
 | U-FULLSHARD-WF-002 | receipt exact set検証後だけDB／Biome／doctorを実行 | receipt欠落、wrong partition、fail-open、gate順序短絡を拒否 |
-| U-FULLSHARD-WF-003 | preflight 35分、各shard 20分、finalize 15分のbounded job timeoutを固定 | shard timeout 20→21などの延長、timeout検査の削除、job単位の無制限化を拒否 |
+| U-FULLSHARD-WF-003 | preflight 35分、bulk各25分、stateful 30分、finalize 15分のbounded job timeoutとbudget telemetryを固定 | shard timeout、telemetry、timeout検査の削除、job単位の無制限化を拒否 |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLIはcontext injection assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、routing semantics変更を拒否 |
 
@@ -84,7 +84,7 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-012 | correctness／performance分離 | budget超過をcorrectness redへ偽装するmutationを拒否 | `tests/impact-ci.test.ts` |
 | U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |
-| U-FULLSHARD-001 | deterministic partition | 入力順に依存せずbulk 2件とstatefulへexact partitionする | `tests/full-regression-shards.test.ts` |
+| U-FULLSHARD-001 | deterministic partition | 入力順に依存せずbulk 3件とstatefulへexact partitionする | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-002 | inventory exact set | missing／duplicate／unknown pathを拒否する | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-003 | canonical digest | partition／file digest改竄を個別拒否する | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-004 | stateful boundary | CLI欠落、slowのbulk混入、fastのstateful混入を拒否する | `tests/full-regression-shards.test.ts` |
@@ -94,9 +94,9 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-FULLSHARD-CLI-002 | CLI receipt | identityをplanだけから導出する | `tests/full-regression-shards-cli.test.ts` |
 | U-FULLSHARD-CLI-003 | CLI validate | receipt欠落をtyped redとexit 1へ写像する | `tests/full-regression-shards-cli.test.ts` |
 | U-FULLSHARD-CLI-004 | CLI boundary | digest、exit code、時刻の不正値を拒否する | `tests/full-regression-shards-cli.test.ts` |
-| U-FULLSHARD-WF-001 | workflow DAG | 独立job、artifact、HEAD／base、required aggregateを検査 | `tests/harness-check-workflow.test.ts` |
+| U-FULLSHARD-WF-001 | workflow DAG | 独立4 shard job、artifact、HEAD／base、required aggregateを検査 | `tests/harness-check-workflow.test.ts` |
 | U-FULLSHARD-WF-002 | workflow finalize | receipt exact setとpost-test gate順序を検査 | `tests/harness-check-workflow.test.ts` |
-| U-FULLSHARD-WF-003 | workflow timeout | preflight／shard／finalizeのbounded timeoutを検査し、20→21 mutationを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-FULLSHARD-WF-003 | workflow timeout | preflight／4 shard／finalizeのbounded timeoutとbudget telemetryを検査し、bulk 25→26 mutationを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLI bounded deadline | provider-neutral manifest assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLI bounded deadline | context injection assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 

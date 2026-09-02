@@ -663,7 +663,7 @@ jobs:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -677,6 +677,13 @@ jobs:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
+      - name: record shard budget telemetry
+        env:
+          SHARD_ID: bulk-1
+          SHARD_TIMEOUT_MINUTES: "25"
+        run: |
+          set -euo pipefail
+          printf '%s\n' "- shard_id=${SHARD_ID} configured_timeout_minutes=${SHARD_TIMEOUT_MINUTES} job_result=running" >> "$GITHUB_STEP_SUMMARY"
       - name: download full regression shard plan
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
@@ -713,7 +720,7 @@ jobs:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -727,6 +734,13 @@ jobs:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
+      - name: record shard budget telemetry
+        env:
+          SHARD_ID: bulk-2
+          SHARD_TIMEOUT_MINUTES: "25"
+        run: |
+          set -euo pipefail
+          printf '%s\n' "- shard_id=${SHARD_ID} configured_timeout_minutes=${SHARD_TIMEOUT_MINUTES} job_result=running" >> "$GITHUB_STEP_SUMMARY"
       - name: download full regression shard plan
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
@@ -757,11 +771,11 @@ jobs:
           path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-2/receipt.json
           retention-days: 7
 
-  full-regression-stateful:
+  full-regression-bulk-3:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -775,6 +789,68 @@ jobs:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
+      - name: record shard budget telemetry
+        env:
+          SHARD_ID: bulk-3
+          SHARD_TIMEOUT_MINUTES: "25"
+        run: |
+          set -euo pipefail
+          printf '%s\n' "- shard_id=${SHARD_ID} configured_timeout_minutes=${SHARD_TIMEOUT_MINUTES} job_result=running" >> "$GITHUB_STEP_SUMMARY"
+      - name: download full regression shard plan
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: full-regression-shard-plan
+          path: ${{ runner.temp }}/full-regression-shard-plan
+      - name: execute bulk-3 and seal receipt
+        run: |
+          set -euo pipefail
+          plan="$RUNNER_TEMP/full-regression-shard-plan/plan.json"
+          npx --no-install tsx src/cli/full-regression-shards.ts files --plan-file "$plan" --shard-id bulk-3 > "$RUNNER_TEMP/files.json"
+          mapfile -t files < <(jq -r '.[]' "$RUNNER_TEMP/files.json")
+          started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          set +e
+          nice -n 10 npx --no-install vitest run --project fast "${files[@]}" > "$RUNNER_TEMP/shard.log" 2>&1
+          exit_code=$?
+          set -e
+          completed_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          output_digest="sha256:$(sha256sum "$RUNNER_TEMP/shard.log" | cut -d' ' -f1)"
+          mkdir -p "$RUNNER_TEMP/full-regression-shard-receipt-bulk-3"
+          npx --no-install tsx src/cli/full-regression-shards.ts receipt --plan-file "$plan" --shard-id bulk-3 --exit-code "$exit_code" --output-digest "$output_digest" --started-at "$started_at" --completed-at "$completed_at" > "$RUNNER_TEMP/full-regression-shard-receipt-bulk-3/receipt.json"
+          cat "$RUNNER_TEMP/shard.log"
+          exit "$exit_code"
+      - name: upload bulk-3 receipt
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: full-regression-shard-receipt-bulk-3
+          path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-3/receipt.json
+          retention-days: 7
+
+  full-regression-stateful:
+    needs: [full-regression-preflight]
+    if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: "24.15"
+      - name: install deps (frozen)
+        run: npm ci
+      - name: record shard budget telemetry
+        env:
+          SHARD_ID: stateful
+          SHARD_TIMEOUT_MINUTES: "30"
+        run: |
+          set -euo pipefail
+          printf '%s\n' "- shard_id=${SHARD_ID} configured_timeout_minutes=${SHARD_TIMEOUT_MINUTES} job_result=running" >> "$GITHUB_STEP_SUMMARY"
       - name: download full regression shard plan
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
@@ -824,6 +900,7 @@ jobs:
       - full-regression-preflight
       - full-regression-bulk-1
       - full-regression-bulk-2
+      - full-regression-bulk-3
       - full-regression-stateful
     if: ${{ always() }}
     runs-on: ubuntu-latest
@@ -844,6 +921,22 @@ jobs:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
+      - name: classify shard outcome telemetry
+        if: ${{ always() }}
+        env:
+          BULK_1_RESULT: ${{ needs.full-regression-bulk-1.result }}
+          BULK_2_RESULT: ${{ needs.full-regression-bulk-2.result }}
+          BULK_3_RESULT: ${{ needs.full-regression-bulk-3.result }}
+          STATEFUL_RESULT: ${{ needs.full-regression-stateful.result }}
+        run: |
+          set -euo pipefail
+          {
+            echo "## Full regression shard outcome telemetry"
+            echo "- shard=bulk-1 job_result=${BULK_1_RESULT} configured_timeout_minutes=25"
+            echo "- shard=bulk-2 job_result=${BULK_2_RESULT} configured_timeout_minutes=25"
+            echo "- shard=bulk-3 job_result=${BULK_3_RESULT} configured_timeout_minutes=25"
+            echo "- shard=stateful job_result=${STATEFUL_RESULT} configured_timeout_minutes=30"
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: download full regression shard plan
         if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
@@ -862,6 +955,12 @@ jobs:
         with:
           name: full-regression-shard-receipt-bulk-2
           path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-2
+      - name: download bulk-3 receipt
+        if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: full-regression-shard-receipt-bulk-3
+          path: ${{ runner.temp }}/full-regression-shard-receipt-bulk-3
       - name: download stateful receipt
         if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
@@ -873,6 +972,7 @@ jobs:
           PREFLIGHT_RESULT: ${{ needs.full-regression-preflight.result }}
           BULK_1_RESULT: ${{ needs.full-regression-bulk-1.result }}
           BULK_2_RESULT: ${{ needs.full-regression-bulk-2.result }}
+          BULK_3_RESULT: ${{ needs.full-regression-bulk-3.result }}
           STATEFUL_RESULT: ${{ needs.full-regression-stateful.result }}
           FULL_REQUIRED: ${{ needs.full-regression-preflight.outputs.full }}
           REUSE: ${{ needs.full-regression-preflight.outputs.reuse }}
@@ -880,8 +980,8 @@ jobs:
           set -euo pipefail
           [ "$PREFLIGHT_RESULT" = "success" ] || { echo "preflight failed: $PREFLIGHT_RESULT" >&2; exit 1; }
           if [ "$FULL_REQUIRED" = "true" ] && [ "$REUSE" != "true" ]; then
-            [ "$BULK_1_RESULT" = "success" ] && [ "$BULK_2_RESULT" = "success" ] && [ "$STATEFUL_RESULT" = "success" ] || {
-              echo "shard job failed/cancelled: bulk-1=$BULK_1_RESULT bulk-2=$BULK_2_RESULT stateful=$STATEFUL_RESULT" >&2
+            [ "$BULK_1_RESULT" = "success" ] && [ "$BULK_2_RESULT" = "success" ] && [ "$BULK_3_RESULT" = "success" ] && [ "$STATEFUL_RESULT" = "success" ] || {
+              echo "shard job failed/cancelled: bulk-1=$BULK_1_RESULT bulk-2=$BULK_2_RESULT bulk-3=$BULK_3_RESULT stateful=$STATEFUL_RESULT" >&2
               exit 1
             }
             npx --no-install tsx src/cli/full-regression-shards.ts validate \
@@ -889,6 +989,7 @@ jobs:
               --inventory-file "$RUNNER_TEMP/full-regression-shard-plan/inventory.json" \
               --receipt-file "$RUNNER_TEMP/full-regression-shard-receipt-bulk-1/receipt.json" \
               --receipt-file "$RUNNER_TEMP/full-regression-shard-receipt-bulk-2/receipt.json" \
+              --receipt-file "$RUNNER_TEMP/full-regression-shard-receipt-bulk-3/receipt.json" \
               --receipt-file "$RUNNER_TEMP/full-regression-shard-receipt-stateful/receipt.json"
             mkdir -p "$RUNNER_TEMP/impact-ci-full-receipt"
             printf '{"head_sha":"%s","base_sha":"%s","tested_merge_head":"%s"}\n' \
