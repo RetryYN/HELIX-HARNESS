@@ -170,7 +170,8 @@ describe("STATE-DB-WORKFLOW-RETIREMENT-001", () => {
     const source = readFileSync("src/doctor/index.ts", "utf8");
     expect(source).toContain("checkStateDbSchemaAuthority({ repoRoot: deps.repoRoot })");
     expect(source).toContain('["stateDbSchemaAuthority", stateDbSchemaAuthority.ok]');
-    expect(source).toContain("stateDbSchemaAuthority.ok &&");
+    expect(source).toContain("aggregateInternalDoctorChecks(doctorCheckDefinitions)");
+    expect(source).toContain("ok: doctorAllChecksOk");
     expect(source).toContain("...stateDbSchemaAuthority.messages.map");
   });
 });

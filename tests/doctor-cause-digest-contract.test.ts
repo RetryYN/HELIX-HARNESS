@@ -55,8 +55,8 @@ describe("PLAN-L7-449 doctor failure contract (IT-DUR-001)", () => {
     expect(source).not.toMatch(/\$\{(?:error|cause|err)\}/);
     expect(source).not.toMatch(/(?:error|cause|err)\.(?:message|stack)/);
     expect(anonymousCatchOwnerDigest(source)).toEqual({
-      count: 134,
-      digest: "sha256:78696891889f782b76bb3a61a818d716fdf7380cb1aecc21a898cdfd9402a1ae",
+      count: 133,
+      digest: "sha256:78f3e5457101ce4fece85bf3ef6a26dc75ee5c47596503dc688fa3c9f8b68cc8",
     });
   });
 
