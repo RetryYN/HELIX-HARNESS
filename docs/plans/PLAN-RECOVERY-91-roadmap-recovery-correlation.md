@@ -56,10 +56,10 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/roadmap-recovery-correlation.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-roadmap-recovery-correlation-unit-test-design.md, artifact_type: test_design }
 modifies:
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_catalog }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
-  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_projection }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: src/state-db/vmodel-fit.ts, artifact_type: source_module }
