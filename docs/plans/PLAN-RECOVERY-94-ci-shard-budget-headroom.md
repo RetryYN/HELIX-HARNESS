@@ -24,7 +24,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: PERFORMANCE_REFACTOR
+  target_id: RECOVERY
 entry_signals:
   - regression_dev
 contract_preconditions: "PLAN-L7-685の3独立shard契約は存在するが、bulk-1とstatefulの実測時間が各job timeout 20分へ張り付き、timeout発火によるcancelledがmerge経路を不安定化している"
