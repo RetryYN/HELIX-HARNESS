@@ -4,18 +4,8 @@ title: "PLAN-L3-77: REFACTORING trigger policyとRF0 admissionをL3/L10へfreeze
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
-l3_human_approval:
-  schema_version: helix-l3-human-approval.v1
-  approval_kind: human_po
-  decision: approve
-  approver: RetryYN
-  approved_at: "2026-09-01T19:56:11Z"
-  plan_id: PLAN-L3-77-refactoring-trigger-authority
-  approval_record_id: L3-PO-1353-002
-  approval_source: human_gate_record
-  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1353#issuecomment-5499608673"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -62,34 +52,7 @@ dependencies:
 agent_slots:
   - { role: tl, slot_label: "TL — UIL／System Synthesis／Universal Workflow責務境界" }
   - { role: qa, slot_label: "QA — trigger policy／admission／anti-starvation mutation" }
-review_evidence:
-  - reviewer: claude-code
-    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-02T05:00:30+09:00"
-    tests_green_at: "2026-09-02T04:59:37+09:00"
-    verdict: approve
-    scope: "PLAN-L3-77 exact-HEAD 78a6965dd 独立検収。前回検収HEADとの差分が承認record差し替えだけであること、canonical requirements無変更のcandidate隔離、RTG-R-01..06とRTG-AC-001..012のexact対応、承認とcanonical promotionの境界分離、verification緩和拒否を確認した。承認判断自体は本evidenceの射程外。"
-    worker_model: codex
-    reviewer_model: claude:claude-opus-5
-    reviewed_head_sha: 78a6965ddf6e9569941337937f20d22e77935aad
-    green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run tests/design-language.test.ts tests/design-coverage.test.ts tests/oracle-test-trace.test.ts tests/ddd-tdd-rules.test.ts"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-02T04:59:37+09:00"
-        evidence_path: tests/design-language.test.ts
-        output_digest: "sha256:bd06cb2cf9986e76079bb88f7758fd9e5ac6ccf0fe463a895e3b456ac875a19a"
-      - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-02T04:59:37+09:00"
-        evidence_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md
-        output_digest: "sha256:2f279fd5db8d5b9f62e1bc861a4c29f0ae1169894351e4964eacc099eb91187c"
+review_evidence: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/refactoring-trigger-admission-requirements.md, artifact_type: markdown_doc }
@@ -105,9 +68,9 @@ generates:
 | 1 | 既存UIL trigger、System Synthesis RF0-RF6、Universal Workflow routingを棚卸し | owner重複と新規Coreがない |
 | 2 | Trigger PolicyとRF0 AdmissionをL3/L10へ追加 | 6 R／12 ACがexact対応する |
 | 3 | 元指示書を処分 | root原稿をcurrent authorityとして残さない |
-| 4 | PO L3 approval、independent review、G3再freeze | 後続runtime sliceを開始できる |
+| 4 | plan固有L3 approval、independent review、G3再freeze | 後続runtime sliceを開始できる |
 
-本PLANではruntime、registry、DB、CLIを変更しない。PO L3 approvalは新しいplan固有recordで成立したが、
-`docs/governance/candidates/`の成果物はcanonical promotion前の隔離を維持し、current authorityやG3 freezeへ先行投影しない。
+本PLANではruntime、registry、DB、CLIを変更しない。plan固有L3 approvalは未成立であり、
+`docs/governance/candidates/`の成果物は未承認draft candidateとして隔離し、current authorityやG3 freezeへ先行投影しない。
 後続のpromotion sliceで正規L3/L10へ移動してから、policy、evaluator、admission、projection、anti-starvation、
 dogfood／Reverseへ原子的に分割する。
