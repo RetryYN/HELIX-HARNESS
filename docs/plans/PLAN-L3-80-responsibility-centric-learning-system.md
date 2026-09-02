@@ -66,7 +66,7 @@ generates:
   - { artifact_path: docs/governance/candidates/responsibility-centric-learning-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/responsibility-centric-learning-acceptance.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_json }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — responsibility-first learningと既存authority非侵害" }
   - { role: se, slot_label: "SE — asset、index、promotion、mechanization境界" }
