@@ -96,24 +96,6 @@ review_evidence:
         evidence_path: .github/workflows/harness-check.yml
         output_digest: "sha256:6abbae8088381ac4f7e0f73fcd1c92396a5db4d0d15de944bf11920aa9ee56da"
         result: "exact HEAD 8bf1ba6e436b057c74f136f82a016da70e2de575のCI run 33690103758がterminal success、DB convergence=true"
-      - kind: smoke
-        command: "gh run view 33693162040 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,url"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-02T23:29:45Z"
-        evidence_path: .github/workflows/harness-check.yml
-        output_digest: "sha256:78d452c059ada3e4c64031bd129aa055cc996d32b526b7826d178b050a78e2d0"
-        result: "canonical merge後のmain d105a15c68aee71d754f538186be3cb51b0246f0で全shard、DB rebuild、doctor、Full typed lane statusを含むpost-main harness-checkがterminal success"
-      - kind: smoke
-        command: "gh api repos/RetryYN/HELIX-HARNESS/actions/runs/33693162252 --jq '.status + \" \" + (.conclusion // \"\") + \" \" + .head_sha'"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-02T23:29:45Z"
-        evidence_path: .github/workflows/codeql.yml
-        output_digest: "sha256:bb397aba4104ddc1febc49e09f4e9d6ab837478e70fe66e709e0ea3a05e78092"
-        result: "main d105a15c68aee71d754f538186be3cb51b0246f0のCodeQL run 33693162252がterminal success"
 ---
 
 # 設計書artifact digest照合 Recovery
