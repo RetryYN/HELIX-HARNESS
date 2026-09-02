@@ -16,7 +16,7 @@ responsibility_owner: worker-wrapper-admission
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: retired
+legacy_retirement_state: removed
 no_code_decision: modify
 ddd_modeling_decision: value_object
 workflow_identity:
