@@ -63,6 +63,8 @@ generates:
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-acceptance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-recognition.md, artifact_type: markdown_doc }
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — v0.3→v0.4 Requirement Re-entryと旧approval非流用" }
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }
@@ -82,5 +84,6 @@ review_evidence: []
 
 ## Freeze境界
 
-本PLAN固有のPO L3承認は新しいplan固有recordで成立した。candidateはcanonical promotion前の隔離を維持し、独立exact-HEAD review、CI、doctor、DB convergence後に
+本PLAN固有のL3 approvalは未成立である。candidateはcurrent authorityへ昇格させず隔離を維持する。
+plan固有のhuman approval、独立exact-HEAD review、CI、doctor、DB convergenceが成立した後に限り、
 v0.3 current authorityを置換する別の原子的promotion PRへ進む。
