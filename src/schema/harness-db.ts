@@ -21,7 +21,7 @@ export type { ColumnDef, ColumnType, IndexDef, TableDef } from "./harness-db-typ
  * affinity ヒント)。各 table の列・PK・index は §2.7/§9.1/§9.3 に準拠。
  */
 
-export const SCHEMA_VERSION = 47;
+export const SCHEMA_VERSION = 48;
 
 /**
  * SQL 識別子検証 (injection 防止)。table / column / index 名は ? でバインドできず DDL/DML に
@@ -42,7 +42,7 @@ export const HARNESS_DB_TABLE_BY_NAME: ReadonlyMap<string, TableDef> = new Map(
 /** CREATE TABLE DDL を registry から生成 (deterministic、IF NOT EXISTS)。 */
 export function createTableSql(table: TableDef): string {
   const cols = table.columns.map((c) => {
-    const constraint = c.primaryKey ? " PRIMARY KEY" : "";
+    const constraint = c.primaryKey ? " NOT NULL PRIMARY KEY" : "";
     return `  ${c.name} ${c.type}${constraint}`;
   });
   return `CREATE TABLE IF NOT EXISTS ${table.name} (\n${cols.join(",\n")}\n)`;

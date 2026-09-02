@@ -66,7 +66,10 @@ import type { VisualizationContract } from "../schema/visualization-view-contrac
 import { loadWorkflowClassificationCatalog } from "../schema/workflow-classification-catalog";
 import { nowIso } from "../shared/time-utils";
 import { deriveArtifactProgressDecision } from "./artifact-progress-decision";
-import { projectTrackedClosureTerminalBoundaries } from "./closure-terminal-boundaries";
+import {
+  ensureClosureTerminalBoundaryImmutability,
+  projectTrackedClosureTerminalBoundaries,
+} from "./closure-terminal-boundaries";
 import { buildProjectDriveModelReport, buildProjectRoadmapCurrentReport } from "./current-location";
 import {
   projectFeedbackEvents,
@@ -2635,6 +2638,12 @@ const IMMUTABLE_RECEIPT_TABLES = new Set([
   "semantic_result_heads",
   "semantic_result_operations",
   "closure_process_receipts",
+  // Append-only runtime evidence/event ledgers。migration triggerと同じ保持境界に置く。
+  "github_execution_episode_right_arm_evidence",
+  "orchestration_event_projections",
+  // tracked ledgerから再構築するcontrolled projection。generic truncateからは外し、
+  // rebuild transaction内の専用replacementでのみ置換する。
+  "closure_terminal_boundaries",
   "closure_authority_review_receipts",
   "team_member_run_receipts",
   "runner_attestations",
@@ -5198,6 +5207,9 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_update");
       db.exec("DROP TRIGGER IF EXISTS closure_terminal_boundaries_no_delete");
       profiled("truncateProjectionTables", input.onProfile, () => truncateProjectionTables(db));
+      // closure_terminal_boundaries はimmutableだがdocument projectionでもあるため、runtime ledgerの
+      // ように永久保持せず、triggerを外したこのcontrolled rebuild境界だけで置換する。
+      db.exec("DELETE FROM closure_terminal_boundaries");
       const plans = profiled("projectPlans", input.onProfile, () => projectPlans(repoRoot, db));
       profiled("projectRequirementIr", input.onProfile, () => projectRequirementIr(repoRoot, db));
       if (input.runtimeLogPolicy !== "exclude") {
@@ -5216,6 +5228,7 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
       profiled("projectTrackedClosureTerminalBoundaries", input.onProfile, () =>
         projectTrackedClosureTerminalBoundaries({ repoRoot, db }),
       );
+      ensureClosureTerminalBoundaryImmutability(db);
       if (input.runtimeLogPolicy !== "exclude") {
         profiled("projectRuntimeVerificationEvents", input.onProfile, () =>
           projectRuntimeVerificationEvents(repoRoot, db),

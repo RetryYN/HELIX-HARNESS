@@ -33,10 +33,10 @@ contract_invariants: "schema SSoT、transactional rebuild、runtime receipt pres
 contract_failures: "NULL primary key重複、dedupe key重複、immutability triggerによるrebuild abort、app-layer-only不変性の無根拠拡大を拒否する"
 tdd_red_required: true
 red_test: "TEXT PRIMARY KEYへNULLを2回insertでき、closure process dedupe重複が通り、trigger付き3表がtruncate対象に残ることを再現する"
-red_at: "2026-09-02T20:45:00+09:00"
-green_at: null
+red_at: "2026-09-02T20:54:36+09:00"
+green_at: "2026-09-02T20:58:16+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: null
+mutation_oracle_evidence: "修正前sourceをseeded defectとしてnpx vitest run tests/state-db.test.tsを実測し、U-DBKEY-001はTEXT PK DDLのNOT NULL欠落、U-DBKEY-002はdedupe重複受理、U-DBIMM-001/003はorchestration immutability triggerによるrebuild abortで3 failed／16 passed・exit 1となった。NOT NULL DDL＋legacy trigger、unique dedupe index、runtime保持集合＋controlled closure projectionへ修復後、state-db 20 testsとschema-authority 5 testsがgreen／exit 0となり3 defectを個別にkillした。"
 complexity_effect: net_reduction
 complexity_justification: "DDL制約とrebuild保持集合をschema authorityへ揃え、呼出側の暗黙前提をDB境界へ集約する"
 removal_trigger: "なし。state DB integrityの恒久境界"
@@ -59,7 +59,9 @@ modifies:
   - { artifact_path: src/schema/harness-db.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/closure-terminal-boundaries.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/schema-authority.ts, artifact_type: source_module }
   - { artifact_path: tests/state-db.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — schema／runtime owner境界監査" }

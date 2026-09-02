@@ -210,6 +210,26 @@ function ensureClosureEvidenceImmutability(db: HarnessDb): void {
   }
 }
 
+/**
+ * SQLiteのlegacy TEXT PRIMARY KEYはNULLを暗黙拒否しない。既存tableを破壊的に作り直さず、
+ * canonical DDLと同じNOT NULL境界をINSERT/UPDATE triggerで補強する。
+ */
+function ensurePrimaryKeyNotNullTriggers(db: HarnessDb): void {
+  for (const table of HARNESS_DB_TABLES) {
+    const primaryKey = table.columns.find((column) => column.primaryKey);
+    if (!primaryKey || !tableNames(db).includes(table.name)) continue;
+    const triggerPrefix = `${table.name}_${primaryKey.name}_pk_not_null`;
+    db.exec(`CREATE TRIGGER IF NOT EXISTS ${triggerPrefix}_insert
+      BEFORE INSERT ON ${table.name}
+      WHEN NEW.${primaryKey.name} IS NULL
+      BEGIN SELECT RAISE(ABORT, 'primary key must not be null'); END`);
+    db.exec(`CREATE TRIGGER IF NOT EXISTS ${triggerPrefix}_update
+      BEFORE UPDATE OF ${primaryKey.name} ON ${table.name}
+      WHEN NEW.${primaryKey.name} IS NULL
+      BEGIN SELECT RAISE(ABORT, 'primary key must not be null'); END`);
+  }
+}
+
 function ensureExecutionEpisodeRightArmEvidenceImmutability(db: HarnessDb): void {
   if (!tableNames(db).includes("github_execution_episode_right_arm_evidence")) return;
   db.exec(`CREATE TRIGGER IF NOT EXISTS github_execution_episode_right_arm_evidence_no_update
@@ -249,12 +269,13 @@ export function migrate(db: HarnessDb): MigrationResult {
   let addedColumns = 0;
   db.exec("SAVEPOINT helix_schema_migration");
   try {
-    if (fromVersion < 36) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
+    if (fromVersion < 48) db.exec("DROP INDEX IF EXISTS idx_closure_process_receipts_dedupe");
     retireLegacyWorkflowSchemaObjects(db, fromVersion);
     const ddls = schemaDdl();
     for (const ddl of ddls.filter((s) => s.startsWith("CREATE TABLE"))) db.exec(ddl);
     addedColumns = addMissingColumns(db);
     ensurePrimaryKeyCompatibilityIndexes(db);
+    ensurePrimaryKeyNotNullTriggers(db);
     ensureGateRunReceiptImmutability(db);
     ensureClosureEvidenceImmutability(db);
     ensureExecutionEpisodeRightArmEvidenceImmutability(db);

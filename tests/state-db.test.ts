@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  createTableSql,
   HARNESS_DB_TABLE_BY_NAME,
   primaryKeyOf,
   SCHEMA_VERSION,
@@ -21,6 +22,7 @@ import { HARNESS_DB_SEMANTIC_TABLES } from "../src/schema/harness-db-tables-sema
 import { assertWithinHelixStateDir, openHarnessDb, upsertRow } from "../src/state-db/index";
 import { ensureHarnessSchema, harnessDbStatus } from "../src/state-db/maintenance";
 import { migrate, missingTables, rowCounts, tableNames } from "../src/state-db/migration";
+import { rebuildHarnessDb } from "../src/state-db/projection-writer";
 
 /**
  * bun:sqlite releases the OS file handle on GC finalization rather than synchronously on
@@ -462,6 +464,95 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     expect(schemaDdl().some((s) => s.startsWith("CREATE TABLE IF NOT EXISTS plan_registry"))).toBe(
       true,
     );
+  });
+
+  // PLAN-RECOVERY-90-db-key-immutability — U-DBKEY-001 / U-DBIMM-002
+  it("canonical DDL は全primary keyをNOT NULL PRIMARY KEYとして生成する", () => {
+    for (const table of HARNESS_DB_TABLES) {
+      const primaryKey = table.columns.find((column) => column.primaryKey);
+      expect(primaryKey, table.name).toBeDefined();
+      expect(createTableSql(table), table.name).toContain(
+        `${primaryKey?.name} ${primaryKey?.type} NOT NULL PRIMARY KEY`,
+      );
+    }
+
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      expect(() => db.prepare("INSERT INTO plan_registry (plan_id) VALUES (NULL)").run()).toThrow();
+    } finally {
+      db.close();
+    }
+  });
+
+  // PLAN-RECOVERY-90-db-key-immutability — U-DBKEY-002
+  it("closure process receiptのdedupe tuple重複をDB制約で拒否する", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      const insert = db.prepare(`INSERT INTO closure_process_receipts
+        (process_receipt_key, repository_head, dedupe_key, completed_at)
+        VALUES (?, ?, ?, ?)`);
+      insert.run("receipt:1", "a".repeat(40), "same", "2026-09-02T00:00:00Z");
+      expect(() =>
+        insert.run("receipt:2", "a".repeat(40), "same", "2026-09-02T00:00:00Z"),
+      ).toThrow();
+    } finally {
+      db.close();
+    }
+  });
+
+  // PLAN-RECOVERY-90-db-key-immutability — U-DBKEY-001 legacy migration
+  it("legacy TEXT primary key tableもmigration後はNULLを拒否する", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      db.exec("CREATE TABLE plan_registry (plan_id TEXT PRIMARY KEY)");
+      db.setUserVersion(47);
+      migrate(db);
+      expect(() => db.prepare("INSERT INTO plan_registry (plan_id) VALUES (NULL)").run()).toThrow();
+    } finally {
+      db.close();
+    }
+  });
+
+  // PLAN-RECOVERY-90-db-key-immutability — U-DBIMM-001 / U-DBIMM-003
+  it("rebuildはruntime immutable行を保持しcontrolled projection triggerを再設置する", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      db.prepare(
+        "INSERT INTO github_execution_episode_right_arm_evidence (evidence_id) VALUES (?)",
+      ).run("evidence:preserve");
+      db.prepare("INSERT INTO orchestration_event_projections (event_id) VALUES (?)").run(
+        "event:preserve",
+      );
+
+      expect(() => rebuildHarnessDb({ repoRoot: process.cwd(), db })).not.toThrow();
+      expect(
+        db
+          .prepare(
+            "SELECT evidence_id FROM github_execution_episode_right_arm_evidence WHERE evidence_id = ?",
+          )
+          .get("evidence:preserve"),
+      ).toBeDefined();
+      expect(
+        db
+          .prepare("SELECT event_id FROM orchestration_event_projections WHERE event_id = ?")
+          .get("event:preserve"),
+      ).toBeDefined();
+      expect(() =>
+        db
+          .prepare("DELETE FROM orchestration_event_projections WHERE event_id = ?")
+          .run("event:preserve"),
+      ).toThrow();
+      expect(
+        db
+          .prepare("SELECT name FROM sqlite_master WHERE type = 'trigger' AND name = ?")
+          .get("closure_terminal_boundaries_no_delete"),
+      ).toBeDefined();
+    } finally {
+      db.close();
+    }
   });
 });
 
