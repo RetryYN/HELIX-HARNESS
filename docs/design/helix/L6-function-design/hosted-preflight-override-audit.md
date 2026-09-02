@@ -1,4 +1,18 @@
-# Hosted Preflight Override Audit
+---
+title: "hosted preflight override監査関数設計"
+layer: L6
+artifact_type: design_doc
+status: confirmed
+created: 2026-09-02
+updated: 2026-09-02
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-82-hosted-preflight-override-audit.md
+pair_artifact: docs/test-design/helix/L8-hosted-preflight-override-audit-unit-test-design.md
+behavior_contract_id: HOSTED-PREFLIGHT-OVERRIDE-AUDIT-001
+responsibility_owner: hosted-preflight
+---
+
+# hosted preflight override監査関数設計
 
 ## 責務
 
