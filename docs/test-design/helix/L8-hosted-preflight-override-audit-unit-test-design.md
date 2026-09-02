@@ -22,4 +22,6 @@ responsibility_owner: hosted-preflight
 - hook非強制ackなしのpreflightを拒否する。
 - 理由付きoverrideをDBへ一度だけ記録する。
 - 同一session／reason／targetのnonce再利用を拒否する。
+- ack欠落でdenyした試行はnonceを消費せず、ackだけを追加した同一入力の再試行を許可する。
+- deny後の訂正成功を含め、DBへcommitされるtransactionは成功した一件だけとする。
 - 通常preflightはgit status digestをaudit evidenceとして出力する。
