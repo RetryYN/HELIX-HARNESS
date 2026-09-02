@@ -61,7 +61,8 @@ modifies:
   - { artifact_path: tests/worker-wrapper-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/orchestration/loop-bridge.test.ts, artifact_type: test_code }
 agent_slots:
-  - { role: security, slot_label: "Security — env／stderr egress境界監査" }
+  - { role: aim, slot_label: "AIM — env／stderr egress境界監査" }
+  - { role: se, slot_label: "SE — provider process環境allowlistとdigest束縛" }
   - { role: qa, slot_label: "QA — 3つの独立mutation oracle" }
   - { role: tl, slot_label: "TL — #1412 Recovery収束" }
 review_evidence: []
