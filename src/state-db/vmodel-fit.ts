@@ -888,15 +888,27 @@ function acceptanceTraceabilityGate(
   };
 }
 
-function roadmapCurrentGate(snapshot: ProjectCurrentLocationSnapshot): VmodelRoadmapCurrentGate {
+function roadmapCurrentGate(
+  snapshot: ProjectCurrentLocationSnapshot,
+  currentGate: VmodelCurrentLocationGate,
+): VmodelRoadmapCurrentGate {
   const report = buildProjectRoadmapCurrentReport(snapshot);
   const status: VmodelRoadmapCurrentGateStatus = !report.consistency.aligned
     ? "needs_sync"
     : report.counts.blockers > 0 || report.status === "contradicted"
       ? "contradicted"
       : "pass";
+  const roadmapPlanIds = new Set(
+    snapshot.roadmap_position.current_gate_ids.map((gateId) => gateId.split(":", 1)[0]),
+  );
+  const recoveryPlanIds = new Set(
+    currentGate.recovery_runway.phases.flatMap((phase) => phase.sample_plan_ids),
+  );
+  const correlatedPlanIds = [...roadmapPlanIds].filter((planId) => recoveryPlanIds.has(planId));
   const recoveryCorrelation =
-    status === "contradicted" && report.consistency.aligned
+    status === "contradicted" &&
+    currentGate.status === "needs_recovery" &&
+    correlatedPlanIds.length > 0
       ? "current_location_recovery"
       : "independent";
   const requiredAction =
@@ -921,6 +933,7 @@ function roadmapCurrentGate(snapshot: ProjectCurrentLocationSnapshot): VmodelRoa
     reasons: [
       ...report.consistency.reasons,
       `recovery_correlation=${recoveryCorrelation}`,
+      `recovery_correlated_plans=${correlatedPlanIds.join(",") || "-"}`,
       `roadmap_blockers=${report.counts.blockers}`,
       `roadmap_actions=${report.counts.actions}`,
     ],
@@ -2642,9 +2655,9 @@ export function buildVmodelFitReport(
   const zipBindings = zipSourceBindingView(zipManifest);
   const acceptanceTraceability = acceptanceTraceabilityGate(snapshot);
   const functionAbsorption = functionDesignAbsorptionGate(snapshot);
-  const roadmapGate = roadmapCurrentGate(snapshot);
-  const driveGate = driveModelGate(snapshot);
   const currentGate = currentLocationGate(snapshot);
+  const roadmapGate = roadmapCurrentGate(snapshot, currentGate);
+  const driveGate = driveModelGate(snapshot);
   const scrumGapItems = scrumOperationGapItems(snapshot);
   const scrumGapFinding = scrumOperationGapFinding(snapshot);
   const blockers = buildVmodelFitBlockers({
