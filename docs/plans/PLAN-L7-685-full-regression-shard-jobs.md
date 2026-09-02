@@ -60,7 +60,7 @@ backprop_decision: not_required
 backprop_decision_reason: "既存GH-NFR-010／GH-AC-017とL6設計を変更せず、確定済みpartition contractをGitHub Actionsへ配線するL7 sliceである"
 contract_preconditions: "#1070のtyped partition／receipt contract、Impact CI full decision、candidate HEAD／base SHAが存在する"
 contract_postconditions: "preflight、bulk shard群、stateful、finalizeが独立jobとなり、各jobのbounded timeoutを適用し、全receiptのexact validation後だけDB／Biome／doctor／full receiptへ進む"
-contract_invariants: "tracked test inventory exact union、same HEAD／base、required harness-check、main／nightly／RC full、targeted selection、same-HEAD reuse、各jobのbounded timeoutは現行の明示的budget PLANへ束縛し、schedule／workflow_dispatchでもPR由来のcandidate HEADをcheckout refへ流さないtrigger-safe refを維持する"
+contract_invariants: "tracked test inventory exact union、same HEAD／base、required harness-check、main／nightly／RC full、targeted selection、same-HEAD reuse、各jobのbounded timeoutは現行の明示的budget PLAN（PLAN-RECOVERY-94）へ束縛し、schedule／workflow_dispatchでもPR由来のcandidate HEADをcheckout refへ流さないtrigger-safe refを維持する"
 contract_failures: "missing／duplicate／wrong identity／nonzero／cancel／timeout／artifact欠落を相殺せずfail-closeする"
 tdd_red_required: true
 red_test: "U-FULLSHARD-CLI-001..004、U-FULLSHARD-WF-001..003、およびU-FULLSHARD-001..006がadapter／job／receipt／aggregate欠落を検出する"
@@ -126,4 +126,4 @@ agent_slots:
 
 ## 非対象
 
-test削除、`continue-on-error`、targetedをFull代替にする変更、release／publishは含めない。timeout値・shard再分配の変更は後続の明示的Recovery PLANへ委譲し、本PLANのexact receipt／fail-close契約を緩めない。
+test削除、`continue-on-error`、targetedをFull代替にする変更、release／publishは含めない。timeout値・shard再分配の変更は後続の明示的Recovery PLAN（PLAN-RECOVERY-94）へ委譲し、本PLANのexact receipt／fail-close契約を緩めない。
