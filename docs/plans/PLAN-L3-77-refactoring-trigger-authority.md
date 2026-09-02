@@ -57,6 +57,8 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-77-refactoring-trigger-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/refactoring-trigger-admission-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/refactoring-trigger-admission-acceptance.md, artifact_type: markdown_doc }
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 ---
 
 # REFACTORING trigger authorityのfreeze
