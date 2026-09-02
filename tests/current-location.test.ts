@@ -289,7 +289,6 @@ describe("project current-location read model", () => {
         reverify: 0,
       });
       const fit = buildVmodelFitReport(snapshot);
-      console.log(JSON.stringify(fit.roadmap_current_gate.reasons));
       expect(fit.blockers).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
