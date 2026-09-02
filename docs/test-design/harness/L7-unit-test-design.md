@@ -27,7 +27,6 @@ pair_group:
     - docs/design/harness/L6-function-design/plan-schedule-lint.md
     - docs/design/harness/L6-function-design/reverse-feedback-closure.md
     - docs/design/harness/L6-function-design/review-evidence-stale.md
-    - docs/design/harness/L6-function-design/review-evidence.md
     - docs/design/harness/L6-function-design/session-log.md
     - docs/design/harness/L6-function-design/setup-solo-team.md
     - docs/design/harness/L6-function-design/test-before-review.md

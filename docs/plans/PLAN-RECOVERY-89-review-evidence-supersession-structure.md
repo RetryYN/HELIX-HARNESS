@@ -55,6 +55,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/harness/review-evidence-supersession-structure.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/design/harness/L6-function-design/review-evidence.md, artifact_type: design_doc }
   - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }

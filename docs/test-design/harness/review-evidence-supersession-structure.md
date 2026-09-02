@@ -1,3 +1,12 @@
+---
+layer: L7
+artifact_type: test_design
+status: confirmed
+pair_artifact: docs/design/harness/L6-function-design/review-evidence.md
+created: 2026-09-02
+plan: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md
+---
+
 # Review evidence／supersession構造境界 L7検証設計
 
 対応PLAN: `PLAN-RECOVERY-89-review-evidence-supersession-structure`
