@@ -578,11 +578,26 @@ export function adapterExecutionEnv(
     "COLORTERM",
     "NO_COLOR",
     "CI",
+    "NO_PROXY",
+    "SSL_CERT_FILE",
+    "NODE_EXTRA_CA_CERTS",
   ] as const;
   const env: NodeJS.ProcessEnv = {};
   for (const key of allowedBaseKeys) {
     const value = baseEnv[key];
     if (value !== undefined) env[key] = value;
+  }
+  for (const key of ["HTTP_PROXY", "HTTPS_PROXY"] as const) {
+    const value = baseEnv[key];
+    if (value === undefined) continue;
+    try {
+      const proxy = new URL(value);
+      proxy.username = "";
+      proxy.password = "";
+      env[key] = proxy.toString();
+    } catch {
+      // Malformed proxy values are not propagated to provider processes.
+    }
   }
   if (provider === "claude" && extraEnv[CLAUDE_EFFORT_ENV] !== undefined) {
     env[CLAUDE_EFFORT_ENV] = extraEnv[CLAUDE_EFFORT_ENV];

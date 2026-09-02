@@ -30,7 +30,9 @@ production fileを増やさず、既存adapter ownerへ約120 LOCのpolicyを統
 外部provider CLIへ渡す環境は`process.env`の複製ではなく、実行に必要なOS／locale／provider設定rootの
 allowlistから構成する。credential、GitHub token、HELIX DB／state path、未登録の追加envは子processへ
 渡さない。adapter planとinvocationのdigestはenvのkeyとvalue digestを含み、seal後のenv変更をspawn前に
-拒否する。provider failureの例外にはstderr本文を含めず、digestとbyte lengthだけを記録する。
+拒否する。企業networkで必要な`HTTP_PROXY`／`HTTPS_PROXY`はURLとしてparseし、userinfoを除去した値だけを
+渡す。malformed proxyは継承しない。`NO_PROXY`、`SSL_CERT_FILE`、`NODE_EXTRA_CA_CERTS`はprovider接続用の
+allowlistとして保持する。provider failureの例外にはstderr本文を含めず、digestとbyte lengthだけを記録する。
 
 ## 設計実在性projection
 

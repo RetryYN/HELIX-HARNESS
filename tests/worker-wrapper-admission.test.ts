@@ -215,6 +215,11 @@ describe("worker wrapper admission", () => {
         ANTHROPIC_API_KEY: "must-not-cross",
         HELIX_DB_PATH: "/repo/.helix/harness.db",
         HELIX_STATE_ROOT: "/repo/.helix/state",
+        HTTP_PROXY: "http://proxy.example:8080",
+        HTTPS_PROXY: "https://user:password@proxy.example:8443/path",
+        NO_PROXY: "localhost,.internal.example",
+        SSL_CERT_FILE: "/etc/ssl/custom-ca.pem",
+        NODE_EXTRA_CA_CERTS: "/etc/ssl/node-extra-ca.pem",
       },
     );
 
@@ -222,8 +227,28 @@ describe("worker wrapper admission", () => {
       PATH: "/usr/bin",
       HOME: "/home/worker",
       LANG: "ja_JP.UTF-8",
+      HTTP_PROXY: "http://proxy.example:8080/",
+      HTTPS_PROXY: "https://proxy.example:8443/path",
+      NO_PROXY: "localhost,.internal.example",
+      SSL_CERT_FILE: "/etc/ssl/custom-ca.pem",
+      NODE_EXTRA_CA_CERTS: "/etc/ssl/node-extra-ca.pem",
       CLAUDE_CODE_EFFORT_LEVEL: "high",
     });
+  });
+
+  it("U-WWA-010b: malformed proxyとproxy credentialをprovider childへ渡さない", () => {
+    const env = adapterExecutionEnv(
+      "codex",
+      {},
+      {
+        HTTP_PROXY: "not a URL",
+        HTTPS_PROXY: "https://user:secret@proxy.example:8443",
+      },
+    );
+
+    expect(env.HTTP_PROXY).toBeUndefined();
+    expect(env.HTTPS_PROXY).toBe("https://proxy.example:8443/");
+    expect(JSON.stringify(env)).not.toContain("secret");
   });
 
   it("U-WWA-011: sealed planのenv改竄をdigest mismatchで拒否する", () => {

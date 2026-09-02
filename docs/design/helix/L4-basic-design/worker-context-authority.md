@@ -32,6 +32,10 @@ durable lifecycle、DB／workflowは扱わない。
 | `AdapterContextBinder` | existing adapter拡張 | 通常promptをpacket envelopeへ変換しwrapper originと同時にsealする |
 | `WorkerIsolationBroker` | existing broker拡張 | spawn前にauthority root、HEAD、schema、envelope capabilityを再検証する |
 
+provider processの実行環境はworker context authorityとは別の最小権限境界として扱う。OS／locale／provider設定に加え、
+企業network用proxyとprivate CAだけをallowlistし、proxy URLのuserinfoは除去する。credential、GitHub token、
+HELIX DB／state path、malformed proxyをworker contextとして継承しない。
+
 ```text
 canonical repository bytes + git HEAD
   -> attestWorkerContextAuthority
