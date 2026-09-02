@@ -15,6 +15,7 @@ export type GitCommandGuardReason =
   | "safe-git"
   | "bypass"
   | "destructive-git"
+  | "checkout-target-context-required"
   | "mutation-context-required"
   | "mutation-context-unresolved"
   | "shared-root-foreign-dirty";
@@ -24,10 +25,15 @@ export interface GitMutationContext {
   foreignUncommittedCount: number | null;
 }
 
+export interface GitCheckoutTargetContext {
+  resolution: "refs-only" | "path-or-ambiguous" | "unresolved";
+}
+
 export interface GitCommandGuardInput {
   command: string;
   bypass?: boolean;
   mutationContext?: GitMutationContext;
+  checkoutTargetContext?: GitCheckoutTargetContext;
 }
 
 export interface GitCommandGuardResult {
@@ -255,7 +261,10 @@ function isStagedOnlyRestore(rest: string[]): boolean {
   return hasStaged && !hasWorktree;
 }
 
-function destructiveOperation(args: string[]): string | null {
+function destructiveOperation(
+  args: string[],
+  checkoutTargetContext?: GitCheckoutTargetContext,
+): string | null {
   if (
     args.some(
       (arg, index) =>
@@ -287,7 +296,11 @@ function destructiveOperation(args: string[]): string | null {
     if (hasAny(rest, ["-b", "-B", "--orphan", "--detach"])) return null;
     if (hasAny(rest, ["-f", "--force"])) return "git checkout";
     if (rest.includes("--")) return "git checkout";
-    if (rest.length >= 1) return null;
+    const positional = rest.filter((arg) => !arg.startsWith("-"));
+    if (positional.length === 0) return "git checkout";
+    if (!checkoutTargetContext) return "git checkout target context required";
+    if (checkoutTargetContext.resolution !== "refs-only") return "git checkout";
+    if (positional.length >= 1) return null;
     return "git checkout";
   }
   if (sub === "restore") {
@@ -318,6 +331,21 @@ function destructiveOperation(args: string[]): string | null {
     if (action === "drop" || action === "clear") return `git stash ${action}`;
   }
   return null;
+}
+
+export function gitCheckoutTargets(command: string): string[] | null {
+  const parsed = commandGitSlices(command);
+  if (!parsed.complete) return null;
+  const targets: string[] = [];
+  for (const args of parsed.slices) {
+    const normalized = withoutGlobalOptions(args);
+    if (normalized[0] !== "checkout") continue;
+    const rest = normalized.slice(1);
+    if (hasAny(rest, ["-b", "-B", "--orphan", "--detach", "-f", "--force"])) continue;
+    if (rest.includes("--")) continue;
+    targets.push(...rest.filter((arg) => !arg.startsWith("-")));
+  }
+  return targets;
 }
 
 function contextualMutationOperation(args: string[]): string | null {
@@ -474,8 +502,17 @@ export function evaluateGitCommandGuard(input: GitCommandGuardInput): GitCommand
   const slices = parsed.slices;
   if (slices.length === 0) return { decision: "pass", reason: "non-git", message: "" };
   for (const slice of slices) {
-    const op = destructiveOperation(slice);
+    const op = destructiveOperation(slice, input.checkoutTargetContext);
     if (op) {
+      if (op === "git checkout target context required") {
+        return {
+          decision: "block",
+          reason: "checkout-target-context-required",
+          destructiveOperation: "git checkout",
+          message:
+            "[helix-git-command-guard] BLOCK: git checkout targetのref/path identityが未解決のためfail-closeしました。",
+        };
+      }
       return {
         decision: "block",
         reason: "destructive-git",

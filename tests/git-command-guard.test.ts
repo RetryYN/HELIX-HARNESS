@@ -174,12 +174,50 @@ describe("git-command-guard", () => {
       "git log --oneline -5",
       "git push origin feature",
       "git checkout -b feature/git-guard",
-      "git checkout main",
       "git reset HEAD src/cli.ts",
       "git reset -- src/cli.ts",
       "git restore --staged src/cli.ts",
     ]) {
       expect(evaluateGitCommandGuard({ command }).decision, command).toBe("pass");
+    }
+    expect(
+      evaluateGitCommandGuard({
+        command: "git checkout main",
+        checkoutTargetContext: { resolution: "refs-only" },
+      }).decision,
+    ).toBe("pass");
+  });
+
+  it("U-GITGUARD-015: checkout pathspecをblockし、ref-only checkoutだけを許可する", () => {
+    const fixture = createWorktreeFixture();
+    try {
+      for (const command of [
+        "git checkout .",
+        "git checkout base.txt",
+        "git checkout HEAD base.txt",
+        "git checkout missing-target",
+      ]) {
+        const result = runCliGuard({ tool_input: { command } }, fixture.root);
+        expect(result.status, command).toBe(2);
+        expect(result.stderr, command).toContain("git checkout");
+      }
+
+      expect(
+        runCliGuard({ tool_input: { command: "git checkout main" } }, fixture.linked).status,
+      ).toBe(0);
+      expect(
+        runCliGuard({ tool_input: { command: "git checkout -b feature/new" } }, fixture.linked)
+          .status,
+      ).toBe(0);
+
+      writeFileSync(join(fixture.root, "feature"), "branch/path ambiguity\n");
+      const ambiguous = runCliGuard(
+        { tool_input: { command: "git checkout feature" } },
+        fixture.root,
+      );
+      expect(ambiguous.status).toBe(2);
+    } finally {
+      fixture.cleanup();
     }
   });
 

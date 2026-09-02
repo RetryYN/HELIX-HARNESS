@@ -19,6 +19,10 @@ HELIX-HARNESS/
 ├── .codex/                       # Codex CLI project-local config / hooks (trusted project layer)
 │   ├── config.toml               #   enables project-local hooks
 │   └── hooks.json                #   hook adapter (.claude/settings.json guard parity, PLAN-L7-139)
+├── .cursor/                      # Cursor Cloud Agent repo-owned environment adapter
+│   ├── Dockerfile                #   digest-pinned Node runtime authority
+│   ├── environment.json          #   cloud environment entrypoint configuration
+│   └── install.sh                #   validation-only installer (download／host write禁止)
 ├── README.md                     # project overview / onboarding entrypoint
 ├── README-LITE.md                # consumer-safe Lite distribution guidance
 ├── PROVENANCE.md                 # Lite artifact source／HEAD／profile provenance contract
@@ -101,6 +105,7 @@ HELIX-HARNESS/
 |------|--------|--------|
 | harness TS/Node control plane | `src/<domain>/` | **機能のhome**。domain別に配置し、bash／Python実装を混在させない（ADR-009） |
 | Python proposal worker | `workers/python/<capability>/` | HDS-HIL-12/14でfreezeしたdescriptor、entrypoint、schema、lockだけを置く。repository／DB／`.helix` write禁止 |
+| Cursor Cloud environment adapter | `.cursor/` | repo-owned cloud build設定だけを置く。runtime digestを固定し、credential、provider固有security core、download、host-global writeを置かない |
 | 工程 / 駆動モデル定義 | `docs/process/` | **工程(L1-L12)定義 + 駆動モデル正本**。L0は層外anchor、L13/L14はcompatibility receiptとして分離する。「どの工程/駆動を増やすか」はL3で決める |
 | 中央 Web UI service | `src/web/` | [予定] 全 project 横断の管理 UI (15 画面、GitHub backbone、ADR-005 D2)。backend 配置・通信境界は L2 設計 (ADR-003 §IMP-031 参照) |
 | テストコード | `tests/` | vitest、`*.test.ts`、src を mirror |

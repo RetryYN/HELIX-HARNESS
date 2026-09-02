@@ -1,6 +1,20 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // Issue #1370のmachine-readable gap inventory。旧epoch語は再導入対象ではなく、
+    // ownerとterminal conditionへ束縛した拒否対象である。
+    path: "docs/governance/effective-agent-startup-followup-registry.json",
+    contentDigest: "609c8aa887dca0d015b637aab32e339c2cd62a906c9be526b9cb3a64761f08da",
+    finalDisposition: "false_positive",
+  },
+  {
+    // Issue #1370のRecovery inventory。旧L0-L14、drive/mode、旧pairへの言及は
+    // startup/consumerへの再注入を拒否するgapとterminal conditionであり、再採用ではない。
+    path: "docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md",
+    contentDigest: "10b2224aa85cdef174d7bc0e4596003e3afae96770f8a42446d69f12d0662184",
+    finalDisposition: "false_positive",
+  },
+  {
     // Issue #859のcurrent resident lane要求。旧route／mode等への言及は再採用ではなく、
     // resident/native/CLI identityを分離してlegacy推測を拒否するnegative contractである。
     path: "docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
@@ -77,9 +91,11 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // 2026-07-25 PLAN-L7-464: family 標準 effort 記述を opus=medium へ同期 (disposition 据え置き)。
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
+    // 2026-09-02 PLAN-RECOVERY-80: Fable current identityを5.1へ追従。旧identityは
+    // historical互換説明だけに残り、recognition signal集合とdispositionは不変。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: ".claude/CLAUDE.md",
-    contentDigest: "4cfc318f984bd2fc181a6435167086c1b52be607e93f21b30ed0973eccca374a",
+    contentDigest: "a8dd3ed8854e85ee4e749eb0e3e83195d076586611b697727099f946f42dfaa9",
     finalDisposition: "compatibility_labeled",
   },
   {
