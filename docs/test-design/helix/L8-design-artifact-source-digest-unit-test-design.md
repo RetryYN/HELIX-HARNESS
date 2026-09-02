@@ -7,7 +7,7 @@ status: confirmed
 created: 2026-09-03
 updated: 2026-09-03
 owner: QA
-plan: docs/plans/PLAN-RECOVERY-93-design-artifact-source-digest-gate.md
+plan: docs/plans/PLAN-RECOVERY-95-design-artifact-source-digest-gate.md
 pair_artifact: docs/design/helix/L6-function-design/design-artifact-source-digest.md
 related_l6: docs/design/helix/L6-function-design/design-artifact-source-digest.md
 ---

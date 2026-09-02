@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-93-design-artifact-source-digest-gate
-title: "PLAN-RECOVERY-93: 設計書artifact_path source_digest照合gate"
+plan_id: PLAN-RECOVERY-95-design-artifact-source-digest-gate
+title: "PLAN-RECOVERY-95: 設計書artifact_path source_digest照合gate"
 kind: recovery
 layer: cross
 drive: agent
@@ -54,7 +54,7 @@ dependencies:
     - "issue:1466"
     - "issue:1468"
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-93-design-artifact-source-digest-gate.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-95-design-artifact-source-digest-gate.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/design-artifact-source-digest.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-design-artifact-source-digest-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/design-artifact-source-digest-baseline.json, artifact_type: config }

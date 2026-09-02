@@ -6,7 +6,7 @@ status: confirmed
 created: 2026-09-03
 updated: 2026-09-03
 owner: SE
-plan: docs/plans/PLAN-RECOVERY-93-design-artifact-source-digest-gate.md
+plan: docs/plans/PLAN-RECOVERY-95-design-artifact-source-digest-gate.md
 parent_design: docs/design/helix/L6-function-design/design-reality-binding.md
 pair_artifact: docs/test-design/helix/L8-design-artifact-source-digest-unit-test-design.md
 behavior_contract_id: DESIGN-ARTIFACT-SOURCE-DIGEST-DRIFT-001

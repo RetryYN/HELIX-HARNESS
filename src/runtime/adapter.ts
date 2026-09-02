@@ -362,6 +362,7 @@ function adapterPlanDigest(plan: AdapterPlan): Sha256Digest {
       command: plan.command,
       args: plan.args,
       stdin: plan.stdin ?? null,
+      env: adapterEnvDigestProjection(plan.env),
     }),
   );
 }
@@ -373,7 +374,18 @@ function invocationDigest(plan: AdapterPlan, invocation: ProviderInvocation): Sh
       command: invocation.command,
       args: invocation.args,
       stdin: plan.stdin ?? null,
+      env: adapterEnvDigestProjection(plan.env),
     }),
+  );
+}
+
+function adapterEnvDigestProjection(
+  env: Record<string, string> | undefined,
+): Record<string, Sha256Digest> {
+  return Object.fromEntries(
+    Object.entries(env ?? {})
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, value]) => [key, sha256Digest(value)]),
   );
 }
 
@@ -541,20 +553,75 @@ export function adapterExecutionEnv(
   extraEnv: Record<string, string> = {},
   baseEnv: NodeJS.ProcessEnv = process.env,
 ): NodeJS.ProcessEnv {
-  const env: NodeJS.ProcessEnv = { ...baseEnv };
-  const legacyPrefix = ["HE", "LIX"].join("");
-  for (const key of [
-    [legacyPrefix, "ALLOW", "RAW", "CLAUDE"].join("_"),
-    [legacyPrefix, "RAW", "CLAUDE", "REASON"].join("_"),
-    [legacyPrefix, "ALLOW", "RAW", "CODEX"].join("_"),
-    [legacyPrefix, "RAW", "CODEX", "REASON"].join("_"),
-    [legacyPrefix, "CLAUDE", "BIN"].join("_"),
-    [legacyPrefix, "CODEX", "BIN"].join("_"),
-  ]) {
-    delete env[key];
+  const allowedBaseKeys = [
+    "PATH",
+    "Path",
+    "HOME",
+    "USERPROFILE",
+    "APPDATA",
+    "LOCALAPPDATA",
+    "XDG_CONFIG_HOME",
+    "XDG_CACHE_HOME",
+    "XDG_DATA_HOME",
+    "TMPDIR",
+    "TMP",
+    "TEMP",
+    "SystemRoot",
+    "WINDIR",
+    "COMSPEC",
+    "PATHEXT",
+    "LANG",
+    "LANGUAGE",
+    "LC_ALL",
+    "LC_CTYPE",
+    "TERM",
+    "COLORTERM",
+    "NO_COLOR",
+    "CI",
+    "SSL_CERT_FILE",
+    "NODE_EXTRA_CA_CERTS",
+  ] as const;
+  const env: NodeJS.ProcessEnv = {};
+  for (const key of allowedBaseKeys) {
+    const value = baseEnv[key];
+    if (value !== undefined) env[key] = value;
   }
-  if (provider !== "claude" && provider !== "codex") return env;
-  return { ...env, ...extraEnv };
+
+  const sanitizeProxy = (value: string): string | undefined => {
+    try {
+      const proxy = new URL(value);
+      proxy.username = "";
+      proxy.password = "";
+      return proxy.toString();
+    } catch {
+      // Malformed proxy values are not propagated to provider processes.
+      return undefined;
+    }
+  };
+
+  const proxyAliases = [
+    ["HTTP_PROXY", "http_proxy"],
+    ["HTTPS_PROXY", "https_proxy"],
+  ] as const;
+  for (const [uppercase, lowercase] of proxyAliases) {
+    for (const key of [lowercase, uppercase] as const) {
+      const value = baseEnv[key];
+      if (value === undefined) continue;
+      const sanitized = sanitizeProxy(value);
+      if (sanitized === undefined) continue;
+      env[key] = sanitized;
+      break;
+    }
+  }
+
+  const noProxy = baseEnv.no_proxy ?? baseEnv.NO_PROXY;
+  if (noProxy !== undefined) {
+    env[baseEnv.no_proxy !== undefined ? "no_proxy" : "NO_PROXY"] = noProxy;
+  }
+  if (provider === "claude" && extraEnv[CLAUDE_EFFORT_ENV] !== undefined) {
+    env[CLAUDE_EFFORT_ENV] = extraEnv[CLAUDE_EFFORT_ENV];
+  }
+  return env;
 }
 
 export function isProviderCommandSpawnable(
