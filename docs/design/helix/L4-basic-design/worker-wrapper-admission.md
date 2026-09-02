@@ -119,7 +119,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/runtime/adapter.ts",
       "resource_kind": "typescript_export",
       "resource_name": "buildAdapterPlan",
-      "source_digest": "sha256:6b45058468e39490baedc3f209e03fbdc0643db3807775e23be8bd8a522ddc90",
+      "source_digest": "sha256:20f49fbb67631a80a18f11da8457370ef90ca7ce5873b576b66e27e35744d28c",
       "current_authority": true
     },
     {
@@ -128,7 +128,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/runtime/adapter.ts",
       "resource_kind": "typescript_export",
       "resource_name": "buildProviderInvocation",
-      "source_digest": "sha256:6b45058468e39490baedc3f209e03fbdc0643db3807775e23be8bd8a522ddc90",
+      "source_digest": "sha256:20f49fbb67631a80a18f11da8457370ef90ca7ce5873b576b66e27e35744d28c",
       "current_authority": true
     },
     {
