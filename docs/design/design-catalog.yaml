@@ -167,6 +167,7 @@ items:
       - docs/design/helix/L6-function-design/github-workflow-identity-contract.md
       - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
       - docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md
+      - docs/design/helix/L6-function-design/plan-entry-canonical-signal-authority.md
       - docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md
       - docs/design/helix/L6-function-design/github-execution-episode-state.md
       - docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md
