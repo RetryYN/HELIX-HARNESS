@@ -15,8 +15,8 @@ behavior_contract_id: ROADMAP-RECOVERY-CORRELATION-001
 responsibility_owner: vmodel-fit
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_contract
-legacy_retirement_state: canonical_only
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 workflow_identity:
@@ -36,7 +36,7 @@ red_test: "current-locationがpassでroadmap blockerを持つfixtureがrecovery_
 red_at: "2026-09-02T21:25:00+09:00"
 green_at: "2026-09-02T21:27:00+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-02T21:26+09:00にRecovery相関条件を旧aligned恒真式へ戻すmutationを適用し、U-CURRENT-LOCATION-001が1 failed／21 passed、exit 1となった。exact PLAN相関へ復元後は22 tests green／exit 0。"
+mutation_oracle_evidence: "2026-09-02T21:26+09:00にRecovery相関条件を旧aligned恒真式へ戻すmutationを適用し、tests/current-location.test.tsのU-CURRENT-LOCATION-001が1 failed／21 passed、exit 1となった。exact PLAN相関へ復元後は22 tests green／exit 0。"
 complexity_effect: net_neutral
 complexity_justification: "既存roadmap gate IDとRecovery runway sample PLAN IDを集合照合し、新しい状態authorityを追加しない"
 removal_trigger: "なし。roadmapとcurrent-locationの恒久的な相関境界"
@@ -59,6 +59,7 @@ modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
