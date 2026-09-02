@@ -58,7 +58,6 @@ generates:
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/harness/L6-function-design/plan-entry-routing.md, artifact_type: design_doc }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-entry-routing.ts, artifact_type: source_module }
   - { artifact_path: tests/plan-entry-routing.test.ts, artifact_type: test_code }
 agent_slots:
