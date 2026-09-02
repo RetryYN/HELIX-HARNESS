@@ -27,6 +27,7 @@ function fixture(): { root: string; inventoryPath: string; planPath: string } {
       "tests/b.test.ts",
       "tests/c.test.ts",
       "tests/d.test.ts",
+      "tests/f.test.ts",
       "tests/cli-surface.test.ts",
       "tests/slow/a.test.ts",
     ]),
