@@ -130,6 +130,7 @@ describe("typescript lazy loading (PLAN-RECOVERY-40)", () => {
     expect(loaderImplementations).toEqual(["src/shared/typescript-lazy.ts"]);
     expect(canonicalImporters).toEqual(
       [
+        "src/audit/quality.ts",
         "src/lint/coding-rules.ts",
         "src/lint/ddd-tdd-rules.ts",
         "src/lint/dependency-drift.ts",
