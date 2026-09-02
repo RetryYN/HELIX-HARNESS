@@ -1320,18 +1320,3 @@ GitHub CLI/auth readiness を扱い、本追補は review route、CI auto-fix re
 | U-FWALK-001 | `walkFiles` | nested temp treeでextension filter、安定順、POSIX relative pathを固定する。 |
 | U-FWALK-002 | recursive inventory caller | 対象7 gateが独自`readdirSync`を持たずshared walkerへ集約されている。 |
 | U-OUTSNAP-001 | `computeOutstandingWork` | 同期2呼出は同一参照、microtask後は再計算した同値別参照になる。 |
-## Review evidence／supersession構造境界（PLAN-RECOVERY-89）
-
-PLAN本文の文字列をevidenceまたはsupersession edgeとして誤認せず、leading frontmatterのtyped YAML fieldだけをexact照合する。
-
-| Oracle | 対象 | 期待結果 |
-| --- | --- | --- |
-| U-REVIEW-001 | `hasReviewEvidence` | 本文・例・引用だけのreviewer文字列はfalse、leading frontmatter entryだけがtrue |
-| U-SUPER-001 | `parseSupersedes` | block／flow style配列を同じplan_id集合へ正規化する |
-| U-SUPER-002 | `analyzePlanSupersession` | `supersedes`と`superseded_by`がexact双方向の場合だけgreen |
-| U-SUPER-003 | `analyzePlanSupersession` | 本文やdependenciesのPLAN IDを逆edgeとして受理しない |
-| U-SUPER-004 | parser／analyzer | frontmatter不在・malformed YAMLをfail-closeし、CRLFは同じ構造として受理する |
-| U-BRANCH-SUPER-001 | branch-kind guard | `superseded_by`だけのmetadata migrationを許可し、他field混載を拒否する |
-| U-L3APP-014 | L3 approval guard | supersession metadataだけを非意味変更として許可する |
-
-全文検索・旧line parser・無条件Recovery許可へ戻すmutationは、対応oracleを個別にredへ戻す。

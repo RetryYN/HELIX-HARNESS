@@ -43,7 +43,7 @@ removal_trigger: "なし。evidenceとauthority edgeの恒久的な構造境界"
 backprop_decision: not_required
 backprop_decision_reason: "Issue #1446で既存requirementsのevidence truthfulnessをRecoveryし、新しい要求意味は追加しない"
 parent_design: docs/design/harness/L6-function-design/review-evidence.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-review-evidence-supersession-structure-unit-test-design.md
 dependencies:
   parent: null
   requires: []
@@ -54,12 +54,16 @@ dependencies:
     - "issue:1446"
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/review-evidence-supersession-structure.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-review-evidence-supersession-structure-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: config }
   - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: config }
   - { artifact_path: docs/design/harness/L6-function-design/review-evidence.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
@@ -70,6 +74,7 @@ modifies:
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-supersession.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L4-50-orchestration-memory-hybrid.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-102-web-dashboard-phase-b.md, artifact_type: markdown_doc }
