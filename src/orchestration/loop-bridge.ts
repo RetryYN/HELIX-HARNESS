@@ -10,6 +10,7 @@ import {
 } from "../runtime/adapter";
 import type { ExecutionMode } from "../runtime/detect";
 import { detectMode } from "../runtime/detect";
+import { sha256Digest } from "../runtime/digest";
 import { adaptReasoningEffort, standardEffortForModel } from "../team/model-effort";
 import { MODEL_IDS } from "../team/model-policy";
 import { deriveEffortObservation } from "./loop-effort-budget";
@@ -166,7 +167,7 @@ function assertAdapterSucceeded(input: ExecAdapterInput, result: AdapterExecutio
   throw new Error(
     `loop adapter execution failed: provider=${input.provider} purpose=${input.purpose} status=${
       result.status ?? "null"
-    } signal=${result.signal ?? "null"} stderr=${result.stderr.slice(0, 500)}`,
+    } signal=${result.signal ?? "null"} stderr_digest=${sha256Digest(result.stderr)} stderr_length=${Buffer.byteLength(result.stderr, "utf8")}`,
   );
 }
 

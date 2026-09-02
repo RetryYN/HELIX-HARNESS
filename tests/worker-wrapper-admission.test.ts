@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  adapterExecutionEnv,
   admitWrapperLaunch,
   buildAdapterPlan,
   buildWrapperAdapterPlan,
@@ -200,5 +201,42 @@ describe("worker wrapper admission", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("U-WWA-010: provider childへsecretとHELIX state環境を継承しない", () => {
+    const env = adapterExecutionEnv(
+      "claude",
+      { CLAUDE_CODE_EFFORT_LEVEL: "high" },
+      {
+        PATH: "/usr/bin",
+        HOME: "/home/worker",
+        LANG: "ja_JP.UTF-8",
+        GITHUB_TOKEN: "must-not-cross",
+        ANTHROPIC_API_KEY: "must-not-cross",
+        HELIX_DB_PATH: "/repo/.helix/harness.db",
+        HELIX_STATE_ROOT: "/repo/.helix/state",
+      },
+    );
+
+    expect(env).toEqual({
+      PATH: "/usr/bin",
+      HOME: "/home/worker",
+      LANG: "ja_JP.UTF-8",
+      CLAUDE_CODE_EFFORT_LEVEL: "high",
+    });
+  });
+
+  it("U-WWA-011: sealed planのenv改竄をdigest mismatchで拒否する", () => {
+    const plan = buildWrapperAdapterPlan(
+      { provider: "claude", role: "reviewer", task: "review", effort: "high", execute: true },
+      "hybrid",
+      "helix_cli_adapter",
+    );
+    plan.env = { ...plan.env, GITHUB_TOKEN: "injected-after-seal" };
+
+    expect(admitWrapperLaunch(plan)).toEqual({
+      admitted: false,
+      failure_code: "WRAPPER_ADAPTER_PLAN_DIGEST_MISMATCH",
+    });
   });
 });

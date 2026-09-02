@@ -61,7 +61,7 @@ reachability証拠にしない。
   ],
   "assets": [
     { "asset_id": "worker-context-compiler", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-context-packet.ts", "resource_kind": "typescript_export", "resource_name": "compileWorkerContextPacket", "source_digest": "sha256:e0019264841da35c7018cd41931073234f6ddd1926d6f923ba675c1b445e035f", "current_authority": true },
-    { "asset_id": "context-bound-wrapper", "classification": "existing_runtime", "artifact_path": "src/runtime/adapter.ts", "resource_kind": "typescript_export", "resource_name": "buildContextBoundWrapperAdapterPlan", "source_digest": "sha256:596290b45eb8f8ce6607bed56d154a97187a30e7491d3ded90c6a79167c10678", "current_authority": true },
+    { "asset_id": "context-bound-wrapper", "classification": "existing_runtime", "artifact_path": "src/runtime/adapter.ts", "resource_kind": "typescript_export", "resource_name": "buildContextBoundWrapperAdapterPlan", "source_digest": "sha256:6b45058468e39490baedc3f209e03fbdc0643db3807775e23be8bd8a522ddc90", "current_authority": true },
     { "asset_id": "context-broker-consumer", "classification": "existing_runtime", "artifact_path": "src/runtime/worker-isolation-broker.ts", "resource_kind": "typescript_export", "resource_name": "prepareWorkerIsolationLaunch", "source_digest": "sha256:80aa1a6982a2f4bfa94b60da7a01b04e5168012f83533fbe59bd26ac14f33fa9", "current_authority": true }
   ],
   "failure_reachability": [
