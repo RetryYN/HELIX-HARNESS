@@ -54,6 +54,7 @@ modifies:
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
+  - { role: aim, slot_label: "AIM — Recovery原因と既存CI契約の非退行を監査" }
   - { role: qa, slot_label: "QA — deadline順序と対象exact setの反例" }
   - { role: tl, slot_label: "TL — #1463 Recovery収束" }
 review_evidence: []
