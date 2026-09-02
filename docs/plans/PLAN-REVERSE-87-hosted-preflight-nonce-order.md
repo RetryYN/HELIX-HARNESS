@@ -37,7 +37,7 @@ contract_failures: "wrong HEAD、stale review、双方向link欠落、CI failure
 tdd_red_required: false
 tdd_red_waiver_reason: "実装済みRecoveryのdocs-only終端照合であり、既存U-HOSTPRE-001〜011とmutationを再利用する"
 mutation_oracle_required: true
-mutation_oracle_evidence: "PR #1455でcommitOverrideUseをpreflight判定前へ戻すmutationがred、復元後11 tests greenを実測済み"
+mutation_oracle_evidence: "tests/hosted-preflight.test.ts U-HOSTPRE-011でcommitOverrideUseをpreflight判定前へ戻すmutationがredとなり、復元後11 tests greenをPR #1455で実測済み"
 complexity_effect: net_neutral
 complexity_justification: "runtimeを追加せずForward／Reverse／GitHub／CI証拠を再接着する"
 removal_trigger: "なし。終端履歴として保持する"
