@@ -175,6 +175,24 @@ describe("P2 orchestration runtime bridge (PLAN-L7-177)", () => {
     ]);
   });
 
+  it("U-WWA-012: provider failureはstderr本文を例外へ再露出しない", async () => {
+    const store = memoryLoopStore();
+    const deps = nodeTickDeps({
+      mode: "hybrid",
+      store,
+      execAdapter: async () => ({
+        status: 1,
+        signal: null,
+        stdout: "",
+        stderr: "credential=must-not-leak",
+      }),
+      now: () => "2026-06-28T00:30:00.000Z",
+    });
+
+    await expect(tick(runningState(), [], deps)).rejects.toThrow(/stderr_digest=sha256:/);
+    await expect(tick(runningState(), [], deps)).rejects.not.toThrow(/must-not-leak/);
+  });
+
   it("U-WCP-013: loop executeはcontext無しprocess dispatchを拒否する", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-loop-bridge-"));
     const binDir = join(cwd, "bin");
