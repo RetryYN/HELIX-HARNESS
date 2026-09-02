@@ -167,6 +167,7 @@ items:
       - docs/design/helix/L6-function-design/github-workflow-identity-contract.md
       - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
       - docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md
+      - docs/design/helix/L6-function-design/plan-entry-canonical-signal-authority.md
       - docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md
       - docs/design/helix/L6-function-design/github-execution-episode-state.md
       - docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md
@@ -201,6 +202,7 @@ items:
       - docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md
       - docs/design/helix/L6-function-design/checkout-pathspec-guard.md
       - docs/design/helix/L6-function-design/hosted-preflight-override-audit.md
+      - docs/design/helix/L6-function-design/runner-attestation-journal-authority.md
       - docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
       - docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md
