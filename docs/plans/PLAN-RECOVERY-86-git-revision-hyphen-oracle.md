@@ -58,6 +58,7 @@ generates:
 modifies:
   - { artifact_path: tests/git-argument-boundary.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — Recovery findingと既存要求契約の接着確認" }
   - { role: qa, slot_label: "QA — leading-hyphen mutation oracle" }
   - { role: tl, slot_label: "TL — Recovery scopeと既存契約接着" }
 review_evidence: []
