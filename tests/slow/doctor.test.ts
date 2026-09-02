@@ -2355,7 +2355,9 @@ describe("runDoctor", () => {
     expect(source).toContain(
       "const triageDecisionIntegrity = checkTriageDecisionIntegrity(deps.repoRoot)",
     );
-    expect(source).toContain("triageDecisionIntegrity.ok &&");
+    expect(source).toContain('["triageDecisionIntegrity", triageDecisionIntegrity.ok]');
+    expect(source).toContain("aggregateInternalDoctorChecks(doctorCheckDefinitions)");
+    expect(source).toContain("ok: doctorAllChecksOk");
     expect(source).toContain("...triageDecisionIntegrity.messages.map");
   });
 

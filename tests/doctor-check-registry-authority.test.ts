@@ -19,14 +19,16 @@ describe("PLAN-RECOVERY-84 doctor check registry authority", () => {
     });
   });
 
-  it("U-DOCCHECKREG-002/003: 単一registry authorityとadvisory literal型を固定する", () => {
+  it("U-DOCCHECKREG-002: 単一registry authorityを固定する", () => {
     const source = readFileSync("src/doctor/index.ts", "utf8");
-    const result: { messages: string[]; ok: true } = checkRefactorCandidateTriage("/missing");
-
-    expect(result.ok).toBe(true);
     expect(source).toContain("ok: doctorAllChecksOk");
     expect(source).not.toContain("aggregateDoctorCheckStates");
     expect(source).not.toMatch(/ok:\s*\n\s+nfrRegistry\.ok\s+&&/);
+  });
+
+  it("U-DOCCHECKREG-003: advisory checkのliteral true型を固定する", () => {
+    const result: { messages: string[]; ok: true } = checkRefactorCandidateTriage("/missing");
+    expect(result.ok).toBe(true);
   });
 
   it("U-DOCCHECKREG-004: shared projection縮退をwarningとして観測する", () => {
@@ -40,9 +42,15 @@ describe("PLAN-RECOVERY-84 doctor check registry authority", () => {
       },
     });
 
-    expect(result.messages).toContain(
-      "doctor: shared-projection-db - warning: shared rebuild unavailable; per-check fallback active (injected shared projection failure)",
+    const warning = result.messages.find((message) =>
+      message.startsWith(
+        "doctor: shared-projection-db - warning: shared rebuild unavailable; per-check fallback active",
+      ),
     );
+    expect(warning).toMatch(
+      /reason=rebuild_failed cause_kind=error cause_digest=sha256:[a-f0-9]{64}/,
+    );
+    expect(warning).not.toContain("injected shared projection failure");
     expect(result.ok).toBe(false);
   });
 });

@@ -15,8 +15,8 @@ behavior_contract_id: DOCTOR-CHECK-REGISTRY-AUTHORITY-001
 responsibility_owner: doctor-runtime
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: consolidate_authority
-legacy_retirement_state: retire_parallel_authority
+refactor_step: remove_legacy
+legacy_retirement_state: consumer_zero
 no_code_decision: add_code
 ddd_modeling_decision: value_object
 workflow_identity:
@@ -33,9 +33,11 @@ contract_invariants: "個別checkの判定、message順、full doctorのfail-clo
 contract_failures: "手書きANDの残存、hard check集計漏れ、advisoryのhard偽装、projection fallback無言化を拒否する"
 tdd_red_required: true
 red_test: "U-DOCCHECKREG-001..004が旧手書きAND、advisory boolean型、無言fallbackを検出して失敗する"
+red_at: "2026-09-02T09:24:00+09:00"
+green_at: "2026-09-02T09:58:00+09:00"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-02T09:24+09:00にdoctorCheckStatesから生成する全entryのseverityをhardからadvisoryへ反転し、tests/doctor-check-registry-authority.test.ts U-DOCCHECKREG-004がresult.ok=trueを検出して1 failed／exit 1となりmutationをkillした。hardへ復元後は同file 3/3 green。"
-complexity_effect: decreases
+complexity_effect: net_negative
 complexity_justification: "二重のok authorityを一つのtyped registryへ収束し、重複ANDと隠れadvisoryを除去する"
 removal_trigger: "なし。doctor内部check集計のcurrent authority"
 backprop_decision: not_required
@@ -66,6 +68,10 @@ modifies:
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/state-db-legacy-workflow-object-retirement.test.ts, artifact_type: test_code }
   - { artifact_path: tests/nfr-registry-doctor.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/universal-improvement-source-registry-doctor.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/ui-domain-system.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: tests/doctor-cause-digest-contract.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — doctor authority重複とadvisory境界の監査" }
   - { role: se, slot_label: "SE — typed registry集計とfallback観測の実装" }
