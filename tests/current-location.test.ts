@@ -289,6 +289,7 @@ describe("project current-location read model", () => {
         reverify: 0,
       });
       const fit = buildVmodelFitReport(snapshot);
+      console.log(JSON.stringify(fit.roadmap_current_gate.reasons));
       expect(fit.blockers).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -1004,20 +1005,46 @@ describe("project current-location read model", () => {
         ]),
       );
       expect(roadmapCurrent.counts.blockers).toBeGreaterThanOrEqual(3);
+      const forwardSnapshot = structuredClone(snapshot);
+      forwardSnapshot.current.status = "forward";
+      forwardSnapshot.current.completion_boundary = "open";
+      const uncorrelatedFit = buildVmodelFitReport(forwardSnapshot);
+      expect(uncorrelatedFit.roadmap_current_gate).toMatchObject({
+        status: "contradicted",
+        recovery_correlation: "independent",
+      });
+      expect(uncorrelatedFit.status).toBe("needs_fit");
+      expect(uncorrelatedFit.blockers.map((blocker) => blocker.code)).toContain("roadmap_current");
       const fit = buildVmodelFitReport(snapshot);
       expect(fit.roadmap_current_gate).toMatchObject({
         status: "contradicted",
         roadmap_status: "contradicted",
         aligned: true,
-        recovery_correlation: "current_location_recovery",
+        recovery_correlation: "independent",
         alignment_basis: "frontier",
         db_current_l12_layer: "L12",
         blocker_count: expect.any(Number),
         required_action:
           "工程表と DB は同じ L12 現在地を指している。blocking finding を Recovery/closure route で解消する",
       });
-      expect(fit.blockers.map((blocker) => blocker.code)).not.toContain("roadmap_current");
+      expect(fit.blockers.map((blocker) => blocker.code)).toContain("roadmap_current");
       expect(fit.blockers.map((blocker) => blocker.code)).toContain("current_location");
+      const correlatedSnapshot = structuredClone(snapshot);
+      correlatedSnapshot.roadmap_position.current_gate_ids = ["PLAN-L7-999-new-impl:G-OPS"];
+      correlatedSnapshot.roadmap_position.gates[0].planId = "PLAN-L7-999-new-impl";
+      const correlatedFit = buildVmodelFitReport(correlatedSnapshot);
+      expect(correlatedFit.roadmap_current_gate.recovery_correlation).toBe(
+        "current_location_recovery",
+      );
+      expect(correlatedFit.roadmap_current_gate.reasons).toEqual(
+        expect.arrayContaining([
+          "recovery_correlated_plans=PLAN-L7-999-new-impl",
+          expect.stringMatching(/^roadmap_blockers=\d+$/),
+        ]),
+      );
+      expect(correlatedFit.blockers.map((blocker) => blocker.code)).not.toContain(
+        "roadmap_current",
+      );
       const driveModel = buildProjectDriveModelReport(snapshot);
       expect(driveModel).toMatchObject({
         schema_version: "project-drive-model.v1",
