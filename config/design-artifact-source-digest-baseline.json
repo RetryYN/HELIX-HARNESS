@@ -1,0 +1,36 @@
+{
+  "schema_version": "helix-design-artifact-source-digest-baseline.v1",
+  "entries": [
+    {
+      "design_path": "docs/design/helix/L6-function-design/worker-blind-benchmark.md",
+      "artifact_path": "src/runtime/worker-blind-benchmark.ts",
+      "pinned_digest": "sha256:5dcbac82100ff9cf5d907f66198fd5cc639bad1b46a67816f901d891f696efc3"
+    },
+    {
+      "design_path": "docs/design/helix/L6-function-design/worker-context-authority.md",
+      "artifact_path": "src/runtime/adapter.ts",
+      "pinned_digest": "sha256:86609ace1464ddeef6063a25067339f854c53ffe3fa8d7355a77ec42dc2acadb"
+    },
+    {
+      "design_path": "docs/design/helix/L6-function-design/worker-context-authority.md",
+      "artifact_path": "src/runtime/worker-context-packet.ts",
+      "pinned_digest": "sha256:27407a97b1d4920f68883ff5d9fb369dcb978e5f00f83f4a446f062161773ecc"
+    },
+    {
+      "design_path": "docs/design/helix/L6-function-design/worker-context-authority.md",
+      "artifact_path": "src/runtime/worker-isolation-broker.ts",
+      "pinned_digest": "sha256:dedcb8bfcf318ad88b57e754703b21186cfec02cbfff9bdd53b086925ea9da15"
+    },
+    {
+      "design_path": "docs/design/helix/L6-function-design/worker-risk-admission.md",
+      "artifact_path": "src/runtime/worker-blind-benchmark.ts",
+      "pinned_digest": "sha256:55a923a3fc7fbfdd1a9c6392424a7ad42360b3e0aa48abe6f38e97ac2e9b8eec"
+    },
+    {
+      "design_path": "docs/design/helix/L6-function-design/worker-wrapper-admission.md",
+      "artifact_path": "src/runtime/adapter.ts",
+      "pinned_digest": "sha256:3008234faf05163046293a3fb124715f3381c2f8baaf0afc329611b9e5690238"
+    }
+  ],
+  "baseline_digest": "sha256:22d3ab2aca78bf2eba0739c1adb8567f4c6f8beec1913b790806e4f2f904a172"
+}

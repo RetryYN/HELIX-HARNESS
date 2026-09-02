@@ -107,6 +107,10 @@ import {
   loadTraceKeyedArtifacts,
 } from "../lint/descent-obligation";
 import {
+  analyzeDesignArtifactSourceDigest,
+  designArtifactSourceDigestMessages,
+} from "../lint/design-artifact-source-digest";
+import {
   analyzeDesignCoverage,
   designCoverageMessages,
   loadDesignCoverageInput,
@@ -4620,6 +4624,23 @@ export function checkDesignRealityBinding(repoRoot: string): {
   }
 }
 
+export function checkDesignArtifactSourceDigest(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  try {
+    const result = analyzeDesignArtifactSourceDigest(repoRoot);
+    return { messages: designArtifactSourceDigestMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: [
+        "design-artifact-source-digest — violation: 設計書pinと実ファイルdigestを検査できない",
+      ],
+      ok: false,
+    };
+  }
+}
+
 export function checkPlanDescent(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -7220,6 +7241,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const planDescent = checkPlanDescent(deps.repoRoot);
   const planSpecificVpairBinding = checkPlanSpecificVpairBindings(deps.repoRoot);
   const designRealityBinding = checkDesignRealityBinding(deps.repoRoot);
+  const designArtifactSourceDigest = checkDesignArtifactSourceDigest(deps.repoRoot);
   const planEntryRouting = checkPlanEntryRouting(deps.repoRoot);
   const planGovernance = checkPlanGovernance(deps.repoRoot);
   const planDod = checkPlanDod(deps.repoRoot);
@@ -7415,6 +7437,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["planDescent", planDescent.ok],
     ["planSpecificVpairBinding", planSpecificVpairBinding.ok],
     ["designRealityBinding", designRealityBinding.ok],
+    ["designArtifactSourceDigest", designArtifactSourceDigest.ok],
     ["planEntryRouting", planEntryRouting.ok],
     ["planGovernance", planGovernance.ok],
     ["planDod", planDod.ok],
@@ -7592,6 +7615,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...planDescent.messages.map((m) => `doctor: ${m}`),
       ...planSpecificVpairBinding.messages.map((m) => `doctor: ${m}`),
       ...designRealityBinding.messages.map((m) => `doctor: ${m}`),
+      ...designArtifactSourceDigest.messages.map((m) => `doctor: ${m}`),
       ...planEntryRouting.messages.map((m) => `doctor: ${m}`),
       ...planGovernance.messages.map((m) => `doctor: ${m}`),
       ...planDod.messages.map((m) => `doctor: ${m}`),

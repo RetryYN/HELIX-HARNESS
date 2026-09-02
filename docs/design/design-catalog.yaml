@@ -498,7 +498,9 @@ items:
     category: detail
     source: zip-17
     status: todo
-    note: fr-registry-audit等はあるが項目/コード/ファイル一覧のような網羅カタログ文書は無い
+    artifact:
+      - docs/design/helix/L6-function-design/design-artifact-source-digest.md
+    note: 設計書のartifact_pathと実ファイルdigestを照合する部分機能はあるが、項目/コード/ファイル一覧の網羅カタログは未完
   - id: application-method-spec
     name: アプリケーション方式仕様書
     category: std
