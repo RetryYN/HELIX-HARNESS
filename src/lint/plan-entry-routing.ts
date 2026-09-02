@@ -61,7 +61,7 @@ export interface PlanWorkflowIdentity {
 export interface PlanEntrySignalResolution {
   value: string;
   token: string | null;
-  kind: "po_directive" | "feedback" | "issue_queue" | "unresolvable";
+  kind: "po_directive" | "feedback" | "issue_queue" | "catalog_signal" | "unresolvable";
 }
 
 export interface PlanEntryTypedSignalResolution {
@@ -231,7 +231,13 @@ export function loadPlanEntryRoutingDocs(
         }
       : null;
     const entrySignals = stringArray(raw.entry_signals);
-    const resolvedSignals = resolveSignals(entrySignals);
+    const resolvedSignals = resolveSignals(entrySignals).map((signal) => {
+      if (signal.kind !== "unresolvable" || catalog === null) return signal;
+      const resolution = resolveWorkflowClassificationSignalToken(signal.value, catalog);
+      return resolution.disposition === "classified"
+        ? { value: signal.value, token: signal.value, kind: "catalog_signal" as const }
+        : signal;
+    });
     const typedSignalResolutions =
       catalog === null
         ? []
