@@ -36,7 +36,7 @@ red_test: "TEXT PRIMARY KEYへNULLを2回insertでき、closure process dedupe�
 red_at: "2026-09-02T20:54:36+09:00"
 green_at: "2026-09-02T20:58:16+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "修正前sourceをseeded defectとしてnpx vitest run tests/state-db.test.tsを実測し、U-DBKEY-001はTEXT PK DDLのNOT NULL欠落、U-DBKEY-002はdedupe重複受理、U-DBIMM-001/003はorchestration immutability triggerによるrebuild abortで3 failed／16 passed・exit 1となった。NOT NULL DDL＋legacy trigger、unique dedupe index、runtime保持集合＋controlled closure projectionへ修復後、state-db 20 testsとschema-authority 5 testsがgreen／exit 0となり3 defectを個別にkillした。"
+mutation_oracle_evidence: "修正前sourceをseeded defectとしてnpx vitest run tests/state-db.test.tsを実測し、U-DBKEY-001はTEXT PK DDLのNOT NULL欠落、U-DBKEY-002はdedupe重複受理、U-DBIMM-001/003はorchestration immutability triggerによるrebuild abortで3 failed／16 passed・exit 1となった。Claude exact-HEAD reviewはv47 DBへ同一dedupe tupleを2行seedするとunique index作成が失敗するmigration defectを再現した。U-DBKEY-003は退避処理を除くmutationでそのmigrationをredとしてkillする。NOT NULL DDL＋legacy trigger、監査可能な重複退避＋unique dedupe index、runtime保持集合＋controlled closure projectionへ修復後、state-db／schema-authority／closure receipt schemaの28 testsがgreen／exit 0となった。"
 complexity_effect: net_negative
 complexity_justification: "DDL制約とrebuild保持集合をschema authorityへ揃え、呼出側の暗黙前提をDB境界へ集約する"
 removal_trigger: "なし。state DB integrityの恒久境界"
