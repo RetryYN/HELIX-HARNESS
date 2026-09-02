@@ -27,7 +27,7 @@ responsibility_owner: worker-wrapper-admission
 | U-WWA-006 | plan branch | plan digest比較を削除するとRed | `tests/worker-wrapper-admission.test.ts` |
 | U-WWA-007 | invocation branch | invocation digest比較を削除するとRed | `tests/worker-wrapper-admission.test.ts` |
 | U-WWA-010 | provider process env | token／HELIX state envを子processへ継承するとRed | `tests/worker-wrapper-admission.test.ts` |
-| U-WWA-010b | proxy／private CA env | proxy userinfoを除去せず渡す、malformed proxyを渡す、またはproxy／CA経路を黙って失うとRed | `tests/worker-wrapper-admission.test.ts` |
+| U-WWA-010b | proxy／private CA env | proxy userinfoを除去せず渡す、malformed proxyを渡す、小文字aliasを失う、または併存時の優先順位を崩すとRed | `tests/worker-wrapper-admission.test.ts` |
 | U-WWA-011 | env digest | seal後のenv追加をadmitするとRed | `tests/worker-wrapper-admission.test.ts` |
 | U-WWA-012 | provider failure | stderr本文を例外へ含めるとRed | `tests/orchestration/loop-bridge.test.ts` |
 

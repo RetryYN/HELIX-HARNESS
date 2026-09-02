@@ -33,8 +33,10 @@ durable lifecycle、DB／workflowは扱わない。
 | `WorkerIsolationBroker` | existing broker拡張 | spawn前にauthority root、HEAD、schema、envelope capabilityを再検証する |
 
 provider processの実行環境はworker context authorityとは別の最小権限境界として扱う。OS／locale／provider設定に加え、
-企業network用proxyとprivate CAだけをallowlistし、proxy URLのuserinfoは除去する。credential、GitHub token、
-HELIX DB／state path、malformed proxyをworker contextとして継承しない。
+企業network用proxyとprivate CAだけをallowlistし、proxy URLのuserinfoは除去する。`HTTP_PROXY`／`HTTPS_PROXY`と
+Linuxで一般的な小文字alias（`http_proxy`／`https_proxy`）、`NO_PROXY`／`no_proxy`を同じ正規化経路で扱い、
+同じ種別が併存する場合は小文字aliasを優先する。malformedな候補は継承せず、有効な片方へフォールバックする。
+credential、GitHub token、HELIX DB／state pathはworker contextとして継承しない。
 
 ```text
 canonical repository bytes + git HEAD

@@ -578,7 +578,6 @@ export function adapterExecutionEnv(
     "COLORTERM",
     "NO_COLOR",
     "CI",
-    "NO_PROXY",
     "SSL_CERT_FILE",
     "NODE_EXTRA_CA_CERTS",
   ] as const;
@@ -587,17 +586,37 @@ export function adapterExecutionEnv(
     const value = baseEnv[key];
     if (value !== undefined) env[key] = value;
   }
-  for (const key of ["HTTP_PROXY", "HTTPS_PROXY"] as const) {
-    const value = baseEnv[key];
-    if (value === undefined) continue;
+
+  const sanitizeProxy = (value: string): string | undefined => {
     try {
       const proxy = new URL(value);
       proxy.username = "";
       proxy.password = "";
-      env[key] = proxy.toString();
+      return proxy.toString();
     } catch {
       // Malformed proxy values are not propagated to provider processes.
+      return undefined;
     }
+  };
+
+  const proxyAliases = [
+    ["HTTP_PROXY", "http_proxy"],
+    ["HTTPS_PROXY", "https_proxy"],
+  ] as const;
+  for (const [uppercase, lowercase] of proxyAliases) {
+    for (const key of [lowercase, uppercase] as const) {
+      const value = baseEnv[key];
+      if (value === undefined) continue;
+      const sanitized = sanitizeProxy(value);
+      if (sanitized === undefined) continue;
+      env[key] = sanitized;
+      break;
+    }
+  }
+
+  const noProxy = baseEnv.no_proxy ?? baseEnv.NO_PROXY;
+  if (noProxy !== undefined) {
+    env[baseEnv.no_proxy !== undefined ? "no_proxy" : "NO_PROXY"] = noProxy;
   }
   if (provider === "claude" && extraEnv[CLAUDE_EFFORT_ENV] !== undefined) {
     env[CLAUDE_EFFORT_ENV] = extraEnv[CLAUDE_EFFORT_ENV];

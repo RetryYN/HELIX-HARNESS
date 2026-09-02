@@ -27,14 +27,14 @@ workflow_identity:
   target_id: RECOVERY
 entry_signals: [regression_dev]
 contract_preconditions: "provider childがprocess.env全体を継承し、plan digestがenvを束縛せず、失敗stderr本文を例外へ載せる"
-contract_postconditions: "allowlist envだけを渡し、proxy userinfoを除去し、env key/value digestをsealし、失敗例外はstderr digestと長さだけを返す"
-contract_invariants: "CLI／サブスク認証、provider command、proxy／private CA接続、worker context、sandbox責務を変更しない"
-contract_failures: "credential継承、HELIX state path継承、seal後env改竄、stderr本文再露出を拒否する"
+contract_postconditions: "allowlist envだけを渡し、proxy／小文字proxy aliasを同じURL正規化へ通してuserinfoを除去し、小文字aliasを併存時の優先値とし、env key/value digestをsealし、失敗例外はstderr digestと長さだけを返す"
+contract_invariants: "CLI／サブスク認証、provider command、proxy／private CA接続（大文字・小文字alias）、worker context、sandbox責務を変更しない"
+contract_failures: "credential継承、HELIX state path継承、malformed proxy継承、小文字proxy aliasの消失、seal後env改竄、stderr本文再露出を拒否する"
 tdd_red_required: true
 red_at: "2026-09-03T01:27:01+09:00"
 green_at: "2026-09-03T01:27:52+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/worker-wrapper-admission.test.ts U-WWA-010/010b/011とtests/orchestration/loop-bridge.test.ts U-WWA-012がprocess.env複製、proxy userinfo保持、malformed proxy継承、env digest除去、stderr slice復帰を個別にRed化する"
+mutation_oracle_evidence: "tests/worker-wrapper-admission.test.ts U-WWA-010/010b/011とtests/orchestration/loop-bridge.test.ts U-WWA-012がprocess.env複製、proxy userinfo保持、malformed proxy継承、小文字proxy aliasの消失または優先順位改変、env digest除去、stderr slice復帰を個別にRed化する"
 complexity_effect: net_negative
 complexity_justification: "legacy blocklistとstderr本文露出を削除し、既存adapter admissionへ単一allowlistとdigest projectionを集約する"
 removal_trigger: "not_applicable"
