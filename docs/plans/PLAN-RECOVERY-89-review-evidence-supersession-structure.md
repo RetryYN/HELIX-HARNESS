@@ -58,6 +58,7 @@ generates:
 modifies:
   - { artifact_path: docs/design/harness/L6-function-design/review-evidence.md, artifact_type: design_doc }
   - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-supersession.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-specific-vpair-binding.ts, artifact_type: source_module }
