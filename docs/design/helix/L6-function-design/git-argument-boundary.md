@@ -21,7 +21,7 @@ responsibility_owner: git-argument-boundary
 ## 契約
 
 - remoteは`https://`、`ssh://`、`git@host:path`だけを許可する。
-- transport helper、option形、credential、query、fragment、制御文字を拒否する。
+- 大小文字を問わずtransport helperを拒否し、option形、HTTPS埋込credential、query、fragment、制御文字を拒否する。
 - revisionは単一atomまたは`..`／`...`で結んだ二点rangeだけを許可する。
 - `git log`はpathspec終端`--`を付ける。
 - `git ls-remote`はremote option終端`--`を付け、検証を主防御とする。

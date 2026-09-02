@@ -10,7 +10,12 @@ function hasControlOrSpace(value: string): boolean {
 
 /** git transport helper やoptionとして再解釈されないremote identityだけを返す。 */
 export function requireSafeGitRemoteUrl(value: string): string {
-  if (!value || value.startsWith("-") || value.startsWith("ext::") || hasControlOrSpace(value)) {
+  if (
+    !value ||
+    value.startsWith("-") ||
+    value.toLowerCase().startsWith("ext::") ||
+    hasControlOrSpace(value)
+  ) {
     throw new Error("unsafe_git_remote_url");
   }
   if (SCP_REMOTE.test(value)) return value;
@@ -24,7 +29,13 @@ export function requireSafeGitRemoteUrl(value: string): string {
   if (parsed.protocol !== "https:" && parsed.protocol !== "ssh:") {
     throw new Error("unsafe_git_remote_url");
   }
-  if (!parsed.hostname || parsed.password || parsed.search || parsed.hash) {
+  if (
+    !parsed.hostname ||
+    parsed.password ||
+    (parsed.protocol === "https:" && parsed.username) ||
+    parsed.search ||
+    parsed.hash
+  ) {
     throw new Error("unsafe_git_remote_url");
   }
   return value;

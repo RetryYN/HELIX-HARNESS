@@ -22,9 +22,11 @@ describe("git argument boundary", () => {
 
   it.each([
     "ext::sh -c 'touch /tmp/pwned'",
+    "EXT::sh -c 'touch /tmp/pwned'",
     "--upload-pack=/tmp/pwn",
     "file:///tmp/repo",
     "https://user:secret@example.com/repo.git",
+    "https://user@example.com/repo.git",
     "https://example.com/repo.git?upload-pack=/tmp/pwn",
   ])("rejects an unsafe remote before process execution: %s", (remote) => {
     expect(() => requireSafeGitRemoteUrl(remote)).toThrow("unsafe_git_remote_url");
