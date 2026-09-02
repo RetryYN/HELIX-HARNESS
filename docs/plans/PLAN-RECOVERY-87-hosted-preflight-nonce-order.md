@@ -36,7 +36,7 @@ red_test: "ack欠落でdenyした後、同一session／reason／targetへackだ�
 red_at: "2026-09-02T15:20:08+09:00"
 green_at: "2026-09-02T15:21:34+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "commitOverrideUseをhosted preflight判定前へ戻すとHOSTED-PREFLIGHT-OVERRIDE-NONCE-ORDER-001がcorrected status 2でredになり、判定後commitへ復元すると11 tests green。"
+mutation_oracle_evidence: "tests/hosted-preflight.test.tsのcommitOverrideUseをhosted preflight判定前へ戻すseeded mutationでHOSTED-PREFLIGHT-OVERRIDE-NONCE-ORDER-001がcorrected status 2となってredになり、判定後commitへ復元すると11 tests green。"
 complexity_effect: net_neutral
 complexity_justification: "既存CLI action内のtransaction順序だけを変更し、新しい監査storeやnonce体系を追加しない"
 removal_trigger: "なし。hosted preflightとoverride監査の恒久順序契約"
@@ -55,6 +55,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-87-hosted-preflight-nonce-order.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/hosted-preflight-override-audit.md, artifact_type: design_doc }
