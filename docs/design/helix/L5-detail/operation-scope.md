@@ -125,7 +125,7 @@ spec:
       "artifact_path": "src/state-db/vmodel-fit.ts",
       "resource_kind": "typescript_export",
       "resource_name": "buildVmodelFitReport",
-      "source_digest": "sha256:23ce56e2b8d9f0fd4472f66188167a0c7e23dcb909743228c6afa9d84cad5b41",
+      "source_digest": "sha256:b38de9c63d009a0e9702aeb5052637205e8eb98eab96d2b899b2645cfd7b3ef1",
       "current_authority": true
     }
   ],
