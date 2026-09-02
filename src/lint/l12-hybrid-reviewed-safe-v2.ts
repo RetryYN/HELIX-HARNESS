@@ -416,7 +416,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md",
-    contentDigest: "0322565c0f8b552aa5c3397ef2cc7158a64b0c61bf73336d5dd09cc9b6e30925",
+    contentDigest: "6563b2a853567ab0e24cf03283b8e313493ce60f1a5838afe6cd2071354c9ce7",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -857,7 +857,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L7-143-harness-db-warn-remediation.md",
-    contentDigest: "d7dbe11ebe5a050c69794eeefe175d165537c9158e76aa633fc29e5a0efdbac8",
+    contentDigest: "a03836b466b59dd8b9e082eca067321422b023098dfbeb223998361c923c42a6",
     finalDisposition: "false_positive",
   },
   {
@@ -2147,7 +2147,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L7-86-merged-plan-status-deliverable-scope.md",
-    contentDigest: "cb85e6c87ccb3f79dd156c84d444ed4a41796a94bd2186badabeff3e56b52c7d",
+    contentDigest: "730ce39266c9a2ec0b38dabbf267037191fb17383f0b08f1a315b8ea9cca68e7",
     finalDisposition: "false_positive",
   },
   {

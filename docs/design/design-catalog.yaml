@@ -138,6 +138,7 @@ items:
     status: done
     artifact:
       - docs/design/harness/L5-detailed-design/internal-processing.md
+      - docs/design/helix/L6-function-design/review-evidence-supersession-structure.md
       - docs/design/helix/L5-detail/design-template-json-authority.md
       - docs/design/helix/L5-detail/requirement-refinement-authority.md
       - docs/design/helix/L5-detail/work-graph-receipt-acceptance.md

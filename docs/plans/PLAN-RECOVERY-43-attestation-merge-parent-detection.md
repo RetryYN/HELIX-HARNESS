@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-RECOVERY-43-attestation-merge-parent-detection
+superseded_by: [PLAN-RECOVERY-44-mixed-authorship-dual-review]
 title: "PLAN-RECOVERY-43 (recovery): attestationのmerge commit判定をsubjectからparent数へ是正"
 kind: recovery
 layer: cross

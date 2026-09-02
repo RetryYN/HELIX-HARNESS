@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-RECOVERY-18-lane-inventory-partial-logs
+superseded_by: [PLAN-L7-685-full-regression-shard-jobs]
 title: "PLAN-RECOVERY-18 (recovery): lane inventory恒等性と部分ログfail-close"
 kind: recovery
 layer: cross
