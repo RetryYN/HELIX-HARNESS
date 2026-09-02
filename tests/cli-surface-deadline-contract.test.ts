@@ -15,6 +15,6 @@ describe("CLI surface deadline budget contract", () => {
     expect(margin, "wrapper deadline must derive from child deadline").not.toBeNull();
     expect(Number(child?.[1].replaceAll("_", ""))).toBe(45_000);
     expect(Number(margin?.[1].replaceAll("_", ""))).toBeGreaterThan(0);
-    expect(source.match(/}, CLI_CHILD_TEST_WRAPPER_TIMEOUT_MS\);/g)).toHaveLength(2);
+    expect(source.match(/\bCLI_CHILD_TEST_WRAPPER_TIMEOUT_MS\b/g)).toHaveLength(3);
   });
 });
