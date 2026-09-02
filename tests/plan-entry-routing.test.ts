@@ -243,6 +243,31 @@ describe("plan-entry-routing gate (U-PROUTE-001..012)", () => {
     expect(result.newViolations.map((v) => v.reason)).toContain("entry_signal_unresolvable");
   });
 
+  it("U-PROUTE-003b: canonical signal tokenはhuman directiveへ昇格せず解決する", () => {
+    const root = makeRepo();
+    seedWorkflowClassificationAuthority(root);
+    writePlan(root, {
+      planId: "PLAN-RECOVERY-1453-canonical-signal",
+      kind: "recovery",
+      routeMode: null,
+      entrySignals: ["regression_dev"],
+      workflowIdentity: { targetAxis: "workflow_model", targetId: "RECOVERY" },
+    });
+
+    const docs = loadPlanEntryRoutingDocs({ repoRoot: root });
+    expect(docs[0]?.resolvedSignals).toEqual([
+      { value: "regression_dev", token: "regression_dev", kind: "catalog_signal" },
+    ]);
+    expect(docs[0]?.resolvedSignals[0]?.kind).not.toBe("po_directive");
+    expect(
+      analyzePlanEntryRouting({
+        docs,
+        baseline: EMPTY_BASELINE,
+        legacyInventory: inventoryFor(docs),
+      }).newViolations,
+    ).toEqual([]);
+  });
+
   it("U-PROUTE-004: refactor_candidate:* signal に kind=impl は kind_signal_mismatch", () => {
     const root = makeRepo();
     seedDb(root);
