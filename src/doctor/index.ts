@@ -576,7 +576,11 @@ import {
   helixVscodeContributionManifest,
 } from "../vscode/extension-manifest";
 import { buildVisualizationTreeView, type TreeViewNode } from "../vscode/tree-view-provider";
-import { collectDoctorCheckRun } from "./check-registry";
+import {
+  aggregateInternalDoctorChecks,
+  collectDoctorCheckRun,
+  type InternalDoctorCheckDefinition,
+} from "./check-registry";
 import { doctorFailure, doctorFailureMessage } from "./failure";
 import { checkNfrRegistry } from "./nfr-registry-check";
 import { checkNodeEngineRuntime } from "./node-engine-runtime";
@@ -602,6 +606,7 @@ export interface DoctorDeps {
   now: string;
   readText: (path: string) => string | null;
   listDir: (dir: string) => string[];
+  buildSharedProjectionDb?: (repoRoot: string) => HarnessDb;
 }
 
 /**
@@ -5384,7 +5389,7 @@ export function checkRequirementsBindingConfig(repoRoot: string): {
 /** high-confidence refactor candidate を放置せず triage 対象として doctor に surface する。 */
 export function checkRefactorCandidateTriage(repoRoot: string): {
   messages: string[];
-  ok: boolean;
+  ok: true;
 } {
   try {
     const configResult = loadRequirementsBindingConfig(repoRoot);
@@ -7168,13 +7173,6 @@ export function checkG10UxWorkflow(repoRoot: string): {
   }
 }
 
-export function aggregateDoctorCheckStates(
-  states: ReadonlyArray<readonly [name: string, ok: boolean]>,
-): { allOk: boolean; failingChecks: string[] } {
-  const failingChecks = states.filter(([, ok]) => !ok).map(([name]) => name);
-  return { allOk: failingChecks.length === 0, failingChecks };
-}
-
 function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintResult {
   const d = detectMode();
   const nfrRegistry = checkNfrRegistry(deps.repoRoot);
@@ -7238,16 +7236,22 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   // 後に走るため、検査結果は単体実行と同一。build 失敗時は undefined のまま各 check の自前
   // rebuild 経路へ fallback する (fail 挙動不変)。
   let sharedProjectionDb: HarnessDb | undefined;
+  let sharedProjectionDbWarning: string | null = null;
   try {
-    sharedProjectionDb = openHarnessDb(":memory:", { repoRoot: deps.repoRoot });
-    rebuildHarnessDb({ repoRoot: deps.repoRoot, db: sharedProjectionDb });
-  } catch {
+    if (deps.buildSharedProjectionDb) {
+      sharedProjectionDb = deps.buildSharedProjectionDb(deps.repoRoot);
+    } else {
+      sharedProjectionDb = openHarnessDb(":memory:", { repoRoot: deps.repoRoot });
+      rebuildHarnessDb({ repoRoot: deps.repoRoot, db: sharedProjectionDb });
+    }
+  } catch (error) {
     try {
       sharedProjectionDb?.close();
     } catch {
       // fail-open: 共有 projection の close 失敗は無視し、各 check の自前 rebuild 経路へ委ねる
     }
     sharedProjectionDb = undefined;
+    sharedProjectionDbWarning = `shared-projection-db - warning: shared rebuild unavailable; per-check fallback active (${error instanceof Error ? error.message : String(error)})`;
   }
   const driveDbRegistration = checkDriveDbRegistration(deps.repoRoot, sharedProjectionDb);
   const frRoadmapCoverage = checkFrRoadmapCoverage(deps.repoRoot);
@@ -7511,161 +7515,40 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["semanticFrontierConsistency", semanticFrontierConsistency.ok],
     ["forwardConvergenceAudit", forwardConvergenceAudit.ok],
   ];
-  const { allOk: doctorAllChecksOk, failingChecks: doctorFailingChecks } =
-    aggregateDoctorCheckStates(doctorCheckStates);
+  const doctorCheckDefinitions: InternalDoctorCheckDefinition[] = doctorCheckStates.map(
+    ([id, ok]) => ({ id, severity: "hard", run: () => ({ ok, messages: [] }) }),
+  );
+  doctorCheckDefinitions.push(
+    {
+      id: "refactorCandidateTriage",
+      severity: "advisory",
+      run: () => refactorCandidateTriage,
+    },
+    {
+      id: "memoryCommitHygiene",
+      severity: "advisory",
+      run: () => memoryCommitHygiene,
+    },
+  );
+  const {
+    allOk: doctorAllChecksOk,
+    failingChecks: doctorFailingChecks,
+    registeredHardCount,
+    evaluatedHardCount,
+  } = aggregateInternalDoctorChecks(doctorCheckDefinitions);
+  if (registeredHardCount !== evaluatedHardCount) {
+    throw new Error(
+      `doctor check registry evaluation mismatch: registered=${registeredHardCount} evaluated=${evaluatedHardCount}`,
+    );
+  }
   return {
-    ok:
-      nfrRegistry.ok &&
-      doctorAllChecksOk &&
-      universalImprovementSourceRegistry.ok &&
-      backfill.ok &&
-      scrumRev.ok &&
-      planSupersession.ok &&
-      planBodySubstance.ok &&
-      planCompletionDrift.ok &&
-      propagation.ok &&
-      reviewEvidence.ok &&
-      guardrailInvariants.ok &&
-      pairFreeze.ok &&
-      moduleDrift.ok &&
-      mergedPlanStatus.ok &&
-      planArtifactExistence.ok &&
-      assetDrift.ok &&
-      allowlistSync.ok &&
-      judgmentCoreCoverage.ok &&
-      skillAssignment.ok &&
-      skillQuality.ok &&
-      descentObligation.ok &&
-      changeImpact.ok &&
-      changeSetIntegrity.ok &&
-      verificationProfile.ok &&
-      branchKind.ok &&
-      codingRules.ok &&
-      designCoverage.ok &&
-      documentAgentMetadata.ok &&
-      leftArmCarryLog.ok &&
-      triageDecisionIntegrity.ok &&
-      dddTddRules.ok &&
-      designLanguage.ok &&
-      uiDomainBundle.ok &&
-      handoverRetirementInventory.ok &&
-      handoverResurrection.ok &&
-      secretScan.ok &&
-      digestInventory.ok &&
-      issueDependencyWiring.ok &&
-      semanticBoundary.ok &&
-      runtimePortability.ok &&
-      ruleDrift.ok &&
-      gateConfirm.ok &&
-      planSchedule.ok &&
-      planDescent.ok &&
-      planSpecificVpairBinding.ok &&
-      designRealityBinding.ok &&
-      planEntryRouting.ok &&
-      planGovernance.ok &&
-      planDod.ok &&
-      placeholderDeps.ok &&
-      g1Trace.ok &&
-      g3Trace.ok &&
-      ruleAutomationClosure.ok &&
-      driveModelPassage.ok &&
-      driveRouteCatalog.ok &&
-      specialistAgentRegistry.ok &&
-      driveDbRegistration.ok &&
-      frRoadmapCoverage.ok &&
-      telemetryClosure.ok &&
-      cycleP4Verification.ok &&
-      l6FrCoverage.ok &&
-      readability.ok &&
-      runtimeReadability.ok &&
-      feedbackLog.ok &&
-      projectHooks.ok &&
-      codexHookAdapter.ok &&
-      codexHookTrust.ok &&
-      toolContractRegistry.ok &&
-      codexWrapperParity.ok &&
-      l6Completion.ok &&
-      l7Completion.ok &&
-      verificationGroups.ok &&
-      roadmap.ok &&
-      implPlanTrace.ok &&
-      oracleTestTrace.ok &&
-      trackedCanonical.ok &&
-      subDocCatalogDrift.ok &&
-      subDocSectionStructure.ok &&
-      screenImplPairFreeze.ok &&
-      l1L2Consistency.ok &&
-      requirementsBindingConfig.ok &&
-      dependencyDrift.ok &&
-      regressionExpansion.ok &&
-      dbProjectionCoverage.ok &&
-      dbProjectionIngestion.ok &&
-      projectCurrentLocation.ok &&
-      stateDbSchemaAuthority.ok &&
-      visualizationViewModelBoundary.ok &&
-      visualizationTreeViewBoundary.ok &&
-      visualizationTreeViewSummarySurface.ok &&
-      vscodeExtensionDynamicBinding.ok &&
-      l12CompatibilityBinding.ok &&
-      roadmapCurrentBinding.ok &&
-      driveModelBinding.ok &&
-      projectSkillBinding.ok &&
-      recoveryRunwayBinding.ok &&
-      recoveryHandoffBinding.ok &&
-      recoveryExitBinding.ok &&
-      approvalReviewBinding.ok &&
-      closureApplyBinding.ok &&
-      operationScopeBinding.ok &&
-      zipAdoptionBinding.ok &&
-      zipSourceBinding.ok &&
-      zipReferenceRuntimeBoundary.ok &&
-      functionDesignAbsorptionBinding.ok &&
-      vmodelZipManifest.ok &&
-      vmodelFit.ok &&
-      verifierProviderMismatch.ok &&
-      teamReviewReceipts.ok &&
-      agentModelSsot.ok &&
-      docConsistency.ok &&
-      entityCoverage.ok &&
-      frRegistryAudit.ok &&
-      improvementBacklog.ok &&
-      rightArmGatePlanning.ok &&
-      rightArmVerificationStrategy.ok &&
-      l12HybridRecognition.ok &&
-      l12HybridInventoryLifecycle.ok &&
-      l3ProgressionAuthority.ok &&
-      g8IntegrationWorkflow.ok &&
-      g9SystemWorkflow.ok &&
-      g10UxWorkflow.ok &&
-      l14CloseAudit.ok &&
-      closureAuthorityRegistry.ok &&
-      lintWiring.ok &&
-      workflowClassificationTerminalFullback.ok &&
-      workflowGuideAuthority.ok &&
-      nodeEngineRuntime.ok &&
-      wccTrace.ok &&
-      toolchainPin.ok &&
-      repositoryNamePaths.ok &&
-      l12DualProjection.ok &&
-      memoryHandoverIsolation.ok &&
-      proposalDocumentCoverage.ok &&
-      frontendDesignCoverage.ok &&
-      greenCommandDigest.ok &&
-      forwardConvergence.ok &&
-      versionUpReadiness.ok &&
-      actionBindingApprovalReadiness.ok &&
-      s4DecisionReadiness.ok &&
-      cutoverReadiness.ok &&
-      completionDecisionPacket.ok &&
-      completionReviewBundle.ok &&
-      objectiveEvidenceAudit.ok &&
-      semanticFrontierConsistency.ok &&
-      forwardConvergenceAudit.ok,
+    ok: doctorAllChecksOk,
     messages: [
       `doctor: mode=${d.mode} (claude=${d.claude}, codex=${d.codex})`,
       ...(doctorFailingChecks.length > 0
         ? [`doctor: failing-checks - ${doctorFailingChecks.join(", ")}`]
         : []),
+      ...(sharedProjectionDbWarning ? [`doctor: ${sharedProjectionDbWarning}`] : []),
       checkAgentSlots(doctorSlotsDeps(deps)),
       ...backfill.messages.map((m) => `doctor: ${m}`),
       ...scrumRev.messages.map((m) => `doctor: ${m}`),

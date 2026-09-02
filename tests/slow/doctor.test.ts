@@ -3929,12 +3929,10 @@ describe("runDoctor", () => {
     }
   });
 
-  it("U-GREENCMD-003: keeps all hard gates wired into runDoctor hard-gate aggregation", () => {
+  it("U-GREENCMD-003: keeps all hard gates wired into the declarative doctor registry", () => {
     const source = readFileSync(join(process.cwd(), "src", "doctor", "index.ts"), "utf8");
-    const runFullDoctorBody =
-      source.match(
-        /function runFullDoctor[\s\S]*?return\s+\{\s+ok:([\s\S]*?),\s+messages:\s+\[/,
-      )?.[1] ?? "";
+    const registryBody =
+      source.match(/const doctorCheckStates:[\s\S]*?= \[([\s\S]*?)\n {2}\];/)?.[1] ?? "";
     const expectedHardGates = [
       "backfill",
       "scrumRev",
@@ -3995,9 +3993,11 @@ describe("runDoctor", () => {
       "regressionExpansion",
     ];
 
-    expect(expectedHardGates.filter((name) => !runFullDoctorBody.includes(`${name}.ok`))).toEqual(
-      [],
-    );
+    expect(
+      expectedHardGates.filter((name) => !registryBody.includes(`["${name}", ${name}.ok]`)),
+    ).toEqual([]);
+    expect(source).toContain("ok: doctorAllChecksOk");
+    expect(source).not.toMatch(/ok:\s*\n\s+nfrRegistry\.ok\s+&&/);
   });
 
   it("verifier-provider-mismatch doctor check blocks self-evaluation evidence", () => {
