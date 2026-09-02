@@ -15,10 +15,10 @@ behavior_contract_id: GIT-ARGUMENT-BOUNDARY-001
 responsibility_owner: git-argument-boundary
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: parity
+refactor_step: not_applicable
 legacy_retirement_state: retained
 no_code_decision: add_code
-ddd_modeling_decision: not_applicable
+ddd_modeling_decision: none
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -64,6 +64,6 @@ agent_slots:
 review_evidence: []
 ---
 
-# Git revision leading-hyphen oracle
+# Git revisionの先頭hyphen回帰oracle
 
 既存production guardの意味を変えず、optionとして再解釈される先頭hyphen入力を独立negative caseで固定する。
