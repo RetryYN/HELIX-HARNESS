@@ -63,7 +63,6 @@ modifies:
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
-  - { artifact_path: docs/plans/PLAN-L7-685-full-regression-shard-jobs.md, artifact_type: markdown_doc }
 agent_slots:
   - { role: aim, slot_label: "AIM — timeout根因と既存fail-close境界の監査" }
   - { role: se, slot_label: "SE — 4-shard workflow／artifact／telemetry配線" }
