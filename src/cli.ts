@@ -4653,6 +4653,7 @@ guard
         source: "none",
         reason_digest: null,
       };
+      let pendingOverride: { nonce: string; reason: string } | null = null;
       if (process.env.HELIX_ALLOW_FOREIGN_EDIT === "1" && !opts.allowForeignEdit) {
         process.stderr.write(
           "guard preflight: legacy env override requires explicit --allow-foreign-edit and --reason\n",
@@ -4672,6 +4673,31 @@ guard
             `hosted-preflight:${opts.session ?? "cli"}:${reason}:${[...targetPaths].sort().join("\0")}`,
           )
           .digest("hex");
+        pendingOverride = { nonce, reason };
+        auditRecord = `guard_override_transactions:${nonce}`;
+        result = evaluateWorkGuardTargets({
+          targetPaths,
+          uncommittedFiles: changedFiles,
+          sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
+          bypass: true,
+        });
+      }
+      const adapterParity = validateAdapterParityMap({
+        surface: "codex-hosted-api",
+        toolName: opts.patchFile || opts.stdin ? "apply_patch" : "manual",
+      });
+      const hostedPreflight = requireHostedSurfacePreflight({
+        surface: "codex-hosted-api",
+        operation: targetPaths.length > 0 ? "edit" : "dry_run",
+        hookNonEnforcementAcknowledged: Boolean(opts.acknowledgeHookNonEnforcement),
+        gitStatusChecked: true,
+        targetPaths,
+        workGuardDecision: result,
+        preflightCommand: "helix guard preflight",
+        auditRecord,
+      });
+      if (pendingOverride && hostedPreflight.kind !== "deny") {
+        const { nonce, reason } = pendingOverride;
         let db: ReturnType<typeof openHarnessDb> | null = null;
         let committed = false;
         try {
@@ -4709,28 +4735,7 @@ guard
           source: "explicit-cli-audited",
           reason_digest: `sha256:${createHash("sha256").update(reason).digest("hex")}`,
         };
-        auditRecord = `guard_override_transactions:${nonce}`;
-        result = evaluateWorkGuardTargets({
-          targetPaths,
-          uncommittedFiles: changedFiles,
-          sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
-          bypass: true,
-        });
       }
-      const adapterParity = validateAdapterParityMap({
-        surface: "codex-hosted-api",
-        toolName: opts.patchFile || opts.stdin ? "apply_patch" : "manual",
-      });
-      const hostedPreflight = requireHostedSurfacePreflight({
-        surface: "codex-hosted-api",
-        operation: targetPaths.length > 0 ? "edit" : "dry_run",
-        hookNonEnforcementAcknowledged: Boolean(opts.acknowledgeHookNonEnforcement),
-        gitStatusChecked: true,
-        targetPaths,
-        workGuardDecision: result,
-        preflightCommand: "helix guard preflight",
-        auditRecord,
-      });
       if (opts.json) {
         process.stdout.write(
           `${JSON.stringify(

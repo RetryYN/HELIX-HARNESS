@@ -319,4 +319,61 @@ describe("HC-AC hosted/API preflight", () => {
     expect(result.status).toBe(2);
     expect(result.stderr).toContain("requires explicit --allow-foreign-edit and --reason");
   });
+
+  it("HOSTED-PREFLIGHT-OVERRIDE-NONCE-ORDER-001: denyされた試行はnonceを消費せずack訂正を許可する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-hosted-preflight-retry-"));
+    try {
+      const git = (args: string[]) =>
+        spawnSync("git", args, { cwd: root, encoding: "utf8", stdio: "pipe" });
+      expect(git(["init", "-b", "main"]).status).toBe(0);
+      expect(git(["config", "user.name", "HELIX Test"]).status).toBe(0);
+      expect(git(["config", "user.email", "helix-test@example.invalid"]).status).toBe(0);
+      writeFileSync(join(root, "owned.txt"), "base\n");
+      expect(git(["add", "owned.txt"]).status).toBe(0);
+      expect(git(["commit", "-m", "test: seed"]).status).toBe(0);
+      writeFileSync(join(root, "owned.txt"), "foreign\n");
+
+      const baseArgs = [
+        "--prefix",
+        process.cwd(),
+        "--no-install",
+        "tsx",
+        join(process.cwd(), "src/cli.ts"),
+        "guard",
+        "preflight",
+        "--target",
+        "owned.txt",
+        "--allow-foreign-edit",
+        "--reason",
+        "correctable missing ack",
+        "--session",
+        "retry-session",
+        "--json",
+      ];
+      const denied = spawnSync("npx", baseArgs, { cwd: root, encoding: "utf8" });
+      expect(denied.status).toBe(2);
+      expect(JSON.parse(denied.stdout).hostedPreflight?.findings).toContain(
+        "missing_hook_non_enforcement_ack",
+      );
+
+      const corrected = spawnSync("npx", [...baseArgs, "--acknowledge-hook-non-enforcement"], {
+        cwd: root,
+        encoding: "utf8",
+      });
+      expect(corrected.status, corrected.stderr).toBe(0);
+      expect(JSON.parse(corrected.stdout).hostedPreflight?.kind).toBe("allow");
+
+      const db = openHarnessDb(defaultHarnessDbPath(root), { repoRoot: root });
+      try {
+        const rows = db.prepare("SELECT status FROM guard_override_transactions").all() as Array<
+          Record<string, unknown>
+        >;
+        expect(rows).toEqual([{ status: "committed" }]);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });
