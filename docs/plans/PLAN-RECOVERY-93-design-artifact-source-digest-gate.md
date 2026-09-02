@@ -64,6 +64,9 @@ modifies:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — 設計書pinと実ファイルauthorityの境界監査" }
   - { role: se, slot_label: "SE — 全design binding走査とbaseline validator" }
