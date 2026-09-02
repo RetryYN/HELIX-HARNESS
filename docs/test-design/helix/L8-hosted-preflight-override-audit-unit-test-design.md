@@ -1,4 +1,20 @@
-# Hosted Preflight Override Audit Unit Test Design
+---
+title: "hosted preflight override監査単体テスト設計"
+layer: L8
+artifact_type: test_design
+sub_doc: unit-test-design
+status: confirmed
+created: 2026-09-02
+updated: 2026-09-02
+owner: Codex / QA
+plan: docs/plans/PLAN-RECOVERY-82-hosted-preflight-override-audit.md
+parent_design: docs/design/helix/L6-function-design/hosted-preflight-override-audit.md
+pair_artifact: docs/design/helix/L6-function-design/hosted-preflight-override-audit.md
+behavior_contract_id: HOSTED-PREFLIGHT-OVERRIDE-AUDIT-001
+responsibility_owner: hosted-preflight
+---
+
+# hosted preflight override監査単体テスト設計
 
 ## Oracle
 

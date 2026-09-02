@@ -56,6 +56,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/hosted-preflight-override-audit.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-hosted-preflight-override-audit-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
@@ -71,6 +72,6 @@ agent_slots:
 review_evidence: []
 ---
 
-# Hosted preflight override audit
+# hosted preflight override監査
 
 hook非対応surfaceの例外を、理由なしbooleanから既存のdigest-only DB監査と再利用不能nonceへ移行する。
