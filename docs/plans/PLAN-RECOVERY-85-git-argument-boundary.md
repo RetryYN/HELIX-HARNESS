@@ -59,6 +59,7 @@ generates:
   - { artifact_path: src/runtime/git-argument-boundary.ts, artifact_type: source_module }
   - { artifact_path: tests/git-argument-boundary.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/audit/quality.ts, artifact_type: source_module }

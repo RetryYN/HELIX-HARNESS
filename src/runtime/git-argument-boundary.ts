@@ -20,12 +20,10 @@ export function requireSafeGitRemoteUrl(value: string): string {
   }
   if (SCP_REMOTE.test(value)) return value;
 
-  let parsed: URL;
-  try {
-    parsed = new URL(value);
-  } catch {
+  if (!URL.canParse(value)) {
     throw new Error("unsafe_git_remote_url");
   }
+  const parsed = new URL(value);
   if (parsed.protocol !== "https:" && parsed.protocol !== "ssh:") {
     throw new Error("unsafe_git_remote_url");
   }

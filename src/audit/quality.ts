@@ -1,7 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
-import ts from "typescript";
+import type * as TS from "typescript";
 import { SECRET_PATTERN } from "../security/secret-policy";
+import ts from "../shared/typescript-lazy";
 
 export type QualityAuditBucket = "gate" | "actionable" | "telemetry";
 
@@ -187,7 +188,7 @@ function scanGitArgumentBoundary(path: string, text: string): QualityAuditFindin
   if (!path.endsWith(".ts") && !path.endsWith(".tsx")) return [];
   const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);
   const findings: QualityAuditFinding[] = [];
-  const visit = (node: ts.Node): void => {
+  const visit = (node: TS.Node): void => {
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
