@@ -1,6 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
+import type * as TS from "typescript";
 import { SECRET_PATTERN } from "../security/secret-policy";
+import ts from "../shared/typescript-lazy";
 
 export type QualityAuditBucket = "gate" | "actionable" | "telemetry";
 
@@ -9,6 +11,7 @@ export interface QualityAuditFinding {
   code:
     | "secret_like_literal"
     | "dangerous_shell_execution"
+    | "unsafe_git_argument_boundary"
     | "hardcoded_absolute_path"
     | "hardcoded_local_endpoint"
     | "hardcoded_model_or_provider"
@@ -181,12 +184,50 @@ function scanLine(path: string, line: string, lineNo: number): QualityAuditFindi
   return findings;
 }
 
+function scanGitArgumentBoundary(path: string, text: string): QualityAuditFinding[] {
+  if (!path.endsWith(".ts") && !path.endsWith(".tsx")) return [];
+  const source = ts.createSourceFile(path, text, ts.ScriptTarget.Latest, true);
+  const findings: QualityAuditFinding[] = [];
+  const visit = (node: TS.Node): void => {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      ["execFileSync", "spawnSync", "spawn"].includes(node.expression.text) &&
+      node.arguments[0] &&
+      ts.isStringLiteral(node.arguments[0]) &&
+      ["git", "gh"].includes(node.arguments[0].text) &&
+      node.arguments[1] &&
+      ts.isArrayLiteralExpression(node.arguments[1])
+    ) {
+      const unsafe = node.arguments[1].elements
+        .filter(ts.isIdentifier)
+        .map((element) => element.text)
+        .filter((name) => /^(?:range|remoteUrl|url|refspec|repositoryUrl)$/i.test(name));
+      if (unsafe.length > 0) {
+        findings.push(
+          lineFinding({
+            bucket: "gate",
+            code: "unsafe_git_argument_boundary",
+            path,
+            line: source.getLineAndCharacterOfPosition(node.getStart(source)).line + 1,
+            message: `git/gh receives unbounded user-shaped argument(s): ${unsafe.join(", ")}`,
+          }),
+        );
+      }
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return findings;
+}
+
 export function analyzeQualityText(
   files: Array<{ path: string; text: string }>,
 ): QualityAuditResult {
-  const findings = files.flatMap((file) =>
-    file.text.split(/\r?\n/).flatMap((line, index) => scanLine(file.path, line, index + 1)),
-  );
+  const findings = files.flatMap((file) => [
+    ...file.text.split(/\r?\n/).flatMap((line, index) => scanLine(file.path, line, index + 1)),
+    ...scanGitArgumentBoundary(file.path, file.text),
+  ]);
   const byBucket: Record<QualityAuditBucket, number> = { gate: 0, actionable: 0, telemetry: 0 };
   const byCode: Record<string, number> = {};
   for (const finding of findings) {

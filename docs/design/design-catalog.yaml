@@ -220,6 +220,7 @@ items:
       - docs/design/helix/L6-function-design/universal-improvement-finding-qualification.md
       - docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md
       - docs/design/helix/L6-function-design/helix-bench-task-dataset.md
+      - docs/design/helix/L6-function-design/git-argument-boundary.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md

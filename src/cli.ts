@@ -336,6 +336,10 @@ import {
   type ForwardPlanAuthoringTransactionInput,
 } from "./runtime/forward-plan-authoring-transaction";
 import {
+  requireSafeGitRemoteUrl,
+  requireSafeGitRevisionRange,
+} from "./runtime/git-argument-boundary";
+import {
   createGuardOverrideAuditPort,
   runGitCommandGuardHook,
 } from "./runtime/git-command-guard-hook";
@@ -1030,7 +1034,8 @@ function loadBranchKindInputForGuard(opts: {
 }
 
 function gitCommitSubjectsForRange(range: string): string[] {
-  return execFileSync("git", ["log", "--format=%s", range], {
+  const safeRange = requireSafeGitRevisionRange(range);
+  return execFileSync("git", ["log", "--format=%s", safeRange, "--"], {
     encoding: "utf8",
     stdio: ["ignore", "pipe", "inherit"],
   })
@@ -3549,8 +3554,9 @@ function gitRefExists(ref: string | null): boolean {
 
 function gitRemoteRefExists(remoteUrl: string | undefined, ref: string | null): boolean {
   if (!remoteUrl || !ref) return false;
+  const safeRemoteUrl = requireSafeGitRemoteUrl(remoteUrl);
   try {
-    const stdout = execFileSync("git", ["ls-remote", "--tags", remoteUrl, ref], {
+    const stdout = execFileSync("git", ["ls-remote", "--tags", "--", safeRemoteUrl, ref], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
     });
