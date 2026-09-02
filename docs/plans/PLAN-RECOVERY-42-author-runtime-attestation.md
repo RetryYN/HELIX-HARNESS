@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-RECOVERY-42-author-runtime-attestation
+superseded_by: [PLAN-RECOVERY-43-attestation-merge-parent-detection]
 title: "PLAN-RECOVERY-42 (recovery): 申告authorRuntimeのcommit trailer実測attestation"
 kind: recovery
 layer: cross

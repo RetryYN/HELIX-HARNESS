@@ -75,3 +75,10 @@ analyzeReviewEvidence(plans: ParsedReviewPlan[]) -> { missing, ok }
 
 - freeze 後増分追補の review (本事故の核) を確実に append させる運用補助 (将来 hook 候補) — 未着手。
 - (review 由来) backfill-pairing の `checkBackfill` comment と実挙動の不整合は解消済み。`normalizeTerm` 単体テスト追加は別 IMP carry。
+
+## §8 frontmatter構造境界とPLAN訂正edge（PLAN-RECOVERY-89）
+
+- `review_evidence`のpresenceはleading frontmatter YAMLを構造解析して得たentryだけで成立する。本文、例、引用、コメント中の同名文字列は証拠ではない。
+- PLAN訂正は後継の`supersedes`と先行PLANの`superseded_by`をexact `plan_id`で双方向化する。block styleとflow styleは同じ意味として解析する。
+- 本文、`dependencies`、説明中のPLAN言及は`superseded_by`を代用しない。先行PLANに構造化逆edgeが無い場合は片方向errataとしてfail-closeする。
+- frontmatter parse failure、訂正先不在、exact ID不一致をsilent skipしない。shapeはschema、集合整合は`plan-supersession` lintが分担する。

@@ -29,6 +29,7 @@ describe("planCoreId / parseSupersedes", () => {
       "---",
     ].join("\n");
     expect(parseSupersedes(fm)).toEqual(["PLAN-L7-86-x", "PLAN-L4-13"]);
+    expect(parseSupersedes("---\nsupersedes: [PLAN-L7-86-x]\n---")).toEqual(["PLAN-L7-86-x"]);
     expect(parseSupersedes("---\nsupersedes: []\n---")).toEqual([]);
     expect(parseSupersedes("---\nkind: impl\n---")).toEqual([]);
   });
@@ -36,14 +37,21 @@ describe("planCoreId / parseSupersedes", () => {
 
 describe("analyzePlanSupersession", () => {
   function plan(over: Partial<ParsedSupersedePlan>): ParsedSupersedePlan {
-    return { plan_id: "PLAN-X", supersedes: [], content: "", ...over };
+    return {
+      plan_id: "PLAN-X",
+      frontmatter_valid: true,
+      supersedes: [],
+      superseded_by: [],
+      content: "",
+      ...over,
+    };
   }
 
   it("supersede 先が実在 + back-reference 有 → ok", () => {
     const r = analyzePlanSupersession([
       plan({ plan_id: "PLAN-L7-87-kind", supersedes: ["PLAN-L7-86-scope"] }),
       // 原 PLAN が後継の core-id (PLAN-L7-87) を訂正注記として含む。
-      plan({ plan_id: "PLAN-L7-86-scope", content: "訂正: PLAN-L7-87 が supersede した。" }),
+      plan({ plan_id: "PLAN-L7-86-scope", superseded_by: ["PLAN-L7-87-kind"] }),
     ]);
     expect(r.ok).toBe(true);
   });
@@ -75,10 +83,16 @@ describe("analyzePlanSupersession", () => {
     expect(r.ok).toBe(true);
   });
 
-  it("core-id の word-boundary: PLAN-L7-87 は PLAN-L7-870 を誤マッチしない", () => {
+  it("frontmatter parse失敗をsilent skipせずviolationにする", () => {
+    const r = analyzePlanSupersession([plan({ plan_id: "PLAN-BROKEN", frontmatter_valid: false })]);
+    expect(r.ok).toBe(false);
+    expect(r.parseErrors).toEqual([{ plan_id: "PLAN-BROKEN" }]);
+  });
+
+  it("本文中の無関係なPLAN言及をback-referenceとして受理しない", () => {
     const r = analyzePlanSupersession([
       plan({ plan_id: "PLAN-L7-87-kind", supersedes: ["PLAN-L7-86-scope"] }),
-      plan({ plan_id: "PLAN-L7-86-scope", content: "言及は PLAN-L7-870 だけ (別 PLAN)。" }),
+      plan({ plan_id: "PLAN-L7-86-scope", content: "dependencies: PLAN-L7-87-kind" }),
     ]);
     expect(r.ok).toBe(false);
     expect(r.missingBackrefs).toHaveLength(1);
@@ -86,11 +100,21 @@ describe("analyzePlanSupersession", () => {
 });
 
 describe("loadSupersedePlans + checkPlanSupersession", () => {
-  function writePlan(root: string, name: string, body: string, supersedes?: string[]): void {
+  function writePlan(
+    root: string,
+    name: string,
+    body: string,
+    supersedes?: string[],
+    supersededBy?: string[],
+  ): void {
     const fm = ["---", `plan_id: ${name.replace(/\.md$/, "")}`, "kind: troubleshoot"];
     if (supersedes) {
       fm.push("supersedes:");
       for (const s of supersedes) fm.push(`  - ${s}`);
+    }
+    if (supersededBy) {
+      fm.push("superseded_by:");
+      for (const successor of supersededBy) fm.push(`  - ${successor}`);
     }
     fm.push("---", "", body, "");
     writeFileSync(join(root, "docs", "plans", name), fm.join("\n"), "utf8");
@@ -102,14 +126,14 @@ describe("loadSupersedePlans + checkPlanSupersession", () => {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       // 双方向 OK: 後継が supersedes 宣言、原が訂正 back-ref。
       writePlan(root, "PLAN-L7-87-kind.md", "kind 非依存化", ["PLAN-L7-86-scope"]);
-      writePlan(root, "PLAN-L7-86-scope.md", "訂正: PLAN-L7-87 が supersede。");
+      writePlan(root, "PLAN-L7-86-scope.md", "訂正済み。", undefined, ["PLAN-L7-87-kind"]);
       expect(checkPlanSupersession(root).ok).toBe(true);
 
       // 片肺: 原が後継へ言及しない → violation。
       writePlan(root, "PLAN-L7-86-scope.md", "誤記のまま。");
       const r = checkPlanSupersession(root);
       expect(r.ok).toBe(false);
-      expect(r.messages.join("\n")).toContain("back-reference");
+      expect(r.messages.join("\n")).toContain("superseded_by");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -117,5 +141,22 @@ describe("loadSupersedePlans + checkPlanSupersession", () => {
 
   it("repo root が読めないと fail-close", () => {
     expect(checkPlanSupersession(join(tmpdir(), "helix-supersede-nope-zzz")).ok).toBe(false);
+  });
+
+  it("malformed YAMLをfail-closeする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-supersede-malformed-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-BROKEN.md"),
+        "---\nplan_id: PLAN-BROKEN\nsupersedes: [\n---\n",
+        "utf8",
+      );
+      const result = checkPlanSupersession(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages.join("\n")).toContain("frontmatter構造解析失敗");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

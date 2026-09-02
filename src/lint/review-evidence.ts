@@ -175,7 +175,7 @@ function reviewViolationReason(issue: CrossAgentModelIssue | undefined): string 
  * presence 検出のみ (shape 検証は zod frontmatterSchema が担う)。
  */
 export function hasReviewEvidence(content: string): boolean {
-  return /^review_evidence:\s*\n\s+-\s+reviewer:/m.test(content);
+  return extractReviewEntries(content).length > 0;
 }
 
 /**
