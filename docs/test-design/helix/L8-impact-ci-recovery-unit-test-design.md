@@ -178,3 +178,9 @@ stdout は CLI 出力の assert に使うため汚さない。CLI が自前 `pro
 さらに `U-TSLAZY-003` は、互換shimを無根拠な死蔵allowlistへ落とさず、confirmed artifact維持という
 理由を持つdeferred分類として固定する。canonical consumerが旧pathへ戻ればstale-deferredになるため、
 artifact存在互換とruntime配線の両方を同じmeta-gateで監視できる。
+
+## U-CLI-SKILL-DEADLINE-003: wrapper deadline budget順序
+
+`tests/cli-surface.test.ts`のchild deadlineを45秒に維持し、対象2 oracleのwrapper deadlineが
+正の有限marginを加えた導出値であることをsource oracleで検査する。marginを0以下へ戻す、
+対象oracleを30秒literalへ戻す、child deadlineを緩和して見かけ上greenにするmutationを拒否する。

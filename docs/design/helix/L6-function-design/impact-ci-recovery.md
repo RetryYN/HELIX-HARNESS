@@ -135,3 +135,9 @@ U-FULLSHARD-WF-001〜003とfinalize contractで扱う。
 この訂正・後継関係は PLAN-L7-685-full-regression-shard-jobs が
 PLAN-RECOVERY-11、PLAN-RECOVERY-14、PLAN-RECOVERY-18 を supersede し、各旧PLANの
 末尾に相互訂正注記を持つことで固定する。
+
+### 6.2 CLI childとtest wrapperのdeadline順序
+
+実processを起動するCLI oracleでは、childのbounded deadlineよりVitest wrapperを長く保つ。
+wrapperは無制限にせず、child deadlineへ有限marginを加えて導出する。これによりrunner混雑時も
+child側のtimeoutと診断を観測でき、test harnessがproduction境界より先に失敗するbudget inversionを拒否する。
