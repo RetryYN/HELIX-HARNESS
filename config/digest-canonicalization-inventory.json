@@ -3531,7 +3531,7 @@
     {
       "hit_id": "src/runtime/git-command-guard-hook.ts::guardOverrideDigest:createHash(sha256)::1",
       "path": "src/runtime/git-command-guard-hook.ts",
-      "line": 32,
+      "line": 34,
       "symbol": "guardOverrideDigest",
       "algorithm": "sha256",
       "input_kind": "string",
