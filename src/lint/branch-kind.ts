@@ -220,11 +220,15 @@ export function loadPlanDoc(repoRoot: string, file: string): BranchPlanDoc | nul
   const raw = markdownFrontmatter(readFileSync(join(repoRoot, file), "utf8"));
   if (!raw) return { file };
   const fm = parseYaml(raw) as Record<string, unknown>;
+  const baseSource = loadBasePlanSource(repoRoot, file);
   return {
     file,
     plan_id: typeof fm.plan_id === "string" ? fm.plan_id : undefined,
     kind: typeof fm.kind === "string" ? fm.kind : undefined,
     github_issue_id: fm.github_issue_id,
+    supersession_metadata_only:
+      baseSource !== null &&
+      isSupersessionMetadataOnly(readFileSync(join(repoRoot, file), "utf8"), baseSource),
   };
 }
 
@@ -274,18 +278,32 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
 }
 
 function loadBasePlanSource(repoRoot: string, file: string): string | null {
+  const candidates: string[] = [];
+  if (process.env.GITHUB_BASE_SHA) candidates.push(process.env.GITHUB_BASE_SHA);
+  if (process.env.PR_BASE_SHA) candidates.push(process.env.PR_BASE_SHA);
   try {
     const base = execFileSync("git", ["-C", repoRoot, "merge-base", "HEAD", "origin/main"], {
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
     }).trim();
-    return execFileSync("git", ["-C", repoRoot, "show", `${base}:${file}`], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    });
+    candidates.push(base);
   } catch {
-    return null;
+    // 明示candidateとfirst parentが後続に残るため、ここではfail-closeしない。
   }
+  // pull_request merge checkoutではorigin/mainがfetchされていても、merge-baseが
+  // candidate PLANを含むhead側を返す場合がある。first parentをbase authorityにする。
+  if (process.env.GITHUB_ACTIONS === "true") candidates.push("HEAD^1");
+  for (const base of [...new Set(candidates)]) {
+    try {
+      return execFileSync("git", ["-C", repoRoot, "show", `${base}:${file}`], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      });
+    } catch {
+      // 次の明示candidateへ進む。全candidate失敗時はfail-closeする。
+    }
+  }
+  return null;
 }
 
 export function loadBranchKindInput(repoRoot: string = process.cwd()): BranchKindInput {
@@ -312,15 +330,7 @@ export function loadBranchKindInput(repoRoot: string = process.cwd()): BranchKin
   const plans = planPaths
     .map((p) => {
       try {
-        const plan = loadPlanDoc(repoRoot, p);
-        if (!plan) return null;
-        const baseSource = loadBasePlanSource(repoRoot, p);
-        return {
-          ...plan,
-          supersession_metadata_only:
-            baseSource !== null &&
-            isSupersessionMetadataOnly(readFileSync(join(repoRoot, p), "utf8"), baseSource),
-        };
+        return loadPlanDoc(repoRoot, p);
       } catch {
         return { file: p };
       }
