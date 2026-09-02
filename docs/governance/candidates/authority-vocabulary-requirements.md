@@ -33,7 +33,7 @@ next_pair_freeze: L10_after_plan_specific_approval
 - `AVS-R-03B`: AIはdirectiveとcanonical authorityが矛盾する場合に矛盾をsurfaceし、可逆な範囲では目的を満たす適合案を導出する。不可逆・高影響・権限外の操作だけをexact approval境界へ送る。
 - `AVS-R-03C`: AIはdirectiveから目的とscopeを受け取っても、手段選択、代替案比較、反証、risk評価、検収を自ら実行する。逐語実行、検討打切り、全件human escalationをdirective遵守として評価しない。
 
-### AVS-FR-002 authority identity
+### AVS-FR-002 authority識別
 
 - `AVS-R-04`: accepted `decision`はdecision ID、context、alternatives、selection、rationale、consequences、authority epoch、supersession path、ADR／versioned record pointerを必須とする。
 - `AVS-R-05`: `selection`、`approval`、`disposition`、`runtime_judgment`をdecisionと別schema、別DB identity、別current outputで保持する。

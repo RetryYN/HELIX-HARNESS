@@ -78,4 +78,4 @@ review_evidence: []
 4. Claude/Codex shared brief・managed marker・rule-drift
 5. memory admission・SessionStart projection
 6. schema／DB／CLI／generated docsの原子的移行
-7. doctor／mutation／Reverse fullback／main read-after
+7. doctor／mutation／Reverse fullback／main反映後の再読
