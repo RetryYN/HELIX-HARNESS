@@ -972,7 +972,11 @@ function ensureRunnerAttestationSchema(db: HarnessDb): void {
 export function verifyRunnerAttestationChain(repoRoot: string, db: HarnessDb): string | null {
   ensureRunnerAttestationSchema(db);
   const path = join(repoRoot, ".helix/evidence/runner-attestations.jsonl");
-  if (!existsSync(path)) return null;
+  if (!existsSync(path)) {
+    const row = db.prepare("SELECT COUNT(*) AS count FROM runner_attestations").get();
+    if (Number(row?.count ?? 0) > 0) throw new Error("runner attestation JSONL欠落");
+    return null;
+  }
   if (lstatSync(path).isSymbolicLink()) throw new Error("runner attestation symlinkは禁止");
   let previous: string | null = null;
   const fileDigests = new Set<string>();
@@ -1027,80 +1031,6 @@ export function verifyRunnerAttestationChain(repoRoot: string, db: HarnessDb): s
   )
     throw new Error("runner attestation JSONL/DB set不一致");
   return previous;
-}
-
-export interface RunnerAttestationInput {
-  run_id: string;
-  session_id: string;
-  plan_id: string;
-  kind: "test" | "gate";
-  oracle_id: string;
-  command: string;
-  exit_code: number;
-  status: string;
-  evidence_path: string;
-  completed_at: string;
-}
-
-export function appendRunnerAttestation(input: {
-  repoRoot: string;
-  db: HarnessDb;
-  receipt: RunnerAttestationInput;
-}): string {
-  ensureRunnerAttestationSchema(input.db);
-  const path = join(input.repoRoot, ".helix/evidence/runner-attestations.jsonl");
-  mkdirSync(dirname(path), { recursive: true });
-  if (existsSync(path) && lstatSync(path).isSymbolicLink())
-    throw new Error("runner attestation symlinkは禁止");
-  const previousDigest = existsSync(path)
-    ? String(
-        JSON.parse(readFileSync(path, "utf8").trim().split("\n").at(-1) ?? "{}").event_digest ?? "",
-      ) || null
-    : null;
-  const evidence = canonicalFile(input.repoRoot, input.receipt.evidence_path);
-  if (evidence.error) throw new Error(`runner evidence ${evidence.error}`);
-  const payload = {
-    schema_version: "runner-attestation.v1",
-    previous_digest: previousDigest,
-    ...input.receipt,
-    repository_head: currentRepositoryHead(input.repoRoot),
-    output_digest: sha256(readFileSync(evidence.absolute)),
-  };
-  const eventDigest = sha256(JSON.stringify(payload));
-  const event = { ...payload, event_digest: eventDigest, signature: eventDigest };
-  const fd = openSync(path, "a", 0o600);
-  try {
-    appendFileSync(fd, `${JSON.stringify(event)}\n`);
-    fsyncSync(fd);
-  } finally {
-    closeSync(fd);
-  }
-  fsyncPath(dirname(path));
-  input.db
-    .prepare(
-      `INSERT INTO runner_attestations
-       (event_digest, previous_digest, run_id, session_id, plan_id, kind, oracle_id,
-        repository_head, command, exit_code, status, evidence_path, output_digest,
-        completed_at, signature) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    )
-    .run(
-      eventDigest,
-      previousDigest,
-      input.receipt.run_id,
-      input.receipt.session_id,
-      input.receipt.plan_id,
-      input.receipt.kind,
-      input.receipt.oracle_id,
-      event.repository_head,
-      input.receipt.command,
-      input.receipt.exit_code,
-      input.receipt.status,
-      input.receipt.evidence_path,
-      event.output_digest,
-      input.receipt.completed_at,
-      eventDigest,
-    );
-  return eventDigest;
 }
 
 export function canonicalClosureAuthorityDigest(
