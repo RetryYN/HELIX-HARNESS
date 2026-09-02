@@ -26,10 +26,12 @@ next_pair_freeze: L10_after_plan_specific_approval
 ### AVS-FR-001 入力分類
 
 - `AVS-R-01`: 会話入力を`consultation_input/feedback_signal/request_directive/selection_candidate/approval_candidate/decision_candidate`のexact setへ分類し、分類根拠とsource revisionを保持する。
+- `AVS-R-01A`: `request_directive`は実行意図、対象、許可scopeを解決できる場合だけ成立する。命令形、強い口調、叱責、緊急性、反復をdirective provenanceとして受理しない。
 - `AVS-R-02`: consultation、feedback、叱責、質問、仮説、比喩、requestをapprovalまたはaccepted decisionへ自動昇格しない。
 - `AVS-R-03`: directiveはtask boundaryを与え得るが、正本照合、代替案評価、安全確認、受入検証を免除しない。
 - `AVS-R-03A`: directiveへの準拠と技術的rationaleを分離する。`指示された`、`POが言った`、`依頼された`を設計選択、review verdict、risk acceptance、completion claimの根拠として受理しない。
 - `AVS-R-03B`: AIはdirectiveとcanonical authorityが矛盾する場合に矛盾をsurfaceし、可逆な範囲では目的を満たす適合案を導出する。不可逆・高影響・権限外の操作だけをexact approval境界へ送る。
+- `AVS-R-03C`: AIはdirectiveから目的とscopeを受け取っても、手段選択、代替案比較、反証、risk評価、検収を自ら実行する。逐語実行、検討打切り、全件human escalationをdirective遵守として評価しない。
 
 ### AVS-FR-002 authority identity
 
