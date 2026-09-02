@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-RECOVERY-11-impact-ci-stateful-deadline
+superseded_by: [PLAN-L7-685-full-regression-shard-jobs]
 title: "PLAN-RECOVERY-11 (recovery): Impact CI stateful deadline"
 kind: recovery
 layer: cross

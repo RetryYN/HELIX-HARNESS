@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-RECOVERY-14-impact-ci-cancel-propagation
+superseded_by: [PLAN-L7-685-full-regression-shard-jobs]
 title: "PLAN-RECOVERY-14 (recovery): Impact CI cancellation伝播"
 kind: recovery
 layer: cross

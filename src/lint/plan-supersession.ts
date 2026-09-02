@@ -4,13 +4,13 @@
  * 背景: confirmed PLAN の `review_evidence` / AC は自由記述ゆえ、断定的だが誤った主張
  * (例 PLAN-L7-86「kind filter は false-positive を出さない / blast radius 0」= 実際は
  * false-negative の盲点) が書けてしまい、機械は真偽を検証しない (coding ≠ substance)。
- * prose の真偽は一般に機械検証できないが、**誤記が後継 PLAN で訂正されたなら、その訂正リンクが
- * 双方向に記録されている** ことは機械検証できる。これにより「誤記の silent 放置」(後継が直したのに
+ * prose の真偽は一般に機械検証できないが、**誤記が後継 PLAN で訂正されたなら、その訂正edgeが
+ * typed frontmatterで双方向に記録されている** ことは機械検証できる。これにより「誤記の silent 放置」(後継が直したのに
  * 原 PLAN が誤った主張のまま残る) を fail-close する (CLAUDE.md「誤った残渣は明確に supersede せよ」)。
  *
  * 検出規則: PLAN P が frontmatter `supersedes: [X, ...]` を宣言したら、各 X について
  *  1. X が実在する plan_id であること (誤記/typo の supersede 先を弾く)。
- *  2. X の本文が P の core-id (`PLAN-<cat>-<n>`) を含むこと (= 原 PLAN に訂正 back-reference がある)。
+ *  2. X の`superseded_by`がPのexact plan_idを含むこと (= 原 PLAN に構造化逆edgeがある)。
  * いずれか欠落 → violation。`supersedes` 非宣言の PLAN は対象外 (誤記の有無は判定しない = prose 真偽は
  * 機械化しない)。宣言された errata リンクの整合のみを強制する。
  *
@@ -18,17 +18,23 @@
  */
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { fmValue } from "./shared";
+import { parse as parseYaml } from "yaml";
 
 export interface ParsedSupersedePlan {
   plan_id: string;
+  /** leading frontmatterがYAML objectとして構造解析できたか。 */
+  frontmatter_valid: boolean;
   /** frontmatter supersedes の plan_id 群 (path / .md は loader で正規化済)。 */
   supersedes: string[];
-  /** 本文全体 (back-reference 走査用)。 */
+  /** 自己を訂正する後継 PLAN の構造化 plan_id 群。 */
+  superseded_by: string[];
+  /** compatibility/debug用の原文。authority edge判定には使用しない。 */
   content: string;
 }
 
 export interface PlanSupersessionResult {
+  /** frontmatter不在／YAML parse失敗。silent skipを禁止する。 */
+  parseErrors: { plan_id: string }[];
   /** supersede 先が実在しない (誤記/typo)。 */
   missingTargets: { plan_id: string; target: string }[];
   /** supersede 先が宣言元への back-reference 訂正注記を持たない (片肺 errata)。 */
@@ -46,50 +52,73 @@ function normalizeTarget(raw: string): string {
   return raw.trim().replace(/^.*\//, "").replace(/\.md$/, "");
 }
 
-/** frontmatter の `supersedes:` YAML list を抽出 (top-level key、各行 `  - <id>`)。 */
-export function parseSupersedes(content: string): string[] {
-  const m = content.match(/^supersedes:\s*\n((?:\s+-\s+.+\n?)*)/m);
-  if (!m) return [];
-  const out: string[] = [];
-  for (const x of m[1].matchAll(/-\s+(.+?)\s*$/gm)) {
-    if (x[1] && x[1] !== "[]") out.push(normalizeTarget(x[1]));
+function parseFrontmatter(content: string): {
+  value: Record<string, unknown>;
+  valid: boolean;
+} {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/u);
+  if (!match) return { value: {}, valid: false };
+  try {
+    const parsed = parseYaml(match[1]);
+    return typeof parsed === "object" && parsed !== null
+      ? { value: parsed as Record<string, unknown>, valid: true }
+      : { value: {}, valid: false };
+  } catch {
+    return { value: {}, valid: false };
   }
-  return out;
+}
+
+function planIdList(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string").map(normalizeTarget)
+    : [];
+}
+
+/** frontmatter の block／flow style `supersedes` YAML listを構造解析する。 */
+export function parseSupersedes(content: string): string[] {
+  return planIdList(parseFrontmatter(content).value.supersedes);
 }
 
 export function parseSupersedePlan(file: string, content: string): ParsedSupersedePlan {
+  const parsed = parseFrontmatter(content);
+  const frontmatter = parsed.value;
   return {
-    plan_id: fmValue(content, "plan_id") ?? file.replace(/\.md$/, ""),
-    supersedes: parseSupersedes(content),
+    plan_id:
+      typeof frontmatter.plan_id === "string" ? frontmatter.plan_id : file.replace(/\.md$/, ""),
+    frontmatter_valid: parsed.valid,
+    supersedes: planIdList(frontmatter.supersedes),
+    superseded_by: planIdList(frontmatter.superseded_by),
     content,
   };
 }
 
 export function analyzePlanSupersession(plans: ParsedSupersedePlan[]): PlanSupersessionResult {
   const byId = new Map(plans.map((p) => [p.plan_id, p]));
+  const parseErrors = plans
+    .filter((plan) => !plan.frontmatter_valid)
+    .map((plan) => ({ plan_id: plan.plan_id }));
   const missingTargets: { plan_id: string; target: string }[] = [];
   const missingBackrefs: { plan_id: string; target: string }[] = [];
 
   for (const p of plans) {
-    const core = planCoreId(p.plan_id);
-    const backref = new RegExp(`\\b${core.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`);
     for (const target of p.supersedes) {
       const t = byId.get(target);
       if (!t) {
         missingTargets.push({ plan_id: p.plan_id, target });
         continue;
       }
-      // 原 PLAN は後継の core-id を訂正注記として持つこと (双方向 errata、片肺禁止)。
-      if (!backref.test(t.content)) {
+      // 原 PLAN は後継のexact plan_idを構造化逆edgeとして持つこと (双方向 errata、片肺禁止)。
+      if (!t.superseded_by.includes(p.plan_id)) {
         missingBackrefs.push({ plan_id: p.plan_id, target });
       }
     }
   }
 
   return {
+    parseErrors,
     missingTargets,
     missingBackrefs,
-    ok: missingTargets.length === 0 && missingBackrefs.length === 0,
+    ok: parseErrors.length === 0 && missingTargets.length === 0 && missingBackrefs.length === 0,
   };
 }
 
@@ -106,6 +135,12 @@ export function loadSupersedePlans(repoRoot: string = process.cwd()): ParsedSupe
 
 export function planSupersessionMessages(r: PlanSupersessionResult): string[] {
   const msgs: string[] = [];
+  if (r.parseErrors.length > 0) {
+    const refs = r.parseErrors.map((value) => value.plan_id).join(", ");
+    msgs.push(
+      `plan-supersession - violation: frontmatter構造解析失敗 ${r.parseErrors.length} 件 (${refs}): leading YAMLを修正せよ`,
+    );
+  }
   if (r.missingTargets.length > 0) {
     const refs = r.missingTargets.map((v) => `${v.plan_id}→${v.target}`).join(", ");
     msgs.push(
@@ -115,13 +150,11 @@ export function planSupersessionMessages(r: PlanSupersessionResult): string[] {
   if (r.missingBackrefs.length > 0) {
     const refs = r.missingBackrefs.map((v) => `${v.plan_id}→${v.target}`).join(", ");
     msgs.push(
-      `plan-supersession - violation: supersede 先に訂正 back-reference が無い ${r.missingBackrefs.length} 件 (${refs}): 原 PLAN に「${"<後継 plan_id>"} が訂正」注記を追記し errata を双方向化せよ`,
+      `plan-supersession - violation: supersede 先に構造化 superseded_by が無い ${r.missingBackrefs.length} 件 (${refs}): 原 PLAN のfrontmatterへexact後継 plan_idを記録せよ`,
     );
   }
   if (msgs.length === 0) {
-    msgs.push(
-      "plan-supersession — OK (宣言された supersede は全て実在 + 双方向 back-reference 済)",
-    );
+    msgs.push("plan-supersession — OK (宣言された supersede は全て実在 + typed双方向edge済)");
   }
   return msgs;
 }

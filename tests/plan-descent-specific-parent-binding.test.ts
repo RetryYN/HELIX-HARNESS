@@ -548,6 +548,7 @@ describe("PLAN固有Vペアbinding", () => {
             owner: "another-runtime",
             updated: "2026-07-12",
             review_evidence: [{ verdict: "approve" }],
+            superseded_by: ["PLAN-RECOVERY-89-review-evidence-supersession-structure"],
           } as never),
         ],
       }).ok,

@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-143-harness-db-warn-remediation
+superseded_by: [PLAN-L7-144-warn-remediation-parity-and-join]
 title: "PLAN-L7-143 (troubleshoot): harness.db actionable-warn remediation — document-export over-redaction (\\b), guardrail same-provider advisory projection-gate parity, and missing-test-plan-id registration backfill"
 kind: troubleshoot
 layer: L7

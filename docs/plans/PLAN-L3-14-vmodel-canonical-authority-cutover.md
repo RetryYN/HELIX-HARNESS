@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L3-14-vmodel-canonical-authority-cutover
+superseded_by: [PLAN-L3-15-requirements-authority-chain-remediation]
 title: "PLAN-L3-14 (add-design): ZIP L1-L12 canonical authority cutover freeze"
 kind: add-design
 layer: L3

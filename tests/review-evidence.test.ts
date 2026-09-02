@@ -6,6 +6,7 @@ import {
   extractReviewEntries,
   type GitPlanDateProvenance,
   hasReviewEvidence,
+  isNonSemanticL3MetadataMigrationLine,
   L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
   type L3HumanApproval,
   loadReviewPlans,
@@ -525,16 +526,18 @@ describe("stale approval cleanup (IMP-080)", () => {
 
 describe("review-evidence lint (review 前置の機械強制、IMP-071)", () => {
   it("U-REVIEW-001: hasReviewEvidence — review_evidence ブロック (≥1 entry) を presence 検出", () => {
-    const withEv = `plan_id: PLAN-A\nstatus: confirmed\nreview_evidence:\n  - reviewer: code-reviewer\n    review_kind: intra_runtime_subagent\n    reviewed_at: "2026-06-05"\n    verdict: approve\n`;
-    const withoutEv = `plan_id: PLAN-B\nstatus: confirmed\nv2_import: x\n`;
-    const emptyKey = `plan_id: PLAN-C\nstatus: confirmed\nreview_evidence:\n`; // key だけ、entry なし
+    const withEv = `---\nplan_id: PLAN-A\nstatus: confirmed\nreview_evidence:\n  - reviewer: code-reviewer\n    review_kind: intra_runtime_subagent\n    reviewed_at: "2026-06-05"\n    verdict: approve\n---\n`;
+    const withoutEv = `---\nplan_id: PLAN-B\nstatus: confirmed\nv2_import: x\n---\n`;
+    const emptyKey = `---\nplan_id: PLAN-C\nstatus: confirmed\nreview_evidence:\n---\n`; // key だけ、entry なし
+    const bodyOnly = `---\nplan_id: PLAN-D\nstatus: confirmed\n---\n\nreview_evidence:\n  - reviewer: forged-body-example\n`;
     expect(hasReviewEvidence(withEv)).toBe(true);
     expect(hasReviewEvidence(withoutEv)).toBe(false);
     expect(hasReviewEvidence(emptyKey)).toBe(false);
+    expect(hasReviewEvidence(bodyOnly)).toBe(false);
   });
 
   it("U-REVIEW-002: parseReviewPlan — plan_id/kind/status/hasEvidence を抽出", () => {
-    const content = `plan_id: PLAN-L4-05-workflow-orchestration\nkind: add-design\nstatus: confirmed\nreview_evidence:\n  - reviewer: code-reviewer\n    review_kind: intra_runtime_subagent\n    reviewed_at: "2026-06-05"\n    verdict: approve\n`;
+    const content = `---\nplan_id: PLAN-L4-05-workflow-orchestration\nkind: add-design\nstatus: confirmed\nreview_evidence:\n  - reviewer: code-reviewer\n    review_kind: intra_runtime_subagent\n    reviewed_at: "2026-06-05"\n    verdict: approve\n---\n`;
     const p = parseReviewPlan("PLAN-L4-05-workflow-orchestration.md", content);
     expect(p.kind).toBe("add-design");
     expect(p.status).toBe("confirmed");
@@ -593,6 +596,17 @@ describe("review-evidence lint (review 前置の機械強制、IMP-071)", () => 
 });
 
 describe("L3 typed PO approval gate (Issue #1097)", () => {
+  it("U-L3APP-014: typed supersession metadataだけの後方適用はL3要求意味変更へ昇格しない", () => {
+    expect(
+      isNonSemanticL3MetadataMigrationLine(
+        "superseded_by: [PLAN-L3-15-requirements-authority-chain-remediation]",
+      ),
+    ).toBe(true);
+    expect(isNonSemanticL3MetadataMigrationLine("supersession_metadata_only: true")).toBe(true);
+    expect(isNonSemanticL3MetadataMigrationLine("status: confirmed")).toBe(false);
+    expect(isNonSemanticL3MetadataMigrationLine("title: changed requirement meaning")).toBe(false);
+  });
+
   // PLAN-L7-687-l3-human-approval-gate と PLAN-L7-688-l3-human-approval-git-provenance の
   // verification_bindings がこの test file を所有する。
   it("U-L3APP-001: AI technical reviewだけでは基準日以降のL3 terminal化を許可しない", () => {

@@ -188,6 +188,9 @@ export function planSemanticDigest(plan: PlanSpecificVpairPlan): string {
     "owner",
     "review_evidence",
     "verification_bindings",
+    // errata edgeはplan-supersession lintがexact双方向整合を独立検証する。
+    // legacy V-pair exemptionの意味pinを更新せず訂正metadataを追記可能にする。
+    "superseded_by",
   ])
     delete frontmatter[mutable];
   return sha256(
