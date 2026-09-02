@@ -30,7 +30,7 @@ entry_signals:
 contract_preconditions: "version-up remoteとcommitlint rangeが文字列入力を受ける"
 contract_postconditions: "許可remote／rangeだけがGit processへ到達し、悪性値は副作用前にfail-closeする"
 contract_invariants: "正常なremote tag検出とcommitlint range、shell:false、argument array実行を維持する"
-contract_failures: "transport helper、option形、credential付きremote、malformed range、未境界process callを拒否する"
+contract_failures: "大小文字transport helper、option形、HTTPS credential付きremote、malformed range、未境界process callを拒否する"
 tdd_red_required: true
 red_test: "HEAD..を受理した初期validatorと、既存fake gitが--終端を認識しない回帰を実測した"
 red_at: "2026-09-02T11:38:42+09:00"
