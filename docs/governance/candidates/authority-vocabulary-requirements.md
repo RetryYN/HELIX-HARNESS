@@ -28,6 +28,8 @@ next_pair_freeze: L10_after_plan_specific_approval
 - `AVS-R-01`: 会話入力を`consultation_input/feedback_signal/request_directive/selection_candidate/approval_candidate/decision_candidate`のexact setへ分類し、分類根拠とsource revisionを保持する。
 - `AVS-R-02`: consultation、feedback、叱責、質問、仮説、比喩、requestをapprovalまたはaccepted decisionへ自動昇格しない。
 - `AVS-R-03`: directiveはtask boundaryを与え得るが、正本照合、代替案評価、安全確認、受入検証を免除しない。
+- `AVS-R-03A`: directiveへの準拠と技術的rationaleを分離する。`指示された`、`POが言った`、`依頼された`を設計選択、review verdict、risk acceptance、completion claimの根拠として受理しない。
+- `AVS-R-03B`: AIはdirectiveとcanonical authorityが矛盾する場合に矛盾をsurfaceし、可逆な範囲では目的を満たす適合案を導出する。不可逆・高影響・権限外の操作だけをexact approval境界へ送る。
 
 ### AVS-FR-002 authority identity
 
@@ -39,7 +41,7 @@ next_pair_freeze: L10_after_plan_specific_approval
 
 - `AVS-R-07`: 既存`decision` fieldは意味inventoryを経てexact compatibility input-only adapterで一方向変換し、曖昧値を推測しない。
 - `AVS-R-08`: current CLI、schema、DB、generated docs、Issue／PLAN template、Claude／Codex promptは新identityを出力し、legacy generic decisionを再出力しない。
-- `AVS-R-09`: `PO判断`／`PO決定`／`PO指示`のcurrent出力は、対応するaccepted ADR、exact approval receipt、または明示directive sourceの型に応じて限定し、包括ラベルとして使わない。
+- `AVS-R-09`: `PO判断`／`PO決定`／`PO指示`をcurrent identityとして出力しない。accepted ADRは`decision`、exact approval receiptは`approval`、明示的な作業入力は`request_directive`として出力し、包括的なPO attributionへ再集約しない。
 
 ### AVS-FR-004 memoryとprovider rule
 

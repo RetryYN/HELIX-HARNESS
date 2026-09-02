@@ -30,9 +30,9 @@ backprop_decision_reason: "本PLANがIssue-onlyの語彙補正をL1/L3/L10 sourc
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "#1449、#1448、#1364、#1384の責務境界をread-afterできる"
-contract_postconditions: "decision／selection／approval／disposition／runtime_judgment／directiveの境界と15 oracleがplan固有承認候補になる"
+contract_postconditions: "decision／selection／approval／disposition／runtime_judgment／directiveの境界と17 oracleがplan固有承認候補になる"
 contract_invariants: "会話非authority、AI human provenance生成禁止、ADR decision限定、approval exact binding、memory coordination-onlyを維持する"
-contract_failures: "相談・叱責・質問・directiveのauthority昇格、思考放棄、generic decision再出力、superseded memory再浮上を拒否する"
+contract_failures: "相談・叱責・質問・directiveのauthority昇格、directiveをrationaleにした思考放棄、全件人間判断への丸投げ、generic decision再出力、superseded memory再浮上を拒否する"
 tdd_red_required: false
 tdd_red_waiver_reason: "本sliceは未承認requirements candidateのみを起草し、runtime／rule enforcementは承認後のL4以降へ分離する。"
 complexity_effect: net_negative

@@ -38,6 +38,8 @@ next_pair_freeze: L12_after_plan_specific_approval
 
 明示的なrequest／directiveも作業入力であり、requirements、design、ADR、approvalの代替authorityではない。AIは目的、正本、受入条件、可逆性、安全境界、代替案を評価し、`指示だから`を理由に検証を省略しない。
 
+directiveは許可された作業scopeや優先度を与え得るが、実装方式、技術的正しさ、完了、安全性を自動的に確定しない。AIは独立した技術理由と反証可能な検証結果を保持し、指示への服従をrationale、review verdict、completion evidenceとして再利用しない。
+
 ### AVS-BR-005 agent間連絡と長期authorityを分離する
 
 harness memoryはTTL付きagent coordination envelopeとtyped pointerだけを運ぶ。decision本文、approval本文、project要求・設計、利用者profileを保存せず、長期authorityは各正本へ置く。

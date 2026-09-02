@@ -21,12 +21,14 @@ pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md
 | `AVS-AC-001` | AVS-R-01 | 会話入力をexactly-one分類する | 0件／複数分類を拒否 |
 | `AVS-AC-002` | AVS-R-02 | 相談・叱責・質問・仮説をauthorityへ昇格しない | 「取り込んで」「なぜ」「遅い」をapproval／decisionにしない |
 | `AVS-AC-003` | AVS-R-03 | directive受領後も正本・安全・受入を検査する | `指示だから`で矛盾や危険操作を通さない |
+| `AVS-AC-003A` | AVS-R-03A | directive準拠と技術rationaleを別field・別証拠で保持する | `POが言った`だけの設計、review、完了claimを拒否 |
+| `AVS-AC-003B` | AVS-R-03B | authority矛盾をsurfaceし、可逆な適合案またはexact escalationを返す | 思考停止、盲目的実行、全件人間判断への丸投げを拒否 |
 | `AVS-AC-004` | AVS-R-04 | accepted decisionがADR系pointerと必須fieldを持つ | Issue comment／memoryだけのdecisionを拒否 |
 | `AVS-AC-005` | AVS-R-05 | 5 identityを別schema／出力で保持する | selectionやdispositionをdecisionへ畳み込まない |
 | `AVS-AC-006` | AVS-R-06 | approvalが対象・scope・revision・actorへexact binding | AI解釈や同名actorだけでhuman approvalを生成しない |
 | `AVS-AC-007` | AVS-R-07 | legacy値をexact adapterで一方向変換する | 曖昧な`decision`を推測変換しない |
 | `AVS-AC-008` | AVS-R-08 | current全surfaceがtyped identityを返す | generic decision identityの再出力をdoctorで拒否 |
-| `AVS-AC-009` | AVS-R-09 | PO系語彙がexact provenanceを持つ場合だけ現れる | PR merge順やAI技術判断をPO判断として保存しない |
+| `AVS-AC-009` | AVS-R-09 | current出力がdecision／approval／request_directiveをexact identityで返す | `PO判断`／`PO決定`／`PO指示`へ再集約しない |
 | `AVS-AC-010` | AVS-R-10 | memoryがTTL coordination＋pointerに限定される | project requirement／design／profile本文を拒否 |
 | `AVS-AC-011` | AVS-R-11 | invalid／superseded memoryがcurrent guidanceから消える | replacement済み本文のSessionStart再浮上を拒否 |
 | `AVS-AC-012` | AVS-R-12 | Claude/Codex rulesとadapterが同一marker／digest | 片側だけの規則変更をrule-driftで拒否 |
@@ -34,4 +36,4 @@ pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md
 | `AVS-AC-014` | AVS-R-14 | historical tokenはcurrentへ逆流しない | historical greenでcanonical failureを相殺しない |
 | `AVS-AC-015` | AVS-R-15 | long-term knowledgeがLearning admissionを通る | memory本文を直接Skill正本へ昇格しない |
 
-15 oracleを独立failure classとして保持し、単一happy pathで相殺しない。
+17 oracleを独立failure classとして保持し、単一happy pathで相殺しない。
