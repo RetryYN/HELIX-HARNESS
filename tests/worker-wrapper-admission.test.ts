@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  adapterExecutionEnv,
   admitWrapperLaunch,
   buildAdapterPlan,
   buildWrapperAdapterPlan,
@@ -200,5 +201,101 @@ describe("worker wrapper admission", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("U-WWA-010: provider childへsecretとHELIX state環境を継承しない", () => {
+    const env = adapterExecutionEnv(
+      "claude",
+      { CLAUDE_CODE_EFFORT_LEVEL: "high" },
+      {
+        PATH: "/usr/bin",
+        HOME: "/home/worker",
+        LANG: "ja_JP.UTF-8",
+        GITHUB_TOKEN: "must-not-cross",
+        ANTHROPIC_API_KEY: "must-not-cross",
+        HELIX_DB_PATH: "/repo/.helix/harness.db",
+        HELIX_STATE_ROOT: "/repo/.helix/state",
+        HTTP_PROXY: "http://proxy.example:8080",
+        HTTPS_PROXY: "https://user:password@proxy.example:8443/path",
+        NO_PROXY: "localhost,.internal.example",
+        SSL_CERT_FILE: "/etc/ssl/custom-ca.pem",
+        NODE_EXTRA_CA_CERTS: "/etc/ssl/node-extra-ca.pem",
+      },
+    );
+
+    expect(env).toEqual({
+      PATH: "/usr/bin",
+      HOME: "/home/worker",
+      LANG: "ja_JP.UTF-8",
+      HTTP_PROXY: "http://proxy.example:8080/",
+      HTTPS_PROXY: "https://proxy.example:8443/path",
+      NO_PROXY: "localhost,.internal.example",
+      SSL_CERT_FILE: "/etc/ssl/custom-ca.pem",
+      NODE_EXTRA_CA_CERTS: "/etc/ssl/node-extra-ca.pem",
+      CLAUDE_CODE_EFFORT_LEVEL: "high",
+    });
+  });
+
+  it("U-WWA-010b: malformed proxyとproxy credentialをprovider childへ渡さない", () => {
+    const env = adapterExecutionEnv(
+      "codex",
+      {},
+      {
+        HTTP_PROXY: "not a URL",
+        HTTPS_PROXY: "https://user:secret@proxy.example:8443",
+      },
+    );
+
+    expect(env.HTTP_PROXY).toBeUndefined();
+    expect(env.HTTPS_PROXY).toBe("https://proxy.example:8443/");
+    expect(JSON.stringify(env)).not.toContain("secret");
+  });
+
+  it("U-WWA-010b: Linuxの小文字proxy aliasをlowercase優先で正規化する", () => {
+    const env = adapterExecutionEnv(
+      "codex",
+      {},
+      {
+        HTTP_PROXY: "http://upper.example:8080",
+        http_proxy: "http://lower-user:secret@lower.example:8080",
+        HTTPS_PROXY: "https://upper.example:8443",
+        https_proxy: "https://lower.example:8443/path",
+        NO_PROXY: "upper.example",
+        no_proxy: "localhost,.internal.example",
+      },
+    );
+
+    expect(env.http_proxy).toBe("http://lower.example:8080/");
+    expect(env.https_proxy).toBe("https://lower.example:8443/path");
+    expect(env.no_proxy).toBe("localhost,.internal.example");
+    expect(env.HTTP_PROXY).toBeUndefined();
+    expect(env.HTTPS_PROXY).toBeUndefined();
+    expect(env.NO_PROXY).toBeUndefined();
+    expect(JSON.stringify(env)).not.toContain("secret");
+
+    const fallbackEnv = adapterExecutionEnv(
+      "codex",
+      {},
+      {
+        http_proxy: "not a URL",
+        HTTP_PROXY: "http://fallback.example:8080",
+      },
+    );
+    expect(fallbackEnv.http_proxy).toBeUndefined();
+    expect(fallbackEnv.HTTP_PROXY).toBe("http://fallback.example:8080/");
+  });
+
+  it("U-WWA-011: sealed planのenv改竄をdigest mismatchで拒否する", () => {
+    const plan = buildWrapperAdapterPlan(
+      { provider: "claude", role: "reviewer", task: "review", effort: "high", execute: true },
+      "hybrid",
+      "helix_cli_adapter",
+    );
+    plan.env = { ...plan.env, GITHUB_TOKEN: "injected-after-seal" };
+
+    expect(admitWrapperLaunch(plan)).toEqual({
+      admitted: false,
+      failure_code: "WRAPPER_ADAPTER_PLAN_DIGEST_MISMATCH",
+    });
   });
 });
