@@ -6,6 +6,7 @@ import {
   extractReviewEntries,
   type GitPlanDateProvenance,
   hasReviewEvidence,
+  isNonSemanticL3MetadataMigrationLine,
   L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
   type L3HumanApproval,
   loadReviewPlans,
@@ -595,6 +596,17 @@ describe("review-evidence lint (review 前置の機械強制、IMP-071)", () => 
 });
 
 describe("L3 typed PO approval gate (Issue #1097)", () => {
+  it("U-L3APP-014: typed supersession metadataだけの後方適用はL3要求意味変更へ昇格しない", () => {
+    expect(
+      isNonSemanticL3MetadataMigrationLine(
+        "superseded_by: [PLAN-L3-15-requirements-authority-chain-remediation]",
+      ),
+    ).toBe(true);
+    expect(isNonSemanticL3MetadataMigrationLine("supersession_metadata_only: true")).toBe(true);
+    expect(isNonSemanticL3MetadataMigrationLine("status: confirmed")).toBe(false);
+    expect(isNonSemanticL3MetadataMigrationLine("title: changed requirement meaning")).toBe(false);
+  });
+
   // PLAN-L7-687-l3-human-approval-gate と PLAN-L7-688-l3-human-approval-git-provenance の
   // verification_bindings がこの test file を所有する。
   it("U-L3APP-001: AI technical reviewだけでは基準日以降のL3 terminal化を許可しない", () => {

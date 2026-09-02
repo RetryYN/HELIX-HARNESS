@@ -96,11 +96,13 @@ describe("L6 completion readiness", () => {
         {
           path: "docs/plans/PLAN-L6-01-function-spec.md",
           text: [
+            "---",
             "plan_id: PLAN-L6-01-function-spec",
             "kind: design",
             "status: confirmed",
             "review_evidence:",
             "  - reviewer: pmo-sonnet",
+            "---",
           ].join("\n"),
         },
       ],
@@ -168,11 +170,13 @@ describe("L6 completion readiness", () => {
         {
           path: "docs/plans/PLAN-L6-01-function-spec.md",
           text: [
+            "---",
             "plan_id: PLAN-L6-01-function-spec",
             "kind: design",
             "status: confirmed",
             "review_evidence:",
             "  - reviewer: pmo-sonnet",
+            "---",
           ].join("\n"),
         },
         {

@@ -1,8 +1,8 @@
 ---
-layer: L7
+layer: L8
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/harness/L6-function-design/review-evidence-supersession-structure.md
+pair_artifact: docs/design/helix/L6-function-design/review-evidence-supersession-structure.md
 created: 2026-09-02
 plan: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md
 ---
@@ -24,6 +24,7 @@ typed YAML fieldだけをexact照合する。
 | U-SUPER-003 | `analyzePlanSupersession` | 先行PLAN本文やdependenciesの後継PLAN IDを逆edgeとして受理しない |
 | U-SUPER-004 | `parseSupersedePlan` / `analyzePlanSupersession` | frontmatter不在・malformed YAMLをsilent skipせずparse violationにする。CRLFは同じ有効構造として受理する |
 | U-BRANCH-SUPER-001 | `isSupersessionMetadataOnly` / branch-kind guard | base/current差分がnon-empty string-array `superseded_by`だけならRecovery migrationとして許可する。他field変更との混載は拒否する |
+| U-L3APP-014 | `isNonSemanticL3MetadataMigrationLine` | `superseded_by`／`supersession_metadata_only`だけを非意味変更metadataとして許可し、status・title・本文変更はL3再承認対象として保持する |
 
 ## Mutation境界
 
