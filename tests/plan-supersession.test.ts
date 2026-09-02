@@ -20,7 +20,7 @@ describe("planCoreId / parseSupersedes", () => {
     expect(planCoreId("PLAN-M-00")).toBe("PLAN-M-00");
   });
 
-  it("parseSupersedes は YAML list を抽出し path/.md を正規化、[] は無視", () => {
+  it("U-SUPER-001: parseSupersedes は YAML list を抽出し path/.md を正規化、[] は無視", () => {
     const fm = [
       "---",
       "supersedes:",
@@ -47,7 +47,7 @@ describe("analyzePlanSupersession", () => {
     };
   }
 
-  it("supersede 先が実在 + back-reference 有 → ok", () => {
+  it("U-SUPER-002: supersede 先が実在 + back-reference 有 → ok", () => {
     const r = analyzePlanSupersession([
       plan({ plan_id: "PLAN-L7-87-kind", supersedes: ["PLAN-L7-86-scope"] }),
       // 原 PLAN が後継の core-id (PLAN-L7-87) を訂正注記として含む。
@@ -83,13 +83,13 @@ describe("analyzePlanSupersession", () => {
     expect(r.ok).toBe(true);
   });
 
-  it("frontmatter parse失敗をsilent skipせずviolationにする", () => {
+  it("U-SUPER-004: frontmatter parse失敗をsilent skipせずviolationにする", () => {
     const r = analyzePlanSupersession([plan({ plan_id: "PLAN-BROKEN", frontmatter_valid: false })]);
     expect(r.ok).toBe(false);
     expect(r.parseErrors).toEqual([{ plan_id: "PLAN-BROKEN" }]);
   });
 
-  it("本文中の無関係なPLAN言及をback-referenceとして受理しない", () => {
+  it("U-SUPER-003: 本文中の無関係なPLAN言及をback-referenceとして受理しない", () => {
     const r = analyzePlanSupersession([
       plan({ plan_id: "PLAN-L7-87-kind", supersedes: ["PLAN-L7-86-scope"] }),
       plan({ plan_id: "PLAN-L7-86-scope", content: "dependencies: PLAN-L7-87-kind" }),

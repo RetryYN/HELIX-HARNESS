@@ -83,3 +83,9 @@ analyzeReviewEvidence(plans: ParsedReviewPlan[]) -> { missing, ok }
 - 本文、`dependencies`、説明中のPLAN言及は`superseded_by`を代用しない。先行PLANに構造化逆edgeが無い場合は片方向errataとしてfail-closeする。
 - frontmatter parse failure、訂正先不在、exact ID不一致をsilent skipしない。shapeはschema、集合整合は`plan-supersession` lintが分担する。
 - 既存PLAN群への逆edge migrationでは、Recovery branch admissionがbase/currentを構造比較し、non-emptyな`superseded_by`以外の意味・本文変更を拒否する。branch kindの異なるPLANを一般的に混載可能にはしない。
+## Leading frontmatter構造境界
+
+PLANのreview evidenceとsupersession edgeはleading frontmatterのtyped YAMLだけを正本とする。
+本文・例・引用によるpresence偽装を拒否し、`supersedes`／`superseded_by`はblock／flow styleを
+同じexact plan ID集合へ正規化する。訂正先の実在と双方向edgeを要求し、malformed YAML、
+空entry、片方向edgeはfail-closeする。

@@ -15,8 +15,8 @@ behavior_contract_id: REVIEW-EVIDENCE-SUPERSESSION-STRUCTURE-001
 responsibility_owner: evidence-structure-lint
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_contract
-legacy_retirement_state: canonical_only
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 workflow_identity:
@@ -36,13 +36,13 @@ red_test: "本文だけにreview_evidenceを含むfixtureがtrueとなり、flow
 red_at: "2026-09-02T19:00:00+09:00"
 green_at: "2026-09-02T19:20:00+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "frontmatter entry抽出を本文検索へ戻すmutationとYAML構造解析を旧line parserへ戻すmutationを専用反例が検出し、62 tests greenへ復帰した。"
-complexity_effect: net_reduction
+mutation_oracle_evidence: "tests/review-evidence.test.tsとtests/plan-supersession.test.tsがfrontmatter抽出を本文検索へ戻すmutationおよびYAML構造解析を旧line parserへ戻すmutationをredとしてkillし、62 tests greenへ復帰した。"
+complexity_effect: net_negative
 complexity_justification: "review evidence既存YAML extractorをpresence判定へ再利用し、supersessionの独自line/prose parserをyaml parserへ統合する"
 removal_trigger: "なし。evidenceとauthority edgeの恒久的な構造境界"
 backprop_decision: not_required
 backprop_decision_reason: "Issue #1446で既存requirementsのevidence truthfulnessをRecoveryし、新しい要求意味は追加しない"
-parent_design: docs/design/helix/L6-function-design/review-evidence-supersession-structure.md
+parent_design: docs/design/harness/L6-function-design/review-evidence.md
 pair_artifact: docs/test-design/helix/L8-review-evidence-supersession-structure-unit-test-design.md
 dependencies:
   parent: null
@@ -54,7 +54,6 @@ dependencies:
     - "issue:1446"
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/review-evidence-supersession-structure.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-review-evidence-supersession-structure-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }

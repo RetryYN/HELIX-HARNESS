@@ -2,7 +2,7 @@
 layer: L8
 artifact_type: test_design
 status: confirmed
-pair_artifact: docs/design/helix/L6-function-design/review-evidence-supersession-structure.md
+pair_artifact: docs/design/harness/L6-function-design/review-evidence.md
 created: 2026-09-02
 plan: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md
 ---
@@ -18,7 +18,7 @@ typed YAML fieldだけをexact照合する。
 
 | Oracle | 対象 | 期待結果 |
 | --- | --- | --- |
-| U-REVIEW-009 | `hasReviewEvidence` | 本文・例・引用だけに`review_evidence:`とreviewer文字列があってもfalse。leading frontmatterのentryだけがtrue |
+| U-REVIEW-001 | `hasReviewEvidence` | 本文・例・引用だけに`review_evidence:`とreviewer文字列があってもfalse。leading frontmatterのentryだけがtrue |
 | U-SUPER-001 | `parseSupersedes` | block／flow styleのYAML配列を同じplan_id集合へ正規化し、pathと`.md`を除去する |
 | U-SUPER-002 | `analyzePlanSupersession` | 後継`supersedes`と先行`superseded_by`がexact plan_idで双方向ならgreen。逆edge欠落・target不在はfail-close |
 | U-SUPER-003 | `analyzePlanSupersession` | 先行PLAN本文やdependenciesの後継PLAN IDを逆edgeとして受理しない |
@@ -28,7 +28,7 @@ typed YAML fieldだけをexact照合する。
 
 ## Mutation境界
 
-- evidence presenceを全文正規表現へ戻すとU-REVIEW-009がredになる。
+- evidence presenceを全文正規表現へ戻すとU-REVIEW-001がredになる。
 - supersedesをblock-list専用line parserへ戻すとU-SUPER-001がredになる。
 - back-referenceを全文文字列検索へ戻すとU-SUPER-003がredになる。
 - Recovery branchで既存PLAN kindを無条件許可するとU-BRANCH-SUPER-001がredになる。
