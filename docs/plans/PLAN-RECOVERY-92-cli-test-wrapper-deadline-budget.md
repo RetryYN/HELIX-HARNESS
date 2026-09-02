@@ -60,6 +60,6 @@ agent_slots:
 review_evidence: []
 ---
 
-# CLI test wrapper deadline budget Recovery
+# CLIテスト外枠の期限予算Recovery
 
 production childの停止境界を変えず、test harnessが先に切れるbudget inversionだけを是正する。
