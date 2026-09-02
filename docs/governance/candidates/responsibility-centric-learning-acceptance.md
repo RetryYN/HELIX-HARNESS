@@ -36,6 +36,7 @@ pair_artifact: docs/governance/candidates/responsibility-centric-learning-requir
 | `RCLS-AC-016` | RCLS-R-10/14..16 | context bytes/task、defect、acceptance、reworkをbefore/after測定 | token削減だけで品質改善を主張しない |
 | `RCLS-AC-017` | RCLS-R-18 | project-local→cross-projectにsource/license/redaction/human approvalがある | 一案件知識の自動横展開を拒否 |
 | `RCLS-AC-018` | RCLS-R-19 | Learning System出力がproposal/evidenceに限定される | Requirement/Design/merge/release直接変更を拒否 |
-| `RCLS-AC-019` | 全件 | targeted/full、mutation、doctor、DB、consumer smoke、Claude exact-HEAD、main read-afterがgreen | 局所greenで終端しない |
+| `RCLS-AC-019` | RCLS-R-21..23 | selection／approval／disposition／runtime_judgment／ADR decisionが別identityで、decision・approvalはtyped authorityへ解決する | 相談、叱責、作業依頼、memory prose、学習結果をhuman decision／approvalへ昇格する入力を拒否 |
+| `RCLS-AC-020` | 全件 | targeted/full、mutation、doctor、DB、consumer smoke、Claude exact-HEAD、main read-afterがgreen | 局所greenで終端しない |
 
-19 oracleを独立failure classとして保持し、legacy/historical successでcurrent failureを相殺しない。
+20 oracleを独立failure classとして保持し、legacy/historical successでcurrent failureを相殺しない。

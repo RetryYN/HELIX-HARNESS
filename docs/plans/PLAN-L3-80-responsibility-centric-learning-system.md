@@ -29,9 +29,9 @@ backprop_decision_reason: "本PLAN自身が指示書候補をL1/L3/L10へ戻すR
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "#1384と#1382/#1370/#1372/#1035/#1318/#1295のowner境界をread-afterできる"
-contract_postconditions: "L1/L3/L10 candidate、20 requirement、19 oracle、12 implementation sliceがplan固有承認境界へ束縛される"
-contract_invariants: "responsibility-first、channel分離、independent VERIFY、deterministic retrieval、段階昇格、失効、既存authority非侵害を維持する"
-contract_failures: "agent/skill owner化、全知識注入、自己検証昇格、cross-project漏洩、vector authority化、DB第二正本、既存Capability再実装を拒否する"
+contract_postconditions: "L1/L3/L10 candidate、23 requirement、20 oracle、12 implementation sliceがplan固有承認境界へ束縛される"
+contract_invariants: "responsibility-first、channel分離、independent VERIFY、deterministic retrieval、段階昇格、失効、authority語彙分離、既存authority非侵害を維持する"
+contract_failures: "agent/skill owner化、全知識注入、自己検証昇格、learningからのhuman authority生成、cross-project漏洩、vector authority化、DB第二正本、既存Capability再実装を拒否する"
 tdd_red_required: false
 tdd_red_waiver_reason: "本sliceは未承認requirements candidateだけを起草し、runtime gateとtest codeは承認後のL4以降へ分離する。"
 complexity_effect: net_negative
@@ -69,7 +69,7 @@ modifies: []
 agent_slots:
   - { role: aim, slot_label: "AIM — responsibility-first learningと既存authority非侵害" }
   - { role: se, slot_label: "SE — asset、index、promotion、mechanization境界" }
-  - { role: qa, slot_label: "QA — 19 negative oracleとbefore/after測定" }
+  - { role: qa, slot_label: "QA — 20 negative oracleとbefore/after測定" }
   - { role: tl, slot_label: "TL — #1382等とのowner重複排除" }
 review_evidence: []
 ---
@@ -84,15 +84,15 @@ review_evidence: []
 
 1. AuthorityとRequirement IR admission
 2. Responsibility Learning Registry
-3. CASE/SCENE/PATTERN/LOG intake
+3. CASE／SCENE／PATTERN／LOGの取込み
 4. VERIFY ledger
-5. Knowledge Index／Retrieval Packet
+5. 知識Index／Retrieval Packet
 6. Promotion／demotion
 7. Mechanization pipeline
 8. #1382 surface rationalization接続
 9. three-lane injection
 10. external/cross-project隔離
 11. HELIX-Bench dogfood
-12. Reverse fullback／main read-after
+12. Reverse fullback／mainのread-after
 
 初期dogfoodはGitHub Governance、Testing/CI、Cursor Cloud Execution、Requirement Authorityの4責務とする。
