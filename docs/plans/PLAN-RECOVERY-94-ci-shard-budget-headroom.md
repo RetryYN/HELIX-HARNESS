@@ -5,8 +5,8 @@ kind: recovery
 layer: cross
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-03
 updated: 2026-09-03
 owner: Codex / TL
@@ -68,7 +68,46 @@ agent_slots:
   - { role: se, slot_label: "SE — 4-shard workflow／artifact／telemetry配線" }
   - { role: qa, slot_label: "QA — timeout／cancel／receipt／partition mutation" }
   - { role: tl, slot_label: "TL — #1467 Recoveryと#1207 schedulerの境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-02T22:12:09Z"
+    tests_green_at: "2026-09-02T22:12:09Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: b586d14e3e24aebc9d20f314941b1290f1b91c79
+    scope: "PR #1471 exact HEADでbulk shard再分配、有限実行予算、job result／budget telemetry、generation／receipt／partitionのfail-close境界を確認しblocker 0。finalizeのjob_result mutationは非阻害のfollow-upとして残した。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1471#issuecomment-5517159720"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33686645297 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T22:12:09Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:28382a1a28329f929ac212cfacc8817bb61e74b69880db4f50f20edf940f261a"
+        result: "exact HEAD b586d14e3e24aebc9d20f314941b1290f1b91c79のCI run 33686645297がterminal success、DB convergence=true"
+      - kind: smoke
+        command: "gh run view 33693162040 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T23:29:45Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:78d452c059ada3e4c64031bd129aa055cc996d32b526b7826d178b050a78e2d0"
+        result: "canonical merge後のmain d105a15c68aee71d754f538186be3cb51b0246f0で全shard、DB rebuild、doctor、Full typed lane statusを含むpost-main harness-checkがterminal success"
+      - kind: smoke
+        command: "gh api repos/RetryYN/HELIX-HARNESS/actions/runs/33693162252 --jq '.status + \" \" + (.conclusion // \"\") + \" \" + .head_sha'"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T23:29:45Z"
+        evidence_path: .github/workflows/codeql.yml
+        output_digest: "sha256:bb397aba4104ddc1febc49e09f4e9d6ab837478e70fe66e709e0ea3a05e78092"
+        result: "main d105a15c68aee71d754f538186be3cb51b0246f0のCodeQL run 33693162252がterminal success"
 ---
 
 # CI shard実行予算と負荷再分配 Recovery
@@ -84,3 +123,12 @@ summaryへ残し、timeout／cancel／test failureの切り分け材料を同じ
 - `always()` uploadされたreceiptだけで完走を推定すること
 - test削除、assertion緩和、`continue-on-error`、targeted選択によるFull代替
 - CI System Synthesisのdynamic scheduler実装、release／publish
+
+## 終端read-after
+
+実装PR #1471（merge commit `f5ba0f9c215...`）のClaude exact-HEAD approveとCI successを確認した。
+その後、#1469のcanonical mergeを含むmain `d105a15c68aee71d754f538186be3cb51b0246f0`で、全shardの
+receipt集合、post-test DB rebuild、doctor、typed lane status、CodeQLがsuccessとなった。
+実装済みのshard予算・負荷再分配・generation／receipt照合をこのmain read-afterへ束縛し、
+`completion_claim_allowed: true`、`backfill_state: complete`へ遷移する。残るfinalize mutationの
+非阻害follow-upは本Recoveryのmerge阻害条件に含めない。
