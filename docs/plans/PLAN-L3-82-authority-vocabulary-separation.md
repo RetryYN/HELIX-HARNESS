@@ -55,7 +55,8 @@ generates:
   - { artifact_path: docs/governance/candidates/authority-vocabulary-requests.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/authority-vocabulary-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/authority-vocabulary-acceptance.md, artifact_type: markdown_doc }
-modifies: []
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — 会話入力とauthorityの分離" }
   - { role: se, slot_label: "SE — typed vocabularyとcompatibility adapter" }
