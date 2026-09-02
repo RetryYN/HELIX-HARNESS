@@ -59,8 +59,11 @@ modifies:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/check-registry.ts, artifact_type: source_module }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-inventory-lifecycle.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — doctor authority重複とadvisory境界の監査" }
   - { role: se, slot_label: "SE — typed registry集計とfallback観測の実装" }
