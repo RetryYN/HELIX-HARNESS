@@ -356,19 +356,18 @@ describe("HC-AC hosted/API preflight", () => {
         "missing_hook_non_enforcement_ack",
       );
 
-      const corrected = spawnSync(
-        "npx",
-        [...baseArgs, "--acknowledge-hook-non-enforcement"],
-        { cwd: root, encoding: "utf8" },
-      );
+      const corrected = spawnSync("npx", [...baseArgs, "--acknowledge-hook-non-enforcement"], {
+        cwd: root,
+        encoding: "utf8",
+      });
       expect(corrected.status, corrected.stderr).toBe(0);
       expect(JSON.parse(corrected.stdout).hostedPreflight?.kind).toBe("allow");
 
       const db = openHarnessDb(defaultHarnessDbPath(root), { repoRoot: root });
       try {
-        const rows = db
-          .prepare("SELECT status FROM guard_override_transactions")
-          .all() as Array<Record<string, unknown>>;
+        const rows = db.prepare("SELECT status FROM guard_override_transactions").all() as Array<
+          Record<string, unknown>
+        >;
         expect(rows).toEqual([{ status: "committed" }]);
       } finally {
         db.close();
