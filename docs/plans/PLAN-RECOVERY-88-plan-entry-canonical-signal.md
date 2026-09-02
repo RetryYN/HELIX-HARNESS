@@ -42,7 +42,7 @@ complexity_justification: "既存catalog resolverを再利用し、DB provenance
 removal_trigger: "なし。typed PLAN entry分類の恒久境界"
 backprop_decision: not_required
 backprop_decision_reason: "Issue #1449の既存authority語彙境界を先行Recoveryし、新しい要求意味を追加しない"
-parent_design: docs/design/helix/L6-function-design/plan-entry-canonical-signal-authority.md
+parent_design: docs/design/harness/L6-function-design/plan-entry-routing.md
 pair_artifact: docs/test-design/helix/L8-plan-entry-canonical-signal-authority-unit-test-design.md
 dependencies:
   parent: null
@@ -53,9 +53,9 @@ dependencies:
     - "issue:1453"
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-88-plan-entry-canonical-signal.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/plan-entry-canonical-signal-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-plan-entry-canonical-signal-authority-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/harness/L6-function-design/plan-entry-routing.md, artifact_type: design_doc }
   - { artifact_path: src/lint/plan-entry-routing.ts, artifact_type: source_module }
   - { artifact_path: tests/plan-entry-routing.test.ts, artifact_type: test_code }
 agent_slots:

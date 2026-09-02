@@ -126,3 +126,8 @@ Covered by `tests/plan-entry-routing.test.ts`:
   独立oracleとして判定する。inventory外の`workflow_identity_required`はgrandfather baselineで相殺しない。
 - compatibility-only PLANはfrozen exact inventoryに存在する場合だけ一方向変換対象とし、曖昧な旧値を
   推測しない。変換元とwarningをreceiptへ残し、current identityだけを後段へ渡す。
+- `entry_signals`がDB feedback／issue queueで解決されない場合は、requirements-owned catalogのexact
+  canonical signal tokenへ照合する。分類済みtokenだけを`catalog_signal`として返し、人間由来の
+  directive／approval／decision provenanceを付与しない。unknown、ambiguous、decision-requiredは
+  既存のtyped fail-closeへ渡す。`po_directive:`は#1449で廃止範囲を確定するまでcompatibility inputとして
+  のみ維持する。
