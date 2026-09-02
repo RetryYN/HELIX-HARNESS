@@ -62,7 +62,8 @@ generates:
   - { artifact_path: docs/governance/candidates/agentic-audit-future-state-delta-requests.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/agentic-audit-future-state-delta-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md, artifact_type: markdown_doc }
-modifies: []
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — UIL/TER/Future Synthesisのowner境界" }
   - { role: se, slot_label: "SE — proposal/delta/intake contractとidentity分離" }
