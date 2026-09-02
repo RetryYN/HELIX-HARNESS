@@ -18,6 +18,7 @@ schema integrity境界として管理する。
 
 - `primaryKey: true`の列は型にかかわらずDDLで`NOT NULL PRIMARY KEY`となる。
 - closure process receiptの同一`repository_head`／`dedupe_key`／`completed_at`はDB制約で重複を拒否する。
+- legacy重複は最小keyをcanonical rowとして残し、残余を全field付きのappend-only監査表へ退避してからunique制約へ移行する。
 - DELETE immutability triggerを持つruntime tableはdocument projection rebuildのtruncate対象外とする。
 - `closure_terminal_boundaries`はtracked ledger由来のdocument projectionなのでgeneric truncateから外し、
   rebuild transaction内のcontrolled replacement後にimmutability triggerを再設置する。

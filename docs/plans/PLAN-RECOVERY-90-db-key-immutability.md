@@ -62,6 +62,7 @@ modifies:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/harness-db-tables-core.ts, artifact_type: source_module }
   - { artifact_path: src/schema/harness-db-indexes.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/migration.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/closure-terminal-boundaries.ts, artifact_type: source_module }

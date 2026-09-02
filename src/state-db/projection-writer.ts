@@ -2638,6 +2638,7 @@ const IMMUTABLE_RECEIPT_TABLES = new Set([
   "semantic_result_heads",
   "semantic_result_operations",
   "closure_process_receipts",
+  "closure_process_receipt_migration_conflicts",
   // Append-only runtime evidence/event ledgers。migration triggerと同じ保持境界に置く。
   "github_execution_episode_right_arm_evidence",
   "orchestration_event_projections",

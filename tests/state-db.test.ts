@@ -502,6 +502,50 @@ describe("IT-DB-01: harness.db state-db foundation", () => {
     }
   });
 
+  // PLAN-RECOVERY-90-db-key-immutability — U-DBKEY-003 legacy duplicate migration
+  it("legacy dedupe重複は監査表へ退避してからunique制約へ移行する", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      db.exec(`CREATE TABLE closure_process_receipts (
+        process_receipt_key TEXT PRIMARY KEY,
+        schema_version TEXT, materialization_id TEXT, kind TEXT, repository_head TEXT,
+        executable TEXT, argv_json TEXT, dedupe_key TEXT, exit_code INTEGER, signal TEXT,
+        timed_out INTEGER, stdout_digest TEXT, stderr_digest TEXT, stdout_path TEXT,
+        stderr_path TEXT, completed_at TEXT
+      )`);
+      const insert = db.prepare(`INSERT INTO closure_process_receipts
+        (process_receipt_key, repository_head, dedupe_key, completed_at, stdout_digest)
+        VALUES (?, ?, ?, ?, ?)`);
+      insert.run("receipt:a", "a".repeat(40), "same", "2026-09-02T00:00:00Z", "digest:a");
+      insert.run("receipt:b", "a".repeat(40), "same", "2026-09-02T00:00:00Z", "digest:b");
+      db.exec(`CREATE TRIGGER closure_process_receipts_no_delete
+        BEFORE DELETE ON closure_process_receipts BEGIN SELECT RAISE(ABORT, 'legacy immutable'); END`);
+      db.setUserVersion(47);
+
+      expect(() => migrate(db)).not.toThrow();
+      expect(
+        db.prepare("SELECT process_receipt_key FROM closure_process_receipts").all(),
+      ).toEqual([{ process_receipt_key: "receipt:a" }]);
+      expect(
+        db.prepare(`SELECT process_receipt_key, canonical_process_receipt_key, stdout_digest,
+          archive_reason FROM closure_process_receipt_migration_conflicts`).all(),
+      ).toEqual([{
+        process_receipt_key: "receipt:b",
+        canonical_process_receipt_key: "receipt:a",
+        stdout_digest: "digest:b",
+        archive_reason: "legacy_duplicate_dedupe_tuple",
+      }]);
+      expect(() =>
+        insert.run("receipt:c", "a".repeat(40), "same", "2026-09-02T00:00:00Z", "digest:c"),
+      ).toThrow();
+      expect(() =>
+        db.prepare("DELETE FROM closure_process_receipt_migration_conflicts").run(),
+      ).toThrow();
+    } finally {
+      db.close();
+    }
+  });
+
   // PLAN-RECOVERY-90-db-key-immutability — U-DBKEY-001 legacy migration
   it("legacy TEXT primary key tableもmigration後はNULLを拒否する", () => {
     const db = openHarnessDb(":memory:");
