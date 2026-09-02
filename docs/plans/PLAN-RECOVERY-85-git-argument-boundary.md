@@ -60,9 +60,14 @@ generates:
   - { artifact_path: tests/git-argument-boundary.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/audit/quality.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/quality-audit.test.ts, artifact_type: test_code }
   - { artifact_path: tests/version-up-readiness.test.ts, artifact_type: test_code }
 agent_slots:
