@@ -8,7 +8,7 @@ plan: PLAN-L3-81-agentic-audit-future-state-delta
 github_issue_id: 1409
 ---
 
-# Agentic Audit / Future State Delta 受入候補
+# エージェント監査／将来状態差分の受入候補
 
 | Oracle | 対象 | 受入条件 |
 |---|---|---|
@@ -31,7 +31,7 @@ github_issue_id: 1409
 | AAFD-AC-017 | E2E external | model/provider change→TER→delta→Future invalidation→revalidationを同一lineageで実証する |
 | AAFD-AC-018 | convergence | targeted/full regression、mutation、doctor、DB convergence、独立exact-HEAD review、main read-afterがgreenである |
 
-## Negative oracle exact set
+## 否定oracleの厳密集合
 
 - 既存PR監査用`AuditFindingProposalV1`をsystem audit contractへ再解釈する。
 - Fable等の修正案を直接実装authorityとして採用する。

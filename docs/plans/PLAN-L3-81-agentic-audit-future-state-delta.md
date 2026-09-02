@@ -72,7 +72,7 @@ agent_slots:
 review_evidence: []
 ---
 
-# Agentic Audit / Future State Delta authority
+# エージェント監査／将来状態差分authority
 
 本PLANはdraftである。plan固有のPO承認を受けるまでcandidateをcanonical L1/L3/L10、Requirement IR、runtime、DB、
 generated current docsへ昇格しない。既存L6のPR監査用`AuditFindingProposalV1`を変更・再定義せず、system audit
@@ -81,12 +81,12 @@ proposalは`AgenticAuditProbeProposalV1`として別identityを持つ。
 ## 実装順
 
 1. L1/L3/L10 authorityとRequirement IR admission
-2. AgenticAuditProbeProposalV1 schema／UIL source profile
-3. exact identity／authority／duplicate／reproduction verifier
+2. `AgenticAuditProbeProposalV1` schema／UIL source分類
+3. identity／authority／重複／再現の厳密verifier
 4. UIL-01〜04 adapter
 5. FutureStateDeltaV1 schema／deterministic compiler
 6. UIL→delta adapter
 7. TER→delta adapter
-8. Future Synthesis F0 intake／invalidation
+8. Future Synthesis F0受入／無効化
 9. System Synthesis rerouteとmodel revision benchmark
 10. internal／external両系統のdogfood、Reverse fullback、main read-after
