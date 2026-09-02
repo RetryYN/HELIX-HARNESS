@@ -23,6 +23,8 @@ hosted/API editの例外許可を`guard_override_transactions`へ束縛し、CLI
 - `--allow-foreign-edit`はboundedな`--reason`を必須とする。
 - target集合、session、reasonからstable nonceとsubject digestを導出する。
 - `commitOverrideUse`がDBへcommitした場合だけwork guardをbypassする。
+- hosted preflightの全条件を先に評価し、`kind: allow`となった試行だけ`commitOverrideUse`へ渡す。
+- denyされた試行はnonceを消費せず、同一session／reason／targetへ不足ackを追加した訂正再試行を許可する。
 - 同一nonceの再利用、DB障害、理由不正はfail-closeする。
 - hook非強制は明示option、git status evidenceは実コマンド結果から導出する。
 
