@@ -55,6 +55,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-87-hosted-preflight-nonce-order.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/hosted-preflight-override-audit.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-hosted-preflight-override-audit-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
