@@ -108,7 +108,8 @@ describe("Universal Improvement source registry doctor", () => {
         /\["universalImprovementSourceRegistry", universalImprovementSourceRegistry\.ok\]/gu,
       ),
     ).toHaveLength(1);
-    expect(source).toContain("universalImprovementSourceRegistry.ok &&");
+    expect(source).toContain("aggregateInternalDoctorChecks(doctorCheckDefinitions)");
+    expect(source).toContain("ok: doctorAllChecksOk");
     expect(
       source.match(/\.\.\.universalImprovementSourceRegistry\.messages\.map\(/gu),
     ).toHaveLength(1);
