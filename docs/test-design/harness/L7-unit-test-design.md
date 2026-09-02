@@ -461,6 +461,7 @@ fail-close する。
 | U-TORDER-005   | `analyzeReviewEvidence` (対象外)                                          | draft (未確定) は順序対象外                                                                                                                                                                                                                                                                                             |
 | U-GREENDEF-005 | `greenCommandMatchesKind` / `frontmatterSchema` / `analyzeReviewEvidence` | `green_commands[].kind` と `command` の意味が一致しない場合 (`kind=doctor` だが `bun run lint` など) は schema と review-evidence lint の両方で fail。`unit_test` は test/vitest、`typecheck` は typecheck/tsc、`lint` は lint/biome/plan lint、`doctor` は doctor、`vmodel_lint` は vmodel lint を command text に含む |
 | U-GREENDEF-006 | `frontmatterSchema` / `analyzeReviewEvidence`                             | `green_commands[].output_digest` は `sha256:<64 hex>` のみ許可する。16 桁などの短縮 digest は `invalid_output_digest` または schema error で fail                                                                                                                                                                       |
+
 ### §1.16 U-MDRIFT (module-drift lint = 設計⊇実在の包含、PLAN-L7-16 / IMP-075)
 
 > ペア = `module-drift.md` (L6↔L7)。architecture §3.1 設計 module 集合 ⊇ `src/` 実在 module の包含 drift (impl→design back-fill 漏れ) を機械保証する純関数の oracle。
