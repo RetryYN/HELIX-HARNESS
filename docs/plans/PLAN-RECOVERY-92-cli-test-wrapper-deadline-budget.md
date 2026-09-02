@@ -52,7 +52,6 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — Recovery原因と既存CI契約の非退行を監査" }
   - { role: qa, slot_label: "QA — deadline順序と対象exact setの反例" }
