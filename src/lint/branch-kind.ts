@@ -27,6 +27,8 @@ export interface BranchPlanDoc {
   plan_id?: string;
   kind?: string;
   github_issue_id?: unknown;
+  /** recovery branchが既存PLANへsuperseded_byだけを移行する場合のtyped判定。 */
+  supersession_metadata_only?: boolean;
 }
 
 export interface BranchKindInput {
@@ -186,7 +188,9 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
   }
 
   for (const plan of plans) {
-    if (!plan.kind || !allowedKinds.includes(plan.kind)) {
+    const allowedRecoveryMetadataMigration =
+      kind === "recovery" && plan.supersession_metadata_only === true;
+    if ((!plan.kind || !allowedKinds.includes(plan.kind)) && !allowedRecoveryMetadataMigration) {
       findings.push({
         code: "kind_mismatch",
         severity: "error",
@@ -224,6 +228,66 @@ export function loadPlanDoc(repoRoot: string, file: string): BranchPlanDoc | nul
   };
 }
 
+function canonicalValue(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(canonicalValue);
+  if (value && typeof value === "object")
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, entry]) => [key, canonicalValue(entry)]),
+    );
+  return value;
+}
+
+function planWithoutSupersededBy(source: string): string | null {
+  const raw = markdownFrontmatter(source);
+  if (!raw) return null;
+  try {
+    const frontmatter = parseYaml(raw) as Record<string, unknown>;
+    if (!frontmatter || typeof frontmatter !== "object") return null;
+    delete frontmatter.superseded_by;
+    const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/u, "");
+    return JSON.stringify({ frontmatter: canonicalValue(frontmatter), body });
+  } catch {
+    return null;
+  }
+}
+
+/** current/baseの差がnon-emptyなsuperseded_by fieldだけかをexact比較する。 */
+export function isSupersessionMetadataOnly(currentSource: string, baseSource: string): boolean {
+  const currentRaw = markdownFrontmatter(currentSource);
+  if (!currentRaw) return false;
+  try {
+    const current = parseYaml(currentRaw) as Record<string, unknown>;
+    if (
+      !Array.isArray(current.superseded_by) ||
+      current.superseded_by.length === 0 ||
+      !current.superseded_by.every((value) => typeof value === "string")
+    )
+      return false;
+  } catch {
+    return false;
+  }
+  const currentWithout = planWithoutSupersededBy(currentSource);
+  const baseWithout = planWithoutSupersededBy(baseSource);
+  return currentWithout !== null && currentWithout === baseWithout;
+}
+
+function loadBasePlanSource(repoRoot: string, file: string): string | null {
+  try {
+    const base = execFileSync("git", ["-C", repoRoot, "merge-base", "HEAD", "origin/main"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    return execFileSync("git", ["-C", repoRoot, "show", `${base}:${file}`], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+  } catch {
+    return null;
+  }
+}
+
 export function loadBranchKindInput(repoRoot: string = process.cwd()): BranchKindInput {
   let branch: string | null = null;
   try {
@@ -248,7 +312,15 @@ export function loadBranchKindInput(repoRoot: string = process.cwd()): BranchKin
   const plans = planPaths
     .map((p) => {
       try {
-        return loadPlanDoc(repoRoot, p);
+        const plan = loadPlanDoc(repoRoot, p);
+        if (!plan) return null;
+        const baseSource = loadBasePlanSource(repoRoot, p);
+        return {
+          ...plan,
+          supersession_metadata_only:
+            baseSource !== null &&
+            isSupersessionMetadataOnly(readFileSync(join(repoRoot, p), "utf8"), baseSource),
+        };
       } catch {
         return { file: p };
       }

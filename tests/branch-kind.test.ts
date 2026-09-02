@@ -6,6 +6,7 @@ import {
   analyzeBranchKind,
   branchKindMessages,
   classifyBranchKind,
+  isSupersessionMetadataOnly,
 } from "../src/lint/branch-kind";
 import { loadDriveRouteCatalog } from "../src/lint/drive-route-catalog";
 import {
@@ -132,6 +133,34 @@ describe("branch-kind-check", () => {
     expect(result.findings).toContainEqual(
       expect.objectContaining({ code: "missing_github_issue_id", severity: "warn" }),
     );
+  });
+
+  it("recovery branchは既存PLANのsuperseded_by-only migrationだけを受理する", () => {
+    const result = analyzeBranchKind({
+      branch: "recovery/supersession-structure",
+      changedPaths: ["docs/plans/PLAN-L7-1.md", "docs/plans/PLAN-RECOVERY-1.md"],
+      plans: [
+        {
+          file: "docs/plans/PLAN-L7-1.md",
+          kind: "impl",
+          supersession_metadata_only: true,
+        },
+        { file: "docs/plans/PLAN-RECOVERY-1.md", kind: "recovery" },
+      ],
+    });
+    expect(result.ok).toBe(true);
+    expect(result.findings).toEqual([]);
+  });
+
+  it("superseded_by以外の変更や空edgeをmetadata-onlyと判定しない", () => {
+    const base = "---\nplan_id: PLAN-A\nkind: impl\nstatus: confirmed\n---\nbody\n";
+    const edgeOnly =
+      "---\nplan_id: PLAN-A\nkind: impl\nstatus: confirmed\nsuperseded_by: [PLAN-B]\n---\nbody\n";
+    const bodyChanged = edgeOnly.replace("body", "changed");
+    const emptyEdge = edgeOnly.replace("[PLAN-B]", "[]");
+    expect(isSupersessionMetadataOnly(edgeOnly, base)).toBe(true);
+    expect(isSupersessionMetadataOnly(bodyChanged, base)).toBe(false);
+    expect(isSupersessionMetadataOnly(emptyEdge, base)).toBe(false);
   });
 
   it("allows feature impl PLAN and keeps missing issue as warning only", () => {

@@ -59,10 +59,12 @@ modifies:
   - { artifact_path: docs/design/harness/L6-function-design/review-evidence.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-supersession.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-specific-vpair-binding.ts, artifact_type: source_module }
   - { artifact_path: src/schema/frontmatter.ts, artifact_type: source_module }
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-supersession.test.ts, artifact_type: test_code }
   - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
   - { artifact_path: docs/plans/PLAN-L3-14-vmodel-canonical-authority-cutover.md, artifact_type: markdown_doc }
