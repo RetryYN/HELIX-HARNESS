@@ -43,7 +43,7 @@ removal_trigger: "なし。evidenceとauthority edgeの恒久的な構造境界"
 backprop_decision: not_required
 backprop_decision_reason: "Issue #1446で既存requirementsのevidence truthfulnessをRecoveryし、新しい要求意味は追加しない"
 parent_design: docs/design/harness/L6-function-design/review-evidence.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/review-evidence-supersession-structure.md
 dependencies:
   parent: null
   requires: []
@@ -54,10 +54,9 @@ dependencies:
     - "issue:1446"
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/harness/review-evidence-supersession-structure.md, artifact_type: test_design }
 modifies:
-  - { artifact_path: config/plan-specific-vpair-binding-authority.json, artifact_type: json_config }
   - { artifact_path: docs/design/harness/L6-function-design/review-evidence.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }
   - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-supersession.ts, artifact_type: source_module }
