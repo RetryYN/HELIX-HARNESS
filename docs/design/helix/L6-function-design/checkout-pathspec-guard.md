@@ -1,4 +1,18 @@
-# Checkout Pathspec Guard
+---
+title: "checkout pathspec guard関数設計"
+layer: L6
+artifact_type: design_doc
+status: confirmed
+created: 2026-09-02
+updated: 2026-09-02
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-81-checkout-pathspec-guard.md
+pair_artifact: docs/test-design/helix/L8-checkout-pathspec-guard-unit-test-design.md
+behavior_contract_id: GIT-CHECKOUT-PATHSPEC-GUARD-001
+responsibility_owner: git-command-guard
+---
+
+# checkout pathspec guard関数設計
 
 ## 責務
 
