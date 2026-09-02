@@ -16,7 +16,7 @@ responsibility_owner: closure-evidence-materialization
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: remove_legacy
-legacy_retirement_state: removed
+legacy_retirement_state: consumer_zero
 no_code_decision: modify
 ddd_modeling_decision: value_object
 workflow_identity:
@@ -36,7 +36,7 @@ red_test: "U-CAUTO-019追加時はDB attestation存在下でJSONL削除後もall
 red_at: "2026-09-02T08:36:39+09:00"
 green_at: "2026-09-02T08:37:08+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "verifyRunnerAttestationChainのJSONL不存在分岐を旧return nullへ戻すとU-CAUTO-019がallowed=trueでfailedし、DB count照合へ復元後はgreen。recoverClosureEvidenceMaterializationのcommitted分岐を無効化するとU-CMAT-012がmanifest ENOENTでred、復元後はU-CMAT-011/012を含む13 tests green。"
+mutation_oracle_evidence: "tests/closure-auto-approval.test.tsでverifyRunnerAttestationChainのJSONL不存在分岐を旧return nullへ戻すmutationによりU-CAUTO-019がallowed=trueでfailedし、DB count照合へ復元後はgreen。tests/closure-evidence-materialization.test.tsでrecoverClosureEvidenceMaterializationのcommitted分岐を無効化するとU-CMAT-012がmanifest ENOENTでred、復元後はU-CMAT-011/012を含む13 tests green。"
 complexity_effect: net_negative
 complexity_justification: "test-only dead writerを削除し、既存production materialization journalだけをwrite authorityとして残す"
 removal_trigger: "なし。runner attestation durabilityの恒久不変条件"
