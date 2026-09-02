@@ -15,8 +15,8 @@ behavior_contract_id: CLI-TEST-WRAPPER-DEADLINE-BUDGET-001
 responsibility_owner: impact-ci-stateful-lane
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_contract
-legacy_retirement_state: canonical_only
+refactor_step: introduce_contract
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
 workflow_identity:
@@ -33,7 +33,7 @@ contract_failures: "無制限化、child deadline緩和、literal 30秒復帰、
 tdd_red_required: false
 tdd_red_waiver_reason: "GitHub Actions run 33634710580 attempt 1〜3と33634877671で同じ2 oracleの30秒timeoutを実測済み"
 mutation_oracle_required: true
-mutation_oracle_evidence: "wrapper marginを0へ戻すmutationと対象oracleを30秒literalへ戻すmutationをU-CLI-SKILL-DEADLINE-003が検出する"
+mutation_oracle_evidence: "tests/cli-surface-deadline-contract.test.ts はwrapper marginを0へ戻すmutationと対象oracleを30秒literalへ戻すmutationをredとしてkillする"
 complexity_effect: net_neutral
 complexity_justification: "既存child定数から有限wrapper budgetを導出し、重複literalを除去する"
 removal_trigger: "CLI p95短縮後もchildよりwrapperが長い順序契約は維持する"
