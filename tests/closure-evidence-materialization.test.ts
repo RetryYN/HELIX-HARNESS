@@ -180,7 +180,10 @@ function writeRecoveryJournal(input: {
     manifest_digest: sha(input.manifestBytes),
     files: [],
   };
-  writeFileSync(journalPath, JSON.stringify({ ...payload, journal_digest: sha(JSON.stringify(payload)) }));
+  writeFileSync(
+    journalPath,
+    JSON.stringify({ ...payload, journal_digest: sha(JSON.stringify(payload)) }),
+  );
   return { journalPath, jsonlPath, manifestPath, stagedManifest };
 }
 

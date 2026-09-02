@@ -63,8 +63,7 @@ function appendFixtureRunnerAttestation(input: {
   const path = join(input.repoRoot, ".helix/evidence/runner-attestations.jsonl");
   const previousDigest = existsSync(path)
     ? String(
-        JSON.parse(readFileSync(path, "utf8").trim().split("\n").at(-1) ?? "{}")
-          .event_digest ?? "",
+        JSON.parse(readFileSync(path, "utf8").trim().split("\n").at(-1) ?? "{}").event_digest ?? "",
       ) || null
     : null;
   const payload = {
