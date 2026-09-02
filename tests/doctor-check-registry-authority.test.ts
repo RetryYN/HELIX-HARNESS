@@ -48,7 +48,7 @@ describe("PLAN-RECOVERY-84 doctor check registry authority", () => {
       ),
     );
     expect(warning).toMatch(
-      /reason=rebuild_failed cause_kind=error cause_digest=sha256:[a-f0-9]{64}/,
+      /reason=check_failed cause_kind=error cause_digest=sha256:[a-f0-9]{64}/,
     );
     expect(warning).not.toContain("injected shared projection failure");
     expect(result.ok).toBe(false);

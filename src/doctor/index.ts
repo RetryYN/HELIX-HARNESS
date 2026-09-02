@@ -7251,7 +7251,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       // fail-open: 共有 projection の close 失敗は無視し、各 check の自前 rebuild 経路へ委ねる
     }
     sharedProjectionDb = undefined;
-    const failure = doctorFailure("shared-projection-db", "rebuild_failed", error);
+    const failure = doctorFailure("shared-projection-db", "check_failed", error);
     sharedProjectionDbWarning = `shared-projection-db - warning: shared rebuild unavailable; per-check fallback active (${doctorFailureMessage(failure)})`;
   }
   const driveDbRegistration = checkDriveDbRegistration(deps.repoRoot, sharedProjectionDb);
