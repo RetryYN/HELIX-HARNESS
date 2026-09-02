@@ -58,6 +58,8 @@ const helixEnvPrefix = ["HE", "LIX"].join("");
 // CLI surface cases launch a real Node/tsx child. A bounded child keeps a stalled
 // command from consuming the entire Vitest/CI timeout without a useful diagnostic.
 const CLI_CHILD_TIMEOUT_MS = 45_000;
+// Vitest側はchildのbounded timeoutと診断返却より先に切れてはならない。
+const CLI_CHILD_TEST_WRAPPER_TIMEOUT_MS = CLI_CHILD_TIMEOUT_MS + 15_000;
 const CLI_CHILD_MAX_BUFFER_BYTES = 16 * 1024 * 1024;
 
 function runCli(args: string[]) {
@@ -2855,7 +2857,7 @@ describe("L7 CLI surface closure", () => {
     expect(payload.entries.length).toBeGreaterThan(0);
     expect(payload.entries.every((entry: { skill_path: string }) => entry.skill_path)).toBe(true);
     expect(payload.required_paths.length).toBeGreaterThan(0);
-  }, 30_000);
+  }, CLI_CHILD_TEST_WRAPPER_TIMEOUT_MS);
 
   it("U-CLI-SKILL-DEADLINE-002: PLAN-RECOVERY-63-cli-surface-bounded-deadline passes plan skill injection through task route adapter plans", () => {
     const run = runCli([
@@ -2875,7 +2877,7 @@ describe("L7 CLI surface closure", () => {
     expect(run.status).toBe(0);
     expect(payload.adapterPlan.context_injection.required_paths.length).toBeGreaterThan(0);
     expect(payload.adapterPlan.stdin).toContain("HELIX context injection:");
-  }, 30_000);
+  }, CLI_CHILD_TEST_WRAPPER_TIMEOUT_MS);
 
   it("keeps proposal advisory lanes aligned with executable task routing", () => {
     const classify = runCli([
