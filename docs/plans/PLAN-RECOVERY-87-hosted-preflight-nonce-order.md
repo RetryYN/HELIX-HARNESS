@@ -5,8 +5,8 @@ kind: recovery
 layer: cross
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-02
 updated: 2026-09-02
 owner: Codex / TL
@@ -48,6 +48,7 @@ dependencies:
   parent: docs/plans/PLAN-RECOVERY-82-hosted-preflight-override-audit.md
   requires:
     - docs/plans/PLAN-RECOVERY-82-hosted-preflight-override-audit.md
+    - docs/plans/PLAN-REVERSE-87-hosted-preflight-nonce-order.md
   references:
     - "issue:1390"
     - "issue:1451"
@@ -66,9 +67,35 @@ agent_slots:
   - { role: aim, slot_label: "AIM — override監査とpreflight許可の意味順序確認" }
   - { role: qa, slot_label: "QA — deny後の訂正再試行と成功nonce再利用oracle" }
   - { role: tl, slot_label: "TL — fail-close不変条件とatomic scope管理" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-02T14:07:28Z"
+    tests_green_at: "2026-09-02T14:07:28Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: f174f7b5ef428ff6800a9d13a6cbc2c347c062f2
+    scope: "PR #1455 exact HEADでdeny時nonce未消費、allow後commit、成功nonce再利用拒否、既存fail-close不変を確認しblocker 0。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1455#issuecomment-5510860825"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33626819164 --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T14:07:28Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:93ca20f5deeeac689fd02e93338dea682c41c889cfa077dd0011d7f6fa642f6c"
+        result: "exact HEAD f174f7b5ef428ff6800a9d13a6cbc2c347c062f2のCI run 33626819164がterminal success、DB convergence=true"
 ---
 
 # hosted preflight nonce順序の復旧
 
 denyされた試行を成功済みoverrideとしてcommitせず、全preflight条件がallowになった後だけ既存transactionへ記録する。
+
+## 終端接続
+
+Reverse companion `PLAN-REVERSE-87-hosted-preflight-nonce-order` と双方向接続し、PR #1455のreviewed HEAD、
+canonical merge、post-main CIを同一証拠へ束縛した。Issue closeは本terminal bundleのmain read-after後にだけ行う。
