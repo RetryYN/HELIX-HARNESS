@@ -57,6 +57,9 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/review-evidence-supersession-structure.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-review-evidence-supersession-structure-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: config }
   - { artifact_path: docs/design/harness/L6-function-design/review-evidence.md, artifact_type: design_doc }
   - { artifact_path: src/lint/review-evidence.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
