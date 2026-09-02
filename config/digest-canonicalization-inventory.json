@@ -6846,7 +6846,7 @@
     {
       "hit_id": "src/state-db/vmodel-fit.ts::inspectVmodelHandoffArtifact:createHash(sha256)::1",
       "path": "src/state-db/vmodel-fit.ts",
-      "line": 1353,
+      "line": 1366,
       "symbol": "inspectVmodelHandoffArtifact",
       "algorithm": "sha256",
       "input_kind": "bytes",
