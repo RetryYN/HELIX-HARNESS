@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { aggregateDoctorCheckStates, checkL12HybridInventoryLifecycle } from "../src/doctor/index";
+import { aggregateInternalDoctorChecks } from "../src/doctor/check-registry";
+import { checkL12HybridInventoryLifecycle } from "../src/doctor/index";
 import {
   analyzeReviewedSafeInventoryLifecycle,
   REVIEWED_SAFE_ARTIFACT_FAMILIES,
@@ -45,19 +46,28 @@ describe("L12 reviewed-safe inventory lifecycle", () => {
 
   it("U-L12INV-003: inventory lifecycle違反をdoctor全体の失敗へ配線する", () => {
     expect(
-      aggregateDoctorCheckStates([
-        ["unrelated", true],
-        ["l12HybridInventoryLifecycle", false],
+      aggregateInternalDoctorChecks([
+        { id: "unrelated", severity: "hard", run: () => ({ ok: true, messages: [] }) },
+        {
+          id: "l12HybridInventoryLifecycle",
+          severity: "hard",
+          run: () => ({ ok: false, messages: [] }),
+        },
       ]),
-    ).toEqual({ allOk: false, failingChecks: ["l12HybridInventoryLifecycle"] });
+    ).toEqual({
+      allOk: false,
+      failingChecks: ["l12HybridInventoryLifecycle"],
+      registeredHardCount: 2,
+      evaluatedHardCount: 2,
+    });
 
     const doctorSource = readFileSync("src/doctor/index.ts", "utf8");
     expect(doctorSource).toContain(
       '["l12HybridInventoryLifecycle", l12HybridInventoryLifecycle.ok]',
     );
-    expect(doctorSource).toContain("aggregateDoctorCheckStates(doctorCheckStates)");
-    expect(doctorSource).toContain("doctorAllChecksOk &&");
-    expect(doctorSource).toContain("l12HybridInventoryLifecycle.ok &&");
+    expect(doctorSource).toContain("aggregateInternalDoctorChecks(doctorCheckDefinitions)");
+    expect(doctorSource).toContain("ok: doctorAllChecksOk");
+    expect(doctorSource).not.toContain("l12HybridInventoryLifecycle.ok &&");
     expect(doctorSource).toContain(
       "...l12HybridInventoryLifecycle.messages.map((m) => `doctor: $" + "{m}`)",
     );

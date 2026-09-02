@@ -275,9 +275,7 @@ describe("HC-AC hosted/API preflight", () => {
       const db = openHarnessDb(defaultHarnessDbPath(root), { repoRoot: root });
       try {
         const rows = db
-          .prepare(
-            "SELECT guard_kind, operation_class, status FROM guard_override_transactions",
-          )
+          .prepare("SELECT guard_kind, operation_class, status FROM guard_override_transactions")
           .all() as Array<Record<string, unknown>>;
         expect(rows).toEqual([
           expect.objectContaining({

@@ -197,6 +197,7 @@ items:
       - docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md
       - docs/design/helix/L6-function-design/claude-native-memory-isolation.md
       - docs/design/helix/L6-function-design/claude-fable-5-1-provider-drift.md
+      - docs/design/helix/L6-function-design/doctor-check-registry-authority.md
       - docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md
       - docs/design/helix/L6-function-design/checkout-pathspec-guard.md
       - docs/design/helix/L6-function-design/hosted-preflight-override-audit.md
@@ -221,6 +222,7 @@ items:
       - docs/design/helix/L6-function-design/universal-improvement-finding-qualification.md
       - docs/design/helix/L6-function-design/open-branch-plan-identity-reservation.md
       - docs/design/helix/L6-function-design/helix-bench-task-dataset.md
+      - docs/design/helix/L6-function-design/git-argument-boundary.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
       - docs/design/harness/L6-function-design/triage-decision-integrity.md
       - docs/design/harness/L6-function-design/left-arm-carry-log.md
@@ -324,6 +326,7 @@ items:
     source: zip-06
     status: done
     artifact:
+      - docs/test-design/helix/L8-doctor-check-registry-authority-unit-test-design.md
       - docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md
       - docs/test-design/helix/L8-workflow-classification-typed-routing-unit-test-design.md
       - docs/test-design/helix/L8-workflow-execution-policy-projection-runtime-unit-test-design.md

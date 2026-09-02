@@ -132,7 +132,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
 - 生成Markdown view digest: `sha256:2229eaf7f608c13439b3a98532d8c005db68492bae23b188bd0f47d9da85bfcb`
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:190e6944bfd12cf3f3e53f3834f85c4fe74359a91be063f17a65ba1f6a252b20`
+- design catalog digest候補: `sha256:60c8609d9cbf3dc722269910189ad8c4b2d3337b719890c785e48274f2b020d3`
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact、#1033のSystem Synthesis、
   #1073のRelease Module／Bundle、#1160の製品ライフサイクル運用、#1174のTechnology Environment
   Reconciliation、#1210のUniversal Improvement Loop、#1034のCI System Synthesis、#1339のimmutable
