@@ -46,6 +46,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-FULLSHARD-WF-002, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-97-ci-finalize-shard-fail-close-oracle.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 modifies:
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 agent_slots:
