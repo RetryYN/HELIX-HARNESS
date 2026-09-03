@@ -38,6 +38,19 @@ Claude Code / Codex / human reviewer は、通常タスクでは次の順に読�
 - `audit-framework.md`（旧feature単位gate／native auto-merge案。現行の原子的PR、read-only AI-B、
   明示merge契約と衝突する箇所は採用しない）
 
+## Authority Candidates（未承認候補）
+
+`candidates/`配下はL1／L3／L10へ昇格する前の提案を置く。candidateはcurrent authority、runtime入力、
+DB authority、README上の確定機能として扱わない。plan固有human approval、canonical merge、
+Requirement IR admission、main反映後の再読を経たものだけを現行正本へ移す。
+
+- `candidates/helix-concept-v4.0.md`: Verified Change Operating SystemへのConcept v4.0候補
+- `candidates/helix-concept-v4-requests.md`: v4.0のL1要求候補
+- `candidates/helix-concept-v4-requirements.md`: v4.0のL3要件候補
+- `candidates/helix-concept-v4-acceptance.md`: v4.0のL10受入候補
+- `candidates/helix-concept-v4-capability-delta.md`: baseline capabilityとの実測差分
+- `candidates/helix-concept-v4-readme-projection.md`: 人間向けREADME説明候補（非authority）
+
 ## Archived Or Vendor Material（archive / vendor 資料）
 
 旧版、参照 snapshot、個人 legacy source 原稿は正本として使わない。
