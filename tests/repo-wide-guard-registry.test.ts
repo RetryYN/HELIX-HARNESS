@@ -30,4 +30,20 @@ describe("repo-wide guard registry", () => {
     expect(packageJson.scripts["test:repo-guards"]).toBe("tsx scripts/run-repo-wide-guards.ts");
     expect(workflow).toContain("run: npm run test:repo-guards");
   });
+
+  it("U-REPOGUARD-003: repo-wide guardはfull shardより前にpreflightで実行する", () => {
+    const workflow = readFileSync(resolve(ROOT, ".github/workflows/harness-check.yml"), "utf8");
+    const preflightStart = workflow.indexOf("  full-regression-preflight:");
+    const bulkStart = workflow.indexOf("  full-regression-bulk-1:", preflightStart);
+    expect(preflightStart).toBeGreaterThanOrEqual(0);
+    expect(bulkStart).toBeGreaterThan(preflightStart);
+
+    const preflight = workflow.slice(preflightStart, bulkStart);
+    const installIndex = preflight.indexOf("run: npm ci");
+    const guardIndex = preflight.indexOf("run: npm run test:repo-guards");
+    const isolationIndex = preflight.indexOf("install required Linux isolation backend");
+    expect(installIndex).toBeGreaterThanOrEqual(0);
+    expect(guardIndex).toBeGreaterThan(installIndex);
+    expect(isolationIndex).toBeGreaterThan(guardIndex);
+  });
 });
