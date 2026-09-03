@@ -10,4 +10,3 @@
 
 pagination完了検査を除去するとU-IHIER-019がRedになること、dependency missing比較を除去すると
 U-IHIER-018がRedになることを確認する。
-

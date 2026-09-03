@@ -31,4 +31,3 @@ native-only parent、異なるparentへ分離する。取得不完全をedge欠�
 
 本sliceはread-only比較までを所有する。GitHub write、read-after、部分成功receipt、DB projection、scheduled
 repository-wide auditは後続sliceでこのreportを再利用して実装する。
-
