@@ -1,4 +1,4 @@
-# GitHub Issue native graph provider 詳細設計
+# GitHub Issue native graph providerの詳細設計
 
 ## 1. 目的
 
@@ -16,8 +16,7 @@ Issue stable node IDと4面graphを同じreadで取得する。repository identi
 取得完了へ変換せず、対応する`*Complete=false`としてprojection auditへ渡す。後続bounded pagination
 sliceが全pageを収集するまでconvergedにはできない。
 
-## 4. Fail-close
+## 4. Fail-close方針
 
 runner非0、JSON不正、repository／Issue欠落、stable ID欠落、Issue番号不一致、connection／node／pageInfo
 不正を個別errorとして拒否する。stderrやresponse本文をreceiptへ転記しない。
-

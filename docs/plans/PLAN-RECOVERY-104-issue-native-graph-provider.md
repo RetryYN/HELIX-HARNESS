@@ -35,7 +35,7 @@ red_test: "provider module不在によりtest suite importが失敗してRed"
 red_at: "2026-09-03T21:07:13+09:00"
 green_at: "2026-09-03T21:07:55+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-03T21:08:08+09:00にconnection completeを常時trueへ変更し、U-IGNPROV-002がblockedByComplete expected false／received trueでRed・exit 1となった。復元後Green"
+mutation_oracle_evidence: "tests/github-issue-native-graph-provider.test.tsのU-IGNPROV-002で、2026-09-03T21:08:08+09:00にconnection complete判定を常時trueへ変更するmutationを投入し、blockedByCompleteがexpected false／received trueでRed・exit 1となりkillした。実装復元後は同file 3 tests green"
 complexity_effect: net_neutral
 complexity_justification: "GitHub process実行をrunner portへ隔離し、既存pure comparatorへprovider固有responseを漏らさない"
 removal_trigger: "Notification Fabric共通GitHub Graph adapterが同じsnapshot schemaとpagination receiptを供給できる時"
@@ -67,7 +67,7 @@ generates:
 review_evidence: []
 ---
 
-# GitHub Issue native graph provider
+# GitHub Issue native graph providerの復旧PLAN
 
 ## 完了条件
 
