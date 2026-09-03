@@ -68,7 +68,7 @@ modifies:
   - { artifact_path: docs/governance/README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
-  - { role: pdm, slot_label: "PdM — product identityと利用者価値" }
+  - { role: po, slot_label: "PO — product identityと利用者価値" }
   - { role: se, slot_label: "SE — 8 Planeとtyped contract境界" }
   - { role: qa, slot_label: "QA — 22 acceptance／negative oracle" }
   - { role: tl, slot_label: "TL — v3.1移行、requirements、IR、runtime境界" }
