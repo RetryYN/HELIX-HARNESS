@@ -1150,21 +1150,17 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         receipt,
         "schema_invalid",
       );
-      const authorization = JSON.parse(
-        readFileSync(persisted.authorizationPath, "utf8"),
-      ) as Record<string, unknown>;
+      const authorization = JSON.parse(readFileSync(persisted.authorizationPath, "utf8")) as Record<
+        string,
+        unknown
+      >;
       const priorDigestTampered: Record<string, unknown> = {
         ...authorization,
         prior_slot_digest: `sha256:${"0".repeat(64)}`,
       };
-      const { correction_id: _priorCorrectionId, ...priorDigestPayload } =
-        priorDigestTampered;
-      priorDigestTampered.correction_id =
-        `review-receipt-correction:${sha256Digest(canonicalJson(priorDigestPayload))}`;
-      writeFileSync(
-        persisted.authorizationPath,
-        `${JSON.stringify(priorDigestTampered)}\n`,
-      );
+      const { correction_id: _priorCorrectionId, ...priorDigestPayload } = priorDigestTampered;
+      priorDigestTampered.correction_id = `review-receipt-correction:${sha256Digest(canonicalJson(priorDigestPayload))}`;
+      writeFileSync(persisted.authorizationPath, `${JSON.stringify(priorDigestTampered)}\n`);
       expect(findClaudePrReviewReceipt(malformedRoot, receipt)).toBeNull();
       writeFileSync(persisted.authorizationPath, `${JSON.stringify(authorization)}\n`);
 
@@ -1186,13 +1182,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       };
       const { correction_id: _conflictingCorrectionId, ...conflictingPayload } =
         conflictingAuthorization;
-      conflictingAuthorization.correction_id =
-        `review-receipt-correction:${sha256Digest(canonicalJson(conflictingPayload))}`;
+      conflictingAuthorization.correction_id = `review-receipt-correction:${sha256Digest(canonicalJson(conflictingPayload))}`;
       writeFileSync(persisted.receiptPath, `${JSON.stringify(conflicting)}\n`);
-      writeFileSync(
-        persisted.authorizationPath,
-        `${JSON.stringify(conflictingAuthorization)}\n`,
-      );
+      writeFileSync(persisted.authorizationPath, `${JSON.stringify(conflictingAuthorization)}\n`);
       expect(findClaudePrReviewReceipt(malformedRoot, receipt)).toBeNull();
     } finally {
       rmSync(validRoot, { recursive: true, force: true });
