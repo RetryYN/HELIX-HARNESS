@@ -15,7 +15,7 @@ behavior_contract_id: REVIEW-ADMISSION-PREDICATE-DIAGNOSTICS-001
 responsibility_owner: github-cross-review-admission
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: separate_responsibility
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
@@ -36,7 +36,7 @@ red_test: "U-GCRA-012がDB provenance不一致とwrong schemaをgeneric reason�
 red_at: "2026-09-03T10:58:48Z"
 green_at: "2026-09-03T10:59:46Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-03T10:58:48ZにDB provenance failureをschema failureへ取り違えるmutationを入れるとU-GCRA-012がexit 1となり、正しいtyped reason復元後にgreenへ戻した"
+mutation_oracle_evidence: "tests/github-cross-review-admission.test.ts::U-GCRA-012でDB provenance failureをschema failureへ取り違えるmutationを入れると1 failed／exit 1となりkilledした（2026-09-03T10:58:48Z）。正しいtyped reasonへ復元後にgreenへ戻した。U-GCRA-012a/012bは全14 reasonの個別分類と、invalid候補がvalid exactly-one受理を相殺しないことを同じtest locatorへ束縛する"
 complexity_effect: net_negative
 complexity_justification: "巨大なboolean filterを順序付きpredicate evaluatorへ分解し、同じ受理条件を診断可能な値へする"
 removal_trigger: "review admission全体がgenerated predicate registryと共通Claim Substance verifierへ移行した時"
