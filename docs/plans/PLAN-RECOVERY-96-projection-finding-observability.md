@@ -70,10 +70,10 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/projection-finding-observability.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: src/runtime/feedback-refactor-disposition.ts, artifact_type: source_module }
 modifies:
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/test-report-parser.ts, artifact_type: source_module }
-  - { artifact_path: src/runtime/feedback-refactor-disposition.ts, artifact_type: source_module }
   - { artifact_path: tests/projection-writer.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
   - { artifact_path: tests/test-report-parser.test.ts, artifact_type: test_code }
