@@ -68,6 +68,9 @@ requirements:
 | `U-CPRCONV-040` | `buildClaudePrReviewReceipt` / `validateClaudePrReviewReceipt` | producerがinput exact field setを検査してcanonical fieldだけを射影し、任意の非空`summary`を保持する | inputのunknown field許可、provider-neutral `schema_version`混入、空summaryの受理 |
 | `U-GCRA-010` | `evaluateGitHubCrossReviewAdmission` | Claude v4とprovider-neutral v4をexact schema valueで識別する | `schema_version` propertyの存在だけでClaude receiptをprovider-neutralへ誤分類する |
 | `U-GCRA-012` | `evaluateGitHubCrossReviewAdmission` | invalid候補をschema、独立性、CI、identity、DB provenance、時系列へ型付き分解し、comment URLだけを安全なlocatorとして返す | 全predicateをgeneric `review_receipt_invalid_or_stale`だけへ再統合、reason取り違え、receipt本文の診断流出 |
+| `U-CPRCONV-002` | `claude-pr-convergence` CLI | `--correct-malformed`はreason exact setを要求し、対象・既存訂正をGitHub投稿前に検査してから実commentのread-afterと訂正receiptをsealする | unknown reason、valid／missing target、既存訂正への重複comment、comment read-after前のseal |
+| `U-CPRCONV-041` | `persistClaudePrReviewReceiptCorrection` / `findClaudePrReviewReceipt` | malformed canonical bytesを保持し、prior byte digest・同一PR／HEAD／reviewer／CI generation・reason・corrected receipt digestをauthorizationへ束縛して別slotをcurrentへ選ぶ。authorization reasonとIDを同時改変しても拒否する | malformed slot上書き、authorizationなしのcorrected receipt選択、unknown reason、tampered exact join、訂正済みslotへの重複comment |
+| `U-CPRCONV-042` | `assertClaudePrReviewReceiptCorrectionTarget` / `persistClaudePrReviewReceiptCorrection` | valid slot、対象欠落、異内容訂正、部分write、invalid reasonをfail-closeし、同一内容のpersistenceだけを冪等にする | valid receipt上書き、silent spool退避、conflicting correctionの採用、reason自由入力 |
 
 ## 現行Recovery V-pair oracle
 

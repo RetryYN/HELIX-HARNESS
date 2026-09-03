@@ -11,6 +11,7 @@ import { describe, expect, it } from "vitest";
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
+  assertClaudePrReviewReceiptCorrectionTarget,
   assertClaudePrReviewReceiptSlotAvailable,
   authorRuntimeAttestation,
   authorRuntimeAttestationFailure,
@@ -36,6 +37,7 @@ import {
   parseClaudeIndependentPrReviewComment,
   parseClaudePrCiEvidenceGeneration,
   persistClaudePrReviewReceipt,
+  persistClaudePrReviewReceiptCorrection,
   releaseClaudePrReviewReceiptSlotClaim,
   renderIndependentPrReviewComment,
   resolveReviewReceiptCommentSealIntent,
@@ -1066,6 +1068,98 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       expect(() => loadClaudePrReviewReceipt(claim.path)).toThrow();
     } finally {
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // PLAN-RECOVERY-102-review-receipt-correction-generation / U-CPRCONV-041
+  it("U-CPRCONV-041: malformed immutable slotを保持して同一identityの訂正を別slotへsealする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-receipt-correction-"));
+    try {
+      const receipt = buildClaudePrReviewReceipt(baseInput);
+      const receiptDir = join(root, ".helix", "state", "claude-pr-convergence", "receipts");
+      mkdirSync(receiptDir, { recursive: true });
+      const malformedPath = join(receiptDir, safeClaudePrReviewReceiptName(receipt));
+      const malformedBytes = '{"schemaVersion":"helix-claude-pr-review-receipt.v4"}\n';
+      writeFileSync(malformedPath, malformedBytes, { mode: 0o600 });
+
+      const persisted = persistClaudePrReviewReceiptCorrection(root, receipt, "schema_invalid");
+
+      expect(readFileSync(malformedPath, "utf8")).toBe(malformedBytes);
+      expect(loadClaudePrReviewReceipt(persisted.receiptPath)).toEqual(receipt);
+      expect(findClaudePrReviewReceipt(root, receipt)).toEqual(receipt);
+      expect(JSON.parse(readFileSync(persisted.authorizationPath, "utf8"))).toMatchObject({
+        schema_version: "helix-review-receipt-correction-authorization.v1",
+        target_receipt_id: receipt.receiptId,
+        repository: receipt.repository,
+        pr_number: receipt.prNumber,
+        head_sha: receipt.headSha,
+        reviewer_runtime: receipt.reviewerRuntime,
+        ci_evidence_generation: receipt.ciEvidenceGeneration,
+        prior_slot_digest: sha256Digest(malformedBytes),
+        corrected_receipt_digest: receipt.receiptDigest,
+        reason: "schema_invalid",
+        reviewed_at: receipt.reviewedAt,
+      });
+      expect(persistClaudePrReviewReceiptCorrection(root, receipt, "schema_invalid")).toEqual(
+        persisted,
+      );
+      expect(() =>
+        assertClaudePrReviewReceiptCorrectionTarget(root, receipt, {
+          rejectExistingCorrection: true,
+        }),
+      ).toThrow("review_receipt_correction_already_exists");
+
+      const authorizationBytes = readFileSync(persisted.authorizationPath, "utf8");
+      const tamperedAuthorization: Record<string, unknown> = {
+        ...(JSON.parse(authorizationBytes) as Record<string, unknown>),
+        reason: "unknown_reason",
+      };
+      const { correction_id: _correctionId, ...tamperedPayload } = tamperedAuthorization;
+      tamperedAuthorization.correction_id = `review-receipt-correction:${sha256Digest(canonicalJson(tamperedPayload))}`;
+      writeFileSync(persisted.authorizationPath, `${JSON.stringify(tamperedAuthorization)}\n`);
+      expect(findClaudePrReviewReceipt(root, receipt)).toBeNull();
+      writeFileSync(persisted.authorizationPath, authorizationBytes);
+      expect(findClaudePrReviewReceipt(root, receipt)).toEqual(receipt);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // PLAN-RECOVERY-102-review-receipt-correction-generation / U-CPRCONV-042
+  it("U-CPRCONV-042: valid slotの訂正と同一identityの異内容訂正をfail-closeする", () => {
+    const validRoot = mkdtempSync(join(tmpdir(), "helix-valid-receipt-correction-"));
+    const malformedRoot = mkdtempSync(join(tmpdir(), "helix-conflict-receipt-correction-"));
+    try {
+      const receipt = buildClaudePrReviewReceipt(baseInput);
+      persistClaudePrReviewReceipt(validRoot, receipt);
+      expect(() =>
+        persistClaudePrReviewReceiptCorrection(validRoot, receipt, "schema_invalid"),
+      ).toThrow("valid_review_receipt_correction_forbidden");
+
+      const receiptDir = join(
+        malformedRoot,
+        ".helix",
+        "state",
+        "claude-pr-convergence",
+        "receipts",
+      );
+      mkdirSync(receiptDir, { recursive: true });
+      writeFileSync(join(receiptDir, safeClaudePrReviewReceiptName(receipt)), "malformed\n");
+      persistClaudePrReviewReceiptCorrection(malformedRoot, receipt, "schema_invalid");
+      const conflicting = buildClaudePrReviewReceipt({ ...baseInput, summary: "different bytes" });
+      expect(() =>
+        persistClaudePrReviewReceiptCorrection(malformedRoot, conflicting, "schema_invalid"),
+      ).toThrow("review_receipt_correction_conflict");
+      expect(() =>
+        persistClaudePrReviewReceiptCorrection(
+          malformedRoot,
+          conflicting,
+          "unknown_reason" as "schema_invalid",
+        ),
+      ).toThrow("review_receipt_correction_reason_invalid");
+    } finally {
+      rmSync(validRoot, { recursive: true, force: true });
+      rmSync(malformedRoot, { recursive: true, force: true });
     }
   });
 
