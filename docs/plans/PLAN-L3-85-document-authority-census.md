@@ -13,7 +13,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REDESIGN
 entry_signals:
-  - "requirement_change:Issue #1381 Document Authority CensusをL1/L3/L10へmaterializeする"
+  - "po_directive:Issue #1381 Document Authority CensusをL1/L3/L10へmaterializeする"
 created: 2026-09-04
 updated: 2026-09-04
 owner: Codex / TL
