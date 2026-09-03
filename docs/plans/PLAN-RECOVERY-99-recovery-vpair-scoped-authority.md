@@ -52,6 +52,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/plan-descent-specific-parent-binding.md, oracle_id: U-PSPB-028, test_path: tests/plan-descent-specific-parent-binding.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/plan-descent-specific-parent-binding.md, oracle_id: U-PSPB-029, test_path: tests/plan-descent-specific-parent-binding.test.ts }
 agent_slots:
+  - { role: aim, slot_label: "AIM — Recovery対象化で露出する宣言と実体の乖離監査" }
   - { role: se, slot_label: "SE — scoped authority schemaと既存digest chain保持" }
   - { role: qa, slot_label: "QA — eligibility／reason baseline／cross-scope mutation" }
   - { role: tl, slot_label: "TL — Recovery全件対象と他kind非混載の境界監査" }
