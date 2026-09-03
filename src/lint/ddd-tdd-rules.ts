@@ -36,6 +36,13 @@ export interface DddTddPlanDoc {
   text: string;
 }
 
+/**
+ * PLAN/test-design から導出する mutation oracle の所在表。
+ * これは新しい authority ではなく、oracle ID を既存の test path / L8 文書へ
+ * 解決するための読み取り専用 inventory である。
+ */
+export type DddTddMutationOracleLocators = Readonly<Record<string, readonly string[]>>;
+
 export interface DddTddInputs {
   policy: DddTddPolicy | null;
   workflowDocs: DddTddWorkflowDoc[];
@@ -43,6 +50,7 @@ export interface DddTddInputs {
   l7Text: string;
   l8Text: string;
   plans: DddTddPlanDoc[];
+  mutationOracleLocators?: DddTddMutationOracleLocators;
 }
 
 export interface DddTddViolation {
@@ -162,6 +170,93 @@ function collectPlanDocs(repoRoot: string): DddTddPlanDoc[] {
     });
 }
 
+function collectMarkdownFiles(repoRoot: string, relDir: string): { path: string; text: string }[] {
+  const root = join(repoRoot, relDir);
+  if (!existsSync(root)) return [];
+  const files: { path: string; text: string }[] = [];
+  const visit = (absDir: string, relPrefix: string): void => {
+    for (const entry of readdirSync(absDir, { withFileTypes: true })) {
+      const relPath = normalizePath(join(relPrefix, entry.name));
+      const absPath = join(absDir, entry.name);
+      if (entry.isDirectory()) {
+        visit(absPath, relPath);
+        continue;
+      }
+      if (!entry.isFile() || !entry.name.endsWith(".md")) continue;
+      files.push({ path: relPath, text: readFileSync(absPath, "utf8") });
+    }
+  };
+  visit(root, relDir);
+  return files.sort((a, b) => a.path.localeCompare(b.path));
+}
+
+const MUTATION_ORACLE_ID_PATTERN = /\bU-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+\b/g;
+const MUTATION_ORACLE_FIELD_PATTERN = /\boracle_id:\s*["'`]?([A-Za-z0-9][A-Za-z0-9._:-]*)/g;
+const MUTATION_ORACLE_PATH_FIELD_PATTERN =
+  /\b(?:test_path|artifact_path):\s*["'`]?((?:tests|docs\/test-design)\/[^\s,}"'`]+)/;
+
+function mutationOracleIds(text: string): string[] {
+  return [...text.matchAll(MUTATION_ORACLE_ID_PATTERN)].map((match) => match[0]);
+}
+
+function mutationOracleLocatorFromLine(line: string): string | null {
+  const match = line.match(MUTATION_ORACLE_PATH_FIELD_PATTERN);
+  if (!match?.[1]) return null;
+  return normalizePath(match[1]);
+}
+
+function addMutationOracleLocator(
+  registry: Map<string, Set<string>>,
+  oracleId: string,
+  locator: string,
+): void {
+  const existing = registry.get(oracleId) ?? new Set<string>();
+  existing.add(locator);
+  registry.set(oracleId, existing);
+}
+
+function collectMutationOracleLocators(
+  repoRoot: string,
+  plans: DddTddPlanDoc[],
+): DddTddMutationOracleLocators {
+  const registry = new Map<string, Set<string>>();
+
+  // verification_bindings / generates の oracle_id は、近接する test_path または
+  // test-design artifact が実在する場合だけ locator として登録する。
+  for (const plan of plans) {
+    const lines = plan.text.split(/\r?\n/);
+    for (const [index, line] of lines.entries()) {
+      const ids = [...line.matchAll(MUTATION_ORACLE_FIELD_PATTERN)].map((match) => match[1]);
+      if (ids.length === 0) continue;
+      const nearbyLines = lines.slice(Math.max(0, index - 2), Math.min(lines.length, index + 8));
+      const locator = nearbyLines
+        .map((candidate) => mutationOracleLocatorFromLine(candidate))
+        .find((candidate) => candidate !== null);
+      if (!locator) continue;
+      const absoluteLocator = join(repoRoot, locator);
+      if (!existsSync(absoluteLocator)) continue;
+      for (const id of ids) addMutationOracleLocator(registry, id, locator);
+    }
+  }
+
+  // L7/L8 test-design は oracle ID の定義面であり、文書自身を locator として
+  // 登録する。任意の prose 中の ID ではなく、表行または oracle_id field の ID に限定する。
+  for (const document of collectMarkdownFiles(repoRoot, join("docs", "test-design"))) {
+    for (const line of document.text.split(/\r?\n/)) {
+      const ids = line.trimStart().startsWith("|")
+        ? mutationOracleIds(line)
+        : [...line.matchAll(MUTATION_ORACLE_FIELD_PATTERN)].map((match) => match[1]);
+      for (const id of ids) addMutationOracleLocator(registry, id, document.path);
+    }
+  }
+
+  return Object.fromEntries(
+    [...registry.entries()]
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([id, locators]) => [id, [...locators].sort()]),
+  );
+}
+
 function maybeRead(repoRoot: string, relPath: string): string {
   const absPath = join(repoRoot, relPath);
   return existsSync(absPath) ? readFileSync(absPath, "utf8") : "";
@@ -189,6 +284,7 @@ export function loadDddTddWorkflowDocs(repoRoot: string = process.cwd()): DddTdd
 }
 
 export function loadDddTddInputs(repoRoot: string = process.cwd()): DddTddInputs {
+  const plans = collectPlanDocs(repoRoot);
   return {
     policy: loadDddTddPolicy(repoRoot),
     workflowDocs: loadDddTddWorkflowDocs(repoRoot),
@@ -201,7 +297,8 @@ export function loadDddTddInputs(repoRoot: string = process.cwd()): DddTddInputs
       repoRoot,
       normalizePath(join("docs", "test-design", "harness", "L9-integration-test-design.md")),
     ),
-    plans: collectPlanDocs(repoRoot),
+    plans,
+    mutationOracleLocators: collectMutationOracleLocators(repoRoot, plans),
   };
 }
 
@@ -544,19 +641,43 @@ const MUTATION_ORACLE_LOCATOR_PATTERN =
   /\b(?:tests\/[^\s"'`]+\.test\.ts|docs\/test-design\/[^\s"'`]+|\.helix\/audit\/[^\s"'`]+|vitest)\b/;
 const MUTATION_ORACLE_KILL_SIGNAL_PATTERN = /\b(?:kill(?:ed|s)?|fail(?:ed|s)?|red|mutation)\b/i;
 
-function mutationOracleEvidence(text: string): { line: number; value: string } | null {
+interface MutationOracleEvidenceResult {
+  line: number;
+  value: string;
+  valid: boolean;
+  failureReason?: string;
+}
+
+function mutationOracleEvidence(
+  text: string,
+  locators: DddTddMutationOracleLocators = {},
+): MutationOracleEvidenceResult | null {
   const match = text.match(MUTATION_ORACLE_EVIDENCE_PATTERN);
   const value = match?.[1]?.trim().replace(/^["']|["']$/g, "") ?? "";
   if (!match || MUTATION_ORACLE_PLACEHOLDER.test(value)) return null;
-  if (!MUTATION_ORACLE_LOCATOR_PATTERN.test(value)) return null;
-  if (!MUTATION_ORACLE_KILL_SIGNAL_PATTERN.test(value)) return null;
-  return {
-    line: text.slice(0, match.index).split(/\r?\n/).length,
-    value,
-  };
+  const line = text.slice(0, match.index).split(/\r?\n/).length;
+  const hasExplicitLocator = MUTATION_ORACLE_LOCATOR_PATTERN.test(value);
+  const oracleIds = mutationOracleIds(value);
+  const resolvedOracleIds = oracleIds.filter((id) => (locators[id]?.length ?? 0) > 0);
+  if (!hasExplicitLocator && resolvedOracleIds.length === 0) {
+    return {
+      line,
+      value,
+      valid: false,
+      failureReason:
+        oracleIds.length > 0 ? `unresolved-oracle-id:${oracleIds.join(",")}` : "locator-missing",
+    };
+  }
+  if (!MUTATION_ORACLE_KILL_SIGNAL_PATTERN.test(value)) {
+    return { line, value, valid: false, failureReason: "kill-signal-missing" };
+  }
+  return { line, value, valid: true };
 }
 
-function mutationOracleViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
+function mutationOracleViolations(
+  plans: DddTddPlanDoc[],
+  locators: DddTddMutationOracleLocators = {},
+): DddTddViolation[] {
   const violations: DddTddViolation[] = [];
   for (const plan of plans) {
     const status = fmValue(plan.text, "status") ?? null;
@@ -565,13 +686,20 @@ function mutationOracleViolations(plans: DddTddPlanDoc[]): DddTddViolation[] {
       (booleanField(plan.text, "tdd_red_required") ||
         booleanField(plan.text, "mutation_oracle_required"));
     if (!required) continue;
-    if (mutationOracleEvidence(plan.text)) continue;
+    const evidence = mutationOracleEvidence(plan.text, locators);
+    if (evidence?.valid) continue;
+    const detail = evidence?.failureReason?.startsWith("unresolved-oracle-id:")
+      ? ` Unresolvable oracle ID: ${evidence.failureReason.slice("unresolved-oracle-id:".length)}.`
+      : evidence?.failureReason === "kill-signal-missing"
+        ? " Include a fail/kill/red mutation result."
+        : " Include a resolvable locator.";
     violations.push({
       path: plan.path,
-      line: 1,
+      line: evidence?.line ?? 1,
       rule: "mutation-oracle",
       message:
-        "Confirmed TDD plan requires concrete mutation_oracle_evidence showing the test would fail or kill the seeded defect.",
+        "Confirmed TDD plan requires concrete mutation_oracle_evidence showing the test would fail or kill the seeded defect. Accepted locators: tests/*.test.ts, docs/test-design/..., .helix/audit/..., vitest, or an oracle_id resolvable from PLAN bindings/generates or test-design." +
+        detail,
     });
   }
   return violations;
@@ -734,7 +862,7 @@ export function analyzeDddTddRules(inputs: DddTddInputs): DddTddResult {
   violations.push(...invariantTraceViolations(inputs.policy, inputs.l7Text));
   violations.push(...redFirstViolations(inputs.plans));
   violations.push(...engineeringDisciplineViolations(inputs.plans));
-  violations.push(...mutationOracleViolations(inputs.plans));
+  violations.push(...mutationOracleViolations(inputs.plans, inputs.mutationOracleLocators));
   violations.push(...testOracleViolations(inputs.docs));
   violations.push(...integrationGwtViolations(inputs.l8Text));
   violations.push(...unitOracleSubstanceViolations(inputs.l7Text));

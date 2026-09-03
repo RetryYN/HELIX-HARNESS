@@ -12,6 +12,7 @@ updated: 2026-MM-DD
 owner: TL / PO
 parent_design: docs/plans/PLAN-XXX.md    # fullback 元 (confirmed poc / 実装 PLAN)
 pair_artifact: tests/<oracle>.test.ts    # 起票時から必須 (plan lint missing_pair_artifact)
+# mutation_oracle_evidence: "tests/<oracle>.test.ts::U-<DOMAIN>-001 が seeded defect を kill（exit 1）"
 agent_slots:
   - role: tl
     slot_label: "TL — fullback 内容の正本整合"

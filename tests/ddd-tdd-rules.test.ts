@@ -451,6 +451,59 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(result.violations.map((v) => v.rule)).not.toContain("mutation-oracle");
   });
 
+  it("U-DDDTDD-012: PLAN-RECOVERY-106-mutation-oracle-locator-resolution accepts a resolvable oracle ID as the mutation locator", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        mutationOracleLocators: {
+          "U-DDDTDD-011": ["docs/test-design/harness/L7-unit-test-design.md"],
+        },
+        plans: [
+          {
+            path: "docs/plans/PLAN-L7-94-oracle-id-evidence.md",
+            text: [
+              "---",
+              "status: confirmed",
+              "mutation_oracle_required: true",
+              "mutation_oracle_evidence: U-DDDTDD-011 killed the seeded defect (exit 1)",
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    expect(result.violations.map((v) => v.rule)).not.toContain("mutation-oracle");
+  });
+
+  it("U-DDDTDD-013: PLAN-RECOVERY-106-mutation-oracle-locator-resolution rejects an unknown oracle ID and explains the accepted locator forms", () => {
+    const result = analyzeDddTddRules(
+      baseInputs({
+        plans: [
+          {
+            path: "docs/plans/PLAN-L7-93-unknown-oracle.md",
+            text: [
+              "---",
+              "status: confirmed",
+              "mutation_oracle_required: true",
+              "mutation_oracle_evidence: U-UNKNOWN-999 killed the seeded defect (exit 1)",
+              "---",
+            ].join("\n"),
+          },
+        ],
+      }),
+    );
+    const violation = result.violations.find((entry) => entry.rule === "mutation-oracle");
+    expect(violation?.message).toContain("Unresolvable oracle ID: U-UNKNOWN-999");
+    expect(violation?.message).toContain("tests/*.test.ts");
+    expect(violation?.message).toContain("test-design");
+  });
+
+  it("U-DDDTDD-014: PLAN-RECOVERY-106-mutation-oracle-locator-resolution derives oracle IDs from existing test-design rows", () => {
+    const inputs = loadDddTddInputs();
+    expect(inputs.mutationOracleLocators?.["U-DIGEST-001"]).toContain(
+      "docs/test-design/harness/digest-canonicalization-authority.md",
+    );
+  });
+
   it("detects missing and weak test oracles", () => {
     const result = analyzeDddTddRules(
       baseInputs({

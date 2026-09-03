@@ -447,6 +447,9 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-EDISC-002 | PLAN-L7-463 / 縮退判断 | `no_change`と`none`を明示したPLANを受理し、code追加やclass化を強制しない | `tests/ddd-tdd-rules.test.ts` |
 | U-EDISC-003 | PLAN-L7-463 / complexity増加 | `add_code`または`justified_positive`で理由・削除条件のいずれかが欠落すればfail-closeする | `tests/ddd-tdd-rules.test.ts` |
 | U-EDISC-004 | PLAN-L7-463 / 原子変更・極小refactor | behavior contract、責務owner、atomic slice、refactor段階、legacy状態の欠落・未知値を拒否し、consumer=0未確認のlegacy削除をfail-closeする | `tests/ddd-tdd-rules.test.ts` |
+| U-DDDTDD-012 | PLAN-RECOVERY-106 / locator解決 | 既存 test-design または PLAN の `oracle_id` と実在 test path を解決できる oracle ID を明示 path と同等に受理する | `tests/ddd-tdd-rules.test.ts` |
+| U-DDDTDD-013 | PLAN-RECOVERY-106 / unknown ID | test path／test-designへ解決できない oracle IDだけの evidence を拒否し、受理形式とIDを診断する | `tests/ddd-tdd-rules.test.ts` |
+| U-DDDTDD-014 | PLAN-RECOVERY-106 / derived inventory | `loadDddTddInputs` が既存test-design行からlocator inventoryを決定的に導出する | `tests/ddd-tdd-rules.test.ts` |
 
 ### PR scope manifest契約（PLAN-L7-466）
 
