@@ -1153,7 +1153,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       const authorization = JSON.parse(
         readFileSync(persisted.authorizationPath, "utf8"),
       ) as Record<string, unknown>;
-      const priorDigestTampered = {
+      const priorDigestTampered: Record<string, unknown> = {
         ...authorization,
         prior_slot_digest: `sha256:${"0".repeat(64)}`,
       };
@@ -1180,7 +1180,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         ),
       ).toThrow("review_receipt_correction_reason_invalid");
 
-      const conflictingAuthorization = {
+      const conflictingAuthorization: Record<string, unknown> = {
         ...authorization,
         corrected_receipt_digest: conflicting.receiptDigest,
       };
