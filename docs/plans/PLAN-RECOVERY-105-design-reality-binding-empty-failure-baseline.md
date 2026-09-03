@@ -11,7 +11,7 @@ created: 2026-09-04
 updated: 2026-09-04
 owner: Codex / TL
 github_issue_id: 1501
-behavior_contract_id: DESIGN-REALITY-BINDING-EMPTY-FAILURE-BASELINE-001
+behavior_contract_id: DRB-EMPTY-FAILURE-BASELINE-001
 responsibility_owner: design-reality-binding
 engineering_discipline_required: true
 change_slice: atomic
