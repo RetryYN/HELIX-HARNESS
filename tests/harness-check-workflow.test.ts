@@ -137,9 +137,7 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     }
   }
   const finalizeText = JSON.stringify(finalize);
-  const finalizeRunText = (finalize?.steps ?? [])
-    .map((step) => step.run ?? "")
-    .join("\n");
+  const finalizeRunText = (finalize?.steps ?? []).map((step) => step.run ?? "").join("\n");
   if (REQUIRED_FINALIZE_SHARD_SUCCESS_CHECKS.some((check) => !finalizeRunText.includes(check))) {
     findings.push("finalize_shard_fail_close_invalid");
   }
