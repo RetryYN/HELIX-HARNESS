@@ -40,6 +40,11 @@ workflow、selector自身、security、permission、secret、schema、migration�
 `full`またはtest file exact listを受け取り、Draftだけ選択実行する。PLAN lint、canonical authority、typecheck、
 DB rebuild、Biome、doctorは既存ownerのまま維持し、selectorへ複製しない。
 
+PRのrevision rangeはbase/headのmerge-baseから導出する。非PR eventでは`github.event.before`をbaseとするが、
+初回push、`schedule`、`workflow_dispatch`のようにbefore SHAがzeroまたは空の場合はcandidate HEADの親をbaseとする。
+branch-kind、commitlint、Impact CI selectorはこの規則を共有し、空の`..HEAD`、PR payload由来SHAの非PR再利用、
+consumerごとのrange乖離を許可しない（`U-IMPACTCI-WF-006`）。
+
 full回帰をgreen完走したpull_request runだけが、head SHAとbase SHAを束縛した
 `impact-ci-full-receipt` artifactを発行する。Draftの選択実行greenはfull判定でないため発行されない。
 `ready_for_review`／`converted_to_draft`はPR状態遷移だけを表すeventであり、同一head SHAの
