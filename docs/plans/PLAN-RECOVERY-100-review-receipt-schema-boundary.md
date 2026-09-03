@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-99-review-receipt-schema-boundary
-title: "PLAN-RECOVERY-99: review receipt schema境界の厳格化"
+plan_id: PLAN-RECOVERY-100-review-receipt-schema-boundary
+title: "PLAN-RECOVERY-100: review receipt schema境界の厳格化"
 kind: recovery
 layer: cross
 drive: agent
@@ -48,7 +48,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-CPRCONV-040, test_path: tests/claude-pr-convergence.test.ts }
   - { parent_design: docs/design/helix/L5-detail/github-cross-review-admission.md, oracle_id: U-GCRA-010, test_path: tests/github-cross-review-admission.test.ts }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-99-review-receipt-schema-boundary.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-100-review-receipt-schema-boundary.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
@@ -73,7 +73,7 @@ dependencies:
 review_evidence: []
 ---
 
-# PLAN-RECOVERY-99: review receipt schema境界の厳格化
+# PLAN-RECOVERY-100: review receipt schema境界の厳格化
 
 ## 目的
 
