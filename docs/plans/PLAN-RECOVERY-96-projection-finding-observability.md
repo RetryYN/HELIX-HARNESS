@@ -15,7 +15,7 @@ behavior_contract_id: PROJECTION-FINDING-OBSERVABILITY-001
 responsibility_owner: projection-finding-observability
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: harden_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
@@ -71,6 +71,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/projection-finding-observability.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/feedback-refactor-disposition.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 modifies:
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/test-report-parser.ts, artifact_type: source_module }
@@ -78,6 +79,8 @@ modifies:
   - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
   - { artifact_path: tests/test-report-parser.test.ts, artifact_type: test_code }
   - { artifact_path: tests/feedback-refactor-disposition.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 review_evidence: []
 ---
 

@@ -42,8 +42,8 @@ github_issue_id: 1440
 
 `PROJECTION-FINDING-OBSERVABILITY-001`は次を不変条件とする。
 
-1. malformed evidence、missing `plan_id`、stable identity collision、parse error、dependency row mismatch、
-   registration reason欠落、cache digest driftは、success相当の空projectionとして扱わない。
+1. malformed evidence、missing `plan_id`、stable identity collision、parse error、dependency row mismatchを検出し、
+   registration reason欠落、cache digest driftは、成功相当の空projectionとして扱わず、明示的に失敗またはfindingへ変換する。
 2. findingはsource path、projection stage、failure code、入力digest、原因の要約、再現可能なcorrelationを保持し、
    secret・raw transcript・PIIを格納しない。
 3. `stableId("pair-agent-model-run", \`${runId}:${spanId}\`)`相当のnamespaceを使用し、異なるrunの同名spanを
