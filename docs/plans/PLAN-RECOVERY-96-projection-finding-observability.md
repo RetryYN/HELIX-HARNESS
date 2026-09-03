@@ -4,9 +4,9 @@ title: "PLAN-RECOVERY-96: projection writerの黙示的欠落をfindingとして
 kind: recovery
 layer: cross
 drive: db
-status: draft
-completion_claim_allowed: false
-backfill_state: pending
+status: confirmed
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-03
 updated: 2026-09-03
 owner: Codex / TL
@@ -32,8 +32,10 @@ contract_postconditions: "projectionの欠落・衝突・破損・依存不整�
 contract_invariants: "source文書を変更せず、既存finding storeとDB transaction boundaryを再利用し、#1397の責務を変更しない"
 contract_failures: "malformed evidence、plan_id欠落、span collision、parse error、row-count mismatch、reason欠落、cache digest driftを黙って成功させない"
 tdd_red_required: true
+red_at: "2026-09-03T08:16:46Z"
+green_at: "2026-09-03T08:18:06Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、入力順を反転した独立rebuild間のprojection／finding差異を検出することを本worktreeで確認した。全回帰・current HEADの独立review・main read-afterは未実施。"
+mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、入力順を反転した独立rebuild間のprojection／finding差異を検出することを確認した。2026-09-03T08:16:46Zにcanonicalizationのedges sortを除去したmutationで `npx --no-install vitest run --configLoader runner --project slow tests/slow/projection-writer.test.ts -t U-PFO-009` がexit 1となり、復元後2026-09-03T08:17:32Zの同一targeted testがexit 0となった。PR #1478のexact HEAD b55831e197570248d8a251a67976fb73fa6822a9でCI run 33723078211がterminal successとなり、Claude Codeの独立レビューがblocker 0を確認した。merge後main b5c7cc451ca379f646e361b48657ace82199b915でもharness-check run 33726154167が全shard、receipt集合、post-test DB rebuild、doctor、typed laneを含めterminal successとなった。"
 complexity_effect: net_neutral
 complexity_justification: "既存projection writerとfinding storeの欠落経路を型付き失敗へ収束し、新しいDB authorityや別projectionを増やさない"
 removal_trigger: "既存projection writerの恒久的acceptanceへ統合し、Recovery専用の重複検査が不要になった時点でsource PLANから統合する"
@@ -90,7 +92,28 @@ modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-03T06:54:35Z"
+    tests_green_at: "2026-09-03T06:53:50Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: b55831e197570248d8a251a67976fb73fa6822a9
+    scope: "PR #1478 exact HEADのU-PFO-001〜009、projection／finding、relation graph canonicalization、DB projection／replayを独立検収し、blocker 0を確認した。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1478#issuecomment-5521804797"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33723078211 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-03T06:53:50Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:8537b00f0f784e3a923713444d1175b579709805e3c36f74a32a2524fa801673"
+        result: "PR #1478 exact HEAD b55831e197570248d8a251a67976fb73fa6822a9でterminal success。"
 ---
 
 # PLAN-RECOVERY-96: projection writerの黙示的欠落をfindingとして可視化する
@@ -118,10 +141,19 @@ authorityへ束縛して回復する。DBを直接修正するのではなく、
 
 ## 完了条件
 
-- [ ] U-PFO-001〜009のTDD Red→Greenがcurrent HEADで確認できる。
-- [ ] silent skip、collision上書き、parse error消失、dependency order mutationを各oracleがredにする。
-- [ ] DB rebuildとreplayのprojection／finding exact setが一致する。
-- [ ] typecheck、targeted test、全回帰、doctor、Claude exact-HEAD reviewがgreenになる。
-- [ ] #1440へmain read-afterの実測証拠を接続し、Recoveryの終端状態を正本へ反映する。
+- [x] U-PFO-001〜009のTDD Red→Greenがcurrent HEADで確認できる。
+- [x] silent skip、collision上書き、parse error消失、dependency order mutationを各oracleがredにする。
+- [x] DB rebuildとreplayのprojection／finding exact setが一致する。
+- [x] typecheck、targeted test、全回帰、doctor、Claude exact-HEAD reviewがgreenになる。
+- [x] #1440へmain read-afterの実測証拠を接続し、Recoveryの終端状態を正本へ反映する。
 
-本PLANは要求追加ではなく、confirmed System Synthesisと既存PLAN-L7-46の欠落経路を回復するdraftである。実装・完了・Issue closeは、上記証拠が揃うまで主張しない。
+本PLANは要求追加ではなく、confirmed System Synthesisと既存PLAN-L7-46の欠落経路を回復したRecoveryである。PR #1478のcanonical merge、Claude exact-HEAD review、main read-afterをもって実装とRecoveryの終端を確認した。
+
+## 終端read-after
+
+- PR #1478はexact HEAD `b55831e197570248d8a251a67976fb73fa6822a9`でCI run `33723078211`がterminal success、Claude Code独立reviewがapprove／blocker 0となった。
+- PR #1478はmerge commit `b5c7cc451ca379f646e361b48657ace82199b915`としてmainへ到達した。
+- merge後mainのharness-check run `33726154167`は、preflight、Lite consumer canary、Windows durability、bulk-1/2/3、stateful、exact shard receipt set、Biome、post-test DB rebuild、doctor、Full typed lane statusを全てsuccessとして完了した。
+- 同一main HEADのCodeQL run `33726153891`もsuccessで完了した。
+- したがって、本PLANは `completion_claim_allowed: true`、`backfill_state: complete` とし、Issue #1440のterminal closureへ接続する。
+- Issue closure graph contract `PROJECTION-FINDING-OBSERVABILITY-001` はPR本文の `helix-issue-closure-graph.v1` exact contractへ束縛する。
