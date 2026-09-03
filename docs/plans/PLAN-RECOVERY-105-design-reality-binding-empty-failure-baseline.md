@@ -36,7 +36,7 @@ red_test: "U-DRB-025の実装分岐を一時moduleでbaseline扱いへ置換す�
 red_at: "2026-09-03T20:21:26Z"
 green_at: "2026-09-03T20:24:32Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-DRB-029が2026-09-03T20:21:26Z〜20:21:32Zの実行窓で、`if (baselinePaths.has(file)) {` を `if (true) {` へ一時置換し、U-DRB-025の期待finding欠落をRed／exit 1として検出した。復元後はU-DRB-025〜029がGreen"
+mutation_oracle_evidence: "tests/design-reality-binding.test.ts の U-DRB-029で、2026-09-03T20:21:26Z〜20:21:32Zに `if (baselinePaths.has(file)) {` を `if (true) {` へ一時置換した。U-DRB-025の期待finding欠落をRed／exit 1として検出してmutationをkillし、復元後はU-DRB-025〜029がGreen／exit 0だった。"
 complexity_effect: net_neutral
 complexity_justification: "既存のDesign Reality解析器へ観測baselineとadvisoryを追加するだけで、新しいDB、scheduler、authority、実行経路を増やさない"
 removal_trigger: "現行L4/L5設計のfailureコードとexecutable reachability witnessが全件materializeされ、空binding baselineが空になった時"
