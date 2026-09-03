@@ -76,6 +76,16 @@ function connection(value: unknown): { numbers: number[]; complete: boolean } {
   };
 }
 
+function parseGitHubIssueNativeGraphResponse(
+  stdout: string,
+): { ok: true; payload: unknown } | { ok: false } {
+  try {
+    return { ok: true, payload: JSON.parse(stdout) };
+  } catch {
+    return { ok: false };
+  }
+}
+
 export function loadGitHubIssueNativeGraphSnapshot(
   repository: string,
   issueNumber: number,
@@ -83,12 +93,9 @@ export function loadGitHubIssueNativeGraphSnapshot(
 ): IssueNativeGraphSnapshot {
   const result = runner(githubIssueNativeGraphQueryArgs(repository, issueNumber));
   if (result.status !== 0) throw new Error("github_issue_native_graph_unavailable");
-  let payload: unknown;
-  try {
-    payload = JSON.parse(result.stdout);
-  } catch {
-    throw new Error("github_issue_native_graph_response_invalid");
-  }
+  const parsedResponse = parseGitHubIssueNativeGraphResponse(result.stdout);
+  if (!parsedResponse.ok) throw new Error("github_issue_native_graph_response_invalid");
+  const payload = parsedResponse.payload;
   const data = record(
     record(payload, "github_issue_native_graph_response_invalid").data,
     "github_issue_native_graph_response_invalid",

@@ -47,7 +47,7 @@ runner非0、JSON不正、repository／Issue欠落、stable ID欠落、Issue番�
       "artifact_path": "src/runtime/github-issue-native-graph-provider.ts",
       "resource_kind": "typescript_export",
       "resource_name": "loadGitHubIssueNativeGraphSnapshot",
-      "source_digest": "sha256:112fd6cabdf16bf7003834c0be0d0d7c7ed623f85af96ef486a5c9c01a3d471b",
+      "source_digest": "sha256:6bff05d5266c4faa4630bcb62483e37a3a5de7d519357305d5b5ea0ff49e8c7e",
       "current_authority": true
     }
   ],

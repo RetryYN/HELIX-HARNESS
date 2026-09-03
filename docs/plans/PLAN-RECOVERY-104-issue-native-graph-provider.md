@@ -64,6 +64,11 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-github-issue-native-graph-provider-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/github-issue-native-graph-provider.ts, artifact_type: source_module }
   - { artifact_path: tests/github-issue-native-graph-provider.test.ts, artifact_type: test_code }
+modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 review_evidence: []
 ---
 

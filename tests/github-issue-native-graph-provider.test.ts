@@ -87,6 +87,13 @@ describe("GitHub Issue native graph provider", () => {
       })),
     ).toThrow("github_issue_native_graph_unavailable");
     expect(() =>
+      loadGitHubIssueNativeGraphSnapshot("RetryYN/HELIX-HARNESS", 179, () => ({
+        status: 0,
+        stdout: "{not-json",
+        stderr: "",
+      })),
+    ).toThrow("github_issue_native_graph_response_invalid");
+    expect(() =>
       loadGitHubIssueNativeGraphSnapshot("RetryYN/HELIX-HARNESS", 179, response(null)),
     ).toThrow("github_issue_native_graph_missing");
     expect(() =>
