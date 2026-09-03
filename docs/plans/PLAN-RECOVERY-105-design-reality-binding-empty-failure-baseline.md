@@ -53,6 +53,7 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-105-design-reality-binding-empty-failure-baseline.md, artifact_type: markdown_doc }
   - { artifact_path: config/design-reality-binding-empty-baseline.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
 modifies:
   - { artifact_path: src/lint/design-reality-binding.ts, artifact_type: source_module }
   - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
