@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 58,
+  "decision_count": 59,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -56,6 +56,7 @@
     "PLAN-RECOVERY-70-review-receipt-node-runtime-authority",
     "PLAN-RECOVERY-71-skill-applicability-oracle-closure",
     "PLAN-RECOVERY-78-effective-agent-startup-authority",
+    "PLAN-RECOVERY-96-projection-finding-observability",
     "PLAN-RECOVERY-97-ci-finalize-shard-fail-close-oracle",
     "PLAN-REVERSE-557-workflow-interview-unresolved-backfill",
     "PLAN-REVERSE-696-windows-canary-policy-lease",

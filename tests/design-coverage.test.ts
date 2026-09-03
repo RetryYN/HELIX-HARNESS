@@ -363,6 +363,20 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     expect(input.catalog?.baseline ?? []).not.toContain(artifactPath);
   });
 
+  it("U-DESIGNCOV-018: binds projection observability design artifacts to catalog items", () => {
+    const input = loadDesignCoverageInput(repoRoot);
+    const detailedDesign = input.catalog?.items.find((item) => item.id === "detailed-design");
+    const unitTestDesign = input.catalog?.items.find((item) => item.id === "unit-test-design");
+    const designPath = "docs/design/helix/L6-function-design/projection-finding-observability.md";
+    const testDesignPath =
+      "docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md";
+
+    expect(detailedDesign?.artifact).toContain(designPath);
+    expect(unitTestDesign?.artifact).toContain(testDesignPath);
+    expect(input.catalog?.baseline ?? []).not.toContain(designPath);
+    expect(input.catalog?.baseline ?? []).not.toContain(testDesignPath);
+  });
+
   it("U-REVERSE-492-001: binds the Issue #248 Reverse design backfill to this executable oracle", () => {
     const reversePlanPath = join(
       repoRoot,
