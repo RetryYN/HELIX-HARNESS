@@ -406,6 +406,7 @@ items:
       - docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
       - docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md
       - docs/test-design/helix/L8-issue-native-graph-projection-unit-test-design.md
+      - docs/test-design/helix/L8-github-issue-native-graph-provider-unit-test-design.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
