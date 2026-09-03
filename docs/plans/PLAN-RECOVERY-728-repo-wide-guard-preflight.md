@@ -34,8 +34,8 @@ contract_failures: "registry欠落、重複、missing path、未登録guard、en
 tdd_red_required: true
 red_at: "2026-09-04T03:06:00+09:00"
 tdd_red_evidence: "2026-09-04にregistry testを先行実行し、新設registry test自身の自己検出を含む差集合で1 failed／1 passedを確認した"
-green_at: "2026-09-04T03:11:00+09:00"
-tdd_green_evidence: "2026-09-04T03:11+09:00にnpm run test:repo-guardsを実行し、35 files／517 tests green、exit 0を確認した"
+green_at: "2026-09-04T04:44:38+09:00"
+tdd_green_evidence: "2026-09-04T04:44:38+09:00に、移設後のsrc/runtime/repo-wide-guard-runner.ts経由でnpm run test:repo-guardsを実行し、35 files／517 tests green、exit 0を確認した"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-04T03:06+09:00にregistryからtests/coding-rules.test.tsを除去し、U-REPOGUARD-001が1 failed／1 passed、exit 1でkillした。復元後に再greenを要求する"
 complexity_effect: justified_positive
@@ -57,7 +57,7 @@ verification_bindings:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-728-repo-wide-guard-preflight.md, artifact_type: markdown_doc }
   - { artifact_path: config/repo-wide-guard-tests.v1.json, artifact_type: json_config }
-  - { artifact_path: scripts/run-repo-wide-guards.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/repo-wide-guard-runner.ts, artifact_type: source_module }
   - { artifact_path: tests/repo-wide-guard-registry.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
