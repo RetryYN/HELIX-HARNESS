@@ -163,3 +163,4 @@ authorityへ束縛して回復する。DBを直接修正するのではなく、
 - merge後mainのharness-check run `33726154167`は、preflight、Lite consumer canary、Windows durability、bulk-1/2/3、stateful、exact shard receipt set、Biome、post-test DB rebuild、doctor、Full typed lane statusを全てsuccessとして完了した。
 - 同一main HEADのCodeQL run `33726153891`もsuccessで完了した。
 - したがって、本PLANは `completion_claim_allowed: true`、`backfill_state: complete` とし、Issue #1440のterminal closureへ接続する。
+- Issue closure graph contract `PROJECTION-FINDING-OBSERVABILITY-001` はPR本文の `helix-issue-closure-graph.v1` exact contractへ束縛する。
