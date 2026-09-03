@@ -54,8 +54,8 @@ L8 単体テスト設計 pair を要求する。しかし今回の外部 agent c
 
 ## §5 PLAN固有Vペア4点binding（PLAN-L6-65追補）
 
-`analyzePlanSpecificVpairBindings(input) => PlanSpecificVpairBindingResult` は、L7実装PLANが単にL6/L8/testの
-pathを持つだけでなく、同一の検証意図へ結合されていることを判定する純粋contractとする。
+`analyzePlanSpecificVpairBindings(input) => PlanSpecificVpairBindingResult` は、L7実装PLANとRecovery PLANが
+単にL6/L8/testのpathを持つだけでなく、同一の検証意図へ結合されていることを判定する純粋contractとする。
 
 ### §5.1 入力schema
 
@@ -88,7 +88,7 @@ repo-relative `tests/**` pathとする。重複tuple、未知field、絶対path�
 ### §5.3 ratchet
 
 authority正本は`config/plan-specific-vpair-binding-authority.json`、schemaは
-`plan-specific-vpair-binding-authority.v3`とする。既存debtはimmutable `initialAuthority[]`へexact
+`plan-specific-vpair-binding-authority.v4`とする。既存implementation debtはimmutable `initialAuthority[]`へexact
 `{fingerprint, plan_id, reason, detail, plan_path, plan_semantic_digest}`をfingerprint昇順で固定する。fingerprintはUTF-8/LF、key順
 `plan_id,reason,detail`、detail欠落は`null`としたJSONのSHA-256。codeはinitial集合digestをconstantでpinし、
 導入時の機械生成後は追記・置換を許さない。initial集合digestはfingerprintだけでなくentry全体をhashし、semantic pinの
@@ -118,6 +118,22 @@ resolution PLAN lifecycleは`draft/confirmed`では解消権を持たず、検�
 chainの削除・置換・並べ替えは次entry/terminal digest不一致となる。active exemptionは`initial - resolved`、
 resolved finding再出現はhard failする。initial外tombstone、重複、非UTC時刻、non-terminal resolution PLANも拒否する。
 
+#### §5.3.2 Recovery scoped authority（Recovery範囲正本）
+
+authority v4は既存v3の`initialAuthority` 286件、legacy identity digest、initial digest、
+tombstone chain、terminal digestをimplementation scopeとしてbyte単位で維持する。そのうえで
+`recoveryAuthority`を追加し、`eligibleKinds: [recovery]`、対象化deltaのinitial finding、
+reason別baseline、独立tombstone chainを持つ。
+
+Recovery全87 PLANを対象とする。binding宣言済み、code-bearing、confirmedなどへ絞らない。
+対象化時にRecovery自身へ出る257 findingと、既存implとのownership計算で新たに出る3 findingの合計260件を
+Recovery scopeのmigration deltaとする。両scopeは同じraw finding集合へ適用するが、digest、reason count、
+tombstone chainを独立固定し、一方の改善で他方の増加を相殺しない。
+
+reason別baselineはinitial findingから再計算した値とcode-side exact setの双方へ一致しなければならない。
+baseline値の上方修正、新規finding、unused exemptionはfail-closeする。Recovery以外のkindは本epochへ
+黙示的に加えず、execution-bearing eligibility policyを定義する後続designで扱う。
+
 ### §5.3.1 L8 検査対象table
 
 oracle宣言として数えるのはheaderがexact `U-ID | 対象 | 反例と期待結果 | test citation`で、U-ID cellが
@@ -146,5 +162,5 @@ TypeScript compiler ASTで抽出し、regexによるcomment/dead-string誤認を
 
 ### §5.5 oracle
 
-詳細はL8正本 `U-PSPB-006..027`。各oracleはparameterized反例を含めて1 case titleへ束縛する。実装testは
+詳細はL8正本 `U-PSPB-006..029`。各oracleはparameterized反例を含めて1 case titleへ束縛する。実装testは
 `tests/plan-descent-specific-parent-binding.test.ts`へ1:1 citationし、plan lint単一/全走査とdoctor hard ANDも含む。
