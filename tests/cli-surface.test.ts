@@ -1147,6 +1147,7 @@ describe("L7 CLI surface closure", () => {
   });
 
   // PLAN-L7-473-claude-pr-convergence / U-CPRCONV-002
+  // PLAN-RECOVERY-102-review-receipt-correction-generation / U-CPRCONV-002
   it("U-CPRCONV-002: exposes PR body, CI status, and Claude convergence commands", () => {
     const prBody = runCli(["github", "pr-body", "--help"]);
     expect(prBody.status, prBody.stderr || prBody.stdout).toBe(0);
@@ -1177,6 +1178,9 @@ describe("L7 CLI surface closure", () => {
       const result = runCli(["github", command, "--help"]);
       expect(result.status, result.stderr || result.stdout).toBe(0);
       expect(result.stdout).toContain(command);
+      if (command === "pr-review-receipt") {
+        expect(result.stdout).toContain("--correct-malformed");
+      }
     }
   });
 
