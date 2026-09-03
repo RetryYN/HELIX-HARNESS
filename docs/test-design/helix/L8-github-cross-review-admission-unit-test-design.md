@@ -69,7 +69,7 @@ requirements:
 | `U-GCRA-010` | `evaluateGitHubCrossReviewAdmission` | Claude v4とprovider-neutral v4をexact schema valueで識別する | `schema_version` propertyの存在だけでClaude receiptをprovider-neutralへ誤分類する |
 | `U-GCRA-012` | `evaluateGitHubCrossReviewAdmission` | invalid候補をschema、独立性、CI、identity、DB provenance、時系列へ型付き分解し、comment URLだけを安全なlocatorとして返す | 全predicateをgeneric `review_receipt_invalid_or_stale`だけへ再統合、reason取り違え、receipt本文の診断流出 |
 
-## Current Recovery V-pair oracle
+## 現行Recovery V-pair oracle
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
