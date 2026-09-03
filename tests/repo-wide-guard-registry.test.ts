@@ -46,4 +46,11 @@ describe("repo-wide guard registry", () => {
     expect(guardIndex).toBeGreaterThan(installIndex);
     expect(isolationIndex).toBeGreaterThan(guardIndex);
   });
+
+  it("U-REPOGUARD-004: runnerはregistryのexact setをfast projectへ渡す", () => {
+    const runner = readFileSync(resolve(ROOT, "scripts/run-repo-wide-guards.ts"), "utf8");
+    expect(runner).toContain("loadRepoWideGuardTests");
+    expect(runner).toContain('["--no-install", "vitest", "run", "--project", "fast", ...tests]');
+    expect(runner).not.toContain("tests/**/*.test.ts");
+  });
 });
