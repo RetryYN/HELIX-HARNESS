@@ -1,5 +1,5 @@
-import { existsSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 const REGISTRY_PATH = "config/repo-wide-guard-tests.v1.json";
@@ -21,7 +21,10 @@ export function loadRepoWideGuardTests(root = process.cwd()): string[] {
     throw new Error("repo_wide_guard_registry_invalid");
   }
   const tests = registry.tests;
-  if (new Set(tests).size !== tests.length || tests.some((path) => !/^tests\/[a-z0-9-]+\.test\.ts$/.test(path))) {
+  if (
+    new Set(tests).size !== tests.length ||
+    tests.some((path) => !/^tests\/[a-z0-9-]+\.test\.ts$/.test(path))
+  ) {
     throw new Error("repo_wide_guard_registry_invalid");
   }
   for (const testPath of tests) {

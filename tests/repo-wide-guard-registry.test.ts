@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { loadRepoWideGuardTests } from "../scripts/run-repo-wide-guards";
+import { loadRepoWideGuardTests } from "../src/runtime/repo-wide-guard-runner";
 
 // PLAN-RECOVERY-728-repo-wide-guard-preflight
 
@@ -27,7 +27,9 @@ describe("repo-wide guard registry", () => {
       scripts: Record<string, string>;
     };
     const workflow = readFileSync(resolve(ROOT, ".github/workflows/harness-check.yml"), "utf8");
-    expect(packageJson.scripts["test:repo-guards"]).toBe("tsx scripts/run-repo-wide-guards.ts");
+    expect(packageJson.scripts["test:repo-guards"]).toBe(
+      "tsx src/runtime/repo-wide-guard-runner.ts",
+    );
     expect(workflow).toContain("run: npm run test:repo-guards");
   });
 
@@ -48,7 +50,7 @@ describe("repo-wide guard registry", () => {
   });
 
   it("U-REPOGUARD-004: runnerはregistryのexact setをfast projectへ渡す", () => {
-    const runner = readFileSync(resolve(ROOT, "scripts/run-repo-wide-guards.ts"), "utf8");
+    const runner = readFileSync(resolve(ROOT, "src/runtime/repo-wide-guard-runner.ts"), "utf8");
     expect(runner).toContain("loadRepoWideGuardTests");
     expect(runner).toContain('["--no-install", "vitest", "run", "--project", "fast", ...tests]');
     expect(runner).not.toContain("tests/**/*.test.ts");
