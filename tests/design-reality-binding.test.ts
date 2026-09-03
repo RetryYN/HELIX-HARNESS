@@ -10,20 +10,25 @@ import { checkDesignRealityBinding } from "../src/doctor/index";
 import {
   analyzeDesignRealityBinding,
   classifyAddDesignRealityTargets,
+  DESIGN_REALITY_EMPTY_FAILURE_BINDING_SCHEMA_VERSION,
+  type DesignRealityEmptyFailureBindingBaseline,
+  designRealityBindingMessages,
   evaluateFailureWitness,
   type FailureReachabilityWitness,
+  INITIAL_DESIGN_REALITY_EMPTY_FAILURE_BINDING_BASELINE,
   isDesignRealityPlanLayer,
   isHelixDesignRealityTarget,
 } from "../src/lint/design-reality-binding";
 
 // PLAN-L7-505-worker-risk-admission
 import { lintPlanGate } from "../src/plan/lint";
-import { sha256Digest } from "../src/runtime/digest";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 
 // PLAN-L7-500-worker-isolation-policy
 // PLAN-L7-501-worker-output-admission
 // PLAN-L7-502-worker-independent-review
 // PLAN-L7-503-worker-context-authority
+// PLAN-RECOVERY-105-design-reality-binding-empty-failure-baseline
 
 function fixtureRoot(): string {
   const root = mkdtempSync(join(tmpdir(), "helix-design-reality-"));
@@ -63,8 +68,72 @@ function witness(identityFields = ["agent_id", "contract_version"]): FailureReac
   };
 }
 
-function design(binding: unknown): string {
-  return `---\ntitle: reality\nlayer: L4\nartifact_type: design\nstatus: confirmed\nupdated: 2026-08-03\n---\n\n<!-- HELIX:design-reality-binding:v1 -->\n\`\`\`json\n${JSON.stringify(binding, null, 2)}\n\`\`\`\n`;
+function design(binding: unknown, body = ""): string {
+  return `---\ntitle: reality\nlayer: L4\nartifact_type: design\nstatus: confirmed\nupdated: 2026-08-03\n---\n\n${body}\n\n<!-- HELIX:design-reality-binding:v1 -->\n\`\`\`json\n${JSON.stringify(binding, null, 2)}\n\`\`\`\n`;
+}
+
+function emptyFailureBindingBaseline(entries: string[]): DesignRealityEmptyFailureBindingBaseline {
+  const sorted = [...entries].sort();
+  return {
+    schema_version: DESIGN_REALITY_EMPTY_FAILURE_BINDING_SCHEMA_VERSION,
+    entries: sorted,
+    baseline_digest: sha256Digest(canonicalJson(sorted)),
+  };
+}
+
+function fixtureRootWithEmptyBinding(): { root: string } {
+  const root = fixtureRoot();
+  const file = join(root, "docs/design/helix/L5-detail/github-issue-native-graph-provider.md");
+  writeFileSync(
+    file,
+    design(
+      {
+        schema_version: "helix-design-reality-binding.v1",
+        assets: [],
+        declared_failure_codes: [],
+        failure_reachability: [],
+      },
+      "## 4. Fail-close方針\nrunner error、JSON不正、Issue欠落をfail-closeする。",
+    ),
+  );
+  return { root };
+}
+
+function executeDesignRealityMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/lint/design-reality-binding.ts", "utf8");
+  const test = readFileSync("tests/design-reality-binding.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `design-reality-binding.mutant-${id}.ts`;
+  const modulePath = `src/lint/${moduleName}`;
+  const testPath = `tests/design-reality-binding.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/lint/design-reality-binding"',
+      `from "../src/lint/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
 }
 
 function validFixture(): { root: string; binding: Record<string, unknown> } {
@@ -839,7 +908,8 @@ runtimeCommand("codex");
 runtimeCommand("claude");
 `;
     writeFileSync(join(root, "src/cli.ts"), cli);
-    const file = "docs/design/helix/L4-basic-design/reality.md";
+    const file = "docs/design/helix/L4-basic-design/worker-blind-benchmark.md";
+    const emptyBaseline = emptyFailureBindingBaseline([file]);
     const base = {
       classification: "existing_runtime",
       artifact_path: "src/cli.ts",
@@ -859,16 +929,114 @@ runtimeCommand("claude");
         failure_reachability: [],
       }),
     );
-    expect(analyzeDesignRealityBinding(root, [file])).toMatchObject({ ok: true, checked: 1 });
+    expect(
+      analyzeDesignRealityBinding(root, [file], {
+        emptyFailureBindingBaseline: emptyBaseline,
+      }),
+    ).toMatchObject({ ok: true, checked: 1 });
     const missing = readFileSync(join(root, file), "utf8").replace(
       '"resource_name": "claude"',
       '"resource_name": "kimi"',
     );
     writeFileSync(join(root, file), missing);
-    expect(analyzeDesignRealityBinding(root, [file]).findings).toContainEqual(
-      expect.objectContaining({ reason: "missing_cli_command" }),
-    );
+    expect(
+      analyzeDesignRealityBinding(root, [file], {
+        emptyFailureBindingBaseline: emptyBaseline,
+      }).findings,
+    ).toContainEqual(expect.objectContaining({ reason: "missing_cli_command" }));
   });
+
+  it("U-DRB-025: failure bindingを空へ変異させると新規負債としてRedになる", () => {
+    const { root, binding } = validFixture();
+    try {
+      const file = "docs/design/helix/L4-basic-design/reality.md";
+      const baseline = emptyFailureBindingBaseline([]);
+      writeFileSync(join(root, file), design(binding));
+      expect(
+        analyzeDesignRealityBinding(root, [file], { emptyFailureBindingBaseline: baseline }).ok,
+      ).toBe(true);
+
+      binding.declared_failure_codes = [];
+      binding.failure_reachability = [];
+      writeFileSync(join(root, file), design(binding));
+      const mutated = analyzeDesignRealityBinding(root, [file], {
+        emptyFailureBindingBaseline: baseline,
+      });
+      expect(mutated.ok).toBe(false);
+      expect(mutated.findings).toContainEqual(
+        expect.objectContaining({ reason: "empty_failure_binding_not_in_baseline", file }),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DRB-026: 既知baselineと本文のfailure節をdoctor表示へ分離する", () => {
+    const { root } = fixtureRootWithEmptyBinding();
+    try {
+      const file = "docs/design/helix/L5-detail/github-issue-native-graph-provider.md";
+      const baseline = emptyFailureBindingBaseline([file]);
+      const result = analyzeDesignRealityBinding(root, [file], {
+        emptyFailureBindingBaseline: baseline,
+      });
+      expect(result).toMatchObject({
+        ok: true,
+        checked: 1,
+        empty_failure_binding_count: 1,
+        baseline_empty_failure_binding_count: 1,
+        prose_failure_binding_gap_candidates: 1,
+      });
+      expect(result.advisories.map((item) => item.reason)).toEqual([
+        "empty_failure_binding_baseline",
+        "prose_failure_binding_gap_candidate",
+      ]);
+      expect(designRealityBindingMessages(result).join("\n")).toContain("empty=1, baseline=1");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DRB-027: empty baselineの拡張をコード固定初期集合の外として拒否する", () => {
+    const { root, binding } = validFixture();
+    try {
+      const file = "docs/design/helix/L4-basic-design/reality.md";
+      writeFileSync(join(root, file), design(binding));
+      const result = analyzeDesignRealityBinding(root, [file], {
+        emptyFailureBindingBaseline: emptyFailureBindingBaseline([file]),
+      });
+      expect(result.ok).toBe(false);
+      expect(result.findings).toContainEqual(
+        expect.objectContaining({
+          reason: "empty_failure_binding_baseline_expanded",
+          detail: file,
+        }),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DRB-028: current empty bindingは初期baseline件数と一致し、新規追加を許さない", () => {
+    const result = analyzeDesignRealityBinding(process.cwd());
+    expect(result.ok, designRealityBindingMessages(result).join("\n")).toBe(true);
+    expect(result.empty_failure_binding_count).toBe(
+      INITIAL_DESIGN_REALITY_EMPTY_FAILURE_BINDING_BASELINE.length,
+    );
+    expect(result.baseline_empty_failure_binding_count).toBe(
+      INITIAL_DESIGN_REALITY_EMPTY_FAILURE_BINDING_BASELINE.length,
+    );
+    expect(result.findings).toEqual([]);
+  });
+
+  it("U-DRB-029: baseline外の空binding拒否分岐を除去するとこのoracleがRedになる", () => {
+    expect(
+      executeDesignRealityMutationOracle(
+        "if (baselinePaths.has(file)) {",
+        "if (true) {",
+        "U-DRB-025",
+      ),
+    ).toBe(true);
+  }, 120_000);
 
   it("U-DRB-013: wrapper admissionの4 failure mutantを対応oracleがRedにする", () => {
     expect(executeWrapperMutationOracle("if (!origin)", "if (false)", "U-WWA-002")).toBe(true);

@@ -4,7 +4,7 @@ layer: L5
 artifact_type: design
 status: confirmed
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-09-04
 owner: SE
 plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
 pair_artifact: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md
@@ -28,6 +28,12 @@ symlink escape、missing path/export/type/schema/command、digest drift、planne
 reasonごとにidentity fields、post-resolution checks、registry/request fixture、expected reason、mutationを宣言する。
 resolverを意味実行し、expected reasonへ到達し、post-check除去mutationが別結果になる場合だけ成立する。
 test pathには一意なexecutable Vitest callbackがあり、reason assertionを含み、`toContain()`だけではないことを要求する。
+
+`declared_failure_codes` と `failure_reachability` の空集合は、failure契約の実装完了を表さない。
+既存の空bindingは `config/design-reality-binding-empty-baseline.json` による観測baselineとして
+保持し、baseline外での新規空bindingはfail-closeする。baselineの追加は許さず、failure witnessを
+materializeしたentryの削除による縮小だけを認める。本文にfailure方針がある既知entryは、
+hard failureではなくmaterialize候補のadvisoryとして扱う。
 
 ## 3. current worker descriptor回帰
 
