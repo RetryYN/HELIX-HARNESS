@@ -26,7 +26,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: RECOVERY
 entry_signals:
-  - "regression_dev:projection writerのsilent skip、collision、parse失敗の黙示成功をfindingへ回復する"
+  - regression_dev
 contract_preconditions: "confirmed System Synthesisのstable identity・deterministic projection・fail-close原則とPLAN-L7-46 projection writerが存在する"
 contract_postconditions: "projectionの欠落・衝突・破損・依存不整合がsuccess相当へ消えず、findingまたはtyped failureとしてrebuild/replayで同一に観測できる"
 contract_invariants: "source文書を変更せず、既存finding storeとDB transaction boundaryを再利用し、#1397の責務を変更しない"
