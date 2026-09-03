@@ -210,6 +210,9 @@ jobs:
       - name: install deps (frozen)
         run: npm ci
 
+      - name: repo-wide guard preflight
+        run: npm run test:repo-guards
+
       - name: install required Linux isolation backend
         run: |
           set -euo pipefail

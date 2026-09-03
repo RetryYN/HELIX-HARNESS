@@ -23,6 +23,7 @@
     "test:slow": "vitest run --project slow",
     "test:local": "vitest run --project fast --exclude tests/distribution-acceptance.test.ts",
     "test:node-fallback": "vitest run tests/state-db.test.ts tests/runtime-portability.test.ts",
+    "test:repo-guards": "tsx scripts/run-repo-wide-guards.ts",
     "test:watch": "vitest"
   },
   "commitlint": {
