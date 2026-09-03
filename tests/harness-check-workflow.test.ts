@@ -49,6 +49,12 @@ type WorkflowRoot = {
 
 const PR_OR_MAIN_CHECKOUT_REF = "${{ github.event.pull_request.head.sha || github.sha }}";
 const PREFLIGHT_CHECKOUT_REF = "${{ needs.full-regression-preflight.outputs.candidate_head }}";
+const REQUIRED_FINALIZE_SHARD_SUCCESS_CHECKS = [
+  '[ "$BULK_1_RESULT" = "success" ]',
+  '[ "$BULK_2_RESULT" = "success" ]',
+  '[ "$BULK_3_RESULT" = "success" ]',
+  '[ "$STATEFUL_RESULT" = "success" ]',
+] as const;
 
 function mutateWorkflowJob(raw: string, jobName: string, mutate: (job: string) => string): string {
   const startMarker = `  ${jobName}:`;
@@ -131,6 +137,12 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     }
   }
   const finalizeText = JSON.stringify(finalize);
+  const finalizeRunText = (finalize?.steps ?? [])
+    .map((step) => step.run ?? "")
+    .join("\n");
+  if (REQUIRED_FINALIZE_SHARD_SUCCESS_CHECKS.some((check) => !finalizeRunText.includes(check))) {
+    findings.push("finalize_shard_fail_close_invalid");
+  }
   const finalizeCheckout = finalize?.steps?.find((step) => step.name === "checkout");
   if (finalizeCheckout?.with?.["fetch-depth"] !== 0) {
     findings.push("finalize_checkout_history_invalid");
@@ -907,6 +919,16 @@ describe("source harness-check workflow", () => {
         ),
       ),
     ).toContain("job_timeout_invalid:full-regression-bulk-1");
+  });
+
+  it("U-FULLSHARD-WF-004: finalizeは全shardのjob_result successをfail-closeで要求する", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(fullRegressionShardJobViolations(raw)).toEqual([]);
+    for (const check of REQUIRED_FINALIZE_SHARD_SUCCESS_CHECKS) {
+      expect(fullRegressionShardJobViolations(raw.replace(check, "true"))).toContain(
+        "finalize_shard_fail_close_invalid",
+      );
+    }
   });
 
   it.each([
