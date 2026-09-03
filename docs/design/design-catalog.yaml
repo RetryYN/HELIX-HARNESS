@@ -325,6 +325,7 @@ items:
       - docs/design/helix/L5-detail/impact-ci-recovery.md
       - docs/design/helix/L5-detail/worker-lifecycle-receipt.md
       - docs/design/helix/L6-function-design/worker-lifecycle-receipt.md
+      - docs/design/helix/L5-detail/issue-native-graph-projection.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test
@@ -403,6 +404,7 @@ items:
       - docs/test-design/helix/L8-requirement-json-authority-cutover-unit-test-design.md
       - docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
       - docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md
+      - docs/test-design/helix/L8-issue-native-graph-projection-unit-test-design.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test

@@ -35,7 +35,7 @@ red_test: "U-IHIER-018〜020がauditIssueNativeGraphProjection未実装でTypeEr
 red_at: "2026-09-03T20:53:53+09:00"
 green_at: "2026-09-03T20:54:54+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-03T20:56:08+09:00にnative_snapshot_incomplete finding生成を除去し、U-IHIER-019がexpected finding欠落でRed／exit 1となった。復元後にGreenへ戻した"
+mutation_oracle_evidence: "2026-09-03T20:56:08+09:00にtests/issue-hierarchy.test.tsのU-IHIER-019でnative_snapshot_incomplete finding生成を除去するmutationを実測し、expected finding欠落でRed／exit 1となった。復元後にGreenへ戻した"
 complexity_effect: net_neutral
 complexity_justification: "既存IssueHierarchyNodeをdesired authorityとして再利用し、native比較だけを同一runtimeへ追加する。GitHub write／DB／schedulerは後続へ分離する"
 removal_trigger: "Issue graphがprovider-neutral external projection registryへ統合され、同じfinding schemaを生成できる時"
@@ -69,7 +69,7 @@ modifies:
 review_evidence: []
 ---
 
-# Issue native graph projection
+# Issue native graph projection の詳細
 
 ## 目的
 

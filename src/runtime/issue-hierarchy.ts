@@ -202,28 +202,28 @@ export function auditIssueNativeGraphProjection(
     }
   }
 
-  const compareSet = (
-    issueNumber: number,
-    expectedValues: readonly number[],
-    observedValues: readonly number[],
-    missingCode: IssueNativeGraphProjectionFindingCode,
-    extraCode: IssueNativeGraphProjectionFindingCode,
-    label: string,
-  ) => {
-    const expected = uniqueNumbers([...expectedValues]);
-    const observed = uniqueNumbers([...observedValues]);
+  const compareSet = (input: {
+    issueNumber: number;
+    expectedValues: readonly number[];
+    observedValues: readonly number[];
+    missingCode: IssueNativeGraphProjectionFindingCode;
+    extraCode: IssueNativeGraphProjectionFindingCode;
+    label: string;
+  }) => {
+    const expected = uniqueNumbers([...input.expectedValues]);
+    const observed = uniqueNumbers([...input.observedValues]);
     for (const value of expected.filter((candidate) => !observed.includes(candidate))) {
       findings.push({
-        issueNumber,
-        code: missingCode,
-        detail: `${label} #${value} is declared by body authority but absent from native graph`,
+        issueNumber: input.issueNumber,
+        code: input.missingCode,
+        detail: `${input.label} #${value} is declared by body authority but absent from native graph`,
       });
     }
     for (const value of observed.filter((candidate) => !expected.includes(candidate))) {
       findings.push({
-        issueNumber,
-        code: extraCode,
-        detail: `${label} #${value} exists in native graph but is absent from body authority`,
+        issueNumber: input.issueNumber,
+        code: input.extraCode,
+        detail: `${input.label} #${value} exists in native graph but is absent from body authority`,
       });
     }
   };
@@ -263,30 +263,30 @@ export function auditIssueNativeGraphProjection(
         detail: `body parent=${node.parentIssue ?? "null"} native parent=${snapshot.parentIssue ?? "null"}`,
       });
     }
-    compareSet(
-      node.number,
-      expectedChildren.get(node.number) ?? [],
-      snapshot.subIssues,
-      "body_child_missing_from_native",
-      "native_child_absent_from_body",
-      "child",
-    );
-    compareSet(
-      node.number,
-      node.blockedBy,
-      snapshot.blockedBy,
-      "dependency_missing_from_native",
-      "dependency_extra_in_native",
-      "blocked_by",
-    );
-    compareSet(
-      node.number,
-      node.blocks,
-      snapshot.blocks,
-      "dependency_missing_from_native",
-      "dependency_extra_in_native",
-      "blocks",
-    );
+    compareSet({
+      issueNumber: node.number,
+      expectedValues: expectedChildren.get(node.number) ?? [],
+      observedValues: snapshot.subIssues,
+      missingCode: "body_child_missing_from_native",
+      extraCode: "native_child_absent_from_body",
+      label: "child",
+    });
+    compareSet({
+      issueNumber: node.number,
+      expectedValues: node.blockedBy,
+      observedValues: snapshot.blockedBy,
+      missingCode: "dependency_missing_from_native",
+      extraCode: "dependency_extra_in_native",
+      label: "blocked_by",
+    });
+    compareSet({
+      issueNumber: node.number,
+      expectedValues: node.blocks,
+      observedValues: snapshot.blocks,
+      missingCode: "dependency_missing_from_native",
+      extraCode: "dependency_extra_in_native",
+      label: "blocks",
+    });
   }
 
   const normalizedGraph = desired.map((node) => {
