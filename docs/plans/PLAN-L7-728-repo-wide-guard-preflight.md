@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-728-repo-wide-guard-preflight
 title: "PLAN-L7-728: repo-wide guard preflight"
-kind: impl
+kind: recovery
 layer: L7
 drive: agent
 status: draft
@@ -24,9 +24,9 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: REFACTOR
+  target_id: RECOVERY
 entry_signals:
-  - "structural"
+  - "regression_dev"
 contract_preconditions: "既存repo-wide guard testとfull-regression-preflightがcurrent mainに存在する"
 contract_postconditions: "明示registry、単一entrypoint、preflight配線が同じguard exact setを実行する"
 contract_invariants: "既存testの判定、full regression exact inventory、required aggregateを変更せず、guard greenをfull admissionへ昇格しない"
