@@ -1,4 +1,5 @@
 import { parse as parseYaml } from "yaml";
+import { canonicalJson, sha256Digest } from "./digest";
 
 export const ISSUE_HIERARCHY_SCHEMA = "helix-github-issue-hierarchy.v1" as const;
 
@@ -107,6 +108,223 @@ export interface IssueHierarchyDependencyAlignmentFinding {
     | "hierarchy_dependency_blocked_by_mismatch"
     | "hierarchy_dependency_blocks_mismatch";
   detail: string;
+}
+
+export interface IssueNativeGraphSnapshot {
+  issueId: string;
+  number: number;
+  parentIssue: number | null;
+  subIssues: number[];
+  blockedBy: number[];
+  blocks: number[];
+  subIssuesComplete: boolean;
+  blockedByComplete: boolean;
+  blocksComplete: boolean;
+}
+
+export type IssueNativeGraphProjectionFindingCode =
+  | "native_issue_missing"
+  | "native_issue_id_invalid"
+  | "native_issue_identity_conflict"
+  | "native_snapshot_incomplete"
+  | "body_parent_missing_from_native"
+  | "native_parent_absent_from_body"
+  | "native_parent_mismatch"
+  | "body_child_missing_from_native"
+  | "native_child_absent_from_body"
+  | "dependency_missing_from_native"
+  | "dependency_extra_in_native";
+
+export interface IssueNativeGraphProjectionFinding {
+  issueNumber: number;
+  code: IssueNativeGraphProjectionFindingCode;
+  detail: string;
+}
+
+export interface IssueNativeGraphProjectionReport {
+  schemaVersion: "helix-issue-native-graph-projection.v1";
+  ok: boolean;
+  checkedIssues: number;
+  graphDigest: string;
+  findings: IssueNativeGraphProjectionFinding[];
+}
+
+/**
+ * Compare the body-owned hierarchy/dependency meaning with a normalized GitHub
+ * native read-side snapshot.  This function is deliberately read-only: it
+ * emits exact drift findings and never infers body authority from GitHub.
+ */
+export function auditIssueNativeGraphProjection(
+  hierarchyNodes: readonly IssueHierarchyNode[],
+  nativeSnapshots: readonly IssueNativeGraphSnapshot[],
+): IssueNativeGraphProjectionReport {
+  const desired = [...hierarchyNodes].sort((left, right) => left.number - right.number);
+  const expectedChildren = new Map<number, number[]>();
+  for (const node of desired) {
+    if (node.parentIssue === null) continue;
+    expectedChildren.set(node.parentIssue, [
+      ...(expectedChildren.get(node.parentIssue) ?? []),
+      node.number,
+    ]);
+  }
+
+  const nativeByNumber = new Map<number, IssueNativeGraphSnapshot>();
+  const issueIdOwners = new Map<string, number>();
+  const findings: IssueNativeGraphProjectionFinding[] = [];
+  for (const snapshot of [...nativeSnapshots].sort((left, right) => left.number - right.number)) {
+    const existing = nativeByNumber.get(snapshot.number);
+    if (existing) {
+      findings.push({
+        issueNumber: snapshot.number,
+        code: "native_issue_identity_conflict",
+        detail: `native issue #${snapshot.number} appears more than once`,
+      });
+      continue;
+    }
+    nativeByNumber.set(snapshot.number, snapshot);
+    if (snapshot.issueId.trim() === "") {
+      findings.push({
+        issueNumber: snapshot.number,
+        code: "native_issue_id_invalid",
+        detail: `native issue #${snapshot.number} has no stable node ID`,
+      });
+    } else {
+      const owner = issueIdOwners.get(snapshot.issueId);
+      if (owner !== undefined && owner !== snapshot.number) {
+        findings.push({
+          issueNumber: snapshot.number,
+          code: "native_issue_identity_conflict",
+          detail: `native node ID ${snapshot.issueId} is shared by #${owner} and #${snapshot.number}`,
+        });
+      } else {
+        issueIdOwners.set(snapshot.issueId, snapshot.number);
+      }
+    }
+  }
+
+  const compareSet = (input: {
+    issueNumber: number;
+    expectedValues: readonly number[];
+    observedValues: readonly number[];
+    missingCode: IssueNativeGraphProjectionFindingCode;
+    extraCode: IssueNativeGraphProjectionFindingCode;
+    label: string;
+  }) => {
+    const expected = uniqueNumbers([...input.expectedValues]);
+    const observed = uniqueNumbers([...input.observedValues]);
+    for (const value of expected.filter((candidate) => !observed.includes(candidate))) {
+      findings.push({
+        issueNumber: input.issueNumber,
+        code: input.missingCode,
+        detail: `${input.label} #${value} is declared by body authority but absent from native graph`,
+      });
+    }
+    for (const value of observed.filter((candidate) => !expected.includes(candidate))) {
+      findings.push({
+        issueNumber: input.issueNumber,
+        code: input.extraCode,
+        detail: `${input.label} #${value} exists in native graph but is absent from body authority`,
+      });
+    }
+  };
+
+  for (const node of desired) {
+    const snapshot = nativeByNumber.get(node.number);
+    if (!snapshot) {
+      findings.push({
+        issueNumber: node.number,
+        code: "native_issue_missing",
+        detail: `body-governed issue #${node.number} is absent from native snapshot`,
+      });
+      continue;
+    }
+    const incompleteSurfaces = [
+      !snapshot.subIssuesComplete ? "sub_issues" : null,
+      !snapshot.blockedByComplete ? "blocked_by" : null,
+      !snapshot.blocksComplete ? "blocks" : null,
+    ].filter((value): value is string => value !== null);
+    if (incompleteSurfaces.length > 0) {
+      findings.push({
+        issueNumber: node.number,
+        code: "native_snapshot_incomplete",
+        detail: `native pagination incomplete: ${incompleteSurfaces.join(",")}`,
+      });
+    }
+    if (node.parentIssue !== snapshot.parentIssue) {
+      const code =
+        node.parentIssue !== null && snapshot.parentIssue === null
+          ? "body_parent_missing_from_native"
+          : node.parentIssue === null && snapshot.parentIssue !== null
+            ? "native_parent_absent_from_body"
+            : "native_parent_mismatch";
+      findings.push({
+        issueNumber: node.number,
+        code,
+        detail: `body parent=${node.parentIssue ?? "null"} native parent=${snapshot.parentIssue ?? "null"}`,
+      });
+    }
+    compareSet({
+      issueNumber: node.number,
+      expectedValues: expectedChildren.get(node.number) ?? [],
+      observedValues: snapshot.subIssues,
+      missingCode: "body_child_missing_from_native",
+      extraCode: "native_child_absent_from_body",
+      label: "child",
+    });
+    compareSet({
+      issueNumber: node.number,
+      expectedValues: node.blockedBy,
+      observedValues: snapshot.blockedBy,
+      missingCode: "dependency_missing_from_native",
+      extraCode: "dependency_extra_in_native",
+      label: "blocked_by",
+    });
+    compareSet({
+      issueNumber: node.number,
+      expectedValues: node.blocks,
+      observedValues: snapshot.blocks,
+      missingCode: "dependency_missing_from_native",
+      extraCode: "dependency_extra_in_native",
+      label: "blocks",
+    });
+  }
+
+  const normalizedGraph = desired.map((node) => {
+    const snapshot = nativeByNumber.get(node.number);
+    return {
+      issue_id: snapshot?.issueId ?? null,
+      number: node.number,
+      desired: {
+        parent_issue: node.parentIssue,
+        sub_issues: uniqueNumbers(expectedChildren.get(node.number) ?? []),
+        blocked_by: uniqueNumbers(node.blockedBy),
+        blocks: uniqueNumbers(node.blocks),
+      },
+      native: snapshot
+        ? {
+            parent_issue: snapshot.parentIssue,
+            sub_issues: uniqueNumbers(snapshot.subIssues),
+            blocked_by: uniqueNumbers(snapshot.blockedBy),
+            blocks: uniqueNumbers(snapshot.blocks),
+            complete:
+              snapshot.subIssuesComplete && snapshot.blockedByComplete && snapshot.blocksComplete,
+          }
+        : null,
+    };
+  });
+  findings.sort(
+    (left, right) =>
+      left.issueNumber - right.issueNumber ||
+      left.code.localeCompare(right.code) ||
+      left.detail.localeCompare(right.detail),
+  );
+  return {
+    schemaVersion: "helix-issue-native-graph-projection.v1",
+    ok: findings.length === 0,
+    checkedIssues: desired.length,
+    graphDigest: sha256Digest(canonicalJson(normalizedGraph)),
+    findings,
+  };
 }
 
 export interface IssueHierarchyRelationClosureCandidate {

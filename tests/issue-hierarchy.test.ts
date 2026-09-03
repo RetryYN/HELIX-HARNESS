@@ -8,10 +8,12 @@ import {
   auditIssueDependencies,
   auditIssueHierarchy,
   auditIssueHierarchyDependencyAlignment,
+  auditIssueNativeGraphProjection,
   collectIssueDependencyContracts,
   collectIssueHierarchyContracts,
   hasIssueDependencyContractBlock,
   type IssueHierarchyNode,
+  type IssueNativeGraphSnapshot,
   parseIssueDependencyContract,
   parseIssueHierarchyContract,
   projectIssueDependencyMigrationCandidates,
@@ -34,6 +36,168 @@ const node = (overrides: Partial<IssueHierarchyNode>): IssueHierarchyNode => ({
 });
 
 describe("GitHub Issue dependency projection", () => {
+  // PLAN-RECOVERY-103-issue-native-graph-projection / U-IHIER-018
+  it("U-IHIER-018: body authorityとnative parent／child／dependencyの片側差分を型付きfindingへ分離する", () => {
+    const hierarchy = [
+      node({ number: 10, role: "capability", parentIssue: 81, blocks: [30] }),
+      node({ number: 20, role: "task", parentIssue: 10, blockedBy: [30] }),
+      node({ number: 30, role: "task", parentIssue: 10, blocks: [20], blockedBy: [10] }),
+      node({ number: 81 }),
+    ];
+    const native: IssueNativeGraphSnapshot[] = [
+      {
+        issueId: "I_10",
+        number: 10,
+        parentIssue: null,
+        subIssues: [20],
+        blockedBy: [99],
+        blocks: [],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+      {
+        issueId: "I_20",
+        number: 20,
+        parentIssue: 10,
+        subIssues: [],
+        blockedBy: [],
+        blocks: [],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+      {
+        issueId: "I_30",
+        number: 30,
+        parentIssue: 10,
+        subIssues: [],
+        blockedBy: [10],
+        blocks: [20],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+      {
+        issueId: "I_81",
+        number: 81,
+        parentIssue: null,
+        subIssues: [10],
+        blockedBy: [],
+        blocks: [],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+    ];
+
+    const report = auditIssueNativeGraphProjection(hierarchy, native);
+    expect(report.ok).toBe(false);
+    expect(report.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ issueNumber: 10, code: "body_parent_missing_from_native" }),
+        expect.objectContaining({ issueNumber: 10, code: "body_child_missing_from_native" }),
+        expect.objectContaining({ issueNumber: 10, code: "dependency_missing_from_native" }),
+        expect.objectContaining({ issueNumber: 10, code: "dependency_extra_in_native" }),
+        expect.objectContaining({ issueNumber: 20, code: "dependency_missing_from_native" }),
+      ]),
+    );
+  });
+
+  // PLAN-RECOVERY-103-issue-native-graph-projection / U-IHIER-019
+  it("U-IHIER-019: pagination不完了・stable ID欠落・native Issue欠落を推測せず拒否する", () => {
+    const hierarchy = [
+      node({ number: 10, role: "capability", parentIssue: 81 }),
+      node({ number: 81 }),
+      node({ number: 90, role: "task", parentIssue: 81 }),
+    ];
+    const native: IssueNativeGraphSnapshot[] = [
+      {
+        issueId: "",
+        number: 10,
+        parentIssue: 81,
+        subIssues: [],
+        blockedBy: [],
+        blocks: [],
+        subIssuesComplete: false,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+      {
+        issueId: "I_81",
+        number: 81,
+        parentIssue: null,
+        subIssues: [10, 90],
+        blockedBy: [],
+        blocks: [],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+    ];
+
+    const report = auditIssueNativeGraphProjection(hierarchy, native);
+    expect(report.ok).toBe(false);
+    expect(report.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ issueNumber: 10, code: "native_issue_id_invalid" }),
+        expect.objectContaining({ issueNumber: 10, code: "native_snapshot_incomplete" }),
+        expect.objectContaining({ issueNumber: 90, code: "native_issue_missing" }),
+      ]),
+    );
+  });
+
+  // PLAN-RECOVERY-103-issue-native-graph-projection / U-IHIER-020
+  it("U-IHIER-020: exact graphは入力順・重複に依存せず同一digestでgreenになる", () => {
+    const hierarchy = [
+      node({ number: 10, role: "capability", parentIssue: 81, blocks: [20] }),
+      node({ number: 20, role: "task", parentIssue: 10, blockedBy: [10] }),
+      node({ number: 81 }),
+    ];
+    const native: IssueNativeGraphSnapshot[] = [
+      {
+        issueId: "I_20",
+        number: 20,
+        parentIssue: 10,
+        subIssues: [],
+        blockedBy: [10, 10],
+        blocks: [],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+      {
+        issueId: "I_81",
+        number: 81,
+        parentIssue: null,
+        subIssues: [10],
+        blockedBy: [],
+        blocks: [],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+      {
+        issueId: "I_10",
+        number: 10,
+        parentIssue: 81,
+        subIssues: [20, 20],
+        blockedBy: [],
+        blocks: [20],
+        subIssuesComplete: true,
+        blockedByComplete: true,
+        blocksComplete: true,
+      },
+    ];
+
+    const report = auditIssueNativeGraphProjection(hierarchy, native);
+    expect(report).toMatchObject({ ok: true, findings: [], checkedIssues: 3 });
+    expect(report.graphDigest).toMatch(/^sha256:[0-9a-f]{64}$/u);
+    expect(
+      auditIssueNativeGraphProjection([...hierarchy].reverse(), [...native].reverse()),
+    ).toEqual(report);
+  });
+
   it("U-IHIER-012: hierarchy relationのdependency block欠落と集合差をfail-closeする", () => {
     const hierarchy = [
       node({ number: 204, role: "capability", parentIssue: 81, blocks: [228] }),
