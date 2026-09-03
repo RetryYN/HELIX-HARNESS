@@ -64,8 +64,8 @@ generates:
   - { artifact_path: docs/governance/candidates/helix-concept-v4-acceptance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/helix-concept-v4-capability-delta.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/helix-concept-v4-readme-projection.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/governance/README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: po, slot_label: "PO — product identityと利用者価値" }

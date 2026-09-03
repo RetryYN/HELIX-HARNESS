@@ -28,5 +28,5 @@
 ## Compatibility
 
 v3.1のL1-L12、V-pair、Forward／Reverse／Recovery、fail-close、independent review、Node／Python境界は継承する。
-旧9-mode、signal-to-mode、L0-L14、Bun、provider固定topology、memory-created authorityはinput-onlyまたは
-historicalへ隔離し、current outputへ再出力しない。
+current compatibility registryが列挙するlegacy workflow／layer／runtime identity、provider固定topology、
+memory-created authorityはinput-onlyまたはhistoricalへ隔離し、current outputへ再出力しない。

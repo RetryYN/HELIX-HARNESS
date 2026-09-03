@@ -177,8 +177,8 @@ full auditはrisk、trigger、budget、cooldown、release／incident境界でadm
 L1-L12、正規V-pair、Forward、Reverse、Recovery、Refactor、fail-close、独立review、Node／Python境界、
 GitHub／CI／DB接続、compatibility input-onlyはKernelへ継承する。
 
-旧9-mode、signal-to-mode、広義drive、L0-L14、Bun、provider固定topology、文書read順依存、
-memory中心continuation、declaration-only evidenceはcurrent identityとして再出力せず、必要な履歴だけを
+current compatibility registryが列挙するlegacy workflow／drive／layer／runtime identity、provider固定topology、
+文書read順依存、memory中心continuation、declaration-only evidenceはcurrent identityとして再出力せず、必要な履歴だけを
 compatibility／archiveへ隔離する。
 
 ## 非目標
