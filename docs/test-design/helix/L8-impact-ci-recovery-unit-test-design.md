@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-08-01
-updated: 2026-08-27
+updated: 2026-09-04
 owner: QA
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 pair_artifact: docs/design/helix/L6-function-design/impact-ci-recovery.md
@@ -32,6 +32,8 @@ queue_id: L3Q-PC-039
 | U-IMPACTCI-012 | correctness green＋budget超過をmerge greenとRecovery evidenceへ分離 | timeout延長、test除外、threshold緩和、`continue-on-error`を改善扱いするmutationを拒否 |
 | U-IMPACTCI-WF-004 | full回帰をgreen完走したrunだけがhead/base SHA束縛のfull receipt artifactを発行し、同一head SHAのready_for_review／converted_to_draft遷移eventはreceiptの両SHA完全一致時だけ再利用してreuse receipt（reused_run_id・tested_head）を残す | transition event限定の欠落、success絞り込みの欠落、full receipt照合の欠落、base SHA一致検査の欠落、照会失敗フォールバックの欠落、run id検証の欠落、receipt発行のfull限定／reuse除外の欠落を拒否 |
 | U-IMPACTCI-WF-006 | schedule／workflow_dispatchのbefore SHAが空またはzeroならcandidate HEADの親から有限rangeを作り、branch-kind／commitlintで同じ規則を使う | branch-kindまたはcommitlintからempty before判定を個別に除去し、`..HEAD`を再生成するmutationを拒否 |
+| U-REPOGUARD-001 | repo-wide guard registryが既存実repo走査testのexact setを保持 | registryから1件削除、重複、missing path、未登録guardを拒否 |
+| U-REPOGUARD-002 | review／local／CIが`npm run test:repo-guards`を共用しpreflightで実行 | package entrypointまたはworkflow配線の削除、別test listの複製を拒否 |
 | U-FULLSHARD-001 | 入力順に依存せずfast bulkを3 shard、CLI／slowをstatefulへ安定分割 | 入力順でpartition digestが変わる、stateful pathがbulkへ移るmutationを拒否 |
 | U-FULLSHARD-002 | shard unionがtracked inventory exact setで交差0 | missing、duplicate、unknown pathを拒否 |
 | U-FULLSHARD-003 | inventory／partition／shard file digestがcanonical bytesへ一致 | digest据置きのfile変更、partition digest改竄を拒否 |
@@ -86,6 +88,8 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-006 | 非PR revision range正規化 | schedule／workflow_dispatchで空before SHAをHEAD親へ写像し、branch-kind／commitlintの片側だけempty判定を削るmutationを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-REPOGUARD-001 | repo-wide guard exact set | registryから1件削除、重複、missing path、未登録guardを拒否 | `tests/repo-wide-guard-registry.test.ts` |
+| U-REPOGUARD-002 | 単一entrypoint／preflight配線 | package scriptまたはworkflow step削除、別集合への分岐を拒否 | `tests/repo-wide-guard-registry.test.ts` |
 | U-FULLSHARD-001 | deterministic partition | 入力順に依存せずbulk 3件とstatefulへexact partitionする | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-002 | inventory exact set | missing／duplicate／unknown pathを拒否する | `tests/full-regression-shards.test.ts` |
 | U-FULLSHARD-003 | canonical digest | partition／file digest改竄を個別拒否する | `tests/full-regression-shards.test.ts` |
