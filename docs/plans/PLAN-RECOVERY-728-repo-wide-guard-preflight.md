@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-L7-728-repo-wide-guard-preflight
-title: "PLAN-L7-728: repo-wide guard preflight"
+plan_id: PLAN-RECOVERY-728-repo-wide-guard-preflight
+title: "PLAN-RECOVERY-728: repo-wide guard preflight"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -53,7 +53,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-REPOGUARD-001, test_path: tests/repo-wide-guard-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-REPOGUARD-002, test_path: tests/repo-wide-guard-registry.test.ts }
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-728-repo-wide-guard-preflight.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-728-repo-wide-guard-preflight.md, artifact_type: markdown_doc }
   - { artifact_path: config/repo-wide-guard-tests.v1.json, artifact_type: json_config }
   - { artifact_path: scripts/run-repo-wide-guards.ts, artifact_type: source_module }
   - { artifact_path: tests/repo-wide-guard-registry.test.ts, artifact_type: test_code }
@@ -64,6 +64,7 @@ modifies:
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
+  - { role: aim, slot_label: "AIM — guard検出時点の短縮" }
   - { role: se, slot_label: "SE — registry／single runner" }
   - { role: qa, slot_label: "QA — exact-set mutation／workflow wiring" }
   - { role: tl, slot_label: "TL — existing CI responsibility boundary" }

@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { loadRepoWideGuardTests } from "../scripts/run-repo-wide-guards";
 
-// PLAN-L7-728-repo-wide-guard-preflight
+// PLAN-RECOVERY-728-repo-wide-guard-preflight
 
 const ROOT = process.cwd();
 const DISCOVERY_PATTERN = /real repo|real repository|実repo|live repository|regression fence/i;
