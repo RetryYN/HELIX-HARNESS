@@ -68,7 +68,7 @@ requirements:
 | `U-CPRCONV-040` | `buildClaudePrReviewReceipt` / `validateClaudePrReviewReceipt` | producerがinput exact field setを検査してcanonical fieldだけを射影し、任意の非空`summary`を保持する | inputのunknown field許可、provider-neutral `schema_version`混入、空summaryの受理 |
 | `U-GCRA-010` | `evaluateGitHubCrossReviewAdmission` | Claude v4とprovider-neutral v4をexact schema valueで識別する | `schema_version` propertyの存在だけでClaude receiptをprovider-neutralへ誤分類する |
 
-## Current Recovery V-pair oracle
+## 現行Recovery V-pair oracle
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
