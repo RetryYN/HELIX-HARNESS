@@ -27,6 +27,7 @@ legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "既存RLSの意味を保つ候補Authority Sliceであり、承認前はcurrent authorityへ書き戻さない。"
 no_code_decision: no_change
+ddd_modeling_decision: none
 contract_preconditions: "#1073のRelease Module／Bundle authority、#1074のcurrent inventory、#397のRequirement IR admission境界をread-afterできる"
 contract_postconditions: "L1／L3／L10 candidate、Slice schema、Module／Bundle差分、promotion／rollback／CI導出条件が同一planへ束縛される"
 contract_invariants: "SliceはModule／Bundle／workflow／route／drive／provider／repositoryと別軸、Issue本文は意味authorityでない、未承認candidateはruntime／DB／releaseへ投影しない"
