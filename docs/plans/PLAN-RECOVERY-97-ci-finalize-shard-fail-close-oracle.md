@@ -15,7 +15,7 @@ behavior_contract_id: CI-FINALIZE-SHARD-FAIL-CLOSE-001
 responsibility_owner: impact-ci-recovery
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: harden_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: value_object
