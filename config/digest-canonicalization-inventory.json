@@ -2766,7 +2766,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::digest:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 638,
+      "line": 666,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2783,7 +2783,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV2Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 676,
+      "line": 704,
       "symbol": "validateV2Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2800,7 +2800,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV3Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 696,
+      "line": 724,
       "symbol": "validateV3Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3769,7 +3769,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::evaluateGitHubCrossReviewAdmission:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 544,
+      "line": 547,
       "symbol": "evaluateGitHubCrossReviewAdmission",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3786,7 +3786,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 605,
+      "line": 608,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",

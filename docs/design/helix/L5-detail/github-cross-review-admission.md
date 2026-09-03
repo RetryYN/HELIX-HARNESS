@@ -103,6 +103,17 @@ Ready admissionは次の順序でfail-closeする。
    5 digestをreceipt fieldへexact束縛し、Kimi経路はprovenanceへsealされたlogical DB receiptとcanonical JSONで完全一致させる。
 7. valid receiptが0件または2件以上なら拒否し、1件だけならreceipt digestを返す。
 
+## 3.2 receipt schema境界
+
+Claude/Codex v4 receiptのproducerはinput objectをspreadせず、schemaが認めたfieldだけを明示的に
+projectionする。current Claude receiptは`schemaVersion`、provider-neutral receiptは
+`schema_version`と`schemaVersion`のexact valueで識別し、単なるproperty presenceをdiscriminatorに
+してはならない。current Claude receiptにprovider-neutral fieldやその他unknown fieldが混入した場合は
+`receipt_fields_invalid`で拒否し、別schemaとして再解釈しない。
+
+`summary`は任意のcurrent fieldとして非空文字列だけを許可する。過去receiptは履歴として保持するが、
+unknown fieldを削ってcurrent receiptへ再封緘したものとして扱わない。
+
 ## 3.1 CI証跡生成世代の識別子
 
 Claude/Codex v4 receiptは、repository、PR、head SHA、reviewer runtimeに加えて、terminalな

@@ -548,6 +548,40 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
+  it("U-GCRA-010: Claude receiptへのprovider-neutral discriminator混入を誤分類しない", () => {
+    const malformed = {
+      ...receipt(),
+      schema_version: "helix-claude-pr-review-receipt.v4",
+    };
+    const malformedBody = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: malformed,
+        kimi_provenance: null,
+      }),
+      "```",
+    ].join("\n");
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: receipt().commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: malformedBody,
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      reasons: ["current_head_review_receipt_missing"],
+    });
+  });
+
   it("U-GCRA-008: historical v2 receiptをcurrent Ready admissionへ昇格しない", () => {
     expect(
       evaluateGitHubCrossReviewAdmission(

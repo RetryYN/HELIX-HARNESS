@@ -268,6 +268,7 @@ export interface ClaudePrReviewReceiptInput {
   ciRunId: number;
   ciConclusion: ClaudePrCiConclusion;
   ciEvidenceGeneration: string;
+  summary?: string;
   dbReceiptSchemaVersion: string | null;
   dbProjectionDigest: string | null;
   dbReplayProjectionDigest: string | null;
@@ -634,7 +635,34 @@ export function buildClaudePrReviewReceipt(
 ): ClaudePrReviewReceipt {
   assertReviewReceiptInput(input);
   const supersedesReceiptId = input.supersedesReceiptId ?? null;
-  const canonicalInput = { ...input, supersedesReceiptId };
+  // 型cast後のspreadでprovider／過去schemaの余剰fieldをcurrent receiptへ再出力しない。
+  const canonicalInput: ClaudePrReviewReceiptInput & { supersedesReceiptId: string | null } = {
+    repository: input.repository,
+    prNumber: input.prNumber,
+    prUrl: input.prUrl,
+    headSha: input.headSha,
+    authorRuntime: input.authorRuntime,
+    reviewerRuntime: input.reviewerRuntime,
+    authorModel: input.authorModel,
+    reviewerModel: input.reviewerModel,
+    reviewerSessionId: input.reviewerSessionId,
+    verdict: input.verdict,
+    blockerCount: input.blockerCount,
+    ciRunId: input.ciRunId,
+    ciConclusion: input.ciConclusion,
+    ciEvidenceGeneration: input.ciEvidenceGeneration,
+    ...(typeof input.summary === "string" ? { summary: input.summary } : {}),
+    dbReceiptSchemaVersion: input.dbReceiptSchemaVersion,
+    dbProjectionDigest: input.dbProjectionDigest,
+    dbReplayProjectionDigest: input.dbReplayProjectionDigest,
+    dbCheckpointDigest: input.dbCheckpointDigest,
+    dbReplayCheckpointDigest: input.dbReplayCheckpointDigest,
+    dbReceiptDigest: input.dbReceiptDigest,
+    dbConverged: input.dbConverged,
+    commentUrl: input.commentUrl,
+    reviewedAt: input.reviewedAt,
+    supersedesReceiptId,
+  };
   const digest = sha256Digest(canonicalJson(receiptPayload(canonicalInput)));
   return {
     ...canonicalInput,
@@ -716,6 +744,50 @@ export function validateClaudePrReviewReceipt(value: unknown): ClaudePrReviewRec
   const receipt = value as ClaudePrReviewReceipt;
   if (receipt.schemaVersion !== CLAUDE_PR_REVIEW_RECEIPT_SCHEMA)
     throw new Error("receipt_schema_invalid");
+  const expectedFields = [
+    "authorModel",
+    "authorRuntime",
+    "blockerCount",
+    "ciConclusion",
+    "ciEvidenceGeneration",
+    "ciRunId",
+    "commentUrl",
+    "dbCheckpointDigest",
+    "dbConverged",
+    "dbProjectionDigest",
+    "dbReceiptDigest",
+    "dbReceiptSchemaVersion",
+    "dbReplayCheckpointDigest",
+    "dbReplayProjectionDigest",
+    "headSha",
+    "prNumber",
+    "prUrl",
+    "receiptDigest",
+    "receiptId",
+    "repository",
+    "reviewedAt",
+    "reviewerModel",
+    "reviewerRuntime",
+    "reviewerSessionId",
+    "schemaVersion",
+    "supersedesReceiptId",
+    "verdict",
+  ];
+  const actualFields = Object.keys(receipt).sort();
+  if (
+    "summary" in receipt &&
+    (typeof receipt.summary !== "string" || receipt.summary.trim().length === 0)
+  ) {
+    throw new Error("receipt_summary_invalid");
+  }
+  const allowedFields =
+    receipt.summary === undefined ? expectedFields : [...expectedFields, "summary"].sort();
+  if (
+    actualFields.length !== allowedFields.length ||
+    actualFields.some((field, index) => field !== allowedFields[index])
+  ) {
+    throw new Error("receipt_fields_invalid");
+  }
   if (typeof receipt.ciEvidenceGeneration !== "string") {
     throw new Error("ci_evidence_generation_required");
   }

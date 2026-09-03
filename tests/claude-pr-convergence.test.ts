@@ -979,6 +979,23 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     ).toThrow("reviewed_at_future");
   });
 
+  it("U-CPRCONV-040: current receiptはunknown fieldを再出力せずdecoderでも拒否する", () => {
+    const built = buildClaudePrReviewReceipt({
+      ...baseInput,
+      schema_version: "helix-claude-pr-review-receipt.v4",
+      attacker_controlled: "must-not-survive",
+    } as typeof baseInput);
+    expect(built).not.toHaveProperty("schema_version");
+    expect(built).not.toHaveProperty("attacker_controlled");
+
+    expect(() =>
+      validateClaudePrReviewReceipt({
+        ...buildClaudePrReviewReceipt(baseInput),
+        schema_version: "helix-claude-pr-review-receipt.v4",
+      }),
+    ).toThrow("receipt_fields_invalid");
+  });
+
   it("U-CPRCONV-029: v3はread-only互換でcurrent loadとcomment read-afterを通さない", () => {
     const legacy = legacyV3Receipt();
     expect(validateClaudePrReviewReceipt(legacy)).toEqual(legacy);
