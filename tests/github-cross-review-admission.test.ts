@@ -13,6 +13,7 @@ import {
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+// PLAN-RECOVERY-100-review-receipt-schema-boundary / U-GCRA-010
 import {
   canonicalLogicalDbReceiptValid,
   evaluateGitHubCrossReviewAdmission,

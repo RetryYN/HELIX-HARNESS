@@ -68,5 +68,12 @@ requirements:
 | `U-CPRCONV-040` | `buildClaudePrReviewReceipt` / `validateClaudePrReviewReceipt` | producerがinput exact field setを検査してcanonical fieldだけを射影し、任意の非空`summary`を保持する | inputのunknown field許可、provider-neutral `schema_version`混入、空summaryの受理 |
 | `U-GCRA-010` | `evaluateGitHubCrossReviewAdmission` | Claude v4とprovider-neutral v4をexact schema valueで識別する | `schema_version` propertyの存在だけでClaude receiptをprovider-neutralへ誤分類する |
 
+## Current Recovery V-pair oracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-CPRCONV-040 | `buildClaudePrReviewReceipt` / `validateClaudePrReviewReceipt` | unknown field付きinput、provider-neutral `schema_version`混入、空summaryを拒否し、canonical fieldだけを射影する | `tests/claude-pr-convergence.test.ts` |
+| U-GCRA-010 | `evaluateGitHubCrossReviewAdmission` | Claude v4とprovider-neutral v4をexact schema valueで識別し、property presenceだけの誤分類を拒否する | `tests/github-cross-review-admission.test.ts` |
+
 GitHub APIはunitでmock成功を合格根拠にせず、workflow source mutationと実PR dogfoodを対にする。最終system証拠は、
 Draft full CI、comment receipt、Ready rerun、required `harness-check` success、merge timestamp、candidate／merge tree同一receiptの順序を同一PRで記録する。
