@@ -62,6 +62,28 @@ export interface GitHubCrossReviewAdmissionDecision {
   readonly deferred: boolean;
   readonly receipt_digest: string | null;
   readonly reasons: readonly string[];
+  readonly candidate_diagnostics?: readonly ReviewAdmissionCandidateDiagnostic[];
+}
+
+export type ReviewAdmissionCandidateFailure =
+  | "review_receipt_envelope_invalid"
+  | "review_receipt_schema_invalid"
+  | "review_receipt_independence_invalid"
+  | "review_receipt_ci_run_missing"
+  | "review_receipt_repository_mismatch"
+  | "review_receipt_pr_mismatch"
+  | "review_receipt_head_mismatch"
+  | "review_receipt_verdict_invalid"
+  | "review_receipt_ci_claim_invalid"
+  | "review_receipt_db_provenance_invalid"
+  | "review_receipt_comment_binding_invalid"
+  | "review_receipt_time_order_invalid"
+  | "review_receipt_ci_provenance_invalid"
+  | "review_receipt_ci_generation_invalid";
+
+export interface ReviewAdmissionCandidateDiagnostic {
+  readonly comment_url: string;
+  readonly reason: ReviewAdmissionCandidateFailure;
 }
 
 export interface ReviewedMergeReadAfterInput {
@@ -245,35 +267,64 @@ export function renderProviderNeutralPrReviewComment(
  * 入れた時点で v2・v4 いずれの経路からも false へ到達しなくなったため削除した（Issue #514）。
  * 「多層 fail-close」として残すと、実行され得ない分岐を検証済みと誤読させる。
  */
-function extractReceipt(body: string): IndependentReviewCommentEnvelopeV1 | null {
+function extractReceipt(
+  body: string,
+):
+  | { envelope: IndependentReviewCommentEnvelopeV1; failure: null }
+  | { envelope: null; failure: ReviewAdmissionCandidateFailure }
+  | null {
   if (!body.includes(INDEPENDENT_PR_REVIEW_COMMENT_MARKER)) return null;
   const claudeReceipt = parseClaudeIndependentPrReviewComment(body);
   if (claudeReceipt) {
     return {
-      schema_version: "helix-independent-pr-review-comment.v1",
-      receipt: claudeReceipt,
-      kimi_provenance: null,
+      envelope: {
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: claudeReceipt,
+        kimi_provenance: null,
+      },
+      failure: null,
     };
   }
   const match = body.match(/```json\s*([\s\S]*)\s*```/u);
-  if (!match?.[1]) return null;
+  if (!match?.[1]) return { envelope: null, failure: "review_receipt_envelope_invalid" };
   let value: unknown;
   try {
     value = JSON.parse(match[1]);
   } catch {
-    return null;
+    return { envelope: null, failure: "review_receipt_envelope_invalid" };
   }
   try {
-    if (!value || typeof value !== "object") return null;
+    if (!value || typeof value !== "object") {
+      return { envelope: null, failure: "review_receipt_envelope_invalid" };
+    }
     const raw = value as Partial<IndependentReviewCommentEnvelopeV1>;
-    if (raw.schema_version !== "helix-independent-pr-review-comment.v1") return null;
+    if (raw.schema_version !== "helix-independent-pr-review-comment.v1") {
+      return { envelope: null, failure: "review_receipt_envelope_invalid" };
+    }
+    if (raw.receipt && typeof raw.receipt === "object" && "schemaVersion" in raw.receipt) {
+      try {
+        validateClaudePrReviewReceipt(raw.receipt);
+        return { envelope: null, failure: "review_receipt_envelope_invalid" };
+      } catch (error) {
+        return {
+          envelope: null,
+          failure:
+            error instanceof Error && error.message === "runtime_independence_missing"
+              ? "review_receipt_independence_invalid"
+              : "review_receipt_schema_invalid",
+        };
+      }
+    }
     return {
-      schema_version: raw.schema_version,
-      receipt: validateProviderNeutralReviewReceipt(raw.receipt),
-      kimi_provenance: raw.kimi_provenance ?? null,
+      envelope: {
+        schema_version: raw.schema_version,
+        receipt: validateProviderNeutralReviewReceipt(raw.receipt),
+        kimi_provenance: raw.kimi_provenance ?? null,
+      },
+      failure: null,
     };
   } catch {
-    return null;
+    return { envelope: null, failure: "review_receipt_schema_invalid" };
   }
 }
 
@@ -442,6 +493,90 @@ function receiptFields(receipt: CanonicalReceipt): {
   };
 }
 
+interface ParsedReviewCandidate {
+  readonly comment: ReviewAdmissionComment;
+  readonly envelope: IndependentReviewCommentEnvelopeV1;
+  readonly receipt: CanonicalReceipt;
+  readonly fields: ReturnType<typeof receiptFields>;
+}
+
+function reviewCandidateFailure(
+  input: GitHubCrossReviewAdmissionInput,
+  candidate: ParsedReviewCandidate,
+): ReviewAdmissionCandidateFailure | null {
+  const { comment, envelope, receipt, fields } = candidate;
+  const ci = input.ci_runs.find((run) => run.id === fields.ciRunId);
+  if (!ci) return "review_receipt_ci_run_missing";
+  const isCurrentClaudeReceipt =
+    "schemaVersion" in receipt && receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA;
+  const isProviderNeutralReceipt =
+    "schema_version" in receipt &&
+    receipt.schema_version === "helix-independent-pr-review-receipt.v4";
+  if (!isCurrentClaudeReceipt && !isProviderNeutralReceipt) {
+    return "review_receipt_schema_invalid";
+  }
+  if (fields.repository !== input.repository) return "review_receipt_repository_mismatch";
+  if (fields.prNumber !== input.pr_number) return "review_receipt_pr_mismatch";
+  if (fields.headSha !== input.candidate_head) return "review_receipt_head_mismatch";
+  if (fields.verdict !== "approve" || fields.blockerCount !== 0) {
+    return "review_receipt_verdict_invalid";
+  }
+  if (fields.ciConclusion !== "success" || !fields.dbConverged) {
+    return "review_receipt_ci_claim_invalid";
+  }
+  if (
+    !(isProviderNeutralReceipt
+      ? validateKimiProvenance(receipt, envelope.kimi_provenance, input)
+      : validateClaudeDbProvenance(receipt as ClaudePrReviewReceipt, input))
+  ) {
+    return "review_receipt_db_provenance_invalid";
+  }
+  if (fields.commentUrl !== null && fields.commentUrl !== comment.html_url) {
+    return "review_receipt_comment_binding_invalid";
+  }
+  if (
+    !Number.isFinite(Date.parse(comment.created_at)) ||
+    !Number.isFinite(Date.parse(comment.updated_at)) ||
+    !Number.isFinite(Date.parse(fields.reviewedAt)) ||
+    Date.parse(comment.created_at) > Date.parse(comment.updated_at) ||
+    Date.parse(fields.reviewedAt) > Date.parse(comment.updated_at)
+  ) {
+    return "review_receipt_time_order_invalid";
+  }
+  if (
+    ci.head_sha !== input.candidate_head ||
+    ci.name !== "harness-check" ||
+    ci.path !== ".github/workflows/harness-check.yml" ||
+    ci.event !== "pull_request" ||
+    ci.status !== "completed" ||
+    ci.conclusion !== "success" ||
+    !ci.pull_request_numbers.includes(input.pr_number)
+  ) {
+    return "review_receipt_ci_provenance_invalid";
+  }
+  if (!latestCiRunMatches(input, ci)) return "review_receipt_ci_generation_invalid";
+  if (isCurrentClaudeReceipt) {
+    const generation =
+      fields.ciEvidenceGeneration === null
+        ? null
+        : parseClaudePrCiEvidenceGeneration(fields.ciEvidenceGeneration);
+    if (
+      generation?.runId !== ci.id ||
+      generation.attempt !== ci.attempt ||
+      generation.conclusion !== ci.conclusion
+    ) {
+      return "review_receipt_ci_generation_invalid";
+    }
+  }
+  if (
+    !Number.isFinite(Date.parse(ci.updated_at)) ||
+    Date.parse(ci.updated_at) > Date.parse(fields.reviewedAt)
+  ) {
+    return "review_receipt_time_order_invalid";
+  }
+  return null;
+}
+
 export function evaluateGitHubCrossReviewAdmission(
   input: GitHubCrossReviewAdmissionInput,
 ): GitHubCrossReviewAdmissionDecision {
@@ -456,67 +591,37 @@ export function evaluateGitHubCrossReviewAdmission(
   if (input.is_draft) {
     return { ok: true, deferred: true, receipt_digest: null, reasons: [] };
   }
-  const candidates = input.comments.flatMap((comment) => {
-    const envelope = extractReceipt(comment.body);
-    return envelope
-      ? [{ comment, envelope, receipt: envelope.receipt, fields: receiptFields(envelope.receipt) }]
-      : [];
+  const malformedDiagnostics: ReviewAdmissionCandidateDiagnostic[] = [];
+  const candidates = input.comments.flatMap((comment): ParsedReviewCandidate[] => {
+    const extracted = extractReceipt(comment.body);
+    if (!extracted) return [];
+    if (extracted.failure) {
+      malformedDiagnostics.push({ comment_url: comment.html_url, reason: extracted.failure });
+      return [];
+    }
+    const { envelope } = extracted;
+    return [
+      { comment, envelope, receipt: envelope.receipt, fields: receiptFields(envelope.receipt) },
+    ];
   });
   if (candidates.length === 0) {
     return {
       ok: false,
       deferred: false,
       receipt_digest: null,
-      reasons: ["current_head_review_receipt_missing"],
+      reasons: [
+        malformedDiagnostics.length === 0
+          ? "current_head_review_receipt_missing"
+          : "review_receipt_invalid_or_stale",
+      ],
+      ...(malformedDiagnostics.length === 0 ? {} : { candidate_diagnostics: malformedDiagnostics }),
     };
   }
-  const valid = candidates.filter(({ comment, envelope, receipt, fields }) => {
-    const ci = input.ci_runs.find((run) => run.id === fields.ciRunId);
-    if (!ci) return false;
-    const isCurrentClaudeReceipt =
-      "schemaVersion" in receipt && receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA;
-    const isProviderNeutralReceipt =
-      "schema_version" in receipt &&
-      receipt.schema_version === "helix-independent-pr-review-receipt.v4";
-    const ciGeneration =
-      fields.ciEvidenceGeneration === null
-        ? null
-        : parseClaudePrCiEvidenceGeneration(fields.ciEvidenceGeneration);
-    return (
-      fields.repository === input.repository &&
-      (isCurrentClaudeReceipt || isProviderNeutralReceipt) &&
-      fields.prNumber === input.pr_number &&
-      fields.headSha === input.candidate_head &&
-      fields.verdict === "approve" &&
-      fields.blockerCount === 0 &&
-      fields.ciConclusion === "success" &&
-      fields.dbConverged &&
-      (isProviderNeutralReceipt
-        ? validateKimiProvenance(receipt, envelope.kimi_provenance, input)
-        : validateClaudeDbProvenance(receipt as ClaudePrReviewReceipt, input)) &&
-      (fields.commentUrl === null || fields.commentUrl === comment.html_url) &&
-      Number.isFinite(Date.parse(comment.created_at)) &&
-      Number.isFinite(Date.parse(comment.updated_at)) &&
-      Number.isFinite(Date.parse(fields.reviewedAt)) &&
-      Date.parse(comment.created_at) <= Date.parse(comment.updated_at) &&
-      Date.parse(fields.reviewedAt) <= Date.parse(comment.updated_at) &&
-      ci?.head_sha === input.candidate_head &&
-      ci.name === "harness-check" &&
-      ci.path === ".github/workflows/harness-check.yml" &&
-      ci.event === "pull_request" &&
-      ci.status === "completed" &&
-      ci.conclusion === "success" &&
-      ci.pull_request_numbers.includes(input.pr_number) &&
-      latestCiRunMatches(input, ci) &&
-      ((isCurrentClaudeReceipt &&
-        ciGeneration?.runId === ci.id &&
-        ciGeneration?.attempt === ci.attempt &&
-        ciGeneration?.conclusion === ci.conclusion) ||
-        isProviderNeutralReceipt) &&
-      Number.isFinite(Date.parse(ci.updated_at)) &&
-      Date.parse(ci.updated_at) <= Date.parse(fields.reviewedAt)
-    );
-  });
+  const evaluated = candidates.map((candidate) => ({
+    candidate,
+    failure: reviewCandidateFailure(input, candidate),
+  }));
+  const valid = evaluated.filter((entry) => entry.failure === null).map((entry) => entry.candidate);
   // mixed authorship（両runtimeの実装commitが同居するHybrid stacking branch）は、
   // 各runtimeの実装commitを相手がreviewしたreceiptが両方揃って初めて独立review済みになる。
   // 単一runtime-authored PRの複数receiptは従来どおりconflictとする（Issue #539）。
@@ -549,11 +654,23 @@ export function evaluateGitHubCrossReviewAdmission(
     };
   }
   if (valid.length !== 1) {
+    const diagnostics = evaluated
+      .filter(
+        (entry): entry is typeof entry & { failure: ReviewAdmissionCandidateFailure } =>
+          entry.failure !== null,
+      )
+      .map(({ candidate, failure }) => ({
+        comment_url: candidate.comment.html_url,
+        reason: failure,
+      }));
     return {
       ok: false,
       deferred: false,
       receipt_digest: null,
       reasons: [valid.length === 0 ? "review_receipt_invalid_or_stale" : "review_receipt_conflict"],
+      ...(valid.length === 0 && diagnostics.length > 0
+        ? { candidate_diagnostics: [...malformedDiagnostics, ...diagnostics] }
+        : {}),
     };
   }
   return {
