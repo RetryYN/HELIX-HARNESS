@@ -36,7 +36,7 @@ red_test: "U-CPRCONV-040とU-GCRA-010がunknown schema fieldの保存と誤分�
 red_at: "2026-09-03T10:19:07Z"
 green_at: "2026-09-03T10:21:05Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-03T10:21:19Zにproducerへinput spreadを再導入するとU-CPRCONV-040がextra schema_versionを検出してexit 1となった。2026-09-03T10:34:44Zには入口exact field検査全体を無効化すると同oracleがexpected throwなしでexit 1となり、検査復元後にgreenへ戻した"
+mutation_oracle_evidence: "tests/claude-pr-convergence.test.ts U-CPRCONV-040で、2026-09-03T10:21:19Zにproducerへinput spread mutationを再導入するとextra schema_versionを検出してRed／exit 1となった。2026-09-03T10:34:44Zには入口exact field検査全体を無効化すると同oracleがexpected throwなしでfailed／exit 1となり、検査復元後にgreenへ戻した"
 complexity_effect: net_negative
 complexity_justification: "曖昧なproperty-presence discriminatorとinput spreadを、exact schema valueとcanonical projectionへ収束する"
 removal_trigger: "全review providerが単一のversioned discriminated unionとgenerated exact-field decoderへ移行した時"
