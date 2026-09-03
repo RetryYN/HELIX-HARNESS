@@ -33,7 +33,7 @@ contract_invariants: "#1461のcancelled／skipped／missing fail-close、過去g
 contract_failures: "timeout、cancel、skip、missing receipt、wrong generation、wrong HEAD／base／partition／files、bulk partition欠落／重複、budget telemetry欠落をfail-closeする"
 tdd_red_required: true
 red_test: "U-FULLSHARD-WF-003のbulk budget mutation、4-shard exact partition mutation、budget telemetry欠落mutationがexit 1になることを実測する"
-red_at: "2026-09-03T00:00:00Z"
+red_at: "2026-09-02T21:04:00Z"
 green_at: "2026-09-02T23:29:45Z"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-03のworktree実測で、tests/harness-check-workflow.test.tsのU-FULLSHARD-WF-003においてfull-regression-bulk-1のtimeout-minutesを25から26へ変更するmutationがjob_timeout_invalid:full-regression-bulk-1でexit 1となり、U-CITIME-003ではcontinue-on-error追加とfinalize gate順序短絡の各mutationがexit 1となった。tests/full-regression-shards.test.tsのU-FULLSHARD-001〜006では、4-shard partitionの欠落・重複・unknown、wrong HEAD/base/partition/files、nonzero/invalid時刻・receipt欠落を各validatorが拒否することを確認した。いずれも実装を復元した対象testはgreenであり、timeout延長、fail-open、partition/receipt相殺を改善扱いできないことを実測した。"
