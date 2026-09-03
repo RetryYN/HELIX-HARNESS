@@ -80,7 +80,7 @@ review receipt候補の不受理理由をtyped predicateへ分解し、受理規
 
 - receipt schemaの変更
 - verdictの再判断
-- malformed receipt correction generation（Issue #1487）
+- malformed receiptの訂正世代生成（Issue #1487）
 
 ## 完了条件
 
