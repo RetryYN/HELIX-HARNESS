@@ -500,7 +500,7 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(violation?.message).toContain("test-design");
   });
 
-  it("U-DDDTDD-013: PLAN-RECOVERY-106-mutation-oracle-locator-resolution rejects an oracle ID bound to a missing test path", () => {
+  it("U-DDDTDD-015: PLAN-RECOVERY-106-mutation-oracle-locator-resolution rejects an oracle ID bound to a missing test path", () => {
     const repoRoot = mkdtempSync(join(tmpdir(), "helix-ddd-tdd-locator-"));
     try {
       const plansDir = join(repoRoot, "docs", "plans");
@@ -512,15 +512,15 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
           "status: confirmed",
           "mutation_oracle_required: true",
           "verification_bindings:",
-          "  - { oracle_id: U-DDDTDD-013, test_path: tests/does-not-exist.test.ts }",
-          "mutation_oracle_evidence: U-DDDTDD-013 killed the seeded defect (exit 1)",
+          "  - { oracle_id: U-DDDTDD-015, test_path: tests/does-not-exist.test.ts }",
+          "mutation_oracle_evidence: U-DDDTDD-015 killed the seeded defect (exit 1)",
           "---",
         ].join("\n"),
       );
 
       const result = analyzeDddTddRules(loadDddTddInputs(repoRoot));
       const violation = result.violations.find((entry) => entry.rule === "mutation-oracle");
-      expect(violation?.message).toContain("Unresolvable oracle ID: U-DDDTDD-013");
+      expect(violation?.message).toContain("Unresolvable oracle ID: U-DDDTDD-015");
     } finally {
       rmSync(repoRoot, { recursive: true, force: true });
     }

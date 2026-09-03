@@ -450,6 +450,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-DDDTDD-012 | PLAN-RECOVERY-106 / locator解決 | 既存 test-design または PLAN の `oracle_id` と実在 test path を解決できる oracle ID を明示 path と同等に受理する | `tests/ddd-tdd-rules.test.ts` |
 | U-DDDTDD-013 | PLAN-RECOVERY-106 / unknown ID・missing path | test path／test-designへ解決できない oracle ID、または実在しない test path へ束縛された oracle IDだけの evidence を拒否し、受理形式とIDを診断する | `tests/ddd-tdd-rules.test.ts` |
 | U-DDDTDD-014 | PLAN-RECOVERY-106 / derived inventory | `loadDddTddInputs` が既存test-design行からlocator inventoryを決定的に導出する | `tests/ddd-tdd-rules.test.ts` |
+| U-DDDTDD-015 | PLAN-RECOVERY-106 / missing filesystem locator | PLAN の oracle ID が実在しない test path へ束縛されている場合、locator inventoryへ登録せず mutation evidence を拒否する。実在確認分岐を除去したmutationをkillする | `tests/ddd-tdd-rules.test.ts` |
 
 ### PR scope manifest契約（PLAN-L7-466）
 

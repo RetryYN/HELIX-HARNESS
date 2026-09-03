@@ -42,6 +42,7 @@ verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-DDDTDD-012, test_path: tests/ddd-tdd-rules.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-DDDTDD-013, test_path: tests/ddd-tdd-rules.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-DDDTDD-014, test_path: tests/ddd-tdd-rules.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-DDDTDD-015, test_path: tests/ddd-tdd-rules.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-463-engineering-discipline-contract.md
   requires:
@@ -93,7 +94,7 @@ mutation実体、kill/fail/red signal、confirmed PLANの必須条件は維持�
 
 ## 完了条件
 
-- [ ] U-DDDTDD-012〜014のpositive／negative／derived-inventoryテストがgreenになる。
+- [ ] U-DDDTDD-012〜015のpositive／negative／derived-inventory／missing-pathテストがgreenになる。
 - [ ] 明示path／`vitest` の既存受理経路が変わらない。
 - [ ] unknown oracle IDはfail-closeし、受理形式とIDを診断する。
 - [ ] 実リポジトリのDDD/TDD guard、typecheck、targeted test、全repo guardがgreenになる。
