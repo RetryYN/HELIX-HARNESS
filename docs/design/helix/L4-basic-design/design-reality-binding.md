@@ -4,7 +4,7 @@ layer: L4
 artifact_type: design
 status: confirmed
 created: 2026-08-03
-updated: 2026-08-12
+updated: 2026-09-04
 owner: SE
 plan: docs/plans/PLAN-RECOVERY-09-design-reality-binding.md
 pair_artifact: docs/test-design/helix/L9-design-reality-binding-system-test-design.md
@@ -36,6 +36,12 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
                     -> findings 0 only -> design admission green
 ```
 
+既存設計の `declared_failure_codes` と `failure_reachability` が空であることは、実装済みの
+failure契約を意味しない。現在の空bindingは `config/design-reality-binding-empty-baseline.json` の
+固定baselineとして可視化し、baseline外で新たに空へ退行した設計はfail-closeする。baselineは
+追加で拡張できず、failure契約をmaterializeした設計からのみ縮小する。本文にfailure方針がある
+baseline entryはhard failureへ自動昇格せず、doctorのadvisoryとして上流のmaterialize候補を示す。
+
 2026-08-03以降に更新されたconfirmed L4/L5をactivation対象とし、それ以前の設計在庫を一括移行しない。
 ただしPR #355のworker descriptor pairは既知回帰として明示bindingする。
 
@@ -53,7 +59,7 @@ confirmed candidate -> typed binding -> repo-contained exact source -> AST resou
       "artifact_path": "src/lint/design-reality-binding.ts",
       "resource_kind": "typescript_export",
       "resource_name": "analyzeDesignRealityBinding",
-      "source_digest": "sha256:e170273ae1beab6ad5e5727e510f7461289165400839f29d860062a21a4e46f8",
+      "source_digest": "sha256:fbe34f66aa2ba594c08ced3fffcc3d30241b3511339e4082c931d256c3da0452",
       "current_authority": true
     }
   ],

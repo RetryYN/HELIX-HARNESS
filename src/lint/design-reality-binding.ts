@@ -4,6 +4,7 @@ import { existsSync, readdirSync, readFileSync, realpathSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
 import type * as TS from "typescript";
 import { parse as parseYaml } from "yaml";
+import { canonicalJson, type Sha256Digest } from "../shared/canonical-digest";
 import ts from "../shared/typescript-lazy";
 import { extractExecutableOracleCases } from "./plan-specific-vpair-binding";
 import { markdownFrontmatter } from "./shared";
@@ -11,6 +12,71 @@ import { markdownFrontmatter } from "./shared";
 export const DESIGN_REALITY_BINDING_MARKER = "HELIX:design-reality-binding:v1";
 export const DESIGN_REALITY_BINDING_ACTIVATION_DATE = "2026-08-03";
 export const DESIGN_REALITY_BINDING_ACTIVATION_COMMIT = "3859c339ec4844cc9a1e713e99450f28fd6ca7aa";
+export const DESIGN_REALITY_EMPTY_FAILURE_BINDING_BASELINE_PATH =
+  "config/design-reality-binding-empty-baseline.json";
+export const DESIGN_REALITY_EMPTY_FAILURE_BINDING_SCHEMA_VERSION =
+  "helix-design-reality-binding-empty-baseline.v1";
+
+export interface DesignRealityEmptyFailureBindingBaseline {
+  schema_version: typeof DESIGN_REALITY_EMPTY_FAILURE_BINDING_SCHEMA_VERSION;
+  entries: string[];
+  baseline_digest: Sha256Digest;
+}
+
+/**
+ * 既存の空 failure binding は、実装済み failure が存在しないことを意味しない。
+ * 既存設計の未materialize負債として初期集合をコードにも固定し、新規追加を
+ * configだけで隠せないようにする。修正済みentryはconfigから削除して集合を縮小する。
+ */
+export const INITIAL_DESIGN_REALITY_EMPTY_FAILURE_BINDING_BASELINE: ReadonlyArray<string> = [
+  "docs/design/helix/L4-basic-design/ai-decision-proposal-authority.md",
+  "docs/design/helix/L4-basic-design/bounded-probe-history.md",
+  "docs/design/helix/L4-basic-design/derived-requirement-trace.md",
+  "docs/design/helix/L4-basic-design/design-reality-binding.md",
+  "docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md",
+  "docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md",
+  "docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md",
+  "docs/design/helix/L4-basic-design/project-hook-authority-boundary.md",
+  "docs/design/helix/L4-basic-design/python-semantic-core-node-boundary.md",
+  "docs/design/helix/L4-basic-design/requirement-refinement-authority.md",
+  "docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md",
+  "docs/design/helix/L4-basic-design/ui-domain-pattern-profile.md",
+  "docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md",
+  "docs/design/helix/L4-basic-design/worker-blind-benchmark.md",
+  "docs/design/helix/L4-basic-design/worker-context-authority.md",
+  "docs/design/helix/L4-basic-design/worker-descriptor-admission.md",
+  "docs/design/helix/L4-basic-design/worker-independent-review.md",
+  "docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+  "docs/design/helix/L4-basic-design/worker-isolation-policy.md",
+  "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+  "docs/design/helix/L4-basic-design/worker-output-admission.md",
+  "docs/design/helix/L4-basic-design/worker-risk-admission.md",
+  "docs/design/helix/L4-basic-design/worker-wrapper-admission.md",
+  "docs/design/helix/L4-basic-design/workflow-interview-unresolved.md",
+  "docs/design/helix/L4-basic-design/workflow-switch-route-allocation-boundary.md",
+  "docs/design/helix/L5-detail/ai-decision-proposal-authority.md",
+  "docs/design/helix/L5-detail/bounded-probe-history.md",
+  "docs/design/helix/L5-detail/claude-autonomous-permission-mode.md",
+  "docs/design/helix/L5-detail/derived-requirement-trace.md",
+  "docs/design/helix/L5-detail/design-registry.md",
+  "docs/design/helix/L5-detail/development-model-runtime-routing.md",
+  "docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+  "docs/design/helix/L5-detail/github-issue-native-graph-provider.md",
+  "docs/design/helix/L5-detail/issue-native-graph-projection.md",
+  "docs/design/helix/L5-detail/layer-ledger-pair-gate.md",
+  "docs/design/helix/L5-detail/measurement-evidence-evaluator.md",
+  "docs/design/helix/L5-detail/nfr-typed-registry-quality-taxonomy.md",
+  "docs/design/helix/L5-detail/operation-scope.md",
+  "docs/design/helix/L5-detail/project-hook-authority-schema.md",
+  "docs/design/helix/L5-detail/python-worker-runtime.md",
+  "docs/design/helix/L5-detail/requirement-refinement-authority.md",
+  "docs/design/helix/L5-detail/slot-scheduler-quota-handover.md",
+  "docs/design/helix/L5-detail/state-db-schema-ddl-authority.md",
+  "docs/design/helix/L5-detail/ui-domain-pattern-profile.md",
+  "docs/design/helix/L5-detail/work-graph-receipt-acceptance.md",
+  "docs/design/helix/L5-detail/workflow-interview-unresolved.md",
+  "docs/design/helix/L5-detail/workflow-switch-route-allocation-schema.md",
+];
 
 export function isHelixDesignRealityTarget(path: string): boolean {
   return /^docs\/design\/helix\/L[45]-/.test(path);
@@ -98,13 +164,34 @@ export interface DesignRealityFinding {
   detail: string;
 }
 
+export interface DesignRealityAdvisory {
+  file: string;
+  reason:
+    | "empty_failure_binding_baseline"
+    | "prose_failure_binding_gap_candidate"
+    | "empty_failure_binding_baseline_resolved";
+  detail: string;
+}
+
 export interface DesignRealityResult {
   ok: boolean;
   checked: number;
   findings: DesignRealityFinding[];
+  advisories: DesignRealityAdvisory[];
+  empty_failure_binding_count: number;
+  baseline_empty_failure_binding_count: number;
+  prose_failure_binding_gap_candidates: number;
 }
 
 function finding(file: string, reason: string, detail: string): DesignRealityFinding {
+  return { file, reason, detail };
+}
+
+function advisory(
+  file: string,
+  reason: DesignRealityAdvisory["reason"],
+  detail: string,
+): DesignRealityAdvisory {
   return { file, reason, detail };
 }
 
@@ -119,6 +206,94 @@ function isRepoPath(value: unknown): value is string {
     !value.startsWith("/") &&
     !value.split("/").includes("..")
   );
+}
+
+function comparePaths(left: string, right: string): number {
+  return Buffer.from(left, "utf8").compare(Buffer.from(right, "utf8"));
+}
+
+function emptyFailureBindingBaselineDigest(entries: readonly string[]): Sha256Digest {
+  return `sha256:${createHash("sha256").update(canonicalJson(entries)).digest("hex")}`;
+}
+
+function emptyFailureBindingBaselineDocument(
+  entries: readonly string[],
+): DesignRealityEmptyFailureBindingBaseline {
+  const sorted = [...entries].sort(comparePaths);
+  return {
+    schema_version: DESIGN_REALITY_EMPTY_FAILURE_BINDING_SCHEMA_VERSION,
+    entries: sorted,
+    baseline_digest: emptyFailureBindingBaselineDigest(sorted),
+  };
+}
+
+function validateEmptyFailureBindingBaseline(
+  value: unknown,
+): DesignRealityEmptyFailureBindingBaseline {
+  if (
+    !isRecord(value) ||
+    value.schema_version !== DESIGN_REALITY_EMPTY_FAILURE_BINDING_SCHEMA_VERSION ||
+    !Array.isArray(value.entries)
+  ) {
+    throw new Error("invalid design reality empty failure binding baseline schema");
+  }
+  const entries = value.entries.map((entry) => {
+    if (!isRepoPath(entry) || !isHelixDesignRealityTarget(entry)) {
+      throw new Error("invalid design reality empty failure binding baseline entry");
+    }
+    return entry;
+  });
+  const sorted = [...entries].sort(comparePaths);
+  if (new Set(sorted).size !== sorted.length) {
+    throw new Error("duplicate design reality empty failure binding baseline entry");
+  }
+  if (
+    typeof value.baseline_digest !== "string" ||
+    !/^sha256:[a-f0-9]{64}$/u.test(value.baseline_digest) ||
+    value.baseline_digest !== emptyFailureBindingBaselineDigest(sorted)
+  ) {
+    throw new Error("design reality empty failure binding baseline digest mismatch");
+  }
+  return {
+    schema_version: DESIGN_REALITY_EMPTY_FAILURE_BINDING_SCHEMA_VERSION,
+    entries: sorted,
+    baseline_digest: value.baseline_digest as Sha256Digest,
+  };
+}
+
+export function loadDesignRealityEmptyFailureBindingBaseline(
+  repoRoot: string,
+): DesignRealityEmptyFailureBindingBaseline {
+  const path = join(repoRoot, DESIGN_REALITY_EMPTY_FAILURE_BINDING_BASELINE_PATH);
+  if (!existsSync(path)) return emptyFailureBindingBaselineDocument([]);
+  return validateEmptyFailureBindingBaseline(JSON.parse(readFileSync(path, "utf8")));
+}
+
+const FAILURE_PROSE_HEADING_PATTERN =
+  /^#{2,6}\s+.*(?:fail[- ]?close|failure|失敗|拒否|エラー|異常|不正|障害)/iu;
+const FAILURE_PROSE_SIGNAL_PATTERN =
+  /(?:fail[- ]?close|failure|error|reject|拒否|失敗|エラー|異常|不正|障害)/iu;
+
+/**
+ * 設計本文のfailure方針と空bindingの意味差候補を、hard failureとは分離して報告する。
+ * JSON binding後ろの機械データは読まず、設計本文の見出しと節だけを対象にする。
+ */
+function failureProseSignal(content: string): string | null {
+  const marker = `<!-- ${DESIGN_REALITY_BINDING_MARKER} -->`;
+  const markerIndex = content.indexOf(marker);
+  const beforeBinding = markerIndex >= 0 ? content.slice(0, markerIndex) : content;
+  const lines = beforeBinding.split(/\r?\n/u);
+  for (let index = 0; index < lines.length; index += 1) {
+    const heading = lines[index];
+    if (!FAILURE_PROSE_HEADING_PATTERN.test(heading)) continue;
+    const section: string[] = [];
+    for (let next = index + 1; next < lines.length; next += 1) {
+      if (/^#{1,6}\s+/u.test(lines[next])) break;
+      section.push(lines[next]);
+    }
+    if (FAILURE_PROSE_SIGNAL_PATTERN.test(section.join("\n"))) return heading.trim();
+  }
+  return null;
 }
 
 function insideRepo(repoRoot: string, path: string): boolean {
@@ -758,7 +933,10 @@ function changedSinceActivation(repoRoot: string): Set<string> | null {
 export function analyzeDesignRealityBinding(
   repoRoot: string,
   files?: string[],
-  options: { changedPaths?: ReadonlySet<string> } = {},
+  options: {
+    changedPaths?: ReadonlySet<string>;
+    emptyFailureBindingBaseline?: DesignRealityEmptyFailureBindingBaseline;
+  } = {},
 ): DesignRealityResult {
   const designFiles =
     files ??
@@ -769,6 +947,35 @@ export function analyzeDesignRealityBinding(
         .map((name) => join(dir, name));
     });
   const findings: DesignRealityFinding[] = [];
+  const advisories: DesignRealityAdvisory[] = [];
+  let emptyFailureBindingCount = 0;
+  let baselineEmptyFailureBindingCount = 0;
+  let proseFailureBindingGapCandidates = 0;
+  let emptyFailureBindingBaseline: DesignRealityEmptyFailureBindingBaseline;
+  try {
+    emptyFailureBindingBaseline = options.emptyFailureBindingBaseline
+      ? validateEmptyFailureBindingBaseline(options.emptyFailureBindingBaseline)
+      : loadDesignRealityEmptyFailureBindingBaseline(repoRoot);
+  } catch (error) {
+    return {
+      ok: false,
+      checked: 0,
+      findings: [finding("<baseline>", "empty_failure_binding_baseline_invalid", String(error))],
+      advisories: [],
+      empty_failure_binding_count: 0,
+      baseline_empty_failure_binding_count: 0,
+      prose_failure_binding_gap_candidates: 0,
+    };
+  }
+  const baselinePaths = new Set(emptyFailureBindingBaseline.entries);
+  const initialBaselinePaths = new Set(INITIAL_DESIGN_REALITY_EMPTY_FAILURE_BINDING_BASELINE);
+  for (const path of emptyFailureBindingBaseline.entries) {
+    if (!initialBaselinePaths.has(path)) {
+      findings.push(finding("<baseline>", "empty_failure_binding_baseline_expanded", path));
+    }
+  }
+  const observedDesignPaths = new Set(designFiles);
+  const observedEmptyDesignPaths = new Set<string>();
   const changed = options.changedPaths ?? changedSinceActivation(repoRoot);
   let checked = 0;
   for (const file of designFiles) {
@@ -816,6 +1023,50 @@ export function analyzeDesignRealityBinding(
         ),
       );
     }
+    if (parsed.declared_failure_codes.length === 0 && parsed.failure_reachability.length === 0) {
+      emptyFailureBindingCount += 1;
+      observedEmptyDesignPaths.add(file);
+      if (baselinePaths.has(file)) {
+        baselineEmptyFailureBindingCount += 1;
+        advisories.push(
+          advisory(
+            file,
+            "empty_failure_binding_baseline",
+            "declared_failure_codes と failure_reachability が空の既知baseline",
+          ),
+        );
+      } else {
+        findings.push(
+          finding(
+            file,
+            "empty_failure_binding_not_in_baseline",
+            "新規の空failure bindingはbaselineへ追加せず、failure contractをmaterializeすること",
+          ),
+        );
+      }
+      const proseHeading = failureProseSignal(content);
+      if (proseHeading) {
+        proseFailureBindingGapCandidates += 1;
+        advisories.push(
+          advisory(
+            file,
+            "prose_failure_binding_gap_candidate",
+            `${proseHeading}:本文にfailure方針があるが、機械bindingは空`,
+          ),
+        );
+      }
+    }
+  }
+  for (const path of emptyFailureBindingBaseline.entries) {
+    if (observedDesignPaths.has(path) && !observedEmptyDesignPaths.has(path)) {
+      advisories.push(
+        advisory(
+          path,
+          "empty_failure_binding_baseline_resolved",
+          "空bindingが解消されたためbaselineから削除して集合を縮小すること",
+        ),
+      );
+    }
   }
   if (!files && changed) {
     const plansDir = join(repoRoot, "docs/plans");
@@ -843,14 +1094,33 @@ export function analyzeDesignRealityBinding(
       }
     }
   }
-  return { ok: findings.length === 0, checked, findings };
+  return {
+    ok: findings.length === 0,
+    checked,
+    findings,
+    advisories,
+    empty_failure_binding_count: emptyFailureBindingCount,
+    baseline_empty_failure_binding_count: baselineEmptyFailureBindingCount,
+    prose_failure_binding_gap_candidates: proseFailureBindingGapCandidates,
+  };
 }
 
 export function designRealityBindingMessages(result: DesignRealityResult): string[] {
-  if (result.ok) return [`design-reality-binding — OK (checked=${result.checked})`];
-  return result.findings
+  const messages = result.findings
     .slice(0, 12)
     .map(
       (item) => `design-reality-binding — violation: ${item.file}:${item.reason}:${item.detail}`,
     );
+  if (result.advisories.length > 0) {
+    messages.push(
+      `design-reality-binding — advisory: empty=${result.empty_failure_binding_count}, baseline=${result.baseline_empty_failure_binding_count}, prose_gap_candidates=${result.prose_failure_binding_gap_candidates}`,
+      ...result.advisories
+        .slice(0, 8)
+        .map(
+          (item) => `design-reality-binding — advisory: ${item.file}:${item.reason}:${item.detail}`,
+        ),
+    );
+  }
+  if (messages.length > 0) return messages;
+  return [`design-reality-binding — OK (checked=${result.checked})`];
 }
