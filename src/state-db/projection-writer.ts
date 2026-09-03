@@ -3041,6 +3041,31 @@ function defaultRelationGraphProjection(repoRoot: string): RelationGraphProjecti
   });
 }
 
+function canonicalizeRelationGraph(graph: RelationGraphProjection): RelationGraphProjection {
+  return {
+    ...graph,
+    nodes: [...graph.nodes].sort((a, b) => a.id.localeCompare(b.id)),
+    edges: [...graph.edges].sort(
+      (a, b) =>
+        a.from.localeCompare(b.from) || a.to.localeCompare(b.to) || a.kind.localeCompare(b.kind),
+    ),
+    verificationProfiles: [...graph.verificationProfiles].sort((a, b) =>
+      a.nodeId.localeCompare(b.nodeId),
+    ),
+    findings: [...graph.findings].sort(
+      (a, b) =>
+        a.code.localeCompare(b.code) ||
+        (a.nodeId ?? "").localeCompare(b.nodeId ?? "") ||
+        a.severity.localeCompare(b.severity) ||
+        a.message.localeCompare(b.message) ||
+        (a.evidencePath ?? "").localeCompare(b.evidencePath ?? ""),
+    ),
+    trackedExcludedPaths: graph.trackedExcludedPaths
+      ? [...graph.trackedExcludedPaths].sort()
+      : undefined,
+  };
+}
+
 function projectGraphSnapshot(
   db: HarnessDb,
   graph: RelationGraphProjection | undefined,
@@ -5345,11 +5370,12 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
   const ownsDb = input.db === undefined;
   const db = input.db ?? openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
   try {
-    const relationGraph =
+    const relationGraph = canonicalizeRelationGraph(
       input.relationGraph ??
-      profiled("defaultRelationGraphProjection", input.onProfile, () =>
-        defaultRelationGraphProjection(repoRoot),
-      );
+        profiled("defaultRelationGraphProjection", input.onProfile, () =>
+          defaultRelationGraphProjection(repoRoot),
+        ),
+    );
     const documentExports =
       input.documentExports ??
       profiled("defaultDocumentExportProjection", input.onProfile, () =>

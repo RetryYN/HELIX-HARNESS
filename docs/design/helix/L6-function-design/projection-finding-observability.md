@@ -37,6 +37,8 @@ github_issue_id: 1440
 - drive registrationの未初期化・入力不備・内部エラーを同じ`null`へ潰さず、typed reasonを残す。
 - source digestが変わったrefactor candidate cacheを再利用せず、同一repo／policyのcache entryへsource digestを束縛して再計算する。
 - metadata parse境界のエラーを、全rebuild中断か局所findingかの契約なしに伝播させない。
+- rebuild入力のrelation graph（nodes／edges／findings等）をcanonical orderへ正規化し、入力配列の順序が
+  graph snapshot／diagram artifact／下流viewのidentityを変えないようにする。
 
 ## 3. 機能契約
 
@@ -51,6 +53,7 @@ github_issue_id: 1440
 3. `stableId("pair-agent-model-run", \`${runId}:${spanId}\`)`相当のnamespaceを使用し、異なるrunの同名spanを
    同一rowへ上書きしない。
 4. rebuildとreplayは同じsourceから同じ行集合・finding集合・digestを返し、順序変更mutationをgreenにしない。
+   relation graphを含む同値な入力順変更は、canonicalization後の同一projectionとして扱う。
 5. malformed metadataを局所findingにする境界は既存のprojection contractと整合させ、#1397のtransaction責務を変更しない。
 
 ## 4. 実装順

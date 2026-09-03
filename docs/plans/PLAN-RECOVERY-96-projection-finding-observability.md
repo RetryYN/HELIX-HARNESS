@@ -33,7 +33,7 @@ contract_invariants: "source文書を変更せず、既存finding storeとDB tra
 contract_failures: "malformed evidence、plan_id欠落、span collision、parse error、row-count mismatch、reason欠落、cache digest driftを黙って成功させない"
 tdd_red_required: true
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、projection/replayの入力順差異を検出することを本worktreeで確認した。全回帰・current HEADの独立review・main read-afterは未実施。"
+mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、入力順を反転した独立rebuild間のprojection／finding差異を検出することを本worktreeで確認した。全回帰・current HEADの独立review・main read-afterは未実施。"
 complexity_effect: net_neutral
 complexity_justification: "既存projection writerとfinding storeの欠落経路を型付き失敗へ収束し、新しいDB authorityや別projectionを増やさない"
 removal_trigger: "既存projection writerの恒久的acceptanceへ統合し、Recovery専用の重複検査が不要になった時点でsource PLANから統合する"
@@ -108,6 +108,7 @@ authorityへ束縛して回復する。DBを直接修正するのではなく、
 3. JSON readerを`{ value, parseError }`相当のtyped resultへ変更し、破損JSONをactive/incompleteとして投影しない。
 4. rebuildのdependency row-count／join invariant、drive registrationのtyped reason、refactor cacheのsource digestを追加する。
 5. metadata parse boundaryを明示し、既存transaction boundaryを変更せず再現可能なfindingへする。
+6. relation graph入力をcanonical orderへ正規化し、graph snapshot／diagram artifactのidentityを入力配列順から独立させる。
 
 ## 非対象
 

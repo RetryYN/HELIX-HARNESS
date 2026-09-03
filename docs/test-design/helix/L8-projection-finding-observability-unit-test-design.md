@@ -24,7 +24,7 @@ related_l3: docs/design/helix/L3-requirements/system-synthesis-requirements.md
 | U-PFO-006 | drive registration reason | uninitialized、invalid input、internal errorをtyped reasonで区別する | `tests/drive-db-registration.test.ts` |
 | U-PFO-007 | refactor candidate cache | source digest変更後に旧cacheを再利用せず、stale cacheをrejectする | `tests/requirements-binding-config.test.ts` |
 | U-PFO-008 | metadata parse boundary | malformed metadataの失敗境界が契約どおりで、全rebuildの黙示成功を許さない | `tests/slow/projection-writer.test.ts` |
-| U-PFO-009 | determinism / replay | 入力順を変えてもprojection／finding exact set digestが一致し、replayが同じ結果になる | `tests/slow/projection-writer.test.ts` |
+| U-PFO-009 | determinism / replay | 同値な入力順を変えた独立rebuildでもprojection／finding exact set digestが一致し、replay相当の結果になる | `tests/slow/projection-writer.test.ts` |
 
 全テストは、実装が追加するfindingの存在だけでなく、黙示的success、衝突上書き、parse-error消失、依存順序mutationをredにする。
 `#1397`のtransaction boundaryを変更するテストは本設計へ含めない。
