@@ -41,20 +41,21 @@ pair_artifact: docs/governance/candidates/functional-release-slice-acceptance.md
 dependencies:
   parent: docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
   requires:
-    - issue: 1073
-    - issue: 1074
+    - docs/plans/PLAN-L3-68-release-module-bundle-composition.md
   references:
-    - issue: 1075
-    - issue: 1078
-    - issue: 1082
-    - issue: 1084
-    - issue: 1085
-    - issue: 1086
-    - issue: 397
-    - issue: 659
-    - issue: 856
+    - "issue:1073"
+    - "issue:1074"
+    - "issue:1075"
+    - "issue:1078"
+    - "issue:1082"
+    - "issue:1084"
+    - "issue:1085"
+    - "issue:1086"
+    - "issue:397"
+    - "issue:659"
+    - "issue:856"
   blocks:
-    - issue: 1075
+    - "issue:1075"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-83-functional-release-slice-composition.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/functional-release-slice-requests.md, artifact_type: markdown_doc }
