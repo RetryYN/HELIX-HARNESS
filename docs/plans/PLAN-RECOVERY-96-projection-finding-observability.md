@@ -32,8 +32,10 @@ contract_postconditions: "projectionの欠落・衝突・破損・依存不整�
 contract_invariants: "source文書を変更せず、既存finding storeとDB transaction boundaryを再利用し、#1397の責務を変更しない"
 contract_failures: "malformed evidence、plan_id欠落、span collision、parse error、row-count mismatch、reason欠落、cache digest driftを黙って成功させない"
 tdd_red_required: true
+red_at: "2026-09-03T08:16:46Z"
+green_at: "2026-09-03T08:18:06Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、入力順を反転した独立rebuild間のprojection／finding差異を検出することを確認した。PR #1478のexact HEAD b55831e197570248d8a251a67976fb73fa6822a9でCI run 33723078211がterminal successとなり、Claude Codeの独立レビューがblocker 0を確認した。merge後main b5c7cc451ca379f646e361b48657ace82199b915でもharness-check run 33726154167が全shard、receipt集合、post-test DB rebuild、doctor、typed laneを含めterminal successとなった。"
+mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、入力順を反転した独立rebuild間のprojection／finding差異を検出することを確認した。2026-09-03T08:16:46Zにcanonicalizationのedges sortを除去したmutationで `npx --no-install vitest run --configLoader runner --project slow tests/slow/projection-writer.test.ts -t U-PFO-009` がexit 1となり、復元後2026-09-03T08:17:32Zの同一targeted testがexit 0となった。PR #1478のexact HEAD b55831e197570248d8a251a67976fb73fa6822a9でCI run 33723078211がterminal successとなり、Claude Codeの独立レビューがblocker 0を確認した。merge後main b5c7cc451ca379f646e361b48657ace82199b915でもharness-check run 33726154167が全shard、receipt集合、post-test DB rebuild、doctor、typed laneを含めterminal successとなった。"
 complexity_effect: net_neutral
 complexity_justification: "既存projection writerとfinding storeの欠落経路を型付き失敗へ収束し、新しいDB authorityや別projectionを増やさない"
 removal_trigger: "既存projection writerの恒久的acceptanceへ統合し、Recovery専用の重複検査が不要になった時点でsource PLANから統合する"
@@ -112,15 +114,6 @@ review_evidence:
         evidence_path: .github/workflows/harness-check.yml
         output_digest: "sha256:8537b00f0f784e3a923713444d1175b579709805e3c36f74a32a2524fa801673"
         result: "PR #1478 exact HEAD b55831e197570248d8a251a67976fb73fa6822a9でterminal success。"
-      - kind: smoke
-        command: "gh run view 33726154167 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-03T07:30:38Z"
-        evidence_path: .github/workflows/harness-check.yml
-        output_digest: "sha256:29023578962875b35b218588ce2357e71d00c6c8aa13a14b1575f7ac44faedc8"
-        result: "merge後main b5c7cc451ca379f646e361b48657ace82199b915でterminal success。"
 ---
 
 # PLAN-RECOVERY-96: projection writerの黙示的欠落をfindingとして可視化する
