@@ -40,9 +40,9 @@ parent_design: docs/governance/candidates/functional-release-slice-requests.md
 pair_artifact: docs/governance/candidates/functional-release-slice-acceptance.md
 dependencies:
   parent: docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
-  requires:
-    - docs/plans/PLAN-L3-68-release-module-bundle-composition.md
+  requires: []
   references:
+    - docs/plans/PLAN-L3-68-release-module-bundle-composition.md
     - "issue:1073"
     - "issue:1074"
     - "issue:1075"
