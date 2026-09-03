@@ -28,7 +28,7 @@ workflow_identity:
 entry_signals:
   - regression_dev
 contract_preconditions: "Claude v4 receipt inputへprovider-neutral fieldが混入すると、producerがunknown fieldを保存し、admissionがproperty presenceで別schemaへ誤分類する"
-contract_postconditions: "producerはcanonical fieldだけを射影し、decoderとadmissionはexact schema valueでreceipt familyを識別する"
+contract_postconditions: "producerはinput unknown fieldを拒否してcanonical fieldだけを射影し、decoderとadmissionはexact schema valueでreceipt familyを識別する"
 contract_invariants: "unknown fieldをcurrent receiptへ再出力せず、Claude schemaとprovider-neutral schemaをproperty presenceで切り替えない"
 contract_failures: "unknown field混入、空summary、wrong schema value、別schemaへの再解釈をfail-closeする"
 tdd_red_required: true
@@ -36,7 +36,7 @@ red_test: "U-CPRCONV-040とU-GCRA-010がunknown schema fieldの保存と誤分�
 red_at: "2026-09-03T10:19:07Z"
 green_at: "2026-09-03T10:21:05Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-03T10:21:19Zにproducerへinput spreadを再導入するとU-CPRCONV-040がextra schema_versionを検出してexit 1となり、spread除去後に同oracleがgreenへ復帰した"
+mutation_oracle_evidence: "2026-09-03T10:21:19Zにproducerへinput spreadを再導入するとU-CPRCONV-040がextra schema_versionを検出してexit 1となった。2026-09-03T10:34:44Zには入口exact field検査全体を無効化すると同oracleがexpected throwなしでexit 1となり、検査復元後にgreenへ戻した"
 complexity_effect: net_negative
 complexity_justification: "曖昧なproperty-presence discriminatorとinput spreadを、exact schema valueとcanonical projectionへ収束する"
 removal_trigger: "全review providerが単一のversioned discriminated unionとgenerated exact-field decoderへ移行した時"

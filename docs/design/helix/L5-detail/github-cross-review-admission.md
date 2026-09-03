@@ -105,8 +105,9 @@ Ready admissionは次の順序でfail-closeする。
 
 ## 3.2 receipt schema境界
 
-Claude/Codex v4 receiptのproducerはinput objectをspreadせず、schemaが認めたfieldだけを明示的に
-projectionする。current Claude receiptは`schemaVersion`、provider-neutral receiptは
+Claude/Codex v4 receiptのproducerはschemaが認めたinput fieldのexact setを入口で検査し、unknown
+fieldを`receipt_input_fields_invalid`で拒否する。出力はinput objectをspreadせず、認めたfieldだけを
+明示的にprojectionする。current Claude receiptは`schemaVersion`、provider-neutral receiptは
 `schema_version`と`schemaVersion`のexact valueで識別し、単なるproperty presenceをdiscriminatorに
 してはならない。current Claude receiptにprovider-neutral fieldやその他unknown fieldが混入した場合は
 `receipt_fields_invalid`で拒否し、別schemaとして再解釈しない。

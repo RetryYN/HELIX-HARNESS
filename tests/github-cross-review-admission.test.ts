@@ -8,6 +8,7 @@ import {
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3,
   type ClaudePrReviewReceipt,
   type ClaudePrReviewReceiptAny,
+  type ClaudePrReviewReceiptInput,
   type IndependentReviewRuntime,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
@@ -30,6 +31,16 @@ const HEAD = "a".repeat(40);
 const OTHER_HEAD = "b".repeat(40);
 const REVIEWED_AT = "2026-08-09T07:00:00.000Z";
 const REVIEW_PACKET = "exact review packet";
+
+function receiptAsInput(receipt: ClaudePrReviewReceipt): ClaudePrReviewReceiptInput {
+  const {
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...input
+  } = receipt;
+  return input;
+}
 
 function logicalDbReceiptFixture() {
   const body = {
@@ -810,7 +821,7 @@ describe("GitHub cross-review admission", () => {
       ),
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
     const failedClaim = buildClaudePrReviewReceipt({
-      ...receipt(),
+      ...receiptAsInput(receipt()),
       ciConclusion: "failure",
       ciEvidenceGeneration: "run:31299806333:attempt:1:failure",
       commentUrl: receipt().commentUrl,
@@ -886,7 +897,7 @@ describe("GitHub cross-review admission", () => {
               updated_at: "2026-08-09T07:00:05.000Z",
               body: renderIndependentPrReviewComment(
                 buildClaudePrReviewReceipt({
-                  ...canonical,
+                  ...receiptAsInput(canonical),
                   ciRunId: newerSuccess.id,
                   ciEvidenceGeneration: `run:${newerSuccess.id}:attempt:${newerSuccess.attempt}:success`,
                   reviewedAt: "2026-08-09T07:00:04.000Z",

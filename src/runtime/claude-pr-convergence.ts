@@ -579,6 +579,39 @@ function assertReviewReceiptEvidence(input: ReviewReceiptCommonInput): void {
 }
 
 function assertReviewReceiptInput(input: ClaudePrReviewReceiptInput): void {
+  const requiredFields = [
+    "authorModel",
+    "authorRuntime",
+    "blockerCount",
+    "ciConclusion",
+    "ciEvidenceGeneration",
+    "ciRunId",
+    "commentUrl",
+    "dbCheckpointDigest",
+    "dbConverged",
+    "dbProjectionDigest",
+    "dbReceiptDigest",
+    "dbReceiptSchemaVersion",
+    "dbReplayCheckpointDigest",
+    "dbReplayProjectionDigest",
+    "headSha",
+    "prNumber",
+    "prUrl",
+    "repository",
+    "reviewedAt",
+    "reviewerModel",
+    "reviewerRuntime",
+    "reviewerSessionId",
+    "verdict",
+  ];
+  const optionalFields = ["summary", "supersedesReceiptId"];
+  const fields = Object.keys(input);
+  if (
+    requiredFields.some((field) => !fields.includes(field)) ||
+    fields.some((field) => !requiredFields.includes(field) && !optionalFields.includes(field))
+  ) {
+    throw new Error("receipt_input_fields_invalid");
+  }
   assertReviewReceiptIdentity(input);
   const pairFailure = reviewPairFailure(input);
   if (pairFailure) throw new Error(pairFailure);
@@ -798,7 +831,33 @@ export function validateClaudePrReviewReceipt(value: unknown): ClaudePrReviewRec
   ) {
     throw new Error("receipt_supersedes_invalid");
   }
-  const expected = buildClaudePrReviewReceipt(receipt);
+  const expected = buildClaudePrReviewReceipt({
+    repository: receipt.repository,
+    prNumber: receipt.prNumber,
+    prUrl: receipt.prUrl,
+    headSha: receipt.headSha,
+    authorRuntime: receipt.authorRuntime,
+    reviewerRuntime: receipt.reviewerRuntime,
+    authorModel: receipt.authorModel,
+    reviewerModel: receipt.reviewerModel,
+    reviewerSessionId: receipt.reviewerSessionId,
+    verdict: receipt.verdict,
+    blockerCount: receipt.blockerCount,
+    ciRunId: receipt.ciRunId,
+    ciConclusion: receipt.ciConclusion,
+    ciEvidenceGeneration: receipt.ciEvidenceGeneration,
+    ...(receipt.summary === undefined ? {} : { summary: receipt.summary }),
+    dbReceiptSchemaVersion: receipt.dbReceiptSchemaVersion,
+    dbProjectionDigest: receipt.dbProjectionDigest,
+    dbReplayProjectionDigest: receipt.dbReplayProjectionDigest,
+    dbCheckpointDigest: receipt.dbCheckpointDigest,
+    dbReplayCheckpointDigest: receipt.dbReplayCheckpointDigest,
+    dbReceiptDigest: receipt.dbReceiptDigest,
+    dbConverged: receipt.dbConverged,
+    commentUrl: receipt.commentUrl,
+    reviewedAt: receipt.reviewedAt,
+    supersedesReceiptId: receipt.supersedesReceiptId,
+  });
   if (receipt.receiptId !== expected.receiptId) throw new Error("receipt_id_invalid");
   if (receipt.receiptDigest !== expected.receiptDigest) throw new Error("receipt_digest_invalid");
   return receipt;
