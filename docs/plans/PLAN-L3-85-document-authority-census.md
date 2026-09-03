@@ -29,7 +29,7 @@ backprop_decision_reason: "本PLANがIssue上で先行した複合CapabilityをL
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "#1372、#825、#1370、#397、#206の責務境界をread-afterできる"
-contract_postconditions: "5 business request、10 functional request、12 requirement、20 acceptanceがplan固有承認候補になる"
+contract_postconditions: "5 business request、10 functional request、13 requirement、23 acceptanceがplan固有承認候補になる"
 contract_invariants: "候補非authority、exact HEAD、class/disposition分離、scanner非書換え、legacy非昇格を維持する"
 contract_failures: "startup leak、dual authority、dead binding、generator drift、semantic epoch drift、新規debt相殺、自動削除を拒否する"
 tdd_red_required: false

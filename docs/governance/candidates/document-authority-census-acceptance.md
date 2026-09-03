@@ -30,6 +30,9 @@ plan_id: PLAN-L3-85-document-authority-census
 | `DAC-AC-018` | `DAC-R-012` | scannerへ自動削除または本文書換えpayloadを返させる | unsupported operationとして拒否する |
 | `DAC-AC-019` | `DAC-R-012` |意味変更findingをRefactoringへ流す | RedesignまたはRequirement Re-entryへ昇格する |
 | `DAC-AC-020` | 全体 | clean checkoutでinventory、graph、findingを二回生成する | exact setとdigestが一致する |
+| `DAC-AC-021` | `DAC-R-013` | `TEMPORARY_INPUT`へowner、期限、retirement conditionのいずれかを欠落させる | current inputへ昇格せず、metadata不足としてfail-closeする |
+| `DAC-AC-022` | `DAC-R-013` | 期限切れtemporary／migration inputをactive consumerから読む | `UNKNOWN`または期限切れtyped findingとなり、current authority edgeを生成しない |
+| `DAC-AC-023` | `DAC-R-013` | temporary／compatibility／historical inputをcurrent authorityまたはcurrent outputへ投影する | input policy violationとして拒否し、legacy成功で相殺しない |
 
 ## 完了境界
 

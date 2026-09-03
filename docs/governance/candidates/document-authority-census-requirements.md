@@ -26,6 +26,13 @@ Compatibility、Historical、Evidence、Audit、Handover、Generated、Consumer 
 `CANDIDATE`、`MIGRATION`、`COMPATIBILITY`、`HISTORICAL`、`EVIDENCE`、`GENERATED`とする。
 classとdispositionを同一enumまたは一つのfieldへ畳み込まない。
 
+`input_policy`も独立した軸として保持し、exact setは`CURRENT_DECISION_INPUT`、`TEMPORARY_INPUT`、
+`MIGRATION_INPUT`、`COMPATIBILITY_INPUT`、`HISTORICAL_INPUT`、`NOT_READ`とする。
+`lifecycle_disposition`だけからcurrent入力可否を推測してはならない。`TEMPORARY_INPUT`にはowner、
+有効期限または明示的なretirement condition、利用可能なconsumer範囲を必須化し、期限切れ・owner欠落・
+retirement condition欠落は`UNKNOWN`へ倒す。temporary、migration、compatibility、historical inputを
+current authorityやcurrent outputへ昇格させない。
+
 ## 2. 要件
 
 | ID | 要件 | refines |
@@ -42,6 +49,7 @@ classとdispositionを同一enumまたは一つのfieldへ畳み込まない。
 | `DAC-R-010` | semantic epoch変更時は、旧epochをcurrentとして読むconsumer、digest pin、README、startup packetをstaleとして検出する。 | `DAC-FR-010` |
 | `DAC-R-011` | #825、#1370、本Censusは独立receiptを返し、aggregate gateは三者すべてのgreenを要求する。 | `DAC-FR-009` |
 | `DAC-R-012` | scannerはfindingをtyped remediation routeへ投影するが、本文変更、削除、authority昇格、approval生成を実行しない。 | `DAC-FR-008` |
+| `DAC-R-013` | `input_policy`はlifecycle dispositionと分離し、temporary／migration／compatibility／historical inputのowner、期限またはretirement condition、consumer範囲を検査する。current authority edgeまたはcurrent outputへの昇格、期限切れinputの黙認、欠落情報の推測をfail-closeする。 | `DAC-FR-003` |
 
 ## 3. lifecycle
 
@@ -60,3 +68,5 @@ classとdispositionを同一enumまたは一つのfieldへ畳み込まない。
 
 既存の索引、個別lint、archive directory規則はmigration inputとして利用できるが、本registryへ未収載の
 自己申告をcurrent authorityへ再出力しない。曖昧なlegacy文書は推測で分類せず、UNKNOWN findingとして隔離する。
+`lifecycle_disposition`と`input_policy`の既存値が一対一に対応しない場合は、class別bindingと
+consumer graphを根拠に解決し、対応不能ならcurrent decision inputとして扱わない。
