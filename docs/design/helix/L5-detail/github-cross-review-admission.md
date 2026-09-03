@@ -145,6 +145,12 @@ merge refのSHAをreview・DB・test基準へ混在させない。push eventで�
 | `review_receipt_conflict` | valid receiptが複数存在する（単一runtime authored PR） | `U-GCRA-004` |
 | `mixed_author_dual_review_incomplete` | mixed著者PRで両runtimeの現HEAD receiptが揃っていない | `U-GCRA-011` |
 
+`review_receipt_invalid_or_stale`を返す場合、`candidate_diagnostics`へ候補comment URLと最初に失敗した
+predicateの型付きreasonを返す。reasonはenvelope、schema、独立性、CI run、repository、PR、HEAD、verdict、
+CI claim、DB provenance、comment binding、time order、CI provenance、CI generationを区別する。
+receipt本文、secret、provider session値は診断へ複製しない。valid候補がexactly oneならinvalid候補が併存しても
+そのvalid候補を採用し、valid候補が複数なら従来どおりconflictでfail-closeする（`U-GCRA-012`）。
+
 GitHub API失敗、pagination失敗、doctor失敗、JSON decode失敗はadapterの非0終了としてrequired jobへ伝播し、
 pure evaluatorの成功へ読み替えない。
 

@@ -3684,7 +3684,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::canonicalLogicalDbReceiptValid:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 219,
+      "line": 241,
       "symbol": "canonicalLogicalDbReceiptValid",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3701,7 +3701,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::failureDigest:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 324,
+      "line": 375,
       "symbol": "failureDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3718,7 +3718,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::leaseDigest:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 335,
+      "line": 386,
       "symbol": "leaseDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3735,7 +3735,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::result:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 370,
+      "line": 421,
       "symbol": "result",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3752,7 +3752,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::result:sha256Digest()::2",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 372,
+      "line": 423,
       "symbol": "result",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3769,7 +3769,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::evaluateGitHubCrossReviewAdmission:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 547,
+      "line": 652,
       "symbol": "evaluateGitHubCrossReviewAdmission",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -3786,7 +3786,7 @@
     {
       "hit_id": "src/runtime/github-cross-review-admission.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/github-cross-review-admission.ts",
-      "line": 608,
+      "line": 725,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",

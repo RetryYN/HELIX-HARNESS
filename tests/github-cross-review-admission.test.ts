@@ -590,7 +590,46 @@ describe("GitHub cross-review admission", () => {
       ),
     ).toMatchObject({
       ok: false,
-      reasons: ["current_head_review_receipt_missing"],
+      reasons: ["review_receipt_invalid_or_stale"],
+      candidate_diagnostics: [
+        {
+          comment_url: receipt().commentUrl,
+          reason: "review_receipt_schema_invalid",
+        },
+      ],
+    });
+  });
+
+  it("U-GCRA-012: invalid candidateは失敗predicateをtyped診断として返す", () => {
+    expect(evaluateGitHubCrossReviewAdmission(input({ current_db_receipt: {} }))).toMatchObject({
+      ok: false,
+      reasons: ["review_receipt_invalid_or_stale"],
+      candidate_diagnostics: [
+        {
+          comment_url: receipt().commentUrl,
+          reason: "review_receipt_db_provenance_invalid",
+        },
+      ],
+    });
+
+    const wrongSchemaBody = renderClaudeReceiptEnvelope({
+      ...receipt(),
+      schemaVersion: "helix-claude-pr-review-receipt.v999",
+    } as unknown as ClaudePrReviewReceipt);
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [{ ...input().comments[0], body: wrongSchemaBody }],
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      candidate_diagnostics: [
+        {
+          comment_url: receipt().commentUrl,
+          reason: "review_receipt_schema_invalid",
+        },
+      ],
     });
   });
 
@@ -779,7 +818,10 @@ describe("GitHub cross-review admission", () => {
           ],
         }),
       ),
-    ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
+    ).toMatchObject({
+      ok: false,
+      reasons: ["current_head_review_receipt_missing"],
+    });
   });
 
   it("U-GCRA-030: legacy v3 receiptはcurrent Ready admissionへ昇格しない", () => {
@@ -1120,6 +1162,10 @@ describe("GitHub cross-review admission", () => {
           ],
         }),
       ),
-    ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
+    ).toMatchObject({
+      ok: false,
+      reasons: ["review_receipt_invalid_or_stale"],
+      candidate_diagnostics: [{ reason: "review_receipt_independence_invalid" }],
+    });
   });
 });
