@@ -367,8 +367,7 @@ describe("design-coverage lint (PLAN-L7-421)", () => {
     const input = loadDesignCoverageInput(repoRoot);
     const detailedDesign = input.catalog?.items.find((item) => item.id === "detailed-design");
     const unitTestDesign = input.catalog?.items.find((item) => item.id === "unit-test-design");
-    const designPath =
-      "docs/design/helix/L6-function-design/projection-finding-observability.md";
+    const designPath = "docs/design/helix/L6-function-design/projection-finding-observability.md";
     const testDesignPath =
       "docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md";
 
