@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
 // PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025, U-CPRCONV-027
 // PLAN-RECOVERY-59-same-head-ci-review-rearm / U-CPRCONV-026
+// PLAN-RECOVERY-100-review-receipt-schema-boundary / U-CPRCONV-040
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
