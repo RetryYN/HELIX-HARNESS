@@ -273,6 +273,8 @@ import {
 } from "./runtime/claude-memory-wake";
 import {
   areRequiredChecksGreen,
+  assertClaudePrReviewReceiptCorrectionTarget,
+  assertReviewReceiptCorrectionReason,
   authorRuntimeAttestation,
   bindCanonicalLogicalDbReceipt,
   buildClaudePrReviewReceipt,
@@ -288,6 +290,7 @@ import {
   loadClaudePrReviewReceipt,
   parseClaudePrCiEvidenceGeneration,
   persistClaudePrReviewReceipt,
+  persistClaudePrReviewReceiptCorrection,
   renderIndependentPrReviewComment,
   resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
@@ -14574,218 +14577,255 @@ github
   .description("record a Claude Code current-HEAD convergence review receipt")
   .requiredOption("--input-json <json>", "ClaudePrReviewReceiptInput JSON")
   .option("--apply", "post the receipt comment and persist the shared ACK")
+  .option(
+    "--correct-malformed <reason>",
+    "seal a correction for an occupied malformed slot (schema_invalid|digest_invalid|comment_binding_invalid)",
+  )
   .option("--json", "JSON output")
-  .action((opts: { inputJson: string; apply?: boolean; json?: boolean }) => {
-    try {
-      assertNodeEngineRuntimeAuthority(process.cwd());
-    } catch (error) {
-      process.stderr.write(
-        `github pr-review-receipt: ${error instanceof Error ? error.message : "node_engine_runtime_authority_rejected"}\n`,
+  .action(
+    (opts: {
+      inputJson: string;
+      apply?: boolean;
+      correctMalformed?: "schema_invalid" | "digest_invalid" | "comment_binding_invalid";
+      json?: boolean;
+    }) => {
+      try {
+        assertNodeEngineRuntimeAuthority(process.cwd());
+      } catch (error) {
+        process.stderr.write(
+          `github pr-review-receipt: ${error instanceof Error ? error.message : "node_engine_runtime_authority_rejected"}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
+      const prUrl = String(raw.prUrl ?? "");
+      const prNumber = Number(raw.prNumber);
+      const commentSeal = resolveReviewReceiptCommentSealIntent(
+        prUrl,
+        opts.correctMalformed ? undefined : raw.commentUrl,
       );
-      process.exitCode = 1;
-      return;
-    }
-    const raw = JSON.parse(opts.inputJson) as Record<string, unknown>;
-    const prUrl = String(raw.prUrl ?? "");
-    const prNumber = Number(raw.prNumber);
-    const commentSeal = resolveReviewReceiptCommentSealIntent(prUrl, raw.commentUrl);
-    let input = {
-      ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
-      dbReceiptSchemaVersion:
-        typeof raw.dbReceiptSchemaVersion === "string" ? raw.dbReceiptSchemaVersion : null,
-      dbProjectionDigest:
-        typeof raw.dbProjectionDigest === "string" ? raw.dbProjectionDigest : null,
-      dbReplayProjectionDigest:
-        typeof raw.dbReplayProjectionDigest === "string" ? raw.dbReplayProjectionDigest : null,
-      dbCheckpointDigest:
-        typeof raw.dbCheckpointDigest === "string" ? raw.dbCheckpointDigest : null,
-      dbReplayCheckpointDigest:
-        typeof raw.dbReplayCheckpointDigest === "string" ? raw.dbReplayCheckpointDigest : null,
-      dbReceiptDigest: typeof raw.dbReceiptDigest === "string" ? raw.dbReceiptDigest : null,
-      commentUrl: commentSeal.commentUrl,
-    };
-    const sealRepository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
-    if (!sealRepository) {
-      process.stderr.write("github pr-review-receipt: pr_url_binding_mismatch\n");
-      process.exitCode = 1;
-      return;
-    }
-    const attestation = claudePrAuthorRuntimeAttestation(
-      sealRepository,
-      prNumber,
-      raw.authorRuntime,
-    );
-    if (!attestation.ok) {
-      process.stderr.write(`github pr-review-receipt: ${attestation.failure}\n`);
-      process.exitCode = 1;
-      return;
-    }
-    if (opts.apply) {
-      let currentEvidence: ClaudePrCiEvidence;
-      try {
-        currentEvidence = loadClaudePrCiEvidenceGeneration(
-          sealRepository,
-          String(raw.headSha ?? ""),
-        );
-      } catch (error) {
-        process.stderr.write(
-          `github pr-review-receipt: ${error instanceof Error ? error.message : "pr_ci_evidence_unavailable"}\n`,
-        );
+      let input = {
+        ...(raw as unknown as Parameters<typeof buildClaudePrReviewReceipt>[0]),
+        dbReceiptSchemaVersion:
+          typeof raw.dbReceiptSchemaVersion === "string" ? raw.dbReceiptSchemaVersion : null,
+        dbProjectionDigest:
+          typeof raw.dbProjectionDigest === "string" ? raw.dbProjectionDigest : null,
+        dbReplayProjectionDigest:
+          typeof raw.dbReplayProjectionDigest === "string" ? raw.dbReplayProjectionDigest : null,
+        dbCheckpointDigest:
+          typeof raw.dbCheckpointDigest === "string" ? raw.dbCheckpointDigest : null,
+        dbReplayCheckpointDigest:
+          typeof raw.dbReplayCheckpointDigest === "string" ? raw.dbReplayCheckpointDigest : null,
+        dbReceiptDigest: typeof raw.dbReceiptDigest === "string" ? raw.dbReceiptDigest : null,
+        commentUrl: commentSeal.commentUrl,
+      };
+      const sealRepository = prUrl.match(
+        /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u,
+      )?.[1];
+      if (!sealRepository) {
+        process.stderr.write("github pr-review-receipt: pr_url_binding_mismatch\n");
         process.exitCode = 1;
         return;
       }
-      if (input.ciEvidenceGeneration !== currentEvidence.generation) {
-        process.stderr.write("github pr-review-receipt: pr_ci_evidence_generation_stale\n");
+      const attestation = claudePrAuthorRuntimeAttestation(
+        sealRepository,
+        prNumber,
+        raw.authorRuntime,
+      );
+      if (!attestation.ok) {
+        process.stderr.write(`github pr-review-receipt: ${attestation.failure}\n`);
         process.exitCode = 1;
         return;
       }
-      if (Date.parse(input.reviewedAt) < Date.parse(currentEvidence.updatedAt)) {
-        process.stderr.write("github pr-review-receipt: pr_ci_review_before_completion\n");
-        process.exitCode = 1;
-        return;
-      }
-    }
-    if (input.verdict === "approve") {
-      input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
-    }
-    const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
-    const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
-    let receipt = preliminary;
-    const existing = opts.apply ? findClaudePrReviewReceipt(process.cwd(), preliminary) : null;
-    let slotClaim: ReturnType<typeof claimClaudePrReviewReceiptSlot> | null = null;
-    if (opts.apply && existing === null && commentSeal.requiresPost) {
-      try {
-        slotClaim = claimClaudePrReviewReceiptSlot(process.cwd(), preliminary);
-      } catch (error) {
-        process.stderr.write(
-          `github pr-review-receipt: ${error instanceof Error ? error.message : "review_receipt_generation_in_progress"}\n`,
-        );
-        process.exitCode = 1;
-        return;
-      }
-    }
-    const persistAndFinish = () => {
-      if (existing) {
-        receipt = existing;
-        const readAfter = readAfterClaudePrReviewComment(receipt);
-        if (!readAfter.ok) {
-          process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
-          process.exitCode = 1;
-          return;
-        }
-      } else if (opts.apply && !commentSeal.requiresPost) {
-        const readAfter = readAfterClaudePrReviewComment(preliminary);
-        if (!readAfter.ok) {
-          process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
-          process.exitCode = 1;
-          return;
-        }
-      } else if (opts.apply && commentSeal.requiresPost) {
-        const commentBody = [
-          "<!-- HELIX:claude-pr-review-receipt:v4 -->",
-          // 人間可読行は実際の author/reviewer runtime を書く。片方向前提の固定文言を残すと、
-          // author=claude / reviewer=codex の receipt が事実と食い違う説明を持つ（Issue #514）。
-          `HELIX convergence review: author=${preliminary.authorRuntime}, reviewer=${preliminary.reviewerRuntime}, verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
-          `HEAD: \`${preliminary.headSha}\``,
-          `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
-          `CI evidence generation: \`${preliminary.ciEvidenceGeneration}\``,
-          `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
-          `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
-          `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
-          `reviewer session: \`${preliminary.reviewerSessionId}\``,
-        ];
-        const comment = spawnSync(
-          "gh",
-          ["pr", "comment", String(prNumber), "--body", commentBody.join("\n")],
-          { cwd: process.cwd(), encoding: "utf8" },
-        );
-        if (comment.status !== 0) {
-          process.stderr.write(comment.stderr || "github pr-review-receipt: comment failed\n");
-          process.exitCode = 1;
-          return;
-        }
-        const commentUrl = comment.stdout
-          .trim()
-          .match(/https:\/\/github\.com\/[^\s]+\/pull\/\d+#issuecomment-\d+/)?.[0];
-        if (!commentUrl) {
-          process.stderr.write("github pr-review-receipt: comment URL missing\n");
-          process.exitCode = 1;
-          return;
-        }
-        receipt = buildClaudePrReviewReceipt({ ...input, commentUrl, supersedesReceiptId });
-        const commentId = commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
-        const repository = prUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u)?.[1];
-        if (!commentId || !repository) {
-          process.stderr.write("github pr-review-receipt: comment binding invalid\n");
-          process.exitCode = 1;
-          return;
-        }
-        const sealedCommentBody = [
-          ...commentBody,
-          `receipt digest: \`${receipt.receiptDigest}\``,
-          renderIndependentPrReviewComment(receipt),
-        ].join("\n");
-        const sealedComment = spawnSync(
-          "gh",
-          [
-            "api",
-            "--method",
-            "PATCH",
-            `repos/${repository}/issues/comments/${commentId}`,
-            "-f",
-            `body=${sealedCommentBody}`,
-          ],
-          { cwd: process.cwd(), encoding: "utf8" },
-        );
-        if (sealedComment.status !== 0) {
+      if (opts.apply) {
+        let currentEvidence: ClaudePrCiEvidence;
+        try {
+          currentEvidence = loadClaudePrCiEvidenceGeneration(
+            sealRepository,
+            String(raw.headSha ?? ""),
+          );
+        } catch (error) {
           process.stderr.write(
-            sealedComment.stderr || "github pr-review-receipt: comment sealing failed\n",
+            `github pr-review-receipt: ${error instanceof Error ? error.message : "pr_ci_evidence_unavailable"}\n`,
           );
           process.exitCode = 1;
           return;
         }
-        const readAfter = readAfterClaudePrReviewComment(receipt);
-        if (!readAfter.ok) {
-          process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+        if (input.ciEvidenceGeneration !== currentEvidence.generation) {
+          process.stderr.write("github pr-review-receipt: pr_ci_evidence_generation_stale\n");
+          process.exitCode = 1;
+          return;
+        }
+        if (Date.parse(input.reviewedAt) < Date.parse(currentEvidence.updatedAt)) {
+          process.stderr.write("github pr-review-receipt: pr_ci_review_before_completion\n");
           process.exitCode = 1;
           return;
         }
       }
-      const receiptPath = opts.apply ? persistClaudePrReviewReceipt(process.cwd(), receipt) : null;
-      if (opts.apply) {
+      if (input.verdict === "approve") {
+        input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
+      }
+      const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
+      const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
+      if (opts.correctMalformed) {
         try {
-          recordClaudePrReviewTerminal({
-            repoRoot: process.cwd(),
-            repository: sealRepository,
-            prNumber,
-            headSha: receipt.headSha,
-            reviewerRuntime: receipt.reviewerRuntime,
-            ciEvidenceGeneration: receipt.ciEvidenceGeneration,
-            reason: `review:${receipt.verdict}`,
+          assertReviewReceiptCorrectionReason(opts.correctMalformed);
+          assertClaudePrReviewReceiptCorrectionTarget(process.cwd(), preliminary, {
+            rejectExistingCorrection: true,
           });
         } catch (error) {
           process.stderr.write(
-            `github pr-review-receipt: ${error instanceof Error ? error.message : "wake_terminal_persist_failed"}\n`,
+            `github pr-review-receipt: ${error instanceof Error ? error.message : "review_receipt_correction_target_invalid"}\n`,
           );
           process.exitCode = 1;
           return;
         }
       }
-      const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
-      process.stdout.write(
-        opts.json
-          ? `${JSON.stringify(output, null, 2)}\n`
-          : `github pr-review-receipt: ${opts.apply ? "recorded" : "dry-run"} id=${receipt.receiptId}${receiptPath ? ` path=${receiptPath}` : ""}\n`,
-      );
-    };
-    if (slotClaim !== null) {
-      const claim = slotClaim;
-      withClaudePrReviewReceiptSlotClaim(claim, persistAndFinish);
-      slotClaim = null;
-    } else {
-      persistAndFinish();
-    }
-  });
+      let receipt = preliminary;
+      const existing = opts.apply ? findClaudePrReviewReceipt(process.cwd(), preliminary) : null;
+      let slotClaim: ReturnType<typeof claimClaudePrReviewReceiptSlot> | null = null;
+      if (opts.apply && existing === null && commentSeal.requiresPost) {
+        try {
+          slotClaim = claimClaudePrReviewReceiptSlot(process.cwd(), preliminary);
+        } catch (error) {
+          process.stderr.write(
+            `github pr-review-receipt: ${error instanceof Error ? error.message : "review_receipt_generation_in_progress"}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
+      }
+      const persistAndFinish = () => {
+        if (existing) {
+          receipt = existing;
+          const readAfter = readAfterClaudePrReviewComment(receipt);
+          if (!readAfter.ok) {
+            process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+            process.exitCode = 1;
+            return;
+          }
+        } else if (opts.apply && !commentSeal.requiresPost) {
+          const readAfter = readAfterClaudePrReviewComment(preliminary);
+          if (!readAfter.ok) {
+            process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+            process.exitCode = 1;
+            return;
+          }
+        } else if (opts.apply && commentSeal.requiresPost) {
+          const commentBody = [
+            "<!-- HELIX:claude-pr-review-receipt:v4 -->",
+            // 人間可読行は実際の author/reviewer runtime を書く。片方向前提の固定文言を残すと、
+            // author=claude / reviewer=codex の receipt が事実と食い違う説明を持つ（Issue #514）。
+            `HELIX convergence review: author=${preliminary.authorRuntime}, reviewer=${preliminary.reviewerRuntime}, verdict=${preliminary.verdict}, blockers=${preliminary.blockerCount}`,
+            `HEAD: \`${preliminary.headSha}\``,
+            `CI run: ${preliminary.ciRunId} (${preliminary.ciConclusion})`,
+            `CI evidence generation: \`${preliminary.ciEvidenceGeneration}\``,
+            `DB receipt: ${preliminary.dbReceiptSchemaVersion} / \`${preliminary.dbReceiptDigest}\``,
+            `DB projection: \`${preliminary.dbProjectionDigest}\` = replay \`${preliminary.dbReplayProjectionDigest}\``,
+            `DB checkpoint: \`${preliminary.dbCheckpointDigest}\` = replay \`${preliminary.dbReplayCheckpointDigest}\`, converged=${preliminary.dbConverged}`,
+            `reviewer session: \`${preliminary.reviewerSessionId}\``,
+          ];
+          const comment = spawnSync(
+            "gh",
+            ["pr", "comment", String(prNumber), "--body", commentBody.join("\n")],
+            { cwd: process.cwd(), encoding: "utf8" },
+          );
+          if (comment.status !== 0) {
+            process.stderr.write(comment.stderr || "github pr-review-receipt: comment failed\n");
+            process.exitCode = 1;
+            return;
+          }
+          const commentUrl = comment.stdout
+            .trim()
+            .match(/https:\/\/github\.com\/[^\s]+\/pull\/\d+#issuecomment-\d+/)?.[0];
+          if (!commentUrl) {
+            process.stderr.write("github pr-review-receipt: comment URL missing\n");
+            process.exitCode = 1;
+            return;
+          }
+          receipt = buildClaudePrReviewReceipt({ ...input, commentUrl, supersedesReceiptId });
+          const commentId = commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
+          const repository = prUrl.match(
+            /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u,
+          )?.[1];
+          if (!commentId || !repository) {
+            process.stderr.write("github pr-review-receipt: comment binding invalid\n");
+            process.exitCode = 1;
+            return;
+          }
+          const sealedCommentBody = [
+            ...commentBody,
+            `receipt digest: \`${receipt.receiptDigest}\``,
+            renderIndependentPrReviewComment(receipt),
+          ].join("\n");
+          const sealedComment = spawnSync(
+            "gh",
+            [
+              "api",
+              "--method",
+              "PATCH",
+              `repos/${repository}/issues/comments/${commentId}`,
+              "-f",
+              `body=${sealedCommentBody}`,
+            ],
+            { cwd: process.cwd(), encoding: "utf8" },
+          );
+          if (sealedComment.status !== 0) {
+            process.stderr.write(
+              sealedComment.stderr || "github pr-review-receipt: comment sealing failed\n",
+            );
+            process.exitCode = 1;
+            return;
+          }
+          const readAfter = readAfterClaudePrReviewComment(receipt);
+          if (!readAfter.ok) {
+            process.stderr.write(`github pr-review-receipt: ${readAfter.failure}\n`);
+            process.exitCode = 1;
+            return;
+          }
+        }
+        const receiptPath = opts.apply
+          ? opts.correctMalformed
+            ? persistClaudePrReviewReceiptCorrection(process.cwd(), receipt, opts.correctMalformed)
+                .receiptPath
+            : persistClaudePrReviewReceipt(process.cwd(), receipt)
+          : null;
+        if (opts.apply) {
+          try {
+            recordClaudePrReviewTerminal({
+              repoRoot: process.cwd(),
+              repository: sealRepository,
+              prNumber,
+              headSha: receipt.headSha,
+              reviewerRuntime: receipt.reviewerRuntime,
+              ciEvidenceGeneration: receipt.ciEvidenceGeneration,
+              reason: `review:${receipt.verdict}`,
+            });
+          } catch (error) {
+            process.stderr.write(
+              `github pr-review-receipt: ${error instanceof Error ? error.message : "wake_terminal_persist_failed"}\n`,
+            );
+            process.exitCode = 1;
+            return;
+          }
+        }
+        const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
+        process.stdout.write(
+          opts.json
+            ? `${JSON.stringify(output, null, 2)}\n`
+            : `github pr-review-receipt: ${opts.apply ? "recorded" : "dry-run"} id=${receipt.receiptId}${receiptPath ? ` path=${receiptPath}` : ""}\n`,
+        );
+      };
+      if (slotClaim !== null) {
+        const claim = slotClaim;
+        withClaudePrReviewReceiptSlotClaim(claim, persistAndFinish);
+        slotClaim = null;
+      } else {
+        persistAndFinish();
+      }
+    },
+  );
 
 github
   .command("pr-review-admission")

@@ -1089,13 +1089,236 @@ export function findClaudePrReviewReceipt(
   receipt: ClaudePrReviewReceipt,
 ): ClaudePrReviewReceipt | null {
   const path = join(convergenceRoot(repoRoot), "receipts", safeClaudePrReviewReceiptName(receipt));
-  if (!existsSync(path)) return null;
+  if (existsSync(path)) {
+    try {
+      const found = loadClaudePrReviewReceipt(path);
+      return found.receiptId === receipt.receiptId ? found : null;
+    } catch {
+      // malformed canonical slotはcorrection authorityとのexact joinだけを後続候補にする。
+    }
+  }
+  return findCorrectedClaudePrReviewReceipt(repoRoot, receipt);
+}
+
+export type ReviewReceiptCorrectionReason =
+  | "schema_invalid"
+  | "digest_invalid"
+  | "comment_binding_invalid";
+
+export function assertReviewReceiptCorrectionReason(
+  value: unknown,
+): asserts value is ReviewReceiptCorrectionReason {
+  if (
+    !(
+      ["schema_invalid", "digest_invalid", "comment_binding_invalid"] as readonly unknown[]
+    ).includes(value)
+  ) {
+    throw new Error("review_receipt_correction_reason_invalid");
+  }
+}
+
+export interface ReviewReceiptCorrectionAuthorizationV1 {
+  readonly schema_version: "helix-review-receipt-correction-authorization.v1";
+  readonly correction_id: string;
+  readonly target_receipt_id: string;
+  readonly repository: string;
+  readonly pr_number: number;
+  readonly head_sha: string;
+  readonly reviewer_runtime: IndependentReviewRuntime;
+  readonly ci_evidence_generation: string;
+  readonly prior_slot_digest: string;
+  readonly corrected_receipt_digest: string;
+  readonly reason: ReviewReceiptCorrectionReason;
+  readonly reviewed_at: string;
+}
+
+export interface PersistedReviewReceiptCorrection {
+  readonly authorization: ReviewReceiptCorrectionAuthorizationV1;
+  readonly authorizationPath: string;
+  readonly receiptPath: string;
+}
+
+export function assertClaudePrReviewReceiptCorrectionTarget(
+  repoRoot: string,
+  receipt: ClaudePrReviewReceipt,
+  options: { rejectExistingCorrection?: boolean } = {},
+): void {
+  validateClaudePrReviewReceipt(receipt);
+  const canonicalPath = join(
+    convergenceRoot(repoRoot),
+    "receipts",
+    safeClaudePrReviewReceiptName(receipt),
+  );
+  if (!existsSync(canonicalPath)) throw new Error("review_receipt_correction_target_missing");
   try {
-    const found = loadClaudePrReviewReceipt(path);
-    return found.receiptId === receipt.receiptId ? found : null;
+    loadClaudePrReviewReceipt(canonicalPath);
+    throw new Error("valid_review_receipt_correction_forbidden");
+  } catch (error) {
+    if (error instanceof Error && error.message === "valid_review_receipt_correction_forbidden") {
+      throw error;
+    }
+  }
+  if (options.rejectExistingCorrection) {
+    const priorSlotDigest = sha256Digest(readFileSync(canonicalPath, "utf8"));
+    const dir = join(convergenceRoot(repoRoot), "receipt-corrections");
+    const stem = correctionStem(receipt, priorSlotDigest);
+    if (
+      existsSync(join(dir, `${stem}.authorization.json`)) ||
+      existsSync(join(dir, `${stem}.corrected.json`))
+    ) {
+      throw new Error("review_receipt_correction_already_exists");
+    }
+  }
+}
+
+function correctionStem(receipt: ClaudePrReviewReceipt, priorDigest: string): string {
+  const receiptName = safeClaudePrReviewReceiptName(receipt).replace(/\.json$/u, "");
+  return `${receiptName}.${priorDigest.replace(/^sha256:/u, "")}`;
+}
+
+function correctionAuthorizationPayload(
+  receipt: ClaudePrReviewReceipt,
+  priorSlotDigest: string,
+  reason: ReviewReceiptCorrectionReason,
+): Omit<ReviewReceiptCorrectionAuthorizationV1, "correction_id"> {
+  return {
+    schema_version: "helix-review-receipt-correction-authorization.v1",
+    target_receipt_id: receipt.receiptId,
+    repository: receipt.repository,
+    pr_number: receipt.prNumber,
+    head_sha: receipt.headSha,
+    reviewer_runtime: receipt.reviewerRuntime,
+    ci_evidence_generation: receipt.ciEvidenceGeneration,
+    prior_slot_digest: priorSlotDigest,
+    corrected_receipt_digest: receipt.receiptDigest,
+    reason,
+    reviewed_at: receipt.reviewedAt,
+  };
+}
+
+function buildCorrectionAuthorization(
+  receipt: ClaudePrReviewReceipt,
+  priorSlotDigest: string,
+  reason: ReviewReceiptCorrectionReason,
+): ReviewReceiptCorrectionAuthorizationV1 {
+  const payload = correctionAuthorizationPayload(receipt, priorSlotDigest, reason);
+  return {
+    ...payload,
+    correction_id: `review-receipt-correction:${sha256Digest(canonicalJson(payload))}`,
+  };
+}
+
+function correctionAuthorizationMatches(
+  value: unknown,
+  receipt: ClaudePrReviewReceipt,
+  priorSlotDigest: string,
+): value is ReviewReceiptCorrectionAuthorizationV1 {
+  if (!value || typeof value !== "object") return false;
+  const authorization = value as ReviewReceiptCorrectionAuthorizationV1;
+  if (
+    authorization.schema_version !== "helix-review-receipt-correction-authorization.v1" ||
+    authorization.target_receipt_id !== receipt.receiptId ||
+    authorization.repository !== receipt.repository ||
+    authorization.pr_number !== receipt.prNumber ||
+    authorization.head_sha !== receipt.headSha ||
+    authorization.reviewer_runtime !== receipt.reviewerRuntime ||
+    authorization.ci_evidence_generation !== receipt.ciEvidenceGeneration ||
+    authorization.prior_slot_digest !== priorSlotDigest ||
+    authorization.corrected_receipt_digest !== receipt.receiptDigest ||
+    authorization.reviewed_at !== receipt.reviewedAt ||
+    !["schema_invalid", "digest_invalid", "comment_binding_invalid"].includes(authorization.reason)
+  ) {
+    return false;
+  }
+  const { correction_id: correctionId, ...payload } = authorization;
+  return correctionId === `review-receipt-correction:${sha256Digest(canonicalJson(payload))}`;
+}
+
+function findCorrectedClaudePrReviewReceipt(
+  repoRoot: string,
+  expected: ClaudePrReviewReceipt,
+): ClaudePrReviewReceipt | null {
+  const canonicalPath = join(
+    convergenceRoot(repoRoot),
+    "receipts",
+    safeClaudePrReviewReceiptName(expected),
+  );
+  if (!existsSync(canonicalPath)) return null;
+  const priorSlotDigest = sha256Digest(readFileSync(canonicalPath, "utf8"));
+  const dir = join(convergenceRoot(repoRoot), "receipt-corrections");
+  if (!existsSync(dir)) return null;
+  const stem = correctionStem(expected, priorSlotDigest);
+  const authorizationPath = join(dir, `${stem}.authorization.json`);
+  const receiptPath = join(dir, `${stem}.corrected.json`);
+  if (!existsSync(authorizationPath) || !existsSync(receiptPath)) return null;
+  try {
+    const corrected = loadClaudePrReviewReceipt(receiptPath);
+    if (canonicalJson(corrected) !== canonicalJson(expected)) return null;
+    const authorization = JSON.parse(readFileSync(authorizationPath, "utf8")) as unknown;
+    return correctionAuthorizationMatches(authorization, corrected, priorSlotDigest)
+      ? corrected
+      : null;
   } catch {
     return null;
   }
+}
+
+export function persistClaudePrReviewReceiptCorrection(
+  repoRoot: string,
+  receipt: ClaudePrReviewReceipt,
+  reason: ReviewReceiptCorrectionReason,
+): PersistedReviewReceiptCorrection {
+  validateClaudePrReviewReceipt(receipt);
+  assertReviewReceiptCorrectionReason(reason);
+  assertClaudePrReviewReceiptCorrectionTarget(repoRoot, receipt);
+  const canonicalPath = join(
+    convergenceRoot(repoRoot),
+    "receipts",
+    safeClaudePrReviewReceiptName(receipt),
+  );
+  const priorSlotBytes = readFileSync(canonicalPath, "utf8");
+  const priorSlotDigest = sha256Digest(priorSlotBytes);
+  const authorization = buildCorrectionAuthorization(receipt, priorSlotDigest, reason);
+  const dir = join(convergenceRoot(repoRoot), "receipt-corrections");
+  mkdirSync(dir, { recursive: true });
+  const stem = correctionStem(receipt, priorSlotDigest);
+  const authorizationPath = join(dir, `${stem}.authorization.json`);
+  const receiptPath = join(dir, `${stem}.corrected.json`);
+  const authorizationContent = `${canonicalJson(authorization)}\n`;
+  const receiptContent = `${canonicalJson(receipt)}\n`;
+  if (existsSync(authorizationPath) || existsSync(receiptPath)) {
+    if (
+      existsSync(authorizationPath) &&
+      existsSync(receiptPath) &&
+      readFileSync(authorizationPath, "utf8") === authorizationContent &&
+      readFileSync(receiptPath, "utf8") === receiptContent
+    ) {
+      return { authorization, authorizationPath, receiptPath };
+    }
+    throw new Error("review_receipt_correction_conflict");
+  }
+  let receiptCreated = false;
+  try {
+    const receiptFd = openSync(receiptPath, "wx", 0o600);
+    try {
+      writeFileSync(receiptFd, receiptContent);
+      receiptCreated = true;
+    } finally {
+      closeSync(receiptFd);
+    }
+    const authorizationFd = openSync(authorizationPath, "wx", 0o600);
+    try {
+      writeFileSync(authorizationFd, authorizationContent);
+    } finally {
+      closeSync(authorizationFd);
+    }
+  } catch (error) {
+    if (receiptCreated && existsSync(receiptPath) && !existsSync(authorizationPath)) {
+      unlinkSync(receiptPath);
+    }
+    throw error;
+  }
+  return { authorization, authorizationPath, receiptPath };
 }
 
 export function findPriorClaudePrReviewReceiptId(

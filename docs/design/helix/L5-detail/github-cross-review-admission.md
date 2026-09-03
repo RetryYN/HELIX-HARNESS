@@ -163,6 +163,23 @@ historical receiptとして明示pathから引き続き読めるが、新規writ
 CLI adapterは外部commentを投稿する前に同じreviewer別slotが未占有であることを検査し、既知の
 persist conflictをcomment作成後の部分成功へ持ち込まない。
 
+### 3.3 malformed receiptの訂正世代
+
+同一`repository + PR + HEAD + reviewer runtime + CI generation`のcanonical slotがmalformedな場合だけ、
+`ReviewReceiptCorrectionAuthorizationV1`を使う訂正を許可する。旧slotのraw bytesは変更せず、そのSHA-256、
+対象receipt ID、reason、repository、PR、HEAD、reviewer、CI generation、corrected receipt digest、review時刻を
+authorizationへ束縛する。reasonは`schema_invalid`、`digest_invalid`、`comment_binding_invalid`のexact setとする。
+
+corrected receiptとauthorizationは、canonical slot名とprior raw digestから決まる別のimmutable pathへ保存する。
+current selectorは、corrected receiptがstrict v4としてvalidで、authorization IDがcanonical payloadから再計算でき、
+全identityとreceipt digestが一致する場合だけcorrected receiptを返す。authorization欠落、片側だけの部分write、
+unknown reason、改変digest、別HEAD／reviewer／generationは旧malformed slotをcurrent evidenceへ昇格させない。
+
+CLIの`--correct-malformed <reason>`は訂正対象と既存訂正をGitHub投稿前にread-afterする。valid slot、対象欠落、
+既存訂正、並行pending claimではcommentを投稿しない。新commentを実在URLまでread-afterした後にだけcorrected
+receiptを構築し、receipt内のlogical DB receipt／projection／checkpoint digestとauthorizationを一度にsealする。
+旧commentを編集・削除・新しいreceiptとして再解釈してはならない（`U-CPRCONV-041`、`U-CPRCONV-042`）。
+
 ## 4. 変更境界
 
 新しいworkflow、service、DB table、review ledgerは作らない。既存`harness-check`、Claude/Kimi receipt validator、
