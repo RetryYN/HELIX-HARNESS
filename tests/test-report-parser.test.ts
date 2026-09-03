@@ -1,7 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { parseGreenCommandEvidence } from "../src/state-db/test-report-parser";
+import {
+  parseGreenCommandEvidence,
+  parseGreenCommandEvidenceResult,
+} from "../src/state-db/test-report-parser";
 
 describe("green command reporter parser", () => {
+  it("U-PFO-004: malformed JSONを正常な空projectionと区別する", () => {
+    expect(
+      parseGreenCommandEvidenceResult(".helix/evidence/green-command/broken.json", "{"),
+    ).toEqual({ value: null, parseError: "invalid-json" });
+  });
+
   it("normalizes Vitest/Jest-compatible JSON reporter output", () => {
     const parsed = parseGreenCommandEvidence(
       ".helix/evidence/green-command/vitest.json",

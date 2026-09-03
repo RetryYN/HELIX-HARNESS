@@ -94,7 +94,10 @@ import {
 } from "./index";
 import { migrate, rowCounts } from "./migration";
 import { projectSkillApplicabilityRows } from "./skill-applicability-projection";
-import { parseGreenCommandEvidence } from "./test-report-parser";
+import {
+  type GreenCommandEvidenceParseResult,
+  parseGreenCommandEvidenceResult,
+} from "./test-report-parser";
 import type { RunUsage } from "./token-tracker";
 import {
   projectVisualizationEvidence,
@@ -248,6 +251,16 @@ export interface RebuildHarnessDbResult {
   };
 }
 
+export interface JsonReadResult<T> {
+  value: T | null;
+  parseError: "invalid-json" | null;
+}
+
+export interface MetadataParseResult {
+  value: Record<string, unknown>;
+  parseError: "invalid-yaml" | null;
+}
+
 export {
   type ArtifactProgressColor,
   type ArtifactProgressDecision,
@@ -364,6 +377,33 @@ function scalarNumber(db: HarnessDb, sql: string, params: unknown[] = []): numbe
   const row = db.prepare(sql).get(...params) as Record<string, unknown> | undefined;
   const value = row?.value;
   return typeof value === "number" ? value : Number(value ?? 0);
+}
+
+/**
+ * projection stage間の必須依存を呼出順へ暗黙に委ねないための境界。
+ * 依存行が無い場合は finding を記録したうえで rebuild を失敗させる。
+ * これにより upstream を後段へ移す mutation が「空の下流projectionでgreen」に
+ * ならず、既存の rebuild transaction boundary の中で再現可能に拒否される。
+ */
+export function assertProjectionDependencyRows(
+  db: HarnessDb,
+  stage: string,
+  dependencies: readonly string[],
+): void {
+  const missing = dependencies.filter((table) => {
+    tableDef(table);
+    return scalarNumber(db, `SELECT COUNT(*) AS value FROM ${table}`) <= 0;
+  });
+  if (missing.length === 0) return;
+  for (const table of missing) {
+    recordFinding(db, {
+      kind: "projection-dependency-missing",
+      severity: "error",
+      subjectId: `${stage}:${table}`,
+      source: "projection-rebuild",
+    });
+  }
+  throw new Error(`projection dependency rows missing at ${stage}: ${missing.join(", ")}`);
 }
 
 function assertNoSensitivePayload(row: Record<string, unknown>, table: TableDef): void {
@@ -504,13 +544,21 @@ function markdownFiles(dir: string): string[] {
     .sort();
 }
 
-function metadataFromContent(path: string, content: string): Record<string, unknown> {
-  const raw = /\.md$/i.test(path) ? (markdownFrontmatter(content) ?? "") : content;
-  if (!raw.trim()) return {};
-  const parsed = parseYaml(raw);
-  return parsed && typeof parsed === "object" && !Array.isArray(parsed)
-    ? (parsed as Record<string, unknown>)
-    : {};
+function metadataFromContent(path: string, content: string): MetadataParseResult {
+  try {
+    const raw = /\.md$/i.test(path) ? (markdownFrontmatter(content) ?? "") : content;
+    if (!raw.trim()) return { value: {}, parseError: null };
+    const parsed = parseYaml(raw);
+    return {
+      value:
+        parsed && typeof parsed === "object" && !Array.isArray(parsed)
+          ? (parsed as Record<string, unknown>)
+          : {},
+      parseError: null,
+    };
+  } catch {
+    return { value: {}, parseError: "invalid-yaml" };
+  }
 }
 
 function stringList(value: unknown): string[] {
@@ -608,12 +656,12 @@ function skillDriveModelForPlan(planId: string, planModes?: string[]): string {
   return "Forward";
 }
 
-function readJson<T>(path: string): T | null {
-  if (!existsSync(path)) return null;
+export function readJson<T>(path: string): JsonReadResult<T> {
+  if (!existsSync(path)) return { value: null, parseError: null };
   try {
-    return JSON.parse(readFileSync(path, "utf8")) as T;
+    return { value: JSON.parse(readFileSync(path, "utf8")) as T, parseError: null };
   } catch {
-    return null;
+    return { value: null, parseError: "invalid-json" };
   }
 }
 
@@ -622,15 +670,35 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
   let workflowCatalog: ReturnType<typeof loadWorkflowClassificationCatalog> | null = null;
   for (const path of markdownFiles(join(repoRoot, "docs", "plans"))) {
     const content = readFileSync(path, "utf8");
+    const relPath = normalizePath(relative(repoRoot, path));
     const planId = frontmatterValue(content, "plan_id");
-    if (!planId) continue;
+    if (!planId) {
+      recordFinding(db, {
+        kind: "plan-frontmatter-missing-plan-id",
+        severity: "warn",
+        subjectId: relPath,
+        source: "plan-projection",
+        evidencePath: relPath,
+      });
+      continue;
+    }
     const kind = frontmatterValue(content, "kind");
     const layer = frontmatterValue(content, "layer");
     const drive = frontmatterValue(content, "drive");
     const status = frontmatterValue(content, "status") || "draft";
     const updatedAt = frontmatterValue(content, "updated") || frontmatterValue(content, "created");
     const sourceHash = stableHash(content);
-    const metadata = metadataFromContent(path, content);
+    const metadataResult = metadataFromContent(path, content);
+    const metadata = metadataResult.value;
+    if (metadataResult.parseError) {
+      recordFinding(db, {
+        kind: "plan-frontmatter-invalid",
+        severity: "warn",
+        subjectId: relPath,
+        source: "plan-projection",
+        evidencePath: relPath,
+      });
+    }
     const workflowIdentityRaw = metadata.workflow_identity;
     const workflowIdentity =
       workflowIdentityRaw === undefined
@@ -670,7 +738,6 @@ function projectPlans(repoRoot: string, db: HarnessDb): Map<string, ProjectedPla
       workflowModes: workflowModesForPlan(planId, kind, content),
       workflowIdentity,
     });
-    const relPath = normalizePath(relative(repoRoot, path));
     recordProjectionEvent(db, {
       table: "plan_registry",
       id: planId,
@@ -880,9 +947,18 @@ function projectDriveRuns(
   }
 
   for (const plan of plans.values()) {
-    const digest = readJson<PlanDigestProjection>(
-      join(repoRoot, ".helix", "logs", "plan", `${plan.planId}.digest.json`),
-    );
+    const digestPath = join(repoRoot, ".helix", "logs", "plan", `${plan.planId}.digest.json`);
+    const digestRead = readJson<PlanDigestProjection>(digestPath);
+    if (digestRead.parseError) {
+      recordFinding(db, {
+        kind: "plan-digest-invalid",
+        severity: "warn",
+        subjectId: normalizePath(relative(repoRoot, digestPath)),
+        source: "drive-run-projection",
+        evidencePath: normalizePath(relative(repoRoot, digestPath)),
+      });
+    }
+    const digest = digestRead.value;
     const sessions = ["", ...(digest?.sessions ?? [])];
     for (const sessionId of sessions) {
       const id = stableId("drive-run", `${plan.planId}:${sessionId || "documented"}`);
@@ -908,7 +984,13 @@ function projectDriveRuns(
           kind: plan.kind,
           started_at: indexedAt,
           completed_at: completed ? (digest?.updated_at ?? "") : "",
-          status: sessionId ? (completed ? "completed" : "active") : plan.status || "documented",
+          status: digestRead.parseError
+            ? "invalid"
+            : sessionId
+              ? completed
+                ? "completed"
+                : "active"
+              : plan.status || "documented",
         },
       });
       recordRouteMode({
@@ -1187,7 +1269,17 @@ function projectHookEvents(
     .sort()) {
     const path = join(providerDir, file);
     const relPath = normalizePath(relative(repoRoot, path));
-    const handover = readJson<ProviderHandoverProjection>(path);
+    const handoverRead = readJson<ProviderHandoverProjection>(path);
+    if (handoverRead.parseError) {
+      recordFinding(db, {
+        kind: "provider-handover-invalid",
+        severity: "warn",
+        subjectId: relPath,
+        source: "hook-event-projection",
+        evidencePath: relPath,
+      });
+    }
+    const handover = handoverRead.value;
     const rawPlanId = asString(handover?.active_plan);
     if (!rawPlanId) continue;
     const planId = resolveProjectedPlanId(plans, rawPlanId);
@@ -1214,6 +1306,12 @@ function runtimeForModel(model: string): string {
   if (/claude/i.test(model)) return "claude";
   if (/gpt|codex/i.test(model)) return "codex";
   return "";
+}
+
+function pairAgentModelRunId(runId: string, spanId: string): string {
+  // span_id は provider/runtime 内でのみ一意とは限らない。外側の pair-agent
+  // run identity と namespace し、別 run の同名 span が同じ DB row を上書きしないようにする。
+  return stableId("pair-agent-model-run", `${runId}:${spanId}`);
 }
 
 function projectReviewModelRuns(
@@ -1353,10 +1451,7 @@ function projectRoadmapRollup(repoRoot: string, db: HarnessDb): void {
 
 function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
   const indexedAt = nowIso();
-  const greenCommandEvidenceCache = new Map<
-    string,
-    ReturnType<typeof parseGreenCommandEvidence> | null
-  >();
+  const greenCommandEvidenceCache = new Map<string, GreenCommandEvidenceParseResult>();
   for (const plan of loadReviewPlans(repoRoot)) {
     const firstEntry = plan.crossEntries[0];
     const id = stableId("review-evidence", plan.plan_id);
@@ -1427,20 +1522,56 @@ function projectStructuredGreenCommandCaseEvidence(input: {
   fallbackPlanId: string;
   testRunId: string;
   command: GreenCommandProjectionInput;
-  evidenceCache: Map<string, ReturnType<typeof parseGreenCommandEvidence> | null>;
+  evidenceCache: Map<string, GreenCommandEvidenceParseResult>;
 }): void {
   const { repoRoot, db, fallbackPlanId, testRunId, command, evidenceCache } = input;
-  if (!command.evidence_path || isAbsolute(command.evidence_path)) return;
+  if (!command.evidence_path || isAbsolute(command.evidence_path)) {
+    recordFinding(db, {
+      kind: "green-command-evidence-invalid-path",
+      severity: "warn",
+      subjectId: `${fallbackPlanId}:${command.evidence_path || "missing"}`,
+      source: "review-evidence-projection",
+      evidencePath: command.evidence_path || undefined,
+    });
+    return;
+  }
   const fullPath = join(repoRoot, command.evidence_path);
   const relPath = normalizePath(relative(repoRoot, fullPath));
-  if (relPath.startsWith("..") || isAbsolute(relPath) || !existsSync(fullPath)) return;
-  try {
-    let parsed = evidenceCache.get(relPath);
-    if (!evidenceCache.has(relPath)) {
-      const content = readFileSync(fullPath, "utf8");
-      parsed = parseGreenCommandEvidence(command.evidence_path, content);
-      evidenceCache.set(relPath, parsed);
+  if (relPath.startsWith("..") || isAbsolute(relPath) || !existsSync(fullPath)) {
+    recordFinding(db, {
+      kind: "green-command-evidence-missing",
+      severity: "warn",
+      subjectId: `${fallbackPlanId}:${relPath}`,
+      source: "review-evidence-projection",
+      evidencePath: relPath,
+    });
+    return;
+  }
+  let parseResult = evidenceCache.get(relPath);
+  if (!parseResult) {
+    let content = "";
+    try {
+      content = readFileSync(fullPath, "utf8");
+    } catch {
+      parseResult = { value: null, parseError: "invalid-evidence" };
     }
+    if (!parseResult) {
+      parseResult = parseGreenCommandEvidenceResult(command.evidence_path, content);
+    }
+    evidenceCache.set(relPath, parseResult);
+  }
+  if (parseResult.parseError) {
+    recordFinding(db, {
+      kind: `green-command-evidence-${parseResult.parseError}`,
+      severity: "warn",
+      subjectId: `${fallbackPlanId}:${relPath}`,
+      source: "review-evidence-projection",
+      evidencePath: relPath,
+    });
+    return;
+  }
+  try {
+    const parsed = parseResult.value;
     const cases = parsed?.cases ?? [];
     if (cases.length === 0) return;
     const recordedAt = parsed?.recorded_at ?? command.completed_at ?? nowIso();
@@ -1505,7 +1636,13 @@ function projectStructuredGreenCommandCaseEvidence(input: {
       }
     }
   } catch {
-    return;
+    recordFinding(db, {
+      kind: "green-command-evidence-projection-invalid",
+      severity: "warn",
+      subjectId: `${fallbackPlanId}:${relPath}`,
+      source: "review-evidence-projection",
+      evidencePath: relPath,
+    });
   }
 }
 
@@ -2073,11 +2210,12 @@ function projectPairAgentPlanEvidenceFile(input: {
       });
       continue;
     }
+    const modelRunId = pairAgentModelRunId(`plan-evidence:${relPath}:${spanId}`, phaseSpanId);
     recordProjectionEvent(db, {
       table: "model_runs",
-      id: phaseSpanId,
+      id: modelRunId,
       row: {
-        run_id: phaseSpanId,
+        run_id: modelRunId,
         runtime: asString(span.provider) ?? "",
         model,
         role: asString(span.agent_key) ?? asString(span.phase) ?? "pair-agent",
@@ -2256,12 +2394,13 @@ function projectPairAgentRunEvidence(
         });
         continue;
       }
+      const modelRunId = pairAgentModelRunId(runId, phaseSpanId);
       const costUsd = typeof trace?.cost_usd === "number" ? trace.cost_usd : null;
       recordProjectionEvent(db, {
         table: "model_runs",
-        id: phaseSpanId,
+        id: modelRunId,
         row: {
-          run_id: phaseSpanId,
+          run_id: modelRunId,
           runtime: asString(span.provider) ?? "",
           model,
           role: asString(span.agent_key) ?? asString(span.phase) ?? "pair-agent",
@@ -2484,6 +2623,14 @@ function projectDescentObligations(repoRoot: string, db: HarnessDb): void {
 
 function projectVerificationBandExecution(db: HarnessDb): void {
   if (!planExists(db, VERIFY_CUTOVER_PLAN_ID)) return;
+
+  // roadmap_rollups と review_evidence_registry はこのstageの必須upstream。
+  // 呼出順を変えたときに scalarNumber(...)=0 のまま blocked row を作らず、
+  // dependency mutation として明示的に停止する。
+  assertProjectionDependencyRows(db, "projectVerificationBandExecution", [
+    "roadmap_rollups",
+    "review_evidence_registry",
+  ]);
 
   const programCoveredBands = scalarNumber(
     db,
@@ -2892,6 +3039,31 @@ function defaultRelationGraphProjection(repoRoot: string): RelationGraphProjecti
       path: "src/schema/harness-db.ts",
     })),
   });
+}
+
+function canonicalizeRelationGraph(graph: RelationGraphProjection): RelationGraphProjection {
+  return {
+    ...graph,
+    nodes: [...graph.nodes].sort((a, b) => a.id.localeCompare(b.id)),
+    edges: [...graph.edges].sort(
+      (a, b) =>
+        a.from.localeCompare(b.from) || a.to.localeCompare(b.to) || a.kind.localeCompare(b.kind),
+    ),
+    verificationProfiles: [...graph.verificationProfiles].sort((a, b) =>
+      a.nodeId.localeCompare(b.nodeId),
+    ),
+    findings: [...graph.findings].sort(
+      (a, b) =>
+        a.code.localeCompare(b.code) ||
+        (a.nodeId ?? "").localeCompare(b.nodeId ?? "") ||
+        a.severity.localeCompare(b.severity) ||
+        a.message.localeCompare(b.message) ||
+        (a.evidencePath ?? "").localeCompare(b.evidencePath ?? ""),
+    ),
+    trackedExcludedPaths: graph.trackedExcludedPaths
+      ? [...graph.trackedExcludedPaths].sort()
+      : undefined,
+  };
 }
 
 function projectGraphSnapshot(
@@ -3579,7 +3751,7 @@ function planGeneratedPathMap(repoRoot: string): Map<string, string> {
   for (const path of markdownFiles(join(repoRoot, "docs", "plans"))) {
     const content = readFileSync(path, "utf8");
     const planId = frontmatterValue(content, "plan_id");
-    const meta = metadataFromContent(path, content);
+    const meta = metadataFromContent(path, content).value;
     const generates = Array.isArray(meta.generates) ? meta.generates : [];
     for (const item of generates) {
       if (!item || typeof item !== "object") continue;
@@ -3930,7 +4102,17 @@ function projectAutomationAssets(repoRoot: string, db: HarnessDb): void {
     for (const path of assetFiles(source.root, source.exts)) {
       const rel = normalizePath(relative(repoRoot, path));
       const content = readFileSync(path, "utf8");
-      const metadata = metadataFromContent(path, content);
+      const metadataResult = metadataFromContent(path, content);
+      const metadata = metadataResult.value;
+      if (metadataResult.parseError) {
+        recordFinding(db, {
+          kind: "automation-asset-metadata-invalid",
+          severity: "warn",
+          subjectId: rel,
+          source: "automation-asset-projection",
+          evidencePath: rel,
+        });
+      }
       const appliesTo =
         metadata.applies_to && typeof metadata.applies_to === "object"
           ? (metadata.applies_to as Record<string, unknown>)
@@ -5188,11 +5370,12 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
   const ownsDb = input.db === undefined;
   const db = input.db ?? openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
   try {
-    const relationGraph =
+    const relationGraph = canonicalizeRelationGraph(
       input.relationGraph ??
-      profiled("defaultRelationGraphProjection", input.onProfile, () =>
-        defaultRelationGraphProjection(repoRoot),
-      );
+        profiled("defaultRelationGraphProjection", input.onProfile, () =>
+          defaultRelationGraphProjection(repoRoot),
+        ),
+    );
     const documentExports =
       input.documentExports ??
       profiled("defaultDocumentExportProjection", input.onProfile, () =>

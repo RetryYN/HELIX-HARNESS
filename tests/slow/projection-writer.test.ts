@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { copyFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -17,7 +17,11 @@ import { deriveArtifactProgressDecision } from "../../src/state-db/artifact-prog
 import { projectRefactorCandidateSignals } from "../../src/state-db/feedback-projections";
 import { type HarnessDb, isSecretLike, openHarnessDb } from "../../src/state-db/index";
 import { migrate, rowCounts } from "../../src/state-db/migration";
-import { rebuildHarnessDb, recordProjectionEvent } from "../../src/state-db/projection-writer";
+import {
+  assertProjectionDependencyRows,
+  rebuildHarnessDb,
+  recordProjectionEvent,
+} from "../../src/state-db/projection-writer";
 import {
   REFACTOR_CANDIDATE_THRESHOLDS,
   REFACTOR_POLICY_TERMS,
@@ -43,6 +47,43 @@ interface DriveRunRow {
 
 const WORKFLOW_REGISTRY_DIGEST =
   "sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89";
+
+function projectionStateRows(db: HarnessDb): string[] {
+  const tableNames = db
+    .prepare(
+      "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name",
+    )
+    .all()
+    .map((row) => String(row.name ?? ""));
+  const rows = tableNames.flatMap((table) =>
+    db
+      .prepare(`SELECT * FROM "${table.replaceAll('"', '""')}"`)
+      .all()
+      .map((row) => {
+        // nowIso-backed audit columns are intentionally excluded: the oracle compares
+        // the semantic projection set, not the wall-clock time of two rebuilds.
+        const stableRow = Object.fromEntries(
+          Object.entries(row).filter(
+            ([column]) =>
+              !column.endsWith("_at") &&
+              column !== "source_clock" &&
+              !(
+                column === "snapshot_hash" &&
+                (table === "project_current_location" || table === "visualization_view_model")
+              ),
+          ),
+        );
+        return `${table}:${JSON.stringify(stableRow)}`;
+      }),
+  );
+  rows.sort();
+  return rows;
+}
+
+function projectionStateDigest(db: HarnessDb): string {
+  const rows = projectionStateRows(db);
+  return `sha256:${createHash("sha256").update(rows.join("\n")).digest("hex")}`;
+}
 
 function typedIdentityFixtureRepo(): string {
   const root = join(tmpdir(), `helix-plan-identity-${randomUUID()}`);
@@ -1696,6 +1737,190 @@ dependencies:
     }
   });
 
+  it("U-PFO-001: malformed green-command evidence is recorded as a finding", () => {
+    const repoRoot = join(tmpdir(), `helix-invalid-green-command-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "green-command"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-RECOVERY-1440-invalid-evidence.md"),
+        [
+          "---",
+          "plan_id: PLAN-RECOVERY-1440-invalid-evidence",
+          "title: invalid green command fixture",
+          "kind: recovery",
+          "layer: L7",
+          "drive: db",
+          "status: draft",
+          "review_evidence:",
+          "  - reviewer: codex-tl",
+          "    review_kind: intra_runtime_subagent",
+          '    reviewed_at: "2026-09-03T00:10:00.000Z"',
+          "    verdict: approve",
+          "    green_commands:",
+          "      - kind: unit_test",
+          '        command: "npx --no-install vitest run tests/fixture.test.ts"',
+          "        runner: node",
+          "        scope: targeted",
+          "        exit_code: 0",
+          '        completed_at: "2026-09-03T00:09:00.000Z"',
+          "        evidence_path: .helix/evidence/green-command/broken.json",
+          `        output_digest: "sha256:${"a".repeat(64)}"`,
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+      writeFileSync(join(repoRoot, ".helix", "evidence", "green-command", "broken.json"), "{");
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          runtimeLogPolicy: "exclude",
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        expect(
+          db
+            .prepare("SELECT kind, subject_id, evidence_path FROM findings WHERE kind = ?")
+            .get("green-command-evidence-invalid-json"),
+        ).toMatchObject({
+          kind: "green-command-evidence-invalid-json",
+          subject_id: expect.stringContaining("PLAN-RECOVERY-1440-invalid-evidence"),
+          evidence_path: ".helix/evidence/green-command/broken.json",
+        });
+        expect(rowCounts(db).test_runs).toBe(1);
+        expect(rowCounts(db).test_cases).toBe(0);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
+  it("U-PFO-002/U-PFO-008: PLAN identity欠落とmetadata parse失敗を局所findingへする", () => {
+    const repoRoot = join(tmpdir(), `helix-invalid-plan-frontmatter-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "missing-plan-id.md"),
+        ["---", "title: missing plan identity", "kind: recovery", "layer: L7", "---", ""].join(
+          "\n",
+        ),
+      );
+      writeFileSync(
+        join(repoRoot, "docs", "plans", "PLAN-L7-1440-invalid-metadata.md"),
+        [
+          "---",
+          "plan_id: PLAN-L7-1440-invalid-metadata",
+          "title: [unterminated",
+          "kind: recovery",
+          "layer: L7",
+          "drive: db",
+          "status: draft",
+          "---",
+          "",
+        ].join("\n"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          runtimeLogPolicy: "exclude",
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        expect(
+          db
+            .prepare("SELECT kind, subject_id, evidence_path FROM findings WHERE source = ?")
+            .all("plan-projection"),
+        ).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              kind: "plan-frontmatter-missing-plan-id",
+              subject_id: "docs/plans/missing-plan-id.md",
+              evidence_path: "docs/plans/missing-plan-id.md",
+            }),
+            expect.objectContaining({
+              kind: "plan-frontmatter-invalid",
+              subject_id: "docs/plans/PLAN-L7-1440-invalid-metadata.md",
+              evidence_path: "docs/plans/PLAN-L7-1440-invalid-metadata.md",
+            }),
+          ]),
+        );
+        expect(
+          db
+            .prepare("SELECT plan_id FROM plan_registry WHERE plan_id = ?")
+            .get("PLAN-L7-1440-invalid-metadata"),
+        ).toBeDefined();
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
+  it("U-PFO-005: upstream projection row欠落をfinding記録後にfail-closeする", () => {
+    const db = openHarnessDb(":memory:");
+    try {
+      migrate(db);
+      expect(() =>
+        assertProjectionDependencyRows(db, "test-downstream-stage", ["roadmap_rollups"]),
+      ).toThrow("projection dependency rows missing at test-downstream-stage: roadmap_rollups");
+      expect(
+        db
+          .prepare("SELECT kind, subject_id, severity FROM findings WHERE source = ?")
+          .get("projection-rebuild"),
+      ).toEqual({
+        kind: "projection-dependency-missing",
+        subject_id: "test-downstream-stage:roadmap_rollups",
+        severity: "error",
+      });
+    } finally {
+      db.close();
+    }
+  });
+
   it("U-RUNDEBUG-007: projects L7.5 runtime verification logs into harness.db runtime evidence rows", () => {
     const repoRoot = join(tmpdir(), `helix-runtime-verification-projection-${randomUUID()}`);
     try {
@@ -2022,6 +2247,104 @@ dependencies:
             status: "pass",
           }),
         ]);
+      } finally {
+        db.close();
+      }
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
+  it("U-PFO-003: same phase span ID from different runs remains independently projected", () => {
+    const repoRoot = join(tmpdir(), `helix-pair-agent-span-collision-${randomUUID()}`);
+    const planId = "PLAN-L7-1440-pair-span-collision";
+    try {
+      mkdirSync(join(repoRoot, "docs", "plans"), { recursive: true });
+      mkdirSync(join(repoRoot, ".helix", "evidence", "pair-agent"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "docs", "plans", `${planId}.md`),
+        [
+          "---",
+          `plan_id: ${planId}`,
+          "title: pair span collision fixture",
+          "kind: recovery",
+          "layer: L7",
+          "drive: agent",
+          "status: draft",
+          "---",
+          "",
+          "# Fixture",
+        ].join("\n"),
+      );
+
+      const evidence = (runId: string, timestamp: string) =>
+        JSON.stringify({
+          schema_version: "pair-agent-run-evidence.v1",
+          recorded_at: timestamp,
+          run_id: runId,
+          trace: {
+            plan_id: planId,
+            span_id: `${runId}:run`,
+            started_at: timestamp,
+            completed_at: timestamp,
+            eval_outcome: { status: "passed" },
+            phase_spans: [
+              {
+                span_id: "shared-phase-span",
+                phase: "smart_test_author",
+                cycle: 0,
+                agent_key: "smart-review-agent",
+                provider: "claude",
+                model: "claude-opus-4-8",
+              },
+            ],
+          },
+        });
+      writeFileSync(
+        join(repoRoot, ".helix", "evidence", "pair-agent", "run-a.json"),
+        evidence("pair-run-a", "2026-09-03T00:01:00.000Z"),
+      );
+      writeFileSync(
+        join(repoRoot, ".helix", "evidence", "pair-agent", "run-b.json"),
+        evidence("pair-run-b", "2026-09-03T00:02:00.000Z"),
+      );
+
+      const db = openHarnessDb(":memory:", { repoRoot });
+      try {
+        const result = rebuildHarnessDb({
+          repoRoot,
+          db,
+          relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+          documentExports: {
+            document_export_runs: [],
+            document_export_datasets: [],
+            document_export_artifacts: [],
+            findings: [],
+            actionsTaken: [],
+            ok: true,
+          },
+          verificationEvidence: {
+            verification_profiles: [],
+            verification_recommendations: [],
+            mcp_server_runs: [],
+            external_tool_findings: [],
+            findings: [],
+            ok: true,
+          },
+        });
+
+        expect(result.ok).toBe(true);
+        const rows = db
+          .prepare(
+            "SELECT run_id, plan_id, evidence_path FROM model_runs WHERE evidence_path LIKE ? ORDER BY evidence_path",
+          )
+          .all(".helix/evidence/pair-agent/%");
+        expect(rows).toHaveLength(2);
+        expect(new Set(rows.map((row) => String(row.run_id))).size).toBe(2);
+        expect(rows.every((row) => String(row.run_id).startsWith("pair-agent-model-run:"))).toBe(
+          true,
+        );
+        expect(rows.every((row) => row.plan_id === planId)).toBe(true);
       } finally {
         db.close();
       }
@@ -2547,6 +2870,295 @@ dependencies:
     }
   });
 
+  it("U-PFO-009: projection and finding sets are invariant under equivalent input reordering", () => {
+    const planId = "PLAN-L7-46-projection-writer";
+    const relationGraph = {
+      nodes: [
+        {
+          id: `plan:${planId}`,
+          kind: "plan" as const,
+          path: `docs/plans/${planId}.md`,
+        },
+        {
+          id: "source:src/state-db/projection-writer.ts",
+          kind: "source" as const,
+          path: "src/state-db/projection-writer.ts",
+        },
+      ],
+      edges: [
+        {
+          from: `plan:${planId}`,
+          to: "source:src/state-db/projection-writer.ts",
+          kind: "modifies" as const,
+        },
+        {
+          from: "source:src/state-db/projection-writer.ts",
+          to: "test:tests/slow/projection-writer.test.ts",
+          kind: "covered-by" as const,
+        },
+      ],
+      verificationProfiles: [],
+      findings: [
+        {
+          code: "stale-edge" as const,
+          severity: "warn" as const,
+          message: "fixture stale edge",
+          nodeId: `plan:${planId}`,
+          evidencePath: "docs/fixture/stale-edge.md",
+        },
+        {
+          code: "missing-test-coverage" as const,
+          severity: "error" as const,
+          message: "fixture missing test coverage",
+          nodeId: "source:src/state-db/projection-writer.ts",
+          evidencePath: "docs/fixture/missing-coverage.md",
+        },
+      ],
+    };
+    const documentExports = {
+      document_export_runs: [
+        {
+          document_export_run_id: "export-a",
+          source_snapshot_hash: "sha256:export-a",
+          evidence_path: "docs/fixture/export-a.json",
+        },
+        {
+          document_export_run_id: "export-b",
+          source_snapshot_hash: "sha256:export-b",
+          evidence_path: "docs/fixture/export-b.json",
+        },
+      ],
+      document_export_datasets: [
+        {
+          document_export_dataset_id: "dataset-a",
+          document_export_run_id: "export-a",
+          format: "markdown" as const,
+        },
+        {
+          document_export_dataset_id: "dataset-b",
+          document_export_run_id: "export-b",
+          format: "markdown" as const,
+        },
+      ],
+      document_export_artifacts: [
+        {
+          document_export_run_id: "export-a",
+          document_export_dataset_id: "dataset-a",
+          artifact_path: "docs/fixture/export-a.md",
+          format: "markdown" as const,
+          source_snapshot_hash: "sha256:export-a",
+          stale: false,
+          derived: true,
+        },
+        {
+          document_export_run_id: "export-b",
+          document_export_dataset_id: "dataset-b",
+          artifact_path: "docs/fixture/export-b.md",
+          format: "markdown" as const,
+          source_snapshot_hash: "sha256:export-b",
+          stale: true,
+          derived: true,
+        },
+      ],
+      findings: [
+        {
+          code: "stale-source-snapshot" as const,
+          severity: "warn" as const,
+          message: "fixture stale source snapshot",
+          sourcePath: "docs/fixture/export-b.md",
+        },
+        {
+          code: "missing-source-path" as const,
+          severity: "error" as const,
+          message: "fixture missing source path",
+          sourcePath: "docs/fixture/missing.md",
+        },
+      ],
+      actionsTaken: ["export-a", "export-b"],
+      ok: true,
+    };
+    const verificationEvidence = {
+      verification_profiles: [
+        {
+          verification_profile_id: "profile-a",
+          name: "fixture profile a",
+          profile_type: "unit",
+          package_refs: ["package:a"],
+          requires_docker: false,
+          requires_browser: false,
+          requires_network: false,
+          green_definition_id: "green-a",
+          trigger_signals: ["source-change"],
+          enabled: true,
+          evidence_path: "docs/fixture/profile-a.json",
+        },
+        {
+          verification_profile_id: "profile-b",
+          name: "fixture profile b",
+          profile_type: "boundary",
+          package_refs: ["package:b"],
+          requires_docker: false,
+          requires_browser: true,
+          requires_network: false,
+          green_definition_id: "green-b",
+          trigger_signals: ["contract-change"],
+          enabled: true,
+          evidence_path: "docs/fixture/profile-b.json",
+        },
+      ],
+      verification_recommendations: [
+        {
+          verification_recommendation_id: "recommendation-a",
+          change_set_id: "change-a",
+          plan_id: planId,
+          profile_id: "profile-a",
+          profile_kind: "local",
+          reason: "fixture recommendation a",
+          source_rule: "fixture-rule-a",
+          accepted: true,
+          evidence_path: "docs/fixture/recommendation-a.json",
+        },
+        {
+          verification_recommendation_id: "recommendation-b",
+          change_set_id: "change-b",
+          plan_id: planId,
+          profile_id: "profile-b",
+          profile_kind: "boundary",
+          reason: "fixture recommendation b",
+          source_rule: "fixture-rule-b",
+          accepted: false,
+          evidence_path: "docs/fixture/recommendation-b.json",
+        },
+      ],
+      mcp_server_runs: [
+        {
+          mcp_run_id: "mcp-a",
+          mcp_profile_id: "profile-a",
+          session_id: "session-a",
+          plan_id: planId,
+          command: "npm test",
+          method: "run",
+          tool_name: "vitest",
+          started_at: "2026-09-03T00:00:00.000Z",
+          completed_at: "2026-09-03T00:00:01.000Z",
+          exit_code: 0,
+          evidence_path: "docs/fixture/mcp-a.json",
+          normalized_status: "passed",
+        },
+        {
+          mcp_run_id: "mcp-b",
+          mcp_profile_id: "profile-b",
+          session_id: "session-b",
+          plan_id: planId,
+          command: "npm run boundary",
+          method: "run",
+          tool_name: "playwright",
+          started_at: "2026-09-03T00:01:00.000Z",
+          completed_at: "2026-09-03T00:01:02.000Z",
+          exit_code: 1,
+          evidence_path: "docs/fixture/mcp-b.json",
+          normalized_status: "failed",
+        },
+      ],
+      external_tool_findings: [
+        {
+          external_finding_id: "external-a",
+          source_run_id: "mcp-a",
+          source_kind: "mcp",
+          finding_type: "fixture-warning",
+          severity: "warn" as const,
+          subject_id: "fixture-subject-a",
+          path: "src/fixture-a.ts",
+          status: "open",
+          digest: "sha256:external-a",
+          evidence_path: "docs/fixture/external-a.json",
+        },
+        {
+          external_finding_id: "external-b",
+          source_run_id: "mcp-b",
+          source_kind: "mcp",
+          finding_type: "fixture-error",
+          severity: "error" as const,
+          subject_id: "fixture-subject-b",
+          path: "src/fixture-b.ts",
+          status: "open",
+          digest: "sha256:external-b",
+          evidence_path: "docs/fixture/external-b.json",
+        },
+      ],
+      findings: [
+        {
+          code: "invalid-evidence" as const,
+          severity: "warn" as const,
+          message: "fixture invalid evidence",
+          nodeId: "verification:profile-a",
+          evidencePath: "docs/fixture/invalid-evidence.json",
+        },
+        {
+          code: "external-not-allowed" as const,
+          severity: "error" as const,
+          message: "fixture external source",
+          nodeId: "verification:profile-b",
+          evidencePath: "docs/fixture/external-not-allowed.json",
+        },
+      ],
+      ok: true,
+    };
+    const reverseInput = {
+      repoRoot: process.cwd(),
+      relationGraph: {
+        ...relationGraph,
+        nodes: [...relationGraph.nodes].reverse(),
+        edges: [...relationGraph.edges].reverse(),
+        findings: [...relationGraph.findings].reverse(),
+      },
+      documentExports: {
+        ...documentExports,
+        document_export_runs: [...documentExports.document_export_runs].reverse(),
+        document_export_datasets: [...documentExports.document_export_datasets].reverse(),
+        document_export_artifacts: [...documentExports.document_export_artifacts].reverse(),
+        findings: [...documentExports.findings].reverse(),
+        actionsTaken: [...documentExports.actionsTaken].reverse(),
+      },
+      verificationEvidence: {
+        ...verificationEvidence,
+        verification_profiles: [...verificationEvidence.verification_profiles].reverse(),
+        verification_recommendations: [
+          ...verificationEvidence.verification_recommendations,
+        ].reverse(),
+        mcp_server_runs: [...verificationEvidence.mcp_server_runs].reverse(),
+        external_tool_findings: [...verificationEvidence.external_tool_findings].reverse(),
+        findings: [...verificationEvidence.findings].reverse(),
+      },
+    };
+    const orderedDb = openHarnessDb(":memory:");
+    const reorderedDb = openHarnessDb(":memory:");
+    try {
+      const ordered = rebuildHarnessDb({
+        ...{
+          repoRoot: process.cwd(),
+          relationGraph,
+          documentExports,
+          verificationEvidence,
+        },
+        db: orderedDb,
+      });
+      const reordered = rebuildHarnessDb({ ...reverseInput, db: reorderedDb });
+
+      expect(ordered.ok).toBe(true);
+      expect(reordered.ok).toBe(true);
+      expect(reordered.rowCounts).toEqual(ordered.rowCounts);
+      expect(projectionStateDigest(reorderedDb)).toBe(projectionStateDigest(orderedDb));
+      expect(
+        reorderedDb.prepare("SELECT COUNT(*) AS count FROM findings WHERE status = 'open'").get()
+          ?.count,
+      ).toBeGreaterThan(0);
+    } finally {
+      orderedDb.close();
+      reorderedDb.close();
+    }
+  });
+
   it("U-ROUTEMODE-001: rebuildHarnessDb deterministically projects plans, route_modes, and Phase3 outputs without source mutation", () => {
     const db = openHarnessDb(":memory:");
     try {
@@ -2594,6 +3206,15 @@ dependencies:
           ok: true,
         },
       });
+      const stableProjectionRows = (table: string): string[] =>
+        db
+          .prepare(`SELECT * FROM ${table}`)
+          .all()
+          .map((row) => JSON.stringify(row))
+          .sort();
+      const firstPlanRegistryRows = stableProjectionRows("plan_registry");
+      const firstModelRunRows = stableProjectionRows("model_runs");
+      const firstFindingRows = stableProjectionRows("findings");
       const second = rebuildHarnessDb({
         repoRoot: process.cwd(),
         db,
@@ -2616,6 +3237,9 @@ dependencies:
         ...secondStableCounts
       } = second.rowCounts;
       expect(secondStableCounts).toEqual(firstStableCounts);
+      expect(stableProjectionRows("plan_registry")).toEqual(firstPlanRegistryRows);
+      expect(stableProjectionRows("model_runs")).toEqual(firstModelRunRows);
+      expect(stableProjectionRows("findings")).toEqual(firstFindingRows);
       expect(rowCounts(db).plan_registry).toBeGreaterThan(0);
       const projectedPlan = db
         .prepare("SELECT source_hash FROM plan_registry WHERE source_hash <> '' LIMIT 1")

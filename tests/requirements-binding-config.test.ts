@@ -126,4 +126,44 @@ describe("requirements-binding config", () => {
       rmSync(repoRoot, { recursive: true, force: true });
     }
   });
+
+  it("U-PFO-007: source変更時はrefactor candidate cacheを再利用しない", () => {
+    const repoRoot = join(tmpdir(), `helix-refactor-cache-${randomUUID()}`);
+    try {
+      mkdirSync(join(repoRoot, "src"), { recursive: true });
+      writeFileSync(
+        join(repoRoot, "src", "fixture.ts"),
+        Array.from({ length: 950 }, (_, i) => `function check${i}() {\n  return ${i};\n}`).join(
+          "\n",
+        ),
+      );
+
+      const project = () => {
+        const events: Array<{ table: string; row: Record<string, unknown> }> = [];
+        projectRefactorCandidateSignals(repoRoot, {} as HarnessDb, {
+          nowIso: () => "2026-07-06T00:00:00.000Z",
+          stableId: (prefix, value) => `${prefix}:${value}`,
+          recordProjectionEvent: (_db, event) => {
+            events.push({ table: event.table, row: event.row });
+            return { table: event.table, id: event.id, evidence_path: "" };
+          },
+        });
+        return events;
+      };
+
+      expect(project()).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            table: "quality_signals",
+            row: expect.objectContaining({ metric: "refactor_candidate:split-module" }),
+          }),
+        ]),
+      );
+
+      writeFileSync(join(repoRoot, "src", "fixture.ts"), "export const healthy = true;\n");
+      expect(project()).toEqual([]);
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
 });
