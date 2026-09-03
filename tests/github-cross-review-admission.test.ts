@@ -8,10 +8,13 @@ import {
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3,
   type ClaudePrReviewReceipt,
   type ClaudePrReviewReceiptAny,
+  type ClaudePrReviewReceiptInput,
   type IndependentReviewRuntime,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+// PLAN-RECOVERY-100-review-receipt-schema-boundary / U-GCRA-010
+// PLAN-RECOVERY-101-review-admission-predicate-diagnostics / U-GCRA-012
 import {
   canonicalLogicalDbReceiptValid,
   evaluateGitHubCrossReviewAdmission,
@@ -30,6 +33,16 @@ const HEAD = "a".repeat(40);
 const OTHER_HEAD = "b".repeat(40);
 const REVIEWED_AT = "2026-08-09T07:00:00.000Z";
 const REVIEW_PACKET = "exact review packet";
+
+function receiptAsInput(receipt: ClaudePrReviewReceipt): ClaudePrReviewReceiptInput {
+  const {
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...input
+  } = receipt;
+  return input;
+}
 
 function logicalDbReceiptFixture() {
   const body = {
@@ -548,6 +561,266 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
+  it("U-GCRA-010: Claude receiptへのprovider-neutral discriminator混入を誤分類しない", () => {
+    const malformed = {
+      ...receipt(),
+      schema_version: "helix-claude-pr-review-receipt.v4",
+    };
+    const malformedBody = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: malformed,
+        kimi_provenance: null,
+      }),
+      "```",
+    ].join("\n");
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: receipt().commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: malformedBody,
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      reasons: ["review_receipt_invalid_or_stale"],
+      candidate_diagnostics: [
+        {
+          comment_url: receipt().commentUrl,
+          reason: "review_receipt_schema_invalid",
+        },
+      ],
+    });
+  });
+
+  it("U-GCRA-012: invalid candidateは失敗predicateをtyped診断として返す", () => {
+    expect(evaluateGitHubCrossReviewAdmission(input({ current_db_receipt: {} }))).toMatchObject({
+      ok: false,
+      reasons: ["review_receipt_invalid_or_stale"],
+      candidate_diagnostics: [
+        {
+          comment_url: receipt().commentUrl,
+          reason: "review_receipt_db_provenance_invalid",
+        },
+      ],
+    });
+
+    const wrongSchemaBody = renderClaudeReceiptEnvelope({
+      ...receipt(),
+      schemaVersion: "helix-claude-pr-review-receipt.v999",
+    } as unknown as ClaudePrReviewReceipt);
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [{ ...input().comments[0], body: wrongSchemaBody }],
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      candidate_diagnostics: [
+        {
+          comment_url: receipt().commentUrl,
+          reason: "review_receipt_schema_invalid",
+        },
+      ],
+    });
+  });
+
+  it("U-GCRA-012a: 全typed失敗predicateを最初の原因へ一対一射影する", () => {
+    const canonical = receipt();
+    const buildCandidate = (overrides: Partial<ClaudePrReviewReceiptInput>) =>
+      buildClaudePrReviewReceipt({ ...receiptAsInput(canonical), ...overrides });
+    const candidateInput = (
+      candidate: ClaudePrReviewReceipt = canonical,
+      inputOverrides: Record<string, unknown> = {},
+      commentOverrides: Partial<{
+        html_url: string;
+        created_at: string;
+        updated_at: string;
+        body: string;
+      }> = {},
+    ) => {
+      const baseComment = input().comments[0];
+      return input({
+        ...inputOverrides,
+        comments: [
+          {
+            ...baseComment,
+            ...commentOverrides,
+            html_url: commentOverrides.html_url ?? candidate.commentUrl,
+            body: renderIndependentPrReviewComment(candidate),
+          },
+        ],
+      });
+    };
+
+    const malformedEnvelope = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      "{malformed",
+      "```",
+    ].join("\n");
+    const wrongSchema = {
+      ...canonical,
+      schemaVersion: "helix-claude-pr-review-receipt.v999",
+    } as unknown as ClaudePrReviewReceipt;
+    const { schemaVersion, receiptId, receiptDigest: _ignored, ...selfReviewBody } = canonical;
+    const selfReviewPayload = {
+      ...selfReviewBody,
+      schemaVersion,
+      authorRuntime: "claude",
+      reviewerRuntime: "claude",
+    };
+    const selfReview = {
+      ...selfReviewPayload,
+      receiptId,
+      receiptDigest: sha256Digest(canonicalJson(selfReviewPayload)),
+    } as unknown as ClaudePrReviewReceipt;
+    const missingCiRun = buildCandidate({
+      ciRunId: canonical.ciRunId + 1,
+      ciEvidenceGeneration: `run:${canonical.ciRunId + 1}:attempt:1:success`,
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
+    });
+    const repositoryMismatch = buildCandidate({
+      repository: "Other/Repo",
+      prUrl: "https://github.com/Other/Repo/pull/488",
+      commentUrl: "https://github.com/Other/Repo/pull/488#issuecomment-3",
+    });
+    const prMismatch = buildCandidate({
+      prNumber: 489,
+      prUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/489",
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/489#issuecomment-4",
+    });
+    const commentBindingMismatch = buildCandidate({
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-5",
+    });
+    const headMismatch = receipt(OTHER_HEAD);
+    const verdictMismatch = buildCandidate({ verdict: "block", blockerCount: 1 });
+    const ciClaimMismatch = buildCandidate({
+      ciConclusion: "failure",
+      ciEvidenceGeneration: `run:${canonical.ciRunId}:attempt:1:failure`,
+    });
+    const originalCiRun = input().ci_runs[0];
+    const newerSuccessfulCiRun = {
+      ...originalCiRun,
+      id: originalCiRun.id + 1,
+      updated_at: "2026-08-09T07:00:03.000Z",
+      status: "completed",
+      conclusion: "success",
+    } as const;
+
+    const cases = [
+      [
+        "envelope",
+        () => input({ comments: [{ ...input().comments[0], body: malformedEnvelope }] }),
+        "review_receipt_envelope_invalid",
+      ],
+      [
+        "schema",
+        () =>
+          input({
+            comments: [{ ...input().comments[0], body: renderClaudeReceiptEnvelope(wrongSchema) }],
+          }),
+        "review_receipt_schema_invalid",
+      ],
+      [
+        "independence",
+        () =>
+          input({
+            comments: [{ ...input().comments[0], body: renderClaudeReceiptEnvelope(selfReview) }],
+          }),
+        "review_receipt_independence_invalid",
+      ],
+      ["CI run missing", () => candidateInput(missingCiRun), "review_receipt_ci_run_missing"],
+      [
+        "repository",
+        () => candidateInput(repositoryMismatch),
+        "review_receipt_repository_mismatch",
+      ],
+      ["PR", () => candidateInput(prMismatch), "review_receipt_pr_mismatch"],
+      ["HEAD", () => candidateInput(headMismatch), "review_receipt_head_mismatch"],
+      ["verdict", () => candidateInput(verdictMismatch), "review_receipt_verdict_invalid"],
+      ["CI claim", () => candidateInput(ciClaimMismatch), "review_receipt_ci_claim_invalid"],
+      [
+        "DB provenance",
+        () => candidateInput(canonical, { current_db_receipt: {} }),
+        "review_receipt_db_provenance_invalid",
+      ],
+      [
+        "comment binding",
+        () => candidateInput(commentBindingMismatch, {}, { html_url: canonical.commentUrl }),
+        "review_receipt_comment_binding_invalid",
+      ],
+      [
+        "time order",
+        () =>
+          candidateInput(
+            canonical,
+            {},
+            {
+              created_at: "2026-08-09T07:00:02.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+            },
+          ),
+        "review_receipt_time_order_invalid",
+      ],
+      [
+        "CI provenance",
+        () =>
+          candidateInput(canonical, {
+            ci_runs: [{ ...originalCiRun, name: "other" }],
+          }),
+        "review_receipt_ci_provenance_invalid",
+      ],
+      [
+        "CI generation",
+        () =>
+          candidateInput(canonical, {
+            ci_runs: [newerSuccessfulCiRun, originalCiRun],
+          }),
+        "review_receipt_ci_generation_invalid",
+      ],
+    ] as const;
+
+    for (const [label, makeInput, reason] of cases) {
+      expect(evaluateGitHubCrossReviewAdmission(makeInput()), label).toMatchObject({
+        ok: false,
+        reasons: ["review_receipt_invalid_or_stale"],
+        candidate_diagnostics: [{ reason }],
+      });
+    }
+  });
+
+  it("U-GCRA-012b: invalid候補の診断がvalid exactly-one受理を相殺しない", () => {
+    const canonical = input().comments[0];
+    const malformed = {
+      ...canonical,
+      html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-99",
+      body: [
+        "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+        "```json",
+        "{malformed",
+        "```",
+      ].join("\n"),
+    };
+    expect(
+      evaluateGitHubCrossReviewAdmission(input({ comments: [malformed, canonical] })),
+    ).toMatchObject({
+      ok: true,
+      deferred: false,
+      receipt_digest: receipt().receiptDigest,
+      reasons: [],
+    });
+  });
+
   it("U-GCRA-008: historical v2 receiptをcurrent Ready admissionへ昇格しない", () => {
     expect(
       evaluateGitHubCrossReviewAdmission(
@@ -733,7 +1006,10 @@ describe("GitHub cross-review admission", () => {
           ],
         }),
       ),
-    ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
+    ).toMatchObject({
+      ok: false,
+      reasons: ["current_head_review_receipt_missing"],
+    });
   });
 
   it("U-GCRA-030: legacy v3 receiptはcurrent Ready admissionへ昇格しない", () => {
@@ -776,7 +1052,7 @@ describe("GitHub cross-review admission", () => {
       ),
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
     const failedClaim = buildClaudePrReviewReceipt({
-      ...receipt(),
+      ...receiptAsInput(receipt()),
       ciConclusion: "failure",
       ciEvidenceGeneration: "run:31299806333:attempt:1:failure",
       commentUrl: receipt().commentUrl,
@@ -852,7 +1128,7 @@ describe("GitHub cross-review admission", () => {
               updated_at: "2026-08-09T07:00:05.000Z",
               body: renderIndependentPrReviewComment(
                 buildClaudePrReviewReceipt({
-                  ...canonical,
+                  ...receiptAsInput(canonical),
                   ciRunId: newerSuccess.id,
                   ciEvidenceGeneration: `run:${newerSuccess.id}:attempt:${newerSuccess.attempt}:success`,
                   reviewedAt: "2026-08-09T07:00:04.000Z",
@@ -1074,6 +1350,10 @@ describe("GitHub cross-review admission", () => {
           ],
         }),
       ),
-    ).toMatchObject({ ok: false, reasons: ["current_head_review_receipt_missing"] });
+    ).toMatchObject({
+      ok: false,
+      reasons: ["review_receipt_invalid_or_stale"],
+      candidate_diagnostics: [{ reason: "review_receipt_independence_invalid" }],
+    });
   });
 });

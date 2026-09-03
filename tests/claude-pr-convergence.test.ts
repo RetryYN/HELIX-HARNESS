@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-474-claude-pr-db-receipt-binding / U-CPRCONV-004
 // PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025, U-CPRCONV-027
 // PLAN-RECOVERY-59-same-head-ci-review-rearm / U-CPRCONV-026
+// PLAN-RECOVERY-100-review-receipt-schema-boundary / U-CPRCONV-040
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
@@ -18,6 +19,8 @@ import {
   buildClaudePrReviewReceipt,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V2,
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3,
+  type ClaudePrReviewReceipt,
+  type ClaudePrReviewReceiptInput,
   claimClaudePrReviewReceiptSlot,
   dispatchMeasuredPrToClaude,
   evaluateClaudePrMerge,
@@ -68,6 +71,16 @@ const baseInput = {
   commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/149#issuecomment-123",
   reviewedAt: "2026-07-27T00:00:00.000Z",
 };
+
+function receiptAsInput(receipt: ClaudePrReviewReceipt): ClaudePrReviewReceiptInput {
+  const {
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...input
+  } = receipt;
+  return input;
+}
 
 function canonicalDbReceipt(overrides: Record<string, unknown> = {}) {
   return {
@@ -744,7 +757,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       );
 
       const conflict = buildClaudePrReviewReceipt({
-        ...codex,
+        ...receiptAsInput(codex),
         reviewedAt: "2026-07-27T00:00:01.000Z",
       });
       expect(() => persistClaudePrReviewReceipt(root, conflict)).toThrow("review_receipt_conflict");
@@ -977,6 +990,23 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         reviewedAt: "2999-01-01T00:00:00.000Z",
       }),
     ).toThrow("reviewed_at_future");
+  });
+
+  it("U-CPRCONV-040: producerとdecoderはunknown fieldを入口で拒否する", () => {
+    expect(() =>
+      buildClaudePrReviewReceipt({
+        ...baseInput,
+        schema_version: "helix-claude-pr-review-receipt.v4",
+        attacker_controlled: "must-not-survive",
+      } as typeof baseInput),
+    ).toThrow("receipt_input_fields_invalid");
+
+    expect(() =>
+      validateClaudePrReviewReceipt({
+        ...buildClaudePrReviewReceipt(baseInput),
+        schema_version: "helix-claude-pr-review-receipt.v4",
+      }),
+    ).toThrow("receipt_fields_invalid");
   });
 
   it("U-CPRCONV-029: v3はread-only互換でcurrent loadとcomment read-afterを通さない", () => {

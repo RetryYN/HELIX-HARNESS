@@ -103,6 +103,18 @@ Ready admissionは次の順序でfail-closeする。
    5 digestをreceipt fieldへexact束縛し、Kimi経路はprovenanceへsealされたlogical DB receiptとcanonical JSONで完全一致させる。
 7. valid receiptが0件または2件以上なら拒否し、1件だけならreceipt digestを返す。
 
+## 3.2 receipt schema境界
+
+Claude/Codex v4 receiptのproducerはschemaが認めたinput fieldのexact setを入口で検査し、unknown
+fieldを`receipt_input_fields_invalid`で拒否する。出力はinput objectをspreadせず、認めたfieldだけを
+明示的にprojectionする。current Claude receiptは`schemaVersion`、provider-neutral receiptは
+`schema_version`と`schemaVersion`のexact valueで識別し、単なるproperty presenceをdiscriminatorに
+してはならない。current Claude receiptにprovider-neutral fieldやその他unknown fieldが混入した場合は
+`receipt_fields_invalid`で拒否し、別schemaとして再解釈しない。
+
+`summary`は任意のcurrent fieldとして非空文字列だけを許可する。過去receiptは履歴として保持するが、
+unknown fieldを削ってcurrent receiptへ再封緘したものとして扱わない。
+
 ## 3.1 CI証跡生成世代の識別子
 
 Claude/Codex v4 receiptは、repository、PR、head SHA、reviewer runtimeに加えて、terminalな
@@ -133,6 +145,12 @@ merge refのSHAをreview・DB・test基準へ混在させない。push eventで�
 | `review_receipt_conflict` | valid receiptが複数存在する（単一runtime authored PR） | `U-GCRA-004` |
 | `mixed_author_dual_review_incomplete` | mixed著者PRで両runtimeの現HEAD receiptが揃っていない | `U-GCRA-011` |
 
+`review_receipt_invalid_or_stale`を返す場合、`candidate_diagnostics`へ候補comment URLと最初に失敗した
+predicateの型付きreasonを返す。reasonはenvelope、schema、独立性、CI run、repository、PR、HEAD、verdict、
+CI claim、DB provenance、comment binding、time order、CI provenance、CI generationを区別する。
+receipt本文、secret、provider session値は診断へ複製しない。valid候補がexactly oneならinvalid候補が併存しても
+そのvalid候補を採用し、valid候補が複数なら従来どおりconflictでfail-closeする（`U-GCRA-012`）。
+
 GitHub API失敗、pagination失敗、doctor失敗、JSON decode失敗はadapterの非0終了としてrequired jobへ伝播し、
 pure evaluatorの成功へ読み替えない。
 
@@ -158,9 +176,9 @@ logical DB doctorを再利用する。branch protection、release、GitHub環境
   "schema_version": "helix-design-reality-binding.v1",
   "declared_failure_codes": ["pr_not_open", "current_head_review_receipt_missing", "review_receipt_invalid_or_stale", "review_receipt_conflict", "mixed_author_dual_review_incomplete", "merge_not_observed", "observed_at_invalid", "candidate_commit_read_after_failed", "candidate_commit_mismatch", "merge_commit_mismatch", "reviewed_head_not_merge_parent", "reviewed_tree_not_merged_tree"],
   "assets": [
-    { "asset_id": "github-cross-review-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateGitHubCrossReviewAdmission", "source_digest": "sha256:ec0f527d7f9a9a4ef15fe5de011a35002e0a181f261eab3401bc5af09c681d42", "current_authority": true },
-    { "asset_id": "github-reviewed-merge-read-after", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateReviewedMergeReadAfter", "source_digest": "sha256:ec0f527d7f9a9a4ef15fe5de011a35002e0a181f261eab3401bc5af09c681d42", "current_authority": true },
-    { "asset_id": "github-reviewed-merge-receipt-persistence", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "persistReviewedMergeReadAfterReceipt", "source_digest": "sha256:ec0f527d7f9a9a4ef15fe5de011a35002e0a181f261eab3401bc5af09c681d42", "current_authority": true }
+    { "asset_id": "github-cross-review-admission", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateGitHubCrossReviewAdmission", "source_digest": "sha256:1e037307b1355b67bf466c887fd86d6b628ba22dd4e47484c6501123e8b1ee4f", "current_authority": true },
+    { "asset_id": "github-reviewed-merge-read-after", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "evaluateReviewedMergeReadAfter", "source_digest": "sha256:1e037307b1355b67bf466c887fd86d6b628ba22dd4e47484c6501123e8b1ee4f", "current_authority": true },
+    { "asset_id": "github-reviewed-merge-receipt-persistence", "classification": "existing_runtime", "artifact_path": "src/runtime/github-cross-review-admission.ts", "resource_kind": "typescript_export", "resource_name": "persistReviewedMergeReadAfterReceipt", "source_digest": "sha256:1e037307b1355b67bf466c887fd86d6b628ba22dd4e47484c6501123e8b1ee4f", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "pr_not_open", "reachability_mode": "executable_oracle", "source_path": "src/runtime/github-cross-review-admission.ts", "source_symbol": "evaluateGitHubCrossReviewAdmission", "test_path": "tests/github-cross-review-admission.test.ts", "oracle_id": "U-GCRA-004", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "pr_not_open", "mutation": { "remove_post_resolution_check": "if (input.state !== \"OPEN\") {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-024", "execution_helper": "executeGitHubCrossReviewMutationOracle" } },
