@@ -674,9 +674,6 @@ fail-close する。
 | U-DDDTDD-009 | unit-oracle-substance (IMP-083 残差) | L7 unit test-design の `U-XXX-NNN` 行 (末尾数字 = `U-ID` ヘッダ除外) の expected-behavior セルが空 / trivial (< 6 字) / skeleton marker (`-`/TODO/骨格 等) -> violation。substantive 行は非違反 (false-positive 回避)                              |
 | U-DDDTDD-010 | canonical source-boundary matrix     | `domain-boundary` は `module-boundary` と同じ共有 matrix を使い、`src/lint/*` importing `../gate/*` も violation になる                                                                                                                            |
 | U-DDDTDD-011 | mutation-oracle                      | confirmed かつ `tdd_red_required: true` または `mutation_oracle_required: true` の PLAN が、test locator / audit path / command と fail・kill signal を含む concrete `mutation_oracle_evidence` を欠く -> violation。placeholder evidence は非受理 |
-| U-DDDTDD-012 | mutation-oracle locator resolution   | 既存 test-design または PLAN の `oracle_id` と実在 test path を解決できる oracle ID は、明示 path と同等の locator として受理する |
-| U-DDDTDD-013 | mutation-oracle unknown ID            | test path／test-designへ解決できない oracle IDだけを locator とする evidence は、受理せず unresolved ID と受理形式を診断する |
-| U-DDDTDD-014 | mutation-oracle derived inventory     | `loadDddTddInputs` が既存 PLAN／test-designから決定的な locator inventory を導出し、新しい意味authorityや無検証のID集合を作らない |
 
 ### §1.16.2 U-READABILITY (freeze doc readability lint 検査、A-110 / IMP-089)
 
@@ -813,7 +810,7 @@ fail-close する。
 - **session-log.md §3 関数 (resolveActivePlan/recordEvent/compressPlanDigest/onStop/onSessionStart) + CLI hook entrypoints → U-SLOG-001〜007** (add-feature 差分、PLAN-L6-03。孤児 0)
 - **forced-stop-feedback.md §2.3 関数 (detectDanglingTurn/recordForcedStop/classifyFeedback/recordFeedback/pendingRecoveryProposals/scanDanglingStops/emitClassifyRequest) → U-FSF-001〜007** (add-feature 差分、PLAN-L6-04。孤児 0)
 - **setup-solo-team.md §2.3 契約関数 7 本 (detectProjectScale/recommendPhase/planSetup/emitSetup/recordSetupState/applyBranchProtection/runSetup) + project bootstrap addendum (planHelixProjectSetup/runHelixProjectSetup) → U-SETUP-001〜007 / 009〜022** (add-feature 差分、PLAN-L6-05。renderArtifacts は emitSetup 内部 helper = U-SETUP-004 に内包。孤児 0)
-- **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜014** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT + canonical source-boundary matrix + mutation locator resolution の機械検出。doctor hard guard。孤児 0)
+- **module-drift.md DDD/TDD strictness addendum (analyzeDddTddRules/loadDddTddInputs/dddTddRulesMessages/checkDddTddRules) → U-DDDTDD-001〜011** (DDD/TDD SSoT + workflow placement + Red-first evidence + test oracle + integration GWT + canonical source-boundary matrix の機械検出。doctor hard guard。孤児 0)
 - **team.ts §2.2 schema / 関数 (teamDefinitionSchema/mustSerialize) + team/launch-policy.ts → U-TEAM-001〜003** (add-feature 差分、IMP-050。孤児 0)
 - **backfill-pairing.md §2.3 関数 (parseRequires/parseGlossaryTerms/normalizeTerm/parsePlan/analyzeBackfill/loadBackfillDocs/backfillMessages/checkBackfill) → U-BACKFILL-001〜006** (add-feature 差分、IMP-051。normalizeTerm は parseGlossaryTerms/analyzeBackfill の内部パス経由で被覆。checkBackfill は doctor/index.ts の try-catch ラッパーで U-BACKFILL-006 実 repo ガードに内包。孤児 0)
 - **vmodel-pair-freeze.md §1-§3 関数 (loadPairDocs/analyzePairFreeze/pairFreezeMessages/lintVmodel) → U-VPAIR-001〜006** (add-feature 差分、PLAN-L7-11/IMP-067。lintVmodel は loadPairDocs→analyzePairFreeze→pairFreezeMessages の orchestration で U-VPAIR-005 実 repo ガードに内包。孤児 0)

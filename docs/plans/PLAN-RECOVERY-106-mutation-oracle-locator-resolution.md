@@ -52,16 +52,17 @@ dependencies:
     - "issue:1504"
   blocks: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — mutation oracle locator欠落の再発経路と既存authority境界の確認" }
   - { role: se, slot_label: "SE — 既存PLAN／test-designからのlocator導出" }
   - { role: qa, slot_label: "QA — unknown oracle IDと診断文の反例" }
   - { role: tl, slot_label: "TL — 既存mutation-oracle契約とauthority境界の確認" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-106-mutation-oracle-locator-resolution.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/ddd-tdd-rules.ts, artifact_type: source_module }
   - { artifact_path: tests/ddd-tdd-rules.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/ddd-tdd-rules.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/templates/plan/impl/template.md, artifact_type: markdown_doc }
   - { artifact_path: docs/templates/plan/reverse/template.md, artifact_type: markdown_doc }
@@ -88,7 +89,7 @@ mutation実体、kill/fail/red signal、confirmed PLANの必須条件は維持�
 1. 既存PLANの `verification_bindings`／`generates` と既存test-design表からlocator inventoryを導出する。
 2. `oracle_id → 実在test path／test-design文書` が解決できる場合だけ、明示locatorと同等に扱う。
 3. 解決できないoracle ID、locator欠落、kill/fail/red signal欠落を別々に診断する。
-4. 受理形式をPLAN template、DDD/TDD正本、L7 test-designへ反映する。
+4. 受理形式をPLAN template、DDD/TDD正本、canonical L8 test-designへ反映する。
 
 ## 完了条件
 
