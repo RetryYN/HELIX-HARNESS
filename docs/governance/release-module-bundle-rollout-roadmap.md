@@ -5,11 +5,23 @@
 L3正本は`docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md`、L10 pairは
 `docs/test-design/helix/release-module-bundle-composition-acceptance.md`である。本書は実装順projectionであり意味正本ではない。
 
+## Functional Release Slice candidate（未承認projection）
+
+`PLAN-L3-83-functional-release-slice-composition` と Issue #1494 は、既存のModule／Bundle要件を置き換えず、
+`Capability / Behavior Contract → Functional Release Slice → Release Module → Bundle` の中間昇格単位を提案する。
+候補の意味authorityは `docs/governance/candidates/functional-release-slice-requests.md`、
+`docs/governance/candidates/functional-release-slice-requirements.md`、
+`docs/governance/candidates/functional-release-slice-acceptance.md` である。
+L3承認、L10対、#397 Requirement IR admissionまでは、runtime、DB、CLI、generated catalog、tag、publish、cutoverへ投影しない。
+SliceはModule／Bundle、workflow、route、drive、execution mode、provider、repositoryとは別軸であり、既存11 Module／8 Bundleの
+意味を変更しない。承認後の差分対象はRLS-02／03／05／09／11／12／13に限定する。
+
 ## Issue依存グラフ
 
 | 順序 | Issue | 責務 | 前提 |
 |---:|---:|---|---|
 | 1 | #1074 | RLS-01 棚卸し／authority map | #1073 |
+| 1.5 | #1494 | Functional Release Slice candidate／昇格単位のL1・L3・L10候補 | #1073、#1074（L3承認・#397 IR admission後に#1075へ接続） |
 | 2 | #1075 | RLS-02 schema／lifecycle | #1074 |
 | 3 | #1076 | RLS-03 path ownership | #1075 |
 | 4 | #1077 | RLS-04 dependency／compatibility | #1076 |
@@ -25,6 +37,15 @@ L3正本は`docs/design/helix/L3-requirements/release-module-bundle-composition-
 
 依存は意味成立の正規順である。実装はownership確定後に、相互にfile ownershipが重ならないstatic verifier、consumer runner、
 CI planner等を並行化できる。新規module repositoryや別builderを先行作成しない。
+
+### Candidate Wave 0.x（#1494承認後のみ）
+
+1. Wave 0.1: #1074のcurrent release path／Module inventoryを確定する。
+2. Wave 0.2: `FunctionalReleaseSliceV1` registry、channel、qualification packet、Module／Bundle差分をshadowで生成する。
+3. Wave 0.3: Slice exact setのshadow builder、CI impact closure、clean consumer parityを検証する。
+
+この0.xは既存Wave 0の意味を変更せず、candidateがcanonical promotionされた場合にだけRLS-02以降へ接続する。
+Sliceのpreview／stableをBundleへ暗黙包含せず、unknown／ambiguous／staleはfullまたはfail-closeへ送る。
 
 ## release wave計画
 
