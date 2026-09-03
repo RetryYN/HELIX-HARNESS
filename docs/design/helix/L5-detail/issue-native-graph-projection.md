@@ -1,3 +1,16 @@
+---
+title: "Issue native graph projection 詳細設計"
+canonical_layer_scheme: L1-L12
+layer: L5
+artifact_type: detail_design
+status: confirmed
+created: 2026-09-03
+updated: 2026-09-03
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-103-issue-native-graph-projection.md
+pair_artifact: docs/test-design/helix/L8-issue-native-graph-projection-unit-test-design.md
+---
+
 # Issue native graph projection 詳細設計
 
 ## 1. 目的
