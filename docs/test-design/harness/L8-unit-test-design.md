@@ -83,7 +83,7 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | skill scaffold / catalog 品質 | PLAN-L7-420 / `function-spec.md` skill品質追補 | `U-SKQUAL-001..006`。生成時衝突、本文実質、近似重複、SKILL_MAP双方向同期、doctor hard gateをfail-closeで検証する |
 | ZIP 設計 catalog coverage | PLAN-L7-421 / `orchestration-memory.md` §2.3.1 | `U-DESIGNCOV-001..014`。ZIP 122 trace、tailoring理由、artifact実在、catalog外追加、baseline pin、path traversal、doctor hard gateをfail-closeで検証する |
 | development model設計admission Reverse | PLAN-REVERSE-492 / AUTH-SURFACE-RUNTIME-001 | `U-REVERSE-492-001`。Reverse PLAN自身をbehavior contract、reuse strategy、pair artifact、generated oracleのexact tupleへ束縛し、名前だけのdesign backfillを拒否する |
-| PLAN固有Vペア4点binding | PLAN-L6-65 / `plan-descent-specific-parent-binding.md` §5 | `U-PSPB-006..027`。PLAN ID・L6 parent・L8 oracle・生成test pathを同一tupleへ結合し、authority semantic pin、解消PLAN証拠pin、全generated test逆包含で偽Vペアをfail-closeする |
+| PLAN固有Vペア4点binding | PLAN-L6-65 / `plan-descent-specific-parent-binding.md` §5 | `U-PSPB-006..029`。PLAN ID・L6 parent・L8 oracle・生成test pathを同一tupleへ結合し、authority semantic pin、解消PLAN証拠pin、全generated test逆包含で偽Vペアをfail-closeする |
 | FE roster/model generation | PLAN-L6-66 / `docs/design/harness/L6-function-design/fe-roster-orchestration.md` | `U-FEROSTER-001..003`。Opus lead・Sonnet worker・Fable advisory-only、現行Sonnet世代、legacy authority解消を固有testへ降下する |
 | 開発CI bounded-time | PLAN-L6-67 / `docs/design/harness/L6-function-design/development-ci-bounded-time.md` | `U-CITIME-001..003`。required job上限、全回帰step上限、fail-closeと後続gate同居を固有testへ降下する |
 | active PLAN選択整合性 | PLAN-L6-68 / `docs/design/harness/L6-function-design/active-plan-selection.md` | `U-APSEL-001..007`。exact canonical ID受理、截断候補提示、registry検証不能fail-close、全writer集約、watermark以後orphan 0、CLI integrationを固有testへ降下する |
@@ -217,16 +217,18 @@ L8 は単体テスト設計の正本であり、L9 結合テスト設計とは�
 | U-PSPB-015 | 共有L8 | 別oracleへscopeされた複数PLANは同じL8/testを共有でき、family要約だけでは充足しない | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-016 | exact fingerprint ratchet | baseline内exact findingだけ免除し、同じPLANの新reason/detailはred、解消は減少としてpass | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-017 | baseline authority | immutable initial追記、initial外tombstone、再出現、digest drift、重複、非canonical順をfail-closeする | `tests/plan-descent-specific-parent-binding.test.ts` |
-| U-PSPB-018 | 対象境界 | draftを含むimpl/add-implを検査し、archived/DISCOVERYは対象外とする | `tests/plan-descent-specific-parent-binding.test.ts` |
+| U-PSPB-018 | implementation対象境界 | draftを含むimpl/add-implを検査し、archived/DISCOVERYは対象外とする | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-019 | lint/doctor配線 | plan lint単一/全走査とdoctor hard gateが同じanalyzer結果をANDする | `tests/plan-descent-specific-parent-binding.test.ts`, `tests/slow/doctor.test.ts` |
 | U-PSPB-020 | real repository | 実repoに新規違反0、PLAN-L7-419とgate自身が永久baselineなしで4点bindingを満たす | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-021 | authority semantic pin | legacy exemptionのPLAN本文・意味frontmatter・未知field・agent slot変更を`baseline_plan_semantic_drift`で拒否し、review/owner/updatedだけの変更は許容する。key/path順・CRLF/NFC正規化は同digestとする | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-022 | authority v3 migration | 旧v1 fingerprint集合の独立identity pinを維持した286 semantic pin backfill、full-entry genesis digest、schema downgrade・pin改竄・tombstone chain driftを拒否する | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-023 | generated test全被覆 | non-empty bindingを持つPLANの全`generates.test_code`がbinding test pathに含まれなければ`generated_test_unbound`とする | `tests/plan-descent-specific-parent-binding.test.ts` |
-| U-PSPB-024 | doctor hard gate | production authority v3と全repo snapshotをdoctorが同一analyzerでfail-close評価する | `tests/slow/doctor.test.ts` |
+| U-PSPB-024 | doctor hard gate | production authority v4と全repo snapshotをdoctorが同一analyzerでfail-close評価する | `tests/slow/doctor.test.ts` |
 | U-PSPB-025 | authority解消証拠 | 無関係/confirmed/対象不一致/config生成欠落・型偽装/review欠落・偽verdict・不完全command・同一model/後改変のresolution PLANを拒否し、completed typed metadata + distinct-model green reviewだけをtombstoneへsemantic pinする | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-026 | authority解消loader統合 | repo loaderが修正済target PLAN・completed resolution PLAN・non-zero tombstoneを同一snapshotでgreenにし、resolution PLAN後改変をhard failする | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-PSPB-027 | authority解消metadata schema | `resolves_authority`のauthority path、SHA-256 fingerprint、typed target PLAN ID、reasonをstrict schemaで拘束し、未知fieldも拒否する | `tests/frontmatter.test.ts` |
+| U-PSPB-028 | Recovery eligibility | draft／confirmed／completedを含む全Recovery PLANを検査し、eligibilityからRecoveryを除去するmutationをredにする。archivedだけを対象外とする | `tests/plan-descent-specific-parent-binding.test.ts` |
+| U-PSPB-029 | Recovery scoped baseline | 対象化delta 260件、scope digest、reason別件数をcode-side pinへ一致させ、件数上方修正、scope欠落、cross-scope ownership 3件欠落を拒否する | `tests/plan-descent-specific-parent-binding.test.ts` |
 | U-FEROSTER-001 | FE topology責任境界 | fe-leadがOpus lead/reviewer、fe-uiがSonnet worker、両者allowlist、advisor-fableが助言のみで実装しないことを固定する | `tests/fe-roster-orchestration.test.ts` |
 | U-FEROSTER-002 | Sonnet世代SSoT | sonnet agent、team model policy、現行pricingがclaude-sonnet-5へ揃い、旧4-6 pricingは履歴用に保持されることを固定する | `tests/fe-roster-orchestration.test.ts` |
 | U-FEROSTER-003 | legacy authority解消 | PLAN-L7-309の固有Vペア補修をcompleted resolution PLANとv3 tombstoneへ結合し、active exemptionを1件減らす | `tests/fe-roster-orchestration.test.ts` |

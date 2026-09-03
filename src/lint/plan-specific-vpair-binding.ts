@@ -13,7 +13,7 @@ import {
 } from "./review-evidence";
 
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA =
-  "plan-specific-vpair-binding-authority.v3" as const;
+  "plan-specific-vpair-binding-authority.v4" as const;
 export const PLAN_SPECIFIC_VPAIR_AUTHORITY_PATH =
   "config/plan-specific-vpair-binding-authority.json" as const;
 export const PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST =
@@ -22,6 +22,19 @@ export const PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST =
   "sha256:8e54f91491afb4a2fee00704b0c3acaa72174a8e4e57f3ea00a010b9e23e3e31";
 export const PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST =
   "sha256:d667c81fd7ef1d75408f53b3089f614f4cc911c6c75888072d1f7e4115f78174";
+export const PLAN_SPECIFIC_VPAIR_RECOVERY_INITIAL_DIGEST =
+  "sha256:c2a56e964e2a5bd714c1a908610fc6582fb9e66d4fd915d1f26ecdf34e558281";
+export const PLAN_SPECIFIC_VPAIR_RECOVERY_TERMINAL_DIGEST =
+  "sha256:c2a56e964e2a5bd714c1a908610fc6582fb9e66d4fd915d1f26ecdf34e558281";
+export const PLAN_SPECIFIC_VPAIR_RECOVERY_REASON_BASELINE = {
+  verification_bindings_absent: 36,
+  oracle_not_declared: 99,
+  plan_citation_missing: 62,
+  oracle_citation_missing: 21,
+  generated_test_unbound: 30,
+  test_not_generated: 3,
+  oracle_owned_by_multiple_plans: 9,
+} as const;
 
 export type PlanSpecificVpairReason =
   | "verification_bindings_absent"
@@ -114,6 +127,14 @@ export interface PlanSpecificVpairAuthority {
   schemaVersion: typeof PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA;
   initialAuthority: PlanSpecificVpairAuthorityInitial[];
   resolvedTombstones: PlanSpecificVpairAuthorityTombstone[];
+  recoveryAuthority: PlanSpecificVpairRecoveryAuthority;
+}
+
+export interface PlanSpecificVpairRecoveryAuthority {
+  eligibleKinds: ["recovery"];
+  reasonBaseline: Record<string, number>;
+  initialAuthority: PlanSpecificVpairAuthorityInitial[];
+  resolvedTombstones: PlanSpecificVpairAuthorityTombstone[];
 }
 
 export interface PlanSpecificVpairBindingInput {
@@ -125,6 +146,9 @@ export interface PlanSpecificVpairBindingInput {
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
   expectedLegacyIdentityDigest?: string;
+  expectedRecoveryInitialDigest?: string;
+  expectedRecoveryTerminalDigest?: string;
+  expectedRecoveryReasonBaseline?: Readonly<Record<string, number>>;
   /** resolution PLANの証拠snapshot。repo adapterは全PLANから構築する。 */
   resolutionPlans?: ReadonlyMap<string, PlanSpecificVpairPlan>;
 }
@@ -545,8 +569,9 @@ function declaredTestPaths(plan: PlanSpecificVpairPlan): Set<string> {
   return new Set([...generatedTestPaths(plan), ...testPaths(plan, "modifies")]);
 }
 
-function validateAuthority(input: {
-  raw: unknown;
+function validateAuthorityScope(input: {
+  initialAuthority: PlanSpecificVpairAuthorityInitial[];
+  resolvedTombstones: PlanSpecificVpairAuthorityTombstone[];
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
   expectedLegacyIdentityDigest?: string;
@@ -554,28 +579,13 @@ function validateAuthority(input: {
   plansById: ReadonlyMap<string, PlanSpecificVpairPlan>;
   rawFindings: readonly PlanSpecificVpairFinding[];
 }): {
-  authority: PlanSpecificVpairAuthority | null;
+  initialAuthority: PlanSpecificVpairAuthorityInitial[] | null;
   error: string | null;
   resolved: Set<string>;
 } {
-  if (!input.raw || typeof input.raw !== "object" || Array.isArray(input.raw))
-    return { authority: null, error: "authority missing", resolved: new Set() };
-  const authority = input.raw as PlanSpecificVpairAuthority;
+  const fingerprints = input.initialAuthority.map((entry) => entry?.fingerprint);
   if (
-    Object.keys(authority).sort().join(",") !==
-      "initialAuthority,resolvedTombstones,schemaVersion" ||
-    authority.schemaVersion !== PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA ||
-    !Array.isArray(authority.initialAuthority) ||
-    !Array.isArray(authority.resolvedTombstones)
-  )
-    return {
-      authority: null,
-      error: "authority schema invalid",
-      resolved: new Set(),
-    };
-  const fingerprints = authority.initialAuthority.map((entry) => entry?.fingerprint);
-  if (
-    authority.initialAuthority.some(
+    input.initialAuthority.some(
       (entry) =>
         !entry ||
         Object.keys(entry).sort().join(",") !==
@@ -592,31 +602,31 @@ function validateAuthority(input: {
     JSON.stringify(fingerprints) !== JSON.stringify([...fingerprints].sort())
   )
     return {
-      authority: null,
+      initialAuthority: null,
       error: "initial authority is noncanonical",
       resolved: new Set(),
     };
-  const initialDigest = authorityInitialDigest(authority.initialAuthority);
-  const legacyIdentityDigest = authorityLegacyIdentityDigest(authority.initialAuthority);
+  const initialDigest = authorityInitialDigest(input.initialAuthority);
+  const legacyIdentityDigest = authorityLegacyIdentityDigest(input.initialAuthority);
   if (
     input.expectedLegacyIdentityDigest &&
     legacyIdentityDigest !== input.expectedLegacyIdentityDigest
   )
     return {
-      authority: null,
+      initialAuthority: null,
       error: "legacy authority identity drift",
       resolved: new Set(),
     };
   if (input.expectedInitialDigest && initialDigest !== input.expectedInitialDigest)
     return {
-      authority: null,
+      initialAuthority: null,
       error: "initial authority digest drift",
       resolved: new Set(),
     };
   let previous = initialDigest;
   const resolved = new Set<string>();
-  for (const tombstone of authority.resolvedTombstones) {
-    const initialEntry = authority.initialAuthority.find(
+  for (const tombstone of input.resolvedTombstones) {
+    const initialEntry = input.initialAuthority.find(
       (entry) => entry.fingerprint === tombstone?.fingerprint,
     );
     if (
@@ -640,7 +650,7 @@ function validateAuthority(input: {
       tombstone.entry_digest !== authorityTombstoneDigest(previous, tombstone)
     )
       return {
-        authority: null,
+        initialAuthority: null,
         error: "resolved tombstone chain invalid",
         resolved: new Set(),
       };
@@ -649,15 +659,113 @@ function validateAuthority(input: {
   }
   if (input.expectedTerminalDigest && previous !== input.expectedTerminalDigest)
     return {
-      authority: null,
+      initialAuthority: null,
       error: "terminal authority digest drift",
       resolved: new Set(),
     };
-  return { authority, error: null, resolved };
+  return { initialAuthority: input.initialAuthority, error: null, resolved };
+}
+
+function validateAuthority(input: {
+  raw: unknown;
+  expectedInitialDigest?: string;
+  expectedTerminalDigest?: string;
+  expectedLegacyIdentityDigest?: string;
+  expectedRecoveryInitialDigest?: string;
+  expectedRecoveryTerminalDigest?: string;
+  expectedRecoveryReasonBaseline?: Readonly<Record<string, number>>;
+  resolutionPlans?: ReadonlyMap<string, PlanSpecificVpairPlan>;
+  plansById: ReadonlyMap<string, PlanSpecificVpairPlan>;
+  rawFindings: readonly PlanSpecificVpairFinding[];
+}): {
+  authority: PlanSpecificVpairAuthority | null;
+  error: string | null;
+  resolved: Set<string>;
+  initial: PlanSpecificVpairAuthorityInitial[];
+} {
+  const invalid = (error: string) => ({
+    authority: null,
+    error,
+    resolved: new Set<string>(),
+    initial: [],
+  });
+  if (!input.raw || typeof input.raw !== "object" || Array.isArray(input.raw))
+    return invalid("authority missing");
+  const authority = input.raw as PlanSpecificVpairAuthority;
+  if (
+    Object.keys(authority).sort().join(",") !==
+      "initialAuthority,recoveryAuthority,resolvedTombstones,schemaVersion" ||
+    authority.schemaVersion !== PLAN_SPECIFIC_VPAIR_AUTHORITY_SCHEMA ||
+    !Array.isArray(authority.initialAuthority) ||
+    !Array.isArray(authority.resolvedTombstones) ||
+    !authority.recoveryAuthority ||
+    typeof authority.recoveryAuthority !== "object" ||
+    Array.isArray(authority.recoveryAuthority) ||
+    Object.keys(authority.recoveryAuthority).sort().join(",") !==
+      "eligibleKinds,initialAuthority,reasonBaseline,resolvedTombstones" ||
+    JSON.stringify(authority.recoveryAuthority.eligibleKinds) !== JSON.stringify(["recovery"]) ||
+    !Array.isArray(authority.recoveryAuthority.initialAuthority) ||
+    !Array.isArray(authority.recoveryAuthority.resolvedTombstones)
+  )
+    return invalid("authority schema invalid");
+  const implementation = validateAuthorityScope({
+    initialAuthority: authority.initialAuthority,
+    resolvedTombstones: authority.resolvedTombstones,
+    expectedInitialDigest: input.expectedInitialDigest,
+    expectedTerminalDigest: input.expectedTerminalDigest,
+    expectedLegacyIdentityDigest: input.expectedLegacyIdentityDigest,
+    resolutionPlans: input.resolutionPlans,
+    plansById: input.plansById,
+    rawFindings: input.rawFindings,
+  });
+  if (implementation.error) return invalid(`implementation scope: ${implementation.error}`);
+  const recovery = validateAuthorityScope({
+    initialAuthority: authority.recoveryAuthority.initialAuthority,
+    resolvedTombstones: authority.recoveryAuthority.resolvedTombstones,
+    expectedInitialDigest: input.expectedRecoveryInitialDigest,
+    expectedTerminalDigest: input.expectedRecoveryTerminalDigest,
+    resolutionPlans: input.resolutionPlans,
+    plansById: input.plansById,
+    rawFindings: input.rawFindings,
+  });
+  if (recovery.error) return invalid(`recovery scope: ${recovery.error}`);
+  const actualReasonBaseline = Object.fromEntries(
+    [...PLAN_SPECIFIC_VPAIR_REASONS]
+      .map(
+        (reason) =>
+          [
+            reason,
+            authority.recoveryAuthority.initialAuthority.filter((entry) => entry.reason === reason)
+              .length,
+          ] as const,
+      )
+      .filter(([, count]) => count > 0),
+  );
+  const canonicalReasonBaseline = (value: Readonly<Record<string, number>>) =>
+    JSON.stringify(
+      Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b))),
+    );
+  if (
+    canonicalReasonBaseline(authority.recoveryAuthority.reasonBaseline) !==
+      canonicalReasonBaseline(actualReasonBaseline) ||
+    (input.expectedRecoveryReasonBaseline &&
+      canonicalReasonBaseline(authority.recoveryAuthority.reasonBaseline) !==
+        canonicalReasonBaseline(input.expectedRecoveryReasonBaseline))
+  )
+    return invalid("recovery scope: reason baseline drift");
+  return {
+    authority,
+    error: null,
+    resolved: new Set([...implementation.resolved, ...recovery.resolved]),
+    initial: [...authority.initialAuthority, ...authority.recoveryAuthority.initialAuthority],
+  };
 }
 
 function isEligiblePlan(plan: PlanSpecificVpairPlan): boolean {
-  return (plan.kind === "impl" || plan.kind === "add-impl") && plan.status !== "archived";
+  return (
+    (plan.kind === "impl" || plan.kind === "add-impl" || plan.kind === "recovery") &&
+    plan.status !== "archived"
+  );
 }
 
 const PLAN_SPECIFIC_VPAIR_REASONS = new Set<PlanSpecificVpairReason>([
@@ -822,6 +930,9 @@ export function analyzePlanSpecificVpairBindings(
       expectedInitialDigest: input.expectedInitialDigest,
       expectedTerminalDigest: input.expectedTerminalDigest,
       expectedLegacyIdentityDigest: input.expectedLegacyIdentityDigest,
+      expectedRecoveryInitialDigest: input.expectedRecoveryInitialDigest,
+      expectedRecoveryTerminalDigest: input.expectedRecoveryTerminalDigest,
+      expectedRecoveryReasonBaseline: input.expectedRecoveryReasonBaseline,
       resolutionPlans: input.resolutionPlans,
       plansById: activePlansById,
       rawFindings: currentFindings,
@@ -830,10 +941,9 @@ export function analyzePlanSpecificVpairBindings(
       currentFindings.push(finding("<authority>", "baseline_authority_invalid", authority.error));
   }
   const resolved = authority?.resolved ?? new Set<string>();
-  const initial = new Set(
-    authority?.authority?.initialAuthority.map((entry) => entry.fingerprint) ?? [],
-  );
-  for (const entry of authority?.authority?.initialAuthority ?? []) {
+  const initialEntries = authority?.initial ?? [];
+  const initial = new Set(initialEntries.map((entry) => entry.fingerprint));
+  for (const entry of initialEntries) {
     if (resolved.has(entry.fingerprint)) continue;
     const plan = activePlansById.get(entry.plan_id);
     if (!plan) continue;
@@ -887,6 +997,9 @@ export interface PlanSpecificVpairNodeLoaderOptions {
   expectedInitialDigest?: string;
   expectedTerminalDigest?: string;
   expectedLegacyIdentityDigest?: string;
+  expectedRecoveryInitialDigest?: string;
+  expectedRecoveryTerminalDigest?: string;
+  expectedRecoveryReasonBaseline?: Readonly<Record<string, number>>;
   resolutionPlans?: ReadonlyMap<string, PlanSpecificVpairPlan>;
 }
 
@@ -952,6 +1065,9 @@ export function loadPlanSpecificVpairBindingInputFromRepo(
     expectedInitialDigest?: string;
     expectedTerminalDigest?: string;
     expectedLegacyIdentityDigest?: string;
+    expectedRecoveryInitialDigest?: string;
+    expectedRecoveryTerminalDigest?: string;
+    expectedRecoveryReasonBaseline?: Readonly<Record<string, number>>;
     loadAuthority?: boolean;
   } = {},
 ): PlanSpecificVpairBindingInput {
@@ -1032,6 +1148,9 @@ export function checkPlanSpecificVpairBindings(repoRoot: string): {
         expectedInitialDigest: PLAN_SPECIFIC_VPAIR_INITIAL_DIGEST,
         expectedTerminalDigest: PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST,
         expectedLegacyIdentityDigest: PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
+        expectedRecoveryInitialDigest: PLAN_SPECIFIC_VPAIR_RECOVERY_INITIAL_DIGEST,
+        expectedRecoveryTerminalDigest: PLAN_SPECIFIC_VPAIR_RECOVERY_TERMINAL_DIGEST,
+        expectedRecoveryReasonBaseline: PLAN_SPECIFIC_VPAIR_RECOVERY_REASON_BASELINE,
       }),
     );
     return { ok: result.ok, messages: planSpecificVpairBindingMessages(result), result };

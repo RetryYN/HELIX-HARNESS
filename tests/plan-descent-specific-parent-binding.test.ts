@@ -12,6 +12,8 @@ import {
   findingFingerprint,
   loadPlanSpecificVpairBindingInputFromRepo,
   PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
+  PLAN_SPECIFIC_VPAIR_RECOVERY_INITIAL_DIGEST,
+  PLAN_SPECIFIC_VPAIR_RECOVERY_REASON_BASELINE,
   type PlanSpecificVpairAuthority,
   type PlanSpecificVpairBindingInput,
   type PlanSpecificVpairPlan,
@@ -28,6 +30,12 @@ const parent = "docs/design/harness/L6-function-design/example.md";
 const pair = "docs/test-design/harness/L8-unit-test-design.md";
 const testPath = "tests/example.test.ts";
 const oracle = "U-PSPB-006";
+const emptyRecoveryAuthority = (): PlanSpecificVpairAuthority["recoveryAuthority"] => ({
+  eligibleKinds: ["recovery"],
+  reasonBaseline: {},
+  initialAuthority: [],
+  resolvedTombstones: [],
+});
 const table = (id = oracle, path = testPath) =>
   `| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| ${id} | 対象 | 反例 | \`${path}\` |`;
 const plan = (overrides: Partial<PlanSpecificVpairPlan> = {}): PlanSpecificVpairPlan => ({
@@ -379,9 +387,10 @@ describe("PLAN固有Vペアbinding", () => {
     if (!base) return;
     const initial = [authorityEntry(base, plan({ verification_bindings: [] }))];
     const authority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v3",
+      schemaVersion: "plan-specific-vpair-binding-authority.v4",
       initialAuthority: initial,
       resolvedTombstones: [],
+      recoveryAuthority: emptyRecoveryAuthority(),
     };
     expect(
       analyzePlanSpecificVpairBindings(
@@ -416,9 +425,10 @@ describe("PLAN固有Vペアbinding", () => {
     };
     tombstone.entry_digest = authorityTombstoneDigest(genesis, tombstone);
     const authority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v3",
+      schemaVersion: "plan-specific-vpair-binding-authority.v4",
       initialAuthority: initial,
       resolvedTombstones: [tombstone],
+      recoveryAuthority: emptyRecoveryAuthority(),
     };
     const valid = input({
       plans: [plan(), resolution],
@@ -440,7 +450,7 @@ describe("PLAN固有Vペアbinding", () => {
       detail: null,
     };
     const unusedAuthority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v3",
+      schemaVersion: "plan-specific-vpair-binding-authority.v4",
       initialAuthority: [
         authorityEntry(
           unusedBase,
@@ -452,6 +462,7 @@ describe("PLAN固有Vペアbinding", () => {
         ),
       ],
       resolvedTombstones: [],
+      recoveryAuthority: emptyRecoveryAuthority(),
     };
     expect(reasons(input({ authority: unusedAuthority }))).toContain("baseline_authority_invalid");
 
@@ -514,9 +525,10 @@ describe("PLAN固有Vペアbinding", () => {
     };
     const initial = [authorityEntry(absent, legacyPlan)];
     const authority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v3",
+      schemaVersion: "plan-specific-vpair-binding-authority.v4",
       initialAuthority: initial,
       resolvedTombstones: [],
+      recoveryAuthority: emptyRecoveryAuthority(),
     };
     const pinned = input({ plans: [legacyPlan], authority });
     expect(analyzePlanSpecificVpairBindings(pinned).ok).toBe(true);
@@ -606,9 +618,10 @@ describe("PLAN固有Vペアbinding", () => {
     };
     tombstone.entry_digest = authorityTombstoneDigest(genesis, tombstone);
     const authority: PlanSpecificVpairAuthority = {
-      schemaVersion: "plan-specific-vpair-binding-authority.v3",
+      schemaVersion: "plan-specific-vpair-binding-authority.v4",
       initialAuthority: initial,
       resolvedTombstones: [tombstone],
+      recoveryAuthority: emptyRecoveryAuthority(),
     };
     const migrated = input({
       plans: [plan(), resolution],
@@ -667,9 +680,10 @@ describe("PLAN固有Vペアbinding", () => {
         input({
           plans,
           authority: {
-            schemaVersion: "plan-specific-vpair-binding-authority.v3",
+            schemaVersion: "plan-specific-vpair-binding-authority.v4",
             initialAuthority: [entry],
             resolvedTombstones: [tombstone],
+            recoveryAuthority: emptyRecoveryAuthority(),
           },
           expectedInitialDigest: genesis,
           expectedTerminalDigest: tombstone.entry_digest,
@@ -798,9 +812,10 @@ describe("PLAN固有Vペアbinding", () => {
         input({
           plans: [plan(), changedAfterTombstone],
           authority: {
-            schemaVersion: "plan-specific-vpair-binding-authority.v3",
+            schemaVersion: "plan-specific-vpair-binding-authority.v4",
             initialAuthority: [entry],
             resolvedTombstones: [tombstone],
+            recoveryAuthority: emptyRecoveryAuthority(),
           },
           expectedTerminalDigest: tombstone.entry_digest,
           resolutionPlans: new Map([[String(valid.plan_id), changedAfterTombstone]]),
@@ -864,9 +879,10 @@ describe("PLAN固有Vペアbinding", () => {
       writeFileSync(
         join(root, "config/plan-specific-vpair-binding-authority.json"),
         JSON.stringify({
-          schemaVersion: "plan-specific-vpair-binding-authority.v3",
+          schemaVersion: "plan-specific-vpair-binding-authority.v4",
           initialAuthority: [entry],
           resolvedTombstones: [tombstone],
+          recoveryAuthority: emptyRecoveryAuthority(),
         }),
       );
       const loaded = loadPlanSpecificVpairBindingInputFromRepo(root, {
@@ -973,12 +989,19 @@ describe("PLAN固有Vペアbinding", () => {
   it("U-PSPB-020: 実repoはPLAN-L7-419と本PLANをactive exemptionなしで4点bindingする", () => {
     const checked = checkPlanSpecificVpairBindings(process.cwd());
     expect(checked.ok, checked.messages.join("\n")).toBe(true);
-    expect(checked.result?.exempted).toHaveLength(285);
+    expect(checked.result?.exempted).toHaveLength(545);
     const productionAuthority = JSON.parse(
       readFileSync("config/plan-specific-vpair-binding-authority.json", "utf8"),
     ) as PlanSpecificVpairAuthority;
     expect(productionAuthority.initialAuthority).toHaveLength(286);
     expect(productionAuthority.resolvedTombstones).toHaveLength(1);
+    expect(productionAuthority.recoveryAuthority.initialAuthority).toHaveLength(260);
+    expect(authorityInitialDigest(productionAuthority.recoveryAuthority.initialAuthority)).toBe(
+      PLAN_SPECIFIC_VPAIR_RECOVERY_INITIAL_DIGEST,
+    );
+    expect(productionAuthority.recoveryAuthority.reasonBaseline).toEqual(
+      PLAN_SPECIFIC_VPAIR_RECOVERY_REASON_BASELINE,
+    );
     expect(productionAuthority.resolvedTombstones[0]?.fingerprint).toBe(
       "sha256:0643481c277923a4d2bb0752c30415d4cf87835a8eeb65b2713ed125fafca068",
     );
@@ -1000,5 +1023,44 @@ describe("PLAN固有Vペアbinding", () => {
         (finding) => finding.plan_id === "PLAN-L7-423-ci-governance-self-heal",
       ),
     ).toBe(false);
+  });
+
+  // PLAN-RECOVERY-99-recovery-vpair-scoped-authority
+  it("U-PSPB-028: recovery eligibilityをkind限定の再導入から保護する", () => {
+    const recovery = plan({ kind: "recovery", verification_bindings: [] });
+    const result = analyzePlanSpecificVpairBindings(input({ plans: [recovery] }));
+    expect(result.checkedPlans).toBe(1);
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        plan_id: planId,
+        reason: "verification_bindings_absent",
+      }),
+    );
+
+    const excludedMutation = analyzePlanSpecificVpairBindings(
+      input({ plans: [plan({ kind: "reverse", verification_bindings: [] })] }),
+    );
+    expect(excludedMutation).toMatchObject({ checkedPlans: 0, findings: [] });
+  });
+
+  it("U-PSPB-029: recovery reason baselineの上方修正をfail-closeする", () => {
+    const productionAuthority = JSON.parse(
+      readFileSync("config/plan-specific-vpair-binding-authority.json", "utf8"),
+    ) as PlanSpecificVpairAuthority;
+    const inputSnapshot = loadPlanSpecificVpairBindingInputFromRepo(process.cwd(), {
+      expectedInitialDigest: authorityInitialDigest(productionAuthority.initialAuthority),
+      expectedTerminalDigest:
+        productionAuthority.resolvedTombstones.at(-1)?.entry_digest ??
+        authorityInitialDigest(productionAuthority.initialAuthority),
+      expectedLegacyIdentityDigest: PLAN_SPECIFIC_VPAIR_LEGACY_IDENTITY_DIGEST,
+      expectedRecoveryInitialDigest: PLAN_SPECIFIC_VPAIR_RECOVERY_INITIAL_DIGEST,
+      expectedRecoveryTerminalDigest: PLAN_SPECIFIC_VPAIR_RECOVERY_INITIAL_DIGEST,
+      expectedRecoveryReasonBaseline: PLAN_SPECIFIC_VPAIR_RECOVERY_REASON_BASELINE,
+    });
+    const raised = structuredClone(productionAuthority);
+    raised.recoveryAuthority.reasonBaseline.oracle_not_declared += 1;
+    expect(reasons({ ...inputSnapshot, authority: raised })).toContain(
+      "baseline_authority_invalid",
+    );
   });
 });
