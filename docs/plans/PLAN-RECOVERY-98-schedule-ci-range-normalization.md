@@ -82,7 +82,7 @@ branch-kind、commitlint、Impact CIが非PR eventで同じrevision range author
 ## 非対象
 
 - event classごとのconcurrency generation分離（#1336）
-- finalize shard fail-close oracle（#1475）
+- finalizeでの各shard成否を強制する検査（#1475）
 - commit message規約やbranch kind規約の変更
 
 ## 完了条件
