@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: confirmed
 created: 2026-08-01
-updated: 2026-08-27
+updated: 2026-09-04
 owner: Codex / TL
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 parent_design: docs/design/helix/L5-detail/impact-ci-recovery.md
@@ -67,6 +67,17 @@ terminal receipt validatorはselected exact setとresult exact set、全exit 0�
 要求する。percentile calculatorは`profile + executionSurface + environmentDigest + cacheClass`の混在入力を拒否し、correctnessと
 performance budgetを分離する。workflowからのper-item receipt生成・永続化、cancelled／superseded sampleの除外数記録、
 candidate run IDとprofileの機械束縛はVitest result reporterとの接続が必要なため本PRでは未接続とし、成功の過大主張をしない。
+
+## 4.1 repo-wide guardの事前実行
+
+full shardの終盤で初めて検出されていた、repository全体を読む既存guard testを
+`config/repo-wide-guard-tests.v1.json`のexact setとして登録する。集合は新しい判定authorityではなく、
+既存testへの名前付き実行projectionである。`npm run test:repo-guards`はregistryを検証して同じVitest群を起動し、
+review、local pre-push、`full-regression-preflight`が同一entrypointを利用する。
+
+registryの重複、unknown path、欠落fileは実行前にfail-closeする。実repo走査を宣言するtestとregistryの差集合も
+`U-REPOGUARD-001`で拒否し、登録testを1件除くmutationを生存させない。既存testの判定内容、full regressionの
+exact inventory、impact selector、required aggregateは変更せず、repo-wide guardがgreenでもfull admissionを代替しない。
 
 ## 5. TypeScript compiler lazy-loader の共有境界（TS-LAZY-SHARED-001）
 
