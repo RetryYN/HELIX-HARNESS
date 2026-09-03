@@ -1062,5 +1062,18 @@ describe("PLAN固有Vペアbinding", () => {
     expect(reasons({ ...inputSnapshot, authority: raised })).toContain(
       "baseline_authority_invalid",
     );
+    const malformed = structuredClone(productionAuthority);
+    malformed.recoveryAuthority.reasonBaseline = null as never;
+    expect(reasons({ ...inputSnapshot, authority: malformed })).toContain(
+      "baseline_authority_invalid",
+    );
+    const overlapped = structuredClone(productionAuthority);
+    const implementationEntry = overlapped.initialAuthority[0];
+    expect(implementationEntry).toBeDefined();
+    if (!implementationEntry) return;
+    overlapped.recoveryAuthority.initialAuthority[0] = implementationEntry;
+    expect(reasons({ ...inputSnapshot, authority: overlapped })).toContain(
+      "baseline_authority_invalid",
+    );
   });
 });

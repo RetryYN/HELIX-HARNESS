@@ -704,10 +704,28 @@ function validateAuthority(input: {
     Object.keys(authority.recoveryAuthority).sort().join(",") !==
       "eligibleKinds,initialAuthority,reasonBaseline,resolvedTombstones" ||
     JSON.stringify(authority.recoveryAuthority.eligibleKinds) !== JSON.stringify(["recovery"]) ||
+    !authority.recoveryAuthority.reasonBaseline ||
+    typeof authority.recoveryAuthority.reasonBaseline !== "object" ||
+    Array.isArray(authority.recoveryAuthority.reasonBaseline) ||
+    Object.entries(authority.recoveryAuthority.reasonBaseline).some(
+      ([reason, count]) =>
+        !PLAN_SPECIFIC_VPAIR_REASONS.has(reason as PlanSpecificVpairReason) ||
+        !Number.isSafeInteger(count) ||
+        count <= 0,
+    ) ||
     !Array.isArray(authority.recoveryAuthority.initialAuthority) ||
     !Array.isArray(authority.recoveryAuthority.resolvedTombstones)
   )
     return invalid("authority schema invalid");
+  const implementationFingerprints = new Set(
+    authority.initialAuthority.map((entry) => entry?.fingerprint),
+  );
+  if (
+    authority.recoveryAuthority.initialAuthority.some((entry) =>
+      implementationFingerprints.has(entry?.fingerprint),
+    )
+  )
+    return invalid("authority scope overlap");
   const implementation = validateAuthorityScope({
     initialAuthority: authority.initialAuthority,
     resolvedTombstones: authority.resolvedTombstones,
