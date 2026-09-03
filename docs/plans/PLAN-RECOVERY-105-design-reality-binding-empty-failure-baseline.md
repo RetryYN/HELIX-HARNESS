@@ -42,14 +42,14 @@ complexity_justification: "既存のDesign Reality解析器へ観測baselineとa
 removal_trigger: "現行L4/L5設計のfailureコードとexecutable reachability witnessが全件materializeされ、空binding baselineが空になった時"
 backprop_decision: not_required
 backprop_decision_reason: "既存設計の実在性検査における空binding退行の可視化であり、新しい要求意味やPO判断を追加しない"
-parent_design: docs/design/helix/L5-detail/design-reality-binding.md
-pair_artifact: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md
+parent_design: docs/design/helix/L6-function-design/design-reality-binding.md
+pair_artifact: docs/test-design/helix/L8-design-reality-binding-function-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L5-detail/design-reality-binding.md, oracle_id: U-DRB-025, test_path: tests/design-reality-binding.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/design-reality-binding.md, oracle_id: U-DRB-026, test_path: tests/design-reality-binding.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/design-reality-binding.md, oracle_id: U-DRB-027, test_path: tests/design-reality-binding.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/design-reality-binding.md, oracle_id: U-DRB-028, test_path: tests/design-reality-binding.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/design-reality-binding.md, oracle_id: U-DRB-029, test_path: tests/design-reality-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-reality-binding.md, oracle_id: U-DRB-025, test_path: tests/design-reality-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-reality-binding.md, oracle_id: U-DRB-026, test_path: tests/design-reality-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-reality-binding.md, oracle_id: U-DRB-027, test_path: tests/design-reality-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-reality-binding.md, oracle_id: U-DRB-028, test_path: tests/design-reality-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-reality-binding.md, oracle_id: U-DRB-029, test_path: tests/design-reality-binding.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-105-design-reality-binding-empty-failure-baseline.md, artifact_type: markdown_doc }
   - { artifact_path: config/design-reality-binding-empty-baseline.json, artifact_type: json_config }
@@ -59,7 +59,7 @@ modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/design-reality-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/design-reality-binding.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-design-reality-binding-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-design-reality-binding-function-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/L9-design-reality-binding-system-test-design.md, artifact_type: test_design }
 agent_slots:
   - { role: aim, slot_label: "AIM — current empty bindingと本文failure方針の差分棚卸し" }
