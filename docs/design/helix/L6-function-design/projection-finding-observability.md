@@ -35,7 +35,7 @@ github_issue_id: 1440
 - JSON parse失敗を`null`だけで表さず、値とparse errorを分離して破損入力をactive projectionへ昇格させない。
 - rebuildの依存順を暗黙の呼出順にせず、依存するrow count／join invariantを検査する。
 - drive registrationの未初期化・入力不備・内部エラーを同じ`null`へ潰さず、typed reasonを残す。
-- source digestが変わったrefactor candidate cacheを再利用せず、cache keyへsource digestを束縛する。
+- source digestが変わったrefactor candidate cacheを再利用せず、同一repo／policyのcache entryへsource digestを束縛して再計算する。
 - metadata parse境界のエラーを、全rebuild中断か局所findingかの契約なしに伝播させない。
 
 ## 3. 機能契約
@@ -44,8 +44,10 @@ github_issue_id: 1440
 
 1. malformed evidence、missing `plan_id`、stable identity collision、parse error、dependency row mismatchを検出し、
    registration reason欠落、cache digest driftは、成功相当の空projectionとして扱わず、明示的に失敗またはfindingへ変換する。
-2. findingはsource path、projection stage、failure code、入力digest、原因の要約、再現可能なcorrelationを保持し、
-   secret・raw transcript・PIIを格納しない。
+2. findingは既存`findings` schemaの`kind`（failure code）、`subject_id`（projection stageと安定した対象identity）、
+   `source`、`status`、`evidence_path`で失敗の種類・対象・source pathを再現可能にする。既存schema外の専用digest／原因本文／
+   correlation列はこのRecoveryで追加せず、raw error、transcript、secret、PIIも格納しない。入力digestが必要な証跡は、既存の
+   projection event／evidence rowが持つdigestへ別途joinするものとし、findingの空欄化で成功扱いにしない。
 3. `stableId("pair-agent-model-run", \`${runId}:${spanId}\`)`相当のnamespaceを使用し、異なるrunの同名spanを
    同一rowへ上書きしない。
 4. rebuildとreplayは同じsourceから同じ行集合・finding集合・digestを返し、順序変更mutationをgreenにしない。

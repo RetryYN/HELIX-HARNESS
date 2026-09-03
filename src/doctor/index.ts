@@ -4863,8 +4863,13 @@ export function checkDriveDbRegistration(
     };
   }
   try {
-    const r = analyzeDriveDbRegistration(loadOrBuildDriveDbRegistrationStats(repoRoot, prebuiltDb));
-    return { messages: driveDbRegistrationMessages(r), ok: r.ok };
+    const loaded = loadOrBuildDriveDbRegistrationStats(repoRoot, prebuiltDb);
+    const r = analyzeDriveDbRegistration(loaded.stats);
+    const reasonMessage =
+      loaded.reason === "ready"
+        ? []
+        : [`drive-db-registration - load ${loaded.reason}: ${loaded.cause ?? "unknown"}`];
+    return { messages: [...reasonMessage, ...driveDbRegistrationMessages(r)], ok: r.ok };
   } catch {
     return {
       messages: ["drive-db-registration - violation: harness.db registration could not be read"],

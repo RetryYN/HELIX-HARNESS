@@ -15,6 +15,7 @@ import {
   collectCurrentPlanRegistryFingerprint,
   collectDriveDbRegistrationStats,
   driveDbStatsMatchCurrentPlanRegistry,
+  loadDriveDbRegistrationStats,
   loadOrBuildDriveDbRegistrationStats,
   refreshPersistedDriveDbRegistrationStats,
 } from "../src/state-db/drive-registration";
@@ -261,13 +262,37 @@ describe("drive DB registration lint", () => {
       const refreshed = refreshPersistedDriveDbRegistrationStats(repoRoot);
       const loaded = loadOrBuildDriveDbRegistrationStats(repoRoot);
 
-      expect(refreshed).not.toBeNull();
-      expect(loaded).not.toBeNull();
-      if (!refreshed) throw new Error("refreshed drive db stats must not be null");
-      expect(driveDbStatsMatchCurrentPlanRegistry(refreshed)).toBe(true);
-      expect(loaded).toEqual(refreshed);
+      expect(refreshed.reason).toBe("ready");
+      expect(loaded.reason).toBe("ready");
+      expect(refreshed.stats).not.toBeNull();
+      expect(loaded.stats).not.toBeNull();
+      if (!refreshed.stats) throw new Error("refreshed drive db stats must not be null");
+      expect(driveDbStatsMatchCurrentPlanRegistry(refreshed.stats)).toBe(true);
+      expect(loaded.stats).toEqual(refreshed.stats);
     } finally {
       rmSync(repoRoot, { force: true, recursive: true });
+    }
+  });
+
+  it("U-PFO-006: DB未初期化とDB読込エラーをtyped reasonで区別する", () => {
+    const uninitializedRoot = join(tmpdir(), `helix-drive-uninitialized-${randomUUID()}`);
+    const invalidRoot = join(tmpdir(), `helix-drive-invalid-${randomUUID()}`);
+    try {
+      expect(loadDriveDbRegistrationStats(uninitializedRoot)).toEqual({
+        stats: null,
+        reason: "uninitialized",
+        cause: "harness-db-missing",
+      });
+
+      mkdirSync(join(invalidRoot, ".helix"), { recursive: true });
+      writeFileSync(join(invalidRoot, ".helix", "harness.db"), "not a sqlite database");
+      const loaded = loadDriveDbRegistrationStats(invalidRoot);
+      expect(loaded.stats).toBeNull();
+      expect(loaded.reason).toBe("error");
+      expect(loaded.cause).toBeTruthy();
+    } finally {
+      rmSync(uninitializedRoot, { recursive: true, force: true });
+      rmSync(invalidRoot, { recursive: true, force: true });
     }
   });
 });

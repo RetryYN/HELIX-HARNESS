@@ -18,6 +18,30 @@ export type ParsedGreenCommandEvidence = {
   cases: TestCaseEvidence[];
 };
 
+/**
+ * JSON/XML reporter の解析結果。入力破損を `null` という正常値へ潰さず、
+ * projection 側が finding として記録できるよう parseError を分離する。
+ * エラー内容は外部入力を含めず、診断用の安定コードだけを返す。
+ */
+export type GreenCommandEvidenceParseResult = {
+  value: ParsedGreenCommandEvidence | null;
+  parseError: "invalid-json" | "invalid-evidence" | null;
+};
+
+export function parseGreenCommandEvidenceResult(
+  path: string,
+  content: string,
+): GreenCommandEvidenceParseResult {
+  try {
+    return { value: parseGreenCommandEvidence(path, content), parseError: null };
+  } catch {
+    return {
+      value: null,
+      parseError: path.toLowerCase().endsWith(".json") ? "invalid-json" : "invalid-evidence",
+    };
+  }
+}
+
 type ReporterKind = "vitest" | "playwright";
 
 export function parseGreenCommandEvidence(

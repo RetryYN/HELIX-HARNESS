@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { loadRequirementsBindingConfig } from "../config/requirements-binding";
 import type { HarnessDb } from "./index";
 import {
@@ -17,7 +18,18 @@ interface FeedbackProjectionDeps {
   ) => { table: string; id: string; evidence_path: string };
 }
 
-const refactorCandidateCache = new Map<string, RefactorCandidate[]>();
+interface RefactorCandidateCacheEntry {
+  sourceDigest: string;
+  candidates: RefactorCandidate[];
+}
+
+const refactorCandidateCache = new Map<string, RefactorCandidateCacheEntry>();
+
+function sourceInputDigest(inputs: Array<{ path: string; content: string }>): string {
+  return createHash("sha256")
+    .update(JSON.stringify(inputs.map((input) => [input.path, input.content])))
+    .digest("hex");
+}
 
 function isRefactorCandidateMetric(metric: string): boolean {
   return metric.startsWith("refactor_candidate:");
@@ -52,12 +64,15 @@ export function projectRefactorCandidateSignals(
     throw new Error(configResult.messages.join("; "));
   }
   const policy = configResult.config.refactorCandidates;
+  const inputs = loadRefactorCandidateInputs(repoRoot, policy.scanRoots);
   const cacheKey = `${repoRoot}:${JSON.stringify(policy)}`;
+  const sourceDigest = sourceInputDigest(inputs);
   const cached = refactorCandidateCache.get(cacheKey);
   const candidates =
-    cached ??
-    analyzeRefactorCandidates(loadRefactorCandidateInputs(repoRoot, policy.scanRoots), policy);
-  refactorCandidateCache.set(cacheKey, candidates);
+    cached?.sourceDigest === sourceDigest
+      ? cached.candidates
+      : analyzeRefactorCandidates(inputs, policy);
+  refactorCandidateCache.set(cacheKey, { sourceDigest, candidates });
   const feedbackSubjects = new Set(
     candidates
       .filter((candidate) => candidate.confidence === "high")

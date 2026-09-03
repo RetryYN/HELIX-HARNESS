@@ -33,7 +33,7 @@ contract_invariants: "source文書を変更せず、既存finding storeとDB tra
 contract_failures: "malformed evidence、plan_id欠落、span collision、parse error、row-count mismatch、reason欠落、cache digest driftを黙って成功させない"
 tdd_red_required: true
 mutation_oracle_required: true
-mutation_oracle_evidence: "未実施。U-PFO-001〜009を実装前Redへ追加し、黙示skip、namespace除去、parse error消失、依存順序変更を各mutationで捕捉する"
+mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、projection/replayの入力順差異を検出することを本worktreeで確認した。全回帰・current HEADの独立review・main read-afterは未実施。"
 complexity_effect: net_neutral
 complexity_justification: "既存projection writerとfinding storeの欠落経路を型付き失敗へ収束し、新しいDB authorityや別projectionを増やさない"
 removal_trigger: "既存projection writerの恒久的acceptanceへ統合し、Recovery専用の重複検査が不要になった時点でsource PLANから統合する"
@@ -52,14 +52,14 @@ dependencies:
     - "issue:1420"
     - docs/design/helix/L3-requirements/system-synthesis-requirements.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-001, test_path: tests/projection-writer.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-002, test_path: tests/projection-writer.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-003, test_path: tests/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-001, test_path: tests/slow/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-002, test_path: tests/slow/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-003, test_path: tests/slow/projection-writer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-004, test_path: tests/test-report-parser.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-005, test_path: tests/slow/projection-writer.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-006, test_path: tests/projection-writer.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-007, test_path: tests/feedback-refactor-disposition.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-008, test_path: tests/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-006, test_path: tests/drive-db-registration.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-007, test_path: tests/requirements-binding-config.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-008, test_path: tests/slow/projection-writer.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-009, test_path: tests/slow/projection-writer.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — projection欠落のRecovery監査" }
@@ -74,9 +74,16 @@ generates:
 modifies:
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/test-report-parser.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/drive-registration.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/feedback-projections.ts, artifact_type: source_module }
+  - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: tests/projection-writer.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
   - { artifact_path: tests/test-report-parser.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/drive-db-registration.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirements-binding-config.test.ts, artifact_type: test_code }
   - { artifact_path: tests/feedback-refactor-disposition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }

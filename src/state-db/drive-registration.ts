@@ -9,6 +9,15 @@ import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "./index";
 import { migrate } from "./migration";
 import { rebuildHarnessDb } from "./projection-writer";
 
+export type DriveDbRegistrationLoadReason = "ready" | "uninitialized" | "error";
+
+export interface DriveDbRegistrationLoadResult {
+  stats: DriveDbRegistrationStats | null;
+  reason: DriveDbRegistrationLoadReason;
+  /** 外部入力やDB内容を含めない安全な原因コード。 */
+  cause?: string;
+}
+
 function count(db: HarnessDb, sql: string): number {
   const row = db.prepare(sql).get();
   return Number(row?.value ?? 0);
@@ -130,30 +139,44 @@ export function collectDriveDbRegistrationStats(db: HarnessDb): DriveDbRegistrat
   };
 }
 
+function errorCause(error: unknown): string {
+  return error instanceof Error ? error.name : "unknown-error";
+}
+
+function ready(stats: DriveDbRegistrationStats): DriveDbRegistrationLoadResult {
+  return { stats, reason: "ready" };
+}
+
 export function loadDriveDbRegistrationStats(
   repoRoot: string = process.cwd(),
-): DriveDbRegistrationStats | null {
+): DriveDbRegistrationLoadResult {
   const dbPath = defaultHarnessDbPath(repoRoot);
-  if (!existsSync(dbPath)) return null;
-  const db = openHarnessDb(dbPath, { repoRoot });
+  if (!existsSync(dbPath)) {
+    return { stats: null, reason: "uninitialized", cause: "harness-db-missing" };
+  }
+  let db: HarnessDb | undefined;
   try {
+    db = openHarnessDb(dbPath, { repoRoot });
     migrate(db);
-    return {
+    return ready({
       ...collectDriveDbRegistrationStats(db),
       expectedPlanCount: loadReviewPlans(repoRoot).length,
       expectedPlanRegistryFingerprint: collectCurrentPlanRegistryFingerprint(repoRoot),
-    };
+    });
+  } catch (error) {
+    return { stats: null, reason: "error", cause: errorCause(error) };
   } finally {
-    db.close();
+    db?.close();
   }
 }
 
 export function refreshPersistedDriveDbRegistrationStats(
   repoRoot: string = process.cwd(),
   prebuiltDb?: HarnessDb,
-): DriveDbRegistrationStats | null {
-  const db = prebuiltDb ?? openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
+): DriveDbRegistrationLoadResult {
+  let db: HarnessDb | undefined = prebuiltDb;
   try {
+    db ??= openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
     migrate(db);
     const stats = {
       ...collectDriveDbRegistrationStats(db),
@@ -163,11 +186,11 @@ export function refreshPersistedDriveDbRegistrationStats(
     if (!prebuiltDb && db.path !== ":memory:") {
       db.exec("PRAGMA wal_checkpoint(PASSIVE)");
     }
-    return stats;
-  } catch {
-    return null;
+    return ready(stats);
+  } catch (error) {
+    return { stats: null, reason: "error", cause: errorCause(error) };
   } finally {
-    if (!prebuiltDb) db.close();
+    if (!prebuiltDb) db?.close();
   }
 }
 
@@ -183,28 +206,24 @@ export function driveDbStatsMatchCurrentPlanRegistry(stats: DriveDbRegistrationS
 export function loadOrBuildDriveDbRegistrationStats(
   repoRoot: string = process.cwd(),
   prebuiltDb?: HarnessDb,
-): DriveDbRegistrationStats | null {
-  let persisted: DriveDbRegistrationStats | null = null;
-  try {
-    persisted = loadDriveDbRegistrationStats(repoRoot);
-  } catch {
-    persisted = null;
-  }
-  if (persisted && driveDbStatsMatchCurrentPlanRegistry(persisted)) return persisted;
+): DriveDbRegistrationLoadResult {
+  const persisted = loadDriveDbRegistrationStats(repoRoot);
+  if (persisted.stats && driveDbStatsMatchCurrentPlanRegistry(persisted.stats)) return persisted;
 
   // prebuiltDb = 呼び出し側 (runDoctor) が rebuild 済みの共有 projection (PLAN-L7-348)。
   // 本関数は read-only アクセスのみで、lifecycle (close) は共有時は呼び出し側が持つ。
-  const db = prebuiltDb ?? openHarnessDb(":memory:", { repoRoot });
+  let db: HarnessDb | undefined = prebuiltDb;
   try {
+    db ??= openHarnessDb(":memory:", { repoRoot });
     if (!prebuiltDb) rebuildHarnessDb({ repoRoot, db });
-    return {
+    return ready({
       ...collectDriveDbRegistrationStats(db),
       expectedPlanCount: loadReviewPlans(repoRoot).length,
       expectedPlanRegistryFingerprint: collectCurrentPlanRegistryFingerprint(repoRoot),
-    };
-  } catch {
-    return null;
+    });
+  } catch (error) {
+    return { stats: null, reason: "error", cause: errorCause(error) };
   } finally {
-    if (!prebuiltDb) db.close();
+    if (!prebuiltDb) db?.close();
   }
 }
