@@ -59,6 +59,7 @@ modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — malformed immutable slotと手動退避事故の実測" }
   - { role: se, slot_label: "SE — correction authorizationとcurrent selector" }
