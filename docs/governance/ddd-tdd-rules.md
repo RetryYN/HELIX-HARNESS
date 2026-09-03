@@ -78,8 +78,9 @@ ddd_tdd_rules:
 `tests/*.test.ts`、`docs/test-design/...`、`.helix/audit/...`、`vitest` の明示 locatorに加え、
 PLAN の `verification_bindings` / `generates` または test-design 表に存在し、test path／設計文書へ
 解決できる `oracle_id` を使用できる。oracle ID の解決表は起動時に既存文書から導出する inventory
-であり、新しい意味authorityではない。未解決の oracle ID、placeholder、kill／fail／red の実測を
-伴わない記述は引き続き fail-close する。
+であり、新しい意味authorityではない。L7/L8 test-design間でoracle定義を移設する場合は、移設前後の
+pathを同一の原子scopeへ含め、移設後も全oracle IDが解決されることを検証する。未解決の oracle ID、
+placeholder、kill／fail／red の実測を伴わない記述は引き続き fail-close する。
 
 ## PLAN Engineering Discipline Contract / PLAN工学規律契約
 
