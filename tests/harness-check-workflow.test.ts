@@ -55,6 +55,7 @@ const REQUIRED_FINALIZE_SHARD_SUCCESS_CHECKS = [
   '[ "$BULK_3_RESULT" = "success" ]',
   '[ "$STATEFUL_RESULT" = "success" ]',
 ] as const;
+const ZERO_SHA = "0000000000000000000000000000000000000000";
 
 function mutateWorkflowJob(raw: string, jobName: string, mutate: (job: string) => string): string {
   const startMarker = `  ${jobName}:`;
@@ -65,6 +66,19 @@ function mutateWorkflowJob(raw: string, jobName: string, mutate: (job: string) =
   const nextJob = nextJobPattern.exec(raw);
   const end = nextJob?.index ?? raw.length;
   if (end < 0) return raw;
+  return `${raw.slice(0, start)}${mutate(raw.slice(start, end))}${raw.slice(end)}`;
+}
+
+function mutateWorkflowStep(
+  raw: string,
+  stepName: string,
+  mutate: (step: string) => string,
+): string {
+  const startMarker = `      - name: ${stepName}`;
+  const start = raw.indexOf(startMarker);
+  if (start < 0) return raw;
+  const nextStep = raw.indexOf("\n      - name:", start + startMarker.length);
+  const end = nextStep < 0 ? raw.length : nextStep;
   return `${raw.slice(0, start)}${mutate(raw.slice(start, end))}${raw.slice(end)}`;
 }
 
@@ -243,6 +257,29 @@ function transitionReuseViolations(raw: string): string[] {
   return findings;
 }
 
+// PLAN-RECOVERY-98-schedule-ci-range-normalization — U-IMPACTCI-WF-006
+function nonPullRequestRangeViolations(raw: string): string[] {
+  let parsed: WorkflowRoot;
+  try {
+    parsed = parseYaml(raw) as WorkflowRoot;
+  } catch {
+    return ["workflow_yaml_invalid"];
+  }
+  const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
+  const findings: string[] = [];
+  for (const stepName of ["branch-kind-check", "commitlint"] as const) {
+    const step = steps.find((candidate) => candidate.name === stepName);
+    const run = step?.run ?? "";
+    if (
+      !run.includes(`elif [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "${ZERO_SHA}" ]; then`) ||
+      !run.includes(`range="\${HEAD_SHA}^..\${HEAD_SHA}"`)
+    ) {
+      findings.push(`non_pr_range_invalid:${stepName}`);
+    }
+  }
+  return findings;
+}
+
 function loadWorkflow(): {
   job: HarnessJob;
   fullJob: HarnessJob;
@@ -331,6 +368,25 @@ describe("source harness-check workflow", () => {
     );
     expect(checkout?.with?.ref).toBe(`\${{ github.event.pull_request.head.sha || github.sha }}`);
   });
+
+  it("U-IMPACTCI-WF-006: schedule／workflow_dispatchの空before SHAをHEAD親へ正規化する", () => {
+    expect(nonPullRequestRangeViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
+  });
+
+  it.each(["branch-kind-check", "commitlint"] as const)(
+    "U-IMPACTCI-WF-006: %sのempty before SHA判定を除去するmutationを拒否する",
+    (stepName) => {
+      const raw = readFileSync(WORKFLOW_PATH, "utf8");
+      const mutated = mutateWorkflowStep(raw, stepName, (step) =>
+        step.replace(
+          `elif [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "${ZERO_SHA}" ]; then`,
+          `elif [ "$BEFORE_SHA" = "${ZERO_SHA}" ]; then`,
+        ),
+      );
+      expect(mutated).not.toBe(raw);
+      expect(nonPullRequestRangeViolations(mutated)).toContain(`non_pr_range_invalid:${stepName}`);
+    },
+  );
 
   it.each([
     [
