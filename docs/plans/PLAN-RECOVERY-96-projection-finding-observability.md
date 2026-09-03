@@ -80,7 +80,9 @@ modifies:
   - { artifact_path: tests/test-report-parser.test.ts, artifact_type: test_code }
   - { artifact_path: tests/feedback-refactor-disposition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 review_evidence: []
 ---
