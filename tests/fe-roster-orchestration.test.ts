@@ -92,7 +92,7 @@ describe("FE roster orchestration", () => {
     expect(tombstone?.entry_digest).toBe(PLAN_SPECIFIC_VPAIR_TERMINAL_DIGEST);
     const checked = checkPlanSpecificVpairBindings(process.cwd());
     expect(checked.ok, checked.messages.join("\n")).toBe(true);
-    expect(checked.result?.exempted).toHaveLength(285);
+    expect(checked.result?.exempted).toHaveLength(545);
     expect(checked.result?.exempted.some((finding) => finding.fingerprint === fingerprint)).toBe(
       false,
     );

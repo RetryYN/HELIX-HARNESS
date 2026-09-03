@@ -15,7 +15,7 @@ behavior_contract_id: RECOVERY-VPAIR-SCOPED-AUTHORITY-001
 responsibility_owner: plan-specific-vpair-binding
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: strengthen_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
@@ -64,7 +64,9 @@ modifies:
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/plan-specific-vpair-binding.ts, artifact_type: source_module }
   - { artifact_path: config/plan-specific-vpair-binding-authority.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/fe-roster-orchestration.test.ts, artifact_type: test_code }
 ---
 
 # Recovery PLANのV-pair binding scoped authority移行
