@@ -24,6 +24,7 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
+irreversible_impact: none
 backprop_decision: not_required
 backprop_decision_reason: "本PLAN自体がv3.1と現行機能の差をL1／L3／L10候補へ戻すAuthority Sliceである。"
 no_code_decision: no_change
