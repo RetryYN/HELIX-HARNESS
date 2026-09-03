@@ -1,3 +1,6 @@
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeDddTddRules,
@@ -495,6 +498,32 @@ describe("U-DDDTDD DDD/TDD strictness lint", () => {
     expect(violation?.message).toContain("Unresolvable oracle ID: U-UNKNOWN-999");
     expect(violation?.message).toContain("tests/*.test.ts");
     expect(violation?.message).toContain("test-design");
+  });
+
+  it("U-DDDTDD-013: PLAN-RECOVERY-106-mutation-oracle-locator-resolution rejects an oracle ID bound to a missing test path", () => {
+    const repoRoot = mkdtempSync(join(tmpdir(), "helix-ddd-tdd-locator-"));
+    try {
+      const plansDir = join(repoRoot, "docs", "plans");
+      mkdirSync(plansDir, { recursive: true });
+      writeFileSync(
+        join(plansDir, "PLAN-L7-93-missing-oracle-path.md"),
+        [
+          "---",
+          "status: confirmed",
+          "mutation_oracle_required: true",
+          "verification_bindings:",
+          "  - { oracle_id: U-DDDTDD-013, test_path: tests/does-not-exist.test.ts }",
+          "mutation_oracle_evidence: U-DDDTDD-013 killed the seeded defect (exit 1)",
+          "---",
+        ].join("\n"),
+      );
+
+      const result = analyzeDddTddRules(loadDddTddInputs(repoRoot));
+      const violation = result.violations.find((entry) => entry.rule === "mutation-oracle");
+      expect(violation?.message).toContain("Unresolvable oracle ID: U-DDDTDD-013");
+    } finally {
+      rmSync(repoRoot, { recursive: true, force: true });
+    }
   });
 
   it("U-DDDTDD-014: PLAN-RECOVERY-106-mutation-oracle-locator-resolution derives oracle IDs from existing test-design rows", () => {
