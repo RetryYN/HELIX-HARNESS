@@ -33,6 +33,7 @@ contract_invariants: "既存testの判定、full regression exact inventory、re
 contract_failures: "registry欠落、重複、missing path、未登録guard、entrypoint／workflow配線欠落をfail-closeする"
 tdd_red_required: true
 tdd_red_evidence: "2026-09-04にregistry testを先行実行し、新設registry test自身の自己検出を含む差集合で1 failed／1 passedを確認した"
+tdd_green_evidence: "2026-09-04T03:11+09:00にnpm run test:repo-guardsを実行し、35 files／517 tests green、exit 0を確認した"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-04T03:06+09:00にregistryからtests/coding-rules.test.tsを除去し、U-REPOGUARD-001が1 failed／1 passed、exit 1でkillした。復元後に再greenを要求する"
 complexity_effect: justified_positive
