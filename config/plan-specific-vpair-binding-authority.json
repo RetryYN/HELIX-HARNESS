@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "plan-specific-vpair-binding-authority.v3",
+  "schemaVersion": "plan-specific-vpair-binding-authority.v4",
   "initialAuthority": [
     {
       "fingerprint": "sha256:01fd605512d03f41578517502794ebfa638904c730182ffa26d00682526d093f",
@@ -2299,5 +2299,2102 @@
       "previous_digest": "sha256:8e54f91491afb4a2fee00704b0c3acaa72174a8e4e57f3ea00a010b9e23e3e31",
       "entry_digest": "sha256:d667c81fd7ef1d75408f53b3089f614f4cc911c6c75888072d1f7e4115f78174"
     }
-  ]
+  ],
+  "recoveryAuthority": {
+    "eligibleKinds": [
+      "recovery"
+    ],
+    "reasonBaseline": {
+      "oracle_not_declared": 99,
+      "oracle_citation_missing": 21,
+      "test_not_generated": 3,
+      "verification_bindings_absent": 36,
+      "generated_test_unbound": 30,
+      "oracle_owned_by_multiple_plans": 9,
+      "plan_citation_missing": 62
+    },
+    "initialAuthority": [
+      {
+        "plan_id": "PLAN-RECOVERY-42-author-runtime-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-013",
+        "fingerprint": "sha256:0195b8c4ebb79154b3156187610e389d8ef647e888785870c4f796869c2575cc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md",
+        "plan_semantic_digest": "sha256:a7a047d1ab9ef0d575881e1fbcce820beef9c913edf6b68b92506920719ab850"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-72-confirmed-pending-reverse-pairing",
+        "reason": "oracle_not_declared",
+        "detail": "U-BACKFILL-010",
+        "fingerprint": "sha256:0344fc536eec8d6e328c736936794a39140980afd73517bbe71a34e6053038b7",
+        "plan_path": "docs/plans/PLAN-RECOVERY-72-confirmed-pending-reverse-pairing.md",
+        "plan_semantic_digest": "sha256:a832c408887b0b378ba2919278d605ddf5a36c1502168c46b0f5e8993ad5db3f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-41-cross-review-admission-symmetry",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-010",
+        "fingerprint": "sha256:037d1ec6d372af022caa85349f3b05a4ba957977a2d7211f83481e2d92aa47b5",
+        "plan_path": "docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md",
+        "plan_semantic_digest": "sha256:22664aaec69936a6851ff264f50f90e30252760386b7f163603ee8e793dd1c74"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-69-migration-source-zip-retirement",
+        "reason": "oracle_citation_missing",
+        "detail": "U-SRCMAN-007@tests/source-package-manifest.test.ts",
+        "fingerprint": "sha256:04ad73b8a67eec6cfc0d4949daf9e2a1aeffd5db1a436f6fd8f9fe8e44b1fed3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-69-migration-source-zip-retirement.md",
+        "plan_semantic_digest": "sha256:80c4d7b8cb2edc15f595447a7f21542ece6a99fdd7aa2ec4693e5bc0ce974084"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "test_not_generated",
+        "detail": "tests/independent-review-fallback.test.ts",
+        "fingerprint": "sha256:0724a895fd71becc6f7ca8cab99b8823108ec21833afaf8eadf4a026093e8b61",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-68-source-package-manifest-migration",
+        "reason": "oracle_not_declared",
+        "detail": "U-SRCMAN-002",
+        "fingerprint": "sha256:0e1a6e1f6b9f688ae4496f9f7c5e0a54e5188a321650f01f91710a2a99e3c885",
+        "plan_path": "docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md",
+        "plan_semantic_digest": "sha256:baf687da28658b79210f9a24ea592269750026eeed43315b3fa21bec693f0cd9"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-69-migration-source-zip-retirement",
+        "reason": "oracle_not_declared",
+        "detail": "U-SRCMAN-005",
+        "fingerprint": "sha256:0f6b27636be854535f55d7bfe39d7974f197674d5c6c0c4a1ece5fe30f707c66",
+        "plan_path": "docs/plans/PLAN-RECOVERY-69-migration-source-zip-retirement.md",
+        "plan_semantic_digest": "sha256:80c4d7b8cb2edc15f595447a7f21542ece6a99fdd7aa2ec4693e5bc0ce974084"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-75-closure-semantic-authority-join",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:0f770d6eb6b181a1d3d042e7c95acba97c802788f054605651c1e6198e1685bf",
+        "plan_path": "docs/plans/PLAN-RECOVERY-75-closure-semantic-authority-join.md",
+        "plan_semantic_digest": "sha256:6c04b1c62d9072cb3f9bb2654990977e83fe77bba9efda97ba99c0d0ad3d0f32"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-17-pr-create-contract-fail-close",
+        "reason": "oracle_not_declared",
+        "detail": "U-PRCREATE-381-002",
+        "fingerprint": "sha256:0fa0feb18bcb47442e5d9a20f151a715f9964b38b3b9d8b196539a7796d2ff4d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-17-pr-create-contract-fail-close.md",
+        "plan_semantic_digest": "sha256:922946d22f628d5e4bace174d79a1de445699202a4b94f32603eae94fa719746"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-003",
+        "fingerprint": "sha256:0fb74bb9a6774d4744f8d288e3f3851250b5fc603f9a210cced07b706b6e0c20",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-EXT-001",
+        "fingerprint": "sha256:11b417d0c9b230c81b2e90ac875dae16189b4dc657c182eee88d29524bf03190",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/cli-bundle.ts",
+        "fingerprint": "sha256:12c1ae0ac38b73962b35862ab1ec0782ea742040d721e04f2a3f8e256d0c0dfe",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-71-skill-applicability-oracle-closure",
+        "reason": "oracle_citation_missing",
+        "detail": "U-SKAPP-005@tests/asset-catalog.test.ts",
+        "fingerprint": "sha256:1302458d963fb0a8195520277a36b2e71ec3695bc0db3c5ae524d5b7c4930bb3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-71-skill-applicability-oracle-closure.md",
+        "plan_semantic_digest": "sha256:153f51daa7a7e1c596015e069f46610916fcbe4eeb112c2d0e8f11b88e72f4ae"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-18-lane-inventory-partial-logs",
+        "reason": "oracle_not_declared",
+        "detail": "U-IMPACTCI-WF-005",
+        "fingerprint": "sha256:14236f2d7db47ae18365c642f23fd1d838d95e3db5c2eddea2a3ae032386b090",
+        "plan_path": "docs/plans/PLAN-RECOVERY-18-lane-inventory-partial-logs.md",
+        "plan_semantic_digest": "sha256:e212154bd857054975e79e65e15b088daeb8f49bc6a9b4321954646f9d2fd898"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-021",
+        "fingerprint": "sha256:14babc0fb20bcf808602a5b851ee08564c54a994ccad14c2081205f9c33da1a8",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-42-author-runtime-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-014",
+        "fingerprint": "sha256:18cafd02096e14ed1761883c4f2aaed076ba8aec4fb376b369402e1e869b7ea3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md",
+        "plan_semantic_digest": "sha256:a7a047d1ab9ef0d575881e1fbcce820beef9c913edf6b68b92506920719ab850"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-69-migration-source-zip-retirement",
+        "reason": "oracle_not_declared",
+        "detail": "U-SRCMAN-007",
+        "fingerprint": "sha256:1a434e31f93967599c4c9b19d11fc2b6255c856e57a4eb7cb58a1e929fad299a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-69-migration-source-zip-retirement.md",
+        "plan_semantic_digest": "sha256:80c4d7b8cb2edc15f595447a7f21542ece6a99fdd7aa2ec4693e5bc0ce974084"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-76-cursor-cloud-environment-admission",
+        "reason": "oracle_not_declared",
+        "detail": "U-CURSOR-ENV-002",
+        "fingerprint": "sha256:1a85dee91b250b6527ebd7e00917253e6d4699e28976bfde3282536288478e14",
+        "plan_path": "docs/plans/PLAN-RECOVERY-76-cursor-cloud-environment-admission.md",
+        "plan_semantic_digest": "sha256:b65bba51827ea7a6c1f6b5bfc2d19f8b6dc94c19fa93ff4a0a8fee1ba9ed68bf"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-34-wib-context-digest-dead-path",
+        "reason": "oracle_not_declared",
+        "detail": "U-WIB-018",
+        "fingerprint": "sha256:1e059bfee30dfc3067a7480ae05f6cecb3c95e4b035c4586539bc7bac7c21ca8",
+        "plan_path": "docs/plans/PLAN-RECOVERY-34-wib-context-digest-dead-path.md",
+        "plan_semantic_digest": "sha256:2d381ddc8fdc1e4cbd94895b9febfd991a4b63ec3f19f5aa5923369c6848cc30"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-42-author-runtime-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-016",
+        "fingerprint": "sha256:1e6d4c225dbf62458c7dfd68c2e00552e2c077e9eeb4f223dfaf6e98132677bc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md",
+        "plan_semantic_digest": "sha256:a7a047d1ab9ef0d575881e1fbcce820beef9c913edf6b68b92506920719ab850"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-013",
+        "fingerprint": "sha256:1ea816de7052b627b090b4740f45078e8cbf3e336520d16f96f007ca302c5850",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/version-up-readiness.test.ts",
+        "fingerprint": "sha256:1f14f5cf63b77733f513b26ade331db8f4acb04b8ae06c5296905a69c4a260dd",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-MEMWAKE-003: tests/claude-memory-wake.test.ts,tests/setup.test.ts",
+        "fingerprint": "sha256:1f6d2e09eb882bbc82315c9a7e24305efcd804b31806b8513d6e455cd60e8cb5",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/bundle-root-probe.ts",
+        "fingerprint": "sha256:205f13f3d8f6a38d4cd9268d7958c6aa079d6c53db0f6420eadfacc343a87352",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-lazy-typescript-cli-startup",
+        "reason": "oracle_not_declared",
+        "detail": "U-TSLAZY-001",
+        "fingerprint": "sha256:21bbcc4b43fead8125922e0ef6938f426cecfa6111f2c1060e33ec4693a385a9",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-lazy-typescript-cli-startup.md",
+        "plan_semantic_digest": "sha256:c58f88a27c49ce4ca818213d46ec7357a67e0c6c5525b3b898c557b9c2dd0b99"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "plan_citation_missing",
+        "detail": "tests/project-hook.test.ts",
+        "fingerprint": "sha256:22b8c8b19553fe5ed835c9fb54ca5bec834493777b6ebd0f2bb7f8ba8c17c54b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-16-outstanding-snapshot-owner",
+        "reason": "plan_citation_missing",
+        "detail": "tests/goal-evidence-audit.test.ts",
+        "fingerprint": "sha256:22eea4d7caab2b5b89c13dc03e2e883b45e75046429f4c42187e5dc1c78c95f1",
+        "plan_path": "docs/plans/PLAN-RECOVERY-16-outstanding-snapshot-owner.md",
+        "plan_semantic_digest": "sha256:82afcf59a38a23c53b85c19a32579440d69be26c612adc6d2fbfd07aeb51977f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-91-roadmap-recovery-correlation",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:230d1e265405f8250e144012d15cf10d3030ad8bafd732e083c15e13b46b0aa6",
+        "plan_path": "docs/plans/PLAN-RECOVERY-91-roadmap-recovery-correlation.md",
+        "plan_semantic_digest": "sha256:c875c888973ecaedc91c92a3311adcde875479b98d5f289ccbe2abac8a333484"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-69-migration-source-zip-retirement",
+        "reason": "oracle_citation_missing",
+        "detail": "U-SRCMAN-006@tests/source-package-manifest.test.ts",
+        "fingerprint": "sha256:24f3605c54c84d20ea39a37fbe13bd5230a2aee32232493fa58a770f40a05b15",
+        "plan_path": "docs/plans/PLAN-RECOVERY-69-migration-source-zip-retirement.md",
+        "plan_semantic_digest": "sha256:80c4d7b8cb2edc15f595447a7f21542ece6a99fdd7aa2ec4693e5bc0ce974084"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-kimi-admission-lane-closure-digest",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/kimi-review-admission/admission-evidence.ts",
+        "fingerprint": "sha256:27fab34c066ea32fe1ec0ddaa8f6682cd41e29b680a4b8e7e8041ce5f0bbe875",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md",
+        "plan_semantic_digest": "sha256:63f41fc9ecccb9d0e00e7921fbf2cf9d6f3fa7d100371a08c3f69f71ddd384bb"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-55-typescript-lazy-shared",
+        "reason": "plan_citation_missing",
+        "detail": "tests/lint-wiring.test.ts",
+        "fingerprint": "sha256:281ca36b2ffc0b950a38dd3e60e256437610430174a6bc93f8cc95fda3cac4c6",
+        "plan_path": "docs/plans/PLAN-RECOVERY-55-typescript-lazy-shared.md",
+        "plan_semantic_digest": "sha256:0c82ffbff2cc3d1796dfca43881741678f954ee447ac73b0959d16f10213c8ec"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-53-external-invariant-errata",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:291372c6baf62066c9e111d9690cb3ff4e2bb4221bceb7ca6b27771942f61007",
+        "plan_path": "docs/plans/PLAN-RECOVERY-53-external-invariant-errata.md",
+        "plan_semantic_digest": "sha256:827fe904a593c57c391727a917689d583b57eab5cf8a7b350058538349f61551"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-84-doctor-check-registry-authority",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:2c23c7839274f60c4e36cb7554440307fe1593e83c454ba1f107feffcdd36969",
+        "plan_path": "docs/plans/PLAN-RECOVERY-84-doctor-check-registry-authority.md",
+        "plan_semantic_digest": "sha256:34d3c39db7b07426947902e50f2828a68ec167bdbe776683aa5adcc03b5733f8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-83-runner-attestation-journal-authority",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:2d3d88712c77287138a1ab8adb9ce700e79b74b7439531d7dd540244257025be",
+        "plan_path": "docs/plans/PLAN-RECOVERY-83-runner-attestation-journal-authority.md",
+        "plan_semantic_digest": "sha256:6146e841b29a697feebdc473f94d90642c2c09cfc30307b1ff91de116c6650af"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-002",
+        "fingerprint": "sha256:2e1303d22c2ad0da2953df13baa331e0c0df902a3b18ad4f062c4ef222da4755",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-38-wbb-judge-context-capability",
+        "reason": "plan_citation_missing",
+        "detail": "tests/worker-isolation-broker.test.ts",
+        "fingerprint": "sha256:2e30956eab00688d24c0d89f89f0f1d2133d4f6dd119c500c00dada1b09e9a86",
+        "plan_path": "docs/plans/PLAN-RECOVERY-38-wbb-judge-context-capability.md",
+        "plan_semantic_digest": "sha256:dd3bfb10067bd7d0d8dfd016ee5610d21e16cad9d295c9ad4d3b7bfc64719e30"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+        "reason": "plan_citation_missing",
+        "detail": "tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:2e7bb9322de1e8e506937fb846f51e3dbba7c243f74c9029019b55e77fc9ac84",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md",
+        "plan_semantic_digest": "sha256:218ef81e294cd33ffb3ef8f4ade4dacd4d29ebf2738a780564cc34a5f9e87628"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-71-skill-applicability-oracle-closure",
+        "reason": "oracle_not_declared",
+        "detail": "U-SKAPP-005",
+        "fingerprint": "sha256:2ec33945784101115437206ccfcc32c471b35d496ef6bb67dafbaa24c50e6dd7",
+        "plan_path": "docs/plans/PLAN-RECOVERY-71-skill-applicability-oracle-closure.md",
+        "plan_semantic_digest": "sha256:153f51daa7a7e1c596015e069f46610916fcbe4eeb112c2d0e8f11b88e72f4ae"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-kimi-admission-lane-closure-digest",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-012c",
+        "fingerprint": "sha256:2f2270747d4c73b5dd9c4ca311cdcc75faeb7ab536ccb17f084e15fb150696b2",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md",
+        "plan_semantic_digest": "sha256:63f41fc9ecccb9d0e00e7921fbf2cf9d6f3fa7d100371a08c3f69f71ddd384bb"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-35-wbb-selected-candidate-dead-path",
+        "reason": "plan_citation_missing",
+        "detail": "tests/worker-isolation-broker.test.ts",
+        "fingerprint": "sha256:309b7d9bb3dd5c01e030fc77759efbcf9fd10da0b9614a142f0f7faf8fbc187d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-35-wbb-selected-candidate-dead-path.md",
+        "plan_semantic_digest": "sha256:fda4b25a588b1ffdc2ffe2eac99a8a2368bd976681626a413b0dc53f8566166f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "plan_citation_missing",
+        "detail": "tests/closure-auto-approval.test.ts",
+        "fingerprint": "sha256:310d93ec845d401bbcc234c7a596c44f9ae504c010faeaf10589fa496d782222",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_not_declared",
+        "detail": "U-PNCM-004",
+        "fingerprint": "sha256:315d46b7cc64d58f1461de7bf22d97bae4909fba5a0800598d4735bd70a12d96",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "generated_test_unbound",
+        "detail": "tests/slow/doctor.test.ts",
+        "fingerprint": "sha256:3161255ef2e64574917cab3751b7f5a942dcc9b068be313b8c43d238460a4340",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-41-cross-review-admission-symmetry",
+        "reason": "oracle_not_declared",
+        "detail": "U-GCRA-008",
+        "fingerprint": "sha256:327392b876a349cf485ff4d685d5c1b0f9642e99298a079c321318136502cf27",
+        "plan_path": "docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md",
+        "plan_semantic_digest": "sha256:22664aaec69936a6851ff264f50f90e30252760386b7f163603ee8e793dd1c74"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-93-provider-process-env-boundary",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:34bfaeb20a160cc2d7787cfe3ca7f42a52829745c4867de3c5a08332d8c7e7f1",
+        "plan_path": "docs/plans/PLAN-RECOVERY-93-provider-process-env-boundary.md",
+        "plan_semantic_digest": "sha256:cd0331fd60e5ac368899ba63c8688186622330d42d0d9c4a79eb0a5bdea4f337"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-MEMWAKE-002: tests/claude-memory-wake.test.ts,tests/runtime-hook-entrypoints.test.ts",
+        "fingerprint": "sha256:35155c13385426b6d4d84382364d426fb65b9b77dc122673801672fd14a5ca25",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+        "reason": "plan_citation_missing",
+        "detail": "tests/pair-agent.test.ts",
+        "fingerprint": "sha256:354f63b043b1f9ffbf3970007660a0dc00176afd90751af8473dbee376758756",
+        "plan_path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md",
+        "plan_semantic_digest": "sha256:2ee40c7adfc02d27bf3d82d8ed6290e07899e4903a81a6362c9dfae15df4c324"
+      },
+      {
+        "plan_id": "PLAN-L7-502-worker-independent-review",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-WIB-018: tests/harness-check-workflow.test.ts,tests/worker-isolation-broker.test.ts",
+        "fingerprint": "sha256:3652069d656252e6b91a51286cedc2e5d0918819f456b49c3dc1122829c53a3e",
+        "plan_path": "docs/plans/PLAN-L7-502-worker-independent-review.md",
+        "plan_semantic_digest": "sha256:5b4ca8164ba196e5fc470ecbc756c5f70b7abfbf3432aba52b63849ae6ebab4f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-33-wcc-fr01-completion-receipt",
+        "reason": "plan_citation_missing",
+        "detail": "tests/wcc-fr-01-descriptor-binding.test.ts",
+        "fingerprint": "sha256:36c6bdc7e3263ac4f33473b85d7e73ed0c764cb53b9d963400de748e4c226bd1",
+        "plan_path": "docs/plans/PLAN-RECOVERY-33-wcc-fr01-completion-receipt.md",
+        "plan_semantic_digest": "sha256:ef34c61a49910be3e440ba2194aa3b7b2cc9f09367aed80cc77a9036fb4e7385"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-85-git-argument-boundary",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:3792125afc873ea56ad1a06e12a1321e1b6f36aa3b6be959d57a6fea978e4151",
+        "plan_path": "docs/plans/PLAN-RECOVERY-85-git-argument-boundary.md",
+        "plan_semantic_digest": "sha256:50e1836656c7c76e5e9486f1c6662eacbc86c0641cab23659c9177932e8f74a5"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_citation_missing",
+        "detail": "U-PNCM-002@tests/project-hook.test.ts",
+        "fingerprint": "sha256:387ec8d62e985ca0ae271b392ca7fa4d50541a48170828acb7e635b748a83d3b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "plan_citation_missing",
+        "detail": "tests/setup.test.ts",
+        "fingerprint": "sha256:3ae91e0ec5832d93331aed9fd8503d7f8a16f5b3a15b116d7c2a2c735db9cae4",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "oracle_not_declared",
+        "detail": "U-VVM-002",
+        "fingerprint": "sha256:3b6bb806aa434aaf5b5f44b24420525f967a48f7be08790a6ae7d626ee631e91",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-73-requirement-material-receipt-ancestry",
+        "reason": "plan_citation_missing",
+        "detail": "tests/requirement-authority.test.ts",
+        "fingerprint": "sha256:3caf8d606e0c359cfb8fff4a641d9022bb9f35157a81ba1a9bb62fc4eeed0a4f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-73-requirement-material-receipt-ancestry.md",
+        "plan_semantic_digest": "sha256:ac5c030b2dc9ac43c4316d283638b4b311e7fcf4fd49bca0b9c65a7161e187b1"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-71-skill-applicability-oracle-closure",
+        "reason": "plan_citation_missing",
+        "detail": "tests/asset-catalog.test.ts",
+        "fingerprint": "sha256:3cbf89a0facc09e617ed4751b4c11d46f6643c9f117a71ba9a8d6f7705f95594",
+        "plan_path": "docs/plans/PLAN-RECOVERY-71-skill-applicability-oracle-closure.md",
+        "plan_semantic_digest": "sha256:153f51daa7a7e1c596015e069f46610916fcbe4eeb112c2d0e8f11b88e72f4ae"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-74-immutable-github-action-ref-registry",
+        "reason": "oracle_not_declared",
+        "detail": "U-IAR-003",
+        "fingerprint": "sha256:3e528b8e0fe7b89dbedf47387f9034d83992d327caa55df33015529154353544",
+        "plan_path": "docs/plans/PLAN-RECOVERY-74-immutable-github-action-ref-registry.md",
+        "plan_semantic_digest": "sha256:574aeaa5a7142b03d3b6956cf2fa99417668929799813d28a86089462322bf45"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-74-immutable-github-action-ref-registry",
+        "reason": "oracle_citation_missing",
+        "detail": "U-IAR-003@tests/toolchain-pin.test.ts",
+        "fingerprint": "sha256:3ef13bdc60f25208a59ee31661be9e1864766964fd4ceb511adecb666e3eb7d8",
+        "plan_path": "docs/plans/PLAN-RECOVERY-74-immutable-github-action-ref-registry.md",
+        "plan_semantic_digest": "sha256:574aeaa5a7142b03d3b6956cf2fa99417668929799813d28a86089462322bf45"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-57-setup-node-v7-dual-admission",
+        "reason": "oracle_citation_missing",
+        "detail": "U-TOOLCHAIN-PIN-005@tests/toolchain-pin.test.ts",
+        "fingerprint": "sha256:3f5adeacd0c9cbb882ec4e3026821398a1daf2ab645760d996bd80b4119574fb",
+        "plan_path": "docs/plans/PLAN-RECOVERY-57-setup-node-v7-dual-admission.md",
+        "plan_semantic_digest": "sha256:8272d018ac0d52699803f7725e7cd513755f6d26c81ec53924715b5c6542d64f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-11-impact-ci-stateful-deadline",
+        "reason": "plan_citation_missing",
+        "detail": "tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:42cedcb33815337f03b8a33e10f8833aee138e87a8a23cd1cf7027daa8f074a0",
+        "plan_path": "docs/plans/PLAN-RECOVERY-11-impact-ci-stateful-deadline.md",
+        "plan_semantic_digest": "sha256:1d1bc57ff5b40fe489ca0107845fc8f27e3cb9f733a4a5a6f865044f65b451ec"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-74-immutable-github-action-ref-registry",
+        "reason": "oracle_citation_missing",
+        "detail": "U-IAR-004@tests/toolchain-pin.test.ts",
+        "fingerprint": "sha256:42fc5d1f979ed622079b800994ce62978b3b89450d2eb7df8465dc409f60913d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-74-immutable-github-action-ref-registry.md",
+        "plan_semantic_digest": "sha256:574aeaa5a7142b03d3b6956cf2fa99417668929799813d28a86089462322bf45"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-41-cross-review-admission-symmetry",
+        "reason": "generated_test_unbound",
+        "detail": "tests/github-issue-closure-graph-adapter.test.ts",
+        "fingerprint": "sha256:434009a56dcda73fd4a20546203a9d9cba9ebef0025fdfcfbf23381478e5c6f1",
+        "plan_path": "docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md",
+        "plan_semantic_digest": "sha256:22664aaec69936a6851ff264f50f90e30252760386b7f163603ee8e793dd1c74"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-06-claude-pr-close-reopen-loop",
+        "reason": "plan_citation_missing",
+        "detail": "tests/git-command-guard.test.ts",
+        "fingerprint": "sha256:45bf9958053e8614fc4410f28787974fb78a9e946c5a98067e403e56986fa47e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-06-claude-pr-close-reopen-loop.md",
+        "plan_semantic_digest": "sha256:8cc38b7ead93ed077943c722bb60a4c0e576e83202033452d3ed4f414cf04b6c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-16-outstanding-snapshot-owner",
+        "reason": "oracle_not_declared",
+        "detail": "U-OBJAUD-001",
+        "fingerprint": "sha256:46a25f6d065683c351c06fb9d576f32a4f522addaef822e36e318c9bcb21a6b1",
+        "plan_path": "docs/plans/PLAN-RECOVERY-16-outstanding-snapshot-owner.md",
+        "plan_semantic_digest": "sha256:82afcf59a38a23c53b85c19a32579440d69be26c612adc6d2fbfd07aeb51977f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-17-pr-create-contract-fail-close",
+        "reason": "oracle_citation_missing",
+        "detail": "U-PRCREATE-381-002@tests/github-merge-readiness.test.ts",
+        "fingerprint": "sha256:4883287783618eb0f7f26295f6eb5d6a0b7892999d13111e0788c232779ba3fa",
+        "plan_path": "docs/plans/PLAN-RECOVERY-17-pr-create-contract-fail-close.md",
+        "plan_semantic_digest": "sha256:922946d22f628d5e4bace174d79a1de445699202a4b94f32603eae94fa719746"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-OUTSTANDING-012",
+        "fingerprint": "sha256:4a688825564e77316389bb3d041f20831ebb1e78944eec9ecb3618566774675f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-41-cross-review-admission-symmetry",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-011",
+        "fingerprint": "sha256:4b6c1922dd0eacf79cff832c6f084e172da2fe7aab6e5fbf10a0f204aff4d35e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md",
+        "plan_semantic_digest": "sha256:22664aaec69936a6851ff264f50f90e30252760386b7f163603ee8e793dd1c74"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-001",
+        "fingerprint": "sha256:4cbe49c0a57bb9f03c687756adcbbbb85889e8668ad44edf80e509d974189f32",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-96-projection-finding-observability",
+        "reason": "plan_citation_missing",
+        "detail": "tests/drive-db-registration.test.ts",
+        "fingerprint": "sha256:4cc58bb2d6fb5ba76ed07573a35d58b9d3f910165da011d6032cb0c08be2ae25",
+        "plan_path": "docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md",
+        "plan_semantic_digest": "sha256:178a8680dc304c4a5556894769801449df7ae35566f9ac5a966f16a3b0e4a25c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-44-mixed-authorship-dual-review",
+        "reason": "oracle_not_declared",
+        "detail": "U-GCRA-011",
+        "fingerprint": "sha256:4e4e903c008a73786eb3ef3874705a2301b59ffefe0b1874f8fd94469ec6545a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md",
+        "plan_semantic_digest": "sha256:e67baedda8813c1dadafe780e1c1cf3e29e578762a131c3101268f6f618e88db"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-004",
+        "fingerprint": "sha256:4e6221b9b0edbd8f4ca8fc064f31de470f1be92ce734c88151be8a76a4cbc465",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-38-wbb-judge-context-capability",
+        "reason": "oracle_not_declared",
+        "detail": "U-WBB-003",
+        "fingerprint": "sha256:4eb508b79191656c6a3007986940da864d7a29a9727af018705febc63d94c4ea",
+        "plan_path": "docs/plans/PLAN-RECOVERY-38-wbb-judge-context-capability.md",
+        "plan_semantic_digest": "sha256:dd3bfb10067bd7d0d8dfd016ee5610d21e16cad9d295c9ad4d3b7bfc64719e30"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:4ee8367f776a952a758ebcf143e0eb437f015638ee05f91375036d49eb961acc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-66-post-merge-plan-status-preflight.md",
+        "plan_semantic_digest": "sha256:b0cb0caa84efabeefae50117d2f19bc492a6d1ec65726420ed35b2aa4695067f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-15-impact-ci-transition-reuse",
+        "reason": "plan_citation_missing",
+        "detail": "tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:4fbe0e35d53d210fd2a23d97f5753be3625bd0d85728da68ee69519efecc3ace",
+        "plan_path": "docs/plans/PLAN-RECOVERY-15-impact-ci-transition-reuse.md",
+        "plan_semantic_digest": "sha256:78e504a4dcec44b58065dda0e31bc9f4242a2cfc9d906501923151540a274998"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-74-immutable-github-action-ref-registry",
+        "reason": "oracle_not_declared",
+        "detail": "U-IAR-002",
+        "fingerprint": "sha256:507385d172a8513e9cc5403d559bfc75f78053384c2a4d59600d86a702fca364",
+        "plan_path": "docs/plans/PLAN-RECOVERY-74-immutable-github-action-ref-registry.md",
+        "plan_semantic_digest": "sha256:574aeaa5a7142b03d3b6956cf2fa99417668929799813d28a86089462322bf45"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-12-independent-review-fallback",
+        "reason": "plan_citation_missing",
+        "detail": "tests/independent-review-fallback.test.ts",
+        "fingerprint": "sha256:51c959846b8aff59d3ce06c95bf5cf449dbef9cd07c5c1b2b3988681b8cacec0",
+        "plan_path": "docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md",
+        "plan_semantic_digest": "sha256:6331ab157aa82fd044bf1216df7c61ac86c775a573ddf40d5cb869edfaf5c9e8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-44-mixed-authorship-dual-review",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-015c",
+        "fingerprint": "sha256:526fa3b5464f047fd6f9af7513af3b801d1930dff894dd7cb3f7bfde0a571bc3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md",
+        "plan_semantic_digest": "sha256:e67baedda8813c1dadafe780e1c1cf3e29e578762a131c3101268f6f618e88db"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "plan_citation_missing",
+        "detail": "tests/claude-memory-wake.test.ts",
+        "fingerprint": "sha256:52dfb57d006443c2c310c528bfa364e07daacb540e3ddb7548536171fb4bfb9d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-kimi-review-lane-admission-bench",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-011c",
+        "fingerprint": "sha256:5352a791e5d42ba7e604bbeb8853c2e238422d0e83e7a3c486f933dc38b3fa72",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md",
+        "plan_semantic_digest": "sha256:79ef5ca281fb864932acf0793b2e2b78b95da6acf10051f895a2b9915cb84ec7"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-71-skill-applicability-oracle-closure",
+        "reason": "plan_citation_missing",
+        "detail": "tests/slow/projection-writer.test.ts",
+        "fingerprint": "sha256:538b431a6c4c9e4bc9215abc249d09fe568e80bcad8d54496e210322c46726c6",
+        "plan_path": "docs/plans/PLAN-RECOVERY-71-skill-applicability-oracle-closure.md",
+        "plan_semantic_digest": "sha256:153f51daa7a7e1c596015e069f46610916fcbe4eeb112c2d0e8f11b88e72f4ae"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-lazy-typescript-cli-startup",
+        "reason": "plan_citation_missing",
+        "detail": "tests/typescript-lazy.test.ts",
+        "fingerprint": "sha256:53f79d7793f5f812dbb93b26b4b4275a422abf91f1de29b9dcc32d1d10fb7373",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-lazy-typescript-cli-startup.md",
+        "plan_semantic_digest": "sha256:c58f88a27c49ce4ca818213d46ec7357a67e0c6c5525b3b898c557b9c2dd0b99"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+        "reason": "oracle_not_declared",
+        "detail": "U-GCRA-WF-001",
+        "fingerprint": "sha256:5556e82b9c54019a5252aeb7d3742b07944f3b93687f961463a22bc3df1cfc6d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md",
+        "plan_semantic_digest": "sha256:218ef81e294cd33ffb3ef8f4ade4dacd4d29ebf2738a780564cc34a5f9e87628"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-007",
+        "fingerprint": "sha256:5676a471afdfbb4f6589647c2c708db76072ffce2d7aec25d077dddc7b8c9b92",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-32-worker-contract-pair-authority",
+        "reason": "oracle_not_declared",
+        "detail": "U-WCC-PAIR-001",
+        "fingerprint": "sha256:569a74a91f06b5f8c656ca38d15d15983a5096f506330996995d5b1c5e0c384a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-32-worker-contract-pair-authority.md",
+        "plan_semantic_digest": "sha256:a1f5a0b1c5dea5101f7b64f24f3a96284fffa2afbdf9592a2168c4207347ac7a"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+        "reason": "generated_test_unbound",
+        "detail": "tests/cli-surface.test.ts",
+        "fingerprint": "sha256:56f8b0958edc2f88d400c685a40e725462e358a4dfbba926923bae6e36bb3850",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md",
+        "plan_semantic_digest": "sha256:218ef81e294cd33ffb3ef8f4ade4dacd4d29ebf2738a780564cc34a5f9e87628"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+        "reason": "oracle_not_declared",
+        "detail": "U-LSAF-001",
+        "fingerprint": "sha256:572e495bbadd2f39d4f26d00bf0d18d34ac5b1c689a910435dc4286bf8c6dd9e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md",
+        "plan_semantic_digest": "sha256:2ee40c7adfc02d27bf3d82d8ed6290e07899e4903a81a6362c9dfae15df4c324"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-87-hosted-preflight-nonce-order",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:5789b75e904e4ef6591381ccb6ab1e9b3d8f4b9f99beb4a1436986bbda8b28b3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-87-hosted-preflight-nonce-order.md",
+        "plan_semantic_digest": "sha256:9784cb4af3da1668f44bb769c3c364d053251db1d40f867c031a0fb24a5941b7"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-97-ci-finalize-shard-fail-close-oracle",
+        "reason": "plan_citation_missing",
+        "detail": "tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:5815dcdb7aed37727d8e5d7c6a2ddfe3587a7e3afc0dc0adbd63d7e2f54960c0",
+        "plan_path": "docs/plans/PLAN-RECOVERY-97-ci-finalize-shard-fail-close-oracle.md",
+        "plan_semantic_digest": "sha256:8b893150dab49eaaf69558fbdce2937e82bcf4633b362d39bdd4ab9e315018a3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-15-impact-ci-transition-reuse",
+        "reason": "generated_test_unbound",
+        "detail": "tests/impact-ci-recovery-detail-design.test.ts",
+        "fingerprint": "sha256:591105c4a29a7ea9fd6cc53af84e085e29173787a7edebb9e1f48c729740293e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-15-impact-ci-transition-reuse.md",
+        "plan_semantic_digest": "sha256:78e504a4dcec44b58065dda0e31bc9f4242a2cfc9d906501923151540a274998"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-88-plan-entry-canonical-signal",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:59831c976d4d6d66fbcf73db87a9f65d225823c37ee1803506438659577557a4",
+        "plan_path": "docs/plans/PLAN-RECOVERY-88-plan-entry-canonical-signal.md",
+        "plan_semantic_digest": "sha256:6395e9270ff3eaa2040e16d7d6f09ca67bb952fcc52327e0c683a354125df53e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-55-typescript-lazy-shared",
+        "reason": "plan_citation_missing",
+        "detail": "tests/typescript-lazy.test.ts",
+        "fingerprint": "sha256:59c74b519cb9530ffd0b523b0ccb959bb28a7035163b067d73c1b39903241485",
+        "plan_path": "docs/plans/PLAN-RECOVERY-55-typescript-lazy-shared.md",
+        "plan_semantic_digest": "sha256:0c82ffbff2cc3d1796dfca43881741678f954ee447ac73b0959d16f10213c8ec"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-92-cli-test-wrapper-deadline-budget",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:59d2bdeea01a884a94f94aea041d77086a841c46e5bade81d79416a65041a661",
+        "plan_path": "docs/plans/PLAN-RECOVERY-92-cli-test-wrapper-deadline-budget.md",
+        "plan_semantic_digest": "sha256:7231d994f743e3532868ca6335be93dbc16da3105498ba839b0d52ae9e85bed1"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-42-author-runtime-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-015",
+        "fingerprint": "sha256:5b45fedfef197c8205a24bf1ea54eaf8101ed59d8d664f0f6f070ab7f98fe142",
+        "plan_path": "docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md",
+        "plan_semantic_digest": "sha256:a7a047d1ab9ef0d575881e1fbcce820beef9c913edf6b68b92506920719ab850"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-019",
+        "fingerprint": "sha256:5b7e798376d796f45a8013c0abcbff083089086f10efd08356bf85e6441adfef",
+        "plan_path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md",
+        "plan_semantic_digest": "sha256:4618724fc5fef8e4b7909d0a1b3980cf66ce6a7d2393b5793240f768d4c3537e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "plan_citation_missing",
+        "detail": "tests/claude-memory-wake.test.ts",
+        "fingerprint": "sha256:5c3533ef9265f87ac5dafd9b8d0e91ee15645d7e455b30514797bf65ec87f5ee",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "plan_citation_missing",
+        "detail": "tests/issue-closure-graph.test.ts",
+        "fingerprint": "sha256:5c373c2b44d9af6abb89836c11206fe7240ccbffa0c32fcb118d6bf367bcdbb7",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/closure-authority-backfill-production-route.test.ts",
+        "fingerprint": "sha256:5d5458042d9392e0754f8da907d0b30f071e4ba8dcc9c58697ec426e48b04ec1",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-14-impact-ci-cancel-propagation",
+        "reason": "oracle_citation_missing",
+        "detail": "U-IMPACTCI-WF-003@tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:5e3999a49340cef8596f8e90ea6177a84d82bc749e70c79ac33d97835ff9f274",
+        "plan_path": "docs/plans/PLAN-RECOVERY-14-impact-ci-cancel-propagation.md",
+        "plan_semantic_digest": "sha256:34a072be214d14b12699076b7cf6795f59d2bfa8fbb86ce689f4d93373e4809b"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-50-doctor-drop-home-session-scan",
+        "reason": "plan_citation_missing",
+        "detail": "tests/slow/doctor.test.ts",
+        "fingerprint": "sha256:5e5388130a307505bcde86d39fa5f90d30a7a53c27c4098b513df83113c02f8a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-50-doctor-drop-home-session-scan.md",
+        "plan_semantic_digest": "sha256:a2c9097b8424b5401aa0bb6509f6482020697b09eff676122cf386107884b925"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_not_declared",
+        "detail": "U-PNCM-002",
+        "fingerprint": "sha256:5f6c91ba763ff0d4c7e44c42fe835582173419b6b3b126e43e41983f16f77a89",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "oracle_not_declared",
+        "detail": "U-CLIBUNDLE-001",
+        "fingerprint": "sha256:5fc8eae35270b479bc421a75d33019dfd1a8136d2c1d2722d92543418f4f7eb7",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-72-confirmed-pending-reverse-pairing",
+        "reason": "plan_citation_missing",
+        "detail": "tests/backfill-pairing.test.ts",
+        "fingerprint": "sha256:61001be63477c50f030e3a155408f4ff1f04239785ccfc1498f836f4cb7cfdae",
+        "plan_path": "docs/plans/PLAN-RECOVERY-72-confirmed-pending-reverse-pairing.md",
+        "plan_semantic_digest": "sha256:a832c408887b0b378ba2919278d605ddf5a36c1502168c46b0f5e8993ad5db3f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-69-migration-source-zip-retirement",
+        "reason": "oracle_citation_missing",
+        "detail": "U-SRCMAN-005@tests/source-package-manifest.test.ts",
+        "fingerprint": "sha256:625a82a8a28c82677b198c20aa54a2610b674567696c2b4802299b35f9c5031e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-69-migration-source-zip-retirement.md",
+        "plan_semantic_digest": "sha256:80c4d7b8cb2edc15f595447a7f21542ece6a99fdd7aa2ec4693e5bc0ce974084"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-07-infinity-loop-authority-metadata",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:658a07375d90e017c359c19939a046150fe8d545fd670095dce1962efb435780",
+        "plan_path": "docs/plans/PLAN-RECOVERY-07-infinity-loop-authority-metadata.md",
+        "plan_semantic_digest": "sha256:f62bdf42e189fed73733557cc914aaa2f89eefe14377afb175785bb899736a7b"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/closure-auto-approval.test.ts",
+        "fingerprint": "sha256:66a0a0c859ffa7d7c00b0099810c9cff80337744d1cb6958bc1dbd76a222f723",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-61-review-receipt-producer-causality",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:675af4d45621c54d1e42b747800c7556e1d0a41bf6bdc742cdd6ef803d96b366",
+        "plan_path": "docs/plans/PLAN-RECOVERY-61-review-receipt-producer-causality.md",
+        "plan_semantic_digest": "sha256:b40846b33e48461077c004ba3ac1a30a9a3b3de50f39e7e0723f285cdc922ce4"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-kimi-review-lane-admission-bench",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/kimi-review-admission/run-admission-bench.ts",
+        "fingerprint": "sha256:6817714a4c201cf61d3096035b01dbee4aef3d14bf1afe3022ea706c7bad8429",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md",
+        "plan_semantic_digest": "sha256:79ef5ca281fb864932acf0793b2e2b78b95da6acf10051f895a2b9915cb84ec7"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-54-synthesized-legacy-read-detection",
+        "reason": "plan_citation_missing",
+        "detail": "tests/requirement-authority.test.ts",
+        "fingerprint": "sha256:683da4b698ddc711243c94c8173a3f1191cb04afe34be0f00d54ac3bd8e69aed",
+        "plan_path": "docs/plans/PLAN-RECOVERY-54-synthesized-legacy-read-detection.md",
+        "plan_semantic_digest": "sha256:630425d400d5e16433542415ce55f9579b8562d7d5df6ba25a9aa01246272623"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-44-mixed-authorship-dual-review",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-015b",
+        "fingerprint": "sha256:696b01614011a72db88385a10730f37c508ce44d11dd06529fa27625d5f9d675",
+        "plan_path": "docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md",
+        "plan_semantic_digest": "sha256:e67baedda8813c1dadafe780e1c1cf3e29e578762a131c3101268f6f618e88db"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+        "reason": "plan_citation_missing",
+        "detail": "tests/orchestration/loop-bridge.test.ts",
+        "fingerprint": "sha256:6b401ceabb9575f003997d2566d30596785fce9feb4f258677bcceaffb8da9aa",
+        "plan_path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md",
+        "plan_semantic_digest": "sha256:2ee40c7adfc02d27bf3d82d8ed6290e07899e4903a81a6362c9dfae15df4c324"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-13-provider-auth-write-back",
+        "reason": "plan_citation_missing",
+        "detail": "tests/independent-review-fallback.test.ts",
+        "fingerprint": "sha256:6b930a6a74334c751132e195f4194b390c1afb88bb1538759676e4bc601bd975",
+        "plan_path": "docs/plans/PLAN-RECOVERY-13-provider-auth-write-back.md",
+        "plan_semantic_digest": "sha256:c48c7212db27acec5f87b37447cd17a3cdfcfd030e04afe81f194c16d55a4409"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:6bee9a353cd451cab6aac39459876cefd4cae1b6d222ff32d0fe4610143bf930",
+        "plan_path": "docs/plans/PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability.md",
+        "plan_semantic_digest": "sha256:6292a70667cf17c91a02b33a60699f8df281190d28ed8c773938d3fef4fd4010"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-76-cursor-cloud-environment-admission",
+        "reason": "oracle_not_declared",
+        "detail": "U-CURSOR-ENV-001",
+        "fingerprint": "sha256:6c242e168dffd5707d8bc81dba6f4a0d7c9198728724f3a4d068ec0acc887f35",
+        "plan_path": "docs/plans/PLAN-RECOVERY-76-cursor-cloud-environment-admission.md",
+        "plan_semantic_digest": "sha256:b65bba51827ea7a6c1f6b5bfc2d19f8b6dc94c19fa93ff4a0a8fee1ba9ed68bf"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-18-lane-inventory-partial-logs",
+        "reason": "plan_citation_missing",
+        "detail": "tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:6e711413618baee310edecc81652bc36c3cccd7ad07044a31a669596afd5a19f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-18-lane-inventory-partial-logs.md",
+        "plan_semantic_digest": "sha256:e212154bd857054975e79e65e15b088daeb8f49bc6a9b4321954646f9d2fd898"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-006",
+        "fingerprint": "sha256:6fd7e0e15fa930c47c019f17c1ff9af26e1e31527d7be91caa54bcee34a4bb62",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-12-independent-review-fallback",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-001",
+        "fingerprint": "sha256:6feea48ed405536096efda66624ec7911732a2531bfc02da177d65d804b7132a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md",
+        "plan_semantic_digest": "sha256:6331ab157aa82fd044bf1216df7c61ac86c775a573ddf40d5cb869edfaf5c9e8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "oracle_not_declared",
+        "detail": "U-MEMWAKE-003",
+        "fingerprint": "sha256:701cbad9c963d6656fb5377adbad58f16746a6556ad329e953828b611d1fdf32",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-72-confirmed-pending-reverse-pairing",
+        "reason": "oracle_citation_missing",
+        "detail": "U-BACKFILL-008@tests/backfill-pairing.test.ts",
+        "fingerprint": "sha256:71a49e43dcb0c4e009c3ecc3ad9cd5593b0abeaf751a5f89bbb2a30097854b5f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-72-confirmed-pending-reverse-pairing.md",
+        "plan_semantic_digest": "sha256:a832c408887b0b378ba2919278d605ddf5a36c1502168c46b0f5e8993ad5db3f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "generated_test_unbound",
+        "detail": "tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:73328666e56897cac6101b989a5dcb0b73784104e4d1188b7db8f48658350e39",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "oracle_citation_missing",
+        "detail": "U-CLIBUNDLE-001@tests/cli-bundle-equivalence.test.ts",
+        "fingerprint": "sha256:7367d27c04c9a6db62de8625109717738250c450bebbea2a410179d14525a702",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-81-checkout-pathspec-guard",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:73d0caee4a0c0404e943192725778468d7da0a54a5a97224cd25c826e7c18c2b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-81-checkout-pathspec-guard.md",
+        "plan_semantic_digest": "sha256:7d5184af8daeb171bbd16464b1ac8638b2b372204abc05eed8afc2ca0ba4dece"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-03-codex-l7-overstep",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:754f5fe4958d98af2b7d2ff2d958c572c743685235e309a75f8890bf70a2d8eb",
+        "plan_path": "docs/plans/PLAN-RECOVERY-03-codex-l7-overstep.md",
+        "plan_semantic_digest": "sha256:e13b5f2d0795ee029254d71bd6fcadf42a589990bffe3a0ceefa4cb463c9eb38"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-05-iron-law-attempt-escalation",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:76913ab29b8e0cac14b5ff1f9e7bc0024b271e7ba232e771c43b845b9a6d0e37",
+        "plan_path": "docs/plans/PLAN-RECOVERY-05-iron-law-attempt-escalation.md",
+        "plan_semantic_digest": "sha256:3781ec90209f8a9509518baca11410b64a7bcb9744db623a32637006cd1c0dc1"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "oracle_not_declared",
+        "detail": "U-MEMWAKE-002",
+        "fingerprint": "sha256:769b275ded5311f77db35c4ce37b6354bda8cb342c1871f62f8276c475841c24",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-012",
+        "fingerprint": "sha256:76c4f4b42cc66a78424ee827f3f68cdf2c27b5c24bcb5a4d7419d9648fe0fb2b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md",
+        "plan_semantic_digest": "sha256:4618724fc5fef8e4b7909d0a1b3980cf66ce6a7d2393b5793240f768d4c3537e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-14-impact-ci-cancel-propagation",
+        "reason": "oracle_not_declared",
+        "detail": "U-IMPACTCI-WF-003",
+        "fingerprint": "sha256:7784aba06427fa3cd99e3472bc544a45481b630540429acd16aa1aa0e6524f5b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-14-impact-ci-cancel-propagation.md",
+        "plan_semantic_digest": "sha256:34a072be214d14b12699076b7cf6795f59d2bfa8fbb86ce689f4d93373e4809b"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-lazy-typescript-cli-startup",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/typescript-load-probe.cjs",
+        "fingerprint": "sha256:7b7f63fb678a3717cced9202eb9578674dbf7769992260eb2f4473ebca58c91e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-lazy-typescript-cli-startup.md",
+        "plan_semantic_digest": "sha256:c58f88a27c49ce4ca818213d46ec7357a67e0c6c5525b3b898c557b9c2dd0b99"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-13-provider-auth-write-back",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-010b",
+        "fingerprint": "sha256:7c248eef560421accfa0b0fbefe723022286b0a8c685b7236ee7236a7348dadb",
+        "plan_path": "docs/plans/PLAN-RECOVERY-13-provider-auth-write-back.md",
+        "plan_semantic_digest": "sha256:c48c7212db27acec5f87b37447cd17a3cdfcfd030e04afe81f194c16d55a4409"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-64-derived-trace-failure-code-oracles",
+        "reason": "plan_citation_missing",
+        "detail": "tests/derived-requirement-trace.test.ts",
+        "fingerprint": "sha256:7c2cde36b884b7b7f92ca9ca06b4cf7311b4b89f9b1722bdd6c70f426cc0fe4f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-64-derived-trace-failure-code-oracles.md",
+        "plan_semantic_digest": "sha256:0a7d1cd93b3fd8597ca25d082c4aa02d34a9360f784e4f795423d05830f1d6bf"
+      },
+      {
+        "plan_id": "PLAN-L7-469-claude-memory-async-wake",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-MEMWAKE-002: tests/claude-memory-wake.test.ts,tests/runtime-hook-entrypoints.test.ts",
+        "fingerprint": "sha256:7c982bc450540c0bf84333659c55fc71bd1b8351c999d3d729078cbd409ad1d0",
+        "plan_path": "docs/plans/PLAN-L7-469-claude-memory-async-wake.md",
+        "plan_semantic_digest": "sha256:5e7f1679be2ae381ace4629aff7ad47402826f62a1bd0f940c730a9d03b9382e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-90-db-key-immutability",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:7c98f1c06eebe0e2aa55667d640e8b1c107533e9f4689852bfd2b692e270eb25",
+        "plan_path": "docs/plans/PLAN-RECOVERY-90-db-key-immutability.md",
+        "plan_semantic_digest": "sha256:2331ac882f8d92ece401dee0bd39af2a4c8d2b5d1cf1e3cb3fe8822beb55c0ea"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "plan_citation_missing",
+        "detail": "tests/cli-surface.test.ts",
+        "fingerprint": "sha256:7d04f1dda933b98dcaa77167a2cd919655e1a7d29a082aa4947d93b30efa6f41",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "generated_test_unbound",
+        "detail": "tests/cli-surface.test.ts",
+        "fingerprint": "sha256:7eff8f33ddbf35686070fba85208ec679e392f5e672281e764a44434da737f06",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-11-impact-ci-stateful-deadline",
+        "reason": "oracle_citation_missing",
+        "detail": "U-IMPACTCI-WF-002@tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:7fa10431c28313de47aae2481bd1278c172d2949787621acd75401afb27e1603",
+        "plan_path": "docs/plans/PLAN-RECOVERY-11-impact-ci-stateful-deadline.md",
+        "plan_semantic_digest": "sha256:1d1bc57ff5b40fe489ca0107845fc8f27e3cb9f733a4a5a6f865044f65b451ec"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-58-mixed-dual-receipt-persistence",
+        "reason": "plan_citation_missing",
+        "detail": "tests/claude-pr-convergence.test.ts",
+        "fingerprint": "sha256:81515fdbf4aa7917b5a919c4cdc83704074b9c8326154130cf6ace8d1edb9fbf",
+        "plan_path": "docs/plans/PLAN-RECOVERY-58-mixed-dual-receipt-persistence.md",
+        "plan_semantic_digest": "sha256:18a1ce0efe8fa662f5f452a035b4bfb615c800b40b0f6d0ef96357d8b4eac480"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-020",
+        "fingerprint": "sha256:818497e05749fc47eaae9dc47ecd23009888d706bdab111c43f3a6cc4184d4ea",
+        "plan_path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md",
+        "plan_semantic_digest": "sha256:4618724fc5fef8e4b7909d0a1b3980cf66ce6a7d2393b5793240f768d4c3537e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_citation_missing",
+        "detail": "U-PNCM-001@tests/project-hook.test.ts",
+        "fingerprint": "sha256:81c2d195befbca11edeced9c58eee9923558dece84dde52b065f7ee889c9339c",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+        "reason": "oracle_not_declared",
+        "detail": "U-PSAF-001",
+        "fingerprint": "sha256:820fc881fb513d813192c1189cede11205de877e86d1cfea6acf5bd430dd2490",
+        "plan_path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md",
+        "plan_semantic_digest": "sha256:2ee40c7adfc02d27bf3d82d8ed6290e07899e4903a81a6362c9dfae15df4c324"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-74-immutable-github-action-ref-registry",
+        "reason": "oracle_not_declared",
+        "detail": "U-IAR-001",
+        "fingerprint": "sha256:83aff685f162742444c5999a091c2dab50807234d3f30bcba1fe482a3e007788",
+        "plan_path": "docs/plans/PLAN-RECOVERY-74-immutable-github-action-ref-registry.md",
+        "plan_semantic_digest": "sha256:574aeaa5a7142b03d3b6956cf2fa99417668929799813d28a86089462322bf45"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-55-typescript-lazy-shared",
+        "reason": "plan_citation_missing",
+        "detail": "tests/source-boundary-integration.test.ts",
+        "fingerprint": "sha256:84ee8b5d0d53b0444bb828843a228f71d5455848a32b52425d22e8546aa7b107",
+        "plan_path": "docs/plans/PLAN-RECOVERY-55-typescript-lazy-shared.md",
+        "plan_semantic_digest": "sha256:0c82ffbff2cc3d1796dfca43881741678f954ee447ac73b0959d16f10213c8ec"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-96-projection-finding-observability",
+        "reason": "plan_citation_missing",
+        "detail": "tests/requirements-binding-config.test.ts",
+        "fingerprint": "sha256:84f2134eb92d951eb33252aa8ce2dfd334afecf8564482136b94bde8e0dc2bc0",
+        "plan_path": "docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md",
+        "plan_semantic_digest": "sha256:178a8680dc304c4a5556894769801449df7ae35566f9ac5a966f16a3b0e4a25c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "generated_test_unbound",
+        "detail": "tests/visualization-read-model.test.ts",
+        "fingerprint": "sha256:862edddafecb4104c15d6d99e33823174d7926712202be5c3a900b539acfc6d2",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/closure-authority-convergence-production.test.ts",
+        "fingerprint": "sha256:88cfbfa9e2c0c94659405071abb1f3d4d37c51fb5bb6b880513a0169b3e1bf4c",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+        "reason": "plan_citation_missing",
+        "detail": "tests/team-run.test.ts",
+        "fingerprint": "sha256:89a31e60f3731897ee4701ea4869509cb51b4c7c3588768d45d11dded6fe85a4",
+        "plan_path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md",
+        "plan_semantic_digest": "sha256:2ee40c7adfc02d27bf3d82d8ed6290e07899e4903a81a6362c9dfae15df4c324"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "plan_citation_missing",
+        "detail": "tests/independent-review-fallback.test.ts",
+        "fingerprint": "sha256:8a47fbe79fde5040262c11a8ab9c4930c59c2e5b78d915050b98b4d1eeacfb65",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-57-setup-node-v7-dual-admission",
+        "reason": "plan_citation_missing",
+        "detail": "tests/toolchain-pin.test.ts",
+        "fingerprint": "sha256:8cb2301eb12b194a361569f11943f625bb3f8d746df4de5f8f557622e4c27d5a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-57-setup-node-v7-dual-admission.md",
+        "plan_semantic_digest": "sha256:8272d018ac0d52699803f7725e7cd513755f6d26c81ec53924715b5c6542d64f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-82-hosted-preflight-override-audit",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:8dde44719d53258e82cc63d816d403381bda7cbb5c02b4548c4ef9c131e82ee7",
+        "plan_path": "docs/plans/PLAN-RECOVERY-82-hosted-preflight-override-audit.md",
+        "plan_semantic_digest": "sha256:a0463e2084caba4159592e531e39b3db341a83e1f17c07789de72ff607d4ea13"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-68-source-package-manifest-migration",
+        "reason": "oracle_not_declared",
+        "detail": "U-SRCMAN-004",
+        "fingerprint": "sha256:8e4f2259c6bccc7993966e2daf198e5d2d821d5b58915e6eb5d737563eef6239",
+        "plan_path": "docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md",
+        "plan_semantic_digest": "sha256:baf687da28658b79210f9a24ea592269750026eeed43315b3fa21bec693f0cd9"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "test_not_generated",
+        "detail": "tests/kimi-review-admission-bench.test.ts",
+        "fingerprint": "sha256:8ed5b9d1f7659e1f45262b2316f597a57ca2b51a198c845c48125e27f5b39148",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-58-mixed-dual-receipt-persistence",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-024",
+        "fingerprint": "sha256:8ef8eb70a063aee02af7e3507efc4e85692cec1cb8b15ff7ac3a500abf40e399",
+        "plan_path": "docs/plans/PLAN-RECOVERY-58-mixed-dual-receipt-persistence.md",
+        "plan_semantic_digest": "sha256:18a1ce0efe8fa662f5f452a035b4bfb615c800b40b0f6d0ef96357d8b4eac480"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-49-locale-independent-finding-order",
+        "reason": "generated_test_unbound",
+        "detail": "tests/digest.test.ts",
+        "fingerprint": "sha256:8fc4dcd2d086437298cd287ef6ef3770ce0d8b888de0a792bec5e5b0095cefab",
+        "plan_path": "docs/plans/PLAN-RECOVERY-49-locale-independent-finding-order.md",
+        "plan_semantic_digest": "sha256:18a455767c2162f57a4a5b178563320a6b9b4cb0cc5afd303713aafa442843e8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-012c",
+        "fingerprint": "sha256:903d8e3939574887ca7400d522da75b8700b0452703e3c0ccbf70692c8c0444b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-33-wcc-fr01-completion-receipt",
+        "reason": "oracle_citation_missing",
+        "detail": "U-WCC-FR01-001@tests/wcc-fr-01-descriptor-binding.test.ts",
+        "fingerprint": "sha256:90be917cac3bf98f6e1c37cc7e0e3c62c27abfb2037b91ce1ac41da10fc2dc5a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-33-wcc-fr01-completion-receipt.md",
+        "plan_semantic_digest": "sha256:ef34c61a49910be3e440ba2194aa3b7b2cc9f09367aed80cc77a9036fb4e7385"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-018",
+        "fingerprint": "sha256:9192d550a7bbaff7dc75104bfb9177f9715f9fb21713d79a2b8c6e26720fc216",
+        "plan_path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md",
+        "plan_semantic_digest": "sha256:4618724fc5fef8e4b7909d0a1b3980cf66ce6a7d2393b5793240f768d4c3537e"
+      },
+      {
+        "plan_id": "PLAN-L7-469-claude-memory-async-wake",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-MEMWAKE-003: tests/claude-memory-wake.test.ts,tests/setup.test.ts",
+        "fingerprint": "sha256:946a90a8305965d5290d99551d613e1557356fc12d9f324310296d18da79b8cd",
+        "plan_path": "docs/plans/PLAN-L7-469-claude-memory-async-wake.md",
+        "plan_semantic_digest": "sha256:5e7f1679be2ae381ace4629aff7ad47402826f62a1bd0f940c730a9d03b9382e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-kimi-admission-lane-closure-digest",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-012b",
+        "fingerprint": "sha256:962ad14497f13131f341a56fddd2ffa1171f8a728856b97a1106cc358cca6d22",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md",
+        "plan_semantic_digest": "sha256:63f41fc9ecccb9d0e00e7921fbf2cf9d6f3fa7d100371a08c3f69f71ddd384bb"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-57-setup-node-v7-dual-admission",
+        "reason": "oracle_citation_missing",
+        "detail": "U-TOOLCHAIN-PIN-006@tests/toolchain-pin.test.ts",
+        "fingerprint": "sha256:9704b09f1c9b85caa94653ad343d249c241bb08daa09bc04c1c8c9e55b7fabd9",
+        "plan_path": "docs/plans/PLAN-RECOVERY-57-setup-node-v7-dual-admission.md",
+        "plan_semantic_digest": "sha256:8272d018ac0d52699803f7725e7cd513755f6d26c81ec53924715b5c6542d64f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-016",
+        "fingerprint": "sha256:98c5bc719841d83b1e03d6472a0facf040bf4bfcabe2da434356f9b93ebb5bd8",
+        "plan_path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md",
+        "plan_semantic_digest": "sha256:4618724fc5fef8e4b7909d0a1b3980cf66ce6a7d2393b5793240f768d4c3537e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+        "reason": "generated_test_unbound",
+        "detail": "tests/l3-g3-freeze-packet-v2.test.ts",
+        "fingerprint": "sha256:9b0a40b486364f9ca765dfe1f06a4ac5d5a8ac526c53f88b4f189db917c44cbc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md",
+        "plan_semantic_digest": "sha256:218ef81e294cd33ffb3ef8f4ade4dacd4d29ebf2738a780564cc34a5f9e87628"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_citation_missing",
+        "detail": "U-PNCM-003@tests/project-hook.test.ts",
+        "fingerprint": "sha256:9c69d0987cc899cd2a279d0ed5aa3d7ef3771fcd642fceee70619d24d5c3f1bf",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-41-cross-review-admission-symmetry",
+        "reason": "oracle_not_declared",
+        "detail": "U-GCRA-006",
+        "fingerprint": "sha256:9d2716572e62ee82d6a0f96be573c35739467e1295ce34dbf9ad264a3db35bae",
+        "plan_path": "docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md",
+        "plan_semantic_digest": "sha256:22664aaec69936a6851ff264f50f90e30252760386b7f163603ee8e793dd1c74"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-EXT-005",
+        "fingerprint": "sha256:9ebc86297b95c17ff8314f7a2c4c65a720d917ab4df221249a36d265e7517102",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "plan_citation_missing",
+        "detail": "tests/branch-kind.test.ts",
+        "fingerprint": "sha256:a1b9a9b10cda2d1037adf629654d1d85f579829747235cb81244137948c68ed9",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-76-cursor-cloud-environment-admission",
+        "reason": "plan_citation_missing",
+        "detail": "tests/cursor-cloud-environment.test.ts",
+        "fingerprint": "sha256:a43dbf5bd511fd256b3e1a29eb78237825db403faa2451bbea378deb50e13f7e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-76-cursor-cloud-environment-admission.md",
+        "plan_semantic_digest": "sha256:b65bba51827ea7a6c1f6b5bfc2d19f8b6dc94c19fa93ff4a0a8fee1ba9ed68bf"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-35-wbb-selected-candidate-dead-path",
+        "reason": "oracle_not_declared",
+        "detail": "U-WBB-004",
+        "fingerprint": "sha256:a4c74c180a008f8a7d78560ad348a4e2c0335d4b2bf05a1a184001c13d8920a3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-35-wbb-selected-candidate-dead-path.md",
+        "plan_semantic_digest": "sha256:fda4b25a588b1ffdc2ffe2eac99a8a2368bd976681626a413b0dc53f8566166f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+        "reason": "oracle_not_declared",
+        "detail": "U-GCRA-001",
+        "fingerprint": "sha256:a522f4f80128e66e731a634cfd274a7a7b782deac9dfcd5b1d0c60bb021475a2",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md",
+        "plan_semantic_digest": "sha256:218ef81e294cd33ffb3ef8f4ade4dacd4d29ebf2738a780564cc34a5f9e87628"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-02-vmodel-canonical",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:a6860e82d9a189d9d5095e3fca5a1ef6f78466001d8eed696e9917d2574d53c8",
+        "plan_path": "docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md",
+        "plan_semantic_digest": "sha256:4c274a7f9f093a2867a2b874ee5af6cbdd884a649d406ba129f80b9d47452355"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-71-skill-applicability-oracle-closure",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-SKAPP-005: tests/asset-catalog.test.ts,tests/slow/projection-writer.test.ts",
+        "fingerprint": "sha256:a6c6f4983773a5796cfcd5024bbd5d4e2631dc2bdaf6255a30948ca093e31ca4",
+        "plan_path": "docs/plans/PLAN-RECOVERY-71-skill-applicability-oracle-closure.md",
+        "plan_semantic_digest": "sha256:153f51daa7a7e1c596015e069f46610916fcbe4eeb112c2d0e8f11b88e72f4ae"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-34-wib-context-digest-dead-path",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-WIB-018: tests/harness-check-workflow.test.ts,tests/worker-isolation-broker.test.ts",
+        "fingerprint": "sha256:a80ff2e31fc195c4a3ba45acd790e9ce75e4a5e0fc98a8c0d986834ce7246b7d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-34-wib-context-digest-dead-path.md",
+        "plan_semantic_digest": "sha256:2d381ddc8fdc1e4cbd94895b9febfd991a4b63ec3f19f5aa5923369c6848cc30"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-72-confirmed-pending-reverse-pairing",
+        "reason": "oracle_not_declared",
+        "detail": "U-BACKFILL-008",
+        "fingerprint": "sha256:a8badacd8a87819bce29ee4a2a5527133490099e6d2e7bcb17a1af81f084ea63",
+        "plan_path": "docs/plans/PLAN-RECOVERY-72-confirmed-pending-reverse-pairing.md",
+        "plan_semantic_digest": "sha256:a832c408887b0b378ba2919278d605ddf5a36c1502168c46b0f5e8993ad5db3f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-89-review-evidence-supersession-structure",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:a959827792050e1e66e22bd9c6b23b5406c93ecab8dbb2afafd536213e51bd6c",
+        "plan_path": "docs/plans/PLAN-RECOVERY-89-review-evidence-supersession-structure.md",
+        "plan_semantic_digest": "sha256:ae0f8bf584d12440e9413a347ba088dca92828c4b5f452421ae1cd79be834186"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/git-command-guard.test.ts",
+        "fingerprint": "sha256:a984b74ea3c8bfba85d8a6d71fe71c11e97358a99475c98d6930d3c6c794ed12",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-kimi-review-lane-admission-bench",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-011a",
+        "fingerprint": "sha256:aa18a90dfb83736b6c5d3e7003e865a482f5156a2b454b37b398a2d4346e62dc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md",
+        "plan_semantic_digest": "sha256:79ef5ca281fb864932acf0793b2e2b78b95da6acf10051f895a2b9915cb84ec7"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-96-projection-finding-observability",
+        "reason": "plan_citation_missing",
+        "detail": "tests/slow/projection-writer.test.ts",
+        "fingerprint": "sha256:aa3c60a37dda9af43fc11a3a885c0a727538af20e4357893e2ac52bfd503632a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md",
+        "plan_semantic_digest": "sha256:178a8680dc304c4a5556894769801449df7ae35566f9ac5a966f16a3b0e4a25c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-011a",
+        "fingerprint": "sha256:aaabbc89f9d2eb46ff72c5d087bdf2e7aa1c611059591210effb1d66e536ba1e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+        "reason": "plan_citation_missing",
+        "detail": "tests/github-cross-review-admission.test.ts",
+        "fingerprint": "sha256:ac642cc06f2ff9fb404dac63c6014460c73cb9805afa614127e5026a705f24d6",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md",
+        "plan_semantic_digest": "sha256:218ef81e294cd33ffb3ef8f4ade4dacd4d29ebf2738a780564cc34a5f9e87628"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-14-impact-ci-cancel-propagation",
+        "reason": "generated_test_unbound",
+        "detail": "tests/impact-ci-recovery-detail-design.test.ts",
+        "fingerprint": "sha256:ac65a33cbf01d28564f9120b0e1a1e5ee970f87c0c908cdab1e7992f290e32ce",
+        "plan_path": "docs/plans/PLAN-RECOVERY-14-impact-ci-cancel-propagation.md",
+        "plan_semantic_digest": "sha256:34a072be214d14b12699076b7cf6795f59d2bfa8fbb86ce689f4d93373e4809b"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-74-immutable-github-action-ref-registry",
+        "reason": "oracle_not_declared",
+        "detail": "U-IAR-004",
+        "fingerprint": "sha256:ae83facc3223077e1cf3c537c9a178541426ae63197eaef806dfad94384ab7bb",
+        "plan_path": "docs/plans/PLAN-RECOVERY-74-immutable-github-action-ref-registry.md",
+        "plan_semantic_digest": "sha256:574aeaa5a7142b03d3b6956cf2fa99417668929799813d28a86089462322bf45"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-42-author-runtime-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-012",
+        "fingerprint": "sha256:b0dc684ea4ea339e7f836f8d82302ed32f5142ef9e864e2c1d8c92e201a62277",
+        "plan_path": "docs/plans/PLAN-RECOVERY-42-author-runtime-attestation.md",
+        "plan_semantic_digest": "sha256:a7a047d1ab9ef0d575881e1fbcce820beef9c913edf6b68b92506920719ab850"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+        "reason": "oracle_not_declared",
+        "detail": "U-TSAF-001",
+        "fingerprint": "sha256:b2fd7946d80b4e2d0e479798847e280f5e1800cfcd8edf3d813adbb1b378d92d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md",
+        "plan_semantic_digest": "sha256:2ee40c7adfc02d27bf3d82d8ed6290e07899e4903a81a6362c9dfae15df4c324"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-04-roadmap-definition",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:b39ba6ad255ea1acb967a5884022f25f4dbce596009e91a3910b985196c27a13",
+        "plan_path": "docs/plans/PLAN-RECOVERY-04-roadmap-definition.md",
+        "plan_semantic_digest": "sha256:5c6721dda9600ae20475d1711dab25260630e865717693a3e321b85e44c9cc13"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-github-cross-review-admission",
+        "reason": "generated_test_unbound",
+        "detail": "tests/design-reality-binding.test.ts",
+        "fingerprint": "sha256:b39c368c5ae674169227c8aab1d20ca65502ac037e56de5c7e144d05745e509a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md",
+        "plan_semantic_digest": "sha256:218ef81e294cd33ffb3ef8f4ade4dacd4d29ebf2738a780564cc34a5f9e87628"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-12-independent-review-fallback",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-008",
+        "fingerprint": "sha256:b4d2bcd9c6dc87a3fec3e2092891bef528e284cccb1fd3a71de28842daff06bf",
+        "plan_path": "docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md",
+        "plan_semantic_digest": "sha256:6331ab157aa82fd044bf1216df7c61ac86c775a573ddf40d5cb869edfaf5c9e8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-78-effective-agent-startup-authority",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:b8b8006b52fff46b1c1acad08e82c9d375f75507ce692e4328af76c2f8158f5f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md",
+        "plan_semantic_digest": "sha256:e9aa991d80b823c8e1e9f0a201672c54e52355723253570a05c5bb0c5f5b759c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-008",
+        "fingerprint": "sha256:b9300b82c7d3ebdf1437caf12d90dc8a72ddee03d8d30e4f2d312d01059ca50d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "plan_citation_missing",
+        "detail": "tests/claude-pr-convergence.test.ts",
+        "fingerprint": "sha256:bb3f0e6e37453fc4505d980a7b5c852967cc48741bf616e666e90ce94dd8109f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-kimi-admission-lane-closure-digest",
+        "reason": "generated_test_unbound",
+        "detail": "tests/independent-review-fallback.test.ts",
+        "fingerprint": "sha256:bbf6cc918717957df1fdc27f73b36d4e04510f1522ca4099e3125ec54a4849c3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md",
+        "plan_semantic_digest": "sha256:63f41fc9ecccb9d0e00e7921fbf2cf9d6f3fa7d100371a08c3f69f71ddd384bb"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-47-wrapper-admission-sink-fence",
+        "reason": "oracle_not_declared",
+        "detail": "U-TSAF-002",
+        "fingerprint": "sha256:be34bda3666dd83ba9232a86fa1d3006231f700c5e0689b12270688beffdcc50",
+        "plan_path": "docs/plans/PLAN-RECOVERY-47-wrapper-admission-sink-fence.md",
+        "plan_semantic_digest": "sha256:2ee40c7adfc02d27bf3d82d8ed6290e07899e4903a81a6362c9dfae15df4c324"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "plan_citation_missing",
+        "detail": "tests/current-location.test.ts",
+        "fingerprint": "sha256:be5d05669fb62eecda10a53cc01ec56d5b206e6f76422f93ccc54e6890655d97",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-69-migration-source-zip-retirement",
+        "reason": "oracle_not_declared",
+        "detail": "U-SRCMAN-006",
+        "fingerprint": "sha256:bed26e8d9bacc99884b4202759f4212e8a48828ef41b791da2d29afea4de4249",
+        "plan_path": "docs/plans/PLAN-RECOVERY-69-migration-source-zip-retirement.md",
+        "plan_semantic_digest": "sha256:80c4d7b8cb2edc15f595447a7f21542ece6a99fdd7aa2ec4693e5bc0ce974084"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/root-anchor-fixtures/depth-violation.ts",
+        "fingerprint": "sha256:bfb82066b964762c4522abe8e854fdded89c1bbd5f054be24a0b5fb81f7de113",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-96-projection-finding-observability",
+        "reason": "plan_citation_missing",
+        "detail": "tests/test-report-parser.test.ts",
+        "fingerprint": "sha256:c014d2844a0c9072d858161deb4ff21121eae593d0a12192a030ae3fe429ff4b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md",
+        "plan_semantic_digest": "sha256:178a8680dc304c4a5556894769801449df7ae35566f9ac5a966f16a3b0e4a25c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-01-internal-asset-recovery",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:c39fcd802681d50f159b1dedabee0fb088ca74ccfb8025ed72b2c37c791febff",
+        "plan_path": "docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md",
+        "plan_semantic_digest": "sha256:1efc1d81b01501d33220addacfe3be44148b14358fb5ddd503e992f80ded733c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_not_declared",
+        "detail": "U-PNCM-001",
+        "fingerprint": "sha256:c5606f381d4c978b6d4b7ae26ae923cd3f5e1a675a9b8d327067a61cbf17e8fc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-79-review-db-candidate-tree-binding",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:c5cf115bbd23b4e3447a84135fee2663b2dd2fd6f07bdd3bf676a5851af38d22",
+        "plan_path": "docs/plans/PLAN-RECOVERY-79-review-db-candidate-tree-binding.md",
+        "plan_semantic_digest": "sha256:4e978d80cda69ec680089e0b1af55d83bb185d7f55dcd2c40eff3eb41b2d3dbf"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-95-design-artifact-source-digest-gate",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:c6825440d4ffa5fad398285431371d3ed1cfd1cafeae9fbb60850a591239c4aa",
+        "plan_path": "docs/plans/PLAN-RECOVERY-95-design-artifact-source-digest-gate.md",
+        "plan_semantic_digest": "sha256:e2604d8502508783fd7c63b301ae33fb2a3df3cbc0b2dd7e0cf3ae8a7d71ce9f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-MEMWAKE-003: tests/claude-memory-wake.test.ts,tests/setup.test.ts",
+        "fingerprint": "sha256:c6932e5d6a84c3468798fff1e76f7f49547ce243d55b704ccfd3ae00f3ba3e9a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-kimi-review-lane-admission-bench",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-011b",
+        "fingerprint": "sha256:c8370e3b42382b6e89484c4d8fedcc50eee90459aa71838790b152d2e4d95fe8",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md",
+        "plan_semantic_digest": "sha256:79ef5ca281fb864932acf0793b2e2b78b95da6acf10051f895a2b9915cb84ec7"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-08-requirements-compatibility-isolation",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:c856bbd86b974eb6173e641d6f5e7a0f35e3eef80e551b714cf7a60b54aca119",
+        "plan_path": "docs/plans/PLAN-RECOVERY-08-requirements-compatibility-isolation.md",
+        "plan_semantic_digest": "sha256:b36a0e5e1d1bfac58995258796aa829a98d3f91602a28b0532f1f7eb868058cf"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-MEMWAKE-002",
+        "fingerprint": "sha256:c9597fd8c9fc1f930f22f3970712da99c6489b6ca233950b262a7a76f8a49d8f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-12-requirement-refinement-authority",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:ca651cba279f8e38061cc69e98c257fe3798bf82e2b8d1eb91a0009fb82fa9fc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-12-requirement-refinement-authority.md",
+        "plan_semantic_digest": "sha256:92e721d59d5b09e491ba99242e772717808f21d985c60e7bab6d29a36363463f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-kimi-review-lane-admission-bench",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/kimi-review-admission/admission-evidence.ts",
+        "fingerprint": "sha256:ca8ae89a01921bc8ca2d7e475474e29aedca6a4c41cf694bcc9e53f28d25946a",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-kimi-review-lane-admission-bench.md",
+        "plan_semantic_digest": "sha256:79ef5ca281fb864932acf0793b2e2b78b95da6acf10051f895a2b9915cb84ec7"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-69-migration-source-zip-retirement",
+        "reason": "plan_citation_missing",
+        "detail": "tests/source-package-manifest.test.ts",
+        "fingerprint": "sha256:cb1275b0f9438d7a8dd5fe570f414477f64c7feee3f38bdf39d768ea15836624",
+        "plan_path": "docs/plans/PLAN-RECOVERY-69-migration-source-zip-retirement.md",
+        "plan_semantic_digest": "sha256:80c4d7b8cb2edc15f595447a7f21542ece6a99fdd7aa2ec4693e5bc0ce974084"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-34-wib-context-digest-dead-path",
+        "reason": "plan_citation_missing",
+        "detail": "tests/worker-isolation-broker.test.ts",
+        "fingerprint": "sha256:cb660d6d73f85ccab009c005ce481f7b22d1b4e9beabe7f6213b3d8aa32df82c",
+        "plan_path": "docs/plans/PLAN-RECOVERY-34-wib-context-digest-dead-path.md",
+        "plan_semantic_digest": "sha256:2d381ddc8fdc1e4cbd94895b9febfd991a4b63ec3f19f5aa5923369c6848cc30"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_citation_missing",
+        "detail": "U-PNCM-004@tests/setup.test.ts",
+        "fingerprint": "sha256:cb8447fe048653c21c92e6136e74cf32e83e26cf14f4ae0ddc84fd914f61c847",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-33-wcc-fr01-completion-receipt",
+        "reason": "oracle_not_declared",
+        "detail": "U-WCC-FR01-001",
+        "fingerprint": "sha256:cd1db4db2d16b090b5dce3636d33ee6e058217df061d8a97cd7f7b1e9461aee5",
+        "plan_path": "docs/plans/PLAN-RECOVERY-33-wcc-fr01-completion-receipt.md",
+        "plan_semantic_digest": "sha256:ef34c61a49910be3e440ba2194aa3b7b2cc9f09367aed80cc77a9036fb4e7385"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "generated_test_unbound",
+        "detail": "tests/visualization-treeview.test.ts",
+        "fingerprint": "sha256:cec9e367bac529d457e76bd0a55c032c31fe2e74e16aa22782e4bf2a0fa67948",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-EXT-004",
+        "fingerprint": "sha256:d08be48ab8f4f1248b33e50cd88a9d1c537cedb32a2c413e75edef2d1c347164",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-80-claude-fable-5-1-provider-drift",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:d1cf5a2b09a7b51a3d938705cefec81dfe4da02a9c971e3611bd9a7edf3961d0",
+        "plan_path": "docs/plans/PLAN-RECOVERY-80-claude-fable-5-1-provider-drift.md",
+        "plan_semantic_digest": "sha256:bcda90f85d3dea381f3271b4ee38cc8ff0cc1e2fc71023ea0d5505c660f24fcc"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-EXT-002",
+        "fingerprint": "sha256:d20adb955523202e356f31dc965044078fce8a678cc3daccc8eaa051acddfb43",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-94-ci-shard-budget-headroom",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:d21a027676225e0e66d8641ed8c0b90b1cc18d6b9591c7b817a055f808fba0d5",
+        "plan_path": "docs/plans/PLAN-RECOVERY-94-ci-shard-budget-headroom.md",
+        "plan_semantic_digest": "sha256:46c4c1e5d1627824e1993bbbb0796c2f8a45cca11f834f38e864cc7a824cb3b3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-017",
+        "fingerprint": "sha256:d23fb69b104949c760c1b3d8c1c28fd2bfac9d844cc5d50578239dae5456fca2",
+        "plan_path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md",
+        "plan_semantic_digest": "sha256:4618724fc5fef8e4b7909d0a1b3980cf66ce6a7d2393b5793240f768d4c3537e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "oracle_not_declared",
+        "detail": "U-ICGRAPH-005",
+        "fingerprint": "sha256:d2b82ea4e6f14ea71e85d6055875e2b8f61708545559009f257d5d51e7afe4cc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-44-mixed-authorship-dual-review",
+        "reason": "plan_citation_missing",
+        "detail": "tests/claude-pr-convergence.test.ts",
+        "fingerprint": "sha256:d3e84ebe8c274c7c537419ed7a63f929d857f6cece2c619aef25accfa6433fa5",
+        "plan_path": "docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md",
+        "plan_semantic_digest": "sha256:e67baedda8813c1dadafe780e1c1cf3e29e578762a131c3101268f6f618e88db"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-kimi-admission-lane-closure-digest",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-012a",
+        "fingerprint": "sha256:d48b6c7984a3f6c1f739763df62a88ba31580f836c11d3adf00e58a4ca2a1b02",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md",
+        "plan_semantic_digest": "sha256:63f41fc9ecccb9d0e00e7921fbf2cf9d6f3fa7d100371a08c3f69f71ddd384bb"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-09-design-reality-binding",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:d5de4a558374ba18ce0428f66a382a13dbe19cce9f71635053c0b799009dd26f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-09-design-reality-binding.md",
+        "plan_semantic_digest": "sha256:c7fd509dcaee1c1e62dc6f48636e073afe6ece7b77240111cf58862445ef5df8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-96-projection-finding-observability",
+        "reason": "oracle_citation_missing",
+        "detail": "U-PFO-002@tests/slow/projection-writer.test.ts",
+        "fingerprint": "sha256:d63f8c736c2fc388daf9099904bd1e56f7f1a3fb60d63470884b7ac551437bff",
+        "plan_path": "docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md",
+        "plan_semantic_digest": "sha256:178a8680dc304c4a5556894769801449df7ae35566f9ac5a966f16a3b0e4a25c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-96-projection-finding-observability",
+        "reason": "oracle_citation_missing",
+        "detail": "U-PFO-008@tests/slow/projection-writer.test.ts",
+        "fingerprint": "sha256:d69ece2493ebbb2525c50e5429441ed6b84fafc164d65bdff8b8fe28efa80a90",
+        "plan_path": "docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md",
+        "plan_semantic_digest": "sha256:178a8680dc304c4a5556894769801449df7ae35566f9ac5a966f16a3b0e4a25c"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-17-pr-create-contract-fail-close",
+        "reason": "plan_citation_missing",
+        "detail": "tests/github-merge-readiness.test.ts",
+        "fingerprint": "sha256:d6ac8271cec0c9432612145adcb738148a1e2f8972fcf8aed8f0143fa3c7883e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-17-pr-create-contract-fail-close.md",
+        "plan_semantic_digest": "sha256:922946d22f628d5e4bace174d79a1de445699202a4b94f32603eae94fa719746"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-14-impact-ci-cancel-propagation",
+        "reason": "plan_citation_missing",
+        "detail": "tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:d6f83b238fb4146b02c6b07a85d6bf712ee2c3b5e01f6315635b81487f449c6e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-14-impact-ci-cancel-propagation.md",
+        "plan_semantic_digest": "sha256:34a072be214d14b12699076b7cf6795f59d2bfa8fbb86ce689f4d93373e4809b"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-003c",
+        "fingerprint": "sha256:d76f27e8187d0165420b3d7efe33eb73db6177c004d74f6d23bf0d6e0b2f240c",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-67-claude-native-memory-isolation",
+        "reason": "oracle_not_declared",
+        "detail": "U-PNCM-003",
+        "fingerprint": "sha256:d79c6341a7e8a73a2e7893ca52705b5199a7a9d1c275f25b99eee9cceca279cb",
+        "plan_path": "docs/plans/PLAN-RECOVERY-67-claude-native-memory-isolation.md",
+        "plan_semantic_digest": "sha256:13fb1b185a412b6ae3b4ab4f231cefe2eb88922c10c6a5e797ca9cb6502cda9e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-43-attestation-merge-parent-detection",
+        "reason": "plan_citation_missing",
+        "detail": "tests/claude-pr-convergence.test.ts",
+        "fingerprint": "sha256:d7c49f95a95d8f6543ea4a6ee177e7a087655343a946f9c567b910c1ba06892b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-43-attestation-merge-parent-detection.md",
+        "plan_semantic_digest": "sha256:4618724fc5fef8e4b7909d0a1b3980cf66ce6a7d2393b5793240f768d4c3537e"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-16-outstanding-snapshot-owner",
+        "reason": "generated_test_unbound",
+        "detail": "tests/cli-surface.test.ts",
+        "fingerprint": "sha256:db186b480fd6f83f56b9db2aeb2bbe03402383b6cd9215f068a5d0cf785ef07f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-16-outstanding-snapshot-owner.md",
+        "plan_semantic_digest": "sha256:82afcf59a38a23c53b85c19a32579440d69be26c612adc6d2fbfd07aeb51977f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-45-cross-layer-discipline-enforcement",
+        "reason": "oracle_not_declared",
+        "detail": "U-EDISC-005",
+        "fingerprint": "sha256:db8e581bbe7ad94e767b665d085d2e0b735c28c5fcddbbd4cff29aed34195caa",
+        "plan_path": "docs/plans/PLAN-RECOVERY-45-cross-layer-discipline-enforcement.md",
+        "plan_semantic_digest": "sha256:abd463ac541ce06d46c2e5c4548eeb62a02f4b14557b7c218e325bc136b782a0"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-GCRA-EXT-001",
+        "fingerprint": "sha256:dcb5b01b587910dde654fc6ad7108faed6a8cdcb062e137e55e4ada6000c6bdc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-76-cursor-cloud-environment-admission",
+        "reason": "oracle_not_declared",
+        "detail": "U-CURSOR-ENV-003",
+        "fingerprint": "sha256:dcfaa29738ff4229a8ed2d8bad266f5d7952da9bbadc24b49f49b711a3145269",
+        "plan_path": "docs/plans/PLAN-RECOVERY-76-cursor-cloud-environment-admission.md",
+        "plan_semantic_digest": "sha256:b65bba51827ea7a6c1f6b5bfc2d19f8b6dc94c19fa93ff4a0a8fee1ba9ed68bf"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-86-git-revision-hyphen-oracle",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:ddd98ae3545d6b92f712ab112018b50e1aa10518405e039e7f84004a96d45573",
+        "plan_path": "docs/plans/PLAN-RECOVERY-86-git-revision-hyphen-oracle.md",
+        "plan_semantic_digest": "sha256:d07518ca6641568ee4a68d23212e1e88cdb2beb03bebe4f2cd3d1ff129f3dcff"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-56-codex-spawn-enobufs",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:de7d1ac6038c135b17985f798848fe654b175dc5a5ad73ee5765aea33cbf93b4",
+        "plan_path": "docs/plans/PLAN-RECOVERY-56-codex-spawn-enobufs.md",
+        "plan_semantic_digest": "sha256:edbece96834322e9285312a44290955a5b5a90cd77a563c84ef2561d2ad98ff1"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-68-source-package-manifest-migration",
+        "reason": "plan_citation_missing",
+        "detail": "tests/source-package-manifest.test.ts",
+        "fingerprint": "sha256:e11829b8222abab9ddc6a1ab608dafb703202ab61513f71f3bc27635eaa47b62",
+        "plan_path": "docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md",
+        "plan_semantic_digest": "sha256:baf687da28658b79210f9a24ea592269750026eeed43315b3fa21bec693f0cd9"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-68-source-package-manifest-migration",
+        "reason": "oracle_not_declared",
+        "detail": "U-SRCMAN-001",
+        "fingerprint": "sha256:e23d8613dc2a8e35d1265b3c04d36e28c8ea8576a417cd90a99e7a1969dd17e3",
+        "plan_path": "docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md",
+        "plan_semantic_digest": "sha256:baf687da28658b79210f9a24ea592269750026eeed43315b3fa21bec693f0cd9"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-60-close-ready-readiness-projection",
+        "reason": "plan_citation_missing",
+        "detail": "tests/visualization-view-model.test.ts",
+        "fingerprint": "sha256:e4385df085d72cede95dddc1c6f4f1fd7d5d14a1d7b3315cebdd940cfa142b3e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-60-close-ready-readiness-projection.md",
+        "plan_semantic_digest": "sha256:cb6f1bed5ca0f13f183def6266c3f586e49238b58bcb41c35a56016ee99fc177"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-13-provider-auth-write-back",
+        "reason": "oracle_not_declared",
+        "detail": "U-IRF-010a",
+        "fingerprint": "sha256:e59de40b8b751ba2ff852db35e8206a73364ebd817a097d688bdfc5ba8d87fba",
+        "plan_path": "docs/plans/PLAN-RECOVERY-13-provider-auth-write-back.md",
+        "plan_semantic_digest": "sha256:c48c7212db27acec5f87b37447cd17a3cdfcfd030e04afe81f194c16d55a4409"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-11-impact-ci-stateful-deadline",
+        "reason": "oracle_not_declared",
+        "detail": "U-IMPACTCI-WF-002",
+        "fingerprint": "sha256:e892b7d1e7a0d61507109f49eba8b7c05963d2b2e46606cd0b8a32871d25a41c",
+        "plan_path": "docs/plans/PLAN-RECOVERY-11-impact-ci-stateful-deadline.md",
+        "plan_semantic_digest": "sha256:1d1bc57ff5b40fe489ca0107845fc8f27e3cb9f733a4a5a6f865044f65b451ec"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "plan_citation_missing",
+        "detail": "tests/github-cross-review-admission.test.ts",
+        "fingerprint": "sha256:e8b4563827d77185d65e36cb00c8f435f242387137727dd85618d7d40cde5efc",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-12-independent-review-fallback",
+        "reason": "generated_test_unbound",
+        "detail": "tests/cli-surface.test.ts",
+        "fingerprint": "sha256:e975ceb2fe24ebb7148ec6b6df5a8eada30d47b4165c672b5fee4ed698cf0126",
+        "plan_path": "docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md",
+        "plan_semantic_digest": "sha256:6331ab157aa82fd044bf1216df7c61ac86c775a573ddf40d5cb869edfaf5c9e8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-EXT-003",
+        "fingerprint": "sha256:e9d709651b4b0d74a9bd01fd27591f1493c891efcd181640840024d84c562232",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-45-cross-layer-discipline-enforcement",
+        "reason": "plan_citation_missing",
+        "detail": "tests/ddd-tdd-rules.test.ts",
+        "fingerprint": "sha256:ea9916550fc6fd842b05032c31fd1473593489996262b92105bcffda6b259b6e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-45-cross-layer-discipline-enforcement.md",
+        "plan_semantic_digest": "sha256:abd463ac541ce06d46c2e5c4548eeb62a02f4b14557b7c218e325bc136b782a0"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-18-lane-inventory-partial-logs",
+        "reason": "oracle_citation_missing",
+        "detail": "U-IMPACTCI-WF-005@tests/harness-check-workflow.test.ts",
+        "fingerprint": "sha256:ebb5e7fa95e0fa9cd45476127f461f88f2bb7725746ec020869f2b9b4f4e9cef",
+        "plan_path": "docs/plans/PLAN-RECOVERY-18-lane-inventory-partial-logs.md",
+        "plan_semantic_digest": "sha256:e212154bd857054975e79e65e15b088daeb8f49bc6a9b4321954646f9d2fd898"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-70-review-receipt-node-runtime-authority",
+        "reason": "plan_citation_missing",
+        "detail": "tests/node-engine-runtime.test.ts",
+        "fingerprint": "sha256:ec3c2af1b4c50c28c8b7848a275a2775efe6e7aa573c905fd27f02285d6302d5",
+        "plan_path": "docs/plans/PLAN-RECOVERY-70-review-receipt-node-runtime-authority.md",
+        "plan_semantic_digest": "sha256:1ca0c1425be77687fbcdb5d8748d7714ee3d15d918934d797c979daf02faefad"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-39-spawn-bundle-rollout",
+        "reason": "generated_test_unbound",
+        "detail": "tests/closure-evidence-materialization-cli.test.ts",
+        "fingerprint": "sha256:eda832cda55ecc1b2005ec07ddfbcb6ceb739aaa3a8105007e26a42d4412d7d4",
+        "plan_path": "docs/plans/PLAN-RECOVERY-39-spawn-bundle-rollout.md",
+        "plan_semantic_digest": "sha256:6ed6cba0f3e6a13209ceb7cf390c7dcfb84e384b639f418b5a9eebdd3542aba3"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-46-review-dispatch-authorship",
+        "reason": "oracle_not_declared",
+        "detail": "U-CPRCONV-022",
+        "fingerprint": "sha256:ee26ba7c4c67e0d1a291bf8ccf6605ab992c765927af47fb0b757dbd1aa3880d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+        "plan_semantic_digest": "sha256:9a5c8d156580abf32dfe42c1f5a53b6449469b574fb5b8a4ff9cf00892a9bb72"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-49-locale-independent-finding-order",
+        "reason": "plan_citation_missing",
+        "detail": "tests/design-template-authority.test.ts",
+        "fingerprint": "sha256:efa8b87a0477f7172c9c8582fef5877d10f804dae6dcea32a5c0a4cfaa32506f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-49-locale-independent-finding-order.md",
+        "plan_semantic_digest": "sha256:18a455767c2162f57a4a5b178563320a6b9b4cb0cc5afd303713aafa442843e8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-48-kimi-admission-rehearsal",
+        "reason": "plan_citation_missing",
+        "detail": "tests/kimi-review-admission-bench.test.ts",
+        "fingerprint": "sha256:f01fdfbeed7625d29819d09fe70ae3d949eddda13c7be5170e8431f5258a82ae",
+        "plan_path": "docs/plans/PLAN-RECOVERY-48-kimi-admission-rehearsal.md",
+        "plan_semantic_digest": "sha256:29d93c5b5ddd7e97f346273455731355b76ec924e1930d82820cc0be93be5ede"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-41-cross-review-admission-symmetry",
+        "reason": "oracle_not_declared",
+        "detail": "U-GCRA-007",
+        "fingerprint": "sha256:f075ebec65a1e507ca82d0d59bf1afbe168a1c28ca90f733302b4f32ac3004f8",
+        "plan_path": "docs/plans/PLAN-RECOVERY-41-cross-review-admission-symmetry.md",
+        "plan_semantic_digest": "sha256:22664aaec69936a6851ff264f50f90e30252760386b7f163603ee8e793dd1c74"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-49-locale-independent-finding-order",
+        "reason": "oracle_not_declared",
+        "detail": "U-DTJ-015b",
+        "fingerprint": "sha256:f0ceafed1cbfbd4f07c70457bd52760884fbbd200fbd9097c404382007d54c8c",
+        "plan_path": "docs/plans/PLAN-RECOVERY-49-locale-independent-finding-order.md",
+        "plan_semantic_digest": "sha256:18a455767c2162f57a4a5b178563320a6b9b4cb0cc5afd303713aafa442843e8"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "plan_citation_missing",
+        "detail": "tests/github-issue-closure-graph-adapter.test.ts",
+        "fingerprint": "sha256:f2ee2316b4272c3e49ca9fe9f3e07849da4f2af51de8e5c23422f1513ca754c2",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-44-mixed-authorship-dual-review",
+        "reason": "plan_citation_missing",
+        "detail": "tests/github-cross-review-admission.test.ts",
+        "fingerprint": "sha256:f499eb666cc2fe2fa32317fa34031d11364a4ec11fa7359407452c1f04bf39eb",
+        "plan_path": "docs/plans/PLAN-RECOVERY-44-mixed-authorship-dual-review.md",
+        "plan_semantic_digest": "sha256:e67baedda8813c1dadafe780e1c1cf3e29e578762a131c3101268f6f618e88db"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-59-same-head-ci-review-rearm",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:f531bff937c487176b00edd71afe2f8c326e37b50aaa0adc894195e4e6ba9cf9",
+        "plan_path": "docs/plans/PLAN-RECOVERY-59-same-head-ci-review-rearm.md",
+        "plan_semantic_digest": "sha256:016e589ce00e82cd097870b1ea4c31f08156903592c47a30160ccad550a97433"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-68-source-package-manifest-migration",
+        "reason": "oracle_not_declared",
+        "detail": "U-SRCMAN-003",
+        "fingerprint": "sha256:f5b78d8e7b32695e459c845a6f744e772745cdf5d85d515b1a1272f239b940f2",
+        "plan_path": "docs/plans/PLAN-RECOVERY-68-source-package-manifest-migration.md",
+        "plan_semantic_digest": "sha256:baf687da28658b79210f9a24ea592269750026eeed43315b3fa21bec693f0cd9"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_owned_by_multiple_plans",
+        "detail": "U-MEMWAKE-002: tests/claude-memory-wake.test.ts,tests/runtime-hook-entrypoints.test.ts",
+        "fingerprint": "sha256:f6f5ab0c5ef3f7df878e7fa289ec2bcf36dd26b368ca956be32f4aabb6c973d0",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-40-kimi-admission-lane-closure-digest",
+        "reason": "generated_test_unbound",
+        "detail": "tests/tools/kimi-review-admission/run-admission-bench.ts",
+        "fingerprint": "sha256:f742f8a0b61eb6a3592090304d5ae74d8a31091d3452eb6d1ca88853e2036326",
+        "plan_path": "docs/plans/PLAN-RECOVERY-40-kimi-admission-lane-closure-digest.md",
+        "plan_semantic_digest": "sha256:63f41fc9ecccb9d0e00e7921fbf2cf9d6f3fa7d100371a08c3f69f71ddd384bb"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-76-cursor-cloud-environment-admission",
+        "reason": "oracle_not_declared",
+        "detail": "U-CURSOR-ENV-004",
+        "fingerprint": "sha256:f81ad8009ae5ee4386b1302f7e81616569bc085c6bb9e3c3f9f5bb7e7fd67e8d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-76-cursor-cloud-environment-admission.md",
+        "plan_semantic_digest": "sha256:b65bba51827ea7a6c1f6b5bfc2d19f8b6dc94c19fa93ff4a0a8fee1ba9ed68bf"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-72-confirmed-pending-reverse-pairing",
+        "reason": "oracle_not_declared",
+        "detail": "U-BACKFILL-009",
+        "fingerprint": "sha256:f8cf80feb94277ea2b147eebbdcac0da604f1154b734ba1e4676c111fd2f3c6d",
+        "plan_path": "docs/plans/PLAN-RECOVERY-72-confirmed-pending-reverse-pairing.md",
+        "plan_semantic_digest": "sha256:a832c408887b0b378ba2919278d605ddf5a36c1502168c46b0f5e8993ad5db3f"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-65-review-generation-deadlock",
+        "reason": "plan_citation_missing",
+        "detail": "tests/claude-pr-convergence.test.ts",
+        "fingerprint": "sha256:f8f5b50d4140a3932d490ed18be155a52ef9a71db036c03f74af3b27a06f2a2b",
+        "plan_path": "docs/plans/PLAN-RECOVERY-65-review-generation-deadlock.md",
+        "plan_semantic_digest": "sha256:a8fcbbb3c7cd98edc4f5d8f9cb4d88c3833402db9068ee7c05b1c7659cfdc4d2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-77-backprop-template-parity",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:f979a342ff7ca05b1d7e84f767ebf2aee013909e7eba4542495f0ad27bba1645",
+        "plan_path": "docs/plans/PLAN-RECOVERY-77-backprop-template-parity.md",
+        "plan_semantic_digest": "sha256:8da3b4a577aa3526c43a7c19692e7a64c9282c88bc0fe92e1131dabfd54758f7"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-32-worker-contract-pair-authority",
+        "reason": "plan_citation_missing",
+        "detail": "tests/wcc-trace.test.ts",
+        "fingerprint": "sha256:fabb5afff2c45cbb9016a5c9d04ea838433bfbbfbddbf39b69e598fca5005e9e",
+        "plan_path": "docs/plans/PLAN-RECOVERY-32-worker-contract-pair-authority.md",
+        "plan_semantic_digest": "sha256:a1f5a0b1c5dea5101f7b64f24f3a96284fffa2afbdf9592a2168c4207347ac7a"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-51-external-author-attestation",
+        "reason": "oracle_not_declared",
+        "detail": "U-MEMWAKE-003",
+        "fingerprint": "sha256:fb9b2e9c42737b3440b66f8e16f32e961e54f054088bf76b73dffff8b7024e82",
+        "plan_path": "docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+        "plan_semantic_digest": "sha256:6ba1bb538a6af58a03225e6ac828a4524bda4848a6c796f9170a4bfa79697907"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-36-loop-run-positive-coverage",
+        "reason": "verification_bindings_absent",
+        "detail": null,
+        "fingerprint": "sha256:fc78e6561b09e4dcecb67db206b70788e9356213fff0c4ccefa7981fc8ef6382",
+        "plan_path": "docs/plans/PLAN-RECOVERY-36-loop-run-positive-coverage.md",
+        "plan_semantic_digest": "sha256:819d1e3c169ed50c0351068ae9b65230e799baa93687be4f31b360f8b781f3ac"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-10-issue-closure-graph",
+        "reason": "test_not_generated",
+        "detail": "tests/cli-surface.test.ts",
+        "fingerprint": "sha256:fdecc62f811f224d5751a9c53411f8504a2e956a3726cd9c2f467282a5ba0a4f",
+        "plan_path": "docs/plans/PLAN-RECOVERY-10-issue-closure-graph.md",
+        "plan_semantic_digest": "sha256:711a8c740d4a54b5a85a1b9b591cd57c571d295318cc4e14e1345adfdb4297f2"
+      },
+      {
+        "plan_id": "PLAN-RECOVERY-12-independent-review-fallback",
+        "reason": "generated_test_unbound",
+        "detail": "tests/review-evidence.test.ts",
+        "fingerprint": "sha256:fe83113a4d1bd0d4237801b0383630088dfa59ba372410ed7a8cdc7fa01ad201",
+        "plan_path": "docs/plans/PLAN-RECOVERY-12-independent-review-fallback.md",
+        "plan_semantic_digest": "sha256:6331ab157aa82fd044bf1216df7c61ac86c775a573ddf40d5cb869edfaf5c9e8"
+      }
+    ],
+    "resolvedTombstones": []
+  }
 }
