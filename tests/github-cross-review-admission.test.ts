@@ -799,6 +799,28 @@ describe("GitHub cross-review admission", () => {
     }
   });
 
+  it("U-GCRA-012b: invalid候補の診断がvalid exactly-one受理を相殺しない", () => {
+    const canonical = input().comments[0];
+    const malformed = {
+      ...canonical,
+      html_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-99",
+      body: [
+        "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+        "```json",
+        "{malformed",
+        "```",
+      ].join("\n"),
+    };
+    expect(
+      evaluateGitHubCrossReviewAdmission(input({ comments: [malformed, canonical] })),
+    ).toMatchObject({
+      ok: true,
+      deferred: false,
+      receipt_digest: receipt().receiptDigest,
+      reasons: [],
+    });
+  });
+
   it("U-GCRA-008: historical v2 receiptをcurrent Ready admissionへ昇格しない", () => {
     expect(
       evaluateGitHubCrossReviewAdmission(
