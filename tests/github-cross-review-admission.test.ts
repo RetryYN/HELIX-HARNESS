@@ -8,10 +8,12 @@ import {
   CLAUDE_PR_REVIEW_RECEIPT_SCHEMA_V3,
   type ClaudePrReviewReceipt,
   type ClaudePrReviewReceiptAny,
+  type ClaudePrReviewReceiptInput,
   type IndependentReviewRuntime,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+// PLAN-RECOVERY-100-review-receipt-schema-boundary / U-GCRA-010
 import {
   canonicalLogicalDbReceiptValid,
   evaluateGitHubCrossReviewAdmission,
@@ -30,6 +32,16 @@ const HEAD = "a".repeat(40);
 const OTHER_HEAD = "b".repeat(40);
 const REVIEWED_AT = "2026-08-09T07:00:00.000Z";
 const REVIEW_PACKET = "exact review packet";
+
+function receiptAsInput(receipt: ClaudePrReviewReceipt): ClaudePrReviewReceiptInput {
+  const {
+    schemaVersion: _schemaVersion,
+    receiptId: _receiptId,
+    receiptDigest: _receiptDigest,
+    ...input
+  } = receipt;
+  return input;
+}
 
 function logicalDbReceiptFixture() {
   const body = {
@@ -548,6 +560,40 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
+  it("U-GCRA-010: Claude receiptへのprovider-neutral discriminator混入を誤分類しない", () => {
+    const malformed = {
+      ...receipt(),
+      schema_version: "helix-claude-pr-review-receipt.v4",
+    };
+    const malformedBody = [
+      "<!-- HELIX:independent-pr-review-receipt:v1 -->",
+      "```json",
+      JSON.stringify({
+        schema_version: "helix-independent-pr-review-comment.v1",
+        receipt: malformed,
+        kimi_provenance: null,
+      }),
+      "```",
+    ].join("\n");
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: receipt().commentUrl,
+              created_at: "2026-08-09T07:00:01.000Z",
+              updated_at: "2026-08-09T07:00:01.000Z",
+              body: malformedBody,
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      reasons: ["current_head_review_receipt_missing"],
+    });
+  });
+
   it("U-GCRA-008: historical v2 receiptをcurrent Ready admissionへ昇格しない", () => {
     expect(
       evaluateGitHubCrossReviewAdmission(
@@ -776,7 +822,7 @@ describe("GitHub cross-review admission", () => {
       ),
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
     const failedClaim = buildClaudePrReviewReceipt({
-      ...receipt(),
+      ...receiptAsInput(receipt()),
       ciConclusion: "failure",
       ciEvidenceGeneration: "run:31299806333:attempt:1:failure",
       commentUrl: receipt().commentUrl,
@@ -852,7 +898,7 @@ describe("GitHub cross-review admission", () => {
               updated_at: "2026-08-09T07:00:05.000Z",
               body: renderIndependentPrReviewComment(
                 buildClaudePrReviewReceipt({
-                  ...canonical,
+                  ...receiptAsInput(canonical),
                   ciRunId: newerSuccess.id,
                   ciEvidenceGeneration: `run:${newerSuccess.id}:attempt:${newerSuccess.attempt}:success`,
                   reviewedAt: "2026-08-09T07:00:04.000Z",

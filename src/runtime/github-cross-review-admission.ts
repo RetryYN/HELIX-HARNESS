@@ -473,21 +473,25 @@ export function evaluateGitHubCrossReviewAdmission(
   const valid = candidates.filter(({ comment, envelope, receipt, fields }) => {
     const ci = input.ci_runs.find((run) => run.id === fields.ciRunId);
     if (!ci) return false;
+    const isCurrentClaudeReceipt =
+      "schemaVersion" in receipt && receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA;
+    const isProviderNeutralReceipt =
+      "schema_version" in receipt &&
+      receipt.schema_version === "helix-independent-pr-review-receipt.v4";
     const ciGeneration =
       fields.ciEvidenceGeneration === null
         ? null
         : parseClaudePrCiEvidenceGeneration(fields.ciEvidenceGeneration);
     return (
       fields.repository === input.repository &&
-      (("schemaVersion" in receipt && receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA) ||
-        "schema_version" in receipt) &&
+      (isCurrentClaudeReceipt || isProviderNeutralReceipt) &&
       fields.prNumber === input.pr_number &&
       fields.headSha === input.candidate_head &&
       fields.verdict === "approve" &&
       fields.blockerCount === 0 &&
       fields.ciConclusion === "success" &&
       fields.dbConverged &&
-      ("schema_version" in receipt
+      (isProviderNeutralReceipt
         ? validateKimiProvenance(receipt, envelope.kimi_provenance, input)
         : validateClaudeDbProvenance(receipt as ClaudePrReviewReceipt, input)) &&
       (fields.commentUrl === null || fields.commentUrl === comment.html_url) &&
@@ -504,12 +508,11 @@ export function evaluateGitHubCrossReviewAdmission(
       ci.conclusion === "success" &&
       ci.pull_request_numbers.includes(input.pr_number) &&
       latestCiRunMatches(input, ci) &&
-      (("schemaVersion" in receipt &&
-        receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA &&
+      ((isCurrentClaudeReceipt &&
         ciGeneration?.runId === ci.id &&
         ciGeneration?.attempt === ci.attempt &&
         ciGeneration?.conclusion === ci.conclusion) ||
-        "schema_version" in receipt) &&
+        isProviderNeutralReceipt) &&
       Number.isFinite(Date.parse(ci.updated_at)) &&
       Date.parse(ci.updated_at) <= Date.parse(fields.reviewedAt)
     );
