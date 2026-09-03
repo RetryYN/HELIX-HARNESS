@@ -5,8 +5,8 @@ kind: recovery
 layer: cross
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-03
 updated: 2026-09-03
 owner: Codex / TL
@@ -34,7 +34,7 @@ contract_failures: "新規source digest drift、pin先欠落、unsafe path、rep
 tdd_red_required: true
 red_test: "baseline外のstale pinを一件追加したfixtureがdesign_artifact_source_digest_driftで失敗することを実測"
 red_at: "2026-09-02T19:19:52Z"
-green_at: "2026-09-02T19:20:14Z"
+green_at: "2026-09-02T23:29:45Z"
 mutation_oracle_required: true
 mutation_oracle_evidence: "tests/design-artifact-source-digest.test.ts の U-DASD-002/U-DASD-003 で actualDigest 比較を無効化する seeded mutation (if true) を注入したところ 2 tests failed (exit 1, 2026-09-02T19:19:52Z)。実装復元後は同コマンドが6 tests passed (exit 0, 2026-09-02T19:20:08Z)。U-DASD-001〜006は一致、new drift、baseline debt、missing target、compatibility、baseline expansionを個別に検査する"
 complexity_effect: net_neutral
@@ -74,7 +74,28 @@ agent_slots:
   - { role: se, slot_label: "SE — 全design binding走査とbaseline validator" }
   - { role: qa, slot_label: "QA — new drift／missing target／baseline expansion反例" }
   - { role: tl, slot_label: "TL — #1468 Recovery収束と#1466後続同期" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-02T22:52:18Z"
+    tests_green_at: "2026-09-02T22:52:18Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 8bf1ba6e436b057c74f136f82a016da70e2de575
+    scope: "PR #1469 exact HEADで設計書artifact_pathの実ファイルbyte digest照合、new drift／missing target／baseline expansion／unsafe path拒否、既存compatibility debt隔離を確認しblocker 0。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1469#issuecomment-5517543369"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33690103758 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-02T22:52:18Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:6abbae8088381ac4f7e0f73fcd1c92396a5db4d0d15de944bf11920aa9ee56da"
+        result: "exact HEAD 8bf1ba6e436b057c74f136f82a016da70e2de575のCI run 33690103758がterminal success、DB convergence=true"
 ---
 
 # 設計書artifact digest照合 Recovery
@@ -82,3 +103,10 @@ review_evidence: []
 設計書が `current_authority: true` と宣言する実装assetを、実ファイルの現在byteへ毎回照合する。
 既知の6件はbaseline debtとして残し、新規の静かな腐敗だけを止める。baselineの縮小は、該当設計書pinを
 実測digestへ更新したPRで行う。
+
+## 終端read-after
+
+実装PR #1469（merge commit `d105a15c68aee71d754f538186be3cb51b0246f0`）のClaude exact-HEAD approveと
+CI successを確認した。その後の同一main post-merge harness-checkで、全shard、DB rebuild、doctor、
+typed lane status、CodeQLがsuccessとなった。設計書pinの実ファイルdigest照合と既存baseline debt隔離を
+このmain read-afterへ束縛し、`completion_claim_allowed: true`、`backfill_state: complete`へ遷移する。
