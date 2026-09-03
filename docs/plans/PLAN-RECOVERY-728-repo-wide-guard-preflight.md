@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-728: repo-wide guard preflight"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending_reverse
 created: 2026-09-04
