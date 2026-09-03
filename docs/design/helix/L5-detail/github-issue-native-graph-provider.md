@@ -1,3 +1,15 @@
+---
+title: "GitHub Issue native graph provider 詳細設計"
+canonical_layer_scheme: L1-L12
+layer: L5
+paired_layer: L8
+status: draft
+plan: docs/plans/PLAN-RECOVERY-104-issue-native-graph-provider.md
+pair_artifact: docs/test-design/helix/L8-github-issue-native-graph-provider-unit-test-design.md
+behavior_contract_id: ISSUE-NATIVE-GRAPH-PROVIDER-001
+responsibility_owner: issue-hierarchy
+---
+
 # GitHub Issue native graph providerの詳細設計
 
 ## 1. 目的
@@ -20,3 +32,25 @@ sliceが全pageを収集するまでconvergedにはできない。
 
 runner非0、JSON不正、repository／Issue欠落、stable ID欠落、Issue番号不一致、connection／node／pageInfo
 不正を個別errorとして拒否する。stderrやresponse本文をreceiptへ転記しない。
+
+## 5. 設計実在性束縛
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [
+    {
+      "asset_id": "github-issue-native-graph-provider",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/github-issue-native-graph-provider.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "loadGitHubIssueNativeGraphSnapshot",
+      "source_digest": "sha256:112fd6cabdf16bf7003834c0be0d0d7c7ed623f85af96ef486a5c9c01a3d471b",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": []
+}
+```

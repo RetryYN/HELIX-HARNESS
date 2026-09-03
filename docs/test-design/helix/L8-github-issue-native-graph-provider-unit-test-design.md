@@ -1,3 +1,16 @@
+---
+title: "GitHub Issue native graph provider 単体テスト設計"
+canonical_layer_scheme: L1-L12
+layer: L8
+artifact_type: test_design
+kind: recovery
+status: draft
+plan: PLAN-RECOVERY-104-issue-native-graph-provider
+pair_artifact: docs/design/helix/L5-detail/github-issue-native-graph-provider.md
+behavior_contract_id: ISSUE-NATIVE-GRAPH-PROVIDER-001
+responsibility_owner: issue-hierarchy
+---
+
 # GitHub Issue native graph provider 単体テスト設計
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
