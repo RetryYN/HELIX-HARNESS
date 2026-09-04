@@ -54,11 +54,12 @@ dependencies:
     - "issue:1336"
   blocks: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — 所見の既存責務との対応確認（担当責務であり実行証跡ではない）" }
   - { role: docs, slot_label: "Docs — 入力保全と参照整理" }
   - { role: qa, slot_label: "QA — byte一致と所見対応検査" }
   - { role: tl, slot_label: "TL — 既存責務への接続" }
 generates:
-  - { artifact_path: docs/design/helix/L6-function-design/cross-system-audit-intake.md, artifact_type: design }
+  - { artifact_path: docs/design/helix/L6-function-design/cross-system-audit-intake.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/cross-system-audit-intake.md, artifact_type: test_design }
   - { artifact_path: tests/cross-system-audit-intake.test.ts, artifact_type: test_code }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1500-cross-system-audit-intake.md, artifact_type: markdown_doc }
@@ -83,7 +84,7 @@ generates:
 review_evidence: []
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: implementation }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 ---
 
