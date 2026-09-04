@@ -63,7 +63,7 @@ const SIGNAL_PATTERNS: ReadonlyArray<readonly [RecognitionSignalId, RegExp]> = [
   ["legacy_vmodel_span", /L0.{0,40}L14/iu],
   ["legacy_pair_l1_l14", /L1.{0,40}L14/iu],
   ["legacy_pair_l2_l10", /L2.{0,40}L10/iu],
-  ["legacy_pair_l3_l12", /L3.{0,40}L12/iu],
+  ["legacy_pair_l3_l12", /L3(?!_confirmation).{0,40}L12/iu],
   ["removed_layer_l13_l14", /\bL1[34]\b/u],
   ["removed_gate_g13_g14", /\bG1[34]\b/u],
   ["bun_runtime", /\bBun\b/iu],
