@@ -52,5 +52,5 @@ finding lifecycle、restricted evidence、revokeを所有する。broker判定�
 ## 実装順候補
 
 Authority freeze → IR admission → authorization schema/admission → privileged isolation → profile/broker接続 →
-restricted evidence/finding lifecycle → revoke/kill switch → generated projection/distribution exclusion → bounded canary。
+制限付きevidenceとfinding lifecycle → revoke/kill switch → 生成projectionと配布除外 → 範囲限定canary。
 特権provider接続は通常provider canary後の別PR・別credential・別action-specific authorityとする。

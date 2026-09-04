@@ -25,10 +25,10 @@ provider admission、evidence、action-specific human authority、Release／Dist
 
 ## 対象
 
-- owner-authorized defensive assessment、bounded validation、sandboxed exploit validation
+- 資産所有者が認可した防御評価、範囲限定の検証、sandbox内のexploit validation
 - findingの再現、修正、独立検証、remediation evidence
 - provider access classとSecurity execution profileのadmission
-- restricted artifact custody、revoke、generated security document projection
+- 制限付きartifactの保管、認可取消、security文書の生成projection
 
 ## 非対象
 
