@@ -7,7 +7,7 @@ layer: L3
 kind: redesign
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: PO / Codex TL
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
 parent_design: docs/governance/candidates/three-lane-cloud-governance-requests.md
@@ -93,4 +93,4 @@ next_pair_freeze: L10_during_canonical_promotion
 | Bench qualification | #1361（#1295／#1296再利用） |
 | operational E2E | #1362 |
 
-本candidateを承認前にruntime、DB current output、generated docsへ投影してはならない。
+本candidateを独立review・canonical freeze前にruntime、DB current output、generated docsへ投影してはならない。

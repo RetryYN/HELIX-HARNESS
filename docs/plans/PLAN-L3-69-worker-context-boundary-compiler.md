@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:15:39Z"
+  plan_id: PLAN-L3-69-worker-context-boundary-compiler
+  approval_record_id: L3-PO-1098-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1098#issuecomment-5544686617"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1098 worker-context-packet.v1生成CLIの正規入口を要求へ分解する"
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-09-05
 owner: Codex / TL
 github_issue_id: 1098
 behavior_contract_id: WCTXCLI-FR-001
@@ -27,8 +37,8 @@ legacy_retirement_state: retained
 no_code_decision: no_change
 ddd_modeling_decision: value_object
 contract_preconditions: "WCC-FR-09のboundary loader／authority attestation／in-memory packet compilerが現行runtimeへ存在する"
-contract_postconditions: "WCTXCLI-FR-001..002、WCTX-R-01..08、WCTX-AC-001..012がL3↔L10へ束縛され、L6実装入力が明確になる"
-contract_invariants: "boundary fileとsealed packetを分離し、欠落値を推測せず、全provider経路を同じwrapper authorityへ接続する"
+contract_postconditions: "WCTXCLI-FR-001..002、WCTX-R-01..08、WCTX-AC-001..016がL3↔L10へ束縛され、L6実装入力が明確になる"
+contract_invariants: "boundary fileとsealed packetを分離し、欠落値を推測せず、registry-admitted execution pathを同じwrapper authorityへ接続する"
 contract_failures: "scope／owner／budget推測、path escape、authority drift、packet永続化、secret出力、raw provider fallbackをfail-closeする"
 tdd_red_required: false
 tdd_red_waiver_reason: "本sliceはrequirementsとL10受入設計だけを追加し、実行可能なCLI／wrapper oracleはL3確認後のL6実装PRへ分離する"
@@ -47,6 +57,7 @@ generates:
   - { artifact_path: docs/design/helix/L3-requirements/worker-context-boundary-compiler.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/worker-context-boundary-compiler-acceptance.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: tests/l3-worker-context-authority.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
@@ -61,6 +72,7 @@ dependencies:
   references:
     - docs/governance/worker-context-boundary-operator-guide.md
     - docs/plans/PLAN-L7-503-worker-context-authority.md
+    - issue:865
   blocks:
     - issue:1098
 ---
@@ -73,10 +85,12 @@ dependencies:
 |---|---|---|
 | 1 | #1098の実行不能経路とWCC-FR-09を照合 | boundary fileとsealed packetの責務が分離される |
 | 2 | L3要件を追加 | 明示入力、plan exact接続、path／secret／legacy境界が固定される |
-| 3 | L10受入設計を追加 | 12件の正常／異常oracleとwrapper共通利用が定義される |
+| 3 | L10受入設計を追加 | 16件の正常／異常oracleとregistry-admitted path共通利用が定義される |
 | 4 | catalog／snapshotを接続 | PLAN、設計、受入設計の正本参照が機械追跡できる |
 | 5 | targeted lintと独立レビュー | blocker 0、L6実装入力がcurrent HEADへ束縛される |
 
-本PLANはrequirements・受入設計のfreezeだけを担当する。CLI実装、provider起動、4つの既存wrapper経路の
-配線、実行可能test、secret／network policy変更は後続PRへ分離し、`completion_claim_allowed: false`を維持する。
-L3確認前に実行可能なtest deliverableを追加してgateを先取りしてはならない。
+本PLANはrequirements・受入設計のfreezeだけを担当する。CLI実装、provider起動、registry-admitted execution pathの
+配線、runtime behavior test、secret／network policy変更は後続PRへ分離し、`completion_claim_allowed: false`を維持する。
+L3 human gateは旧surface固定列挙の除去を条件として成立した。独立技術review、canonical freeze、main
+read-after前にruntime実装やprovider起動を完了扱いにせず、実行可能な後続deliverableを先取りしない。L3／L10の
+意味回帰oracleは既存のworker context authority test surfaceへ追加し、新規runtime deliverableとは扱わない。
