@@ -5,8 +5,8 @@ kind: recovery
 layer: cross
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-04
 updated: 2026-09-04
 owner: Codex / TL
@@ -76,7 +76,28 @@ dependencies:
     - "issue:1500"
     - "plan:PLAN-RECOVERY-09-design-reality-binding"
   blocks: []
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-03T22:17:59Z"
+    tests_green_at: "2026-09-03T22:12:36Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: 454ad27ad8e6f080ab024d0e7503238e6f6f254e
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1504#issuecomment-5532881217"
+    scope: "PR #1504のcurrent exact HEADで、空failure bindingの固定baseline、baseline外追加のfail-close、解消時の縮小、本文failure方針のadvisory表示、digest inventory、mutation oracle、DB projection／replay／checkpoint convergenceを確認し、blocker 0。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33809587559 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-03T22:12:36Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:85eddc011eb3bddfe1a8930ca6530527bf4b3cf31ee33827516dfdcce3cff68a"
+        result: "PR #1504 exact HEAD 454ad27ad8e6f080ab024d0e7503238e6f6f254eのharness-check run 33809587559がterminal success。"
 ---
 
 # PLAN-RECOVERY-105: Design Reality Bindingの空failure baselineを固定する
@@ -105,9 +126,32 @@ review_evidence: []
 
 ## 完了条件
 
-- [ ] U-DRB-025〜029のRed→Greenとbaseline拡張mutation killを確認する。
-- [ ] current repositoryで空bindingが47件、baselineが47件、baseline digestが一致し、新規空bindingが0件である。
-- [ ] 本文failure方針を含む既知entryがhard failureではなくadvisoryとしてdoctor／PLAN lintへ表示される。
-- [ ] baseline schema、path、digest不正とコード固定初期集合外の追加がfail-closeする。
-- [ ] targeted/full test、typecheck、Biome、PLAN lint、doctor、Claude exact-HEAD reviewがgreenになる。
-- [ ] current HEADの証拠を束縛したうえでPRをmergeし、main read-afterでbaseline件数・digest・findingを再確認する。
+- [x] U-DRB-025〜029のRed→Greenとbaseline拡張mutation killを確認する。
+- [x] current repositoryで空bindingが47件、baselineが47件、baseline digestが一致し、新規空bindingが0件である。
+- [x] 本文failure方針を含む既知entryがhard failureではなくadvisoryとしてdoctor／PLAN lintへ表示される。
+- [x] baseline schema、path、digest不正とコード固定初期集合外の追加がfail-closeする。
+- [x] targeted/full test、typecheck、Biome、PLAN lint、doctor、Claude exact-HEAD reviewがgreenになる。
+- [x] current HEADの証拠を束縛したうえでPRをmergeし、main read-afterでbaseline件数・digest・findingを再確認する。
+
+## §5 終端収束
+
+PR #1504 `454ad27ad8e6f080ab024d0e7503238e6f6f254e` は、Claude Code / `claude-opus-5` の
+current exact-HEAD review、必須CI、DB projection／replay／checkpoint convergenceを満たしたうえで
+merge commit `21a607b2e517862a8a01e82b0c46ee7c2b58f572` としてmainへ統合された。
+
+main read-afterとして、repo-wide guard preflightを含む `harness-check` run `33848385601` が
+main HEAD `eab5385cfce8c90a0a04a12932b1553965b1beed` で 2026-09-04T08:02:00Z に terminal successとなった。
+Lite consumer、preflight、Windows durability、bulk-1〜3、stateful、finalize（Biome、post-test DB rebuild、
+doctor、typed lane status）を全てsuccessで完了し、空failure baseline 47件、baseline digest、advisory findingの
+main側再検証を含む終端証拠を確認した。
+
+```text
+run: https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33848385601
+head: eab5385cfce8c90a0a04a12932b1553965b1beed
+status: completed
+conclusion: success
+output_digest: sha256:64249470978a505bcbdba669eab71a2f0e7f2b5b5a231c939301ef941f610791
+```
+
+このmain read-afterをもって、PR #1504の実装責務と本PLANの空failure baseline責務が同一mainへ収束したことを確認する。
+Issue #1501のterminal化は、本PLANをこの証拠付きclosure PRから参照して行う。
