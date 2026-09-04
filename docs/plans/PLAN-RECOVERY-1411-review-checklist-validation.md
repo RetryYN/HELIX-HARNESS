@@ -59,6 +59,8 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-review-checklist-validation.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1411-review-checklist-validation.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/gate/review-tier.ts, artifact_type: source_module }
   - { artifact_path: tests/gate-review-tier.test.ts, artifact_type: test_code }
@@ -75,6 +77,10 @@ YAML読込と直接呼出しで同じschemaを使い、後勝ちMapによるfail
 旧skill templateのメタデータやplaceholderを完成したchecklistとして黙って取り込まない。
 
 ## 実測と未完了
+
+CIのdesign-coverage検査でcatalogへの設計登録漏れを検出した。既存の
+qa-diagnosis-quality-checklistへL6/L8参照を追加し、作成者が差分を確認して
+catalog digestを追従した。baseline緩和はなく、独立レビューの成立は別途必要である。
 
 main `d1606804c` の修正前コードに安全側oracleを追加し、2026-09-05に
 `tests/gate-review-tier.test.ts` が7 failed / 11 passed、exit 1となった。
