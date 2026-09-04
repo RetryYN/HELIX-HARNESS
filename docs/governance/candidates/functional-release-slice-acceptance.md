@@ -53,7 +53,7 @@ Slice revisionへ束縛する。candidate承認前はruntime、current DB、gene
 | `FRS-AC-021` | FRS-R-19 | 全対象要求revisionに実装・runtime接続・検証・Module・Slice・Bundleと未成立状態が対応する | 要求を分母から削除、二重owner、stale source、未検証を完成とするmutationを拒否 |
 | `FRS-AC-022` | FRS-R-20 | 利用目的・責務・依存から構成とWaveを導出し旧新identityと移行条件を保持する | 旧個数や9群・17系統の固定強制、循環依存隠蔽を拒否 |
 | `FRS-AC-023` | FRS-R-21 | Module連動CI・公開の完成なしに内部適用でき、同じ義務と比較条件で待ち時間・rerunを測定する | 必須義務削減、局所単回値の全CI効果への転用を拒否 |
-| `FRS-AC-024` | FRS-R-22 | #1293の限定委譲から成果回収・ローカル検収・独立レビューまで成立する | #819完成を一律条件化、wrong HEAD、期限切れ、予算逸脱、未回収成果の受理を拒否 |
+| `FRS-AC-024` | FRS-R-22 | Phase Aで事前発行branch、dispatch前後のowner／HEAD、single-writerを確認し、成果回収・ローカル検収・独立レビューまで成立する。Phase Bはlease／fenceへ接続する | #819／#860完成の一律前提化、二重writer、所有不明、wrong HEAD、期限切れ、予算逸脱、未回収成果の受理を拒否 |
 | `FRS-AC-025` | FRS-R-23 | 操作・対象・影響に必要な安全依存だけを閉包化し、全て有効な場合のみ投入可能とする | 必須安全条件をoptionalへ変更、欠落や不明をgreenにするmutationを拒否 |
 | `FRS-AC-026` | FRS-R-24 | Lite／Fullのexact Slice構成にBundle固有の統合・更新・rollback・L12検証がある | 単体greenで組合せ検収を代用、未qualified Slice混入を拒否 |
 
