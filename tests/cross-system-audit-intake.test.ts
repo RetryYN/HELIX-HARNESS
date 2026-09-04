@@ -8,12 +8,14 @@ const root = "docs/reference/cross-system-audit-2026-09-05";
 const inventory = JSON.parse(readFileSync(join(root, "inputs.json"), "utf8")) as {
   entries: { path: string; bytes: number; sha256: string }[];
 };
-const { mapping } = JSON.parse(readFileSync(join(root, "source-map.json"), "utf8")) as {
+const { authority, mapping } = JSON.parse(readFileSync(join(root, "source-map.json"), "utf8")) as {
+  authority: string;
   mapping: { original: string; saved: string }[];
 };
 
 describe("外部監査入力の非実行保全", () => {
   it("U-XAUDIT-001: 元checksumと保存内容のexact対応を検査する", () => {
+    expect(authority).toBe("historical_reference_only");
     expect(mapping).toHaveLength(14);
     expect(inventory.entries).toHaveLength(14);
     expect(new Set(mapping.map((m) => m.original)).size).toBe(14);
