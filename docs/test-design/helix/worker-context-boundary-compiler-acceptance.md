@@ -6,7 +6,7 @@ paired_requirement_layer: L3
 artifact_type: test_design
 status: draft
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-09-05
 owner: QA / Codex TL
 plan: PLAN-L3-69-worker-context-boundary-compiler
 pair_artifact: docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
@@ -35,16 +35,20 @@ pair_artifact: docs/design/helix/L3-requirements/worker-context-boundary-compile
 | `WCTX-AC-007` | `WCTX-R-04` | authority path、旧layer、compatibility文書を入力へ混ぜる | current authority入力として拒否する | legacy greenでcurrent failureを相殺しない |
 | `WCTX-AC-008` | `WCTX-R-05` | compile後にpacket fileの存在を探索する | persistent packetを作成していない | JSONをsealed capabilityとして再利用しない |
 | `WCTX-AC-009` | `WCTX-R-06` | task／token／secretを入力してstdout、stderr、receiptを確認する | digestとfailure codeだけを追跡し、機密本文を出力しない | secret／PII／credentialの漏洩がない |
-| `WCTX-AC-010` | `WCTX-R-07` | codex、claude、loop、pair-agent、teamの各execute経路を起動する | 同一loader／attestation／compiler経路でprovider起動前にpacketをsealする | いずれかの経路だけraw fallbackまたは独自defaultを使わない |
+| `WCTX-AC-010` | `WCTX-R-07` | current Runtime Capability Registryがadmitするexecution path exact setを起動する | L3変更なしで全pathが同一loader／attestation／compiler経路を利用する | provider／CLI固有pathだけraw fallbackまたは独自defaultを使わない |
 | `WCTX-AC-011` | `WCTX-R-07` | boundary作成後にHEAD、authority、rule、scopeを変更する | staleまたはdriftとしてproviderを起動せず拒否する | compile時のgreenを実行時の許可へ持ち越さない |
 | `WCTX-AC-012` | `WCTX-R-08` | 旧`mode`／`model`／legacy layerを入力する | input-only変換または曖昧値拒否となる | current output、DB、receiptへ旧identityを再出力しない |
+| `WCTX-AC-013` | `WCTX-R-07` | 新しいruntimeをregistryへadmitする | L3変更なしでcanonical Context Compilerを利用できる | provider名やCLI列挙の更新を必須にしない |
+| `WCTX-AC-014` | `WCTX-R-07` | `pair-agent`等をcompatibility-only化または削除する | current execution pathの必須集合から外れ、L3契約違反にならない | legacy surfaceの存続をContext Compiler要件が要求しない |
+| `WCTX-AC-015` | `WCTX-R-07` | compatibility adapterへ独自packet compilerを追加する | authority重複としてfail-closeする | legacy path固有のcontext semanticsを許可しない |
+| `WCTX-AC-016` | `WCTX-R-07` | unknown／unadmitted runtimeから起動を要求する | provider invocation 0で拒否する | availabilityやprovider名から暗黙admitしない |
 
 ## §2 量閉じと実装分割
 
 - behavior contract: `WCTXCLI-FR-001..002` exact 2件。
 - supporting requirements: `WCTX-R-01..08` exact 8件。
-- acceptance: `WCTX-AC-001..012` exact 12件。
+- acceptance: `WCTX-AC-001..016` exact 16件。
 - 本PRでは実行可能oracleを追加しない。L3確認後、L6実装PRが`tests/worker-context-boundary-compiler.test.ts`
-  と4つの既存wrapper経路のE2E oracleを所有する。
+  とregistry-admitted execution pathのE2E oracleを所有する。
 - `worker-context-packet.v1`のin-memory capability、authority attestation、provider未起動の検証は、既存
   `tests/worker-context-packet.test.ts`等との重複を避け、追加差分だけをmutationで固定する。

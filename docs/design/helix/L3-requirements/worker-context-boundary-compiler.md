@@ -9,7 +9,7 @@ layer: L3
 kind: add-design
 status: draft
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-09-05
 owner: PO / Codex TL
 plan: PLAN-L3-69-worker-context-boundary-compiler
 parent_design: docs/design/helix/L3-requirements/worker-common-contract.md
@@ -34,8 +34,8 @@ boundary JSONを作成する正規CLIが存在しないため、provider委譲�
 `worker-context-boundary.v1`だけとする。`compileWorkerContextPacket`、authority attestation、provider起動前の
 再検証は、既存のHELIX wrapperが引き続き唯一の正規実装責務を持つ。
 
-本sliceは要件・L10受入設計だけを追加する。CLI実装、既存4経路（codex、claude、loop、pair-agent、team）の
-配線、provider起動、secret／network権限変更は後続のL6実装sliceへ分離する。
+本sliceは要件・L10受入設計だけを追加する。CLI実装、current Runtime Capability Registryがadmitする
+worker execution pathへの配線、provider起動、secret／network権限変更は後続のL6実装sliceへ分離する。
 
 ## §1 behavior契約
 
@@ -45,11 +45,16 @@ HELIXは、明示されたtask boundaryから`worker-context-boundary.v1`を決�
 `helix worker context compile` CLIを提供する。生成物は既存の
 `--worker-context-file`へそのまま渡せるboundary設定であり、providerを起動しない。
 
-### WCTXCLI-FR-002 wrapper sealed packet継続
+### WCTXCLI-FR-002 admitted execution pathでのsealed packet生成
 
-providerの`--execute`、loop、pair-agent、teamの実行は、生成されたboundaryをcurrent HEADとcurrent
-authority/ruleへ再束縛し、wrapper内で一回だけ`worker-context-packet.v1`をcompileしてから起動する。
+current Runtime Capability Registryおよびcurrent execution authorityが実行可能と認めたworker execution pathは、
+生成されたboundaryをprovider起動直前にcurrent HEADとcurrent authority/ruleへ再束縛し、同一のcanonical
+wrapper authority内で一回だけ`worker-context-packet.v1`をcompileしてから起動する。
 CLIが出力したJSON、CLIの成功終了、またはboundaryファイル自体をsealed packetの証拠として扱ってはならない。
+
+compatibility-only、deprecated、retirement対象のexecution surfaceは、current execution pathとして本要件から
+存在を要求されない。残存期間中に利用する場合はcurrent canonical execution pathへの一方向adapterとし、
+独自packet compiler、独自authority、独自fallbackを持たせない。
 
 ## §2 requirements
 
@@ -109,12 +114,17 @@ CLIの結果は、少なくともboundary digest、current HEAD、authority/rule
 failure codeを追跡できる。task本文、token、secret、PII、credential、provider認証情報をstdout、stderr、
 receipt、log、boundaryへ出力してはならない。
 
-### WCTX-R-07 実行経路の共通利用
+### WCTX-R-07 current execution pathの共通利用
 
-後続実装は、codex、claude、loop、pair-agent、teamの全`--execute`経路で同じboundary loader、authority
-attestation、packet compilerを利用する。経路ごとの自動推測、独自schema、raw provider CLI fallbackを追加
-してはならない。boundary未指定、stale HEAD、authority/rule drift、scope／budget不整合は、providerを一度も
-起動せず既存のfail-close codeで拒否する。
+current authorityによってadmitされた全worker execution pathは、同じboundary loader、authority attestation、
+packet compilerを利用する。execution pathのexact setを本要件へ固定せず、Runtime Capability Registryと
+execution authorityから決定する。provider、runtime、CLI surfaceごとの自動推測、独自schema、独自packet
+compiler、raw provider CLI fallbackを追加してはならない。
+
+`team run`、`pair-agent`、legacy loop等のcompatibility-only surfaceが残存する場合は、current canonical
+execution pathへの一方向adapterとしてのみ利用し、新規feature、独立execution authority、独自context semanticsを
+追加しない。boundary未指定、stale HEAD、authority/rule drift、scope／budget不整合、unknown／unadmitted runtimeは、
+providerを一度も起動せず既存のfail-close codeで拒否する。
 
 ### WCTX-R-08 compatibility隔離
 
