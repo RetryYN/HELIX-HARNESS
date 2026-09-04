@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:09:30Z"
+  plan_id: PLAN-L3-87-security-engagement-authority
+  approval_record_id: L3-PO-1523-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1523#issuecomment-5544611835"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -29,11 +39,11 @@ backprop_decision_reason: "既存#679を置換せず、未定義だったengagem
 no_code_decision: no_change
 ddd_modeling_decision: policy
 contract_preconditions: "#679 capability broker、#1172 provider attestation、#397 Requirement IR、#659 distribution境界を参照できる"
-contract_postconditions: "Security engagementのL1/L3/L10候補、12 FR、6 NFR、12 AC、責務分離、実装順が未承認candidateとして束縛される"
-contract_invariants: "brokerを迂回せず、通常taskと特権Security authorityを分離し、候補を承認前にcurrent runtimeへ投影しない"
+contract_postconditions: "Security engagementのL1/L3/L10候補、12 FR、6 NFR、12 AC、責務分離、実装順がhuman gate済みcandidateとして束縛される"
+contract_invariants: "brokerを迂回せず、通常taskと特権Security authorityを分離し、候補を独立review・canonical freeze前にcurrent runtimeへ投影しない"
 contract_failures: "無認可実行、期限／target／scope drift、privileged fallback、自己検証、sensitive data平文保存、revoke不伝播、document逆流を拒否する"
 tdd_red_required: false
-tdd_red_waiver_reason: "本sliceはL1/L3/L10の未承認source authority候補のみを起草し、runtime、schema、DB、credential、external operationを変更しない。"
+tdd_red_waiver_reason: "本sliceはL1/L3/L10のsource authority候補とhuman gate recordのみを束縛し、runtime、schema、DB、credential、external operationを変更しない。"
 complexity_effect: net_negative
 complexity_justification: "新規Cyber Harnessを作らず、既存broker／provider／evidence／distributionへ責務を分離して接続する。"
 removal_trigger: "候補がplan固有承認、canonical merge、#397 IR admissionを経てcurrent source authorityへ置換された時"
@@ -68,8 +78,8 @@ review_evidence: []
 
 # Security engagement authority候補
 
-本PLANは未承認のAuthority Sliceである。作業依頼をL3承認や特権操作の許可へ読み替えない。
-plan固有human approval、L3↔L10 freeze、canonical main read-after、#397 Requirement IR admissionまで、
+本PLANのL3 human gateは成立済みである。ただし、この承認を特権操作や外部副作用の許可へ読み替えない。
+独立技術review、L3↔L10 freeze、canonical main read-after、#397 Requirement IR admissionまで、
 候補をcurrent requirements、runtime、schema、DB、CLI、provider設定、credentialへ投影しない。
 
 ## 後続順序

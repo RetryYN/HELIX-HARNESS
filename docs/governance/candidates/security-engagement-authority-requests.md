@@ -39,6 +39,6 @@ provider admission、evidence、action-specific human authority、Release／Dist
 
 ## authority境界
 
-本候補は未承認である。plan固有human approval、L3↔L10 freeze、canonical main read-after、#397 Requirement IR
-admissionが完了するまで、runtime、schema、DB、CLI、provider設定、credential、generated documentへcurrent authorityとして
+本候補のplan固有human gateは成立済みである。独立技術review、L3↔L10 freeze、canonical main read-after、
+#397 Requirement IR admissionが完了するまで、runtime、schema、DB、CLI、provider設定、credential、generated documentへcurrent authorityとして
 投影しない。

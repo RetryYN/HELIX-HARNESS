@@ -12,7 +12,8 @@ pair_artifact: docs/governance/candidates/security-engagement-authority-acceptan
 
 ## 正本境界
 
-本書は#1523の未承認L3候補である。#679はoperation capability、physical target、provenance、data／sink、
+本書は#1523のhuman gate済みL3候補である。独立技術reviewとcanonical freezeが成立するまではcurrent authorityではない。
+#679はoperation capability、physical target、provenance、data／sink、
 impact、action bindingを判定する実行brokerを所有する。本書はその上流でSecurity engagementの認可、特権分離、
 finding lifecycle、restricted evidence、revokeを所有する。broker判定を省略、上書き、別greenで相殺してはならない。
 
