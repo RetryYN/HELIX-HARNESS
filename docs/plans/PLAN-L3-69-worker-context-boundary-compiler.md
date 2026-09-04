@@ -56,8 +56,8 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-69-worker-context-boundary-compiler.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L3-requirements/worker-context-boundary-compiler.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/worker-context-boundary-compiler-acceptance.md, artifact_type: test_design }
-  - { artifact_path: tests/worker-context-boundary-compiler-requirements.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: tests/l3-worker-context-authority.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
@@ -90,6 +90,7 @@ dependencies:
 | 5 | targeted lintと独立レビュー | blocker 0、L6実装入力がcurrent HEADへ束縛される |
 
 本PLANはrequirements・受入設計のfreezeだけを担当する。CLI実装、provider起動、registry-admitted execution pathの
-配線、実行可能test、secret／network policy変更は後続PRへ分離し、`completion_claim_allowed: false`を維持する。
+配線、runtime behavior test、secret／network policy変更は後続PRへ分離し、`completion_claim_allowed: false`を維持する。
 L3 human gateは旧surface固定列挙の除去を条件として成立した。独立技術review、canonical freeze、main
-read-after前にruntime実装やprovider起動を完了扱いにせず、実行可能な後続deliverableを先取りしない。
+read-after前にruntime実装やprovider起動を完了扱いにせず、実行可能な後続deliverableを先取りしない。L3／L10の
+意味回帰oracleは既存のworker context authority test surfaceへ追加し、新規runtime deliverableとは扱わない。
