@@ -30,14 +30,14 @@ workflow_identity:
 entry_signals:
   - regression_dev
 contract_preconditions: "DIST-LITE-R-04、PLAN-L7-657、既存consumer artifact／lockfile／integrity契約がcurrent authorityとして存在する"
-contract_postconditions: "consumer setupのlockfile生成とLite受入installがadvisory network待ちに依存せずboundedに完走し、依存解決・integrity・artifact digest検証を維持する"
+contract_postconditions: "consumer setupのlockfile生成とLite受入installがadvisory network待ちに依存せずboundedに完走し、Full acceptanceの宣言済み依存解決とintegrity／artifact digest検証を維持する"
 contract_invariants: "npm依存解決、package-lock authority、npm ci、artifact／doctor／completionのrequired判定を弱めず、skip／soft-pass／timeout無制限緩和を行わない"
 contract_failures: "lockfile生成失敗、依存解決失敗、integrity／artifact digest不一致、timeout、受入対象外のadvisory network待ちを成功へ丸めない"
 tdd_red_required: true
 red_test: "main／PRのU-DISTCAN-006、U-DISTPKG-012、U-SETUP-013でspawnSync status=null／ETIMEDOUTが発生する再現条件を、対象Node 24のfresh consumerで固定する"
 mutation_oracle_required: true
 complexity_effect: net_negative
-complexity_justification: "受入対象外のnpm advisory network副作用を明示的に除去し、既存の複数child processで重複していた不安定待ちを一つのconsumer install policyへ収束する"
+complexity_justification: "受入対象外のnpm advisory network副作用を明示的に除去し、Lite／profileのoffline境界とFull acceptanceの宣言済み依存解決を一つのbounded consumer install policyへ収束する"
 removal_trigger: "consumer install policyが共通実行adapterへ統合され、同一のbounded npm policyを全consumer surfaceが参照できるようになった時"
 parent_design: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md
 pair_artifact: docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md
@@ -54,6 +54,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-107-lite-consumer-npm-install-determinism.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/distribution-lite-consumer-canary.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/L8-distribution-lite-consumer-canary-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/setup/index.ts, artifact_type: source_module }
   - { artifact_path: tests/setup.test.ts, artifact_type: test_code }
@@ -74,12 +75,12 @@ review_evidence: []
 
 ## 目的
 
-既存のDIST-LITE-R-04受入契約を変更せず、consumer setupが生成するpackage-lockとLite clean consumer検証のfresh npm child processを、受入対象外のaudit／fund／update notification待ちから分離する。Lite artifactのfresh installはregistry egressを禁止し、required preflightで復元したcacheの欠落を即時fail-closeする。依存解決、lockfile、integrity、artifact digest、doctor、completion、Windows same-artifactの判定は引き続きrequiredとする。
+既存のDIST-LITE-R-04受入契約を変更せず、consumer setupが生成するpackage-lockとLite clean consumer検証のfresh npm child processを、受入対象外のaudit／fund／update notification待ちから分離する。Lite／profile artifactのfresh installはregistry egressを禁止し、required preflightで復元したcacheの欠落を即時fail-closeする。Full clean distribution acceptanceはsetupが生成する宣言済みGitHub package specの解決を検査対象に含めるためofflineを強制せず、fetch retry／timeoutだけをboundedにする。依存解決、lockfile、integrity、artifact digest、doctor、completion、Windows same-artifactの判定は引き続きrequiredとする。
 
 ## 実装範囲
 
 - `setup project` 内部の `npm install --package-lock-only` にboundedなconsumer install flagsを付与する。
-- Lite canary、profile package、clean distribution acceptanceのnpm child processへ、advisory抑制とoffline境界を含む受入用環境ポリシーを渡す。
+- Lite canary、profile package、clean distribution acceptanceのnpm child processへ、advisory抑制と責務ごとのoffline／bounded-fetch境界を含む受入用環境ポリシーを渡す。
 - 既存テストのexact command／environment境界を更新し、production setupと受入テストが別の挙動にならないようにする。
 
 ## 非対象
@@ -92,7 +93,7 @@ review_evidence: []
 
 1. setup unit、Lite canary、profile package、clean distribution acceptanceが対象Node 24でterminal greenになる。
 2. `npm install --package-lock-only`の依存解決とlockfile生成を維持する。
-3. advisory network、fund、update notificationを抑制し、Lite fresh installのregistry egressを禁止してもintegrity／lockfile／artifact digestの検証を弱めない。cache missはsuccessへ丸めない。
+3. advisory network、fund、update notificationを抑制し、Lite／profile fresh installのregistry egressを禁止してもintegrity／lockfile／artifact digestの検証を弱めない。Full acceptanceの宣言済み依存解決はfetch retry／timeoutをboundedにし、いずれのcache miss／依存解決失敗もsuccessへ丸めない。
 4. timeout到達をexit failureと混同せず、required canaryをskip／soft-passへ変更しない。
 5. current HEADのCI、Claude exact-HEAD review、main read-afterが揃うまでcompletion claimを許可しない。
 
