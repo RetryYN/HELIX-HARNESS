@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-78-three-lane-cloud-governance-authority
+  approval_record_id: L3-PO-1358-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5544538060"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:2026-09-02 追加指示書2件を最適化し、三社固定レーン／Cursor Cloud資源分散／GitHub Auditor／HELIX-Bench資格を要求へ取り込む"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: Codex / TL
 github_issue_id: 1358
 behavior_contract_id: THREE-LANE-CLOUD-CAPACITY-ORCHESTRATION-001
@@ -29,7 +39,7 @@ backprop_decision_reason: "本PLAN自身がresident lane v0.3のN-provider意味
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "PLAN-L3-75 v0.3のcanonical merge、#819/#1293/#860/#861/#862/#873/#854/#1295/#1296 ownerをread-afterできる"
-contract_postconditions: "v0.4 candidateがL1↔L12、L3↔L10、Issue graphへ束縛され、明示L3承認前はcurrent runtimeへ投影されない"
+contract_postconditions: "v0.4 candidateがL1↔L12、L3↔L10、Issue graph、plan固有human gateへ束縛され、独立review・canonical freeze前はcurrent runtimeへ投影されない"
 contract_invariants: "exact 3 lane、Issue/PLAN択一、専用branch、one writer、Codex control、Cursor bounded write、Claude blind review、deterministic gate非上書きを維持する"
 contract_failures: "旧approval流用、modelをlane化、予算UNKNOWNの推測、prompt-only enforcement、semantic PASSによるdeterministic P0相殺を拒否する"
 tdd_red_required: false
@@ -84,6 +94,6 @@ review_evidence: []
 
 ## Freeze境界
 
-本PLAN固有のL3 approvalは未成立である。candidateはcurrent authorityへ昇格させず隔離を維持する。
-plan固有のhuman approval、独立exact-HEAD review、CI、doctor、DB convergenceが成立した後に限り、
+本PLAN固有のL3 human gateは成立済みである。candidateは独立技術reviewとcanonical freezeまで隔離を維持する。
+独立exact-HEAD review、CI、doctor、DB convergenceが成立した後に限り、
 v0.3 current authorityを置換する別の原子的promotion PRへ進む。
