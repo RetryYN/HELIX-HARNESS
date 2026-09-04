@@ -10,6 +10,8 @@ created: 2026-09-05
 updated: 2026-09-05
 owner: Codex / TL
 github_issue_id: 93
+behavior_contract_id: CIS-R-10
+responsibility_owner: ci-doctor-execution-reuse
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
