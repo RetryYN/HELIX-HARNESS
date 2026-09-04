@@ -1,0 +1,374 @@
+{
+  "schema_version": "helix-legacy-orchestration-surface-inventory.v1",
+  "authority_role": "compatibility_only_retirement_ratchet",
+  "source_head": "16f930c4da06b35be44ae88871dd0f1e572b0c67",
+  "excluded_historical_prefixes": [
+    "docs/archive/"
+  ],
+  "excluded_implementation_paths": [
+    "config/legacy-orchestration-surface-inventory.json",
+    "src/lint/legacy-orchestration-surface.ts",
+    "tests/legacy-orchestration-surface.test.ts",
+    "docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md",
+    "docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
+    "docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md"
+  ],
+  "entries": [
+    {
+      "path": ".claude/CLAUDE.md",
+      "maximum_occurrences": 5
+    },
+    {
+      "path": ".claude/hooks/agent-guard.ts",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": ".helix/audit/A-122-phase2-preclose-feature-hardening.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": ".helix/audit/A-137-unusable-provider-dispatch-audit.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": ".helix/evidence/rename/full-regression.txt",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": ".helix/teams/example-review-team.yaml",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "AGENTS.md",
+      "maximum_occurrences": 6
+    },
+    {
+      "path": "CLAUDE.md",
+      "maximum_occurrences": 5
+    },
+    {
+      "path": "README.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/harness/L1-requirements/functional-requirements.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/harness/L4-basic-design/architecture.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/harness/L4-basic-design/function.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/harness/L5-detailed-design/physical-data.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/harness/L6-function-design/agent-slots.md",
+      "maximum_occurrences": 6
+    },
+    {
+      "path": "docs/design/harness/L6-function-design/function-spec.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/design/harness/L6-function-design/setup-solo-team.md",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/orchestration-runtime-bridge.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-wrapper-admission.md",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/distribution-lite-artifact-projection.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/orchestration-memory.md",
+      "maximum_occurrences": 5
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/pillar-function-design.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/governance/helix-harness-concept_v3.1.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/governance/helix-harness-requirements_v1.2.md",
+      "maximum_occurrences": 7
+    },
+    {
+      "path": "docs/governance/worker-context-boundary-operator-guide.md",
+      "maximum_occurrences": 5
+    },
+    {
+      "path": "docs/improvement-backlog.md",
+      "maximum_occurrences": 4
+    },
+    {
+      "path": "docs/migration/helix-porting-map.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/migration/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L6-64-memory-cross-runtime-surface.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-08-agent-slots.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-123-route-eval-recommended-command.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/plans/PLAN-L7-135-dynamic-skill-injection-materialization.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-139-codex-hook-adapter.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-177-helix-orchestration-runtime-bridge.md",
+      "maximum_occurrences": 11
+    },
+    {
+      "path": "docs/plans/PLAN-L7-224-pair-agent-difficulty-budget.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-234-team-run-backlog-closure.md",
+      "maximum_occurrences": 4
+    },
+    {
+      "path": "docs/plans/PLAN-L7-307-loop-continuous-run-heartbeat.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-335-judgment-core.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-337-delegation-brief-role-judgment.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-471-session-start-hook-budget.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-509-worker-context-file-adapter-docs.md",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "docs/plans/PLAN-L7-64-team-runner-launch.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-65-deterministic-model-policy.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/plans/PLAN-L7-75-cost-tiered-provider-router.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/plans/PLAN-L7-76-review-remediation-reliability.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/plans/PLAN-L7-77-codex-stdin-prompt-dispatch.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/plans/PLAN-RECOVERY-36-loop-run-positive-coverage.md",
+      "maximum_occurrences": 9
+    },
+    {
+      "path": "docs/plans/PLAN-REVERSE-04-setup-solo-team.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/reference/system-review-sweep2-2026-07-12.md",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "docs/research/kimi-review-lane-next-step-decision-2026-08-09.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/skills/agent-cost-design.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/skills/agent-teams.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/skills/llm-agent-routing.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/templates/adapter/AGENTS.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/test-design/harness/L3-acceptance-test-design.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/test-design/harness/L7-unit-test-design.md",
+      "maximum_occurrences": 7
+    },
+    {
+      "path": "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "docs/test-design/helix/L6-pillar-unit-test-design.md",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "docs/test-design/helix/L9-worker-wrapper-admission-system-test-design.md",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "docs/test-design/helix/orchestration-memory.md",
+      "maximum_occurrences": 4
+    },
+    {
+      "path": "src/cli.ts",
+      "maximum_occurrences": 11
+    },
+    {
+      "path": "src/doctor/index.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "src/lint/rule-drift.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "src/orchestration/autonomous-loop-run-receipts.ts",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "src/runtime/agent-guard.ts",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "src/runtime/agent-slots.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "src/runtime/runtime-capability-matrix.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "src/schema/route-map.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "src/setup/distribution-lite-package.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "src/setup/index.ts",
+      "maximum_occurrences": 7
+    },
+    {
+      "path": "src/setup/templates.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "src/team/run.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "tests/agent-slots.test.ts",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "tests/autonomous-loop-run-receipts.test.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "tests/cli-surface.test.ts",
+      "maximum_occurrences": 6
+    },
+    {
+      "path": "tests/distribution-acceptance.test.ts",
+      "maximum_occurrences": 3
+    },
+    {
+      "path": "tests/distribution-lite-documents.test.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "tests/doctor.test.ts",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "tests/rule-drift.test.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "tests/runtime-capability-matrix.test.ts",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "tests/runtime-hook-entrypoints.test.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "tests/session-start-budget.test.ts",
+      "maximum_occurrences": 1
+    },
+    {
+      "path": "tests/setup.test.ts",
+      "maximum_occurrences": 10
+    },
+    {
+      "path": "tests/slow/doctor.test.ts",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "tests/team-run.test.ts",
+      "maximum_occurrences": 14
+    },
+    {
+      "path": "tests/vmodel-pair.test.ts",
+      "maximum_occurrences": 2
+    },
+    {
+      "path": "tests/workflow-contracts.test.ts",
+      "maximum_occurrences": 2
+    }
+  ]
+}
