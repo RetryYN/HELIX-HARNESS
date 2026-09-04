@@ -30,6 +30,13 @@ percentile集計だけを担う。入力配列をcanonical sort/dedupし、shell
 - `nightly_full`: selector／validatorは実装するが、本PRではschedule triggerを有効化しない。Issue #153の
   scheduled failure観測性と同じ運用ownerへ接続してからactivationする。
 
+開発リポジトリ自身の `.github/workflows/escalation-stale.yml` は consumer artifact の検査経路ではない。
+consumer profile は `helix setup project` が生成した clean consumer の adapter、VSCode、team、state を
+検査するため、source checkoutへ直接適用してはならない。source 側の週次 escalation route は
+status／completion packet／review bundle と `helix doctor --scope toolchain --json` の read-only
+検査に限定する。`docs/templates/github/common/escalation-stale.yml` の consumer workflow は生成済み
+consumer専用として `doctor --profile consumer` を維持し、両者の command profile を同一視しない。
+
 workflow、selector自身、security、permission、secret、schema、migration、DB、authority、lockfile、未知pathは
 `fullAdmissionRequired=true`とする。changed testは必ずselectedへ入れ、source/designは同名testまたは明示relationが
 解決できない限りunknownとしてfullへ倒す。

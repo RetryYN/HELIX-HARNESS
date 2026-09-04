@@ -20,5 +20,5 @@ jobs:
         run: npm run helix -- completion decision-packet --json
       - name: HELIX completion review bundle
         run: npm run helix -- completion review-bundle --json
-      - name: HELIX consumer doctor
-        run: npm run helix -- doctor --profile consumer --json
+      - name: HELIX source toolchain doctor
+        run: npm run helix -- doctor --scope toolchain --json
