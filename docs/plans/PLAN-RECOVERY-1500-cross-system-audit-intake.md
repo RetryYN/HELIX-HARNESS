@@ -9,8 +9,8 @@ completion_claim_allowed: false
 created: 2026-09-05
 updated: 2026-09-05
 owner: Codex / TL
-github_issue_id: 1500
-behavior_contract_id: CAPABILITY-RELEASE-PORTFOLIO-MANAGEMENT-001
+github_issue_id: 1538
+behavior_contract_id: CROSS-SYSTEM-AUDIT-INTAKE-001
 responsibility_owner: cross-system-audit-intake
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
