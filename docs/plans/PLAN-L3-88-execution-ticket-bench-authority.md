@@ -67,6 +67,9 @@ generates:
   - { artifact_path: docs/governance/candidates/execution-ticket-trace.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+agent_slots:
+  - { role: tl, slot_label: "TL — 既存authorityとの衝突・責務分離" }
+  - { role: qa, slot_label: "QA — 全ID移管・受入trace・反例の検証" }
 review_evidence: []
 ---
 

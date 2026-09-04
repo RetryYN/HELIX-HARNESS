@@ -241,6 +241,11 @@ blanket dependencyは作らない。version target／Release Sliceは#1500で解
 PLAN lintはexit 0、日本語文書検査は9文書／違反0。DB rebuildはexit 0、79247 rows。
 ここでgreenなのは文書整合であり、90件のruntime oracleを実行したという意味ではない。
 
+初回CIは必須agent_slots欠落で停止した。個別PLAN lintとCI governance gateの検査範囲が異なっていたため、
+PLANへ役割枠を追加した。役割枠は作業設計であり、独立review実施の証拠ではない。
+修正後はCIと同じ `helix plan lint --gate governance`（1173 PLAN）と
+`helix plan lint --gate post-merge-status` がともにexit 0。関連123テストも成功している。
+
 元原稿の再構成は次で再検証できる。日本語の取込補足を除去し、ヘッダのMarkdown改行記法を原稿へ戻す。
 
 ```javascript
