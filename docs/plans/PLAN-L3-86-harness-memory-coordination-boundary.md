@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L3-86-harness-memory-coordination-boundary
-title: "PLAN-L3-86 (redesign): harness memoryのcoordination-only境界"
-kind: redesign
+title: "PLAN-L3-86 (add-design): harness memoryのcoordination-only境界"
+kind: add-design
 layer: L3
 drive: agent
 status: draft
