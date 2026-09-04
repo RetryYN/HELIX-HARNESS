@@ -34,6 +34,8 @@ contract_invariants: "既存engineを削除せず、historical evidenceをcurren
 contract_failures: "inventory欠落・退化、別path追加、同一path増加、gate未配線を個別にfail-closeする"
 tdd_red_required: true
 red_at: "2026-09-05T04:20:00+09:00"
+mutation_oracle_required: true
+mutation_oracle_evidence: "2026-09-05T04:14+09:00にper-path growth比較をactual > maximumからactual < maximumへ反転し、U-LORET-001とU-LORET-003が2 failed／4 passed、exit 1でkillした。比較を復元後6/6 greenへ戻した。"
 complexity_effect: net_negative
 complexity_justification: "旧engineごとに分散していた新規利用禁止を一つのpath別ratchetへ集約し、後続移行で単調減少できる"
 removal_trigger: "旧direct engine current consumerが0となり、inventoryと本ratchetをretirement read-afterへ置換した時点"
