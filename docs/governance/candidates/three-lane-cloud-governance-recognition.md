@@ -7,7 +7,7 @@ layer: L12
 kind: redesign
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: PO / QA
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
 parent_design: docs/governance/candidates/three-lane-cloud-governance-requests.md
