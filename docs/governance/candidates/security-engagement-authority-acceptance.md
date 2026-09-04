@@ -36,4 +36,3 @@ pair_artifact: docs/governance/candidates/security-engagement-authority-requirem
 
 本候補の文書greenはruntime capabilityの完成を意味しない。実機Security operation、credential設定、external access、
 exploit validation、production接続、disclosure、publishは別のaction-specific authorityなしに実行しない。
-
