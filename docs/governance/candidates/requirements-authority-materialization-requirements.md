@@ -7,7 +7,7 @@ layer: L3
 kind: redesign
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: PO / Codex TL
 plan: PLAN-L3-79-requirements-authority-materialization-gate
 parent_design: docs/governance/candidates/requirements-authority-materialization-requests.md
@@ -18,7 +18,7 @@ next_pair_freeze: L10_after_po_approval
 # 要求・要件authority materialization gate要件
 
 - 文書ID: `HELIX-RAMG-REQ-001`
-- 状態: `draft_candidate / plan固有承認前`
+- 状態: `draft_candidate / plan固有human gate済み・独立review前`
 - 主Issue: `#1364`
 
 ## Feature契約
@@ -64,4 +64,4 @@ next_pair_freeze: L10_after_po_approval
 | Agile Prototype Triangle | #1292 | 複合Capability自身のsource authority成立後 |
 | Responsibility System TDD | #1318 | RSTDD-01成立、RSTDD-07 dependency解決後 |
 
-本candidateを承認前にruntime、DB current output、generated current docsへ投影しない。
+本candidateを独立review・canonical freeze前にruntime、DB current output、generated current docsへ投影しない。
