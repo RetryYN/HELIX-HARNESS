@@ -25,6 +25,7 @@ current execution authorityとして新規拡張できないようにする。�
 - inventoryは旧surfaceの正当性を保証せず、退役までの既知債務だけを表す。
 - historical archive、gate実装、gate test、当該PLAN／設計はcurrent consumerへ数えない。
 - 別pathへの追加、同一path内の増加、重複・退化したentry、authority roleの変更を拒否する。
+- 除外先は既知のarchiveと検査自身のファイルだけを許可し、空prefix、src全体、任意consumerの除外追加を拒否する。
 - source HEADはinventory採取点であり、現在HEADと一致することを要求しない。
 - Phase 1では既存engineを削除せず、実行挙動も変更しない。
 

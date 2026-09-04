@@ -66,6 +66,25 @@ describe("legacy orchestration surface retirement ratchet", () => {
     expect(result.errors).toContain("inventory_entry_invalid:src/old.ts");
   });
 
+  it("U-LORET-005: 除外先の拡張による新規consumer隠蔽を拒否する", () => {
+    for (const exclusion of ["", "src/", "docs/"]) {
+      const invalid = inventory();
+      invalid.excluded_historical_prefixes.push(exclusion);
+      const result = analyzeLegacyOrchestrationSurface(invalid, [
+        { path: "src/new.ts", content: "helix team run" },
+      ]);
+      expect(result.ok).toBe(false);
+      expect(result.errors).toContain("inventory_exclusion_invalid");
+    }
+    const invalid = inventory();
+    invalid.excluded_implementation_paths.push("src/new.ts");
+    expect(
+      analyzeLegacyOrchestrationSurface(invalid, [
+        { path: "src/new.ts", content: "helix team run" },
+      ]).errors,
+    ).toContain("inventory_exclusion_invalid");
+  });
+
   it("U-LORET-006: live repository inventoryが増加なしで一致する", () => {
     const loaded = loadLegacyOrchestrationSurface(process.cwd());
     const result = analyzeLegacyOrchestrationSurface(loaded.inventory, loaded.files);

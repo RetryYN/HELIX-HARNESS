@@ -5,6 +5,15 @@ import { join } from "node:path";
 export const LEGACY_ORCHESTRATION_INVENTORY_PATH =
   "config/legacy-orchestration-surface-inventory.json";
 
+const ALLOWED_EXCLUSIONS = new Set([
+  LEGACY_ORCHESTRATION_INVENTORY_PATH,
+  "src/lint/legacy-orchestration-surface.ts",
+  "tests/legacy-orchestration-surface.test.ts",
+  "docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md",
+  "docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
+  "docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md",
+]);
+
 export const LEGACY_ORCHESTRATION_MARKERS = [
   "helix team run",
   "helix pair-agent",
@@ -86,6 +95,11 @@ export function analyzeLegacyOrchestrationSurface(
   }
 
   const excludedPaths = new Set(inventory.excluded_implementation_paths);
+  if (
+    inventory.excluded_historical_prefixes.some((prefix) => prefix !== "docs/archive/") ||
+    inventory.excluded_implementation_paths.some((path) => !ALLOWED_EXCLUSIONS.has(path))
+  )
+    errors.push("inventory_exclusion_invalid");
   const isExcluded = (path: string) =>
     excludedPaths.has(path) ||
     inventory.excluded_historical_prefixes.some((prefix) => path.startsWith(prefix));
