@@ -39,6 +39,16 @@ setupは専用CI pathをHELIX管理artifactとして新規作成する。同path
 `unchanged`として受理し、異なるbytes、symlink、hardlink、ancestor symlinkを上書きせずconflictで拒否する。
 任意のconsumer fileへmanaged blockを暗黙mergeしない。
 
+### consumer npm実行ポリシー（PLAN-RECOVERY-107）
+
+Lite/profile artifactのfresh installでは、audit／fund／update notificationという受入対象外のadvisory network副作用を抑制し、
+CIのrequired preflightで復元したnpm cacheだけを使う。Lite artifactはruntime依存をbundle済みなのでregistry egressを許可せず、
+cache missは受入失敗として即時fail-closeする。package依存解決、`package-lock.json`、integrity、artifact digest、`npm ci`の
+frozen検証は引き続き実行し、timeout値の無制限緩和、skip、soft-passは許可しない。
+Full clean distribution acceptanceは、setupが生成する宣言済み`github:RetryYN/HELIX-HARNESS`のlockfile解決を検査対象に含むため、
+offlineを強制せず、fetch retry／timeoutだけをboundedにする。setup内部のlockfile生成も同じadvisory抑制を使うが、依存解決失敗を
+成功へ丸めない。グローバルnpm設定やcredentialは変更せず、consumer child processへだけ明示的にポリシーを渡す。
+
 WindowsはLinuxで検証した同一tarball digestとprebuilt Node artifactを使用し、PowerShell entrypoint、setup dry-run、
 status、consumer doctor、minimal workflow dry-runを検証する。Windows専用rebuildで代替しない。
 
