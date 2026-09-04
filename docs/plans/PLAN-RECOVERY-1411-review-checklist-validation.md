@@ -59,6 +59,8 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-review-checklist-validation.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1411-review-checklist-validation.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -81,6 +83,10 @@ YAML読込と直接呼出しで同じschemaを使い、後勝ちMapによるfail
 CIのdesign-coverage検査でcatalogへの設計登録漏れを検出した。既存の
 qa-diagnosis-quality-checklistへL6/L8参照を追加し、作成者が差分を確認して
 catalog digestを追従した。baseline緩和はなく、独立レビューの成立は別途必要である。
+
+run 33929436510のbulk回帰でfreeze packetと22箇所のcatalog pinへの追従漏れを検出した。
+catalogの実変更は上記2参照の追加だけであることをmainとの差分で確認し、SHA-256を再計測した。
+同じdigestへ候補packetと既存oracleを揃える。要件本文・過去承認receipt・検証義務は変更しない。
 
 main `d1606804c` の修正前コードに安全側oracleを追加し、2026-09-05に
 `tests/gate-review-tier.test.ts` が7 failed / 11 passed、exit 1となった。
