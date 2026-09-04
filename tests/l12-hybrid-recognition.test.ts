@@ -18,6 +18,23 @@ import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe
 // PLAN-L7-489-requirement-generated-view-projection
 // Current workflow fields are covered by AUTH-SURFACE-DESIGN-001; this scanner only owns legacy-risk signals.
 describe("L12/hybrid recognition-risk scanner", () => {
+  it("Execution Ticketの正規pair併記はdigest一致時だけ誤検出として扱う", () => {
+    const candidates = scanL12HybridRecognitionCandidates();
+    for (const path of [
+      "docs/governance/candidates/execution-ticket-acceptance.md",
+      "docs/governance/candidates/execution-ticket-intake.md",
+      "docs/plans/PLAN-L3-88-execution-ticket-bench-authority.md",
+    ]) {
+      const candidate = candidates.find((entry) => entry.path === path);
+      expect(candidate, path).toBeDefined();
+      if (!candidate) throw new Error(`Missing candidate: ${path}`);
+      expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
+      expect(classifyFinalRecognitionDisposition({
+        ...candidate,
+        contentDigest: "changed-content",
+      })).not.toBe("false_positive");
+    }
+  });
   it("U-GHWF-001: typed GitHub requirementsのlegacy拒否記述をdigest付きfalse positiveへ固定する", () => {
     const path = "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md";
     const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
@@ -95,7 +112,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(610);
+    expect(plans).toHaveLength(611);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -137,7 +154,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(506);
+    ).toHaveLength(509);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -156,18 +173,18 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 864 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 867 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(864);
+    expect(candidates).toHaveLength(867);
     expect(counts).toEqual({
       conflict: 336,
       compatibility_labeled: 24,
-      false_positive: 486,
+      false_positive: 489,
       historical: 18,
     });
   });
@@ -229,7 +246,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(528);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(531);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -244,7 +261,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       current_authority_review: {
         compatibility_labeled: 17,
         conflict: 134,
-        false_positive: 51,
+        false_positive: 53,
         historical: 6,
       },
       executable_surface_review: { conflict: 7, false_positive: 1, historical: 1 },
@@ -257,7 +274,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       plan_review: {
         compatibility_labeled: 1,
         conflict: 176,
-        false_positive: 433,
+        false_positive: 434,
       },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
