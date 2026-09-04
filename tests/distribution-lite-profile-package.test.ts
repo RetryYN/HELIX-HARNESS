@@ -40,6 +40,8 @@ const CONSUMER_NPM_ENV = {
   npm_config_audit: "false",
   npm_config_fund: "false",
   npm_config_prefer_offline: "true",
+  // Lite artifactはruntime依存をbundle済み。registry egressは受入対象外とし、cache missはfail-closeする。
+  npm_config_offline: "true",
   npm_config_update_notifier: "false",
 } as const;
 

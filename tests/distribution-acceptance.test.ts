@@ -34,6 +34,8 @@ const CONSUMER_NPM_ENV = {
   npm_config_audit: "false",
   npm_config_fund: "false",
   npm_config_prefer_offline: "true",
+  // CIのrequired preflightで復元したnpm cacheだけを使う。cache missはネットワーク待ちにせずfail-closeする。
+  npm_config_offline: "true",
   npm_config_update_notifier: "false",
 } as const;
 

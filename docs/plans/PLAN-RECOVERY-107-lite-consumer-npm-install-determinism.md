@@ -74,12 +74,12 @@ review_evidence: []
 
 ## 目的
 
-既存のDIST-LITE-R-04受入契約を変更せず、consumer setupが生成するpackage-lockとLite clean consumer検証のfresh npm child processを、受入対象外のaudit／fund／update notification待ちから分離する。依存解決、lockfile、integrity、artifact digest、doctor、completion、Windows same-artifactの判定は引き続きrequiredとする。
+既存のDIST-LITE-R-04受入契約を変更せず、consumer setupが生成するpackage-lockとLite clean consumer検証のfresh npm child processを、受入対象外のaudit／fund／update notification待ちから分離する。Lite artifactのfresh installはregistry egressを禁止し、required preflightで復元したcacheの欠落を即時fail-closeする。依存解決、lockfile、integrity、artifact digest、doctor、completion、Windows same-artifactの判定は引き続きrequiredとする。
 
 ## 実装範囲
 
 - `setup project` 内部の `npm install --package-lock-only` にboundedなconsumer install flagsを付与する。
-- Lite canary、profile package、clean distribution acceptanceのnpm child processへ、同じ受入用環境ポリシーを渡す。
+- Lite canary、profile package、clean distribution acceptanceのnpm child processへ、advisory抑制とoffline境界を含む受入用環境ポリシーを渡す。
 - 既存テストのexact command／environment境界を更新し、production setupと受入テストが別の挙動にならないようにする。
 
 ## 非対象
@@ -92,7 +92,7 @@ review_evidence: []
 
 1. setup unit、Lite canary、profile package、clean distribution acceptanceが対象Node 24でterminal greenになる。
 2. `npm install --package-lock-only`の依存解決とlockfile生成を維持する。
-3. advisory network、fund、update notificationを抑制してもintegrity／lockfile／artifact digestの検証を弱めない。
+3. advisory network、fund、update notificationを抑制し、Lite fresh installのregistry egressを禁止してもintegrity／lockfile／artifact digestの検証を弱めない。cache missはsuccessへ丸めない。
 4. timeout到達をexit failureと混同せず、required canaryをskip／soft-passへ変更しない。
 5. current HEADのCI、Claude exact-HEAD review、main read-afterが揃うまでcompletion claimを許可しない。
 
