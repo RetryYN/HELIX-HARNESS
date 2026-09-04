@@ -15,7 +15,7 @@ behavior_contract_id: ESCALATION-SOURCE-WORKFLOW-PROFILE-001
 responsibility_owner: impact-ci-recovery
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: correct_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
