@@ -42,9 +42,9 @@ parent_design: docs/governance/candidates/harness-memory-coordination-boundary-r
 pair_artifact: docs/governance/candidates/harness-memory-coordination-boundary-acceptance.md
 dependencies:
   parent: docs/governance/candidates/harness-memory-coordination-boundary-requests.md
-  requires:
-    - issue:1449
+  requires: []
   references:
+    - issue:1449
     - issue:1188
     - issue:1420
     - issue:397
