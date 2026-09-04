@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-77-refactoring-trigger-authority
+  approval_record_id: L3-PO-1353-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1353#issuecomment-5544538001"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:2026-09-02 HELIX_REFACTORING_TRIGGER_IMPROVEMENT_DIRECTIVE_v0.1.mdを最適化して正本へ取り込む"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: Codex / TL
 github_issue_id: 1353
 behavior_contract_id: REFACTORING-TRIGGER-ADMISSION-001
@@ -72,7 +82,8 @@ modifies:
 | 3 | 元指示書を処分 | root原稿をcurrent authorityとして残さない |
 | 4 | plan固有L3 approval、independent review、G3再freeze | 後続runtime sliceを開始できる |
 
-本PLANではruntime、registry、DB、CLIを変更しない。plan固有L3 approvalは未成立であり、
-`docs/governance/candidates/`の成果物は未承認draft candidateとして隔離し、current authorityやG3 freezeへ先行投影しない。
+本PLANではruntime、registry、DB、CLIを変更しない。plan固有L3 approvalは成立済みだが、
+`docs/governance/candidates/`の成果物は独立技術review、canonical promotion、G3再freezeが成立するまで
+draft candidateとして隔離し、current authorityへ先行投影しない。
 後続のpromotion sliceで正規L3/L10へ移動してから、policy、evaluator、admission、projection、anti-starvation、
 dogfood／Reverseへ原子的に分割する。
