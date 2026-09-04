@@ -59,6 +59,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-review-checklist-validation.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1411-review-checklist-validation.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/gate/review-tier.ts, artifact_type: source_module }
   - { artifact_path: tests/gate-review-tier.test.ts, artifact_type: test_code }
 review_evidence: []
