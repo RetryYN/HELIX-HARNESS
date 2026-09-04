@@ -26,6 +26,17 @@ import {
 
 const repoRoot = process.cwd();
 
+// PLAN-RECOVERY-107-lite-consumer-npm-install-determinism
+// clean distribution acceptanceはpackage／lockfile／CLIの再現性を測定する。npmのadvisory
+// network（audit／fund／update通知）はこの受入対象外なのでchild processで明示的に抑制する。
+// install integrityと`npm ci`のlockfile検査は維持する。
+const CONSUMER_NPM_ENV = {
+  npm_config_audit: "false",
+  npm_config_fund: "false",
+  npm_config_prefer_offline: "true",
+  npm_config_update_notifier: "false",
+} as const;
+
 function walkCandidatePaths(root: string): string[] {
   const ignored = new Set([".git", "node_modules", "dist"]);
   const out: string[] = [];
@@ -73,16 +84,17 @@ function runCommand(
   args: string[],
   env: NodeJS.ProcessEnv = process.env,
 ) {
+  const childEnv = command === "npm" ? { ...env, ...CONSUMER_NPM_ENV } : env;
   if (process.platform === "win32") {
     const cmdExe = join(process.env.SystemRoot ?? "C:\\Windows", "System32", "cmd.exe");
     return spawnSync(cmdExe, ["/d", "/c", command, ...args], {
       cwd,
       encoding: "utf8",
-      env,
+      env: childEnv,
       timeout: 120_000,
     });
   }
-  return spawnSync(command, args, { cwd, encoding: "utf8", env, timeout: 120_000 });
+  return spawnSync(command, args, { cwd, encoding: "utf8", env: childEnv, timeout: 120_000 });
 }
 
 function writeFakeCommand(root: string, name: string, output: string): string {

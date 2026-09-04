@@ -33,6 +33,16 @@ import { ensureCliBundle } from "./tools/cli-bundle";
 const roots: string[] = [];
 let cleanSourceFixture: string | null = null;
 
+// PLAN-RECOVERY-107-lite-consumer-npm-install-determinism
+// package artifactのfresh installでは、受入対象外のnpm advisory network待ちを発生させず、
+// artifact／lockfile／entrypointの再現性だけを測定する。integrity検証はnpmに残す。
+const CONSUMER_NPM_ENV = {
+  npm_config_audit: "false",
+  npm_config_fund: "false",
+  npm_config_prefer_offline: "true",
+  npm_config_update_notifier: "false",
+} as const;
+
 afterAll(() => {
   if (cleanSourceFixture) rmSync(cleanSourceFixture, { recursive: true, force: true });
 });
@@ -365,6 +375,7 @@ describe("PLAN-L7-656: Lite profile-bound deterministic package", () => {
     const install = spawnSync("npm", ["install", "--ignore-scripts", built.paths.tarball], {
       cwd: consumer,
       encoding: "utf8",
+      env: { ...process.env, ...CONSUMER_NPM_ENV },
       timeout: 60_000,
     });
     expect(install.status, install.stderr).toBe(0);

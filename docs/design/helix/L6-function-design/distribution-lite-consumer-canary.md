@@ -39,6 +39,13 @@ setupは専用CI pathをHELIX管理artifactとして新規作成する。同path
 `unchanged`として受理し、異なるbytes、symlink、hardlink、ancestor symlinkを上書きせずconflictで拒否する。
 任意のconsumer fileへmanaged blockを暗黙mergeしない。
 
+### consumer npm実行ポリシー（PLAN-RECOVERY-107）
+
+fresh installとsetup内部のlockfile生成では、audit／fund／update notificationという受入対象外のadvisory network副作用を
+抑制し、既存cacheを優先する。package依存解決、`package-lock.json`、integrity、artifact digest、`npm ci`のfrozen検証は
+引き続き実行し、timeout値の無制限緩和、skip、soft-passは許可しない。グローバルnpm設定やcredentialは変更せず、consumer
+child processへだけ明示的にポリシーを渡す。
+
 WindowsはLinuxで検証した同一tarball digestとprebuilt Node artifactを使用し、PowerShell entrypoint、setup dry-run、
 status、consumer doctor、minimal workflow dry-runを検証する。Windows専用rebuildで代替しない。
 
