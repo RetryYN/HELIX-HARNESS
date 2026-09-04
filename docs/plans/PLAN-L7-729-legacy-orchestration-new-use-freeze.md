@@ -4,7 +4,7 @@ title: "PLAN-L7-729 (refactor): 旧orchestration surfaceの新規利用をfreeze
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -95,3 +95,13 @@ consumer再生成surfaceをexact inventoryへ固定する。既存債務の減�
 
 targeted test、typecheck、Biome、PLAN lint、doctor、全回帰、Claude exact-HEAD review、
 DB convergence、main read-afterがgreenになること。
+
+## PLAN確定の技術確認
+
+2026-09-05、Codex TLが候補HEAD `271629de5` のscope照合（findings 0）、関連131テスト、
+G3 digest関連22テスト、PLAN lint、Biomeの成功を確認した。既存engineの実行挙動を変えず、
+既知markerのpath別増加と除外先の拡張を拒否する限定契約として本PLANを確定する。
+`src/lint/review-evidence.ts` のKIND_REVIEW_REQUIREDではrefactorは独立レビュー前置の必須対象外である。
+本記録は作成者による技術確認であり、subagent／Claudeレビューの代替証拠ではない。
+PRはdraftを維持し、completion_claim_allowedはfalseのままとする。全CI、Claude独立検収、
+DB convergenceとmain read-afterは未完了であり、成功後に別途終端を検証する。
