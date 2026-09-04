@@ -1,3 +1,17 @@
+---
+title: 旧orchestration surface退役ratchet 単体テスト設計
+layer: L8
+artifact_type: test_design
+sub_doc: unit-test-design
+status: draft
+created: 2026-09-05
+updated: 2026-09-05
+owner: Codex / TL
+plan: docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md
+parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md
+pair_artifact: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md
+---
+
 # 旧orchestration surface退役ratchet 単体テスト設計
 
 | Oracle | 検証 |

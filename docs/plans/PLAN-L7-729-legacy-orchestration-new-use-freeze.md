@@ -23,7 +23,7 @@ responsibility_owner: legacy-orchestration-retirement
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: new_use_frozen
+legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "#865のconfirmedな段階退役契約を変更せず、Phase 1の新規利用freezeを機械化する。"
 no_code_decision: add_code
@@ -32,8 +32,8 @@ contract_preconditions: "#865でphase単位依存、新規利用freeze先行、s
 contract_postconditions: "旧orchestration surfaceのtracked current consumerがpath別上限へ固定され、新規pathと増加がdoctorでfail-closeする"
 contract_invariants: "既存engineを削除せず、historical evidenceをcurrent consumerへ数えず、inventoryを旧authorityの正当化に使わない"
 contract_failures: "inventory欠落・退化、別path追加、同一path増加、gate未配線を個別にfail-closeする"
-tdd_red_required: true
-red_at: "2026-09-05T04:20:00+09:00"
+tdd_red_required: false
+tdd_red_waiver_reason: "既存direct engineの挙動は変更せず、既知利用の増加を止めるgovernance ratchetを追加するため。未実測の実装前Redは記録せず、比較演算子mutationの実測を回帰証拠とする。"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-05T04:14+09:00にper-path growth比較をactual > maximumからactual < maximumへ反転し、U-LORET-001とU-LORET-003が2 failed／4 passed、exit 1でkillした。比較を復元後6/6 greenへ戻した。"
 complexity_effect: net_negative
@@ -84,7 +84,7 @@ consumer再生成surfaceをexact inventoryへ固定する。既存債務の減�
 
 - direct engine、historical evidence、read-only replayの削除。
 - successor route、Assignment、Lease、Notification Fabricの実装。
-- distribution release、tag、publish、cutover。
+- 配布release、tag、publish、cutover。
 
 ## 完了条件
 

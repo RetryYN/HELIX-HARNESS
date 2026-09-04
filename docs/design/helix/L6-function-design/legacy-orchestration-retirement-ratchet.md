@@ -1,3 +1,16 @@
+---
+title: 旧orchestration surface退役ratchet
+layer: L6
+artifact_type: design
+status: draft
+created: 2026-09-05
+updated: 2026-09-05
+owner: Codex / TL
+plan: docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md
+pair_artifact: docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md
+related_l3: docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md
+---
+
 # 旧orchestration surface退役ratchet
 
 ## 責務
