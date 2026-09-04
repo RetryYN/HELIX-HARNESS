@@ -15,7 +15,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // #1534: 正規3pairの併記であり、L2↔L10への再定義ではない。変更時は再検査する。
     path: "docs/plans/PLAN-L3-88-execution-ticket-bench-authority.md",
-    contentDigest: "ef3219b1ac9b0b4597331ca71d8bcdc272b513c2e63f87b37c213d439511376b",
+    contentDigest: "88a0ca2772b80cd65085f238a2d7dd867ce42e7ba97c652b2ab6a4bc437ce5a8",
     finalDisposition: "false_positive",
   },
   {

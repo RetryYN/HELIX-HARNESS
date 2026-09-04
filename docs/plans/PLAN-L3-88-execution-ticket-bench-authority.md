@@ -66,6 +66,7 @@ generates:
   - { artifact_path: docs/governance/candidates/execution-ticket-recognition.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/execution-ticket-trace.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-recognition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
