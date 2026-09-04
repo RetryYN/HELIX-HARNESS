@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 66,
+  "decision_count": 67,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -57,6 +57,7 @@
     "PLAN-RECOVERY-106-mutation-oracle-locator-resolution",
     "PLAN-RECOVERY-107-lite-consumer-npm-install-determinism",
     "PLAN-RECOVERY-108-ci-isolation-backend-bounded",
+    "PLAN-RECOVERY-110-design-language-early-detection",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
     "PLAN-RECOVERY-67-claude-native-memory-isolation",

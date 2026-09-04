@@ -79,7 +79,7 @@ import {
   screenTablesInitialized,
 } from "./design/screen-applicability-sqlite-store";
 import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
-import { runConsumerDoctor, runDoctor } from "./doctor";
+import { runConsumerDoctor, runDoctor, runDoctorGate } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { assertNodeEngineRuntimeAuthority } from "./doctor/node-engine-runtime";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
@@ -2274,6 +2274,7 @@ program
   .option("--profile <name>", "doctor profile (consumer)")
   .option("--scope <scope>", "doctor scope: full or toolchain", "full")
   .option("--setup-smoke", "run the consumer setup smoke subset instead of full product doctor")
+  .option("--gate <id>", "run a single named doctor gate (design-language)")
   .option("--timing", "include per-check timing in JSON and slow-check text summary")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for review and view surfaces")
@@ -2282,6 +2283,7 @@ program
       profile?: string;
       scope?: string;
       setupSmoke?: boolean;
+      gate?: string;
       timing?: boolean;
       json?: boolean;
       summaryJson?: boolean;
@@ -2323,6 +2325,17 @@ program
           full_source_command: "helix doctor --json",
         };
       };
+      if (opts.gate !== undefined) {
+        // 単体 gate 実行は full doctor と同じ check 関数を呼び、判定の配線 drift を作らない。
+        const gate = runDoctorGate(opts.gate, process.cwd());
+        if (opts.json || opts.summaryJson) {
+          process.stdout.write(`${JSON.stringify(gate, null, 2)}\n`);
+        } else {
+          for (const m of gate.messages) process.stdout.write(`${m}\n`);
+        }
+        process.exitCode = gate.ok ? 0 : 1;
+        return;
+      }
       if (opts.scope !== undefined && opts.scope !== "full" && opts.scope !== "toolchain") {
         const r = {
           ok: false,

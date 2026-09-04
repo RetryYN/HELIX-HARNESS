@@ -210,6 +210,9 @@ jobs:
       - name: install deps (frozen)
         run: npm ci
 
+      - name: design-language gate (fail fast before shards)
+        run: npx --no-install tsx src/cli.ts doctor --gate design-language
+
       - name: repo-wide guard preflight
         run: npm run test:repo-guards
 

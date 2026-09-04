@@ -1427,6 +1427,34 @@ export function checkDesignLanguage(repoRoot: string): {
   }
 }
 
+/**
+ * doctor gate を 1 件だけ実行する経路。
+ * push 前の local 実行と CI preflight から使い、full doctor と同一の check 関数へ委譲することで
+ * 「単体実行だけ判定が違う」配線 drift を作らない。
+ */
+export const DOCTOR_SINGLE_GATES = {
+  "design-language": checkDesignLanguage,
+} as const satisfies Record<string, (repoRoot: string) => { messages: string[]; ok: boolean }>;
+
+export type DoctorSingleGateId = keyof typeof DOCTOR_SINGLE_GATES;
+
+export function runDoctorGate(
+  gate: string,
+  repoRoot: string,
+): { ok: boolean; gate: string; messages: string[] } {
+  const check = (DOCTOR_SINGLE_GATES as Record<string, undefined | ((root: string) => { messages: string[]; ok: boolean })>)[gate];
+  if (!check) {
+    const known = Object.keys(DOCTOR_SINGLE_GATES).join(", ");
+    return {
+      ok: false,
+      gate,
+      messages: [`doctor: gate - violation unknown gate ${gate} (known: ${known})`],
+    };
+  }
+  const result = check(repoRoot);
+  return { ok: result.ok, gate, messages: result.messages };
+}
+
 export function checkHandoverRetirementInventory(repoRoot: string): {
   messages: string[];
   ok: boolean;
