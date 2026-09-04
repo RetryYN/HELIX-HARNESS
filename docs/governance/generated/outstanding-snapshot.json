@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 71,
+  "decision_count": 72,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -60,6 +60,7 @@
     "PLAN-RECOVERY-106-mutation-oracle-locator-resolution",
     "PLAN-RECOVERY-107-lite-consumer-npm-install-determinism",
     "PLAN-RECOVERY-108-ci-isolation-backend-bounded",
+    "PLAN-RECOVERY-110-doctor-live-result-reuse",
     "PLAN-RECOVERY-1411-review-checklist-validation",
     "PLAN-RECOVERY-1543-reviewer-session-model-history",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
