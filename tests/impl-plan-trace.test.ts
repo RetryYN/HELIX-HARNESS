@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-REVERSE-40 塊A: impl→PLAN トレーサビリティ検査 (IMP-088)。
 // src module/CLI/lint/doctor check が PLAN generates に紐づくか。NEW orphan を fail-close。
 // 既存 untraced 8 件は baseline (known-debt)、IMP-087 の 4 件は REVERSE-40 へ back-fill 済。

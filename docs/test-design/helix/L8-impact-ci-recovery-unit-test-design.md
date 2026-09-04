@@ -50,6 +50,12 @@ queue_id: L3Q-PC-039
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLIはcontext injection assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、routing semantics変更を拒否 |
 
+### repo-wide guardのmembership authority
+
+`U-REPOGUARD-001`はtest file先頭の`// @helix-repo-wide-guard` markerをmembershipの意味authorityとして扱い、
+`config/repo-wide-guard-tests.v1.json`を実行projectionとしてexact照合する。本文の文言や構文からmembershipを
+推測しない。`U-REPOGUARD-005`は未登録marker、registryだけに残るpath、先頭marker除去を実行前にfail-closeする。
+
 ## 退役済みの旧workflow oracle
 
 次のIDは、同一runner内process group／lane logを現行契約として扱わないことを明示するための
@@ -105,6 +111,12 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-FULLSHARD-WF-003 | workflow timeout | preflight／4 shard／finalizeのbounded timeoutとbudget telemetryを検査し、bulk 25→26 mutationを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLI bounded deadline | provider-neutral manifest assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLI bounded deadline | context injection assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
+
+## U-REPOGUARD-005: marker membershipとregistry projectionの差分（PLAN-RECOVERY-728）
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-REPOGUARD-005 | marker membershipとregistry projectionのexact一致 | 未登録marker、registryだけのpath、先頭marker除去を実行前にfail-close | `tests/repo-wide-guard-registry.test.ts` |
 
 ## U-CLIBUNDLE-001: spawn テストの bundle 起動等価性（PLAN-RECOVERY-39）
 

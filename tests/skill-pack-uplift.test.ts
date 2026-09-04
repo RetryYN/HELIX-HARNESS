@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";

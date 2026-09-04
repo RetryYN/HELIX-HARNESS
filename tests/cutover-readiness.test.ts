@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 import { describe, expect, it } from "vitest";
 import {
   analyzeCutoverReadiness,

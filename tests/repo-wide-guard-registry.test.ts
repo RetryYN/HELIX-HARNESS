@@ -1,25 +1,50 @@
-import { readdirSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { loadRepoWideGuardTests } from "../src/runtime/repo-wide-guard-runner";
+import {
+  discoverRepoWideGuardTests,
+  loadRepoWideGuardTests,
+  REPO_WIDE_GUARD_MARKER,
+} from "../src/runtime/repo-wide-guard-runner";
 
 // PLAN-RECOVERY-728-repo-wide-guard-preflight
 
 const ROOT = process.cwd();
-const DISCOVERY_PATTERN = /real repo|real repository|実repo|live repository|regression fence/i;
-
-function discoverRepoWideGuards(): string[] {
-  return readdirSync(resolve(ROOT, "tests"))
-    .filter((name) => name.endsWith(".test.ts"))
-    .filter((name) => name !== "repo-wide-guard-registry.test.ts")
-    .filter((name) => DISCOVERY_PATTERN.test(readFileSync(resolve(ROOT, "tests", name), "utf8")))
-    .map((name) => `tests/${name}`)
-    .sort();
-}
 
 describe("repo-wide guard registry", () => {
-  it("U-REPOGUARD-001: registryが実repo走査guardのexact setを保持する", () => {
-    expect(loadRepoWideGuardTests(ROOT)).toEqual(discoverRepoWideGuards());
+  it("U-REPOGUARD-001: 明示markerとregistry projectionのexact setを保持する", () => {
+    expect(loadRepoWideGuardTests(ROOT)).toEqual(discoverRepoWideGuardTests(ROOT));
+  });
+
+  it("U-REPOGUARD-005: markerとregistryの差分をfail-closeする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-repo-wide-guard-marker-"));
+    try {
+      mkdirSync(resolve(root, "config"), { recursive: true });
+      mkdirSync(resolve(root, "tests"), { recursive: true });
+      const registry = JSON.stringify({
+        schema_version: "helix-repo-wide-guard-tests.v1",
+        tests: ["tests/example.test.ts"],
+      });
+      writeFileSync(resolve(root, "config/repo-wide-guard-tests.v1.json"), registry);
+      writeFileSync(
+        resolve(root, "tests/example.test.ts"),
+        `${REPO_WIDE_GUARD_MARKER}\nexport {};\n`,
+      );
+      expect(loadRepoWideGuardTests(root)).toEqual(["tests/example.test.ts"]);
+
+      writeFileSync(
+        resolve(root, "tests/unregistered.test.ts"),
+        `${REPO_WIDE_GUARD_MARKER}\nexport {};\n`,
+      );
+      expect(() => loadRepoWideGuardTests(root)).toThrow("repo_wide_guard_membership_mismatch");
+
+      rmSync(resolve(root, "tests/unregistered.test.ts"));
+      writeFileSync(resolve(root, "tests/example.test.ts"), "export {};\n");
+      expect(() => loadRepoWideGuardTests(root)).toThrow("repo_wide_guard_membership_mismatch");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it("U-REPOGUARD-002: reviewとCIが同じ単一entrypointを使用する", () => {

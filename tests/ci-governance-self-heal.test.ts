@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-L7-423-ci-governance-self-heal
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
