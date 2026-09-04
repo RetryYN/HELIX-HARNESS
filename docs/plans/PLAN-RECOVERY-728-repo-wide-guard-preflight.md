@@ -5,8 +5,8 @@ kind: recovery
 layer: cross
 drive: agent
 status: confirmed
-completion_claim_allowed: false
-backfill_state: pending_reverse
+completion_claim_allowed: true
+backfill_state: complete
 created: 2026-09-04
 updated: 2026-09-04
 owner: Codex / TL
@@ -108,7 +108,28 @@ agent_slots:
   - { role: se, slot_label: "SE — registry／single runner" }
   - { role: qa, slot_label: "QA — exact-set mutation／workflow wiring" }
   - { role: tl, slot_label: "TL — existing CI responsibility boundary" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-04T07:03:29Z"
+    tests_green_at: "2026-09-04T07:02:55Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: ff2f25d6c9c5c118d7dbc0955133d78999630790
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1511#issuecomment-5536968605"
+    scope: "PR #1511のcurrent exact HEADで、repo-wide guard membershipのmarker／registry双方向一致、37 files／534 tests、preflight配線、既知mutationのfail-close、DB projection／replay／checkpoint convergenceを確認し、blocker 0。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33842910905 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-04T07:02:55Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:6e59af82129ddd4671fdb344aee880c90ca841c82ab77345b73855e7257625be"
+        result: "PR #1511 exact HEAD ff2f25d6c9c5c118d7dbc0955133d78999630790のharness-check run 33842910905がterminal success。"
 ---
 
 # repo-wide guardの事前実行
@@ -125,3 +146,25 @@ review_evidence: []
 
 本PLANは既存guard testのmembership宣言、集合projection、実行位置だけを所有する。新lint、test判定変更、full regression削減、
 required check変更、CI System Synthesisの新authorityは非対象とする。
+
+## §5 終端収束
+
+PR #1511 `ff2f25d6c9c5c118d7dbc0955133d78999630790` は、Claude Code / `claude-opus-5` の
+current exact-HEAD review、必須CI、DB projection／replay／checkpoint convergenceを満たしたうえで
+merge commit `eab5385cfce8c90a0a04a12932b1553965b1beed` としてmainへ統合された。
+
+main read-afterとして、`harness-check` run 33848385601 が同一HEADで
+2026-09-04T08:02:00Zにterminal successとなった。Lite consumer、preflight、Windows durability、
+bulk-1〜3、stateful、finalize（Biome、post-test DB rebuild、doctor、typed lane status）を全てsuccessで
+完了し、repo-wide guard 37 files／534 testsを含むmain側の再検証を確認した。
+
+```text
+run: https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33848385601
+head: eab5385cfce8c90a0a04a12932b1553965b1beed
+status: completed
+conclusion: success
+output_digest: sha256:64249470978a505bcbdba669eab71a2f0e7f2b5b5a231c939301ef941f610791
+```
+
+このmain read-afterをもって、PR #1511の実装責務と本PLANのrepo-wide guard preflight責務が同一main
+へ収束したことを確認する。Issue #1498のterminal化は、本PLANをこの証拠付きclosure PRから参照して行う。
