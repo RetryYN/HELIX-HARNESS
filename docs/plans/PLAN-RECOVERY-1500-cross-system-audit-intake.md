@@ -82,6 +82,8 @@ generates:
   - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/source_index.json.txt, artifact_type: other }
 review_evidence: []
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: implementation }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 ---
 
