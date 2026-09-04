@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-REVERSE-41 塊B: git tracked top-level ⊆ repository-structure.md canonical の突合 (IMP-127)。
 // NEW 未記載 top-level (canonical ツリーに無い tracked 物) を fail-close。現 drift 0 (baseline 空)。
 import { describe, expect, it } from "vitest";

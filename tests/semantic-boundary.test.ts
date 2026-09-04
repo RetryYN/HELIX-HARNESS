@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-L7-527-psc-gate-wiring / U-PSC-006（#230 slice5、SA-PSC-03 の実 gate 面）。
 // L8テスト設計スライス5表を機械検査する。
 import { describe, expect, it } from "vitest";

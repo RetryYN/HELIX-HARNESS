@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-013
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";

@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // IMP-141: 要件 §G.1 VALID_SUB_DOCS 表 ↔ schema 正本 (src/schema/index.ts) の正本同期を fail-close。
 // L3 slug (business-requirement vs business) / L4 screen 残留の drift を機械検知し errata の片肺化を防ぐ。
 import { describe, expect, it } from "vitest";

@@ -28,18 +28,18 @@ workflow_identity:
 entry_signals:
   - "regression_dev"
 contract_preconditions: "既存repo-wide guard testとfull-regression-preflightがcurrent mainに存在する"
-contract_postconditions: "明示registry、単一entrypoint、preflight配線が同じguard exact setを実行する"
-contract_invariants: "既存testの判定、full regression exact inventory、required aggregateを変更せず、guard greenをfull admissionへ昇格しない"
-contract_failures: "registry欠落、重複、missing path、未登録guard、entrypoint／workflow配線欠落をfail-closeする"
+contract_postconditions: "test file明示marker、registry projection、単一entrypoint、preflight配線が同じguard exact setを実行する"
+contract_invariants: "既存testの判定、full regression exact inventory、required aggregateを変更せず、guard greenをfull admissionへ昇格しない。本文や構文からmembershipを推測しない"
+contract_failures: "marker欠落、未登録marker、registry欠落、重複、missing path、entrypoint／workflow配線欠落をfail-closeする"
 tdd_red_required: true
 red_at: "2026-09-04T03:06:00+09:00"
 tdd_red_evidence: "2026-09-04にregistry testを先行実行し、新設registry test自身の自己検出を含む差集合で1 failed／1 passedを確認した"
-green_at: "2026-09-04T04:44:38+09:00"
-tdd_green_evidence: "2026-09-04T04:44:38+09:00に、移設後のsrc/runtime/repo-wide-guard-runner.ts経由でnpm run test:repo-guardsを実行し、35 files／517 tests green、exit 0を確認した"
+green_at: "2026-09-04T14:55:03+09:00"
+tdd_green_evidence: "2026-09-04T14:55:03+09:00に、marker集合とregistry projectionを検証するsrc/runtime/repo-wide-guard-runner.ts経由でnpm run test:repo-guardsを実行し、37 files／534 tests green、exit 0を確認した"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-04T03:06+09:00にregistryからtests/coding-rules.test.tsを除去し、U-REPOGUARD-001が1 failed／1 passed、exit 1でkillした。復元後に再greenを要求する"
+mutation_oracle_evidence: "2026-09-04T14:55+09:00に、marker付き未登録testとregistryだけに残るtestのfixtureをU-REPOGUARD-005へ与え、いずれもrepo_wide_guard_membership_mismatchでfail-closeすることを確認した"
 complexity_effect: justified_positive
-complexity_justification: "暗黙grep集合を1 registryと1 runnerへ集約し、review後のfull shard再実行を減らす"
+complexity_justification: "暗黙grep集合をtest file明示marker、1 registry projection、1 runnerへ集約し、文言変更によるmembership漏れとreview後のfull shard再実行を減らす"
 removal_trigger: "CI verification planがrepo-wide guard exact setを同じcontractで生成し、全consumerが移行した時"
 parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md
 pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
@@ -54,6 +54,7 @@ dependencies:
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-REPOGUARD-001, test_path: tests/repo-wide-guard-registry.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-REPOGUARD-002, test_path: tests/repo-wide-guard-registry.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-REPOGUARD-005, test_path: tests/repo-wide-guard-registry.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-728-repo-wide-guard-preflight.md, artifact_type: markdown_doc }
   - { artifact_path: config/repo-wide-guard-tests.v1.json, artifact_type: json_config }
@@ -65,6 +66,43 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: tests/asset-drift.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/ci-governance-self-heal.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/coding-rules.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cutover-readiness.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/ddd-tdd-rules.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/descent-obligation.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/digest.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/design-language.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/feedback-refactor-disposition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/frontend-design-coverage.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/git-command-guard.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/handover-resurrection.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/handover-retirement.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/historical-vpair-migration-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/impl-plan-trace.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l6-fr-coverage.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/lint-wiring.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/oracle-test-trace.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/proposal-document-coverage.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/relation-graph-loader.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/roadmap.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/rule-drift.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/s4-decision-readiness.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/semantic-boundary.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/skill-assignment.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/skill-pack-uplift.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/skill-quality.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/source-boundary-integration.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/sub-doc-catalog-drift.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/sub-doc-section-structure.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/tracked-canonical.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/triage-decision-integrity.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/version-up-readiness.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/vmodel-pair.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — guard検出時点の短縮" }
   - { role: se, slot_label: "SE — registry／single runner" }
@@ -79,11 +117,11 @@ review_evidence: []
 
 | Step | 作業 | 完了条件 |
 |---|---|---|
-| 1 | 暗黙guard集合をinventory化 | 既存35 testがexact setになる |
+| 1 | guard membershipを明示markerへ移行 | 既存37 testのmarkerとregistry projectionがexact setになる |
 | 2 | registry loaderと単一runnerを実装 | duplicate／missing／malformedをfail-closeする |
 | 3 | packageとpreflightを同じentrypointへ接続 | full shard前にguard redを検出する |
 | 4 | 欠落mutation、targeted、typecheck、PLAN lint | current HEADでgreen evidenceを得る |
 | 5 | Claude exact-HEAD review、CI、main read-after | full admissionを代替せず収束する |
 
-本PLANは既存guard testの集合と実行位置だけを所有する。新lint、test判定変更、full regression削減、
+本PLANは既存guard testのmembership宣言、集合projection、実行位置だけを所有する。新lint、test判定変更、full regression削減、
 required check変更、CI System Synthesisの新authorityは非対象とする。

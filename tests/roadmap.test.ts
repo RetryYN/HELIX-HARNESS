@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-DISCOVERY-05 (poc spike): 工程表 (gated layer-decomposition roadmap) 登録機構の TDD Red→Green。
 // 検証: roadmap zod schema / 構造整合 (gate 参照・順序) / frontmatter 抽出 / span 実在 / gate 進捗。
 import { readdirSync, readFileSync } from "node:fs";

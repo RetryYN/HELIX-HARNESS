@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-014
 import { execFileSync, spawnSync } from "node:child_process";
 import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";

@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-L4-14 §4: §1c FE/UI 設計 doc カバレッジ (設計左腕) の機械検証 gate。
 // 右腕 proposal-document-coverage と対称。slot 登録 = body 完成ではない (coverage ≠ substance)。
 import { describe, expect, it } from "vitest";

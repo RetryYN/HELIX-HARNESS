@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // 標準成果物 § 構造定義 (要件 §G.6.1): L4 report/batch/notification/code-value の design PLAN が
 // IPA 共通フレーム外部設計の必須 § を h2 で持つことを fail-close 検証する。
 import { describe, expect, it } from "vitest";

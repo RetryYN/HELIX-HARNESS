@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { checkSkillQuality } from "../src/doctor";

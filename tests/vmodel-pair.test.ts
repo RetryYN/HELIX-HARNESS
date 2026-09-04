@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 /**
  * vmodel pair-freeze lint test (IMP-067、PLAN-L7-11)。
  * design doc ⇔ test-design doc の pair_artifact 双方向整合・孤児0 (設計層 pair freeze、G1-G6)。

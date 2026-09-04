@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -91,3 +92,4 @@ describe("PLAN-L3-32 refactor warning disposition", () => {
     expect(plan).toContain("requirements G1/G3 freeze");
   });
 });
+// @helix-repo-wide-guard

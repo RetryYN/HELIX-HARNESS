@@ -1,3 +1,4 @@
+// @helix-repo-wide-guard
 // PLAN-REVERSE-41 塊B: oracle 宣言 ⇔ 実テスト citation の突合 (IMP-128、forward-citation 規律)。
 // test-design 宣言 oracle (U-*/IT-*) が tests/ に ID citation を持つか。NEW は fail、既存89は baseline。
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";

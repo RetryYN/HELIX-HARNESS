@@ -71,13 +71,16 @@ candidate run IDとprofileの機械束縛はVitest result reporterとの接続�
 ## 4.1 repo-wide guardの事前実行
 
 full shardの終盤で初めて検出されていた、repository全体を読む既存guard testを
-`config/repo-wide-guard-tests.v1.json`のexact setとして登録する。集合は新しい判定authorityではなく、
-既存testへの名前付き実行projectionである。`npm run test:repo-guards`はregistryを検証して同じVitest群を起動し、
-review、local pre-push、`full-regression-preflight`が同一entrypointを利用する。
+test file先頭の`// @helix-repo-wide-guard`明示markerで宣言する。markerがmembershipの意味authorityであり、
+`config/repo-wide-guard-tests.v1.json`はその宣言を固定した実行projectionとして扱う。本文の文言、import、
+構文パターンからmembershipを推測してはならない。`npm run test:repo-guards`はmarker集合とregistry projectionの
+exact一致を検証してから同じVitest群を起動し、review、local pre-push、`full-regression-preflight`が同一entrypointを
+利用する。
 
-registryの重複、unknown path、欠落fileは実行前にfail-closeする。実repo走査を宣言するtestとregistryの差集合も
-`U-REPOGUARD-001`で拒否し、登録testを1件除くmutationを生存させない。既存testの判定内容、full regressionの
-exact inventory、impact selector、required aggregateは変更せず、repo-wide guardがgreenでもfull admissionを代替しない。
+markerの重複宣言、registryの重複、unknown path、欠落file、markerとregistryの差集合は実行前にfail-closeする。
+`U-REPOGUARD-001`でmarker集合とprojectionのexact一致を検査し、marker除去・未登録marker・文言変更を含む
+membership退行を生存させない。既存testの判定内容、full regressionのexact inventory、impact selector、required
+aggregateは変更せず、repo-wide guardがgreenでもfull admissionを代替しない。
 
 ## 5. TypeScript compiler lazy-loader の共有境界（TS-LAZY-SHARED-001）
 
