@@ -7,7 +7,7 @@ layer: L1
 kind: redesign
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: PO / Codex TL
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -70,4 +70,4 @@ Cursor WIP=2の7日canaryとbilling-cycle read-afterにより、accepted merge�
 - model revision変更時に旧資格・称号・権限を継承しない。
 - Cursor停止時に明示DEGRADEDでCodex＋Claudeへ縮退する。
 
-本candidateはplan固有のPO L3承認済みである。独立review、CI、DB convergenceと別のcanonical promotionが成立するまで、v0.3 current authorityを置換しない。
+本candidateは2026-09-05にplan固有のL3 human gateが成立した。独立review、CI、DB convergenceと別のcanonical promotionが成立するまで、v0.3 current authorityを置換しない。
