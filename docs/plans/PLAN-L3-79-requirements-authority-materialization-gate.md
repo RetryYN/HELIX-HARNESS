@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-79-requirements-authority-materialization-gate
+  approval_record_id: L3-PO-1364-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1364#issuecomment-5544537978"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #825で確認したIssue本文先行4件をsource authorityへmaterializeする"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: Codex / TL
 github_issue_id: 1364
 behavior_contract_id: REQUIREMENTS-AUTHORITY-MATERIALIZATION-GATE-001
@@ -33,7 +43,7 @@ contract_postconditions: "L1/L3/L10 candidateと14 oracleがplan固有承認境�
 contract_invariants: "Issue prose非正本、source-of-derivation先行、IR JSON一方向投影、dual authority禁止、auto-admit/freeze分離、composite非相殺、slice dependency分離を維持する"
 contract_failures: "Issue直IR、candidate直runtime、confirmed Markdownの第二正本化、AI自己freeze、stale digest、複合coverage相殺、過剰block、依存漏れを拒否する"
 tdd_red_required: false
-tdd_red_waiver_reason: "本sliceは未承認requirements candidateだけを起草し、runtime gateとtest codeは承認後のL4以降へ分離する。"
+tdd_red_waiver_reason: "本sliceはrequirements candidateとhuman gate recordを束縛し、runtime gateとtest codeは独立review・canonical freeze後のL4以降へ分離する。"
 complexity_effect: net_negative
 complexity_justification: "散在するIssue prose→authority gapを1つのmaterialization contractとtyped dispositionへ収束する。"
 removal_trigger: "candidateがplan固有承認とcanonical promotionを経てcurrent source authorityへ置換された時"
@@ -71,7 +81,7 @@ review_evidence: []
 
 ## Authority境界
 
-本PLANはdraftである。plan固有のPO承認を受けるまでcandidateをcanonical L1/L3/L10、Requirement IR、runtime、DB、generated current docsへ昇格しない。
+本PLANのL3 human gateは成立済みである。独立技術review、canonical L1/L3/L10 promotion、main read-afterまで、candidateをRequirement IR、runtime、DB、generated current docsへ昇格しない。
 
 ## 実装順
 
