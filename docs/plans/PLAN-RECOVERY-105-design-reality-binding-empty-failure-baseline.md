@@ -135,14 +135,14 @@ review_evidence:
 
 ## §5 終端収束
 
-PR #1504 `454ad27ad8e6f080ab024d0e7503238e6f6f254e` は、Claude Code / `claude-opus-5` の
-current exact-HEAD review、必須CI、DB projection／replay／checkpoint convergenceを満たしたうえで
+PR #1504 `454ad27ad8e6f080ab024d0e7503238e6f6f254e` は、Claude Code / `claude-opus-5` による
+current exact-HEAD review、必須CI、DB projection／replay／checkpoint convergenceを満たしたうえで、
 merge commit `21a607b2e517862a8a01e82b0c46ee7c2b58f572` としてmainへ統合された。
 
-main read-afterとして、repo-wide guard preflightを含む `harness-check` run `33848385601` が
-main HEAD `eab5385cfce8c90a0a04a12932b1553965b1beed` で 2026-09-04T08:02:00Z に terminal successとなった。
-Lite consumer、preflight、Windows durability、bulk-1〜3、stateful、finalize（Biome、post-test DB rebuild、
-doctor、typed lane status）を全てsuccessで完了し、空failure baseline 47件、baseline digest、advisory findingの
+main read-afterでは、repo-wide guard preflightを含む `harness-check` run `33848385601` が、
+main HEAD `eab5385cfce8c90a0a04a12932b1553965b1beed` に対して 2026-09-04T08:02:00Z に terminal successとなった。
+Lite利用者環境、事前検査、Windows耐久性検査、bulk-1〜3、状態保持検査、最終処理（Biome、テスト後DB再構築、
+doctor、typed lane status）は全てsuccessで完了し、空failure baseline 47件、baseline digest、advisory findingの
 main側再検証を含む終端証拠を確認した。
 
 ```text
