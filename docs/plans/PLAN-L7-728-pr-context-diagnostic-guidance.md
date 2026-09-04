@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L7-720-pr-context-diagnostic-guidance
-title: "PLAN-L7-720 (refactor): PR scope manifestの受理形式を診断へ投影する"
+plan_id: PLAN-L7-728-pr-context-diagnostic-guidance
+title: "PLAN-L7-728 (refactor): PR scope manifestの受理形式を診断へ投影する"
 kind: refactor
 layer: L7
 drive: agent
@@ -49,11 +49,12 @@ dependencies:
     - .github/PULL_REQUEST_TEMPLATE.md
   blocks: []
 generates:
-  - { artifact_path: docs/plans/PLAN-L7-720-pr-context-diagnostic-guidance.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-728-pr-context-diagnostic-guidance.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: src/lint/github-guards.ts, artifact_type: source_module }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: .github/PULL_REQUEST_TEMPLATE.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: se, slot_label: "SE — 既存pr-context findingの受理形式診断" }
   - { role: qa, slot_label: "QA — 診断とvalidator規則の不一致反例" }
@@ -61,7 +62,7 @@ agent_slots:
 review_evidence: []
 ---
 
-# PLAN-L7-720: PR scope manifestの受理形式診断
+# PLAN-L7-728: PR scope manifestの受理形式診断
 
 ## 目的
 
