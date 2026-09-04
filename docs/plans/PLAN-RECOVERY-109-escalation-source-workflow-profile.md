@@ -36,6 +36,9 @@ contract_invariants: "source checkoutへconsumer profileを直接適用しない
 contract_failures: "source workflowがconsumer doctorを実行する、consumer templateがsource profileへ変わる、command setが順序またはprofile境界から逸脱する場合はfail-closeする。"
 tdd_red_required: true
 red_test: "source workflowにdoctor --profile consumerを戻す、またはconsumer templateをdoctor --scope toolchainへ変更したmutationが専用oracleでredになる。"
+red_at: "2026-09-04T23:44:37+09:00"
+green_at: "2026-09-04T23:45:08+09:00"
+mutation_oracle_evidence: "2026-09-04T23:44:37+09:00にsource workflowのdoctor --scope toolchainをdoctor --profile consumerへ反転し、npx --no-install vitest run --project fast tests/escalation-stale-source-workflow.test.tsを実測した。U-ESC-SRC-001が1 failed／1 passed・exit 1（出力digest ec1b85b3e27402575ea40c80a3fe9f99fb2154bcd74ad986993ddd434bb8cc51）となり、sourceへのconsumer profile混入をkillした。2026-09-04T23:44:55+09:00にはconsumer templateのdoctor --profile consumerをdoctor --scope toolchainへ反転し、U-ESC-SRC-002が1 failed／1 passed・exit 1（出力digest a5d3c8996cf9d699ca283ff1a5ccc36345c8c51332dc53e1f1a524e8d25e0beb）となり、consumer側のprofile退行をkillした。両mutationを復元後、2026-09-04T23:45:08+09:00に同target testが2 passed・exit 0（出力digest a09f3f7256f11bd27f72eaeb02be38ee114fbfef2283e370dfb15b361d6b3c06）であることを確認した。"
 mutation_oracle_required: true
 mutation_oracle: "U-ESC-SRC-001/U-ESC-SRC-002がsource workflowとconsumer templateのprofile反転・混線を個別に検出する。"
 parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md
