@@ -200,9 +200,11 @@ Moduleは責務所有、Sliceは利用・検証・更新／rollback可能な昇�
 
 ### FRS-R-22 Cursorの限定先行投入
 
-#1293の既存委譲経路へ接続し、専用branch、assignment／lease、隔離、予算上限、TTL、成果HEAD・diffの回収、ローカル検収、
+#1293の委譲契約へ接続し、専用branch、action-bound assignment、single-writer排他、隔離、予算上限、TTL、成果HEAD・diffの回収、ローカル検収、
 Claude独立レビューを束縛する。#819または自律開発全体の完成を一律依存にしない。未回収成果、期限切れ、予算逸脱、
 wrong HEADは受理しない。provider認証・課金・公開承認をRelease候補から推定しない。
+Phase AはHELIX事前発行branchとdispatch前後のowner／HEAD read-afterで排他を確認し、#860のlease自動化を一律前提にしない。
+Phase Bは#860のlease／fenceへ接続する。Phase Aでも二重writerや所有不明を許可せず、安全確認不能ならdispatchを拒否する。
 
 ### FRS-R-23 Sliceごとの安全依存閉包
 
