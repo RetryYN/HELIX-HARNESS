@@ -7,7 +7,7 @@ layer: L10
 kind: redesign
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: QA / Codex TL
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
 parent_design: docs/governance/candidates/three-lane-cloud-governance-requirements.md
