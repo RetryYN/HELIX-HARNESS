@@ -114,9 +114,7 @@ describe("worker context boundary compiler requirement authority", () => {
     expect(compilerRequirement).toContain(
       "独自packet compiler、独自authority、独自fallbackを持たせない",
     );
-    expect(compilerAcceptance).toContain(
-      "legacy surfaceの存続をContext Compiler要件が要求しない",
-    );
+    expect(compilerAcceptance).toContain("legacy surfaceの存続をContext Compiler要件が要求しない");
   });
 
   it("fails closed for unadmitted runtimes and owns the exact L10 oracle set", () => {
