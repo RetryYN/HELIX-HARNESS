@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-109: source escalation workflow の doctor profile 混線�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending
 created: 2026-09-04
