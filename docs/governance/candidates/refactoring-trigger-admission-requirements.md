@@ -7,7 +7,7 @@ layer: L3
 kind: add-design
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: PO / TL
 plan: PLAN-L3-77-refactoring-trigger-authority
 parent_design: docs/design/helix/L3-requirements/system-synthesis-requirements.md
@@ -25,7 +25,7 @@ extends:
 
 # REFACTORING Trigger Policy／RF0 Admission要件
 
-> 2026-09-02、PLAN-L3-77固有のPO L3承認が成立した。本書は承認済みcandidateだが、
+> 2026-09-05、PLAN-L3-77固有のL3 human gateが成立した。本書は承認済みcandidateだが、
 > canonical promotionとG3再freezeが成立するまではcurrent authorityではない。runtime completion、
 > authority自動write、merge／publish／release／cutoverは別境界に残す。
 

@@ -6,7 +6,7 @@ title: "REFACTORING Trigger Policy／RF0 Admission受入テスト設計"
 layer: L10
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: QA / TL
 plan: PLAN-L3-77-refactoring-trigger-authority
 parent_design: docs/governance/candidates/refactoring-trigger-admission-requirements.md
