@@ -8,6 +8,9 @@ import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
 
 const WORKFLOW_PATH = ".github/workflows/harness-check.yml";
+const ISOLATION_BACKEND_SCRIPT_PATH = ".github/scripts/install-bubblewrap.sh";
+const VERSION_ID_GUARD = "${" + "VERSION_ID:-}";
+const VERSION_CODENAME_GUARD = "${" + "VERSION_CODENAME:-}";
 // PLAN-L7-493-impact-ci-recovery execution evidence.
 // PLAN-L7-682-lite-canary-ci-parallelization: U-LITECI-WF-001..003.
 
@@ -35,6 +38,7 @@ type HarnessJob = {
 type WorkflowRoot = {
   on?: { pull_request?: { types?: string[] } };
   jobs?: {
+    [jobName: string]: HarnessJob | undefined;
     "harness-check"?: HarnessJob;
     "lite-consumer-canary-artifact"?: HarnessJob;
     "windows-durability-smoke"?: HarnessJob;
@@ -280,6 +284,79 @@ function nonPullRequestRangeViolations(raw: string): string[] {
   return findings;
 }
 
+const LINUX_HARNESS_JOBS = [
+  "lite-consumer-canary-artifact",
+  "full-regression-preflight",
+  "full-regression-bulk-1",
+  "full-regression-bulk-2",
+  "full-regression-bulk-3",
+  "full-regression-stateful",
+  "full-regression-finalize",
+  "harness-check",
+] as const;
+
+function linuxRunnerViolations(raw: string): string[] {
+  let parsed: WorkflowRoot;
+  try {
+    parsed = parseYaml(raw) as WorkflowRoot;
+  } catch {
+    return ["workflow_yaml_invalid"];
+  }
+  const jobs = parsed.jobs ?? {};
+  const findings = LINUX_HARNESS_JOBS.flatMap((jobName) =>
+    jobs[jobName]?.["runs-on"] === "ubuntu-24.04" ? [] : [`linux_runner_invalid:${jobName}`],
+  );
+  const requiredLinuxJobs = new Set<string>(LINUX_HARNESS_JOBS);
+  for (const [jobName, job] of Object.entries(jobs)) {
+    const runner = job?.["runs-on"];
+    if (
+      !requiredLinuxJobs.has(jobName) &&
+      typeof runner === "string" &&
+      runner.startsWith("ubuntu-") &&
+      runner !== "ubuntu-24.04"
+    ) {
+      findings.push(`linux_runner_invalid:${jobName}`);
+    }
+  }
+  return findings;
+}
+
+function boundedAptViolations(script: string): string[] {
+  return script.split("\n").flatMap((line, index) => {
+    if (!/\bapt-get\s+(update|install)\b/.test(line)) return [];
+    return /\bsudo\s+timeout\s+180s\b/.test(line) ? [] : [`apt_invocation_unbounded:${index + 1}`];
+  });
+}
+
+function isolationBackendWorkflowViolations(raw: string, script: string): string[] {
+  let parsed: WorkflowRoot;
+  try {
+    parsed = parseYaml(raw) as WorkflowRoot;
+  } catch {
+    return ["workflow_yaml_invalid"];
+  }
+  const jobs = parsed.jobs ?? {};
+  const findings: string[] = [];
+  for (const jobName of ["full-regression-preflight", "full-regression-stateful"] as const) {
+    const steps = jobs[jobName]?.steps ?? [];
+    const step = steps.find(
+      (candidate) => candidate.name === "install required Linux isolation backend",
+    );
+    if (step?.run !== `bash ${ISOLATION_BACKEND_SCRIPT_PATH}`) {
+      findings.push(`isolation_backend_step_invalid:${jobName}`);
+    }
+  }
+  if (raw.match(/\bapt-get\s+(update|install)\b/)) findings.push("workflow_raw_apt_invocation");
+  if (!script.includes(VERSION_ID_GUARD) || !script.includes('"24.04"')) {
+    findings.push("runner_version_guard_missing");
+  }
+  if (!script.includes(VERSION_CODENAME_GUARD)) {
+    findings.push("runner_codename_guard_missing");
+  }
+  findings.push(...boundedAptViolations(script));
+  return findings;
+}
+
 function loadWorkflow(): {
   job: HarnessJob;
   fullJob: HarnessJob;
@@ -373,6 +450,56 @@ describe("source harness-check workflow", () => {
     expect(nonPullRequestRangeViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
   });
 
+  it("U-WIB-019: Linux required jobsのrunner releaseをsource codenameと固定する", () => {
+    expect(linuxRunnerViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
+  });
+
+  it.each(["ubuntu-latest", "ubuntu-22.04"])("U-WIB-019: %sへのrunner退行を拒否する", (runner) => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8").replaceAll("ubuntu-24.04", runner);
+    expect(linuxRunnerViolations(raw)).toHaveLength(LINUX_HARNESS_JOBS.length);
+  });
+
+  it("U-WIB-019: 将来追加されたLinux jobのrunner退行も拒否する", () => {
+    const source = readFileSync(WORKFLOW_PATH, "utf8");
+    const raw = source.replace(
+      "\njobs:\n",
+      "\njobs:\n  future-linux-job:\n    runs-on: ubuntu-latest\n",
+    );
+    expect(raw).not.toBe(source);
+    expect(linuxRunnerViolations(raw)).toContain("linux_runner_invalid:future-linux-job");
+  });
+
+  it("U-WIB-020: bubblewrap導入をbounded apt helperへ集約する", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    const script = readFileSync(ISOLATION_BACKEND_SCRIPT_PATH, "utf8");
+    expect(isolationBackendWorkflowViolations(raw, script)).toEqual([]);
+  });
+
+  it.each([
+    [
+      "apt updateのtimeout除去",
+      (script: string) =>
+        script.replace(
+          "sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get update",
+          "sudo env DEBIAN_FRONTEND=noninteractive apt-get update",
+        ),
+    ],
+    [
+      "apt installのtimeout除去",
+      (script: string) =>
+        script.replace(
+          "sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get install",
+          "sudo env DEBIAN_FRONTEND=noninteractive apt-get install",
+        ),
+    ],
+  ] as const)("U-WIB-020: %sを拒否する", (_label, mutate) => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    const script = mutate(readFileSync(ISOLATION_BACKEND_SCRIPT_PATH, "utf8"));
+    expect(isolationBackendWorkflowViolations(raw, script)).toEqual([
+      expect.stringMatching(/^apt_invocation_unbounded:/),
+    ]);
+  });
+
   it.each(["branch-kind-check", "commitlint"] as const)(
     "U-IMPACTCI-WF-006: %sのempty before SHA判定を除去するmutationを拒否する",
     (stepName) => {
@@ -455,20 +582,24 @@ describe("source harness-check workflow", () => {
     const { steps, windowsJob } = loadWorkflow();
     const install = stepByName(steps, "install required Linux isolation backend");
     const realProcess = stepByName(steps, "required real bubblewrap process isolation");
+    const isolationScript = readFileSync(ISOLATION_BACKEND_SCRIPT_PATH, "utf8");
 
-    expect(install.run).toContain("Dir::Etc::sourcelist=/tmp/helix-ubuntu.list");
-    expect(install.run).toContain("Dir::Etc::sourceparts=-");
-    expect(install.run).toContain("archive.ubuntu.com/ubuntu noble main universe");
-    expect(install.run).toContain("security.ubuntu.com/ubuntu noble-security main universe");
-    expect(install.run).toContain(`dpkg-query -W -f='\${Status}' bubblewrap`);
-    expect(install.run).toContain("sudo timeout 180s");
-    expect(install.run).toContain("Acquire::Retries=3");
-    expect(install.run).toContain("Acquire::http::Timeout=30");
-    expect(install.run).toContain("Acquire::https::Timeout=30");
-    expect(install.run).toContain("test -x /usr/bin/bwrap");
-    expect(install.run).toContain("apt-get install -y --no-install-recommends bubblewrap");
-    expect(install.run).toContain("kernel.apparmor_restrict_unprivileged_userns=0");
-    expect(install.run).toContain("sysctl -n kernel.apparmor_restrict_unprivileged_userns");
+    expect(install.run).toBe(`bash ${ISOLATION_BACKEND_SCRIPT_PATH}`);
+    expect(isolationScript).toContain('"Dir::Etc::sourcelist=$source_list"');
+    expect(isolationScript).toContain("-o Dir::Etc::sourceparts=-");
+    expect(isolationScript).toContain("archive.ubuntu.com/ubuntu $codename main universe");
+    expect(isolationScript).toContain(
+      "security.ubuntu.com/ubuntu $codename-security main universe",
+    );
+    expect(isolationScript).toContain(`dpkg-query -W -f='\${Status}' bubblewrap`);
+    expect(isolationScript).toContain("sudo timeout 180s");
+    expect(isolationScript).toContain("Acquire::Retries=3");
+    expect(isolationScript).toContain("Acquire::http::Timeout=30");
+    expect(isolationScript).toContain("Acquire::https::Timeout=30");
+    expect(isolationScript).toContain("test -x /usr/bin/bwrap");
+    expect(isolationScript).toContain("apt-get install -y --no-install-recommends bubblewrap");
+    expect(isolationScript).toContain("kernel.apparmor_restrict_unprivileged_userns=0");
+    expect(isolationScript).toContain("sysctl -n kernel.apparmor_restrict_unprivileged_userns");
     expect(realProcess.run).toContain('tests/worker-isolation-broker.test.ts -t "U-WIB-007"');
     expect(realProcess.env).toEqual({
       HELIX_BWRAP_BIN: "/usr/bin/bwrap",
@@ -515,7 +646,7 @@ describe("source harness-check workflow", () => {
     const upload = stepByName(liteCanaryJob.steps ?? [], "upload exact Lite canary artifact");
     const download = stepByName(windowsJob.steps ?? [], "download Linux-validated Lite artifact");
     const smoke = stepByName(windowsJob.steps ?? [], "Windows durability smoke");
-    expect(liteCanaryJob["runs-on"]).toBe("ubuntu-latest");
+    expect(liteCanaryJob["runs-on"]).toBe("ubuntu-24.04");
     expect(build.run).toContain("distribution package-profile");
     expect(build.run).toContain(`> "\${RUNNER_TEMP}/lite-canary/receipt.json"`);
     expect(linux.env?.HELIX_LITE_CANARY_RECEIPT).toContain("receipt.json");

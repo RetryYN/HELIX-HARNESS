@@ -34,7 +34,7 @@ jobs:
     outputs:
       lane_disposition: ${{ steps.lite-lane-status.outputs.disposition }}
       skip_code: ${{ steps.lite-lane-status.outputs.skip_code }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: checkout
@@ -192,7 +192,7 @@ jobs:
       reuse: ${{ steps.impact-ci.outputs.reuse }}
       candidate_head: ${{ steps.impact-ci.outputs.candidate_head }}
       base_sha: ${{ steps.impact-ci.outputs.base_sha }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 35
     steps:
       - name: checkout
@@ -214,31 +214,7 @@ jobs:
         run: npm run test:repo-guards
 
       - name: install required Linux isolation backend
-        run: |
-          set -euo pipefail
-          apt_options=(
-            -o Dir::Etc::sourcelist=/tmp/helix-ubuntu.list
-            -o Dir::Etc::sourceparts=-
-            -o Acquire::Retries=3
-            -o Acquire::http::Timeout=30
-            -o Acquire::https::Timeout=30
-          )
-          if dpkg-query -W -f='${Status}' bubblewrap 2>/dev/null | grep -q '^install ok installed$'; then
-            echo "bubblewrap is already installed on the runner"
-          else
-            cat > /tmp/helix-ubuntu.list <<'EOF'
-          deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble main universe
-          deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble-updates main universe
-          deb [arch=amd64] https://archive.ubuntu.com/ubuntu noble-backports main universe
-          deb [arch=amd64] https://security.ubuntu.com/ubuntu noble-security main universe
-          EOF
-            sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get update "${apt_options[@]}"
-            sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bubblewrap "${apt_options[@]}"
-          fi
-          test -x /usr/bin/bwrap
-          if sysctl -n kernel.apparmor_restrict_unprivileged_userns >/dev/null 2>&1; then
-            sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
-          fi
+        run: bash .github/scripts/install-bubblewrap.sh
 
       - name: required real bubblewrap process isolation
         env:
@@ -665,7 +641,7 @@ jobs:
   full-regression-bulk-1:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - name: checkout
@@ -722,7 +698,7 @@ jobs:
   full-regression-bulk-2:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - name: checkout
@@ -777,7 +753,7 @@ jobs:
   full-regression-bulk-3:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - name: checkout
@@ -832,7 +808,7 @@ jobs:
   full-regression-stateful:
     needs: [full-regression-preflight]
     if: ${{ needs.full-regression-preflight.outputs.full == 'true' && needs.full-regression-preflight.outputs.reuse != 'true' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - name: checkout
@@ -860,12 +836,7 @@ jobs:
           name: full-regression-shard-plan
           path: ${{ runner.temp }}/full-regression-shard-plan
       - name: install required Linux isolation backend
-        run: |
-          sudo apt-get update
-          sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bubblewrap
-          if sysctl -n kernel.apparmor_restrict_unprivileged_userns >/dev/null 2>&1; then
-            sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
-          fi
+        run: bash .github/scripts/install-bubblewrap.sh
       - name: execute stateful and seal receipt
         env:
           HELIX_BWRAP_BIN: /usr/bin/bwrap
@@ -906,7 +877,7 @@ jobs:
       - full-regression-bulk-3
       - full-regression-stateful
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     outputs:
       lane_disposition: ${{ steps.final-status.outputs.disposition }}
@@ -1023,7 +994,7 @@ jobs:
   harness-check:
     needs: [lite-consumer-canary-artifact, windows-durability-smoke, full-regression-finalize]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - name: require every required lane
