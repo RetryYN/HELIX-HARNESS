@@ -168,6 +168,20 @@ const OVERBROAD_SCOPE_FAMILIES = new Set([
 const APPROVED_EXPANSION =
   /^approved[ \t]+receipt=https:\/\/github\.com\/[^/\s]+\/[^/\s]+\/(?:issues|pull)\/\d+#issuecomment-\d+[ \t]+reason=.{12,}$/;
 const MIGRATION_BUNDLE_MARKER = "<!-- HELIX:github-workflow-identity-migration-bundle:v1 -->";
+const PR_SCOPE_FIELD_GUIDANCE =
+  "Accepted form: one field per line as Field: value; keep the value on the same line, use commas for lists, and do not wrap values in backticks";
+const PR_SCOPE_CONTRACT_GUIDANCE =
+  "Accepted form: Behavior contract: GH-AC-040 (one atomic ID with 2-6 segments, no backticks)";
+const PR_SCOPE_OWNER_GUIDANCE =
+  "Accepted form: Responsibility owner: pr-scope-guard (one kebab-case value, no backticks)";
+const PR_SCOPE_FAMILY_GUIDANCE =
+  "Accepted form: Allowed path families: src/lint/github-guards.ts, tests/branch-kind.test.ts (comma-separated safe values; no semicolons, globs, root families, or backticks)";
+const PR_SCOPE_EXPECTED_PATH_GUIDANCE =
+  "Accepted form: Expected changed paths: src/lint/github-guards.ts, tests/branch-kind.test.ts (comma-separated exact paths; no semicolons, directory prefixes, trailing slash, or backticks)";
+const PR_SCOPE_COMPANION_GUIDANCE =
+  "Accepted form: Required companion paths: none or docs/plans/PLAN-X.md, tests/x.test.ts (comma-separated exact paths; no semicolons or backticks)";
+const PR_SCOPE_EXPANSION_GUIDANCE =
+  "Accepted form: Scope expansion: none or approved receipt=https://github.com/OWNER/REPO/pull/N#issuecomment-N reason=<12+ characters>";
 
 interface MigrationBundleManifest {
   ownerPlan: string;
@@ -254,6 +268,7 @@ function expectedPathMismatchMessage(
     `actual diff must exactly match Expected changed paths (undeclared=${undeclared.join(", ") || "none"}; absent=${absent.join(", ") || "none"})`,
     guidance,
     direction,
+    PR_SCOPE_EXPECTED_PATH_GUIDANCE,
   ].join("; ");
 }
 
@@ -376,8 +391,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
       findings.push({
         code: "pr_scope_manifest_missing",
         severity: "error",
-        message:
-          "PR diff requires Behavior contract, Responsibility owner, Allowed path families, Expected changed paths, Required companion paths, and Scope expansion",
+        message: `PR diff requires Behavior contract, Responsibility owner, Allowed path families, Expected changed paths, Required companion paths, and Scope expansion. ${PR_SCOPE_FIELD_GUIDANCE}`,
       });
     } else {
       const contract = contractValues[0] ?? "";
@@ -385,7 +399,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         findings.push({
           code: "pr_scope_contract_invalid",
           severity: "error",
-          message: "Behavior contract must contain exactly one atomic contract ID",
+          message: `Behavior contract must contain exactly one atomic contract ID. ${PR_SCOPE_CONTRACT_GUIDANCE}`,
         });
       }
       const owner = ownerValues[0] ?? "";
@@ -393,7 +407,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         findings.push({
           code: "pr_scope_owner_invalid",
           severity: "error",
-          message: "Responsibility owner must contain exactly one kebab-case owner",
+          message: `Responsibility owner must contain exactly one kebab-case owner. ${PR_SCOPE_OWNER_GUIDANCE}`,
         });
       }
       const families = commaValues(familyValues[0] ?? "");
@@ -406,8 +420,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         findings.push({
           code: "pr_scope_path_family_invalid",
           severity: "error",
-          message:
-            "Allowed path families must be unique, responsibility-scoped safe exact paths or directory prefixes; repository-root families are forbidden",
+          message: `Allowed path families must be unique, responsibility-scoped safe exact paths or directory prefixes; repository-root families are forbidden. ${PR_SCOPE_FAMILY_GUIDANCE}`,
         });
       } else {
         const outside = changedPaths.filter(
@@ -431,7 +444,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         findings.push({
           code: "pr_scope_expected_paths_invalid",
           severity: "error",
-          message: "Expected changed paths must be unique safe exact paths",
+          message: `Expected changed paths must be unique safe exact paths. ${PR_SCOPE_EXPECTED_PATH_GUIDANCE}`,
         });
       } else {
         const expectedSet = new Set(expectedPaths);
@@ -455,7 +468,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         findings.push({
           code: "pr_scope_companion_invalid",
           severity: "error",
-          message: "Required companion paths must be none or safe exact changed paths",
+          message: `Required companion paths must be none or safe exact changed paths. ${PR_SCOPE_COMPANION_GUIDANCE}`,
         });
       } else {
         const migrationBundle = parseMigrationBundleManifest(body);
@@ -464,7 +477,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           findings.push({
             code: "pr_scope_companion_missing",
             severity: "error",
-            message: `required companion paths absent from diff: ${missing.join(", ")}`,
+            message: `required companion paths absent from diff: ${missing.join(", ")}. ${PR_SCOPE_COMPANION_GUIDANCE}`,
           });
         }
         if (
@@ -475,7 +488,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
           findings.push({
             code: "pr_scope_source_companions_missing",
             severity: "error",
-            message: "src changes require explicit changed PLAN and test companion paths",
+            message: `src changes require explicit changed PLAN and test companion paths. ${PR_SCOPE_COMPANION_GUIDANCE}`,
           });
         }
         const declaredPlans = companions.filter((path) => /^docs\/plans\/PLAN-.*\.md$/.test(path));
@@ -515,8 +528,7 @@ export function analyzePrContext(input: PrContextInput): PrContextResult {
         findings.push({
           code: "pr_scope_expansion_invalid",
           severity: "error",
-          message:
-            "Scope expansion must be none or include a reviewable approved receipt pointer and reason; CI validates syntax only",
+          message: `Scope expansion must be none or include a reviewable approved receipt pointer and reason; CI validates syntax only. ${PR_SCOPE_EXPANSION_GUIDANCE}`,
         });
       }
     }
