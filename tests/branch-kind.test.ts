@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 // PLAN-L7-462-issue-closure-contract
@@ -602,6 +603,85 @@ describe("branch-kind-check", () => {
         message: expect.stringContaining("remove stale paths that are absent from the actual diff"),
       }),
     );
+  });
+
+  it("U-PRSCOPE-007: scope findings explain the accepted manifest syntax without loosening the gate", () => {
+    const missing = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["docs/design/current.md"],
+      body: [
+        "## Behavior contract",
+        "GH-AC-040",
+        "Responsibility owner: pr-scope-guard",
+        "Allowed path families: docs/design/current.md",
+        "Expected changed paths: docs/design/current.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    });
+    expect(missing.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_manifest_missing",
+        message: expect.stringContaining("one field per line as Field: value"),
+      }),
+    );
+
+    const invalid = analyzePrContext({
+      eventName: "pull_request",
+      changedPaths: ["src/example.ts"],
+      body: [
+        "Behavior contract: `GH-AC-040`",
+        "Responsibility owner: `pr-scope-guard`",
+        "Allowed path families: src/example.ts; tests/example.test.ts",
+        "Expected changed paths: src/example.ts; tests/example.test.ts",
+        "Required companion paths: `none`",
+        "Scope expansion: later",
+      ].join("\n"),
+    });
+    expect(invalid.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_contract_invalid",
+        message: expect.stringContaining("one atomic ID with 2-6 segments, no backticks"),
+      }),
+    );
+    expect(invalid.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_owner_invalid",
+        message: expect.stringContaining("one kebab-case value, no backticks"),
+      }),
+    );
+    expect(invalid.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_path_family_invalid",
+        message: expect.stringContaining("comma-separated safe values; no semicolons"),
+      }),
+    );
+    expect(invalid.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_expected_paths_invalid",
+        message: expect.stringContaining("comma-separated exact paths; no semicolons"),
+      }),
+    );
+    expect(invalid.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_companion_invalid",
+        message: expect.stringContaining("none or docs/plans/PLAN-X.md"),
+      }),
+    );
+    expect(invalid.findings).toContainEqual(
+      expect.objectContaining({
+        code: "pr_scope_expansion_invalid",
+        message: expect.stringContaining("approved receipt=https://github.com/OWNER/REPO"),
+      }),
+    );
+  });
+
+  it("U-PRSCOPE-008: PR template documents the parser's accepted syntax", () => {
+    const template = readFileSync(".github/PULL_REQUEST_TEMPLATE.md", "utf8");
+    expect(template).toContain("1行1項目");
+    expect(template).toContain("同じ行");
+    expect(template).toContain("カンマ");
+    expect(template).toContain("backtick");
   });
 
   it("U-PRSCOPE-003: requires declared PLAN and test companions for source changes", () => {

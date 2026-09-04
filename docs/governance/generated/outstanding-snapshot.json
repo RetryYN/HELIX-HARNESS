@@ -52,6 +52,7 @@
     "PLAN-L7-721-reservation-snapshot-schema-fail-close",
     "PLAN-L7-726-github-plan-reservation-bounded-fetch",
     "PLAN-L7-727-effective-runner-toolchain-attestation",
+    "PLAN-L7-728-pr-context-diagnostic-guidance",
     "PLAN-M-02-helix-identifier-rename",
     "PLAN-RECOVERY-106-mutation-oracle-locator-resolution",
     "PLAN-RECOVERY-107-lite-consumer-npm-install-determinism",
