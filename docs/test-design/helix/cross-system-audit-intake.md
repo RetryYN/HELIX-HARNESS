@@ -1,3 +1,12 @@
+---
+layer: L7
+artifact_type: test_design
+status: draft
+plan: docs/plans/PLAN-RECOVERY-1500-cross-system-audit-intake.md
+parent_design: docs/design/helix/L6-function-design/cross-system-audit-intake.md
+pair_artifact: docs/design/helix/L6-function-design/cross-system-audit-intake.md
+---
+
 # 外部横断監査入力の保全検証
 
 対象PLAN: `PLAN-RECOVERY-1500-cross-system-audit-intake`。

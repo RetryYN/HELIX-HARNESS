@@ -38,11 +38,11 @@ contract_preconditions: "外部監査MDとZIPが読め、固定HEADと既存所�
 contract_postconditions: "14入力の内容保全とF/C/Xの追跡を検査し、remote保全後に指定原本を削除できる"
 contract_invariants: "外部所見は非authority。修復完了と原本整理を区別し、レビューや承認を発明しない"
 contract_failures: "内容欠損、対応表欠落、出典欠落、未保全原本削除を拒否する"
-parent_design: docs/governance/repository-structure.md
+parent_design: docs/design/helix/L6-function-design/cross-system-audit-intake.md
 pair_artifact: docs/test-design/helix/cross-system-audit-intake.md
 verification_bindings:
-  - { parent_design: docs/governance/repository-structure.md, oracle_id: U-XAUDIT-001, test_path: tests/cross-system-audit-intake.test.ts }
-  - { parent_design: docs/governance/repository-structure.md, oracle_id: U-XAUDIT-002, test_path: tests/cross-system-audit-intake.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/cross-system-audit-intake.md, oracle_id: U-XAUDIT-001, test_path: tests/cross-system-audit-intake.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/cross-system-audit-intake.md, oracle_id: U-XAUDIT-002, test_path: tests/cross-system-audit-intake.test.ts }
 dependencies:
   parent: null
   requires: []
@@ -58,6 +58,7 @@ agent_slots:
   - { role: qa, slot_label: "QA — byte一致と所見対応検査" }
   - { role: tl, slot_label: "TL — 既存責務への接続" }
 generates:
+  - { artifact_path: docs/design/helix/L6-function-design/cross-system-audit-intake.md, artifact_type: design }
   - { artifact_path: docs/test-design/helix/cross-system-audit-intake.md, artifact_type: test_design }
   - { artifact_path: tests/cross-system-audit-intake.test.ts, artifact_type: test_code }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1500-cross-system-audit-intake.md, artifact_type: markdown_doc }
