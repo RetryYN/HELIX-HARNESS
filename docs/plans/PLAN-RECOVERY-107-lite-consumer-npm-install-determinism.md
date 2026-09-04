@@ -11,7 +11,7 @@ created: 2026-09-04
 updated: 2026-09-04
 owner: Codex / TL
 github_issue_id: 1508
-behavior_contract_id: DISTRIBUTION-LITE-CONSUMER-NPM-INSTALL-DETERMINISM-001
+behavior_contract_id: LITE-CONSUMER-NPM-DETERMINISM-001
 responsibility_owner: distribution-lite-consumer-canary
 engineering_discipline_required: true
 change_slice: atomic
