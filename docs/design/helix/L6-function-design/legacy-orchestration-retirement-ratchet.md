@@ -35,8 +35,13 @@ current execution authorityとして新規拡張できないようにする。�
 同一path内の同数置換、別名経由の呼出し、動的なcommand組立ては本検査だけでは判定できない。
 したがって出現数0をconsumer 0の証拠として使ってはならない。後続phaseではCLI登録、
 import／callsite、生成template、外部consumerを追跡し、successorへの移管証拠と合わせて退役を検収する。
-inventory上限の増加も本検査自身だけでは旧版との差分を証明できないため、変更時には
-published baseとの比較を独立レビューへ提示する。これらの限界をPhase 1のgreenで相殺しない。
+inventory上限はcandidate自身から正当化しない。published baseから取得したinventoryと比較し、
+上限増加、新規path登録、除外拡張、source HEAD差替えを拒否する。削減がpublishedされた後は
+削減後の値を次の上限とし、元の上限への再増加も拒否する。
+初回導入はpublished inventoryがないため、検証済み基準revisionからの採取と通常更新を区別する。
+基準取得不能をcandidateへのfallbackで補わない。基準変更は別のauthority移行として扱う。
+比較関数の単体greenだけでは完了しない。loader／doctorへのtrusted base接続と初回導入の
+検証が成立するまでF07は未解消とする。
 
 inventoryは#865のphaseごとに単調減少させる。consumer 0、successor parity、canary、rollback、
 major-version gate成立後にのみdirect engineを削除する。read-only replayとhistorical evidenceは

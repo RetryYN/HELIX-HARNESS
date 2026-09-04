@@ -51,6 +51,9 @@ dependencies:
     - issue:819
   blocks: []
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-007, test_path: tests/legacy-orchestration-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-008, test_path: tests/legacy-orchestration-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-009, test_path: tests/legacy-orchestration-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-001, test_path: tests/legacy-orchestration-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-002, test_path: tests/legacy-orchestration-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-003, test_path: tests/legacy-orchestration-surface.test.ts }
@@ -95,6 +98,15 @@ consumer再生成surfaceをexact inventoryへ固定する。既存債務の減�
 
 targeted test、typecheck、Biome、PLAN lint、doctor、全回帰、Claude exact-HEAD review、
 DB convergence、main read-afterがgreenになること。
+
+## 外部監査F07の是正
+
+2026-09-05、candidate inventoryとコードの同時増加が旧実装で通過することを元TSで再現した。
+published mainとの共通祖先をGitから固定し、通常更新は公開inventory、初回導入は公開treeの
+marker実測値を基準とする。候補source HEADは基準選択に使わず、基準の祖先であることを検証する。
+基準取得失敗はfallbackせず停止する。U-LORET-007〜009を追加し、単体と一時Git repositoryの
+統合検証で上限増加・path自己登録・架空revision・削減後の再増加を拒否した。
+対象11テスト、型検査、PLAN lint、Biomeは成功。独立レビューと全回帰・main反映は未完了である。
 
 ## PLAN確定の技術確認
 

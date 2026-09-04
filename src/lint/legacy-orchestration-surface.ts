@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -51,6 +51,33 @@ export interface LegacyOrchestrationSurfaceResult {
 export interface LegacyOrchestrationFile {
   path: string;
   content: string;
+}
+
+/** 呼出側がpublished baseから取得したinventoryとの単調減少を検査する。 */
+export function compareLegacyOrchestrationInventory(
+  candidate: LegacyOrchestrationInventory,
+  published: LegacyOrchestrationInventory,
+): string[] {
+  const errors: string[] = [];
+  const previous = new Map(
+    published.entries.map((entry) => [entry.path, entry.maximum_occurrences]),
+  );
+  for (const entry of candidate.entries) {
+    const maximum = previous.get(entry.path);
+    if (maximum === undefined) errors.push(`inventory_path_added:${entry.path}`);
+    else if (entry.maximum_occurrences > maximum)
+      errors.push(`inventory_limit_raised:${entry.path}`);
+  }
+  if (candidate.source_head !== published.source_head) errors.push("inventory_source_head_changed");
+  for (const prefix of candidate.excluded_historical_prefixes) {
+    if (!published.excluded_historical_prefixes.includes(prefix))
+      errors.push("inventory_historical_exclusion_added");
+  }
+  for (const path of candidate.excluded_implementation_paths) {
+    if (!published.excluded_implementation_paths.includes(path))
+      errors.push(`inventory_implementation_exclusion_added:${path}`);
+  }
+  return errors;
 }
 
 function countMarkers(content: string): number {
@@ -136,6 +163,63 @@ export function loadLegacyOrchestrationSurface(repoRoot: string): {
   const inventoryPath = join(repoRoot, LEGACY_ORCHESTRATION_INVENTORY_PATH);
   if (!existsSync(inventoryPath)) throw new Error("legacy orchestration inventory missing");
   const inventory = JSON.parse(readFileSync(inventoryPath, "utf8")) as LegacyOrchestrationInventory;
+  // candidateのsource_headをbase選択に使わない。公開mainとの共通祖先を一度だけ固定する。
+  const git = (args: string[]) =>
+    execFileSync("git", args, {
+      cwd: repoRoot,
+      encoding: "utf8",
+      maxBuffer: 32 * 1024 * 1024,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+  const base = git(["merge-base", "origin/main", "HEAD"]).trim();
+  if (!/^[0-9a-f]{40}$/.test(base)) throw new Error("published base invalid");
+  if (!/^[0-9a-f]{40}$/.test(inventory.source_head)) throw new Error("inventory source invalid");
+  git(["merge-base", "--is-ancestor", inventory.source_head, base]);
+  const basePaths = git(["ls-tree", "-r", "--name-only", "-z", base]).split("\0").filter(Boolean);
+  let published: LegacyOrchestrationInventory;
+  if (basePaths.includes(LEGACY_ORCHESTRATION_INVENTORY_PATH)) {
+    published = JSON.parse(git(["show", `${base}:${LEGACY_ORCHESTRATION_INVENTORY_PATH}`]));
+  } else {
+    // 初回導入も候補inventoryの自己登録ではなく、公開baseの実ファイルから上限を採取する。
+    const matches = spawnSync(
+      "git",
+      [
+        "grep",
+        "-l",
+        "-z",
+        "-F",
+        ...LEGACY_ORCHESTRATION_MARKERS.flatMap((marker) => ["-e", marker]),
+        base,
+        "--",
+      ],
+      { cwd: repoRoot, encoding: "utf8", maxBuffer: 32 * 1024 * 1024 },
+    );
+    if (matches.error || (matches.status !== 0 && matches.status !== 1))
+      throw new Error("published marker scan failed");
+    const markerPaths = matches.stdout
+      .split("\0")
+      .filter(Boolean)
+      .map((path) => {
+        if (!path.startsWith(`${base}:`)) throw new Error("published marker path invalid");
+        return path.slice(base.length + 1);
+      });
+    published = {
+      schema_version: "helix-legacy-orchestration-surface-inventory.v1",
+      authority_role: "compatibility_only_retirement_ratchet",
+      source_head: inventory.source_head,
+      excluded_historical_prefixes: ["docs/archive/"],
+      excluded_implementation_paths: [...ALLOWED_EXCLUSIONS],
+      entries: markerPaths
+        .filter((path) => !path.startsWith("docs/archive/") && !ALLOWED_EXCLUSIONS.has(path))
+        .map((path) => ({
+          path,
+          maximum_occurrences: countMarkers(git(["show", `${base}:${path}`])),
+        }))
+        .filter((entry) => entry.maximum_occurrences > 0),
+    };
+  }
+  const baselineErrors = compareLegacyOrchestrationInventory(inventory, published);
+  if (baselineErrors.length > 0) throw new Error(baselineErrors.join(","));
   const tracked = execFileSync("git", ["ls-files", "-z"], {
     cwd: repoRoot,
     encoding: "utf8",

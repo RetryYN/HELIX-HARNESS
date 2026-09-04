@@ -1,10 +1,12 @@
-import { mkdtempSync, rmSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { checkLegacyOrchestrationSurface } from "../src/doctor/index";
 import {
   analyzeLegacyOrchestrationSurface,
+  compareLegacyOrchestrationInventory,
   type LegacyOrchestrationInventory,
   legacyOrchestrationSurfaceMessages,
   loadLegacyOrchestrationSurface,
@@ -20,6 +22,84 @@ const inventory = (): LegacyOrchestrationInventory => ({
 });
 
 describe("legacy orchestration surface retirement ratchet", () => {
+  it("U-LORET-009: Git公開baseに束縛し、初回・通常更新とも自己上限追加を拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-legacy-base-"));
+    const git = (...args: string[]) =>
+      execFileSync("git", args, {
+        cwd: root,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      }).trim();
+    const file = join(root, "config/legacy-orchestration-surface-inventory.json");
+    const candidate = inventory();
+    const save = () => writeFileSync(file, JSON.stringify(candidate));
+    try {
+      git("init");
+      git("config", "user.name", "Fixture");
+      git("config", "user.email", "fixture@example.invalid");
+      mkdirSync(join(root, "src"));
+      mkdirSync(join(root, "config"));
+      writeFileSync(join(root, "src/old.ts"), "helix team run\nhelix team run");
+      git("add", "src/old.ts");
+      git("commit", "-m", "fixture base");
+      candidate.source_head = git("rev-parse", "HEAD");
+      save();
+      expect(() => loadLegacyOrchestrationSurface(root)).toThrow(); // 公開baseなし
+      git("update-ref", "refs/remotes/origin/main", "HEAD");
+      expect(() => loadLegacyOrchestrationSurface(root)).not.toThrow();
+      candidate.entries[0].maximum_occurrences = 3;
+      save();
+      expect(() => loadLegacyOrchestrationSurface(root)).toThrow("inventory_limit_raised");
+      candidate.entries[0].maximum_occurrences = 2;
+      candidate.entries.push({ path: "src/new.ts", maximum_occurrences: 1 });
+      save();
+      expect(() => loadLegacyOrchestrationSurface(root)).toThrow("inventory_path_added");
+      candidate.entries.pop();
+      const source = candidate.source_head;
+      candidate.source_head = "0".repeat(40);
+      save();
+      expect(() => loadLegacyOrchestrationSurface(root)).toThrow();
+      candidate.source_head = source;
+      candidate.entries[0].maximum_occurrences = 1;
+      save();
+      writeFileSync(join(root, "src/old.ts"), "helix team run");
+      git("add", "src/old.ts", "config/legacy-orchestration-surface-inventory.json");
+      git("commit", "-m", "fixture published reduction");
+      git("update-ref", "refs/remotes/origin/main", "HEAD");
+      expect(() => loadLegacyOrchestrationSurface(root)).not.toThrow();
+      candidate.entries[0].maximum_occurrences = 2;
+      save();
+      expect(() => loadLegacyOrchestrationSurface(root)).toThrow("inventory_limit_raised");
+      expect(checkLegacyOrchestrationSurface(root).ok).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-LORET-007: published上限の引上げと新規path自己登録を拒否する", () => {
+    const candidate = inventory();
+    candidate.entries[0].maximum_occurrences = 3;
+    candidate.entries.push({ path: "src/new.ts", maximum_occurrences: 1 });
+    expect(compareLegacyOrchestrationInventory(candidate, inventory())).toEqual([
+      "inventory_limit_raised:src/old.ts",
+      "inventory_path_added:src/new.ts",
+    ]);
+  });
+
+  it("U-LORET-008: 削減後の再増加とsource差替えを拒否し、削減を許可する", () => {
+    const reduced = inventory();
+    reduced.entries[0].maximum_occurrences = 1;
+    expect(compareLegacyOrchestrationInventory(reduced, inventory())).toEqual([]);
+    expect(compareLegacyOrchestrationInventory(inventory(), reduced)).toContain(
+      "inventory_limit_raised:src/old.ts",
+    );
+    const changed = inventory();
+    changed.source_head = "0".repeat(40);
+    expect(compareLegacyOrchestrationInventory(changed, inventory())).toContain(
+      "inventory_source_head_changed",
+    );
+  });
+
   it("inventory読込失敗はcause digestを残し、local pathを露出しない", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-legacy-inventory-"));
     try {
