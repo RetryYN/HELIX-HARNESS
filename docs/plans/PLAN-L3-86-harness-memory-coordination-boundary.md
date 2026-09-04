@@ -28,7 +28,7 @@ legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "既存のmemory runtimeに先行した意味混入をL1/L3/L10のsource authority候補へ戻す。既存memoryの削除・再解釈は行わない。"
 no_code_decision: no_change
-ddd_modeling_decision: bounded_context
+ddd_modeling_decision: policy
 contract_preconditions: "#1449のauthority語彙境界、#1188のretention責務、#397のRequirement IR境界を参照できる"
 contract_postconditions: "coordination-onlyのL1/L3/L10候補、20件以上の受入候補、legacy隔離方針がplan固有承認境界へ束縛される"
 contract_invariants: "memoryは正本・知識・個人設定・承認を保持せず、typed pointerと有期限coordinationだけを運ぶ。候補は承認前にcurrentへ投影しない"
