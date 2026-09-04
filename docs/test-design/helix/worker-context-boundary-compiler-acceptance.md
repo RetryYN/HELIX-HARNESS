@@ -35,7 +35,7 @@ pair_artifact: docs/design/helix/L3-requirements/worker-context-boundary-compile
 | `WCTX-AC-007` | `WCTX-R-04` | authority path、旧layer、compatibility文書を入力へ混ぜる | current authority入力として拒否する | legacy greenでcurrent failureを相殺しない |
 | `WCTX-AC-008` | `WCTX-R-05` | compile後にpacket fileの存在を探索する | persistent packetを作成していない | JSONをsealed capabilityとして再利用しない |
 | `WCTX-AC-009` | `WCTX-R-06` | task／token／secretを入力してstdout、stderr、receiptを確認する | digestとfailure codeだけを追跡し、機密本文を出力しない | secret／PII／credentialの漏洩がない |
-| `WCTX-AC-010` | `WCTX-R-07` | current Runtime Capability Registryがadmitするexecution path exact setを起動する | L3変更なしで全pathが同一loader／attestation／compiler経路を利用する | provider／CLI固有pathだけraw fallbackまたは独自defaultを使わない |
+| `WCTX-AC-010` | `WCTX-R-07` | resident-lane要件§11.2／Slice 3のcurrent Runtime Capability Registryがadmitするexecution path exact setを起動し、未実装時はadmission evidenceを欠落させる | L3変更なしで全pathが同一loader／attestation／compiler経路を利用し、未実装時はfail-closeする | static runtime capability matrix、provider／CLI固有path、raw fallback、独自defaultから実行集合を推測しない |
 | `WCTX-AC-011` | `WCTX-R-07` | boundary作成後にHEAD、authority、rule、scopeを変更する | staleまたはdriftとしてproviderを起動せず拒否する | compile時のgreenを実行時の許可へ持ち越さない |
 | `WCTX-AC-012` | `WCTX-R-08` | 旧`mode`／`model`／legacy layerを入力する | input-only変換または曖昧値拒否となる | current output、DB、receiptへ旧identityを再出力しない |
 | `WCTX-AC-013` | `WCTX-R-07` | 新しいruntimeをregistryへadmitする | L3変更なしでcanonical Context Compilerを利用できる | provider名やCLI列挙の更新を必須にしない |

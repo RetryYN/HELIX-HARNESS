@@ -121,6 +121,13 @@ packet compilerを利用する。execution pathのexact setを本要件へ固定
 execution authorityから決定する。provider、runtime、CLI surfaceごとの自動推測、独自schema、独自packet
 compiler、raw provider CLI fallbackを追加してはならない。
 
+ここでいうRuntime Capability Registryの意味正本は
+`docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md` §11.2／Slice 3であり、
+`src/runtime/runtime-capability-matrix.ts`のstatic matrixではない。static matrixは移行中のread-only
+compatibility projectionに限定し、execution path admission、必須集合の縮小、provider fallbackの判断正本に
+してはならない。Slice 3未実装中はstatic matrixから実行集合を推測せず、admission evidence欠落として
+fail-closeする。
+
 `team run`、`pair-agent`、legacy loop等のcompatibility-only surfaceが残存する場合は、current canonical
 execution pathへの一方向adapterとしてのみ利用し、新規feature、独立execution authority、独自context semanticsを
 追加しない。boundary未指定、stale HEAD、authority/rule drift、scope／budget不整合、unknown／unadmitted runtimeは、

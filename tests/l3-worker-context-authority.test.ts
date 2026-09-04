@@ -96,6 +96,13 @@ describe("L3 worker context authority", () => {
 describe("worker context boundary compiler requirement authority", () => {
   it("derives execution paths from current capability authority instead of provider or CLI names", () => {
     expect(compilerRequirement).toContain("Runtime Capability Registry");
+    expect(compilerRequirement).toContain(
+      "docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+    );
+    expect(compilerRequirement).toContain(
+      "`src/runtime/runtime-capability-matrix.ts`のstatic matrixではない",
+    );
+    expect(compilerRequirement).toContain("admission evidence欠落として");
     expect(compilerRequirement).toContain("execution pathのexact setを本要件へ固定せず");
     expect(compilerRequirement).not.toContain(
       "codex、claude、loop、pair-agent、teamの全`--execute`経路",
