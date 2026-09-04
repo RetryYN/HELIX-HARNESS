@@ -67,20 +67,20 @@ generates:
   - { artifact_path: docs/reference/cross-system-audit-2026-09-05/intake.md, artifact_type: markdown_doc }
   - { artifact_path: docs/reference/cross-system-audit-2026-09-05/inputs.json, artifact_type: json_config }
   - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source-map.json, artifact_type: json_config }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/audit-report.md.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/upstream-readme.md.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/sha256sums.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/upstream_license.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/db_path_probe.mjs.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/db_path_results.json.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/findings.json.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/path_pattern_probe.mjs.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/path_pattern_results.json.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/probe_results.json.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/probes.mjs.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/readiness_probe.py.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/readiness_results.json.txt, artifact_type: other }
-  - { artifact_path: docs/reference/cross-system-audit-2026-09-05/source/source_index.json.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/audit-report.md.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/upstream-readme.md.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/sha256sums.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/upstream_license.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/db_path_probe.mjs.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/db_path_results.json.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/findings.json.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/path_pattern_probe.mjs.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/path_pattern_results.json.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/probe_results.json.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/probes.mjs.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/readiness_probe.py.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/readiness_results.json.txt, artifact_type: other }
+  - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/source_index.json.txt, artifact_type: other }
 review_evidence: []
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }

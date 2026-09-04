@@ -8,15 +8,15 @@
 - [intake.md](intake.md): F01〜F14、C01〜C11、X01〜X05の区別、優先度、追跡先、再現の限界。
 - [inputs.json](inputs.json): 受領したMD／ZIPと同梱14ファイルの元ハッシュ。
 - [source-map.json](source-map.json): ZIP内の元名と保存先の一対一対応。
-- `source/`: 改変しない入力snapshot。スクリプトは`.txt`へ隔離し、通常の実装・test discoveryへ接続しない。
+- `docs/archive/cross-system-audit-2026-09-05/source/`: 改変しない入力snapshot。スクリプトは`.txt`へ隔離し、通常の実装・test discoveryへ接続しない。
 
-`source/`中のリンクとpathは監査当時の表記である。現行実装を参照するときは台帳に記載したHEADと
+`docs/archive/cross-system-audit-2026-09-05/source/`中のリンクとpathは監査当時の表記である。現行実装を参照するときは台帳に記載したHEADと
 所有Issueを照合する。元の配置を再構成する場合は`source-map.json`の対応を使う。
 ZIPのbyte列を再生成できるという主張ではなく、展開内容14ファイルのbyte一致を検証している。
 
 ## 安全・出典
 
-同梱の[ライセンス原文](source/upstream_license.txt)を変更せず保持する。
+同梱の[ライセンス原文](../../archive/cross-system-audit-2026-09-05/source/upstream_license.txt)を変更せず保持する。
 probeの成功終了は危険挙動の再現を意味する場合があり、製品の安全性合格ではない。
 同梱スクリプトをインポート・実行・CI登録せず、本体側の反例テストへ責務単位で移す。
 

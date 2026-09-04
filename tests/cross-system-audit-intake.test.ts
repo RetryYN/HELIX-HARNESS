@@ -5,34 +5,39 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 const root = "docs/reference/cross-system-audit-2026-09-05";
+const sourceRoot = "docs/archive/cross-system-audit-2026-09-05/source";
 const inventory = JSON.parse(readFileSync(join(root, "inputs.json"), "utf8")) as {
   entries: { path: string; bytes: number; sha256: string }[];
 };
-const { authority, mapping } = JSON.parse(readFileSync(join(root, "source-map.json"), "utf8")) as {
+const { authority, mapping, source_root } = JSON.parse(
+  readFileSync(join(root, "source-map.json"), "utf8"),
+) as {
   authority: string;
+  source_root: string;
   mapping: { original: string; saved: string }[];
 };
 
 describe("外部監査入力の非実行保全", () => {
   it("U-XAUDIT-001: 元checksumと保存内容のexact対応を検査する", () => {
     expect(authority).toBe("historical_reference_only");
+    expect(source_root).toBe(sourceRoot);
     expect(mapping).toHaveLength(14);
     expect(inventory.entries).toHaveLength(14);
     expect(new Set(mapping.map((m) => m.original)).size).toBe(14);
     expect(new Set(mapping.map((m) => m.saved)).size).toBe(14);
-    expect(readdirSync(join(root, "source")).sort()).toEqual(mapping.map((m) => m.saved).sort());
+    expect(readdirSync(sourceRoot).sort()).toEqual(mapping.map((m) => m.saved).sort());
     for (const entry of inventory.entries) {
       const matches = mapping.filter((m) => entry.path === `helix_audit_20260905/${m.original}`);
       expect(matches).toHaveLength(1);
       const saved = matches[0].saved;
       expect(saved).toMatch(/^[A-Za-z0-9_.-]+\.txt$/u);
-      const path = join(root, "source", saved);
+      const path = join(sourceRoot, saved);
       expect(lstatSync(path).isFile()).toBe(true);
       const data = readFileSync(path);
       expect(data.length).toBe(entry.bytes);
       expect(createHash("sha256").update(data).digest("hex")).toBe(entry.sha256);
     }
-    const checksumBytes = readFileSync(join(root, "source/sha256sums.txt"));
+    const checksumBytes = readFileSync(join(sourceRoot, "sha256sums.txt"));
     expect(createHash("sha256").update(checksumBytes).digest("hex")).toBe(
       "a1e4c65f8a77207ba8a1576715782c5743f4546aaa87b5f7f90b71b29f1c4c64",
     );

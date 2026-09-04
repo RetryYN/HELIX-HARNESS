@@ -15,7 +15,7 @@ runtimeの監査・修復・配布機能は追加しない。
 ## 入力と処理
 
 `docs/reference/cross-system-audit-2026-09-05/` の `inputs.json`、`source-map.json`、
-`source/`、`intake.md` を読み、`tests/cross-system-audit-intake.test.ts` で検査する。
+`intake.md`と`docs/archive/cross-system-audit-2026-09-05/source/`の固定原本を読み、`tests/cross-system-audit-intake.test.ts` で検査する。
 同梱スクリプトは実行せず、原本のbyte列を非実行テキストとして扱う。
 
 1. 元名と保存名の対応は各14件で重複を許さず、保存ディレクトリのexact file setと一致させる。

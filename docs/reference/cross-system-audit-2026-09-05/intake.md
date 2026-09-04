@@ -90,7 +90,7 @@ probe参照切れ0、記載blob SHA 20件は固定HEADのGit実体と一致し�
 
 入力とZIP内14ファイルのサイズ・SHA-256は
 同ディレクトリの `inputs.json` に固定する。
-展開保存先`source/`の14ファイルについて元サイズ・SHA-256との一致を確認した。
+展開保存先`docs/archive/cross-system-audit-2026-09-05/source/`の14ファイルについて元サイズ・SHA-256との一致を確認した。
 `source-map.json`は元名との一対一対応であり、ライセンスもbyte一致で保存した。
 これはremote保全・全secret/PII検査・参照更新・追跡PRへの接続完了の証拠ではない。
 
