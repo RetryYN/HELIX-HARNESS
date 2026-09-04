@@ -37,3 +37,13 @@ pair_artifact: docs/design/helix/L6-function-design/distribution-lite-consumer-c
 | U-DISTCAN-010 | exclusion | PLAN、memory、DB実データ、credential、absolute path、除外capabilityが存在・到達しない | `tests/distribution-lite-consumer-canary.test.ts` |
 
 U-DISTCAN-001..005をartifact実行前のpure admission、006..010をfresh process接合として分離する。
+
+## PLAN-RECOVERY-107 実行境界
+
+U-DISTCAN-006、U-DISTPKG-012、U-SETUP-013のfresh consumer npm child processは、advisory network待ちを受入判定へ混入させない
+明示的なconsumer npm policyを使用する。Lite／profile artifact installはoffline＋cache miss fail-close、Full clean distribution
+acceptanceは宣言済みGitHub package specのlockfile解決を許可し、fetch retry／timeoutだけをboundedにする。setup内部の
+`npm install --package-lock-only`もadvisory抑制のpolicy flagsを使用する。policyは依存解決、lockfile、integrity、artifact digest、
+required canaryの判定を弱めず、timeout、status=null、digest mismatch、artifact／doctor／completion failureをgreenへ丸めない。
+setup引数の回帰は`tests/setup.test.ts`の既存package bootstrap assertionで検査し、U-DISTCAN-006／U-DISTPKG-012／U-SETUP-013は
+fresh processの受入経路を検査する。

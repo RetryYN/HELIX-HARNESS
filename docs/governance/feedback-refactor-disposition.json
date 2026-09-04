@@ -147,7 +147,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-setup-index.ts:module-has-3015-nonblank-line-s-and-70-export-s-",
       "source_path": "src/setup/index.ts",
-      "source_file_sha256": "b219a7c2e4e662498048f863db0f1c8048798716c21cac4c8bcb20409d78559d",
+      "source_file_sha256": "cedf2f09560ae8395ac4e06ede2fca914f879e9160c2cbf364920c4ffcca4e11",
       "family": "non_cli_module_decomposition"
     },
     {

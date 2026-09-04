@@ -1757,6 +1757,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     }
   });
 
+  // PLAN-RECOVERY-107-lite-consumer-npm-install-determinism
   it("U-SETUP-037: fresh HELIX project setup bootstraps package scripts and lockfile for runnable VSCode tasks", () => {
     const commands: Array<{ args: string[]; command: string; cwd: string }> = [];
     const deps = mockDeps({
@@ -1767,7 +1768,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
     deps.runCommand = (cwd, command, args) => {
       commands.push({ cwd, command, args });
-      if (args.join(" ") === "install --package-lock-only") {
+      if (
+        args.join(" ") ===
+        "install --package-lock-only --no-audit --no-fund --prefer-offline --no-update-notifier"
+      ) {
         deps.files.set(
           join(cwd, "package-lock.json"),
           [
@@ -1791,7 +1795,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     expect(commands).toEqual([
-      { cwd: "/repo", command: "npm", args: ["install", "--package-lock-only"] },
+      {
+        cwd: "/repo",
+        command: "npm",
+        args: [
+          "install",
+          "--package-lock-only",
+          "--no-audit",
+          "--no-fund",
+          "--prefer-offline",
+          "--no-update-notifier",
+        ],
+      },
       {
         cwd: "/repo",
         command: "npm",
@@ -1837,6 +1852,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     });
   });
 
+  // PLAN-RECOVERY-107-lite-consumer-npm-install-determinism
   it("U-SETUP-038: brownfield HELIX project setup refreshes lockfile when package surface changes", () => {
     const commands: Array<{ args: string[]; command: string; cwd: string }> = [];
     const deps = mockDeps({
@@ -1852,7 +1868,10 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     deps.files.set(join("/repo", "package-lock.json"), "stale lockfile\n");
     deps.runCommand = (cwd, command, args) => {
       commands.push({ cwd, command, args });
-      if (args.join(" ") === "install --package-lock-only") {
+      if (
+        args.join(" ") ===
+        "install --package-lock-only --no-audit --no-fund --prefer-offline --no-update-notifier"
+      ) {
         deps.files.set(join(cwd, "package-lock.json"), "lockfileVersion = 1\n");
         return { status: 0, stderr: "", stdout: "Saved package-lock.json" };
       }
@@ -1865,7 +1884,18 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
 
     expect(commands).toEqual([
-      { cwd: "/repo", command: "npm", args: ["install", "--package-lock-only"] },
+      {
+        cwd: "/repo",
+        command: "npm",
+        args: [
+          "install",
+          "--package-lock-only",
+          "--no-audit",
+          "--no-fund",
+          "--prefer-offline",
+          "--no-update-notifier",
+        ],
+      },
       {
         cwd: "/repo",
         command: "npm",

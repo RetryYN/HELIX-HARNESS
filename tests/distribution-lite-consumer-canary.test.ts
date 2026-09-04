@@ -31,6 +31,19 @@ import {
 const roots: string[] = [];
 let cleanSourceFixture: string | null = null;
 
+// PLAN-RECOVERY-107-lite-consumer-npm-install-determinism
+// Consumer canaryはartifactのinstall／lockfile／CLIを検証する。npm audit／fund／update通知の
+// advisory network待ちはこの受入契約の対象外なので、child processへ明示的なbounded policyを渡す。
+// integrity、lockfile、artifact digest、実行結果の検証は維持する。
+const CONSUMER_NPM_ENV = {
+  npm_config_audit: "false",
+  npm_config_fund: "false",
+  npm_config_prefer_offline: "true",
+  // Lite artifactはruntime依存をbundle済み。registry egressは受入対象外とし、cache missはfail-closeする。
+  npm_config_offline: "true",
+  npm_config_update_notifier: "false",
+} as const;
+
 function isDistributionDocuments(
   value: unknown,
 ): value is LiteConsumerCanaryExpectedIdentity["distribution_documents"] {
@@ -60,6 +73,7 @@ function spawnNpm(args: string[], cwd: string, timeout: number = 60_000) {
   return spawnSync(process.execPath, [npmCli, ...args], {
     cwd,
     encoding: "utf8",
+    env: { ...process.env, ...CONSUMER_NPM_ENV },
     timeout,
   });
 }

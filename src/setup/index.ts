@@ -1060,6 +1060,20 @@ export const LOCAL_DISTRIBUTION_PACKAGE_VERSION = "0.1.0";
 const LOCAL_DISTRIBUTION_PACKAGE_SPEC = "github:RetryYN/HELIX-HARNESS";
 const LOCAL_TYPESCRIPT_PACKAGE_SPEC = "^5.6.3";
 
+// PLAN-RECOVERY-107-lite-consumer-npm-install-determinism: consumer install policy
+/**
+ * consumer setup が生成する lockfile のための npm ネットワーク副作用抑制。
+ * audit/fund/update notice は consumer readiness の判定材料ではなく、CI の
+ * dependency resolution を不必要に遅延させるため無効化する。依存解決と
+ * package-lock の生成自体は npm に委ね、integrity/lockfile authority は維持する。
+ */
+export const CONSUMER_NPM_LOCKFILE_FLAGS = [
+  "--no-audit",
+  "--no-fund",
+  "--prefer-offline",
+  "--no-update-notifier",
+] as const;
+
 /**
  * package.json が既に commitlint 設定 (`"commitlint"` キー) を宣言しているか判定する純関数。
  * repository-structure.md は commitlint を package.json に集約し root dotfile を増やさない方針
@@ -2478,7 +2492,11 @@ function bootstrapProjectPackageLockfile(input: {
   if (!input.packageJsonWritten && hasLockfile) {
     return [];
   }
-  const result = input.deps.runCommand(packageRoot, "npm", ["install", "--package-lock-only"]);
+  const result = input.deps.runCommand(packageRoot, "npm", [
+    "install",
+    "--package-lock-only",
+    ...CONSUMER_NPM_LOCKFILE_FLAGS,
+  ]);
   if (result.status !== 0) return [];
   if (input.deps.readText(nodeLockPath) !== null)
     return [repoRelativePath(input.deps, nodeLockPath)];
