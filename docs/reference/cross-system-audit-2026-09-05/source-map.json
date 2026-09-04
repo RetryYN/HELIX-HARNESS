@@ -1,0 +1,61 @@
+{
+  "authority": "historical_reference_only",
+  "mapping": [
+    {
+      "original": "HELIX_CROSS_SYSTEM_AUDIT_2026-09-05.md",
+      "saved": "audit-report.md.txt"
+    },
+    {
+      "original": "README.md",
+      "saved": "upstream-readme.md.txt"
+    },
+    {
+      "original": "SHA256SUMS.txt",
+      "saved": "sha256sums.txt"
+    },
+    {
+      "original": "UPSTREAM_LICENSE.txt",
+      "saved": "upstream_license.txt"
+    },
+    {
+      "original": "db_path_probe.mjs",
+      "saved": "db_path_probe.mjs.txt"
+    },
+    {
+      "original": "db_path_results.json",
+      "saved": "db_path_results.json.txt"
+    },
+    {
+      "original": "findings.json",
+      "saved": "findings.json.txt"
+    },
+    {
+      "original": "path_pattern_probe.mjs",
+      "saved": "path_pattern_probe.mjs.txt"
+    },
+    {
+      "original": "path_pattern_results.json",
+      "saved": "path_pattern_results.json.txt"
+    },
+    {
+      "original": "probe_results.json",
+      "saved": "probe_results.json.txt"
+    },
+    {
+      "original": "probes.mjs",
+      "saved": "probes.mjs.txt"
+    },
+    {
+      "original": "readiness_probe.py",
+      "saved": "readiness_probe.py.txt"
+    },
+    {
+      "original": "readiness_results.json",
+      "saved": "readiness_results.json.txt"
+    },
+    {
+      "original": "source_index.json",
+      "saved": "source_index.json.txt"
+    }
+  ]
+}

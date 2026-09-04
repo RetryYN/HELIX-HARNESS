@@ -1,0 +1,40 @@
+{
+  "sqlite_version": "3.46.1",
+  "scope": "Copied literal SQL and readiness branching; no project DB or full TS module used",
+  "cases": 3,
+  "results": [
+    {
+      "id": "READY-old-pass-new-fail",
+      "observed": {
+        "ready_status": "ready",
+        "passed_gate_count": 1,
+        "open_findings": 0,
+        "human_blocks": 0
+      },
+      "expected_safety": "not ready without current applicable gate evidence",
+      "scope": "synthetic query/decision test"
+    },
+    {
+      "id": "READY-prefix-overmatch",
+      "observed": {
+        "ready_status": "blocked",
+        "passed_gate_count": 1,
+        "open_findings": 1,
+        "human_blocks": 0
+      },
+      "expected_safety": "PLAN-10 must not count as PLAN-1",
+      "scope": "synthetic query/decision test"
+    },
+    {
+      "id": "READY-no-gate-control",
+      "observed": {
+        "ready_status": "blocked",
+        "passed_gate_count": 0,
+        "open_findings": 0,
+        "human_blocks": 0
+      },
+      "expected_safety": "blocked",
+      "scope": "synthetic query/decision test"
+    }
+  ]
+}

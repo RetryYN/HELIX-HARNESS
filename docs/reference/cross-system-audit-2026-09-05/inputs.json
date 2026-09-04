@@ -1,0 +1,102 @@
+{
+  "record_kind": "external_audit_input_inventory",
+  "authority": "reference_only",
+  "owner_issue": 1500,
+  "archive_verified": true,
+  "archive_verification_scope": "local_extracted_file_bytes_only",
+  "remote_preservation_verified": false,
+  "original_inputs_deleted": false,
+  "integrity_checks": {
+    "checked_on": "2026-09-05",
+    "input_files_verified": 2,
+    "zip_files_inventoried": 14,
+    "upstream_checksum_entries_verified": 13,
+    "standalone_report_matches_zip_report": true,
+    "scripts_executed_during_inventory": false,
+    "meaning": "入力同一性の確認のみ。修復、独立検収、保存先一致、削除許可の成立を表さない。"
+  },
+  "inputs": [
+    {
+      "name": "HELIX_CROSS_SYSTEM_AUDIT_2026-09-05.md",
+      "bytes": 54722,
+      "sha256": "dcf0d4e0dcc4db772afac465df10f2412134cd65dcd019a18cb99c9fd39be53f"
+    },
+    {
+      "name": "HELIX_CROSS_SYSTEM_AUDIT_2026-09-05.zip",
+      "bytes": 48421,
+      "sha256": "b31ecaaa72d0207c0a3d5fcda4e9b57aa8d479a099b8873de09399a2ca80a9f3"
+    }
+  ],
+  "entries": [
+    {
+      "path": "helix_audit_20260905/HELIX_CROSS_SYSTEM_AUDIT_2026-09-05.md",
+      "bytes": 54722,
+      "sha256": "dcf0d4e0dcc4db772afac465df10f2412134cd65dcd019a18cb99c9fd39be53f"
+    },
+    {
+      "path": "helix_audit_20260905/README.md",
+      "bytes": 2975,
+      "sha256": "69481b2b408b1f4c2d4e459ce943c58f1d7a01808a542ef97e11f0cb85e75431"
+    },
+    {
+      "path": "helix_audit_20260905/SHA256SUMS.txt",
+      "bytes": 1120,
+      "sha256": "a1e4c65f8a77207ba8a1576715782c5743f4546aaa87b5f7f90b71b29f1c4c64"
+    },
+    {
+      "path": "helix_audit_20260905/UPSTREAM_LICENSE.txt",
+      "bytes": 1064,
+      "sha256": "1ec00bbf092b28cae28750fb6c8cd02f2cd0999ee4d4c96d1279e09b15345796"
+    },
+    {
+      "path": "helix_audit_20260905/db_path_probe.mjs",
+      "bytes": 4214,
+      "sha256": "556d37239e570cbe35e1ebd0a8a5dcd7e96a85267e0fea5ccea057b1a1a07476"
+    },
+    {
+      "path": "helix_audit_20260905/db_path_results.json",
+      "bytes": 733,
+      "sha256": "dda6065f229c2c8b2f00a1a99d5de11ce34f320cb295355835a270ba2d869112"
+    },
+    {
+      "path": "helix_audit_20260905/findings.json",
+      "bytes": 30833,
+      "sha256": "ada7a433f05b4fc69f3edb32a8bf50a4389b8cacd0f938ddc639068c390e5c5e"
+    },
+    {
+      "path": "helix_audit_20260905/path_pattern_probe.mjs",
+      "bytes": 983,
+      "sha256": "2c14e57dffd340f02af803dca66380c5169361a533181c8df0089650d5750a48"
+    },
+    {
+      "path": "helix_audit_20260905/path_pattern_results.json",
+      "bytes": 642,
+      "sha256": "b21c162c5c0e7c759e0fe9d56b1996c212ec22f0c303d7004dda8e91da1a7e3b"
+    },
+    {
+      "path": "helix_audit_20260905/probe_results.json",
+      "bytes": 9050,
+      "sha256": "4e4d51ba285df86e3c09e0ebf2e72ac1cd12e8c160bb5b149150b7b1690ebba4"
+    },
+    {
+      "path": "helix_audit_20260905/probes.mjs",
+      "bytes": 20528,
+      "sha256": "71b45b2a6f68bfeb243476049bfde98afa06be6e93534d938c96acad7c996ae5"
+    },
+    {
+      "path": "helix_audit_20260905/readiness_probe.py",
+      "bytes": 2444,
+      "sha256": "4ae848c0be3ea5fa2166fba8fc3df2f64d11d532d7d50737a346b2911954a3c0"
+    },
+    {
+      "path": "helix_audit_20260905/readiness_results.json",
+      "bytes": 1079,
+      "sha256": "4181824bc8b0a7f92da661fd3b4b92ed19145dde14bf0f5dcdd834eb4d1a430c"
+    },
+    {
+      "path": "helix_audit_20260905/source_index.json",
+      "bytes": 11168,
+      "sha256": "da49149128d5c792cff1e526a53666b0bc682bdf58d139391f783d0a16959508"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+/** Extracted real SQLite adapter probe. Main b5178c34, src/state-db/index.ts.
+ * TypeScript annotations removed; unused exports omitted. Synthetic temporary
+ * repositories only. Node22 supports DatabaseSync, but project Node24 test suite
+ * is NOT run. Invoke: node db_path_probe.mjs [output.json]
+ */
+import {createRequire} from 'node:module';
+import {existsSync,mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';
+import {dirname,isAbsolute,join,relative,resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import assert from 'node:assert/strict';
+const nodeRequire=createRequire(import.meta.url);
+function openNative(path){const {DatabaseSync}=nodeRequire('node:sqlite');return new DatabaseSync(path);}
+function applyConnectionPragmas(native,path,options={}){
+ native.exec('PRAGMA busy_timeout = 5000');
+ if(path!==':memory:'&&!options.skipPersistentPragmas){
+  const journal=native.prepare('PRAGMA journal_mode').get();
+  if(String(journal?.journal_mode??'').toLowerCase()!=='wal')native.exec('PRAGMA journal_mode = WAL');
+  const synchronous=native.prepare('PRAGMA synchronous').get();
+  if(Number(synchronous?.synchronous??-1)!==1)native.exec('PRAGMA synchronous = NORMAL');
+ }
+ native.exec('PRAGMA foreign_keys = ON');
+}
+function wrapStatement(stmt){return {run:(...params)=>{const result=stmt.run(...params);return {changes:Number(result?.changes??0)};},get:(...params)=>stmt.get(...params)??undefined,all:(...params)=>stmt.all(...params)??[]};}
+function assertWithinHelixStateDir(dbPath,repoRoot){
+ if(dbPath===':memory:')return;
+ const helixStateRoot=resolve(repoRoot,'.helix');
+ const resolved=isAbsolute(dbPath)?resolve(dbPath):resolve(repoRoot,dbPath);
+ const rel=relative(helixStateRoot,resolved);
+ if(rel.startsWith('..')||isAbsolute(rel))throw new Error(`harness.db path は .helix/ 配下に限定されます: ${dbPath}`);
+}
+function openHarnessDb(path,options={}){
+ const repoRoot=options.repoRoot??process.cwd();
+ assertWithinHelixStateDir(path,repoRoot);
+ if(path!==':memory:')mkdirSync(dirname(resolve(repoRoot,path)),{recursive:true});
+ const driver='node';const native=openNative(path);applyConnectionPragmas(native,path,options);
+ return {path,driver,exec:sql=>native.exec(sql),prepare:sql=>wrapStatement(native.prepare(sql)),userVersion:()=>Number(native.prepare('PRAGMA user_version').get()?.user_version??0),setUserVersion:version=>{if(!Number.isInteger(version)||version<0)throw new Error(`user_version は非負整数のみ: ${version}`);native.exec(`PRAGMA user_version = ${version}`);},close:()=>native.close()};
+}
+const original=process.cwd();const temp=mkdtempSync(join(tmpdir(),'helix-db-scope-'));
+let report;
+try{
+ const intended=join(temp,'intended-repo'),caller=join(temp,'caller-repo');
+ mkdirSync(intended,{recursive:true});mkdirSync(join(caller,'.helix'),{recursive:true});process.chdir(caller);
+ const db=openHarnessDb('.helix/probe.db',{repoRoot:intended});
+ db.exec('CREATE TABLE synthetic_scope_probe (id INTEGER PRIMARY KEY, value TEXT)');db.close();
+ const observed={intended_db_exists:existsSync(join(intended,'.helix/probe.db')),caller_db_exists:existsSync(join(caller,'.helix/probe.db'))};
+ assert.deepEqual(observed,{intended_db_exists:false,caller_db_exists:true});
+ // Explicit absolute path is the control case, not a fix applied to project.
+ const explicit=openHarnessDb(join(intended,'.helix/control.db'),{repoRoot:intended});explicit.close();
+ assert.equal(existsSync(join(intended,'.helix/control.db')),true);
+ report={main_head:'b5178c34fe34c956a70713ad942b1f5b8f64e0ab',source_blob:'930cc64af693897ff0cc28313c13c74b5a3ff408',source:'src/state-db/index.ts:assertWithinHelixStateDir/openHarnessDb',runtime:process.version,scope:'Extracted adapter functions with actual node:sqlite in two temporary directories; no whole-project integration',cases:2,results:[{id:'DB-relative-root-mismatch',expected_safety:'validation and SQLite open use same repoRoot-resolved path',observed},{id:'DB-absolute-control',observed:{intended_db_exists:true}}]};
+}finally{process.chdir(original);rmSync(temp,{recursive:true,force:true});}
+const text=JSON.stringify(report,null,2)+'\n';if(process.argv[2])writeFileSync(process.argv[2],text);console.log(text);
