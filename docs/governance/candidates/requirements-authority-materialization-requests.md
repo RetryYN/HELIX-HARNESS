@@ -7,7 +7,7 @@ layer: L1
 kind: redesign
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: PO / Codex TL
 plan: PLAN-L3-79-requirements-authority-materialization-gate
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -17,7 +17,7 @@ next_pair_freeze: L12_after_po_approval
 # 要求・要件authority materialization gate要求
 
 - 文書ID: `HELIX-RAMG-BRQ-001`
-- 状態: `draft_candidate / plan固有承認前`
+- 状態: `draft_candidate / plan固有human gate済み・独立review前`
 - Behavior Contract: `REQUIREMENTS-AUTHORITY-MATERIALIZATION-GATE-001`
 
 ## 要求
@@ -60,4 +60,4 @@ auto_admitやcanonical/specifedをfrozenと同義にせず、plan固有approval�
 - #1318 Responsibility System TDD
 
 #1358/#1363系列は初期fixtureへ含めない。authority collision監査のC-01/C-02を本gateのepoch／freeze oracleとして扱う。
-本candidateはplan固有承認とcanonical promotionが成立するまでcurrent authorityへ加算しない。
+本candidateは独立技術reviewとcanonical promotionが成立するまでcurrent authorityへ加算しない。
