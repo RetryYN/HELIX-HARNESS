@@ -22,7 +22,7 @@ behavior_contract_id: GH-AC-040
 responsibility_owner: pr-scope-guard
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: harden_existing_contract
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "判定対象と拒否条件は変更せず、既存契約の受理形式を診断とtemplateへ明示する。"
