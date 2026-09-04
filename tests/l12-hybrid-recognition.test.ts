@@ -117,6 +117,14 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
+  it("does not treat status metadata as a legacy L3↔L12 pair", () => {
+    expect(
+      detectL12HybridRecognitionSignals(
+        "authority_status: proposed_pending_l3_confirmation\ncanonical_vmodel: L1-L12",
+      ),
+    ).toEqual([]);
+  });
+
   it("never upgrades path/status heuristics into a final semantic disposition", () => {
     expect(classifyRecognitionAuditDisposition("plan_review")).toBe("needs_manual_review");
     expect(classifyRecognitionAuditDisposition("historical_context_review")).toBe(

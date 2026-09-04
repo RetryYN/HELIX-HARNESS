@@ -7,10 +7,10 @@
   "bindings": [
     {
       "test_path": "tests/l12-hybrid-recognition.test.ts",
-      "test_case_identity_sha256": "b6d6fa34d5d8619c81c35bcd7cbd881b3b353087cb3507bf8be8b84e16f76cc1",
-      "expected_case_count": 11,
+      "test_case_identity_sha256": "ec00861502b5b195a347ff297073f3a6a96ab4527086c08c8c422e8bb4432008",
+      "expected_case_count": 12,
       "semantic_source_path": "src/lint/l12-hybrid-recognition.ts",
-      "semantic_source_sha256": "455995cf4708e4a0c49dde8962dc68bc879ef8bb068f2d8d150989d50fe120c5",
+      "semantic_source_sha256": "8610bf2c16c1b7652d19a3e25e3920ee8ebc52d1df03abd06b91f464b346c479",
       "semantic_predecessor_plan_id": "PLAN-L3-13-vmodel-docgen-fit",
       "rejected_cochange_candidate_plan_id": "PLAN-L7-461-requirements-doc-registry",
       "required_closure": "additive L5/L8 recognition oracle設計とL6/L7 test ownership binding"
