@@ -31,6 +31,13 @@ current execution authorityとして新規拡張できないようにする。�
 
 ## 後続
 
+本検査が計測するのは既知markerの文字列出現数であり、実行consumer数ではない。
+同一path内の同数置換、別名経由の呼出し、動的なcommand組立ては本検査だけでは判定できない。
+したがって出現数0をconsumer 0の証拠として使ってはならない。後続phaseではCLI登録、
+import／callsite、生成template、外部consumerを追跡し、successorへの移管証拠と合わせて退役を検収する。
+inventory上限の増加も本検査自身だけでは旧版との差分を証明できないため、変更時には
+published baseとの比較を独立レビューへ提示する。これらの限界をPhase 1のgreenで相殺しない。
+
 inventoryは#865のphaseごとに単調減少させる。consumer 0、successor parity、canary、rollback、
 major-version gate成立後にのみdirect engineを削除する。read-only replayとhistorical evidenceは
 write/control authorityと別に扱う。
