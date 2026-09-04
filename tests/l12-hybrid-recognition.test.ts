@@ -29,10 +29,12 @@ describe("L12/hybrid recognition-risk scanner", () => {
       expect(candidate, path).toBeDefined();
       if (!candidate) throw new Error(`Missing candidate: ${path}`);
       expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
-      expect(classifyFinalRecognitionDisposition({
-        ...candidate,
-        contentDigest: "changed-content",
-      })).not.toBe("false_positive");
+      expect(
+        classifyFinalRecognitionDisposition({
+          ...candidate,
+          contentDigest: "changed-content",
+        }),
+      ).not.toBe("false_positive");
     }
   });
   it("U-GHWF-001: typed GitHub requirementsのlegacy拒否記述をdigest付きfalse positiveへ固定する", () => {
