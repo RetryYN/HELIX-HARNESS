@@ -40,7 +40,7 @@ Slice revisionへ束縛する。candidate承認前はruntime、current DB、gene
 | `FRS-AC-008` | FRS-R-08 | qualification packetがHEAD、authority、registry、artifact、CI、DB、review、consumer、rollback、expiryを保持する | 1項目欠落、digest不一致、green件数だけのqualifiedを拒否 |
 | `FRS-AC-009` | FRS-R-09 | preview／rc／stableごとの必須検証profileと独立reviewが守られる | 下位channelのgreenで上位channelを通すmutationをkill |
 | `FRS-AC-010` | FRS-R-10 | rollbackまたはreplacementが同一Slice revisionのartifact／manifest／stateへ収束する | rollback成功だけでincident／releaseを終端化しない |
-| `FRS-AC-011` | FRS-R-11 | Slice、Module、Bundleの更新が他identityを暗黙書換えしない | preview Sliceをstable Bundleへ暗黙包含するmutationを拒否 |
+| `FRS-AC-011` | FRS-R-11 | SliceとBundleがそれぞれ昇格条件を満たし、他identityを暗黙書換えしない | Bundle証拠を揃えてもpreview／rc Sliceのstable Bundle収載を拒否 |
 | `FRS-AC-012` | FRS-R-12 | changed pathからModule→Slice→Bundle→verification profileが決定的に導出される | secondary pathだけでownerを変更、affected Sliceを落とすmutationをkill |
 | `FRS-AC-013` | FRS-R-13 | 局所検証とshared／authority／critical pathのdependent closureが両立する | Slice分割で検証義務を減らすmutationを拒否 |
 | `FRS-AC-014` | FRS-R-14 | unknown／ambiguous／staleはfullまたはfail-closeへ送られる | unknownを空集合、局所green、成功へ補完しない |

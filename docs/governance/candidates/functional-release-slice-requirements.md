@@ -120,8 +120,9 @@ Bundleのdefaultから除外し、互換期間とreplacementを明示する。
 
 ### FRS-R-11 Implicit promotion禁止
 
-Slice、Module、Bundleのいずれかが更新されても、他のidentity、channel、version、artifactを暗黙に書き換えない。previewの
-新Sliceをstable Bundleへ取り込む場合は、Bundle側に対象Slice exact setとprofile evidenceが存在しなければならない。
+Slice、Module、Bundleのいずれかが更新されても、他のidentity、channel、version、artifactを暗黙に書き換えない。
+preview／rcの新Sliceをstable Bundleへ取り込んではならない。対象Slice自身がstableの検収を満たした後、
+Bundle側にも対象Slice exact setと組合せのprofile evidenceを揃えて昇格する。Bundle側の証拠だけでSliceの未成熟を相殺しない。
 
 ## FRS-FR-004 変更影響とCI導出
 
