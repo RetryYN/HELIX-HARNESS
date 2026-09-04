@@ -1,4 +1,8 @@
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { checkLegacyOrchestrationSurface } from "../src/doctor/index";
 import {
   analyzeLegacyOrchestrationSurface,
   type LegacyOrchestrationInventory,
@@ -16,6 +20,20 @@ const inventory = (): LegacyOrchestrationInventory => ({
 });
 
 describe("legacy orchestration surface retirement ratchet", () => {
+  it("inventory読込失敗はcause digestを残し、local pathを露出しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-legacy-inventory-"));
+    try {
+      const result = checkLegacyOrchestrationSurface(root);
+      expect(result.ok).toBe(false);
+      expect(result.messages).toHaveLength(1);
+      expect(result.messages[0]).toMatch(
+        /^legacy-orchestration-surface - violation: reason=read_failed cause_kind=error cause_digest=sha256:[a-f0-9]{64}$/,
+      );
+      expect(result.messages[0]).not.toContain(root);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
   it("U-LORET-001: current compatibility debtを可視化し、減少だけを許可する", () => {
     const result = analyzeLegacyOrchestrationSurface(inventory(), [
       { path: "src/old.ts", content: "helix team run" },

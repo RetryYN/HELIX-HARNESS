@@ -4566,9 +4566,11 @@ export function checkLegacyOrchestrationSurface(repoRoot: string): {
     const loaded = loadLegacyOrchestrationSurface(repoRoot);
     const result = analyzeLegacyOrchestrationSurface(loaded.inventory, loaded.files);
     return { messages: legacyOrchestrationSurfaceMessages(result), ok: result.ok };
-  } catch {
+  } catch (error) {
     return {
-      messages: ["legacy-orchestration-surface - violation: inventory could not be read"],
+      messages: [
+        doctorFailureMessage(doctorFailure("legacy-orchestration-surface", "read_failed", error)),
+      ],
       ok: false,
     };
   }
