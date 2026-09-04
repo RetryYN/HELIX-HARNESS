@@ -434,6 +434,7 @@ function stepByName(steps: Step[], name: string): Step {
 }
 
 describe("source harness-check workflow", () => {
+  // PLAN-RECOVERY-108-ci-isolation-backend-bounded — U-CIISO-001/U-CIISO-002
   // PLAN-L7-685-full-regression-shard-jobs — U-FULLSHARD-WF-001
   // PLAN-L7-685-full-regression-shard-jobs — U-FULLSHARD-WF-002
   it("U-GCRA-WF-001: required harness-check内でReady exact-HEAD review admissionをfail-closeする", () => {
@@ -450,17 +451,13 @@ describe("source harness-check workflow", () => {
     expect(nonPullRequestRangeViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
   });
 
-  it("U-WIB-019: Linux required jobsのrunner releaseをsource codenameと固定する", () => {
-    expect(linuxRunnerViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
-  });
-
-  it.each(["ubuntu-latest", "ubuntu-22.04"])("U-WIB-019: %sへのrunner退行を拒否する", (runner) => {
-    const raw = readFileSync(WORKFLOW_PATH, "utf8").replaceAll("ubuntu-24.04", runner);
-    expect(linuxRunnerViolations(raw)).toHaveLength(LINUX_HARNESS_JOBS.length);
-  });
-
-  it("U-WIB-019: 将来追加されたLinux jobのrunner退行も拒否する", () => {
+  it("U-CIISO-001: Linux required jobsのrunner releaseをsource codenameと固定する", () => {
     const source = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(linuxRunnerViolations(source)).toEqual([]);
+    for (const runner of ["ubuntu-latest", "ubuntu-22.04"]) {
+      const raw = source.replaceAll("ubuntu-24.04", runner);
+      expect(linuxRunnerViolations(raw)).toHaveLength(LINUX_HARNESS_JOBS.length);
+    }
     const raw = source.replace(
       "\njobs:\n",
       "\njobs:\n  future-linux-job:\n    runs-on: ubuntu-latest\n",
@@ -469,35 +466,28 @@ describe("source harness-check workflow", () => {
     expect(linuxRunnerViolations(raw)).toContain("linux_runner_invalid:future-linux-job");
   });
 
-  it("U-WIB-020: bubblewrap導入をbounded apt helperへ集約する", () => {
+  it("U-CIISO-002: bubblewrap導入をbounded apt helperへ集約する", () => {
     const raw = readFileSync(WORKFLOW_PATH, "utf8");
     const script = readFileSync(ISOLATION_BACKEND_SCRIPT_PATH, "utf8");
     expect(isolationBackendWorkflowViolations(raw, script)).toEqual([]);
-  });
-
-  it.each([
-    [
-      "apt updateのtimeout除去",
+    for (const mutate of [
       (script: string) =>
         script.replace(
           "sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get update",
           "sudo env DEBIAN_FRONTEND=noninteractive apt-get update",
         ),
-    ],
-    [
-      "apt installのtimeout除去",
       (script: string) =>
         script.replace(
           "sudo timeout 180s env DEBIAN_FRONTEND=noninteractive apt-get install",
           "sudo env DEBIAN_FRONTEND=noninteractive apt-get install",
         ),
-    ],
-  ] as const)("U-WIB-020: %sを拒否する", (_label, mutate) => {
-    const raw = readFileSync(WORKFLOW_PATH, "utf8");
-    const script = mutate(readFileSync(ISOLATION_BACKEND_SCRIPT_PATH, "utf8"));
-    expect(isolationBackendWorkflowViolations(raw, script)).toEqual([
-      expect.stringMatching(/^apt_invocation_unbounded:/),
-    ]);
+    ]) {
+      const raw = readFileSync(WORKFLOW_PATH, "utf8");
+      const script = mutate(readFileSync(ISOLATION_BACKEND_SCRIPT_PATH, "utf8"));
+      expect(isolationBackendWorkflowViolations(raw, script)).toEqual([
+        expect.stringMatching(/^apt_invocation_unbounded:/),
+      ]);
+    }
   });
 
   it.each(["branch-kind-check", "commitlint"] as const)(

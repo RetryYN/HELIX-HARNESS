@@ -33,6 +33,5 @@ targeted closure環境では実在pathを指定して必ず実行し、mock結�
 | U-WIB-007 | 実process隔離 | repo、state、DB、credentialが可視ならRed | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-008 | admission鮮度 | stale／拒否済みdescriptorを拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-009 | mutation到達性 | filesystem隔離分岐の除去をRedにする | `tests/worker-isolation-broker.test.ts` |
-| U-WIB-018 | required CI backend | required Linux jobがbubblewrap導入失敗をskipせず、実process oracleへ到達する | `tests/harness-check-workflow.test.ts` |
-| U-WIB-019 | runner identity | `ubuntu-24.04`固定とUbuntu 24.04／`noble`実効一致を検証し、alias／別releaseを拒否 | `tests/harness-check-workflow.test.ts` |
-| U-WIB-020 | bounded apt | bubblewrap導入を共通helperへ集約し、raw aptまたはtimeout欠落を拒否 | `tests/harness-check-workflow.test.ts` |
+| U-CIISO-001 | runner identity | `ubuntu-24.04`固定とUbuntu 24.04／`noble`実効一致を検証し、alias／別releaseを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-CIISO-002 | bounded apt | bubblewrap導入を共通helperへ集約し、raw aptまたはtimeout欠落を拒否 | `tests/harness-check-workflow.test.ts` |

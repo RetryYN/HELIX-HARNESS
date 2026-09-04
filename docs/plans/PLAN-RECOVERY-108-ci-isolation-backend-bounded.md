@@ -31,12 +31,12 @@ workflow_identity:
   target_id: RECOVERY
 entry_signals:
   - regression_dev
-contract_preconditions: "CIS-R-03／CIS-AC-003がrunner、system dependency、environment identityの欠落・driftをfail-closeし、U-WIB-018がrequired bubblewrap process oracleを要求している。"
+contract_preconditions: "CIS-R-03／CIS-AC-003がrunner、system dependency、environment identityの欠落・driftをfail-closeし、既存U-WIB-018がrequired bubblewrap process oracleを要求している。"
 contract_postconditions: "harness-checkのLinux jobはubuntu-24.04へ固定され、runnerの実効ID/codenameを検査し、preflight/statefulのbubblewrap導入は共通helperのtimeout付きapt呼出しだけを使う。"
 contract_invariants: "required real bubblewrap process oracle、network/source pin、apt timeout、fail-close、Linux canonical gateを弱めず、continue-on-error、raw apt、別runner greenの流用を許可しない。"
 contract_failures: "ubuntu-latest等のrunner alias、runner/codename mismatch、helper外のapt、timeout欠落、bubblewrap欠落、workflowからのraw apt、required isolation stepのskipを個別にfail-closeする。"
 tdd_red_required: true
-red_test: "U-WIB-019／U-WIB-020へrunner aliasまたはhelperのtimeout欠落を注入したとき、harness-check workflow oracleがexit 1になることを確認する。"
+red_test: "U-CIISO-001／U-CIISO-002へrunner aliasまたはhelperのtimeout欠落を注入したとき、harness-check workflow oracleがexit 1になることを確認する。既存U-WIB-018はrequired isolation stepのskipを拒否する回帰oracleとして維持する。"
 mutation_oracle_required: true
 parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md
 pair_artifact: docs/test-design/helix/L8-worker-isolation-broker-runtime-unit-test-design.md
@@ -51,9 +51,8 @@ dependencies:
     - "issue:797"
   blocks: []
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-018, test_path: tests/harness-check-workflow.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-019, test_path: tests/harness-check-workflow.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-020, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-CIISO-001, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-CIISO-002, test_path: tests/harness-check-workflow.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-108-ci-isolation-backend-bounded.md, artifact_type: markdown_doc }
   - { artifact_path: .github/scripts/install-bubblewrap.sh, artifact_type: script }
@@ -95,7 +94,7 @@ Issue #806のうち、CIの実行環境を正本へ固定する二つの残差�
 
 ## 受入条件
 
-- [ ] U-WIB-018〜020がcurrent sourceでgreenになり、runner alias、codename guard、timeout欠落のmutationを個別にkillする。
+- [ ] U-CIISO-001／002がcurrent sourceでgreenになり、runner alias、codename guard、timeout欠落のmutationを個別にkillする。既存U-WIB-018のrequired isolation step skip拒否もgreenである。
 - [ ] `bash -n .github/scripts/install-bubblewrap.sh`、typecheck、Biome、targeted test、PLAN lintがgreenになる。
 - [ ] full `harness-check`でpreflight／statefulのrequired real bubblewrap process oracleが実行され、導入失敗をskipせずfail-closeする。
 - [ ] current HEADのCIと独立Claude exact-HEAD review、main read-afterを取得するまでcompletion claimを許可しない。
