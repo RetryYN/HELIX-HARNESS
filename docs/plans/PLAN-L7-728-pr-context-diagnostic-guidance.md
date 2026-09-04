@@ -13,7 +13,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REFACTOR
 entry_signals:
-  - "issue:1515 pr-context-guardのscope manifest診断が受理形式を示さない"
+  - "structural"
 created: 2026-09-04
 updated: 2026-09-04
 owner: Codex / TL
