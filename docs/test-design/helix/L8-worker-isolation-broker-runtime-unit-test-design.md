@@ -6,7 +6,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-08-03
-updated: 2026-08-03
+updated: 2026-09-04
 owner: QA
 plan: docs/plans/PLAN-L6-96-worker-isolation-broker.md
 pair_artifact: docs/design/helix/L6-function-design/worker-isolation-broker.md
@@ -33,3 +33,5 @@ targeted closure環境では実在pathを指定して必ず実行し、mock結�
 | U-WIB-007 | 実process隔離 | repo、state、DB、credentialが可視ならRed | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-008 | admission鮮度 | stale／拒否済みdescriptorを拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-009 | mutation到達性 | filesystem隔離分岐の除去をRedにする | `tests/worker-isolation-broker.test.ts` |
+| U-CIISO-001 | runner identity | `ubuntu-24.04`固定とUbuntu 24.04／`noble`実効一致を検証し、alias／別releaseを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-CIISO-002 | bounded apt | bubblewrap導入を共通helperへ集約し、raw aptまたはtimeout欠落を拒否 | `tests/harness-check-workflow.test.ts` |
