@@ -242,6 +242,11 @@ import {
   leftArmCarryLogMessages,
   loadLeftArmCarryLogInput,
 } from "../lint/left-arm-carry-log";
+import {
+  analyzeLegacyOrchestrationSurface,
+  legacyOrchestrationSurfaceMessages,
+  loadLegacyOrchestrationSurface,
+} from "../lint/legacy-orchestration-surface";
 import { analyzeLintWiring, lintWiringMessages, loadLintWiringInput } from "../lint/lint-wiring";
 import {
   analyzeMemoryHandoverIsolation,
@@ -4547,6 +4552,28 @@ export function checkRuleDrift(repoRoot: string): {
   }
 }
 
+export function checkLegacyOrchestrationSurface(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: ["legacy-orchestration-surface - violation: repo root could not be read"],
+      ok: false,
+    };
+  }
+  try {
+    const loaded = loadLegacyOrchestrationSurface(repoRoot);
+    const result = analyzeLegacyOrchestrationSurface(loaded.inventory, loaded.files);
+    return { messages: legacyOrchestrationSurfaceMessages(result), ok: result.ok };
+  } catch {
+    return {
+      messages: ["legacy-orchestration-surface - violation: inventory could not be read"],
+      ok: false,
+    };
+  }
+}
+
 export function checkRuntimePortability(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -7241,6 +7268,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const semanticBoundary = checkSemanticBoundary(deps.repoRoot);
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
+  const legacyOrchestrationSurface = checkLegacyOrchestrationSurface(deps.repoRoot);
   const gateConfirm = checkGateConfirm(deps.repoRoot);
   const planSchedule = checkPlanSchedule(deps.repoRoot);
   const planDescent = checkPlanDescent(deps.repoRoot);
@@ -7437,6 +7465,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["semanticBoundary", semanticBoundary.ok],
     ["runtimePortability", runtimePortability.ok],
     ["ruleDrift", ruleDrift.ok],
+    ["legacyOrchestrationSurface", legacyOrchestrationSurface.ok],
     ["gateConfirm", gateConfirm.ok],
     ["planSchedule", planSchedule.ok],
     ["planDescent", planDescent.ok],
@@ -7615,6 +7644,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...semanticBoundary.messages.map((m) => `doctor: ${m}`),
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
+      ...legacyOrchestrationSurface.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
       ...planSchedule.messages.map((m) => `doctor: ${m}`),
       ...planDescent.messages.map((m) => `doctor: ${m}`),
