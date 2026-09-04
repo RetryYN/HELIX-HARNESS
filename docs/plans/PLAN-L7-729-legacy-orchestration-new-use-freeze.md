@@ -64,6 +64,8 @@ generates:
   - { artifact_path: src/lint/legacy-orchestration-surface.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-surface.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
