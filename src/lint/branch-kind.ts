@@ -48,6 +48,61 @@ export interface BranchKindSnapshot {
   includeWorkingTree?: boolean;
 }
 
+/** PR応答の必要fieldだけを検証する。取得・Git実在性検査は呼出し側の責務。 */
+export function branchSnapshotFromPrContext(
+  raw: unknown,
+  local: { repository: string; head: string; branch: string },
+): BranchKindSnapshot | null {
+  const record = (value: unknown): Record<string, unknown> | null =>
+    value !== null && typeof value === "object" && !Array.isArray(value)
+      ? (value as Record<string, unknown>)
+      : null;
+  const pr = record(raw);
+  const base = record(pr?.base);
+  const head = record(pr?.head);
+  const sha = /^[a-f0-9]{40}$/;
+  if (
+    !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(local.repository) ||
+    !sha.test(local.head) ||
+    !local.branch ||
+    local.branch === "HEAD" ||
+    pr?.state !== "open" ||
+    typeof base?.sha !== "string" ||
+    !sha.test(base.sha) ||
+    head?.sha !== local.head ||
+    head?.ref !== local.branch ||
+    record(base.repo)?.full_name !== local.repository ||
+    record(head.repo)?.full_name !== local.repository
+  )
+    return null;
+  return {
+    baseHead: base.sha,
+    candidateHead: local.head,
+    branch: local.branch,
+    includeWorkingTree: true,
+  };
+}
+
+export function readBranchSnapshotFromPrProvider(deps: {
+  readLocal(): { repository: string; head: string; branch: string };
+  readPr(local: { repository: string; head: string; branch: string }): unknown;
+}): BranchKindSnapshot | null {
+  try {
+    const before = { ...deps.readLocal() };
+    const snapshot = branchSnapshotFromPrContext(deps.readPr({ ...before }), before);
+    const after = deps.readLocal();
+    if (
+      before.repository !== after.repository ||
+      before.head !== after.head ||
+      before.branch !== after.branch
+    )
+      return null;
+    return snapshot;
+  } catch {
+    return null;
+  }
+}
+
 export interface BranchKindFinding {
   code:
     | "branch_authority_unavailable"

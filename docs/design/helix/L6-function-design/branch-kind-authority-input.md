@@ -61,15 +61,37 @@ doctorとCLIは同じsnapshotで同じfindingを返す。取得不能は専用fi
 
 ## 検証対応
 
+### local入力供給の接合候補（未実装）
+
+通常CLIのsnapshot引数がすべて未指定の場合だけ、PR contextを入力providerとして使用する。
+一部指定・不正な明示値はproviderで補完しない。pure loader自体は外部APIへ接続しない。
+CLI側の取得は読取専用・時間制限付きとし、同一repositoryのopen PR、head branch、
+base/headの完全SHAを検証する。remote名からbaseを選ばず、PRのbase objectを使う。
+取得前後のlocal HEAD／branchとPR headを照合し、未push、取得中変更、forkの取り違え、
+不正応答、取得不能を拒否する。失敗応答の本文や認証情報は表示しない。
+
+現在のghでは`pr view --json baseRefOid`が未対応であるため、PRのREST表現にある
+`base.sha`／`head.sha`と双方のrepository identityを取得・検証する。実装では取得adapterを
+注入可能とし、network不使用の反例と実Git fixtureを組み合わせる。
+
+この候補だけではPR作成前・offlineの入力供給は解決しない。その場合は明示snapshotを使い、
+全local経路が自動復旧したとは主張しない。未pushのlocal HEADをPR headへ書き換えたり、
+不足をwarningへ降格して完了証拠を生成したりしない。
+
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
+| U-BRAUTH-012 | PR入力provider | 同一repository／branch／HEADを照合し、取得中の変更とproviderによる入力改変を拒否する。CLI自動取得の証明には含めない | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-010 | merge-base一意性 | 実criss-cross履歴の2件のbaseを拒否し、単一baseは受理する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-011 | snapshot整合 | diff取得直後の実HEAD変更を拒否する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-001 | commit済みPLAN | clean treeでもcandidateのPLANを認識する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-002 | 作業差分 | staged／unstaged／untrackedを欠落・重複なく取得する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-003 | base identity | 存在しない明示baseを別baseで相殺しない | tests/branch-kind-authority-input.test.ts |
+| U-BRAUTH-004 | 適用対象 | 明示non-git consumerとGit取得障害を分離し、Git管理下の対象外偽装を拒否する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-005 | branch identity | 作業branchの偽装と未解決HEADを拒否し、明示detached snapshotは維持する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-006 | PLAN削除 | Gitの削除事実を取得障害と混同せずmissing_planへ渡す | tests/branch-kind-authority-input.test.ts |
+| U-BRAUTH-007 | supersession比較 | 同一base／candidateを使い、作業treeの本文変更をcommit済みmetadata-onlyへ混入させない | tests/branch-kind-authority-input.test.ts |
+| U-BRAUTH-008 | CLI／doctor接合 | 同一snapshotの判定一致、changed集合偽装、不揃い入力の拒否を検証する | tests/branch-kind-authority-input.test.ts |
+| U-BRAUTH-009 | CI入力供給 | workflow実体がeventに応じたbase／candidateを供給し、不正なPR baseを補完しない | tests/harness-check-workflow.test.ts |
 
 `U-BRAUTH-001`はcleanなcommit済みPLANの認識、`U-BRAUTH-002`は作業差分union、
 `U-BRAUTH-003`はbase exact束縛、`U-BRAUTH-004`は取得結果分類、`U-BRAUTH-005`はdetached／shallow、

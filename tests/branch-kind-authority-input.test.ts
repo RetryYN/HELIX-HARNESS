@@ -5,7 +5,12 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { analyzeBranchKind, loadBranchKindInput } from "../src/lint/branch-kind";
+import {
+  analyzeBranchKind,
+  branchSnapshotFromPrContext,
+  loadBranchKindInput,
+  readBranchSnapshotFromPrProvider,
+} from "../src/lint/branch-kind";
 
 // PLAN-RECOVERY-935-branch-authority-input
 const roots: string[] = [];
@@ -57,6 +62,88 @@ function fixture() {
 }
 
 describe("branch入力authorityの実Git検証", () => {
+  it("U-BRAUTH-012: PR応答はlocal repository／branch／HEADとの一致を必要とする", () => {
+    const { root, snapshot } = fixture();
+    const local = {
+      repository: "fixture/project",
+      head: snapshot.candidateHead,
+      branch: snapshot.branch,
+    };
+    const raw = {
+      state: "open",
+      base: { sha: snapshot.baseHead, repo: { full_name: local.repository } },
+      head: { sha: local.head, ref: local.branch, repo: { full_name: local.repository } },
+    };
+    expect(branchSnapshotFromPrContext(raw, local)).toEqual({
+      ...snapshot,
+      includeWorkingTree: true,
+    });
+    for (const invalid of [
+      null,
+      { ...raw, state: "closed" },
+      { ...raw, base: { ...raw.base, sha: "invalid" } },
+      { ...raw, head: { ...raw.head, sha: snapshot.baseHead } },
+      { ...raw, head: { ...raw.head, ref: "docs/spoof" } },
+      { ...raw, head: { ...raw.head, repo: { full_name: "other/project" } } },
+      { ...raw, base: { ...raw.base, repo: { full_name: "other/project" } } },
+    ])
+      expect(branchSnapshotFromPrContext(invalid, local)).toBeNull();
+    expect(branchSnapshotFromPrContext(raw, { ...local, branch: "HEAD" })).toBeNull();
+    expect(readBranchSnapshotFromPrProvider({ readLocal: () => local, readPr: () => raw })).toEqual(
+      { ...snapshot, includeWorkingTree: true },
+    );
+    // providerが受け取った引数を書き換えても、取得前identityを上書きできない。
+    expect(
+      readBranchSnapshotFromPrProvider({
+        readLocal: () => local,
+        readPr: (input) => {
+          input.head = snapshot.baseHead;
+          return { ...raw, head: { ...raw.head, sha: snapshot.baseHead } };
+        },
+      }),
+    ).toBeNull();
+    expect(local.head).toBe(snapshot.candidateHead);
+    for (const changed of [
+      { ...local, head: snapshot.baseHead },
+      { ...local, branch: "docs/other" },
+      { ...local, repository: "other/project" },
+    ]) {
+      let reads = 0;
+      expect(
+        readBranchSnapshotFromPrProvider({
+          readLocal: () => (++reads === 1 ? local : changed),
+          readPr: () => raw,
+        }),
+      ).toBeNull();
+    }
+    expect(
+      readBranchSnapshotFromPrProvider({
+        readLocal: () => local,
+        readPr: () => {
+          throw new Error("synthetic unavailable");
+        },
+      }),
+    ).toBeNull();
+    const readLocal = () => ({
+      repository: local.repository,
+      head: git(root, "rev-parse", "HEAD"),
+      branch: git(root, "rev-parse", "--abbrev-ref", "HEAD"),
+    });
+    const supplied = readBranchSnapshotFromPrProvider({ readLocal, readPr: () => raw });
+    expect(supplied).not.toBeNull();
+    if (supplied === null) throw new Error("valid PR fixture did not produce a snapshot");
+    expect(analyzeBranchKind(loadBranchKindInput(root, supplied)).ok).toBe(true);
+    expect(
+      readBranchSnapshotFromPrProvider({
+        readLocal,
+        readPr: () => {
+          git(root, "update-ref", `refs/heads/${snapshot.branch}`, snapshot.baseHead);
+          return raw;
+        },
+      }),
+    ).toBeNull();
+    expect(git(root, "rev-parse", "HEAD")).toBe(snapshot.baseHead);
+  });
   it("U-BRAUTH-011: Git読込中の実HEAD変更を拒否する", () => {
     const { root, snapshot } = fixture();
     expect(loadBranchKindInput(root, snapshot).authority?.status).toBe("available");

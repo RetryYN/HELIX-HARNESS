@@ -27,6 +27,16 @@ fixtureのGit操作結果をmockして正常に見せず、失敗注入が必要
 
 ## 受入境界
 
+### PR contextによるlocal入力供給（実装・検証は後続）
+
+同一repositoryのopen PRとlocal HEAD／branchが一致する実Git fixtureを正例とする。
+取得adapterの応答だけを注入し、実Gitのcommit実在性検証は置換しない。
+全snapshot引数未指定の場合のみproviderが呼ばれること、一部指定・不正な明示値では
+provider呼出しが0であることを確認する。閉じたPR、別repository、fork取り違え、
+wrong branch、未push HEAD、取得中HEAD変更、不正JSON、timeoutを個別に拒否する。
+providerなし／PRなしの失敗を正常化せず、明示snapshotの既存正例も維持する。
+実CLIの引数なし経路と明示経路を比較するまで、local doctor接合の完了を宣言しない。
+
 `U-BRAUTH-009`ではLinux workflowのshell本文を実行し、schedule／manualの空before、
 pushのzero／通常before、PRの空／zero base、不正な明示baseを両stepで照合する。
 最終CLI呼出しはbase観測用関数へ置換するため、このoracleだけでCLI admission成功は主張しない。
@@ -40,6 +50,7 @@ pushのzero／通常before、PRの空／zero base、不正な明示baseを両ste
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
+| U-BRAUTH-012 | PR入力provider | 注入したPR応答を実Git loaderへ渡す正例と、repository／branch／HEAD不一致、取得中の実ref変更、入力引数改変を検査する。ネットワーク取得とCLI自動配線は未検証 | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-010 | merge-base一意性 | 実criss-cross履歴の2件のbaseを拒否し、単一baseは受理する | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-011 | snapshot整合 | diff取得直後の実HEAD変更を拒否する | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-001 | commit済みPLAN | clean treeでもcandidateのPLANを認識する | `tests/branch-kind-authority-input.test.ts` |
