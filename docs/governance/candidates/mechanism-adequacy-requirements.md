@@ -17,6 +17,8 @@ pair_artifact: docs/governance/candidates/mechanism-adequacy-acceptance.md
 本書のMA識別子は候補内のtrace用であり、現行Requirement IRへ承認済みIDとして投影しない。
 「充足性評価」はepisodeの技術的評価であり、人間の承認やADRの半永続的判断とは区別する。
 
+上位目的との対応（[企画候補](mechanism-adequacy-vision.md)と同一集合）：MA-BR-01→MA-R-01/02/03、MA-BR-02→MA-R-04/05/07、MA-BR-03→MA-R-06、MA-BR-04→MA-R-07。これは候補内のtraceであり、L1の承認を代替しない。
+
 ## MA-R-01 実績と能力の照合
 
 qualified findingから要求・責務・不変条件・設計・実装revision・有効設定・呼出経路・Attempt・CI・review・運用結果をstable IDで接続する。
@@ -25,7 +27,7 @@ qualified findingから要求・責務・不変条件・設計・実装revision�
 
 ## MA-R-02 六分類と独立した軸
 
-評価結果は以下の六分類。これをcandidate scope、system change class、capability expansion、workflow routeと混ぜない。
+評価結果は以下の六分類。これを既存UIL-R-04のfinding_class、candidate scope、system change class、capability expansion、workflow routeと混ぜない。finding_classは観測された問題の種類、充足性評価は既存能力で満たせるかの評価であり、一対一変換を仮定しない。
 
 | 仮識別子 | 意味 |
 |---|---|

@@ -5,7 +5,6 @@ canonical_layer: L1
 canonical_pair: L12
 canonical_vmodel: L1-L12
 status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
 plan: PLAN-L3-89-mechanism-adequacy-authority
 related_issue: 1248
 pair_artifact: docs/governance/candidates/mechanism-adequacy-recognition.md
@@ -14,6 +13,7 @@ pair_artifact: docs/governance/candidates/mechanism-adequacy-recognition.md
 # 企画価値と適用範囲
 
 既存UILの目的を拡張する候補。機構を増やすことではなく、実績と反証から必要な変更を絞り、無用な設計・実装・手戻りを減らす。
+L1の価値・要求の選択は人間の領域であり、L3の承認をL1の確認として代用しない。本候補から承認済みとは導出しない。
 
 | 目的ID | 企画目的 | 要件への対応 |
 |---|---|---|
