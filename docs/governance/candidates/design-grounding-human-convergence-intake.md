@@ -15,7 +15,9 @@ Issue #1558。候補のみ、main未統合・新policy未承認・runtime未実�
 
 原文の実装済み主張を全体完成の証拠とは扱わず、4667d601の対象sourceを静的確認した。
 前提の分類・人間反応・軸状態は別軸。人間の原文はproject-owned evidenceへ、memoryや個人profileへ入れない。
-原文は以下に保全。元ファイル削除は一致検証とremote保存後に行い、失敗時は残務を明示する。
+原文の完全一致版はremote commit e4f3a7fefの本台帳へ保全済み。以下は末尾空白だけ正規化した表示。
+原稿3件の削除は通常apply_patchで再試行したがforeign-edit guardが拒否した。
+root原稿は残存し削除未完了。追加承認待ちではなく、明示削除依頼とguardの接合問題として追跡する。
 
 ## 原文（historical input-only、採用authorityではない）
 
@@ -24,14 +26,14 @@ Issue #1558。候補のみ、main未統合・新policy未承認・runtime未実�
 
 ## 0. 目的
 
-現行 HELIX Design Harness を作り直してはならない。  
+現行 HELIX Design Harness を作り直してはならない。
 既に存在する **Screen Applicability / Prototype・Walkthrough / Design Registry / UI Domain Pattern / Evidence Binding** を正本として再利用し、現在弱い次の3領域だけを強化する。
 
 1. **Design Grounding** — 良い設計判断をするための前提・外部知識を揃える
 2. **Human Reaction Semantics** — 人間の「違う・使いにくい・ダサい・分かりにくい」を意味分類する
 3. **Design Convergence** — 人間との反復で何が受容・拒否・未解決かを保持し、収束を判定する
 
-最終目的は「AIに良いデザインを一発生成させる」ことではない。  
+最終目的は「AIに良いデザインを一発生成させる」ことではない。
 **外界の良い実例を観測し、人間の趣向・意味判断を必要な箇所だけ取り込み、客観品質と主観品質を分離したままデザインを効率良く収束させること**である。
 
 ---
@@ -85,14 +87,14 @@ PrototypeまたはDesign candidate生成前に、その判断に必要な前提�
 ### DG-R-03 Research Adequacy
 「Web検索した」「N件集めた」を完了条件にしてはならない。
 
-調査結果が最低限、  
-`論点 → Evidence → 設計への含意 → 採用/非採用理由 → 未解決点`  
+調査結果が最低限、
+`論点 → Evidence → 設計への含意 → 採用/非採用理由 → 未解決点`
 へ接続されて初めてDesign Ready候補とする。
 
 不足時は `RESEARCH_REQUIRED` / `POC_REQUIRED` / `HUMAN_CONTEXT_REQUIRED` 等へ戻し、モデルの事前知識だけで穴埋めしてはならない。
 
 ### DG-R-04 General Premise Alignmentとの共通化
-今後HELIX全体に Premise Adequacy が入る場合、Design専用ロジックをforkしない。  
+今後HELIX全体に Premise Adequacy が入る場合、Design専用ロジックをforkしない。
 Design Groundingは共通Premise契約のprojection/adaptorとして接続可能な形にする。
 
 ---
@@ -146,8 +148,8 @@ Prototype revisionごとに、比較対象となる設計軸を `ACCEPTED / REJE
 一度受容された設計軸を、別要求・新Evidenceなしに後続revisionで破壊した場合はDesign Regressionとして検出する。
 
 ### DC-R-03 Finding Lineage
-Findingについて  
-`発生 → 仮説 → 修正 → 次revision → 解消/再発/別原因`  
+Findingについて
+`発生 → 仮説 → 修正 → 次revision → 解消/再発/別原因`
 を追跡できること。
 
 同一Findingの再発と、新しいFindingを区別する。
@@ -211,7 +213,7 @@ Design Harnessは上位の要求形成と分離しない。
 → Design Registry / Implementation
 ```
 
-要件確定前でも、**調査・比較・PoC・Prototypeの限定作業は許可**する。  
+要件確定前でも、**調査・比較・PoC・Prototypeの限定作業は許可**する。
 ただし候補状態の意味を本実装authorityへ昇格させてはならない。
 
 ---
