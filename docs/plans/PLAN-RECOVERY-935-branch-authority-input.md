@@ -4,7 +4,7 @@ title: "branch判定のbase／candidate入力と取得不能の扱いを復旧�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-05
 updated: 2026-09-05
@@ -87,8 +87,23 @@ branch prefix、PLAN kindの許容集合、Issue警告の意味は変更しな�
 ## 3. 再開ポイント
 
 L6入力adapter設計へ戻り、対応するL7反例を確定してから実装する。
-共通loader・CLI・doctor・CIの修復候補と実Git反例を実装中である。
-承認・独立review・実装完了を記録しない。
+共通loader・CLI・doctor・CIの修復契約と実Git反例を技術的に確定する。
+要件正本§4.7のHIL-BR-26／HIL-NFR-30と§6の既存契約内修復に従う可逆Authoringであり、
+新規L3意味変更または人間承認の記録ではない。独立review・実装完了は未成立として保持する。
+
+### 作成側の局所検証
+
+検証対象HEADは`1aa5651d3719ac20c08e9d9a5c9ebbad9dd617ef`。
+以下は作成側の実測であり、独立review receiptではない。
+
+- `npm run test:repo-guards`: exit 0、37 files／534 tests（2026-09-05 16:34:54 JST開始）。
+- `npm exec -- vitest run tests/branch-kind-authority-input.test.ts tests/branch-kind.test.ts tests/harness-check-workflow.test.ts`:
+  exit 0、3 files／108 tests（2026-09-05 16:56:19 JST開始）。
+- `npm exec -- vitest run tests/cli-surface.test.ts`: exit 0、1 file／95 tests、318.82秒
+  （2026-09-05 17:19:21 JST開始）。
+
+本PLAN状態変更後のlint／snapshot照合、current HEADの全CI・独立review・main read-afterは別途必要であり、
+`completion_claim_allowed: false`を維持する。
 
 ### 接続検収の残件
 
