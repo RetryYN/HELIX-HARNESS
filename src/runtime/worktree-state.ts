@@ -109,7 +109,20 @@ export function resolveWorkGuardTargetState(opts: {
 }): { repoRoot: string; targetPath: string; uncommittedFiles: string[]; touchedFiles: string[] } {
   if (opts.target.includes("\0")) throw new Error("Invalid target path");
   const executionCwd = realpathSync(opts.executionCwd);
-  // resolveより前に成分を順に検査する。symlink/..を字句的に畳むと別対象を検査してしまう。
+  const lexicalTarget = resolve(executionCwd, opts.target);
+  let ancestor = dirname(lexicalTarget);
+  while (!existsSync(ancestor)) {
+    const parent = dirname(ancestor);
+    if (parent === ancestor) throw new Error("Unknown target ancestor");
+    ancestor = parent;
+  }
+  const gitPath = (cwd: string, args: string[]) => gitOutput(cwd, args).replace(/\r?\n$/, "");
+  const root = realpathSync(gitPath(ancestor, ["rev-parse", "--show-toplevel"]));
+  const within = (base: string, path: string) => {
+    const suffix = relative(base, path);
+    return suffix !== ".." && !suffix.startsWith(`..${sep}`) && !isAbsolute(suffix);
+  };
+  // 生の成分列は維持する。root外の別名だけ物理identityへ解決し、root内のsymlinkは拒否する。
   const targetRoot = isAbsolute(opts.target) ? parse(opts.target).root : "";
   let rawComponent = targetRoot || executionCwd;
   const parts = opts.target.slice(targetRoot.length).split(sep === "\\" ? /[\\/]/ : /\//);
@@ -117,20 +130,18 @@ export function resolveWorkGuardTargetState(opts: {
     if (!part || part === ".") continue;
     rawComponent = join(rawComponent, part);
     try {
-      if (lstatSync(rawComponent).isSymbolicLink()) throw new Error("Ambiguous target symlink");
+      if (lstatSync(rawComponent).isSymbolicLink()) {
+        const physicalParent = realpathSync(dirname(rawComponent));
+        const physicalTarget = realpathSync(rawComponent);
+        if (within(root, physicalParent) || !within(physicalTarget, root)) {
+          throw new Error("Ambiguous target symlink");
+        }
+      }
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
     }
   }
-  const target = resolve(executionCwd, opts.target);
-  let ancestor = dirname(target);
-  while (!existsSync(ancestor)) {
-    const parent = dirname(ancestor);
-    if (parent === ancestor) throw new Error("Unknown target ancestor");
-    ancestor = parent;
-  }
-  const gitPath = (cwd: string, args: string[]) => gitOutput(cwd, args).replace(/\r?\n$/, "");
-  const root = gitPath(ancestor, ["rev-parse", "--show-toplevel"]);
+  const target = resolve(realpathSync(ancestor), relative(ancestor, lexicalTarget));
   const commonArgs = ["rev-parse", "--path-format=absolute", "--git-common-dir"];
   if (!samePhysicalDirectory(gitPath(opts.repoRoot, commonArgs), gitPath(root, commonArgs))) {
     throw new Error("Target repository differs from governed repository");

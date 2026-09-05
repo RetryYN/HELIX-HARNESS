@@ -38,7 +38,7 @@ updated: 2026-08-01
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| U-WORKPATH-006 | `resolveWorkGuardTargetState` | 対象の字句正規化前にsymlink成分を検査し、symlink後の親参照を別のclean fileへ丸めて許可しない。通常の親参照は許可する。 | `tests/work-guard.test.ts` |
+| U-WORKPATH-006 | `resolveWorkGuardTargetState` | 生のpath成分を検査し、worktree内symlink後の親参照を別のclean fileへ丸めて許可しない。通常の親参照とroot外のsymlink経由で同じ物理worktreeを指すclean fileは許可する。repoRootもaliasの場合を検査し、alias経由でもforeign変更とworktree内symlink経路は拒否する。 | `tests/work-guard.test.ts` |
 | U-WORKPATH-001 | `gitUncommittedFiles` / `runWorkGuardHook` | 実GitでUnicode・空白・未追跡子fileをexact列挙し、POSIXでは末尾空白・改行・矢印・backslashも保持する。各foreign pathはhookで拒否する。 | `tests/work-guard.test.ts` |
 | U-WORKPATH-002 | `normalizeRepoRelative` / `evaluateWorkGuard` | 末尾空白、POSIX backslash、root部分一致で異なるpathを同一化せず、別対象のtouchによる所有権流用を拒否する。 | `tests/work-guard.test.ts` |
 | U-WORKPATH-003 | `gitUncommittedFiles` | 実Git renameの移動元・移動先と削除pathを保護集合に保持する。 | `tests/work-guard.test.ts` |

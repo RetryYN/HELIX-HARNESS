@@ -234,6 +234,7 @@ describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
 
   it("U-WORKPATH-006: symlink後の親参照を別のclean fileへ丸めない", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-workpath-parent-"));
+    const rootAlias = `${cwd}-root-alias`;
     try {
       execFileSync("git", ["init", "-b", "main"], { cwd, stdio: "ignore" });
       writeFileSync(join(cwd, "victim.txt"), "clean\n");
@@ -267,7 +268,23 @@ describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
       expect(run("victim.txt").exitCode).toBe(0);
       expect(run("nested/../victim.txt").exitCode).toBe(0);
       expect(run("alias/../victim.txt").exitCode).toBe(2);
+      symlinkSync(cwd, rootAlias, process.platform === "win32" ? "junction" : "dir");
+      expect(run(join(rootAlias, "victim.txt")).exitCode).toBe(0);
+      expect(
+        runWorkGuardCore({
+          repoRoot: rootAlias,
+          rawInput: JSON.stringify({
+            session_id: "s-parent",
+            tool_input: { file_path: join(rootAlias, "victim.txt") },
+          }),
+          env: {},
+        }).exitCode,
+      ).toBe(0);
+      expect(run(`${rootAlias}/alias/../victim.txt`).exitCode).toBe(2);
+      writeFileSync(join(cwd, "victim.txt"), "foreign edit\n");
+      expect(run(join(rootAlias, "victim.txt")).exitCode).toBe(2);
     } finally {
+      rmSync(rootAlias, { recursive: true, force: true });
       rmSync(cwd, { recursive: true, force: true });
     }
   });

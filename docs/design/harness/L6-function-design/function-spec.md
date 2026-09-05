@@ -1076,3 +1076,12 @@ immutable snapshotを返す。cacheはmicrotask境界で自動破棄し、次com
 | 関数 | pre | post | invariant | oracle |
 |---|---|---|---|---|
 | `computeOutstandingWork` | repo root | 同期run内共有snapshot | microtask後再計算、repo root別、I/O fail-open維持 | U-OUTSNAP-001 |
+
+### 編集対象root aliasの境界（PLAN-RECOVERY-1566）
+
+`resolveWorkGuardTargetState`は存在する祖先からGit toplevelを得て物理rootを確定し、
+元のpath成分列も検査する。root外のsymlinkが同じ物理rootまたはその祖先を指す場合は
+環境上の別名として解決する。一方、root内のsymlinkや別rootへ向かうaliasは拒否する。
+これにより正常な絶対pathの編集を維持し、`alias/../victim.txt`を字句的に丸めた
+別対象のclean状態で許可しない。dirty/touch判定は解決後の物理worktreeと相対pathへ束縛する。
+U-WORKPATH-006で正常root aliasと危険な内部経路・foreign変更の両側を検証する。

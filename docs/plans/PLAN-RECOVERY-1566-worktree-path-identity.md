@@ -96,3 +96,14 @@ CIのrepo-wide検査でCLIのdigest inventory行番号とfeedback dispositionの
 検出集合・分類・検証条件を維持して現在コードへ再束縛し、
 `npm run test:repo-guards`は37ファイル539件成功、exit 0（2026-09-06 03:39 JST開始、118.25秒）。
 独立レビューとGitHub CIの最終成功は、この局所成功とは別に必要である。
+
+### 独立検収後のroot alias是正
+
+PR #1566 comment 5554260028のC-1 / I-2に対応する。
+root外のsymlinkまで拒否していたため、正常なroot aliasの反例は修正前に期待0／実際2でRED。
+物理rootの確定と生の成分列検査を分離し、正常aliasを許可、内部symlinkとforeign変更を拒否する。
+2026-09-06 04:36 JSTの関連2ファイル42テスト、型検査は成功。
+追加したalias経由の内部経路・foreign変更反例も04:37 JSTに成功し、Biomeとdiff checkも成功した。
+これはLinux局所検証であり、Windows/macOS実機・新HEAD CI・独立再検収は未完了。
+I-1の型付き失敗理由とI-3の旧集約関数・hosted検査の接合は#1543の残余として追跡し、
+このC-1修正だけでGuard全体を完了扱いにしない。
