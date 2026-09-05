@@ -30,6 +30,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1562-durable-loop-completion.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/orchestration/durable-loop-epoch.ts, artifact_type: source_module }
   - { artifact_path: tests/durable-loop-process.test.ts, artifact_type: test_code }
