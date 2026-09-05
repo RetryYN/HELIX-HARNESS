@@ -59,6 +59,8 @@ dependencies:
     - docs/test-design/helix/universal-improvement-loop-acceptance.md
   blocks: []
 generates:
+  - { artifact_path: docs/governance/candidates/mechanism-adequacy-vision.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/mechanism-adequacy-recognition.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L3-89-mechanism-adequacy-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/mechanism-adequacy-requests.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/mechanism-adequacy-requirements.md, artifact_type: markdown_doc }

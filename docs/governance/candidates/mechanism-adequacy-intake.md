@@ -7,6 +7,10 @@
 原稿：`HELIX_MECHANISM_ADEQUACY_REQUEST_v0.1.md`。原文は[要求候補](mechanism-adequacy-requests.md)へ保持する。
 本台帳は追跡用であり、要求・承認・完了の第二正本にはしない。
 
+L1の[企画候補](mechanism-adequacy-vision.md)はMA-BR-01..04を定義し、L12の
+[運用検証候補](mechanism-adequacy-recognition.md)のMA-OP-01..04へ対応する。
+BR→R→ACとBR→OPを分離し、L10の機能試験だけでL12の運用効果を代用しない。
+
 ## 原稿の移管対応
 
 | 原稿 | 分解先 | 受入 |

@@ -41,5 +41,5 @@ pair_artifact: docs/governance/candidates/mechanism-adequacy-requirements.md
 
 ## L12効果観測の受渡し
 
-MA-R-07の指標とMA-AC-21の追跡をL1目的の運用検証へ接続する。観測window、baseline、適用条件、欠測理由を後続PLANで確定する。
+MA-R-07の指標とMA-AC-21の追跡を[運用検証候補](mechanism-adequacy-recognition.md)のMA-OP-01..04へ接続する。観測window、baseline、適用条件、欠測理由を後続PLANで確定する。
 本候補にL12実測や承認が存在するとは扱わない。
