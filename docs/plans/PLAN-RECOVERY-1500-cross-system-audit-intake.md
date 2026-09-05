@@ -88,7 +88,7 @@ review_evidence:
     reviewed_at: "2026-09-05T00:10:08Z"
     tests_green_at: "2026-09-05T00:09:37Z"
     worker_model: codex
-    reviewer_model: claude-opus-5
+    reviewer_model: claude:claude-opus-5
     reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
     reviewed_head_sha: bd1a426802663478468e60857d0a9e0f816db97b
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1537#issuecomment-5547919852"
