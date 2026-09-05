@@ -148,6 +148,10 @@ describe("branch入力authorityの実Git検証", () => {
     expect(explicit.status, explicit.stderr).toBe(0);
     expect(JSON.parse(explicit.stdout).ok).toBe(true);
     expect(readFileSync(capture, "utf8")).toBe("provider-not-called");
+    const toolchain = invoke(JSON.stringify([raw]), ["--scope", "toolchain"], ["doctor"]);
+    expect(toolchain.error).toBeUndefined();
+    expect(JSON.parse(toolchain.stdout).messages).toBeInstanceOf(Array);
+    expect(readFileSync(capture, "utf8")).toBe("provider-not-called");
     for (const command of [["doctor"], ["review", "--uncommitted"], ["review", "--staged"]]) {
       const checked = invoke(JSON.stringify([raw]), [], command);
       expect(checked.error).toBeUndefined();

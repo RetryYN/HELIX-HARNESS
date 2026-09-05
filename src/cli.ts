@@ -1054,18 +1054,19 @@ function doctorDepsForBranchSnapshot(
 ) {
   return {
     ...nodeDoctorDeps(process.cwd()),
-    branchSnapshot:
-      opts.baseHead !== undefined ||
-      opts.candidateHead !== undefined ||
-      opts.branch !== undefined ||
-      opts.includeWorkingTree === true
+    get branchSnapshot() {
+      return opts.baseHead !== undefined ||
+        opts.candidateHead !== undefined ||
+        opts.branch !== undefined ||
+        opts.includeWorkingTree === true
         ? {
             baseHead: opts.baseHead ?? "",
             candidateHead: opts.candidateHead ?? "",
             branch: opts.branch ?? "",
             includeWorkingTree: forceWorkingTree || opts.includeWorkingTree,
           }
-        : (localBranchPrSnapshot(process.cwd()) ?? undefined),
+        : (localBranchPrSnapshot(process.cwd()) ?? undefined);
+    },
   };
 }
 
