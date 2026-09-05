@@ -75,7 +75,8 @@ describe("PLAN-L7-449 doctor failure contract (IT-DUR-001)", () => {
     }
   });
 
-  it("U-DUR-003: reviewer session model history の未知例外は cause-digest だけを surface し raw message を露出しない", () => {
+  // PLAN-RECOVERY-1543-reviewer-session-model-history — U-RVIDENT-018
+  it("U-RVIDENT-018: reviewer session model history の未知例外は cause-digest だけを surface し raw message を露出しない", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-doctor-history-root-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });

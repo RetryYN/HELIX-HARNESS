@@ -52,6 +52,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-015, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-016, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-017, test_path: tests/review-evidence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-018, test_path: tests/doctor-cause-digest-contract.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-GWIDADM-022, test_path: tests/github-workflow-identity-admission.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
@@ -76,6 +77,7 @@ modifies:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: src/schema/model-registry.ts, artifact_type: source_module }
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/doctor-cause-digest-contract.test.ts, artifact_type: test_code }
   - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
   - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
   - { artifact_path: tests/github-workflow-identity-admission.test.ts, artifact_type: test_code }
