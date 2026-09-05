@@ -1185,6 +1185,8 @@ items:
     status: done
     artifact:
       - docs/skills/review-checklist.yaml
+      - docs/design/helix/L6-function-design/review-checklist-validation.md
+      - docs/test-design/helix/L8-review-checklist-validation.md
   - id: product-vision-inception-deck
     name: プロダクトビジョン・インセプションデッキ
     category: sprint
