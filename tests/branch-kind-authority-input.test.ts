@@ -211,6 +211,28 @@ describe("branch入力authorityの実Git検証", () => {
     ]);
   });
 
+  it("U-BRAUTH-003: 実criss-cross履歴の複数merge-baseから一つを勝手に選ばない", () => {
+    const { root, snapshot } = fixture();
+    const tree = git(root, "rev-parse", "HEAD^{tree}");
+    const commit = (parents: string[], message: string) =>
+      git(root, "commit-tree", tree, ...parents.flatMap((parent) => ["-p", parent]), "-m", message);
+    const a = commit([snapshot.candidateHead], "test: sibling a");
+    const b = commit([snapshot.candidateHead], "test: sibling b");
+    const baseHead = commit([a, b], "test: left merge");
+    const candidateHead = commit([b, a], "test: right merge");
+    git(root, "update-ref", `refs/heads/${snapshot.branch}`, candidateHead);
+    expect(git(root, "merge-base", "--all", baseHead, candidateHead).split("\n").sort()).toEqual(
+      [a, b].sort(),
+    );
+    // 正例も同じfixtureで検査し、常時拒否では反例を満たせないようにする。
+    expect(
+      loadBranchKindInput(root, { ...snapshot, baseHead: a, candidateHead }).authority?.status,
+    ).toBe("available");
+    const input = loadBranchKindInput(root, { ...snapshot, baseHead, candidateHead });
+    expect(input.authority?.status).toBe("unavailable");
+    expect(analyzeBranchKind(input).ok).toBe(false);
+  });
+
   it("U-BRAUTH-006: 作業treeで削除されたPLANを取得障害と混同せずPLAN必須判定へ渡す", () => {
     const { root, path, snapshot } = fixture();
     rmSync(join(root, path));

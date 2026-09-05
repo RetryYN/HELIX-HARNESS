@@ -42,7 +42,7 @@ pushのzero／通常before、PRの空／zero base、不正な明示baseを両ste
 | --- | --- | --- | --- |
 | U-BRAUTH-001 | commit済みPLAN | clean treeでもcandidateのPLANを認識する | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-002 | 作業差分 | staged／unstaged／untrackedを欠落・重複なく取得する | `tests/branch-kind-authority-input.test.ts` |
-| U-BRAUTH-003 | base identity | 存在しない明示baseを別baseで相殺しない | `tests/branch-kind-authority-input.test.ts` |
+| U-BRAUTH-003 | base identity | 存在しない明示baseを別baseで相殺しない。実criss-cross履歴の2件のmerge-baseを拒否し、同じfixtureの単一merge-baseは受理する | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-004 | 適用対象 | 非Git consumerの明示対象外を表示し、Git repositoryと不存在pathの対象外偽装を拒否する | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-005 | branch identity | 作業branch偽装と未解決HEADを拒否し明示detached候補を維持する | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-006 | PLAN削除 | Gitの削除事実を取得障害と混同せずmissing_planへ渡す | `tests/branch-kind-authority-input.test.ts` |
