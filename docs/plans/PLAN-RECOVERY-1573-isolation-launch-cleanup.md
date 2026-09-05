@@ -38,6 +38,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1573-isolation-launch-cleanup.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md, artifact_type: design_doc }
@@ -113,3 +114,9 @@ fixtureが元broker、検査対象が複製brokerとなりsealed identityが分�
 同helper内でfixtureも複製し、broker参照先を揃えると06:15:39 JSTに対照試験がGREEN。
 消費解除とbackend/runtime各FD回収の削除を別々に検出する反例を追加する。
 先行のmutation成功件数は、この対照確認なしに退行検出力の証明とは扱わない。
+
+## CI監査digest追従
+
+run33993155736のauthority gate失敗はL4 worker-lifecycle-receiptのcontent digest未追従1件。
+base d3eff363との全文差分はbrokerのsource_digest参照のみで、検出signal 3件も完全一致した。
+Nodeだけが永続化する本文を再照合し、reviewed digestのみ追従する。件数期待値は変更しない。
