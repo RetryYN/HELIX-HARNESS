@@ -104,6 +104,8 @@ review_evidence: []
 
 局所検証（2026-09-06）: `helix plan lint`と`git diff --check`がexit 0。Nodeによる文書照合では、L3の25要件すべてをL10の27 ACが参照し、未定義要件参照0、L1の9要求すべてにL3導出対応とL12認識条件が存在することを確認した。これは文書の参照検証であり、実runtimeの競合試験、cloud実行、独立reviewの成功証拠ではない。
 
-本PLAN固有のL3 human gateは成立済みである。candidateは独立技術reviewとcanonical freezeまで隔離を維持する。
+2026-09-04のL3 human gateは当時の22要件／24 oracle版を対象とする履歴として保持する。
+補完後の25要件／27 oracle版への承認拡張とは扱わず、canonical promotion PRでは追加・変更差分のhuman gateを必要とする。
+candidateは独立技術reviewとcanonical freezeまで隔離を維持する。
 独立exact-HEAD review、CI、doctor、DB convergenceが成立した後に限り、
 v0.3 current authorityを置換する別の原子的promotion PRへ進む。
