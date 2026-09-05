@@ -135,6 +135,19 @@ describe("branch入力authorityの実Git検証", () => {
     const forged = invoke(JSON.stringify([raw]), ["--changed", "src/forged.ts"]);
     expect(forged.status, forged.stderr).toBe(1);
     expect(JSON.parse(forged.stdout).findings[0].message).toBe("changed_paths_snapshot_mismatch");
+    writeFileSync(capture, "provider-not-called");
+    const explicit = invoke("invalid-json", [
+      "--base-head",
+      snapshot.baseHead,
+      "--candidate-head",
+      snapshot.candidateHead,
+      "--branch",
+      snapshot.branch,
+      "--include-working-tree",
+    ]);
+    expect(explicit.status, explicit.stderr).toBe(0);
+    expect(JSON.parse(explicit.stdout).ok).toBe(true);
+    expect(readFileSync(capture, "utf8")).toBe("provider-not-called");
     for (const command of [["doctor"], ["review", "--uncommitted"], ["review", "--staged"]]) {
       const checked = invoke(JSON.stringify([raw]), [], command);
       expect(checked.error).toBeUndefined();
