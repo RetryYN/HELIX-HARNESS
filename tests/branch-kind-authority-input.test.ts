@@ -17,6 +17,7 @@ import {
   analyzeBranchKind,
   branchKindMessages,
   branchSnapshotFromPrContext,
+  inspectBranchSnapshotFromPrProvider,
   loadBranchKindInput,
   readBranchSnapshotFromPrProvider,
 } from "../src/lint/branch-kind";
@@ -221,6 +222,26 @@ describe("branch入力authorityの実Git検証", () => {
       }),
     ).toBeNull();
     expect(local.head).toBe(snapshot.candidateHead);
+    expect(
+      inspectBranchSnapshotFromPrProvider({ readLocal: () => local, readPr: () => raw }),
+    ).toEqual({ status: "available", snapshot: { ...snapshot, includeWorkingTree: true } });
+    expect(
+      inspectBranchSnapshotFromPrProvider({
+        readLocal: () => ({ ...local, branch: "HEAD" }),
+        readPr: () => raw,
+      }),
+    ).toEqual({ status: "unavailable", reason: "pr_local_identity_invalid" });
+    expect(
+      inspectBranchSnapshotFromPrProvider({ readLocal: () => local, readPr: () => null }),
+    ).toEqual({ status: "unavailable", reason: "pr_context_invalid" });
+    expect(
+      inspectBranchSnapshotFromPrProvider({
+        readLocal: () => local,
+        readPr: () => {
+          throw new Error("synthetic private detail");
+        },
+      }),
+    ).toEqual({ status: "unavailable", reason: "pr_provider_unavailable" });
     for (const changed of [
       { ...local, head: snapshot.baseHead },
       { ...local, branch: "docs/other" },
@@ -233,6 +254,13 @@ describe("branch入力authorityの実Git検証", () => {
           readPr: () => raw,
         }),
       ).toBeNull();
+      reads = 0;
+      expect(
+        inspectBranchSnapshotFromPrProvider({
+          readLocal: () => (++reads === 1 ? local : changed),
+          readPr: () => raw,
+        }),
+      ).toEqual({ status: "unavailable", reason: "pr_local_identity_changed" });
     }
     expect(
       readBranchSnapshotFromPrProvider({

@@ -94,13 +94,25 @@ export function branchSnapshotFromPrContext(
   };
 }
 
-export function readBranchSnapshotFromPrProvider(deps: {
+export type BranchPrProviderResult =
+  | { status: "available"; snapshot: BranchKindSnapshot }
+  | {
+      status: "unavailable";
+      reason:
+        | "pr_local_identity_invalid"
+        | "pr_context_invalid"
+        | "pr_local_identity_changed"
+        | "pr_provider_unavailable";
+    };
+
+export function inspectBranchSnapshotFromPrProvider(deps: {
   readLocal(): { repository: string; head: string; branch: string };
   readPr(local: { repository: string; head: string; branch: string }): unknown;
-}): BranchKindSnapshot | null {
+}): BranchPrProviderResult {
   try {
     const before = { ...deps.readLocal() };
-    if (!validLocalPrIdentity(before)) return null;
+    if (!validLocalPrIdentity(before))
+      return { status: "unavailable", reason: "pr_local_identity_invalid" };
     const snapshot = branchSnapshotFromPrContext(deps.readPr({ ...before }), before);
     const after = deps.readLocal();
     if (
@@ -108,11 +120,20 @@ export function readBranchSnapshotFromPrProvider(deps: {
       before.head !== after.head ||
       before.branch !== after.branch
     )
-      return null;
-    return snapshot;
+      return { status: "unavailable", reason: "pr_local_identity_changed" };
+    return snapshot
+      ? { status: "available", snapshot }
+      : { status: "unavailable", reason: "pr_context_invalid" };
   } catch {
-    return null;
+    return { status: "unavailable", reason: "pr_provider_unavailable" };
   }
+}
+
+export function readBranchSnapshotFromPrProvider(
+  deps: Parameters<typeof inspectBranchSnapshotFromPrProvider>[0],
+): BranchKindSnapshot | null {
+  const result = inspectBranchSnapshotFromPrProvider(deps);
+  return result.status === "available" ? result.snapshot : null;
 }
 
 export interface BranchKindFinding {
