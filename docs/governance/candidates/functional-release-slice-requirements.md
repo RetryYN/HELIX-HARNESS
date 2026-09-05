@@ -1,6 +1,6 @@
 ---
 document_id: HELIX-FUNCTIONAL-RELEASE-SLICE-L3-CANDIDATE
-version: 0.1.0
+version: 0.2.0
 status: draft_candidate
 canonical_vmodel: L1-L12
 canonical_layer: L3
@@ -9,7 +9,7 @@ title: "Functional Release Slice composition要件候補"
 layer: L3
 kind: add-design
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-05
 owner: Codex / TL
 plan: PLAN-L3-83-functional-release-slice-composition
 github_issue_id: 1494
@@ -30,7 +30,8 @@ refines:
 
 ## §0 承認境界と用語
 
-本書は未承認のL3 candidateである。plan固有承認、L10受入の対形成、#397 Requirement IR admissionを完了するまで、
+本書v0.2の再編差分は2026-09-05の差戻しに対応する未承認candidateである。v0.1の既存承認は維持するが追加差分へ転用しない。
+差分の承認、L10受入の対形成、#397 Requirement IR admissionを完了するまで、
 本書の意味をconfirmed requirements、runtime、schema、DB、CLI、generated catalog、DevOSへ直接投影してはならない。
 
 既存のRLS正本が定めるModuleは責務所有、Bundleは利用目的別compositionを担う。本候補が追加するSliceは、その間に置く
@@ -93,9 +94,9 @@ Bundleは`included_slices`と`excluded_slices`をexact setで保持する。excl
 ### FRS-R-07 横断機能のSlice化
 
 `Requirement Authority`、`Effective Agent Startup`、`Human Authority`、`Claim／Evidence Substance`、`Agentic Audit`、
-`Three-Lane policy`、`Quality`、`Trust`、`Operations`、`Learning`、`Assurance`、`Synthesis`等は、既存Module境界を直ちに
-増やす理由にしない。まずSliceとして
-shadowで測定し、複数cycleの責務所有、dependency、consumer、rollback、利用実績を確認してからModule候補へ提案する。
+`Three-Lane policy`、`Quality`、`Trust`、`Operations`、`Learning`、`Assurance`、`Synthesis`等は、要求・責務・依存・利用実績に
+基づいて維持・分割・統合・移管を比較する。既存境界の維持も追加も前提にしない。変更理由、旧新identity対応、所有、
+consumer、互換性、rollback、必要証拠を候補へ束縛し、承認と検収前はshadowに留める。
 
 ## FRS-FR-003 適格性確認・昇格・復旧
 
@@ -119,8 +120,9 @@ Bundleのdefaultから除外し、互換期間とreplacementを明示する。
 
 ### FRS-R-11 Implicit promotion禁止
 
-Slice、Module、Bundleのいずれかが更新されても、他のidentity、channel、version、artifactを暗黙に書き換えない。previewの
-新Sliceをstable Bundleへ取り込む場合は、Bundle側に対象Slice exact setとprofile evidenceが存在しなければならない。
+Slice、Module、Bundleのいずれかが更新されても、他のidentity、channel、version、artifactを暗黙に書き換えない。
+preview／rcの新Sliceをstable Bundleへ取り込んではならない。対象Slice自身がstableの検収を満たした後、
+Bundle側にも対象Slice exact setと組合せのprofile evidenceを揃えて昇格する。Bundle側の証拠だけでSliceの未成熟を相殺しない。
 
 ## FRS-FR-004 変更影響とCI導出
 
@@ -164,7 +166,8 @@ Slice registry、Module／Bundle registry、artifact manifest、GitHub、harness
 
 ## §1 既存RLSへの原子的差分
 
-既存RLSの意味を置き換えず、承認後に次の責務だけへ反映する。
+既存RLSの仕組みを再利用し、承認された新要求から旧構成をversion-upする。旧構成は移行元inventoryであり意味正本を二重化しない。
+承認後に次の責務へ原子的に反映する。
 
 | 既存RLS | Slice候補の差分 |
 |---|---|
@@ -176,9 +179,46 @@ Slice registry、Module／Bundle registry、artifact manifest、GitHub、harness
 | RLS-12 | Slice channel、replacement、retirement、GitHub／DB／consumerのread-after |
 | RLS-13 | OPSをRLSへ混載せず、lifecycle E2EでSlice revisionを束縛 |
 
+## FRS-FR-006 全要求の再編と開発加速
+
+### FRS-R-19 要求全件の対応表
+
+対象範囲を承認済みsource revisionへ固定し、全要求IDを実装artifact、runtime接続、検証ID／receipt、primary Module、Slice、Bundleへ
+対応付ける。未実装・未接続・未検証・未所属は明示状態として保持し、対象から削って整合を偽装しない。二重所有、欠落、stale revisionは
+昇格を拒否する。複数Bundleへの収載はprimary ownershipの重複ではない。
+
+### FRS-R-20 構成とWaveの再導出
+
+Moduleは責務所有、Sliceは利用・検証・更新／rollback可能な昇格単位、Bundleは利用目的別構成、Waveは依存・検収に基づく順序とする。
+9群・17系統や旧Module／Bundle数を固定enumにしない。維持・分割・統合・移管ごとに旧新identity、要求revision、owner、互換性、
+退役条件を記録する。循環・未解決依存を隠して順序を生成せず、既存RLS builder・registryを再利用する。
+
+### FRS-R-21 CIの内部先行投入
+
+既存HELIXのCI高速化はModule連動CIや正式配布の完成を前提にしない。必要な検証義務、独立レビュー、安全境界を維持し、
+比較対象HEAD、環境、対象義務、実行世代、待ち時間、実行時間、rerun数を実測する。単一局所テストの短縮を全CIの改善と数えない。
+
+### FRS-R-22 Cursorの限定先行投入
+
+#1293の委譲契約へ接続し、専用branch、action-bound assignment、single-writer排他、隔離、予算上限、TTL、成果HEAD・diffの回収、ローカル検収、
+Claude独立レビューを束縛する。#819または自律開発全体の完成を一律依存にしない。未回収成果、期限切れ、予算逸脱、
+wrong HEADは受理しない。provider認証・課金・公開承認をRelease候補から推定しない。
+Phase AはHELIX事前発行branchとdispatch前後のowner／HEAD read-afterで排他を確認し、#860のlease自動化を一律前提にしない。
+Phase Bは#860のlease／fenceへ接続する。Phase Aでも二重writerや所有不明を許可せず、安全確認不能ならdispatchを拒否する。
+
+### FRS-R-23 Sliceごとの安全依存閉包
+
+各Sliceの操作・対象・影響から必要な認可、隔離、排他、証跡、復旧条件を閉包として明示する。共通基盤全体の完成を一律条件に
+しない一方、必要条件の欠落・不明・期限切れはfail-closeする。依存をoptionalへ書き換えて安全義務を消してはならない。
+
+### FRS-R-24 Lite／Fullの組合せ検収
+
+Lite／Fullはqualified Sliceのexact allowlistから生成するBundleとし、別機能・別builderを作らない。個別Sliceのgreenに加え、
+Bundle固有の統合、consumer導入、更新、rollback、L12運用検証と改善還流を要求する。未検収Slice混入や組合せ証拠欠落を拒否する。
+
 ## §2 非対象
 
-- 既存RLS正本の11 Module、8 Bundle、RLS-R-01..13の初期意味の無承認変更。
+- 既存RLS正本の無承認変更。旧Module／Bundle個数の固定維持は要求しない。
 - Module repository split、別のdistribution builder、別のRequirement／DB authority。
 - #188、#819、provider自動配車、Notification Fabric、未完security broker、whole-system planner。
 - tag、publish、DevOS cutover、production deployment、credential／secret変更。
