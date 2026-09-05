@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1548: review-evidence projection を untracked runtime loc
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending
 created: 2026-09-05
@@ -77,12 +77,35 @@ modifies:
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: Codex
+    review_kind: cross_agent
+    verdict: pass
+    reviewed_at: "2026-09-05T03:36:39Z"
+    tests_green_at: "2026-09-05T03:38:39Z"
+    worker_model: claude-opus-5
+    reviewer_model: codex
+    reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
+    reviewed_head_sha: 43aa00ad8950f0c4a3b69612e2ee547c598e2d86
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1550#issuecomment-5549087672"
+    scope: "HEAD 43aa00ad8950f0c4a3b69612e2ee547c598e2d86 の L6/L8/PLAN 設計と U-REVPAR-001..007 の 7 反例、周辺 71 tests、現 HEAD の coding-rules + parity 19 tests、PR exact set 12 path と PLAN generates/modifies の一致、現 HEAD の logical DB receipt 収束（clean/converged）に対する Codex 独立技術 pass。reviewer_model は当該環境で確認できる codex の範囲であり Sol/Luna 等の推測を含まない。PR 最終 sealed approve、Ready 化、実装終端、全 CI、main read-after ではない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/review-evidence-projection-parity.test.ts tests/coding-rules.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-05T03:38:39Z"
+        evidence_path: tests/review-evidence-projection-parity.test.ts
+        output_digest: "sha256:ef4cab4310c0ff46a9c507437ca0cc72fbd07af3f82037a335fd458b74ac9e34"
 ---
 
 # PLAN-RECOVERY-1548: review-evidence projection を untracked runtime locator の有無に依存させない
 
 ## 目的
+
+PLAN は Codex の独立技術 pass に基づき confirmed とする。`completion_claim_allowed` は false を維持し、
+PR 最終検収・全 CI・main read-after の未完了を PLAN freeze 成功で相殺しない。
 
 Issue #1548 で観測された「同一 HEAD でも worktree と clean clone で logical DB receipt の projection digest が
 割れ、独立 receipt が CI の admission で `review_receipt_invalid_or_stale` になる」状態を解消する。receipt の
