@@ -1,0 +1,154 @@
+/**
+ * HELIX read-only audit: extracted decision-logic probes, not integration tests.
+ * Sources: main b5178c34fe34c956a70713ad942b1f5b8f64e0ab;
+ * legacy ratchet only: PR1533 593f55a60b0b7d723d68a194a7113d32789afa62.
+ * Bodies below are extracted from fetched source, with TypeScript annotations
+ * and unrelated imports removed. All filesystem fixtures are synthetic.
+ * Run: node probes.mjs [output.json]
+ * No provider calls, network, project changes, or genuine credentials.
+ */
+import {existsSync, mkdtempSync, mkdirSync, writeFileSync, symlinkSync, rmSync} from 'node:fs';
+import {resolve,relative,isAbsolute,join} from 'node:path';
+import {tmpdir} from 'node:os';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const results=[];
+function probe(id,source,input,expectedSafety,observe,assertObservation) {
+ const observed=observe(); assertObservation(observed);
+ results.push({id,source,input,expected_safety:expectedSafety,observed,level:'extracted_function_or_predicate',asserted:true});
+}
+// src/gate/review-tier.ts: validateChecklist; policy IDs from review-tier-policy.ts.
+const REQUIRED_CHECKLIST_IDS=['DOC','TST','COD','XR','DEP','DUP','MOD'];
+function validateChecklist(checklist) {
+ if (!checklist) return ['single-runtime judgment gate requires checklist evidence'];
+ const byId=new Map(checklist.items.map(item=>[item.id,item]));
+ const messages=[];
+ for(const id of REQUIRED_CHECKLIST_IDS) {
+  const item=byId.get(id);
+  if(!item){messages.push(`checklist item missing: ${id}`);continue;}
+  if(item.status==='fail') messages.push(`checklist item failed: ${id}`);
+  if(item.status==='n-a'&&!item.evidence?.trim()) messages.push(`checklist item n-a requires evidence: ${id}`);
+ }
+ return messages;
+}
+const checklist=(status)=>({items:REQUIRED_CHECKLIST_IDS.map(id=>status===undefined?{id}:{id,status})});
+for(const status of [undefined,'PASS','skip']) {
+ probe(`REVIEW-${status??'missing'}`,'src/gate/review-tier.ts:validateChecklist',String(status),
+ 'unknown/missing status must be rejected',()=>validateChecklist(checklist(status)),v=>assert.deepEqual(v,[]));
+}
+probe('REVIEW-fail-control','src/gate/review-tier.ts:validateChecklist','all fail','reject',
+ ()=>validateChecklist(checklist('fail')),v=>assert.equal(v.length,7));
+const dup=checklist('pass'); dup.items.unshift({id:'DOC',status:'fail'});
+probe('REVIEW-duplicate','src/gate/review-tier.ts:validateChecklist','DOC fail then DOC pass','reject duplicate',
+ ()=>validateChecklist(dup),v=>assert.deepEqual(v,[]));
+// src/orchestration/loop-bridge.ts: verdict parser.
+function isVerdict(v){return v==='pass'||v==='fail'||v==='error'||v==='pending';}
+function parseJsonVerdict(text){const trimmed=text.trim();if(!trimmed.startsWith('{'))return null;try{const parsed=JSON.parse(trimmed);return isVerdict(parsed.verdict)?parsed.verdict:null;}catch{return null;}}
+function interpretVerifierVerdict(result){
+ if(result.status!==0)return 'error';
+ const combined=`${result.stdout}\n${result.stderr}`;
+ const jsonVerdict=parseJsonVerdict(combined);if(jsonVerdict)return jsonVerdict;
+ const match=combined.match(/\bVERDICT\s*[:=]\s*(pass|fail|error|pending)\b/i);
+ if(!match)return 'pending'; const verdict=match[1]?.toLowerCase();
+ return isVerdict(verdict)?verdict:'pending';
+}
+probe('VERDICT-quoted-pass','src/orchestration/loop-bridge.ts:interpretVerifierVerdict','Example: VERDICT: pass\nVERDICT: fail','must not return pass',
+ ()=>interpretVerifierVerdict({status:0,stdout:'Example: VERDICT: pass\nVERDICT: fail',stderr:''}),v=>assert.equal(v,'pass'));
+probe('VERDICT-fail-control','src/orchestration/loop-bridge.ts:interpretVerifierVerdict','VERDICT: fail','fail',
+ ()=>interpretVerifierVerdict({status:0,stdout:'VERDICT: fail',stderr:''}),v=>assert.equal(v,'fail'));
+probe('VERDICT-json-stderr','src/orchestration/loop-bridge.ts:interpretVerifierVerdict','stdout JSON fail; stderr diagnostic','preserve failed verdict or reject malformed envelope',
+ ()=>interpretVerifierVerdict({status:0,stdout:'{"verdict":"fail"}',stderr:'diagnostic'}),v=>assert.equal(v,'pending'));
+// src/lint/workflow-decision-packets.ts: exact approval classifier regexes.
+const STRUCTURED_ACTION_BINDING_RECORD=/^\s*action_binding_approval_record:\s*$/im;
+const APPROVAL_BOUNDARY=/action-binding|human\/action-binding approval|requires_human_approval=true|human signoff|human approval|po signoff|po approval|required reviewers?|approval gate|人間サインオフ|人間承認|PO\s*サインオフ|PO\s*承認|承認/i;
+const EXECUTION_APPROVAL_OBLIGATION=/(?:requires?|needs?|obtain)\b.{0,120}(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ).{0,120}(?:before|prior to|事前|前に|実行前|実適用前)|(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ).{0,120}(?:required|needed|mandatory|必須|必要).{0,120}(?:before|prior to|事前|前に|実行前|実適用前)|(?:activation|deployment|deploy|cutover|migration|external execution|high-impact action|高影響\s+action|実行|実適用|本番|外部).{0,120}(?:requires?|needs?)\b.{0,120}(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ)|(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ)\s*なしに.{0,120}(?:apply|execute|execution|deploy|deployment|activation|cutover|migration|実行|実適用)|高影響\s+action\s+の実行前に\s+human\/action-binding approval\s+を記録する/i;
+const HIGH_IMPACT_ACTION_TARGET=/high-impact action|high-impact execution|高影響\s+action|external|infra|infrastructure|secret|auth|authorization|authentication|destructive|state dir|migration|cutover|activation|deploy|deployment|release|environment|cloudflare|hmac|webhook|access control|production|api|apply|execution|本番|外部|認証|認可|破壊|不可逆|設定変更|実行|実適用|デプロイ|配布/i;
+const META_ONLY_APPROVAL_CONTEXT=/out of scope|does not authorize|not authorize|no .*authorized|planonly|mustnotapply|applycommandavailable=false|does not activate|does not execute|no production cutover|no production write|証跡|説明|サンプル/i;
+function approvalRequirementChunks(text){return text.split(/\n+/).flatMap(line=>line.split(/(?<=[。.!?])\s+/)).map(chunk=>chunk.trim()).filter(Boolean);}
+function hasHighImpactApprovalRequirementContext(text){return approvalRequirementChunks(text).some(chunk=>!META_ONLY_APPROVAL_CONTEXT.test(chunk)&&APPROVAL_BOUNDARY.test(chunk)&&EXECUTION_APPROVAL_OBLIGATION.test(chunk)&&HIGH_IMPACT_ACTION_TARGET.test(chunk));}
+function classifyHighImpactApprovalRequirement(text){const hasStructuredRecord=STRUCTURED_ACTION_BINDING_RECORD.test(text);const hasApprovalBoundary=APPROVAL_BOUNDARY.test(text);const hasExecutionObligation=EXECUTION_APPROVAL_OBLIGATION.test(text);const hasHighImpactTarget=HIGH_IMPACT_ACTION_TARGET.test(text);const required=hasStructuredRecord||hasHighImpactApprovalRequirementContext(text);return {required,hasStructuredRecord,hasApprovalBoundary,hasExecutionObligation,hasHighImpactTarget};}
+const highImpact='Production deployment requires human approval before execution';
+probe('APPROVAL-control','src/lint/workflow-decision-packets.ts:classifyHighImpactApprovalRequirement',highImpact,'required=true',()=>classifyHighImpactApprovalRequirement(highImpact),v=>assert.equal(v.required,true));
+probe('APPROVAL-evidence-word','src/lint/workflow-decision-packets.ts:classifyHighImpactApprovalRequirement',highImpact+' 証跡','required=true unchanged',()=>classifyHighImpactApprovalRequirement(highImpact+' 証跡'),v=>{assert.equal(v.required,false);assert.equal(v.hasExecutionObligation,true);assert.equal(v.hasHighImpactTarget,true);});
+// src/lint/action-binding-approval-readiness.ts: field predicates.
+function mentions(value,needles){const normalized=value.toLowerCase();return needles.some(needle=>normalized.includes(needle.toLowerCase()));}
+function isBroadApproval(value){return /\b(any|all|everything|unlimited|wildcard)\b/i.test(value)||value.includes('*');}
+function isPendingApprovalBinding(value){return mentions(value,['no ','not approved','未承認','while parked','draft plan','future approval','must name','must record','must write','must cite','must be reviewed','before approval','before activation','before apply','before execution','required before','cannot authorize','将来','承認しない','未承認','承認前','approval 前']);}
+for(const value of ['TBD','pending','N/A','-'])probe('APPROVAL-placeholder-'+value,'src/lint/action-binding-approval-readiness.ts:approved_* predicates',value,'must not be concrete',()=>({empty:!value.trim(),broad:isBroadApproval(value),pending:isPendingApprovalBinding(value)}),v=>assert.deepEqual(v,{empty:false,broad:false,pending:false}));
+// src/lint/gn-evidence-manifest.ts: validator body; TS annotations removed.
+function normalizedPath(path){return path.replace(/\\/g,'/');}
+function pathExistsInsideRepo(repoRoot,path){if(!repoRoot||!path||isAbsolute(path))return false;const resolved=resolve(repoRoot,path);const rel=relative(repoRoot,resolved);if(rel.startsWith('..')||isAbsolute(rel))return false;return existsSync(resolved);}
+function hasAllowedEvidencePrefix(path){const normalized=normalizedPath(path);return ['.helix/evidence/','docs/','src/','tests/'].some(prefix=>normalized.startsWith(prefix));}
+function validateGateEvidenceManifest(manifest,repoRoot,config){
+ const violations=[];
+ if(manifest.schema_version!==config.schemaVersion)violations.push(`${manifest.manifest_path}: invalid schema_version`);
+ if(manifest.gate!==config.gate)violations.push(`${manifest.manifest_path}: gate must be ${config.gate}`);
+ if(!manifest.profile||!manifest.plan_id)violations.push(`${manifest.manifest_path}: profile and plan_id are required`);
+ if(manifest.commands.length===0)violations.push(`${manifest.manifest_path}: commands must not be empty`);
+ const commandIds=new Set(manifest.commands.map(command=>command.command_id));
+ for(const command of manifest.commands){
+  if(!command.command_id||!command.command||!command.runner||!command.scope)violations.push(`${manifest.manifest_path}: command entry has missing required fields`);
+  if(command.exit_code!==0)violations.push(`${manifest.manifest_path}: command ${command.command_id} exit_code is non-zero`);
+  if(!/^sha256:[0-9a-f]{64}$/i.test(command.output_digest))violations.push(`${manifest.manifest_path}: command ${command.command_id} has invalid digest`);
+  if(!pathExistsInsideRepo(repoRoot,command.evidence_path))violations.push(`${manifest.manifest_path}: command ${command.command_id} evidence_path missing`);
+  if(!hasAllowedEvidencePrefix(command.evidence_path))violations.push(`${manifest.manifest_path}: command ${command.command_id} evidence_path prefix not allowed`);
+  for(const itemId of command.item_ids)if(!itemId.startsWith(config.itemPrefix))violations.push(`${manifest.manifest_path}: command ${command.command_id} has invalid item id ${itemId}`);
+ }
+ const coverageByItem=new Map(manifest.coverage.map(entry=>[entry.item_id,entry]));
+ for(const mandatoryItemId of manifest.mandatory_item_ids){
+  const coverage=coverageByItem.get(mandatoryItemId);if(!coverage){violations.push(`${manifest.manifest_path}: missing coverage for ${mandatoryItemId}`);continue;}
+  if(coverage.status!=='passed')violations.push(`${manifest.manifest_path}: mandatory coverage ${mandatoryItemId} is not passed`);
+  if(coverage.evidence_paths.length===0||coverage.command_ids.length===0)violations.push(`${manifest.manifest_path}: mandatory coverage ${mandatoryItemId} lacks evidence paths or command ids`);
+  for(const commandId of coverage.command_ids)if(!commandIds.has(commandId))violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} references unknown command ${commandId}`);
+  for(const evidencePath of coverage.evidence_paths){
+   if(!pathExistsInsideRepo(repoRoot,evidencePath))violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} evidence_path missing: ${evidencePath}`);
+   if(!hasAllowedEvidencePrefix(evidencePath))violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} evidence_path prefix not allowed: ${evidencePath}`);
+  }
+  if(config.requireAdvisorEvidence&&!coverage.advisor_evidence)violations.push(`${manifest.manifest_path}: coverage ${mandatoryItemId} requires advisor_evidence`);
+ }
+ if(manifest.exit_criteria.all_mandatory_passed!==true)violations.push(`${manifest.manifest_path}: exit_criteria.all_mandatory_passed must be true`);
+ if(manifest.exit_criteria.failed_mandatory_count!==0)violations.push(`${manifest.manifest_path}: exit_criteria.failed_mandatory_count must be 0`);
+ if(manifest.exit_criteria.stale_defer_count!==0)violations.push(`${manifest.manifest_path}: exit_criteria.stale_defer_count must be 0`);
+ if(manifest.exit_criteria.doctor_check!==config.doctorCheck)violations.push(`${manifest.manifest_path}: exit_criteria.doctor_check must be ${config.doctorCheck}`);
+ return violations;
+}
+const temp=mkdtempSync(join(tmpdir(),'helix-audit-probe-'));
+try{
+ const root=join(temp,'repo');mkdirSync(join(root,'tests'),{recursive:true});writeFileSync(join(root,'tests/evidence.txt'),'not an execution receipt\n');
+ const cfg={schemaVersion:'probe.v1',gate:'G9',itemPrefix:'IT-',doctorCheck:'probe-check'};
+ const manifest={manifest_path:'probe.json',schema_version:cfg.schemaVersion,gate:cfg.gate,profile:'probe',plan_id:'PLAN-PROBE-1',selected_item_ids:['IT-REQUIRED-1'],mandatory_item_ids:['IT-REQUIRED-1'],deferred_item_ids:[],commands:[{command_id:'cmd1',command:'not-executed',runner:'probe',scope:'probe',exit_code:0,evidence_path:'tests/evidence.txt',output_digest:'sha256:'+'0'.repeat(64),item_ids:['IT-REQUIRED-1']}],coverage:[{item_id:'IT-REQUIRED-1',status:'passed',evidence_paths:['tests/evidence.txt'],command_ids:['cmd1']}],exit_criteria:{all_mandatory_passed:true,failed_mandatory_count:0,stale_defer_count:0,doctor_check:cfg.doctorCheck}};
+ probe('EVIDENCE-bogus-digest','src/lint/gn-evidence-manifest.ts:validateGateEvidenceManifest','all-zero digest, valid existing synthetic file','reject mismatch',()=>validateGateEvidenceManifest(manifest,root,cfg),v=>assert.deepEqual(v,[]));
+ const empty=structuredClone(manifest);empty.commands[0].output_digest='sha256:'+createHash('sha256').update('not an execution receipt\n').digest('hex');empty.mandatory_item_ids=[];empty.coverage=[];
+ probe('EVIDENCE-empty-required','src/lint/gn-evidence-manifest.ts:validateGateEvidenceManifest','selected required item exists; mandatory=[]; coverage=[]','reject omitted obligations',()=>validateGateEvidenceManifest(empty,root,cfg),v=>assert.deepEqual(v,[]));
+ const missing=structuredClone(manifest);missing.commands[0].evidence_path='tests/missing.txt';
+ probe('EVIDENCE-missing-control','src/lint/gn-evidence-manifest.ts:validateGateEvidenceManifest','nonexistent file','reject',()=>validateGateEvidenceManifest(missing,root,cfg),v=>assert.ok(v.some(x=>x.includes('missing'))));
+ writeFileSync(join(temp,'outside.txt'),'synthetic external file');symlinkSync(join(temp,'outside.txt'),join(root,'tests/outside.txt'));
+ probe('EVIDENCE-symlink','src/lint/gn-evidence-manifest.ts:pathExistsInsideRepo','tests/outside.txt -> outside synthetic repo','reject outside target',()=>pathExistsInsideRepo(root,'tests/outside.txt'),v=>assert.equal(v,true));
+ probe('EVIDENCE-directory','src/lint/gn-evidence-manifest.ts:pathExistsInsideRepo','tests/ directory','must not count as file evidence',()=>pathExistsInsideRepo(root,'tests/'),v=>assert.equal(v,true));
+}finally{rmSync(temp,{recursive:true,force:true});}
+// PR1533 src/lint/legacy-orchestration-surface.ts: analyzer.
+const LEGACY_ORCHESTRATION_INVENTORY_PATH='config/legacy-orchestration-surface-inventory.json';
+const ALLOWED_EXCLUSIONS=new Set([LEGACY_ORCHESTRATION_INVENTORY_PATH,'src/lint/legacy-orchestration-surface.ts','tests/legacy-orchestration-surface.test.ts','docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md','docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md','docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md']);
+const LEGACY_ORCHESTRATION_MARKERS=['helix team run','helix pair-agent','helix loop run','executeTeamRunPlan','nodeAgentSlotsDeps','buildRuntimeCapabilityMatrixReport'];
+function countMarkers(content){return LEGACY_ORCHESTRATION_MARKERS.reduce((total,marker)=>{let count=0,offset=0;let match=content.indexOf(marker,offset);while(match>=0){count++;offset=match+marker.length;match=content.indexOf(marker,offset);}return total+count;},0);}
+function analyzeLegacyOrchestrationSurface(inventory,files){
+ const errors=[];if(inventory.schema_version!=='helix-legacy-orchestration-surface-inventory.v1')errors.push('inventory_schema_invalid');if(inventory.authority_role!=='compatibility_only_retirement_ratchet')errors.push('inventory_authority_role_invalid');if(!/^[0-9a-f]{40}$/.test(inventory.source_head))errors.push('inventory_source_head_invalid');
+ const baseline=new Map();for(const entry of inventory.entries){if(!entry.path||entry.path.startsWith('/')||entry.path.includes('..')||!Number.isSafeInteger(entry.maximum_occurrences)||entry.maximum_occurrences<=0||baseline.has(entry.path)){errors.push(`inventory_entry_invalid:${entry.path||'<empty>'}`);continue;}baseline.set(entry.path,entry.maximum_occurrences);}
+ const excludedPaths=new Set(inventory.excluded_implementation_paths);
+ if(inventory.excluded_historical_prefixes.some(prefix=>prefix!=='docs/archive/')||inventory.excluded_implementation_paths.some(path=>!ALLOWED_EXCLUSIONS.has(path)))errors.push('inventory_exclusion_invalid');
+ const isExcluded=path=>excludedPaths.has(path)||inventory.excluded_historical_prefixes.some(prefix=>path.startsWith(prefix));
+ const observed=new Map();for(const file of files){if(isExcluded(file.path))continue;const count=countMarkers(file.content);if(count>0)observed.set(file.path,count);}
+ const newPaths=[...observed.keys()].filter(path=>!baseline.has(path)).sort();
+ const growth=[...observed.entries()].filter(([path,actual])=>baseline.has(path)&&actual>(baseline.get(path)??0)).map(([path,actual])=>({path,actual,maximum:baseline.get(path)})).sort((a,b)=>a.path.localeCompare(b.path));
+ const staleEntries=[...baseline.keys()].filter(path=>!observed.has(path)).sort();
+ return{ok:errors.length===0&&newPaths.length===0&&growth.length===0,checkedFiles:files.length,currentOccurrences:[...observed.values()].reduce((a,b)=>a+b,0),baselineOccurrences:[...baseline.values()].reduce((a,b)=>a+b,0),newPaths,growth,staleEntries,errors};
+}
+const inv={schema_version:'helix-legacy-orchestration-surface-inventory.v1',authority_role:'compatibility_only_retirement_ratchet',source_head:'a'.repeat(40),excluded_historical_prefixes:['docs/archive/'],excluded_implementation_paths:[],entries:[{path:'src/old.ts',maximum_occurrences:2}]};
+const growing=[{path:'src/old.ts',content:'helix team run\nhelix pair-agent\nhelix loop run'}];
+probe('RATCHET-growth-control','PR1533:analyzeLegacyOrchestrationSurface','baseline2 count3','reject',()=>analyzeLegacyOrchestrationSurface(inv,growing),v=>assert.equal(v.ok,false));
+const raised=structuredClone(inv);raised.entries[0].maximum_occurrences=3;
+probe('RATCHET-raised-baseline','PR1533:analyzeLegacyOrchestrationSurface','same code growth plus maximum_occurrences2->3','reject unauthorized baseline increase',()=>analyzeLegacyOrchestrationSurface(raised,growing),v=>assert.equal(v.ok,true));
+const newPath=structuredClone(inv);newPath.entries.push({path:'src/new.ts',maximum_occurrences:1});
+probe('RATCHET-added-entry','PR1533:analyzeLegacyOrchestrationSurface','new legacy path plus matching new inventory entry','reject unauthorized new consumer',()=>analyzeLegacyOrchestrationSurface(newPath,[{path:'src/old.ts',content:'helix team run'},{path:'src/new.ts',content:'helix pair-agent'}]),v=>assert.equal(v.ok,true));
+const summary={scope:'Extracted JS decision logic only, not full repository execution or merge exploit',runtime:process.version,main_head:'b5178c34fe34c956a70713ad942b1f5b8f64e0ab',pr1533_head:'593f55a60b0b7d723d68a194a7113d32789afa62',cases:results.length,all_observations_asserted:true,results};
+const out=JSON.stringify(summary,null,2)+'\n';if(process.argv[2])writeFileSync(process.argv[2],out);console.log(out);

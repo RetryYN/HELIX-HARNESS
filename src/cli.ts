@@ -14102,13 +14102,24 @@ github
   .requiredOption("--repository <owner/name>", "GitHub repository")
   .requiredOption("--pr-body-file <path>", "file containing the current PR body")
   .requiredOption("--changed-file <path>", "NUL-delimited changed paths from base..head")
+  .option(
+    "--base-head <sha>",
+    "published base commit (merge-base) used only for the metadata-only supersession exemption",
+  )
   .option("--json", "JSON output")
   .action(
-    (opts: { repository: string; prBodyFile: string; changedFile: string; json?: boolean }) => {
+    (opts: {
+      repository: string;
+      prBodyFile: string;
+      changedFile: string;
+      baseHead?: string;
+      json?: boolean;
+    }) => {
       const result = admitGithubWorkflowIdentity({
         repository: opts.repository,
         prBody: readFileSync(opts.prBodyFile, "utf8"),
         changedPaths: readFileSync(opts.changedFile, "utf8").split("\0").filter(Boolean),
+        baseHead: opts.baseHead,
       });
       if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
       else process.stdout.write(`${githubWorkflowIdentityAdmissionMessage(result)}\n`);

@@ -1,0 +1,533 @@
+# HELIX-HARNESS 横断点検結果
+
+2026年9月5日 JST / 読み取り専用監査 / 要求・実行・検証・状態・運用の責務照合
+
+## 0. 結論と点検範囲
+
+**新旧要求の移行境界に加え、現行コードの検査漏れが残っている。最優先はチェックリスト、実証拠、承認要否の3系統である。今回新たに具体化した論点には、DBの検査先と実I/O先のずれ、PR #1533の基線引上げ、READYへの過去合格再利用、Unixパス検知漏れがある。**
+
+ただし、本報告を「全件点検完了」「全ファイル無欠陥」「全本番経路の安全性証明」として扱ってはならない。今回できたのは固定HEADの主要経路・新要求候補・進行中PRを横断したソース点検と限定的な反例実行である。**全trackedファイルの全文精読、全caller到達性、プロジェクト指定環境での全テスト、Windows/macOS実機、実プロバイダー、実運用DB、長期連続運転は未検証**。未読・未検証を合格へ置換していない。
+
+- 本体main: `b5178c34fe34c956a70713ad942b1f5b8f64e0ab`。報告作成直前にも同じrefを再確認。
+- 未統合PR #1533: `593f55a60b0b7d723d68a194a7113d32789afa62`。draft/openであり、mainの欠陥としては計上しない。
+- 追加照合した新要求: Libraryの`HELIX_EXECUTION_TICKET_AUTHORITY_REQUIREMENTS_v0.2.md`（750行全文）。この原稿は**提案**であり、mainの採用済み要件・人間承認・実装完了とは扱わない。
+- 成果: **14所見**。うち**8所見は抽出ロジック等の局所反例を実行**、残り6所見はソース確認（運用上のリスクを含む）。**30ケースは対照8ケースを含み、30件の独立バグではない。**
+- 既存Issueは修正ownerの参照として使用し、Issueに書かれた不具合をそのまま現行不具合へコピーしていない。
+
+### CIとの関係
+
+前回報告で実行中だったmainの[harness-check run 33913032451](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33913032451)は**success**へ終端した。GitHubの記録は2026-09-05 04:48:20〜05:10:54 JST。Lite/Linux、Windows smoke、preflight、4 regression shard、finalize、aggregateの9 jobが成功している。
+
+これは当該HEADの既存CIが成功した証拠であり、ここに追加した反例がCIに含まれていたことや、定期監査がすべて成功したことの証明ではない。今回のローカル反例結果とCI successは矛盾しない。
+
+### 実行環境・証拠レベル
+
+この環境のNodeはv22.16.0で、プロジェクト要求の`>=24.15.0 <25`ではない。完全checkoutの取得も成立していないため、依存を変更して全テストが通ったと主張することはしていない。ソースから型注釈と無関係な依存を取り除いた局所JS、literal SQL、実node:sqliteを使った合成ディレクトリでのテストを行った。元のTypeScriptモジュールをそのままimportして実行したものではない。
+
+各所見の「確認結果」と「未証明範囲」を分けた。特にvalidator単体の誤許可を、プロジェクト全体のmerge/破壊操作の迂回実証へ誇張していない。
+
+## 1. 所見一覧
+
+P0/P1/P2は本監査での修正優先度であり、無断の本番停止・承認・Issue操作を発行するものではない。
+
+| ID | 優先 | 所見 | 確認レベル | 既存追跡先 |
+|---|---|---|---|---|
+| F01 | P0 | single-runtimeレビューの未記入・未知status・重複IDが拒否されない | 抽出した判定ロジックで反例確認 | [#1411](https://github.com/RetryYN/HELIX-HARNESS/issues/1411) |
+| F02 | P0 | 検証manifestが実証拠と必須集合を独立に確認していない | 抽出した判定ロジックで反例確認 | [#1430](https://github.com/RetryYN/HELIX-HARNESS/issues/1430) / [#145](https://github.com/RetryYN/HELIX-HARNESS/issues/145) |
+| F03 | P0 | 高影響承認の要否と具体値を自然文の見た目で誤判定する | 抽出した判定ロジックで反例確認 | [#1431](https://github.com/RetryYN/HELIX-HARNESS/issues/1431) |
+| F04 | P1 | 旧loopのverdictが引用中のpassを最終failより優先する | 抽出した判定ロジックで反例確認 | [#1416](https://github.com/RetryYN/HELIX-HARNESS/issues/1416) |
+| F05 | P1 | READY投影が過去の合格を現在の根拠にできる | SQL/分岐の合成再現 | [#1442](https://github.com/RetryYN/HELIX-HARNESS/issues/1442) |
+| F06 | P1 | DBパスの検査基準と実際に開く基準が異なる | 抽出adapter＋実SQLiteで再現 | [#1397](https://github.com/RetryYN/HELIX-HARNESS/issues/1397) / [#1218](https://github.com/RetryYN/HELIX-HARNESS/issues/1218) |
+| F07 | P1 | PR #1533の旧機能増殖防止が基線の自己引上げを拒否しない | 抽出した判定ロジックで反例確認 | [#865](https://github.com/RetryYN/HELIX-HARNESS/issues/865) / [#863](https://github.com/RetryYN/HELIX-HARNESS/issues/863) |
+| F08 | P1 | pair-freezeのself-pair例外に層・対象の制限がない | 現行ソースで確認・全経路実行は未検証 | [#1422](https://github.com/RetryYN/HELIX-HARNESS/issues/1422) |
+| F09 | P1 | レビュー専用agentの宣言とtool権限が一致しない | 現行ソースの設計/運用リスク・実害未検証 | [#1415](https://github.com/RetryYN/HELIX-HARNESS/issues/1415) |
+| F10 | P2 | 旧slot台帳の競合と欠測を正しい容量情報として使えない | 現行ソースの設計/運用リスク・実害未検証 | [#1399](https://github.com/RetryYN/HELIX-HARNESS/issues/1399) / [#864](https://github.com/RetryYN/HELIX-HARNESS/issues/864) / [#873](https://github.com/RetryYN/HELIX-HARNESS/issues/873) |
+| F11 | P1 | quality auditの秘密情報・個人パス検査からtracked文書が漏れる | 現行ソースで確認・全経路実行は未検証 | [#1393](https://github.com/RetryYN/HELIX-HARNESS/issues/1393) / [#1443](https://github.com/RetryYN/HELIX-HARNESS/issues/1443) |
+| F12 | P2 | Unix/macOSの絶対パス検知正規表現が通常表記を見逃す | 抽出predicateで再現 | [#1393](https://github.com/RetryYN/HELIX-HARNESS/issues/1393) |
+| F13 | P2 | DBバックアップ出力先が公開関数内でscope照合されない | 現行ソースの設計/運用リスク・実害未検証 | [#1397](https://github.com/RetryYN/HELIX-HARNESS/issues/1397) |
+| F14 | P1 | CIのmain検収と定期監査が同じconcurrency groupを共有する | 現行ソースで確認・全経路実行は未検証 | [#1336](https://github.com/RetryYN/HELIX-HARNESS/issues/1336) |
+
+## 2. 所見詳細
+
+### F01 — single-runtimeレビューの未記入・未知status・重複IDが拒否されない（P0）
+
+**根拠:** [src/gate/review-tier.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/gate/review-tier.ts)、[src/gate/review-tier-policy.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/gate/review-tier-policy.ts)。抽出した判定ロジックで反例確認。
+
+**成立条件:** 単一runtimeのjudgment reviewで、必須7 IDを含むchecklistを渡す。
+
+**確認結果:** DOC/TST/COD/XR/DEP/DUP/MODを全て置きstatusを省略するとmessages=[]。PASS/skipも同じ。DOCのfailの後に同ID passを追加するとMapが後勝ちになりfailを消す。
+
+**影響:** レビュー未確認を確認済みとして扱うローカルゲートになる。旧単一runtime経路を新Ticket等が再利用すると弱さを引き継ぐ。
+
+**是正方針:** 入口でstrict schemaとID exact set/重複禁止を検証し、未知値は明示拒否する。intra-runtime補助検査を独立reviewの代替へ昇格しない。
+
+**受入oracle:** 必須7 ID全てstatusなし / PASS/skip/unknown / fail→同ID pass / 正常pass、fail、根拠付きN/Aの対照。
+
+**既存追跡:** [#1411](https://github.com/RetryYN/HELIX-HARNESS/issues/1411)。既存Issueの現行コード再確認。重複IDの具体例も記録。
+
+**未証明・注意:** プロジェクト全体のmerge通過は未実証。#1411本文の単一ID例はこの実装ではmissingを発生させるため、全必須IDを揃える反例に補正した。
+
+**同梱反例:** `REVIEW-missing, REVIEW-PASS, REVIEW-skip, REVIEW-duplicate`。
+
+### F02 — 検証manifestが実証拠と必須集合を独立に確認していない（P0）
+
+**根拠:** [src/lint/gn-evidence-manifest.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/gn-evidence-manifest.ts)。抽出した判定ロジックで反例確認。
+
+**成立条件:** validateGateEvidenceManifestへ構造の整ったmanifestと存在する合成ファイルを渡す。
+
+**確認結果:** 実内容と無関係な全ゼロsha256でも違反0。mandatory_item_idsとcoverageを空にすると個別検査が消える。パスhelperは外部を指すsymlinkやdirectoryも存在として受理する。
+
+**影響:** 証拠が実行結果を裏付けなくてもvalidator単体は成功し、要求した検査対象の脱落を見逃す。
+
+**是正方針:** 必須集合をauthoritative test design/verification planから導出してexact比較する。digestが何のバイト列を表すかを型で分け、実行receiptの発行元・HEAD・対象・結果へ照合する。file evidenceにはrealpath/regular-file境界を検討する。
+
+**受入oracle:** 正常証跡に対するwrong digest / 必要義務があるのにmandatory=[] / 偽のpassed/exit criteria / 外部symlink・directory・missing file。
+
+**既存追跡:** [#1430](https://github.com/RetryYN/HELIX-HARNESS/issues/1430) / [#145](https://github.com/RetryYN/HELIX-HARNESS/issues/145)。既存#1430を対象関数で再確認。パス実体境界も補足。
+
+**未証明・注意:** output_digestを安易にテストソースファイルのhashへ変更しない。実行stdoutとファイル証跡は別物であり、その契約の確定が先。全G8/G9/G10やCI一式の迂回は未実証。
+
+**同梱反例:** `EVIDENCE-bogus-digest, EVIDENCE-empty-required, EVIDENCE-symlink, EVIDENCE-directory`。
+
+### F03 — 高影響承認の要否と具体値を自然文の見た目で誤判定する（P0）
+
+**根拠:** [src/lint/workflow-decision-packets.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/workflow-decision-packets.ts)、[src/lint/action-binding-approval-readiness.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/action-binding-approval-readiness.ts)。抽出した判定ロジックで反例確認。
+
+**成立条件:** 構造化承認recordがない本文ベース分類、またはapproved_*の値を評価する。
+
+**確認結果:** Production deployment requires human approval before executionに「証跡」を足すだけでrequired=trueからfalseへ変化する。TBD/pending/N/A/-は空値・広範権限・未承認のどの判定にも該当せずconcrete分岐へ入る。
+
+**影響:** 自然な説明の追記やplaceholderで承認検査の適用・入力品質が弱まる。
+
+**是正方針:** operation/target/environment等のtyped属性と既存brokerで承認要否を判定する。自然文は補助情報に限定。承認fieldのschemaと参照receipt実在・scope/expiry/actor bindingを共通化する。
+
+**受入oracle:** 同じ実行内容に証跡/説明/サンプルを加えても適用が消えない / 4 placeholderが未確定 / scope/HEAD/expiry/actor不一致。
+
+**既存追跡:** [#1431](https://github.com/RetryYN/HELIX-HARNESS/issues/1431)。既存#1431の現行再確認。
+
+**未証明・注意:** 周辺のbrokerや他の承認ゲートを越えて危険操作できるとは実証していない。field判定と適用分類の欠陥である。
+
+**同梱反例:** `APPROVAL-evidence-word, APPROVAL-placeholder-TBD, APPROVAL-placeholder-pending, APPROVAL-placeholder-N/A, APPROVAL-placeholder--`。
+
+### F04 — 旧loopのverdictが引用中のpassを最終failより優先する（P1）
+
+**根拠:** [src/orchestration/loop-bridge.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/orchestration/loop-bridge.ts)。抽出した判定ロジックで反例確認。
+
+**成立条件:** exit 0のverifier出力に引用・例示と最終結論が混在する。
+
+**確認結果:** Example: VERDICT: pass→最終行VERDICT: failでもpass。JSON verdict=failとstderr診断の組合せはJSON解析に失敗してpendingとなる。nodeTickDeps.runVerifierから呼ばれる。
+
+**影響:** 旧loopの判断が誤り、修正継続/検収状態を取り違える。
+
+**是正方針:** 自由文からのfirst-matchを廃止し、専用のstrict terminal envelopeを唯一の入力にする。stdoutの機械結果とstderrのログを分離し、曖昧・複数・欠落はinvalid。
+
+**受入oracle:** 引用pass＋最終fail / 複数verdict / JSON＋stderr / exit非0＋pass / verdict欠落。
+
+**既存追跡:** [#1416](https://github.com/RetryYN/HELIX-HARNESS/issues/1416)。既存#1416の再確認とJSON/stderrの追加例。
+
+**未証明・注意:** 現在の新resident全体がこの経路を使うとは主張しない。旧engineが残存する間の局所欠陥。
+
+**同梱反例:** `VERDICT-quoted-pass, VERDICT-json-stderr`。
+
+### F05 — READY投影が過去の合格を現在の根拠にできる（P1）
+
+**根拠:** [src/workflow/readiness.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/readiness.ts)。SQL/分岐の合成再現。
+
+**成立条件:** 同じPLANに古いpassed gateと新しいfailed gateがあり、open finding/human blockがない。
+
+**確認結果:** passedGateCountはPLANとstatus=passedだけを数え、1件あればreadyとなる。HEAD/phase/必要集合/最新状態を見ない。subject_id LIKE %PLAN-1%はPLAN-10のfindingも拾う。
+
+**影響:** READY表示・投影を実配車判断に利用する場合、古い合格による過剰許可や無関係findingによる停止を起こす。
+
+**是正方針:** 対象run/PLAN revision/HEAD/phase/required gate exact setへjoinし、現在有効な証拠からREADYを導出する。subjectの関係はexplicit keyか正規関係tableで解決する。
+
+**受入oracle:** 旧HEAD pass＋現HEAD fail / required gate不足 / PLAN-1とPLAN-10 / query error/missing input。
+
+**既存追跡:** [#1442](https://github.com/RetryYN/HELIX-HARNESS/issues/1442)。LIKEは既存#1442。古いpassの再利用は今回具体化した追加論点。
+
+**未証明・注意:** 原TypeScriptモジュールではなくliteral SQLと分岐をインメモリSQLiteで再現。現行CLI/配車までの全到達性は未完了。例外がreadyへ握りつぶされるとは確認していない。
+
+**同梱反例:** `READY-old-pass-new-fail, READY-prefix-overmatch`。
+
+### F06 — DBパスの検査基準と実際に開く基準が異なる（P1）
+
+**根拠:** [src/state-db/index.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/index.ts)。抽出adapter＋実SQLiteで再現。
+
+**成立条件:** cwdとoptions.repoRootが異なり、pathとして.helix/probe.db等の相対パスを渡す。
+
+**確認結果:** assertWithinHelixStateDirとmkdirはrepoRoot基準。一方openNative(path)は未正規化のpathをSQLiteに渡す。抽出adapterと実node:sqliteで、指定repo側にDBはなくcwd側にDBができることを確認。
+
+**影響:** 複数project/worktreeでガードした場所とI/O対象がずれ、誤った状態の読取・作成・更新につながる。
+
+**是正方針:** pathを一度だけrepoRootから絶対化し、同一値でguard/mkdir/open/返却を行う。または異なるrepoRootでの相対pathを明示拒否する。read-only側も同じ規約に揃える。
+
+**受入oracle:** cwd=A/repoRoot=B/relative path / absolute pathの対照 / cwd非依存のread-only / symlink/reparse/drive境界。
+
+**既存追跡:** [#1397](https://github.com/RetryYN/HELIX-HARNESS/issues/1397) / [#1218](https://github.com/RetryYN/HELIX-HARNESS/issues/1218)。今回追加で具体化。openNativeおよびrepoRoot/cwdのIssue検索では同一原因の専用Issueを確認できなかったが、未登録の断定はしない。
+
+**未証明・注意:** この入力を全既存callerが使用しているという主張ではない。実際の作成先違いは合成環境の公開adapter入口で確認した。
+
+**同梱反例:** `DB-relative-root-mismatch`。
+
+### F07 — PR #1533の旧機能増殖防止が基線の自己引上げを拒否しない（P1）
+
+**根拠:** [src/lint/legacy-orchestration-surface.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/593f55a60b0b7d723d68a194a7113d32789afa62/src/lint/legacy-orchestration-surface.ts)、[tests/legacy-orchestration-surface.test.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/593f55a60b0b7d723d68a194a7113d32789afa62/tests/legacy-orchestration-surface.test.ts)。抽出した判定ロジックで反例確認。
+
+**成立条件:** 未マージPR head 593f55aで、旧marker追加とinventory上限引上げを同時に行う。
+
+**確認結果:** baseline2/count3は拒否するが、maximum_occurrencesを3へ上げると同じ追加をok:trueで通す。新pathとinventory entryの同時追加も通る。source_headは40桁形式以外を照合していない。
+
+**影響:** 「増加だけを拒否する」予防検査の根拠を検査対象の変更側が変えられる。
+
+**是正方針:** 信頼するbase側のinventory/digestをread-beforeし、増額・新entryを通常PRから許可しない。必要な基線変更は理由・source revision・独立approvalを持つ別epochとして扱う。
+
+**受入oracle:** count追加＋上限2→3 / new path＋new inventory entry / 偽source_head / 基線減少後の再増加。
+
+**既存追跡:** [#865](https://github.com/RetryYN/HELIX-HARNESS/issues/865) / [#863](https://github.com/RetryYN/HELIX-HARNESS/issues/863)。今回の追加レビュー論点。既存#865内の予防検査として扱い、別legacy engineを作らない。
+
+**未証明・注意:** 当該関数が受理することを実証したもの。全CI/独立reviewで受理されるとは主張しない。marker数が実consumer数でない点は作者も認識済みで、新規発見として水増ししない。
+
+**同梱反例:** `RATCHET-raised-baseline, RATCHET-added-entry`。
+
+### F08 — pair-freezeのself-pair例外に層・対象の制限がない（P1）
+
+**根拠:** [src/vmodel/lint.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/vmodel/lint.ts)、[docs/governance/helix-harness-requirements_v1.3.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/governance/helix-harness-requirements_v1.3.md)。現行ソースで確認・全経路実行は未検証。
+
+**成立条件:** L1–L6の検査対象設計sub-docでpair_artifact:selfを宣言する。
+
+**確認結果:** isDesignSubDocはL1–L6のpathを受け、selfならpairs++で双方向traceを飛ばす。design側hubがselfである場合の別分岐にも層条件が見えない。
+
+**影響:** 対になるテスト設計なしに局所pair成立を作れる。
+
+**是正方針:** 現行canonicalの例外契約に限ってselfを許可し、層/用途/根拠をexact検証する。#1422の修正例に残るL2↔L10はそのまま採用せず、現行L2↔L11へ整合させる。
+
+**受入oracle:** L3/L5のselfを拒否 / L2の正規例外と通常L2↔L11 / 異層self hub参照 / 正規双方向pair。
+
+**既存追跡:** [#1422](https://github.com/RetryYN/HELIX-HARNESS/issues/1422)。既存#1422の現行再確認。修正案側の旧pairも注意対象。
+
+**未証明・注意:** 後続の他gateが検出する可能性を含め、全CIの迂回実行は未検証。
+
+### F09 — レビュー専用agentの宣言とtool権限が一致しない（P1）
+
+**根拠:** [.claude/agents/code-reviewer.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/.claude/agents/code-reviewer.md)。現行ソースの設計/運用リスク・実害未検証。
+
+**成立条件:** code-reviewer定義を現在のtool allowlistとして利用する場合。
+
+**確認結果:** 本文は実装禁止・レビュー専念だが、frontmatter toolsにEdit/Write/Bashを持つ。
+
+**影響:** 文章による役割分離だけではレビュー対象の不変性を保証できない。
+
+**是正方針:** ソースへの書込権限を外し、検証用Bashを隔離sandboxに限定する。レポート出力が必要なら専用scratch領域とimmutable receiptへ権限を絞る。
+
+**受入oracle:** review source writeを拒否 / scratch出力のみ許可 / review前後HEAD/tree保持 / 自己修正を独立reviewへ数えない。
+
+**既存追跡:** [#1415](https://github.com/RetryYN/HELIX-HARNESS/issues/1415)。既存#1415の現行定義を確認。
+
+**未証明・注意:** 実際に改変が発生したという報告ではなく、定義上の権限不整合。hook/OS sandboxによる追加制約は全経路未検証。
+
+### F10 — 旧slot台帳の競合と欠測を正しい容量情報として使えない（P2）
+
+**根拠:** [src/runtime/agent-slots.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/runtime/agent-slots.ts)。現行ソースの設計/運用リスク・実害未検証。
+
+**成立条件:** 複数processが同じagent-slots.jsonを同時更新する、またはファイルが破損/保存失敗する。
+
+**確認結果:** load→配列変更→saveの間にprocess間lockがなく、失敗は空配列/無視へ縮退する。oldest解放・5分staleの扱いは近似的な警告統計として記述されている。
+
+**影響:** active数の過小評価や記録欠落。新Assignment/lease/capacityのauthorityへ流用すると意味が変わる。
+
+**是正方針:** 正規capacityには既存Assignment/lease/fenceを使用する。旧warning統計はapproximate/degradedを明示し、必要な競合対策は旧state ownerか移行先ownerへ一意に割当てる。
+
+**受入oracle:** 2 process同時書込 / 保存失敗 / 破損を実行数0と区別 / 長時間実行とstale近似の区別。
+
+**既存追跡:** [#1399](https://github.com/RetryYN/HELIX-HARNESS/issues/1399) / [#864](https://github.com/RetryYN/HELIX-HARNESS/issues/864) / [#873](https://github.com/RetryYN/HELIX-HARNESS/issues/873)。既存#1399を責務移管の観点でも照合。
+
+**未証明・注意:** 実process競合は今回未実行。現在のslotはwarning用途であり、この観測だけでhard concurrency制限突破とは断定しない。
+
+### F11 — quality auditの秘密情報・個人パス検査からtracked文書が漏れる（P1）
+
+**根拠:** [src/audit/quality.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/audit/quality.ts)。現行ソースで確認・全経路実行は未検証。
+
+**成立条件:** 品質監査をrunQualityAuditから実行する。
+
+**確認結果:** walkは.helixを除外し、shouldScanは.mdを許可しない。includeDocs=trueでも.mdは対象にならない。
+
+**影響:** エージェントが生成する監査・証跡・文書の混入をこの監査では検知できない。
+
+**是正方針:** tracked対象の適用集合を明示し、secret/PII検査とコード専用規則のscopeを分離する。除外は理由付きで監査し、新規混入をnegative oracleにする。
+
+**受入oracle:** tracked .helix/audit合成secret / docs/*.md合成secret / code-only ruleの文書への誤適用を抑制。
+
+**既存追跡:** [#1393](https://github.com/RetryYN/HELIX-HARNESS/issues/1393) / [#1443](https://github.com/RetryYN/HELIX-HARNESS/issues/1443)。既存#1393/#1443のscanner側残差を確認。
+
+**未証明・注意:** 今回、実メールアドレスやsecretの値を再掲・収集していない。別secret scannerの全網羅性は未検証。
+
+### F12 — Unix/macOSの絶対パス検知正規表現が通常表記を見逃す（P2）
+
+**根拠:** [src/audit/quality.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/audit/quality.ts)。抽出predicateで再現。
+
+**成立条件:** scanLineに引用符や行頭直後の/home/exampleまたは/Users/exampleを含む行を渡す。
+
+**確認結果:** 正規表現先頭の\bがslash直前には成立せず、通常の引用文字列がfalse。Windows C:\Usersはtrueの対照を確認。
+
+**影響:** 走査対象を広げるだけではUnix系個人パスの検知漏れが残る。
+
+**是正方針:** Unix pathとWindows pathの境界条件を分けて検査する。行頭/引用符/空白/JSON/Markdownと正常な非個人パスのfalse positiveをfixture化する。
+
+**受入oracle:** 引用Linux path / 引用macOS path / Windows対照 / 行頭/空白/JSON/Markdown。
+
+**既存追跡:** [#1393](https://github.com/RetryYN/HELIX-HARNESS/issues/1393)。今回具体化した#1393関連の追加論点。専用Issue未登録かどうかの全数保証はない。
+
+**未証明・注意:** 品質監査の当該predicateのみの再現。全PII検出機能が無効という意味ではない。
+
+**同梱反例:** `PATH-linux-quoted, PATH-mac-quoted`。
+
+### F13 — DBバックアップ出力先が公開関数内でscope照合されない（P2）
+
+**根拠:** [src/state-db/state-hygiene.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/state-hygiene.ts)、[src/state-db/index.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/index.ts)。現行ソースの設計/運用リスク・実害未検証。
+
+**成立条件:** compactHarnessDbへ明示backupPathとexecute:trueを渡す。
+
+**確認結果:** backupPathは存在確認とquote escape後にVACUUM INTOへ渡り、repo/.helix containmentや外部保存の権限確認が関数内にない。通常defaultは.helix/backups。
+
+**影響:** 外部入力を接続する際に、保護すべきDB全体の出力先が拡大し得る。
+
+**是正方針:** 通常保存範囲と承認済み外部backupを別policyとして定義し、渡されたpathを正規化して権限・既存file・symlinkを確認する。文字列quote escapeをscope認可の代用にしない。
+
+**受入oracle:** 範囲外backupPath / 許可された外部backup / symlink差替え / 既存backupの保護。
+
+**既存追跡:** [#1397](https://github.com/RetryYN/HELIX-HARNESS/issues/1397)。既存#1397の部分残差。migrationのSAVEPOINT修正とは分ける。
+
+**未証明・注意:** 現行CLIから未信頼入力が到達する経路や漏洩実害は未実証。SQL injectionとは判定していない。
+
+### F14 — CIのmain検収と定期監査が同じconcurrency groupを共有する（P1）
+
+**根拠:** [.github/workflows/harness-check.yml](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/.github/workflows/harness-check.yml)。現行ソースで確認・全経路実行は未検証。
+
+**成立条件:** 同じmain refにpush/schedule/workflow_dispatchの実行が重なる。
+
+**確認結果:** group:harness-check-${{ github.ref }}とcancel-in-progress:trueが現行定義に残る。
+
+**影響:** 異なる検証目的が相互に置換され、必要なmain検収結果が得られない運用要因になる。
+
+**是正方針:** event class別generationと置換/引継ぎ規則を既存CI ownerへ集約する。無制限並走を避けながらcurrent mainの証明義務を保護する。
+
+**受入oracle:** same HEADのpushとschedule / PR A/Bの独立 / 旧mainから新mainへの義務引継ぎ / cancelledをsuccessに数えない。
+
+**既存追跡:** [#1336](https://github.com/RetryYN/HELIX-HARNESS/issues/1336)。既存#1336の設定を再確認。
+
+**未証明・注意:** 今回Actionsの新規起動・cancel操作はしていない。対象run33913032451自体はsuccessである。
+
+## 3. 新旧要求の責務衝突・移管台帳
+
+この表は「新要求が悪い」という判定ではない。新v0.2には既に旧v0.1の衝突を修正する記述があり、その境界を実装時に失わないための照合である。新提案未実装という理由だけで旧runtimeを不適合にして停止することも、既存の弱い検査を無条件に新体系へ流用することも避ける。
+
+参照原稿: `HELIX_EXECUTION_TICKET_AUTHORITY_REQUIREMENTS_v0.2.md` §3/§4/§7–§14/§16–§17。元原稿の文書作成依頼は意味承認ではない。下表はレビューproposalであり、別の要求正本を作らない。
+
+### C01 Ticket／Issue／PLAN — UPLIFT・scope別移行
+
+**衝突・事故条件:** 旧Issue hierarchy/dependencyを即座にprojection扱いすると、現行READY/closureの入力正本を失う。
+
+**責務の置き方:** Ticketは仕事契約、PLANは設計/工程、Assignmentは実行割当。新v0.2はscope別cutover前のIssue契約維持を明記しており、設計上の修正は既にある。実装時に切替receiptとin-flight終端を検収する。
+
+**照合したrepo側の面:** [src/workflow/routing-contracts.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/routing-contracts.ts)、[src/workflow/readiness.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/readiness.ts)。
+
+### C02 coordination memory／学習知識／ADR・承認 — RETIRE・移管待ち
+
+**衝突・事故条件:** memoryの本文を承認・恒久判断へ再利用すると、旧本文の再浮上が新しい作業を拘束する。
+
+**責務の置き方:** 連絡はTTL付きpointer、知識は責務中心Learning、判断はADR、承認はtyped receipt。#1448/#1449/#1384のownerを混ぜない。新candidateと旧runtimeの共存自体を即バグとはしない。
+
+**照合したrepo側の面:** [docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md)、[src/memory/memory-v2.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/memory/memory-v2.ts)。
+
+### C03 旧team/pair/loop／新Assignment・resident lane — RETIRE・予防検査要補強
+
+**衝突・事故条件:** 旧loopがmodel/effort/slot/実行判断を持つまま、新plannerが同じ責務を持つと二重制御になる。
+
+**責務の置き方:** phase別にKEEP/MOVE/COMPATIBILITY_ONLY/REMOVE。#1533は予防検査だけで、consumer-zeroやengine撤去を証明しない。F07を先に解く。
+
+**照合したrepo側の面:** [src/orchestration/loop-bridge.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/orchestration/loop-bridge.ts)、[src/runtime/agent-slots.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/runtime/agent-slots.ts)、[src/lint/legacy-orchestration-surface.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/593f55a60b0b7d723d68a194a7113d32789afa62/src/lint/legacy-orchestration-surface.ts)。
+
+### C04 旧mode route-map／typed分類 — 併存確認・全到達性監査待ち
+
+**衝突・事故条件:** 旧exportはmodeと最長部分一致の選択を残す。これを新current分類へそのまま返せば旧identityが逆流する。
+
+**責務の置き方:** ただし現在のroute eval CLIは新evaluateWorkflowExecutionRouteを使用している。旧関数が存在するだけで通常CLIの退行と断定しない。新規consumerが旧exportを使わない監査を加える。
+
+**照合したrepo側の面:** [src/schema/route-map.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/schema/route-map.ts)、[src/workflow/routing-contracts.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/routing-contracts.ts)、[src/cli/commands/route.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/route.ts)、[src/cli/commands/workflow.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/workflow.ts)。
+
+### C05 同一model反復Bench／下位blind選抜 — UPLIFT・別評価単位
+
+**衝突・事故条件:** 下位benchmarkはprovider/model/effort/identity/descriptorの同一provenanceを重複拒否する。同じ候補を何度も評価する上位実験をそのまま流せない。
+
+**責務の置き方:** v0.2のExperiment/treatment/replicate/Attemptで正当な反復を識別し、worker/judge独立性と同一出力の二重取込拒否を維持する。下位検査を削除して通さない。
+
+**照合したrepo側の面:** [docs/design/helix/L3-requirements/helix-bench-evaluation.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/design/helix/L3-requirements/helix-bench-evaluation.md)、[src/runtime/worker-blind-benchmark.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/runtime/worker-blind-benchmark.ts)。
+
+### C06 no_harness比較／worker sealed-context必須 — 条件付き両立
+
+**衝突・事故条件:** 通常wrapperのHELIX contextを全比較群へ注入するとno_harness群ではなくなる。逆にguardを全体で外せば本線の安全境界が壊れる。
+
+**責務の置き方:** 通常変更とformal/shadow実験のnamespace/profileを分離。外側sandbox/共通採点は全群必須、workerへのHELIX内部規律の注入だけをtreatmentで変える。新v0.2は既にこの区別を持つ。
+
+**照合したrepo側の面:** [src/orchestration/loop-bridge.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/orchestration/loop-bridge.ts)、[docs/design/helix/L3-requirements/helix-bench-evaluation.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/design/helix/L3-requirements/helix-bench-evaluation.md)。
+
+### C07 SQLiteのevent正本／再構築可能projection — UPLIFT・table別所有
+
+**衝突・事故条件:** DB全体を捨てられるprojectionと呼ぶと、そこにある唯一の耐久event/lease/receiptまで消去対象になる。
+
+**責務の置き方:** 物理DB単位でなくtable/ledger単位でowner、rebuild保持、replay source、retentionを定義。v0.2はこの区別を修正済み。F06/F13はI/O境界の実装残差。
+
+**照合したrepo側の面:** [src/state-db/index.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/index.ts)、[src/state-db/migration.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/migration.ts)、[src/state-db/state-hygiene.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/state-hygiene.ts)。
+
+### C08 Bench観測／本線closure／配車 — 条件付き両立・循環防止
+
+**衝突・事故条件:** 測定結果をadmit前の必須入力にすると未実行Ticketが開始不能。分析sinkを全体停止条件にすると観測障害が開発障害になる。
+
+**責務の置き方:** admit時に観測義務を生成し、実結果は後追い。耐久audit不能とanalytics遅延を分ける。Benchは証拠/advisory、資格はRegistry、配車は既存Routing owner。v0.2に明記済み。
+
+**照合したrepo側の面:** [docs/design/helix/L3-requirements/helix-bench-evaluation.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/design/helix/L3-requirements/helix-bench-evaluation.md)、[src/workflow/readiness.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/readiness.ts)。
+
+### C09 Capability／Functional Release Slice／Module／Bundle — UPLIFT・昇格単位を分離
+
+**衝突・事故条件:** 機能実装、module構成、bundle配布、consumer検証を同じ完了flagにすると候補がstableへ漏れる。
+
+**責務の置き方:** Sliceのcontract/dependency/consumer/rollback/HEADを同一revisionで検収する。Module主ownerとBundle構成責務を変えず、旧Liteを完成版と混同しない。既存#1073/#1074/#1494/#856に接続する。
+
+**照合したrepo側の面:** [docs/governance/helix-harness-requirements_v1.3.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/governance/helix-harness-requirements_v1.3.md)、[package.json](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/package.json)。
+
+### C10 L1–L12 canonical／旧pair例外 — CONFLICT・現行局所検査
+
+**衝突・事故条件:** 新canonicalはL2↔L11だが、旧self-pair例外はL2↔L10コメントと無制限selfを残す。
+
+**責務の置き方:** 単なるrenameではなく、例外の適用条件・層・受入oracleをcurrent authorityに接続する。F08と同じ修正ownerで扱う。
+
+**照合したrepo側の面:** [src/vmodel/lint.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/vmodel/lint.ts)、[docs/governance/helix-harness-requirements_v1.3.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/governance/helix-harness-requirements_v1.3.md)。
+
+### C11 人間承認／candidate統合／PLAN status／実装完了 — 状態軸の分離
+
+**衝突・事故条件:** draft/confirmed、承認record、main存在、test実行を一つの状態へ畳むと承認の捏造か過剰停止が起きる。
+
+**責務の置き方:** 対象artifactとrevisionごとに意味承認・技術review・canonical promotion・runtime evidenceを別fieldで評価。draftだから承認なし、candidateがmainに入ったから実装済み、の両方を禁止する。
+
+**照合したrepo側の面:** [docs/design/helix/L3-requirements/helix-bench-evaluation.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/design/helix/L3-requirements/helix-bench-evaluation.md)、[docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md)。
+
+## 4. 修正済み部分と誤判定を除外した項目
+
+古いIssueのopen/closed表示と、現行コードの修正有無は別々に評価した。下記は当該部分への修正を確認した記録であり、Issue全体の完了を認定するものではない。
+
+### X01 review_evidenceの本文だけの一致
+
+hasReviewEvidenceがextractReviewEntries(content).length > 0へ変わっている。旧#1446のpresence部分を未修正として再計上しない。 根拠: [src/lint/review-evidence.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/review-evidence.ts)。
+
+### X02 supersedesのflow-styleとback-reference
+
+YAML frontmatter解析と構造化superseded_byによる照合を確認。旧#1446の同じ欠陥を重複計上しない。全malformed field/循環の網羅試験を実施したという意味ではない。 根拠: [src/lint/plan-supersession.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/plan-supersession.ts)。
+
+### X03 DB主キーNULLとclosure重複移行
+
+v48でprimary-key NULL拒否trigger、重複receiptの監査退避、index再生成を確認。#1436全体の運用終端や既存全DBへの適用は別途の実証が必要。 根拠: [src/state-db/migration.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/migration.ts)。
+
+### X04 migrationの非原子的DDL
+
+SAVEPOINT/rollback/releaseを確認。#1397のmigration原子性部分は修正が入り、backupPath残差F13とは分ける。 根拠: [src/state-db/migration.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/migration.ts)。
+
+### X05 通常route evalが旧modeを直出力するという一括判断
+
+現行CLIはtyped evaluatorへ接続済み。旧map/exportの存在だけではこのCLIが旧分類で動くと判定しない。 根拠: [src/cli/commands/route.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/route.ts)、[src/cli/commands/workflow.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/workflow.ts)。
+
+追加の判定補正:
+
+- #1411の本文にある単一IDだけのchecklist例では、この実装の7必須IDが不足する。今回の反例は7 IDを全て置いたうえでstatusを省略し、実際の欠陥だけを再現した。
+- #1442のLIKE問題はprefixの過剰一致として再現した。query例外が握りつぶされてreadyになるという挙動は今回確認していない。
+- #1533の「marker数は実consumer数ではない」という限界はPR側も明記している。そこを新発見として再起票せず、基線自己引上げの未検出を別の検証不足として示した。
+- candidateのmain統合、PLAN confirmed、要件定義frozen、CI green、runtime実行、長期運用、release qualifiedは別状態である。各状態の差を単純な矛盾として誤検知しない。
+
+## 5. 修正の接続方針
+
+### 5.1 既存ownerで修復する
+
+まずF01–F03を既存#1411/#1430/#1431へ結び付け、意味の変わらない局所修復と反例を一緒に閉じる。F06のDB root不一致は既存path/DB ownerへ照会して原子scopeに割り当てる。F07は#1533のマージ前レビュー項目として扱う。これらの修正を理由に新しい巨大planner・別DB・別queue・別harnessを増設しない。
+
+F05のREADYは実consumer到達性を確定してから配車判定への影響を分類する。実際のcurrent routeではないならcompatibility-onlyとして明示し、新しいTicketが再利用しない境界を先に確立する。旧slotのような近似統計をそのままhard capacityへ昇格しない。
+
+### 5.2 安全境界を弱めない
+
+未知statusの受理、必須検証集合の削除、独立reviewの省略、worker-blind provenanceの重複許可、no_harnessを理由にした本線guardの無効化、baselineの上方書換えでCIを緑にしない。正規のinput producerとvalidatorを同じ契約へ接続する。
+
+### 5.3 機械で検収する証拠
+
+各修正は、対象HEAD・対象責務・source revision・test・独立review・CI・DB/replayを同一scopeへ束縛する。修正前にはnegative fixtureが安全要件に対して失敗し、修正後に安全側の期待値へ変わることを、元のTypeScriptモジュールを使うテストで検収する。同梱の局所反例だけを全回帰完了receiptへ昇格しない。
+
+具体的な着手順・並列数は既存dependency/WIP/priority policyが決める。本報告は新しい実行authorityや恒久的なPO指示ではない。
+
+## 6. 全件点検として残っている範囲
+
+**以下は未検証であり、安全・無欠陥とは判定しない。**
+
+| 範囲 | 今回の限界 | 完全点検に必要な証拠 |
+|---|---|---|
+| 全trackedファイル | tree/主要面は確認したが、全ファイル全文精読と全ファイル別receiptはない | exact Git treeの全pathに読了/解析/対象外理由を付ける |
+| 全Requirement→runtime対応 | 主要正本と新候補・既存Issueの責務を照合。全IR entityの機械的閉包は未再構築 | L1/L3/L10/IR、owner、実装、test、consumerの全edge検査 |
+| 全branch/worktree | #1533等は確認。ユーザーの全local worktree/未push変更は未取得 | branch/lease/owner/changed-path重複の実環境snapshot |
+| 全CLI/caller | 巨大cli.tsと全exportの呼出しを全数追跡していない | 正規CLIから各policy/side-effectへの静的・実行到達性 |
+| 原環境回帰 | 本環境はNode22でproject指定Node24ではない | 固定HEAD/lockfileでのtargeted・全回帰・mutation・E2E |
+| 複数process/クラッシュ | slot競合、電源断、外部I/O再送は実試験していない | fault injection・CAS/fence・outbox/replayの運用試験 |
+| 全OS/実provider | Windows/macOS/Cursor Cloud/Claude/Codex実接続を行っていない | 同一契約のprovider/OS別canary・長時間観測 |
+| 配布先・利用project | DevOS/全consumerを再取得して検証していない | artifact exact set、install/upgrade/rollback、consumer-zero |
+| 外部制御の全迂回経路 | ローカルpredicateの反例と実際の外部操作を区別している | 完全な許可境界・権限・隔離・本線への非到達証拠 |
+
+権限や実環境への接続を増やすための操作は行っていない。点検対象の範囲を広く取ったことと、上記すべての完了は同義ではない。
+
+## 7. 同梱反例と実測結果
+
+`README.md`の4コマンドで再実行する。合成ファイル/DBのみを作る。30ケース中8件は対照、22件は欠陥・弱い判定の観測を確認するケースで、同じ原因の複数入力を含む。**実行成功は欠陥の再現成功であり、HELIXの合格ではない。**
+
+| 実測ファイル | ケース数 | 内容 |
+|---|---:|---|
+| probe_results.json | 22 | checklist、verdict、approval、manifest、PR ratchet |
+| readiness_results.json | 3 | 過去pass/current fail、prefix過剰一致、gateなし対照 |
+| db_path_results.json | 2 | 指定repoとcwdの実DB作成先、絶対path対照 |
+| path_pattern_results.json | 3 | Unix/macOSの検知漏れ、Windows対照 |
+
+## 8. ソース参照台帳
+
+固定HEADに束縛した主なコード・文書参照。行範囲は取得範囲であり、指定end_lineがファイル末尾を超えた場合は取得された本文までを読んだもの。応答省略があった面は明示した。前ターンから同一SHAの参照も含む。この一覧をリポジトリ全ファイルの読了率として使用しない。
+
+| key | ソース | 読取範囲 |
+|---|---|---|
+| checklist | [src/gate/review-tier.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/gate/review-tier.ts) | 1–300（取得したファイル本文・判定/loader） |
+| checklist-policy | [src/gate/review-tier-policy.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/gate/review-tier-policy.ts) | 1–180（取得したポリシー本文） |
+| manifest | [src/lint/gn-evidence-manifest.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/gn-evidence-manifest.ts) | 1–310（取得したファイル本文、125–300を再照合） |
+| approval-classifier | [src/lint/workflow-decision-packets.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/workflow-decision-packets.ts) | 1–180 |
+| approval-fields | [src/lint/action-binding-approval-readiness.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/action-binding-approval-readiness.ts) | 1110–1300、1430–1530の関数範囲 |
+| readiness | [src/workflow/readiness.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/readiness.ts) | 1–220（取得したファイル本文） |
+| loop | [src/orchestration/loop-bridge.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/orchestration/loop-bridge.ts) | 1–230 |
+| slots | [src/runtime/agent-slots.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/runtime/agent-slots.ts) | 1–330のうち応答で読めた範囲。末尾は一部省略あり |
+| pair | [src/vmodel/lint.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/vmodel/lint.ts) | 1–345。後続のtest-design検査全体は未精読 |
+| ratchet | [src/lint/legacy-orchestration-surface.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/593f55a60b0b7d723d68a194a7113d32789afa62/src/lint/legacy-orchestration-surface.ts) | 1–340（取得したファイル本文） |
+| ratchet-test | [tests/legacy-orchestration-surface.test.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/593f55a60b0b7d723d68a194a7113d32789afa62/tests/legacy-orchestration-surface.test.ts) | 1–300（取得したテスト本文） |
+| db | [src/state-db/index.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/index.ts) | 1–250（取得したファイル本文） |
+| db-maintenance | [src/state-db/state-hygiene.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/state-hygiene.ts) | 1–220（取得したファイル本文） |
+| db-migration | [src/state-db/migration.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/migration.ts) | 1–400（取得したファイル本文） |
+| quality | [src/audit/quality.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/audit/quality.ts) | 1–310（取得したファイル本文） |
+| review-agent | [.claude/agents/code-reviewer.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/.claude/agents/code-reviewer.md) | 1–130（取得した定義本文） |
+| review-evidence | [src/lint/review-evidence.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/review-evidence.ts) | 145–225。hasReviewEvidence/抽出関数の照合 |
+| supersession | [src/lint/plan-supersession.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/plan-supersession.ts) | 1–230（取得したファイル本文） |
+| route-map | [src/schema/route-map.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/schema/route-map.ts) | 1–220（取得したファイル本文） |
+| old-routing | [src/workflow/routing-contracts.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/routing-contracts.ts) | 1–160、410–575 |
+| route-cli | [src/cli/commands/route.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/route.ts) | 1–250（取得したファイル本文） |
+| workflow-cli | [src/cli/commands/workflow.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/workflow.ts) | 1–270（取得したファイル本文） |
+| bench | [docs/design/helix/L3-requirements/helix-bench-evaluation.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/design/helix/L3-requirements/helix-bench-evaluation.md) | 1–250（取得した定義本文） |
+| blind-bench | [src/runtime/worker-blind-benchmark.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/runtime/worker-blind-benchmark.ts) | 310–435 |
+| agent-rules | [AGENTS.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/AGENTS.md) | 1–210のうち応答で読めた範囲。全ファイル精読ではない |
+| requirements | [docs/governance/helix-harness-requirements_v1.3.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/governance/helix-harness-requirements_v1.3.md) | 前ターン取得の冒頭・canonical layer/pair/分類定義。全文ではない |
+| memory-plan | [docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md) | 前ターンの取得本文を使用 |
+| memory-model | [src/memory/memory-v2.ts](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/memory/memory-v2.ts) | 前ターンの型宣言・interface範囲。全lifecycle関数の再実行なし |
+| ci | [.github/workflows/harness-check.yml](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/.github/workflows/harness-check.yml) | 前ターンの1–150、preflight、range/review admission部分を使用 |
+| package | [package.json](https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/package.json) | 前ターンの取得本文を使用 |
+
+GitHub状態の根拠: [main ref](https://api.github.com/repos/RetryYN/HELIX-HARNESS/git/ref/heads/main)、[PR #1533](https://github.com/RetryYN/HELIX-HARNESS/pull/1533)、[PR discussion](https://github.com/RetryYN/HELIX-HARNESS/pull/1533#issuecomment-5545559080)、[main CI](https://github.com/RetryYN/HELIX-HARNESS/actions/runs/33913032451)。動的ページは閲覧時刻で変わり得るため、本報告のコード判断は上記固定SHAを優先する。
+
+既存P0 Issue #1411/#1430/#1431は今回APIでopenを再確認。それ以外の関連Issue番号は責務の接続先であり、全ての最新状態・全コメントを取得したという意味ではない。DB root問題の専用Issue検索は限定的で、完全な重複検索を保証しない。
+
+**点検結果からの総括:** 新要求候補には責務分離を改善する内容が既にある。しかし、それを支える既存の検査器・I/O境界が正しい証拠を要求できない面が残っている。先に確認した局所欠陥を実装/テストの対で直し、そのうえでscope別に新要求を有効化するのが妥当である。

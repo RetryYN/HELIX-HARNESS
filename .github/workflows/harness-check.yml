@@ -431,7 +431,8 @@ jobs:
           npx --no-install tsx src/cli.ts github workflow-identity-admission \
             --repository "$GITHUB_REPOSITORY" \
             --pr-body-file "$RUNNER_TEMP/pr-body.md" \
-            --changed-file "$RUNNER_TEMP/pr-changed-paths.bin"
+            --changed-file "$RUNNER_TEMP/pr-changed-paths.bin" \
+            --base-head "$merge_base"
           npx --no-install tsx src/cli.ts github issue-closure-graph-snapshot \
             --repository "$GITHUB_REPOSITORY" \
             --pr-body-file "$RUNNER_TEMP/pr-body.md" \

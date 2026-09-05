@@ -205,6 +205,7 @@ items:
       - docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md
       - docs/design/helix/L6-function-design/checkout-pathspec-guard.md
       - docs/design/helix/L6-function-design/hosted-preflight-override-audit.md
+      - docs/design/helix/L6-function-design/cross-system-audit-intake.md
       - docs/design/helix/L6-function-design/runner-attestation-journal-authority.md
       - docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
@@ -228,6 +229,8 @@ items:
       - docs/design/helix/L6-function-design/helix-bench-task-dataset.md
       - docs/design/helix/L6-function-design/git-argument-boundary.md
       - docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md
+      - docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md
+      - docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
       - docs/design/helix/L6-function-design/design-language-early-detection.md
       - docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
@@ -1186,6 +1189,8 @@ items:
     status: done
     artifact:
       - docs/skills/review-checklist.yaml
+      - docs/design/helix/L6-function-design/review-checklist-validation.md
+      - docs/test-design/helix/L8-review-checklist-validation.md
   - id: product-vision-inception-deck
     name: プロダクトビジョン・インセプションデッキ
     category: sprint
