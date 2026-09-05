@@ -29,6 +29,8 @@ WCC-FR-04のnetwork/secret policy fieldは公開しない。
 
 `runWorkerIsolationLaunch`は起動前にsealed launchを一度だけ消費する。同じobjectの再入、
 例外後・終了後の再実行は既存の`WORKER_ISOLATION_LAUNCH_UNSEALED`で拒否し、spawnへ進めない。
-引数構築またはspawnが例外を投げても、finallyでbroker所有mapとbackend/runtime FDを回収する。
+引数構築またはspawnが例外を投げても、finallyでbackend/runtime FDを閉鎖する。
+同finallyの内部WeakMap削除は実装上の衛生措置として維持するが、公開APIから削除自体を
+観測するoracleはない。single-use消費と両FD閉鎖の反例成功を、WeakMap回収の実証に流用しない。
 起動例外は成功receiptへ変換せず呼出元へ伝播する。別の再試行はadmissionを再検証するprepareから新しいlaunchを生成する。
 これはprocess隔離policyの緩和やproduction callerの接続完了を意味しない。

@@ -72,7 +72,9 @@ agent_slotsは計画上の責務であり、agent起動実績や独立レビュ�
 Issue #1543 comment 5554716261へ実測を記録した。実providerの障害・隔離突破実績とは区別する。
 
 起動前にsealed identityを消費し、引数構築・spawnをfinallyで囲む。
-終了状態にかかわらず内部mapを削除し、backend/runtimeの両FDを閉鎖する。
+backend/runtimeの両FDを閉鎖し、公開APIでsingle-use拒否とFD閉鎖を検証する。
+内部WeakMap削除も維持するが、これは公開APIから観測不能な衛生措置であり、
+既存反例によって削除自体が証明されたとは扱わない。
 再入と同objectの再試行はspawn前に拒否する。再試行はadmissionを再検証するprepareから
 新しいlaunchを生成する。起動例外は成功receiptに変換せず伝播する。
 
@@ -120,3 +122,9 @@ fixtureが元broker、検査対象が複製brokerとなりsealed identityが分�
 run33993155736のauthority gate失敗はL4 worker-lifecycle-receiptのcontent digest未追従1件。
 base d3eff363との全文差分はbrokerのsource_digest参照のみで、検出signal 3件も完全一致した。
 Nodeだけが永続化する本文を再照合し、reviewed digestのみ追従する。件数期待値は変更しない。
+
+## 独立レビュー所見の反映
+
+PR #1573 comment5554983855は内部WeakMap削除4行の変異生存を報告した。
+L6と本PLANで実装措置と観測済み受入を分離した。実装・検査を削除して範囲を縮める変更ではない。
+内部回収の観測方法、実timeout、引数構築例外、close例外は未検証の残余として保持する。
