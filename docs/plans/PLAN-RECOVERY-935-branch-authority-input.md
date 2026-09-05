@@ -65,8 +65,6 @@ modifies:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
-  - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 review_evidence: []
 ---
 

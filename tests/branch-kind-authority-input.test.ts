@@ -100,7 +100,7 @@ describe("branch入力authorityの実Git検証", () => {
     }
     expect(git(root, "rev-parse", "HEAD")).toBe(snapshot.baseHead);
   });
-  it("U-BRAUTH-011: 外部例外のmessageを内部失敗コードとして信用しない", () => {
+  it("外部例外のmessageを内部失敗コードとして信用しない（原因識別の補助反例）", () => {
     const { root, snapshot } = fixture();
     const spy = vi.spyOn(childProcess, "execFileSync").mockImplementation(() => {
       throw new Error("head_changed_during_read: synthetic-private-detail");
