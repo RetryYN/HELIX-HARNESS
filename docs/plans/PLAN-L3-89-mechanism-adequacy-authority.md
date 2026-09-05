@@ -17,7 +17,7 @@ entry_signals:
 created: 2026-09-05
 updated: 2026-09-05
 owner: Codex / TL
-github_issue_id: 1248
+github_issue_id: 1552
 behavior_contract_id: MECHANISM-ADEQUACY-AUTHORITY-001
 responsibility_owner: universal-improvement-mechanism-adequacy
 engineering_discipline_required: true
@@ -43,6 +43,7 @@ dependencies:
   parent: docs/governance/candidates/mechanism-adequacy-requests.md
   requires: []
   references:
+    - issue:1552
     - issue:1248
     - issue:1210
     - issue:1033
@@ -78,6 +79,7 @@ review_evidence: []
 
 原稿追加依頼を意味承認へ読み替えない。status draftとcompletion falseを維持する。
 既存#1248へ接続するが、そのruntime sliceを本候補の承認前に拡張しない。
+本authority候補の所有Issueは#1552。#1248は接続先のruntime責務であり、本候補のmergeでcloseしない。
 候補受付の参照： https://github.com/RetryYN/HELIX-HARNESS/issues/1248#issuecomment-5548311084
 
 ## 収束境界

@@ -6,6 +6,7 @@
 照合基準：main `ff51260578c22124190964b6cc003612a83c075d`。
 原稿：`HELIX_MECHANISM_ADEQUACY_REQUEST_v0.2.md`（v0.1を置換）。原文は[要求候補](mechanism-adequacy-requests.md)へ保持する。
 本台帳は追跡用であり、要求・承認・完了の第二正本にはしない。
+候補整理の所有Issueは#1552（PR #1551）。#1248はUIL-04 runtimeの接続先として保持し、そのidentity・完了状態を変更しない。
 
 L1の[企画候補](mechanism-adequacy-vision.md)はMA-BR-01..04を定義し、L12の
 [運用検証候補](mechanism-adequacy-recognition.md)のMA-OP-01..04へ対応する。
