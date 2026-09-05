@@ -1362,6 +1362,24 @@ dependencies:
       expect(git.status).toBe(0);
       const add = spawnSync("git", ["add", "."], { cwd: repoRoot, encoding: "utf8" });
       expect(add.status).toBe(0);
+      // PLAN-RECOVERY-1548: review-evidence projection は HEAD tree（git ls-tree HEAD）を tracked 集合の
+      // 正本とし、unborn HEAD は fail-close する。impact fixture は初回 commit を成立させてから
+      // working tree を変更し、変更 path の検出契約（core.ts のみ）はそのまま検証する。
+      const commit = spawnSync(
+        "git",
+        [
+          "-c",
+          "user.name=fixture",
+          "-c",
+          "user.email=fixture@example.invalid",
+          "commit",
+          "-q",
+          "-m",
+          "fixture",
+        ],
+        { cwd: repoRoot, encoding: "utf8" },
+      );
+      expect(commit.status, commit.stderr).toBe(0);
       writeFileSync(join(repoRoot, "src", "widget", "core.ts"), "export const core = 2;\n");
 
       const relationGraph: RelationGraphProjection = {
