@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-648-review-evidence-reviewer-identity
+superseded_by: [PLAN-RECOVERY-1543-reviewer-session-model-history]
 title: "PLAN-L7-648 (impl): review_evidence の reviewer 主体を構造化フィールドで一意にする"
 kind: impl
 layer: L7
