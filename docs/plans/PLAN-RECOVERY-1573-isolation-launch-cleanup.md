@@ -21,6 +21,8 @@ agent_slots:
 parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md
 pair_artifact: docs/test-design/helix/L8-worker-isolation-broker-runtime-unit-test-design.md
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-CLEANUP-004, test_path: tests/design-reality-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-CLEANUP-005, test_path: tests/design-reality-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-CLEANUP-001, test_path: tests/worker-isolation-broker.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-CLEANUP-002, test_path: tests/worker-isolation-broker.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-isolation-broker.md, oracle_id: U-WIB-CLEANUP-003, test_path: tests/worker-isolation-broker.test.ts }
@@ -36,6 +38,8 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1573-isolation-launch-cleanup.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-context-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-independent-review.md, artifact_type: design_doc }
@@ -101,3 +105,11 @@ parameterized testを通常test内の二値loopへ変更し、PLAN oracle抽出�
 型検査exit 0、Biomeはerror 0・既存unused import警告9件。DB再構築は80994行で成功。
 mutationの一時testをDB走査と並列にするとENOENTが発生したため、同一worktreeでは直列化した。
 実bubblewrap・現HEAD CI・独立レビュー・main read-afterは引き続き未完了。
+
+## mutation対照検査の是正
+
+06:15:07 JST、無変更moduleを複製した対照試験で既存helperがkill=trueを返しRED。
+fixtureが元broker、検査対象が複製brokerとなりsealed identityが分離する問題を確認した。
+同helper内でfixtureも複製し、broker参照先を揃えると06:15:39 JSTに対照試験がGREEN。
+消費解除とbackend/runtime各FD回収の削除を別々に検出する反例を追加する。
+先行のmutation成功件数は、この対照確認なしに退行検出力の証明とは扱わない。

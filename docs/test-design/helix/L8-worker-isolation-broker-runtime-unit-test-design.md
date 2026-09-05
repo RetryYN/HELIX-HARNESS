@@ -33,6 +33,8 @@ targeted closure環境では実在pathを指定して必ず実行し、mock結�
 | U-WIB-CLEANUP-001 | 起動例外と一度限り消費 | 注入spawn例外を伝播し両FDの閉鎖をfstatで検証。同launchの再利用はspawn 0で拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-CLEANUP-002 | 異常終了と再入拒否 | statusが非zeroまたはnullの場合も両FDを閉鎖し、実行中の再入・終了後の再利用はspawn 0で拒否。実timeoutの再現とは区別する | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-CLEANUP-003 | 成功後の消費と継続可能性 | 正常な出力envelopeを受理しFDを閉鎖。同launchは拒否するが、別途prepareした新しいlaunchは正常実行できる | `tests/worker-isolation-broker.test.ts` |
+| U-WIB-CLEANUP-004 | mutation対照 | fixtureも同moduleへ束縛した無変更複製が正常に通り、identity不一致を退行検出と誤認しない | `tests/design-reality-binding.test.ts` |
+| U-WIB-CLEANUP-005 | 資源寿命の退行検出 | 一度限り消費、backend FD閉鎖、runtime FD閉鎖の削除をそれぞれ検出する | `tests/design-reality-binding.test.ts` |
 | U-WIB-007 | 実process隔離 | repo、state、DB、credentialが可視ならRed | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-008 | admission鮮度 | stale／拒否済みdescriptorを拒否 | `tests/worker-isolation-broker.test.ts` |
 | U-WIB-009 | mutation到達性 | filesystem隔離分岐の除去をRedにする | `tests/worker-isolation-broker.test.ts` |
