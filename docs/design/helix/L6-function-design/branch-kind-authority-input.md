@@ -63,6 +63,8 @@ doctorとCLIは同じsnapshotで同じfindingを返す。取得不能は専用fi
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
+| U-BRAUTH-010 | merge-base一意性 | 実criss-cross履歴の2件のbaseを拒否し、単一baseは受理する | tests/branch-kind-authority-input.test.ts |
+| U-BRAUTH-011 | snapshot整合 | diff取得直後の実HEAD変更を拒否する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-001 | commit済みPLAN | clean treeでもcandidateのPLANを認識する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-002 | 作業差分 | staged／unstaged／untrackedを欠落・重複なく取得する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-003 | base identity | 存在しない明示baseを別baseで相殺しない | tests/branch-kind-authority-input.test.ts |

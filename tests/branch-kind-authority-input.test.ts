@@ -57,7 +57,7 @@ function fixture() {
 }
 
 describe("branch入力authorityの実Git検証", () => {
-  it("U-BRAUTH-005: Git読込中の実HEAD変更を拒否する", () => {
+  it("U-BRAUTH-011: Git読込中の実HEAD変更を拒否する", () => {
     const { root, snapshot } = fixture();
     expect(loadBranchKindInput(root, snapshot).authority?.status).toBe("available");
     const original = childProcess.execFileSync;
@@ -252,7 +252,7 @@ describe("branch入力authorityの実Git検証", () => {
     ]);
   });
 
-  it("U-BRAUTH-003: 実criss-cross履歴の複数merge-baseから一つを勝手に選ばない", () => {
+  it("U-BRAUTH-010: 実criss-cross履歴の複数merge-baseから一つを勝手に選ばない", () => {
     const { root, snapshot } = fixture();
     const tree = git(root, "rev-parse", "HEAD^{tree}");
     const commit = (parents: string[], message: string) =>
