@@ -66,6 +66,8 @@ generates:
   - { artifact_path: docs/governance/candidates/mechanism-adequacy-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/mechanism-adequacy-acceptance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/mechanism-adequacy-intake.md, artifact_type: markdown_doc }
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: tl, slot_label: "TL — UILとSystem Synthesisの責務境界" }
   - { role: qa, slot_label: "QA — 原文保存と六分類の反例・trace" }
