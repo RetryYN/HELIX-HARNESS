@@ -117,7 +117,7 @@ Issue #1543 / PR #1550 で観測された「同一 harness session が model 切
 
 ## 非対象
 
-- 旧記録（Sol）の書換や `superseded_by` 以外の PLAN-L7-648 本文変更。
+- 旧記録（Sol）の書換や `superseded_by` 以外の PLAN-L7-648 変更（本文への訂正注記も branch-kind の metadata-only 契約を満たすため入れない）。
 - SessionStart での申告 model 記録と、切替時の session 再発行（後続 slice。Issue #1543 に残す）。
 - receipt / admission の `reviewerSessionId ↔ reviewer_session_id` exact 照合（L6 §4 の次 slice）。
 - `claude-fable-5-1` の family 追加（`\bfable\b` 正規化で既に fable family に落ちるため変更不要）。
@@ -129,5 +129,5 @@ Issue #1543 / PR #1550 で観測された「同一 harness session が model 切
 2. doctor `review-evidence` check が registry を読み、失敗を違反として surface。
 3. `U-RVIDENT-012` 〜 `016` で許容・mismatch・parse fail-close・非波及・実 repo ガードを束縛し、
    3 mutation の red を実測。
-4. PLAN-L7-648 に `superseded_by` と訂正注記を付け、`doctor plan-supersession` の双方向性を満たす。
+4. PLAN-L7-648 の frontmatter に `superseded_by` だけを付け（recovery branch の metadata-only 移行として branch-kind-check が許容する範囲）、`doctor plan-supersession` の双方向性を満たす。訂正の経緯は本 PLAN と L6 に記載する。
 5. Issue #1543 へ実測 HEAD と RED/GREEN を read-after 記録し、Codex へ window 追記を依頼する。
