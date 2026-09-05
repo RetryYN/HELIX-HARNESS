@@ -13,6 +13,11 @@ github_issue_id: 93
 behavior_contract_id: DB-REBUILD-REVIEW-SNAPSHOT-001
 responsibility_owner: state-db-projection
 entry_signals: [regression_dev]
+agent_slots:
+  - { role: aim, slot_label: "AIM — 検証義務を削らず性能修復する範囲を照合" }
+  - { role: tl, slot_label: "TL — 再構築単位の共有寿命と責務境界を検収" }
+  - { role: se, slot_label: "SE — review PLAN解析の重複を除去" }
+  - { role: qa, slot_label: "QA — 再読込・rollback・投影parityを検証" }
 parent_design: docs/design/harness/L6-function-design/function-spec.md
 pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
@@ -39,6 +44,9 @@ review_evidence: []
 ---
 
 # DB再構築の局所最適化
+
+agent_slotsは計画上の責務割当であり、別agentの起動実績や独立review receiptではない。
+独立検収の実績は現HEADのGitHub receiptで別途証明する。
 
 既存DB投影責務の性能修復。要求意味、投影行、Git provenance検査、rollbackを変更しない。
 model run・roadmap status・review registryが利用するreview PLANを再構築呼出し内で一度取得する。
