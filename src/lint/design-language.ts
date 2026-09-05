@@ -304,6 +304,21 @@ export function analyzeDesignLanguage(
   };
 }
 
+const DESIGN_LANGUAGE_SAMPLE_LIMIT = 8;
+
+/**
+ * violation の位置を message へ載せるための抜粋を作る。
+ * baseline 分を読み飛ばして「増えた側」を先に見せ、fingerprint drift のように
+ * baseline と同件数の場合は全件から先頭を見せる（違反箇所が message だけで特定できる状態を保つ）。
+ */
+function violationSample(result: DesignLanguageResult): string {
+  const from = result.violations.length > result.baselineViolations ? result.baselineViolations : 0;
+  const picked = result.violations.slice(from, from + DESIGN_LANGUAGE_SAMPLE_LIMIT);
+  const rendered = picked.map((v) => `${v.path}:${v.line}:${v.reason}`).join(", ");
+  const rest = result.violations.length - from - picked.length;
+  return rest > 0 ? `${rendered} ほか${rest}件` : rendered;
+}
+
 export function designLanguageMessages(result: DesignLanguageResult): string[] {
   if (result.ok && result.violations.length === 0) {
     return [`design-language - OK (human-facing docs ${result.checked}, english prose 0)`];
@@ -315,14 +330,10 @@ export function designLanguageMessages(result: DesignLanguageResult): string[] {
   }
   if (result.fingerprintDrift) {
     return [
-      `design-language - violation: english prose fingerprint changed at frozen debt count (total=${result.violations.length}, baseline=${result.baselineViolations}, fingerprint=${result.fingerprint})。既存英語 prose の差し替えではなく、日本語化で debt を減らすか baseline fingerprint 更新 PLAN を通す`,
+      `design-language - violation: english prose fingerprint changed at frozen debt count (total=${result.violations.length}, baseline=${result.baselineViolations}, fingerprint=${result.fingerprint}, sample=${violationSample(result)})。既存英語 prose の差し替えではなく、日本語化で debt を減らすか baseline fingerprint 更新 PLAN を通す`,
     ];
   }
-  const sample = result.violations
-    .slice(result.baselineViolations, result.baselineViolations + 8)
-    .map((v) => `${v.path}:${v.line}:${v.reason}`)
-    .join(", ");
   return [
-    `design-language - violation: english prose increased by ${result.newViolations}件 (total=${result.violations.length}, baseline=${result.baselineViolations}, sample=${sample})。人間向け docs の説明文は日本語を正本にし、英語は識別子/開発用語に限る`,
+    `design-language - violation: english prose increased by ${result.newViolations}件 (total=${result.violations.length}, baseline=${result.baselineViolations}, sample=${violationSample(result)})。人間向け docs の説明文は日本語を正本にし、英語は識別子/開発用語に限る`,
   ];
 }
