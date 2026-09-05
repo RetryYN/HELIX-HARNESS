@@ -1,7 +1,12 @@
+// PLAN-RECOVERY-1411-review-checklist-validation — U-CHKREV-001
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   evaluateGateReview,
   judgmentReviewPlanForMode,
+  loadReviewChecklist,
   REQUIRED_CHECKLIST_IDS,
   type ReviewChecklist,
 } from "../src/gate/review-tier";
@@ -12,6 +17,89 @@ const passingChecklist = (): ReviewChecklist => ({
 });
 
 describe("gate review tier", () => {
+  it("F01: メタデータ付き旧skill templateを完成したchecklist証拠として読まない", () => {
+    expect(() => loadReviewChecklist("docs/skills/review-checklist.yaml")).toThrow(
+      "review checklist invalid",
+    );
+  });
+
+  it("U-CHKREV-001: loaderと直接入力で不正checklistを拒否し、正常対照を維持する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-checklist-"));
+    const path = join(root, "checklist.yaml");
+    try {
+      const valid = passingChecklist();
+      for (const invalid of [
+        null,
+        {},
+        { items: [null] },
+        { ...valid, unexpected: true },
+        { items: valid.items.map((item) => ({ ...item, evidence: 3 })) },
+        { items: valid.items.map((item) => ({ ...item, unexpected: true })) },
+        { items: [...valid.items, valid.items[0]] },
+        { items: [{ id: "DOC", status: "fail" }, ...valid.items] },
+        { items: [...valid.items, { id: "UNKNOWN", status: "pass" }] },
+        { items: valid.items.slice(1) },
+        ...[undefined, "PASS", "skip", null, 1].map((status) => ({
+          items: valid.items.map((item) => ({ ...item, status })),
+        })),
+      ]) {
+        writeFileSync(path, JSON.stringify(invalid));
+        expect(() => loadReviewChecklist(path)).toThrow("review checklist invalid");
+        for (const mode of ["codex-only", "claude-only"] as const) {
+          expect(
+            evaluateGateReview({
+              gate: "G4",
+              mode,
+              checklist: invalid as unknown as ReviewChecklist,
+            }).passed,
+          ).toBe(false);
+        }
+      }
+      writeFileSync(path, JSON.stringify(valid));
+      expect(loadReviewChecklist(path)).toEqual(valid);
+      for (const mode of ["codex-only", "claude-only"] as const) {
+        expect(evaluateGateReview({ gate: "G4", mode, checklist: valid }).passed).toBe(true);
+        const notApplicable = passingChecklist();
+        notApplicable.items[0] = { id: "DOC", status: "n-a", evidence: "文書変更なし" };
+        expect(evaluateGateReview({ gate: "G4", mode, checklist: notApplicable }).passed).toBe(
+          true,
+        );
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each([undefined, "PASS", "skip", null, 1])(
+    "F01: 必須7項目が揃っても不正status %s を拒否する",
+    (status) => {
+      const checklist = {
+        items: REQUIRED_CHECKLIST_IDS.map((id) => ({ id, status })),
+      } as unknown as ReviewChecklist;
+      for (const mode of ["codex-only", "claude-only"] as const) {
+        expect(evaluateGateReview({ gate: "G4", mode, checklist }).passed).toBe(false);
+      }
+    },
+  );
+
+  it("F01: 重複IDの後勝ちでfailをpassへ上書きできない", () => {
+    const checklist = passingChecklist();
+    checklist.items.unshift({ id: "DOC", status: "fail" });
+    expect(evaluateGateReview({ gate: "G4", mode: "codex-only", checklist }).passed).toBe(false);
+  });
+
+  it("F01: 必須項目以外のIDを拒否する", () => {
+    const checklist = passingChecklist();
+    checklist.items.push({ id: "UNKNOWN", status: "pass" });
+    expect(evaluateGateReview({ gate: "G4", mode: "codex-only", checklist }).passed).toBe(false);
+  });
+
+  it("F01: 理由付きn-aは従来どおり受理する", () => {
+    const checklist = passingChecklist();
+    checklist.items[0] = { id: "DOC", status: "n-a", evidence: "文書変更なし" };
+    expect(evaluateGateReview({ gate: "G4", mode: "codex-only", checklist }).passed).toBe(true);
+  });
+
   it("loads judgment gate policy from the externalized policy module", () => {
     expect(JUDGMENT_GATES).toContain("G4");
     expect(REQUIRED_CHECKLIST_IDS).toContain("TST");

@@ -1,6 +1,6 @@
 ---
 document_id: HELIX-FUNCTIONAL-RELEASE-SLICE-L1-CANDIDATE
-version: 0.1.0
+version: 0.2.0
 status: draft_candidate
 canonical_layer: L1
 plan: PLAN-L3-83-functional-release-slice-composition
@@ -13,8 +13,9 @@ github_issue_id: 1494
 
 現行のRelease Module／Bundle要件は、責務の所有単位をModule、利用目的のcompositionをBundleとして分離している。
 一方、単一のbehavior contract、依存閉包、受入証拠、consumer証拠を独立して検証・昇格する中間単位がないため、
-Moduleが大きくなるほど小さな機能の成熟度とBundleへの収載判断が混在する。この候補は、既存のModule／Bundle境界を
-変更せず、機能を安全に昇格させる単位を追加する。
+Moduleが大きくなるほど小さな機能の成熟度とBundleへの収載判断が混在する。この候補は、既存構成を移行元inventoryとして
+利用目的・責務・依存から再評価し、機能を安全に昇格させる単位を定める。既存の個数・名前・所属を固定しない。
+v0.2の再編差分は2026-09-05の差戻し対象であり未承認。v0.1への既存承認を撤回せず、追加差分へ転用もしない。
 
 ## 利用者要求
 
@@ -43,10 +44,26 @@ previewのSliceをstable Bundleへ暗黙に含めてはならない。
 利用者は、同一source／registry／profileから同一Slice manifestとartifactを再生成し、clean consumerで検証し、失敗時に
 直前のqualified Sliceまたは明示されたreplacementへ戻せなければならない。
 
-### FRS-BR-006 将来の責務分割への余地
+### FRS-BR-006 証拠に基づく責務再編
 
 利用者は、authority、quality、control、trust、operations、learning、assurance、synthesisのような横断機能を、
-早期に新Moduleへ増殖させずSliceとして測定・shadow運用し、複数cycleの証拠が揃った場合だけModule候補へ昇格できなければならない。
+要求全件の所有・依存・検証・利用実績に基づき、維持・分割・統合・移管の候補へ整理できなければならない。
+現構成の維持も無条件のModule増殖も前提にせず、未検証の候補はshadowに留める。
+
+### FRS-BR-007 全要求の配布先と依存順
+
+利用者は、対象要求revisionごとに実装先、検証先、所有Module、Release Slice、収載Bundle、未成立条件を確認できなければならない。
+未所属、二重所有、未実装、未接続、未検証を隠さず、Waveを依存と検収証拠から導出する。説明用の9群・17系統を固定分母にしない。
+
+### FRS-BR-008 開発加速の限定先行投入
+
+利用者は、必要な検証を維持したCI改善を正式配布前から内部利用し、待ち時間・再実行を実測できなければならない。
+Cursor限定委譲は専用branch、隔離、予算、期限、成果回収、独立レビューを満たして利用でき、常駐レーン全体の完成を待たない。
+
+### FRS-BR-009 安全閉包と組合せの検収
+
+利用者は各Sliceに必要な安全依存閉包を確認し、無関係な基盤完成を待たず、必要な安全条件が欠ける場合は投入を止められなければならない。
+Lite／Fullは検収済みSliceの組合せとし、その統合・更新・rollback・L12運用検証を個別Sliceの成功とは別に確認する。
 
 ## 軸の分離
 
@@ -55,7 +72,7 @@ repository境界の別名ではない。SliceはModuleへ所有され、Bundle�
 
 ## 非対象
 
-- 現行11 Module候補、8 Bundle候補、RLS-01〜13の意味を本候補だけで変更すること。
+- 承認と正本改訂を経ずに現行RLSの意味を変更すること。旧候補の個数は再編の固定条件にしない。
 - Module repository分割、別builder、別DB authority、別requirements authority。
 - #188 routing／allocation、#819 resident lane、provider自動配車、whole-system plannerの実装。
 - OPSのDeployment／Operation／Maintenance／Diagnosis、未完security brokerの再実装。
