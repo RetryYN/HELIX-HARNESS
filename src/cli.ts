@@ -79,7 +79,7 @@ import {
   screenTablesInitialized,
 } from "./design/screen-applicability-sqlite-store";
 import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
-import { nodeDoctorDeps, runConsumerDoctor, runDoctor } from "./doctor";
+import { nodeDoctorDeps, runConsumerDoctor, runDoctor, runDoctorGate } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { assertNodeEngineRuntimeAuthority } from "./doctor/node-engine-runtime";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
@@ -2356,6 +2356,7 @@ program
   .option("--profile <name>", "doctor profile (consumer)")
   .option("--scope <scope>", "doctor scope: full or toolchain", "full")
   .option("--setup-smoke", "run the consumer setup smoke subset instead of full product doctor")
+  .option("--gate <id>", "run a single named doctor gate (design-language)")
   .option("--timing", "include per-check timing in JSON and slow-check text summary")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for review and view surfaces")
@@ -2368,6 +2369,7 @@ program
       includeWorkingTree?: boolean;
       scope?: string;
       setupSmoke?: boolean;
+      gate?: string;
       timing?: boolean;
       json?: boolean;
       summaryJson?: boolean;
@@ -2422,6 +2424,28 @@ program
           for (const m of r.messages) process.stdout.write(`${m}\n`);
         }
         process.exitCode = 1;
+        return;
+      }
+      if (opts.gate !== undefined) {
+        // 単体 gate 実行は full doctor と同じ check 関数を呼び、判定の配線 drift を作らない。
+        // scope 検証の後に置き、profile / setup-smoke / toolchain scope との併用は fail-close する
+        // （単体 gate はそれらを解釈しないため、黙って無視すると誤った green になる。#1547 Codex 指摘）。
+        const gate =
+          opts.profile !== undefined || opts.setupSmoke === true || opts.scope === "toolchain"
+            ? {
+                ok: false,
+                gate: opts.gate,
+                messages: [
+                  `doctor: gate - violation --gate ${opts.gate} cannot be combined with --profile, --setup-smoke, or --scope toolchain`,
+                ],
+              }
+            : runDoctorGate(opts.gate, process.cwd());
+        if (opts.json || opts.summaryJson) {
+          process.stdout.write(`${JSON.stringify(gate, null, 2)}\n`);
+        } else {
+          for (const m of gate.messages) process.stdout.write(`${m}\n`);
+        }
+        process.exitCode = gate.ok ? 0 : 1;
         return;
       }
       const r =
