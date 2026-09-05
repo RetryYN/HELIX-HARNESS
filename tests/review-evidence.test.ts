@@ -1691,6 +1691,46 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
     expect(reviewerModelAt(declared, "2026-04-31T12:00:00Z")).toBeNull();
     // 有効なうるう日は照合される（対照）。
     expect(reviewerModelAt(declared, "2028-02-29T12:00:00Z")).toBe("codex");
+    // 小数精度を ms へ丸めて別 window へ昇格させない: 境界 03:00:00Z の直前は旧 window のまま。
+    expect(reviewerModelAt(declared, "2026-09-05T02:59:59.9999Z")).toBe("codex:gpt-5.6-sol");
+    expect(reviewerModelAt(declared, "2026-09-05T02:59:59.999999999Z")).toBe("codex:gpt-5.6-sol");
+    // 境界一致（半開区間の下端）と、小数桁数だけが異なる同一 instant は同じ window に落ちる。
+    for (const same of [
+      "2026-09-05T03:00:00Z",
+      "2026-09-05T03:00:00.0Z",
+      "2026-09-05T03:00:00.000Z",
+      "2026-09-05T03:00:00.000000000Z",
+      "2026-09-05T12:00:00.000000+09:00",
+    ]) {
+      expect(reviewerModelAt(declared, same), same).toBe("codex");
+    }
+    // sub-ms 幅の window は潰れずに区別される（since < until が保たれ、内側の instant だけが一致する）。
+    const subMs = parseReviewerSessionModelHistory({
+      schema_version: REVIEWER_SESSION_MODEL_HISTORY_SCHEMA,
+      sessions: [
+        {
+          reviewer_session_id: historySession,
+          runtime: "codex",
+          windows: [
+            {
+              reviewer_model: "codex:narrow",
+              since: "2026-09-05T03:00:00.0000001Z",
+              until: "2026-09-05T03:00:00.0000002Z",
+              basis: "sub-ms 幅の合成 window。attestation ではない。",
+            },
+            {
+              reviewer_model: "codex:after",
+              since: "2026-09-05T03:00:00.0000002Z",
+              until: null,
+              basis: "合成。attestation ではない。",
+            },
+          ],
+        },
+      ],
+    }).sessions[0];
+    expect(reviewerModelAt(subMs, "2026-09-05T03:00:00.00000015Z")).toBe("codex:narrow");
+    expect(reviewerModelAt(subMs, "2026-09-05T03:00:00.0000002Z")).toBe("codex:after");
+    expect(reviewerModelAt(subMs, "2026-09-05T03:00:00.00000009Z")).toBeNull();
     // 明示 offset は同一 instant として照合される（+09:00 の 12:00 = 03:00Z = 新 window 開始）。
     expect(reviewerModelAt(declared, "2026-09-05T12:00:00+09:00")).toBe("codex");
     expect(reviewerModelAt(declared, "2026-09-05T11:59:59+09:00")).toBe("codex:gpt-5.6-sol");
