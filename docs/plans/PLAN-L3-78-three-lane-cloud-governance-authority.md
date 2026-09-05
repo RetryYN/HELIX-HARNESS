@@ -74,6 +74,8 @@ generates:
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-acceptance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-recognition.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — v0.3→v0.4 Requirement Re-entryと旧approval非流用" }
