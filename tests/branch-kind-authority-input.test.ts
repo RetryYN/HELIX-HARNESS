@@ -193,6 +193,16 @@ describe("branch入力authorityの実Git検証", () => {
     ])
       expect(branchSnapshotFromPrContext(invalid, local)).toBeNull();
     expect(branchSnapshotFromPrContext(raw, { ...local, branch: "HEAD" })).toBeNull();
+    for (const invalid of [
+      { ...local, branch: "HEAD" },
+      { ...local, branch: "" },
+      { ...local, repository: "invalid" },
+      { ...local, head: "invalid" },
+    ]) {
+      const readPr = vi.fn(() => raw);
+      expect(readBranchSnapshotFromPrProvider({ readLocal: () => invalid, readPr })).toBeNull();
+      expect(readPr).not.toHaveBeenCalled();
+    }
     expect(readBranchSnapshotFromPrProvider({ readLocal: () => local, readPr: () => raw })).toEqual(
       { ...snapshot, includeWorkingTree: true },
     );

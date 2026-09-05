@@ -48,6 +48,20 @@ export interface BranchKindSnapshot {
   includeWorkingTree?: boolean;
 }
 
+function validLocalPrIdentity(local: {
+  repository: string;
+  head: string;
+  branch: string;
+}): boolean {
+  return (
+    /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(local.repository) &&
+    /^[a-f0-9]{40}$/.test(local.head) &&
+    typeof local.branch === "string" &&
+    local.branch.length > 0 &&
+    local.branch !== "HEAD"
+  );
+}
+
 /** PR応答の必要fieldだけを検証する。取得・Git実在性検査は呼出し側の責務。 */
 export function branchSnapshotFromPrContext(
   raw: unknown,
@@ -62,10 +76,7 @@ export function branchSnapshotFromPrContext(
   const head = record(pr?.head);
   const sha = /^[a-f0-9]{40}$/;
   if (
-    !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(local.repository) ||
-    !sha.test(local.head) ||
-    !local.branch ||
-    local.branch === "HEAD" ||
+    !validLocalPrIdentity(local) ||
     pr?.state !== "open" ||
     typeof base?.sha !== "string" ||
     !sha.test(base.sha) ||
@@ -89,6 +100,7 @@ export function readBranchSnapshotFromPrProvider(deps: {
 }): BranchKindSnapshot | null {
   try {
     const before = { ...deps.readLocal() };
+    if (!validLocalPrIdentity(before)) return null;
     const snapshot = branchSnapshotFromPrContext(deps.readPr({ ...before }), before);
     const after = deps.readLocal();
     if (
