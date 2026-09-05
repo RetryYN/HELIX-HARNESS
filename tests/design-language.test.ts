@@ -264,7 +264,7 @@ describe("design-language lint", () => {
     }
   });
 
-  // PLAN-RECOVERY-110-design-language-early-detection:
+  // PLAN-RECOVERY-1493-design-language-early-detection:
   // 検出時点と位置表示だけを前倒しし、design-language の判定内容と baseline は変えない。
   it("U-DESLANG-013: reports violation locations even when the message is a fingerprint drift", () => {
     const result = analyzeDesignLanguage([

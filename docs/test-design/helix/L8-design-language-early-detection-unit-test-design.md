@@ -7,8 +7,8 @@ status: draft
 created: 2026-09-05
 updated: 2026-09-05
 owner: QA
-plan: docs/plans/PLAN-RECOVERY-110-design-language-early-detection.md
-pair_artifact: docs/design/helix/L6-function-design/design-language-early-detection.md
+plan: docs/plans/PLAN-RECOVERY-1493-design-language-early-detection.md
+pair_artifact: docs/design/harness/L6-function-design/module-drift.md
 ---
 
 # design-language 早期検出 L8単体テスト設計

@@ -126,6 +126,17 @@ analyzeModuleDrift(docs: { listed, actual }) -> { orphans, listedCount, actualCo
 - **doctor contract**: `checkDesignLanguage(repoRoot)` は `loadDesignLanguageDocs` → `analyzeDesignLanguage` →
   `designLanguageMessages` を実行し、baseline 超過または fingerprint drift を `runDoctor.ok=false` に連動する。
   baseline は完了宣言ではなくラチェット対象であり、今後の日本語化 PLAN で段階的に引き下げる。
+- **早期検出 (2026-09-05, Issue #1493)**: 判定内容は変えず、検出時点と message の可読性だけを前倒しする。
+  - `designLanguageMessages` は fingerprint drift 側の message にも `path:line:reason` の抜粋を載せる。
+    `DESIGN_LANGUAGE_BASELINE_VIOLATIONS` が 0 の現行設定では violation が 1 件でも drift が先に成立し、
+    位置を出す分岐へ到達できないため、違反箇所の特定を review 側へ押し付けていた。
+  - `runDoctorGate(gate, repoRoot)` は `DOCTOR_SINGLE_GATES` 経由で full doctor と同一の check 関数へ
+    委譲する単体実行経路であり、`helix doctor --gate design-language` から呼ぶ。新しい判定は追加せず、
+    単体実行と full doctor で判定が割れる配線 drift を oracle で固定する。unknown gate は fail-close する。
+  - CI では `full-regression-preflight` の `npm run test:repo-guards` より前に同 gate を実行する。
+    `full-regression-finalize` の `doctor` 実行は二重化として残し、前倒しであって置換ではない。
+  - 検査 oracle は `U-DESLANG-013` / `U-DESLANG-014` / `U-DESLANG-015` の 3 件で固定し、
+    pair は `docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md` とする。
 
 ### DDD/TDD Strictness 追補 (FR-L1-50)
 

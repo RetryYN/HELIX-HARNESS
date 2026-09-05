@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-RECOVERY-110-design-language-early-detection
-title: "PLAN-RECOVERY-110: design-language 違反の検出時点と位置表示を前倒しする"
+plan_id: PLAN-RECOVERY-1493-design-language-early-detection
+title: "PLAN-RECOVERY-1493: design-language 違反の検出時点と位置表示を前倒しする"
 kind: recovery
 layer: cross
 drive: agent
@@ -41,12 +41,12 @@ green_at: "2026-09-05T03:05:21+09:00"
 mutation_oracle_required: true
 mutation_oracle: "U-DESLANG-013/U-DESLANG-014/U-DESLANG-015 が message 位置表示、単体実行の配線 drift、CI 実行位置の退行を個別に検出する。"
 mutation_oracle_evidence: "2026-09-05T03:04:00+09:00 に実装前の RED を実測し、U-DESLANG-013/014/015 が 3 failed／3 passed（出力 digest b7d6437876b72f032faaac25320e9290b26bfa44e0c958df475b2893a04eb255）となることを確認した。実装後 2026-09-05T03:05:21+09:00 に同 test が 15 passed（digest ff46f411b334bba675c5ea32fa8cac1d8546e5784e27118d7a76f4347e1ca159）へ遷移した。mutation は 4 件を実測している。M1（drift message から sample を除去）は 1 failed／14 passed（digest 9d0b8c1bfe4fcc1836fa0b8cc19565fa5f2c54fb782425394e5219c5a940b386）。M3（preflight の gate を repo-guards より後ろへ移動）は 1 failed／14 passed（digest e2051cfb7880b926e54c056f1d67e7aa658329e636f9cfa57cd9e2417712ce0d）。M2（runDoctorGate が check の message を加工）は初版 oracle では 15 passed（digest fb98799625732ce8c8b384287b619d5d90f0f25b032224823cd7aa048403e20b）で生き残った。実 repository の violation が 0 件で message に sample を含まず mutation が no-op になるためであり、U-DESLANG-014 へ violation を含む fixture 比較を追加した後の再実測で 1 failed／14 passed（digest 759d0a8280ef6276239867ceded257f7653f6cd7d17b22a7e12586247cd12ece）へ変わり kill を確認した。M4（unknown gate が ok を返す）は 1 failed／14 passed（digest 8c2a839c1f3f134486d51abc60a8bb0169b93ffd10e59b7c58c20e58ca4528da）。全 mutation 復元後に 15 passed へ戻ることを確認した。"
-parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md
+parent_design: docs/design/harness/L6-function-design/module-drift.md
 pair_artifact: docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-013, test_path: tests/design-language.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-014, test_path: tests/design-language.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-015, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/module-drift.md, oracle_id: U-DESLANG-013, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/module-drift.md, oracle_id: U-DESLANG-014, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/module-drift.md, oracle_id: U-DESLANG-015, test_path: tests/design-language.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L6-15-module-drift.md
   requires: []
@@ -59,10 +59,10 @@ agent_slots:
   - { role: se, slot_label: "SE — message 位置表示、単体 gate 経路、CI 実行位置を実装" }
   - { role: qa, slot_label: "QA — 位置表示除去・配線 drift・実行位置退行の mutation を検証" }
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-110-design-language-early-detection.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/design-language-early-detection.md, artifact_type: design_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-1493-design-language-early-detection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/harness/L6-function-design/module-drift.md, artifact_type: design_doc }
   - { artifact_path: src/lint/design-language.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
@@ -73,7 +73,7 @@ modifies:
 review_evidence: []
 ---
 
-# PLAN-RECOVERY-110: design-language 違反の検出時点と位置表示を前倒しする
+# PLAN-RECOVERY-1493: design-language 違反の検出時点と位置表示を前倒しする
 
 ## 目的
 
