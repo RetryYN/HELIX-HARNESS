@@ -2232,9 +2232,16 @@ describe("runDoctor", () => {
     }
   });
 
-  it("includes branch-kind-check in doctor output", () => {
+  it("snapshot未指定のdoctorはbranch authority欠落を表示し、OKへ変換しない", () => {
     const r = liveDoctor();
-    expect(hasDoctorMessage(r.messages, "doctor: branch-kind-check - OK")).toBe(true);
+    expect(
+      r.messages.some(
+        (message) =>
+          message.includes("branch-kind-check - block branch_authority_unavailable") &&
+          message.includes("branch_snapshot_required"),
+      ),
+    ).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: branch-kind-check - OK")).toBe(false);
   });
 
   it("includes right-arm verification strategy hard gate in doctor output", () => {
