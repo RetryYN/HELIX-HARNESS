@@ -1,0 +1,17 @@
+{
+  "schema_version": "helix-reviewer-session-model-history.v1",
+  "sessions": [
+    {
+      "reviewer_session_id": "019febe1-8983-7820-bee4-4cd62876f9b6",
+      "runtime": "codex",
+      "windows": [
+        {
+          "reviewer_model": "codex:gpt-5.6-sol",
+          "since": "2026-08-10T13:37:33Z",
+          "until": null,
+          "basis": "同 session の既存 review_evidence（PLAN-L3-75 / PLAN-L3-76 / PLAN-L7-649 / PLAN-L7-708、2026-08-21〜08-30）の自己申告を有効期間として宣言。since は .helix/logs/session/019febe1-….jsonl の最初の session_start。実効 model の attestation ではない。model 切替（2026-09-05 に ~/.codex/config.toml で gpt-6-astra を観測）後の window は Codex 所有者が切替時刻と申告 model を追記する（Issue #1543 / PR #1550）。"
+        }
+      ]
+    }
+  ]
+}

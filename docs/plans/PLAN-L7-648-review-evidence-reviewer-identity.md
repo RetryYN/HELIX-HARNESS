@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-648-review-evidence-reviewer-identity
+superseded_by: [PLAN-RECOVERY-1543-reviewer-session-model-history]
 title: "PLAN-L7-648 (impl): review_evidence の reviewer 主体を構造化フィールドで一意にする"
 kind: impl
 layer: L7
@@ -87,6 +88,13 @@ dependencies:
 ---
 
 # review_evidence の reviewer 主体を構造化フィールドで一意にする
+
+> **訂正 / supersede (PLAN-RECOVERY-1543、2026-09-05)**: 本 PLAN の L6 §2 が置いた不変条件「同一
+> `reviewer_session_id` は単一 `reviewer_model`」は、Codex の harness session が model 切替
+> （gpt-5.6-sol → gpt-6-astra）をまたいで同一 id で継続する実態（Issue #1543 / PR #1550）と合わなかった。
+> 後継 PLAN-RECOVERY-1543 は不変条件を「tracked registry `docs/governance/reviewer-session-model-history.json`
+> に宣言した有効期間の中で一貫」へ置き換え、未登録 session は本 PLAN の規則のまま維持する。主体定義
+> （session × model の対）、構造化フィールド方針、遡及禁止（§5）は変更しない。
 
 ## §背景（実測）
 

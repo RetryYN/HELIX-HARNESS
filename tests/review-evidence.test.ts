@@ -9,12 +9,17 @@ import {
   isNonSemanticL3MetadataMigrationLine,
   L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
   type L3HumanApproval,
+  loadReviewerSessionModelHistory,
   loadReviewPlans,
   type ParsedReviewPlan,
+  parseReviewerSessionModelHistory,
   parseReviewPlan,
   REVIEWER_SESSION_ENFORCEMENT_DATE,
+  REVIEWER_SESSION_MODEL_HISTORY_PATH,
+  REVIEWER_SESSION_MODEL_HISTORY_SCHEMA,
   type ReviewEntry,
   readGitPlanDateProvenance,
+  reviewerModelAt,
 } from "../src/lint/review-evidence";
 import { checkCrossAgentModelPair, modelProviderFromId } from "../src/schema";
 
@@ -1384,6 +1389,213 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
 
   it("U-RVIDENT-010: 実 repo fail-close ガード — 現行 docs/plans に reviewer identity violation が無い", () => {
     const r = analyzeReviewEvidence(loadReviewPlans(process.cwd()));
+    expect(r.reviewerIdentityViolations).toEqual([]);
+  });
+
+  // PLAN-RECOVERY-1543-reviewer-session-model-history: session × model の有効期間 registry。
+  const historySession = "019febe1-8983-7820-bee4-4cd62876f9b6";
+  const history = () =>
+    parseReviewerSessionModelHistory({
+      schema_version: REVIEWER_SESSION_MODEL_HISTORY_SCHEMA,
+      sessions: [
+        {
+          reviewer_session_id: historySession,
+          runtime: "codex",
+          windows: [
+            {
+              reviewer_model: "codex:gpt-5.6-sol",
+              since: "2026-08-10T13:37:33Z",
+              until: "2026-09-05T03:00:00Z",
+              basis: "既存 review_evidence の自己申告。attestation ではない。",
+            },
+            {
+              reviewer_model: "codex",
+              since: "2026-09-05T03:00:00Z",
+              until: null,
+              basis: "Codex 所有者の申告（確認できる範囲は runtime=codex）。attestation ではない。",
+            },
+          ],
+        },
+      ],
+    });
+  const historyPlan = (planId: string, reviewedAt: string, reviewerModel: string) =>
+    plan({
+      plan_id: planId,
+      kind: "impl",
+      created: "2026-09-01",
+      updated: "2026-09-05",
+      crossEntries: [
+        aiEntry({
+          reviewer_session_id: historySession,
+          reviewer_model: reviewerModel,
+          reviewed_at: reviewedAt,
+          tests_green_at: reviewedAt,
+        }),
+      ],
+      hasEvidence: true,
+    });
+
+  it("U-RVIDENT-012: registry に有効期間が宣言された session は model 切替をまたいでも衝突にしない", () => {
+    const r = analyzeReviewEvidence(
+      [
+        historyPlan("PLAN-HIST-SOL", "2026-08-30T13:06:00Z", "codex:gpt-5.6-sol"),
+        historyPlan("PLAN-HIST-ASTRA", "2026-09-05T03:36:39Z", "codex"),
+      ],
+      { sessionModelHistory: history() },
+    );
+    expect(r.reviewerIdentityViolations).toEqual([]);
+    expect(reviewerModelAt(history().sessions[0], "2026-08-30T13:06:00Z")).toBe(
+      "codex:gpt-5.6-sol",
+    );
+    expect(reviewerModelAt(history().sessions[0], "2026-09-05T03:36:39Z")).toBe("codex");
+    // registry なしでは従来どおり衝突（履歴宣言だけが解消手段であることを固定）。
+    const legacy = analyzeReviewEvidence([
+      historyPlan("PLAN-HIST-SOL", "2026-08-30T13:06:00Z", "codex:gpt-5.6-sol"),
+      historyPlan("PLAN-HIST-ASTRA", "2026-09-05T03:36:39Z", "codex"),
+    ]);
+    expect(legacy.reviewerIdentityViolations).toEqual([
+      { plan_id: "PLAN-HIST-ASTRA", reason: `reviewer_session_model_conflict:${historySession}` },
+    ]);
+  });
+
+  it("U-RVIDENT-013: registry 登録 session は window 外・model 不一致を history_mismatch として fail-close する", () => {
+    // 旧 window 内で新 model を名乗る（切替前に Astra を主張）。
+    const early = analyzeReviewEvidence(
+      [historyPlan("PLAN-HIST-EARLY", "2026-09-01T00:00:00Z", "codex")],
+      { sessionModelHistory: history() },
+    );
+    expect(early.reviewerIdentityViolations).toEqual([
+      {
+        plan_id: "PLAN-HIST-EARLY",
+        reason: `reviewer_session_model_history_mismatch:${historySession}`,
+      },
+    ]);
+    // 新 window 内で旧 model を名乗る（切替後に Sol を主張 = 旧記録への文字列合わせ）。
+    const late = analyzeReviewEvidence(
+      [historyPlan("PLAN-HIST-LATE", "2026-09-05T04:00:00Z", "codex:gpt-5.6-sol")],
+      { sessionModelHistory: history() },
+    );
+    expect(late.reviewerIdentityViolations).toEqual([
+      {
+        plan_id: "PLAN-HIST-LATE",
+        reason: `reviewer_session_model_history_mismatch:${historySession}`,
+      },
+    ]);
+    // どの window にも入らない（since より前）。
+    const before = analyzeReviewEvidence(
+      [historyPlan("PLAN-HIST-BEFORE", "2026-08-01T00:00:00Z", "codex:gpt-5.6-sol")],
+      { sessionModelHistory: history() },
+    );
+    expect(before.reviewerIdentityViolations).toEqual([
+      {
+        plan_id: "PLAN-HIST-BEFORE",
+        reason: `reviewer_session_model_history_mismatch:${historySession}`,
+      },
+    ]);
+    // model が 1 つでも registry に載った session は照合する（単一 model だから通す、にしない）。
+    expect(before.ok).toBe(false);
+  });
+
+  it("U-RVIDENT-014: registry の schema / 時系列不整合は parse 時点で fail-close する", () => {
+    const base = history();
+    const mutate = (fn: (raw: Record<string, unknown>) => void) => {
+      const raw = JSON.parse(JSON.stringify(base)) as Record<string, unknown>;
+      fn(raw);
+      return () => parseReviewerSessionModelHistory(raw);
+    };
+    expect(
+      mutate((raw) => {
+        raw.schema_version = "helix-reviewer-session-model-history.v0";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:schema_version");
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ since: string }> }>)[0].windows[1].since =
+          "2026-09-05T02:00:00Z";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[1].since");
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ until: string | null }> }>)[0].windows[0].until =
+          null;
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[1].since");
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ until: string | null }> }>)[0].windows[0].until =
+          "2026-08-10T13:37:33Z";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[0].until");
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ reviewer_session_id: string }>)[0].reviewer_session_id =
+          "session id: bad";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].reviewer_session_id");
+    expect(
+      mutate((raw) => {
+        const sessions = raw.sessions as Array<Record<string, unknown>>;
+        sessions.push(JSON.parse(JSON.stringify(sessions[0])));
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[1].reviewer_session_id");
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ basis: string }> }>)[0].windows[0].basis = "";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[0].basis");
+    // 読込側の失敗は違反として surface され、履歴なし扱いに黙って落ちない。
+    const r = analyzeReviewEvidence([], {
+      sessionModelHistory: null,
+      sessionModelHistoryError: "reviewer_session_model_history_invalid:root",
+    });
+    expect(r.reviewerIdentityViolations).toEqual([
+      {
+        plan_id: REVIEWER_SESSION_MODEL_HISTORY_PATH,
+        reason: "reviewer_session_model_history_invalid:root",
+      },
+    ]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-RVIDENT-015: registry に無い session は従来の単一 model 規則で衝突する（履歴は他 session を緩めない）", () => {
+    const other = "8e73aa7e-52a7-4ea8-a688-8d4ac834d747";
+    const r = analyzeReviewEvidence(
+      [
+        historyPlan("PLAN-HIST-SOL", "2026-08-30T13:06:00Z", "codex:gpt-5.6-sol"),
+        plan({
+          plan_id: "PLAN-OTHER-A",
+          kind: "impl",
+          created: "2026-08-01",
+          updated: "2026-08-01",
+          crossEntries: [aiEntry({ reviewer_session_id: other })],
+          hasEvidence: true,
+        }),
+        plan({
+          plan_id: "PLAN-OTHER-B",
+          kind: "impl",
+          created: "2026-08-01",
+          updated: "2026-08-01",
+          crossEntries: [
+            aiEntry({ reviewer_session_id: other, reviewer_model: "claude:claude-fable-5" }),
+          ],
+          hasEvidence: true,
+        }),
+      ],
+      { sessionModelHistory: history() },
+    );
+    expect(r.reviewerIdentityViolations).toEqual([
+      { plan_id: "PLAN-OTHER-A", reason: `reviewer_session_model_conflict:${other}` },
+    ]);
+  });
+
+  it("U-RVIDENT-016: 実 repo の registry は parse でき、現行 docs/plans と矛盾しない（fail-close ガード）", () => {
+    const loaded = loadReviewerSessionModelHistory(process.cwd());
+    expect(loaded).not.toBeNull();
+    expect(loaded?.schema_version).toBe(REVIEWER_SESSION_MODEL_HISTORY_SCHEMA);
+    expect(loaded?.sessions.map((s) => s.reviewer_session_id)).toContain(historySession);
+    const r = analyzeReviewEvidence(loadReviewPlans(process.cwd()), {
+      sessionModelHistory: loaded,
+    });
     expect(r.reviewerIdentityViolations).toEqual([]);
   });
 });

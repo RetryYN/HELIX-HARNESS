@@ -142,6 +142,155 @@ export const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fi
  * (GREEN_COMMAND_ENFORCEMENT_DATE と同じ date-gated 移行)。
  */
 export const REVIEWER_SESSION_ENFORCEMENT_DATE = "2026-08-22";
+
+/**
+ * reviewer session × model 履歴（Issue #1543 / PLAN-RECOVERY-1543）。
+ *
+ * L6 reviewer identity（PLAN-L7-648）は「同一 session は単一 model」を不変条件としたが、Codex の
+ * harness session は model 切替（gpt-5.6-sol → gpt-6-astra）をまたいで同一 id で継続する実態が
+ * 観測された。真実を記録すると衝突、旧記録に合わせると虚偽になる板挟みを、tracked registry に
+ * 宣言した **有効期間（since/until）** で解消する。未登録 session は従来の単一 model 規則のまま。
+ * registry は runtime 所有者の申告であり実効 model の attestation ではない（basis に明記する）。
+ */
+export const REVIEWER_SESSION_MODEL_HISTORY_SCHEMA = "helix-reviewer-session-model-history.v1";
+export const REVIEWER_SESSION_MODEL_HISTORY_PATH =
+  "docs/governance/reviewer-session-model-history.json";
+
+export interface ReviewerSessionModelWindow {
+  reviewer_model: string;
+  /** ISO 8601。この時刻以降（含む）の review をこの model として扱う。 */
+  since: string;
+  /** ISO 8601 または null（現在も有効）。この時刻より前（含まない）まで有効。 */
+  until: string | null;
+  /** 申告根拠。attestation ではないことを含めて人間が読める形で残す。 */
+  basis: string;
+}
+
+export interface ReviewerSessionModelHistoryEntry {
+  reviewer_session_id: string;
+  runtime: string;
+  windows: ReviewerSessionModelWindow[];
+}
+
+export interface ReviewerSessionModelHistory {
+  schema_version: typeof REVIEWER_SESSION_MODEL_HISTORY_SCHEMA;
+  sessions: ReviewerSessionModelHistoryEntry[];
+}
+
+function historyString(value: unknown, label: string): string {
+  if (typeof value !== "string" || value.trim() === "") {
+    throw new Error(`reviewer_session_model_history_invalid:${label}`);
+  }
+  return value;
+}
+
+function historyIso(value: unknown, label: string): string {
+  const text = historyString(value, label);
+  if (!Number.isFinite(Date.parse(text))) {
+    throw new Error(`reviewer_session_model_history_invalid:${label}`);
+  }
+  return text;
+}
+
+/**
+ * registry を fail-close で検証する。schema_version 不一致、空 session、session id 形式不正、
+ * 重複 session、windows の時系列不整合（since 非増加・until < since・重複区間・末尾以外の open window）
+ * はすべて throw する。壊れた履歴を silent 受理して衝突判定を緩めない。
+ */
+export function parseReviewerSessionModelHistory(raw: unknown): ReviewerSessionModelHistory {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    throw new Error("reviewer_session_model_history_invalid:root");
+  }
+  const root = raw as Record<string, unknown>;
+  if (root.schema_version !== REVIEWER_SESSION_MODEL_HISTORY_SCHEMA) {
+    throw new Error("reviewer_session_model_history_invalid:schema_version");
+  }
+  if (!Array.isArray(root.sessions)) {
+    throw new Error("reviewer_session_model_history_invalid:sessions");
+  }
+  const seen = new Set<string>();
+  const sessions = root.sessions.map((item, index): ReviewerSessionModelHistoryEntry => {
+    if (typeof item !== "object" || item === null || Array.isArray(item)) {
+      throw new Error(`reviewer_session_model_history_invalid:sessions[${index}]`);
+    }
+    const entry = item as Record<string, unknown>;
+    const sessionId = historyString(
+      entry.reviewer_session_id,
+      `sessions[${index}].reviewer_session_id`,
+    );
+    if (!REVIEWER_SESSION_ID_PATTERN.test(sessionId) || seen.has(sessionId)) {
+      throw new Error(
+        `reviewer_session_model_history_invalid:sessions[${index}].reviewer_session_id`,
+      );
+    }
+    seen.add(sessionId);
+    const runtime = historyString(entry.runtime, `sessions[${index}].runtime`);
+    if (!Array.isArray(entry.windows) || entry.windows.length === 0) {
+      throw new Error(`reviewer_session_model_history_invalid:sessions[${index}].windows`);
+    }
+    let previousUntil: number | null = null;
+    const windows = entry.windows.map((w, wi): ReviewerSessionModelWindow => {
+      if (typeof w !== "object" || w === null || Array.isArray(w)) {
+        throw new Error(`reviewer_session_model_history_invalid:sessions[${index}].windows[${wi}]`);
+      }
+      const window = w as Record<string, unknown>;
+      const label = `sessions[${index}].windows[${wi}]`;
+      const since = historyIso(window.since, `${label}.since`);
+      const until = window.until === null ? null : historyIso(window.until, `${label}.until`);
+      const sinceMs = Date.parse(since);
+      if (until !== null && Date.parse(until) <= sinceMs) {
+        throw new Error(`reviewer_session_model_history_invalid:${label}.until`);
+      }
+      if (previousUntil === null && wi > 0) {
+        // 直前 window が open（until null）なのに後続がある = 末尾以外の open window。
+        throw new Error(`reviewer_session_model_history_invalid:${label}.since`);
+      }
+      if (previousUntil !== null && sinceMs < previousUntil) {
+        throw new Error(`reviewer_session_model_history_invalid:${label}.since`);
+      }
+      previousUntil = until === null ? null : Date.parse(until);
+      return {
+        reviewer_model: historyString(window.reviewer_model, `${label}.reviewer_model`),
+        since,
+        until,
+        basis: historyString(window.basis, `${label}.basis`),
+      };
+    });
+    return { reviewer_session_id: sessionId, runtime, windows };
+  });
+  return { schema_version: REVIEWER_SESSION_MODEL_HISTORY_SCHEMA, sessions };
+}
+
+/** registry を読む。file が無ければ null（履歴なし）。parse 失敗は throw（fail-close）。 */
+export function loadReviewerSessionModelHistory(
+  repoRoot: string = process.cwd(),
+): ReviewerSessionModelHistory | null {
+  const path = join(repoRoot, REVIEWER_SESSION_MODEL_HISTORY_PATH);
+  if (!existsSync(path)) return null;
+  return parseReviewerSessionModelHistory(JSON.parse(readFileSync(path, "utf8")));
+}
+
+/** reviewed_at 時点で有効な window の reviewer_model を返す。該当なしは null。 */
+export function reviewerModelAt(
+  entry: ReviewerSessionModelHistoryEntry,
+  reviewedAt: string,
+): string | null {
+  const at = Date.parse(reviewedAt);
+  if (!Number.isFinite(at)) return null;
+  for (const window of entry.windows) {
+    const since = Date.parse(window.since);
+    const until = window.until === null ? Number.POSITIVE_INFINITY : Date.parse(window.until);
+    if (at >= since && at < until) return window.reviewer_model;
+  }
+  return null;
+}
+
+export interface AnalyzeReviewEvidenceOptions {
+  /** tracked registry。undefined/null は履歴なし（従来の単一 model 規則のみ）。 */
+  sessionModelHistory?: ReviewerSessionModelHistory | null;
+  /** registry の読込/検証失敗理由。与えられた場合は違反として surface し fail-close する。 */
+  sessionModelHistoryError?: string;
+}
 /**
  * L3 PLAN の人間承認を強制する開始日 (Issue #1097)。
  * 既存の確定履歴を捏造的に書き換えず、以後の L3 terminal 化・更新だけを対象にする。
@@ -634,7 +783,10 @@ export function bunHistoricalReceiptInventoryDigest(plans: ParsedReviewPlan[]): 
  *   単体 runtime は相異 model を供給できないため cross_agent を僭称できない (concept §2.1.2.1 核心ルール 1/2 を静的担保)。
  * @param plans 全 PLAN (archived は内部で除外)
  */
-export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidenceResult {
+export function analyzeReviewEvidence(
+  plans: ParsedReviewPlan[],
+  options: AnalyzeReviewEvidenceOptions = {},
+): ReviewEvidenceResult {
   const missing: { plan_id: string; kind: string }[] = [];
   const crossReviewViolations: { plan_id: string; reason: string }[] = [];
   const testBeforeReviewViolations: { plan_id: string; reason: string }[] = [];
@@ -644,6 +796,21 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
   const l3HumanApprovalViolations: { plan_id: string; reason: string }[] = [];
   /** session -> 観測した reviewer_model 群。同一 session が別 model を名乗る記録は矛盾する。 */
   const sessionModels = new Map<string, Map<string, string>>();
+  /** session -> 観測 entry（履歴 registry 照合用）。 */
+  const sessionEntries = new Map<
+    string,
+    { plan_id: string; reviewer_model: string; reviewed_at: string }[]
+  >();
+  const history = new Map<string, ReviewerSessionModelHistoryEntry>();
+  for (const entry of options.sessionModelHistory?.sessions ?? []) {
+    history.set(entry.reviewer_session_id, entry);
+  }
+  if (options.sessionModelHistoryError) {
+    reviewerIdentityViolations.push({
+      plan_id: REVIEWER_SESSION_MODEL_HISTORY_PATH,
+      reason: options.sessionModelHistoryError,
+    });
+  }
   if (
     plans.length > 100 &&
     bunHistoricalReceiptInventoryDigest(plans) !== BUN_HISTORICAL_RECEIPT_INVENTORY_DIGEST
@@ -720,6 +887,13 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
         const models = sessionModels.get(sessionId) ?? new Map<string, string>();
         models.set((e.reviewer_model ?? "").trim(), p.plan_id);
         sessionModels.set(sessionId, models);
+        const entries = sessionEntries.get(sessionId) ?? [];
+        entries.push({
+          plan_id: p.plan_id,
+          reviewer_model: (e.reviewer_model ?? "").trim(),
+          reviewed_at: e.reviewed_at ?? "",
+        });
+        sessionEntries.set(sessionId, entries);
       }
     }
     // gate は `created` で行う。既存 PLAN を後から編集しただけで、記録の無い session の
@@ -762,9 +936,26 @@ export function analyzeReviewEvidence(plans: ParsedReviewPlan[]): ReviewEvidence
     }
   }
   // 同一 session が別 model を名乗る記録は、少なくとも一方が誤帰属である (date-gate 非依存)。
+  // ただし tracked registry に有効期間が宣言された session は、各 entry の reviewed_at 時点の
+  // window と照合する（model 切替をまたぐ長寿命 session を虚偽か衝突かの二択にしない。#1543）。
+  // registry に載った session は model が 1 つでも照合し、window 外や model 不一致は fail-close。
   for (const [sessionId, models] of [...sessionModels.entries()].sort((a, b) =>
     a[0].localeCompare(b[0]),
   )) {
+    const declared = history.get(sessionId);
+    if (declared) {
+      const mismatched = (sessionEntries.get(sessionId) ?? [])
+        .filter((entry) => reviewerModelAt(declared, entry.reviewed_at) !== entry.reviewer_model)
+        .map((entry) => entry.plan_id)
+        .sort((a, b) => a.localeCompare(b));
+      if (mismatched.length > 0) {
+        reviewerIdentityViolations.push({
+          plan_id: mismatched[0] ?? sessionId,
+          reason: `reviewer_session_model_history_mismatch:${sessionId}`,
+        });
+      }
+      continue;
+    }
     if (models.size <= 1) continue;
     const planId = [...models.values()].sort((a, b) => a.localeCompare(b))[0];
     reviewerIdentityViolations.push({

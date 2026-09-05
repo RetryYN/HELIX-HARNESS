@@ -335,6 +335,7 @@ import {
 } from "../lint/repository-name-paths";
 import {
   analyzeReviewEvidence,
+  loadReviewerSessionModelHistory,
   loadReviewPlans,
   reviewEvidenceMessages,
 } from "../lint/review-evidence";
@@ -832,7 +833,19 @@ export function checkReviewEvidence(repoRoot: string): {
     };
   }
   try {
-    const r = analyzeReviewEvidence(loadReviewPlans(repoRoot));
+    // reviewer session × model 履歴 registry（#1543）。読込/検証失敗は違反として surface する。
+    let sessionModelHistory: ReturnType<typeof loadReviewerSessionModelHistory> = null;
+    let sessionModelHistoryError: string | undefined;
+    try {
+      sessionModelHistory = loadReviewerSessionModelHistory(repoRoot);
+    } catch (error) {
+      sessionModelHistoryError =
+        error instanceof Error ? error.message : "reviewer_session_model_history_invalid";
+    }
+    const r = analyzeReviewEvidence(loadReviewPlans(repoRoot), {
+      sessionModelHistory,
+      sessionModelHistoryError,
+    });
     return { messages: reviewEvidenceMessages(r), ok: r.ok };
   } catch {
     return {
