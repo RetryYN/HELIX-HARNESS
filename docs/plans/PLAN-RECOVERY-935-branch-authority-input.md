@@ -96,7 +96,9 @@ L6入力adapter設計へ戻り、対応するL7反例を確定してから実装
   明示引数を持つ実doctor／reviewの検証と、欠落時の取得不能表示を必要条件とする。
 - schedule／workflow_dispatchの検査対象を確定する。base=candidateの空差分を
   最新変更の検証証拠として扱わない。pushのzero-beforeも別途反例で扱う。
-- 曖昧merge-baseと読込中HEAD変化の反例は未検収である。
+- 曖昧merge-baseと読込中HEAD変化は専用の実Git反例で局所検証した。
+  前者は実criss-cross履歴、後者はdiff取得直後の実ref変更を用いる。
+  current HEADの全CI・独立reviewによる検収は未完了である。
 - CLI全回帰のoutstanding不一致は、未commit PLANとcommit済snapshotの差を検出した。
   同一commitへ収束後、期待値を緩めず再検証する。
 

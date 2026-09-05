@@ -1,9 +1,10 @@
-import { execFileSync, spawnSync } from "node:child_process";
+import childProcess, { execFileSync, spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { syncBuiltinESMExports } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { analyzeBranchKind, loadBranchKindInput } from "../src/lint/branch-kind";
 
 // PLAN-RECOVERY-935-branch-authority-input
@@ -56,6 +57,46 @@ function fixture() {
 }
 
 describe("branch入力authorityの実Git検証", () => {
+  it("U-BRAUTH-005: Git読込中の実HEAD変更を拒否する", () => {
+    const { root, snapshot } = fixture();
+    expect(loadBranchKindInput(root, snapshot).authority?.status).toBe("available");
+    const original = childProcess.execFileSync;
+    let changed = false;
+    const spy = vi
+      .spyOn(childProcess, "execFileSync")
+      .mockImplementation((...args: Parameters<typeof original>) => {
+        const result = original(...args);
+        const argv = args[1];
+        if (
+          !changed &&
+          Array.isArray(argv) &&
+          argv[0] === "-C" &&
+          argv[1] === root &&
+          argv[2] === "diff"
+        ) {
+          changed = true;
+          original("git", [
+            "-C",
+            root,
+            "update-ref",
+            `refs/heads/${snapshot.branch}`,
+            snapshot.baseHead,
+          ]);
+        }
+        return result;
+      });
+    syncBuiltinESMExports();
+    try {
+      const input = loadBranchKindInput(root, snapshot);
+      expect(changed).toBe(true);
+      expect(input.authority?.status).toBe("unavailable");
+      expect(analyzeBranchKind(input).ok).toBe(false);
+    } finally {
+      spy.mockRestore();
+      syncBuiltinESMExports();
+    }
+    expect(git(root, "rev-parse", "HEAD")).toBe(snapshot.baseHead);
+  });
   it("U-BRAUTH-004: 非Git consumerの明示対象外と通常の取得不能を区別する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-branch-nongit-"));
     roots.push(root);
