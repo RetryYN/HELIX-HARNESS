@@ -83,6 +83,8 @@ generates:
   - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/source_index.json.txt, artifact_type: other }
 review_evidence: []
 modifies:
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -114,5 +116,8 @@ Portfolio runtime、新要求の正本化、F01〜F14のruntime修正を完了�
 本PLANのdraftは要件承認待ちを意味せず、文書作業の未検収状態を示す。
 
 ## 用語・機能要求更新
+
+catalogの実変更は監査入力L6設計参照1件である。SHA-256を再計測し、freeze候補と
+既存22箇所のpinへ同一digestを伝播する。過去承認証拠、要件本文、検証義務は変更しない。
 
 用語更新なし。機能要求更新なし。新たな意味変更はこの取り込みPLANから自動昇格しない。
