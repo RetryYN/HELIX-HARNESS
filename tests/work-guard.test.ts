@@ -1,7 +1,16 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   evaluateWorkGuard,
@@ -15,6 +24,7 @@ import { runWorkGuardHook as runWorkGuardCore } from "../src/runtime/work-guard-
 import {
   foreignUncommittedFiles,
   gitUncommittedFiles,
+  normalizeSessionTarget,
   sessionTouchedFiles,
 } from "../src/runtime/worktree-state";
 import { defaultHarnessDbPath, openHarnessDb } from "../src/state-db";
@@ -24,6 +34,7 @@ const workGuardHook = join(hookRepoRoot, ".claude", "hooks", "work-guard.ts");
 const cliPath = join(hookRepoRoot, "src", "cli.ts");
 
 // PLAN-L7-691-shared-root-git-mutation-guard / U-GITGUARD-015
+// PLAN-RECOVERY-1566-worktree-path-identity / U-WORKPATH-001..006
 
 /** work-guard hook を temp repo の cwd で spawn する (win32 は System32 canonical な cmd 経由)。 */
 function runWorkGuardHook(cwd: string, input: unknown) {
@@ -46,6 +57,250 @@ function runWorkGuardHook(cwd: string, input: unknown) {
 }
 
 describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
+  it("U-WORKPATH-001: Gitの日本語・空白・nested pathをexact集合として保つ", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workpath-exact-"));
+    const paths = ["日本語.txt", "space name.txt", "nested/child.txt"];
+    if (process.platform !== "win32") paths.push("report ", "line\nbreak", "a -> b", "a\\b");
+    try {
+      execFileSync("git", ["init", "-b", "main"], { cwd, stdio: "ignore" });
+      mkdirSync(join(cwd, "nested"));
+      for (const path of paths) writeFileSync(join(cwd, path), "foreign\n");
+      expect(gitUncommittedFiles(cwd).sort()).toEqual([...paths].sort());
+      for (const path of paths) {
+        expect(
+          runWorkGuardCore({
+            repoRoot: cwd,
+            rawInput: JSON.stringify({ session_id: "s-path", tool_input: { file_path: path } }),
+            env: {},
+          }).exitCode,
+        ).toBe(2);
+      }
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("U-WORKPATH-002: 別POSIX pathのtouchをforeign targetの所有権へ流用しない", () => {
+    const root = "/fixture/repo";
+    for (const [foreign, own] of [
+      ["report ", "report"],
+      ["a\\b", "a/b"],
+      ["/fixture/repo/x.ts", "/other/fixture/repo/x.ts"],
+    ]) {
+      const target = normalizeRepoRelative(foreign, root);
+      const touched = normalizeRepoRelative(own, root);
+      expect(target).not.toBe(touched);
+      expect(
+        evaluateWorkGuard({
+          targetPath: target,
+          uncommittedFiles: [target],
+          sessionTouchedFiles: [touched],
+          bypass: false,
+        }).decision,
+      ).toBe("block");
+    }
+  });
+
+  it("U-WORKPATH-003: renameの移動元・移動先と削除pathを保持する", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workpath-rename-"));
+    try {
+      execFileSync("git", ["init", "-b", "main"], { cwd, stdio: "ignore" });
+      writeFileSync(join(cwd, "旧名.txt"), "rename\n");
+      writeFileSync(join(cwd, "deleted.txt"), "delete\n");
+      execFileSync("git", ["add", "旧名.txt", "deleted.txt"], { cwd });
+      execFileSync(
+        "git",
+        [
+          "-c",
+          "user.name=HELIX Test",
+          "-c",
+          "user.email=helix@example.invalid",
+          "commit",
+          "-m",
+          "test: seed",
+        ],
+        { cwd, stdio: "ignore" },
+      );
+      execFileSync("git", ["mv", "旧名.txt", "新名.txt"], { cwd });
+      execFileSync("git", ["rm", "deleted.txt"], { cwd, stdio: "ignore" });
+      expect(gitUncommittedFiles(cwd).sort()).toEqual(
+        ["deleted.txt", "旧名.txt", "新名.txt"].sort(),
+      );
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
+  it("U-WORKPATH-004: 通常pathと旧session prefixを別の入力境界として扱う", () => {
+    const root = "/fixture/repo";
+    expect(normalizeRepoRelative("Write /fixture/repo/x", root)).toBe("Write /fixture/repo/x");
+    expect(normalizeSessionTarget("Write /fixture/repo/x", root)).toBe("x");
+    expect(normalizeSessionTarget("untrusted /fixture/repo/x", root)).not.toBe("x");
+    expect(normalizeRepoRelative("/fixture/REPO/x", root)).not.toBe("x");
+    expect(extractEditTargets({ file_path: "report " })).toEqual(["report "]);
+  });
+
+  it("U-WORKPATH-005: 対象worktreeのdirtyとtouchだけで所有権を評価する", () => {
+    const base = mkdtempSync(join(tmpdir(), "helix-workpath-linked-"));
+    const root = join(base, "root");
+    const linked = join(base, "linked");
+    mkdirSync(root);
+    try {
+      execFileSync("git", ["init", "-b", "main"], { cwd: root, stdio: "ignore" });
+      writeFileSync(join(root, ".gitignore"), ".helix/\n");
+      writeFileSync(join(root, "same.txt"), "base\n");
+      execFileSync("git", ["add", ".gitignore", "same.txt"], { cwd: root });
+      execFileSync(
+        "git",
+        [
+          "-c",
+          "user.name=HELIX Test",
+          "-c",
+          "user.email=helix@example.invalid",
+          "commit",
+          "-m",
+          "test: seed",
+        ],
+        { cwd: root, stdio: "ignore" },
+      );
+      execFileSync("git", ["worktree", "add", "--detach", linked, "HEAD"], {
+        cwd: root,
+        stdio: "ignore",
+      });
+      const run = (filePath: string, workdir: string) =>
+        runWorkGuardCore({
+          repoRoot: root,
+          rawInput: JSON.stringify({
+            session_id: "s-linked",
+            tool_input: { file_path: filePath, workdir },
+          }),
+          env: {},
+        });
+      writeFileSync(join(root, "same.txt"), "main foreign\n");
+      expect(run("same.txt", linked).exitCode).toBe(0);
+      const runCli = () =>
+        spawnSync(
+          "npx",
+          [
+            "--prefix",
+            hookRepoRoot,
+            "--no-install",
+            "tsx",
+            cliPath,
+            "guard",
+            "preflight",
+            "--target",
+            join(linked, "same.txt"),
+            "--session",
+            "s-linked",
+            "--acknowledge-hook-non-enforcement",
+            "--json",
+          ],
+          { cwd: root, encoding: "utf8" },
+        );
+      const cleanCli = runCli();
+      expect(cleanCli.status, cleanCli.stderr).toBe(0);
+      expect(JSON.parse(cleanCli.stdout).apiToolPathEnforced).toBe(false);
+      writeFileSync(join(linked, "same.txt"), "linked foreign\n");
+      mkdirSync(join(root, ".helix", "logs", "session"), { recursive: true });
+      writeFileSync(
+        join(root, ".helix", "logs", "session", "s-linked.jsonl"),
+        `${JSON.stringify({ target: `Write ${join(root, "same.txt")}` })}\n`,
+      );
+      expect(run(join(linked, "same.txt"), root).exitCode).toBe(2);
+      const foreignCli = runCli();
+      expect(foreignCli.status, foreignCli.stderr).toBe(2);
+      expect(JSON.parse(foreignCli.stdout).reason).toBe("foreign-uncommitted");
+      writeFileSync(
+        join(root, ".helix", "logs", "session", "s-linked.jsonl"),
+        `${JSON.stringify({ target: `Write ${join(linked, "same.txt")}` })}\n`,
+      );
+      expect(run("same.txt", linked).exitCode).toBe(0);
+      writeFileSync(
+        join(root, ".helix", "logs", "session", "s-linked.jsonl"),
+        `${JSON.stringify({ target: "Write same.txt" })}\n`,
+      );
+      expect(run("same.txt", linked).exitCode).toBe(2);
+      mkdirSync(join(linked, ".helix", "logs", "session"), { recursive: true });
+      writeFileSync(
+        join(linked, ".helix", "logs", "session", "s-linked.jsonl"),
+        `${JSON.stringify({ target: `Write ${join(linked, "same.txt")}` })}\n`,
+      );
+      expect(run("same.txt", linked).exitCode).toBe(0);
+      expect(run(join(base, "outside.txt"), root).exitCode).toBe(2);
+    } finally {
+      rmSync(base, { recursive: true, force: true });
+    }
+  });
+
+  it("U-WORKPATH-006: symlink後の親参照を別のclean fileへ丸めない", () => {
+    const cwd = mkdtempSync(join(tmpdir(), "helix-workpath-parent-"));
+    const rootAlias = `${cwd}-root-alias`;
+    const parentAlias = `${cwd}-parent-alias`;
+    const childAlias = `${cwd}-child-alias`;
+    try {
+      execFileSync("git", ["init", "-b", "main"], { cwd, stdio: "ignore" });
+      writeFileSync(join(cwd, "victim.txt"), "clean\n");
+      mkdirSync(join(cwd, "src"));
+      writeFileSync(join(cwd, "src", "a.ts"), "export const a = 1;\n");
+      execFileSync("git", ["add", "victim.txt", "src/a.ts"], { cwd });
+      execFileSync(
+        "git",
+        [
+          "-c",
+          "user.name=HELIX Test",
+          "-c",
+          "user.email=helix@example.invalid",
+          "commit",
+          "-m",
+          "test: seed",
+        ],
+        { cwd, stdio: "ignore" },
+      );
+      mkdirSync(join(cwd, "nested", "deeper"), { recursive: true });
+      writeFileSync(join(cwd, "nested", "victim.txt"), "foreign\n");
+      symlinkSync(
+        join(cwd, "nested", "deeper"),
+        join(cwd, "alias"),
+        process.platform === "win32" ? "junction" : "dir",
+      );
+      const run = (target: string) =>
+        runWorkGuardCore({
+          repoRoot: cwd,
+          rawInput: JSON.stringify({ session_id: "s-parent", tool_input: { file_path: target } }),
+          env: {},
+        });
+      expect(run("victim.txt").exitCode).toBe(0);
+      expect(run("nested/../victim.txt").exitCode).toBe(0);
+      expect(run("alias/../victim.txt").exitCode).toBe(2);
+      symlinkSync(cwd, rootAlias, process.platform === "win32" ? "junction" : "dir");
+      expect(run(join(rootAlias, "victim.txt")).exitCode).toBe(0);
+      expect(
+        runWorkGuardCore({
+          repoRoot: rootAlias,
+          rawInput: JSON.stringify({
+            session_id: "s-parent",
+            tool_input: { file_path: join(rootAlias, "victim.txt") },
+          }),
+          env: {},
+        }).exitCode,
+      ).toBe(0);
+      expect(run(`${rootAlias}/alias/../victim.txt`).exitCode).toBe(2);
+      symlinkSync(dirname(cwd), parentAlias, process.platform === "win32" ? "junction" : "dir");
+      expect(run(join(parentAlias, basename(cwd), "victim.txt")).exitCode).toBe(0);
+      symlinkSync(join(cwd, "src"), childAlias, process.platform === "win32" ? "junction" : "dir");
+      // cleanで追跡済みのfileを使い、foreign dirty拒否で境界違反を隠さない。
+      expect(run(join(childAlias, "a.ts")).exitCode).toBe(2);
+      writeFileSync(join(cwd, "victim.txt"), "foreign edit\n");
+      expect(run(join(rootAlias, "victim.txt")).exitCode).toBe(2);
+    } finally {
+      if (existsSync(parentAlias)) unlinkSync(parentAlias);
+      if (existsSync(childAlias)) unlinkSync(childAlias);
+      rmSync(rootAlias, { recursive: true, force: true });
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  });
+
   it("U-GITGUARD-015: Git guardとwork-guardが同じdirty／session touched sourceを使う", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-worktree-state-source-"));
     try {
@@ -145,10 +400,9 @@ describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
       "src/feedback/surface.ts",
     );
     expect(normalizeRepoRelative("src/cli.ts", repoRoot)).toBe("src/cli.ts");
-    // Regression: session-log target は "Write <abspath>" の tool 名プレフィックス付きで記録される。
-    // repoRoot を部分一致で探さないと prefix で外れ、自分の touch を見落として全 uncommitted を誤 block する。
+    // 旧tool prefixの読取互換はsession adapterだけに残す。
     expect(
-      normalizeRepoRelative(
+      normalizeSessionTarget(
         "Write C:\\Users\\dev\\HELIX-HARNESS\\src\\runtime\\attempt-escalation.ts",
         repoRoot,
       ),
