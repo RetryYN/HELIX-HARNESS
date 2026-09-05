@@ -1567,6 +1567,36 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
           "2026-09-05";
       }),
     ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[0].until");
+    // 形式は合っていても暦上存在しない日付は拒否する（Date.parse は 2/30 を 3/2 へ黙って正規化する）。
+    for (const bad of [
+      "2026-02-30T00:00:00Z",
+      "2027-02-29T00:00:00Z", // 非うるう年
+      "2026-04-31T00:00:00Z",
+      "2026-13-01T00:00:00Z",
+      "2026-08-10T24:00:00Z",
+      "2026-08-10T13:60:00Z",
+      "2026-08-10T13:37:33+24:00",
+    ]) {
+      expect(
+        mutate((raw) => {
+          (raw.sessions as Array<{ windows: Array<{ since: string }> }>)[0].windows[0].since = bad;
+        }),
+        bad,
+      ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[0].since");
+    }
+    // 有効なうるう日と offset 境界は受理する（対照）。
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ since: string }> }>)[0].windows[0].since =
+          "2024-02-29T00:00:00Z";
+      }),
+    ).not.toThrow();
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ since: string }> }>)[0].windows[0].since =
+          "2026-08-10T22:37:33+09:00";
+      }),
+    ).not.toThrow();
     // 読込側の失敗は違反として surface され、履歴なし扱いに黙って落ちない。
     const r = analyzeReviewEvidence([], {
       sessionModelHistory: null,
@@ -1655,6 +1685,12 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
     expect(reviewerModelAt(declared, "2026-09-05T04:00:00")).toBeNull();
     expect(reviewerModelAt(declared, "2026-09-05")).toBeNull();
     expect(reviewerModelAt(declared, "not-a-date")).toBeNull();
+    // 暦上存在しない日付は形式が合っていても null（Date.parse の黙った正規化で attribution しない）。
+    expect(reviewerModelAt(declared, "2026-02-30T12:00:00Z")).toBeNull();
+    expect(reviewerModelAt(declared, "2027-02-29T12:00:00Z")).toBeNull();
+    expect(reviewerModelAt(declared, "2026-04-31T12:00:00Z")).toBeNull();
+    // 有効なうるう日は照合される（対照）。
+    expect(reviewerModelAt(declared, "2028-02-29T12:00:00Z")).toBe("codex");
     // 明示 offset は同一 instant として照合される（+09:00 の 12:00 = 03:00Z = 新 window 開始）。
     expect(reviewerModelAt(declared, "2026-09-05T12:00:00+09:00")).toBe("codex");
     expect(reviewerModelAt(declared, "2026-09-05T11:59:59+09:00")).toBe("codex:gpt-5.6-sol");

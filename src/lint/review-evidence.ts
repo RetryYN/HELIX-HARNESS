@@ -218,12 +218,49 @@ function historyString(value: unknown, label: string): string {
  * local time として受理するため、それだけでは環境依存の境界判定になる。形式を先に固定する。
  */
 const HISTORY_ISO_PATTERN =
-  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/;
+  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,9}))?(Z|[+-]\d{2}:\d{2})$/;
+
+/**
+ * registry の日時と照合対象 `reviewed_at` に共通の厳密 instant 解析。形式（timezone 必須）に加えて
+ * カレンダー実在性を検証する: `Date.parse` は `2026-02-30` を 3/2 へ黙って正規化するため、成分を
+ * `Date.UTC` へ入れて往復一致（月・日が繰り上がらない）を要求し、時刻と offset の範囲も検査する。
+ * 不適合は null（呼び出し側で fail-close）。
+ */
+export function parseHistoryInstant(text: string): number | null {
+  const m = HISTORY_ISO_PATTERN.exec(text);
+  if (!m) return null;
+  const year = Number(m[1]);
+  const month = Number(m[2]);
+  const day = Number(m[3]);
+  const hour = Number(m[4]);
+  const minute = Number(m[5]);
+  const second = Number(m[6]);
+  const fraction = m[7] ? Number(`0.${m[7]}`) : 0;
+  if (month < 1 || month > 12 || day < 1 || hour > 23 || minute > 59 || second > 59) return null;
+  const utc = Date.UTC(year, month - 1, day, hour, minute, second);
+  const roundTrip = new Date(utc);
+  if (
+    roundTrip.getUTCFullYear() !== year ||
+    roundTrip.getUTCMonth() !== month - 1 ||
+    roundTrip.getUTCDate() !== day
+  ) {
+    return null;
+  }
+  let offsetMs = 0;
+  if (m[8] !== "Z") {
+    const sign = m[8].startsWith("-") ? -1 : 1;
+    const offsetHour = Number(m[8].slice(1, 3));
+    const offsetMinute = Number(m[8].slice(4, 6));
+    if (offsetHour > 23 || offsetMinute > 59) return null;
+    offsetMs = sign * (offsetHour * 60 + offsetMinute) * 60_000;
+  }
+  return utc + Math.round(fraction * 1000) - offsetMs;
+}
 
 function historyIso(value: unknown, label: string): string {
   const text = historyString(value, label);
-  if (!HISTORY_ISO_PATTERN.test(text) || !Number.isFinite(Date.parse(text))) {
-    throw new ReviewerSessionModelHistoryError(`${label}`);
+  if (parseHistoryInstant(text) === null) {
+    throw new ReviewerSessionModelHistoryError(label);
   }
   return text;
 }
@@ -281,8 +318,10 @@ export function parseReviewerSessionModelHistory(raw: unknown): ReviewerSessionM
       const label = `sessions[${index}].windows[${wi}]`;
       const since = historyIso(window.since, `${label}.since`);
       const until = window.until === null ? null : historyIso(window.until, `${label}.until`);
-      const sinceMs = Date.parse(since);
-      if (until !== null && Date.parse(until) <= sinceMs) {
+      // historyIso を通過済みなので parseHistoryInstant は null を返さない（型の都合で NaN fallback）。
+      const sinceMs = parseHistoryInstant(since) ?? Number.NaN;
+      const untilMs = until === null ? null : (parseHistoryInstant(until) ?? Number.NaN);
+      if (untilMs !== null && untilMs <= sinceMs) {
         throw new ReviewerSessionModelHistoryError(`${label}.until`);
       }
       if (previousUntil === null && wi > 0) {
@@ -292,7 +331,7 @@ export function parseReviewerSessionModelHistory(raw: unknown): ReviewerSessionM
       if (previousUntil !== null && sinceMs < previousUntil) {
         throw new ReviewerSessionModelHistoryError(`${label}.since`);
       }
-      previousUntil = until === null ? null : Date.parse(until);
+      previousUntil = untilMs;
       return {
         reviewer_model: historyString(window.reviewer_model, `${label}.reviewer_model`),
         since,
@@ -321,12 +360,13 @@ export function reviewerModelAt(
 ): string | null {
   // 照合対象の reviewed_at にも registry と同じ timezone 必須の形式検査を課す。timezone 無しは
   // Date.parse が local time で解釈して実行環境依存の window 判定になるため null（= 不一致）へ fail-close。
-  if (!HISTORY_ISO_PATTERN.test(reviewedAt)) return null;
-  const at = Date.parse(reviewedAt);
-  if (!Number.isFinite(at)) return null;
+  const at = parseHistoryInstant(reviewedAt);
+  if (at === null) return null;
   for (const window of entry.windows) {
-    const since = Date.parse(window.since);
-    const until = window.until === null ? Number.POSITIVE_INFINITY : Date.parse(window.until);
+    const since = parseHistoryInstant(window.since);
+    const until =
+      window.until === null ? Number.POSITIVE_INFINITY : parseHistoryInstant(window.until);
+    if (since === null || until === null) continue;
     if (at >= since && at < until) return window.reviewer_model;
   }
   return null;
