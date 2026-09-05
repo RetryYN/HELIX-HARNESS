@@ -2,7 +2,7 @@
 document_id: HELIX-HARNESS-MEMORY-COORDINATION-L10-CANDIDATE
 version: 0.1.0
 status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+authority_status: approved_pending_canonical_promotion
 canonical_vmodel: L1-L12
 canonical_layer: L10
 canonical_pair: L3
@@ -15,7 +15,7 @@ pair_artifact: docs/governance/candidates/harness-memory-coordination-boundary-r
 
 # harness memory coordination-only境界 受入候補
 
-本書は未承認のL10 candidateであり、runtimeが実装済みであることを示さない。各反例は別failureとして保持し、正常系の件数で
+本書はPLAN-L3-86の人間承認が記録済みで、独立検収・正本化待ちのL10 candidateであり、runtimeが実装済みであることを示さない。各反例は別failureとして保持し、正常系の件数で
 相殺しない。
 
 | AC | 対応要件 | 反例／観測 | 合格条件 |
