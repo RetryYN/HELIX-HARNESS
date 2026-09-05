@@ -28,8 +28,9 @@ parent_design: docs/design/harness/L6-function-design/durability-boundaries.md
 pair_artifact: docs/test-design/harness/L8-durability-boundaries.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/durability-boundaries.md, oracle_id: U-DUR-007, test_path: tests/loop-store-durability.test.ts }
+  - { parent_design: docs/design/harness/L6-function-design/durability-boundaries.md, oracle_id: IT-DUR-008, test_path: tests/durable-loop-process.test.ts }
 backprop_decision: not_required
-backprop_decision_reason: "既存snapshot preconditionと取得後CASを維持する。全競合下の進行保証は追加せず、既知staleの早期拒否をL6/L8へ追記する。"
+backprop_decision_reason: "既存snapshot preconditionと取得後CASを維持する。全競合下の進行保証は追加せず、既知staleの早期拒否をL6/L8へ追記する。非stale contenderによるclaim_conflictと副作用実行済み・完了未記録の残余は#1562で追跡し、本PRで親Issueを閉じない。"
 dependencies:
   parent: docs/plans/PLAN-L7-449-durability-boundary-implementation.md
   requires: []

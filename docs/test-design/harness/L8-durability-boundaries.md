@@ -25,6 +25,7 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 | U-DUR-005 | side-effect gate      | durable intent前/C5 uncertain時callback 0。gate後・completion前restartはambiguousで自動retry 0     | `tests/loop-store-durability.test.ts`        |
 | U-DUR-006 | fault points          | C0-C6各境界のfailure/restartがL5 matrixどおりで未commitをauthoritativeにしない                     | `tests/loop-store-durability.test.ts`        |
 | U-DUR-007 | claim/CAS concurrency | commit 1件以下。boot/PID/lease/digest変異、mutex action/digest、authority expiry、partial mutex、同時recoveryで奪取1件以下。通常writerの自動奪取0 | `tests/loop-store-durability.test.ts`、`tests/loop-store-durability-node.test.ts` |
+| IT-DUR-008 | 実2processの既知stale競合 | intent後のeffectをbarrierで待たせたworkerが完了し、stale contenderは拒否、副作用はworkerの1件、最終状態committed。早期拒否の除去でworker完了がREDとなる | `tests/durable-loop-process.test.ts` |
 
 redaction oracleはterminal/JSON/DB/artifact bytesをsecret、credential、PII、個人absolute path、raw SQL seedでscanする。
 static ratchetの例外はcleanup fail-open markerと理由を同じ行に要求し、件数baselineではなく構文契約で管理する。

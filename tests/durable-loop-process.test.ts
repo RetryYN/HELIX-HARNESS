@@ -26,7 +26,9 @@ async function waitUntil(predicate: () => boolean): Promise<void> {
 }
 
 function child(repo: string, mode: string, id: string) {
-  const process = spawn("node", [tsxCli, fixture, repo, mode, id], { stdio: "pipe" });
+  const process = spawn("node", [tsxCli, fixture, repo, mode, id], {
+    stdio: ["ignore", "ignore", "pipe"],
+  });
   let stderr = "";
   process.stderr.on("data", (chunk: Buffer) => {
     stderr = (stderr + chunk.toString("utf8")).slice(-8192);
@@ -37,7 +39,7 @@ function child(repo: string, mode: string, id: string) {
 }
 
 describe("PLAN-L7-449 actual process durability", () => {
-  it("PLAN-RECOVERY-1562-durable-loop-completion: stale contender does not block completion", async () => {
+  it("IT-DUR-008: PLAN-RECOVERY-1562-durable-loop-completion stale contender does not block completion", async () => {
     const repo = root();
     const worker = child(repo, "held-effect", "worker");
     const contender = child(repo, "stale-contender", "contender");
