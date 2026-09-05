@@ -37,6 +37,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-110-doctor-live-result-reuse.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-direct.json, artifact_type: json_config }
   - { artifact_path: tests/infinity-loop-strict-design-contract.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
@@ -73,3 +74,7 @@ run 33929640733のbulk-3は、今回明示した既存U-IHIER-004によりcurren
 476件から477件へ増えたため失敗した。固定commitのmanifestは履歴証跡として変更しない。
 current集合は基線476件とU-IHIER-004の和集合へexact照合し、欠落・余分なIDを引き続き拒否する。
 過去manifestの件数・digest・receiptを現在の追加へ書き換えない。
+
+run 33931189493 attempt 2では、上記テスト変更に対するcurrent bytes登録の追従漏れを検出した。
+feedback-test-owner-disposition-direct.jsonの当該ファイルdigestのみ実測値へ更新する。
+20ケース、意味正本の参照先、activation phase、closure条件は変更しない。
