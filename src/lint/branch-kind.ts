@@ -304,6 +304,26 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
   return currentWithout !== null && currentWithout === baseWithout;
 }
 
+type SnapshotFailureCode =
+  | "invalid_commit_identity"
+  | "branch_identity_unavailable"
+  | "commit_identity_mismatch"
+  | "working_tree_candidate_mismatch"
+  | "working_tree_branch_mismatch"
+  | "merge_base_ambiguous"
+  | "unsafe_changed_path"
+  | "plan_frontmatter_missing"
+  | "plan_frontmatter_invalid"
+  | "head_changed_during_read"
+  | "branch_changed_during_read";
+
+// 内部で定義した失敗だけを公開する。外部プロセスのmessageは転送しない。
+class SnapshotFailure extends Error {
+  constructor(readonly code: SnapshotFailureCode) {
+    super(code);
+  }
+}
+
 function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): BranchKindInput {
   const git = (...args: string[]) =>
     execFileSync("git", ["-C", repoRoot, ...args], {
@@ -312,28 +332,28 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
     });
   try {
     if (![snapshot.baseHead, snapshot.candidateHead].every((sha) => /^[a-f0-9]{40}$/.test(sha)))
-      throw new Error("invalid_commit_identity");
+      throw new SnapshotFailure("invalid_commit_identity");
     if (!snapshot.branch || snapshot.branch === "HEAD")
-      throw new Error("branch_identity_unavailable");
+      throw new SnapshotFailure("branch_identity_unavailable");
     for (const sha of [snapshot.baseHead, snapshot.candidateHead]) {
       if (git("rev-parse", "--verify", `${sha}^{commit}`).trim() !== sha)
-        throw new Error("commit_identity_mismatch");
+        throw new SnapshotFailure("commit_identity_mismatch");
     }
     const observedHead = git("rev-parse", "HEAD").trim();
     if (snapshot.includeWorkingTree && observedHead !== snapshot.candidateHead)
-      throw new Error("working_tree_candidate_mismatch");
+      throw new SnapshotFailure("working_tree_candidate_mismatch");
     const observedBranch = git("rev-parse", "--abbrev-ref", "HEAD").trim();
     if (
       snapshot.includeWorkingTree &&
       observedBranch !== "HEAD" &&
       observedBranch !== snapshot.branch
     )
-      throw new Error("working_tree_branch_mismatch");
+      throw new SnapshotFailure("working_tree_branch_mismatch");
     const bases = git("merge-base", "--all", snapshot.baseHead, snapshot.candidateHead)
       .trim()
       .split(/\r?\n/);
     if (bases.length !== 1 || !/^[a-f0-9]{40}$/.test(bases[0]))
-      throw new Error("merge_base_ambiguous");
+      throw new SnapshotFailure("merge_base_ambiguous");
     const mergeBase = bases[0];
     const paths = git(
       "diff",
@@ -368,7 +388,7 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
           path.split("/").some((part) => part === ".." || part === "."),
       )
     )
-      throw new Error("unsafe_changed_path");
+      throw new SnapshotFailure("unsafe_changed_path");
     const readAt = (head: string, path: string): string | null => {
       if (!git("ls-tree", "-z", head, "--", path)) return null;
       return git("show", `${head}:${path}`);
@@ -413,10 +433,10 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
         : readAt(snapshot.candidateHead, file);
       if (source === null) continue;
       const raw = markdownFrontmatter(source);
-      if (!raw) throw new Error("plan_frontmatter_missing");
+      if (!raw) throw new SnapshotFailure("plan_frontmatter_missing");
       const fm = parseYaml(raw) as Record<string, unknown>;
       if (!fm || typeof fm !== "object" || Array.isArray(fm))
-        throw new Error("plan_frontmatter_invalid");
+        throw new SnapshotFailure("plan_frontmatter_invalid");
       const baseSource = readAt(mergeBase, file);
       plans.push({
         file,
@@ -428,12 +448,12 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
       });
     }
     if (git("rev-parse", "HEAD").trim() !== observedHead)
-      throw new Error("head_changed_during_read");
+      throw new SnapshotFailure("head_changed_during_read");
     if (
       snapshot.includeWorkingTree &&
       git("rev-parse", "--abbrev-ref", "HEAD").trim() !== observedBranch
     )
-      throw new Error("branch_changed_during_read");
+      throw new SnapshotFailure("branch_changed_during_read");
     return {
       branch: snapshot.branch,
       changedPaths,
@@ -445,12 +465,15 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
         mergeBase,
       },
     };
-  } catch {
+  } catch (error) {
     return {
       branch: snapshot.branch,
       changedPaths: [],
       plans: [],
-      authority: { status: "unavailable", reason: "branch_snapshot_read_failed" },
+      authority: {
+        status: "unavailable",
+        reason: error instanceof SnapshotFailure ? error.code : "branch_snapshot_read_failed",
+      },
     };
   }
 }

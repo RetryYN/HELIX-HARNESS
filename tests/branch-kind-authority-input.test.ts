@@ -89,13 +89,34 @@ describe("branch入力authorityの実Git検証", () => {
     try {
       const input = loadBranchKindInput(root, snapshot);
       expect(changed).toBe(true);
-      expect(input.authority?.status).toBe("unavailable");
+      expect(input.authority).toEqual({
+        status: "unavailable",
+        reason: "head_changed_during_read",
+      });
       expect(analyzeBranchKind(input).ok).toBe(false);
     } finally {
       spy.mockRestore();
       syncBuiltinESMExports();
     }
     expect(git(root, "rev-parse", "HEAD")).toBe(snapshot.baseHead);
+  });
+  it("U-BRAUTH-011: 外部例外のmessageを内部失敗コードとして信用しない", () => {
+    const { root, snapshot } = fixture();
+    const spy = vi.spyOn(childProcess, "execFileSync").mockImplementation(() => {
+      throw new Error("head_changed_during_read: synthetic-private-detail");
+    });
+    syncBuiltinESMExports();
+    try {
+      const input = loadBranchKindInput(root, snapshot);
+      expect(input.authority).toEqual({
+        status: "unavailable",
+        reason: "branch_snapshot_read_failed",
+      });
+      expect(JSON.stringify(analyzeBranchKind(input))).not.toContain("synthetic-private-detail");
+    } finally {
+      spy.mockRestore();
+      syncBuiltinESMExports();
+    }
   });
   it("U-BRAUTH-004: 非Git consumerの明示対象外と通常の取得不能を区別する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-branch-nongit-"));
@@ -270,7 +291,10 @@ describe("branch入力authorityの実Git検証", () => {
       loadBranchKindInput(root, { ...snapshot, baseHead: a, candidateHead }).authority?.status,
     ).toBe("available");
     const input = loadBranchKindInput(root, { ...snapshot, baseHead, candidateHead });
-    expect(input.authority?.status).toBe("unavailable");
+    expect(input.authority).toEqual({
+      status: "unavailable",
+      reason: "merge_base_ambiguous",
+    });
     expect(analyzeBranchKind(input).ok).toBe(false);
   });
 
