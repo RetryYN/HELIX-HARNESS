@@ -319,6 +319,9 @@ export function reviewerModelAt(
   entry: ReviewerSessionModelHistoryEntry,
   reviewedAt: string,
 ): string | null {
+  // 照合対象の reviewed_at にも registry と同じ timezone 必須の形式検査を課す。timezone 無しは
+  // Date.parse が local time で解釈して実行環境依存の window 判定になるため null（= 不一致）へ fail-close。
+  if (!HISTORY_ISO_PATTERN.test(reviewedAt)) return null;
   const at = Date.parse(reviewedAt);
   if (!Number.isFinite(at)) return null;
   for (const window of entry.windows) {

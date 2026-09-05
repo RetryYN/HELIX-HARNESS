@@ -1647,4 +1647,26 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
     );
     expect(okCase.reviewerIdentityViolations).toEqual([]);
   });
+
+  it("U-RVIDENT-019: reviewed_at も timezone 必須。timezone 無しは実行環境に依らず null（不一致）へ fail-close し、明示 offset の同一 instant は一致する", () => {
+    const declared = history().sessions[0];
+    // 境界 03:00Z の直後を timezone 無しで書くと、UTC では新 window / JST では旧 window に解釈され得る。
+    // 形式検査で null にすることで TZ に依らず同じ結果（不一致）になる。
+    expect(reviewerModelAt(declared, "2026-09-05T04:00:00")).toBeNull();
+    expect(reviewerModelAt(declared, "2026-09-05")).toBeNull();
+    expect(reviewerModelAt(declared, "not-a-date")).toBeNull();
+    // 明示 offset は同一 instant として照合される（+09:00 の 12:00 = 03:00Z = 新 window 開始）。
+    expect(reviewerModelAt(declared, "2026-09-05T12:00:00+09:00")).toBe("codex");
+    expect(reviewerModelAt(declared, "2026-09-05T11:59:59+09:00")).toBe("codex:gpt-5.6-sol");
+    expect(reviewerModelAt(declared, "2026-09-05T03:00:00.000Z")).toBe("codex");
+    // analyze 経由でも timezone 無し reviewed_at は history_mismatch として違反になる。
+    const r = analyzeReviewEvidence(
+      [historyPlan("PLAN-HIST-TZLESS", "2026-09-05T04:00:00", "codex")],
+      { sessionModelHistory: history() },
+    );
+    expect(r.reviewerIdentityViolations.map((v) => v.reason)).toContain(
+      `reviewer_session_model_history_mismatch:${historySession}`,
+    );
+    expect(r.ok).toBe(false);
+  });
 });

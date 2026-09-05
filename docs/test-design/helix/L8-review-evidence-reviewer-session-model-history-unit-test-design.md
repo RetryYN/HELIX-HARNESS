@@ -26,6 +26,7 @@ fixture は in-memory の registry（`parseReviewerSessionModelHistory` の戻�
 | U-RVIDENT-016 | 実 repo ガード | tracked registry が parse でき、`019febe1-…` を含み、現行 docs/plans の全 entry と矛盾しない（violation 0） | `tests/review-evidence.test.ts` |
 | U-RVIDENT-017 | registry runtime と provider の整合 | runtime=codex を宣言した session で `claude:claude-opus-5` を名乗る entry が `reviewer_session_model_history_runtime_mismatch:<session>` で red（window 照合の mismatch とは別 reason）。provider 一致・window 内の対照は違反 0 | `tests/review-evidence.test.ts` |
 | U-RVIDENT-018 | doctor の history 読込境界 | 壊れた JSON（未知例外）は `reviewer_session_model_history_invalid:unknown cause_kind=… cause_digest=sha256:…` のみ surface し、tmp root path や `Unexpected token` を含まない。schema 違反（既知診断）は `…invalid:schema_version` の typed reason をそのまま surface。既存 ratchet U-DUR-003（`error.message` 露出禁止）は CI run 33952469801 で red を実測（2bdc1b8ce）、対策後 green | `tests/doctor-cause-digest-contract.test.ts` |
+| U-RVIDENT-019 | 照合対象 reviewed_at の timezone 必須 | timezone 無し（`2026-09-05T04:00:00`）・日付のみ・非日時は `reviewerModelAt` が null を返し、analyze 経由では `reviewer_session_model_history_mismatch` になる（UTC / JST で同一結果）。明示 offset `+09:00 12:00:00` は `03:00:00Z` と同一 instant として新 window に一致し、`11:59:59+09:00` は旧 window に一致する | `tests/review-evidence.test.ts` |
 | U-GWIDADM-022 | admission の supersession 例外 | `superseded_by` だけを受け取る既存 PLAN を typed PLAN として数えると successor 1 本の PR が `multiple_plans` で red。base を読めない場合や本文も変わっている場合に例外を適用すると red | `tests/github-workflow-identity-admission.test.ts` |
 
 ## mutation 実測記録
@@ -40,8 +41,9 @@ fixture は in-memory の registry（`parseReviewerSessionModelHistory` の戻�
 | M5: registry runtime と provider の照合を外す | U-RVIDENT-017 |
 | M6: runtime 許容集合の検査を外す（`historyRuntime` を素通し） | U-RVIDENT-014 |
 | M7: `HISTORY_ISO_PATTERN` 検査を外し `Date.parse` のみに戻す | U-RVIDENT-014 |
+| M8: `reviewerModelAt` の reviewed_at 形式検査を外す | U-RVIDENT-019 |
 
-M6 / M7 は 2026-09-05T07:22:33Z〜34Z に個別注入して各 1 failed、復元後 1 passed を実測した。
+M6 / M7 は 2026-09-05T07:22:33Z〜34Z に個別注入して各 1 failed、復元後 1 passed を実測した。 M8 は 08:50:26Z に注入して U-RVIDENT-019 が 1 failed、復元後 1 passed（`TZ=Asia/Tokyo` でも 1 passed）を実測した。
 | M4: admission の metadata-only 例外（`isSupersessionMetadataOnly` 判定）を無効化 | U-GWIDADM-022（06:40:09Z に 1 failed、復元後 1 passed） |
 
 origin/main には `parseReviewerSessionModelHistory` 等が存在しないため、追加 oracle は main 版では
