@@ -9,7 +9,7 @@ completion_claim_allowed: false
 created: 2026-09-06
 updated: 2026-09-06
 owner: Codex / TL
-github_issue_id: 93
+github_issue_id: 1575
 responsibility_owner: cli-surface-verification
 behavior_contract_id: CURRENT-LOCATION-SUMMARY-TYPED-OUTPUT-001
 engineering_discipline_required: true
@@ -53,7 +53,7 @@ workflow_identity:
   target_id: REFACTOR
 dependencies:
   requires: []
-  references: ["issue:93", PLAN-L7-672-current-location-summary-typed-output]
+  references: ["issue:93", "issue:1575", PLAN-L7-672-current-location-summary-typed-output]
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1574-cli-summary-fixture.md, artifact_type: markdown_doc }
 modifies:
