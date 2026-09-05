@@ -10,6 +10,8 @@ created: 2026-09-06
 updated: 2026-09-06
 owner: Codex
 github_issue_id: 1562
+behavior_contract_id: DURABLE-LOOP-COMPLETION-001
+responsibility_owner: durable-loop-epoch
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
