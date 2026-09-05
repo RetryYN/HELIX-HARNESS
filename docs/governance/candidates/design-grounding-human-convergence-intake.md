@@ -6,8 +6,8 @@ Issue #1558。候補のみ、main未統合・新policy未承認・runtime未実�
 
 原稿§0/1→requestsとrequirementsの目的/既存実装調査。
 §2 DG-R-01..04→requirements同ID群、AC1/2/8。
-§3 HR-R-01..04→requirements同ID群、AC3/4/7。
-§4 DC-R-01..04→requirements同ID群、AC5/6/9。
+§3 HR-R-01..04→requirements同ID群、AC3/4/6/7。
+§4 DC-R-01..04→requirements同ID群、AC5/9。
 §5→客観/人間意味境界。§6→#1556形成と限定探索。§7→Issue階層/trace/局所保留。
 §8の10条件→acceptanceの1..10。§9→authority-firstへ順序是正、実装→dogfoodは承認後。
 
