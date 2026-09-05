@@ -346,4 +346,46 @@ describe("design-language lint", () => {
     expect(guardIndex).toBeGreaterThan(-1);
     expect(gateIndex).toBeLessThan(guardIndex);
   });
+
+  it("U-DESLANG-017: --gate は scope 検証の後に評価され、profile / setup-smoke / toolchain との併用を fail-close する", () => {
+    const run = (args: string[]) =>
+      spawnSync("npx", ["--no-install", "tsx", "src/cli.ts", "doctor", ...args, "--json"], {
+        cwd: process.cwd(),
+        encoding: "utf8",
+      });
+
+    const badScope = run(["--gate", "design-language", "--scope", "invalid"]);
+    expect(badScope.status).toBe(1);
+    expect(badScope.stdout).toContain("unknown scope invalid");
+    expect(badScope.stdout).not.toContain('"gate"');
+
+    for (const extra of [
+      ["--profile", "consumer"],
+      ["--profile", "invalid"],
+      ["--setup-smoke"],
+      ["--scope", "toolchain"],
+    ]) {
+      const combined = run(["--gate", "design-language", ...extra]);
+      expect(combined.status, extra.join(" ")).toBe(1);
+      const parsed = JSON.parse(combined.stdout) as {
+        ok: boolean;
+        gate: string;
+        messages: string[];
+      };
+      expect(parsed.ok).toBe(false);
+      expect(parsed.gate).toBe("design-language");
+      expect(parsed.messages[0]).toContain("cannot be combined");
+    }
+  });
+
+  it("U-DESLANG-016: prototype 継承 property 名を gate id にしても unknown gate として fail-close する", () => {
+    for (const gate of ["toString", "constructor", "__proto__", "hasOwnProperty"]) {
+      const result = runDoctorGate(gate, process.cwd());
+      expect(result.ok, gate).toBe(false);
+      expect(result.gate).toBe(gate);
+      expect(result.messages).toHaveLength(1);
+      expect(result.messages[0]).toContain(`unknown gate ${gate}`);
+      expect(result.messages[0]).toContain("design-language");
+    }
+  });
 });

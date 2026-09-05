@@ -39,14 +39,16 @@ red_test: "drift message から sample を除去する、runDoctorGate が check
 red_at: "2026-09-05T03:04:00+09:00"
 green_at: "2026-09-05T03:05:21+09:00"
 mutation_oracle_required: true
-mutation_oracle: "U-DESLANG-013/U-DESLANG-014/U-DESLANG-015 が message 位置表示、単体実行の配線 drift、CI 実行位置の退行を個別に検出する。"
-mutation_oracle_evidence: "2026-09-05T03:04:00+09:00 に実装前の RED を実測し、U-DESLANG-013/014/015 が 3 failed／3 passed（出力 digest b7d6437876b72f032faaac25320e9290b26bfa44e0c958df475b2893a04eb255）となることを確認した。実装後 2026-09-05T03:05:21+09:00 に同 test が 15 passed（digest ff46f411b334bba675c5ea32fa8cac1d8546e5784e27118d7a76f4347e1ca159）へ遷移した。mutation は 4 件を実測している。M1（drift message から sample を除去）は 1 failed／14 passed（digest 9d0b8c1bfe4fcc1836fa0b8cc19565fa5f2c54fb782425394e5219c5a940b386）。M3（preflight の gate を repo-guards より後ろへ移動）は 1 failed／14 passed（digest e2051cfb7880b926e54c056f1d67e7aa658329e636f9cfa57cd9e2417712ce0d）。M2（runDoctorGate が check の message を加工）は初版 oracle では 15 passed（digest fb98799625732ce8c8b384287b619d5d90f0f25b032224823cd7aa048403e20b）で生き残った。実 repository の violation が 0 件で message に sample を含まず mutation が no-op になるためであり、U-DESLANG-014 へ violation を含む fixture 比較を追加した後の再実測で 1 failed／14 passed（digest 759d0a8280ef6276239867ceded257f7653f6cd7d17b22a7e12586247cd12ece）へ変わり kill を確認した。M4（unknown gate が ok を返す）は 1 failed／14 passed（digest 8c2a839c1f3f134486d51abc60a8bb0169b93ffd10e59b7c58c20e58ca4528da）。全 mutation 復元後に 15 passed へ戻ることを確認した。"
-parent_design: docs/design/harness/L6-function-design/module-drift.md
+mutation_oracle: "U-DESLANG-013/014/015 が message 位置表示、単体実行の配線 drift、CI 実行位置の退行を、U-DESLANG-016/017 が unknown gate の prototype 継承名バイパスと CLI --gate の評価順序・併用受理の退行を個別に検出する。"
+mutation_oracle_evidence: "2026-09-05T03:04:00+09:00 に実装前の RED を実測し、U-DESLANG-013/014/015 が 3 failed／3 passed（出力 digest b7d6437876b72f032faaac25320e9290b26bfa44e0c958df475b2893a04eb255）となることを確認した。実装後 2026-09-05T03:05:21+09:00 に同 test が 15 passed（digest ff46f411b334bba675c5ea32fa8cac1d8546e5784e27118d7a76f4347e1ca159）へ遷移した。mutation は 4 件を実測している。M1（drift message から sample を除去）は 1 failed／14 passed（digest 9d0b8c1bfe4fcc1836fa0b8cc19565fa5f2c54fb782425394e5219c5a940b386）。M3（preflight の gate を repo-guards より後ろへ移動）は 1 failed／14 passed（digest e2051cfb7880b926e54c056f1d67e7aa658329e636f9cfa57cd9e2417712ce0d）。M2（runDoctorGate が check の message を加工）は初版 oracle では 15 passed（digest fb98799625732ce8c8b384287b619d5d90f0f25b032224823cd7aa048403e20b）で生き残った。実 repository の violation が 0 件で message に sample を含まず mutation が no-op になるためであり、U-DESLANG-014 へ violation を含む fixture 比較を追加した後の再実測で 1 failed／14 passed（digest 759d0a8280ef6276239867ceded257f7653f6cd7d17b22a7e12586247cd12ece）へ変わり kill を確認した。M4（unknown gate が ok を返す）は 1 failed／14 passed（digest 8c2a839c1f3f134486d51abc60a8bb0169b93ffd10e59b7c58c20e58ca4528da）。全 mutation 復元後に 15 passed へ戻ることを確認した。 追加 oracle: 2026-09-05T01:50:02Z に Object.hasOwn を外す mutation で U-DESLANG-016 が red（toString: expected undefined to be false）、2026-09-05T01:52:33Z に修正前 src/cli.ts（HEAD 版を別名実行）で --gate design-language --scope invalid が exit 0 の単体 gate 結果へ進む red を実測し、修正後 2026-09-05T01:52:28Z に tests/design-language.test.ts が 17 passed へ遷移した（PR #1547 の Codex 独立確認 HEAD 0c1476cfd の指摘 2 件に対応）。"
+parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md
 pair_artifact: docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/module-drift.md, oracle_id: U-DESLANG-013, test_path: tests/design-language.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/module-drift.md, oracle_id: U-DESLANG-014, test_path: tests/design-language.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/module-drift.md, oracle_id: U-DESLANG-015, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-013, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-014, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-015, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-016, test_path: tests/design-language.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-language-early-detection.md, oracle_id: U-DESLANG-017, test_path: tests/design-language.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L6-15-module-drift.md
   requires: []
@@ -62,7 +64,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1493-design-language-early-detection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md, artifact_type: test_design }
 modifies:
-  - { artifact_path: docs/design/harness/L6-function-design/module-drift.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/design-language-early-detection.md, artifact_type: design_doc }
   - { artifact_path: src/lint/design-language.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
@@ -124,5 +126,5 @@ analyzer は位置を保持しているのに message へ出していない。�
 2. `runDoctorGate` を追加し、`doctor --gate design-language` から full doctor と同一の check 関数を呼ぶ。
 3. `full-regression-preflight` の `npm run test:repo-guards` より前へ同 gate を配置する。
 4. 位置表示除去、配線 drift、unknown gate の fail-open、実行位置の退行を `tests/design-language.test.ts` の
-   `U-DESLANG-013` / `U-DESLANG-014` / `U-DESLANG-015` で個別に束縛する。
+   `U-DESLANG-013` / `U-DESLANG-014` / `U-DESLANG-015` / `U-DESLANG-016` / `U-DESLANG-017` で個別に束縛する。
 5. Issue #1493 へ、実測した到達不能分岐、修正 HEAD、baseline を据え置いたことを read-after 記録する。

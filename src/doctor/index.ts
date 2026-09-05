@@ -1447,13 +1447,17 @@ export function runDoctorGate(
   gate: string,
   repoRoot: string,
 ): { ok: boolean; gate: string; messages: string[] } {
-  const check = (
-    DOCTOR_SINGLE_GATES as Record<
-      string,
-      undefined | ((root: string) => { messages: string[]; ok: boolean })
-    >
-  )[gate];
-  if (!check) {
+  // own key に限定する。通常の添字 lookup だと "toString" / "constructor" / "__proto__" のような
+  // prototype 継承 property を拾い、unknown gate の fail-close 契約が崩れる（#1547 Codex 指摘）。
+  const check = Object.hasOwn(DOCTOR_SINGLE_GATES, gate)
+    ? (
+        DOCTOR_SINGLE_GATES as Record<
+          string,
+          undefined | ((root: string) => { messages: string[]; ok: boolean })
+        >
+      )[gate]
+    : undefined;
+  if (typeof check !== "function") {
     const known = Object.keys(DOCTOR_SINGLE_GATES).join(", ");
     return {
       ok: false,

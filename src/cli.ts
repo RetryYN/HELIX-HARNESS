@@ -2325,17 +2325,6 @@ program
           full_source_command: "helix doctor --json",
         };
       };
-      if (opts.gate !== undefined) {
-        // 単体 gate 実行は full doctor と同じ check 関数を呼び、判定の配線 drift を作らない。
-        const gate = runDoctorGate(opts.gate, process.cwd());
-        if (opts.json || opts.summaryJson) {
-          process.stdout.write(`${JSON.stringify(gate, null, 2)}\n`);
-        } else {
-          for (const m of gate.messages) process.stdout.write(`${m}\n`);
-        }
-        process.exitCode = gate.ok ? 0 : 1;
-        return;
-      }
       if (opts.scope !== undefined && opts.scope !== "full" && opts.scope !== "toolchain") {
         const r = {
           ok: false,
@@ -2349,6 +2338,28 @@ program
           for (const m of r.messages) process.stdout.write(`${m}\n`);
         }
         process.exitCode = 1;
+        return;
+      }
+      if (opts.gate !== undefined) {
+        // 単体 gate 実行は full doctor と同じ check 関数を呼び、判定の配線 drift を作らない。
+        // scope 検証の後に置き、profile / setup-smoke / toolchain scope との併用は fail-close する
+        // （単体 gate はそれらを解釈しないため、黙って無視すると誤った green になる。#1547 Codex 指摘）。
+        const gate =
+          opts.profile !== undefined || opts.setupSmoke === true || opts.scope === "toolchain"
+            ? {
+                ok: false,
+                gate: opts.gate,
+                messages: [
+                  `doctor: gate - violation --gate ${opts.gate} cannot be combined with --profile, --setup-smoke, or --scope toolchain`,
+                ],
+              }
+            : runDoctorGate(opts.gate, process.cwd());
+        if (opts.json || opts.summaryJson) {
+          process.stdout.write(`${JSON.stringify(gate, null, 2)}\n`);
+        } else {
+          for (const m of gate.messages) process.stdout.write(`${m}\n`);
+        }
+        process.exitCode = gate.ok ? 0 : 1;
         return;
       }
       const r =
