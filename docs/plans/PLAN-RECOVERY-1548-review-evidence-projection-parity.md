@@ -88,7 +88,7 @@ review_evidence:
     reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
     reviewed_head_sha: 43aa00ad8950f0c4a3b69612e2ee547c598e2d86
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1550#issuecomment-5549087672"
-    scope: "HEAD 43aa00ad8950f0c4a3b69612e2ee547c598e2d86 の L6/L8/PLAN 設計と U-REVPAR-001..007 の 7 反例、周辺 71 tests、現 HEAD の coding-rules + parity 19 tests、PR exact set 12 path と PLAN generates/modifies の一致、現 HEAD の logical DB receipt 収束（clean/converged）に対する Codex 独立技術 pass。reviewer_model は当該環境で確認できる codex の範囲であり Sol/Luna 等の推測を含まない。PR 最終 sealed approve、Ready 化、実装終端、全 CI、main read-after ではない。"
+    scope: "Codex 独立技術 pass（session 019febe1-8983-7820-bee4-4cd62876f9b6、runtime codex、model は当該環境で確認できる codex の範囲で Sol/Luna 等を推測しない）。Codex 実測の HEAD 対応: 71 tests（parity 7 + 周辺 64）は merge commit 3411bf8f9、coding-rules + parity 19 tests と logical DB receipt 収束（clean/converged）は 43aa00ad8、PR exact set 12 path と PLAN generates/modifies の一致は 43aa00ad8。下記 green_commands は作者（Claude Code session 9867601a-a3ad-4369-980c-11757d63a7de）が 43aa00ad8 で 03:38:39Z に再実行した作者実測であり、Codex の実行時刻・出力とは別物。worker_model は harness session attestation（claude:claude-opus-5、receipt の reviewer_session_model 照合で使われる識別子）に合わせて記録し、commit trailer の『Claude Fable 5.1』は client 側 attribution 設定の文字列で runtime attestation ではないことを開示する。PR 最終 sealed approve、Ready 化、実装終端、全 CI、main read-after ではない。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run tests/review-evidence-projection-parity.test.ts tests/coding-rules.test.ts"
