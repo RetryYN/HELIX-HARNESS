@@ -79,6 +79,7 @@ modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/reviewer-session-model-history.json, artifact_type: json_config }
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: Codex
     review_kind: cross_agent
