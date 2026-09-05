@@ -77,27 +77,29 @@ modifies:
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/reviewer-session-model-history.json, artifact_type: json_config }
+  - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: Codex
     review_kind: cross_agent
     verdict: pass
-    reviewed_at: "2026-09-05T03:36:39Z"
-    tests_green_at: "2026-09-05T03:38:39Z"
+    reviewed_at: "2026-09-05T14:55:41Z"
+    tests_green_at: "2026-09-05T14:40:41Z"
     worker_model: claude-opus-5
-    reviewer_model: codex
+    reviewer_model: codex:gpt-6
     reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
-    reviewed_head_sha: 43aa00ad8950f0c4a3b69612e2ee547c598e2d86
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1550#issuecomment-5549087672"
-    scope: "Codex 独立技術 pass（session 019febe1-8983-7820-bee4-4cd62876f9b6、runtime codex、model は当該環境で確認できる codex の範囲で Sol/Luna 等を推測しない）。Codex 実測の HEAD 対応: 71 tests（parity 7 + 周辺 64）は merge commit 3411bf8f9、coding-rules + parity 19 tests と logical DB receipt 収束（clean/converged）は 43aa00ad8、PR exact set 12 path と PLAN generates/modifies の一致は 43aa00ad8。下記 green_commands は作者（Claude Code session 9867601a-a3ad-4369-980c-11757d63a7de）が 43aa00ad8 で 03:38:39Z に再実行した作者実測であり、Codex の実行時刻・出力とは別物。worker_model は provider runtime attestation ではなく『記録済み session model 識別子』である。同 session 9867601a… の既存 receipt / PLAN 記録は claude:claude-opus-5 で登録されており、src/lint/review-evidence.ts の reviewer_session_model_conflict は自己申告の整合検査に過ぎないため、これと矛盾しない値を記録した。実効モデルは harness のどの記録（.helix/logs/session/*.jsonl、harness.db session_events）にも model 列が無く未検証。client 自己申告（commit trailer）は Claude Fable 5.1 であり、この二重表記は Issue #1543 に記録済み。PR 最終 sealed approve、Ready 化、実装終端、全 CI、main read-after ではない。 reviewer_model は Codex が現レビューから確認できる範囲（codex）に限定する。同 session 019febe1… の旧記録（PLAN-L7-708 等、2026-08 の codex:gpt-5.6-sol）は当時の自己申告であり、現在の Codex 設定は gpt-6-astra（~/.codex/config.toml）で model が切り替わっているため、旧記録への文字列合わせは行わない（Codex 指摘 5549183053）。session と model の 1:1 前提が破れている点は Issue #1543 に記録。"
+    reviewed_head_sha: 36bb9a108c381a01c21f955c62a1c0114a8ec214
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1550#issuecomment-5552633860"
+    scope: "Codex 独立技術 pass（session 019febe1-8983-7820-bee4-4cd62876f9b6、runtime codex）。順序: 作者（Claude Code session 9867601a-a3ad-4369-980c-11757d63a7de）が HEAD 36bb9a108（main 4667d6018 同期後、clean tree）で 2026-09-05T14:40:41Z に下記 green_commands を実測 → Codex が同 HEAD を 2026-09-05T14:55:41Z に再検証し pass（comment 5552633860: projection-writer 差分と parity 7 oracle の読解、同 2 test 19 件成功 exit 0、HEAD 固定・clean 確認、変更範囲の技術評価 pass。sealed receipt・最終 merge 承認ではない）。旧記録（Codex 判定 03:36:39Z、作者再実行 03:38:39Z、HEAD 43aa00ad8）は test→review 順序が逆転していたため本 entry で置換（時刻の推測修正ではなく新 HEAD の再実測 + 実測後レビュー）。Codex の過去実測（71 tests = 3411bf8f9、19 tests と DB receipt = 43aa00ad8）は履歴として comment 5549066116 / 5549073173 に残る。reviewer_model codex:gpt-6 は Codex 自身の申告『現行実行情報は GPT-6』（同 comment）に基づく記録済み識別子で、具体 alias / 切替時刻は未確認（docs/governance/reviewer-session-model-history.json の 09-05 window basis 参照）。worker_model claude-opus-5 は記録済み session model 識別子で provider attestation ではなく、実効 model は harness 記録に model 列が無く未検証、client 自己申告（commit trailer）は Claude Fable 5.1（Issue #1543）。PR 最終 sealed approve、Ready 化、全 CI、main read-after ではない。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run tests/review-evidence-projection-parity.test.ts tests/coding-rules.test.ts"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-05T03:38:39Z"
+        completed_at: "2026-09-05T14:40:41Z"
         evidence_path: tests/review-evidence-projection-parity.test.ts
-        output_digest: "sha256:ef4cab4310c0ff46a9c507437ca0cc72fbd07af3f82037a335fd458b74ac9e34"
+        output_digest: "sha256:68223cf47b6b4a2104da74ec415803e6f28a01f78630956023f2b198324ab3da"
 ---
 
 # PLAN-RECOVERY-1548: review-evidence projection を untracked runtime locator の有無に依存させない
