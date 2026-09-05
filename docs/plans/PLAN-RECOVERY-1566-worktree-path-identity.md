@@ -107,3 +107,11 @@ root外のsymlinkまで拒否していたため、正常なroot aliasの反例�
 これはLinux局所検証であり、Windows/macOS実機・新HEAD CI・独立再検収は未完了。
 I-1の型付き失敗理由とI-3の旧集約関数・hosted検査の接合は#1543の残余として追跡し、
 このC-1修正だけでGuard全体を完了扱いにしない。
+
+### I-4 許可境界の反例補完
+
+comment 5554358580に対応し、U-WORKPATH-006へrootの親を指すaliasの許可と、
+root内srcを指すaliasの拒否を追加した。後者はclean・追跡済みファイルを使用し、
+foreign dirty拒否による偽の成功を防ぐ。runtime条件は変更しない。
+2026-09-06 05:15〜05:16 JST、within引数反転は親aliasでRED、境界検査除去は子aliasでRED。
+元の条件へ復元後work-guard全31テスト成功（4.71秒）。Windows/macOS実機は未検証。

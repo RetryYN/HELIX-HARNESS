@@ -6,10 +6,11 @@ import {
   readFileSync,
   rmSync,
   symlinkSync,
+  unlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   evaluateWorkGuard,
@@ -235,10 +236,14 @@ describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
   it("U-WORKPATH-006: symlink後の親参照を別のclean fileへ丸めない", () => {
     const cwd = mkdtempSync(join(tmpdir(), "helix-workpath-parent-"));
     const rootAlias = `${cwd}-root-alias`;
+    const parentAlias = `${cwd}-parent-alias`;
+    const childAlias = `${cwd}-child-alias`;
     try {
       execFileSync("git", ["init", "-b", "main"], { cwd, stdio: "ignore" });
       writeFileSync(join(cwd, "victim.txt"), "clean\n");
-      execFileSync("git", ["add", "victim.txt"], { cwd });
+      mkdirSync(join(cwd, "src"));
+      writeFileSync(join(cwd, "src", "a.ts"), "export const a = 1;\n");
+      execFileSync("git", ["add", "victim.txt", "src/a.ts"], { cwd });
       execFileSync(
         "git",
         [
@@ -281,9 +286,16 @@ describe("work guard (PLAN-L7-114) — 作業衝突ガードレール", () => {
         }).exitCode,
       ).toBe(0);
       expect(run(`${rootAlias}/alias/../victim.txt`).exitCode).toBe(2);
+      symlinkSync(dirname(cwd), parentAlias, process.platform === "win32" ? "junction" : "dir");
+      expect(run(join(parentAlias, basename(cwd), "victim.txt")).exitCode).toBe(0);
+      symlinkSync(join(cwd, "src"), childAlias, process.platform === "win32" ? "junction" : "dir");
+      // cleanで追跡済みのfileを使い、foreign dirty拒否で境界違反を隠さない。
+      expect(run(join(childAlias, "a.ts")).exitCode).toBe(2);
       writeFileSync(join(cwd, "victim.txt"), "foreign edit\n");
       expect(run(join(rootAlias, "victim.txt")).exitCode).toBe(2);
     } finally {
+      if (existsSync(parentAlias)) unlinkSync(parentAlias);
+      if (existsSync(childAlias)) unlinkSync(childAlias);
       rmSync(rootAlias, { recursive: true, force: true });
       rmSync(cwd, { recursive: true, force: true });
     }
