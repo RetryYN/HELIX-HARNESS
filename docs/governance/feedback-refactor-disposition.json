@@ -161,7 +161,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-projection-writer.ts:module-has-4870-nonblank-line-s-and-15-export-s-",
       "source_path": "src/state-db/projection-writer.ts",
-      "source_file_sha256": "efee2dd55e90a7e259f0ff70799320e3db1dab5ff8e5eed76f4a4f865aeb136f",
+      "source_file_sha256": "11b54b66079670b6b980bc4fb88c13f116ddb1198a6bc7e335fea0dce837b52b",
       "family": "non_cli_module_decomposition"
     }
   ]

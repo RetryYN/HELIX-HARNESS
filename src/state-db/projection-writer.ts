@@ -1514,7 +1514,8 @@ export function loadTrackedPathSet(
   // HEAD tree を正本にする。`git ls-files` は index 集合であり、staged-only の path を tracked と
   // 誤認して HEAD と違う結果を返す。git repo 内で HEAD tree を読めない場合（unborn HEAD、破損）は
   // filesystem 判定へ戻さず fail-close する。戻すと環境依存経路が実 repo で再開してしまう。
-  let stdout: string;
+  let stdout: string | null = null;
+  let lsTreeFailure: string | null = null;
   try {
     stdout = exec(
       "git",
@@ -1522,10 +1523,12 @@ export function loadTrackedPathSet(
       gitOptions,
     );
   } catch (error) {
+    // 失敗理由を明示状態へ変換して呼出側で fail-close する（filesystem 判定へは戻さない）。
+    lsTreeFailure = describe(error);
+  }
+  if (stdout === null) {
     throw new Error(
-      `review-evidence-projection: tracked path set unavailable (git ls-tree HEAD failed: ${
-        error instanceof Error ? error.message.split("\n")[0] : String(error)
-      })`,
+      `review-evidence-projection: tracked path set unavailable (git ls-tree HEAD failed: ${lsTreeFailure ?? "unknown"})`,
     );
   }
   return new Set(stdout.split("\0").filter(Boolean).map(normalizePath));
