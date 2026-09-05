@@ -52,7 +52,7 @@ HWG実行許可へは取得品質とedge根拠を供給する契約が必要。�
 
 ### 指示書
 
-source_filename: HELIX_WORLD_GOVERNANCE_INSTRUCTION_v0.1.md
+原稿ファイル名: `HELIX_WORLD_GOVERNANCE_INSTRUCTION_v0.1.md`
 source_sha256: 0e6804d20731581ccd20877e1a3ebaa9954d835d4cc8fef597e5f4da25885c08
 
 ~~~~text
@@ -137,7 +137,7 @@ main SHAを固定し、要求と実装入口・consumer・検証・配布物の�
 
 ### 実態確認メモ
 
-source_filename: HELIX_WORLD_GOVERNANCE_BASELINE_v0.1.md
+原稿ファイル名: `HELIX_WORLD_GOVERNANCE_BASELINE_v0.1.md`
 source_sha256: 96e3abeeb175413e00bf544a561c02655c627b30e4c79e7d00109dbe8ac91137
 
 ~~~~text
