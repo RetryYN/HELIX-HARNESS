@@ -16,11 +16,10 @@ import {
   evaluateWorkGuard,
   extractEditTargets,
   extractShellWriteTargets,
-  normalizeRepoRelative,
   resolveForeignEditOverride,
   type WorkGuardResult,
 } from "./work-guard";
-import { gitUncommittedFiles, sessionTouchedFiles } from "./worktree-state";
+import { resolveHookExecutionCwd, resolveWorkGuardTargetState } from "./worktree-state";
 
 export interface WorkGuardHookOutcome {
   exitCode: 0 | 2;
@@ -39,7 +38,7 @@ function readOverrideMarker(repoRoot: string): string | null {
 
 /**
  * work-guard hook を 1 回評価する。rawInput は hook stdin の生テキスト。
- * fail-open: 検証不能 (stdin/JSON/git/state) は exit 0。block は衝突を確証できた時のみ。
+ * 検証不能な入力・所属worktree・stateはexit 2とし、cleanとは推測しない。
  * tool_input は Claude (file_path) と Codex apply_patch (freeform patch 本文) で形が違うため
  * unknown で受け、extractEditTargets で両形を吸収する (PLAN-L7-139)。
  */
@@ -69,22 +68,29 @@ export function runWorkGuardHook(opts: {
               "",
           )
         : "";
-    const targets = (editTargets.length > 0 ? editTargets : extractShellWriteTargets(command))
-      .map((t) => normalizeRepoRelative(t, opts.repoRoot))
-      .filter((t) => t.length > 0);
+    const targets = (
+      editTargets.length > 0 ? editTargets : extractShellWriteTargets(command)
+    ).filter((t) => t.length > 0);
     if (targets.length === 0) return { exitCode: 0 };
     const override = resolveForeignEditOverride({
       env: env.HELIX_ALLOW_FOREIGN_EDIT,
       markerReason: readOverrideMarker(opts.repoRoot),
     });
-    const uncommitted = gitUncommittedFiles(opts.repoRoot);
-    const touched = sessionTouchedFiles(opts.repoRoot, input.session_id ?? "unknown");
+    const states = targets.map((target) =>
+      resolveWorkGuardTargetState({
+        repoRoot: opts.repoRoot,
+        executionCwd: resolveHookExecutionCwd(input.tool_input, opts.repoRoot),
+        target,
+        sessionId: input.session_id ?? "unknown",
+      }),
+    );
+    const subject = JSON.stringify(states.map((state) => [state.repoRoot, state.targetPath]));
     let blocked: WorkGuardResult | null = null;
-    for (const target of targets) {
+    for (const state of states) {
       const result = evaluateWorkGuard({
-        targetPath: target,
-        uncommittedFiles: uncommitted,
-        sessionTouchedFiles: touched,
+        targetPath: state.targetPath,
+        uncommittedFiles: state.uncommittedFiles,
+        sessionTouchedFiles: state.touchedFiles,
         bypass: false,
       });
       if (result.decision === "block") {
@@ -102,13 +108,13 @@ export function runWorkGuardHook(opts: {
         if (db.userVersion() < SCHEMA_VERSION) migrate(db);
         const transaction = commitOverrideUse({
           nonce: guardOverrideDigest(
-            `env:foreign_edit:${input.session_id ?? "unknown"}:${guardOverrideDigest(targets.join("\n"))}`,
+            `env:foreign_edit:${input.session_id ?? "unknown"}:${guardOverrideDigest(subject)}`,
           ),
           reason: override.reason,
           classification: {
             guardKind: "foreign_edit",
             operationClass: "foreign uncommitted edit",
-            subjectDigest: guardOverrideDigest(targets.join("\n")),
+            subjectDigest: guardOverrideDigest(subject),
           },
           audit: createGuardOverrideAuditPort(db),
           marker: { consume: () => true },
@@ -137,7 +143,7 @@ export function runWorkGuardHook(opts: {
         classification: {
           guardKind: "foreign_edit",
           operationClass: "foreign uncommitted edit",
-          subjectDigest: guardOverrideDigest(targets.join("\n")),
+          subjectDigest: guardOverrideDigest(subject),
         },
         audit: createGuardOverrideAuditPort(db),
         marker: {
