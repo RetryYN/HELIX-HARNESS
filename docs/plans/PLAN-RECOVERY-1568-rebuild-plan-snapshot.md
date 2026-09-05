@@ -29,6 +29,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1568-rebuild-plan-snapshot.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
@@ -88,3 +89,10 @@ state-db/composition/schema/lint/graph/vmodel差分が無いことを確認し�
 05:17:30 JST開始の最終回帰は48 passed / exit 0、117.15秒。
 同差分のPLAN lint・型検査・Biomeもexit 0。DB再構築は80714行、snapshotは
 新規非終端PLAN1件を加えて75→76へ生成された。commit/push後のCI・独立検収は未完了。
+
+## CIによる監査binding追従
+
+PR #1572 / run 33990645396のrepo-wide guardはprojection-writerのsource digest不一致で停止した。
+局所最適化後の実ファイルSHA256を再計算し、feedback-refactor-dispositionの該当1行へ束縛する。
+候補20件・9/6/5の責務分割・source identityと後続refactor義務は変更しない。
+この解析共有だけで巨大moduleの分割完了や候補終端を主張しない。
