@@ -1,5 +1,6 @@
 // PLAN-L7-426-development-ci-bounded-time / PLAN-L7-462-issue-closure-contract
 // PLAN-L7-502-worker-independent-review
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
@@ -271,7 +272,7 @@ function nonPullRequestRangeViolations(raw: string): string[] {
   }
   const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
   const findings: string[] = [];
-  for (const stepName of ["branch-kind-check", "commitlint"] as const) {
+  for (const stepName of ["commitlint"] as const) {
     const step = steps.find((candidate) => candidate.name === stepName);
     const run = step?.run ?? "";
     if (
@@ -283,6 +284,92 @@ function nonPullRequestRangeViolations(raw: string): string[] {
   }
   return findings;
 }
+
+// PLAN-RECOVERY-935-branch-authority-input
+function branchSnapshotViolations(raw: string): string[] {
+  const jobs = (parseYaml(raw) as WorkflowRoot).jobs ?? {};
+  const targets = [
+    ["full-regression-preflight", "branch-kind-check"],
+    ["full-regression-finalize", "doctor (governance hard gates)"],
+  ];
+  return targets.flatMap(([job, name]) => {
+    const step = jobs[job]?.steps?.find((candidate) => candidate.name === name);
+    return step?.env?.BRANCH_BASE_HEAD ===
+      `\${{ github.event.pull_request.base.sha || github.event.before }}` &&
+      step.env.EVENT_NAME === `\${{ github.event_name }}` &&
+      step.env.BRANCH_CANDIDATE_HEAD === PR_OR_MAIN_CHECKOUT_REF &&
+      step.env.HEAD_BRANCH === `\${{ github.head_ref || github.ref_name }}` &&
+      [
+        "set -euo pipefail",
+        'if [ "$EVENT_NAME" != "pull_request" ]',
+        '[ -z "$BRANCH_BASE_HEAD" ]',
+        `[ "$BRANCH_BASE_HEAD" = "${ZERO_SHA}" ]`,
+        'BRANCH_BASE_HEAD="$(git rev-parse "${BRANCH_CANDIDATE_HEAD}^")"',
+        '--base-head "$BRANCH_BASE_HEAD"',
+        '--candidate-head "$BRANCH_CANDIDATE_HEAD"',
+        '--branch "$HEAD_BRANCH"',
+      ].every((arg) => step.run?.includes(arg))
+      ? []
+      : [name];
+  });
+}
+
+it("U-BRAUTH-009: CIのguardとdoctorが同じsnapshotを渡し各束縛の欠落を拒否する", () => {
+  const raw = readFileSync(WORKFLOW_PATH, "utf8");
+  expect(branchSnapshotViolations(raw)).toEqual([]);
+  for (const field of ["EVENT_NAME", "BRANCH_BASE_HEAD", "BRANCH_CANDIDATE_HEAD", "HEAD_BRANCH"]) {
+    const mutated = raw.replaceAll(`$${field}`, "$UNBOUND");
+    expect(mutated).not.toBe(raw);
+    expect(branchSnapshotViolations(mutated)).toEqual([
+      "branch-kind-check",
+      "doctor (governance hard gates)",
+    ]);
+  }
+});
+
+it.skipIf(process.platform === "win32")(
+  "U-BRAUTH-009: Linux workflow実体のbase選択をshellで検証する",
+  () => {
+    const jobs = (parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot).jobs ?? {};
+    const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    const parent = execFileSync("git", ["rev-parse", "HEAD^"], { encoding: "utf8" }).trim();
+    for (const [job, name] of [
+      ["full-regression-preflight", "branch-kind-check"],
+      ["full-regression-finalize", "doctor (governance hard gates)"],
+    ]) {
+      const run = jobs[job]?.steps?.find((step) => step.name === name)?.run;
+      expect(run).toBeTruthy();
+      for (const [event, base, expected] of [
+        ["schedule", "", parent],
+        ["workflow_dispatch", "", parent],
+        ["push", ZERO_SHA, parent],
+        ["push", parent, parent],
+        ["pull_request", "", ""],
+        ["pull_request", ZERO_SHA, ZERO_SHA],
+        ["push", "invalid-explicit-base", "invalid-explicit-base"],
+      ]) {
+        // 最終CLIのみ観測用関数へ置換する。base解決shellとGit読込はworkflow実体を実行する。
+        const result = spawnSync(
+          "bash",
+          ["-c", `npx() { printf '%s' "$BRANCH_BASE_HEAD"; }\n${run}`],
+          {
+            env: {
+              ...process.env,
+              EVENT_NAME: event,
+              BRANCH_BASE_HEAD: base,
+              BRANCH_CANDIDATE_HEAD: head,
+              HEAD_BRANCH: "main",
+            },
+            encoding: "utf8",
+            timeout: 10_000,
+          },
+        );
+        expect(result.status).toBe(0);
+        expect(result.stdout).toBe(expected);
+      }
+    }
+  },
+);
 
 const LINUX_HARNESS_JOBS = [
   "lite-consumer-canary-artifact",
@@ -447,7 +534,7 @@ describe("source harness-check workflow", () => {
     expect(checkout?.with?.ref).toBe(`\${{ github.event.pull_request.head.sha || github.sha }}`);
   });
 
-  it("U-IMPACTCI-WF-006: schedule／workflow_dispatchの空before SHAをHEAD親へ正規化する", () => {
+  it("U-IMPACTCI-WF-006: commitlintのschedule／workflow_dispatchの空before SHAをHEAD親へ正規化する", () => {
     expect(nonPullRequestRangeViolations(readFileSync(WORKFLOW_PATH, "utf8"))).toEqual([]);
   });
 
@@ -490,7 +577,7 @@ describe("source harness-check workflow", () => {
     }
   });
 
-  it.each(["branch-kind-check", "commitlint"] as const)(
+  it.each(["commitlint"] as const)(
     "U-IMPACTCI-WF-006: %sのempty before SHA判定を除去するmutationを拒否する",
     (stepName) => {
       const raw = readFileSync(WORKFLOW_PATH, "utf8");
@@ -795,7 +882,9 @@ describe("source harness-check workflow", () => {
     expect(branchKind.run).toContain("npx --no-install tsx src/cli.ts");
     expect(branchKind.run).toContain("guard branch-kind");
     expect(branchKind.run).toContain("--strict-unknown-prefix");
-    expect(branchKind.run).toContain("git diff --name-only");
+    expect(branchKind.run).toContain('--base-head "$BRANCH_BASE_HEAD"');
+    expect(branchKind.run).toContain('--candidate-head "$BRANCH_CANDIDATE_HEAD"');
+    expect(branchKind.run).not.toContain("git diff --name-only");
     expect(commitlint.run).toContain("npx --no-install tsx src/cli.ts guard commitlint --range");
     expect(commitlint.run).not.toContain("grep -Eq");
     expect(pocGuard.if).toContain("startsWith(github.head_ref, 'poc/')");
@@ -856,7 +945,11 @@ describe("source harness-check workflow", () => {
     const branchKind = stepByName(steps, "branch-kind-check");
     const commitlint = stepByName(steps, "commitlint");
     const closureGuard = stepByName(steps, "issue-closure-contract");
-    for (const step of [branchKind, commitlint, closureGuard]) {
+    expect(branchKind.env?.BRANCH_BASE_HEAD).toBe(
+      "${{ github.event.pull_request.base.sha || github.event.before }}",
+    );
+    expect(branchKind.env?.BRANCH_CANDIDATE_HEAD).toBe(PR_OR_MAIN_CHECKOUT_REF);
+    for (const step of [commitlint, closureGuard]) {
       expect(step.run).toContain('merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"');
       expect(step.run).not.toContain("$PR_BASE_SHA..$PR_HEAD_SHA");
     }
