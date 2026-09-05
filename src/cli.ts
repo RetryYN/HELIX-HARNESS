@@ -465,13 +465,14 @@ import {
   summaryJsonCommandOrNull,
 } from "./runtime/summary-surface-audit";
 import { buildToolAugmentationRegistryReport } from "./runtime/tool-augmentation-registry";
-import {
-  evaluateWorkGuardTargets,
-  extractEditTargets,
-  normalizeRepoRelative,
-} from "./runtime/work-guard";
+import { extractEditTargets, normalizeRepoRelative } from "./runtime/work-guard";
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
+import {
+  evaluateResolvedWorkGuardTargets,
+  gitUncommittedFiles,
+  resolveWorkGuardTargetState,
+} from "./runtime/worktree-state";
 import { findReference } from "./search/index";
 import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
@@ -1235,24 +1236,6 @@ function resolveAgentFamilyFromRepo(repoRoot: string, subagentType: string): Res
   if (!fm) return "unknown";
   const modelLine = fm[1].match(/^model:[ \t]*(\S+)/m);
   return normalizeModelFamily(modelLine?.[1]?.trim()) ?? "unknown";
-}
-
-function sessionTouchedFilesForGuard(repoRoot: string, sessionId: string | undefined): string[] {
-  if (!sessionId) return [];
-  const safe = sessionId.replace(/[\\/]+/g, "_");
-  const file = join(repoRoot, ".helix", "logs", "session", `${safe}.jsonl`);
-  if (!existsSync(file)) return [];
-  const touched: string[] = [];
-  for (const line of readFileSync(file, "utf8").split("\n")) {
-    if (!line.trim()) continue;
-    try {
-      const ev = JSON.parse(line) as { target?: string };
-      if (ev.target) touched.push(normalizeRepoRelative(ev.target, repoRoot));
-    } catch {
-      // Ignore malformed session-log rows; preflight should keep checking other rows.
-    }
-  }
-  return touched;
 }
 
 function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[] {
@@ -4750,16 +4733,33 @@ guard
       if (opts.stdin) {
         targetPaths.push(...guardTargetsFromPatchText(readStdin(), repoRoot));
       }
-      const changedFiles = loadChangedFiles(repoRoot);
-      const initial = evaluateWorkGuardTargets({
-        targetPaths,
-        uncommittedFiles: changedFiles,
-        sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
-        bypass: false,
-      });
+      let states: Array<ReturnType<typeof resolveWorkGuardTargetState>>;
+      let changedFiles: unknown;
+      try {
+        states = targetPaths.map((target) =>
+          resolveWorkGuardTargetState({
+            repoRoot,
+            executionCwd: repoRoot,
+            target,
+            sessionId: opts.session ?? "unknown",
+          }),
+        );
+        changedFiles =
+          states.length > 0
+            ? states.map((state) => [state.repoRoot, [...state.uncommittedFiles].sort()])
+            : gitUncommittedFiles(repoRoot).sort();
+      } catch {
+        process.stderr.write(
+          "guard preflight: target worktree identity or state could not be verified\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const initial = evaluateResolvedWorkGuardTargets(states, repoRoot);
+      const subject = JSON.stringify(states.map((state) => [state.repoRoot, state.targetPath]));
       let result = initial;
       let auditRecord = `git-status:${createHash("sha256")
-        .update(JSON.stringify([...changedFiles].sort()))
+        .update(JSON.stringify(changedFiles))
         .digest("hex")}`;
       let override: { bypass: boolean; source: string; reason_digest: string | null } = {
         bypass: false,
@@ -4782,18 +4782,11 @@ guard
           return;
         }
         const nonce = createHash("sha256")
-          .update(
-            `hosted-preflight:${opts.session ?? "cli"}:${reason}:${[...targetPaths].sort().join("\0")}`,
-          )
+          .update(`hosted-preflight:${opts.session ?? "cli"}:${reason}:${subject}`)
           .digest("hex");
         pendingOverride = { nonce, reason };
         auditRecord = `guard_override_transactions:${nonce}`;
-        result = evaluateWorkGuardTargets({
-          targetPaths,
-          uncommittedFiles: changedFiles,
-          sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
-          bypass: true,
-        });
+        result = evaluateResolvedWorkGuardTargets(states, repoRoot, true);
       }
       const adapterParity = validateAdapterParityMap({
         surface: "codex-hosted-api",
@@ -4825,9 +4818,7 @@ guard
             classification: {
               guardKind: "foreign_edit",
               operationClass: "hosted preflight foreign edit",
-              subjectDigest: `sha256:${createHash("sha256")
-                .update(JSON.stringify([...targetPaths].sort()))
-                .digest("hex")}`,
+              subjectDigest: `sha256:${createHash("sha256").update(subject).digest("hex")}`,
             },
             audit: createGuardOverrideAuditPort(db),
             marker: { consume: (expectedNonce) => expectedNonce === nonce },

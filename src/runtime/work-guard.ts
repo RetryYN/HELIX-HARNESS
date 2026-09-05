@@ -46,17 +46,16 @@ export interface WorkGuardTargetsResult {
  * git porcelain と Claude tool_input.file_path の表記差を吸収する (NFR-01 cross-platform)。
  */
 export function normalizeRepoRelative(path: string, repoRoot: string): string {
-  const unify = (p: string) => p.replace(/\\/g, "/").replace(/\/+$/, "");
-  const target = unify(path.trim());
-  const root = unify(repoRoot.trim());
-  if (root) {
-    // session-log の target は "Write c:\\...\\repo\\src\\x.ts" のように tool 名プレフィックス +
-    // 絶対パスで記録される。startsWith では prefix で外れるため、repoRoot を **部分一致** で探し、
-    // その直後から repo-relative を取る (裸の絶対パスは idx=0 で従来と同一挙動 = 後方互換)。
-    const idx = target.toLowerCase().indexOf(`${root.toLowerCase()}/`);
-    if (idx >= 0) {
-      return target.slice(idx + root.length + 1);
-    }
+  const windowsRoot = /^[A-Za-z]:[\\/]|^\\\\/.test(repoRoot);
+  const unify = (p: string) => (windowsRoot ? p.replace(/\\/g, "/") : p);
+  const target = unify(path);
+  const root = unify(repoRoot).replace(/\/+$/, "");
+  // POSIXの空白・backslash・大文字小文字はidentityの一部。任意部分一致はしない。
+  const prefix = `${root}/`;
+  const comparisonTarget = windowsRoot ? target.toLowerCase() : target;
+  const comparisonPrefix = windowsRoot ? prefix.toLowerCase() : prefix;
+  if (repoRoot && comparisonTarget.startsWith(comparisonPrefix)) {
+    return target.slice(prefix.length);
   }
   return target.replace(/^\.\//, "");
 }
@@ -179,7 +178,7 @@ export function extractEditTargets(toolInput: unknown): string[] {
     const explicit: string[] = [];
     for (const key of ["file_path", "path"]) {
       const v = obj[key];
-      if (typeof v === "string" && v.trim()) explicit.push(v.trim());
+      if (typeof v === "string" && v.length > 0) explicit.push(v);
     }
     if (explicit.length > 0) return [...new Set(explicit)];
   }
