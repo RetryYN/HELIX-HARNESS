@@ -26,7 +26,7 @@ import {
   type RelationGraphProjection,
   type VerificationEvidenceProjection,
 } from "../lint/relation-graph";
-import { loadReviewPlans } from "../lint/review-evidence";
+import { loadReviewPlans, type ParsedReviewPlan } from "../lint/review-evidence";
 import {
   computeGateProgress,
   computeProgramRollup,
@@ -1316,11 +1316,11 @@ function pairAgentModelRunId(runId: string, spanId: string): string {
 }
 
 function projectReviewModelRuns(
-  repoRoot: string,
+  reviewPlans: readonly ParsedReviewPlan[],
   db: HarnessDb,
   plans: Map<string, ProjectedPlan>,
 ): void {
-  for (const plan of loadReviewPlans(repoRoot)) {
+  for (const plan of reviewPlans) {
     const meta = plans.get(plan.plan_id);
     plan.crossEntries.forEach((entry, index) => {
       for (const role of ["worker", "reviewer"] as const) {
@@ -1387,13 +1387,17 @@ export function projectTokenUsage(db: HarnessDb, usages: RunUsage[]): void {
   }
 }
 
-function planStatusMap(repoRoot: string): Map<string, string> {
-  return new Map(loadReviewPlans(repoRoot).map((plan) => [plan.plan_id, plan.status]));
+function planStatusMap(reviewPlans: readonly ParsedReviewPlan[]): Map<string, string> {
+  return new Map(reviewPlans.map((plan) => [plan.plan_id, plan.status]));
 }
 
-function projectRoadmapRollup(repoRoot: string, db: HarnessDb): void {
+function projectRoadmapRollup(
+  repoRoot: string,
+  db: HarnessDb,
+  reviewPlans: readonly ParsedReviewPlan[],
+): void {
   const records = loadRoadmaps(repoRoot);
-  const statuses = planStatusMap(repoRoot);
+  const statuses = planStatusMap(reviewPlans);
   const statusOf = (planId: string): string | null => statuses.get(planId) ?? null;
   const rollup = computeProgramRollup(records, statusOf, new Set(PARKED_BANDS.keys()));
   const computedAt = nowIso();
@@ -1534,11 +1538,15 @@ export function loadTrackedPathSet(
   return new Set(stdout.split("\0").filter(Boolean).map(normalizePath));
 }
 
-function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
+function projectReviewEvidenceRegistry(
+  repoRoot: string,
+  db: HarnessDb,
+  reviewPlans: readonly ParsedReviewPlan[],
+): void {
   const indexedAt = nowIso();
   const greenCommandEvidenceCache = new Map<string, GreenCommandEvidenceParseResult>();
   const trackedPaths = loadTrackedPathSet(repoRoot);
-  for (const plan of loadReviewPlans(repoRoot)) {
+  for (const plan of reviewPlans) {
     const firstEntry = plan.crossEntries[0];
     const id = stableId("review-evidence", plan.plan_id);
     recordProjectionEvent(db, {
@@ -5508,12 +5516,18 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
           projectHookEvents(repoRoot, db, plans),
         );
       }
-      profiled("projectReviewModelRuns", input.onProfile, () =>
-        projectReviewModelRuns(repoRoot, db, plans),
+      // 再構築呼出し内だけで共有する。次回はGit provenanceを含め必ず読み直す。
+      const reviewPlans = profiled("loadReviewPlans", input.onProfile, () =>
+        loadReviewPlans(repoRoot),
       );
-      profiled("projectRoadmapRollup", input.onProfile, () => projectRoadmapRollup(repoRoot, db));
+      profiled("projectReviewModelRuns", input.onProfile, () =>
+        projectReviewModelRuns(reviewPlans, db, plans),
+      );
+      profiled("projectRoadmapRollup", input.onProfile, () =>
+        projectRoadmapRollup(repoRoot, db, reviewPlans),
+      );
       profiled("projectReviewEvidenceRegistry", input.onProfile, () =>
-        projectReviewEvidenceRegistry(repoRoot, db),
+        projectReviewEvidenceRegistry(repoRoot, db, reviewPlans),
       );
       profiled("projectTrackedClosureTerminalBoundaries", input.onProfile, () =>
         projectTrackedClosureTerminalBoundaries({ repoRoot, db }),
