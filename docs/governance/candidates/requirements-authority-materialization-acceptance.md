@@ -7,7 +7,7 @@ layer: L10
 kind: redesign
 status: draft_candidate
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-05
 owner: QA / Codex TL
 plan: PLAN-L3-79-requirements-authority-materialization-gate
 parent_design: docs/governance/candidates/requirements-authority-materialization-requirements.md
