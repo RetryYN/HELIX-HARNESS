@@ -61,7 +61,7 @@ doctorとCLIは同じsnapshotで同じfindingを返す。取得不能は専用fi
 
 ## 検証対応
 
-### local入力供給の接合候補（未実装）
+### local入力供給の接合候補（局所実装・全体検収前）
 
 通常CLIのsnapshot引数がすべて未指定の場合だけ、PR contextを入力providerとして使用する。
 一部指定・不正な明示値はproviderで補完しない。pure loader自体は外部APIへ接続しない。
@@ -69,6 +69,12 @@ CLI側の取得は読取専用・時間制限付きとし、同一repositoryのo
 base/headの完全SHAを検証する。remote名からbaseを選ばず、PRのbase objectを使う。
 取得前後のlocal HEAD／branchとPR headを照合し、未push、取得中変更、forkの取り違え、
 不正応答、取得不能を拒否する。失敗応答の本文や認証情報は表示しない。
+
+repository identityは設定済みoriginの単一URLに限定し、github.comのSSH／HTTPS形式だけを
+解釈する。これはrepositoryの識別であり、remote追跡branchから比較baseを推測する規則ではない。
+GitHub APIにはhostnameとrepositoryを明示し、GH_REPO／GH_HOSTの上書きを採用しない。
+PR一覧は最大2件を取得し、1件だけの場合に受理する。複数PRを先頭選択しない。
+各外部読取は10秒・出力1MiBを上限とし、取得不能時は既存unavailableへ戻す。
 
 現在のghでは`pr view --json baseRefOid`が未対応であるため、PRのREST表現にある
 `base.sha`／`head.sha`と双方のrepository identityを取得・検証する。実装では取得adapterを
@@ -80,6 +86,7 @@ base/headの完全SHAを検証する。remote名からbaseを選ばず、PRのba
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
+| U-BRAUTH-013 | CLIのPR取得 | 実CLI＋代替ghで一意PRの受理、環境変数の別repo指定の不採用、複数PR／不正JSON／不完全引数の拒否を検査する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-012 | PR入力provider | 同一repository／branch／HEADを照合し、取得中の変更とproviderによる入力改変を拒否する。CLI自動取得の証明には含めない | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-010 | merge-base一意性 | 実criss-cross履歴の2件のbaseを拒否し、単一baseは受理する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-011 | snapshot整合 | diff取得直後の実HEAD変更を拒否する | tests/branch-kind-authority-input.test.ts |

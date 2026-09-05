@@ -1,5 +1,13 @@
 import childProcess, { execFileSync, spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { syncBuiltinESMExports } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -7,6 +15,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   analyzeBranchKind,
+  branchKindMessages,
   branchSnapshotFromPrContext,
   loadBranchKindInput,
   readBranchSnapshotFromPrProvider,
@@ -62,6 +71,88 @@ function fixture() {
 }
 
 describe("branch入力authorityの実Git検証", () => {
+  it("U-BRAUTH-013: 実CLIは一意PRだけを取得し不完全な明示入力ではproviderを呼ばない", () => {
+    const { root, snapshot } = fixture();
+    git(root, "remote", "add", "origin", "https://github.com/fixture/project.git");
+    const bin = mkdtempSync(join(tmpdir(), "helix-pr-provider-"));
+    roots.push(bin);
+    const capture = join(bin, "arguments.json");
+    const executable = join(bin, "gh");
+    writeFileSync(
+      executable,
+      `#!/usr/bin/env node\nrequire('node:fs').writeFileSync(process.env.FIXTURE_CAPTURE, JSON.stringify(process.argv.slice(2)));\nprocess.stdout.write(process.env.FIXTURE_RESPONSE);\n`,
+    );
+    chmodSync(executable, 0o700);
+    const raw = {
+      state: "open",
+      base: { sha: snapshot.baseHead, repo: { full_name: "fixture/project" } },
+      head: {
+        sha: snapshot.candidateHead,
+        ref: snapshot.branch,
+        repo: { full_name: "fixture/project" },
+      },
+    };
+    const cli = fileURLToPath(new URL("../src/cli.ts", import.meta.url));
+    const tsx = fileURLToPath(new URL("../node_modules/tsx/dist/cli.mjs", import.meta.url));
+    const invoke = (response: string, extra: string[] = [], command = ["guard", "branch-kind"]) =>
+      spawnSync(process.execPath, [tsx, cli, ...command, "--json", ...extra], {
+        cwd: root,
+        encoding: "utf8",
+        timeout: 30_000,
+        env: {
+          ...process.env,
+          PATH: `${bin}:${process.env.PATH}`,
+          GH_REPO: "other/project",
+          GH_HOST: "other.invalid",
+          FIXTURE_CAPTURE: capture,
+          FIXTURE_RESPONSE: response,
+        },
+      });
+    const partial = invoke(JSON.stringify([raw]), ["--branch", snapshot.branch]);
+    expect(partial.status, partial.stderr).toBe(1);
+    expect(existsSync(capture)).toBe(false);
+    const valid = invoke(JSON.stringify([raw]));
+    expect(valid.status, valid.stderr).toBe(0);
+    expect(JSON.parse(valid.stdout).ok).toBe(true);
+    expect(JSON.parse(readFileSync(capture, "utf8"))).toEqual([
+      "api",
+      "--hostname",
+      "github.com",
+      "--method",
+      "GET",
+      `repos/fixture/project/pulls?state=open&head=${encodeURIComponent(`fixture:${snapshot.branch}`)}&per_page=2`,
+    ]);
+    for (const response of [
+      "[]",
+      JSON.stringify([raw, raw]),
+      "invalid-json",
+      JSON.stringify([{ ...raw, state: "closed" }]),
+    ]) {
+      const rejected = invoke(response);
+      expect(rejected.status, rejected.stderr).toBe(1);
+      expect(JSON.parse(rejected.stdout).ok).toBe(false);
+    }
+    const forged = invoke(JSON.stringify([raw]), ["--changed", "src/forged.ts"]);
+    expect(forged.status, forged.stderr).toBe(1);
+    expect(JSON.parse(forged.stdout).findings[0].message).toBe("changed_paths_snapshot_mismatch");
+    for (const command of [["doctor"], ["review", "--uncommitted"], ["review", "--staged"]]) {
+      const checked = invoke(JSON.stringify([raw]), [], command);
+      expect(checked.error).toBeUndefined();
+      const output = JSON.parse(checked.stdout);
+      const messages: string[] = output.doctorMessages ?? output.messages;
+      // 最小fixtureは他のdoctor義務を満たさない。branch入力の接合だけを検収する。
+      expect(
+        messages.some((message) => message.includes("branch-kind-check - OK")),
+        JSON.stringify({
+          command,
+          messages: messages.filter((message) => message.includes("branch-kind")),
+        }),
+      ).toBe(true);
+      expect(messages.some((message) => message.includes("branch_snapshot_incomplete"))).toBe(
+        false,
+      );
+    }
+  });
   it("U-BRAUTH-012: PR応答はlocal repository／branch／HEADとの一致を必要とする", () => {
     const { root, snapshot } = fixture();
     const local = {
@@ -295,6 +386,13 @@ describe("branch入力authorityの実Git検証", () => {
     expect(checkBranchKind(root, { ...snapshot, baseHead: "" }).messages.join("\n")).toContain(
       "branch_snapshot_incomplete",
     );
+    const unavailable = analyzeBranchKind(loadBranchKindInput(root));
+    expect(unavailable.ok).toBe(false);
+    const guidance = branchKindMessages(unavailable).join("\n");
+    expect(guidance).toContain(
+      "--base-head <完全SHA> --candidate-head <完全SHA> --branch <branch名>",
+    );
+    expect(guidance).toContain("baseを推測して補わない");
   });
   it("U-BRAUTH-007: supersession比較を同じbaseに固定し作業treeからの混入を拒否する", () => {
     const { root, path, snapshot } = fixture();

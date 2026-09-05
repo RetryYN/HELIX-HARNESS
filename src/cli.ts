@@ -111,6 +111,7 @@ import {
   type BranchKindInput,
   branchKindMessages,
   loadBranchKindInput,
+  readBranchSnapshotFromPrProvider,
 } from "./lint/branch-kind";
 import { assertCanonicalReuseAllowed } from "./lint/canonical-reuse-authority";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
@@ -1006,12 +1007,51 @@ function readStdin(): string {
   }
 }
 
-function doctorDepsForBranchSnapshot(opts: {
-  baseHead?: string;
-  candidateHead?: string;
-  branch?: string;
-  includeWorkingTree?: boolean;
-}) {
+function localBranchPrSnapshot(repoRoot: string) {
+  const read = (command: string, args: string[]) =>
+    execFileSync(command, args, {
+      cwd: repoRoot,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+      timeout: 10_000,
+      killSignal: "SIGKILL",
+      maxBuffer: 1024 * 1024,
+    }).trim();
+  return readBranchSnapshotFromPrProvider({
+    readLocal: () => {
+      const urls = read("git", ["remote", "get-url", "--all", "origin"]).split(/\r?\n/);
+      if (urls.length !== 1) throw new Error("repository_identity_unavailable");
+      const match =
+        /^(?:git@github\.com:|https:\/\/github\.com\/)([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)(?:\.git)?$/.exec(
+          urls[0] ?? "",
+        );
+      if (!match) throw new Error("repository_identity_unavailable");
+      return {
+        repository: `${match[1]}/${match[2]}`,
+        head: read("git", ["rev-parse", "HEAD"]),
+        branch: read("git", ["rev-parse", "--abbrev-ref", "HEAD"]),
+      };
+    },
+    readPr: (local) => {
+      const owner = local.repository.split("/")[0];
+      const endpoint = `repos/${local.repository}/pulls?state=open&head=${encodeURIComponent(`${owner}:${local.branch}`)}&per_page=2`;
+      const response: unknown = JSON.parse(
+        read("gh", ["api", "--hostname", "github.com", "--method", "GET", endpoint]),
+      );
+      return Array.isArray(response) && response.length === 1 ? response[0] : null;
+    },
+  });
+}
+
+function doctorDepsForBranchSnapshot(
+  opts: {
+    baseHead?: string;
+    candidateHead?: string;
+    branch?: string;
+    includeWorkingTree?: boolean;
+  },
+  forceWorkingTree = false,
+) {
   return {
     ...nodeDoctorDeps(process.cwd()),
     branchSnapshot:
@@ -1023,9 +1063,9 @@ function doctorDepsForBranchSnapshot(opts: {
             baseHead: opts.baseHead ?? "",
             candidateHead: opts.candidateHead ?? "",
             branch: opts.branch ?? "",
-            includeWorkingTree: opts.includeWorkingTree,
+            includeWorkingTree: forceWorkingTree || opts.includeWorkingTree,
           }
-        : undefined,
+        : (localBranchPrSnapshot(process.cwd()) ?? undefined),
   };
 }
 
@@ -1058,7 +1098,13 @@ function loadBranchKindInputForGuard(opts: {
     }
     return { ...input, strictUnknownPrefix: opts.strictUnknownPrefix };
   }
-  const base = loadBranchKindInput(repoRoot);
+  const base = loadBranchKindInput(repoRoot, localBranchPrSnapshot(repoRoot) ?? undefined);
+  if (
+    opts.changed !== undefined &&
+    JSON.stringify([...new Set(opts.changed)].sort()) !== JSON.stringify(base.changedPaths)
+  ) {
+    base.authority = { status: "unavailable", reason: "changed_paths_snapshot_mismatch" };
+  }
   return { ...base, strictUnknownPrefix: opts.strictUnknownPrefix };
 }
 
@@ -11259,9 +11305,7 @@ program
         // 意図しない混入を staged 段階で弾く (doctor 失敗 / suspect 検出で fail-close)。
         const staged = loadStagedFiles(process.cwd());
         const summary = summarizeStagedReview(staged);
-        const doctor = runDoctor(
-          doctorDepsForBranchSnapshot({ ...opts, includeWorkingTree: true }),
-        );
+        const doctor = runDoctor(doctorDepsForBranchSnapshot(opts, true));
         const ok = doctor.ok && summary.ok;
         const stagedOutput = {
           scope: "staged",
@@ -11290,7 +11334,7 @@ program
         return;
       }
       const changedFiles = loadChangedFiles(process.cwd());
-      const doctor = runDoctor(doctorDepsForBranchSnapshot({ ...opts, includeWorkingTree: true }));
+      const doctor = runDoctor(doctorDepsForBranchSnapshot(opts, true));
       const verification = recommendVerificationProfiles(changedFiles);
       const output = {
         scope: "uncommitted",

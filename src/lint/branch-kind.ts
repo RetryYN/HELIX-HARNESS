@@ -613,6 +613,15 @@ export function branchKindMessages(result: BranchKindResult): string[] {
   return [
     `branch-kind-check - violation: errors=${hard.length}, warnings=${warn.length}`,
     ...hard.map((f) => `branch-kind-check - block ${f.code}: ${f.message}`),
+    ...(hard.some(
+      (f) =>
+        f.code === "branch_authority_unavailable" &&
+        ["branch_snapshot_required", "branch_snapshot_incomplete"].includes(f.message),
+    )
+      ? [
+          "branch-kind-check - recovery: 作業元のIssue／PLANまたはPRで比較baseを確認し、--base-head <完全SHA> --candidate-head <完全SHA> --branch <branch名> を一組で指定してください。guard／doctorで作業差分を含める場合は --include-working-tree を追加します（reviewは作業差分を含みます）。baseを推測して補わないでください。",
+        ]
+      : []),
     ...warn.map((f) => `branch-kind-check - warn ${f.code}: ${f.message}`),
   ];
 }
