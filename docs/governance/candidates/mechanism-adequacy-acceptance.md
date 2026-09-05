@@ -33,7 +33,7 @@ pair_artifact: docs/governance/candidates/mechanism-adequacy-requirements.md
 | MA-AC-14 | MA-R-05 | journal順序変更・二重event・DB再構築で同一exact set。欠落event・edge・digest driftを拒否 |
 | MA-AC-15 | MA-R-05 | 固定AI出力のprovenanceと機械証拠を分離。AI仮説を検証済み証拠へ偽装しない |
 | MA-AC-16 | MA-R-06 | 通常観測の追加LLM呼出し0とAIなしの保留／統制を実測。重複解析・無限再生成を拒否 |
-| MA-AC-17 | MA-R-06 | probeの仮説・停止条件・各budgetを実測。枯渇時は証拠不足、無関係な作業は停止しない |
+| MA-AC-17 | MA-R-06 | probeの仮説・停止条件・各budgetを実測。既存policyが許可する対象・操作の正常対照と、許可scope外の対象・禁止操作・期限切れ認可の負例を個別検査し、負例は実行前に拒否して外部副作用0を確認する。枯渇時は証拠不足、無関係な作業は停止しない |
 | MA-AC-18 | MA-R-07 | #1344等を当時revisionで再生。将来の正解混入と予測／実測／欠測混同を拒否 |
 | MA-AC-19 | MA-R-07 | 誤昇格・見逃し・費用・手戻り・再発で効果評価。新機構件数だけの成功判定を拒否 |
 | MA-AC-21 | MA-R-04, MA-R-07 | 実ログ→評価→設計→既存workflow→独立review/検証→main read-after→L12観測を一巡。局所green・mergeだけで閉じない |
