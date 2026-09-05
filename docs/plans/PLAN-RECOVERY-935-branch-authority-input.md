@@ -22,6 +22,8 @@ entry_signals: [regression_dev]
 parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md
 pair_artifact: docs/test-design/helix/L7-branch-kind-authority-input.md
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-BRAUTH-012, test_path: tests/branch-kind-authority-input.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-BRAUTH-013, test_path: tests/branch-kind-authority-input.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-BRAUTH-010, test_path: tests/branch-kind-authority-input.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-BRAUTH-011, test_path: tests/branch-kind-authority-input.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-BRAUTH-004, test_path: tests/branch-kind-authority-input.test.ts }
