@@ -2,6 +2,7 @@
 // PLAN-L7-581-github-workflow-identity-migration-bundle-admission — U-GWIDADM-011..016
 // PLAN-L7-674-terminal-fullback-bundle-admission — U-GWIDADM-019..020
 // PLAN-L7-681-github-identity-source-diagnostics — U-GWIDADM-021
+import { execFileSync } from "node:child_process";
 import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -11,6 +12,7 @@ import {
   GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER,
   GITHUB_WORKFLOW_IDENTITY_MIGRATION_BUNDLE_MARKER,
   GITHUB_WORKFLOW_IDENTITY_TERMINAL_BUNDLE_MARKER,
+  readExplicitBasePlanSource,
 } from "../src/adapters/github-workflow-identity-admission";
 import { analyzePrContext } from "../src/lint/github-guards";
 import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
@@ -909,5 +911,75 @@ describe("GitHub workflow identity admission", () => {
         basePlanSource,
       }),
     ).toMatchObject({ ok: false, reason: "workflow_identity_admission_multiple_plans" });
+  });
+  // PLAN-RECOVERY-1543-reviewer-session-model-history — U-GWIDADM-023
+  it("U-GWIDADM-023: 既定の base reader は明示 baseHead の完全 SHA にだけ束縛し、不正・未指定・読取不能では例外を適用せず環境変数や merge-base へ fallback しない", () => {
+    const root = fixtureRoot();
+    const superseded = "docs/plans/PLAN-L7-575-superseded.md";
+    writePlan(root);
+    writePlan(root, { path: superseded, targetId: "RECOVERY" });
+    const git = (...args: string[]) =>
+      execFileSync("git", ["-C", root, ...args], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim();
+    git("init", "-q");
+    git("config", "user.email", "fixture@example.invalid");
+    git("config", "user.name", "fixture");
+    git("add", "-A");
+    git("commit", "-q", "-m", "base");
+    const baseSha = git("rev-parse", "HEAD");
+    // current: superseded_by だけを追加（metadata-only）。base 版は commit 済みの published 状態。
+    writeFileSync(
+      join(root, superseded),
+      readFileSync(join(root, superseded), "utf8").replace(
+        "plan_id: PLAN-L7-574-github-workflow-identity-admission\n",
+        "plan_id: PLAN-L7-574-github-workflow-identity-admission\nsuperseded_by: [PLAN-L7-574-github-workflow-identity-admission]\n",
+      ),
+    );
+    const admit = (baseHead: string | undefined) =>
+      admitGithubWorkflowIdentity({
+        repository: "RetryYN/HELIX-HARNESS",
+        prBody: contractBody(),
+        changedPaths: [PLAN_PATH, superseded],
+        repoRoot: root,
+        baseHead,
+        ghApi: () => ({ number: 733, body: contractBody() }),
+      });
+    // 有効な明示 base → 例外適用 → successor 1 本を受理。
+    expect(admit(baseSha)).toMatchObject({ ok: true, applicable: true });
+    // 環境変数に不正 base を置いても、明示 baseHead が無ければ例外は適用されない（env fallback なし）。
+    const savedGithub = process.env.GITHUB_BASE_SHA;
+    const savedPr = process.env.PR_BASE_SHA;
+    process.env.GITHUB_BASE_SHA = baseSha;
+    process.env.PR_BASE_SHA = baseSha;
+    try {
+      expect(admit(undefined)).toMatchObject({
+        ok: false,
+        reason: "workflow_identity_admission_multiple_plans",
+      });
+      // 不正な明示 base → merge-base 等へ相殺せず例外不適用（fail-close）。
+      expect(admit("invalid-explicit-base")).toMatchObject({
+        ok: false,
+        reason: "workflow_identity_admission_multiple_plans",
+      });
+      // 形式は正しいが存在しない SHA → 読取不能 → 例外不適用。
+      expect(admit("f".repeat(40))).toMatchObject({
+        ok: false,
+        reason: "workflow_identity_admission_multiple_plans",
+      });
+    } finally {
+      if (savedGithub === undefined) delete process.env.GITHUB_BASE_SHA;
+      else process.env.GITHUB_BASE_SHA = savedGithub;
+      if (savedPr === undefined) delete process.env.PR_BASE_SHA;
+      else process.env.PR_BASE_SHA = savedPr;
+    }
+    // reader 単体: 不正 SHA / PLAN 以外の path / 未 commit path は null。
+    expect(readExplicitBasePlanSource(root, "not-a-sha", superseded)).toBeNull();
+    expect(readExplicitBasePlanSource(root, baseSha, "src/cli.ts")).toBeNull();
+    expect(readExplicitBasePlanSource(root, baseSha, "docs/plans/PLAN-missing.md")).toBeNull();
+    expect(readExplicitBasePlanSource(root, baseSha, superseded)).toContain(
+      "plan_id: PLAN-L7-574-github-workflow-identity-admission",
+    );
   });
 });

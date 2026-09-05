@@ -67,7 +67,7 @@ doctor の `review-evidence` check は `loadReviewerSessionModelHistory(repoRoot
 `github workflow-identity-admission` は変更された typed PLAN が 1 本でなければ
 `workflow_identity_admission_multiple_plans` で拒否する。両立させるため、admission は
 `superseded_by` だけを受け取る既存 PLAN（branch-kind と同じ `isSupersessionMetadataOnly` 判定）を
-slice 所有者候補から外す。published base を読めない場合は例外を適用せず従来どおり拒否する（fail-close）。
+slice 所有者候補から外す。base 版 PLAN の読取は **明示 `baseHead`（CI が `git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA"` で確定し `--base-head` で渡す完全 SHA）にだけ束縛**し（`readExplicitBasePlanSource`）、環境変数・merge-base 推測・`HEAD^1` への fallback を持たない。`baseHead` が未指定・形式不正・読取不能（存在しない SHA、base に無い path）なら例外を適用せず所有者として数える（fail-close）。branch-kind 側の `loadBasePlanSource`（複数 candidate を順に試す既存 reader）は admission から参照しない。
 
 ## 5. fail-close 条件
 
@@ -81,6 +81,7 @@ slice 所有者候補から外す。published base を読めない場合は例�
 - timezone 無しの日時で window 境界が実行環境の local time に依存する（registry 側・照合対象 `reviewed_at` 側の両方）。
 - 存在しない日付（2/30、非うるう年 2/29、4/31 等）を `Date.parse` の正規化で有効な instant として attribution に使う。
 - 小数精度を ms へ丸めて境界直前の instant を次 window へ昇格させる。
+- admission の metadata-only 例外が、不正・未指定の明示 base を merge-base や環境変数で相殺した結果を authority に使う。
 
-検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-019` の 8 件（`018` は `tests/doctor-cause-digest-contract.test.ts`）と `U-GWIDADM-022` で固定する（既存 `U-RVIDENT-001` 〜 `010`
+検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-019` の 8 件（`018` は `tests/doctor-cause-digest-contract.test.ts`）と `U-GWIDADM-022` / `U-GWIDADM-023`（023 は CI workflow の `--base-head "$merge_base"` 配線も `tests/harness-check-workflow.test.ts` で固定）で固定する（既存 `U-RVIDENT-001` 〜 `010`
 は不変、`011` は freeze 伝播）。

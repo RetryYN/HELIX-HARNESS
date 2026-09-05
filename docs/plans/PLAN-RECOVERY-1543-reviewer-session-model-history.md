@@ -55,6 +55,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-018, test_path: tests/doctor-cause-digest-contract.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-019, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-GWIDADM-022, test_path: tests/github-workflow-identity-admission.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-GWIDADM-023, test_path: tests/github-workflow-identity-admission.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
   requires: []
@@ -80,7 +81,9 @@ modifies:
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/doctor-cause-digest-contract.test.ts, artifact_type: test_code }
   - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
-  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: yaml_config }
+  - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-workflow-identity-admission.test.ts, artifact_type: test_code }
   - { artifact_path: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }

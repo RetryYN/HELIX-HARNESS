@@ -65,7 +65,7 @@ function mutateWorkflowJob(raw: string, jobName: string, mutate: (job: string) =
   const startMarker = `  ${jobName}:`;
   const start = raw.indexOf(startMarker);
   if (start < 0) return raw;
-  const nextJobPattern = /\n  [^\s][^\n]*:\n/g;
+  const nextJobPattern = /\n {2}[^\s][^\n]*:\n/g;
   nextJobPattern.lastIndex = start + startMarker.length;
   const nextJob = nextJobPattern.exec(raw);
   const end = nextJob?.index ?? raw.length;
@@ -832,6 +832,9 @@ describe("source harness-check workflow", () => {
     expect(closureGuard.run).toContain("github workflow-identity-admission");
     expect(closureGuard.run).toContain('--pr-body-file "$RUNNER_TEMP/pr-body.md"');
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
+    // PLAN-RECOVERY-1543-reviewer-session-model-history — U-GWIDADM-023: metadata-only 例外の base は
+    // CI が確定した merge-base を明示で渡す（admission 側で env / merge-base / HEAD^1 を推測しない）。
+    expect(closureGuard.run).toContain('--base-head "$merge_base"');
   });
 
   it("U-IHIER-006: PLAN-L7-556-issue-dependency-doctor はworkflow event境界を固定する", () => {

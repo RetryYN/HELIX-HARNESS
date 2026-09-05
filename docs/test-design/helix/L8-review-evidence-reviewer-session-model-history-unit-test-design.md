@@ -28,6 +28,7 @@ fixture は in-memory の registry（`parseReviewerSessionModelHistory` の戻�
 | U-RVIDENT-018 | doctor の history 読込境界 | 壊れた JSON（未知例外）は `reviewer_session_model_history_invalid:unknown cause_kind=… cause_digest=sha256:…` のみ surface し、tmp root path や `Unexpected token` を含まない。schema 違反（既知診断）は `…invalid:schema_version` の typed reason をそのまま surface。既存 ratchet U-DUR-003（`error.message` 露出禁止）は CI run 33952469801 で red を実測（2bdc1b8ce）、対策後 green | `tests/doctor-cause-digest-contract.test.ts` |
 | U-RVIDENT-019 | 照合対象 reviewed_at の timezone 必須・暦上実在 | timezone 無し（`2026-09-05T04:00:00`）・日付のみ・非日時・存在しない日付（2/30、2027-02-29、4/31）は `reviewerModelAt` が null を返し、有効うるう日 `2028-02-29T12:00:00Z` は一致し、境界直前 `02:59:59.9999Z` / `.999999999Z` は旧 window、境界一致と小数桁数違いの同一 instant（`.0Z` / `.000Z` / `.000000000Z` / `12:00:00.000000+09:00`）は新 window、sub-ms 幅 window（since `.0000001Z` / until `.0000002Z`）は内側 `.00000015Z` のみ一致し下端未満は null。analyze 経由では `reviewer_session_model_history_mismatch` になる（UTC / JST で同一結果）。明示 offset `+09:00 12:00:00` は `03:00:00Z` と同一 instant として新 window に一致し、`11:59:59+09:00` は旧 window に一致する | `tests/review-evidence.test.ts` |
 | U-GWIDADM-022 | admission の supersession 例外 | `superseded_by` だけを受け取る既存 PLAN を typed PLAN として数えると successor 1 本の PR が `multiple_plans` で red。base を読めない場合や本文も変わっている場合に例外を適用すると red | `tests/github-workflow-identity-admission.test.ts` |
+| U-GWIDADM-023 | admission の明示 base 束縛 | 実 git fixture で有効な明示 `baseHead`（commit SHA）は例外適用 → successor 1 本受理。`baseHead` 未指定（`GITHUB_BASE_SHA` / `PR_BASE_SHA` に有効 SHA を置いても）・`invalid-explicit-base`・存在しない 40 桁 SHA はいずれも例外不適用 → `multiple_plans`。reader 単体は不正 SHA / PLAN 以外の path / base に無い path で null。CI workflow は `--base-head "$merge_base"` を渡す | `tests/github-workflow-identity-admission.test.ts`、`tests/harness-check-workflow.test.ts` |
 
 ## mutation 実測記録
 
@@ -44,8 +45,9 @@ fixture は in-memory の registry（`parseReviewerSessionModelHistory` の戻�
 | M8: `reviewerModelAt` の reviewed_at 形式検査を外す | U-RVIDENT-019 |
 | M9: `parseHistoryInstant` の `Date.UTC` 往復一致（暦上実在）検査を外す | U-RVIDENT-014 / 019 |
 | M10: `parseHistoryInstant` の小数部を ms へ四捨五入して ns へ戻す（精度退行） | U-RVIDENT-019 |
+| M11: `readExplicitBasePlanSource` が不正・未指定 base を merge-base(origin/main) → HEAD で相殺する | U-GWIDADM-023 |
 
-M6 / M7 は 2026-09-05T07:22:33Z〜34Z に個別注入して各 1 failed、復元後 1 passed を実測した。 M8 は 08:50:26Z に注入して U-RVIDENT-019 が 1 failed、復元後 1 passed（`TZ=Asia/Tokyo` でも 1 passed）を実測した。 M9 は 09:45:11Z に注入して U-RVIDENT-014 / 019 が 2 failed、復元後 2 passed を実測した。 M10 は 09:56:35Z に注入して U-RVIDENT-019 が 1 failed、復元後 1 passed を実測した。
+M6 / M7 は 2026-09-05T07:22:33Z〜34Z に個別注入して各 1 failed、復元後 1 passed を実測した。 M8 は 08:50:26Z に注入して U-RVIDENT-019 が 1 failed、復元後 1 passed（`TZ=Asia/Tokyo` でも 1 passed）を実測した。 M9 は 09:45:11Z に注入して U-RVIDENT-014 / 019 が 2 failed、復元後 2 passed を実測した。 M10 は 09:56:35Z に注入して U-RVIDENT-019 が 1 failed、復元後 1 passed を実測した。 M11 は 12:07:45Z に注入して U-GWIDADM-023 が 1 failed、復元後 1 passed を実測した。
 | M4: admission の metadata-only 例外（`isSupersessionMetadataOnly` 判定）を無効化 | U-GWIDADM-022（06:40:09Z に 1 failed、復元後 1 passed） |
 
 origin/main には `parseReviewerSessionModelHistory` 等が存在しないため、追加 oracle は main 版では

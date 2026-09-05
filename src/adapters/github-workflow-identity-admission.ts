@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { z } from "zod";
-import { isSupersessionMetadataOnly, loadBasePlanSource } from "../lint/branch-kind.js";
+import { isSupersessionMetadataOnly } from "../lint/branch-kind.js";
 import { parseMarkdownFrontmatter } from "../lint/shared.js";
 import {
   compareIssuePrWorkflowIdentityContracts,
@@ -197,6 +197,27 @@ function parseTerminalBundle(
   return { ok: true, bundle: parsed.data };
 }
 
+/**
+ * 明示 base に束縛した PLAN source 読取。環境変数・merge-base・`HEAD^1` への fallback を持たない。
+ * `baseHead` が 40 桁 SHA でない、または `git show` が失敗した場合は null（例外不適用）。
+ */
+export function readExplicitBasePlanSource(
+  repoRoot: string,
+  baseHead: string | undefined,
+  file: string,
+): string | null {
+  if (baseHead === undefined || !/^[a-f0-9]{40}$/.test(baseHead)) return null;
+  if (!/^docs\/plans\/PLAN-[^/]+\.md$/u.test(file)) return null;
+  try {
+    return execFileSync("git", ["-C", repoRoot, "show", `${baseHead}:${file}`], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+  } catch {
+    return null;
+  }
+}
+
 export function admitGithubWorkflowIdentity(input: {
   repository: string;
   prBody: string;
@@ -204,14 +225,18 @@ export function admitGithubWorkflowIdentity(input: {
   repoRoot?: string;
   ghApi?: GhApi;
   /**
-   * published base 版の PLAN source を返す（無ければ null）。既定は branch-kind と同じ
-   * `PR_BASE_SHA` / `GITHUB_BASE_SHA` / merge-base / `HEAD^1` 解決。fixture では注入する。
+   * published base の完全 SHA（CI が `git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA"` で確定した値）。
+   * metadata-only supersession 例外はこの明示 base に対してだけ判定する。未指定・形式不正・
+   * 読取不能なら例外を適用しない（他 base へ fallback せず、所有者として数える = fail-close）。
    */
+  baseHead?: string;
+  /** published base 版の PLAN source を返す（無ければ null）。fixture では注入する。 */
   basePlanSource?: (path: string) => string | null;
 }): GithubWorkflowIdentityAdmissionResult {
   const repoRoot = input.repoRoot ?? process.cwd();
   const basePlanSource =
-    input.basePlanSource ?? ((path: string) => loadBasePlanSource(repoRoot, path));
+    input.basePlanSource ??
+    ((path: string) => readExplicitBasePlanSource(repoRoot, input.baseHead, path));
   let typedPlans: Array<{ path: string; frontmatter: Record<string, unknown> }>;
   try {
     typedPlans = input.changedPaths
