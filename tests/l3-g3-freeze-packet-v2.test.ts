@@ -1151,8 +1151,8 @@ describe("L3 G1/G3 freeze packet v2", () => {
     expect(new Set(ownerRows.map((row) => row.test_path)).size).toBe(19);
     // 初期missing-test 100件の8+92 snapshotとは別に、manifestは後続PLANが同じtest fileへ
     // 追加した独立oracleも含むcurrent case集合を追跡する。
-    // PLAN-L3-88のdigest drift反例1件を含む。初期snapshotの100件を変更したものではない。
-    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(101);
+    // PLAN-L3-88とPLAN-L3-78のdigest drift反例を各1件含む。初期snapshotの100件は不変。
+    expect(ownerRows.reduce((sum, row) => sum + row.expected_case_count, 0)).toBe(102);
     for (const planId of ["PLAN-L7-351", "PLAN-L7-349", "PLAN-L7-150"]) {
       expect(packet).toContain(planId);
     }
