@@ -2,7 +2,7 @@
 document_id: HELIX-HARNESS-MEMORY-COORDINATION-L10-CANDIDATE
 version: 0.1.0
 status: draft_candidate
-authority_status: approved_pending_canonical_promotion
+authority_status: proposed_pending_l3_confirmation
 canonical_vmodel: L1-L12
 canonical_layer: L10
 canonical_pair: L3
@@ -41,7 +41,7 @@ pair_artifact: docs/governance/candidates/harness-memory-coordination-boundary-r
 | `HMC-AC-019` | `HMC-R-19` | memoryからRequirement、Design、Approval、Release、Assignmentへ直接書く | direct authority writeを拒否し既存workflowへrouteする |
 | `HMC-AC-020` | `HMC-R-20` | retention期間をmemory側が独自変更、履歴削除で無効entryを隠す | #1188へ委譲し、履歴と削除境界を保全する |
 | `HMC-AC-021` | 全体 | 同一source event／HEAD／policyで二回再構築する | current exact set、projection、digestが一致する |
-| `HMC-AC-022` | 全体 | 未承認candidateだけをruntime／DB／SessionStartへ配置する | candidate-only変更はcurrent authorityへ昇格しない |
+| `HMC-AC-022` | 全体 | 承認取得済みでも独立検収・正本化前のcandidateをruntime／DB／SessionStartへ配置する | candidate-only変更はcurrent authorityへ昇格しない |
 
 ## 完了境界
 

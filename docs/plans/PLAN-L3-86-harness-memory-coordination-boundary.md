@@ -87,6 +87,9 @@ review_evidence: []
 main read-afterが完了するまで、候補の意味をcurrent requirements、runtime、schema、DB、CLI、SessionStart、Claude／Codex
 managed ruleへ投影しない。
 
+承認記録はruntime実装完了、外部副作用、credential利用、release/tag/publish/cutover、本番変更の許可を含まない。
+candidateの既存authority_status語彙は維持し、承認取得の事実は本PLANのtyped recordと本文で区別する。
+
 `po_directive:`は現行routerが受理するcompatibility inputであり、Issue本文や会話をPO authorityへ読み替える記録ではない。
 #1448の監査事象は対象Issueとsource authority候補へ束縛し、承認実体がない状態ではcandidateのまま保持する。
 

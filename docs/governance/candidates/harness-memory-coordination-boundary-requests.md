@@ -63,4 +63,4 @@ assignmentやleaseを通知する場合も、正本はharness.db／GitHub／PLAN
 - #1420のJSON key ordering冪等性の再実装。
 - provider native configurationの全項目実装。
 - Requirement、Design、ADR、Skill、Knowledge、Release、Assignmentの新しい正本やDBを作ること。
-- 未承認候補をcurrent output、runtime、DB、CLI、SessionStartへ先行投影すること。
+- 独立検収・正本化前の候補をcurrent output、runtime、DB、CLI、SessionStartへ先行投影すること。

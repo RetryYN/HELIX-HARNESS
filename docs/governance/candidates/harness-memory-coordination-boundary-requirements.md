@@ -2,7 +2,7 @@
 document_id: HELIX-HARNESS-MEMORY-COORDINATION-L3-CANDIDATE
 version: 0.1.0
 status: draft_candidate
-authority_status: approved_pending_canonical_promotion
+authority_status: proposed_pending_l3_confirmation
 canonical_vmodel: L1-L12
 canonical_layer: L3
 canonical_pair: L10
