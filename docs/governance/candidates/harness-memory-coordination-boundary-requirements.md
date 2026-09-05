@@ -24,8 +24,8 @@ refines:
 
 ## Authority境界
 
-本書は未承認のL3 candidateである。#1449の用語正本、#1188の保持期間責務、既存のL3 memory要件を置換しない。
-承認前はruntime、schema、DB、CLI、SessionStart、Requirement IR、current generated documentの意味入力にしない。
+本書はPLAN-L3-86の人間承認が記録済みで、独立検収・正本化待ちのL3 candidateである。#1449の用語正本、#1188の保持期間責務、既存のL3 memory要件をまだ置換しない。
+独立検収・正本化前はruntime、schema、DB、CLI、SessionStart、Requirement IR、current generated documentの意味入力にしない。
 
 ## HMC-FR-001 型付きcoordination envelope
 
@@ -96,5 +96,5 @@ refines:
 | HMC-05 | writer／SessionStart／DB／compactionのexact-set一致 |
 | HMC-06 | Claude／Codex adapter parity、doctor、mutation、#1188接合 |
 
-本candidateの承認前にHMC-02以降のruntime変更を開始しない。既存実装の問題は別のRecoveryとして記録し、候補の存在だけで
+本candidateの独立検収・正本化前にHMC-02以降のruntime変更を開始しない。既存実装の問題は別のRecoveryとして記録し、候補の存在だけで
 現在のgreen／completion claimを再評価しない。

@@ -1,6 +1,24 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #1534: canonical_pair L3と層範囲L1-L12の隣接を旧pairと誤認。実際のpairはL10↔L3。
+    path: "docs/governance/candidates/execution-ticket-acceptance.md",
+    contentDigest: "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+    finalDisposition: "false_positive",
+  },
+  {
+    // #1534: 原稿の層誤記を是正する棚卸し。L2↔L11とL3↔L10を別pairとして保持する。
+    path: "docs/governance/candidates/execution-ticket-intake.md",
+    contentDigest: "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+    finalDisposition: "false_positive",
+  },
+  {
+    // #1534: 承認記録追記後も正規3pairの併記であり、L2↔L10への再定義ではない。
+    path: "docs/plans/PLAN-L3-88-execution-ticket-bench-authority.md",
+    contentDigest: "6e8a6c8bb8a596ad47d5b1a7c8eba685c54e1c80ae3323bbe81d6855d2c6daba",
+    finalDisposition: "false_positive",
+  },
+  {
     // Issue #1370のmachine-readable gap inventory。旧epoch語は再導入対象ではなく、
     // ownerとterminal conditionへ束縛した拒否対象である。
     path: "docs/governance/effective-agent-startup-followup-registry.json",

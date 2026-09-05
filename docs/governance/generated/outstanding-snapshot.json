@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 68,
+  "decision_count": 70,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -27,6 +27,7 @@
     "PLAN-L3-85-document-authority-census",
     "PLAN-L3-86-harness-memory-coordination-boundary",
     "PLAN-L3-87-security-engagement-authority",
+    "PLAN-L3-88-execution-ticket-bench-authority",
     "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
@@ -59,6 +60,7 @@
     "PLAN-RECOVERY-107-lite-consumer-npm-install-determinism",
     "PLAN-RECOVERY-108-ci-isolation-backend-bounded",
     "PLAN-RECOVERY-110-doctor-live-result-reuse",
+    "PLAN-RECOVERY-1411-review-checklist-validation",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
     "PLAN-RECOVERY-67-claude-native-memory-isolation",
