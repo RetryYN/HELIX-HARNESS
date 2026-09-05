@@ -6,6 +6,8 @@ layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
+backprop_decision: not_required
+backprop_decision_reason: "要求・runtime挙動・受入義務は変更しない。同一入力のCLI準備共有を既存L8へ記載し、既存3種review tierとdeadline契約に試験を整合させる。上流意味変更を検出した場合は本判定を撤回しReverseへ戻す。"
 created: 2026-09-06
 updated: 2026-09-06
 owner: Codex / TL
