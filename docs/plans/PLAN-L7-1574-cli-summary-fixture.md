@@ -11,6 +11,25 @@ updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 93
 responsibility_owner: cli-surface-verification
+behavior_contract_id: CURRENT-LOCATION-SUMMARY-TYPED-OUTPUT-001
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: migrate_one_consumer
+legacy_retirement_state: not_applicable
+no_code_decision: modify
+ddd_modeling_decision: none
+contract_preconditions: "既存L6/L8 summary契約とU-CLSO-001..006を維持し、同一repository入力の逐次scenarioを使用する"
+contract_postconditions: "text/JSON/summaryを各一回実起動し、全出力assertionと独立した欠落authority fixtureを検証する"
+contract_invariants: "runtime挙動、default DB再構築、freshness、各oracle ID、独立review要件を変更しない"
+contract_failures: "旧text、schema退行、欠落authorityの誤変換、review tierの不一致を検出する"
+tdd_red_required: true
+tdd_red_evidence: "変更前f880d297でもstatusのintra-runtime checklistをcross_agent扱いする既存oracleが1 failedとなることを再現した"
+tdd_green_evidence: "07:01:10 JST開始のtests/cli-surface.test.ts全95件が199.22秒で成功。時刻は実行開始であり完了時刻ではない"
+mutation_oracle_required: true
+mutation_oracle_evidence: "tests/cli-surface.test.ts U-CLSO-005/006: 旧textとschema v1を同時注入し各assertionがRED、復元後6件green。単一変異ごとの独立実験ではない"
+complexity_effect: net_negative
+complexity_justification: "既存7回のCLI起動を3回へ集約し、process間cacheや新runtimeを導入しない"
+removal_trigger: "同一scenarioの出力契約が変更され共有不能となった場合、入力ごとのfixtureへ分離する"
 entry_signals: [structural]
 agent_slots:
   - { role: aim, slot_label: "AIM — 検証責務を保持" }
