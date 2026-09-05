@@ -59,6 +59,11 @@ pushのzero／通常before、PRの空／zero base、不正な明示baseを両ste
 
 以下は実装済みの局所検証との対応である。上表の複合条件をすべて検収済みとは扱わない。
 
+`U-BRAUTH-012`は不正repository／不正SHA／空branch／detached HEADに対して
+`readPr`呼出し0回を要求する。拒否結果だけでなく外部読取前の検査順を検証する。
+`U-BRAUTH-013`は`doctor --scope toolchain`で代替ghの呼出し0回を要求し、
+通常doctor／reviewのbranch検査が維持されることも同じfixtureで検証する。
+
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-BRAUTH-013 | CLIのPR取得 | 実CLIと代替ghを使い、明示hostname／repository、単一PR、部分引数時の呼出し0、不正JSON／複数PR／差分偽装拒否を検査する。実GitHub取得とdoctor全体の成功は別検収 | `tests/branch-kind-authority-input.test.ts` |

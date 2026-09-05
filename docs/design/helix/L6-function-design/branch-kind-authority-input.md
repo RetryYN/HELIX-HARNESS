@@ -65,6 +65,10 @@ doctorとCLIは同じsnapshotで同じfindingを返す。取得不能は専用fi
 
 通常CLIのsnapshot引数がすべて未指定の場合だけ、PR contextを入力providerとして使用する。
 一部指定・不正な明示値はproviderで補完しない。pure loader自体は外部APIへ接続しない。
+doctorではbranch検査がsnapshotを必要とした時点だけで取得する。toolchain限定診断は
+branch入力を取得せず、外部PR読取による待ち時間を追加しない。
+provider呼出し前にlocal repository形式、完全SHA、非空かつ非detachedのbranchを検査し、
+不正なidentityは外部へ渡さない。取得後のPR照合と取得前後identity照合も維持する。
 CLI側の取得は読取専用・時間制限付きとし、同一repositoryのopen PR、head branch、
 base/headの完全SHAを検証する。remote名からbaseを選ばず、PRのbase objectを使う。
 取得前後のlocal HEAD／branchとPR headを照合し、未push、取得中変更、forkの取り違え、
