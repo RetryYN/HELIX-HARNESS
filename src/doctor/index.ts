@@ -33,7 +33,12 @@ import {
 } from "../lint/allowlist-sync";
 import { analyzeAssetDrift, assetDriftMessages, loadAssetDriftInput } from "../lint/asset-drift";
 import { analyzeBackfill, backfillMessages, loadBackfillDocs } from "../lint/backfill-pairing";
-import { analyzeBranchKind, branchKindMessages, loadBranchKindInput } from "../lint/branch-kind";
+import {
+  analyzeBranchKind,
+  type BranchKindSnapshot,
+  branchKindMessages,
+  loadBranchKindInput,
+} from "../lint/branch-kind";
 import {
   analyzeChangeImpact,
   analyzeChangeSetIntegrity,
@@ -612,6 +617,7 @@ function buildDoctorCurrentLocationSnapshot(
 /** I/O・clock 注入 (test 可能)。 */
 export interface DoctorDeps {
   repoRoot: string;
+  branchSnapshot?: BranchKindSnapshot;
   now: string;
   readText: (path: string) => string | null;
   listDir: (dir: string) => string[];
@@ -1260,7 +1266,10 @@ export function checkVerificationProfile(repoRoot: string): {
   }
 }
 
-export function checkBranchKind(repoRoot: string): {
+export function checkBranchKind(
+  repoRoot: string,
+  snapshot?: BranchKindSnapshot,
+): {
   messages: string[];
   ok: boolean;
 } {
@@ -1271,7 +1280,7 @@ export function checkBranchKind(repoRoot: string): {
     };
   }
   try {
-    const r = analyzeBranchKind(loadBranchKindInput(repoRoot));
+    const r = analyzeBranchKind(loadBranchKindInput(repoRoot, snapshot));
     return { messages: branchKindMessages(r), ok: r.ok };
   } catch {
     return {
@@ -7253,7 +7262,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const changeImpact = checkChangeImpact(deps.repoRoot);
   const changeSetIntegrity = checkChangeSetIntegrity(deps.repoRoot);
   const verificationProfile = checkVerificationProfile(deps.repoRoot);
-  const branchKind = checkBranchKind(deps.repoRoot);
+  const branchKind = checkBranchKind(deps.repoRoot, deps.branchSnapshot);
   const codingRules = checkCodingRules(deps.repoRoot);
   const designCoverage = checkDesignCoverage(deps.repoRoot);
   const documentAgentMetadata = checkDocumentAgentMetadata(deps.repoRoot);
