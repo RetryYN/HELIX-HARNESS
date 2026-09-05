@@ -49,6 +49,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L7-branch-kind-authority-input.md, artifact_type: test_design }
   - { artifact_path: tests/branch-kind-authority-input.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
@@ -121,6 +122,10 @@ L6入力adapter設計へ戻り、対応するL7反例を確定してから実装
 5. current HEADのCI、独立レビュー、main read-afterを確認する。
 
 ## 6. 再発防止と復帰
+
+CI preflightで検出したrefactor dispositionのcurrent source digestを、変更済みCLIとdoctorへ
+再束縛する。20件のsignal ID、9/6/5のfamily分母、successor obligationは変更しない。
+これは新たなrefactor完了証拠ではなく、既存未解消obligationの現行source追従である。
 
 テストの純関数入力だけでなく、実Git取得からCLI／doctorまでを検証境界とする。
 L12へmain上の同値検証結果を返す。read-after成立前にIssueを閉じない。
