@@ -28,14 +28,14 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:652f891af74e:literal-appears-22-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-cli.ts-literal:sha256:cbfc9b6fc8fc:literal-appears-14-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "literal_policy_externalization"
     },
     {
@@ -91,42 +91,42 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-cli.ts:module-has-13584-nonblank-line-s-and-3-export-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildProjectViewOutline:function-buildProjectViewOutline-has-156-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-buildSummarySurfaceCommandAudit:function-buildSummarySurfaceCommandAudit-has-162-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectCurrentLocation:function-summarizeProjectCurrentLocation-has-213-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeProjectRecoveryPlan:function-summarizeProjectRecoveryPlan-has-148-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "cli_decomposition"
     },
     {
       "signal_type": "refactor_candidate:extract-helper",
       "source_id": "refactor-candidate:extract-helper:src-cli.ts-summarizeVmodelFitReport:function-summarizeVmodelFitReport-has-370-nonblank-line-s-",
       "source_path": "src/cli.ts",
-      "source_file_sha256": "0e9a8837e02c8aa2d9f561cb08083c41c1badf5416a90a6894f787c0a9ebd09c",
+      "source_file_sha256": "247708de238fb7204bddf0cb1764a6d1059d10a5aa6b6104a04ad91101ab8cf8",
       "family": "cli_decomposition"
     },
     {
@@ -161,7 +161,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-projection-writer.ts:module-has-4870-nonblank-line-s-and-15-export-s-",
       "source_path": "src/state-db/projection-writer.ts",
-      "source_file_sha256": "11b54b66079670b6b980bc4fb88c13f116ddb1198a6bc7e335fea0dce837b52b",
+      "source_file_sha256": "85b05f04268fb6471d9f518ad0c59fdc50ba153fcc221c7b48e627d57d5e2467",
       "family": "non_cli_module_decomposition"
     }
   ]

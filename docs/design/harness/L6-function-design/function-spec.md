@@ -395,7 +395,8 @@ module-decomposition の公開 IF に**関数 signature・pseudocode・型・WBS
 | `judgmentReviewPlanForMode` (gate/review-tier) | `(mode: ExecutionMode) => JudgmentReviewPlan` | mode 確定済 | `helix status --json` の additive `judgmentReview` を構築する。hybrid は `requiredReviewKind=cross_agent`、worker/reviewer model と provider 相異を要求し、単一 runtime は `intra_runtime_subagent` + checklist、standalone は human approval を要求する。`gateCommandTemplate` と `requiredEvidence[]` を出し、`nextAction` の人間可読 guidance だけに判断ゲート手順を閉じない。 |
 | `isReadOnlyDelegationRole` / `detectWorkingTreeMutation` / `assessReviewSession` / `reviewGuardMessages` / `summarizeStagedReview` (review-guard) | `assessReviewSession({role,before,after}) => ReviewSessionAssessment` 他 | before/after は git status --porcelain 由来の path 配列 (純関数・git/fs 端点なし、I/O は cli の loadChangedFiles/loadStagedFiles) | 委譲レビューの非破壊性強制 (IMP-137、PLAN-L7-85)。read-only (相談/検証 archetype = tl/qa/uiux + review エイリアス) が working tree を変更したら `violation=true` で検知。`helix <provider> --role <read-only> --execute` が spawn 前後の変更を assess し warning surface (exit 不変=fail-open)、`helix review --staged` が staged 集合を doctor と共に確認し混入を fail-close。worker/未知ロールは対象外 (誤検知回避) |
 | `extractShellCommand` / `evaluateGitCommandGuard` / `resolveDestructiveGitOverride` (git-command-guard) | `evaluateGitCommandGuard({ command, bypass? }) => GitCommandGuardResult` | `command` は Claude `tool_input.command` / Codex `tool_input.cmd` / 文字列 payload から抽出済み。hook I/O は `.claude/hooks/git-command-guard.ts` または `helix hook git-command-guard` が担う | hybrid 多ランタイムで相手 runtime の commit / branch を破壊し得る destructive `git reset`、destructive `git checkout`、worktree `git restore`、`git revert`、`git push --force` / `--force-with-lease` を `decision=block` / `reason=destructive-git` で fail-close する。`git status` / `diff` / `log` / 通常 `push` / `checkout -b` / `checkout <branch>` / `reset HEAD <path>` / `restore --staged <path>` は pass。override は `HELIX_ALLOW_DESTRUCTIVE_GIT=1` または `.helix/state/destructive-git-override` の非空理由のみで、marker は one-shot 消費して `.helix/logs/destructive-git-overrides.jsonl` に audit する。Claude `PreToolUse(Bash)` と Codex `PreToolUse(exec_command\|local_shell)` の双方で同じ純関数を使い、IMP-142 の reset/revert/checkout/force-push 再発を運用記憶でなく機械で止める |
-| `extractEditTargets` / `evaluateWorkGuardTargets` / `resolveForeignEditOverride` (work-guard) | `evaluateWorkGuardTargets({ targetPaths, uncommittedFiles, sessionTouchedFiles, bypass }) => WorkGuardTargetsResult` | hook payload は Claude `file_path` または Codex apply_patch header を持つ。I/O entrypoint は repo-local shim と配布 binary の `helix hook work-guard` の双方で同じ純関数を呼ぶ | 他session由来のuncommitted pathをexit 2でblockし、cleanまたは自session touch済みpathをpassする。stdin解析不能は既存work-guard方針どおりfail-open。marker overrideは実際にblock対象をbypassした時だけone-shot消費しauditする。consumer templateが宣言する全 `helix hook <subcommand>` は配布CLIの `hook --help` に実在しなければならない |
+| `extractEditTargets` / `evaluateWorkGuardTargets` / `resolveForeignEditOverride` (work-guard) | `evaluateWorkGuardTargets({ targetPaths, uncommittedFiles, sessionTouchedFiles, bypass }) => WorkGuardTargetsResult` | hook payload は Claude `file_path` または Codex apply_patch header を持つ。I/O entrypoint は repo-local shim と配布 binary の `helix hook work-guard` の双方で同じ純関数を呼ぶ | 他session由来のuncommitted pathをexit 2でblockし、cleanまたは自session touch済みpathをpassする。stdin解析不能・所属worktree不明はfail-closeする。marker overrideは実際にblock対象をbypassした時だけone-shot消費しauditする。consumer templateが宣言する全 `helix hook <subcommand>` は配布CLIの `hook --help` に実在しなければならない |
+| `resolveWorkGuardTargetState` / `evaluateResolvedWorkGuardTargets` | 編集対象と実行cwdからworktreeごとの照合入力・結果を導出 | HR-FR-HYB-004 / HR-AC-HYB-004、PLAN-RECOVERY-1566。Git common-dirの物理同一性で同一repositoryを確認する | Git statusはNUL区切り・全未追跡fileを読み、Unicode・空白・改行・矢印・POSIX backslash・rename両端を保持する。通常pathに旧tool prefixを適用しない。対象worktreeのdirtyとsession touchを比較し、共有側ログを利用する場合は対象を特定できる絶対pathだけを受理する。別worktreeの相対touchは流用しない。hookとCLI事前検査で同じ解決処理を使い、override subjectはworktreeとtargetの組へ束縛する。これは所有権照合でありsandbox・全TOCTOU防止・実行権限の代替ではない |
 | `isSqliteBusy` | `(error: unknown) => boolean` | Bun/node:sqliteのdriver差を吸収するpure error classifier | Error codeの`SQLITE_BUSY`またはmessageの`database is locked`/`SQLITE_BUSY`をbusyとする。job queue、session coordination、feedback lifecycleは同一正本を使い、node:sqlite locked例外だけthrowへ漏らさない。非Errorと無関係なErrorはfalse。 |
 | `shellQuote` | `(value: string) => string` | POSIX shell commandを表示・packet化する際の単一token quoting。実行可能な経路は`execFile`系を優先する | safe alphabet `[A-Za-z0-9_./:@+=,-]` はそのまま、その他はsingle quoteで囲み、内部apostropheを安全に分割する。CLI、version-up、GitHub merge readinessは同一正本を使う。用途の異なるpath専用quotingは本契約へ混在させない。 |
 | `readRepoHeadSha` / `readPackageVersion` | `(repoRoot: string) => string | null` | repo snapshot・version bindingを作るread-only情報取得。git不在、path不正、JSON不正はnull | HEADはlowercase 40-hexだけを採用し、short/raw/不正値をsnapshot bindingへ流さない。package versionは非空stringをtrimして返す。identifier rename、action-binding、version-up、objective auditは同一正本を使う。 |
@@ -1075,3 +1076,23 @@ immutable snapshotを返す。cacheはmicrotask境界で自動破棄し、次com
 | 関数 | pre | post | invariant | oracle |
 |---|---|---|---|---|
 | `computeOutstandingWork` | repo root | 同期run内共有snapshot | microtask後再計算、repo root別、I/O fail-open維持 | U-OUTSNAP-001 |
+
+### DB再構築のreview PLAN解析共有（PLAN-RECOVERY-1568）
+
+`rebuildHarnessDb`はreview PLANをGit日付provenance込みで一度取得し、model run、roadmap status、
+review registryへ同じ解析結果を渡す。共有範囲は当該再構築呼出しだけとし、次回は必ず読み直す。
+入力を省略せず、consumerは解析配列を変更しない。取得失敗は既存transaction rollbackへ伝播する。
+これはrepository全体のatomic filesystem snapshotを保証するものではない。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `rebuildHarnessDb` | repo rootとDB | review PLAN解析を3consumerで共有 | 再構築ごと再読込、既存投影・provenance・rollback維持 | U-DBRS-001 |
+
+### 編集対象root aliasの境界（PLAN-RECOVERY-1566）
+
+`resolveWorkGuardTargetState`は存在する祖先からGit toplevelを得て物理rootを確定し、
+元のpath成分列も検査する。root外のsymlinkが同じ物理rootまたはその祖先を指す場合は
+環境上の別名として解決する。一方、root内のsymlinkや別rootへ向かうaliasは拒否する。
+これにより正常な絶対pathの編集を維持し、`alias/../victim.txt`を字句的に丸めた
+別対象のclean状態で許可しない。dirty/touch判定は解決後の物理worktreeと相対pathへ束縛する。
+U-WORKPATH-006で正常root aliasと危険な内部経路・foreign変更の両側を検証する。
