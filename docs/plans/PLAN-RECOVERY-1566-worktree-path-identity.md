@@ -42,6 +42,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1566-worktree-path-identity.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
@@ -90,3 +91,8 @@ role宣言は作業責務であり、subagent実行や独立レビューの証�
 `tests/consumer-hook-command.test.ts`を同時実行し、5ファイル85件成功、exit 0を確認した。
 型検査とBiomeも成功。`helix db rebuild`は82147行を投影してexit 0、
 `helix plan lint --gate governance`と`--gate post-merge-status`は違反なしだった。
+
+CIのrepo-wide検査でCLIのdigest inventory行番号とfeedback dispositionのsource digest追従漏れを検出した。
+検出集合・分類・検証条件を維持して現在コードへ再束縛し、
+`npm run test:repo-guards`は37ファイル539件成功、exit 0（2026-09-06 03:39 JST開始、118.25秒）。
+独立レビューとGitHub CIの最終成功は、この局所成功とは別に必要である。
