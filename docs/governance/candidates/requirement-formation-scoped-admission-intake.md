@@ -21,9 +21,10 @@
 | B-5 | RC-04 | RFA-RC-04、RFA-AC-10/11 |
 | B-6 | RC-05 | RFA-RC-05、RFA-AC-12..14 |
 | C-1 | GH-01 | RFA-GH-01 |
-| C-2/C-4 | GH-02 | RFA-GH-02 |
+| C-2/C-4 | GH-02 | RFA-GH-02、RFA-RC-03 |
 | C-3 | GH-03 | RFA-GH-03 |
 | §6 owner表 | §1 owner表 | requirements導入節、#1556 |
+| §6 PT（#1292） | RF-03 | RFA-RF-03 |
 | §7受入1..6 | §6受入1..7 | RFA-AC-01..18、RFA-OP-01..03 |
 | 導入順・評価・非対象 | 導入順・評価・非対象 | requests、requirements導入、recognition |
 | S1..S13参照 | 確認元 | 下記原文保全。現在状態は参照時再検査する |
@@ -47,7 +48,7 @@ root原稿は残存する。削除を完了扱いにせず、#1556の残務と�
 - 原稿2件の全文が以下の保全欄と一致することをNode assertで確認した。
 - 要件ID12件の一意性、全IDが受入へ参照されること、AC18行を検査して成功。
 - PLAN lint（番号重複・typed entry routing・V-pairを含む）成功。既存advisoryは増加なし。
-- 正規の `helix db rebuild` 成功、outstandingは新draft 1件を追加した71件。
+- 正規の `helix db rebuild` 成功。outstanding件数と対象PLAN集合は `docs/governance/generated/outstanding-snapshot.json` を正本とする。
 - 独立review・CI・main統合は未実施。これらをローカル取込検証で代替しない。
 
 ### 入力1: HELIX_REQUIREMENT_FORMATION_AND_SCOPED_ADMISSION_v0.1.md
