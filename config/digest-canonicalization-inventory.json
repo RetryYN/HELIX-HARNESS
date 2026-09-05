@@ -2001,7 +2001,7 @@
     {
       "hit_id": "src/orchestration/durable-loop-epoch.ts::payloadDigest:sha256Digest()::1",
       "path": "src/orchestration/durable-loop-epoch.ts",
-      "line": 158,
+      "line": 177,
       "symbol": "payloadDigest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2018,7 +2018,7 @@
     {
       "hit_id": "src/orchestration/durable-loop-epoch.ts::manifest:sha256Digest()::1",
       "path": "src/orchestration/durable-loop-epoch.ts",
-      "line": 167,
+      "line": 186,
       "symbol": "manifest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2035,7 +2035,7 @@
     {
       "hit_id": "src/orchestration/durable-loop-epoch.ts::pointer:sha256Digest()::1",
       "path": "src/orchestration/durable-loop-epoch.ts",
-      "line": 184,
+      "line": 203,
       "symbol": "pointer",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2052,7 +2052,7 @@
     {
       "hit_id": "src/orchestration/durable-loop-epoch.ts::chainMatches:sha256Digest()::1",
       "path": "src/orchestration/durable-loop-epoch.ts",
-      "line": 389,
+      "line": 408,
       "symbol": "chainMatches",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2069,7 +2069,7 @@
     {
       "hit_id": "src/orchestration/durable-loop-epoch.ts::classifyLoopEpochFiles:sha256Digest()::1",
       "path": "src/orchestration/durable-loop-epoch.ts",
-      "line": 395,
+      "line": 414,
       "symbol": "classifyLoopEpochFiles",
       "algorithm": "sha256",
       "input_kind": "string",

@@ -8,6 +8,14 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 
 # durability boundaries テスト・検証設計
 
+## #1562の追加反例（検収中）
+
+- 実2processでintent後のeffectをbarrier待ちさせ、既知stale contenderを投入する。
+  worker完了、contender拒否、副作用1件、最終committedを確認する。
+- 取得前staleではclaim呼出し0、取得前後のsnapshot変更では取得後CAS拒否と正規解放を確認する。
+- SIGKILL時のambiguityと再実行0は従来oracleを維持する。全競合下の進行保証へ一般化しない。
+- child stderrをboundedに回収し、失敗の根拠をassertionへ残す。
+
 | U-ID      | 対象                  | 反例と期待結果                                                                                     | test citation                                |
 | --------- | --------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | U-DUR-001 | cause kind/digest     | Error/string/object/primitiveを有限kindとtyped SHA-256へ写し、同値入力はstable                     | `tests/doctor-cause-digest.test.ts`          |
@@ -17,6 +25,7 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 | U-DUR-005 | side-effect gate      | durable intent前/C5 uncertain時callback 0。gate後・completion前restartはambiguousで自動retry 0     | `tests/loop-store-durability.test.ts`        |
 | U-DUR-006 | fault points          | C0-C6各境界のfailure/restartがL5 matrixどおりで未commitをauthoritativeにしない                     | `tests/loop-store-durability.test.ts`        |
 | U-DUR-007 | claim/CAS concurrency | commit 1件以下。boot/PID/lease/digest変異、mutex action/digest、authority expiry、partial mutex、同時recoveryで奪取1件以下。通常writerの自動奪取0 | `tests/loop-store-durability.test.ts`、`tests/loop-store-durability-node.test.ts` |
+| IT-DUR-008 | 実2processの既知stale競合 | intent後のeffectをbarrierで待たせたworkerが完了し、stale contenderは拒否、副作用はworkerの1件、最終状態committed。早期拒否の除去でworker完了がREDとなる | `tests/durable-loop-process.test.ts` |
 
 redaction oracleはterminal/JSON/DB/artifact bytesをsecret、credential、PII、個人absolute path、raw SQL seedでscanする。
 static ratchetの例外はcleanup fail-open markerと理由を同じ行に要求し、件数baselineではなく構文契約で管理する。
