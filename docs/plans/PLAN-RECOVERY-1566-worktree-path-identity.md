@@ -42,6 +42,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1566-worktree-path-identity.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/worktree-state.ts, artifact_type: source_module }
