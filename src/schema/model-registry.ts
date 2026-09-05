@@ -87,6 +87,9 @@ const RAW_MODEL_REGISTRY = {
     "gpt-5.6-luna": "xhigh",
     "gpt-5.5": "high",
     "gpt-5.4": "medium",
+    // Codex 現行 config（~/.codex/config.toml model = "gpt-6-astra"、model_reasoning_effort = "medium"）で
+    // 観測した世代。単価は list price 未確認のため openaiPricing には載せない（捏造しない）。Issue #1543。
+    "gpt-6-astra": "medium",
   },
 };
 
