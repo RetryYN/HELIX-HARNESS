@@ -87,6 +87,8 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: json_config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: json_config }
 review_evidence: []
 ---
 
