@@ -28,6 +28,21 @@ requirements:
 
 ## Add-feature差分（PLAN-L6-80）
 
+## doctor接続の既存oracle束縛（PLAN-RECOVERY-110）
+
+`U-IHIER-004`は`tests/slow/doctor.test.ts`で実際の`runDoctor`出力に
+`doctor: issue-dependency-wiring - OK`が含まれることを検証する。
+同一suite・同一入力の出力検証では既存の`liveDoctor`結果を共有できるが、
+fixtureを変更した検査、別HEAD、別プロセスの結果は共有しない。
+出力欠落は既存assertionで失敗しなければならず、検証項目の削除や成功値の固定は認めない。
+この追記は既存runtime配線検査の宣言漏れを補い、Issue依存の意味契約を変更しない。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-IHIER-004 | runDoctorのIssue依存配線出力 | 実測出力にissue-dependency-wiringのOKが必要。行が欠落した場合は失敗する。同一suiteの不変入力についてのみ結果を共有する | `tests/slow/doctor.test.ts` |
+
+## Issue階層のoracle
+
 | ID | exact function | scenarioと期待結果 | test参照先 |
 |---|---|---|---|
 | `U-IHIER-001` | `parseIssueHierarchyContract` / `auditIssueHierarchy` / `readyLeafIssues` | valid treeではopen active non-blocked leafだけを返す。block欠落、orphan、parent cycle、深さ・子数上限、非対称blocks、duplicate不整合を投入するとfindingを返しREADYから除外する。入力順を変えてもfindingとREADY番号は同一 | `tests/issue-hierarchy.test.ts` |
