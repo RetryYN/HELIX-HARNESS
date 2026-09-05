@@ -64,3 +64,14 @@ U-CLSO-005が旧text、006がschema不一致をそれぞれassertionで検出し
 これは二つの変異を同時注入した試験であり、単一変異ごとの独立実験とは数えない。
 src/cli.tsを元に戻し、git diffで変更なしを確認後、06:50:52 JSTに6成功、48.40秒。
 baseline112.80秒とはworktree・PLAN件数・並走負荷が異なる単発比較で、CI p95ではない。
+
+## 全CLI回帰で検出した既存oracleの欠落
+
+全95件は94成功・1失敗、196.70秒。status試験がhuman以外を全てcross_agentと扱い、
+intra_runtime_subagentの既存checklist契約を受理しなかった。変更前f880d297でも同じ失敗を
+単独再現した（06:59:29 JST、exit 1）。review-tier.tsの既存3分岐に合わせてoracleを分離し、
+intra-runtimeでは4つのchecklist evidence全文をexact検査する。runtimeや承認条件は変更しない。
+
+07:01:10 JST開始の修正後CLI全回帰は95成功、199.22秒、exit 0。
+07:04:21 JSTのgate-review-tier回帰も20成功。text側は確認済みJSONの必要evidence全件と
+ID全件を検査し、いずれか一語だけ存在すれば通る正規表現へ緩和しない。

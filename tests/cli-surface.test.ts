@@ -1354,10 +1354,18 @@ describe("L7 CLI surface closure", () => {
         expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
           expect.arrayContaining(["human approval evidence を記録する"]),
         );
-      } else {
+      } else if (blockedPayload.judgmentReview.requiredReviewKind === "cross_agent") {
         expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
           expect.arrayContaining(["worker_model を記録する", "reviewer_model を記録する"]),
         );
+      } else {
+        expect(blockedPayload.judgmentReview.requiredReviewKind).toBe("intra_runtime_subagent");
+        expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual([
+          "review_kind=intra_runtime_subagent を記録する",
+          "judgment checklist に全必須項目が含まれることを記録する",
+          "fail の checklist item が gate を block することを記録する",
+          "n-a の checklist item には evidence を記録する",
+        ]);
       }
       expect(blockedPayload.judgmentReview.requiredEvidenceJa).toHaveLength(
         blockedPayload.judgmentReview.requiredEvidence.length,
@@ -1553,12 +1561,12 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("runtime-next:");
       expect(blockedText.stdout).toContain("completion-next: completion-blocked:");
       expect(blockedText.stdout).not.toContain("\nnext:");
-      expect(blockedText.stdout).toMatch(
-        /evidence=(worker_model を記録する|human approval evidence を記録する)/,
-      );
-      expect(blockedText.stdout).toMatch(
-        /evidence-id=(worker_model recorded|human approval evidence recorded)/,
-      );
+      for (const evidence of blockedPayload.judgmentReview.requiredEvidenceJa) {
+        expect(blockedText.stdout).toContain(`evidence=${evidence} evidence-id=`);
+      }
+      for (const evidence of blockedPayload.judgmentReview.requiredEvidence) {
+        expect(blockedText.stdout).toContain(`evidence-id=${evidence}`);
+      }
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
