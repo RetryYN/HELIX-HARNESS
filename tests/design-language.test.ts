@@ -1,9 +1,10 @@
 // @helix-repo-wide-guard
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { checkDesignLanguage, runDoctorGate } from "../src/doctor/index";
 import {
   analyzeDesignLanguage,
   designLanguageMessages,
@@ -260,6 +261,131 @@ describe("design-language lint", () => {
       expect(analyzeDesignLanguage(docs, { baselineViolations: 0 }).ok).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // PLAN-RECOVERY-1493-design-language-early-detection:
+  // 検出時点と位置表示だけを前倒しし、design-language の判定内容と baseline は変えない。
+  it("U-DESLANG-013: reports violation locations even when the message is a fingerprint drift", () => {
+    const result = analyzeDesignLanguage([
+      {
+        path: "docs/plans/PLAN-X.md",
+        text: "# タイトル\n\n## Current Recovery V-pair oracle\n\n本文です。\n",
+      },
+    ]);
+
+    expect(result.ok).toBe(false);
+    expect(result.fingerprintDrift).toBe(true);
+    expect(result.violations).toHaveLength(1);
+
+    const message = designLanguageMessages(result)[0] ?? "";
+
+    expect(message).toContain("english prose fingerprint changed");
+    expect(message).toContain("docs/plans/PLAN-X.md:3:english-heading");
+  });
+
+  it("U-DESLANG-014: single-gate doctor execution matches the shared design-language check", () => {
+    const gate = spawnSync(
+      "npx",
+      ["--no-install", "tsx", "src/cli.ts", "doctor", "--gate", "design-language", "--json"],
+      { cwd: process.cwd(), encoding: "utf8" },
+    );
+
+    expect(gate.status).not.toBeNull();
+
+    const parsed = JSON.parse(gate.stdout) as { ok: boolean; gate: string; messages: string[] };
+    const shared = checkDesignLanguage(process.cwd());
+
+    expect(parsed.gate).toBe("design-language");
+    expect(parsed.ok).toBe(shared.ok);
+    expect(parsed.messages).toEqual(shared.messages);
+    expect(gate.status).toBe(shared.ok ? 0 : 1);
+
+    // 実 repo は violation 0 のため、違反経路でも判定が一致することを fixture で固定する。
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-gate-"));
+    try {
+      mkdirSync(join(root, "docs", "design"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "design", "bad.md"),
+        "# タイトル\n\n## Current Recovery V-pair oracle\n",
+        "utf8",
+      );
+
+      const violating = checkDesignLanguage(root);
+
+      expect(violating.ok).toBe(false);
+      expect(violating.messages[0]).toContain("docs/design/bad.md:3:english-heading");
+      expect(runDoctorGate("design-language", root)).toEqual({
+        ok: violating.ok,
+        gate: "design-language",
+        messages: violating.messages,
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+
+    expect(runDoctorGate("nope", process.cwd()).ok).toBe(false);
+  });
+
+  it("U-DESLANG-015: the design-language gate runs in preflight before the full regression shards", () => {
+    const workflow = readFileSync(
+      join(process.cwd(), ".github/workflows/harness-check.yml"),
+      "utf8",
+    );
+    const preflightStart = workflow.indexOf("\n  full-regression-preflight:");
+    const preflightEnd = workflow.indexOf("\n  full-regression-bulk", preflightStart);
+
+    expect(preflightStart).toBeGreaterThan(-1);
+    expect(preflightEnd).toBeGreaterThan(preflightStart);
+
+    const preflight = workflow.slice(preflightStart, preflightEnd);
+    const gateIndex = preflight.indexOf("doctor --gate design-language");
+    const guardIndex = preflight.indexOf("npm run test:repo-guards");
+
+    expect(gateIndex).toBeGreaterThan(-1);
+    expect(guardIndex).toBeGreaterThan(-1);
+    expect(gateIndex).toBeLessThan(guardIndex);
+  });
+
+  it("U-DESLANG-017: --gate は scope 検証の後に評価され、profile / setup-smoke / toolchain との併用を fail-close する", () => {
+    const run = (args: string[]) =>
+      spawnSync("npx", ["--no-install", "tsx", "src/cli.ts", "doctor", ...args, "--json"], {
+        cwd: process.cwd(),
+        encoding: "utf8",
+      });
+
+    const badScope = run(["--gate", "design-language", "--scope", "invalid"]);
+    expect(badScope.status).toBe(1);
+    expect(badScope.stdout).toContain("unknown scope invalid");
+    expect(badScope.stdout).not.toContain('"gate"');
+
+    for (const extra of [
+      ["--profile", "consumer"],
+      ["--profile", "invalid"],
+      ["--setup-smoke"],
+      ["--scope", "toolchain"],
+    ]) {
+      const combined = run(["--gate", "design-language", ...extra]);
+      expect(combined.status, extra.join(" ")).toBe(1);
+      const parsed = JSON.parse(combined.stdout) as {
+        ok: boolean;
+        gate: string;
+        messages: string[];
+      };
+      expect(parsed.ok).toBe(false);
+      expect(parsed.gate).toBe("design-language");
+      expect(parsed.messages[0]).toContain("cannot be combined");
+    }
+  });
+
+  it("U-DESLANG-016: prototype 継承 property 名を gate id にしても unknown gate として fail-close する", () => {
+    for (const gate of ["toString", "constructor", "__proto__", "hasOwnProperty"]) {
+      const result = runDoctorGate(gate, process.cwd());
+      expect(result.ok, gate).toBe(false);
+      expect(result.gate).toBe(gate);
+      expect(result.messages).toHaveLength(1);
+      expect(result.messages[0]).toContain(`unknown gate ${gate}`);
+      expect(result.messages[0]).toContain("design-language");
     }
   });
 });

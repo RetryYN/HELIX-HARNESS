@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 72,
+  "decision_count": 73,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -62,6 +62,7 @@
     "PLAN-RECOVERY-108-ci-isolation-backend-bounded",
     "PLAN-RECOVERY-110-doctor-live-result-reuse",
     "PLAN-RECOVERY-1411-review-checklist-validation",
+    "PLAN-RECOVERY-1493-design-language-early-detection",
     "PLAN-RECOVERY-1543-reviewer-session-model-history",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
