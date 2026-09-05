@@ -1,0 +1,279 @@
+{
+  "scope": "Extracted JS decision logic only, not full repository execution or merge exploit",
+  "runtime": "v22.16.0",
+  "main_head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+  "pr1533_head": "593f55a60b0b7d723d68a194a7113d32789afa62",
+  "cases": 22,
+  "all_observations_asserted": true,
+  "results": [
+    {
+      "id": "REVIEW-missing",
+      "source": "src/gate/review-tier.ts:validateChecklist",
+      "input": "undefined",
+      "expected_safety": "unknown/missing status must be rejected",
+      "observed": [],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "REVIEW-PASS",
+      "source": "src/gate/review-tier.ts:validateChecklist",
+      "input": "PASS",
+      "expected_safety": "unknown/missing status must be rejected",
+      "observed": [],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "REVIEW-skip",
+      "source": "src/gate/review-tier.ts:validateChecklist",
+      "input": "skip",
+      "expected_safety": "unknown/missing status must be rejected",
+      "observed": [],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "REVIEW-fail-control",
+      "source": "src/gate/review-tier.ts:validateChecklist",
+      "input": "all fail",
+      "expected_safety": "reject",
+      "observed": [
+        "checklist item failed: DOC",
+        "checklist item failed: TST",
+        "checklist item failed: COD",
+        "checklist item failed: XR",
+        "checklist item failed: DEP",
+        "checklist item failed: DUP",
+        "checklist item failed: MOD"
+      ],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "REVIEW-duplicate",
+      "source": "src/gate/review-tier.ts:validateChecklist",
+      "input": "DOC fail then DOC pass",
+      "expected_safety": "reject duplicate",
+      "observed": [],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "VERDICT-quoted-pass",
+      "source": "src/orchestration/loop-bridge.ts:interpretVerifierVerdict",
+      "input": "Example: VERDICT: pass\nVERDICT: fail",
+      "expected_safety": "must not return pass",
+      "observed": "pass",
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "VERDICT-fail-control",
+      "source": "src/orchestration/loop-bridge.ts:interpretVerifierVerdict",
+      "input": "VERDICT: fail",
+      "expected_safety": "fail",
+      "observed": "fail",
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "VERDICT-json-stderr",
+      "source": "src/orchestration/loop-bridge.ts:interpretVerifierVerdict",
+      "input": "stdout JSON fail; stderr diagnostic",
+      "expected_safety": "preserve failed verdict or reject malformed envelope",
+      "observed": "pending",
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "APPROVAL-control",
+      "source": "src/lint/workflow-decision-packets.ts:classifyHighImpactApprovalRequirement",
+      "input": "Production deployment requires human approval before execution",
+      "expected_safety": "required=true",
+      "observed": {
+        "required": true,
+        "hasStructuredRecord": false,
+        "hasApprovalBoundary": true,
+        "hasExecutionObligation": true,
+        "hasHighImpactTarget": true
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "APPROVAL-evidence-word",
+      "source": "src/lint/workflow-decision-packets.ts:classifyHighImpactApprovalRequirement",
+      "input": "Production deployment requires human approval before execution 証跡",
+      "expected_safety": "required=true unchanged",
+      "observed": {
+        "required": false,
+        "hasStructuredRecord": false,
+        "hasApprovalBoundary": true,
+        "hasExecutionObligation": true,
+        "hasHighImpactTarget": true
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "APPROVAL-placeholder-TBD",
+      "source": "src/lint/action-binding-approval-readiness.ts:approved_* predicates",
+      "input": "TBD",
+      "expected_safety": "must not be concrete",
+      "observed": {
+        "empty": false,
+        "broad": false,
+        "pending": false
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "APPROVAL-placeholder-pending",
+      "source": "src/lint/action-binding-approval-readiness.ts:approved_* predicates",
+      "input": "pending",
+      "expected_safety": "must not be concrete",
+      "observed": {
+        "empty": false,
+        "broad": false,
+        "pending": false
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "APPROVAL-placeholder-N/A",
+      "source": "src/lint/action-binding-approval-readiness.ts:approved_* predicates",
+      "input": "N/A",
+      "expected_safety": "must not be concrete",
+      "observed": {
+        "empty": false,
+        "broad": false,
+        "pending": false
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "APPROVAL-placeholder--",
+      "source": "src/lint/action-binding-approval-readiness.ts:approved_* predicates",
+      "input": "-",
+      "expected_safety": "must not be concrete",
+      "observed": {
+        "empty": false,
+        "broad": false,
+        "pending": false
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "EVIDENCE-bogus-digest",
+      "source": "src/lint/gn-evidence-manifest.ts:validateGateEvidenceManifest",
+      "input": "all-zero digest, valid existing synthetic file",
+      "expected_safety": "reject mismatch",
+      "observed": [],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "EVIDENCE-empty-required",
+      "source": "src/lint/gn-evidence-manifest.ts:validateGateEvidenceManifest",
+      "input": "selected required item exists; mandatory=[]; coverage=[]",
+      "expected_safety": "reject omitted obligations",
+      "observed": [],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "EVIDENCE-missing-control",
+      "source": "src/lint/gn-evidence-manifest.ts:validateGateEvidenceManifest",
+      "input": "nonexistent file",
+      "expected_safety": "reject",
+      "observed": [
+        "probe.json: command cmd1 evidence_path missing"
+      ],
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "EVIDENCE-symlink",
+      "source": "src/lint/gn-evidence-manifest.ts:pathExistsInsideRepo",
+      "input": "tests/outside.txt -> outside synthetic repo",
+      "expected_safety": "reject outside target",
+      "observed": true,
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "EVIDENCE-directory",
+      "source": "src/lint/gn-evidence-manifest.ts:pathExistsInsideRepo",
+      "input": "tests/ directory",
+      "expected_safety": "must not count as file evidence",
+      "observed": true,
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "RATCHET-growth-control",
+      "source": "PR1533:analyzeLegacyOrchestrationSurface",
+      "input": "baseline2 count3",
+      "expected_safety": "reject",
+      "observed": {
+        "ok": false,
+        "checkedFiles": 1,
+        "currentOccurrences": 3,
+        "baselineOccurrences": 2,
+        "newPaths": [],
+        "growth": [
+          {
+            "path": "src/old.ts",
+            "actual": 3,
+            "maximum": 2
+          }
+        ],
+        "staleEntries": [],
+        "errors": []
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "RATCHET-raised-baseline",
+      "source": "PR1533:analyzeLegacyOrchestrationSurface",
+      "input": "same code growth plus maximum_occurrences2->3",
+      "expected_safety": "reject unauthorized baseline increase",
+      "observed": {
+        "ok": true,
+        "checkedFiles": 1,
+        "currentOccurrences": 3,
+        "baselineOccurrences": 3,
+        "newPaths": [],
+        "growth": [],
+        "staleEntries": [],
+        "errors": []
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    },
+    {
+      "id": "RATCHET-added-entry",
+      "source": "PR1533:analyzeLegacyOrchestrationSurface",
+      "input": "new legacy path plus matching new inventory entry",
+      "expected_safety": "reject unauthorized new consumer",
+      "observed": {
+        "ok": true,
+        "checkedFiles": 2,
+        "currentOccurrences": 2,
+        "baselineOccurrences": 3,
+        "newPaths": [],
+        "growth": [],
+        "staleEntries": [],
+        "errors": []
+      },
+      "level": "extracted_function_or_predicate",
+      "asserted": true
+    }
+  ]
+}

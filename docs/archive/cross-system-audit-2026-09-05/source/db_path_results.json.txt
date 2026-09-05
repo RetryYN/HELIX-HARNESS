@@ -1,0 +1,24 @@
+{
+  "main_head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+  "source_blob": "930cc64af693897ff0cc28313c13c74b5a3ff408",
+  "source": "src/state-db/index.ts:assertWithinHelixStateDir/openHarnessDb",
+  "runtime": "v22.16.0",
+  "scope": "Extracted adapter functions with actual node:sqlite in two temporary directories; no whole-project integration",
+  "cases": 2,
+  "results": [
+    {
+      "id": "DB-relative-root-mismatch",
+      "expected_safety": "validation and SQLite open use same repoRoot-resolved path",
+      "observed": {
+        "intended_db_exists": false,
+        "caller_db_exists": true
+      }
+    },
+    {
+      "id": "DB-absolute-control",
+      "observed": {
+        "intended_db_exists": true
+      }
+    }
+  ]
+}

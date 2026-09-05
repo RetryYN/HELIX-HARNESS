@@ -1,0 +1,212 @@
+{
+  "checklist": {
+    "path": "src/gate/review-tier.ts",
+    "read_scope": "1–300（取得したファイル本文・判定/loader）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "13ffd7b87da60b460c6c08fd674351c25dfda4c1",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/gate/review-tier.ts"
+  },
+  "checklist-policy": {
+    "path": "src/gate/review-tier-policy.ts",
+    "read_scope": "1–180（取得したポリシー本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/gate/review-tier-policy.ts"
+  },
+  "manifest": {
+    "path": "src/lint/gn-evidence-manifest.ts",
+    "read_scope": "1–310（取得したファイル本文、125–300を再照合）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "934ee5416a149be876f58bb3d29305c856b358f6",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/gn-evidence-manifest.ts"
+  },
+  "approval-classifier": {
+    "path": "src/lint/workflow-decision-packets.ts",
+    "read_scope": "1–180",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "5abcd26b7946e72eaef8e61ae65f5ea20037b23d",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/workflow-decision-packets.ts"
+  },
+  "approval-fields": {
+    "path": "src/lint/action-binding-approval-readiness.ts",
+    "read_scope": "1110–1300、1430–1530の関数範囲",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "f640bc86d696a73ada06969b6712cb202228a95e",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/action-binding-approval-readiness.ts"
+  },
+  "readiness": {
+    "path": "src/workflow/readiness.ts",
+    "read_scope": "1–220（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "b46f95a14b95adcd94d178b128729d5d4a744f5f",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/readiness.ts"
+  },
+  "loop": {
+    "path": "src/orchestration/loop-bridge.ts",
+    "read_scope": "1–230",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "afd905c56dbc6debe65981d1b5d018736e600e84",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/orchestration/loop-bridge.ts"
+  },
+  "slots": {
+    "path": "src/runtime/agent-slots.ts",
+    "read_scope": "1–330のうち応答で読めた範囲。末尾は一部省略あり",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/runtime/agent-slots.ts"
+  },
+  "pair": {
+    "path": "src/vmodel/lint.ts",
+    "read_scope": "1–345。後続のtest-design検査全体は未精読",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "01e66d93beb0c3cd53dfdc55efb07d244836d30d",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/vmodel/lint.ts"
+  },
+  "ratchet": {
+    "path": "src/lint/legacy-orchestration-surface.ts",
+    "read_scope": "1–340（取得したファイル本文）",
+    "head": "593f55a60b0b7d723d68a194a7113d32789afa62",
+    "blob_sha": "fd56479904d797bc82dddc7a943f50d9b25c7541",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/593f55a60b0b7d723d68a194a7113d32789afa62/src/lint/legacy-orchestration-surface.ts"
+  },
+  "ratchet-test": {
+    "path": "tests/legacy-orchestration-surface.test.ts",
+    "read_scope": "1–300（取得したテスト本文）",
+    "head": "593f55a60b0b7d723d68a194a7113d32789afa62",
+    "blob_sha": "a6635180b925489989b7f8dd71fce68a25401a62",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/593f55a60b0b7d723d68a194a7113d32789afa62/tests/legacy-orchestration-surface.test.ts"
+  },
+  "db": {
+    "path": "src/state-db/index.ts",
+    "read_scope": "1–250（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "930cc64af693897ff0cc28313c13c74b5a3ff408",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/index.ts"
+  },
+  "db-maintenance": {
+    "path": "src/state-db/state-hygiene.ts",
+    "read_scope": "1–220（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "1b92de0f567d054f1e387ddd4aaaedc406f9ce87",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/state-hygiene.ts"
+  },
+  "db-migration": {
+    "path": "src/state-db/migration.ts",
+    "read_scope": "1–400（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "20e1b407269aafaad6c7e25d0cbbb6ab88f0d295",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/state-db/migration.ts"
+  },
+  "quality": {
+    "path": "src/audit/quality.ts",
+    "read_scope": "1–310（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "2b477d2c1e96a721fecf05233007d0f48a8bb4f2",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/audit/quality.ts"
+  },
+  "review-agent": {
+    "path": ".claude/agents/code-reviewer.md",
+    "read_scope": "1–130（取得した定義本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "0a7cef9d638eea3228fb3e27a5c52ea954464696",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/.claude/agents/code-reviewer.md"
+  },
+  "review-evidence": {
+    "path": "src/lint/review-evidence.ts",
+    "read_scope": "145–225。hasReviewEvidence/抽出関数の照合",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/review-evidence.ts"
+  },
+  "supersession": {
+    "path": "src/lint/plan-supersession.ts",
+    "read_scope": "1–230（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/lint/plan-supersession.ts"
+  },
+  "route-map": {
+    "path": "src/schema/route-map.ts",
+    "read_scope": "1–220（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "3a5755708c19d3df46fe92f79beabbaa5146ef0c",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/schema/route-map.ts"
+  },
+  "old-routing": {
+    "path": "src/workflow/routing-contracts.ts",
+    "read_scope": "1–160、410–575",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "5621bfec6581ffed47115401d11344a3889a5ba5",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/workflow/routing-contracts.ts"
+  },
+  "route-cli": {
+    "path": "src/cli/commands/route.ts",
+    "read_scope": "1–250（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "38849fc200e7475f541ec9b90a579124b77ee67e",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/route.ts"
+  },
+  "workflow-cli": {
+    "path": "src/cli/commands/workflow.ts",
+    "read_scope": "1–270（取得したファイル本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "d2e2f14da601090497ccc8251ca0a0978c077de3",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/cli/commands/workflow.ts"
+  },
+  "bench": {
+    "path": "docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+    "read_scope": "1–250（取得した定義本文）",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "2e3200d639c4de565b367703891226fbf2714695",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/design/helix/L3-requirements/helix-bench-evaluation.md"
+  },
+  "blind-bench": {
+    "path": "src/runtime/worker-blind-benchmark.ts",
+    "read_scope": "310–435",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": "d99df2f3eadfc51ed62a28ea5f4c8ce06160c4b4",
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/runtime/worker-blind-benchmark.ts"
+  },
+  "agent-rules": {
+    "path": "AGENTS.md",
+    "read_scope": "1–210のうち応答で読めた範囲。全ファイル精読ではない",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/AGENTS.md"
+  },
+  "requirements": {
+    "path": "docs/governance/helix-harness-requirements_v1.3.md",
+    "read_scope": "前ターン取得の冒頭・canonical layer/pair/分類定義。全文ではない",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/governance/helix-harness-requirements_v1.3.md"
+  },
+  "memory-plan": {
+    "path": "docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md",
+    "read_scope": "前ターンの取得本文を使用",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/docs/plans/PLAN-L3-86-harness-memory-coordination-boundary.md"
+  },
+  "memory-model": {
+    "path": "src/memory/memory-v2.ts",
+    "read_scope": "前ターンの型宣言・interface範囲。全lifecycle関数の再実行なし",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/src/memory/memory-v2.ts"
+  },
+  "ci": {
+    "path": ".github/workflows/harness-check.yml",
+    "read_scope": "前ターンの1–150、preflight、range/review admission部分を使用",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/.github/workflows/harness-check.yml"
+  },
+  "package": {
+    "path": "package.json",
+    "read_scope": "前ターンの取得本文を使用",
+    "head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+    "blob_sha": null,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/blob/b5178c34fe34c956a70713ad942b1f5b8f64e0ab/package.json"
+  }
+}
