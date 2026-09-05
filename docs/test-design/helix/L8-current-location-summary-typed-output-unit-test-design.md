@@ -28,3 +28,16 @@ pair_artifact: docs/design/helix/L6-function-design/current-location-summary-typ
 
 旧compatibility commandの内部出力をpositive oracleにしない。legacy greenでcurrent summaryの
 canonical failureを相殺しない。
+
+## 同一シナリオの検証準備共有（PLAN-RECOVERY-1574）
+
+U-CLSO-001/003/004/005/006は同じrepository入力を検証するため、専用describeのbeforeAllで
+text／JSON／summaryの実CLIを各一回起動する。各oracleとassertionは独立に残し、
+当該describe内で出力文字列のみを共有する。後続のテスト実行へ結果を永続化しない。
+各CLIはdefaultのin-memory DB再構築を実行し、古いDBの読込みへ置換しない。
+
+入力やsourceを変更する反例は同じ共有結果で検証してはならない。U-CLSO-002の
+authority欠落fixtureは共有対象外とする。schema／text変異は別のVitest実行でbundleと
+出力を再生成して検証し、正常状態への復元後にも再実行する。
+このdescribeをconcurrent化せず、準備後にrepositoryを書き換えるテストを追加しない。
+同一シナリオを共有できない検査は別fixtureへ分ける。
