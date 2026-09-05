@@ -84,4 +84,5 @@ review_evidence: []
 - 整理版から原文/取込台帳への相対参照: 6/6解決。
 - RLS本文およびFRS v0.2候補と対応を比較済み。全要求/実装/consumer照合は未完了。
 - PLAN lint: exit 0。独立レビュー、CI、main read-afterは未完了。レビューを実行したという記録を創作しない。
-- 元ZIPの削除は復元可能なcommit保存と取込検証後。現在は保持する。
+- 原文はcommit `17f00abeb`でremote保存済み。hash一致と保存を確認後、元ZIPのみ削除した。原文はGitから復元可能。
+- DB rebuildおよびcommit後outstanding snapshot照合はexit 0。PR #1576で独立検収を追跡する。
