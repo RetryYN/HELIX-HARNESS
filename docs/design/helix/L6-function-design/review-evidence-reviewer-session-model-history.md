@@ -45,7 +45,7 @@ Codex の harness session `019febe1-…` は `.helix/logs/session/` 上で 2026-
 
 | 関数 | シグネチャ | 事前条件 | 事後条件 | 不変条件 | oracle |
 |---|---|---|---|---|---|
-| `parseReviewerSessionModelHistory` | (raw: unknown) => ReviewerSessionModelHistory | raw は JSON 値 | `schema_version` が `helix-reviewer-session-model-history.v1`、各 session の id が `REVIEWER_SESSION_ID_PATTERN` に適合し重複なし、`windows` は since 昇順・`until > since`・区間重複なし・open（`until: null`）は末尾のみ。違反は `reviewer_session_model_history_invalid:<locator>` で throw | 壊れた registry を silent 受理しない | U-RVIDENT-014 |
+| `parseReviewerSessionModelHistory` | (raw: unknown) => ReviewerSessionModelHistory | raw は JSON 値 | `schema_version` が `helix-reviewer-session-model-history.v1`、各 session の id が `REVIEWER_SESSION_ID_PATTERN` に適合し重複なし、`runtime` は許容集合 `REVIEWER_SESSION_MODEL_HISTORY_RUNTIMES`（`claude` / `codex` / `kimi`。`unknown` は `modelProviderFromId` の未知正規化と一致してしまうため登録不可）、`since` / `until` は秒と timezone を含む ISO 8601（`Date.parse` 単独では timezone 無しを local time で受理するため形式を先に固定）、`windows` は since 昇順・`until > since`・区間重複なし・open（`until: null`）は末尾のみ。違反は `reviewer_session_model_history_invalid:<locator>` で throw | 壊れた registry を silent 受理しない | U-RVIDENT-014 |
 | `loadReviewerSessionModelHistory` | (repoRoot) => History \| null | — | `docs/governance/reviewer-session-model-history.json` が無ければ null（履歴なし）。あれば parse 結果。parse 失敗は throw | 読込失敗を「履歴なし」へ黙って落とさない | U-RVIDENT-014 / 016 |
 | `reviewerModelAt` | (entry, reviewedAt) => string \| null | entry は parse 済み | `since ≤ reviewed_at < until` を満たす window の `reviewer_model`。該当なしは null | 半開区間 | U-RVIDENT-012 / 013 |
 | `analyzeReviewEvidence` | (plans, options?) => ReviewEvidenceResult | options.sessionModelHistory は parse 済みか null | registry に載る session は **model 数を問わず** 各 entry を `reviewed_at` の window と照合し、不一致・window 外を `reviewer_session_model_history_mismatch:<session>` として collect。registry の `runtime` と entry の `reviewer_model` の provider（`modelProviderFromId`）が食い違えば `reviewer_session_model_history_runtime_mismatch:<session>`。registry に無い session は従来の `reviewer_session_model_conflict`。`sessionModelHistoryError` が与えられたら registry path を plan_id にした違反を collect | 履歴は宣言した session だけを緩め、他 session を緩めない | U-RVIDENT-012 / 013 / 015 / 017 |
@@ -77,6 +77,8 @@ slice 所有者候補から外す。published base を読めない場合は例�
 - registry の schema / 時系列が不整合（parse 失敗）。読込失敗を履歴なしとして通す。
 - 履歴宣言が他 session の衝突判定を緩める。
 - registry の runtime と異なる provider の model が同 session id を名乗る（runtime_mismatch）。
+- registry の `runtime` に `unknown` や未登録 runtime を書き、未知 model との「unknown 同士の一致」で runtime 照合を通過する。
+- timezone 無しの日時で window 境界が実行環境の local time に依存する。
 
 検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-017` の 6 件と `U-GWIDADM-022` で固定する（既存 `U-RVIDENT-001` 〜 `010`
 は不変、`011` は freeze 伝播）。

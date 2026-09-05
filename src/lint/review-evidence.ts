@@ -172,9 +172,18 @@ export interface ReviewerSessionModelWindow {
   basis: string;
 }
 
+/**
+ * registry に登録できる runtime の許容集合。`modelProviderFromId` が未知 model を `unknown` へ
+ * 正規化するため、`unknown` を登録可能にすると「未知同士の一致」で runtime 照合を通過してしまう。
+ * 未知 identity を既知の一致として扱わないよう、`unknown` は登録不可とする。
+ */
+export const REVIEWER_SESSION_MODEL_HISTORY_RUNTIMES = ["claude", "codex", "kimi"] as const;
+export type ReviewerSessionModelHistoryRuntime =
+  (typeof REVIEWER_SESSION_MODEL_HISTORY_RUNTIMES)[number];
+
 export interface ReviewerSessionModelHistoryEntry {
   reviewer_session_id: string;
-  runtime: string;
+  runtime: ReviewerSessionModelHistoryRuntime;
   windows: ReviewerSessionModelWindow[];
 }
 
@@ -190,12 +199,27 @@ function historyString(value: unknown, label: string): string {
   return value;
 }
 
+/**
+ * ISO 8601 の日時（秒必須・timezone 必須）。`Date.parse` は timezone 無しの文字列を実行環境の
+ * local time として受理するため、それだけでは環境依存の境界判定になる。形式を先に固定する。
+ */
+const HISTORY_ISO_PATTERN =
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/;
+
 function historyIso(value: unknown, label: string): string {
   const text = historyString(value, label);
-  if (!Number.isFinite(Date.parse(text))) {
+  if (!HISTORY_ISO_PATTERN.test(text) || !Number.isFinite(Date.parse(text))) {
     throw new Error(`reviewer_session_model_history_invalid:${label}`);
   }
   return text;
+}
+
+function historyRuntime(value: unknown, label: string): ReviewerSessionModelHistoryRuntime {
+  const text = historyString(value, label);
+  if (!(REVIEWER_SESSION_MODEL_HISTORY_RUNTIMES as readonly string[]).includes(text)) {
+    throw new Error(`reviewer_session_model_history_invalid:${label}`);
+  }
+  return text as ReviewerSessionModelHistoryRuntime;
 }
 
 /**
@@ -230,7 +254,7 @@ export function parseReviewerSessionModelHistory(raw: unknown): ReviewerSessionM
       );
     }
     seen.add(sessionId);
-    const runtime = historyString(entry.runtime, `sessions[${index}].runtime`);
+    const runtime = historyRuntime(entry.runtime, `sessions[${index}].runtime`);
     if (!Array.isArray(entry.windows) || entry.windows.length === 0) {
       throw new Error(`reviewer_session_model_history_invalid:sessions[${index}].windows`);
     }

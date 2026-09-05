@@ -1,6 +1,6 @@
 {
   "schema_version": "helix-universal-improvement-source-registry-integrity.v1",
   "registry_path": "config/universal-improvement-source-registry.v1.json",
-  "registry_bytes_digest": "sha256:143df0cffd7e43a1b7b93112c522fc9ffe8a4ec41941edf97a4f4c21adc91590",
+  "registry_bytes_digest": "sha256:0de830f8b9413b52ae38b0700dae793c03122ae1d1d1545b5d9f4bac05b371e0",
   "integrity_policy": "exact_bytes"
 }

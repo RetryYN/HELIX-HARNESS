@@ -1543,6 +1543,30 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
         (raw.sessions as Array<{ windows: Array<{ basis: string }> }>)[0].windows[0].basis = "";
       }),
     ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[0].basis");
+    // runtime は許容集合のみ。`unknown` は modelProviderFromId の未知正規化と一致してしまうため拒否する。
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ runtime: string }>)[0].runtime = "unknown";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].runtime");
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ runtime: string }>)[0].runtime = "ollama";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].runtime");
+    // timezone 無しの日時は Date.parse では通るが環境依存なので拒否する。
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ since: string }> }>)[0].windows[0].since =
+          "2026-08-10T13:37:33";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[0].since");
+    expect(
+      mutate((raw) => {
+        (raw.sessions as Array<{ windows: Array<{ until: string | null }> }>)[0].windows[0].until =
+          "2026-09-05";
+      }),
+    ).toThrow("reviewer_session_model_history_invalid:sessions[0].windows[0].until");
     // 読込側の失敗は違反として surface され、履歴なし扱いに黙って落ちない。
     const r = analyzeReviewEvidence([], {
       sessionModelHistory: null,
