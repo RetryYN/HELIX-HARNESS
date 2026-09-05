@@ -268,7 +268,10 @@ describe("design-language lint", () => {
   // 検出時点と位置表示だけを前倒しし、design-language の判定内容と baseline は変えない。
   it("U-DESLANG-013: reports violation locations even when the message is a fingerprint drift", () => {
     const result = analyzeDesignLanguage([
-      { path: "docs/plans/PLAN-X.md", text: "# タイトル\n\n## Current Recovery V-pair oracle\n\n本文です。\n" },
+      {
+        path: "docs/plans/PLAN-X.md",
+        text: "# タイトル\n\n## Current Recovery V-pair oracle\n\n本文です。\n",
+      },
     ]);
 
     expect(result.ok).toBe(false);
@@ -325,7 +328,10 @@ describe("design-language lint", () => {
   });
 
   it("U-DESLANG-015: the design-language gate runs in preflight before the full regression shards", () => {
-    const workflow = readFileSync(join(process.cwd(), ".github/workflows/harness-check.yml"), "utf8");
+    const workflow = readFileSync(
+      join(process.cwd(), ".github/workflows/harness-check.yml"),
+      "utf8",
+    );
     const preflightStart = workflow.indexOf("\n  full-regression-preflight:");
     const preflightEnd = workflow.indexOf("\n  full-regression-bulk", preflightStart);
 

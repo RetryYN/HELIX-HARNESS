@@ -1447,7 +1447,12 @@ export function runDoctorGate(
   gate: string,
   repoRoot: string,
 ): { ok: boolean; gate: string; messages: string[] } {
-  const check = (DOCTOR_SINGLE_GATES as Record<string, undefined | ((root: string) => { messages: string[]; ok: boolean })>)[gate];
+  const check = (
+    DOCTOR_SINGLE_GATES as Record<
+      string,
+      undefined | ((root: string) => { messages: string[]; ok: boolean })
+    >
+  )[gate];
   if (!check) {
     const known = Object.keys(DOCTOR_SINGLE_GATES).join(", ");
     return {
