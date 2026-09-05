@@ -17,7 +17,11 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { type CrossAgentModelIssue, checkCrossAgentModelPair } from "../schema";
+import {
+  type CrossAgentModelIssue,
+  checkCrossAgentModelPair,
+  modelProviderFromId,
+} from "../schema";
 import { type L3HumanApproval, l3HumanApprovalSchema } from "../schema/frontmatter";
 
 export type { L3HumanApproval } from "../schema/frontmatter";
@@ -147,10 +151,12 @@ export const REVIEWER_SESSION_ENFORCEMENT_DATE = "2026-08-22";
  * reviewer session × model 履歴（Issue #1543 / PLAN-RECOVERY-1543）。
  *
  * L6 reviewer identity（PLAN-L7-648）は「同一 session は単一 model」を不変条件としたが、Codex の
- * harness session は model 切替（gpt-5.6-sol → gpt-6-astra）をまたいで同一 id で継続する実態が
- * 観測された。真実を記録すると衝突、旧記録に合わせると虚偽になる板挟みを、tracked registry に
+ * harness session は 2026-08-10 から同一 id で継続し、その間に config 上の model が gpt-5.6-sol から
+ * gpt-6-astra へ変わっていた（config は期待設定の証拠であり、実行 model 切替そのものは未検証）。
+ * 切替後の model を記録すると衝突、旧記録に合わせると虚偽になる板挟みを、tracked registry に
  * 宣言した **有効期間（since/until）** で解消する。未登録 session は従来の単一 model 規則のまま。
  * registry は runtime 所有者の申告であり実効 model の attestation ではない（basis に明記する）。
+ * registry の runtime と entry の reviewer_model provider が食い違う記録は別 reason で fail-close する。
  */
 export const REVIEWER_SESSION_MODEL_HISTORY_SCHEMA = "helix-reviewer-session-model-history.v1";
 export const REVIEWER_SESSION_MODEL_HISTORY_PATH =
@@ -944,7 +950,20 @@ export function analyzeReviewEvidence(
   )) {
     const declared = history.get(sessionId);
     if (declared) {
-      const mismatched = (sessionEntries.get(sessionId) ?? [])
+      const entries = sessionEntries.get(sessionId) ?? [];
+      // registry の runtime と entry の reviewer_model provider が食い違う記録は、履歴宣言の対象外
+      // （別 runtime が同 session id を名乗っている）として別 reason で fail-close する。
+      const runtimeMismatched = entries
+        .filter((entry) => modelProviderFromId(entry.reviewer_model) !== declared.runtime)
+        .map((entry) => entry.plan_id)
+        .sort((a, b) => a.localeCompare(b));
+      if (runtimeMismatched.length > 0) {
+        reviewerIdentityViolations.push({
+          plan_id: runtimeMismatched[0] ?? sessionId,
+          reason: `reviewer_session_model_history_runtime_mismatch:${sessionId}`,
+        });
+      }
+      const mismatched = entries
         .filter((entry) => reviewerModelAt(declared, entry.reviewed_at) !== entry.reviewer_model)
         .map((entry) => entry.plan_id)
         .sort((a, b) => a.localeCompare(b));

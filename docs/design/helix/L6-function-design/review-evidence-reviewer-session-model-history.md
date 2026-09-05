@@ -9,7 +9,7 @@ owner: Claude / TL
 plan: docs/plans/PLAN-RECOVERY-1543-reviewer-session-model-history.md
 pair_artifact: docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
 github_issue_id: 1543
-behavior_contract_id: REVIEW-EVIDENCE-REVIEWER-SESSION-MODEL-HISTORY-001
+behavior_contract_id: REVIEWER-SESSION-MODEL-HISTORY-001
 responsibility_owner: review-evidence
 ---
 
@@ -32,7 +32,7 @@ confirmed L6 `review-evidence-reviewer-identity.md`（PLAN-L7-648、Issue #923�
 
 Codex の harness session `019febe1-…` は `.helix/logs/session/` 上で 2026-08-10 から同一 id で継続し
 （session_start 995 回）、8 月の review 記録は `codex:gpt-5.6-sol`、2026-09-05 時点の
-`~/.codex/config.toml` は `model = "gpt-6-astra"` であった。同一 session 内で model が切り替わると、
+`~/.codex/config.toml` は `model = "gpt-6-astra"` であった。同一 session 内で model が切り替わった可能性（config の観測に基づく推論で、既存 session の実行 model 切替そのものは未検証）がある。切り替わっていれば、
 
 - 真実（切替後の model）を記録すれば `reviewer_session_model_conflict` で赤、
 - 旧記録に合わせて `gpt-5.6-sol` と書けば虚偽、
@@ -48,7 +48,7 @@ Codex の harness session `019febe1-…` は `.helix/logs/session/` 上で 2026-
 | `parseReviewerSessionModelHistory` | (raw: unknown) => ReviewerSessionModelHistory | raw は JSON 値 | `schema_version` が `helix-reviewer-session-model-history.v1`、各 session の id が `REVIEWER_SESSION_ID_PATTERN` に適合し重複なし、`windows` は since 昇順・`until > since`・区間重複なし・open（`until: null`）は末尾のみ。違反は `reviewer_session_model_history_invalid:<locator>` で throw | 壊れた registry を silent 受理しない | U-RVIDENT-014 |
 | `loadReviewerSessionModelHistory` | (repoRoot) => History \| null | — | `docs/governance/reviewer-session-model-history.json` が無ければ null（履歴なし）。あれば parse 結果。parse 失敗は throw | 読込失敗を「履歴なし」へ黙って落とさない | U-RVIDENT-014 / 016 |
 | `reviewerModelAt` | (entry, reviewedAt) => string \| null | entry は parse 済み | `since ≤ reviewed_at < until` を満たす window の `reviewer_model`。該当なしは null | 半開区間 | U-RVIDENT-012 / 013 |
-| `analyzeReviewEvidence` | (plans, options?) => ReviewEvidenceResult | options.sessionModelHistory は parse 済みか null | registry に載る session は **model 数を問わず** 各 entry を `reviewed_at` の window と照合し、不一致・window 外を `reviewer_session_model_history_mismatch:<session>` として collect。registry に無い session は従来の `reviewer_session_model_conflict`。`sessionModelHistoryError` が与えられたら registry path を plan_id にした違反を collect | 履歴は宣言した session だけを緩め、他 session を緩めない | U-RVIDENT-012 / 013 / 015 |
+| `analyzeReviewEvidence` | (plans, options?) => ReviewEvidenceResult | options.sessionModelHistory は parse 済みか null | registry に載る session は **model 数を問わず** 各 entry を `reviewed_at` の window と照合し、不一致・window 外を `reviewer_session_model_history_mismatch:<session>` として collect。registry の `runtime` と entry の `reviewer_model` の provider（`modelProviderFromId`）が食い違えば `reviewer_session_model_history_runtime_mismatch:<session>`。registry に無い session は従来の `reviewer_session_model_conflict`。`sessionModelHistoryError` が与えられたら registry path を plan_id にした違反を collect | 履歴は宣言した session だけを緩め、他 session を緩めない | U-RVIDENT-012 / 013 / 015 / 017 |
 
 doctor の `review-evidence` check は `loadReviewerSessionModelHistory(repoRoot)` を try/catch で呼び、
 失敗理由を `sessionModelHistoryError` として渡す。
@@ -76,6 +76,7 @@ slice 所有者候補から外す。published base を読めない場合は例�
   または window 外にある。
 - registry の schema / 時系列が不整合（parse 失敗）。読込失敗を履歴なしとして通す。
 - 履歴宣言が他 session の衝突判定を緩める。
+- registry の runtime と異なる provider の model が同 session id を名乗る（runtime_mismatch）。
 
-検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-016` の 5 件と `U-GWIDADM-022` で固定する（既存 `U-RVIDENT-001` 〜 `010`
+検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-017` の 6 件と `U-GWIDADM-022` で固定する（既存 `U-RVIDENT-001` 〜 `010`
 は不変、`011` は freeze 伝播）。

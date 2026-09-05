@@ -11,7 +11,7 @@ created: 2026-09-05
 updated: 2026-09-05
 owner: Claude / TL
 github_issue_id: 1543
-behavior_contract_id: REVIEW-EVIDENCE-REVIEWER-SESSION-MODEL-HISTORY-001
+behavior_contract_id: REVIEWER-SESSION-MODEL-HISTORY-001
 responsibility_owner: review-evidence
 engineering_discipline_required: true
 change_slice: atomic
@@ -33,7 +33,7 @@ entry_signals:
 supersedes:
   - PLAN-L7-648-review-evidence-reviewer-identity
 contract_preconditions: "reviewer_session_model_conflict は同一 reviewer_session_id の reviewer_model 文字列一致だけを見る。Codex の harness session は model 切替（gpt-5.6-sol → gpt-6-astra）をまたいで同一 id で継続し、真実を記録すると衝突・旧記録に合わせると虚偽になる。config 値や commit trailer は実効 model の attestation ではない（Codex 指摘 5549183053）。"
-contract_postconditions: "docs/governance/reviewer-session-model-history.json に宣言した session は reviewed_at 時点の window と照合され、不一致・window 外は reviewer_session_model_history_mismatch で fail-close。未登録 session は従来の衝突規則。registry の parse 失敗は違反として surface。gpt-6-astra を model registry の exact effort へ登録。"
+contract_postconditions: "docs/governance/reviewer-session-model-history.json に宣言した session は reviewed_at 時点の window と照合され、不一致・window 外は reviewer_session_model_history_mismatch、registry の runtime と reviewer_model の provider 不一致は reviewer_session_model_history_runtime_mismatch で fail-close。未登録 session は従来の衝突規則。registry の parse 失敗は違反として surface。gpt-6-astra を model registry の exact effort へ登録。"
 contract_invariants: "旧記録（Sol）は書き換えない。registry は runtime 所有者の申告で attestation ではないことを basis に明記。履歴宣言は他 session の判定を緩めない。receipt / admission / SessionStart は変更しない。"
 contract_failures: "未登録 session の異 model、登録 session の window 外・model 不一致、registry の schema / 時系列不整合、読込失敗の silent fallback は fail-close する。"
 tdd_red_required: true
@@ -41,8 +41,8 @@ red_test: "tests/review-evidence.test.ts の U-RVIDENT-012..016 は origin/main 
 red_at: "2026-09-05T06:07:20Z"
 green_at: "2026-09-05T06:07:35Z"
 mutation_oracle_required: true
-mutation_oracle: "tests/review-evidence.test.ts（vitest）の U-RVIDENT-012/013 が履歴照合の退行と until 無視を、U-RVIDENT-014 が registry 検証の緩和を、U-RVIDENT-015 が他 session への波及を、U-RVIDENT-016 が実 repo との矛盾を、それぞれ mutation を red にして検出する。 U-GWIDADM-022（tests/github-workflow-identity-admission.test.ts）が admission の supersession 例外の退行を検出する。"
-mutation_oracle_evidence: "locator: tests/review-evidence.test.ts（vitest、U-RVIDENT-012..016）。2026-09-05T06:07:20Z M1（`if (declared)` 分岐を無効化）→ U-RVIDENT-012/013 が 2 failed。06:07:25Z M2（reviewerModelAt が until を無視）→ 012/013 が 2 failed。06:07:30Z M3（window 重複検証を外す）→ U-RVIDENT-014 が 1 failed。06:07:35Z に復元して 5 passed。tests/review-evidence.test.ts 全体 + model-registry / model-effort で 74 passed。 追加: 2026-09-05T06:40:07Z に admission + branch-kind 57 passed（GREEN）、06:40:09Z に M4（admission の metadata-only 例外を無効化）で U-GWIDADM-022 が 1 failed、同時刻に復元して 1 passed。"
+mutation_oracle: "tests/review-evidence.test.ts（vitest）の U-RVIDENT-012/013 が履歴照合の退行と until 無視を、U-RVIDENT-014 が registry 検証の緩和を、U-RVIDENT-015 が他 session への波及を、U-RVIDENT-016 が実 repo との矛盾を、U-RVIDENT-017 が registry runtime と reviewer_model provider の食い違いを、それぞれ mutation を red にして検出する。 U-GWIDADM-022（tests/github-workflow-identity-admission.test.ts）が admission の supersession 例外の退行を検出する。"
+mutation_oracle_evidence: "locator: tests/review-evidence.test.ts（vitest、U-RVIDENT-012..016）。2026-09-05T06:07:20Z M1（`if (declared)` 分岐を無効化）→ U-RVIDENT-012/013 が 2 failed。06:07:25Z M2（reviewerModelAt が until を無視）→ 012/013 が 2 failed。06:07:30Z M3（window 重複検証を外す）→ U-RVIDENT-014 が 1 failed。06:07:35Z に復元して 5 passed。tests/review-evidence.test.ts 全体 + model-registry / model-effort で 74 passed。 追加: 2026-09-05T06:40:07Z に admission + branch-kind 57 passed（GREEN）、06:40:09Z に M4（admission の metadata-only 例外を無効化）で U-GWIDADM-022 が 1 failed、同時刻に復元して 1 passed。 2026-09-05T06:49:04Z に U-RVIDENT-012..017 が 6 passed（GREEN）、06:49:09Z に M5（registry runtime と reviewer_model provider の照合を外す）で U-RVIDENT-017 が 1 failed、06:49:14Z に復元して 6 passed。"
 parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md
 pair_artifact: docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
 verification_bindings:
@@ -51,6 +51,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-014, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-015, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-016, test_path: tests/review-evidence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-017, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-GWIDADM-022, test_path: tests/github-workflow-identity-admission.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md

@@ -1598,4 +1598,29 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
     });
     expect(r.reviewerIdentityViolations).toEqual([]);
   });
+
+  it("U-RVIDENT-017: registry の runtime と entry の reviewer_model provider が食い違う記録は runtime_mismatch で fail-close する", () => {
+    // registry は runtime=codex を宣言しているのに、同 session id で claude model を名乗る entry。
+    const r = analyzeReviewEvidence(
+      [historyPlan("PLAN-HIST-RUNTIME", "2026-08-30T13:06:00Z", "claude:claude-opus-5")],
+      { sessionModelHistory: history() },
+    );
+    expect(r.reviewerIdentityViolations).toEqual([
+      {
+        plan_id: "PLAN-HIST-RUNTIME",
+        reason: `reviewer_session_model_history_runtime_mismatch:${historySession}`,
+      },
+      {
+        plan_id: "PLAN-HIST-RUNTIME",
+        reason: `reviewer_session_model_history_mismatch:${historySession}`,
+      },
+    ]);
+    expect(r.ok).toBe(false);
+    // provider が一致し window 内なら runtime_mismatch は出ない（対照）。
+    const okCase = analyzeReviewEvidence(
+      [historyPlan("PLAN-HIST-OK", "2026-08-30T13:06:00Z", "codex:gpt-5.6-sol")],
+      { sessionModelHistory: history() },
+    );
+    expect(okCase.reviewerIdentityViolations).toEqual([]);
+  });
 });
