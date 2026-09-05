@@ -59,6 +59,7 @@ generates:
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface-deadline-contract.test.ts, artifact_type: test_code }
   - { artifact_path: docs/test-design/helix/L8-current-location-summary-typed-output-unit-test-design.md, artifact_type: test_design }
 review_evidence: []
 ---
@@ -98,3 +99,11 @@ intra-runtimeでは4つのchecklist evidence全文をexact検査する。runtime
 07:01:10 JST開始の修正後CLI全回帰は95成功、199.22秒、exit 0。
 07:04:21 JSTのgate-review-tier回帰も20成功。text側は確認済みJSONの必要evidence全件と
 ID全件を検査し、いずれか一語だけ存在すれば通る正規表現へ緩和しない。
+
+## deadline契約との接合
+
+CI run33996083627 attempt2は、既存deadline試験の定数出現数exact 3が
+新beforeAllの参照追加により4となって失敗した。数を4へ緩める対案では対象caseの
+timeout欠落を別の参照で相殺できるため、ASTで既存2つのitの第3引数へ直接束縛する。
+各caseのtimeoutを個別に退行させた文字列fixtureで検出対象を検証する。
+childの45秒上限とwrapperの正の余裕は維持し、runtimeの期限を変更しない。
