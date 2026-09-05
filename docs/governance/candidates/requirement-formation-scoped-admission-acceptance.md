@@ -26,7 +26,7 @@ pair_artifact: docs/governance/candidates/requirement-formation-scoped-admission
 | RFA-AC-07 | RFA-RC-01, RFA-RC-02 | 委任内技術差分の重複承認0。可逆性/AI熟練だけの許可、相談/叱責/対象不明GOの承認化を拒否 |
 | RFA-AC-08 | RFA-RC-01, RFA-RC-03 | 新価値/受入緩和/予算・権限拡張を対象だけ返す。policy自己拡張・見た目分類だけの許可を拒否 |
 | RFA-AC-09 | RFA-RC-03 | 六outcomeを根拠付きexactly-oneで返す。証拠不足と認可不足、競合と違反の混同を拒否 |
-| RFA-AC-10 | RFA-RC-04 | 新revisionへpolicy適用receiptを発行。偽造・期限切れ・撤回済み根拠、旧承認無条件流用を拒否 |
+| RFA-AC-10 | RFA-RC-04 | 新revisionへpolicy適用receiptを発行。同一入力/固定証拠/policy/評価時刻でoutcomeと意味digestを再現し、時刻・取消状態が変われば再評価する。偽造・期限切れ・撤回済み根拠、旧承認無条件流用を拒否 |
 | RFA-AC-11 | RFA-RC-04 | 意味不変表記で不要revision0、コード変更にはexact-HEAD検証。LLM宣言/CIだけの意味保存判定を拒否 |
 | RFA-AC-12 | RFA-RC-05 | 3判定を独立評価し必要pairのみ再freeze。影響scopeのstale writerを拒否、無関係scope継続を実測 |
 | RFA-AC-13 | RFA-RC-05 | 競合revision・partial JSON更新・異digest retryを拒否。同一retry冪等、rollback/取消で再評価 |

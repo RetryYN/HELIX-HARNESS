@@ -35,6 +35,12 @@ GHは既存入口への接続責務とする。自動化policy自体は明示承
 - **RFA-GH-03 段階移行**：Ticket未移行scopeは既存Issue/PLAN＋Assignmentで同じ許可条件を検証する。移行後Ticketへ接続し、#1534全体を新停止条件にしない。人間選択待ちと技術検証/調査待ちを分離する。
 
 ## 現行との衝突と導入
+
+RFA-RC-04の再現性条件：同一の入力revision、policy、評価時刻、固定済み証拠・AI提案出力で、
+機械評価のoutcomeと意味payload digestを再現できること。生成時刻など観測metadataは意味payloadと
+分離する。AIの再生成文面が常に一致することは要求せず、採用した提案のprovenanceを固定して評価する。
+評価時刻または取消・期限の状態が変わる場合は新しい入力であり、旧結果を無条件に再利用しない。
+
 #1169の「Requirement変更時human decision省略不可」と#217のpolicy内自動Admissionを、
 変更scopeと有効policyによる適用境界として明文化する。現行規定を候補文書で上書きしない。
 #282/185/186/396はclosed責務を再実装せずversion-up後続へ接続する。#397は採用済み意味のIR収載だけを所有する。
