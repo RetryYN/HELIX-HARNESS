@@ -1,8 +1,8 @@
 ---
-plan_id: PLAN-RECOVERY-1574-cli-summary-fixture
+plan_id: PLAN-L7-1574-cli-summary-fixture
 title: "CLI summary検証の同一シナリオ準備を共有する"
-kind: recovery
-layer: cross
+kind: refactor
+layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -11,7 +11,7 @@ updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 93
 responsibility_owner: cli-surface-verification
-entry_signals: [regression_dev]
+entry_signals: [structural]
 agent_slots:
   - { role: aim, slot_label: "AIM — 検証責務を保持" }
   - { role: tl, slot_label: "TL — 入力と寿命を限定" }
@@ -31,12 +31,12 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: RECOVERY
+  target_id: REFACTOR
 dependencies:
   requires: []
   references: ["issue:93", PLAN-L7-672-current-location-summary-typed-output]
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-1574-cli-summary-fixture.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-1574-cli-summary-fixture.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
@@ -45,6 +45,10 @@ review_evidence: []
 ---
 
 # CLI検証の重複準備削減候補
+
+外部挙動と検証義務を維持する構造改善として、registryのREFACTORへ束縛する。
+初回CI run33994899695で検出されたbranchとPLANのkind不一致を是正した。
+旧候補ID PLAN-RECOVERY-1574-cli-summary-fixtureは採番時の誤分類であり、実行identityには使わない。
 
 現在はローカル実験段階。採番・独立レビュー・CI・main接合を経るまでは完成としない。
 基準f880d297のU-CLSO-001〜006は6成功、112.80秒。実行条件はIssue #93へ記録した。

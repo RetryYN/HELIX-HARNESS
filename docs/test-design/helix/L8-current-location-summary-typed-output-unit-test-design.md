@@ -29,7 +29,7 @@ pair_artifact: docs/design/helix/L6-function-design/current-location-summary-typ
 旧compatibility commandの内部出力をpositive oracleにしない。legacy greenでcurrent summaryの
 canonical failureを相殺しない。
 
-## 同一シナリオの検証準備共有（PLAN-RECOVERY-1574）
+## 同一シナリオの検証準備共有（PLAN-L7-1574）
 
 U-CLSO-001/003/004/005/006は同じrepository入力を検証するため、専用describeのbeforeAllで
 text／JSON／summaryの実CLIを各一回起動する。各oracleとassertionは独立に残し、

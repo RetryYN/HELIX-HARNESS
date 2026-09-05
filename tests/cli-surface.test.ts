@@ -1,5 +1,5 @@
 // PLAN-L7-672-current-location-summary-typed-output — U-CLSO-001..006
-// PLAN-RECOVERY-1574-cli-summary-fixture — U-CLSO-001..006
+// PLAN-L7-1574-cli-summary-fixture — U-CLSO-001..006
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-007
 // PLAN-L7-656-distribution-lite-profile-bound-package — U-DISTPKG-014
 // PLAN-L7-603-distribution-deterministic-archive
@@ -3175,7 +3175,7 @@ describe("L7 CLI surface closure", () => {
   }, 15_000);
 
   describe("current-locationの同一入力に対する出力契約", () => {
-    // PLAN-RECOVERY-1574: scenario準備だけを共有する。次のsuite実行へ結果を保存しない。
+    // PLAN-L7-1574: scenario準備だけを共有する。次のsuite実行へ結果を保存しない。
     let outputs: Array<{ args: string[]; run: ReturnType<typeof runCli> }>;
     beforeAll(() => {
       outputs = [
