@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
+import { z } from "zod";
 import type { ExecutionMode } from "../runtime/detect";
 import { checkCrossAgentModelPair, crossAgentModelIssueMessage } from "../schema";
 import {
@@ -22,6 +23,29 @@ export interface ChecklistItem {
 export interface ReviewChecklist {
   items: ChecklistItem[];
 }
+
+const reviewChecklistSchema = z
+  .object({
+    items: z.array(
+      z
+        .object({
+          id: z.enum(REQUIRED_CHECKLIST_IDS),
+          status: z.enum(["pass", "fail", "n-a"]),
+          evidence: z.string().optional(),
+        })
+        .strict(),
+    ),
+  })
+  .strict()
+  .superRefine((checklist, ctx) => {
+    const ids = new Set<string>();
+    for (const item of checklist.items) {
+      if (ids.has(item.id)) ctx.addIssue({ code: "custom", message: "duplicate checklist id" });
+      ids.add(item.id);
+    }
+    if (REQUIRED_CHECKLIST_IDS.some((id) => !ids.has(id)))
+      ctx.addIssue({ code: "custom", message: "missing checklist id" });
+  });
 
 export interface GateReviewInput {
   gate: string;
@@ -58,7 +82,9 @@ export function isJudgmentGate(gate: string): boolean {
 
 function validateChecklist(checklist: ReviewChecklist | null | undefined): string[] {
   if (!checklist) return ["single-runtime judgment gate requires checklist evidence"];
-  const byId = new Map(checklist.items.map((item) => [item.id, item]));
+  const parsed = reviewChecklistSchema.safeParse(checklist);
+  if (!parsed.success) return ["review checklist invalid: shape, status or exact item set"];
+  const byId = new Map(parsed.data.items.map((item) => [item.id, item]));
   const messages: string[] = [];
   for (const id of REQUIRED_CHECKLIST_IDS) {
     const item = byId.get(id);
@@ -237,9 +263,9 @@ export function judgmentReviewEvidenceTextJa(evidence: string): string {
 
 export function loadReviewChecklist(path: string): ReviewChecklist {
   const raw = readFileSync(path, "utf8");
-  const parsed = parseYaml(raw) as { items?: ChecklistItem[] };
-  if (!Array.isArray(parsed.items)) throw new Error("review checklist requires items array");
-  return { items: parsed.items };
+  const parsed = reviewChecklistSchema.safeParse(parseYaml(raw));
+  if (!parsed.success) throw new Error("review checklist invalid: shape, status or exact item set");
+  return parsed.data;
 }
 
 export function loadReviewChecklistIfPresent(path: string | undefined): ReviewChecklist | null {
