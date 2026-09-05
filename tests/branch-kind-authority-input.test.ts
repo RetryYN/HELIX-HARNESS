@@ -81,7 +81,20 @@ describe("branch入力authorityの実Git検証", () => {
     const executable = join(bin, "gh");
     writeFileSync(
       executable,
-      `#!/usr/bin/env node\nrequire('node:fs').writeFileSync(process.env.FIXTURE_CAPTURE, JSON.stringify(process.argv.slice(2)));\nprocess.stdout.write(process.env.FIXTURE_RESPONSE);\n`,
+      `#!/usr/bin/env node
+require('node:fs').writeFileSync(process.env.FIXTURE_CAPTURE, JSON.stringify(process.argv.slice(2)));
+const response = process.env.FIXTURE_RESPONSE;
+if (response === 'synthetic-exit-failure') {
+  process.stderr.write('synthetic-private-error-detail');
+  process.exit(2);
+} else if (response.startsWith('oversize:')) {
+  process.stdout.write(' '.repeat(2 * 1024 * 1024) + response.slice('oversize:'.length));
+} else if (response.startsWith('delayed:')) {
+  setTimeout(() => process.stdout.write(response.slice('delayed:'.length)), 20_000);
+} else {
+  process.stdout.write(response);
+}
+`,
     );
     chmodSync(executable, 0o700);
     const raw = {
@@ -135,6 +148,19 @@ describe("branch入力authorityの実Git検証", () => {
       expect(JSON.parse(rejected.stdout).findings[0].message).toBe("pr_context_invalid");
     }
     const forged = invoke(JSON.stringify([raw]), ["--changed", "src/forged.ts"]);
+    const unavailable = invoke("synthetic-exit-failure");
+    expect(unavailable.status).toBe(1);
+    expect(JSON.parse(unavailable.stdout).findings[0].message).toBe("pr_provider_unavailable");
+    expect(unavailable.stdout + unavailable.stderr).not.toContain("synthetic-private-error-detail");
+    // 上限がなければ有効な同一PRとして受理される応答を使う。
+    // 外側の30秒timeoutではなく、provider境界の制限による拒否を検査する。
+    for (const prefix of ["oversize:", "delayed:"]) {
+      const bounded = invoke(prefix + JSON.stringify([raw]));
+      expect(bounded.error).toBeUndefined();
+      expect(bounded.signal).toBeNull();
+      expect(bounded.status, bounded.stderr).toBe(1);
+      expect(JSON.parse(bounded.stdout).findings[0].message).toBe("pr_provider_unavailable");
+    }
     expect(forged.status, forged.stderr).toBe(1);
     expect(JSON.parse(forged.stdout).findings[0].message).toBe("changed_paths_snapshot_mismatch");
     writeFileSync(capture, "provider-not-called");
