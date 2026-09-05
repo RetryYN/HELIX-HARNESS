@@ -205,6 +205,7 @@ items:
       - docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md
       - docs/design/helix/L6-function-design/checkout-pathspec-guard.md
       - docs/design/helix/L6-function-design/hosted-preflight-override-audit.md
+      - docs/design/helix/L6-function-design/cross-system-audit-intake.md
       - docs/design/helix/L6-function-design/runner-attestation-journal-authority.md
       - docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
@@ -1184,6 +1185,8 @@ items:
     status: done
     artifact:
       - docs/skills/review-checklist.yaml
+      - docs/design/helix/L6-function-design/review-checklist-validation.md
+      - docs/test-design/helix/L8-review-checklist-validation.md
   - id: product-vision-inception-deck
     name: プロダクトビジョン・インセプションデッキ
     category: sprint

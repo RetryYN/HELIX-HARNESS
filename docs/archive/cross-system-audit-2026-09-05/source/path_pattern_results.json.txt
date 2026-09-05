@@ -1,0 +1,26 @@
+{
+  "scope": "Extracted exact regex predicate only",
+  "source": "src/audit/quality.ts:scanLine",
+  "main_head": "b5178c34fe34c956a70713ad942b1f5b8f64e0ab",
+  "cases": 3,
+  "results": [
+    {
+      "id": "PATH-linux-quoted",
+      "text": "const path = \"/home/example/work\";",
+      "expected": true,
+      "observed": false
+    },
+    {
+      "id": "PATH-mac-quoted",
+      "text": "const path = \"/Users/example/work\";",
+      "expected": true,
+      "observed": false
+    },
+    {
+      "id": "PATH-windows-control",
+      "text": "const path = \"C:\\Users\\example\\work\";",
+      "expected": true,
+      "observed": true
+    }
+  ]
+}

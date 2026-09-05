@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "feature_addition"
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-05
 owner: Codex / TL
 github_issue_id: 1494
 behavior_contract_id: FUNCTIONAL-RELEASE-SLICE-COMPOSITION-001
@@ -25,7 +25,7 @@ change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
 backprop_decision: not_required
-backprop_decision_reason: "既存RLSの意味を保つ候補Authority Sliceであり、承認前はcurrent authorityへ書き戻さない。"
+backprop_decision_reason: "L1／L3／L10候補を直接改訂するAuthority Slice。9/5再編差分は差戻しに対応する未承認候補であり、current authorityへ書き戻さない。"
 no_code_decision: no_change
 ddd_modeling_decision: none
 contract_preconditions: "#1073のRelease Module／Bundle authority、#1074のcurrent inventory、#397のRequirement IR admission境界をread-afterできる"
@@ -59,10 +59,10 @@ dependencies:
     - "issue:1075"
 generates:
   - { artifact_path: docs/plans/PLAN-L3-83-functional-release-slice-composition.md, artifact_type: markdown_doc }
+modifies:
   - { artifact_path: docs/governance/candidates/functional-release-slice-requests.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/functional-release-slice-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/functional-release-slice-acceptance.md, artifact_type: markdown_doc }
-modifies:
   - { artifact_path: docs/governance/release-module-bundle-rollout-roadmap.md, artifact_type: markdown_doc }
 agent_slots:
   - { role: se, slot_label: "SE — Slice schema／Module／Bundle composition" }
@@ -74,10 +74,18 @@ review_evidence: []
 
 # PLAN-L3-83: 機能昇格単位の構成
 
+## 2026-09-05 再提出差分
+
+既存承認は維持する。今回差戻しとなった再編差分を候補v0.2としてL1/L3/L10へ投影し、再確認へ提出する。
+承認範囲の記録: https://github.com/RetryYN/HELIX-HARNESS/issues/1494#issuecomment-5547322959
+本差分への承認や独立レビューを発明しない。候補は9 BR、6 FR、24 R、26 AC。BR→R→ACをL10へ対応付ける。
+旧構成の固定維持を外し、全要求の実装・検証・Release対応、CI内部先行、Cursor限定先行、安全依存閉包、Lite／Full組合せ検収を追加する。
+runtime・publish・cutoverは非対象。既存候補3文書はpublished baseにあるためmodifiesへ分類する。
+
 ## 目的
 
-既存のRelease Module／Bundle構成へ、機能を独立して検証・昇格・除外できる`Functional Release Slice`を追加する候補を
-L1／L3／L10へ分解する。Module境界を増やすこと、Bundleを分裂させること、workflowやproviderを新設することは目的にしない。
+利用目的・責務・依存からRelease Module／Bundle構成を再評価し、独立して検証・昇格・除外できる`Functional Release Slice`を
+L1／L3／L10へ分解する。個数を目的にせず維持・分割・統合・移管を比較し、workflowやproviderの新設と混同しない。
 
 ## 実装順
 
