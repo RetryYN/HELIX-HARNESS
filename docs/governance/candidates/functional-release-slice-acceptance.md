@@ -20,7 +20,8 @@ pair_of: docs/governance/candidates/functional-release-slice-requirements.md
 
 ## §0 合否境界
 
-v0.2追加差分は未承認。既存v0.1承認の撤回も、本差分への暗黙適用もしない。
+v0.2追加差分は2026-09-05に明示承認された（[L3-PO-1494-002](https://github.com/RetryYN/HELIX-HARNESS/issues/1494#issuecomment-5548610640)）。既存v0.1承認履歴は維持する。
+本承認は受入条件への承認であり、実装検収・独立レビュー・正本昇格・#397 IR admission・publish／cutoverの成立を意味しない。
 
 Sliceを追加した事実、file count、Bundle名、green件数だけでは合格にしない。L1／L3／L10／Requirement IRのauthority、
 Module ownership、Bundle exact set、依存閉包、channel、artifact、consumer、rollback、DB／GitHub／DevOSのread-afterを同じ

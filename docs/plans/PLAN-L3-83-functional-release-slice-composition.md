@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-05T02:03:20Z"
+  plan_id: PLAN-L3-83-functional-release-slice-composition
+  approval_record_id: L3-PO-1494-002
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1494#issuecomment-5548610640"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -25,7 +35,7 @@ change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
 backprop_decision: not_required
-backprop_decision_reason: "L1／L3／L10候補を直接改訂するAuthority Slice。9/5再編差分は差戻しに対応する未承認候補であり、current authorityへ書き戻さない。"
+backprop_decision_reason: "L1／L3／L10候補を直接改訂するAuthority Slice。v0.2への明示承認を記録し、独立レビュー・正本昇格・IR admission前にcurrent authorityへ投影しない。"
 no_code_decision: no_change
 ddd_modeling_decision: none
 contract_preconditions: "#1073のRelease Module／Bundle authority、#1074のcurrent inventory、#397のRequirement IR admission境界をread-afterできる"
@@ -33,7 +43,7 @@ contract_postconditions: "L1／L3／L10 candidate、Slice schema、Module／Bund
 contract_invariants: "SliceはModule／Bundle／workflow／route／drive／provider／repositoryと別軸、Issue本文は意味authorityでない、未承認candidateはruntime／DB／releaseへ投影しない"
 contract_failures: "authority digest不一致、IR未admit、primary ownerの欠落／重複、included／excluded衝突、implicit inclusion、stale channel、unknown影響、未承認writeをfail-closeする"
 tdd_red_required: false
-tdd_red_waiver_reason: "本PLANの初期sliceは未承認のL1／L3／L10 candidateと実装順だけを作成し、runtime／schema／DBの実装は承認後の後続atomic PLANへ分離する。"
+tdd_red_waiver_reason: "本sliceはL1／L3／L10 candidateと承認記録を扱い、runtime／schema／DBの実装は独立レビュー・正本昇格・IR admission後の後続atomic PLANへ分離する。"
 complexity_effect: net_negative
 complexity_justification: "Module／Bundleへ混在していた昇格、検証、除外の単位をSliceへ分離し、後続の影響閉包とconsumer検証を局所化する。"
 removal_trigger: "candidateがplan固有承認、#397 IR admission、canonical promotionを経て、既存RLSのSlice差分へ置換された時"
@@ -76,9 +86,12 @@ review_evidence: []
 
 ## 2026-09-05 再提出差分
 
-既存承認は維持する。今回差戻しとなった再編差分を候補v0.2としてL1/L3/L10へ投影し、再確認へ提出する。
-承認範囲の記録: https://github.com/RetryYN/HELIX-HARNESS/issues/1494#issuecomment-5547322959
-本差分への承認や独立レビューを発明しない。候補は9 BR、6 FR、24 R、26 AC。BR→R→ACをL10へ対応付ける。
+v0.1の既存承認履歴は維持する。差戻し後の候補v0.2は2026-09-05に明示承認された。
+承認範囲の記録: https://github.com/RetryYN/HELIX-HARNESS/issues/1494#issuecomment-5548610640
+対象版はPR #1542の最終HEAD `b3127cd0a8bb1f979499a831a7a9de6db4c2aa72`、main統合点は `26f69f2dff595b9dcdc64bf8a401b4a6ff74e669`。
+`approved_at`は記録の形式化時刻であり、人間メッセージの厳密な送信時刻とは主張しない。
+承認は正本化工程へ進む範囲であり、独立レビュー・正本昇格・IR admission・実装検収・外部副作用・credential利用・tag／publish／cutover・本番変更を代替しない。
+候補は9 BR、6 FR、24 R、26 AC。BR→R→ACをL10へ対応付ける。
 旧構成の固定維持を外し、全要求の実装・検証・Release対応、CI内部先行、Cursor限定先行、安全依存閉包、Lite／Full組合せ検収を追加する。
 runtime・publish・cutoverは非対象。既存候補3文書はpublished baseにあるためmodifiesへ分類する。
 
@@ -90,8 +103,8 @@ L1／L3／L10へ分解する。個数を目的にせず維持・分割・統合�
 ## 実装順
 
 1. #1074のcurrent inventoryと既存RLS-01のownershipをread-afterする。
-2. 本PLAN固有のL1要求候補、L3要件候補、L10受入候補を確認し、未承認candidateとして保持する。
-3. L3承認後に#397へ一方向admissionし、Requirement IRとsource digestを確定する。
+2. 本PLAN固有のv0.2承認記録をL1／L3／L10候補へ束縛する。独立レビュー・正本昇格まではcandidateとして保持する。
+3. 独立レビューとcanonical merge／read-after後に#397へ一方向admissionし、Requirement IRとsource digestを確定する。
 4. Slice schema／registryを独立atomic sliceとして実装する。
 5. Module primary／secondary ownership、Bundle included／excluded exact set、dependency／compatibilityを接続する。
 6. qualification packet、channel promotion、replacement／rollback、CI impact closure、consumer／DevOS projectionを順に実装する。

@@ -30,8 +30,8 @@ refines:
 
 ## §0 承認境界と用語
 
-本書v0.2の再編差分は2026-09-05の差戻しに対応する未承認candidateである。v0.1の既存承認は維持するが追加差分へ転用しない。
-差分の承認、L10受入の対形成、#397 Requirement IR admissionを完了するまで、
+本書v0.2の再編差分は2026-09-05に明示承認された（[L3-PO-1494-002](https://github.com/RetryYN/HELIX-HARNESS/issues/1494#issuecomment-5548610640)）。v0.1の既存承認履歴は維持する。
+承認は正本化工程へ進む範囲である。独立レビュー、L10受入の対形成、正本昇格、#397 Requirement IR admissionを完了するまで、
 本書の意味をconfirmed requirements、runtime、schema、DB、CLI、generated catalog、DevOSへ直接投影してはならない。
 
 既存のRLS正本が定めるModuleは責務所有、Bundleは利用目的別compositionを担う。本候補が追加するSliceは、その間に置く
