@@ -132,6 +132,7 @@ describe("branch入力authorityの実Git検証", () => {
       const rejected = invoke(response);
       expect(rejected.status, rejected.stderr).toBe(1);
       expect(JSON.parse(rejected.stdout).ok).toBe(false);
+      expect(JSON.parse(rejected.stdout).findings[0].message).toBe("pr_context_invalid");
     }
     const forged = invoke(JSON.stringify([raw]), ["--changed", "src/forged.ts"]);
     expect(forged.status, forged.stderr).toBe(1);
@@ -153,6 +154,13 @@ describe("branch入力authorityの実Git検証", () => {
     expect(toolchain.error).toBeUndefined();
     expect(JSON.parse(toolchain.stdout).messages).toBeInstanceOf(Array);
     expect(readFileSync(capture, "utf8")).toBe("provider-not-called");
+    const invalidDoctor = invoke("invalid-json", [], ["doctor"]);
+    expect(invalidDoctor.status).toBe(1);
+    expect(
+      JSON.parse(invalidDoctor.stdout).messages.some((message: string) =>
+        message.includes("pr_context_invalid"),
+      ),
+    ).toBe(true);
     for (const command of [["doctor"], ["review", "--uncommitted"], ["review", "--staged"]]) {
       const checked = invoke(JSON.stringify([raw]), [], command);
       expect(checked.error).toBeUndefined();

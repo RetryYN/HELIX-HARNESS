@@ -592,8 +592,28 @@ function hasNoGitMetadata(repoRoot: string): boolean {
 
 export function loadBranchKindInput(
   repoRoot: string = process.cwd(),
-  snapshot?: BranchKindSnapshot | { applicability: "non_git_consumer" },
+  snapshot?:
+    | BranchKindSnapshot
+    | Extract<BranchPrProviderResult, { status: "unavailable" }>
+    | { applicability: "non_git_consumer" },
 ): BranchKindInput {
+  if (snapshot && "status" in snapshot) {
+    const reasons = [
+      "pr_local_identity_invalid",
+      "pr_context_invalid",
+      "pr_local_identity_changed",
+      "pr_provider_unavailable",
+    ];
+    return {
+      branch: null,
+      changedPaths: [],
+      plans: [],
+      authority: {
+        status: "unavailable",
+        reason: reasons.includes(snapshot.reason) ? snapshot.reason : "pr_provider_unavailable",
+      },
+    };
+  }
   if (snapshot && "applicability" in snapshot) {
     try {
       if (snapshot.applicability !== "non_git_consumer" || Object.keys(snapshot).length !== 1)

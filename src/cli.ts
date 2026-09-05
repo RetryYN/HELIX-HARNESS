@@ -110,8 +110,8 @@ import {
   analyzeBranchKind,
   type BranchKindInput,
   branchKindMessages,
+  inspectBranchSnapshotFromPrProvider,
   loadBranchKindInput,
-  readBranchSnapshotFromPrProvider,
 } from "./lint/branch-kind";
 import { assertCanonicalReuseAllowed } from "./lint/canonical-reuse-authority";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
@@ -1017,7 +1017,7 @@ function localBranchPrSnapshot(repoRoot: string) {
       killSignal: "SIGKILL",
       maxBuffer: 1024 * 1024,
     }).trim();
-  return readBranchSnapshotFromPrProvider({
+  const result = inspectBranchSnapshotFromPrProvider({
     readLocal: () => {
       const urls = read("git", ["remote", "get-url", "--all", "origin"]).split(/\r?\n/);
       if (urls.length !== 1) throw new Error("repository_identity_unavailable");
@@ -1035,12 +1035,17 @@ function localBranchPrSnapshot(repoRoot: string) {
     readPr: (local) => {
       const owner = local.repository.split("/")[0];
       const endpoint = `repos/${local.repository}/pulls?state=open&head=${encodeURIComponent(`${owner}:${local.branch}`)}&per_page=2`;
-      const response: unknown = JSON.parse(
-        read("gh", ["api", "--hostname", "github.com", "--method", "GET", endpoint]),
-      );
+      const text = read("gh", ["api", "--hostname", "github.com", "--method", "GET", endpoint]);
+      let response: unknown;
+      try {
+        response = JSON.parse(text);
+      } catch {
+        return null;
+      }
       return Array.isArray(response) && response.length === 1 ? response[0] : null;
     },
   });
+  return result.status === "available" ? result.snapshot : result;
 }
 
 function doctorDepsForBranchSnapshot(

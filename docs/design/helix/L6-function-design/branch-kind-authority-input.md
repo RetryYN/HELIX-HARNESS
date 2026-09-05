@@ -79,6 +79,11 @@ repository identityは設定済みoriginの単一URLに限定し、github.comの
 GitHub APIにはhostnameとrepositoryを明示し、GH_REPO／GH_HOSTの上書きを採用しない。
 PR一覧は最大2件を取得し、1件だけの場合に受理する。複数PRを先頭選択しない。
 各外部読取は10秒・出力1MiBを上限とし、取得不能時は既存unavailableへ戻す。
+provider診断は`pr_local_identity_invalid`、`pr_context_invalid`、
+`pr_local_identity_changed`、`pr_provider_unavailable`としてCLI／doctorへ保持する。
+不正JSONは応答不正、外部読取の例外は取得不能とし、例外本文を公開しない。
+現段階ではPRの0件／複数件／HEAD不一致は応答不整合にまとめる。認証切れ、timeout、
+出力上限超過の個別分類と、それぞれの自動復旧までは完成扱いにしない。
 
 現在のghでは`pr view --json baseRefOid`が未対応であるため、PRのREST表現にある
 `base.sha`／`head.sha`と双方のrepository identityを取得・検証する。実装では取得adapterを

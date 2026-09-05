@@ -33,12 +33,7 @@ import {
 } from "../lint/allowlist-sync";
 import { analyzeAssetDrift, assetDriftMessages, loadAssetDriftInput } from "../lint/asset-drift";
 import { analyzeBackfill, backfillMessages, loadBackfillDocs } from "../lint/backfill-pairing";
-import {
-  analyzeBranchKind,
-  type BranchKindSnapshot,
-  branchKindMessages,
-  loadBranchKindInput,
-} from "../lint/branch-kind";
+import { analyzeBranchKind, branchKindMessages, loadBranchKindInput } from "../lint/branch-kind";
 import {
   analyzeChangeImpact,
   analyzeChangeSetIntegrity,
@@ -617,7 +612,7 @@ function buildDoctorCurrentLocationSnapshot(
 /** I/O・clock 注入 (test 可能)。 */
 export interface DoctorDeps {
   repoRoot: string;
-  branchSnapshot?: BranchKindSnapshot;
+  branchSnapshot?: Parameters<typeof loadBranchKindInput>[1];
   now: string;
   readText: (path: string) => string | null;
   listDir: (dir: string) => string[];
@@ -1268,7 +1263,7 @@ export function checkVerificationProfile(repoRoot: string): {
 
 export function checkBranchKind(
   repoRoot: string,
-  snapshot?: BranchKindSnapshot,
+  snapshot?: Parameters<typeof loadBranchKindInput>[1],
 ): {
   messages: string[];
   ok: boolean;
