@@ -26,7 +26,35 @@ const state = {
 };
 
 async function waitFor(path: string): Promise<void> {
-  while (!existsSync(path)) await new Promise((resolve) => setTimeout(resolve, 5));
+  const deadline = Date.now() + 10_000;
+  while (!existsSync(path)) {
+    if (Date.now() > deadline) throw new Error("fixture barrier timeout");
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+}
+
+if (mode === "stale-contender") {
+  await waitFor(join(root, "effect-entered"));
+  const result = commitLoopEpoch({
+    planId,
+    previousManifestText: null,
+    payload: { state, iteration: null },
+    sideEffectPhase: "intent_recorded",
+    port: nodeDurableEpochPort(root, {
+      afterBoundary: (boundary) => {
+        if (boundary !== "claim_acquired") return;
+        writeFileSync(join(root, "contender-acquired"), "ready");
+        const deadline = Date.now() + 10_000;
+        while (!existsSync(join(root, "completion-attempted"))) {
+          if (Date.now() > deadline) throw new Error("contender barrier timeout");
+          Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5);
+        }
+      },
+    }),
+  });
+  writeFileSync(join(root, "contender-result.json"), JSON.stringify(result));
+  writeFileSync(join(root, "contender-checked"), "done");
+  process.exit(result.reason === "stale_previous" ? 2 : 3);
 }
 
 const store = durableFileLoopStore({
@@ -86,6 +114,17 @@ if (mode.startsWith("gc:")) {
 
 await store.runSideEffect(state, "worker", async () => {
   appendFileSync(join(root, "effects.log"), `${id}\n`);
+  if (mode === "held-effect") {
+    writeFileSync(join(root, "effect-entered"), "ready");
+    const deadline = Date.now() + 10_000;
+    while (
+      !existsSync(join(root, "contender-acquired")) &&
+      !existsSync(join(root, "contender-checked"))
+    ) {
+      if (Date.now() > deadline) throw new Error("effect barrier timeout");
+      await new Promise((resolve) => setTimeout(resolve, 5));
+    }
+  }
   if (mode === "kill") process.kill(process.pid, "SIGKILL");
   return null;
 });
