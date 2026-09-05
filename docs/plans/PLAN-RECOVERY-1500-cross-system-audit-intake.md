@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1500: 横断監査入力を保全し既存是正責務へ�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-05
 updated: 2026-09-05
@@ -81,7 +81,27 @@ generates:
   - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/readiness_probe.py.txt, artifact_type: other }
   - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/readiness_results.json.txt, artifact_type: other }
   - { artifact_path: docs/archive/cross-system-audit-2026-09-05/source/source_index.json.txt, artifact_type: other }
-review_evidence: []
+review_evidence:
+  - reviewer: Claude Code
+    review_kind: cross_agent
+    verdict: pass
+    reviewed_at: "2026-09-05T00:10:08Z"
+    tests_green_at: "2026-09-05T00:09:37Z"
+    worker_model: codex
+    reviewer_model: claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: bd1a426802663478468e60857d0a9e0f816db97b
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1537#issuecomment-5547919852"
+    scope: "HEAD bd1a426802663478468e60857d0a9e0f816db97bのPLAN/L6/L7・入力保全契約とcatalog追従差分に対する技術pass。主体情報は同レビュー連鎖のcomment 5547726938に明示。PR最終approve、Ready化、人間承認、監査所見の修復完了ではない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/cross-system-audit-intake.test.ts tests/l3-g3-freeze-packet-v2.test.ts --project fast"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-05T00:09:37Z"
+        evidence_path: tests/cross-system-audit-intake.test.ts
+        output_digest: "sha256:70796e142bdfed6bf69b108384008382b51617e4495f7f2f6103de683b23ea3f"
 modifies:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
@@ -113,7 +133,8 @@ Portfolio runtime、新要求の正本化、F01〜F14のruntime修正を完了�
 ローカルでは14/14ファイルのサイズとSHA-256が一致し、F/C/XのID重複は0。
 既知credential形式のパターン検査は0件だが、全secret/PII不存在の証明とはしない。
 独立レビュー、CI、remote保全、元入力削除は未完了である。
-本PLANのdraftは要件承認待ちを意味せず、文書作業の未検収状態を示す。
+PLANは独立技術passに基づきconfirmedとする。completion_claim_allowedはfalseを維持し、
+PR最終検収・remote保全・元入力削除の未完了をPLAN freeze成功で相殺しない。
 
 ## 用語・機能要求更新
 
