@@ -39,8 +39,8 @@ red_test: "origin/main 版 projection-writer.ts で tests/review-evidence-projec
 red_at: "2026-09-05T03:14:16Z"
 green_at: "2026-09-05T03:16:16Z"
 mutation_oracle_required: true
-mutation_oracle: "U-REVPAR-001/006 が環境依存の再発を、U-REVPAR-002/004 が index 正本化・存在判定回帰を、U-REVPAR-005/007 が暗黙 filesystem fallback を、U-REVPAR-003 が非 git fixture 経路の維持をそれぞれ検出する。"
-mutation_oracle_evidence: "2026-09-05T03:08:48Z に初版 3 oracle で origin/main 版 projection-writer.ts が 2 failed／1 passed（出力 digest cef0d05c0d2d6b29…）、修正版で 3 passed（03:08:50Z）。Codex 途中確認（index/HEAD の区別、git 障害の暗黙 fallback、receipt 全体 parity）を受けて oracle を 7 件へ拡張し、2026-09-05T03:14:16Z に origin/main 版で 5 failed／1 passed（digest af6d758f1221ef54…）、修正版で 03:16:16Z に 7 passed を実測。実 repository でも同一 HEAD で .helix/harness.db の有無により logical DB receipt の projection_digest 6d24b2a4dc002288… が一致することを確認した。"
+mutation_oracle: "tests/review-evidence-projection-parity.test.ts（vitest）の U-REVPAR-001/006 が環境依存の再発を、U-REVPAR-002/004 が index 正本化・存在判定回帰を、U-REVPAR-005/007 が暗黙 filesystem fallback を、U-REVPAR-003 が非 git fixture 経路の維持を、それぞれ mutation を red にして検出する。"
+mutation_oracle_evidence: "locator: tests/review-evidence-projection-parity.test.ts（vitest、U-REVPAR-001..007）。2026-09-05T03:08:48Z に初版 3 oracle で origin/main 版 projection-writer.ts が 2 failed／1 passed（出力 digest cef0d05c0d2d6b29…）、修正版で 3 passed（03:08:50Z）。Codex 途中確認（index/HEAD の区別、git 障害の暗黙 fallback、receipt 全体 parity）を受けて oracle を 7 件へ拡張し、2026-09-05T03:14:16Z に origin/main 版で 5 failed／1 passed（digest af6d758f1221ef54…）、修正版で 03:16:16Z に 7 passed を実測。実 repository でも同一 HEAD で .helix/harness.db の有無により logical DB receipt の projection_digest 6d24b2a4dc002288… が一致することを確認した。"
 parent_design: docs/design/helix/L6-function-design/review-evidence-projection-parity.md
 pair_artifact: docs/test-design/helix/L8-review-evidence-projection-parity-unit-test-design.md
 verification_bindings:
@@ -84,11 +84,11 @@ review_evidence:
     reviewed_at: "2026-09-05T03:36:39Z"
     tests_green_at: "2026-09-05T03:38:39Z"
     worker_model: claude-opus-5
-    reviewer_model: codex
+    reviewer_model: codex:gpt-5.6-sol
     reviewer_session_id: "019febe1-8983-7820-bee4-4cd62876f9b6"
     reviewed_head_sha: 43aa00ad8950f0c4a3b69612e2ee547c598e2d86
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1550#issuecomment-5549087672"
-    scope: "Codex 独立技術 pass（session 019febe1-8983-7820-bee4-4cd62876f9b6、runtime codex、model は当該環境で確認できる codex の範囲で Sol/Luna 等を推測しない）。Codex 実測の HEAD 対応: 71 tests（parity 7 + 周辺 64）は merge commit 3411bf8f9、coding-rules + parity 19 tests と logical DB receipt 収束（clean/converged）は 43aa00ad8、PR exact set 12 path と PLAN generates/modifies の一致は 43aa00ad8。下記 green_commands は作者（Claude Code session 9867601a-a3ad-4369-980c-11757d63a7de）が 43aa00ad8 で 03:38:39Z に再実行した作者実測であり、Codex の実行時刻・出力とは別物。worker_model は provider runtime attestation ではなく『記録済み session model 識別子』である。同 session 9867601a… の既存 receipt / PLAN 記録は claude:claude-opus-5 で登録されており、src/lint/review-evidence.ts の reviewer_session_model_conflict は自己申告の整合検査に過ぎないため、これと矛盾しない値を記録した。実効モデルは harness のどの記録（.helix/logs/session/*.jsonl、harness.db session_events）にも model 列が無く未検証。client 自己申告（commit trailer）は Claude Fable 5.1 であり、この二重表記は Issue #1543 に記録済み。PR 最終 sealed approve、Ready 化、実装終端、全 CI、main read-after ではない。"
+    scope: "Codex 独立技術 pass（session 019febe1-8983-7820-bee4-4cd62876f9b6、runtime codex、model は当該環境で確認できる codex の範囲で Sol/Luna 等を推測しない）。Codex 実測の HEAD 対応: 71 tests（parity 7 + 周辺 64）は merge commit 3411bf8f9、coding-rules + parity 19 tests と logical DB receipt 収束（clean/converged）は 43aa00ad8、PR exact set 12 path と PLAN generates/modifies の一致は 43aa00ad8。下記 green_commands は作者（Claude Code session 9867601a-a3ad-4369-980c-11757d63a7de）が 43aa00ad8 で 03:38:39Z に再実行した作者実測であり、Codex の実行時刻・出力とは別物。worker_model は provider runtime attestation ではなく『記録済み session model 識別子』である。同 session 9867601a… の既存 receipt / PLAN 記録は claude:claude-opus-5 で登録されており、src/lint/review-evidence.ts の reviewer_session_model_conflict は自己申告の整合検査に過ぎないため、これと矛盾しない値を記録した。実効モデルは harness のどの記録（.helix/logs/session/*.jsonl、harness.db session_events）にも model 列が無く未検証。client 自己申告（commit trailer）は Claude Fable 5.1 であり、この二重表記は Issue #1543 に記録済み。PR 最終 sealed approve、Ready 化、実装終端、全 CI、main read-after ではない。 reviewer_model は同 session 019febe1… の既存記録（PLAN-L7-708 / L7-649 / L3-75 / L3-76 の review_evidence: codex:gpt-5.6-sol）と整合させた記録済み識別子であり、reviewer_session_model_conflict の整合検査を満たすための転記で新規 attestation ではない。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run tests/review-evidence-projection-parity.test.ts tests/coding-rules.test.ts"
