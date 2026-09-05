@@ -277,7 +277,7 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
   return currentWithout !== null && currentWithout === baseWithout;
 }
 
-function loadBasePlanSource(repoRoot: string, file: string): string | null {
+export function loadBasePlanSource(repoRoot: string, file: string): string | null {
   const candidates: string[] = [];
   if (process.env.GITHUB_BASE_SHA) candidates.push(process.env.GITHUB_BASE_SHA);
   if (process.env.PR_BASE_SHA) candidates.push(process.env.PR_BASE_SHA);

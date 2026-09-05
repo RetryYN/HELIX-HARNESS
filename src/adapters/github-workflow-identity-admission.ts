@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { z } from "zod";
+import { isSupersessionMetadataOnly, loadBasePlanSource } from "../lint/branch-kind.js";
 import { parseMarkdownFrontmatter } from "../lint/shared.js";
 import {
   compareIssuePrWorkflowIdentityContracts,
@@ -202,15 +203,30 @@ export function admitGithubWorkflowIdentity(input: {
   changedPaths: string[];
   repoRoot?: string;
   ghApi?: GhApi;
+  /**
+   * published base 版の PLAN source を返す（無ければ null）。既定は branch-kind と同じ
+   * `PR_BASE_SHA` / `GITHUB_BASE_SHA` / merge-base / `HEAD^1` 解決。fixture では注入する。
+   */
+  basePlanSource?: (path: string) => string | null;
 }): GithubWorkflowIdentityAdmissionResult {
   const repoRoot = input.repoRoot ?? process.cwd();
+  const basePlanSource =
+    input.basePlanSource ?? ((path: string) => loadBasePlanSource(repoRoot, path));
   let typedPlans: Array<{ path: string; frontmatter: Record<string, unknown> }>;
   try {
     typedPlans = input.changedPaths
       .filter((path) => /^docs\/plans\/PLAN-[^/]+\.md$/u.test(path))
       .flatMap((path) => {
-        const frontmatter = parseMarkdownFrontmatter(readFileSync(resolve(repoRoot, path), "utf8"));
-        return frontmatter?.workflow_identity === undefined ? [] : [{ path, frontmatter }];
+        const source = readFileSync(resolve(repoRoot, path), "utf8");
+        const frontmatter = parseMarkdownFrontmatter(source);
+        if (frontmatter?.workflow_identity === undefined) return [];
+        // supersession の逆参照（`superseded_by`）だけを受け取る既存 PLAN は slice の所有者ではない。
+        // plan-supersession が同一 tree での双方向参照を要求するため、successor PLAN と同じ PR で
+        // 触れざるを得ない。branch-kind と同じ metadata-only 判定で所有者候補から外す。
+        // base を読めない場合は例外を適用せず、従来どおり typed PLAN として数える（fail-close）。
+        const baseSource = basePlanSource(path);
+        if (baseSource !== null && isSupersessionMetadataOnly(source, baseSource)) return [];
+        return [{ path, frontmatter }];
       });
   } catch (error) {
     return {

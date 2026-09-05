@@ -61,6 +61,14 @@ doctor の `review-evidence` check は `loadReviewerSessionModelHistory(repoRoot
 （SessionStart 時の申告 model 記録と、切替時の session 再発行）は後続 slice とし、本設計は
 その正本となる履歴の置き場所を先に用意する。
 
+## 4a. supersession と admission の接合
+
+`plan-supersession` は `supersedes` / `superseded_by` の双方向参照を同一 tree で要求する一方、
+`github workflow-identity-admission` は変更された typed PLAN が 1 本でなければ
+`workflow_identity_admission_multiple_plans` で拒否する。両立させるため、admission は
+`superseded_by` だけを受け取る既存 PLAN（branch-kind と同じ `isSupersessionMetadataOnly` 判定）を
+slice 所有者候補から外す。published base を読めない場合は例外を適用せず従来どおり拒否する（fail-close）。
+
 ## 5. fail-close 条件
 
 - registry に無い session が異なる model を名乗る（従来どおり衝突）。
@@ -69,5 +77,5 @@ doctor の `review-evidence` check は `loadReviewerSessionModelHistory(repoRoot
 - registry の schema / 時系列が不整合（parse 失敗）。読込失敗を履歴なしとして通す。
 - 履歴宣言が他 session の衝突判定を緩める。
 
-検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-016` の 5 件で固定する（既存 `U-RVIDENT-001` 〜 `010`
+検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-016` の 5 件と `U-GWIDADM-022` で固定する（既存 `U-RVIDENT-001` 〜 `010`
 は不変、`011` は freeze 伝播）。

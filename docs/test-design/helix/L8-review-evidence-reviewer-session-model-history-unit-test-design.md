@@ -24,6 +24,7 @@ fixture は in-memory の registry（`parseReviewerSessionModelHistory` の戻�
 | U-RVIDENT-014 | registry parse の fail-close | schema_version 不一致、window の since が直前 until より前（重複）、末尾以外の open window、`until <= since`、session id 形式不正、session 重複、空 basis の 7 反例が `reviewer_session_model_history_invalid:<locator>` で throw。読込側の失敗理由は registry path を plan_id にした違反として surface | `tests/review-evidence.test.ts` |
 | U-RVIDENT-015 | 他 session への非波及 | registry に無い session が別 model を名乗ると、履歴が別 session に存在しても従来の衝突が出る | `tests/review-evidence.test.ts` |
 | U-RVIDENT-016 | 実 repo ガード | tracked registry が parse でき、`019febe1-…` を含み、現行 docs/plans の全 entry と矛盾しない（violation 0） | `tests/review-evidence.test.ts` |
+| U-GWIDADM-022 | admission の supersession 例外 | `superseded_by` だけを受け取る既存 PLAN を typed PLAN として数えると successor 1 本の PR が `multiple_plans` で red。base を読めない場合や本文も変わっている場合に例外を適用すると red | `tests/github-workflow-identity-admission.test.ts` |
 
 ## mutation 実測記録
 
@@ -34,6 +35,7 @@ fixture は in-memory の registry（`parseReviewerSessionModelHistory` の戻�
 | M1: registry 照合分岐（`if (declared)`）を無効化し従来規則へ戻す | U-RVIDENT-012 / 013 |
 | M2: `reviewerModelAt` が `until` を無視して since 以降を全て該当扱い | U-RVIDENT-012 / 013 |
 | M3: window の重複区間検証（`since < previousUntil`）を外す | U-RVIDENT-014 |
+| M4: admission の metadata-only 例外（`isSupersessionMetadataOnly` 判定）を無効化 | U-GWIDADM-022（06:40:09Z に 1 failed、復元後 1 passed） |
 
 origin/main には `parseReviewerSessionModelHistory` 等が存在しないため、追加 oracle は main 版では
 import 失敗で red になる（構造的 red）。実 repo ガード U-RVIDENT-016 は、registry に `019febe1-…` の

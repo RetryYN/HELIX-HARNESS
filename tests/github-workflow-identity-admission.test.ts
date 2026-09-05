@@ -2,7 +2,7 @@
 // PLAN-L7-581-github-workflow-identity-migration-bundle-admission — U-GWIDADM-011..016
 // PLAN-L7-674-terminal-fullback-bundle-admission — U-GWIDADM-019..020
 // PLAN-L7-681-github-identity-source-diagnostics — U-GWIDADM-021
-import { copyFileSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -847,5 +847,67 @@ describe("GitHub workflow identity admission", () => {
     expect(result.findings).toContainEqual(
       expect.objectContaining({ code: "pr_scope_plan_contract_mismatch" }),
     );
+  });
+
+  // PLAN-RECOVERY-1543-reviewer-session-model-history — U-GWIDADM-022
+  it("U-GWIDADM-022: superseded_by だけを受け取る既存 PLAN は slice 所有者に数えず、successor 1 本を受理する", () => {
+    const root = fixtureRoot();
+    const superseded = "docs/plans/PLAN-L7-575-superseded.md";
+    writePlan(root);
+    writePlan(root, { path: superseded, targetId: "RECOVERY" });
+    const baseSource = readFileSync(join(root, superseded), "utf8");
+    // 既存 PLAN へ frontmatter の superseded_by だけを追加した状態を current にする。
+    writeFileSync(
+      join(root, superseded),
+      baseSource.replace(
+        "plan_id: PLAN-L7-574-github-workflow-identity-admission\n",
+        "plan_id: PLAN-L7-574-github-workflow-identity-admission\nsuperseded_by: [PLAN-L7-574-github-workflow-identity-admission]\n",
+      ),
+    );
+    const basePlanSource = (path: string) => (path === superseded ? baseSource : null);
+    const endpoints: string[] = [];
+    const result = admitGithubWorkflowIdentity({
+      repository: "RetryYN/HELIX-HARNESS",
+      prBody: contractBody(),
+      changedPaths: [PLAN_PATH, superseded],
+      repoRoot: root,
+      basePlanSource,
+      ghApi: (endpoint) => {
+        endpoints.push(endpoint);
+        return { number: 733, body: contractBody() };
+      },
+    });
+    expect(result).toMatchObject({
+      ok: true,
+      applicable: true,
+      plan_id: "PLAN-L7-574-github-workflow-identity-admission",
+    });
+    expect(endpoints).toEqual(["repos/RetryYN/HELIX-HARNESS/issues/733"]);
+
+    // base を読めない（null）場合は例外を適用せず、従来どおり複数 typed PLAN として拒否する（fail-close）。
+    expect(
+      admitGithubWorkflowIdentity({
+        repository: "RetryYN/HELIX-HARNESS",
+        prBody: contractBody(),
+        changedPaths: [PLAN_PATH, superseded],
+        repoRoot: root,
+        basePlanSource: () => null,
+      }),
+    ).toMatchObject({ ok: false, reason: "workflow_identity_admission_multiple_plans" });
+
+    // superseded_by 以外にも本文が変わっていれば metadata-only ではなく、所有者候補に戻る。
+    writeFileSync(
+      join(root, superseded),
+      `${readFileSync(join(root, superseded), "utf8")}\n訂正注記を追加\n`,
+    );
+    expect(
+      admitGithubWorkflowIdentity({
+        repository: "RetryYN/HELIX-HARNESS",
+        prBody: contractBody(),
+        changedPaths: [PLAN_PATH, superseded],
+        repoRoot: root,
+        basePlanSource,
+      }),
+    ).toMatchObject({ ok: false, reason: "workflow_identity_admission_multiple_plans" });
   });
 });

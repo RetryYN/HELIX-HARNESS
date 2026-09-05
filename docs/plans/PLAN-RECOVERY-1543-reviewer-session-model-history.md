@@ -37,12 +37,12 @@ contract_postconditions: "docs/governance/reviewer-session-model-history.json �
 contract_invariants: "旧記録（Sol）は書き換えない。registry は runtime 所有者の申告で attestation ではないことを basis に明記。履歴宣言は他 session の判定を緩めない。receipt / admission / SessionStart は変更しない。"
 contract_failures: "未登録 session の異 model、登録 session の window 外・model 不一致、registry の schema / 時系列不整合、読込失敗の silent fallback は fail-close する。"
 tdd_red_required: true
-red_test: "tests/review-evidence.test.ts の U-RVIDENT-012..016 は origin/main では parse 関数不在で red。修正版へ registry 照合分岐の無効化・until 無視・重複区間検証の除去を注入すると 012/013/014 が red。"
+red_test: "tests/review-evidence.test.ts の U-RVIDENT-012..016 は origin/main では parse 関数不在で red。修正版へ registry 照合分岐の無効化・until 無視・重複区間検証の除去を注入すると 012/013/014 が red。 admission の例外を無効化すると U-GWIDADM-022 が red。"
 red_at: "2026-09-05T06:07:20Z"
 green_at: "2026-09-05T06:07:35Z"
 mutation_oracle_required: true
-mutation_oracle: "tests/review-evidence.test.ts（vitest）の U-RVIDENT-012/013 が履歴照合の退行と until 無視を、U-RVIDENT-014 が registry 検証の緩和を、U-RVIDENT-015 が他 session への波及を、U-RVIDENT-016 が実 repo との矛盾を、それぞれ mutation を red にして検出する。"
-mutation_oracle_evidence: "locator: tests/review-evidence.test.ts（vitest、U-RVIDENT-012..016）。2026-09-05T06:07:20Z M1（`if (declared)` 分岐を無効化）→ U-RVIDENT-012/013 が 2 failed。06:07:25Z M2（reviewerModelAt が until を無視）→ 012/013 が 2 failed。06:07:30Z M3（window 重複検証を外す）→ U-RVIDENT-014 が 1 failed。06:07:35Z に復元して 5 passed。tests/review-evidence.test.ts 全体 + model-registry / model-effort で 74 passed。"
+mutation_oracle: "tests/review-evidence.test.ts（vitest）の U-RVIDENT-012/013 が履歴照合の退行と until 無視を、U-RVIDENT-014 が registry 検証の緩和を、U-RVIDENT-015 が他 session への波及を、U-RVIDENT-016 が実 repo との矛盾を、それぞれ mutation を red にして検出する。 U-GWIDADM-022（tests/github-workflow-identity-admission.test.ts）が admission の supersession 例外の退行を検出する。"
+mutation_oracle_evidence: "locator: tests/review-evidence.test.ts（vitest、U-RVIDENT-012..016）。2026-09-05T06:07:20Z M1（`if (declared)` 分岐を無効化）→ U-RVIDENT-012/013 が 2 failed。06:07:25Z M2（reviewerModelAt が until を無視）→ 012/013 が 2 failed。06:07:30Z M3（window 重複検証を外す）→ U-RVIDENT-014 が 1 failed。06:07:35Z に復元して 5 passed。tests/review-evidence.test.ts 全体 + model-registry / model-effort で 74 passed。 追加: 2026-09-05T06:40:07Z に admission + branch-kind 57 passed（GREEN）、06:40:09Z に M4（admission の metadata-only 例外を無効化）で U-GWIDADM-022 が 1 failed、同時刻に復元して 1 passed。"
 parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md
 pair_artifact: docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
 verification_bindings:
@@ -51,6 +51,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-014, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-015, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-016, test_path: tests/review-evidence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-GWIDADM-022, test_path: tests/github-workflow-identity-admission.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
   requires: []
@@ -74,6 +75,9 @@ modifies:
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: src/schema/model-registry.ts, artifact_type: source_module }
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
+  - { artifact_path: tests/github-workflow-identity-admission.test.ts, artifact_type: test_code }
   - { artifact_path: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -129,5 +133,6 @@ Issue #1543 / PR #1550 で観測された「同一 harness session が model 切
 2. doctor `review-evidence` check が registry を読み、失敗を違反として surface。
 3. `U-RVIDENT-012` 〜 `016` で許容・mismatch・parse fail-close・非波及・実 repo ガードを束縛し、
    3 mutation の red を実測。
-4. PLAN-L7-648 の frontmatter に `superseded_by` だけを付け（recovery branch の metadata-only 移行として branch-kind-check が許容する範囲）、`doctor plan-supersession` の双方向性を満たす。訂正の経緯は本 PLAN と L6 に記載する。
+4. `github workflow-identity-admission` に「`superseded_by` だけを受け取る既存 PLAN は slice 所有者に数えない」例外を追加する（branch-kind の metadata-only 判定と同じ `isSupersessionMetadataOnly` を再利用、base を読めない場合は従来どおり fail-close。`U-GWIDADM-022`）。plan-supersession が同一 tree での双方向参照を要求する以上、successor と superseded を同じ PR で触るのは避けられないため。
+5. PLAN-L7-648 の frontmatter に `superseded_by` だけを付け（recovery branch の metadata-only 移行として branch-kind-check が許容する範囲）、`doctor plan-supersession` の双方向性を満たす。訂正の経緯は本 PLAN と L6 に記載する。
 5. Issue #1543 へ実測 HEAD と RED/GREEN を read-after 記録し、Codex へ window 追記を依頼する。
