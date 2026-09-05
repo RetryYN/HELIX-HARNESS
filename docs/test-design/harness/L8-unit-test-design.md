@@ -580,3 +580,11 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-GRCIGEN-002 | tie break | 同一updatedAtではattempt、run ID順で決定的に選ぶ | `tests/github-review-ci-generation.test.ts` |
 | U-GRCIGEN-003 | success不在 | terminal successが無ければnullを返して通知・receipt生成を拒否する | `tests/github-review-ci-generation.test.ts` |
 | U-CPRCONV-023 | producer共有 | pr-notifyがnewer failureではなく同HEAD latest success generationを通知へ束縛する | `tests/claude-pr-convergence.test.ts` |
+
+### DB再構築のreview PLAN解析共有（PLAN-RECOVERY-1568）
+
+対象設計: `docs/design/harness/L6-function-design/function-spec.md`
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DBRS-001 | 再構築内の解析寿命 | 1回の再構築でloadReviewPlansは1回。次回再構築ではPLAN変更を再読込してreview registryへ反映する。3回解析と再構築間cacheを拒否し、解析例外時は既存投影行をrollbackで保持する | `tests/slow/projection-writer.test.ts` |

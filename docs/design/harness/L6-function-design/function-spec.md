@@ -1077,6 +1077,17 @@ immutable snapshotを返す。cacheはmicrotask境界で自動破棄し、次com
 |---|---|---|---|---|
 | `computeOutstandingWork` | repo root | 同期run内共有snapshot | microtask後再計算、repo root別、I/O fail-open維持 | U-OUTSNAP-001 |
 
+### DB再構築のreview PLAN解析共有（PLAN-RECOVERY-1568）
+
+`rebuildHarnessDb`はreview PLANをGit日付provenance込みで一度取得し、model run、roadmap status、
+review registryへ同じ解析結果を渡す。共有範囲は当該再構築呼出しだけとし、次回は必ず読み直す。
+入力を省略せず、consumerは解析配列を変更しない。取得失敗は既存transaction rollbackへ伝播する。
+これはrepository全体のatomic filesystem snapshotを保証するものではない。
+
+| 関数 | pre | post | invariant | oracle |
+|---|---|---|---|---|
+| `rebuildHarnessDb` | repo rootとDB | review PLAN解析を3consumerで共有 | 再構築ごと再読込、既存投影・provenance・rollback維持 | U-DBRS-001 |
+
 ### 編集対象root aliasの境界（PLAN-RECOVERY-1566）
 
 `resolveWorkGuardTargetState`は存在する祖先からGit toplevelを得て物理rootを確定し、
