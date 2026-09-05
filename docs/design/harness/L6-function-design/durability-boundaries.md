@@ -46,6 +46,13 @@ Windowsのregular file fsyncはwritable/non-truncating handleで実行し、dire
 `file_fsync_same_volume_rename` capabilityへ縮退する。Windows対応claimはactual runnerでinitial/second epoch、
 pointer replacement、restart、hard-link mutexを通過した場合だけ許可する。
 
+### #1562の早期拒否差分（検収中）
+
+claim取得前にもprevious snapshotを照合し、既知staleを副作用なしで拒否する。
+取得後CASは必ず残す。取得前の読取失敗は`durability_uncertain`、取得後不一致は
+正規解放後に`concurrent_conflict`とする。これは全競合下の進行保証ではなく、
+既知stale writerが実行済みeffectの完了記録を不要に阻害する経路を減らす修正である。
+
 ## 4. recovery判定
 
 `missing`だけがfresh start可能である。`uncommitted`は安全に無視できるが診断を残す。`corrupt`と

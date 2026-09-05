@@ -27,11 +27,41 @@ async function waitUntil(predicate: () => boolean): Promise<void> {
 
 function child(repo: string, mode: string, id: string) {
   const process = spawn("node", [tsxCli, fixture, repo, mode, id], { stdio: "pipe" });
+  let stderr = "";
+  process.stderr.on("data", (chunk: Buffer) => {
+    stderr = (stderr + chunk.toString("utf8")).slice(-8192);
+  });
   const exited = new Promise<number | null>((resolve) => process.once("exit", resolve));
-  return { process, exited };
+  const closed = new Promise<void>((resolve) => process.once("close", () => resolve()));
+  return { process, exited, closed, diagnostic: () => ({ id, stderr }) };
 }
 
 describe("PLAN-L7-449 actual process durability", () => {
+  it("PLAN-RECOVERY-1562-durable-loop-completion: stale contender does not block completion", async () => {
+    const repo = root();
+    const worker = child(repo, "held-effect", "worker");
+    const contender = child(repo, "stale-contender", "contender");
+    try {
+      const workerExit = await worker.exited;
+      writeFileSync(join(repo, "completion-attempted"), "done");
+      const contenderExit = await contender.exited;
+      await Promise.all([worker.closed, contender.closed]);
+      expect(workerExit, JSON.stringify(worker.diagnostic())).toBe(0);
+      expect(contenderExit, JSON.stringify(contender.diagnostic())).toBe(2);
+      expect(JSON.parse(readFileSync(join(repo, "contender-result.json"), "utf8")).reason).toBe(
+        "stale_previous",
+      );
+      expect(readFileSync(join(repo, "effects.log"), "utf8").trim().split(/\r?\n/)).toEqual([
+        "worker",
+      ]);
+      expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
+    } finally {
+      if (worker.process.exitCode === null) worker.process.kill();
+      if (contender.process.exitCode === null) contender.process.kill();
+      await Promise.all([worker.closed, contender.closed]);
+    }
+  }, 30_000);
+
   it("IT-DUR-004/007: two child processes dispatch the same worker at most once", async () => {
     const repo = root();
     const first = child(repo, "barrier", "first");
@@ -41,7 +71,11 @@ describe("PLAN-L7-449 actual process durability", () => {
     );
     writeFileSync(join(repo, "release"), "release");
     const exits = await Promise.all([first.exited, second.exited]);
-    expect(exits.filter((code) => code === 0)).toHaveLength(1);
+    await Promise.all([first.closed, second.closed]);
+    expect(
+      exits.filter((code) => code === 0),
+      JSON.stringify({ exits, children: [first.diagnostic(), second.diagnostic()] }),
+    ).toHaveLength(1);
     expect(readFileSync(join(repo, "effects.log"), "utf8").trim().split(/\r?\n/)).toHaveLength(1);
     expect(readLoopEpochFromFs(repo, PLAN).status).toBe("committed");
   });
