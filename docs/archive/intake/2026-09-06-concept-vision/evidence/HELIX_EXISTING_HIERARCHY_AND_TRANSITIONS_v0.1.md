@@ -668,7 +668,7 @@ System Synthesis
 
 したがって、Synthesisを丸ごと成長の「改善」箱へ移動するのは粗い。設計、検証構成、通常製品のrefactor、経験の昇格にも使う。source上のfamilyと、用途別の閲覧分類を別にする。
 
-### 14.3 Responsibility-centric Learning
+### 14.3 責務中心の学習（Responsibility-centric Learning）
 
 この部分で直接読んだ根拠はIssue #1384の要求であり、全runtimeを確認した報告ではない。[S28]
 

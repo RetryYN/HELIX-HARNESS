@@ -121,7 +121,7 @@ HELIX自身のRLS-R-09のR0〜R11は内部公開工場のprotocolとして保全
 ## 出典
 
 [DEC06]: DECISIONS_v0.6.md
-[V05]: history/v0.5/HELIX_RELEASE_AND_GENERATION_RESEARCH_v0.5.md
+[V05]: history/v0.5/HELIX_RELEASE_AND_GENERATION_RESEARCH_v0.5.md "旧版調査書（今回の入力には未同梱）"
 [CUR07]: https://github.com/RetryYN/HELIX-HARNESS/issues/1494
 [CUR11]: https://github.com/RetryYN/HELIX-HARNESS/blob/8f835e23c8d4110260d1eff97c9b167987bff37d/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md
 [CUR12]: https://github.com/RetryYN/HELIX-HARNESS/blob/8f835e23c8d4110260d1eff97c9b167987bff37d/docs/governance/release-module-bundle-rollout-roadmap.md

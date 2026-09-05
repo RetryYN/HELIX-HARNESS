@@ -86,3 +86,4 @@ review_evidence: []
 - PLAN lint: exit 0。独立レビュー、CI、main read-afterは未完了。レビューを実行したという記録を創作しない。
 - 原文はcommit `17f00abeb`でremote保存済み。hash一致と保存を確認後、元ZIPのみ削除した。原文はGitから復元可能。
 - DB rebuildおよびcommit後outstanding snapshot照合はexit 0。PR #1576で独立検収を追跡する。
+- CIのdesign-language違反14件は原文保存commitを維持したうえで閲覧版を日本語補足し是正。gateは2339文書・違反0、exit 0。現行SHA256SUMSは閲覧版、原文checksumは `17f00abeb` に固定する。
