@@ -1455,6 +1455,43 @@ export function checkDesignLanguage(repoRoot: string): {
   }
 }
 
+/**
+ * doctor gate を 1 件だけ実行する経路。
+ * push 前の local 実行と CI preflight から使い、full doctor と同一の check 関数へ委譲することで
+ * 「単体実行だけ判定が違う」配線 drift を作らない。
+ */
+export const DOCTOR_SINGLE_GATES = {
+  "design-language": checkDesignLanguage,
+} as const satisfies Record<string, (repoRoot: string) => { messages: string[]; ok: boolean }>;
+
+export type DoctorSingleGateId = keyof typeof DOCTOR_SINGLE_GATES;
+
+export function runDoctorGate(
+  gate: string,
+  repoRoot: string,
+): { ok: boolean; gate: string; messages: string[] } {
+  // own key に限定する。通常の添字 lookup だと "toString" / "constructor" / "__proto__" のような
+  // prototype 継承 property を拾い、unknown gate の fail-close 契約が崩れる（#1547 Codex 指摘）。
+  const check = Object.hasOwn(DOCTOR_SINGLE_GATES, gate)
+    ? (
+        DOCTOR_SINGLE_GATES as Record<
+          string,
+          undefined | ((root: string) => { messages: string[]; ok: boolean })
+        >
+      )[gate]
+    : undefined;
+  if (typeof check !== "function") {
+    const known = Object.keys(DOCTOR_SINGLE_GATES).join(", ");
+    return {
+      ok: false,
+      gate,
+      messages: [`doctor: gate - violation unknown gate ${gate} (known: ${known})`],
+    };
+  }
+  const result = check(repoRoot);
+  return { ok: result.ok, gate, messages: result.messages };
+}
+
 export function checkHandoverRetirementInventory(repoRoot: string): {
   messages: string[];
   ok: boolean;
