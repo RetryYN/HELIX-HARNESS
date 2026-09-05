@@ -25,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:2026-09-02 追加指示書2件を最適化し、三社固定レーン／Cursor Cloud資源分散／GitHub Auditor／HELIX-Bench資格を要求へ取り込む"
 created: 2026-09-02
-updated: 2026-09-05
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1358
 behavior_contract_id: THREE-LANE-CLOUD-CAPACITY-ORCHESTRATION-001
@@ -74,11 +74,15 @@ generates:
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-acceptance.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-recognition.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-recognition.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — v0.3→v0.4 Requirement Re-entryと旧approval非流用" }
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }
-  - { role: qa, slot_label: "QA — 24 AC、critical miss、budget UNKNOWN、model revision" }
+  - { role: qa, slot_label: "QA — 27 AC、critical miss、budget UNKNOWN、model revision、writer排他" }
   - { role: tl, slot_label: "TL — 既存owner再利用とruntime解放境界" }
 review_evidence: []
 ---
@@ -87,13 +91,21 @@ review_evidence: []
 
 ## 入力資料のdisposition
 
-- 三社固定レーン／Cursor Cloud資源分散の入力案は、L1の9要求、L3の22 requirement、L10の24 oracle、#1359／#1362へ分解する。
+- 三社固定レーン／Cursor Cloud資源分散の入力案は、L1の9要求、L3の25 requirement、L10の27 oracle、L12の9認識条件、#1359／#1362へ分解する。
 - GitHub Auditor／HELIX-Bench方針は、L3の`3L-R-15..20`、L10の`3L-AC-016..022`、#1360／#1361へ分解する。
 - 原稿ファイルは正本にせず、内容のtraceとtargeted oracle確認後にrootから削除する。
 - PR #1299／PLAN-L3-75はv0.3履歴として保持し、本candidateへapprovalを流用しない。
 
 ## Freeze境界
 
-本PLAN固有のL3 human gateは成立済みである。candidateは独立技術reviewとcanonical freezeまで隔離を維持する。
+### 技術検収所見の補完
+
+#1358の技術検収comment 5548224417に対し、branch事前発行、独立single-writer oracle、起動前後2 leg照合、Phase A/B移行条件を補完する。L1→L3とL1↔L12の全ID対応を明示し、L12本文をpair先へ一元化する。承認記録は変更しない。この補完自体を独立検収成功とは扱わず、catalog登録方針の照合とcanonical promotionは引き続き未完了である。
+
+局所検証（2026-09-06）: `helix plan lint`と`git diff --check`がexit 0。Nodeによる文書照合では、L3の25要件すべてをL10の27 ACが参照し、未定義要件参照0、L1の9要求すべてにL3導出対応とL12認識条件が存在することを確認した。これは文書の参照検証であり、実runtimeの競合試験、cloud実行、独立reviewの成功証拠ではない。
+
+2026-09-04のL3 human gateは当時の22要件／24 oracle版を対象とする履歴として保持する。
+補完後の25要件／27 oracle版への承認拡張とは扱わず、canonical promotion PRでは追加・変更差分のhuman gateを必要とする。
+candidateは独立技術reviewとcanonical freezeまで隔離を維持する。
 独立exact-HEAD review、CI、doctor、DB convergenceが成立した後に限り、
 v0.3 current authorityを置換する別の原子的promotion PRへ進む。
