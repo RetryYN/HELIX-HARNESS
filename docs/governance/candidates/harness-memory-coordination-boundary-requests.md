@@ -13,7 +13,7 @@ plan_id: PLAN-L3-86-harness-memory-coordination-boundary
 
 ## 位置づけ
 
-本書は未承認のL1候補である。harness memoryをエージェント間の有期限な連絡・受渡し・再開通知へ限定する要求を
+本書はPLAN-L3-86の人間承認が記録済みで、独立検収・正本化待ちのL1候補である。harness memoryをエージェント間の有期限な連絡・受渡し・再開通知へ限定する要求を
 提案する。要求、要件、設計、受入条件、ADR、長期知識、個人設定、進捗の正本をmemoryへ移す提案ではない。
 
 ## 利用者要求
@@ -63,4 +63,4 @@ assignmentやleaseを通知する場合も、正本はharness.db／GitHub／PLAN
 - #1420のJSON key ordering冪等性の再実装。
 - provider native configurationの全項目実装。
 - Requirement、Design、ADR、Skill、Knowledge、Release、Assignmentの新しい正本やDBを作ること。
-- 未承認候補をcurrent output、runtime、DB、CLI、SessionStartへ先行投影すること。
+- 独立検収・正本化前の候補をcurrent output、runtime、DB、CLI、SessionStartへ先行投影すること。
