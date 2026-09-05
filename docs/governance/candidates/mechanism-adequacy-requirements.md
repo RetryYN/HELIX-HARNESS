@@ -4,7 +4,7 @@ authority_status: proposed_pending_l3_confirmation
 canonical_vmodel: L1-L12
 canonical_layer: L3
 canonical_pair: L10
-version: 0.1
+version: 0.2
 owner: UIL-04
 plan: PLAN-L3-89-mechanism-adequacy-authority
 parent_design: docs/governance/candidates/mechanism-adequacy-requests.md
@@ -76,11 +76,9 @@ before/after、品質、費用、副作用、再発を同一適用条件で測�
 評価誤りを含む経験、適用条件、反例、昇格証拠は既存Learningへ渡す。過去事例は評価時点revisionで再生し、後日判明した正解を入力へ漏らさない。
 新機構の件数でなく誤昇格、見逃し、診断費用、手戻り、再発を評価する。
 
-## MA-R-08 横断利用の境界
+## 非対象
 
-HELIXWebへの横断利用は後続段階。tenant境界、明示許諾、出所、利用制限が成立する構造化証拠だけを対象にする。
-コード・秘密・生ログの無差別集約は禁止。環境差と重複事例を分離し、件数だけでは一般化しない。既存Learningの検証・承認を経る。
-Webやtenantの新runtimeを本sliceで作らず、前提未成立なら横断利用は未実施として保持する。
+HELIXWeb、専用UI/API、マルチテナント、利用者データ集約は今回の依存・受入・Release条件および後続必須義務に含めない。専用基盤・空実装・予約schemaを追加しない。既存Learningの出所・利用制限・cross-project検証契約は維持する。
 
 ## 主担当と接続先
 

@@ -4,7 +4,7 @@
 受付追跡：https://github.com/RetryYN/HELIX-HARNESS/issues/1248#issuecomment-5548311084
 採番予約：https://github.com/RetryYN/HELIX-HARNESS/issues/1248#issuecomment-5548320520
 照合基準：main `ff51260578c22124190964b6cc003612a83c075d`。
-原稿：`HELIX_MECHANISM_ADEQUACY_REQUEST_v0.1.md`。原文は[要求候補](mechanism-adequacy-requests.md)へ保持する。
+原稿：`HELIX_MECHANISM_ADEQUACY_REQUEST_v0.2.md`（v0.1を置換）。原文は[要求候補](mechanism-adequacy-requests.md)へ保持する。
 本台帳は追跡用であり、要求・承認・完了の第二正本にはしない。
 
 L1の[企画候補](mechanism-adequacy-vision.md)はMA-BR-01..04を定義し、L12の
@@ -22,10 +22,10 @@ BR→R→ACとBR→OPを分離し、L10の機能試験だけでL12の運用効�
 | R5 証拠 | MA-R-05 | MA-AC-13..15 |
 | R5 費用 | MA-R-06 | MA-AC-07/16/17 |
 | R6 効果 | MA-R-07 | MA-AC-18/19/21 |
-| R6 Web | MA-R-08 | MA-AC-20 |
+| v0.1のWeb条項 | v0.2で非対象化。旧候補MA-R-08は撤去 | 旧MA-AC-20を撤去、番号は再利用しない |
 | 既存責務、実装段階 | 要件候補の主担当と下記導入順 | MA-AC-12/21 |
 
-原稿の受入1→03..08、2→10/17、3→13/14、4→14/16/17/20、5→18/19、6→21。
+原稿の受入1→03..08、2→10/17、3→13/14、4→14/16/17、5→18/19、6→21。
 
 ## 現行契約との差分
 
@@ -36,7 +36,7 @@ UIL-R-06..14に評価・配車・効果・学習・replay・AI境界、UIL-R-15�
 既存機構を再実装せず、ownerをUIL-04 #1248に集約する。
 
 最適化点：AI出力の再生成決定性と、固定証拠からの機械評価の決定性を区別した。
-六分類と既存routeは一対一対応ではない。Web横断学習を初期判定へ一括hard dependencyにしない。
+六分類と既存routeは一対一対応ではない。HELIXWebを依存・受入・Release条件・後続必須義務から除外する。
 
 ## 導入とRelease接続
 
@@ -44,7 +44,7 @@ UIL-R-06..14に評価・配車・効果・学習・replay・AI境界、UIL-R-15�
 2. 既存UIL正本へのversion-upとmain read-after後、#397でRequirement IRへ収載する。Issueから直接IRを生成しない。
 3. 一領域のread-only評価：MA-R-01..03/05/06。確認済み機構集合を固定し既知事例で分類する。
 4. 設計候補・既存配車：MA-R-04。UIL-05/06と必要なSystem Synthesis契約だけへ接続する。
-5. 運用効果：MA-R-07。許諾・Learning境界が成立した範囲でのみMA-R-08へ進む。
+5. 運用効果：MA-R-07。現行HELIX内で効果測定・再発監視を閉じる。既存Learning契約を維持し、新しい横断学習基盤を作らない。
 
 Release所属候補は既存の改善・再設計機能群。#1494/#1500の確定revisionへ対応を登録し、正式なRelease IDや出荷済みを捏造しない。
 各段階は要求→設計→実装→検証→Release→L12のedgeと後続義務を持つ。#1037の保留解除、独立DB、常駐ループ、
@@ -53,11 +53,17 @@ Release所属候補は既存の改善・再設計機能群。#1494/#1500の確�
 ## 原稿削除条件
 
 原文移管の一致とtraceの欠落なしを確認し、PLAN/追跡先と独立検収を揃えて安全に保存した後にroot原稿を削除する。
-現在は検収前のため原稿を保持する。他レーンの変更を混載・削除しない。
+v0.2全文移管・trace検査とGit保存の後、rootのv0.1/v0.2を削除する。原稿整理と独立検収・正本昇格の完了は区別する。他レーンの変更を混載・削除しない。
 
 ## 受付時の検証記録
 
-2026-09-05、上記baselineに本sliceの候補5ファイルを追加した隔離worktreeで確認した。
+### v0.2への置換検査（2026-09-05）
+
+原稿v0.2全文と要求候補末尾の一致、7要件・20受入条件、R/AC双方向参照、Web要件MA-R-08/AC-20の撤去をNode assertで確認した。
+対象PLAN lintと`git diff --check`はexit 0。既知advisoryは47件。独立検収・正本昇格・runtime完成を意味しない。
+v0.1原文は既存commit `bcc5a18abda6c46a9f6b7091e5bc9abf77755936`の要求候補で復元できる。
+
+旧v0.1候補の記録（v0.2の検証結果ではない）：2026-09-05、上記baselineに本sliceの候補5ファイルを追加した隔離worktreeで確認した。
 
 - `helix plan lint docs/plans/PLAN-L3-89-mechanism-adequacy-authority.md`：exit 0。対象1件、採番1158件、新規衝突0。
 - `vitest run tests/plan-lint.test.ts`：55/55成功。これはlint実装の回帰であり、本機能runtimeの検証ではない。

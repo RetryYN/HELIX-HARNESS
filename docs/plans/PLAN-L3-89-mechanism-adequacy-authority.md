@@ -29,7 +29,7 @@ backprop_decision_reason: "新要求を既存UILの拡張候補へ整理する�
 no_code_decision: no_change
 ddd_modeling_decision: policy
 contract_preconditions: "原稿と現行UIL-R-04/05、UIL-R-06..15、対応L10を参照できる"
-contract_postconditions: "原稿6要求を8要件候補・21受入候補へ分解し、原文と移管traceを保持する"
+contract_postconditions: "原稿6要求を7要件候補・20受入候補へ分解し、原文と移管traceを保持する"
 contract_invariants: "六分類はscope・change class・routeとは独立。新loop、DB正本、scheduler、承認gateを作らない"
 contract_failures: "未接続・検索漏れ・予算切れ・AI主張の新機構必要への誤昇格、反証破棄、未知の成功化を拒否する"
 tdd_red_required: false
@@ -82,7 +82,9 @@ review_evidence: []
 
 ## 収束境界
 
-原文保存、8要件・21AC、移管traceを揃える。L1目的とL12の観測指標は既存UILへ接続する。
+原文保存、7要件・20AC、移管traceを揃える。L1目的とL12の観測指標は既存UILへ接続する。
 独立検収とPLAN/正本への保全前はroot原稿を削除しない。共有rootの他変更は触らない。
 mainおよびopen branchの番号予約をPR admission時に再検査し、snapshotは正規生成手順で更新する。
-要件正本のversion-up、IR、runtime、Web横断利用、Releaseは後続であり、本候補の完了と混同しない。
+要件正本のversion-up、IR、runtime、Releaseは後続であり、本候補の完了と混同しない。
+
+HELIXWebはv0.2により非対象。依存・受入・Release条件・後続必須義務へ含めない。
