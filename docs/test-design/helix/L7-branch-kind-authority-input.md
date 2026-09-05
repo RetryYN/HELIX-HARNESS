@@ -64,6 +64,13 @@ pushのzero／通常before、PRの空／zero base、不正な明示baseを両ste
 `U-BRAUTH-013`は`doctor --scope toolchain`で代替ghの呼出し0回を要求し、
 通常doctor／reviewのbranch検査が維持されることも同じfixtureで検証する。
 
+同oracleは異常終了した代替ghの診断本文をCLI出力へ漏らさないことも要求する。
+出力上限の反例は2MiBの空白に有効PRのJSONを続け、timeoutの反例は有効PRのJSONを
+20秒後に返す。上限がなければ正常応答になるため、不正JSON拒否では代替できない。
+外側30秒のtest process上限ではなく、providerの1MiB／10秒境界による取得不能を確認する。
+各上限を個別に緩めるmutationは誤受理を検出し、復元後の正常対照も維持する。
+これはリソース境界の局所検証であり、実GitHubの障害原因分類や自動復旧の完了ではない。
+
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-BRAUTH-013 | CLIのPR取得 | 実CLIと代替ghを使い、明示hostname／repository、単一PR、部分引数時の呼出し0、不正JSON／複数PR／差分偽装拒否を検査する。実GitHub取得とdoctor全体の成功は別検収 | `tests/branch-kind-authority-input.test.ts` |

@@ -95,7 +95,7 @@ provider診断は`pr_local_identity_invalid`、`pr_context_invalid`、
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
-| U-BRAUTH-013 | CLIのPR取得 | 実CLI＋代替ghで一意PRの受理、環境変数の別repo指定の不採用、複数PR／不正JSON／不完全引数の拒否を検査する | tests/branch-kind-authority-input.test.ts |
+| U-BRAUTH-013 | CLIのPR取得 | 実CLI＋代替ghで一意PRの受理、環境変数の別repo指定の不採用、複数PR／不正JSON／不完全引数の拒否、異常終了本文の非表示、出力1MiB・10秒境界を検査する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-012 | PR入力provider | 同一repository／branch／HEADを照合し、取得中の変更とproviderによる入力改変を拒否する。CLI自動取得の証明には含めない | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-010 | merge-base一意性 | 実criss-cross履歴の2件のbaseを拒否し、単一baseは受理する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-011 | snapshot整合 | diff取得直後の実HEAD変更を拒否する | tests/branch-kind-authority-input.test.ts |
