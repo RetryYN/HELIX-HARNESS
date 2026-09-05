@@ -4,8 +4,12 @@
   "owner_issue": 1500,
   "archive_verified": true,
   "archive_verification_scope": "local_extracted_file_bytes_only",
-  "remote_preservation_verified": false,
+  "remote_preservation_verified": true,
+  "remote_preservation_head": "b1b4046934f9e5a5a93649314503c2b98b2abeb9",
+  "remote_preservation_scope": "fetched_git_blobs_14_payload_hashes_only",
   "original_inputs_deleted": false,
+  "original_input_disposition": "removed_from_repository_root_recoverably_retired",
+  "original_input_disposition_verified_on": "2026-09-05",
   "integrity_checks": {
     "checked_on": "2026-09-05",
     "input_files_verified": 2,
