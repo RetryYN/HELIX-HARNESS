@@ -337,6 +337,7 @@ import {
   analyzeReviewEvidence,
   loadReviewerSessionModelHistory,
   loadReviewPlans,
+  ReviewerSessionModelHistoryError,
   reviewEvidenceMessages,
 } from "../lint/review-evidence";
 import {
@@ -839,8 +840,13 @@ export function checkReviewEvidence(repoRoot: string): {
     try {
       sessionModelHistory = loadReviewerSessionModelHistory(repoRoot);
     } catch (error) {
-      sessionModelHistoryError =
-        error instanceof Error ? error.message : "reviewer_session_model_history_invalid";
+      // 既知 schema 診断は typed reason を、未知例外（JSON.parse 等）は cause-digest だけを surface する。
+      if (error instanceof ReviewerSessionModelHistoryError) {
+        sessionModelHistoryError = error.reason;
+      } else {
+        const cause = stableCauseDigest(error);
+        sessionModelHistoryError = `reviewer_session_model_history_invalid:unknown cause_kind=${cause.causeKind} cause_digest=${cause.digest}`;
+      }
     }
     const r = analyzeReviewEvidence(loadReviewPlans(repoRoot), {
       sessionModelHistory,

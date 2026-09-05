@@ -192,9 +192,23 @@ export interface ReviewerSessionModelHistory {
   sessions: ReviewerSessionModelHistoryEntry[];
 }
 
+/**
+ * registry の schema / 時系列違反を表す typed error。doctor 側は `reason`（有限な locator 付き reason）だけを
+ * surface し、JSON.parse 等の未知例外は cause-digest 境界へ回す（raw message を露出しない）。
+ */
+export class ReviewerSessionModelHistoryError extends Error {
+  readonly reason: string;
+  constructor(locator: string) {
+    const reason = `reviewer_session_model_history_invalid:${locator}`;
+    super(reason);
+    this.name = "ReviewerSessionModelHistoryError";
+    this.reason = reason;
+  }
+}
+
 function historyString(value: unknown, label: string): string {
   if (typeof value !== "string" || value.trim() === "") {
-    throw new Error(`reviewer_session_model_history_invalid:${label}`);
+    throw new ReviewerSessionModelHistoryError(`${label}`);
   }
   return value;
 }
@@ -209,7 +223,7 @@ const HISTORY_ISO_PATTERN =
 function historyIso(value: unknown, label: string): string {
   const text = historyString(value, label);
   if (!HISTORY_ISO_PATTERN.test(text) || !Number.isFinite(Date.parse(text))) {
-    throw new Error(`reviewer_session_model_history_invalid:${label}`);
+    throw new ReviewerSessionModelHistoryError(`${label}`);
   }
   return text;
 }
@@ -217,7 +231,7 @@ function historyIso(value: unknown, label: string): string {
 function historyRuntime(value: unknown, label: string): ReviewerSessionModelHistoryRuntime {
   const text = historyString(value, label);
   if (!(REVIEWER_SESSION_MODEL_HISTORY_RUNTIMES as readonly string[]).includes(text)) {
-    throw new Error(`reviewer_session_model_history_invalid:${label}`);
+    throw new ReviewerSessionModelHistoryError(`${label}`);
   }
   return text as ReviewerSessionModelHistoryRuntime;
 }
@@ -229,19 +243,19 @@ function historyRuntime(value: unknown, label: string): ReviewerSessionModelHist
  */
 export function parseReviewerSessionModelHistory(raw: unknown): ReviewerSessionModelHistory {
   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
-    throw new Error("reviewer_session_model_history_invalid:root");
+    throw new ReviewerSessionModelHistoryError("root");
   }
   const root = raw as Record<string, unknown>;
   if (root.schema_version !== REVIEWER_SESSION_MODEL_HISTORY_SCHEMA) {
-    throw new Error("reviewer_session_model_history_invalid:schema_version");
+    throw new ReviewerSessionModelHistoryError("schema_version");
   }
   if (!Array.isArray(root.sessions)) {
-    throw new Error("reviewer_session_model_history_invalid:sessions");
+    throw new ReviewerSessionModelHistoryError("sessions");
   }
   const seen = new Set<string>();
   const sessions = root.sessions.map((item, index): ReviewerSessionModelHistoryEntry => {
     if (typeof item !== "object" || item === null || Array.isArray(item)) {
-      throw new Error(`reviewer_session_model_history_invalid:sessions[${index}]`);
+      throw new ReviewerSessionModelHistoryError(`sessions[${index}]`);
     }
     const entry = item as Record<string, unknown>;
     const sessionId = historyString(
@@ -256,12 +270,12 @@ export function parseReviewerSessionModelHistory(raw: unknown): ReviewerSessionM
     seen.add(sessionId);
     const runtime = historyRuntime(entry.runtime, `sessions[${index}].runtime`);
     if (!Array.isArray(entry.windows) || entry.windows.length === 0) {
-      throw new Error(`reviewer_session_model_history_invalid:sessions[${index}].windows`);
+      throw new ReviewerSessionModelHistoryError(`sessions[${index}].windows`);
     }
     let previousUntil: number | null = null;
     const windows = entry.windows.map((w, wi): ReviewerSessionModelWindow => {
       if (typeof w !== "object" || w === null || Array.isArray(w)) {
-        throw new Error(`reviewer_session_model_history_invalid:sessions[${index}].windows[${wi}]`);
+        throw new ReviewerSessionModelHistoryError(`sessions[${index}].windows[${wi}]`);
       }
       const window = w as Record<string, unknown>;
       const label = `sessions[${index}].windows[${wi}]`;
@@ -269,14 +283,14 @@ export function parseReviewerSessionModelHistory(raw: unknown): ReviewerSessionM
       const until = window.until === null ? null : historyIso(window.until, `${label}.until`);
       const sinceMs = Date.parse(since);
       if (until !== null && Date.parse(until) <= sinceMs) {
-        throw new Error(`reviewer_session_model_history_invalid:${label}.until`);
+        throw new ReviewerSessionModelHistoryError(`${label}.until`);
       }
       if (previousUntil === null && wi > 0) {
         // 直前 window が open（until null）なのに後続がある = 末尾以外の open window。
-        throw new Error(`reviewer_session_model_history_invalid:${label}.since`);
+        throw new ReviewerSessionModelHistoryError(`${label}.since`);
       }
       if (previousUntil !== null && sinceMs < previousUntil) {
-        throw new Error(`reviewer_session_model_history_invalid:${label}.since`);
+        throw new ReviewerSessionModelHistoryError(`${label}.since`);
       }
       previousUntil = until === null ? null : Date.parse(until);
       return {
