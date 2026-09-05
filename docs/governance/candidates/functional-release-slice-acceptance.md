@@ -20,11 +20,12 @@ pair_of: docs/governance/candidates/functional-release-slice-requirements.md
 
 ## §0 合否境界
 
-v0.2追加差分は未承認。既存v0.1承認の撤回も、本差分への暗黙適用もしない。
+v0.2追加差分は2026-09-05に明示承認された（[L3-PO-1494-002](https://github.com/RetryYN/HELIX-HARNESS/issues/1494#issuecomment-5548610640)）。既存v0.1承認履歴は維持する。
+本承認は受入条件への承認であり、実装検収・独立レビュー・正本昇格・#397 IR admission・publish／cutoverの成立を意味しない。
 
 Sliceを追加した事実、file count、Bundle名、green件数だけでは合格にしない。L1／L3／L10／Requirement IRのauthority、
 Module ownership、Bundle exact set、依存閉包、channel、artifact、consumer、rollback、DB／GitHub／DevOSのread-afterを同じ
-Slice revisionへ束縛する。candidate承認前はruntime、current DB、generated release outputへ投影しない。
+Slice revisionへ束縛する。独立レビュー、L10受入の対形成、正本昇格、#397 Requirement IR admissionを完了するまでは、runtime、current DB、generated release outputへ投影しない。
 
 ## §1 Oracle完全集合
 
@@ -49,7 +50,7 @@ Slice revisionへ束縛する。candidate承認前はruntime、current DB、gene
 | `FRS-AC-017` | FRS-R-17 | DevOSはgenerated manifestとseal済みreceiptだけを保存する | DevOS手編集、未承認Sliceのpublish／cutoverを拒否 |
 | `FRS-AC-018` | FRS-R-18 | registry、artifact、GitHub、DB、consumer、rollbackを再生し同じrevisionへ収束する | event順序変更、projection削除、read-after不一致をgreenにしない |
 | `FRS-AC-019` | §1 | RLSの既存機構を再利用し、承認済み新要求から旧構成をversion-upする | 旧構成を共同正本として再昇格、またはModule／Bundleを同一enumへ畳み込むmutationを拒否 |
-| `FRS-AC-020` | §2 | 非対象のruntime、routing、resident lane、別authority、publishが候補から発生しない | 未承認candidateからruntime／tag／secret変更を行うmutationをkill |
+| `FRS-AC-020` | §2 | 非対象のruntime、routing、resident lane、別authority、publishが候補から発生しない | 承認済みでも正本未昇格またはIR admission未成立のcandidateからruntimeへ投影するmutation、および操作別承認なしにtag／secret変更を行うmutationをkill |
 | `FRS-AC-021` | FRS-R-19 | 全対象要求revisionに実装・runtime接続・検証・Module・Slice・Bundleと未成立状態が対応する | 要求を分母から削除、二重owner、stale source、未検証を完成とするmutationを拒否 |
 | `FRS-AC-022` | FRS-R-20 | 利用目的・責務・依存から構成とWaveを導出し旧新identityと移行条件を保持する | 旧個数や9群・17系統の固定強制、循環依存隠蔽を拒否 |
 | `FRS-AC-023` | FRS-R-21 | Module連動CI・公開の完成なしに内部適用でき、同じ義務と比較条件で待ち時間・rerunを測定する | 必須義務削減、局所単回値の全CI効果への転用を拒否 |
