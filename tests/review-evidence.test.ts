@@ -1388,7 +1388,11 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
   });
 
   it("U-RVIDENT-010: 実 repo fail-close ガード — 現行 docs/plans に reviewer identity violation が無い", () => {
-    const r = analyzeReviewEvidence(loadReviewPlans(process.cwd()));
+    // doctor（checkReviewEvidence）と同じく tracked registry を渡して評価する。registry を渡さないと
+    // 同一 session の model 切替（PLAN-RECOVERY-1543）が conflict として誤検出され、実 repo の判定と乖離する。
+    const r = analyzeReviewEvidence(loadReviewPlans(process.cwd()), {
+      sessionModelHistory: loadReviewerSessionModelHistory(process.cwd()),
+    });
     expect(r.reviewerIdentityViolations).toEqual([]);
   });
 

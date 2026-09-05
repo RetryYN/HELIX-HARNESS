@@ -60,6 +60,7 @@
     "PLAN-RECOVERY-106-mutation-oracle-locator-resolution",
     "PLAN-RECOVERY-107-lite-consumer-npm-install-determinism",
     "PLAN-RECOVERY-108-ci-isolation-backend-bounded",
+    "PLAN-RECOVERY-110-doctor-live-result-reuse",
     "PLAN-RECOVERY-1411-review-checklist-validation",
     "PLAN-RECOVERY-1493-design-language-early-detection",
     "PLAN-RECOVERY-1543-reviewer-session-model-history",

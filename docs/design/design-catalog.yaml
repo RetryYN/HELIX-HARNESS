@@ -186,6 +186,7 @@ items:
       - docs/design/helix/L6-function-design/roadmap-recovery-correlation.md
       - docs/design/helix/L6-function-design/open-branch-plan-reservation-production-authority.md
       - docs/design/helix/L6-function-design/github-open-branch-plan-reservation-provider.md
+      - docs/design/helix/L6-function-design/branch-kind-authority-input.md
       - docs/design/helix/L6-function-design/immutable-github-action-ref-registry.md
       - docs/design/helix/L6-function-design/github-plan-reservation-bounded-fetch.md
       - docs/design/helix/L6-function-design/slot-scheduler-quota-handover.md
@@ -229,6 +230,8 @@ items:
       - docs/design/helix/L6-function-design/helix-bench-task-dataset.md
       - docs/design/helix/L6-function-design/git-argument-boundary.md
       - docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md
+      - docs/design/helix/L6-function-design/review-evidence-projection-parity.md
+      - docs/test-design/helix/L8-review-evidence-projection-parity-unit-test-design.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md
       - docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
       - docs/design/helix/L6-function-design/design-language-early-detection.md

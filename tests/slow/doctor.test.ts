@@ -2232,9 +2232,16 @@ describe("runDoctor", () => {
     }
   });
 
-  it("includes branch-kind-check in doctor output", () => {
+  it("snapshot未指定のdoctorはbranch authority欠落を表示し、OKへ変換しない", () => {
     const r = liveDoctor();
-    expect(hasDoctorMessage(r.messages, "doctor: branch-kind-check - OK")).toBe(true);
+    expect(
+      r.messages.some(
+        (message) =>
+          message.includes("branch-kind-check - block branch_authority_unavailable") &&
+          message.includes("branch_snapshot_required"),
+      ),
+    ).toBe(true);
+    expect(hasDoctorMessage(r.messages, "doctor: branch-kind-check - OK")).toBe(false);
   });
 
   it("includes right-arm verification strategy hard gate in doctor output", () => {
@@ -2281,7 +2288,8 @@ describe("runDoctor", () => {
   });
 
   it("U-IHIER-004: includes Issue dependency wiring hard gate in doctor output", () => {
-    const r = runDoctor();
+    // PLAN-RECOVERY-110-doctor-live-result-reuse: 同一suiteの実測出力を共有する。
+    const r = liveDoctor();
     expect(hasDoctorMessageWith(r.messages, "doctor: issue-dependency-wiring - OK")).toBe(true);
   });
 
