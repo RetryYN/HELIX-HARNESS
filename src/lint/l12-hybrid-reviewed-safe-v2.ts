@@ -1,6 +1,12 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #1358: L1→L3導出とL1↔L12認識の併記。受入pairはL3↔L10であり旧pairではない。
+    path: "docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md",
+    contentDigest: "8f5abce162d7c3221bfc54a6e16b9ae381a006db02cd6867a7b5f9bbedf0ed60",
+    finalDisposition: "false_positive",
+  },
+  {
     // #1534: canonical_pair L3と層範囲L1-L12の隣接を旧pairと誤認。実際のpairはL10↔L3。
     path: "docs/governance/candidates/execution-ticket-acceptance.md",
     contentDigest: "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",

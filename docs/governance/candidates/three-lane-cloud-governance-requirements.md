@@ -38,7 +38,7 @@ next_pair_freeze: L10_during_canonical_promotion
 ### 3L-FR-002 Assignment・authority・review loop
 
 - `3L-R-04 Control Authority`: Codexだけがscope、branch、assignment、budget、統合、merge admissionを発行する。
-- `3L-R-05 Cursor Worker Boundary`: CursorはIssueまたはPLANの択一、専用branch、allowed path、budget、TTL内だけを書き、main／別branch／HELIX DBへ書かない。
+- `3L-R-05 Cursor Worker Boundary`: HELIXがprovider起動前に専用branchを事前発行し、発行済みbranchをassignmentへ束縛する。CursorはIssueまたはPLANの択一、専用branch、allowed path、budget、TTL内だけを書き、main／別branch／HELIX DBへ書かない。providerによる事後branch発行を代用にしない。
 - `3L-R-06 Independent Review`: Claudeはblind exact-HEAD reviewを行い、changes requestedはscope／設計変更を除き元Cursor assignment・同branchへ返す。
 
 ### 3L-FR-003 資源予算とrunway
@@ -56,7 +56,10 @@ next_pair_freeze: L10_during_canonical_promotion
 
 - `3L-R-12 WorkerPolicyBundle`: scope／branch／base SHA／assignment／allowed path／requirement／PLAN／test／secret／network／model pool／budget／TTL／completion schemaをdigestへ束縛する。
 - `3L-R-13 Cloud Enforcement`: repository-owned environment、hook、single writer、secret最小権限、max cost、TTLをCursor実行中に強制する。
-- `3L-R-14 External Read-after`: HEAD、PR、requested／effective model、usage、cost、changed path、testをGitHub／providerから外部sealし、worker自己申告を正本にしない。
+- `3L-R-14 External Read-after`: 起動後・成果回収時にbranch owner、assignment、candidate HEADをGitHub／providerから再取得し、起動前の3L-R-24の束縛と照合する。HEADの進行は当該assignmentに帰属する変更として検証し、base HEADとの単純な同値を要求しない。PR、requested／effective model、usage、cost、changed path、testも外部sealし、worker自己申告を正本にしない。owner交代、別branch、帰属不能なHEADは成果取り込みを拒否する。
+- `3L-R-23 Single Writer`: 同一branchの同時writerは1件に限定する。起動前に排他的なwriter所有を確保し、2件目をprovider起動前に拒否する。単なる事前一覧確認だけを排他と見なさない。完了・取消・期限切れによる安全な返却まで所有を保持し、遅延workerが返却後のbranchへ書ける場合は再配車しない。
+- `3L-R-24 Pre-dispatch Identity`: provider起動直前にbranch owner、assignment、base HEADを外部再取得し、発行済みbranchと承認されたscopeの束縛に一致する場合だけ起動する。未発行、owner不明、不一致、stale HEADは起動を拒否し、起動後の検査成功で相殺しない。
+- `3L-R-25 Phased Assignment Migration`: Phase AはIssue正本と事前発行branch、action-bound assignment、3L-R-23の排他、前後2 leg照合、budget／TTLで限定運用する。Phase Bは#860のlease／fenceへ接続する。切替時は新規dispatchを停止し、旧assignmentを終端・取消・隔離して遅延write不能を検証した後、owner／branch／HEADと新lease／fenceの対応を束縛して再開する。旧tokenの再利用やA/B双方のwriter許可を拒否し、移行を証明できなければ停止を保つ。Phase Aでも排他・境界強制を省略しない。
 
 ### 3L-FR-006 GitHub統制監査
 
@@ -74,6 +77,20 @@ next_pair_freeze: L10_during_canonical_promotion
 
 - `3L-R-21 Seven-day Canary`: WIP=2で7日間、canary専用でない実taskを最低5件処理し、cost、accepted PR、first-pass gate、rework、time-to-accepted、Codex relief、local processを測る。
 - `3L-R-22 Billing-cycle Read-after`: cycle末まで予算枯渇と過少利用を監査し、accepted throughputとescaped defectを含めてpolicyを再評価する。
+
+## L1からの導出対応
+
+| 上位要求 | 詳細要件 |
+|---|---|
+| 3L-BR-001 | 3L-R-01、3L-R-02、3L-R-03 |
+| 3L-BR-002 | 3L-R-04、3L-R-09、3L-R-10 |
+| 3L-BR-003 | 3L-R-05、3L-R-12、3L-R-14、3L-R-23、3L-R-24、3L-R-25 |
+| 3L-BR-004 | 3L-R-06、3L-R-11 |
+| 3L-BR-005 | 3L-R-07、3L-R-08、3L-R-09、3L-R-10、3L-R-11 |
+| 3L-BR-006 | 3L-R-12、3L-R-13、3L-R-14、3L-R-15、3L-R-23、3L-R-24 |
+| 3L-BR-007 | 3L-R-15、3L-R-16、3L-R-17 |
+| 3L-BR-008 | 3L-R-18、3L-R-19、3L-R-20 |
+| 3L-BR-009 | 3L-R-21、3L-R-22 |
 
 ## 2. 禁止authority
 
