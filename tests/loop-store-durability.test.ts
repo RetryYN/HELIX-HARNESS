@@ -120,6 +120,7 @@ describe("PLAN-L7-449 loop epoch reader", () => {
     });
     expect(committed.status).toBe("committed");
     expect(calls).toEqual([
+      "readManifestText",
       "acquireExclusiveClaim",
       "readManifestText",
       "writePayloadTemp",
@@ -225,6 +226,7 @@ describe("PLAN-L7-449 loop epoch reader", () => {
       expect(result.intentCapability).toBeNull();
     }
     const conflictPort = {
+      readManifestText: () => null,
       acquireExclusiveClaim: () => false,
     } as unknown as DurableEpochPort;
     expect(
@@ -236,6 +238,66 @@ describe("PLAN-L7-449 loop epoch reader", () => {
         port: conflictPort,
       }).status,
     ).toBe("concurrent_conflict");
+  });
+
+  it("PLAN-RECOVERY-1562-durable-loop-completion: U-DUR-007 rejects stale snapshots and rechecks CAS", () => {
+    for (const changedAfterClaim of [false, true]) {
+      const calls: string[] = [];
+      let reads = 0;
+      const port = new Proxy({} as DurableEpochPort, {
+        get: (_target, name) => () => {
+          calls.push(String(name));
+          if (name === "readManifestText") {
+            reads += 1;
+            return changedAfterClaim && reads === 1 ? null : "changed";
+          }
+          if (name === "acquireExclusiveClaim") return true;
+        },
+      });
+      const result = commitLoopEpoch({
+        planId: PLAN,
+        previousManifestText: null,
+        payload: JSON.parse(payload),
+        sideEffectPhase: "intent_recorded",
+        port,
+      });
+      expect(result.reason).toBe("stale_previous");
+      expect(result.intentCapability).toBeNull();
+      expect(calls).toEqual(
+        changedAfterClaim
+          ? [
+              "readManifestText",
+              "acquireExclusiveClaim",
+              "readManifestText",
+              "unlinkClaim",
+              "fsyncClaimDirectory",
+              "finalizeClaimRelease",
+              "fsyncClaimDirectory",
+            ]
+          : ["readManifestText"],
+      );
+    }
+  });
+
+  it("PLAN-RECOVERY-1562-durable-loop-completion: unreadable snapshot acquires no claim", () => {
+    const calls: string[] = [];
+    const port = new Proxy({} as DurableEpochPort, {
+      get: (_target, name) => () => {
+        calls.push(String(name));
+        if (name === "readManifestText") throw new Error("fixture read fault");
+      },
+    });
+    const result = commitLoopEpoch({
+      planId: PLAN,
+      previousManifestText: null,
+      payload: JSON.parse(payload),
+      sideEffectPhase: "intent_recorded",
+      port,
+    });
+    expect(result.status).toBe("durability_uncertain");
+    expect(result.reason).toBe("snapshot_read_failed");
+    expect(result.intentCapability).toBeNull();
+    expect(calls).toEqual(["readManifestText"]);
   });
 
   it("U-DUR-006/007: rejects an invalid payload and durably releases its claim", () => {

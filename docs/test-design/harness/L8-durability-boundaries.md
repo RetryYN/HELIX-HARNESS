@@ -8,6 +8,14 @@ plan: docs/plans/PLAN-L6-78-durability-boundary-design.md
 
 # durability boundaries テスト・検証設計
 
+## #1562の追加反例（検収中）
+
+- 実2processでintent後のeffectをbarrier待ちさせ、既知stale contenderを投入する。
+  worker完了、contender拒否、副作用1件、最終committedを確認する。
+- 取得前staleではclaim呼出し0、取得前後のsnapshot変更では取得後CAS拒否と正規解放を確認する。
+- SIGKILL時のambiguityと再実行0は従来oracleを維持する。全競合下の進行保証へ一般化しない。
+- child stderrをboundedに回収し、失敗の根拠をassertionへ残す。
+
 | U-ID      | 対象                  | 反例と期待結果                                                                                     | test citation                                |
 | --------- | --------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | U-DUR-001 | cause kind/digest     | Error/string/object/primitiveを有限kindとtyped SHA-256へ写し、同値入力はstable                     | `tests/doctor-cause-digest.test.ts`          |

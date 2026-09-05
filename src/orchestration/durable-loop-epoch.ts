@@ -104,6 +104,25 @@ export function commitLoopEpoch(input: {
   port: DurableEpochPort;
 }): LoopEpochCommitResult {
   const planId = assertLoopPlanId(input.planId);
+  // Reject an already stale writer before it can obstruct completion of an effect.
+  // This is only an early rejection; the authoritative CAS remains inside the claim.
+  try {
+    if (input.port.readManifestText(planId) !== input.previousManifestText) {
+      return {
+        status: "concurrent_conflict",
+        manifest: null,
+        intentCapability: null,
+        reason: "stale_previous",
+      };
+    }
+  } catch {
+    return {
+      status: "durability_uncertain",
+      manifest: null,
+      intentCapability: null,
+      reason: "snapshot_read_failed",
+    };
+  }
   let claimAcquired = false;
   try {
     claimAcquired = input.port.acquireExclusiveClaim(planId);
