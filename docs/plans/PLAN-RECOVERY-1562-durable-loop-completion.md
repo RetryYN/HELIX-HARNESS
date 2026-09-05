@@ -19,6 +19,11 @@ workflow_identity:
   target_axis: workflow_model
   target_id: RECOVERY
 entry_signals: [regression_dev]
+agent_slots:
+  - { role: aim, slot_label: "AIM — 既存の副作用安全性と修正範囲を照合" }
+  - { role: tl, slot_label: "TL — snapshotとclaimの責務境界を検収" }
+  - { role: se, slot_label: "SE — 既知staleの早期拒否を実装" }
+  - { role: qa, slot_label: "QA — 実2process反例とCAS退行を検証" }
 parent_design: docs/design/harness/L6-function-design/durability-boundaries.md
 pair_artifact: docs/test-design/harness/L8-durability-boundaries.md
 verification_bindings:
