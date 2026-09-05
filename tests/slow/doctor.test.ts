@@ -2288,7 +2288,8 @@ describe("runDoctor", () => {
   });
 
   it("U-IHIER-004: includes Issue dependency wiring hard gate in doctor output", () => {
-    const r = runDoctor();
+    // PLAN-RECOVERY-110-doctor-live-result-reuse: 同一suiteの実測出力を共有する。
+    const r = liveDoctor();
     expect(hasDoctorMessageWith(r.messages, "doctor: issue-dependency-wiring - OK")).toBe(true);
   });
 
