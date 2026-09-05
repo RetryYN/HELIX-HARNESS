@@ -1038,7 +1038,12 @@ function loadBranchKindInputForGuard(opts: {
   strictUnknownPrefix?: boolean;
 }): BranchKindInput {
   const repoRoot = process.cwd();
-  if (opts.baseHead !== undefined || opts.candidateHead !== undefined) {
+  if (
+    opts.baseHead !== undefined ||
+    opts.candidateHead !== undefined ||
+    opts.branch !== undefined ||
+    opts.includeWorkingTree === true
+  ) {
     const input = loadBranchKindInput(repoRoot, {
       baseHead: opts.baseHead ?? "",
       candidateHead: opts.candidateHead ?? "",

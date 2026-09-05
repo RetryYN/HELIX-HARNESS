@@ -190,6 +190,24 @@ describe("branch入力authorityの実Git検証", () => {
     ]);
     const missing = { ...snapshot, baseHead: "f".repeat(40) };
     expect(checkBranchKind(root, missing).ok).toBe(false);
+    for (const partial of [
+      ["--branch", snapshot.branch],
+      ["--base-head", snapshot.baseHead],
+      ["--include-working-tree"],
+    ]) {
+      const rejected = spawnSync(
+        process.execPath,
+        [tsx, cli, "guard", "branch-kind", ...partial, "--json"],
+        { cwd: root, encoding: "utf8", timeout: 30_000 },
+      );
+      expect(rejected.status, rejected.stderr).toBe(1);
+      expect(JSON.parse(rejected.stdout).findings).toEqual([
+        expect.objectContaining({ message: "branch_snapshot_incomplete" }),
+      ]);
+    }
+    expect(checkBranchKind(root, { ...snapshot, baseHead: "" }).messages.join("\n")).toContain(
+      "branch_snapshot_incomplete",
+    );
   });
   it("U-BRAUTH-007: supersession比較を同じbaseに固定し作業treeからの混入を拒否する", () => {
     const { root, path, snapshot } = fixture();

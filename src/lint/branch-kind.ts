@@ -305,6 +305,7 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
 }
 
 type SnapshotFailureCode =
+  | "branch_snapshot_incomplete"
   | "invalid_commit_identity"
   | "branch_identity_unavailable"
   | "commit_identity_mismatch"
@@ -331,6 +332,10 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
       stdio: ["ignore", "pipe", "ignore"],
     });
   try {
+    if (
+      ![snapshot.baseHead, snapshot.candidateHead, snapshot.branch].every((value) => value?.trim())
+    )
+      throw new SnapshotFailure("branch_snapshot_incomplete");
     if (![snapshot.baseHead, snapshot.candidateHead].every((sha) => /^[a-f0-9]{40}$/.test(sha)))
       throw new SnapshotFailure("invalid_commit_identity");
     if (!snapshot.branch || snapshot.branch === "HEAD")
