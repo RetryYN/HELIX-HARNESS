@@ -68,6 +68,7 @@ generates:
   - { artifact_path: docs/governance/candidates/concept-vision-release-crosswalk.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L3-1500-concept-vision-intake.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/design-language.ts, artifact_type: source_module }
   - { artifact_path: tests/design-language.test.ts, artifact_type: test_code }

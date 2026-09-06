@@ -282,13 +282,10 @@ describe("design-language lint", () => {
       );
 
       const docs = loadDesignLanguageDocs(root);
-      expect(docs.map((doc) => doc.path)).not.toContain(
-        "docs/archive/intake/source/original.md",
-      );
-      expect(analyzeDesignLanguage(docs, { baselineViolations: 0 }).violations.map((v) => v.path)).toEqual([
-        "docs/governance/current.md",
-        "docs/governance/current.md",
-      ]);
+      expect(docs.map((doc) => doc.path)).not.toContain("docs/archive/intake/source/original.md");
+      expect(
+        analyzeDesignLanguage(docs, { baselineViolations: 0 }).violations.map((v) => v.path),
+      ).toEqual(["docs/governance/current.md", "docs/governance/current.md"]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
