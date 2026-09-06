@@ -47,4 +47,3 @@ recommended/injected/retrieved/outcomeを区別し、推定invocationを実取�
 
 各結果へsource HEAD、入力と契約digest、実行command/result、独立review、consumer、比較条件、残課題を束縛する。
 相手要求のgreenを本要求の代替証拠にしない。要求文書の整理だけでruntime成立・性能改善・退役完了を主張しない。
-

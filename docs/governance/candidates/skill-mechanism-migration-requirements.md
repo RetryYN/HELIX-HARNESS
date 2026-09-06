@@ -77,4 +77,3 @@ ID/digest、注入理由、実送信bytes/tokens、測定方法、HEAD、provide
 
 非対象: Guard/Help生成機構の開発、Policyの意味変更、スキルの一律Guard化、全Agent/Command廃止、固定削減率。
 補足03/04/05は未提供。本文から導出した受入は同名のacceptance文書で管理し、未提供資料の内容を確認済みとしない。
-
