@@ -36,8 +36,11 @@ contract_invariants: "human approvalと技術reviewを混同せず、既存recei
 contract_failures: "差分PLAN取得不能、PLAN parse不能、cross-agent承認欠落、session/model不一致をtyped reasonでfail-closeする。"
 tdd_red_required: true
 red_test: "tests/review-receipt-plan-binding.test.tsのU-RRPB-002..006を実装前に実行し、接合関数が未存在のためredを確認する。"
+red_at: "2026-09-07T04:50:00+09:00"
+green_at: "2026-09-06T21:25:16Z"
 mutation_oracle_required: true
-mutation_oracle: "session、model、review_kind、status、PLAN pathを個別に変異させ、各failure predicateが独立してredになることを検証する。"
+mutation_oracle: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session、model、review_kind、status、PLAN pathと追加境界のseeded defectを個別にfail-closeしてkillする。"
+mutation_oracle_evidence: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session/model/review_kind/status/PLAN path、accepted status、base非terminal→HEAD terminal母集団、Git取得・parse失敗、provider prefix、seal/merge二重接続、local candidate HEAD不一致の各反例を独立してfail-closeする。Claude clean clone実測は .helix/evidence/review-1605/vitest-targeted.log（7 files / 246 tests passed、sha256:2c87f53e8b76254d2baf12089d630d2f07b783cd4bef416f980a0b9a64b153d5）。"
 parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md
 pair_artifact: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md
 verification_bindings:
