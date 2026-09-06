@@ -66,7 +66,7 @@ generates:
   - { artifact_path: docs/governance/candidates/concept-vision-release-crosswalk.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L3-1500-concept-vision-intake.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: tl, slot_label: "TL — 原文と正本の対応" }
   - { role: qa, slot_label: "QA — 保存と参照の検証" }
