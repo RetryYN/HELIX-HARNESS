@@ -1,0 +1,80 @@
+{
+  "schema_version": "g10-ux-evidence-v1",
+  "gate": "G10",
+  "profile": "ux-boundary-read-model",
+  "plan_id": "PLAN-L7-313-g9-g10-workflow-gate",
+  "selected_item_ids": [
+    "UXV-RENDER-01",
+    "UXV-A11Y-01",
+    "UXV-BLOCKER-01"
+  ],
+  "mandatory_item_ids": [
+    "UXV-RENDER-01",
+    "UXV-A11Y-01",
+    "UXV-BLOCKER-01"
+  ],
+  "deferred_item_ids": [],
+  "commands": [
+    {
+      "command_id": "cmd-g10-selected-workflow",
+      "command": "bun test tests/g10-ux-workflow.test.ts --timeout 180000",
+      "runner": "bun",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": "tests/g10-ux-workflow.test.ts",
+      "output_digest": "sha256:247f9301f683ccd97124ea0bf6287d3acd95ffc592005185073b0b831a24d921",
+      "item_ids": [
+        "UXV-RENDER-01",
+        "UXV-A11Y-01",
+        "UXV-BLOCKER-01"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "item_id": "UXV-RENDER-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g10-ux-workflow.test.ts",
+        "docs/design/harness/L10-ux/visual-design.md"
+      ],
+      "command_ids": [
+        "cmd-g10-selected-workflow"
+      ],
+      "advisor_evidence": "advisor-fable:ux-boundary-read-model",
+      "notes": "Render evidence is a boundary/read-model gate until real UI implementation reaches L10."
+    },
+    {
+      "item_id": "UXV-A11Y-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g10-ux-workflow.test.ts",
+        "src/lint/verification-profile.ts"
+      ],
+      "command_ids": [
+        "cmd-g10-selected-workflow"
+      ],
+      "advisor_evidence": "advisor-fable:ux-boundary-read-model",
+      "notes": "A11y evidence keeps WCAG/browser profile requirements visible without pretending automated-only G10 pass."
+    },
+    {
+      "item_id": "UXV-BLOCKER-01",
+      "status": "passed",
+      "evidence_paths": [
+        "tests/g10-ux-workflow.test.ts",
+        "docs/plans/PLAN-M-02-helix-identifier-rename.md"
+      ],
+      "command_ids": [
+        "cmd-g10-selected-workflow"
+      ],
+      "advisor_evidence": "advisor-fable:ux-boundary-read-model",
+      "notes": "UX blocker visibility keeps S4/action-binding/cutover blockers from being hidden by frontend green."
+    }
+  ],
+  "exit_criteria": {
+    "all_mandatory_passed": true,
+    "failed_mandatory_count": 0,
+    "stale_defer_count": 0,
+    "doctor_check": "g10-ux-workflow"
+  }
+}

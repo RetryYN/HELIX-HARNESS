@@ -25,7 +25,7 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/g8-integration-workflow.test.ts
     artifact_type: test_code
-  - artifact_path: docs/archive/gate-evidence-manifests/20260626-it-adapter-asset-expansion.json
+  - artifact_path: .helix/evidence/g8-integration/20260626-it-adapter-asset-expansion.json
     artifact_type: json_config
 dependencies:
   parent: docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md
@@ -76,7 +76,7 @@ required-family checks を per-manifest validation から aggregate workflow val
 
 - `src/lint/g8-integration-workflow.ts`
 - `tests/g8-integration-workflow.test.ts`
-- `docs/archive/gate-evidence-manifests/20260626-it-adapter-asset-expansion.json`
+- `.helix/evidence/g8-integration/20260626-it-adapter-asset-expansion.json`
 - `docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md`
 
 ## 検証

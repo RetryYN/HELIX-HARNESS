@@ -13,6 +13,8 @@ import {
   loadLegacyOrchestrationSurface,
 } from "../src/lint/legacy-orchestration-surface";
 
+// PLAN-RECOVERY-1430-evidence-substance / U-GES-016
+
 const inventory = (): LegacyOrchestrationInventory => ({
   schema_version: "helix-legacy-orchestration-surface-inventory.v1",
   authority_role: "compatibility_only_retirement_ratchet",
@@ -23,7 +25,7 @@ const inventory = (): LegacyOrchestrationInventory => ({
 });
 
 describe("legacy orchestration surface retirement ratchet", () => {
-  it("ignores only structurally successful Vitest evidence, not arbitrary files under evidence", () => {
+  it("U-GES-016: ignores only structurally successful Vitest evidence, not arbitrary files under evidence", () => {
     const successful = JSON.stringify({
       success: true,
       numFailedTests: 0,
