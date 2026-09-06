@@ -150,6 +150,44 @@ function isPlaceholderRecordValue(value: string, field: string): boolean {
   );
 }
 
+/** action-binding の actor/tool/target/params に使える具体値かを単一判定する。 */
+export function isConcreteApprovalBindingValue(value: string): boolean {
+  const normalized = value.trim().toLowerCase();
+  if (
+    !normalized ||
+    ["tbd", "todo", "n/a", "na", "-", "pending", "unspecified"].includes(normalized) ||
+    /^<.+>$/.test(normalized)
+  ) {
+    return false;
+  }
+  return ![
+    "no actor",
+    "no tool",
+    "no target",
+    "no params",
+    "no deploy",
+    "no external",
+    "no activation",
+    "not approved",
+    "while parked",
+    "draft plan",
+    "must ",
+    "must be",
+    "before approval",
+    "before activation",
+    "before apply",
+    "before execution",
+    "required before",
+    "future approval",
+    "cannot authorize",
+    "未承認",
+    "承認しない",
+    "承認前",
+    "approval 前",
+    "将来",
+  ].some((marker) => normalized.includes(marker));
+}
+
 function hasFreshCheckedLedgerEvidence(value: string): boolean {
   return /\bfresh\b/i.test(value) && /checked|ledger|source/i.test(value);
 }

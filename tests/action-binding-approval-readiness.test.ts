@@ -129,7 +129,8 @@ function currentVersionUpSnapshotId(
 }
 
 describe("action-binding approval readiness", () => {
-  it("classifies high-impact approval requirements by shared sentence context", () => {
+  it("U-ABR-003/U-ABR-004/U-ABR-006: classifies high-impact approval requirements by bounded sentence context", () => {
+    // U-ABR-006: 説明専用の参照行を実行要求へ昇格しない。
     expect(
       classifyHighImpactApprovalRequirement(
         [
@@ -157,6 +158,18 @@ describe("action-binding approval readiness", () => {
       required: true,
       reason: "high_impact_action_binding_required",
     });
+    expect(
+      classifyHighImpactApprovalRequirement(
+        "本番環境に影響する。 実行前に PO 承認が必要。承認証跡を記録する。",
+      ).required,
+    ).toBe(true);
+    // U-ABR-004: targetとapproval obligationが隣接文へ分かれても検出する。
+    expect(
+      classifyHighImpactApprovalRequirement(
+        "Production deployment requires human approval before execution. 証跡",
+      ).required,
+    ).toBe(true);
+    // U-ABR-003: 一般語「証跡」を追加してもrequiredを相殺しない。
   });
 
   it("accepts pending high-impact approval plans only when they carry structured records", () => {
@@ -836,6 +849,67 @@ describe("action-binding approval readiness", () => {
     );
   });
 
+  it("U-ABR-001: rejects placeholder actor/tool/target/params bindings independently", () => {
+    const placeholders = ["TBD", "TODO", "N/A", "-", "pending", "unspecified", "<actor>"];
+    for (const [field, original] of [
+      ["approved_actor", "PO-named operator"],
+      ["approved_tool", "helix CLI action wrapper"],
+      ["approved_target", "Cloudflare deployment target"],
+      ["approved_params", "reviewed command parameters hash"],
+    ] as const) {
+      for (const placeholder of placeholders) {
+        const packet = buildActionBindingApprovalPackets({
+          rightArmMd: RIGHT_ARM,
+          outstandingTs: OUTSTANDING,
+          plans: [
+            {
+              file: "PLAN-X.md",
+              plan_id: "PLAN-X",
+              status: "draft",
+              text: `requires action-binding approval before deployment\n${RECORD.replace(
+                `- ${field}: ${original}`,
+                `- ${field}: ${placeholder}`,
+              )}`,
+            },
+          ],
+        })[0];
+        expect(packet.approvalBindingChecks).toContainEqual(
+          expect.objectContaining({ field, status: "pending" }),
+        );
+        expect(packet.blockedReasons).toContain(`action-binding approval lacks concrete ${field}`);
+      }
+    }
+  });
+
+  it("U-ABR-002: rejects privileged and repository-wide approval bindings", () => {
+    for (const [field, original, broad] of [
+      ["approved_actor", "PO-named operator", "root"],
+      ["approved_tool", "helix CLI action wrapper", "admin full control"],
+      ["approved_target", "Cloudflare deployment target", "entire repository"],
+      ["approved_params", "reviewed command parameters hash", "global full access"],
+    ] as const) {
+      const packet = buildActionBindingApprovalPackets({
+        rightArmMd: RIGHT_ARM,
+        outstandingTs: OUTSTANDING,
+        plans: [
+          {
+            file: "PLAN-X.md",
+            plan_id: "PLAN-X",
+            status: "draft",
+            text: `requires action-binding approval before deployment\n${RECORD.replace(
+              `- ${field}: ${original}`,
+              `- ${field}: ${broad}`,
+            )}`,
+          },
+        ],
+      })[0];
+      expect(packet.approvalBindingChecks).toContainEqual(
+        expect.objectContaining({ field, status: "invalid" }),
+      );
+      expect(packet.blockedReasons).toContain(`${field} must not grant broad or wildcard approval`);
+    }
+  });
+
   it("U-DECISIONREC-009: rejects approval scope that is limited in wording but has no concrete boundary", () => {
     const weakScopeRecord = RECORD.replace(
       "limited scope for actor/tool/target/params for a high-impact action only",
@@ -1054,7 +1128,7 @@ describe("action-binding approval readiness", () => {
     );
   });
 
-  it("keeps snapshot field placeholders pending until the concrete current snapshot id is recorded", () => {
+  it("U-ABR-005: keeps snapshot field placeholders pending until the concrete current snapshot id is recorded", () => {
     const concreteSnapshot =
       "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
     const packets = buildActionBindingApprovalPackets({
@@ -1098,8 +1172,8 @@ describe("action-binding approval readiness", () => {
       .find((packet) => packet.planId === "PLAN-M-02-helix-identifier-rename")
       ?.approvalBindingChecks.find((check) => check.field === "reviewed_snapshot_binding");
     expect(cutoverCheck).toMatchObject({
-      status: "concrete",
-      reason: "snapshot binding matches this PLAN route",
+      status: "pending",
+      reason: "cutover snapshot validation input is missing",
     });
   });
 
