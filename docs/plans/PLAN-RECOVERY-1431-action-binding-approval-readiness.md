@@ -44,6 +44,7 @@ modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_doc }
   - { artifact_path: src/lint/design-coverage.ts, artifact_type: source_module }
   - { artifact_path: src/lint/shared.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
@@ -51,6 +52,7 @@ modifies:
   - { artifact_path: src/lint/version-up-readiness.ts, artifact_type: source_module }
   - { artifact_path: src/lint/workflow-decision-packets.ts, artifact_type: source_module }
   - { artifact_path: tests/action-binding-approval-readiness.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 review_evidence: []
 ---
