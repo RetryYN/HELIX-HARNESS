@@ -121,13 +121,31 @@ describe("loadPlanArtifactExistenceInput + checkPlanArtifactExistence", () => {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writePlan(root, "PLAN-OLD.md", "completed", "src/old.ts");
       const oldPath = join(root, "docs", "plans", "PLAN-OLD.md");
-      writeFileSync(oldPath, readFileSync(oldPath, "utf8").replace("status: completed", "status: completed\nsuperseded_by: [PLAN-NEW]"));
+      writeFileSync(
+        oldPath,
+        readFileSync(oldPath, "utf8").replace(
+          "status: completed",
+          "status: completed\nsuperseded_by: [PLAN-NEW]",
+        ),
+      );
       writePlan(root, "PLAN-NEW.md", "draft", "src/new.ts");
       const newPath = join(root, "docs", "plans", "PLAN-NEW.md");
-      writeFileSync(newPath, readFileSync(newPath, "utf8").replace("status: draft", "status: draft\nsupersedes: [PLAN-OLD]"));
+      writeFileSync(
+        newPath,
+        readFileSync(newPath, "utf8").replace(
+          "status: draft",
+          "status: draft\nsupersedes: [PLAN-OLD]",
+        ),
+      );
       expect(checkPlanArtifactExistence(root).ok).toBe(true);
 
-      writeFileSync(newPath, readFileSync(newPath, "utf8").replace("supersedes: [PLAN-OLD]", "supersedes: [PLAN-MISSING]"));
+      writeFileSync(
+        newPath,
+        readFileSync(newPath, "utf8").replace(
+          "supersedes: [PLAN-OLD]",
+          "supersedes: [PLAN-MISSING]",
+        ),
+      );
       expect(checkPlanArtifactExistence(root).messages.join("\n")).toContain("PLAN-OLD");
     } finally {
       rmSync(root, { recursive: true, force: true });

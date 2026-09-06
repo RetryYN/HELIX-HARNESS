@@ -18,8 +18,8 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadRetiredArtifactPaths } from "./artifact-retirement-authority";
-import { loadReviewPlans, type ParsedReviewPlan } from "./review-evidence";
 import { analyzePlanSupersession, loadSupersedePlans } from "./plan-supersession";
+import { loadReviewPlans, type ParsedReviewPlan } from "./review-evidence";
 
 export interface DigestMismatch {
   plan_id: string;
@@ -153,7 +153,9 @@ export function checkGreenCommandDigests(repoRoot: string = process.cwd()): {
     const supersession = analyzePlanSupersession(supersessionPlans);
     const validSupersededPlanIds = new Set(
       supersession.ok
-        ? supersessionPlans.filter((plan) => plan.superseded_by.length > 0).map((plan) => plan.plan_id)
+        ? supersessionPlans
+            .filter((plan) => plan.superseded_by.length > 0)
+            .map((plan) => plan.plan_id)
         : [],
     );
     const mismatches = auditGreenCommandDigests(

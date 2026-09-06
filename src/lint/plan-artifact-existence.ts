@@ -34,8 +34,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadRetiredArtifactPaths } from "./artifact-retirement-authority";
-import { loadReviewPlans } from "./review-evidence";
 import { analyzePlanSupersession, loadSupersedePlans } from "./plan-supersession";
+import { loadReviewPlans } from "./review-evidence";
 import { isTerminalPlanStatus, normalizePath } from "./shared";
 
 // 完了宣言とみなす status は shared.ts の TERMINAL_PLAN_STATUSES (正本) を使う。
@@ -141,7 +141,9 @@ export function loadPlanArtifactExistenceInput(
   const supersession = analyzePlanSupersession(supersessionPlans);
   const validSupersededPlanIds = new Set(
     supersession.ok
-      ? supersessionPlans.filter((plan) => plan.superseded_by.length > 0).map((plan) => plan.plan_id)
+      ? supersessionPlans
+          .filter((plan) => plan.superseded_by.length > 0)
+          .map((plan) => plan.plan_id)
       : [],
   );
   for (const rp of reviewPlans) {
