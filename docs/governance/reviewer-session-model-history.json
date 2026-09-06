@@ -1,0 +1,23 @@
+{
+  "schema_version": "helix-reviewer-session-model-history.v1",
+  "sessions": [
+    {
+      "reviewer_session_id": "019febe1-8983-7820-bee4-4cd62876f9b6",
+      "runtime": "codex",
+      "windows": [
+        {
+          "reviewer_model": "codex:gpt-5.6-sol",
+          "since": "2026-08-10T13:37:33Z",
+          "until": "2026-09-01T16:43:56Z",
+          "basis": "同 session の既存 review_evidence 自己申告（PLAN-L7-648 / L7-649 / L7-650 / L7-708 / L3-75 / L3-76、reviewed_at 2026-08-21T22:54:20Z〜2026-09-01T16:43:55Z、いずれも codex:gpt-5.6-sol）が覆う期間を有効期間として宣言。since は .helix/logs/session/019febe1-….jsonl の最初の session_start。until は Sol 自己申告 evidence の最終 reviewed_at 直後で閉じる（実効 model の稼働終了時刻ではなく、evidence 棚卸しによる境界。PR #1550 / Issue #1543）。実効 model の attestation ではない。"
+        },
+        {
+          "reviewer_model": "codex:gpt-6",
+          "since": "2026-09-05T14:55:41Z",
+          "until": null,
+          "basis": "Codex 自身の申告（PR #1550 comment 5552633860、2026-09-05T14:55:41Z）「現行実行情報は GPT-6」を観測開始点とする。具体 alias（gpt-6-astra 等）と切替時刻は Codex 側で未確認のため記録しない。2026-09-01T16:43:56Z〜2026-09-05T14:55:41Z は未確認 gap（reviewerModelAt は null）として空けてある。実効 model の attestation ではない。"
+        }
+      ]
+    }
+  ]
+}

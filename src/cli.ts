@@ -79,7 +79,7 @@ import {
   screenTablesInitialized,
 } from "./design/screen-applicability-sqlite-store";
 import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
-import { runConsumerDoctor, runDoctor } from "./doctor";
+import { nodeDoctorDeps, runConsumerDoctor, runDoctor, runDoctorGate } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { assertNodeEngineRuntimeAuthority } from "./doctor/node-engine-runtime";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
@@ -109,10 +109,9 @@ import {
 import {
   analyzeBranchKind,
   type BranchKindInput,
-  type BranchPlanDoc,
   branchKindMessages,
+  inspectBranchSnapshotFromPrProvider,
   loadBranchKindInput,
-  loadPlanDoc,
 } from "./lint/branch-kind";
 import { assertCanonicalReuseAllowed } from "./lint/canonical-reuse-authority";
 import { loadChangedFiles, loadStagedFiles } from "./lint/change-impact";
@@ -466,13 +465,14 @@ import {
   summaryJsonCommandOrNull,
 } from "./runtime/summary-surface-audit";
 import { buildToolAugmentationRegistryReport } from "./runtime/tool-augmentation-registry";
-import {
-  evaluateWorkGuardTargets,
-  extractEditTargets,
-  normalizeRepoRelative,
-} from "./runtime/work-guard";
+import { extractEditTargets, normalizeRepoRelative } from "./runtime/work-guard";
 import { runWorkGuardHook } from "./runtime/work-guard-hook";
 import { loadWorkerContextBoundaryFile } from "./runtime/worker-context-packet";
+import {
+  evaluateResolvedWorkGuardTargets,
+  gitUncommittedFiles,
+  resolveWorkGuardTargetState,
+} from "./runtime/worktree-state";
 import { findReference } from "./search/index";
 import { createDeterministicDistributionPackage } from "./setup/distribution-package-builder";
 import {
@@ -1008,32 +1008,111 @@ function readStdin(): string {
   }
 }
 
+function localBranchPrSnapshot(repoRoot: string) {
+  const read = (command: string, args: string[]) =>
+    execFileSync(command, args, {
+      cwd: repoRoot,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+      timeout: 10_000,
+      killSignal: "SIGKILL",
+      maxBuffer: 1024 * 1024,
+    }).trim();
+  const result = inspectBranchSnapshotFromPrProvider({
+    readLocal: () => {
+      const urls = read("git", ["remote", "get-url", "--all", "origin"]).split(/\r?\n/);
+      if (urls.length !== 1) throw new Error("repository_identity_unavailable");
+      const match =
+        /^(?:git@github\.com:|https:\/\/github\.com\/)([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+?)(?:\.git)?$/.exec(
+          urls[0] ?? "",
+        );
+      if (!match) throw new Error("repository_identity_unavailable");
+      return {
+        repository: `${match[1]}/${match[2]}`,
+        head: read("git", ["rev-parse", "HEAD"]),
+        branch: read("git", ["rev-parse", "--abbrev-ref", "HEAD"]),
+      };
+    },
+    readPr: (local) => {
+      const owner = local.repository.split("/")[0];
+      const endpoint = `repos/${local.repository}/pulls?state=open&head=${encodeURIComponent(`${owner}:${local.branch}`)}&per_page=2`;
+      const text = read("gh", ["api", "--hostname", "github.com", "--method", "GET", endpoint]);
+      let response: unknown;
+      try {
+        response = JSON.parse(text);
+      } catch {
+        return null;
+      }
+      return Array.isArray(response) && response.length === 1 ? response[0] : null;
+    },
+  });
+  return result.status === "available" ? result.snapshot : result;
+}
+
+function doctorDepsForBranchSnapshot(
+  opts: {
+    baseHead?: string;
+    candidateHead?: string;
+    branch?: string;
+    includeWorkingTree?: boolean;
+  },
+  forceWorkingTree = false,
+) {
+  return {
+    ...nodeDoctorDeps(process.cwd()),
+    get branchSnapshot() {
+      return opts.baseHead !== undefined ||
+        opts.candidateHead !== undefined ||
+        opts.branch !== undefined ||
+        opts.includeWorkingTree === true
+        ? {
+            baseHead: opts.baseHead ?? "",
+            candidateHead: opts.candidateHead ?? "",
+            branch: opts.branch ?? "",
+            includeWorkingTree: forceWorkingTree || opts.includeWorkingTree,
+          }
+        : (localBranchPrSnapshot(process.cwd()) ?? undefined);
+    },
+  };
+}
+
 function loadBranchKindInputForGuard(opts: {
   branch?: string;
+  baseHead?: string;
+  candidateHead?: string;
+  includeWorkingTree?: boolean;
   changed?: string[];
   strictUnknownPrefix?: boolean;
 }): BranchKindInput {
   const repoRoot = process.cwd();
-  const base = loadBranchKindInput(repoRoot);
-  const changedPaths = opts.changed && opts.changed.length > 0 ? opts.changed : base.changedPaths;
-  const planPaths = changedPaths
-    .map((path) => path.replace(/\\/g, "/"))
-    .filter((path) => /^docs\/plans\/PLAN-.+\.md$/.test(path));
-  const plans: BranchPlanDoc[] = planPaths
-    .map((path) => {
-      try {
-        return loadPlanDoc(repoRoot, path);
-      } catch {
-        return { file: path };
-      }
-    })
-    .filter((plan): plan is BranchPlanDoc => plan != null);
-  return {
-    branch: opts.branch ?? base.branch,
-    changedPaths,
-    plans: opts.changed && opts.changed.length > 0 ? plans : base.plans,
-    strictUnknownPrefix: opts.strictUnknownPrefix,
-  };
+  if (
+    opts.baseHead !== undefined ||
+    opts.candidateHead !== undefined ||
+    opts.branch !== undefined ||
+    opts.includeWorkingTree === true
+  ) {
+    const input = loadBranchKindInput(repoRoot, {
+      baseHead: opts.baseHead ?? "",
+      candidateHead: opts.candidateHead ?? "",
+      branch: opts.branch ?? "",
+      includeWorkingTree: opts.includeWorkingTree,
+    });
+    if (
+      opts.changed !== undefined &&
+      JSON.stringify([...new Set(opts.changed)].sort()) !== JSON.stringify(input.changedPaths)
+    ) {
+      input.authority = { status: "unavailable", reason: "changed_paths_snapshot_mismatch" };
+    }
+    return { ...input, strictUnknownPrefix: opts.strictUnknownPrefix };
+  }
+  const base = loadBranchKindInput(repoRoot, localBranchPrSnapshot(repoRoot) ?? undefined);
+  if (
+    opts.changed !== undefined &&
+    JSON.stringify([...new Set(opts.changed)].sort()) !== JSON.stringify(base.changedPaths)
+  ) {
+    base.authority = { status: "unavailable", reason: "changed_paths_snapshot_mismatch" };
+  }
+  return { ...base, strictUnknownPrefix: opts.strictUnknownPrefix };
 }
 
 function gitCommitSubjectsForRange(range: string): string[] {
@@ -1157,24 +1236,6 @@ function resolveAgentFamilyFromRepo(repoRoot: string, subagentType: string): Res
   if (!fm) return "unknown";
   const modelLine = fm[1].match(/^model:[ \t]*(\S+)/m);
   return normalizeModelFamily(modelLine?.[1]?.trim()) ?? "unknown";
-}
-
-function sessionTouchedFilesForGuard(repoRoot: string, sessionId: string | undefined): string[] {
-  if (!sessionId) return [];
-  const safe = sessionId.replace(/[\\/]+/g, "_");
-  const file = join(repoRoot, ".helix", "logs", "session", `${safe}.jsonl`);
-  if (!existsSync(file)) return [];
-  const touched: string[] = [];
-  for (const line of readFileSync(file, "utf8").split("\n")) {
-    if (!line.trim()) continue;
-    try {
-      const ev = JSON.parse(line) as { target?: string };
-      if (ev.target) touched.push(normalizeRepoRelative(ev.target, repoRoot));
-    } catch {
-      // Ignore malformed session-log rows; preflight should keep checking other rows.
-    }
-  }
-  return touched;
 }
 
 function guardTargetsFromPatchText(patchText: string, repoRoot: string): string[] {
@@ -2271,17 +2332,27 @@ completion
 program
   .command("doctor")
   .description("統合検証 (doctor / gate / trace / drift / roadmap)")
+  .option("--base-head <sha>", "branch検証のbase commit identity")
+  .option("--candidate-head <sha>", "branch検証のcandidate commit identity")
+  .option("--branch <name>", "branch検証の明示identity")
+  .option("--include-working-tree", "candidateに束縛した作業差分を検証する")
   .option("--profile <name>", "doctor profile (consumer)")
   .option("--scope <scope>", "doctor scope: full or toolchain", "full")
   .option("--setup-smoke", "run the consumer setup smoke subset instead of full product doctor")
+  .option("--gate <id>", "run a single named doctor gate (design-language)")
   .option("--timing", "include per-check timing in JSON and slow-check text summary")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for review and view surfaces")
   .action(
     (opts: {
       profile?: string;
+      baseHead?: string;
+      candidateHead?: string;
+      branch?: string;
+      includeWorkingTree?: boolean;
       scope?: string;
       setupSmoke?: boolean;
+      gate?: string;
       timing?: boolean;
       json?: boolean;
       summaryJson?: boolean;
@@ -2338,6 +2409,28 @@ program
         process.exitCode = 1;
         return;
       }
+      if (opts.gate !== undefined) {
+        // 単体 gate 実行は full doctor と同じ check 関数を呼び、判定の配線 drift を作らない。
+        // scope 検証の後に置き、profile / setup-smoke / toolchain scope との併用は fail-close する
+        // （単体 gate はそれらを解釈しないため、黙って無視すると誤った green になる。#1547 Codex 指摘）。
+        const gate =
+          opts.profile !== undefined || opts.setupSmoke === true || opts.scope === "toolchain"
+            ? {
+                ok: false,
+                gate: opts.gate,
+                messages: [
+                  `doctor: gate - violation --gate ${opts.gate} cannot be combined with --profile, --setup-smoke, or --scope toolchain`,
+                ],
+              }
+            : runDoctorGate(opts.gate, process.cwd());
+        if (opts.json || opts.summaryJson) {
+          process.stdout.write(`${JSON.stringify(gate, null, 2)}\n`);
+        } else {
+          for (const m of gate.messages) process.stdout.write(`${m}\n`);
+        }
+        process.exitCode = gate.ok ? 0 : 1;
+        return;
+      }
       const r =
         opts.profile === "consumer"
           ? runConsumerDoctor()
@@ -2346,7 +2439,7 @@ program
                 ok: false,
                 messages: [`doctor: profile - violation unknown profile ${opts.profile}`],
               }
-            : runDoctor(undefined, {
+            : runDoctor(doctorDepsForBranchSnapshot(opts), {
                 scope: opts.scope as "full" | "toolchain",
                 setupSmoke: opts.setupSmoke === true,
                 timing: opts.timing === true,
@@ -4640,16 +4733,33 @@ guard
       if (opts.stdin) {
         targetPaths.push(...guardTargetsFromPatchText(readStdin(), repoRoot));
       }
-      const changedFiles = loadChangedFiles(repoRoot);
-      const initial = evaluateWorkGuardTargets({
-        targetPaths,
-        uncommittedFiles: changedFiles,
-        sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
-        bypass: false,
-      });
+      let states: Array<ReturnType<typeof resolveWorkGuardTargetState>>;
+      let changedFiles: unknown;
+      try {
+        states = targetPaths.map((target) =>
+          resolveWorkGuardTargetState({
+            repoRoot,
+            executionCwd: repoRoot,
+            target,
+            sessionId: opts.session ?? "unknown",
+          }),
+        );
+        changedFiles =
+          states.length > 0
+            ? states.map((state) => [state.repoRoot, [...state.uncommittedFiles].sort()])
+            : gitUncommittedFiles(repoRoot).sort();
+      } catch {
+        process.stderr.write(
+          "guard preflight: target worktree identity or state could not be verified\n",
+        );
+        process.exitCode = 2;
+        return;
+      }
+      const initial = evaluateResolvedWorkGuardTargets(states, repoRoot);
+      const subject = JSON.stringify(states.map((state) => [state.repoRoot, state.targetPath]));
       let result = initial;
       let auditRecord = `git-status:${createHash("sha256")
-        .update(JSON.stringify([...changedFiles].sort()))
+        .update(JSON.stringify(changedFiles))
         .digest("hex")}`;
       let override: { bypass: boolean; source: string; reason_digest: string | null } = {
         bypass: false,
@@ -4672,18 +4782,11 @@ guard
           return;
         }
         const nonce = createHash("sha256")
-          .update(
-            `hosted-preflight:${opts.session ?? "cli"}:${reason}:${[...targetPaths].sort().join("\0")}`,
-          )
+          .update(`hosted-preflight:${opts.session ?? "cli"}:${reason}:${subject}`)
           .digest("hex");
         pendingOverride = { nonce, reason };
         auditRecord = `guard_override_transactions:${nonce}`;
-        result = evaluateWorkGuardTargets({
-          targetPaths,
-          uncommittedFiles: changedFiles,
-          sessionTouchedFiles: sessionTouchedFilesForGuard(repoRoot, opts.session),
-          bypass: true,
-        });
+        result = evaluateResolvedWorkGuardTargets(states, repoRoot, true);
       }
       const adapterParity = validateAdapterParityMap({
         surface: "codex-hosted-api",
@@ -4715,9 +4818,7 @@ guard
             classification: {
               guardKind: "foreign_edit",
               operationClass: "hosted preflight foreign edit",
-              subjectDigest: `sha256:${createHash("sha256")
-                .update(JSON.stringify([...targetPaths].sort()))
-                .digest("hex")}`,
+              subjectDigest: `sha256:${createHash("sha256").update(subject).digest("hex")}`,
             },
             audit: createGuardOverrideAuditPort(db),
             marker: { consume: (expectedNonce) => expectedNonce === nonce },
@@ -4770,18 +4871,27 @@ guard
 guard
   .command("branch-kind")
   .description("check governed branch prefix, PLAN kind, and PR branch naming rules")
-  .option("--branch <name>", "branch name to inspect (defaults to current git branch)")
-  .option("--changed <path...>", "changed path(s) from PR or local diff")
+  .option("--base-head <sha>", "explicit base commit identity (requires candidate-head and branch)")
+  .option("--candidate-head <sha>", "explicit candidate commit identity")
+  .option("--include-working-tree", "include working tree changes bound to the candidate")
+  .option("--branch <name>", "explicit branch identity bound to base-head and candidate-head")
+  .option("--changed <path...>", "assert exact equality with snapshot-derived changed paths")
   .option("--strict-unknown-prefix", "fail ungoverned branch prefixes such as unknown/foo")
   .option("--json", "JSON output")
   .action(
     (opts: {
       branch?: string;
+      baseHead?: string;
+      candidateHead?: string;
+      includeWorkingTree?: boolean;
       changed?: string[];
       strictUnknownPrefix?: boolean;
       json?: boolean;
     }) => {
       const input = loadBranchKindInputForGuard({
+        baseHead: opts.baseHead,
+        candidateHead: opts.candidateHead,
+        includeWorkingTree: opts.includeWorkingTree,
         branch: opts.branch,
         changed: opts.changed,
         strictUnknownPrefix: opts.strictUnknownPrefix,
@@ -11196,76 +11306,88 @@ function defaultTokenPathFromCwd(): string {
 program
   .command("review")
   .description("prepare a deterministic review packet for the current worktree")
+  .option("--base-head <sha>", "branch検証のbase commit identity")
+  .option("--candidate-head <sha>", "branch検証のcandidate commit identity")
+  .option("--branch <name>", "branch検証の明示identity")
   .option("--uncommitted", "review uncommitted git changes")
   .option("--staged", "confirm the staged set before commit (IMP-137 staged-diff gate)")
   .option("--json", "JSON output")
-  .action((opts: { uncommitted?: boolean; staged?: boolean; json?: boolean }) => {
-    if (opts.staged) {
-      // commit 前 staged-diff 確認の機械化 (IMP-137): staged 集合を surface し doctor を回す。
-      // 意図しない混入を staged 段階で弾く (doctor 失敗 / suspect 検出で fail-close)。
-      const staged = loadStagedFiles(process.cwd());
-      const summary = summarizeStagedReview(staged);
-      const doctor = runDoctor();
-      const ok = doctor.ok && summary.ok;
-      const stagedOutput = {
-        scope: "staged",
-        ok,
-        staged: summary.staged,
-        suspect: summary.suspect,
-        doctorOk: doctor.ok,
+  .action(
+    (opts: {
+      uncommitted?: boolean;
+      staged?: boolean;
+      json?: boolean;
+      baseHead?: string;
+      candidateHead?: string;
+      branch?: string;
+    }) => {
+      if (opts.staged) {
+        // commit 前 staged-diff 確認の機械化 (IMP-137): staged 集合を surface し doctor を回す。
+        // 意図しない混入を staged 段階で弾く (doctor 失敗 / suspect 検出で fail-close)。
+        const staged = loadStagedFiles(process.cwd());
+        const summary = summarizeStagedReview(staged);
+        const doctor = runDoctor(doctorDepsForBranchSnapshot(opts, true));
+        const ok = doctor.ok && summary.ok;
+        const stagedOutput = {
+          scope: "staged",
+          ok,
+          staged: summary.staged,
+          suspect: summary.suspect,
+          doctorOk: doctor.ok,
+          doctorMessages: doctor.messages,
+        };
+        if (opts.json) {
+          process.stdout.write(`${JSON.stringify(stagedOutput, null, 2)}\n`);
+        } else {
+          process.stdout.write(
+            `review staged: ${ok ? "ok" : "failed"} staged=${summary.staged.length} doctor=${doctor.ok ? "ok" : "failed"}\n`,
+          );
+          for (const path of summary.staged) process.stdout.write(`  + ${path}\n`);
+        }
+        process.exitCode = ok ? 0 : 1;
+        return;
+      }
+      if (!opts.uncommitted) {
+        process.stderr.write(
+          "review requires --uncommitted or --staged for the current implementation surface\n",
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const changedFiles = loadChangedFiles(process.cwd());
+      const doctor = runDoctor(doctorDepsForBranchSnapshot(opts, true));
+      const verification = recommendVerificationProfiles(changedFiles);
+      const output = {
+        scope: "uncommitted",
+        ok: doctor.ok,
+        changedFiles,
+        verificationRecommendations: verification.recommendations.map((r) => ({
+          profile: r.profile.id,
+          signals: r.signals,
+          command: r.profile.command,
+          defaultEnabled: r.profile.defaultEnabled,
+        })),
+        missingProfiles: verification.missingProfiles,
         doctorMessages: doctor.messages,
       };
       if (opts.json) {
-        process.stdout.write(`${JSON.stringify(stagedOutput, null, 2)}\n`);
+        process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
       } else {
         process.stdout.write(
-          `review staged: ${ok ? "ok" : "failed"} staged=${summary.staged.length} doctor=${doctor.ok ? "ok" : "failed"}\n`,
+          `review uncommitted: ${doctor.ok ? "ok" : "failed"} changed=${changedFiles.length} recommendations=${output.verificationRecommendations.length}\n`,
         );
-        for (const path of summary.staged) process.stdout.write(`  + ${path}\n`);
+        for (const rec of output.verificationRecommendations) {
+          process.stdout.write(`  - ${rec.profile}: ${rec.signals.join(", ")} -> ${rec.command}\n`);
+        }
+        if (verification.missingProfiles.length > 0) {
+          process.stdout.write(
+            `missing/disabled profiles: ${verification.missingProfiles.join(", ")}\n`,
+          );
+        }
       }
-      process.exitCode = ok ? 0 : 1;
-      return;
-    }
-    if (!opts.uncommitted) {
-      process.stderr.write(
-        "review requires --uncommitted or --staged for the current implementation surface\n",
-      );
-      process.exitCode = 1;
-      return;
-    }
-    const changedFiles = loadChangedFiles(process.cwd());
-    const doctor = runDoctor();
-    const verification = recommendVerificationProfiles(changedFiles);
-    const output = {
-      scope: "uncommitted",
-      ok: doctor.ok,
-      changedFiles,
-      verificationRecommendations: verification.recommendations.map((r) => ({
-        profile: r.profile.id,
-        signals: r.signals,
-        command: r.profile.command,
-        defaultEnabled: r.profile.defaultEnabled,
-      })),
-      missingProfiles: verification.missingProfiles,
-      doctorMessages: doctor.messages,
-    };
-    if (opts.json) {
-      process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
-    } else {
-      process.stdout.write(
-        `review uncommitted: ${doctor.ok ? "ok" : "failed"} changed=${changedFiles.length} recommendations=${output.verificationRecommendations.length}\n`,
-      );
-      for (const rec of output.verificationRecommendations) {
-        process.stdout.write(`  - ${rec.profile}: ${rec.signals.join(", ")} -> ${rec.command}\n`);
-      }
-      if (verification.missingProfiles.length > 0) {
-        process.stdout.write(
-          `missing/disabled profiles: ${verification.missingProfiles.join(", ")}\n`,
-        );
-      }
-    }
-    process.exitCode = doctor.ok ? 0 : 1;
-  });
+      process.exitCode = doctor.ok ? 0 : 1;
+    },
+  );
 
 program
   .command("cutover")
@@ -14078,13 +14200,24 @@ github
   .requiredOption("--repository <owner/name>", "GitHub repository")
   .requiredOption("--pr-body-file <path>", "file containing the current PR body")
   .requiredOption("--changed-file <path>", "NUL-delimited changed paths from base..head")
+  .option(
+    "--base-head <sha>",
+    "published base commit (merge-base) used only for the metadata-only supersession exemption",
+  )
   .option("--json", "JSON output")
   .action(
-    (opts: { repository: string; prBodyFile: string; changedFile: string; json?: boolean }) => {
+    (opts: {
+      repository: string;
+      prBodyFile: string;
+      changedFile: string;
+      baseHead?: string;
+      json?: boolean;
+    }) => {
       const result = admitGithubWorkflowIdentity({
         repository: opts.repository,
         prBody: readFileSync(opts.prBodyFile, "utf8"),
         changedPaths: readFileSync(opts.changedFile, "utf8").split("\0").filter(Boolean),
+        baseHead: opts.baseHead,
       });
       if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
       else process.stdout.write(`${githubWorkflowIdentityAdmissionMessage(result)}\n`);

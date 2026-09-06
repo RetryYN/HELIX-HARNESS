@@ -32,6 +32,19 @@ updated: 2026-08-01
 
 # HELIX — L8 単体テスト設計
 
+## worktree所有権照合の反例
+
+対象PLANはPLAN-RECOVERY-1566-worktree-path-identity、要件はHR-FR-HYB-004 / HR-AC-HYB-004である。
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-WORKPATH-006 | `resolveWorkGuardTargetState` | 生のpath成分を検査し、worktree内symlink後の親参照を別のclean fileへ丸めて許可しない。通常の親参照とroot外のsymlink経由で同じ物理worktreeを指すclean fileは許可する。rootの親を指すaliasは許可、root内srcを指すaliasはcleanでも拒否する。repoRootもaliasの場合を検査し、alias経由でもforeign変更とworktree内symlink経路は拒否する。 | `tests/work-guard.test.ts` |
+| U-WORKPATH-001 | `gitUncommittedFiles` / `runWorkGuardHook` | 実GitでUnicode・空白・未追跡子fileをexact列挙し、POSIXでは末尾空白・改行・矢印・backslashも保持する。各foreign pathはhookで拒否する。 | `tests/work-guard.test.ts` |
+| U-WORKPATH-002 | `normalizeRepoRelative` / `evaluateWorkGuard` | 末尾空白、POSIX backslash、root部分一致で異なるpathを同一化せず、別対象のtouchによる所有権流用を拒否する。 | `tests/work-guard.test.ts` |
+| U-WORKPATH-003 | `gitUncommittedFiles` | 実Git renameの移動元・移動先と削除pathを保護集合に保持する。 | `tests/work-guard.test.ts` |
+| U-WORKPATH-004 | `normalizeSessionTarget` / `extractEditTargets` | 旧tool prefixはsession入力だけで解釈し、通常path・未認識prefix・POSIXの大小文字・末尾空白を混同しない。 | `tests/work-guard.test.ts` |
+| U-WORKPATH-005 | `runWorkGuardHook` / `helix guard preflight` | 実linked worktreeのclean編集は他worktreeのdirtyに影響されず許可される。当該worktreeのforeign変更は拒否し、同sessionのexact touchで継続できる。共有側ログの絶対pathは対象一致時のみ受理し、相対pathは他worktreeへ流用しない。所属不明対象を拒否し、hosted APIのhook強制を偽称しない。 | `tests/work-guard.test.ts` |
+
 ## §0 位置付け
 
 PO 指示（2026-07-08）により、L7 実装 PLAN の起票前提として参照する単体テスト設計の正本 path を
@@ -567,3 +580,11 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-GRCIGEN-002 | tie break | 同一updatedAtではattempt、run ID順で決定的に選ぶ | `tests/github-review-ci-generation.test.ts` |
 | U-GRCIGEN-003 | success不在 | terminal successが無ければnullを返して通知・receipt生成を拒否する | `tests/github-review-ci-generation.test.ts` |
 | U-CPRCONV-023 | producer共有 | pr-notifyがnewer failureではなく同HEAD latest success generationを通知へ束縛する | `tests/claude-pr-convergence.test.ts` |
+
+### DB再構築のreview PLAN解析共有（PLAN-RECOVERY-1568）
+
+対象設計: `docs/design/harness/L6-function-design/function-spec.md`
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-DBRS-001 | 再構築内の解析寿命 | 1回の再構築でloadReviewPlansは1回。次回再構築ではPLAN変更を再読込してreview registryへ反映する。3回解析と再構築間cacheを拒否し、解析例外時は既存投影行をrollbackで保持する | `tests/slow/projection-writer.test.ts` |

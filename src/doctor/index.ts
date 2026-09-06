@@ -335,7 +335,9 @@ import {
 } from "../lint/repository-name-paths";
 import {
   analyzeReviewEvidence,
+  loadReviewerSessionModelHistory,
   loadReviewPlans,
+  ReviewerSessionModelHistoryError,
   reviewEvidenceMessages,
 } from "../lint/review-evidence";
 import {
@@ -612,6 +614,7 @@ function buildDoctorCurrentLocationSnapshot(
 /** I/O・clock 注入 (test 可能)。 */
 export interface DoctorDeps {
   repoRoot: string;
+  branchSnapshot?: Parameters<typeof loadBranchKindInput>[1];
   now: string;
   readText: (path: string) => string | null;
   listDir: (dir: string) => string[];
@@ -832,7 +835,24 @@ export function checkReviewEvidence(repoRoot: string): {
     };
   }
   try {
-    const r = analyzeReviewEvidence(loadReviewPlans(repoRoot));
+    // reviewer session × model 履歴 registry（#1543）。読込/検証失敗は違反として surface する。
+    let sessionModelHistory: ReturnType<typeof loadReviewerSessionModelHistory> = null;
+    let sessionModelHistoryError: string | undefined;
+    try {
+      sessionModelHistory = loadReviewerSessionModelHistory(repoRoot);
+    } catch (error) {
+      // 既知 schema 診断は typed reason を、未知例外（JSON.parse 等）は cause-digest だけを surface する。
+      if (error instanceof ReviewerSessionModelHistoryError) {
+        sessionModelHistoryError = error.reason;
+      } else {
+        const cause = stableCauseDigest(error);
+        sessionModelHistoryError = `reviewer_session_model_history_invalid:unknown cause_kind=${cause.causeKind} cause_digest=${cause.digest}`;
+      }
+    }
+    const r = analyzeReviewEvidence(loadReviewPlans(repoRoot), {
+      sessionModelHistory,
+      sessionModelHistoryError,
+    });
     return { messages: reviewEvidenceMessages(r), ok: r.ok };
   } catch {
     return {
@@ -1260,7 +1280,10 @@ export function checkVerificationProfile(repoRoot: string): {
   }
 }
 
-export function checkBranchKind(repoRoot: string): {
+export function checkBranchKind(
+  repoRoot: string,
+  snapshot?: Parameters<typeof loadBranchKindInput>[1],
+): {
   messages: string[];
   ok: boolean;
 } {
@@ -1271,7 +1294,7 @@ export function checkBranchKind(repoRoot: string): {
     };
   }
   try {
-    const r = analyzeBranchKind(loadBranchKindInput(repoRoot));
+    const r = analyzeBranchKind(loadBranchKindInput(repoRoot, snapshot));
     return { messages: branchKindMessages(r), ok: r.ok };
   } catch {
     return {
@@ -1430,6 +1453,43 @@ export function checkDesignLanguage(repoRoot: string): {
       ok: false,
     };
   }
+}
+
+/**
+ * doctor gate を 1 件だけ実行する経路。
+ * push 前の local 実行と CI preflight から使い、full doctor と同一の check 関数へ委譲することで
+ * 「単体実行だけ判定が違う」配線 drift を作らない。
+ */
+export const DOCTOR_SINGLE_GATES = {
+  "design-language": checkDesignLanguage,
+} as const satisfies Record<string, (repoRoot: string) => { messages: string[]; ok: boolean }>;
+
+export type DoctorSingleGateId = keyof typeof DOCTOR_SINGLE_GATES;
+
+export function runDoctorGate(
+  gate: string,
+  repoRoot: string,
+): { ok: boolean; gate: string; messages: string[] } {
+  // own key に限定する。通常の添字 lookup だと "toString" / "constructor" / "__proto__" のような
+  // prototype 継承 property を拾い、unknown gate の fail-close 契約が崩れる（#1547 Codex 指摘）。
+  const check = Object.hasOwn(DOCTOR_SINGLE_GATES, gate)
+    ? (
+        DOCTOR_SINGLE_GATES as Record<
+          string,
+          undefined | ((root: string) => { messages: string[]; ok: boolean })
+        >
+      )[gate]
+    : undefined;
+  if (typeof check !== "function") {
+    const known = Object.keys(DOCTOR_SINGLE_GATES).join(", ");
+    return {
+      ok: false,
+      gate,
+      messages: [`doctor: gate - violation unknown gate ${gate} (known: ${known})`],
+    };
+  }
+  const result = check(repoRoot);
+  return { ok: result.ok, gate, messages: result.messages };
 }
 
 export function checkHandoverRetirementInventory(repoRoot: string): {
@@ -7253,7 +7313,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const changeImpact = checkChangeImpact(deps.repoRoot);
   const changeSetIntegrity = checkChangeSetIntegrity(deps.repoRoot);
   const verificationProfile = checkVerificationProfile(deps.repoRoot);
-  const branchKind = checkBranchKind(deps.repoRoot);
+  const branchKind = checkBranchKind(deps.repoRoot, deps.branchSnapshot);
   const codingRules = checkCodingRules(deps.repoRoot);
   const designCoverage = checkDesignCoverage(deps.repoRoot);
   const documentAgentMetadata = checkDocumentAgentMetadata(deps.repoRoot);

@@ -63,11 +63,7 @@ Cursor WIP=2の7日canaryとbilling-cycle read-afterにより、accepted merge�
 
 ## L12認識条件
 
-- 第一級レーンexact setが3件である。
-- Cursor予算枯渇と過少利用の双方が検出される。
-- Codex control reserveとClaude review inventoryがboundedである。
-- deterministic監査をモデルPASSで相殺できない。
-- model revision変更時に旧資格・称号・権限を継承しない。
-- Cursor停止時に明示DEGRADEDでCodex＋Claudeへ縮退する。
+認識条件の本文正本はpair_artifactの`three-lane-cloud-governance-recognition.md`へ一元化する。
+本書の3L-BR-001〜009それぞれをL12の同ID参照へ束縛し、重複した別条件集合を維持しない。
 
 本candidateは2026-09-05にplan固有のL3 human gateが成立した。独立review、CI、DB convergenceと別のcanonical promotionが成立するまで、v0.3 current authorityを置換しない。

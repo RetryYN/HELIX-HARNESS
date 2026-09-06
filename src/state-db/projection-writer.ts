@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { isAbsolute, join, relative } from "node:path";
@@ -25,7 +26,7 @@ import {
   type RelationGraphProjection,
   type VerificationEvidenceProjection,
 } from "../lint/relation-graph";
-import { loadReviewPlans } from "../lint/review-evidence";
+import { loadReviewPlans, type ParsedReviewPlan } from "../lint/review-evidence";
 import {
   computeGateProgress,
   computeProgramRollup,
@@ -1315,11 +1316,11 @@ function pairAgentModelRunId(runId: string, spanId: string): string {
 }
 
 function projectReviewModelRuns(
-  repoRoot: string,
+  reviewPlans: readonly ParsedReviewPlan[],
   db: HarnessDb,
   plans: Map<string, ProjectedPlan>,
 ): void {
-  for (const plan of loadReviewPlans(repoRoot)) {
+  for (const plan of reviewPlans) {
     const meta = plans.get(plan.plan_id);
     plan.crossEntries.forEach((entry, index) => {
       for (const role of ["worker", "reviewer"] as const) {
@@ -1386,13 +1387,17 @@ export function projectTokenUsage(db: HarnessDb, usages: RunUsage[]): void {
   }
 }
 
-function planStatusMap(repoRoot: string): Map<string, string> {
-  return new Map(loadReviewPlans(repoRoot).map((plan) => [plan.plan_id, plan.status]));
+function planStatusMap(reviewPlans: readonly ParsedReviewPlan[]): Map<string, string> {
+  return new Map(reviewPlans.map((plan) => [plan.plan_id, plan.status]));
 }
 
-function projectRoadmapRollup(repoRoot: string, db: HarnessDb): void {
+function projectRoadmapRollup(
+  repoRoot: string,
+  db: HarnessDb,
+  reviewPlans: readonly ParsedReviewPlan[],
+): void {
   const records = loadRoadmaps(repoRoot);
-  const statuses = planStatusMap(repoRoot);
+  const statuses = planStatusMap(reviewPlans);
   const statusOf = (planId: string): string | null => statuses.get(planId) ?? null;
   const rollup = computeProgramRollup(records, statusOf, new Set(PARKED_BANDS.keys()));
   const computedAt = nowIso();
@@ -1449,10 +1454,99 @@ function projectRoadmapRollup(repoRoot: string, db: HarnessDb): void {
   }
 }
 
-function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
+/**
+ * git tracked path の集合。green-command evidence の存在判定を「local に file があるか」ではなく
+ * 「HEAD に tracked されているか」で行うための入力。tracked でない evidence_path
+ * （`.helix/harness.db` のような gitignore 済み runtime locator）は環境によって有無が変わるため、
+ * 存在確認や読込をせず決定的な finding へ落とす（Issue #1548: worktree と clean clone で projection
+ * digest が割れ、logical DB receipt の provenance 照合が環境依存になった）。
+ * git が使えない root（fixture 等）は null を返し、呼出側は従来の存在判定へ fallback する。
+ */
+export type TrackedPathSetExec = (
+  file: string,
+  args: string[],
+  options: {
+    encoding: "utf8";
+    stdio: ["ignore", "pipe", "pipe"];
+    maxBuffer: number;
+  },
+) => string;
+
+const NOT_A_GIT_REPOSITORY = /not a git repository/i;
+
+/**
+ * 非 git root（明示 fixture）だけを null にする。git が起動できない（ENOENT）、safe.directory /
+ * dubious ownership、権限エラーなど「repo かどうか確認できなかった」失敗は非 git と同一視せず
+ * fail-close する。未確認を非 git と見なすと、実 repo の git 障害時に環境依存経路が黙って再開する。
+ */
+export function loadTrackedPathSet(
+  repoRoot: string,
+  exec: TrackedPathSetExec = execFileSync as unknown as TrackedPathSetExec,
+): ReadonlySet<string> | null {
+  const gitOptions = {
+    encoding: "utf8" as const,
+    stdio: ["ignore", "pipe", "pipe"] as ["ignore", "pipe", "pipe"],
+    maxBuffer: 64 * 1024 * 1024,
+  };
+  const describe = (error: unknown): string => {
+    const stderr =
+      typeof error === "object" && error !== null && "stderr" in error
+        ? String((error as { stderr?: unknown }).stderr ?? "")
+        : "";
+    const message = error instanceof Error ? error.message : String(error);
+    return `${stderr}\n${message}`.trim().split("\n")[0] ?? "";
+  };
+  try {
+    const inside = exec("git", ["-C", repoRoot, "rev-parse", "--is-inside-work-tree"], gitOptions);
+    if (inside.trim() !== "true") {
+      throw new Error(
+        `review-evidence-projection: tracked path set unavailable (unexpected rev-parse output: ${inside.trim()})`,
+      );
+    }
+  } catch (error) {
+    const stderr =
+      typeof error === "object" && error !== null && "stderr" in error
+        ? String((error as { stderr?: unknown }).stderr ?? "")
+        : "";
+    const message = error instanceof Error ? error.message : String(error);
+    // git 管理外の root（test fixture 等）だけが従来の存在判定へ fallback できる。
+    if (NOT_A_GIT_REPOSITORY.test(stderr) || NOT_A_GIT_REPOSITORY.test(message)) return null;
+    throw new Error(
+      `review-evidence-projection: tracked path set unavailable (git repository check failed: ${describe(error)})`,
+    );
+  }
+  // HEAD tree を正本にする。`git ls-files` は index 集合であり、staged-only の path を tracked と
+  // 誤認して HEAD と違う結果を返す。git repo 内で HEAD tree を読めない場合（unborn HEAD、破損）は
+  // filesystem 判定へ戻さず fail-close する。戻すと環境依存経路が実 repo で再開してしまう。
+  let stdout: string | null = null;
+  let lsTreeFailure: string | null = null;
+  try {
+    stdout = exec(
+      "git",
+      ["-C", repoRoot, "ls-tree", "-r", "-z", "--name-only", "HEAD"],
+      gitOptions,
+    );
+  } catch (error) {
+    // 失敗理由を明示状態へ変換して呼出側で fail-close する（filesystem 判定へは戻さない）。
+    lsTreeFailure = describe(error);
+  }
+  if (stdout === null) {
+    throw new Error(
+      `review-evidence-projection: tracked path set unavailable (git ls-tree HEAD failed: ${lsTreeFailure ?? "unknown"})`,
+    );
+  }
+  return new Set(stdout.split("\0").filter(Boolean).map(normalizePath));
+}
+
+function projectReviewEvidenceRegistry(
+  repoRoot: string,
+  db: HarnessDb,
+  reviewPlans: readonly ParsedReviewPlan[],
+): void {
   const indexedAt = nowIso();
   const greenCommandEvidenceCache = new Map<string, GreenCommandEvidenceParseResult>();
-  for (const plan of loadReviewPlans(repoRoot)) {
+  const trackedPaths = loadTrackedPathSet(repoRoot);
+  for (const plan of reviewPlans) {
     const firstEntry = plan.crossEntries[0];
     const id = stableId("review-evidence", plan.plan_id);
     recordProjectionEvent(db, {
@@ -1510,6 +1604,7 @@ function projectReviewEvidenceRegistry(repoRoot: string, db: HarnessDb): void {
           testRunId,
           command,
           evidenceCache: greenCommandEvidenceCache,
+          trackedPaths,
         });
       }
     }
@@ -1523,8 +1618,10 @@ function projectStructuredGreenCommandCaseEvidence(input: {
   testRunId: string;
   command: GreenCommandProjectionInput;
   evidenceCache: Map<string, GreenCommandEvidenceParseResult>;
+  /** git tracked path set。null は git 不可（fixture）で、従来の存在判定へ fallback する。 */
+  trackedPaths: ReadonlySet<string> | null;
 }): void {
-  const { repoRoot, db, fallbackPlanId, testRunId, command, evidenceCache } = input;
+  const { repoRoot, db, fallbackPlanId, testRunId, command, evidenceCache, trackedPaths } = input;
   if (!command.evidence_path || isAbsolute(command.evidence_path)) {
     recordFinding(db, {
       kind: "green-command-evidence-invalid-path",
@@ -1537,6 +1634,23 @@ function projectStructuredGreenCommandCaseEvidence(input: {
   }
   const fullPath = join(repoRoot, command.evidence_path);
   const relPath = normalizePath(relative(repoRoot, fullPath));
+  if (
+    trackedPaths !== null &&
+    !relPath.startsWith("..") &&
+    !isAbsolute(relPath) &&
+    !trackedPaths.has(relPath)
+  ) {
+    // untracked runtime locator（例: .helix/harness.db）。local に存在しても読まず、存在しなくても
+    // missing と区別する。過去 PLAN の provenance は書き換えず、環境非依存の一定 finding に固定する。
+    recordFinding(db, {
+      kind: "green-command-evidence-untracked",
+      severity: "warn",
+      subjectId: `${fallbackPlanId}:${relPath}`,
+      source: "review-evidence-projection",
+      evidencePath: relPath,
+    });
+    return;
+  }
   if (relPath.startsWith("..") || isAbsolute(relPath) || !existsSync(fullPath)) {
     recordFinding(db, {
       kind: "green-command-evidence-missing",
@@ -5402,12 +5516,18 @@ export function rebuildHarnessDb(input: RebuildHarnessDbInput = {}): RebuildHarn
           projectHookEvents(repoRoot, db, plans),
         );
       }
-      profiled("projectReviewModelRuns", input.onProfile, () =>
-        projectReviewModelRuns(repoRoot, db, plans),
+      // 再構築呼出し内だけで共有する。次回はGit provenanceを含め必ず読み直す。
+      const reviewPlans = profiled("loadReviewPlans", input.onProfile, () =>
+        loadReviewPlans(repoRoot),
       );
-      profiled("projectRoadmapRollup", input.onProfile, () => projectRoadmapRollup(repoRoot, db));
+      profiled("projectReviewModelRuns", input.onProfile, () =>
+        projectReviewModelRuns(reviewPlans, db, plans),
+      );
+      profiled("projectRoadmapRollup", input.onProfile, () =>
+        projectRoadmapRollup(repoRoot, db, reviewPlans),
+      );
       profiled("projectReviewEvidenceRegistry", input.onProfile, () =>
-        projectReviewEvidenceRegistry(repoRoot, db),
+        projectReviewEvidenceRegistry(repoRoot, db, reviewPlans),
       );
       profiled("projectTrackedClosureTerminalBoundaries", input.onProfile, () =>
         projectTrackedClosureTerminalBoundaries({ repoRoot, db }),

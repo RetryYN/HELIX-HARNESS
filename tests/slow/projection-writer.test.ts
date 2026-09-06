@@ -1,14 +1,14 @@
 import { spawnSync } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
-import { copyFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-
+import { describe, expect, it, vi } from "vitest";
 // PLAN-L7-575-plan-registry-workflow-identity-projection — U-DBWID-001..003, U-DBWID-005
 // PLAN-L7-583-workflow-classification-drive-run-projection — U-DBWID-007..010
 import { REQUIRED_DRIVE_MODELS } from "../../src/lint/drive-db-registration";
 import type { RelationGraphProjection } from "../../src/lint/relation-graph";
+import * as reviewEvidence from "../../src/lint/review-evidence";
 import {
   loadSkillApplicabilityRegistry,
   skillApplicabilityRegistrySourceDigest,
@@ -143,6 +143,53 @@ dependencies:
 `,
   );
 }
+
+it("U-DBRS-001: PLAN-RECOVERY-1568-rebuild-plan-snapshot: 解析は再構築ごとに一度だけ行い次回の変更を取り込む", () => {
+  const repoRoot = typedIdentityFixtureRepo();
+  const db = openHarnessDb(":memory:", { repoRoot });
+  const load = vi.spyOn(reviewEvidence, "loadReviewPlans");
+  const planId = "PLAN-L7-999-fixture";
+  try {
+    writeDriveRunPlan(repoRoot, planId, true);
+    const rebuild = () =>
+      rebuildHarnessDb({
+        repoRoot,
+        db,
+        relationGraph: { nodes: [], edges: [], verificationProfiles: [], findings: [] },
+        documentExports: {
+          document_export_runs: [],
+          document_export_datasets: [],
+          document_export_artifacts: [],
+          findings: [],
+          actionsTaken: [],
+          ok: true,
+        },
+      });
+    rebuild();
+    expect(load).toHaveBeenCalledTimes(1);
+    expect(
+      db.prepare("SELECT status FROM review_evidence_registry WHERE plan_id = ?").get(planId),
+    ).toMatchObject({ status: "draft" });
+    const path = join(repoRoot, "docs", "plans", `${planId}.md`);
+    writeFileSync(path, readFileSync(path, "utf8").replace("status: draft", "status: confirmed"));
+    rebuild();
+    expect(load).toHaveBeenCalledTimes(2);
+    expect(
+      db.prepare("SELECT status FROM review_evidence_registry WHERE plan_id = ?").get(planId),
+    ).toMatchObject({ status: "confirmed" });
+    const beforeFailure = projectionStateRows(db);
+    load.mockImplementationOnce(() => {
+      throw new Error("fixture-review-plan-read-failed");
+    });
+    expect(rebuild).toThrow("fixture-review-plan-read-failed");
+    expect(load).toHaveBeenCalledTimes(3);
+    expect(projectionStateRows(db)).toEqual(beforeFailure);
+  } finally {
+    load.mockRestore();
+    db.close();
+    rmSync(repoRoot, { recursive: true, force: true });
+  }
+});
 
 describe("SECRET_PATTERN word-boundary anchoring", () => {
   it("does not match 'sk' inside a word but matches a boundary-delimited token", () => {
@@ -1362,6 +1409,24 @@ dependencies:
       expect(git.status).toBe(0);
       const add = spawnSync("git", ["add", "."], { cwd: repoRoot, encoding: "utf8" });
       expect(add.status).toBe(0);
+      // PLAN-RECOVERY-1548: review-evidence projection は HEAD tree（git ls-tree HEAD）を tracked 集合の
+      // 正本とし、unborn HEAD は fail-close する。impact fixture は初回 commit を成立させてから
+      // working tree を変更し、変更 path の検出契約（core.ts のみ）はそのまま検証する。
+      const commit = spawnSync(
+        "git",
+        [
+          "-c",
+          "user.name=fixture",
+          "-c",
+          "user.email=fixture@example.invalid",
+          "commit",
+          "-q",
+          "-m",
+          "fixture",
+        ],
+        { cwd: repoRoot, encoding: "utf8" },
+      );
+      expect(commit.status, commit.stderr).toBe(0);
       writeFileSync(join(repoRoot, "src", "widget", "core.ts"), "export const core = 2;\n");
 
       const relationGraph: RelationGraphProjection = {

@@ -938,9 +938,15 @@ describe("L7 CLI surface closure", () => {
   });
 
   it("U-PRSCOPE-004: PLAN-L7-466-pr-scope-contract exposes GitHub operation guards as HELIX CLI surfaces", () => {
+    const head = spawnSync("git", ["rev-parse", "HEAD"], { cwd: repoRoot, encoding: "utf8" });
+    expect(head.status).toBe(0);
     const branchKind = runCli([
       "guard",
       "branch-kind",
+      "--base-head",
+      head.stdout.trim(),
+      "--candidate-head",
+      head.stdout.trim(),
       "--branch",
       "unknown/work",
       "--strict-unknown-prefix",
