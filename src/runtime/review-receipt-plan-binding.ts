@@ -36,7 +36,7 @@ export interface ReviewReceiptPlanBindingDecision {
   readonly failures: readonly ReviewReceiptPlanBindingFailure[];
 }
 
-const TERMINAL_PLAN_STATUSES = new Set(["confirmed", "completed"]);
+const TERMINAL_PLAN_STATUSES = new Set(["confirmed", "completed", "accepted"]);
 const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
 
 /**

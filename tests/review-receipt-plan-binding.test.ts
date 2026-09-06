@@ -119,4 +119,16 @@ describe("review receipt / PLAN binding", () => {
       ),
     ).toMatchObject({ ok: false, failures: [{ reason: "review_plan_binding_unavailable" }] });
   });
+
+  it("U-RRPB-007: accepted PLANもterminal evidence母集団から除外できない", () => {
+    const changed = input().changed_plans[0];
+    expect(
+      evaluateReviewReceiptPlanBinding(
+        input({ changed_plans: [{ ...changed, status: "accepted", review_entries: [] }] }),
+      ),
+    ).toMatchObject({
+      ok: false,
+      failures: [{ reason: "review_plan_cross_agent_approval_missing" }],
+    });
+  });
 });
