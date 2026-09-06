@@ -1100,6 +1100,8 @@ items:
       - docs/design/helix/L4-basic-design/worker-context-authority.md
       - docs/design/helix/L5-detail/worker-context-authority.md
       - docs/design/helix/L6-function-design/worker-context-authority.md
+      - docs/design/helix/L6-function-design/worker-budget-lifecycle.md
+      - docs/test-design/helix/L8-worker-budget-lifecycle.md
       - docs/design/helix/L4-basic-design/worker-blind-benchmark.md
       - docs/design/helix/L5-detail/worker-blind-benchmark.md
       - docs/design/helix/L6-function-design/worker-blind-benchmark.md

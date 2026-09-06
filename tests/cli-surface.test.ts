@@ -7996,7 +7996,8 @@ describe("L7 CLI surface closure", () => {
     }
   });
 
-  it("executes codex adapter under --execute --json and reports dry_run:false honestly", () => {
+  it("U-WBL-005: executes codex adapter with budget lifecycle fields under --execute --json", () => {
+    // PLAN-RECOVERY-1601-worker-deadline
     // 回帰: 旧実装は --execute --json で provider を起動せず dry_run:false の plan JSON だけ
     // 返していた (実行していないのに実行済みに見える機械判定の罠)。実行 + 正直な JSON を要求する。
     const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-exec-"));
@@ -8041,7 +8042,13 @@ describe("L7 CLI surface closure", () => {
         exit_code: 0,
         // 正常終了は signal=null (signal 終了時のみ exit_code=null + signal 名が入る)。
         signal: null,
+        timed_out: false,
+        deadline_ms: 60_000,
+        termination_stage: "none",
+        reaped: true,
       });
+      expect(payload.duration_ms).toBeGreaterThanOrEqual(0);
+      expect(payload.duration_ms).toBeLessThan(60_000);
       // provider が実際に起動した証跡 (env dump)。「実行せず JSON だけ」だと生成されない。
       expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).toContain("args=");
     } finally {

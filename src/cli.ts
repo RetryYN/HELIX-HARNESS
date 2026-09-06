@@ -399,6 +399,7 @@ import {
   readProviderHandoverCurrent,
   runProviderHandover,
 } from "./runtime/provider-handover";
+import { runBudgetedProviderProcess } from "./runtime/provider-process-lifecycle";
 import {
   buildReviewFeedbackSessionIntakeReport,
   type ReviewFeedbackEventInput,
@@ -1756,39 +1757,6 @@ function runCapturedProviderProcess(launch: ProviderProcessLaunch): Promise<Prov
     child.stdin?.on("error", () => undefined);
     if (launch.stdin === undefined) child.stdin?.end();
     else child.stdin?.end(launch.stdin);
-  });
-}
-
-function runInheritedProviderProcess(
-  launch: ProviderProcessLaunch,
-  stdout: "inherit" | 2,
-): Promise<Pick<ProviderProcessResult, "status" | "signal" | "error">> {
-  return new Promise((resolve) => {
-    let launchError: unknown;
-    let child: ReturnType<typeof spawn>;
-    try {
-      child = spawn(launch.command, launch.args, {
-        env: launch.env,
-        shell: launch.shell,
-        windowsVerbatimArguments: launch.windowsVerbatimArguments,
-        stdio: [launch.stdin === undefined ? "inherit" : "pipe", stdout, "inherit"],
-      });
-    } catch (error) {
-      resolve({ status: null, error });
-      return;
-    }
-    child.once("error", (error) => {
-      launchError = error;
-    });
-    child.once("close", (status, signal) => {
-      resolve({
-        status,
-        signal,
-        ...(launchError === undefined ? {} : { error: launchError }),
-      });
-    });
-    child.stdin?.on("error", () => undefined);
-    if (launch.stdin !== undefined) child.stdin?.end(launch.stdin);
   });
 }
 
@@ -12336,20 +12304,25 @@ function runtimeCommand(provider: AdapterProvider): Command {
           process.exitCode = 1;
           return;
         }
-        const child = await runInheritedProviderProcess(
-          {
-            command: admitted.invocation.command,
-            args: admitted.invocation.args,
-            // Provider prompts are passed through stdin; argv carries only fixed command flags so
-            // shell metacharacters and tool markup stay inert. The async boundary ends stdin after
-            // the prompt is written, which `spawnSync({ input })` cannot safely do for this route.
-            stdin: admitted.stdin,
-            env: adapterExecutionEnv(provider, admitted.env),
-            shell: admitted.invocation.shell ?? false,
-            windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
-          },
-          jsonOut ? 2 : "inherit",
-        );
+        if (!admitted.worker_context) {
+          process.stderr.write(`${provider}: wrapper admission lost its required worker context\n`);
+          process.exitCode = 1;
+          return;
+        }
+        const child = await runBudgetedProviderProcess({
+          command: admitted.invocation.command,
+          args: admitted.invocation.args,
+          // Provider prompts are passed through stdin; argv carries only fixed command flags so
+          // shell metacharacters and tool markup stay inert. The async boundary ends stdin after
+          // the prompt is written, which `spawnSync({ input })` cannot safely do for this route.
+          stdin: admitted.stdin,
+          env: adapterExecutionEnv(provider, admitted.env),
+          shell: admitted.invocation.shell ?? false,
+          windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
+          timeMs: admitted.worker_context.packet.budget.time_ms,
+          stdout: jsonOut ? 2 : "inherit",
+          stderr: "inherit",
+        });
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
@@ -12405,6 +12378,11 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 executed: true,
                 exit_code: child.status ?? null,
                 signal: child.signal ?? null,
+                timed_out: child.timed_out,
+                deadline_ms: child.deadline_ms,
+                termination_stage: child.termination_stage,
+                duration_ms: child.duration_ms,
+                reaped: child.reaped,
               },
               null,
               2,
