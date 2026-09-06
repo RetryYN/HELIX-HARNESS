@@ -100,11 +100,11 @@ const STRUCTURED_ACTION_BINDING_RECORD = /^\s*action_binding_approval_record:\s*
 const APPROVAL_BOUNDARY =
   /action-binding|human\/action-binding approval|requires_human_approval=true|human signoff|human approval|po signoff|po approval|required reviewers?|approval gate|人間サインオフ|人間承認|PO\s*サインオフ|PO\s*承認|承認/i;
 const EXECUTION_APPROVAL_OBLIGATION =
-  /(?:requires?|needs?|obtain)\b.{0,120}(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ).{0,120}(?:before|prior to|事前|前に|実行前|実適用前)|(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ).{0,120}(?:required|needed|mandatory|必須|必要).{0,120}(?:before|prior to|事前|前に|実行前|実適用前)|(?:activation|deployment|deploy|cutover|migration|external execution|high-impact action|高影響\s+action|実行|実適用|本番|外部).{0,120}(?:requires?|needs?)\b.{0,120}(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ)|(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ)\s*なしに.{0,120}(?:apply|execute|execution|deploy|deployment|activation|cutover|migration|実行|実適用)|高影響\s+action\s+の実行前に\s+human\/action-binding approval\s+を記録する/i;
+  /(?:requires?|needs?|obtain)\b.{0,120}(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ).{0,120}(?:before|prior to|事前|前に|実行前|実適用前)|(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ).{0,120}(?:required|needed|mandatory|必須|必要).{0,120}(?:before|prior to|事前|前に|実行前|実適用前)|(?:activation|deployment|deploy|cutover|migration|external execution|high-impact action|高影響\s+action|実行|実適用|本番|外部).{0,120}(?:requires?|needs?)\b.{0,120}(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ)|(?:実行前|実適用前|適用前).{0,120}(?:PO\s*承認|人間承認|承認).{0,120}(?:必須|必要)|(?:action-binding approval|human\/action-binding approval|human approval|human signoff|po signoff|po approval|approval|承認|サインオフ)\s*なしに.{0,120}(?:apply|execute|execution|deploy|deployment|activation|cutover|migration|実行|実適用)|高影響\s+action\s+の実行前に\s+human\/action-binding approval\s+を記録する/i;
 const HIGH_IMPACT_ACTION_TARGET =
   /high-impact action|high-impact execution|高影響\s+action|external|infra|infrastructure|secret|auth|authorization|authentication|destructive|state dir|migration|cutover|activation|deploy|deployment|release|environment|cloudflare|hmac|webhook|access control|production|api|apply|execution|本番|外部|認証|認可|破壊|不可逆|設定変更|実行|実適用|デプロイ|配布/i;
 const META_ONLY_APPROVAL_CONTEXT =
-  /out of scope|does not authorize|not authorize|no .*authorized|planonly|mustnotapply|applycommandavailable=false|does not activate|does not execute|no production cutover|no production write|証跡|説明|サンプル/i;
+  /out of scope|does not authorize|not authorize|no .*authorized|planonly|mustnotapply|applycommandavailable=false|does not activate|does not execute|no production cutover|no production write|実行を許可しない|実適用しない|説明専用|サンプル専用/i;
 
 export function classifyHighImpactApprovalRequirement(
   text: string,
@@ -140,11 +140,32 @@ function hasHighImpactApprovalRequirementContext(text: string): boolean {
 }
 
 function approvalRequirementChunks(text: string): string[] {
-  return text
-    .split(/\n+/)
-    .flatMap((line) => line.split(/(?<=[。.!?])\s+/))
-    .map((chunk) => chunk.trim())
-    .filter(Boolean);
+  const chunks: string[] = [];
+  let inReviewEvidence = false;
+  for (const line of text.split(/\n+/)) {
+    if (/^review_evidence:\s*$/.test(line)) {
+      inReviewEvidence = true;
+      continue;
+    }
+    if (inReviewEvidence && /^\S/.test(line)) {
+      inReviewEvidence = false;
+    }
+    // review_evidence配下のscopeは過去レビューの説明metadataであり、実行要求ではない。
+    if (inReviewEvidence && /^\s{4}scope:\s*/.test(line)) {
+      continue;
+    }
+    const sentences = line
+      .split(/(?<=[。.!?])\s+/)
+      .map((chunk) => chunk.trim())
+      .filter(Boolean);
+    chunks.push(
+      ...sentences.flatMap((sentence, index) => [
+        sentence,
+        sentences.slice(Math.max(0, index - 1), index + 2).join(" "),
+      ]),
+    );
+  }
+  return chunks;
 }
 
 export function planTextRequiresActionBindingApproval(text: string): boolean {

@@ -19,6 +19,7 @@ import {
 import {
   allowedOutcomeSetViolation,
   fmValue,
+  isConcreteApprovalBindingValue,
   loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
@@ -2538,7 +2539,7 @@ function selectedActivationMaterialViolations(
   }
   for (const field of ["approved_actor", "approved_tool", "approved_target", "approved_params"]) {
     const value = actionBinding[field] ?? "";
-    if (!concreteApprovalBindingValue(value)) {
+    if (!isConcreteApprovalBindingValue(value)) {
       violations.push({
         subject: packet.planId,
         reason: `action_binding_approval_record lacks concrete ${field}`,
@@ -2565,7 +2566,7 @@ function selectedActivationMaterialViolations(
         "action_binding_approval_record.reviewed_snapshot_binding does not match current activationSnapshot.snapshotId",
     });
   }
-  if (!concreteApprovalBindingValue(actionBinding.expires_at_or_trigger ?? "")) {
+  if (!isConcreteApprovalBindingValue(actionBinding.expires_at_or_trigger ?? "")) {
     violations.push({
       subject: packet.planId,
       reason: "action_binding_approval_record lacks concrete expires_at_or_trigger",
@@ -2585,26 +2586,6 @@ function selectedActivationMaterialViolations(
   }
 
   return violations;
-}
-
-function concreteApprovalBindingValue(value: string): boolean {
-  const normalized = value.trim().toLowerCase();
-  if (!normalized || normalized === "tbd" || normalized === "todo" || normalized === "-") {
-    return false;
-  }
-  return ![
-    "<",
-    "no actor",
-    "no deploy",
-    "no external",
-    "no activation",
-    "not approved",
-    "while parked",
-    "must ",
-    "must be",
-    "before activation",
-    "pending",
-  ].some((marker) => normalized.includes(marker));
 }
 
 function validateParkedVersionUpSemantics(
