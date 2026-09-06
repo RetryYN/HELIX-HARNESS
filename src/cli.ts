@@ -412,6 +412,10 @@ import {
   summarizeStagedReview,
 } from "./runtime/review-guard";
 import {
+  evaluateReviewReceiptPlanBinding,
+  loadChangedPlanReviewBindings,
+} from "./runtime/review-receipt-plan-binding";
+import {
   appendRuntimeVerificationLogEvent,
   DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
   type RuntimeClaim,
@@ -14788,6 +14792,21 @@ github
       }
       if (input.verdict === "approve") {
         input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
+        const planBinding = evaluateReviewReceiptPlanBinding({
+          receipt: {
+            reviewer_session_id: input.reviewerSessionId,
+            reviewer_model: input.reviewerModel,
+          },
+          changed_plans: loadChangedPlanReviewBindings(process.cwd(), "origin/main", input.headSha),
+        });
+        if (!planBinding.ok) {
+          const failure = planBinding.failures[0];
+          process.stderr.write(
+            `github pr-review-receipt: ${failure?.reason ?? "review_plan_binding_unavailable"}${failure ? `:${failure.plan_id}` : ""}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
       }
       const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
       const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
@@ -15025,6 +15044,38 @@ github
         process.exitCode = 1;
         return;
       }
+    }
+    const reviewIdentity = providerNeutral
+      ? (() => {
+          const value = receipt as ReturnType<typeof loadProviderNeutralReviewReceipt>;
+          return {
+            reviewer_session_id: value.reviewer_session,
+            reviewer_model: value.reviewer_model,
+          };
+        })()
+      : (() => {
+          const value = receipt as ReturnType<typeof loadClaudePrReviewReceipt>;
+          return {
+            reviewer_session_id: value.reviewerSessionId,
+            reviewer_model: value.reviewerModel,
+          };
+        })();
+    const mergePlanBinding = evaluateReviewReceiptPlanBinding({
+      receipt: reviewIdentity,
+      changed_plans: loadChangedPlanReviewBindings(
+        process.cwd(),
+        "origin/main",
+        current.headRefOid,
+      ),
+    });
+    if (!mergePlanBinding.ok) {
+      process.stderr.write(
+        `github pr-merge-reviewed: ${mergePlanBinding.failures
+          .map((failure) => `${failure.reason}:${failure.plan_id}`)
+          .join(",")}\n`,
+      );
+      process.exitCode = 1;
+      return;
     }
     const requiredViewed = spawnSync(
       "gh",

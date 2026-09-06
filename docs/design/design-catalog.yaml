@@ -234,6 +234,8 @@ items:
       - docs/test-design/helix/L8-review-evidence-projection-parity-unit-test-design.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md
       - docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
+      - docs/design/helix/L6-function-design/review-receipt-plan-binding.md
+      - docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md
       - docs/design/helix/L6-function-design/design-language-early-detection.md
       - docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
