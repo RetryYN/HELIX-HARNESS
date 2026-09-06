@@ -36,7 +36,7 @@ contract_invariants: "human approvalと技術reviewを混同せず、既存recei
 contract_failures: "差分PLAN取得不能、PLAN parse不能、cross-agent承認欠落、session/model不一致をtyped reasonでfail-closeする。"
 tdd_red_required: true
 red_test: "tests/review-receipt-plan-binding.test.tsのU-RRPB-002..006を実装前に実行し、接合関数が未存在のためredを確認する。"
-red_at: "2026-09-07T04:50:00+09:00"
+red_at: "2026-09-06T19:45:27Z"
 green_at: "2026-09-06T21:25:16Z"
 mutation_oracle_required: true
 mutation_oracle: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session、model、review_kind、status、PLAN pathと追加境界のseeded defectを個別にfail-closeしてkillする。"
