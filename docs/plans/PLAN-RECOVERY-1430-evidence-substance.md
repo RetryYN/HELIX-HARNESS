@@ -130,7 +130,7 @@ review_evidence:
     reviewed_head_sha: d8a3e0351ce996225728669c92e3daa317fe65e3
     scope: "独立reviewとclean clone実測は https://github.com/RetryYN/HELIX-HARNESS/pull/1600#issuecomment-5561719714 。doctor exit 1は環境起因4件を含むためgreen commandへ昇格しない。Issue #1430全体完了や最終receiptを代替しない。"
     green_commands:
-      - kind: install
+      - kind: smoke
         command: "npm ci --no-audit --no-fund"
         runner: node
         scope: full
@@ -138,7 +138,7 @@ review_evidence:
         completed_at: "2026-09-06T19:39:56Z"
         evidence_path: .helix/evidence/review-1600/npm-ci.log
         output_digest: "sha256:7c96a96a08b32140fb63dfd4464638928e8e93fd13ed027c8aa320bde740c10e"
-      - kind: test
+      - kind: unit_test
         command: "npx vitest run tests/evidence-file-substance.test.ts tests/g8-integration-workflow.test.ts tests/g9-system-workflow.test.ts tests/g10-ux-workflow.test.ts tests/goal-evidence-audit.test.ts tests/s4-decision-readiness.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/l12-hybrid-recognition.test.ts tests/review-evidence.test.ts tests/plan-artifact-existence.test.ts tests/green-command-digest.test.ts tests/plan-supersession.test.ts tests/legacy-orchestration-surface.test.ts tests/relation-graph-loader.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts"
         runner: node
         scope: targeted
@@ -162,7 +162,7 @@ review_evidence:
         completed_at: "2026-09-06T19:42:45Z"
         evidence_path: .helix/evidence/review-1600/biome.log
         output_digest: "sha256:cfc63ce6d6b091cc23a4f5f7180d949ada795a184c1b2a0645fa1d173f1c8611"
-      - kind: plan_lint
+      - kind: lint
         command: "npx tsx src/cli.ts plan lint"
         runner: node
         scope: full
