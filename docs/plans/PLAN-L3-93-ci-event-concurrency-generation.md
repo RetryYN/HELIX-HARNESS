@@ -12,7 +12,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: REDESIGN
+  target_id: RECOVERY
 entry_signals:
   - "po_directive: CI高速化を先行し、必要な検証を落とさず待ち時間と再実行を実測削減する"
 created: 2026-09-07
