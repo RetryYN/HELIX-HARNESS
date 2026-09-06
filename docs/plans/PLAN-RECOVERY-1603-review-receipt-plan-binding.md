@@ -131,7 +131,8 @@ review_evidence:
         exit_code: 0
         completed_at: "2026-09-06T21:25:25Z"
         evidence_path: .helix/evidence/review-1605/tsc.log
-        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        output_digest: "sha256:1220d5cd6646c8095f0a6d1950151d5f40ef47af60db8c975e79b691ae29e8da"
+        result: "exit 0; stdout and stderr were empty"
       - kind: lint
         command: "npx biome check src tests"
         runner: node
