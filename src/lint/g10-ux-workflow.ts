@@ -33,6 +33,9 @@ const CONFIG = {
   itemPrefix: "UXV-",
   doctorCheck: "g10-ux-workflow",
   requireAdvisorEvidence: true,
+  activeManifestPaths: [
+    ".helix/evidence/g10-ux/20260906-selected-ux-evidence.json",
+  ],
 } as const;
 
 const WORKFLOW_MARKERS = [

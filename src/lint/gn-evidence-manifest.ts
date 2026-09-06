@@ -49,6 +49,7 @@ export interface GateEvidenceConfig {
   itemPrefix: string;
   doctorCheck: string;
   requireAdvisorEvidence?: boolean;
+  activeManifestPaths?: readonly string[];
 }
 
 function stringArray(value: unknown): string[] {
@@ -120,6 +121,9 @@ export function loadGateEvidenceManifests(
 ): GateEvidenceManifest[] {
   const dir = resolve(repoRoot, config.evidenceDir);
   if (!existsSync(dir)) return [];
+  const activeManifestPaths = config.activeManifestPaths
+    ? new Set(config.activeManifestPaths.map(normalizedPath))
+    : undefined;
   return readdirSync(dir)
     .filter((name) => name.endsWith(".json"))
     .sort()
@@ -127,7 +131,12 @@ export function loadGateEvidenceManifests(
       const manifestPath = `${config.evidenceDir}/${name}`;
       const raw = JSON.parse(readFileSync(resolve(dir, name), "utf8")) as unknown;
       return manifestFromJson(manifestPath, raw);
-    });
+    })
+    .filter(
+      (manifest) =>
+        activeManifestPaths === undefined ||
+        activeManifestPaths.has(normalizedPath(manifest.manifest_path)),
+    );
 }
 
 function normalizedPath(path: string): string {
