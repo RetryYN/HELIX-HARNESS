@@ -20,6 +20,7 @@ import {
   allowedOutcomeSetViolation,
   fmValue,
   isClosedPlanStatus,
+  isConcreteApprovalBindingValue,
   loadPlanDocs,
   missingRecordFields,
   recordFieldValue,
@@ -141,6 +142,7 @@ interface ActionBindingSnapshotExpectations {
   versionUpSnapshotId: string | null;
   versionUpSnapshotValidationMissing: boolean;
   cutoverSnapshotId: string | null;
+  cutoverSnapshotValidationMissing: boolean;
 }
 
 interface ActionBindingApprovalCheckContext {
@@ -219,6 +221,7 @@ export function loadActionBindingApprovalReadinessInput(
   repoRoot = process.cwd(),
 ): ActionBindingApprovalReadinessInput {
   const outstanding = computeOutstandingWork(repoRoot);
+  const repoHeadSha = readRepoHeadSha(repoRoot);
   return {
     rightArmMd: readFileSync(
       join(repoRoot, "docs", "process", "forward", "L08-L14-verification-phase.md"),
@@ -229,9 +232,11 @@ export function loadActionBindingApprovalReadinessInput(
       join(repoRoot, "docs", "process", "modes", "version-up.md"),
       "utf8",
     ),
-    repoHeadSha: readRepoHeadSha(repoRoot),
+    repoHeadSha,
     currentVersion: readPackageVersion(repoRoot) ?? undefined,
-    currentCutoverSnapshotId: buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId,
+    currentCutoverSnapshotId: repoHeadSha
+      ? buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId
+      : undefined,
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans: loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content)),
   };
@@ -480,6 +485,7 @@ function buildActionBindingApprovalSnapshot(input: {
     expectedCutoverSnapshotId: input.snapshotExpectations.cutoverSnapshotId,
     versionUpSnapshotValidationMissing:
       input.snapshotExpectations.versionUpSnapshotValidationMissing,
+    cutoverSnapshotValidationMissing: input.snapshotExpectations.cutoverSnapshotValidationMissing,
   });
   const invalidatedBy = [
     "plan_text_change",
@@ -1098,6 +1104,8 @@ function actionBindingSnapshotExpectations(
     versionUpSnapshotId: expectedVersionUpActivationSnapshotId(plan, input),
     versionUpSnapshotValidationMissing: versionUpSnapshotValidationMissing(plan, input),
     cutoverSnapshotId: expectedCutoverSnapshotId(plan, input),
+    cutoverSnapshotValidationMissing:
+      requiresCutoverSnapshot(plan) && !input.currentCutoverSnapshotId,
   };
 }
 
@@ -1133,6 +1141,7 @@ function actionBindingBlockedReasons(
     versionUpSnapshotId: null,
     versionUpSnapshotValidationMissing: false,
     cutoverSnapshotId: null,
+    cutoverSnapshotValidationMissing: false,
   },
 ): string[] {
   const reasons: string[] = [];
@@ -1151,7 +1160,7 @@ function actionBindingBlockedReasons(
     "approved_params",
   ] as const) {
     const value = approvalRecord[field] ?? "";
-    if (!value.trim()) {
+    if (!isConcreteApprovalBindingValue(value)) {
       reasons.push(`action-binding approval lacks concrete ${field}`);
       continue;
     }
@@ -1170,6 +1179,8 @@ function actionBindingBlockedReasons(
     reasons.push("reviewed_snapshot_binding does not match the required decision packet route");
   } else if (snapshotExpectations.versionUpSnapshotValidationMissing) {
     reasons.push(VERSION_UP_SNAPSHOT_VALIDATION_MISSING_REASON);
+  } else if (snapshotExpectations.cutoverSnapshotValidationMissing) {
+    reasons.push("cutover snapshot validation input is missing");
   } else if (
     requiresSnapshotBinding(plan) &&
     (isPendingApprovalBinding(reviewedSnapshotBinding) ||
@@ -1200,6 +1211,7 @@ function buildActionBindingApprovalChecks(
     versionUpSnapshotId: null,
     versionUpSnapshotValidationMissing: false,
     cutoverSnapshotId: null,
+    cutoverSnapshotValidationMissing: false,
   },
 ): ActionBindingApprovalCheck[] {
   const context = { plan, approvalRecord, snapshotExpectations };
@@ -1344,6 +1356,16 @@ function actionBindingApprovalCheckForField(
           "re-run the action-binding approval packet from a git worktree with repoHeadSha before approval",
       };
     }
+    if (snapshotExpectations.cutoverSnapshotValidationMissing) {
+      return {
+        field,
+        status: "pending",
+        value,
+        reason: "cutover snapshot validation input is missing",
+        requiredAction:
+          "re-run the action-binding approval packet with currentCutoverSnapshotId before approval",
+      };
+    }
     if (requiresSnapshotBinding(plan) && !hasConcreteSnapshotId(value)) {
       return {
         field,
@@ -1447,34 +1469,17 @@ function mentions(value: string, needles: string[]): boolean {
 }
 
 function isBroadApproval(value: string): boolean {
-  return /\b(any|all|everything|unlimited|wildcard)\b/i.test(value) || value.includes("*");
+  return (
+    /\b(any|all|everything|unlimited|wildcard|admin|root|global)\b/i.test(value) ||
+    /\b(full access|full control|entire (?:repo|repository|environment)|whole (?:repo|repository))\b/i.test(
+      value,
+    ) ||
+    value.includes("*")
+  );
 }
 
 function isPendingApprovalBinding(value: string): boolean {
-  return mentions(value, [
-    "no ",
-    "not approved",
-    "未承認",
-    "while parked",
-    "draft plan",
-    "future approval",
-    "must name",
-    "must record",
-    "must write",
-    "must cite",
-    "must be reviewed",
-    "before approval",
-    "before activation",
-    "before apply",
-    "before execution",
-    "required before",
-    "cannot authorize",
-    "将来",
-    "承認しない",
-    "未承認",
-    "承認前",
-    "approval 前",
-  ]);
+  return !isConcreteApprovalBindingValue(value);
 }
 
 function isPendingReviewEvidence(value: string): boolean {
