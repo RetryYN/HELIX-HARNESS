@@ -11,7 +11,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: REDESIGN
+  target_id: ADD_FEATURE
 entry_signals:
   - "po_directive: HELIX全体の有償商用提供方針とPR作成の明示依頼。条文・発効版は未確定"
 created: 2026-09-06
@@ -61,6 +61,9 @@ review_evidence: []
 ---
 
 # 実施範囲
+
+本sliceは現行LICENSEを改版する実行ではなく、#659の配布契約へ商用方針の要求候補を追加するADD_FEATUREとする。
+実LICENSEの切替は後続の改版工程であり、本候補と混同しない。
 
 全体の商用化方向を要求候補へ整理する。現行LICENSE/package.json、runtime、課金、GitHub公開設定は変更しない。
 根拠と未確定事項は要求候補へ集約し、memoryを契約正本にしない。
