@@ -11,11 +11,11 @@ l3_human_approval:
   approval_kind: human_po
   decision: approve
   approver: RetryYN
-  approved_at: "2026-09-04T18:03:15Z"
+  approved_at: "2026-09-06T06:34:19Z"
   plan_id: PLAN-L3-78-three-lane-cloud-governance-authority
-  approval_record_id: L3-PO-1358-001
+  approval_record_id: L3-PO-1358-002
   approval_source: human_gate_record
-  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5544538060"
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -61,6 +61,7 @@ dependencies:
     - issue:1360
     - issue:1361
     - issue:1362
+    - issue:1580
   blocks:
     - issue:1293
     - issue:1359
@@ -104,8 +105,14 @@ review_evidence: []
 
 局所検証（2026-09-06）: `helix plan lint`と`git diff --check`がexit 0。Nodeによる文書照合では、L3の25要件すべてをL10の27 ACが参照し、未定義要件参照0、L1の9要求すべてにL3導出対応とL12認識条件が存在することを確認した。これは文書の参照検証であり、実runtimeの競合試験、cloud実行、独立reviewの成功証拠ではない。
 
-2026-09-04のL3 human gateは当時の22要件／24 oracle版を対象とする履歴として保持する。
-補完後の25要件／27 oracle版への承認拡張とは扱わず、canonical promotion PRでは追加・変更差分のhuman gateを必要とする。
-candidateは独立技術reviewとcanonical freezeまで隔離を維持する。
+2026-09-04の`L3-PO-1358-001`は当時の22要件／24 oracle版を対象とする履歴として保持する。補完後の
+v0.4.0-candidateは`L3-PO-1358-002`で個別承認済みである。承認対象mainは
+`69679771d456eb1600f399bc83f3121a2bc27b01`、frontmatter除外本文SHA-256はrequests
+`583f3c78069a8207c428bea8ded005e0fd858b301cb057b1427fa1c4d6b6b7fc`、requirements
+`3bacf0e79e5ac2760341418ccaf80133b66fafb15ede9b60d8260943fe67e1eb`、acceptance
+`2f87e40858edbb168b1ca1457a8cc3d256dba59e208e8003e7a869e0597d19ea`、recognition
+`dfd66d82cc86796e375b92532fafc1d876da30d250b72f56654b22cfdcbacd6b`で、意味集合はL1 BR 9件、
+L3 requirement 25件、L10 oracle 27件、L12 recognition 9件とする。candidateは独立技術reviewと
+canonical freezeまで隔離を維持し、承認後の意味変更には再承認を要求する。
 独立exact-HEAD review、CI、doctor、DB convergenceが成立した後に限り、
 v0.3 current authorityを置換する別の原子的promotion PRへ進む。
