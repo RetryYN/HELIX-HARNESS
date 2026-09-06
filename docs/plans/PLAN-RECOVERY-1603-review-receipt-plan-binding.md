@@ -53,6 +53,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-010, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-011, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-012, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-013, test_path: tests/review-receipt-plan-binding.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
   requires: []

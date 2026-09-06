@@ -150,9 +150,18 @@ function parseChangedPlan(path: string, source: string): ChangedPlanReviewBindin
 export function loadChangedPlanReviewBindings(
   repoRoot: string,
   baseRef = "origin/main",
+  expectedHead?: string,
 ): ChangedPlanReviewBinding[] {
   let output: string;
   try {
+    if (expectedHead) {
+      const localHead = execFileSync("git", ["rev-parse", "HEAD"], {
+        cwd: repoRoot,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim();
+      if (localHead !== expectedHead) throw new Error("local_head_mismatch");
+    }
     output = execFileSync("git", ["diff", "--name-only", `${baseRef}...HEAD`, "--", "docs/plans"], {
       cwd: repoRoot,
       encoding: "utf8",
@@ -182,7 +191,9 @@ export function loadChangedPlanReviewBindings(
             stdio: ["ignore", "pipe", "ignore"],
           });
           const base = parseChangedPlan(path, baseSource);
-          if (base.parse_failure) return { ...base, plan_id: head.plan_id };
+          if (base.parse_failure) {
+            return { ...base, plan_id: head.plan_id, status: "unknown" };
+          }
           baseStatus = base.status;
         } catch {
           baseStatus = null;

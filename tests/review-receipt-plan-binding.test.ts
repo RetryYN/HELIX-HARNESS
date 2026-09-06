@@ -204,6 +204,13 @@ describe("review receipt / PLAN binding", () => {
     commitAll(root, "add malformed plan");
     expect(loadChangedPlanReviewBindings(root, "HEAD~1")).toMatchObject([{ parse_failure: true }]);
   });
+
+  it("U-RRPB-013: loaderはlocal HEADとcandidate HEADの不一致をfail-closeする", () => {
+    const root = createGitFixture();
+    expect(loadChangedPlanReviewBindings(root, "HEAD", "f".repeat(40))).toMatchObject([
+      { parse_failure: true, status: "unknown" },
+    ]);
+  });
 });
 
 function planSource(planId: string, status: string): string {

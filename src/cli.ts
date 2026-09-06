@@ -14807,7 +14807,7 @@ github
             reviewer_session_id: input.reviewerSessionId,
             reviewer_model: input.reviewerModel,
           },
-          changed_plans: loadChangedPlanReviewBindings(process.cwd()),
+          changed_plans: loadChangedPlanReviewBindings(process.cwd(), "origin/main", input.headSha),
         });
         if (!planBinding.ok) {
           const failure = planBinding.failures[0];
@@ -15072,7 +15072,11 @@ github
         })();
     const mergePlanBinding = evaluateReviewReceiptPlanBinding({
       receipt: reviewIdentity,
-      changed_plans: loadChangedPlanReviewBindings(process.cwd()),
+      changed_plans: loadChangedPlanReviewBindings(
+        process.cwd(),
+        "origin/main",
+        current.headRefOid,
+      ),
     });
     if (!mergePlanBinding.ok) {
       process.stderr.write(

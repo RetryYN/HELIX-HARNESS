@@ -18,6 +18,7 @@ PLANだけへ転記し、常駐収束レーンの検収と見せかける経路�
 ## 境界
 
 - Git差分から変更対象のPLANを決定し、worktree全体の無関係な過去PLANを母集団にしない。
+- local HEADがreceipt／GitHubのcandidate HEADと一致しないworktreeからのseal・mergeを拒否する。
 - baseで非terminal、HEADで`confirmed`／`completed`／`accepted`へ遷移したPLANだけを検査する。
   既存terminal PLANへの注記・supersession metadata追加は再terminal化ではないため母集団外とする。
 - PR receiptの`reviewerSessionId`、`reviewerModel`とPLAN側の`reviewer_session_id`、

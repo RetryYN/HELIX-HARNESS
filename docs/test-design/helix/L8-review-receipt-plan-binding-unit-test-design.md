@@ -23,3 +23,4 @@ pair_artifact: docs/design/helix/L6-function-design/review-receipt-plan-binding.
 | U-RRPB-010 | Git取得失敗 | Git差分を取得できないrepository/baseをfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRPB-011 | path境界 | `docs/plans/`直下以外のpathを母集団から除外する | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRPB-012 | frontmatter parse | 変更PLANのfrontmatterが壊れていればfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-013 | local HEAD境界 | local HEADとGitHub candidate HEADが異なる場合はfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
