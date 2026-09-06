@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-06T01:24:00Z"
+  plan_id: PLAN-L3-659-commercial-license-policy
+  approval_record_id: L3-PO-659-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/659#issuecomment-5556036148"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -13,7 +23,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: ADD_FEATURE
 entry_signals:
-  - "po_directive: HELIX全体の有償商用提供方針とPR作成の明示依頼。条文・発効版は未確定"
+  - "po_directive: issue:659 のtyped human gate recordで、HELIX全体の有償商用提供方針候補の正本化を承認。条文・発効版は未確定"
 created: 2026-09-06
 updated: 2026-09-06
 owner: Codex / TL
@@ -29,7 +39,7 @@ backprop_decision_reason: "未発効の上流差分候補のみを作成し、�
 no_code_decision: no_change
 ddd_modeling_decision: policy
 contract_preconditions: "現行MITと既存配布要件を確認し、全体の有償提供意向と第三者権利を区別する"
-contract_postconditions: "全体対象・権利範囲・発効版・consumer条件を要求10件と受入10件で追跡する"
+contract_postconditions: "全体対象・権利範囲・発効版・consumer条件を要求12件と受入12件で追跡する"
 contract_invariants: "過去許諾を遡及撤回せず、独自権利と第三者/利用者の権利を混同しない"
 contract_failures: "Liteへの無断縮小、許諾の創作、候補からの発効・publish主張を拒否する"
 tdd_red_required: false
@@ -47,6 +57,7 @@ dependencies:
     - issue:958
     - issue:1494
     - issue:1500
+    - issue:659
   blocks: []
 generates:
   - { artifact_path: docs/governance/candidates/helix-commercial-license-requirements.md, artifact_type: markdown_doc }
@@ -72,6 +83,6 @@ review_evidence: []
 ## ローカル検証
 
 - `npm run helix -- plan lint`: entry signalを正規形式へ是正後、entry routingと採番検査はOK。既存design-reality advisoryは残る。
-- 要求10件と受入10件の一対一対応、相対参照、MIT metadata不変更をNode assertionで確認した。
+- 要求12件と受入12件の一対一対応、相対参照、MIT metadata不変更をNode assertionで確認する。
 - `npm run helix -- db rebuild`: exit 0、80278 rows。outstandingは新規draftを含め80件。
 - 紹介表示は任意依頼のみとする。非表示による不利益、自動挿入、顧客事例公開への同意転用を禁止する。必須条件にしない。
