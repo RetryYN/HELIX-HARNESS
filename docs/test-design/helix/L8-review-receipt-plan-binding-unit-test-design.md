@@ -16,5 +16,11 @@ pair_artifact: docs/design/helix/L6-function-design/review-receipt-plan-binding.
 | U-RRPB-003 | model一致 | session文字列が一致してもmodelが異なる場合は拒否する | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRPB-004 | review kind | humanまたはintra-runtime entryだけでは独立承認として受理しない | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRPB-005 | terminal母集団 | draft変更PLANはreceipt sealのterminal evidence母集団へ入れない | `tests/review-receipt-plan-binding.test.ts` |
-| U-RRPB-006 | 取得失敗 | Git差分取得不能、frontmatter parse不能、対象PLAN pathの逸脱をfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-006 | evaluator取得失敗 | parse不能として渡されたPLANをfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRPB-007 | accepted母集団 | `accepted` PLANにcross-agent承認がなければterminal母集団として拒否する | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-008 | terminal遷移 | baseですでにterminalのPLANへmetadataだけを追加しても再照合しない | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-009 | model正規化 | 同providerのprefix差だけを許容し、異providerを拒否する | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-010 | Git取得失敗 | Git差分を取得できないrepository/baseをfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-011 | path境界 | `docs/plans/`直下以外のpathを母集団から除外する | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-012 | frontmatter parse | 変更PLANのfrontmatterが壊れていればfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-013 | HEAD binding | PLAN evidenceとreceiptのcandidate HEAD不一致を拒否する | `tests/review-receipt-plan-binding.test.ts` |

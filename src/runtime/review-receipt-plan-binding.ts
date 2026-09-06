@@ -1,7 +1,14 @@
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { parse as parseYaml } from "yaml";
+import { modelProviderFromId } from "../schema";
+
 export type ReviewPlanBindingFailureReason =
   | "review_plan_binding_unavailable"
   | "review_plan_session_mismatch"
   | "review_plan_model_mismatch"
+  | "review_plan_head_mismatch"
   | "review_plan_cross_agent_approval_missing";
 
 export interface ReviewPlanEntryBinding {
@@ -9,11 +16,14 @@ export interface ReviewPlanEntryBinding {
   readonly verdict: string;
   readonly reviewer_session_id?: string;
   readonly reviewer_model?: string;
+  readonly reviewed_head_sha?: string;
 }
 
 export interface ChangedPlanReviewBinding {
   readonly plan_id: string;
   readonly status: string;
+  /** null はbaseに存在しない新規PLAN、undefinedはpure evaluatorへの旧入力互換。 */
+  readonly base_status?: string | null;
   readonly review_entries: readonly ReviewPlanEntryBinding[];
   readonly parse_failure?: boolean;
 }
@@ -22,6 +32,7 @@ export interface ReviewReceiptPlanBindingInput {
   readonly receipt: {
     readonly reviewer_session_id: string;
     readonly reviewer_model: string;
+    readonly reviewed_head_sha: string;
   };
   readonly changed_plans: readonly ChangedPlanReviewBinding[];
 }
@@ -53,6 +64,9 @@ export function evaluateReviewReceiptPlanBinding(
       continue;
     }
     if (!TERMINAL_PLAN_STATUSES.has(plan.status)) continue;
+    if (plan.base_status !== undefined && TERMINAL_PLAN_STATUSES.has(plan.base_status ?? "")) {
+      continue;
+    }
     const approvals = plan.review_entries.filter(
       (entry) =>
         entry.review_kind === "cross_agent" &&
@@ -72,8 +86,26 @@ export function evaluateReviewReceiptPlanBinding(
       failures.push({ plan_id: plan.plan_id, reason: "review_plan_session_mismatch" });
       continue;
     }
-    if (!sessionMatches.some((entry) => entry.reviewer_model === input.receipt.reviewer_model)) {
+    const modelMatches = sessionMatches.filter((entry) => {
+      if (!entry.reviewer_model) return false;
+      const entryProvider = modelProviderFromId(entry.reviewer_model);
+      const receiptProvider = modelProviderFromId(input.receipt.reviewer_model);
+      if (entryProvider === "unknown" || entryProvider !== receiptProvider) return false;
+      const unprefixed = (value: string) =>
+        value
+          .trim()
+          .toLowerCase()
+          .replace(/^[^:]+:/u, "");
+      return unprefixed(entry.reviewer_model) === unprefixed(input.receipt.reviewer_model);
+    });
+    if (modelMatches.length === 0) {
       failures.push({ plan_id: plan.plan_id, reason: "review_plan_model_mismatch" });
+      continue;
+    }
+    if (
+      !modelMatches.some((entry) => entry.reviewed_head_sha === input.receipt.reviewed_head_sha)
+    ) {
+      failures.push({ plan_id: plan.plan_id, reason: "review_plan_head_mismatch" });
     }
   }
   return { ok: failures.length === 0, failures };
@@ -109,6 +141,9 @@ function parseChangedPlan(path: string, source: string): ChangedPlanReviewBindin
             : {}),
           ...(typeof entry.reviewer_model === "string"
             ? { reviewer_model: entry.reviewer_model }
+            : {}),
+          ...(typeof entry.reviewed_head_sha === "string"
+            ? { reviewed_head_sha: entry.reviewed_head_sha }
             : {}),
         },
       ];
@@ -150,7 +185,21 @@ export function loadChangedPlanReviewBindings(
     .filter((path) => /^docs\/plans\/[^/]+\.md$/u.test(path))
     .map((path) => {
       try {
-        return parseChangedPlan(path, readFileSync(join(repoRoot, path), "utf8"));
+        const head = parseChangedPlan(path, readFileSync(join(repoRoot, path), "utf8"));
+        let baseStatus: string | null = null;
+        try {
+          const baseSource = execFileSync("git", ["show", `${baseRef}:${path}`], {
+            cwd: repoRoot,
+            encoding: "utf8",
+            stdio: ["ignore", "pipe", "ignore"],
+          });
+          const base = parseChangedPlan(path, baseSource);
+          if (base.parse_failure) return { ...base, plan_id: head.plan_id };
+          baseStatus = base.status;
+        } catch {
+          baseStatus = null;
+        }
+        return { ...head, base_status: baseStatus };
       } catch {
         return {
           plan_id: path.split("/").at(-1)?.replace(/\.md$/u, "") ?? path,
@@ -161,8 +210,3 @@ export function loadChangedPlanReviewBindings(
       }
     });
 }
-
-import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
-import { parse as parseYaml } from "yaml";

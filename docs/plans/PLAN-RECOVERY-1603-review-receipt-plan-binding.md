@@ -31,9 +31,9 @@ workflow_identity:
 entry_signals:
   - regression_dev
 contract_preconditions: "PLAN review_evidenceとPR sealed receiptはreviewer sessionをそれぞれ保持するが、receipt seal/admissionで相互照合されていない。"
-contract_postconditions: "変更されたterminal PLANごとに、sealed receiptと同じreviewer session/modelのcross-agent技術承認が存在する場合だけreceiptをsealできる。"
+contract_postconditions: "base非terminalからHEAD terminalへ遷移したPLANごとに、sealed receiptと同じreviewer session/model/HEADのcross-agent技術承認が存在する場合だけreceipt sealとmerge admissionを通過できる。"
 contract_invariants: "human approvalと技術reviewを混同せず、既存receiptのHEAD・CI・DB・runtime独立性検査を緩和せず、Issue #1430のevidence substance責務を複製しない。"
-contract_failures: "差分PLAN取得不能、PLAN parse不能、cross-agent承認欠落、session/model不一致をtyped reasonでfail-closeする。"
+contract_failures: "差分PLAN取得不能、PLAN parse不能、cross-agent承認欠落、session/model/HEAD不一致をtyped reasonでfail-closeする。"
 tdd_red_required: true
 red_test: "tests/review-receipt-plan-binding.test.tsのU-RRPB-002..006を実装前に実行し、接合関数が未存在のためredを確認する。"
 mutation_oracle_required: true
@@ -48,6 +48,12 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-005, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-006, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-007, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-008, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-009, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-010, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-011, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-012, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-013, test_path: tests/review-receipt-plan-binding.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
   requires: []
@@ -86,3 +92,6 @@ review_evidence: []
 Issue #1603で実測された2件の誤帰属経路を閉じる。作成側spawnのreviewは補助検証として利用可能だが、
 独立reviewとしてPLANをterminal化する根拠にはしない。最終receiptのreviewer session/modelと、変更対象PLANの
 技術承認entryをreceipt seal前に接合する。
+
+seal後のPLAN変更で接合を迂回できないよう、`pr-merge-reviewed`でも同じjoinを再評価する。既存terminal
+PLANへの注記だけを再review対象にせず、baseからHEADでterminal化した遷移だけを対象とする。

@@ -14806,6 +14806,7 @@ github
           receipt: {
             reviewer_session_id: input.reviewerSessionId,
             reviewer_model: input.reviewerModel,
+            reviewed_head_sha: input.headSha,
           },
           changed_plans: loadChangedPlanReviewBindings(process.cwd()),
         });
@@ -15054,6 +15055,36 @@ github
         process.exitCode = 1;
         return;
       }
+    }
+    const reviewIdentity = providerNeutral
+      ? (() => {
+          const value = receipt as ReturnType<typeof loadProviderNeutralReviewReceipt>;
+          return {
+            reviewer_session_id: value.reviewer_session,
+            reviewer_model: value.reviewer_model,
+            reviewed_head_sha: value.candidate_head,
+          };
+        })()
+      : (() => {
+          const value = receipt as ReturnType<typeof loadClaudePrReviewReceipt>;
+          return {
+            reviewer_session_id: value.reviewerSessionId,
+            reviewer_model: value.reviewerModel,
+            reviewed_head_sha: value.headSha,
+          };
+        })();
+    const mergePlanBinding = evaluateReviewReceiptPlanBinding({
+      receipt: reviewIdentity,
+      changed_plans: loadChangedPlanReviewBindings(process.cwd()),
+    });
+    if (!mergePlanBinding.ok) {
+      process.stderr.write(
+        `github pr-merge-reviewed: ${mergePlanBinding.failures
+          .map((failure) => `${failure.reason}:${failure.plan_id}`)
+          .join(",")}\n`,
+      );
+      process.exitCode = 1;
+      return;
     }
     const requiredViewed = spawnSync(
       "gh",
