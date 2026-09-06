@@ -17,6 +17,12 @@ main merge後の検収、定期監査、手動監査、PR検証を同じ`github.
 特に、current main HEADのpost-main検収をscheduleまたはmanual safety-netがcancelしてはならない。
 一方で、単に全runを並走させてqueue、費用、古い証拠を無制限化してはならない。
 
+| BR ID | 利用者要求 | 分解先 |
+|---|---|---|
+| `CIG-BR-01` | main・定期・手動・PR検証をevent classごとに独立した証明義務として扱える | `CIG-R-01`, `CIG-R-02` |
+| `CIG-BR-02` | current mainの検収を失わず、stale世代だけを有界に置換できる | `CIG-R-02`, `CIG-R-03` |
+| `CIG-BR-03` | cancel・handoff・terminal結果を証拠から再構築できる | `CIG-R-03`, `CIG-R-04` |
+
 ## 価値境界
 
 - current canonical HEADのterminal証拠を安定して取得できる。

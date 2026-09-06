@@ -16,7 +16,7 @@ pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-requir
 | `CIG-AC-003` | `CIG-R-02` | scheduleを連続起動し、queue上限とTTLを超える | older scheduleだけを置換し、無制限並走・silent dropを拒否する |
 | `CIG-AC-004` | `CIG-R-03` | older mainがまだcurrent、new generation未確保、handoff欠落、wrong SHA／attempt、raceを個別注入する | 全mutationでsupersedeをfail-closeし、条件成立時だけold mainを置換する |
 | `CIG-AC-005` | `CIG-R-04` | cancelled runをpost-main、review、deferred successへ注入する | 全consumerが採用を拒否する |
-| `CIG-AC-006` | `CIG-R-04` | same HEADのpush／schedule結果を相互流用し、generation digestをDB／doctor／aggregateの一面だけ改変する | obligation同値証明なしの流用を拒否し、全projectionがexact digestへ収束する |
+| `CIG-AC-006` | `CIG-R-04` | same HEADのpush／schedule結果を相互流用し、generation digestをDB／doctor／aggregateの一面だけ改変する。既存receiptの`run:<id>:attempt:<n>:<conclusion>`を再検証する | obligation同値証明なしの流用を拒否し、全projectionがexact digestへ収束する。既存receipt identityは変更後も検証可能である |
 | `CIG-AC-007` | `CIG-R-01..04` | bounded GitHub rehearsalまたは自然scheduleを実行する | run ID付きread-afterでcurrent main pushとscheduleが独立terminalになり、cancel／handoff receiptを再構築できる |
 
 ## 量閉じ

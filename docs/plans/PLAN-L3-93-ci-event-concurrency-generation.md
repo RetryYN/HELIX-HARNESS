@@ -25,8 +25,6 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
-backprop_decision: required
-backprop_decision_reason: "現行CIS-R-12/13はevent class、generation、main handoff、projection convergenceを閉じていないためL3/L10差分が必要"
 no_code_decision: no_change
 ddd_modeling_decision: policy
 contract_preconditions: "CIS-R-01..15、#908 bounded cancel、CI telemetry、deferred recovery、DB replayが存在する"
@@ -49,6 +47,7 @@ dependencies:
   references:
     - issue:93
     - issue:538
+    - issue:735
     - issue:848
     - issue:908
     - issue:1034
@@ -81,6 +80,9 @@ agent_slots:
 | 4 | L3人間確認 | plan固有typed approvalが成立する |
 | 5 | canonical promotion | CIS authority、G3 freeze、IRへ束縛する |
 | 6 | runtime／workflow／DB実装 | 別PLANでTDD、mutation、GitHub rehearsalを閉じる |
+
+Step 5は、現行CIS-R-12/13が閉じていないevent class、generation、main handoff、projection convergenceを
+L3/L10へback-propする工程である。`backprop_decision` waiverとして偽装せず、本文の正規工程として扱う。
 
 本PLANは相互cancelを緩和するだけのworkflow変更ではない。canonical promotion前に`harness-check.yml`やDBを
 変更せず、既存CIS authorityを無断で拡張しない。
