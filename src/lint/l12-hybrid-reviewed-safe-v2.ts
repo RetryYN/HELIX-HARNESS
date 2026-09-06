@@ -1,6 +1,12 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #1358: L1→L3導出とL1↔L12認識の併記。受入pairはL3↔L10であり旧pairではない。
+    path: "docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md",
+    contentDigest: "8f5abce162d7c3221bfc54a6e16b9ae381a006db02cd6867a7b5f9bbedf0ed60",
+    finalDisposition: "false_positive",
+  },
+  {
     // #1534: canonical_pair L3と層範囲L1-L12の隣接を旧pairと誤認。実際のpairはL10↔L3。
     path: "docs/governance/candidates/execution-ticket-acceptance.md",
     contentDigest: "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
@@ -2713,7 +2719,8 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // worker-isolation-broker.ts の source_digest citation を合流後の実体で再計算した (issue #378)。
     // 再検出した signal 集合は編集前と bit 同一 (同一 id の legacy-risk signal 3 件) のため据え置き。
     path: "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
-    contentDigest: "c84fc5a34b598fbd1fdb6dd68478877d8ddce6b4ce31984637f7161e1fc91ca4",
+    // PLAN-RECOVERY-1573: broker参照digestのみ更新。本文と検出signal 3件はbaseと一致。
+    contentDigest: "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c",
     finalDisposition: "false_positive",
   },
   {

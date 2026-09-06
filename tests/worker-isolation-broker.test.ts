@@ -1,7 +1,9 @@
 import { execFileSync } from "node:child_process";
 import {
   chmodSync,
+  closeSync,
   existsSync,
+  fstatSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -95,6 +97,7 @@ import {
 // PLAN-L7-504-worker-blind-benchmark
 // PLAN-L7-505-worker-risk-admission
 // PLAN-L7-506-worker-lifecycle-receipt
+// PLAN-RECOVERY-1573-isolation-launch-cleanup
 
 const originalCodexBin = process.env.HELIX_CODEX_BIN;
 const originalGithubToken = process.env.GITHUB_TOKEN;
@@ -480,6 +483,134 @@ describe("WCC-FR-03 worker isolation broker", () => {
       runWorkerIsolationLaunch({ ...prepared.launch } as WorkerIsolationLaunch, spawn),
     ).toEqual({ isolated: false, failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED" });
     expect(spawn).not.toHaveBeenCalled();
+  });
+
+  it("U-WIB-CLEANUP-001: spawn例外でもFDを回収して同launchの再利用を拒否する", () => {
+    const f = fixture();
+    const prepared = prepareWorkerIsolationLaunch({
+      repoRoot: f.repoRoot,
+      scratchBaseDir: f.scratchBase,
+      inputPaths: ["input.txt"],
+      wrapperLaunch: f.launch,
+      admission: f.admission,
+      platform: "linux",
+      authority: f.authority,
+      policy: f.policy,
+    });
+    expect(prepared.isolated).toBe(true);
+    if (!prepared.isolated) return;
+    let fds: number[] = [];
+    try {
+      expect(() =>
+        runWorkerIsolationLaunch(prepared.launch, (_command, _args, options) => {
+          if (!Array.isArray(options.stdio)) throw new Error("missing descriptor stdio");
+          fds = [Number(options.stdio[3]), Number(options.stdio[4])];
+          throw new Error("injected-spawn-failure");
+        }),
+      ).toThrow("injected-spawn-failure");
+      for (const fd of fds) expect(() => fstatSync(fd)).toThrow();
+      const retry = vi.fn();
+      expect(runWorkerIsolationLaunch(prepared.launch, retry)).toEqual({
+        isolated: false,
+        failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED",
+      });
+      expect(retry).not.toHaveBeenCalled();
+    } finally {
+      for (const fd of fds) {
+        try {
+          closeSync(fd);
+        } catch {}
+      }
+    }
+  });
+
+  it("U-WIB-CLEANUP-002: 非zero/null終了でも再入・再利用を拒否しFDを回収する", () => {
+    for (const status of [1, null]) {
+      const f = fixture();
+      const prepared = prepareWorkerIsolationLaunch({
+        repoRoot: f.repoRoot,
+        scratchBaseDir: f.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: f.launch,
+        admission: f.admission,
+        platform: "linux",
+        authority: f.authority,
+        policy: f.policy,
+      });
+      expect(prepared.isolated).toBe(true);
+      if (!prepared.isolated) return;
+      const nestedSpawn = vi.fn();
+      const retrySpawn = vi.fn();
+      let fds: number[] = [];
+      const result = runWorkerIsolationLaunch(prepared.launch, (_command, _args, options) => {
+        if (!Array.isArray(options.stdio)) throw new Error("missing descriptor stdio");
+        fds = [Number(options.stdio[3]), Number(options.stdio[4])];
+        expect(runWorkerIsolationLaunch(prepared.launch, nestedSpawn)).toEqual({
+          isolated: false,
+          failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED",
+        });
+        return { status };
+      });
+      expect(result).toEqual({ isolated: false, failure_code: "WORKER_OUTPUT_PROCESS_FAILED" });
+      expect(fds).toHaveLength(2);
+      for (const fd of fds) expect(() => fstatSync(fd)).toThrow();
+      expect(runWorkerIsolationLaunch(prepared.launch, retrySpawn)).toEqual({
+        isolated: false,
+        failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED",
+      });
+      expect(nestedSpawn).not.toHaveBeenCalled();
+      expect(retrySpawn).not.toHaveBeenCalled();
+    }
+  });
+
+  it("U-WIB-CLEANUP-003: 成功後の同launchは拒否し新しいlaunchは実行できる", () => {
+    const f = fixture();
+    const payload = {
+      proposal_only: true,
+      schema_version: "helix-worker-proposal.v1",
+      summary: "cleanup success",
+    };
+    for (let execution = 0; execution < 2; execution++) {
+      const prepared = prepareWorkerIsolationLaunch({
+        repoRoot: f.repoRoot,
+        scratchBaseDir: f.scratchBase,
+        inputPaths: ["input.txt"],
+        wrapperLaunch: f.launch,
+        admission: f.admission,
+        platform: "linux",
+        authority: f.authority,
+        policy: f.policy,
+      });
+      expect(prepared.isolated).toBe(true);
+      if (!prepared.isolated) return;
+      let fds: number[] = [];
+      const result = runWorkerIsolationLaunch(prepared.launch, (_command, _args, options) => {
+        if (!Array.isArray(options.stdio)) throw new Error("missing descriptor stdio");
+        fds = [Number(options.stdio[3]), Number(options.stdio[4])];
+        return {
+          status: 0,
+          stdout: Buffer.from(
+            canonicalJson({
+              schema_version: "helix-worker-output-envelope.v1",
+              descriptor_digest: f.admission.decision.descriptor_digest,
+              output_schema_digest:
+                f.admission.snapshot.entries[0]?.descriptor.output_schema_digest,
+              payload,
+              payload_digest: sha256Digest(canonicalJson(payload)),
+            }),
+          ),
+        };
+      });
+      expect(result.isolated).toBe(true);
+      expect(fds).toHaveLength(2);
+      for (const fd of fds) expect(() => fstatSync(fd)).toThrow();
+      const retry = vi.fn();
+      expect(runWorkerIsolationLaunch(prepared.launch, retry)).toEqual({
+        isolated: false,
+        failure_code: "WORKER_ISOLATION_LAUNCH_UNSEALED",
+      });
+      expect(retry).not.toHaveBeenCalled();
+    }
   });
 
   it("U-WIB-007: executes a real process with repo, state, DB and credentials unreachable", ({
