@@ -4,7 +4,7 @@ title: "Gate証跡の実bytesと意味正本への接合を修復する"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-06
 updated: 2026-09-06
@@ -73,6 +73,13 @@ generates:
   - { artifact_path: config/objective-evidence-substance-binding.v1.json, artifact_type: json_config }
   - { artifact_path: tests/evidence-file-substance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/g10-browser-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1600/npm-ci.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1600/vitest-targeted.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1600/tsc.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1600/biome.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1600/plan-lint.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1600/doctor.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1600/head.txt, artifact_type: other }
 modifies:
   - { artifact_path: docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md, artifact_type: markdown_doc }
@@ -111,7 +118,58 @@ modifies:
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: src/lint/gn-evidence-manifest.ts, artifact_type: source_module }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-06T19:46:58Z"
+    tests_green_at: "2026-09-06T19:42:51Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: d8a3e0351ce996225728669c92e3daa317fe65e3
+    scope: "独立reviewとclean clone実測は https://github.com/RetryYN/HELIX-HARNESS/pull/1600#issuecomment-5561719714 。doctor exit 1は環境起因4件を含むためgreen commandへ昇格しない。Issue #1430全体完了や最終receiptを代替しない。"
+    green_commands:
+      - kind: install
+        command: "npm ci --no-audit --no-fund"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:39:56Z"
+        evidence_path: .helix/evidence/review-1600/npm-ci.log
+        output_digest: "sha256:7c96a96a08b32140fb63dfd4464638928e8e93fd13ed027c8aa320bde740c10e"
+      - kind: test
+        command: "npx vitest run tests/evidence-file-substance.test.ts tests/g8-integration-workflow.test.ts tests/g9-system-workflow.test.ts tests/g10-ux-workflow.test.ts tests/goal-evidence-audit.test.ts tests/s4-decision-readiness.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/l12-hybrid-recognition.test.ts tests/review-evidence.test.ts tests/plan-artifact-existence.test.ts tests/green-command-digest.test.ts tests/plan-supersession.test.ts tests/legacy-orchestration-surface.test.ts tests/relation-graph-loader.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-06T19:42:32Z"
+        evidence_path: .helix/evidence/review-1600/vitest-targeted.log
+        output_digest: "sha256:5065beeaa4bca505628bbc620fe1bde26901b7b853b0876192edc1c3ec87e0be"
+      - kind: typecheck
+        command: "npx tsc --noEmit -p ."
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:42:44Z"
+        evidence_path: .helix/evidence/review-1600/tsc.log
+        output_digest: "sha256:faf04d50223f0ee30d2a3c391e8ee5f03ec217c1ce717205a16196c1a11e030d"
+      - kind: lint
+        command: "npx biome check src tests"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:42:45Z"
+        evidence_path: .helix/evidence/review-1600/biome.log
+        output_digest: "sha256:cfc63ce6d6b091cc23a4f5f7180d949ada795a184c1b2a0645fa1d173f1c8611"
+      - kind: plan_lint
+        command: "npx tsx src/cli.ts plan lint"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:42:51Z"
+        evidence_path: .helix/evidence/review-1600/plan-lint.log
+        output_digest: "sha256:7f8a4e5d4e4e51cff3087c6f4e184198c23b77f029926b1f2c5b4792e7bf2b0e"
 ---
 
 # 証跡の実体照合Recovery
