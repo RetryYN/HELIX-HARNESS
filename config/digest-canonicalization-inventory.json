@@ -964,7 +964,7 @@
     {
       "hit_id": "src/lint/design-language.ts::sha256Text:createHash(sha256)::1",
       "path": "src/lint/design-language.ts",
-      "line": 174,
+      "line": 176,
       "symbol": "sha256Text",
       "algorithm": "sha256",
       "input_kind": "string",
