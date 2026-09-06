@@ -756,22 +756,31 @@ export function runWorkerIsolationLaunch(
   const executionBinding = launchExecutionBindings.get(launch);
   if (!resources || !policy || !outputBinding || !executionBinding)
     throw new Error("sealed isolation launch is missing broker-owned resources");
+  // 起動結果にかかわらず一度だけ消費し、再入・例外後の再利用を拒否する。
+  sealedLaunches.delete(launch);
   const started = process.hrtime.bigint();
-  const result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
-    encoding: "buffer",
-    env: {},
-    input: Buffer.from(launch.wrapper_launch.stdin ?? "", "utf8"),
-    maxBuffer: 8 * 1024 * 1024,
-    stdio: ["pipe", "pipe", "pipe", resources.backendFd, resources.runtimeFd],
-    timeout: 10 * 60 * 1000,
-  });
+  let result: ReturnType<IsolationSpawn>;
+  try {
+    result = spawn("/proc/self/fd/3", sandboxArguments(launch), {
+      encoding: "buffer",
+      env: {},
+      input: Buffer.from(launch.wrapper_launch.stdin ?? "", "utf8"),
+      maxBuffer: 8 * 1024 * 1024,
+      stdio: ["pipe", "pipe", "pipe", resources.backendFd, resources.runtimeFd],
+      timeout: 10 * 60 * 1000,
+    });
+  } finally {
+    launchResources.delete(launch);
+    launchPolicies.delete(launch);
+    launchOutputBindings.delete(launch);
+    launchExecutionBindings.delete(launch);
+    try {
+      closeSync(resources.backendFd);
+    } finally {
+      closeSync(resources.runtimeFd);
+    }
+  }
   const durationMs = Number((process.hrtime.bigint() - started) / 1_000_000n);
-  closeSync(resources.backendFd);
-  closeSync(resources.runtimeFd);
-  launchResources.delete(launch);
-  launchPolicies.delete(launch);
-  launchOutputBindings.delete(launch);
-  launchExecutionBindings.delete(launch);
   const scope = auditWorkerIsolationScope(
     launch.scratch_path,
     launch.input_manifest,
