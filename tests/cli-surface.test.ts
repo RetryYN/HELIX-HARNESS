@@ -1284,7 +1284,7 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
-  it("exposes whole-program completion readiness on status surfaces", () => {
+  it("U-JRSTAT-001: exposes whole-program completion readiness on status surfaces", () => {
     const readyRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-ready-"));
     const blockedRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-blocked-"));
     try {

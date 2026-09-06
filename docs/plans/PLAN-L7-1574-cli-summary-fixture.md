@@ -41,6 +41,7 @@ agent_slots:
 parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md
 pair_artifact: docs/test-design/helix/L8-current-location-summary-typed-output-unit-test-design.md
 verification_bindings:
+  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-JRSTAT-001, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, oracle_id: U-CLSO-001, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, oracle_id: U-CLSO-002, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, oracle_id: U-CLSO-003, test_path: tests/cli-surface.test.ts }
@@ -57,6 +58,7 @@ dependencies:
   requires: []
   references: ["issue:93", "issue:1575", PLAN-L7-672-current-location-summary-typed-output]
 generates:
+  - { artifact_path: docs/test-design/helix/L8-status-review-tier-projection.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-L7-1574-cli-summary-fixture.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -92,7 +94,10 @@ beforeAllから終了statusのassertを除き、各oracleの既存status検査�
 対象001/003/004/005/006が各々assertionで失敗した（5 failed、対象skip 0）。
 90 skippedは名前フィルタで選択していない別caseである。実CLI起動の成功証拠ではなく、
 準備失敗が各caseへ伝播することの試験。変異は実行後に撤去した。
-I-2のreview-tier oracleと上流pairの束縛、I-3の単一runtime変異は未回収。
+I-2はU-JRSTAT-001を採番し、既存L6 judgmentReviewPlanForModeと専用L8へ束縛した。
+2026-09-06 09:03:46開始、U-JRSTAT-001は1成功、1.22秒。全1188 PLANのgovernance検査と
+対象PLAN lintもexit 0。94 skippedは対象外のcaseである。
+I-3の単一runtime変異は未回収。I-2の束縛はレビュー方式を全て実行した証拠ではない。
 
 2026-09-06 06:48:03 JST、候補で6成功、48.43秒。型検査exit 0、governance1188件OK。
 06:49:48 JST、schema v1と旧drive-reverse-scopeを同時に注入した実験では、
