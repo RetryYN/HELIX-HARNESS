@@ -30,6 +30,10 @@ command証跡は各gate専用`.helix/evidence/`配下の`.vitest.log`に限定�
 成功したVitest JSON report、実行対象test path、実bytes digestを同時に照合する。任意の`src/`や`tests/`
 ファイルhashをcommand出力として代用しない。ただしprovider実行主体の署名やcandidate HEADまでを
 このreport単体が証明するとは扱わない。
+成功したVitest JSON report内のtest名は検証対象の識別子を引用するため、旧制御surfaceの文字列を含み得る。
+これは新しい実行authorityではない。legacy orchestration ratchetは`.helix/evidence/**/*.vitest.log`のうち、
+JSONをparseでき、`success=true`、失敗suite/testが0、全test resultがpassedの記録だけを非実行証跡として
+走査対象から除外する。拡張子違い、壊れたJSON、失敗report、空reportは除外せず、path名だけで免除しない。
 stale defer数の実測導出とmandatory集合のtest-design正本からの取得は後続接合に残る。
 過去証跡のhash付替えで修復済みにしない。
 

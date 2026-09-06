@@ -58,7 +58,10 @@ describe("G10 real browser evidence", () => {
     expect(Number.parseFloat(target.outlineWidth)).toBeGreaterThan(0);
 
     const screenshotPath = process.env.HELIX_G10_SCREENSHOT;
-    expect(screenshotPath, "HELIX_G10_SCREENSHOT must bind this browser run to an image").toBeTruthy();
+    expect(
+      screenshotPath,
+      "HELIX_G10_SCREENSHOT must bind this browser run to an image",
+    ).toBeTruthy();
     const absolute = resolve(screenshotPath as string);
     mkdirSync(dirname(absolute), { recursive: true });
     await page.screenshot({ path: absolute, fullPage: true });

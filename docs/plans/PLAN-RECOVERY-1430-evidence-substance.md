@@ -20,6 +20,7 @@ agent_slots:
 parent_design: docs/design/helix/L6-function-design/gate-evidence-substance.md
 pair_artifact: docs/test-design/helix/L8-gate-evidence-substance.md
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/gate-evidence-substance.md, oracle_id: U-GES-016, test_path: tests/legacy-orchestration-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/gate-evidence-substance.md, oracle_id: U-GES-015, test_path: tests/g10-browser-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/gate-evidence-substance.md, oracle_id: U-GES-014, test_path: tests/goal-evidence-audit.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/gate-evidence-substance.md, oracle_id: U-GES-013, test_path: tests/goal-evidence-audit.test.ts }
@@ -90,6 +91,13 @@ modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: tests/relation-graph-loader.test.ts, artifact_type: test_code }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/legacy-orchestration-surface.ts, artifact_type: source_module }
+  - { artifact_path: tests/legacy-orchestration-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-312-d-contract-dsl.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md, artifact_type: markdown_doc }
 review_evidence: []
 ---
 

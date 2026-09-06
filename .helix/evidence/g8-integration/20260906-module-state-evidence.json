@@ -24,7 +24,7 @@
       "scope": "targeted",
       "exit_code": 0,
       "evidence_path": ".helix/evidence/g8-integration/20260906-module-state-evidence.vitest.log",
-      "output_digest": "sha256:b04261316d00cc895565123a432460d584e85c9046b20ffd6b342ce3c08fc714",
+      "output_digest": "sha256:3eb73f71fdfdbbf03b86a723dd7184f2d5928a3ea768d3377addd560e79b5bf2",
       "it_ids": [
         "IT-MODULE-01",
         "IT-STATE-01",

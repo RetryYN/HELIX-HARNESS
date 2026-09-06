@@ -32,6 +32,7 @@ pair_artifact: docs/design/helix/L6-function-design/gate-evidence-substance.md
 | U-GES-013 | objective行境界 | G2のhollow rowとG9 markerの別行移動を拒否し、進捗証拠をuntrustedにする | `tests/goal-evidence-audit.test.ts` |
 | U-GES-014 | objective bytes | 別artifact digestと固定観測欠落を拒否し、単一違反でもtrustを落とす | `tests/goal-evidence-audit.test.ts` |
 | U-GES-015 | G10 browser | 実Chromiumでrender・keyboard focus・minimum target・ARIA・未完了状態表示を検査し、JSON reportとscreenshotを採取する | `tests/g10-browser-evidence.test.ts` |
+| U-GES-016 | 非実行Vitest証跡 | `.helix/evidence`配下でも成功Vitest JSONだけを旧制御surface走査から除外し、拡張子違い・失敗・壊れた内容は除外しない | `tests/legacy-orchestration-surface.test.ts` |
 
 このreader単体greenでは#1430を閉じない。G8/G9/G10の実manifest反例、正本mandatory集合、S4、objective-evidenceの接合を別途完走させる。
 

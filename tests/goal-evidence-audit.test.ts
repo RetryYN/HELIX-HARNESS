@@ -2,13 +2,13 @@
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-013
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { inspectEvidenceFile } from "../src/lint/evidence-file-substance";
 // PLAN-RECOVERY-1430-evidence-substance
 import {
   analyzeObjectiveEvidenceAudit,
   loadObjectiveEvidenceAuditInput,
   objectiveEvidenceAuditMessages,
 } from "../src/lint/objective-evidence-audit";
-import { inspectEvidenceFile } from "../src/lint/evidence-file-substance";
 import { analyzeOutstandingWork } from "../src/lint/outstanding";
 import {
   buildOutstandingSnapshot,
@@ -879,18 +879,12 @@ describe("HELIX objective evidence audit", () => {
       const row = input.auditText
         .split("\n")
         .find((line) => line.startsWith(`| ${requirementId} |`));
-      const observation = row
-        ?.trim()
-        .replace(/^\|/u, "")
-        .replace(/\|$/u, "")
-        .split("|")[4]
-        ?.trim();
+      const observation = row?.trim().replace(/^\|/u, "").replace(/\|$/u, "").split("|")[4]?.trim();
       if (!observation) throw new Error(`${requirementId} observation fixture is missing`);
       expect(row).toContain(`\`${unrelatedPath}\``);
       expect(observation.slice(0, 12)).not.toBe(canonicalPolicy[requirementId].observationMarker);
-      const canonicalObservation = input.evidenceObservations?.[
-        canonicalPolicy[requirementId].evidencePath
-      ];
+      const canonicalObservation =
+        input.evidenceObservations?.[canonicalPolicy[requirementId].evidencePath];
       if (!canonicalObservation?.ok) {
         throw new Error(`${requirementId} canonical fixture file must be observable`);
       }

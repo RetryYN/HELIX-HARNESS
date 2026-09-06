@@ -30,7 +30,7 @@ generates:
     artifact_type: yaml_config
   - artifact_path: docs/design/harness/L5-detailed-design/if-detail.md
     artifact_type: design_doc
-  - artifact_path: .helix/evidence/g8-integration/20260626-it-adapter-asset-expansion.json
+  - artifact_path: docs/archive/gate-evidence-manifests/20260626-it-adapter-asset-expansion.json
     artifact_type: json_config
 dependencies:
   parent: null

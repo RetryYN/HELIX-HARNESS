@@ -29,7 +29,7 @@
       "scope": "targeted",
       "exit_code": 0,
       "evidence_path": ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
-      "output_digest": "sha256:6880ea6c7414df4f9e920451f46bce5bf6c4a09194fc7f9c9ca3db6a1866dbde",
+      "output_digest": "sha256:8d5f1f39ded662a4852c45657db7af27404666ceb3de4de8d7565ef1ffb686e1",
       "it_ids": [
         "IT-ADAPTER-01",
         "IT-ADAPTER-03",

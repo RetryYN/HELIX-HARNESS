@@ -124,11 +124,7 @@ describe("証跡ファイルの実体", () => {
       const invalid = structuredClone(manifest);
       invalid.commands[0].command = invalidCommand;
       expect(
-        validateGateEvidenceManifest(
-          invalid,
-          observeEvidenceFiles(root, [evidencePath]),
-          config,
-        ),
+        validateGateEvidenceManifest(invalid, observeEvidenceFiles(root, [evidencePath]), config),
       ).toContain(reason);
     }
     const sourcePath = "tests/source.test.ts";

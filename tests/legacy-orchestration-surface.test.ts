@@ -7,6 +7,7 @@ import { checkLegacyOrchestrationSurface } from "../src/doctor/index";
 import {
   analyzeLegacyOrchestrationSurface,
   compareLegacyOrchestrationInventory,
+  isNonExecutableSuccessfulVitestEvidence,
   type LegacyOrchestrationInventory,
   legacyOrchestrationSurfaceMessages,
   loadLegacyOrchestrationSurface,
@@ -22,6 +23,44 @@ const inventory = (): LegacyOrchestrationInventory => ({
 });
 
 describe("legacy orchestration surface retirement ratchet", () => {
+  it("ignores only structurally successful Vitest evidence, not arbitrary files under evidence", () => {
+    const successful = JSON.stringify({
+      success: true,
+      numFailedTests: 0,
+      numFailedTestSuites: 0,
+      testResults: [{ status: "passed", name: "nodeAgentSlotsDeps compatibility test" }],
+    });
+    expect(
+      isNonExecutableSuccessfulVitestEvidence({
+        path: ".helix/evidence/g8-integration/run.vitest.log",
+        content: successful,
+      }),
+    ).toBe(true);
+    expect(
+      isNonExecutableSuccessfulVitestEvidence({
+        path: ".helix/evidence/g8-integration/run.ts",
+        content: successful,
+      }),
+    ).toBe(false);
+    expect(
+      isNonExecutableSuccessfulVitestEvidence({
+        path: ".helix/evidence/g8-integration/run.vitest.log",
+        content: JSON.stringify({
+          success: false,
+          numFailedTests: 1,
+          numFailedTestSuites: 1,
+          testResults: [{ status: "failed" }],
+        }),
+      }),
+    ).toBe(false);
+    expect(
+      isNonExecutableSuccessfulVitestEvidence({
+        path: ".helix/evidence/g8-integration/run.vitest.log",
+        content: "nodeAgentSlotsDeps",
+      }),
+    ).toBe(false);
+  });
+
   it("U-LORET-009: Git公開baseに束縛し、初回・通常更新とも自己上限追加を拒否する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-legacy-base-"));
     const git = (...args: string[]) =>
