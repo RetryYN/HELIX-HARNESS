@@ -178,6 +178,11 @@ describe("action-binding approval readiness", () => {
         "Production deployment requires human approval before execution. 証跡",
       ).required,
     ).toBe(true);
+    expect(
+      classifyHighImpactApprovalRequirement(
+        "Records now require PO approval before production cutover.",
+      ).required,
+    ).toBe(true);
   });
 
   it("accepts pending high-impact approval plans only when they carry structured records", () => {
@@ -858,7 +863,20 @@ describe("action-binding approval readiness", () => {
   });
 
   it("U-ABR-001: rejects placeholder actor/tool/target/params bindings independently", () => {
-    const placeholders = ["TBD", "TODO", "N/A", "-", "pending", "unspecified", "<actor>"];
+    const placeholders = [
+      "TBD",
+      "TODO",
+      "N/A",
+      "-",
+      "pending",
+      "pending PO review",
+      "unspecified",
+      "<actor>",
+      "deploy to <env>",
+      "cutoverSnapshot=<id>",
+      "no cutover until PO approves",
+      "no signoff yet",
+    ];
     for (const [field, original] of [
       ["approved_actor", "PO-named operator"],
       ["approved_tool", "helix CLI action wrapper"],

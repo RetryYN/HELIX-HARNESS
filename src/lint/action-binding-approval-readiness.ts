@@ -221,6 +221,7 @@ export function loadActionBindingApprovalReadinessInput(
   repoRoot = process.cwd(),
 ): ActionBindingApprovalReadinessInput {
   const outstanding = computeOutstandingWork(repoRoot);
+  const repoHeadSha = readRepoHeadSha(repoRoot);
   return {
     rightArmMd: readFileSync(
       join(repoRoot, "docs", "process", "forward", "L08-L14-verification-phase.md"),
@@ -231,9 +232,11 @@ export function loadActionBindingApprovalReadinessInput(
       join(repoRoot, "docs", "process", "modes", "version-up.md"),
       "utf8",
     ),
-    repoHeadSha: readRepoHeadSha(repoRoot),
+    repoHeadSha,
     currentVersion: readPackageVersion(repoRoot) ?? undefined,
-    currentCutoverSnapshotId: buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId,
+    currentCutoverSnapshotId: repoHeadSha
+      ? buildIdentifierRenameCutoverPlan(repoRoot).cutoverSnapshot.snapshotId
+      : undefined,
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
     plans: loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content)),
   };
@@ -482,6 +485,7 @@ function buildActionBindingApprovalSnapshot(input: {
     expectedCutoverSnapshotId: input.snapshotExpectations.cutoverSnapshotId,
     versionUpSnapshotValidationMissing:
       input.snapshotExpectations.versionUpSnapshotValidationMissing,
+    cutoverSnapshotValidationMissing: input.snapshotExpectations.cutoverSnapshotValidationMissing,
   });
   const invalidatedBy = [
     "plan_text_change",

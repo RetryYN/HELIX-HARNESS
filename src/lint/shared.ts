@@ -155,8 +155,12 @@ export function isConcreteApprovalBindingValue(value: string): boolean {
   const normalized = value.trim().toLowerCase();
   if (
     !normalized ||
-    ["tbd", "todo", "n/a", "na", "-", "pending", "unspecified"].includes(normalized) ||
-    /^<.+>$/.test(normalized)
+    ["tbd", "todo", "n/a", "na", "-", "unspecified"].includes(normalized) ||
+    normalized.includes("pending") ||
+    /<[^>]*>/.test(normalized) ||
+    /\bno\s+(?:cutover|deploy|deployment|signoff|approval|execution|activation|actor|tool|target|params|external)\b/.test(
+      normalized,
+    )
   ) {
     return false;
   }

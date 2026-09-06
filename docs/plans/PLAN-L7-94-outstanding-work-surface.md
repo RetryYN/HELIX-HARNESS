@@ -1355,7 +1355,7 @@ review_evidence:
     reviewed_at: "2026-06-30T16:12:00+09:00"
     tests_green_at: "2026-06-30T16:12:00+09:00"
     verdict: pass
-    scope: "Continuation 13: action-binding approval no longer treats approval_scope prose as enough. Records now require approved_actor, approved_tool, approved_target, and approved_params, so high-impact approvals bind the actual execution subject/tool/resource/parameters before activation."
+    scope: "Continuation 13 の過去レビュー記録であり、実行を許可しない。action-binding approval は approval_scope の説明だけでは成立せず、approved_actor、approved_tool、approved_target、approved_params を要求し、高影響操作の実行主体・tool・resource・parameterをactivation前に束縛する。"
     worker_model: codex
     reviewer_model: codex-intra-runtime
     green_commands:

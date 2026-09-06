@@ -104,7 +104,7 @@ const EXECUTION_APPROVAL_OBLIGATION =
 const HIGH_IMPACT_ACTION_TARGET =
   /high-impact action|high-impact execution|高影響\s+action|external|infra|infrastructure|secret|auth|authorization|authentication|destructive|state dir|migration|cutover|activation|deploy|deployment|release|environment|cloudflare|hmac|webhook|access control|production|api|apply|execution|本番|外部|認証|認可|破壊|不可逆|設定変更|実行|実適用|デプロイ|配布/i;
 const META_ONLY_APPROVAL_CONTEXT =
-  /out of scope|does not authorize|not authorize|no .*authorized|no longer treats|records now require|planonly|mustnotapply|applycommandavailable=false|does not activate|does not execute|no production cutover|no production write|実行を許可しない|実適用しない|説明専用|サンプル専用/i;
+  /out of scope|does not authorize|not authorize|no .*authorized|planonly|mustnotapply|applycommandavailable=false|does not activate|does not execute|no production cutover|no production write|実行を許可しない|実適用しない|説明専用|サンプル専用/i;
 
 export function classifyHighImpactApprovalRequirement(
   text: string,

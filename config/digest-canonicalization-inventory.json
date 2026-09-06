@@ -862,7 +862,7 @@
     {
       "hit_id": "src/lint/action-binding-approval-readiness.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/action-binding-approval-readiness.ts",
-      "line": 1130,
+      "line": 1134,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",
