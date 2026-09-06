@@ -48,15 +48,16 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-005, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-006, test_path: tests/review-receipt-plan-binding.test.ts }
 dependencies:
-  parent: docs/plans/PLAN-L7-648-reviewer-identity-v3.md
-  requires:
-    - PLAN-RECOVERY-1543-reviewer-session-model-history
+  parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
+  requires: []
   references:
     - "issue:1603"
     - "issue:1430"
     - "issue:923"
+    - "PLAN-RECOVERY-1543-reviewer-session-model-history"
   blocks: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — 独立review authorityと証拠帰属の非緩和を監査" }
   - { role: tl, slot_label: "TL — receiptとPLANのauthority join境界を確認" }
   - { role: se, slot_label: "SE — changed PLAN抽出とexact照合を実装" }
   - { role: qa, slot_label: "QA — session/model/review kindの独立反例を検証" }
@@ -69,9 +70,13 @@ generates:
 modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 review_evidence: []
 ---
 
