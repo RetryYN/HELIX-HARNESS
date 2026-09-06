@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 79,
+  "decision_count": 80,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -14,6 +14,7 @@
     "PLAN-L3-24-github-environment-promotion",
     "PLAN-L3-25-github-update-lifecycle",
     "PLAN-L3-26-github-plan-workflow-governance",
+    "PLAN-L3-659-commercial-license-policy",
     "PLAN-L3-68-release-module-bundle-composition",
     "PLAN-L3-69-worker-context-boundary-compiler",
     "PLAN-L3-77-refactoring-trigger-authority",
