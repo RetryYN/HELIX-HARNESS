@@ -35,7 +35,7 @@ contract_failures: "原文欠落、未知版の推測、二重owner、候補のr
 tdd_red_required: true
 tdd_red_evidence: "CI run 33999795382でbyte保存した外部原文14件をauthored日本語文書として検出しpreflight failure。原文編集ではなく保存域境界を実装する"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-DESLANG-018はintake除外を撤去すると外部原文pathがload対象となり、通常governance英語文書の検出と区別できなくなる"
+mutation_oracle_evidence: "2026-09-06 09:13:00開始、intake除外だけを撤去するとU-DESLANG-018が1 failed（2.50秒）。外部原文pathがload対象となる退行を検出。復元後09:13:19開始は1 passed（2.51秒）"
 complexity_effect: net_negative
 complexity_justification: "既存Portfolio/Module/Slice/Bundleを再利用し、新しい版台帳やengineを作らない"
 removal_trigger: "候補の意味差分を既存要求へ正規移管し、検収・main read-after後に候補状態を更新する"
