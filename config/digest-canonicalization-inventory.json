@@ -556,7 +556,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 15646,
+      "line": 15647,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -573,7 +573,7 @@
     {
       "hit_id": "src/cli.ts::packageResult:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 16439,
+      "line": 16440,
       "symbol": "packageResult",
       "algorithm": "sha256",
       "input_kind": "string",
