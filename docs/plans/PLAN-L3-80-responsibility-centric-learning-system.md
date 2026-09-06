@@ -92,6 +92,8 @@ review_evidence: []
 
 本PLANはIssue #1384のtyped human gate recordでL3候補承認済みである。canonical昇格、Requirement IR admission、runtime、DB、generated current docsへの反映は別工程とし、draftとcompletion falseを維持する。候補authority statusのtyped lifecycleはIssue #1580が所有する。
 
+承認対象は承認時点main `ab6126a89262c91ecc4b87a0b8f0b9724917c84b` の3候補本文である。frontmatterを除いたSHA-256はrequests `b70486bb7488e4a6c94e1fd562ea69985d64c27e49f0b23458beb38564fb304e`、requirements `7f4ae0538b9940eabd9459719ffb755ed7735278915ce6feb7d05afb97d77acd`、acceptance `27a0223bb6231fc0637b0d0bf70d0b27b256654462d178e1b9bad1da7c2a2e47`で、意味集合はBR 6件、FR 6件、AC 20件とする。後続のprovenance追記はこの承認対象本文を変更しない。
+
 ## 実装順
 
 1. AuthorityとRequirement IR admission
