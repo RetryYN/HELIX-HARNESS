@@ -1171,7 +1171,10 @@ const CLEAN_DENY_PREFIXES = [
   "vendor/",
   "legacy local state/",
 ];
-const CLEAN_DENY_FILES = new Set(["tests/web.test.ts"]);
+const CLEAN_DENY_FILES = new Set([
+  "tests/g10-browser-evidence.test.ts",
+  "tests/web.test.ts",
+]);
 const CLEAN_ALLOW_PREFIXES = [
   "docs/adr/",
   "docs/governance/",

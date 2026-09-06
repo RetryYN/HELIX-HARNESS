@@ -93,6 +93,10 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/lint/legacy-orchestration-surface.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: src/setup/index.ts, artifact_type: source_module }
+  - { artifact_path: tests/distribution-acceptance.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
 review_evidence:
   - reviewer: "Claude Code / claude-fable-5-1"
     review_kind: cross_agent
