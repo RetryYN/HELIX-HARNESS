@@ -49,7 +49,7 @@ review_evidence:
     tests_green_at: "2026-09-06T12:21:19Z"
     verdict: approve
     worker_model: codex
-    reviewer_model: claude-fable-5-1
+    reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
     reviewed_head_sha: 43f8b0d97c09cd776a720ff163a6d450934c1423
     scope: "独立PLANレビュー。実測と帰属は https://github.com/RetryYN/HELIX-HARNESS/pull/1598#issuecomment-5559187603 。保存ログのbytesを照合した。全doctorはexit 1でgreen扱いしない。後続修正HEADの最終PR receiptを代替しない。"
