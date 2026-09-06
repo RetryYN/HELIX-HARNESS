@@ -42,6 +42,6 @@ pair_artifact: docs/governance/candidates/mechanism-adequacy-requirements.md
 ## L12効果観測の受渡し
 
 MA-R-07の指標とMA-AC-21の追跡を[運用検証候補](mechanism-adequacy-recognition.md)のMA-OP-01..04へ接続する。観測window、baseline、適用条件、欠測理由を後続PLANで確定する。
-L3-PO-1552-001は要件候補の承認であり、L12実測・検収成立を意味しない。
+L3-PO-1552-001は要件候補の承認であり、運用実測・検収成立を意味しない。
 
 HELIXWebなしの現行環境でMA-AC-21を検収する。権限越境は既存policyを使ってMA-AC-17で拒否する。Web専用基盤・予約schema・依存・Release条件の混入は不適合とする。
