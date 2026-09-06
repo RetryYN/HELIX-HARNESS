@@ -97,7 +97,12 @@ beforeAllから終了statusのassertを除き、各oracleの既存status検査�
 I-2はU-JRSTAT-001を採番し、既存L6 judgmentReviewPlanForModeと専用L8へ束縛した。
 2026-09-06 09:03:46開始、U-JRSTAT-001は1成功、1.22秒。全1188 PLANのgovernance検査と
 対象PLAN lintもexit 0。94 skippedは対象外のcaseである。
-I-3の単一runtime変異は未回収。I-2の束縛はレビュー方式を全て実行した証拠ではない。
+I-3は単一runtime変異を別実行した。09:05:19開始、`workflow_route_status`だけを削除すると
+U-CLSO-001/004が2失敗（48.82秒）。復元後、`source_clock`だけを非nullへ変えると
+09:06:14開始のU-CLSO-002が1失敗（0.89秒）。各実行の他caseは名前フィルタによるskipである。
+変異を撤去し、`src/cli.ts`がHEADと一致することをhashで再確認後、正常6caseを再実行する。
+両hashは `247708de...ab8cf8` で一致し、09:10:06開始の正常系は6成功、48.59秒。
+I-2の束縛はレビュー方式を全て実行した証拠ではない。
 
 2026-09-06 06:48:03 JST、候補で6成功、48.43秒。型検査exit 0、governance1188件OK。
 06:49:48 JST、schema v1と旧drive-reverse-scopeを同時に注入した実験では、
