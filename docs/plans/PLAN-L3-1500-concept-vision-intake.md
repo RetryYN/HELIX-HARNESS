@@ -26,14 +26,16 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 backprop_decision: not_required
 backprop_decision_reason: "未発効の取込候補と原文を保存し、意味変更は既存RLS/FRSの別改版へ明示的に残す"
-no_code_decision: no_change
+no_code_decision: modify
 ddd_modeling_decision: policy
 contract_preconditions: "ZIPの全10文書を読取り、同梱checksumと一致し、既存Release要求との状態差を確認する"
 contract_postconditions: "原文保存、提供候補13件、版軸分離、既存要求への対応、未確認出典を追跡できる"
 contract_invariants: "入力資料は承認・実装・公開の証拠に自動昇格しない。既存ownerと意味正本を維持する"
 contract_failures: "原文欠落、未知版の推測、二重owner、候補のruntime化、承認創作を拒否する"
-tdd_red_required: false
-tdd_red_waiver_reason: "文書取込のみ。原文hashと参照・対応集合を検証し、実行挙動は変更しない"
+tdd_red_required: true
+tdd_red_evidence: "CI run 33999795382でbyte保存した外部原文14件をauthored日本語文書として検出しpreflight failure。原文編集ではなく保存域境界を実装する"
+mutation_oracle_required: true
+mutation_oracle_evidence: "U-DESLANG-018はintake除外を撤去すると外部原文pathがload対象となり、通常governance英語文書の検出と区別できなくなる"
 complexity_effect: net_negative
 complexity_justification: "既存Portfolio/Module/Slice/Bundleを再利用し、新しい版台帳やengineを作らない"
 removal_trigger: "候補の意味差分を既存要求へ正規移管し、検収・main read-after後に候補状態を更新する"
@@ -67,6 +69,8 @@ generates:
   - { artifact_path: docs/plans/PLAN-L3-1500-concept-vision-intake.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/design-language.ts, artifact_type: source_module }
+  - { artifact_path: tests/design-language.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: tl, slot_label: "TL — 原文と正本の対応" }
   - { role: qa, slot_label: "QA — 保存と参照の検証" }
@@ -85,5 +89,6 @@ review_evidence: []
 - RLS本文およびFRS v0.2候補と対応を比較済み。全要求/実装/consumer照合は未完了。
 - PLAN lint: exit 0。独立レビュー、CI、main read-afterは未完了。レビューを実行したという記録を創作しない。
 - 原文はcommit `17f00abeb`でremote保存済み。hash一致と保存を確認後、元ZIPのみ削除した。原文はGitから復元可能。
+- main未到達のため復元経路はremote branch `docs/1500-concept-vision-intake`に依存する。元ZIP pathは `/home/tenni/HELIX-HARNESS/HELIX_Concept＆Vision.zip`。GitへZIP binaryは追加していない。
 - DB rebuildおよびcommit後outstanding snapshot照合はexit 0。PR #1576で独立検収を追跡する。
-- CIのdesign-language違反14件は原文保存commitを維持したうえで閲覧版を日本語補足し是正。gateは2339文書・違反0、exit 0。現行SHA256SUMSは閲覧版、原文checksumは `17f00abeb` に固定する。
+- CIのdesign-language違反14件は、原文編集とchecksum更新による初回対処を撤回した。原文と受領時checksumをbyte一致へ復元し、byte保存域を言語正本から除外するU-DESLANG-018を追加。baselineは変更しない。

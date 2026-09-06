@@ -95,8 +95,8 @@ Packageは「利用者が、ある開発責務を実行し、利用可能な成�
 
 内部の流れ：
 1. requirement → capability → service → domain objectの導出参照
-2. 観点から検証義務へ：facet → obligation → template／section → oracle／gate
-3. UIの範囲確認から合意・還流へ：UI scope → ready → walkthrough → agreement → backprop
+2. facet → obligation → template／section → oracle／gate
+3. UI scope → ready → walkthrough → agreement → backprop
 
 停止・差戻し：
 - 未解決の意味・責務・oracleは対象設計の引渡しを保留
@@ -128,7 +128,7 @@ Packageは「利用者が、ある開発責務を実行し、利用可能な成�
 
 内部の流れ：
 1. style／workflow／execution modeを別軸で解決
-2. 作業依存を確認して委譲へ：work graph → READY → delegation request
+2. work graph → READY → delegation request
 3. typed結果／receiptをjoin → 次行為
 4. 中断 → checkpoint → current再照合 → 保存した再開先
 
@@ -300,7 +300,7 @@ Packageは「利用者が、ある開発責務を実行し、利用可能な成�
 1. receipt／HEAD／権限／順序の再照合
 2. 親acceptance
 3. PR・merge前再評価
-4. main／DB／GitHubへの反映をread-afterで再確認
+4. main／DB／GitHub read-after
 
 停止・差戻し：
 - stale HEAD・競合・blockerなら対象統合だけ停止
@@ -365,8 +365,8 @@ Packageは「利用者が、ある開発責務を実行し、利用可能な成�
 | 根拠 | [AS-S23] [CUR12] |
 
 内部の流れ：
-1. 公開済み成果から配備計画・事前検査へ：RELEASED → DEPLOYMENT_PLANNED → PREFLIGHT_PASSED
-2. 準備から配備・観測・健全性確認へ：STAGED → DEPLOYED → OBSERVING → HEALTHY
+1. RELEASED → DEPLOYMENT_PLANNED → PREFLIGHT_PASSED
+2. STAGED → DEPLOYED → OBSERVING → HEALTHY
 3. 異常時は停止／許可されたrollback
 
 停止・差戻し：
@@ -432,7 +432,7 @@ Packageは「利用者が、ある開発責務を実行し、利用可能な成�
 | 根拠 | [AS-S23] [AS-S02] [CUR12] |
 
 内部の流れ：
-1. 障害の証拠を関連付けて診断へ：incident → evidence correlation → diagnosis
+1. incident → evidence correlation → diagnosis
 2. change class／expansion kind／route／return layerを別判断
 3. 必要な封じ込め・rollbackを既存ownerへ依頼
 4. 改修／Release／再配備／再観測の証拠をjoin
@@ -466,10 +466,10 @@ Packageは「利用者が、ある開発責務を実行し、利用可能な成�
 | 根拠 | [AS-S27] [AS-S08] [AS-S29] |
 
 内部の流れ：
-1. 棚卸し・適格性確認・置換設計：RF0 inventory → RF1 eligibility → RF2 replacement design
+1. RF0 inventory → RF1 eligibility → RF2 replacement design
 2. RF3 atomic executionを既存実行ownerへ委譲
 3. RF4 parity／no-degradation
-4. 移行・退役から反映確認へ：RF5 migration／retirement → RF6 read-after
+4. RF5 migration／retirement → RF6 read-after
 
 停止・差戻し：
 - 意味変更ならREDESIGN等へ戻す
@@ -493,7 +493,7 @@ PKG-D09の汎用製品向けRelease adapterは未検収です。既存RLSのHELI
 ## 出典
 
 [DEC06]: DECISIONS_v0.6.md
-[V05]: history/v0.5/HELIX_RELEASE_AND_GENERATION_RESEARCH_v0.5.md "旧版調査書（今回の入力には未同梱）"
+[V05]: history/v0.5/HELIX_RELEASE_AND_GENERATION_RESEARCH_v0.5.md
 [AS-S23]: https://github.com/RetryYN/HELIX-HARNESS/blob/84fe826449c1415bd60b42c81c2c0820bc79411b/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md
 [AS-S25]: https://github.com/RetryYN/HELIX-HARNESS/blob/84fe826449c1415bd60b42c81c2c0820bc79411b/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md
 [AS-S28]: https://github.com/RetryYN/HELIX-HARNESS/issues/1384

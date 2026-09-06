@@ -225,7 +225,8 @@ describe("design-language lint", () => {
           path &&
           existsSync(path) &&
           !/(^|\/)readme\.md$/i.test(path) &&
-          !path.startsWith("docs/archive/handover/"),
+          !path.startsWith("docs/archive/handover/") &&
+          !path.startsWith("docs/archive/intake/"),
       );
     const auditedPaths = new Set(loadDesignLanguageDocs().map((doc) => doc.path));
 
@@ -259,6 +260,35 @@ describe("design-language lint", () => {
 
       expect(docs.map((doc) => doc.path)).toEqual(["docs/handover/SESSION-2026-07-08-handover.md"]);
       expect(analyzeDesignLanguage(docs, { baselineViolations: 0 }).ok).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-DESLANG-018: byte-preserved intake原文を言語正本の検査対象にしない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-design-language-intake-"));
+    try {
+      mkdirSync(join(root, "docs", "archive", "intake", "source"), { recursive: true });
+      mkdirSync(join(root, "docs", "governance"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "archive", "intake", "source", "original.md"),
+        "# Original External Document\n\nThis source must remain byte preserved.\n",
+        "utf8",
+      );
+      writeFileSync(
+        join(root, "docs", "governance", "current.md"),
+        "# Current English Authority\n\nThis authored guidance must remain detectable.\n",
+        "utf8",
+      );
+
+      const docs = loadDesignLanguageDocs(root);
+      expect(docs.map((doc) => doc.path)).not.toContain(
+        "docs/archive/intake/source/original.md",
+      );
+      expect(analyzeDesignLanguage(docs, { baselineViolations: 0 }).violations.map((v) => v.path)).toEqual([
+        "docs/governance/current.md",
+        "docs/governance/current.md",
+      ]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

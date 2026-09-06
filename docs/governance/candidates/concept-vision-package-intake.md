@@ -1,15 +1,15 @@
 # Concept・Vision・Package取込対応表
 
-状態: 原文保全・整理候補の取込済み、独立検収待ち。要求承認、実装完了、公開版の確定を表さない。
+状態: draft整理候補、独立検収待ち。要求承認、main取込、実装完了、公開版の確定を表さない。
 
 ## 入力と基準
 
 - 入力: `HELIX_Concept＆Vision.zip`、2026-09-06受領。
 - ZIP SHA-256: `c6faf07352063a1715f07aedb4b2c551716f2f401611ff4db1ff2624f01a90b0`
 - 照合基準main: `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`
-- 同梱10 Markdown文書は同梱SHA256SUMSと一致。パスに絶対パス・親ディレクトリ参照なし。
+- ZIP memberとして受領した10 Markdown文書は、同じZIP memberのSHA256SUMSと一致。これは受領ZIP内部の整合であり、第三者署名による真正性証明ではない。パスに絶対パス・親ディレクトリ参照なし。
 - 全10文書を通読済み。階層調査evidenceの主張と現在mainとの独立照合は未完了。
-- 保存先: `docs/archive/intake/2026-09-06-concept-vision/`。commit `17f00abeb`では10文書と同梱SHA256SUMSをbyte一致で保存した。現行保存文書は英語工程・見出し14箇所へ日本語説明を付けた閲覧用編集版で、SHA256SUMSも編集後の値である。原文と入力checksumは当該commitから復元する。出典の未同梱状態は変更しない。
+- 保存先: `docs/archive/intake/2026-09-06-concept-vision/`。10文書と受領時のSHA256SUMSをbyte一致で保存し、`sha256sum -c SHA256SUMS.txt` は10/10一致、exit 0。原文は編集せず、出典の未同梱状態も変更しない。
 
 原文に含まれる過去発言の引用や調査者の確認記録を、今回の承認や今回実施した検証へ転用しない。
 
@@ -45,7 +45,7 @@
 1. Conceptの `basis/` 参照4件は同梱配置と不一致。編集版で同梱文書の実配置へ修正する。
 2. Visionの別ZIP・roadmap JSON同梱という記述は今回の入力に一致しない。編集版は実inventoryに合わせる。
 3. `DECISIONS_v0.6.md` と `history/v0.5/HELIX_RELEASE_AND_GENERATION_RESEARCH_v0.5.md` はZIPにない。出典欠落として表示し、内容を創作しない。
-4. 46旧成果、325 node、295 relation、35 Gate、29受渡しは入力資料の主張。現在mainの実測件数へ転用しない。
+4. 原文で「46 Slice」とされた旧成果、325 node、295 relation、35 Gate、29受渡しは入力資料の主張。現在mainの実測件数へ転用しない。
 
 ## 完了条件と削除条件
 
@@ -56,5 +56,5 @@
 - 保存先がcommitで復元可能になり、内容保存を再検証してから元ZIPを削除する。
 - 原文・整理版はcommit `17f00abeb`で保存してremote branchへpush済み。原文hash 10/10、PLAN lint、DB rebuild、commit後snapshot照合は成功。
 - PR #1576で独立検収を追跡する。要求差分は整理版に受入候補と対で記録したが、既存L1/L3/L10正本への昇格・runtime版管理の実装・main統合は未完了。
-- 元ZIPは2026-09-06に削除済み。原文10文書と同梱checksumは上記commitから復元できる。ZIPそのもののバイナリはGitへ追加していない。
-- CI run `33999795382`で英語表記14件を検出。日本語説明と見出し翻訳を加え、`doctor --gate design-language` は2339文書・違反0で成功。gate実装・baselineは変更していない。
+- 元ZIP `/home/tenni/HELIX-HARNESS/HELIX_Concept＆Vision.zip` は2026-09-06に削除済み。原文10文書と同梱checksumはcommit `17f00abeb`から復元できるが、main未到達のため現在はremote branch `docs/1500-concept-vision-intake`に依存する。ZIPそのもののバイナリはGitへ追加していない。
+- CI run `33999795382`で外部原文の英語表記14件を検出。原文を変更する対処を撤回し、byte保存域 `docs/archive/intake/` を言語正本の対象から除外した。U-DESLANG-018が外部原文の除外と通常governance文書の検出継続を対照する。baselineは変更しない。

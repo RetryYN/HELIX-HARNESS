@@ -55,6 +55,7 @@ Lite/Fullは必要な開発能力を選んだ構成であり、全repo・内部�
 
 照合基準はmain `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`。
 RLSはconfirmed、FRS v0.2は承認記録を持つが正本昇格前の候補である。この状態差を保存する。
+RLSの「8+1 Bundle」は初期8候補にLifecycle Operations Bundle 1候補を追加した構成を指し、公開済みBundle数ではない。
 
 | 提案 | 既存契約 | 取込区分 |
 | --- | --- | --- |
@@ -101,6 +102,6 @@ RLSはconfirmed、FRS v0.2は承認記録を持つが正本昇格前の候補で
 - [Release/Version原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md)
 - [取込状況・不整合一覧](concept-vision-package-intake.md)
 
-原文の `basis/` リンクは本節の実配置リンクで補完する。原文bytesはcommit `17f00abeb`に保全し、現行保存文書は日本語説明を補った閲覧版とする。原文と閲覧版のchecksumを同一視しない。
+原文の `basis/` リンクは本節の実配置リンクで補完する。原文bytesと受領時checksumは変更せず保全し、日本語の説明は本整理版だけに置く。
 原文が言及する別ZIP、roadmap JSON、DECISIONS_v0.6、旧v0.5調査書、evidence付属JSON等は今回の同梱物にはない。
 それらの検証完了を主張しない。引用された過去発言や出典の確認記録を、今回の承認や今回の実測として再使用しない。
