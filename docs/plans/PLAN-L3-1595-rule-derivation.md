@@ -53,6 +53,9 @@ generates:
   - { artifact_path: docs/governance/candidates/rule-derivation-acceptance.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+agent_slots:
+  - { role: tl, slot_label: "TL — 既存owner・意味正本・移行境界を整理" }
+  - { role: qa, slot_label: "QA — 要求の保持・独立受入・反例を検証" }
 review_evidence: []
 ---
 
