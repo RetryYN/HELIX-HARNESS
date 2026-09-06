@@ -9,7 +9,7 @@ import {
   runBudgetedProviderProcess,
 } from "../src/runtime/provider-process-lifecycle";
 
-// PLAN-RECOVERY-1601-worker-deadline — U-WBL-001..004, U-WBL-006
+// PLAN-RECOVERY-1601-worker-deadline — U-WBL-001..004, U-WBL-006..007
 
 const roots: string[] = [];
 const pidFiles: string[] = [];
@@ -132,6 +132,7 @@ describe.skipIf(process.platform === "win32")("provider process budget lifecycle
       stdout: "provider-complete",
       stderr: "diagnostic",
       timed_out: false,
+      interrupted_by: null,
       deadline_ms: 1_000,
       termination_stage: "none",
       signal: null,
@@ -150,6 +151,7 @@ describe.skipIf(process.platform === "win32")("provider process budget lifecycle
     expect(outcome).toMatchObject({
       status: null,
       timed_out: true,
+      interrupted_by: null,
       deadline_ms: 200,
       termination_stage: "kill_sent",
       signal: "SIGKILL",
@@ -186,6 +188,31 @@ describe.skipIf(process.platform === "win32")("provider process budget lifecycle
     expect(existsSync(markerPath)).toBe(false);
     await new Promise((resolve) => setTimeout(resolve, 400));
     expect(existsSync(markerPath)).toBe(false);
+  });
+
+  it("U-WBL-007: wrapperへのSIGINTをprovider process groupへ転送して孤児化を防ぐ", async () => {
+    const root = temporaryRoot();
+    const lifecycle = runBudgetedProviderProcess(stubbornLaunch(root, 10_000));
+    const pidPath = pidFiles.at(-1);
+    if (pidPath === undefined) throw new Error("provider_pid_path_missing");
+    while (!existsSync(pidPath)) {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+    }
+
+    process.emit("SIGINT", "SIGINT");
+    const outcome = await lifecycle;
+    const pids = readProcessTreePids(pidPath);
+
+    expect(outcome).toMatchObject({
+      timed_out: false,
+      interrupted_by: "SIGINT",
+      termination_stage: "kill_sent",
+      signal: "SIGKILL",
+      reaped: true,
+    });
+    expect(outcome.error).toBeUndefined();
+    expect(processAlive(pids.parent_pid)).toBe(false);
+    expect(processAlive(pids.child_pid)).toBe(false);
   });
 });
 

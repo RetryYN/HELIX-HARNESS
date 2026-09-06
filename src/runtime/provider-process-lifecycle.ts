@@ -11,6 +11,7 @@ const POSIX_PROCESS_GROUP_PLATFORMS = new Set<NodeJS.Platform>([
 const TERMINATION_GRACE_MS = 100;
 const REAP_CONFIRMATION_MS = 2_000;
 const REAP_POLL_MS = 5;
+const FORWARDED_SIGNALS = ["SIGINT", "SIGTERM", "SIGHUP"] as const;
 
 export interface ProviderProcessLaunch {
   readonly command: string;
@@ -32,6 +33,7 @@ export interface ProviderProcessLifecycleOutcome {
   readonly stdout: string;
   readonly stderr: string;
   readonly timed_out: boolean;
+  readonly interrupted_by: NodeJS.Signals | null;
   readonly deadline_ms: number;
   readonly termination_stage: ProviderProcessTerminationStage;
   readonly signal: NodeJS.Signals | null;
@@ -144,6 +146,7 @@ export async function runBudgetedProviderProcess(
       stdout: "",
       stderr: "",
       timed_out: false,
+      interrupted_by: null,
       deadline_ms: launch.timeMs,
       termination_stage: "none",
       signal: null,
@@ -180,6 +183,7 @@ export async function runBudgetedProviderProcess(
       stdout,
       stderr,
       timed_out: false,
+      interrupted_by: null,
       deadline_ms: launch.timeMs,
       termination_stage: "none",
       signal: null,
@@ -207,12 +211,41 @@ export async function runBudgetedProviderProcess(
   child.stdin?.on("error", () => undefined);
   child.stdin?.end(launch.stdin);
 
-  if (await waitUntilReaped(state, processGroupId, executionDeadline)) {
+  let resolveInterruption: ((signal: NodeJS.Signals) => void) | undefined;
+  const interruption = new Promise<NodeJS.Signals>((resolve) => {
+    resolveInterruption = resolve;
+  });
+  const signalHandlers = new Map<NodeJS.Signals, () => void>();
+  for (const signal of FORWARDED_SIGNALS) {
+    const handler = () => resolveInterruption?.(signal);
+    signalHandlers.set(signal, handler);
+    process.once(signal, handler);
+  }
+  const exitHandler = () => {
+    signalProcessGroup(processGroupId, "SIGKILL");
+  };
+  process.once("exit", exitHandler);
+  const removeLifecycleHandlers = () => {
+    for (const [signal, handler] of signalHandlers) process.off(signal, handler);
+    process.off("exit", exitHandler);
+    resolveInterruption = undefined;
+  };
+
+  const firstBoundary = await Promise.race([
+    waitUntilReaped(state, processGroupId, executionDeadline).then((reaped) =>
+      reaped ? ({ kind: "reaped" } as const) : ({ kind: "deadline" } as const),
+    ),
+    interruption.then((signal) => ({ kind: "interrupted", signal }) as const),
+  ]);
+
+  if (firstBoundary.kind === "reaped") {
+    removeLifecycleHandlers();
     return {
       status: state.close?.status ?? null,
       stdout,
       stderr,
       timed_out: false,
+      interrupted_by: null,
       deadline_ms: launch.timeMs,
       termination_stage: "none",
       signal: state.close?.signal ?? null,
@@ -236,12 +269,14 @@ export async function runBudgetedProviderProcess(
   if (!reaped) {
     state.error = combineErrors(state.error, new Error("provider_process_tree_reap_timeout"));
   }
+  removeLifecycleHandlers();
 
   return {
     status: state.close?.status ?? null,
     stdout,
     stderr,
-    timed_out: true,
+    timed_out: firstBoundary.kind === "deadline",
+    interrupted_by: firstBoundary.kind === "interrupted" ? firstBoundary.signal : null,
     deadline_ms: launch.timeMs,
     termination_stage: terminationStage,
     signal: state.close?.signal ?? null,
