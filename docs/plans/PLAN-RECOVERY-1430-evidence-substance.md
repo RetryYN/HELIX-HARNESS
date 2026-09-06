@@ -74,6 +74,12 @@ generates:
   - { artifact_path: tests/evidence-file-substance.test.ts, artifact_type: test_code }
   - { artifact_path: tests/g10-browser-evidence.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-312-d-contract-dsl.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: yaml_config }
   - { artifact_path: .helix/evidence/g8-integration/20260626-it-adapter-asset-expansion.json, artifact_type: json_config }
   - { artifact_path: .helix/evidence/g8-integration/20260626-it-module-state-minimum.json, artifact_type: json_config }
