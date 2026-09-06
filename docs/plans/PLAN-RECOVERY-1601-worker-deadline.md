@@ -36,6 +36,7 @@ modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 review_evidence: []
