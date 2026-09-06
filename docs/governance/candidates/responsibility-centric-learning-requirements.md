@@ -6,10 +6,8 @@ title: "責務中心Learning System要件"
 layer: L3
 kind: redesign
 status: draft_candidate
-authority_status: approved_pending_canonical_promotion
-approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1384#issuecomment-5544537975"
 created: 2026-09-02
-updated: 2026-09-06
+updated: 2026-09-02
 owner: PO / Codex TL
 plan: PLAN-L3-80-responsibility-centric-learning-system
 parent_design: docs/governance/candidates/responsibility-centric-learning-requests.md
@@ -21,6 +19,7 @@ next_pair_freeze: L10_after_po_approval
 
 - 文書ID: `HELIX-RCLS-REQ-001`
 - 主Issue: `#1384`
+- L3候補承認: [`L3-PO-1384-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1384#issuecomment-5544537975)。canonical昇格、IR admission、runtime実装は別工程。
 
 ## Feature契約
 
