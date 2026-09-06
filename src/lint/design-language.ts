@@ -125,6 +125,8 @@ function isReadmeLike(path: string): boolean {
 function isGeneratedDoc(path: string): boolean {
   const normalized = normalizeRel(path);
   return (
+    // 外部取込のbyte保存域。人間向け正本ではなく、digestで原文一致を検証する。
+    normalized.startsWith("docs/archive/intake/") ||
     /^docs\/handover\/session-handover-\d{4}-\d{2}-\d{2}\.md$/.test(normalized) ||
     normalized.startsWith("docs/archive/handover/")
   );
