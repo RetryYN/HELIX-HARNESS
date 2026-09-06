@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-06T20:35:10Z"
+  plan_id: PLAN-L3-1595-rule-derivation
+  approval_record_id: L3-PO-1595-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1595#issuecomment-5562000124"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:新要求文書を整理して取り込む rule-derivation"
 created: 2026-09-06
-updated: 2026-09-06
+updated: 2026-09-07
 owner: Codex / TL
 github_issue_id: 1595
 behavior_contract_id: RULE-DERIVATION-001
