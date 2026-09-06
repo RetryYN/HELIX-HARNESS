@@ -4,7 +4,7 @@ title: "Gate証跡の実bytesと意味正本への接合を修復する"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-06
 updated: 2026-09-06
@@ -12,6 +12,12 @@ owner: Codex / TL
 github_issue_id: 1430
 behavior_contract_id: GATE-EVIDENCE-SUBSTANCE-1430
 responsibility_owner: gate-evidence-substance
+supersedes:
+  - PLAN-L7-169-g8-integration-evidence-manifest
+  - PLAN-L7-171-g8-adapter-asset-evidence
+  - PLAN-L7-312-d-contract-dsl
+  - PLAN-L7-313-g9-g10-workflow-gate
+  - PLAN-REVERSE-169-g8-integration-evidence-manifest
 entry_signals: [regression_dev]
 agent_slots:
   - { role: aim, slot_label: "AIM — 証跡の意味と実測の境界" }
@@ -99,27 +105,7 @@ modifies:
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: src/lint/gn-evidence-manifest.ts, artifact_type: source_module }
-review_evidence:
-  - reviewer: "Claude Code / claude-fable-5-1"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-06T16:02:26Z"
-    tests_green_at: "2026-09-06T16:02:26Z"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: claude-fable-5-1
-    reviewer_session_id: 37bdaf1b-aa57-4381-9019-3c995d0f9cc1
-    reviewed_head_sha: da2ad67af9ac84edfc60a9cf990e4f15ea1c42a0
-    scope: "PR #1600 exact HEAD da2ad67af9ac84edfc60a9cf990e4f15ea1c42a0をread-only独立再レビュー。前回blockerだったWindows laneはattempt 2でgreen、Biome 4件、旧manifest移動後のPLAN参照、legacy orchestration ratchetとVitest証跡の境界を再検査した。全差分47 filesを対象にblocker 0、suggestion 2。成功Vitest JSONだけを非実行証跡として除外し、拡張子違い・失敗・壊れた内容を除外しない反例を確認した。"
-    green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run tests/legacy-orchestration-surface.test.ts --reporter=dot"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-06T16:02:26Z"
-        evidence_path: tests/legacy-orchestration-surface.test.ts
-        output_digest: "sha256:6d56bf5841fb0b56bfc4450da84095e113e2839951ae6038a2a7e4c30d64e45e"
-        result: "1 file / 12 tests passed"
+review_evidence: []
 ---
 
 # 証跡の実体照合Recovery

@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-313-g9-g10-workflow-gate
+superseded_by: [PLAN-RECOVERY-1430-evidence-substance]
 title: "PLAN-L7-313 (impl): G9 system-workflow / G10 UX-workflow gate 機械化 — right-arm-gate-planning が追跡する自己 carry を閉じる"
 kind: impl
 layer: L7
@@ -36,9 +37,9 @@ generates:
     artifact_type: test_code
   - artifact_path: tests/lint-wiring.test.ts
     artifact_type: test_code
-  - artifact_path: docs/archive/gate-evidence-manifests/20260705-selected-system-evidence.json
+  - artifact_path: .helix/evidence/g9-system/20260705-selected-system-evidence.json
     artifact_type: json_config
-  - artifact_path: docs/archive/gate-evidence-manifests/20260705-selected-ux-evidence.json
+  - artifact_path: .helix/evidence/g10-ux/20260705-selected-ux-evidence.json
     artifact_type: json_config
   - artifact_path: docs/design/harness/L9-system/system-evidence-boundary.md
     artifact_type: design_doc
@@ -99,7 +100,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         completed_at: "2026-07-05T04:20:00+09:00"
-        evidence_path: docs/archive/gate-evidence-manifests/20260705-selected-system-evidence.json
+        evidence_path: .helix/evidence/g9-system/20260705-selected-system-evidence.json
         output_digest: "sha256:0c04c80832cf8f124f3cd7f562de3df829e2d27055ce9a164e4952f92d9e8b18"
       - kind: doctor
         command: "./scripts/helix doctor"
@@ -169,7 +170,7 @@ HELIX 式で機械化する。G8（`g8-integration-workflow.ts`）と同じ prof
 | `bun test tests/g9-system-workflow.test.ts tests/g10-ux-workflow.test.ts tests/lint-wiring.test.ts --timeout 180000` | test | 0 | `tests/lint-wiring.test.ts` | `sha256:0b63719f0973df03a5333a8c348dd1cf63d61ab7ce465eb61345b0f45cb878a2` |
 | `bun test tests/design-language.test.ts --timeout 180000` | test | 0 | `tests/design-language.test.ts` | `sha256:c19def4deedbba5683830fae299d9b2f7fce31166b81711806476257ea54f322` |
 | `bun run typecheck` | typecheck | 0 | `src/doctor/index.ts` | `sha256:c56b8e2304b8173d8a61075c5488a2531eb45327b15d1fed82ee8f62736c068c` |
-| `./scripts/helix plan lint docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md` | lint | 0 | `docs/archive/gate-evidence-manifests/20260705-selected-system-evidence.json` | `sha256:0c04c80832cf8f124f3cd7f562de3df829e2d27055ce9a164e4952f92d9e8b18` |
+| `./scripts/helix plan lint docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md` | lint | 0 | `.helix/evidence/g9-system/20260705-selected-system-evidence.json` | `sha256:0c04c80832cf8f124f3cd7f562de3df829e2d27055ce9a164e4952f92d9e8b18` |
 | `./scripts/helix doctor` | doctor | 0 | `docs/process/gates.md` | `sha256:8b822330d3142798c57f05e7192cf5d90e1c5685c1af8638e3ceccd3d5c91281` |
 
 ## 着地結果

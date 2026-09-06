@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-REVERSE-169-g8-integration-evidence-manifest
+superseded_by: [PLAN-RECOVERY-1430-evidence-substance]
 title: "PLAN-REVERSE-169: G8 evidence manifest の fullback"
 kind: reverse
 layer: cross
@@ -43,7 +44,7 @@ backprop_scope:
     reason: "IT-STATE-02 deficiency は、drive partition contamination detection により close された。"
   - layer: evidence
     decision: updated
-    evidence_path: docs/archive/gate-evidence-manifests/20260626-it-module-state-minimum.json
+    evidence_path: .helix/evidence/g8-integration/20260626-it-module-state-minimum.json
     reason: "選択された IT-MODULE + IT-STATE coverage は machine-readable になった。"
 agent_slots:
   - role: tl
@@ -61,7 +62,7 @@ generates:
     artifact_type: design_doc
   - artifact_path: docs/test-design/harness/L8-integration-test-design.md
     artifact_type: test_design
-  - artifact_path: docs/archive/gate-evidence-manifests/20260626-it-module-state-minimum.json
+  - artifact_path: .helix/evidence/g8-integration/20260626-it-module-state-minimum.json
     artifact_type: json_config
   - artifact_path: src/lint/g8-integration-workflow.ts
     artifact_type: source_module

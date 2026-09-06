@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-169-g8-integration-evidence-manifest
+superseded_by: [PLAN-RECOVERY-1430-evidence-substance]
 title: "PLAN-L7-169: G8 integration evidence manifest"
 kind: add-impl
 layer: L7
@@ -19,7 +20,7 @@ generates:
     artifact_type: markdown_doc
   - artifact_path: docs/test-design/harness/L8-integration-test-design.md
     artifact_type: test_design
-  - artifact_path: docs/archive/gate-evidence-manifests/20260626-it-module-state-minimum.json
+  - artifact_path: .helix/evidence/g8-integration/20260626-it-module-state-minimum.json
     artifact_type: json_config
   - artifact_path: src/lint/g8-integration-workflow.ts
     artifact_type: source_module
