@@ -1,4 +1,5 @@
 // PLAN-L7-672-current-location-summary-typed-output — U-CLSO-001..006
+// PLAN-L7-1574-cli-summary-fixture — U-CLSO-001..006
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-007
 // PLAN-L7-656-distribution-lite-profile-bound-package — U-DISTPKG-014
 // PLAN-L7-603-distribution-deterministic-archive
@@ -18,7 +19,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, join } from "node:path";
-import { afterAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
 import { installTestWorkerContextBoundary } from "./helpers/worker-context";
@@ -1283,7 +1284,7 @@ describe("L7 CLI surface closure", () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
-  it("exposes whole-program completion readiness on status surfaces", () => {
+  it("U-JRSTAT-001: exposes whole-program completion readiness on status surfaces", () => {
     const readyRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-ready-"));
     const blockedRoot = mkdtempSync(join(tmpdir(), "helix-cli-completion-blocked-"));
     try {
@@ -1353,10 +1354,18 @@ describe("L7 CLI surface closure", () => {
         expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
           expect.arrayContaining(["human approval evidence を記録する"]),
         );
-      } else {
+      } else if (blockedPayload.judgmentReview.requiredReviewKind === "cross_agent") {
         expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual(
           expect.arrayContaining(["worker_model を記録する", "reviewer_model を記録する"]),
         );
+      } else {
+        expect(blockedPayload.judgmentReview.requiredReviewKind).toBe("intra_runtime_subagent");
+        expect(blockedPayload.judgmentReview.requiredEvidenceJa).toEqual([
+          "review_kind=intra_runtime_subagent を記録する",
+          "judgment checklist に全必須項目が含まれることを記録する",
+          "fail の checklist item が gate を block することを記録する",
+          "n-a の checklist item には evidence を記録する",
+        ]);
       }
       expect(blockedPayload.judgmentReview.requiredEvidenceJa).toHaveLength(
         blockedPayload.judgmentReview.requiredEvidence.length,
@@ -1552,12 +1561,12 @@ describe("L7 CLI surface closure", () => {
       expect(blockedText.stdout).toContain("runtime-next:");
       expect(blockedText.stdout).toContain("completion-next: completion-blocked:");
       expect(blockedText.stdout).not.toContain("\nnext:");
-      expect(blockedText.stdout).toMatch(
-        /evidence=(worker_model を記録する|human approval evidence を記録する)/,
-      );
-      expect(blockedText.stdout).toMatch(
-        /evidence-id=(worker_model recorded|human approval evidence recorded)/,
-      );
+      for (const evidence of blockedPayload.judgmentReview.requiredEvidenceJa) {
+        expect(blockedText.stdout).toContain(`evidence=${evidence} evidence-id=`);
+      }
+      for (const evidence of blockedPayload.judgmentReview.requiredEvidence) {
+        expect(blockedText.stdout).toContain(`evidence-id=${evidence}`);
+      }
       expect(blockedText.stdout).toContain("workflow-next: completion-blocked:");
       expect(blockedText.stdout).toContain("workflow-next-actions: 2");
       expect(blockedText.stdout).toContain(
@@ -3165,111 +3174,119 @@ describe("L7 CLI surface closure", () => {
     }
   }, 15_000);
 
-  it("U-CLSO-001: PLAN-L7-672-current-location-summary-typed-output repository current-location routeをtyped identityへ投影する", () => {
-    const run = runCli(["current-location", "--summary-json"]);
-    expect(run.status, run.stderr || run.stdout).toBe(0);
-    const payload = JSON.parse(run.stdout);
+  describe("current-locationの同一入力に対する出力契約", () => {
+    // PLAN-L7-1574: scenario準備だけを共有する。次のsuite実行へ結果を保存しない。
+    let outputs: Array<{ args: string[]; run: ReturnType<typeof runCli> }>;
+    beforeAll(() => {
+      outputs = [
+        ["current-location"],
+        ["current-location", "--json"],
+        ["current-location", "--summary-json"],
+      ].map((args) => ({ args, run: runCli(args) }));
+      // 成否は各oracleで検査する。準備hookで失敗させて全caseをskipしない。
+    }, CLI_CHILD_TEST_WRAPPER_TIMEOUT_MS * 3);
 
-    expect(payload).toMatchObject({
-      schema_version: "project-current-location-summary.v2",
-      workflow_route: {
-        workflow_identity: {
-          target_axis: "workflow_model",
-          target_id: "RECOVERY",
-        },
-        workflow_identity_receipt: expect.objectContaining({
-          disposition: "converted",
-          emit_legacy_identity: false,
-        }),
-      },
-      current_location_frontier: {
-        schema_version: "current-location-frontier-summary.v2",
-        workflow_identity: {
-          target_axis: "workflow_model",
-          target_id: "RECOVERY",
-        },
-        workflow_route_status: "recovery_required",
-      },
-    });
-    expect(payload).not.toHaveProperty("drive_recommendation");
-    expect(payload).not.toHaveProperty("drive_route");
-    expect(payload.workflow_route).not.toHaveProperty("selected_model");
-    expect(payload.workflow_route).not.toHaveProperty("default_model");
-    expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
-    expect(payload.current_location_frontier).not.toHaveProperty("route_id");
-  }, 45_000);
-
-  it("U-CLSO-003: PLAN-L7-672-current-location-summary-typed-output legacy primary fieldsを出力しない", () => {
-    const run = runCli(["current-location", "--summary-json"]);
-    expect(run.status, run.stderr || run.stdout).toBe(0);
-    const payload = JSON.parse(run.stdout);
-
-    expect(payload).not.toHaveProperty("drive_recommendation");
-    expect(payload).not.toHaveProperty("drive_route");
-    expect(payload.workflow_route).not.toHaveProperty("selected_model");
-    expect(payload.workflow_route).not.toHaveProperty("default_model");
-    expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
-    expect(payload.current_location_frontier).not.toHaveProperty("route_id");
-  }, 45_000);
-
-  it("U-CLSO-004: PLAN-L7-672-current-location-summary-typed-output frontierをtyped routeへ揃える", () => {
-    const run = runCli(["current-location", "--summary-json"]);
-    expect(run.status, run.stderr || run.stdout).toBe(0);
-    const payload = JSON.parse(run.stdout);
-
-    expect(payload.current_location_frontier).toMatchObject({
-      schema_version: "current-location-frontier-summary.v2",
-      workflow_route_status: expect.any(String),
-      workflow_identity: expect.any(Object),
-      commands: {
-        current_location: "helix current-location --summary-json",
-        workflow_route: "helix current-location --summary-json",
-      },
-    });
-  }, 45_000);
-
-  it("U-CLSO-005: PLAN-L7-672-current-location-summary-typed-output text全体をtyped route語彙へ固定する", () => {
-    const legacyTextLabel = /^\s+drive(?:[-=])/m;
-    const outputs = [
-      ["current-location"],
-      ["current-location", "--json"],
-      ["current-location", "--summary-json"],
-    ].map((args) => ({ args, run: runCli(args) }));
-    for (const { run } of outputs) {
+    it("U-CLSO-001: PLAN-L7-672-current-location-summary-typed-output repository current-location routeをtyped identityへ投影する", () => {
+      const run = outputs[2].run;
       expect(run.status, run.stderr || run.stdout).toBe(0);
-      expect(run.stdout).not.toMatch(legacyTextLabel);
-    }
+      const payload = JSON.parse(run.stdout);
 
-    const text = outputs[0].run;
-    expect(text.stdout).toContain("workflow-route:");
-    expect(text.stdout).toContain("workflow-route-reverse-scope:");
-    expect(text.stdout).not.toContain("drive=");
-    expect(text.stdout).not.toContain("drive-route:");
-    expect(text.stdout).not.toContain("drive-reverse-scope:");
-    expect(text.stdout).not.toContain("drive-forward-scope:");
+      expect(payload).toMatchObject({
+        schema_version: "project-current-location-summary.v2",
+        workflow_route: {
+          workflow_identity: {
+            target_axis: "workflow_model",
+            target_id: "RECOVERY",
+          },
+          workflow_identity_receipt: expect.objectContaining({
+            disposition: "converted",
+            emit_legacy_identity: false,
+          }),
+        },
+        current_location_frontier: {
+          schema_version: "current-location-frontier-summary.v2",
+          workflow_identity: {
+            target_axis: "workflow_model",
+            target_id: "RECOVERY",
+          },
+          workflow_route_status: "recovery_required",
+        },
+      });
+      expect(payload).not.toHaveProperty("drive_recommendation");
+      expect(payload).not.toHaveProperty("drive_route");
+      expect(payload.workflow_route).not.toHaveProperty("selected_model");
+      expect(payload.workflow_route).not.toHaveProperty("default_model");
+      expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
+      expect(payload.current_location_frontier).not.toHaveProperty("route_id");
+    }, 45_000);
 
-    // The repository fixture currently takes the reverse branch; inspect the source literal too
-    // so a legacy label reintroduced only in the forward branch is still caught.
-    const cliSource = readFileSync(join(repoRoot, "src", "cli.ts"), "utf8");
-    const currentLocationStart = cliSource.indexOf('.command("current-location")');
-    const nextCommandStart = cliSource.indexOf("const roadmap =", currentLocationStart);
-    expect(currentLocationStart).toBeGreaterThanOrEqual(0);
-    expect(nextCommandStart).toBeGreaterThan(currentLocationStart);
-    expect(cliSource.slice(currentLocationStart, nextCommandStart)).not.toMatch(
-      /`\x20{2}drive(?:[-=])/,
-    );
-  }, 120_000);
+    it("U-CLSO-003: PLAN-L7-672-current-location-summary-typed-output legacy primary fieldsを出力しない", () => {
+      const run = outputs[2].run;
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      const payload = JSON.parse(run.stdout);
 
-  it("U-CLSO-006: PLAN-L7-672-current-location-summary-typed-output schema v2を固定する", () => {
-    const run = runCli(["current-location", "--summary-json"]);
-    expect(run.status, run.stderr || run.stdout).toBe(0);
-    const payload = JSON.parse(run.stdout);
+      expect(payload).not.toHaveProperty("drive_recommendation");
+      expect(payload).not.toHaveProperty("drive_route");
+      expect(payload.workflow_route).not.toHaveProperty("selected_model");
+      expect(payload.workflow_route).not.toHaveProperty("default_model");
+      expect(payload.current_location_frontier).not.toHaveProperty("selected_model");
+      expect(payload.current_location_frontier).not.toHaveProperty("route_id");
+    }, 45_000);
 
-    expect(payload.schema_version).toBe("project-current-location-summary.v2");
-    expect(payload.current_location_frontier.schema_version).toBe(
-      "current-location-frontier-summary.v2",
-    );
-  }, 45_000);
+    it("U-CLSO-004: PLAN-L7-672-current-location-summary-typed-output frontierをtyped routeへ揃える", () => {
+      const run = outputs[2].run;
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      const payload = JSON.parse(run.stdout);
+
+      expect(payload.current_location_frontier).toMatchObject({
+        schema_version: "current-location-frontier-summary.v2",
+        workflow_route_status: expect.any(String),
+        workflow_identity: expect.any(Object),
+        commands: {
+          current_location: "helix current-location --summary-json",
+          workflow_route: "helix current-location --summary-json",
+        },
+      });
+    }, 45_000);
+
+    it("U-CLSO-005: PLAN-L7-672-current-location-summary-typed-output text全体をtyped route語彙へ固定する", () => {
+      const legacyTextLabel = /^\s+drive(?:[-=])/m;
+      for (const { run } of outputs) {
+        expect(run.status, run.stderr || run.stdout).toBe(0);
+        expect(run.stdout).not.toMatch(legacyTextLabel);
+      }
+
+      const text = outputs[0].run;
+      expect(text.stdout).toContain("workflow-route:");
+      expect(text.stdout).toContain("workflow-route-reverse-scope:");
+      expect(text.stdout).not.toContain("drive=");
+      expect(text.stdout).not.toContain("drive-route:");
+      expect(text.stdout).not.toContain("drive-reverse-scope:");
+      expect(text.stdout).not.toContain("drive-forward-scope:");
+
+      // The repository fixture currently takes the reverse branch; inspect the source literal too
+      // so a legacy label reintroduced only in the forward branch is still caught.
+      const cliSource = readFileSync(join(repoRoot, "src", "cli.ts"), "utf8");
+      const currentLocationStart = cliSource.indexOf('.command("current-location")');
+      const nextCommandStart = cliSource.indexOf("const roadmap =", currentLocationStart);
+      expect(currentLocationStart).toBeGreaterThanOrEqual(0);
+      expect(nextCommandStart).toBeGreaterThan(currentLocationStart);
+      expect(cliSource.slice(currentLocationStart, nextCommandStart)).not.toMatch(
+        /`\x20{2}drive(?:[-=])/,
+      );
+    }, 120_000);
+
+    it("U-CLSO-006: PLAN-L7-672-current-location-summary-typed-output schema v2を固定する", () => {
+      const run = outputs[2].run;
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      const payload = JSON.parse(run.stdout);
+
+      expect(payload.schema_version).toBe("project-current-location-summary.v2");
+      expect(payload.current_location_frontier.schema_version).toBe(
+        "current-location-frontier-summary.v2",
+      );
+    }, 45_000);
+  });
 
   // PLAN-L7-698-cli-workflow-identity-projection / U-CLIWI-005
   it("U-CLIWI-005: exposes Project view current-location and drive recommendation from DB projection", () => {

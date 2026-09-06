@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 81,
+  "decision_count": 82,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -37,6 +37,7 @@
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
     "PLAN-L7-146-serverless-readonly-share",
+    "PLAN-L7-1574-cli-summary-fixture",
     "PLAN-L7-425-system-review-issue-handoff",
     "PLAN-L7-442-quality-sweep-successor-clusters",
     "PLAN-L7-447-qs4-doctor-context-inventory",
