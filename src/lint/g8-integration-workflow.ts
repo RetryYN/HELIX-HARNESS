@@ -1,9 +1,12 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { isAbsolute, relative, resolve } from "node:path";
+import { resolve } from "node:path";
 import { isRecord } from "../shared/value-guards";
+import { type EvidenceFileInspection, observeEvidenceFiles } from "./evidence-file-substance";
+import { commandEvidenceViolations } from "./gn-evidence-manifest";
 
 export interface G8IntegrationWorkflowInput {
   repoRoot?: string;
+  evidenceObservations?: Readonly<Record<string, Readonly<EvidenceFileInspection>>>;
   l8TestDesign: string;
   gatesMd: string;
   evidenceManifests: G8IntegrationEvidenceManifest[];
@@ -85,14 +88,22 @@ const ALLOWED_EVIDENCE_PREFIXES = [".helix/evidence/", "docs/", "src/", "tests/"
 export function loadG8IntegrationWorkflowInput(
   repoRoot = process.cwd(),
 ): G8IntegrationWorkflowInput {
+  const evidenceManifests = loadG8IntegrationEvidenceManifests(repoRoot);
   return {
     repoRoot,
+    evidenceObservations: observeEvidenceFiles(
+      repoRoot,
+      evidenceManifests.flatMap((manifest) => [
+        ...manifest.commands.map((command) => command.evidence_path),
+        ...manifest.coverage.flatMap((entry) => entry.evidence_paths),
+      ]),
+    ),
     l8TestDesign: readFileSync(
       resolve(repoRoot, "docs/test-design/harness/L8-integration-test-design.md"),
       "utf8",
     ),
     gatesMd: readFileSync(resolve(repoRoot, "docs/process/gates.md"), "utf8"),
-    evidenceManifests: loadG8IntegrationEvidenceManifests(repoRoot),
+    evidenceManifests,
   };
 }
 
@@ -181,14 +192,6 @@ function normalizedPath(path: string): string {
   return path.replace(/\\/g, "/");
 }
 
-function pathExistsInsideRepo(repoRoot: string | undefined, path: string): boolean {
-  if (!repoRoot || !path || isAbsolute(path)) return false;
-  const resolved = resolve(repoRoot, path);
-  const rel = relative(repoRoot, resolved);
-  if (rel.startsWith("..") || isAbsolute(rel)) return false;
-  return existsSync(resolved);
-}
-
 function hasAllowedEvidencePrefix(path: string): boolean {
   const normalized = normalizedPath(path);
   return ALLOWED_EVIDENCE_PREFIXES.some((prefix) => normalized.startsWith(prefix));
@@ -196,7 +199,7 @@ function hasAllowedEvidencePrefix(path: string): boolean {
 
 function validateManifest(
   manifest: G8IntegrationEvidenceManifest,
-  repoRoot: string | undefined,
+  observations: G8IntegrationWorkflowInput["evidenceObservations"],
 ): string[] {
   const violations: string[] = [];
   if (manifest.schema_version !== EVIDENCE_MANIFEST_SCHEMA) {
@@ -211,8 +214,14 @@ function validateManifest(
   if (manifest.commands.length === 0) {
     violations.push(`${manifest.manifest_path}: commands must not be empty`);
   }
+  if (manifest.mandatory_it_ids.length === 0) {
+    violations.push(`${manifest.manifest_path}: mandatory_it_ids must not be empty`);
+  }
 
   const commandIds = new Set(manifest.commands.map((command) => command.command_id));
+  if (commandIds.size !== manifest.commands.length) {
+    violations.push(`${manifest.manifest_path}: duplicate command_id`);
+  }
   for (const command of manifest.commands) {
     if (!command.command_id || !command.command || !command.runner || !command.scope) {
       violations.push(`${manifest.manifest_path}: command entry has missing required fields`);
@@ -227,19 +236,17 @@ function validateManifest(
         `${manifest.manifest_path}: command ${command.command_id} has invalid digest`,
       );
     }
-    if (!pathExistsInsideRepo(repoRoot, command.evidence_path)) {
-      violations.push(
-        `${manifest.manifest_path}: command ${command.command_id} evidence_path missing`,
-      );
-    }
-    if (!hasAllowedEvidencePrefix(command.evidence_path)) {
-      violations.push(
-        `${manifest.manifest_path}: command ${command.command_id} evidence_path prefix not allowed`,
-      );
-    }
+    violations.push(
+      ...commandEvidenceViolations(command, observations, EVIDENCE_DIR).map(
+        (reason) => `${manifest.manifest_path}: ${reason}`,
+      ),
+    );
   }
 
   const coverageByIt = new Map(manifest.coverage.map((entry) => [entry.it_id, entry]));
+  if (coverageByIt.size !== manifest.coverage.length) {
+    violations.push(`${manifest.manifest_path}: duplicate coverage it_id`);
+  }
   for (const mandatoryItId of manifest.mandatory_it_ids) {
     const coverage = coverageByIt.get(mandatoryItId);
     if (!coverage) {
@@ -257,7 +264,7 @@ function validateManifest(
       );
     }
     for (const evidencePath of coverage.evidence_paths) {
-      if (!pathExistsInsideRepo(repoRoot, evidencePath)) {
+      if (!observations?.[evidencePath]?.ok) {
         violations.push(
           `${manifest.manifest_path}: coverage ${mandatoryItId} path missing: ${evidencePath}`,
         );
@@ -273,10 +280,34 @@ function validateManifest(
         violations.push(
           `${manifest.manifest_path}: coverage ${mandatoryItId} references unknown command ${commandId}`,
         );
+      } else if (
+        !manifest.commands.some(
+          (command) => command.command_id === commandId && command.it_ids.includes(mandatoryItId),
+        )
+      ) {
+        violations.push(
+          `${manifest.manifest_path}: coverage ${mandatoryItId} references command ${commandId} without matching item`,
+        );
       }
     }
   }
 
+  const mandatoryStatuses = [...new Set(manifest.mandatory_it_ids)].map(
+    (id) => coverageByIt.get(id)?.status,
+  );
+  const allPassed =
+    mandatoryStatuses.length > 0 && mandatoryStatuses.every((status) => status === "passed");
+  const failedCount = mandatoryStatuses.filter((status) => status === "failed").length;
+  if (manifest.exit_criteria.all_mandatory_passed !== allPassed) {
+    violations.push(
+      `${manifest.manifest_path}: exit_criteria.all_mandatory_passed disagrees with coverage`,
+    );
+  }
+  if (manifest.exit_criteria.failed_mandatory_count !== failedCount) {
+    violations.push(
+      `${manifest.manifest_path}: exit_criteria.failed_mandatory_count disagrees with coverage`,
+    );
+  }
   if (manifest.exit_criteria.all_mandatory_passed !== true) {
     violations.push(`${manifest.manifest_path}: exit_criteria.all_mandatory_passed must be true`);
   }
@@ -336,7 +367,7 @@ export function analyzeG8IntegrationWorkflow(
     }
   }
   for (const manifest of input.evidenceManifests) {
-    violations.push(...validateManifest(manifest, input.repoRoot));
+    violations.push(...validateManifest(manifest, input.evidenceObservations));
   }
 
   return {

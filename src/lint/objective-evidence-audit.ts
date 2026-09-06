@@ -2,6 +2,8 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { readPackageVersion } from "../shared/repo-info";
+import { isRecord } from "../shared/value-guards";
+import { type EvidenceFileInspection, observeEvidenceFiles } from "./evidence-file-substance";
 import { computeOutstandingWork, type OutstandingWork } from "./outstanding";
 import {
   OUTSTANDING_SNAPSHOT_PATH,
@@ -14,6 +16,10 @@ export interface ObjectiveEvidenceAuditInput {
   auditText: string;
   outstanding: OutstandingWork;
   repoRoot: string;
+  /** loader境界で読んだversioned binding manifest。null/欠落はfail-close。 */
+  evidenceBindingManifestText?: string | null;
+  /** binding pathごとの固定観測。analyzerはrepoを再読取りしない。 */
+  evidenceObservations?: Readonly<Record<string, Readonly<EvidenceFileInspection>>>;
   externalObserved?: Record<string, string>;
   trackedFiles?: ReadonlySet<string> | null;
   /** committed outstanding snapshot text (git HEAD 優先)。null = 欠落。 */
@@ -57,6 +63,63 @@ const PROVED_REQUIREMENT_IDS = [
 
 const COMPLETION_REQUIREMENT_ID = "G-10";
 const TOTAL_OBJECTIVE_REQUIREMENTS = PROVED_REQUIREMENT_IDS.length + 1;
+export const OBJECTIVE_EVIDENCE_BINDING_MANIFEST_PATH =
+  "config/objective-evidence-substance-binding.v1.json";
+const OBJECTIVE_EVIDENCE_BINDING_SCHEMA_VERSION = "helix-objective-evidence-substance-binding.v1";
+
+type ProvedRequirementId = (typeof PROVED_REQUIREMENT_IDS)[number];
+
+interface ObjectiveEvidenceBinding {
+  requirementId: ProvedRequirementId;
+  evidencePath: string;
+  evidenceDigest: string;
+  minimumSizeBytes: number;
+  observationMarker: string;
+}
+
+interface CanonicalObjectiveEvidencePolicy {
+  evidencePath: string;
+  observationMarker: string;
+}
+
+const CANONICAL_OBJECTIVE_EVIDENCE_POLICY = {
+  "G-01": {
+    evidencePath: "src/runtime/upstream-adoption.ts",
+    observationMarker: "A146 findings は名前付きで",
+  },
+  "G-02": {
+    evidencePath: "src/runtime/legacy-adoption.ts",
+    observationMarker: "旧 HELIX inventory は file count ではなく意味で分類",
+  },
+  "G-03": {
+    evidencePath: "src/runtime/run-debug.ts",
+    observationMarker: "runtime-verification.jsonl",
+  },
+  "G-04": {
+    evidencePath: "src/state-db/visualization-read-model.ts",
+    observationMarker: "visualization-snapshot.v1",
+  },
+  "G-05": {
+    evidencePath: "src/schema/roadmap.ts",
+    observationMarker: "feature_packs[]",
+  },
+  "G-06": {
+    evidencePath: "tests/vmodel-pair.test.ts",
+    observationMarker: "objective-evidence-audit",
+  },
+  "G-07": {
+    evidencePath: "src/setup/index.ts",
+    observationMarker: "[features].hooks=true",
+  },
+  "G-08": {
+    evidencePath: "src/lint/design-language.ts",
+    observationMarker: "HR-NFR-P5-03",
+  },
+  "G-09": {
+    evidencePath: "src/lint/semantic-frontier-consistency.ts",
+    observationMarker: "live `semanticFeatureFrontierRecords[]`",
+  },
+} as const satisfies Record<ProvedRequirementId, CanonicalObjectiveEvidencePolicy>;
 
 const REQUIRED_COMPLETION_ARTIFACTS = [
   "src/lint/outstanding.ts",
@@ -274,6 +337,12 @@ const EXPECTED_EXTERNAL_SOURCE_LEDGER_ROWS = [
 export function loadObjectiveEvidenceAuditInput(
   repoRoot: string = process.cwd(),
 ): ObjectiveEvidenceAuditInput {
+  const evidenceBindingManifestText = readOptionalText(
+    join(repoRoot, OBJECTIVE_EVIDENCE_BINDING_MANIFEST_PATH),
+  );
+  const bindingPaths = PROVED_REQUIREMENT_IDS.map(
+    (requirementId) => CANONICAL_OBJECTIVE_EVIDENCE_POLICY[requirementId].evidencePath,
+  );
   return {
     auditText: readFileSync(
       join(repoRoot, "docs", "governance", "helix-objective-evidence-audit.md"),
@@ -281,6 +350,8 @@ export function loadObjectiveEvidenceAuditInput(
     ),
     outstanding: computeOutstandingWork(repoRoot),
     repoRoot,
+    evidenceBindingManifestText,
+    evidenceObservations: observeEvidenceFiles(repoRoot, bindingPaths),
     trackedFiles: readGitTrackedFiles(repoRoot),
     outstandingSnapshotText: readCommittedOutstandingSnapshot(repoRoot),
   };
@@ -290,6 +361,13 @@ export function analyzeObjectiveEvidenceAudit(
   input: ObjectiveEvidenceAuditInput,
 ): ObjectiveEvidenceAuditResult {
   const violations: string[] = [];
+  const evidenceBindings = parseObjectiveEvidenceBindings(
+    input.evidenceBindingManifestText,
+    violations,
+  );
+  const bindingByRequirement = new Map(
+    (evidenceBindings ?? []).map((binding) => [binding.requirementId, binding]),
+  );
 
   for (const id of PROVED_REQUIREMENT_IDS) {
     const row = findAuditRow(input.auditText, id);
@@ -297,9 +375,16 @@ export function analyzeObjectiveEvidenceAudit(
       violations.push(`${id}: row missing`);
       continue;
     }
-    if (!row.includes("| proved |")) {
+    const cells = parseObjectiveEvidenceRow(row, id, violations);
+    if (!cells) continue;
+    if (cells.status !== "proved") {
       violations.push(`${id}: implemented objective row must stay proved`);
     }
+    if (!cells.objective) violations.push(`${id}: objective statement is empty`);
+    if (!cells.evidence) violations.push(`${id}: evidence citations are empty`);
+    if (!cells.observation) violations.push(`${id}: meaning observation is empty`);
+    const binding = bindingByRequirement.get(id);
+    if (binding) checkObjectiveEvidenceBinding({ input, row: cells, binding, violations });
   }
 
   const completionRow = findAuditRow(input.auditText, COMPLETION_REQUIREMENT_ID);
@@ -362,6 +447,170 @@ export function analyzeObjectiveEvidenceAudit(
       auditViolationCount: violations.length,
     }),
   };
+}
+
+function readOptionalText(path: string): string | null {
+  try {
+    return readFileSync(path, "utf8");
+  } catch {
+    return null;
+  }
+}
+
+function parseObjectiveEvidenceBindings(
+  manifestText: string | null | undefined,
+  violations: string[],
+): ObjectiveEvidenceBinding[] | null {
+  if (!manifestText) {
+    violations.push(
+      `objective evidence binding manifest missing ${OBJECTIVE_EVIDENCE_BINDING_MANIFEST_PATH}`,
+    );
+    return null;
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(manifestText);
+  } catch {
+    violations.push(
+      `objective evidence binding manifest is not valid JSON ${OBJECTIVE_EVIDENCE_BINDING_MANIFEST_PATH}`,
+    );
+    return null;
+  }
+  if (
+    !isRecord(parsed) ||
+    parsed.schema_version !== OBJECTIVE_EVIDENCE_BINDING_SCHEMA_VERSION ||
+    !Array.isArray(parsed.bindings)
+  ) {
+    violations.push(
+      `objective evidence binding manifest schema must be ${OBJECTIVE_EVIDENCE_BINDING_SCHEMA_VERSION}`,
+    );
+    return null;
+  }
+
+  const expectedIds = new Set<string>(PROVED_REQUIREMENT_IDS);
+  const seenIds = new Set<string>();
+  const bindings: ObjectiveEvidenceBinding[] = [];
+  parsed.bindings.forEach((raw, index) => {
+    if (
+      !isRecord(raw) ||
+      typeof raw.requirement_id !== "string" ||
+      typeof raw.evidence_path !== "string" ||
+      typeof raw.evidence_digest !== "string" ||
+      !Number.isInteger(raw.minimum_size_bytes) ||
+      typeof raw.observation_marker !== "string"
+    ) {
+      violations.push(`objective evidence binding manifest entry ${index} is malformed`);
+      return;
+    }
+    if (!expectedIds.has(raw.requirement_id)) {
+      violations.push(`objective evidence binding manifest has unknown row ${raw.requirement_id}`);
+      return;
+    }
+    if (seenIds.has(raw.requirement_id)) {
+      violations.push(`objective evidence binding manifest duplicates row ${raw.requirement_id}`);
+      return;
+    }
+    if (
+      raw.evidence_path.length === 0 ||
+      !/^sha256:[0-9a-f]{64}$/u.test(raw.evidence_digest) ||
+      (raw.minimum_size_bytes as number) < 1 ||
+      raw.observation_marker.length === 0
+    ) {
+      violations.push(`objective evidence binding manifest entry ${index} has invalid substance`);
+      return;
+    }
+    seenIds.add(raw.requirement_id);
+    const requirementId = raw.requirement_id as ProvedRequirementId;
+    const canonicalPolicy = CANONICAL_OBJECTIVE_EVIDENCE_POLICY[requirementId];
+    if (raw.evidence_path !== canonicalPolicy.evidencePath) {
+      violations.push(
+        `${requirementId}: evidence path must match canonical policy ${canonicalPolicy.evidencePath}`,
+      );
+    }
+    if (raw.observation_marker !== canonicalPolicy.observationMarker) {
+      violations.push(
+        `${requirementId}: observation marker must match canonical policy ${canonicalPolicy.observationMarker}`,
+      );
+    }
+    bindings.push({
+      requirementId,
+      evidencePath: canonicalPolicy.evidencePath,
+      evidenceDigest: raw.evidence_digest,
+      minimumSizeBytes: raw.minimum_size_bytes as number,
+      observationMarker: canonicalPolicy.observationMarker,
+    });
+  });
+
+  for (const id of PROVED_REQUIREMENT_IDS) {
+    if (!seenIds.has(id)) violations.push(`${id}: evidence substance binding missing`);
+  }
+  return bindings;
+}
+
+interface ObjectiveEvidenceRowCells {
+  objective: string;
+  status: string;
+  evidence: string;
+  observation: string;
+}
+
+function parseObjectiveEvidenceRow(
+  row: string,
+  requirementId: ProvedRequirementId,
+  violations: string[],
+): ObjectiveEvidenceRowCells | null {
+  const cells = row
+    .trim()
+    .replace(/^\|/u, "")
+    .replace(/\|$/u, "")
+    .split("|")
+    .map((cell) => cell.trim());
+  if (cells.length !== 5 || cells[0] !== requirementId) {
+    violations.push(`${requirementId}: objective evidence row must have exactly five cells`);
+    return null;
+  }
+  return {
+    objective: cells[1] ?? "",
+    status: cells[2] ?? "",
+    evidence: cells[3] ?? "",
+    observation: cells[4] ?? "",
+  };
+}
+
+function checkObjectiveEvidenceBinding(args: {
+  input: ObjectiveEvidenceAuditInput;
+  row: ObjectiveEvidenceRowCells;
+  binding: ObjectiveEvidenceBinding;
+  violations: string[];
+}): void {
+  const { input, row, binding, violations } = args;
+  const id = binding.requirementId;
+  if (!row.evidence.includes(`\`${binding.evidencePath}\``)) {
+    violations.push(`${id}: evidence citations missing bound path ${binding.evidencePath}`);
+  }
+  if (!row.observation.includes(binding.observationMarker)) {
+    violations.push(`${id}: meaning observation missing bound marker ${binding.observationMarker}`);
+  }
+
+  const observation = input.evidenceObservations?.[binding.evidencePath];
+  if (!observation) {
+    violations.push(`${id}: evidence observation missing ${binding.evidencePath}`);
+    return;
+  }
+  if (!observation.ok) {
+    violations.push(
+      `${id}: evidence bytes unavailable ${binding.evidencePath}: ${observation.reason}`,
+    );
+    return;
+  }
+  if (observation.digest !== binding.evidenceDigest) {
+    violations.push(`${id}: evidence digest does not match binding ${binding.evidencePath}`);
+  } else if (observation.sizeBytes < binding.minimumSizeBytes) {
+    violations.push(
+      `${id}: evidence is below minimum size ${binding.evidencePath}: ${observation.sizeBytes}/${binding.minimumSizeBytes}`,
+    );
+  }
 }
 
 function readGitTrackedFiles(repoRoot: string): ReadonlySet<string> | null {
@@ -534,14 +783,10 @@ export function loadObjectiveProgress(
   outstanding?: OutstandingWork,
 ): ObjectiveProgress | null {
   try {
-    const effectiveOutstanding = outstanding ?? computeOutstandingWork(repoRoot);
+    const loadedInput = loadObjectiveEvidenceAuditInput(repoRoot);
     const input: ObjectiveEvidenceAuditInput = {
-      auditText: readFileSync(
-        join(repoRoot, "docs", "governance", "helix-objective-evidence-audit.md"),
-        "utf8",
-      ),
-      outstanding: effectiveOutstanding,
-      repoRoot,
+      ...loadedInput,
+      outstanding: outstanding ?? loadedInput.outstanding,
     };
     return analyzeObjectiveEvidenceAudit(input).objectiveProgress;
   } catch {

@@ -1,0 +1,99 @@
+{
+  "schema_version": "g8-integration-evidence-v1",
+  "gate": "G8",
+  "profile": "module-state-node24-execution",
+  "plan_id": "PLAN-RECOVERY-1430-evidence-substance",
+  "selected_it_ids": [
+    "IT-MODULE-01",
+    "IT-MODULE-02",
+    "IT-STATE-01",
+    "IT-STATE-02"
+  ],
+  "mandatory_it_ids": [
+    "IT-MODULE-01",
+    "IT-MODULE-02",
+    "IT-STATE-01",
+    "IT-STATE-02"
+  ],
+  "deferred_it_ids": [],
+  "commands": [
+    {
+      "command_id": "cmd-module-state-node24",
+      "command": "vitest run tests/dependency-drift.test.ts tests/lint-wiring.test.ts tests/agent-slots.test.ts tests/workflow-contracts.test.ts --reporter=json --outputFile=.helix/evidence/g8-integration/20260906-module-state-evidence.vitest.log",
+      "runner": "node24",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": ".helix/evidence/g8-integration/20260906-module-state-evidence.vitest.log",
+      "output_digest": "sha256:b04261316d00cc895565123a432460d584e85c9046b20ffd6b342ce3c08fc714",
+      "it_ids": [
+        "IT-MODULE-01",
+        "IT-STATE-01",
+        "IT-STATE-02"
+      ]
+    },
+    {
+      "command_id": "cmd-g8-pure-analyzer-node24",
+      "command": "vitest run tests/g8-integration-workflow.test.ts -t U-GES-008 --reporter=json --outputFile=.helix/evidence/g8-integration/20260906-g8-pure-analyzer-evidence.vitest.log",
+      "runner": "node24",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": ".helix/evidence/g8-integration/20260906-g8-pure-analyzer-evidence.vitest.log",
+      "output_digest": "sha256:c08fc22748b3b1637e2d54971e9e07f6a430858929c3bfd0b87018863e297706",
+      "it_ids": [
+        "IT-MODULE-02"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "it_id": "IT-MODULE-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-module-state-evidence.vitest.log",
+        "tests/dependency-drift.test.ts"
+      ],
+      "command_ids": [
+        "cmd-module-state-node24"
+      ]
+    },
+    {
+      "it_id": "IT-MODULE-02",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-g8-pure-analyzer-evidence.vitest.log",
+        "tests/g8-integration-workflow.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g8-pure-analyzer-node24"
+      ]
+    },
+    {
+      "it_id": "IT-STATE-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-module-state-evidence.vitest.log",
+        "tests/agent-slots.test.ts"
+      ],
+      "command_ids": [
+        "cmd-module-state-node24"
+      ]
+    },
+    {
+      "it_id": "IT-STATE-02",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-module-state-evidence.vitest.log",
+        "tests/workflow-contracts.test.ts"
+      ],
+      "command_ids": [
+        "cmd-module-state-node24"
+      ]
+    }
+  ],
+  "exit_criteria": {
+    "all_mandatory_passed": true,
+    "failed_mandatory_count": 0,
+    "stale_defer_count": 0,
+    "doctor_check": "g8-integration-workflow"
+  }
+}

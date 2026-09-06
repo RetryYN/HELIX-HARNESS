@@ -1,0 +1,68 @@
+{
+  "schema_version": "helix-objective-evidence-substance-binding.v1",
+  "bindings": [
+    {
+      "requirement_id": "G-01",
+      "evidence_path": "src/runtime/upstream-adoption.ts",
+      "evidence_digest": "sha256:1f9d0f1bdfc20996642a18c8215933bea595aa84536b651bf515a83d0eeb65b2",
+      "minimum_size_bytes": 128,
+      "observation_marker": "A146 findings は名前付きで"
+    },
+    {
+      "requirement_id": "G-02",
+      "evidence_path": "src/runtime/legacy-adoption.ts",
+      "evidence_digest": "sha256:67dcbbb9af539cd954090dbea20cd462f45ed4d668bfa1a8de7eb706e9917aab",
+      "minimum_size_bytes": 128,
+      "observation_marker": "旧 HELIX inventory は file count ではなく意味で分類"
+    },
+    {
+      "requirement_id": "G-03",
+      "evidence_path": "src/runtime/run-debug.ts",
+      "evidence_digest": "sha256:6e602a7d74d2fe0376a8caf9165a2e80285f6b43a2b5482b88a2b282a947a3ba",
+      "minimum_size_bytes": 128,
+      "observation_marker": "runtime-verification.jsonl"
+    },
+    {
+      "requirement_id": "G-04",
+      "evidence_path": "src/state-db/visualization-read-model.ts",
+      "evidence_digest": "sha256:9a22f0c50693e722d4a2a489132cf7d7200baff51b1ef4b0b87ffff552c2fde2",
+      "minimum_size_bytes": 128,
+      "observation_marker": "visualization-snapshot.v1"
+    },
+    {
+      "requirement_id": "G-05",
+      "evidence_path": "src/schema/roadmap.ts",
+      "evidence_digest": "sha256:7eb65629607daa5cc660d46759a995cd453f3dc784121a491a7a53f077403a19",
+      "minimum_size_bytes": 128,
+      "observation_marker": "feature_packs[]"
+    },
+    {
+      "requirement_id": "G-06",
+      "evidence_path": "tests/vmodel-pair.test.ts",
+      "evidence_digest": "sha256:ed41ff1a3a13c0cc7c9f4863a585e880aad21a168f6532036bae58378cd6184c",
+      "minimum_size_bytes": 128,
+      "observation_marker": "objective-evidence-audit"
+    },
+    {
+      "requirement_id": "G-07",
+      "evidence_path": "src/setup/index.ts",
+      "evidence_digest": "sha256:cedf2f09560ae8395ac4e06ede2fca914f879e9160c2cbf364920c4ffcca4e11",
+      "minimum_size_bytes": 128,
+      "observation_marker": "[features].hooks=true"
+    },
+    {
+      "requirement_id": "G-08",
+      "evidence_path": "src/lint/design-language.ts",
+      "evidence_digest": "sha256:a9ac317d9674d40faaa9b2965f7049447a010a2ae860c6519a5d475b6a1556fa",
+      "minimum_size_bytes": 128,
+      "observation_marker": "HR-NFR-P5-03"
+    },
+    {
+      "requirement_id": "G-09",
+      "evidence_path": "src/lint/semantic-frontier-consistency.ts",
+      "evidence_digest": "sha256:8f3bfd6bd14733ee245e9991d2698fcd8ea6acab219c4c6fa8859d6566c74a52",
+      "minimum_size_bytes": 128,
+      "observation_marker": "live `semanticFeatureFrontierRecords[]`"
+    }
+  ]
+}

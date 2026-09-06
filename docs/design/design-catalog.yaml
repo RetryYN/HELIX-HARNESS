@@ -1109,6 +1109,7 @@ items:
       - docs/design/helix/L4-basic-design/design-reality-binding.md
       - docs/design/helix/L5-detail/design-reality-binding.md
       - docs/design/helix/L6-function-design/design-reality-binding.md
+      - docs/design/helix/L6-function-design/gate-evidence-substance.md
       - docs/design/helix/L4-basic-design/hybrid-rebaseline-v0.5.0-collision-architecture.md
       - docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md
       - docs/test-design/helix/L8-workflow-guide-dynamic-injection-unit-test-design.md
