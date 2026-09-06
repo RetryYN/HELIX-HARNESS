@@ -5503,7 +5503,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::observation:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 828,
+      "line": 837,
       "symbol": "observation",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -5520,7 +5520,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::stderrDigest:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 831,
+      "line": 840,
       "symbol": "stderrDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -5537,7 +5537,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 835,
+      "line": 844,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -5554,7 +5554,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::2",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 843,
+      "line": 852,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -5571,7 +5571,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::runReceiptPayload:sha256Digest()::3",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 844,
+      "line": 853,
       "symbol": "runReceiptPayload",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -5588,7 +5588,7 @@
     {
       "hit_id": "src/runtime/worker-isolation-broker.ts::receipt:sha256Digest()::1",
       "path": "src/runtime/worker-isolation-broker.ts",
-      "line": 856,
+      "line": 865,
       "symbol": "receipt",
       "algorithm": "sha256",
       "input_kind": "string",
