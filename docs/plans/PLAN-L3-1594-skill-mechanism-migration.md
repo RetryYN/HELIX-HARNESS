@@ -29,7 +29,7 @@ updated: 2026-09-07
 owner: Codex / TL
 github_issue_id: 1594
 behavior_contract_id: SKILL-MECHANISM-MIGRATION-001
-responsibility_owner: skill-mechanism-migration
+responsibility_owner: requirements-authority-materialization
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: dual_green
