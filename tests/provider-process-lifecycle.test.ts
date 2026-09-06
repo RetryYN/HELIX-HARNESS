@@ -256,9 +256,8 @@ process.stdout.write("done");
     expect(processAlive(pids.child_pid)).toBe(false);
   });
 
-  it.each(["SIGINT", "SIGTERM", "SIGHUP"] as const)(
-    "U-WBL-009: 外部%sをcleanup中に再送してもwrapperはprovider tree回収後に終了する",
-    async (forwardedSignal) => {
+  it("U-WBL-009: 外部signalをcleanup中に再送してもwrapperはprovider tree回収後に終了する", async () => {
+    for (const forwardedSignal of ["SIGINT", "SIGTERM", "SIGHUP"] as const) {
       const root = temporaryRoot();
       const pidPath = join(root, "external-signal-pids.json");
       const outcomePath = join(root, "external-signal-outcome.json");
@@ -305,9 +304,8 @@ process.stdout.write("done");
       });
       expect(processAlive(pids.parent_pid)).toBe(false);
       expect(processAlive(pids.child_pid)).toBe(false);
-    },
-    20_000,
-  );
+    }
+  }, 20_000);
 });
 
 describe("provider process lifecycle OS boundary", () => {
