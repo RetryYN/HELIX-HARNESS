@@ -1117,7 +1117,7 @@
     {
       "hit_id": "src/lint/green-command-digest.ts::nodeDigestAuditDeps:createHash(sha256)::1",
       "path": "src/lint/green-command-digest.ts",
-      "line": 105,
+      "line": 114,
       "symbol": "nodeDigestAuditDeps",
       "algorithm": "sha256",
       "input_kind": "string",

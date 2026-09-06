@@ -36,6 +36,11 @@ export interface DigestAuditDeps {
   hash: (bytes: Buffer) => string;
 }
 
+export interface DigestAuditPolicy {
+  retiredArtifactPaths?: ReadonlySet<string>;
+  supersededPlanIds?: ReadonlySet<string>;
+}
+
 /**
  * 全 PLAN の green_command evidence を走査し、hard failure になる digest 欠陥を返す純関数
  * (I/O は deps 注入)。
@@ -43,9 +48,10 @@ export interface DigestAuditDeps {
 export function auditGreenCommandDigests(
   plans: ParsedReviewPlan[],
   deps: DigestAuditDeps,
-  retiredArtifactPaths: ReadonlySet<string> = new Set(),
-  supersededPlanIds: ReadonlySet<string> = new Set(),
+  policy: DigestAuditPolicy = {},
 ): DigestMismatch[] {
+  const retiredArtifactPaths = policy.retiredArtifactPaths ?? new Set<string>();
+  const supersededPlanIds = policy.supersededPlanIds ?? new Set<string>();
   const mismatches: DigestMismatch[] = [];
   const validDigestPattern = /^sha256:[a-f0-9]{64}$/i;
   // 単一 hex 文字の 64 連続 (sha256:000...0 / fff...f 等) は実測 sha256 では実質発生せず、
@@ -153,8 +159,10 @@ export function checkGreenCommandDigests(repoRoot: string = process.cwd()): {
     const mismatches = auditGreenCommandDigests(
       loadReviewPlans(repoRoot),
       nodeDigestAuditDeps(repoRoot),
-      loadRetiredArtifactPaths(repoRoot),
-      validSupersededPlanIds,
+      {
+        retiredArtifactPaths: loadRetiredArtifactPaths(repoRoot),
+        supersededPlanIds: validSupersededPlanIds,
+      },
     );
     return {
       messages: greenCommandDigestMessages(mismatches),

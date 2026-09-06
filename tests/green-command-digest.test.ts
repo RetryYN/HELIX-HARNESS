@@ -122,7 +122,7 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
         ]),
       ],
       deps,
-      new Set(["tests/retired.test.ts"]),
+      { retiredArtifactPaths: new Set(["tests/retired.test.ts"]) },
     );
     const unlisted = auditGreenCommandDigests(
       [
@@ -131,7 +131,7 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
         ]),
       ],
       deps,
-      new Set(["tests/retired.test.ts"]),
+      { retiredArtifactPaths: new Set(["tests/retired.test.ts"]) },
     );
     expect(retired).toEqual([]);
     expect(unlisted[0]?.reason).toBe("file-missing");
@@ -142,9 +142,9 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
       { evidence_path: "tests/historical-missing.test.ts", output_digest: realDigest },
     ]);
     expect(auditGreenCommandDigests([missing], deps)[0]?.reason).toBe("file-missing");
-    expect(auditGreenCommandDigests([missing], deps, new Set(), new Set(["PLAN-OLD"]))).toEqual(
-      [],
-    );
+    expect(
+      auditGreenCommandDigests([missing], deps, { supersededPlanIds: new Set(["PLAN-OLD"]) }),
+    ).toEqual([]);
   });
 
   it("U-GREENCMD-001: skips entries with empty path or digest", () => {
