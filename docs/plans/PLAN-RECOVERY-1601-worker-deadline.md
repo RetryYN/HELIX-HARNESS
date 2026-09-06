@@ -4,7 +4,7 @@ title: "正規workerのbudgetを停止・回収へ接続する"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-06
 updated: 2026-09-06
@@ -35,6 +35,13 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-worker-budget-lifecycle.md, artifact_type: test_design }
   - { artifact_path: src/runtime/provider-process-lifecycle.ts, artifact_type: source_module }
   - { artifact_path: tests/provider-process-lifecycle.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1602/npm-ci.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1602/vitest-targeted.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1602/tsc.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1602/biome.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1602/plan-lint.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1602/doctor.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1602/head.txt, artifact_type: other }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
@@ -57,6 +64,58 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-008, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-009, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-010, test_path: tests/cli-surface.test.ts }
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-06T19:35:17Z"
+    tests_green_at: "2026-09-06T19:32:58Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: c192c7a6412170e4e1d470246be7168db8447bd9
+    scope: "独立reviewとclean clone実測は https://github.com/RetryYN/HELIX-HARNESS/pull/1602#issuecomment-5561649330 。doctor exit 1は環境起因4件を含むためgreen commandへ昇格しない。Issue #1098全体完了や最終receiptを代替しない。"
+    green_commands:
+      - kind: install
+        command: "npm ci --no-audit --no-fund"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:26:52Z"
+        evidence_path: .helix/evidence/review-1602/npm-ci.log
+        output_digest: "sha256:f3b8b436cfc104feb0c4222bcbe9429e218fe711a57025a5454ea253354eef72"
+      - kind: test
+        command: "npx vitest run tests/provider-process-lifecycle.test.ts tests/cli-surface.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/review-evidence.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-06T19:32:39Z"
+        evidence_path: .helix/evidence/review-1602/vitest-targeted.log
+        output_digest: "sha256:05014ba751e9c557e1ead4c538a60ed53c05949e237c90b132207c10e150bc85"
+      - kind: typecheck
+        command: "npx tsc --noEmit -p ."
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:32:51Z"
+        evidence_path: .helix/evidence/review-1602/tsc.log
+        output_digest: "sha256:ce35c3291c2599cd0781c05a42f5a208eecb91a1d7df11a10c4e3fed38c9422e"
+      - kind: lint
+        command: "npx biome check src tests"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:32:52Z"
+        evidence_path: .helix/evidence/review-1602/biome.log
+        output_digest: "sha256:c722ccfb21301b59e0758d0d7a2e9837b5fdc5a270c6503083127c1d8a626d12"
+      - kind: plan_lint
+        command: "npx tsx src/cli.ts plan lint"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T19:32:58Z"
+        evidence_path: .helix/evidence/review-1602/plan-lint.log
+        output_digest: "sha256:db827b33d67fde3579300cffa3dc6f714c9260b4ed5c47d1bcce75f5791f9267"
 ---
 
 # 正規worker budget lifecycle Recovery
