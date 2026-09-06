@@ -1805,8 +1805,13 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           "#!/bin/sh",
           'if [ "$1" = "rev-parse" ] && [ "$2" = "HEAD" ]; then',
           `  printf '%s\\n' ${JSON.stringify("d".repeat(40))}`,
-          'elif [ "$1" = "diff" ] && [ "$2" = "--name-only" ]; then',
+          'elif [ "$1" = "diff" ] && [ "$2" = "--name-only" ] && [ "$4" = "--" ] && [ "$5" = "docs/plans" ]; then',
+          `  if [ -n "\${HELIX_TEST_CHANGED_PLAN:-}" ]; then`,
+          "    printf '%s\\n' \"$HELIX_TEST_CHANGED_PLAN\"",
+          "  fi",
           "  exit 0",
+          `elif [ "$1" = "show" ] && [ -n "\${HELIX_TEST_CHANGED_PLAN:-}" ] && [ "$2" = "origin/main:$HELIX_TEST_CHANGED_PLAN" ]; then`,
+          "  exit 1",
           "else",
           `  exec ${JSON.stringify(realGit)} "$@"`,
           "fi",
@@ -1815,7 +1820,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       );
 
       let runIndex = 0;
-      const runCli = (args: string[]) => {
+      const runCli = (args: string[], extraEnv: Readonly<Record<string, string>> = {}) => {
         runIndex += 1;
         const logPath = join(sandbox, `gh-${runIndex}.log`);
         writeFileSync(logPath, "");
@@ -1823,6 +1828,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           ...process.env,
           PATH: `${sandbox}:${process.env.PATH ?? ""}`,
           GH_LOG: logPath,
+          ...extraEnv,
         };
         let status = 0;
         let stderr = "";
@@ -1905,6 +1911,25 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       // fake gh は required check pass と receipt CI 一致を返すため、dry-run は exit 0 で
       // merge 可能と判定される（Codex round-8 の positive 強化提案）。
       expect(mergedTruthful.status).toBe(0);
+
+      // terminal化した変更PLANのreview sessionとreceiptが異なる場合、merge callsite自身が
+      // required checks参照より前にfail-closeする（Issue #1603の実CLI反例）。
+      const mergedPlanMismatch = runCli(
+        [
+          "github",
+          "pr-merge-reviewed",
+          "--pr",
+          "544",
+          "--receipt",
+          writeReceipt("plan-mismatch-receipt.json", truthfulReceipt),
+        ],
+        {
+          HELIX_TEST_CHANGED_PLAN: "docs/plans/PLAN-RECOVERY-1603-review-receipt-plan-binding.md",
+        },
+      );
+      expect(mergedPlanMismatch.status).not.toBe(0);
+      expect(mergedPlanMismatch.stderr).toContain("review_plan_session_mismatch");
+      expect(mergedPlanMismatch.invocations.some((args) => args[1] === "checks")).toBe(false);
 
       const sealedTruthful = runCli([
         "github",

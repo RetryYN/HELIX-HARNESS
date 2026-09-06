@@ -39,8 +39,8 @@ red_test: "tests/review-receipt-plan-binding.test.tsのU-RRPB-002..006を実装�
 red_at: "2026-09-06T19:45:27Z"
 green_at: "2026-09-06T21:25:16Z"
 mutation_oracle_required: true
-mutation_oracle: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session、model、review_kind、status、PLAN pathと追加境界のseeded defectを個別にfail-closeしてkillする。"
-mutation_oracle_evidence: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session/model/review_kind/status/PLAN path、accepted status、base非terminal→HEAD terminal母集団、Git取得・parse失敗、provider prefix、seal/merge二重接続、local candidate HEAD不一致の各反例を独立してfail-closeする。Claude clean clone実測は .helix/evidence/review-1605/vitest-targeted.log（7 files / 246 tests passed、sha256:2c87f53e8b76254d2baf12089d630d2f07b783cd4bef416f980a0b9a64b153d5）。"
+mutation_oracle: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 と tests/claude-pr-convergence.test.ts::U-CPRCONV-020 が session、model、review_kind、status、PLAN path、seal/merge callsiteのseeded defectを個別にfail-closeしてkillする。"
+mutation_oracle_evidence: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session/model/review_kind/status/PLAN path、accepted status、base非terminal→HEAD terminal母集団、Git取得・parse失敗、provider prefix、local candidate HEAD不一致を、tests/claude-pr-convergence.test.ts::U-CPRCONV-020 がmerge callsiteのterminal PLAN session不一致をrequired checks参照前に独立してfail-closeする。Claude clean clone実測は .helix/evidence/review-1605/vitest-targeted.log（7 files / 246 tests passed、sha256:2c87f53e8b76254d2baf12089d630d2f07b783cd4bef416f980a0b9a64b153d5）。"
 parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md
 pair_artifact: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md
 verification_bindings:
@@ -57,6 +57,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-011, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-012, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRPB-013, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-CPRCONV-020, test_path: tests/claude-pr-convergence.test.ts }
 dependencies:
   parent: docs/plans/PLAN-L7-648-review-evidence-reviewer-identity.md
   requires: []
@@ -93,6 +94,7 @@ modifies:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
