@@ -8044,6 +8044,7 @@ describe("L7 CLI surface closure", () => {
         signal: null,
         timed_out: false,
         tree_lingered: false,
+        interrupted_by: null,
         deadline_ms: 60_000,
         termination_stage: "none",
         reaped: true,

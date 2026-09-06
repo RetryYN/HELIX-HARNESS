@@ -1,6 +1,8 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { spawn } from "node:child_process";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import { afterEach, describe, expect, it } from "vitest";
 import {
   assertProviderProcessLifecycleSupported,
@@ -9,7 +11,7 @@ import {
   runBudgetedProviderProcess,
 } from "../src/runtime/provider-process-lifecycle";
 
-// PLAN-RECOVERY-1601-worker-deadline — U-WBL-001..004, U-WBL-006..008
+// PLAN-RECOVERY-1601-worker-deadline — U-WBL-001..004, U-WBL-006..009
 
 const roots: string[] = [];
 const pidFiles: string[] = [];
@@ -36,6 +38,14 @@ function processAlive(pid: number): boolean {
 
 function readProcessTreePids(path: string): ProcessTreePids {
   return JSON.parse(readFileSync(path, "utf8")) as ProcessTreePids;
+}
+
+async function waitForFile(path: string): Promise<void> {
+  const deadline = Date.now() + 5_000;
+  while (!existsSync(path)) {
+    if (Date.now() >= deadline) throw new Error(`test_file_timeout:${path}`);
+    await new Promise((resolveDelay) => setTimeout(resolveDelay, 5));
+  }
 }
 
 function killRecordedProcessGroups(): void {
@@ -245,6 +255,59 @@ process.stdout.write("done");
     expect(measuredOutcome.elapsedMs).toBeLessThan(1_000);
     expect(processAlive(pids.child_pid)).toBe(false);
   });
+
+  it.each(["SIGINT", "SIGTERM", "SIGHUP"] as const)(
+    "U-WBL-009: 外部%sをcleanup中に再送してもwrapperはprovider tree回収後に終了する",
+    async (forwardedSignal) => {
+      const root = temporaryRoot();
+      const pidPath = join(root, "external-signal-pids.json");
+      const outcomePath = join(root, "external-signal-outcome.json");
+      pidFiles.push(pidPath);
+      const lifecycleUrl = pathToFileURL(resolve("src/runtime/provider-process-lifecycle.ts")).href;
+      const wrapperPath = join(root, "wrapper.ts");
+      const launch: ProviderProcessLaunch = {
+        ...baseLaunch(10_000),
+        args: ["-e", stubbornParentSource, pidPath, "-", "10000"],
+      };
+      writeFileSync(
+        wrapperPath,
+        `import { writeFileSync } from "node:fs";\n` +
+          `import { runBudgetedProviderProcess } from ${JSON.stringify(lifecycleUrl)};\n` +
+          `const outcome = await runBudgetedProviderProcess(${JSON.stringify(launch)});\n` +
+          `writeFileSync(${JSON.stringify(outcomePath)}, JSON.stringify(outcome));\n`,
+      );
+      const wrapper = spawn(process.execPath, [wrapperPath], {
+        cwd: process.cwd(),
+        stdio: "ignore",
+      });
+      await waitForFile(pidPath);
+
+      wrapper.kill(forwardedSignal);
+      await new Promise((resolveDelay) => setTimeout(resolveDelay, 20));
+      wrapper.kill(forwardedSignal);
+      const close = await new Promise<{ code: number | null; signal: NodeJS.Signals | null }>(
+        (resolveClose, reject) => {
+          wrapper.once("error", reject);
+          wrapper.once("close", (code, signal) => resolveClose({ code, signal }));
+        },
+      );
+      const pids = readProcessTreePids(pidPath);
+      const outcome = JSON.parse(
+        readFileSync(outcomePath, "utf8"),
+      ) as ProviderProcessLifecycleOutcome;
+
+      expect(close).toEqual({ code: 0, signal: null });
+      expect(outcome).toMatchObject({
+        timed_out: false,
+        interrupted_by: forwardedSignal,
+        termination_stage: "kill_sent",
+        reaped: true,
+      });
+      expect(processAlive(pids.parent_pid)).toBe(false);
+      expect(processAlive(pids.child_pid)).toBe(false);
+    },
+    20_000,
+  );
 });
 
 describe("provider process lifecycle OS boundary", () => {

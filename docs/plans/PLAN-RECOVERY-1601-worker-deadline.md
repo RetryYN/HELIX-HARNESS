@@ -55,6 +55,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-006, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-007, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-008, test_path: tests/provider-process-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-009, test_path: tests/provider-process-lifecycle.test.ts }
 ---
 
 # 正規worker budget lifecycle Recovery
@@ -78,4 +79,7 @@ sealed worker contextの`budget.time_ms`を、正規`helix codex/claude --execut
 - [ ] JSON出力にtimeout・deadline・termination stage・signal・duration・reapedを含む
 - [ ] timeout後のlate side effectが発生しない
 - [ ] wrapperへのSIGINT・SIGTERM・SIGHUPでprovider treeが孤児化せず、割込み理由をterminal出力へ保持する
+- [ ] cleanup中のsignal再送を冪等に吸収し、provider treeのreap前にwrapperを既定終了させない
+- [ ] direct child正常終了後に残るtreeは`tree_lingered=true`としてbounded cleanupし、deadline超過へ誤分類しない
+- [ ] 割込み理由をCLI JSONへ保持し、終了codeをsignal慣例へ投影する
 - [ ] targeted test、typecheck、full CI、独立exact-HEAD review、main read-afterがgreen

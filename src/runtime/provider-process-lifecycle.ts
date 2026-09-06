@@ -215,23 +215,36 @@ export async function runBudgetedProviderProcess(
   child.stdin?.end(launch.stdin);
 
   let resolveInterruption: ((signal: NodeJS.Signals) => void) | undefined;
+  let interruptionObserved = false;
   const interruption = new Promise<NodeJS.Signals>((resolve) => {
     resolveInterruption = resolve;
   });
   const signalHandlers = new Map<NodeJS.Signals, () => void>();
   for (const signal of FORWARDED_SIGNALS) {
-    const handler = () => resolveInterruption?.(signal);
+    const handler = () => {
+      if (interruptionObserved) return;
+      interruptionObserved = true;
+      resolveInterruption?.(signal);
+      resolveInterruption = undefined;
+    };
     signalHandlers.set(signal, handler);
-    process.once(signal, handler);
+    // Keep every handler installed until the provider tree is reaped. A repeated signal during
+    // TERM/KILL cleanup must not restore Node's default immediate-exit behavior and orphan it.
+    process.on(signal, handler);
   }
   const exitHandler = () => {
     signalProcessGroup(processGroupId, "SIGKILL");
   };
   process.once("exit", exitHandler);
-  const removeLifecycleHandlers = () => {
+  const removeSignalHandlers = () => {
     for (const [signal, handler] of signalHandlers) process.off(signal, handler);
-    process.off("exit", exitHandler);
     resolveInterruption = undefined;
+  };
+  const releaseLifecycleHandlers = (reaped: boolean) => {
+    removeSignalHandlers();
+    // If bounded reaping failed, retain the synchronous process-exit fence. It is intentionally
+    // released only after the process group is known to be gone.
+    if (reaped) process.off("exit", exitHandler);
   };
 
   const firstBoundary = await Promise.race([
@@ -250,7 +263,7 @@ export async function runBudgetedProviderProcess(
     if (!reaped) {
       state.error = combineErrors(state.error, signalProcessGroup(processGroupId, "SIGTERM"));
     } else {
-      removeLifecycleHandlers();
+      releaseLifecycleHandlers(true);
       return {
         status: state.close?.status ?? null,
         stdout,
@@ -268,10 +281,13 @@ export async function runBudgetedProviderProcess(
     }
   }
 
-  const treeLingered = firstBoundary.kind === "child_closed";
   if (firstBoundary.kind === "child_closed") {
     let terminationStage: ProviderProcessTerminationStage = "term_sent";
-    let reaped = await waitUntilReaped(state, processGroupId, deadlineFromNow(TERMINATION_GRACE_MS));
+    let reaped = await waitUntilReaped(
+      state,
+      processGroupId,
+      deadlineFromNow(TERMINATION_GRACE_MS),
+    );
     if (!reaped && processGroupId !== undefined && processGroupAlive(processGroupId)) {
       terminationStage = "kill_sent";
       state.error = combineErrors(state.error, signalProcessGroup(processGroupId, "SIGKILL"));
@@ -282,7 +298,7 @@ export async function runBudgetedProviderProcess(
     if (!reaped) {
       state.error = combineErrors(state.error, new Error("provider_process_tree_reap_timeout"));
     }
-    removeLifecycleHandlers();
+    releaseLifecycleHandlers(reaped);
     return {
       status: state.close?.status ?? null,
       stdout,
@@ -313,14 +329,14 @@ export async function runBudgetedProviderProcess(
   if (!reaped) {
     state.error = combineErrors(state.error, new Error("provider_process_tree_reap_timeout"));
   }
-  removeLifecycleHandlers();
+  releaseLifecycleHandlers(reaped);
 
   return {
     status: state.close?.status ?? null,
     stdout,
     stderr,
     timed_out: firstBoundary.kind === "deadline",
-    tree_lingered: treeLingered,
+    tree_lingered: false,
     interrupted_by: firstBoundary.kind === "interrupted" ? firstBoundary.signal : null,
     deadline_ms: launch.timeMs,
     termination_stage: terminationStage,

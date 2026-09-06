@@ -12391,7 +12391,17 @@ function runtimeCommand(provider: AdapterProvider): Command {
             )}\n`,
           );
         }
-        process.exitCode = child.status ?? 1;
+        const interruptedExitCodes: Readonly<Partial<Record<NodeJS.Signals, number>>> = {
+          SIGHUP: 129,
+          SIGINT: 130,
+          SIGTERM: 143,
+        };
+        process.exitCode =
+          (child.interrupted_by === null
+            ? undefined
+            : interruptedExitCodes[child.interrupted_by]) ??
+          child.status ??
+          1;
       },
     );
 }

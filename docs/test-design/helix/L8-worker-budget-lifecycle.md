@@ -18,3 +18,4 @@ pair_artifact: docs/design/helix/L6-function-design/worker-budget-lifecycle.md
 | U-WBL-006 | OS境界 | process tree停止不能時の無期限fallbackを拒否 | `tests/provider-process-lifecycle.test.ts` |
 | U-WBL-007 | wrapper interruption | `SIGINT`でwrapperだけ終了しprovider treeを孤児化する実装を拒否 | `tests/provider-process-lifecycle.test.ts` |
 | U-WBL-008 | child終了後の残存tree | direct childの正常終了後に孫だけ残る場合、deadlineまで待って`status=0`と`timed_out=true`を同時に返す実装を拒否 | `tests/provider-process-lifecycle.test.ts` |
+| U-WBL-009 | repeated external signal | 実wrapperへ`SIGINT`・`SIGTERM`・`SIGHUP`をcleanup中に再送し、既定終了でprovider treeを孤児化する実装を拒否 | `tests/provider-process-lifecycle.test.ts` |
