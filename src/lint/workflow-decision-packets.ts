@@ -140,16 +140,32 @@ function hasHighImpactApprovalRequirementContext(text: string): boolean {
 }
 
 function approvalRequirementChunks(text: string): string[] {
-  return text.split(/\n+/).flatMap((line) => {
+  const chunks: string[] = [];
+  let inReviewEvidence = false;
+  for (const line of text.split(/\n+/)) {
+    if (/^review_evidence:\s*$/.test(line)) {
+      inReviewEvidence = true;
+      continue;
+    }
+    if (inReviewEvidence && /^\S/.test(line)) {
+      inReviewEvidence = false;
+    }
+    // review_evidence配下のscopeは過去レビューの説明metadataであり、実行要求ではない。
+    if (inReviewEvidence && /^\s{4}scope:\s*/.test(line)) {
+      continue;
+    }
     const sentences = line
       .split(/(?<=[。.!?])\s+/)
       .map((chunk) => chunk.trim())
       .filter(Boolean);
-    return sentences.flatMap((sentence, index) => [
-      sentence,
-      sentences.slice(Math.max(0, index - 1), index + 2).join(" "),
-    ]);
-  });
+    chunks.push(
+      ...sentences.flatMap((sentence, index) => [
+        sentence,
+        sentences.slice(Math.max(0, index - 1), index + 2).join(" "),
+      ]),
+    );
+  }
+  return chunks;
 }
 
 export function planTextRequiresActionBindingApproval(text: string): boolean {

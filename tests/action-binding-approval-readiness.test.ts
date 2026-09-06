@@ -141,6 +141,19 @@ describe("action-binding approval readiness", () => {
         ].join("\n"),
       ).required,
     ).toBe(false);
+    expect(
+      classifyHighImpactApprovalRequirement(
+        [
+          "---",
+          "review_evidence:",
+          '  - reviewer: "historical-reviewer"',
+          '    scope: "Records now require PO approval before production cutover."',
+          "    verdict: pass",
+          "---",
+          "Reference-only PLAN without an execution obligation.",
+        ].join("\n"),
+      ).required,
+    ).toBe(false);
   });
 
   it("classifies existing high-impact approval requirement forms", () => {
