@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1603: sealed receiptとPLAN review evidenceを同じreview
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending
 created: 2026-09-07
@@ -74,6 +74,13 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/review-receipt-plan-binding.ts, artifact_type: source_module }
   - { artifact_path: tests/review-receipt-plan-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1605/npm-ci.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1605/vitest-targeted.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1605/tsc.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1605/biome.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1605/plan-lint.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1605/doctor.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1605/head.txt, artifact_type: other }
 modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
@@ -84,7 +91,58 @@ modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-06T21:28:26Z"
+    tests_green_at: "2026-09-06T21:25:35Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: 9fb4e09c87b111c4281980b366ff0ef0651a6ccc
+    scope: "独立reviewとclean clone実測は https://github.com/RetryYN/HELIX-HARNESS/pull/1605#issuecomment-5562295603 。doctor exit 1は環境起因4件を含むためgreen commandへ昇格しない。旧HEADのred evidenceは再利用していない。"
+    green_commands:
+      - kind: smoke
+        command: "npm ci --no-audit --no-fund"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T21:19:14Z"
+        evidence_path: .helix/evidence/review-1605/npm-ci.log
+        output_digest: "sha256:54490d686dbd1d8d3fe247f035b7eec1d4574ae6863a51d3f47457e8014a570c"
+      - kind: unit_test
+        command: "npx vitest run tests/review-receipt-plan-binding.test.ts tests/cli-surface.test.ts tests/review-evidence.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/plan-descent-specific-parent-binding.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-06T21:25:16Z"
+        evidence_path: .helix/evidence/review-1605/vitest-targeted.log
+        output_digest: "sha256:2c87f53e8b76254d2baf12089d630d2f07b783cd4bef416f980a0b9a64b153d5"
+      - kind: typecheck
+        command: "npx tsc --noEmit -p ."
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T21:25:25Z"
+        evidence_path: .helix/evidence/review-1605/tsc.log
+        output_digest: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      - kind: lint
+        command: "npx biome check src tests"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T21:25:26Z"
+        evidence_path: .helix/evidence/review-1605/biome.log
+        output_digest: "sha256:32d96fa659607c2871345e6c8733106513a76ca73c09504c20a32313ff14ada8"
+      - kind: lint
+        command: "npx tsx src/cli.ts plan lint"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-06T21:25:35Z"
+        evidence_path: .helix/evidence/review-1605/plan-lint.log
+        output_digest: "sha256:b3e679521694d41be8a60f5b7f1977553da6eed9268396b94f6741ba732592b9"
 ---
 
 # PLAN-RECOVERY-1603

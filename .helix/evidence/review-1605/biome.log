@@ -1,0 +1,417 @@
+src/lint/l12-hybrid-recognition.ts:111:3 lint/correctness/noUnusedFunctionParameters  FIXABLE  ━━━━━━━━━━
+
+  ! This parameter disposition is unused.
+  
+    110 │ export function classifyRecognitionReviewStatus(
+  > 111 │   disposition: RecognitionDisposition,
+        │   ^^^^^^^^^^^
+    112 │   signals: readonly RecognitionSignal[],
+    113 │ ): RecognitionReviewStatus {
+  
+  i Unused parameters might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: If this is intentional, prepend disposition with an underscore.
+  
+    109 109 │   
+    110 110 │   export function classifyRecognitionReviewStatus(
+    111     │ - ··disposition:·RecognitionDisposition,
+        111 │ + ··_disposition:·RecognitionDisposition,
+    112 112 │     signals: readonly RecognitionSignal[],
+    113 113 │   ): RecognitionReviewStatus {
+  
+
+src/lint/secret-scan.ts:16:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    14 │ import { join } from "node:path";
+    15 │ import {
+  > 16 │   analyzeSecretScan,
+       │   ^^^^^^^^^^^^^^^^^
+    17 │   type SecretScanArtifact,
+    18 │   type SecretScanResult,
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+    14 14 │   import { join } from "node:path";
+    15 15 │   import {
+    16    │ - ··analyzeSecretScan,
+    17 16 │     type SecretScanArtifact,
+    18 17 │     type SecretScanResult,
+  
+
+tests/harness-check-workflow.test.ts:55:34 lint/suspicious/noTemplateCurlyInString ━━━━━━━━━━━━━━━━━
+
+  ! Unexpected template string placeholder.
+  
+    53 │ };
+    54 │ 
+  > 55 │ const PR_OR_MAIN_CHECKOUT_REF = "${{ github.event.pull_request.head.sha || github.sha }}";
+       │                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    56 │ const PREFLIGHT_CHECKOUT_REF = "${{ needs.full-regression-preflight.outputs.candidate_head }}";
+    57 │ const REQUIRED_FINALIZE_SHARD_SUCCESS_CHECKS = [
+  
+  i Turn the string into a template string.
+  
+
+tests/harness-check-workflow.test.ts:56:33 lint/suspicious/noTemplateCurlyInString ━━━━━━━━━━━━━━━━━
+
+  ! Unexpected template string placeholder.
+  
+    55 │ const PR_OR_MAIN_CHECKOUT_REF = "${{ github.event.pull_request.head.sha || github.sha }}";
+  > 56 │ const PREFLIGHT_CHECKOUT_REF = "${{ needs.full-regression-preflight.outputs.candidate_head }}";
+       │                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    57 │ const REQUIRED_FINALIZE_SHARD_SUCCESS_CHECKS = [
+    58 │   '[ "$BULK_1_RESULT" = "success" ]',
+  
+  i Turn the string into a template string.
+  
+
+tests/harness-check-workflow.test.ts:307:45 lint/suspicious/noTemplateCurlyInString ━━━━━━━━━━━━━━━━
+
+  ! Unexpected template string placeholder.
+  
+    305 │         '[ -z "$BRANCH_BASE_HEAD" ]',
+    306 │         `[ "$BRANCH_BASE_HEAD" = "${ZERO_SHA}" ]`,
+  > 307 │         'BRANCH_BASE_HEAD="$(git rev-parse "${BRANCH_CANDIDATE_HEAD}^")"',
+        │                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+    308 │         '--base-head "$BRANCH_BASE_HEAD"',
+    309 │         '--candidate-head "$BRANCH_CANDIDATE_HEAD"',
+  
+  i Turn the string into a template string.
+  
+
+tests/harness-check-workflow.test.ts:949:8 lint/suspicious/noTemplateCurlyInString ━━━━━━━━━━━━━━━━━
+
+  ! Unexpected template string placeholder.
+  
+    947 │     const closureGuard = stepByName(steps, "issue-closure-contract");
+    948 │     expect(branchKind.env?.BRANCH_BASE_HEAD).toBe(
+  > 949 │       "${{ github.event.pull_request.base.sha || github.event.before }}",
+        │        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    950 │     );
+    951 │     expect(branchKind.env?.BRANCH_CANDIDATE_HEAD).toBe(PR_OR_MAIN_CHECKOUT_REF);
+  
+  i Turn the string into a template string.
+  
+
+tests/harness-check-workflow.test.ts:1234:54 lint/suspicious/noTemplateCurlyInString ━━━━━━━━━━━━━━━
+
+  ! Unexpected template string placeholder.
+  
+    1232 │       (raw: string) =>
+    1233 │         raw.replace(
+  > 1234 │           "      - full-regression-stateful\n    if: ${{ always() }}",
+         │                                                      ^^^^^^^^^^^^^^
+    1235 │           "      - full-regression-stateful\n    if: ${{ success() }}",
+    1236 │         ),
+  
+  i Turn the string into a template string.
+  
+
+tests/harness-check-workflow.test.ts:1235:54 lint/suspicious/noTemplateCurlyInString ━━━━━━━━━━━━━━━
+
+  ! Unexpected template string placeholder.
+  
+    1233 │         raw.replace(
+    1234 │           "      - full-regression-stateful\n    if: ${{ always() }}",
+  > 1235 │           "      - full-regression-stateful\n    if: ${{ success() }}",
+         │                                                      ^^^^^^^^^^^^^^^
+    1236 │         ),
+    1237 │       "finalize_admission_invalid",
+  
+  i Turn the string into a template string.
+  
+
+tests/l3-progression-authority.test.ts:82:54 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    80 │       expect(closing, path).toBeGreaterThan(0);
+    81 │       const frontmatter = parse(body.slice(4, closing)) as Record<string, unknown>;
+  > 82 │       expect(frontmatter.canonical_layer, path).toBe(expected![0]);
+       │                                                      ^^^^^^^^^
+    83 │       expect(frontmatter.canonical_pair, path).toBe(expected![1]);
+    84 │       expect(frontmatter.legacy_physical_layer, path).toBe(expected![2]);
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    80 80 │         expect(closing, path).toBeGreaterThan(0);
+    81 81 │         const frontmatter = parse(body.slice(4, closing)) as Record<string, unknown>;
+    82    │ - ······expect(frontmatter.canonical_layer,·path).toBe(expected![0]);
+       82 │ + ······expect(frontmatter.canonical_layer,·path).toBe(expected?.[0]);
+    83 83 │         expect(frontmatter.canonical_pair, path).toBe(expected![1]);
+    84 84 │         expect(frontmatter.legacy_physical_layer, path).toBe(expected![2]);
+  
+
+tests/l3-progression-authority.test.ts:83:53 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    81 │       const frontmatter = parse(body.slice(4, closing)) as Record<string, unknown>;
+    82 │       expect(frontmatter.canonical_layer, path).toBe(expected![0]);
+  > 83 │       expect(frontmatter.canonical_pair, path).toBe(expected![1]);
+       │                                                     ^^^^^^^^^
+    84 │       expect(frontmatter.legacy_physical_layer, path).toBe(expected![2]);
+    85 │     }
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    81 81 │         const frontmatter = parse(body.slice(4, closing)) as Record<string, unknown>;
+    82 82 │         expect(frontmatter.canonical_layer, path).toBe(expected![0]);
+    83    │ - ······expect(frontmatter.canonical_pair,·path).toBe(expected![1]);
+       83 │ + ······expect(frontmatter.canonical_pair,·path).toBe(expected?.[1]);
+    84 84 │         expect(frontmatter.legacy_physical_layer, path).toBe(expected![2]);
+    85 85 │       }
+  
+
+tests/l3-progression-authority.test.ts:84:60 lint/style/noNonNullAssertion  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    82 │       expect(frontmatter.canonical_layer, path).toBe(expected![0]);
+    83 │       expect(frontmatter.canonical_pair, path).toBe(expected![1]);
+  > 84 │       expect(frontmatter.legacy_physical_layer, path).toBe(expected![2]);
+       │                                                            ^^^^^^^^^
+    85 │     }
+    86 │   });
+  
+  i Unsafe fix: Replace with optional chain operator ?. This operator includes runtime checks, so it is safer than the compile-only non-null assertion operator
+  
+    82 82 │         expect(frontmatter.canonical_layer, path).toBe(expected![0]);
+    83 83 │         expect(frontmatter.canonical_pair, path).toBe(expected![1]);
+    84    │ - ······expect(frontmatter.legacy_physical_layer,·path).toBe(expected![2]);
+       84 │ + ······expect(frontmatter.legacy_physical_layer,·path).toBe(expected?.[2]);
+    85 85 │       }
+    86 86 │     });
+  
+
+tests/worker-isolation-broker.test.ts:5:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+     3 │   chmodSync,
+     4 │   closeSync,
+   > 5 │   existsSync,
+       │   ^^^^^^^^^^^
+   > 6 │   fstatSync,
+        ...
+  > 10 │   realpathSync,
+  > 11 │   rmSync,
+       │   ^^^^^^
+    12 │   symlinkSync,
+    13 │   unlinkSync,
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+       3    3 │     chmodSync,
+       4    4 │     closeSync,
+       5      │ - ··existsSync,
+       6    5 │     fstatSync,
+       7    6 │     mkdirSync,
+       8      │ - ··mkdtempSync,
+       9    7 │     readFileSync,
+      10    8 │     realpathSync,
+      11      │ - ··rmSync,
+      12    9 │     symlinkSync,
+      13   10 │     unlinkSync,
+  
+
+tests/worker-isolation-broker.test.ts:16:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    14 │   writeFileSync,
+    15 │ } from "node:fs";
+  > 16 │ import { tmpdir } from "node:os";
+       │        ^^^^^^^^^^
+    17 │ import { join } from "node:path";
+    18 │ import { afterEach, describe, expect, it, vi } from "vitest";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      14   14 │     writeFileSync,
+      15   15 │   } from "node:fs";
+      16      │ - import·{·tmpdir·}·from·"node:os";
+      17   16 │   import { join } from "node:path";
+      18   17 │   import { afterEach, describe, expect, it, vi } from "vitest";
+  
+
+tests/worker-isolation-broker.test.ts:21:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    19 │ import {
+    20 │   admitWrapperLaunch,
+  > 21 │   buildContextBoundWrapperAdapterPlan,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    22 │   buildWrapperAdapterPlan,
+    23 │   type WrapperLaunchExecution,
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      19   19 │   import {
+      20   20 │     admitWrapperLaunch,
+      21      │ - ··buildContextBoundWrapperAdapterPlan,
+      22   21 │     buildWrapperAdapterPlan,
+      23   22 │     type WrapperLaunchExecution,
+  
+
+tests/worker-isolation-broker.test.ts:31:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    29 │   evaluateWorkerBlindBenchmark,
+    30 │   freezeWorkerBlindBenchmark,
+  > 31 │   isWorkerBlindBenchmarkReceipt,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 32 │   type WorkerBlindBenchmarkReceiptV1,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    33 │ } from "../src/runtime/worker-blind-benchmark";
+    34 │ import { attestWorkerContextAuthority } from "../src/runtime/worker-context-packet";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      29   29 │     evaluateWorkerBlindBenchmark,
+      30   30 │     freezeWorkerBlindBenchmark,
+      31      │ - ··isWorkerBlindBenchmarkReceipt,
+      32      │ - ··type·WorkerBlindBenchmarkReceiptV1,
+      33   31 │   } from "../src/runtime/worker-blind-benchmark";
+      34   32 │   import { attestWorkerContextAuthority } from "../src/runtime/worker-context-packet";
+  
+
+tests/worker-isolation-broker.test.ts:34:8 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! This import is unused.
+  
+    32 │   type WorkerBlindBenchmarkReceiptV1,
+    33 │ } from "../src/runtime/worker-blind-benchmark";
+  > 34 │ import { attestWorkerContextAuthority } from "../src/runtime/worker-context-packet";
+       │        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    35 │ import {
+    36 │   canonicalizeWorkerRegistrySnapshot,
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      32   32 │     type WorkerBlindBenchmarkReceiptV1,
+      33   33 │   } from "../src/runtime/worker-blind-benchmark";
+      34      │ - import·{·attestWorkerContextAuthority·}·from·"../src/runtime/worker-context-packet";
+      35   34 │   import {
+      36   35 │     canonicalizeWorkerRegistrySnapshot,
+  
+
+tests/worker-isolation-broker.test.ts:38:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    36 │   canonicalizeWorkerRegistrySnapshot,
+    37 │   evaluateWorkerDescriptorAdmission,
+  > 38 │   type WorkerDescriptorAdmissionDecisionV1,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 39 │   type WorkerDescriptorRequestV1,
+  > 40 │   type WorkerDescriptorV1,
+  > 41 │   type WorkerRegistrySnapshotV1,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    42 │ } from "../src/runtime/worker-descriptor-admission";
+    43 │ import {
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      36   36 │     canonicalizeWorkerRegistrySnapshot,
+      37   37 │     evaluateWorkerDescriptorAdmission,
+      38      │ - ··type·WorkerDescriptorAdmissionDecisionV1,
+      39      │ - ··type·WorkerDescriptorRequestV1,
+      40      │ - ··type·WorkerDescriptorV1,
+      41      │ - ··type·WorkerRegistrySnapshotV1,
+      42   38 │   } from "../src/runtime/worker-descriptor-admission";
+      43   39 │   import {
+  
+
+tests/worker-isolation-broker.test.ts:49:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    47 │   runWorkerIsolationLaunch,
+    48 │   sealWorkerBlindJudgeContext,
+  > 49 │   type WorkerBenchmarkExecutionCapability,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 50 │   type WorkerBlindJudgeContextCapability,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    51 │   type WorkerIsolationAuthorityCapability,
+    52 │   type WorkerIsolationLaunch,
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      47   47 │     runWorkerIsolationLaunch,
+      48   48 │     sealWorkerBlindJudgeContext,
+      49      │ - ··type·WorkerBenchmarkExecutionCapability,
+      50      │ - ··type·WorkerBlindJudgeContextCapability,
+      51   49 │     type WorkerIsolationAuthorityCapability,
+      52   50 │     type WorkerIsolationLaunch,
+  
+
+tests/worker-isolation-broker.test.ts:55:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    53 │ } from "../src/runtime/worker-isolation-broker";
+    54 │ import {
+  > 55 │   attestWorkerIsolationPolicy,
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    56 │   type WorkerIsolationPolicyCapability,
+    57 │ } from "../src/runtime/worker-isolation-policy";
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      53   53 │   } from "../src/runtime/worker-isolation-broker";
+      54   54 │   import {
+      55      │ - ··attestWorkerIsolationPolicy,
+      56   55 │     type WorkerIsolationPolicyCapability,
+      57   56 │   } from "../src/runtime/worker-isolation-policy";
+  
+
+tests/worker-isolation-broker.test.ts:79:3 lint/correctness/noUnusedImports  FIXABLE  ━━━━━━━━━━━━━━
+
+  ! Several of these imports are unused.
+  
+    77 │ import {
+    78 │   admissionFixture,
+  > 79 │   admittedLaunch,
+       │   ^^^^^^^^^^^^^^
+    80 │   authority,
+    81 │   benchmarkDefinition,
+  
+  i Unused imports might be the result of an incomplete refactoring.
+  
+  i Unsafe fix: Remove the unused imports.
+  
+      77   77 │   import {
+      78   78 │     admissionFixture,
+      79      │ - ··admittedLaunch,
+      80   79 │     authority,
+      81   80 │     benchmarkDefinition,
+  
+
+The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
+Diagnostics not shown: 6.
+Checked 1093 files in 434ms. No fixes applied.
+Found 25 warnings.
+Found 1 info.
