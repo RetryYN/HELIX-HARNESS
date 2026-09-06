@@ -13,6 +13,8 @@ github_issue_id: 1409
 
 ## 0. Authorityとowner境界
 
+[L3-PO-1409-001](https://github.com/RetryYN/HELIX-HARNESS/issues/1409#issuecomment-5544537959)でL3候補承認済みだが、canonical昇格、IR admission、runtime実装は別工程とする。
+
 本Capabilityは、agentic system auditをUIL sourceへ変換し、UIL／TERのqualified changeをFuture Synthesis inputへ変換する
 adapter群である。内部観測・finding qualificationは#1210、外部技術変化は#1174/#1178、future projectionは
 #1282/#1298、構造再合成は#1037、pattern promotionは#1035/#1384が所有する。

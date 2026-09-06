@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-82-authority-vocabulary-separation
+  approval_record_id: L3-PO-1449-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1449#issuecomment-5544538084"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -16,7 +26,7 @@ entry_signals:
   # current routerのlegacy input-only token。AVS canonical化後はrequest_directiveへ移行する。
   - "po_directive:Issue #1449 会話・selection・approval・disposition・runtime judgmentのgeneric decision混在を是正する"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1449
 behavior_contract_id: AUTHORITY-VOCABULARY-SEPARATION-001
@@ -48,6 +58,7 @@ dependencies:
     - issue:1384
     - issue:1448
     - issue:1449
+    - issue:1580
   blocks:
     - issue:1448
 generates:
@@ -69,7 +80,9 @@ review_evidence: []
 
 ## Authority境界
 
-本PLANはdraftである。plan固有承認を受けるまでcandidateをcanonical L1/L3/L10、Requirement IR、Claude/Codex managed rule、runtime、schema、DB、memory admissionへ昇格しない。
+本PLANはIssue #1449のtyped human gate recordでL3候補承認済みである。canonical L1/L3/L10昇格、Requirement IR、Claude/Codex managed rule、runtime、schema、DB、memory admissionへの反映は別工程とし、draftとcompletion falseを維持する。
+
+承認対象は承認時点main `ab6126a89262c91ecc4b87a0b8f0b9724917c84b` の3候補本文である。frontmatterを除いたSHA-256はrequests `fcd862d7481ffec6c52376dc0a13d5f4df5d6548f3b6ed3f09173d160259efce`、requirements `59d9aa5711ac248b4895f33547303fad63ae63053e152a9c949420ffceeb7d1a`、acceptance `4392eca32ddf6d1769f5d461f274d6e6bead17ffdc6284c23254b34f23aceaad`で、意味集合はBR 6件、FR 5件、R 16件、AC 16件とする。
 
 ## 実装順
 
