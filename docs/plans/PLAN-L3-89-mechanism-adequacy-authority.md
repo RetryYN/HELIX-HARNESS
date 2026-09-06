@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-05T08:41:50Z"
+  plan_id: PLAN-L3-89-mechanism-adequacy-authority
+  approval_record_id: L3-PO-1552-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1552#issuecomment-5550657800"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -33,7 +43,7 @@ contract_postconditions: "原稿6要求を7要件候補・20受入候補へ分�
 contract_invariants: "六分類はscope・change class・routeとは独立。新loop、DB正本、scheduler、承認gateを作らない"
 contract_failures: "未接続・検索漏れ・予算切れ・AI主張の新機構必要への誤昇格、反証破棄、未知の成功化を拒否する"
 tdd_red_required: false
-tdd_red_waiver_reason: "本sliceは未承認候補の分解のみ。原文一致、ID集合、双方向trace、リンクを明示検証し、runtimeとcurrent IRを変更しない。"
+tdd_red_waiver_reason: "本sliceは候補の分解と対象revisionの承認記録を扱う。原文一致、ID集合、双方向trace、リンクを明示検証し、runtimeとcurrent IRを変更しない。"
 complexity_effect: net_negative
 complexity_justification: "UIL-04をownerとし既存の配車・測定・Learningを参照する。機構台帳や独立発明engineの重複を避ける。"
 removal_trigger: "候補承認、独立検収、canonical version-up、main read-after、IR admission後にcurrent sourceへ移管する"
@@ -44,6 +54,7 @@ dependencies:
   requires: []
   references:
     - issue:1552
+    - issue:1580
     - issue:1248
     - issue:1210
     - issue:1033
@@ -77,7 +88,9 @@ review_evidence: []
 
 # 機構充足性評価の要求候補
 
-原稿追加依頼を意味承認へ読み替えない。status draftとcompletion falseを維持する。
+原稿追加依頼と後日の明示承認を区別する。L3-PO-1552-001でv0.2の要件承認を記録済み。
+独立検収・正本昇格・IR admissionは別工程であり、status draftとcompletion falseを維持する。
+承認後candidate statusの許容語彙と遷移を機械拘束する後続責務はIssue #1580が所有する。
 既存#1248へ接続するが、そのruntime sliceを本候補の承認前に拡張しない。
 本authority候補の所有Issueは#1552。#1248は接続先のruntime責務であり、本候補のmergeでcloseしない。
 候補受付の参照： https://github.com/RetryYN/HELIX-HARNESS/issues/1248#issuecomment-5548311084

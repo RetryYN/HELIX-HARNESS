@@ -43,6 +43,11 @@ typed workflow routeの状態とreceipt dispositionを表示し、reverse／forw
 `workflow-route-reverse-scope`／`workflow-route-forward-scope`として表示する。旧model名や
 `drive-*` prefixのprimary labelは表示しない。
 
+同じ`helix status` surfaceの`judgmentReview`は、human・cross-agent・intra-runtime subagentを
+区別する。単一runtimeでは既存checklistの必要証拠をJSONとtextの双方へ欠落なく投影し、
+human以外を一律cross-agentとして表示しない。本契約はレビュー方式を新規定義せず、既存判定の
+表示整合だけを所有する。
+
 ## 非対象と後続
 
 DB／schemaのlegacy列、visualization treeのskill binding、`helix drive model` compatibility

@@ -1,6 +1,7 @@
 ---
 status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+authority_status: approved_pending_canonical_promotion
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1552#issuecomment-5550657800"
 version: 0.2
 owner: UIL-04
 plan: PLAN-L3-89-mechanism-adequacy-authority
