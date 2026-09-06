@@ -1,7 +1,8 @@
 ---
 status: draft_candidate
 authority_status: approved_pending_canonical_promotion
-approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1556#issuecomment-5555835060"
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1556#issuecomment-5555999342"
+approved_revision: "0.1"
 canonical_vmodel: L1-L12
 canonical_layer: L3
 canonical_pair: L10

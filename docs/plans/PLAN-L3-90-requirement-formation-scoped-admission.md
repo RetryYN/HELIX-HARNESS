@@ -11,11 +11,11 @@ l3_human_approval:
   approval_kind: human_po
   decision: approve
   approver: RetryYN
-  approved_at: "2026-09-06T00:37:45Z"
+  approved_at: "2026-09-06T01:12:10Z"
   plan_id: PLAN-L3-90-requirement-formation-scoped-admission
   approval_record_id: L3-PO-1556-001
   approval_source: human_gate_record
-  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1556#issuecomment-5555835060"
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1556#issuecomment-5555999342"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -25,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive: 2原稿の候補整理依頼と、後日の対象要件GOを区別して記録する"
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1556
 behavior_contract_id: REQUIREMENT-FORMATION-SCOPED-ADMISSION-AUTHORITY-001
@@ -69,6 +69,7 @@ dependencies:
     - issue:1534
     - issue:1494
     - issue:1500
+    - issue:1580
   blocks: []
 generates:
   - { artifact_path: docs/governance/candidates/requirement-formation-scoped-admission-requests.md, artifact_type: markdown_doc }
@@ -89,6 +90,9 @@ review_evidence: []
 
 #1556が候補所有。RF/RC/GHの後続runtimeは責務別に分離する。
 現行policy・IR・runtimeを変更しない。L3-PO-1556-001で候補要件の承認を記録し、独立検収後に正規version-upする。
+承認対象revisionはv0.1。PLAN/requests/requirements/acceptance/recognitionの承認時SHA-256は
+Issue #1556のtyped human gate recordにexact setとして固定し、意味変更版へ無条件に流用しない。
+承認後candidate statusの許容語彙と遷移を機械拘束する後続authority/runtime責務はIssue #1580が所有する。
 原文保全、3 BR→12要件→18 AC→3 OP、全原稿移管traceと独立検収を収束条件とする。
 原稿削除はGit保全・原文一致の検証後だけ実施し、共有rootの他作業は変更しない。
 main未統合・独立検収前・runtime未実装を完成としない。5 PR上限を維持し、空き枠で候補PR化する。
