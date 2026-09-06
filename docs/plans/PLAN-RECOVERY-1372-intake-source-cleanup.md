@@ -4,7 +4,7 @@ title: "取り込み済み要求指示書の削除記録と台帳状態を整合
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-06
 updated: 2026-09-06
@@ -35,12 +35,41 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1372-intake-source-cleanup.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/request-source-cleanup-2026-09-06.md, artifact_type: markdown_doc }
   - { artifact_path: tests/request-source-retention.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1598/biome.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1598/tsc.log, artifact_type: other }
 modifies:
   - { artifact_path: docs/governance/candidates/design-grounding-human-convergence-intake.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/requirement-formation-scoped-admission-intake.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/world-governance-intake.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-06T12:22:53Z"
+    tests_green_at: "2026-09-06T12:21:19Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: 43f8b0d97c09cd776a720ff163a6d450934c1423
+    scope: "独立PLANレビュー。実測と帰属は https://github.com/RetryYN/HELIX-HARNESS/pull/1598#issuecomment-5559187603 。保存ログのbytesを照合した。全doctorはexit 1でgreen扱いしない。後続修正HEADの最終PR receiptを代替しない。"
+    green_commands:
+      - kind: typecheck
+        command: "npx tsc --noEmit -p ."
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-06T12:21:15Z"
+        evidence_path: .helix/evidence/review-1598/tsc.log
+        output_digest: "sha256:31459e49ca66b58895c7db3c2845a8602a56998f49292b045860ebcd886839f9"
+      - kind: lint
+        command: "npx biome check tests/request-source-retention.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-06T12:21:19Z"
+        evidence_path: .helix/evidence/review-1598/biome.log
+        output_digest: "sha256:a9f5b2a97501cfed1b646d90a23ef96ae3348fe89055fb93b94c7f663926a4d3"
 ---
 
 # 取込み済み原稿の局所整理
