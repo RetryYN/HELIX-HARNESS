@@ -1,6 +1,6 @@
 # 要求形成・影響限定Admission：取込台帳
 
-- 状態：要求候補受付。#1556 / PLAN-L3-90。新policy未承認・runtime未実装。
+- 状態：要求候補の取込台帳。#1556 / PLAN-L3-90。承認・正本化は同名requirementsへ照合し、本台帳でruntime完成を主張しない。
 - 照合基準main：56225a2ceff228813e8c9b4184d3eb6104584fdb。
 - 原稿の監査結果は提案者の報告。#1169の一律human条件と#217の六outcomeはGitHub本文で確認。
 - source保存欄はhistorical input-only。候補正本はrequests/requirements/acceptance/recognitionの4文書。
@@ -34,11 +34,12 @@
 このsliceは候補分解・全項目trace・原文Git保全・独立レビュー・CI・main read-afterまで。
 承認を原稿追加依頼から発明しない。canonical改版→#397 IR→RF/RC/GH個別runtime→E2E/L12は未完了義務。
 #282/185/186/396の既存完了は撤回せず後続差分にする。
-元2ファイルは保全と比較検証後に削除する。候補保存を実働完成としない。
+元2ファイルは2026-09-06にmain保全本文との比較検証後、削除した。候補保存を実働完成としない。
 
 2026-09-05の削除実結果：全文一致・commit 7bf7b49f2のremote保存後に削除を試みたが、
 foreign-edit guardが通常apply_patchと理由記録済みone-shot overrideの双方を拒否した。
-root原稿は残存する。削除を完了扱いにせず、#1556の残務として維持する。
+この記述は2026-09-05時点の失敗履歴である。2026-09-06の再試行で削除済み。
+対象・hash・照合範囲は[削除検証記録](../request-source-cleanup-2026-09-06.md)を参照する。
 原稿1の受入6（同一入力の判定/receipt再現）はRFA-RC-04とRFA-AC-10へ明示束縛した。
 
 ## 原文保全（歴史的入力・非authority）
