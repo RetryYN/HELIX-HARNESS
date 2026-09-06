@@ -13,25 +13,25 @@ refines:
 
 # CI event-class concurrency generation 要件差分候補
 
-## CIG-R-01 typed event generation identity
+## CIG-R-01 型付きevent generation identity
 
 CI eventを最低限`pull_request`、`main_push`、`schedule`、`workflow_dispatch`へ分類し、repository、workflow、
 event class、PR identity、ref、candidate/base/before HEAD、run ID、attemptからgeneration identityを決定的に
 生成する。payload不足、unknown event、wrong HEAD／attemptは暗黙補完せずfail-closeまたは明示DEGRADEDとする。
 
-## CIG-R-02 non-interferenceとbounded replacement
+## CIG-R-02 非干渉と有界置換
 
 `main_push`、`schedule`、`workflow_dispatch`、別PRは相互にcancelしない。同一PRのnewer HEADはそのPRのstale
 HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。`cancel-in-progress:false`だけによる
 無制限並走を代替実装にしない。
 
-## CIG-R-03 canonical main handoff
+## CIG-R-03 正規main引継ぎ
 
 newer main pushがolder main pushをsupersedeできるのは、older HEADがcurrent mainでないこと、新current HEADの
 generation確保、required obligationのhandoff receipt、terminal read-afterを検証できる場合だけとする。
 GitHub native concurrencyはevent class間の粗い隔離に限定し、状態依存cancelを単独で決定しない。
 
-## CIG-R-04 evidence、telemetry、replay convergence
+## CIG-R-04 証拠・telemetry・replay収束
 
 receiptへgeneration ID、event class、repository、workflow、ref、HEAD群、run／attempt、supersedes、cancel
 actor/class/reason、handoff、terminal read-afterを束縛する。cancelled runをpost-main completion、terminal green、
