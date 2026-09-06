@@ -25,6 +25,7 @@ pair_artifact: docs/design/helix/L6-function-design/current-location-summary-typ
 | U-CLSO-006 | schema mutation | summary schema v2をv1へ退行させるmutationをproduction-root regressionが検出する | `tests/cli-surface.test.ts` |
 | U-CLSO-007 | downstream summary contract | project-frontier／vmodel-fit command mapから`drive_model`を除去し、`workflow_route`をcurrent-locationへ束縛する。旧object／key／command literalの再混入を拒否 | `tests/summary-surface-audit.test.ts` |
 | U-CLSO-008 | project/tree summary projection | project-frontierとtree-view outlineが`workflow_identity`／`workflow_route`を返し、top-level `drive_model`を再出力しない | `tests/cli-surface.test.ts` |
+| U-JRSTAT-001 | status JSON/textのレビュー証拠投影 | human・cross_agent・intra_runtime_subagentを区別し、単一runtimeでは既存4項目のchecklist説明をexact照合する。textにJSONの必要証拠と各IDが全件現れる。3方式すべてを固定fixtureで実行した証拠とは数えず、方式判定自体は`tests/gate-review-tier.test.ts`と分担する | `tests/cli-surface.test.ts` |
 
 旧compatibility commandの内部出力をpositive oracleにしない。legacy greenでcurrent summaryの
 canonical failureを相殺しない。

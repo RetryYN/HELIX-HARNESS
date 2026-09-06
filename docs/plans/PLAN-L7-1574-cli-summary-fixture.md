@@ -41,7 +41,7 @@ agent_slots:
 parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md
 pair_artifact: docs/test-design/helix/L8-current-location-summary-typed-output-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-JRSTAT-001, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, oracle_id: U-JRSTAT-001, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, oracle_id: U-CLSO-001, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, oracle_id: U-CLSO-002, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, oracle_id: U-CLSO-003, test_path: tests/cli-surface.test.ts }
@@ -63,7 +63,7 @@ modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface-deadline-contract.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L6-function-design/current-location-summary-typed-output.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-current-location-summary-typed-output-unit-test-design.md, artifact_type: test_design }
 review_evidence: []
 ---
@@ -94,7 +94,7 @@ beforeAllから終了statusのassertを除き、各oracleの既存status検査�
 対象001/003/004/005/006が各々assertionで失敗した（5 failed、対象skip 0）。
 90 skippedは名前フィルタで選択していない別caseである。実CLI起動の成功証拠ではなく、
 準備失敗が各caseへ伝播することの試験。変異は実行後に撤去した。
-I-2はU-JRSTAT-001を採番し、既存L6 judgmentReviewPlanForModeと正規pairのL7へ束縛した。
+I-2はU-JRSTAT-001を採番し、current-locationの既存L6↔L8 pairへstatus投影契約として束縛した。
 2026-09-06 09:03:46開始、U-JRSTAT-001は1成功、1.22秒。全1188 PLANのgovernance検査と
 対象PLAN lintもexit 0。94 skippedは対象外のcaseである。
 I-3は単一runtime変異を別実行した。09:05:19開始、`workflow_route_status`だけを削除すると
