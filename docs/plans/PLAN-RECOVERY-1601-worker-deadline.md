@@ -56,6 +56,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-007, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-008, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-009, test_path: tests/provider-process-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-010, test_path: tests/cli-surface.test.ts }
 ---
 
 # 正規worker budget lifecycle Recovery
