@@ -411,6 +411,10 @@ import {
   summarizeStagedReview,
 } from "./runtime/review-guard";
 import {
+  evaluateReviewReceiptPlanBinding,
+  loadChangedPlanReviewBindings,
+} from "./runtime/review-receipt-plan-binding";
+import {
   appendRuntimeVerificationLogEvent,
   DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
   type RuntimeClaim,
@@ -14798,6 +14802,21 @@ github
       }
       if (input.verdict === "approve") {
         input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
+        const planBinding = evaluateReviewReceiptPlanBinding({
+          receipt: {
+            reviewer_session_id: input.reviewerSessionId,
+            reviewer_model: input.reviewerModel,
+          },
+          changed_plans: loadChangedPlanReviewBindings(process.cwd()),
+        });
+        if (!planBinding.ok) {
+          const failure = planBinding.failures[0];
+          process.stderr.write(
+            `github pr-review-receipt: ${failure?.reason ?? "review_plan_binding_unavailable"}${failure ? `:${failure.plan_id}` : ""}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
       }
       const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
       const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
