@@ -137,6 +137,16 @@ describe("green-command-digest (PLAN-L7-132) — digest 実体検査", () => {
     expect(unlisted[0]?.reason).toBe("file-missing");
   });
 
+  it("U-GREENCMD-004: skips only PLANs admitted by the typed supersession graph", () => {
+    const missing = plan("PLAN-OLD", [
+      { evidence_path: "tests/historical-missing.test.ts", output_digest: realDigest },
+    ]);
+    expect(auditGreenCommandDigests([missing], deps)[0]?.reason).toBe("file-missing");
+    expect(auditGreenCommandDigests([missing], deps, new Set(), new Set(["PLAN-OLD"]))).toEqual(
+      [],
+    );
+  });
+
   it("U-GREENCMD-001: skips entries with empty path or digest", () => {
     const mismatches = auditGreenCommandDigests(
       [plan("PLAN-EMPTY", [{ evidence_path: "", output_digest: "" }])],

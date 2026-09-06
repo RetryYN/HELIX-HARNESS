@@ -19,6 +19,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadRetiredArtifactPaths } from "./artifact-retirement-authority";
 import { loadReviewPlans, type ParsedReviewPlan } from "./review-evidence";
+import { analyzePlanSupersession, loadSupersedePlans } from "./plan-supersession";
 
 export interface DigestMismatch {
   plan_id: string;
@@ -43,6 +44,7 @@ export function auditGreenCommandDigests(
   plans: ParsedReviewPlan[],
   deps: DigestAuditDeps,
   retiredArtifactPaths: ReadonlySet<string> = new Set(),
+  supersededPlanIds: ReadonlySet<string> = new Set(),
 ): DigestMismatch[] {
   const mismatches: DigestMismatch[] = [];
   const validDigestPattern = /^sha256:[a-f0-9]{64}$/i;
@@ -51,6 +53,7 @@ export function auditGreenCommandDigests(
   // 2026-07-06) を機械で塞ぐ。
   const placeholderPattern = /^sha256:([a-f0-9])\1{63}$/i;
   for (const plan of plans) {
+    if (supersededPlanIds.has(plan.plan_id)) continue;
     for (const entry of plan.crossEntries ?? []) {
       for (const cmd of entry.green_commands ?? []) {
         const path = cmd.evidence_path?.trim();
@@ -140,10 +143,18 @@ export function checkGreenCommandDigests(repoRoot: string = process.cwd()): {
     };
   }
   try {
+    const supersessionPlans = loadSupersedePlans(repoRoot);
+    const supersession = analyzePlanSupersession(supersessionPlans);
+    const validSupersededPlanIds = new Set(
+      supersession.ok
+        ? supersessionPlans.filter((plan) => plan.superseded_by.length > 0).map((plan) => plan.plan_id)
+        : [],
+    );
     const mismatches = auditGreenCommandDigests(
       loadReviewPlans(repoRoot),
       nodeDigestAuditDeps(repoRoot),
       loadRetiredArtifactPaths(repoRoot),
+      validSupersededPlanIds,
     );
     return {
       messages: greenCommandDigestMessages(mismatches),
