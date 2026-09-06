@@ -1,6 +1,6 @@
 ---
 status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+authority_status: approved_pending_canonical_promotion
 canonical_layer: L3
 canonical_pair: L10
 plan: PLAN-L3-91-design-grounding-human-convergence
@@ -9,7 +9,7 @@ pair_artifact: docs/governance/candidates/design-grounding-human-convergence-acc
 ---
 
 ## 目的と境界
-既存Design Harnessを再実装せず、Design Grounding / Human Reaction Semantics / Design Convergenceを要求候補として追加する。#1556/#1557の要求形成をDesignへ投影する。要求受付は自動承認policyの発効・runtime完成ではない。
+既存Design Harnessを再実装せず、Design Grounding / Human Reaction Semantics / Design Convergenceを要求候補として追加する。#1556/#1557の要求形成をDesignへ投影する。L3承認済みだがcanonical未昇格であり、自動承認policyの発効・runtime完成ではない。候補status語彙の正本化は#1580で追跡する。
 
 ## 実装調査（main 4667d601）
 src/design/screen-applicability.ts に recordWalkthroughIteration / evaluatePrototypeAgreement / validateRequirementsBackprop が存在。現行agreementは反復完結・human approved・revisionを検査するが、今回の設計軸ごとの受容状態や8分類をその検査と同一視しない。

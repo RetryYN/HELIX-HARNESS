@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-06T01:31:00Z"
+  plan_id: PLAN-L3-91-design-grounding-human-convergence
+  approval_record_id: L3-PO-1558-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1558#issuecomment-5556057236"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -13,7 +23,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REDESIGN
 entry_signals:
-  - "po_directive: Design原稿を候補へ整理し保全後削除する明示依頼。新policy承認ではない"
+  - "po_directive: issue:1558 のtyped human gate recordでDesign Grounding / Human Convergence候補を承認"
 created: 2026-09-05
 updated: 2026-09-05
 owner: Codex / TL
@@ -61,6 +71,7 @@ dependencies:
     - issue:1534
     - issue:1494
     - issue:1500
+    - issue:1580
   blocks: []
 generates:
   - { artifact_path: docs/governance/candidates/design-grounding-human-convergence-requests.md, artifact_type: markdown_doc }
@@ -82,4 +93,5 @@ review_evidence: []
 現行policy・IR・runtimeを変更しない。新自動化policyは明示承認後に正規version-upする。
 原文保全、3 BR→12要件→10 AC→L12評価、全原稿移管traceと独立検収を収束条件とする。
 原稿削除はGit保全・原文一致の検証後だけ実施し、共有rootの他作業は変更しない。
-main未統合・L3未承認・runtime未実装を完成としない。5 PR上限を維持し、空き枠で候補PR化する。
+L3承認はIssue #1558のtyped recordへ束縛済み。main未統合・canonical未昇格・runtime未実装を完成としない。
+候補authority statusのtyped lifecycleはIssue #1580で正本化し、未登録語をcurrent authorityとして先行利用しない。
