@@ -33,9 +33,7 @@ const CONFIG = {
   evidenceDir: ".helix/evidence/g9-system",
   itemPrefix: "ST-",
   doctorCheck: "g9-system-workflow",
-  activeManifestPaths: [
-    ".helix/evidence/g9-system/20260906-selected-system-evidence.json",
-  ],
+  activeManifestPaths: [".helix/evidence/g9-system/20260906-selected-system-evidence.json"],
 } as const;
 
 const WORKFLOW_MARKERS = [
