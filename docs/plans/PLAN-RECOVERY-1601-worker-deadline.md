@@ -13,6 +13,11 @@ github_issue_id: 1601
 behavior_contract_id: WORKER-BUDGET-LIFECYCLE-1098
 responsibility_owner: worker-runtime-lifecycle
 entry_signals: [regression_dev]
+agent_slots:
+  - { role: aim, slot_label: "AIM — worker budgetと継続運転の成立条件を照合" }
+  - { role: tl, slot_label: "TL — process lifecycleと後続移管の責務境界を検収" }
+  - { role: se, slot_label: "SE — deadline・process-tree停止・回収を実装" }
+  - { role: qa, slot_label: "QA — timeout・orphan・late side effectの反例を検証" }
 parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md
 pair_artifact: docs/test-design/helix/L8-worker-budget-lifecycle.md
 workflow_identity:
