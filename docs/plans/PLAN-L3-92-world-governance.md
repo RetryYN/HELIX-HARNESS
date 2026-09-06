@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-06T02:03:00Z"
+  plan_id: PLAN-L3-92-world-governance
+  approval_record_id: L3-PO-1500-002
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1500#issuecomment-5556241015"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -13,7 +23,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REDESIGN
 entry_signals:
-  - "po_directive: World Governance原稿を取り込み保全後削除する明示依頼のみ。要件承認・相談の指示化ではない"
+  - "po_directive: issue:1500 のtyped human gate recordでWorld Governance候補を承認"
 created: 2026-09-06
 updated: 2026-09-06
 owner: Codex / TL
@@ -56,6 +66,7 @@ dependencies:
     - issue:1169
     - issue:397
     - issue:1538
+    - issue:1580
   blocks: []
 generates:
   - { artifact_path: docs/governance/candidates/world-governance-requests.md, artifact_type: markdown_doc }
@@ -78,4 +89,5 @@ review_evidence: []
 P0を優先し、CI改善とCursor限定委譲を管理層全体の完成待ちにしない。
 epoch着手順の変更は正本改版対象として明示するが、本PLANで発効しない。
 原稿は保全した内容との一致検査およびGit記録後に、今回の2ファイルだけ削除する。
-要件候補の格納、承認、IR収載、runtime、運用、配布を別々に報告する。
+L3承認はIssue #1500のtyped recordへ束縛済み。候補格納、canonical昇格、IR収載、runtime、運用、配布を別々に報告する。
+候補authority statusのtyped lifecycleはIssue #1580で正本化し、未登録語をcurrent authorityとして先行利用しない。

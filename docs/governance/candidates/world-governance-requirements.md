@@ -1,6 +1,6 @@
 ---
 status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+authority_status: approved_pending_canonical_promotion
 canonical_layer: L3
 canonical_pair: L10
 plan: PLAN-L3-92-world-governance
