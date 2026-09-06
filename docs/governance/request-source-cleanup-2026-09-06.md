@@ -10,7 +10,10 @@
 その後のmain `548440db8b11287ff344b154b16c76a8878e6bcb` は同じ取込台帳を保持している。
 個別要件と受入の対応表も照合した。要求の採用、canonical/IR昇格、runtime実装・有効化は別状態である。
 
-| 削除した原稿 | SHA-256 | 保全先（下記の台帳） |
+以下のSHA-256は削除前原稿のbytesを対象とし、正規化後の表示本文のhashとは区別する。
+回帰テストはhistorical fenceの本文だけを取り出し、CRLFをLFへ変換し、各行末空白と末尾空白を除去して末尾LFを1個付けたUTF-8 bytesを照合する。
+
+| 削除した原稿 | 原稿SHA-256 | 保全先（下記の台帳） |
 |---|---|---|
 | `HELIX_DESIGN_GROUNDING_HUMAN_CONVERGENCE_INSTRUCTION_v0.1.md` | `31e12468698ac562a90c8bcc367214d82e14e99878ef52606cde011524cca54c` | Design |
 | `HELIX_REQUIREMENT_FORMATION_AND_SCOPED_ADMISSION_v0.1.md` | `b43789be1b09335b23fee40da87aba87d5d6f851ea31c0d1445f253d8816028d` | Formation |
@@ -21,6 +24,10 @@
 - Design: [原文・移管表](candidates/design-grounding-human-convergence-intake.md)、DG/HR/DC各4要求とAC1〜10。
 - Formation: [原文・移管表](candidates/requirement-formation-scoped-admission-intake.md)、RF4/RC5/GH3要求とAC01〜18。
 - World: [原文・移管表](candidates/world-governance-intake.md)、R01〜09とAC01〜10。
+
+Designの原稿hashは、commit `e4f3a7fef` の同台帳にあるhistorical本文から末尾LFを1個除いたbytesで再現した。
+上記回帰テスト規約による表示版digestは `6bb6b429f32833368a20c72f358cdfadec82992c4f9ec4729685f8a906c5b839` で、U-RSC-001のpinに対応する。
+FormationとWorldの4件は同規約のdigestと原稿hashが一致する。この一致を原稿全件のbytes同一性へ一般化しない。
 
 原稿はすべて未追跡ファイルだった。Git履歴は削除せず、上記mainの台帳から内容を復元できる。
 既存の保存表示では一部の行末空白を正規化しているため、表示から復元したbytesと原稿hashが一致するとは主張しない。

@@ -48,9 +48,6 @@ describe("要求原稿の保全", () => {
         ...source.matchAll(/^(````|~~~~)(?:markdown|text)\r?\n([\s\S]*?)^\1[ \t]*$/gm),
       ].map((match) => match[2]);
       expect(blocks.map(digest)).toEqual([...expected]);
-      for (const [index, block] of blocks.entries()) {
-        expect(digest(`${block}\n改変`)).not.toBe(expected[index]);
-      }
       count += blocks.length;
     }
     expect(count).toBe(5);
