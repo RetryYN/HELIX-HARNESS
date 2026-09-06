@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-80-responsibility-centric-learning-system
+  approval_record_id: L3-PO-1384-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1384#issuecomment-5544537975"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:責務中心ナレッジ学習システム指示書を最適化して要求・要件へ取り込む"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1384
 behavior_contract_id: RESPONSIBILITY-CENTRIC-LEARNING-001
@@ -56,6 +66,7 @@ dependencies:
     - issue:1372
     - issue:1382
     - issue:1384
+    - issue:1580
     - issue:863
     - issue:865
   blocks:
@@ -79,7 +90,7 @@ review_evidence: []
 
 ## Authority境界
 
-本PLANはdraftである。plan固有のPO承認を受けるまでcandidateをcanonical L1/L3/L10、Requirement IR、runtime、DB、generated current docsへ昇格しない。
+本PLANはIssue #1384のtyped human gate recordでL3候補承認済みである。canonical昇格、Requirement IR admission、runtime、DB、generated current docsへの反映は別工程とし、draftとcompletion falseを維持する。候補authority statusのtyped lifecycleはIssue #1580が所有する。
 
 ## 実装順
 

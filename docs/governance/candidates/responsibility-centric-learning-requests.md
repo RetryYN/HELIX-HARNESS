@@ -6,8 +6,10 @@ title: "責務中心Learning System要求"
 layer: L1
 kind: redesign
 status: draft_candidate
+authority_status: approved_pending_canonical_promotion
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1384#issuecomment-5544537975"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-06
 owner: PO / Codex TL
 plan: PLAN-L3-80-responsibility-centric-learning-system
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md

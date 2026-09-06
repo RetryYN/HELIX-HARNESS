@@ -6,8 +6,10 @@ title: "責務中心Learning System要件"
 layer: L3
 kind: redesign
 status: draft_candidate
+authority_status: approved_pending_canonical_promotion
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1384#issuecomment-5544537975"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-06
 owner: PO / Codex TL
 plan: PLAN-L3-80-responsibility-centric-learning-system
 parent_design: docs/governance/candidates/responsibility-centric-learning-requests.md
