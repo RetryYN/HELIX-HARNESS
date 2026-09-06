@@ -71,4 +71,4 @@ review_evidence: []
 - `npm run helix -- plan lint`: entry signalを正規形式へ是正後、entry routingと採番検査はOK。既存design-reality advisoryは残る。
 - 要求10件と受入10件の一対一対応、相対参照、MIT metadata不変更をNode assertionで確認した。
 - `npm run helix -- db rebuild`: exit 0、80278 rows。outstandingは新規draftを含め80件。
-- 宣伝表示については相談のみであり、義務や利用条件へ追加していない。
+- 紹介表示は任意依頼のみとする。非表示による不利益、自動挿入、顧客事例公開への同意転用を禁止する。必須条件にしない。
