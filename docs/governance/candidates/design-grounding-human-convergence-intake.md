@@ -1,6 +1,7 @@
 # Design Grounding原稿の取込台帳
 
-Issue #1558。候補のみ、main未統合・新policy未承認・runtime未実装。
+Issue #1558。要求候補の取込台帳。承認・正本化の状態は同名requirementsとPLAN-L3-91へ照合する。
+本台帳の保存をruntime完成の証拠にはしない。
 
 ## 全項目trace
 
@@ -16,8 +17,9 @@ Issue #1558。候補のみ、main未統合・新policy未承認・runtime未実�
 原文の実装済み主張を全体完成の証拠とは扱わず、4667d601の対象sourceを静的確認した。
 前提の分類・人間反応・軸状態は別軸。人間の原文はproject-owned evidenceへ、memoryや個人profileへ入れない。
 原文の完全一致版はremote commit e4f3a7fefの本台帳へ保全済み。以下は末尾空白だけ正規化した表示。
-原稿3件の削除は通常apply_patchで再試行したがforeign-edit guardが拒否した。
-root原稿は残存し削除未完了。追加承認待ちではなく、明示削除依頼とguardの接合問題として追跡する。
+過去の削除試行はforeign-edit guardが拒否した。
+2026-09-06、main保全本文との全文一致と要件/受入対応を再確認し、明示依頼の原稿を削除した。
+対象・hash・照合範囲は[削除検証記録](../request-source-cleanup-2026-09-06.md)を参照する。
 
 ## 原文（historical input-only、採用authorityではない）
 

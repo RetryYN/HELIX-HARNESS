@@ -28,6 +28,9 @@ currentのrequirement-ir-authority設定、graph loader冒頭180行、semantic-i
 R01〜R09はすべて候補採用。現行JSONへの昇格・承認・runtime変更は未実施。
 原文とAIの整理を区別するため、入力全文を末尾に変更せず保全する。
 
+2026-09-06、root原稿2件をmain保全本文と全文一致照合し、要件/受入への移管を再確認して削除した。
+対象・hash・照合範囲は[削除検証記録](../request-source-cleanup-2026-09-06.md)を参照する。
+
 ## 既存ownerへ戻す責務
 
 | owner | 再利用・追加する範囲 | HWGが所有しない範囲 |
