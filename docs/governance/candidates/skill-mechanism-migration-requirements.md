@@ -4,6 +4,7 @@ status: draft_candidate
 authority_status: approved_pending_canonical_promotion
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1594#issuecomment-5562000029"
 approved_revision: "2.0"
+version: "2.0"
 candidate_layer: L3
 owner_issue: 1594
 plan_id: PLAN-L3-1594-skill-mechanism-migration
