@@ -54,6 +54,7 @@ dependencies:
   requires: []
   references:
     - issue:1552
+    - issue:1580
     - issue:1248
     - issue:1210
     - issue:1033
@@ -89,6 +90,7 @@ review_evidence: []
 
 原稿追加依頼と後日の明示承認を区別する。L3-PO-1552-001でv0.2の要件承認を記録済み。
 独立検収・正本昇格・IR admissionは別工程であり、status draftとcompletion falseを維持する。
+承認後candidate statusの許容語彙と遷移を機械拘束する後続責務はIssue #1580が所有する。
 既存#1248へ接続するが、そのruntime sliceを本候補の承認前に拡張しない。
 本authority候補の所有Issueは#1552。#1248は接続先のruntime責務であり、本候補のmergeでcloseしない。
 候補受付の参照： https://github.com/RetryYN/HELIX-HARNESS/issues/1248#issuecomment-5548311084
