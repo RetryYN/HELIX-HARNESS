@@ -218,7 +218,7 @@ describe.skipIf(process.platform === "win32")("provider process budget lifecycle
   it("U-WBL-008: direct child正常終了後の残存treeをdeadline誤報なしで回収する", async () => {
     const root = temporaryRoot();
     const pidPath = join(root, "lingering-child.json");
-    const source = String.raw`
+    const source = `
 const { spawn } = require("node:child_process");
 const { writeFileSync } = require("node:fs");
 const child = spawn(process.execPath, ["-e", ${JSON.stringify(descendantSource)}, "-", "10000"], { stdio: "ignore" });
