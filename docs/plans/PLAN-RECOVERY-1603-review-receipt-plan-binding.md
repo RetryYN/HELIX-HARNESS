@@ -68,7 +68,9 @@ generates:
   - { artifact_path: tests/review-receipt-plan-binding.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 review_evidence: []
 ---

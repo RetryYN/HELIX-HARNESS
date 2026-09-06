@@ -4,6 +4,7 @@ layer: L8
 status: draft
 related_plan: PLAN-RECOVERY-1603-review-receipt-plan-binding
 related_issue: 1603
+pair_artifact: docs/design/helix/L6-function-design/review-receipt-plan-binding.md
 ---
 
 # Review receipt と PLAN evidence 接合の単体テスト設計
