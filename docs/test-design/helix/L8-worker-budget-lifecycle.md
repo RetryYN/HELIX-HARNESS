@@ -17,3 +17,4 @@ pair_artifact: docs/design/helix/L6-function-design/worker-budget-lifecycle.md
 | U-WBL-005 | CLI terminal出力 | lifecycle fieldsを欠落させるCLI JSONを拒否 | `tests/cli-surface.test.ts` |
 | U-WBL-006 | OS境界 | process tree停止不能時の無期限fallbackを拒否 | `tests/provider-process-lifecycle.test.ts` |
 | U-WBL-007 | wrapper interruption | `SIGINT`でwrapperだけ終了しprovider treeを孤児化する実装を拒否 | `tests/provider-process-lifecycle.test.ts` |
+| U-WBL-008 | child終了後の残存tree | direct childの正常終了後に孫だけ残る場合、deadlineまで待って`status=0`と`timed_out=true`を同時に返す実装を拒否 | `tests/provider-process-lifecycle.test.ts` |

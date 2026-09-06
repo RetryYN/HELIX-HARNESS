@@ -8043,6 +8043,7 @@ describe("L7 CLI surface closure", () => {
         // 正常終了は signal=null (signal 終了時のみ exit_code=null + signal 名が入る)。
         signal: null,
         timed_out: false,
+        tree_lingered: false,
         deadline_ms: 60_000,
         termination_stage: "none",
         reaped: true,

@@ -9,7 +9,7 @@ import {
   runBudgetedProviderProcess,
 } from "../src/runtime/provider-process-lifecycle";
 
-// PLAN-RECOVERY-1601-worker-deadline — U-WBL-001..004, U-WBL-006..007
+// PLAN-RECOVERY-1601-worker-deadline — U-WBL-001..004, U-WBL-006..008
 
 const roots: string[] = [];
 const pidFiles: string[] = [];
@@ -212,6 +212,37 @@ describe.skipIf(process.platform === "win32")("provider process budget lifecycle
     });
     expect(outcome.error).toBeUndefined();
     expect(processAlive(pids.parent_pid)).toBe(false);
+    expect(processAlive(pids.child_pid)).toBe(false);
+  });
+
+  it("U-WBL-008: direct child正常終了後の残存treeをdeadline誤報なしで回収する", async () => {
+    const root = temporaryRoot();
+    const pidPath = join(root, "lingering-child.json");
+    const source = String.raw`
+const { spawn } = require("node:child_process");
+const { writeFileSync } = require("node:fs");
+const child = spawn(process.execPath, ["-e", ${JSON.stringify(descendantSource)}, "-", "10000"], { stdio: "ignore" });
+writeFileSync(process.argv[1], JSON.stringify({ parent_pid: process.pid, child_pid: child.pid }));
+child.unref();
+process.stdout.write("done");
+`;
+    const measuredOutcome = await measured({
+      ...baseLaunch(1_500),
+      args: ["-e", source, pidPath],
+    });
+    const pids = readProcessTreePids(pidPath);
+
+    expect(measuredOutcome.outcome).toMatchObject({
+      status: 0,
+      stdout: "done",
+      timed_out: false,
+      tree_lingered: true,
+      interrupted_by: null,
+      termination_stage: "kill_sent",
+      signal: null,
+      reaped: true,
+    });
+    expect(measuredOutcome.elapsedMs).toBeLessThan(1_000);
     expect(processAlive(pids.child_pid)).toBe(false);
   });
 });

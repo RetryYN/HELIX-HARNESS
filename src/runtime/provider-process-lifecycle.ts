@@ -33,6 +33,7 @@ export interface ProviderProcessLifecycleOutcome {
   readonly stdout: string;
   readonly stderr: string;
   readonly timed_out: boolean;
+  readonly tree_lingered: boolean;
   readonly interrupted_by: NodeJS.Signals | null;
   readonly deadline_ms: number;
   readonly termination_stage: ProviderProcessTerminationStage;
@@ -146,6 +147,7 @@ export async function runBudgetedProviderProcess(
       stdout: "",
       stderr: "",
       timed_out: false,
+      tree_lingered: false,
       interrupted_by: null,
       deadline_ms: launch.timeMs,
       termination_stage: "none",
@@ -183,6 +185,7 @@ export async function runBudgetedProviderProcess(
       stdout,
       stderr,
       timed_out: false,
+      tree_lingered: false,
       interrupted_by: null,
       deadline_ms: launch.timeMs,
       termination_stage: "none",
@@ -232,25 +235,66 @@ export async function runBudgetedProviderProcess(
   };
 
   const firstBoundary = await Promise.race([
-    waitUntilReaped(state, processGroupId, executionDeadline).then((reaped) =>
-      reaped ? ({ kind: "reaped" } as const) : ({ kind: "deadline" } as const),
+    waitUntilReaped(state, undefined, executionDeadline).then((closed) =>
+      closed ? ({ kind: "child_closed" } as const) : ({ kind: "deadline" } as const),
     ),
     interruption.then((signal) => ({ kind: "interrupted", signal }) as const),
   ]);
 
-  if (firstBoundary.kind === "reaped") {
+  if (firstBoundary.kind === "child_closed") {
+    const reaped = await waitUntilReaped(
+      state,
+      processGroupId,
+      deadlineFromNow(TERMINATION_GRACE_MS),
+    );
+    if (!reaped) {
+      state.error = combineErrors(state.error, signalProcessGroup(processGroupId, "SIGTERM"));
+    } else {
+      removeLifecycleHandlers();
+      return {
+        status: state.close?.status ?? null,
+        stdout,
+        stderr,
+        timed_out: false,
+        tree_lingered: false,
+        interrupted_by: null,
+        deadline_ms: launch.timeMs,
+        termination_stage: "none",
+        signal: state.close?.signal ?? null,
+        duration_ms: elapsedMilliseconds(startedAt),
+        reaped: true,
+        ...(state.error === undefined ? {} : { error: state.error }),
+      };
+    }
+  }
+
+  const treeLingered = firstBoundary.kind === "child_closed";
+  if (firstBoundary.kind === "child_closed") {
+    let terminationStage: ProviderProcessTerminationStage = "term_sent";
+    let reaped = await waitUntilReaped(state, processGroupId, deadlineFromNow(TERMINATION_GRACE_MS));
+    if (!reaped && processGroupId !== undefined && processGroupAlive(processGroupId)) {
+      terminationStage = "kill_sent";
+      state.error = combineErrors(state.error, signalProcessGroup(processGroupId, "SIGKILL"));
+    }
+    if (!reaped) {
+      reaped = await waitUntilReaped(state, processGroupId, deadlineFromNow(REAP_CONFIRMATION_MS));
+    }
+    if (!reaped) {
+      state.error = combineErrors(state.error, new Error("provider_process_tree_reap_timeout"));
+    }
     removeLifecycleHandlers();
     return {
       status: state.close?.status ?? null,
       stdout,
       stderr,
       timed_out: false,
+      tree_lingered: true,
       interrupted_by: null,
       deadline_ms: launch.timeMs,
-      termination_stage: "none",
+      termination_stage: terminationStage,
       signal: state.close?.signal ?? null,
       duration_ms: elapsedMilliseconds(startedAt),
-      reaped: true,
+      reaped,
       ...(state.error === undefined ? {} : { error: state.error }),
     };
   }
@@ -276,6 +320,7 @@ export async function runBudgetedProviderProcess(
     stdout,
     stderr,
     timed_out: firstBoundary.kind === "deadline",
+    tree_lingered: treeLingered,
     interrupted_by: firstBoundary.kind === "interrupted" ? firstBoundary.signal : null,
     deadline_ms: launch.timeMs,
     termination_stage: terminationStage,

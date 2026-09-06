@@ -12379,6 +12379,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 exit_code: child.status ?? null,
                 signal: child.signal ?? null,
                 timed_out: child.timed_out,
+                tree_lingered: child.tree_lingered,
                 interrupted_by: child.interrupted_by,
                 deadline_ms: child.deadline_ms,
                 termination_stage: child.termination_stage,

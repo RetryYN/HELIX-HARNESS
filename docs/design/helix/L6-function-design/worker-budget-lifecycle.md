@@ -14,7 +14,7 @@ admitted `WrapperLaunchExecution`のsealed contextから実行時間上限を取
 
 ## 状態
 
-`running → completed`、`running → deadline_exceeded → term_sent → kill_sent? → reaped`、または`running → wrapper_interrupted → term_sent → kill_sent? → reaped`とする。deadline値はcallerの別定数ではなくpacketの`budget.time_ms`から導出する。
+`running → completed`、`running → child_completed → tree_drain → term_sent → kill_sent? → reaped`、`running → deadline_exceeded → term_sent → kill_sent? → reaped`、または`running → wrapper_interrupted → term_sent → kill_sent? → reaped`とする。direct childが期限内に正常終了した場合は`timed_out`へ読み替えず、短いdrain後も残るtreeを`tree_lingered`として回収する。deadline値はcallerの別定数ではなくpacketの`budget.time_ms`から導出する。
 
 ## OS境界
 
@@ -25,4 +25,4 @@ admitted `WrapperLaunchExecution`のsealed contextから実行時間上限を取
 
 ## 出力
 
-通常のstatus/signal/errorに加え、`timed_out`、`interrupted_by`、`deadline_ms`、`termination_stage`、`duration_ms`、`reaped`を返す。`reaped=true`はdirect childのcloseだけでなく、対象treeの停止処理が終端したことを表す。
+通常のstatus/signal/errorに加え、`timed_out`、`tree_lingered`、`interrupted_by`、`deadline_ms`、`termination_stage`、`duration_ms`、`reaped`を返す。`reaped=true`はdirect childのcloseだけでなく、対象treeの停止処理が終端したことを表す。
