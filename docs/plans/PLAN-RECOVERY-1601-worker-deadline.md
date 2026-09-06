@@ -76,7 +76,7 @@ review_evidence:
     reviewed_head_sha: c192c7a6412170e4e1d470246be7168db8447bd9
     scope: "独立reviewとclean clone実測は https://github.com/RetryYN/HELIX-HARNESS/pull/1602#issuecomment-5561649330 。doctor exit 1は環境起因4件を含むためgreen commandへ昇格しない。Issue #1098全体完了や最終receiptを代替しない。"
     green_commands:
-      - kind: install
+      - kind: smoke
         command: "npm ci --no-audit --no-fund"
         runner: node
         scope: full
@@ -84,7 +84,7 @@ review_evidence:
         completed_at: "2026-09-06T19:26:52Z"
         evidence_path: .helix/evidence/review-1602/npm-ci.log
         output_digest: "sha256:f3b8b436cfc104feb0c4222bcbe9429e218fe711a57025a5454ea253354eef72"
-      - kind: test
+      - kind: unit_test
         command: "npx vitest run tests/provider-process-lifecycle.test.ts tests/cli-surface.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/review-evidence.test.ts"
         runner: node
         scope: targeted
@@ -108,7 +108,7 @@ review_evidence:
         completed_at: "2026-09-06T19:32:52Z"
         evidence_path: .helix/evidence/review-1602/biome.log
         output_digest: "sha256:c722ccfb21301b59e0758d0d7a2e9837b5fdc5a270c6503083127c1d8a626d12"
-      - kind: plan_lint
+      - kind: lint
         command: "npx tsx src/cli.ts plan lint"
         runner: node
         scope: full
