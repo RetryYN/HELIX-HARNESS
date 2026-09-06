@@ -8,7 +8,7 @@ plan: PLAN-L3-92-world-governance
 
 # 全体機能統制の要件候補
 
-主ownerは#1500。意味正本・既存責務・優先順の境界と導入契約を含め、入力の9候補IDを保持する。IDを正式採番する際は衝突を検査し対応表を維持する。
+主ownerは#1500。意味正本・既存責務・優先順の境界と導入契約を含め、入力の9候補IDを保持する。IDを正式採番する際は衝突を検査し対応表を維持する。[L3-PO-1500-002](https://github.com/RetryYN/HELIX-HARNESS/issues/1500#issuecomment-5556241015)でL3候補承認済みだが、canonical昇格・IR収載・runtime実装は別工程とする。
 
 ## 1. 目的と優先順位
 HELIX全体の要求・機能・責務・実装・検証・提供単位を統括し、新要求追加後も所属・影響・権限・完了条件を維持する。HELIX World Governance（HWG）は、既存機構の接続と変更の整合性を統制する。

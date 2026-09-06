@@ -19,6 +19,7 @@ next_pair_freeze: L10_after_po_approval
 
 - 文書ID: `HELIX-RCLS-REQ-001`
 - 主Issue: `#1384`
+- L3候補承認: [`L3-PO-1384-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1384#issuecomment-5544537975)。canonical昇格、IR admission、runtime実装は別工程。
 
 ## Feature契約
 

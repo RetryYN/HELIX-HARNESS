@@ -18,8 +18,9 @@ next_pair_freeze: L10_after_plan_specific_approval
 # authority語彙分離要件
 
 - 文書ID: `HELIX-AVS-REQ-001`
-- 状態: `draft_candidate / plan固有承認前`
+- 状態: `draft_candidate / L3候補承認済み・canonical未昇格`
 - 主Issue: `#1449`
+- 承認record: [`L3-PO-1449-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1449#issuecomment-5544538084)
 
 ## Feature契約
 
