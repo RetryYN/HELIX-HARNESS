@@ -54,6 +54,6 @@ FormationとWorldの4件は同規約のdigestと原稿hashが一致する。こ�
 
 ## 配置正本の残る追従課題
 
-[repository-structure](repository-structure.md)にはcutover中のBun保持や旧配布前提など、
+[repository-structure](repository-structure.md)にはcutover中の廃止済み旧runtime保持や旧配布前提など、
 冒頭directiveで互換負債とされる記述が残る。配置の全体見直しは#1372/#206と既存authorityの改版で追跡する。
 本削除作業ではライセンス・配布契約を変更せず、未確認原稿や別writerの成果を廃棄しない。
