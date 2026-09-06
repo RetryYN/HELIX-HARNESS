@@ -8,6 +8,8 @@ plan_id: PLAN-L3-85-document-authority-census
 
 # Document Authority Census要件候補
 
+[L3-PO-1381-001](https://github.com/RetryYN/HELIX-HARNESS/issues/1381#issuecomment-5544538119)でL3候補承認済みだが、canonical昇格、IR admission、runtime実装は別工程とする。
+
 ## 1. typed model（型付きモデル）
 
 `DocumentArtifactV1`は最低限、次を保持する。

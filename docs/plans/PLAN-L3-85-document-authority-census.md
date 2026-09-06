@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-85-document-authority-census
+  approval_record_id: L3-PO-1381-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1381#issuecomment-5544538119"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1381 Document Authority CensusをL1/L3/L10へmaterializeする"
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1381
 behavior_contract_id: DOCUMENT-AUTHORITY-CENSUS-001
@@ -49,6 +59,7 @@ dependencies:
     - issue:1370
     - issue:1372
     - issue:1381
+    - issue:1580
   blocks:
     - issue:1372
 generates:
@@ -70,8 +81,10 @@ review_evidence: []
 
 ## Authority境界
 
-本PLANはdraftである。plan固有human approval前はcandidateをcanonical L1/L3/L10、Requirement IR、runtime、
-schema、DB、CLI、doctor、startup packetへ昇格しない。
+本PLANはIssue #1381のtyped human gate recordでL3候補承認済みである。canonical L1/L3/L10昇格、Requirement IR、runtime、
+schema、DB、CLI、doctor、startup packetへの反映は別工程とし、draftとcompletion falseを維持する。
+
+承認対象は承認時点main `ab6126a89262c91ecc4b87a0b8f0b9724917c84b` の3候補本文である。frontmatterを除いたSHA-256はrequests `dbaacd0c908f507d4b77dd51782b35615c696c091069d771d638088f97db7a0f`、requirements `52380a9d84a3b9544f2650d2a7c3d2d54fa317338a5cc3f3c2990ec448ed0ee3`、acceptance `c64cd941e1c9839e655cf3c9291aa638ae285ee458e2e0005df89db6900aaf82`で、意味集合はBR 5件、FR 10件、R 13件、AC 23件とする。
 
 ## 実装順
 
