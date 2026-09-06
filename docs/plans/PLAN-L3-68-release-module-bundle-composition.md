@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:09:30Z"
+  plan_id: PLAN-L3-68-release-module-bundle-composition
+  approval_record_id: L3-PO-1073-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1073#issuecomment-5544611825"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:2026-08-27 責務分離release計画を分解して要求へ取り込む"
 created: 2026-08-27
-updated: 2026-08-27
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1073
 behavior_contract_id: RELEASE-MODULE-BUNDLE-COMPOSITION-001
@@ -27,7 +37,7 @@ legacy_retirement_state: retained
 no_code_decision: no_change
 ddd_modeling_decision: value_object
 contract_preconditions: "#659、#856、DevOS authority、distribution catalog／builder／Lite canaryが存在する"
-contract_postconditions: "RLS-FR-001..004、RLS-R-01..12、RLS-AC-001..015、#1073〜#1086がL3↔L10へ束縛される"
+contract_postconditions: "RLS-FR-001..004、RLS-R-01..13、RLS-AC-001..016、#1073〜#1086がL3↔L10へ束縛される"
 contract_invariants: "HELIX-HARNESSを唯一の意味authorityとし、Module／Bundle／capability／workflow／repository軸を混同しない"
 contract_failures: "owner重複、dependency cycle、artifact tamper、static-before-trusted違反、Lite先行削除、未完module stable化をfail-closeする"
 tdd_red_required: false
@@ -59,6 +69,7 @@ dependencies:
     - docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md
   references:
     - docs/plans/PLAN-L3-66-system-synthesis-requirements.md
+    - issue:1580
   blocks:
     - issue:1074
     - issue:1075
@@ -78,5 +89,13 @@ dependencies:
 # Release Module／Bundle composition要求authority
 
 PO指示書を提案sourceとして全編棚卸しし、既存#659／#856／#938／#1033と重複しないrelease composition差分を
-L3／L10／roadmap／Issue graphへ移した。confirmは要求採用を示すが、Module実装完了、stable到達、tag、publish、cutoverの
-許可ではない。`completion_claim_allowed`はchild実装とmain／DevOS read-afterが閉じるまでfalseを維持する。
+L3／L10／roadmap／Issue graphへ移した。本PLANはIssue #1073のtyped human gate recordでL3候補承認済みである。
+承認は要求候補を正本化工程へ進めるものであり、Module実装完了、stable到達、tag、publish、cutoverの許可ではない。
+`status: draft`と`completion_claim_allowed: false`はchild実装とmain／DevOS read-afterが閉じるまで維持する。
+
+承認対象は承認時点に成立していた現行Release Module／Bundle authorityのexact setである。frontmatterを除いたSHA-256は
+L3 requirements `45efd8f14e84bd4d561baf388dd8db300ea0640cce98ee2e1577ecfbfc3182e7`、L10 acceptance
+`fe2414c1239cb0757c03359f6c2b1c0e5bc9f97c0694c9ad78eab8613a9d9a09`、rollout roadmap projection
+`0f834413b0be1e7811e56ac4fd4541a53e375d693701952a2fa4b330028d06bd`で、意味集合はRLS-FR 4件、RLS-R 13件、
+RLS-AC 16件とする。初期compositionのModule 11件／Bundle 8件と、lifecycle extensionのshadow Module 4件／
+Bundle 1件は別集合として保持する。#1494 Functional Release Sliceは別candidate authorityであり、本承認へ暗黙包含しない。
