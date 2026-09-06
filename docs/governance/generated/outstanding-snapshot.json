@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 81,
+  "decision_count": 83,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -15,6 +15,7 @@
     "PLAN-L3-24-github-environment-promotion",
     "PLAN-L3-25-github-update-lifecycle",
     "PLAN-L3-26-github-plan-workflow-governance",
+    "PLAN-L3-659-commercial-license-policy",
     "PLAN-L3-68-release-module-bundle-composition",
     "PLAN-L3-69-worker-context-boundary-compiler",
     "PLAN-L3-77-refactoring-trigger-authority",
@@ -37,6 +38,7 @@
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
     "PLAN-L7-146-serverless-readonly-share",
+    "PLAN-L7-1574-cli-summary-fixture",
     "PLAN-L7-425-system-review-issue-handoff",
     "PLAN-L7-442-quality-sweep-successor-clusters",
     "PLAN-L7-447-qs4-doctor-context-inventory",

@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-06T01:12:10Z"
+  plan_id: PLAN-L3-90-requirement-formation-scoped-admission
+  approval_record_id: L3-PO-1556-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1556#issuecomment-5555999342"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -13,9 +23,9 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REDESIGN
 entry_signals:
-  - "po_directive: 2原稿を候補へ整理し保全後削除する明示依頼。新policy承認ではない"
+  - "po_directive: 2原稿の候補整理依頼と、後日の対象要件GOを区別して記録する"
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1556
 behavior_contract_id: REQUIREMENT-FORMATION-SCOPED-ADMISSION-AUTHORITY-001
@@ -25,7 +35,7 @@ change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
 backprop_decision: not_required
-backprop_decision_reason: "未承認の上流候補のみでcurrentやruntimeへ先行投影しない。"
+backprop_decision_reason: "承認済み候補を独立検収・正本昇格より前にcurrentやruntimeへ先行投影しない。"
 no_code_decision: no_change
 ddd_modeling_decision: policy
 contract_preconditions: "2原稿とDiscovery、Authoring Admission、Requirement Re-entryを照合できる"
@@ -33,7 +43,7 @@ contract_postconditions: "3 BR、12要件、18 AC、3 OPと原稿traceを候補�
 contract_invariants: "意味採否・技術freeze・実行認可を分離し未承認policyを稼働しない"
 contract_failures: "相談の承認化、自己権限拡張、旧承認流用、原稿欠落、無関係scope停止を拒否"
 tdd_red_required: false
-tdd_red_waiver_reason: "未承認候補のみ。原文一致、ID、trace、参照を検証しruntimeを変更しない。"
+tdd_red_waiver_reason: "候補整理と対象revisionの承認記録のみ。原文一致、ID、trace、参照を検証しruntimeを変更しない。"
 complexity_effect: net_negative
 complexity_justification: "既存Discovery、Authoring、Re-entry、GitHub入口を再利用し別engineを作らない。"
 removal_trigger: "候補承認・独立検収・canonical version-up・main read-after・IR admission後にcurrentへ移管"
@@ -59,6 +69,7 @@ dependencies:
     - issue:1534
     - issue:1494
     - issue:1500
+    - issue:1580
   blocks: []
 generates:
   - { artifact_path: docs/governance/candidates/requirement-formation-scoped-admission-requests.md, artifact_type: markdown_doc }
@@ -78,7 +89,10 @@ review_evidence: []
 # 要求形成と影響限定Admissionの候補整理
 
 #1556が候補所有。RF/RC/GHの後続runtimeは責務別に分離する。
-現行policy・IR・runtimeを変更しない。新自動化policyは明示承認後に正規version-upする。
+現行policy・IR・runtimeを変更しない。L3-PO-1556-001で候補要件の承認を記録し、独立検収後に正規version-upする。
+承認対象revisionはv0.1。PLAN/requests/requirements/acceptance/recognitionの承認時SHA-256は
+Issue #1556のtyped human gate recordにexact setとして固定し、意味変更版へ無条件に流用しない。
+承認後candidate statusの許容語彙と遷移を機械拘束する後続authority/runtime責務はIssue #1580が所有する。
 原文保全、3 BR→12要件→18 AC→3 OP、全原稿移管traceと独立検収を収束条件とする。
 原稿削除はGit保全・原文一致の検証後だけ実施し、共有rootの他作業は変更しない。
-main未統合・L3未承認・runtime未実装を完成としない。5 PR上限を維持し、空き枠で候補PR化する。
+main未統合・独立検収前・runtime未実装を完成としない。5 PR上限を維持し、空き枠で候補PR化する。

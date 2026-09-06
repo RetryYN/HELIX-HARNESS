@@ -25,6 +25,22 @@ pair_artifact: docs/design/helix/L6-function-design/current-location-summary-typ
 | U-CLSO-006 | schema mutation | summary schema v2をv1へ退行させるmutationをproduction-root regressionが検出する | `tests/cli-surface.test.ts` |
 | U-CLSO-007 | downstream summary contract | project-frontier／vmodel-fit command mapから`drive_model`を除去し、`workflow_route`をcurrent-locationへ束縛する。旧object／key／command literalの再混入を拒否 | `tests/summary-surface-audit.test.ts` |
 | U-CLSO-008 | project/tree summary projection | project-frontierとtree-view outlineが`workflow_identity`／`workflow_route`を返し、top-level `drive_model`を再出力しない | `tests/cli-surface.test.ts` |
+| U-JRSTAT-001 | status JSON/textのレビュー証拠投影 | human・cross_agent・intra_runtime_subagentを区別し、単一runtimeでは既存4項目のchecklist説明をexact照合する。textにJSONの必要証拠と各IDが全件現れる。3方式すべてを固定fixtureで実行した証拠とは数えず、方式判定自体は`tests/gate-review-tier.test.ts`と分担する | `tests/cli-surface.test.ts` |
 
 旧compatibility commandの内部出力をpositive oracleにしない。legacy greenでcurrent summaryの
 canonical failureを相殺しない。
+
+## 同一シナリオの検証準備共有（PLAN-L7-1574）
+
+U-CLSO-001/003/004/005/006は同じrepository入力を検証するため、専用describeのbeforeAllで
+text／JSON／summaryの実CLIを各一回起動する。各oracleとassertionは独立に残し、
+当該describe内で出力文字列のみを共有する。後続のテスト実行へ結果を永続化しない。
+準備hookではCLIの終了statusをassertしない。失敗出力も各oracleへ渡し、
+各caseが自身の終了statusと内容を検査する。CLI失敗で全caseをskipへ変えてはならない。
+各CLIはdefaultのin-memory DB再構築を実行し、古いDBの読込みへ置換しない。
+
+入力やsourceを変更する反例は同じ共有結果で検証してはならない。U-CLSO-002の
+authority欠落fixtureは共有対象外とする。schema／text変異は別のVitest実行でbundleと
+出力を再生成して検証し、正常状態への復元後にも再実行する。
+このdescribeをconcurrent化せず、準備後にrepositoryを書き換えるテストを追加しない。
+同一シナリオを共有できない検査は別fixtureへ分ける。
