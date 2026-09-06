@@ -1795,6 +1795,24 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         ].join("\n"),
         { mode: 0o755 },
       );
+      // このtestの責務はCLIのattestation bridgeであり、現在branch上のPLAN差分ではない。
+      // merge admissionへPLAN bindingが追加されても架空HEADをreal Gitへ渡して偶然失敗しないよう、
+      // fixture HEADと「変更PLANなし」をfake Gitで固定し、それ以外はreal Gitへ委譲する。
+      const realGit = execFileSync("which", ["git"], { encoding: "utf8" }).trim();
+      writeFileSync(
+        join(sandbox, "git"),
+        [
+          "#!/bin/sh",
+          'if [ "$1" = "rev-parse" ] && [ "$2" = "HEAD" ]; then',
+          `  printf '%s\\n' ${JSON.stringify("d".repeat(40))}`,
+          'elif [ "$1" = "diff" ] && [ "$2" = "--name-only" ]; then',
+          "  exit 0",
+          "else",
+          `  exec ${JSON.stringify(realGit)} "$@"`,
+          "fi",
+        ].join("\n"),
+        { mode: 0o755 },
+      );
 
       let runIndex = 0;
       const runCli = (args: string[]) => {
