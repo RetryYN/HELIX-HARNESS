@@ -29,7 +29,7 @@ updated: 2026-09-07
 owner: Codex / TL
 github_issue_id: 1595
 behavior_contract_id: RULE-DERIVATION-001
-responsibility_owner: rule-derivation
+responsibility_owner: requirements-authority-materialization
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: dual_green
