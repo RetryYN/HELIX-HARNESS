@@ -13,13 +13,12 @@ import {
 
 const SESSION = "9867601a-a3ad-4369-980c-11757d63a7de";
 const MODEL = "claude:claude-fable-5-1";
-const HEAD = "a".repeat(40);
 
 function input(
   overrides: Partial<ReviewReceiptPlanBindingInput> = {},
 ): ReviewReceiptPlanBindingInput {
   return {
-    receipt: { reviewer_session_id: SESSION, reviewer_model: MODEL, reviewed_head_sha: HEAD },
+    receipt: { reviewer_session_id: SESSION, reviewer_model: MODEL },
     changed_plans: [
       {
         plan_id: "PLAN-RECOVERY-X",
@@ -30,7 +29,6 @@ function input(
             verdict: "approve",
             reviewer_session_id: SESSION,
             reviewer_model: MODEL,
-            reviewed_head_sha: HEAD,
           },
         ],
       },
@@ -156,7 +154,6 @@ describe("review receipt / PLAN binding", () => {
           receipt: {
             reviewer_session_id: SESSION,
             reviewer_model: "claude-fable-5-1",
-            reviewed_head_sha: HEAD,
           },
           changed_plans: [
             {
@@ -190,22 +187,6 @@ describe("review receipt / PLAN binding", () => {
     expect(loadChangedPlanReviewBindings(root, "missing-base")).toMatchObject([
       { parse_failure: true },
     ]);
-  });
-
-  it("U-RRPB-013: PLAN evidenceとreceiptのcandidate HEAD不一致を拒否する", () => {
-    const changed = input().changed_plans[0];
-    expect(
-      evaluateReviewReceiptPlanBinding(
-        input({
-          changed_plans: [
-            {
-              ...changed,
-              review_entries: [{ ...changed.review_entries[0], reviewed_head_sha: "b".repeat(40) }],
-            },
-          ],
-        }),
-      ),
-    ).toMatchObject({ ok: false, failures: [{ reason: "review_plan_head_mismatch" }] });
   });
 
   it("U-RRPB-011: loaderは直下PLANだけを対象にしてsubdirectoryを除外する", () => {

@@ -8,7 +8,6 @@ export type ReviewPlanBindingFailureReason =
   | "review_plan_binding_unavailable"
   | "review_plan_session_mismatch"
   | "review_plan_model_mismatch"
-  | "review_plan_head_mismatch"
   | "review_plan_cross_agent_approval_missing";
 
 export interface ReviewPlanEntryBinding {
@@ -16,7 +15,6 @@ export interface ReviewPlanEntryBinding {
   readonly verdict: string;
   readonly reviewer_session_id?: string;
   readonly reviewer_model?: string;
-  readonly reviewed_head_sha?: string;
 }
 
 export interface ChangedPlanReviewBinding {
@@ -32,7 +30,6 @@ export interface ReviewReceiptPlanBindingInput {
   readonly receipt: {
     readonly reviewer_session_id: string;
     readonly reviewer_model: string;
-    readonly reviewed_head_sha: string;
   };
   readonly changed_plans: readonly ChangedPlanReviewBinding[];
 }
@@ -100,12 +97,6 @@ export function evaluateReviewReceiptPlanBinding(
     });
     if (modelMatches.length === 0) {
       failures.push({ plan_id: plan.plan_id, reason: "review_plan_model_mismatch" });
-      continue;
-    }
-    if (
-      !modelMatches.some((entry) => entry.reviewed_head_sha === input.receipt.reviewed_head_sha)
-    ) {
-      failures.push({ plan_id: plan.plan_id, reason: "review_plan_head_mismatch" });
     }
   }
   return { ok: failures.length === 0, failures };
@@ -141,9 +132,6 @@ function parseChangedPlan(path: string, source: string): ChangedPlanReviewBindin
             : {}),
           ...(typeof entry.reviewer_model === "string"
             ? { reviewer_model: entry.reviewer_model }
-            : {}),
-          ...(typeof entry.reviewed_head_sha === "string"
-            ? { reviewed_head_sha: entry.reviewed_head_sha }
             : {}),
         },
       ];

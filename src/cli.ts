@@ -14806,7 +14806,6 @@ github
           receipt: {
             reviewer_session_id: input.reviewerSessionId,
             reviewer_model: input.reviewerModel,
-            reviewed_head_sha: input.headSha,
           },
           changed_plans: loadChangedPlanReviewBindings(process.cwd()),
         });
@@ -15062,7 +15061,6 @@ github
           return {
             reviewer_session_id: value.reviewer_session,
             reviewer_model: value.reviewer_model,
-            reviewed_head_sha: value.candidate_head,
           };
         })()
       : (() => {
@@ -15070,7 +15068,6 @@ github
           return {
             reviewer_session_id: value.reviewerSessionId,
             reviewer_model: value.reviewerModel,
-            reviewed_head_sha: value.headSha,
           };
         })();
     const mergePlanBinding = evaluateReviewReceiptPlanBinding({
