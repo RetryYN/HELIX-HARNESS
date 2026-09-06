@@ -23,6 +23,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REDESIGN
 entry_signals:
+  - "po_directive: World Governance原稿を取り込み保全後削除する明示依頼のみ。要件承認・相談の指示化ではない"
   - "po_directive: issue:1500 のtyped human gate recordでWorld Governance候補を承認"
 created: 2026-09-06
 updated: 2026-09-06
