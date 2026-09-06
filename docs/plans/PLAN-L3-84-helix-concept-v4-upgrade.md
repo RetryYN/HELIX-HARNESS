@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-84-helix-concept-v4-upgrade
+  approval_record_id: L3-PO-1496-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1496#issuecomment-5544537992"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1496でHELIX Concept v4.0候補をL1／L3／L10へ最適化して取り込む"
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1496
 behavior_contract_id: HELIX-CONCEPT-V4-UPGRADE-001
@@ -56,6 +66,7 @@ dependencies:
     - "issue:1448"
     - "issue:1488"
     - "issue:1494"
+    - "issue:1580"
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md, artifact_type: markdown_doc }
@@ -80,8 +91,18 @@ review_evidence: []
 
 ## Authority境界
 
-本PLANはdraftである。plan固有human approvalまではcandidateをcurrent Concept、Requirement IR、runtime、
-DB、root READMEへ昇格しない。
+本PLANはIssue #1496のtyped human gate recordでL3候補承認済みである。承認は候補を正本化工程へ進めるものであり、
+current Concept、Requirement IR、runtime、DB、root READMEへの昇格を自動許可しない。`status: draft`と
+`completion_claim_allowed: false`は後続のcanonical promotionと実装・検証が閉じるまで維持する。
+
+承認対象は承認時点main `ab6126a89262c91ecc4b87a0b8f0b9724917c84b` のcandidate exact setである。frontmatterを除いた
+SHA-256はconcept `9b6ee7a9f9ed16ecc82e1dd4a5d06601cc0cb313fa03daa5887cfe8772a2e8ea`、requests
+`73e110258b8051906e1ac529d7c1ca857fc78a4c87b42291645348fa6f4f776a`、requirements
+`5ef79685facb3c0641ddd5b9ff716ba5e1043ba931217f9ce73904ecd948136e`、acceptance
+`59acaf43daa674a16ae3f42941e1623c5910f9715f6986fbf55cb43e2c374e30`、capability delta
+`af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc`、README projection
+`d38b8e37b21440cdd5056f0863c7b6bf569205d6342e7c55d25b7de38239b789`で、意味集合はHCV4-BR 6件、
+HCV4-FR 18件、HCV4-AC 22件とする。
 
 ## 実装順
 
