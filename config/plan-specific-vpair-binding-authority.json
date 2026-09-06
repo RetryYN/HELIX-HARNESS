@@ -215,7 +215,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-313-g9-g10-workflow-gate.md",
-      "plan_semantic_digest": "sha256:09ab435623dfc581667d819f2cd431e7db5ecd6910abaed6fe2033541fa0cc3b"
+      "plan_semantic_digest": "sha256:3a16bf407a188672385ac84ab339733dfb7a37a10c6e35a0974c79c841617b3a"
     },
     {
       "fingerprint": "sha256:1dc7581e1395f6786301095e4b8e5f793544b26980c5f5ee2e860ec4ac2b90d5",
@@ -591,7 +591,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-312-d-contract-dsl.md",
-      "plan_semantic_digest": "sha256:f01344ef4f371891fae67e3699f22abc133e5c680d63ce3ddd3979bae0b6b1af"
+      "plan_semantic_digest": "sha256:4c0cbc58ff7b4bab1c03c8ca577aaab1edf15af92e4a3399af0a263c589468ba"
     },
     {
       "fingerprint": "sha256:4aeca865ef85f3bf42b9e817ef88ae2f7c9c9ca0b9377193281679f7f6fdf36c",
@@ -607,7 +607,7 @@
       "reason": "verification_bindings_absent",
       "detail": null,
       "plan_path": "docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md",
-      "plan_semantic_digest": "sha256:6338e898a841838cc22aaef3ab36944d2c56563edc4c4939b034552acb2a9bdf"
+      "plan_semantic_digest": "sha256:4faeeb3e3a41456dbb0add9ba4f9fab4979a289f469c9ea8cb3eb3601d7b13a7"
     },
     {
       "fingerprint": "sha256:4b7f4dd29aed1919613912a7b0f05ebbf9d127e8b8bff6ebb36a924a977e4ceb",
@@ -2296,8 +2296,8 @@
       "resolved_at": "2026-07-11T18:03:20Z",
       "resolution_plan_id": "PLAN-L7-424-fe-roster-vpair-resolution",
       "resolution_plan_semantic_digest": "sha256:81b22ae106c2d579359f6f770d4788a8cca6262a122eaab550461ef3760b6c79",
-      "previous_digest": "sha256:8e54f91491afb4a2fee00704b0c3acaa72174a8e4e57f3ea00a010b9e23e3e31",
-      "entry_digest": "sha256:d667c81fd7ef1d75408f53b3089f614f4cc911c6c75888072d1f7e4115f78174"
+    "previous_digest": "sha256:5966ee23c7653009b6101203e72ddb024b677f3af8bf4de6e463980b75181f14",
+    "entry_digest": "sha256:c7c001d91f98fddd6f522a9b9ab5be292e937cd25a486ecf16ff6812e2af958f"
     }
   ],
   "recoveryAuthority": {
