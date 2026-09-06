@@ -9,6 +9,8 @@ import {
 import { buildVersionUpActivationPackets } from "../src/lint/version-up-readiness";
 import { classifyHighImpactApprovalRequirement } from "../src/lint/workflow-decision-packets";
 
+// PLAN-RECOVERY-1431-action-binding-approval-readiness
+
 const RIGHT_ARM = [
   "Action-binding approval decision record",
   "action_binding_approval_record",
@@ -129,8 +131,7 @@ function currentVersionUpSnapshotId(
 }
 
 describe("action-binding approval readiness", () => {
-  it("U-ABR-003/U-ABR-004/U-ABR-006: classifies high-impact approval requirements by bounded sentence context", () => {
-    // U-ABR-006: 説明専用の参照行を実行要求へ昇格しない。
+  it("U-ABR-006: ignores explicit non-execution reference material", () => {
     expect(
       classifyHighImpactApprovalRequirement(
         [
@@ -140,6 +141,9 @@ describe("action-binding approval readiness", () => {
         ].join("\n"),
       ).required,
     ).toBe(false);
+  });
+
+  it("classifies existing high-impact approval requirement forms", () => {
     expect(
       classifyHighImpactApprovalRequirement(
         "production auth infrastructure deploy requires PO signoff before execution",
@@ -158,18 +162,22 @@ describe("action-binding approval readiness", () => {
       required: true,
       reason: "high_impact_action_binding_required",
     });
+  });
+
+  it("U-ABR-004: detects an approval obligation in bounded adjacent sentences", () => {
     expect(
       classifyHighImpactApprovalRequirement(
         "本番環境に影響する。 実行前に PO 承認が必要。承認証跡を記録する。",
       ).required,
     ).toBe(true);
-    // U-ABR-004: targetとapproval obligationが隣接文へ分かれても検出する。
+  });
+
+  it("U-ABR-003: does not let a generic evidence word suppress approval", () => {
     expect(
       classifyHighImpactApprovalRequirement(
         "Production deployment requires human approval before execution. 証跡",
       ).required,
     ).toBe(true);
-    // U-ABR-003: 一般語「証跡」を追加してもrequiredを相殺しない。
   });
 
   it("accepts pending high-impact approval plans only when they carry structured records", () => {

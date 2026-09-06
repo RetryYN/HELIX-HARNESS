@@ -43,6 +43,8 @@ generates:
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: src/lint/design-coverage.ts, artifact_type: source_module }
   - { artifact_path: src/lint/shared.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/lint/action-binding-approval-readiness.ts, artifact_type: source_module }
