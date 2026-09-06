@@ -1,3 +1,27 @@
-command: npx tsc --noEmit -p .
-exit_code: 0
-result: success; stdout and stderr were empty
+Files:                         1370
+Lines of Library:             11737
+Lines of Definitions:         83350
+Lines of TypeScript:         395377
+Lines of JavaScript:              0
+Lines of JSON:                    0
+Lines of Other:                   0
+Identifiers:                 709373
+Symbols:                    1446272
+Types:                       438936
+Instantiations:              845950
+Memory used:               1312305K
+Assignability cache size:    129043
+Identity cache size:          14553
+Subtype cache size:           23142
+Strict subtype cache size:     8777
+I/O Read time:                0.08s
+Parse time:                   1.04s
+ResolveModule time:           0.08s
+ResolveTypeReference time:    0.00s
+ResolveLibrary time:          0.00s
+Program time:                 1.32s
+Bind time:                    0.65s
+Check time:                  10.39s
+printTime time:               0.00s
+Emit time:                    0.00s
+Total time:                  12.35s

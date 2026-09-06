@@ -40,7 +40,7 @@ red_at: "2026-09-06T19:45:27Z"
 green_at: "2026-09-06T21:25:16Z"
 mutation_oracle_required: true
 mutation_oracle: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 と tests/claude-pr-convergence.test.ts::U-CPRCONV-020 が session、model、review_kind、status、PLAN path、seal/merge callsiteのseeded defectを個別にfail-closeしてkillする。"
-mutation_oracle_evidence: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session/model/review_kind/status/PLAN path、accepted status、base非terminal→HEAD terminal母集団、Git取得・parse失敗、provider prefix、local candidate HEAD不一致を、tests/claude-pr-convergence.test.ts::U-CPRCONV-020 がmerge callsiteのterminal PLAN session不一致をrequired checks参照前に独立してfail-closeする。Claude clean clone実測は .helix/evidence/review-1605/vitest-targeted.log（7 files / 246 tests passed、sha256:2c87f53e8b76254d2baf12089d630d2f07b783cd4bef416f980a0b9a64b153d5）。"
+mutation_oracle_evidence: "tests/review-receipt-plan-binding.test.ts::U-RRPB-002..013 が session/model/review_kind/status/PLAN path、accepted status、base非terminal→HEAD terminal母集団、Git取得・parse失敗、provider prefix、local candidate HEAD不一致を、tests/claude-pr-convergence.test.ts::U-CPRCONV-020 がmerge callsiteのterminal PLAN session不一致をrequired checks参照前に独立してfail-closeする。Claude clean clone実測は .helix/evidence/review-1605/vitest-targeted.log（7 files / 246 tests passed、sha256:287be3005652ec16d16373f10cfab7eb6ea3b46187f5c3606368593746d34e02）。"
 parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md
 pair_artifact: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md
 verification_bindings:
@@ -99,54 +99,54 @@ modifies:
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
-    reviewed_at: "2026-09-06T21:28:26Z"
-    tests_green_at: "2026-09-06T21:25:35Z"
+    reviewed_at: "2026-09-06T22:52:30Z"
+    tests_green_at: "2026-09-06T22:49:52Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
-    reviewed_head_sha: 9fb4e09c87b111c4281980b366ff0ef0651a6ccc
-    scope: "独立reviewとclean clone実測は https://github.com/RetryYN/HELIX-HARNESS/pull/1605#issuecomment-5562295603 。doctor exit 1は環境起因4件を含むためgreen commandへ昇格しない。旧HEADのred evidenceは再利用していない。"
+    reviewed_head_sha: 09302cb04c8245d1c60b884025a74f5efda14dd1
+    scope: "独立reviewとclean clone再実測は https://github.com/RetryYN/HELIX-HARNESS/pull/1605#issuecomment-5562747275 。doctor exit 1は環境起因4件と差替前の空tsc artifactを含むためgreen commandへ昇格しない。旧HEADのred／空artifact evidenceは再利用していない。"
     green_commands:
       - kind: smoke
         command: "npm ci --no-audit --no-fund"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-09-06T21:19:14Z"
+        completed_at: "2026-09-06T22:43:26Z"
         evidence_path: .helix/evidence/review-1605/npm-ci.log
-        output_digest: "sha256:54490d686dbd1d8d3fe247f035b7eec1d4574ae6863a51d3f47457e8014a570c"
+        output_digest: "sha256:cc76df147bbb2b62c2264ce72f33bed6a0e076f22f02995443a68a87312da0b5"
       - kind: unit_test
         command: "npx vitest run tests/review-receipt-plan-binding.test.ts tests/cli-surface.test.ts tests/review-evidence.test.ts tests/digest.test.ts tests/feedback-refactor-disposition.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/plan-descent-specific-parent-binding.test.ts"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-06T21:25:16Z"
+        completed_at: "2026-09-06T22:49:29Z"
         evidence_path: .helix/evidence/review-1605/vitest-targeted.log
-        output_digest: "sha256:2c87f53e8b76254d2baf12089d630d2f07b783cd4bef416f980a0b9a64b153d5"
+        output_digest: "sha256:287be3005652ec16d16373f10cfab7eb6ea3b46187f5c3606368593746d34e02"
       - kind: typecheck
-        command: "npx tsc --noEmit -p ."
+        command: "npx tsc --noEmit -p . --extendedDiagnostics"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-09-06T21:25:25Z"
+        completed_at: "2026-09-06T22:49:42Z"
         evidence_path: .helix/evidence/review-1605/tsc.log
-        output_digest: "sha256:1220d5cd6646c8095f0a6d1950151d5f40ef47af60db8c975e79b691ae29e8da"
-        result: "exit 0; stdout and stderr were empty"
+        output_digest: "sha256:bca5556536be5819de89c816bfee8d2b15d775efdf0fb0ca560edbabaa5b0dec"
+        result: "exit 0; tsc extended diagnostics 972 bytes; Files 1370"
       - kind: lint
         command: "npx biome check src tests"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-09-06T21:25:26Z"
+        completed_at: "2026-09-06T22:49:43Z"
         evidence_path: .helix/evidence/review-1605/biome.log
-        output_digest: "sha256:32d96fa659607c2871345e6c8733106513a76ca73c09504c20a32313ff14ada8"
+        output_digest: "sha256:eb15a4da8c6a95ecbe0609fc78c694a5293bf73981e7fa20beedb617d9dc020f"
       - kind: lint
         command: "npx tsx src/cli.ts plan lint"
         runner: node
         scope: full
         exit_code: 0
-        completed_at: "2026-09-06T21:25:35Z"
+        completed_at: "2026-09-06T22:49:52Z"
         evidence_path: .helix/evidence/review-1605/plan-lint.log
         output_digest: "sha256:b3e679521694d41be8a60f5b7f1977553da6eed9268396b94f6741ba732592b9"
 ---

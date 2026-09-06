@@ -412,6 +412,6 @@ tests/worker-isolation-broker.test.ts:79:3 lint/correctness/noUnusedImports  FIX
 
 The number of diagnostics exceeds the limit allowed. Use --max-diagnostics to increase it.
 Diagnostics not shown: 6.
-Checked 1093 files in 434ms. No fixes applied.
+Checked 1093 files in 504ms. No fixes applied.
 Found 25 warnings.
 Found 1 info.

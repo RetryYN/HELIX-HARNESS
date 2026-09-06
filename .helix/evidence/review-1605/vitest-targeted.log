@@ -34,6 +34,6 @@ hint: 	git branch -m <name>
 
  Test Files  7 passed (7)
       Tests  246 passed (246)
-   Start at  06:19:14
-   Duration  387.17s (transform 1.32s, setup 0ms, import 1.93s, tests 384.53s, environment 1ms)
+   Start at  07:43:26
+   Duration  393.53s (transform 1.27s, setup 0ms, import 1.93s, tests 390.92s, environment 0ms)
 
