@@ -71,6 +71,7 @@
     "PLAN-RECOVERY-1562-durable-loop-completion",
     "PLAN-RECOVERY-1566-worktree-path-identity",
     "PLAN-RECOVERY-1568-rebuild-plan-snapshot",
+    "PLAN-RECOVERY-1573-isolation-launch-cleanup",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
     "PLAN-RECOVERY-67-claude-native-memory-isolation",

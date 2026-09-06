@@ -4,6 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+// PLAN-RECOVERY-1573-isolation-launch-cleanup
 
 // PLAN-L7-504-worker-blind-benchmark
 import { checkDesignRealityBinding } from "../src/doctor/index";
@@ -329,13 +330,29 @@ function executeIsolationMutationOracle(
   const moduleName = `worker-isolation-broker.mutant-${id}.ts`;
   const modulePath = `src/runtime/${moduleName}`;
   const testPath = `tests/worker-isolation-broker.mutant-${id}.test.ts`;
+  const helperModuleName = `worker-isolation-fixture.mutant-${id}.ts`;
+  const helperPath = `tests/helpers/${helperModuleName}`;
+  const helper = readFileSync("tests/helpers/worker-isolation-fixture.ts", "utf8");
+  // fixtureと検査対象が同じsealed capability registryを使うよう束縛する。
+  writeFileSync(
+    helperPath,
+    helper.replaceAll(
+      'from "../../src/runtime/worker-isolation-broker"',
+      `from "../../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
   writeFileSync(modulePath, runtime.replace(target, replacement));
   writeFileSync(
     testPath,
-    test.replace(
-      'from "../src/runtime/worker-isolation-broker"',
-      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
-    ),
+    test
+      .replace(
+        'from "../src/runtime/worker-isolation-broker"',
+        `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+      )
+      .replaceAll(
+        'from "./helpers/worker-isolation-fixture"',
+        `from "./helpers/${helperModuleName.slice(0, -3)}"`,
+      ),
   );
   try {
     execFileSync(
@@ -351,6 +368,7 @@ function executeIsolationMutationOracle(
   } finally {
     unlinkSync(testPath);
     unlinkSync(modulePath);
+    unlinkSync(helperPath);
   }
 }
 
@@ -1060,6 +1078,28 @@ runtimeCommand("claude");
         "false",
         "U-WWA-007",
       ),
+    ).toBe(true);
+  }, 120_000);
+
+  it("U-WIB-CLEANUP-004: 無変更module複製をmutation killと数えない", () => {
+    expect(
+      executeIsolationMutationOracle(
+        "sealedLaunches.delete(launch);",
+        "sealedLaunches.delete(launch);",
+        "U-WIB-CLEANUP-001",
+      ),
+    ).toBe(false);
+  });
+
+  it("U-WIB-CLEANUP-005: 消費・両FD回収の欠落を検出する", () => {
+    expect(
+      executeIsolationMutationOracle("sealedLaunches.delete(launch);", "", "U-WIB-CLEANUP-002"),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle("closeSync(resources.backendFd);", "", "U-WIB-CLEANUP-001"),
+    ).toBe(true);
+    expect(
+      executeIsolationMutationOracle("closeSync(resources.runtimeFd);", "", "U-WIB-CLEANUP-001"),
     ).toBe(true);
   }, 120_000);
 
