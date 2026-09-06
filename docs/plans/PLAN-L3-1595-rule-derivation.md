@@ -75,3 +75,11 @@ review_evidence: []
 要求・要件・受入の対応をレビューし、canonical merge/read-after、#397 admissionを経て実装する。
 G-R01..08とG-AC01..08の追跡を維持する。
 別要求の全体完成を前提にせず、同一startup編集・Policy受領だけ対象とdigest付き局所依存にする。
+
+## 承認束縛の検証境界
+
+Issue #1595へPLAN、候補3文書、bind commit、各内容digestを逆参照として記録し、承認を双方向に復元可能にする。
+`approved_at`は編集可能な本文時刻ではなくGitHub commentの`createdAt`を採用する。confirmed昇格前に
+review-evidence gateで`l3HumanApprovalViolations=0`を実測する。現状の
+`approved_pending_canonical_promotion`は既存慣行に沿う候補表示であり、未検証のままcurrent authorityやIRへ投影しない。
+approval source URL／record IDのexact照合とauthority status遷移の機械gateはcanonical promotion sliceで閉じる。
