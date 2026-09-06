@@ -140,7 +140,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-lint-version-up-readiness.ts:module-has-2802-nonblank-line-s-and-26-export-s-",
       "source_path": "src/lint/version-up-readiness.ts",
-      "source_file_sha256": "f39c64a52ed83dac5f5d86c4b2c35203642211a004c284d40e88a9cfc73cc98a",
+      "source_file_sha256": "3bd473c91f541a6a3a5e2a7ba106630dfae5c1ed96ed932219fc5521034a4f93",
       "family": "non_cli_module_decomposition"
     },
     {
