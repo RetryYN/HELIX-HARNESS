@@ -4,7 +4,7 @@ title: "正規workerのbudgetを停止・回収へ接続する"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-06
 updated: 2026-09-06
@@ -44,7 +44,27 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-06T16:32:23Z"
+    tests_green_at: "2026-09-06T16:32:23Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude-fable-5-1
+    reviewer_session_id: f669b04f-9521-47f2-92f2-adf6528adbe8
+    reviewed_head_sha: f1f389be7f8f63ab6a26a4d2e3121d520e94cf1d
+    scope: "PR #1602 exact HEAD f1f389be7の前回blocker B-1をread-only再検収。wrapperのSIGINT/SIGTERM/SIGHUPをprovider process groupのSIGTERM→grace→SIGKILL→reapへ合流させ、exit fenceとlistener cleanup、U-WBL-007の親子死亡反例を確認しblocker 0。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/provider-process-lifecycle.test.ts --reporter=dot"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-06T16:32:23Z"
+        evidence_path: tests/provider-process-lifecycle.test.ts
+        output_digest: "sha256:50d697006cbb5df648cc22f8567f06124bf10bea86bcdf1943182fbf90587360"
+        result: "1 file / 6 tests passed"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-001, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-002, test_path: tests/provider-process-lifecycle.test.ts }
