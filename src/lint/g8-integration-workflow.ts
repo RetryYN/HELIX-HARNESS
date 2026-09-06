@@ -83,6 +83,10 @@ const GATE_MARKERS = [
 const REQUIRED_IT_FAMILY_PREFIXES = ["IT-MODULE-", "IT-STATE-"] as const;
 const EVIDENCE_MANIFEST_SCHEMA = "g8-integration-evidence-v1";
 const EVIDENCE_DIR = ".helix/evidence/g8-integration";
+const ACTIVE_EVIDENCE_MANIFESTS = new Set([
+  "20260906-adapter-asset-evidence.json",
+  "20260906-module-state-evidence.json",
+]);
 const ALLOWED_EVIDENCE_PREFIXES = [".helix/evidence/", "docs/", "src/", "tests/"] as const;
 
 export function loadG8IntegrationWorkflowInput(
@@ -179,7 +183,7 @@ export function loadG8IntegrationEvidenceManifests(
   const dir = resolve(repoRoot, EVIDENCE_DIR);
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
-    .filter((name) => name.endsWith(".json"))
+    .filter((name) => ACTIVE_EVIDENCE_MANIFESTS.has(name))
     .sort()
     .map((name) => {
       const manifestPath = `${EVIDENCE_DIR}/${name}`;
