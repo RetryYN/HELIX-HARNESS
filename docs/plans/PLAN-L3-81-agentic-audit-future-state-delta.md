@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-81-agentic-audit-future-state-delta
+  approval_record_id: L3-PO-1409-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1409#issuecomment-5544537959"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Fable監査で発覚したagentic auditとfuture-state deltaの接続不足を最適化して要求・要件へ取り込む"
 created: 2026-09-02
-updated: 2026-09-02
+updated: 2026-09-06
 owner: Codex / TL
 github_issue_id: 1409
 behavior_contract_id: AGENTIC-AUDIT-FUTURE-DELTA-001
@@ -54,6 +64,7 @@ dependencies:
     - issue:1298
     - issue:1384
     - issue:1409
+    - issue:1580
   blocks:
     - issue:397
     - issue:1282
@@ -74,9 +85,11 @@ review_evidence: []
 
 # エージェント監査／将来状態差分authority
 
-本PLANはdraftである。plan固有のPO承認を受けるまでcandidateをcanonical L1/L3/L10、Requirement IR、runtime、DB、
-generated current docsへ昇格しない。既存L6のPR監査用`AuditFindingProposalV1`を変更・再定義せず、system audit
+本PLANはIssue #1409のtyped human gate recordでL3候補承認済みである。canonical L1/L3/L10昇格、Requirement IR、runtime、DB、
+generated current docsへの反映は別工程とし、draftとcompletion falseを維持する。既存L6のPR監査用`AuditFindingProposalV1`を変更・再定義せず、system audit
 proposalは`AgenticAuditProbeProposalV1`として別identityを持つ。
+
+承認対象は承認時点main `ab6126a89262c91ecc4b87a0b8f0b9724917c84b` の3候補本文である。frontmatterを除いたSHA-256はrequests `f76fe7c87f1dfda271518ea401a0bfe63321ae554c09ff48921061f35c978e10`、requirements `d4a2cd7e5f72494036da110f00f309219742d1bdcbd86f2b3244770b05d3788b`、acceptance `d2c2de810c7c787b4401864cb9c4c8faf19e17c06274fa97512c9853ae505236`で、意味集合はBR 4件、FR 4件、R 15件、AC 18件とする。
 
 ## 実装順
 
