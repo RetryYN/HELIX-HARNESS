@@ -5,7 +5,8 @@ canonical_layer: L12
 canonical_pair: L1
 canonical_vmodel: L1-L12
 status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+authority_status: approved_pending_canonical_promotion
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1552#issuecomment-5550657800"
 plan: PLAN-L3-89-mechanism-adequacy-authority
 related_issue: 1248
 pair_artifact: docs/governance/candidates/mechanism-adequacy-vision.md
