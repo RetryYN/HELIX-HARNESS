@@ -8058,97 +8058,93 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  it(
-    "U-WBL-010: projects a real CLI SIGINT to exit 130 and interruption JSON after provider reap",
-    async () => {
-      if (process.platform === "win32") return;
-      const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-sigint-"));
-      try {
-        const contextPath = installTestWorkerContextBoundary(root);
-        const binDir = join(root, "bin");
-        mkdirSync(binDir);
-        const fakeCodex = join(binDir, "codex");
-        const providerPidPath = join(root, "provider.pid");
-        writeFileSync(
-          fakeCodex,
-          [
-            "#!/bin/sh",
-            "if [ \"${1:-}\" = \"--version\" ]; then echo 'codex 1.0.0'; exit 0; fi",
-            "sleep 0.2",
-            `printf '%s' "$$" > "${providerPidPath}"`,
-            "trap '' INT TERM HUP",
-            "while :; do sleep 1; done",
-            "",
-          ].join("\n"),
-          { encoding: "utf8", mode: 0o755 },
-        );
-        chmodSync(fakeCodex, 0o755);
-        const env = {
-          ...process.env,
-          PATH: `${binDir}:${process.env.PATH ?? ""}`,
-          HELIX_CODEX_BIN: fakeCodex,
-        };
-        const child = spawn(
-          process.execPath,
-          [
-            cliBundlePath,
-            "codex",
-            "--role",
-            "se",
-            "--task",
-            "interrupt me",
-            "--execute",
-            "--json",
-            "--worker-context-file",
-            contextPath,
-          ],
-          { cwd: root, env, stdio: ["ignore", "pipe", "pipe"] },
-        );
-        let stdout = "";
-        let stderr = "";
-        child.stdout.setEncoding("utf8");
-        child.stderr.setEncoding("utf8");
-        child.stdout.on("data", (chunk: string) => {
-          stdout += chunk;
-        });
-        child.stderr.on("data", (chunk: string) => {
-          stderr += chunk;
-        });
-        const waitUntil = Date.now() + 5_000;
-        while (!existsSync(providerPidPath) && Date.now() < waitUntil) {
-          await new Promise((resolve) => setTimeout(resolve, 20));
-        }
-        expect(existsSync(providerPidPath)).toBe(true);
-        // provider pid publication can race the wrapper's post-spawn signal-handler installation.
-        // Linux /proc exposes caught-signal bits; wait for SIGINT (bit 1) rather than sleeping.
-        const handlerDeadline = Date.now() + 5_000;
-        while (Date.now() < handlerDeadline) {
-          const status = readFileSync(`/proc/${child.pid}/status`, "utf8");
-          const caught = status.match(/^SigCgt:\s+([0-9a-f]+)$/mu)?.[1];
-          if (caught && (BigInt(`0x${caught}`) & 2n) !== 0n) break;
-          await new Promise((resolve) => setTimeout(resolve, 20));
-        }
-        child.kill("SIGINT");
-        const exit = await new Promise<{ code: number | null; signal: NodeJS.Signals | null }>(
-          (resolve, reject) => {
-            child.once("error", reject);
-            child.once("exit", (code, signal) => resolve({ code, signal }));
-          },
-        );
-        expect(exit, JSON.stringify({ stdout, stderr })).toEqual({ code: 130, signal: null });
-        expect(JSON.parse(stdout)).toMatchObject({
-          interrupted_by: "SIGINT",
-          termination_stage: "kill_sent",
-          reaped: true,
-        });
-        const providerPid = Number(readFileSync(providerPidPath, "utf8"));
-        expect(() => process.kill(providerPid, 0)).toThrow();
-      } finally {
-        rmSync(root, { recursive: true, force: true });
+  it("U-WBL-010: projects a real CLI SIGINT to exit 130 and interruption JSON after provider reap", async () => {
+    if (process.platform === "win32") return;
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-sigint-"));
+    try {
+      const contextPath = installTestWorkerContextBoundary(root);
+      const binDir = join(root, "bin");
+      mkdirSync(binDir);
+      const fakeCodex = join(binDir, "codex");
+      const providerPidPath = join(root, "provider.pid");
+      writeFileSync(
+        fakeCodex,
+        [
+          "#!/bin/sh",
+          'if [ "$' + '{1:-}" = "--version" ]; then echo \'codex 1.0.0\'; exit 0; fi',
+          "sleep 0.2",
+          `printf '%s' "$$" > "${providerPidPath}"`,
+          "trap '' INT TERM HUP",
+          "while :; do sleep 1; done",
+          "",
+        ].join("\n"),
+        { encoding: "utf8", mode: 0o755 },
+      );
+      chmodSync(fakeCodex, 0o755);
+      const env = {
+        ...process.env,
+        PATH: `${binDir}:${process.env.PATH ?? ""}`,
+        HELIX_CODEX_BIN: fakeCodex,
+      };
+      const child = spawn(
+        process.execPath,
+        [
+          cliBundlePath,
+          "codex",
+          "--role",
+          "se",
+          "--task",
+          "interrupt me",
+          "--execute",
+          "--json",
+          "--worker-context-file",
+          contextPath,
+        ],
+        { cwd: root, env, stdio: ["ignore", "pipe", "pipe"] },
+      );
+      let stdout = "";
+      let stderr = "";
+      child.stdout.setEncoding("utf8");
+      child.stderr.setEncoding("utf8");
+      child.stdout.on("data", (chunk: string) => {
+        stdout += chunk;
+      });
+      child.stderr.on("data", (chunk: string) => {
+        stderr += chunk;
+      });
+      const waitUntil = Date.now() + 5_000;
+      while (!existsSync(providerPidPath) && Date.now() < waitUntil) {
+        await new Promise((resolve) => setTimeout(resolve, 20));
       }
-    },
-    20_000,
-  );
+      expect(existsSync(providerPidPath)).toBe(true);
+      // provider pid publication can race the wrapper's post-spawn signal-handler installation.
+      // Linux /proc exposes caught-signal bits; wait for SIGINT (bit 1) rather than sleeping.
+      const handlerDeadline = Date.now() + 5_000;
+      while (Date.now() < handlerDeadline) {
+        const status = readFileSync(`/proc/${child.pid}/status`, "utf8");
+        const caught = status.match(/^SigCgt:\s+([0-9a-f]+)$/mu)?.[1];
+        if (caught && (BigInt(`0x${caught}`) & 2n) !== 0n) break;
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+      child.kill("SIGINT");
+      const exit = await new Promise<{ code: number | null; signal: NodeJS.Signals | null }>(
+        (resolve, reject) => {
+          child.once("error", reject);
+          child.once("exit", (code, signal) => resolve({ code, signal }));
+        },
+      );
+      expect(exit, JSON.stringify({ stdout, stderr })).toEqual({ code: 130, signal: null });
+      expect(JSON.parse(stdout)).toMatchObject({
+        interrupted_by: "SIGINT",
+        termination_stage: "kill_sent",
+        reaped: true,
+      });
+      const providerPid = Number(readFileSync(providerPidPath, "utf8"));
+      expect(() => process.kill(providerPid, 0)).toThrow();
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 20_000);
 
   // IT-FLIFE-003: SessionStart integration oracle。feedback receipt batch の件数・replay 規律は
   // tests/feedback-lifecycle.test.ts の U-FLIFE-013 と対で検証し、この test の既存 memory surface 意味は維持する。
