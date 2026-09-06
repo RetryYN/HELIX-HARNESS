@@ -34,6 +34,8 @@ canonical failureを相殺しない。
 U-CLSO-001/003/004/005/006は同じrepository入力を検証するため、専用describeのbeforeAllで
 text／JSON／summaryの実CLIを各一回起動する。各oracleとassertionは独立に残し、
 当該describe内で出力文字列のみを共有する。後続のテスト実行へ結果を永続化しない。
+準備hookではCLIの終了statusをassertしない。失敗出力も各oracleへ渡し、
+各caseが自身の終了statusと内容を検査する。CLI失敗で全caseをskipへ変えてはならない。
 各CLIはdefaultのin-memory DB再構築を実行し、古いDBの読込みへ置換しない。
 
 入力やsourceを変更する反例は同じ共有結果で検証してはならない。U-CLSO-002の

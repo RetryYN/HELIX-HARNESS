@@ -3183,9 +3183,7 @@ describe("L7 CLI surface closure", () => {
         ["current-location", "--json"],
         ["current-location", "--summary-json"],
       ].map((args) => ({ args, run: runCli(args) }));
-      for (const { run } of outputs) {
-        expect(run.status, run.stderr || run.stdout).toBe(0);
-      }
+      // 成否は各oracleで検査する。準備hookで失敗させて全caseをskipしない。
     }, CLI_CHILD_TEST_WRAPPER_TIMEOUT_MS * 3);
 
     it("U-CLSO-001: PLAN-L7-672-current-location-summary-typed-output repository current-location routeをtyped identityへ投影する", () => {

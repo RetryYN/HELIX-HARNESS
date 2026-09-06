@@ -84,6 +84,16 @@ schemaとtextを退行させた変異が失敗し、復元後に成功するこ�
 
 ## 局所検証記録
 
+### 独立レビューI-1の是正
+
+beforeAllから終了statusのassertを除き、各oracleの既存status検査へ委ねる。
+2026-09-06 08:58:23開始、修正後U-CLSO-001〜006は6成功、50.50秒。
+08:59:54の一時変異では共有出力をstatus=1・診断文字列付きへ置換し、
+対象001/003/004/005/006が各々assertionで失敗した（5 failed、対象skip 0）。
+90 skippedは名前フィルタで選択していない別caseである。実CLI起動の成功証拠ではなく、
+準備失敗が各caseへ伝播することの試験。変異は実行後に撤去した。
+I-2のreview-tier oracleと上流pairの束縛、I-3の単一runtime変異は未回収。
+
 2026-09-06 06:48:03 JST、候補で6成功、48.43秒。型検査exit 0、governance1188件OK。
 06:49:48 JST、schema v1と旧drive-reverse-scopeを同時に注入した実験では、
 U-CLSO-005が旧text、006がschema不一致をそれぞれassertionで検出し2失敗（exit 1）。
