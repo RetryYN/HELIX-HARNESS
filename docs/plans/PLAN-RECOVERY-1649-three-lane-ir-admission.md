@@ -99,6 +99,11 @@ AC番号は全て3L-AC-接頭辞と3桁で扱う。各recordのdownstream_issue_
 Phase Aは必要な既存排他・予算・起動前後照合を満たして#1293で進める。Phase Bの#860全体完成や
 全Bench・7日/cycle完了を最初の限定実案件の着手条件へ逆流させない。
 
+AC025のPhase A実装・実consumer検証は#1293が担う。#860はAssignment／leaseのPhase B後継を
+所有し、IRの#860割当はその最終実装責務を表す。Phase Aでは#1293が既存排他の実効性を検証し、
+単一writerが成立しない対象への委譲を拒否する。#860のopen状態のみでPhase A全体を停止せず、
+Phase Aでの検証成功を#860全体やAC027の後継lease／fence完成へ読み替えない。
+
 ## 承認と原文
 
 L1/L3/L10の要求承認はL3-PO-1358-002（Issue #1358 comment 5557485431）。
@@ -134,3 +139,13 @@ materialへの意味・owner・source照合と独立review後、同じrevision�
 これは作成側の実測記録であり、独立review receiptやIR凍結の代用ではない。
 新規testを含むcandidate HEADのpost-merge-status判定とPLANの技術検収は、main/CIへの投入前に閉じる。
 未commit状態に対する同gateの成功を、commit後の候補HEADの成功とは数えない。
+
+## pre-PR技術レビューへの追従
+
+`b2071aaf`に対する独立session `9867601a-a3ad-4369-980c-11757d63a7de`のレビューは
+#1649上でapprove／blockers 0だった。I-1へPhase AのAC025実装担当を上記のとおり明記し、
+I-2へU-TLIR-MAT-001のFeatureごとのAC exact setを追加する。IR本文・owner・元承認は変更しない。
+変更後HEADは同レビューの対象外であり、再確認とPLAN検収を残す。
+
+M-1のbullet projection由来のbacktick表記、M-2のsourceに入力／操作列が無い点は残義務として保持する。
+前者を本データ登録で独自parserにより上書きせず、後者へ未承認の受入意味を追加しない。

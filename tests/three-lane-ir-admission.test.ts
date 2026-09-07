@@ -17,6 +17,16 @@ const GROUPS = [
   [18, 19, 20],
   [21, 22],
 ];
+const ACCEPTANCE_GROUPS = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9, 10],
+  [11, 12],
+  [13, 14, 15, 25, 26, 27],
+  [16, 17, 18],
+  [19, 20, 21, 22],
+  [23, 24],
+];
 const id = (kind: string, n: number, width: number) =>
   `3L-${kind}-${String(n).padStart(width, "0")}`;
 const root = process.cwd();
@@ -42,6 +52,9 @@ describe("three-lane IR material / PLAN-RECOVERY-1649", () => {
       expect(record.contract_requirement).toBeNull();
       expect(record.supporting_requirements.map((r) => r.requirement_id)).toEqual(
         GROUPS[i]?.map((n) => id("R", n, 2)),
+      );
+      expect(record.acceptance_cases.map((a) => a.acceptance_id)).toEqual(
+        ACCEPTANCE_GROUPS[i]?.map((n) => id("AC", n, 3)),
       );
       expect(record.plan_id).toBe("PLAN-L3-78-three-lane-cloud-governance-authority");
     }
