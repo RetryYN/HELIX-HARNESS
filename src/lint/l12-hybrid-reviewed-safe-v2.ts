@@ -4,7 +4,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #1594: L1/L3/L10/L12 canonical sourceへの一方向配置を列挙するPLAN。
     // 正規pairはL1↔L12・L3↔L10であり、旧L3↔L12 pairの再導入ではない。
     path: "docs/plans/PLAN-L3-1594-skill-mechanism-migration.md",
-    contentDigest: "7b7145043068d44ec30ed86b6f5f154cce060be11383c744314921001c5146e4",
+    contentDigest: "29d6c06f5d7c706be8bc1609f6c6dac6b9a6e179ccc1e42adf53e2dbd48f2776",
     finalDisposition: "false_positive",
   },
   {
