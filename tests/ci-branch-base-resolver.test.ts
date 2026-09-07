@@ -1,7 +1,7 @@
-import { chmodSync, mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
+import { execFileSync, spawnSync } from "node:child_process";
+import { chmodSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { execFileSync, spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
 // PLAN-RECOVERY-1633-ci-non-pr-base-authority
@@ -81,18 +81,18 @@ describe("non-PR branch base authority resolver", () => {
 
   it("U-CIBASE-001: non-PR multi-commit open PRはcurrent baseとのmerge-baseへ解決する", () => {
     for (const event of ["workflow_dispatch", "schedule", "push"]) {
-    const f = fixture();
-    writeGh(
-      f.bin,
-      `if [[ "$*" == *"pulls?state=open"* ]]; then
+      const f = fixture();
+      writeGh(
+        f.bin,
+        `if [[ "$*" == *"pulls?state=open"* ]]; then
   printf '%s\n' '[[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]]'
 else
   printf '%s\n' '{"head_sha":"${f.head}","base_sha":"${f.base}"}'
 fi`,
-    );
-    const result = run(f, { EVENT_NAME: event });
-    expect(result.status).toBe(0);
-    expect(String(result.stdout).trim()).toBe(f.base);
+      );
+      const result = run(f, { EVENT_NAME: event });
+      expect(result.status).toBe(0);
+      expect(String(result.stdout).trim()).toBe(f.base);
     }
   });
 

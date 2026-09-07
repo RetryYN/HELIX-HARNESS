@@ -297,7 +297,7 @@ function branchSnapshotViolations(raw: string): string[] {
     return step?.env?.GH_TOKEN === `\${{ github.token }}` &&
       step.env.GITHUB_REPOSITORY === `\${{ github.repository }}` &&
       step.env.BRANCH_BASE_HEAD ===
-      `\${{ github.event.pull_request.base.sha || github.event.before }}` &&
+        `\${{ github.event.pull_request.base.sha || github.event.before }}` &&
       step.env.EVENT_NAME === `\${{ github.event_name }}` &&
       step.env.BRANCH_CANDIDATE_HEAD === PR_OR_MAIN_CHECKOUT_REF &&
       step.env.HEAD_BRANCH === `\${{ github.head_ref || github.ref_name }}` &&
@@ -316,8 +316,12 @@ function branchSnapshotViolations(raw: string): string[] {
 // PLAN-RECOVERY-1633-ci-non-pr-base-authority
 it("U-CIBASE-008: non-PR Impact CIも共通resolverへ同じevent入力を渡す", () => {
   const jobs = (parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot).jobs ?? {};
-  const step = jobs["full-regression-preflight"]?.steps?.find((entry) => entry.name === "Impact CI profile selection");
-  expect(step?.run).toContain('BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" bash scripts/ci/resolve-branch-base.sh');
+  const step = jobs["full-regression-preflight"]?.steps?.find(
+    (entry) => entry.name === "Impact CI profile selection",
+  );
+  expect(step?.run).toContain(
+    'BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" bash scripts/ci/resolve-branch-base.sh',
+  );
   expect(step?.run).not.toContain('git rev-parse "${HEAD_SHA}^"');
 });
 
@@ -1024,9 +1028,7 @@ describe("source harness-check workflow", () => {
     const { steps } = loadWorkflow();
     const selector = stepByName(steps, "Impact CI profile selection");
 
-    expect(selector.run).toContain(
-      'bash scripts/ci/resolve-branch-base.sh',
-    );
+    expect(selector.run).toContain("bash scripts/ci/resolve-branch-base.sh");
     expect(selector.run).toContain('profile="post_merge_full"');
     expect(selector.run).toContain(`range="\${base_head}..\${candidate_head}"`);
   });
