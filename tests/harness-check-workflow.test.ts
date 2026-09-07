@@ -313,6 +313,7 @@ function branchSnapshotViolations(raw: string): string[] {
   });
 }
 
+// PLAN-RECOVERY-1633-ci-non-pr-base-authority
 it("U-CIBASE-008: non-PR Impact CIも共通resolverへ同じevent入力を渡す", () => {
   const jobs = (parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot).jobs ?? {};
   const step = jobs["full-regression-preflight"]?.steps?.find((entry) => entry.name === "Impact CI profile selection");

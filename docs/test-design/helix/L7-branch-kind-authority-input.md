@@ -91,10 +91,9 @@ guardとdoctorの両stepで照合する。non-PRの解決は`U-CIBASE-001..006`�
 | U-CIBASE-003 | PR read-after | PR head/baseの観測中driftを拒否する | `tests/ci-branch-base-resolver.test.ts` |
 | U-CIBASE-004 | default branch | open PRがない場合にrepository default branchとのmerge-baseを返し、任意remote推測を拒否する | `tests/ci-branch-base-resolver.test.ts` |
 | U-CIBASE-005 | PR明示base | pull_requestの不正・空・zero SHAをfallbackで相殺せず拒否する | `tests/ci-branch-base-resolver.test.ts` |
-
-| U-CIBASE-006 | push比較範囲 | origin/main更新後も有効なbeforeを保持する | tests/ci-branch-base-resolver.test.ts |
-| U-CIBASE-007 | push不正base | 不正なbeforeを別baseで相殺しない | tests/ci-branch-base-resolver.test.ts |
-| U-CIBASE-008 | Impact CI配線 | 共通resolverへcandidate／before／repositoryを渡し第一親fallbackを持たない | tests/harness-check-workflow.test.ts |
+| U-CIBASE-006 | push比較範囲 | origin/main更新後も有効なbeforeを保持する | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-007 | push不正base | 不正なbeforeを別baseで相殺しない | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-008 | Impact CI配線 | 共通resolverへcandidate／before／repositoryを渡し第一親fallbackを持たない | `tests/harness-check-workflow.test.ts` |
 
 専用`tests/branch-kind-authority-input.test.ts`で001〜007を実装する。
 008は実CLI入口とdoctor入口を経由して比較し、pure analyzerだけの比較で代替しない。

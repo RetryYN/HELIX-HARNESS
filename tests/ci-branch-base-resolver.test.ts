@@ -79,7 +79,8 @@ describe("non-PR branch base authority resolver", () => {
     expect(result.stderr).toContain("branch_base_push_base_invalid");
   });
 
-  it.each(["workflow_dispatch", "schedule", "push"])("U-CIBASE-001: %s multi-commit open PRはcurrent baseとのmerge-baseへ解決する", (event) => {
+  it("U-CIBASE-001: non-PR multi-commit open PRはcurrent baseとのmerge-baseへ解決する", () => {
+    for (const event of ["workflow_dispatch", "schedule", "push"]) {
     const f = fixture();
     writeGh(
       f.bin,
@@ -92,6 +93,7 @@ fi`,
     const result = run(f, { EVENT_NAME: event });
     expect(result.status).toBe(0);
     expect(String(result.stdout).trim()).toBe(f.base);
+    }
   });
 
   it("U-CIBASE-002: 同一HEADのopen PRが複数なら一つを選ばない", () => {
