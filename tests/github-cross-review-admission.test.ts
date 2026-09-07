@@ -571,46 +571,46 @@ describe("GitHub cross-review admission", () => {
       { ciEvidenceGeneration: "run:31299806333:attempt:2:success" },
     ];
     for (const condition of blockConditions) {
-    const blocked = buildClaudePrReviewReceipt({
-      ...receiptAsInput(canonical),
-      verdict: "block",
-      blockerCount: 2,
-      reviewerSessionId: "convergence-session",
-      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
-      ...condition,
-    });
-    const unrelatedApproval = buildClaudePrReviewReceipt({
-      ...receiptAsInput(canonical),
-      reviewerSessionId: "unrelated-session",
-      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-3",
-      reviewedAt: "2026-08-09T07:00:01.000Z",
-    });
-    expect(
-      evaluateGitHubCrossReviewAdmission(
-        input({
-          comments: [
-            {
-              html_url: blocked.commentUrl,
-              created_at: REVIEWED_AT,
-              updated_at: REVIEWED_AT,
-              body: renderIndependentPrReviewComment(blocked),
-            },
-            {
-              html_url: unrelatedApproval.commentUrl,
-              created_at: unrelatedApproval.reviewedAt,
-              updated_at: unrelatedApproval.reviewedAt,
-              body: renderIndependentPrReviewComment(unrelatedApproval),
-            },
-          ],
-        }),
-      ),
-    ).toMatchObject({
-      ok: false,
-      reasons: ["outstanding_request_changes"],
-      candidate_diagnostics: expect.arrayContaining([
-        { comment_url: blocked.commentUrl, reason: expect.any(String) },
-      ]),
-    });
+      const blocked = buildClaudePrReviewReceipt({
+        ...receiptAsInput(canonical),
+        verdict: "block",
+        blockerCount: 2,
+        reviewerSessionId: "convergence-session",
+        commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
+        ...condition,
+      });
+      const unrelatedApproval = buildClaudePrReviewReceipt({
+        ...receiptAsInput(canonical),
+        reviewerSessionId: "unrelated-session",
+        commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-3",
+        reviewedAt: "2026-08-09T07:00:01.000Z",
+      });
+      expect(
+        evaluateGitHubCrossReviewAdmission(
+          input({
+            comments: [
+              {
+                html_url: blocked.commentUrl,
+                created_at: REVIEWED_AT,
+                updated_at: REVIEWED_AT,
+                body: renderIndependentPrReviewComment(blocked),
+              },
+              {
+                html_url: unrelatedApproval.commentUrl,
+                created_at: unrelatedApproval.reviewedAt,
+                updated_at: unrelatedApproval.reviewedAt,
+                body: renderIndependentPrReviewComment(unrelatedApproval),
+              },
+            ],
+          }),
+        ),
+      ).toMatchObject({
+        ok: false,
+        reasons: ["outstanding_request_changes"],
+        candidate_diagnostics: expect.arrayContaining([
+          { comment_url: blocked.commentUrl, reason: expect.any(String) },
+        ]),
+      });
     }
   });
 

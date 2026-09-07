@@ -1440,9 +1440,7 @@ export function evaluateClaudePrMerge(
   }
   if (!Array.isArray(state.reviewReceiptHistory)) {
     reasons.push("review_receipt_history_unavailable");
-  } else if (
-    unresolvedClaudePrBlockReceipts(state.reviewReceiptHistory, state).length > 0
-  ) {
+  } else if (unresolvedClaudePrBlockReceipts(state.reviewReceiptHistory, state).length > 0) {
     reasons.push("outstanding_request_changes");
   }
   const pairFailure = reviewPairFailure(receipt);

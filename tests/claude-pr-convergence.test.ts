@@ -518,35 +518,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     );
 
     expect(result).toEqual({ ok: true, reasons: [] });
-    const unavailable = evaluateClaudePrMerge({
-      repository: baseInput.repository,
-      prNumber: baseInput.prNumber,
-      prUrl: baseInput.prUrl,
-      headSha: baseInput.headSha,
-      state: "OPEN",
-      requiredChecksGreen: true,
-      receiptCiMatchesHead: true,
-      receiptCiMatchesGeneration: true,
-    }, receipt);
-    expect(unavailable).toEqual({ ok: false, reasons: ["review_receipt_history_unavailable"] });
-  });
-
-  it("U-CPRCONV-044: 別sessionはexplicit supersessionでもblockを解除できない", () => {
-    for (const explicit of [false, true]) {
-    const blocked = buildClaudePrReviewReceipt({
-      ...baseInput,
-      verdict: "block",
-      blockerCount: 1,
-      reviewerSessionId: "convergence-session",
-      reviewedAt: "2026-07-27T00:00:00.000Z",
-    });
-    const unrelatedApproval = buildClaudePrReviewReceipt({
-      ...baseInput,
-      reviewerSessionId: "unrelated-session",
-      reviewedAt: "2026-07-27T00:10:00.000Z",
-      ...(explicit ? { supersedesReceiptId: blocked.receiptId } : {}),
-    });
-    const decision = evaluateClaudePrMerge(
+    const unavailable = evaluateClaudePrMerge(
       {
         repository: baseInput.repository,
         prNumber: baseInput.prNumber,
@@ -556,29 +528,28 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         requiredChecksGreen: true,
         receiptCiMatchesHead: true,
         receiptCiMatchesGeneration: true,
-        reviewReceiptHistory: [blocked, unrelatedApproval],
       },
-      unrelatedApproval,
+      receipt,
     );
-    expect(decision).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
-    }
+    expect(unavailable).toEqual({ ok: false, reasons: ["review_receipt_history_unavailable"] });
   });
 
-  it("U-CPRCONV-045: 同一sessionでもstrictly laterの時だけ解除する", () => {
-    for (const later of [false, true]) {
-    const blocked = buildClaudePrReviewReceipt({
-      ...baseInput,
-      verdict: "block",
-      blockerCount: 1,
-      reviewedAt: "2026-07-27T00:00:00.000Z",
-    });
-    const approval = buildClaudePrReviewReceipt({
-      ...baseInput,
-      reviewedAt: later ? "2026-07-27T00:10:00.000Z" : "2026-07-27T00:00:00.000Z",
-      supersedesReceiptId: blocked.receiptId,
-    });
-    expect(
-      evaluateClaudePrMerge(
+  it("U-CPRCONV-044: 別sessionはexplicit supersessionでもblockを解除できない", () => {
+    for (const explicit of [false, true]) {
+      const blocked = buildClaudePrReviewReceipt({
+        ...baseInput,
+        verdict: "block",
+        blockerCount: 1,
+        reviewerSessionId: "convergence-session",
+        reviewedAt: "2026-07-27T00:00:00.000Z",
+      });
+      const unrelatedApproval = buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewerSessionId: "unrelated-session",
+        reviewedAt: "2026-07-27T00:10:00.000Z",
+        ...(explicit ? { supersedesReceiptId: blocked.receiptId } : {}),
+      });
+      const decision = evaluateClaudePrMerge(
         {
           repository: baseInput.repository,
           prNumber: baseInput.prNumber,
@@ -588,11 +559,45 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           requiredChecksGreen: true,
           receiptCiMatchesHead: true,
           receiptCiMatchesGeneration: true,
-          reviewReceiptHistory: [blocked, approval],
+          reviewReceiptHistory: [blocked, unrelatedApproval],
         },
-        approval,
-      ),
-    ).toEqual(later ? { ok: true, reasons: [] } : { ok: false, reasons: ["outstanding_request_changes"] });
+        unrelatedApproval,
+      );
+      expect(decision).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
+    }
+  });
+
+  it("U-CPRCONV-045: 同一sessionでもstrictly laterの時だけ解除する", () => {
+    for (const later of [false, true]) {
+      const blocked = buildClaudePrReviewReceipt({
+        ...baseInput,
+        verdict: "block",
+        blockerCount: 1,
+        reviewedAt: "2026-07-27T00:00:00.000Z",
+      });
+      const approval = buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewedAt: later ? "2026-07-27T00:10:00.000Z" : "2026-07-27T00:00:00.000Z",
+        supersedesReceiptId: blocked.receiptId,
+      });
+      expect(
+        evaluateClaudePrMerge(
+          {
+            repository: baseInput.repository,
+            prNumber: baseInput.prNumber,
+            prUrl: baseInput.prUrl,
+            headSha: baseInput.headSha,
+            state: "OPEN",
+            requiredChecksGreen: true,
+            receiptCiMatchesHead: true,
+            receiptCiMatchesGeneration: true,
+            reviewReceiptHistory: [blocked, approval],
+          },
+          approval,
+        ),
+      ).toEqual(
+        later ? { ok: true, reasons: [] } : { ok: false, reasons: ["outstanding_request_changes"] },
+      );
     }
   });
 
@@ -2070,7 +2075,10 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
 
       // 4 経路すべてが core の実引数どおり evidence を取りに行く（bridge での欠落を検出する）。
       const evidenceCalls = [sealedFalse, mergedFalse, mergedTruthful, sealedTruthful].map((run) =>
-        run.invocations.filter((args) => args[0] === "api" && args.includes("repos/RetryYN/HELIX-HARNESS/pulls/544/commits")),
+        run.invocations.filter(
+          (args) =>
+            args[0] === "api" && args.includes("repos/RetryYN/HELIX-HARNESS/pulls/544/commits"),
+        ),
       );
       for (const calls of evidenceCalls) {
         expect(calls).toEqual([authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 544)]);
