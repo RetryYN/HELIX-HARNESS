@@ -43,8 +43,20 @@ generated/distributed/loaded/behavior_verified/operationally_appliedを別々に
 
 ## IPC-AC08 ↔ IPC-R08 提供元差と縮退
 
-合法なprovider差を許容しつつunsupported、wrong adapter/version、load unknownをfail-closeまたは明示DEGRADEDにする。
+合法なprovider差と同一契約を満たす合法な複数設計を許容しつつ、unsupported、wrong adapter/version、load unknownをfail-closeまたは明示DEGRADEDにする。
 SkillとRuleの一方のgreenを他方の完成証拠にしない。
+
+## IPC-AC09 ↔ IPC-R09 安定入口と動的正本参照
+
+固定文書集合または旧版を注入するfixtureを拒否し、有効なIR／Policy／Workflow／Skill参照から必要最小限の
+context packetを再構成する。正本一か所の変更が正規入口から対象consumerへ到達し、未登録command、
+旧指示、別ownerの意味複製が出力されないことをread-afterする。
+
+## IPC-AC10 ↔ IPC-R10 効果測定と採否境界
+
+同一task・consumer・evidence setで変更前後を測定し、手修正箇所数、有効化時間、総token、再実行、誤拒否、
+旧版再出現を独立fieldで比較する。少標本、欠測、条件不一致のfixtureが改善判定ではなく保留となり、
+安全性または意味品質の退行を平均値で相殺しないことを検証する。
 
 ## 共通証拠
 
