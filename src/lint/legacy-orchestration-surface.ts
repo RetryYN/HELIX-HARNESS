@@ -6,7 +6,7 @@ import { join } from "node:path";
 export const LEGACY_ORCHESTRATION_INVENTORY_PATH =
   "config/legacy-orchestration-surface-inventory.json";
 
-const ALLOWED_EXCLUSIONS = new Set([
+export const LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS = [
   LEGACY_ORCHESTRATION_INVENTORY_PATH,
   "src/lint/legacy-orchestration-surface.ts",
   "tests/legacy-orchestration-surface.test.ts",
@@ -16,7 +16,11 @@ const ALLOWED_EXCLUSIONS = new Set([
   "config/legacy-orchestration-semantic-consumers.json",
   "src/lint/legacy-orchestration-semantic-consumers.ts",
   "tests/legacy-orchestration-semantic-consumers.test.ts",
-]);
+] as const;
+
+const ALLOWED_EXCLUSIONS = new Set<string>(
+  LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS,
+);
 
 export const LEGACY_ORCHESTRATION_MARKERS = [
   "helix team run",

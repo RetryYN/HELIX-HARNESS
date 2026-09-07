@@ -132,6 +132,10 @@ describe("legacy orchestration semantic consumer ledger", () => {
         "src/hidden-loop-consumers.ts",
         "await tick(state, rules, deps); importLegacy(planId); const width = plan.max_parallel; import(`../team/run`);",
       ),
+      source(
+        "src/unrelated.ts",
+        'store.write(entry); tick(timer); const width = plan.max_parallel; const roles = ["team", "review"];',
+      ),
     ];
 
     const result = analyzeLegacyOrchestrationSemanticConsumers(loaded.ledger, [
@@ -149,12 +153,10 @@ describe("legacy orchestration semantic consumer ledger", () => {
         "hidden_dynamic_import:src/hidden-multiline.ts:../team/run",
         "hidden_split_command:src/hidden-multiline.ts:team run",
         "unregistered_direct_call:src/hidden-direct.ts:executeTeamRunPlan(",
-        "unregistered_direct_call:src/hidden-loop-consumers.ts:tick(",
-        "unregistered_direct_call:src/hidden-loop-consumers.ts:importLegacy(",
-        "unregistered_direct_call:src/hidden-loop-consumers.ts:plan.max_parallel",
         "hidden_dynamic_import:src/hidden-loop-consumers.ts:../team/run",
       ]),
     );
+    expect(result.errors.some((error) => error.includes("src/unrelated.ts"))).toBe(false);
   });
 
   it("U-LORET-SEM-005/007: E2E/rollback/read-afterなしのremoved昇格を拒否し、historical/read-onlyのwrite混入も拒否する", () => {

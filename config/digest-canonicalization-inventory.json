@@ -1389,7 +1389,7 @@
     {
       "hit_id": "src/lint/legacy-orchestration-surface.ts::analyzeLegacyOrchestrationSurface:createHash(sha256)::1",
       "path": "src/lint/legacy-orchestration-surface.ts",
-      "line": 155,
+      "line": 159,
       "symbol": "analyzeLegacyOrchestrationSurface",
       "algorithm": "sha256",
       "input_kind": "string",

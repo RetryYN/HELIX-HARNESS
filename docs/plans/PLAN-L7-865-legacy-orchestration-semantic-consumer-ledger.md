@@ -4,7 +4,7 @@ title: "PLAN-L7-865 (refactor): 旧orchestration semantic consumer ledger"
 kind: refactor
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -31,8 +31,8 @@ no_code_decision: add_code
 ddd_modeling_decision: policy
 contract_preconditions: "PLAN-L7-729のstring ratchetが存在し、現行production sourceのsymbol／callsiteを読み取れること"
 contract_postconditions: "team／pair／loop direct、fire／release、max_parallel、LoopState write-back、legacy importがexact ledgerへ束縛され、欠落・偽装・未成立退役をfail-closeする"
-contract_invariants: "既存string ratchetを変更しない。scheduler追加、旧engine削除、snapshot／catalog／CLI／team-run変更、historical／read-onlyとwrite／controlの混在を行わない"
-contract_failures: "必須entry欠落、symbol／anchor不一致、direct callの互換偽装、fireSlot／releaseSlot／max_parallel／write-backの欠落、alias／dynamic import／分割commandによる隠蔽、successor／E2E／rollback／read-afterなしの移行・退役を拒否する"
+contract_invariants: "既存string ratchetのcapとentry上限は不変とし、本実装3 pathだけを固定allowlistへ追加する。scheduler追加、旧engine削除、snapshot／catalog／CLI／team-run変更、historical／read-onlyとwrite／controlの混在を行わない"
+contract_failures: "必須entry欠落、symbol／anchor不一致、識別可能なdirect callの互換偽装、fireSlot／releaseSlot／max_parallel／write-backの欠落、直代入alias／静的dynamic import／CLI argv形の分割commandによる隠蔽、successor／E2E／rollback／read-afterなしの移行・退役を拒否する。tick／store.write／plan.max_parallel等の汎用tokenはexact ledger anchorで検査し、repo-wide hidden-consumer markerには使わない"
 tdd_red_required: true
 red_test: "semantic consumer validator未実装時にtests/legacy-orchestration-semantic-consumers.test.tsがmodule missingで失敗することを確認し、その後validatorとledgerを追加して同じテストをgreen化する"
 red_at: "2026-09-07T08:05:08Z"
@@ -66,6 +66,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-010, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-011, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-012, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-013, test_path: tests/legacy-orchestration-surface.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-865-legacy-orchestration-semantic-consumer-ledger.md, artifact_type: markdown_doc }
   - { artifact_path: config/legacy-orchestration-semantic-consumers.json, artifact_type: json_config }
@@ -85,27 +86,7 @@ agent_slots:
   - { role: se, slot_label: "SE — exact ledger／source anchor validator" }
   - { role: qa, slot_label: "QA — negative oracle／mutation／hidden consumer" }
   - { role: tl, slot_label: "TL — Phase 1 boundaryとlegacy retirement条件" }
-review_evidence:
-  - reviewer: "Claude Code / claude-fable-5-1"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-07T10:36:30Z"
-    tests_green_at: "2026-09-07T10:32:54Z"
-    verdict: approve
-    worker_model: gpt-5.6-luna
-    reviewer_model: claude-fable-5-1
-    reviewer_session_id: af559166-ce28-4772-96b0-d526299f4157
-    reviewed_head_sha: c06a87870abe99058daf6539e0897afc127d6056
-    scope: "PR #1625のterminal-transition review。前回session 671f0498-fa65-46da-8150-5f16c713c16dが技術内容blocker 0、draft statusのみblockerと判定した後、statusをconfirmedへ進め、completion_claim_allowed:false、retained境界、後続E2E／rollback／read-after除外が不変であることをexact HEADで再確認した。"
-    green_commands:
-      - kind: unit_test
-        command: "npx vitest run tests/legacy-orchestration-semantic-consumers.test.ts tests/legacy-orchestration-surface.test.ts tests/doctor.test.ts tests/digest-canonicalization-inventory.test.ts tests/feedback-refactor-disposition.test.ts"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-07T10:32:54Z"
-        evidence_path: tests/legacy-orchestration-semantic-consumers.test.ts
-        output_digest: "sha256:02256dcfa935decd6311873886ca44540fdf310f9af68281d59a5aa3ae6596d5"
-        result: "4 test files、68 tests passed"
+review_evidence: []
 ---
 
 # PLAN-L7-865: 旧orchestration semantic consumer ledger
