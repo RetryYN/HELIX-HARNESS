@@ -15,6 +15,7 @@ import {
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 // PLAN-RECOVERY-100-review-receipt-schema-boundary / U-GCRA-010
 // PLAN-RECOVERY-101-review-admission-predicate-diagnostics / U-GCRA-012
+// PLAN-RECOVERY-1627-review-request-changes-fail-close / U-GCRA-014
 import {
   canonicalLogicalDbReceiptValid,
   evaluateGitHubCrossReviewAdmission,
@@ -561,6 +562,43 @@ describe("GitHub cross-review admission", () => {
     ).toMatchObject({ ok: false, reasons: ["review_receipt_invalid_or_stale"] });
   });
 
+  it("U-GCRA-014: 同一HEADのblockを別session approveで上書きせずfail-closeする", () => {
+    const canonical = receipt();
+    const blocked = buildClaudePrReviewReceipt({
+      ...receiptAsInput(canonical),
+      verdict: "block",
+      blockerCount: 2,
+      reviewerSessionId: "convergence-session",
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
+    });
+    const unrelatedApproval = buildClaudePrReviewReceipt({
+      ...receiptAsInput(canonical),
+      reviewerSessionId: "unrelated-session",
+      commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-3",
+      reviewedAt: "2026-08-09T07:00:01.000Z",
+    });
+    expect(
+      evaluateGitHubCrossReviewAdmission(
+        input({
+          comments: [
+            {
+              html_url: blocked.commentUrl,
+              created_at: REVIEWED_AT,
+              updated_at: REVIEWED_AT,
+              body: renderIndependentPrReviewComment(blocked),
+            },
+            {
+              html_url: unrelatedApproval.commentUrl,
+              created_at: unrelatedApproval.reviewedAt,
+              updated_at: unrelatedApproval.reviewedAt,
+              body: renderIndependentPrReviewComment(unrelatedApproval),
+            },
+          ],
+        }),
+      ),
+    ).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
+  });
+
   it("U-GCRA-010: Claude receiptへのprovider-neutral discriminator混入を誤分類しない", () => {
     const malformed = {
       ...receipt(),
@@ -747,7 +785,6 @@ describe("GitHub cross-review admission", () => {
       ],
       ["PR", () => candidateInput(prMismatch), "review_receipt_pr_mismatch"],
       ["HEAD", () => candidateInput(headMismatch), "review_receipt_head_mismatch"],
-      ["verdict", () => candidateInput(verdictMismatch), "review_receipt_verdict_invalid"],
       ["CI claim", () => candidateInput(ciClaimMismatch), "review_receipt_ci_claim_invalid"],
       [
         "DB provenance",
@@ -797,6 +834,10 @@ describe("GitHub cross-review admission", () => {
         candidate_diagnostics: [{ reason }],
       });
     }
+    expect(evaluateGitHubCrossReviewAdmission(candidateInput(verdictMismatch))).toMatchObject({
+      ok: false,
+      reasons: ["outstanding_request_changes"],
+    });
   });
 
   it("U-GCRA-012b: invalid候補の診断がvalid exactly-one受理を相殺しない", () => {

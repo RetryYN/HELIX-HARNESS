@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025, U-CPRCONV-027
 // PLAN-RECOVERY-59-same-head-ci-review-rearm / U-CPRCONV-026
 // PLAN-RECOVERY-100-review-receipt-schema-boundary / U-CPRCONV-040
+// PLAN-RECOVERY-1627-review-request-changes-fail-close / U-CPRCONV-044, U-CPRCONV-045
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
@@ -516,6 +517,66 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     );
 
     expect(result).toEqual({ ok: true, reasons: [] });
+  });
+
+  it("U-CPRCONV-044: 未解消block receiptを別sessionのapproveで上書きできない", () => {
+    const blocked = buildClaudePrReviewReceipt({
+      ...baseInput,
+      verdict: "block",
+      blockerCount: 1,
+      reviewerSessionId: "convergence-session",
+      reviewedAt: "2026-07-27T00:00:00.000Z",
+    });
+    const unrelatedApproval = buildClaudePrReviewReceipt({
+      ...baseInput,
+      reviewerSessionId: "unrelated-session",
+      reviewedAt: "2026-07-27T00:10:00.000Z",
+    });
+    const decision = evaluateClaudePrMerge(
+      {
+        repository: baseInput.repository,
+        prNumber: baseInput.prNumber,
+        prUrl: baseInput.prUrl,
+        headSha: baseInput.headSha,
+        state: "OPEN",
+        requiredChecksGreen: true,
+        receiptCiMatchesHead: true,
+        receiptCiMatchesGeneration: true,
+        reviewReceiptHistory: [blocked, unrelatedApproval],
+      },
+      unrelatedApproval,
+    );
+    expect(decision).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
+  });
+
+  it("U-CPRCONV-045: 同一reviewer sessionの後続approveだけがblockを解消する", () => {
+    const blocked = buildClaudePrReviewReceipt({
+      ...baseInput,
+      verdict: "block",
+      blockerCount: 1,
+      reviewedAt: "2026-07-27T00:00:00.000Z",
+    });
+    const approval = buildClaudePrReviewReceipt({
+      ...baseInput,
+      reviewedAt: "2026-07-27T00:10:00.000Z",
+      supersedesReceiptId: blocked.receiptId,
+    });
+    expect(
+      evaluateClaudePrMerge(
+        {
+          repository: baseInput.repository,
+          prNumber: baseInput.prNumber,
+          prUrl: baseInput.prUrl,
+          headSha: baseInput.headSha,
+          state: "OPEN",
+          requiredChecksGreen: true,
+          receiptCiMatchesHead: true,
+          receiptCiMatchesGeneration: true,
+          reviewReceiptHistory: [blocked, approval],
+        },
+        approval,
+      ),
+    ).toEqual({ ok: true, reasons: [] });
   });
 
   it.each([

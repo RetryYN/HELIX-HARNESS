@@ -47,6 +47,15 @@ export interface ReviewReceiptPlanBindingDecision {
 const TERMINAL_PLAN_STATUSES = new Set(["confirmed", "completed", "accepted"]);
 const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
 
+export function hasTerminalPlanPromotion(plans: readonly ChangedPlanReviewBinding[]): boolean {
+  return plans.some(
+    (plan) =>
+      !plan.parse_failure &&
+      TERMINAL_PLAN_STATUSES.has(plan.status) &&
+      !TERMINAL_PLAN_STATUSES.has(plan.base_status ?? ""),
+  );
+}
+
 /**
  * 変更PLANのterminal化に使った独立review主体と、PRのsealed receipt主体を接合する。
  * draftはまだterminal化していないため母集団外とし、parse不能は状態を推測せず拒否する。
