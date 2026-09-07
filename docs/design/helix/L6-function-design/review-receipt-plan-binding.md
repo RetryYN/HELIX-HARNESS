@@ -24,6 +24,8 @@ PLANだけへ転記し、常駐収束レーンの検収と見せかける経路�
 - PLAN本文も取得時に固定したcandidate commitから読み、未commitのstatus／review記録で検査対象を変更させない。
 - baseで非terminal、HEADで`confirmed`／`completed`／`accepted`へ遷移したPLANだけを検査する。
   既存terminal PLANへの注記・supersession metadata追加は再terminal化ではないため母集団外とする。
+- Git／frontmatter取得不能の場合は上記対象外と推定せず検査対象へ送り、
+  `review_plan_binding_unavailable`で拒否する。terminal状態へ認定する意味ではない。
 - PR receiptの`reviewerSessionId`、`reviewerModel`とPLAN側の`reviewer_session_id`、
   `reviewer_model`を照合する。modelはproviderを一致させた上でprovider prefixだけを正規化する。
 - 対象PLANごとに一致する`cross_agent`承認がなければreceipt sealとmerge admissionをfail-closeする。
