@@ -543,6 +543,49 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(result.reasons).toContain(reason);
   });
 
+  it.each([
+    [
+      "MERGEDかつmerge commitの第2親がreview済みHEAD",
+      {
+        state: "MERGED" as const,
+        mergeCommit: {
+          oid: "b".repeat(40),
+          parents: ["c".repeat(40), baseInput.headSha],
+        },
+      },
+      "pr_already_merged_at_reviewed_head",
+    ],
+    [
+      "MERGEDだがmerge commitの第2親が別HEAD",
+      {
+        state: "MERGED" as const,
+        mergeCommit: {
+          oid: "b".repeat(40),
+          parents: ["c".repeat(40), "d".repeat(40)],
+        },
+      },
+      "pr_not_open",
+    ],
+    ["CLOSED", { state: "CLOSED" as const }, "pr_not_open"],
+  ])("U-CPRCONV-043: %sをterminal stateとして診断する", (_case, stateOverride, reason) => {
+    const receipt = buildClaudePrReviewReceipt(baseInput);
+    const result = evaluateClaudePrMerge(
+      {
+        repository: baseInput.repository,
+        prNumber: baseInput.prNumber,
+        prUrl: baseInput.prUrl,
+        headSha: baseInput.headSha,
+        requiredChecksGreen: true,
+        receiptCiMatchesHead: true,
+        receiptCiMatchesGeneration: true,
+        ...stateOverride,
+      },
+      receipt,
+    );
+
+    expect(result).toEqual({ ok: false, reasons: [reason] });
+  });
+
   it("blocker付きapproveを拒否し、未収束DBのblock receiptは記録可能だがmerge拒否する", () => {
     expect(() => buildClaudePrReviewReceipt({ ...baseInput, blockerCount: 1 })).toThrow(
       "approve_with_blockers",
