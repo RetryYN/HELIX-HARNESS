@@ -152,6 +152,57 @@ function renderLegacyV2Comment(): string {
 }
 
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
+  // PLAN-RECOVERY-1638-review-seal-terminal-ci
+  it("U-SEALCI-004: 赤receiptは記録できてもmerge不可でgreen再検収だけを受理する", () => {
+    const state = {
+      repository: baseInput.repository,
+      prNumber: baseInput.prNumber,
+      prUrl: baseInput.prUrl,
+      headSha: baseInput.headSha,
+      state: "OPEN" as const,
+      requiredChecksGreen: false,
+      receiptCiMatchesHead: true,
+      receiptCiMatchesGeneration: true,
+    };
+    for (const ciConclusion of [
+      "failure",
+      "cancelled",
+      "timed_out",
+      "neutral",
+      "skipped",
+      "action_required",
+      "stale",
+      "startup_failure",
+    ] as const) {
+      const failed = buildClaudePrReviewReceipt({
+        ...baseInput,
+        ciConclusion,
+        ciEvidenceGeneration: `run:123456:attempt:1:${ciConclusion}`,
+      });
+      expect(validateClaudePrReviewReceipt(JSON.parse(JSON.stringify(failed)))).toEqual(failed);
+      expect(evaluateClaudePrMerge(state, failed).reasons).toEqual(
+        expect.arrayContaining(["required_checks_not_green", "receipt_ci_not_green"]),
+      );
+      expect(
+        evaluateClaudePrMerge({ ...state, requiredChecksGreen: true }, failed).reasons,
+      ).toContain("receipt_ci_not_green");
+    }
+    const reviewedAgain = buildClaudePrReviewReceipt({
+      ...baseInput,
+      ciEvidenceGeneration: "run:123456:attempt:2:success",
+      reviewedAt: "2026-07-27T00:01:00.000Z",
+    });
+    expect(evaluateClaudePrMerge({ ...state, requiredChecksGreen: true }, reviewedAgain)).toEqual({
+      ok: true,
+      reasons: [],
+    });
+    expect(
+      evaluateClaudePrMerge(
+        { ...state, requiredChecksGreen: true, receiptCiMatchesGeneration: false },
+        reviewedAgain,
+      ).ok,
+    ).toBe(false);
+  });
   it("U-CPRCONV-025: null／空文字／field absentを実comment投稿へ正規化する", () => {
     const prUrl = "https://github.com/RetryYN/HELIX-HARNESS/pull/711";
     for (const value of [undefined, null, ""]) {
