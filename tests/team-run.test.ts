@@ -451,6 +451,61 @@ describe("team run validation", () => {
     }
   });
 
+  it("U-WBL-012: deadline超過をexit 0でも完了へ昇格しない [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
+    const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-timeout-"));
+    try {
+      const plan = buildTeamRunPlan(
+        {
+          name: "timeout-team",
+          strategy: "parallel",
+          max_parallel: 2,
+          members: [
+            { role: "se", engine: "codex-se", task: "implement" },
+            { role: "tl", engine: "pmo-sonnet", task: "review" },
+          ],
+        },
+        "hybrid",
+        { execute: true, workerContext: testWorkerContext() },
+      );
+      const execution = await executeTeamRunPlan(plan, {
+        slots: nodeAgentSlotsDeps(repo),
+        runCommand: async ({ provider, timeMs }) =>
+          provider === "codex"
+            ? {
+                exitCode: 0,
+                output: "provider handled TERM and exited zero\n",
+                timedOut: true,
+                deadlineMs: timeMs,
+                terminationStage: "term_sent",
+                signal: null,
+                durationMs: timeMs + 1,
+                reaped: true,
+              }
+            : {
+                exitCode: 0,
+                output: "VERDICT: PASS\n",
+                timedOut: false,
+                deadlineMs: timeMs,
+                terminationStage: "none",
+                signal: null,
+                durationMs: 1,
+                reaped: true,
+              },
+      });
+
+      expect(execution.ok).toBe(false);
+      expect(execution.executions.find((member) => member.role === "se")).toMatchObject({
+        exit_code: 0,
+        status: "failed",
+        timed_out: true,
+        termination_stage: "term_sent",
+        reaped: true,
+      });
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
   it("does not execute dependent members after their dependency fails", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-dependency-fail-"));
     try {

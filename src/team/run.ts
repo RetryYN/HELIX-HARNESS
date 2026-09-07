@@ -520,7 +520,9 @@ async function executeMember(
     });
     const evidence = executionEvidence(member.role, run);
     const reviewAccepted = !REVIEW_ROLES.has(member.role) || evidence.verdict_status === "accepted";
-    const status: SlotStatus = run.exitCode === 0 && reviewAccepted ? "completed" : "failed";
+    const lifecycleAccepted = run.timedOut !== true && run.reaped !== false;
+    const status: SlotStatus =
+      run.exitCode === 0 && reviewAccepted && lifecycleAccepted ? "completed" : "failed";
     releaseSlot({ slotId: slot.slot_id, status, exitCode: run.exitCode }, deps.slots);
     return {
       index: member.index,

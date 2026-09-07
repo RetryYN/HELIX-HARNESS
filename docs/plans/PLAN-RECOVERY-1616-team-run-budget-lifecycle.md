@@ -13,6 +13,11 @@ github_issue_id: 1616
 responsibility_owner: worker-runtime-lifecycle
 behavior_contract_id: TEAM-RUN-BUDGET-LIFECYCLE-1616
 entry_signals: [regression_dev]
+agent_slots:
+  - { role: aim, slot_label: "AIM — team互換経路を正規worker lifecycleへ収束する境界を照合" }
+  - { role: tl, slot_label: "TL — deadline・回収・旧engine退役方向の責務境界を検収" }
+  - { role: se, slot_label: "SE — 共通provider process lifecycleへの接続を実装" }
+  - { role: qa, slot_label: "QA — timeout・exit code・bounded captureの反例を検証" }
 parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md
 pair_artifact: docs/test-design/helix/L8-worker-budget-lifecycle.md
 workflow_identity:
