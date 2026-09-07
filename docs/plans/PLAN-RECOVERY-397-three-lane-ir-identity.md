@@ -38,6 +38,7 @@ backprop_decision_reason: "承認済みstable IDの取込不整合の是正で�
 parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md
 pair_artifact: docs/test-design/helix/L8-requirement-refinement-authority-unit-test-design.md
 verification_bindings:
+  - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-TLIR-002, test_path: tests/requirement-refinement-authority.test.ts }
   - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-TLIR-001, test_path: tests/requirement-refinement-authority.test.ts }
 dependencies:
   parent: null

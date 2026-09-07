@@ -108,6 +108,7 @@ compatibility／archive／migration pathを拒否する。
 ## 4. mutation検証契約
 
 `U-TLIR-001`は承認済み3L識別子と不正識別子をruntime／JSON schemaの双方で照合する。
+`U-TLIR-002`は数字開始IDの範囲参照を展開し、source側だけの範囲拡張をprojection driftとして拒否する。
 
 owner存在検査、source digest比較、approval revision比較、R→AC全被覆、baseline digest比較をそれぞれ除去した
 mutantは独立fixtureでRedになる。`toContain()`による文言確認だけを到達証拠にしない。

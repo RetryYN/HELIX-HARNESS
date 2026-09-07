@@ -39,3 +39,4 @@ U-RRA-001をgreenにしない。
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-TLIR-001 | 識別子構文 | 3LとMICをruntime／JSON schema双方で受理し、空値・数字のみnamespace・小文字開始・空segment・slash・末尾改行を拒否する | `tests/requirement-refinement-authority.test.ts` |
+| U-TLIR-002 | 範囲投影 | 3L-R-01..02を2件へ展開し、sourceの範囲だけ03へ拡張した場合はdigest更新後も拒否する | `tests/requirement-refinement-authority.test.ts` |
