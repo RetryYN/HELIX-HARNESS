@@ -287,12 +287,14 @@ import {
   findReviewReceiptCommentPayload,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
+  parseClaudeIndependentPrReviewComment,
   parseClaudePrCiEvidenceGeneration,
   persistClaudePrReviewReceipt,
   persistClaudePrReviewReceiptCorrection,
   renderIndependentPrReviewComment,
   resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
+  unresolvedClaudePrBlockReceipts,
   withClaudePrReviewReceiptSlotClaim,
 } from "./runtime/claude-pr-convergence";
 import {
@@ -419,6 +421,7 @@ import {
 } from "./runtime/review-guard";
 import {
   evaluateReviewReceiptPlanBinding,
+  hasTerminalPlanPromotion,
   loadChangedPlanReviewBindings,
 } from "./runtime/review-receipt-plan-binding";
 import {
@@ -14613,6 +14616,33 @@ function readAfterClaudePrReviewComment(
     : { ok: false, failure: result.reason ?? "review_comment_read_after_failed" };
 }
 
+function loadClaudePrReviewReceiptHistory(
+  repository: string,
+  prNumber: number,
+): ClaudePrReviewReceipt[] | null {
+  const fetched = spawnSync(
+    "gh",
+    ["api", "--paginate", "--slurp", `repos/${repository}/issues/${prNumber}/comments`],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  if (fetched.status !== 0) return null;
+  try {
+    const pages = JSON.parse(fetched.stdout) as unknown;
+    if (!Array.isArray(pages)) return null;
+    return pages
+      .flatMap((page) => (Array.isArray(page) ? page : [page]))
+      .flatMap((comment): ClaudePrReviewReceipt[] => {
+        if (!comment || typeof comment !== "object" || Array.isArray(comment)) return [];
+        const body = (comment as { body?: unknown }).body;
+        if (typeof body !== "string") return [];
+        const parsed = parseClaudeIndependentPrReviewComment(body);
+        return parsed?.schemaVersion === "helix-claude-pr-review-receipt.v4" ? [parsed] : [];
+      });
+  } catch {
+    return null;
+  }
+}
+
 github
   .command("pr-notify")
   .description("queue or supersede a Claude Code convergence review request for an existing PR")
@@ -14993,7 +15023,27 @@ github
     const snapshot = JSON.parse(readFileSync(opts.snapshotFile, "utf8")) as Parameters<
       typeof evaluateGitHubCrossReviewAdmission
     >[0];
-    const decision = evaluateGitHubCrossReviewAdmission(snapshot);
+    let decision = evaluateGitHubCrossReviewAdmission(snapshot);
+    const receiptHistory = snapshot.comments.flatMap((comment): ClaudePrReviewReceipt[] => {
+      const parsed = parseClaudeIndependentPrReviewComment(comment.body);
+      return parsed?.schemaVersion === "helix-claude-pr-review-receipt.v4" ? [parsed] : [];
+    });
+    const unresolvedBlocks = unresolvedClaudePrBlockReceipts(receiptHistory, {
+      repository: snapshot.repository,
+      prNumber: snapshot.pr_number,
+      headSha: snapshot.candidate_head,
+    });
+    const terminalPromotion = hasTerminalPlanPromotion(
+      loadChangedPlanReviewBindings(process.cwd(), "origin/main", snapshot.candidate_head),
+    );
+    if (unresolvedBlocks.length > 0 && terminalPromotion) {
+      decision = {
+        ok: false,
+        deferred: false,
+        receipt_digest: null,
+        reasons: ["outstanding_request_changes_terminal_plan"],
+      };
+    }
     process.stdout.write(
       opts.json
         ? `${JSON.stringify(decision, null, 2)}\n`
@@ -15172,6 +15222,9 @@ github
             parsed.conclusion === receiptCi.conclusion
           );
         })();
+    const reviewReceiptHistory = providerNeutral
+      ? null
+      : loadClaudePrReviewReceiptHistory(repository, prNumber);
     const decision = providerNeutral
       ? evaluateProviderNeutralReviewMerge(
           {
@@ -15195,9 +15248,16 @@ github
             requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
             receiptCiMatchesHead,
             receiptCiMatchesGeneration,
+            ...(reviewReceiptHistory === null ? {} : { reviewReceiptHistory }),
           },
           receipt as ReturnType<typeof loadClaudePrReviewReceipt>,
         );
+    if (!providerNeutral && reviewReceiptHistory === null) {
+      decision.ok = false;
+      if (!decision.reasons.includes("review_receipt_history_unavailable")) {
+        decision.reasons.push("review_receipt_history_unavailable");
+      }
+    }
     let mergeResult: {
       status: number | null;
       stdout: string;

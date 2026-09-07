@@ -355,11 +355,43 @@ export interface ClaudePrMergeState {
   requiredChecksGreen: boolean;
   receiptCiMatchesHead: boolean;
   receiptCiMatchesGeneration: boolean;
+  /** GitHub上でread-afterした同一PRのsealed receipt集合。未取得はfail-closeする。 */
+  reviewReceiptHistory?: readonly ClaudePrReviewReceipt[];
 }
 
 export interface ClaudePrMergeDecision {
   ok: boolean;
   reasons: string[];
+}
+
+export function unresolvedClaudePrBlockReceipts(
+  receipts: readonly ClaudePrReviewReceipt[],
+  identity: { repository: string; prNumber: number; headSha: string },
+): ClaudePrReviewReceipt[] {
+  const relevant = receipts
+    .filter(
+      (candidate) =>
+        candidate.repository === identity.repository &&
+        candidate.prNumber === identity.prNumber &&
+        candidate.headSha === identity.headSha,
+    )
+    .sort((left, right) => left.reviewedAt.localeCompare(right.reviewedAt));
+  const unresolved = new Map<string, ClaudePrReviewReceipt>();
+  for (const candidate of relevant) {
+    if (candidate.verdict === "block") {
+      unresolved.set(candidate.receiptId, candidate);
+      continue;
+    }
+    for (const [receiptId, blocked] of unresolved) {
+      if (
+        candidate.supersedesReceiptId === receiptId ||
+        candidate.reviewerSessionId === blocked.reviewerSessionId
+      ) {
+        unresolved.delete(receiptId);
+      }
+    }
+  }
+  return [...unresolved.values()];
 }
 
 export interface RequiredCheckEntry {
@@ -1406,6 +1438,10 @@ export function evaluateClaudePrMerge(
   if (!state.receiptCiMatchesGeneration) {
     reasons.push("receipt_ci_generation_mismatch");
   }
+  if (
+    unresolvedClaudePrBlockReceipts(state.reviewReceiptHistory ?? [receipt], state).length > 0
+  )
+    reasons.push("outstanding_request_changes");
   const pairFailure = reviewPairFailure(receipt);
   if (pairFailure) reasons.push(pairFailure);
   if (receipt.verdict !== "approve" || receipt.blockerCount !== 0) {

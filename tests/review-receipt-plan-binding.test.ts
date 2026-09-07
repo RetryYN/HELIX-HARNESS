@@ -5,11 +5,13 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   evaluateReviewReceiptPlanBinding,
+  hasTerminalPlanPromotion,
   loadChangedPlanReviewBindings,
   type ReviewReceiptPlanBindingInput,
 } from "../src/runtime/review-receipt-plan-binding";
 
 // PLAN-RECOVERY-1603-review-receipt-plan-binding
+// PLAN-RECOVERY-1627-review-request-changes-fail-close / U-RRCF-001
 
 const SESSION = "9867601a-a3ad-4369-980c-11757d63a7de";
 const MODEL = "claude:claude-fable-5-1";
@@ -210,6 +212,19 @@ describe("review receipt / PLAN binding", () => {
     expect(loadChangedPlanReviewBindings(root, "HEAD", "f".repeat(40))).toMatchObject([
       { parse_failure: true, status: "unknown" },
     ]);
+  });
+
+  it("U-RRCF-001: draft修正とterminal昇格を分離する", () => {
+    const base = input().changed_plans[0];
+    expect(hasTerminalPlanPromotion([{ ...base, status: "draft", base_status: "draft" }])).toBe(
+      false,
+    );
+    expect(
+      hasTerminalPlanPromotion([{ ...base, status: "confirmed", base_status: "draft" }]),
+    ).toBe(true);
+    expect(
+      hasTerminalPlanPromotion([{ ...base, status: "confirmed", base_status: "confirmed" }]),
+    ).toBe(false);
   });
 });
 
