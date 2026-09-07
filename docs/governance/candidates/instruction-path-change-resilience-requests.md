@@ -17,7 +17,7 @@ Providerや実行経路が変化しても、HELIXが要求・Policy・Workflow�
 
 ## 責務と追跡
 
-主Issue #1608、親 #1370へ接続する。詳細8要求は
+主Issue #1608、親 #1370へ接続する。詳細10要求は
 [要件候補](instruction-path-change-resilience-requirements.md)、対応する受入は
 [受入候補](instruction-path-change-resilience-acceptance.md)に保持する。
 本書は候補であり、canonical Requirement IR、runtime実装、権限付与を意味しない。
@@ -28,3 +28,4 @@ Providerや実行経路が変化しても、HELIXが要求・Policy・Workflow�
 `c8888d4cf3d03f5c5a39a0ae6905bb76d03ddcc02fbf9cb21238e6516d9eced0`。
 原文が参照する `02_MAPPING_AND_ACCEPTANCE.md` と `03_HANDOFF.json` は存在しないため、
 未読内容を推測せず本候補でmappingとacceptanceを再構成する。
+原文C02の安定入口・動的正本参照と、原文§5の定量比較・少標本保留も本候補の対象として保持する。

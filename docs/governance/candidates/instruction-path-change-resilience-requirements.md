@@ -51,7 +51,22 @@ provider/runtime/model/adapter/version/call formを分離し、実測attestation
 unsupportedまたは観測不能を保護済みに見せず、fail-closeまたは明示DEGRADEDへ送る。
 Skill機構とRule導出機構は別要求・別受入・別完了状態のまま接続する。
 
+## IPC-R09 安定入口と動的正本参照
+
+AGENTS／CLAUDE／agent／commandの固定指示は、正規入口、契約取得先、診断取得先への参照へ縮小する。
+worker contextは有効なRequirement IR、Policy、Workflow、Skill、適用版から必要範囲だけを構成し、
+固定文書集合、未登録command、provider固有の古い意味をcurrent authorityとして注入しない。
+`worker-context-packet`、adapter、role judgment、task lensは既存ownerを参照し、別の意味正本を持たない。
+
+## IPC-R10 効果測定と採否境界
+
+変更前後を同一task・consumer・evidence条件で比較し、手修正箇所数、有効化までの時間、総token、再実行、
+誤拒否、旧版再出現を測定する。閾値は既存NFRへ接続し、未定義ならcanonical昇格前に採否基準を定義する。
+少標本、観測不能、比較条件不一致では改善を主張せず、保留または追加測定へ送る。
+
 ## 導入順
 
 #1376の契約生成、#1375のconsumer適用を軸に、#1373/#1374/#1377を対象単位で接続し、
-#1378 consumer E2Eへ収束させる。候補承認とcanonical昇格、#397 IR admission、runtime実装を別状態で追う。
+#1378 consumer E2Eへ収束させる。最初は一つの指示経路で正本変更、必要出力更新、読込観測、動作確認、
+旧出力非再生成を実証し、全Censusや全Skill移行を先行条件にしない。候補承認とcanonical昇格、
+#397 IR admission、runtime実装を別状態で追う。
