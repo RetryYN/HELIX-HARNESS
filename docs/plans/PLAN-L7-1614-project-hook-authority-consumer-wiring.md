@@ -62,9 +62,11 @@ dependencies:
     - PLAN-L7-667-project-hook-authority-input-provider
     - PLAN-L7-668-project-hook-authority-surface-projector
     - PLAN-L7-669-project-hook-assignment-provider
+    - PLAN-REVERSE-1614-project-hook-authority-consumer-wiring
   references:
     - "issue:895"
     - "issue:1614"
+    - PLAN-REVERSE-1614-project-hook-authority-consumer-wiring
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/project-hook-authority-consumer-wiring.ts, artifact_type: source_module }
