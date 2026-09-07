@@ -24,6 +24,8 @@ export interface ProviderProcessLaunch {
   readonly timeMs: number;
   readonly stdout?: "capture" | "inherit" | 2;
   readonly stderr?: "capture" | "inherit";
+  /** stdout/stderr combined capture ceiling. Observation counts remain exact after truncation. */
+  readonly captureLimitBytes?: number;
 }
 
 export type ProviderProcessTerminationStage = "none" | "term_sent" | "kill_sent";
@@ -32,6 +34,9 @@ export interface ProviderProcessLifecycleOutcome {
   readonly status: number | null;
   readonly stdout: string;
   readonly stderr: string;
+  readonly stdout_bytes: number;
+  readonly stderr_bytes: number;
+  readonly output_truncated: boolean;
   readonly timed_out: boolean;
   readonly tree_lingered: boolean;
   readonly interrupted_by: NodeJS.Signals | null;
@@ -138,14 +143,45 @@ export async function runBudgetedProviderProcess(
   launch: ProviderProcessLaunch,
 ): Promise<ProviderProcessLifecycleOutcome> {
   assertDeadline(launch.timeMs);
+  if (
+    launch.captureLimitBytes !== undefined &&
+    (!Number.isSafeInteger(launch.captureLimitBytes) || launch.captureLimitBytes < 0)
+  ) {
+    throw new TypeError("provider process captureLimitBytes must be a non-negative safe integer");
+  }
   const startedAt = process.hrtime.bigint();
+  const captureLimitBytes = launch.captureLimitBytes ?? Number.MAX_SAFE_INTEGER;
+  let stdoutBuffer = Buffer.alloc(0);
+  let stderrBuffer = Buffer.alloc(0);
+  let stdoutBytes = 0;
+  let stderrBytes = 0;
+  let capturedBytes = 0;
+  let outputTruncated = false;
+  const capture = (chunk: Buffer, stream: "stdout" | "stderr") => {
+    if (stream === "stdout") stdoutBytes += chunk.length;
+    else stderrBytes += chunk.length;
+    const remaining = captureLimitBytes - capturedBytes;
+    if (remaining > 0) {
+      const accepted = chunk.subarray(0, remaining);
+      if (stream === "stdout") stdoutBuffer = Buffer.concat([stdoutBuffer, accepted]);
+      else stderrBuffer = Buffer.concat([stderrBuffer, accepted]);
+      capturedBytes += accepted.length;
+    }
+    if (chunk.length > remaining) outputTruncated = true;
+  };
+  const captured = () => ({
+    stdout: stdoutBuffer.toString("utf8"),
+    stderr: stderrBuffer.toString("utf8"),
+    stdout_bytes: stdoutBytes,
+    stderr_bytes: stderrBytes,
+    output_truncated: outputTruncated,
+  });
   try {
     assertProviderProcessLifecycleSupported();
   } catch (error) {
     return {
       status: null,
-      stdout: "",
-      stderr: "",
+      ...captured(),
       timed_out: false,
       tree_lingered: false,
       interrupted_by: null,
@@ -158,8 +194,6 @@ export async function runBudgetedProviderProcess(
     };
   }
   const executionDeadline = startedAt + BigInt(launch.timeMs) * 1_000_000n;
-  let stdout = "";
-  let stderr = "";
   const state: ChildState = {};
   let child: ReturnType<typeof spawn>;
 
@@ -182,8 +216,7 @@ export async function runBudgetedProviderProcess(
   } catch (error) {
     return {
       status: null,
-      stdout,
-      stderr,
+      ...captured(),
       timed_out: false,
       tree_lingered: false,
       interrupted_by: null,
@@ -197,14 +230,8 @@ export async function runBudgetedProviderProcess(
   }
 
   const processGroupId = child.pid;
-  child.stdout?.setEncoding("utf8");
-  child.stderr?.setEncoding("utf8");
-  child.stdout?.on("data", (chunk: string) => {
-    stdout += chunk;
-  });
-  child.stderr?.on("data", (chunk: string) => {
-    stderr += chunk;
-  });
+  child.stdout?.on("data", (chunk: Buffer) => capture(chunk, "stdout"));
+  child.stderr?.on("data", (chunk: Buffer) => capture(chunk, "stderr"));
   child.once("error", (error) => {
     state.error = combineErrors(state.error, error);
   });
@@ -266,8 +293,7 @@ export async function runBudgetedProviderProcess(
       releaseLifecycleHandlers(true);
       return {
         status: state.close?.status ?? null,
-        stdout,
-        stderr,
+        ...captured(),
         timed_out: false,
         tree_lingered: false,
         interrupted_by: null,
@@ -301,8 +327,7 @@ export async function runBudgetedProviderProcess(
     releaseLifecycleHandlers(reaped);
     return {
       status: state.close?.status ?? null,
-      stdout,
-      stderr,
+      ...captured(),
       timed_out: false,
       tree_lingered: true,
       interrupted_by: null,
@@ -333,8 +358,7 @@ export async function runBudgetedProviderProcess(
 
   return {
     status: state.close?.status ?? null,
-    stdout,
-    stderr,
+    ...captured(),
     timed_out: firstBoundary.kind === "deadline",
     tree_lingered: false,
     interrupted_by: firstBoundary.kind === "interrupted" ? firstBoundary.signal : null,

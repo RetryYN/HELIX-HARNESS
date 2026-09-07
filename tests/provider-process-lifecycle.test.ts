@@ -153,6 +153,22 @@ describe.skipIf(process.platform === "win32")("provider process budget lifecycle
     expect(outcome.duration_ms).toBeLessThan(1_000);
   });
 
+  it("U-WBL-011: capture上限後も実観測byte数を保持し出力をboundedにする [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
+    const outcome = await runBudgetedProviderProcess({
+      ...baseLaunch(1_000),
+      args: ["-e", 'process.stdout.write("123456"); process.stderr.write("abcdef");'],
+      captureLimitBytes: 8,
+    });
+
+    expect(outcome).toMatchObject({
+      status: 0,
+      stdout_bytes: 6,
+      stderr_bytes: 6,
+      output_truncated: true,
+    });
+    expect(Buffer.byteLength(outcome.stdout) + Buffer.byteLength(outcome.stderr)).toBe(8);
+  });
+
   it("U-WBL-002: SIGTERMを無視する親と孫をgrace後にSIGKILLして回収する", async () => {
     const root = temporaryRoot();
     const outcome = await runBudgetedProviderProcess(stubbornLaunch(root, 200));
