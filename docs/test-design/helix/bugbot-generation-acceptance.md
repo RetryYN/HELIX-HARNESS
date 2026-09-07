@@ -5,7 +5,7 @@ canonical_pair: L3
 title: "HELIX-bugbot 定型生成の総合テスト設計"
 layer: L10
 kind: redesign
-status: draft
+status: confirmed
 authority_status: canonical_source
 approval_record_id: L3-PO-1639-001
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
@@ -24,7 +24,7 @@ pair_artifact: docs/design/helix/L3-requirements/bugbot-generation-requirements.
 本書は承認済みBBG-AC01..06のcanonical sourceであり、
 [L3要件](../../design/helix/L3-requirements/bugbot-generation-requirements.md)とL3↔L10を構成する。
 来歴と残義務は[既存PLAN](../../plans/PLAN-L3-1639-bugbot-generation.md)へ束縛する。
-新配置の独立技術review前は文書・PLANともdraftを維持する。Requirement IR admission・実装・検収は未完了。
+新配置の独立技術reviewはPLANの対象HEAD・証拠へ束縛する。Requirement IR admission・実装・実consumer検収は未完了。
 以下は原稿本文から導出した受入条件であり、未提供の別紙03の18シナリオではない。
 実行証拠は未採取。生成器自身のテストだけで合格させず、独立oracle・mutation・実consumerを用いる。
 

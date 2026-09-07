@@ -5,7 +5,7 @@ canonical_pair: L12
 title: "HELIX-bugbot 定型生成の利用目的"
 layer: L1
 kind: redesign
-status: draft
+status: confirmed
 authority_status: canonical_source
 approval_record_id: L3-PO-1639-001
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
@@ -24,7 +24,7 @@ next_pair_freeze: L12
 
 本書は承認済みBBG-BR01..02のcanonical sourceである。候補との第二正本は残さず、
 承認時のraw bytesはGit履歴と[既存PLAN](../../../plans/PLAN-L3-1639-bugbot-generation.md)の来歴で保持する。
-新配置の独立技術review前は文書・PLANともdraftを維持する。Requirement IR admission、実装、
+新配置の独立技術reviewはPLANの対象HEAD・証拠へ束縛する。Requirement IR admission、実装、
 独立oracle・実consumer受入は未完了であり、source配置を実行authorityや完成証拠にしない。
 
 BBG-BR01: HELIXを使う開発者・workerが、意味入力に集中でき、同じPLAN/PR定型欄や派生物を

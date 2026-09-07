@@ -26,9 +26,9 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(candidate).toBeDefined();
     if (!candidate) throw new Error(`Missing candidate: ${path}`);
     expect(candidate.contentDigest).toBe(
-      "2ed8aba3cbdb16496b2048727091700a958f95a3b5dfe6f6db0270a88028d46b",
+      "bac054e52a05d7d82e837abaffbd4bb377fdd096e3f25b52909afbafaf60dfb5",
     );
-    expect(candidate.documentStatus).toBe("draft");
+    expect(candidate.documentStatus).toBe("confirmed");
     expect(new Set(candidate.signals.map((signal) => signal.id))).toEqual(
       new Set(["legacy_pair_l3_l12"]),
     );

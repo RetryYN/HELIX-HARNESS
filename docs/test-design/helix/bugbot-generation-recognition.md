@@ -5,7 +5,7 @@ canonical_pair: L1
 title: "HELIX-bugbot 定型生成の利用目的認識設計"
 layer: L12
 kind: redesign
-status: draft
+status: confirmed
 created: 2026-09-08
 updated: 2026-09-08
 owner: QA
@@ -20,7 +20,7 @@ pair_artifact: docs/design/helix/L1-requirements/bugbot-generation-requests.md
 BBG-BR01..02を実利用から認識する派生テスト設計である。承認済みの3文書そのものではなく、
 要求・受入・自動書込み権限を追加しない。要求の来歴は
 [PLAN-L3-1639](../../plans/PLAN-L3-1639-bugbot-generation.md)へ接続する。
-本設計の独立技術reviewと実行は未完了である。
+本設計の独立技術reviewはPLANの対象HEAD・証拠へ束縛する。実行と利用目的達成の認定は未完了である。
 
 ## 目的別の認識
 

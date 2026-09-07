@@ -2,9 +2,10 @@
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // #1639: 層metadataの隣接とbackprop理由の正規source併記だけを旧pairと誤検出する。
+    // signal位置はPLANの4-5行目・39-41行目。旧pairの実行authorityは含まない。
     // 正規pairはL1↔L12・L3↔L10。最終PLAN bytes限定のprojectionであり、独立技術reviewは別途必要。
     path: "docs/plans/PLAN-L3-1639-bugbot-generation.md",
-    contentDigest: "2ed8aba3cbdb16496b2048727091700a958f95a3b5dfe6f6db0270a88028d46b",
+    contentDigest: "bac054e52a05d7d82e837abaffbd4bb377fdd096e3f25b52909afbafaf60dfb5",
     finalDisposition: "false_positive",
   },
   {

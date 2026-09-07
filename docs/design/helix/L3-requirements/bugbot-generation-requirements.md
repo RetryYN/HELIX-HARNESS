@@ -5,7 +5,7 @@ canonical_pair: L10
 title: "HELIX-bugbot 定型生成・正規操作の要件"
 layer: L3
 kind: redesign
-status: draft
+status: confirmed
 authority_status: canonical_source
 approval_record_id: L3-PO-1639-001
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
@@ -27,7 +27,7 @@ BBG IDを維持し、新しいFR IDやRequirement IR recordは追加しない。
 [L1利用目的](../L1-requirements/bugbot-generation-requests.md)、
 [L10総合テスト設計](../../../test-design/helix/bugbot-generation-acceptance.md)、
 [既存PLAN](../../../plans/PLAN-L3-1639-bugbot-generation.md)へ接続する。
-新配置の独立技術review前は文書・PLANともdraftを維持する。既存ACとの詳細照合、該当IR admission、
+新配置の独立技術reviewはPLANの対象HEAD・証拠へ束縛する。既存ACとの詳細照合、該当IR admission、
 実装・限定実証は未完了であり、source配置と分離する。同一要求の再承認待ちには戻さない。
 承認は実装・検収完了の証拠ではなく、生成から自動書込み許可を導出しない。
 

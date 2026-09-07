@@ -7,7 +7,7 @@ canonical_vmodel: L1-L12
 canonical_layer: L3
 canonical_pair: L10
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -67,6 +67,7 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/governance/candidates/bugbot-intake-source.md, artifact_type: markdown_doc }
+  - { artifact_path: .helix/evidence/review-1639-canonical/bytes.log, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L3-1639-bugbot-generation.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L1-requirements/bugbot-generation-requests.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L3-requirements/bugbot-generation-requirements.md, artifact_type: design_doc }
@@ -83,7 +84,27 @@ modifies:
 agent_slots:
   - { role: tl, slot_label: "TL — 既存責務と追加差分を分離" }
   - { role: qa, slot_label: "QA — 原稿対応と禁止反例を検証" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T23:26:55Z"
+    tests_green_at: "2026-09-07T23:26:14Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: b5247c44827720c97e05a5b498df39d4ccc55db8
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576681813"
+    scope: "b5247c448のtracked差分のみ。独立技術approve/blockers 0はcomment5576644162、同一HEADで再採取したbytes照合のraw全文・終了時刻はcomment5576681813へ束縛する。reviewed_atは補足記録のGitHub公開時刻。tests_green_atはこのsmokeだけの終了時刻でVitest/vmodel/tscへ流用しない。判断側tscは借用依存によりexit 2でありgreenにしない。作成側専有treeのraw4件は判断側未検証。CI/main read-after/DB convergenceは未実施で、技術confirmedと最終HEADの独立封緘・merge admissionを分離する。"
+    green_commands:
+      - kind: smoke
+        command: "node ./verify1639bytes.mjs"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-07T23:26:14Z"
+        evidence_path: .helix/evidence/review-1639-canonical/bytes.log
+        output_digest: "sha256:44b11058b02f992d3a8b08650e7e5bb473cb30a7b9ed27ca763fe8007dc6ebae"
 ---
 
 # 定型生成・正規操作
@@ -91,8 +112,8 @@ review_evidence: []
 本PLANは要求と明示承認の束縛、承認済み候補のcanonical source配置を所有する。
 L1/L3/L10の要求承認は取得済みであり、同一要求の再承認待ちには戻さない。
 A/Bは別PLAN・別受入・別完了で追跡し、正本化・該当IR admission・独立検証を省略しない。
-本差分は意味不変のsource移管であり、新配置の独立技術review前は`status: draft`、
-`review_evidence: []`を維持する。sourceの`authority_status: canonical_source`とPLAN確定、
+本差分は意味不変のsource移管であり、新配置の独立技術reviewを対象HEADへ束縛して確定する。
+sourceの`authority_status: canonical_source`とPLANの技術確定、
 Requirement IR admission、実装完了、包括的自動書込みの成立を分離する。
 
 ## 承認対象と残る検収
@@ -105,8 +126,12 @@ Bの有効化条件は#1642が所有し、Aの生成成功を修復の適用許�
 
 原稿bytesは`docs/governance/candidates/bugbot-intake-source.md`のBase64復号で再現する。正規化なしのSHA-256:
 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
-原文の項目対応・保全read-after・候補移管の検査後にroot原稿を退役する義務を維持するが、
-本sliceでは保全台帳を変更せず、root原稿も削除しない。
+[原稿退役のread-after](https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576534985)に、
+保全先main `391020b882abedfa622a2910e906618fde980270`との8,033 bytes完全一致、
+A4/B5の項目対応、監査付きpreflightとroot原稿1件の削除を記録した。本Git差分とは別の
+明示依頼に基づくローカル整理であり、Bの自動適用権限を有効化した証拠ではない。
+本PLANが既に生成した保全台帳は`generates`による継続所有を保持するが、本差分では変更しない。
+現行diffの新規成果物と混同せず、Git履歴から原稿全bytesを復元できる状態を維持する。
 別紙02/03/05は未提供であり、別紙03の18シナリオ照合は残義務である。
 
 ## 承認時の来歴と移管範囲
@@ -139,7 +164,7 @@ BBG-BR01..02の要求段落、BBG-R01..04の見出しと要件本文、BBG-AC01.
 commit前に`helix guard commitlint --subject 'fix: bind bugbot canonical recognition to exact source bytes'`
 と`git status`／`git diff --staged`を検証し、意図pathだけをnormal commitする。
 commit後は`helix guard commitlint --range cf85c603986b87905514d2d3ebcdd1fde1aaa2b2..HEAD`も検証する。
-pushは本workerの範囲外である。
+workerから引き継いだ後の親統合がpush・PR・CI・独立検収の接続を所有する。
 
 実装計画は既存Authoring/RecoveryとGH-FR-007/014、#1608を再利用する後続実装へ分離する。
 本sliceは文書移管・派生認識設計、catalogの実bytesを束縛するpin追従と、本PLANの内容digestに
@@ -170,9 +195,23 @@ Node 24.15.0の`node node_modules/vitest/vitest.mjs run --configLoader runner --
 `tsc --noEmit`、対象PLAN lint、vmodel、governance、post-merge-status、design-language、
 専有treeのdb rebuild、BR/R/ACのbytes照合を再実行する。対象HEADと実exit／output digestは
 commit済みHEADへの引継ぎで報告する。本PLANのbytesを先に固定してからscannerのpinを算出し、
-そのpinや後続検証結果を本PLANへ書き戻す循環は作らない。独立技術review前はdraftを維持する。
+そのpinや後続検証結果を本PLANへ書き戻す循環は作らない。技術確定後も新HEADのCIと最終独立検収を省略しない。
 
 ## 移管の局所検証
+
+### 独立技術検収と転記の境界
+
+独立レビューはHEAD `b5247c44827720c97e05a5b498df39d4ccc55db8`のtracked差分を対象に
+[approve/blockers 0](https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576644162)とした。
+[補足実測](https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576681813)の
+`verify1639bytes.mjs`は下記埋め込みスクリプトと同内容を独立treeでESM化して実行したもので、
+repository内の常設実行入口ではない。raw全文3行を末尾改行も含め転記し、公開SHA-256と照合する。
+初回検証の未採取時刻は補作せず、再実行の終了時刻だけを使用する。
+判断側の型検査exit 2と、判断側未検証の作成側raw4件をこのgreenへ混入させない。
+M-1は文書とPLANの技術confirmedを明記、M-2は保全台帳の継続所有を明記、M-3は
+scannerコメントに誤検出位置を付記して処理する。新HEADの最終独立検収・CI・main read-afterは別に残す。
+
+### 初期移管の履歴
 
 Node 24.15.0で`node --import tsx src/cli.ts`を既存HELIX CLI入口として実行した。
 以下は初期移管commit `f59d02a1643bcb7fbb7ed07d060391f7ca9180f9`の局所履歴証拠であり、
