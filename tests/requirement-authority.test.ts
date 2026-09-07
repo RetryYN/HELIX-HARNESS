@@ -83,6 +83,11 @@ describe("Requirement JSON authority", () => {
     const sourceRoot = process.cwd();
     const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-requirement-authority-"));
     try {
+      // frozen refinementを含む実データにはHEADが必要。独立Git fixtureを作り、
+      // 対象の負例に到達する前のrev-parse例外で検査を短絡させない。
+      // source/祖先materialは引き継がず、既存どおり当該failure messageを個別検証する。
+      git(fixtureRoot, ["init", "--quiet"]);
+      git(fixtureRoot, ["commit", "--quiet", "--allow-empty", "-m", "authority fixture"]);
       mkdirSync(join(fixtureRoot, "config"));
       copyFileSync(
         join(sourceRoot, "config/requirement-ir-schema.json"),

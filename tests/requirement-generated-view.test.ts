@@ -51,9 +51,9 @@ describe("Requirement generated view", () => {
     expect(markdown).toContain("| DIST-LITE-FR-001 | HR-FR-HIL-24 | 5 | 9 | specified |");
     expect(markdown).toContain("| SYN-FR-001 | HR-FR-HIL-02 | 10 | 14 | specified |");
     expect(markdown).toContain("| OPS-FR-001 | HR-FR-HIL-04 | 18 | 21 | specified |");
-    expect(markdown).toContain("| 3L-FR-001 | HR-FR-HIL-08 | 3 | 3 | specified |");
-    expect(markdown).toContain("| 3L-FR-005 | HR-FR-HIL-08 | 6 | 6 | specified |");
-    expect(markdown).toContain("| 3L-FR-008 | HR-FR-HIL-08 | 2 | 2 | specified |");
+    expect(markdown).toContain("| 3L-FR-001 | HR-FR-HIL-08 | 3 | 3 | frozen |");
+    expect(markdown).toContain("| 3L-FR-005 | HR-FR-HIL-08 | 6 | 6 | frozen |");
+    expect(markdown).toContain("| 3L-FR-008 | HR-FR-HIL-08 | 2 | 2 | frozen |");
   });
 
   it("U-RGV-004: rejects path escape, shard drift, and incomplete generated views", () => {

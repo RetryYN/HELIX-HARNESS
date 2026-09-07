@@ -34,6 +34,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-TLIR-MAT-002, test_path: tests/three-lane-ir-admission.test.ts }
   - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-TLIR-MAT-003, test_path: tests/three-lane-ir-admission.test.ts }
   - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-TLIR-MAT-004, test_path: tests/three-lane-ir-admission.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-TLIR-MAT-005, test_path: tests/three-lane-ir-admission.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -48,6 +49,8 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1649-three-lane-ir-admission.md, artifact_type: markdown_doc }
   - { artifact_path: tests/three-lane-ir-admission.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1649/vitest-targeted.log, artifact_type: other }
+  - { artifact_path: .helix/evidence/review-1649/tsc.log, artifact_type: other }
 modifies:
   - { artifact_path: docs/test-design/helix/L8-requirement-refinement-authority-unit-test-design.md, artifact_type: markdown_doc }
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
@@ -149,3 +152,51 @@ I-2へU-TLIR-MAT-001のFeatureごとのAC exact setを追加する。IR本文・
 
 M-1のbullet projection由来のbacktick表記、M-2のsourceに入力／操作列が無い点は残義務として保持する。
 前者を本データ登録で独自parserにより上書きせず、後者へ未承認の受入意味を追加しない。
+
+## 二相凍結の形式化
+
+I-1/I-2は独立追認comment 5575770266（対象`fa52dc523`、2026-09-07T21:25:21Z）で閉じた。
+source修復#1647もmain `e674ffb56d27ee4880b74636e55d6d7b65476b05`へ統合し、正規mergeのread-afterが成立した。
+この2点を前提に、既存8 recordだけの凍結差分を作成する。変更後の独立検収は別途必要である。
+
+- `candidate_head`はapprovalなしspecified material `b2071aaf54764fa3631a98b635970788a310b7d2`。
+  後発の`fa52dc523`はPLAN/testのみの修正で、8 subject digest、source、ownerは同一である。
+- `decision_source`と`approved_at`は元のL3-PO-1358-002のURLと2026-09-06T06:34:19Zを保持する。
+  この時刻は元文書の人間承認時刻であり、後発IR materialがその時点で存在したという主張ではない。
+  AIが行うのは承認済み意味の派生束縛で、新しい人間の承認・権限を創作しない。
+  `approved_revision: 1`はIR recordの版で、元文書の承認版`0.4.0-candidate`を書き換えない。
+- 承認時commit `69679771d456eb1600f399bc83f3121a2bc27b01`の25 R行／27 AC行と、
+  canonical sourceの同じ行はbytes・順序一致。元承認の本文digestとcurrent source raw digestは
+  対象が異なるため両方を保持し、片方で上書きしない。
+  本文全体の非空行照合でも、差分は候補→canonicalの状態表示と工程上の未完了境界だけで、
+  requirement側69行、acceptance側31行を維持している。
+- downstream owner 9 Issueは2026-09-07T21:36:55ZにGitHubから取得し、全件OPENを確認した。
+  各recordのsnapshotはそのrecordのowner exact set／順序だけを持つ。最終admission時に再照合する。
+- `source_set_digest`／`subject_digest`／`decision_digest`／snapshot digestは既存関数で算出する。
+  manifestとgenerated viewも既存root計算／renderを使い、baseline 4 shardと他の6 refinementは不変。
+
+二相凍結を要求するU-TLIR-MAT-002/005が、specified状態でRedになることを実測した。
+この凍結差分は要求データの登録であり、Cursor cloud起動・credential・課金・公開や、
+Phase B全体の実装完了を許可しない。PLAN技術検収、fresh CI、独立review、main read-afterまで
+本sliceの完了主張を禁止する。
+
+既存authority負例fixtureはGit HEADを持たず、初めてfrozen recordが入るとrev-parseで途中終了した。
+独立した空Git fixtureを用意して本来の検査へ到達させた。意味読取違反、互換digest、生成view改竄、
+ID衝突などの既存failure message期待値を維持し、例外を成功へ読み替えていない。
+U-TLIR-MAT-005は変異後もdecision/snapshot/record digestを再計算し、単純digest不一致だけでなく
+HEAD、revision、source集合、owner、PLAN状態の境界が効くことを確認する。
+
+## 凍結差分の作成側検証
+
+mainをmerge-only同期した`59aa77464116c3622772885608fcafeaed4e691e`と本意図差分で採取した。
+独立レビューではこの後commitされた全差分を再取得して照合する。出力に説明文は追記しない。
+
+| 種別 | 実行 | exit | UTC完了時刻 | raw output / SHA-256 |
+|---|---|---|---|---|
+| unit_test | Node 24.15.0のVitestでthree-lane-ir-admission、requirement-refinement-authority、requirement-authority、requirement-ir-shadow、requirement-generated-view、requirement-generated-view-dbの6ファイル | 0（50 tests） | 2026-09-07T21:45:01Z | `.helix/evidence/review-1649/vitest-targeted.log` / `002e157d76f666a24a35f59de58ae56b9a8602bb581b2bc20f74f83ee5c28254` |
+| typecheck | `tsc --noEmit -p . --extendedDiagnostics` | 0 | 2026-09-07T21:44:08Z | `.helix/evidence/review-1649/tsc.log` / `e52bad2737257e00300a2f284bc20355cc25078492b9a369bc40684b6eff5d95` |
+
+PLAN lint、変更testのBiome、diff checkも成功。既存db rebuildはprojection ok／81670行、
+うちRequirement IRは前述の464行を維持する。snapshotは95件でcommitted/live一致。
+IR root digestは`sha256:4ac2491f8390a1fe6e1c7438b67a464b6eb95644150fcf9c37a5d410e6bb58b9`。
+この作成側の実測だけでreview_evidenceを創作したり、PLAN confirmed／CI成功／merge完了を主張しない。

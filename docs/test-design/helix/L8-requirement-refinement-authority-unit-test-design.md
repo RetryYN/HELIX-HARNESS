@@ -46,9 +46,10 @@ U-RRA-001をgreenにしない。
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-TLIR-MAT-001 | 元Featureの責務分割 | 8契約・25要件・27受入を元IDとFeature groupingのexact setで保持する | `tests/three-lane-ir-admission.test.ts` |
-| U-TLIR-MAT-002 | 基準と状態 | 基準153/24/72/24と既存6契約を維持し、specified materialを凍結済みとして扱わない | `tests/three-lane-ir-admission.test.ts` |
+| U-TLIR-MAT-002 | 基準と状態 | 基準153/24/72/24と既存6契約を維持し、元のPO承認とapprovalなしspecified祖先の同一subjectへ束縛して三社だけ凍結する | `tests/three-lane-ir-admission.test.ts` |
 | U-TLIR-MAT-003 | 接続の反例 | source、trace、owner、approval欠落、本文改変を個別拒否する | `tests/three-lane-ir-admission.test.ts` |
 | U-TLIR-MAT-004 | 表末尾の取り落とし | 連続27行のAC表とIRのAC025/026/027を照合する | `tests/three-lane-ir-admission.test.ts` |
+| U-TLIR-MAT-005 | 二相凍結境界 | 自己参照HEAD、旧revision、source集合・owner不一致、未confirmed PLANを個別拒否する | `tests/three-lane-ir-admission.test.ts` |
 
 既存loader、生成view round-trip、DB rebuild oracleも同じ追加集合へ同期する。
 DBは基準273行＋既存refinement 131行＋三社60行（8契約＋25要件＋27受入）＝464行とし、

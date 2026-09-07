@@ -1744,7 +1744,7 @@
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-001",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-21"
@@ -1846,14 +1846,42 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:8a3839afc58a28bf5c376827617d498eedd71395f706a74d3253a2af05fc006c"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:201a8947e213b58e642658b6c7fd35762125169af4cbad54345eee0804eefb59",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1358,
+            "state": "open"
+          },
+          {
+            "number": 861,
+            "state": "open"
+          },
+          {
+            "number": 1293,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:248e7385b3c1a4b0ab023f0783b6229c428c182e72e77717ae664dc0bf40e7e2"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:47f26c96e407fac87ff236711e751f9e7ab1ab49575d2af19000d3678dea6826"
+    },
+    "semantic_digest": "sha256:1d42bb706f0280fd5c2b1ee2009b253151d839279022b68fe7835d6b7f9e23c8"
   },
   "3L-FR-002": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-002",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-02"
@@ -1948,14 +1976,38 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:60b01d0fad6e9ef78460ad5423fd5b5045c3162f21cdf8f5c6ae13ddcb807f19"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:a447108db15e16155d8969f5afdf7d38aa0400f2abd4aa5968afeb833d8edfe8",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1358,
+            "state": "open"
+          },
+          {
+            "number": 1293,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:c040084f86d1cb8aaa8f99e5a8ee6f5554adc139a9c219380611c95a5f197bff"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:308f208a4e7457eb5a604f66ae944388ad683ca76cd074ead380ab10baf8719d"
+    },
+    "semantic_digest": "sha256:eea6ab006ef3398ed65f47abe8ba3594dc1b17bdea7f73c4408067cafc7e6964"
   },
   "3L-FR-003": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-003",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-02",
@@ -2063,14 +2115,38 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:5d77aedec4edae5f87b10ba199bb215d7825b21d5f44e570a2a862d7132f3587"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:d48a9171f7af5e0c693e98cb99ee5d79c1e89446eb3353f53df36e4d5eab8025",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1358,
+            "state": "open"
+          },
+          {
+            "number": 1359,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:d561b6ff470fb13621adfb74d43973a425bb82760c7ef8cf5b555c10a7b25b23"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:89990b3afd54a59cb154ef79de93070da860e02dfdf0531db898ca2a6bbab523"
+    },
+    "semantic_digest": "sha256:f33dc3aa5436eb4c2358bdc8a0edcd790f87b82234f3f614d460bd4621fd523a"
   },
   "3L-FR-004": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-004",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-21",
@@ -2146,14 +2222,38 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:85deb69b453ba810931374fc311a2d26db311613e1638da9c9d921b55b1b4b07"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:23ec6c6c4773e36c27b71166c50748fa9bcb8b48621e665cf8c53f59d225c392",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1358,
+            "state": "open"
+          },
+          {
+            "number": 1359,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:d561b6ff470fb13621adfb74d43973a425bb82760c7ef8cf5b555c10a7b25b23"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:a6916a58ecca8e14415c6cdeb3372cc41b51e63328d24a8186fd96aa57aa5e7d"
+    },
+    "semantic_digest": "sha256:36a2cdee4c68800d718838ee4424b19354b1bcb2b39c7e267f0f83bb3f035cb5"
   },
   "3L-FR-005": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-005",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-02"
@@ -2322,14 +2422,46 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:eec7c0389aaa46523d621c3e54852c7ced086c34cb83836f93eb4f19904eb0a6"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:f6cd010d518d6c21b4fc4f02506f591e6a0f9bd72b2d362b20412d116e870186",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1358,
+            "state": "open"
+          },
+          {
+            "number": 1293,
+            "state": "open"
+          },
+          {
+            "number": 862,
+            "state": "open"
+          },
+          {
+            "number": 860,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:421b5231f07636ffa19c02bdcb991cd5ea6ca78224fb8d8deea0bbc58198691b"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:ed7d7138d37f8243328b8f7037515df6b4302609f651d18e596687e1b23b37d0"
+    },
+    "semantic_digest": "sha256:5db2fb65e85692258100adee748bdcb180ec741616ed0d8e0d8e197efcf400ab"
   },
   "3L-FR-006": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-006",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [],
     "source": {
@@ -2422,14 +2554,38 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:a68c0940832e21e33ce253018edd1de06f92b50e15890ef6a54dfb476ba9efbc"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:10a2dbd287b8bf7cf69140e6710a3f0bdd66c704d2bce71a4c8d3292a39efcac",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1358,
+            "state": "open"
+          },
+          {
+            "number": 1360,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:b13a957b287bd301c2b6217af670a51e85cee6314a81402e7cc6e75f53ea8b2f"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:639c632046409b17e06c0f7355fafae1e6e5c56e6295e75cca68bc239a551067"
+    },
+    "semantic_digest": "sha256:571495a0740c9f808849a1506f6e3a94f297a5132fedb4ab820c98d6506c415c"
   },
   "3L-FR-007": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-007",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-22"
@@ -2536,14 +2692,38 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:6e685e965e97b809565cb57e615734994d78f0c2b125332c530fbd96fba9ce45"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:cb21132ba1ac1b15a483f44ca8af2506f9adbd49faad003cd72443b81e35335b",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1358,
+            "state": "open"
+          },
+          {
+            "number": 1361,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:c4dd3d739faec8839ce39d57b2dbdd311749d154b3ac3841cf84c2a67d6ad441"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:30fd2676e967bf61daecf8348a0fd7849f4db3b794dd6aafe08edfc9198b1673"
+    },
+    "semantic_digest": "sha256:89364bd1928bff1a854fc4c92d9e73eec12b4b93245ab129403e2d50b8047a07"
   },
   "3L-FR-008": {
     "schema_version": "helix-requirement-refinement.v1",
     "refinement_contract_id": "3L-FR-008",
     "revision": 1,
-    "lifecycle_status": "specified",
+    "lifecycle_status": "frozen",
     "primary_system_contract_id": "HR-FR-HIL-08",
     "related_system_contract_ids": [
       "HR-FR-HIL-22"
@@ -2618,7 +2798,31 @@
         ]
       }
     ],
-    "approval": null,
-    "semantic_digest": "sha256:c1a5336a91f7126c44f309a9dba20ec1209967a4f474991e8d0290c783325e5b"
+    "approval": {
+      "authority": "PO",
+      "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+      "subject_digest": "sha256:738d8c9eadde430a3a2d62f096bfedca7f37a3737ace1ac02a4c4910c43bfa2f",
+      "source_set_digest": "sha256:f465a912ad10d8fff62570047333d8e305e0ef356f3a2663fb03727d8854cee3",
+      "candidate_head": "b2071aaf54764fa3631a98b635970788a310b7d2",
+      "approved_revision": 1,
+      "target_lifecycle": "frozen",
+      "downstream_issue_snapshot": {
+        "observed_at": "2026-09-07T21:36:55Z",
+        "issues": [
+          {
+            "number": 1362,
+            "state": "open"
+          },
+          {
+            "number": 1358,
+            "state": "open"
+          }
+        ],
+        "snapshot_digest": "sha256:14c08e2347fcee512386662fd320c96e878cd0fdb5d3cbb91f6275c142047d12"
+      },
+      "approved_at": "2026-09-06T06:34:19Z",
+      "decision_digest": "sha256:6d0ac6637578350a4a56cd0a8dde84287b70e39dd8f3a5ded91d7e49fb5d28b0"
+    },
+    "semantic_digest": "sha256:9f083c63d70d1e90a9d00c963e63ba5224ad78b87666d656676750e5acfa2aee"
   }
 }

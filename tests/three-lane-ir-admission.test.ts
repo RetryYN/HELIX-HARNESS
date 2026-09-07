@@ -1,8 +1,16 @@
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { loadApprovalMaterial } from "../src/requirements/requirement-authority-gate";
 import { loadCanonicalRequirementIrFromShards } from "../src/requirements/requirement-generated-view";
 import { requirementIrSemanticDigest } from "../src/requirements/requirement-ir-shadow";
-import { validateRequirementRefinement } from "../src/requirements/requirement-refinement-authority";
+import {
+  type RequirementRefinementRecord,
+  refinementApprovalDecisionDigest,
+  refinementApprovalSubjectDigest,
+  refinementDownstreamIssueSnapshotDigest,
+  validateRequirementRefinement,
+} from "../src/requirements/requirement-refinement-authority";
 
 // PLAN-RECOVERY-1649-three-lane-ir-admission
 
@@ -35,9 +43,16 @@ const records = ir.refinement_contracts.filter((r) => r.refinement_contract_id.s
 const context = {
   repoRoot: root,
   baselineSystemContractIds: new Set(ir.system_contracts.map((r) => r.system_contract_id)),
-  currentHead: "b".repeat(40),
+  currentHead: execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim(),
   planStatus: "confirmed",
 };
+const materialHead = "b2071aaf54764fa3631a98b635970788a310b7d2";
+function contextFor(record: RequirementRefinementRecord) {
+  return {
+    ...context,
+    approvalMaterial: loadApprovalMaterial(root, context.currentHead, record),
+  };
+}
 function redigest<T extends { semantic_digest: string }>(value: T): T {
   const { semantic_digest: _old, ...body } = value;
   return { ...body, semantic_digest: requirementIrSemanticDigest(body) } as T;
@@ -63,7 +78,7 @@ describe("three-lane IR material / PLAN-RECOVERY-1649", () => {
     );
   });
 
-  it("U-TLIR-MAT-002: 基準4 partitionと既存6 refinementを保持し、specifiedを凍結済みとしない", () => {
+  it("U-TLIR-MAT-002: 基準4 partitionと既存6 refinementを保持し、独立materialから三社だけ凍結する", () => {
     expect([
       ir.requirements.length,
       ir.system_contracts.length,
@@ -75,9 +90,27 @@ describe("three-lane IR material / PLAN-RECOVERY-1649", () => {
     ).toHaveLength(6);
     expect(records).toHaveLength(8);
     for (const r of records) {
-      expect(r.lifecycle_status).toBe("specified");
-      expect(r.approval).toBeNull();
-      expect(validateRequirementRefinement(r, context)).toEqual({ ok: true, failureCodes: [] });
+      expect(r.lifecycle_status).toBe("frozen");
+      expect(r.approval).toMatchObject({
+        authority: "PO",
+        decision_source:
+          "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431",
+        approved_at: "2026-09-06T06:34:19Z",
+        candidate_head: materialHead,
+        approved_revision: 1,
+        target_lifecycle: "frozen",
+      });
+      expect(contextFor(r).approvalMaterial).toMatchObject({
+        candidateHead: materialHead,
+        isAncestor: true,
+        lifecycleStatus: "specified",
+        approvalAbsent: true,
+        subjectDigest: refinementApprovalSubjectDigest(r),
+      });
+      expect(validateRequirementRefinement(r, contextFor(r))).toEqual({
+        ok: true,
+        failureCodes: [],
+      });
     }
   });
 
@@ -100,6 +133,7 @@ describe("three-lane IR material / PLAN-RECOVERY-1649", () => {
     );
     const frozen = structuredClone(source);
     frozen.lifecycle_status = "frozen";
+    frozen.approval = null;
     expect(validateRequirementRefinement(redigest(frozen), context).failureCodes).toContain(
       "REFINEMENT_APPROVAL_MISSING",
     );
@@ -111,6 +145,44 @@ describe("three-lane IR material / PLAN-RECOVERY-1649", () => {
     expect(validateRequirementRefinement(redigest(changed), context).failureCodes).toContain(
       "REFINEMENT_SOURCE_PROJECTION_DRIFT",
     );
+  });
+
+  it("U-TLIR-MAT-005: 凍結済みでも自己参照、旧revision、source集合・owner不一致を拒否する", () => {
+    const source = records[0];
+    if (!source?.approval) throw new Error("frozen 3L-FR-001 approval is missing");
+    for (const mutate of [
+      (r: RequirementRefinementRecord) => {
+        if (r.approval) r.approval.candidate_head = context.currentHead;
+      },
+      (r: RequirementRefinementRecord) => {
+        if (r.approval) r.approval.approved_revision += 1;
+      },
+      (r: RequirementRefinementRecord) => {
+        if (r.approval) r.approval.source_set_digest = `sha256:${"0".repeat(64)}`;
+      },
+      (r: RequirementRefinementRecord) => {
+        if (r.approval) r.approval.downstream_issue_snapshot.issues.pop();
+      },
+    ]) {
+      const changed = structuredClone(source);
+      mutate(changed);
+      if (changed.approval) {
+        const snapshot = changed.approval.downstream_issue_snapshot;
+        const { snapshot_digest: _snapshotDigest, ...snapshotBody } = snapshot;
+        snapshot.snapshot_digest = refinementDownstreamIssueSnapshotDigest(snapshotBody);
+        const { decision_digest: _decisionDigest, ...approvalBody } = changed.approval;
+        changed.approval.decision_digest = refinementApprovalDecisionDigest(approvalBody);
+      }
+      expect(
+        validateRequirementRefinement(redigest(changed), contextFor(changed)).failureCodes,
+      ).toContain("REFINEMENT_APPROVAL_MISSING");
+    }
+    expect(
+      validateRequirementRefinement(source, {
+        ...contextFor(source),
+        planStatus: "draft",
+      }).failureCodes,
+    ).toContain("REFINEMENT_APPROVAL_MISSING");
   });
 
   it("U-TLIR-MAT-004: L10の最後の3 oracleもIRへ入り、27行の表が連続する", () => {

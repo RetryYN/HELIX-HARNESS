@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /home/tenni/.helix-worktrees/issue-1649-three-lane-ir-admission
+
+
+ Test Files  6 passed (6)
+      Tests  50 passed (50)
+   Start at  06:43:58
+   Duration  70.72s (transform 1.39s, setup 0ms, import 1.89s, tests 68.25s, environment 0ms)
+
