@@ -85,6 +85,7 @@ review_evidence:
     verdict: approve
     worker_model: codex
     reviewer_model: "claude:claude-fable-5-1"
+    reviewer_session_id: "claude-1788764136732"
     scope: "PR #1620 exact HEAD 4042f74006c25474ca4681fafef50bdfcc1571b8を独立reviewしblocker 0。reviewerが推奨したU-CNWHOOKWIRE-007のCodex経路直接検証とstale scope宣言除去を適用し、対象9 testsを再実行した。final HEADの再reviewとclean-main Luna read-afterはmerge admission／Issue completion前に別途必須。"
     green_commands:
       - kind: unit_test
