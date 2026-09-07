@@ -161,43 +161,40 @@ export function evaluateReviewEvidenceReceiptJoin(input: {
       });
       continue;
     }
-    const located = approvals.filter((entry) => entry.receipt_url);
-    if (located.length === 0) {
-      failures.push({ plan_id: plan.plan_id, reason: "review_plan_receipt_locator_missing" });
-      continue;
-    }
-    let mismatch: ReviewPlanBindingFailureReason = "review_plan_receipt_missing";
-    let matched = false;
-    for (const entry of located) {
+    for (const entry of approvals) {
+      if (!entry.receipt_url) {
+        failures.push({ plan_id: plan.plan_id, reason: "review_plan_receipt_locator_missing" });
+        continue;
+      }
       const receipt = input.receipts.find((candidate) => candidate.comment_url === entry.receipt_url);
-      if (!receipt) continue;
+      if (!receipt) {
+        failures.push({ plan_id: plan.plan_id, reason: "review_plan_receipt_missing" });
+        continue;
+      }
       if (entry.reviewer_session_id !== receipt.reviewer_session_id) {
-        mismatch = "review_plan_session_mismatch";
+        failures.push({ plan_id: plan.plan_id, reason: "review_plan_session_mismatch" });
         continue;
       }
       if (!entry.reviewer_model || !sameReviewModel(entry.reviewer_model, receipt.reviewer_model)) {
-        mismatch = "review_plan_model_mismatch";
+        failures.push({ plan_id: plan.plan_id, reason: "review_plan_model_mismatch" });
         continue;
       }
       if (!entry.reviewed_head_sha || entry.reviewed_head_sha !== receipt.reviewed_head_sha) {
-        mismatch = "review_plan_head_mismatch";
+        failures.push({ plan_id: plan.plan_id, reason: "review_plan_head_mismatch" });
         continue;
       }
       if (normalizeReviewVerdict(entry.verdict) !== normalizeReviewVerdict(receipt.verdict)) {
-        mismatch = "review_plan_verdict_mismatch";
+        failures.push({ plan_id: plan.plan_id, reason: "review_plan_verdict_mismatch" });
         continue;
       }
       if (
         !entry.ci_evidence_generation ||
         entry.ci_evidence_generation !== receipt.ci_evidence_generation
       ) {
-        mismatch = "review_plan_ci_generation_mismatch";
+        failures.push({ plan_id: plan.plan_id, reason: "review_plan_ci_generation_mismatch" });
         continue;
       }
-      matched = true;
-      break;
     }
-    if (!matched) failures.push({ plan_id: plan.plan_id, reason: mismatch });
   }
   return { ok: failures.length === 0, failures };
 }
