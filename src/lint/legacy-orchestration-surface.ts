@@ -18,9 +18,7 @@ export const LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS = [
   "tests/legacy-orchestration-semantic-consumers.test.ts",
 ] as const;
 
-const ALLOWED_EXCLUSIONS = new Set<string>(
-  LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS,
-);
+const ALLOWED_EXCLUSIONS = new Set<string>(LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS);
 
 export const LEGACY_ORCHESTRATION_MARKERS = [
   "helix team run",
