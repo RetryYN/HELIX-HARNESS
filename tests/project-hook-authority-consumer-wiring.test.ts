@@ -167,4 +167,35 @@ describe("project hook authority consumer wiring", () => {
       rmSync(rootDir, { recursive: true, force: true });
     }
   }, 150_000);
+
+  it("U-CNWHOOKWIRE-007: current consumerは同一failureを読み副作用前に拒否する", () => {
+    const missing = join(tmpdir(), "helix-missing-hook-authority-snapshot.json");
+    const commands = [
+      ["status", "--project-hook-authority-snapshot", missing],
+      ["doctor", "--project-hook-authority-snapshot", missing],
+      ["session", "start", "--project-hook-authority-snapshot", missing],
+      [
+        "codex",
+        "--role",
+        "se",
+        "--task",
+        "must-not-dispatch",
+        "--execute",
+        "--project-hook-authority-snapshot",
+        missing,
+      ],
+    ];
+    const authorityBytes = commands.map((args) => {
+      const run = spawnSync(process.execPath, [tsxCli, "src/cli.ts", ...args], {
+        cwd: process.cwd(),
+        encoding: "utf8",
+        timeout: 30_000,
+        env: { ...process.env, HELIX_UPDATE_CHECK_DISABLED: "1" },
+      });
+      expect(run.status, `${args.join(" ")}\n${run.stderr}`).toBe(1);
+      return run.stderr.trim().split("\n", 1)[0];
+    });
+    expect(new Set(authorityBytes).size).toBe(1);
+    expect(authorityBytes[0]).toContain('"dispatch":0');
+  }, 150_000);
 });

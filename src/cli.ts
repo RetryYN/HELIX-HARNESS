@@ -2023,8 +2023,19 @@ design
 program
   .command("status")
   .description("実行モード検出 (standalone / claude-only / codex-only / hybrid)")
+  .option("--project-hook-authority-snapshot <path>", "Control Plane authority snapshot JSON")
   .option("--json", "JSON で出力")
-  .action((opts: { json?: boolean }) => {
+  .action((opts: { json?: boolean; projectHookAuthoritySnapshot?: string }) => {
+    if (opts.projectHookAuthoritySnapshot) {
+      const authority = consumeProjectHookAuthoritySnapshot(
+        opts.projectHookAuthoritySnapshot,
+        "status",
+      );
+      if (!authority.ok) {
+        process.exitCode = 1;
+        return;
+      }
+    }
     const d = detectMode();
     const nextAction = nextActionForMode(d.mode);
     const runtimeNextAction = nextAction;
@@ -2319,6 +2330,7 @@ program
   .option("--timing", "include per-check timing in JSON and slow-check text summary")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for review and view surfaces")
+  .option("--project-hook-authority-snapshot <path>", "Control Plane authority snapshot JSON")
   .action(
     (opts: {
       profile?: string;
@@ -2332,7 +2344,18 @@ program
       timing?: boolean;
       json?: boolean;
       summaryJson?: boolean;
+      projectHookAuthoritySnapshot?: string;
     }) => {
+      if (opts.projectHookAuthoritySnapshot) {
+        const authority = consumeProjectHookAuthoritySnapshot(
+          opts.projectHookAuthoritySnapshot,
+          "doctor",
+        );
+        if (!authority.ok) {
+          process.exitCode = 1;
+          return;
+        }
+      }
       const doctorSummary = (report: {
         ok?: boolean;
         messages?: string[];
@@ -4379,6 +4402,25 @@ graph
     process.stdout.write(`${artifact.content}\n`);
   });
 
+function loadProjectHookAuthorityWiring(snapshotFile: string) {
+  let bytes = "";
+  try {
+    bytes = readFileSync(resolve(snapshotFile), "utf8");
+  } catch {
+    // 欠落をcwdやGitから補完せず、既存authority_input_unavailableへ閉じる。
+  }
+  return createProjectHookAuthorityConsumerWiringFromSnapshotBytes(bytes);
+}
+
+function consumeProjectHookAuthoritySnapshot(
+  snapshotFile: string,
+  consumer: ProjectHookAuthorityConsumer,
+) {
+  const wiring = loadProjectHookAuthorityWiring(snapshotFile);
+  process.stderr.write(`${wiring.bytesFor(consumer)}\n`);
+  return wiring;
+}
+
 const projectHookAuthority = program
   .command("project-hook-authority")
   .description("project hook authorityのtyped snapshotをcurrent consumerへ投影する");
@@ -4393,13 +4435,7 @@ projectHookAuthority
       process.exitCode = 1;
       return;
     }
-    let bytes = "";
-    try {
-      bytes = readFileSync(resolve(opts.snapshotFile), "utf8");
-    } catch {
-      // 欠落をcwdやGitから補完せず、既存authority_input_unavailableへ閉じる。
-    }
-    const wiring = createProjectHookAuthorityConsumerWiringFromSnapshotBytes(bytes);
+    const wiring = loadProjectHookAuthorityWiring(opts.snapshotFile);
     const consumer = opts.consumer as ProjectHookAuthorityConsumer;
     process.stdout.write(`${wiring.bytesFor(consumer)}\n`);
     if (!wiring.ok) process.exitCode = 1;
@@ -4410,7 +4446,18 @@ session
   .command("start")
   .description("record SessionStart through the shared session-log core")
   .option("--session <id>", SESSION_OPTION_DESCRIPTION)
-  .action((opts: { session?: string }) => {
+  .option("--project-hook-authority-snapshot <path>", "Control Plane authority snapshot JSON")
+  .action((opts: { session?: string; projectHookAuthoritySnapshot?: string }) => {
+    if (opts.projectHookAuthoritySnapshot) {
+      const authority = consumeProjectHookAuthoritySnapshot(
+        opts.projectHookAuthoritySnapshot,
+        "session_start",
+      );
+      if (!authority.ok) {
+        process.exitCode = 1;
+        return;
+      }
+    }
     const input = readHookInput(HOOK_EVENT_SESSION_START, opts.session);
     const repoRoot = process.cwd();
     const deps = nodeDeps(repoRoot, gitBranch, gitHead);
@@ -12251,6 +12298,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
     .option("--plan <id>", "PLAN id")
     .option("--execute", "execute provider CLI instead of dry-run")
     .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
+    .option("--project-hook-authority-snapshot <path>", "Control Plane authority snapshot JSON")
     .option("--json", "JSON output")
     .action(
       async (opts: {
@@ -12261,12 +12309,24 @@ function runtimeCommand(provider: AdapterProvider): Command {
         execute?: boolean;
         json?: boolean;
         workerContextFile?: string;
+        projectHookAuthoritySnapshot?: string;
       }) => {
         const task = resolveTaskText(opts);
         if (!task) {
           process.stderr.write("adapter requires exactly one of --task or --task-file\n");
           process.exitCode = 1;
           return;
+        }
+        if (opts.execute && opts.projectHookAuthoritySnapshot) {
+          const authority = consumeProjectHookAuthoritySnapshot(
+            opts.projectHookAuthoritySnapshot,
+            "dispatch",
+          ).dispatchAdmission();
+          if (!authority.ok) {
+            process.stderr.write(`${provider}: project hook authority admission failed\n`);
+            process.exitCode = 1;
+            return;
+          }
         }
         const mode = detectMode().mode;
         const contextInjection = resolveSkillContextInjection(opts.plan, "delegation");
