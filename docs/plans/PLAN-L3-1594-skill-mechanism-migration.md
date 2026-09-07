@@ -4,7 +4,7 @@ title: "PLAN-L3-1594: 新Skill機構への責務移行"
 kind: add-design
 layer: L3
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -63,7 +63,11 @@ generates:
   - { artifact_path: docs/test-design/helix/skill-mechanism-migration-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/skill-mechanism-migration-recognition.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: tl, slot_label: "TL — 既存owner・意味正本・移行境界を整理" }
   - { role: qa, slot_label: "QA — 要求の保持・独立受入・反例を検証" }
