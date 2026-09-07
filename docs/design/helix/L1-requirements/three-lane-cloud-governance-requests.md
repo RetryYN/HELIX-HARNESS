@@ -1,26 +1,31 @@
 ---
 canonical_vmodel: L1-L12
-candidate_layer: L1
+canonical_layer: L1
 canonical_pair: L12
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査要求"
 layer: L1
 kind: redesign
-status: draft_candidate
+status: confirmed
+authority_status: canonical_source
 created: 2026-09-02
-updated: 2026-09-05
+updated: 2026-09-07
 owner: PO / Codex TL
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
-pair_artifact: docs/governance/candidates/three-lane-cloud-governance-recognition.md
+pair_artifact: docs/test-design/helix/three-lane-cloud-governance-recognition.md
 next_pair_freeze: L12
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431"
+approved_revision: "0.4.0-candidate"
+approved_body_digest: "sha256:583f3c78069a8207c428bea8ded005e0fd858b301cb057b1427fa1c4d6b6b7fc"
+canonical_body_digest: "sha256:9b70c3c1bcb6069c0a282d2d2160bc2bf12e84f5a470e1b2f09a254ab4a09590"
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査要求
 
 - 文書ID: `HELIX-3LANE-BRQ-001`
-- バージョン: `0.4.0-candidate`
-- 状態: `requirement-reentry-approved / canonical promotion待ち`
-- 置換候補: `HELIX-RLO-BRQ-001 v0.3.0`
+- バージョン: `0.4.0`
+- 状態: `canonical source / Requirement IR admission待ち`
+- 置換対象: `HELIX-RLO-BRQ-001 v0.3.0`
 - Behavior Contract: `THREE-LANE-CLOUD-CAPACITY-ORCHESTRATION-001`
 
 ## 要求
@@ -63,7 +68,7 @@ Cursor WIP=2の7日canaryとbilling-cycle read-afterにより、accepted merge�
 
 ## L12認識条件
 
-認識条件の本文正本はpair_artifactの`three-lane-cloud-governance-recognition.md`へ一元化する。
+認識条件の本文正本はpair_artifactの`docs/test-design/helix/three-lane-cloud-governance-recognition.md`へ一元化する。
 本書の3L-BR-001〜009それぞれをL12の同ID参照へ束縛し、重複した別条件集合を維持しない。
 
-本candidateは2026-09-05にplan固有のL3 human gateが成立した。独立review、CI、DB convergenceと別のcanonical promotionが成立するまで、v0.3 current authorityを置換しない。
+本書は2026-09-05にplan固有のL3 human gateが成立した承認済みsourceである。Requirement IR admission、独立review、CI、DB convergence、runtime有効化は後続sliceで別途検証し、文書のcanonical化だけでv0.3 current authorityのruntime置換や完成を主張しない。
