@@ -189,6 +189,23 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
     expect(bad.map((v) => v.reason)).toContain("pair_artifact_not_l8_unit_test_design");
   });
 
+  it("U-PDESC-007a-canonical: canonical L6↔L7 test-design pairを受理する", () => {
+    const root = makeRepo();
+    writeFileSync(
+      join(root, "docs", "test-design", "harness", "L7-project-hook-unit-test-design.md"),
+      "---\nlayer: L7\nartifact_type: test_design\n---\n# L7 unit test design\n",
+    );
+    writePlan(root, {
+      planId: "PLAN-L7-908-canonical-l6-l7-pair",
+      pairArtifact: "docs/test-design/harness/L7-project-hook-unit-test-design.md",
+      created: "2026-09-07",
+    });
+    const result = analyze(root);
+    const bad = result.newViolations.filter((v) => v.planId === "PLAN-L7-908-canonical-l6-l7-pair");
+    expect(bad.map((v) => v.reason)).not.toContain("pair_artifact_not_l8_unit_test_design");
+    expect(result.ok).toBe(true);
+  });
+
   it.each([
     ["L7", "unit-test-design"],
     ["L8", "unknown"],
