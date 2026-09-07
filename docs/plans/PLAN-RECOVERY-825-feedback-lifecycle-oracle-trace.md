@@ -14,10 +14,10 @@ behavior_contract_id: FEEDBACK-LIFECYCLE-ORACLE-TRACE-001
 responsibility_owner: feedback-lifecycle
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: preserve_behavior
+refactor_step: not_applicable
 legacy_retirement_state: retained
 no_code_decision: modify
-ddd_modeling_decision: not_applicable
+ddd_modeling_decision: none
 complexity_effect: net_neutral
 backprop_decision: not_required
 backprop_decision_reason: "confirmed済みL9契約の意味や実行挙動を変えず、既存test titleへ欠落していたoracle IDを復旧する。"
