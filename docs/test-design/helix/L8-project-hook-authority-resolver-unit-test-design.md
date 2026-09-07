@@ -39,6 +39,7 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-resol
 | U-CNWHOOKWIRE-002 | exact surface bytes | SessionStart／doctor／status／dispatchが同一canonical bytesを返す | `tests/project-hook-authority-consumer-wiring.test.ts` |
 | U-CNWHOOKWIRE-003 | failure admission | unavailable／malformed providerでは全surfaceを同一failureにしdispatchを拒否する | `tests/project-hook-authority-consumer-wiring.test.ts` |
 | U-CNWHOOKWIRE-004 | no recompute/no fallback | surface読取りでprovider、filesystem、Gitを再実行せず、未知surfaceを生成しない | `tests/project-hook-authority-consumer-wiring.test.ts` |
+| U-CNWHOOKWIRE-005 | serialized transport | 完全なtyped snapshotだけを受理し、構文不正・unknown fieldをfailureへ閉じる | `tests/project-hook-authority-consumer-wiring.test.ts` |
 
 本sliceはpure resolverだけを実行する。unsupported platform capture、process timeout、notification handoff、terminal result、
 current consumerへのCLI／doctor wiring完了はPLAN-L7-1614で別途検証し、composition unitだけを実配線完了へ数えない。

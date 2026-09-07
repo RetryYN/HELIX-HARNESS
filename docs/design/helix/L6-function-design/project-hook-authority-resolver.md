@@ -110,3 +110,5 @@ resolutionの`ok`だけを返し、failure時にworker起動やrepairを行わ�
 本composition rootはauthority snapshotを生成しない。Control Plane snapshot readerとCLI／doctor／status／native dispatchの
 transport adapterが未接続である間は、4 surface実配線の完了を主張しない。cwd、環境変数、primary tree、remote HEADを
 current authorityとして補完する暫定consumerは禁止する。
+serialized transportはControl Planeが渡した完全なsnapshot JSONだけをparseし、構文不正またはstrict schema不適合を
+既存failureへ閉じる。snapshot bytesの欠落をcwdやrepository観測で補完しない。

@@ -46,3 +46,19 @@ export function createProjectHookAuthorityConsumerWiring(
     },
   });
 }
+
+/** Control Planeが渡した完全なauthority snapshot bytesだけを入力にするtransport境界。 */
+export function createProjectHookAuthorityConsumerWiringFromSnapshotBytes(
+  snapshotBytes: string,
+): ProjectHookAuthorityConsumerWiring {
+  const provider: ProjectHookAuthorityInputProvider = {
+    read: () => {
+      try {
+        return { ok: true, input: JSON.parse(snapshotBytes) as unknown };
+      } catch {
+        return { ok: false, reason: "authority_input_unavailable" };
+      }
+    },
+  };
+  return createProjectHookAuthorityConsumerWiring(provider);
+}

@@ -7,6 +7,7 @@ import {
 import type { ProjectHookAuthorityInputProvider } from "../src/runtime/project-hook-authority-provider";
 import {
   createProjectHookAuthorityConsumerWiring,
+  createProjectHookAuthorityConsumerWiringFromSnapshotBytes,
   type ProjectHookAuthorityConsumer,
 } from "../src/runtime/project-hook-authority-consumer-wiring";
 
@@ -117,5 +118,19 @@ describe("project hook authority consumer wiring", () => {
       "unknown project hook authority consumer",
     );
     expect(reads).toBe(1);
+  });
+
+  it("U-CNWHOOKWIRE-005: serialized snapshotは完全なtyped inputだけを受理する", () => {
+    const valid = createProjectHookAuthorityConsumerWiringFromSnapshotBytes(
+      JSON.stringify(validInput()),
+    );
+    expect(valid.ok).toBe(true);
+
+    for (const bytes of ["{", JSON.stringify({ ...validInput(), unknown: true })]) {
+      const rejected = createProjectHookAuthorityConsumerWiringFromSnapshotBytes(bytes);
+      expect(rejected.ok).toBe(false);
+      expect(rejected.dispatchAdmission().ok).toBe(false);
+      expect(rejected.bytesFor("dispatch")).toContain('"dispatch":0');
+    }
   });
 });

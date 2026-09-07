@@ -43,6 +43,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-002, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-003, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-004, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-005, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
