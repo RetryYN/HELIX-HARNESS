@@ -154,12 +154,6 @@ function renderLegacyV2Comment(): string {
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
   // PLAN-RECOVERY-1638-review-seal-terminal-ci
   it("U-SEALCI-004: 赤receiptは記録できてもmerge不可でgreen再検収だけを受理する", () => {
-    const failed = buildClaudePrReviewReceipt({
-      ...baseInput,
-      ciConclusion: "failure",
-      ciEvidenceGeneration: "run:123456:attempt:1:failure",
-    });
-    expect(validateClaudePrReviewReceipt(JSON.parse(JSON.stringify(failed)))).toEqual(failed);
     const state = {
       repository: baseInput.repository,
       prNumber: baseInput.prNumber,
@@ -170,10 +164,29 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       receiptCiMatchesHead: true,
       receiptCiMatchesGeneration: true,
     };
-    expect(evaluateClaudePrMerge(state, failed).reasons).toEqual(
-      expect.arrayContaining(["required_checks_not_green", "receipt_ci_not_green"]),
-    );
-    expect(evaluateClaudePrMerge({ ...state, requiredChecksGreen: true }, failed).ok).toBe(false);
+    for (const ciConclusion of [
+      "failure",
+      "cancelled",
+      "timed_out",
+      "neutral",
+      "skipped",
+      "action_required",
+      "stale",
+      "startup_failure",
+    ] as const) {
+      const failed = buildClaudePrReviewReceipt({
+        ...baseInput,
+        ciConclusion,
+        ciEvidenceGeneration: `run:123456:attempt:1:${ciConclusion}`,
+      });
+      expect(validateClaudePrReviewReceipt(JSON.parse(JSON.stringify(failed)))).toEqual(failed);
+      expect(evaluateClaudePrMerge(state, failed).reasons).toEqual(
+        expect.arrayContaining(["required_checks_not_green", "receipt_ci_not_green"]),
+      );
+      expect(
+        evaluateClaudePrMerge({ ...state, requiredChecksGreen: true }, failed).reasons,
+      ).toContain("receipt_ci_not_green");
+    }
     const reviewedAgain = buildClaudePrReviewReceipt({
       ...baseInput,
       ciEvidenceGeneration: "run:123456:attempt:2:success",

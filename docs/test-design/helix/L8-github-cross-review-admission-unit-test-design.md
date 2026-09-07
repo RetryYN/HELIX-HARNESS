@@ -81,7 +81,7 @@ requirements:
 | U-SEALCI-001 | 世代選択 | 最新failureをそのまま返し、通知のsuccess選択と区別する | `tests/github-review-ci-generation.test.ts` |
 | U-SEALCI-002 | 世代検証 | 未終端・不正ID/attempt/時刻/結論を拒否し、有効候補を失わない | `tests/github-review-ci-generation.test.ts` |
 | U-SEALCI-003 | CLI配線 | 封緘だけterminal選択へ接続する。静的検査であり実操作の代用ではない | `tests/github-review-ci-generation.test.ts` |
-| U-SEALCI-004 | receiptとmerge | failure receiptでmergeを拒否し、別の成功世代は再検収を要する | `tests/claude-pr-convergence.test.ts` |
+| U-SEALCI-004 | receiptとmerge | 非成功8結論のreceiptでmergeを拒否し、required checks成功でも相殺しない。別の成功世代は再検収を要する | `tests/claude-pr-convergence.test.ts` |
 | U-SEALCI-005 | terminal値域 | 各結論を保持し、同刻のattempt/run順序が決定的で入力を変更しない | `tests/github-review-ci-generation.test.ts` |
 | IT-SEALCI-006 | 実CLI前段 | 別HEAD/event/workflow、未終端、古い世代を隔離応答で拒否する | `tests/github-review-ci-generation.test.ts` |
 | IT-SEALCI-007 | 実CLI保存・世代間置換 | failure/block保存後、success世代で別receiptへ再封緘する。supersedes参照・旧bytes保持・block継続を照合する | `tests/github-review-ci-generation.test.ts` |
