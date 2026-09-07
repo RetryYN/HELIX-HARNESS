@@ -22,8 +22,8 @@ pair_artifact: docs/test-design/helix/skill-mechanism-migration-recognition.md
 ## 責務と追跡
 
 主Issue #1594、既存owner #1382へ接続する。
-詳細8要求は[要件正本](../L3-requirements/skill-mechanism-migration-requirements.md)、対応する8受入は
-[受入正本](../../../test-design/helix/skill-mechanism-migration-acceptance.md)に保持する。
+詳細8要求は[L3 canonical source](../L3-requirements/skill-mechanism-migration-requirements.md)、対応する8受入は
+[L10 canonical source](../../../test-design/helix/skill-mechanism-migration-acceptance.md)に保持する。
 本書内IDはcanonical source IDであるが、Requirement IR admission済みとは扱わない。
 source canonical化、IR admission、実装、有効化、退役を別状態で追跡する。
 

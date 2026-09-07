@@ -43,7 +43,7 @@ contract_postconditions: "8要求と8受入をcanonical L1/L3/L10 sourceへ束�
 contract_invariants: "既存保護維持、第二正本禁止、独立受入"
 contract_failures: "未確認能力の完成主張、承認の発明、無根拠削除を拒否する"
 tdd_red_required: false
-tdd_red_waiver_reason: "要求候補のみ。実行oracleは後続の実装PLANで所有する。"
+tdd_red_waiver_reason: "承認済み要求4文書のcanonical配置のみ。実行oracleとauthority遷移gateは後続の実装PLANで所有する。"
 complexity_effect: net_negative
 complexity_justification: "既存ownerへ接続して重複供給と二重正本を縮退する。"
 removal_trigger: "Requirement IR admissionと後続実装PLANへの責務移管後"
@@ -77,14 +77,14 @@ review_evidence: []
 # 新Skill機構への責務移行
 
 本PLANは承認済み要求のcanonical source promotionを所有する。承認されたexact candidate bytesの意味を変更せず、
-L1/L3/L10へ一方向移動する。canonical merge/read-after後、#397 admissionを経て実装する。
+L1/L3/L10/L12へ一方向移動する。canonical merge/read-after後、#397 admissionを経て実装する。
 S-R01..08とS-AC01..08の追跡を維持する。
 別要求の全体完成を前提にせず、同一startup編集・Policy受領だけ対象とdigest付き局所依存にする。
 
 ## 承認束縛の検証境界
 
-Issue #1594へPLAN、候補3文書、bind commit、各内容digestを逆参照として記録し、承認を双方向に復元可能にする。
+Issue #1594へPLAN、承認済み候補4文書、bind commit、各内容digestを逆参照として記録し、承認を双方向に復元可能にする。
 `approved_at`は編集可能な本文時刻ではなくGitHub commentの`createdAt`を採用する。confirmed昇格前に
-review-evidence gateで`l3HumanApprovalViolations=0`を実測する。現状の
-`approved_pending_canonical_promotion`は既存慣行に沿う候補表示であり、未検証のままcurrent authorityやIRへ投影しない。
-approval source URL／record IDのexact照合とauthority status遷移の機械gateはcanonical promotion sliceで閉じる。
+review-evidence gateで`l3HumanApprovalViolations=0`を実測する。本sliceは4文書を`canonical_source`へ配置するが、
+Requirement IR admissionとruntime有効化は行わない。approval source URL／record IDのexact照合とauthority status遷移の
+機械gateは後続のRequirement IR admission PLANが所有し、本sliceの文書移動だけで成立を主張しない。

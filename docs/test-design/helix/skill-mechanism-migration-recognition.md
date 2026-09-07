@@ -7,9 +7,11 @@ status: confirmed
 created: 2026-09-07
 updated: 2026-09-07
 owner: QA / Codex TL
+owner_issue: 1594
 plan: PLAN-L3-1594-skill-mechanism-migration
 parent_design: docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
 pair_artifact: docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
+source_provenance: "Issue #1594で承認された候補から派生したcanonical L12 recognition"
 ---
 
 # 新Skill機構への責務移行の運用認識
