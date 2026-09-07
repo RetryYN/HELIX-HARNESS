@@ -68,6 +68,7 @@ items:
       - docs/design/harness/L1-requirements/functional-requirements.md
       - docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
       - docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md
+      - docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
       - docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
   - id: requirement-spec
     name: 要件定義書
@@ -107,6 +108,7 @@ items:
       - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
       - docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
       - docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md
+      - docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
       - docs/design/helix/L3-requirements/skill-mechanism-migration-requirements.md
   - id: basic-design
     name: 基本設計書
@@ -384,6 +386,8 @@ items:
       - docs/test-design/helix/windows-lite-canary-admission-acceptance.md
       - docs/test-design/helix/resident-lane-orchestration-acceptance.md
       - docs/test-design/helix/resident-lane-orchestration-recognition.md
+      - docs/test-design/helix/three-lane-cloud-governance-acceptance.md
+      - docs/test-design/helix/three-lane-cloud-governance-recognition.md
       - docs/test-design/helix/skill-mechanism-migration-acceptance.md
       - docs/test-design/helix/skill-mechanism-migration-recognition.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
