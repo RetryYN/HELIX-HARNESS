@@ -75,6 +75,7 @@ generates:
   - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-recognition.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/feedback-test-owner-disposition-recognition.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
