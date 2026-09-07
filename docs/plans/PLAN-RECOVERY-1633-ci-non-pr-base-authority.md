@@ -31,7 +31,7 @@ dependencies:
   references: ["issue:1336", "issue:1604", "issue:1614"]
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1633-ci-non-pr-base-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: scripts/ci/resolve-branch-base.sh, artifact_type: shell_script }
+  - { artifact_path: scripts/ci/resolve-branch-base.sh, artifact_type: script }
   - { artifact_path: tests/ci-branch-base-resolver.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: yaml_config }
