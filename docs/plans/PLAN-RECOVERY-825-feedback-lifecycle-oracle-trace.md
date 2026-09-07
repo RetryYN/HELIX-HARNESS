@@ -29,8 +29,8 @@ workflow_identity:
   target_id: RECOVERY
 entry_signals:
   - regression_dev
-contract_preconditions: "L9はIT-FLIFE-003をconfirmed済みだが、実行可能test titleから同一IDを直接追跡できずintegration-oracle-traceがmainを拒否する。"
-contract_postconditions: "group-first surfaceとbatch/replayの既存oracleがIT-FLIFE-003を明示し、L9から実行証拠まで決定的に追跡できる。"
+contract_preconditions: "L9はIT-FLIFE-003をconfirmed済みである。PR #1628が現行cli-surface citationを除去すると、同一差分内で実行可能test titleから同一IDを追跡できなくなり、integration-oracle-traceが拒否する。canonical mainは当該citationを保持してgreenである。"
+contract_postconditions: "group-first surfaceとbatch/replayの既存oracleがIT-FLIFE-003を明示し、PR #1628のcitation除去後もL9から互換性のある実行証拠へ追跡できる。本Recovery単独ではSessionStartの実行配線完成を主張せず、PR #1628のcli-surface case削除も正当化しない。"
 contract_invariants: "test body、feedback lifecycleの挙動、L9受入意味、既存U-FLIFE oracleを変更しない。"
 contract_failures: "ID欠落または誤ったtestへの付与をintegration-oracle-traceと対象testでfail-closeする。"
 tdd_red_required: false
@@ -59,5 +59,9 @@ modifies:
 
 # PLAN-RECOVERY-825
 
-mainで露出した`IT-FLIFE-003`の孤児追跡を復旧する。既存のgroup-first surface oracleと
-batch/replay oracleのtest titleへL9の統合oracle IDを明示し、挙動を変えずに追跡関係だけを閉じる。
+PR #1628が現行cli-surface citationを除去した差分で露出する`IT-FLIFE-003`の孤児追跡を復旧する。
+canonical main自体は当該citationを保持してgreenである。既存のgroup-first surface oracleと
+batch/replay oracleのtest titleへL9の統合oracle IDを明示し、挙動を変えずに互換traceを閉じる。
+
+本RecoveryはSessionStartの実行可能なbindingを追加するものではない。したがって、PR #1628側は
+SessionStart wiringの実証を別途維持し、このtrace citationだけを根拠にcli-surface caseを削除してはならない。
