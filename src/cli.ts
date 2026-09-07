@@ -4577,17 +4577,14 @@ session
     process.stdout.write(
       `project-hook-authority: mode=${projectHookAuthority.kind} surface=session_start bytes=${projectHookAuthorityBytes}\n`,
     );
-    if (projectHookAuthority.kind === "standalone") {
-      // Control Plane envelopeが無いstandalone SessionStartはprojectionが宣言する通り
-      // read-onlyとする。session event、memory recall、reconcile、DB writeを開始しない。
-      return;
-    }
-    const projectHookAuthorityAdmission = admitProjectHookAuthorityDispatch(
-      projectHookAuthority.wiring,
-    );
-    if (!projectHookAuthorityAdmission.allowed) {
-      process.exitCode = 1;
-      return;
+    if (projectHookAuthority.kind === "transport") {
+      const projectHookAuthorityAdmission = admitProjectHookAuthorityDispatch(
+        projectHookAuthority.wiring,
+      );
+      if (!projectHookAuthorityAdmission.allowed) {
+        process.exitCode = 1;
+        return;
+      }
     }
     const repoRoot = process.cwd();
     const deps = nodeDeps(repoRoot, gitBranch, gitHead);

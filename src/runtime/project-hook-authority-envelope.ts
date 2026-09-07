@@ -281,11 +281,11 @@ export interface ProjectHookAuthorityStandaloneProjection {
   dispatch: "unavailable_no_dispatch";
   reason: "control_plane_transport_envelope_required";
   side_effects: {
-    hook_execution: 0;
-    dispatch: 0;
+    project_hook_authority_execution: 0;
+    provider_dispatch: 0;
     git_write: 0;
-    db_write: 0;
     github_write: 0;
+    coordination_session_start: "preserved";
   };
 }
 
@@ -299,11 +299,11 @@ export function projectStandaloneProjectHookAuthoritySurface(): ProjectHookAutho
     dispatch: "unavailable_no_dispatch",
     reason: "control_plane_transport_envelope_required",
     side_effects: {
-      hook_execution: 0,
-      dispatch: 0,
+      project_hook_authority_execution: 0,
+      provider_dispatch: 0,
       git_write: 0,
-      db_write: 0,
       github_write: 0,
+      coordination_session_start: "preserved",
     },
   };
 }

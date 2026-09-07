@@ -34,8 +34,8 @@ entry_signals:
   - "po_directive:Issue #1614 project-hook authority consumer wiring"
 contract_preconditions: "Control Plane transport envelopeがexpected authorityを供給し、hostがexecution root・loader root・session project root・current authority root・HEAD・source materialを独立採取できる。"
 contract_postconditions: "SessionStart・doctor・status・native dispatchが一つのconsumer wiringから同一receipt/failure bytesを消費し、dispatchはadmitted receiptなしにproviderを起動しない。"
-contract_invariants: "request値をobservedへコピーしない。cwd・env・remote・default fileへfallbackしない。surface別のresolver・capture・serializationを再実行しない。standaloneはread-only unavailable/no-dispatchとする。"
-contract_failures: "不正・欠落・stale・foreign envelopeは固定schema/failure bytesへ閉じ、dispatch・git・DB・GitHub side effectを0にする。"
+contract_invariants: "request値をobservedへコピーしない。cwd・env・remote・default fileへfallbackしない。surface別のresolver・capture・serializationを再実行しない。standaloneはproject-hook authorityについてread-only unavailable/no-dispatchとし、既存coordination SessionStartを維持する。"
+contract_failures: "不正・stale・foreign envelopeは固定schema/failure bytesへ閉じ、dispatch・git・DB・GitHub side effectを0にする。envelope欠落はprovider dispatchを拒否するが、session event・memory recall・feedback DBを停止しない。"
 tdd_red_required: true
 red_test: "U-CNHOOKWIRE-001..002はconsumer wiringが存在しない状態でresolution/projectorの一回性とfailure dispatch拒否を検出する。"
 mutation_oracle_required: true
@@ -89,6 +89,7 @@ modifies:
   - { artifact_path: src/lint/plan-descent.ts, artifact_type: source_module }
   - { artifact_path: tests/plan-descent.test.ts, artifact_type: test_code }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/session-start-budget.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/harness/L6-function-design/plan-descent-gate.md, artifact_type: design_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }

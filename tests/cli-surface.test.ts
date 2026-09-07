@@ -8146,9 +8146,11 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-009]: Control Plane envelopeを持たないstandalone SessionStartは、表示専用の
-  // unavailable projectionだけを返し、session log／memory recall／DB writeを開始しない。
-  it("U-CNHOOKWIRE-009: standalone SessionStart keeps dispatch, side effects, and DB writes at zero", () => {
+  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-009]
+  // IT-FLIFE-003: SessionStart integration oracle。feedback receipt batch の件数・replay 規律は
+  // tests/feedback-lifecycle.test.ts の U-FLIFE-013 と対で検証する。Control Plane envelopeが無い間も
+  // coordination-only memory / session lifecycleは失わず、provider dispatchだけを拒否する。
+  it("U-CNHOOKWIRE-009: standalone keeps coordination memory without provider dispatch (U-CLI-MEM-SURFACE)", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-mem-surface-"));
     try {
       mkdirSync(join(root, ".helix", "memory"), { recursive: true });
@@ -8168,14 +8170,13 @@ describe("L7 CLI surface closure", () => {
       const run = runCliIn(root, ["session", "start"]);
       expect(run.status).toBe(0);
       expect(run.stdout).toContain("project-hook-authority: mode=standalone");
-      expect(run.stdout).toContain('"hook_execution":0');
-      expect(run.stdout).toContain('"dispatch":0');
-      expect(run.stdout).toContain('"db_write":0');
-      expect(run.stdout).not.toContain("harness-memory");
-      expect(run.stdout).not.toContain("session-log: start");
-      expect(existsSync(join(root, "harness.db"))).toBe(false);
-      expect(existsSync(join(root, ".helix", "harness.db"))).toBe(false);
-      expect(existsSync(join(root, ".helix", "logs"))).toBe(false);
+      expect(run.stdout).toContain('"project_hook_authority_execution":0');
+      expect(run.stdout).toContain('"provider_dispatch":0');
+      expect(run.stdout).toContain('"coordination_session_start":"preserved"');
+      expect(run.stdout).toContain("harness-memory (1):");
+      expect(run.stdout).toContain("- [rule] always inventory existing first");
+      expect(run.stdout).toContain("session-log: start");
+      expect(existsSync(join(root, ".helix", "harness.db"))).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

@@ -26,7 +26,7 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-consu
 | U-CNWHOOKENV-004 | execution root mismatchをfallbackせず拒否する | cwd／env／default rootで差分を相殺する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-005 | cwdをexecution root観測だけに使う | 他rootをcwdへ暗黙補完する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-005b | loader／session／current authorityを個別locatorから観測する | 3 rootを単一locatorへ畳み込む | `tests/project-hook-authority-envelope.test.ts` |
-| U-CNWHOOKENV-006 | standalone projectionは全side effectを0と宣言する | standaloneからhook／dispatch／DB writeを許可する | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-006 | standalone projectionはproject-hook authority実行とprovider dispatchを0とし、coordination SessionStart維持を宣言する | authority不在を一般DB write禁止へ拡大してmemory／feedback連絡経路を停止する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-007 | invalid envelopeを固定schema failureへ閉じる | 不正入力後にauthorityを推測する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-001 | resolver 1回、projector 1回、4 surfaceが同じreceipt bytesを読む | surface読込ごとの再resolve・再capture・再serialize | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-002 | failure bytesを4 surfaceで共有しdispatchを拒否する | admitted receiptなしのdispatch、failure時のprovider起動 | `tests/project-hook-authority-envelope.test.ts` |
@@ -36,13 +36,13 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-consu
 | U-CNHOOKWIRE-006 | current authority root、HEAD、source bytesをhostから独立採取して差分を拒否する | expected値をobservedへコピーしてstaleを相殺 | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-007 | native dispatchはadmitted receipt後だけ実行可能になる | admission前のCodex／Claude／team／pair／loop起動 | `tests/project-hook-authority-envelope.test.ts` およびCLI smoke |
 | U-CNHOOKWIRE-008 | current authority locatorだけをenvelopeから受け、identityは後段で採取する | envelopeのobserved object、request値の物理証拠化 | `tests/project-hook-authority-envelope.test.ts` |
-| U-CNHOOKWIRE-009 | standalone SessionStartはprojection表示以外のhook dispatch、memory recall、session log、DB writeを0にする | envelopeなしSessionStartが`harness.db`または`.helix/logs`を生成する | `tests/cli-surface.test.ts` |
+| U-CNHOOKWIRE-009 | standalone SessionStartはproject-hook dispatchを行わず、既存memory recall、session log、feedback DBを維持する | authority不在を理由にcoordination surfaceまで停止する、またはproviderを暗黙dispatchする | `tests/cli-surface.test.ts` |
 
 ## 検証方法
 
 - pure consumer wiringはresolver／projectorのspyで一回性を確認する。
 - physical adapterはfixtureのroot identity、HEAD、source bytesを個別に差し替え、stale／foreign failureを確認する。
-- standaloneとinvalid transportはside effect 0、dispatch不可を確認する。
+- standaloneはproject-hook authority side effect 0とcoordination SessionStart維持を確認する。invalid transportは全side effect 0、dispatch不可を確認する。
 - CLI consumerは明示envelope fileまたはSessionStart hook input以外をsourceとして採用しないことを確認する。
 - targeted Vitest、targeted TypeScript、Biomeを実行し、全体typecheckに既存失敗がある場合は別記する。
 

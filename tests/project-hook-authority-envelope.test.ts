@@ -297,11 +297,11 @@ describe("project hook authority transport envelope", () => {
       dispatch: "unavailable_no_dispatch",
       reason: "control_plane_transport_envelope_required",
       side_effects: {
-        hook_execution: 0,
-        dispatch: 0,
+        project_hook_authority_execution: 0,
+        provider_dispatch: 0,
         git_write: 0,
-        db_write: 0,
         github_write: 0,
+        coordination_session_start: "preserved",
       },
     });
   });
@@ -410,11 +410,11 @@ describe("project hook authority transport envelope", () => {
     expect(standalone.doctor).toBe("unavailable");
     expect(standalone.dispatch).toBe("unavailable_no_dispatch");
     expect(standalone.side_effects).toEqual({
-      hook_execution: 0,
-      dispatch: 0,
+      project_hook_authority_execution: 0,
+      provider_dispatch: 0,
       git_write: 0,
-      db_write: 0,
       github_write: 0,
+      coordination_session_start: "preserved",
     });
   });
 

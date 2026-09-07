@@ -38,7 +38,7 @@ consumerはprojection済みbytesを読むだけで、resolver、capture、serial
 
 `admitted_receipt`が存在する場合だけdispatchを許可する。resolution failure、invalid envelope、stale root、HEAD差分、source差分、物理identity不一致はadmitted receiptなしで固定failure bytesへ閉じ、dispatchと全write side effectを0にする。
 
-standaloneの`status`／`doctor`はread-onlyかつunavailableを明示する。standaloneの`session_start`も同じprojectionを表示するだけで、hook dispatch、session event、memory recall、lifecycle reconcile、DB writeを一切開始しない。standaloneのdispatchは`unavailable_no_dispatch`であり、既存providerや旧engineへ暗黙に送らない。transportが存在してもresolutionが不成立なら、SessionStartは同じfailure bytesを表示してside effect前に終了する。
+standaloneの`status`／`doctor`はproject-hook authorityについてread-onlyかつunavailableを明示する。standaloneの`session_start`はproject-hook authority executionとprovider dispatchを開始しない一方、既存のcoordination-only session event、memory recall、feedback lifecycle、DB projectionは維持する。project-hook authority不在を理由に既存の連絡経路まで停止してはならない。standaloneのdispatchは`unavailable_no_dispatch`であり、既存providerや旧engineへ暗黙に送らない。transportが存在してresolutionが不成立の場合は、SessionStartは同じfailure bytesを表示して全side effect前に終了する。
 
 ## Consumer接続
 
