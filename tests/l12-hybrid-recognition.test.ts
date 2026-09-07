@@ -127,7 +127,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(612);
+    expect(plans).toHaveLength(613);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -169,7 +169,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(510);
+    ).toHaveLength(511);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -188,16 +188,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 868 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 869 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(868);
+    expect(candidates).toHaveLength(869);
     expect(counts).toEqual({
-      conflict: 336,
+      conflict: 337,
       compatibility_labeled: 24,
       false_positive: 490,
       historical: 18,
@@ -288,7 +288,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 176,
+        conflict: 177,
         false_positive: 435,
       },
     });

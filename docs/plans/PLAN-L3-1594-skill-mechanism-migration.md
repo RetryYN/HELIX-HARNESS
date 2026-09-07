@@ -68,6 +68,7 @@ modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: tl, slot_label: "TL — 既存owner・意味正本・移行境界を整理" }
   - { role: qa, slot_label: "QA — 要求の保持・独立受入・反例を検証" }
