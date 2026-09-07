@@ -127,3 +127,8 @@ green再封緘・mergeまでの統合成功を証明しない。その正経路�
 成功世代のみを選ぶmutantは `pr_ci_evidence_not_terminal`・exit 1、元bundleは保存成功・exit 0
 となることを同一fixtureで比較する。これは選択分岐のmutation証拠であり、過去commit全体を
 再実行したRed証拠としては扱わない。作業ソースと既存bundleは書き換えない。
+
+同テストは同一HEADで成功CI世代へ切り替えてもう一度実CLIを起動する。
+新receiptが旧receiptをsupersedeし、別ID・別保存先となり、旧保存bytesが保持されることを
+照合する。CI成功だけでreviewのblockをapproveへ変換しない。これは世代間置換の検証であり、
+approve時DB/PLAN接合と実GitHubでのmerge成立は引き続き未検証である。

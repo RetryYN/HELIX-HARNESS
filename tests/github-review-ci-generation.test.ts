@@ -41,7 +41,7 @@ describe("封緘用CI観測", () => {
         verdict: "block" as const,
         blockerCount: 1,
         ciRunId: 2,
-        ciConclusion: "failure" as const,
+        ciConclusion: "failure" as "failure" | "success",
         ciEvidenceGeneration: "run:2:attempt:1:failure",
         dbReceiptSchemaVersion: null,
         dbProjectionDigest: null,
@@ -53,7 +53,7 @@ describe("封緘用CI観測", () => {
         commentUrl: "https://github.com/example/project/pull/1#issuecomment-12",
         reviewedAt: "2026-01-01T00:02:00Z",
       };
-      const receipt = buildClaudePrReviewReceipt(input);
+      let receipt = buildClaudePrReviewReceipt(input);
       writeFileSync(join(root, "package.json"), JSON.stringify({ engines: { node: ">=24 <25" } }));
       writeFileSync(
         join(root, "gh"),
@@ -82,12 +82,12 @@ describe("封緘用CI観測", () => {
               HELIX_SKIP_UPDATE_CHECK: "1",
               SEAL_TEST_RUNS: JSON.stringify([
                 {
-                  databaseId: 2,
+                  databaseId: input.ciRunId,
                   headSha,
                   event: "pull_request",
                   name: "harness-check",
                   status: "completed",
-                  conclusion: "failure",
+                  conclusion: input.ciConclusion,
                   attempt: 1,
                   updatedAt: "2026-01-01T00:01:00Z",
                 },
@@ -113,6 +113,27 @@ describe("封緘用CI観測", () => {
       expect(output.dryRun).toBe(false);
       expect(output.receipt.ciConclusion).toBe("failure");
       expect(output.receipt.verdict).toBe("block");
+      expect(JSON.parse(readFileSync(output.receiptPath, "utf8"))).toEqual(output.receipt);
+      // 同一HEADの成功CIで再封緘しても、旧failure receiptを再利用しない。
+      input.ciRunId = 3;
+      input.ciConclusion = "success";
+      input.ciEvidenceGeneration = "run:3:attempt:1:success";
+      input.reviewedAt = "2026-01-01T00:03:00Z";
+      receipt = buildClaudePrReviewReceipt({
+        ...input,
+        supersedesReceiptId: output.receipt.receiptId,
+      });
+      const resealed = run(bundle);
+      expect(resealed.error).toBeUndefined();
+      expect(resealed.stderr).toBe("");
+      expect(resealed.status).toBe(0);
+      const next = JSON.parse(resealed.stdout);
+      expect(next.receipt.ciConclusion).toBe("success");
+      expect(next.receipt.verdict).toBe("block");
+      expect(next.receipt.supersedesReceiptId).toBe(output.receipt.receiptId);
+      expect(next.receipt.receiptId).not.toBe(output.receipt.receiptId);
+      expect(next.receiptPath).not.toBe(output.receiptPath);
+      expect(JSON.parse(readFileSync(next.receiptPath, "utf8"))).toEqual(next.receipt);
       expect(JSON.parse(readFileSync(output.receiptPath, "utf8"))).toEqual(output.receipt);
     } finally {
       if (mutationRoot) rmSync(mutationRoot, { recursive: true, force: true });
