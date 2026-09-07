@@ -28,7 +28,7 @@ backprop_decision: not_required
 backprop_decision_reason: "本PLANが上流要求候補の取り込みを所有する。"
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
-contract_preconditions: "#1608候補、既存continuation／memory／handover／provider capability ownerと原文を照合する"
+contract_preconditions: "#1608候補、既存continuation／memory／handover／provider capability ownerと原文を照合し、#1608 canonical化前は本候補も昇格させない"
 contract_postconditions: "CLR-R01..08とCLR-AC01..08を独立候補へ束縛する"
 contract_invariants: "第二正本禁止、論理作業継承、二重副作用禁止、候補とruntime完成の分離"
 contract_failures: "未保存情報の切捨て、sessionによる予算reset、private context混入、非対応方式の成功扱いを拒否する"
@@ -41,9 +41,9 @@ parent_design: docs/governance/candidates/conversation-lifetime-reconstruction-r
 pair_artifact: docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md
 dependencies:
   parent: docs/governance/candidates/conversation-lifetime-reconstruction-requests.md
-  requires:
-    - docs/plans/PLAN-L3-1608-instruction-path-change-resilience.md
+  requires: []
   references:
+    - docs/plans/PLAN-L3-1608-instruction-path-change-resilience.md
     - issue:1370
     - issue:397
     - issue:873
@@ -68,6 +68,8 @@ review_evidence: []
 
 本PLANは#1610の要求候補化だけを所有する。候補作成を人間承認、canonical authority、IR admission、
 runtime実装、session自動切替、provider履歴削除として扱わない。CLR-R01..08とCLR-AC01..08の1対1追跡を維持する。
+Issue-levelの#1608依存は維持し、#1608がcanonical化されるまでは本候補も承認・昇格させない。
+ただし未承認候補同士をPLANのhard `requires`で循環停止させず、候補段階では明示参照として照合する。
 
 原文 `01_REQUIREMENTS_DIRECTIVE.md` は候補mergeとdigest read-after後にroot intakeから退役させ、
 SHA-256 `970e40bd1566318349a0f8198f47cb5924f3b2aba59020cfa0a2e00b02654cb5` で履歴を追跡する。
