@@ -243,15 +243,15 @@ import {
   loadLeftArmCarryLogInput,
 } from "../lint/left-arm-carry-log";
 import {
-  analyzeLegacyOrchestrationSurface,
-  legacyOrchestrationSurfaceMessages,
-  loadLegacyOrchestrationSurface,
-} from "../lint/legacy-orchestration-surface";
-import {
   analyzeLegacyOrchestrationSemanticConsumers,
   legacyOrchestrationSemanticConsumerMessages,
   loadLegacyOrchestrationSemanticConsumerLedger,
 } from "../lint/legacy-orchestration-semantic-consumers";
+import {
+  analyzeLegacyOrchestrationSurface,
+  legacyOrchestrationSurfaceMessages,
+  loadLegacyOrchestrationSurface,
+} from "../lint/legacy-orchestration-surface";
 import { analyzeLintWiring, lintWiringMessages, loadLintWiringInput } from "../lint/lint-wiring";
 import {
   analyzeMemoryHandoverIsolation,
@@ -4655,10 +4655,7 @@ export function checkLegacyOrchestrationSemanticConsumers(repoRoot: string): {
   }
   try {
     const loaded = loadLegacyOrchestrationSemanticConsumerLedger(repoRoot);
-    const result = analyzeLegacyOrchestrationSemanticConsumers(
-      loaded.ledger,
-      loaded.sourceFiles,
-    );
+    const result = analyzeLegacyOrchestrationSemanticConsumers(loaded.ledger, loaded.sourceFiles);
     return {
       messages: legacyOrchestrationSemanticConsumerMessages(result),
       ok: result.ok,
@@ -7370,8 +7367,9 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const legacyOrchestrationSurface = checkLegacyOrchestrationSurface(deps.repoRoot);
-  const legacyOrchestrationSemanticConsumers =
-    checkLegacyOrchestrationSemanticConsumers(deps.repoRoot);
+  const legacyOrchestrationSemanticConsumers = checkLegacyOrchestrationSemanticConsumers(
+    deps.repoRoot,
+  );
   const gateConfirm = checkGateConfirm(deps.repoRoot);
   const planSchedule = checkPlanSchedule(deps.repoRoot);
   const planDescent = checkPlanDescent(deps.repoRoot);

@@ -63,7 +63,10 @@ interface RequiredConsumer {
   symbol_or_command: string;
   line_anchor: string;
   consumer_role: LegacyOrchestrationConsumerRole;
+  negative_oracle_ids: readonly string[];
 }
+
+const LEDGER_SOURCE_HEAD = "70826900d1640cf02e2010ce09378410db11c7c6" as const;
 
 const REQUIRED_CONSUMERS: RequiredConsumer[] = [
   {
@@ -72,6 +75,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "executeTeamRunPlan",
     line_anchor: 'team\n  .command("run")',
     consumer_role: "direct_execution",
+    negative_oracle_ids: ["U-LORET-SEM-001", "U-LORET-SEM-006", "U-LORET-SEM-009"],
   },
   {
     capability_id: "LEGACY-SEM-PAIR-CLI-DIRECT-001",
@@ -79,6 +83,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "runPairAgentTddPlan",
     line_anchor: 'pairAgent\n  .command("run")',
     consumer_role: "direct_execution",
+    negative_oracle_ids: ["U-LORET-SEM-001", "U-LORET-SEM-006", "U-LORET-SEM-009"],
   },
   {
     capability_id: "LEGACY-SEM-LOOP-CLI-DIRECT-001",
@@ -86,6 +91,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "tick",
     line_anchor: 'loop\n  .command("run")',
     consumer_role: "direct_execution",
+    negative_oracle_ids: ["U-LORET-SEM-001", "U-LORET-SEM-006", "U-LORET-SEM-009"],
   },
   {
     capability_id: "LEGACY-SEM-TEAM-FIRE-SLOT-001",
@@ -93,6 +99,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "fireSlot",
     line_anchor: "slot = fireSlot(",
     consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-002", "U-LORET-SEM-004", "U-LORET-SEM-011"],
   },
   {
     capability_id: "LEGACY-SEM-TEAM-RELEASE-SLOT-001",
@@ -100,6 +107,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "releaseSlot",
     line_anchor: "releaseSlot({ slotId: slot.slot_id",
     consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-002", "U-LORET-SEM-004", "U-LORET-SEM-011"],
   },
   {
     capability_id: "LEGACY-SEM-TEAM-MAX-PARALLEL-001",
@@ -107,6 +115,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "plan.max_parallel",
     line_anchor: "i += plan.max_parallel",
     consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-003", "U-LORET-SEM-004", "U-LORET-SEM-011"],
   },
   {
     capability_id: "LEGACY-SEM-LOOP-STATE-WRITEBACK-001",
@@ -114,6 +123,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "store.write",
     line_anchor: "store.write(current)",
     consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-004", "U-LORET-SEM-005", "U-LORET-SEM-009"],
   },
   {
     capability_id: "LEGACY-SEM-LOOP-LEGACY-IMPORT-001",
@@ -121,6 +131,7 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
     symbol_or_command: "importLegacy",
     line_anchor: "function importLegacy(planId: string)",
     consumer_role: "compatibility_adapter",
+    negative_oracle_ids: ["U-LORET-SEM-006", "U-LORET-SEM-007", "U-LORET-SEM-010"],
   },
 ];
 
@@ -130,6 +141,17 @@ const RETIREMENT_PRECONDITIONS = [
   "parity_e2e_green",
   "rollback_verified",
   "read_after_verified",
+] as const;
+
+const DIRECT_CALL_BASELINES = [
+  { marker: "executeTeamRunPlan(", paths: { "src/cli.ts": 1, "src/team/run.ts": 1 } },
+  {
+    marker: "runPairAgentTddPlan(",
+    paths: { "src/cli.ts": 1, "src/orchestration/pair-agent.ts": 1 },
+  },
+  { marker: "fireSlot(", paths: { "src/runtime/agent-slots.ts": 1, "src/team/run.ts": 1 } },
+  { marker: "releaseSlot(", paths: { "src/runtime/agent-slots.ts": 1, "src/team/run.ts": 2 } },
+  { marker: "store.write(", paths: { "src/cli.ts": 1 } },
 ] as const;
 
 const EXPECTED_ROLE_BY_CAPABILITY = new Map(
@@ -180,6 +202,7 @@ function detectHiddenConsumers(
 ): void {
   for (const file of files) {
     if (!file.path.startsWith("src/")) continue;
+    if (file.path === "src/lint/legacy-orchestration-semantic-consumers.ts") continue;
     for (const alias of file.content.matchAll(
       /\b(?:const|let|var)\s+\w+\s*=\s*(executeTeamRunPlan|runPairAgentTddPlan|fireSlot|releaseSlot)\b/g,
     )) {
@@ -194,6 +217,12 @@ function detectHiddenConsumers(
       /["'](team|pair-agent|loop)["']\s*,\s*["']run["']/g,
     )) {
       addError(errors, `hidden_split_command:${file.path}:${splitCommand[1]} run`);
+    }
+    for (const baseline of DIRECT_CALL_BASELINES) {
+      const observed = file.content.split(baseline.marker).length - 1;
+      const allowed = baseline.paths[file.path as keyof typeof baseline.paths] ?? 0;
+      if (observed > allowed)
+        addError(errors, `unregistered_direct_call:${file.path}:${baseline.marker}`);
     }
   }
 }
@@ -243,6 +272,8 @@ export function analyzeLegacyOrchestrationSemanticConsumers(
   if (ledger.parent_plan !== "PLAN-L7-729-legacy-orchestration-new-use-freeze")
     addError(errors, "ledger_parent_plan_invalid");
   if (!/^[0-9a-f]{40}$/.test(ledger.source_head)) addError(errors, "ledger_source_head_invalid");
+  else if (ledger.source_head !== LEDGER_SOURCE_HEAD)
+    addError(errors, "ledger_source_head_unrecognized");
   if (!Array.isArray(ledger.entries)) addError(errors, "ledger_entries_invalid");
 
   const entries = Array.isArray(ledger.entries) ? ledger.entries : [];
@@ -266,12 +297,22 @@ export function analyzeLegacyOrchestrationSemanticConsumers(
     else byCapability.set(entry.capability_id, entry);
 
     const expectedRole = EXPECTED_ROLE_BY_CAPABILITY.get(entry.capability_id);
+    const required = REQUIRED_CONSUMERS.find(
+      (consumer) => consumer.capability_id === entry.capability_id,
+    );
+    if (!required) addError(errors, `unregistered_capability:${entry.capability_id}`);
     if (expectedRole && entry.consumer_role !== expectedRole)
       addError(errors, `consumer_role_mismatch:${entry.capability_id}:${expectedRole}`);
     if (entry.consumer_role === "direct_execution" && !path.startsWith("src/"))
       addError(errors, `non_production_path_for_direct_consumer:${entry.capability_id}`);
     if (entry.consumer_role === "write_control" && !path.startsWith("src/"))
       addError(errors, `non_production_path_for_control_consumer:${entry.capability_id}`);
+    if (
+      required &&
+      (entry.negative_oracle_ids.length !== required.negative_oracle_ids.length ||
+        !required.negative_oracle_ids.every((oracle) => entry.negative_oracle_ids.includes(oracle)))
+    )
+      addError(errors, `negative_oracle_set_mismatch:${entry.capability_id}`);
     if (
       ["compatibility_adapter", "read_only_replay", "historical_evidence", "test_fixture"].includes(
         entry.consumer_role,

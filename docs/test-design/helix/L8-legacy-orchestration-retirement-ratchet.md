@@ -51,6 +51,7 @@ greenにしない。
 | U-LORET-SEM-009 | 必須consumer entryの欠落を拒否する |
 | U-LORET-SEM-010 | source symbolと再解決可能なanchorを照合し、固定line番号依存を許可しない |
 | U-LORET-SEM-011 | test fixture／historical pathをproduction write/control consumerとして登録できない |
+| U-LORET-SEM-012 | 未知entry、未承認source HEAD、oracle集合差分、baseline超過direct callを拒否する |
 
 実装・mutationは`tests/legacy-orchestration-semantic-consumers.test.ts`へ束縛し、ledgerと
 validatorは`config/legacy-orchestration-semantic-consumers.json`および

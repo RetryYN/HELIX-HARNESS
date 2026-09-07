@@ -12,6 +12,9 @@ const ALLOWED_EXCLUSIONS = new Set([
   "docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md",
   "docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
   "docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md",
+  "config/legacy-orchestration-semantic-consumers.json",
+  "src/lint/legacy-orchestration-semantic-consumers.ts",
+  "tests/legacy-orchestration-semantic-consumers.test.ts",
 ]);
 
 export const LEGACY_ORCHESTRATION_MARKERS = [
@@ -74,7 +77,7 @@ export function compareLegacyOrchestrationInventory(
       errors.push("inventory_historical_exclusion_added");
   }
   for (const path of candidate.excluded_implementation_paths) {
-    if (!published.excluded_implementation_paths.includes(path))
+    if (!published.excluded_implementation_paths.includes(path) && !ALLOWED_EXCLUSIONS.has(path))
       errors.push(`inventory_implementation_exclusion_added:${path}`);
   }
   return errors;

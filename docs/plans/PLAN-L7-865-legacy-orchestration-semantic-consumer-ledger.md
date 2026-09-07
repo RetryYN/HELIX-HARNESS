@@ -63,13 +63,17 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-009, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-010, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-011, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-012, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-865-legacy-orchestration-semantic-consumer-ledger.md, artifact_type: markdown_doc }
   - { artifact_path: config/legacy-orchestration-semantic-consumers.json, artifact_type: json_config }
   - { artifact_path: src/lint/legacy-orchestration-semantic-consumers.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-semantic-consumers.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/legacy-orchestration-surface-inventory.json, artifact_type: json_config }
+  - { artifact_path: src/lint/legacy-orchestration-surface.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md, artifact_type: test_design }
 agent_slots:
@@ -100,8 +104,8 @@ symbol／callsiteを意味上のconsumerとして記録・検証する。既存e
 ## 境界
 
 `status: draft`と`completion_claim_allowed: false`を維持する。本Phaseでは、既存の
-文字列ratchetを変更しない。`src/cli.ts`、`src/team/run.ts`、doctor、snapshot、design catalogは
-変更しない。新しいschedulerやsuccessor runtimeを実装せず、team／pair／loopのdirect engineも
+文字列ratchetは本ledger実装3 pathだけを固定allowlistへ追加し、任意除外の増加は拒否する。`src/cli.ts`、`src/team/run.ts`、design catalogは
+変更しない。semantic ledgerをdoctor hard checkへ接続するが、新しいschedulerやsuccessor runtimeを実装せず、team／pair／loopのdirect engineも
 削除しない。ledgerはcompatibility-onlyの観測であり、旧実装の正当化やconsumer zeroの代替証拠
 ではない。
 
@@ -115,6 +119,5 @@ symbol／callsiteを意味上のconsumerとして記録・検証する。既存e
 ## 完了境界
 
 このPhaseの完了は、targeted test、Node 24 typecheck、PLAN lint、設計／テスト設計との
-verification bindingが成立し、許可path以外を変更していないことを意味する。doctorへの恒久
-配線、main／DB projection、successor E2E、rollback、read-after、旧engine削除、PR／mergeは
-後続phaseであり、本PLANの完了主張には含めない。
+verification bindingとdoctor hard checkが成立し、許可path以外を変更していないことを意味する。main／DB projection、
+successor E2E、rollback、read-after、旧engine削除は後続phaseであり、本PLANの完了主張には含めない。

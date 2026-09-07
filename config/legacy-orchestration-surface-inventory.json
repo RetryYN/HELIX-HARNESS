@@ -11,7 +11,10 @@
     "tests/legacy-orchestration-surface.test.ts",
     "docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md",
     "docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
-    "docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md"
+    "docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md",
+    "config/legacy-orchestration-semantic-consumers.json",
+    "src/lint/legacy-orchestration-semantic-consumers.ts",
+    "tests/legacy-orchestration-semantic-consumers.test.ts"
   ],
   "entries": [
     {

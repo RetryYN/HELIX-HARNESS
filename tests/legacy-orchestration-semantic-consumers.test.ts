@@ -14,6 +14,7 @@ const requiredCapabilities = [
   "LEGACY-SEM-TEAM-RELEASE-SLOT-001",
   "LEGACY-SEM-TEAM-MAX-PARALLEL-001",
   "LEGACY-SEM-LOOP-STATE-WRITEBACK-001",
+  "LEGACY-SEM-LOOP-LEGACY-IMPORT-001",
 ] as const;
 
 function cloneLedger(
@@ -126,6 +127,7 @@ describe("legacy orchestration semantic consumer ledger", () => {
         "src/hidden-multiline.ts",
         'const alias =\n  executeTeamRunPlan;\nconst loader = import(\n  "../team/run"\n);\nconst command = [\n  "team",\n  "run"\n].join(" ");',
       ),
+      source("src/hidden-direct.ts", "await executeTeamRunPlan(plan, deps);"),
     ];
 
     const result = analyzeLegacyOrchestrationSemanticConsumers(loaded.ledger, [
@@ -142,6 +144,7 @@ describe("legacy orchestration semantic consumer ledger", () => {
         "hidden_alias_consumer:src/hidden-multiline.ts:executeTeamRunPlan",
         "hidden_dynamic_import:src/hidden-multiline.ts:../team/run",
         "hidden_split_command:src/hidden-multiline.ts:team run",
+        "unregistered_direct_call:src/hidden-direct.ts:executeTeamRunPlan(",
       ]),
     );
   });
@@ -190,5 +193,29 @@ describe("legacy orchestration semantic consumer ledger", () => {
     expect(result.errors).toContain(
       "non_production_path_for_control_consumer:LEGACY-SEM-FAKE-HISTORICAL-001",
     );
+  });
+
+  it("U-LORET-SEM-012: 追加entry、架空source HEAD、未知negative oracleを拒否する", () => {
+    const loaded = loadLegacyOrchestrationSemanticConsumerLedger(process.cwd());
+    const extra = cloneLedger(loaded.ledger);
+    extra.entries.push({
+      ...structuredClone(extra.entries[0]),
+      capability_id: "LEGACY-SEM-UNREGISTERED-001",
+    });
+    expect(analyzeLegacyOrchestrationSemanticConsumers(extra, loaded.sourceFiles).errors).toContain(
+      "unregistered_capability:LEGACY-SEM-UNREGISTERED-001",
+    );
+
+    const staleHead = cloneLedger(loaded.ledger);
+    staleHead.source_head = "f".repeat(40);
+    expect(
+      analyzeLegacyOrchestrationSemanticConsumers(staleHead, loaded.sourceFiles).errors,
+    ).toContain("ledger_source_head_unrecognized");
+
+    const unknownOracle = cloneLedger(loaded.ledger);
+    unknownOracle.entries[0].negative_oracle_ids.push("U-LORET-SEM-999");
+    expect(
+      analyzeLegacyOrchestrationSemanticConsumers(unknownOracle, loaded.sourceFiles).errors,
+    ).toContain("negative_oracle_set_mismatch:LEGACY-SEM-TEAM-CLI-DIRECT-001");
   });
 });
