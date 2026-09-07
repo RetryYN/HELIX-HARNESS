@@ -40,6 +40,7 @@ modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/provider-process-lifecycle.test.ts, artifact_type: test_code }
   - { artifact_path: tests/team-run.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -49,6 +50,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-013, test_path: tests/team-run.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-014, test_path: tests/team-run.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-015, test_path: tests/provider-process-lifecycle.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-016, test_path: tests/cli-surface.test.ts }
 review_evidence: []
 ---
 
@@ -68,3 +70,7 @@ PostToolUse、consult receipt、terminal JSON、CLI exit codeを同じ判定へ�
 新しいteam固有process lifecycleや恒久schedulerは作らない。stderr永続化、DB schema拡張、
 tracked instance policyは独立責務とし、mutation、独立review、CI、main read-after完了まで
 confirmed化しない。
+
+旧pair-agentの`runCapturedProviderProcess`接続と、Claude review verdictのstdout／stderr連結解析は
+本follow-upへ混載しない。前者は旧engine退役・後継worker移管、後者はtyped output receiptの
+独立sliceで閉じ、本PLANの「唯一の成功判定」はdirect wrapperとteam compatibility facadeに限定する。

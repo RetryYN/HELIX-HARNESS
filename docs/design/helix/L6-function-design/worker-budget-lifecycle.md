@@ -29,11 +29,16 @@ admitted `WrapperLaunchExecution`のsealed contextから実行時間上限を取
 
 ## 終端受付判定
 
+正規worker wrapperであるdirect `helix codex/claude --execute`とteam compatibility facadeでは、
 provider-neutralな`classifyProviderProcessTerminal`を唯一の成功判定とする。成功は
 `status=0`、deadline未超過、残存treeなし、wrapper割込みなし、reap完了、lifecycle errorなしの
 論理積である。direct CLIのconsult receipt、`PostToolUse`、terminal JSON、process exitと、
 team compatibility facadeは同じ判定結果を消費する。providerが停止signalを捕捉してexit 0を
 返しても、timeout・残存tree・割込み・未reapを成功へ昇格しない。
+失敗時のCLI exitは割込みを129／130／143、deadline超過を124、その他の失敗でproviderがexit 0を
+返した場合を1へ投影する。旧pair-agentの`runCapturedProviderProcess`経路は本契約へ未接続であり、
+後継Assignment／Lease workerへ移管する独立sliceまでcurrent worker completionの根拠にしない。
+review verdictのstdout／stderr連結解析も本sliceでは変更せず、typed output receiptへの移管対象とする。
 
 ## team互換アダプター
 

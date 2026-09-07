@@ -25,3 +25,4 @@ pair_artifact: docs/design/helix/L6-function-design/worker-budget-lifecycle.md
 | U-WBL-013 | team timeout terminal | timeout済みprocessがexit 0を返してもmemberをcompletedへ昇格する実装を拒否 | `tests/team-run.test.ts` |
 | U-WBL-014 | team lifecycle fail-close | lifecycle field欠落、未reap、またはpacket budgetと異なるdeadlineを成功へ昇格する実装を拒否 | `tests/team-run.test.ts` |
 | U-WBL-015 | 共通terminal admission | exit 0でもtimeout・残存tree・割込み・未reap・lifecycle errorがあればdirect/team双方で失敗にする | `tests/provider-process-lifecycle.test.ts` |
+| U-WBL-016 | direct CLI terminal admission | timeout後にproviderがexit 0を返してもJSONをfailed/timed_out、process exitを124とし、consult receiptを生成しない | `tests/cli-surface.test.ts` |
