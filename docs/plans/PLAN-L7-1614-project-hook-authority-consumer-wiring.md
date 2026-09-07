@@ -4,7 +4,7 @@ title: "project hook authorityを4つのcurrent consumerへ実配線する"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backprop_decision: not_required
 backprop_decision_reason: "CNW-R-06..08とCNW-AC-009..013、L4/L5/L6のconfirmed契約をcurrent consumerへ接続する実装sliceであり、要求意味を変更しない。"
@@ -27,7 +27,7 @@ contract_failures: "snapshot unavailable、stale root、wrong HEAD、wrong sourc
 tdd_red_required: true
 tdd_red_evidence: "2026-09-07T03:06:50Z、tests/project-hook-authority-consumer-wiring.test.tsがmodule不在でsuite load failure、exit 1となるRedを実測した。"
 mutation_oracle_required: true
-mutation_oracle_evidence: "未採取。surface欠落、dispatchだけ再計算、cwd fallback、failure時dispatchを独立変異としてkillする。"
+mutation_oracle_evidence: "2026-09-07T13:56+09:00、dispatchAdmissionのokをprojection.okからtrueへ固定する変異を実測し、U-CNWHOOKWIRE-003／005が2 failed・7 passedでkillした。復元後、同suiteを再実行して9 passedを確認する。"
 complexity_effect: net_negative
 complexity_justification: "実装済みpure部品の未接続を単一composition rootへ集約し、4 surfaceの個別推測を除去する。"
 removal_trigger: "4 surfaceがControl Planeのnative typed envelopeを直接共有しadapter consumerが0になった時"
@@ -82,4 +82,5 @@ review_evidence: []
 既存resolver/provider/projectorを再実装せず、Control Planeから明示されたsnapshotを一度だけ解決する。
 4 surfaceは同じbytesを受け取り、failure時のdispatchはworkerを起動しない。SessionStart入力不足を
 cwdやremote HEADで補う暫定実装は作らない。Red、Green、mutation、clean-main Luna read-after、
-exact-HEAD独立review、CIを完了するまでconfirmedまたはcompletionへ進めない。
+exact-HEAD独立review、CIを完了して初めてIssue completionへ進める。`status: confirmed`は本PRの
+実装契約と検証設計の確定だけを表し、clean-main Luna read-after未了のためcompletion claimは引き続き禁止する。
