@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
+irreversible_impact: none
 created: 2026-09-07
 updated: 2026-09-07
 owner: Claude 収束レーン / TL
@@ -80,7 +81,7 @@ Issue #1609 で、同一 receipt に対し 2 つの executor が `pr-merge-revie
 
 ## 2. 正規 worker canary としての位置づけ
 
-本 PLAN の実装は `helix team run --execute --worker-context-file` による se worker（codex-se）が clean clone 上で生成し、
+本 PLAN の実装は旧team互換entrypointから起動したse worker（codex-se）がclean clone上で生成し、
 Claude 収束レーンが commit / push / PR 化した。worker 実行の所見（budget 未強制、nested `claude --print` の非終端、
 `.helix/teams` / `.helix/worker-context` の gitignore と guide の乖離）は Issue #1616 に記録した。
 
