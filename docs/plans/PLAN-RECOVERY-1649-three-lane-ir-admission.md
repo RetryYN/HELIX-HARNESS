@@ -55,6 +55,8 @@ generates:
   - { artifact_path: .helix/evidence/review-1649/vitest-targeted.log, artifact_type: other }
   - { artifact_path: .helix/evidence/review-1649/tsc.log, artifact_type: other }
 modifies:
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/test-design/helix/L8-requirement-refinement-authority-unit-test-design.md, artifact_type: markdown_doc }
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-ir-shadow.test.ts, artifact_type: test_code }
@@ -268,3 +270,13 @@ frontmatterの時刻はこの再生実測を指し、元の人間承認・初回
 `https://github.com/RetryYN/HELIX-HARNESS/pull/1650#issuecomment-5576224888`
 （同じ負例を独立再生済み、技術approve維持）と区別して記録する。
 この再採取をfresh CI成功や新HEADのsealed receiptの代用にはしない。
+
+## freeze packetの現行参照追従
+
+run `34167168671`のbulk-1では40件中2件が失敗した。IR登録後のmanifest rootと生成viewは
+更新されていた一方、既存freeze packetが旧rootと旧view digestを参照していたことが原因である。
+同HEADを局所再実行して同じ2反例を確認し、既存packetの現行root・refinement数（6+8=14）・
+view digestと、U-DESIGNCOV-016のview pinを実bytesへ追従する。元source/IR/raw実測は不変で、
+2026-07-31の基線freeze・承認・baseline 153/24/72/24を変更しない。
+この2pathをIR登録のconsumer追従scopeへ含め、新HEADの独立技術reviewと全回帰へ渡す。
+過去の技術approveを、この追従差分まで検証済みだったものとして扱わない。

@@ -126,11 +126,14 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
 - packetレビューHEAD: 本packetを変更するPRのcurrent HEAD。SHAはGitHub same-HEAD review receiptへ外部束縛する
 - requirements正本: `requirements-ir/manifest.json`
 - 凍結済み基線Requirement JSON root digest: `sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75`
-- 現行Requirement JSON root digest: `sha256:be1d6ec16478bad85813bf77583805f331ddc6b1061409dd448e27b911a8a0b1`
-- 現行refinement contract count: `6`（schema v2のadmission partition。baseline 153/24/72/24は不変）
+- 現行Requirement JSON root digest: `sha256:4ac2491f8390a1fe6e1c7438b67a464b6eb95644150fcf9c37a5d410e6bb58b9`
+- 現行refinement contract count: `14`（既存6件と三社レーン8件。schema v2のadmission partition、baseline 153/24/72/24は不変）
 - Requirement shard digest: `sha256:3c2c844b9ea4d906c336a3f3021d061078ce2f911ac46db3962e57d378239e35`
 - generated Markdown view: `docs/generated/requirements/requirement-definition.generated.md`
-- 生成Markdown view digest: `sha256:2229eaf7f608c13439b3a98532d8c005db68492bae23b188bd0f47d9da85bfcb`
+- 生成Markdown view digest: `sha256:3603fe35497e12f2d6de59f3710b7dfe590ee14d1c9523ce720757f7490eeb83`
+- 2026-09-08、PLAN-RECOVERY-1649の三社レーンIR登録に伴う現行参照更新。L3-PO-1358-002で
+  承認済みの8 Feature／25 supporting requirement／27 ACを既存partitionへ接続したものであり、
+  上記2026-07-31の153件のfreeze記録を再発行・変更しない。新HEADの独立review・CI・DB検証は別途必要。
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
 - design catalog digest候補: `sha256:c2c52dcc8641f675c53e42a040c6a681b3c9091c7d6e2c38e22d8e6987b8a6d1`
 - PLAN-RECOVERY-1500の監査入力L6設計登録1件と、PLAN-RECOVERY-1411のchecklist検証L6/L8登録2件を保持して再計測した候補値。
