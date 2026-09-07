@@ -3,15 +3,18 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { admitWrapperLaunch, buildAdapterPlan } from "../src/runtime/adapter";
-import { loadSlots, nodeAgentSlotsDeps } from "../src/runtime/agent-slots";
+import {
+  loadSlots,
+  nodeAgentSlotsDeps as legacySlotDeps,
+} from "../src/runtime/agent-slots";
 import type { RuntimeDetection } from "../src/runtime/detect";
 import type { TeamDefinition } from "../src/schema/team";
 import { classifyProposalDocumentCoverage } from "../src/task/classify";
 import { routeTeamMembers } from "../src/task/tier-router";
 import { recommendTeamLaunch } from "../src/team/launch-policy";
 import {
-  buildTeamRunPlan,
-  executeTeamRunPlan,
+  buildTeamRunPlan as buildLegacyTeamPlan,
+  executeTeamRunPlan as executeLegacyTeamPlan,
   type MemberPlacement,
   providerFromEngine,
   validateTeamRun,
@@ -120,7 +123,7 @@ describe("team run validation", () => {
   });
 
   it("builds a shared Claude/Codex launch plan from the same team member flow", () => {
-    const result = buildTeamRunPlan(
+    const result = buildLegacyTeamPlan(
       {
         name: "speed-team",
         strategy: "parallel",
@@ -156,7 +159,7 @@ describe("team run validation", () => {
   });
 
   it("honors explicit model policy overrides in the shared launch plan", () => {
-    const result = buildTeamRunPlan(
+    const result = buildLegacyTeamPlan(
       {
         name: "speed-team",
         strategy: "parallel",
@@ -208,7 +211,7 @@ describe("team run validation", () => {
     expect(members.every((member) => member.ownership)).toBe(true);
     expect(members.some((member) => member.engine === "pmo-sonnet")).toBe(true);
 
-    const plan = buildTeamRunPlan(recommendation.definition as TeamDefinition, "hybrid");
+    const plan = buildLegacyTeamPlan(recommendation.definition as TeamDefinition, "hybrid");
     expect(plan.ok).toBe(true);
     expect(plan.strategy).toBe("sequential");
     expect(
@@ -221,7 +224,7 @@ describe("team run validation", () => {
   });
 
   it("passes provider-neutral skill injection to every runtime adapter", () => {
-    const result = buildTeamRunPlan(
+    const result = buildLegacyTeamPlan(
       {
         name: "speed-team",
         strategy: "parallel",
@@ -257,7 +260,7 @@ describe("team run validation", () => {
   });
 
   it("keeps dependent team members on the same flow but schedules them sequentially", () => {
-    const result = buildTeamRunPlan(
+    const result = buildLegacyTeamPlan(
       {
         name: "review-team",
         strategy: "parallel",
@@ -290,7 +293,7 @@ describe("team run validation", () => {
   });
 
   it("rejects serialize_after targets that do not exist or are ambiguous", () => {
-    const missing = buildTeamRunPlan(
+    const missing = buildLegacyTeamPlan(
       {
         name: "review-team",
         strategy: "parallel",
@@ -305,7 +308,7 @@ describe("team run validation", () => {
     expect(missing.ok).toBe(false);
     expect(missing.messages).toContain(serializeAfterTargetNotFoundMessage("tl:pmo-sonnet", "qa"));
 
-    const ambiguous = buildTeamRunPlan(
+    const ambiguous = buildLegacyTeamPlan(
       {
         name: "review-team",
         strategy: "parallel",
@@ -325,7 +328,7 @@ describe("team run validation", () => {
   });
 
   it("keeps explicit serialization reasons green while forcing sequential scheduling", () => {
-    const result = buildTeamRunPlan(
+    const result = buildLegacyTeamPlan(
       {
         name: "review-team",
         strategy: "parallel",
@@ -358,7 +361,7 @@ describe("team run validation", () => {
   it("U-WCP-011: context-bound provider adaptersをteam runnerで実行する", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = buildLegacyTeamPlan(
         {
           name: "speed-team",
           strategy: "parallel",
@@ -376,8 +379,8 @@ describe("team run validation", () => {
         },
       );
       const commands: string[] = [];
-      const deps = nodeAgentSlotsDeps(repo);
-      const execution = await executeTeamRunPlan(plan, {
+      const deps = legacySlotDeps(repo);
+      const execution = await executeLegacyTeamPlan(plan, {
         slots: deps,
         runCommand: async ({ command, args, provider, timeMs }) => {
           expect(command).not.toBe("");
@@ -403,7 +406,7 @@ describe("team run validation", () => {
   it("U-WBL-012: sealed budgetを各team member実行へ渡す [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = buildLegacyTeamPlan(
         {
           name: "budget-team",
           strategy: "parallel",
@@ -417,8 +420,8 @@ describe("team run validation", () => {
         { execute: true, workerContext: testWorkerContext() },
       );
       const budgets: number[] = [];
-      const execution = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
+      const execution = await executeLegacyTeamPlan(plan, {
+        slots: legacySlotDeps(repo),
         runCommand: async ({ provider, timeMs }) => {
           budgets.push(timeMs);
           return {
@@ -454,7 +457,7 @@ describe("team run validation", () => {
   it("U-WBL-013: deadline超過をexit 0でも完了へ昇格しない [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-timeout-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = buildLegacyTeamPlan(
         {
           name: "timeout-team",
           strategy: "parallel",
@@ -467,8 +470,8 @@ describe("team run validation", () => {
         "hybrid",
         { execute: true, workerContext: testWorkerContext() },
       );
-      const execution = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
+      const execution = await executeLegacyTeamPlan(plan, {
+        slots: legacySlotDeps(repo),
         runCommand: async ({ provider, timeMs }) =>
           provider === "codex"
             ? {
@@ -509,7 +512,7 @@ describe("team run validation", () => {
   it("does not execute dependent members after their dependency fails", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-dependency-fail-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = buildLegacyTeamPlan(
         {
           name: "speed-team",
           strategy: "parallel",
@@ -527,8 +530,8 @@ describe("team run validation", () => {
         },
       );
       const commands: string[] = [];
-      const execution = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
+      const execution = await executeLegacyTeamPlan(plan, {
+        slots: legacySlotDeps(repo),
         runCommand: async ({ args, provider }) => {
           commands.push(`${provider} ${args[0]}`);
           return { exitCode: 7 };
@@ -551,7 +554,7 @@ describe("team run validation", () => {
   it("executes parallel teams in max_parallel batches instead of serializing everything", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-parallel-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = buildLegacyTeamPlan(
         {
           name: "speed-team",
           strategy: "parallel",
@@ -572,8 +575,8 @@ describe("team run validation", () => {
       let active = 0;
       let peak = 0;
       const started: string[] = [];
-      const deps = nodeAgentSlotsDeps(repo);
-      const execution = await executeTeamRunPlan(plan, {
+      const deps = legacySlotDeps(repo);
+      const execution = await executeLegacyTeamPlan(plan, {
         slots: deps,
         runCommand: async ({ args, provider }) => {
           active += 1;
@@ -597,7 +600,7 @@ describe("team run validation", () => {
   it("[U-TEAMRUN-004] requires exactly one explicit PASS verdict from reviewers", async () => {
     const repo = mkdtempSync(join(tmpdir(), "helix-team-review-evidence-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = buildLegacyTeamPlan(
         {
           name: "review-team",
           strategy: "sequential",
@@ -615,8 +618,8 @@ describe("team run validation", () => {
         ["VERDICT: FAIL\n", "rejected"],
         ["VERDICT: PASS\nVERDICT: FAIL\n", "ambiguous"],
       ] as const) {
-        const execution = await executeTeamRunPlan(plan, {
-          slots: nodeAgentSlotsDeps(repo),
+        const execution = await executeLegacyTeamPlan(plan, {
+          slots: legacySlotDeps(repo),
           runCommand: async ({ provider }) => ({
             exitCode: 0,
             output: provider === "claude" ? reviewOutput : "worker ok",
@@ -625,8 +628,8 @@ describe("team run validation", () => {
         expect(execution.ok).toBe(false);
         expect(execution.executions[1]?.evidence.verdict_status).toBe(expectedStatus);
       }
-      const truncated = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
+      const truncated = await executeLegacyTeamPlan(plan, {
+        slots: legacySlotDeps(repo),
         runCommand: async ({ provider }) => ({
           exitCode: 0,
           output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok",
@@ -657,7 +660,7 @@ describe("team run validation", () => {
       primary: "claude",
       allowFrontier: true,
     });
-    const result = buildTeamRunPlan(team, "hybrid", { placements });
+    const result = buildLegacyTeamPlan(team, "hybrid", { placements });
 
     expect(result.ok).toBe(true);
     const se = result.members.find((m) => m.role === "se");
@@ -678,7 +681,7 @@ describe("team run validation", () => {
       { role: "qa", engine: "qa-test", task: "verify coverage", serialize_after: "se" },
     ]);
     const placements = placementsFor(team, hybrid("claude"), { primary: "claude" });
-    const result = buildTeamRunPlan(team, "hybrid", { execute: true, placements });
+    const result = buildLegacyTeamPlan(team, "hybrid", { execute: true, placements });
 
     expect(result.ok).toBe(false);
     expect(result.messages.some((m) => m.startsWith("member blocked by frontier gate: qa"))).toBe(
@@ -702,7 +705,7 @@ describe("team run validation", () => {
       primary: "codex",
       allowFrontier: true,
     });
-    const result = buildTeamRunPlan(team, "hybrid", { placements });
+    const result = buildLegacyTeamPlan(team, "hybrid", { placements });
 
     expect(result.ok).toBe(true);
     const se = result.members.find((m) => m.role === "se");
@@ -731,12 +734,12 @@ describe("team runner wrapper admission sink fence", () => {
   });
 
   /** runCommand が一度も呼ばれないことを数えるための spy。 */
-  async function executeCountingLaunches(plan: ReturnType<typeof buildTeamRunPlan>) {
+  async function executeCountingLaunches(plan: ReturnType<typeof buildLegacyTeamPlan>) {
     const repo = mkdtempSync(join(tmpdir(), "helix-team-sink-fence-"));
     try {
       const launched: string[] = [];
-      const execution = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
+      const execution = await executeLegacyTeamPlan(plan, {
+        slots: legacySlotDeps(repo),
         runCommand: async ({ command, args }) => {
           launched.push(`${command} ${args[0] ?? ""}`);
           return { exitCode: 0, output: "VERDICT: PASS\n" };
@@ -749,7 +752,7 @@ describe("team runner wrapper admission sink fence", () => {
   }
 
   it("U-TSAF-001: wrapper 登録の無い生 adapter plan を sink が起動前に拒否する", async () => {
-    const plan = buildTeamRunPlan(wrapperTeam(), "hybrid", {
+    const plan = buildLegacyTeamPlan(wrapperTeam(), "hybrid", {
       execute: true,
       planId: "PLAN-L7-498-worker-wrapper-admission",
       workerContext: testWorkerContext(),
@@ -776,7 +779,7 @@ describe("team runner wrapper admission sink fence", () => {
   it("U-TSAF-002: worker context を持たない wrapper plan を sink が起動前に拒否する", async () => {
     // workerContext なしでも buildWrapperAdapterPlan は origin を登録するため route は通る。
     // sink が requireWorkerContext を渡していなければ、この plan はそのまま起動されてしまう。
-    const plan = buildTeamRunPlan(wrapperTeam(), "hybrid", {
+    const plan = buildLegacyTeamPlan(wrapperTeam(), "hybrid", {
       execute: true,
       planId: "PLAN-L7-498-worker-wrapper-admission",
     });
