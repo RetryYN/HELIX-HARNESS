@@ -8048,6 +8048,8 @@ describe("L7 CLI surface closure", () => {
         deadline_ms: 60_000,
         termination_stage: "none",
         reaped: true,
+        terminal_status: "success",
+        terminal_failure: null,
       });
       expect(payload.duration_ms).toBeGreaterThanOrEqual(0);
       expect(payload.duration_ms).toBeLessThan(60_000);

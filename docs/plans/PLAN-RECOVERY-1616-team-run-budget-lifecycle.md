@@ -48,6 +48,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-012, test_path: tests/team-run.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-013, test_path: tests/team-run.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-014, test_path: tests/team-run.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-015, test_path: tests/provider-process-lifecycle.test.ts }
 review_evidence: []
 ---
 
@@ -58,6 +59,11 @@ review_evidence: []
 memberごとのdeadline、process-tree停止、回収、terminal JSONへ接続する。
 team memberのlifecycle返却値は必須契約とし、欠落、deadline不一致、timeout、未reapを
 fail-closeする。`PostToolUse`も同じ判定へ揃え、exit 0だけで成功を記録しない。
+
+follow-upでは、provider-neutralなterminal admissionを正本化し、direct
+`helix codex/claude --execute`とteam compatibility projectionの双方へ接続する。
+`status=0`でもtimeout、残存tree、中断、未reap、launch errorがあれば失敗とし、
+PostToolUse、consult receipt、terminal JSON、CLI exit codeを同じ判定へ揃える。
 
 新しいteam固有process lifecycleや恒久schedulerは作らない。stderr永続化、DB schema拡張、
 tracked instance policyは独立責務とし、mutation、独立review、CI、main read-after完了まで
