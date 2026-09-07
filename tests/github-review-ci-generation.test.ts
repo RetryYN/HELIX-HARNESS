@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
@@ -18,8 +18,15 @@ describe("封緘用CI観測", () => {
   it("IT-SEALCI-007: 失敗CIのblock receiptを実CLIでread-afterして保存する", (context) => {
     if (process.platform === "win32") context.skip();
     const root = mkdtempSync(join(tmpdir(), "helix-seal-positive-"));
+    let mutationRoot: string | undefined;
     try {
       const bundle = ensureCliBundle(process.cwd());
+      const compiled = readFileSync(bundle, "utf8");
+      const mutationTarget = 'purpose === "seal"';
+      expect(compiled.split(mutationTarget)).toHaveLength(2);
+      mutationRoot = mkdtempSync(join(dirname(bundle), "seal-mutation-"));
+      const mutant = join(mutationRoot, "cli.mjs");
+      writeFileSync(mutant, compiled.replace(mutationTarget, "false"));
       const headSha = "a".repeat(40);
       const input = {
         repository: "example/project",
@@ -53,44 +60,51 @@ describe("封緘用CI観測", () => {
         `#!${process.execPath}\nconst args=process.argv.slice(2);\nif(args[0]==='api' && args.some(x=>x.endsWith('/commits'))) process.stdout.write('1:0:Zml4dHVyZQ==\\n');\nelse if(args[0]==='run' && args[1]==='list') process.stdout.write(process.env.SEAL_TEST_RUNS);\nelse if(args[0]==='api' && args[1]==='repos/example/project/issues/comments/12') process.stdout.write(process.env.SEAL_TEST_COMMENT);\nelse process.exit(97);\n`,
         { mode: 0o700 },
       );
-      const result = spawnSync(
-        process.execPath,
-        [
-          bundle,
-          "github",
-          "pr-review-receipt",
-          "--apply",
-          "--json",
-          "--input-json",
-          JSON.stringify(input),
-        ],
-        {
-          cwd: root,
-          encoding: "utf8",
-          timeout: 20_000,
-          env: {
-            PATH: root,
-            HOME: root,
-            HELIX_SKIP_UPDATE_CHECK: "1",
-            SEAL_TEST_RUNS: JSON.stringify([
-              {
-                databaseId: 2,
-                headSha,
-                event: "pull_request",
-                name: "harness-check",
-                status: "completed",
-                conclusion: "failure",
-                attempt: 1,
-                updatedAt: "2026-01-01T00:01:00Z",
-              },
-            ]),
-            SEAL_TEST_COMMENT: JSON.stringify({
-              html_url: input.commentUrl,
-              body: renderIndependentPrReviewComment(receipt),
-            }),
+      const run = (entry: string) =>
+        spawnSync(
+          process.execPath,
+          [
+            entry,
+            "github",
+            "pr-review-receipt",
+            "--apply",
+            "--json",
+            "--input-json",
+            JSON.stringify(input),
+          ],
+          {
+            cwd: root,
+            encoding: "utf8",
+            timeout: 20_000,
+            env: {
+              PATH: root,
+              HOME: root,
+              HELIX_SKIP_UPDATE_CHECK: "1",
+              SEAL_TEST_RUNS: JSON.stringify([
+                {
+                  databaseId: 2,
+                  headSha,
+                  event: "pull_request",
+                  name: "harness-check",
+                  status: "completed",
+                  conclusion: "failure",
+                  attempt: 1,
+                  updatedAt: "2026-01-01T00:01:00Z",
+                },
+              ]),
+              SEAL_TEST_COMMENT: JSON.stringify({
+                html_url: input.commentUrl,
+                body: renderIndependentPrReviewComment(receipt),
+              }),
+            },
           },
-        },
-      );
+        );
+      // 成功世代だけを選ぶ旧動作では同じ正例が拒否されることを実行で確認する。
+      const rejected = run(mutant);
+      expect(rejected.error).toBeUndefined();
+      expect(rejected.status).toBe(1);
+      expect(rejected.stderr).toContain("pr_ci_evidence_not_terminal");
+      const result = run(bundle);
       expect(result.error).toBeUndefined();
       expect(result.stderr).toBe("");
       expect(result.status).toBe(0);
@@ -101,6 +115,7 @@ describe("封緘用CI観測", () => {
       expect(output.receipt.verdict).toBe("block");
       expect(JSON.parse(readFileSync(output.receiptPath, "utf8"))).toEqual(output.receipt);
     } finally {
+      if (mutationRoot) rmSync(mutationRoot, { recursive: true, force: true });
       rmSync(root, { recursive: true, force: true });
     }
   });

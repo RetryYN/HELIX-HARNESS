@@ -60,6 +60,8 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1638-review-seal-terminal-ci.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
@@ -120,3 +122,8 @@ green再封緘・mergeまでの統合成功を証明しない。その正経路�
 失敗CIのblock receiptをread-afterしてローカルへ保存する正経路を検査する。
 出力receiptと保存bytesのJSONが一致し、`failure` と `block` が保持されることを確認する。
 外部GitHubへの実投稿、approveに必要なDB/PLAN接合、green再封緘・mergeの証明には代用しない。
+
+同じ `IT-SEALCI-007` はbundleの封緘選択条件1箇所を無効化した隔離mutantも実行する。
+成功世代のみを選ぶmutantは `pr_ci_evidence_not_terminal`・exit 1、元bundleは保存成功・exit 0
+となることを同一fixtureで比較する。これは選択分岐のmutation証拠であり、過去commit全体を
+再実行したRed証拠としては扱わない。作業ソースと既存bundleは書き換えない。
