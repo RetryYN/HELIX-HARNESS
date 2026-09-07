@@ -4,7 +4,7 @@ title: "project hook authorityを4つのcurrent consumerへ実配線する"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backprop_decision: not_required
 backprop_decision_reason: "CNW-R-06..08とCNW-AC-009..013、L4/L5/L6のconfirmed契約をcurrent consumerへ接続する実装sliceであり、要求意味を変更しない。"
@@ -72,13 +72,29 @@ generates:
 modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
-  - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T07:08:23Z"
+    tests_green_at: "2026-09-07T07:08:23Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: "claude:claude-fable-5-1"
+    scope: "PR #1620 exact HEAD 4042f74006c25474ca4681fafef50bdfcc1571b8を独立reviewしblocker 0。reviewerが推奨したU-CNWHOOKWIRE-007のCodex経路直接検証とstale scope宣言除去を適用し、対象9 testsを再実行した。final HEADの再reviewとclean-main Luna read-afterはmerge admission／Issue completion前に別途必須。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec -- vitest run tests/project-hook-authority-consumer-wiring.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-07T07:08:23Z"
+        evidence_path: tests/project-hook-authority-consumer-wiring.test.ts
+        output_digest: "sha256:2b54e160e02d765d34434baebcab574f8723c4bc8939d0739c097ecd030b950c"
 ---
 
 # project hook authorityのconsumer配線

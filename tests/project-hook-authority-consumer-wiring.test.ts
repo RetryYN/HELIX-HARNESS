@@ -211,6 +211,10 @@ describe("project hook authority consumer wiring", () => {
         env: { ...process.env, HELIX_UPDATE_CHECK_DISABLED: "1" },
       });
       expect(run.status, `${args.join(" ")}\n${run.stderr}`).toBe(1);
+      if (args[0] === "codex") {
+        expect(run.stderr).toContain("codex: project hook authority admission failed");
+        expect(run.stderr).not.toContain("WORKER_CONTEXT_UNSEALED");
+      }
       return run.stderr.trim().split("\n", 1)[0];
     });
     expect(new Set(authorityBytes).size).toBe(1);
