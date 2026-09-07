@@ -13,8 +13,8 @@ import {
   buildTeamRunPlan,
   executeTeamRunPlan,
   type MemberPlacement,
-  type TeamRunnerDeps,
   providerFromEngine,
+  type TeamRunnerDeps,
   validateTeamRun,
 } from "../src/team/run";
 import {
@@ -236,7 +236,10 @@ describe("team run validation", () => {
     expect(members.every((member) => member.ownership)).toBe(true);
     expect(members.some((member) => member.engine === "pmo-sonnet")).toBe(true);
 
-    const plan = legacyTeamCompatibility.build(recommendation.definition as TeamDefinition, "hybrid");
+    const plan = legacyTeamCompatibility.build(
+      recommendation.definition as TeamDefinition,
+      "hybrid",
+    );
     expect(plan.ok).toBe(true);
     expect(plan.strategy).toBe("sequential");
     expect(

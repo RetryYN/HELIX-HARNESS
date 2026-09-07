@@ -12898,9 +12898,7 @@ team
                 tool_input: { command: `${command} ${args.join(" ")}` },
                 tool_response: {
                   outcome:
-                    outcome.status === 0 && !outcome.timed_out && outcome.reaped
-                      ? "ok"
-                      : "error",
+                    outcome.status === 0 && !outcome.timed_out && outcome.reaped ? "ok" : "error",
                 },
               },
               sessionDeps,
