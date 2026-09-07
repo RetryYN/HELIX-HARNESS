@@ -24,6 +24,10 @@ source_issue: 1622
 - `content producer`、`commit executor`、`PR publisher`、`independent reviewer`を別identityとして扱う。
 - commit metadataやGitHub actorだけから成果生成主体を推測しない。
 - producer不明の旧receiptを、後付け推定でterminal review evidenceへ昇格させない。
+- `mixed`はproducer不明を意味しない。既存のdual-receipt admissionで双方の寄与と独立reviewが実測された場合は、正規の受理状態として維持する。
+- bot等の`external` authorはHELIX workerのproducerへ推測変換せず、既存のexternal境界と独立review規律を維持する。
 - 本候補はGitHub actor、commit署名、resident lane、provider routingを再設計しない。
+
+本候補の直接根拠はPR #1618で、content producerがCodex worker、commit executor／PR publisherがClaude収束レーンであったにもかかわらず、既存のcommit trailer由来author runtimeだけではproducerを一意に表せなかった実測である。
 
 本書はIssue #1622を要求候補へ整理したものであり、人間承認、canonical promotion、runtime変更を与えない。

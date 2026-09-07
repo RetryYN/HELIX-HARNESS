@@ -28,7 +28,7 @@ backprop_decision: not_required
 backprop_decision_reason: "Issue #1622からL1/L3/L10候補へ降ろす要求形成sliceであり、既存runtime意味を変更しない。"
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
-contract_preconditions: "#1605 review真正性、worker lifecycle receipt、assignment／scope／HEAD identityを再利用し、Issue本文をruntime authorityにしない"
+contract_preconditions: "#1605 review真正性、Issue #539とL5 github-cross-review-admissionのmixed dual-receipt／external author境界、worker lifecycle receipt、assignment／scope／HEAD identityを再利用し、Issue本文をruntime authorityにしない。PR #1618のproducer／executor分離実測を要求根拠とする"
 contract_postconditions: "PPS-BR-01..04、PPS-R-01..07、PPS-AC-001..010をexact対応で候補化する"
 contract_invariants: "producerとGit操作主体の非同一性、unknownの非昇格、第二証拠基盤禁止、runtime先行禁止"
 contract_failures: "role欠落、spoof、wrong assignment／HEAD／session、graph digest divergence、推測backfillを拒否する"
@@ -43,10 +43,12 @@ dependencies:
   parent: docs/governance/candidates/producer-provenance-separation-requests.md
   requires: []
   references:
+    - issue:539
     - issue:1605
     - issue:1612
     - issue:1616
     - issue:1622
+    - docs/design/helix/L5-detail/github-cross-review-admission.md
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-1622-producer-provenance-separation.md, artifact_type: markdown_doc }
@@ -66,3 +68,7 @@ review_evidence: []
 本PLANはIssue #1622の要求候補化のみを所有する。候補mergeを人間承認、canonical authority、IR admission、
 runtime/schema/DB実装として扱わない。PPS-BR、PPS-R、PPS-ACの対応を維持し、content producerをcommit executor、
 GitHub actor、PR publisherから推測しない。
+
+既存の`mixed` dual-receiptはproducer不明ではなく、双方の寄与と対reviewが成立した受理状態として維持する。
+`external` authorもHELIX workerへ偽変換せず、既存の外部author境界を新graphへ投影する。本候補は
+Issue #539および`docs/design/helix/L5-detail/github-cross-review-admission.md`を拡張し、別のprovenance基盤を新設しない。

@@ -16,6 +16,7 @@ pair_artifact: docs/governance/candidates/producer-provenance-separation-accepta
 
 各変更episodeは`content_producer`、`commit_executor`、`pr_publisher`、`independent_reviewer`を別fieldで保持する。
 各identityはruntime、model、provider session、assignmentを、その役割で実測できる範囲に限って束縛する。
+bot等の`external` authorは既存の外部author境界を保ち、HELIX workerのproducer identityへ暗黙変換しない。
 
 ## PPS-R-02 成果とassignmentの因果束縛
 
@@ -30,6 +31,8 @@ publisherが変わってもproducer identityを上書きせず、成果digestま
 
 独立性はcontent producerのruntime／provider／model family／sessionとの関係で判定する。commit executorまたは
 PR publisherがproducerと異なるだけでは独立性を成立させず、同一producer系統のreviewをterminal evidenceにしない。
+この判定はIssue #539および既存`github-cross-review-admission`のmixed／dual-receipt契約を拡張するものであり、
+現行の`authorModel`基準の独立性判定と対receipt検証を置換せず、producer roleを追加の検証軸として合成する。
 
 ## PPS-R-04 GitHub actor・commit metadata境界
 
@@ -51,6 +54,7 @@ receipt、PLAN、DB projection/replay、GitHub comment、review admission、merg
 
 producer provenanceを実測できない場合は`unknown`または`unattested`として保持し、terminal independent reviewへの昇格を
 拒否する。診断は欠落役割とsourceを示し、暗黙fallbackしない。
+既存の`external` authorはunknownと同一視せず、外部authorとして実測できた境界を保持したまま既存admissionへ渡す。
 
 ## PPS-R-07 互換移行
 
@@ -58,10 +62,13 @@ producer provenanceを実測できない場合は`unknown`または`unattested`�
 
 direct author=committerで実測済みの既存経路はversioned compatibility projectionで受理可能とする。旧receiptを履歴として
 保持し、producerを推測でbackfillせず、新schemaとdual-readした後にcurrent outputを新graphへ一方向移行する。
+`mixed`は両runtimeの寄与と必要な対receiptが揃う既存の正規状態として受理し、producer不明へ縮退させない。
+`external`も既存のbot author境界を維持し、新graphに専用の観測済みidentityとして投影する。
 
 ## 既存責務の再利用
 
 - #1605のreviewer session/model真正性と既存review receipt admissionを拡張し、別review基盤を作らない。
+- Issue #539および`docs/design/helix/L5-detail/github-cross-review-admission.md`のmixed dual-receipt／external author境界を再利用する。
 - GitHub actor分離、worker lifecycle receipt、assignment／scope／HEAD identityを再利用する。
 - commit署名方式、provider routing、resident lane、Notification Fabricは本候補で変更しない。
 
