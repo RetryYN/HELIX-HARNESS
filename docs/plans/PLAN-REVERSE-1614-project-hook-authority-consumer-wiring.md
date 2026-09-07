@@ -30,7 +30,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: REVERSE
 entry_signals:
-  - "regression_dev:U-BACKFILL-006がPLAN-L7-1614のReverse孤立を検出"
+  - "drift"
 contract_preconditions: "PLAN-L7-1614の実装、L4/L6/L8のconfirmed契約、4 consumerのtargeted regression、mutation evidenceが存在する"
 contract_postconditions: "Forward実装PLANと本Reverseを双方向に接続し、実装で得たproject hook authorityの事実をL4/L6/L8へ再接着する"
 contract_invariants: "cwd／env／remote fallback禁止、4 surfaceの同一snapshot消費、dispatch前fail-close、要求意味不変を維持する"
