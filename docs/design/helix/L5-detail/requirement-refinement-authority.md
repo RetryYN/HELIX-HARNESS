@@ -69,6 +69,9 @@ compatibility／archive／migration pathを拒否する。
 
 ## 2. invariant
 
+- refinementのnamespaceは大文字英字を少なくとも1字含む英数字とし、先頭の数字を許す。
+  承認済み`3L-FR-001`／`3L-R-01`／`3L-AC-001`を改名せず扱う。空segment、
+  数字だけのnamespace、不正文字、末尾改行を拒否し、runtimeとJSON schemaの構文を一致させる。
 - baseline shard 4件のbytes、count、digestは旧snapshotと一致する。
 - refinement contract keyと`refinement_contract_id`は一致し、全IDはroot全体で一意である。
 - primary／related ownerはbaseline system contractに実在し、primaryはrelatedへ重複しない。
@@ -104,6 +107,8 @@ compatibility／archive／migration pathを拒否する。
 
 ## 4. mutation検証契約
 
+`U-TLIR-001`は承認済み3L識別子と不正識別子をruntime／JSON schemaの双方で照合する。
+
 owner存在検査、source digest比較、approval revision比較、R→AC全被覆、baseline digest比較をそれぞれ除去した
 mutantは独立fixtureでRedになる。`toContain()`による文言確認だけを到達証拠にしない。
 
@@ -129,7 +134,7 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:d7ce8f07137318c51d544fa2fde06cf1283f5541c7c36098cb22a88214c2b8c8",
+      "source_digest": "sha256:200617c69ab9b265370c63bcae49bb4f093ff55a6c8e68dfe49c0c64898c36e6",
       "current_authority": true
     }
   ],

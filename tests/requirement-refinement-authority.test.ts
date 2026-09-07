@@ -14,9 +14,11 @@ import {
   refinementDownstreamIssueSnapshotDigest,
   refinementSourceSetDigest,
   validateRequirementRefinement,
+  requirementRefinementSchema,
 } from "../src/requirements/requirement-refinement-authority";
 
 const HEAD = "a".repeat(40);
+// PLAN-RECOVERY-397-three-lane-ir-identity / U-TLIR-001
 const CURRENT_HEAD = "b".repeat(40);
 const OWNER_IDS = new Set(["HR-FR-HIL-02", "HR-FR-HIL-05", "HR-FR-HIL-06", "HR-FR-HIL-08"]);
 const REQUIREMENT_SOURCE = `#### MIC-R-01 PMによる割当
@@ -142,6 +144,18 @@ function validate(repoRoot: string, record: unknown) {
 }
 
 describe("Requirement refinement authority", () => {
+  it("U-TLIR-001: 承認済み数字開始namespaceとJSON schemaの構文を一致させる", () => {
+    const jsonSchema = JSON.parse(readFileSync("config/requirement-ir-schema.json", "utf8"));
+    const jsonId = new RegExp(jsonSchema.$defs.refinementId.pattern);
+    for (const id of ["3L-FR-001", "3L-R-01", "3L-AC-001", "MIC-FR-001"]) {
+      expect(requirementRefinementSchema.shape.refinement_contract_id.safeParse(id).success).toBe(true);
+      expect(jsonId.test(id)).toBe(true);
+    }
+    for (const id of ["", "3-FR-001", "3l-R-01", "3L--01", "3L-R/01", "3L-R-01\n"]) {
+      expect(requirementRefinementSchema.shape.refinement_contract_id.safeParse(id).success).toBe(false);
+      expect(jsonId.test(id)).toBe(false);
+    }
+  });
   it("U-RRA-001: accepts specified and two-phase material-HEAD-bound approved bundles", () => {
     for (const status of ["specified", "approved", "frozen"] as const) {
       const { repoRoot, record } = fixture(status);
