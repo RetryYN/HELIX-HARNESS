@@ -1886,7 +1886,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           "#!/bin/sh",
           'printf \'%s\\n\' "$@" >> "$GH_LOG"',
           "printf 'ARGV-END\\n' >> \"$GH_LOG\"",
-          'if [ "$1" = "api" ]; then',
+          'if [ "$1" = "api" ] && [ "$2" = "--paginate" ] && [ "$3" = "--slurp" ]; then',
+          "  printf '[[]]'",
+          'elif [ "$1" = "api" ]; then',
           `  printf '1:0:${evidence}\\n'`,
           'elif [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
           `  printf '%s' ${JSON.stringify(prView)}`,
@@ -1916,6 +1918,8 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           "  exit 0",
           `elif [ "$1" = "show" ] && [ -n "\${HELIX_TEST_CHANGED_PLAN:-}" ] && [ "$2" = "origin/main:$HELIX_TEST_CHANGED_PLAN" ]; then`,
           "  exit 1",
+          `elif [ "$1" = "show" ] && [ -n "\${HELIX_TEST_CHANGED_PLAN:-}" ] && [ "$2" = "${"d".repeat(40)}:$HELIX_TEST_CHANGED_PLAN" ]; then`,
+          '  cat "$HELIX_TEST_CHANGED_PLAN"',
           "else",
           `  exec ${JSON.stringify(realGit)} "$@"`,
           "fi",
@@ -2045,7 +2049,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
 
       // 4 経路すべてが core の実引数どおり evidence を取りに行く（bridge での欠落を検出する）。
       const evidenceCalls = [sealedFalse, mergedFalse, mergedTruthful, sealedTruthful].map((run) =>
-        run.invocations.filter((args) => args[0] === "api"),
+        run.invocations.filter((args) => args[0] === "api" && args.includes("repos/RetryYN/HELIX-HARNESS/pulls/544/commits")),
       );
       for (const calls of evidenceCalls) {
         expect(calls).toEqual([authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 544)]);
