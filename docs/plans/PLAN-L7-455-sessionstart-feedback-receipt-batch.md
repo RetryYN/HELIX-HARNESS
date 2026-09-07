@@ -8,7 +8,7 @@ status: confirmed
 route_mode: incident
 entry_signals: ["po_directive:2026-07-14 /goal 全システム監査から確認された IMP-151 copy-db profiling"]
 created: 2026-07-14
-updated: 2026-07-14
+updated: 2026-09-07
 backprop_decision: not_required
 backprop_decision_reason: "既存 L6 feedback lifecycle の receipt 契約を batch 境界として具体化し、要件の意味変更を伴わない性能・可用性是正である。"
 owner: TL (Codex)
@@ -48,6 +48,9 @@ generates:
     artifact_type: source_module
   - artifact_path: tests/feedback-lifecycle.test.ts
     artifact_type: test_code
+modifies:
+  - artifact_path: tests/feedback-surface.test.ts
+    artifact_type: test_code
 dependencies:
   parent: null
   requires: []
@@ -86,3 +89,9 @@ lifecycle resolve、SQLite lock を再実行するため、計算量は O(Nrefs 
 - L6: `feedback-lifecycle.md` FLIFE-S13。
 - L8: `U-FLIFE-013`。
 - L9: `IT-FLIFE-003`。
+
+## 5. 2026-09-07 trace recovery
+
+L9でconfirmed済みの`IT-FLIFE-003`が、実行可能oracleのtest titleから直接追跡できず、
+`integration-oracle-trace`がmainをfail-closeした。契約や挙動は変更せず、group-first surface oracleと
+batch/replay oracleの既存test titleへ同一IDを明示し、L9から実行証拠までのtraceを復旧する。
