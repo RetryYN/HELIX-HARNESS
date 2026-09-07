@@ -55,6 +55,7 @@ workflow_identity:
   target_axis: workflow_model
   target_id: RECOVERY
 dependencies:
+  parent: PLAN-L7-669-project-hook-assignment-provider
   requires:
     - PLAN-L7-667-project-hook-authority-input-provider
     - PLAN-L7-668-project-hook-authority-surface-projector
