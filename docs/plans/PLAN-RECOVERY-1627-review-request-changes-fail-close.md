@@ -87,6 +87,16 @@ review_evidence: []
 
 # 未解消review変更要求のfail-close
 
+## 既存承認への束縛
+
+本Recoveryの承認根拠は [RECOVERY-PO-1627-001](https://github.com/RetryYN/HELIX-HARNESS/issues/1627#issuecomment-5572884069)
+であり、基準mainは `73d640a9c1df6360e2e8c07e267f65553630af33`、前提は `L3-PO-1622-001`。
+対象はIssue #1627の要求1〜3と追記要求4に限る。既存review authorityの実装・検証を許可する記録であり、
+独立reviewの省略、無条件の永久拒否、別証拠基盤、公開、credential利用を許可しない。
+承認済みであることと本PLANの検証・terminal化は別であり、未完了の証拠欄は未完了のまま保持する。
+
+## 未解消変更要求の扱い
+
 同一PR・HEADの`verdict: block`を変更要求として扱い、同じreviewer sessionの後続approve、または
 対象receiptを明示したsupersessionが成立するまでmerge admissionを拒否する。
 
