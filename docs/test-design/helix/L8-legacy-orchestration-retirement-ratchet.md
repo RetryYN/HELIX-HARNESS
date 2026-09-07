@@ -32,7 +32,7 @@ loader／doctor統合では初回導入、基準取得失敗、架空revision、
 Phase 1は新規利用freezeの検証だけを所有する。compatibility adapter、consumer migration、
 direct engine削除、resident lane E2Eは後続phaseで検証する。
 
-## Phase 1 semantic consumer ledgerの反例
+## Phase 1 semantic consumer台帳の反例
 
 文字列ratchetのU-LORET-001〜009は維持し、semantic ledgerは次のoracleで別軸に検証する。
 いずれも実sourceのsymbol／callsiteとledgerのentryを照合し、固定line番号の一致だけでは

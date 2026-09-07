@@ -29,7 +29,7 @@ current execution authorityとして新規拡張できないようにする。�
 - source HEADはinventory採取点であり、現在HEADと一致することを要求しない。
 - Phase 1では既存engineを削除せず、実行挙動も変更しない。
 
-## Phase 1: semantic consumer ledger
+## Phase 1：semantic consumer台帳
 
 文字列markerのinventoryだけでは、同じ文字列を含む説明・fixture・履歴と、実際に
 旧orchestrationを呼び出すproduction consumerを区別できない。#865 Phase 1では、既存の
