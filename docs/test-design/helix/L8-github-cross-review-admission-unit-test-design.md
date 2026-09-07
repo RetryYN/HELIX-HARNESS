@@ -74,6 +74,21 @@ requirements:
 
 ## 現行Recovery V-pair oracle
 
+### #1638 封緘観測
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-SEALCI-001 | 世代選択 | 最新failureをそのまま返し、通知のsuccess選択と区別する | `tests/github-review-ci-generation.test.ts` |
+| U-SEALCI-002 | 世代検証 | 未終端・不正ID/attempt/時刻/結論を拒否し、有効候補を失わない | `tests/github-review-ci-generation.test.ts` |
+| U-SEALCI-003 | CLI配線 | 封緘だけterminal選択へ接続する。静的検査であり実操作の代用ではない | `tests/github-review-ci-generation.test.ts` |
+| U-SEALCI-004 | receiptとmerge | failure receiptでmergeを拒否し、別の成功世代は再検収を要する | `tests/claude-pr-convergence.test.ts` |
+| U-SEALCI-005 | terminal値域 | 各結論を保持し、同刻のattempt/run順序が決定的で入力を変更しない | `tests/github-review-ci-generation.test.ts` |
+| IT-SEALCI-006 | 実CLI前段 | 別HEAD/event/workflow、未終端、古い世代を隔離応答で拒否する | `tests/github-review-ci-generation.test.ts` |
+| IT-SEALCI-007 | 実CLI保存 | failure/blockを保持し、既存コメントread-afterと保存receiptの一致を確認する | `tests/github-review-ci-generation.test.ts` |
+
+上記の隔離CLI検証はPOSIX対象。実GitHub投稿、approve時DB/PLAN接合、green再封緘、
+merge read-afterとWindows CLIは別途実証する。未実施を全経路greenとして扱わない。
+
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-CPRCONV-040 | `buildClaudePrReviewReceipt` / `validateClaudePrReviewReceipt` | unknown field付きinput、provider-neutral `schema_version`混入、空summaryを拒否し、canonical fieldだけを射影する | `tests/claude-pr-convergence.test.ts` |

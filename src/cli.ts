@@ -350,7 +350,10 @@ import {
   evaluateReviewedMergeReadAfter,
   persistReviewedMergeReadAfterReceipt,
 } from "./runtime/github-cross-review-admission";
-import { selectLatestSuccessfulReviewCiGeneration } from "./runtime/github-review-ci-generation";
+import {
+  selectLatestSuccessfulReviewCiGeneration,
+  selectLatestTerminalReviewCiGeneration,
+} from "./runtime/github-review-ci-generation";
 import { commitOverrideUse } from "./runtime/guard-override-transaction";
 import {
   buildHarnessTaxonomyCurationReport,
@@ -14471,7 +14474,11 @@ interface ClaudePrCiEvidence {
   updatedAt: string;
 }
 
-function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): ClaudePrCiEvidence {
+function loadClaudePrCiEvidenceGeneration(
+  repository: string,
+  headSha: string,
+  purpose: "notification" | "seal" = "notification",
+): ClaudePrCiEvidence {
   const listed = spawnSync(
     "gh",
     [
@@ -14521,7 +14528,11 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
       Number.isSafeInteger(run.databaseId) &&
       run.databaseId > 0,
   );
-  const latest = selectLatestSuccessfulReviewCiGeneration(
+  const selectGeneration =
+    purpose === "seal"
+      ? selectLatestTerminalReviewCiGeneration
+      : selectLatestSuccessfulReviewCiGeneration;
+  const latest = selectGeneration(
     matching.flatMap((run) => {
       if (
         typeof run.databaseId !== "number" ||
@@ -14774,6 +14785,7 @@ github
           currentEvidence = loadClaudePrCiEvidenceGeneration(
             sealRepository,
             String(raw.headSha ?? ""),
+            "seal",
           );
         } catch (error) {
           process.stderr.write(
