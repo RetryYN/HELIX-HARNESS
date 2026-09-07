@@ -1,7 +1,10 @@
 ---
 title: "ルールの機械導出と診断・Help"
 status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+authority_status: approved_pending_canonical_promotion
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1595#issuecomment-5562000124"
+approved_revision: "2.0"
+version: "2.0"
 candidate_layer: L3
 owner_issue: 1595
 plan_id: PLAN-L3-1595-rule-derivation
