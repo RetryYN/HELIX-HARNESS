@@ -11,6 +11,20 @@ updated: 2026-09-08
 github_issue_id: 1640
 behavior_contract_id: CI-BIOME-FAIL-FAST-001
 responsibility_owner: ci-validation-order
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: migrate_one_consumer
+legacy_retirement_state: not_applicable
+no_code_decision: configure
+ddd_modeling_decision: policy
+contract_preconditions: "依存導入済みpreflightと既存lintコマンド、全shardのneedsを照合する"
+contract_postconditions: "既存lintをpreflightで一回実行し、不備をshard起動前に拒否する"
+contract_invariants: "対象src/tests、検査強度、required aggregate、receipt、DB、doctorを維持する"
+contract_failures: "lint削除、遅延、重複、別command、条件付きskip、continue-on-errorを拒否する"
+tdd_red_required: true
+complexity_effect: net_neutral
+complexity_justification: "既存検査の配置変更と退行oracleに限定し、別検査機構を作らない"
+removal_trigger: "後継のCI計画が同じ早期検査義務を引き継ぎ、独立検収した時"
 entry_signals: [regression_dev]
 parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md
 pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
