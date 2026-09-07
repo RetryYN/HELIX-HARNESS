@@ -6,6 +6,7 @@ layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
+irreversible_impact: none
 created: 2026-09-07
 updated: 2026-09-07
 owner: Claude 収束レーン / TL
