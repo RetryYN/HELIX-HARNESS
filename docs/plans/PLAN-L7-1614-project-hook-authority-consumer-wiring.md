@@ -29,7 +29,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: ADD_FEATURE
+  target_id: RECOVERY
 entry_signals:
   - "po_directive:Issue #1614 project-hook authority consumer wiring"
 contract_preconditions: "Control Plane transport envelopeがexpected authorityを供給し、hostがexecution root・loader root・session project root・current authority root・HEAD・source materialを独立採取できる。"
