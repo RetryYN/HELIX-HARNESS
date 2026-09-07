@@ -18,9 +18,10 @@ plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction
 
 ## CLR-R02 既存正本への保存
 
-要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。checkpointは論理作業、PLAN、
-repo／branch／worktree／HEAD、未commit変更、契約版、未完義務、実行中処理、証拠、累積予算と失敗回数を
-必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。
+要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。会話にしかない人間の意図は
+出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、
+repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、
+累積予算と失敗回数を必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。
 
 ## CLR-R03 再構成可能範囲の分離
 
@@ -53,7 +54,7 @@ assignment、lease/fence、operation ID、author history、budget、deadline、r
 
 ## CLR-R08 段階導入と責務境界
 
-shadow再構成、無副作用復元、単一task境界、未commit差分・長期実行の順に範囲を拡張する。既存continuation、memory、
+shadow再構成、無副作用復元、単一task境界、未commit・未追跡差分・長期実行の順に範囲を拡張する。既存continuation、memory、
 supervisor、handover、provider capabilityを再利用し、新しいMemory DB、圧縮専用巨大Skill、別の配車・修復engineを作らない。
 Skill、Rule導出、会話寿命を別要求・別受入・別完了状態として維持する。
 

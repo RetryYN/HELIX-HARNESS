@@ -18,8 +18,9 @@ plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction
 
 ## CLR-AC02 ↔ CLR-R02 保存とread-after
 
-既存ownerへ保存した状態をread-afterし、checkpointが派生viewであること、未承認意図を正本化しないこと、
-保存失敗やevent cursor不整合を完了扱いしないことを確認する。
+既存ownerへ保存した状態をread-afterし、checkpointが派生viewであること、出典付き意図と未確定仮説を区別し、
+未承認意図を正本化しないこと、未commit・未追跡変更、実行中worker／CI／外部操作、保存失敗、
+event cursor不整合を欠落または完了扱いしないことを確認する。
 
 ## CLR-AC03 ↔ CLR-R03 再構成可能範囲
 
@@ -45,7 +46,7 @@ provider更新時に同じbenchmarkを再測定できる。
 
 ## CLR-AC08 ↔ CLR-R08 段階導入
 
-shadow、無副作用復元、単一task切替、未commit・長期処理を順に実証し、既存保護を迂回しない。
+shadow、無副作用復元、単一task切替、未commit・未追跡差分・長期処理を順に実証し、既存保護を迂回しない。
 生成・保存・受信・利用・検証・operational enablementを別状態で報告する。
 
 ## 共通証拠
