@@ -35,6 +35,8 @@ contract_invariants: "既存string ratchetを変更しない。scheduler追加�
 contract_failures: "必須entry欠落、symbol／anchor不一致、direct callの互換偽装、fireSlot／releaseSlot／max_parallel／write-backの欠落、alias／dynamic import／分割commandによる隠蔽、successor／E2E／rollback／read-afterなしの移行・退役を拒否する"
 tdd_red_required: true
 red_test: "semantic consumer validator未実装時にtests/legacy-orchestration-semantic-consumers.test.tsがmodule missingで失敗することを確認し、その後validatorとledgerを追加して同じテストをgreen化する"
+red_at: "2026-09-07T08:05:08Z"
+green_at: "2026-09-07T10:32:54Z"
 mutation_oracle_required: true
 mutation_oracle_evidence: "tests/legacy-orchestration-semantic-consumers.test.tsでconsumer role、必須entry、successor callsite、退役precondition、alias／dynamic import／分割command、test fixture pathを変異させ、各反例がfail-closeすることを検証する"
 complexity_effect: net_negative
@@ -72,6 +74,7 @@ generates:
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: config/legacy-orchestration-surface-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/legacy-orchestration-surface.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-surface.test.ts, artifact_type: test_code }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
