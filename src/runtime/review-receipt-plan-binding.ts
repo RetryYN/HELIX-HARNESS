@@ -166,7 +166,9 @@ export function evaluateReviewEvidenceReceiptJoin(input: {
         failures.push({ plan_id: plan.plan_id, reason: "review_plan_receipt_locator_missing" });
         continue;
       }
-      const receipt = input.receipts.find((candidate) => candidate.comment_url === entry.receipt_url);
+      const receipt = input.receipts.find(
+        (candidate) => candidate.comment_url === entry.receipt_url,
+      );
       if (!receipt) {
         failures.push({ plan_id: plan.plan_id, reason: "review_plan_receipt_missing" });
         continue;
@@ -192,7 +194,6 @@ export function evaluateReviewEvidenceReceiptJoin(input: {
         entry.ci_evidence_generation !== receipt.ci_evidence_generation
       ) {
         failures.push({ plan_id: plan.plan_id, reason: "review_plan_ci_generation_mismatch" });
-        continue;
       }
     }
   }
@@ -203,7 +204,11 @@ function sameReviewModel(left: string, right: string): boolean {
   const leftProvider = modelProviderFromId(left);
   const rightProvider = modelProviderFromId(right);
   if (leftProvider === "unknown" || leftProvider !== rightProvider) return false;
-  const unprefixed = (value: string) => value.trim().toLowerCase().replace(/^[^:]+:/u, "");
+  const unprefixed = (value: string) =>
+    value
+      .trim()
+      .toLowerCase()
+      .replace(/^[^:]+:/u, "");
   return unprefixed(left) === unprefixed(right);
 }
 
@@ -280,11 +285,15 @@ export function loadChangedPlanReviewBindings(
       stdio: ["ignore", "pipe", "ignore"],
     }).trim();
     if (expectedHead && candidateHead !== expectedHead) throw new Error("local_head_mismatch");
-    output = execFileSync("git", ["diff", "--name-only", `${baseRef}...${candidateHead}`, "--", "docs/plans"], {
-      cwd: repoRoot,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    });
+    output = execFileSync(
+      "git",
+      ["diff", "--name-only", `${baseRef}...${candidateHead}`, "--", "docs/plans"],
+      {
+        cwd: repoRoot,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      },
+    );
   } catch {
     return [
       {

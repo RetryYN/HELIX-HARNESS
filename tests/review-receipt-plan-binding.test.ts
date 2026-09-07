@@ -4,8 +4,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
-  evaluateReviewReceiptPlanBinding,
   evaluateReviewEvidenceReceiptJoin,
+  evaluateReviewReceiptPlanBinding,
   hasTerminalPlanPromotion,
   loadChangedPlanReviewBindings,
   type ReviewReceiptPlanBindingInput,
@@ -18,8 +18,7 @@ import {
 const SESSION = "9867601a-a3ad-4369-980c-11757d63a7de";
 const MODEL = "claude:claude-fable-5-1";
 const REVIEW_HEAD = "a".repeat(40);
-const RECEIPT_URL =
-  "https://github.com/RetryYN/HELIX-HARNESS/pull/1628#issuecomment-5570000000";
+const RECEIPT_URL = "https://github.com/RetryYN/HELIX-HARNESS/pull/1628#issuecomment-5570000000";
 const CI_GENERATION = "run:34100000000:attempt:1:success";
 
 function input(
@@ -238,16 +237,18 @@ describe("review receipt / PLAN binding", () => {
     const base = input().changed_plans[0];
     const unavailable = [{ ...base, status: "unknown", parse_failure: true }];
     expect(hasTerminalPlanPromotion(unavailable)).toBe(true);
-    expect(evaluateReviewEvidenceReceiptJoin({ changed_plans: unavailable, receipts: [] })).toMatchObject({
+    expect(
+      evaluateReviewEvidenceReceiptJoin({ changed_plans: unavailable, receipts: [] }),
+    ).toMatchObject({
       ok: false,
       failures: [{ reason: "review_plan_binding_unavailable" }],
     });
     expect(hasTerminalPlanPromotion([{ ...base, status: "draft", base_status: "draft" }])).toBe(
       false,
     );
-    expect(
-      hasTerminalPlanPromotion([{ ...base, status: "confirmed", base_status: "draft" }]),
-    ).toBe(true);
+    expect(hasTerminalPlanPromotion([{ ...base, status: "confirmed", base_status: "draft" }])).toBe(
+      true,
+    );
     expect(
       hasTerminalPlanPromotion([{ ...base, status: "confirmed", base_status: "confirmed" }]),
     ).toBe(false);
@@ -265,7 +266,10 @@ describe("review receipt / PLAN binding", () => {
       [{ reviewer_session_id: "author-spawn-session" }, "review_plan_session_mismatch"],
       [{ reviewer_model: "claude:claude-opus-5" }, "review_plan_model_mismatch"],
       [{ reviewed_head_sha: "b".repeat(40) }, "review_plan_head_mismatch"],
-      [{ ci_evidence_generation: "run:34100000001:attempt:1:success" }, "review_plan_ci_generation_mismatch"],
+      [
+        { ci_evidence_generation: "run:34100000001:attempt:1:success" },
+        "review_plan_ci_generation_mismatch",
+      ],
     ];
     for (const [entryMutation, reason] of mutations) {
       const mutated = {
@@ -280,9 +284,12 @@ describe("review receipt / PLAN binding", () => {
         [...changed.review_entries, ...mutated.review_entries],
         [...mutated.review_entries, ...changed.review_entries],
       ]) {
-        expect(evaluateReviewEvidenceReceiptJoin({
-          changed_plans: [{ ...changed, review_entries: entries }], receipts: [receipt],
-        })).toMatchObject({ ok: false, failures: [{ reason }] });
+        expect(
+          evaluateReviewEvidenceReceiptJoin({
+            changed_plans: [{ ...changed, review_entries: entries }],
+            receipts: [receipt],
+          }),
+        ).toMatchObject({ ok: false, failures: [{ reason }] });
       }
     }
     expect(
@@ -298,7 +305,10 @@ describe("review receipt / PLAN binding", () => {
     expect(
       evaluateReviewEvidenceReceiptJoin({
         changed_plans: [
-          { ...changed, review_entries: [{ ...changed.review_entries[0], receipt_url: undefined }] },
+          {
+            ...changed,
+            review_entries: [{ ...changed.review_entries[0], receipt_url: undefined }],
+          },
         ],
         receipts: [sealedReceipt()],
       }),
@@ -308,9 +318,7 @@ describe("review receipt / PLAN binding", () => {
         changed_plans: [
           {
             ...changed,
-            review_entries: [
-              { ...changed.review_entries[0], ci_evidence_generation: undefined },
-            ],
+            review_entries: [{ ...changed.review_entries[0], ci_evidence_generation: undefined }],
           },
         ],
         receipts: [sealedReceipt()],
