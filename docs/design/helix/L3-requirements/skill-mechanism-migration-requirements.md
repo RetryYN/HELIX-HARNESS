@@ -1,20 +1,24 @@
 ---
 title: "新Skill機構への責務移行"
-status: draft_candidate
-authority_status: approved_pending_canonical_promotion
+status: confirmed
+authority_status: canonical_source
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1594#issuecomment-5562000029"
 approved_revision: "2.0"
 version: "2.0"
-candidate_layer: L3
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
 owner_issue: 1594
 plan_id: PLAN-L3-1594-skill-mechanism-migration
+parent_design: docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
+pair_artifact: docs/test-design/helix/skill-mechanism-migration-acceptance.md
 ---
 
 # 要求① 旧スキルの新スキル機構への移行・縮退
 
 対象: RetryYN/HELIX-HARNESS｜改訂2.0｜2026-09-06 JST
 実装根拠: 前回確認main `2b7452c467cfd5682f21666550c3461e80089eca`。今回は指示書の再編であり、最新mainの再監査ではない。
-位置付け: 独立した要求差分。S-R/S-ACは本書内IDで、登録済みHELIX要件IDではない。本書を正式IR・実行許可とみなさない。
+位置付け: 独立したcanonical source要求差分。S-R/S-ACはsource IDであり、Requirement IR登録済みではない。本書単独をruntime実行許可とみなさない。
 
 ## 目的と責務
 
