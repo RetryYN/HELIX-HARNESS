@@ -141,3 +141,12 @@ L3 requirement 25件、L10 oracle 27件、L12 recognition 9件とする。canoni
 `31c5e807dfdf4ac582d3a5ae34b7a8f73cae2a151610b8fd54ab2b371e50c4c0`、
 `fac0a2aacbe5db63e0ebb17dc1286fb9d156aa097476e673319cc7d40a82dede`である。差分はversion／authority状態／canonical pair path／第二正本を作らない配置説明に限定し、3L-BR／R／AC／recognitionの意味ID集合は不変である。candidateは独立技術reviewと
 canonical sourceとして配置し、承認後の意味変更には再承認を要求する。独立exact-HEAD review、CI、doctor、DB convergence、runtime有効化が成立するまで、v0.3 current authorityを置換する実行authorityの切替は行わない。
+
+### L10表projectionの整形修復（#397）
+
+AC024とAC025間の空行で末尾3件が表から分離していたため、空行のみを除去する。
+27 AC行は修復前とbytes一致を確認し、要求参照・合格条件・negative oracleを変更しない。
+上記canonical配置時digestは履歴として保持する。整形後のL10本文digestは
+`f4178e4402f7da2eef7efa69000965a23fce6c1f0481ef81af3fb834496df3f5`。
+承認対象の旧本文digestを改変せず、新しい承認を生成しない。本修復はIR admissionそのものではなく、
+既存projectionへの27件完全収録、独立review、CIは別途検証する。
