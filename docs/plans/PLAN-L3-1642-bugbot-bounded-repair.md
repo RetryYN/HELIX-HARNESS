@@ -43,6 +43,7 @@ dependencies:
   parent: docs/governance/candidates/bugbot-bounded-repair-requests.md
   requires: []
   references:
+    - issue:1639
     - issue:93
     - issue:192
     - issue:397
@@ -69,7 +70,8 @@ review_evidence: []
 本PLANは要求候補の取り込みのみ。CI/Cursorと並行する優先指定を、自動適用権限の承認へ昇格しない。
 A/Bは別PLAN・別受入・別完了で追跡する。未定義差分の正本化・IR admission前にruntimeを有効化しない。
 
-原稿はIssue #1639本文へ保全済み。SHA-256:
+原稿bytesは[commit固定の保全台帳](https://github.com/RetryYN/HELIX-HARNESS/blob/a2325edb8425f4e84421ef2fd1f07c6c6d668dd7/docs/governance/candidates/bugbot-intake-source.md)のBase64復号で再現する。正規化なしのSHA-256:
 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
 原文の項目対応・保全read-after・候補移管の検査後にroot原稿を退役する。
+原稿共有先#1639とBの追跡先#1642を区別する。Issue追記後の本文全体へ原稿hashを適用しない。
 別紙02/03/05は未提供であり、別紙03の18シナリオ照合は残義務である。
