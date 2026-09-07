@@ -375,7 +375,7 @@ export function unresolvedClaudePrBlockReceipts(
         candidate.prNumber === identity.prNumber &&
         candidate.headSha === identity.headSha,
     )
-    .sort((left, right) => left.reviewedAt.localeCompare(right.reviewedAt));
+    .sort((left, right) => Date.parse(left.reviewedAt) - Date.parse(right.reviewedAt));
   const unresolved = new Map<string, ClaudePrReviewReceipt>();
   for (const candidate of relevant) {
     if (candidate.verdict === "block") {
@@ -384,8 +384,8 @@ export function unresolvedClaudePrBlockReceipts(
     }
     for (const [receiptId, blocked] of unresolved) {
       if (
-        candidate.supersedesReceiptId === receiptId ||
-        candidate.reviewerSessionId === blocked.reviewerSessionId
+        candidate.reviewerSessionId === blocked.reviewerSessionId &&
+        Date.parse(candidate.reviewedAt) > Date.parse(blocked.reviewedAt)
       ) {
         unresolved.delete(receiptId);
       }

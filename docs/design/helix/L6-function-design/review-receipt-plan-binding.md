@@ -27,8 +27,8 @@ PLANだけへ転記し、常駐収束レーンの検収と見せかける経路�
 - PR receiptの`reviewerSessionId`、`reviewerModel`とPLAN側の`reviewer_session_id`、
   `reviewer_model`を照合する。modelはproviderを一致させた上でprovider prefixだけを正規化する。
 - 対象PLANごとに一致する`cross_agent`承認がなければreceipt sealとmerge admissionをfail-closeする。
-- 同一PR・HEADの`block`は、同じreviewer sessionの後続approveまたは対象receipt IDを明示した
-  supersessionが成立するまで未解消findingとして保持する。別sessionのapproveでは解除しない。
+- 同一PR・HEADの`block`は、同じreviewer sessionかつ時刻が後のapproveまで未解消findingとして保持する。
+  対象receipt IDを明示したsupersessionもsession一致条件を迂回しない。同時刻・別sessionでは解除しない。
 - terminalへ昇格するPLANは`receipt_url`をlookup keyとしてsealed receiptを取得し、
   `reviewer_session_id`、`reviewer_model`、`reviewed_head_sha`、`verdict`、
   `ci_evidence_generation`をexact照合する。最終merge receiptと過去の実装review receiptは同一とは限らないため、
