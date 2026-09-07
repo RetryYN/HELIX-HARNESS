@@ -103,10 +103,11 @@ canonical配置の独立検収・親統合・main read-after、IR admission、�
 原稿bytesは[基準mainの保全台帳](https://github.com/RetryYN/HELIX-HARNESS/blob/391020b882abedfa622a2910e906618fde980270/docs/governance/candidates/bugbot-intake-source.md)のBase64復号で再現する。正規化なしのSHA-256:
 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
 本workerは基準mainのBase64を復号し、8,033 bytesと上記digestを照合する。保全台帳は変更しない。
-親から2026-09-08に、root原稿`01_REQUIREMENTS_DIRECTIVE.md`は既存ユーザー削除依頼に基づく
-単一pathの監査付きpreflight後に削除・read-after済み、削除前原稿と保全bytesの完全一致、
-A4/B5の全対応と未提供別紙義務を確認済みとの報告を受領した。これはB移管とは別のローカル整理であり、
-本workerによる削除・削除前照合とは記録しない。原稿を再作成せず、全bytesはGit履歴から復元できる。
+[原稿削除のread-after記録](https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576534985)は、
+2026-09-08のroot原稿`01_REQUIREMENTS_DIRECTIVE.md`の単一path削除、監査付きpreflight、
+削除前原稿と保全bytesの完全一致、A4/B5の全対応と未提供別紙義務の保持を記録する。
+これはB移管とは別のローカル整理であり、本workerによる削除・削除前照合とは扱わない。
+原稿を再作成せず、全bytesはGit履歴から復元できる。
 原稿共有先#1639とBの追跡先#1642を区別する。Issue追記後の本文全体へ原稿hashを適用しない。
 別紙02/03/05は未提供であり、別紙03の18シナリオ照合は残義務である。
 
@@ -154,8 +155,10 @@ commit直前に`git status`と`git diff --staged`で意図pathだけのstageを�
 本workerのwrite scopeはB source3の移動、B PLAN、派生L12だけである。
 `design-catalog.yaml`、全digest pin、scanner、snapshot、Requirement IR、runtime、共通テストは
 変更しない。既存のsnapshot追従義務は削除せず、`modifies`から親の合成範囲へ明示移管する。
-親はAの依存整合とIR順序の後に、catalog登録・実bytesのpin追従・scanner判定・snapshot/DB投影・
-IR admission（#397・IR #1650）・CI #1651を合成する。本workerはその収束を待たず限定移管を引き渡す。
+親は共通pathのwriterを集約し、catalog登録・実bytesのpin追従・scanner判定・snapshot/DB投影を順に統合する。
+BのRequirement IR admissionは正本化後の#397配下の別sliceで行う。三社IR #1650とCI修復 #1651は
+並行する別責務であり、その合格をBのIR収載・修復有効化の証拠にしない。
+本workerは共通pathの収束を待たず限定移管を引き渡す。
 新配置HEADの独立review、CI、main read-afterは未実施であり、全gate greenや実装完成を主張しない。
 
 後続実装は既存Authoring/Recovery、GH-FR-011、#1595/#1608の既存責務へ接続する。
