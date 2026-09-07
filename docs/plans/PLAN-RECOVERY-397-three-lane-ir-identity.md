@@ -17,7 +17,7 @@ completion_claim_allowed: false
 created: 2026-09-08
 updated: 2026-09-08
 owner: Codex
-github_issue_id: 397
+github_issue_id: 1637
 behavior_contract_id: REQUIREMENT-JSON-DELTA-ADMISSION-001
 responsibility_owner: requirement-json-delta-admission
 engineering_discipline_required: true
