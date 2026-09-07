@@ -570,7 +570,8 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(result).toEqual({ ok: true, reasons: [] });
   });
 
-  it.each([false, true])("U-CPRCONV-044: 別sessionはexplicit supersession=%sでもblockを解除できない", (explicit) => {
+  it("U-CPRCONV-044: 別sessionはexplicit supersessionでもblockを解除できない", () => {
+    for (const explicit of [false, true]) {
     const blocked = buildClaudePrReviewReceipt({
       ...baseInput,
       verdict: "block",
@@ -599,9 +600,11 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       unrelatedApproval,
     );
     expect(decision).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
+    }
   });
 
-  it.each([false, true])("U-CPRCONV-045: 同一sessionでもstrictlyLater=%sの時だけ解除する", (later) => {
+  it("U-CPRCONV-045: 同一sessionでもstrictly laterの時だけ解除する", () => {
+    for (const later of [false, true]) {
     const blocked = buildClaudePrReviewReceipt({
       ...baseInput,
       verdict: "block",
@@ -629,6 +632,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         approval,
       ),
     ).toEqual(later ? { ok: true, reasons: [] } : { ok: false, reasons: ["outstanding_request_changes"] });
+    }
   });
 
   it.each([
