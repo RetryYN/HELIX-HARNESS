@@ -29,7 +29,7 @@ Issue #1627のRecovery oracleを既存pairへ追加し、別のtest-design autho
 | U-CPRCONV-020 | merge CLI接合 | terminal化した変更PLANのreview sessionとreceiptが異なる場合、`pr-merge-reviewed`がrequired checks参照前にfail-closeする | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-044 | 未解消block | block後の別session approveを拒否し、履歴を現在approve一件へ縮退するmutationをkillする | `tests/claude-pr-convergence.test.ts` |
 | U-CPRCONV-045 | 正規解消 | 同一sessionかつ時刻が後のapproveだけで解除する。explicit supersessionでも別sessionは解除できない | `tests/claude-pr-convergence.test.ts` |
-| U-GCRA-014 | GitHub admission | valid blockを`outstanding_request_changes`へ射影し、invalid候補として捨てるmutationをkillする | `tests/github-cross-review-admission.test.ts` |
+| U-GCRA-014 | GitHub admission | schema検証済みblockをCI失敗／DB未収束／CI世代差でも保持し、別session approveによる相殺を拒否する | `tests/github-cross-review-admission.test.ts` |
 | U-RRCF-001 | terminal境界 | draft継続とterminal昇格を分離し、base status比較削除をkillする | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRCF-002 | receipt exact join | session／model／HEAD／verdict／CI世代の各不一致を個別に拒否する | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRCF-003 | receipt locator | receipt URL欠落または引用receipt不在を拒否し、自己申告だけのreview evidenceをkillする | `tests/review-receipt-plan-binding.test.ts` |

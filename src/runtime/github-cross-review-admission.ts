@@ -627,7 +627,9 @@ export function evaluateGitHubCrossReviewAdmission(
     const { receipt } = candidate;
     return "schemaVersion" in receipt &&
       receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA &&
-      (failure === null || failure === "review_receipt_verdict_invalid")
+      // blockは成功receiptの成立条件を満たさなくても未解消として保持する。
+      // CI red／DB未収束そのものが変更要求の根拠になり得る。
+      (failure === null || receipt.verdict === "block")
       ? [receipt]
       : [];
   });
