@@ -48,6 +48,7 @@ dependencies:
     - docs/test-design/harness/L9-integration-test-design.md
   blocks: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — orphan traceの事実境界とRecovery分類を監査" }
   - { role: tl, slot_label: "TL — L9契約と既存oracleの意味同一性を確認" }
   - { role: qa, slot_label: "QA — trace gateと対象testを検証" }
 generates:
