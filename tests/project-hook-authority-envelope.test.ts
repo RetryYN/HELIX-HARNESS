@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it, vi } from "vitest";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+import { projectHookAuthorityInputUnavailable } from "../src/runtime/project-hook-authority";
 import {
   admitProjectHookAuthorityDispatch,
   buildProjectHookAuthorityConsumerWiring,
@@ -65,6 +66,7 @@ function physicalDeps(): ProjectHookPhysicalAdapterDeps {
     readFile: (path) => Buffer.from(path.replace("/physical/authority", "/physical/lane")),
     git: (_root, args) => {
       if (args.includes("--git-common-dir")) return "/physical/repo/.git";
+      if (args.includes("for-each-ref")) return "refs/remotes/origin/main";
       return HEAD;
     },
   };
@@ -194,6 +196,7 @@ describe("project hook authority transport envelope", () => {
               ? "/physical/foreign-repo/.git"
               : "/physical/repo/.git";
           }
+          if (args.includes("for-each-ref")) return "refs/remotes/origin/main";
           return HEAD;
         },
       },
@@ -216,7 +219,8 @@ describe("project hook authority transport envelope", () => {
         ...deps,
         git: (root, args) => {
           if (args.includes("--git-common-dir")) return "/physical/repo/.git";
-          if (args.includes("refs/remotes/origin/main")) return HEAD;
+          if (args.includes("for-each-ref")) return "refs/remotes/upstream/trunk";
+          if (args.includes("refs/remotes/upstream/trunk")) return HEAD;
           if (root.includes("authority")) return "b".repeat(40);
           return HEAD;
         },
@@ -229,6 +233,31 @@ describe("project hook authority transport envelope", () => {
         json_pointer: "/current_authority_anchor",
       },
     });
+  });
+
+  it("U-CNWHOOKENV-003e: remote default anchor欠落はinput unavailableへ閉じる", () => {
+    const deps = physicalDeps();
+    const result = resolveProjectHookAuthorityFromTransport(envelope(), host(), {
+      physical: {
+        ...deps,
+        git: (root, args) => (args.includes("for-each-ref") ? "" : deps.git(root, args)),
+      },
+    });
+    expect(result).toEqual(projectHookAuthorityInputUnavailable());
+  });
+
+  it("U-CNWHOOKENV-003f: 複数remote default anchorは推測せずinput unavailableへ閉じる", () => {
+    const deps = physicalDeps();
+    const result = resolveProjectHookAuthorityFromTransport(envelope(), host(), {
+      physical: {
+        ...deps,
+        git: (root, args) =>
+          args.includes("for-each-ref")
+            ? "refs/remotes/origin/main\nrefs/remotes/upstream/trunk"
+            : deps.git(root, args),
+      },
+    });
+    expect(result).toEqual(projectHookAuthorityInputUnavailable());
   });
 
   it("U-CNWHOOKENV-004: observed root mismatchはcwd/env/default fileへfallbackせず拒否する", () => {

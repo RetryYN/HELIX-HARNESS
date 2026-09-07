@@ -44,6 +44,8 @@ standaloneの`status`／`doctor`はproject-hook authorityについてread-only�
 
 CLI native adapterは明示されたenvelope fileを使い、SessionStartはhook inputのtransport envelopeを使う。実行前にconsumer wiringを構築し、provider process、team、pair-agent、loop等のdispatch開始前にadmissionを確認する。旧#1620のL7↔L8設計をコピーせず、本設計はcanonical L6、検証はL7 pairへ束縛する。
 
+current authorityのhost anchorは特定の`origin/main`へ固定しない。実行repositoryのgit common dirが持つremote default symbolic refを独立観測し、一意な1件だけを採用する。default refが欠落または複数の場合は`project_hook_source_stale_or_foreign`の`/authority_input`・`authority_input_unavailable`、一意なanchor HEADとcurrent authority HEADが異なる場合は同codeの`/current_authority_anchor`として区別する。
+
 ## 受入境界
 
 本設計はconsumer接続のtargeted testまでを対象とする。Control Plane transport自体の新設、provider API変更、旧engineの物理削除、commit／push／PR／GitHub writeは対象外である。

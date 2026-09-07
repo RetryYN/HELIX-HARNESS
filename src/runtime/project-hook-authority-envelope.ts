@@ -153,6 +153,20 @@ function rootEqual(
   return digest(observed) === digest(expected);
 }
 
+function resolveHostCurrentAuthorityAnchorRef(
+  root: string,
+  deps: ProjectHookPhysicalAdapterDeps,
+): string {
+  const refs = deps.physical
+    .git(root, ["for-each-ref", "--format=%(symref)", "refs/remotes/*/HEAD"])
+    .split("\n")
+    .map((value) => value.trim())
+    .filter((value) => /^refs\/remotes\/[^/]+\/[^/]+$/u.test(value));
+  const unique = [...new Set(refs)];
+  if (unique.length !== 1) throw new Error("current_authority_anchor_unavailable");
+  return unique[0];
+}
+
 /**
  * Control Plane envelopeをexpected authorityに限定し、hostのroot/HEAD/source bytesを独立採取してから
  * 既存pure resolverへ渡す。envelopeのexpected値をobserved側へコピーする実装はここに置かない。
@@ -189,11 +203,15 @@ export function resolveProjectHookAuthorityFromTransport(
       ["rev-parse", "HEAD"],
     );
     // current authority anchorはtransport requestではなく、実行repositoryのgit common dirが
-    // 所有するremote-tracking mainから独立採取する。別repositoryのlocatorと、そのrepositoryに
-    // 合わせて改変されたexpected値だけで自己整合を作る経路を許可しない。
+    // 所有する一意なremote default symbolic refから独立採取する。remote名やbranch名を固定せず、
+    // default refが欠落・複数ならinput unavailableへ閉じる。
+    const hostCurrentAuthorityAnchorRef = resolveHostCurrentAuthorityAnchorRef(
+      observedExecutionRoot.canonical_realpath,
+      deps,
+    );
     hostCurrentAuthorityHead = deps.physical.git(observedExecutionRoot.canonical_realpath, [
       "rev-parse",
-      "refs/remotes/origin/main",
+      hostCurrentAuthorityAnchorRef,
     ]);
     observedSourceMaterial = captureProjectHookSourceMaterial(
       observedExecutionRoot.canonical_realpath,

@@ -60,6 +60,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003b, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003c, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003d, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003e, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003f, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-004, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-005, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-005b, test_path: tests/project-hook-authority-envelope.test.ts }

@@ -211,6 +211,7 @@ function installProjectHookAuthorityEnvelope(dir: string): string {
     ["add", ".codex/hooks.json", "src/runtime/agent-guard.ts", "src/runtime/codex-native-worker-policy.ts"],
     ["commit", "-qm", "test fixture"],
     ["update-ref", "refs/remotes/origin/main", "HEAD"],
+    ["symbolic-ref", "refs/remotes/origin/HEAD", "refs/remotes/origin/main"],
   ]) {
     const result = spawnSync("git", args, { cwd: dir, encoding: "utf8" });
     if (result.status !== 0) throw new Error(`git fixture failed: ${args.join(" ")}: ${result.stderr}`);

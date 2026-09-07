@@ -23,6 +23,8 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-consu
 | U-CNWHOOKENV-003b | current authority source bytesを独立照合する | locatorとexpected sourceを同じ値へ差し替える | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-003c | Git common dirをhost anchorへ束縛する | foreign repository locatorへ差し替える | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-003d | current authority HEADをhost main anchorへ束縛する | foreign HEADに合わせてexpectedも改竄する | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-003e | remote default anchor欠落をinput unavailableへ分類する | `origin/main`等へ暗黙fallbackする | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-003f | remote default anchor複数時は推測しない | remote名またはbranch名の固定優先順位で選ぶ | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-004 | execution root mismatchをfallbackせず拒否する | cwd／env／default rootで差分を相殺する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-005 | cwdをexecution root観測だけに使う | 他rootをcwdへ暗黙補完する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNWHOOKENV-005b | loader／session／current authorityを個別locatorから観測する | 3 rootを単一locatorへ畳み込む | `tests/project-hook-authority-envelope.test.ts` |
