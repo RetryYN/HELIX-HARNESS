@@ -48,6 +48,37 @@ export interface ProviderProcessLifecycleOutcome {
   readonly error?: unknown;
 }
 
+export type ProviderProcessTerminalFailure =
+  | "spawn_failed"
+  | "timed_out"
+  | "tree_lingered"
+  | "interrupted"
+  | "not_reaped"
+  | "exit_nonzero";
+
+export type ProviderProcessTerminalAdmission =
+  | { readonly ok: true; readonly failure: null }
+  | { readonly ok: false; readonly failure: ProviderProcessTerminalFailure };
+
+/**
+ * Provider終了の唯一の成功判定。exit 0だけでは、deadline超過後にSIGTERMを捕捉して
+ * 0で終わるproviderや、子孫を回収できなかったprocess treeを成功へ昇格できない。
+ */
+export function classifyProviderProcessTerminal(
+  outcome: Pick<
+    ProviderProcessLifecycleOutcome,
+    "status" | "timed_out" | "tree_lingered" | "interrupted_by" | "reaped" | "error"
+  >,
+): ProviderProcessTerminalAdmission {
+  if (outcome.timed_out) return { ok: false, failure: "timed_out" };
+  if (outcome.tree_lingered) return { ok: false, failure: "tree_lingered" };
+  if (outcome.interrupted_by !== null) return { ok: false, failure: "interrupted" };
+  if (!outcome.reaped) return { ok: false, failure: "not_reaped" };
+  if (outcome.error !== undefined) return { ok: false, failure: "spawn_failed" };
+  if (outcome.status !== 0) return { ok: false, failure: "exit_nonzero" };
+  return { ok: true, failure: null };
+}
+
 interface ChildClose {
   readonly status: number | null;
   readonly signal: NodeJS.Signals | null;
