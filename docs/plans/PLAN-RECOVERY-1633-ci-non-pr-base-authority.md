@@ -99,7 +99,7 @@ run 34163311214 attempt 2のbulk-1は、追加したBash resolverを
 Node入口、workflow三面、移植性、review generationの4ファイル88テストが成功した。
 workflowの観測fixtureは最終CLIだけを代替し、Node resolver本体は実行する。
 実GitHub読取では公開candidate `963197202`のbase `e674ffb56`を取得できた。
-これは修正中の作成側検証であり、旧review_evidenceの対象HEADやraw logを書き換えない。
+これは当時の作成側検証であり、Bash実装の旧reviewとraw logは前述のcommit固定履歴で保持する。
 新HEADの全回帰・独立検収・main read-afterを残す。
 
 追加所見I-2は既存L6「共通snapshot」の複数merge-base拒否をCI入口へ届けるものと照合し、
@@ -109,3 +109,17 @@ GitHub取得60秒・Git読取10秒の分離、無関係な欠損headの不採用
 U-CIBASE-011はこの引数境界と後続ページの一致PRを検査する。4ファイル90テストと
 公開candidate `cf0f471d0` に対するbase `e674ffb56` の実GitHub読取が成功した。
 これらは作成側の実測であり、独立approveを補作しない。
+
+## Node実装の再採取
+
+HEAD `da0b12fceae674ab66faba74fefefda455ce2105` のclean cloneで、Node 24.15.0を使い再実行した。
+作成側のcloneであり独立reviewではない。以下の2ログはcommandのstdout/stderr bytesをそのまま保持する。
+
+| 検査 | 実行 | exit / UTC完了 | raw log SHA-256 |
+|---|---|---|---|
+| unit_test | `npx --no-install vitest run tests/ci-branch-base-resolver.test.ts tests/harness-check-workflow.test.ts tests/runtime-portability.test.ts tests/github-review-ci-generation.test.ts` | 0（90 tests）/ 2026-09-07T22:16:22Z | `.helix/evidence/review-1634/vitest-targeted.log` / `16e4b9ca671257d226b4f0fc79202271011cf88fd00a178aeb3e34b0a0e61cc5` |
+| typecheck | `npx --no-install tsc --noEmit -p . --extendedDiagnostics` | 0 / 2026-09-07T22:16:35Z | `.helix/evidence/review-1634/tsc.log` / `1d32c6cab4864b7bf68c2aaa6720197c4bde525f9242e7343836aff4b6d86128` |
+
+別の変異実行では、`--all`除去でU-CIBASE-010が、`--slurp`再混入でU-CIBASE-011がそれぞれ失敗し、
+復元後は2件成功した。変異時の失敗を上表のgreen出力へ混載しない。新しい独立verdict、
+PLAN技術検収、最新main同期、fresh CI、exact receipt、main read-afterは引き続き必要である。

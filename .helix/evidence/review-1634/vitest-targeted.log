@@ -1,5 +1,5 @@
 
- RUN  v4.1.11 /home/tenni/.helix-worktrees/issue-1633-ci-non-pr-base-authority
+ RUN  v4.1.11 /tmp/helix-1634-node-current.mhtC3o/repo
 
 Switched to branch 'feature/test'
 Switched to branch 'feature/test'
@@ -10,9 +10,14 @@ Switched to branch 'feature/test'
 Switched to branch 'feature/test'
 Switched to branch 'feature/test'
 Switched to branch 'feature/test'
+Switched to branch 'feature/test'
+Switched to branch 'feature/test'
+Switched to branch 'feature/test'
+Switched to branch 'feature/test'
+fatal: not a git repository (or any of the parent directories): .git
 
- Test Files  3 passed (3)
-      Tests  79 passed (79)
-   Start at  06:16:39
-   Duration  5.33s (transform 307ms, setup 0ms, import 409ms, tests 4.62s, environment 0ms)
+ Test Files  4 passed (4)
+      Tests  90 passed (90)
+   Start at  07:16:10
+   Duration  11.32s (transform 295ms, setup 0ms, import 432ms, tests 10.48s, environment 0ms)
 
