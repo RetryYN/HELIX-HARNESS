@@ -4,7 +4,7 @@ title: "PLAN-L3-78 (redesign): 三社固定レーン・Cursor資源分散・GitH
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -88,7 +88,27 @@ agent_slots:
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }
   - { role: qa, slot_label: "QA — 27 AC、critical miss、budget UNKNOWN、model revision、writer排他" }
   - { role: tl, slot_label: "TL — 既存owner再利用とruntime解放境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T13:46:25Z"
+    tests_green_at: "2026-09-07T13:46:25Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: 03b0b75537ba9b86367262c27b8229c8f2e5d859
+    scope: "PR #1626のcanonical L1/L3/L10/L12 source配置をexact HEADで独立検収し、承認済み9 BR／25 requirement／27 AC／9 recognition、第二正本除去、digest追従、runtime非有効化境界をblocker 0でapprove。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1626#issuecomment-5571579098"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 34123109122 --json status,conclusion,headSha,attempt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-07T13:46:25Z"
+        evidence_path: docs/test-design/helix/three-lane-cloud-governance-acceptance.md
+        output_digest: "sha256:5292dd6161c6ba127db896b91edb586272cfab921ec71fec0536039331e16798"
+        result: "terminal success / attempt 2 / HEAD 03b0b75537ba9b86367262c27b8229c8f2e5d859 / required lanes green"
 ---
 
 # 三社固定レーンauthority Requirement Re-entry
