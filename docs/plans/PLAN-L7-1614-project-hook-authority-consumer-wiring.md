@@ -78,6 +78,11 @@ modifies:
   - { artifact_path: tests/plan-descent.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/harness/L6-function-design/plan-descent-gate.md, artifact_type: design_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 review_evidence: []
 agent_slots:
   - { role: se, slot_label: "SE — Control Plane envelope／consumer wiring" }
