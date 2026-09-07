@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
+import { constants as osConstants } from "node:os";
 import { parse as parseYaml } from "yaml";
 import {
   deriveEffortObservation,
@@ -528,7 +529,9 @@ async function executeMember(
       run.durationMs >= 0 &&
       typeof run.reaped === "boolean" &&
       (["none", "term_sent", "kill_sent"] as const).includes(run.terminationStage) &&
-      (run.signal === null || typeof run.signal === "string");
+      (run.signal === null ||
+        (typeof run.signal === "string" &&
+          Object.prototype.hasOwnProperty.call(osConstants.signals, run.signal)));
     const lifecycleAccepted = lifecycleReported && !run.timedOut && run.reaped;
     const status: SlotStatus =
       run.exitCode === 0 && reviewAccepted && lifecycleAccepted ? "completed" : "failed";

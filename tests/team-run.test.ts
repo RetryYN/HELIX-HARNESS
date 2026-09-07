@@ -579,6 +579,29 @@ describe("team run validation", () => {
         status: "failed",
         deadline_ms: 60_001,
       });
+
+      const unreaped = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ timeMs }) => ({
+          ...completedProviderRun(timeMs, { exitCode: 0, output: "tree still alive" }),
+          reaped: false,
+        }),
+      });
+      expect(unreaped.ok).toBe(false);
+      expect(unreaped.executions[0]).toMatchObject({ status: "failed", reaped: false });
+
+      const invalidSignal = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ timeMs }) => ({
+          ...completedProviderRun(timeMs, { exitCode: 0, output: "invalid signal" }),
+          signal: "NOT_A_SIGNAL" as NodeJS.Signals,
+        }),
+      });
+      expect(invalidSignal.ok).toBe(false);
+      expect(invalidSignal.executions[0]).toMatchObject({
+        status: "failed",
+        signal: "NOT_A_SIGNAL",
+      });
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }
