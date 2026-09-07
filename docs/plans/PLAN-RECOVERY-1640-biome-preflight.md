@@ -2,7 +2,8 @@
 plan_id: PLAN-RECOVERY-1640-biome-preflight
 title: "PLAN-RECOVERY-1640: Biomeの早期検出と重複実行除去"
 kind: recovery
-layer: L7
+layer: cross
+drive: agent
 status: draft
 completion_claim_allowed: false
 owner: Codex
@@ -50,6 +51,10 @@ modifies:
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: yaml_config }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
+agent_slots:
+  - { role: tl, slot_label: "TL — 検査義務を維持して既存lintの実行順を修復" }
+  - { role: qa, slot_label: "QA — 早期拒否と合法入力通過・配置反例を検証" }
+  - { role: aim, slot_label: "AIM — Recoveryの責務境界と必須検証の非緩和を照合" }
 review_evidence: []
 ---
 
@@ -88,4 +93,7 @@ continue-on-error・条件付きskipを追加せず、shardはpreflight成功後
 
 局所実装・配置反例検査まで実施。全CI・独立review・main到達・削減効果の実測は未完了。
 DB再構築はexit 0、81518行のprojectionを確認。新規draft PLANを含めsnapshotは93件から94件へ機械更新した。
+CI attempt 2のgovernance失敗を受け、横断Recoveryのlayerと必須drive/role宣言を既存schemaへ整合した。
+再検証ではgovernance 1208 PLAN・post-merge-statusが成功、frontmatter/workflow 91 testsが成功。
+この再検証時のDB projectionは81488行、outstanding guardはviolations空。CI再実行・独立検収は別途必要である。
 撤回は正規PRで元の順序へ戻せるが、今回追加する配置契約との整合を再検収する。
