@@ -417,6 +417,7 @@ import {
   summarizeStagedReview,
 } from "./runtime/review-guard";
 import {
+  evaluateReviewEvidenceReceiptJoin,
   evaluateReviewReceiptPlanBinding,
   hasTerminalPlanPromotion,
   loadChangedPlanReviewBindings,
@@ -15032,6 +15033,31 @@ github
         reasons: ["outstanding_request_changes_terminal_plan"],
       };
     }
+    if (terminalPromotion) {
+      const receiptJoin = evaluateReviewEvidenceReceiptJoin({
+        changed_plans: loadChangedPlanReviewBindings(
+          process.cwd(),
+          "origin/main",
+          snapshot.candidate_head,
+        ),
+        receipts: receiptHistory.map((receipt) => ({
+          comment_url: receipt.commentUrl,
+          reviewer_session_id: receipt.reviewerSessionId,
+          reviewer_model: receipt.reviewerModel,
+          reviewed_head_sha: receipt.headSha,
+          verdict: receipt.verdict,
+          ci_evidence_generation: receipt.ciEvidenceGeneration,
+        })),
+      });
+      if (!receiptJoin.ok) {
+        decision = {
+          ok: false,
+          deferred: false,
+          receipt_digest: null,
+          reasons: receiptJoin.failures.map((failure) => failure.reason),
+        };
+      }
+    }
     process.stdout.write(
       opts.json
         ? `${JSON.stringify(decision, null, 2)}\n`
@@ -15143,13 +15169,17 @@ github
             reviewer_model: value.reviewerModel,
           };
         })();
+    const changedPlanBindings = loadChangedPlanReviewBindings(
+      process.cwd(),
+      "origin/main",
+      current.headRefOid,
+    );
+    const reviewReceiptHistory = providerNeutral
+      ? null
+      : loadClaudePrReviewReceiptHistory(repository, prNumber);
     const mergePlanBinding = evaluateReviewReceiptPlanBinding({
       receipt: reviewIdentity,
-      changed_plans: loadChangedPlanReviewBindings(
-        process.cwd(),
-        "origin/main",
-        current.headRefOid,
-      ),
+      changed_plans: changedPlanBindings,
     });
     if (!mergePlanBinding.ok) {
       process.stderr.write(
@@ -15159,6 +15189,33 @@ github
       );
       process.exitCode = 1;
       return;
+    }
+    if (!providerNeutral) {
+      if (reviewReceiptHistory === null) {
+        process.stderr.write("github pr-merge-reviewed: review_receipt_history_unavailable\n");
+        process.exitCode = 1;
+        return;
+      }
+      const receiptJoin = evaluateReviewEvidenceReceiptJoin({
+        changed_plans: changedPlanBindings,
+        receipts: reviewReceiptHistory.map((item) => ({
+          comment_url: item.commentUrl,
+          reviewer_session_id: item.reviewerSessionId,
+          reviewer_model: item.reviewerModel,
+          reviewed_head_sha: item.headSha,
+          verdict: item.verdict,
+          ci_evidence_generation: item.ciEvidenceGeneration,
+        })),
+      });
+      if (!receiptJoin.ok) {
+        process.stderr.write(
+          `github pr-merge-reviewed: ${receiptJoin.failures
+            .map((failure) => `${failure.reason}:${failure.plan_id}`)
+            .join(",")}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
     }
     const requiredViewed = spawnSync(
       "gh",
@@ -15210,9 +15267,6 @@ github
             parsed.conclusion === receiptCi.conclusion
           );
         })();
-    const reviewReceiptHistory = providerNeutral
-      ? null
-      : loadClaudePrReviewReceiptHistory(repository, prNumber);
     const decision = providerNeutral
       ? evaluateProviderNeutralReviewMerge(
           {
