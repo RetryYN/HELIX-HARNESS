@@ -14,6 +14,7 @@ import {
   executeTeamRunPlan,
   type MemberPlacement,
   providerFromEngine,
+  type TeamRunnerDeps,
   validateTeamRun,
 } from "../src/team/run";
 import {
@@ -65,6 +66,33 @@ const baseTeam = (members: TeamDefinition["members"]): TeamDefinition => ({
   max_parallel: 8,
   members,
 });
+
+// 旧team orchestrationへのテスト依存は、このcompatibility seamへ集約して退役対象を明示する。
+const legacyTeamCompatibility = Object.freeze({
+  build: buildTeamRunPlan,
+  execute: executeTeamRunPlan,
+  slots: nodeAgentSlotsDeps,
+});
+
+function completedProviderRun(
+  timeMs: number,
+  input: {
+    exitCode: number | null;
+    output?: string;
+    outputBytes?: number;
+    outputTruncated?: boolean;
+  },
+) {
+  return {
+    ...input,
+    timedOut: false,
+    deadlineMs: timeMs,
+    terminationStage: "none" as const,
+    signal: null,
+    durationMs: 1,
+    reaped: true,
+  };
+}
 
 describe("team run validation", () => {
   it("maps engine names to providers", () => {
@@ -120,7 +148,7 @@ describe("team run validation", () => {
   });
 
   it("builds a shared Claude/Codex launch plan from the same team member flow", () => {
-    const result = buildTeamRunPlan(
+    const result = legacyTeamCompatibility.build(
       {
         name: "speed-team",
         strategy: "parallel",
@@ -156,7 +184,7 @@ describe("team run validation", () => {
   });
 
   it("honors explicit model policy overrides in the shared launch plan", () => {
-    const result = buildTeamRunPlan(
+    const result = legacyTeamCompatibility.build(
       {
         name: "speed-team",
         strategy: "parallel",
@@ -208,7 +236,10 @@ describe("team run validation", () => {
     expect(members.every((member) => member.ownership)).toBe(true);
     expect(members.some((member) => member.engine === "pmo-sonnet")).toBe(true);
 
-    const plan = buildTeamRunPlan(recommendation.definition as TeamDefinition, "hybrid");
+    const plan = legacyTeamCompatibility.build(
+      recommendation.definition as TeamDefinition,
+      "hybrid",
+    );
     expect(plan.ok).toBe(true);
     expect(plan.strategy).toBe("sequential");
     expect(
@@ -221,7 +252,7 @@ describe("team run validation", () => {
   });
 
   it("passes provider-neutral skill injection to every runtime adapter", () => {
-    const result = buildTeamRunPlan(
+    const result = legacyTeamCompatibility.build(
       {
         name: "speed-team",
         strategy: "parallel",
@@ -257,7 +288,7 @@ describe("team run validation", () => {
   });
 
   it("keeps dependent team members on the same flow but schedules them sequentially", () => {
-    const result = buildTeamRunPlan(
+    const result = legacyTeamCompatibility.build(
       {
         name: "review-team",
         strategy: "parallel",
@@ -290,7 +321,7 @@ describe("team run validation", () => {
   });
 
   it("rejects serialize_after targets that do not exist or are ambiguous", () => {
-    const missing = buildTeamRunPlan(
+    const missing = legacyTeamCompatibility.build(
       {
         name: "review-team",
         strategy: "parallel",
@@ -305,7 +336,7 @@ describe("team run validation", () => {
     expect(missing.ok).toBe(false);
     expect(missing.messages).toContain(serializeAfterTargetNotFoundMessage("tl:pmo-sonnet", "qa"));
 
-    const ambiguous = buildTeamRunPlan(
+    const ambiguous = legacyTeamCompatibility.build(
       {
         name: "review-team",
         strategy: "parallel",
@@ -325,7 +356,7 @@ describe("team run validation", () => {
   });
 
   it("keeps explicit serialization reasons green while forcing sequential scheduling", () => {
-    const result = buildTeamRunPlan(
+    const result = legacyTeamCompatibility.build(
       {
         name: "review-team",
         strategy: "parallel",
@@ -358,7 +389,7 @@ describe("team run validation", () => {
   it("U-WCP-011: context-bound provider adaptersをteam runnerで実行する", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = legacyTeamCompatibility.build(
         {
           name: "speed-team",
           strategy: "parallel",
@@ -376,13 +407,17 @@ describe("team run validation", () => {
         },
       );
       const commands: string[] = [];
-      const deps = nodeAgentSlotsDeps(repo);
-      const execution = await executeTeamRunPlan(plan, {
+      const deps = legacyTeamCompatibility.slots(repo);
+      const execution = await legacyTeamCompatibility.execute(plan, {
         slots: deps,
-        runCommand: async ({ command, args, provider }) => {
+        runCommand: async ({ command, args, provider, timeMs }) => {
           expect(command).not.toBe("");
+          expect(timeMs).toBe(60_000);
           commands.push(`${provider} ${args[0]}`);
-          return { exitCode: 0, output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
+          return completedProviderRun(timeMs, {
+            exitCode: 0,
+            output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok\n",
+          });
         },
       });
 
@@ -399,10 +434,183 @@ describe("team run validation", () => {
     }
   });
 
+  it("U-WBL-012: sealed budgetを各team member実行へ渡す [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
+    const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-"));
+    try {
+      const plan = legacyTeamCompatibility.build(
+        {
+          name: "budget-team",
+          strategy: "parallel",
+          max_parallel: 2,
+          members: [
+            { role: "se", engine: "codex-se", task: "implement" },
+            { role: "tl", engine: "pmo-sonnet", task: "review" },
+          ],
+        },
+        "hybrid",
+        { execute: true, workerContext: testWorkerContext() },
+      );
+      const budgets: number[] = [];
+      const execution = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ provider, timeMs }) => {
+          budgets.push(timeMs);
+          return {
+            exitCode: 0,
+            output: provider === "claude" ? "VERDICT: PASS\n" : "ok\n",
+            timedOut: false,
+            deadlineMs: timeMs,
+            terminationStage: "none",
+            signal: null,
+            durationMs: 10,
+            reaped: true,
+          };
+        },
+      });
+      expect(execution.ok).toBe(true);
+      expect(budgets).toEqual([60_000, 60_000]);
+      expect(execution.executions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            timed_out: false,
+            deadline_ms: 60_000,
+            termination_stage: "none",
+            duration_ms: 10,
+            reaped: true,
+          }),
+        ]),
+      );
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
+  it("U-WBL-013: deadline超過をexit 0でも完了へ昇格しない [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
+    const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-timeout-"));
+    try {
+      const plan = legacyTeamCompatibility.build(
+        {
+          name: "timeout-team",
+          strategy: "parallel",
+          max_parallel: 2,
+          members: [
+            { role: "se", engine: "codex-se", task: "implement" },
+            { role: "tl", engine: "pmo-sonnet", task: "review" },
+          ],
+        },
+        "hybrid",
+        { execute: true, workerContext: testWorkerContext() },
+      );
+      const execution = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ provider, timeMs }) =>
+          provider === "codex"
+            ? {
+                exitCode: 0,
+                output: "provider handled TERM and exited zero\n",
+                timedOut: true,
+                deadlineMs: timeMs,
+                terminationStage: "term_sent",
+                signal: null,
+                durationMs: timeMs + 1,
+                reaped: true,
+              }
+            : {
+                exitCode: 0,
+                output: "VERDICT: PASS\n",
+                timedOut: false,
+                deadlineMs: timeMs,
+                terminationStage: "none",
+                signal: null,
+                durationMs: 1,
+                reaped: true,
+              },
+      });
+
+      expect(execution.ok).toBe(false);
+      expect(execution.executions.find((member) => member.role === "se")).toMatchObject({
+        exit_code: 0,
+        status: "failed",
+        timed_out: true,
+        termination_stage: "term_sent",
+        reaped: true,
+      });
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
+  it("U-WBL-014: lifecycle結果欠落とdeadline不一致をfail-closeする [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
+    const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-invalid-lifecycle-"));
+    try {
+      const plan = legacyTeamCompatibility.build(
+        {
+          name: "invalid-lifecycle-team",
+          strategy: "sequential",
+          max_parallel: 1,
+          members: [
+            { role: "se", engine: "codex-se", task: "implement" },
+            { role: "tl", engine: "pmo-sonnet", task: "review", serialize_after: "se" },
+          ],
+        },
+        "hybrid",
+        { execute: true, workerContext: testWorkerContext() },
+      );
+      const missingLifecycle = (async () => ({
+        exitCode: 0,
+        output: "provider omitted lifecycle result",
+      })) as unknown as TeamRunnerDeps["runCommand"];
+      const missing = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: missingLifecycle,
+      });
+      expect(missing.ok).toBe(false);
+      expect(missing.executions[0]).toMatchObject({ status: "failed", reaped: false });
+
+      const mismatch = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ timeMs }) => ({
+          ...completedProviderRun(timeMs, { exitCode: 0, output: "wrong deadline" }),
+          deadlineMs: timeMs + 1,
+        }),
+      });
+      expect(mismatch.ok).toBe(false);
+      expect(mismatch.executions[0]).toMatchObject({
+        status: "failed",
+        deadline_ms: 60_001,
+      });
+
+      const unreaped = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ timeMs }) => ({
+          ...completedProviderRun(timeMs, { exitCode: 0, output: "tree still alive" }),
+          reaped: false,
+        }),
+      });
+      expect(unreaped.ok).toBe(false);
+      expect(unreaped.executions[0]).toMatchObject({ status: "failed", reaped: false });
+
+      const invalidSignal = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ timeMs }) => ({
+          ...completedProviderRun(timeMs, { exitCode: 0, output: "invalid signal" }),
+          signal: "NOT_A_SIGNAL" as NodeJS.Signals,
+        }),
+      });
+      expect(invalidSignal.ok).toBe(false);
+      expect(invalidSignal.executions[0]).toMatchObject({
+        status: "failed",
+        signal: "NOT_A_SIGNAL",
+      });
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
   it("does not execute dependent members after their dependency fails", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-dependency-fail-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = legacyTeamCompatibility.build(
         {
           name: "speed-team",
           strategy: "parallel",
@@ -420,11 +628,11 @@ describe("team run validation", () => {
         },
       );
       const commands: string[] = [];
-      const execution = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
-        runCommand: async ({ args, provider }) => {
+      const execution = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ args, provider, timeMs }) => {
           commands.push(`${provider} ${args[0]}`);
-          return { exitCode: 7 };
+          return completedProviderRun(timeMs, { exitCode: 7 });
         },
       });
 
@@ -444,7 +652,7 @@ describe("team run validation", () => {
   it("executes parallel teams in max_parallel batches instead of serializing everything", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-run-parallel-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = legacyTeamCompatibility.build(
         {
           name: "speed-team",
           strategy: "parallel",
@@ -465,16 +673,19 @@ describe("team run validation", () => {
       let active = 0;
       let peak = 0;
       const started: string[] = [];
-      const deps = nodeAgentSlotsDeps(repo);
-      const execution = await executeTeamRunPlan(plan, {
+      const deps = legacyTeamCompatibility.slots(repo);
+      const execution = await legacyTeamCompatibility.execute(plan, {
         slots: deps,
-        runCommand: async ({ args, provider }) => {
+        runCommand: async ({ args, provider, timeMs }) => {
           active += 1;
           peak = Math.max(peak, active);
           started.push(`${provider} ${args[0]}`);
           await new Promise((resolve) => setTimeout(resolve, 10));
           active -= 1;
-          return { exitCode: 0, output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
+          return completedProviderRun(timeMs, {
+            exitCode: 0,
+            output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok\n",
+          });
         },
       });
 
@@ -490,7 +701,7 @@ describe("team run validation", () => {
   it("[U-TEAMRUN-004] requires exactly one explicit PASS verdict from reviewers", async () => {
     const repo = mkdtempSync(join(tmpdir(), "helix-team-review-evidence-"));
     try {
-      const plan = buildTeamRunPlan(
+      const plan = legacyTeamCompatibility.build(
         {
           name: "review-team",
           strategy: "sequential",
@@ -508,24 +719,26 @@ describe("team run validation", () => {
         ["VERDICT: FAIL\n", "rejected"],
         ["VERDICT: PASS\nVERDICT: FAIL\n", "ambiguous"],
       ] as const) {
-        const execution = await executeTeamRunPlan(plan, {
-          slots: nodeAgentSlotsDeps(repo),
-          runCommand: async ({ provider }) => ({
-            exitCode: 0,
-            output: provider === "claude" ? reviewOutput : "worker ok",
-          }),
+        const execution = await legacyTeamCompatibility.execute(plan, {
+          slots: legacyTeamCompatibility.slots(repo),
+          runCommand: async ({ provider, timeMs }) =>
+            completedProviderRun(timeMs, {
+              exitCode: 0,
+              output: provider === "claude" ? reviewOutput : "worker ok",
+            }),
         });
         expect(execution.ok).toBe(false);
         expect(execution.executions[1]?.evidence.verdict_status).toBe(expectedStatus);
       }
-      const truncated = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
-        runCommand: async ({ provider }) => ({
-          exitCode: 0,
-          output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok",
-          outputBytes: 2_000_000,
-          outputTruncated: true,
-        }),
+      const truncated = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ provider, timeMs }) =>
+          completedProviderRun(timeMs, {
+            exitCode: 0,
+            output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok",
+            outputBytes: 2_000_000,
+            outputTruncated: true,
+          }),
       });
       expect(truncated.ok).toBe(false);
       expect(truncated.executions[1]?.evidence).toMatchObject({
@@ -550,7 +763,7 @@ describe("team run validation", () => {
       primary: "claude",
       allowFrontier: true,
     });
-    const result = buildTeamRunPlan(team, "hybrid", { placements });
+    const result = legacyTeamCompatibility.build(team, "hybrid", { placements });
 
     expect(result.ok).toBe(true);
     const se = result.members.find((m) => m.role === "se");
@@ -571,7 +784,7 @@ describe("team run validation", () => {
       { role: "qa", engine: "qa-test", task: "verify coverage", serialize_after: "se" },
     ]);
     const placements = placementsFor(team, hybrid("claude"), { primary: "claude" });
-    const result = buildTeamRunPlan(team, "hybrid", { execute: true, placements });
+    const result = legacyTeamCompatibility.build(team, "hybrid", { execute: true, placements });
 
     expect(result.ok).toBe(false);
     expect(result.messages.some((m) => m.startsWith("member blocked by frontier gate: qa"))).toBe(
@@ -595,7 +808,7 @@ describe("team run validation", () => {
       primary: "codex",
       allowFrontier: true,
     });
-    const result = buildTeamRunPlan(team, "hybrid", { placements });
+    const result = legacyTeamCompatibility.build(team, "hybrid", { placements });
 
     expect(result.ok).toBe(true);
     const se = result.members.find((m) => m.role === "se");
@@ -624,15 +837,15 @@ describe("team runner wrapper admission sink fence", () => {
   });
 
   /** runCommand が一度も呼ばれないことを数えるための spy。 */
-  async function executeCountingLaunches(plan: ReturnType<typeof buildTeamRunPlan>) {
+  async function executeCountingLaunches(plan: ReturnType<typeof legacyTeamCompatibility.build>) {
     const repo = mkdtempSync(join(tmpdir(), "helix-team-sink-fence-"));
     try {
       const launched: string[] = [];
-      const execution = await executeTeamRunPlan(plan, {
-        slots: nodeAgentSlotsDeps(repo),
-        runCommand: async ({ command, args }) => {
+      const execution = await legacyTeamCompatibility.execute(plan, {
+        slots: legacyTeamCompatibility.slots(repo),
+        runCommand: async ({ command, args, timeMs }) => {
           launched.push(`${command} ${args[0] ?? ""}`);
-          return { exitCode: 0, output: "VERDICT: PASS\n" };
+          return completedProviderRun(timeMs, { exitCode: 0, output: "VERDICT: PASS\n" });
         },
       });
       return { launched, execution };
@@ -642,7 +855,7 @@ describe("team runner wrapper admission sink fence", () => {
   }
 
   it("U-TSAF-001: wrapper 登録の無い生 adapter plan を sink が起動前に拒否する", async () => {
-    const plan = buildTeamRunPlan(wrapperTeam(), "hybrid", {
+    const plan = legacyTeamCompatibility.build(wrapperTeam(), "hybrid", {
       execute: true,
       planId: "PLAN-L7-498-worker-wrapper-admission",
       workerContext: testWorkerContext(),
@@ -669,7 +882,7 @@ describe("team runner wrapper admission sink fence", () => {
   it("U-TSAF-002: worker context を持たない wrapper plan を sink が起動前に拒否する", async () => {
     // workerContext なしでも buildWrapperAdapterPlan は origin を登録するため route は通る。
     // sink が requireWorkerContext を渡していなければ、この plan はそのまま起動されてしまう。
-    const plan = buildTeamRunPlan(wrapperTeam(), "hybrid", {
+    const plan = legacyTeamCompatibility.build(wrapperTeam(), "hybrid", {
       execute: true,
       planId: "PLAN-L7-498-worker-wrapper-admission",
     });
