@@ -95,7 +95,7 @@ review_evidence:
     tests_green_at: "2026-09-07T13:46:25Z"
     verdict: approve
     worker_model: codex
-    reviewer_model: claude-fable-5-1
+    reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
     reviewed_head_sha: 03b0b75537ba9b86367262c27b8229c8f2e5d859
     scope: "PR #1626のcanonical L1/L3/L10/L12 source配置をexact HEADで独立検収し、承認済み9 BR／25 requirement／27 AC／9 recognition、第二正本除去、digest追従、runtime非有効化境界をblocker 0でapprove。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1626#issuecomment-5571579098"
