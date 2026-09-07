@@ -4,7 +4,7 @@ title: "PLAN-L7-865 (refactor): 旧orchestration semantic consumer ledger"
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
