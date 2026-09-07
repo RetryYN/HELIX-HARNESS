@@ -166,7 +166,7 @@ describe("takeover feedback surface (PLAN-L7-110)", () => {
     }
   });
 
-  it("folds a single dominant group into one row with its real count (group-first, PLAN-L7-404)", () => {
+  it("IT-FLIFE-003: folds a single dominant group into one row with its real count (group-first, PLAN-L7-404, PLAN-RECOVERY-825-feedback-lifecycle-oracle-trace)", () => {
     const db = openHarnessDb(":memory:");
     try {
       migrate(db);
