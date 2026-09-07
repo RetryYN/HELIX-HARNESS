@@ -1739,5 +1739,886 @@
     ],
     "approval": null,
     "semantic_digest": "sha256:c2db0e67e377ff0b0a5a829655ae52fec373de695287193ae40bd31e5fe98fa9"
+  },
+  "3L-FR-001": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-001",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-21"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-01",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Lane Exact Set`: current第一級laneを`codex_control`、`cursor_cloud_execution`、`claude_independent_review`のexact 3件へ固定する。",
+        "acceptance_ids": [
+          "3L-AC-001"
+        ],
+        "semantic_digest": "sha256:a020939469be06b54bba61f7b40ed78cef0c8f97fe56ab47b60630de6be0d5fa"
+      },
+      {
+        "requirement_id": "3L-R-02",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Model/Lane Separation`: Grok、Kimi、Composerをrequested／effective model候補として保持し、lane identityへ昇格しない。",
+        "acceptance_ids": [
+          "3L-AC-002"
+        ],
+        "semantic_digest": "sha256:f07eda082cf4c66dc366d3c84dc3075974c86b17d7724dc4ff2626bf9ab8b2ef"
+      },
+      {
+        "requirement_id": "3L-R-03",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Availability`: lane identityとruntime availabilityを分離し、Cursor停止を明示DEGRADEDとして扱う。",
+        "acceptance_ids": [
+          "3L-AC-003"
+        ],
+        "semantic_digest": "sha256:a223aae77e73bc548a2c3de70166f64d447e8bd902d83cdbe80d434e1ff7922c"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-001",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-01"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 第一級laneがexact 3件\nNegative oracle: Grok／Kimi／Composer／任意provider laneを拒否",
+        "semantic_digest": "sha256:aaf130f90a0801caab25178e9b2abe9eda3e6ddbddbe84700abe1ced19b3edc5"
+      },
+      {
+        "acceptance_id": "3L-AC-002",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-02"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: requested／effective modelをlaneから分離\nNegative oracle: model名をlane identityへ昇格したら拒否",
+        "semantic_digest": "sha256:45d5cc43164a2c629bbd346ca0b029cb5e49c18452eedcc617bdf7cc690fb29d"
+      },
+      {
+        "acceptance_id": "3L-AC-003",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-03"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: Cursor停止がDEGRADED\nNegative oracle: optional扱いで不可視化しない",
+        "semantic_digest": "sha256:bd087d68f77c63a013ea926bdbe4c3d18c4020a6265e027ff1560b2601d28332"
+      }
+    ],
+    "downstream_issue_ids": [
+      861,
+      1293
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-001"
+        ]
+      },
+      {
+        "issue_id": 861,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-002"
+        ]
+      },
+      {
+        "issue_id": 1293,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-003"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:8a3839afc58a28bf5c376827617d498eedd71395f706a74d3253a2af05fc006c"
+  },
+  "3L-FR-002": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-002",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-02"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-04",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Control Authority`: Codexだけがscope、branch、assignment、budget、統合、merge admissionを発行する。",
+        "acceptance_ids": [
+          "3L-AC-004"
+        ],
+        "semantic_digest": "sha256:4986cd1ab6e90e18b5e15c3eaf4ecb59f81333984d6ea4ddec310c9e873dbcfc"
+      },
+      {
+        "requirement_id": "3L-R-05",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Cursor Worker Boundary`: HELIXがprovider起動前に専用branchを事前発行し、発行済みbranchをassignmentへ束縛する。CursorはIssueまたはPLANの択一、専用branch、allowed path、budget、TTL内だけを書き、main／別branch／HELIX DBへ書かない。providerによる事後branch発行を代用にしない。",
+        "acceptance_ids": [
+          "3L-AC-005"
+        ],
+        "semantic_digest": "sha256:ae0207c64baa5819ead40a60265c204020f6cc62cb2129cf9dd7876e1e4ed6cb"
+      },
+      {
+        "requirement_id": "3L-R-06",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Independent Review`: Claudeはblind exact-HEAD reviewを行い、changes requestedはscope／設計変更を除き元Cursor assignment・同branchへ返す。",
+        "acceptance_ids": [
+          "3L-AC-006"
+        ],
+        "semantic_digest": "sha256:27d29a29da6cbdf9143ffc67d32a08875ce43659fb07ab8568f400a9dfc0d3e7"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-004",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-04"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: Codexだけがcontrol authorityを発行\nNegative oracle: Cursor／Claude発行を拒否",
+        "semantic_digest": "sha256:04603641c41c5c6cb924ae58eaf2c7e1713d727e6d8d5a078919c914602aeab2"
+      },
+      {
+        "acceptance_id": "3L-AC-005",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-05"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: exactly-one scope＋HELIXによるprovider起動前のbranch事前発行＋budget\nNegative oracle: 未発行のまま起動、providerの事後発行、main／別branch／scope外writeを個別に拒否",
+        "semantic_digest": "sha256:a8c9a717f6ee85139e997b9171b0e64083c9c65cd626daffeea856879e70848b"
+      },
+      {
+        "acceptance_id": "3L-AC-006",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-06"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: blind exact-HEAD reviewと同branch返却\nNegative oracle: worker会話／旧HEAD receiptを拒否",
+        "semantic_digest": "sha256:6f05cc58dddb65aac1f354e269a2aba52440ac0b622296125826d062775df6a9"
+      }
+    ],
+    "downstream_issue_ids": [
+      1293
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-004"
+        ]
+      },
+      {
+        "issue_id": 1293,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-005",
+          "3L-AC-006"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:60b01d0fad6e9ef78460ad5423fd5b5045c3162f21cdf8f5c6ae13ddcb807f19"
+  },
+  "3L-FR-003": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-003",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-02",
+      "HR-FR-HIL-22"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-07",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "ResourceBudgetSnapshot`: Cursor ModelsとOther Modelsのpool、billing cycle、consumed／committed／remaining／reserve、on-demand cap、3日／7日burn、forecast、runway、evidence digestを保持する。",
+        "acceptance_ids": [
+          "3L-AC-007",
+          "3L-AC-008"
+        ],
+        "semantic_digest": "sha256:c2ea08bcc1173d3ba7ab4221e8512044851ca939bf29c593d7c9896b741ae8b4"
+      },
+      {
+        "requirement_id": "3L-R-08",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Unknown and Reserve`: usage不明を0円／無制限へ推測せず新規dispatchを拒否する。reserveはversioned policyで保持する。",
+        "acceptance_ids": [
+          "3L-AC-009"
+        ],
+        "semantic_digest": "sha256:42190fb4dd36418723662f8d1b0640a9d61a444b116a2ee7ef577bd0b1361dde"
+      },
+      {
+        "requirement_id": "3L-R-09",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Separate Pressure Axes`: Codexを`NORMAL/ELEVATED/HIGH/CRITICAL`、Cursorを`GREEN/AMBER/ORANGE/RED/UNKNOWN`、Claudeをreview inventoryとして別軸管理する。",
+        "acceptance_ids": [
+          "3L-AC-010"
+        ],
+        "semantic_digest": "sha256:ac80bf2b563113fadabe7b7299e2f9cec7baa71387208b44dbf2020d0c5ce6c1"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-007",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 2 poolとbilling cycleを別field保持\nNegative oracle: pool統合／週次換算を拒否",
+        "semantic_digest": "sha256:140034b12c2c30b898f6704c4d072e3166a69e84e9d028fc74baef0a8ec6f606"
+      },
+      {
+        "acceptance_id": "3L-AC-008",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-07"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: committed、reserve、burn、forecast、runwayを算出\nNegative oracle: active run費用を無視しない",
+        "semantic_digest": "sha256:d147d5a2cb959a755c1b71d3c59c15d55a4972af980dc7226c1db40abed68f49"
+      },
+      {
+        "acceptance_id": "3L-AC-009",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-08"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: usage不明はUNKNOWN\nNegative oracle: 0円／無制限へ推測しない",
+        "semantic_digest": "sha256:ca7645d481db0661b5ef1d161371731db4257c2ee89ef809345c4e3abfe656d1"
+      },
+      {
+        "acceptance_id": "3L-AC-010",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-09"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 三資源を別軸投影\nNegative oracle: 単一scoreへ畳み込まない",
+        "semantic_digest": "sha256:e6a1184a15841431e4759e0b951a984ab66bf86ad1aff1949a6bafda814f5654"
+      }
+    ],
+    "downstream_issue_ids": [
+      1359
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-007"
+        ]
+      },
+      {
+        "issue_id": 1359,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-008",
+          "3L-AC-009",
+          "3L-AC-010"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:5d77aedec4edae5f87b10ba199bb215d7825b21d5f44e570a2a862d7132f3587"
+  },
+  "3L-FR-004": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-004",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-21",
+      "HR-FR-HIL-22"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-10",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Dispatch Matrix`: Codex pressure、Cursor runway、Claude inventory、task riskからWIPとdispatch可否を決定的に導出する。",
+        "acceptance_ids": [
+          "3L-AC-011"
+        ],
+        "semantic_digest": "sha256:d1aad28d0d0370c1efe19fe0db033c0fae32615adf57dfd98b1ef0135fe78fe4"
+      },
+      {
+        "requirement_id": "3L-R-11",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Bounded WIP`: Cursor WIP=2を初期値とし、7日実測、GREEN、review在庫0〜1、first-pass gate 70%以上でのみ3へburstする。4以上は別承認とする。",
+        "acceptance_ids": [
+          "3L-AC-012"
+        ],
+        "semantic_digest": "sha256:722ea4552147c596d1508ea74e2e0895a7d7abf6741c12454d6c12e3df54b5e7"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-011",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-10"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: deterministic dispatch理由をreceipt化\nNegative oracle: LLMがbudget／branch authorityを変更しない",
+        "semantic_digest": "sha256:0e816edad51c213b4f3aedb93bbdc5002c1f24cb35b861bf43e005fff35d7093"
+      },
+      {
+        "acceptance_id": "3L-AC-012",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-11"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: WIP=2、条件付き3\nNegative oracle: review在庫過多／未実測burstを拒否",
+        "semantic_digest": "sha256:9e5e4a436ad748522ccd43ef163d66b7e1cbb8e4d4e022fd783b12d98af18ea3"
+      }
+    ],
+    "downstream_issue_ids": [
+      1359
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-011"
+        ]
+      },
+      {
+        "issue_id": 1359,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-012"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:85deb69b453ba810931374fc311a2d26db311613e1638da9c9d921b55b1b4b07"
+  },
+  "3L-FR-005": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-005",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-02"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-12",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "WorkerPolicyBundle`: scope／branch／base SHA／assignment／allowed path／requirement／PLAN／test／secret／network／model pool／budget／TTL／completion schemaをdigestへ束縛する。",
+        "acceptance_ids": [
+          "3L-AC-013"
+        ],
+        "semantic_digest": "sha256:d5986688a9341b66e98ffafd049b72d4481c85c7e913e8ad76bf5c133d83c4af"
+      },
+      {
+        "requirement_id": "3L-R-13",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Cloud Enforcement`: repository-owned environment、hook、single writer、secret最小権限、max cost、TTLをCursor実行中に強制する。",
+        "acceptance_ids": [
+          "3L-AC-014"
+        ],
+        "semantic_digest": "sha256:fd65face90c74c34e56cf033eac1186e3bf55da26768213140a467ec633bce01"
+      },
+      {
+        "requirement_id": "3L-R-14",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "External Read-after`: 起動後・成果回収時にbranch owner、assignment、candidate HEADをGitHub／providerから再取得し、起動前の3L-R-24の束縛と照合する。HEADの進行は当該assignmentに帰属する変更として検証し、base HEADとの単純な同値を要求しない。PR、requested／effective model、usage、cost、changed path、testも外部sealし、worker自己申告を正本にしない。owner交代、別branch、帰属不能なHEADは成果取り込みを拒否する。",
+        "acceptance_ids": [
+          "3L-AC-015"
+        ],
+        "semantic_digest": "sha256:f1aac519a8b41016f9ea85258dc1c948c6aad6c86eb4eb2dc0982c17a7916042"
+      },
+      {
+        "requirement_id": "3L-R-23",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Single Writer`: 同一branchの同時writerは1件に限定する。起動前に排他的なwriter所有を確保し、2件目をprovider起動前に拒否する。単なる事前一覧確認だけを排他と見なさない。完了・取消・期限切れによる安全な返却まで所有を保持し、遅延workerが返却後のbranchへ書ける場合は再配車しない。",
+        "acceptance_ids": [
+          "3L-AC-025"
+        ],
+        "semantic_digest": "sha256:1cdbeffa58a095343dd21c63974cc81199dd92c52049b331406166ee9fdba215"
+      },
+      {
+        "requirement_id": "3L-R-24",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Pre-dispatch Identity`: provider起動直前にbranch owner、assignment、base HEADを外部再取得し、発行済みbranchと承認されたscopeの束縛に一致する場合だけ起動する。未発行、owner不明、不一致、stale HEADは起動を拒否し、起動後の検査成功で相殺しない。",
+        "acceptance_ids": [
+          "3L-AC-026"
+        ],
+        "semantic_digest": "sha256:1e3e62ea2d8450ac0d188dbc86729d6122f894d0c7728b3d521b9837d14945c4"
+      },
+      {
+        "requirement_id": "3L-R-25",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Phased Assignment Migration`: Phase AはIssue正本と事前発行branch、action-bound assignment、3L-R-23の排他、前後2 leg照合、budget／TTLで限定運用する。Phase Bは#860のlease／fenceへ接続する。切替時は新規dispatchを停止し、旧assignmentを終端・取消・隔離して遅延write不能を検証した後、owner／branch／HEADと新lease／fenceの対応を束縛して再開する。旧tokenの再利用やA/B双方のwriter許可を拒否し、移行を証明できなければ停止を保つ。Phase Aでも排他・境界強制を省略しない。",
+        "acceptance_ids": [
+          "3L-AC-027"
+        ],
+        "semantic_digest": "sha256:1067263a3041e20dd5cc1d25efd2b88afdd00f4798e29ac38645fc237da84479"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-013",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-12"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: policy bundle exact digest\nNegative oracle: scope／branch／budget欠落を拒否",
+        "semantic_digest": "sha256:9b0fd831300e1cd6b46e7ed3b440bccf8b41d2e4d148833747bdf1cb399967f3"
+      },
+      {
+        "acceptance_id": "3L-AC-014",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-13"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: cloud hook／environmentで規則強制\nNegative oracle: promptだけの遵守claimを拒否",
+        "semantic_digest": "sha256:26dc079e7c168264dfc1c1f2e88ca75e8897b69ad1084671bb1b4d674e659806"
+      },
+      {
+        "acceptance_id": "3L-AC-015",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-14"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 起動後・成果回収時のowner／assignment／candidate HEADを外部再取得し、当該assignmentの正当なHEAD進行を受理\nNegative oracle: owner交代、別branch、帰属不能HEAD、worker自己HEAD／自己costを個別に拒否。前段検査成功で相殺しない",
+        "semantic_digest": "sha256:5a74c34287e986396ed85259a550f60d2348d13498dc4279f7f2025d0ccfbfdf"
+      },
+      {
+        "acceptance_id": "3L-AC-025",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-23"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 同時dispatchの競合試験で同一branchのwriterが1件だけ成立し、異なるbranchの正当な並列実行は許可\nNegative oracle: 同一branchの2件目、期限切れ後の遅延write、所有返却前の再配車を個別に拒否。v0.3 RLO-AC-004の検出能力を維持",
+        "semantic_digest": "sha256:1cb783116beae67dac4dbc9e4e551d9181f2b9d64c2bd3a4bd4ccd535bbbcc1f"
+      },
+      {
+        "acceptance_id": "3L-AC-026",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-24"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 起動直前の外部owner／assignment／base HEAD照合が一致した場合だけproviderを起動\nNegative oracle: owner不明・owner不一致・stale HEADの各反例でprovider起動0回。後段成功による相殺を拒否",
+        "semantic_digest": "sha256:7aa56bf19532a187ae070481d51137807c4cc8616310986b6af5ee2ad3818d74"
+      },
+      {
+        "acceptance_id": "3L-AC-027",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-25"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: Phase Aの旧assignment終端と遅延write不能を確認し、Phase Bのlease／fence対応を検証してからdispatch再開\nNegative oracle: 未終端worker残存、旧token再利用、A/B二重writer、移行証拠欠落を個別に拒否",
+        "semantic_digest": "sha256:504c0e3299ec3e432f651013ea5247a39d96991833abcc789987d67c67c406c7"
+      }
+    ],
+    "downstream_issue_ids": [
+      1293,
+      862,
+      860
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-013"
+        ]
+      },
+      {
+        "issue_id": 1293,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-014",
+          "3L-AC-026"
+        ]
+      },
+      {
+        "issue_id": 862,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-015"
+        ]
+      },
+      {
+        "issue_id": 860,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-025",
+          "3L-AC-027"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:eec7c0389aaa46523d621c3e54852c7ced086c34cb83836f93eb4f19904eb0a6"
+  },
+  "3L-FR-006": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-006",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-15",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Deterministic Core`: authority、dependency、branch、lease、path、secret、supply-chain、review、CI、Reverse、closure、Issue graphをNode gateで判定し、モデル結果で上書きしない。",
+        "acceptance_ids": [
+          "3L-AC-016"
+        ],
+        "semantic_digest": "sha256:6d738afb3c6f7d40dbf9aba2414f0f09c1479a4805f87f78f4b43d83378ff356"
+      },
+      {
+        "requirement_id": "3L-R-16",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Semantic Advisory`: scope creep、責務混載、diff意味差、設計不一致、便乗refactor、test弱化、graph意味不備をfinding化し、worker branchを直接修正しない。",
+        "acceptance_ids": [
+          "3L-AC-017"
+        ],
+        "semantic_digest": "sha256:9a7b82ac1c967908630a92bcb69e8699399c06d1d5c634f1a5afab8e92b71298"
+      },
+      {
+        "requirement_id": "3L-R-17",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Severity Scope`: P0はhard block、P1はaffected-scope block、P2はscheduled findingとし、P2で無関係PRを止めない。",
+        "acceptance_ids": [
+          "3L-AC-018"
+        ],
+        "semantic_digest": "sha256:b952bd1e30beba374df0af355ce20671278439856dec9553e18a814da39aee5a"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-016",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-15"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: deterministic gateをモデルが上書き不能\nNegative oracle: AI PASSによるP0相殺を拒否",
+        "semantic_digest": "sha256:82fea9265d81f9fbbb57263054e491266f5e0208835a790075ee4fa174e8df0e"
+      },
+      {
+        "acceptance_id": "3L-AC-017",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-16"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: semantic findingがowner／route候補を持つ\nNegative oracle: auditorによるbranch直接修正を拒否",
+        "semantic_digest": "sha256:ed63a8a241718cafb64a25118a12f1f37c321252e2c6f52073a3b1e9ff0104e8"
+      },
+      {
+        "acceptance_id": "3L-AC-018",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-17"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: P0／P1／P2作用範囲を分離\nNegative oracle: P2で無関係PRを止めない",
+        "semantic_digest": "sha256:ca9b65686fd97da52b56dd17289627c0f3329edcef1d4301af7bb1d5a6ec790d"
+      }
+    ],
+    "downstream_issue_ids": [
+      1360
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-016"
+        ]
+      },
+      {
+        "issue_id": 1360,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-017",
+          "3L-AC-018"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:a68c0940832e21e33ce253018edd1de06f92b50e15890ef6a54dfb476ba9efbc"
+  },
+  "3L-FR-007": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-007",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-22"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-18",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Audit Task Classes`: `GH-AUTHORITY/GH-BRANCH/GH-PR-SCOPE/GH-REVIEW-CI/GH-MERGE-CLOSURE/GH-GRAPH/GH-SECURITY`を独立classにする。",
+        "acceptance_ids": [
+          "3L-AC-019"
+        ],
+        "semantic_digest": "sha256:f762ee1e1bebea51e189a741cb12a7a310f0cddb68ba82f014e2af641fa51444"
+      },
+      {
+        "requirement_id": "3L-R-19",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Qualification Lifecycle`: `UNBENCHMARKED→SHADOW→ADVISORY→REVERSIBLE_WRITE→BOUNDED_BLOCK→GOVERNANCE_RECEIPT`を正規遷移とし、`REVOKED`を分離する。",
+        "acceptance_ids": [
+          "3L-AC-020"
+        ],
+        "semantic_digest": "sha256:4c49d3cddd848fbe0930a775e8644cab39322a758142352bcc4bd7e7ff80c230"
+      },
+      {
+        "requirement_id": "3L-R-20",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Identity Separation`: 称号、task qualification、GitHub authority、assignment roleを別fieldにし、model revision変更、opaque backend、重大miss、期限切れで旧資格を継承しない。",
+        "acceptance_ids": [
+          "3L-AC-021",
+          "3L-AC-022"
+        ],
+        "semantic_digest": "sha256:ba0d60c0e3c22e366ed9890a5f6e1b1c1a798554b3b7495d2187c00c13a633b1"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-019",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-18"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 7 GitHub task classを独立採点\nNegative oracle: Critical missの平均相殺を拒否",
+        "semantic_digest": "sha256:247abad45c08d54ea97ec714169da1a5f43b6db077e7f2cb5d767cbc7c21e496"
+      },
+      {
+        "acceptance_id": "3L-AC-020",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-19"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: qualification状態遷移を順守\nNegative oracle: UNBENCHMARKEDからPASS権限へ飛ばさない",
+        "semantic_digest": "sha256:fcc51e1d788789543dcd6bb4b8dbd63e7ac481945f9962b5485407fcec46f3f4"
+      },
+      {
+        "acceptance_id": "3L-AC-021",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-20"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 称号／資格／権限／roleを分離\nNegative oracle: 称号だけでGitHub writeを許可しない",
+        "semantic_digest": "sha256:25b1be25b424ae51021cfeb2afc6eb9d3406b0a5d6b1804dab39696168e75c8b"
+      },
+      {
+        "acceptance_id": "3L-AC-022",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-20"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: model revision変更で再bench\nNegative oracle: 旧score／資格／称号を継承しない",
+        "semantic_digest": "sha256:debf863da456748bc784663bbe444ed969ef987344273fe5331bfbe41173d42c"
+      }
+    ],
+    "downstream_issue_ids": [
+      1361
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-019"
+        ]
+      },
+      {
+        "issue_id": 1361,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-020",
+          "3L-AC-021",
+          "3L-AC-022"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:6e685e965e97b809565cb57e615734994d78f0c2b125332c530fbd96fba9ce45"
+  },
+  "3L-FR-008": {
+    "schema_version": "helix-requirement-refinement.v1",
+    "refinement_contract_id": "3L-FR-008",
+    "revision": 1,
+    "lifecycle_status": "specified",
+    "primary_system_contract_id": "HR-FR-HIL-08",
+    "related_system_contract_ids": [
+      "HR-FR-HIL-22"
+    ],
+    "source": {
+      "requirement_path": "docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+      "requirement_digest": "sha256:4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185",
+      "acceptance_path": "docs/test-design/helix/three-lane-cloud-governance-acceptance.md",
+      "acceptance_digest": "sha256:785421188d23f371290ff5bacecba6c5215e7baa66110c461f548cae8f6a2fc7"
+    },
+    "plan_id": "PLAN-L3-78-three-lane-cloud-governance-authority",
+    "responsibility_owner": "three-lane-cloud-governance-authority",
+    "contract_requirement": null,
+    "supporting_requirements": [
+      {
+        "requirement_id": "3L-R-21",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Seven-day Canary`: WIP=2で7日間、canary専用でない実taskを最低5件処理し、cost、accepted PR、first-pass gate、rework、time-to-accepted、Codex relief、local processを測る。",
+        "acceptance_ids": [
+          "3L-AC-023"
+        ],
+        "semantic_digest": "sha256:f8d9ec457099af280568b72daaf408c5847f739f285e7291b3bf9fc3f32f479c"
+      },
+      {
+        "requirement_id": "3L-R-22",
+        "source_projection": "markdown_requirement_bullet_v1",
+        "statement": "Billing-cycle Read-after`: cycle末まで予算枯渇と過少利用を監査し、accepted throughputとescaped defectを含めてpolicyを再評価する。",
+        "acceptance_ids": [
+          "3L-AC-024"
+        ],
+        "semantic_digest": "sha256:9ebc1119be1fb2aee348a51fc705c7e81458656240c12e70dbe6c9141603323c"
+      }
+    ],
+    "acceptance_cases": [
+      {
+        "acceptance_id": "3L-AC-023",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-21"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: 7日で実task 5件以上\nNegative oracle: 未使用でcycle survival成功にしない",
+        "semantic_digest": "sha256:fc2fdecc18245aebadbe268d5be39a7cf600dbd8475b50c818e80977b39e3fa7"
+      },
+      {
+        "acceptance_id": "3L-AC-024",
+        "source_projection": "markdown_acceptance_table_v2",
+        "requirement_ids": [
+          "3L-R-22"
+        ],
+        "polarity": "boundary",
+        "statement": "合格条件: billing cycle末のread-after\nNegative oracle: run数だけで成功判定しない",
+        "semantic_digest": "sha256:d49535adad83e4033549341a4d66c8c4abc90c8d85c4e4bd730d4a8c8b20ae79"
+      }
+    ],
+    "downstream_issue_ids": [
+      1362
+    ],
+    "acceptance_owners": [
+      {
+        "issue_id": 1362,
+        "owner_kind": "implementation",
+        "acceptance_ids": [
+          "3L-AC-023"
+        ]
+      },
+      {
+        "issue_id": 1358,
+        "owner_kind": "parent_acceptance",
+        "acceptance_ids": [
+          "3L-AC-024"
+        ]
+      }
+    ],
+    "approval": null,
+    "semantic_digest": "sha256:c1a5336a91f7126c44f309a9dba20ec1209967a4f474991e8d0290c783325e5b"
   }
 }
