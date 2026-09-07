@@ -11,7 +11,7 @@ parent_design: docs/design/helix/L6-function-design/project-hook-authority-resol
 pair_artifact: docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md
 ---
 
-# project-hook authority consumer wiring
+# project-hook authority consumer接続
 
 ## 責務
 
@@ -34,13 +34,13 @@ host adapterはexecution rootを実行時のcwdから観測し、loader root、s
 
 consumerはprojection済みbytesを読むだけで、resolver、capture、serialization、repair hint、surface固有のauthority fieldを追加しない。
 
-## Dispatch admission
+## Dispatch受付判定
 
 `admitted_receipt`が存在する場合だけdispatchを許可する。resolution failure、invalid envelope、stale root、HEAD差分、source差分、物理identity不一致はadmitted receiptなしで固定failure bytesへ閉じ、dispatchと全write side effectを0にする。
 
 standaloneの`status`／`doctor`はread-onlyかつunavailableを明示する。standaloneのdispatchは`unavailable_no_dispatch`であり、既存providerや旧engineへ暗黙に送らない。
 
-## Consumer wiring
+## Consumer接続
 
 CLI native adapterは明示されたenvelope fileを使い、SessionStartはhook inputのtransport envelopeを使う。実行前にconsumer wiringを構築し、provider process、team、pair-agent、loop等のdispatch開始前にadmissionを確認する。旧#1620のL7↔L8設計をコピーせず、本設計はcanonical L6、検証はL7 pairへ束縛する。
 

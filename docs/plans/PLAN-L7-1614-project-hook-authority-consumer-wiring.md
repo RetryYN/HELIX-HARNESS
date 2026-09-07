@@ -85,7 +85,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — canonical L6↔L7境界とdispatch admission" }
 ---
 
-# PLAN-L7-1614: project-hook authority consumer wiring
+# PLAN-L7-1614: project-hook authority consumer接続
 
 ## 目的
 
