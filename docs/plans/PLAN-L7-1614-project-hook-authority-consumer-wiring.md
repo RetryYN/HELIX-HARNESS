@@ -19,7 +19,7 @@ change_slice: atomic
 refactor_step: migrate_one_consumer
 legacy_retirement_state: retained
 no_code_decision: add_code
-ddd_modeling_decision: application_service
+ddd_modeling_decision: domain_service
 contract_preconditions: "Control Planeがsessionまたはassignment authority snapshotを明示し、PLAN-L7-667/668/669のprovider/projectorが利用可能である"
 contract_postconditions: "SessionStart、doctor、status、dispatchが一度だけ解決された同一canonical receipt/failure bytesを消費する"
 contract_invariants: "cwd、env、primary root、origin/main fallback禁止、surface別再計算禁止、foreign dirty root変更禁止"
