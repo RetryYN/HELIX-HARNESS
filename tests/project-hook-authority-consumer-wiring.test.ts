@@ -9,12 +9,12 @@ import {
   PROJECT_HOOK_AUTHORITY_INPUT_SCHEMA,
   type ProjectHookAuthorityInputV1,
 } from "../src/runtime/project-hook-authority";
-import type { ProjectHookAuthorityInputProvider } from "../src/runtime/project-hook-authority-provider";
 import {
   createProjectHookAuthorityConsumerWiring,
   createProjectHookAuthorityConsumerWiringFromSnapshotBytes,
   type ProjectHookAuthorityConsumer,
 } from "../src/runtime/project-hook-authority-consumer-wiring";
+import type { ProjectHookAuthorityInputProvider } from "../src/runtime/project-hook-authority-provider";
 
 // PLAN-L7-1614-project-hook-authority-consumer-wiring
 
@@ -148,7 +148,16 @@ describe("project hook authority consumer wiring", () => {
       const outputs = consumers.map((consumer) => {
         const run = spawnSync(
           process.execPath,
-          [tsxCli, "src/cli.ts", "project-hook-authority", "surface", "--snapshot-file", snapshot, "--consumer", consumer],
+          [
+            tsxCli,
+            "src/cli.ts",
+            "project-hook-authority",
+            "surface",
+            "--snapshot-file",
+            snapshot,
+            "--consumer",
+            consumer,
+          ],
           { cwd: process.cwd(), encoding: "utf8", timeout: 30_000 },
         );
         expect(run.status, run.stderr).toBe(0);
@@ -158,7 +167,16 @@ describe("project hook authority consumer wiring", () => {
 
       const missing = spawnSync(
         process.execPath,
-        [tsxCli, "src/cli.ts", "project-hook-authority", "surface", "--snapshot-file", join(rootDir, "missing.json"), "--consumer", "dispatch"],
+        [
+          tsxCli,
+          "src/cli.ts",
+          "project-hook-authority",
+          "surface",
+          "--snapshot-file",
+          join(rootDir, "missing.json"),
+          "--consumer",
+          "dispatch",
+        ],
         { cwd: process.cwd(), encoding: "utf8", timeout: 30_000 },
       );
       expect(missing.status).toBe(1);

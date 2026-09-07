@@ -82,13 +82,6 @@ import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
 import { nodeDoctorDeps, runConsumerDoctor, runDoctor, runDoctorGate } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { assertNodeEngineRuntimeAuthority } from "./doctor/node-engine-runtime";
-import {
-  createProjectHookAuthorityConsumerWiring,
-  createProjectHookAuthorityConsumerWiringFromSnapshotBytes,
-  type ProjectHookAuthorityConsumer,
-} from "./runtime/project-hook-authority-consumer-wiring";
-import { createAssignmentProjectHookAuthorityProvider } from "./runtime/project-hook-assignment-provider";
-import { nodeProjectHookPhysicalAdapterDeps } from "./runtime/project-hook-physical-adapter";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
@@ -400,6 +393,13 @@ import {
   buildCandidateCouncilReport,
   type CandidateVerifierInput,
 } from "./runtime/parallel-candidate-verifier-council";
+import { createAssignmentProjectHookAuthorityProvider } from "./runtime/project-hook-assignment-provider";
+import {
+  createProjectHookAuthorityConsumerWiring,
+  createProjectHookAuthorityConsumerWiringFromSnapshotBytes,
+  type ProjectHookAuthorityConsumer,
+} from "./runtime/project-hook-authority-consumer-wiring";
+import { nodeProjectHookPhysicalAdapterDeps } from "./runtime/project-hook-physical-adapter";
 import {
   nodeProviderHandoverDeps,
   type ProviderRuntime,
@@ -4432,19 +4432,16 @@ projectHookAuthority
   .description("Control Plane assignment snapshotから完全なauthority snapshotを物理採取する")
   .requiredOption("--assignment-snapshot-file <path>", "Control Plane assignment snapshot JSON")
   .action((opts: { assignmentSnapshotFile: string }) => {
-    const provider = createAssignmentProjectHookAuthorityProvider(
-      () => {
-        try {
-          return {
-            ok: true as const,
-            snapshot: JSON.parse(readFileSync(resolve(opts.assignmentSnapshotFile), "utf8")),
-          };
-        } catch {
-          return { ok: false as const, reason: "assignment_unavailable" as const };
-        }
-      },
-      nodeProjectHookPhysicalAdapterDeps,
-    );
+    const provider = createAssignmentProjectHookAuthorityProvider(() => {
+      try {
+        return {
+          ok: true as const,
+          snapshot: JSON.parse(readFileSync(resolve(opts.assignmentSnapshotFile), "utf8")),
+        };
+      } catch {
+        return { ok: false as const, reason: "assignment_unavailable" as const };
+      }
+    }, nodeProjectHookPhysicalAdapterDeps);
     const captured = provider.read();
     const wiring = createProjectHookAuthorityConsumerWiring({ read: () => captured });
     if (!captured.ok || !wiring.ok) {
