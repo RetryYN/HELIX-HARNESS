@@ -36,7 +36,7 @@ function sha256(value: string): string {
   return `sha256:${createHash("sha256").update(value, "utf8").digest("hex")}`;
 }
 
-function withDigest<T extends Record<string, unknown>>(value: T): T & { semantic_digest: string } {
+function withDigest<T extends Record<string, unknown>>(value: T): Omit<T, "semantic_digest"> & { semantic_digest: string } {
   return { ...value, semantic_digest: requirementIrSemanticDigest(value) };
 }
 
