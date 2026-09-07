@@ -90,7 +90,7 @@ lifecycle resolve、SQLite lock を再実行するため、計算量は O(Nrefs 
 - L8: `U-FLIFE-013`。
 - L9: `IT-FLIFE-003`。
 
-## 5. 2026-09-07 trace recovery
+## 5. 2026-09-07 追跡関係の復旧
 
 L9でconfirmed済みの`IT-FLIFE-003`が、実行可能oracleのtest titleから直接追跡できず、
 `integration-oracle-trace`がmainをfail-closeした。契約や挙動は変更せず、group-first surface oracleと
