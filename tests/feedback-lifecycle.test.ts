@@ -294,7 +294,7 @@ describe("feedback lifecycle journal", () => {
     }
   });
 
-  it("U-FLIFE-013 / IT-FLIFE-003: surface receipt batchは多数sourceを単一lock・単一journal snapshotで冪等記録する", () => {
+  it("U-FLIFE-013 / IT-FLIFE-003 / PLAN-RECOVERY-825-feedback-lifecycle-oracle-trace: surface receipt batchは多数sourceを単一lock・単一journal snapshotで冪等記録する", () => {
     const repo = root();
     const base = nodeFeedbackLifecycleDeps(repo, () => NOW);
     const sources = Array.from({ length: 512 }, (_, index) =>
