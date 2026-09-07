@@ -4,7 +4,7 @@ title: "non-PR CI eventのbranch base authority誤算出を復旧する"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-08
 updated: 2026-09-08
@@ -53,7 +53,35 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-003, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-004, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-005, test_path: tests/ci-branch-base-resolver.test.ts }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T22:31:02Z"
+    tests_green_at: "2026-09-07T22:30:23Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: b730e21032478b35a6e37554bb3dddc06463fff7
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1634#issuecomment-5576235245"
+    scope: "local HEAD b730e2103のNode実装に対する独立技術検収。実装6pathはda0b12fceとbytes一致、独立cloneで4file90tests成功（22:30:23Z）、raw log2本のdigest一致、verdict approve/blockers 0、PLAN技術転記可。reviewed_atはGitHub公開時刻。旧Bash実装のapproveと混同せず、tscは作成側clean clone実測の受領照合のみ。判断側の以前のtsc exit 2をgreenへ昇格しない。#1638に従い技術confirmedとfresh CI・新世代receipt・merge admissionを分離し、本記録をCI成功・merge許可・main read-afterの代用にしない。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --yes --package=node@24.15.0 -- npx --no-install vitest run tests/ci-branch-base-resolver.test.ts tests/harness-check-workflow.test.ts tests/runtime-portability.test.ts tests/github-review-ci-generation.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-07T22:16:22Z"
+        evidence_path: .helix/evidence/review-1634/vitest-targeted.log
+        output_digest: "sha256:16e4b9ca671257d226b4f0fc79202271011cf88fd00a178aeb3e34b0a0e61cc5"
+      - kind: typecheck
+        command: "npm exec --yes --package=node@24.15.0 -- npx --no-install tsc --noEmit -p . --extendedDiagnostics"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-07T22:16:35Z"
+        evidence_path: .helix/evidence/review-1634/tsc.log
+        output_digest: "sha256:1d32c6cab4864b7bf68c2aaa6720197c4bde525f9242e7343836aff4b6d86128"
 ---
 
 # non-PR CI branch base authorityの復旧
@@ -121,5 +149,17 @@ HEAD `da0b12fceae674ab66faba74fefefda455ce2105` のclean cloneで、Node 24.15.0
 | typecheck | `npx --no-install tsc --noEmit -p . --extendedDiagnostics` | 0 / 2026-09-07T22:16:35Z | `.helix/evidence/review-1634/tsc.log` / `1d32c6cab4864b7bf68c2aaa6720197c4bde525f9242e7343836aff4b6d86128` |
 
 別の変異実行では、`--all`除去でU-CIBASE-010が、`--slurp`再混入でU-CIBASE-011がそれぞれ失敗し、
-復元後は2件成功した。変異時の失敗を上表のgreen出力へ混載しない。新しい独立verdict、
-PLAN技術検収、最新main同期、fresh CI、exact receipt、main read-afterは引き続き必要である。
+復元後は2件成功した。変異時の失敗を上表のgreen出力へ混載しない。
+
+## Node実装の独立技術検収
+
+comment 5576235245（公開 `2026-09-07T22:31:02Z`）で、独立cloneの
+`b730e21032478b35a6e37554bb3dddc06463fff7` へのapprove、blockers 0、PLAN技術転記可を受領した。
+独立側の4file90testsは22:30:23Z完了。上表の2本は作成側のraw bytesであり、独立側の実行出力へ
+帰属変更しない。tscの独立再実行成功は主張せず、過去の判断側exit 2も相殺しない。
+
+この技術検収でPLANをconfirmedとする。新規sourceを所有するPLANについて、CI成功後でなければ
+confirmed化できない循環は#1638の分離契約に従って避けるが、fresh CIと新世代exact receiptの
+merge条件は緩めない。main `cf85c603986b87905514d2d3ebcdd1fde1aaa2b2` の同期後に再検証し、
+push済みHEADの全回帰・sealed receipt・Ready・merge dry-run・main read-afterを別途成立させる。
+人間承認や包括的な自動書込み権限を追加せず、completion_claim_allowedはfalseを維持する。
