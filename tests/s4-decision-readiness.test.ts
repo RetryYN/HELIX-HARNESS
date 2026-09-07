@@ -1,6 +1,8 @@
 // @helix-repo-wide-guard
+// PLAN-RECOVERY-1430-evidence-substance
 import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
+import { observeEvidenceFiles } from "../src/lint/evidence-file-substance";
 import {
   analyzeS4DecisionReadiness,
   buildS4DecisionPackets,
@@ -100,6 +102,10 @@ function input(overrides: Partial<S4DecisionReadinessInput> = {}): S4DecisionRea
         ].join("\n"),
       },
     ],
+    evidenceObservations: observeEvidenceFiles(process.cwd(), [
+      "tests/s4-decision-readiness.test.ts",
+      "docs/process/modes/discovery.md",
+    ]),
     ...overrides,
   };
 }
@@ -330,6 +336,115 @@ describe("S4 decision readiness", () => {
         reason: "verified_evidence must cite concrete test/review evidence locator or command",
       });
     }
+  });
+
+  it("U-GES-012: keeps nonexistent S4 evidence paths and unbound digests pending", () => {
+    const base = input();
+    const missingPath = "tests/not-present-s4-evidence.test.ts";
+    const plan = {
+      ...base.plans[0],
+      text: base.plans[0].text.replace(
+        "tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
+        `${missingPath} and npx --no-install vitest run ${missingPath} sha256:${"0".repeat(64)}`,
+      ),
+    };
+
+    const result = analyzeS4DecisionReadiness(input({ plans: [plan] }));
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-900",
+      reason: `verified_evidence path is not an observed regular repository file: ${missingPath}`,
+    });
+    expect(result.violations).toContainEqual({
+      subject: "PLAN-DISCOVERY-900",
+      reason: `verified_evidence digest is not bound to cited file bytes: sha256:${"0".repeat(64)}`,
+    });
+  });
+
+  it("fail-closes root-level and key-assigned missing S4 evidence paths", () => {
+    for (const [label, locator, missingPath] of [
+      ["root-level", "missing.log", "missing.log"],
+      ["key-assigned", "key=tests/not-present.log", "tests/not-present.log"],
+    ] as const) {
+      const base = input();
+      const plan = {
+        ...base.plans[0],
+        text: base.plans[0].text.replace(
+          "tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts",
+          `${locator} and npm test`,
+        ),
+      };
+
+      const result = analyzeS4DecisionReadiness(input({ plans: [plan] }));
+
+      expect(result.ok, label).toBe(false);
+      expect(result.violations, label).toContainEqual({
+        subject: "PLAN-DISCOVERY-900",
+        reason: `verified_evidence path is not an observed regular repository file: ${missingPath}`,
+      });
+    }
+  });
+
+  it("binds each S4 evidence digest to its directly cited path", () => {
+    const base = input();
+    const firstPath = "tests/evidence-first.test.ts";
+    const secondPath = "tests/evidence-second.test.ts";
+    const firstDigest = `sha256:${"a".repeat(64)}`;
+    const secondDigest = `sha256:${"b".repeat(64)}`;
+    const evidenceObservations = {
+      ...(base.evidenceObservations ?? {}),
+      [firstPath]: {
+        ok: true as const,
+        digest: firstDigest,
+        sizeBytes: 1,
+        content: { kind: "opaque" as const },
+      },
+      [secondPath]: {
+        ok: true as const,
+        digest: secondDigest,
+        sizeBytes: 1,
+        content: { kind: "opaque" as const },
+      },
+    };
+    const evidenceLine =
+      "tests/s4-decision-readiness.test.ts and npx --no-install vitest run tests/s4-decision-readiness.test.ts";
+    const pairedPlan = {
+      ...base.plans[0],
+      text: base.plans[0].text.replace(
+        evidenceLine,
+        `${firstPath} (${firstDigest}); ${secondPath} (${secondDigest}); npm test`,
+      ),
+    };
+
+    expect(
+      analyzeS4DecisionReadiness(input({ plans: [pairedPlan], evidenceObservations })).ok,
+    ).toBe(true);
+
+    const swappedPlan = {
+      ...base.plans[0],
+      text: base.plans[0].text.replace(
+        evidenceLine,
+        `${firstPath} (${secondDigest}); ${secondPath} (${firstDigest}); npm test`,
+      ),
+    };
+    const result = analyzeS4DecisionReadiness(
+      input({ plans: [swappedPlan], evidenceObservations }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining([
+        {
+          subject: "PLAN-DISCOVERY-900",
+          reason: `verified_evidence digest is not bound to cited file bytes: ${secondDigest}`,
+        },
+        {
+          subject: "PLAN-DISCOVERY-900",
+          reason: `verified_evidence digest is not bound to cited file bytes: ${firstDigest}`,
+        },
+      ]),
+    );
   });
 
   it("keeps source URL and docs path valid for external_source_basis only", () => {

@@ -1,0 +1,78 @@
+{
+  "schema_version": "g10-ux-evidence-v1",
+  "gate": "G10",
+  "profile": "ux-real-browser-chromium",
+  "plan_id": "PLAN-RECOVERY-1430-evidence-substance",
+  "selected_item_ids": [
+    "UXV-RENDER-01",
+    "UXV-A11Y-01",
+    "UXV-BLOCKER-01"
+  ],
+  "mandatory_item_ids": [
+    "UXV-RENDER-01",
+    "UXV-A11Y-01",
+    "UXV-BLOCKER-01"
+  ],
+  "deferred_item_ids": [],
+  "commands": [
+    {
+      "command_id": "cmd-g10-browser-chromium",
+      "command": "HELIX_G10_SCREENSHOT=.helix/evidence/g10-ux/20260906-app-shell.png vitest run tests/g10-browser-evidence.test.ts --reporter=json --outputFile=.helix/evidence/g10-ux/20260906-browser-evidence.vitest.log",
+      "runner": "node24",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": ".helix/evidence/g10-ux/20260906-browser-evidence.vitest.log",
+      "output_digest": "sha256:ece0d50f7a45f7cd74e47a063f01aa9b66700a9fb25e1380a5bf413106c44156",
+      "item_ids": [
+        "UXV-RENDER-01",
+        "UXV-A11Y-01",
+        "UXV-BLOCKER-01"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "item_id": "UXV-RENDER-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g10-ux/20260906-browser-evidence.vitest.log",
+        ".helix/evidence/g10-ux/20260906-app-shell.png",
+        "tests/g10-browser-evidence.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g10-browser-chromium"
+      ],
+      "advisor_evidence": "browser-render-receipt:sha256:fdfcbbdad0b6646e667f68bc06fa8f77429c82d0941ca4bf825bbd9c324bec1a"
+    },
+    {
+      "item_id": "UXV-A11Y-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g10-ux/20260906-browser-evidence.vitest.log",
+        "tests/g10-browser-evidence.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g10-browser-chromium"
+      ],
+      "advisor_evidence": "browser-a11y-receipt:sha256:ece0d50f7a45f7cd74e47a063f01aa9b66700a9fb25e1380a5bf413106c44156"
+    },
+    {
+      "item_id": "UXV-BLOCKER-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g10-ux/20260906-browser-evidence.vitest.log",
+        "tests/g10-browser-evidence.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g10-browser-chromium"
+      ],
+      "advisor_evidence": "completion-blocker-receipt:sha256:ece0d50f7a45f7cd74e47a063f01aa9b66700a9fb25e1380a5bf413106c44156"
+    }
+  ],
+  "exit_criteria": {
+    "all_mandatory_passed": true,
+    "failed_mandatory_count": 0,
+    "stale_defer_count": 0,
+    "doctor_check": "g10-ux-workflow"
+  }
+}

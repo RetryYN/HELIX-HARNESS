@@ -1,0 +1,154 @@
+{
+  "schema_version": "g8-integration-evidence-v1",
+  "gate": "G8",
+  "profile": "adapter-asset-node24-execution",
+  "plan_id": "PLAN-RECOVERY-1430-evidence-substance",
+  "selected_it_ids": [
+    "IT-ADAPTER-01",
+    "IT-ADAPTER-03",
+    "IT-ASSET-01",
+    "IT-ASSET-02",
+    "IT-ASSET-03",
+    "IT-ASSET-04",
+    "IT-ASSET-05",
+    "IT-ASSET-06",
+    "IT-ASSET-07"
+  ],
+  "mandatory_it_ids": [
+    "IT-ASSET-05",
+    "IT-ASSET-06"
+  ],
+  "deferred_it_ids": [
+    "IT-ADAPTER-02"
+  ],
+  "commands": [
+    {
+      "command_id": "cmd-adapter-asset-node24",
+      "command": "vitest run tests/runtime-adapter.test.ts tests/skill-recommend.test.ts tests/asset-drift.test.ts tests/asset-catalog.test.ts tests/placeholder-deps.test.ts tests/agent-guard.test.ts tests/agent-slots.test.ts tests/routing-contracts.test.ts --reporter=json --outputFile=.helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+      "runner": "node24",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+      "output_digest": "sha256:8d5f1f39ded662a4852c45657db7af27404666ceb3de4de8d7565ef1ffb686e1",
+      "it_ids": [
+        "IT-ADAPTER-01",
+        "IT-ADAPTER-03",
+        "IT-ASSET-01",
+        "IT-ASSET-02",
+        "IT-ASSET-03",
+        "IT-ASSET-04",
+        "IT-ASSET-05",
+        "IT-ASSET-06",
+        "IT-ASSET-07"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "it_id": "IT-ADAPTER-01",
+      "status": "partial",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/runtime-adapter.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ],
+      "notes": "provider-neutral adapter tests; full provider invocation remains outside this profile"
+    },
+    {
+      "it_id": "IT-ADAPTER-03",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/routing-contracts.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    },
+    {
+      "it_id": "IT-ASSET-01",
+      "status": "partial",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/asset-catalog.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    },
+    {
+      "it_id": "IT-ASSET-02",
+      "status": "partial",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/agent-guard.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    },
+    {
+      "it_id": "IT-ASSET-03",
+      "status": "partial",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/agent-slots.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    },
+    {
+      "it_id": "IT-ASSET-04",
+      "status": "partial",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/asset-catalog.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    },
+    {
+      "it_id": "IT-ASSET-05",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/skill-recommend.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    },
+    {
+      "it_id": "IT-ASSET-06",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/asset-drift.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    },
+    {
+      "it_id": "IT-ASSET-07",
+      "status": "partial",
+      "evidence_paths": [
+        ".helix/evidence/g8-integration/20260906-adapter-asset-evidence.vitest.log",
+        "tests/placeholder-deps.test.ts"
+      ],
+      "command_ids": [
+        "cmd-adapter-asset-node24"
+      ]
+    }
+  ],
+  "exit_criteria": {
+    "all_mandatory_passed": true,
+    "failed_mandatory_count": 0,
+    "stale_defer_count": 0,
+    "doctor_check": "g8-integration-workflow"
+  }
+}

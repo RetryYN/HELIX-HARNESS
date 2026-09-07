@@ -2,6 +2,8 @@
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-013
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { inspectEvidenceFile } from "../src/lint/evidence-file-substance";
+// PLAN-RECOVERY-1430-evidence-substance
 import {
   analyzeObjectiveEvidenceAudit,
   loadObjectiveEvidenceAuditInput,
@@ -21,6 +23,21 @@ const AUDIT_PATH = "docs/governance/helix-objective-evidence-audit.md";
 
 function auditText(): string {
   return readFileSync(AUDIT_PATH, "utf8");
+}
+
+function inputWithLiveOutstandingSnapshot() {
+  const input = loadObjectiveEvidenceAuditInput();
+  return {
+    ...input,
+    outstandingSnapshotText: renderOutstandingSnapshot(buildOutstandingSnapshot(input.outstanding)),
+  };
+}
+
+function replaceAuditRow(text: string, requirementId: string, replacement: string): string {
+  return text
+    .split("\n")
+    .map((line) => (line.startsWith(`| ${requirementId} |`) ? replacement : line))
+    .join("\n");
 }
 
 describe("HELIX objective evidence audit", () => {
@@ -720,5 +737,186 @@ describe("HELIX objective evidence audit", () => {
       progressEvidenceTrusted: false,
     });
     expect(result.objectiveProgress.auditViolationCount).toBeGreaterThan(0);
+  });
+
+  it("U-GES-013: G2 hollow rowとG9 displaced markerを行境界で拒否する", () => {
+    const input = inputWithLiveOutstandingSnapshot();
+    const hollow = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: replaceAuditRow(input.auditText, "G-02", "| G-02 | | proved | | |"),
+    });
+
+    expect(hollow.violations).toEqual(
+      expect.arrayContaining([
+        "G-02: objective statement is empty",
+        "G-02: evidence citations are empty",
+        "G-02: meaning observation is empty",
+      ]),
+    );
+    expect(hollow.objectiveProgress.progressEvidenceTrusted).toBe(false);
+
+    const marker = "live `semanticFeatureFrontierRecords[]`";
+    const g9Row = input.auditText.split("\n").find((line) => line.startsWith("| G-09 |"));
+    expect(g9Row).toContain(marker);
+    const displaced = analyzeObjectiveEvidenceAudit({
+      ...input,
+      auditText: `${replaceAuditRow(
+        input.auditText,
+        "G-09",
+        (g9Row as string).replace(marker, "live frontier record marker removed"),
+      )}\n${marker}`,
+    });
+
+    expect(displaced.violations).toContain(
+      `G-09: meaning observation missing bound marker ${marker}`,
+    );
+    expect(displaced.objectiveProgress.progressEvidenceTrusted).toBe(false);
+  });
+
+  it("U-GES-014: 別ファイルdigestとobservation欠落を拒否し、単一違反でtrustを落とす", () => {
+    const input = inputWithLiveOutstandingSnapshot();
+    const observed = input.evidenceObservations;
+    const legacyPath = "src/runtime/legacy-adoption.ts";
+    const otherPath = "src/runtime/run-debug.ts";
+    const legacyObservation = observed?.[legacyPath];
+    const otherObservation = observed?.[otherPath];
+    if (!legacyObservation?.ok || !otherObservation?.ok || !input.evidenceBindingManifestText) {
+      throw new Error("fixture evidence observations must be available");
+    }
+
+    const wrongDigest = analyzeObjectiveEvidenceAudit({
+      ...input,
+      evidenceBindingManifestText: input.evidenceBindingManifestText.replace(
+        legacyObservation.digest,
+        otherObservation.digest,
+      ),
+    });
+    expect(wrongDigest.violations).toEqual([
+      `G-02: evidence digest does not match binding ${legacyPath}`,
+    ]);
+    expect(wrongDigest.objectiveProgress).toMatchObject({
+      auditViolationCount: 1,
+      progressEvidenceTrusted: false,
+    });
+
+    const missingObservations = { ...observed };
+    delete missingObservations[legacyPath];
+    const missing = analyzeObjectiveEvidenceAudit({
+      ...input,
+      evidenceObservations: missingObservations,
+    });
+    expect(missing.violations).toEqual([`G-02: evidence observation missing ${legacyPath}`]);
+    expect(missing.objectiveProgress).toMatchObject({
+      auditViolationCount: 1,
+      progressEvidenceTrusted: false,
+    });
+  });
+
+  it("U-GES-014b: config全体を無関係なfileへ差し替えても自己承認できない", () => {
+    const input = inputWithLiveOutstandingSnapshot();
+    const canonicalPolicy = {
+      "G-01": {
+        evidencePath: "src/runtime/upstream-adoption.ts",
+        observationMarker: "A146 findings は名前付きで",
+      },
+      "G-02": {
+        evidencePath: "src/runtime/legacy-adoption.ts",
+        observationMarker: "旧 HELIX inventory は file count ではなく意味で分類",
+      },
+      "G-03": {
+        evidencePath: "src/runtime/run-debug.ts",
+        observationMarker: "runtime-verification.jsonl",
+      },
+      "G-04": {
+        evidencePath: "src/state-db/visualization-read-model.ts",
+        observationMarker: "visualization-snapshot.v1",
+      },
+      "G-05": {
+        evidencePath: "src/schema/roadmap.ts",
+        observationMarker: "feature_packs[]",
+      },
+      "G-06": {
+        evidencePath: "tests/vmodel-pair.test.ts",
+        observationMarker: "objective-evidence-audit",
+      },
+      "G-07": {
+        evidencePath: "src/setup/index.ts",
+        observationMarker: "[features].hooks=true",
+      },
+      "G-08": {
+        evidencePath: "src/lint/design-language.ts",
+        observationMarker: "HR-NFR-P5-03",
+      },
+      "G-09": {
+        evidencePath: "src/lint/semantic-frontier-consistency.ts",
+        observationMarker: "live `semanticFeatureFrontierRecords[]`",
+      },
+    } as const;
+    const unrelatedPaths = {
+      "G-01": "tests/vmodel-pair.test.ts",
+      "G-02": "tests/vmodel-pair.test.ts",
+      "G-03": "tests/cli-surface.test.ts",
+      "G-04": "tests/cli-surface.test.ts",
+      "G-05": "docs/design/harness/L6-function-design/function-spec.md",
+      "G-06": "docs/design/helix/L0-charter/helix-charter_v0.1.md",
+      "G-07": "tests/doctor.test.ts",
+      "G-08": "tests/vmodel-pair.test.ts",
+      "G-09": "tests/doctor.test.ts",
+    } as const;
+    const requirementIds = Object.keys(unrelatedPaths) as (keyof typeof unrelatedPaths)[];
+    const evidenceObservations = Object.fromEntries(
+      [...new Set(Object.values(unrelatedPaths))].map((path) => [
+        path,
+        inspectEvidenceFile(process.cwd(), path),
+      ]),
+    );
+    const bindings = requirementIds.map((requirementId) => {
+      const unrelatedPath = unrelatedPaths[requirementId];
+      const unrelatedObservation = evidenceObservations[unrelatedPath];
+      if (!unrelatedObservation?.ok) {
+        throw new Error(`${requirementId} unrelated fixture file must be observable`);
+      }
+      const row = input.auditText
+        .split("\n")
+        .find((line) => line.startsWith(`| ${requirementId} |`));
+      const observation = row?.trim().replace(/^\|/u, "").replace(/\|$/u, "").split("|")[4]?.trim();
+      if (!observation) throw new Error(`${requirementId} observation fixture is missing`);
+      expect(row).toContain(`\`${unrelatedPath}\``);
+      expect(observation.slice(0, 12)).not.toBe(canonicalPolicy[requirementId].observationMarker);
+      const canonicalObservation =
+        input.evidenceObservations?.[canonicalPolicy[requirementId].evidencePath];
+      if (!canonicalObservation?.ok) {
+        throw new Error(`${requirementId} canonical fixture file must be observable`);
+      }
+      expect(unrelatedObservation.digest).not.toBe(canonicalObservation.digest);
+      return {
+        requirement_id: requirementId,
+        evidence_path: unrelatedPath,
+        evidence_digest: unrelatedObservation.digest,
+        minimum_size_bytes: 1,
+        observation_marker: observation.slice(0, 12),
+      };
+    });
+
+    const result = analyzeObjectiveEvidenceAudit({
+      ...input,
+      evidenceBindingManifestText: JSON.stringify({
+        schema_version: "helix-objective-evidence-substance-binding.v1",
+        bindings,
+      }),
+      evidenceObservations: { ...input.evidenceObservations, ...evidenceObservations },
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.violations).toEqual(
+      expect.arrayContaining(
+        requirementIds.flatMap((requirementId) => [
+          `${requirementId}: evidence path must match canonical policy ${canonicalPolicy[requirementId].evidencePath}`,
+          `${requirementId}: observation marker must match canonical policy ${canonicalPolicy[requirementId].observationMarker}`,
+          `${requirementId}: evidence digest does not match binding ${canonicalPolicy[requirementId].evidencePath}`,
+        ]),
+      ),
+    );
+    expect(result.objectiveProgress.progressEvidenceTrusted).toBe(false);
   });
 });

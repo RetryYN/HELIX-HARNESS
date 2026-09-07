@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-312-d-contract-dsl
+superseded_by: [PLAN-RECOVERY-1430-evidence-substance]
 title: "PLAN-L7-312 (impl): D-CONTRACT DSL 実装 (mode-routing.yaml / gate-checks.yaml + zod loader) — 上流突合で確定した LOCAL 自身の L7 carry を閉じる"
 kind: impl
 layer: L7

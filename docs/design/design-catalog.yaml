@@ -234,6 +234,8 @@ items:
       - docs/test-design/helix/L8-review-evidence-projection-parity-unit-test-design.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md
       - docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
+      - docs/design/helix/L6-function-design/review-receipt-plan-binding.md
+      - docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md
       - docs/design/helix/L6-function-design/design-language-early-detection.md
       - docs/test-design/helix/L8-design-language-early-detection-unit-test-design.md
       - docs/design/harness/L6-function-design/active-plan-selection.md
@@ -1100,6 +1102,8 @@ items:
       - docs/design/helix/L4-basic-design/worker-context-authority.md
       - docs/design/helix/L5-detail/worker-context-authority.md
       - docs/design/helix/L6-function-design/worker-context-authority.md
+      - docs/design/helix/L6-function-design/worker-budget-lifecycle.md
+      - docs/test-design/helix/L8-worker-budget-lifecycle.md
       - docs/design/helix/L4-basic-design/worker-blind-benchmark.md
       - docs/design/helix/L5-detail/worker-blind-benchmark.md
       - docs/design/helix/L6-function-design/worker-blind-benchmark.md
@@ -1109,6 +1113,7 @@ items:
       - docs/design/helix/L4-basic-design/design-reality-binding.md
       - docs/design/helix/L5-detail/design-reality-binding.md
       - docs/design/helix/L6-function-design/design-reality-binding.md
+      - docs/design/helix/L6-function-design/gate-evidence-substance.md
       - docs/design/helix/L4-basic-design/hybrid-rebaseline-v0.5.0-collision-architecture.md
       - docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md
       - docs/test-design/helix/L8-workflow-guide-dynamic-injection-unit-test-design.md
