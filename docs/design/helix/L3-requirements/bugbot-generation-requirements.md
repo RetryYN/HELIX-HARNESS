@@ -1,21 +1,35 @@
 ---
-title: "HELIX-bugbot 定型生成・正規操作の改訂候補"
-status: draft_candidate
-authority_status: approved_pending_canonical_promotion
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+title: "HELIX-bugbot 定型生成・正規操作の要件"
+layer: L3
+kind: redesign
+status: draft
+authority_status: canonical_source
 approval_record_id: L3-PO-1639-001
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
+approved_revision: "1.0"
+approved_candidate_head: a2325edb8425f4e84421ef2fd1f07c6c6d668dd7
+approved_raw_digest: "sha256:5a1393d66839180f16e8c0db046070b882171792db929d20dc1316aab683faae"
 version: "1.0"
-candidate_layer: L3
 owner_issue: 1639
-plan_id: PLAN-L3-1639-bugbot-generation
+plan: PLAN-L3-1639-bugbot-generation
+parent_design: docs/design/helix/L1-requirements/bugbot-generation-requests.md
+pair_artifact: docs/test-design/helix/bugbot-generation-acceptance.md
+next_pair_freeze: L10
 ---
 
 # 定型生成・正規操作
 
-本書は改訂候補であり、実行authority・承認記録ではない。BBG IDは候補内ID。
-L1/L10・専用PLANは同名候補に接続する。既存ACとの詳細照合、正本化・IR admissionは未完了。
-L1/L3/L10候補は`L3-PO-1639-001`で承認済み。canonical promotion・該当IR admission後の
-実装・限定実証へ進行する。承認は実装・検収完了の証拠ではなく、生成から自動書込み許可を導出しない。
+本書は`L3-PO-1639-001`で承認済みのBBG-R01..04を意味不変で移管したcanonical sourceである。
+BBG IDを維持し、新しいFR IDやRequirement IR recordは追加しない。実行authority・承認記録ではない。
+[L1利用目的](../L1-requirements/bugbot-generation-requests.md)、
+[L10総合テスト設計](../../../test-design/helix/bugbot-generation-acceptance.md)、
+[既存PLAN](../../../plans/PLAN-L3-1639-bugbot-generation.md)へ接続する。
+新配置の独立技術review前は文書・PLANともdraftを維持する。既存ACとの詳細照合、該当IR admission、
+実装・限定実証は未完了であり、source配置と分離する。同一要求の再承認待ちには戻さない。
+承認は実装・検収完了の証拠ではなく、生成から自動書込み許可を導出しない。
 
 ## 責務と再利用
 
@@ -56,6 +70,6 @@ source/generator/output/consumerの版とdigestを既存projectionへ束縛し�
 まず一系統で作成→検出→限定修復→再検証を実consumerで通す。対象と非対象を先に固定する。
 手修正数、LLM呼出し・tokens、総時間、CI再走、手戻り、誤修復、未解消数を同条件で比較する。
 
-原文bytes: [保全台帳](bugbot-intake-source.md)のBase64復号（正規化なし）。SHA-256 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
+原文bytes: [保全台帳](../../../governance/candidates/bugbot-intake-source.md)のBase64復号（正規化なし）。SHA-256 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
 Issue #1639は追跡先であり、追記後の本文全体のhashとは区別する。
 別紙02/03/05は未提供。03の18シナリオとの全件照合は未完了である。
