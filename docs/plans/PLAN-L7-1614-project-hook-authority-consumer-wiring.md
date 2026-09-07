@@ -1,10 +1,10 @@
 ---
 plan_id: PLAN-L7-1614-project-hook-authority-consumer-wiring
 title: "project hook authorityを4つのcurrent consumerへ実配線する"
-kind: recovery
-layer: cross
+kind: add-impl
+layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 backprop_decision: not_required
 backprop_decision_reason: "CNW-R-06..08とCNW-AC-009..013、L4/L5/L6のconfirmed契約をcurrent consumerへ接続する実装sliceであり、要求意味を変更しない。"
@@ -62,9 +62,13 @@ dependencies:
     - PLAN-L7-667-project-hook-authority-input-provider
     - PLAN-L7-668-project-hook-authority-surface-projector
     - PLAN-L7-669-project-hook-assignment-provider
-  references: ["issue:895", "issue:1614"]
+  references:
+    - "issue:895"
+    - "issue:1614"
+    - docs/plans/PLAN-REVERSE-1614-project-hook-authority-consumer-wiring.md
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-REVERSE-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/project-hook-authority-consumer-wiring.ts, artifact_type: source_module }
   - { artifact_path: tests/project-hook-authority-consumer-wiring.test.ts, artifact_type: test_code }
 modifies:
