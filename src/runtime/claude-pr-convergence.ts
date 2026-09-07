@@ -348,6 +348,10 @@ export interface ClaudePrMergeState {
   prUrl: string;
   headSha: string;
   state: "OPEN" | "CLOSED" | "MERGED";
+  mergeCommit?: {
+    oid: string;
+    parents: readonly string[];
+  };
   requiredChecksGreen: boolean;
   receiptCiMatchesHead: boolean;
   receiptCiMatchesGeneration: boolean;
@@ -1390,7 +1394,13 @@ export function evaluateClaudePrMerge(
     reasons.push("pr_identity_mismatch");
   }
   if (state.headSha !== receipt.headSha) reasons.push("review_head_stale");
-  if (state.state !== "OPEN") reasons.push("pr_not_open");
+  if (state.state !== "OPEN") {
+    reasons.push(
+      state.state === "MERGED" && state.mergeCommit?.parents[1] === receipt.headSha
+        ? "pr_already_merged_at_reviewed_head"
+        : "pr_not_open",
+    );
+  }
   if (!state.requiredChecksGreen) reasons.push("required_checks_not_green");
   if (!state.receiptCiMatchesHead) reasons.push("receipt_ci_head_mismatch");
   if (!state.receiptCiMatchesGeneration) {
