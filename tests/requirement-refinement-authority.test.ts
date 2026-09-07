@@ -13,8 +13,8 @@ import {
   refinementApprovalSubjectDigest,
   refinementDownstreamIssueSnapshotDigest,
   refinementSourceSetDigest,
-  validateRequirementRefinement,
   requirementRefinementSchema,
+  validateRequirementRefinement,
 } from "../src/requirements/requirement-refinement-authority";
 
 const HEAD = "a".repeat(40);
@@ -36,7 +36,9 @@ function sha256(value: string): string {
   return `sha256:${createHash("sha256").update(value, "utf8").digest("hex")}`;
 }
 
-function withDigest<T extends Record<string, unknown>>(value: T): Omit<T, "semantic_digest"> & { semantic_digest: string } {
+function withDigest<T extends Record<string, unknown>>(
+  value: T,
+): Omit<T, "semantic_digest"> & { semantic_digest: string } {
   return { ...value, semantic_digest: requirementIrSemanticDigest(value) };
 }
 
@@ -147,44 +149,68 @@ describe("Requirement refinement authority", () => {
   it("U-TLIR-002: 数字開始IDの範囲参照をsourceとIRのexact setへ投影する", () => {
     const { repoRoot, record } = fixture();
     const source = "#### 3L-R-01 第一条件\n\n条件一\n\n#### 3L-R-02 第二条件\n\n条件二\n";
-    const acceptanceSource = "| AC-ID | 対応要件 | 合格条件 |\n|---|---|---|\n| 3L-AC-001 | 3L-R-01..02 | 両条件を検証する |\n";
+    const acceptanceSource =
+      "| AC-ID | 対応要件 | 合格条件 |\n|---|---|---|\n| 3L-AC-001 | 3L-R-01..02 | 両条件を検証する |\n";
     writeFileSync(join(repoRoot, record.source.requirement_path), source);
     writeFileSync(join(repoRoot, record.source.acceptance_path), acceptanceSource);
     const projected = withDigest({
       ...record,
       refinement_contract_id: "3L-FR-001",
-      source: { ...record.source, requirement_digest: sha256(source), acceptance_digest: sha256(acceptanceSource) },
-      supporting_requirements: ["第一条件\n\n条件一", "第二条件\n\n条件二"].map((statement, i) => withDigest({
-        requirement_id: `3L-R-0${i + 1}`,
-        source_projection: "markdown_h4_v1" as const,
-        statement,
-        acceptance_ids: ["3L-AC-001"],
-      })),
-      acceptance_cases: [withDigest({
-        acceptance_id: "3L-AC-001",
-        source_projection: "markdown_acceptance_table_v2" as const,
-        requirement_ids: ["3L-R-01", "3L-R-02"],
-        polarity: "positive" as const,
-        statement: "合格条件: 両条件を検証する",
-      })],
-      acceptance_owners: [{ issue_id: 397, owner_kind: "parent_acceptance" as const, acceptance_ids: ["3L-AC-001"] }],
+      source: {
+        ...record.source,
+        requirement_digest: sha256(source),
+        acceptance_digest: sha256(acceptanceSource),
+      },
+      supporting_requirements: ["第一条件\n\n条件一", "第二条件\n\n条件二"].map((statement, i) =>
+        withDigest({
+          requirement_id: `3L-R-0${i + 1}`,
+          source_projection: "markdown_h4_v1" as const,
+          statement,
+          acceptance_ids: ["3L-AC-001"],
+        }),
+      ),
+      acceptance_cases: [
+        withDigest({
+          acceptance_id: "3L-AC-001",
+          source_projection: "markdown_acceptance_table_v2" as const,
+          requirement_ids: ["3L-R-01", "3L-R-02"],
+          polarity: "positive" as const,
+          statement: "合格条件: 両条件を検証する",
+        }),
+      ],
+      acceptance_owners: [
+        { issue_id: 397, owner_kind: "parent_acceptance" as const, acceptance_ids: ["3L-AC-001"] },
+      ],
       semantic_digest: undefined,
     });
     expect(validate(repoRoot, projected)).toEqual({ ok: true, failureCodes: [] });
     const drift = acceptanceSource.replace("3L-R-01..02", "3L-R-01..03");
     writeFileSync(join(repoRoot, record.source.acceptance_path), drift);
-    expect(validate(repoRoot, withDigest({ ...projected, source: { ...projected.source, acceptance_digest: sha256(drift) }, semantic_digest: undefined })).failureCodes).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
+    expect(
+      validate(
+        repoRoot,
+        withDigest({
+          ...projected,
+          source: { ...projected.source, acceptance_digest: sha256(drift) },
+          semantic_digest: undefined,
+        }),
+      ).failureCodes,
+    ).toContain("REFINEMENT_SOURCE_PROJECTION_DRIFT");
   });
 
   it("U-TLIR-001: 承認済み数字開始namespaceとJSON schemaの構文を一致させる", () => {
     const jsonSchema = JSON.parse(readFileSync("config/requirement-ir-schema.json", "utf8"));
     const jsonId = new RegExp(jsonSchema.$defs.refinementId.pattern);
     for (const id of ["3L-FR-001", "3L-R-01", "3L-AC-001", "MIC-FR-001"]) {
-      expect(requirementRefinementSchema.shape.refinement_contract_id.safeParse(id).success).toBe(true);
+      expect(requirementRefinementSchema.shape.refinement_contract_id.safeParse(id).success).toBe(
+        true,
+      );
       expect(jsonId.test(id)).toBe(true);
     }
     for (const id of ["", "3-FR-001", "3l-R-01", "3L--01", "3L-R/01", "3L-R-01\n"]) {
-      expect(requirementRefinementSchema.shape.refinement_contract_id.safeParse(id).success).toBe(false);
+      expect(requirementRefinementSchema.shape.refinement_contract_id.safeParse(id).success).toBe(
+        false,
+      );
       expect(jsonId.test(id)).toBe(false);
     }
   });
