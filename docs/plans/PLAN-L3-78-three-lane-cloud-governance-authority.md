@@ -4,7 +4,7 @@ title: "PLAN-L3-78 (redesign): 三社固定レーン・Cursor資源分散・GitH
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -25,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:2026-09-02 追加指示書2件を最適化し、三社固定レーン／Cursor Cloud資源分散／GitHub Auditor／HELIX-Bench資格を要求へ取り込む"
 created: 2026-09-02
-updated: 2026-09-06
+updated: 2026-09-07
 owner: Codex / TL
 github_issue_id: 1358
 behavior_contract_id: THREE-LANE-CLOUD-CAPACITY-ORCHESTRATION-001
@@ -39,16 +39,16 @@ backprop_decision_reason: "本PLAN自身がresident lane v0.3のN-provider意味
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "PLAN-L3-75 v0.3のcanonical merge、#819/#1293/#860/#861/#862/#873/#854/#1295/#1296 ownerをread-afterできる"
-contract_postconditions: "v0.4 candidateがL1↔L12、L3↔L10、Issue graph、plan固有human gateへ束縛され、独立review・canonical freeze前はcurrent runtimeへ投影されない"
+contract_postconditions: "承認済みv0.4 sourceがL1↔L12、L3↔L10、Issue graph、plan固有human gateへ束縛され、独立review・runtime有効化・DB convergence前はcurrent runtimeへ投影されない"
 contract_invariants: "exact 3 lane、Issue/PLAN択一、専用branch、one writer、Codex control、Cursor bounded write、Claude blind review、deterministic gate非上書きを維持する"
 contract_failures: "旧approval流用、modelをlane化、予算UNKNOWNの推測、prompt-only enforcement、semantic PASSによるdeterministic P0相殺を拒否する"
 tdd_red_required: false
-tdd_red_waiver_reason: "本sliceはrequirements candidateとacceptance／Issue responsibilityだけを追加し、runtime実装は既存ownerと#1359〜#1362へ分離する。"
+tdd_red_waiver_reason: "本sliceは承認済みrequirements／acceptanceのcanonical配置とIssue responsibility束縛だけを行い、runtime実装は既存ownerと#1359〜#1362へ分離する。"
 complexity_effect: net_negative
 complexity_justification: "open-ended N-provider構想をexact 3 laneへ縮小し、provider lane／model／auditor／budgetの混在を別軸へ分離する。"
-removal_trigger: "v0.4がplan固有L3承認・canonical mergeされ、v0.3 current consumerがcompatibility-onlyへ退役した時"
-parent_design: docs/governance/candidates/three-lane-cloud-governance-requests.md
-pair_artifact: docs/governance/candidates/three-lane-cloud-governance-acceptance.md
+removal_trigger: "v0.4 sourceがRequirement IR admissionと後続runtime sliceへ責務移管され、v0.3 current consumerがcompatibility-onlyへ退役した時"
+parent_design: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
+pair_artifact: docs/test-design/helix/three-lane-cloud-governance-acceptance.md
 dependencies:
   parent: PLAN-L3-75-resident-lane-orchestration-authority
   requires:
@@ -70,16 +70,17 @@ dependencies:
     - issue:1362
 generates:
   - { artifact_path: docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-requests.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-requirements.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-acceptance.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/three-lane-cloud-governance-recognition.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-recognition.md, artifact_type: test_design }
 modifies:
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/feedback-test-owner-disposition-recognition.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — v0.3→v0.4 Requirement Re-entryと旧approval非流用" }
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }
@@ -94,14 +95,14 @@ review_evidence: []
 
 - 三社固定レーン／Cursor Cloud資源分散の入力案は、L1の9要求、L3の25 requirement、L10の27 oracle、L12の9認識条件、#1359／#1362へ分解する。
 - GitHub Auditor／HELIX-Bench方針は、L3の`3L-R-15..20`、L10の`3L-AC-016..022`、#1360／#1361へ分解する。
-- 原稿ファイルは正本にせず、内容のtraceとtargeted oracle確認後にrootから削除する。
+- 承認済みcandidate 4文書は意味を変更せずcanonical配置へrenameし、candidate pathを第二正本として残さない。履歴はGitのpromotion sourceとして保持する。
 - PR #1299／PLAN-L3-75はv0.3履歴として保持し、本candidateへapprovalを流用しない。
 
 ## Freeze境界
 
 ### 技術検収所見の補完
 
-#1358の技術検収comment 5548224417に対し、branch事前発行、独立single-writer oracle、起動前後2 leg照合、Phase A/B移行条件を補完する。L1→L3とL1↔L12の全ID対応を明示し、L12本文をpair先へ一元化する。承認記録は変更しない。この補完自体を独立検収成功とは扱わず、catalog登録方針の照合とcanonical promotionは引き続き未完了である。
+#1358の技術検収comment 5548224417に対し、branch事前発行、独立single-writer oracle、起動前後2 leg照合、Phase A/B移行条件を補完する。L1→L3とL1↔L12の全ID対応を明示し、L12本文をpair先へ一元化する。承認記録は変更しない。この補完自体を独立検収成功とは扱わず、runtime有効化、生成投影、DB convergenceは後続sliceで別途検証する。
 
 局所検証（2026-09-06）: `helix plan lint`と`git diff --check`がexit 0。Nodeによる文書照合では、L3の25要件すべてをL10の27 ACが参照し、未定義要件参照0、L1の9要求すべてにL3導出対応とL12認識条件が存在することを確認した。これは文書の参照検証であり、実runtimeの競合試験、cloud実行、独立reviewの成功証拠ではない。
 
@@ -113,6 +114,4 @@ v0.4.0-candidateは`L3-PO-1358-002`で個別承認済みである。承認対象
 `2f87e40858edbb168b1ca1457a8cc3d256dba59e208e8003e7a869e0597d19ea`、recognition
 `dfd66d82cc86796e375b92532fafc1d876da30d250b72f56654b22cfdcbacd6b`で、意味集合はL1 BR 9件、
 L3 requirement 25件、L10 oracle 27件、L12 recognition 9件とする。candidateは独立技術reviewと
-canonical freezeまで隔離を維持し、承認後の意味変更には再承認を要求する。
-独立exact-HEAD review、CI、doctor、DB convergenceが成立した後に限り、
-v0.3 current authorityを置換する別の原子的promotion PRへ進む。
+canonical sourceとして配置し、承認後の意味変更には再承認を要求する。独立exact-HEAD review、CI、doctor、DB convergence、runtime有効化が成立するまで、v0.3 current authorityを置換する実行authorityの切替は行わない。

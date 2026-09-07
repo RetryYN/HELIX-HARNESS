@@ -1,26 +1,29 @@
 ---
 canonical_vmodel: L1-L12
-candidate_layer: L3
+canonical_layer: L3
 canonical_pair: L10
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査要件"
 layer: L3
 kind: redesign
-status: draft_candidate
+status: confirmed
+authority_status: canonical_source
 created: 2026-09-02
-updated: 2026-09-05
+updated: 2026-09-07
 owner: PO / Codex TL
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
-parent_design: docs/governance/candidates/three-lane-cloud-governance-requests.md
-pair_artifact: docs/governance/candidates/three-lane-cloud-governance-acceptance.md
-next_pair_freeze: L10_during_canonical_promotion
+parent_design: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
+pair_artifact: docs/test-design/helix/three-lane-cloud-governance-acceptance.md
+next_pair_freeze: L10
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431"
+approved_revision: "0.4.0"
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査要件
 
 - 文書ID: `HELIX-3LANE-REQ-001`
-- バージョン: `0.4.0-candidate`
-- 状態: `requirements-reentry-approved / canonical promotion待ち`
-- 置換候補: resident lane authority v0.3
+- バージョン: `0.4.0`
+- 状態: `canonical source / Requirement IR admission待ち`
+- 置換対象: resident lane authority v0.3
 - 主Issue: `#1358`
 
 ## 0. Authority境界
@@ -110,4 +113,4 @@ next_pair_freeze: L10_during_canonical_promotion
 | Bench qualification | #1361（#1295／#1296再利用） |
 | operational E2E | #1362 |
 
-本candidateを独立review・canonical freeze前にruntime、DB current output、generated docsへ投影してはならない。
+本書を独立review・Requirement IR admission・canonical freeze前にruntime、DB current output、generated docsへ投影してはならない。文書のcanonical化だけで実行authorityの切替や完成を主張しない。

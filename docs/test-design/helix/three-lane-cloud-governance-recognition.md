@@ -1,17 +1,20 @@
 ---
 canonical_vmodel: L1-L12
-candidate_layer: L12
+canonical_layer: L12
 canonical_pair: L1
 title: "三社固定レーン・Cursor Cloud資源分散・GitHub監査認識設計"
 layer: L12
 kind: redesign
-status: draft_candidate
+status: confirmed
+authority_status: canonical_source
 created: 2026-09-02
-updated: 2026-09-05
+updated: 2026-09-07
 owner: PO / QA
 plan: PLAN-L3-78-three-lane-cloud-governance-authority
-parent_design: docs/governance/candidates/three-lane-cloud-governance-requests.md
-pair_artifact: docs/governance/candidates/three-lane-cloud-governance-requests.md
+parent_design: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
+pair_artifact: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431"
+approved_revision: "0.4.0"
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査認識設計
@@ -30,5 +33,4 @@ L1の9要求を、実PR throughput、Cursor billing-cycle、Codex control reserv
 - 3L-BR-008: model revisionごとの資格・称号・権限を追跡し、更新時に失効する。
 - 3L-BR-009: Cursor WIP=2で実task 5件以上を7日canaryし、違反0件。billing-cycle末まで枯渇と過少利用、費用、Codex relief、差戻し、escaped defect、ローカル資源削減を実測し、未使用を成功としない。
 
-本書はplan固有の人間承認済みcandidate recognitionであり、canonical promotionが成立するまで
-current completionへ加算しない。
+本書はplan固有の人間承認済みcanonical recognition designである。Requirement IR admission、runtime有効化、実consumer episode、効果計測、独立review、rollback可能性が成立するまで、current completionへ加算しない。
