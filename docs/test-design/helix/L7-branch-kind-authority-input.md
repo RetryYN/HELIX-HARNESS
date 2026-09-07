@@ -5,7 +5,7 @@ status: draft
 plan: docs/plans/PLAN-RECOVERY-935-branch-authority-input.md
 pair_artifact: docs/design/helix/L6-function-design/branch-kind-authority-input.md
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-08
 ---
 
 # 実Git入力からの検証
@@ -86,8 +86,15 @@ pushのzero／通常before、PRの空／zero base、不正な明示baseを両ste
 | U-BRAUTH-007 | supersession比較 | 同じbaseに対しcandidate-onlyの許可へ作業tree本文を混入させない | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-008 | CLI／doctor入口 | 同じsnapshotで正常判定が一致し、CLIの差分偽装とdoctorの取得不能を拒否する | `tests/branch-kind-authority-input.test.ts` |
 | U-BRAUTH-009 | CI配線 | guardとdoctorのbase／candidate／branch束縛欠落を各mutationで拒否する | `tests/harness-check-workflow.test.ts` |
+| U-CIBASE-001 | non-PR単一PR | multi-commit candidateに一致する単一open PRのcurrent baseとのmerge-baseを返し、第一親fallbackを拒否する | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-002 | non-PR複数PR | 同一candidateに一致する複数PRから一つを選ばず拒否する | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-003 | PR read-after | PR head/baseの観測中driftを拒否する | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-004 | default branch | open PRがない場合にrepository default branchとのmerge-baseを返し、任意remote推測を拒否する | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-005 | PR明示base | pull_requestの不正・空・zero SHAをfallbackで相殺せず拒否する | `tests/ci-branch-base-resolver.test.ts` |
 
 専用`tests/branch-kind-authority-input.test.ts`で001〜007を実装する。
 008は実CLI入口とdoctor入口を経由して比較し、pure analyzerだけの比較で代替しない。
 既存branch種別テスト、TypeScript型検査、current HEADの独立reviewとCIを別途必要とする。
 修正前Red、修正後Green、mutation、main read-afterが揃うまで復旧完了を主張しない。
+
+workflow内のguardとdoctorは同じresolverを呼び、片方だけ旧第一親fallbackへ戻すmutationを拒否する。

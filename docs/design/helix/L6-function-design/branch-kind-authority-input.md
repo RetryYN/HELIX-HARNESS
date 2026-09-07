@@ -6,7 +6,7 @@ plan: docs/plans/PLAN-RECOVERY-935-branch-authority-input.md
 parent_doc: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
 pair_artifact: docs/test-design/helix/L7-branch-kind-authority-input.md
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-08
 ---
 
 # branch判定の入力契約
@@ -108,9 +108,26 @@ provider診断は`pr_local_identity_invalid`、`pr_context_invalid`、
 | U-BRAUTH-007 | supersession比較 | 同一base／candidateを使い、作業treeの本文変更をcommit済みmetadata-onlyへ混入させない | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-008 | CLI／doctor接合 | 同一snapshotの判定一致、changed集合偽装、不揃い入力の拒否を検証する | tests/branch-kind-authority-input.test.ts |
 | U-BRAUTH-009 | CI入力供給 | workflow実体がeventに応じたbase／candidateを供給し、不正なPR baseを補完しない | tests/harness-check-workflow.test.ts |
+| U-CIBASE-001 | non-PR単一PR | multi-commit candidateに一致する単一open PRのcurrent baseとのmerge-baseを返す | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-002 | non-PR複数PR | 同一candidateに一致する複数PRから一つを選ばず拒否する | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-003 | PR read-after | PR head/baseの観測中driftを拒否する | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-004 | default branch | open PRがない場合にrepository default branchとのmerge-baseを返す | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-005 | PR明示base | pull_requestの不正・空・zero SHAをfallbackで相殺せず拒否する | tests/ci-branch-base-resolver.test.ts |
 
 `U-BRAUTH-001`はcleanなcommit済みPLANの認識、`U-BRAUTH-002`は作業差分union、
 `U-BRAUTH-003`はbase exact束縛、`U-BRAUTH-004`は取得結果分類、`U-BRAUTH-005`はdetached／shallow、
 `U-BRAUTH-006`はpath操作、`U-BRAUTH-007`はsupersession比較、`U-BRAUTH-008`はCLI／doctor同値を検証する。
 各oracleを対になるL7設計と専用loaderテストへ束縛する。
 既存`tests/branch-kind.test.ts`は分類契約の非退行検証として残す。
+
+## non-PR CI eventのbase解決
+
+`workflow_dispatch`と`schedule`も、branch-kind guardとdoctorへ同じ比較baseを渡す。
+candidate HEADに一致するopen PRが一件だけ存在する場合は、GitHub上のhead/baseを再読込し、
+観測中に変化していないことを確認してからmerge-baseを採用する。該当PRがない場合だけ、
+repository metadataが示すdefault branchのremote-tracking refとのmerge-baseを採用する。
+
+同一HEADのPRが複数ある場合、read-afterでhead/baseが変化した場合、default branchまたは
+対応refを取得できない場合はfail-closeする。`candidate^`をbaseとするfallbackは禁止する。
+これにより、PLANを先行commitで追加し後続commitでruntimeを修正する通常のmulti-commit PRを、
+latest commitだけの差分として誤拒否しない。branch種別ごとのPLAN必須規則自体は変更しない。
