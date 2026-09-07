@@ -91,6 +91,7 @@ function completedProviderRun(
     signal: null,
     durationMs: 1,
     reaped: true,
+    terminalAccepted: input.exitCode === 0,
   };
 }
 
@@ -464,6 +465,7 @@ describe("team run validation", () => {
             signal: null,
             durationMs: 10,
             reaped: true,
+            terminalAccepted: true,
           };
         },
       });
@@ -514,6 +516,7 @@ describe("team run validation", () => {
                 signal: null,
                 durationMs: timeMs + 1,
                 reaped: true,
+                terminalAccepted: false,
               }
             : {
                 exitCode: 0,
@@ -524,6 +527,7 @@ describe("team run validation", () => {
                 signal: null,
                 durationMs: 1,
                 reaped: true,
+                terminalAccepted: true,
               },
       });
 

@@ -8048,11 +8048,75 @@ describe("L7 CLI surface closure", () => {
         deadline_ms: 60_000,
         termination_stage: "none",
         reaped: true,
+        terminal_status: "success",
+        terminal_failure: null,
       });
       expect(payload.duration_ms).toBeGreaterThanOrEqual(0);
       expect(payload.duration_ms).toBeLessThan(60_000);
       // provider が実際に起動した証跡 (env dump)。「実行せず JSON だけ」だと生成されない。
       expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).toContain("args=");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  it("U-WBL-016: timeout後にexit 0を返すdirect CLIをfailed/124へ固定しconsult receiptを作らない", () => {
+    // PLAN-RECOVERY-1616-team-run-budget-lifecycle
+    if (process.platform === "win32") return;
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-terminal-admission-"));
+    try {
+      const contextPath = installTestWorkerContextBoundary(root);
+      const context = JSON.parse(readFileSync(contextPath, "utf8"));
+      context.budget.time_ms = 100;
+      writeFileSync(contextPath, `${JSON.stringify(context)}\n`);
+
+      const binDir = join(root, "bin");
+      mkdirSync(binDir);
+      const fakeCodex = join(binDir, "codex");
+      writeFileSync(
+        fakeCodex,
+        [
+          "#!/bin/sh",
+          'if [ "${1:-}" = "--version" ]; then echo "codex 1.0.0"; exit 0; fi',
+          "trap 'exit 0' TERM",
+          "while :; do sleep 1; done",
+          "",
+        ].join("\n"),
+      );
+      chmodSync(fakeCodex, 0o755);
+      const currentPath = process.env.PATH ?? "";
+      const testPath = `${binDir}:${currentPath}`;
+      const run = runCliIn(
+        root,
+        [
+          "codex",
+          "--role",
+          "tl",
+          "--task",
+          "review timeout admission",
+          "--execute",
+          "--json",
+          "--worker-context-file",
+          contextPath,
+        ],
+        {
+          ...process.env,
+          PATH: testPath,
+          HELIX_CODEX_BIN: fakeCodex,
+        },
+      );
+
+      expect(run.status, run.stderr || run.stdout).toBe(124);
+      const payload = JSON.parse(run.stdout);
+      expect(payload).toMatchObject({
+        executed: true,
+        exit_code: 0,
+        timed_out: true,
+        reaped: true,
+        terminal_status: "failed",
+        terminal_failure: "timed_out",
+      });
+      expect(existsSync(join(root, ".helix", "state", "sol-consult-receipt"))).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

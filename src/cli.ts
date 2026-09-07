@@ -399,7 +399,10 @@ import {
   readProviderHandoverCurrent,
   runProviderHandover,
 } from "./runtime/provider-handover";
-import { runBudgetedProviderProcess } from "./runtime/provider-process-lifecycle";
+import {
+  classifyProviderProcessTerminal,
+  runBudgetedProviderProcess,
+} from "./runtime/provider-process-lifecycle";
 import {
   buildReviewFeedbackSessionIntakeReport,
   type ReviewFeedbackEventInput,
@@ -12327,11 +12330,12 @@ function runtimeCommand(provider: AdapterProvider): Command {
           stdout: jsonOut ? 2 : "inherit",
           stderr: "inherit",
         });
+        const terminal = classifyProviderProcessTerminal(child);
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
         }
-        if (guardActive && !child.error && (child.status ?? 1) === 0) {
+        if (guardActive && terminal.ok) {
           // consult role (CONSULT_RECEIPT_ROLES、現行 tl のみ) の委譲成功を consult receipt として
           // 記録する (Issue #587)。role 制限と task digest は recordConsultReceipt 側で担保 (B-1)。
           recordConsultReceipt(repoRoot, {
@@ -12358,7 +12362,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
             ...(opts.plan ? { plan_id: opts.plan } : {}),
             tool_name: provider,
             tool_input: { command: `${plan.command} ${plan.args.join(" ")}` },
-            tool_response: { outcome: child.status === 0 ? "ok" : "error" },
+            tool_response: { outcome: terminal.ok ? "ok" : "error" },
           },
           deps,
           "PostToolUse",
@@ -12389,6 +12393,8 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 termination_stage: child.termination_stage,
                 duration_ms: child.duration_ms,
                 reaped: child.reaped,
+                terminal_status: terminal.ok ? "success" : "failed",
+                terminal_failure: terminal.failure,
               },
               null,
               2,
@@ -12400,12 +12406,14 @@ function runtimeCommand(provider: AdapterProvider): Command {
           SIGINT: 130,
           SIGTERM: 143,
         };
-        process.exitCode =
-          (child.interrupted_by === null
-            ? undefined
-            : interruptedExitCodes[child.interrupted_by]) ??
-          child.status ??
-          1;
+        process.exitCode = terminal.ok
+          ? 0
+          : ((child.interrupted_by === null
+              ? undefined
+              : interruptedExitCodes[child.interrupted_by]) ??
+            (child.timed_out ? 124 : undefined) ??
+            (child.status === 0 ? 1 : child.status) ??
+            1);
       },
     );
 }
@@ -12885,6 +12893,7 @@ team
               timeMs,
               captureLimitBytes: 1024 * 1024,
             });
+            const terminal = classifyProviderProcessTerminal(outcome);
             if (!opts.json) {
               if (outcome.stdout) process.stdout.write(outcome.stdout);
               if (outcome.stderr) process.stderr.write(outcome.stderr);
@@ -12897,8 +12906,7 @@ team
                 tool_name: provider,
                 tool_input: { command: `${command} ${args.join(" ")}` },
                 tool_response: {
-                  outcome:
-                    outcome.status === 0 && !outcome.timed_out && outcome.reaped ? "ok" : "error",
+                  outcome: terminal.ok ? "ok" : "error",
                 },
               },
               sessionDeps,
@@ -12924,6 +12932,7 @@ team
               signal: outcome.signal,
               durationMs: outcome.duration_ms,
               reaped: outcome.reaped,
+              terminalAccepted: terminal.ok,
             };
           },
         });
