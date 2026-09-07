@@ -1,20 +1,34 @@
 ---
-title: "HELIX-bugbot 限定修復の追加契約候補"
-status: draft_candidate
-authority_status: approved_pending_canonical_promotion
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+title: "HELIX-bugbot 限定修復の要件"
+layer: L3
+kind: redesign
+status: draft
+authority_status: canonical_source
 approval_record_id: L3-PO-1642-001
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1642#issuecomment-5575191622"
+approved_revision: "1.0"
+approved_candidate_head: 98cdc24c12e47057b1a7d6d3b156a96bf5ef4d8d
+approved_raw_digest: "sha256:b5c66694c798fef30f182cd283492495c23ab828558192aea45d5764cfb62de9"
 version: "1.0"
-candidate_layer: L3
 owner_issue: 1642
-plan_id: PLAN-L3-1642-bugbot-bounded-repair
+plan: PLAN-L3-1642-bugbot-bounded-repair
+parent_design: docs/design/helix/L1-requirements/bugbot-bounded-repair-requests.md
+pair_artifact: docs/test-design/helix/bugbot-bounded-repair-acceptance.md
+next_pair_freeze: L10
 ---
 
 # 逸脱検出・限定修復
 
-本書は追加契約候補であり、自動適用権限を発行しない。BBR IDは候補内ID。
-L1/L10・専用PLANは同名候補に接続する。候補は`L3-PO-1642-001`で承認済み。
-canonical promotion・該当IR admission・実装・限定実証へ進行できるが、その成立は未完了。
+本書は`L3-PO-1642-001`で承認済みのBBR-R01..05を意味不変で移管したcanonical sourceであり、
+自動適用権限を発行しない。BBR IDを保持し、新しいFR IDやRequirement IR recordを追加しない。
+[L1利用目的](../L1-requirements/bugbot-bounded-repair-requests.md)、
+[L10総合テスト設計](../../../test-design/helix/bugbot-bounded-repair-acceptance.md)、
+[既存PLAN](../../../plans/PLAN-L3-1642-bugbot-bounded-repair.md)へ接続する。
+新配置の独立技術review前は文書・PLANともdraftを維持する。canonical promotionの独立検収・
+該当IR admission・実装・限定実証は未完了。同一要求の再PO承認待ちには戻さない。
 既存GH-FR-011のCI自己修復権限内の機械化と、新しい適用対象・契機・権限差分を分ける。
 #1595は別途の自動修復を対象外としている。その承認をBへ継承しない。
 
@@ -75,5 +89,5 @@ LLM confidenceや自己申告で許可しない。
 成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。
 旧入口移管・rollback証拠、CI・review・main read-afterを提出し、残義務削除で合格しない。
 
-原文bytes: [commit固定の保全台帳](https://github.com/RetryYN/HELIX-HARNESS/blob/a2325edb8425f4e84421ef2fd1f07c6c6d668dd7/docs/governance/candidates/bugbot-intake-source.md)のBase64復号。SHA-256 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。#1639は共有原稿の追跡、#1642はBの追跡先であり、追記後Issue本文のhashではない。
+原文bytes: [基準mainの保全台帳](https://github.com/RetryYN/HELIX-HARNESS/blob/391020b882abedfa622a2910e906618fde980270/docs/governance/candidates/bugbot-intake-source.md)のBase64復号。SHA-256 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。#1639は共有原稿の追跡、#1642はBの追跡先であり、追記後Issue本文のhashではない。
 別紙02/03/05は未提供。本文由来の受入観点は別紙03の18シナリオ確認の代替ではない。

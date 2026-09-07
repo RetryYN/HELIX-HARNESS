@@ -1,18 +1,32 @@
 ---
-title: "HELIX-bugbot 限定修復の受入候補"
-status: draft_candidate
-authority_status: approved_pending_canonical_promotion
+canonical_vmodel: L1-L12
+canonical_layer: L10
+canonical_pair: L3
+title: "HELIX-bugbot 限定修復の総合テスト設計"
+layer: L10
+kind: redesign
+status: draft
+authority_status: canonical_source
 approval_record_id: L3-PO-1642-001
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1642#issuecomment-5575191622"
+approved_revision: "1.0"
+approved_candidate_head: 98cdc24c12e47057b1a7d6d3b156a96bf5ef4d8d
+approved_raw_digest: "sha256:095ddf1e237c26d15cb4f227a03ae9b11267f6cedff94ea563246fa3b6192375"
 version: "1.0"
-candidate_layer: L10
 owner_issue: 1642
-plan_id: PLAN-L3-1642-bugbot-bounded-repair
+plan: PLAN-L3-1642-bugbot-bounded-repair
+parent_design: docs/design/helix/L3-requirements/bugbot-bounded-repair-requirements.md
+pair_artifact: docs/design/helix/L3-requirements/bugbot-bounded-repair-requirements.md
 ---
 
-# 限定修復の受入候補
+# 限定修復の総合テスト設計
 
-原稿本文由来の受入候補。別紙02/03/05は未提供で、18シナリオ全件対応を主張しない。
+本書は承認済みBBR-AC01..07のcanonical sourceであり、
+[L3要件](../../design/helix/L3-requirements/bugbot-bounded-repair-requirements.md)とL3↔L10を構成する。
+来歴と残義務は[既存PLAN](../../plans/PLAN-L3-1642-bugbot-bounded-repair.md)へ接続する。
+新配置の独立技術review前は文書・PLANともdraftを維持する。Requirement IR admission、実装、
+修復ごとの契約・独立検証・実consumer検証は未完了であり、配置だけで自動適用を許可しない。
+以下は原稿本文由来の受入条件。別紙02/03/05は未提供で、18シナリオ全件対応を主張しない。
 各反例は独立oracle・mutationで拒否を検証し、合法入力が通る対照例を持つ。実証は未実施。
 
 | ID | 対応要件 | 合格条件 |
