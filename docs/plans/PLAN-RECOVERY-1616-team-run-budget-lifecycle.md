@@ -46,6 +46,7 @@ modifies:
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-011, test_path: tests/provider-process-lifecycle.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-012, test_path: tests/team-run.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/worker-budget-lifecycle.md, oracle_id: U-WBL-013, test_path: tests/team-run.test.ts }
 review_evidence: []
 ---
 

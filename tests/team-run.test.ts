@@ -451,7 +451,7 @@ describe("team run validation", () => {
     }
   });
 
-  it("U-WBL-012: deadline超過をexit 0でも完了へ昇格しない [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
+  it("U-WBL-013: deadline超過をexit 0でも完了へ昇格しない [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
     const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-timeout-"));
     try {
       const plan = buildTeamRunPlan(

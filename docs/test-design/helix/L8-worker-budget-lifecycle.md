@@ -22,3 +22,4 @@ pair_artifact: docs/design/helix/L6-function-design/worker-budget-lifecycle.md
 | U-WBL-010 | CLI interruption projection | 実CLIへ`SIGINT`を送り、provider reap後にJSONへ理由を保持せず終了code 130へ投影しない実装を拒否 | `tests/cli-surface.test.ts` |
 | U-WBL-011 | bounded capture | stdout/stderr合算上限後に実観測byte数またはtruncatedを失う実装を拒否 | `tests/provider-process-lifecycle.test.ts` |
 | U-WBL-012 | team compatibility | sealed `budget.time_ms`をmember実行へ渡さず独自spawnへ戻る実装を拒否 | `tests/team-run.test.ts` |
+| U-WBL-013 | team timeout terminal | timeout済みprocessがexit 0を返してもmemberをcompletedへ昇格する実装を拒否 | `tests/team-run.test.ts` |
