@@ -99,3 +99,14 @@ GitHub writeを持たないpure projectorとする。actual consumer wiringは�
 branch、candidate/current HEAD、lease/fence、assignment root digestをexactに持つ。取得不能、schema不正、
 physical capture失敗は既存`authority_input_unavailable` reasonへ閉じ、cwd、env、primary tree、origin/mainから
 補完しない。既存Assignment kernelのstate machineやlease更新は本adapterの責務外とする。
+
+## Current consumer composition root
+
+`createProjectHookAuthorityConsumerWiring(provider)`はproviderを一度だけ読み、既存resolverと4 surface projectorを
+順に一回だけ適用する。生成済みbytesは`session_start`、`doctor`、`status`、`dispatch`へexact keyで保持し、
+consumer read時にprovider、filesystem、Git、clockを再実行しない。dispatch admissionは同じdispatch bytesと
+resolutionの`ok`だけを返し、failure時にworker起動やrepairを行わない。
+
+本composition rootはauthority snapshotを生成しない。Control Plane snapshot readerとCLI／doctor／status／native dispatchの
+transport adapterが未接続である間は、4 surface実配線の完了を主張しない。cwd、環境変数、primary tree、remote HEADを
+current authorityとして補完する暫定consumerは禁止する。
