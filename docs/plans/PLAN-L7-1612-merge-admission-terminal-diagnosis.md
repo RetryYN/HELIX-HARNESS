@@ -41,8 +41,9 @@ mutation_oracle_required: false
 agent_slots:
   - { role: se, slot_label: "SE — codex-se worker（gpt-5.6-sol）が clean clone 上で実装" }
   - { role: tl, slot_label: "TL — 独立 review は Codex レーンが exact HEAD receipt で実施" }
+  - { role: aim, slot_label: "AIM — admission 判定を緩めず診断 reason のみ追加であることを監査" }
 dependencies:
-  parent: docs/plans/PLAN-L7-473-claude-pr-convergence-contract.md
+  parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
   requires: []
   references:
     - "issue:1612"
