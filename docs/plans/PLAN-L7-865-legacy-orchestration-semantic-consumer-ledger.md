@@ -4,7 +4,7 @@ title: "PLAN-L7-865 (refactor): 旧orchestration semantic consumer ledger"
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -105,7 +105,7 @@ symbol／callsiteを意味上のconsumerとして記録・検証する。既存e
 
 ## 境界
 
-`status: draft`と`completion_claim_allowed: false`を維持する。本Phaseでは、既存の
+`completion_claim_allowed: false`を維持する。本Phaseでは、既存の
 文字列ratchetは本ledger実装3 pathだけを固定allowlistへ追加し、任意除外の増加は拒否する。`src/cli.ts`、`src/team/run.ts`、design catalogは
 変更しない。semantic ledgerをdoctor hard checkへ接続するが、新しいschedulerやsuccessor runtimeを実装せず、team／pair／loopのdirect engineも
 削除しない。ledgerはcompatibility-onlyの観測であり、旧実装の正当化やconsumer zeroの代替証拠
