@@ -38,7 +38,7 @@ change_slice: atomic
 refactor_step: dual_green
 legacy_retirement_state: retained
 backprop_decision: not_required
-backprop_decision_reason: "承認済みL1/L3/L10 sourceの意味不変移管を本PLANで所有する。L12認識条件の不足は残義務として保持する。"
+backprop_decision_reason: "承認済みL1/L3/L10 sourceの意味不変移管とBRからのL12派生認識設計を所有する。要求・受入・権限は増やさない。"
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "原稿、既存GH-FR-007/014、Rule導出と変更伝播を照合する。限定修復権限は別PLANで扱う"
@@ -46,7 +46,7 @@ contract_postconditions: "BBGのL1/L3/L10 sourceへ意味不変で移管し、�
 contract_invariants: "生成と実行権の分離、意味正本の再利用、source配置だけによるruntime有効化禁止"
 contract_failures: "未提供別紙の確認済み扱い、scope拡張、承認捏造、義務欠落を拒否する"
 tdd_red_required: false
-tdd_red_waiver_reason: "本sliceは承認済み文書の移管のみ。実装の独立oracleとmutationは後続実装で実証する。"
+tdd_red_waiver_reason: "承認済み文書の移管・派生認識設計・実bytesに限定した参照追従で判定ロジックは不変。局所scannerのRedとdigest失効oracleは検証し、生成器実装の独立oracleとmutationは後続実装で実証する。"
 complexity_effect: net_negative
 complexity_justification: "既存Authoring/Recoveryを再利用し、定型手修正と重複基盤を減らす。"
 removal_trigger: "候補の第二正本は本移管で除去する。旧手書き入口はBBG-R04/AC05の後継consumer検証・rollback成立後に退役する"
@@ -71,8 +71,14 @@ generates:
   - { artifact_path: docs/design/helix/L1-requirements/bugbot-generation-requests.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L3-requirements/bugbot-generation-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/bugbot-generation-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/bugbot-generation-recognition.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: tl, slot_label: "TL — 既存責務と追加差分を分離" }
@@ -130,16 +136,47 @@ BBG-BR01..02の要求段落、BBG-R01..04の見出しと要件本文、BBG-AC01.
 | 3 [直列] | 既存CLIで検証しDB/snapshotを再生成 | shared_state。plan lint、governance、post-merge-status、db rebuild、design-language、pair検査を行う |
 | 4 [直列] | 新配置HEADの独立技術review | downstream_dependency。親へcommit済みHEADと残義務を渡す。PR #1641のsealed receiptを流用しない |
 
-commit前に`helix guard commitlint --subject 'docs: move approved bugbot generation sources to canonical paths'`
-と`git status`／`git diff --staged`を検証し、意図pathだけをnormal commitする。pushは本workerの範囲外である。
+commit前に`helix guard commitlint --subject 'fix: bind bugbot canonical recognition to exact source bytes'`
+と`git status`／`git diff --staged`を検証し、意図pathだけをnormal commitする。
+commit後は`helix guard commitlint --range cf85c603986b87905514d2d3ebcdd1fde1aaa2b2..HEAD`も検証する。
+pushは本workerの範囲外である。
 
 実装計画は既存Authoring/RecoveryとGH-FR-007/014、#1608を再利用する後続実装へ分離する。
-本sliceは文書移管のみであり、runtime/gateコード、test基準、B/#1642、三社IR、CIを変更しない。
+本sliceは文書移管・派生認識設計、catalogの実bytesを束縛するpin追従と、本PLANの内容digestに
+限定したscanner誤検出のprojectionを所有する。テストは実測inventoryの差分追従と失効oracle追加に
+限定し、意味正本・runtime/gate判定ロジック・受入基準を緩めない。B/#1642、三社IR、CIは変更しない。
+
+### 親統合後の参照追従と検証契約
+
+初期移管HEADからL1の双方向pairと派生認識設計を追加した後、既存scannerの候補は1件増えた。
+実測signalはfrontmatterの層とcanonical範囲の隣接、およびbackprop理由の正規層併記だけであり、
+正規pairの再定義ではない。候補を探索対象から除外せず、本PLANの最終bytesに対する
+`false_positive`を既存reviewed-safe表へ追加する。実content変更後は`needs_manual_review`へ
+戻るoracleを追加し、未知pathの拒否、既存conflict集合、scanner判定ロジックを維持する。
+
+catalogの4 sourceは実在・各一回登録・双方向pair・実bytesを検査する。
+freeze packetはcatalog参照候補のみ追従し、同じテスト内のcatalog pin全22箇所を同じ実測値へ更新する。
+packet全体のfreezeを再承認したとは扱わず、IR rootとgenerated viewのpinは本sliceで変更しない。
+
+Node 24.15.0の`node node_modules/vitest/vitest.mjs run --configLoader runner --no-cache`で、
+追従前のRedを次のとおり再現した（runner／no-cacheは共有node_modulesへのconfig生成・cache書込みを避ける）。
+
+| 対象引数 | exit | 実測Red | stdout SHA-256 |
+|---|---:|---|---|
+| `tests/l12-hybrid-recognition.test.ts` | 1 | 4 failed / 25 tests | `d9ecf1aca59a49e62db92fd46b37d6cb97134a3cbf8ca66c68a6db7161b00763` |
+| `tests/l3-g3-freeze-packet-v2.test.ts -t 'U-DESIGNCOV-016\|U-DISTLITE-004'` | 1 | 2 failed / 2 selected、38 skipped | `2da88c68ca789618e5d89f2170e437c905caf6bfed0c262aef70f55d1f555347` |
+
+追従後は同テストと`tests/l3-progression-authority.test.ts`、`tests/ddd-tdd-rules.test.ts`、
+`tsc --noEmit`、対象PLAN lint、vmodel、governance、post-merge-status、design-language、
+専有treeのdb rebuild、BR/R/ACのbytes照合を再実行する。対象HEADと実exit／output digestは
+commit済みHEADへの引継ぎで報告する。本PLANのbytesを先に固定してからscannerのpinを算出し、
+そのpinや後続検証結果を本PLANへ書き戻す循環は作らない。独立技術review前はdraftを維持する。
 
 ## 移管の局所検証
 
 Node 24.15.0で`node --import tsx src/cli.ts`を既存HELIX CLI入口として実行した。
-以下はsource移管の局所証拠であり、独立技術reviewやruntime受入の代用ではない。
+以下は初期移管commit `f59d02a1643bcb7fbb7ed07d060391f7ca9180f9`の局所履歴証拠であり、
+親統合後の新HEADの結果、独立技術reviewやruntime受入の代用ではない。
 
 | CLI引数 | exit | stdout SHA-256 | 判定範囲 |
 |---|---:|---|---|
@@ -207,16 +244,13 @@ JS
 
 ## 残義務・親への引継ぎ
 
-- **L1↔L12**: `l12-canonical-vmodel-direction-directive_v0.1.md` §3と要件正本v1.3 §2/§7の
-  正規pairを適用する。参照例PLAN-L3-78のL12認識文書と異なり、Aの承認済み3文書には
-  BBG-BR01..02に対応するL12認識条件がない。`src/vmodel/lint.ts`のpair-exists検査は
-  draftでもpair欠落を検出する。新規認識条件・架空path・免除は作らず、不足を親へ渡す。
-  これは要求の再承認待ちではなく、未接続のtrace義務である。L3↔L10の充足で相殺しない。
-- **catalogのreviewed digest**: `src/lint/l3-progression-reviewed-digests.ts`のcatalog pinは
-  `c2c52dcc8641f675c53e42a040c6a681b3c9091c7d6e2c38e22d8e6987b8a6d1`、本配置で3 path追加後の
-  実測SHA-256は`fb435afb3a17a576f862626f23b9ab9bdd21af4f77c35938b490279cb2bc1be2`であり、
-  `l3-progression-authority`は`digest_mismatch`を返す。独立review後のdigest追従を親へ渡す。
-  runtime/gateコードの変更は本worker範囲外であるため、pinやテスト基準を変更してgreen化しない。
+- **L1↔L12**: 初期移管commit `f59d02a1643bcb7fbb7ed07d060391f7ca9180f9`でpair欠落を検出した。
+  親の統合作業で承認済みBR01..02と既存ACから`bugbot-generation-recognition.md`を派生設計し、
+  L1と双方向で束縛する。原承認にL12が含まれたとは扱わず、新HEADの独立技術reviewで
+  意味不変を検証する。L12実測・効果認定は未完了で、L3↔L10の成功で相殺しない。
+- **catalogのreviewed digest**: 初期移管では旧pinに対し`digest_mismatch`を検出した。
+  親の統合作業で4 sourceの実在・pair・各一回登録を検証し、そのcatalog bytesのpinだけを追従する。
+  独立review対象に含め、検証対象path集合やdigest不一致の拒否ロジックは変更しない。
 - **独立技術review**: 新canonical配置のexact HEADを対象に新しいreviewを受ける。
   PR #1641は候補・承認反映の履歴に限定し、新配置のsealed receiptとして扱わない。
 - **IR・実装**: 既存ACとの詳細照合、該当Requirement IR admission、後続設計・実装・独立oracle・

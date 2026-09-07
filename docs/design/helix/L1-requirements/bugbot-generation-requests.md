@@ -16,6 +16,7 @@ version: "1.0"
 owner_issue: 1639
 plan: PLAN-L3-1639-bugbot-generation
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+pair_artifact: docs/test-design/helix/bugbot-generation-recognition.md
 next_pair_freeze: L12
 ---
 
@@ -41,10 +42,11 @@ CI #93・Cursor #1293と並行する先行対象。既存GH-FR-007/014を再利�
 #1608の変更伝播と対象単位で接続する。承認済み意味の実装接続と、意味・受入改訂の差分を
 実装前に分類する。新規権限の付与、別Bot製品化、全管理機構完成待ちは含めない。
 
-## L12への未接続
+## 利用目的の認識
 
 本書は利用目的のcanonical L1 sourceであり、L1↔L12が正規pairである。
-BBG-BR01..02に対応するL12認識条件・pair文書は承認対象の3文書に存在しない。
-`canonical_pair: L12`は必要な層の宣言であって、pair充足の証拠ではない。
-L10のACをL12認識条件へ読み替えず、架空のpair path、self-pair、免除で欠落を隠さない。
-既存PLANの残義務として親へ引き継ぎ、同じ要求の再承認待ちへ戻さない。
+[L12認識設計](../../../test-design/helix/bugbot-generation-recognition.md)は、承認済みBR01..02を
+実consumerの目的達成から検証するための派生設計である。L10の局所AC成功だけでは、
+利用者の手作業削減と安全性維持を達成したと認定しない。
+L12設計は原承認3文書へ含まれていたと主張せず、新HEADの独立技術review対象にする。
+認識結果は未採取であり、文書が対になった事実と利用目的の達成を分離する。

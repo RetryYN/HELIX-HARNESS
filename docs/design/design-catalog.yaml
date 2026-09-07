@@ -393,6 +393,7 @@ items:
       - docs/test-design/helix/skill-mechanism-migration-acceptance.md
       - docs/test-design/helix/skill-mechanism-migration-recognition.md
       - docs/test-design/helix/bugbot-generation-acceptance.md
+      - docs/test-design/helix/bugbot-generation-recognition.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
