@@ -185,9 +185,12 @@ source/time receiptの束縛候補とする。このPLANで新しい外部承認
 
 M-1は同一subjectを持つ別ancestor HEADを現行gateが許容する点であり、今回のreview対象がH0そのもの
 だった事実をもって「exact H0だけを強制済み」とは記録しない。M-2はapproval系failure codeが
-`REFINEMENT_APPROVAL_MISSING`へ一括される診断粒度の残義務である。M-3はtracked rawlogにmachine-local
-絶対pathが入り他環境で再現時にdigestが非決定となる残義務である。rawlogは改竄せず、配布混入の真偽は
-未検証として扱う。
+`REFINEMENT_APPROVAL_MISSING`へ一括される診断粒度の残義務である。M-3はtracked rawlogのmachine-local
+pathと再現性についての所見である。実行出力のdigestは当該採取の真正性を照合するもので、環境・時刻・
+所要時間が異なる再実行の同一digestを要求する意味ではない。rawlogは改竄せず、配布混入の真偽は未検証として扱う。
+
+specified段階の旧レビューにあったbullet projection由来のbacktick表記と、sourceに入力／操作列が無い点も
+未解消の所見として保持する。新しいI/M番号と混同せず、独自parserによる上書きや未承認の受入意味の追加はしない。
 
 ## 二相凍結の形式化
 
