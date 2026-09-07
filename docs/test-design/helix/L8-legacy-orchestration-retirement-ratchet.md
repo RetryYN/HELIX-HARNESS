@@ -31,3 +31,28 @@ loader／doctor統合では初回導入、基準取得失敗、架空revision、
 
 Phase 1は新規利用freezeの検証だけを所有する。compatibility adapter、consumer migration、
 direct engine削除、resident lane E2Eは後続phaseで検証する。
+
+## Phase 1 semantic consumer ledgerの反例
+
+文字列ratchetのU-LORET-001〜009は維持し、semantic ledgerは次のoracleで別軸に検証する。
+いずれも実sourceのsymbol／callsiteとledgerのentryを照合し、固定line番号の一致だけでは
+greenにしない。
+
+| Oracle | 検証 |
+| --- | --- |
+| U-LORET-SEM-001 | team／pair／loopのdirect consumerをcompatibility adapterまたはread-onlyへ偽装できない |
+| U-LORET-SEM-002 | `fireSlot`／`releaseSlot`をwrite controlとして必須化し、欠落・誤分類を拒否する |
+| U-LORET-SEM-003 | `max_parallel`による実scheduling consumerの欠落・誤分類を拒否する |
+| U-LORET-SEM-004 | LoopState write-back consumerの欠落・誤分類を拒否する |
+| U-LORET-SEM-005 | E2E／rollback／read-afterなしのmigrated／retired昇格を拒否する |
+| U-LORET-SEM-006 | production successor callsiteなしのmigrated／retired昇格を拒否する |
+| U-LORET-SEM-007 | historical／read-only／compatibility entryへのwrite/control混入を拒否する |
+| U-LORET-SEM-008 | alias、dynamic import、分割commandによるconsumer隠蔽を検出する |
+| U-LORET-SEM-009 | 必須consumer entryの欠落を拒否する |
+| U-LORET-SEM-010 | source symbolと再解決可能なanchorを照合し、固定line番号依存を許可しない |
+| U-LORET-SEM-011 | test fixture／historical pathをproduction write/control consumerとして登録できない |
+
+実装・mutationは`tests/legacy-orchestration-semantic-consumers.test.ts`へ束縛し、ledgerと
+validatorは`config/legacy-orchestration-semantic-consumers.json`および
+`src/lint/legacy-orchestration-semantic-consumers.ts`へ束縛する。Phase 1ではdoctor、scheduler、
+旧engine削除への配線を完了条件に含めず、後続phaseの接続前提として未解決のまま記録する。
