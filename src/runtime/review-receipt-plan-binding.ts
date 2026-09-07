@@ -1,6 +1,4 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { modelProviderFromId } from "../schema";
 
@@ -275,16 +273,15 @@ export function loadChangedPlanReviewBindings(
   expectedHead?: string,
 ): ChangedPlanReviewBinding[] {
   let output: string;
+  let candidateHead: string;
   try {
-    if (expectedHead) {
-      const localHead = execFileSync("git", ["rev-parse", "HEAD"], {
-        cwd: repoRoot,
-        encoding: "utf8",
-        stdio: ["ignore", "pipe", "ignore"],
-      }).trim();
-      if (localHead !== expectedHead) throw new Error("local_head_mismatch");
-    }
-    output = execFileSync("git", ["diff", "--name-only", `${baseRef}...HEAD`, "--", "docs/plans"], {
+    candidateHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repoRoot,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    if (expectedHead && candidateHead !== expectedHead) throw new Error("local_head_mismatch");
+    output = execFileSync("git", ["diff", "--name-only", `${baseRef}...${candidateHead}`, "--", "docs/plans"], {
       cwd: repoRoot,
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"],
@@ -304,7 +301,12 @@ export function loadChangedPlanReviewBindings(
     .filter((path) => /^docs\/plans\/[^/]+\.md$/u.test(path))
     .map((path) => {
       try {
-        const head = parseChangedPlan(path, readFileSync(join(repoRoot, path), "utf8"));
+        const headSource = execFileSync("git", ["show", `${candidateHead}:${path}`], {
+          cwd: repoRoot,
+          encoding: "utf8",
+          stdio: ["ignore", "pipe", "ignore"],
+        });
+        const head = parseChangedPlan(path, headSource);
         let baseStatus: string | null = null;
         try {
           const baseSource = execFileSync("git", ["show", `${baseRef}:${path}`], {

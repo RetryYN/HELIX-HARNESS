@@ -220,6 +220,20 @@ describe("review receipt / PLAN binding", () => {
     ]);
   });
 
+  it("U-RRCF-004: 未commitのdraftでcandidateのterminal昇格を隠せない", () => {
+    const root = createGitFixture();
+    mkdirSync(join(root, "docs/plans"), { recursive: true });
+    const path = join(root, "docs/plans/x.md");
+    writeFileSync(path, planSource("PLAN-X", "draft"));
+    commitAll(root, "add draft plan");
+    writeFileSync(path, planSource("PLAN-X", "confirmed"));
+    commitAll(root, "promote plan");
+    writeFileSync(path, planSource("PLAN-X", "draft"));
+    const plans = loadChangedPlanReviewBindings(root, "HEAD~1");
+    expect(plans).toMatchObject([{ status: "confirmed", base_status: "draft" }]);
+    expect(hasTerminalPlanPromotion(plans)).toBe(true);
+  });
+
   it("U-RRCF-001: draft修正とterminal昇格を分離する", () => {
     const base = input().changed_plans[0];
     expect(hasTerminalPlanPromotion([{ ...base, status: "draft", base_status: "draft" }])).toBe(
