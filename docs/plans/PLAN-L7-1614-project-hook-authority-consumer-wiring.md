@@ -1,8 +1,8 @@
 ---
 plan_id: PLAN-L7-1614-project-hook-authority-consumer-wiring
 title: "project hook authorityを4つのcurrent consumerへ実配線する"
-kind: add-impl
-layer: L7
+kind: recovery
+layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: false
