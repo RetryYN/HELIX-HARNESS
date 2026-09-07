@@ -100,7 +100,7 @@ branch、candidate/current HEAD、lease/fence、assignment root digestをexact�
 physical capture失敗は既存`authority_input_unavailable` reasonへ閉じ、cwd、env、primary tree、origin/mainから
 補完しない。既存Assignment kernelのstate machineやlease更新は本adapterの責務外とする。
 
-## Current consumer composition root
+## 現行consumerの合成入口
 
 `createProjectHookAuthorityConsumerWiring(provider)`はproviderを一度だけ読み、既存resolverと4 surface projectorを
 順に一回だけ適用する。生成済みbytesは`session_start`、`doctor`、`status`、`dispatch`へexact keyで保持し、

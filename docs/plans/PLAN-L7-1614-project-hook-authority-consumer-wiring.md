@@ -68,7 +68,7 @@ modifies:
 review_evidence: []
 ---
 
-# project hook authority consumer wiring
+# project hook authorityのconsumer配線
 
 既存resolver/provider/projectorを再実装せず、Control Planeから明示されたsnapshotを一度だけ解決する。
 4 surfaceは同じbytesを受け取り、failure時のdispatchはworkerを起動しない。SessionStart入力不足を
