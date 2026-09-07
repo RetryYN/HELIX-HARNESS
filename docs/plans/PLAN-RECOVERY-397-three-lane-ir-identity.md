@@ -49,6 +49,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-397-three-lane-ir-identity.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/requirement-refinement-authority.md, artifact_type: design_doc }
   - { artifact_path: src/requirements/requirement-refinement-authority.ts, artifact_type: source_module }
   - { artifact_path: config/requirement-ir-schema.json, artifact_type: json_config }
