@@ -762,6 +762,8 @@ jobs:
           node-version: "24.15"
       - name: install deps (frozen)
         run: npm ci
+      - name: install Chromium for G10 browser evidence
+        run: npx --no-install playwright install --with-deps chromium
       - name: record shard budget telemetry
         env:
           SHARD_ID: bulk-3
@@ -775,6 +777,8 @@ jobs:
           name: full-regression-shard-plan
           path: ${{ runner.temp }}/full-regression-shard-plan
       - name: execute bulk-3 and seal receipt
+        env:
+          HELIX_G10_SCREENSHOT: ${{ runner.temp }}/g10-browser-evidence.png
         run: |
           set -euo pipefail
           plan="$RUNNER_TEMP/full-regression-shard-plan/plan.json"

@@ -1,0 +1,15 @@
+plan-schedule — OK (§工程表 checked=1196, §G.4 minimal slice)
+plan-descent - OK (impl PLAN checked=485, grandfathered=213/214)
+plan-specific-vpair-binding - OK (checked=598, exempted=545, findings=0)
+design-reality-binding — advisory: empty=47, baseline=47, prose_gap_candidates=9
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/ai-decision-proposal-authority.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/bounded-probe-history.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/derived-requirement-trace.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/design-reality-binding.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/nfr-typed-registry-quality-taxonomy.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+design-reality-binding — advisory: docs/design/helix/L4-basic-design/project-hook-authority-boundary.md:empty_failure_binding_baseline:declared_failure_codes と failure_reachability が空の既知baseline
+plan-entry-routing - OK (PLAN checked=1180, grandfathered=534/537)
+plan-number-uniqueness - OK (採番 key 1179 件、新規衝突 0)
+plan-lint exit=0 at 2026-09-06T19:42:51Z

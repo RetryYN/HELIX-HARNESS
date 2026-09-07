@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-171-g8-adapter-asset-evidence
+superseded_by: [PLAN-RECOVERY-1430-evidence-substance]
 title: "PLAN-L7-171: G8 adapter/asset evidence 拡張"
 kind: troubleshoot
 layer: L7

@@ -18,6 +18,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadRetiredArtifactPaths } from "./artifact-retirement-authority";
+import { analyzePlanSupersession, loadSupersedePlans } from "./plan-supersession";
 import { loadReviewPlans, type ParsedReviewPlan } from "./review-evidence";
 
 export interface DigestMismatch {
@@ -35,6 +36,11 @@ export interface DigestAuditDeps {
   hash: (bytes: Buffer) => string;
 }
 
+export interface DigestAuditPolicy {
+  retiredArtifactPaths?: ReadonlySet<string>;
+  supersededPlanIds?: ReadonlySet<string>;
+}
+
 /**
  * 全 PLAN の green_command evidence を走査し、hard failure になる digest 欠陥を返す純関数
  * (I/O は deps 注入)。
@@ -42,8 +48,10 @@ export interface DigestAuditDeps {
 export function auditGreenCommandDigests(
   plans: ParsedReviewPlan[],
   deps: DigestAuditDeps,
-  retiredArtifactPaths: ReadonlySet<string> = new Set(),
+  policy: DigestAuditPolicy = {},
 ): DigestMismatch[] {
+  const retiredArtifactPaths = policy.retiredArtifactPaths ?? new Set<string>();
+  const supersededPlanIds = policy.supersededPlanIds ?? new Set<string>();
   const mismatches: DigestMismatch[] = [];
   const validDigestPattern = /^sha256:[a-f0-9]{64}$/i;
   // 単一 hex 文字の 64 連続 (sha256:000...0 / fff...f 等) は実測 sha256 では実質発生せず、
@@ -51,6 +59,7 @@ export function auditGreenCommandDigests(
   // 2026-07-06) を機械で塞ぐ。
   const placeholderPattern = /^sha256:([a-f0-9])\1{63}$/i;
   for (const plan of plans) {
+    if (supersededPlanIds.has(plan.plan_id)) continue;
     for (const entry of plan.crossEntries ?? []) {
       for (const cmd of entry.green_commands ?? []) {
         const path = cmd.evidence_path?.trim();
@@ -140,10 +149,22 @@ export function checkGreenCommandDigests(repoRoot: string = process.cwd()): {
     };
   }
   try {
+    const supersessionPlans = loadSupersedePlans(repoRoot);
+    const supersession = analyzePlanSupersession(supersessionPlans);
+    const validSupersededPlanIds = new Set(
+      supersession.ok
+        ? supersessionPlans
+            .filter((plan) => plan.superseded_by.length > 0)
+            .map((plan) => plan.plan_id)
+        : [],
+    );
     const mismatches = auditGreenCommandDigests(
       loadReviewPlans(repoRoot),
       nodeDigestAuditDeps(repoRoot),
-      loadRetiredArtifactPaths(repoRoot),
+      {
+        retiredArtifactPaths: loadRetiredArtifactPaths(repoRoot),
+        supersededPlanIds: validSupersededPlanIds,
+      },
     );
     return {
       messages: greenCommandDigestMessages(mismatches),

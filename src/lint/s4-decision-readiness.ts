@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { recordTemplateContractViolations } from "./completion-decision-packet";
+import { type EvidenceFileInspection, observeEvidenceFiles } from "./evidence-file-substance";
 import {
   type CompletionDecisionRecordTemplate,
   computeOutstandingWork,
@@ -57,6 +58,7 @@ export interface S4DecisionReadinessInput {
   outstandingTs: string;
   semanticFeatureFrontierRecords?: SemanticFeatureFrontierRecord[];
   plans: S4DecisionPlan[];
+  evidenceObservations?: Readonly<Record<string, Readonly<EvidenceFileInspection>>>;
 }
 
 export interface S4DecisionViolation {
@@ -221,12 +223,19 @@ function parsePlan(file: string, content: string): S4DecisionPlan {
 
 export function loadS4DecisionReadinessInput(repoRoot = process.cwd()): S4DecisionReadinessInput {
   const outstanding = computeOutstandingWork(repoRoot);
+  const plans = loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content));
+  const evidencePaths = plans.flatMap((plan) =>
+    ["verified_evidence", "external_source_basis"].flatMap((field) =>
+      s4EvidencePaths(s4RecordField(plan, field)),
+    ),
+  );
   return {
     discoveryMd: readFileSync(join(repoRoot, "docs", "process", "modes", "discovery.md"), "utf8"),
     scrumMd: readFileSync(join(repoRoot, "docs", "process", "modes", "scrum.md"), "utf8"),
     outstandingTs: readFileSync(join(repoRoot, "src", "lint", "outstanding.ts"), "utf8"),
     semanticFeatureFrontierRecords: outstanding.semanticFeatureFrontierRecords ?? [],
-    plans: loadPlanDocs(repoRoot).map(({ file, content }) => parsePlan(file, content)),
+    plans,
+    evidenceObservations: observeEvidenceFiles(repoRoot, evidencePaths),
   };
 }
 
@@ -263,6 +272,7 @@ function isS4PocDecision(plan: S4DecisionPlan): boolean {
 function validateS4DecisionRecord(
   plan: S4DecisionPlan,
   currentLedgerCheckedDates: string[],
+  observations: S4DecisionReadinessInput["evidenceObservations"],
 ): S4DecisionViolation[] {
   const violations: S4DecisionViolation[] = [];
   const missingFields = missingRecordFields(plan.text, S4_RECORD_NAME, S4_RECORD_FIELDS);
@@ -294,7 +304,7 @@ function validateS4DecisionRecord(
     }
   }
   if (missingFields.length === 0 && !outcomeViolation) {
-    violations.push(...validateS4ReviewMaterial(plan));
+    violations.push(...validateS4ReviewMaterial(plan, observations));
   }
   if (missingFields.length === 0 && !outcomeViolation) {
     violations.push(...validateSelectedOutcomeSemantics(plan));
@@ -302,7 +312,10 @@ function validateS4DecisionRecord(
   return violations;
 }
 
-function validateS4ReviewMaterial(plan: S4DecisionPlan): S4DecisionViolation[] {
+function validateS4ReviewMaterial(
+  plan: S4DecisionPlan,
+  observations: S4DecisionReadinessInput["evidenceObservations"],
+): S4DecisionViolation[] {
   const violations: S4DecisionViolation[] = [];
   const verifiedEvidence = s4RecordField(plan, "verified_evidence");
   const stakeholderReview = s4RecordField(plan, "stakeholder_review_or_proxy");
@@ -338,6 +351,14 @@ function validateS4ReviewMaterial(plan: S4DecisionPlan): S4DecisionViolation[] {
       subject: plan.plan_id,
       reason: "external_source_basis must cite concrete source, PLAN, docs path, or URL",
     });
+  }
+  for (const [field, value] of [
+    ["verified_evidence", verifiedEvidence],
+    ["external_source_basis", externalSourceBasis],
+  ] as const) {
+    for (const reason of s4EvidenceSubstanceViolations(value, observations)) {
+      violations.push({ subject: plan.plan_id, reason: `${field} ${reason}` });
+    }
   }
   if (
     !mentions(stakeholderReview, ["review", "S4 record", "verification"]) ||
@@ -571,6 +592,105 @@ function hasConcreteS4VerifiedEvidence(value: string): boolean {
   ].some((pattern) => pattern.test(normalized));
 }
 
+interface S4EvidencePathToken {
+  path: string;
+  start: number;
+  end: number;
+}
+
+interface S4EvidenceDigestToken {
+  digest: string;
+  start: number;
+  end: number;
+}
+
+interface S4EvidenceLocatorParseResult {
+  paths: string[];
+  digestBindings: Array<{ path: string; digest: string }>;
+  unboundDigests: string[];
+}
+
+const S4_EVIDENCE_PATH_PATTERN =
+  /(?:^|[^A-Za-z0-9._@%+~/\-:])((?:(?:\.helix|docs|tests|src|dist|coverage|artifacts?|reports?|logs?)\/[A-Za-z0-9._@%+~/-]+|[A-Za-z0-9][A-Za-z0-9._-]*\.(?:json|log|txt|md|sarif|junit|xml|csv|db)))(?=$|[^A-Za-z0-9._@%+~/-])/giu;
+
+function s4EvidencePathTokens(value: string): S4EvidencePathToken[] {
+  return [...value.matchAll(S4_EVIDENCE_PATH_PATTERN)].flatMap((match) => {
+    const path = (match[1] ?? "").replace(/[.:]+$/u, "");
+    if (!path || match.index === undefined) return [];
+    const relativeStart = match[0].lastIndexOf(match[1] ?? "");
+    const start = match.index + Math.max(relativeStart, 0);
+    return [{ path, start, end: start + path.length }];
+  });
+}
+
+function s4EvidenceDigestTokens(value: string): S4EvidenceDigestToken[] {
+  return [...value.matchAll(/sha256:[a-f0-9]{64}/giu)].flatMap((match) => {
+    if (match.index === undefined) return [];
+    const digest = match[0].toLowerCase();
+    return [{ digest, start: match.index, end: match.index + match[0].length }];
+  });
+}
+
+function parseS4EvidenceLocators(value: string): S4EvidenceLocatorParseResult {
+  const pathTokens = s4EvidencePathTokens(value);
+  const digestTokens = s4EvidenceDigestTokens(value);
+  const tokens = [
+    ...pathTokens.map((token) => ({ kind: "path" as const, ...token })),
+    ...digestTokens.map((token) => ({ kind: "digest" as const, ...token })),
+  ].sort((left, right) => left.start - right.start || left.end - right.end);
+  const digestBindings: S4EvidenceLocatorParseResult["digestBindings"] = [];
+  const unboundDigests: string[] = [];
+  let pendingPath: string | undefined;
+
+  for (const token of tokens) {
+    if (token.kind === "path") {
+      pendingPath = token.path;
+      continue;
+    }
+    if (!pendingPath) {
+      unboundDigests.push(token.digest);
+      continue;
+    }
+    digestBindings.push({ path: pendingPath, digest: token.digest });
+    pendingPath = undefined;
+  }
+
+  return {
+    paths: pathTokens.map((token) => token.path),
+    digestBindings,
+    unboundDigests,
+  };
+}
+
+function s4EvidencePaths(value: string): string[] {
+  return parseS4EvidenceLocators(value).paths;
+}
+
+function s4EvidenceSubstanceViolations(
+  value: string,
+  observations: S4DecisionReadinessInput["evidenceObservations"],
+): string[] {
+  const parsed = parseS4EvidenceLocators(value);
+  const paths = [...new Set(parsed.paths)];
+  const violations = new Set<string>();
+  for (const path of paths) {
+    const observation = observations?.[path];
+    if (!observation?.ok) {
+      violations.add(`path is not an observed regular repository file: ${path}`);
+    }
+  }
+  for (const binding of parsed.digestBindings) {
+    const observation = observations?.[binding.path];
+    if (!observation?.ok || observation.digest !== binding.digest) {
+      violations.add(`digest is not bound to cited file bytes: ${binding.digest}`);
+    }
+  }
+  for (const digest of parsed.unboundDigests) {
+    violations.add(`digest is not bound to cited file bytes: ${digest}`);
+  }
+  return [...violations];
+}
+
 function describesGapOrExplicitNone(value: string): boolean {
   return mentions(value, [
     "none",
@@ -701,7 +821,9 @@ export function analyzeS4DecisionReadiness(
 
   const pending = input.plans.filter(isPocPendingDecision);
   for (const plan of pending) {
-    violations.push(...validateS4DecisionRecord(plan, currentLedgerCheckedDates));
+    violations.push(
+      ...validateS4DecisionRecord(plan, currentLedgerCheckedDates, input.evidenceObservations),
+    );
     if (input.semanticFeatureFrontierRecords !== undefined) {
       violations.push(
         ...semanticFrontierBindingViolations(
@@ -742,7 +864,9 @@ export function analyzeS4DecisionReadiness(
   }
 
   for (const plan of input.plans.filter(isS4PocDecision)) {
-    violations.push(...validateS4DecisionRecord(plan, currentLedgerCheckedDates));
+    violations.push(
+      ...validateS4DecisionRecord(plan, currentLedgerCheckedDates, input.evidenceObservations),
+    );
   }
 
   return {

@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-313-g9-g10-workflow-gate
+superseded_by: [PLAN-RECOVERY-1430-evidence-substance]
 title: "PLAN-L7-313 (impl): G9 system-workflow / G10 UX-workflow gate 機械化 — right-arm-gate-planning が追跡する自己 carry を閉じる"
 kind: impl
 layer: L7

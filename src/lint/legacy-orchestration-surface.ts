@@ -94,6 +94,33 @@ function countMarkers(content: string): number {
   }, 0);
 }
 
+/**
+ * Vitest JSON reporter の成功記録は実行surfaceではなく、既に実行された検証のimmutable evidenceである。
+ * pathだけでは除外せず、成功構造をparseできる場合に限ってratchetの実装利用走査から外す。
+ */
+export function isNonExecutableSuccessfulVitestEvidence(file: LegacyOrchestrationFile): boolean {
+  if (!file.path.startsWith(".helix/evidence/") || !file.path.endsWith(".vitest.log")) return false;
+  try {
+    const report = JSON.parse(file.content) as Record<string, unknown>;
+    if (
+      report.success !== true ||
+      report.numFailedTests !== 0 ||
+      report.numFailedTestSuites !== 0 ||
+      !Array.isArray(report.testResults) ||
+      report.testResults.length === 0
+    )
+      return false;
+    return report.testResults.every(
+      (result) =>
+        typeof result === "object" &&
+        result !== null &&
+        (result as Record<string, unknown>).status === "passed",
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function analyzeLegacyOrchestrationSurface(
   inventory: LegacyOrchestrationInventory,
   files: LegacyOrchestrationFile[],
@@ -132,7 +159,7 @@ export function analyzeLegacyOrchestrationSurface(
     inventory.excluded_historical_prefixes.some((prefix) => path.startsWith(prefix));
   const observed = new Map<string, number>();
   for (const file of files) {
-    if (isExcluded(file.path)) continue;
+    if (isExcluded(file.path) || isNonExecutableSuccessfulVitestEvidence(file)) continue;
     const count = countMarkers(file.content);
     if (count > 0) observed.set(file.path, count);
   }

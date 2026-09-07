@@ -1,4 +1,10 @@
+import { createHash } from "node:crypto";
+// PLAN-RECOVERY-1430-evidence-substance
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { observeEvidenceFiles } from "../src/lint/evidence-file-substance";
 import {
   analyzeG9SystemWorkflow,
   g9SystemWorkflowMessages,
@@ -31,6 +37,9 @@ const stRows = [
   "ST-UI-02",
 ].join("\n");
 
+// 合成fixtureのみ。保存済み実測manifestのdigestは変更しない。
+const fixturePath = ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log";
+const fixtureDigest = `sha256:${createHash("sha256").update(readFileSync(fixturePath)).digest("hex")}`;
 const validManifest = {
   manifest_path: ".helix/evidence/g9-system/test.json",
   schema_version: "g9-system-evidence-v1",
@@ -57,12 +66,12 @@ const validManifest = {
   commands: [
     {
       command_id: "cmd-g9-selected",
-      command: "npx --no-install vitest run tests/g9-system-workflow.test.ts --timeout 180000",
+      command: `vitest run tests/dependency-drift.test.ts --reporter=json --outputFile=${fixturePath}`,
       runner: "node",
       scope: "targeted",
       exit_code: 0,
-      evidence_path: "tests/g9-system-workflow.test.ts",
-      output_digest: "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      evidence_path: fixturePath,
+      output_digest: fixtureDigest,
       item_ids: ["ST-DATA-01", "ST-ARCH-01", "ST-FUNC-01", "ST-EXT-01", "ST-UI-01", "ST-ASSET-01"],
     },
   ],
@@ -83,9 +92,55 @@ const validManifest = {
 };
 
 describe("g9-system-workflow lint", () => {
+  it("U-GES-009: 固定観測と再観測を区別し、観測欠落は拒否する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-g9-system-workflow-"));
+    try {
+      const path = ".helix/evidence/g9-system/output.vitest.log";
+      mkdirSync(join(root, ".helix/evidence/g9-system"), { recursive: true });
+      const report = JSON.stringify({
+        success: true,
+        numPassedTests: 1,
+        numFailedTests: 0,
+        testResults: [{ name: "repo://tests/g9-system-workflow.test.ts" }],
+      });
+      writeFileSync(join(root, path), report);
+      const manifest = structuredClone(validManifest);
+      manifest.commands[0].evidence_path = path;
+      manifest.commands[0].command = `vitest run tests/g9-system-workflow.test.ts --reporter=json --outputFile=${path}`;
+      manifest.commands[0].output_digest = `sha256:${createHash("sha256").update(report).digest("hex")}`;
+      for (const entry of manifest.coverage) entry.evidence_paths = [path];
+      const input = {
+        repoRoot: root,
+        evidenceObservations: observeEvidenceFiles(root, [path]),
+        l9TestDesign: `${workflowBlock}\n${stRows}`,
+        l9Boundary: workflowBlock,
+        gatesMd: gateBlock,
+        evidenceManifests: [manifest],
+      };
+      const before = analyzeG9SystemWorkflow(input);
+      expect(before.ok).toBe(true);
+      writeFileSync(join(root, path), "changed");
+      expect(analyzeG9SystemWorkflow(input)).toEqual(before);
+      const refreshed = analyzeG9SystemWorkflow({
+        ...input,
+        evidenceObservations: observeEvidenceFiles(root, [path]),
+      });
+      expect(refreshed.ok).toBe(false);
+      expect(refreshed.violations.join("\n")).toContain(
+        "output_digest does not match evidence bytes",
+      );
+      expect(analyzeG9SystemWorkflow({ ...input, evidenceObservations: {} }).ok).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
   it("fails without workflow markers and manifests", () => {
     const result = analyzeG9SystemWorkflow({
       repoRoot: process.cwd(),
+      evidenceObservations: observeEvidenceFiles(process.cwd(), [
+        fixturePath,
+        "tests/g9-system-workflow.test.ts",
+      ]),
       l9TestDesign: stRows,
       l9Boundary: "L9 boundary",
       gatesMd: "G9 concept",
@@ -100,6 +155,10 @@ describe("g9-system-workflow lint", () => {
   it("fails when mandatory coverage is not passed", () => {
     const result = analyzeG9SystemWorkflow({
       repoRoot: process.cwd(),
+      evidenceObservations: observeEvidenceFiles(process.cwd(), [
+        fixturePath,
+        "tests/g9-system-workflow.test.ts",
+      ]),
       l9TestDesign: `${workflowBlock}\n${stRows}`,
       l9Boundary: workflowBlock,
       gatesMd: gateBlock,
@@ -125,6 +184,10 @@ describe("g9-system-workflow lint", () => {
   it("passes when G9 markers and mandatory ST families are covered", () => {
     const result = analyzeG9SystemWorkflow({
       repoRoot: process.cwd(),
+      evidenceObservations: observeEvidenceFiles(process.cwd(), [
+        fixturePath,
+        "tests/g9-system-workflow.test.ts",
+      ]),
       l9TestDesign: `${workflowBlock}\n${stRows}`,
       l9Boundary: workflowBlock,
       gatesMd: gateBlock,

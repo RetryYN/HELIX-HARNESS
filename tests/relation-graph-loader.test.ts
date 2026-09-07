@@ -1,5 +1,5 @@
 // @helix-repo-wide-guard
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -464,14 +464,27 @@ describe("relation graph real-repo loader (PLAN-L7-142 stale-edge fence)", () =>
     );
     expect(reviewImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
     const g8EvidenceImpact = analyzeRelationImpact({
-      changedPaths: [".helix/evidence/g8-integration/20260626-it-module-state-minimum.json"],
+      changedPaths: [".helix/evidence/g8-integration/20260906-module-state-evidence.json"],
       projection,
     });
     expect(g8EvidenceImpact.ok).toBe(true);
     expect(g8EvidenceImpact.changedNodes.map((n) => n.id)).toContain(
-      "design:.helix/evidence/g8-integration/20260626-it-module-state-minimum.json",
+      "design:.helix/evidence/g8-integration/20260906-module-state-evidence.json",
     );
     expect(g8EvidenceImpact.findings.map((f) => f.code)).not.toContain("missing-projection");
+    const archivedG8Evidence =
+      "docs/archive/gate-evidence-manifests/20260626-it-module-state-minimum.json";
+    expect(existsSync(archivedG8Evidence)).toBe(true);
+    expect(projection.nodes.map((node) => node.id)).not.toContain(`design:${archivedG8Evidence}`);
+    const archivedG8Impact = analyzeRelationImpact({
+      changedPaths: [archivedG8Evidence],
+      projection,
+    });
+    expect(archivedG8Impact.ok).toBe(true);
+    expect(archivedG8Impact.findings.map((finding) => finding.code)).toContain("non-graph-path");
+    expect(archivedG8Impact.findings.map((finding) => finding.code)).not.toContain(
+      "missing-projection",
+    );
     const referenceImpact = analyzeRelationImpact({
       changedPaths: ["docs/reference/ai-agent-harness-directory-reference.md"],
       projection,

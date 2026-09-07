@@ -1,5 +1,6 @@
 ---
 plan_id: PLAN-L7-169-g8-integration-evidence-manifest
+superseded_by: [PLAN-RECOVERY-1430-evidence-substance]
 title: "PLAN-L7-169: G8 integration evidence manifest"
 kind: add-impl
 layer: L7

@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-06T20:35:09Z"
+  plan_id: PLAN-L3-1594-skill-mechanism-migration
+  approval_record_id: L3-PO-1594-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1594#issuecomment-5562000029"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,11 +25,11 @@ workflow_identity:
 entry_signals:
   - "po_directive:新要求文書を整理して取り込む skill-mechanism-migration"
 created: 2026-09-06
-updated: 2026-09-06
+updated: 2026-09-07
 owner: Codex / TL
 github_issue_id: 1594
 behavior_contract_id: SKILL-MECHANISM-MIGRATION-001
-responsibility_owner: skill-mechanism-migration
+responsibility_owner: requirements-authority-materialization
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: dual_green
@@ -65,3 +75,11 @@ review_evidence: []
 要求・要件・受入の対応をレビューし、canonical merge/read-after、#397 admissionを経て実装する。
 S-R01..08とS-AC01..08の追跡を維持する。
 別要求の全体完成を前提にせず、同一startup編集・Policy受領だけ対象とdigest付き局所依存にする。
+
+## 承認束縛の検証境界
+
+Issue #1594へPLAN、候補3文書、bind commit、各内容digestを逆参照として記録し、承認を双方向に復元可能にする。
+`approved_at`は編集可能な本文時刻ではなくGitHub commentの`createdAt`を採用する。confirmed昇格前に
+review-evidence gateで`l3HumanApprovalViolations=0`を実測する。現状の
+`approved_pending_canonical_promotion`は既存慣行に沿う候補表示であり、未検証のままcurrent authorityやIRへ投影しない。
+approval source URL／record IDのexact照合とauthority status遷移の機械gateはcanonical promotion sliceで閉じる。
