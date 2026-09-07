@@ -56,7 +56,8 @@ generates:
   - { artifact_path: docs/governance/candidates/bugbot-generation-requests.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/bugbot-generation-requirements.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/bugbot-generation-acceptance.md, artifact_type: markdown_doc }
-modifies: []
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: tl, slot_label: "TL — 既存責務と追加差分を分離" }
   - { role: qa, slot_label: "QA — 原稿対応と禁止反例を検証" }
