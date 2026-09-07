@@ -1,6 +1,9 @@
 ---
 title: "HELIX-bugbot 定型生成の利用目的"
 status: draft_candidate
+authority_status: approved_pending_canonical_promotion
+approval_record_id: L3-PO-1639-001
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
 version: "1.0"
 candidate_layer: L1
 owner_issue: 1639

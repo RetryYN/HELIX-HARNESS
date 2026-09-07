@@ -1,7 +1,9 @@
 ---
 title: "HELIX-bugbot 定型生成・正規操作の改訂候補"
 status: draft_candidate
-authority_status: awaiting_human_approval
+authority_status: approved_pending_canonical_promotion
+approval_record_id: L3-PO-1639-001
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
 version: "1.0"
 candidate_layer: L3
 owner_issue: 1639
@@ -12,6 +14,8 @@ plan_id: PLAN-L3-1639-bugbot-generation
 
 本書は改訂候補であり、実行authority・承認記録ではない。BBG IDは候補内ID。
 L1/L10・専用PLANは同名候補に接続する。既存ACとの詳細照合、正本化・IR admissionは未完了。
+L1/L3/L10候補は`L3-PO-1639-001`で承認済み。canonical promotion・該当IR admission後の
+実装・限定実証へ進行する。承認は実装・検収完了の証拠ではなく、生成から自動書込み許可を導出しない。
 
 ## 責務と再利用
 

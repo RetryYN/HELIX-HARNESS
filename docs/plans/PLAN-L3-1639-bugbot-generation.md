@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-07T20:06:36Z"
+  plan_id: PLAN-L3-1639-bugbot-generation
+  approval_record_id: L3-PO-1639-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -68,8 +78,18 @@ review_evidence: []
 
 # 定型生成・正規操作
 
-本PLANは要求候補の取り込みのみ。CI/Cursorと並行する優先指定を、自動適用権限の承認へ昇格しない。
-A/Bは別PLAN・別受入・別完了で追跡する。未定義差分の正本化・IR admission前にruntimeを有効化しない。
+本PLANは要求候補と明示承認の束縛を所有する。L1/L3/L10の要求承認は取得済みであり、
+canonical promotion・Requirement IR admission・実装・限定実証へ進める。同一要求の再承認待ちには戻さない。
+A/Bは別PLAN・別受入・別完了で追跡し、正本化・該当IR admission・独立検証を省略しない。
+本差分は承認記録の反映であり、canonical昇格・runtime完成・包括的自動書込みの成立を主張しない。
+
+## 承認対象と残る検収
+
+`L3-PO-1639-001`は候補HEAD `a2325edb8425f4e84421ef2fd1f07c6c6d668dd7`の
+L1/L3/L10各文書のraw digestへ束縛されている。承認メタデータの追加で元のdigestを差し替えない。
+`approved_at`はGitHub記録の作成時刻であり、人間メッセージの厳密な送信時刻ではない。
+要求承認と技術review・CI・main read-after・実consumer受入を分離する。
+Bの有効化条件は#1642が所有し、Aの生成成功を修復の適用許可に変換しない。
 
 原稿bytesは`docs/governance/candidates/bugbot-intake-source.md`のBase64復号で再現する。正規化なしのSHA-256:
 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
