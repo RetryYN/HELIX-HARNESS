@@ -399,6 +399,7 @@ import {
   readProviderHandoverCurrent,
   runProviderHandover,
 } from "./runtime/provider-handover";
+import { runBudgetedProviderProcess } from "./runtime/provider-process-lifecycle";
 import {
   buildReviewFeedbackSessionIntakeReport,
   type ReviewFeedbackEventInput,
@@ -410,6 +411,10 @@ import {
   reviewGuardMessages,
   summarizeStagedReview,
 } from "./runtime/review-guard";
+import {
+  evaluateReviewReceiptPlanBinding,
+  loadChangedPlanReviewBindings,
+} from "./runtime/review-receipt-plan-binding";
 import {
   appendRuntimeVerificationLogEvent,
   DEFAULT_RUNTIME_VERIFICATION_LOG_PATH,
@@ -1756,39 +1761,6 @@ function runCapturedProviderProcess(launch: ProviderProcessLaunch): Promise<Prov
     child.stdin?.on("error", () => undefined);
     if (launch.stdin === undefined) child.stdin?.end();
     else child.stdin?.end(launch.stdin);
-  });
-}
-
-function runInheritedProviderProcess(
-  launch: ProviderProcessLaunch,
-  stdout: "inherit" | 2,
-): Promise<Pick<ProviderProcessResult, "status" | "signal" | "error">> {
-  return new Promise((resolve) => {
-    let launchError: unknown;
-    let child: ReturnType<typeof spawn>;
-    try {
-      child = spawn(launch.command, launch.args, {
-        env: launch.env,
-        shell: launch.shell,
-        windowsVerbatimArguments: launch.windowsVerbatimArguments,
-        stdio: [launch.stdin === undefined ? "inherit" : "pipe", stdout, "inherit"],
-      });
-    } catch (error) {
-      resolve({ status: null, error });
-      return;
-    }
-    child.once("error", (error) => {
-      launchError = error;
-    });
-    child.once("close", (status, signal) => {
-      resolve({
-        status,
-        signal,
-        ...(launchError === undefined ? {} : { error: launchError }),
-      });
-    });
-    child.stdin?.on("error", () => undefined);
-    if (launch.stdin !== undefined) child.stdin?.end(launch.stdin);
   });
 }
 
@@ -12336,20 +12308,25 @@ function runtimeCommand(provider: AdapterProvider): Command {
           process.exitCode = 1;
           return;
         }
-        const child = await runInheritedProviderProcess(
-          {
-            command: admitted.invocation.command,
-            args: admitted.invocation.args,
-            // Provider prompts are passed through stdin; argv carries only fixed command flags so
-            // shell metacharacters and tool markup stay inert. The async boundary ends stdin after
-            // the prompt is written, which `spawnSync({ input })` cannot safely do for this route.
-            stdin: admitted.stdin,
-            env: adapterExecutionEnv(provider, admitted.env),
-            shell: admitted.invocation.shell ?? false,
-            windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
-          },
-          jsonOut ? 2 : "inherit",
-        );
+        if (!admitted.worker_context) {
+          process.stderr.write(`${provider}: wrapper admission lost its required worker context\n`);
+          process.exitCode = 1;
+          return;
+        }
+        const child = await runBudgetedProviderProcess({
+          command: admitted.invocation.command,
+          args: admitted.invocation.args,
+          // Provider prompts are passed through stdin; argv carries only fixed command flags so
+          // shell metacharacters and tool markup stay inert. The async boundary ends stdin after
+          // the prompt is written, which `spawnSync({ input })` cannot safely do for this route.
+          stdin: admitted.stdin,
+          env: adapterExecutionEnv(provider, admitted.env),
+          shell: admitted.invocation.shell ?? false,
+          windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments ?? false,
+          timeMs: admitted.worker_context.packet.budget.time_ms,
+          stdout: jsonOut ? 2 : "inherit",
+          stderr: "inherit",
+        });
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
@@ -12405,13 +12382,30 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 executed: true,
                 exit_code: child.status ?? null,
                 signal: child.signal ?? null,
+                timed_out: child.timed_out,
+                tree_lingered: child.tree_lingered,
+                interrupted_by: child.interrupted_by,
+                deadline_ms: child.deadline_ms,
+                termination_stage: child.termination_stage,
+                duration_ms: child.duration_ms,
+                reaped: child.reaped,
               },
               null,
               2,
             )}\n`,
           );
         }
-        process.exitCode = child.status ?? 1;
+        const interruptedExitCodes: Readonly<Partial<Record<NodeJS.Signals, number>>> = {
+          SIGHUP: 129,
+          SIGINT: 130,
+          SIGTERM: 143,
+        };
+        process.exitCode =
+          (child.interrupted_by === null
+            ? undefined
+            : interruptedExitCodes[child.interrupted_by]) ??
+          child.status ??
+          1;
       },
     );
 }
@@ -14798,6 +14792,21 @@ github
       }
       if (input.verdict === "approve") {
         input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
+        const planBinding = evaluateReviewReceiptPlanBinding({
+          receipt: {
+            reviewer_session_id: input.reviewerSessionId,
+            reviewer_model: input.reviewerModel,
+          },
+          changed_plans: loadChangedPlanReviewBindings(process.cwd(), "origin/main", input.headSha),
+        });
+        if (!planBinding.ok) {
+          const failure = planBinding.failures[0];
+          process.stderr.write(
+            `github pr-review-receipt: ${failure?.reason ?? "review_plan_binding_unavailable"}${failure ? `:${failure.plan_id}` : ""}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
       }
       const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
       const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
@@ -15035,6 +15044,38 @@ github
         process.exitCode = 1;
         return;
       }
+    }
+    const reviewIdentity = providerNeutral
+      ? (() => {
+          const value = receipt as ReturnType<typeof loadProviderNeutralReviewReceipt>;
+          return {
+            reviewer_session_id: value.reviewer_session,
+            reviewer_model: value.reviewer_model,
+          };
+        })()
+      : (() => {
+          const value = receipt as ReturnType<typeof loadClaudePrReviewReceipt>;
+          return {
+            reviewer_session_id: value.reviewerSessionId,
+            reviewer_model: value.reviewerModel,
+          };
+        })();
+    const mergePlanBinding = evaluateReviewReceiptPlanBinding({
+      receipt: reviewIdentity,
+      changed_plans: loadChangedPlanReviewBindings(
+        process.cwd(),
+        "origin/main",
+        current.headRefOid,
+      ),
+    });
+    if (!mergePlanBinding.ok) {
+      process.stderr.write(
+        `github pr-merge-reviewed: ${mergePlanBinding.failures
+          .map((failure) => `${failure.reason}:${failure.plan_id}`)
+          .join(",")}\n`,
+      );
+      process.exitCode = 1;
+      return;
     }
     const requiredViewed = spawnSync(
       "gh",
