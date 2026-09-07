@@ -190,7 +190,10 @@ describe("project hook authority transport envelope", () => {
     });
     expect(result).toMatchObject({
       ok: false,
-      failure: { code: "project_hook_source_stale_or_foreign", json_pointer: "/execution_root" },
+      failure: {
+        code: "project_hook_source_stale_or_foreign",
+        json_pointer: "/execution_root",
+      },
     });
     expect(git).toHaveBeenCalled();
   });
@@ -256,7 +259,13 @@ describe("project hook authority transport envelope", () => {
 
   it("U-CNWHOOKENV-007: invalid envelopeはschema failureへ閉じ、authority fallbackしない", () => {
     const result = resolveProjectHookAuthorityFromTransport(
-      { ...envelope(), expected: { ...envelope().expected, current_authority_head: "not-a-head" } },
+      {
+        ...envelope(),
+        expected: {
+          ...envelope().expected,
+          current_authority_head: "not-a-head",
+        },
+      },
       host(),
       { physical: physicalDeps() },
     );
@@ -279,11 +288,11 @@ describe("project hook authority transport envelope", () => {
   it("U-CNHOOKWIRE-001: resolver/projectorは各1回、4 surfaceは同一bytesを読む", () => {
     let resolveCalls = 0;
     let projectCalls = 0;
-    const wiring = buildProjectHookAuthorityConsumerWiring(
-      envelope(),
-      host(),
-      { physical: physicalDeps() },
-      {
+    const wiring = buildProjectHookAuthorityConsumerWiring({
+      raw_envelope: envelope(),
+      host: host(),
+      transport_deps: { physical: physicalDeps() },
+      dependencies: {
         resolve: (...args) => {
           resolveCalls += 1;
           return resolveProjectHookAuthorityFromTransport(...args);
@@ -293,7 +302,7 @@ describe("project hook authority transport envelope", () => {
           return projectProjectHookAuthoritySurfaces(resolution);
         },
       },
-    );
+    });
 
     expect(resolveCalls).toBe(1);
     expect(projectCalls).toBe(1);
@@ -320,11 +329,11 @@ describe("project hook authority transport envelope", () => {
     let projectCalls = 0;
     const bad = structuredClone(envelope());
     bad.expected.current_authority_head = "b".repeat(40);
-    const wiring = buildProjectHookAuthorityConsumerWiring(
-      bad,
-      host(),
-      { physical: physicalDeps() },
-      {
+    const wiring = buildProjectHookAuthorityConsumerWiring({
+      raw_envelope: bad,
+      host: host(),
+      transport_deps: { physical: physicalDeps() },
+      dependencies: {
         resolve: (...args) => {
           resolveCalls += 1;
           return resolveProjectHookAuthorityFromTransport(...args);
@@ -334,7 +343,7 @@ describe("project hook authority transport envelope", () => {
           return projectProjectHookAuthoritySurfaces(resolution);
         },
       },
-    );
+    });
     const dispatch = admitProjectHookAuthorityDispatch(wiring);
     expect(dispatch.allowed).toBe(false);
     expect(dispatch.reason).toBe("project_hook_authority_not_admitted");
@@ -392,7 +401,9 @@ describe("project hook authority transport envelope", () => {
     const bad = structuredClone(envelope());
     bad.expected.current_authority_head = "b".repeat(40);
     expect(
-      resolveProjectHookAuthorityFromTransport(bad, host(), { physical: physicalDeps() }),
+      resolveProjectHookAuthorityFromTransport(bad, host(), {
+        physical: physicalDeps(),
+      }),
     ).toMatchObject({
       ok: false,
       failure: {
@@ -405,8 +416,10 @@ describe("project hook authority transport envelope", () => {
   it("U-CNHOOKWIRE-007: dispatch admissionはadmitted receiptの存在だけで判定しproviderを推測しない", () => {
     const bad = structuredClone(envelope());
     bad.expected.current_authority_source_material.agent_guard_digest = rawDigest("foreign");
-    const wiring = buildProjectHookAuthorityConsumerWiring(bad, host(), {
-      physical: physicalDeps(),
+    const wiring = buildProjectHookAuthorityConsumerWiring({
+      raw_envelope: bad,
+      host: host(),
+      transport_deps: { physical: physicalDeps() },
     });
     expect(admitProjectHookAuthorityDispatch(wiring)).toMatchObject({
       allowed: false,

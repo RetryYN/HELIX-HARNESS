@@ -34,18 +34,23 @@ const defaultDependencies: ProjectHookAuthorityConsumerDependencies = {
   project: projectProjectHookAuthoritySurfaces,
 };
 
+export interface ProjectHookAuthorityConsumerInput {
+  readonly raw_envelope: unknown;
+  readonly host: ProjectHookAuthorityHostObservation;
+  readonly transport_deps: ProjectHookAuthorityTransportDeps;
+  readonly dependencies?: ProjectHookAuthorityConsumerDependencies;
+}
+
 /**
  * Control Plane transport envelopeを一度だけcanonical resolutionへ変換し、
  * projectorも一度だけ実行する。返却後のsurface参照はserialization、capture、resolverを
  * 再実行しない。admitted receiptが存在しないfailureではdispatchを許可しない。
  */
 export function buildProjectHookAuthorityConsumerWiring(
-  rawEnvelope: unknown,
-  host: ProjectHookAuthorityHostObservation,
-  transportDeps: ProjectHookAuthorityTransportDeps,
-  deps: ProjectHookAuthorityConsumerDependencies = defaultDependencies,
+  input: ProjectHookAuthorityConsumerInput,
 ): ProjectHookAuthorityConsumerWiring {
-  const resolution = deps.resolve(rawEnvelope, host, transportDeps);
+  const deps = input.dependencies ?? defaultDependencies;
+  const resolution = deps.resolve(input.raw_envelope, input.host, input.transport_deps);
   const projection = deps.project(resolution);
   const admittedReceipt = resolution.ok ? resolution.receipt : null;
   return Object.freeze({
