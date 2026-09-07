@@ -1,6 +1,13 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #1594: L1/L3/L10/L12 canonical sourceへの一方向配置を列挙するPLAN。
+    // 正規pairはL1↔L12・L3↔L10であり、旧L3↔L12 pairの再導入ではない。
+    path: "docs/plans/PLAN-L3-1594-skill-mechanism-migration.md",
+    contentDigest: "7b7145043068d44ec30ed86b6f5f154cce060be11383c744314921001c5146e4",
+    finalDisposition: "false_positive",
+  },
+  {
     // #1358: L1→L3導出とL1↔L12認識の併記。受入pairはL3↔L10であり旧pairではない。
     path: "docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md",
     contentDigest: "f3d465e2577167c13deaedca527a497da8d5c6d84a790b0c6b8c8e94f5de7902",
