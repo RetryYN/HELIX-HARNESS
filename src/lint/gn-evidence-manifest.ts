@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { isAbsolute, relative, resolve } from "node:path";
+import { resolve } from "node:path";
 import { isRecord } from "../shared/value-guards";
+import type { EvidenceFileInspection } from "./evidence-file-substance";
 
 export interface GateEvidenceCommand {
   command_id: string;
@@ -133,14 +134,6 @@ function normalizedPath(path: string): string {
   return path.replace(/\\/g, "/");
 }
 
-function pathExistsInsideRepo(repoRoot: string | undefined, path: string): boolean {
-  if (!repoRoot || !path || isAbsolute(path)) return false;
-  const resolved = resolve(repoRoot, path);
-  const rel = relative(repoRoot, resolved);
-  if (rel.startsWith("..") || isAbsolute(rel)) return false;
-  return existsSync(resolved);
-}
-
 function hasAllowedEvidencePrefix(path: string): boolean {
   const normalized = normalizedPath(path);
   return [".helix/evidence/", "docs/", "src/", "tests/"].some((prefix) =>
@@ -148,9 +141,71 @@ function hasAllowedEvidencePrefix(path: string): boolean {
   );
 }
 
+function commandTestPaths(command: string): string[] {
+  return [...command.matchAll(/\b(tests\/[A-Za-z0-9._/-]+\.test\.ts)\b/gu)].map(
+    (match) => match[1] ?? "",
+  );
+}
+
+export function commandEvidenceViolations(
+  command: Pick<GateEvidenceCommand, "command_id" | "command" | "evidence_path" | "output_digest">,
+  observations: Readonly<Record<string, Readonly<EvidenceFileInspection>>> | undefined,
+  evidenceDir: string,
+): string[] {
+  const violations: string[] = [];
+  const prefix = `${evidenceDir.replace(/\/$/u, "")}/`;
+  if (!normalizedPath(command.evidence_path).startsWith(prefix)) {
+    violations.push(`command ${command.command_id} evidence_path must be under ${evidenceDir}`);
+    return violations;
+  }
+  if (!command.evidence_path.endsWith(".vitest.log")) {
+    violations.push(`command ${command.command_id} evidence_path must be a .vitest.log receipt`);
+  }
+  if (!/(?:^|\s)(?:npx\s+--no-install\s+)?vitest\s+run(?:\s|$)/u.test(command.command)) {
+    violations.push(`command ${command.command_id} must execute vitest run`);
+  }
+  if (!/(?:^|\s)--reporter=json(?:\s|$)/u.test(command.command)) {
+    violations.push(`command ${command.command_id} must request the Vitest JSON reporter`);
+  }
+  const declaredTestPaths = commandTestPaths(command.command);
+  if (declaredTestPaths.length === 0) {
+    violations.push(`command ${command.command_id} must declare at least one test path`);
+  }
+  if (!command.command.includes(`--outputFile=${command.evidence_path}`)) {
+    violations.push(`command ${command.command_id} is not bound to its evidence output path`);
+  }
+  const evidence = observations?.[command.evidence_path];
+  if (!evidence?.ok) {
+    violations.push(
+      `command ${command.command_id} evidence bytes unavailable: ${evidence?.reason ?? "unobserved"}`,
+    );
+    return violations;
+  }
+  if (evidence.digest !== command.output_digest.toLowerCase()) {
+    violations.push(`command ${command.command_id} output_digest does not match evidence bytes`);
+  }
+  if (
+    evidence.content.kind !== "vitest_json_report" ||
+    !evidence.content.success ||
+    evidence.content.failedTests !== 0 ||
+    evidence.content.passedTests < 1
+  ) {
+    violations.push(
+      `command ${command.command_id} evidence is not a successful Vitest JSON report`,
+    );
+    return violations;
+  }
+  for (const testPath of declaredTestPaths) {
+    if (!evidence.content.testFiles.some((path) => path.endsWith(testPath))) {
+      violations.push(`command ${command.command_id} report does not contain ${testPath}`);
+    }
+  }
+  return violations;
+}
+
 export function validateGateEvidenceManifest(
   manifest: GateEvidenceManifest,
-  repoRoot: string | undefined,
+  observations: Readonly<Record<string, Readonly<EvidenceFileInspection>>> | undefined,
   config: GateEvidenceConfig,
 ): string[] {
   const violations: string[] = [];
@@ -166,8 +221,14 @@ export function validateGateEvidenceManifest(
   if (manifest.commands.length === 0) {
     violations.push(`${manifest.manifest_path}: commands must not be empty`);
   }
+  if (manifest.mandatory_item_ids.length === 0) {
+    violations.push(`${manifest.manifest_path}: mandatory_item_ids must not be empty`);
+  }
 
   const commandIds = new Set(manifest.commands.map((command) => command.command_id));
+  if (commandIds.size !== manifest.commands.length) {
+    violations.push(`${manifest.manifest_path}: duplicate command_id`);
+  }
   for (const command of manifest.commands) {
     if (!command.command_id || !command.command || !command.runner || !command.scope) {
       violations.push(`${manifest.manifest_path}: command entry has missing required fields`);
@@ -182,16 +243,11 @@ export function validateGateEvidenceManifest(
         `${manifest.manifest_path}: command ${command.command_id} has invalid digest`,
       );
     }
-    if (!pathExistsInsideRepo(repoRoot, command.evidence_path)) {
-      violations.push(
-        `${manifest.manifest_path}: command ${command.command_id} evidence_path missing`,
-      );
-    }
-    if (!hasAllowedEvidencePrefix(command.evidence_path)) {
-      violations.push(
-        `${manifest.manifest_path}: command ${command.command_id} evidence_path prefix not allowed`,
-      );
-    }
+    violations.push(
+      ...commandEvidenceViolations(command, observations, config.evidenceDir).map(
+        (reason) => `${manifest.manifest_path}: ${reason}`,
+      ),
+    );
     for (const itemId of command.item_ids) {
       if (!itemId.startsWith(config.itemPrefix)) {
         violations.push(
@@ -202,6 +258,9 @@ export function validateGateEvidenceManifest(
   }
 
   const coverageByItem = new Map(manifest.coverage.map((entry) => [entry.item_id, entry]));
+  if (coverageByItem.size !== manifest.coverage.length) {
+    violations.push(`${manifest.manifest_path}: duplicate coverage item_id`);
+  }
   for (const mandatoryItemId of manifest.mandatory_item_ids) {
     const coverage = coverageByItem.get(mandatoryItemId);
     if (!coverage) {
@@ -223,10 +282,19 @@ export function validateGateEvidenceManifest(
         violations.push(
           `${manifest.manifest_path}: coverage ${mandatoryItemId} references unknown command ${commandId}`,
         );
+      } else if (
+        !manifest.commands.some(
+          (command) =>
+            command.command_id === commandId && command.item_ids.includes(mandatoryItemId),
+        )
+      ) {
+        violations.push(
+          `${manifest.manifest_path}: coverage ${mandatoryItemId} references command ${commandId} without matching item`,
+        );
       }
     }
     for (const evidencePath of coverage.evidence_paths) {
-      if (!pathExistsInsideRepo(repoRoot, evidencePath)) {
+      if (!observations?.[evidencePath]?.ok) {
         violations.push(
           `${manifest.manifest_path}: coverage ${mandatoryItemId} evidence_path missing: ${evidencePath}`,
         );
@@ -244,6 +312,22 @@ export function validateGateEvidenceManifest(
     }
   }
 
+  const mandatoryStatuses = [...new Set(manifest.mandatory_item_ids)].map(
+    (id) => coverageByItem.get(id)?.status,
+  );
+  const allPassed =
+    mandatoryStatuses.length > 0 && mandatoryStatuses.every((status) => status === "passed");
+  const failedCount = mandatoryStatuses.filter((status) => status === "failed").length;
+  if (manifest.exit_criteria.all_mandatory_passed !== allPassed) {
+    violations.push(
+      `${manifest.manifest_path}: exit_criteria.all_mandatory_passed disagrees with coverage`,
+    );
+  }
+  if (manifest.exit_criteria.failed_mandatory_count !== failedCount) {
+    violations.push(
+      `${manifest.manifest_path}: exit_criteria.failed_mandatory_count disagrees with coverage`,
+    );
+  }
   if (manifest.exit_criteria.all_mandatory_passed !== true) {
     violations.push(`${manifest.manifest_path}: exit_criteria.all_mandatory_passed must be true`);
   }

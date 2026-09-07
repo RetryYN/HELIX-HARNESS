@@ -1,0 +1,121 @@
+{
+  "schema_version": "g9-system-evidence-v1",
+  "gate": "G9",
+  "profile": "system-selected-node24-execution",
+  "plan_id": "PLAN-RECOVERY-1430-evidence-substance",
+  "selected_item_ids": [
+    "ST-DATA-01",
+    "ST-ARCH-01",
+    "ST-FUNC-01",
+    "ST-EXT-01",
+    "ST-UI-01",
+    "ST-ASSET-01"
+  ],
+  "mandatory_item_ids": [
+    "ST-DATA-01",
+    "ST-ARCH-01",
+    "ST-FUNC-01",
+    "ST-EXT-01",
+    "ST-UI-01",
+    "ST-ASSET-01"
+  ],
+  "deferred_item_ids": [],
+  "commands": [
+    {
+      "command_id": "cmd-g9-selected-node24",
+      "command": "vitest run tests/impl-plan-trace.test.ts tests/oracle-test-trace.test.ts tests/dependency-drift.test.ts tests/module-drift.test.ts tests/workflow-contracts.test.ts tests/semantic-frontier-consistency.test.ts tests/runtime-adapter.test.ts tests/frontend-design-coverage.test.ts tests/screen-impl-pair-freeze.test.ts tests/asset-drift.test.ts tests/skill-assignment.test.ts tests/verification-profile.test.ts tests/completion-decision-packet.test.ts --reporter=json --outputFile=.helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+      "runner": "node24",
+      "scope": "targeted",
+      "exit_code": 0,
+      "evidence_path": ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+      "output_digest": "sha256:80f2d4b2af6f7ec14ff153f66073ccc4bee7e9c683ac83b6d41315af5ee36e6e",
+      "item_ids": [
+        "ST-DATA-01",
+        "ST-ARCH-01",
+        "ST-FUNC-01",
+        "ST-EXT-01",
+        "ST-UI-01",
+        "ST-ASSET-01"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "item_id": "ST-DATA-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+        "tests/impl-plan-trace.test.ts",
+        "tests/oracle-test-trace.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-node24"
+      ]
+    },
+    {
+      "item_id": "ST-ARCH-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+        "tests/dependency-drift.test.ts",
+        "tests/module-drift.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-node24"
+      ]
+    },
+    {
+      "item_id": "ST-FUNC-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+        "tests/workflow-contracts.test.ts",
+        "tests/semantic-frontier-consistency.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-node24"
+      ]
+    },
+    {
+      "item_id": "ST-EXT-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+        "tests/runtime-adapter.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-node24"
+      ]
+    },
+    {
+      "item_id": "ST-UI-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+        "tests/frontend-design-coverage.test.ts",
+        "tests/screen-impl-pair-freeze.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-node24"
+      ]
+    },
+    {
+      "item_id": "ST-ASSET-01",
+      "status": "passed",
+      "evidence_paths": [
+        ".helix/evidence/g9-system/20260906-selected-system-evidence.vitest.log",
+        "tests/asset-drift.test.ts",
+        "tests/skill-assignment.test.ts"
+      ],
+      "command_ids": [
+        "cmd-g9-selected-node24"
+      ]
+    }
+  ],
+  "exit_criteria": {
+    "all_mandatory_passed": true,
+    "failed_mandatory_count": 0,
+    "stale_defer_count": 0,
+    "doctor_check": "g9-system-workflow"
+  }
+}

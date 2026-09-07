@@ -1,0 +1,10 @@
+
+ RUN  v4.1.11 /tmp/claude-1001/-home-tenni-HELIX-HARNESS/9867601a-a3ad-4369-980c-11757d63a7de/scratchpad/fresh1600
+
+
+ Test Files  17 passed (17)
+      Tests  293 passed (293)
+   Start at  04:39:57
+   Duration  166.09s (transform 2.20s, setup 0ms, import 3.89s, tests 160.61s, environment 1ms)
+
+vitest exit=0 at 2026-09-06T19:42:32Z

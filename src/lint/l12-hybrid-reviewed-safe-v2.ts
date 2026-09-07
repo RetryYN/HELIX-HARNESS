@@ -1011,7 +1011,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L7-169-g8-integration-evidence-manifest.md",
-    contentDigest: "2ba0ec2780f28f7138a4b1ffb919a7c6dc2b511aa55154c1d08b6af98c07eff3",
+    contentDigest: "2b56b2306a3af0911d33be9c5a1693828242a8eac91734cf17eafa69fdb739a1",
     finalDisposition: "false_positive",
   },
   {
@@ -1041,7 +1041,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-L7-171-g8-adapter-asset-evidence.md",
-    contentDigest: "1edfed3324a288cb935c5caacfbbca7b283894240414eddbf8b23e156a4c78dd",
+    contentDigest: "cd3af36e58de28d6536fd0411adfe5fbd2c1f916d6b41980f541d23988c0fafd",
     finalDisposition: "false_positive",
   },
   {
@@ -2351,7 +2351,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     path: "docs/plans/PLAN-REVERSE-169-g8-integration-evidence-manifest.md",
-    contentDigest: "cf657403cdfca94201cd705cc235730e924685bb1a222e1186a3402f3ea95bec",
+    contentDigest: "d6593da9608aee0a87b9a2a51628c094ff2737a350a21bb6ac1a6881fef9e5a3",
     finalDisposition: "false_positive",
   },
   {

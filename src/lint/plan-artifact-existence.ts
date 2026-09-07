@@ -34,6 +34,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadRetiredArtifactPaths } from "./artifact-retirement-authority";
+import { analyzePlanSupersession, loadSupersedePlans } from "./plan-supersession";
 import { loadReviewPlans } from "./review-evidence";
 import { isTerminalPlanStatus, normalizePath } from "./shared";
 
@@ -136,9 +137,21 @@ export function loadPlanArtifactExistenceInput(
     return { plans: [] }; // docs/plans 不在は空 (fail-open、他 lint と同方針)
   }
   const plansDir = join(repoRoot, "docs", "plans");
+  const supersessionPlans = loadSupersedePlans(repoRoot);
+  const supersession = analyzePlanSupersession(supersessionPlans);
+  const validSupersededPlanIds = new Set(
+    supersession.ok
+      ? supersessionPlans
+          .filter((plan) => plan.superseded_by.length > 0)
+          .map((plan) => plan.plan_id)
+      : [],
+  );
   for (const rp of reviewPlans) {
     // archived は完了後に成果物を整理・削除することがある (phantom false-positive) → 対象外。
     if (rp.status === "archived") continue;
+    // 双方向 supersession graph 全体が成立した旧 PLAN は、後継が live artifact authority を所有する。
+    // graph が1件でも不正なら免除集合を空にして fail-close する。
+    if (validSupersededPlanIds.has(rp.plan_id)) continue;
     if (!isTerminalPlanStatus(rp.status)) continue;
     let content = "";
     try {

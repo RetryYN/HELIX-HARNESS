@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { type EvidenceFileInspection, observeEvidenceFiles } from "./evidence-file-substance";
 import {
   type GateEvidenceManifest,
   loadGateEvidenceManifests,
@@ -8,6 +9,7 @@ import {
 
 export interface G9SystemWorkflowInput {
   repoRoot?: string;
+  evidenceObservations?: Readonly<Record<string, Readonly<EvidenceFileInspection>>>;
   l9TestDesign: string;
   l9Boundary: string;
   gatesMd: string;
@@ -65,8 +67,16 @@ function missingMarkers(text: string, markers: readonly string[]): string[] {
 }
 
 export function loadG9SystemWorkflowInput(repoRoot = process.cwd()): G9SystemWorkflowInput {
+  const evidenceManifests = loadGateEvidenceManifests(repoRoot, CONFIG);
   return {
     repoRoot,
+    evidenceObservations: observeEvidenceFiles(
+      repoRoot,
+      evidenceManifests.flatMap((manifest) => [
+        ...manifest.commands.map((command) => command.evidence_path),
+        ...manifest.coverage.flatMap((entry) => entry.evidence_paths),
+      ]),
+    ),
     l9TestDesign: readFileSync(
       resolve(repoRoot, "docs/test-design/harness/L9-system-test-design.md"),
       "utf8",
@@ -76,7 +86,7 @@ export function loadG9SystemWorkflowInput(repoRoot = process.cwd()): G9SystemWor
       "utf8",
     ),
     gatesMd: readFileSync(resolve(repoRoot, "docs/process/gates.md"), "utf8"),
-    evidenceManifests: loadGateEvidenceManifests(repoRoot, CONFIG),
+    evidenceManifests,
   };
 }
 
@@ -125,7 +135,7 @@ export function analyzeG9SystemWorkflow(input: G9SystemWorkflowInput): G9SystemW
     }
   }
   for (const manifest of input.evidenceManifests) {
-    violations.push(...validateGateEvidenceManifest(manifest, input.repoRoot, CONFIG));
+    violations.push(...validateGateEvidenceManifest(manifest, input.evidenceObservations, CONFIG));
   }
 
   return {

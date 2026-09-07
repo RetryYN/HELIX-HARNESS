@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { type EvidenceFileInspection, observeEvidenceFiles } from "./evidence-file-substance";
 import {
   type GateEvidenceManifest,
   loadGateEvidenceManifests,
@@ -8,6 +9,7 @@ import {
 
 export interface G10UxWorkflowInput {
   repoRoot?: string;
+  evidenceObservations?: Readonly<Record<string, Readonly<EvidenceFileInspection>>>;
   l10VisualDesign: string;
   gatesMd: string;
   evidenceManifests: GateEvidenceManifest[];
@@ -53,20 +55,33 @@ const GATE_MARKERS = [
   "frontend coverage",
 ] as const;
 const REQUIRED_UXV_FAMILY_PREFIXES = ["UXV-RENDER-", "UXV-A11Y-", "UXV-BLOCKER-"] as const;
+const REQUIRED_ADVISOR_RECEIPT_PREFIX = {
+  "UXV-RENDER-": "browser-render-receipt:",
+  "UXV-A11Y-": "browser-a11y-receipt:",
+  "UXV-BLOCKER-": "completion-blocker-receipt:",
+} as const;
 
 function missingMarkers(text: string, markers: readonly string[]): string[] {
   return markers.filter((marker) => !text.includes(marker));
 }
 
 export function loadG10UxWorkflowInput(repoRoot = process.cwd()): G10UxWorkflowInput {
+  const evidenceManifests = loadGateEvidenceManifests(repoRoot, CONFIG);
   return {
     repoRoot,
+    evidenceObservations: observeEvidenceFiles(
+      repoRoot,
+      evidenceManifests.flatMap((manifest) => [
+        ...manifest.commands.map((command) => command.evidence_path),
+        ...manifest.coverage.flatMap((entry) => entry.evidence_paths),
+      ]),
+    ),
     l10VisualDesign: readFileSync(
       resolve(repoRoot, "docs/design/harness/L10-ux/visual-design.md"),
       "utf8",
     ),
     gatesMd: readFileSync(resolve(repoRoot, "docs/process/gates.md"), "utf8"),
-    evidenceManifests: loadGateEvidenceManifests(repoRoot, CONFIG),
+    evidenceManifests,
   };
 }
 
@@ -114,7 +129,37 @@ export function analyzeG10UxWorkflow(input: G10UxWorkflowInput): G10UxWorkflowRe
     }
   }
   for (const manifest of input.evidenceManifests) {
-    violations.push(...validateGateEvidenceManifest(manifest, input.repoRoot, CONFIG));
+    violations.push(...validateGateEvidenceManifest(manifest, input.evidenceObservations, CONFIG));
+    for (const coverage of manifest.coverage) {
+      const family = REQUIRED_UXV_FAMILY_PREFIXES.find((prefix) =>
+        coverage.item_id.startsWith(prefix),
+      );
+      const required = family ? REQUIRED_ADVISOR_RECEIPT_PREFIX[family] : undefined;
+      if (
+        manifest.mandatory_item_ids.includes(coverage.item_id) &&
+        required &&
+        !coverage.advisor_evidence?.startsWith(required)
+      ) {
+        violations.push(
+          `${manifest.manifest_path}: coverage ${coverage.item_id} requires ${required} evidence`,
+        );
+      } else if (manifest.mandatory_item_ids.includes(coverage.item_id) && required) {
+        const claimedDigest = coverage.advisor_evidence?.slice(required.length).toLowerCase();
+        if (
+          !claimedDigest ||
+          !/^sha256:[a-f0-9]{64}$/u.test(claimedDigest) ||
+          !coverage.evidence_paths.some(
+            (path) =>
+              input.evidenceObservations?.[path]?.ok &&
+              input.evidenceObservations[path].digest === claimedDigest,
+          )
+        ) {
+          violations.push(
+            `${manifest.manifest_path}: coverage ${coverage.item_id} receipt digest is not bound to its evidence bytes`,
+          );
+        }
+      }
+    }
   }
 
   return {

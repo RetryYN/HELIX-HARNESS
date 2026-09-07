@@ -376,6 +376,9 @@ describe("clean distribution local acceptance smoke", () => {
       ).toBe(false);
       expect(distributionJson.export.artifactPaths).not.toContain("tests/web.test.ts");
       expect(distributionJson.export.artifactPaths).not.toContain(
+        "tests/g10-browser-evidence.test.ts",
+      );
+      expect(distributionJson.export.artifactPaths).not.toContain(
         "docs/plans/PLAN-L7-157-distribution-clean-pull.md",
       );
       expect(distributionJson.actualCutRequiresPoApproval).toBe(true);
