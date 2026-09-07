@@ -63,11 +63,13 @@ const TERMINAL_PLAN_STATUSES = new Set(["confirmed", "completed", "accepted"]);
 const TECHNICAL_APPROVAL_VERDICTS = new Set(["approve", "approve_after_fixes", "pass"]);
 
 export function hasTerminalPlanPromotion(plans: readonly ChangedPlanReviewBinding[]): boolean {
+  // admissionの検査要否判定。取得不能も検査対象へ含め、join側でunavailableとして拒否する。
+  // trueはterminal状態の認定ではない。
   return plans.some(
     (plan) =>
-      !plan.parse_failure &&
-      TERMINAL_PLAN_STATUSES.has(plan.status) &&
-      !TERMINAL_PLAN_STATUSES.has(plan.base_status ?? ""),
+      plan.parse_failure ||
+      (TERMINAL_PLAN_STATUSES.has(plan.status) &&
+        !TERMINAL_PLAN_STATUSES.has(plan.base_status ?? "")),
   );
 }
 

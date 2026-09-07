@@ -236,6 +236,12 @@ describe("review receipt / PLAN binding", () => {
 
   it("U-RRCF-001: draft修正とterminal昇格を分離する", () => {
     const base = input().changed_plans[0];
+    const unavailable = [{ ...base, status: "unknown", parse_failure: true }];
+    expect(hasTerminalPlanPromotion(unavailable)).toBe(true);
+    expect(evaluateReviewEvidenceReceiptJoin({ changed_plans: unavailable, receipts: [] })).toMatchObject({
+      ok: false,
+      failures: [{ reason: "review_plan_binding_unavailable" }],
+    });
     expect(hasTerminalPlanPromotion([{ ...base, status: "draft", base_status: "draft" }])).toBe(
       false,
     );
