@@ -1,6 +1,6 @@
 ---
-plan_id: PLAN-L3-1639-bugbot-generation
-title: "定型生成・正規操作の要求候補取り込み"
+plan_id: PLAN-L3-1642-bugbot-bounded-repair
+title: "逸脱検出・限定修復の要求候補取り込み"
 kind: add-design
 layer: L3
 drive: agent
@@ -17,8 +17,8 @@ entry_signals:
 created: 2026-09-08
 updated: 2026-09-08
 owner: Codex / TL
-github_issue_id: 1639
-behavior_contract_id: BUGBOT-GENERATION-001
+github_issue_id: 1642
+behavior_contract_id: BUGBOT-BOUNDED-REPAIR-001
 responsibility_owner: requirements-authority-materialization
 engineering_discipline_required: true
 change_slice: atomic
@@ -29,7 +29,7 @@ backprop_decision_reason: "上流候補の整理自体を本PLANで所有する�
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "原稿、既存GH-FR-007/011/014、Rule導出と変更伝播を照合する"
-contract_postconditions: "BBGのL1/L3/L10候補と原稿の項目対応を保持する"
+contract_postconditions: "BBRのL1/L3/L10候補と原稿の項目対応を保持する"
 contract_invariants: "生成と実行権の分離、意味正本の再利用、未承認候補のruntime有効化禁止"
 contract_failures: "未提供別紙の確認済み扱い、scope拡張、承認捏造、義務欠落を拒否する"
 tdd_red_required: false
@@ -37,10 +37,10 @@ tdd_red_waiver_reason: "文書候補のみ。実装の独立oracleとmutationは
 complexity_effect: net_negative
 complexity_justification: "既存Authoring/Recoveryを再利用し、定型手修正と重複基盤を減らす。"
 removal_trigger: "canonical昇格・IR admission後に候補を正規移管"
-parent_design: docs/governance/candidates/bugbot-generation-requests.md
-pair_artifact: docs/governance/candidates/bugbot-generation-acceptance.md
+parent_design: docs/governance/candidates/bugbot-bounded-repair-requests.md
+pair_artifact: docs/governance/candidates/bugbot-bounded-repair-acceptance.md
 dependencies:
-  parent: docs/governance/candidates/bugbot-generation-requests.md
+  parent: docs/governance/candidates/bugbot-bounded-repair-requests.md
   requires: []
   references:
     - issue:93
@@ -52,10 +52,10 @@ dependencies:
     - issue:1608
   blocks: []
 generates:
-  - { artifact_path: docs/plans/PLAN-L3-1639-bugbot-generation.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/bugbot-generation-requests.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/bugbot-generation-requirements.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/bugbot-generation-acceptance.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L3-1642-bugbot-bounded-repair.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/bugbot-bounded-repair-requests.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/bugbot-bounded-repair-requirements.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/bugbot-bounded-repair-acceptance.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
@@ -64,7 +64,7 @@ agent_slots:
 review_evidence: []
 ---
 
-# 定型生成・正規操作
+# 逸脱検出・限定修復
 
 本PLANは要求候補の取り込みのみ。CI/Cursorと並行する優先指定を、自動適用権限の承認へ昇格しない。
 A/Bは別PLAN・別受入・別完了で追跡する。未定義差分の正本化・IR admission前にruntimeを有効化しない。

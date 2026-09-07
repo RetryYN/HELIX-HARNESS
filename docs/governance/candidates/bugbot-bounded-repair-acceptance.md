@@ -3,8 +3,8 @@ title: "HELIX-bugbot 限定修復の受入候補"
 status: draft_candidate
 version: "1.0"
 candidate_layer: L10
-owner_issue: 1639
-plan_id: PLAN-L3-1640-bugbot-bounded-repair
+owner_issue: 1642
+plan_id: PLAN-L3-1642-bugbot-bounded-repair
 ---
 
 # 限定修復の受入候補
