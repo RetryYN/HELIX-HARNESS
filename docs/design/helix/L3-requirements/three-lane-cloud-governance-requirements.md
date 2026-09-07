@@ -15,7 +15,9 @@ parent_design: docs/design/helix/L1-requirements/three-lane-cloud-governance-req
 pair_artifact: docs/test-design/helix/three-lane-cloud-governance-acceptance.md
 next_pair_freeze: L10
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431"
-approved_revision: "0.4.0"
+approved_revision: "0.4.0-candidate"
+approved_body_digest: "sha256:3bacf0e79e5ac2760341418ccaf80133b66fafb15ede9b60d8260943fe67e1eb"
+canonical_body_digest: "sha256:5803d575c1f44259970e915c97388ac29af7efccab8bd021a85a8709abf85337"
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査要件

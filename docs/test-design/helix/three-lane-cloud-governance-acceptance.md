@@ -14,7 +14,9 @@ plan: PLAN-L3-78-three-lane-cloud-governance-authority
 parent_design: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
 pair_artifact: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431"
-approved_revision: "0.4.0"
+approved_revision: "0.4.0-candidate"
+approved_body_digest: "sha256:2f87e40858edbb168b1ca1457a8cc3d256dba59e208e8003e7a869e0597d19ea"
+canonical_body_digest: "sha256:31c5e807dfdf4ac582d3a5ae34b7a8f73cae2a151610b8fd54ab2b371e50c4c0"
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査受入設計

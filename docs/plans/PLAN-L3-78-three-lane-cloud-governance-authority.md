@@ -76,6 +76,7 @@ generates:
   - { artifact_path: docs/test-design/helix/three-lane-cloud-governance-recognition.md, artifact_type: test_design }
 modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/feedback-test-owner-disposition-recognition.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
@@ -114,5 +115,9 @@ v0.4.0-candidateは`L3-PO-1358-002`で個別承認済みである。承認対象
 `3bacf0e79e5ac2760341418ccaf80133b66fafb15ede9b60d8260943fe67e1eb`、acceptance
 `2f87e40858edbb168b1ca1457a8cc3d256dba59e208e8003e7a869e0597d19ea`、recognition
 `dfd66d82cc86796e375b92532fafc1d876da30d250b72f56654b22cfdcbacd6b`で、意味集合はL1 BR 9件、
-L3 requirement 25件、L10 oracle 27件、L12 recognition 9件とする。candidateは独立技術reviewと
+L3 requirement 25件、L10 oracle 27件、L12 recognition 9件とする。canonical配置後の本文digestは順に
+`9b70c3c1bcb6069c0a282d2d2160bc2bf12e84f5a470e1b2f09a254ab4a09590`、
+`5803d575c1f44259970e915c97388ac29af7efccab8bd021a85a8709abf85337`、
+`31c5e807dfdf4ac582d3a5ae34b7a8f73cae2a151610b8fd54ab2b371e50c4c0`、
+`fac0a2aacbe5db63e0ebb17dc1286fb9d156aa097476e673319cc7d40a82dede`である。差分はversion／authority状態／canonical pair path／第二正本を作らない配置説明に限定し、3L-BR／R／AC／recognitionの意味ID集合は不変である。candidateは独立技術reviewと
 canonical sourceとして配置し、承認後の意味変更には再承認を要求する。独立exact-HEAD review、CI、doctor、DB convergence、runtime有効化が成立するまで、v0.3 current authorityを置換する実行authorityの切替は行わない。

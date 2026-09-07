@@ -15,7 +15,9 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/three-lane-cloud-governance-recognition.md
 next_pair_freeze: L12
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5557485431"
-approved_revision: "0.4.0"
+approved_revision: "0.4.0-candidate"
+approved_body_digest: "sha256:583f3c78069a8207c428bea8ded005e0fd858b301cb057b1427fa1c4d6b6b7fc"
+canonical_body_digest: "sha256:9b70c3c1bcb6069c0a282d2d2160bc2bf12e84f5a470e1b2f09a254ab4a09590"
 ---
 
 # 三社固定レーン・Cursor Cloud資源分散・GitHub監査要求
