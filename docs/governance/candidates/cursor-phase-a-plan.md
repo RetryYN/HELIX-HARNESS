@@ -55,7 +55,7 @@ writer不在保証ではない。今回の編集権限は親が発行した専�
 既存承認は `docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md` の
 `L3-PO-1358-002` を参照する。candidate／PLAN未承認待ちへ戻さず、再承認を要求しない。
 基準HEADの `requirements-ir/refinement_contracts.json` にはthree-lane familyがない。
-#1650のPR HEAD `a338b3e8e3f5af2e92c87d284434d6eaa85facbe` にある8 Feature／25 R／27 ACは
+#1650のPR HEAD `f6154de00a0e775ccce74eda274c116e7b358053` にある8 Feature／25 R／27 ACは
 main成立の代用にしない。親が行うIR main read-afterを待つ。
 
 ID予約の再利用先は `src/runtime/open-branch-plan-identity-reservation.ts`、
@@ -64,6 +64,19 @@ ID予約の再利用先は `src/runtime/open-branch-plan-identity-reservation.ts
 専用treeに `.helix/state/open-branch-plan-reservations.json` とallocator receiptはなく、
 current main／open PR／active writerのfresh予約証跡も未提供である。
 ローカル最大番号＋1やIssue番号をPLAN番号に流用せず、正規L4予約経路・証跡を親へ不足として返す。
+
+ただし、汎用L4 allocatorの完成を着手条件にはしない。既存のL7専用transactionにL4を
+偽装して渡すことと、未実装の汎用採番器を新設して待つことの両方を避ける。
+[後続#1256](https://github.com/RetryYN/HELIX-HARNESS/issues/1256)は予約projectionの
+GitHub／assignment接続を所有し、自動採番を非対象としている。#860への依存もそのadapterの
+依存であり、本候補の設計作業全体へ伝播させない。
+次に確認するのは、既存運用でのL4番号衝突確認・担当間の予約記録・正規PLANへの登録方法である。
+この確認がない間は未採番候補を維持するが、sourceに基づく境界設計・独立設計reviewは先行できる。
+予約snapshotやleaseを補作せず、canonical移管前に実際に採用した方法と確認対象HEADを記録する。
+
+この区別は2026-09-08に既存コードと#1256を照合した結果であり、新しい採番権限の付与ではない。
+`open-branch-plan-identity-reservation.ts`は衝突判定のprojectionであってID発行器ではなく、
+`forward-reverse-terminal-reservation.ts`のL7制約を弱める必要もない。
 
 ## 最小成果物と除外
 
