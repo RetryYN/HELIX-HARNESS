@@ -62,6 +62,57 @@ function run(
 }
 
 describe("non-PR branch base authority resolver", () => {
+  it("U-CIBASE-010: 共通snapshotの契約どおり複数merge-baseを拒否し単一baseは通す", () => {
+    const f = fixture();
+    const tree = git(f.root, "rev-parse", "HEAD^{tree}");
+    const commit = (parents: string[], message: string) =>
+      git(
+        f.root,
+        "commit-tree",
+        tree,
+        ...parents.flatMap((parent) => ["-p", parent]),
+        "-m",
+        message,
+      );
+    const a = commit([f.head], "test: sibling a");
+    const b = commit([f.head], "test: sibling b");
+    const left = commit([a, b], "test: left merge");
+    const right = commit([b, a], "test: right merge");
+    git(f.root, "update-ref", "refs/remotes/origin/main", left);
+    writeGh(
+      f.bin,
+      `if [[ "$*" == *"pulls?state=open"* ]]; then
+  printf '%s\\n' '[]'
+else
+  printf '%s\\n' '{"default_branch":"main"}'
+fi`,
+    );
+    const ambiguous = run(f, { BRANCH_CANDIDATE_HEAD: right });
+    expect(ambiguous.status).toBe(1);
+    expect(ambiguous.stdout).toBe("");
+    expect(ambiguous.stderr).toContain("branch_base_merge_base_invalid");
+    git(f.root, "update-ref", "refs/remotes/origin/main", a);
+    const single = run(f, { BRANCH_CANDIDATE_HEAD: right });
+    expect(single.status).toBe(0);
+    expect(String(single.stdout).trim()).toBe(a);
+  });
+
+  it("U-CIBASE-011: PR一覧は必要欄に絞りcandidateに一致しない欠損headを採用しない", () => {
+    const f = fixture();
+    writeGh(
+      f.bin,
+      `if [[ "$*" == *"pulls?state=open"* ]]; then
+  [[ "$*" == *"--jq"* && "$*" != *"--slurp"* && "$*" == *"@json"* ]] || exit 98
+  printf '%s\\n' '[{"number":3,"head":null}]' '[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]'
+else
+  printf '%s\\n' '{"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}'
+fi`,
+    );
+    const result = run(f);
+    expect(result.status).toBe(0);
+    expect(String(result.stdout).trim()).toBe(f.base);
+  });
+
   it("U-CIBASE-009: Node入口は取得失敗や不正応答を空baseの成功に変えない", () => {
     for (const source of ["echo private-detail >&2; exit 2", "printf '%s' invalid-json"]) {
       const f = fixture();
@@ -97,7 +148,7 @@ describe("non-PR branch base authority resolver", () => {
       writeGh(
         f.bin,
         `if [[ "$*" == *"pulls?state=open"* ]]; then
-  printf '%s\n' '[[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]]'
+  printf '%s\n' '[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]'
 else
   printf '%s\n' '{"head_sha":"${f.head}","base_sha":"${f.base}"}'
 fi`,
@@ -112,7 +163,7 @@ fi`,
     const f = fixture();
     writeGh(
       f.bin,
-      `printf '%s\n' '[[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}},{"number":13,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]]'`,
+      `printf '%s\n' '[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}},{"number":13,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]'`,
     );
     const result = run(f);
     expect(result.status).toBe(1);
@@ -124,7 +175,7 @@ fi`,
     writeGh(
       f.bin,
       `if [[ "$*" == *"pulls?state=open"* ]]; then
-  printf '%s\n' '[[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]]'
+  printf '%s\n' '[{"number":12,"head":{"sha":"${f.head}"},"base":{"sha":"${f.base}"}}]'
 else
   printf '%s\n' '{"head_sha":"0000000000000000000000000000000000000000","base_sha":"${f.base}"}'
 fi`,
@@ -139,7 +190,7 @@ fi`,
     writeGh(
       f.bin,
       `if [[ "$*" == *"pulls?state=open"* ]]; then
-  printf '%s\n' '[[]]'
+  printf '%s\n' '[]'
 else
   printf '%s\n' '{"default_branch":"main"}'
 fi`,

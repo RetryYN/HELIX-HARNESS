@@ -127,8 +127,12 @@ provider診断は`pr_local_identity_invalid`、`pr_context_invalid`、
 
 `src/runtime/ci-branch-base.ts`をNodeで実行し、workflowのbranch-kind／doctor／Impact CIが共用する。
 ADR-009のNode制御境界を維持し、Bashに判定を所有させない。Git／ghは引数配列で読取だけを行う。
-取得は10秒・1MiB以内とし、取得失敗や不正JSONを正常baseへ変換せず、子processの診断本文も漏らさない。
+Git読取は10秒、GitHubのページ取得は60秒・出力1MiB以内とし、取得失敗や不正JSONを正常baseへ変換せず、
+子processの診断本文も漏らさない。PR一覧は番号とhead/base SHAだけをgh側で投影し、不要なPR本文をbufferへ入れない。
+`--paginate --jq`で各ページを一行のJSON配列にし、全ページを照合する。併用できない`--slurp --jq`は使わない。
+candidateへ一致しない欠損headを採用せず、一致したPRのbaseと再読込は厳密に照合する。
 一意のmerge-baseだけを返し、stdoutは成功時のSHA一行のみとする。実runtime-portability検査を維持する。
+複数baseの拒否は上記「共通snapshot」の既存契約をCI入口へ接続するもので、新しい要求意味ではない。
 
 `workflow_dispatch`と`schedule`も、branch-kind guard、doctor、Impact CIへ同じ解決規則で比較baseを渡す。
 `push`は有効なbefore commitを保持し、更新済みorigin/mainとの空差分へ置換しない。

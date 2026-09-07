@@ -95,6 +95,8 @@ guardとdoctorの両stepで照合する。non-PRの解決は`U-CIBASE-001..006`�
 | U-CIBASE-007 | push不正base | 不正なbeforeを別baseで相殺しない | `tests/ci-branch-base-resolver.test.ts` |
 | U-CIBASE-008 | Impact CI配線 | 共通resolverへcandidate／before／repositoryを渡し第一親fallbackを持たない | `tests/harness-check-workflow.test.ts` |
 | U-CIBASE-009 | Node読取入口 | 実Node入口でGitHub取得失敗／不正JSONを拒否し、stdoutが空で子processの診断本文を漏らさない。既存runtime-portability検査も併用する | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-010 | CIのmerge-base一意性 | 実criss-cross履歴の複数baseをNode入口で拒否し、同fixtureの単一baseを受理する | `tests/ci-branch-base-resolver.test.ts` |
+| U-CIBASE-011 | PR一覧投影 | 併用可能なCLI引数で必要欄を投影し、全ページを照合する。candidateに一致しない欠損headは採用せず後続ページの一致PRのbaseを返す | `tests/ci-branch-base-resolver.test.ts` |
 
 専用`tests/branch-kind-authority-input.test.ts`で001〜007を実装する。
 008は実CLI入口とdoctor入口を経由して比較し、pure analyzerだけの比較で代替しない。

@@ -8,11 +8,11 @@ function isHead(value: unknown): value is string {
   return typeof value === "string" && /^[0-9a-f]{40}$/.test(value) && value !== ZERO_HEAD;
 }
 
-function command(file: string, args: string[]): string {
+function command(file: string, args: string[], timeout = 10_000): string {
   return execFileSync(file, args, {
     encoding: "utf8",
     stdio: ["ignore", "pipe", "pipe"],
-    timeout: 10_000,
+    timeout,
     maxBuffer: 1024 * 1024,
   }).trim();
 }
@@ -24,8 +24,9 @@ function object(value: unknown): Record<string, unknown> {
   return value as Record<string, unknown>;
 }
 
-function github(args: string[]): unknown {
-  return JSON.parse(command("gh", ["api", ...args]));
+function github(args: string[], jsonPages = false): unknown {
+  const output = command("gh", ["api", ...args], 60_000);
+  return jsonPages ? output.split("\n").map((line) => JSON.parse(line)) : JSON.parse(output);
 }
 
 function mergeBase(base: string, candidate: string): string {
@@ -53,18 +54,25 @@ function resolveBranchBase(): string {
   if (!repository || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)) {
     throw new Error("branch_base_repository_invalid");
   }
-  const pages = github([
-    "--paginate",
-    "--slurp",
-    `repos/${repository}/pulls?state=open&per_page=100`,
-  ]);
+  const pages = github(
+    [
+      "--paginate",
+      "--jq",
+      "map({number,head:{sha:.head.sha},base:{sha:.base.sha}}) | @json",
+      `repos/${repository}/pulls?state=open&per_page=100`,
+    ],
+    true,
+  );
   if (!Array.isArray(pages) || pages.some((page) => !Array.isArray(page))) {
     throw new Error("branch_base_response_invalid");
   }
   const matches = pages
     .flat()
     .map(object)
-    .filter((pr) => object(pr.head).sha === candidate);
+    .filter((pr) => {
+      const head = pr.head;
+      return head !== null && typeof head === "object" && "sha" in head && head.sha === candidate;
+    });
   if (matches.length > 1) throw new Error("branch_base_open_pr_ambiguous");
   if (matches.length === 1) {
     const before = matches[0];

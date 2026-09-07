@@ -4,7 +4,7 @@ title: "non-PR CI eventのbranch base authority誤算出を復旧する"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-08
 updated: 2026-09-08
@@ -31,7 +31,7 @@ dependencies:
   references: ["issue:1336", "issue:1604", "issue:1614"]
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1633-ci-non-pr-base-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: src/runtime/ci-branch-base.ts, artifact_type: source_code }
+  - { artifact_path: src/runtime/ci-branch-base.ts, artifact_type: source_module }
   - { artifact_path: tests/ci-branch-base-resolver.test.ts, artifact_type: test_code }
   - { artifact_path: .helix/evidence/review-1634/vitest-targeted.log, artifact_type: other }
   - { artifact_path: .helix/evidence/review-1634/tsc.log, artifact_type: other }
@@ -42,6 +42,8 @@ modifies:
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-010, test_path: tests/ci-branch-base-resolver.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-011, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-009, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-006, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-007, test_path: tests/ci-branch-base-resolver.test.ts }
@@ -51,34 +53,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-003, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-004, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-005, test_path: tests/ci-branch-base-resolver.test.ts }
-review_evidence:
-  - reviewer: "Claude Code / Fable 5.1"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-07T21:20:57Z"
-    tests_green_at: "2026-09-07T21:16:53Z"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
-    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
-    reviewed_head_sha: 2799eda2f92254b17dbaa97b5b4a2b477bca8dca
-    scope: "独立verdictの正本は https://github.com/RetryYN/HELIX-HARNESS/pull/1634#issuecomment-5575637859 。実測との接合追認は同PR comment 5575738122。reviewed_atは追認コメントのGitHub公開時刻で、元sealed receiptのreviewedAt=21:06:30Zを変更しない。green_commandsは作成側の実stdout/stderrであり、追認側のtscは依存不足exit 2のためgreenと記録しない。terminal failureのreceiptはPLAN技術検収用に限り、merge許可・hosted全回帰成功には使わない。"
-    green_commands:
-      - kind: unit_test
-        command: "npm exec --yes --package=node@24.15.0 -- npx --no-install vitest run tests/ci-branch-base-resolver.test.ts tests/harness-check-workflow.test.ts tests/github-review-ci-generation.test.ts"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-07T21:16:45Z"
-        evidence_path: .helix/evidence/review-1634/vitest-targeted.log
-        output_digest: "sha256:483fa1bcaccadcd4a8a80ecb1a653742abba9ae9b796e181c6f84fc86f1f6430"
-      - kind: typecheck
-        command: "npm exec --yes --package=node@24.15.0 -- npx --no-install tsc --noEmit -p . --extendedDiagnostics"
-        runner: node
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-07T21:16:53Z"
-        evidence_path: .helix/evidence/review-1634/tsc.log
-        output_digest: "sha256:6b823e1e25470cb5504e2766136ac38dd3552050589f248bd53709831409fc9d"
+review_evidence: []
 ---
 
 # non-PR CI branch base authorityの復旧
@@ -104,6 +79,13 @@ reviewedAt `2026-09-07T21:06:30Z` は変更しない。その後同じ実装HEAD
 型検査の出力を、独立sessionがcomment 5575738122で追認した。追認の公開時刻は21:20:57Zであり、
 元review時刻へ後発の検査を遡及させない。これは人間承認を追加する操作ではない。
 
+以上はBash実装HEAD `2799eda2f92254b17dbaa97b5b4a2b477bca8dca` の履歴であり、
+現行Node実装の検収には使用しない。旧PLAN・raw logはcommit
+`cf0f471d07e2acc7b7f7cbaf6e4016a6c44c502e` で復元できる。
+独立レーンはcomment 5576005963で旧approveを撤回し、comment 5576063304では
+Node実装の新規検査後も旧confirmed根拠をblockerとしている。これを受け本PLANをdraftへ戻し、
+Node実装への新しい独立verdictと実測を接合するまで技術confirmedを主張しない。
+
 read-onlyの実GitHub resolver canaryもcandidate 2799eda2fに対しmain c67e2a010を返し、
 PR APIのhead/baseと一致した。hosted workflow全体の成功・merge成立とは別の検証である。
 
@@ -119,3 +101,11 @@ workflowの観測fixtureは最終CLIだけを代替し、Node resolver本体は�
 実GitHub読取では公開candidate `963197202`のbase `e674ffb56`を取得できた。
 これは修正中の作成側検証であり、旧review_evidenceの対象HEADやraw logを書き換えない。
 新HEADの全回帰・独立検収・main read-afterを残す。
+
+追加所見I-2は既存L6「共通snapshot」の複数merge-base拒否をCI入口へ届けるものと照合し、
+実criss-cross履歴のU-CIBASE-010を追加した。I-3/I-4/M-1にはPR一覧の必要欄投影、
+GitHub取得60秒・Git読取10秒の分離、無関係な欠損headの不採用で対応する。
+実GitHub canaryで`--slurp --jq`の併用不可を発見し、ページごとのJSON行取得へ修正した。
+U-CIBASE-011はこの引数境界と後続ページの一致PRを検査する。4ファイル90テストと
+公開candidate `cf0f471d0` に対するbase `e674ffb56` の実GitHub読取が成功した。
+これらは作成側の実測であり、独立approveを補作しない。
