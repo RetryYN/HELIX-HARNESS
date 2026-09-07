@@ -82,7 +82,27 @@ agent_slots:
   - { role: se, slot_label: "SE — exact ledger／source anchor validator" }
   - { role: qa, slot_label: "QA — negative oracle／mutation／hidden consumer" }
   - { role: tl, slot_label: "TL — Phase 1 boundaryとlegacy retirement条件" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T10:36:30Z"
+    tests_green_at: "2026-09-07T10:32:54Z"
+    verdict: approve
+    worker_model: gpt-5.6-luna
+    reviewer_model: claude-fable-5-1
+    reviewer_session_id: af559166-ce28-4772-96b0-d526299f4157
+    reviewed_head_sha: c06a87870abe99058daf6539e0897afc127d6056
+    scope: "PR #1625のterminal-transition review。前回session 671f0498-fa65-46da-8150-5f16c713c16dが技術内容blocker 0、draft statusのみblockerと判定した後、statusをconfirmedへ進め、completion_claim_allowed:false、retained境界、後続E2E／rollback／read-after除外が不変であることをexact HEADで再確認した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/legacy-orchestration-semantic-consumers.test.ts tests/legacy-orchestration-surface.test.ts tests/doctor.test.ts tests/digest-canonicalization-inventory.test.ts tests/feedback-refactor-disposition.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-07T10:32:54Z"
+        evidence_path: tests/legacy-orchestration-semantic-consumers.test.ts
+        output_digest: "sha256:02256dcfa935decd6311873886ca44540fdf310f9af68281d59a5aa3ae6596d5"
+        result: "4 test files、68 tests passed"
 ---
 
 # PLAN-L7-865: 旧orchestration semantic consumer ledger
