@@ -44,6 +44,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-003, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-004, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-005, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, oracle_id: U-CNWHOOKWIRE-006, test_path: tests/project-hook-authority-consumer-wiring.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -62,6 +63,7 @@ generates:
   - { artifact_path: tests/project-hook-authority-consumer-wiring.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-authority-resolver.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md, artifact_type: test_design }

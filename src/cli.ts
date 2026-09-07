@@ -82,6 +82,10 @@ import { evaluateUiDomainBundle } from "./design/ui-domain-pattern-profile";
 import { nodeDoctorDeps, runConsumerDoctor, runDoctor, runDoctorGate } from "./doctor";
 import { createL3G3LogicalDbReceipt } from "./doctor/l3-g3-logical-db-receipt";
 import { assertNodeEngineRuntimeAuthority } from "./doctor/node-engine-runtime";
+import {
+  createProjectHookAuthorityConsumerWiringFromSnapshotBytes,
+  type ProjectHookAuthorityConsumer,
+} from "./runtime/project-hook-authority-consumer-wiring";
 import { computeSkillMetrics, emitFeedbackEvents } from "./feedback/engine";
 import {
   ackFeedback,
@@ -4373,6 +4377,32 @@ graph
       return;
     }
     process.stdout.write(`${artifact.content}\n`);
+  });
+
+const projectHookAuthority = program
+  .command("project-hook-authority")
+  .description("project hook authorityのtyped snapshotをcurrent consumerへ投影する");
+projectHookAuthority
+  .command("surface")
+  .requiredOption("--snapshot-file <path>", "Control Planeが発行したauthority snapshot JSON")
+  .requiredOption("--consumer <name>", "session_start | doctor | status | dispatch")
+  .action((opts: { snapshotFile: string; consumer: string }) => {
+    const allowed = ["session_start", "doctor", "status", "dispatch"] as const;
+    if (!allowed.includes(opts.consumer as (typeof allowed)[number])) {
+      process.stderr.write("project-hook-authority: unknown consumer\n");
+      process.exitCode = 1;
+      return;
+    }
+    let bytes = "";
+    try {
+      bytes = readFileSync(resolve(opts.snapshotFile), "utf8");
+    } catch {
+      // 欠落をcwdやGitから補完せず、既存authority_input_unavailableへ閉じる。
+    }
+    const wiring = createProjectHookAuthorityConsumerWiringFromSnapshotBytes(bytes);
+    const consumer = opts.consumer as ProjectHookAuthorityConsumer;
+    process.stdout.write(`${wiring.bytesFor(consumer)}\n`);
+    if (!wiring.ok) process.exitCode = 1;
   });
 
 const session = program.command("session").description("session-log runtime events");

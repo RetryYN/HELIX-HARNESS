@@ -1,3 +1,8 @@
+import { spawnSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
@@ -63,6 +68,7 @@ const consumers: readonly ProjectHookAuthorityConsumer[] = [
   "status",
   "dispatch",
 ];
+const tsxCli = createRequire(import.meta.url).resolve("tsx/cli");
 
 describe("project hook authority consumer wiring", () => {
   it("U-CNWHOOKWIRE-001: providerを一度だけresolveして4 consumerへ配る", () => {
@@ -133,4 +139,32 @@ describe("project hook authority consumer wiring", () => {
       expect(rejected.bytesFor("dispatch")).toContain('"dispatch":0');
     }
   });
+
+  it("U-CNWHOOKWIRE-006: CLI surfaceは明示snapshot fileだけを4 consumerへ投影する", () => {
+    const rootDir = mkdtempSync(join(tmpdir(), "helix-hook-authority-cli-"));
+    try {
+      const snapshot = join(rootDir, "snapshot.json");
+      writeFileSync(snapshot, JSON.stringify(validInput()), "utf8");
+      const outputs = consumers.map((consumer) => {
+        const run = spawnSync(
+          process.execPath,
+          [tsxCli, "src/cli.ts", "project-hook-authority", "surface", "--snapshot-file", snapshot, "--consumer", consumer],
+          { cwd: process.cwd(), encoding: "utf8", timeout: 30_000 },
+        );
+        expect(run.status, run.stderr).toBe(0);
+        return run.stdout.trim();
+      });
+      expect(new Set(outputs).size).toBe(1);
+
+      const missing = spawnSync(
+        process.execPath,
+        [tsxCli, "src/cli.ts", "project-hook-authority", "surface", "--snapshot-file", join(rootDir, "missing.json"), "--consumer", "dispatch"],
+        { cwd: process.cwd(), encoding: "utf8", timeout: 30_000 },
+      );
+      expect(missing.status).toBe(1);
+      expect(missing.stdout).toContain('"dispatch":0');
+    } finally {
+      rmSync(rootDir, { recursive: true, force: true });
+    }
+  }, 150_000);
 });
