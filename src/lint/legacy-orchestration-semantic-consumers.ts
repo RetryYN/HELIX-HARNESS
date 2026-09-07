@@ -215,6 +215,22 @@ function detectHiddenConsumers(
         `hidden_dynamic_import:${file.path}:${dynamicImport[1] ?? dynamicImport[2]}`,
       );
     }
+    for (const requireAlias of file.content.matchAll(
+      /\brequire\(\s*["']([^"']*(?:team\/run|orchestration\/pair-agent|runtime\/agent-slots|orchestration\/loop-store)[^"']*)["']\s*\)\s*\.\s*(executeTeamRunPlan|runPairAgentTddPlan|fireSlot|releaseSlot|importLegacy)\b/g,
+    )) {
+      addError(
+        errors,
+        `hidden_require_consumer:${file.path}:${requireAlias[1]}:${requireAlias[2]}`,
+      );
+    }
+    for (const destructuredRequire of file.content.matchAll(
+      /\{[^}]*\b(executeTeamRunPlan|runPairAgentTddPlan|fireSlot|releaseSlot|importLegacy)\b[^}]*\}\s*=\s*require\(\s*["']([^"']*(?:team\/run|orchestration\/pair-agent|runtime\/agent-slots|orchestration\/loop-store)[^"']*)["']\s*\)/g,
+    )) {
+      addError(
+        errors,
+        `hidden_require_consumer:${file.path}:${destructuredRequire[2]}:${destructuredRequire[1]}`,
+      );
+    }
     for (const splitCommand of file.content.matchAll(
       /["'](team|pair-agent|loop)["']\s*,\s*["']run["']/g,
     )) {

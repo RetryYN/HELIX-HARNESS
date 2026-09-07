@@ -47,7 +47,7 @@ greenにしない。
 | U-LORET-SEM-005 | E2E／rollback／read-afterなしのmigrated／retired昇格を拒否する |
 | U-LORET-SEM-006 | production successor callsiteなしのmigrated／retired昇格を拒否する |
 | U-LORET-SEM-007 | historical／read-only／compatibility entryへのwrite/control混入を拒否する |
-| U-LORET-SEM-008 | 識別可能なdirect call、直代入alias、静的dynamic import、CLI argv形の分割commandによるconsumer隠蔽を検出し、汎用tokenを誤検知しない |
+| U-LORET-SEM-008 | 識別可能なdirect call、直代入alias、静的dynamic import、require member／destructuring alias、CLI argv形の分割commandによるconsumer隠蔽を検出し、汎用tokenを誤検知しない |
 | U-LORET-SEM-009 | 必須consumer entryの欠落を拒否する |
 | U-LORET-SEM-010 | source symbolと再解決可能なanchorを照合し、固定line番号依存を許可しない |
 | U-LORET-SEM-011 | test fixture／historical pathをproduction write/control consumerとして登録できない |

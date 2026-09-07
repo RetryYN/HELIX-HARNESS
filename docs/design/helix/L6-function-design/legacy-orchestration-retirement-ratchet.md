@@ -51,7 +51,7 @@ ledgerのsource authorityは採取時の`source_head`と実在するproduction s
 
 Phase 1の必須観測対象は、team／pair／loopのCLI direct consumer、teamの`fireSlot`／
 `releaseSlot`、`max_parallel`によるscheduling、LoopStateのwrite-back、legacy importである。
-識別可能なdirect call、直代入alias、静的`import()`、CLI argv形の分割commandによるconsumer隠蔽を
+識別可能なdirect call、直代入alias、静的`import()`、`require()`のmember／destructuring alias、CLI argv形の分割commandによるconsumer隠蔽を
 negative oracleとして検査する。`tick(`、`store.write(`、`plan.max_parallel`のような汎用tokenは
 repo-wide検出へ使わず、ledgerに登録したsource pathとexact anchorで検査する。
 ledgerのentry集合、採取元`source_head`、entryごとのnegative oracle集合はclosed setとして照合し、

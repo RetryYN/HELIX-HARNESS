@@ -129,6 +129,14 @@ describe("legacy orchestration semantic consumer ledger", () => {
       ),
       source("src/hidden-direct.ts", "await executeTeamRunPlan(plan, deps);"),
       source(
+        "src/hidden-require.ts",
+        'const wrapped = require("../team/run").executeTeamRunPlan; wrapped(plan, deps);',
+      ),
+      source(
+        "src/hidden-require-destructure.ts",
+        'const { fireSlot: acquire } = require("../runtime/agent-slots"); acquire(input);',
+      ),
+      source(
         "src/hidden-loop-consumers.ts",
         "await tick(state, rules, deps); importLegacy(planId); const width = plan.max_parallel; import(`../team/run`);",
       ),
@@ -153,6 +161,8 @@ describe("legacy orchestration semantic consumer ledger", () => {
         "hidden_dynamic_import:src/hidden-multiline.ts:../team/run",
         "hidden_split_command:src/hidden-multiline.ts:team run",
         "unregistered_direct_call:src/hidden-direct.ts:executeTeamRunPlan(",
+        "hidden_require_consumer:src/hidden-require.ts:../team/run:executeTeamRunPlan",
+        "hidden_require_consumer:src/hidden-require-destructure.ts:../runtime/agent-slots:fireSlot",
         "hidden_dynamic_import:src/hidden-loop-consumers.ts:../team/run",
       ]),
     );

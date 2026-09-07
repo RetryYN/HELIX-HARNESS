@@ -32,7 +32,7 @@ ddd_modeling_decision: policy
 contract_preconditions: "PLAN-L7-729のstring ratchetが存在し、現行production sourceのsymbol／callsiteを読み取れること"
 contract_postconditions: "team／pair／loop direct、fire／release、max_parallel、LoopState write-back、legacy importがexact ledgerへ束縛され、欠落・偽装・未成立退役をfail-closeする"
 contract_invariants: "既存string ratchetのcapとentry上限は不変とし、本実装3 pathだけを固定allowlistへ追加する。scheduler追加、旧engine削除、snapshot／catalog／CLI／team-run変更、historical／read-onlyとwrite／controlの混在を行わない"
-contract_failures: "必須entry欠落、symbol／anchor不一致、識別可能なdirect callの互換偽装、fireSlot／releaseSlot／max_parallel／write-backの欠落、直代入alias／静的dynamic import／CLI argv形の分割commandによる隠蔽、successor／E2E／rollback／read-afterなしの移行・退役を拒否する。tick／store.write／plan.max_parallel等の汎用tokenはexact ledger anchorで検査し、repo-wide hidden-consumer markerには使わない"
+contract_failures: "必須entry欠落、symbol／anchor不一致、識別可能なdirect callの互換偽装、fireSlot／releaseSlot／max_parallel／write-backの欠落、直代入alias／静的dynamic import／require member・destructuring alias／CLI argv形の分割commandによる隠蔽、successor／E2E／rollback／read-afterなしの移行・退役を拒否する。tick／store.write／plan.max_parallel等の汎用tokenはexact ledger anchorで検査し、repo-wide hidden-consumer markerには使わない"
 tdd_red_required: true
 red_test: "semantic consumer validator未実装時にtests/legacy-orchestration-semantic-consumers.test.tsがmodule missingで失敗することを確認し、その後validatorとledgerを追加して同じテストをgreen化する"
 red_at: "2026-09-07T08:05:08Z"
