@@ -1,4 +1,5 @@
 import { execFileSync, spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -35,6 +36,7 @@ export interface LegacyOrchestrationInventory {
   schema_version: "helix-legacy-orchestration-surface-inventory.v1";
   authority_role: "compatibility_only_retirement_ratchet";
   source_head: string;
+  semantic_ledger_sha256?: string;
   excluded_historical_prefixes: string[];
   excluded_implementation_paths: string[];
   entries: LegacyOrchestrationInventoryEntry[];
@@ -72,6 +74,11 @@ export function compareLegacyOrchestrationInventory(
       errors.push(`inventory_limit_raised:${entry.path}`);
   }
   if (candidate.source_head !== published.source_head) errors.push("inventory_source_head_changed");
+  if (
+    published.semantic_ledger_sha256 !== undefined &&
+    candidate.semantic_ledger_sha256 !== published.semantic_ledger_sha256
+  )
+    errors.push("semantic_ledger_digest_changed");
   for (const prefix of candidate.excluded_historical_prefixes) {
     if (!published.excluded_historical_prefixes.includes(prefix))
       errors.push("inventory_historical_exclusion_added");
@@ -134,6 +141,22 @@ export function analyzeLegacyOrchestrationSurface(
   if (inventory.authority_role !== "compatibility_only_retirement_ratchet")
     errors.push("inventory_authority_role_invalid");
   if (!/^[0-9a-f]{40}$/.test(inventory.source_head)) errors.push("inventory_source_head_invalid");
+  if (
+    inventory.semantic_ledger_sha256 !== undefined &&
+    !/^[0-9a-f]{64}$/.test(inventory.semantic_ledger_sha256)
+  )
+    errors.push("semantic_ledger_digest_invalid");
+  const semanticLedger = files.find(
+    (file) => file.path === "config/legacy-orchestration-semantic-consumers.json",
+  );
+  if (inventory.semantic_ledger_sha256 !== undefined) {
+    if (!semanticLedger) errors.push("semantic_ledger_missing");
+    else if (
+      createHash("sha256").update(semanticLedger.content).digest("hex") !==
+      inventory.semantic_ledger_sha256
+    )
+      errors.push("semantic_ledger_digest_mismatch");
+  }
 
   const baseline = new Map<string, number>();
   for (const entry of inventory.entries) {

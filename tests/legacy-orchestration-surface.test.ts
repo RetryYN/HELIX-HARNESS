@@ -141,6 +141,16 @@ describe("legacy orchestration surface retirement ratchet", () => {
     );
   });
 
+  it("semantic ledger digestはpublished inventoryから自己更新できない", () => {
+    const published = inventory();
+    published.semantic_ledger_sha256 = "a".repeat(64);
+    const candidate = structuredClone(published);
+    candidate.semantic_ledger_sha256 = "b".repeat(64);
+    expect(compareLegacyOrchestrationInventory(candidate, published)).toContain(
+      "semantic_ledger_digest_changed",
+    );
+  });
+
   it("inventory読込失敗はcause digestを残し、local pathを露出しない", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-legacy-inventory-"));
     try {

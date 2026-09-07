@@ -72,6 +72,7 @@ generates:
 modifies:
   - { artifact_path: config/legacy-orchestration-surface-inventory.json, artifact_type: json_config }
   - { artifact_path: src/lint/legacy-orchestration-surface.ts, artifact_type: source_module }
+  - { artifact_path: tests/legacy-orchestration-surface.test.ts, artifact_type: test_code }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, artifact_type: design_doc }

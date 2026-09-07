@@ -2,6 +2,7 @@
   "schema_version": "helix-legacy-orchestration-surface-inventory.v1",
   "authority_role": "compatibility_only_retirement_ratchet",
   "source_head": "16f930c4da06b35be44ae88871dd0f1e572b0c67",
+  "semantic_ledger_sha256": "24c0fe1c483c22b5155876ebc89351b9275b1cbd7df04f78bcc437364830335e",
   "excluded_historical_prefixes": [
     "docs/archive/"
   ],

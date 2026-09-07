@@ -55,5 +55,6 @@ greenにしない。
 
 実装・mutationは`tests/legacy-orchestration-semantic-consumers.test.ts`へ束縛し、ledgerと
 validatorは`config/legacy-orchestration-semantic-consumers.json`および
-`src/lint/legacy-orchestration-semantic-consumers.ts`へ束縛する。Phase 1ではdoctor、scheduler、
-旧engine削除への配線を完了条件に含めず、後続phaseの接続前提として未解決のまま記録する。
+`src/lint/legacy-orchestration-semantic-consumers.ts`へ束縛する。Phase 1ではsemantic ledgerの
+doctor hard checkまでを完了条件に含める。scheduler、DB projection、旧engine削除は後続phaseの
+接続前提として未解決のまま記録する。

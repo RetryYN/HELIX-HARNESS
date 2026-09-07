@@ -151,6 +151,9 @@ const DIRECT_CALL_BASELINES = [
   },
   { marker: "fireSlot(", paths: { "src/runtime/agent-slots.ts": 1, "src/team/run.ts": 1 } },
   { marker: "releaseSlot(", paths: { "src/runtime/agent-slots.ts": 1, "src/team/run.ts": 2 } },
+  { marker: "tick(", paths: { "src/cli.ts": 1, "src/orchestration/loop-runner.ts": 1 } },
+  { marker: "importLegacy(", paths: { "src/orchestration/loop-store.ts": 2 } },
+  { marker: "plan.max_parallel", paths: { "src/team/run.ts": 2 } },
   { marker: "store.write(", paths: { "src/cli.ts": 1 } },
 ] as const;
 
@@ -209,9 +212,12 @@ function detectHiddenConsumers(
       addError(errors, `hidden_alias_consumer:${file.path}:${alias[1]}`);
     }
     for (const dynamicImport of file.content.matchAll(
-      /import\(\s*["']([^"']*(?:team\/run|orchestration\/pair-agent|runtime\/agent-slots)[^"']*)["']\s*\)/g,
+      /import\(\s*(?:["']([^"']*(?:team\/run|orchestration\/pair-agent|runtime\/agent-slots|orchestration\/loop-store)[^"']*)["']|`([^`$]*(?:team\/run|orchestration\/pair-agent|runtime\/agent-slots|orchestration\/loop-store)[^`$]*)`)\s*\)/g,
     )) {
-      addError(errors, `hidden_dynamic_import:${file.path}:${dynamicImport[1]}`);
+      addError(
+        errors,
+        `hidden_dynamic_import:${file.path}:${dynamicImport[1] ?? dynamicImport[2]}`,
+      );
     }
     for (const splitCommand of file.content.matchAll(
       /["'](team|pair-agent|loop)["']\s*,\s*["']run["']/g,

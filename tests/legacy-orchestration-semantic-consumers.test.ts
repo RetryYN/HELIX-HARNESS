@@ -128,6 +128,10 @@ describe("legacy orchestration semantic consumer ledger", () => {
         'const alias =\n  executeTeamRunPlan;\nconst loader = import(\n  "../team/run"\n);\nconst command = [\n  "team",\n  "run"\n].join(" ");',
       ),
       source("src/hidden-direct.ts", "await executeTeamRunPlan(plan, deps);"),
+      source(
+        "src/hidden-loop-consumers.ts",
+        "await tick(state, rules, deps); importLegacy(planId); const width = plan.max_parallel; import(`../team/run`);",
+      ),
     ];
 
     const result = analyzeLegacyOrchestrationSemanticConsumers(loaded.ledger, [
@@ -145,6 +149,10 @@ describe("legacy orchestration semantic consumer ledger", () => {
         "hidden_dynamic_import:src/hidden-multiline.ts:../team/run",
         "hidden_split_command:src/hidden-multiline.ts:team run",
         "unregistered_direct_call:src/hidden-direct.ts:executeTeamRunPlan(",
+        "unregistered_direct_call:src/hidden-loop-consumers.ts:tick(",
+        "unregistered_direct_call:src/hidden-loop-consumers.ts:importLegacy(",
+        "unregistered_direct_call:src/hidden-loop-consumers.ts:plan.max_parallel",
+        "hidden_dynamic_import:src/hidden-loop-consumers.ts:../team/run",
       ]),
     );
   });
