@@ -98,8 +98,21 @@ review_evidence: []
 
 ## 未解消変更要求の扱い
 
-同一PR・HEADの`verdict: block`を変更要求として扱い、同じreviewer sessionの後続approve、または
-対象receiptを明示したsupersessionが成立するまでmerge admissionを拒否する。
+同一PR・HEADの`verdict: block`を変更要求として扱う。要求は同一reviewer lane/runtimeからの
+明示的supersessionを許すが、現実装は同一reviewer sessionの後続approveへ限定されている。
+対象receiptを明示したsupersessionも、現実装ではsession一致条件を迂回しない。
+これは要求をsession粒度へ改定したものではなく、以下の未充足義務を残す実装制限である。
+
+## 未充足義務（#1627の完了条件に残す）
+
+- 正当なlane/runtime継承後の明示的supersession。別sessionの単なるapproveによる上書きは
+  拒否したまま、対象block・同一PR/HEAD・引継ぎの真正性と解消証拠を照合する。
+  session更新後の正当な解消まで永久に止めることを、fail-closeの成功と数えない。
+- provider-neutralのmerge/terminal経路を同じ未解消block照合へ接続する。
+- 上記の正例と不正上書きの反例、独立レビュー、current HEADのCIを閉じる。
+
+追跡先は既存Issue #1627。別Issueへの分離が必要な場合も、依存と受入を移管するまで
+親の完了分母から除外しない。PRの局所修復成功だけで#1627全体の完了を主張しない。
 
 ## Postmortem
 
