@@ -570,7 +570,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(result).toEqual({ ok: true, reasons: [] });
   });
 
-  it("U-CPRCONV-044: 未解消block receiptを別sessionのapproveで上書きできない", () => {
+  it.each([false, true])("U-CPRCONV-044: 別sessionはexplicit supersession=%sでもblockを解除できない", (explicit) => {
     const blocked = buildClaudePrReviewReceipt({
       ...baseInput,
       verdict: "block",
@@ -582,6 +582,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       ...baseInput,
       reviewerSessionId: "unrelated-session",
       reviewedAt: "2026-07-27T00:10:00.000Z",
+      ...(explicit ? { supersedesReceiptId: blocked.receiptId } : {}),
     });
     const decision = evaluateClaudePrMerge(
       {
@@ -600,7 +601,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     expect(decision).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
   });
 
-  it("U-CPRCONV-045: 同一reviewer sessionの後続approveだけがblockを解消する", () => {
+  it.each([false, true])("U-CPRCONV-045: 同一sessionでもstrictlyLater=%sの時だけ解除する", (later) => {
     const blocked = buildClaudePrReviewReceipt({
       ...baseInput,
       verdict: "block",
@@ -609,7 +610,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
     });
     const approval = buildClaudePrReviewReceipt({
       ...baseInput,
-      reviewedAt: "2026-07-27T00:10:00.000Z",
+      reviewedAt: later ? "2026-07-27T00:10:00.000Z" : "2026-07-27T00:00:00.000Z",
       supersedesReceiptId: blocked.receiptId,
     });
     expect(
@@ -627,7 +628,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         },
         approval,
       ),
-    ).toEqual({ ok: true, reasons: [] });
+    ).toEqual(later ? { ok: true, reasons: [] } : { ok: false, reasons: ["outstanding_request_changes"] });
   });
 
   it.each([
