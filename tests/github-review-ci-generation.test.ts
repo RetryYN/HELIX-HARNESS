@@ -5,6 +5,8 @@ import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildClaudePrReviewReceipt,
+  type ClaudePrCiConclusion,
+  parseClaudePrCiEvidenceGeneration,
   renderIndependentPrReviewComment,
 } from "../src/runtime/claude-pr-convergence";
 import {
@@ -203,17 +205,18 @@ describe("封緘用CI観測", () => {
   });
   it("U-SEALCI-005: 各terminal結論を改変せず保持し同刻の世代を決定的に選ぶ", () => {
     const updatedAt = "2026-09-08T00:00:00Z";
-    for (const conclusion of [
-      "success",
-      "failure",
-      "cancelled",
-      "timed_out",
-      "neutral",
-      "skipped",
-      "action_required",
-      "stale",
-      "startup_failure",
-    ]) {
+    const conclusions = {
+      success: true,
+      failure: true,
+      cancelled: true,
+      timed_out: true,
+      neutral: true,
+      skipped: true,
+      action_required: true,
+      stale: true,
+      startup_failure: true,
+    } satisfies Record<ClaudePrCiConclusion, true>;
+    for (const conclusion of Object.keys(conclusions)) {
       const older = Object.freeze({
         id: 10,
         attempt: 1,
@@ -227,6 +230,11 @@ describe("封緘用CI観測", () => {
       expect(selectLatestTerminalReviewCiGeneration(candidates)).toBe(latest);
       expect(selectLatestTerminalReviewCiGeneration([...candidates].reverse())).toBe(latest);
       expect(latest.conclusion).toBe(conclusion);
+      expect(parseClaudePrCiEvidenceGeneration(`run:11:attempt:2:${conclusion}`)).toEqual({
+        runId: 11,
+        attempt: 2,
+        conclusion,
+      });
     }
   });
   it("U-SEALCI-003: 封緘だけをterminal取得へ接続し通知経路を維持する", () => {
