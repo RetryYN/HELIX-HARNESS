@@ -42,13 +42,15 @@ complexity_justification: "既存sealed receiptとreview admissionへsupersessio
 removal_trigger: "なし。独立review authorityの恒久的なfail-close境界"
 backprop_decision: not_required
 backprop_decision_reason: "承認済みIssue #1627による既存review authorityのRecoveryであり新要求追加ではない"
-parent_design: docs/design/helix/L6-function-design/review-request-changes-fail-close.md
-pair_artifact: docs/test-design/helix/L7-review-request-changes-fail-close.md
+parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md
+pair_artifact: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/review-request-changes-fail-close.md, oracle_id: U-CPRCONV-044, test_path: tests/claude-pr-convergence.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/review-request-changes-fail-close.md, oracle_id: U-CPRCONV-045, test_path: tests/claude-pr-convergence.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/review-request-changes-fail-close.md, oracle_id: U-GCRA-014, test_path: tests/github-cross-review-admission.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/review-request-changes-fail-close.md, oracle_id: U-RRCF-001, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-CPRCONV-044, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-CPRCONV-045, test_path: tests/claude-pr-convergence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-GCRA-014, test_path: tests/github-cross-review-admission.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-001, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-002, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-003, test_path: tests/review-receipt-plan-binding.test.ts }
 dependencies:
   parent: null
   requires:
@@ -59,8 +61,6 @@ dependencies:
     - "issue:1627"
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1627-review-request-changes-fail-close.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/review-request-changes-fail-close.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L7-review-request-changes-fail-close.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
@@ -68,6 +68,7 @@ modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/review-receipt-plan-binding.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/review-receipt-plan-binding.test.ts, artifact_type: test_code }

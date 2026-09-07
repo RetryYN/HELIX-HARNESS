@@ -8,13 +8,30 @@ export type ReviewPlanBindingFailureReason =
   | "review_plan_binding_unavailable"
   | "review_plan_session_mismatch"
   | "review_plan_model_mismatch"
-  | "review_plan_cross_agent_approval_missing";
+  | "review_plan_cross_agent_approval_missing"
+  | "review_plan_receipt_locator_missing"
+  | "review_plan_receipt_missing"
+  | "review_plan_head_mismatch"
+  | "review_plan_verdict_mismatch"
+  | "review_plan_ci_generation_mismatch";
 
 export interface ReviewPlanEntryBinding {
   readonly review_kind: string;
   readonly verdict: string;
   readonly reviewer_session_id?: string;
   readonly reviewer_model?: string;
+  readonly reviewed_head_sha?: string;
+  readonly receipt_url?: string;
+  readonly ci_evidence_generation?: string;
+}
+
+export interface SealedReviewReceiptBinding {
+  readonly comment_url: string;
+  readonly reviewer_session_id: string;
+  readonly reviewer_model: string;
+  readonly reviewed_head_sha: string;
+  readonly verdict: string;
+  readonly ci_evidence_generation: string;
 }
 
 export interface ChangedPlanReviewBinding {
@@ -111,6 +128,95 @@ export function evaluateReviewReceiptPlanBinding(
   return { ok: failures.length === 0, failures };
 }
 
+/**
+ * terminalへ昇格するPLANのreview_evidenceを、そこから引用されたsealed receiptそのものへ接合する。
+ * 最終merge receiptとの同一性は要求しない。実装review後の証跡転記だけを行うmerge-only HEADもあるため、
+ * PLANが明示したreceipt URLをlookup keyにして、そのreceiptのsession／model／HEAD／verdict／CI世代を照合する。
+ */
+export function evaluateReviewEvidenceReceiptJoin(input: {
+  readonly changed_plans: readonly ChangedPlanReviewBinding[];
+  readonly receipts: readonly SealedReviewReceiptBinding[];
+}): ReviewReceiptPlanBindingDecision {
+  const failures: ReviewReceiptPlanBindingFailure[] = [];
+  for (const plan of input.changed_plans) {
+    if (plan.parse_failure) {
+      failures.push({ plan_id: plan.plan_id, reason: "review_plan_binding_unavailable" });
+      continue;
+    }
+    if (
+      !TERMINAL_PLAN_STATUSES.has(plan.status) ||
+      (plan.base_status !== undefined && TERMINAL_PLAN_STATUSES.has(plan.base_status ?? ""))
+    ) {
+      continue;
+    }
+    const approvals = plan.review_entries.filter(
+      (entry) =>
+        entry.review_kind === "cross_agent" &&
+        TECHNICAL_APPROVAL_VERDICTS.has(entry.verdict.toLowerCase()),
+    );
+    if (approvals.length === 0) {
+      failures.push({
+        plan_id: plan.plan_id,
+        reason: "review_plan_cross_agent_approval_missing",
+      });
+      continue;
+    }
+    const located = approvals.filter((entry) => entry.receipt_url);
+    if (located.length === 0) {
+      failures.push({ plan_id: plan.plan_id, reason: "review_plan_receipt_locator_missing" });
+      continue;
+    }
+    let mismatch: ReviewPlanBindingFailureReason = "review_plan_receipt_missing";
+    let matched = false;
+    for (const entry of located) {
+      const receipt = input.receipts.find((candidate) => candidate.comment_url === entry.receipt_url);
+      if (!receipt) continue;
+      if (entry.reviewer_session_id !== receipt.reviewer_session_id) {
+        mismatch = "review_plan_session_mismatch";
+        continue;
+      }
+      if (!entry.reviewer_model || !sameReviewModel(entry.reviewer_model, receipt.reviewer_model)) {
+        mismatch = "review_plan_model_mismatch";
+        continue;
+      }
+      if (!entry.reviewed_head_sha || entry.reviewed_head_sha !== receipt.reviewed_head_sha) {
+        mismatch = "review_plan_head_mismatch";
+        continue;
+      }
+      if (normalizeReviewVerdict(entry.verdict) !== normalizeReviewVerdict(receipt.verdict)) {
+        mismatch = "review_plan_verdict_mismatch";
+        continue;
+      }
+      if (
+        !entry.ci_evidence_generation ||
+        entry.ci_evidence_generation !== receipt.ci_evidence_generation
+      ) {
+        mismatch = "review_plan_ci_generation_mismatch";
+        continue;
+      }
+      matched = true;
+      break;
+    }
+    if (!matched) failures.push({ plan_id: plan.plan_id, reason: mismatch });
+  }
+  return { ok: failures.length === 0, failures };
+}
+
+function sameReviewModel(left: string, right: string): boolean {
+  const leftProvider = modelProviderFromId(left);
+  const rightProvider = modelProviderFromId(right);
+  if (leftProvider === "unknown" || leftProvider !== rightProvider) return false;
+  const unprefixed = (value: string) => value.trim().toLowerCase().replace(/^[^:]+:/u, "");
+  return unprefixed(left) === unprefixed(right);
+}
+
+function normalizeReviewVerdict(value: string): "approve" | "block" | "unknown" {
+  const normalized = value.trim().toLowerCase();
+  if (TECHNICAL_APPROVAL_VERDICTS.has(normalized)) return "approve";
+  if (normalized === "block" || normalized === "request_changes") return "block";
+  return "unknown";
+}
+
 function parseChangedPlan(path: string, source: string): ChangedPlanReviewBinding {
   const fallbackId = path.split("/").at(-1)?.replace(/\.md$/u, "") ?? path;
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---/u);
@@ -141,6 +247,13 @@ function parseChangedPlan(path: string, source: string): ChangedPlanReviewBindin
             : {}),
           ...(typeof entry.reviewer_model === "string"
             ? { reviewer_model: entry.reviewer_model }
+            : {}),
+          ...(typeof entry.reviewed_head_sha === "string"
+            ? { reviewed_head_sha: entry.reviewed_head_sha }
+            : {}),
+          ...(typeof entry.receipt_url === "string" ? { receipt_url: entry.receipt_url } : {}),
+          ...(typeof entry.ci_evidence_generation === "string"
+            ? { ci_evidence_generation: entry.ci_evidence_generation }
             : {}),
         },
       ];
