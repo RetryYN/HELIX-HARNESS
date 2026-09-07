@@ -9,8 +9,9 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   },
   {
     // #1358: L1→L3導出とL1↔L12認識の併記。受入pairはL3↔L10であり旧pairではない。
+    // #1647: L10表の空行除去とdigest履歴を追記。上記pairの意味は不変。
     path: "docs/plans/PLAN-L3-78-three-lane-cloud-governance-authority.md",
-    contentDigest: "336d9888d60da8b3683e8a729323ac4a1a8993be12179ac57aeb466f97f55549",
+    contentDigest: "5141495cbab1a5cd6394d011b77972807e9bff695c0b7d81aa632bf988a9f8f6",
     finalDisposition: "false_positive",
   },
   {
