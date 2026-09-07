@@ -15125,7 +15125,7 @@ github
       : loadClaudePrReviewReceipt(opts.receipt);
     const viewed = spawnSync(
       "gh",
-      ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,isDraft"],
+      ["pr", "view", String(prNumber), "--json", "url,headRefOid,state,isDraft,mergeCommit"],
       { cwd: process.cwd(), encoding: "utf8" },
     );
     if (viewed.status !== 0) {
@@ -15138,9 +15138,39 @@ github
       headRefOid: string;
       state: "OPEN" | "CLOSED" | "MERGED";
       isDraft: boolean;
+      mergeCommit?: { oid?: string } | null;
     };
     const repository =
       current.url.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/)?.[1] ?? "";
+    let observedMergeCommit:
+      | {
+          oid: string;
+          parents: string[];
+        }
+      | undefined;
+    if (current.state === "MERGED" && current.mergeCommit?.oid) {
+      const mergeCommitViewed = spawnSync(
+        "gh",
+        ["api", `repos/${repository}/git/commits/${current.mergeCommit.oid}`],
+        { cwd: process.cwd(), encoding: "utf8" },
+      );
+      try {
+        const mergeCommit =
+          mergeCommitViewed.status === 0
+            ? (JSON.parse(mergeCommitViewed.stdout) as {
+                parents?: Array<{ sha?: string }>;
+              })
+            : null;
+        if (mergeCommit) {
+          observedMergeCommit = {
+            oid: current.mergeCommit.oid,
+            parents: (mergeCommit.parents ?? []).map((parent) => parent.sha ?? ""),
+          };
+        }
+      } catch {
+        observedMergeCommit = undefined;
+      }
+    }
     if (opts.apply && !providerNeutral) {
       const readAfter = readAfterClaudePrReviewComment(receipt as ClaudePrReviewReceipt);
       if (!readAfter.ok) {
@@ -15263,6 +15293,7 @@ github
             prUrl: current.url,
             headSha: current.headRefOid,
             state: current.state,
+            mergeCommit: observedMergeCommit,
             requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
             receiptCiMatchesHead,
             receiptCiMatchesGeneration,

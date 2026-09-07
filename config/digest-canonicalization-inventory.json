@@ -556,7 +556,7 @@
     {
       "hit_id": "src/cli.ts::operationId:createHash(sha256)::3",
       "path": "src/cli.ts",
-      "line": 15826,
+      "line": 15857,
       "symbol": "operationId",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -573,7 +573,7 @@
     {
       "hit_id": "src/cli.ts::packageResult:createHash(sha256)::1",
       "path": "src/cli.ts",
-      "line": 16619,
+      "line": 16650,
       "symbol": "packageResult",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2800,7 +2800,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::digest:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 699,
+      "line": 703,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2817,7 +2817,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV2Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 737,
+      "line": 741,
       "symbol": "validateV2Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2834,7 +2834,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::validateV3Receipt:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 757,
+      "line": 761,
       "symbol": "validateV3Receipt",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2851,7 +2851,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::priorSlotDigest:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 1162,
+      "line": 1166,
       "symbol": "priorSlotDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2868,7 +2868,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::buildCorrectionAuthorization:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 1207,
+      "line": 1211,
       "symbol": "buildCorrectionAuthorization",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2885,7 +2885,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::correctionAuthorizationMatches:sha256Digest()::1",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 1234,
+      "line": 1238,
       "symbol": "correctionAuthorizationMatches",
       "algorithm": "sha256",
       "input_kind": "string",
@@ -2902,7 +2902,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::priorSlotDigest:sha256Digest()::2",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 1247,
+      "line": 1251,
       "symbol": "priorSlotDigest",
       "algorithm": "sha256",
       "input_kind": "bytes",
@@ -2919,7 +2919,7 @@
     {
       "hit_id": "src/runtime/claude-pr-convergence.ts::priorSlotDigest:sha256Digest()::3",
       "path": "src/runtime/claude-pr-convergence.ts",
-      "line": 1280,
+      "line": 1284,
       "symbol": "priorSlotDigest",
       "algorithm": "sha256",
       "input_kind": "string",
