@@ -7,7 +7,7 @@ import { requirementIrSemanticDigest } from "./requirement-ir-shadow";
 
 const digestSchema = z.string().regex(/^sha256:[0-9a-f]{64}$/);
 const ownerSchema = z.string().regex(/^HR-FR-HIL-[0-9]{2}$/);
-const refinementIdSchema = z.string().regex(/^[A-Z][A-Z0-9]*(?:-[A-Za-z0-9]+)+$/);
+const refinementIdSchema = z.string().regex(/^[0-9]*[A-Z][A-Z0-9]*(?:-[A-Za-z0-9]+)+(?![\s\S])/);
 const sourcePathSchema = z
   .string()
   .regex(/^docs\/(design\/helix\/L3-requirements|test-design\/helix)\/[a-z0-9][a-z0-9._-]*\.md$/);
@@ -401,7 +401,7 @@ function expandSingleRequirementId(normalized: string): string[] {
       return [first, ...slashParts.slice(1).map((part) => `${numericBase}${part}`)];
     }
   }
-  const range = normalized.match(/^([A-Z][A-Z0-9-]*-)(\d{2})\.\.(\d{2})$/);
+  const range = normalized.match(/^([0-9]*[A-Z][A-Z0-9-]*-)(\d{2})\.\.(\d{2})$/);
   if (range) {
     const start = Number(range[2]);
     const end = Number(range[3]);

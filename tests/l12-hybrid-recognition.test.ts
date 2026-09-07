@@ -38,7 +38,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(candidate).toBeDefined();
     if (!candidate) throw new Error(`Missing candidate: ${path}`);
     expect(candidate.contentDigest).toBe(
-      "336d9888d60da8b3683e8a729323ac4a1a8993be12179ac57aeb466f97f55549",
+      "5141495cbab1a5cd6394d011b77972807e9bff695c0b7d81aa632bf988a9f8f6",
     );
     expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
     expect(

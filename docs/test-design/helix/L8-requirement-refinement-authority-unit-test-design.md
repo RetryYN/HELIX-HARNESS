@@ -33,3 +33,10 @@ pair_artifact: docs/design/helix/L5-detail/requirement-refinement-authority.md
 
 fixtureはMIC-FR-001、MIC-R-01..07、MIC-AC-001..012を使用する。Markdownに文字列が存在するだけでは
 U-RRA-001をgreenにしない。
+
+## 三社レーン識別子の接合
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
+| U-TLIR-001 | 識別子構文 | 3LとMICをruntime／JSON schema双方で受理し、空値・数字のみnamespace・小文字開始・空segment・slash・末尾改行を拒否する | `tests/requirement-refinement-authority.test.ts` |
+| U-TLIR-002 | 範囲投影 | 3L-R-01..02を2件へ展開し、sourceの範囲だけ03へ拡張した場合はdigest更新後も拒否する | `tests/requirement-refinement-authority.test.ts` |
