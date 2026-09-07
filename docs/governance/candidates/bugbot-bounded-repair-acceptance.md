@@ -1,6 +1,9 @@
 ---
 title: "HELIX-bugbot 限定修復の受入候補"
 status: draft_candidate
+authority_status: approved_pending_canonical_promotion
+approval_record_id: L3-PO-1642-001
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1642#issuecomment-5575191622"
 version: "1.0"
 candidate_layer: L10
 owner_issue: 1642
@@ -16,7 +19,7 @@ plan_id: PLAN-L3-1642-bugbot-bounded-repair
 |---|---|---|
 | BBR-AC01 | BBR-R01 | 既存対象限定検査で版・HEAD・観測/期待・根拠・強制度を返す。助言・合法REDを完成条件で誤拒否しない |
 | BBR-AC02 | BBR-R02 | 登録済み適用可能、意味判断必要、承認不足/未知を各処理先へ分け、proposalを実行許可に昇格させない |
-| BBR-AC03 | BBR-R03 | 修復ID/版・実装・失敗コード・schema・write-set・副作用・予算等の不足を拒否。直前HEAD/bytes/Policy/生成器/所有権/lease/fence変更を各々拒否し、他者変更を保全。未信頼command・候補PR内修復器を特権実行しない。GH-FR-011のAI自己修復を修復器の自動write許可へ変換しない。既存対象・契機・episode・scope・権限が一致する対照例は既存経路で通し、追加差分だけ承認・正本化へ返す |
+| BBR-AC03 | BBR-R03 | 修復ID/版・実装・失敗コード・schema・write-set・副作用・予算等の不足を拒否。直前HEAD/bytes/Policy/生成器/所有権/lease/fence変更を各々拒否し、他者変更を保全。未信頼command・候補PR内修復器を特権実行しない。GH-FR-011のAI自己修復を修復器の自動write許可へ変換しない。既存対象・契機・episode・scope・権限が一致する対照例は既存経路で通し、追加差分だけ承認・正本化へ返す。新しい自動適用は修復ごとの契約・独立検証・実consumer検証の各欠落を個別に拒否し、すべて成立した対象範囲だけ有効化する対照例を検証。要求承認だけ・登録だけ・他修復または他consumerの合格から包括的書込み許可を導出しない |
 | BBR-AC04 | BBR-R04 | 同一修復再適用は差分ゼロ、重複eventで二重実行しない。session変更で試行/予算がresetせず、循環・再発・期限超過は停止してRecoveryへ返る |
 | BBR-AC05 | BBR-R04 | 部分失敗とCAS競合で差分/記録を保全。不明な外部副作用を再試行せず、Helpと許可された調査は維持。HEAD変更後のstale CI/reviewでmergeしない |
 | BBR-AC06 | BBR-R05 | 各禁止修復を個別拒否。旧Policy巻戻しや残義務削除で緑化せず、意味矛盾を上流へ送る |

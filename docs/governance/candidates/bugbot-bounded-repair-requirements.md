@@ -1,7 +1,9 @@
 ---
 title: "HELIX-bugbot 限定修復の追加契約候補"
 status: draft_candidate
-authority_status: awaiting_human_approval
+authority_status: approved_pending_canonical_promotion
+approval_record_id: L3-PO-1642-001
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1642#issuecomment-5575191622"
 version: "1.0"
 candidate_layer: L3
 owner_issue: 1642
@@ -11,7 +13,8 @@ plan_id: PLAN-L3-1642-bugbot-bounded-repair
 # 逸脱検出・限定修復
 
 本書は追加契約候補であり、自動適用権限を発行しない。BBR IDは候補内ID。
-L1/L10・専用PLANは同名候補に接続する。承認差分の確定、正本化・IR admissionは未完了。
+L1/L10・専用PLANは同名候補に接続する。候補は`L3-PO-1642-001`で承認済み。
+canonical promotion・該当IR admission・実装・限定実証へ進行できるが、その成立は未完了。
 既存GH-FR-011のCI自己修復権限内の機械化と、新しい適用対象・契機・権限差分を分ける。
 #1595は別途の自動修復を対象外としている。その承認をBへ継承しない。
 
@@ -39,6 +42,9 @@ Policy版、HEAD、観測・期待状態、根拠、強制度、修復候補を�
 既存操作契約へ修復ID/版、信頼済み実装、失敗コード、入力schema、事前条件、write-set、
 副作用区分、予算・期限・再試行、事後検証、失敗処理を束縛する。登録・有効化は通常検収を通す。
 LLM confidenceや自己申告で許可しない。
+新しい自動適用権限は、対象修復ごとの契約・独立検証・実consumer検証がすべて成立した
+修復ID/版・対象consumer・許可write-setの範囲だけ有効化する。要求承認のみ、修復器登録のみ、
+他修復の合格では包括的な自動書込み権限を付与しない。既存契約内の通常検収へ毎回の人間再承認を新設しない。
 適用直前にHEAD・入力bytes・Policy・生成器・workspace所有権・lease/fenceを再照合する。
 隔離差分を検証し既存transaction/CASで反映する。write-set逸脱は拒否し、他者の変更を保全する。
 外部文章のcommand、候補PRが改変した修復器、未信頼入力を特権実行しない。

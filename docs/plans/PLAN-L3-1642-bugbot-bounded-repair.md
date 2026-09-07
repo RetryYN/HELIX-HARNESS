@@ -6,6 +6,16 @@ layer: L3
 drive: agent
 status: draft
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-07T20:06:38Z"
+  plan_id: PLAN-L3-1642-bugbot-bounded-repair
+  approval_record_id: L3-PO-1642-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1642#issuecomment-5575191622"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -30,7 +40,7 @@ no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "原稿、既存GH-FR-007/011/014、Rule導出と変更伝播を照合する"
 contract_postconditions: "BBRのL1/L3/L10候補と原稿の項目対応を保持する"
-contract_invariants: "生成と実行権の分離、意味正本の再利用、未承認候補のruntime有効化禁止"
+contract_invariants: "生成と実行権の分離、意味正本の再利用、修復ごとの契約・独立検証・実consumer検証が成立した範囲のみ有効化し、要求承認のみで包括的書込みを許可しない"
 contract_failures: "未提供別紙の確認済み扱い、scope拡張、承認捏造、義務欠落を拒否する"
 tdd_red_required: false
 tdd_red_waiver_reason: "文書候補のみ。実装の独立oracleとmutationは後続PLANで実証する。"
@@ -67,8 +77,20 @@ review_evidence: []
 
 # 逸脱検出・限定修復
 
-本PLANは要求候補の取り込みのみ。CI/Cursorと並行する優先指定を、自動適用権限の承認へ昇格しない。
-A/Bは別PLAN・別受入・別完了で追跡する。未定義差分の正本化・IR admission前にruntimeを有効化しない。
+本PLANは要求候補と明示承認の束縛を所有する。L1/L3/L10の要求承認は取得済みであり、
+canonical promotion・Requirement IR admission・実装・限定実証へ進める。同一要求の再承認待ちには戻さない。
+A/Bは別PLAN・別受入・別完了で追跡し、正本化・該当IR admission・独立検証を省略しない。
+要求承認だけで新しい自動書込みを包括的に許可しない。対象修復ごとの契約・独立検証・実consumer検証が
+すべて成立した修復ID/版・対象・write-setの範囲だけを有効化する。
+
+## 承認対象と残る検収
+
+`L3-PO-1642-001`は候補HEAD `98cdc24c12e47057b1a7d6d3b156a96bf5ef4d8d`の
+L1/L3/L10各文書のraw digestと、人間が今回明示した有効化条件へ束縛されている。
+本差分は条件をBBR-R03／BBR-AC03へ転記する。承認前のdigestを事後的に差し替えない。
+`approved_at`はGitHub記録の作成時刻であり、人間メッセージの厳密な送信時刻ではない。
+修復ごとの通常検収を一律の人間再承認へ変換せず、未定義の意味・権限拡張だけ正規改訂へ返す。
+canonical昇格・IR admission・実装・実consumer受入は未完了であり、statusを完了へ変更しない。
 
 原稿bytesは[commit固定の保全台帳](https://github.com/RetryYN/HELIX-HARNESS/blob/a2325edb8425f4e84421ef2fd1f07c6c6d668dd7/docs/governance/candidates/bugbot-intake-source.md)のBase64復号で再現する。正規化なしのSHA-256:
 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
