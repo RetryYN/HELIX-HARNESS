@@ -144,6 +144,40 @@ describe("Requirement JSON authority", () => {
     expect(result.messages.join("\n")).toContain("authority validation failed");
   });
 
+  // PLAN-RECOVERY-1645-markdown-table-coverage
+  it("U-MTROW-004: 実authority gateへ未収載表行の元pathと行番号を伝播する", () => {
+    const canonical = loadCanonicalRequirementIrFromShards(process.cwd());
+    const target = canonical.refinement_contracts.find(
+      (record) => record.refinement_contract_id === "MIC-FR-001",
+    );
+    if (!target) throw new Error("MIC-FR-001 fixture record missing");
+    withAuthorityFixture(
+      (_authority, fixtureRoot) => {
+        for (const record of canonical.refinement_contracts) {
+          for (const path of [record.source.requirement_path, record.source.acceptance_path]) {
+            const destination = join(fixtureRoot, path);
+            mkdirSync(dirname(destination), { recursive: true });
+            copyFileSync(join(process.cwd(), path), destination);
+          }
+        }
+      },
+      (fixtureRoot) => {
+        // 無関係なsource欠落だけでRedにならないよう、変異前に実gateの成功を要求する。
+        expect(checkRequirementAuthority(fixtureRoot).ok).toBe(true);
+        const path = target.source.acceptance_path;
+        const original = readFileSync(join(fixtureRoot, path), "utf8");
+        const prefix = `${original}\n`;
+        const line = prefix.split(/\r?\n/).length;
+        writeFileSync(join(fixtureRoot, path), `${prefix}| MIC-AC-999 | 未収載の条件 |\n`);
+        const result = checkRequirementAuthority(fixtureRoot);
+        expect(result.ok).toBe(false);
+        expect(result.messages.join("\n")).toContain(
+          `MIC-FR-001: ${path}:${line}: REFINEMENT_TABLE_ROW_UNBOUND`,
+        );
+      },
+    );
+  });
+
   it("U-RAC-002b: kills a dual-authority policy mutation", () => {
     withAuthorityFixture(
       (authority) => {

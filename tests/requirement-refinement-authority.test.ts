@@ -146,6 +146,72 @@ function validate(repoRoot: string, record: unknown) {
 }
 
 describe("Requirement refinement authority", () => {
+  // PLAN-RECOVERY-1645-markdown-table-coverage
+  it("U-MTROW-001: IR未列挙のAC行も空行で脱落したらpathと行番号付きで拒否する", () => {
+    const { repoRoot, record } = fixture();
+    expect(validate(repoRoot, record)).toEqual({ ok: true, failureCodes: [] });
+    const source = `${ACCEPTANCE_SOURCE}\n| MIC-AC-002 | MIC-R-01 | 別条件 | 必須 | 欠落拒否 |\n`;
+    writeFileSync(join(repoRoot, record.source.acceptance_path), source);
+    const changed = withDigest({
+      ...record,
+      semantic_digest: undefined,
+      source: { ...record.source, acceptance_digest: sha256(source) },
+    });
+    expect(validate(repoRoot, changed)).toMatchObject({
+      ok: false,
+      failureCodes: ["REFINEMENT_TABLE_ROW_UNBOUND"],
+      sourceDiagnostics: [
+        { path: record.source.acceptance_path, line: 5, code: "REFINEMENT_TABLE_ROW_UNBOUND" },
+      ],
+    });
+  });
+
+  it("U-MTROW-002: 列数不一致で脱落した表行をsource digest更新で相殺しない", () => {
+    const { repoRoot, record } = fixture();
+    const source = `${ACCEPTANCE_SOURCE}| MIC-AC-002 | 欠けた列 |\n`;
+    writeFileSync(join(repoRoot, record.source.acceptance_path), source);
+    const changed = withDigest({
+      ...record,
+      semantic_digest: undefined,
+      source: { ...record.source, acceptance_digest: sha256(source) },
+    });
+    expect(validate(repoRoot, changed)).toMatchObject({
+      ok: false,
+      failureCodes: ["REFINEMENT_TABLE_ROW_UNBOUND"],
+      sourceDiagnostics: [
+        { path: record.source.acceptance_path, line: 4, code: "REFINEMENT_TABLE_ROW_UNBOUND" },
+      ],
+    });
+  });
+
+  it("U-MTROW-003: 正規headerの別表とfence内の表例は誤拒否・推測結合しない", () => {
+    const { repoRoot, record } = fixture();
+    const source =
+      ACCEPTANCE_SOURCE +
+      "\n" +
+      ACCEPTANCE_SOURCE.replaceAll("MIC-AC-001", "MIC-AC-002") +
+      "\n\x60\x60\x60md\n| 例示 | 孤立行 |\n\x60\x60\x60\n";
+    writeFileSync(join(repoRoot, record.source.acceptance_path), source);
+    const changed = withDigest({
+      ...record,
+      semantic_digest: undefined,
+      source: { ...record.source, acceptance_digest: sha256(source) },
+    });
+    expect(validate(repoRoot, changed)).toEqual({ ok: true, failureCodes: [] });
+  });
+
+  it("U-MTROW-005: escaped pipeを含む正常な別表を誤拒否しない", () => {
+    const { repoRoot, record } = fixture();
+    const source = `${ACCEPTANCE_SOURCE}\n| 項目 | 例 |\n|---|---|\n| command | a \\| b |\n`;
+    writeFileSync(join(repoRoot, record.source.acceptance_path), source);
+    const changed = withDigest({
+      ...record,
+      semantic_digest: undefined,
+      source: { ...record.source, acceptance_digest: sha256(source) },
+    });
+    expect(validate(repoRoot, changed)).toEqual({ ok: true, failureCodes: [] });
+  });
+
   it("U-TLIR-002: 数字開始IDの範囲参照をsourceとIRのexact setへ投影する", () => {
     const { repoRoot, record } = fixture();
     const source = "#### 3L-R-01 第一条件\n\n条件一\n\n#### 3L-R-02 第二条件\n\n条件二\n";

@@ -149,6 +149,11 @@ export interface RequirementRefinementApprovalMaterial {
 export interface RequirementRefinementValidationResult {
   ok: boolean;
   failureCodes: string[];
+  sourceDiagnostics?: Array<{
+    code: "REFINEMENT_TABLE_ROW_UNBOUND";
+    path: string;
+    line: number;
+  }>;
 }
 
 function unique<T>(values: readonly T[]): boolean {
@@ -271,11 +276,20 @@ function projectHeadingStatement(source: string, id: string): string | undefined
 
 function markdownCells(line: string): string[] | undefined {
   if (!line.trimStart().startsWith("|")) return undefined;
-  const cells = line
-    .trim()
-    .split("|")
-    .slice(1, -1)
-    .map((cell) => cell.trim());
+  const text = line.trim();
+  const parts: string[] = [];
+  let start = 0;
+  let escaped = false;
+  for (let index = 0; index < text.length; index += 1) {
+    const character = text[index];
+    if (character === "|" && !escaped) {
+      parts.push(text.slice(start, index));
+      start = index + 1;
+    }
+    escaped = character === "\\" ? !escaped : false;
+  }
+  parts.push(text.slice(start));
+  const cells = parts.slice(1, -1).map((cell) => cell.trim());
   return cells.length > 0 ? cells : undefined;
 }
 
@@ -283,9 +297,13 @@ function normalizedHeader(value: string): string {
   return value.replaceAll("`", "").replaceAll(/\s+/g, "").toLowerCase();
 }
 
-function markdownTables(source: string): Array<{ headers: string[]; rows: string[][] }> {
+function inspectMarkdownTables(source: string): {
+  tables: Array<{ headers: string[]; rows: string[][] }>;
+  unboundRows: number[];
+} {
   const lines = markdownContentLines(source);
   const tables: Array<{ headers: string[]; rows: string[][] }> = [];
+  const consumed = new Set<number>();
   for (let index = 0; index + 1 < lines.length; index += 1) {
     const headers = markdownCells(lines[index] ?? "");
     const separator = markdownCells(lines[index + 1] ?? "");
@@ -297,16 +315,28 @@ function markdownTables(source: string): Array<{ headers: string[]; rows: string
     ) {
       continue;
     }
+    consumed.add(index);
+    consumed.add(index + 1);
     const rows: string[][] = [];
     for (let cursor = index + 2; cursor < lines.length; cursor += 1) {
       const cells = markdownCells(lines[cursor] ?? "");
       if (!cells || cells.length !== headers.length) break;
       rows.push(cells);
+      consumed.add(cursor);
       index = cursor;
     }
     tables.push({ headers, rows });
   }
-  return tables;
+  return {
+    tables,
+    unboundRows: lines.flatMap((line, index) =>
+      markdownCells(line) && !consumed.has(index) ? [index + 1] : [],
+    ),
+  };
+}
+
+function markdownTables(source: string): Array<{ headers: string[]; rows: string[][] }> {
+  return inspectMarkdownTables(source).tables;
 }
 
 function cellId(value: string): string {
@@ -573,6 +603,8 @@ export function validateRequirementRefinement(
   if (!parsed.success) return { ok: false, failureCodes: ["REFINEMENT_SCHEMA_INVALID"] };
   const record = parsed.data;
   const failures = new Set<string>();
+  const sourceDiagnostics: NonNullable<RequirementRefinementValidationResult["sourceDiagnostics"]> =
+    [];
   const owners = [record.primary_system_contract_id, ...record.related_system_contract_ids];
   if (!unique(owners) || owners.some((owner) => !context.baselineSystemContractIds.has(owner))) {
     failures.add("REFINEMENT_OWNER_ORPHAN");
@@ -585,6 +617,10 @@ export function validateRequirementRefinement(
     try {
       const sourceText = readFileSync(join(context.repoRoot, path), "utf8");
       sourceTexts.set(path, sourceText);
+      for (const line of inspectMarkdownTables(sourceText).unboundRows) {
+        failures.add("REFINEMENT_TABLE_ROW_UNBOUND");
+        sourceDiagnostics.push({ code: "REFINEMENT_TABLE_ROW_UNBOUND", path, line });
+      }
       if (sha256(sourceText) !== expected) {
         failures.add("REFINEMENT_SOURCE_STALE");
       }
@@ -753,5 +789,9 @@ export function validateRequirementRefinement(
     }
   }
   if (semanticDigest(record) !== record.semantic_digest) failures.add("REFINEMENT_SCHEMA_INVALID");
-  return { ok: failures.size === 0, failureCodes: [...failures].sort() };
+  return {
+    ok: failures.size === 0,
+    failureCodes: [...failures].sort(),
+    ...(sourceDiagnostics.length > 0 ? { sourceDiagnostics } : {}),
+  };
 }

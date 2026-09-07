@@ -79,6 +79,12 @@ compatibility／archive／migration pathを拒否する。
   `contract_requirement.requirement_id=refinement_contract_id`を必須とし、supporting 0件を許す。
 - acceptanceのrequirement参照はcontract自身＋supporting exact set内で、全R／ACの未被覆・重複は0である。
 - source bytesのsha256、record semantic digest、manifest shard/root digestを全て再現できる。
+- source中の表形式の行はheader・separator・dataのいずれかへ収載する。空行または列数不一致で
+  脱落した行は、IRに同IDが未列挙でも拒否する。コードfenceの例示行は除外し、空行を跨いだ
+  推測結合はしない。正規headerとseparatorを持つ別表は独立に受理する。
+- escaped pipeはcell内の原文として保持し、escapeされていないpipeのみをdelimiterとする。
+- 未収載行はsourceDiagnosticsへrepo-relative path・1始まりの元行番号・failure codeを返し、
+  authority gateも同じ位置を報告する。成功時の既存result形状は維持する。
 - requirementはlegacy H4、ATX section、header-role table、ID-led bullet、acceptanceはlegacy 5列または
   header-role tableのtyped projectionで、見出しlevelや列順を意味変更せずID、本文、edge、polarityとして再現する。
   projection modeはexact enumとし、列位置推測、余剰列破棄、family専用parserを追加しない。
@@ -97,6 +103,7 @@ compatibility／archive／migration pathを拒否する。
 | `REFINEMENT_BASELINE_DRIFT` | baseline bytes／count／digestが変化 |
 | `REFINEMENT_SOURCE_STALE` | L3/L10 source digestが不一致 |
 | `REFINEMENT_SOURCE_PROJECTION_DRIFT` | R／ACのID、本文、edge、polarityがsource projectionと不一致 |
+| `REFINEMENT_TABLE_ROW_UNBOUND` | sourceに表形式の行が残るが、どの表のheader／separator／dataにも収載されない |
 | `REFINEMENT_OWNER_ORPHAN` | HIL ownerがbaselineに無い |
 | `REFINEMENT_TRACE_INCOMPLETE` | R／ACの欠落、重複、未被覆 |
 | `REFINEMENT_DOWNSTREAM_INCOMPLETE` | AC ownerの欠落／重複、implementation Issue不一致、terminal parent不在 |
@@ -135,7 +142,7 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:200617c69ab9b265370c63bcae49bb4f093ff55a6c8e68dfe49c0c64898c36e6",
+      "source_digest": "sha256:947208de3ea4796e0e35baf040f788b00dd94ecff58be257a00a53ddfc51f918",
       "current_authority": true
     }
   ],

@@ -369,6 +369,11 @@ export function checkRequirementAuthority(repoRoot: string): RequirementAuthorit
         for (const failureCode of validation.failureCodes) {
           violations.push(`${record.refinement_contract_id}: ${failureCode}`);
         }
+        for (const diagnostic of validation.sourceDiagnostics ?? []) {
+          violations.push(
+            `${record.refinement_contract_id}: ${diagnostic.path}:${diagnostic.line}: ${diagnostic.code}`,
+          );
+        }
         for (const id of [
           record.refinement_contract_id,
           ...record.supporting_requirements.map((item) => item.requirement_id),

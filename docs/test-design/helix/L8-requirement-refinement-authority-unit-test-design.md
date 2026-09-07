@@ -34,6 +34,16 @@ pair_artifact: docs/design/helix/L5-detail/requirement-refinement-authority.md
 fixtureはMIC-FR-001、MIC-R-01..07、MIC-AC-001..012を使用する。Markdownに文字列が存在するだけでは
 U-RRA-001をgreenにしない。
 
+## 表行被覆
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
+| U-MTROW-001 | 未列挙ACの脱落 | 空行の後の表行もIRの列挙数に依存せず元path・行番号付きで拒否する | `tests/requirement-refinement-authority.test.ts` |
+| U-MTROW-002 | 列数不一致 | source digestを更新しても列数不足で捨てられた行を拒否する | `tests/requirement-refinement-authority.test.ts` |
+| U-MTROW-003 | 正規境界 | それぞれheaderとseparatorを持つ別表、コードfence中の例を誤拒否しない | `tests/requirement-refinement-authority.test.ts` |
+| U-MTROW-004 | 実consumer | 変異前に成功する実authority gateで、未収載表行の元path・行番号を報告する | `tests/requirement-authority.test.ts` |
+| U-MTROW-005 | 表のdelimiter | escaped pipeをcell境界と誤認せず、正常な別表を受理する | `tests/requirement-refinement-authority.test.ts` |
+
 ## 三社レーン識別子の接合
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
