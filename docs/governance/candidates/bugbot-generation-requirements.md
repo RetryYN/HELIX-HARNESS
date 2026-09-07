@@ -52,5 +52,6 @@ source/generator/output/consumerの版とdigestを既存projectionへ束縛し�
 まず一系統で作成→検出→限定修復→再検証を実consumerで通す。対象と非対象を先に固定する。
 手修正数、LLM呼出し・tokens、総時間、CI再走、手戻り、誤修復、未解消数を同条件で比較する。
 
-原文: Issue #1639本文。SHA-256 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
+原文bytes: [保全台帳](bugbot-intake-source.md)のBase64復号（正規化なし）。SHA-256 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
+Issue #1639は追跡先であり、追記後の本文全体のhashとは区別する。
 別紙02/03/05は未提供。03の18シナリオとの全件照合は未完了である。
