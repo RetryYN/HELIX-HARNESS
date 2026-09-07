@@ -65,10 +65,8 @@ dependencies:
   references:
     - "issue:895"
     - "issue:1614"
-    - docs/plans/PLAN-REVERSE-1614-project-hook-authority-consumer-wiring.md
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/plans/PLAN-REVERSE-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
   - { artifact_path: src/runtime/project-hook-authority-consumer-wiring.ts, artifact_type: source_module }
   - { artifact_path: tests/project-hook-authority-consumer-wiring.test.ts, artifact_type: test_code }
 modifies:
