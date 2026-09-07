@@ -41,7 +41,7 @@ tdd_red_waiver_reason: "正規 worker canary（Issue #1612、team_run_id 9480123
 mutation_oracle_required: false
 agent_slots:
   - { role: se, slot_label: "SE — codex-se worker（gpt-5.6-sol）が clean clone 上で実装" }
-  - { role: tl, slot_label: "TL — 独立 review は Codex レーンが exact HEAD receipt で実施" }
+  - { role: tl, slot_label: "TL — content producer と異なる Claude/Fable レーンが exact HEAD 独立 review receipt を発行" }
   - { role: aim, slot_label: "AIM — admission 判定を緩めず診断 reason のみ追加であることを監査" }
 dependencies:
   parent: docs/plans/PLAN-L7-473-claude-pr-convergence.md
@@ -87,5 +87,6 @@ Claude 収束レーンが commit / push / PR 化した。worker 実行の所見�
 
 ## 3. 完了条件
 
-- fresh CI green、Codex レーンの exact HEAD 独立 review receipt、admission 経由 merge。
+- fresh CI green、content producer（codex-se / gpt-5.6-sol）と異なる Claude/Fable レーンの exact HEAD 独立 review receipt、admission 経由 merge。
+- commit executor / PR publisher が Claude であることだけを理由に review を Codex へ戻さない。独立性は content producer を基準に判定する。
 - 本 PLAN は draft のまま merge し、review_evidence の転記と confirm は後続で行う（completion_claim_allowed: false）。
