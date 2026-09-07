@@ -70,6 +70,7 @@ generates:
   - { artifact_path: src/lint/legacy-orchestration-semantic-consumers.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-semantic-consumers.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: config/legacy-orchestration-surface-inventory.json, artifact_type: json_config }
   - { artifact_path: src/lint/legacy-orchestration-surface.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-surface.test.ts, artifact_type: test_code }
