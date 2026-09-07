@@ -182,6 +182,55 @@ describe("project hook authority transport envelope", () => {
     });
   });
 
+  it("U-CNWHOOKENV-003c: locatorが別git common dirを指す場合はexpected整合前に拒否する", () => {
+    const badHost = { ...host(), current_authority_root: "/foreign-authority" };
+    const deps = physicalDeps();
+    const result = resolveProjectHookAuthorityFromTransport(envelope(), badHost, {
+      physical: {
+        ...deps,
+        git: (root, args) => {
+          if (args.includes("--git-common-dir")) {
+            return root.includes("foreign-authority")
+              ? "/physical/foreign-repo/.git"
+              : "/physical/repo/.git";
+          }
+          return HEAD;
+        },
+      },
+    });
+    expect(result).toMatchObject({
+      ok: false,
+      failure: {
+        code: "project_hook_source_stale_or_foreign",
+        json_pointer: "/current_authority_root/repository_common_dir",
+      },
+    });
+  });
+
+  it("U-CNWHOOKENV-003d: requestがcurrent authority HEADへ追随してもhost main anchor差分を拒否する", () => {
+    const bad = structuredClone(envelope());
+    bad.expected.current_authority_head = "b".repeat(40);
+    const deps = physicalDeps();
+    const result = resolveProjectHookAuthorityFromTransport(bad, host(), {
+      physical: {
+        ...deps,
+        git: (root, args) => {
+          if (args.includes("--git-common-dir")) return "/physical/repo/.git";
+          if (args.includes("refs/remotes/origin/main")) return HEAD;
+          if (root.includes("authority")) return "b".repeat(40);
+          return HEAD;
+        },
+      },
+    });
+    expect(result).toMatchObject({
+      ok: false,
+      failure: {
+        code: "project_hook_source_stale_or_foreign",
+        json_pointer: "/current_authority_anchor",
+      },
+    });
+  });
+
   it("U-CNWHOOKENV-004: observed root mismatchはcwd/env/default fileへfallbackせず拒否する", () => {
     const observed = { ...host(), execution_root: "/different-lane" };
     const git = vi.fn(physicalDeps().git);

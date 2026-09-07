@@ -172,6 +172,7 @@ export function resolveProjectHookAuthorityFromTransport(
   let observedCurrentAuthorityRoot: ProjectHookAuthorityRootIdentityV1;
   let observedRepositoryHead: string;
   let observedCurrentAuthorityHead: string;
+  let hostCurrentAuthorityHead: string;
   let observedSourceMaterial: ProjectHookAuthoritySourceMaterialV1;
   let observedCurrentAuthoritySourceMaterial: ProjectHookAuthoritySourceMaterialV1;
   try {
@@ -187,6 +188,13 @@ export function resolveProjectHookAuthorityFromTransport(
       observedCurrentAuthorityRoot.canonical_realpath,
       ["rev-parse", "HEAD"],
     );
+    // current authority anchorはtransport requestではなく、実行repositoryのgit common dirが
+    // 所有するremote-tracking mainから独立採取する。別repositoryのlocatorと、そのrepositoryに
+    // 合わせて改変されたexpected値だけで自己整合を作る経路を許可しない。
+    hostCurrentAuthorityHead = deps.physical.git(observedExecutionRoot.canonical_realpath, [
+      "rev-parse",
+      "refs/remotes/origin/main",
+    ]);
     observedSourceMaterial = captureProjectHookSourceMaterial(
       observedExecutionRoot.canonical_realpath,
       deps.physical,
@@ -198,6 +206,21 @@ export function resolveProjectHookAuthorityFromTransport(
   } catch {
     return projectHookAuthorityInputUnavailable();
   }
+
+  const hostCommonDir = observedExecutionRoot.repository_common_dir;
+  for (const [pointer, observed] of [
+    ["/loader_root/repository_common_dir", observedLoaderRoot],
+    ["/session_project_root/repository_common_dir", observedSessionRoot],
+    ["/current_authority_root/repository_common_dir", observedCurrentAuthorityRoot],
+  ] as const) {
+    if (observed.repository_common_dir !== hostCommonDir)
+      return projectHookAuthoritySourceStaleFailure(pointer, "foreign_git_common_dir");
+  }
+  if (observedCurrentAuthorityHead !== hostCurrentAuthorityHead)
+    return projectHookAuthoritySourceStaleFailure(
+      "/current_authority_anchor",
+      "host_current_authority_head_mismatch",
+    );
 
   const rootPairs: readonly [
     string,

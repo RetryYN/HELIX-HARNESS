@@ -4,7 +4,7 @@ title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7
 kind: add-impl
 layer: L7
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-07
@@ -54,6 +54,17 @@ dependencies:
     - issue:1620
   blocks: []
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-001, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-002, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003b, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003c, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-003d, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-004, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-005, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-005b, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-006, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNWHOOKENV-007, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-001, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-002, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-003, test_path: tests/project-hook-authority-envelope.test.ts }
@@ -62,6 +73,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-006, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-007, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-008, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-009, test_path: tests/cli-surface.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, artifact_type: design_doc }
@@ -76,6 +88,7 @@ modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-descent.ts, artifact_type: source_module }
   - { artifact_path: tests/plan-descent.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/harness/L6-function-design/plan-descent-gate.md, artifact_type: design_doc }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }

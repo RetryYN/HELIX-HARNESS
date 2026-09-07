@@ -1117,10 +1117,7 @@ function loadBranchKindInputForGuard(opts: {
       opts.changed !== undefined &&
       JSON.stringify([...new Set(opts.changed)].sort()) !== JSON.stringify(input.changedPaths)
     ) {
-      input.authority = {
-        status: "unavailable",
-        reason: "changed_paths_snapshot_mismatch",
-      };
+      input.authority = { status: "unavailable", reason: "changed_paths_snapshot_mismatch" };
     }
     return { ...input, strictUnknownPrefix: opts.strictUnknownPrefix };
   }
@@ -1129,10 +1126,7 @@ function loadBranchKindInputForGuard(opts: {
     opts.changed !== undefined &&
     JSON.stringify([...new Set(opts.changed)].sort()) !== JSON.stringify(base.changedPaths)
   ) {
-    base.authority = {
-      status: "unavailable",
-      reason: "changed_paths_snapshot_mismatch",
-    };
+    base.authority = { status: "unavailable", reason: "changed_paths_snapshot_mismatch" };
   }
   return { ...base, strictUnknownPrefix: opts.strictUnknownPrefix };
 }
@@ -1293,10 +1287,7 @@ function loadProjectHookAuthorityCliInput(
       bytes: JSON.stringify(projectStandaloneProjectHookAuthoritySurface()),
     };
   }
-  return {
-    kind: "transport",
-    wiring: buildProjectHookAuthorityConsumerFromTransport(rawEnvelope),
-  };
+  return { kind: "transport", wiring: buildProjectHookAuthorityConsumerFromTransport(rawEnvelope) };
 }
 
 function projectHookAuthoritySurfaceBytes(
@@ -1485,7 +1476,9 @@ function feedbackSurfaceInputsFromRefs(refs: readonly string[], receiptSession: 
         sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
         sourceId: ref.slice(separator + 1, generationAt),
         sourceGeneration: ref.slice(generationAt + 1),
-        operationId: `surface:${createHash("sha256").update(`${receiptSession}:${ref}`).digest("hex")}`,
+        operationId: `surface:${createHash("sha256")
+          .update(`${receiptSession}:${ref}`)
+          .digest("hex")}`,
         sessionId: receiptSession,
       },
     ];
@@ -2027,11 +2020,7 @@ design
           validateDocumentReportArtifactPath({ repoRoot, path: opts.out });
         const artifact =
           opts.out && !opts.dryRun
-            ? writeDocumentReportArtifact({
-                repoRoot,
-                path: opts.out,
-                content: report.markdown,
-              })
+            ? writeDocumentReportArtifact({ repoRoot, path: opts.out, content: report.markdown })
             : null;
         process.exitCode = report.ok ? 0 : 1;
         if (opts.json)
@@ -2086,11 +2075,7 @@ design
           validateDocumentReportArtifactPath({ repoRoot, path: opts.out });
         const artifact =
           opts.out && !opts.dryRun
-            ? writeDocumentReportArtifact({
-                repoRoot,
-                path: opts.out,
-                content: report.markdown,
-              })
+            ? writeDocumentReportArtifact({ repoRoot, path: opts.out, content: report.markdown })
             : null;
         process.exitCode = report.ok ? 0 : 1;
         if (opts.json)
@@ -3007,12 +2992,7 @@ memory
       return;
     }
     const result = retireMemory(
-      {
-        layer: parsed,
-        ids,
-        consumerId: opts.consumer,
-        authorityId: opts.authority,
-      },
+      { layer: parsed, ids, consumerId: opts.consumer, authorityId: opts.authority },
       nodeMemoryV2Deps({ root: process.cwd() }),
     );
     process.stdout.write(`${JSON.stringify(result)}\n`);
@@ -3384,10 +3364,7 @@ loop
       const mode = detectMode().mode;
       const verifier = selectVerifier(workerProvider, mode);
       const loadedContext = opts.workerContextFile
-        ? loadWorkerContextBoundaryFile({
-            repo_root: repoRoot,
-            path: opts.workerContextFile,
-          })
+        ? loadWorkerContextBoundaryFile({ repo_root: repoRoot, path: opts.workerContextFile })
         : null;
       if (!opts.dryRun && !loadedContext?.ok) {
         process.stderr.write(
@@ -3456,7 +3433,9 @@ loop
         }
       } catch (error) {
         process.stderr.write(
-          `loop run failed: plan=${opts.plan} detail=${error instanceof Error ? error.message : String(error)}\n`,
+          `loop run failed: plan=${opts.plan} detail=${
+            error instanceof Error ? error.message : String(error)
+          }\n`,
         );
         process.exitCode = 1;
         return;
@@ -3720,10 +3699,7 @@ pairAgent
       });
       const startedAt = new Date().toISOString();
       const loadedContext = opts.workerContextFile
-        ? loadWorkerContextBoundaryFile({
-            repo_root: process.cwd(),
-            path: opts.workerContextFile,
-          })
+        ? loadWorkerContextBoundaryFile({ repo_root: process.cwd(), path: opts.workerContextFile })
         : null;
       if (opts.execute && !loadedContext?.ok) {
         process.stderr.write(
@@ -4445,10 +4421,7 @@ ci.command("impact-plan")
         const companionItemIds: string[] = [];
         const resolvedChangedPaths: string[] = [];
         for (const changedPath of opts.changed) {
-          const relation = analyzeRelationImpact({
-            changedPaths: [changedPath],
-            projection,
-          });
+          const relation = analyzeRelationImpact({ changedPaths: [changedPath], projection });
           const testItemIds = [...relation.changedNodes, ...relation.impacted]
             .filter((node) => node.kind === "test" && typeof node.path === "string")
             .map((node) => `test:${node.path}`)
@@ -4601,6 +4574,21 @@ session
       projectHookAuthority,
       "session_start",
     );
+    process.stdout.write(
+      `project-hook-authority: mode=${projectHookAuthority.kind} surface=session_start bytes=${projectHookAuthorityBytes}\n`,
+    );
+    if (projectHookAuthority.kind === "standalone") {
+      // Control Plane envelopeが無いstandalone SessionStartはprojectionが宣言する通り
+      // read-onlyとする。session event、memory recall、reconcile、DB writeを開始しない。
+      return;
+    }
+    const projectHookAuthorityAdmission = admitProjectHookAuthorityDispatch(
+      projectHookAuthority.wiring,
+    );
+    if (!projectHookAuthorityAdmission.allowed) {
+      process.exitCode = 1;
+      return;
+    }
     const repoRoot = process.cwd();
     const deps = nodeDeps(repoRoot, gitBranch, gitHead);
     // PLAN-L7-471: 安い・かつ失うと痛い順に実行する。hook が予算超過で kill されても
@@ -4608,9 +4596,6 @@ session
     // 旧順序は side effects (full lifecycle reconcile) が先だったため、kill されると
     // session_start が 1 件も記録されず、memory surface も届かなかった。
     dispatch(input, deps, HOOK_EVENT_SESSION_START);
-    process.stdout.write(
-      `project-hook-authority: mode=${projectHookAuthority.kind} surface=session_start bytes=${projectHookAuthorityBytes}\n`,
-    );
     // HELIX P7: surface harness-layer agent memory at SessionStart so the shared,
     // git-tracked SSoT (.helix/memory/harness.jsonl) is recalled instead of a
     // per-agent silo. surfaceMemory reads fail-soft (empty when absent).
@@ -4759,7 +4744,9 @@ hook
 
     if (decision.code === 0) {
       process.stdout.write(
-        `agent-guard: ${decision.bypassed ? "bypassed" : "pass"} ${passedKind ? `kind=${passedKind}` : "kind=none"}\n`,
+        `agent-guard: ${decision.bypassed ? "bypassed" : "pass"} ${
+          passedKind ? `kind=${passedKind}` : "kind=none"
+        }\n`,
       );
     }
     process.exitCode = decision.code;
@@ -4790,11 +4777,7 @@ hook
       process.exitCode = 2;
       return;
     }
-    const outcome = runGitCommandGuardHook({
-      repoRoot,
-      rawInput,
-      env: process.env,
-    });
+    const outcome = runGitCommandGuardHook({ repoRoot, rawInput, env: process.env });
     if (outcome.message) process.stderr.write(`${outcome.message}\n`);
     if (outcome.exitCode === 0) {
       process.stdout.write(`git-command-guard: pass (${outcome.reason ?? "safe-git"})\n`);
@@ -4809,10 +4792,7 @@ hook
     // consumer 配布経路 (setup template の `helix hook work-guard`、PLAN-L7-433 C1)。
     // 実行本体はdev repo hook (.claude/hooks/work-guard.ts)と共有し、入力/transaction failureはfail-closeする。
     const raw = process.stdin.isTTY ? "" : readStdin();
-    const secretOutcome = runSecretEgressHook({
-      repoRoot: process.cwd(),
-      rawInput: raw,
-    });
+    const secretOutcome = runSecretEgressHook({ repoRoot: process.cwd(), rawInput: raw });
     if (secretOutcome.exitCode === 2) {
       process.stderr.write(`${secretOutcome.message ?? "[helix-secret-egress-guard] BLOCK"}\n`);
       process.exitCode = 2;
@@ -4957,12 +4937,10 @@ guard
       const initial = evaluateResolvedWorkGuardTargets(states, repoRoot);
       const subject = JSON.stringify(states.map((state) => [state.repoRoot, state.targetPath]));
       let result = initial;
-      let auditRecord = `git-status:${createHash("sha256").update(JSON.stringify(changedFiles)).digest("hex")}`;
-      let override: {
-        bypass: boolean;
-        source: string;
-        reason_digest: string | null;
-      } = {
+      let auditRecord = `git-status:${createHash("sha256")
+        .update(JSON.stringify(changedFiles))
+        .digest("hex")}`;
+      let override: { bypass: boolean; source: string; reason_digest: string | null } = {
         bypass: false,
         source: "none",
         reason_digest: null,
@@ -5486,10 +5464,7 @@ db.command("compact")
   .option("--execute", "backup/preflight後に明示実行")
   .option("--json", "JSON output")
   .action((opts: { execute?: boolean; json?: boolean }) => {
-    const result = compactHarnessDb({
-      repoRoot: process.cwd(),
-      execute: opts.execute === true,
-    });
+    const result = compactHarnessDb({ repoRoot: process.cwd(), execute: opts.execute === true });
     process.stdout.write(
       opts.json
         ? `${JSON.stringify(result, null, 2)}\n`
@@ -9116,11 +9091,7 @@ closure
           ? {
               schema_version: "closure-authority-backfill-persist-result.v1",
               run,
-              persisted: persistClosureAuthorityProposal({
-                repoRoot,
-                outPath: opts.out,
-                run,
-              }),
+              persisted: persistClosureAuthorityProposal({ repoRoot, outPath: opts.out, run }),
             }
           : run;
         process.stdout.write(`${JSON.stringify(output)}\n`);
@@ -9486,10 +9457,7 @@ closure
         const classifications = classifyClosureAuthorities({
           candidatePlanIds: candidates.map((candidate) => candidate.plan_id),
           registry,
-          drifts: analyzeClosureAuthorityDrift({
-            repositoryRoot: repoRoot,
-            registry,
-          }),
+          drifts: analyzeClosureAuthorityDrift({ repositoryRoot: repoRoot, registry }),
         });
         const eligiblePlanIds = classifications
           .filter((row) => row.classification === "eligible")
@@ -9576,11 +9544,7 @@ closure
           candidates,
           reviewBundlePlanIds: bundle.review_scope.plan_ids,
           registry,
-          runner: new ClosureEvidenceRunner({
-            repoRoot,
-            repositoryHead,
-            gateAllowlist,
-          }),
+          runner: new ClosureEvidenceRunner({ repoRoot, repositoryHead, gateAllowlist }),
           gateCommands,
           windowSize: batchSize,
           concurrency,
@@ -10386,18 +10350,13 @@ closure
         process.exitCode = 2;
         return;
       }
-      const batchSize = parseClosureBatchInteger(opts.batchSize ?? "", {
-        min: 1,
-        max: 100,
-      });
+      const batchSize = parseClosureBatchInteger(opts.batchSize ?? "", { min: 1, max: 100 });
       if (batchSize === null) {
         process.stderr.write("closure auto-approve: batch-size must be between 1 and 100\n");
         process.exitCode = 2;
         return;
       }
-      const initialOffset = parseClosureBatchInteger(opts.offset ?? "", {
-        min: 0,
-      });
+      const initialOffset = parseClosureBatchInteger(opts.offset ?? "", { min: 0 });
       if (initialOffset === null) {
         process.stderr.write("closure auto-approve: offset must be zero or greater\n");
         process.exitCode = 2;
@@ -12574,9 +12533,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
         // 変更したら検知するため、spawn 前の変更パスを snapshot する。
         const guardActive = isReadOnlyDelegationRole(opts.role);
         const treeBefore = guardActive ? safeLoadChangedFiles(repoRoot) : [];
-        const admitted = admitWrapperLaunch(plan, {
-          requireWorkerContext: true,
-        });
+        const admitted = admitWrapperLaunch(plan, { requireWorkerContext: true });
         if ("failure_code" in admitted) {
           process.stderr.write(
             `${provider}: wrapper admission failed (${admitted.failure_code})\n`,
@@ -13175,11 +13132,7 @@ team
               session_id: sessionId,
               ...(opts.plan ? { plan_id: opts.plan } : {}),
             };
-            runSessionStartSideEffects({
-              repoRoot,
-              input: startInput,
-              deps: sessionDeps,
-            });
+            runSessionStartSideEffects({ repoRoot, input: startInput, deps: sessionDeps });
             dispatch(startInput, sessionDeps, HOOK_EVENT_SESSION_START);
             const outcome = await runBudgetedProviderProcess({
               command,
@@ -13234,9 +13187,7 @@ team
             };
           },
         });
-        const receiptDb = openHarnessDb(defaultHarnessDbPath(repoRoot), {
-          repoRoot,
-        });
+        const receiptDb = openHarnessDb(defaultHarnessDbPath(repoRoot), { repoRoot });
         try {
           migrate(receiptDb);
           receiptDb.exec("BEGIN IMMEDIATE");
@@ -14869,10 +14820,7 @@ function readAfterClaudePrReviewComment(
   let payload: { html_url?: unknown; body?: unknown } | null = null;
   if (fetched.status === 0) {
     try {
-      payload = JSON.parse(fetched.stdout) as {
-        html_url?: unknown;
-        body?: unknown;
-      };
+      payload = JSON.parse(fetched.stdout) as { html_url?: unknown; body?: unknown };
     } catch {
       payload = null;
     }
@@ -14905,10 +14853,7 @@ function readAfterClaudePrReviewComment(
   });
   return result.ok
     ? { ok: true }
-    : {
-        ok: false,
-        failure: result.reason ?? "review_comment_read_after_failed",
-      };
+    : { ok: false, failure: result.reason ?? "review_comment_read_after_failed" };
 }
 
 github
@@ -14921,10 +14866,7 @@ github
     const viewed = spawnSync(
       "gh",
       ["pr", "view", String(prNumber), "--json", "url,headRefOid,baseRefName,state"],
-      {
-        cwd: process.cwd(),
-        encoding: "utf8",
-      },
+      { cwd: process.cwd(), encoding: "utf8" },
     );
     if (viewed.status !== 0) {
       process.stderr.write(viewed.stderr || "github pr-notify: gh pr view failed\n");
@@ -15124,10 +15066,7 @@ github
         }
       }
       const supersedesReceiptId = findPriorClaudePrReviewReceiptId(process.cwd(), input);
-      const preliminary = buildClaudePrReviewReceipt({
-        ...input,
-        supersedesReceiptId,
-      });
+      const preliminary = buildClaudePrReviewReceipt({ ...input, supersedesReceiptId });
       if (opts.correctMalformed) {
         try {
           assertReviewReceiptCorrectionReason(opts.correctMalformed);
@@ -15189,10 +15128,7 @@ github
           const comment = spawnSync(
             "gh",
             ["pr", "comment", String(prNumber), "--body", commentBody.join("\n")],
-            {
-              cwd: process.cwd(),
-              encoding: "utf8",
-            },
+            { cwd: process.cwd(), encoding: "utf8" },
           );
           if (comment.status !== 0) {
             process.stderr.write(comment.stderr || "github pr-review-receipt: comment failed\n");
@@ -15207,11 +15143,7 @@ github
             process.exitCode = 1;
             return;
           }
-          receipt = buildClaudePrReviewReceipt({
-            ...input,
-            commentUrl,
-            supersedesReceiptId,
-          });
+          receipt = buildClaudePrReviewReceipt({ ...input, commentUrl, supersedesReceiptId });
           const commentId = commentUrl.match(/#issuecomment-(\d+)$/u)?.[1];
           const repository = prUrl.match(
             /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/\d+$/u,
@@ -15277,12 +15209,7 @@ github
             return;
           }
         }
-        const output = {
-          ok: true,
-          dryRun: opts.apply !== true,
-          receipt,
-          receiptPath,
-        };
+        const output = { ok: true, dryRun: opts.apply !== true, receipt, receiptPath };
         process.stdout.write(
           opts.json
             ? `${JSON.stringify(output, null, 2)}\n`
@@ -15365,10 +15292,7 @@ github
       const mergeCommitViewed = spawnSync(
         "gh",
         ["api", `repos/${repository}/git/commits/${current.mergeCommit.oid}`],
-        {
-          cwd: process.cwd(),
-          encoding: "utf8",
-        },
+        { cwd: process.cwd(), encoding: "utf8" },
       );
       try {
         const mergeCommit =
@@ -15443,16 +15367,11 @@ github
     const requiredViewed = spawnSync(
       "gh",
       ["pr", "checks", String(prNumber), "--required", "--json", "bucket"],
-      {
-        cwd: process.cwd(),
-        encoding: "utf8",
-      },
+      { cwd: process.cwd(), encoding: "utf8" },
     );
     const requiredChecks =
       requiredViewed.status === 0
-        ? (JSON.parse(requiredViewed.stdout) as Array<{
-            bucket?: string | null;
-          }>)
+        ? (JSON.parse(requiredViewed.stdout) as Array<{ bucket?: string | null }>)
         : [];
     const ciViewed = spawnSync(
       "gh",
@@ -15552,10 +15471,7 @@ github
           const refreshed = spawnSync(
             "gh",
             ["pr", "view", String(prNumber), "--json", "headRefOid,state,isDraft"],
-            {
-              cwd: process.cwd(),
-              encoding: "utf8",
-            },
+            { cwd: process.cwd(), encoding: "utf8" },
           );
           const refreshedPr =
             refreshed.status === 0
@@ -15601,15 +15517,9 @@ github
         const verified = spawnSync(
           "gh",
           ["pr", "view", String(prNumber), "--json", "state,mergeCommit"],
-          {
-            cwd: process.cwd(),
-            encoding: "utf8",
-          },
+          { cwd: process.cwd(), encoding: "utf8" },
         );
-        let parsed: {
-          state?: string;
-          mergeCommit?: { oid?: string } | null;
-        } | null = null;
+        let parsed: { state?: string; mergeCommit?: { oid?: string } | null } | null = null;
         try {
           parsed =
             verified.status === 0
@@ -15635,10 +15545,7 @@ github
                 encoding: "utf8",
               })
             : null;
-          let candidateCommit: {
-            sha?: string;
-            tree?: { sha?: string };
-          } | null = null;
+          let candidateCommit: { sha?: string; tree?: { sha?: string } } | null = null;
           let mergedCommit: {
             sha?: string;
             tree?: { sha?: string };
@@ -16087,7 +15994,9 @@ feedback
     const deps = nodeFeedbackLifecycleDeps(repoRoot);
     const operationId =
       opts.operationId ??
-      `ack:${createHash("sha256").update(`${sourceTable}:${sourceId}:${generation}:${opts.reason}`).digest("hex")}`;
+      `ack:${createHash("sha256")
+        .update(`${sourceTable}:${sourceId}:${generation}:${opts.reason}`)
+        .digest("hex")}`;
     const result = ackFeedback(
       {
         sourceTable: sourceTable as "findings" | "quality_signals" | "feedback_events",
@@ -16294,7 +16203,9 @@ setupCommand.action((opts: SetupCliOptions) => {
   process.stdout.write(`phase: ${r.phase}${args.dryRun ? " (dry-run)" : ""}\n`);
   for (const w of r.written) process.stdout.write(`  ${args.dryRun ? "·" : "+"} ${w}\n`);
   process.stdout.write(
-    `branch-protection: ${r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`}\n`,
+    `branch-protection: ${
+      r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
+    }\n`,
   );
   process.stdout.write(
     "setup-scope: legacy solo/team adapter setup; HELIX project bootstrap は `helix setup project` を使用してください\n",
@@ -16398,7 +16309,9 @@ setupCommand
       `command-availability: ${r.commandAvailability.canonicalCommand} available=${r.commandAvailability.canonicalCommandAvailable} status=${r.commandAvailability.enablementStatus} (${r.commandAvailability.enablementPacketCommand})\n`,
     );
     process.stdout.write(
-      `branch-protection: ${r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`}\n`,
+      `branch-protection: ${
+        r.branchProtection.applied ? "applied" : `skipped (${r.branchProtection.reason})`
+      }\n`,
     );
   });
 

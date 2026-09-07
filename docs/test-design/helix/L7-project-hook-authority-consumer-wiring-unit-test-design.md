@@ -17,6 +17,17 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-consu
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
+| U-CNWHOOKENV-001 | transportはexpectedだけを持ちobservedを持たない | request内へobserved evidenceを混載する | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-002 | execution/current authorityのHEAD・source bytesを別rootから実測する | expected bytesをobservedへコピーする | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-003 | current authority HEADを独立照合する | locatorとexpected HEADを同じ値へ差し替える | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-003b | current authority source bytesを独立照合する | locatorとexpected sourceを同じ値へ差し替える | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-003c | Git common dirをhost anchorへ束縛する | foreign repository locatorへ差し替える | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-003d | current authority HEADをhost main anchorへ束縛する | foreign HEADに合わせてexpectedも改竄する | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-004 | execution root mismatchをfallbackせず拒否する | cwd／env／default rootで差分を相殺する | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-005 | cwdをexecution root観測だけに使う | 他rootをcwdへ暗黙補完する | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-005b | loader／session／current authorityを個別locatorから観測する | 3 rootを単一locatorへ畳み込む | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-006 | standalone projectionは全side effectを0と宣言する | standaloneからhook／dispatch／DB writeを許可する | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNWHOOKENV-007 | invalid envelopeを固定schema failureへ閉じる | 不正入力後にauthorityを推測する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-001 | resolver 1回、projector 1回、4 surfaceが同じreceipt bytesを読む | surface読込ごとの再resolve・再capture・再serialize | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-002 | failure bytesを4 surfaceで共有しdispatchを拒否する | admitted receiptなしのdispatch、failure時のprovider起動 | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-003 | standalone status／doctorはread-only unavailableを表示する | standaloneからauthority推測、旧engineへのdispatch | `tests/project-hook-authority-envelope.test.ts` |
@@ -25,6 +36,7 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-consu
 | U-CNHOOKWIRE-006 | current authority root、HEAD、source bytesをhostから独立採取して差分を拒否する | expected値をobservedへコピーしてstaleを相殺 | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-007 | native dispatchはadmitted receipt後だけ実行可能になる | admission前のCodex／Claude／team／pair／loop起動 | `tests/project-hook-authority-envelope.test.ts` およびCLI smoke |
 | U-CNHOOKWIRE-008 | current authority locatorだけをenvelopeから受け、identityは後段で採取する | envelopeのobserved object、request値の物理証拠化 | `tests/project-hook-authority-envelope.test.ts` |
+| U-CNHOOKWIRE-009 | standalone SessionStartはprojection表示以外のhook dispatch、memory recall、session log、DB writeを0にする | envelopeなしSessionStartが`harness.db`または`.helix/logs`を生成する | `tests/cli-surface.test.ts` |
 
 ## 検証方法
 
