@@ -4,7 +4,7 @@ title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-07
