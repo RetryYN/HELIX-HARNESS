@@ -51,6 +51,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-001, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-002, test_path: tests/review-receipt-plan-binding.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-003, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-004, test_path: tests/review-receipt-plan-binding.test.ts }
 dependencies:
   parent: null
   requires:
