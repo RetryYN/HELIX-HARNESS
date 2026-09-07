@@ -84,9 +84,9 @@ requirements:
 | U-SEALCI-004 | receiptとmerge | failure receiptでmergeを拒否し、別の成功世代は再検収を要する | `tests/claude-pr-convergence.test.ts` |
 | U-SEALCI-005 | terminal値域 | 各結論を保持し、同刻のattempt/run順序が決定的で入力を変更しない | `tests/github-review-ci-generation.test.ts` |
 | IT-SEALCI-006 | 実CLI前段 | 別HEAD/event/workflow、未終端、古い世代を隔離応答で拒否する | `tests/github-review-ci-generation.test.ts` |
-| IT-SEALCI-007 | 実CLI保存 | failure/blockを保持し、既存コメントread-afterと保存receiptの一致を確認する | `tests/github-review-ci-generation.test.ts` |
+| IT-SEALCI-007 | 実CLI保存・世代間置換 | failure/block保存後、success世代で別receiptへ再封緘する。supersedes参照・旧bytes保持・block継続を照合する | `tests/github-review-ci-generation.test.ts` |
 
-上記の隔離CLI検証はPOSIX対象。実GitHub投稿、approve時DB/PLAN接合、green再封緘、
+上記の隔離CLI検証はPOSIX対象。実GitHub投稿、approve時DB/PLAN接合、実repoでのgreen再封緘、
 merge read-afterとWindows CLIは別途実証する。未実施を全経路greenとして扱わない。
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
