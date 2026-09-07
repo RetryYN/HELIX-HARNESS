@@ -16,6 +16,30 @@ export interface ReviewCiGenerationCandidate {
 export function selectLatestSuccessfulReviewCiGeneration<T extends ReviewCiGenerationCandidate>(
   candidates: readonly T[],
 ): T | null {
+  return selectReviewCiGeneration(candidates, ["success"]);
+}
+
+/** 封緘用の観測結果。成功の認定ではなく、通知・merge許可には使用しない。 */
+export function selectLatestTerminalReviewCiGeneration<T extends ReviewCiGenerationCandidate>(
+  candidates: readonly T[],
+): T | null {
+  return selectReviewCiGeneration(candidates, [
+    "success",
+    "failure",
+    "cancelled",
+    "timed_out",
+    "neutral",
+    "skipped",
+    "action_required",
+    "stale",
+    "startup_failure",
+  ]);
+}
+
+function selectReviewCiGeneration<T extends ReviewCiGenerationCandidate>(
+  candidates: readonly T[],
+  conclusions: readonly string[],
+): T | null {
   return (
     candidates
       .filter(
@@ -25,7 +49,8 @@ export function selectLatestSuccessfulReviewCiGeneration<T extends ReviewCiGener
           Number.isSafeInteger(candidate.attempt) &&
           candidate.attempt > 0 &&
           candidate.status === "completed" &&
-          candidate.conclusion === "success" &&
+          candidate.conclusion !== null &&
+          conclusions.includes(candidate.conclusion) &&
           Number.isFinite(Date.parse(candidate.updatedAt)),
       )
       .sort((left, right) => {
