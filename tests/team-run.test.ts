@@ -379,8 +379,9 @@ describe("team run validation", () => {
       const deps = nodeAgentSlotsDeps(repo);
       const execution = await executeTeamRunPlan(plan, {
         slots: deps,
-        runCommand: async ({ command, args, provider }) => {
+        runCommand: async ({ command, args, provider, timeMs }) => {
           expect(command).not.toBe("");
+          expect(timeMs).toBe(60_000);
           commands.push(`${provider} ${args[0]}`);
           return { exitCode: 0, output: provider === "claude" ? "VERDICT: PASS\n" : "worker ok\n" };
         },
@@ -394,6 +395,57 @@ describe("team run validation", () => {
       expect(slots).toHaveLength(2);
       expect(slots.every((slot) => slot.slot_source === "team_runner")).toBe(true);
       expect(slots.every((slot) => slot.released_at !== null)).toBe(true);
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+    }
+  });
+
+  it("U-WBL-012: sealed budgetを各team member実行へ渡す [PLAN-RECOVERY-1616-team-run-budget-lifecycle]", async () => {
+    const repo = mkdtempSync(join(tmpdir(), "ut-team-budget-"));
+    try {
+      const plan = buildTeamRunPlan(
+        {
+          name: "budget-team",
+          strategy: "parallel",
+          max_parallel: 2,
+          members: [
+            { role: "se", engine: "codex-se", task: "implement" },
+            { role: "tl", engine: "pmo-sonnet", task: "review" },
+          ],
+        },
+        "hybrid",
+        { execute: true, workerContext: testWorkerContext() },
+      );
+      const budgets: number[] = [];
+      const execution = await executeTeamRunPlan(plan, {
+        slots: nodeAgentSlotsDeps(repo),
+        runCommand: async ({ provider, timeMs }) => {
+          budgets.push(timeMs);
+          return {
+            exitCode: 0,
+            output: provider === "claude" ? "VERDICT: PASS\n" : "ok\n",
+            timedOut: false,
+            deadlineMs: timeMs,
+            terminationStage: "none",
+            signal: null,
+            durationMs: 10,
+            reaped: true,
+          };
+        },
+      });
+      expect(execution.ok).toBe(true);
+      expect(budgets).toEqual([60_000, 60_000]);
+      expect(execution.executions).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            timed_out: false,
+            deadline_ms: 60_000,
+            termination_stage: "none",
+            duration_ms: 10,
+            reaped: true,
+          }),
+        ]),
+      );
     } finally {
       rmSync(repo, { recursive: true, force: true });
     }

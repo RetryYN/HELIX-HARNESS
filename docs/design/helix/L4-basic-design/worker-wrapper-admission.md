@@ -137,7 +137,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/team/run.ts",
       "resource_kind": "typescript_export",
       "resource_name": "executeTeamRunPlan",
-      "source_digest": "sha256:720400e58cb23015d72a6297b7765c62b597cae12ec9ed365808b02afe2eacca",
+      "source_digest": "sha256:10e61bd724834d51fdcacbe49d692b8c3fd17b1aeba853998718ade1e3b5fbd1",
       "current_authority": true
     },
     {
@@ -146,7 +146,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/cli.ts",
       "resource_kind": "cli_command",
       "resource_name": "codex",
-      "source_digest": "sha256:aff748ed3f6915cd29ea9768f450e1e7fe8c377095642059af44a7ef8537cb34",
+      "source_digest": "sha256:1feed0900e6566d807b4d53239354fcc835c81d6cf49bf794b3d8462be5ebcfc",
       "current_authority": true
     },
     {
@@ -155,7 +155,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/cli.ts",
       "resource_kind": "cli_command",
       "resource_name": "claude",
-      "source_digest": "sha256:aff748ed3f6915cd29ea9768f450e1e7fe8c377095642059af44a7ef8537cb34",
+      "source_digest": "sha256:1feed0900e6566d807b4d53239354fcc835c81d6cf49bf794b3d8462be5ebcfc",
       "current_authority": true
     },
     {
@@ -164,7 +164,7 @@ admit/retire決定は各後続behaviorが本decisionをconsumerとして再利�
       "artifact_path": "src/cli.ts",
       "resource_kind": "cli_command",
       "resource_name": "team",
-      "source_digest": "sha256:aff748ed3f6915cd29ea9768f450e1e7fe8c377095642059af44a7ef8537cb34",
+      "source_digest": "sha256:1feed0900e6566d807b4d53239354fcc835c81d6cf49bf794b3d8462be5ebcfc",
       "current_authority": true
     }
   ],

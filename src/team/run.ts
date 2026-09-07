@@ -111,6 +111,12 @@ export interface TeamMemberExecution {
   slot_id: string | null;
   exit_code: number | null;
   status: SlotStatus;
+  timed_out: boolean;
+  deadline_ms: number | null;
+  termination_stage: "none" | "term_sent" | "kill_sent";
+  signal: NodeJS.Signals | null;
+  duration_ms: number | null;
+  reaped: boolean;
   evidence: TeamMemberExecutionEvidence;
   skipped_reason?: string;
 }
@@ -146,11 +152,18 @@ export interface TeamRunnerDeps {
     env?: Record<string, string>;
     /** codex はプロンプトを stdin で受ける (cmd.exe shell-wrap 回避、PLAN-L7-77)。 */
     stdin?: string;
+    timeMs: number;
   }) => Promise<{
     exitCode: number | null;
     output?: string;
     outputBytes?: number;
     outputTruncated?: boolean;
+    timedOut?: boolean;
+    deadlineMs?: number;
+    terminationStage?: "none" | "term_sent" | "kill_sent";
+    signal?: NodeJS.Signals | null;
+    durationMs?: number;
+    reaped?: boolean;
   }>;
 }
 
@@ -477,6 +490,12 @@ async function executeMember(
       slot_id: null,
       exit_code: null,
       status: "failed",
+      timed_out: false,
+      deadline_ms: null,
+      termination_stage: "none",
+      signal: null,
+      duration_ms: null,
+      reaped: true,
       evidence: emptyEvidence,
     };
   }
@@ -484,6 +503,7 @@ async function executeMember(
   try {
     const admitted = admitWrapperLaunch(member.adapter, { requireWorkerContext: true });
     if ("failure_code" in admitted) throw new Error(admitted.failure_code);
+    if (!admitted.worker_context) throw new Error("WRAPPER_CONTEXT_REQUIRED");
     slot = fireSlot(
       { agent_kind: member.engine, role: member.role, slot_source: "team_runner" },
       deps.slots,
@@ -496,6 +516,7 @@ async function executeMember(
       stdin: admitted.stdin,
       shell: admitted.invocation.shell,
       windowsVerbatimArguments: admitted.invocation.windowsVerbatimArguments,
+      timeMs: admitted.worker_context.packet.budget.time_ms,
     });
     const evidence = executionEvidence(member.role, run);
     const reviewAccepted = !REVIEW_ROLES.has(member.role) || evidence.verdict_status === "accepted";
@@ -511,6 +532,12 @@ async function executeMember(
       slot_id: slot.slot_id,
       exit_code: run.exitCode,
       status,
+      timed_out: run.timedOut ?? false,
+      deadline_ms: run.deadlineMs ?? null,
+      termination_stage: run.terminationStage ?? "none",
+      signal: run.signal ?? null,
+      duration_ms: run.durationMs ?? null,
+      reaped: run.reaped ?? true,
       evidence,
     };
   } catch {
@@ -525,6 +552,12 @@ async function executeMember(
       slot_id: slot?.slot_id ?? null,
       exit_code: null,
       status: "failed",
+      timed_out: false,
+      deadline_ms: null,
+      termination_stage: "none",
+      signal: null,
+      duration_ms: null,
+      reaped: true,
       evidence: emptyEvidence,
     };
   }
@@ -578,6 +611,12 @@ export async function executeTeamRunPlan(
           slot_id: null,
           exit_code: null,
           status: "failed",
+          timed_out: false,
+          deadline_ms: null,
+          termination_stage: "none",
+          signal: null,
+          duration_ms: null,
+          reaped: true,
           evidence: executionEvidence(member.role, {}),
           skipped_reason: dependencyFailedMessage(member.serialize_after),
         });
