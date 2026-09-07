@@ -42,6 +42,8 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-resol
 | U-CNWHOOKWIRE-005 | serialized transport | 完全なtyped snapshotだけを受理し、構文不正・unknown fieldをfailureへ閉じる | `tests/project-hook-authority-consumer-wiring.test.ts` |
 | U-CNWHOOKWIRE-006 | CLI transport | 明示snapshot fileだけを読み、CLIの4 consumerが同じbytesを返す | `tests/project-hook-authority-consumer-wiring.test.ts` |
 | U-CNWHOOKWIRE-007 | current consumer admission | status／doctor／SessionStart／native dispatchが同一failureを読み、副作用前に拒否する | `tests/project-hook-authority-consumer-wiring.test.ts` |
+| U-CNWHOOKWIRE-008 | Control Plane capture | 欠落Assignment snapshotをcwd等から補完せず、完全authority snapshotを発行しない | `tests/project-hook-authority-consumer-wiring.test.ts` |
+| U-CNWHOOKWIRE-009 | capture-consumer E2E | 実Git／filesystem identityから採取した完全snapshotをdispatch consumerが受理する | `tests/project-hook-authority-consumer-wiring.test.ts` |
 
 本sliceはpure resolverだけを実行する。unsupported platform capture、process timeout、notification handoff、terminal result、
 current consumerへのCLI／doctor wiring完了はPLAN-L7-1614で別途検証し、composition unitだけを実配線完了へ数えない。

@@ -1,8 +1,8 @@
-import { spawnSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { execFileSync, spawnSync } from "node:child_process";
+import { mkdtempSync, realpathSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { isAbsolute, join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import {
@@ -198,4 +198,111 @@ describe("project hook authority consumer wiring", () => {
     expect(new Set(authorityBytes).size).toBe(1);
     expect(authorityBytes[0]).toContain('"dispatch":0');
   }, 150_000);
+
+  it("U-CNWHOOKWIRE-008: capture CLIは欠落Assignmentを推測で補完しない", () => {
+    const run = spawnSync(
+      process.execPath,
+      [
+        tsxCli,
+        "src/cli.ts",
+        "project-hook-authority",
+        "capture",
+        "--assignment-snapshot-file",
+        join(tmpdir(), "helix-missing-assignment-snapshot.json"),
+      ],
+      { cwd: process.cwd(), encoding: "utf8", timeout: 30_000 },
+    );
+    expect(run.status, run.stderr).toBe(1);
+    expect(run.stdout).toBe("");
+    expect(run.stderr).toContain('"dispatch":0');
+  }, 30_000);
+
+  it("U-CNWHOOKWIRE-009: capture CLIの実Git snapshotをconsumerが受理する", () => {
+    const rootDir = mkdtempSync(join(tmpdir(), "helix-hook-authority-capture-"));
+    try {
+      const repoRoot = realpathSync.native(process.cwd());
+      const commonRaw = execFileSync("git", ["rev-parse", "--git-common-dir"], {
+        cwd: repoRoot,
+        encoding: "utf8",
+      }).trim();
+      const commonDir = realpathSync.native(
+        isAbsolute(commonRaw) ? commonRaw : resolve(repoRoot, commonRaw),
+      );
+      const commonStat = statSync(commonDir, { bigint: true });
+      const physicalRoot = {
+        lexical_path: repoRoot,
+        canonical_realpath: repoRoot,
+        repository_common_dir: commonDir,
+        filesystem_identity: {
+          platform: process.platform,
+          device_id: String(commonStat.dev),
+          file_id: String(commonStat.ino),
+          evidence_kind: "stat",
+        },
+      };
+      const head = execFileSync("git", ["rev-parse", "HEAD"], {
+        cwd: repoRoot,
+        encoding: "utf8",
+      }).trim();
+      const assignmentPath = join(rootDir, "assignment.json");
+      writeFileSync(
+        assignmentPath,
+        JSON.stringify({
+          assignment_id: "assignment-1614-capture",
+          worktree_root: repoRoot,
+          loader_root: repoRoot,
+          session_project_root: repoRoot,
+          current_authority_root: repoRoot,
+          branch: "fix/1614-project-hook-authority-wiring",
+          candidate_base_head: head,
+          current_authority_head: head,
+          lease_id: "lease-1614-capture",
+          fence_token: "fence-1614-capture",
+          assignment_root_digest: sha256Digest(canonicalJson(physicalRoot)),
+          captured_at: "2026-09-07T00:00:00.000Z",
+          lifecycle_policy: {
+            timeout_ms: 15_000,
+            hard_ceiling_ms: 60_000,
+            child_termination_grace_ms: 1_000,
+            parent_terminal_required: true,
+            notification_handoff: { kind: "disabled" },
+          },
+        }),
+        "utf8",
+      );
+      const capture = spawnSync(
+        process.execPath,
+        [
+          tsxCli,
+          "src/cli.ts",
+          "project-hook-authority",
+          "capture",
+          "--assignment-snapshot-file",
+          assignmentPath,
+        ],
+        { cwd: repoRoot, encoding: "utf8", timeout: 30_000 },
+      );
+      expect(capture.status, capture.stderr).toBe(0);
+      const snapshotPath = join(rootDir, "authority.json");
+      writeFileSync(snapshotPath, capture.stdout, "utf8");
+      const consume = spawnSync(
+        process.execPath,
+        [
+          tsxCli,
+          "src/cli.ts",
+          "project-hook-authority",
+          "surface",
+          "--snapshot-file",
+          snapshotPath,
+          "--consumer",
+          "dispatch",
+        ],
+        { cwd: repoRoot, encoding: "utf8", timeout: 30_000 },
+      );
+      expect(consume.status, consume.stderr).toBe(0);
+      expect(consume.stdout).toContain('"authority_kind":"assignment"');
+    } finally {
+      rmSync(rootDir, { recursive: true, force: true });
+    }
+  }, 60_000);
 });
