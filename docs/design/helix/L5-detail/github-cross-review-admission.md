@@ -137,6 +137,19 @@ merge refのSHAをreview・DB・test基準へ混在させない。push eventで�
 
 ## 3. 型付きfailure
 
+### 封緘観測とmerge許可の分離（#1638）
+
+`github pr-review-receipt --apply` は、同じHEAD・`pull_request`・`harness-check`の
+最新terminal世代を再取得する。失敗結果もconclusionを変更せず封緘できるが、
+成功の認定やmerge許可にはしない。通知は従来の成功世代選択を維持する。
+run ID・attemptは正のsafe integer、完了時刻は有効な時刻を要求する。
+入力receiptの世代が観測結果と異なる場合と、reviewがCI完了より早い場合は拒否する。
+DB・PLAN接合・review独立性を省略せず、最終mergeには成功CIの再照合を要求する。
+
+局所oracleは `U-SEALCI-001`〜`U-SEALCI-005`、実CLIの隔離oracleは
+`IT-SEALCI-006`・`IT-SEALCI-007` とする。隔離fixtureの成功を実GitHub投稿や
+approve→green再封緘→mergeの運用完了証拠に代用しない。
+
 | reason code | 条件 | L8 oracle |
 |---|---|---|
 | `pr_not_open` | PRがOPENでない | `U-GCRA-004` |

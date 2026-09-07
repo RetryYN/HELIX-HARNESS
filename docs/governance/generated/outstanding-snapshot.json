@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 94,
+  "decision_count": 95,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -82,6 +82,7 @@
     "PLAN-RECOVERY-1568-rebuild-plan-snapshot",
     "PLAN-RECOVERY-1573-isolation-launch-cleanup",
     "PLAN-RECOVERY-1616-team-run-budget-lifecycle",
+    "PLAN-RECOVERY-1638-review-seal-terminal-ci",
     "PLAN-RECOVERY-1649-three-lane-ir-admission",
     "PLAN-RECOVERY-397-three-lane-ir-identity",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
