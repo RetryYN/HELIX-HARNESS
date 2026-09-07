@@ -113,6 +113,9 @@ provider診断は`pr_local_identity_invalid`、`pr_context_invalid`、
 | U-CIBASE-003 | PR read-after | PR head/baseの観測中driftを拒否する | tests/ci-branch-base-resolver.test.ts |
 | U-CIBASE-004 | default branch | open PRがない場合にrepository default branchとのmerge-baseを返す | tests/ci-branch-base-resolver.test.ts |
 | U-CIBASE-005 | PR明示base | pull_requestの不正・空・zero SHAをfallbackで相殺せず拒否する | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-006 | push比較範囲 | origin/mainがcandidateへ更新済みでも有効なbeforeを保持する | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-007 | push不正base | 不正なbeforeを別baseで相殺しない | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-008 | Impact CI配線 | non-PRも共通resolverへcandidate／before／repositoryを渡し第一親fallbackを持たない | tests/harness-check-workflow.test.ts |
 
 `U-BRAUTH-001`はcleanなcommit済みPLANの認識、`U-BRAUTH-002`は作業差分union、
 `U-BRAUTH-003`はbase exact束縛、`U-BRAUTH-004`は取得結果分類、`U-BRAUTH-005`はdetached／shallow、
@@ -122,7 +125,10 @@ provider診断は`pr_local_identity_invalid`、`pr_context_invalid`、
 
 ## non-PR CI eventのbase解決
 
-`workflow_dispatch`と`schedule`も、branch-kind guardとdoctorへ同じ比較baseを渡す。
+`workflow_dispatch`と`schedule`も、branch-kind guard、doctor、Impact CIへ同じ解決規則で比較baseを渡す。
+`push`は有効なbefore commitを保持し、更新済みorigin/mainとの空差分へ置換しない。
+不正な非空beforeは拒否する。空／zero beforeは以下のPR／default branch解決へ進む。
+Impact CIのnon-PR profileは引き続き`post_merge_full`とし、空差分を全検査skipの根拠にしない。
 candidate HEADに一致するopen PRが一件だけ存在する場合は、GitHub上のhead/baseを再読込し、
 観測中に変化していないことを確認してからmerge-baseを採用する。該当PRがない場合だけ、
 repository metadataが示すdefault branchのremote-tracking refとのmerge-baseを採用する。

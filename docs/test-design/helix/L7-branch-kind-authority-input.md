@@ -48,8 +48,8 @@ GitHubの実PR応答を読み、exit 0、`kind: recovery`、`findings: []` を�
 これは未commitのCLI変更による局所実測であり、exact-HEADレビュー証跡、doctor全体、
 PR作成前／offline経路の検収を代替しない。
 
-`U-BRAUTH-009`ではLinux workflowのshell本文を実行し、schedule／manualの空before、
-pushのzero／通常before、PRの空／zero base、不正な明示baseを両stepで照合する。
+`U-BRAUTH-009`ではLinux workflowのshell本文を実行し、PRの有効／空／zero baseを
+guardとdoctorの両stepで照合する。non-PRの解決は`U-CIBASE-001..006`で個別検査する。
 最終CLI呼出しはbase観測用関数へ置換するため、このoracleだけでCLI admission成功は主張しない。
 実CLIの拒否判定は`U-BRAUTH-008`と組み合わせ、GitHub実runは別途検収する。
 
@@ -91,6 +91,10 @@ pushのzero／通常before、PRの空／zero base、不正な明示baseを両ste
 | U-CIBASE-003 | PR read-after | PR head/baseの観測中driftを拒否する | `tests/ci-branch-base-resolver.test.ts` |
 | U-CIBASE-004 | default branch | open PRがない場合にrepository default branchとのmerge-baseを返し、任意remote推測を拒否する | `tests/ci-branch-base-resolver.test.ts` |
 | U-CIBASE-005 | PR明示base | pull_requestの不正・空・zero SHAをfallbackで相殺せず拒否する | `tests/ci-branch-base-resolver.test.ts` |
+
+| U-CIBASE-006 | push比較範囲 | origin/main更新後も有効なbeforeを保持する | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-007 | push不正base | 不正なbeforeを別baseで相殺しない | tests/ci-branch-base-resolver.test.ts |
+| U-CIBASE-008 | Impact CI配線 | 共通resolverへcandidate／before／repositoryを渡し第一親fallbackを持たない | tests/harness-check-workflow.test.ts |
 
 専用`tests/branch-kind-authority-input.test.ts`で001〜007を実装する。
 008は実CLI入口とdoctor入口を経由して比較し、pure analyzerだけの比較で代替しない。

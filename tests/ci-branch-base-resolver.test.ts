@@ -62,7 +62,24 @@ function run(
 }
 
 describe("non-PR branch base authority resolver", () => {
-  it("U-CIBASE-001: multi-commit open PRはcurrent baseとのmerge-baseへ解決する", () => {
+  it("U-CIBASE-006: pushはmain更新後も有効なbeforeを保持する", () => {
+    const f = fixture();
+    git(f.root, "update-ref", "refs/remotes/origin/main", f.head);
+    writeGh(f.bin, "exit 99");
+    const result = run(f, { EVENT_NAME: "push", BRANCH_BASE_HEAD: f.base });
+    expect(result.status).toBe(0);
+    expect(String(result.stdout).trim()).toBe(f.base);
+  });
+
+  it("U-CIBASE-007: pushの不正beforeを別baseで相殺しない", () => {
+    const f = fixture();
+    writeGh(f.bin, "exit 99");
+    const result = run(f, { EVENT_NAME: "push", BRANCH_BASE_HEAD: "invalid" });
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("branch_base_push_base_invalid");
+  });
+
+  it.each(["workflow_dispatch", "schedule", "push"])("U-CIBASE-001: %s multi-commit open PRはcurrent baseとのmerge-baseへ解決する", (event) => {
     const f = fixture();
     writeGh(
       f.bin,
@@ -72,7 +89,7 @@ else
   printf '%s\n' '{"head_sha":"${f.head}","base_sha":"${f.base}"}'
 fi`,
     );
-    const result = run(f);
+    const result = run(f, { EVENT_NAME: event });
     expect(result.status).toBe(0);
     expect(String(result.stdout).trim()).toBe(f.base);
   });

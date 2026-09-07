@@ -23,6 +23,16 @@ if [[ "$event_name" == "pull_request" ]]; then
   exit 0
 fi
 
+if [[ "$event_name" == "push" && -n "$explicit_base" && "$explicit_base" != "0000000000000000000000000000000000000000" ]]; then
+  if ! is_head "$explicit_base"; then
+    echo "branch_base_push_base_invalid" >&2
+    exit 1
+  fi
+  git cat-file -e "${explicit_base}^{commit}"
+  printf '%s\n' "$explicit_base"
+  exit 0
+fi
+
 repository="${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required for non-PR base resolution}"
 tmp_dir="$(mktemp -d)"
 trap 'rm -rf -- "$tmp_dir"' EXIT

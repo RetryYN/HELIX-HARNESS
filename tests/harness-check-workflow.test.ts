@@ -313,6 +313,13 @@ function branchSnapshotViolations(raw: string): string[] {
   });
 }
 
+it("U-CIBASE-008: non-PR Impact CIも共通resolverへ同じevent入力を渡す", () => {
+  const jobs = (parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot).jobs ?? {};
+  const step = jobs["full-regression-preflight"]?.steps?.find((entry) => entry.name === "Impact CI profile selection");
+  expect(step?.run).toContain('BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" bash scripts/ci/resolve-branch-base.sh');
+  expect(step?.run).not.toContain('git rev-parse "${HEAD_SHA}^"');
+});
+
 it("U-BRAUTH-009: CIのguardとdoctorが同じsnapshotを渡し各束縛の欠落を拒否する", () => {
   const raw = readFileSync(WORKFLOW_PATH, "utf8");
   expect(branchSnapshotViolations(raw)).toEqual([]);
@@ -1012,14 +1019,14 @@ describe("source harness-check workflow", () => {
     expect(regression["continue-on-error"]).toBeUndefined();
   });
 
-  it("U-LITECI-WF-005: workflow_dispatchでbefore SHAが空でも候補HEADの親からfull rangeを作る", () => {
+  it("U-LITECI-WF-005: non-PRは共通base解決でもfull profileを保持する", () => {
     const { steps } = loadWorkflow();
     const selector = stepByName(steps, "Impact CI profile selection");
 
     expect(selector.run).toContain(
-      'if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then',
+      'bash scripts/ci/resolve-branch-base.sh',
     );
-    expect(selector.run).toContain(`base_head="$(git rev-parse "\${HEAD_SHA}^")"`);
+    expect(selector.run).toContain('profile="post_merge_full"');
     expect(selector.run).toContain(`range="\${base_head}..\${candidate_head}"`);
   });
 

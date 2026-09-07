@@ -507,11 +507,7 @@ jobs:
           else
             profile="post_merge_full"
             candidate_head="$HEAD_SHA"
-            if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
-              base_head="$(git rev-parse "${HEAD_SHA}^")"
-            else
-              base_head="$BEFORE_SHA"
-            fi
+            base_head="$(BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" bash scripts/ci/resolve-branch-base.sh)"
             range="${base_head}..${candidate_head}"
           fi
           body_digest="sha256:$(printf '%s' "$body" | sha256sum | cut -d' ' -f1)"
