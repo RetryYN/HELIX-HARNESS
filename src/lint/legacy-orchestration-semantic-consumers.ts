@@ -362,3 +362,16 @@ export function loadLegacyOrchestrationSemanticConsumerLedger(repoRoot: string):
     .map((path) => ({ path, content: readFileSync(join(repoRoot, path), "utf8") }));
   return { ledger, sourceFiles };
 }
+
+export function legacyOrchestrationSemanticConsumerMessages(
+  result: LegacyOrchestrationSemanticConsumerResult,
+): string[] {
+  if (result.ok) {
+    return [
+      `legacy-orchestration-semantic-consumers - OK (resolved=${result.resolvedAnchors.length})`,
+    ];
+  }
+  return [
+    `legacy-orchestration-semantic-consumers - violation: errors=${result.errors.join(",") || "-"}`,
+  ];
+}

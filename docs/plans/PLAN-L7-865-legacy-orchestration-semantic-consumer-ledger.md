@@ -69,6 +69,7 @@ generates:
   - { artifact_path: src/lint/legacy-orchestration-semantic-consumers.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-semantic-consumers.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md, artifact_type: test_design }
 agent_slots:
