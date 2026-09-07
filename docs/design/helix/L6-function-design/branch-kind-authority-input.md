@@ -125,6 +125,11 @@ provider診断は`pr_local_identity_invalid`、`pr_context_invalid`、
 
 ## non-PR CI eventのbase解決
 
+`src/runtime/ci-branch-base.ts`をNodeで実行し、workflowのbranch-kind／doctor／Impact CIが共用する。
+ADR-009のNode制御境界を維持し、Bashに判定を所有させない。Git／ghは引数配列で読取だけを行う。
+取得は10秒・1MiB以内とし、取得失敗や不正JSONを正常baseへ変換せず、子processの診断本文も漏らさない。
+一意のmerge-baseだけを返し、stdoutは成功時のSHA一行のみとする。実runtime-portability検査を維持する。
+
 `workflow_dispatch`と`schedule`も、branch-kind guard、doctor、Impact CIへ同じ解決規則で比較baseを渡す。
 `push`は有効なbefore commitを保持し、更新済みorigin/mainとの空差分へ置換しない。
 不正な非空beforeは拒否する。空／zero beforeは以下のPR／default branch解決へ進む。

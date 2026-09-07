@@ -303,7 +303,7 @@ function branchSnapshotViolations(raw: string): string[] {
       step.env.HEAD_BRANCH === `\${{ github.head_ref || github.ref_name }}` &&
       [
         "set -euo pipefail",
-        'BRANCH_BASE_HEAD="$(scripts/ci/resolve-branch-base.sh)"',
+        'BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"',
         '--base-head "$BRANCH_BASE_HEAD"',
         '--candidate-head "$BRANCH_CANDIDATE_HEAD"',
         '--branch "$HEAD_BRANCH"',
@@ -320,7 +320,7 @@ it("U-CIBASE-008: non-PR Impact CIも共通resolverへ同じevent入力を渡す
     (entry) => entry.name === "Impact CI profile selection",
   );
   expect(step?.run).toContain(
-    'BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" bash scripts/ci/resolve-branch-base.sh',
+    'BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" npx --no-install tsx src/runtime/ci-branch-base.ts',
   );
   expect(step?.run).not.toContain('git rev-parse "${HEAD_SHA}^"');
 });
@@ -360,10 +360,13 @@ it.skipIf(process.platform === "win32")(
         ["pull_request", "", "", 1],
         ["pull_request", ZERO_SHA, "", 1],
       ] as const) {
-        // 最終CLIのみ観測用関数へ置換する。base解決shellとGit読込はworkflow実体を実行する。
+        // 最終CLIのみ観測へ置換する。Node resolverは実行し、不正baseの拒否を代替しない。
         const result = spawnSync(
           "bash",
-          ["-c", `npx() { printf '%s' "$BRANCH_BASE_HEAD"; }\n${run}`],
+          [
+            "-c",
+            `npx() { if [ "$3" = "src/cli.ts" ]; then printf '%s' "$BRANCH_BASE_HEAD"; else command npx "$@"; fi; }\n${run}`,
+          ],
           {
             env: {
               ...process.env,
@@ -962,7 +965,9 @@ describe("source harness-check workflow", () => {
       "${{ github.event.pull_request.base.sha || github.event.before }}",
     );
     expect(branchKind.env?.BRANCH_CANDIDATE_HEAD).toBe(PR_OR_MAIN_CHECKOUT_REF);
-    expect(branchKind.run).toContain('BRANCH_BASE_HEAD="$(scripts/ci/resolve-branch-base.sh)"');
+    expect(branchKind.run).toContain(
+      'BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"',
+    );
     expect(branchKind.run).not.toContain('git rev-parse "${BRANCH_CANDIDATE_HEAD}^"');
     for (const step of [commitlint, closureGuard]) {
       expect(step.run).toContain('merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"');
@@ -1028,7 +1033,7 @@ describe("source harness-check workflow", () => {
     const { steps } = loadWorkflow();
     const selector = stepByName(steps, "Impact CI profile selection");
 
-    expect(selector.run).toContain("bash scripts/ci/resolve-branch-base.sh");
+    expect(selector.run).toContain("npx --no-install tsx src/runtime/ci-branch-base.ts");
     expect(selector.run).toContain('profile="post_merge_full"');
     expect(selector.run).toContain(`range="\${base_head}..\${candidate_head}"`);
   });

@@ -267,7 +267,7 @@ jobs:
           HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           set -euo pipefail
-          BRANCH_BASE_HEAD="$(scripts/ci/resolve-branch-base.sh)"
+          BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"
           npx --no-install tsx src/cli.ts guard branch-kind \
             --base-head "$BRANCH_BASE_HEAD" --candidate-head "$BRANCH_CANDIDATE_HEAD" \
             --branch "$HEAD_BRANCH" --strict-unknown-prefix
@@ -507,7 +507,7 @@ jobs:
           else
             profile="post_merge_full"
             candidate_head="$HEAD_SHA"
-            base_head="$(BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" bash scripts/ci/resolve-branch-base.sh)"
+            base_head="$(BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" npx --no-install tsx src/runtime/ci-branch-base.ts)"
             range="${base_head}..${candidate_head}"
           fi
           body_digest="sha256:$(printf '%s' "$body" | sha256sum | cut -d' ' -f1)"
@@ -987,7 +987,7 @@ jobs:
           HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           set -euo pipefail
-          BRANCH_BASE_HEAD="$(scripts/ci/resolve-branch-base.sh)"
+          BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"
           npx --no-install tsx src/cli.ts doctor \
             --base-head "$BRANCH_BASE_HEAD" --candidate-head "$BRANCH_CANDIDATE_HEAD" \
             --branch "$HEAD_BRANCH"

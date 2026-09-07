@@ -31,7 +31,7 @@ dependencies:
   references: ["issue:1336", "issue:1604", "issue:1614"]
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1633-ci-non-pr-base-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: scripts/ci/resolve-branch-base.sh, artifact_type: script }
+  - { artifact_path: src/runtime/ci-branch-base.ts, artifact_type: source_code }
   - { artifact_path: tests/ci-branch-base-resolver.test.ts, artifact_type: test_code }
   - { artifact_path: .helix/evidence/review-1634/vitest-targeted.log, artifact_type: other }
   - { artifact_path: .helix/evidence/review-1634/tsc.log, artifact_type: other }
@@ -42,6 +42,7 @@ modifies:
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-009, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-006, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-007, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-008, test_path: tests/harness-check-workflow.test.ts }
@@ -105,3 +106,16 @@ reviewedAt `2026-09-07T21:06:30Z` は変更しない。その後同じ実装HEAD
 
 read-onlyの実GitHub resolver canaryもcandidate 2799eda2fに対しmain c67e2a010を返し、
 PR APIのhead/baseと一致した。hosted workflow全体の成功・merge成立とは別の検証である。
+
+## 全回帰で判明したNode実行境界への追従
+
+run 34163311214 attempt 2のbulk-1は、追加したBash resolverを
+`runtime-portability / script-wrapper-unapproved`で拒否した。他の3 shardは成功したが、
+全体をgreenとは扱わない。ADR-009に従い取得処理を`src/runtime/ci-branch-base.ts`へ移し、
+元のBash実装は削除する。既存portability gateのallowlist・検査範囲は変更しない。
+
+Node入口、workflow三面、移植性、review generationの4ファイル88テストが成功した。
+workflowの観測fixtureは最終CLIだけを代替し、Node resolver本体は実行する。
+実GitHub読取では公開candidate `963197202`のbase `e674ffb56`を取得できた。
+これは修正中の作成側検証であり、旧review_evidenceの対象HEADやraw logを書き換えない。
+新HEADの全回帰・独立検収・main read-afterを残す。

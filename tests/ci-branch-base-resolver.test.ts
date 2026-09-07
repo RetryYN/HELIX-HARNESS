@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 
 // PLAN-RECOVERY-1633-ci-non-pr-base-authority
 
-const SCRIPT = resolve("scripts/ci/resolve-branch-base.sh");
+const SCRIPT = resolve("src/runtime/ci-branch-base.ts");
 
 function git(root: string, ...args: string[]): string {
   return execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim();
@@ -46,7 +46,7 @@ function run(
   f: ReturnType<typeof fixture>,
   overrides: Record<string, string> = {},
 ): ReturnType<typeof spawnSync> {
-  return spawnSync("bash", [SCRIPT], {
+  return spawnSync(process.execPath, [SCRIPT], {
     cwd: f.root,
     encoding: "utf8",
     env: {
@@ -62,6 +62,18 @@ function run(
 }
 
 describe("non-PR branch base authority resolver", () => {
+  it("U-CIBASE-009: Node入口は取得失敗や不正応答を空baseの成功に変えない", () => {
+    for (const source of ["echo private-detail >&2; exit 2", "printf '%s' invalid-json"]) {
+      const f = fixture();
+      writeGh(f.bin, source);
+      const result = run(f);
+      expect(result.status).toBe(1);
+      expect(result.stdout).toBe("");
+      expect(result.stderr).toBe("branch_base_resolution_unavailable\n");
+      expect(result.stderr).not.toContain("private-detail");
+    }
+  });
+
   it("U-CIBASE-006: pushはmain更新後も有効なbeforeを保持する", () => {
     const f = fixture();
     git(f.root, "update-ref", "refs/remotes/origin/main", f.head);

@@ -94,6 +94,7 @@ guardとdoctorの両stepで照合する。non-PRの解決は`U-CIBASE-001..006`�
 | U-CIBASE-006 | push比較範囲 | origin/main更新後も有効なbeforeを保持する | `tests/ci-branch-base-resolver.test.ts` |
 | U-CIBASE-007 | push不正base | 不正なbeforeを別baseで相殺しない | `tests/ci-branch-base-resolver.test.ts` |
 | U-CIBASE-008 | Impact CI配線 | 共通resolverへcandidate／before／repositoryを渡し第一親fallbackを持たない | `tests/harness-check-workflow.test.ts` |
+| U-CIBASE-009 | Node読取入口 | 実Node入口でGitHub取得失敗／不正JSONを拒否し、stdoutが空で子processの診断本文を漏らさない。既存runtime-portability検査も併用する | `tests/ci-branch-base-resolver.test.ts` |
 
 専用`tests/branch-kind-authority-input.test.ts`で001〜007を実装する。
 008は実CLI入口とdoctor入口を経由して比較し、pure analyzerだけの比較で代替しない。
