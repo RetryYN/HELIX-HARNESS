@@ -1438,10 +1438,13 @@ export function evaluateClaudePrMerge(
   if (!state.receiptCiMatchesGeneration) {
     reasons.push("receipt_ci_generation_mismatch");
   }
-  if (
-    unresolvedClaudePrBlockReceipts(state.reviewReceiptHistory ?? [receipt], state).length > 0
-  )
+  if (!Array.isArray(state.reviewReceiptHistory)) {
+    reasons.push("review_receipt_history_unavailable");
+  } else if (
+    unresolvedClaudePrBlockReceipts(state.reviewReceiptHistory, state).length > 0
+  ) {
     reasons.push("outstanding_request_changes");
+  }
   const pairFailure = reviewPairFailure(receipt);
   if (pairFailure) reasons.push(pairFailure);
   if (receipt.verdict !== "approve" || receipt.blockerCount !== 0) {
