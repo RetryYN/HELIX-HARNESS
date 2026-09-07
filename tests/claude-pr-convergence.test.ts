@@ -563,11 +563,23 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         requiredChecksGreen: true,
         receiptCiMatchesHead: true,
         receiptCiMatchesGeneration: true,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
 
     expect(result).toEqual({ ok: true, reasons: [] });
+    const unavailable = evaluateClaudePrMerge({
+      repository: baseInput.repository,
+      prNumber: baseInput.prNumber,
+      prUrl: baseInput.prUrl,
+      headSha: baseInput.headSha,
+      state: "OPEN",
+      requiredChecksGreen: true,
+      receiptCiMatchesHead: true,
+      receiptCiMatchesGeneration: true,
+    }, receipt);
+    expect(unavailable).toEqual({ ok: false, reasons: ["review_receipt_history_unavailable"] });
   });
 
   it("U-CPRCONV-044: 別sessionはexplicit supersessionでもblockを解除できない", () => {
@@ -652,6 +664,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         receiptCiMatchesHead: true,
         receiptCiMatchesGeneration: true,
         ...stateOverride,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
@@ -696,6 +709,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         receiptCiMatchesHead: true,
         receiptCiMatchesGeneration: true,
         ...stateOverride,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
@@ -851,6 +865,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         requiredChecksGreen: true,
         receiptCiMatchesHead: false,
         receiptCiMatchesGeneration: true,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
@@ -953,6 +968,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           requiredChecksGreen: true,
           receiptCiMatchesHead: true,
           receiptCiMatchesGeneration: true,
+          reviewReceiptHistory: [receipt],
         },
         receipt,
       ),
