@@ -23,6 +23,9 @@ contract_postconditions: "元の8 Feature grouping、25 supporting requirement�
 contract_invariants: "baseline 153/24/72/24と既存6 refinementの意味不変、独立schema/DBなし、specifiedを実行許可にしない"
 contract_failures: "source、ID、trace、owner、approval、manifest/view/DBの欠落・重複・不一致を拒否する"
 tdd_red_required: true
+red_at: "2026-09-07T22:29:14Z"
+green_at: "2026-09-07T22:29:46Z"
+mutation_oracle_evidence: "tests/three-lane-ir-admission.test.ts U-TLIR-MAT-002/005: specified material b2071aafへの再生でfrozenとapproval欠落を検出して2 tests failed。現行15a284dのIR/manifest bytesへ復元後5 tests passed。時刻は初回開発ではなく2026-09-07の再採取を指す。"
 complexity_effect: net_neutral
 complexity_justification: "既存typed projectionとloaderを再利用するデータ登録であり、三社専用parserや別authorityを追加しない"
 removal_trigger: "同一ID/revisionが後継canonical形式へ移管されconsumerとrollback検証が成立した時"
@@ -242,3 +245,26 @@ PLAN lint、変更testのBiome、diff checkも成功。既存db rebuildはprojec
 うちRequirement IRは前述の464行を維持する。snapshotは95件でcommitted/live一致。
 IR root digestは`sha256:4ac2491f8390a1fe6e1c7438b67a464b6eb95644150fcf9c37a5d410e6bb58b9`。
 この作成側の実測だけでreview_evidenceを創作したり、PLAN confirmed／CI成功／merge完了を主張しない。
+
+## confirmed用Red/Green構造化欄の再採取
+
+PR #1650のrun `34166501111` は、既存実測の本文記載だけでは `red_at`、`green_at`、
+`mutation_oracle_evidence` を満たさないとしてpreflightで停止した。これを受け、初回開発時刻を
+推定して埋めず、HEAD `15a284d44a2225ada8e359a86f8b54711d8f5c33` の隔離cloneで再生した。
+
+- Red: `refinement_contracts.json` とmanifestだけをspecified material
+  `b2071aaf54764fa3631a98b635970788a310b7d2` の実bytesへ戻し、
+  `vitest run --project fast tests/three-lane-ir-admission.test.ts -t 'U-TLIR-MAT-002|U-TLIR-MAT-005'`
+  を実行した。U002はfrozenでなくspecified、U005はfrozen recordのapproval欠落を検出し、
+  exit 1、2 failed／3 skipped。完了は `2026-09-07T22:29:14Z`、出力SHA-256は
+  `27baf415a4463edd7efcb0de06f60e46a19acf2485678fc2e5a5abb8621703e7`。
+- Green: 同じ2ファイルを15a284dのbytesへ復元し、`git diff --exit-code`で一致を確認してから、
+  同testファイルをフィルタなしで再実行した。exit 0、5 passed、完了は
+  `2026-09-07T22:29:46Z`、出力SHA-256は
+  `107f5cd15fc4cdade1a821a1a81c754460b521ad27f46856045df9fd64fb3925`。
+
+frontmatterの時刻はこの再生実測を指し、元の人間承認・初回Red・独立reviewの時刻ではない。
+実装・IR・既存raw logは変更せず、独立レーンの追認
+`https://github.com/RetryYN/HELIX-HARNESS/pull/1650#issuecomment-5576224888`
+（同じ負例を独立再生済み、技術approve維持）と区別して記録する。
+この再採取をfresh CI成功や新HEADのsealed receiptの代用にはしない。
