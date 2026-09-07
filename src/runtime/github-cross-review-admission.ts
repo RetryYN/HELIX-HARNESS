@@ -623,6 +623,9 @@ export function evaluateGitHubCrossReviewAdmission(
     failure: reviewCandidateFailure(input, candidate),
   }));
   const valid = evaluated.filter((entry) => entry.failure === null).map((entry) => entry.candidate);
+  const diagnostics = evaluated.flatMap(({ candidate, failure }) =>
+    failure === null ? [] : [{ comment_url: candidate.comment.html_url, reason: failure }],
+  );
   const claudeReceipts = evaluated.flatMap(({ candidate, failure }) => {
     const { receipt } = candidate;
     return "schemaVersion" in receipt &&
@@ -645,6 +648,7 @@ export function evaluateGitHubCrossReviewAdmission(
       deferred: false,
       receipt_digest: null,
       reasons: ["outstanding_request_changes"],
+      candidate_diagnostics: [...malformedDiagnostics, ...diagnostics],
     };
   }
   // mixed authorship（両runtimeの実装commitが同居するHybrid stacking branch）は、
@@ -679,15 +683,6 @@ export function evaluateGitHubCrossReviewAdmission(
     };
   }
   if (valid.length !== 1) {
-    const diagnostics = evaluated
-      .filter(
-        (entry): entry is typeof entry & { failure: ReviewAdmissionCandidateFailure } =>
-          entry.failure !== null,
-      )
-      .map(({ candidate, failure }) => ({
-        comment_url: candidate.comment.html_url,
-        reason: failure,
-      }));
     return {
       ok: false,
       deferred: false,

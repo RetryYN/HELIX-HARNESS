@@ -604,7 +604,13 @@ describe("GitHub cross-review admission", () => {
           ],
         }),
       ),
-    ).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
+    ).toMatchObject({
+      ok: false,
+      reasons: ["outstanding_request_changes"],
+      candidate_diagnostics: expect.arrayContaining([
+        { comment_url: blocked.commentUrl, reason: expect.any(String) },
+      ]),
+    });
     }
   });
 
