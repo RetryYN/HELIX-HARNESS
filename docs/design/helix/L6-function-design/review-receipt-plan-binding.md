@@ -35,6 +35,8 @@ PLANだけへ転記し、常駐収束レーンの検収と見せかける経路�
   current receiptへ推測接合せず、PLANが明示的に引用したreceiptだけを根拠にする。
 - draft中の修正は継続可能とし、未解消block中のterminal昇格とmergeだけを拒否する。
 - receipt履歴を取得できない場合は単一approveやPAT経路へfallbackせずfail-closeする。
+- schemaとdigestを検証して取得した同一PR／HEADのblockは、CI失敗・DB未収束・CI世代差を理由に
+  検出集合から除外しない。解除に使うapproveには成功receiptの成立条件を引き続き要求する。
 - human approval、`intra_runtime_subagent`、proseのscopeは独立検収を代替しない。
 - evidence logの実体検査はIssue #1430の責務を再実装しない。
 

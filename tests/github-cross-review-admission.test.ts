@@ -564,12 +564,20 @@ describe("GitHub cross-review admission", () => {
 
   it("U-GCRA-014: 同一HEADのblockを別session approveで上書きせずfail-closeする", () => {
     const canonical = receipt();
+    const blockConditions: Partial<ClaudePrReviewReceiptInput>[] = [
+      {},
+      { ciConclusion: "failure", ciEvidenceGeneration: "run:31299806333:attempt:1:failure" },
+      { dbConverged: false },
+      { ciEvidenceGeneration: "run:31299806333:attempt:2:success" },
+    ];
+    for (const condition of blockConditions) {
     const blocked = buildClaudePrReviewReceipt({
       ...receiptAsInput(canonical),
       verdict: "block",
       blockerCount: 2,
       reviewerSessionId: "convergence-session",
       commentUrl: "https://github.com/RetryYN/HELIX-HARNESS/pull/488#issuecomment-2",
+      ...condition,
     });
     const unrelatedApproval = buildClaudePrReviewReceipt({
       ...receiptAsInput(canonical),
@@ -597,6 +605,7 @@ describe("GitHub cross-review admission", () => {
         }),
       ),
     ).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
+    }
   });
 
   it("U-GCRA-010: Claude receiptへのprovider-neutral discriminator混入を誤分類しない", () => {
