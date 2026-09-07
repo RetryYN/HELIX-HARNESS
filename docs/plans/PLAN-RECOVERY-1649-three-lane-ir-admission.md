@@ -4,7 +4,7 @@ title: "承認済み三社レーンのRequirement IR登録"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-08
@@ -66,7 +66,35 @@ agent_slots:
   - { role: se, slot_label: "SE — 既存JSON rootへsourceとtraceを登録" }
   - { role: qa, slot_label: "QA — 8/25/27の独立集合とdrift反例を検証" }
   - { role: tl, slot_label: "TL — 既存ownerとPhase Aの限定解放境界を照合" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T21:56:34Z"
+    tests_green_at: "2026-09-07T21:45:01Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: 6b52b1d2c3c38a620bf0ca01b6cd1d3c1a5cc6c1
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1649#issuecomment-5575989006"
+    scope: "Issue #1649 comment 5575989006を正規review sourceとして、対象HEAD 6b52b1d2c3c38a620bf0ca01b6cd1d3c1a5cc6c1の二相凍結差分、IR 8 record、25 R／27 AC、基準shard、6 refinement、digest、mutation反例、50 testsを独立検収。verdict=approve、blockers=0（important 1／minor 3）でPLANへの技術転記可。review本文の『2026-09-07T21:40前後』は精密時刻ではなく6b作成前の記述なのでreviewed_atには採用せず、GitHub公開時刻2026-09-07T21:56:34Zを束縛する。tscは既存logの受領照合でありClaude側の再実行ではない。DB全体projectionとsnapshotのcommitted/live一致はreviewのgreen evidenceへ昇格せず、fresh CI、exact receipt、main read-after、runtime dispatch、consumer実証、費用改善を完了扱いしない。"
+    green_commands:
+      - kind: unit_test
+        command: "npm exec --yes --package=node@24.15.0 -- npx --no-install vitest run --project fast tests/three-lane-ir-admission.test.ts tests/requirement-refinement-authority.test.ts tests/requirement-authority.test.ts tests/requirement-ir-shadow.test.ts tests/requirement-generated-view.test.ts tests/requirement-generated-view-db.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-07T21:45:01Z"
+        evidence_path: .helix/evidence/review-1649/vitest-targeted.log
+        output_digest: "sha256:002e157d76f666a24a35f59de58ae56b9a8602bb581b2bc20f74f83ee5c28254"
+      - kind: typecheck
+        command: "npm exec --yes --package=node@24.15.0 -- npx --no-install tsc --noEmit -p . --extendedDiagnostics"
+        runner: node
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-07T21:44:08Z"
+        evidence_path: .helix/evidence/review-1649/tsc.log
+        output_digest: "sha256:e52bad2737257e00300a2f284bc20355cc25078492b9a369bc40684b6eff5d95"
 ---
 
 # 三社レーンIR登録
@@ -85,7 +113,7 @@ baselineの古いteam表現を理由に、三社sourceが禁止する旧direct e
 ## ACの検収責務
 
 親#1358はcontract全体の独立受入、子は実装成果の担当であり、親closeを子着手の前提にはしない。
-以下はsourceの実装owner表からの技術的な割当で、要求意味や人間承認の追加ではない。独立reviewで照合する。
+以下はsourceの実装owner表からの技術的な割当で、要求意味や人間承認の追加ではない。今回の独立reviewで照合済みである。
 
 | Feature | 親受入 #1358 | 実装成果のAC担当 |
 |---|---|---|
@@ -125,7 +153,7 @@ materialへの意味・owner・source照合と独立review後、同じrevision�
 
 ## 未完了
 
-現時点では取込中。IR frozen、独立review、CI、runtime dispatch、consumer実証、費用改善を完了としない。
+独立reviewの技術検収を転記してPLANをconfirmedへ進めたが、現時点では取込中である。fresh CI、exact receipt、main read-after、runtime dispatch、consumer実証、費用改善を完了としない。
 既存6 refinementや他系列のapproval、runtime、後続研究を本sliceへ混載しない。
 
 ## material段階の実測
@@ -139,19 +167,27 @@ materialへの意味・owner・source照合と独立review後、同じrevision�
   outstandingは新PLANのみを追加した94件であり、94件の実装残という意味ではない。
 - scoped PLAN lintのV-pair binding欠落とoracle名の構文不一致を是正し、findings=0を確認した。
 
-これは作成側の実測記録であり、独立review receiptやIR凍結の代用ではない。
-新規testを含むcandidate HEADのpost-merge-status判定とPLANの技術検収は、main/CIへの投入前に閉じる。
-未commit状態に対する同gateの成功を、commit後の候補HEADの成功とは数えない。
+これは作成側の実測記録と、下記frontmatterへ転記した独立review receiptの境界を分けた記録である。review receiptはIRの人間承認、fresh CI、exact receipt、main read-after、runtime dispatchの代用ではない。
+独立reviewは対象HEAD 6b52b1d2c3c38a620bf0ca01b6cd1d3c1a5cc6c1について完了した。今回の転記commitに対するpost-merge-status判定、PLAN lint、snapshot guardはcommit前後に別途実行し、レビュー対象HEADへ遡及させない。
+未commit状態に対するgateの成功を、commit後の候補HEADの成功とは数えない。
 
-## pre-PR技術レビューへの追従
+## 独立技術検収の転記
 
-`b2071aaf`に対する独立session `9867601a-a3ad-4369-980c-11757d63a7de`のレビューは
-#1649上でapprove／blockers 0だった。I-1へPhase AのAC025実装担当を上記のとおり明記し、
-I-2へU-TLIR-MAT-001のFeatureごとのAC exact setを追加する。IR本文・owner・元承認は変更しない。
-変更後HEADは同レビューの対象外であり、再確認とPLAN検収を残す。
+正式な正規sourceはIssue #1649 comment 5575989006であり、対象HEADは
+`6b52b1d2c3c38a620bf0ca01b6cd1d3c1a5cc6c1`、verdictはapprove、blockersは0である。
+レビュー対象の8 record／25 R／27 AC、原承認、owner、source、基準shard、既存6 refinement、digestと
+mutation反例を照合し、PLANへの技術転記可と判定した。reviewerはClaude Code /
+`claude-fable-5-1`、sessionは`9867601a-a3ad-4369-980c-11757d63a7de`であり、構造化receiptはfrontmatterへ記録する。
+これは新しいPO承認、IR本文・owner・元承認の変更、実行許可、merge許可を意味しない。
 
-M-1のbullet projection由来のbacktick表記、M-2のsourceに入力／操作列が無い点は残義務として保持する。
-前者を本データ登録で独自parserにより上書きせず、後者へ未承認の受入意味を追加しない。
+I-1（`approved_at`／`decision_source`の外部真値との機械照合不足）は既存#397へ追跡し、外部PO
+source/time receiptの束縛候補とする。このPLANで新しい外部承認を創作せず、現行reviewの転記だけを行う。
+
+M-1は同一subjectを持つ別ancestor HEADを現行gateが許容する点であり、今回のreview対象がH0そのもの
+だった事実をもって「exact H0だけを強制済み」とは記録しない。M-2はapproval系failure codeが
+`REFINEMENT_APPROVAL_MISSING`へ一括される診断粒度の残義務である。M-3はtracked rawlogにmachine-local
+絶対pathが入り他環境で再現時にdigestが非決定となる残義務である。rawlogは改竄せず、配布混入の真偽は
+未検証として扱う。
 
 ## 二相凍結の形式化
 
@@ -164,6 +200,9 @@ source修復#1647もmain `e674ffb56d27ee4880b74636e55d6d7b65476b05`へ統合し�
 - `decision_source`と`approved_at`は元のL3-PO-1358-002のURLと2026-09-06T06:34:19Zを保持する。
   この時刻は元文書の人間承認時刻であり、後発IR materialがその時点で存在したという主張ではない。
   AIが行うのは承認済み意味の派生束縛で、新しい人間の承認・権限を創作しない。
+- `approved_at >= H0 commit時刻`という案は採用しない。元PO承認が先にあり、後発のIR materialがその
+  承認済み意味から派生したという事実に反するためである。承認時刻をH0以後へ後付けすると、元承認の
+  時刻をIR material作成時刻へすり替え、新しい承認のように見せることになる。
   `approved_revision: 1`はIR recordの版で、元文書の承認版`0.4.0-candidate`を書き換えない。
 - 承認時commit `69679771d456eb1600f399bc83f3121a2bc27b01`の25 R行／27 AC行と、
   canonical sourceの同じ行はbytes・順序一致。元承認の本文digestとcurrent source raw digestは
