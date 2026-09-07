@@ -275,6 +275,15 @@ describe("review receipt / PLAN binding", () => {
       expect(
         evaluateReviewEvidenceReceiptJoin({ changed_plans: [mutated], receipts: [receipt] }),
       ).toMatchObject({ ok: false, failures: [{ reason }] });
+      // 正しい一件が併記されても、不正な承認記録を相殺しない。順序にも依存しない。
+      for (const entries of [
+        [...changed.review_entries, ...mutated.review_entries],
+        [...mutated.review_entries, ...changed.review_entries],
+      ]) {
+        expect(evaluateReviewEvidenceReceiptJoin({
+          changed_plans: [{ ...changed, review_entries: entries }], receipts: [receipt],
+        })).toMatchObject({ ok: false, failures: [{ reason }] });
+      }
     }
     expect(
       evaluateReviewEvidenceReceiptJoin({

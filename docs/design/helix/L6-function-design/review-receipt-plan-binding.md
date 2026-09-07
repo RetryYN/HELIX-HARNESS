@@ -35,6 +35,7 @@ PLANだけへ転記し、常駐収束レーンの検収と見せかける経路�
   `reviewer_session_id`、`reviewer_model`、`reviewed_head_sha`、`verdict`、
   `ci_evidence_generation`をexact照合する。最終merge receiptと過去の実装review receiptは同一とは限らないため、
   current receiptへ推測接合せず、PLANが明示的に引用したreceiptだけを根拠にする。
+  独立承認entryは全件照合し、正しい一件で別entryの欠落・不一致を相殺しない。
 - draft中の修正は継続可能とし、未解消block中のterminal昇格とmergeだけを拒否する。
 - receipt履歴を取得できない場合は単一approveやPAT経路へfallbackせずfail-closeする。
 - schemaとdigestを検証して取得した同一PR／HEADのblockは、CI失敗・DB未収束・CI世代差を理由に
