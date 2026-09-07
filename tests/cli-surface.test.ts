@@ -4,7 +4,7 @@
 // PLAN-L7-656-distribution-lite-profile-bound-package — U-DISTPKG-014
 // PLAN-L7-603-distribution-deterministic-archive
 // U-DISTDET-001
-import { spawnSync } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
   chmodSync,
@@ -7996,7 +7996,8 @@ describe("L7 CLI surface closure", () => {
     }
   });
 
-  it("executes codex adapter under --execute --json and reports dry_run:false honestly", () => {
+  it("U-WBL-005: executes codex adapter with budget lifecycle fields under --execute --json", () => {
+    // PLAN-RECOVERY-1601-worker-deadline
     // 回帰: 旧実装は --execute --json で provider を起動せず dry_run:false の plan JSON だけ
     // 返していた (実行していないのに実行済みに見える機械判定の罠)。実行 + 正直な JSON を要求する。
     const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-exec-"));
@@ -8041,9 +8042,105 @@ describe("L7 CLI surface closure", () => {
         exit_code: 0,
         // 正常終了は signal=null (signal 終了時のみ exit_code=null + signal 名が入る)。
         signal: null,
+        timed_out: false,
+        tree_lingered: false,
+        interrupted_by: null,
+        deadline_ms: 60_000,
+        termination_stage: "none",
+        reaped: true,
       });
+      expect(payload.duration_ms).toBeGreaterThanOrEqual(0);
+      expect(payload.duration_ms).toBeLessThan(60_000);
       // provider が実際に起動した証跡 (env dump)。「実行せず JSON だけ」だと生成されない。
       expect(readFileSync(join(binDir, "codex-env.txt"), "utf8")).toContain("args=");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  it("U-WBL-010: projects a real CLI SIGINT to exit 130 and interruption JSON after provider reap", async () => {
+    if (process.platform === "win32") return;
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-sigint-"));
+    try {
+      const contextPath = installTestWorkerContextBoundary(root);
+      const binDir = join(root, "bin");
+      mkdirSync(binDir);
+      const fakeCodex = join(binDir, "codex");
+      const providerPidPath = join(root, "provider.pid");
+      writeFileSync(
+        fakeCodex,
+        [
+          "#!/bin/sh",
+          'if [ "$' + '{1:-}" = "--version" ]; then echo \'codex 1.0.0\'; exit 0; fi',
+          "sleep 0.2",
+          `printf '%s' "$$" > "${providerPidPath}"`,
+          "trap '' INT TERM HUP",
+          "while :; do sleep 1; done",
+          "",
+        ].join("\n"),
+        { encoding: "utf8", mode: 0o755 },
+      );
+      chmodSync(fakeCodex, 0o755);
+      const env = {
+        ...process.env,
+        PATH: `${binDir}:${process.env.PATH ?? ""}`,
+        HELIX_CODEX_BIN: fakeCodex,
+      };
+      const child = spawn(
+        process.execPath,
+        [
+          cliBundlePath,
+          "codex",
+          "--role",
+          "se",
+          "--task",
+          "interrupt me",
+          "--execute",
+          "--json",
+          "--worker-context-file",
+          contextPath,
+        ],
+        { cwd: root, env, stdio: ["ignore", "pipe", "pipe"] },
+      );
+      let stdout = "";
+      let stderr = "";
+      child.stdout.setEncoding("utf8");
+      child.stderr.setEncoding("utf8");
+      child.stdout.on("data", (chunk: string) => {
+        stdout += chunk;
+      });
+      child.stderr.on("data", (chunk: string) => {
+        stderr += chunk;
+      });
+      const waitUntil = Date.now() + 5_000;
+      while (!existsSync(providerPidPath) && Date.now() < waitUntil) {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+      expect(existsSync(providerPidPath)).toBe(true);
+      // provider pid publication can race the wrapper's post-spawn signal-handler installation.
+      // Linux /proc exposes caught-signal bits; wait for SIGINT (bit 1) rather than sleeping.
+      const handlerDeadline = Date.now() + 5_000;
+      while (Date.now() < handlerDeadline) {
+        const status = readFileSync(`/proc/${child.pid}/status`, "utf8");
+        const caught = status.match(/^SigCgt:\s+([0-9a-f]+)$/mu)?.[1];
+        if (caught && (BigInt(`0x${caught}`) & 2n) !== 0n) break;
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+      child.kill("SIGINT");
+      const exit = await new Promise<{ code: number | null; signal: NodeJS.Signals | null }>(
+        (resolve, reject) => {
+          child.once("error", reject);
+          child.once("exit", (code, signal) => resolve({ code, signal }));
+        },
+      );
+      expect(exit, JSON.stringify({ stdout, stderr })).toEqual({ code: 130, signal: null });
+      expect(JSON.parse(stdout)).toMatchObject({
+        interrupted_by: "SIGINT",
+        termination_stage: "kill_sent",
+        reaped: true,
+      });
+      const providerPid = Number(readFileSync(providerPidPath, "utf8"));
+      expect(() => process.kill(providerPid, 0)).toThrow();
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
