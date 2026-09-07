@@ -1,7 +1,11 @@
 ---
 title: "Review変更要求fail-close設計"
+layer: L6
 status: draft
-plan_id: PLAN-RECOVERY-1627-review-request-changes-fail-close
+plan: docs/plans/PLAN-RECOVERY-1627-review-request-changes-fail-close.md
+pair_artifact: docs/test-design/helix/L7-review-request-changes-fail-close.md
+created: 2026-09-08
+updated: 2026-09-08
 ---
 
 # Review変更要求fail-close設計

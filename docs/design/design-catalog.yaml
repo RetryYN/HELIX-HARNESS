@@ -201,6 +201,7 @@ items:
       - docs/design/helix/L6-function-design/luna-native-spawn-admission.md
       - docs/design/helix/L6-function-design/proposal-lane-effort-binding.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md
+      - docs/design/helix/L6-function-design/review-request-changes-fail-close.md
       - docs/design/helix/L6-function-design/project-hook-authority-resolver.md
       - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md

@@ -51,9 +51,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-request-changes-fail-close.md, oracle_id: U-RRCF-001, test_path: tests/review-receipt-plan-binding.test.ts }
 dependencies:
   parent: null
-  requires:
-    - "issue:1622"
+  requires: []
   references:
+    - PLAN-L3-1622-producer-provenance-separation
     - "issue:1620"
     - "issue:1625"
     - "issue:1627"
@@ -62,10 +62,15 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/review-request-changes-fail-close.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L7-review-request-changes-fail-close.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
