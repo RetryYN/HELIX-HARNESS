@@ -4,7 +4,7 @@ title: "PLAN-L3-1594: 新Skill機構への責務移行"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -39,18 +39,18 @@ backprop_decision_reason: "本PLANが上流要求の取り込みを所有する�
 no_code_decision: no_change
 ddd_modeling_decision: aggregate
 contract_preconditions: "既存ownerと新要求本文を照合する"
-contract_postconditions: "8要求と8受入を独立候補へ束縛する"
+contract_postconditions: "8要求と8受入をcanonical L1/L3/L10 sourceへ束縛し、IR admission待ちを明示する"
 contract_invariants: "既存保護維持、第二正本禁止、独立受入"
 contract_failures: "未確認能力の完成主張、承認の発明、無根拠削除を拒否する"
 tdd_red_required: false
 tdd_red_waiver_reason: "要求候補のみ。実行oracleは後続の実装PLANで所有する。"
 complexity_effect: net_negative
 complexity_justification: "既存ownerへ接続して重複供給と二重正本を縮退する。"
-removal_trigger: "候補のcanonical昇格とIR admission後"
-parent_design: docs/governance/candidates/skill-mechanism-migration-requests.md
-pair_artifact: docs/governance/candidates/skill-mechanism-migration-acceptance.md
+removal_trigger: "Requirement IR admissionと後続実装PLANへの責務移管後"
+parent_design: docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
+pair_artifact: docs/test-design/helix/skill-mechanism-migration-acceptance.md
 dependencies:
-  parent: docs/governance/candidates/skill-mechanism-migration-requests.md
+  parent: docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
   requires: []
   references:
     - issue:1382
@@ -58,9 +58,10 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-L3-1594-skill-mechanism-migration.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/skill-mechanism-migration-requests.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/skill-mechanism-migration-requirements.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/candidates/skill-mechanism-migration-acceptance.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md, artifact_type: requirements_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/skill-mechanism-migration-requirements.md, artifact_type: requirements_doc }
+  - { artifact_path: docs/test-design/helix/skill-mechanism-migration-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/skill-mechanism-migration-recognition.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
@@ -71,8 +72,8 @@ review_evidence: []
 
 # 新Skill機構への責務移行
 
-本PLANは新要求候補の整理を所有する。既承認PLANの承認範囲を本差分へ転用しない。
-要求・要件・受入の対応をレビューし、canonical merge/read-after、#397 admissionを経て実装する。
+本PLANは承認済み要求のcanonical source promotionを所有する。承認されたexact candidate bytesの意味を変更せず、
+L1/L3/L10へ一方向移動する。canonical merge/read-after後、#397 admissionを経て実装する。
 S-R01..08とS-AC01..08の追跡を維持する。
 別要求の全体完成を前提にせず、同一startup編集・Policy受領だけ対象とdigest付き局所依存にする。
 

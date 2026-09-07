@@ -1,18 +1,22 @@
 ---
 title: "新Skill機構への責務移行"
-status: draft_candidate
-authority_status: approved_pending_canonical_promotion
+status: confirmed
+authority_status: canonical_source
 approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1594#issuecomment-5562000029"
 approved_revision: "2.0"
 version: "2.0"
-candidate_layer: L10
+canonical_vmodel: L1-L12
+canonical_layer: L10
+canonical_pair: L3
 owner_issue: 1594
 plan_id: PLAN-L3-1594-skill-mechanism-migration
+parent_design: docs/design/helix/L3-requirements/skill-mechanism-migration-requirements.md
+pair_artifact: docs/design/helix/L3-requirements/skill-mechanism-migration-requirements.md
 ---
 
 # 新Skill機構への責務移行の独立受入
 
-各行は要件候補の同番号S-Rへ対応する。合格は実測証拠取得後に記録し、以下は未実行のoracle仕様である。
+各行はcanonical source要件の同番号S-Rへ対応する。合格は実測証拠取得後に記録し、以下は未実行のoracle仕様である。
 
 ## S-AC01 ↔ S-R01
 
