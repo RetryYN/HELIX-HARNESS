@@ -27,7 +27,7 @@ admitted `WrapperLaunchExecution`のsealed contextから実行時間上限を取
 
 通常のstatus/signal/errorに加え、`timed_out`、`tree_lingered`、`interrupted_by`、`deadline_ms`、`termination_stage`、`duration_ms`、`reaped`を返す。`reaped=true`はdirect childのcloseだけでなく、対象treeの停止処理が終端したことを表す。割込み時のCLI終了codeはshell慣例どおり`SIGHUP=129`、`SIGINT=130`、`SIGTERM=143`へ投影する。停止とreap確認にはworker budget後も最大`TERMINATION_GRACE_MS + REAP_CONFIRMATION_MS`のbounded cleanup時間を使用できる。
 
-## terminal admission
+## 終端受付判定
 
 provider-neutralな`classifyProviderProcessTerminal`を唯一の成功判定とする。成功は
 `status=0`、deadline未超過、残存treeなし、wrapper割込みなし、reap完了、lifecycle errorなしの
