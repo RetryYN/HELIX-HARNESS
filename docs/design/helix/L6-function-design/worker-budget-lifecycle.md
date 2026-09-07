@@ -31,4 +31,12 @@ admitted `WrapperLaunchExecution`のsealed contextから実行時間上限を取
 
 `team run --execute`はmember adapterを再検証した後、同じprocess lifecycleへ委譲する。
 deadlineはsealed packetの`budget.time_ms`だけから取得する。出力captureはboundedとし、
-切捨て後も実観測byte数とterminal lifecycle fieldsを保持する。
+切捨て後も実観測byte数とterminal lifecycle fieldsを保持する。member adapterの返却契約では
+`timed_out`、`deadline_ms`、`termination_stage`、`signal`、`duration_ms`、`reaped`を必須とし、
+欠落、型不一致、packet budgetとのdeadline不一致、timeout、または未reapを成功へ投影しない。
+`PostToolUse`を含む観測eventも同じterminal判定を使用し、`status=0`だけでtimeout済みprocessを
+成功として記録してはならない。
+
+この接続は旧team実行engineの延命authorityではない。process lifecycleは正規worker runtimeを
+唯一のownerとし、team側は明示的なcompatibility facadeから呼ぶ。slot・順序・共有状態の恒久的な
+所有は後継Assignment／Lease／Work Graphへ移管し、旧team engineのconsumer 0確認後に退役する。

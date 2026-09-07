@@ -158,12 +158,12 @@ export interface TeamRunnerDeps {
     output?: string;
     outputBytes?: number;
     outputTruncated?: boolean;
-    timedOut?: boolean;
-    deadlineMs?: number;
-    terminationStage?: "none" | "term_sent" | "kill_sent";
-    signal?: NodeJS.Signals | null;
-    durationMs?: number;
-    reaped?: boolean;
+    timedOut: boolean;
+    deadlineMs: number;
+    terminationStage: "none" | "term_sent" | "kill_sent";
+    signal: NodeJS.Signals | null;
+    durationMs: number;
+    reaped: boolean;
   }>;
 }
 
@@ -520,7 +520,16 @@ async function executeMember(
     });
     const evidence = executionEvidence(member.role, run);
     const reviewAccepted = !REVIEW_ROLES.has(member.role) || evidence.verdict_status === "accepted";
-    const lifecycleAccepted = run.timedOut !== true && run.reaped !== false;
+    const lifecycleReported =
+      typeof run.timedOut === "boolean" &&
+      Number.isSafeInteger(run.deadlineMs) &&
+      run.deadlineMs === admitted.worker_context.packet.budget.time_ms &&
+      Number.isSafeInteger(run.durationMs) &&
+      run.durationMs >= 0 &&
+      typeof run.reaped === "boolean" &&
+      (["none", "term_sent", "kill_sent"] as const).includes(run.terminationStage) &&
+      (run.signal === null || typeof run.signal === "string");
+    const lifecycleAccepted = lifecycleReported && !run.timedOut && run.reaped;
     const status: SlotStatus =
       run.exitCode === 0 && reviewAccepted && lifecycleAccepted ? "completed" : "failed";
     releaseSlot({ slotId: slot.slot_id, status, exitCode: run.exitCode }, deps.slots);
@@ -534,12 +543,12 @@ async function executeMember(
       slot_id: slot.slot_id,
       exit_code: run.exitCode,
       status,
-      timed_out: run.timedOut ?? false,
-      deadline_ms: run.deadlineMs ?? null,
+      timed_out: run.timedOut === true,
+      deadline_ms: Number.isSafeInteger(run.deadlineMs) ? run.deadlineMs : null,
       termination_stage: run.terminationStage ?? "none",
       signal: run.signal ?? null,
-      duration_ms: run.durationMs ?? null,
-      reaped: run.reaped ?? true,
+      duration_ms: Number.isSafeInteger(run.durationMs) ? run.durationMs : null,
+      reaped: run.reaped === true,
       evidence,
     };
   } catch {

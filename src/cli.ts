@@ -12896,7 +12896,12 @@ team
                 ...(opts.plan ? { plan_id: opts.plan } : {}),
                 tool_name: provider,
                 tool_input: { command: `${command} ${args.join(" ")}` },
-                tool_response: { outcome: outcome.status === 0 ? "ok" : "error" },
+                tool_response: {
+                  outcome:
+                    outcome.status === 0 && !outcome.timed_out && outcome.reaped
+                      ? "ok"
+                      : "error",
+                },
               },
               sessionDeps,
               "PostToolUse",
