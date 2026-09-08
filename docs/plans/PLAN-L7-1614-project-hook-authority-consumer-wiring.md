@@ -2,9 +2,9 @@
 plan_id: PLAN-L7-1614-project-hook-authority-consumer-wiring
 title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7へ接続する"
 kind: recovery
-layer: cross
+layer: L6
 legacy_physical_layer: L7
-canonical_layer: cross
+canonical_layer: L6
 drive: agent
 status: confirmed
 completion_claim_allowed: true
