@@ -1,5 +1,6 @@
 // PLAN-L7-426-development-ci-bounded-time / PLAN-L7-462-issue-closure-contract
 // PLAN-L7-502-worker-independent-review
+// PLAN-RECOVERY-1640-biome-preflight
 import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -196,9 +197,28 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     findings.push("finalize_admission_invalid");
   }
   const finalizeSteps = finalize?.steps ?? [];
+  // PLAN-RECOVERY-1640: 同じlintを依存導入直後に一回だけ実行する。
+  const preflightSteps = preflight?.steps ?? [];
+  const lintSteps = preflightSteps.filter((step) => step.name === "lint (biome)");
+  const lintIndex = preflightSteps.findIndex((step) => step.name === "lint (biome)");
+  const installIndex = preflightSteps.findIndex((step) => step.name === "install deps (frozen)");
+  if (
+    lintSteps.length !== 1 ||
+    lintSteps[0]?.run !== "npm run lint" ||
+    lintSteps[0]?.if !== undefined ||
+    lintSteps[0]?.["continue-on-error"] !== undefined ||
+    installIndex < 0 ||
+    lintIndex !== installIndex + 1 ||
+    finalizeSteps.some(
+      (step) =>
+        step.name === "lint (biome)" ||
+        (typeof step.run === "string" && step.run.includes("npm run lint")),
+    )
+  ) {
+    findings.push("biome_preflight_invalid");
+  }
   const ordered = [
     "validate exact shard receipt set",
-    "lint (biome)",
     "db rebuild (post-test projection refresh)",
     "doctor (governance hard gates)",
   ].map((name) => finalizeSteps.findIndex((step) => step.name === name));
@@ -1135,6 +1155,27 @@ describe("source harness-check workflow", () => {
     expect(parsed.jobs?.["full-regression-bulk-3"]?.["timeout-minutes"]).toBe(25);
     expect(parsed.jobs?.["full-regression-stateful"]?.["timeout-minutes"]).toBe(30);
     expect(parsed.jobs?.["full-regression-finalize"]?.["timeout-minutes"]).toBe(15);
+  });
+
+  it("U-BIOMEFAST-001: lintを依存導入直後へ置き、遅延・省略・重複を拒否する", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(fullRegressionShardJobViolations(raw)).toEqual([]);
+    const lint = "      - name: lint (biome)\n        run: npm run lint\n";
+    expect(raw.includes(lint)).toBe(true);
+    const removed = raw.replace(lint, "");
+    const delayed = mutateWorkflowJob(removed, "full-regression-finalize", (job) =>
+      job.replace("    steps:\n", `    steps:\n${lint}`),
+    );
+    for (const mutant of [
+      removed,
+      delayed,
+      raw.replace(lint, lint + lint),
+      raw.replace(lint, lint.replace("npm run lint", "true")),
+      raw.replace(lint, `${lint}        if: false\n`),
+      raw.replace(lint, `${lint}        continue-on-error: true\n`),
+    ]) {
+      expect(fullRegressionShardJobViolations(mutant)).toContain("biome_preflight_invalid");
+    }
   });
 
   it("U-CITIME-003: rejects fail-open fields and preserves post-test gates", () => {

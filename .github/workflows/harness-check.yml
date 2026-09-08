@@ -210,6 +210,9 @@ jobs:
       - name: install deps (frozen)
         run: npm ci
 
+      - name: lint (biome)
+        run: npm run lint
+
       - name: design-language gate (fail fast before shards)
         run: npx --no-install tsx src/cli.ts doctor --gate design-language
 
@@ -973,8 +976,6 @@ jobs:
           name: impact-ci-full-receipt
           path: ${{ runner.temp }}/impact-ci-full-receipt/impact-ci-full-receipt.json
           retention-days: 30
-      - name: lint (biome)
-        run: npm run lint
       - name: db rebuild (post-test projection refresh)
         run: npx --no-install tsx src/cli.ts db rebuild --json
       - name: doctor (governance hard gates)
