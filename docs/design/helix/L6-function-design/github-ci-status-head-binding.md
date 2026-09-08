@@ -39,7 +39,7 @@ branch指定のrun一覧は取得windowにすぎず、判定authorityとして�
 | `window_miss` | runはあるがexact pairが無い | window_miss |
 | `current_failure` | exact pairにfailure/cancelledがある | red |
 
-CLI exit codeへの完全なfail-close接続は、`src/cli.ts`のactive writerであるPR #1628 main到達後の後続sliceで行う。
+CLIは`--expected-head-sha`を判定器へ渡し、`green`かつ`ok=true`のときだけexit 0を返す。
 
 ## 検証oracle
 
@@ -49,3 +49,5 @@ CLI exit codeへの完全なfail-close接続は、`src/cli.ts`のactive writer�
 | U-GHCI-002 | HEAD分離 | current successと旧HEAD failureの共存はcurrentだけで`green` | `tests/github-merge-readiness.test.ts` |
 | U-GHCI-003 | workflow分離 | target successと別workflow failureの共存はtargetだけで`green` | `tests/github-merge-readiness.test.ts` |
 | U-GHCI-004 | windowとfailure | exact pair不在は`window_miss`、current failureは`red` | `tests/github-merge-readiness.test.ts` |
+| U-GHCI-005 | CLI fail-close配線 | 実CLI入口の`window_miss`はexit 1 | `tests/cli-surface.test.ts` |
+| U-GHCI-006 | CLI exact HEAD配線 | 実CLI入口が`--expected-head-sha`を判定器へ渡し、該当runを`green`にする | `tests/cli-surface.test.ts` |

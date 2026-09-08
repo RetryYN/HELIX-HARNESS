@@ -36,6 +36,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/github-ci-status-head-binding.md, oracle_id: U-GHCI-002, test_path: tests/github-merge-readiness.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-ci-status-head-binding.md, oracle_id: U-GHCI-003, test_path: tests/github-merge-readiness.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/github-ci-status-head-binding.md, oracle_id: U-GHCI-004, test_path: tests/github-merge-readiness.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-ci-status-head-binding.md, oracle_id: U-GHCI-005, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-ci-status-head-binding.md, oracle_id: U-GHCI-006, test_path: tests/cli-surface.test.ts }
+mutation_oracle_evidence: "tests/cli-surface.test.ts::U-GHCI-006 killed M-1（expectedHeadSha配線削除）をexit 1で検出し、U-GHCI-005 killed M-2（旧red-only exit式）をwindow_missのexit 0として検出。tests/github-merge-readiness.test.tsの補助oracleはM-3（exit helperを常時0）を5 assertionで検出。Node 24 targeted mutation実測。"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -54,13 +57,17 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-github-ci-status-head-binding-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1659-ci-status-head-binding.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/audit/github-merge-readiness.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-merge-readiness.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: aim, slot_label: "AIM — candidate HEAD／workflow identityのauthority境界を照合" }
   - { role: se, slot_label: "Luna worker — exact HEAD／workflow selector実装" }

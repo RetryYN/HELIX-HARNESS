@@ -16,8 +16,10 @@ pair_artifact: docs/design/helix/L6-function-design/github-ci-status-head-bindin
 | U-GHCI-002 | HEAD分離 | expected HEAD successと旧HEAD failureが共存してもexpected HEADだけで`green` | `tests/github-merge-readiness.test.ts` |
 | U-GHCI-003 | workflow分離 | expected HEADの別workflow failureとtarget successが共存してもtargetだけで`green` | `tests/github-merge-readiness.test.ts` |
 | U-GHCI-004 | windowとfailure | exact pair不在は`window_miss`、exact pair failureは`red` | `tests/github-merge-readiness.test.ts` |
-| U-GHCI-005 | CLI fail-close | `no_runs`／`window_miss`／`unavailable`／`red`をexit 1へ写像する | `tests/github-merge-readiness.test.ts` |
-| U-GHCI-006 | CLI exact HEAD入力 | CLIが`--expected-head-sha`を公開し、明示SHAを判定器へ渡す | `tests/cli-surface.test.ts` |
+| U-GHCI-005 | CLI fail-close配線 | 実CLI入口の`window_miss`をexit 1へ写像する | `tests/cli-surface.test.ts` |
+| U-GHCI-006 | CLI exact HEAD配線 | 実CLI入口が`--expected-head-sha`の明示SHAを判定器へ渡す | `tests/cli-surface.test.ts` |
 
 追加反例として、空query、短縮SHA、uppercase SHA、39桁SHA、空白付きSHA、空workflow、pending、cancelledを
 個別に固定する。判定器からHEADまたはworkflow filterを除いたmutationではA/B/C/Wのいずれかがredになることを要求する。
+加えてCLIから`expectedHeadSha`配線を除くM-1と、exit helper呼び出しを旧red-only式へ戻すM-2は、
+それぞれU-GHCI-006とU-GHCI-005がredになることを要求する。
