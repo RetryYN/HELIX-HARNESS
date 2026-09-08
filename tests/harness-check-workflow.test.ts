@@ -1169,33 +1169,34 @@ describe("source harness-check workflow", () => {
     const lint = "      - name: lint (biome)\n        run: npm run lint\n";
     expect(raw.includes(lint)).toBe(true);
     const removedFromPreflight = raw.replace(lint, "");
-    const restoredToFinalize = mutateWorkflowJob(
-      removedFromPreflight,
+    const duplicatedInFinalize = mutateWorkflowJob(
+      raw,
       "full-regression-finalize",
       (job) => job.replace("    steps:\n", `    steps:\n${lint}`),
     );
-    const movedAfterShards = mutateWorkflowJob(
-      removedFromPreflight,
-      "full-regression-finalize",
-      (job) =>
-        job.replace(
-          "      - name: validate exact shard receipt set\n",
-          `${lint}      - name: validate exact shard receipt set\n`,
-        ),
-    );
-    const movedIntoShard = mutateWorkflowJob(
-      removedFromPreflight,
+    const movedAfterShardPlan = raw
+      .replace(lint, "")
+      .replace(
+        "          retention-days: 7\n\n  full-regression-bulk-1:",
+        `          retention-days: 7\n${lint}\n  full-regression-bulk-1:`,
+      );
+    const duplicatedIntoShard = mutateWorkflowJob(
+      raw,
       "full-regression-bulk-1",
       (job) => job.replace("    steps:\n", `    steps:\n${lint}`),
     );
-    expect(fullRegressionShardJobViolations(restoredToFinalize)).toContain(
+    expect(fullRegressionShardJobViolations(duplicatedInFinalize)).toContain(
       "biome_preflight_invalid",
     );
     expect(fullRegressionShardJobViolations(removedFromPreflight)).toContain(
       "biome_preflight_invalid",
     );
-    expect(fullRegressionShardJobViolations(movedAfterShards)).toContain("biome_preflight_invalid");
-    expect(fullRegressionShardJobViolations(movedIntoShard)).toContain("biome_preflight_invalid");
+    expect(fullRegressionShardJobViolations(movedAfterShardPlan)).toContain(
+      "biome_preflight_invalid",
+    );
+    expect(fullRegressionShardJobViolations(duplicatedIntoShard)).toContain(
+      "biome_preflight_invalid",
+    );
     for (const mutant of [
       raw.replace(lint, lint + lint),
       raw.replace(lint, lint.replace("npm run lint", "true")),

@@ -76,9 +76,9 @@ continue-on-error・条件付きskipを追加せず、shardはpreflight成功後
 
 ## 受入と反例
 
-- preflightの依存導入直後にlintが一回だけ存在し、shard起動stepより前に置かれる。
-- finalizeと各shard jobに`npm run lint`が存在しない。
-- lintをfinalizeへ戻す、preflightから除く、shard後へ移すmutationを個別に検出する。
+- preflightの依存導入直後にlintが一回だけ存在し、shard plan生成stepより前に置かれる。
+- finalizeと各shard jobへ`npm run lint`を持ち込まない。
+- preflightのlintを残したままfinalize・shardへ複製する、preflightから除く、shard plan生成後へ移すmutationを個別に検出する。
 - 重複・条件付き化・コマンド変更・fail-openも個別に検出する。
 - 実Biomeが整形不備fixtureを拒否し、正しいfixtureを受理する。
 - 配置の局所テストとdiff-checkだけを完了根拠にする。全CI・独立reviewは自己申告しない。
