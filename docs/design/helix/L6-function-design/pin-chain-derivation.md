@@ -27,12 +27,13 @@ recordのexact path/location、field、recorded/live値、stale、pin kind、次
 
 - `deterministic_pin`: digest・test件数など機械再計算可能。`refresh_candidate`を返す。
 - `semantic_review_pin`: reviewed-safe等の意味判定を伴う。値を更新せず`requires_reassessment`を返す。
-- 未登録形式: `DEGRADED`としてsurfaceを列挙する。追従不要へ読み替えない。
+- 未登録形式または登録済みrecordの必須field欠落: `DEGRADED`としてsurface／fieldを列挙する。
+  欠落fieldを`stale`な既知pinへ偽装せず、追従不要へも読み替えない。
 
 第一sliceはfeedback test-owner manifestとL12 reviewed-safe dispositionを扱う。自動書換え、新CI job、
 万能literal parser、既存gateの緩和は行わない。対応形式はadapterを追加して段階的に広げる。
 
 ## 失敗境界
 
-対象recordが存在してもtargetが無い場合、live値は`null`でstaleとする。changed pathに登録済みpinがなく、
+対象recordと必須fieldが存在してtargetだけが無い場合、live値は`null`でstaleとする。changed pathに登録済みpinがなく、
 未対応か追従不要かを証明できない場合は`DEGRADED`とする。意味pinをdeterministic refreshへ昇格しない。

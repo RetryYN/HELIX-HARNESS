@@ -23,6 +23,9 @@ pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
 | U-PINCHAIN-004 | CLI | 実CLIへchanged pathを渡すとJSON schemaと実repository pinをread-after可能 | `tests/cli-surface.test.ts` |
 | U-PINCHAIN-005 | exact location | 同じcount値を持つ複数bindingでも対象binding内のfield行を返す | `tests/pin-chain-derivation.test.ts` |
 | U-PINCHAIN-006 | registry欠落 | reviewed-safe registryが無い場合も例外やsilent skipにせず`DEGRADED` | `tests/pin-chain-derivation.test.ts` |
+| U-PINCHAIN-007 | manifest網羅 | recognition manifestが同じtest pathをpinしていても追従先から消さない | `tests/pin-chain-derivation.test.ts` |
+| U-PINCHAIN-008 | field欠落 | 登録済みbindingの必須field欠落をlocation 0のstale findingへ偽装せず`DEGRADED` | `tests/pin-chain-derivation.test.ts` |
+| U-PINCHAIN-009 | CLI縮退 | 未登録surfaceを実CLIがJSON `DEGRADED`かつexit 2で返す | `tests/cli-surface.test.ts` |
 
 件数だけでなく、deterministicとsemanticの取り違え、未対応surfaceの隠蔽、CLI未配線をそれぞれ独立して拘束する。
 
@@ -37,3 +40,9 @@ pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
 ## U-PINCHAIN-005: binding内の正確な位置
 
 ## U-PINCHAIN-006: registry欠落の可視化
+
+## U-PINCHAIN-007: manifest集合の網羅
+
+## U-PINCHAIN-008: binding必須field欠落の可視化
+
+## U-PINCHAIN-009: CLI縮退exitの拘束

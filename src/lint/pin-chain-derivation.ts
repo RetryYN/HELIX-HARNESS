@@ -27,15 +27,16 @@ export interface PinChainReport {
 }
 
 interface FeedbackBinding {
-  test_path: string;
-  test_file_sha256: string;
-  expected_case_count: number;
+  test_path?: unknown;
+  test_file_sha256?: unknown;
+  expected_case_count?: unknown;
 }
 
 const FEEDBACK_MANIFESTS = [
   "docs/governance/feedback-test-owner-disposition-residual.json",
   "docs/governance/feedback-test-owner-disposition-closure.json",
   "docs/governance/feedback-test-owner-disposition-direct.json",
+  "docs/governance/feedback-test-owner-disposition-recognition.json",
 ] as const;
 
 function sha256(source: string): string {
@@ -82,34 +83,45 @@ export function derivePinChain(root: string, changedPaths: readonly string[]): P
       unsupportedSurfaces.push(`${manifestPath}:bindings`);
       continue;
     }
-    for (const binding of parsed.bindings) {
-      if (!changedSet.has(binding.test_path)) continue;
+    for (const [bindingIndex, binding] of parsed.bindings.entries()) {
+      if (typeof binding.test_path !== "string" || !changedSet.has(binding.test_path)) continue;
+      const missingFields: string[] = [];
+      if (typeof binding.test_file_sha256 !== "string") missingFields.push("test_file_sha256");
+      if (typeof binding.expected_case_count !== "number")
+        missingFields.push("expected_case_count");
+      unsupportedSurfaces.push(
+        ...missingFields.map((field) => `${manifestPath}:bindings[${bindingIndex}].${field}`),
+      );
       const absoluteTarget = join(root, binding.test_path);
       const targetSource = existsSync(absoluteTarget) ? readFileSync(absoluteTarget, "utf8") : null;
       const liveDigest = targetSource === null ? null : sha256(targetSource);
       const liveCount = targetSource === null ? null : testCaseCount(targetSource);
-      findings.push({
-        changed_path: binding.test_path,
-        dependent_path: manifestPath,
-        location: `${manifestPath}:${bindingFieldLine(manifestSource, binding.test_path, "test_file_sha256")}`,
-        field: "test_file_sha256",
-        kind: "deterministic_pin",
-        action: "refresh_candidate",
-        recorded_value: binding.test_file_sha256,
-        live_value: liveDigest,
-        stale: binding.test_file_sha256 !== liveDigest,
-      });
-      findings.push({
-        changed_path: binding.test_path,
-        dependent_path: manifestPath,
-        location: `${manifestPath}:${bindingFieldLine(manifestSource, binding.test_path, "expected_case_count")}`,
-        field: "expected_case_count",
-        kind: "deterministic_pin",
-        action: "refresh_candidate",
-        recorded_value: binding.expected_case_count,
-        live_value: liveCount,
-        stale: binding.expected_case_count !== liveCount,
-      });
+      if (typeof binding.test_file_sha256 === "string") {
+        findings.push({
+          changed_path: binding.test_path,
+          dependent_path: manifestPath,
+          location: `${manifestPath}:${bindingFieldLine(manifestSource, binding.test_path, "test_file_sha256")}`,
+          field: "test_file_sha256",
+          kind: "deterministic_pin",
+          action: "refresh_candidate",
+          recorded_value: binding.test_file_sha256,
+          live_value: liveDigest,
+          stale: binding.test_file_sha256 !== liveDigest,
+        });
+      }
+      if (typeof binding.expected_case_count === "number") {
+        findings.push({
+          changed_path: binding.test_path,
+          dependent_path: manifestPath,
+          location: `${manifestPath}:${bindingFieldLine(manifestSource, binding.test_path, "expected_case_count")}`,
+          field: "expected_case_count",
+          kind: "deterministic_pin",
+          action: "refresh_candidate",
+          recorded_value: binding.expected_case_count,
+          live_value: liveCount,
+          stale: binding.expected_case_count !== liveCount,
+        });
+      }
     }
   }
 

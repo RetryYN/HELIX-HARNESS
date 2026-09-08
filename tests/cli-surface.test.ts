@@ -7735,6 +7735,24 @@ describe("L7 CLI surface closure", () => {
     );
   }, 20_000);
 
+  it("U-PINCHAIN-009: unsupported pin surfaceをDEGRADEDかつexit 2で返す", () => {
+    const run = runCli([
+      "audit",
+      "pin-chain",
+      "--changed",
+      "src/unregistered-pin-shape.ts",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(2);
+    expect(payload).toMatchObject({
+      schema_version: "helix-pin-chain-derivation.v1",
+      status: "degraded",
+      unsupported_surfaces: ["src/unregistered-pin-shape.ts:pin_surface_not_registered"],
+    });
+  }, 20_000);
+
   // PLAN-L7-690-branch-audit-delete-candidate-safety
   it("U-BRAS-009: exposes branch audit as a read-only JSON command surface", () => {
     const run = runCli(["branch", "audit", "--json"]);

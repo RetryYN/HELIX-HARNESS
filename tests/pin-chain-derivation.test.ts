@@ -41,6 +41,10 @@ function fixture(): string {
     JSON.stringify({ bindings: [] }),
   );
   writeFileSync(
+    join(root, "docs/governance/feedback-test-owner-disposition-recognition.json"),
+    JSON.stringify({ bindings: [] }),
+  );
+  writeFileSync(
     join(root, "tests/example.test.ts"),
     'it("one", () => {});\nit("two", () => {});\n',
   );
@@ -120,5 +124,68 @@ describe("PLAN-RECOVERY-1670 pin chain derivation", () => {
     const report = derivePinChain(root, [target]);
     expect(report.status).toBe("degraded");
     expect(report.unsupported_surfaces).toEqual([`${target}:reviewed_safe_registry_unavailable`]);
+  });
+
+  it("U-PINCHAIN-007: recognition manifestのpinも同一test pathから導出する", () => {
+    const root = fixture();
+    writeFileSync(
+      join(root, "docs/governance/feedback-test-owner-disposition-recognition.json"),
+      JSON.stringify(
+        {
+          bindings: [
+            {
+              test_path: "tests/example.test.ts",
+              test_file_sha256: "recognition-stale",
+              expected_case_count: 2,
+            },
+          ],
+        },
+        null,
+        2,
+      ),
+    );
+
+    const report = derivePinChain(root, ["tests/example.test.ts"]);
+    expect(report.status).toBe("ok");
+    expect(
+      report.findings.filter(
+        (finding) =>
+          finding.dependent_path ===
+          "docs/governance/feedback-test-owner-disposition-recognition.json",
+      ),
+    ).toHaveLength(2);
+  });
+
+  it("U-PINCHAIN-008: binding必須field欠落をstale pinへ偽装せずdegradedにする", () => {
+    const root = fixture();
+    writeFileSync(
+      join(root, "docs/governance/feedback-test-owner-disposition-residual.json"),
+      JSON.stringify(
+        {
+          bindings: [
+            {
+              test_path: "tests/example.test.ts",
+              expected_case_count: 2,
+            },
+          ],
+        },
+        null,
+        2,
+      ),
+    );
+
+    const report = derivePinChain(root, ["tests/example.test.ts"]);
+    expect(report.status).toBe("degraded");
+    expect(report.unsupported_surfaces).toContain(
+      "docs/governance/feedback-test-owner-disposition-residual.json:bindings[0].test_file_sha256",
+    );
+    expect(
+      report.findings.some(
+        (finding) =>
+          finding.dependent_path ===
+            "docs/governance/feedback-test-owner-disposition-residual.json" &&
+          finding.field === "test_file_sha256",
+      ),
+    ).toBe(false);
   });
 });

@@ -25,7 +25,7 @@ contract_failures: "pin漏れ、記録値だけの照合、semantic pinの自動
 tdd_red_required: true
 red_at: "2026-09-09T03:42:00+09:00"
 green_at: "2026-09-09T03:46:54+09:00"
-mutation_oracle_evidence: "U-PINCHAIN-001〜004でstale digest/count、semantic review pin、unknown surface、CLI未配線を独立拘束"
+mutation_oracle_evidence: "U-PINCHAIN-001〜009でstale digest/count、semantic review pin、unknown surface、manifest欠落、必須field欠落、CLI未配線／縮退exitを独立拘束"
 complexity_effect: justified_positive
 complexity_justification: "既存pin形式ごとのread-only adapter一箇所へ追従推測を集約し、CI再走と手作業を削減する"
 removal_trigger: "全pin ownerが共通relation graphから同等のexact逆引きを提供しconsumer移行が成立した時"
@@ -39,6 +39,9 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-004, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-005, test_path: tests/pin-chain-derivation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-006, test_path: tests/pin-chain-derivation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-007, test_path: tests/pin-chain-derivation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-008, test_path: tests/pin-chain-derivation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-009, test_path: tests/cli-surface.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
