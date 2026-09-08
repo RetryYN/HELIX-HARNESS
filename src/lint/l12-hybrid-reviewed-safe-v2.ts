@@ -5,7 +5,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // signal位置はPLANの4-5行目・39-41行目。旧pairの実行authorityは含まない。
     // 正規pairはL1↔L12・L3↔L10。最終PLAN bytes限定のprojectionであり、独立技術reviewは別途必要。
     path: "docs/plans/PLAN-L3-1639-bugbot-generation.md",
-    contentDigest: "bac054e52a05d7d82e837abaffbd4bb377fdd096e3f25b52909afbafaf60dfb5",
+    contentDigest: "a5cfb869aba3c0e2c3eaa5e0c07f7aa564b50bd1c2d188e3beb5ffbe168086cd",
     finalDisposition: "false_positive",
   },
   {
