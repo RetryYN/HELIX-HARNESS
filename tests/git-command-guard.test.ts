@@ -269,6 +269,15 @@ describe("git-command-guard", () => {
         runHook({ tool_input: { command: "bash -c 'git push origin feature'" } }, fixture.linked)
           .status,
       ).toBe(0);
+      writeFileSync(join(fixture.linked, "invalid-from-cwd.txt"), "invalid\n");
+      git(fixture.linked, ["add", "invalid-from-cwd.txt"]);
+      git(fixture.linked, ["commit", "-m", "merge: invalid cwd subject"]);
+      const blocked = runHook(
+        { tool_input: { command: `git -C ${fixture.linked} push origin feature` } },
+        fixture.root,
+      );
+      expect(blocked.status).toBe(2);
+      expect(blocked.stderr).toContain("non-conventional commit subject");
     } finally {
       fixture.cleanup();
     }
@@ -312,9 +321,15 @@ describe("git-command-guard", () => {
   it("U-GITGUARD-021: local名と異なるpush upstreamを実refから解決する", () => {
     const fixture = createPushFixture();
     try {
+      writeFileSync(join(fixture.linked, "invalid-upstream.txt"), "invalid\n");
+      git(fixture.linked, ["add", "invalid-upstream.txt"]);
+      git(fixture.linked, ["commit", "-m", "merge: invalid upstream subject"]);
+      git(fixture.linked, ["push", "origin", "feature"]);
       git(fixture.linked, ["branch", "--set-upstream-to=origin/main", "feature"]);
       git(fixture.linked, ["config", "push.default", "upstream"]);
-      expect(runHook({ tool_input: { command: "git push" } }, fixture.linked).status).toBe(0);
+      const blocked = runHook({ tool_input: { command: "git push" } }, fixture.linked);
+      expect(blocked.status).toBe(2);
+      expect(blocked.stderr).toContain("non-conventional commit subject");
     } finally {
       fixture.cleanup();
     }

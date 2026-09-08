@@ -88,4 +88,6 @@ Issue #1652で同じ非規約merge subjectが二度remoteへ送られ、公開�
 通常pushの初期実装後、独立監査で特殊pushの検査集合乖離を検出した。`--tags`／`--all`／`--repo`を
 fail-closeし、`--mirror`／short option cluster内のforce／先頭`+`refspecをdestructive扱いへ追加した。
 local名とupstream名が異なる合法pushは`@{push}`から解決する。局所41 testsは成功した。
+`@{push}`解決を旧local名既定へ戻す隔離mutationではU-GITGUARD-021だけが失敗し、
+`git -C`の実効cwdから不正subjectを拒否する反例もU-GITGUARD-018へ追加した。
 独立review、full CI、main到達、実運用での不正push拒否は未完了。
