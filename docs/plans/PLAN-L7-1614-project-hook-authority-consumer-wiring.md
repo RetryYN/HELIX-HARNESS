@@ -111,13 +111,13 @@ modifies:
 review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
-    reviewed_at: "2026-09-08T21:47:37Z"
+    reviewed_at: "2026-09-08T22:16:03Z"
     tests_green_at: "2026-09-08T22:08:56Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: 77375ef5-9b74-425a-91ee-45ebc9fea1d9
-    reviewed_head_sha: 473f4b00752032828a005b9dee69f83a7b58128a
+    reviewed_head_sha: f58784ce47d79141ef7b7707494c24e6c4229599
     scope: "HEAD ffa843491への25 oracle全数照合・190/191 green・U-CNHOOKWIRE-007b実配線kill検証を、content-neutralなJIT main同期後HEAD 473f4b007へ継承できると独立reviewerが確認した。Phase 1ではformal receipt未封印のためreceipt_urlとci_evidence_generationを記録せず、Draft CI成功後のPhase 2で束縛する。"
     green_commands:
       - kind: unit_test
