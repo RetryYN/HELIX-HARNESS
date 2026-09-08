@@ -22,6 +22,13 @@ pair_artifact: docs/design/helix/L6-function-design/l12-reviewed-safe-inventory-
 
 ## Oracle
 
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-L12INV-001 | reviewed-safe family | family片側欠落またはinventory残留をtyped findingとして拒否する | `tests/l12-hybrid-inventory-lifecycle.test.ts` |
+| U-L12INV-002 | inventory件数 | section片側更新と件数driftを拒否する | `tests/l12-hybrid-inventory-lifecycle.test.ts` |
+| U-L12INV-003 | doctor集約 | named checkまたはboolean chainの片側欠落で全体を失敗にする | `tests/l12-hybrid-inventory-lifecycle.test.ts` |
+| U-L12INV-004 | canonical candidate closure | 未登録candidate欠落と一般dispositionの暗黙除外を拒否する | `tests/l12-canonical-authority.test.ts` |
+
 ### U-L12INV-001 reviewed-safe familyの対称retire
 
 実inventoryを入力し、Document Semantic DiffのL6／L8／PLANがreviewed-safe registryに存在し、

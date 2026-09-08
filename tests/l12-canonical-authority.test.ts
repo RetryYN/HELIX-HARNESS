@@ -1,6 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-RECOVERY-1404-confirmed-design-active-bun-command — U-L12INV-004
 import { REVIEWED_SAFE_ARTIFACT_FAMILIES } from "../src/lint/l12-hybrid-inventory-lifecycle";
 import { CANONICAL_LAYERS, V_MODEL_PAIRS } from "../src/schema";
 
