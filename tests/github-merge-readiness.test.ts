@@ -7,6 +7,8 @@ import {
   verifyCreatedPrBody,
 } from "../src/audit/github-merge-readiness";
 
+// PLAN-RECOVERY-1659-ci-status-head-binding — U-GHCI-001..004
+
 const EXPECTED_HEAD_SHA = "1111111111111111111111111111111111111111";
 const OLD_HEAD_SHA = "2222222222222222222222222222222222222222";
 
@@ -394,7 +396,7 @@ describe("github merge readiness", () => {
     expect(result.queryError).toContain("full lowercase 40-hex SHA");
   });
 
-  it("U-GHCI-1659-A: ignores old HEAD success when the expected HEAD has no run", () => {
+  it("U-GHCI-001: ignores old HEAD success when the expected HEAD has no run", () => {
     const result = analyzeGithubCiStatus({
       ref: "main",
       expectedHeadSha: EXPECTED_HEAD_SHA,
@@ -416,7 +418,7 @@ describe("github merge readiness", () => {
     expect(result).toMatchObject({ ok: false, status: "window_miss", runs: [] });
   });
 
-  it("U-GHCI-1659-B: ignores old HEAD failure when the expected HEAD succeeds", () => {
+  it("U-GHCI-002: ignores old HEAD failure when the expected HEAD succeeds", () => {
     const result = analyzeGithubCiStatus({
       ref: "main",
       expectedHeadSha: EXPECTED_HEAD_SHA,
@@ -448,7 +450,7 @@ describe("github merge readiness", () => {
     expect(result.runs[0]?.headSha).toBe(EXPECTED_HEAD_SHA);
   });
 
-  it("U-GHCI-1659-C: ignores another workflow failure for the expected HEAD", () => {
+  it("U-GHCI-003: ignores another workflow failure for the expected HEAD", () => {
     const result = analyzeGithubCiStatus({
       ref: "main",
       expectedHeadSha: EXPECTED_HEAD_SHA,
@@ -479,7 +481,7 @@ describe("github merge readiness", () => {
     expect(result.runs.map((run) => run.workflowName)).toEqual(["harness-check"]);
   });
 
-  it("U-GHCI-1659-W: distinguishes a window omission from a real current-head failure", () => {
+  it("U-GHCI-004: distinguishes a window omission from a real current-head failure", () => {
     const windowMiss = analyzeGithubCiStatus({
       ref: "main",
       expectedHeadSha: EXPECTED_HEAD_SHA,
