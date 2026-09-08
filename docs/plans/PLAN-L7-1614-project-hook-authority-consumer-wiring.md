@@ -4,7 +4,7 @@ title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-07
@@ -104,7 +104,25 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5[1m]"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T22:30:00+09:00"
+    tests_green_at: "2026-09-08T22:30:36+09:00"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: "claude-opus-5[1m]"
+    scope: "PR #1672 exact HEAD 81ce6fb98e0be2247329ee8510800d27f3daf45dをbounded独立再レビュー。前回blockerだったloop／pair-agent／teamのprovider probe前admission、real CLI negative oracle、pre-activation availability、remote default anchor proseを確認しmaterial blocker 0。reviewer session=f17ecf4c-2f65-4687-b681-d90617d90676。Claudeはverdict出力後もprocessを終了せず300秒deadlineで回収されたため、review command自体をgreen commandには数えない。"
+    green_commands:
+      - kind: unit_test
+        command: "Node 24 Vitest targeted project-hook/plan-descent suites + strict binding gate + tsc --noEmit"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-08T22:30:36+09:00"
+        evidence_path: tests/cli-surface.test.ts
+        output_digest: "sha256:e04bd36c1dd9ef00a0bb54d92c8a7d5766b4b099cc77507d25da2b7c2627bb0a"
+        result: "project-hook/plan-descent 16 tests、strict V-pair binding 1 test、TypeScript typecheckがgreen。"
 agent_slots:
   - { role: aim, slot_label: "AIM — project-hook authority不一致のRecovery分類" }
   - { role: se, slot_label: "SE — Control Plane envelope／consumer wiring" }
