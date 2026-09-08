@@ -60,7 +60,7 @@ review_evidence: []
 
 # 変更pathからのpin追従先事前導出
 
-## Authority slice
+## 正本化スライス
 
 Issue #1670で反復した追従漏れを、既存gateがredを出した後ではなくpush前に列挙する設計をfreezeする。
 対象は実測済みのfeedback test-owner manifestとreviewed-safe semantic pinから開始し、adapter単位で追加する。
