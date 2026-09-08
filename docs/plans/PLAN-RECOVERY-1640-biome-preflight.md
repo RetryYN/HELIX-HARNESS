@@ -28,7 +28,7 @@ red_test: "tests/harness-check-workflow.test.tsの初期4 mutantに対し配置�
 red_at: "2026-09-08T15:23:48Z"
 green_at: "2026-09-08T16:00:49Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/harness-check-workflow.test.ts::U-BIOMEFAST-001で、c7e0a8a48ac6fa94d2b0086c7f28374885b5590eがremovedFromPreflight依存を分離し、duplicatedInFinalize／duplicatedIntoShard／removedFromPreflight／movedAfterShardPlanを個別投入した。条件節の独立除去実測ではlintSteps.length、shardHasLint、finalizeSteps.someが各1 failed、配置条件2節の同時除去が1 failedとなり、baselineは64 passed。詳細実測はPR #1676 review comment 5588321930および5588346921。残る単独survivor F1はIssue #1671で追跡し、本sliceのblockerではない。"
+mutation_oracle_evidence: "tests/harness-check-workflow.test.ts::U-BIOMEFAST-001で、c7e0a8a48ac6fa94d2b0086c7f28374885b5590eがremovedFromPreflight依存を分離し、duplicatedInFinalize／duplicatedIntoShard／removedFromPreflight／movedAfterShardPlanを個別投入した。条件節の独立除去実測ではlintSteps.length、shardHasLint、finalizeSteps.someが各1 failed、配置条件2節の同時除去が1 failedとなり、baselineは64 passed。詳細実測はPR #1676 review comment 5588321930および5588346921。残る単独survivor F1は本PLANで開示し、Issue #1671のmutation evidence機構改善への実測入力として参照する。本sliceのblockerではない。"
 complexity_effect: net_neutral
 complexity_justification: "既存検査の配置変更と退行oracleに限定し、別検査機構を作らない"
 removal_trigger: "後継のCI計画が同じ早期検査義務を引き継ぎ、独立検収した時"
@@ -73,7 +73,7 @@ review_evidence:
     reviewed_head_sha: 3242c20419e8ea5297552f11c222ed76d672c0ef
     receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5592353929
     ci_evidence_generation: "run:34280725387:attempt:1:success"
-    scope: "旧approve receiptの対象4 pathがJIT main同期後もbyte同一であること、exact HEADのCI 12/12成功、DB projection/checkpoint replay収束を独立reviewerが実測した。残る単独survivor F1はIssue #1671で追跡し、本sliceのblockerではない。"
+    scope: "旧approve receiptの対象4 pathがJIT main同期後もbyte同一であること、exact HEADのCI 12/12成功、DB projection/checkpoint replay収束を独立reviewerが実測した。残る単独survivor F1は本PLANで開示し、Issue #1671のmutation evidence機構改善への実測入力として参照する。本sliceのblockerではない。"
 ---
 
 # 既存CIの検査順修復
