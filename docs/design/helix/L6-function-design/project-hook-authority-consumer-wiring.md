@@ -36,19 +36,19 @@ consumerはprojection済みbytesを読むだけで、resolver、capture、serial
 
 ## Dispatch受付判定
 
-`admitted_receipt`が存在する場合だけdispatchを許可する。resolution failure、invalid envelope、stale root、HEAD差分、source差分、物理identity不一致はadmitted receiptなしで固定failure bytesへ閉じ、dispatchと全write side effectを0にする。
+明示envelopeがある場合は`admitted_receipt`が存在するときだけdispatchを許可する。resolution failure、invalid envelope、stale root、HEAD差分、source差分、物理identity不一致はadmitted receiptなしで固定failure bytesへ閉じ、dispatchと全write side effectを0にする。
 
-standaloneの`status`／`doctor`はproject-hook authorityについてread-onlyかつunavailableを明示する。standaloneの`session_start`はproject-hook authority executionとprovider dispatchを開始しない一方、既存のcoordination-only session event、memory recall、feedback lifecycle、DB projectionは維持する。project-hook authority不在を理由に既存の連絡経路まで停止してはならない。standaloneのdispatchは`unavailable_no_dispatch`であり、既存providerや旧engineへ暗黙に送らない。transportが存在してresolutionが不成立の場合は、SessionStartは同じfailure bytesを表示して全side effect前に終了する。
+standaloneの`status`／`doctor`はproject-hook authorityについてread-onlyかつunavailableを明示する。standaloneの`session_start`はproject-hook authority executionを開始せず、既存のcoordination-only session event、memory recall、feedback lifecycle、DB projectionは維持する。project-hook authority不在を理由に既存の連絡経路まで停止してはならない。producer未接続のpre-activation期間は、envelope未指定のnative dispatchを従来どおり利用可能に保つが、project-hook authority admittedとは記録しない。transportが明示されresolutionが不成立の場合だけ、同じfailure bytesでprovider起動前に拒否する。
 
 ## Consumer接続
 
-CLI native adapterは明示されたenvelope fileを使い、SessionStartはhook inputのtransport envelopeを使う。実行前にconsumer wiringを構築し、provider process、team、pair-agent、loop等のdispatch開始前にadmissionを確認する。旧#1620のL7↔L8設計をコピーせず、本設計はcanonical L6、検証はL7 pairへ束縛する。
+CLI native adapterは任意の明示envelope fileを使い、SessionStartはhook inputのtransport envelopeを使う。明示時はprovider process、team、pair-agent、loop等のdispatch開始前にadmissionを確認する。未指定時のrequired activationはproducer不在のため本sliceでは行わない。旧#1620のL7↔L8設計をコピーせず、本設計はcanonical L6、検証はL7 pairへ束縛する。
 
 current authorityのhost anchorは特定の`origin/main`へ固定しない。実行repositoryのgit common dirが持つremote default symbolic refを独立観測し、一意な1件だけを採用する。default refが欠落または複数の場合は`project_hook_source_stale_or_foreign`の`/authority_input`・`authority_input_unavailable`、一意なanchor HEADとcurrent authority HEADが異なる場合は同codeの`/current_authority_anchor`として区別する。
 
 ## 受入境界
 
-本設計はconsumer接続のtargeted testまでを対象とする。Control Plane transport自体の新設、provider API変更、旧engineの物理削除、commit／push／PR／GitHub writeは対象外である。
+本設計はconsumer接続のpre-activationとtargeted testまでを対象とする。Control Plane producer、operator projection、required activation、provider API変更、旧engineの物理削除、commit／push／PR／GitHub writeは対象外である。producer E2Eなしに既存dispatchを停止しない。
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json

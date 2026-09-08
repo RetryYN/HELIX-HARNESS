@@ -2,6 +2,7 @@
 title: "project-hook authority consumer wiring L7検証設計"
 layer: L7
 artifact_type: test_design
+sub_doc: unit-test-design
 status: draft
 created: 2026-09-07
 updated: 2026-09-07
@@ -36,9 +37,11 @@ pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-consu
 | U-CNHOOKWIRE-004 | SessionStartはhook input内のtransport envelopeだけを使う | cwd／env／default file／remoteへのfallback | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-005 | 明示envelopeのschema／read failureは固定failureへ閉じる | 読込失敗後の暗黙envelope探索、provider起動 | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-006 | current authority root、HEAD、source bytesをhostから独立採取して差分を拒否する | expected値をobservedへコピーしてstaleを相殺 | `tests/project-hook-authority-envelope.test.ts` |
-| U-CNHOOKWIRE-007 | native dispatchはadmitted receipt後だけ実行可能になる | admission前のCodex／Claude／team／pair／loop起動 | `tests/project-hook-authority-envelope.test.ts` およびCLI smoke |
+| U-CNHOOKWIRE-007 | 明示envelope付きnative dispatchはadmitted receipt後だけ実行可能になる | 不正な明示envelopeでのCodex／Claude／team／pair／loop起動 | `tests/project-hook-authority-envelope.test.ts` およびCLI smoke |
+| U-CNHOOKWIRE-007b | 共通admissionが全native dispatch surfaceへ配線される | loop／pair／provider／teamのいずれかが共通admissionを迂回する | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-008 | current authority locatorだけをenvelopeから受け、identityは後段で採取する | envelopeのobserved object、request値の物理証拠化 | `tests/project-hook-authority-envelope.test.ts` |
 | U-CNHOOKWIRE-009 | standalone SessionStartはproject-hook dispatchを行わず、既存memory recall、session log、feedback DBを維持する | authority不在を理由にcoordination surfaceまで停止する、またはproviderを暗黙dispatchする | `tests/cli-surface.test.ts` |
+| U-CNHOOKWIRE-010 | producer未接続のpre-activationでは既存dispatch availabilityを維持する | envelope未指定だけで全worker経路を停止する | `tests/cli-surface.test.ts` |
 
 ## 検証方法
 

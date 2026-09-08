@@ -33,9 +33,9 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1614 project-hook authority consumer wiring"
 contract_preconditions: "Control Plane transport envelopeがexpected authorityを供給し、hostがexecution root・loader root・session project root・current authority root・HEAD・source materialを独立採取できる。"
-contract_postconditions: "SessionStart・doctor・status・native dispatchが一つのconsumer wiringから同一receipt/failure bytesを消費し、dispatchはadmitted receiptなしにproviderを起動しない。"
-contract_invariants: "request値をobservedへコピーしない。cwd・env・remote・default fileへfallbackしない。surface別のresolver・capture・serializationを再実行しない。standaloneはproject-hook authorityについてread-only unavailable/no-dispatchとし、既存coordination SessionStartを維持する。"
-contract_failures: "不正・stale・foreign envelopeは固定schema/failure bytesへ閉じ、dispatch・git・DB・GitHub side effectを0にする。envelope欠落はprovider dispatchを拒否するが、session event・memory recall・feedback DBを停止しない。"
+contract_postconditions: "SessionStart・doctor・statusが一つのconsumer wiringから同一receipt/failure bytesを消費する。native dispatchは明示envelopeが与えられた場合だけadmissionを強制し、不正envelopeではproviderを起動しない。producer未接続の既存dispatchは本sliceで停止しない。"
+contract_invariants: "request値をobservedへコピーしない。cwd・env・remote・default fileへfallbackしない。surface別のresolver・capture・serializationを再実行しない。standaloneの観測surfaceはread-only unavailableとし、既存coordination SessionStartとproducer接続前のdispatch availabilityを維持する。包括的なrequired activationはproducer E2E後の後続sliceだけが行う。"
+contract_failures: "明示された不正・stale・foreign envelopeは固定schema/failure bytesへ閉じ、dispatch・git・DB・GitHub side effectを0にする。envelope欠落はpre-activationとして既存dispatchを維持し、required activation済みとは主張しない。session event・memory recall・feedback DBを停止しない。"
 tdd_red_required: true
 red_test: "U-CNHOOKWIRE-001..002はconsumer wiringが存在しない状態でresolution/projectorの一回性とfailure dispatch拒否を検出する。"
 mutation_oracle_required: true
@@ -135,9 +135,9 @@ SessionStart / doctor / status / native dispatch
 
 - `helix session start` はhook input内のtransport envelopeだけを受ける。
 - `helix status` と `helix doctor` は明示されたenvelope fileだけを読む。単独実行時はread-only unavailableを表示し、authorityを推測しない。
-- `helix codex --execute`、`helix claude --execute`、および既存native dispatch系はadmitted receiptがない場合にfail-closeする。
+- `helix codex --execute`、`helix claude --execute`、および既存native dispatch系は、明示envelopeが与えられた場合にadmitted receiptがなければfail-closeする。envelope producerとoperator投影が未接続の間は、未指定を理由に既存dispatchを停止しない。
 - cwd、環境変数、remote、default file、primary shared treeからauthorityを補完しない。
 
 ## 完了境界
 
-本sliceはconsumer wiringとtargeted testまでを扱う。commit、push、PR、GitHub write、旧#1620 worktree操作、provider API変更、Control Plane transportの新しい正本追加は含めない。全体のruntime移行や旧engine退役は後続Issueで扱う。
+本sliceはconsumer wiringのpre-activationとtargeted testまでを扱う。required activationはControl Plane producer、operator projection、実consumer E2Eが揃う後続sliceへ分離する。commit、push、PR、GitHub write、旧#1620 worktree操作、provider API変更、旧engine退役は含めない。

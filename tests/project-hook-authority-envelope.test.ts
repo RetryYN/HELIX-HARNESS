@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { describe, expect, it, vi } from "vitest";
 import { canonicalJson, sha256Digest } from "../src/runtime/digest";
 import { projectHookAuthorityInputUnavailable } from "../src/runtime/project-hook-authority";
@@ -430,6 +431,13 @@ describe("project hook authority transport envelope", () => {
     expect(dispatch.bytes).toBe(wiring.projection.bytes_by_surface.dispatch);
     expect(resolveCalls).toBe(1);
     expect(projectCalls).toBe(1);
+  });
+
+  it("U-CNHOOKWIRE-007b: explicit admission helper remains wired to all native dispatch surfaces", () => {
+    const cli = readFileSync(new URL("../src/cli.ts", import.meta.url), "utf8");
+    const occurrences = cli.match(/admitExplicitProjectHookAuthority\(/gu) ?? [];
+    // definition + loop + pair-agent + provider adapter + team
+    expect(occurrences).toHaveLength(5);
   });
 
   it("U-CNHOOKWIRE-003: standaloneはread-only unavailableでdispatchを持たない", () => {

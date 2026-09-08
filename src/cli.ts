@@ -1255,7 +1255,8 @@ function readProjectHookAuthorityEnvelopeFile(
 ): unknown | null | undefined {
   if (!path) return null;
   try {
-    return JSON.parse(readFileSync(path, "utf8")) as unknown;
+    const parsed = JSON.parse(readFileSync(path, "utf8")) as unknown;
+    return parsed === null ? undefined : parsed;
   } catch {
     // 明示されたtransport fileのread/parse失敗はinvalid envelopeへ閉じる。cwd/env/default fileへ
     // fallbackしてauthorityを作らない。
@@ -1315,6 +1316,19 @@ function projectHookAuthoritySurfaceProjection(
 ) {
   if (input.kind === "transport") return projectHookAuthoritySurfaceBytes(input, surface);
   return input.bytes;
+}
+
+function admitExplicitProjectHookAuthority(envelopeFile: string | undefined) {
+  if (!envelopeFile) return { allowed: true, reason: "not_configured", bytes: null };
+  const authority = loadProjectHookAuthorityCliInput(envelopeFile);
+  if (authority.kind !== "transport") {
+    return {
+      allowed: false,
+      reason: "project_hook_authority_not_admitted",
+      bytes: authority.bytes,
+    };
+  }
+  return admitProjectHookAuthorityDispatch(authority.wiring);
 }
 
 function readStrictHookInput(): AgentGuardInput | null {
@@ -3345,7 +3359,7 @@ loop
   .option("--dry-run", "print worker/verifier wiring without dispatching adapters")
   .option(
     "--project-hook-authority-envelope-file <path>",
-    "Control Plane project-hook authority transport envelope JSON (required for dispatch)",
+    "optional pre-activation Control Plane project-hook authority transport envelope JSON",
   )
   .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .action(
@@ -3410,17 +3424,9 @@ loop
         return;
       }
 
-      const projectHookAuthority = loadProjectHookAuthorityCliInput(
+      const dispatchAdmission = admitExplicitProjectHookAuthority(
         opts.projectHookAuthorityEnvelopeFile,
       );
-      if (projectHookAuthority.kind !== "transport") {
-        process.stderr.write(
-          "loop: project-hook authority transport envelope required; dispatch unavailable\n",
-        );
-        process.exitCode = 1;
-        return;
-      }
-      const dispatchAdmission = admitProjectHookAuthorityDispatch(projectHookAuthority.wiring);
       if (!dispatchAdmission.allowed) {
         process.stderr.write(
           `loop: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
@@ -3646,7 +3652,7 @@ pairAgent
   .option("--execute", "dispatch provider adapters; omitted means dry-run only")
   .option(
     "--project-hook-authority-envelope-file <path>",
-    "Control Plane project-hook authority transport envelope JSON (required for --execute)",
+    "optional pre-activation Control Plane project-hook authority transport envelope JSON",
   )
   .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
@@ -3720,17 +3726,9 @@ pairAgent
       }
       let projectHookAuthorityDispatchBytes: string | null = null;
       if (opts.execute) {
-        const projectHookAuthority = loadProjectHookAuthorityCliInput(
+        const dispatchAdmission = admitExplicitProjectHookAuthority(
           opts.projectHookAuthorityEnvelopeFile,
         );
-        if (projectHookAuthority.kind !== "transport") {
-          process.stderr.write(
-            "pair-agent: project-hook authority transport envelope required; dispatch unavailable\n",
-          );
-          process.exitCode = 1;
-          return;
-        }
-        const dispatchAdmission = admitProjectHookAuthorityDispatch(projectHookAuthority.wiring);
         if (!dispatchAdmission.allowed) {
           process.stderr.write(
             `pair-agent: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
@@ -12436,7 +12434,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
     .option("--execute", "execute provider CLI instead of dry-run")
     .option(
       "--project-hook-authority-envelope-file <path>",
-      "Control Plane project-hook authority transport envelope JSON (required for --execute)",
+      "optional pre-activation Control Plane project-hook authority transport envelope JSON",
     )
     .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
     .option("--json", "JSON output")
@@ -12454,6 +12452,16 @@ function runtimeCommand(provider: AdapterProvider): Command {
         const task = resolveTaskText(opts);
         if (!task) {
           process.stderr.write("adapter requires exactly one of --task or --task-file\n");
+          process.exitCode = 1;
+          return;
+        }
+        const dispatchAdmission = opts.execute
+          ? admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile)
+          : null;
+        if (dispatchAdmission && !dispatchAdmission.allowed) {
+          process.stderr.write(
+            `${provider}: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
+          );
           process.exitCode = 1;
           return;
         }
@@ -12504,27 +12512,11 @@ function runtimeCommand(provider: AdapterProvider): Command {
           process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
           return;
         }
-        const projectHookAuthority = loadProjectHookAuthorityCliInput(
-          opts.projectHookAuthorityEnvelopeFile,
-        );
-        if (projectHookAuthority.kind !== "transport") {
+        if (dispatchAdmission?.bytes) {
           process.stderr.write(
-            `${provider}: project-hook authority transport envelope required; dispatch unavailable\n`,
+            `project-hook-authority: surface=dispatch bytes=${dispatchAdmission.bytes}\n`,
           );
-          process.exitCode = 1;
-          return;
         }
-        const dispatchAdmission = admitProjectHookAuthorityDispatch(projectHookAuthority.wiring);
-        if (!dispatchAdmission.allowed) {
-          process.stderr.write(
-            `${provider}: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
-          );
-          process.exitCode = 1;
-          return;
-        }
-        process.stderr.write(
-          `project-hook-authority: surface=session_start bytes=${consumeProjectHookAuthoritySurface(projectHookAuthority.wiring, "session_start")}\n`,
-        );
         const jsonOut = Boolean(opts.json);
         const sessionId = `${provider}-${Date.now()}`;
         const repoRoot = process.cwd();
@@ -12623,7 +12615,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 executed: true,
                 project_hook_authority: {
                   surface: "dispatch",
-                  bytes: dispatchAdmission.bytes,
+                  bytes: dispatchAdmission?.bytes ?? null,
                 },
                 exit_code: child.status ?? null,
                 signal: child.signal ?? null,
@@ -13009,7 +13001,7 @@ team
   .option("--execute", "execute provider adapters; default is dry-run planning only")
   .option(
     "--project-hook-authority-envelope-file <path>",
-    "Control Plane project-hook authority transport envelope JSON (required for --execute)",
+    "optional pre-activation Control Plane project-hook authority transport envelope JSON",
   )
   .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .option(
@@ -13105,17 +13097,9 @@ team
           process.exitCode = result.ok ? 0 : 1;
           return;
         }
-        const projectHookAuthority = loadProjectHookAuthorityCliInput(
+        const dispatchAdmission = admitExplicitProjectHookAuthority(
           opts.projectHookAuthorityEnvelopeFile,
         );
-        if (projectHookAuthority.kind !== "transport") {
-          process.stderr.write(
-            "team: project-hook authority transport envelope required; dispatch unavailable\n",
-          );
-          process.exitCode = 1;
-          return;
-        }
-        const dispatchAdmission = admitProjectHookAuthorityDispatch(projectHookAuthority.wiring);
         if (!dispatchAdmission.allowed) {
           process.stderr.write(
             `team: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,

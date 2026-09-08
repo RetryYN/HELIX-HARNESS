@@ -8160,6 +8160,57 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
+  it("U-CNHOOKWIRE-007/010: pre-activation dispatches without an envelope but rejects an explicit invalid envelope", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-project-hook-preactivation-"));
+    try {
+      const contextPath = installTestWorkerContextBoundary(root);
+      const invalidAuthorityPath = join(root, "invalid-project-hook-authority.json");
+      writeFileSync(invalidAuthorityPath, "null\n");
+      const binDir = join(root, "bin");
+      mkdirSync(binDir);
+      const fakeCodex = writeFakeProvider(binDir, "codex");
+      const currentPath = process.env.PATH ?? process.env.Path ?? "";
+      const env = {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${currentPath}`,
+        Path: `${binDir}${process.platform === "win32" ? ";" : ":"}${currentPath}`,
+        HELIX_CODEX_BIN: fakeCodex,
+      };
+      const baseArgs = [
+        "codex",
+        "--role",
+        "se",
+        "--task",
+        "pre-activation probe",
+        "--execute",
+        "--json",
+        "--worker-context-file",
+        contextPath,
+      ];
+
+      expect(existsSync(join(binDir, "codex-env.txt"))).toBe(false);
+      const rejected = runCliIn(
+        root,
+        [...baseArgs, "--project-hook-authority-envelope-file", invalidAuthorityPath],
+        env,
+      );
+      expect(rejected.status).toBe(1);
+      expect(rejected.stderr).toContain("project-hook authority dispatch blocked");
+      expect(existsSync(join(binDir, "codex-env.txt"))).toBe(false);
+
+      const preActivation = runCliIn(root, baseArgs, env);
+      expect(preActivation.status, preActivation.stderr || preActivation.stdout).toBe(0);
+      expect(JSON.parse(preActivation.stdout)).toMatchObject({
+        executed: true,
+        terminal_status: "success",
+      });
+      expect(existsSync(join(binDir, "codex-env.txt"))).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 20_000);
+
   it("U-WBL-016: timeout後にexit 0を返すdirect CLIをfailed/124へ固定しconsult receiptを作らない", () => {
     // PLAN-RECOVERY-1616-team-run-budget-lifecycle
     if (process.platform === "win32") return;
