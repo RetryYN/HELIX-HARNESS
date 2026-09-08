@@ -57,7 +57,10 @@ generates:
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/runtime/universal-improvement-source-registry.ts, artifact_type: source_module }
-  - { artifact_path: tests/universal-improvement-source-registry.test.ts, artifact_type: unit_test }
+  - { artifact_path: tests/universal-improvement-source-registry.test.ts, artifact_type: test_code }
+agent_slots:
+  - { role: aim, slot_label: "Cursor Cloud — dead path除去と局所検証" }
+  - { role: qa, slot_label: "Codex — clean consumer検証とHELIX収束" }
 ---
 
 # PLAN-L7-1307: 到達不能なtokenizer例外の除去
