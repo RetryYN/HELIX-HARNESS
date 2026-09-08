@@ -21,7 +21,7 @@ ddd_modeling_decision: policy
 contract_preconditions: "依存導入済みpreflightと既存lintコマンド、全shardのneedsを照合する"
 contract_postconditions: "既存lintをpreflightで一回実行し、不備をshard起動前に拒否する"
 contract_invariants: "対象src/tests、検査強度、required aggregate、receipt、DB、doctorを維持する"
-contract_failures: "lint削除、遅延、重複、別command、条件付きskip、continue-on-errorを拒否する"
+contract_failures: "lint削除、finalizeへの逆戻し、shard後への移動、重複、別command、条件付きskip、continue-on-errorを拒否する"
 tdd_red_required: true
 complexity_effect: net_neutral
 complexity_justification: "既存検査の配置変更と退行oracleに限定し、別検査機構を作らない"
@@ -76,24 +76,27 @@ continue-on-error・条件付きskipを追加せず、shardはpreflight成功後
 
 ## 受入と反例
 
-- preflightの依存導入後にlintが一回だけ存在し、finalizeには存在しない。
-- lintの削除・finalizeへの逆戻し・条件付き化・コマンド変更・fail-openを個別に検出する。
+- preflightの依存導入直後にlintが一回だけ存在し、shard起動stepより前に置かれる。
+- finalizeと各shard jobに`npm run lint`が存在しない。
+- lintをfinalizeへ戻す、preflightから除く、shard後へ移すmutationを個別に検出する。
+- 重複・条件付き化・コマンド変更・fail-openも個別に検出する。
 - 実Biomeが整形不備fixtureを拒否し、正しいfixtureを受理する。
-- 配置テスト、局所テスト、全CI、独立reviewを通す。
+- 配置の局所テストとdiff-checkだけを完了根拠にする。全CI・独立reviewは自己申告しない。
 - 過去runの推定削減時間を今回の実測効果として報告しない。
 
 ## 工程表
 
-1. R0: Issueと現行workflow/testを照合（確認済み）。
+1. R0: Issueと現行workflow/testを照合（確認済み）。配置移動はPR #1648でmainへ入済み。
 2. R1/R2: 配置oracleと反例を更新し、旧配置でRedを採取（exit 1、biome_preflight_invalid）。
-3. R3: 同じlintをpreflightへ移動。workflowテスト63件、型検査は成功。実Biomeで不正整形fixtureをexit 1、整形後をexit 0として確認し、一時fixtureを撤去した。
-4. R4: 独立review・CI・main read-after・効果観測（未実施）。
+3. R3: 同じlintをpreflightへ移動済み。本sliceはU-BIOMEFAST-001へfinalize逆戻し・preflight除去・shard後移動の明示mutationを追加した。
+   Node v24.15.0。`npx vitest run tests/harness-check-workflow.test.ts` は 64 passed / exit 0。
+   `npm run lint` は 27 warnings / 1 info / exit 0。整形不備fixtureは exit 1、撤去後 exit 0。
+   `git diff --check` は exit 0。対象PLANの `plan lint` と `--gate governance` は exit 0。
+   全CI・独立reviewは未実施であり、自己申告しない。
+4. R4: 独立review・全CI・効果観測（未実施。本sliceでは自己申告しない）。
 
 ## 完了境界
 
-局所実装・配置反例検査まで実施。全CI・独立review・main到達・削減効果の実測は未完了。
-DB再構築はexit 0、81518行のprojectionを確認。新規draft PLANを含めsnapshotは93件から94件へ機械更新した。
-CI attempt 2のgovernance失敗を受け、横断Recoveryのlayerと必須drive/role宣言を既存schemaへ整合した。
-再検証ではgovernance 1208 PLAN・post-merge-statusが成功、frontmatter/workflow 91 testsが成功。
-この再検証時のDB projectionは81488行、outstanding guardはviolations空。CI再実行・独立検収は別途必要である。
+workflow配置そのものはmain既存。本sliceは配置契約のmutation閉鎖を明示化し、targeted testとdiff-checkだけを記録する。
+全CI・独立review・削減効果の実測は未完了であり、完了主張しない。
 撤回は正規PRで元の順序へ戻せるが、今回追加する配置契約との整合を再検収する。

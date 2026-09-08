@@ -197,11 +197,18 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     findings.push("finalize_admission_invalid");
   }
   const finalizeSteps = finalize?.steps ?? [];
-  // PLAN-RECOVERY-1640: 同じlintを依存導入直後に一回だけ実行する。
+  // PLAN-RECOVERY-1640: 同じlintを依存導入直後・shard起動前に一回だけ実行する。
+  const stepRunsBiomeLint = (step: Step): boolean =>
+    step.name === "lint (biome)" ||
+    (typeof step.run === "string" && step.run.includes("npm run lint"));
   const preflightSteps = preflight?.steps ?? [];
   const lintSteps = preflightSteps.filter((step) => step.name === "lint (biome)");
   const lintIndex = preflightSteps.findIndex((step) => step.name === "lint (biome)");
   const installIndex = preflightSteps.findIndex((step) => step.name === "install deps (frozen)");
+  const shardPlanIndex = preflightSteps.findIndex(
+    (step) => step.name === "upload full regression shard plan",
+  );
+  const shardHasLint = shards.some((job) => (job?.steps ?? []).some(stepRunsBiomeLint));
   if (
     lintSteps.length !== 1 ||
     lintSteps[0]?.run !== "npm run lint" ||
@@ -209,11 +216,10 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     lintSteps[0]?.["continue-on-error"] !== undefined ||
     installIndex < 0 ||
     lintIndex !== installIndex + 1 ||
-    finalizeSteps.some(
-      (step) =>
-        step.name === "lint (biome)" ||
-        (typeof step.run === "string" && step.run.includes("npm run lint")),
-    )
+    shardPlanIndex < 0 ||
+    lintIndex >= shardPlanIndex ||
+    shardHasLint ||
+    finalizeSteps.some(stepRunsBiomeLint)
   ) {
     findings.push("biome_preflight_invalid");
   }
@@ -1162,13 +1168,35 @@ describe("source harness-check workflow", () => {
     expect(fullRegressionShardJobViolations(raw)).toEqual([]);
     const lint = "      - name: lint (biome)\n        run: npm run lint\n";
     expect(raw.includes(lint)).toBe(true);
-    const removed = raw.replace(lint, "");
-    const delayed = mutateWorkflowJob(removed, "full-regression-finalize", (job) =>
-      job.replace("    steps:\n", `    steps:\n${lint}`),
+    const removedFromPreflight = raw.replace(lint, "");
+    const restoredToFinalize = mutateWorkflowJob(
+      removedFromPreflight,
+      "full-regression-finalize",
+      (job) => job.replace("    steps:\n", `    steps:\n${lint}`),
     );
+    const movedAfterShards = mutateWorkflowJob(
+      removedFromPreflight,
+      "full-regression-finalize",
+      (job) =>
+        job.replace(
+          "      - name: validate exact shard receipt set\n",
+          `${lint}      - name: validate exact shard receipt set\n`,
+        ),
+    );
+    const movedIntoShard = mutateWorkflowJob(
+      removedFromPreflight,
+      "full-regression-bulk-1",
+      (job) => job.replace("    steps:\n", `    steps:\n${lint}`),
+    );
+    expect(fullRegressionShardJobViolations(restoredToFinalize)).toContain(
+      "biome_preflight_invalid",
+    );
+    expect(fullRegressionShardJobViolations(removedFromPreflight)).toContain(
+      "biome_preflight_invalid",
+    );
+    expect(fullRegressionShardJobViolations(movedAfterShards)).toContain("biome_preflight_invalid");
+    expect(fullRegressionShardJobViolations(movedIntoShard)).toContain("biome_preflight_invalid");
     for (const mutant of [
-      removed,
-      delayed,
       raw.replace(lint, lint + lint),
       raw.replace(lint, lint.replace("npm run lint", "true")),
       raw.replace(lint, `${lint}        if: false\n`),
