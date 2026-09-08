@@ -4,8 +4,8 @@ title: "変更pathからのpin追従先事前導出設計freeze"
 kind: add-design
 layer: L6
 drive: be
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 owner: Codex / TL
 created: 2026-09-09
 updated: 2026-09-09
@@ -55,7 +55,19 @@ agent_slots:
   - { role: se, slot_label: "SE — pin adapterとread-only CLI" }
   - { role: qa, slot_label: "QA — stale／semantic／unknown反例" }
   - { role: aim, slot_label: "AIM — 自動refresh禁止とauthority境界を監査" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Opus 5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T21:54:30Z"
+    tests_green_at: "2026-09-08T21:50:31Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 77375ef5-9b74-425a-91ee-45ebc9fea1d9
+    reviewed_head_sha: cc751fbe644eaa6ceae7a3ea77c78546dfb61d72
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1680#issuecomment-5592383326
+    ci_evidence_generation: "run:34280338030:attempt:2:success"
+    scope: "前reviewのL7物理pathと英語見出しblockerが解消したこと、L6 pair双方向参照、vmodel 400 pair・孤児0、design-language英語prose 0、exact HEAD CI 12/12成功、DB replay収束を独立reviewerが実測した。runtime実装は後続#1679の責務として含めない。"
 ---
 
 # 変更pathからのpin追従先事前導出
@@ -68,7 +80,7 @@ runtime source、実test、CLI配線はこのPLANでは所有せず、後続impl
 
 ## 未完了
 
-- L6/L7 design pairの独立reviewとconfirmed化
+- L6/L7 design pairの独立reviewとconfirmed化（完了）
 - 後続implementation PLANによるruntime source、実test、CLI配線
 - 本sliceの実測で未対応と確認したdesign catalog、V-pair、digest inventoryの逆引きadapter
 - JSON generated surface、literal digest、集合／cross-table pin adapter
