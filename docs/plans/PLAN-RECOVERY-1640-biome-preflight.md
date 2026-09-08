@@ -71,6 +71,7 @@ review_evidence:
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: ebf40921-f0c5-4664-874d-367388e19333
     reviewed_head_sha: 3047406162da8b4204127a54493761c131ee9d61
+    ci_evidence_generation: "run:34248762444:attempt:1:success"
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5588529124"
     scope: "Cursor Grok 4.6の初期成果をCodex作成レーンが修復したPR #1676のexact HEADについて、terminal CI run 34248762444 attempt 1の9 job全件success、HEAD一致、独立review blocker 0をread-afterした。mutation節の独立性に関する非blocker F1はIssue #1671で追跡し、本sliceの配置退行防止を弱めない。"
     green_commands:
