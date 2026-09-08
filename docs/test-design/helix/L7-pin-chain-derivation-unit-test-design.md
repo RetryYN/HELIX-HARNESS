@@ -1,5 +1,5 @@
 ---
-title: "Pin Chain Derivation L8単体テスト設計"
+title: "Pin Chain Derivation L7単体テスト設計"
 layer: L7
 artifact_type: test_design
 sub_doc: unit-test-design

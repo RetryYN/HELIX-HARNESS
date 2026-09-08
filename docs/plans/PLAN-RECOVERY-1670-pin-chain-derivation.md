@@ -63,7 +63,9 @@ modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: governance_record }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_projection }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_record }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — pin adapterとread-only CLI" }
   - { role: qa, slot_label: "QA — stale／semantic／unknown反例" }
@@ -80,6 +82,7 @@ feedback test-owner manifestとreviewed-safe semantic pinから開始し、adapt
 ## 未完了
 
 - current main同期後のrepo-wide guard、fresh CI、独立review
+- 本sliceの実測で未対応と確認したdesign catalog、V-pair、digest inventoryの逆引きadapter
 - JSON generated surface、literal digest、集合／cross-table pin adapter
 - Bugbot Aへの許可済みdeterministic refresh接続（別責務）
 ---
