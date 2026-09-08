@@ -355,11 +355,43 @@ export interface ClaudePrMergeState {
   requiredChecksGreen: boolean;
   receiptCiMatchesHead: boolean;
   receiptCiMatchesGeneration: boolean;
+  /** GitHub上でread-afterした同一PRのsealed receipt集合。未取得はfail-closeする。 */
+  reviewReceiptHistory?: readonly ClaudePrReviewReceipt[];
 }
 
 export interface ClaudePrMergeDecision {
   ok: boolean;
   reasons: string[];
+}
+
+export function unresolvedClaudePrBlockReceipts(
+  receipts: readonly ClaudePrReviewReceipt[],
+  identity: { repository: string; prNumber: number; headSha: string },
+): ClaudePrReviewReceipt[] {
+  const relevant = receipts
+    .filter(
+      (candidate) =>
+        candidate.repository === identity.repository &&
+        candidate.prNumber === identity.prNumber &&
+        candidate.headSha === identity.headSha,
+    )
+    .sort((left, right) => Date.parse(left.reviewedAt) - Date.parse(right.reviewedAt));
+  const unresolved = new Map<string, ClaudePrReviewReceipt>();
+  for (const candidate of relevant) {
+    if (candidate.verdict === "block") {
+      unresolved.set(candidate.receiptId, candidate);
+      continue;
+    }
+    for (const [receiptId, blocked] of unresolved) {
+      if (
+        candidate.reviewerSessionId === blocked.reviewerSessionId &&
+        Date.parse(candidate.reviewedAt) > Date.parse(blocked.reviewedAt)
+      ) {
+        unresolved.delete(receiptId);
+      }
+    }
+  }
+  return [...unresolved.values()];
 }
 
 export interface RequiredCheckEntry {
@@ -1405,6 +1437,11 @@ export function evaluateClaudePrMerge(
   if (!state.receiptCiMatchesHead) reasons.push("receipt_ci_head_mismatch");
   if (!state.receiptCiMatchesGeneration) {
     reasons.push("receipt_ci_generation_mismatch");
+  }
+  if (!Array.isArray(state.reviewReceiptHistory)) {
+    reasons.push("review_receipt_history_unavailable");
+  } else if (unresolvedClaudePrBlockReceipts(state.reviewReceiptHistory, state).length > 0) {
+    reasons.push("outstanding_request_changes");
   }
   const pairFailure = reviewPairFailure(receipt);
   if (pairFailure) reasons.push(pairFailure);

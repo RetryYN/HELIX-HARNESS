@@ -9,6 +9,7 @@ import {
   INDEPENDENT_REVIEW_RUNTIMES,
   parseClaudeIndependentPrReviewComment,
   parseClaudePrCiEvidenceGeneration,
+  unresolvedClaudePrBlockReceipts,
   validateClaudePrReviewReceipt,
 } from "./claude-pr-convergence";
 import { canonicalJson, sha256Digest } from "./digest";
@@ -518,9 +519,6 @@ function reviewCandidateFailure(
   if (fields.repository !== input.repository) return "review_receipt_repository_mismatch";
   if (fields.prNumber !== input.pr_number) return "review_receipt_pr_mismatch";
   if (fields.headSha !== input.candidate_head) return "review_receipt_head_mismatch";
-  if (fields.verdict !== "approve" || fields.blockerCount !== 0) {
-    return "review_receipt_verdict_invalid";
-  }
   if (fields.ciConclusion !== "success" || !fields.dbConverged) {
     return "review_receipt_ci_claim_invalid";
   }
@@ -574,6 +572,9 @@ function reviewCandidateFailure(
   ) {
     return "review_receipt_time_order_invalid";
   }
+  if (fields.verdict !== "approve" || fields.blockerCount !== 0) {
+    return "review_receipt_verdict_invalid";
+  }
   return null;
 }
 
@@ -622,6 +623,34 @@ export function evaluateGitHubCrossReviewAdmission(
     failure: reviewCandidateFailure(input, candidate),
   }));
   const valid = evaluated.filter((entry) => entry.failure === null).map((entry) => entry.candidate);
+  const diagnostics = evaluated.flatMap(({ candidate, failure }) =>
+    failure === null ? [] : [{ comment_url: candidate.comment.html_url, reason: failure }],
+  );
+  const claudeReceipts = evaluated.flatMap(({ candidate, failure }) => {
+    const { receipt } = candidate;
+    return "schemaVersion" in receipt &&
+      receipt.schemaVersion === CLAUDE_PR_REVIEW_RECEIPT_SCHEMA &&
+      // blockは成功receiptの成立条件を満たさなくても未解消として保持する。
+      // CI red／DB未収束そのものが変更要求の根拠になり得る。
+      (failure === null || receipt.verdict === "block")
+      ? [receipt]
+      : [];
+  });
+  if (
+    unresolvedClaudePrBlockReceipts(claudeReceipts, {
+      repository: input.repository,
+      prNumber: input.pr_number,
+      headSha: input.candidate_head,
+    }).length > 0
+  ) {
+    return {
+      ok: false,
+      deferred: false,
+      receipt_digest: null,
+      reasons: ["outstanding_request_changes"],
+      candidate_diagnostics: [...malformedDiagnostics, ...diagnostics],
+    };
+  }
   // mixed authorship（両runtimeの実装commitが同居するHybrid stacking branch）は、
   // 各runtimeの実装commitを相手がreviewしたreceiptが両方揃って初めて独立review済みになる。
   // 単一runtime-authored PRの複数receiptは従来どおりconflictとする（Issue #539）。
@@ -654,15 +683,6 @@ export function evaluateGitHubCrossReviewAdmission(
     };
   }
   if (valid.length !== 1) {
-    const diagnostics = evaluated
-      .filter(
-        (entry): entry is typeof entry & { failure: ReviewAdmissionCandidateFailure } =>
-          entry.failure !== null,
-      )
-      .map(({ candidate, failure }) => ({
-        comment_url: candidate.comment.html_url,
-        reason: failure,
-      }));
     return {
       ok: false,
       deferred: false,
