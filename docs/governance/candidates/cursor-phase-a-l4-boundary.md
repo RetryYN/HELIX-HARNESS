@@ -44,9 +44,9 @@ provider runの終端、reviewのaccepted、branch所有の安全返却は別事
 | context／3L-R-12 | `src/runtime/worker-context-packet.ts` の `WorkerContextPacketV1`、`attestWorkerContextAuthority`、`compileWorkerContextPacket`、`verifyWorkerContextEnvelope`。`tests/worker-context-packet.test.ts` | packetのexact fieldを勝手に増やさず、branch／action-bound assignment／金額／deadlineを結合する外側envelopeの契約は未実装。authority allowlistはthree-lane IRを現状では束縛しない。IT-CPA-001/002 |
 | admission／3L-R-04/13 | `src/runtime/worker-descriptor-admission.ts` の `WorkerDescriptorV1`、`evaluateWorkerDescriptorAdmission`、`isWorkerAdmissionCurrent`。`tests/worker-descriptor-admission.test.ts` | Cursorの登録・現在の利用資格・requested/effective modelの外部provenanceは未確認。文字列provider名だけでadmitしない。IT-CPA-002/007 |
 | assignment入力／3L-R-05/12/24 | `src/runtime/project-hook-assignment-provider.ts` の `ProjectHookAssignmentSnapshot`、`createAssignmentProjectHookAuthorityProvider`。`tests/project-hook-assignment-provider.test.ts` | snapshot readerからの変換だけで発行器ではない。branchの事前発行と外部owner再取得は不足。hookのroot情報をremote workerへ丸ごと送らない。IT-CPA-003 |
-| atomic ownership／3L-R-23 | `src/runtime/work-graph-receipt-acceptance.ts` の `RequiredCellBindingV1`、`WorkGraphLeaseV1`、`acquireWorkGraphLease`、`releaseWorkGraphLease`、`evaluateDelegationRequestOrdering`。`tests/work-graph-receipt-acceptance.test.ts` | pureな値比較・生成はatomic lockではない。共有branch単位の線形化点、全writerを拘束する実効機構、再起動後の所有再照合、旧workerのwrite不能証拠が不足。IT-CPA-004/005/010 |
+| atomic ownership／3L-R-23 | `src/runtime/work-graph-receipt-acceptance.ts` の `RequiredCellBindingV1`、`WorkGraphLeaseV1`、`acquireWorkGraphLease`、`releaseWorkGraphLease`、`evaluateDelegationRequestOrdering`。`tests/work-graph-receipt-acceptance.test.ts` | pureな値比較・生成はatomic lockではない。共有branch単位の線形化点、全writerを拘束する実効機構、再起動後の所有再照合、旧workerのwrite不能証拠が不足。#860がPhase A最小primitiveを所有し、#1293がCursor実consumer接続とE2Eを所有する。IT-CPA-004/005/010 |
 | launch／3L-R-13/24 | `src/runtime/adapter.ts` の `admitWrapperLaunch`、`buildContextBoundWrapperAdapterPlan`。`.cursor/environment.json`、`.cursor/Dockerfile`、`.cursor/install.sh`。`tests/worker-wrapper-admission.test.ts`、`tests/cursor-cloud-environment.test.ts` | `AdapterProvider` はclaude/codex限定。Cursor remote launch、応答消失時のrun照合・重複起動防止は未実装。環境Build成功はcloud policy強制の証拠ではない。IT-CPA-006/007 |
-| budget + deadline／3L-R-07/08/13 | `WorkerContextBoundary.budget`（`src/runtime/worker-context-packet.ts`）、`QuotaSnapshotV1` と `evaluateDispatchAdmission`（`src/runtime/slot-scheduler-quota-handover.ts`）。`tests/slot-scheduler-quota-handover.test.ts` | time/token/quotaをcurrency capへ読み替えない。pool・cycle・通貨・金額単位・確保済み費用・reserve・鮮度の外部証拠、実効max costと絶対deadlineの強制機構は不足。IT-CPA-008/009 |
+| budget + deadline／3L-R-07/08/13 | `WorkerContextBoundary.budget`（`src/runtime/worker-context-packet.ts`）、`QuotaSnapshotV1` と `evaluateDispatchAdmission`（`src/runtime/slot-scheduler-quota-handover.ts`）。`tests/slot-scheduler-quota-handover.test.ts` | time/token/quotaを金額capへ読み替えない。pool・cycle・committed・reserve・鮮度の外部証拠、実効max costと絶対deadlineの強制機構は不足。通貨・金額単位のexact equalityは現行3L-R-07の明文ではなく、L3 amendment候補として別に正本化するまでruntime reject authorityへ使わない。IT-CPA-008/009 |
 | stop／3L-R-13/23/25 | `ProjectHookAssignmentSnapshot.lifecycle_policy`、`releaseWorkGraphLease`、`src/runtime/worker-lifecycle-receipt.ts` の `WorkerLifecycleReceiptCapability` | ローカルtimeoutやstop応答をremote停止／write不能と見なさない。取消要求、終端確認、権限の失効、遅延write拒否の実証、取消/期限切れの安全返却経路は不足。IT-CPA-009/010/014 |
 | remote output collection／3L-R-14 | `src/runtime/worker-output-admission.ts` の `admitWorkerOutput`、`WorkerValidatedOutputCapability`。`src/runtime/worker-isolation-broker.ts` の `WorkerIsolationRunReceiptCapability`、`resolveWorkerIsolationRunReceipt`。`tests/worker-output-admission.test.ts`、`tests/worker-isolation-broker.test.ts` | 既知output schemaはproposal/blind評価のみ。remote receipt用schema・真正性検証・外部read-after adapterは不足。local brokerのWeakMap sealをremote JSONへ付与しない。既存diff_digestはpath一覧でありdiff bytesのdigestではない。IT-CPA-011/012 |
 | independent review返却／3L-R-06 | `src/runtime/worker-review-receipt.ts` の `WorkerIndependentReviewCapability`、`admitWorkerIndependentReview`。`src/runtime/worker-lifecycle-receipt.ts` の `createWorkerLifecycleReceipt`。`tests/worker-review-receipt.test.ts`、`tests/worker-isolation-broker.test.ts` | 現行review admissionもlocal broker由来originを要求する。remote originからの正規検証接続は不足し、castで迂回しない。実行receiptと独立review後terminal receiptを分ける。IT-CPA-013 |
@@ -68,6 +68,10 @@ provider runの終端、reviewのaccepted、branch所有の安全返却は別事
 - ownershipは同一repository＋branchを全processで排他的に確保する。二重予約を起動前に拒否し、
   有限資源の確保にも同じ競合規律を適用する。独立branch間の正当な並列性は維持する。
   `WorkGraphLeaseV1.fence_token` はnumber、hook snapshotのfenceはstringであり、暗黙castをしない。
+- Phase A ownershipは取得時刻、有限expiry、owner/action identity、更新世代を持つ。healthy runは
+  expiry前に同じowner/actionだけがbounded renewalでき、renewal失敗後は新規writeを許可しない。
+  expiry、process消滅、古いheartbeatのいずれか一つだけで別writerがstealしてはならない。
+  旧token／旧世代からのwriteは、返却後・renewal後・control再起動後のすべてで拒否する。
 - launch直前に外部owner／assignment／base HEADを再取得し、同じ排他所有・資源確保がcurrentか再検証する。
   timeoutで起動結果が不明なら、同actionのrunを照合するまで再起動しない。
 - 実行中のmax cost／deadline／scope強制はprovider側または同等の実効境界を要する。
@@ -93,7 +97,9 @@ provider runの終端、reviewのaccepted、branch所有の安全返却は別事
 | reviewでchanges requested | 元assignment・同branchへ限定修正を返す。reviewerはwriteしない | 新HEADで旧reviewをstale化。予算/TTL/所有を再検証し、期限を暗黙延長しない。scope/設計変更は既存re-entryへ |
 | 完了／取消／期限切れ後の返却 | provider終端だけでacceptedにしない | writer不能と費用照合、安全な予約解消を確認。acceptedには別途独立reviewが必要 |
 
-Phase B移行の新lease/fence実装は#860が所有する。Phase Aの旧runが未終端・write可能なら移行も再配車も拒否するが、
+#860はPhase Aの原子的ownership取得・renewal・返却・stale token拒否primitiveと、Phase Bの汎用lease/fenceを所有する。
+#1293はそれをCursor Cloud adapterへ接続し、最初の実案件証拠と外部read-after E2Eを所有する。
+Phase Aの旧runが未終端・write可能なら移行も再配車も拒否するが、
 #860全体の完了をPhase A設計候補作成の前提にしない。
 
 ## 5. 未知境界と次層への引渡し

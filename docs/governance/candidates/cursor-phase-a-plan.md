@@ -37,6 +37,8 @@ generates:
   - { artifact_path: docs/governance/candidates/cursor-phase-a-plan.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/cursor-phase-a-l4-boundary.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/candidates/cursor-phase-a-l9-integration-oracles.md, artifact_type: test_design }
+modifies:
+  - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
 ---
 
 # 未採番PLAN候補（#1293、noncanonical draft）
@@ -46,6 +48,15 @@ generates:
 本書は登録済みPLANではない。候補配置は既存の `docs/governance/candidates/` に合わせ、
 `docs/plans/`、design catalog、Requirement IR、DBへ登録しない。`plan_id: null` は欠落を可視化する値であり、
 正式schemaを拡張するものではない。責務名も本候補の整理用で、registryへの追加ではない。
+
+本候補の正本昇格時は、次を一つのpromotion checklistとして実施する。候補文書を残したまま
+canonical文書を複製して二重authorityにしない。
+
+1. 正規PLAN IDとcanonical L4/L9 pathを予約する。
+2. `docs/design/design-catalog.yaml`へcanonical L4/L9だけを登録する。
+3. PLANの`generates`を候補3 pathから、正規PLAN・canonical L4・canonical L9・catalog追従pathへ置換する。
+4. candidate READMEの状態をretired/supersededへ更新し、この3候補を削除する。
+5. main read-afterでcatalog、pair、PLAN、IRの単一authorityを確認する。
 
 先行read-only棚卸し（2026-09-08、出力digest
 `sha256:126ac23cb57704977fabb0dd180238045306f9fc90d125742c7f537e65c4b123`）を再利用する。
@@ -81,7 +92,8 @@ GitHub／assignment接続を所有し、自動採番を非対象としている�
 ## 最小成果物と除外
 
 [L4境界](cursor-phase-a-l4-boundary.md)と[L9統合oracle](cursor-phase-a-l9-integration-oracles.md)の1対だけを用意する。
-3L-FR-005の「統制されたassignmentから検収可能な実行証拠を返す」境界を主対象とし、
+3L-FR-005「HELIX policyの強制」と、その3L-R-12〜14／23〜25が定める
+policy束縛・cloud強制・外部read-after・single writer・起動前identity・段階移行を主対象とし、
 3L-FR-002のscope／authority／review返却、3L-FR-003の予算入力を接続条件として参照する。
 8 Feature全体、#860全体、monthly budget engine、Bench、7日／cycle実証を所有しない。
 #1643／#1634／#1650のCI・独立検収・統合、親の正本移管検証も対象外とする。
@@ -102,6 +114,8 @@ no-code-firstはreuseで止める。対案のCursor専用queue／DB／承認engi
 構造greenをPLAN lint、pair-freeze、runtime oracle、実cloud成功、独立検収のgreenへ昇格しない。
 実行するL9 oracleはこの時点で0件である。
 
-#860はPhase B後継lease/fenceのownerとして維持する。Phase Aでも原子的排他・遅延write不能・
+#860はAssignment／lease authorityとPhase Aに必要な最小の原子的排他primitiveを所有する。
+#1293はそのprimitiveをCursor Cloudの実consumerへ接続し、最初の限定実案件でE2E実証する。
+Phase Bの汎用lease/fenceも#860のowner範囲として維持する。Phase Aでも原子的排他・遅延write不能・
 予算/TTL・前後照合が必須であり、それらが不足する対象だけを起動不可とする。
 課金・credential利用・外部API前提の確定は既存の人間確認境界を維持し、本候補は実行許可を発行しない。
