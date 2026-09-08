@@ -91,7 +91,7 @@ function classifiedSignalsForIdentity(
       if (trimmed.length > 0) signals.add(trimmed);
     }
   }
-  return [...signals].sort((left, right) => left.localeCompare(right));
+  return [...signals].sort();
 }
 
 export function formatGithubWorkflowIdentityContractMissingDetail(): string {

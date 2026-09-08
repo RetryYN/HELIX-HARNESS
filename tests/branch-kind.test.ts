@@ -15,6 +15,8 @@ import {
   analyzePrContext,
   parsePrContextSnapshot,
 } from "../src/lint/github-guards";
+import { parseGithubWorkflowIdentityContract } from "../src/schema/github-workflow-identity-contract";
+import { loadWorkflowClassificationCatalog } from "../src/schema/workflow-classification-catalog";
 
 describe("branch-kind-check", () => {
   it("feature branchは通常implとAdd-featureのadd-design/add-implを受理する", () => {
@@ -691,6 +693,7 @@ describe("branch-kind-check", () => {
   });
 
   it("U-PRSCOPE-009: PR／Issue template guide workflow identity markers and identity alignment", () => {
+    const catalog = loadWorkflowClassificationCatalog(process.cwd());
     const prTemplate = readFileSync(".github/PULL_REQUEST_TEMPLATE.md", "utf8");
     expect(prTemplate).toContain("HELIX:github-workflow-identity-contract:v1");
     expect(prTemplate).toContain("target_id");
@@ -698,6 +701,7 @@ describe("branch-kind-check", () => {
     expect(prTemplate).toContain("branch prefix");
     expect(prTemplate).toContain("PLAN kind");
     expect(prTemplate).toContain("branch rename");
+    expect(parseGithubWorkflowIdentityContract(prTemplate, catalog)).toMatchObject({ ok: true });
 
     for (const relative of [
       ".github/ISSUE_TEMPLATE/add-feature.md",
@@ -709,6 +713,9 @@ describe("branch-kind-check", () => {
       expect(issueTemplate).toContain("target_id");
       expect(issueTemplate).toContain("branch prefix");
       expect(issueTemplate).toContain("PLAN kind");
+      expect(parseGithubWorkflowIdentityContract(issueTemplate, catalog)).toMatchObject({
+        ok: true,
+      });
     }
   });
 

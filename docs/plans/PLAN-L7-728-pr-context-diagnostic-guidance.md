@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "structural"
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-08
 owner: Codex / TL
 github_issue_id: 1515
 behavior_contract_id: GH-AC-040
@@ -51,8 +51,12 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-728-pr-context-diagnostic-guidance.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: src/lint/github-guards.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/github-workflow-identity-contract.ts, artifact_type: source_module }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-workflow-identity-contract.test.ts, artifact_type: test_code }
+  - { artifact_path: .github/ISSUE_TEMPLATE/add-feature.md, artifact_type: markdown_doc }
+  - { artifact_path: .github/ISSUE_TEMPLATE/recovery.md, artifact_type: markdown_doc }
   - { artifact_path: .github/PULL_REQUEST_TEMPLATE.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
