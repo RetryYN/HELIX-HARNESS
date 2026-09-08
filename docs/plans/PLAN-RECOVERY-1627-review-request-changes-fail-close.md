@@ -54,10 +54,10 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, oracle_id: U-RRCF-004, test_path: tests/review-receipt-plan-binding.test.ts }
 dependencies:
   parent: null
-  requires:
-    - "issue:1622"
+  requires: []
   references:
     - "issue:1620"
+    - "issue:1622"
     - "issue:1625"
     - "issue:1627"
 generates:
