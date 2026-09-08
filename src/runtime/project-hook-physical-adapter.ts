@@ -67,7 +67,10 @@ function normalizePhysicalStatIdentity(value: unknown, field: "device" | "inode"
   return String(value);
 }
 
-function repositoryIdentity(root: string, deps: ProjectHookPhysicalAdapterDeps) {
+export function captureProjectHookRepositoryIdentity(
+  root: string,
+  deps: ProjectHookPhysicalAdapterDeps,
+) {
   if (deps.platform !== "linux" && deps.platform !== "darwin") {
     throw new UnsupportedPhysicalIdentityError(`unsupported platform: ${deps.platform}`);
   }
@@ -91,7 +94,10 @@ function repositoryIdentity(root: string, deps: ProjectHookPhysicalAdapterDeps) 
   };
 }
 
-function sourceMaterial(root: string, deps: ProjectHookPhysicalAdapterDeps) {
+export function captureProjectHookSourceMaterial(
+  root: string,
+  deps: ProjectHookPhysicalAdapterDeps,
+) {
   return {
     hooks_config_digest: sha256(deps.readFile(resolve(root, SOURCE_PATHS.hooks_config_digest))),
     agent_guard_digest: sha256(deps.readFile(resolve(root, SOURCE_PATHS.agent_guard_digest))),
@@ -103,9 +109,9 @@ export function captureProjectHookAuthorityInput(
   request: ProjectHookCaptureRequest,
   deps: ProjectHookPhysicalAdapterDeps = nodeProjectHookPhysicalAdapterDeps,
 ): ProjectHookAuthorityInputV1 {
-  const executionRoot = repositoryIdentity(request.execution_root, deps);
-  const loaderRoot = repositoryIdentity(request.loader_root, deps);
-  const sessionRoot = repositoryIdentity(request.session_project_root, deps);
+  const executionRoot = captureProjectHookRepositoryIdentity(request.execution_root, deps);
+  const loaderRoot = captureProjectHookRepositoryIdentity(request.loader_root, deps);
+  const sessionRoot = captureProjectHookRepositoryIdentity(request.session_project_root, deps);
   const currentAuthorityRoot = deps.realpath(request.current_authority_root);
   return {
     schema_version: PROJECT_HOOK_AUTHORITY_INPUT_SCHEMA,
@@ -116,8 +122,8 @@ export function captureProjectHookAuthorityInput(
     repository_head: deps.git(executionRoot.canonical_realpath, ["rev-parse", "HEAD"]),
     candidate_base_head: request.candidate_base_head,
     current_authority_head: request.current_authority_head,
-    source_material: sourceMaterial(executionRoot.canonical_realpath, deps),
-    current_authority_source_material: sourceMaterial(currentAuthorityRoot, deps),
+    source_material: captureProjectHookSourceMaterial(executionRoot.canonical_realpath, deps),
+    current_authority_source_material: captureProjectHookSourceMaterial(currentAuthorityRoot, deps),
     physical_evidence: {
       captured_at: request.captured_at,
       capture_source: "node-stat",

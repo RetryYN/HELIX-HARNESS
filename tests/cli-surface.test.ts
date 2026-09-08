@@ -20,6 +20,12 @@ import {
 import { tmpdir } from "node:os";
 import { basename, join } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+import {
+  captureProjectHookRepositoryIdentity,
+  captureProjectHookSourceMaterial,
+  nodeProjectHookPhysicalAdapterDeps,
+} from "../src/runtime/project-hook-physical-adapter";
 import { SUMMARY_SURFACE_CONTRACTS } from "../src/runtime/summary-surface-audit";
 import { openHarnessDb } from "../src/state-db";
 import { installTestWorkerContextBoundary } from "./helpers/worker-context";
@@ -79,6 +85,82 @@ function runCliIn(
     timeout: CLI_CHILD_TIMEOUT_MS,
     maxBuffer: CLI_CHILD_MAX_BUFFER_BYTES,
   });
+}
+
+function installProjectHookAuthorityEnvelope(root: string): string {
+  for (const relative of [
+    ".codex/hooks.json",
+    "src/runtime/agent-guard.ts",
+    "src/runtime/codex-native-worker-policy.ts",
+  ]) {
+    const target = join(root, relative);
+    mkdirSync(join(target, ".."), { recursive: true });
+    writeFileSync(target, readFileSync(join(repoRoot, relative)));
+  }
+  for (const args of [
+    ["init", "-q"],
+    ["config", "user.email", "test@example.invalid"],
+    ["config", "user.name", "HELIX Test"],
+    [
+      "add",
+      ".codex/hooks.json",
+      "src/runtime/agent-guard.ts",
+      "src/runtime/codex-native-worker-policy.ts",
+    ],
+    ["commit", "-qm", "test fixture"],
+    ["update-ref", "refs/remotes/origin/main", "HEAD"],
+    ["symbolic-ref", "refs/remotes/origin/HEAD", "refs/remotes/origin/main"],
+  ]) {
+    const result = spawnSync("git", args, { cwd: root, encoding: "utf8" });
+    if (result.status !== 0)
+      throw new Error(`git fixture failed: ${args.join(" ")}: ${result.stderr}`);
+  }
+  const head = spawnSync("git", ["rev-parse", "HEAD"], {
+    cwd: root,
+    encoding: "utf8",
+  }).stdout.trim();
+  const identity = captureProjectHookRepositoryIdentity(root, nodeProjectHookPhysicalAdapterDeps);
+  const source = captureProjectHookSourceMaterial(root, nodeProjectHookPhysicalAdapterDeps);
+  const envelopePath = join(root, "project-hook-authority-envelope.json");
+  writeFileSync(
+    envelopePath,
+    `${JSON.stringify({
+      schema_version: "helix-project-hook-authority-transport-envelope.v1",
+      envelope_id: "cli-surface-fixture",
+      issued_at: new Date().toISOString(),
+      capture_locators: {
+        loader_root: root,
+        session_project_root: root,
+        current_authority_root: root,
+      },
+      expected: {
+        execution_root: identity,
+        loader_root: identity,
+        session_project_root: identity,
+        current_authority_root: identity,
+        assignment_binding: {
+          kind: "assignment",
+          assignment_id: "cli-surface",
+          assignment_root_digest: sha256Digest(canonicalJson(identity)),
+          branch: "test/cli-surface",
+          lease_id: "lease-cli-surface",
+          fence_token: "fence-cli-surface",
+        },
+        candidate_base_head: head,
+        current_authority_head: head,
+        source_material: source,
+        current_authority_source_material: source,
+        lifecycle_policy: {
+          timeout_ms: 15_000,
+          hard_ceiling_ms: 60_000,
+          child_termination_grace_ms: 1_000,
+          parent_terminal_required: true,
+          notification_handoff: { kind: "disabled" },
+        },
+      },
+    })}\n`,
+  );
+  return envelopePath;
 }
 
 function runRepoScriptHelix(args: string[]) {
@@ -153,6 +235,17 @@ function writeFakeCommand(binDir: string, name: string, output = "0.0.0", exitCo
     mode: 0o755,
   });
   chmodSync(path, 0o755);
+  return path;
+}
+
+function installCurrentNodeCommand(binDir: string): string {
+  if (process.platform === "win32") {
+    const path = join(binDir, "node.cmd");
+    writeFileSync(path, `@echo off\r\n"${process.execPath}" %*\r\n`, "utf8");
+    return path;
+  }
+  const path = join(binDir, "node");
+  symlinkSync(process.execPath, path);
   return path;
 }
 
@@ -7314,6 +7407,7 @@ describe("L7 CLI surface closure", () => {
     try {
       writeFakeCommand(binDir, "git", "2.0.0");
       writeFakeCommand(binDir, "gh", "2.0.0");
+      installCurrentNodeCommand(binDir);
       const fakeCodex = writeFakeProvider(binDir, "codex");
       writeFakeCommand(binDir, "helix", "0.1.0");
       const run = runCliIn(repoRoot, ["distribution", "plan", "--tag", "v0.1.0", "--json"], {
@@ -7886,6 +7980,7 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-team-exec-"));
     try {
       const contextPath = installTestWorkerContextBoundary(root);
+      const authorityPath = installProjectHookAuthorityEnvelope(root);
       const binDir = join(root, "bin");
       mkdirSync(binDir);
       const fakeCodex = writeFakeProvider(binDir, "codex");
@@ -7930,6 +8025,8 @@ describe("L7 CLI surface closure", () => {
           "--json",
           "--worker-context-file",
           contextPath,
+          "--project-hook-authority-envelope-file",
+          authorityPath,
         ],
         env,
       );
@@ -8003,6 +8100,7 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-exec-"));
     try {
       const contextPath = installTestWorkerContextBoundary(root);
+      const authorityPath = installProjectHookAuthorityEnvelope(root);
       const binDir = join(root, "bin");
       mkdirSync(binDir);
       const fakeCodex = writeFakeProvider(binDir, "codex");
@@ -8028,6 +8126,8 @@ describe("L7 CLI surface closure", () => {
           "--json",
           "--worker-context-file",
           contextPath,
+          "--project-hook-authority-envelope-file",
+          authorityPath,
         ],
         env,
       );
@@ -8066,6 +8166,7 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-terminal-admission-"));
     try {
       const contextPath = installTestWorkerContextBoundary(root);
+      const authorityPath = installProjectHookAuthorityEnvelope(root);
       const context = JSON.parse(readFileSync(contextPath, "utf8"));
       context.budget.time_ms = 100;
       writeFileSync(contextPath, `${JSON.stringify(context)}\n`);
@@ -8077,7 +8178,7 @@ describe("L7 CLI surface closure", () => {
         fakeCodex,
         [
           "#!/bin/sh",
-          'if [ "${1:-}" = "--version" ]; then echo "codex 1.0.0"; exit 0; fi',
+          'if [ "$' + '{1:-}" = "--version" ]; then echo "codex 1.0.0"; exit 0; fi',
           "trap 'exit 0' TERM",
           "while :; do sleep 1; done",
           "",
@@ -8098,6 +8199,8 @@ describe("L7 CLI surface closure", () => {
           "--json",
           "--worker-context-file",
           contextPath,
+          "--project-hook-authority-envelope-file",
+          authorityPath,
         ],
         {
           ...process.env,
@@ -8127,6 +8230,7 @@ describe("L7 CLI surface closure", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-adapter-sigint-"));
     try {
       const contextPath = installTestWorkerContextBoundary(root);
+      const authorityPath = installProjectHookAuthorityEnvelope(root);
       const binDir = join(root, "bin");
       mkdirSync(binDir);
       const fakeCodex = join(binDir, "codex");
@@ -8163,6 +8267,8 @@ describe("L7 CLI surface closure", () => {
           "--json",
           "--worker-context-file",
           contextPath,
+          "--project-hook-authority-envelope-file",
+          authorityPath,
         ],
         { cwd: root, env, stdio: ["ignore", "pipe", "pipe"] },
       );
@@ -8210,9 +8316,11 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
+  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-009]
   // IT-FLIFE-003: SessionStart integration oracle。feedback receipt batch の件数・replay 規律は
-  // tests/feedback-lifecycle.test.ts の U-FLIFE-013 と対で検証し、この test の既存 memory surface 意味は維持する。
-  it("U-CLI-MEM-SURFACE: session start surfaces harness-layer memory (HELIX P7, not a per-agent silo)", () => {
+  // tests/feedback-lifecycle.test.ts の U-FLIFE-013 と対で検証する。Control Plane envelopeが無い間も
+  // coordination-only memory / session lifecycleは失わず、provider dispatchだけを拒否する。
+  it("U-CNHOOKWIRE-009: standalone keeps coordination memory without provider dispatch (U-CLI-MEM-SURFACE)", () => {
     const root = mkdtempSync(join(tmpdir(), "ut-mem-surface-"));
     try {
       mkdirSync(join(root, ".helix", "memory"), { recursive: true });
@@ -8230,10 +8338,15 @@ describe("L7 CLI surface closure", () => {
         "utf8",
       );
       const run = runCliIn(root, ["session", "start"]);
-      // harness memory が SessionStart 出力に surface する (Claude 内蔵 silo でなく共有 SSoT を想起)。
+      expect(run.status).toBe(0);
+      expect(run.stdout).toContain("project-hook-authority: mode=standalone");
+      expect(run.stdout).toContain('"project_hook_authority_execution":0');
+      expect(run.stdout).toContain('"provider_dispatch":0');
+      expect(run.stdout).toContain('"coordination_session_start":"preserved"');
       expect(run.stdout).toContain("harness-memory (1):");
       expect(run.stdout).toContain("- [rule] always inventory existing first");
       expect(run.stdout).toContain("session-log: start");
+      expect(existsSync(join(root, ".helix", "harness.db"))).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
