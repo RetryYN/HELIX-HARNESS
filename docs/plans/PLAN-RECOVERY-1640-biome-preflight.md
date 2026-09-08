@@ -50,6 +50,7 @@ dependencies:
     - issue:93
   blocks: []
 generates:
+  - { artifact_path: .helix/evidence/review-1676-terminal/vitest-targeted.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1640-biome-preflight.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
@@ -65,7 +66,7 @@ review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
     reviewed_at: "2026-09-08T21:52:11Z"
-    tests_green_at: "2026-09-08T21:48:46Z"
+    tests_green_at: "2026-09-08T22:11:40Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
@@ -74,6 +75,15 @@ review_evidence:
     receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5592353929
     ci_evidence_generation: "run:34280725387:attempt:1:success"
     scope: "旧approve receiptの対象4 pathがJIT main同期後もbyte同一であること、exact HEADのCI 12/12成功、DB projection/checkpoint replay収束を独立reviewerが実測した。残る単独survivor F1は本PLANで開示し、Issue #1671のmutation evidence機構改善への実測入力として参照する。本sliceのblockerではない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/harness-check-workflow.test.ts --reporter=json --outputFile=.helix/evidence/review-1676-terminal/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-08T22:11:40Z"
+        evidence_path: .helix/evidence/review-1676-terminal/vitest-targeted.json
+        output_digest: "sha256:7f1489e907ef8dd1ae8314c694135fe62bc8895b21c8c96fd3c6a0aecf55adad"
 ---
 
 # 既存CIの検査順修復
