@@ -173,7 +173,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(615);
+    expect(plans).toHaveLength(616);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -215,7 +215,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(513);
+    ).toHaveLength(514);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -238,16 +238,16 @@ describe("L12/hybrid recognition-risk scanner", () => {
   // PLAN-RECOVERY-1404は新規PLAN候補1件としてconflictへ明示加算する。
   // function-spec.md は docs/design/harness family の独立再分類を待って conflict のまま残す。
   // PLAN-RECOVERY-1677追加によりplan_review conflictが1件増える。
-  it("assigns exactly one reviewed final disposition to all 871 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 872 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(871);
+    expect(candidates).toHaveLength(872);
     expect(counts).toEqual({
-      conflict: 337,
+      conflict: 338,
       compatibility_labeled: 24,
       false_positive: 492,
       historical: 18,
@@ -338,7 +338,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 177,
+        conflict: 178,
         false_positive: 437,
       },
     });
