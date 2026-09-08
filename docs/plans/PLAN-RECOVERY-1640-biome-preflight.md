@@ -4,9 +4,9 @@ title: "PLAN-RECOVERY-1640: Biomeの早期検出と重複実行除去"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
-completion_claim_allowed: true
-backfill_state: complete
+status: draft
+completion_claim_allowed: false
+backfill_state: pending
 owner: Codex
 created: 2026-09-08
 updated: 2026-09-09
@@ -61,29 +61,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — 検査義務を維持して既存lintの実行順を修復" }
   - { role: qa, slot_label: "QA — 早期拒否と合法入力通過・配置反例を検証" }
   - { role: aim, slot_label: "AIM — Recoveryの責務境界と必須検証の非緩和を照合" }
-review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-08T16:34:04Z"
-    tests_green_at: "2026-09-08T16:28:10Z"
-    verdict: approve
-    worker_model: codex:gpt-5.6-sol
-    reviewer_model: claude:claude-opus-5
-    reviewer_session_id: ebf40921-f0c5-4664-874d-367388e19333
-    reviewed_head_sha: 3047406162da8b4204127a54493761c131ee9d61
-    ci_evidence_generation: "run:34248762444:attempt:1:success"
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5588529124"
-    scope: "Cursor Grok 4.6の初期成果をCodex作成レーンが修復したPR #1676のexact HEADについて、terminal CI run 34248762444 attempt 1の9 job全件success、HEAD一致、独立review blocker 0をread-afterした。mutation節の独立性に関する非blocker F1はIssue #1671で追跡し、本sliceの配置退行防止を弱めない。"
-    green_commands:
-      - kind: smoke
-        command: "gh run view 34248762444 --json status,conclusion,headSha,attempt,url,updatedAt --jq '.'"
-        runner: ci
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-08T16:28:10Z"
-        evidence_path: .github/workflows/harness-check.yml
-        output_digest: "sha256:d69344171e98fc21dd2b9f6410d8602ab7645cf501ea4627d65592ece5edcb18"
-        result: "PR #1676 exact HEAD 3047406162da8b4204127a54493761c131ee9d61のharness-check run 34248762444 attempt 1がterminal success。"
+review_evidence: []
 ---
 
 # 既存CIの検査順修復
@@ -121,10 +99,10 @@ continue-on-error・条件付きskipを追加せず、shardはpreflight成功後
    `npm run lint` は 27 warnings / 1 info / exit 0。整形不備fixtureは exit 1、撤去後 exit 0。
    `git diff --check` は exit 0。対象PLANの `plan lint` と `--gate governance` は exit 0。
    この局所実測後、同一実装HEADについて全CIと独立reviewを別主体が実施し、R4へ記録した。
-4. R4: exact HEADの独立reviewとterminal CI read-afterを完了した。review blockerは0。配置順の実測効果は後続telemetryで観測し、推定値を成果へ昇格しない。
+4. R4: fresh exact-HEAD CI、正式独立review receipt、terminal PLAN束縛の順に収束する。配置順の実測効果は後続telemetryで観測し、推定値を成果へ昇格しない。
 
 ## 完了境界
 
-workflow配置そのものはmain既存。本sliceは配置契約のmutation閉鎖を明示化し、targeted test、exact HEADの全CI、独立reviewを完了根拠とする。
-削減効果の継続実測は後続telemetryの責務であり、本PLANの完了条件へ混入しない。
+workflow配置そのものはmain既存。本sliceは配置契約のmutation閉鎖を明示化し、targeted test、exact HEADの全CI、正式独立review receiptを完了根拠とする。
+現在はterminal化に引用可能な正式receiptの再取得前なのでdraftを維持する。削減効果の継続実測は後続telemetryの責務であり、本PLANの完了条件へ混入しない。
 撤回は正規PRで元の順序へ戻せるが、今回追加する配置契約との整合を再検収する。
