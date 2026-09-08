@@ -433,6 +433,18 @@ function reviewerAttributionPairs(
   return pairs.length > 0 ? pairs : null;
 }
 
+function replaceReviewerAttributionToken(
+  source: string,
+  currentValue: string,
+  baseValue: string,
+): string {
+  const escaped = currentValue.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+  return source.replace(
+    new RegExp(`(?<![A-Za-z0-9_.-])${escaped}(?![A-Za-z0-9_.-])`, "gu"),
+    baseValue,
+  );
+}
+
 /**
  * current/baseの差が既存terminal PLANのnon-empty review_evidence attributionだけかをexact比較する。
  * 本文は同じreviewer/model tokenの鏡像訂正だけを許し、任意のprose変更は許さない。
@@ -469,7 +481,11 @@ export function isReviewEvidenceMetadataOnly(currentSource: string, baseSource: 
     const body = (source: string) => source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/u, "");
     let normalizedCurrentBody = body(currentSource);
     for (const [currentValue, baseValue] of pairs)
-      normalizedCurrentBody = normalizedCurrentBody.replaceAll(currentValue, baseValue);
+      normalizedCurrentBody = replaceReviewerAttributionToken(
+        normalizedCurrentBody,
+        currentValue,
+        baseValue,
+      );
     return normalizedCurrentBody === body(baseSource);
   } catch {
     return false;

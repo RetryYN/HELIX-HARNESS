@@ -212,6 +212,22 @@ describe("branch-kind-check", () => {
     expect(
       isReviewEvidenceMetadataOnly(`${correctedWithMirror}unrelated body change\n`, baseWithMirror),
     ).toBe(false);
+
+    const shortTokenBase = base
+      .replace("claude:old", "x:a")
+      .replace("body", "target a stays aac\n");
+    const shortTokenSmuggled = shortTokenBase
+      .replace("x:a", "x:b")
+      .replace("target a stays aac", "target b stays abc");
+    expect(isReviewEvidenceMetadataOnly(shortTokenSmuggled, shortTokenBase)).toBe(false);
+
+    const identifierBase = base
+      .replace("claude:old", "claude:claude-fable-5-1")
+      .replace("body", "ref claude-opus-5-beta and claude-fable-5-1\n");
+    const identifierCorrected = identifierBase
+      .replace("reviewer_model: claude:claude-fable-5-1", "reviewer_model: claude:claude-opus-5")
+      .replace("and claude-fable-5-1", "and claude-opus-5");
+    expect(isReviewEvidenceMetadataOnly(identifierCorrected, identifierBase)).toBe(true);
   });
 
   it("allows feature impl PLAN and keeps missing issue as warning only", () => {
