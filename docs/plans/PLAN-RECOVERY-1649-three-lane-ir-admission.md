@@ -72,13 +72,13 @@ agent_slots:
   - { role: qa, slot_label: "QA — 8/25/27の独立集合とdrift反例を検証" }
   - { role: tl, slot_label: "TL — 既存ownerとPhase Aの限定解放境界を照合" }
 review_evidence:
-  - reviewer: "Claude Code / claude-fable-5-1"
+  - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-09-08T00:36:39Z"
     tests_green_at: "2026-09-08T00:32:25Z"
     verdict: approve
     worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
+    reviewer_model: claude:claude-opus-5
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
     reviewed_head_sha: f4bfcff898154fe3c70d331fbdaec6f206f64e5b
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1650#issuecomment-5577273366"
@@ -182,7 +182,7 @@ materialへの意味・owner・source照合と独立review後、同じrevision�
 `6b52b1d2c3c38a620bf0ca01b6cd1d3c1a5cc6c1`、verdictはapprove、blockersは0である。
 レビュー対象の8 record／25 R／27 AC、原承認、owner、source、基準shard、既存6 refinement、digestと
 mutation反例を照合し、PLANへの技術転記可と判定した。reviewerはClaude Code /
-`claude-fable-5-1`、sessionは`9867601a-a3ad-4369-980c-11757d63a7de`であり、構造化receiptはfrontmatterへ記録する。
+`claude-opus-5`、sessionは`9867601a-a3ad-4369-980c-11757d63a7de`であり、構造化receiptはfrontmatterへ記録する。
 これは新しいPO承認、IR本文・owner・元承認の変更、実行許可、merge許可を意味しない。
 
 I-1（`approved_at`／`decision_source`の外部真値との機械照合不足）は既存#397へ追跡し、外部PO

@@ -28,6 +28,8 @@ export interface BranchPlanDoc {
   github_issue_id?: unknown;
   /** recovery branchが既存PLANへsuperseded_byだけを移行する場合のtyped判定。 */
   supersession_metadata_only?: boolean;
+  /** recovery branchが既存terminal PLANのreview_evidenceだけを訂正する場合のtyped判定。 */
+  review_evidence_metadata_only?: boolean;
 }
 
 export interface BranchKindInput {
@@ -320,7 +322,8 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
 
   for (const plan of plans) {
     const allowedRecoveryMetadataMigration =
-      kind === "recovery" && plan.supersession_metadata_only === true;
+      kind === "recovery" &&
+      (plan.supersession_metadata_only === true || plan.review_evidence_metadata_only === true);
     if ((!plan.kind || !allowedKinds.includes(plan.kind)) && !allowedRecoveryMetadataMigration) {
       findings.push({
         code: "kind_mismatch",
@@ -393,6 +396,101 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
   const currentWithout = planWithoutSupersededBy(currentSource);
   const baseWithout = planWithoutSupersededBy(baseSource);
   return currentWithout !== null && currentWithout === baseWithout;
+}
+
+function reviewerAttributionPairs(
+  currentEvidence: unknown[],
+  baseEvidence: unknown[],
+): Array<[string, string]> | null {
+  if (currentEvidence.length !== baseEvidence.length) return null;
+  const pairs: Array<[string, string]> = [];
+  for (let index = 0; index < currentEvidence.length; index += 1) {
+    const current = currentEvidence[index];
+    const base = baseEvidence[index];
+    if (!current || typeof current !== "object" || !base || typeof base !== "object") return null;
+    const currentRecord = { ...(current as Record<string, unknown>) };
+    const baseRecord = { ...(base as Record<string, unknown>) };
+    for (const field of ["reviewer", "reviewer_model"] as const) {
+      const currentValue = currentRecord[field];
+      const baseValue = baseRecord[field];
+      delete currentRecord[field];
+      delete baseRecord[field];
+      if (currentValue === undefined && baseValue === undefined) continue;
+      if (typeof currentValue !== "string" || typeof baseValue !== "string") return null;
+      if (currentValue !== baseValue) {
+        pairs.push([currentValue, baseValue]);
+        const currentToken = currentValue.split(/[/:]/u).at(-1)?.trim();
+        const baseToken = baseValue.split(/[/:]/u).at(-1)?.trim();
+        if (currentToken && baseToken && currentToken !== baseToken)
+          pairs.push([currentToken, baseToken]);
+      }
+    }
+    if (
+      JSON.stringify(canonicalValue(currentRecord)) !== JSON.stringify(canonicalValue(baseRecord))
+    )
+      return null;
+  }
+  return pairs.length > 0 ? pairs : null;
+}
+
+function replaceReviewerAttributionToken(
+  source: string,
+  currentValue: string,
+  baseValue: string,
+): string {
+  const escaped = currentValue.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
+  return source.replace(
+    new RegExp(`(?<![A-Za-z0-9_.-])${escaped}(?![A-Za-z0-9_.-])`, "gu"),
+    () => baseValue,
+  );
+}
+
+/**
+ * current/baseの差が既存terminal PLANのnon-empty review_evidence attributionだけかをexact比較する。
+ * 本文は同じreviewer/model tokenの鏡像訂正だけを許し、任意のprose変更は許さない。
+ */
+export function isReviewEvidenceMetadataOnly(currentSource: string, baseSource: string): boolean {
+  const currentRaw = markdownFrontmatter(currentSource);
+  const baseRaw = markdownFrontmatter(baseSource);
+  if (!currentRaw || !baseRaw) return false;
+  try {
+    const current = parseYaml(currentRaw) as Record<string, unknown>;
+    const base = parseYaml(baseRaw) as Record<string, unknown>;
+    const terminal = new Set(["confirmed", "completed", "accepted"]);
+    if (
+      !terminal.has(String(current.status ?? "")) ||
+      current.status !== base.status ||
+      !Array.isArray(current.review_evidence) ||
+      !Array.isArray(base.review_evidence) ||
+      current.review_evidence.length === 0 ||
+      JSON.stringify(current.review_evidence) === JSON.stringify(base.review_evidence)
+    )
+      return false;
+    const pairs = reviewerAttributionPairs(current.review_evidence, base.review_evidence);
+    if (!pairs) return false;
+
+    const currentWithoutEvidence = { ...current };
+    const baseWithoutEvidence = { ...base };
+    delete currentWithoutEvidence.review_evidence;
+    delete baseWithoutEvidence.review_evidence;
+    if (
+      JSON.stringify(canonicalValue(currentWithoutEvidence)) !==
+      JSON.stringify(canonicalValue(baseWithoutEvidence))
+    )
+      return false;
+
+    const body = (source: string) => source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/u, "");
+    let normalizedCurrentBody = body(currentSource);
+    for (const [currentValue, baseValue] of pairs)
+      normalizedCurrentBody = replaceReviewerAttributionToken(
+        normalizedCurrentBody,
+        currentValue,
+        baseValue,
+      );
+    return normalizedCurrentBody === body(baseSource);
+  } catch {
+    return false;
+  }
 }
 
 type SnapshotFailureCode =
@@ -541,6 +639,8 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
         github_issue_id: fm.github_issue_id,
         supersession_metadata_only:
           baseSource !== null && isSupersessionMetadataOnly(source, baseSource),
+        review_evidence_metadata_only:
+          baseSource !== null && isReviewEvidenceMetadataOnly(source, baseSource),
       });
     }
     if (git("rev-parse", "HEAD").trim() !== observedHead)

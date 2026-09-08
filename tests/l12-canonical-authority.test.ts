@@ -1,6 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+
+// PLAN-RECOVERY-1404-confirmed-design-active-bun-command — U-L12INV-004
 import { REVIEWED_SAFE_ARTIFACT_FAMILIES } from "../src/lint/l12-hybrid-inventory-lifecycle";
 import { CANONICAL_LAYERS, V_MODEL_PAIRS } from "../src/schema";
 
@@ -118,8 +120,8 @@ describe("L1-L12 canonical authority drift gate", () => {
 
     expect(new Set(inventoried).size).toBe(inventoried.length);
     expect(inventoried).toEqual(authorityReviewCandidates);
-    expect(candidates).toHaveLength(176);
-    expect(authorityReviewCandidates).toHaveLength(175);
+    expect(candidates).toHaveLength(175);
+    expect(authorityReviewCandidates).toHaveLength(174);
     expect(authorityReviewCandidates).not.toContain(
       "docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md",
     );
