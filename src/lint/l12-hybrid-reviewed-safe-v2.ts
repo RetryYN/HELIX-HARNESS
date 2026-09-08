@@ -4,7 +4,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #1404: 旧harness物理pathに残るruntime commandをNode/npmへ移行した文書。
     // docs/design/harnessはcompatibility/debt surfaceであり、旧Bun実行authorityを再導入しない。
     path: "docs/design/harness/L6-function-design/function-spec.md",
-    contentDigest: "338939570c170390ea9b9a39a8961d778260788cfbab5c3580ec4cef2b9624bd",
+    contentDigest: "1a94021bd5b1523dbcb19705a0494c48882cd921c888d34d7996f7f904a61040",
     finalDisposition: "compatibility_labeled",
   },
   {

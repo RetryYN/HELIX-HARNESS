@@ -870,8 +870,8 @@ CLI wiring:
 
 Runtime entrypoint は TypeScript/Node.js 24 first のままとし、OS wrapper は薄く保つ。
 `scripts/helix` は Linux/POSIX `sh` entrypoint である。`set -e` を有効化し、
-compiled binary が存在する場合は `dist/helix` を実行し、存在しない場合は
-`npx --no-install tsx "$ROOT/src/cli.ts" "$@"` へ fallback する。この wrapper は Bash-only syntax、
+source checkout の `src/cli.ts` が存在する場合は `npx --no-install tsx "$ROOT/src/cli.ts" "$@"` を実行し、
+存在しない場合は compiled binary `dist/helix` へ fallback する。この wrapper は Bash-only syntax、
 Python runtime dispatch、legacy runtime name を導入してはならない。
 
 `helix codex|claude --plan` の dynamic skill context injection は runtime startup 時の opportunistic な処理である。
