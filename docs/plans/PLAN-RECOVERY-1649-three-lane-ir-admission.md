@@ -89,9 +89,9 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-07T21:45:01Z"
+        completed_at: "2026-09-08T00:32:25Z"
         evidence_path: .helix/evidence/review-1649/vitest-targeted.log
-        output_digest: "sha256:002e157d76f666a24a35f59de58ae56b9a8602bb581b2bc20f74f83ee5c28254"
+        output_digest: "sha256:608d3a59412a1c47f18eb98fb73d00d76c1785ff5b9dffdadbe8cf4877c85925"
       - kind: typecheck
         command: "npm exec --yes --package=node@24.15.0 -- npx --no-install tsc --noEmit -p . --extendedDiagnostics"
         runner: node
@@ -240,7 +240,7 @@ mainをmerge-only同期した`59aa77464116c3622772885608fcafeaed4e691e`と本意
 
 | 種別 | 実行 | exit | UTC完了時刻 | raw output / SHA-256 |
 |---|---|---|---|---|
-| unit_test | Node 24.15.0のVitestでthree-lane-ir-admission、requirement-refinement-authority、requirement-authority、requirement-ir-shadow、requirement-generated-view、requirement-generated-view-dbの6ファイル | 0（50 tests） | 2026-09-07T21:45:01Z | `.helix/evidence/review-1649/vitest-targeted.log` / `002e157d76f666a24a35f59de58ae56b9a8602bb581b2bc20f74f83ee5c28254` |
+| unit_test | Node 24.15.0のVitestでthree-lane-ir-admission、requirement-refinement-authority、requirement-authority、requirement-ir-shadow、requirement-generated-view、requirement-generated-view-dbの6ファイル | 0（50 tests） | 2026-09-08T00:32:25Z | `.helix/evidence/review-1649/vitest-targeted.log` / `608d3a59412a1c47f18eb98fb73d00d76c1785ff5b9dffdadbe8cf4877c85925` |
 | typecheck | `tsc --noEmit -p . --extendedDiagnostics` | 0 | 2026-09-07T21:44:08Z | `.helix/evidence/review-1649/tsc.log` / `e52bad2737257e00300a2f284bc20355cc25078492b9a369bc40684b6eff5d95` |
 
 PLAN lint、変更testのBiome、diff checkも成功。既存db rebuildはprojection ok／81670行、
