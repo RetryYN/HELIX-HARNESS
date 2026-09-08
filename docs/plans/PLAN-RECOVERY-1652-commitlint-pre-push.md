@@ -72,13 +72,13 @@ agent_slots:
   - { role: qa, slot_label: "QA — 実remoteで拒否・合法入力・mutationを検証" }
   - { role: aim, slot_label: "AIM — CI判定非緩和と履歴非破壊を照合" }
 review_evidence:
-  - reviewer: "Claude Code / Fable 5.1"
+  - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
     reviewed_at: "2026-09-08T01:32:48Z"
     tests_green_at: "2026-09-08T01:24:51Z"
     verdict: approve
     worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
+    reviewer_model: claude:claude-opus-5
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
     reviewed_head_sha: 4d4f6c97cee619805d10688fb9aaaa9fd48b50de
     scope: "exact-HEAD evidence reviewは https://github.com/RetryYN/HELIX-HARNESS/pull/1660#issuecomment-5577733109 。portable JSON evidenceの実bytes digest、41 tests、machine-local path 0、PR scope expansion形式を判断側が照合し、approve / blockers 0 / important 0。full harness-check、実hook自動介入、main到達は未成立として除外する。"

@@ -11,6 +11,7 @@ import {
 } from "../src/lint/l12-hybrid-recognition";
 import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe-v2";
 
+// PLAN-RECOVERY-1404-confirmed-design-active-bun-command — active Bun command removal and reviewed-safe pin convergence.
 // PLAN-REVERSE-567-current-runtime-guidance / PLAN-REVERSE-568-issue-template-label-typed-authority — broad scanner count projection after current guidance updates.
 
 // PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-007
@@ -26,7 +27,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(candidate).toBeDefined();
     if (!candidate) throw new Error(`Missing candidate: ${path}`);
     expect(candidate.contentDigest).toBe(
-      "bac054e52a05d7d82e837abaffbd4bb377fdd096e3f25b52909afbafaf60dfb5",
+      "a5cfb869aba3c0e2c3eaa5e0c07f7aa564b50bd1c2d188e3beb5ffbe168086cd",
     );
     expect(candidate.documentStatus).toBe("confirmed");
     expect(new Set(candidate.signals.map((signal) => signal.id))).toEqual(
@@ -172,7 +173,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(614);
+    expect(plans).toHaveLength(616);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -214,7 +215,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(512);
+    ).toHaveLength(514);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -233,17 +234,20 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  // PLAN-L3-1639: canonical source併記の候補1件だけを追加し、既存conflictは336件を維持する。
-  it("assigns exactly one reviewed final disposition to all 870 candidates", () => {
+  // PLAN-L3-1639: canonical source併記の候補1件だけを追加する。
+  // PLAN-RECOVERY-1404は新規PLAN候補1件としてconflictへ明示加算する。
+  // function-spec.md は docs/design/harness family の独立再分類を待って conflict のまま残す。
+  // PLAN-RECOVERY-1677追加によりplan_review conflictが1件増える。
+  it("assigns exactly one reviewed final disposition to all 872 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(870);
+    expect(candidates).toHaveLength(872);
     expect(counts).toEqual({
-      conflict: 336,
+      conflict: 338,
       compatibility_labeled: 24,
       false_positive: 492,
       historical: 18,
@@ -334,7 +338,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 176,
+        conflict: 178,
         false_positive: 437,
       },
     });
