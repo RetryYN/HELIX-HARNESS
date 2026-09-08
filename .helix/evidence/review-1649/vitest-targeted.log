@@ -1,0 +1,8 @@
+
+ RUN  v4.1.11 /tmp/helix-1649-evidence.YdSWNY/repo
+
+
+ Test Files  6 passed (6)
+      Tests  50 passed (50)
+   Start at  09:31:21
+   Duration  64.09s (transform 882ms, setup 0ms, import 1.31s, tests 62.28s, environment 0ms)
