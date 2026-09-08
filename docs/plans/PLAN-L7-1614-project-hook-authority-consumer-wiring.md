@@ -111,14 +111,16 @@ modifies:
 review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
-    reviewed_at: "2026-09-08T22:16:03Z"
+    reviewed_at: "2026-09-08T22:32:08Z"
     tests_green_at: "2026-09-08T22:08:56Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: 77375ef5-9b74-425a-91ee-45ebc9fea1d9
-    reviewed_head_sha: f58784ce47d79141ef7b7707494c24e6c4229599
-    scope: "HEAD ffa843491への25 oracle全数照合・190/191 green・U-CNHOOKWIRE-007b実配線kill検証を、content-neutralなJIT main同期後HEAD 473f4b007へ継承できると独立reviewerが確認した。Phase 1ではformal receipt未封印のためreceipt_urlとci_evidence_generationを記録せず、Draft CI成功後のPhase 2で束縛する。"
+    reviewed_head_sha: 8f4438920412a4b58e8c7cf336418b9b322947c3
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1672#issuecomment-5592770318
+    ci_evidence_generation: "run:34285146562:attempt:1:failure"
+    scope: "exact HEAD 8f4438920で成果物byte同一、25 oracle全数、U-CNHOOKWIRE-007b実配線kill、DB replay収束を独立reviewerが再確認した。引用CIはreview receipt未存在だけを理由に失敗したterminal generationであり、成功主張には用いない。Ready化後はcurrent HEADのgreen CIを引用するformal receiptを別途封印する。"
     green_commands:
       - kind: unit_test
         command: "npx vitest run tests/project-hook-authority-envelope.test.ts tests/cli-surface.test.ts tests/plan-descent.test.ts tests/session-start-budget.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=json --outputFile=.helix/evidence/review-1672/vitest-targeted.json"
