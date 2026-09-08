@@ -516,6 +516,7 @@ items:
     status: done
     artifact:
       - CLAUDE.md
+      - docs/design/helix/L6-function-design/commitlint-pre-push.md
       - src/lint/coding-rules.ts
   - id: batch-design
     name: バッチ設計書

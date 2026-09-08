@@ -1,19 +1,14 @@
 import { createHash } from "node:crypto";
 import { isAtomicContractId } from "../schema/atomic-contract-id";
+
+export {
+  analyzeCommitSubjects,
+  type CommitlintFinding,
+  type CommitlintResult,
+  commitlintMessages,
+} from "../shared/commit-subject";
+
 import { auditIssueClosureGraph, type IssueClosureGraphSnapshot } from "./issue-closure-graph";
-
-export interface CommitlintFinding {
-  code: "non_conventional_subject";
-  severity: "error";
-  subject: string;
-  message: string;
-}
-
-export interface CommitlintResult {
-  ok: boolean;
-  subjectCount: number;
-  findings: CommitlintFinding[];
-}
 
 export interface PrContextInput {
   eventName?: string;
@@ -140,13 +135,6 @@ export function parsePrContextSnapshot(
   };
 }
 
-const CONVENTIONAL_COMMIT_PATTERN =
-  /^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\([A-Za-z0-9._-]+\))?: .+/;
-
-// PR ベース自走運用 (PLAN-L7-418) では git 既定 subject の merge / revert commit が正常な産物として
-// 履歴に入る。upstream commitlint の既定 ignores と同じく機械生成 subject は検査対象から除外する
-// (push 済み履歴は書き換え禁止のため、gate 側が git の実挙動へ追随する)。
-const GENERATED_SUBJECT_IGNORES = [/^Merge /, /^Revert "/];
 const ISSUE_CLOSING_REFERENCE = /(^|\n)Closes[ \t]+#\d+\b/i;
 // PR テンプレはガイドとして行末にインライン HTML コメントを残すため、値の後のコメントは許容する。
 const TRAILING_INLINE_COMMENT = "(?:[ \\t]*<!--[^>]*-->)?[ \\t]*(?:\\n|$)";
@@ -302,36 +290,6 @@ function childDispositionPresent(body: string): boolean {
     `(^|\\n)[ \\t]*(?:[-*][ \\t]*)?Child Issues:[ \\t]*(?:none|#\\d+[ \\t]+(?:resolved|deferred|split|superseded|cancelled)(?:[ \\t]*[,;][ \\t]*#\\d+[ \\t]+(?:resolved|deferred|split|superseded|cancelled))*)${TRAILING_INLINE_COMMENT}`,
     "i",
   ).test(body);
-}
-
-export function analyzeCommitSubjects(subjects: string[]): CommitlintResult {
-  const normalizedSubjects = subjects.map((subject) => subject.trim()).filter(Boolean);
-  const findings = normalizedSubjects
-    .filter((subject) => !GENERATED_SUBJECT_IGNORES.some((pattern) => pattern.test(subject)))
-    .filter((subject) => !CONVENTIONAL_COMMIT_PATTERN.test(subject))
-    .map((subject): CommitlintFinding => {
-      return {
-        code: "non_conventional_subject",
-        severity: "error",
-        subject,
-        message: `non-conventional commit subject: ${subject}`,
-      };
-    });
-  return {
-    ok: findings.length === 0,
-    subjectCount: normalizedSubjects.length,
-    findings,
-  };
-}
-
-export function commitlintMessages(result: CommitlintResult): string[] {
-  if (result.ok) {
-    return [`commitlint - OK (subjects=${result.subjectCount})`];
-  }
-  return [
-    `commitlint - violation: errors=${result.findings.length}, subjects=${result.subjectCount}`,
-    ...result.findings.map((finding) => `commitlint - block ${finding.code}: ${finding.message}`),
-  ];
 }
 
 export function analyzePrContext(input: PrContextInput): PrContextResult {
