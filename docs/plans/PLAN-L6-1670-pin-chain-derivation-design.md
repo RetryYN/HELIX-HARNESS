@@ -42,6 +42,7 @@ dependencies:
   references: ["issue:1323", "issue:1639", "issue:1675", "issue:1678"]
   blocks: []
 generates:
+  - { artifact_path: .helix/evidence/review-1680/vitest-targeted.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/pin-chain-derivation.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L6-pin-chain-derivation-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-L6-1670-pin-chain-derivation-design.md, artifact_type: markdown_doc }
@@ -59,7 +60,7 @@ review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
     reviewed_at: "2026-09-08T21:54:30Z"
-    tests_green_at: "2026-09-08T21:50:31Z"
+    tests_green_at: "2026-09-08T22:11:45Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
@@ -68,6 +69,15 @@ review_evidence:
     receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1680#issuecomment-5592383326
     ci_evidence_generation: "run:34280338030:attempt:2:success"
     scope: "前reviewのL7物理pathと英語見出しblockerが解消したこと、L6 pair双方向参照、vmodel 400 pair・孤児0、design-language英語prose 0、exact HEAD CI 12/12成功、DB replay収束を独立reviewerが実測した。runtime実装は後続#1679の責務として含めない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=json --outputFile=.helix/evidence/review-1680/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-08T22:11:45Z"
+        evidence_path: .helix/evidence/review-1680/vitest-targeted.json
+        output_digest: "sha256:c13c1dad31999af424d314ec9a8b9ab4306b18998544d85f7b80d947c74f0ae3"
 ---
 
 # 変更pathからのpin追従先事前導出
