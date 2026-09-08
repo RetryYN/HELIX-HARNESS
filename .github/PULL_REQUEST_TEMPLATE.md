@@ -15,6 +15,28 @@ Expected changed paths: <!-- base..head diffに含める全exact pathをcomma区
 Required companion paths: <!-- diffに含むPLAN/testのexact path。不要ならnone -->
 Scope expansion: none <!-- または approved receipt=https://github.com/OWNER/REPO/pull/N#issuecomment-N reason=12文字以上 -->
 
+## Workflow identity契約
+
+Issue本文と同じmarker／JSONを置く。`signal_tokens`は`target_id`とcatalog上で一致させる。
+branch接頭辞とPLAN `kind`も下表に揃える（不一致はfail-close。branch改名はPR番号変更や再作成を伴いうる）。
+
+<!-- HELIX:github-workflow-identity-contract:v1 -->
+```json
+{"schema_version":"helix-github-workflow-identity-contract.v1","registry_version":"1.1.6","registry_source_digest":"sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89","target_axis":"workflow_model","target_id":"REFACTOR","signal_tokens":["structural"]}
+```
+
+| workflow | `signal_tokens`の例 | branch接頭辞 | PLAN `kind` |
+|---|---|---|---|
+| 構造整理`REFACTOR` | `structural`, `debt_degradation`, `code_smell` | `refactor/` | `refactor` \| `retrofit` |
+| 追従`RETROFIT` | `dependency_outdated`, `upgrade`, `config_drift` | `retrofit/` | `retrofit` |
+| 復旧`RECOVERY` | `regression_dev`, `forced_stop`, `agent_runaway` | `recovery/` | `recovery` |
+| 障害`INCIDENT` | `production_incident`, `hotfix_required`, `regression_prod` | `hotfix/` | `recovery` \| `troubleshoot` |
+| 要求追加`ADD_FEATURE` | `feature_addition`, `scope_extension` | `feature/`または`add/` | `impl` \| `add-design` \| `add-impl` |
+| 逆工程`REVERSE` | `drift` | `reverse/` | `reverse` |
+| 版更新`VERSION_UP` | `version_deferral` | `version-up/` | 許可kindはvalidator診断を参照 |
+| 調査`RESEARCH` | `tech_decision_required`, `option_comparison_needed`, `adr_required` | `research/` | `research` |
+| 発見PoC`DISCOVERY_POC` | `requirement_undefined`, `feasibility_unknown` | `poc/` | `poc` |
+
 ## V-model artifact (該当に ✓)
 - [ ] ① 設計 (docs/design/)
 - [ ] ② 実装 (src/)
