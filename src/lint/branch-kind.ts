@@ -441,7 +441,7 @@ function replaceReviewerAttributionToken(
   const escaped = currentValue.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&");
   return source.replace(
     new RegExp(`(?<![A-Za-z0-9_.-])${escaped}(?![A-Za-z0-9_.-])`, "gu"),
-    baseValue,
+    () => baseValue,
   );
 }
 

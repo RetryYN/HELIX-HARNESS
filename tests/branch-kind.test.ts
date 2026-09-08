@@ -237,6 +237,14 @@ describe("branch-kind-check", () => {
       .replace("reviewer_model: claude:claude-fable-5-1", "reviewer_model: claude:claude-opus-5")
       .replace("and claude-fable-5-1", "and claude-opus-5");
     expect(isReviewEvidenceMetadataOnly(identifierCorrected, identifierBase)).toBe(true);
+
+    const replacementTokenBase = base
+      .replace("claude:old", "x:$&")
+      .replace("body", "reviewer model x:$&\n");
+    const replacementTokenCorrected = replacementTokenBase.replaceAll("x:$&", "x:newtok");
+    expect(isReviewEvidenceMetadataOnly(replacementTokenCorrected, replacementTokenBase)).toBe(
+      true,
+    );
   });
 
   it("allows feature impl PLAN and keeps missing issue as warning only", () => {
