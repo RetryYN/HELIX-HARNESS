@@ -44,8 +44,14 @@
         {
           "reviewer_model": "claude:claude-fable-5-1",
           "since": "2026-09-05T00:34:43Z",
+          "until": "2026-09-08T16:45:59Z",
+          "basis": "Claude Code session transcript（~/.claude/projects/<repo>/9867601a-….jsonl の非 sidechain assistant message の message.model と timestamp、30485 件）から切替境界を採取。PR #1554以降のreceiptと整合し、最終確認は2026-09-06T12:36:23Z。終了境界は後続の型付きPR #1675 receiptがclaude-opus-5を申告した最初の観測時刻であり、未観測の切替時刻を遡及推定しない。"
+        },
+        {
+          "reviewer_model": "claude:claude-opus-5",
+          "since": "2026-09-08T16:45:59Z",
           "until": null,
-          "basis": "Claude Code session transcript（~/.claude/projects/<repo>/9867601a-….jsonl の非 sidechain assistant message の message.model と timestamp、30485 件）から切替境界を採取。 以後は claude-fable-5-1 のみ（PR #1554 以降の claude-pr-review-receipt v4 の reviewerModel と一致、最終確認 2026-09-06T12:36:23Z）。切替時の session 再発行は未実装（Issue #1543 後続 slice）のため同一 session id で継続している。"
+          "basis": "PR #1675 comment 5588684410のhelix-independent-pr-review-comment.v1 receiptが、同session、reviewedAt=2026-09-08T16:45:59Z、reviewerModel=claude-opus-5を型付きで自己申告した観測境界。実効provider attestationではなく、receiptとPLAN historyの相互矛盾を解消するruntime所有記録。model変更時のsession再発行は後続責務。"
         }
       ]
     }

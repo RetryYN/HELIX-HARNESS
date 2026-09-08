@@ -1396,6 +1396,21 @@ describe("reviewer 主体の構造化強制 (Issue #923)", () => {
     expect(r.reviewerIdentityViolations).toEqual([]);
   });
 
+  // PLAN-RECOVERY-1677-review-session-model-receipt-drift: U-RVIDENT-020
+  it("U-RVIDENT-020: typed receipt境界でClaude sessionのopen windowを新modelへ追従する", () => {
+    const tracked = loadReviewerSessionModelHistory(process.cwd());
+    const claudeSession = tracked?.sessions.find(
+      (entry) => entry.reviewer_session_id === "9867601a-a3ad-4369-980c-11757d63a7de",
+    );
+    expect(claudeSession).toBeDefined();
+    expect(reviewerModelAt(claudeSession!, "2026-09-08T16:45:58Z")).toBe(
+      "claude:claude-fable-5-1",
+    );
+    expect(reviewerModelAt(claudeSession!, "2026-09-08T16:45:59Z")).toBe(
+      "claude:claude-opus-5",
+    );
+  });
+
   // PLAN-RECOVERY-1543-reviewer-session-model-history: session × model の有効期間 registry。
   const historySession = "019febe1-8983-7820-bee4-4cd62876f9b6";
   const history = () =>
