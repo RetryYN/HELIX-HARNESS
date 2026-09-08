@@ -67,6 +67,7 @@ modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
