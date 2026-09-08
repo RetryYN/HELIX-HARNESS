@@ -294,17 +294,16 @@ function branchSnapshotViolations(raw: string): string[] {
   ];
   return targets.flatMap(([job, name]) => {
     const step = jobs[job]?.steps?.find((candidate) => candidate.name === name);
-    return step?.env?.BRANCH_BASE_HEAD ===
-      `\${{ github.event.pull_request.base.sha || github.event.before }}` &&
+    return step?.env?.GH_TOKEN === `\${{ github.token }}` &&
+      step.env.GITHUB_REPOSITORY === `\${{ github.repository }}` &&
+      step.env.BRANCH_BASE_HEAD ===
+        `\${{ github.event.pull_request.base.sha || github.event.before }}` &&
       step.env.EVENT_NAME === `\${{ github.event_name }}` &&
       step.env.BRANCH_CANDIDATE_HEAD === PR_OR_MAIN_CHECKOUT_REF &&
       step.env.HEAD_BRANCH === `\${{ github.head_ref || github.ref_name }}` &&
       [
         "set -euo pipefail",
-        'if [ "$EVENT_NAME" != "pull_request" ]',
-        '[ -z "$BRANCH_BASE_HEAD" ]',
-        `[ "$BRANCH_BASE_HEAD" = "${ZERO_SHA}" ]`,
-        'BRANCH_BASE_HEAD="$(git rev-parse "${BRANCH_CANDIDATE_HEAD}^")"',
+        'BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"',
         '--base-head "$BRANCH_BASE_HEAD"',
         '--candidate-head "$BRANCH_CANDIDATE_HEAD"',
         '--branch "$HEAD_BRANCH"',
@@ -314,11 +313,28 @@ function branchSnapshotViolations(raw: string): string[] {
   });
 }
 
+// PLAN-RECOVERY-1633-ci-non-pr-base-authority
+it("U-CIBASE-008: non-PR Impact CIも共通resolverへ同じevent入力を渡す", () => {
+  const jobs = (parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot).jobs ?? {};
+  const step = jobs["full-regression-preflight"]?.steps?.find(
+    (entry) => entry.name === "Impact CI profile selection",
+  );
+  expect(step?.run).toContain(
+    'BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" npx --no-install tsx src/runtime/ci-branch-base.ts',
+  );
+  expect(step?.run).not.toContain('git rev-parse "${HEAD_SHA}^"');
+});
+
 it("U-BRAUTH-009: CIのguardとdoctorが同じsnapshotを渡し各束縛の欠落を拒否する", () => {
   const raw = readFileSync(WORKFLOW_PATH, "utf8");
   expect(branchSnapshotViolations(raw)).toEqual([]);
-  for (const field of ["EVENT_NAME", "BRANCH_BASE_HEAD", "BRANCH_CANDIDATE_HEAD", "HEAD_BRANCH"]) {
-    const mutated = raw.replaceAll(`$${field}`, "$UNBOUND");
+  for (const binding of [
+    `EVENT_NAME: \${{ github.event_name }}`,
+    `BRANCH_BASE_HEAD: \${{ github.event.pull_request.base.sha || github.event.before }}`,
+    `BRANCH_CANDIDATE_HEAD: ${PR_OR_MAIN_CHECKOUT_REF}`,
+    `HEAD_BRANCH: \${{ github.head_ref || github.ref_name }}`,
+  ]) {
+    const mutated = raw.replaceAll(binding, `${binding.split(":")[0]}: unbound`);
     expect(mutated).not.toBe(raw);
     expect(branchSnapshotViolations(mutated)).toEqual([
       "branch-kind-check",
@@ -328,7 +344,7 @@ it("U-BRAUTH-009: CIのguardとdoctorが同じsnapshotを渡し各束縛の欠�
 });
 
 it.skipIf(process.platform === "win32")(
-  "U-BRAUTH-009: Linux workflow実体のbase選択をshellで検証する",
+  "U-BRAUTH-009: pull_request eventは明示baseをresolver経由で共有する",
   () => {
     const jobs = (parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot).jobs ?? {};
     const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
@@ -339,19 +355,18 @@ it.skipIf(process.platform === "win32")(
     ]) {
       const run = jobs[job]?.steps?.find((step) => step.name === name)?.run;
       expect(run).toBeTruthy();
-      for (const [event, base, expected] of [
-        ["schedule", "", parent],
-        ["workflow_dispatch", "", parent],
-        ["push", ZERO_SHA, parent],
-        ["push", parent, parent],
-        ["pull_request", "", ""],
-        ["pull_request", ZERO_SHA, ZERO_SHA],
-        ["push", "invalid-explicit-base", "invalid-explicit-base"],
-      ]) {
-        // 最終CLIのみ観測用関数へ置換する。base解決shellとGit読込はworkflow実体を実行する。
+      for (const [event, base, expected, status] of [
+        ["pull_request", parent, parent, 0],
+        ["pull_request", "", "", 1],
+        ["pull_request", ZERO_SHA, "", 1],
+      ] as const) {
+        // 最終CLIのみ観測へ置換する。Node resolverは実行し、不正baseの拒否を代替しない。
         const result = spawnSync(
           "bash",
-          ["-c", `npx() { printf '%s' "$BRANCH_BASE_HEAD"; }\n${run}`],
+          [
+            "-c",
+            `npx() { if [ "$3" = "src/cli.ts" ]; then printf '%s' "$BRANCH_BASE_HEAD"; else command npx "$@"; fi; }\n${run}`,
+          ],
           {
             env: {
               ...process.env,
@@ -359,12 +374,13 @@ it.skipIf(process.platform === "win32")(
               BRANCH_BASE_HEAD: base,
               BRANCH_CANDIDATE_HEAD: head,
               HEAD_BRANCH: "main",
+              GITHUB_REPOSITORY: "RetryYN/HELIX-HARNESS",
             },
             encoding: "utf8",
             timeout: 10_000,
           },
         );
-        expect(result.status).toBe(0);
+        expect(result.status).toBe(status);
         expect(result.stdout).toBe(expected);
       }
     }
@@ -949,6 +965,10 @@ describe("source harness-check workflow", () => {
       "${{ github.event.pull_request.base.sha || github.event.before }}",
     );
     expect(branchKind.env?.BRANCH_CANDIDATE_HEAD).toBe(PR_OR_MAIN_CHECKOUT_REF);
+    expect(branchKind.run).toContain(
+      'BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"',
+    );
+    expect(branchKind.run).not.toContain('git rev-parse "${BRANCH_CANDIDATE_HEAD}^"');
     for (const step of [commitlint, closureGuard]) {
       expect(step.run).toContain('merge_base="$(git merge-base "$PR_BASE_SHA" "$PR_HEAD_SHA")"');
       expect(step.run).not.toContain("$PR_BASE_SHA..$PR_HEAD_SHA");
@@ -1009,14 +1029,12 @@ describe("source harness-check workflow", () => {
     expect(regression["continue-on-error"]).toBeUndefined();
   });
 
-  it("U-LITECI-WF-005: workflow_dispatchでbefore SHAが空でも候補HEADの親からfull rangeを作る", () => {
+  it("U-LITECI-WF-005: non-PRは共通base解決でもfull profileを保持する", () => {
     const { steps } = loadWorkflow();
     const selector = stepByName(steps, "Impact CI profile selection");
 
-    expect(selector.run).toContain(
-      'if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then',
-    );
-    expect(selector.run).toContain(`base_head="$(git rev-parse "\${HEAD_SHA}^")"`);
+    expect(selector.run).toContain("npx --no-install tsx src/runtime/ci-branch-base.ts");
+    expect(selector.run).toContain('profile="post_merge_full"');
     expect(selector.run).toContain(`range="\${base_head}..\${candidate_head}"`);
   });
 

@@ -200,6 +200,14 @@ describe("Requirement IR shadow migration", () => {
       "SYN-FR-001",
       "OPS-FR-001",
       "RLO-FR-001",
+      "3L-FR-001",
+      "3L-FR-002",
+      "3L-FR-003",
+      "3L-FR-004",
+      "3L-FR-005",
+      "3L-FR-006",
+      "3L-FR-007",
+      "3L-FR-008",
     ]);
   });
 });
