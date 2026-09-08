@@ -3,6 +3,8 @@ import {
   analyzeGithubCiStatus,
   analyzeGithubMergeReadiness,
   buildGithubPrBodyDraft,
+  type GithubCiStatusResult,
+  githubCiStatusExitCode,
   validateAtomicContractBody,
   verifyCreatedPrBody,
 } from "../src/audit/github-merge-readiness";
@@ -519,5 +521,17 @@ describe("github merge readiness", () => {
 
     expect(windowMiss).toMatchObject({ ok: false, status: "window_miss" });
     expect(currentFailure).toMatchObject({ ok: false, status: "red" });
+  });
+
+  it.each(["no_runs", "window_miss", "unavailable", "red"] as const)(
+    "U-GHCI-005: maps non-green status %s to a failing CLI exit",
+    (status) => {
+      expect(githubCiStatusExitCode({ ok: false, status } as GithubCiStatusResult)).toBe(1);
+    },
+  );
+
+  it("U-GHCI-006: maps only an admitted green status to a successful CLI exit", () => {
+    expect(githubCiStatusExitCode({ ok: true, status: "green" } as GithubCiStatusResult)).toBe(0);
+    expect(githubCiStatusExitCode({ ok: false, status: "green" } as GithubCiStatusResult)).toBe(1);
   });
 });

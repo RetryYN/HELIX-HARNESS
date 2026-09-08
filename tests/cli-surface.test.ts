@@ -1165,6 +1165,7 @@ describe("L7 CLI surface closure", () => {
     expect(ciStatus.status, ciStatus.stderr || ciStatus.stdout).toBe(0);
     expect(ciStatus.stdout).toContain("ci-status");
     expect(ciStatus.stdout).toContain("--ref");
+    expect(ciStatus.stdout).toContain("--expected-head-sha");
     expect(ciStatus.stdout).toContain("--json");
 
     const prCreate = runCli(["github", "pr-create", "--help"]);

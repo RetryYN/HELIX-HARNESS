@@ -876,3 +876,7 @@ export function renderGithubCiStatus(result: GithubCiStatusResult): string {
   }
   return `${lines.join("\n")}\n`;
 }
+
+export function githubCiStatusExitCode(result: GithubCiStatusResult): 0 | 1 {
+  return result.ok && result.status === "green" ? 0 : 1;
+}
