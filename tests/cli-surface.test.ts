@@ -8160,8 +8160,8 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007]
-  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-010]
+  // [PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007]
+  // [PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-010]
   it("U-CNHOOKWIRE-010: pre-activation dispatches without an envelope but rejects an explicit invalid envelope", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-project-hook-preactivation-"));
     try {
@@ -8222,7 +8222,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007b]
+  // [PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007b]
   it("U-CNHOOKWIRE-007b: loop/pair/team reject an explicit invalid envelope before provider probing", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-project-hook-native-surfaces-"));
     try {
@@ -8451,7 +8451,7 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-009]
+  // [PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-009]
   // IT-FLIFE-003: SessionStart integration oracle。feedback receipt batch の件数・replay 規律は
   // tests/feedback-lifecycle.test.ts の U-FLIFE-013 と対で検証する。Control Plane envelopeが無い間も
   // coordination-only memory / session lifecycleは失わず、provider dispatchだけを拒否する。

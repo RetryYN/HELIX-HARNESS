@@ -7,7 +7,7 @@ status: draft
 created: 2026-09-07
 updated: 2026-09-07
 owner: Codex / QA
-plan: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md
+plan: docs/plans/PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring.md
 parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md
 pair_artifact: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md
 ---

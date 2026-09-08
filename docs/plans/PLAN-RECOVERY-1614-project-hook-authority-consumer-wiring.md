@@ -1,10 +1,8 @@
 ---
-plan_id: PLAN-L7-1614-project-hook-authority-consumer-wiring
-title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7へ接続する"
+plan_id: PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring
+title: "PLAN-RECOVERY-1614: project-hook authority consumer wiringをcanonical L6↔L7へ接続する"
 kind: recovery
-layer: L6
-legacy_physical_layer: L7
-canonical_layer: L6
+layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: true
@@ -86,7 +84,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-010, test_path: tests/cli-surface.test.ts }
 generates:
   - { artifact_path: .helix/evidence/review-1672/vitest-targeted.json, artifact_type: json_config }
-  - { artifact_path: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/project-hook-authority-envelope.ts, artifact_type: source_module }

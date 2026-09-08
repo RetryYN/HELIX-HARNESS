@@ -21,7 +21,7 @@ import {
 import { projectProjectHookAuthoritySurfaces } from "../src/runtime/project-hook-authority-surface-projector";
 import type { ProjectHookPhysicalAdapterDeps } from "../src/runtime/project-hook-physical-adapter";
 
-// PLAN-L7-1614-project-hook-authority-consumer-wiring
+// PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring
 
 const HEAD = "a".repeat(40);
 const digest = (value: unknown) => sha256Digest(canonicalJson(value));
@@ -433,7 +433,7 @@ describe("project hook authority transport envelope", () => {
     expect(projectCalls).toBe(1);
   });
 
-  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007c]
+  // [PLAN-RECOVERY-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007c]
   it("U-CNHOOKWIRE-007c: explicit admission helper remains wired to all native dispatch surfaces", () => {
     const cli = readFileSync(new URL("../src/cli.ts", import.meta.url), "utf8");
     const occurrences = cli.match(/admitExplicitProjectHookAuthority\(/gu) ?? [];
