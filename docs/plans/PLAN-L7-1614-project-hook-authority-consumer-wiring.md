@@ -37,7 +37,7 @@ contract_postconditions: "SessionStart・doctor・statusが一つのconsumer wir
 contract_invariants: "request値をobservedへコピーしない。cwd・env・remote・default fileへfallbackしない。surface別のresolver・capture・serializationを再実行しない。standaloneの観測surfaceはread-only unavailableとし、既存coordination SessionStartとproducer接続前のdispatch availabilityを維持する。包括的なrequired activationはproducer E2E後の後続sliceだけが行う。"
 contract_failures: "明示された不正・stale・foreign envelopeは固定schema/failure bytesへ閉じ、dispatch・git・DB・GitHub side effectを0にする。envelope欠落はpre-activationとして既存dispatchを維持し、required activation済みとは主張しない。session event・memory recall・feedback DBを停止しない。"
 tdd_red_required: true
-red_test: "U-CNHOOKWIRE-001..002はconsumer wiringが存在しない状態でresolution/projectorの一回性とfailure dispatch拒否を検出する。"
+red_test: "U-CNHOOKWIRE-007cはloop surfaceから共通admission helperを除去したmutationを、期待5件／実測4件としてRedにする。U-CNHOOKWIRE-001..002はresolution/projectorの一回性とfailure dispatch拒否を継続検証する。"
 red_at: "2026-09-08T22:45:39+09:00"
 green_at: "2026-09-08T22:45:59+09:00"
 mutation_oracle_required: true
@@ -110,14 +110,14 @@ modifies:
 review_evidence:
   - reviewer: "Claude Code / claude-opus-5[1m]"
     review_kind: cross_agent
-    reviewed_at: "2026-09-08T22:30:00+09:00"
-    tests_green_at: "2026-09-08T22:30:36+09:00"
+    reviewed_at: "2026-09-08T22:59:15+09:00"
+    tests_green_at: "2026-09-08T22:45:59+09:00"
     verdict: approve
     worker_model: codex
     reviewer_model: "claude-opus-5[1m]"
-    reviewer_session_id: "f17ecf4c-2f65-4687-b681-d90617d90676"
-    reviewed_head_sha: 81ce6fb98e0be2247329ee8510800d27f3daf45d
-    scope: "PR #1672 exact HEAD 81ce6fb98e0be2247329ee8510800d27f3daf45dをbounded独立再レビュー。前回blockerだったloop／pair-agent／teamのprovider probe前admission、real CLI negative oracle、pre-activation availability、remote default anchor proseを確認しmaterial blocker 0。reviewer session=f17ecf4c-2f65-4687-b681-d90617d90676。Claudeはverdict出力後もprocessを終了せず300秒deadlineで回収されたため、review command自体をgreen commandには数えない。"
+    reviewer_session_id: "53840194-d60b-485d-a767-91104c14e13c"
+    reviewed_head_sha: 90bb81f5634b733114113bc288216dd0abbf3b65
+    scope: "PR #1672 exact HEAD 90bb81f5634b733114113bc288216dd0abbf3b65をbounded独立再レビュー。前回material implementation reviewのblocker 0を維持し、今回追加したTDD／mutation証拠、PLAN governance、source・test差分0を確認してmaterial blocker 0。22:30:36のtargeted green後の差分はPLAN frontmatterだけであり、22:45:59にU-CNHOOKWIRE-007c復元Greenも実測した。Claudeはverdict出力後もprocessを終了せず120秒deadlineで回収されたため、review command自体をgreen commandには数えない。"
     green_commands:
       - kind: unit_test
         command: "Node 24 Vitest targeted project-hook/plan-descent suites + strict binding gate + tsc --noEmit"
