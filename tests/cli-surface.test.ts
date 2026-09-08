@@ -8178,7 +8178,7 @@ describe("L7 CLI surface closure", () => {
         fakeCodex,
         [
           "#!/bin/sh",
-          'if [ "${1:-}" = "--version" ]; then echo "codex 1.0.0"; exit 0; fi',
+          'if [ "$' + '{1:-}" = "--version" ]; then echo "codex 1.0.0"; exit 0; fi',
           "trap 'exit 0' TERM",
           "while :; do sleep 1; done",
           "",
