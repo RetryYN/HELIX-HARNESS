@@ -698,9 +698,9 @@ describe("branch-kind-check", () => {
     expect(prTemplate).toContain("HELIX:github-workflow-identity-contract:v1");
     expect(prTemplate).toContain("target_id");
     expect(prTemplate).toContain("signal_tokens");
-    expect(prTemplate).toContain("branch prefix");
-    expect(prTemplate).toContain("PLAN kind");
-    expect(prTemplate).toContain("branch rename");
+    expect(prTemplate).toContain("branch接頭辞");
+    expect(prTemplate).toContain("PLAN `kind`");
+    expect(prTemplate).toContain("branch改名");
     expect(parseGithubWorkflowIdentityContract(prTemplate, catalog)).toMatchObject({ ok: true });
 
     for (const relative of [
@@ -711,8 +711,8 @@ describe("branch-kind-check", () => {
       expect(issueTemplate).toContain("HELIX:github-workflow-identity-contract:v1");
       expect(issueTemplate).toContain("issue_workflow_identity_contract_missing");
       expect(issueTemplate).toContain("target_id");
-      expect(issueTemplate).toContain("branch prefix");
-      expect(issueTemplate).toContain("PLAN kind");
+      expect(issueTemplate).toContain("branch接頭辞");
+      expect(issueTemplate).toContain("PLAN `kind`");
       expect(parseGithubWorkflowIdentityContract(issueTemplate, catalog)).toMatchObject({
         ok: true,
       });
