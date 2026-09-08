@@ -196,6 +196,13 @@ describe("branch-kind-check", () => {
 
     expect(isReviewEvidenceMetadataOnly(corrected.replace("body", "changed"), base)).toBe(false);
     expect(isReviewEvidenceMetadataOnly(corrected.replace("confirmed", "draft"), base)).toBe(false);
+
+    const baseWithMirror = base.replace("body", "reviewer model: claude:old\n");
+    const correctedWithMirror = baseWithMirror.replaceAll("claude:old", "claude:new");
+    expect(isReviewEvidenceMetadataOnly(correctedWithMirror, baseWithMirror)).toBe(true);
+    expect(
+      isReviewEvidenceMetadataOnly(`${correctedWithMirror}unrelated body change\n`, baseWithMirror),
+    ).toBe(false);
   });
 
   it("allows feature impl PLAN and keeps missing issue as warning only", () => {

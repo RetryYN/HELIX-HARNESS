@@ -398,21 +398,45 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
   return currentWithout !== null && currentWithout === baseWithout;
 }
 
-function planWithoutReviewEvidence(source: string): string | null {
-  const raw = markdownFrontmatter(source);
-  if (!raw) return null;
-  try {
-    const frontmatter = parseYaml(raw) as Record<string, unknown>;
-    if (!frontmatter || typeof frontmatter !== "object") return null;
-    delete frontmatter.review_evidence;
-    const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/u, "");
-    return JSON.stringify({ frontmatter: canonicalValue(frontmatter), body });
-  } catch {
-    return null;
+function reviewerAttributionPairs(
+  currentEvidence: unknown[],
+  baseEvidence: unknown[],
+): Array<[string, string]> | null {
+  if (currentEvidence.length !== baseEvidence.length) return null;
+  const pairs: Array<[string, string]> = [];
+  for (let index = 0; index < currentEvidence.length; index += 1) {
+    const current = currentEvidence[index];
+    const base = baseEvidence[index];
+    if (!current || typeof current !== "object" || !base || typeof base !== "object") return null;
+    const currentRecord = { ...(current as Record<string, unknown>) };
+    const baseRecord = { ...(base as Record<string, unknown>) };
+    for (const field of ["reviewer", "reviewer_model"] as const) {
+      const currentValue = currentRecord[field];
+      const baseValue = baseRecord[field];
+      delete currentRecord[field];
+      delete baseRecord[field];
+      if (currentValue === undefined && baseValue === undefined) continue;
+      if (typeof currentValue !== "string" || typeof baseValue !== "string") return null;
+      if (currentValue !== baseValue) {
+        pairs.push([currentValue, baseValue]);
+        const currentToken = currentValue.split(/[/:]/u).at(-1)?.trim();
+        const baseToken = baseValue.split(/[/:]/u).at(-1)?.trim();
+        if (currentToken && baseToken && currentToken !== baseToken)
+          pairs.push([currentToken, baseToken]);
+      }
+    }
+    if (
+      JSON.stringify(canonicalValue(currentRecord)) !== JSON.stringify(canonicalValue(baseRecord))
+    )
+      return null;
   }
+  return pairs.length > 0 ? pairs : null;
 }
 
-/** current/baseの差が既存terminal PLANのnon-empty review_evidence fieldだけかをexact比較する。 */
+/**
+ * current/baseの差が既存terminal PLANのnon-empty review_evidence attributionだけかをexact比較する。
+ * 本文は同じreviewer/model tokenの鏡像訂正だけを許し、任意のprose変更は許さない。
+ */
 export function isReviewEvidenceMetadataOnly(currentSource: string, baseSource: string): boolean {
   const currentRaw = markdownFrontmatter(currentSource);
   const baseRaw = markdownFrontmatter(baseSource);
@@ -429,12 +453,27 @@ export function isReviewEvidenceMetadataOnly(currentSource: string, baseSource: 
       JSON.stringify(current.review_evidence) === JSON.stringify(base.review_evidence)
     )
       return false;
+    const pairs = reviewerAttributionPairs(current.review_evidence, base.review_evidence);
+    if (!pairs) return false;
+
+    const currentWithoutEvidence = { ...current };
+    const baseWithoutEvidence = { ...base };
+    delete currentWithoutEvidence.review_evidence;
+    delete baseWithoutEvidence.review_evidence;
+    if (
+      JSON.stringify(canonicalValue(currentWithoutEvidence)) !==
+      JSON.stringify(canonicalValue(baseWithoutEvidence))
+    )
+      return false;
+
+    const body = (source: string) => source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/u, "");
+    let normalizedCurrentBody = body(currentSource);
+    for (const [currentValue, baseValue] of pairs)
+      normalizedCurrentBody = normalizedCurrentBody.replaceAll(currentValue, baseValue);
+    return normalizedCurrentBody === body(baseSource);
   } catch {
     return false;
   }
-  const currentWithout = planWithoutReviewEvidence(currentSource);
-  const baseWithout = planWithoutReviewEvidence(baseSource);
-  return currentWithout !== null && currentWithout === baseWithout;
 }
 
 type SnapshotFailureCode =

@@ -19,7 +19,7 @@ legacy_retirement_state: retained
 no_code_decision: configure
 ddd_modeling_decision: policy
 contract_preconditions: "PR #1675の型付きreceiptは同一Claude sessionのOpus 5を記録するが、historyはFable 5.1のopen windowを保持し、PLAN terminal化に解がない"
-contract_postconditions: "session transcriptの実観測境界で旧windowを閉じ、新model windowを開始し、同区間の誤帰属を訂正してhistory検査とreceipt bindingが同じ主体を受理する"
+contract_postconditions: "session transcriptの実観測境界で旧windowを閉じ、新model windowを開始し、同区間の構造化review_evidenceと同じmodelを鏡像する本文だけを訂正してhistory検査とreceipt bindingが同じ主体を受理する"
 contract_invariants: "receipt公開時刻で先行する実観測を上書きせず、historyを実効provider attestationとして扱わず、既存fail-closeを維持する"
 contract_failures: "window重複、時刻gapの推測補完、PLAN側model偽装、history無効化、providerだけの粗い一致を拒否する"
 tdd_red_required: true
@@ -27,7 +27,7 @@ red_test: "U-RVIDENT-020で新Opus windowのsinceを実観測境界より1秒遅
 red_at: "2026-09-08T17:26:14Z"
 green_at: "2026-09-08T17:27:58Z"
 mutation_oracle_required: true
-mutation_oracle: "tests/review-evidence.test.ts::U-RVIDENT-020が実観測境界のgap、旧open window残置による重複、境界一致の旧model残留を拒否する"
+mutation_oracle: "tests/review-evidence.test.ts::U-RVIDENT-020が実観測境界のgap、旧open window残置による重複、境界一致の旧model残留を拒否し、tests/branch-kind.test.ts::U-RVIDENT-021が無関係な本文変更をowner候補へ戻す"
 mutation_oracle_evidence: "tests/review-evidence.test.ts::U-RVIDENT-020。2026-09-08T17:26:14Zに新Opus windowのsinceを18:03:40Zから18:03:41Zへ変異し、境界時刻がnullとなって1 failed。復元後17:27:58Zに95 tests greenを再検証した。"
 complexity_effect: net_neutral
 complexity_justification: "新しい判定器を増やさず、既存history projectionとreceipt間の矛盾を除去する"
