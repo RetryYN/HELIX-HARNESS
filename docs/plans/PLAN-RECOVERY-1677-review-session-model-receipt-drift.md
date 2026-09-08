@@ -39,6 +39,7 @@ parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-ses
 pair_artifact: docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-020, test_path: tests/review-evidence.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-021, test_path: tests/branch-kind.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -52,11 +53,14 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1677-review-session-model-receipt-drift.md, artifact_type: markdown_doc }
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/reviewer-session-model-history.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_code }
+  - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_code }
 agent_slots:
   - { role: tl, slot_label: "TL — receiptとhistoryの同一主体境界を照合" }
   - { role: qa, slot_label: "QA — window重複・境界時刻・real repo evidenceを検証" }

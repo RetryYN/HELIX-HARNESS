@@ -7,6 +7,7 @@ import {
   analyzeBranchKind,
   branchKindMessages,
   classifyBranchKind,
+  isReviewEvidenceMetadataOnly,
   isSupersessionMetadataOnly,
 } from "../src/lint/branch-kind";
 import { loadDriveRouteCatalog } from "../src/lint/drive-route-catalog";
@@ -170,6 +171,30 @@ describe("branch-kind-check", () => {
     expect(isSupersessionMetadataOnly(edgeOnly, base)).toBe(true);
     expect(isSupersessionMetadataOnly(bodyChanged, base)).toBe(false);
     expect(isSupersessionMetadataOnly(emptyEdge, base)).toBe(false);
+  });
+
+  it("U-RVIDENT-021: recovery branchは既存terminal PLANのreview_evidence-only訂正だけを受理する", () => {
+    const base =
+      "---\nplan_id: PLAN-L3-1\nkind: add-design\nstatus: confirmed\nreview_evidence:\n  - reviewer_model: claude:old\n---\nbody\n";
+    const corrected = base.replace("claude:old", "claude:new");
+    expect(isReviewEvidenceMetadataOnly(corrected, base)).toBe(true);
+    expect(
+      analyzeBranchKind({
+        branch: "recovery/review-evidence-correction",
+        changedPaths: ["docs/plans/PLAN-L3-1.md", "docs/plans/PLAN-RECOVERY-1.md"],
+        plans: [
+          {
+            file: "docs/plans/PLAN-L3-1.md",
+            kind: "add-design",
+            review_evidence_metadata_only: true,
+          },
+          { file: "docs/plans/PLAN-RECOVERY-1.md", kind: "recovery" },
+        ],
+      }).ok,
+    ).toBe(true);
+
+    expect(isReviewEvidenceMetadataOnly(corrected.replace("body", "changed"), base)).toBe(false);
+    expect(isReviewEvidenceMetadataOnly(corrected.replace("confirmed", "draft"), base)).toBe(false);
   });
 
   it("allows feature impl PLAN and keeps missing issue as warning only", () => {

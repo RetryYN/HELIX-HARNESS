@@ -28,6 +28,8 @@ export interface BranchPlanDoc {
   github_issue_id?: unknown;
   /** recovery branchが既存PLANへsuperseded_byだけを移行する場合のtyped判定。 */
   supersession_metadata_only?: boolean;
+  /** recovery branchが既存terminal PLANのreview_evidenceだけを訂正する場合のtyped判定。 */
+  review_evidence_metadata_only?: boolean;
 }
 
 export interface BranchKindInput {
@@ -320,7 +322,8 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
 
   for (const plan of plans) {
     const allowedRecoveryMetadataMigration =
-      kind === "recovery" && plan.supersession_metadata_only === true;
+      kind === "recovery" &&
+      (plan.supersession_metadata_only === true || plan.review_evidence_metadata_only === true);
     if ((!plan.kind || !allowedKinds.includes(plan.kind)) && !allowedRecoveryMetadataMigration) {
       findings.push({
         code: "kind_mismatch",
@@ -392,6 +395,45 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
   }
   const currentWithout = planWithoutSupersededBy(currentSource);
   const baseWithout = planWithoutSupersededBy(baseSource);
+  return currentWithout !== null && currentWithout === baseWithout;
+}
+
+function planWithoutReviewEvidence(source: string): string | null {
+  const raw = markdownFrontmatter(source);
+  if (!raw) return null;
+  try {
+    const frontmatter = parseYaml(raw) as Record<string, unknown>;
+    if (!frontmatter || typeof frontmatter !== "object") return null;
+    delete frontmatter.review_evidence;
+    const body = source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/u, "");
+    return JSON.stringify({ frontmatter: canonicalValue(frontmatter), body });
+  } catch {
+    return null;
+  }
+}
+
+/** current/baseの差が既存terminal PLANのnon-empty review_evidence fieldだけかをexact比較する。 */
+export function isReviewEvidenceMetadataOnly(currentSource: string, baseSource: string): boolean {
+  const currentRaw = markdownFrontmatter(currentSource);
+  const baseRaw = markdownFrontmatter(baseSource);
+  if (!currentRaw || !baseRaw) return false;
+  try {
+    const current = parseYaml(currentRaw) as Record<string, unknown>;
+    const base = parseYaml(baseRaw) as Record<string, unknown>;
+    const terminal = new Set(["confirmed", "completed", "accepted"]);
+    if (
+      !terminal.has(String(current.status ?? "")) ||
+      current.status !== base.status ||
+      !Array.isArray(current.review_evidence) ||
+      current.review_evidence.length === 0 ||
+      JSON.stringify(current.review_evidence) === JSON.stringify(base.review_evidence)
+    )
+      return false;
+  } catch {
+    return false;
+  }
+  const currentWithout = planWithoutReviewEvidence(currentSource);
+  const baseWithout = planWithoutReviewEvidence(baseSource);
   return currentWithout !== null && currentWithout === baseWithout;
 }
 
@@ -541,6 +583,8 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
         github_issue_id: fm.github_issue_id,
         supersession_metadata_only:
           baseSource !== null && isSupersessionMetadataOnly(source, baseSource),
+        review_evidence_metadata_only:
+          baseSource !== null && isReviewEvidenceMetadataOnly(source, baseSource),
       });
     }
     if (git("rev-parse", "HEAD").trim() !== observedHead)
