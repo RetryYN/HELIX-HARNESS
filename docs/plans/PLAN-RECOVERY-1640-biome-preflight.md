@@ -65,16 +65,14 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
-    reviewed_at: "2026-09-08T21:52:11Z"
+    reviewed_at: "2026-09-08T22:44:40Z"
     tests_green_at: "2026-09-08T22:11:40Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
-    reviewer_session_id: 77375ef5-9b74-425a-91ee-45ebc9fea1d9
-    reviewed_head_sha: 3242c20419e8ea5297552f11c222ed76d672c0ef
-    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5592353929
-    ci_evidence_generation: "run:34280725387:attempt:1:success"
-    scope: "旧approve receiptの対象4 pathがJIT main同期後もbyte同一であること、exact HEADのCI 12/12成功、DB projection/checkpoint replay収束を独立reviewerが実測した。残る単独survivor F1は本PLANで開示し、Issue #1671のmutation evidence機構改善への実測入力として参照する。本sliceのblockerではない。"
+    reviewer_session_id: aa302c10-9c61-4701-90b4-66d4c9b8d89e
+    reviewed_head_sha: baa7c332807350b47a6720789a5467de2adecb05
+    scope: "exact HEAD baa7c3328でscope、evidence byte、64/64再現、mutation oracle、terminal failed CIの原因を独立reviewerが再確認した。formal receiptは現review sessionへのPLAN再束縛後に封印し、receipt_urlとci_evidence_generationはその真正な値だけを後続commitで記録する。残るF1 survivorはIssue #1671への実測入力であり本sliceのblockerではない。"
     green_commands:
       - kind: unit_test
         command: "npx vitest run tests/harness-check-workflow.test.ts --reporter=json --outputFile=.helix/evidence/review-1676-terminal/vitest-targeted.json"
