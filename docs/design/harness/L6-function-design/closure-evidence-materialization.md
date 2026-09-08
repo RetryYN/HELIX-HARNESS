@@ -42,7 +42,7 @@ oracleを発明しない。frontmatterへの段階backfillは可能だが、637�
 - PLAN pathはtracked canonical regular fileに限り、symlink、submodule、repository外pathを拒否する。
 - strict registry authorityを持たないcandidateは実行せず、分類reportだけを返す。callerはcommand、oracle、
   capability、gateを追加・上書きできない。
-- test commandはbindingごとに`bunx vitest run <single canonical test_path> --reporter=json`相当のtyped argvへ固定する。
+- test commandはbindingごとに`npx --no-install vitest run <single canonical test_path> --reporter=json`相当のtyped argvへ固定する。
   同じHEAD・argvは1回だけ実行し、JSON resultで対象oracleが実際にcollect・execute・passしたことを検査してから
   oracle別test caseへmany-to-many joinする。test caseはPLAN+oracleごとexactly-oneとする。
 - required gate commandはPLAN記載値とCLI allowlistの双方へ一致させ、shell文字列を任意実行しない。
