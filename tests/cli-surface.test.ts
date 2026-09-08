@@ -8160,7 +8160,9 @@ describe("L7 CLI surface closure", () => {
     }
   }, 20_000);
 
-  it("U-CNHOOKWIRE-007/010: pre-activation dispatches without an envelope but rejects an explicit invalid envelope", () => {
+  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007]
+  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-010]
+  it("U-CNHOOKWIRE-010: pre-activation dispatches without an envelope but rejects an explicit invalid envelope", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-project-hook-preactivation-"));
     try {
       const contextPath = installTestWorkerContextBoundary(root);
@@ -8199,6 +8201,15 @@ describe("L7 CLI surface closure", () => {
       expect(rejected.stderr).toContain("project-hook authority dispatch blocked");
       expect(existsSync(join(binDir, "codex-env.txt"))).toBe(false);
 
+      const rejectedEmptyPath = runCliIn(
+        root,
+        [...baseArgs, "--project-hook-authority-envelope-file", ""],
+        env,
+      );
+      expect(rejectedEmptyPath.status).toBe(1);
+      expect(rejectedEmptyPath.stderr).toContain("project-hook authority dispatch blocked");
+      expect(existsSync(join(binDir, "codex-env.txt"))).toBe(false);
+
       const preActivation = runCliIn(root, baseArgs, env);
       expect(preActivation.status, preActivation.stderr || preActivation.stdout).toBe(0);
       expect(JSON.parse(preActivation.stdout)).toMatchObject({
@@ -8206,6 +8217,79 @@ describe("L7 CLI surface closure", () => {
         terminal_status: "success",
       });
       expect(existsSync(join(binDir, "codex-env.txt"))).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007b]
+  it("U-CNHOOKWIRE-007b: loop/pair/team reject an explicit invalid envelope before provider probing", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-cli-project-hook-native-surfaces-"));
+    try {
+      const invalidAuthorityPath = join(root, "invalid-project-hook-authority.json");
+      writeFileSync(invalidAuthorityPath, "null\n");
+      const binDir = join(root, "bin");
+      mkdirSync(binDir);
+      const fakeCodex = writeFakeProvider(binDir, "codex");
+      const fakeClaude = writeFakeProvider(binDir, "claude");
+      const currentPath = process.env.PATH ?? process.env.Path ?? "";
+      const env = {
+        ...process.env,
+        HELIX_SKIP_UPDATE_CHECK: "1",
+        PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${currentPath}`,
+        Path: `${binDir}${process.platform === "win32" ? ";" : ":"}${currentPath}`,
+        HELIX_CODEX_BIN: fakeCodex,
+        HELIX_CLAUDE_BIN: fakeClaude,
+      };
+      const cases = [
+        {
+          surface: "loop",
+          args: [
+            "loop",
+            "run",
+            "--plan",
+            "missing-plan",
+            "--project-hook-authority-envelope-file",
+            invalidAuthorityPath,
+          ],
+        },
+        {
+          surface: "pair-agent",
+          args: [
+            "pair-agent",
+            "run",
+            "--plan-id",
+            "PLAN-L7-test",
+            "--task",
+            "probe",
+            "--execute",
+            "--project-hook-authority-envelope-file",
+            invalidAuthorityPath,
+          ],
+        },
+        {
+          surface: "team",
+          args: [
+            "team",
+            "run",
+            "--definition",
+            join(root, "missing-team.yaml"),
+            "--execute",
+            "--project-hook-authority-envelope-file",
+            invalidAuthorityPath,
+          ],
+        },
+      ];
+
+      for (const testCase of cases) {
+        const run = runCliIn(root, testCase.args, env);
+        expect(run.status, `${testCase.surface}: ${run.stderr || run.stdout}`).toBe(1);
+        expect(run.stderr).toContain(
+          `${testCase.surface}: project-hook authority dispatch blocked`,
+        );
+      }
+      expect(existsSync(join(binDir, "codex-env.txt"))).toBe(false);
+      expect(existsSync(join(binDir, "claude-env.txt"))).toBe(false);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

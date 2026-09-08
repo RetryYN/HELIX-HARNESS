@@ -854,7 +854,7 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
 }
 
 function readClosureEvidenceProbeExecution(path: string | undefined) {
-  if (!path) return null;
+  if (path === undefined) return null;
   const payload = JSON.parse(readFileSync(path, "utf8")) as {
     execution?: unknown;
   };
@@ -1319,7 +1319,7 @@ function projectHookAuthoritySurfaceProjection(
 }
 
 function admitExplicitProjectHookAuthority(envelopeFile: string | undefined) {
-  if (!envelopeFile) return { allowed: true, reason: "not_configured", bytes: null };
+  if (envelopeFile === undefined) return { allowed: true, reason: "not_configured", bytes: null };
   const authority = loadProjectHookAuthorityCliInput(envelopeFile);
   if (authority.kind !== "transport") {
     return {
@@ -3370,6 +3370,16 @@ loop
       projectHookAuthorityEnvelopeFile?: string;
       workerContextFile?: string;
     }) => {
+      const projectHookAdmission = opts.dryRun
+        ? null
+        : admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile);
+      if (projectHookAdmission && !projectHookAdmission.allowed) {
+        process.stderr.write(
+          `loop: project-hook authority dispatch blocked (${projectHookAdmission.reason}) bytes=${projectHookAdmission.bytes}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
       const repoRoot = process.cwd();
       const store = loopStoreForRoot(repoRoot);
       const state = store.read(opts.plan);
@@ -3424,18 +3434,8 @@ loop
         return;
       }
 
-      const dispatchAdmission = admitExplicitProjectHookAuthority(
-        opts.projectHookAuthorityEnvelopeFile,
-      );
-      if (!dispatchAdmission.allowed) {
-        process.stderr.write(
-          `loop: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
-        );
-        process.exitCode = 1;
-        return;
-      }
       process.stderr.write(
-        `project-hook-authority: surface=dispatch bytes=${dispatchAdmission.bytes}\n`,
+        `project-hook-authority: surface=dispatch bytes=${projectHookAdmission?.bytes ?? null}\n`,
       );
 
       let current: LoopState = { ...state, workerProvider };
@@ -3702,6 +3702,16 @@ pairAgent
         process.exitCode = 1;
         return;
       }
+      const projectHookAdmission = opts.execute
+        ? admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile)
+        : null;
+      if (projectHookAdmission && !projectHookAdmission.allowed) {
+        process.stderr.write(
+          `pair-agent: project-hook authority dispatch blocked (${projectHookAdmission.reason}) bytes=${projectHookAdmission.bytes}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
       const base = detectMode();
       const detection = opts.mode ? { ...base, mode: opts.mode } : base;
       const plan = buildPairAgentTddPlan({
@@ -3726,17 +3736,7 @@ pairAgent
       }
       let projectHookAuthorityDispatchBytes: string | null = null;
       if (opts.execute) {
-        const dispatchAdmission = admitExplicitProjectHookAuthority(
-          opts.projectHookAuthorityEnvelopeFile,
-        );
-        if (!dispatchAdmission.allowed) {
-          process.stderr.write(
-            `pair-agent: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
-          );
-          process.exitCode = 1;
-          return;
-        }
-        projectHookAuthorityDispatchBytes = dispatchAdmission.bytes;
+        projectHookAuthorityDispatchBytes = projectHookAdmission?.bytes ?? null;
       }
       const result = await runPairAgentTddPlan({
         plan,
@@ -13028,6 +13028,16 @@ team
       json?: boolean;
     }) => {
       try {
+        const projectHookAdmission = opts.execute
+          ? admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile)
+          : null;
+        if (projectHookAdmission && !projectHookAdmission.allowed) {
+          process.stderr.write(
+            `team: project-hook authority dispatch blocked (${projectHookAdmission.reason}) bytes=${projectHookAdmission.bytes}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
         const mode = opts.mode ?? detectMode().mode;
         const loadedContext = opts.workerContextFile
           ? loadWorkerContextBoundaryFile({
@@ -13095,16 +13105,6 @@ team
             for (const m of result.messages) process.stdout.write(`  - ${m}\n`);
           }
           process.exitCode = result.ok ? 0 : 1;
-          return;
-        }
-        const dispatchAdmission = admitExplicitProjectHookAuthority(
-          opts.projectHookAuthorityEnvelopeFile,
-        );
-        if (!dispatchAdmission.allowed) {
-          process.stderr.write(
-            `team: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
-          );
-          process.exitCode = 1;
           return;
         }
         let teamSessionSeq = 0;
@@ -13231,7 +13231,7 @@ team
         }
         if (opts.json)
           process.stdout.write(
-            `${JSON.stringify({ ...execution, project_hook_authority: { surface: "dispatch", bytes: dispatchAdmission.bytes } }, null, 2)}\n`,
+            `${JSON.stringify({ ...execution, project_hook_authority: { surface: "dispatch", bytes: projectHookAdmission?.bytes ?? null } }, null, 2)}\n`,
           );
         else {
           process.stdout.write(

@@ -433,7 +433,8 @@ describe("project hook authority transport envelope", () => {
     expect(projectCalls).toBe(1);
   });
 
-  it("U-CNHOOKWIRE-007b: explicit admission helper remains wired to all native dispatch surfaces", () => {
+  // [PLAN-L7-1614-project-hook-authority-consumer-wiring/U-CNHOOKWIRE-007c]
+  it("U-CNHOOKWIRE-007c: explicit admission helper remains wired to all native dispatch surfaces", () => {
     const cli = readFileSync(new URL("../src/cli.ts", import.meta.url), "utf8");
     const occurrences = cli.match(/admitExplicitProjectHookAuthority\(/gu) ?? [];
     // definition + loop + pair-agent + provider adapter + team

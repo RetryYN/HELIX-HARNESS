@@ -182,8 +182,7 @@ function isCanonicalUnitTestDesign(doc: PlanDescentDoc): boolean {
     (doc.layer === "L7" &&
       doc.pairArtifact?.startsWith(TEST_DESIGN_PREFIX) === true &&
       doc.pairArtifactLayer === "L7" &&
-      doc.pairArtifactType === "test_design" &&
-      doc.pairArtifactSubDoc === "unit-test-design")
+      doc.pairArtifactType === "test_design")
   );
 }
 

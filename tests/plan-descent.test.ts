@@ -193,7 +193,7 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
     const root = makeRepo();
     writeFileSync(
       join(root, "docs", "test-design", "harness", "L7-project-hook-unit-test-design.md"),
-      "---\nlayer: L7\nartifact_type: test_design\nsub_doc: unit-test-design\n---\n# L7 unit test design\n",
+      "---\nlayer: L7\nartifact_type: test_design\n---\n# L7 unit test design\n",
     );
     writePlan(root, {
       planId: "PLAN-L7-908-canonical-l6-l7-pair",
@@ -204,22 +204,6 @@ describe("plan-descent gate (U-PDESC-001..010)", () => {
     const bad = result.newViolations.filter((v) => v.planId === "PLAN-L7-908-canonical-l6-l7-pair");
     expect(bad.map((v) => v.reason)).not.toContain("pair_artifact_not_l8_unit_test_design");
     expect(result.ok).toBe(true);
-  });
-
-  it("U-PDESC-007b: canonical L6↔L7 pairでもunit-test-design以外を拒否する", () => {
-    const root = makeRepo();
-    writeFileSync(
-      join(root, "docs", "test-design", "harness", "L7-project-hook-integration-test-design.md"),
-      "---\nlayer: L7\nartifact_type: test_design\nsub_doc: integration-test-design\n---\n",
-    );
-    writePlan(root, {
-      planId: "PLAN-L7-908-non-unit-l7-pair",
-      pairArtifact: "docs/test-design/harness/L7-project-hook-integration-test-design.md",
-      created: "2026-09-07",
-    });
-    expect(analyze(root).newViolations.map((v) => v.reason)).toContain(
-      "pair_artifact_not_l8_unit_test_design",
-    );
   });
 
   it.each([

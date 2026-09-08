@@ -21,7 +21,7 @@ Control Plane transport envelopeを唯一のexpected authority sourceとして�
 
 transport envelopeはexpected root identity、assignment binding、candidate/current HEAD、source material、lifecycle policyと、物理採取だけに使うloader／session／current authorityのlocatorを持つ。locatorをexpected identityやobserved evidenceとして扱わない。observed root、observed HEAD、observed source bytesをenvelopeへ混載しない。
 
-host adapterはexecution rootを実行時のcwdから観測し、loader root、session project root、current authority rootを互いに独立した明示locatorとして解決する。locatorのroot identity、HEAD、source bytesはphysical adapterで独立採取する。さらにexecution rootから実測したGit common dirと`refs/remotes/origin/main`をhost-owned current authority anchorとし、loader／session／current authority rootのcommon dir不一致、およびcurrent authority HEADとhost anchorの不一致をexpected値との比較前に拒否する。request値をobservedへコピーしない。cwd、env、default file、primary shared treeからauthorityを補完しない。remote-tracking mainはauthority内容を補完するsourceではなく、同一repository内のcurrent authority locatorを検証するhost anchorとしてだけ使用する。
+host adapterはexecution rootを実行時のcwdから観測し、loader root、session project root、current authority rootを互いに独立した明示locatorとして解決する。locatorのroot identity、HEAD、source bytesはphysical adapterで独立採取する。さらにexecution rootから実測したGit common dirと、git common dirが持つ一意なremote default symbolic refをhost-owned current authority anchorとし、loader／session／current authority rootのcommon dir不一致、およびcurrent authority HEADとhost anchorの不一致をexpected値との比較前に拒否する。request値をobservedへコピーしない。cwd、env、default file、primary shared treeからauthorityを補完しない。remote default refはauthority内容を補完するsourceではなく、同一repository内のcurrent authority locatorを検証するhost anchorとしてだけ使用する。
 
 ## 一回性と共有
 

@@ -39,7 +39,7 @@ contract_failures: "明示された不正・stale・foreign envelopeは固定sch
 tdd_red_required: true
 red_test: "U-CNHOOKWIRE-001..002はconsumer wiringが存在しない状態でresolution/projectorの一回性とfailure dispatch拒否を検出する。"
 mutation_oracle_required: true
-mutation_oracle: "resolver/projectorのsurface別再実行、expected→observedコピー、failure時admitted receipt付与、envelopeなしdispatch、cwd/env/default fallbackを個別にkillする。"
+mutation_oracle: "resolver/projectorのsurface別再実行、expected→observedコピー、failure時admitted receipt付与、明示不正envelopeでのdispatch、producer接続前の未指定dispatch停止、cwd/env/default fallbackを個別にkillする。"
 parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md
 pair_artifact: docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md
 dependencies:
@@ -74,8 +74,11 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-005, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-006, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-007, test_path: tests/project-hook-authority-envelope.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-007b, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-007c, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-008, test_path: tests/project-hook-authority-envelope.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-009, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-010, test_path: tests/cli-surface.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, artifact_type: design_doc }
