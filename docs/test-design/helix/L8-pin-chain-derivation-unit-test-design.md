@@ -11,7 +11,7 @@ plan: docs/plans/PLAN-RECOVERY-1670-pin-chain-derivation.md
 pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
 ---
 
-# Pin Chain Derivation Unit Test Design
+# pin追従連鎖の単体テスト設計
 
 親設計: `docs/design/helix/L6-function-design/pin-chain-derivation.md`
 
@@ -24,10 +24,10 @@ pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
 
 件数だけでなく、deterministicとsemanticの取り違え、未対応surfaceの隠蔽、CLI未配線をそれぞれ独立して拘束する。
 
-## U-PINCHAIN-001: deterministic pin逆引き
+## U-PINCHAIN-001: 決定的pinの逆引き
 
-## U-PINCHAIN-002: unknown surface fail-visible
+## U-PINCHAIN-002: 未登録surfaceの可視化
 
-## U-PINCHAIN-003: semantic review pin分離
+## U-PINCHAIN-003: 意味レビューpinの分離
 
-## U-PINCHAIN-004: CLI read-after
+## U-PINCHAIN-004: CLI実読込

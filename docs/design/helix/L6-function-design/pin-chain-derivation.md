@@ -1,4 +1,4 @@
-# Pin Chain Derivation
+# pin追従連鎖の事前導出
 
 ## 責務
 
