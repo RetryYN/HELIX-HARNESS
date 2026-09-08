@@ -19,16 +19,16 @@ legacy_retirement_state: retained
 no_code_decision: configure
 ddd_modeling_decision: policy
 contract_preconditions: "PR #1675の型付きreceiptは同一Claude sessionのOpus 5を記録するが、historyはFable 5.1のopen windowを保持し、PLAN terminal化に解がない"
-contract_postconditions: "receiptのreviewed_atを境界に旧windowを閉じ、新model windowを開始し、history検査とreceipt bindingが同じ主体を受理する"
-contract_invariants: "過去windowを書き換えず、切替時刻をreceipt以前へ推定せず、historyを実効provider attestationとして扱わず、既存fail-closeを維持する"
+contract_postconditions: "session transcriptの実観測境界で旧windowを閉じ、新model windowを開始し、同区間の誤帰属を訂正してhistory検査とreceipt bindingが同じ主体を受理する"
+contract_invariants: "receipt公開時刻で先行する実観測を上書きせず、historyを実効provider attestationとして扱わず、既存fail-closeを維持する"
 contract_failures: "window重複、時刻gapの推測補完、PLAN側model偽装、history無効化、providerだけの粗い一致を拒否する"
 tdd_red_required: true
-red_test: "U-RVIDENT-020で新Opus windowのsinceをreceipt境界より1秒遅らせると、境界時刻のmodel解決がnullとなり1 failedを実測した"
-red_at: "2026-09-08T17:03:23Z"
-green_at: "2026-09-08T17:03:57Z"
+red_test: "U-RVIDENT-020で新Opus windowのsinceを実観測境界より1秒遅らせると、境界時刻のmodel解決がnullとなり1 failedを実測した"
+red_at: "2026-09-08T17:26:14Z"
+green_at: "2026-09-08T17:27:58Z"
 mutation_oracle_required: true
-mutation_oracle: "tests/review-evidence.test.ts::U-RVIDENT-020がreceipt境界のgap、旧open window残置による重複、境界一致の旧model残留を拒否する"
-mutation_oracle_evidence: "tests/review-evidence.test.ts::U-RVIDENT-020。2026-09-08T17:03:23Zに新Opus windowのsinceを16:45:59Zから16:46:00Zへ変異し、境界時刻がnullとなって1 failed。変異を復元し、同日17:03:57Zに1 passed。全review-evidence testでも再検証する。"
+mutation_oracle: "tests/review-evidence.test.ts::U-RVIDENT-020が実観測境界のgap、旧open window残置による重複、境界一致の旧model残留を拒否する"
+mutation_oracle_evidence: "tests/review-evidence.test.ts::U-RVIDENT-020。2026-09-08T17:26:14Zに新Opus windowのsinceを18:03:40Zから18:03:41Zへ変異し、境界時刻がnullとなって1 failed。復元後17:27:58Zに95 tests greenを再検証した。"
 complexity_effect: net_neutral
 complexity_justification: "新しい判定器を増やさず、既存history projectionとreceipt間の矛盾を除去する"
 removal_trigger: "model変更時にsessionを再発行し、同一sessionの複数model windowが不要になった時"
@@ -66,17 +66,17 @@ review_evidence: []
 
 # typed receiptへのhistory追従
 
-PR #1675の正式receiptが初めて観測した`claude-opus-5`時刻を、新windowの開始境界とする。
-旧Fable windowは同時刻で閉じ、観測以前の実切替時刻を推定しない。
+同session transcriptが最初に観測した`claude-opus-5`時刻を、新windowの開始境界とする。
+旧Fable windowは同時刻で閉じ、後続receiptの公開時刻で先行する実観測を覆わない。
 
 ## 工程表
 
 1. R0: receipt、PLAN binding、current historyの三者矛盾を再現した。
 2. R1/R2: 既存U-RVIDENT-010がOpus転記をhistory mismatchとして拒否することを確認した。
-3. R3: 型付きreceipt時刻でwindowを一方向追従し、既存parser・重複拒否・provider照合を再利用する。
+3. R3: transcriptの実観測時刻でwindowを一方向追従し、同区間の4件の誤帰属を訂正する。
 4. R4: review evidence、PLAN lint、全CI、独立review後にPR #1675のterminal化を再試行する。
 
 ## 完了境界
 
 本sliceはhistory projectionの追従だけを所有する。Claude model変更時のsession再発行、PR #1675のBun移行、
-過去全receiptの再監査を完了扱いにしない。
+境界区間外の過去receipt再監査を完了扱いにしない。
