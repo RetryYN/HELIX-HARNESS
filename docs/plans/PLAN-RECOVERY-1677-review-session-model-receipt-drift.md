@@ -61,9 +61,9 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_code }
-  - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_code }
-  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_code }
+  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
+  - { artifact_path: src/adapters/github-workflow-identity-admission.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
