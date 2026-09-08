@@ -42,6 +42,8 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1645-markdown-table-coverage.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/universal-improvement-source-registry.v1.json, artifact_type: json_config }
+  - { artifact_path: config/universal-improvement-source-registry.v1.integrity.json, artifact_type: json_config }
   - { artifact_path: src/requirements/requirement-refinement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
   - { artifact_path: src/lint/plan-specific-vpair-binding.ts, artifact_type: source_module }
