@@ -59,14 +59,16 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
-    reviewed_at: "2026-09-09T07:45:00Z"
+    reviewed_at: "2026-09-08T23:02:35Z"
     tests_green_at: "2026-09-08T22:11:45Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: 84042278-2754-49c1-8218-d445bf829951
-    reviewed_head_sha: a9fa71053ea139fd438f4496ed1539c913dc4ccc
-    scope: "exact HEAD a9fa71053でscope、evidence byte、対象140 tests、design-language、catalog digest伝播、DB replay収束を独立reviewerが再確認した。formal receiptは現review sessionへのPLAN再束縛後に封印し、receipt_urlとci_evidence_generationはその真正な値だけを後続commitで記録する。runtime実装は後続#1679の責務として含めない。"
+    reviewed_head_sha: 1f8a4f13878d5b312d52f23ce7b4d3e9a9b29e90
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1680#issuecomment-5593066168
+    ci_evidence_generation: "run:34287708504:attempt:1:failure"
+    scope: "exact HEAD 1f8a4f138でmetadata-only carry-forward、scope、evidence byte、対象140 tests、design-language、catalog digest伝播、DB replay収束を独立reviewerが確認した。引用CIはreceipt locator不在だけを理由に失敗したterminal generationであり成功主張やmerge admissionには用いない。runtime実装は後続#1679の責務として含めない。"
     green_commands:
       - kind: unit_test
         command: "npx vitest run tests/vmodel-pair.test.ts tests/design-language.test.ts --reporter=json --outputFile=.helix/evidence/review-1680/vitest-targeted.json"
