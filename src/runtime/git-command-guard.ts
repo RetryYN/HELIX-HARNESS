@@ -288,7 +288,14 @@ function destructiveOperation(
   if (sub === "revert") return "git revert";
   if (
     sub === "push" &&
-    rest.some((arg) => arg === "--force" || arg === "-f" || arg.startsWith("--force-with-lease"))
+    rest.some(
+      (arg) =>
+        arg === "--force" ||
+        /^-[^-]*f/.test(arg) ||
+        arg.startsWith("--force-with-lease") ||
+        arg === "--mirror" ||
+        arg.startsWith("+"),
+    )
   ) {
     return "git push --force";
   }

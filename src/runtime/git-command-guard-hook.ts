@@ -56,9 +56,25 @@ function pushCommitlintFailure(command: string, executionCwd: string): string | 
   const pushes = gitPushCommands(command, executionCwd);
   if (pushes === null) return "push commandを完全に解析できません";
   for (const push of pushes) {
-    if (push.args.includes("--delete") || push.args.includes("-d")) continue;
+    if (
+      push.args.some(
+        (arg) =>
+          arg === "--tags" ||
+          arg === "--all" ||
+          arg === "--mirror" ||
+          arg === "--repo" ||
+          arg.startsWith("--repo="),
+      )
+    ) {
+      return "push対象集合を一意に解決できないoptionは未対応です";
+    }
     const positional = pushPositionals(push.args);
     if (!positional || positional.length > 2) return "push refspecを一意に解決できません";
+    if (push.args.includes("--delete") || push.args.includes("-d")) {
+      return positional.length === 2 && !positional[1]?.includes(":")
+        ? null
+        : "remote delete対象を一意に解決できません";
+    }
     const currentBranch = gitOutput(push.cwd, ["symbolic-ref", "--quiet", "--short", "HEAD"]);
     const remote =
       positional[0] ??
@@ -66,7 +82,13 @@ function pushCommitlintFailure(command: string, executionCwd: string): string | 
         ? gitOutput(push.cwd, ["config", "--get", `branch.${currentBranch}.remote`])
         : null);
     if (!currentBranch || !remote || remote === ".") return "push先branchを解決できません";
-    const refspec = positional[1] ?? currentBranch;
+    let refspec = positional[1] ?? null;
+    if (!refspec) {
+      const pushRef = gitOutput(push.cwd, ["rev-parse", "--symbolic-full-name", "@{push}"]);
+      const expectedPrefix = `refs/remotes/${remote}/`;
+      if (!pushRef?.startsWith(expectedPrefix)) return "push先upstreamを一意に解決できません";
+      refspec = `HEAD:refs/heads/${pushRef.slice(expectedPrefix.length)}`;
+    }
     if (refspec.startsWith(":")) continue;
     const [rawSource, rawTarget] = refspec.split(":", 2);
     const source = rawSource === "HEAD" || !rawSource ? "HEAD" : rawSource;

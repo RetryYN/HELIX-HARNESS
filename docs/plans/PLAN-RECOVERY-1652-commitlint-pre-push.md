@@ -34,6 +34,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-017, test_path: tests/git-command-guard.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-018, test_path: tests/git-command-guard.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-019, test_path: tests/git-command-guard.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-020, test_path: tests/git-command-guard.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-021, test_path: tests/git-command-guard.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -78,6 +80,7 @@ Issue #1652で同じ非規約merge subjectが二度remoteへ送られ、公開�
 
 ## 現在地
 
-局所実装と36 testsは成功。新worktreeに依存物が無かった初回起動失敗はコード検証として数えない。
-型検査は借用依存ではPlaywright型を解決できず未成立。専用依存導入後に再実行する。
-独立review、full CI、main到達、実運用でのpush拒否は未完了。
+通常pushの初期実装後、独立監査で特殊pushの検査集合乖離を検出した。`--tags`／`--all`／`--repo`を
+fail-closeし、`--mirror`／short option cluster内のforce／先頭`+`refspecをdestructive扱いへ追加した。
+local名とupstream名が異なる合法pushは`@{push}`から解決する。局所41 testsは成功した。
+独立review、full CI、main到達、実運用での不正push拒否は未完了。

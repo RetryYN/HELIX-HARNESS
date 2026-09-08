@@ -163,6 +163,9 @@ describe("git-command-guard", () => {
       "git revert HEAD",
       "git push --force origin main",
       "git push --force-with-lease origin main",
+      "git push -fu origin main",
+      "git push --mirror origin",
+      "git push origin +main:main",
     ]) {
       const result = evaluateGitCommandGuard({ command });
       expect(result.decision, command).toBe("block");
@@ -284,6 +287,34 @@ describe("git-command-guard", () => {
         runHook({ tool_input: { command: "git push --delete origin old-branch" } }, fixture.linked)
           .status,
       ).toBe(0);
+    } finally {
+      fixture.cleanup();
+    }
+  });
+
+  it("U-GITGUARD-020: 実送信集合を解決できないpush optionをfail-closeする", () => {
+    const fixture = createPushFixture();
+    try {
+      for (const command of [
+        "git push --tags origin",
+        "git push --all origin",
+        "git push --repo=/tmp/other.git",
+      ]) {
+        const blocked = runHook({ tool_input: { command } }, fixture.linked);
+        expect(blocked.status).toBe(2);
+        expect(blocked.stderr).toContain("push対象集合");
+      }
+    } finally {
+      fixture.cleanup();
+    }
+  });
+
+  it("U-GITGUARD-021: local名と異なるpush upstreamを実refから解決する", () => {
+    const fixture = createPushFixture();
+    try {
+      git(fixture.linked, ["branch", "--set-upstream-to=origin/main", "feature"]);
+      git(fixture.linked, ["config", "push.default", "upstream"]);
+      expect(runHook({ tool_input: { command: "git push" } }, fixture.linked).status).toBe(0);
     } finally {
       fixture.cleanup();
     }
