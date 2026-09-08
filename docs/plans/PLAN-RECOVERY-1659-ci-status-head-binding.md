@@ -2,7 +2,7 @@
 plan_id: PLAN-RECOVERY-1659-ci-status-head-binding
 title: "PLAN-RECOVERY-1659: GitHub CI statusのexact HEAD／workflow束縛"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -54,10 +54,15 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-github-ci-status-head-binding-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1659-ci-status-head-binding.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: src/audit/github-merge-readiness.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-merge-readiness.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — candidate HEAD／workflow identityのauthority境界を照合" }
   - { role: se, slot_label: "Luna worker — exact HEAD／workflow selector実装" }
   - { role: qa, slot_label: "QA — old HEAD／別workflow／window miss反例" }
   - { role: tl, slot_label: "Codex — scope・CLI residual・独立review収束" }
