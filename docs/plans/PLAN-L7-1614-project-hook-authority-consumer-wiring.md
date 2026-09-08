@@ -2,7 +2,7 @@
 plan_id: PLAN-L7-1614-project-hook-authority-consumer-wiring
 title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7へ接続する"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -103,6 +103,7 @@ modifies:
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 review_evidence: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — project-hook authority不一致のRecovery分類" }
   - { role: se, slot_label: "SE — Control Plane envelope／consumer wiring" }
   - { role: qa, slot_label: "QA — stale・fallback・surface byte同一性の反例" }
   - { role: tl, slot_label: "TL — canonical L6↔L7境界とdispatch admission" }
