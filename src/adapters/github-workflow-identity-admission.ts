@@ -503,9 +503,7 @@ export function admitGithubWorkflowIdentity(input: {
       }
     }
   }
-  const issueContract = parseGithubWorkflowIdentityContract(issue.body, catalog, {
-    issueNumber: plan.data.github_issue_id,
-  });
+  const issueContract = parseGithubWorkflowIdentityContract(issue.body, catalog);
   if (!issueContract.ok) return mapContractFailure("issue", issueContract);
   const prContract = parseGithubWorkflowIdentityContract(input.prBody, catalog);
   if (!prContract.ok) return mapContractFailure("pr", prContract);

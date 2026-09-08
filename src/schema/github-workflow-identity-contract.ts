@@ -13,14 +13,6 @@ export const GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER =
 /** marker欠落時に案内する受理形式（判定は緩めない）。 */
 export const GITHUB_WORKFLOW_IDENTITY_CONTRACT_ACCEPTED_FORM = `Accepted form: ${GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER} followed by one fenced json object with schema_version, registry_version, registry_source_digest, target_axis, target_id, optional signal_tokens`;
 
-export type GithubWorkflowIdentityContractParseOptions = {
-  /**
-   * Issue body を読むときに Issue 番号を渡すと、missing 診断が対象 Issue を明示する。
-   * 未指定でも marker 受理形式は必ず案内する（fail-close 条件は不変）。
-   */
-  issueNumber?: number;
-};
-
 const digestSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/u);
 const identityIdSchema = z.string().regex(/^[A-Z][A-Z0-9_]*$/u);
 
@@ -102,12 +94,8 @@ function classifiedSignalsForIdentity(
   return [...signals].sort((left, right) => left.localeCompare(right));
 }
 
-export function formatGithubWorkflowIdentityContractMissingDetail(issueNumber?: number): string {
-  const target =
-    typeof issueNumber === "number" && Number.isInteger(issueNumber) && issueNumber > 0
-      ? `issue=#${issueNumber}`
-      : "issue body bound by PLAN github_issue_id";
-  return `marker absent on ${target}; ${GITHUB_WORKFLOW_IDENTITY_CONTRACT_ACCEPTED_FORM}`;
+export function formatGithubWorkflowIdentityContractMissingDetail(): string {
+  return `marker absent; ${GITHUB_WORKFLOW_IDENTITY_CONTRACT_ACCEPTED_FORM}`;
 }
 
 export function formatGithubWorkflowIdentityContractSignalMismatchDetail(input: {
@@ -132,14 +120,13 @@ export function formatGithubWorkflowIdentityContractSignalMismatchDetail(input: 
 export function parseGithubWorkflowIdentityContract(
   body: string,
   catalog: WorkflowClassificationCatalog,
-  options?: GithubWorkflowIdentityContractParseOptions,
 ): GithubWorkflowIdentityContractResult {
   const markers = markerCount(body);
   if (markers === 0) {
     return {
       ok: false,
       reason: "workflow_identity_contract_missing",
-      detail: formatGithubWorkflowIdentityContractMissingDetail(options?.issueNumber),
+      detail: formatGithubWorkflowIdentityContractMissingDetail(),
     };
   }
   if (markers !== 1) {

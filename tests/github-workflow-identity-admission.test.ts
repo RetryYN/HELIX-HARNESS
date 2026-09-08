@@ -436,26 +436,6 @@ describe("GitHub workflow identity admission", () => {
     }
   });
 
-  it("U-GWIDADM-022: Issue marker欠落は対象Issue番号とAccepted formをdetailへ投影する", () => {
-    const root = fixtureRoot();
-    writePlan(root);
-    const result = admitGithubWorkflowIdentity({
-      repository: "RetryYN/HELIX-HARNESS",
-      prBody: contractBody(),
-      changedPaths: [PLAN_PATH],
-      repoRoot: root,
-      ghApi: () => ({ number: 733, body: "missing marker" }),
-    });
-    expect(result).toMatchObject({
-      ok: false,
-      reason: "issue_workflow_identity_contract_missing",
-    });
-    if (result.ok) throw new Error("expected missing");
-    expect(result.detail).toContain("issue=#733");
-    expect(result.detail).toContain("Accepted form:");
-    expect(result.detail).toContain(GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER);
-  });
-
   it("U-GWIDADM-004: PR marker欠落とIssue legacy fieldを別reasonでfail-closeする", () => {
     const root = fixtureRoot();
     writePlan(root);
