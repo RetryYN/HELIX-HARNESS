@@ -24,6 +24,11 @@ contract_postconditions: "既存lintをpreflightで一回実行し、不備をsh
 contract_invariants: "対象src/tests、検査強度、required aggregate、receipt、DB、doctorを維持する"
 contract_failures: "lint削除、finalizeへの逆戻し、shard後への移動、重複、別command、条件付きskip、continue-on-errorを拒否する"
 tdd_red_required: true
+red_test: "tests/harness-check-workflow.test.tsの初期4 mutantに対し配置判定節を除去しても64 passedとなるsurvivorを独立reviewが検出し、oracle強化未成立をRedとして差し戻した。"
+red_at: "2026-09-08T15:23:48Z"
+green_at: "2026-09-08T16:00:49Z"
+mutation_oracle_required: true
+mutation_oracle_evidence: "tests/harness-check-workflow.test.ts::U-BIOMEFAST-001で、c7e0a8a48ac6fa94d2b0086c7f28374885b5590eがremovedFromPreflight依存を分離し、duplicatedInFinalize／duplicatedIntoShard／removedFromPreflight／movedAfterShardPlanを個別投入した。条件節の独立除去実測ではlintSteps.length、shardHasLint、finalizeSteps.someが各1 failed、配置条件2節の同時除去が1 failedとなり、baselineは64 passed。詳細実測はPR #1676 review comment 5588321930および5588346921。残る単独survivor F1はIssue #1671で追跡し、本sliceのblockerではない。"
 complexity_effect: net_neutral
 complexity_justification: "既存検査の配置変更と退行oracleに限定し、別検査機構を作らない"
 removal_trigger: "後継のCI計画が同じ早期検査義務を引き継ぎ、独立検収した時"
@@ -62,12 +67,12 @@ review_evidence:
     reviewed_at: "2026-09-08T16:34:04Z"
     tests_green_at: "2026-09-08T16:28:10Z"
     verdict: approve
-    worker_model: cursor:grok-4.6
+    worker_model: codex:gpt-5.6-sol
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: ebf40921-f0c5-4664-874d-367388e19333
     reviewed_head_sha: 3047406162da8b4204127a54493761c131ee9d61
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5588529124"
-    scope: "PR #1676のexact HEADについて、terminal CI run 34248762444 attempt 1の9 job全件success、HEAD一致、独立review blocker 0をread-afterした。mutation節の独立性に関する非blocker F1はIssue #1671で追跡し、本sliceの配置退行防止を弱めない。"
+    scope: "Cursor Grok 4.6の初期成果をCodex作成レーンが修復したPR #1676のexact HEADについて、terminal CI run 34248762444 attempt 1の9 job全件success、HEAD一致、独立review blocker 0をread-afterした。mutation節の独立性に関する非blocker F1はIssue #1671で追跡し、本sliceの配置退行防止を弱めない。"
     green_commands:
       - kind: smoke
         command: "gh run view 34248762444 --json status,conclusion,headSha,attempt,url,updatedAt --jq '.'"
