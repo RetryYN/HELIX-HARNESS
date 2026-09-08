@@ -4,9 +4,9 @@ title: "PLAN-RECOVERY-1640: Biomeの早期検出と重複実行除去"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
-completion_claim_allowed: false
-backfill_state: pending
+status: confirmed
+completion_claim_allowed: true
+backfill_state: completed
 owner: Codex
 created: 2026-09-08
 updated: 2026-09-09
@@ -61,7 +61,19 @@ agent_slots:
   - { role: tl, slot_label: "TL — 検査義務を維持して既存lintの実行順を修復" }
   - { role: qa, slot_label: "QA — 早期拒否と合法入力通過・配置反例を検証" }
   - { role: aim, slot_label: "AIM — Recoveryの責務境界と必須検証の非緩和を照合" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Opus 5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T21:52:11Z"
+    tests_green_at: "2026-09-08T21:48:46Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 77375ef5-9b74-425a-91ee-45ebc9fea1d9
+    reviewed_head_sha: 3242c20419e8ea5297552f11c222ed76d672c0ef
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5592353929
+    ci_evidence_generation: "run:34280725387:attempt:1:success"
+    scope: "旧approve receiptの対象4 pathがJIT main同期後もbyte同一であること、exact HEADのCI 12/12成功、DB projection/checkpoint replay収束を独立reviewerが実測した。残る単独survivor F1はIssue #1671で追跡し、本sliceのblockerではない。"
 ---
 
 # 既存CIの検査順修復
@@ -104,5 +116,5 @@ continue-on-error・条件付きskipを追加せず、shardはpreflight成功後
 ## 完了境界
 
 workflow配置そのものはmain既存。本sliceは配置契約のmutation閉鎖を明示化し、targeted test、exact HEADの全CI、正式独立review receiptを完了根拠とする。
-現在はterminal化に引用可能な正式receiptの再取得前なのでdraftを維持する。削減効果の継続実測は後続telemetryの責務であり、本PLANの完了条件へ混入しない。
+exact HEAD `3242c20419e8ea5297552f11c222ed76d672c0ef` の全CI成功とformal independent receiptを取得したため、本sliceをconfirmedとする。削減効果の継続実測は後続telemetryの責務であり、本PLANの完了条件へ混入しない。
 撤回は正規PRで元の順序へ戻せるが、今回追加する配置契約との整合を再検収する。
