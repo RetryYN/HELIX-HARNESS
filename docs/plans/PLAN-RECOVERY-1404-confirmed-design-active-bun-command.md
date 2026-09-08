@@ -15,7 +15,7 @@ responsibility_owner: confirmed-design-runtime-command-authority
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: compatibility_isolated
+legacy_retirement_state: consumer_migration
 no_code_decision: configure
 ddd_modeling_decision: policy
 contract_preconditions: "confirmed設計、現行Node wrapper、Bun legacy候補inventoryを同一HEADで照合する"
