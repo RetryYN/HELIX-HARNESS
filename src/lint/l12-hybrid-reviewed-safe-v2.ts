@@ -325,8 +325,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // #1404: current/compatibility判定順と旧harness設計の移行境界を明記した。
+    // current authority自体は既存governance sourcesの順序を維持する。
     path: "docs/governance/README.md",
-    contentDigest: "164b9ca22e480964cdc122f55cbf2b4bba559eb16f208b2bfbb75052e72727da",
+    contentDigest: "723f6b83d1efaf5fbbced561fdfb08d37a8501e54234a380838e1db696fe2145",
     finalDisposition: "compatibility_labeled",
   },
   {
