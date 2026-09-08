@@ -10,6 +10,17 @@ export const GITHUB_WORKFLOW_IDENTITY_CONTRACT_SCHEMA =
 export const GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER =
   "<!-- HELIX:github-workflow-identity-contract:v1 -->" as const;
 
+/** marker欠落時に案内する受理形式（判定は緩めない）。 */
+export const GITHUB_WORKFLOW_IDENTITY_CONTRACT_ACCEPTED_FORM = `Accepted form: ${GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER} followed by one fenced json object with schema_version, registry_version, registry_source_digest, target_axis, target_id, optional signal_tokens`;
+
+export type GithubWorkflowIdentityContractParseOptions = {
+  /**
+   * Issue body を読むときに Issue 番号を渡すと、missing 診断が対象 Issue を明示する。
+   * 未指定でも marker 受理形式は必ず案内する（fail-close 条件は不変）。
+   */
+  issueNumber?: number;
+};
+
 const digestSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/u);
 const identityIdSchema = z.string().regex(/^[A-Z][A-Z0-9_]*$/u);
 
@@ -74,13 +85,62 @@ function signalFailureReason(
   return `workflow_identity_contract_signal_${disposition}`;
 }
 
+function classifiedSignalsForIdentity(
+  catalog: WorkflowClassificationCatalog,
+  targetAxis: string,
+  targetId: string,
+): string[] {
+  const signals = new Set<string>();
+  for (const binding of catalog.signal_bindings) {
+    if (binding.unresolved_until_decision === true) continue;
+    if (binding.target_axis !== targetAxis || binding.target_id !== targetId) continue;
+    for (const signal of binding.signals) {
+      const trimmed = signal.trim();
+      if (trimmed.length > 0) signals.add(trimmed);
+    }
+  }
+  return [...signals].sort((left, right) => left.localeCompare(right));
+}
+
+export function formatGithubWorkflowIdentityContractMissingDetail(issueNumber?: number): string {
+  const target =
+    typeof issueNumber === "number" && Number.isInteger(issueNumber) && issueNumber > 0
+      ? `issue=#${issueNumber}`
+      : "issue body bound by PLAN github_issue_id";
+  return `marker absent on ${target}; ${GITHUB_WORKFLOW_IDENTITY_CONTRACT_ACCEPTED_FORM}`;
+}
+
+export function formatGithubWorkflowIdentityContractSignalMismatchDetail(input: {
+  token: string;
+  declaredAxis: string;
+  declaredId: string;
+  resolvedAxis: string;
+  resolvedId: string;
+  declaredSignals: readonly string[];
+}): string {
+  const declaredList =
+    input.declaredSignals.length > 0 ? input.declaredSignals.join("|") : "(none registered)";
+  return (
+    `declared target_id=${input.declaredId} but signal "${input.token}" resolves to ${input.resolvedId}; ` +
+    `either set target_id: ${input.resolvedId} or use a ${input.declaredId} signal (${declaredList})` +
+    (input.declaredAxis === input.resolvedAxis
+      ? ""
+      : ` [declared ${input.declaredAxis}:${input.declaredId}; resolved ${input.resolvedAxis}:${input.resolvedId}]`)
+  );
+}
+
 export function parseGithubWorkflowIdentityContract(
   body: string,
   catalog: WorkflowClassificationCatalog,
+  options?: GithubWorkflowIdentityContractParseOptions,
 ): GithubWorkflowIdentityContractResult {
   const markers = markerCount(body);
   if (markers === 0) {
-    return { ok: false, reason: "workflow_identity_contract_missing", detail: "marker absent" };
+    return {
+      ok: false,
+      reason: "workflow_identity_contract_missing",
+      detail: formatGithubWorkflowIdentityContractMissingDetail(options?.issueNumber),
+    };
   }
   if (markers !== 1) {
     return {
@@ -163,7 +223,18 @@ export function parseGithubWorkflowIdentityContract(
       return {
         ok: false,
         reason: "workflow_identity_contract_signal_mismatch",
-        detail: `${token}->${resolution.target_axis}:${resolution.target_id}`,
+        detail: formatGithubWorkflowIdentityContractSignalMismatchDetail({
+          token,
+          declaredAxis: contract.target_axis,
+          declaredId: contract.target_id,
+          resolvedAxis: resolution.target_axis,
+          resolvedId: resolution.target_id,
+          declaredSignals: classifiedSignalsForIdentity(
+            catalog,
+            contract.target_axis,
+            contract.target_id,
+          ),
+        }),
       };
     }
   }
