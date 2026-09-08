@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1652: 非規約commit件名のpush前拒否"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex
 created: 2026-09-08
@@ -23,6 +23,9 @@ contract_postconditions: "push対象の新規commit件名をremote write前に�
 contract_invariants: "CI判定、force-push拒否、履歴非破壊、正常なGit生成件名を維持する"
 contract_failures: "不正件名、push identity不明、比較range不明をfail-closeする"
 tdd_red_required: true
+red_at: 2026-09-08T00:55:17Z
+green_at: 2026-09-08T00:55:17Z
+mutation_oracle_evidence: "tests/git-command-guard.test.ts::U-GITGUARD-018/U-GITGUARD-021でgit -C cwd解決と@{push}解決を旧実装へ戻す各isolated mutationが1 failed / 40 passedとなり、対応oracleだけがRedへ戻ることを独立reviewで実測"
 complexity_effect: net_neutral
 complexity_justification: "既存hookと判定器を接続し、新しいlint engineやGit writerを作らない"
 removal_trigger: "正規push wrapperが同じ事前検査を全consumerへ提供し、旧hook consumerがゼロになった時"
@@ -67,7 +70,17 @@ agent_slots:
   - { role: tl, slot_label: "TL — push対象rangeを既存commitlintへ接続" }
   - { role: qa, slot_label: "QA — 実remoteで拒否・合法入力・mutationを検証" }
   - { role: aim, slot_label: "AIM — CI判定非緩和と履歴非破壊を照合" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T00:55:17Z"
+    tests_green_at: "2026-09-08T00:55:17Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: c62a5e1cb15c56893e9cbee9b6cd09864c527a9b
+    scope: "exact-HEAD独立reviewは https://github.com/RetryYN/HELIX-HARNESS/pull/1660#issuecomment-5577426274 。41 tests green、@{push}とgit -Cの2 isolated mutationが各1 Redであることを判断側が実測。full harness-check、実hook自動介入、main到達は未成立として除外する。"
 ---
 
 # push前commitlint接続
