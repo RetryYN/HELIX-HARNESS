@@ -74,15 +74,15 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / claude-fable-5-1"
     review_kind: cross_agent
-    reviewed_at: "2026-09-07T21:56:34Z"
-    tests_green_at: "2026-09-07T21:45:01Z"
+    reviewed_at: "2026-09-08T00:36:39Z"
+    tests_green_at: "2026-09-08T00:32:25Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
-    reviewed_head_sha: 6b52b1d2c3c38a620bf0ca01b6cd1d3c1a5cc6c1
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1649#issuecomment-5575989006"
-    scope: "Issue #1649 comment 5575989006を正規review sourceとして、対象HEAD 6b52b1d2c3c38a620bf0ca01b6cd1d3c1a5cc6c1の二相凍結差分、IR 8 record、25 R／27 AC、基準shard、6 refinement、digest、mutation反例、50 testsを独立検収。verdict=approve、blockers=0（important 1／minor 3）でPLANへの技術転記可。review本文の『2026-09-07T21:40前後』は精密時刻ではなく6b作成前の記述なのでreviewed_atには採用せず、GitHub公開時刻2026-09-07T21:56:34Zを束縛する。tscは既存logの受領照合でありClaude側の再実行ではない。DB全体projectionとsnapshotのcommitted/live一致はreviewのgreen evidenceへ昇格せず、fresh CI、exact receipt、main read-after、runtime dispatch、consumer実証、費用改善を完了扱いしない。"
+    reviewed_head_sha: f4bfcff898154fe3c70d331fbdaec6f206f64e5b
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1650#issuecomment-5577273366"
+    scope: "PR #1650 comment 5577273366を正規review sourceとして、対象HEAD f4bfcff898154fe3c70d331fbdaec6f206f64e5bのIR 8 record、25 R／27 AC、main merge-only同期、clean detached worktreeで再採取した50 tests証拠、個人absolute path除去、digestと時刻の実体追従を独立検収。Claude側でも同HEADの6 files／50 testsとtsc exit 0を再実行し、verdict=approve、blockers=0、important=0。旧review eventの時刻を後付け変更せず、2026-09-08T00:36:39Zに公開された新しいexact-HEAD review eventへ束縛する。DB全体projectionとsnapshotのcommitted/live一致はreviewのgreen evidenceへ昇格せず、fresh CI、sealed receipt、main read-after、runtime dispatch、consumer実証、費用改善を完了扱いしない。"
     green_commands:
       - kind: unit_test
         command: "npm exec --yes --package=node@24.15.0 -- npx --no-install vitest run --project fast tests/three-lane-ir-admission.test.ts tests/requirement-refinement-authority.test.ts tests/requirement-authority.test.ts tests/requirement-ir-shadow.test.ts tests/requirement-generated-view.test.ts tests/requirement-generated-view-db.test.ts"
