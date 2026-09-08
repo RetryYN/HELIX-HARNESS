@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1652: 非規約commit件名のpush前拒否"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex
 created: 2026-09-08
@@ -23,9 +23,9 @@ contract_postconditions: "push対象の新規commit件名をremote write前に�
 contract_invariants: "CI判定、force-push拒否、履歴非破壊、正常なGit生成件名を維持する"
 contract_failures: "不正件名、push identity不明、比較range不明をfail-closeする"
 tdd_red_required: true
-red_at: 2026-09-08T00:55:17Z
-green_at: 2026-09-08T00:55:17Z
-mutation_oracle_evidence: "tests/git-command-guard.test.ts::U-GITGUARD-018/U-GITGUARD-021でgit -C cwd解決と@{push}解決を旧実装へ戻す各isolated mutationが1 failed / 40 passedとなり、対応oracleだけがRedへ戻ることを独立reviewで実測"
+red_at: 2026-09-08T01:48:18Z
+green_at: 2026-09-08T01:49:22Z
+mutation_oracle_evidence: "tests/git-command-guard.test.ts::U-GITGUARD-021で@{push}解決を旧local branch既定へ戻したisolated detached worktreeが1 failed / 40 skipped（exit 1、2026-09-08T01:48:18Z）。復元済みcurrent treeで同oracleが1 passed / 40 skipped（exit 0、2026-09-08T01:49:22Z）となることを作成側が再採取。U-GITGUARD-018のgit -C cwd反例もtestへ保持する"
 complexity_effect: net_neutral
 complexity_justification: "既存hookと判定器を接続し、新しいlint engineやGit writerを作らない"
 removal_trigger: "正規push wrapperが同じ事前検査を全consumerへ提供し、旧hook consumerがゼロになった時"
@@ -71,7 +71,27 @@ agent_slots:
   - { role: tl, slot_label: "TL — push対象rangeを既存commitlintへ接続" }
   - { role: qa, slot_label: "QA — 実remoteで拒否・合法入力・mutationを検証" }
   - { role: aim, slot_label: "AIM — CI判定非緩和と履歴非破壊を照合" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T01:32:48Z"
+    tests_green_at: "2026-09-08T01:24:51Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: 4d4f6c97cee619805d10688fb9aaaa9fd48b50de
+    scope: "exact-HEAD evidence reviewは https://github.com/RetryYN/HELIX-HARNESS/pull/1660#issuecomment-5577733109 。portable JSON evidenceの実bytes digest、41 tests、machine-local path 0、PR scope expansion形式を判断側が照合し、approve / blockers 0 / important 0。full harness-check、実hook自動介入、main到達は未成立として除外する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/git-command-guard.test.ts --reporter=json --outputFile=.helix/evidence/review-1652/vitest-git-command-guard.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-08T01:24:51Z"
+        evidence_path: .helix/evidence/review-1652/vitest-git-command-guard.json
+        output_digest: "sha256:654be3bc1e1632d715cf0541ebf1e2aecf08b01d91ae00357996ee0137524319"
+        result: "41 passed (1 file)"
 ---
 
 # push前commitlint接続
