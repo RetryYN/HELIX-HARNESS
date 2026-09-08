@@ -1,0 +1,83 @@
+---
+plan_id: PLAN-RECOVERY-1652-commitlint-pre-push
+title: "PLAN-RECOVERY-1652: 非規約commit件名のpush前拒否"
+kind: recovery
+layer: cross
+drive: agent
+status: draft
+completion_claim_allowed: false
+owner: Codex
+created: 2026-09-08
+updated: 2026-09-08
+github_issue_id: 1652
+behavior_contract_id: GIT-COMMITLINT-PRE-PUSH-001
+responsibility_owner: git-command-guard
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: migrate_one_consumer
+legacy_retirement_state: not_applicable
+no_code_decision: configure
+ddd_modeling_decision: policy
+contract_preconditions: "既存commitlint判定器、repo-local Git hook、remote追跡refを照合する"
+contract_postconditions: "push対象の新規commit件名をremote write前に既存判定器で拒否する"
+contract_invariants: "CI判定、force-push拒否、履歴非破壊、正常なGit生成件名を維持する"
+contract_failures: "不正件名、push identity不明、比較range不明をfail-closeする"
+tdd_red_required: true
+complexity_effect: net_neutral
+complexity_justification: "既存hookと判定器を接続し、新しいlint engineやGit writerを作らない"
+removal_trigger: "正規push wrapperが同じ事前検査を全consumerへ提供し、旧hook consumerがゼロになった時"
+entry_signals: [regression_dev]
+parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md
+pair_artifact: docs/test-design/helix/L7-commitlint-pre-push.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-016, test_path: tests/git-command-guard.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-017, test_path: tests/git-command-guard.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-018, test_path: tests/git-command-guard.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/commitlint-pre-push.md, oracle_id: U-GITGUARD-019, test_path: tests/git-command-guard.test.ts }
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  target_axis: workflow_model
+  target_id: RECOVERY
+dependencies:
+  requires: []
+  references:
+    - issue:1652
+    - issue:1634
+    - issue:1635
+  blocks: []
+generates:
+  - { artifact_path: docs/design/helix/L6-function-design/commitlint-pre-push.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L7-commitlint-pre-push.md, artifact_type: test_design }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-1652-commitlint-pre-push.md, artifact_type: markdown_doc }
+modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/runtime/git-command-guard.ts, artifact_type: source_module }
+  - { artifact_path: src/runtime/git-command-guard-hook.ts, artifact_type: source_module }
+  - { artifact_path: tests/git-command-guard.test.ts, artifact_type: test_code }
+agent_slots:
+  - { role: tl, slot_label: "TL — push対象rangeを既存commitlintへ接続" }
+  - { role: qa, slot_label: "QA — 実remoteで拒否・合法入力・mutationを検証" }
+  - { role: aim, slot_label: "AIM — CI判定非緩和と履歴非破壊を照合" }
+review_evidence: []
+---
+
+# push前commitlint接続
+
+Issue #1652で同じ非規約merge subjectが二度remoteへ送られ、公開履歴非破壊のためbranch／PR再作成が必要になった。
+人間GOはIssue comment 5576844490に記録済みだが、実装・検収の完了を意味しない。
+
+## 工程
+
+1. 既存`guard commitlint`が不正subjectをexit 1、正当な二形式をexit 0にすることを実測した。
+2. 共通Git hookで通常pushの実効cwd・source・remote baselineを解決する。
+3. outgoing subjectだけを既存`analyzeCommitSubjects`へ渡す。
+4. 実bare remoteを使い、不正subject拒否と正当な二形式の通過を検証する。
+5. 独立review、fresh CI、merge admission、main read-afterを行う。
+
+## 現在地
+
+局所実装と36 testsは成功。新worktreeに依存物が無かった初回起動失敗はコード検証として数えない。
+型検査は借用依存ではPlaywright型を解決できず未成立。専用依存導入後に再実行する。
+独立review、full CI、main到達、実運用でのpush拒否は未完了。

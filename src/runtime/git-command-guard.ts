@@ -474,6 +474,26 @@ export function contextualMutationExecutionDirectories(
   return targets;
 }
 
+export interface GitPushCommand {
+  cwd: string;
+  args: string[];
+}
+
+/** 通常の git push を、実効cwdと subcommand 引数へ正規化する。 */
+export function gitPushCommands(command: string, fallbackCwd: string): GitPushCommand[] | null {
+  const parsed = commandGitSlices(command);
+  if (!parsed.complete) return null;
+  const pushes: GitPushCommand[] = [];
+  for (const slice of parsed.slices) {
+    const normalized = withoutGlobalOptions(slice);
+    if (normalized[0] !== "push") continue;
+    const cwd = mutationTargetCwd(slice, fallbackCwd);
+    if (!cwd) return null;
+    pushes.push({ cwd, args: normalized.slice(1) });
+  }
+  return pushes;
+}
+
 export function extractShellCommand(toolInput: unknown): string {
   if (typeof toolInput === "string") return toolInput;
   if (!toolInput || typeof toolInput !== "object") return "";

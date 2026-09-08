@@ -1,4 +1,5 @@
 // @helix-repo-wide-guard
+// PLAN-RECOVERY-1652-commitlint-pre-push
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
@@ -25,6 +26,7 @@ import {
   containsDirectGithubPrMerge,
   evaluateGitCommandGuard,
   extractShellCommand,
+  gitPushCommands,
   resolveDestructiveGitOverride,
 } from "../src/runtime/git-command-guard";
 // PLAN-L7-473-claude-pr-convergence / U-GITGUARD-010
@@ -91,6 +93,22 @@ function createWorktreeFixture(): { root: string; linked: string; cleanup: () =>
       } catch {}
       rmSync(linkedParent, { recursive: true, force: true });
       rmSync(root, { recursive: true, force: true });
+    },
+  };
+}
+
+function createPushFixture() {
+  const fixture = createWorktreeFixture();
+  const bare = mkdtempSync(join(tmpdir(), "helix-push-remote-"));
+  git(bare, ["init", "--bare"]);
+  git(fixture.root, ["remote", "add", "origin", bare]);
+  git(fixture.root, ["push", "-u", "origin", "main"]);
+  git(fixture.linked, ["push", "-u", "origin", "feature"]);
+  return {
+    ...fixture,
+    cleanup() {
+      fixture.cleanup();
+      rmSync(bare, { recursive: true, force: true });
     },
   };
 }
@@ -187,6 +205,88 @@ describe("git-command-guard", () => {
         checkoutTargetContext: { resolution: "refs-only" },
       }).decision,
     ).toBe("pass");
+  });
+
+  it("U-GITGUARD-016: push前に非規約の新規commit subjectを拒否する", () => {
+    const fixture = createPushFixture();
+    try {
+      writeFileSync(join(fixture.linked, "bad-subject.txt"), "bad\n");
+      git(fixture.linked, ["add", "bad-subject.txt"]);
+      git(fixture.linked, ["commit", "-m", "merge: invalid lowercase merge"]);
+
+      const blocked = runHook(
+        { tool_input: { command: "git push origin feature" } },
+        fixture.linked,
+      );
+      expect(blocked.status).toBe(2);
+      expect(blocked.stderr).toContain("push前commitlint");
+      expect(blocked.stderr).toContain("non_conventional_subject");
+    } finally {
+      fixture.cleanup();
+    }
+  });
+
+  it("U-GITGUARD-017: Conventional subjectとGit既定Merge subjectを通す", () => {
+    const fixture = createPushFixture();
+    try {
+      git(fixture.linked, ["checkout", "-b", "valid", "origin/feature"]);
+      writeFileSync(join(fixture.linked, "valid-subject.txt"), "valid\n");
+      git(fixture.linked, ["add", "valid-subject.txt"]);
+      git(fixture.linked, ["commit", "-m", "chore(git): validate outgoing commits"]);
+      expect(
+        runHook({ tool_input: { command: "git push origin valid" } }, fixture.linked).status,
+      ).toBe(0);
+
+      git(fixture.linked, ["checkout", "-b", "generated-merge", "origin/feature"]);
+      writeFileSync(join(fixture.linked, "merge-subject.txt"), "merge\n");
+      git(fixture.linked, ["add", "merge-subject.txt"]);
+      git(fixture.linked, [
+        "commit",
+        "-m",
+        "Merge remote-tracking branch 'origin/main' into generated-merge",
+      ]);
+      expect(
+        runHook(
+          { tool_input: { command: "bash -c 'git push origin generated-merge'" } },
+          fixture.linked,
+        ).status,
+      ).toBe(0);
+    } finally {
+      fixture.cleanup();
+    }
+  });
+
+  it("U-GITGUARD-018: git -Cとnested shellのpush identityを保持する", () => {
+    const fixture = createPushFixture();
+    try {
+      expect(gitPushCommands("git -C repo push origin feature", fixture.root)).toEqual([
+        { cwd: join(fixture.root, "repo"), args: ["origin", "feature"] },
+      ]);
+      expect(
+        runHook({ tool_input: { command: "bash -c 'git push origin feature'" } }, fixture.linked)
+          .status,
+      ).toBe(0);
+    } finally {
+      fixture.cleanup();
+    }
+  });
+
+  it("U-GITGUARD-019: 解決不能な複数refspecを拒否しremote deleteは対象外にする", () => {
+    const fixture = createPushFixture();
+    try {
+      expect(
+        runHook(
+          { tool_input: { command: "git push origin valid unexpected-second-refspec" } },
+          fixture.linked,
+        ).status,
+      ).toBe(2);
+      expect(
+        runHook({ tool_input: { command: "git push --delete origin old-branch" } }, fixture.linked)
+          .status,
+      ).toBe(0);
+    } finally {
+      fixture.cleanup();
+    }
   });
 
   it("U-GITGUARD-015: checkout pathspecをblockし、ref-only checkoutだけを許可する", () => {
