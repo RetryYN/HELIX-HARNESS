@@ -1659,6 +1659,13 @@ runtimeCommand("claude");
   it("U-DRB-024: GitHub cross-review admissionのfailure分岐mutantをRedにする", () => {
     expect(
       executeGitHubCrossReviewMutationOracle(
+        "    }).length > 0",
+        "    }).length < 0",
+        "U-GCRA-014",
+      ),
+    ).toBe(true);
+    expect(
+      executeGitHubCrossReviewMutationOracle(
         'if (input.state !== "OPEN") {',
         "if (false) {",
         "U-GCRA-004",
