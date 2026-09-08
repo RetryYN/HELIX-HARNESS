@@ -38,7 +38,10 @@ contract_invariants: "request値をobservedへコピーしない。cwd・env・r
 contract_failures: "明示された不正・stale・foreign envelopeは固定schema/failure bytesへ閉じ、dispatch・git・DB・GitHub side effectを0にする。envelope欠落はpre-activationとして既存dispatchを維持し、required activation済みとは主張しない。session event・memory recall・feedback DBを停止しない。"
 tdd_red_required: true
 red_test: "U-CNHOOKWIRE-001..002はconsumer wiringが存在しない状態でresolution/projectorの一回性とfailure dispatch拒否を検出する。"
+red_at: "2026-09-08T22:45:39+09:00"
+green_at: "2026-09-08T22:45:59+09:00"
 mutation_oracle_required: true
+mutation_oracle_evidence: "tests/project-hook-authority-envelope.test.ts の U-CNHOOKWIRE-007c に対し、src/cli.ts の loop surfaceからadmitExplicitProjectHookAuthority呼出しを一時除去する単一mutationを2026-09-08T22:45:39+09:00に投入し、expected length 5 / received 4で1 failed・21 skipped・exit 1を実測した。apply_patchで呼出しを復元後、2026-09-08T22:45:59+09:00に同oracleが1 passed・21 skipped・exit 0へ戻り、git diffでsrc/cli.ts差分0を確認した。"
 mutation_oracle: "resolver/projectorのsurface別再実行、expected→observedコピー、failure時admitted receipt付与、明示不正envelopeでのdispatch、producer接続前の未指定dispatch停止、cwd/env/default fallbackを個別にkillする。"
 parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md
 pair_artifact: docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md
@@ -112,6 +115,8 @@ review_evidence:
     verdict: approve
     worker_model: codex
     reviewer_model: "claude-opus-5[1m]"
+    reviewer_session_id: "f17ecf4c-2f65-4687-b681-d90617d90676"
+    reviewed_head_sha: 81ce6fb98e0be2247329ee8510800d27f3daf45d
     scope: "PR #1672 exact HEAD 81ce6fb98e0be2247329ee8510800d27f3daf45dをbounded独立再レビュー。前回blockerだったloop／pair-agent／teamのprovider probe前admission、real CLI negative oracle、pre-activation availability、remote default anchor proseを確認しmaterial blocker 0。reviewer session=f17ecf4c-2f65-4687-b681-d90617d90676。Claudeはverdict出力後もprocessを終了せず300秒deadlineで回収されたため、review command自体をgreen commandには数えない。"
     green_commands:
       - kind: unit_test
