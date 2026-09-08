@@ -214,7 +214,7 @@ describe("Requirement refinement authority", () => {
 
   it("U-MTROW-006: 閉じpipe欠落で末尾cellを黙って捨てない", () => {
     const { repoRoot, record } = fixture();
-    const source = `${ACCEPTANCE_SOURCE}\n| MIC-AC-002 | MIC-R-01 | 別条件 | 必須 | 欠落拒否 | EXTRA-DROPPED\n`;
+    const source = `${ACCEPTANCE_SOURCE}| MIC-AC-002 | MIC-R-01 | 別条件 | 必須 | 欠落拒否 | EXTRA-DROPPED\n`;
     writeFileSync(join(repoRoot, record.source.acceptance_path), source);
     const changed = withDigest({
       ...record,
@@ -225,7 +225,7 @@ describe("Requirement refinement authority", () => {
       ok: false,
       failureCodes: ["REFINEMENT_TABLE_ROW_UNBOUND"],
       sourceDiagnostics: [
-        { path: record.source.acceptance_path, line: 5, code: "REFINEMENT_TABLE_ROW_UNBOUND" },
+        { path: record.source.acceptance_path, line: 4, code: "REFINEMENT_TABLE_ROW_UNBOUND" },
       ],
     });
   });
