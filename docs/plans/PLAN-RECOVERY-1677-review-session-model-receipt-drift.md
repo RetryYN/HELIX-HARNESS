@@ -27,7 +27,7 @@ red_test: "U-RVIDENT-020で新Opus windowのsinceを実観測境界より1秒遅
 red_at: "2026-09-08T17:26:14Z"
 green_at: "2026-09-08T17:27:58Z"
 mutation_oracle_required: true
-mutation_oracle: "tests/review-evidence.test.ts::U-RVIDENT-020が実観測境界のgap、旧open window残置による重複、境界一致の旧model残留を拒否し、tests/branch-kind.test.ts::U-RVIDENT-021が無関係な本文変更をowner候補へ戻す"
+mutation_oracle: "tests/review-evidence.test.ts のU-RVIDENT-020へ実観測境界を1秒遅らせるseeded mutationを投入し、境界時刻のmodel解決がnullとなる1 failedでkillした。tests/branch-kind.test.ts のU-RVIDENT-021は無関係な本文変更をowner候補へ戻す"
 mutation_oracle_evidence: "tests/review-evidence.test.ts::U-RVIDENT-020。2026-09-08T17:26:14Zに新Opus windowのsinceを18:03:40Zから18:03:41Zへ変異し、境界時刻がnullとなって1 failed。復元後17:27:58Zに95 tests greenを再検証した。"
 complexity_effect: net_neutral
 complexity_justification: "新しい判定器を増やさず、既存history projectionとreceipt間の矛盾を除去する"
