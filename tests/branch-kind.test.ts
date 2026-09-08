@@ -129,7 +129,13 @@ describe("branch-kind-check", () => {
 
     expect(result.ok).toBe(false);
     expect(result.findings).toContainEqual(
-      expect.objectContaining({ code: "kind_mismatch", severity: "error" }),
+      expect.objectContaining({
+        code: "kind_mismatch",
+        severity: "error",
+        message: expect.stringMatching(
+          /expects PLAN kind impl\|add-design\|add-impl.*has design.*Fix options: set PLAN kind.*or rename the branch prefix.*branch rename can change the GitHub PR number or require recreating the PR/s,
+        ),
+      }),
     );
     expect(result.findings).toContainEqual(
       expect.objectContaining({ code: "missing_github_issue_id", severity: "warn" }),
@@ -682,6 +688,28 @@ describe("branch-kind-check", () => {
     expect(template).toContain("同じ行");
     expect(template).toContain("カンマ");
     expect(template).toContain("backtick");
+  });
+
+  it("U-PRSCOPE-009: PR／Issue template guide workflow identity markers and identity alignment", () => {
+    const prTemplate = readFileSync(".github/PULL_REQUEST_TEMPLATE.md", "utf8");
+    expect(prTemplate).toContain("HELIX:github-workflow-identity-contract:v1");
+    expect(prTemplate).toContain("target_id");
+    expect(prTemplate).toContain("signal_tokens");
+    expect(prTemplate).toContain("branch prefix");
+    expect(prTemplate).toContain("PLAN kind");
+    expect(prTemplate).toContain("branch rename");
+
+    for (const relative of [
+      ".github/ISSUE_TEMPLATE/add-feature.md",
+      ".github/ISSUE_TEMPLATE/recovery.md",
+    ]) {
+      const issueTemplate = readFileSync(relative, "utf8");
+      expect(issueTemplate).toContain("HELIX:github-workflow-identity-contract:v1");
+      expect(issueTemplate).toContain("issue_workflow_identity_contract_missing");
+      expect(issueTemplate).toContain("target_id");
+      expect(issueTemplate).toContain("branch prefix");
+      expect(issueTemplate).toContain("PLAN kind");
+    }
   });
 
   it("U-PRSCOPE-003: requires declared PLAN and test companions for source changes", () => {

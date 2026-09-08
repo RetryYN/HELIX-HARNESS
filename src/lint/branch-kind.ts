@@ -326,7 +326,10 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
         code: "kind_mismatch",
         severity: "error",
         file: plan.file,
-        message: `${input.branch ?? "(unknown)"} expects PLAN kind ${allowedKinds.join("|")} but ${plan.file} has ${plan.kind ?? "(missing)"}`,
+        message:
+          `${input.branch ?? "(unknown)"} expects PLAN kind ${allowedKinds.join("|")} but ${plan.file} has ${plan.kind ?? "(missing)"}. ` +
+          `Fix options: set PLAN kind to ${allowedKinds.join("|")}; or rename the branch prefix to match PLAN kind=${plan.kind ?? "(missing)"} ` +
+          `(branch rename can change the GitHub PR number or require recreating the PR)`,
       });
     }
     if ((kind === "feature" || kind === "hotfix") && !hasGithubIssueId(plan)) {

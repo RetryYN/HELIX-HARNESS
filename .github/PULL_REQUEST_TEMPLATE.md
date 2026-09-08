@@ -15,6 +15,28 @@ Expected changed paths: <!-- base..head diffに含める全exact pathをcomma区
 Required companion paths: <!-- diffに含むPLAN/testのexact path。不要ならnone -->
 Scope expansion: none <!-- または approved receipt=https://github.com/OWNER/REPO/pull/N#issuecomment-N reason=12文字以上 -->
 
+## Workflow identity contract
+
+Issue 本文と同じ marker／JSON を置く。`signal_tokens` は `target_id` と catalog 上で一致させる。
+branch prefix と PLAN `kind` も下表に揃える（不一致は fail-close。branch rename は PR 番号変更や再作成を伴いうる）。
+
+<!-- HELIX:github-workflow-identity-contract:v1 -->
+```json
+{"schema_version":"helix-github-workflow-identity-contract.v1","registry_version":"1.1.6","registry_source_digest":"sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89","target_axis":"workflow_model","target_id":"REFACTOR","signal_tokens":["structural"]}
+```
+
+| target_id | example signal_tokens | branch prefix | PLAN kind |
+|---|---|---|---|
+| REFACTOR | structural, debt_degradation, code_smell | refactor/ | refactor \| retrofit |
+| RETROFIT | dependency_outdated, upgrade, config_drift | retrofit/ | retrofit |
+| RECOVERY | regression_dev, forced_stop, agent_runaway | recovery/ | recovery |
+| INCIDENT | production_incident, hotfix_required, regression_prod | hotfix/ | recovery \| troubleshoot |
+| ADD_FEATURE | feature_addition, scope_extension | feature/ または add/ | impl \| add-design \| add-impl |
+| REVERSE | drift | reverse/ | reverse |
+| VERSION_UP | version_deferral | version-up/ | design \| impl \| add-* \| refactor \| retrofit \| research \| reverse \| recovery \| troubleshoot \| poc |
+| RESEARCH | tech_decision_required, option_comparison_needed, adr_required | research/ | research |
+| DISCOVERY_POC | requirement_undefined, feasibility_unknown | poc/ | poc |
+
 ## V-model artifact (該当に ✓)
 - [ ] ① 設計 (docs/design/)
 - [ ] ② 実装 (src/)
