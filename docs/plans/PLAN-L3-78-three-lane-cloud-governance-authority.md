@@ -4,7 +4,7 @@ title: "PLAN-L3-78 (redesign): 三社固定レーン・Cursor資源分散・GitH
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -88,7 +88,27 @@ agent_slots:
   - { role: se, slot_label: "SE — exact 3 lane／resource axis／auditor boundary" }
   - { role: qa, slot_label: "QA — 27 AC、critical miss、budget UNKNOWN、model revision、writer排他" }
   - { role: tl, slot_label: "TL — 既存owner再利用とruntime解放境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T13:46:25Z"
+    tests_green_at: "2026-09-07T13:46:25Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: 03b0b75537ba9b86367262c27b8229c8f2e5d859
+    scope: "PR #1626のcanonical L1/L3/L10/L12 source配置をexact HEADで独立検収し、承認済み9 BR／25 requirement／27 AC／9 recognition、第二正本除去、digest追従、runtime非有効化境界をblocker 0でapprove。receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1626#issuecomment-5571579098"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 34123109122 --json status,conclusion,headSha,attempt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-07T13:46:25Z"
+        evidence_path: docs/test-design/helix/three-lane-cloud-governance-acceptance.md
+        output_digest: "sha256:5292dd6161c6ba127db896b91edb586272cfab921ec71fec0536039331e16798"
+        result: "terminal success / attempt 2 / HEAD 03b0b75537ba9b86367262c27b8229c8f2e5d859 / required lanes green"
 ---
 
 # 三社固定レーンauthority Requirement Re-entry
@@ -121,3 +141,12 @@ L3 requirement 25件、L10 oracle 27件、L12 recognition 9件とする。canoni
 `31c5e807dfdf4ac582d3a5ae34b7a8f73cae2a151610b8fd54ab2b371e50c4c0`、
 `fac0a2aacbe5db63e0ebb17dc1286fb9d156aa097476e673319cc7d40a82dede`である。差分はversion／authority状態／canonical pair path／第二正本を作らない配置説明に限定し、3L-BR／R／AC／recognitionの意味ID集合は不変である。candidateは独立技術reviewと
 canonical sourceとして配置し、承認後の意味変更には再承認を要求する。独立exact-HEAD review、CI、doctor、DB convergence、runtime有効化が成立するまで、v0.3 current authorityを置換する実行authorityの切替は行わない。
+
+### L10表projectionの整形修復（#397）
+
+AC024とAC025間の空行で末尾3件が表から分離していたため、空行のみを除去する。
+27 AC行は修復前とbytes一致を確認し、要求参照・合格条件・negative oracleを変更しない。
+上記canonical配置時digestは履歴として保持する。整形後のL10本文digestは
+`f4178e4402f7da2eef7efa69000965a23fce6c1f0481ef81af3fb834496df3f5`。
+承認対象の旧本文digestを改変せず、新しい承認を生成しない。本修復はIR admissionそのものではなく、
+既存projectionへの27件完全収録、独立review、CIは別途検証する。

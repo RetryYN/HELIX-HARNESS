@@ -157,7 +157,7 @@ function resolveHostCurrentAuthorityAnchorRef(
   root: string,
   deps: ProjectHookPhysicalAdapterDeps,
 ): string {
-  const refs = deps.physical
+  const refs = deps
     .git(root, ["for-each-ref", "--format=%(symref)", "refs/remotes/*/HEAD"])
     .split("\n")
     .map((value) => value.trim())
@@ -207,7 +207,7 @@ export function resolveProjectHookAuthorityFromTransport(
     // default refが欠落・複数ならinput unavailableへ閉じる。
     const hostCurrentAuthorityAnchorRef = resolveHostCurrentAuthorityAnchorRef(
       observedExecutionRoot.canonical_realpath,
-      deps,
+      deps.physical,
     );
     hostCurrentAuthorityHead = deps.physical.git(observedExecutionRoot.canonical_realpath, [
       "rev-parse",

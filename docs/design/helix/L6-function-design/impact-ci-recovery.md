@@ -141,8 +141,13 @@ output digest、exit code、時刻を入力境界で検証し、validatorの`ok=
 | `U-FULLSHARD-CLI-003` | validator redをtyped JSONとexit 1へ写像するCLI境界 |
 | `U-FULLSHARD-CLI-004` | output digest／exit code／時刻をfail-closeするCLI境界 |
 | `U-FULLSHARD-WF-001` | preflight／4 shard／finalizeのtyped artifact接続。schedule／workflow_dispatchではPR由来のcandidate HEADをcheckout refへ流さず、PR headまたはtrusted `github.sha`へ限定する |
-| `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／Biome／doctor／required aggregate順序 |
+| `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／doctor／required aggregate順序 |
+| `U-BIOMEFAST-001` | Biomeをpreflight依存導入直後に一回実行し、遅延・省略・重複・fail-openを拒否 |
 | `U-FULLSHARD-WF-003` | preflight 35分、bulk各25分、stateful 30分、finalize 15分のbounded timeoutとbudget telemetryを固定し、timeout変更を性能改善やmerge greenへ偽装しない |
+
+Biomeは`npm run lint`の対象・厳格さを変えず、preflightの依存導入直後へ前倒しする。
+preflight失敗時にshardを起動せず、finalizeの重複lintは除去する。最終receipt照合・DB・doctorは維持する。
+これは検証義務の削減ではなく既存検査の実行順変更である（Issue #1640）。
 
 ### 6.1 旧Recovery oracleの退役とキャンセル境界
 

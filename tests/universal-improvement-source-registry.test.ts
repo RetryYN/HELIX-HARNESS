@@ -53,10 +53,16 @@ describe("Universal Improvement source registry", () => {
 
   it("U-UILSFP-002: benign keyを部分文字列だけで拒否しない", () => {
     expect(
-      ["tokenizer", "tokenization", "secretary", "summary", "source_id"].map(
-        classifySensitiveObservationField,
-      ),
-    ).toEqual([null, null, null, null, null]);
+      [
+        "tokenizer",
+        "tokenizer2",
+        "pretokenizer",
+        "tokenization",
+        "secretary",
+        "summary",
+        "source_id",
+      ].map(classifySensitiveObservationField),
+    ).toEqual([null, null, null, null, null, null, null]);
   });
 
   it("U-UILSFP-003: sensitive failureへraw key/valueを展開しない", () => {

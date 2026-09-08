@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-564-pr-review-comment-seal / U-CPRCONV-025, U-CPRCONV-027
 // PLAN-RECOVERY-59-same-head-ci-review-rearm / U-CPRCONV-026
 // PLAN-RECOVERY-100-review-receipt-schema-boundary / U-CPRCONV-040
+// PLAN-RECOVERY-1627-review-request-changes-fail-close / U-CPRCONV-044, U-CPRCONV-045
 import {
   AUTHOR_RUNTIME_EVIDENCE_QUERY,
   areRequiredChecksGreen,
@@ -152,6 +153,67 @@ function renderLegacyV2Comment(): string {
 }
 
 describe("Claude PR convergence contract (PLAN-L7-473)", () => {
+  // PLAN-RECOVERY-1638-review-seal-terminal-ci
+  it("U-SEALCI-004: 赤receiptは記録できてもmerge不可でgreen再検収だけを受理する", () => {
+    const state = {
+      repository: baseInput.repository,
+      prNumber: baseInput.prNumber,
+      prUrl: baseInput.prUrl,
+      headSha: baseInput.headSha,
+      state: "OPEN" as const,
+      requiredChecksGreen: false,
+      receiptCiMatchesHead: true,
+      receiptCiMatchesGeneration: true,
+    };
+    for (const ciConclusion of [
+      "failure",
+      "cancelled",
+      "timed_out",
+      "neutral",
+      "skipped",
+      "action_required",
+      "stale",
+      "startup_failure",
+    ] as const) {
+      const failed = buildClaudePrReviewReceipt({
+        ...baseInput,
+        ciConclusion,
+        ciEvidenceGeneration: `run:123456:attempt:1:${ciConclusion}`,
+      });
+      expect(validateClaudePrReviewReceipt(JSON.parse(JSON.stringify(failed)))).toEqual(failed);
+      expect(
+        evaluateClaudePrMerge({ ...state, reviewReceiptHistory: [failed] }, failed).reasons,
+      ).toEqual(expect.arrayContaining(["required_checks_not_green", "receipt_ci_not_green"]));
+      expect(
+        evaluateClaudePrMerge(
+          { ...state, requiredChecksGreen: true, reviewReceiptHistory: [failed] },
+          failed,
+        ).reasons,
+      ).toContain("receipt_ci_not_green");
+    }
+    const reviewedAgain = buildClaudePrReviewReceipt({
+      ...baseInput,
+      ciEvidenceGeneration: "run:123456:attempt:2:success",
+      reviewedAt: "2026-07-27T00:01:00.000Z",
+    });
+    expect(
+      evaluateClaudePrMerge(
+        { ...state, requiredChecksGreen: true, reviewReceiptHistory: [reviewedAgain] },
+        reviewedAgain,
+      ),
+    ).toEqual({ ok: true, reasons: [] });
+    expect(
+      evaluateClaudePrMerge(
+        {
+          ...state,
+          requiredChecksGreen: true,
+          receiptCiMatchesGeneration: false,
+          reviewReceiptHistory: [reviewedAgain],
+        },
+        reviewedAgain,
+      ).ok,
+    ).toBe(false);
+  });
   it("U-CPRCONV-025: null／空文字／field absentを実comment投稿へ正規化する", () => {
     const prUrl = "https://github.com/RetryYN/HELIX-HARNESS/pull/711";
     for (const value of [undefined, null, ""]) {
@@ -511,11 +573,93 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         requiredChecksGreen: true,
         receiptCiMatchesHead: true,
         receiptCiMatchesGeneration: true,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
 
     expect(result).toEqual({ ok: true, reasons: [] });
+    const unavailable = evaluateClaudePrMerge(
+      {
+        repository: baseInput.repository,
+        prNumber: baseInput.prNumber,
+        prUrl: baseInput.prUrl,
+        headSha: baseInput.headSha,
+        state: "OPEN",
+        requiredChecksGreen: true,
+        receiptCiMatchesHead: true,
+        receiptCiMatchesGeneration: true,
+      },
+      receipt,
+    );
+    expect(unavailable).toEqual({ ok: false, reasons: ["review_receipt_history_unavailable"] });
+  });
+
+  it("U-CPRCONV-044: 別sessionはexplicit supersessionでもblockを解除できない", () => {
+    for (const explicit of [false, true]) {
+      const blocked = buildClaudePrReviewReceipt({
+        ...baseInput,
+        verdict: "block",
+        blockerCount: 1,
+        reviewerSessionId: "convergence-session",
+        reviewedAt: "2026-07-27T00:00:00.000Z",
+      });
+      const unrelatedApproval = buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewerSessionId: "unrelated-session",
+        reviewedAt: "2026-07-27T00:10:00.000Z",
+        ...(explicit ? { supersedesReceiptId: blocked.receiptId } : {}),
+      });
+      const decision = evaluateClaudePrMerge(
+        {
+          repository: baseInput.repository,
+          prNumber: baseInput.prNumber,
+          prUrl: baseInput.prUrl,
+          headSha: baseInput.headSha,
+          state: "OPEN",
+          requiredChecksGreen: true,
+          receiptCiMatchesHead: true,
+          receiptCiMatchesGeneration: true,
+          reviewReceiptHistory: [blocked, unrelatedApproval],
+        },
+        unrelatedApproval,
+      );
+      expect(decision).toMatchObject({ ok: false, reasons: ["outstanding_request_changes"] });
+    }
+  });
+
+  it("U-CPRCONV-045: 同一sessionでもstrictly laterの時だけ解除する", () => {
+    for (const later of [false, true]) {
+      const blocked = buildClaudePrReviewReceipt({
+        ...baseInput,
+        verdict: "block",
+        blockerCount: 1,
+        reviewedAt: "2026-07-27T00:00:00.000Z",
+      });
+      const approval = buildClaudePrReviewReceipt({
+        ...baseInput,
+        reviewedAt: later ? "2026-07-27T00:10:00.000Z" : "2026-07-27T00:00:00.000Z",
+        supersedesReceiptId: blocked.receiptId,
+      });
+      expect(
+        evaluateClaudePrMerge(
+          {
+            repository: baseInput.repository,
+            prNumber: baseInput.prNumber,
+            prUrl: baseInput.prUrl,
+            headSha: baseInput.headSha,
+            state: "OPEN",
+            requiredChecksGreen: true,
+            receiptCiMatchesHead: true,
+            receiptCiMatchesGeneration: true,
+            reviewReceiptHistory: [blocked, approval],
+          },
+          approval,
+        ),
+      ).toEqual(
+        later ? { ok: true, reasons: [] } : { ok: false, reasons: ["outstanding_request_changes"] },
+      );
+    }
   });
 
   it.each([
@@ -535,6 +679,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         receiptCiMatchesHead: true,
         receiptCiMatchesGeneration: true,
         ...stateOverride,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
@@ -579,6 +724,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         receiptCiMatchesHead: true,
         receiptCiMatchesGeneration: true,
         ...stateOverride,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
@@ -734,6 +880,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         requiredChecksGreen: true,
         receiptCiMatchesHead: false,
         receiptCiMatchesGeneration: true,
+        reviewReceiptHistory: [receipt],
       },
       receipt,
     );
@@ -836,6 +983,7 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           requiredChecksGreen: true,
           receiptCiMatchesHead: true,
           receiptCiMatchesGeneration: true,
+          reviewReceiptHistory: [receipt],
         },
         receipt,
       ),
@@ -1825,7 +1973,9 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           "#!/bin/sh",
           'printf \'%s\\n\' "$@" >> "$GH_LOG"',
           "printf 'ARGV-END\\n' >> \"$GH_LOG\"",
-          'if [ "$1" = "api" ]; then',
+          'if [ "$1" = "api" ] && [ "$2" = "--paginate" ] && [ "$3" = "--slurp" ]; then',
+          "  printf '[[]]'",
+          'elif [ "$1" = "api" ]; then',
           `  printf '1:0:${evidence}\\n'`,
           'elif [ "$1" = "pr" ] && [ "$2" = "view" ]; then',
           `  printf '%s' ${JSON.stringify(prView)}`,
@@ -1855,6 +2005,8 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
           "  exit 0",
           `elif [ "$1" = "show" ] && [ -n "\${HELIX_TEST_CHANGED_PLAN:-}" ] && [ "$2" = "origin/main:$HELIX_TEST_CHANGED_PLAN" ]; then`,
           "  exit 1",
+          `elif [ "$1" = "show" ] && [ -n "\${HELIX_TEST_CHANGED_PLAN:-}" ] && [ "$2" = "${"d".repeat(40)}:$HELIX_TEST_CHANGED_PLAN" ]; then`,
+          '  cat "$HELIX_TEST_CHANGED_PLAN"',
           "else",
           `  exec ${JSON.stringify(realGit)} "$@"`,
           "fi",
@@ -1984,7 +2136,10 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
 
       // 4 経路すべてが core の実引数どおり evidence を取りに行く（bridge での欠落を検出する）。
       const evidenceCalls = [sealedFalse, mergedFalse, mergedTruthful, sealedTruthful].map((run) =>
-        run.invocations.filter((args) => args[0] === "api"),
+        run.invocations.filter(
+          (args) =>
+            args[0] === "api" && args.includes("repos/RetryYN/HELIX-HARNESS/pulls/544/commits"),
+        ),
       );
       for (const calls of evidenceCalls) {
         expect(calls).toEqual([authorRuntimeEvidenceArgs("RetryYN/HELIX-HARNESS", 544)]);
