@@ -83,6 +83,11 @@ describe("Requirement JSON authority", () => {
     const sourceRoot = process.cwd();
     const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-requirement-authority-"));
     try {
+      // frozen refinementを含む実データにはHEADが必要。独立Git fixtureを作り、
+      // 対象の負例に到達する前のrev-parse例外で検査を短絡させない。
+      // source/祖先materialは引き継がず、既存どおり当該failure messageを個別検証する。
+      git(fixtureRoot, ["init", "--quiet"]);
+      git(fixtureRoot, ["commit", "--quiet", "--allow-empty", "-m", "authority fixture"]);
       mkdirSync(join(fixtureRoot, "config"));
       copyFileSync(
         join(sourceRoot, "config/requirement-ir-schema.json"),
@@ -224,6 +229,14 @@ describe("Requirement JSON authority", () => {
       "SYN-FR-001",
       "OPS-FR-001",
       "RLO-FR-001",
+      "3L-FR-001",
+      "3L-FR-002",
+      "3L-FR-003",
+      "3L-FR-004",
+      "3L-FR-005",
+      "3L-FR-006",
+      "3L-FR-007",
+      "3L-FR-008",
     ]);
     expect(source.baseline_root_digest).toBe(
       "sha256:3351a371e2643af122882f65a52cc25c63269786bbd2c87d4e1115a46191eb75",
@@ -280,8 +293,8 @@ describe("Requirement JSON authority", () => {
         rebuildHarnessDb({ repoRoot: process.cwd(), db, runtimeLogPolicy: "exclude" }).findings,
       ).toEqual([]);
       expect(db.prepare("SELECT COUNT(*) AS value FROM requirement_ir").get()).toEqual({
-        // 273 baseline/current rows + 131 refinement rows。
-        value: 404,
+        // 基準273行＋既存refinement 131行＋三社レーン8契約/25要件/27受入の60行。
+        value: 464,
       });
       expect(
         db
