@@ -1,4 +1,4 @@
-# Commitlint push admission
+# commitlint push受付
 
 ## 目的
 

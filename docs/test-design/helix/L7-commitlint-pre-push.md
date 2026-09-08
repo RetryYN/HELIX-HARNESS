@@ -1,4 +1,4 @@
-# Commitlint push admission unit test design
+# commitlint push受付 単体テスト設計
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
