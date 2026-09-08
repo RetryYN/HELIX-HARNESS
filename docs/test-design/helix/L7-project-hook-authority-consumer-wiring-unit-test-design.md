@@ -3,7 +3,7 @@ title: "project-hook authority consumer wiring L7検証設計"
 layer: L7
 artifact_type: test_design
 sub_doc: unit-test-design
-status: confirmed
+status: draft
 created: 2026-09-07
 updated: 2026-09-07
 owner: Codex / QA

@@ -2,7 +2,7 @@
 title: "project-hook authority consumer wiring L6機能設計"
 layer: L6
 artifact_type: design
-status: confirmed
+status: draft
 created: 2026-09-07
 updated: 2026-09-07
 owner: Codex / TL

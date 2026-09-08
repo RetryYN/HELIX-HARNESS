@@ -4,7 +4,7 @@ title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-07
@@ -107,27 +107,7 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-review_evidence:
-  - reviewer: "Claude Code / claude-opus-5[1m]"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-08T22:59:15+09:00"
-    tests_green_at: "2026-09-08T22:45:59+09:00"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: "claude-opus-5[1m]"
-    reviewer_session_id: "53840194-d60b-485d-a767-91104c14e13c"
-    reviewed_head_sha: 90bb81f5634b733114113bc288216dd0abbf3b65
-    scope: "PR #1672 exact HEAD 90bb81f5634b733114113bc288216dd0abbf3b65をbounded独立再レビュー。前回material implementation reviewのblocker 0を維持し、今回追加したTDD／mutation証拠、PLAN governance、source・test差分0を確認してmaterial blocker 0。22:30:36のtargeted green後の差分はPLAN frontmatterだけであり、22:45:59にU-CNHOOKWIRE-007c復元Greenも実測した。Claudeはverdict出力後もprocessを終了せず120秒deadlineで回収されたため、review command自体をgreen commandには数えない。"
-    green_commands:
-      - kind: unit_test
-        command: "Node 24 Vitest targeted project-hook/plan-descent suites + strict binding gate + tsc --noEmit"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-08T22:30:36+09:00"
-        evidence_path: tests/cli-surface.test.ts
-        output_digest: "sha256:e04bd36c1dd9ef00a0bb54d92c8a7d5766b4b099cc77507d25da2b7c2627bb0a"
-        result: "project-hook/plan-descent 16 tests、strict V-pair binding 1 test、TypeScript typecheckがgreen。"
+review_evidence: []
 agent_slots:
   - { role: aim, slot_label: "AIM — project-hook authority不一致のRecovery分類" }
   - { role: se, slot_label: "SE — Control Plane envelope／consumer wiring" }
