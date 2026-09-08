@@ -100,7 +100,6 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/harness/L4-basic-design/data.md`
 - `docs/design/harness/L4-basic-design/ui-standard.md`
 - `docs/design/harness/L5-detailed-design/physical-data.md`
-- `docs/design/harness/L6-function-design/function-spec.md`
 - `docs/design/harness/L6-function-design/handover-retirement.md`
 - `docs/design/harness/L6-function-design/module-drift.md`
 - `docs/design/harness/L6-function-design/vmodel-pair-freeze.md`

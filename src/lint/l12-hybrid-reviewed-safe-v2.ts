@@ -1,6 +1,13 @@
 // Generated from the 2026-07-19 full-text review. Any content change invalidates the review.
 export const REVIEWED_SAFE_DISPOSITIONS = [
   {
+    // #1404: 旧harness物理pathに残るruntime commandをNode/npmへ移行した文書。
+    // docs/design/harnessはcompatibility/debt surfaceであり、旧Bun実行authorityを再導入しない。
+    path: "docs/design/harness/L6-function-design/function-spec.md",
+    contentDigest: "338939570c170390ea9b9a39a8961d778260788cfbab5c3580ec4cef2b9624bd",
+    finalDisposition: "compatibility_labeled",
+  },
+  {
     // #1639: 層metadataの隣接とbackprop理由の正規source併記だけを旧pairと誤検出する。
     // signal位置はPLANの4-5行目・39-41行目。旧pairの実行authorityは含まない。
     // 正規pairはL1↔L12・L3↔L10。最終PLAN bytes限定のprojectionであり、独立技術reviewは別途必要。
@@ -325,8 +332,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // #1404: current/compatibility判定順と旧harness設計の移行境界を明記した。
+    // current authority自体は既存governance sourcesの順序を維持する。
     path: "docs/governance/README.md",
-    contentDigest: "164b9ca22e480964cdc122f55cbf2b4bba559eb16f208b2bfbb75052e72727da",
+    contentDigest: "723f6b83d1efaf5fbbced561fdfb08d37a8501e54234a380838e1db696fe2145",
     finalDisposition: "compatibility_labeled",
   },
   {
