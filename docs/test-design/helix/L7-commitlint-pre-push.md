@@ -1,3 +1,18 @@
+---
+title: "commitlint push受付 単体テスト設計"
+canonical_layer_scheme: L1-L12
+layer: L8
+executed_at_layer: L7
+artifact_type: test_design
+sub_doc: unit-test-design
+status: draft
+created: 2026-09-08
+updated: 2026-09-08
+owner: Codex / QA
+plan: docs/plans/PLAN-RECOVERY-1652-commitlint-pre-push.md
+pair_artifact: docs/design/helix/L6-function-design/commitlint-pre-push.md
+---
+
 # commitlint push受付 単体テスト設計
 
 | U-ID | 対象 | 反例と期待結果 | test citation |

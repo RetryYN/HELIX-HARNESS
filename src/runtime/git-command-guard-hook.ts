@@ -10,7 +10,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
-import { analyzeCommitSubjects, commitlintMessages } from "../lint/github-guards";
+import { analyzeCommitSubjects, commitlintMessages } from "../shared/commit-subject";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
 import { migrate, SCHEMA_VERSION } from "../state-db/migration";
 import {

@@ -1,3 +1,16 @@
+---
+title: "commitlint push受付"
+canonical_layer_scheme: L1-L12
+layer: L6
+artifact_type: design
+status: draft
+created: 2026-09-08
+updated: 2026-09-08
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-1652-commitlint-pre-push.md
+pair_artifact: docs/test-design/helix/L7-commitlint-pre-push.md
+---
+
 # commitlint push受付
 
 ## 目的
