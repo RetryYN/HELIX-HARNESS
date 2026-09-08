@@ -29,9 +29,9 @@ branch指定のrun一覧は取得windowにすぎず、判定authorityとして�
 - 空queryと、取得windowに対象pairが無い状態を区別する。
 - SHAまたはworkflow identityが不正なら推測せずunavailableにする。
 
-## Failure reachability
+## 失敗到達性
 
-| failure | 到達条件 | disposition |
+| 失敗種別 | 到達条件 | 扱い |
 |---|---|---|
 | `invalid_expected_head` | 完全なlowercase 40桁SHAでない | unavailable |
 | `target_workflow_missing` | workflow identityが空 | unavailable |
