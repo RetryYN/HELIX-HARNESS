@@ -1169,10 +1169,8 @@ describe("source harness-check workflow", () => {
     const lint = "      - name: lint (biome)\n        run: npm run lint\n";
     expect(raw.includes(lint)).toBe(true);
     const removedFromPreflight = raw.replace(lint, "");
-    const duplicatedInFinalize = mutateWorkflowJob(
-      raw,
-      "full-regression-finalize",
-      (job) => job.replace("    steps:\n", `    steps:\n${lint}`),
+    const duplicatedInFinalize = mutateWorkflowJob(raw, "full-regression-finalize", (job) =>
+      job.replace("    steps:\n", `    steps:\n${lint}`),
     );
     const movedAfterShardPlan = raw
       .replace(lint, "")
@@ -1180,10 +1178,8 @@ describe("source harness-check workflow", () => {
         "          retention-days: 7\n\n  full-regression-bulk-1:",
         `          retention-days: 7\n${lint}\n  full-regression-bulk-1:`,
       );
-    const duplicatedIntoShard = mutateWorkflowJob(
-      raw,
-      "full-regression-bulk-1",
-      (job) => job.replace("    steps:\n", `    steps:\n${lint}`),
+    const duplicatedIntoShard = mutateWorkflowJob(raw, "full-regression-bulk-1", (job) =>
+      job.replace("    steps:\n", `    steps:\n${lint}`),
     );
     expect(fullRegressionShardJobViolations(duplicatedInFinalize)).toContain(
       "biome_preflight_invalid",
