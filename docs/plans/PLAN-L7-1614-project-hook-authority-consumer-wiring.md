@@ -1,14 +1,14 @@
 ---
 plan_id: PLAN-L7-1614-project-hook-authority-consumer-wiring
 title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7へ接続する"
-kind: add-impl
+kind: recovery
 layer: L7
 drive: agent
 status: draft
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-07
-updated: 2026-09-07
+updated: 2026-09-08
 owner: Codex / TL
 github_issue_id: 1614
 behavior_contract_id: PROJECT-HOOK-AUTHORITY-CONSUMER-WIRING-1614
