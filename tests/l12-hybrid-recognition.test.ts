@@ -27,7 +27,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(candidate).toBeDefined();
     if (!candidate) throw new Error(`Missing candidate: ${path}`);
     expect(candidate.contentDigest).toBe(
-      "bac054e52a05d7d82e837abaffbd4bb377fdd096e3f25b52909afbafaf60dfb5",
+      "a5cfb869aba3c0e2c3eaa5e0c07f7aa564b50bd1c2d188e3beb5ffbe168086cd",
     );
     expect(candidate.documentStatus).toBe("confirmed");
     expect(new Set(candidate.signals.map((signal) => signal.id))).toEqual(
@@ -237,6 +237,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
   // PLAN-L3-1639: canonical source併記の候補1件だけを追加する。
   // PLAN-RECOVERY-1404は新規PLAN候補1件としてconflictへ明示加算する。
   // function-spec.md は docs/design/harness family の独立再分類を待って conflict のまま残す。
+  // PLAN-RECOVERY-1677追加によりplan_review conflictが1件増える。
   it("assigns exactly one reviewed final disposition to all 871 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {

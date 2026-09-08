@@ -7,6 +7,7 @@ import {
   analyzeBranchKind,
   branchKindMessages,
   classifyBranchKind,
+  isReviewEvidenceMetadataOnly,
   isSupersessionMetadataOnly,
 } from "../src/lint/branch-kind";
 import { loadDriveRouteCatalog } from "../src/lint/drive-route-catalog";
@@ -170,6 +171,79 @@ describe("branch-kind-check", () => {
     expect(isSupersessionMetadataOnly(edgeOnly, base)).toBe(true);
     expect(isSupersessionMetadataOnly(bodyChanged, base)).toBe(false);
     expect(isSupersessionMetadataOnly(emptyEdge, base)).toBe(false);
+  });
+
+  // PLAN-RECOVERY-1677-review-session-model-receipt-drift: U-RVIDENT-021
+  it("U-RVIDENT-021: recovery branchは既存terminal PLANのreview_evidence-only訂正だけを受理する", () => {
+    const base =
+      "---\nplan_id: PLAN-L3-1\nkind: add-design\nstatus: confirmed\nreview_evidence:\n  - reviewer_model: claude:old\n---\nbody\n";
+    const corrected = base.replace("claude:old", "claude:new");
+    expect(isReviewEvidenceMetadataOnly(corrected, base)).toBe(true);
+    expect(
+      analyzeBranchKind({
+        branch: "recovery/review-evidence-correction",
+        changedPaths: ["docs/plans/PLAN-L3-1.md", "docs/plans/PLAN-RECOVERY-1.md"],
+        plans: [
+          {
+            file: "docs/plans/PLAN-L3-1.md",
+            kind: "add-design",
+            review_evidence_metadata_only: true,
+          },
+          { file: "docs/plans/PLAN-RECOVERY-1.md", kind: "recovery" },
+        ],
+      }).ok,
+    ).toBe(true);
+
+    expect(isReviewEvidenceMetadataOnly(corrected.replace("body", "changed"), base)).toBe(false);
+    expect(isReviewEvidenceMetadataOnly(corrected.replace("confirmed", "draft"), base)).toBe(false);
+    expect(
+      isReviewEvidenceMetadataOnly(
+        corrected,
+        base.replace(
+          "review_evidence:\n  - reviewer_model: claude:old",
+          "review_evidence: invalid",
+        ),
+      ),
+    ).toBe(false);
+    expect(
+      isReviewEvidenceMetadataOnly(
+        corrected.replace(
+          "reviewer_model: claude:new",
+          "reviewer_model: claude:new\n  verdict: approve",
+        ),
+        base,
+      ),
+    ).toBe(false);
+
+    const baseWithMirror = base.replace("body", "reviewer model: claude:old\n");
+    const correctedWithMirror = baseWithMirror.replaceAll("claude:old", "claude:new");
+    expect(isReviewEvidenceMetadataOnly(correctedWithMirror, baseWithMirror)).toBe(true);
+    expect(
+      isReviewEvidenceMetadataOnly(`${correctedWithMirror}unrelated body change\n`, baseWithMirror),
+    ).toBe(false);
+
+    const shortTokenBase = base
+      .replace("claude:old", "x:a")
+      .replace("body", "target a stays aac\n");
+    const shortTokenSmuggled = shortTokenBase
+      .replace("x:a", "x:b")
+      .replace("target a stays aac", "target b stays abc");
+    expect(isReviewEvidenceMetadataOnly(shortTokenSmuggled, shortTokenBase)).toBe(false);
+
+    const identifierBase = base
+      .replace("claude:old", "claude:claude-fable-5-1")
+      .replace("body", "ref claude-opus-5-beta and claude-fable-5-1\n");
+    const identifierCorrected = identifierBase
+      .replace("reviewer_model: claude:claude-fable-5-1", "reviewer_model: claude:claude-opus-5")
+      .replace("and claude-fable-5-1", "and claude-opus-5");
+    expect(isReviewEvidenceMetadataOnly(identifierCorrected, identifierBase)).toBe(true);
+
+    const replacementTokenBase =
+      '---\nplan_id: PLAN-L3-1\nkind: add-design\nstatus: confirmed\nreview_evidence:\n  - reviewer_model: "x:$&"\n---\nreviewer model x:$&\n';
+    const replacementTokenCorrected = replacementTokenBase.replaceAll("x:$&", "x:newtok");
+    expect(isReviewEvidenceMetadataOnly(replacementTokenCorrected, replacementTokenBase)).toBe(
+      true,
+    );
   });
 
   it("allows feature impl PLAN and keeps missing issue as warning only", () => {
