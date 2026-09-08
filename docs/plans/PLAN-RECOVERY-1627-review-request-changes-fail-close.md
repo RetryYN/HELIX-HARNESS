@@ -63,14 +63,18 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1627-review-request-changes-fail-close.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/review-receipt-plan-binding.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/claude-pr-convergence.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/github-cross-review-admission.ts, artifact_type: source_module }
   - { artifact_path: src/runtime/review-receipt-plan-binding.ts, artifact_type: source_module }
   - { artifact_path: tests/claude-pr-convergence.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/design-reality-binding.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-cross-review-admission.test.ts, artifact_type: test_code }
   - { artifact_path: tests/review-receipt-plan-binding.test.ts, artifact_type: test_code }
 agent_slots:

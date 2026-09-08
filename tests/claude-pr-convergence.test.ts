@@ -181,11 +181,14 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
         ciEvidenceGeneration: `run:123456:attempt:1:${ciConclusion}`,
       });
       expect(validateClaudePrReviewReceipt(JSON.parse(JSON.stringify(failed)))).toEqual(failed);
-      expect(evaluateClaudePrMerge(state, failed).reasons).toEqual(
-        expect.arrayContaining(["required_checks_not_green", "receipt_ci_not_green"]),
-      );
       expect(
-        evaluateClaudePrMerge({ ...state, requiredChecksGreen: true }, failed).reasons,
+        evaluateClaudePrMerge({ ...state, reviewReceiptHistory: [failed] }, failed).reasons,
+      ).toEqual(expect.arrayContaining(["required_checks_not_green", "receipt_ci_not_green"]));
+      expect(
+        evaluateClaudePrMerge(
+          { ...state, requiredChecksGreen: true, reviewReceiptHistory: [failed] },
+          failed,
+        ).reasons,
       ).toContain("receipt_ci_not_green");
     }
     const reviewedAgain = buildClaudePrReviewReceipt({
@@ -193,13 +196,20 @@ describe("Claude PR convergence contract (PLAN-L7-473)", () => {
       ciEvidenceGeneration: "run:123456:attempt:2:success",
       reviewedAt: "2026-07-27T00:01:00.000Z",
     });
-    expect(evaluateClaudePrMerge({ ...state, requiredChecksGreen: true }, reviewedAgain)).toEqual({
-      ok: true,
-      reasons: [],
-    });
     expect(
       evaluateClaudePrMerge(
-        { ...state, requiredChecksGreen: true, receiptCiMatchesGeneration: false },
+        { ...state, requiredChecksGreen: true, reviewReceiptHistory: [reviewedAgain] },
+        reviewedAgain,
+      ),
+    ).toEqual({ ok: true, reasons: [] });
+    expect(
+      evaluateClaudePrMerge(
+        {
+          ...state,
+          requiredChecksGreen: true,
+          receiptCiMatchesGeneration: false,
+          reviewReceiptHistory: [reviewedAgain],
+        },
         reviewedAgain,
       ).ok,
     ).toBe(false);
