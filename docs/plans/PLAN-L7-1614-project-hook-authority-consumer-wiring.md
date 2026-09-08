@@ -4,8 +4,8 @@ title: "PLAN-L7-1614: project-hook authority consumer wiringをcanonical L6↔L7
 kind: recovery
 layer: cross
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 irreversible_impact: none
 created: 2026-09-07
 updated: 2026-09-08
@@ -107,7 +107,16 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Opus 5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T21:47:37Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 77375ef5-9b74-425a-91ee-45ebc9fea1d9
+    reviewed_head_sha: 473f4b00752032828a005b9dee69f83a7b58128a
+    scope: "HEAD ffa843491への25 oracle全数照合・190/191 green・U-CNHOOKWIRE-007b実配線kill検証を、content-neutralなJIT main同期後HEAD 473f4b007へ継承できると独立reviewerが確認した。Phase 1ではformal receipt未封印のためreceipt_urlとci_evidence_generationを記録せず、Draft CI成功後のPhase 2で束縛する。"
 agent_slots:
   - { role: aim, slot_label: "AIM — project-hook authority不一致のRecovery分類" }
   - { role: se, slot_label: "SE — Control Plane envelope／consumer wiring" }
