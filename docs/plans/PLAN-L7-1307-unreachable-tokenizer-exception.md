@@ -16,7 +16,7 @@ responsibility_owner: universal-improvement-sensitive-field-policy
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: remove_legacy
-legacy_retirement_state: removed
+legacy_retirement_state: consumer_zero
 no_code_decision: modify
 ddd_modeling_decision: policy
 workflow_identity:
