@@ -476,6 +476,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-005 | PLAN contract一致 | PR manifestのbehavior／ownerと必須PLAN companionの`behavior_contract_id`／`responsibility_owner`がexact一致しない場合にfail-closeする | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-006 | current GitHub snapshot parser | 1回のAPI readからbody／head／base／identity digestを作り、別PR・schema不正・不正SHAをfail-closeする | `tests/branch-kind.test.ts` |
 | U-PRSCOPE-007 | current GitHub snapshot workflow | API取得不能を非zeroとし、同一snapshotからdiffとguard inputを作り、guard前後のbody／head／base driftをfail-closeする | `tests/harness-check-workflow.test.ts` |
+| U-PRSCOPE-009 | workflow identity template | Issue／PR templateがcurrent marker、strict JSON、PLANとのidentity一致を案内し、実validatorで受理される | `tests/branch-kind.test.ts` |
 
 ### Issue #1052 outstanding snapshotのsemantic merge guard
 

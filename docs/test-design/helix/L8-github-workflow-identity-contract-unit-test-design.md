@@ -22,5 +22,7 @@ pair_artifact: docs/design/helix/L6-function-design/github-workflow-identity-con
 | U-GWID-004 | signal | unknown、decision待ち、ambiguity、宣言identityとの矛盾を別reasonで拒否する | `tests/github-workflow-identity-contract.test.ts` |
 | U-GWID-005 | Issue／PR | authority tupleまたはidentityが異なるpairを拒否する | `tests/github-workflow-identity-contract.test.ts` |
 | U-GWID-006 | freeze伝播 | L6/L8 pairとdesign catalog digestがG3 packetへ一致する | `tests/l3-g3-freeze-packet-v2.test.ts` |
+| U-GWID-007 | signal診断 | mismatchを拒否したまま宣言target、解決target、許容signalを示す | `tests/github-workflow-identity-contract.test.ts` |
+| U-GWID-008 | marker診断 | marker欠落を拒否したままstrict contractの受理形を示す | `tests/github-workflow-identity-contract.test.ts` |
 
 proseや旧route fieldの近似一致、legacy greenによるcanonical failure相殺をpositive oracleにしない。

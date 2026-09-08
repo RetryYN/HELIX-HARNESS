@@ -136,7 +136,7 @@ describe("GitHub typed workflow identity contract", () => {
     ).toMatchObject({ ok: false, reason: "workflow_identity_contract_signal_mismatch" });
   });
 
-  it("U-GWID-006: signal mismatchは宣言target・解決target・許容signalを案内し判定は緩めない", () => {
+  it("U-GWID-007: signal mismatchは宣言target・解決target・許容signalを案内し判定は緩めない", () => {
     const mismatch = parseGithubWorkflowIdentityContract(
       body({
         ...contractValue(catalog),
@@ -159,7 +159,7 @@ describe("GitHub typed workflow identity contract", () => {
     expect(mismatch.detail).toContain("structural");
   });
 
-  it("U-GWID-007: marker欠落はAccepted formを案内し判定は緩めない", () => {
+  it("U-GWID-008: marker欠落はAccepted formを案内し判定は緩めない", () => {
     const missing = parseGithubWorkflowIdentityContract("no contract", catalog);
     expect(missing).toMatchObject({ ok: false, reason: "workflow_identity_contract_missing" });
     if (missing.ok) throw new Error("expected missing");

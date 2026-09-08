@@ -154,6 +154,9 @@ identity、schema、body、head/baseのいずれかが変わればfail-closeす�
 不正SHAもgreenへ縮退させない。既存jobへ入力adapterとして統合し、新job・detector・stateを増やさない。
 oracleは`U-PRSCOPE-006..007`とする。
 
+workflow identityの入力診断は、Issue／PR templateのmarker、strict JSON、PLANとのidentity一致を
+同じcurrent registryから案内し、判定を緩和しない。oracleは`U-PRSCOPE-009`とする。
+
 ### §2.8 Reverse fullback scope全entry検証（PLAN-L7-673）
 
 `reverse` / `R4` / `fullback` / `confirmed|completed` のPLANにある
