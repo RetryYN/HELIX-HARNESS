@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 100,
+  "decision_count": 99,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -88,7 +88,6 @@
     "PLAN-RECOVERY-1638-review-seal-terminal-ci",
     "PLAN-RECOVERY-1640-biome-preflight",
     "PLAN-RECOVERY-1645-markdown-table-coverage",
-    "PLAN-RECOVERY-1677-review-session-model-receipt-drift",
     "PLAN-RECOVERY-397-three-lane-ir-identity",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",

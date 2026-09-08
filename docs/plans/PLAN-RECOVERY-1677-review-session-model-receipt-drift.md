@@ -4,8 +4,8 @@ title: "PLAN-RECOVERY-1677: typed receiptにsession model historyを追従する
 kind: recovery
 layer: cross
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 owner: Codex / TL
 created: 2026-09-09
 updated: 2026-09-09
@@ -71,7 +71,27 @@ agent_slots:
   - { role: tl, slot_label: "TL — receiptとhistoryの同一主体境界を照合" }
   - { role: qa, slot_label: "QA — window重複・境界時刻・real repo evidenceを検証" }
   - { role: aim, slot_label: "AIM — attestation僭称と過去履歴改変がないことを監査" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T19:34:00Z"
+    tests_green_at: "2026-09-08T19:23:39Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "20813c5a-21cd-4497-9cd1-b58cf81f2000"
+    reviewed_head_sha: 966f75ca6493f93e86872070cb93a2e9ae497306
+    scope: "PR #1678 exact HEADをClaude Code Opusがread-only独立reviewし、session transcriptの5 model window、訂正4 PLANのreviewed_at、27件のsession evidence、例外判定14反例、reviewed-safe pin、targeted 126 tests、CI run 34266275486の12/12 successを実測した。blocker 0でapprove。canonical receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1678#issuecomment-5590738623"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 34266275486 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,databaseId,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-08T19:23:39Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:3c0866bd9176475816e11dabb767f4d57af260f9d885ce89c7d3e67cf272f364"
+        result: "completed / success / HEAD 966f75ca6493f93e86872070cb93a2e9ae497306 / run 34266275486"
 ---
 
 # typed receiptへのhistory追従
