@@ -208,15 +208,24 @@ function installProjectHookAuthorityEnvelope(dir: string): string {
     ["init", "-q"],
     ["config", "user.email", "test@example.invalid"],
     ["config", "user.name", "HELIX Test"],
-    ["add", ".codex/hooks.json", "src/runtime/agent-guard.ts", "src/runtime/codex-native-worker-policy.ts"],
+    [
+      "add",
+      ".codex/hooks.json",
+      "src/runtime/agent-guard.ts",
+      "src/runtime/codex-native-worker-policy.ts",
+    ],
     ["commit", "-qm", "test fixture"],
     ["update-ref", "refs/remotes/origin/main", "HEAD"],
     ["symbolic-ref", "refs/remotes/origin/HEAD", "refs/remotes/origin/main"],
   ]) {
     const result = spawnSync("git", args, { cwd: dir, encoding: "utf8" });
-    if (result.status !== 0) throw new Error(`git fixture failed: ${args.join(" ")}: ${result.stderr}`);
+    if (result.status !== 0)
+      throw new Error(`git fixture failed: ${args.join(" ")}: ${result.stderr}`);
   }
-  const head = spawnSync("git", ["rev-parse", "HEAD"], { cwd: dir, encoding: "utf8" }).stdout.trim();
+  const head = spawnSync("git", ["rev-parse", "HEAD"], {
+    cwd: dir,
+    encoding: "utf8",
+  }).stdout.trim();
   const root = captureProjectHookRepositoryIdentity(dir, nodeProjectHookPhysicalAdapterDeps);
   const source = captureProjectHookSourceMaterial(dir, nodeProjectHookPhysicalAdapterDeps);
   const envelopePath = join(dir, "project-hook-authority-envelope.json");
