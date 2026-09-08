@@ -198,6 +198,15 @@ describe("branch-kind-check", () => {
     expect(isReviewEvidenceMetadataOnly(corrected.replace("confirmed", "draft"), base)).toBe(false);
     expect(
       isReviewEvidenceMetadataOnly(
+        corrected,
+        base.replace(
+          "review_evidence:\n  - reviewer_model: claude:old",
+          "review_evidence: invalid",
+        ),
+      ),
+    ).toBe(false);
+    expect(
+      isReviewEvidenceMetadataOnly(
         corrected.replace(
           "reviewer_model: claude:new",
           "reviewer_model: claude:new\n  verdict: approve",

@@ -461,6 +461,7 @@ export function isReviewEvidenceMetadataOnly(currentSource: string, baseSource: 
       !terminal.has(String(current.status ?? "")) ||
       current.status !== base.status ||
       !Array.isArray(current.review_evidence) ||
+      !Array.isArray(base.review_evidence) ||
       current.review_evidence.length === 0 ||
       JSON.stringify(current.review_evidence) === JSON.stringify(base.review_evidence)
     )
