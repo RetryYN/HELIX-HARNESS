@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1404: confirmed設計のactive Bun command収束"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex
 created: 2026-09-09
@@ -62,7 +62,29 @@ agent_slots:
   - { role: tl, slot_label: "TL — 現行runtime commandとconfirmed設計の意味整合を確認" }
   - { role: qa, slot_label: "QA — active Bun残置とrecognition pin driftの反例を検証" }
   - { role: aim, slot_label: "AIM — historical保持とcurrent authority収束の境界を照合" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-08T16:45:59Z"
+    tests_green_at: "2026-09-08T16:36:41Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: 8dbeae78314126664a9f28e4ad488c82bf849d1c
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1675#issuecomment-5588684410"
+    ci_evidence_generation: "run:34249215630:attempt:2:success"
+    scope: "PR #1675 comment 5588684410 の sealed receipt を機械転記。HEAD 8dbeae783、CI run 34249215630 attempt 2 success、verdict approve、blockers 0。function-spec は harness family 一様の conflict のまま。本記録は転記HEADのfresh CI・新世代receipt・merge admission・main read-afterの代用にしない。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 34249215630 --json status,conclusion,headSha,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-08T16:36:41Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:8e2425710cb0029177323bef1271bcba146bd4484e630b033f5de193b656777f"
+        result: "exact HEAD 8dbeae78314126664a9f28e4ad488c82bf849d1c の CI run 34249215630 attempt 2 が terminal success"
 ---
 
 # confirmed設計のactive Bun command収束
@@ -88,4 +110,4 @@ Issue #1404で実測されたconfirmed L6設計2件のactive Bun commandを、No
 
 ## 完了境界
 
-局所テスト32件、design-language gate、diff-checkはgreen。現時点のCI failureはPR scope manifestのPLAN companion不足とtyped expansion形式に限定される。本PLANはそのownershipを正規化するが、独立reviewとfresh CI成功まではdraftを維持する。
+局所テスト、design-language gate、diff-checkはgreen。`8dbeae783` の独立review receipt（approve、blockers 0）と CI run `34249215630` attempt 2 success を frontmatter へ転記した。転記後HEADのfresh CI、新世代receipt、merge admission、main read-afterが揃うまで完了主張しない。Issue #1404 は閉じない。
