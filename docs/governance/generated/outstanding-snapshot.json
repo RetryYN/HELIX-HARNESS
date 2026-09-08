@@ -12,6 +12,7 @@
     "PLAN-L3-1608-instruction-path-change-resilience",
     "PLAN-L3-1610-conversation-lifetime-reconstruction",
     "PLAN-L3-1622-producer-provenance-separation",
+    "PLAN-L3-1642-bugbot-bounded-repair",
     "PLAN-L3-17-lifecycle-state-separation-requirements",
     "PLAN-L3-19-github-operations-projection",
     "PLAN-L3-21-contextual-pr-review-db-convergence",

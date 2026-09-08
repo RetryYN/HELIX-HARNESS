@@ -7,8 +7,8 @@
   "bindings": [
     {
       "test_path": "tests/l12-hybrid-recognition.test.ts",
-      "test_case_identity_sha256": "1a648dfacebabd719d25dc8621b747c37385867da0c9796b047e5365ef5c23ba",
-      "expected_case_count": 15,
+      "test_case_identity_sha256": "9aa91c57705fc08c11d8b969346c2b55a06ed7c4b1b7fe5909fece6cf71e4ef2",
+      "expected_case_count": 16,
       "semantic_source_path": "src/lint/l12-hybrid-recognition.ts",
       "semantic_source_sha256": "8610bf2c16c1b7652d19a3e25e3920ee8ebc52d1df03abd06b91f464b346c479",
       "semantic_predecessor_plan_id": "PLAN-L3-13-vmodel-docgen-fit",

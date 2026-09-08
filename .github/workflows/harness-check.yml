@@ -262,15 +262,15 @@ jobs:
 
       - name: branch-kind-check
         env:
+          GH_TOKEN: ${{ github.token }}
           EVENT_NAME: ${{ github.event_name }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           BRANCH_BASE_HEAD: ${{ github.event.pull_request.base.sha || github.event.before }}
           BRANCH_CANDIDATE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
           HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           set -euo pipefail
-          if [ "$EVENT_NAME" != "pull_request" ] && { [ -z "$BRANCH_BASE_HEAD" ] || [ "$BRANCH_BASE_HEAD" = "0000000000000000000000000000000000000000" ]; }; then
-            BRANCH_BASE_HEAD="$(git rev-parse "${BRANCH_CANDIDATE_HEAD}^")"
-          fi
+          BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"
           npx --no-install tsx src/cli.ts guard branch-kind \
             --base-head "$BRANCH_BASE_HEAD" --candidate-head "$BRANCH_CANDIDATE_HEAD" \
             --branch "$HEAD_BRANCH" --strict-unknown-prefix
@@ -510,11 +510,7 @@ jobs:
           else
             profile="post_merge_full"
             candidate_head="$HEAD_SHA"
-            if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
-              base_head="$(git rev-parse "${HEAD_SHA}^")"
-            else
-              base_head="$BEFORE_SHA"
-            fi
+            base_head="$(BRANCH_CANDIDATE_HEAD="$candidate_head" BRANCH_BASE_HEAD="$BEFORE_SHA" GITHUB_REPOSITORY="$REPOSITORY" npx --no-install tsx src/runtime/ci-branch-base.ts)"
             range="${base_head}..${candidate_head}"
           fi
           body_digest="sha256:$(printf '%s' "$body" | sha256sum | cut -d' ' -f1)"
@@ -984,15 +980,15 @@ jobs:
         run: npx --no-install tsx src/cli.ts db rebuild --json
       - name: doctor (governance hard gates)
         env:
+          GH_TOKEN: ${{ github.token }}
           EVENT_NAME: ${{ github.event_name }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           BRANCH_BASE_HEAD: ${{ github.event.pull_request.base.sha || github.event.before }}
           BRANCH_CANDIDATE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
           HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           set -euo pipefail
-          if [ "$EVENT_NAME" != "pull_request" ] && { [ -z "$BRANCH_BASE_HEAD" ] || [ "$BRANCH_BASE_HEAD" = "0000000000000000000000000000000000000000" ]; }; then
-            BRANCH_BASE_HEAD="$(git rev-parse "${BRANCH_CANDIDATE_HEAD}^")"
-          fi
+          BRANCH_BASE_HEAD="$(npx --no-install tsx src/runtime/ci-branch-base.ts)"
           npx --no-install tsx src/cli.ts doctor \
             --base-head "$BRANCH_BASE_HEAD" --candidate-head "$BRANCH_CANDIDATE_HEAD" \
             --branch "$HEAD_BRANCH"
