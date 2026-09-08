@@ -2,7 +2,6 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
   copyFileSync,
-  cpSync,
   existsSync,
   mkdirSync,
   mkdtempSync,
@@ -81,34 +80,15 @@ describe("Requirement JSON authority", () => {
     run: (repoRoot: string) => void,
   ): void {
     const sourceRoot = process.cwd();
-    const fixtureRoot = mkdtempSync(join(tmpdir(), "helix-requirement-authority-"));
+    const fixtureParent = mkdtempSync(join(tmpdir(), "helix-requirement-authority-"));
+    const fixtureRoot = join(fixtureParent, "repo");
     try {
-      // frozen refinementを含む実データにはHEADが必要。独立Git fixtureを作り、
-      // 対象の負例に到達する前のrev-parse例外で検査を短絡させない。
-      // source/祖先materialは引き継がず、既存どおり当該failure messageを個別検証する。
-      git(fixtureRoot, ["init", "--quiet"]);
-      git(fixtureRoot, ["commit", "--quiet", "--allow-empty", "-m", "authority fixture"]);
-      mkdirSync(join(fixtureRoot, "config"));
-      copyFileSync(
-        join(sourceRoot, "config/requirement-ir-schema.json"),
-        join(fixtureRoot, "config/requirement-ir-schema.json"),
-      );
-      cpSync(join(sourceRoot, "requirements-ir"), join(fixtureRoot, "requirements-ir"), {
-        recursive: true,
-      });
+      // approved/frozen refinementはcandidate HEADの祖先性と当時のmaterialを検証する。
+      // 部分copyではそのGit証拠が欠落するため、current HEADを共有object cloneへ束縛する。
+      git(sourceRoot, ["clone", "--quiet", "--shared", sourceRoot, fixtureRoot]);
       const authority = JSON.parse(
         readFileSync(join(sourceRoot, "config/requirement-ir-authority.json"), "utf8"),
       ) as Record<string, unknown>;
-      const authorityPaths = [
-        ...((authority.compatibility_inputs as string[]) ?? []),
-        ...((authority.generated_views as string[]) ?? []),
-      ];
-      for (const path of authorityPaths) {
-        const destination = join(fixtureRoot, path);
-        mkdirSync(dirname(destination), { recursive: true });
-        copyFileSync(join(sourceRoot, path), destination);
-      }
-      mkdirSync(join(fixtureRoot, "src"));
       mutate(authority, fixtureRoot);
       writeFileSync(
         join(fixtureRoot, "config/requirement-ir-authority.json"),
@@ -117,7 +97,7 @@ describe("Requirement JSON authority", () => {
       );
       run(fixtureRoot);
     } finally {
-      rmSync(fixtureRoot, { recursive: true, force: true });
+      rmSync(fixtureParent, { recursive: true, force: true });
     }
   }
 
@@ -147,6 +127,40 @@ describe("Requirement JSON authority", () => {
     const result = checkRequirementAuthority("/path/that/does/not/exist");
     expect(result.ok).toBe(false);
     expect(result.messages.join("\n")).toContain("authority validation failed");
+  });
+
+  // PLAN-RECOVERY-1645-markdown-table-coverage
+  it("U-MTROW-004: 実authority gateへ未収載表行の元pathと行番号を伝播する", () => {
+    const canonical = loadCanonicalRequirementIrFromShards(process.cwd());
+    const target = canonical.refinement_contracts.find(
+      (record) => record.refinement_contract_id === "MIC-FR-001",
+    );
+    if (!target) throw new Error("MIC-FR-001 fixture record missing");
+    withAuthorityFixture(
+      (_authority, fixtureRoot) => {
+        for (const record of canonical.refinement_contracts) {
+          for (const path of [record.source.requirement_path, record.source.acceptance_path]) {
+            const destination = join(fixtureRoot, path);
+            mkdirSync(dirname(destination), { recursive: true });
+            copyFileSync(join(process.cwd(), path), destination);
+          }
+        }
+      },
+      (fixtureRoot) => {
+        // 無関係なsource欠落だけでRedにならないよう、変異前に実gateの成功を要求する。
+        expect(checkRequirementAuthority(fixtureRoot).ok).toBe(true);
+        const path = target.source.acceptance_path;
+        const original = readFileSync(join(fixtureRoot, path), "utf8");
+        const prefix = `${original}\n`;
+        const line = prefix.split(/\r?\n/).length;
+        writeFileSync(join(fixtureRoot, path), `${prefix}| MIC-AC-999 | 未収載の条件 |\n`);
+        const result = checkRequirementAuthority(fixtureRoot);
+        expect(result.ok).toBe(false);
+        expect(result.messages.join("\n")).toContain(
+          `MIC-FR-001: ${path}:${line}: REFINEMENT_TABLE_ROW_UNBOUND`,
+        );
+      },
+    );
   });
 
   it("U-RAC-002b: kills a dual-authority policy mutation", () => {
