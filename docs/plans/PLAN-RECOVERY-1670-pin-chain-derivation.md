@@ -3,7 +3,7 @@ plan_id: PLAN-RECOVERY-1670-pin-chain-derivation
 title: "変更pathからのpin追従先事前導出"
 kind: recovery
 layer: cross
-drive: ci
+drive: agent
 status: draft
 completion_claim_allowed: false
 owner: Codex / TL
@@ -50,8 +50,8 @@ dependencies:
   references: ["issue:1323", "issue:1639", "issue:1675", "issue:1678"]
   blocks: []
 generates:
-  - { artifact_path: docs/design/helix/L6-function-design/pin-chain-derivation.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/helix/L7-pin-chain-derivation-unit-test-design.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/pin-chain-derivation.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L7-pin-chain-derivation-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1670-pin-chain-derivation.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/pin-chain-derivation.ts, artifact_type: source_module }
   - { artifact_path: tests/pin-chain-derivation.test.ts, artifact_type: test_code }
@@ -59,16 +59,17 @@ modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_catalog }
-  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: governance_record }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_projection }
-  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: governance_record }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: design_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: se, slot_label: "SE — pin adapterとread-only CLI" }
   - { role: qa, slot_label: "QA — stale／semantic／unknown反例" }
+  - { role: aim, slot_label: "AIM — 自動refresh禁止とauthority境界を監査" }
 review_evidence: []
 ---
 
