@@ -196,6 +196,15 @@ describe("branch-kind-check", () => {
 
     expect(isReviewEvidenceMetadataOnly(corrected.replace("body", "changed"), base)).toBe(false);
     expect(isReviewEvidenceMetadataOnly(corrected.replace("confirmed", "draft"), base)).toBe(false);
+    expect(
+      isReviewEvidenceMetadataOnly(
+        corrected.replace(
+          "reviewer_model: claude:new",
+          "reviewer_model: claude:new\n  verdict: approve",
+        ),
+        base,
+      ),
+    ).toBe(false);
 
     const baseWithMirror = base.replace("body", "reviewer model: claude:old\n");
     const correctedWithMirror = baseWithMirror.replaceAll("claude:old", "claude:new");
