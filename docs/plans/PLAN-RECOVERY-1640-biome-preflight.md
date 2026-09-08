@@ -65,14 +65,16 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
-    reviewed_at: "2026-09-08T22:44:40Z"
+    reviewed_at: "2026-09-08T22:58:53Z"
     tests_green_at: "2026-09-08T22:11:40Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: aa302c10-9c61-4701-90b4-66d4c9b8d89e
-    reviewed_head_sha: baa7c332807350b47a6720789a5467de2adecb05
-    scope: "exact HEAD baa7c3328でscope、evidence byte、64/64再現、mutation oracle、terminal failed CIの原因を独立reviewerが再確認した。formal receiptは現review sessionへのPLAN再束縛後に封印し、receipt_urlとci_evidence_generationはその真正な値だけを後続commitで記録する。残るF1 survivorはIssue #1671への実測入力であり本sliceのblockerではない。"
+    reviewed_head_sha: 8812694bac416d955b81c9476e09862dee738a20
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1676#issuecomment-5593035554
+    ci_evidence_generation: "run:34287566609:attempt:1:failure"
+    scope: "exact HEAD 8812694baでmetadata-only carry-forward、scope、evidence byte、64/64再現、mutation oracle、DB replay収束を独立reviewerが確認した。引用CIはreceipt locator不在だけを理由に失敗したterminal generationであり成功主張やmerge admissionには用いない。残るF1 survivorはIssue #1671への実測入力であり本sliceのblockerではない。"
     green_commands:
       - kind: unit_test
         command: "npx vitest run tests/harness-check-workflow.test.ts --reporter=json --outputFile=.helix/evidence/review-1676-terminal/vitest-targeted.json"
