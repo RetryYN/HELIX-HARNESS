@@ -238,9 +238,8 @@ describe("branch-kind-check", () => {
       .replace("and claude-fable-5-1", "and claude-opus-5");
     expect(isReviewEvidenceMetadataOnly(identifierCorrected, identifierBase)).toBe(true);
 
-    const replacementTokenBase = base
-      .replace("claude:old", "x:$&")
-      .replace("body", "reviewer model x:$&\n");
+    const replacementTokenBase =
+      '---\nplan_id: PLAN-L3-1\nkind: add-design\nstatus: confirmed\nreview_evidence:\n  - reviewer_model: "x:$&"\n---\nreviewer model x:$&\n';
     const replacementTokenCorrected = replacementTokenBase.replaceAll("x:$&", "x:newtok");
     expect(isReviewEvidenceMetadataOnly(replacementTokenCorrected, replacementTokenBase)).toBe(
       true,
