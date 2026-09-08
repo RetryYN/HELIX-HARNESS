@@ -81,6 +81,8 @@ review_evidence:
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: "20813c5a-21cd-4497-9cd1-b58cf81f2000"
     reviewed_head_sha: 966f75ca6493f93e86872070cb93a2e9ae497306
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1678#issuecomment-5590738623"
+    ci_evidence_generation: "run:34266275486:attempt:1:success"
     scope: "PR #1678 exact HEADをClaude Code Opusがread-only独立reviewし、session transcriptの5 model window、訂正4 PLANのreviewed_at、27件のsession evidence、例外判定14反例、reviewed-safe pin、targeted 126 tests、CI run 34266275486の12/12 successを実測した。blocker 0でapprove。canonical receipt: https://github.com/RetryYN/HELIX-HARNESS/pull/1678#issuecomment-5590738623"
     green_commands:
       - kind: smoke
