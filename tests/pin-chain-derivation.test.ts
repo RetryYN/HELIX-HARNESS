@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -13,15 +13,24 @@ function fixture(): string {
   mkdirSync(join(root, "tests"), { recursive: true });
   writeFileSync(
     join(root, "docs/governance/feedback-test-owner-disposition-residual.json"),
-    JSON.stringify({
-      bindings: [
-        {
-          test_path: "tests/example.test.ts",
-          test_file_sha256: "stale",
-          expected_case_count: 1,
-        },
-      ],
-    }),
+    JSON.stringify(
+      {
+        bindings: [
+          {
+            test_path: "tests/example.test.ts",
+            test_file_sha256: "stale",
+            expected_case_count: 1,
+          },
+          {
+            test_path: "tests/duplicate-count.test.ts",
+            test_file_sha256: "also-stale",
+            expected_case_count: 1,
+          },
+        ],
+      },
+      null,
+      2,
+    ),
   );
   writeFileSync(
     join(root, "docs/governance/feedback-test-owner-disposition-closure.json"),
@@ -35,6 +44,7 @@ function fixture(): string {
     join(root, "tests/example.test.ts"),
     'it("one", () => {});\nit("two", () => {});\n',
   );
+  writeFileSync(join(root, "tests/duplicate-count.test.ts"), 'it("only", () => {});\n');
   writeFileSync(join(root, "src/lint/l12-hybrid-reviewed-safe-v2.ts"), "export const x = 1;\n");
   return root;
 }
@@ -64,12 +74,20 @@ describe("PLAN-RECOVERY-1670 pin chain derivation", () => {
   });
 
   it("U-PINCHAIN-002: 未登録surfaceを追従不要としてsilent successにしない", () => {
-    const report = derivePinChain(fixture(), ["src/new-pin-shape.ts"]);
+    const report = derivePinChain(fixture(), ["tests/example.test.ts", "src/new-pin-shape.ts"]);
     expect(report.status).toBe("degraded");
-    expect(report.findings).toEqual([]);
+    expect(report.findings).toHaveLength(2);
     expect(report.unsupported_surfaces).toEqual([
       "src/new-pin-shape.ts:pin_surface_not_registered",
     ]);
+  });
+
+  it("U-PINCHAIN-005: 重複count値でも対象binding内のexact field行を返す", () => {
+    const report = derivePinChain(fixture(), ["tests/duplicate-count.test.ts"]);
+    const count = report.findings.find((finding) => finding.field === "expected_case_count");
+    const digest = report.findings.find((finding) => finding.field === "test_file_sha256");
+    expect(count?.location).toMatch(/feedback-test-owner-disposition-residual\.json:11$/u);
+    expect(digest?.location).toMatch(/feedback-test-owner-disposition-residual\.json:10$/u);
   });
 
   it("U-PINCHAIN-003: reviewed-safe pinは自動refreshせず再reviewへ送る", () => {
@@ -90,5 +108,17 @@ describe("PLAN-RECOVERY-1670 pin chain derivation", () => {
         stale: true,
       }),
     ]);
+  });
+
+  it("U-PINCHAIN-006: reviewed-safe registry欠落を例外やsilent skipにしない", () => {
+    const root = fixture();
+    const target = "docs/plans/PLAN-L3-1639-bugbot-generation.md";
+    mkdirSync(join(root, "docs/plans"), { recursive: true });
+    writeFileSync(join(root, target), "changed semantic bytes\n");
+    rmSync(join(root, "src/lint/l12-hybrid-reviewed-safe-v2.ts"));
+
+    const report = derivePinChain(root, [target]);
+    expect(report.status).toBe("degraded");
+    expect(report.unsupported_surfaces).toEqual([`${target}:reviewed_safe_registry_unavailable`]);
   });
 });

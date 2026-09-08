@@ -35,6 +35,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-002, test_path: tests/pin-chain-derivation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-003, test_path: tests/pin-chain-derivation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-004, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-005, test_path: tests/pin-chain-derivation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-006, test_path: tests/pin-chain-derivation.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6

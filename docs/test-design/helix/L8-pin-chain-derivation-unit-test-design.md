@@ -21,6 +21,8 @@ pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
 | U-PINCHAIN-002 | unknown surface | 未登録pin形式のchanged pathをsilent successせず`DEGRADED` | `tests/pin-chain-derivation.test.ts` |
 | U-PINCHAIN-003 | semantic review pin | reviewed-safe対象のbytesを変更しても自動refreshせず`requires_reassessment` | `tests/pin-chain-derivation.test.ts` |
 | U-PINCHAIN-004 | CLI | 実CLIへchanged pathを渡すとJSON schemaと実repository pinをread-after可能 | `tests/cli-surface.test.ts` |
+| U-PINCHAIN-005 | exact location | 同じcount値を持つ複数bindingでも対象binding内のfield行を返す | `tests/pin-chain-derivation.test.ts` |
+| U-PINCHAIN-006 | registry欠落 | reviewed-safe registryが無い場合も例外やsilent skipにせず`DEGRADED` | `tests/pin-chain-derivation.test.ts` |
 
 件数だけでなく、deterministicとsemanticの取り違え、未対応surfaceの隠蔽、CLI未配線をそれぞれ独立して拘束する。
 
@@ -31,3 +33,7 @@ pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
 ## U-PINCHAIN-003: 意味レビューpinの分離
 
 ## U-PINCHAIN-004: CLI実読込
+
+## U-PINCHAIN-005: binding内の正確な位置
+
+## U-PINCHAIN-006: registry欠落の可視化

@@ -51,6 +51,18 @@ function lineOf(source: string, needle: string): number {
   return index < 0 ? 0 : source.slice(0, index).split(/\r?\n/u).length;
 }
 
+function bindingFieldLine(source: string, testPath: string, field: string): number {
+  const lines = source.replace(/\r\n?/gu, "\n").split("\n");
+  const start = lines.findIndex((line) => line.includes(`"test_path": "${testPath}"`));
+  if (start < 0) return 0;
+  for (let index = start + 1; index < lines.length; index += 1) {
+    const line = lines[index] ?? "";
+    if (line.includes('"test_path":')) break;
+    if (line.includes(`"${field}":`)) return index + 1;
+  }
+  return 0;
+}
+
 function canonicalPath(root: string, path: string): string {
   return relative(root, join(root, path)).replaceAll("\\", "/");
 }
@@ -79,7 +91,7 @@ export function derivePinChain(root: string, changedPaths: readonly string[]): P
       findings.push({
         changed_path: binding.test_path,
         dependent_path: manifestPath,
-        location: `${manifestPath}:${lineOf(manifestSource, binding.test_path)}`,
+        location: `${manifestPath}:${bindingFieldLine(manifestSource, binding.test_path, "test_file_sha256")}`,
         field: "test_file_sha256",
         kind: "deterministic_pin",
         action: "refresh_candidate",
@@ -90,7 +102,7 @@ export function derivePinChain(root: string, changedPaths: readonly string[]): P
       findings.push({
         changed_path: binding.test_path,
         dependent_path: manifestPath,
-        location: `${manifestPath}:${lineOf(manifestSource, `"expected_case_count": ${binding.expected_case_count}`)}`,
+        location: `${manifestPath}:${bindingFieldLine(manifestSource, binding.test_path, "expected_case_count")}`,
         field: "expected_case_count",
         kind: "deterministic_pin",
         action: "refresh_candidate",
@@ -102,9 +114,16 @@ export function derivePinChain(root: string, changedPaths: readonly string[]): P
   }
 
   const reviewedSafePath = "src/lint/l12-hybrid-reviewed-safe-v2.ts";
-  const reviewedSafeSource = readFileSync(join(root, reviewedSafePath), "utf8");
+  const reviewedSafeAbsolute = join(root, reviewedSafePath);
+  const reviewedSafeSource = existsSync(reviewedSafeAbsolute)
+    ? readFileSync(reviewedSafeAbsolute, "utf8")
+    : null;
   for (const disposition of REVIEWED_SAFE_DISPOSITIONS) {
     if (!changedSet.has(disposition.path)) continue;
+    if (reviewedSafeSource === null) {
+      unsupportedSurfaces.push(`${disposition.path}:reviewed_safe_registry_unavailable`);
+      continue;
+    }
     const absoluteTarget = join(root, disposition.path);
     const liveDigest = existsSync(absoluteTarget)
       ? sha256(readFileSync(absoluteTarget, "utf8"))
@@ -122,9 +141,13 @@ export function derivePinChain(root: string, changedPaths: readonly string[]): P
     });
   }
 
-  if (findings.length === 0 && changed.length > 0) {
-    unsupportedSurfaces.push(...changed.map((path) => `${path}:pin_surface_not_registered`));
-  }
+  const representedPaths = new Set(findings.map((finding) => finding.changed_path));
+  const unsupportedPaths = new Set(unsupportedSurfaces.map((surface) => surface.split(":", 1)[0]));
+  unsupportedSurfaces.push(
+    ...changed
+      .filter((path) => !representedPaths.has(path) && !unsupportedPaths.has(path))
+      .map((path) => `${path}:pin_surface_not_registered`),
+  );
 
   return {
     schema_version: "helix-pin-chain-derivation.v1",
