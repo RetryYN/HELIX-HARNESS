@@ -1,0 +1,300 @@
+---
+plan_id: PLAN-L3-1639-bugbot-generation
+title: "定型生成・正規操作の承認済みsource移管"
+kind: add-design
+layer: L3
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+drive: agent
+status: confirmed
+completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-07T20:06:36Z"
+  plan_id: PLAN-L3-1639-bugbot-generation
+  approval_record_id: L3-PO-1639-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5575191362"
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  target_axis: workflow_model
+  target_id: REDESIGN
+entry_signals:
+  - "po_directive:HELIX-bugbotの要求を取り込みCIとCursorに並行して先行する"
+created: 2026-09-08
+updated: 2026-09-08
+owner: Codex / TL
+github_issue_id: 1639
+behavior_contract_id: BUGBOT-GENERATION-001
+responsibility_owner: requirements-authority-materialization
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: dual_green
+legacy_retirement_state: retained
+backprop_decision: not_required
+backprop_decision_reason: "承認済みL1/L3/L10 sourceの意味不変移管とBRからのL12派生認識設計を所有する。要求・受入・権限は増やさない。"
+no_code_decision: no_change
+ddd_modeling_decision: aggregate
+contract_preconditions: "原稿、既存GH-FR-007/014、Rule導出と変更伝播を照合する。限定修復権限は別PLANで扱う"
+contract_postconditions: "BBGのL1/L3/L10 sourceへ意味不変で移管し、承認候補のraw digestと原稿の項目対応を保持して第二正本を残さない"
+contract_invariants: "生成と実行権の分離、意味正本の再利用、source配置だけによるruntime有効化禁止"
+contract_failures: "未提供別紙の確認済み扱い、scope拡張、承認捏造、義務欠落を拒否する"
+tdd_red_required: false
+tdd_red_waiver_reason: "承認済み文書の移管・派生認識設計・実bytesに限定した参照追従で判定ロジックは不変。局所scannerのRedとdigest失効oracleは検証し、生成器実装の独立oracleとmutationは後続実装で実証する。"
+complexity_effect: net_negative
+complexity_justification: "既存Authoring/Recoveryを再利用し、定型手修正と重複基盤を減らす。"
+removal_trigger: "候補の第二正本は本移管で除去する。旧手書き入口はBBG-R04/AC05の後継consumer検証・rollback成立後に退役する"
+parent_design: docs/design/helix/L1-requirements/bugbot-generation-requests.md
+pair_artifact: docs/test-design/helix/bugbot-generation-acceptance.md
+dependencies:
+  parent: docs/design/helix/L1-requirements/bugbot-generation-requests.md
+  requires: []
+  references:
+    - issue:1642
+    - issue:93
+    - issue:192
+    - issue:397
+    - issue:1293
+    - issue:1500
+    - issue:1595
+    - issue:1608
+  blocks: []
+generates:
+  - { artifact_path: docs/governance/candidates/bugbot-intake-source.md, artifact_type: markdown_doc }
+  - { artifact_path: .helix/evidence/review-1639-canonical/bytes.log, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L3-1639-bugbot-generation.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L1-requirements/bugbot-generation-requests.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L3-requirements/bugbot-generation-requirements.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/bugbot-generation-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/bugbot-generation-recognition.md, artifact_type: test_design }
+modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+agent_slots:
+  - { role: tl, slot_label: "TL — 既存責務と追加差分を分離" }
+  - { role: qa, slot_label: "QA — 原稿対応と禁止反例を検証" }
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-07T23:26:55Z"
+    tests_green_at: "2026-09-07T23:26:14Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
+    reviewed_head_sha: b5247c44827720c97e05a5b498df39d4ccc55db8
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576681813"
+    scope: "b5247c448のtracked差分のみ。独立技術approve/blockers 0はcomment5576644162、同一HEADで再採取したbytes照合のraw全文・終了時刻はcomment5576681813へ束縛する。reviewed_atは補足記録のGitHub公開時刻。tests_green_atはこのsmokeだけの終了時刻でVitest/vmodel/tscへ流用しない。判断側tscは借用依存によりexit 2でありgreenにしない。作成側専有treeのraw4件は判断側未検証。CI/main read-after/DB convergenceは未実施で、技術confirmedと最終HEADの独立封緘・merge admissionを分離する。"
+    green_commands:
+      - kind: smoke
+        command: "node ./verify1639bytes.mjs"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-07T23:26:14Z"
+        evidence_path: .helix/evidence/review-1639-canonical/bytes.log
+        output_digest: "sha256:44b11058b02f992d3a8b08650e7e5bb473cb30a7b9ed27ca763fe8007dc6ebae"
+---
+
+# 定型生成・正規操作
+
+本PLANは要求と明示承認の束縛、承認済み候補のcanonical source配置を所有する。
+L1/L3/L10の要求承認は取得済みであり、同一要求の再承認待ちには戻さない。
+A/Bは別PLAN・別受入・別完了で追跡し、正本化・該当IR admission・独立検証を省略しない。
+本差分は意味不変のsource移管であり、新配置の独立技術reviewを対象HEADへ束縛して確定する。
+sourceの`authority_status: canonical_source`とPLANの技術確定、
+Requirement IR admission、実装完了、包括的自動書込みの成立を分離する。
+
+## 承認対象と残る検収
+
+`L3-PO-1639-001`は候補HEAD `a2325edb8425f4e84421ef2fd1f07c6c6d668dd7`の
+L1/L3/L10各文書のraw digestへ束縛されている。承認メタデータの追加で元のdigestを差し替えない。
+`approved_at`はGitHub記録の作成時刻であり、人間メッセージの厳密な送信時刻ではない。
+要求承認と技術review・CI・main read-after・実consumer受入を分離する。
+Bの有効化条件は#1642が所有し、Aの生成成功を修復の適用許可に変換しない。
+
+原稿bytesは`docs/governance/candidates/bugbot-intake-source.md`のBase64復号で再現する。正規化なしのSHA-256:
+`c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。
+[原稿退役のread-after](https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576534985)に、
+保全先main `391020b882abedfa622a2910e906618fde980270`との8,033 bytes完全一致、
+A4/B5の項目対応、監査付きpreflightとroot原稿1件の削除を記録した。本Git差分とは別の
+明示依頼に基づくローカル整理であり、Bの自動適用権限を有効化した証拠ではない。
+本PLANが既に生成した保全台帳は`generates`による継続所有を保持するが、本差分では変更しない。
+現行diffの新規成果物と混同せず、Git履歴から原稿全bytesを復元できる状態を維持する。
+別紙02/03/05は未提供であり、別紙03の18シナリオ照合は残義務である。
+
+## 承認時の来歴と移管範囲
+
+次のraw SHA-256は承認対象HEAD `a2325edb8425f4e84421ef2fd1f07c6c6d668dd7`の
+ファイル全体（frontmatterを含む、正規化なし）から再計測した値である。
+承認メタデータを含む移管直前base `cf85c603986b87905514d2d3ebcdd1fde1aaa2b2`や
+移管後文書のdigestで上書きしない。旧pathはGit履歴を読む来歴であり、現行参照ではない。
+
+| 承認時path | bytes | raw SHA-256 | 現行source |
+|---|---:|---|---|
+| `docs/governance/candidates/bugbot-generation-requests.md` | 1275 | `6f238c1e5216d3d9030f84205b693dc897f9bf7fb437ae732749c1291ff28619` | `docs/design/helix/L1-requirements/bugbot-generation-requests.md` |
+| `docs/governance/candidates/bugbot-generation-requirements.md` | 3237 | `5a1393d66839180f16e8c0db046070b882171792db929d20dc1316aab683faae` | `docs/design/helix/L3-requirements/bugbot-generation-requirements.md` |
+| `docs/governance/candidates/bugbot-generation-acceptance.md` | 2040 | `f0665116a0f25a7170bb78b203e9ff7f2e241cd7bd0530072aae53ff06fe7db8` | `docs/test-design/helix/bugbot-generation-acceptance.md` |
+
+BBG-BR01..02の要求段落、BBG-R01..04の見出しと要件本文、BBG-AC01..06の表行を
+承認対象および移管直前baseとbytes単位で照合する。変更は配置、相互参照、来歴、source状態と
+未完了境界に限定する。candidate本文のコピーを残す案は第二正本となるため採用せず、Git履歴で保全する。
+原稿A01..04の対応とBR→R→ACの既存対応を維持し、新しい意味・FR ID・IR recordを追加しない。
+
+## 工程表と検証計画
+
+| 順序 | 作業 | 状態・検証 |
+|---|---|---|
+| 1 [直列] | 承認元・原稿・既存sourceを照合 | 同一文書を扱うためfile_conflict。指定baseと承認対象HEADを固定する |
+| 2 [直列] | 3候補をMove/Updateし参照とcatalogを更新 | downstream_dependency。要求・ACのbytes照合とリンク実在検査を行う |
+| 3 [直列] | 既存CLIで検証しDB/snapshotを再生成 | shared_state。plan lint、governance、post-merge-status、db rebuild、design-language、pair検査を行う |
+| 4 [直列] | 新配置HEADの独立技術review | downstream_dependency。親へcommit済みHEADと残義務を渡す。PR #1641のsealed receiptを流用しない |
+
+commit前に`helix guard commitlint --subject 'fix: bind bugbot canonical recognition to exact source bytes'`
+と`git status`／`git diff --staged`を検証し、意図pathだけをnormal commitする。
+commit後は`helix guard commitlint --range cf85c603986b87905514d2d3ebcdd1fde1aaa2b2..HEAD`も検証する。
+workerから引き継いだ後の親統合がpush・PR・CI・独立検収の接続を所有する。
+
+実装計画は既存Authoring/RecoveryとGH-FR-007/014、#1608を再利用する後続実装へ分離する。
+本sliceは文書移管・派生認識設計、catalogの実bytesを束縛するpin追従と、本PLANの内容digestに
+限定したscanner誤検出のprojectionを所有する。テストは実測inventoryの差分追従と失効oracle追加に
+限定し、意味正本・runtime/gate判定ロジック・受入基準を緩めない。B/#1642、三社IR、CIは変更しない。
+
+### 親統合後の参照追従と検証契約
+
+初期移管HEADからL1の双方向pairと派生認識設計を追加した後、既存scannerの候補は1件増えた。
+実測signalはfrontmatterの層とcanonical範囲の隣接、およびbackprop理由の正規層併記だけであり、
+正規pairの再定義ではない。候補を探索対象から除外せず、本PLANの最終bytesに対する
+`false_positive`を既存reviewed-safe表へ追加する。実content変更後は`needs_manual_review`へ
+戻るoracleを追加し、未知pathの拒否、既存conflict集合、scanner判定ロジックを維持する。
+
+catalogの4 sourceは実在・各一回登録・双方向pair・実bytesを検査する。
+freeze packetはcatalog参照候補のみ追従し、同じテスト内のcatalog pin全22箇所を同じ実測値へ更新する。
+packet全体のfreezeを再承認したとは扱わず、IR rootとgenerated viewのpinは本sliceで変更しない。
+
+Node 24.15.0の`node node_modules/vitest/vitest.mjs run --configLoader runner --no-cache`で、
+追従前のRedを次のとおり再現した（runner／no-cacheは共有node_modulesへのconfig生成・cache書込みを避ける）。
+
+| 対象引数 | exit | 実測Red | stdout SHA-256 |
+|---|---:|---|---|
+| `tests/l12-hybrid-recognition.test.ts` | 1 | 4 failed / 25 tests | `d9ecf1aca59a49e62db92fd46b37d6cb97134a3cbf8ca66c68a6db7161b00763` |
+| `tests/l3-g3-freeze-packet-v2.test.ts -t 'U-DESIGNCOV-016\|U-DISTLITE-004'` | 1 | 2 failed / 2 selected、38 skipped | `2da88c68ca789618e5d89f2170e437c905caf6bfed0c262aef70f55d1f555347` |
+
+追従後は同テストと`tests/l3-progression-authority.test.ts`、`tests/ddd-tdd-rules.test.ts`、
+`tsc --noEmit`、対象PLAN lint、vmodel、governance、post-merge-status、design-language、
+専有treeのdb rebuild、BR/R/ACのbytes照合を再実行する。対象HEADと実exit／output digestは
+commit済みHEADへの引継ぎで報告する。本PLANのbytesを先に固定してからscannerのpinを算出し、
+そのpinや後続検証結果を本PLANへ書き戻す循環は作らない。技術確定後も新HEADのCIと最終独立検収を省略しない。
+
+## 移管の局所検証
+
+### 独立技術検収と転記の境界
+
+独立レビューはHEAD `b5247c44827720c97e05a5b498df39d4ccc55db8`のtracked差分を対象に
+[approve/blockers 0](https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576644162)とした。
+[補足実測](https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576681813)の
+`verify1639bytes.mjs`は下記埋め込みスクリプトと同内容を独立treeでESM化して実行したもので、
+repository内の常設実行入口ではない。raw全文3行を末尾改行も含め転記し、公開SHA-256と照合する。
+初回検証の未採取時刻は補作せず、再実行の終了時刻だけを使用する。
+判断側の型検査exit 2と、判断側未検証の作成側raw4件をこのgreenへ混入させない。
+M-1は文書とPLANの技術confirmedを明記、M-2は保全台帳の継続所有を明記、M-3は
+scannerコメントに誤検出位置を付記して処理する。新HEADの最終独立検収・CI・main read-afterは別に残す。
+
+### 初期移管の履歴
+
+Node 24.15.0で`node --import tsx src/cli.ts`を既存HELIX CLI入口として実行した。
+以下は初期移管commit `f59d02a1643bcb7fbb7ed07d060391f7ca9180f9`の局所履歴証拠であり、
+親統合後の新HEADの結果、独立技術reviewやruntime受入の代用ではない。
+
+| CLI引数 | exit | stdout SHA-256 | 判定範囲 |
+|---|---:|---|---|
+| `plan lint docs/plans/PLAN-L3-1639-bugbot-generation.md` | 0 | `1681481c40ae77313b41da3e236553a51fc5b1bb29a91403e51aa92b336ea77c` | 対象PLAN、既存design-reality advisoryは維持 |
+| `plan lint --gate governance` | 0 | `af09abbfa549e5a994b405ba5d7927b4f61228b6a23f48e4a6b6fe3a7de309ed` | frontmatter/cross-record 1209件 |
+| `plan lint --gate post-merge-status` | 0 | `578fb42085ee874bd41c96b2d5b596988f486a3f61890239b580cf7edb9e8d59` | 移管前base上の局所検査。新HEADの統合完了ではない |
+| `doctor --gate design-language` | 0 | `2984186f00d314baf5e104cfd8be45622668c83c8d144c9e98b215c432c3e9e4` | 人間向け2384文書、英語prose 0 |
+| `db rebuild --json` | 0 | `eb258dfcea30024d69ffb5134b4dcb2a65b523ec89419c56aeca0aeca1807ee8` | 専有treeで`ok: true`、rebuild findings 0。main convergenceではない |
+| `vmodel lint` | 1 | `2b6c3d59a51abc56b24870d23e1b961dc71469459f73f2b2b52be97befdbff91` | L1 sourceのpair欠落1件。draftでもfail-close |
+
+`db rebuild`が生成した`docs/governance/generated/outstanding-snapshot.json`はbaseとbytes一致し、
+SHA-256は`b9128b757a7a21a71f9a7213b67d9df17166633feb8d9c3fb00efbc97146b190`である。
+他レーンのsnapshotを取り込まず、95件のdecision集合を削減しない。
+既存doctor関数の局所呼出しではdesign-coverage、l12-hybrid-recognition、document-agent-metadataが
+`ok: true`、l3-progression-authorityだけがcatalogの`digest_mismatch`となった。
+全doctor greenやL12認識条件の充足は主張しない。
+
+### 要求・ACのbytes照合手順
+
+repository rootでNode 24.15.0から次を実行する。ファイルを作成せず、Gitの承認対象とbaseの両方を
+照合する。BR段落2件・R見出しと本文4件・AC表行6件には改行も含める。
+
+```sh
+node --input-type=module <<'JS'
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+const refs = ['a2325edb8425f4e84421ef2fd1f07c6c6d668dd7', 'cf85c603986b87905514d2d3ebcdd1fde1aaa2b2'];
+const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const cases = [
+  ['requests', 'docs/design/helix/L1-requirements/', 2, /^BBG-BR\d{2}:.*\n(?:[^\n]+\n)*/gm],
+  ['requirements', 'docs/design/helix/L3-requirements/', 4, /^### BBG-R\d{2}[^\n]*\n[\s\S]*?(?=^##|$(?![\s\S]))/gm],
+  ['acceptance', 'docs/test-design/helix/', 6, /^\| BBG-AC\d{2}[^\n]*\n/gm],
+];
+for (const [name, dir, count, pattern] of cases) {
+  const oldPath = `docs/governance/candidates/bugbot-generation-${name}.md`;
+  const current = readFileSync(`${dir}bugbot-generation-${name}.md`, 'utf8');
+  const extract = text => [...text.matchAll(pattern)].map(m => Buffer.from(m[0]));
+  const actual = extract(current);
+  assert.equal(actual.length, count);
+  assert.equal(existsSync(oldPath), false);
+  for (const ref of refs) {
+    const original = execFileSync('git', ['show', `${ref}:${oldPath}`]);
+    assert.deepEqual(actual, extract(original.toString('utf8')));
+    if (ref === refs[0]) assert(current.includes(`approved_raw_digest: "sha256:${sha(original)}"`));
+  }
+  const bytes = Buffer.concat(actual);
+  console.log(JSON.stringify({ name, count, bytes: bytes.length, sha256: sha(bytes), equal: true }));
+}
+JS
+```
+
+実測では3集合ともexit 0で承認対象・baseの両方に一致した。
+
+| 保全対象 | bytes | SHA-256 |
+|---|---:|---|
+| BR01..02の要求段落 | 504 | `11a27911e707dfb0ceedf2938fb91aac00c562e9480ba4bfc769de8718daefc0` |
+| R01..04の見出し・要件本文 | 1413 | `efbb2ff6445229012b0ba1ab7cbe7e4275b6b151ff8015028a9c485758e7b884` |
+| AC01..06の表行 | 1206 | `c40cfd994a0773c0a7810ce54481abb5a44749facbcb026271a6d0132bdb9571` |
+
+保全台帳自体もbaseとbytes一致し、Base64復号結果は8033 bytesと原稿SHA-256に一致した。
+承認メタデータ不変、L3↔L10の双方向参照、全Markdownリンクの実在、catalogの各source一回登録も
+メモリ内検査で確認した。元要求を再生成したり、実装成功receiptを作成したりしていない。
+
+## 残義務・親への引継ぎ
+
+- **L1↔L12**: 初期移管commit `f59d02a1643bcb7fbb7ed07d060391f7ca9180f9`でpair欠落を検出した。
+  親の統合作業で承認済みBR01..02と既存ACから`bugbot-generation-recognition.md`を派生設計し、
+  L1と双方向で束縛する。原承認にL12が含まれたとは扱わず、新HEADの独立技術reviewで
+  意味不変を検証する。L12実測・効果認定は未完了で、L3↔L10の成功で相殺しない。
+- **catalogのreviewed digest**: 初期移管では旧pinに対し`digest_mismatch`を検出した。
+  親の統合作業で4 sourceの実在・pair・各一回登録を検証し、そのcatalog bytesのpinだけを追従する。
+  独立review対象に含め、検証対象path集合やdigest不一致の拒否ロジックは変更しない。
+- **独立技術review**: 新canonical配置のexact HEADを対象に新しいreviewを受ける。
+  PR #1641は候補・承認反映の履歴に限定し、新配置のsealed receiptとして扱わない。
+- **IR・実装**: 既存ACとの詳細照合、該当Requirement IR admission、後続設計・実装・独立oracle・
+  mutation・実consumer受入は未完了。Bの限定修復権限は#1642所有のまま維持する。
+- **実測・別紙**: BBG-AC06の効果閾値・標本数・対象consumerの既存NFR接続、同条件の実測、
+  別紙02/03/05と18シナリオ全件照合を残す。source配置の成功をこれらの合格へ読み替えない。
+- **統合後の検証**: CI、main read-after、DB convergenceを別途行う。専有treeのdb rebuildは
+  local projection確認であり、main convergenceや完成のreceiptではない。

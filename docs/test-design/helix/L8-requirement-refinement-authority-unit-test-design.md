@@ -52,3 +52,17 @@ U-RRA-001をgreenにしない。
 | --- | --- | --- | --- |
 | U-TLIR-001 | 識別子構文 | 3LとMICをruntime／JSON schema双方で受理し、空値・数字のみnamespace・小文字開始・空segment・slash・末尾改行を拒否する | `tests/requirement-refinement-authority.test.ts` |
 | U-TLIR-002 | 範囲投影 | 3L-R-01..02を2件へ展開し、sourceの範囲だけ03へ拡張した場合はdigest更新後も拒否する | `tests/requirement-refinement-authority.test.ts` |
+
+## 三社レーンの取込集合
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
+| U-TLIR-MAT-001 | 元Featureの責務分割 | 8契約・25要件・27受入を元IDとFeature groupingのexact setで保持する | `tests/three-lane-ir-admission.test.ts` |
+| U-TLIR-MAT-002 | 基準と状態 | 基準153/24/72/24と既存6契約を維持し、元のPO承認とapprovalなしspecified祖先の同一subjectへ束縛して三社だけ凍結する | `tests/three-lane-ir-admission.test.ts` |
+| U-TLIR-MAT-003 | 接続の反例 | source、trace、owner、approval欠落、本文改変を個別拒否する | `tests/three-lane-ir-admission.test.ts` |
+| U-TLIR-MAT-004 | 表末尾の取り落とし | 連続27行のAC表とIRのAC025/026/027を照合する | `tests/three-lane-ir-admission.test.ts` |
+| U-TLIR-MAT-005 | 二相凍結境界 | 自己参照HEAD、旧revision、source集合・owner不一致、未confirmed PLANを個別拒否する | `tests/three-lane-ir-admission.test.ts` |
+
+既存loader、生成view round-trip、DB rebuild oracleも同じ追加集合へ同期する。
+DBは基準273行＋既存refinement 131行＋三社60行（8契約＋25要件＋27受入）＝464行とし、
+baseline分母を変更せず、root／record digestとowner／oracleの非孤児条件を引き続き検証する。

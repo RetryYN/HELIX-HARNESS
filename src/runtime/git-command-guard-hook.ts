@@ -10,6 +10,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
+import { analyzeCommitSubjects, commitlintMessages } from "../shared/commit-subject";
 import { defaultHarnessDbPath, type HarnessDb, openHarnessDb } from "../state-db";
 import { migrate, SCHEMA_VERSION } from "../state-db/migration";
 import {
@@ -19,10 +20,109 @@ import {
   evaluateGitCommandGuard,
   extractShellCommand,
   gitCheckoutTargets,
+  gitPushCommands,
   resolveDestructiveGitOverride,
 } from "./git-command-guard";
 import { commitOverrideUse, type OverrideAuditPort } from "./guard-override-transaction";
 import { resolveGitMutationContext, resolveHookExecutionCwd } from "./worktree-state";
+
+function gitOutput(cwd: string, args: string[]): string | null {
+  const result = spawnSync("git", args, { cwd, encoding: "utf8" });
+  if (result.error || result.status !== 0) return null;
+  return result.stdout.trim();
+}
+
+function pushPositionals(args: string[]): string[] | null {
+  const values: string[] = [];
+  const valueOptions = new Set(["--repo", "--receive-pack", "--exec", "--push-option", "-o"]);
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index] ?? "";
+    if (arg === "--") {
+      values.push(...args.slice(index + 1));
+      break;
+    }
+    if (valueOptions.has(arg)) {
+      if (!args[index + 1]) return null;
+      index += 1;
+      continue;
+    }
+    if (/^--(?:repo|receive-pack|exec|push-option)=/.test(arg) || arg.startsWith("-")) continue;
+    values.push(arg);
+  }
+  return values;
+}
+
+function pushCommitlintFailure(command: string, executionCwd: string): string | null {
+  const pushes = gitPushCommands(command, executionCwd);
+  if (pushes === null) return "push commandを完全に解析できません";
+  for (const push of pushes) {
+    if (
+      push.args.some(
+        (arg) =>
+          arg === "--tags" ||
+          arg === "--all" ||
+          arg === "--mirror" ||
+          arg === "--repo" ||
+          arg.startsWith("--repo="),
+      )
+    ) {
+      return "push対象集合を一意に解決できないoptionは未対応です";
+    }
+    const positional = pushPositionals(push.args);
+    if (!positional || positional.length > 2) return "push refspecを一意に解決できません";
+    if (push.args.includes("--delete") || push.args.includes("-d")) {
+      return positional.length === 2 && !positional[1]?.includes(":")
+        ? null
+        : "remote delete対象を一意に解決できません";
+    }
+    const currentBranch = gitOutput(push.cwd, ["symbolic-ref", "--quiet", "--short", "HEAD"]);
+    const remote =
+      positional[0] ??
+      (currentBranch
+        ? gitOutput(push.cwd, ["config", "--get", `branch.${currentBranch}.remote`])
+        : null);
+    if (!currentBranch || !remote || remote === ".") return "push先branchを解決できません";
+    let refspec = positional[1] ?? null;
+    if (!refspec) {
+      const pushRef = gitOutput(push.cwd, ["rev-parse", "--symbolic-full-name", "@{push}"]);
+      const expectedPrefix = `refs/remotes/${remote}/`;
+      if (!pushRef?.startsWith(expectedPrefix)) return "push先upstreamを一意に解決できません";
+      refspec = `HEAD:refs/heads/${pushRef.slice(expectedPrefix.length)}`;
+    }
+    if (refspec.startsWith(":")) continue;
+    const [rawSource, rawTarget] = refspec.split(":", 2);
+    const source = rawSource === "HEAD" || !rawSource ? "HEAD" : rawSource;
+    const target = (
+      rawTarget || (rawSource === "HEAD" ? currentBranch : rawSource || currentBranch)
+    ).replace(/^refs\/heads\//, "");
+    if (!/^[A-Za-z0-9._/-]+$/.test(target)) return "push先branch名を解決できません";
+    const sourceHead = gitOutput(push.cwd, ["rev-parse", "--verify", `${source}^{commit}`]);
+    if (!sourceHead) return "push元commitを解決できません";
+    let base = gitOutput(push.cwd, [
+      "rev-parse",
+      "--verify",
+      `refs/remotes/${remote}/${target}^{commit}`,
+    ]);
+    if (!base) {
+      const remoteHead = gitOutput(push.cwd, [
+        "symbolic-ref",
+        "--quiet",
+        `refs/remotes/${remote}/HEAD`,
+      ]);
+      base = gitOutput(push.cwd, [
+        "merge-base",
+        sourceHead,
+        remoteHead ?? `refs/remotes/${remote}/main`,
+      ]);
+    }
+    if (!base) return "push差分の基準commitを解決できません";
+    const rawSubjects = gitOutput(push.cwd, ["log", "--format=%s", `${base}..${sourceHead}`]);
+    if (rawSubjects === null) return "push対象commitを読み取れません";
+    const result = analyzeCommitSubjects(rawSubjects ? rawSubjects.split("\n") : []);
+    if (!result.ok) return commitlintMessages(result).join("; ");
+  }
+  return null;
+}
 
 export interface GitCommandGuardHookOutcome {
   exitCode: 0 | 2;
@@ -162,6 +262,20 @@ export function runGitCommandGuardHook(opts: {
       sessionId: input.session_id ?? "unknown",
     });
     base = evaluateGitCommandGuard({ command, bypass: false, mutationContext });
+  }
+  if (base.decision === "pass") {
+    const executionCwd = resolveHookExecutionCwd(
+      input.tool_input,
+      opts.executionCwd ?? process.cwd(),
+    );
+    const failure = pushCommitlintFailure(command, executionCwd);
+    if (failure) {
+      return {
+        exitCode: 2,
+        reason: "commitlint-pre-push",
+        message: `[helix-git-command-guard] BLOCK: push前commitlintが失敗しました: ${failure}`,
+      };
+    }
   }
   if (base.decision === "pass") return { exitCode: 0, reason: base.reason };
   const markerPath = join(opts.repoRoot, ".helix", "state", "destructive-git-override");
