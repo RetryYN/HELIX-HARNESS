@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1652: 非規約commit件名のpush前拒否"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 owner: Codex
 created: 2026-09-08
@@ -57,6 +57,7 @@ generates:
   - { artifact_path: docs/test-design/helix/L7-commitlint-pre-push.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1652-commitlint-pre-push.md, artifact_type: markdown_doc }
   - { artifact_path: src/shared/commit-subject.ts, artifact_type: source_module }
+  - { artifact_path: .helix/evidence/review-1652/vitest-git-command-guard.json, artifact_type: other }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
@@ -70,17 +71,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — push対象rangeを既存commitlintへ接続" }
   - { role: qa, slot_label: "QA — 実remoteで拒否・合法入力・mutationを検証" }
   - { role: aim, slot_label: "AIM — CI判定非緩和と履歴非破壊を照合" }
-review_evidence:
-  - reviewer: "Claude Code / Fable 5.1"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-08T00:55:17Z"
-    tests_green_at: "2026-09-08T00:55:17Z"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
-    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
-    reviewed_head_sha: c62a5e1cb15c56893e9cbee9b6cd09864c527a9b
-    scope: "exact-HEAD独立reviewは https://github.com/RetryYN/HELIX-HARNESS/pull/1660#issuecomment-5577426274 。41 tests green、@{push}とgit -Cの2 isolated mutationが各1 Redであることを判断側が実測。full harness-check、実hook自動介入、main到達は未成立として除外する。"
+review_evidence: []
 ---
 
 # push前commitlint接続
