@@ -7708,6 +7708,33 @@ describe("L7 CLI surface closure", () => {
     expect(payload).toHaveProperty("byCode");
   }, 20_000);
 
+  // PLAN-RECOVERY-1670-pin-chain-derivation: U-PINCHAIN-004
+  it("U-PINCHAIN-004: exposes changed-path pin derivation as a read-only JSON command", () => {
+    const run = runCli([
+      "audit",
+      "pin-chain",
+      "--changed",
+      "tests/ai-vision-design-harness-requirements-binding.test.ts",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      schema_version: "helix-pin-chain-derivation.v1",
+      status: "ok",
+      changed_paths: ["tests/ai-vision-design-harness-requirements-binding.test.ts"],
+    });
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          dependent_path: "docs/governance/feedback-test-owner-disposition-residual.json",
+          kind: "deterministic_pin",
+        }),
+      ]),
+    );
+  }, 20_000);
+
   // PLAN-L7-690-branch-audit-delete-candidate-safety
   it("U-BRAS-009: exposes branch audit as a read-only JSON command surface", () => {
     const run = runCli(["branch", "audit", "--json"]);
