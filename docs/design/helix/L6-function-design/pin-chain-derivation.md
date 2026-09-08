@@ -1,3 +1,18 @@
+---
+title: "pin追従連鎖の事前導出"
+layer: L6
+kind: recovery
+status: draft
+created: 2026-09-09
+updated: 2026-09-09
+owner: Codex / TL
+plan: docs/plans/PLAN-RECOVERY-1670-pin-chain-derivation.md
+pair_artifact: docs/test-design/helix/L7-pin-chain-derivation-unit-test-design.md
+github_issue_id: 1670
+behavior_contract_id: PIN-CHAIN-DERIVATION-001
+responsibility_owner: pin-chain-derivation
+---
+
 # pin追従連鎖の事前導出
 
 ## 責務

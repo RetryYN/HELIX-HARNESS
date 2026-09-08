@@ -13,6 +13,8 @@ github_issue_id: 1670
 behavior_contract_id: PIN-CHAIN-DERIVATION-001
 responsibility_owner: pin-chain-derivation
 engineering_discipline_required: true
+no_code_decision: add_code
+ddd_modeling_decision: domain_service
 change_slice: atomic
 refactor_step: dual_green
 legacy_retirement_state: retained
@@ -24,12 +26,12 @@ tdd_red_required: true
 red_at: "2026-09-09T03:42:00+09:00"
 green_at: "2026-09-09T03:46:54+09:00"
 mutation_oracle_evidence: "U-PINCHAIN-001〜004でstale digest/count、semantic review pin、unknown surface、CLI未配線を独立拘束"
-complexity_effect: net_increase_bounded
+complexity_effect: justified_positive
 complexity_justification: "既存pin形式ごとのread-only adapter一箇所へ追従推測を集約し、CI再走と手作業を削減する"
 removal_trigger: "全pin ownerが共通relation graphから同等のexact逆引きを提供しconsumer移行が成立した時"
 entry_signals: [regression_dev]
 parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md
-pair_artifact: docs/test-design/helix/L8-pin-chain-derivation-unit-test-design.md
+pair_artifact: docs/test-design/helix/L7-pin-chain-derivation-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-001, test_path: tests/pin-chain-derivation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-002, test_path: tests/pin-chain-derivation.test.ts }
@@ -49,13 +51,19 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/pin-chain-derivation.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/helix/L8-pin-chain-derivation-unit-test-design.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L7-pin-chain-derivation-unit-test-design.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1670-pin-chain-derivation.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/pin-chain-derivation.ts, artifact_type: source_module }
   - { artifact_path: tests/pin-chain-derivation.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: design_catalog }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: governance_record }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_projection }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 agent_slots:
   - { role: se, slot_label: "SE — pin adapterとread-only CLI" }
   - { role: qa, slot_label: "QA — stale／semantic／unknown反例" }
@@ -71,7 +79,6 @@ feedback test-owner manifestとreviewed-safe semantic pinから開始し、adapt
 
 ## 未完了
 
-- design catalog、reviewed digest、outstanding snapshotへの正規登録
 - current main同期後のrepo-wide guard、fresh CI、独立review
 - JSON generated surface、literal digest、集合／cross-table pin adapter
 - Bugbot Aへの許可済みdeterministic refresh接続（別責務）
