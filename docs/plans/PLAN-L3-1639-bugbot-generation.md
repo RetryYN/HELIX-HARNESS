@@ -85,13 +85,13 @@ agent_slots:
   - { role: tl, slot_label: "TL — 既存責務と追加差分を分離" }
   - { role: qa, slot_label: "QA — 原稿対応と禁止反例を検証" }
 review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
+  - reviewer: "Claude Code / claude-fable-5-1"
     review_kind: cross_agent
     reviewed_at: "2026-09-07T23:26:55Z"
     tests_green_at: "2026-09-07T23:26:14Z"
     verdict: approve
     worker_model: codex
-    reviewer_model: claude:claude-opus-5
+    reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
     reviewed_head_sha: b5247c44827720c97e05a5b498df39d4ccc55db8
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1639#issuecomment-5576681813"
