@@ -173,6 +173,7 @@ describe("branch-kind-check", () => {
     expect(isSupersessionMetadataOnly(emptyEdge, base)).toBe(false);
   });
 
+  // PLAN-RECOVERY-1677-review-session-model-receipt-drift: U-RVIDENT-021
   it("U-RVIDENT-021: recovery branchは既存terminal PLANのreview_evidence-only訂正だけを受理する", () => {
     const base =
       "---\nplan_id: PLAN-L3-1\nkind: add-design\nstatus: confirmed\nreview_evidence:\n  - reviewer_model: claude:old\n---\nbody\n";
