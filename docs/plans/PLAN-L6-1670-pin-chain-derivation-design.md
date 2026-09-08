@@ -28,7 +28,7 @@ complexity_justification: "既存pin形式ごとのread-only adapter一箇所へ
 removal_trigger: "全pin ownerが共通relation graphから同等のexact逆引きを提供しconsumer移行が成立した時"
 entry_signals: [regression_dev]
 parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md
-pair_artifact: docs/test-design/helix/L7-pin-chain-derivation-unit-test-design.md
+pair_artifact: docs/test-design/helix/L6-pin-chain-derivation-unit-test-design.md
 verification_bindings: []
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -43,7 +43,7 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/pin-chain-derivation.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L7-pin-chain-derivation-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L6-pin-chain-derivation-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-L6-1670-pin-chain-derivation-design.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }

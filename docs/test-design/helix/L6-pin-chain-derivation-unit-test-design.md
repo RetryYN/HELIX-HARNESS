@@ -1,6 +1,7 @@
 ---
 title: "Pin Chain Derivation L7単体テスト設計"
-layer: L7
+layer: L6
+executed_at_layer: L7
 artifact_type: test_design
 sub_doc: unit-test-design
 status: draft
@@ -9,6 +10,8 @@ updated: 2026-09-09
 owner: QA
 plan: docs/plans/PLAN-L6-1670-pin-chain-derivation-design.md
 pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
+related_l6: docs/design/helix/L6-function-design/pin-chain-derivation.md
+next_pair_freeze: L6
 ---
 
 # pin追従連鎖の単体テスト設計
