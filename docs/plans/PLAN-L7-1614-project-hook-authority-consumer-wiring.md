@@ -83,6 +83,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-009, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, oracle_id: U-CNHOOKWIRE-010, test_path: tests/cli-surface.test.ts }
 generates:
+  - { artifact_path: .helix/evidence/review-1672/vitest-targeted.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-1614-project-hook-authority-consumer-wiring.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md, artifact_type: test_design }
@@ -111,12 +112,22 @@ review_evidence:
   - reviewer: "Claude Code / Opus 5"
     review_kind: cross_agent
     reviewed_at: "2026-09-08T21:47:37Z"
+    tests_green_at: "2026-09-08T22:08:56Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
     reviewer_session_id: 77375ef5-9b74-425a-91ee-45ebc9fea1d9
     reviewed_head_sha: 473f4b00752032828a005b9dee69f83a7b58128a
     scope: "HEAD ffa843491への25 oracle全数照合・190/191 green・U-CNHOOKWIRE-007b実配線kill検証を、content-neutralなJIT main同期後HEAD 473f4b007へ継承できると独立reviewerが確認した。Phase 1ではformal receipt未封印のためreceipt_urlとci_evidence_generationを記録せず、Draft CI成功後のPhase 2で束縛する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/project-hook-authority-envelope.test.ts tests/cli-surface.test.ts tests/plan-descent.test.ts tests/session-start-budget.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=json --outputFile=.helix/evidence/review-1672/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-08T22:08:56Z"
+        evidence_path: .helix/evidence/review-1672/vitest-targeted.json
+        output_digest: "sha256:72b2d514447ffbb35c63083abfacab60526c43db822221d9a27d1bbd050d55ce"
 agent_slots:
   - { role: aim, slot_label: "AIM — project-hook authority不一致のRecovery分類" }
   - { role: se, slot_label: "SE — Control Plane envelope／consumer wiring" }
