@@ -301,6 +301,26 @@ describe("PLAN固有Vペアbinding", () => {
     ).toBe(1);
   });
 
+  // PLAN-RECOVERY-1645-markdown-table-coverage
+  it("U-MTROW-007: 閉じpipe欠落oracle行を診断し、後続行を黙って捨てない", () => {
+    const source = [
+      "| U-ID | 対象 | 反例と期待結果 | test citation |",
+      "|---|---|---|---|",
+      "| U-BROKEN-001 | malformed | remove guard | `tests/broken.test.ts`",
+      "| U-PSPB-006 | valid | remove binding | `tests/plan-descent.test.ts` |",
+    ].join("\n");
+    expect(parseEligibleOracleTable(source)).toEqual({
+      rows: [
+        {
+          oracleId: "U-PSPB-006",
+          testPaths: ["tests/plan-descent.test.ts"],
+          line: 4,
+        },
+      ],
+      schemaErrors: ["line 3: invalid oracle row"],
+    });
+  });
+
   it("U-PSPB-014: 重複/ownership", () => {
     const binding = {
       parent_design: parent,

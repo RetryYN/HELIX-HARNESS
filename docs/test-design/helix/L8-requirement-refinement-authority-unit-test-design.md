@@ -43,6 +43,8 @@ U-RRA-001をgreenにしない。
 | U-MTROW-003 | 正規境界 | それぞれheaderとseparatorを持つ別表、コードfence中の例を誤拒否しない | `tests/requirement-refinement-authority.test.ts` |
 | U-MTROW-004 | 実consumer | 変異前に成功する実authority gateで、未収載表行の元path・行番号を報告する | `tests/requirement-authority.test.ts` |
 | U-MTROW-005 | 表のdelimiter | escaped pipeをcell境界と誤認せず、正常な別表を受理する | `tests/requirement-refinement-authority.test.ts` |
+| U-MTROW-006 | 閉じpipe欠落 | 末尾cellを捨てず、列数不一致を元path・行番号付きで拒否する | `tests/requirement-refinement-authority.test.ts` |
+| U-MTROW-007 | L7 oracle表 | 不正行を診断し、後続の正規oracle行を黙って捨てない | `tests/plan-descent-specific-parent-binding.test.ts` |
 
 ## 三社レーン識別子の接合
 

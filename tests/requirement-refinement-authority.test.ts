@@ -212,6 +212,24 @@ describe("Requirement refinement authority", () => {
     expect(validate(repoRoot, changed)).toEqual({ ok: true, failureCodes: [] });
   });
 
+  it("U-MTROW-006: 閉じpipe欠落で末尾cellを黙って捨てない", () => {
+    const { repoRoot, record } = fixture();
+    const source = `${ACCEPTANCE_SOURCE}\n| MIC-AC-002 | MIC-R-01 | 別条件 | 必須 | 欠落拒否 | EXTRA-DROPPED\n`;
+    writeFileSync(join(repoRoot, record.source.acceptance_path), source);
+    const changed = withDigest({
+      ...record,
+      semantic_digest: undefined,
+      source: { ...record.source, acceptance_digest: sha256(source) },
+    });
+    expect(validate(repoRoot, changed)).toMatchObject({
+      ok: false,
+      failureCodes: ["REFINEMENT_TABLE_ROW_UNBOUND"],
+      sourceDiagnostics: [
+        { path: record.source.acceptance_path, line: 5, code: "REFINEMENT_TABLE_ROW_UNBOUND" },
+      ],
+    });
+  });
+
   it("U-TLIR-002: 数字開始IDの範囲参照をsourceとIRのexact setへ投影する", () => {
     const { repoRoot, record } = fixture();
     const source = "#### 3L-R-01 第一条件\n\n条件一\n\n#### 3L-R-02 第二条件\n\n条件二\n";

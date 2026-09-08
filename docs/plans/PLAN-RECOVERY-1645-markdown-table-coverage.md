@@ -44,8 +44,10 @@ generates:
 modifies:
   - { artifact_path: src/requirements/requirement-refinement-authority.ts, artifact_type: source_module }
   - { artifact_path: src/requirements/requirement-authority-gate.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/plan-specific-vpair-binding.ts, artifact_type: source_module }
   - { artifact_path: tests/requirement-refinement-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/requirement-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/plan-descent-specific-parent-binding.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L5-detail/requirement-refinement-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/requirement-refinement-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-requirement-refinement-authority-unit-test-design.md, artifact_type: test_design }
@@ -56,6 +58,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-MTROW-003, test_path: tests/requirement-refinement-authority.test.ts }
   - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-MTROW-004, test_path: tests/requirement-authority.test.ts }
   - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-MTROW-005, test_path: tests/requirement-refinement-authority.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-MTROW-006, test_path: tests/requirement-refinement-authority.test.ts }
+  - { parent_design: docs/design/helix/L5-detail/requirement-refinement-authority.md, oracle_id: U-MTROW-007, test_path: tests/plan-descent-specific-parent-binding.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — 正本行とprojectionの被覆を照合" }
   - { role: se, slot_label: "SE — 既存parserへの被覆診断接合" }
@@ -78,7 +82,8 @@ review_evidence: []
 
 調査では、L7のoracle抽出は別関数 `parseEligibleOracleTable` であると確認した。
 #1634の同型事例を、Requirement IR parserの修正だけで解消済みとは扱わない。
-本sliceからL7 gateへ無断で共通parserを移植せず、#1645全体の残義務として別consumerを追跡する。
+閉じpipe欠落で走査を終了して後続oracleまで黙って捨てる同型欠陥は、同じIssue内の別consumer修復とする。
+共通parserへ無断統合せず、各consumerの意味を保ったまま個別の反例で閉じる。
 
 空行を跨いで表を結合しない。別表はそれぞれheaderとseparatorを持つ場合に受理する。
 コードfence中の例は非正本の例示として除外する。自動整形・自動書込みの権限は追加しない。
@@ -104,9 +109,13 @@ CI修復 #1634の独立技術検収待ちの枠をこの直接の再発防止へ
   作業sourceを無効化せず、同じテストを別moduleへ解決して比較した。
 - intra-runtimeのread-only点検がescaped pipeの誤拒否を指摘した。U-MTROW-005でRedを再現し、
   既存cell lexerへescape区別を追加した。これはClaude独立reviewの代替ではない。
+- Claude独立reviewが閉じpipe欠落による末尾cell脱落とL7 parserの無音終了を検出した。
+  U-MTROW-006を`tests/requirement-refinement-authority.test.ts`へ固定し、末尾cellを束縛する。
+  U-MTROW-007を`tests/plan-descent-specific-parent-binding.test.ts`へ固定し、後続oracle走査を維持する。
 - L4/L5の実在性digestは変更後validatorの実bytesへ追従した。source全体の表行診断を加えるだけで、
   正本のR/AC本文・所有・baseline・approval・required checkを変更しない。
-- 最終局所実測は関連2 test files／35 tests、TypeScript型検査、変更4 TSのBiome、scoped PLAN lintが成功。
+- 初回局所実測は関連2 test files／35 tests、追加consumer修復後は関連3 test files／61 tests、
+  TypeScript型検査、変更4 TSのBiome、scoped PLAN lintが成功。
   最終sourceから作った検出分岐なしmutantは3反例が失敗し、正常な別表とescaped pipeの2正例は成功した。
   DB再構築はprojection ok、snapshotは当該PLANのみ追加した95件となった。
   これらは作成側の実測であり、未実施の独立review・CI・main read-afterの代用ではない。

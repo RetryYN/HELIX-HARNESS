@@ -280,16 +280,18 @@ function markdownCells(line: string): string[] | undefined {
   const parts: string[] = [];
   let start = 0;
   let escaped = false;
+  let hasClosingDelimiter = false;
   for (let index = 0; index < text.length; index += 1) {
     const character = text[index];
     if (character === "|" && !escaped) {
       parts.push(text.slice(start, index));
       start = index + 1;
+      if (index === text.length - 1) hasClosingDelimiter = true;
     }
     escaped = character === "\\" ? !escaped : false;
   }
   parts.push(text.slice(start));
-  const cells = parts.slice(1, -1).map((cell) => cell.trim());
+  const cells = parts.slice(1, hasClosingDelimiter ? -1 : undefined).map((cell) => cell.trim());
   return cells.length > 0 ? cells : undefined;
 }
 
