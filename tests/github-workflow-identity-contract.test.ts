@@ -136,6 +136,44 @@ describe("GitHub typed workflow identity contract", () => {
     ).toMatchObject({ ok: false, reason: "workflow_identity_contract_signal_mismatch" });
   });
 
+  it("U-GWID-007: signal mismatchは宣言target・解決target・許容signalを案内し判定は緩めない", () => {
+    const mismatch = parseGithubWorkflowIdentityContract(
+      body({
+        ...contractValue(catalog),
+        target_id: "REFACTOR",
+        signal_tokens: ["regression_dev"],
+      }),
+      catalog,
+    );
+    expect(mismatch).toMatchObject({
+      ok: false,
+      reason: "workflow_identity_contract_signal_mismatch",
+    });
+    if (mismatch.ok) throw new Error("expected mismatch");
+    expect(mismatch.detail).toContain("declared target_id=REFACTOR");
+    expect(mismatch.detail).toContain('signal "regression_dev" resolves to RECOVERY');
+    expect(mismatch.detail).toContain("either set target_id: RECOVERY");
+    expect(mismatch.detail).toContain("use a REFACTOR signal");
+    expect(mismatch.detail).toContain("debt_degradation");
+    expect(mismatch.detail).toContain("code_smell");
+    expect(mismatch.detail).toContain("structural");
+  });
+
+  it("U-GWID-008: marker欠落はAccepted formを案内し判定は緩めない", () => {
+    const missing = parseGithubWorkflowIdentityContract("no contract", catalog);
+    expect(missing).toMatchObject({ ok: false, reason: "workflow_identity_contract_missing" });
+    if (missing.ok) throw new Error("expected missing");
+    expect(missing.detail).toContain("marker absent");
+    expect(missing.detail).toContain("Accepted form:");
+    expect(missing.detail).toContain(GITHUB_WORKFLOW_IDENTITY_CONTRACT_MARKER);
+    expect(missing.detail).toContain("schema_version");
+    expect(missing.detail).toContain("registry_version");
+    expect(missing.detail).toContain("registry_source_digest");
+    expect(missing.detail).toContain("target_axis");
+    expect(missing.detail).toContain("target_id");
+    expect(missing.detail).toContain("signal_tokens");
+  });
+
   it("U-GWID-005: IssueとPRの別identityを同一episodeとして受理しない", () => {
     const issue = contractValue(catalog);
     expect(compareIssuePrWorkflowIdentityContracts(issue, issue)).toEqual({

@@ -54,13 +54,13 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-004, test_path: tests/ci-branch-base-resolver.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/branch-kind-authority-input.md, oracle_id: U-CIBASE-005, test_path: tests/ci-branch-base-resolver.test.ts }
 review_evidence:
-  - reviewer: "Claude Code / claude-fable-5-1"
+  - reviewer: "Claude Code / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-09-07T22:31:02Z"
     tests_green_at: "2026-09-07T22:30:23Z"
     verdict: approve
     worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
+    reviewer_model: claude:claude-opus-5
     reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
     reviewed_head_sha: b730e21032478b35a6e37554bb3dddc06463fff7
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1634#issuecomment-5576235245"

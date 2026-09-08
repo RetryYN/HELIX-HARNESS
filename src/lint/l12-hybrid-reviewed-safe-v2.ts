@@ -5,7 +5,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // signal位置はPLANの4-5行目・39-41行目。旧pairの実行authorityは含まない。
     // 正規pairはL1↔L12・L3↔L10。最終PLAN bytes限定のprojectionであり、独立技術reviewは別途必要。
     path: "docs/plans/PLAN-L3-1639-bugbot-generation.md",
-    contentDigest: "bac054e52a05d7d82e837abaffbd4bb377fdd096e3f25b52909afbafaf60dfb5",
+    contentDigest: "a5cfb869aba3c0e2c3eaa5e0c07f7aa564b50bd1c2d188e3beb5ffbe168086cd",
     finalDisposition: "false_positive",
   },
   {
@@ -325,8 +325,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     finalDisposition: "false_positive",
   },
   {
+    // #1404: current/compatibility判定順と旧harness設計の移行境界を明記した。
+    // current authority自体は既存governance sourcesの順序を維持する。
     path: "docs/governance/README.md",
-    contentDigest: "164b9ca22e480964cdc122f55cbf2b4bba559eb16f208b2bfbb75052e72727da",
+    contentDigest: "723f6b83d1efaf5fbbced561fdfb08d37a8501e54234a380838e1db696fe2145",
     finalDisposition: "compatibility_labeled",
   },
   {

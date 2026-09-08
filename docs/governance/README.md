@@ -49,3 +49,12 @@ Claude Code / Codex / human reviewer は、通常タスクでは次の順に読�
 Claude Code / Codex が読む入口は本 README と repo root の `CLAUDE.md` とし、archive / vendor / local runtime state を正本にしない。
 ただし受入判定、freeze、evidence、completion は該当する PLAN、設計、テスト設計、governance 正本、実装、検証ログで判断し、
 README 単体を gate 根拠にしない。
+
+## 設計文書の判定境界
+
+`docs/design/harness/` は current canonical ではない。移行中の compatibility / debt surface であり、
+新規の要件、設計、trace、gate、fixture、CI 期待値の判断正本として使わない。
+current 判断は `docs/design/helix/` と本ディレクトリの governance 正本（現行正本順、
+`l12-canonical-vmodel-direction-directive_v0.1.md`、ADR-009/010）に従う。
+`docs/design/harness/` に残る旧 runtime 記述は後続 slice で Node.js 24 + npm/npx へ置換するか、
+historical / 廃止として隔離する。本 README の境界明示は lint 実装や mutation 証跡の代替ではない。

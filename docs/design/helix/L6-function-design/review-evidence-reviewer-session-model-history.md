@@ -49,6 +49,8 @@ Codex の harness session `019febe1-…` は `.helix/logs/session/` 上で 2026-
 | `loadReviewerSessionModelHistory` | (repoRoot) => History \| null | — | `docs/governance/reviewer-session-model-history.json` が無ければ null（履歴なし）。あれば parse 結果。schema / 時系列違反は `ReviewerSessionModelHistoryError`（`reason` = 有限な locator 付き reason）で throw。doctor は typed error の `reason` だけを surface し、JSON.parse 等の未知例外は `stableCauseDigest` による `cause_kind` / `cause_digest` に変換して raw message・local path を露出しない（PLAN-L7-449 doctor failure contract） | 読込失敗を「履歴なし」へ黙って落とさない。未知例外の生 message を surface しない | U-RVIDENT-014 / 016 / 018 |
 | `reviewerModelAt` | (entry, reviewedAt) => string \| null | entry は parse 済み | `reviewed_at` は registry と同じ `parseHistoryInstant`（timezone 必須 + 暦上実在）を通過したもののみ受理し、不適合は null（= 不一致として fail-close）。適合すれば `since ≤ reviewed_at < until` を満たす window の `reviewer_model`。該当なしは null | 半開区間（境界直前 `…59.9999Z` は前 window、境界一致は後 window、小数桁数だけ異なる同一 instant は同一 window、sub-ms 幅 window も潰れない）。timezone 無し日時で実行環境依存の照合をしない | U-RVIDENT-012 / 013 / 019 |
 | `analyzeReviewEvidence` | (plans, options?) => ReviewEvidenceResult | options.sessionModelHistory は parse 済みか null | registry に載る session は **model 数を問わず** 各 entry を `reviewed_at` の window と照合し、不一致・window 外を `reviewer_session_model_history_mismatch:<session>` として collect。registry の `runtime` と entry の `reviewer_model` の provider（`modelProviderFromId`）が食い違えば `reviewer_session_model_history_runtime_mismatch:<session>`。registry に無い session は従来の `reviewer_session_model_conflict`。`sessionModelHistoryError` が与えられたら registry path を plan_id にした違反を collect | 履歴は宣言した session だけを緩め、他 session を緩めない | U-RVIDENT-012 / 013 / 015 / 017 |
+| transcript観測追従 | tracked history + session transcript + provider発行receipt | transcriptが同一sessionの新modelを観測し、後続receiptが整合する | 既存open windowを最初の新model観測時刻で閉じ、同時刻から新model windowを開始する。境界直前は旧model、境界一致は新modelになる | 後続receipt時刻で先行する実観測を覆わず、旧windowと重複させない | U-RVIDENT-020 |
+| terminal evidence訂正 | recovery branch + base/current PLAN | terminal PLANの`review_evidence` attributionだけが変更され、本文差分は同じreviewer/model tokenの鏡像訂正だけ、kind・status・他frontmatterは完全一致する | 既存PLANをRecoveryの所有PLANから除外し、workflow identity ownerにも数えない | draft化、無関係な本文変更、空evidence、attribution以外のevidence変更、他field混載は通常のownerとして扱い拒否する | U-RVIDENT-021 |
 
 doctor の `review-evidence` check は `loadReviewerSessionModelHistory(repoRoot)` を try/catch で呼び、
 失敗理由を `sessionModelHistoryError` として渡す。
@@ -83,5 +85,5 @@ slice 所有者候補から外す。base 版 PLAN の読取は **明示 `baseHea
 - 小数精度を ms へ丸めて境界直前の instant を次 window へ昇格させる。
 - admission の metadata-only 例外が、不正・未指定の明示 base を merge-base や環境変数で相殺した結果を authority に使う。
 
-検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-019` の 8 件（`018` は `tests/doctor-cause-digest-contract.test.ts`）と `U-GWIDADM-022` / `U-GWIDADM-023`（023 は CI workflow の `--base-head "$merge_base"` 配線も `tests/harness-check-workflow.test.ts` で固定）で固定する（既存 `U-RVIDENT-001` 〜 `010`
+検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-020` の 9 件（`018` は `tests/doctor-cause-digest-contract.test.ts`）と `U-GWIDADM-022` / `U-GWIDADM-023`（023 は CI workflow の `--base-head "$merge_base"` 配線も `tests/harness-check-workflow.test.ts` で固定）で固定する（既存 `U-RVIDENT-001` 〜 `010`
 は不変、`011` は freeze 伝播）。
