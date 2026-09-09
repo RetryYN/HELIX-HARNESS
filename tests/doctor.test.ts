@@ -1,4 +1,5 @@
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-011
+// PLAN-RECOVERY-1378-startup-consumer-projection — U-STARTUP-CONSUMER-004
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -8,6 +9,7 @@ import {
   runDoctor,
 } from "../src/doctor/index";
 import type { AgentSlotsDeps, Slot } from "../src/runtime/agent-slots";
+import { CONSUMER_STARTUP_AUTHORITY_TEMPLATE } from "../src/setup/templates";
 
 const NOW = "2026-06-04T00:00:00.000Z";
 const slotStatePath = join("/repo", ".helix", "state", "agent-slots.json");
@@ -369,6 +371,7 @@ function consumerDoctorFiles(root = "/repo", overrides: Record<string, string | 
       "}",
     ].join("\n"),
     ".codex/config.toml": "[features]\nhooks = true\n",
+    ".helix/startup/effective-agent-startup.json": CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
     "package.json": JSON.stringify({
       name: "consumer",
       scripts: {
@@ -625,6 +628,30 @@ describe("runConsumerDoctor", () => {
     expect(hasDoctorMessage(result.messages, "consumer-team-run-surface - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-project-setup-state - OK")).toBe(true);
     expect(hasDoctorMessage(result.messages, "consumer-package-preflight - OK")).toBe(true);
+    expect(hasDoctorMessage(result.messages, "consumer-startup-authority - OK")).toBe(true);
+  });
+
+  it("U-STARTUP-CONSUMER-004: materialized startup packet driftをconsumer doctorで拒否する", () => {
+    const drifted = CONSUMER_STARTUP_AUTHORITY_TEMPLATE.replace(
+      '"state": "blocked"',
+      '"state": "active"',
+    );
+    const result = runConsumerDoctor(
+      deps({
+        files: consumerDoctorFiles("/repo", {
+          ".helix/startup/effective-agent-startup.json": drifted,
+        }),
+      }),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(
+      hasDoctorMessageWith(
+        result.messages,
+        "consumer-startup-authority - violation",
+        "source_template_generated_digest_mismatch",
+      ),
+    ).toBe(true);
   });
 
   it("fails closed when saved setup state is ready but package.json is missing", () => {

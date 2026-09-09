@@ -1,0 +1,66 @@
+{
+  "schema_version": "helix-effective-agent-startup-consumer.v1",
+  "authority_owner": "EFFECTIVE-AGENT-STARTUP-AUTHORITY-001",
+  "read_order": [
+    "requirements-ir/manifest.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/CLAUDE.md"
+  ],
+  "hook_surfaces": [
+    ".codex/hooks.json",
+    ".claude/settings.json"
+  ],
+  "roster": [
+    "be-api",
+    "be-logic",
+    "code-reviewer",
+    "db-schema",
+    "devops-deploy",
+    "pdm-innovation-manager",
+    "pdm-marketing-innovation",
+    "pdm-tech-innovation",
+    "pmo-haiku",
+    "pmo-project-explorer",
+    "pmo-project-scout",
+    "pmo-sonnet",
+    "pmo-tech-docs",
+    "pmo-tech-fork",
+    "pmo-tech-news",
+    "qa-test",
+    "refactor-scout",
+    "security-audit",
+    "helix-tl"
+  ],
+  "capabilities": [
+    {
+      "capability_id": "consumer_status_and_doctor",
+      "state": "active",
+      "guidance": [
+        "helix status --json",
+        "helix doctor --profile consumer --json"
+      ]
+    },
+    {
+      "capability_id": "project_hook_authority",
+      "state": "active",
+      "guidance": [
+        "helix session start"
+      ]
+    },
+    {
+      "capability_id": "claude_memory_wake",
+      "state": "degraded",
+      "guidance": []
+    },
+    {
+      "capability_id": "legacy_team_run",
+      "state": "blocked",
+      "guidance": []
+    }
+  ],
+  "active_guidance": [
+    "consumer_status_and_doctor",
+    "project_hook_authority"
+  ]
+}

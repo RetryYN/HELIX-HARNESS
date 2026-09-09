@@ -46,7 +46,7 @@
     {
       "requirement_id": "G-07",
       "evidence_path": "src/setup/index.ts",
-      "evidence_digest": "sha256:8dd12e217c44ebb4c64629e2c816702c036ed2267836718a6b84d3c8fed05b55",
+      "evidence_digest": "sha256:faad984778b945e3d09e66e1bf1deb8d6d4801b07c88fd1f7fe1b4f848c9f7bb",
       "minimum_size_bytes": 128,
       "observation_marker": "[features].hooks=true"
     },

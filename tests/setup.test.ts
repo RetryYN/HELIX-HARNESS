@@ -1,4 +1,5 @@
 // PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-006
+// PLAN-RECOVERY-1378-startup-consumer-projection — U-STARTUP-CONSUMER-001 / U-STARTUP-CONSUMER-002 / U-STARTUP-CONSUMER-003
 import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -26,9 +27,15 @@ import {
   type SetupDeps,
   type SetupState,
   transformCleanDistributionArtifact,
+  verifyConsumerStartupProjection,
 } from "../src/setup/index";
 import type { TemplateSet } from "../src/setup/templates";
-import { BUILTIN_GITHUB_TEMPLATES, COMMON_FILES } from "../src/setup/templates";
+import {
+  BUILTIN_GITHUB_TEMPLATES,
+  COMMON_FILES,
+  CONSUMER_STARTUP_AUTHORITY_PATH,
+  CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+} from "../src/setup/templates";
 
 // PLAN-L7-462-issue-closure-contract
 
@@ -1292,7 +1299,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
           "helix rename plan --json",
           "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
         ],
-        stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/teams"],
+        stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/startup", ".helix/teams"],
         completionClaimAllowed: false,
         nextRouteSource: "postSetupWorkflow.nextRoute",
         evidencePath: ".helix/evidence",
@@ -3386,7 +3393,7 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
       schemaVersion: "helix-project-doctor-baseline.v1",
       planOnly: true,
       baselineCommands: result.postSetupWorkflow.verificationCommands,
-      stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/teams"],
+      stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/startup", ".helix/teams"],
       completionClaimAllowed: false,
       nextRouteSource: "postSetupWorkflow.nextRoute",
       evidencePath: ".helix/evidence",
@@ -3468,13 +3475,112 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     }
   });
 
+  it("U-STARTUP-CONSUMER-001: source/template/generated consumerを同一digestで投影する", () => {
+    const templates = loadTemplates(process.cwd());
+    const plan = planHelixProjectSetup("0-A", { dryRun: false });
+    const deps = mockDeps({
+      templates,
+      commandAvailable: () => true,
+      nodeVersion: () => "24.15.0",
+    });
+
+    emitSetup(plan, templates, deps);
+    const generated = deps.files.get(join("/repo", CONSUMER_STARTUP_AUTHORITY_PATH));
+    expect(generated).toBe(CONSUMER_STARTUP_AUTHORITY_TEMPLATE);
+    expect(
+      verifyConsumerStartupProjection({
+        source: CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+        template: templates["project/.helix/startup/effective-agent-startup.json"],
+        generated: generated ?? "",
+      }),
+    ).toMatchObject({
+      ok: true,
+      exact_digest_match: true,
+      read_order_ok: true,
+      hook_surfaces_ok: true,
+      roster_ok: true,
+      capability_guidance_ok: true,
+      violations: [],
+    });
+  });
+
+  it("U-STARTUP-CONSUMER-002: blocked/degraded capabilityのactive guidance昇格を拒否する", () => {
+    const packet = JSON.parse(CONSUMER_STARTUP_AUTHORITY_TEMPLATE) as {
+      active_guidance: string[];
+      capabilities: { capability_id: string; state: string; guidance: string[] }[];
+    };
+    packet.active_guidance.push("legacy_team_run");
+    packet.capabilities
+      .find((entry) => entry.capability_id === "legacy_team_run")
+      ?.guidance.push(
+        "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+      );
+    const mutant = `${JSON.stringify(packet, null, 2)}\n`;
+    const receipt = verifyConsumerStartupProjection({
+      source: mutant,
+      template: mutant,
+      generated: mutant,
+    });
+    expect(receipt.ok).toBe(false);
+    expect(receipt.violations).toContain("blocked_or_degraded_capability_is_active_guidance");
+
+    const missingBlocked = JSON.parse(CONSUMER_STARTUP_AUTHORITY_TEMPLATE) as {
+      capabilities: { capability_id: string }[];
+    };
+    missingBlocked.capabilities = missingBlocked.capabilities.filter(
+      (entry) => entry.capability_id !== "legacy_team_run",
+    );
+    const missingBlockedBytes = `${JSON.stringify(missingBlocked, null, 2)}\n`;
+    expect(
+      verifyConsumerStartupProjection({
+        source: missingBlockedBytes,
+        template: missingBlockedBytes,
+        generated: missingBlockedBytes,
+      }),
+    ).toMatchObject({
+      ok: false,
+      capability_guidance_ok: false,
+      violations: ["blocked_or_degraded_capability_is_active_guidance"],
+    });
+  });
+
+  it("U-STARTUP-CONSUMER-003: digest/read-order/hook/roster driftを個別にfail-closeする", () => {
+    const mutations = [
+      [`${CONSUMER_STARTUP_AUTHORITY_TEMPLATE} `, "source_template_generated_digest_mismatch"],
+      [
+        CONSUMER_STARTUP_AUTHORITY_TEMPLATE.replace(
+          '"requirements-ir/manifest.json",',
+          '"docs/governance/helix-harness-requirements_v1.3.md",',
+        ),
+        "startup_read_order_invalid",
+      ],
+      [
+        CONSUMER_STARTUP_AUTHORITY_TEMPLATE.replace('".codex/hooks.json",', '".codex/old.json",'),
+        "startup_hook_surfaces_invalid",
+      ],
+      [
+        CONSUMER_STARTUP_AUTHORITY_TEMPLATE.replace('    "be-api",\n', ""),
+        "startup_roster_invalid",
+      ],
+    ] as const;
+    for (const [mutant, violation] of mutations) {
+      const receipt = verifyConsumerStartupProjection({
+        source: CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+        template: CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+        generated: mutant,
+      });
+      expect(receipt.ok).toBe(false);
+      expect(receipt.violations).toContain(violation);
+    }
+  });
+
   it("U-ICLOSE-003: distribution template byte manifest stays stable (U-SETUP-026)", () => {
     const repoTemplates = loadTemplates(process.cwd());
     const manifest = templateDigestManifest(repoTemplates);
 
-    expect(Object.keys(repoTemplates)).toHaveLength(49);
+    expect(Object.keys(repoTemplates)).toHaveLength(50);
     expect(createHash("sha256").update(manifest).digest("hex")).toBe(
-      "66af31d5355717be40a58d8cf4023986a12637186f675ee2bec5d88af6b03797",
+      "53fd9b18d10c72fd9bf9f49874c7befb0dc9ed4aa3947d4cc5a281606e66b528",
     );
     expect(manifest).toContain(
       "7bb741a0131f874bb3036f967c33067e080b081173183c474840f5ac9730e99b  adapter/AGENTS.md",
@@ -3484,6 +3590,9 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     );
     expect(manifest).toContain(
       "ef0d8bce2177a7fff50878600d11b4944c28c43583ea21b30bde31fbf7e80ce8  adapter/.codex/hooks.json",
+    );
+    expect(manifest).toContain(
+      "9ea757360ab418e64b53714e45844f8e58d11705773ab6c3d40a4d715daa0b9a  project/.helix/startup/effective-agent-startup.json",
     );
   });
 

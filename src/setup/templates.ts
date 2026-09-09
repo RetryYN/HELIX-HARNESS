@@ -70,6 +70,42 @@ export const CONSUMER_CLAUDE_COMMAND_NAMES = [
 ];
 
 export const CONSUMER_TEAM_DEFINITION_PATH = ".helix/teams/default-hybrid.yaml";
+export const CONSUMER_STARTUP_AUTHORITY_PATH = ".helix/startup/effective-agent-startup.json";
+
+export const CONSUMER_STARTUP_AUTHORITY_TEMPLATE = `${JSON.stringify(
+  {
+    schema_version: "helix-effective-agent-startup-consumer.v1",
+    authority_owner: "EFFECTIVE-AGENT-STARTUP-AUTHORITY-001",
+    read_order: ["requirements-ir/manifest.json", "AGENTS.md", "CLAUDE.md", ".claude/CLAUDE.md"],
+    hook_surfaces: [".codex/hooks.json", ".claude/settings.json"],
+    roster: CLAUDE_AGENT_TEMPLATES.map(([name]) => name),
+    capabilities: [
+      {
+        capability_id: "consumer_status_and_doctor",
+        state: "active",
+        guidance: ["helix status --json", "helix doctor --profile consumer --json"],
+      },
+      {
+        capability_id: "project_hook_authority",
+        state: "active",
+        guidance: ["helix session start"],
+      },
+      {
+        capability_id: "claude_memory_wake",
+        state: "degraded",
+        guidance: [],
+      },
+      {
+        capability_id: "legacy_team_run",
+        state: "blocked",
+        guidance: [],
+      },
+    ],
+    active_guidance: ["consumer_status_and_doctor", "project_hook_authority"],
+  },
+  null,
+  2,
+)}\n`;
 
 function agentTemplate(name: string, description: string): string {
   return [
@@ -145,6 +181,7 @@ const CLAUDE_COMMAND_FILES: { template: string; file: GeneratedFile }[] =
 export const BUILTIN_GITHUB_TEMPLATES: TemplateSet = {
   ...CLAUDE_AGENT_TEMPLATE_SET,
   ...CLAUDE_COMMAND_TEMPLATE_SET,
+  "project/.helix/startup/effective-agent-startup.json": CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
   "adapter/AGENTS.md": [
     HELIX_MANAGED_BLOCK_START,
     "# HELIX アダプター",
@@ -847,6 +884,14 @@ export const PROJECT_SETUP_FILES: { template: string; file: GeneratedFile }[] = 
       path: join(".helix", "evidence", ".gitkeep"),
       category: "A",
       purpose: "HELIX project-local evidence baseline",
+    },
+  },
+  {
+    template: "project/.helix/startup/effective-agent-startup.json",
+    file: {
+      path: join(".helix", "startup", "effective-agent-startup.json"),
+      category: "A",
+      purpose: "effective agent startup authority projection and capability guidance boundary",
     },
   },
   {

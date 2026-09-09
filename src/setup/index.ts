@@ -17,6 +17,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, readSync, writeFileSync } from "node:fs";
 import { basename, dirname, isAbsolute, join, relative, sep } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { sha256Digest } from "../shared/canonical-digest";
 import { isRecord } from "../shared/value-guards";
 import {
   type DistributionIdentityReceipt,
@@ -29,10 +30,134 @@ import {
   COMMON_FILES,
   CONSUMER_CLAUDE_AGENT_NAMES,
   CONSUMER_CLAUDE_COMMAND_NAMES,
+  CONSUMER_STARTUP_AUTHORITY_PATH,
+  CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
   CONSUMER_TEAM_DEFINITION_PATH,
   PROJECT_SETUP_FILES,
   type TemplateSet,
 } from "./templates";
+
+export const CONSUMER_STARTUP_PROJECTION_RECEIPT_SCHEMA =
+  "helix-consumer-startup-projection-receipt.v1" as const;
+
+export interface ConsumerStartupProjectionReceipt {
+  schema_version: typeof CONSUMER_STARTUP_PROJECTION_RECEIPT_SCHEMA;
+  ok: boolean;
+  source_digest: string;
+  template_digest: string;
+  generated_digest: string;
+  exact_digest_match: boolean;
+  read_order_ok: boolean;
+  hook_surfaces_ok: boolean;
+  roster_ok: boolean;
+  capability_guidance_ok: boolean;
+  violations: string[];
+}
+
+function startupDigest(value: string): string {
+  return sha256Digest(value);
+}
+
+/**
+ * #1378: source-owned startup packet、repository template、setup生成bytesを別々に測定する。
+ * blocked/degraded capabilityは存在を隠さず保持するが、active guidanceへ昇格させない。
+ */
+export function verifyConsumerStartupProjection(input: {
+  source: string;
+  template: string;
+  generated: string;
+}): ConsumerStartupProjectionReceipt {
+  const sourceDigest = startupDigest(input.source);
+  const templateDigest = startupDigest(input.template);
+  const generatedDigest = startupDigest(input.generated);
+  const exactDigestMatch = sourceDigest === templateDigest && templateDigest === generatedDigest;
+  const violations: string[] = [];
+  let parsed: Record<string, unknown> | null = null;
+  try {
+    const candidate = JSON.parse(input.generated) as unknown;
+    parsed = isRecord(candidate) ? candidate : null;
+  } catch {
+    parsed = null;
+  }
+  if (!exactDigestMatch) violations.push("source_template_generated_digest_mismatch");
+  if (parsed?.schema_version !== "helix-effective-agent-startup-consumer.v1") {
+    violations.push("startup_packet_schema_invalid");
+  }
+  if (parsed?.authority_owner !== "EFFECTIVE-AGENT-STARTUP-AUTHORITY-001") {
+    violations.push("startup_authority_owner_invalid");
+  }
+  const expectedReadOrder = [
+    "requirements-ir/manifest.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".claude/CLAUDE.md",
+  ];
+  const readOrder = stringList(parsed?.read_order);
+  const readOrderOk = JSON.stringify(readOrder) === JSON.stringify(expectedReadOrder);
+  if (!readOrderOk) violations.push("startup_read_order_invalid");
+  const hookSurfaces = stringList(parsed?.hook_surfaces);
+  const hookSurfacesOk =
+    JSON.stringify(hookSurfaces) === JSON.stringify([".codex/hooks.json", ".claude/settings.json"]);
+  if (!hookSurfacesOk) violations.push("startup_hook_surfaces_invalid");
+  const roster = stringList(parsed?.roster);
+  const rosterOk = JSON.stringify(roster) === JSON.stringify(CONSUMER_CLAUDE_AGENT_NAMES);
+  if (!rosterOk) violations.push("startup_roster_invalid");
+  const capabilities = Array.isArray(parsed?.capabilities) ? parsed.capabilities : [];
+  const activeGuidance = new Set(stringList(parsed?.active_guidance));
+  let capabilityGuidanceOk = capabilities.length > 0;
+  const expectedCapabilityStates = new Map([
+    ["consumer_status_and_doctor", "active"],
+    ["project_hook_authority", "active"],
+    ["claude_memory_wake", "degraded"],
+    ["legacy_team_run", "blocked"],
+  ]);
+  const knownIds = new Set<string>();
+  for (const capability of capabilities) {
+    if (!isRecord(capability)) {
+      capabilityGuidanceOk = false;
+      continue;
+    }
+    const id = capability.capability_id;
+    const state = capability.state;
+    const guidance = stringList(capability.guidance);
+    if (
+      typeof id !== "string" ||
+      !["active", "degraded", "blocked"].includes(String(state)) ||
+      expectedCapabilityStates.get(String(id)) !== state ||
+      knownIds.has(id)
+    ) {
+      capabilityGuidanceOk = false;
+      continue;
+    }
+    knownIds.add(id);
+    if (state === "active") {
+      if (!activeGuidance.has(id) || guidance.length === 0) capabilityGuidanceOk = false;
+    } else if (activeGuidance.has(id) || guidance.length !== 0) {
+      capabilityGuidanceOk = false;
+    }
+  }
+  if (
+    capabilities.length !== expectedCapabilityStates.size ||
+    [...expectedCapabilityStates.keys()].some((id) => !knownIds.has(id))
+  ) {
+    capabilityGuidanceOk = false;
+  }
+  if ([...activeGuidance].some((id) => !knownIds.has(id))) capabilityGuidanceOk = false;
+  if (!capabilityGuidanceOk) violations.push("blocked_or_degraded_capability_is_active_guidance");
+  return {
+    schema_version: CONSUMER_STARTUP_PROJECTION_RECEIPT_SCHEMA,
+    ok: exactDigestMatch && readOrderOk && hookSurfacesOk && rosterOk && capabilityGuidanceOk,
+    source_digest: sourceDigest,
+    template_digest: templateDigest,
+    generated_digest: generatedDigest,
+    exact_digest_match: exactDigestMatch,
+    read_order_ok: readOrderOk,
+    hook_surfaces_ok: hookSurfacesOk,
+    roster_ok: rosterOk,
+    capability_guidance_ok: capabilityGuidanceOk,
+    violations,
+  };
+}
 
 export type SetupPhase = "0-A" | "0-B"; // 0-A=solo / 0-B=team
 export { HELIX_DISTRIBUTION_REMOTE_URL, HELIX_DISTRIBUTION_REPOSITORY };
@@ -831,7 +956,7 @@ export interface HelixProjectDoctorBaseline {
     "helix rename plan --json",
     "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
   ];
-  stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/teams"];
+  stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/startup", ".helix/teams"];
   completionClaimAllowed: false;
   nextRouteSource: "postSetupWorkflow.nextRoute";
   evidencePath: ".helix/evidence";
@@ -1264,7 +1389,7 @@ const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {
     "helix rename plan --json",
     `helix team run --definition ${CONSUMER_TEAM_DEFINITION_PATH} --mode hybrid --json`,
   ],
-  stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/teams"],
+  stateBaselinePaths: [".helix/memory", ".helix/evidence", ".helix/startup", ".helix/teams"],
   completionClaimAllowed: false,
   nextRouteSource: "postSetupWorkflow.nextRoute",
   evidencePath: ".helix/evidence",
@@ -1494,6 +1619,9 @@ function templateNameFor(targetPath: string): string {
   }
   if (targetPath === join(".helix", "evidence", ".gitkeep")) {
     return "project/.helix/evidence/.gitkeep";
+  }
+  if (targetPath === CONSUMER_STARTUP_AUTHORITY_PATH) {
+    return "project/.helix/startup/effective-agent-startup.json";
   }
   if (targetPath === join(".helix", "teams", "default-hybrid.yaml")) {
     return "project/.helix/teams/default-hybrid.yaml";
@@ -2054,6 +2182,7 @@ function buildConsumerArtifactReadinessPlan(
   const baselinePaths = [
     join(".helix", "memory", ".gitkeep"),
     join(".helix", "evidence", ".gitkeep"),
+    CONSUMER_STARTUP_AUTHORITY_PATH,
     teamPath,
   ];
   const ag = content("AGENTS.md");
@@ -2066,6 +2195,12 @@ function buildConsumerArtifactReadinessPlan(
   const escalationWorkflow = content(escalationWorkflowPath);
   const branchProtectionScript = content(branchProtectionScriptPath);
   const team = content(teamPath);
+  const startupTemplateName = "project/.helix/startup/effective-agent-startup.json";
+  const startupProjection = verifyConsumerStartupProjection({
+    source: CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+    template: templates[startupTemplateName] ?? "",
+    generated: content(CONSUMER_STARTUP_AUTHORITY_PATH),
+  });
   const codeowners = content(CODEOWNERS_TARGET);
   const codeownersRequired = plan.files.some((file) => file.path === CODEOWNERS_TARGET);
   const expectedTeamSlugs = plan.teams ? [plan.teams.tl, plan.teams.qa, plan.teams.po] : [];
@@ -2240,6 +2375,14 @@ function buildConsumerArtifactReadinessPlan(
           },
         ]
       : []),
+    {
+      name: "effective-startup-authority-is-exact-and-consumer-safe",
+      path: CONSUMER_STARTUP_AUTHORITY_PATH,
+      ok: hasPath(CONSUMER_STARTUP_AUTHORITY_PATH) && startupProjection.ok,
+      message:
+        "effective startup source/template/generated consumer must share one exact digest and must not promote blocked or degraded capabilities into active guidance",
+      evidence: `${startupProjection.source_digest}/${startupProjection.template_digest}/${startupProjection.generated_digest}; ${startupProjection.violations.join(",") || "ok"}`,
+    },
     {
       name: "helix-baseline-paths-projected",
       path: ".helix",

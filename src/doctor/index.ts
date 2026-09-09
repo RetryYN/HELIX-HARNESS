@@ -514,10 +514,13 @@ import {
   consumerClaudeHookSettingsMatchContract,
   consumerCodexConfigEnablesHooks,
   consumerCodexHookSettingsMatchContract,
+  verifyConsumerStartupProjection,
 } from "../setup/index";
 import {
   CONSUMER_CLAUDE_AGENT_NAMES,
   CONSUMER_CLAUDE_COMMAND_NAMES,
+  CONSUMER_STARTUP_AUTHORITY_PATH,
+  CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
   CONSUMER_TEAM_DEFINITION_PATH,
 } from "../setup/templates";
 import { attachProjectClosureAutoApprovalReadinessFromAuthority } from "../state-db/closure-auto-approval";
@@ -5890,6 +5893,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     "scripts/setup-branch-protection.sh",
     ...expectedClaudeAgentPaths,
     ...expectedClaudeCommandPaths,
+    CONSUMER_STARTUP_AUTHORITY_PATH,
     CONSUMER_TEAM_DEFINITION_PATH,
     ".helix/memory/.gitkeep",
     ".helix/evidence/.gitkeep",
@@ -6140,6 +6144,17 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
       : "doctor: consumer-codex-adapter - violation: Codex hooks/config JSON/schema baseline incomplete",
   );
 
+  const startupProjection = verifyConsumerStartupProjection({
+    source: CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+    template: CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+    generated: consumerFile(deps, CONSUMER_STARTUP_AUTHORITY_PATH) ?? "",
+  });
+  messages.push(
+    startupProjection.ok
+      ? `doctor: consumer-startup-authority - OK (digest=${startupProjection.generated_digest}, roster=${CONSUMER_CLAUDE_AGENT_NAMES.length})`
+      : `doctor: consumer-startup-authority - violation ${startupProjection.violations.join(",") || "startup_packet_missing"}`,
+  );
+
   const invalidAgentTemplates = expectedClaudeAgentPaths.filter((path) => {
     const text = consumerFile(deps, path) ?? "";
     const fm = parseMarkdownFrontmatter(text);
@@ -6344,6 +6359,7 @@ export function runConsumerDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd(
     consumerPackagePreflightOk &&
     claudeOk &&
     codexOk &&
+    startupProjection.ok &&
     claudeSurfaceOk &&
     teamSurfaceOk &&
     taskSafetyOk &&
