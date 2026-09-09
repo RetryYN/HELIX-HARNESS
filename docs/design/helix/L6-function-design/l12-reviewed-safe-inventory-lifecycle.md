@@ -39,6 +39,13 @@ doctorは同じanalyzerを直接呼び、単体oracleと統合gateの判定分�
 doctor全体の`ok`はnamed check stateの失敗集合と既存boolean chainの両方へ束縛し、どちらか片側の
 配線が欠落してもinventory lifecycle違反を合格へ降格させない。
 
+検証oracleは次の4件とする。
+
+- `U-L12INV-001`: reviewed-safe familyの全memberと退役対象を照合する。
+- `U-L12INV-002`: inventory片側更新とsection件数driftを拒否する。
+- `U-L12INV-003`: doctor集約配線の欠落を拒否する。
+- `U-L12INV-004`: canonical candidate closureとreviewed-safe除外の接合を検査する。
+
 ## 出力
 
 - `ok`: 全条件成立時のみ`true`

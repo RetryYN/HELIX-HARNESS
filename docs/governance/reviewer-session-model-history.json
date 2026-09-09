@@ -44,8 +44,14 @@
         {
           "reviewer_model": "claude:claude-fable-5-1",
           "since": "2026-09-05T00:34:43Z",
+          "until": "2026-09-07T18:03:40Z",
+          "basis": "Claude Code session transcript（~/.claude/projects/<repo>/9867601a-….jsonl の非 sidechain assistant message の message.model と timestamp）から切替境界を採取。最終 claude-fable-5-1 message は2026-09-07T18:00:14.237Z、次の claude-opus-5 message は2026-09-07T18:03:40.464Zであり、秒精度のwindow境界を2026-09-07T18:03:40Zとする。receiptの自己申告時刻で実観測を上書きしない。"
+        },
+        {
+          "reviewer_model": "claude:claude-opus-5",
+          "since": "2026-09-07T18:03:40Z",
           "until": null,
-          "basis": "Claude Code session transcript（~/.claude/projects/<repo>/9867601a-….jsonl の非 sidechain assistant message の message.model と timestamp、30485 件）から切替境界を採取。 以後は claude-fable-5-1 のみ（PR #1554 以降の claude-pr-review-receipt v4 の reviewerModel と一致、最終確認 2026-09-06T12:36:23Z）。切替時の session 再発行は未実装（Issue #1543 後続 slice）のため同一 session id で継続している。"
+          "basis": "Claude Code session transcriptの非 sidechain assistant messageで、2026-09-07T18:03:40.464Z以降claude-opus-5が観測された境界。PR #1675 comment 5588684410の型付きreceiptは後続整合証拠として扱い、実観測済みの切替境界をreceipt公開時刻へ遅延させない。model変更時のsession再発行は後続責務。"
         }
       ]
     }
