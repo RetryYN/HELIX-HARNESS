@@ -2556,8 +2556,8 @@ active draft.
       const rows = loadOutstandingPlanRows(root);
       expect(rows).toHaveLength(2);
       expect(rows.map((row) => row.planId).sort()).toEqual([
-        INVALID_OUTSTANDING_PLAN_ID,
         "PLAN-L7-99-foo",
+        INVALID_OUTSTANDING_PLAN_ID,
       ]);
       expect(rows.every((row) => row.planIdSchemaInvalid === true)).toBe(true);
       expect(rows.map((row) => row.planId)).not.toContain("foo");
