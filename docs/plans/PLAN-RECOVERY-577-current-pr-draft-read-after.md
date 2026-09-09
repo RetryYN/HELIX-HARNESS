@@ -60,6 +60,7 @@ modifies:
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 agent_slots:
+  - { role: aim, slot_label: "AIM — current PR draft authorityとread-after境界の対象限定監査" }
   - { role: se, slot_label: "Codex — current PR snapshot adapter修復" }
   - { role: qa, slot_label: "QA — stale event payload／read-after drift反例" }
   - { role: tl, slot_label: "TL — #577/#1638境界とmerge条件不変の収束" }
