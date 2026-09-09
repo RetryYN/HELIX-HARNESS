@@ -143,6 +143,7 @@ import {
 } from "./lint/outstanding";
 import { inspectOutstandingSnapshot, writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
 import { derivePinChain } from "./lint/pin-chain-derivation";
+import { loadPrScopePreflightFromGit, prScopePreflightMessages } from "./lint/pr-scope-preflight";
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
@@ -14622,6 +14623,50 @@ github
     else process.stdout.write(renderGithubMergeReadiness(result));
     process.exitCode = result.localReady ? 0 : 1;
   });
+
+github
+  .command("pr-scope-preflight")
+  .description("run the same PR scope findings as CI before push, without GitHub write")
+  .option("--base <ref>", "base ref for git diff", "origin/main")
+  .option("--head <ref>", "head ref for git diff", "HEAD")
+  .option("--body <text>", "PR body text")
+  .option("--body-file <path>", "file containing PR body text")
+  .option("--pr <number>", "read live PR body through gh pr view (read-only)")
+  .option("--json", "JSON output")
+  .action(
+    (opts: {
+      base?: string;
+      head?: string;
+      body?: string;
+      bodyFile?: string;
+      pr?: string;
+      json?: boolean;
+    }) => {
+      let body = opts.body ?? "";
+      if (opts.bodyFile) body = readFileSync(opts.bodyFile, "utf8");
+      else if (opts.pr) {
+        body = execFileSync("gh", ["pr", "view", opts.pr, "--json", "body", "--jq", ".body"], {
+          encoding: "utf8",
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+      }
+      if (!body.trim()) {
+        process.stderr.write("github pr-scope-preflight requires --body, --body-file, or --pr\n");
+        process.exitCode = 1;
+        return;
+      }
+      const result = loadPrScopePreflightFromGit(process.cwd(), {
+        base: opts.base ?? "origin/main",
+        head: opts.head ?? "HEAD",
+        body,
+      });
+      if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+      else {
+        for (const line of prScopePreflightMessages(result)) process.stdout.write(`${line}\n`);
+      }
+      process.exitCode = result.ok ? 0 : 1;
+    },
+  );
 
 github
   .command("pr-body")
