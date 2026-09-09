@@ -597,6 +597,6 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-OUTSTANDING-1432-001 | `hasIrreversibleMigrationContext` / `loadOutstandingPlanRows` | schema不適合の `irreversible_impact` は本文fallbackへ落とさず `irreversible_migration_pending` を立てる | `tests/outstanding.test.ts` |
-| U-OUTSTANDING-1432-002 | `resolveOutstandingPlanId` / `loadOutstandingPlanRows` | schema不適合の注入 `plan_id` は raw を採用せず、PLAN行は残して `frontmatter_schema_invalid` を立て、scoped command へ埋め込まない | `tests/outstanding.test.ts` |
+| U-OUTSTANDING-1432-002 | `resolveOutstandingPlanId` / `loadOutstandingPlanRows` | schema不適合の注入 `plan_id` は raw を採用せず、PLAN行は残して `frontmatter_schema_invalid` を立て、scoped command へ埋め込まない。UTF-8 物理バイトが異なるファイル名は NFC 表示が同じでも fallback identity を衝突させない | `tests/outstanding.test.ts` |
 | U-OUTSTANDING-1432-003 | `primaryOutstandingReason` | S4 pending と本文 only の version-up 語が共起しても primary は `po_decision_pending` のまま | `tests/outstanding.test.ts` |
 | U-OUTSTANDING-1432-004 | `scopedPacketCommandForPlan` | schema不適合の raw `plan_id` を scoped / runnable packet command へ埋め込まない | `tests/completion-decision-packet.test.ts` |

@@ -54,7 +54,7 @@ Issue #1432で実測された3つのfail-openを、既存`outstanding` surface�
 
 `irreversible_impact` が存在するのに schema 不適合なら `irreversible_migration_pending` を立てる。
 `planIdSchema` 不適合の raw `plan_id` は scoped / runnable command に使わない。文字 allowlist だけ通る `foo` も受理しない。
-不適合でも PLAN 行は outstanding 集計から消さない。文書ごとに決定的な command-safe な表示用識別子を与え、同一 sentinel で複数文書を潰さない。`frontmatter_schema_invalid` で阻止状態を可視化する。
+不適合でも PLAN 行は outstanding 集計から消さない。文書ごとに決定的な command-safe な表示用識別子を与え、同一 sentinel で複数文書を潰さない。fallback identity の digest 入力は readdir で得たファイル名の UTF-8 物理バイトを使い、表示用 NFC 正規化と物理文書 identity を混同しない。`frontmatter_schema_invalid` で阻止状態を可視化する。
 `version_target` frontmatter が無い本文 only の version-up 語は `po_decision_pending` / `human_approval_pending` より下位にする。
 
 ## 現在の証拠
