@@ -84,6 +84,7 @@ review_evidence:
     reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
     reviewed_head_sha: ddc9f1ffed86d939e5953bb35702ac4eeba1359e
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1679#issuecomment-5604706922"
+    ci_evidence_generation: "run:34371769705:attempt:1:failure"
     scope: "第一sliceの対象HEADを独立検収。inventory 21行とCLI digestの実体一致、177 tests成功を確認。CI run 34371769705はfailureであり、最終CI・merge・後続adapterの完成を意味しない。"
     green_commands:
       - kind: unit_test
