@@ -96,7 +96,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         completed_at: "2026-09-09T22:33:43Z"
-        evidence_path: docs/governance/evidence/PR-1700/vitest-targeted-830.json
+        evidence_path: .helix/evidence/review-1700/vitest-targeted-830.json
         output_digest: "sha256:9df69c88b62bc8caed9dc893412b71194f337535e5b2c714ae843b4e28ca4ebb"
 ---
 
