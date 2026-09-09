@@ -104,3 +104,10 @@ Dockerfile自体は変更していないため、実行中Buildのsourceは引�
 上記は実ログの観測値であり、未観測のimage digestをbase digestで代用しない。
 追跡先は[Cursor Build](https://cursor.com/dashboard/cloud-agents/builds/bld-20260909-c5c17c17-323d-4fd3-a955-e0351f812807)、
 共有記録はPR #1689 comment 5604196701。新HEADへの環境適合性の再利用と、新HEAD自身でのテスト実行は区別する。
+
+終端追記: 同Buildはdashboardで`Success / Manual / Draft`、完了表示は2026-09-10 00:17 JST。
+Docker buildログの`exporting manifest`は
+`sha256:a242408cf3535fd41750949b4719e37030d811a5fc90a74552eb2c0307b2bb0c`、
+`exporting config`は`sha256:5ba9509cd9693d97304908db2ad8512e4be5760d6f48ee1f560e2b5870778067`。
+これらはDocker build出力のidentityであり、その後providerが追加準備した最終snapshot全体のdigestとは区別する。
+active採用は未実施。先のin progress記録は途中観測として保持する。
