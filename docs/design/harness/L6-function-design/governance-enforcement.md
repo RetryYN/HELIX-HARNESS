@@ -201,7 +201,7 @@ Allowed外の未宣言pathは`permission required`として区別し、suggested
 PLAN status（draft↔confirmed）変更がある場合、既存のoutstanding snapshot再生成関数で
 base／HEAD／liveのnet-diffを観測し、「昇格したので net-zero。宣言から外せ」または
 「draft追加で snapshot が現れる。宣言せよ」まで報告する。snapshot自体の自動commitはしない。
-oracleは`U-PRSCOPE-PRE-001..007`とする。
+oracleは`U-PRSCOPE-PRE-001..008`とする。
 
 ## §3 統合点
 

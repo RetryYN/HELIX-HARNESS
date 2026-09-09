@@ -489,6 +489,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-PRE-005 | snapshot新規 | draft PLAN追加でsnapshotがnet-diffなら宣言を求め、Allowed外への自動追加を拒否する | `tests/pr-scope-preflight.test.ts` |
 | U-PRSCOPE-PRE-006 | mutation | `analyzePrContext`結果を捨てて全actual pathをsuggestedへ足す変異をkillする | `tests/pr-scope-preflight.test.ts` |
 | U-PRSCOPE-PRE-007 | CLI | `helix github pr-scope-preflight`がbody fileとbase...HEAD入力で同じJSON schemaを返す | `tests/cli-surface.test.ts` |
+| U-PRSCOPE-PRE-008 | eventName | git入力でも`eventName=pull_request`で同一`analyzePrContext`を呼び、event空のlocal経路へ退行しない | `tests/pr-scope-preflight.test.ts` |
 
 ### Issue #1052 outstanding snapshotのsemantic merge guard
 
