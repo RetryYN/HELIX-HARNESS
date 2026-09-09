@@ -30,8 +30,8 @@ complexity_effect: net_neutral
 complexity_justification: "既存RelationGraphSourceSetとloader/projectorへcatalog入力を追加し、別engine・DB・graphを新設しない"
 removal_trigger: "design catalog authorityが将来別のcanonical catalogへ正式移管され、同じtyped edge契約を後継loaderが所有した時"
 entry_signals: [regression_dev]
-parent_design: docs/design/harness/L6-function-design/function-spec.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+parent_design: docs/design/helix/L6-function-design/design-catalog-relation-projection.md
+pair_artifact: docs/test-design/helix/L7-design-catalog-relation-projection-unit-test-design.md
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -39,12 +39,12 @@ workflow_identity:
   target_axis: workflow_model
   target_id: RECOVERY
 dependencies:
-  requires: [docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md, docs/plans/PLAN-L7-421-design-coverage-catalog.md]
+  requires: [docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md]
   references: ["issue:1706", "issue:1679"]
   blocks: []
 verification_bindings:
-  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-RELGRAPH-012, test_path: tests/relation-graph-loader.test.ts }
-  - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-RELGRAPH-013, test_path: tests/relation-graph-loader.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-catalog-relation-projection.md, oracle_id: U-RELGRAPH-012, test_path: tests/relation-graph-loader.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/design-catalog-relation-projection.md, oracle_id: U-RELGRAPH-013, test_path: tests/relation-graph-loader.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — missing-projectionの暫定node化とIssue #1706の未充足edgeを分離する" }
   - { role: se, slot_label: "SE — 既存loader/projectorへcatalog itemとauthority consumerを最小接続する" }
@@ -52,13 +52,14 @@ agent_slots:
   - { role: tl, slot_label: "TL — semantic digest自己更新禁止とIssue scopeを維持する" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1706-design-catalog-relation-projection.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/design-catalog-relation-projection.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L7-design-catalog-relation-projection-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: src/graph/loader.ts, artifact_type: source_module }
   - { artifact_path: src/lint/relation-graph.ts, artifact_type: source_module }
   - { artifact_path: src/lint/relation-graph-types.ts, artifact_type: source_module }
   - { artifact_path: tests/relation-graph-loader.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/harness/L7-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 review_evidence: []
 ---
@@ -75,6 +76,7 @@ semantic reviewed digest authority、design-coverage oracle、既存PLANへの�
 - 別graph、別catalog正本、別DBを作らない。
 - catalog内容やreviewed digestを自動承認・自動更新しない。
 - deterministicなartifact実在性とsemantic pinの再検収要求を分離する。
+- 履歴上のgoverning PLANはrelation graphの`governed-by` edgeにのみ保持し、current PLANの依存正本にしない。
 
 ## 残義務
 
