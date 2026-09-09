@@ -4,7 +4,7 @@ title: "current route identityのlegacy誤分類是正"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -24,6 +24,7 @@ contract_invariants: "target_axis／target_idの既存GitHub contractとadmissio
 contract_failures: "current route identityのlegacy誤分類、route pairの無検証受理、既存typed identityの緩和を拒否する"
 tdd_red_required: true
 red_at: "2026-09-10T04:19:55+09:00"
+green_at: "2026-09-09T20:32:22Z"
 mutation_oracle_evidence: "LEGACY_IDENTITY_FIELDSへcatalog_route_id／route_classを再投入する変異を一時適用し、U-GWID-009がlegacy_field_forbiddenを受けて1 failed、exit 1となることを実測した。変異を復元後、targeted suite greenを再確認する。"
 complexity_effect: net_negative
 complexity_justification: "誤ったlegacy集合からcurrent fieldを除去し、既存schema境界内の明示診断へ集約する"
@@ -59,27 +60,7 @@ agent_slots:
   - { role: se, slot_label: "SE — legacy field分類とschema診断" }
   - { role: qa, slot_label: "QA — current route field誤分類の反例" }
   - { role: tl, slot_label: "TL — authority境界と後続分離" }
-review_evidence:
-  - reviewer: "Claude Code / Fable 5.1"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-09T20:23:46Z"
-    tests_green_at: "2026-09-09T20:32:22Z"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
-    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
-    reviewed_head_sha: 24e97cdd96365c04ab051aa1563397123bcf3d2a
-    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1701#issuecomment-5608218505
-    ci_evidence_generation: "run:34398294214:attempt:1:success"
-    green_commands:
-      - kind: unit_test
-        command: "npx vitest run tests/github-workflow-identity-contract.test.ts --reporter=json --outputFile=.helix/evidence/review-1701/vitest-targeted-24e.json"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-09T20:32:22Z"
-        evidence_path: .helix/evidence/review-1701/vitest-targeted-24e.json
-        output_digest: "sha256:bbff0307d01e2a0654ff619dfa9c55125515546789c9d2c5452531793d76f654"
+review_evidence: []
 ---
 
 # current route identityのlegacy誤分類是正
