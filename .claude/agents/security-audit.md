@@ -1,6 +1,6 @@
 ---
 name: security-audit
-description: セキュリティ監査。OWASP Top 10・認証認可・入力バリデーション・秘密情報管理・依存脆弱性。G2/G4/G6/G7セキュリティゲート時に使う。
+description: セキュリティ監査。OWASP Top 10・認証認可・入力バリデーション・秘密情報管理・依存脆弱性をtyped Requirement/Policyに照合する。
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-sonnet-5
 effort: high
@@ -70,13 +70,12 @@ pip audit
 trivy image <image>
 ```
 
-## ゲート別セキュリティ責務
-| ゲート | 内容 |
-|--------|------|
-| G2 | STRIDE 脅威分析 |
-| G4 | OWASP 実装チェック、秘密情報スキャン |
-| G6 | DAST スキャン、依存脆弱性 |
-| G7 | 本番設定検証、ネットワークポリシー |
+## typed security authority
+
+- 必須検査、閾値、対象環境、gate IDはactive PLANとRequirement / NFR / security policyから取得する。
+- policyに未定義の条件は`unknown`として返し、このagent本文の一般的なOWASP例をpass/fail authorityへ昇格しない。
+- audit結果はsecurity review receiptとして返す。独立review、merge admission、release authorization、
+  deployment authorizationはそれぞれ別のtyped receiptであり、このagentが代替しない。
 
 ## 出力
 - 脆弱性一覧（Critical/High/Medium/Low）

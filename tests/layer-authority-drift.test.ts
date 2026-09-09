@@ -13,6 +13,15 @@ const AUTHORITY_DOCS = [
   "docs/process/modes/discovery.md",
 ] as const;
 
+const ACTIVE_AGENT_COMMAND_DOCS = [
+  ".claude/agents/pmo-sonnet.md",
+  ".claude/agents/qa-test.md",
+  ".claude/agents/security-audit.md",
+  ".claude/agents/devops-deploy.md",
+  ".claude/commands/spec.md",
+  ".claude/commands/ship.md",
+] as const;
+
 const FORBIDDEN_CURRENT_CLAIMS = [
   /出口は必ず\s*Forward\s*L0(?:-|〜)L14/,
   /Forward\s+は[^\n]{0,80}L0\s*(?:→|から)[^\n]{0,40}L14[^\n]{0,40}(?:中核|正規)/,
@@ -49,5 +58,33 @@ describe("L1-L12 canonical layer authority", () => {
   it("fails closed when a legacy layer sentence is promoted back to current authority", () => {
     const poisoned = "入口は分岐するが、出口は必ず Forward L0-L14 へ合流する。";
     expect(currentLayerAuthorityViolations(poisoned)).not.toEqual([]);
+  });
+
+  it.each(ACTIVE_AGENT_COMMAND_DOCS)(
+    "[#1374] keeps active agent/command guidance on typed L1-L12 authority in %s",
+    (path) => {
+      const text = readFileSync(path, "utf8");
+      expect(text).not.toMatch(/L0-L14|G4\/G6|L12 deploy/);
+    },
+  );
+
+  it("[#1374] separates review from release and deployment authorization", () => {
+    const ship = readFileSync(".claude/commands/ship.md", "utf8");
+    expect(ship).toContain("independent review receipt");
+    expect(ship).toContain("release authorization");
+    expect(ship).toContain("deployment authorization");
+    expect(ship).toContain("runtime admission");
+  });
+
+  it("[#1374] binds QA, security, and deployment thresholds to typed policy", () => {
+    for (const path of [
+      ".claude/agents/qa-test.md",
+      ".claude/agents/security-audit.md",
+      ".claude/agents/devops-deploy.md",
+    ]) {
+      const text = readFileSync(path, "utf8");
+      expect(text).toMatch(/Requirement \/ NFR (?:\/ security )?policy/);
+      expect(text).toContain("unknown");
+    }
   });
 });

@@ -7,7 +7,8 @@ judgment_core: v2
 判断規律の正本は `docs/skills/judgment-core.md`（判断コア SSoT。委譲 4 点セットは §5、
 レビュー規律は §4）。`/ship` は HELIX の fan-out orchestrator である。現在の change に対して allowlist 済みの
 specialist subagent 3 体を並列実行し、それぞれの report を rollback plan 必須の単一 go/no-go
-decision に統合する。trace-freeze→accept transition または L12 deploy の前に使う。
+decision に統合する。この出力はindependent review receiptの入力であり、merge admission、release authorization、
+deployment authorization、runtime admissionを代替しない。
 
 最初に change set と gate state を確定する。
 - `helix review --uncommitted` — worktree 用の deterministic review packet。
@@ -39,14 +40,14 @@ main agent（subagent ではない）が統合する。code-reviewer の Critica
 typecheck/lint/test failure を集約し、security-audit の Critical/High finding は blocker に昇格する。
 qa-test 由来の coverage gap を突合し、infrastructure、migration、docs は main agent が直接確認する。
 
-## Phase C — 判断
+## Phase C — review判断
 
 ```markdown
 ## Ship Decision: GO | NO-GO
 ### Blockers (must fix)        — [persona: finding + file:line]
 ### Recommended fixes          — [persona: finding + file:line]
 ### Acknowledged risks         — [risk + mitigation]
-### Rollback plan              — trigger conditions; rollback steps; recovery target
+### Rollback readiness         — trigger conditions; rollback steps; recovery target
 ### Specialist reports (full)
 ```
 
@@ -56,7 +57,7 @@ rollback section では `ci-deploy-and-rollback` skill を参照する。
 
 1. 3 つの Phase A persona は並列実行し、逐次実行しない。
 2. Persona 同士は呼び合わない。main agent が Phase B で統合する。
-3. GO の前に rollback plan は必須である。
+3. review GO の前にrollback readinessの確認は必須だが、GOをrelease/deployment許可として扱わない。
 4. Critical finding がある場合、user が明示的に risk を受容しない限り verdict は NO-GO とする。
 5. fan-out を skip できるのは、change が 2 files 以下、diff が 50 lines 未満、かつ auth / payments /
    data access / config/env に触れない場合だけである。それ以外は fan-out を既定とする。

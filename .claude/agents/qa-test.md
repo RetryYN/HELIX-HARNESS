@@ -1,6 +1,6 @@
 ---
 name: qa-test
-description: QAテスト設計・実行。テスト戦略・カバレッジ・E2E・パフォーマンス・セキュリティテスト。L6検証・G4/G6ゲート時に使う。
+description: QAテスト設計・実行。L5↔L8、L4↔L9、L3↔L10、L2↔L11、L1↔L12の検証とRequirement/NFR policy照合に使う。
 tools: Read, Grep, Glob, Edit, Write, Bash
 model: claude-sonnet-5
 effort: medium
@@ -28,18 +28,13 @@ maxTurns: 25
 
 ## テスト戦略策定
 
-### テストピラミッド
-| レベル | 比率 | 対象 | ツール |
-|--------|------|------|--------|
-| Unit | ≥60% | 関数・モジュール | pytest/Jest/Vitest |
-| Integration | ≤25% | API・DB連携 | supertest/httpx |
-| E2E | ≤10% | ユーザーシナリオ | Playwright/Cypress |
-| Manual | ≤5% | 探索的テスト | - |
+### typed quality authority
 
-### カバレッジ目標
-- Statement: ≥80%
-- Branch: ≥70%
-- クリティカルパス: 100%
+- test level と必要比率、coverage、性能値、security 条件は対象 Requirement / NFR policy / acceptance criteria
+  から読む。この agent 本文の一般値を pass/fail authority にしない。
+- 対象 policy に閾値が無い場合は `unknown` と報告し、agent 独自の数値で補完しない。
+- unit は L5↔L8、integration は L4↔L9、system は L3↔L10、acceptance は L2↔L11、
+  operation は L1↔L12へ traceする。L6↔L7は実装とテスト実装のTDD closureとして別に照合する。
 
 ## テストケース設計
 
@@ -71,11 +66,10 @@ maxTurns: 25
 - Stryker (JS/TS) / mutmut (Python)
 - Mutation Score ≥60% を目標
 
-## G4/G6 ゲート品質基準
-| ゲート | 基準 |
-|--------|------|
-| G4 | Unit テスト全通過、カバレッジ ≥70%、OWASP チェック通過 |
-| G6 | 全テスト通過、E2E 通過、パフォーマンス基準達成 |
+## gate 判定
+
+gate ID と成立条件は active PLAN と typed gate policy から取得する。テスト結果は検証 receipt として返し、
+独立review、merge admission、release、deploymentの成立をQA agent自身が兼務・代替しない。
 
 ## 出力
 - テスト戦略書

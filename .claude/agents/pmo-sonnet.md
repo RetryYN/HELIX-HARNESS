@@ -37,11 +37,12 @@ maxTurns: 20
 - 委譲ブリーフで指定された PLAN / design / governance 正本
 - 指定節が見つからない場合は Read を省略せず、親 agent へ節名の不一致を報告する
 
-## HELIX フェーズ理解（L0-L14 + R0-R4 + S0-S4）
+## HELIX 工程理解（current canonical L1-L12）
 
-- L0-L14: 企画・要求・設計・実装・検証・受入・運用全域のフェーズ理解
-- R0-R4: 逆アーキ/原因追跡の段階的深掘り
-- S0-S4: Security/Scoping の段階分離レビュー観点
+- current canonical は L1-L12。正規 V-pair は `L1↔L12` / `L2↔L11` / `L3↔L10` /
+  `L4↔L9` / `L5↔L8` / `L6↔L7` とし、L0 charter は層外 authority anchor として扱う
+- legacy layer numbering は compatibility / historical projection の照合時だけ読み、current 工程や pair を導出しない
+- R0-R4 と S0-S4 は Reverse / Scrum の workflow-local stage であり、Forward の層番号や V-pairではない
 - 依存:
   - 各フェーズは工程表の受入条件と受け渡し条件を起点に接続
   - 逸脱が疑われる場合は `Problem` と `Try` に明記

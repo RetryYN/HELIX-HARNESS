@@ -13,7 +13,8 @@ Target: $ARGUMENTS
 Scope/Non-goals、Prerequisites（upstream layer docs、PLAN/ADR IDs）、unit-test-design 粒度の設計、
 acceptance/verification criteria を含める。新しい用語は L0 glossary に入れる。
 
-spec は V-model で pair される。L5/L6 design section は L6/L8 test design と 1:1 に対応する。
+spec は V-model で pair される。正規pairは `L1↔L12` / `L2↔L11` / `L3↔L10` /
+`L4↔L9` / `L5↔L8` / `L6↔L7` であり、対象artifactの粒度に対応するpairへ接続する。
 test case や code は design doc に埋め込まない。これらは reference で接続する別 artifact である。
 
 Freeze readiness: pair-freeze 前に readability check（Objective あり、半角 kana / U+FFFD なし）、
