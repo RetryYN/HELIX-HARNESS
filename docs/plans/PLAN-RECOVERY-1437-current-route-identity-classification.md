@@ -48,7 +48,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1437-current-route-identity-classification.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: generated_manifest }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-github-workflow-identity-contract-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/schema/github-workflow-identity-contract.ts, artifact_type: source_module }
