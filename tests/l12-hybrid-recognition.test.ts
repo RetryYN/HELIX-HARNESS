@@ -215,7 +215,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(514);
+    ).toHaveLength(515);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -238,16 +238,18 @@ describe("L12/hybrid recognition-risk scanner", () => {
   // PLAN-RECOVERY-1404は新規PLAN候補1件としてconflictへ明示加算する。
   // function-spec.md は docs/design/harness family の独立再分類を待って conflict のまま残す。
   // PLAN-RECOVERY-1677追加によりplan_review conflictが1件増える。
-  it("assigns exactly one reviewed final disposition to all 872 candidates", () => {
+  // PLAN-RECOVERY-1591が追加したcompatibility parent baselineは、旧語を収録する
+  // executable surfaceとしてconflictへ1件加算する。baseline自体をfalse positiveへは降格しない。
+  it("assigns exactly one reviewed final disposition to all 873 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(872);
+    expect(candidates).toHaveLength(873);
     expect(counts).toEqual({
-      conflict: 338,
+      conflict: 339,
       compatibility_labeled: 24,
       false_positive: 492,
       historical: 18,
@@ -329,7 +331,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
         false_positive: 53,
         historical: 6,
       },
-      executable_surface_review: { conflict: 7, false_positive: 1, historical: 1 },
+      executable_surface_review: { conflict: 8, false_positive: 1, historical: 1 },
       historical_context_review: {
         conflict: 19,
         false_positive: 1,
