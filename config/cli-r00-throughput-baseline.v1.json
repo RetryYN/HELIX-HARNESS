@@ -1,0 +1,451 @@
+{
+  "schema_version": "helix-cli-r00-throughput-baseline.v1",
+  "behavior_contract_id": "CLI-R00-THROUGHPUT-BASELINE-001",
+  "issue_id": 1687,
+  "baseline_kind": "pre_refactor",
+  "slice_id": "CLI-R00",
+  "captured_at": "2026-09-09T18:40:00.000Z",
+  "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+  "source_branch": "refactor/1687-cli-r00-baseline",
+  "observations": [
+    {
+      "metric_id": "CI_WALL_CLOCK",
+      "observability": "measured",
+      "unit": "seconds",
+      "sample_values": [
+        1445
+      ],
+      "percentiles": {
+        "n": 1,
+        "min": 1445,
+        "p50": 1445,
+        "p95": 1445,
+        "max": 1445
+      },
+      "evidence_ref": "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/34380027551",
+      "notes": "main push成功runのstartedAt→updatedAt。別HEADの1225-1428sはhistorical note。",
+      "value": 1445,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "CI_WALL_CLOCK",
+        "observability": "measured",
+        "collection_recipe_id": "gh-run-harness-check-wall",
+        "environment": "github_actions",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": "harness-check.yml",
+        "workflow_run_id": "34380027551",
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "FULL_REGRESSION_WALL_CLOCK",
+      "observability": "measured",
+      "unit": "seconds",
+      "sample_values": [
+        1434
+      ],
+      "percentiles": {
+        "n": 1,
+        "min": 1434,
+        "p50": 1434,
+        "p95": 1434,
+        "max": 1434
+      },
+      "evidence_ref": "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/34380027551",
+      "notes": "full-regression-preflight.startedAt 16:58:20Z から finalize.completedAt 17:22:14Z。",
+      "value": 1434,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "FULL_REGRESSION_WALL_CLOCK",
+        "observability": "measured",
+        "collection_recipe_id": "gh-run-full-regression-span",
+        "environment": "github_actions",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": "harness-check.yml",
+        "workflow_run_id": "34380027551",
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "TARGETED_TEST_WALL_CLOCK",
+      "observability": "measured",
+      "unit": "milliseconds",
+      "sample_values": [
+        567,
+        582,
+        626
+      ],
+      "percentiles": {
+        "n": 3,
+        "min": 567,
+        "p50": 582,
+        "p95": 626,
+        "max": 626
+      },
+      "evidence_ref": null,
+      "notes": "同一test pathのprocess wall n=3。vitest内部Durationは176-216ms。閾値oracleには使わない。",
+      "value": 582,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "TARGETED_TEST_WALL_CLOCK",
+        "observability": "measured",
+        "collection_recipe_id": "vitest-targeted-cli-r00",
+        "environment": "local_process",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": [
+          "npx",
+          "--no-install",
+          "vitest",
+          "run",
+          "--project",
+          "fast",
+          "tests/cli-r00-throughput-baseline.test.ts"
+        ],
+        "test_paths": [
+          "tests/cli-r00-throughput-baseline.test.ts"
+        ],
+        "node_version": "v24.15.0",
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "CLI_COMMAND_STARTUP_TIME",
+      "observability": "measured",
+      "unit": "milliseconds",
+      "sample_values": [
+        1797,
+        1816,
+        1827,
+        1852,
+        1908
+      ],
+      "percentiles": {
+        "n": 5,
+        "min": 1797,
+        "p50": 1827,
+        "p95": 1908,
+        "max": 1908
+      },
+      "evidence_ref": null,
+      "notes": "n=5。Node 22.14.0のp50=654msは別environmentであり混ぜない。",
+      "value": 1827,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "CLI_COMMAND_STARTUP_TIME",
+        "observability": "measured",
+        "collection_recipe_id": "tsx-cli-version-startup",
+        "environment": "local_process",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": [
+          "npx",
+          "--no-install",
+          "tsx",
+          "src/cli.ts",
+          "--version"
+        ],
+        "test_paths": null,
+        "node_version": "v24.15.0",
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "CI_RERUN_COUNT",
+      "observability": "unmeasurable",
+      "unit": "count",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "本runはattempt=1だが、単一HEADをrerun母集団にしない。",
+      "value": null,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "CI_RERUN_COUNT",
+        "observability": "unmeasurable",
+        "collection_recipe_id": "pr-episode-rerun-window",
+        "environment": "github_actions",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": "harness-check.yml",
+        "workflow_run_id": "34380027551",
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "FULL_REGRESSION_INVOCATION_COUNT",
+      "observability": "measured",
+      "unit": "count",
+      "sample_values": [
+        1
+      ],
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "4 shard起動済み。invocationは1。reuseではない。",
+      "value": 1,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "FULL_REGRESSION_INVOCATION_COUNT",
+        "observability": "measured",
+        "collection_recipe_id": "full-regression-job-presence",
+        "environment": "github_actions",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": "harness-check.yml",
+        "workflow_run_id": "34380027551",
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "REVIEW_RECEIPT_REGEN_COUNT",
+      "observability": "unmeasurable",
+      "unit": "count",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "receipt再発行ledgerが無い。",
+      "value": null,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "REVIEW_RECEIPT_REGEN_COUNT",
+        "observability": "unmeasurable",
+        "collection_recipe_id": "review-receipt-regen-ledger",
+        "environment": "github_actions",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": null
+      }
+    },
+    {
+      "metric_id": "CHANGED_FILE_FAN_OUT",
+      "observability": "proxy",
+      "unit": "files",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "command family変更が必ず含む実装fileはsrc/cli.tsの1。",
+      "value": 1,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "CHANGED_FILE_FAN_OUT",
+        "observability": "proxy",
+        "collection_recipe_id": "shared-cli-file-fan-out",
+        "environment": "local_process",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "CHANGED_SYMBOL_FAN_OUT",
+      "observability": "proxy",
+      "unit": "symbols",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "top-level family 47。全.command登録は 256。",
+      "value": 47,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "CHANGED_SYMBOL_FAN_OUT",
+        "observability": "proxy",
+        "collection_recipe_id": "cli-top-level-family-count",
+        "environment": "local_process",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "DIFF_BYTES",
+      "observability": "proxy",
+      "unit": "bytes",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "src/cli.ts全体のUTF-8 byte長をreview下限とする。",
+      "value": 715943,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "DIFF_BYTES",
+        "observability": "proxy",
+        "collection_recipe_id": "cli-source-byte-size",
+        "environment": "local_process",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "REVIEW_CONTEXT_BYTES_OR_TOKENS",
+      "observability": "proxy",
+      "unit": "bytes",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "bytesを正本とする。token見積もりはsupporting_contextへ分離。",
+      "value": 715943,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "REVIEW_CONTEXT_BYTES_OR_TOKENS",
+        "observability": "proxy",
+        "collection_recipe_id": "cli-review-context-bytes",
+        "environment": "local_process",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    },
+    {
+      "metric_id": "BASE_SYNC_COUNT",
+      "observability": "unmeasurable",
+      "unit": "count",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "単一HEADからbase sync回数の母集団を固定できない。",
+      "value": null,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "BASE_SYNC_COUNT",
+        "observability": "unmeasurable",
+        "collection_recipe_id": "pr-base-sync-window",
+        "environment": "github_actions",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": null
+      }
+    },
+    {
+      "metric_id": "MERGE_CONFLICT_OR_SHARED_FILE_COLLISION_COUNT",
+      "observability": "proxy",
+      "unit": "families",
+      "sample_values": null,
+      "percentiles": null,
+      "evidence_ref": null,
+      "notes": "collision class sizeはtop-level family数。同時3PRはhistorical note。",
+      "value": 47,
+      "condition": {
+        "schema_version": "helix-cli-r00-throughput-baseline.v1",
+        "metric_id": "MERGE_CONFLICT_OR_SHARED_FILE_COLLISION_COUNT",
+        "observability": "proxy",
+        "collection_recipe_id": "shared-file-collision-family-count",
+        "environment": "local_process",
+        "source_head": "282ec52199c876976db02267df56622eed62cc3d",
+        "workflow_id": null,
+        "workflow_run_id": null,
+        "command_argv": null,
+        "test_paths": null,
+        "node_version": null,
+        "runner_os": "Linux"
+      }
+    }
+  ],
+  "supporting_context": {
+    "cli_path": "src/cli.ts",
+    "cli_bytes": 715943,
+    "cli_lines": 17027,
+    "cli_nonblank_lines": 16669,
+    "top_level_command_families": [
+      "design",
+      "completion",
+      "mcp",
+      "memory",
+      "sessions",
+      "agent",
+      "loop",
+      "pair-agent",
+      "s4",
+      "verify",
+      "run-debug",
+      "ci",
+      "session",
+      "hook",
+      "guard",
+      "plan",
+      "provider",
+      "lane",
+      "drive",
+      "recovery",
+      "roadmap",
+      "progress",
+      "vscode",
+      "metrics",
+      "skill",
+      "web",
+      "automation",
+      "guardrail",
+      "issue",
+      "trouble",
+      "improvement",
+      "asset",
+      "builder",
+      "vmodel",
+      "team",
+      "audit",
+      "runtime",
+      "security",
+      "tools",
+      "change",
+      "spec-store",
+      "artifacts",
+      "source",
+      "run",
+      "l1-l2",
+      "branch",
+      "distribution"
+    ],
+    "command_registration_count": 256,
+    "unique_command_name_count": 217,
+    "full_regression_shard_job_ids": [
+      "full-regression-bulk-1",
+      "full-regression-bulk-2",
+      "full-regression-bulk-3",
+      "full-regression-stateful"
+    ],
+    "review_context_token_estimate": 178986,
+    "token_estimate_method": "ceil(bytes/4)",
+    "historical_notes": [
+      "Issue本文のorigin/main観測は704434 bytes。本branch HEAD 282ec5219は715943 bytes。",
+      "2026-09-09時点でsrc/cli.tsを変更中のopen PRは#1668/#1672/#1679の3本だった。着手時の残openは0。",
+      "隣接main成功CI wallは別HEADであり同一条件sampleではない: 1428s(#1668), 1382s(#1672), 1225s(#1680), 1328s(#1676)。",
+      "Node 22.14.0での--version p50=654msはNode 24.15.0系列へ混ぜない。"
+    ]
+  }
+}
