@@ -4,7 +4,7 @@ title: "Cursor環境のclone前Git欠如を修復"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-09
@@ -46,6 +46,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md, oracle_id: U-CURSOR-ENV-006, test_path: tests/cursor-cloud-environment.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1293-cursor-image-git.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/evidence/PR-1689/vitest-targeted.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
   - { artifact_path: .cursor/Dockerfile, artifact_type: config }
@@ -56,7 +57,28 @@ agent_slots:
   - { role: aim, slot_label: "AIM — imageとhostの変更境界を検証" }
   - { role: se, slot_label: "SE — clone前提の修復" }
   - { role: qa, slot_label: "QA — 静的反例と実Build検収" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T16:13:21Z"
+    tests_green_at: "2026-09-09T16:13:21Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 174777d2704ea788e1c292890322f8387f149916
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1689#issuecomment-5605045317"
+    ci_evidence_generation: "run:34369910455:attempt:2:success"
+    scope: "Cursor cloud imageへgit / ca-certificates / curlを同梱し、install時download禁止を維持するsliceを検収。Draft Build c5c17c17はclone、provider daemon、HELIX install exit 0、snapshot readyまでSuccess。active採用、current main統合、Cursor常駐レーン全体は未完了。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run --project fast tests/cursor-cloud-environment.test.ts tests/plan-descent-specific-parent-binding.test.ts tests/goal-evidence-audit.test.ts tests/issue-closure-graph.test.ts --reporter=json --outputFile=.helix/evidence/review-1689/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T16:13:21Z"
+        evidence_path: docs/governance/evidence/PR-1689/vitest-targeted.json
+        output_digest: "sha256:f7cac0b7752f9e0f2af764d3298596ce301d5bbd4444ac5b44a545d6902d8b43"
 ---
 
 # Cursor環境のclone前提修復
