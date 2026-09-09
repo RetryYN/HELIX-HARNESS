@@ -1100,21 +1100,29 @@ function declaredPlanIdFromFrontmatter(
   return fmValue(content, "plan_id") ?? undefined;
 }
 
-function plansRelativePathForFilename(filename: string): string | null {
-  const base = filename.normalize("NFC");
-  if (!base.endsWith(".md")) return null;
-  if (base.includes("\0") || base.includes("/") || base.includes("\\")) return null;
-  if (base === ".." || base.includes("..")) return null;
-  return `docs/plans/${base}`;
+function plansBasenameUtf8Hex(filename: string): string {
+  return Buffer.from(filename, "utf8").toString("hex");
 }
 
-/** schema 不適合かつ filename も不適合なときの文書単位 identity。raw は埋め込まない。 */
+function isUnsafePlansBasename(filename: string): boolean {
+  return (
+    filename.length === 0 ||
+    !filename.endsWith(".md") ||
+    filename.includes("\0") ||
+    filename.includes("/") ||
+    filename.includes("\\") ||
+    filename === ".." ||
+    filename.includes("..")
+  );
+}
+
+/** schema 不適合かつ filename も不適合なときの文書単位 identity。digest 入力は UTF-8 物理バイトで、raw 名は埋め込まない。 */
 export function outstandingFallbackPlanId(filename: string): string {
-  const relativePath = plansRelativePathForFilename(filename);
+  const basenameHex = plansBasenameUtf8Hex(filename);
   const digest = sha256Json(
-    relativePath === null
-      ? { kind: "unsafe-basename", filename }
-      : { kind: "plans-relative", relativePath },
+    isUnsafePlansBasename(filename)
+      ? { kind: "unsafe-basename-bytes", basenameHex }
+      : { kind: "plans-basename-bytes", basenameHex },
   );
   return `${INVALID_OUTSTANDING_PLAN_ID_PREFIX}${digest.slice(
     "sha256:".length,
