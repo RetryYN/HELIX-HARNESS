@@ -1,5 +1,5 @@
 {
-  "recorded": "2026-09-09T22:19:26.105Z",
+  "recorded": "2026-09-09T23:50:11Z",
   "grandfathered": [
     {
       "file": "docs/plans/PLAN-DISCOVERY-02-roster-design.md",
@@ -10085,6 +10085,11 @@
       "file": "docs/plans/PLAN-REVERSE-719-helix-bench-task-dataset.md",
       "reason": "compatibility_reference_forbidden",
       "detail": "requires: docs/plans/PLAN-L3-49-helix-bench-evaluation.md"
+    },
+    {
+      "file": "docs/plans/PLAN-RECOVERY-1690-pr-scope-preflight.md",
+      "reason": "compatibility_reference_forbidden",
+      "detail": "references: docs/plans/PLAN-L7-466-pr-scope-contract.md"
     }
   ]
 }
