@@ -1,6 +1,7 @@
 // PLAN-L7-426-development-ci-bounded-time / PLAN-L7-462-issue-closure-contract
 // PLAN-L7-502-worker-independent-review
 // PLAN-RECOVERY-1640-biome-preflight
+// PLAN-RECOVERY-1693-g10-chromium-apt-isolation
 import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -1161,6 +1162,23 @@ describe("source harness-check workflow", () => {
     expect(parsed.jobs?.["full-regression-bulk-3"]?.["timeout-minutes"]).toBe(25);
     expect(parsed.jobs?.["full-regression-stateful"]?.["timeout-minutes"]).toBe(30);
     expect(parsed.jobs?.["full-regression-finalize"]?.["timeout-minutes"]).toBe(15);
+  });
+
+  it("U-G10CHROMIUM-001: unrelated Google apt sourceを退避してからChromiumを導入する", () => {
+    const parsed = parseYaml(readFileSync(WORKFLOW_PATH, "utf8")) as WorkflowRoot;
+    const steps = parsed.jobs?.["full-regression-bulk-3"]?.steps ?? [];
+    const install = stepByName(steps, "install Chromium for G10 browser evidence");
+    const run = String(install.run ?? "");
+    const listSource = "/etc/apt/sources.list.d/google-chrome.list";
+    const deb822Source = "/etc/apt/sources.list.d/google-chrome.sources";
+    const playwright = "npx --no-install playwright install --with-deps chromium";
+
+    expect(run).toContain("set -euo pipefail");
+    expect(run).toContain(listSource);
+    expect(run).toContain(deb822Source);
+    expect(run).toContain('sudo mv "$source" "$RUNNER_TEMP/$(basename "$source").disabled"');
+    expect(run.indexOf(listSource)).toBeLessThan(run.indexOf(playwright));
+    expect(run.indexOf(deb822Source)).toBeLessThan(run.indexOf(playwright));
   });
 
   it("U-BIOMEFAST-001: lintを依存導入直後へ置き、遅延・省略・重複を拒否する", () => {
