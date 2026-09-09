@@ -4,8 +4,8 @@ title: "変更pathからのpin追従先事前導出"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
-completion_claim_allowed: true
+status: draft
+completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-09
 updated: 2026-09-09
@@ -72,27 +72,7 @@ agent_slots:
   - { role: se, slot_label: "SE — pin adapterとread-only CLI" }
   - { role: qa, slot_label: "QA — stale／semantic／unknown反例" }
   - { role: aim, slot_label: "AIM — 自動refresh禁止とauthority境界を監査" }
-review_evidence:
-  - reviewer: "Claude Code / claude-opus-5"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-09T00:54:11Z"
-    tests_green_at: "2026-09-09T01:08:11Z"
-    verdict: approve
-    worker_model: gpt-5.6-codex
-    reviewer_model: claude:claude-opus-5
-    reviewer_session_id: "77375ef5-9b74-425a-91ee-45ebc9fea1d9"
-    reviewed_head_sha: "00b3de438eb7a293c3fec33b2c473e2b4553f3cd"
-    scope: "PR #1679 current HEADのL6設計、L6 test design、read-only runtime、CLI配線、U-PINCHAIN-001〜009、semantic pin非自動更新、unknown surface DEGRADEDを独立検収し、blocker 0。正式receiptは次HEADのCI成功後に封印する。"
-    green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run tests/pin-chain-derivation.test.ts tests/cli-surface.test.ts"
-        runner: local
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-09T01:08:11Z"
-        evidence_path: tests/pin-chain-derivation.test.ts
-        output_digest: "sha256:cc4da3683c99d5decc1be4f725e2a6dca17a9ed08acb21ec6850389bde53dc85"
-        result: "2 files / 106 tests passed"
+review_evidence: []
 ---
 
 # 変更pathからのpin追従先事前導出
