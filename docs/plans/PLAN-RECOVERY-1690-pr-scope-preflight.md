@@ -76,21 +76,23 @@ agent_slots:
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
-    reviewed_at: "2026-09-09T19:35:00Z"
-    tests_green_at: "2026-09-09T19:22:59Z"
+    reviewed_at: "2026-09-09T21:11:40Z"
+    tests_green_at: "2026-09-09T20:59:23Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
-    reviewed_head_sha: feb956a81c746ac0c8a5b890051d0b29cb7dc980
-    scope: "PR #1699 exact-HEAD review。CI guard pr-context と同一の analyzePrContext 経路、Allowed外の permission required 分離、snapshot 3 者観測、GitHub write なし、dogfood --pr 1699 findings=0。worker_model は assignment の author runtime を codex として記録。根拠: https://github.com/RetryYN/HELIX-HARNESS/pull/1699#issuecomment-5607614576"
+    reviewed_head_sha: 371370daadbae0dfbaf56b34e4e42e5caae45117
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1699#issuecomment-5608818859"
+    ci_evidence_generation: "run:34404510174:attempt:1:failure"
+    scope: "PR #1699 exact-HEAD review。CI guard pr-context と同一の analyzePrContext 経路、Allowed外の permission required 分離、snapshot 3 者観測、GitHub write なし、dogfood --pr 1699 findings=0。worker_model は assignment の author runtime を codex として記録。根拠: https://github.com/RetryYN/HELIX-HARNESS/pull/1699#issuecomment-5608818859"
     green_commands:
       - kind: unit_test
         command: "npx vitest run tests/pr-scope-preflight.test.ts --reporter=json --outputFile=.helix/evidence/review-1699/vitest-targeted.json"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-09T19:22:59Z"
+        completed_at: "2026-09-09T20:59:23Z"
         evidence_path: docs/governance/evidence/PR-1699/vitest-targeted.json
         output_digest: "sha256:ad53079d7b2e0c096ac55fe99a2d52697f8e0c2713f08e8c7dffed35189247ce"
 ---
