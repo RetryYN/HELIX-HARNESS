@@ -529,6 +529,13 @@ fail-close する。
 | U-RELGRAPH-009 | `collectVerificationEvidenceProjection` valid evidence   | A-125 `verification-evidence-v1` record は evidence path 付きの `verification_profiles`、`verification_recommendations`、`mcp_server_runs`、`external_tool_findings` projection row になる。                                                                                                                            |
 | U-RELGRAPH-010 | `collectVerificationEvidenceProjection` invalid evidence | malformed evidence、schema 欠落、または `allow_external` なしの external run は finding になる。raw external payload は除外したままにする。                                                                                                                                                                             |
 | U-RELGRAPH-011 | `loadRelationGraphSourceSet` node scope                  | 実 repo loader は `docs/adr/**/*.md`、`docs/governance/document-system-map.md`、`docs/skills/**/*.md`、`.codex/hooks.json` を design node として materialize する。これらの path 変更は `missing-projection` ではなく changed node として扱われ、旧対象外扱いだった `docs/skills/**` は node 欠落時に fail-close する。 |
+| U-RELGRAPH-012 | design catalog relation projection | catalog root→item→artifactと、root→reviewed digest authority／design-coverage source・test／既存PLANを型付きedgeで投影する。catalog変更のimpactはこれらを非空で返し、semantic pin再reviewとcoverage検証actionを要求する。item node欠落mutationは`stale-edge`でREDになる。 |
+| U-RELGRAPH-013 | catalog drift classification | `done` itemのartifact削除、reviewed digestのmissing/stale、catalog外design docを`catalog-artifact-missing`、`reviewed-digest-*`、`catalog-unregistered-artifact`へ分離し、catalog変更impactをfail-closeする。 |
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
+| U-RELGRAPH-012 | design catalog typed relation | catalog-item nodeを除去すると必須edgeが`stale-edge`となりRED。正常時はartifact、digest authority、coverage、PLANへのimpactが非空。 | `tests/relation-graph-loader.test.ts` |
+| U-RELGRAPH-013 | design catalog drift classification | done artifact削除、catalog bytes変更、未登録design doc追加をそれぞれ別findingでRED。 | `tests/relation-graph-loader.test.ts` |
 
 ### §1.16.1c U-TOOLADAPTER (A-124 graph/diagram adapter probe 検査)
 

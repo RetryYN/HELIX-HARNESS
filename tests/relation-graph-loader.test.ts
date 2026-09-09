@@ -1,5 +1,6 @@
 // @helix-repo-wide-guard
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -51,9 +52,39 @@ function buildRepo(root: string): void {
     "utf8",
   );
   writeFileSync(join(root, "src", "widget", "core.ts"), "export const core = 1;\n", "utf8");
+  mkdirSync(join(root, "src", "lint"), { recursive: true });
+  writeFileSync(
+    join(root, "src", "lint", "design-coverage.ts"),
+    "export const designCoverage = true;\n",
+    "utf8",
+  );
+  writeFileSync(
+    join(root, "src", "lint", "l3-progression-reviewed-digests.ts"),
+    "export const L3_PROGRESSION_REVIEWED_DIGESTS = {};\n",
+    "utf8",
+  );
   writeFileSync(
     join(root, "tests", "core.test.ts"),
     'import { core } from "../src/widget/core";\nexport const t = core;\n',
+    "utf8",
+  );
+  writeFileSync(
+    join(root, "tests", "design-coverage.test.ts"),
+    'import "../src/lint/design-coverage";\n',
+    "utf8",
+  );
+  writeFileSync(
+    join(root, "docs", "plans", "PLAN-L7-421-design-coverage-catalog.md"),
+    [
+      "---",
+      "plan_id: PLAN-L7-421-design-coverage-catalog",
+      "status: confirmed",
+      "kind: impl",
+      "---",
+      "",
+      "Design coverage authority fixture.",
+      "",
+    ].join("\n"),
     "utf8",
   );
   writeFileSync(
@@ -104,7 +135,31 @@ function buildRepo(root: string): void {
   );
   writeFileSync(
     join(root, "docs", "design", "design-catalog.yaml"),
-    ["schema_version: design-catalog.v1", "project: fixture", ""].join("\n"),
+    [
+      "schema_version: design-catalog.v1",
+      "project: fixture",
+      "profile: fixture",
+      "categories:",
+      "  - id: detail",
+      "    name: 詳細設計",
+      "items:",
+      "  - id: widget-design",
+      "    name: Widget設計",
+      "    category: detail",
+      "    source: zip-01",
+      "    status: done",
+      "    artifact:",
+      "      - docs/design/harness/L6-function-design/widget-design.md",
+      "",
+    ].join("\n"),
+    "utf8",
+  );
+  const catalogDigest = createHash("sha256")
+    .update(readFileSync(join(root, "docs", "design", "design-catalog.yaml")))
+    .digest("hex");
+  writeFileSync(
+    join(root, "src", "lint", "l3-progression-reviewed-digests.ts"),
+    `export const L3_PROGRESSION_REVIEWED_DIGESTS = {\n  "docs/design/design-catalog.yaml": "${catalogDigest}",\n};\n`,
     "utf8",
   );
   writeFileSync(
@@ -398,6 +453,162 @@ describe("loadRelationGraphSourceSet", () => {
     }
   });
 
+  // PLAN-RECOVERY-1706-design-catalog-relation-projection
+  it("U-RELGRAPH-012: projects catalog items and existing authority consumers into the relation graph", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-graph-loader-catalog-edges-"));
+    try {
+      buildRepo(root);
+      const sourceSet = loadRelationGraphSourceSet(root);
+      const projection = collectRelationGraphProjection(sourceSet);
+      const catalogNode = "design:docs/design/design-catalog.yaml";
+      const itemNode = "catalog-item:widget-design";
+      const artifactNode = "design:docs/design/harness/L6-function-design/widget-design.md";
+
+      expect(projection.nodes.map((node) => node.id)).toContain(itemNode);
+      expect(projection.edges).toContainEqual({
+        from: catalogNode,
+        to: itemNode,
+        kind: "catalogs",
+      });
+      expect(projection.edges).toContainEqual({
+        from: itemNode,
+        to: artifactNode,
+        kind: "catalog-artifact",
+      });
+      expect(projection.edges).toContainEqual({
+        from: catalogNode,
+        to: "source:src/lint/l3-progression-reviewed-digests.ts",
+        kind: "reviewed-by",
+      });
+      expect(projection.edges).toContainEqual({
+        from: catalogNode,
+        to: "source:src/lint/design-coverage.ts",
+        kind: "validated-by",
+      });
+      expect(projection.edges).toContainEqual({
+        from: catalogNode,
+        to: "test:tests/design-coverage.test.ts",
+        kind: "validated-by",
+      });
+      expect(projection.edges).toContainEqual({
+        from: catalogNode,
+        to: "plan:PLAN-L7-421-design-coverage-catalog",
+        kind: "governed-by",
+      });
+
+      const impact = analyzeRelationImpact({
+        changedPaths: ["docs/design/design-catalog.yaml"],
+        projection,
+      });
+      expect(impact.ok).toBe(true);
+      expect(impact.impacted.map((node) => node.id)).toEqual(
+        expect.arrayContaining([
+          itemNode,
+          artifactNode,
+          "source:src/lint/l3-progression-reviewed-digests.ts",
+          "source:src/lint/design-coverage.ts",
+          "test:tests/design-coverage.test.ts",
+          "plan:PLAN-L7-421-design-coverage-catalog",
+        ]),
+      );
+      expect(impact.actions.map((action) => action.kind)).toEqual(
+        expect.arrayContaining(["review-semantic-pin", "validate-design-coverage"]),
+      );
+
+      const missingItemNode = {
+        ...projection,
+        nodes: projection.nodes.filter((node) => node.id !== itemNode),
+      };
+      const mutatedImpact = analyzeRelationImpact({
+        changedPaths: ["docs/design/design-catalog.yaml"],
+        projection: missingItemNode,
+      });
+      expect(mutatedImpact.ok).toBe(false);
+      expect(mutatedImpact.findings.map((finding) => finding.code)).toContain("stale-edge");
+
+      const missingArtifactEdge = {
+        ...projection,
+        edges: projection.edges.filter(
+          (edge) => !(edge.from === itemNode && edge.kind === "catalog-artifact"),
+        ),
+      };
+      const missingEdgeImpact = analyzeRelationImpact({
+        changedPaths: ["docs/design/design-catalog.yaml"],
+        projection: missingArtifactEdge,
+      });
+      expect(missingEdgeImpact.ok).toBe(false);
+      expect(missingEdgeImpact.findings).toContainEqual(
+        expect.objectContaining({ code: "missing-projection", nodeId: itemNode }),
+      );
+
+      const artifactImpact = analyzeRelationImpact({
+        changedPaths: ["docs/design/harness/L6-function-design/widget-design.md"],
+        projection,
+      });
+      expect(artifactImpact.impacted.map((node) => node.id)).toEqual(
+        expect.arrayContaining([itemNode, catalogNode]),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-RELGRAPH-013: distinguishes deleted catalog artifacts and stale reviewed digests", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-graph-loader-catalog-findings-"));
+    try {
+      buildRepo(root);
+      writeFileSync(
+        join(root, "docs", "design", "design-catalog.yaml"),
+        [
+          "schema_version: design-catalog.v1",
+          "project: fixture",
+          "profile: fixture",
+          "categories: []",
+          "items:",
+          "  - id: removed-design",
+          "    name: 削除済み設計",
+          "    category: detail",
+          "    source: zip-01",
+          "    status: done",
+          "    artifact:",
+          "      - docs/design/removed.md",
+          "",
+        ].join("\n"),
+        "utf8",
+      );
+      const sourceSet = loadRelationGraphSourceSet(root);
+      const projection = collectRelationGraphProjection(sourceSet);
+      expect(projection.findings.map((finding) => finding.code)).toContain(
+        "catalog-artifact-missing",
+      );
+      expect(projection.findings.map((finding) => finding.code)).toContain("reviewed-digest-stale");
+      expect(
+        analyzeRelationImpact({
+          changedPaths: ["docs/design/design-catalog.yaml"],
+          projection,
+        }).ok,
+      ).toBe(false);
+
+      rmSync(join(root, "src", "lint", "l3-progression-reviewed-digests.ts"));
+      const missingDigestProjection = collectRelationGraphProjection(
+        loadRelationGraphSourceSet(root),
+      );
+      expect(missingDigestProjection.findings.map((finding) => finding.code)).toContain(
+        "reviewed-digest-missing",
+      );
+
+      writeFileSync(join(root, "docs", "design", "unregistered.md"), "# 未登録設計\n", "utf8");
+      const unregisteredProjection = collectRelationGraphProjection(
+        loadRelationGraphSourceSet(root),
+      );
+      expect(unregisteredProjection.findings.map((finding) => finding.code)).toContain(
+        "catalog-unregistered-artifact",
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("is fail-open on an empty repo root (no throw, empty source set)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-graph-loader-empty-"));
     try {
@@ -439,6 +650,16 @@ describe("relation graph real-repo loader (PLAN-L7-142 stale-edge fence)", () =>
     const staleEdges = result.findings.filter((f) => f.code === "stale-edge");
     // failure surfaces the dangling "from -[kind]-> to" edges directly.
     expect(staleEdges.map((f) => f.message)).toEqual([]);
+    expect(
+      projection.findings.filter((finding) =>
+        [
+          "catalog-artifact-missing",
+          "catalog-unregistered-artifact",
+          "reviewed-digest-missing",
+          "reviewed-digest-stale",
+        ].includes(finding.code),
+      ),
+    ).toEqual([]);
     expect((sourceSet.plans ?? []).flatMap((plan) => plan.generates ?? [])).not.toContain(
       "src/handover/index.ts",
     );
