@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1374: agent/command taxonomyのcurrent authority収束（�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: pending
 created: 2026-09-10
@@ -76,7 +76,28 @@ modifies:
   - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T22:38:55Z"
+    tests_green_at: "2026-09-09T22:33:43Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 830b670231c9ecff3432e2c7bcbdf94c4bea7606
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1700#issuecomment-5609705172"
+    ci_evidence_generation: "run:34410353410:attempt:1:success"
+    scope: "Issue #1374第一sliceの対象6文書、current L1-L12 authority、Requirement/NFR policy参照、review・merge・release・deployment・runtime admission分離、およびdeterministic pin追従をexact HEADで独立検収した。Issue #1374全体や後続surfaceの完了は主張しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/layer-authority-drift.test.ts tests/specialist-agent-registry.test.ts tests/feedback-test-owner-residual-disposition.test.ts tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts --reporter=json --outputFile=.helix/evidence/review-1700/vitest-targeted-830.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T22:33:43Z"
+        evidence_path: docs/governance/evidence/PR-1700/vitest-targeted-830.json
+        output_digest: "sha256:9df69c88b62bc8caed9dc893412b71194f337535e5b2c714ae843b4e28ca4ebb"
 ---
 
 # agent/command taxonomyのcurrent authority収束（第一slice）
