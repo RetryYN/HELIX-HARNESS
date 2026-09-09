@@ -69,6 +69,9 @@ compatibility／archive／migration pathを拒否する。
 
 ## 2. invariant
 
+- refinementのnamespaceは大文字英字を少なくとも1字含む英数字とし、先頭の数字を許す。
+  承認済み`3L-FR-001`／`3L-R-01`／`3L-AC-001`を改名せず扱う。空segment、
+  数字だけのnamespace、不正文字、末尾改行を拒否し、runtimeとJSON schemaの構文を一致させる。
 - baseline shard 4件のbytes、count、digestは旧snapshotと一致する。
 - refinement contract keyと`refinement_contract_id`は一致し、全IDはroot全体で一意である。
 - primary／related ownerはbaseline system contractに実在し、primaryはrelatedへ重複しない。
@@ -76,6 +79,12 @@ compatibility／archive／migration pathを拒否する。
   `contract_requirement.requirement_id=refinement_contract_id`を必須とし、supporting 0件を許す。
 - acceptanceのrequirement参照はcontract自身＋supporting exact set内で、全R／ACの未被覆・重複は0である。
 - source bytesのsha256、record semantic digest、manifest shard/root digestを全て再現できる。
+- source中の表形式の行はheader・separator・dataのいずれかへ収載する。空行または列数不一致で
+  脱落した行は、IRに同IDが未列挙でも拒否する。コードfenceの例示行は除外し、空行を跨いだ
+  推測結合はしない。正規headerとseparatorを持つ別表は独立に受理する。
+- escaped pipeはcell内の原文として保持し、escapeされていないpipeのみをdelimiterとする。
+- 未収載行はsourceDiagnosticsへrepo-relative path・1始まりの元行番号・failure codeを返し、
+  authority gateも同じ位置を報告する。成功時の既存result形状は維持する。
 - requirementはlegacy H4、ATX section、header-role table、ID-led bullet、acceptanceはlegacy 5列または
   header-role tableのtyped projectionで、見出しlevelや列順を意味変更せずID、本文、edge、polarityとして再現する。
   projection modeはexact enumとし、列位置推測、余剰列破棄、family専用parserを追加しない。
@@ -94,6 +103,7 @@ compatibility／archive／migration pathを拒否する。
 | `REFINEMENT_BASELINE_DRIFT` | baseline bytes／count／digestが変化 |
 | `REFINEMENT_SOURCE_STALE` | L3/L10 source digestが不一致 |
 | `REFINEMENT_SOURCE_PROJECTION_DRIFT` | R／ACのID、本文、edge、polarityがsource projectionと不一致 |
+| `REFINEMENT_TABLE_ROW_UNBOUND` | sourceに表形式の行が残るが、どの表のheader／separator／dataにも収載されない |
 | `REFINEMENT_OWNER_ORPHAN` | HIL ownerがbaselineに無い |
 | `REFINEMENT_TRACE_INCOMPLETE` | R／ACの欠落、重複、未被覆 |
 | `REFINEMENT_DOWNSTREAM_INCOMPLETE` | AC ownerの欠落／重複、implementation Issue不一致、terminal parent不在 |
@@ -103,6 +113,9 @@ compatibility／archive／migration pathを拒否する。
 | `REFINEMENT_DUPLICATE_ID` | root内でIDが重複 |
 
 ## 4. mutation検証契約
+
+`U-TLIR-001`は承認済み3L識別子と不正識別子をruntime／JSON schemaの双方で照合する。
+`U-TLIR-002`は数字開始IDの範囲参照を展開し、source側だけの範囲拡張をprojection driftとして拒否する。
 
 owner存在検査、source digest比較、approval revision比較、R→AC全被覆、baseline digest比較をそれぞれ除去した
 mutantは独立fixtureでRedになる。`toContain()`による文言確認だけを到達証拠にしない。
@@ -129,7 +142,7 @@ mutantは独立fixtureでRedになる。`toContain()`による文言確認だけ
       "artifact_path": "src/requirements/requirement-refinement-authority.ts",
       "resource_kind": "typescript_export",
       "resource_name": "validateRequirementRefinement",
-      "source_digest": "sha256:d7ce8f07137318c51d544fa2fde06cf1283f5541c7c36098cb22a88214c2b8c8",
+      "source_digest": "sha256:e24a8013a4e5081f53723bbbc12447e398216cfb2bb7f5773059f9442a3098c8",
       "current_authority": true
     }
   ],

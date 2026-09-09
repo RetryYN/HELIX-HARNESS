@@ -68,7 +68,9 @@ items:
       - docs/design/harness/L1-requirements/functional-requirements.md
       - docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md
       - docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md
+      - docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
       - docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
+      - docs/design/helix/L1-requirements/bugbot-generation-requests.md
   - id: requirement-spec
     name: 要件定義書
     category: req
@@ -107,7 +109,9 @@ items:
       - docs/design/helix/L3-requirements/worker-context-boundary-compiler.md
       - docs/design/helix/L3-requirements/windows-lite-canary-admission-requirements.md
       - docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md
+      - docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
       - docs/design/helix/L3-requirements/skill-mechanism-migration-requirements.md
+      - docs/design/helix/L3-requirements/bugbot-generation-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -141,6 +145,7 @@ items:
     artifact:
       - docs/design/harness/L5-detailed-design/internal-processing.md
       - docs/design/helix/L6-function-design/review-evidence-supersession-structure.md
+      - docs/design/helix/L6-function-design/pin-chain-derivation.md
       - docs/design/helix/L5-detail/design-template-json-authority.md
       - docs/design/helix/L5-detail/requirement-refinement-authority.md
       - docs/design/helix/L5-detail/work-graph-receipt-acceptance.md
@@ -169,6 +174,7 @@ items:
       - docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md
       - docs/design/helix/L6-function-design/github-workflow-identity-contract.md
       - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
+      - docs/design/helix/L6-function-design/github-ci-status-head-binding.md
       - docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md
       - docs/design/helix/L6-function-design/plan-entry-canonical-signal-authority.md
       - docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md
@@ -200,6 +206,7 @@ items:
       - docs/design/helix/L6-function-design/proposal-lane-effort-binding.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md
       - docs/design/helix/L6-function-design/project-hook-authority-resolver.md
+      - docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md
       - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md
       - docs/design/helix/L6-function-design/claude-native-memory-isolation.md
@@ -369,6 +376,7 @@ items:
       - docs/test-design/helix/L8-proposal-lane-effort-binding-unit-test-design.md
       - docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md
+      - docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-identity-validation-unit-test-design.md
       - docs/test-design/helix/L8-l3-human-approval-gate-unit-test-design.md
@@ -384,8 +392,12 @@ items:
       - docs/test-design/helix/windows-lite-canary-admission-acceptance.md
       - docs/test-design/helix/resident-lane-orchestration-acceptance.md
       - docs/test-design/helix/resident-lane-orchestration-recognition.md
+      - docs/test-design/helix/three-lane-cloud-governance-acceptance.md
+      - docs/test-design/helix/three-lane-cloud-governance-recognition.md
       - docs/test-design/helix/skill-mechanism-migration-acceptance.md
       - docs/test-design/helix/skill-mechanism-migration-recognition.md
+      - docs/test-design/helix/bugbot-generation-acceptance.md
+      - docs/test-design/helix/bugbot-generation-recognition.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md
@@ -508,6 +520,7 @@ items:
     status: done
     artifact:
       - CLAUDE.md
+      - docs/design/helix/L6-function-design/commitlint-pre-push.md
       - src/lint/coding-rules.ts
   - id: batch-design
     name: バッチ設計書

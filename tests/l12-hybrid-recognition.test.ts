@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   classifyFinalRecognitionDisposition,
@@ -9,6 +11,7 @@ import {
 } from "../src/lint/l12-hybrid-recognition";
 import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe-v2";
 
+// PLAN-RECOVERY-1404-confirmed-design-active-bun-command — active Bun command removal and reviewed-safe pin convergence.
 // PLAN-REVERSE-567-current-runtime-guidance / PLAN-REVERSE-568-issue-template-label-typed-authority — broad scanner count projection after current guidance updates.
 
 // PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-007
@@ -18,6 +21,35 @@ import { REVIEWED_SAFE_DISPOSITIONS } from "../src/lint/l12-hybrid-reviewed-safe
 // PLAN-L7-489-requirement-generated-view-projection
 // Current workflow fields are covered by AUTH-SURFACE-DESIGN-001; this scanner only owns legacy-risk signals.
 describe("L12/hybrid recognition-risk scanner", () => {
+  it("PLAN-L3-1639-bugbot-generation: 正規sourceの誤検出はexact bytes限定で、内容変更・別pathへ流用しない", () => {
+    const path = "docs/plans/PLAN-L3-1639-bugbot-generation.md";
+    const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
+    expect(candidate).toBeDefined();
+    if (!candidate) throw new Error(`Missing candidate: ${path}`);
+    expect(candidate.contentDigest).toBe(
+      "a5cfb869aba3c0e2c3eaa5e0c07f7aa564b50bd1c2d188e3beb5ffbe168086cd",
+    );
+    expect(candidate.documentStatus).toBe("confirmed");
+    expect(new Set(candidate.signals.map((signal) => signal.id))).toEqual(
+      new Set(["legacy_pair_l3_l12"]),
+    );
+    expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
+
+    const changedBody = `${readFileSync(path, "utf8")}\ncurrent required pair L3 -> L12\n`;
+    const changedDigest = createHash("sha256").update(changedBody).digest("hex");
+    expect(changedDigest).not.toBe(candidate.contentDigest);
+    expect(
+      classifyFinalRecognitionDisposition({
+        ...candidate,
+        contentDigest: changedDigest,
+        signals: detectL12HybridRecognitionSignals(changedBody),
+      }),
+    ).toBe("needs_manual_review");
+    expect(
+      classifyFinalRecognitionDisposition({ ...candidate, path: "docs/plans/PLAN-NEW-pair.md" }),
+    ).toBe("conflict");
+  });
+
   it("PLAN-L3-1594-skill-mechanism-migration: canonical source列挙の誤検出は内容変更で失効する", () => {
     const path = "docs/plans/PLAN-L3-1594-skill-mechanism-migration.md";
     const candidate = scanL12HybridRecognitionCandidates().find((entry) => entry.path === path);
@@ -38,7 +70,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(candidate).toBeDefined();
     if (!candidate) throw new Error(`Missing candidate: ${path}`);
     expect(candidate.contentDigest).toBe(
-      "f3d465e2577167c13deaedca527a497da8d5c6d84a790b0c6b8c8e94f5de7902",
+      "5141495cbab1a5cd6394d011b77972807e9bff695c0b7d81aa632bf988a9f8f6",
     );
     expect(classifyFinalRecognitionDisposition(candidate)).toBe("false_positive");
     expect(
@@ -141,7 +173,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(613);
+    expect(plans).toHaveLength(616);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -183,7 +215,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(511);
+    ).toHaveLength(514);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -202,18 +234,22 @@ describe("L12/hybrid recognition-risk scanner", () => {
     );
   });
 
-  it("assigns exactly one reviewed final disposition to all 869 candidates", () => {
+  // PLAN-L3-1639: canonical source併記の候補1件だけを追加する。
+  // PLAN-RECOVERY-1404は新規PLAN候補1件としてconflictへ明示加算する。
+  // function-spec.md は docs/design/harness family の独立再分類を待って conflict のまま残す。
+  // PLAN-RECOVERY-1677追加によりplan_review conflictが1件増える。
+  it("assigns exactly one reviewed final disposition to all 872 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(869);
+    expect(candidates).toHaveLength(872);
     expect(counts).toEqual({
-      conflict: 336,
+      conflict: 338,
       compatibility_labeled: 24,
-      false_positive: 491,
+      false_positive: 492,
       historical: 18,
     });
   });
@@ -275,7 +311,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(533);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(534);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -302,8 +338,8 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 176,
-        false_positive: 436,
+        conflict: 178,
+        false_positive: 437,
       },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));

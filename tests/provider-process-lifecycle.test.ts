@@ -6,6 +6,7 @@ import { pathToFileURL } from "node:url";
 import { afterEach, describe, expect, it } from "vitest";
 import {
   assertProviderProcessLifecycleSupported,
+  classifyProviderProcessTerminal,
   type ProviderProcessLaunch,
   type ProviderProcessLifecycleOutcome,
   runBudgetedProviderProcess,
@@ -127,6 +128,42 @@ async function measured(
 }
 
 describe.skipIf(process.platform === "win32")("provider process budget lifecycle", () => {
+  it("U-WBL-015: exit 0でもtimeout・残存tree・中断・未reapを成功へ昇格しない", () => {
+    const success = {
+      status: 0,
+      timed_out: false,
+      tree_lingered: false,
+      interrupted_by: null,
+      reaped: true,
+      error: undefined,
+    } as const;
+    expect(classifyProviderProcessTerminal(success)).toEqual({ ok: true, failure: null });
+    expect(classifyProviderProcessTerminal({ ...success, timed_out: true })).toEqual({
+      ok: false,
+      failure: "timed_out",
+    });
+    expect(classifyProviderProcessTerminal({ ...success, tree_lingered: true })).toEqual({
+      ok: false,
+      failure: "tree_lingered",
+    });
+    expect(classifyProviderProcessTerminal({ ...success, interrupted_by: "SIGINT" })).toEqual({
+      ok: false,
+      failure: "interrupted",
+    });
+    expect(classifyProviderProcessTerminal({ ...success, reaped: false })).toEqual({
+      ok: false,
+      failure: "not_reaped",
+    });
+    expect(classifyProviderProcessTerminal({ ...success, error: new Error("spawn") })).toEqual({
+      ok: false,
+      failure: "spawn_failed",
+    });
+    expect(classifyProviderProcessTerminal({ ...success, status: 2 })).toEqual({
+      ok: false,
+      failure: "exit_nonzero",
+    });
+  });
+
   it("U-WBL-001: deadline前の正常終了はstatus、出力、reap結果を保持する", async () => {
     const outcome = await runBudgetedProviderProcess({
       ...baseLaunch(1_000),

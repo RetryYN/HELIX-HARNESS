@@ -4,15 +4,22 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  evaluateReviewEvidenceReceiptJoin,
   evaluateReviewReceiptPlanBinding,
+  hasTerminalPlanPromotion,
   loadChangedPlanReviewBindings,
   type ReviewReceiptPlanBindingInput,
+  type SealedReviewReceiptBinding,
 } from "../src/runtime/review-receipt-plan-binding";
 
 // PLAN-RECOVERY-1603-review-receipt-plan-binding
+// PLAN-RECOVERY-1627-review-request-changes-fail-close / U-RRCF-001
 
 const SESSION = "9867601a-a3ad-4369-980c-11757d63a7de";
 const MODEL = "claude:claude-fable-5-1";
+const REVIEW_HEAD = "a".repeat(40);
+const RECEIPT_URL = "https://github.com/RetryYN/HELIX-HARNESS/pull/1628#issuecomment-5570000000";
+const CI_GENERATION = "run:34100000000:attempt:1:success";
 
 function input(
   overrides: Partial<ReviewReceiptPlanBindingInput> = {},
@@ -211,7 +218,144 @@ describe("review receipt / PLAN binding", () => {
       { parse_failure: true, status: "unknown" },
     ]);
   });
+
+  it("U-RRCF-004: 未commitのdraftでcandidateのterminal昇格を隠せない", () => {
+    const root = createGitFixture();
+    mkdirSync(join(root, "docs/plans"), { recursive: true });
+    const path = join(root, "docs/plans/x.md");
+    writeFileSync(path, planSource("PLAN-X", "draft"));
+    commitAll(root, "add draft plan");
+    writeFileSync(path, planSource("PLAN-X", "confirmed"));
+    commitAll(root, "promote plan");
+    writeFileSync(path, planSource("PLAN-X", "draft"));
+    const plans = loadChangedPlanReviewBindings(root, "HEAD~1");
+    expect(plans).toMatchObject([{ status: "confirmed", base_status: "draft" }]);
+    expect(hasTerminalPlanPromotion(plans)).toBe(true);
+  });
+
+  it("U-RRCF-001: draft修正とterminal昇格を分離する", () => {
+    const base = input().changed_plans[0];
+    const unavailable = [{ ...base, status: "unknown", parse_failure: true }];
+    expect(hasTerminalPlanPromotion(unavailable)).toBe(true);
+    expect(
+      evaluateReviewEvidenceReceiptJoin({ changed_plans: unavailable, receipts: [] }),
+    ).toMatchObject({
+      ok: false,
+      failures: [{ reason: "review_plan_binding_unavailable" }],
+    });
+    expect(hasTerminalPlanPromotion([{ ...base, status: "draft", base_status: "draft" }])).toBe(
+      false,
+    );
+    expect(hasTerminalPlanPromotion([{ ...base, status: "confirmed", base_status: "draft" }])).toBe(
+      true,
+    );
+    expect(
+      hasTerminalPlanPromotion([{ ...base, status: "confirmed", base_status: "confirmed" }]),
+    ).toBe(false);
+  });
+
+  it("U-RRCF-002: PLANの引用receiptをsession／model／HEAD／verdict／CI世代へexact joinする", () => {
+    const changed = exactJoinPlan();
+    const receipt = sealedReceipt();
+    expect(
+      evaluateReviewEvidenceReceiptJoin({ changed_plans: [changed], receipts: [receipt] }),
+    ).toEqual({ ok: true, failures: [] });
+
+    const mutations: Array<[Partial<(typeof changed.review_entries)[number]>, string]> = [
+      [{ receipt_url: `${RECEIPT_URL}-other` }, "review_plan_receipt_missing"],
+      [{ reviewer_session_id: "author-spawn-session" }, "review_plan_session_mismatch"],
+      [{ reviewer_model: "claude:claude-opus-5" }, "review_plan_model_mismatch"],
+      [{ reviewed_head_sha: "b".repeat(40) }, "review_plan_head_mismatch"],
+      [
+        { ci_evidence_generation: "run:34100000001:attempt:1:success" },
+        "review_plan_ci_generation_mismatch",
+      ],
+    ];
+    for (const [entryMutation, reason] of mutations) {
+      const mutated = {
+        ...changed,
+        review_entries: [{ ...changed.review_entries[0], ...entryMutation }],
+      };
+      expect(
+        evaluateReviewEvidenceReceiptJoin({ changed_plans: [mutated], receipts: [receipt] }),
+      ).toMatchObject({ ok: false, failures: [{ reason }] });
+      // 正しい一件が併記されても、不正な承認記録を相殺しない。順序にも依存しない。
+      for (const entries of [
+        [...changed.review_entries, ...mutated.review_entries],
+        [...mutated.review_entries, ...changed.review_entries],
+      ]) {
+        expect(
+          evaluateReviewEvidenceReceiptJoin({
+            changed_plans: [{ ...changed, review_entries: entries }],
+            receipts: [receipt],
+          }),
+        ).toMatchObject({ ok: false, failures: [{ reason }] });
+      }
+    }
+    expect(
+      evaluateReviewEvidenceReceiptJoin({
+        changed_plans: [changed],
+        receipts: [{ ...receipt, verdict: "block" }],
+      }),
+    ).toMatchObject({ ok: false, failures: [{ reason: "review_plan_verdict_mismatch" }] });
+  });
+
+  it("U-RRCF-003: receipt locatorまたはCI世代の自己申告欠落をfail-closeする", () => {
+    const changed = exactJoinPlan();
+    expect(
+      evaluateReviewEvidenceReceiptJoin({
+        changed_plans: [
+          {
+            ...changed,
+            review_entries: [{ ...changed.review_entries[0], receipt_url: undefined }],
+          },
+        ],
+        receipts: [sealedReceipt()],
+      }),
+    ).toMatchObject({ ok: false, failures: [{ reason: "review_plan_receipt_locator_missing" }] });
+    expect(
+      evaluateReviewEvidenceReceiptJoin({
+        changed_plans: [
+          {
+            ...changed,
+            review_entries: [{ ...changed.review_entries[0], ci_evidence_generation: undefined }],
+          },
+        ],
+        receipts: [sealedReceipt()],
+      }),
+    ).toMatchObject({ ok: false, failures: [{ reason: "review_plan_ci_generation_mismatch" }] });
+  });
 });
+
+function exactJoinPlan(): ReviewReceiptPlanBindingInput["changed_plans"][number] {
+  return {
+    plan_id: "PLAN-RECOVERY-1628",
+    status: "confirmed",
+    base_status: "draft",
+    review_entries: [
+      {
+        review_kind: "cross_agent",
+        verdict: "approve",
+        reviewer_session_id: SESSION,
+        reviewer_model: MODEL,
+        reviewed_head_sha: REVIEW_HEAD,
+        receipt_url: RECEIPT_URL,
+        ci_evidence_generation: CI_GENERATION,
+      },
+    ],
+  };
+}
+
+function sealedReceipt(): SealedReviewReceiptBinding {
+  return {
+    comment_url: RECEIPT_URL,
+    reviewer_session_id: SESSION,
+    reviewer_model: MODEL,
+    reviewed_head_sha: REVIEW_HEAD,
+    verdict: "approve",
+    ci_evidence_generation: CI_GENERATION,
+  };
+}
 
 function planSource(planId: string, status: string): string {
   return `---\nplan_id: ${planId}\nstatus: ${status}\nreview_evidence: []\n---\n`;

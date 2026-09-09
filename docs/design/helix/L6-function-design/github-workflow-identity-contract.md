@@ -32,6 +32,8 @@ IssueとPRが同じmarker付きJSON contractで宣言した`registry_version`、
   ambiguity、identity矛盾を別reasonで閉じる。proseや`po_directive`本文からsignalを抽出しない。
 - `U-GWID-005`: IssueとPRのauthority tupleまたはidentityが異なる場合、同一episodeとして受理しない。
 - `U-GWID-006`: L6/L8 pairをdesign catalogとG3 freeze digestへ伝播する。
+- `U-GWID-007`: signal identity不一致時も拒否を維持し、宣言target、解決target、current registryが許すsignalを診断する。
+- `U-GWID-008`: marker欠落時も拒否を維持し、marker付きstrict JSONの受理形を診断する。
 
 ## Marker
 

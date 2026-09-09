@@ -497,7 +497,7 @@ export function classifySensitiveObservationField(key: string): string | null {
         segments.includes(form) ||
         collapsed === form ||
         numericSuffix.test(collapsed) ||
-        (collapsed.endsWith(form) && collapsed !== `tokenizer`)
+        collapsed.endsWith(form)
       ) {
         return rule.family;
       }

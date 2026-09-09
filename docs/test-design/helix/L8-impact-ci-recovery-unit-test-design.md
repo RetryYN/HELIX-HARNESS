@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-08-01
-updated: 2026-09-04
+updated: 2026-09-08
 owner: QA
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 pair_artifact: docs/design/helix/L6-function-design/impact-ci-recovery.md
@@ -47,7 +47,8 @@ queue_id: L3Q-PC-039
 | U-FULLSHARD-CLI-003 | validator redをtyped JSONとexit 1へ写像する | receipt欠落をsuccess exitへ変換しない |
 | U-FULLSHARD-CLI-004 | output digest／exit code／時刻入力を境界検査する | malformed digest、負／非整数exit、invalid timeを拒否 |
 | U-FULLSHARD-WF-001 | preflight、4 shard、finalizeをtyped artifactと同一HEAD／baseへ接続し、checkout refはPR headまたはtrusted `github.sha`へ限定 | job／artifact／identity／required aggregateの欠落、schedule／workflow_dispatchでneeds由来candidate HEADをcheckoutする経路を拒否 |
-| U-FULLSHARD-WF-002 | receipt exact set検証後だけDB／Biome／doctorを実行 | receipt欠落、wrong partition、fail-open、gate順序短絡を拒否 |
+| U-FULLSHARD-WF-002 | receipt exact set検証後だけDB／doctorを実行 | receipt欠落、wrong partition、fail-open、gate順序短絡を拒否 |
+| U-BIOMEFAST-001 | Biomeをpreflightの依存導入直後かつshard plan生成前に一回実行 | finalizeへ戻す、preflightから除く、shard plan生成後へ移す、他jobへ複製、command差替え、条件付きskip、continue-on-errorを拒否 |
 | U-FULLSHARD-WF-003 | preflight 35分、bulk各25分、stateful 30分、finalize 15分のbounded job timeoutとbudget telemetryを固定 | shard timeout、telemetry、timeout検査の削除、job単位の無制限化を拒否 |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLIはcontext injection assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、routing semantics変更を拒否 |
@@ -112,6 +113,7 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-FULLSHARD-CLI-004 | CLI boundary | digest、exit code、時刻の不正値を拒否する | `tests/full-regression-shards-cli.test.ts` |
 | U-FULLSHARD-WF-001 | workflow DAG | 独立4 shard job、artifact、HEAD／base、required aggregateを検査 | `tests/harness-check-workflow.test.ts` |
 | U-FULLSHARD-WF-002 | workflow finalize | receipt exact setとpost-test gate順序を検査 | `tests/harness-check-workflow.test.ts` |
+| U-BIOMEFAST-001 | workflow preflight | 既存lintの早期実行・単一実行と、finalize逆戻し／preflight除去／shard後移動を含む退行を検査 | `tests/harness-check-workflow.test.ts` |
 | U-FULLSHARD-WF-003 | workflow timeout | preflight／4 shard／finalizeのbounded timeoutとbudget telemetryを検査し、bulk 25→26 mutationを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLI bounded deadline | provider-neutral manifest assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLI bounded deadline | context injection assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |

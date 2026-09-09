@@ -44,6 +44,7 @@ import {
   releaseAutomationDecisionInputSchema,
 } from "./audit/enforcement-route-input";
 import {
+  githubCiStatusExitCode,
   loadGithubCiStatus,
   loadGithubMergeReadiness,
   loadGithubPrBodyDraft,
@@ -141,6 +142,7 @@ import {
   workflowNextActionsForOutstanding,
 } from "./lint/outstanding";
 import { inspectOutstandingSnapshot, writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
+import { derivePinChain } from "./lint/pin-chain-derivation";
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
@@ -287,12 +289,14 @@ import {
   findReviewReceiptCommentPayload,
   ghEvidenceRunner,
   loadClaudePrReviewReceipt,
+  parseClaudeIndependentPrReviewComment,
   parseClaudePrCiEvidenceGeneration,
   persistClaudePrReviewReceipt,
   persistClaudePrReviewReceiptCorrection,
   renderIndependentPrReviewComment,
   resolveReviewReceiptCommentSealIntent,
   reviewedMergeArgs,
+  unresolvedClaudePrBlockReceipts,
   withClaudePrReviewReceiptSlotClaim,
 } from "./runtime/claude-pr-convergence";
 import {
@@ -350,7 +354,10 @@ import {
   evaluateReviewedMergeReadAfter,
   persistReviewedMergeReadAfterReceipt,
 } from "./runtime/github-cross-review-admission";
-import { selectLatestSuccessfulReviewCiGeneration } from "./runtime/github-review-ci-generation";
+import {
+  selectLatestSuccessfulReviewCiGeneration,
+  selectLatestTerminalReviewCiGeneration,
+} from "./runtime/github-review-ci-generation";
 import { commitOverrideUse } from "./runtime/guard-override-transaction";
 import {
   buildHarnessTaxonomyCurationReport,
@@ -394,12 +401,26 @@ import {
   type CandidateVerifierInput,
 } from "./runtime/parallel-candidate-verifier-council";
 import {
+  admitProjectHookAuthorityDispatch,
+  buildProjectHookAuthorityConsumerWiring,
+  consumeProjectHookAuthoritySurface,
+  type ProjectHookAuthorityConsumerWiring,
+} from "./runtime/project-hook-authority-consumer";
+import {
+  observeNodeProjectHookHostFromTransport,
+  projectStandaloneProjectHookAuthoritySurface,
+} from "./runtime/project-hook-authority-envelope";
+import { nodeProjectHookPhysicalAdapterDeps } from "./runtime/project-hook-physical-adapter";
+import {
   nodeProviderHandoverDeps,
   type ProviderRuntime,
   readProviderHandoverCurrent,
   runProviderHandover,
 } from "./runtime/provider-handover";
-import { runBudgetedProviderProcess } from "./runtime/provider-process-lifecycle";
+import {
+  classifyProviderProcessTerminal,
+  runBudgetedProviderProcess,
+} from "./runtime/provider-process-lifecycle";
 import {
   buildReviewFeedbackSessionIntakeReport,
   type ReviewFeedbackEventInput,
@@ -412,7 +433,9 @@ import {
   summarizeStagedReview,
 } from "./runtime/review-guard";
 import {
+  evaluateReviewEvidenceReceiptJoin,
   evaluateReviewReceiptPlanBinding,
+  hasTerminalPlanPromotion,
   loadChangedPlanReviewBindings,
 } from "./runtime/review-receipt-plan-binding";
 import {
@@ -833,7 +856,7 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
 }
 
 function readClosureEvidenceProbeExecution(path: string | undefined) {
-  if (!path) return null;
+  if (path === undefined) return null;
   const payload = JSON.parse(readFileSync(path, "utf8")) as {
     execution?: unknown;
   };
@@ -1220,6 +1243,94 @@ function readHookInput(defaultEvent: string, sessionId?: string): SessionHookInp
     hook_event_name: parsed.hook_event_name ?? defaultEvent,
     session_id: sessionId ?? parsed.session_id ?? "helix-cli",
   };
+}
+
+type ProjectHookAuthorityCliInput =
+  | {
+      kind: "standalone";
+      bytes: string;
+    }
+  | { kind: "transport"; wiring: ProjectHookAuthorityConsumerWiring };
+
+function readProjectHookAuthorityEnvelopeFile(
+  path: string | undefined,
+): unknown | null | undefined {
+  if (!path) return null;
+  try {
+    const parsed = JSON.parse(readFileSync(path, "utf8")) as unknown;
+    return parsed === null ? undefined : parsed;
+  } catch {
+    // 明示されたtransport fileのread/parse失敗はinvalid envelopeへ閉じる。cwd/env/default fileへ
+    // fallbackしてauthorityを作らない。
+    return undefined;
+  }
+}
+
+function buildProjectHookAuthorityConsumerFromTransport(
+  rawEnvelope: unknown,
+): ProjectHookAuthorityConsumerWiring {
+  const observedHost = observeNodeProjectHookHostFromTransport(rawEnvelope);
+  // schema failureはphysical capture前に確定するため、ここはobserved authorityの補完ではない。
+  // invalid transportに対してのみ使用する不成立hostであり、成功resolutionへ到達しない。
+  const host = observedHost ?? {
+    execution_root: "",
+    loader_root: "",
+    session_project_root: "",
+    current_authority_root: "",
+    captured_at: new Date().toISOString(),
+  };
+  return buildProjectHookAuthorityConsumerWiring({
+    raw_envelope: rawEnvelope,
+    host,
+    transport_deps: { physical: nodeProjectHookPhysicalAdapterDeps },
+  });
+}
+
+function loadProjectHookAuthorityCliInput(
+  envelopeFile: string | undefined,
+  transportEnvelope: unknown = undefined,
+): ProjectHookAuthorityCliInput {
+  const rawEnvelope =
+    transportEnvelope !== undefined
+      ? transportEnvelope
+      : readProjectHookAuthorityEnvelopeFile(envelopeFile);
+  if (rawEnvelope === null) {
+    return {
+      kind: "standalone",
+      bytes: JSON.stringify(projectStandaloneProjectHookAuthoritySurface()),
+    };
+  }
+  return { kind: "transport", wiring: buildProjectHookAuthorityConsumerFromTransport(rawEnvelope) };
+}
+
+function projectHookAuthoritySurfaceBytes(
+  input: ProjectHookAuthorityCliInput,
+  surface: "session_start" | "doctor" | "status" | "dispatch",
+): string | null {
+  return input.kind === "transport"
+    ? consumeProjectHookAuthoritySurface(input.wiring, surface)
+    : null;
+}
+
+function projectHookAuthoritySurfaceProjection(
+  input: ProjectHookAuthorityCliInput,
+  surface: "session_start" | "doctor" | "status" | "dispatch",
+) {
+  if (input.kind === "transport") return projectHookAuthoritySurfaceBytes(input, surface);
+  return input.bytes;
+}
+
+function admitExplicitProjectHookAuthority(envelopeFile: string | undefined) {
+  if (envelopeFile === undefined) return { allowed: true, reason: "not_configured", bytes: null };
+  const authority = loadProjectHookAuthorityCliInput(envelopeFile);
+  if (authority.kind !== "transport") {
+    return {
+      allowed: false,
+      reason: "project_hook_authority_not_admitted",
+      bytes: authority.bytes,
+    };
+  }
+  return admitProjectHookAuthorityDispatch(authority.wiring);
 }
 
 function readStrictHookInput(): AgentGuardInput | null {
@@ -2019,8 +2130,19 @@ design
 program
   .command("status")
   .description("実行モード検出 (standalone / claude-only / codex-only / hybrid)")
+  .option(
+    "--project-hook-authority-envelope-file <path>",
+    "Control Plane project-hook authority transport envelope JSON (explicit source only)",
+  )
   .option("--json", "JSON で出力")
-  .action((opts: { json?: boolean }) => {
+  .action((opts: { projectHookAuthorityEnvelopeFile?: string; json?: boolean }) => {
+    const projectHookAuthority = loadProjectHookAuthorityCliInput(
+      opts.projectHookAuthorityEnvelopeFile,
+    );
+    const projectHookAuthorityBytes = projectHookAuthoritySurfaceProjection(
+      projectHookAuthority,
+      "status",
+    );
     const d = detectMode();
     const nextAction = nextActionForMode(d.mode);
     const runtimeNextAction = nextAction;
@@ -2046,11 +2168,14 @@ program
       // 既存 6 フィールド (camelCase 公開契約) に nextAction + outstanding を additive に付加する
       // (A-138 ITEM-1、PLAN-L7-84、IMP-139、taxonomy=current)。判断ゲートの進め方 + 未了量を提示。
       process.stdout.write(
-        `${JSON.stringify({ ...d, nextAction, runtimeNextAction, completionNextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, update, ...(objectiveProgress ? { objectiveProgress } : {}) }, null, 2)}\n`,
+        `${JSON.stringify({ ...d, nextAction, runtimeNextAction, completionNextAction, judgmentReview, workflowNextAction, workflowNextActions, outstanding, completionDecisionPacket, completionReviewBundle, update, ...(objectiveProgress ? { objectiveProgress } : {}), project_hook_authority: { mode: projectHookAuthority.kind, bytes: projectHookAuthorityBytes } }, null, 2)}\n`,
       );
     } else {
       process.stdout.write(
         `mode: ${d.mode}  (claude=${d.claude}, codex=${d.codex}, current=${d.currentRuntime ?? "-"})\n`,
+      );
+      process.stdout.write(
+        `project-hook-authority: mode=${projectHookAuthority.kind} surface=status bytes=${projectHookAuthorityBytes}\n`,
       );
       process.stdout.write(`runtime-next: ${runtimeNextAction}\n`);
       process.stdout.write(`completion-next: ${completionNextAction}\n`);
@@ -2312,6 +2437,10 @@ program
   .option("--scope <scope>", "doctor scope: full or toolchain", "full")
   .option("--setup-smoke", "run the consumer setup smoke subset instead of full product doctor")
   .option("--gate <id>", "run a single named doctor gate (design-language)")
+  .option(
+    "--project-hook-authority-envelope-file <path>",
+    "Control Plane project-hook authority transport envelope JSON (explicit source only)",
+  )
   .option("--timing", "include per-check timing in JSON and slow-check text summary")
   .option("--json", "JSON output")
   .option("--summary-json", "compact JSON output for review and view surfaces")
@@ -2325,10 +2454,18 @@ program
       scope?: string;
       setupSmoke?: boolean;
       gate?: string;
+      projectHookAuthorityEnvelopeFile?: string;
       timing?: boolean;
       json?: boolean;
       summaryJson?: boolean;
     }) => {
+      const projectHookAuthority = loadProjectHookAuthorityCliInput(
+        opts.projectHookAuthorityEnvelopeFile,
+      );
+      const projectHookAuthorityBytes = projectHookAuthoritySurfaceProjection(
+        projectHookAuthority,
+        "doctor",
+      );
       const doctorSummary = (report: {
         ok?: boolean;
         messages?: string[];
@@ -2364,6 +2501,10 @@ program
           write_policy: "read-only",
           source_command: "helix doctor --summary-json",
           full_source_command: "helix doctor --json",
+          project_hook_authority: {
+            mode: projectHookAuthority.kind,
+            bytes: projectHookAuthorityBytes,
+          },
         };
       };
       if (opts.scope !== undefined && opts.scope !== "full" && opts.scope !== "toolchain") {
@@ -2374,8 +2515,13 @@ program
         if (opts.summaryJson) {
           process.stdout.write(`${JSON.stringify(doctorSummary(r), null, 2)}\n`);
         } else if (opts.json) {
-          process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+          process.stdout.write(
+            `${JSON.stringify({ ...r, project_hook_authority: { mode: projectHookAuthority.kind, bytes: projectHookAuthorityBytes } }, null, 2)}\n`,
+          );
         } else {
+          process.stdout.write(
+            `project-hook-authority: mode=${projectHookAuthority.kind} surface=doctor bytes=${projectHookAuthorityBytes}\n`,
+          );
           for (const m of r.messages) process.stdout.write(`${m}\n`);
         }
         process.exitCode = 1;
@@ -2396,8 +2542,13 @@ program
               }
             : runDoctorGate(opts.gate, process.cwd());
         if (opts.json || opts.summaryJson) {
-          process.stdout.write(`${JSON.stringify(gate, null, 2)}\n`);
+          process.stdout.write(
+            `${JSON.stringify({ ...gate, project_hook_authority: { mode: projectHookAuthority.kind, bytes: projectHookAuthorityBytes } }, null, 2)}\n`,
+          );
         } else {
+          process.stdout.write(
+            `project-hook-authority: mode=${projectHookAuthority.kind} surface=doctor bytes=${projectHookAuthorityBytes}\n`,
+          );
           for (const m of gate.messages) process.stdout.write(`${m}\n`);
         }
         process.exitCode = gate.ok ? 0 : 1;
@@ -2422,10 +2573,15 @@ program
         return;
       }
       if (opts.json) {
-        process.stdout.write(`${JSON.stringify(r, null, 2)}\n`);
+        process.stdout.write(
+          `${JSON.stringify({ ...r, project_hook_authority: { mode: projectHookAuthority.kind, bytes: projectHookAuthorityBytes } }, null, 2)}\n`,
+        );
         process.exitCode = r.ok ? 0 : 1;
         return;
       }
+      process.stdout.write(
+        `project-hook-authority: mode=${projectHookAuthority.kind} surface=doctor bytes=${projectHookAuthorityBytes}\n`,
+      );
       for (const m of r.messages) process.stdout.write(`${m}\n`);
       if ("timings" in r && Array.isArray(r.timings) && r.timings.length > 0) {
         for (const timing of [...r.timings]
@@ -3203,14 +3359,29 @@ loop
   .requiredOption("--plan <id>", "PLAN id / loop state id")
   .option("--once", "run only one tick")
   .option("--dry-run", "print worker/verifier wiring without dispatching adapters")
+  .option(
+    "--project-hook-authority-envelope-file <path>",
+    "optional pre-activation Control Plane project-hook authority transport envelope JSON",
+  )
   .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .action(
     async (opts: {
       plan: string;
       once?: boolean;
       dryRun?: boolean;
+      projectHookAuthorityEnvelopeFile?: string;
       workerContextFile?: string;
     }) => {
+      const projectHookAdmission = opts.dryRun
+        ? null
+        : admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile);
+      if (projectHookAdmission && !projectHookAdmission.allowed) {
+        process.stderr.write(
+          `loop: project-hook authority dispatch blocked (${projectHookAdmission.reason}) bytes=${projectHookAdmission.bytes}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
       const repoRoot = process.cwd();
       const store = loopStoreForRoot(repoRoot);
       const state = store.read(opts.plan);
@@ -3264,6 +3435,10 @@ loop
         process.stdout.write("\n");
         return;
       }
+
+      process.stderr.write(
+        `project-hook-authority: surface=dispatch bytes=${projectHookAdmission?.bytes ?? null}\n`,
+      );
 
       let current: LoopState = { ...state, workerProvider };
       let ticks = 0;
@@ -3477,6 +3652,10 @@ pairAgent
   .option("--allow-frontier", "explicitly authorize T0 smart review agent execution")
   .option("--max-fix-cycles <n>", "maximum light implementation fix cycles")
   .option("--execute", "dispatch provider adapters; omitted means dry-run only")
+  .option(
+    "--project-hook-authority-envelope-file <path>",
+    "optional pre-activation Control Plane project-hook authority transport envelope JSON",
+  )
   .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--json", "JSON output")
@@ -3491,6 +3670,7 @@ pairAgent
       allowFrontier?: boolean;
       maxFixCycles?: string;
       execute?: boolean;
+      projectHookAuthorityEnvelopeFile?: string;
       workerContextFile?: string;
       mode?: ReturnType<typeof detectMode>["mode"];
       json?: boolean;
@@ -3524,6 +3704,16 @@ pairAgent
         process.exitCode = 1;
         return;
       }
+      const projectHookAdmission = opts.execute
+        ? admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile)
+        : null;
+      if (projectHookAdmission && !projectHookAdmission.allowed) {
+        process.stderr.write(
+          `pair-agent: project-hook authority dispatch blocked (${projectHookAdmission.reason}) bytes=${projectHookAdmission.bytes}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
       const base = detectMode();
       const detection = opts.mode ? { ...base, mode: opts.mode } : base;
       const plan = buildPairAgentTddPlan({
@@ -3545,6 +3735,10 @@ pairAgent
         );
         process.exitCode = 1;
         return;
+      }
+      let projectHookAuthorityDispatchBytes: string | null = null;
+      if (opts.execute) {
+        projectHookAuthorityDispatchBytes = projectHookAdmission?.bytes ?? null;
       }
       const result = await runPairAgentTddPlan({
         plan,
@@ -3573,7 +3767,7 @@ pairAgent
         : null;
       if (opts.json) {
         process.stdout.write(
-          `${JSON.stringify({ plan, result, evidence_path: evidencePath }, null, 2)}\n`,
+          `${JSON.stringify({ plan, result, evidence_path: evidencePath, ...(projectHookAuthorityDispatchBytes ? { project_hook_authority: { surface: "dispatch", bytes: projectHookAuthorityDispatchBytes } } : {}) }, null, 2)}\n`,
         );
       } else {
         process.stdout.write(
@@ -4382,6 +4576,26 @@ session
   .option("--session <id>", SESSION_OPTION_DESCRIPTION)
   .action((opts: { session?: string }) => {
     const input = readHookInput(HOOK_EVENT_SESSION_START, opts.session);
+    const projectHookAuthority = loadProjectHookAuthorityCliInput(
+      undefined,
+      input.project_hook_authority_transport_envelope,
+    );
+    const projectHookAuthorityBytes = projectHookAuthoritySurfaceProjection(
+      projectHookAuthority,
+      "session_start",
+    );
+    process.stdout.write(
+      `project-hook-authority: mode=${projectHookAuthority.kind} surface=session_start bytes=${projectHookAuthorityBytes}\n`,
+    );
+    if (projectHookAuthority.kind === "transport") {
+      const projectHookAuthorityAdmission = admitProjectHookAuthorityDispatch(
+        projectHookAuthority.wiring,
+      );
+      if (!projectHookAuthorityAdmission.allowed) {
+        process.exitCode = 1;
+        return;
+      }
+    }
     const repoRoot = process.cwd();
     const deps = nodeDeps(repoRoot, gitBranch, gitHead);
     // PLAN-L7-471: 安い・かつ失うと痛い順に実行する。hook が予算超過で kill されても
@@ -12220,6 +12434,10 @@ function runtimeCommand(provider: AdapterProvider): Command {
     .option("--task-file <path>", TASK_FILE_OPTION_DESCRIPTION)
     .option("--plan <id>", "PLAN id")
     .option("--execute", "execute provider CLI instead of dry-run")
+    .option(
+      "--project-hook-authority-envelope-file <path>",
+      "optional pre-activation Control Plane project-hook authority transport envelope JSON",
+    )
     .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
     .option("--json", "JSON output")
     .action(
@@ -12229,12 +12447,23 @@ function runtimeCommand(provider: AdapterProvider): Command {
         taskFile?: string;
         plan?: string;
         execute?: boolean;
+        projectHookAuthorityEnvelopeFile?: string;
         json?: boolean;
         workerContextFile?: string;
       }) => {
         const task = resolveTaskText(opts);
         if (!task) {
           process.stderr.write("adapter requires exactly one of --task or --task-file\n");
+          process.exitCode = 1;
+          return;
+        }
+        const dispatchAdmission = opts.execute
+          ? admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile)
+          : null;
+        if (dispatchAdmission && !dispatchAdmission.allowed) {
+          process.stderr.write(
+            `${provider}: project-hook authority dispatch blocked (${dispatchAdmission.reason}) bytes=${dispatchAdmission.bytes}\n`,
+          );
           process.exitCode = 1;
           return;
         }
@@ -12285,6 +12514,11 @@ function runtimeCommand(provider: AdapterProvider): Command {
           process.stdout.write(`${JSON.stringify(plan, null, 2)}\n`);
           return;
         }
+        if (dispatchAdmission?.bytes) {
+          process.stderr.write(
+            `project-hook-authority: surface=dispatch bytes=${dispatchAdmission.bytes}\n`,
+          );
+        }
         const jsonOut = Boolean(opts.json);
         const sessionId = `${provider}-${Date.now()}`;
         const repoRoot = process.cwd();
@@ -12327,11 +12561,12 @@ function runtimeCommand(provider: AdapterProvider): Command {
           stdout: jsonOut ? 2 : "inherit",
           stderr: "inherit",
         });
+        const terminal = classifyProviderProcessTerminal(child);
         if (child.error) {
           // spawn 自体の失敗 (ENOENT 等) は status=null のまま沈黙するため理由を surface する (A-128 F-5 / IMP-130(d))。
           process.stderr.write(`${provider}: failed to launch (${String(child.error)})\n`);
         }
-        if (guardActive && !child.error && (child.status ?? 1) === 0) {
+        if (guardActive && terminal.ok) {
           // consult role (CONSULT_RECEIPT_ROLES、現行 tl のみ) の委譲成功を consult receipt として
           // 記録する (Issue #587)。role 制限と task digest は recordConsultReceipt 側で担保 (B-1)。
           recordConsultReceipt(repoRoot, {
@@ -12358,7 +12593,7 @@ function runtimeCommand(provider: AdapterProvider): Command {
             ...(opts.plan ? { plan_id: opts.plan } : {}),
             tool_name: provider,
             tool_input: { command: `${plan.command} ${plan.args.join(" ")}` },
-            tool_response: { outcome: child.status === 0 ? "ok" : "error" },
+            tool_response: { outcome: terminal.ok ? "ok" : "error" },
           },
           deps,
           "PostToolUse",
@@ -12380,6 +12615,10 @@ function runtimeCommand(provider: AdapterProvider): Command {
               {
                 ...plan,
                 executed: true,
+                project_hook_authority: {
+                  surface: "dispatch",
+                  bytes: dispatchAdmission?.bytes ?? null,
+                },
                 exit_code: child.status ?? null,
                 signal: child.signal ?? null,
                 timed_out: child.timed_out,
@@ -12389,6 +12628,8 @@ function runtimeCommand(provider: AdapterProvider): Command {
                 termination_stage: child.termination_stage,
                 duration_ms: child.duration_ms,
                 reaped: child.reaped,
+                terminal_status: terminal.ok ? "success" : "failed",
+                terminal_failure: terminal.failure,
               },
               null,
               2,
@@ -12400,12 +12641,14 @@ function runtimeCommand(provider: AdapterProvider): Command {
           SIGINT: 130,
           SIGTERM: 143,
         };
-        process.exitCode =
-          (child.interrupted_by === null
-            ? undefined
-            : interruptedExitCodes[child.interrupted_by]) ??
-          child.status ??
-          1;
+        process.exitCode = terminal.ok
+          ? 0
+          : ((child.interrupted_by === null
+              ? undefined
+              : interruptedExitCodes[child.interrupted_by]) ??
+            (child.timed_out ? 124 : undefined) ??
+            (child.status === 0 ? 1 : child.status) ??
+            1);
       },
     );
 }
@@ -12758,6 +13001,10 @@ team
   .option("--mode <mode>", MODE_OVERRIDE_OPTION_DESCRIPTION)
   .option("--plan <id>", "PLAN id to attach to provider adapter metadata")
   .option("--execute", "execute provider adapters; default is dry-run planning only")
+  .option(
+    "--project-hook-authority-envelope-file <path>",
+    "optional pre-activation Control Plane project-hook authority transport envelope JSON",
+  )
   .option("--worker-context-file <path>", "FR-09 worker context boundary JSON")
   .option(
     "--route",
@@ -12775,6 +13022,7 @@ team
       mode?: ReturnType<typeof detectMode>["mode"];
       plan?: string;
       execute?: boolean;
+      projectHookAuthorityEnvelopeFile?: string;
       workerContextFile?: string;
       route?: boolean;
       primary?: Provider;
@@ -12782,6 +13030,16 @@ team
       json?: boolean;
     }) => {
       try {
+        const projectHookAdmission = opts.execute
+          ? admitExplicitProjectHookAuthority(opts.projectHookAuthorityEnvelopeFile)
+          : null;
+        if (projectHookAdmission && !projectHookAdmission.allowed) {
+          process.stderr.write(
+            `team: project-hook authority dispatch blocked (${projectHookAdmission.reason}) bytes=${projectHookAdmission.bytes}\n`,
+          );
+          process.exitCode = 1;
+          return;
+        }
         const mode = opts.mode ?? detectMode().mode;
         const loadedContext = opts.workerContextFile
           ? loadWorkerContextBoundaryFile({
@@ -12885,6 +13143,7 @@ team
               timeMs,
               captureLimitBytes: 1024 * 1024,
             });
+            const terminal = classifyProviderProcessTerminal(outcome);
             if (!opts.json) {
               if (outcome.stdout) process.stdout.write(outcome.stdout);
               if (outcome.stderr) process.stderr.write(outcome.stderr);
@@ -12897,8 +13156,7 @@ team
                 tool_name: provider,
                 tool_input: { command: `${command} ${args.join(" ")}` },
                 tool_response: {
-                  outcome:
-                    outcome.status === 0 && !outcome.timed_out && outcome.reaped ? "ok" : "error",
+                  outcome: terminal.ok ? "ok" : "error",
                 },
               },
               sessionDeps,
@@ -12924,6 +13182,7 @@ team
               signal: outcome.signal,
               durationMs: outcome.duration_ms,
               reaped: outcome.reaped,
+              terminalAccepted: terminal.ok,
             };
           },
         });
@@ -12972,7 +13231,10 @@ team
         } finally {
           receiptDb.close();
         }
-        if (opts.json) process.stdout.write(`${JSON.stringify(execution, null, 2)}\n`);
+        if (opts.json)
+          process.stdout.write(
+            `${JSON.stringify({ ...execution, project_hook_authority: { surface: "dispatch", bytes: projectHookAdmission?.bytes ?? null } }, null, 2)}\n`,
+          );
         else {
           process.stdout.write(
             `team ${definition.name}: ${execution.ok ? "completed" : "failed"} strategy=${execution.strategy}\n`,
@@ -13066,6 +13328,32 @@ function loadObjectiveExternalObserved(): {
 }
 
 const audit = program.command("audit").description("read-only repository audits");
+
+audit
+  .command("pin-chain")
+  .description("derive exact downstream pin records from changed paths")
+  .option("--changed <path...>", "changed paths; defaults to the current working tree")
+  .option("--json", "JSON output")
+  .action((opts: { changed?: string[]; json?: boolean }) => {
+    const changedPaths = opts.changed?.length ? opts.changed : loadChangedFiles(process.cwd());
+    const report = derivePinChain(process.cwd(), changedPaths);
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+    } else {
+      process.stdout.write(
+        `pin-chain: ${report.status} changed=${report.changed_paths.length} pins=${report.findings.length} unsupported=${report.unsupported_surfaces.length}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(
+          `  ${finding.stale ? "STALE" : "CURRENT"} ${finding.kind} ${finding.changed_path} -> ${finding.location}#${finding.field} action=${finding.action} recorded=${finding.recorded_value} live=${finding.live_value ?? "missing"}\n`,
+        );
+      }
+      for (const surface of report.unsupported_surfaces) {
+        process.stdout.write(`  DEGRADED ${surface}\n`);
+      }
+    }
+    if (report.status === "degraded") process.exitCode = 2;
+  });
 
 audit
   .command("quality")
@@ -14360,12 +14648,16 @@ github
   .command("ci-status")
   .description("emit a read-only GitHub Actions status packet for a branch/ref")
   .option("--ref <ref>", "branch or ref to inspect (defaults to current branch)")
+  .option("--expected-head-sha <sha>", "required exact 40-character HEAD SHA")
   .option("--json", "JSON output")
-  .action((opts: { ref?: string; json?: boolean }) => {
-    const result = loadGithubCiStatus(process.cwd(), { ref: opts.ref });
+  .action((opts: { ref?: string; expectedHeadSha?: string; json?: boolean }) => {
+    const result = loadGithubCiStatus(process.cwd(), {
+      ref: opts.ref,
+      expectedHeadSha: opts.expectedHeadSha,
+    });
     if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     else process.stdout.write(renderGithubCiStatus(result));
-    process.exitCode = result.status === "red" ? 1 : 0;
+    process.exitCode = githubCiStatusExitCode(result);
   });
 
 github
@@ -14462,7 +14754,11 @@ interface ClaudePrCiEvidence {
   updatedAt: string;
 }
 
-function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): ClaudePrCiEvidence {
+function loadClaudePrCiEvidenceGeneration(
+  repository: string,
+  headSha: string,
+  purpose: "notification" | "seal" = "notification",
+): ClaudePrCiEvidence {
   const listed = spawnSync(
     "gh",
     [
@@ -14512,7 +14808,11 @@ function loadClaudePrCiEvidenceGeneration(repository: string, headSha: string): 
       Number.isSafeInteger(run.databaseId) &&
       run.databaseId > 0,
   );
-  const latest = selectLatestSuccessfulReviewCiGeneration(
+  const selectGeneration =
+    purpose === "seal"
+      ? selectLatestTerminalReviewCiGeneration
+      : selectLatestSuccessfulReviewCiGeneration;
+  const latest = selectGeneration(
     matching.flatMap((run) => {
       if (
         typeof run.databaseId !== "number" ||
@@ -14591,6 +14891,33 @@ function readAfterClaudePrReviewComment(
   return result.ok
     ? { ok: true }
     : { ok: false, failure: result.reason ?? "review_comment_read_after_failed" };
+}
+
+function loadClaudePrReviewReceiptHistory(
+  repository: string,
+  prNumber: number,
+): ClaudePrReviewReceipt[] | null {
+  const fetched = spawnSync(
+    "gh",
+    ["api", "--paginate", "--slurp", `repos/${repository}/issues/${prNumber}/comments`],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  if (fetched.status !== 0) return null;
+  try {
+    const pages = JSON.parse(fetched.stdout) as unknown;
+    if (!Array.isArray(pages)) return null;
+    return pages
+      .flatMap((page) => (Array.isArray(page) ? page : [page]))
+      .flatMap((comment): ClaudePrReviewReceipt[] => {
+        if (!comment || typeof comment !== "object" || Array.isArray(comment)) return [];
+        const body = (comment as { body?: unknown }).body;
+        if (typeof body !== "string") return [];
+        const parsed = parseClaudeIndependentPrReviewComment(body);
+        return parsed?.schemaVersion === "helix-claude-pr-review-receipt.v4" ? [parsed] : [];
+      });
+  } catch {
+    return null;
+  }
 }
 
 github
@@ -14765,6 +15092,7 @@ github
           currentEvidence = loadClaudePrCiEvidenceGeneration(
             sealRepository,
             String(raw.headSha ?? ""),
+            "seal",
           );
         } catch (error) {
           process.stderr.write(
@@ -14972,7 +15300,52 @@ github
     const snapshot = JSON.parse(readFileSync(opts.snapshotFile, "utf8")) as Parameters<
       typeof evaluateGitHubCrossReviewAdmission
     >[0];
-    const decision = evaluateGitHubCrossReviewAdmission(snapshot);
+    let decision = evaluateGitHubCrossReviewAdmission(snapshot);
+    const receiptHistory = snapshot.comments.flatMap((comment): ClaudePrReviewReceipt[] => {
+      const parsed = parseClaudeIndependentPrReviewComment(comment.body);
+      return parsed?.schemaVersion === "helix-claude-pr-review-receipt.v4" ? [parsed] : [];
+    });
+    const unresolvedBlocks = unresolvedClaudePrBlockReceipts(receiptHistory, {
+      repository: snapshot.repository,
+      prNumber: snapshot.pr_number,
+      headSha: snapshot.candidate_head,
+    });
+    const terminalPromotion = hasTerminalPlanPromotion(
+      loadChangedPlanReviewBindings(process.cwd(), "origin/main", snapshot.candidate_head),
+    );
+    if (unresolvedBlocks.length > 0 && terminalPromotion) {
+      decision = {
+        ok: false,
+        deferred: false,
+        receipt_digest: null,
+        reasons: ["outstanding_request_changes_terminal_plan"],
+      };
+    }
+    if (terminalPromotion) {
+      const receiptJoin = evaluateReviewEvidenceReceiptJoin({
+        changed_plans: loadChangedPlanReviewBindings(
+          process.cwd(),
+          "origin/main",
+          snapshot.candidate_head,
+        ),
+        receipts: receiptHistory.map((receipt) => ({
+          comment_url: receipt.commentUrl,
+          reviewer_session_id: receipt.reviewerSessionId,
+          reviewer_model: receipt.reviewerModel,
+          reviewed_head_sha: receipt.headSha,
+          verdict: receipt.verdict,
+          ci_evidence_generation: receipt.ciEvidenceGeneration,
+        })),
+      });
+      if (!receiptJoin.ok) {
+        decision = {
+          ok: false,
+          deferred: false,
+          receipt_digest: null,
+          reasons: receiptJoin.failures.map((failure) => failure.reason),
+        };
+      }
+    }
     process.stdout.write(
       opts.json
         ? `${JSON.stringify(decision, null, 2)}\n`
@@ -15084,13 +15457,17 @@ github
             reviewer_model: value.reviewerModel,
           };
         })();
+    const changedPlanBindings = loadChangedPlanReviewBindings(
+      process.cwd(),
+      "origin/main",
+      current.headRefOid,
+    );
+    const reviewReceiptHistory = providerNeutral
+      ? null
+      : loadClaudePrReviewReceiptHistory(repository, prNumber);
     const mergePlanBinding = evaluateReviewReceiptPlanBinding({
       receipt: reviewIdentity,
-      changed_plans: loadChangedPlanReviewBindings(
-        process.cwd(),
-        "origin/main",
-        current.headRefOid,
-      ),
+      changed_plans: changedPlanBindings,
     });
     if (!mergePlanBinding.ok) {
       process.stderr.write(
@@ -15100,6 +15477,33 @@ github
       );
       process.exitCode = 1;
       return;
+    }
+    if (!providerNeutral) {
+      if (reviewReceiptHistory === null) {
+        process.stderr.write("github pr-merge-reviewed: review_receipt_history_unavailable\n");
+        process.exitCode = 1;
+        return;
+      }
+      const receiptJoin = evaluateReviewEvidenceReceiptJoin({
+        changed_plans: changedPlanBindings,
+        receipts: reviewReceiptHistory.map((item) => ({
+          comment_url: item.commentUrl,
+          reviewer_session_id: item.reviewerSessionId,
+          reviewer_model: item.reviewerModel,
+          reviewed_head_sha: item.headSha,
+          verdict: item.verdict,
+          ci_evidence_generation: item.ciEvidenceGeneration,
+        })),
+      });
+      if (!receiptJoin.ok) {
+        process.stderr.write(
+          `github pr-merge-reviewed: ${receiptJoin.failures
+            .map((failure) => `${failure.reason}:${failure.plan_id}`)
+            .join(",")}\n`,
+        );
+        process.exitCode = 1;
+        return;
+      }
     }
     const requiredViewed = spawnSync(
       "gh",
@@ -15174,9 +15578,16 @@ github
             requiredChecksGreen: areRequiredChecksGreen(requiredChecks),
             receiptCiMatchesHead,
             receiptCiMatchesGeneration,
+            ...(reviewReceiptHistory === null ? {} : { reviewReceiptHistory }),
           },
           receipt as ReturnType<typeof loadClaudePrReviewReceipt>,
         );
+    if (!providerNeutral && reviewReceiptHistory === null) {
+      decision.ok = false;
+      if (!decision.reasons.includes("review_receipt_history_unavailable")) {
+        decision.reasons.push("review_receipt_history_unavailable");
+      }
+    }
     let mergeResult: {
       status: number | null;
       stdout: string;

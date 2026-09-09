@@ -165,6 +165,7 @@ export interface TeamRunnerDeps {
     signal: NodeJS.Signals | null;
     durationMs: number;
     reaped: boolean;
+    terminalAccepted: boolean;
   }>;
 }
 
@@ -530,9 +531,12 @@ async function executeMember(
       typeof run.reaped === "boolean" &&
       (["none", "term_sent", "kill_sent"] as const).includes(run.terminationStage) &&
       (run.signal === null ||
-        (typeof run.signal === "string" &&
-          Object.prototype.hasOwnProperty.call(osConstants.signals, run.signal)));
-    const lifecycleAccepted = lifecycleReported && !run.timedOut && run.reaped;
+        (typeof run.signal === "string" && Object.hasOwn(osConstants.signals, run.signal)));
+    // terminalAccepted is projected by the current runtime's canonical classifier. Revalidate the
+    // compatibility-visible subset so a forged/stale projection cannot hide timeout or unreaped
+    // state while the old team facade still exists.
+    const lifecycleAccepted =
+      lifecycleReported && run.terminalAccepted && !run.timedOut && run.reaped;
     const status: SlotStatus =
       run.exitCode === 0 && reviewAccepted && lifecycleAccepted ? "completed" : "failed";
     releaseSlot({ slotId: slot.slot_id, status, exitCode: run.exitCode }, deps.slots);

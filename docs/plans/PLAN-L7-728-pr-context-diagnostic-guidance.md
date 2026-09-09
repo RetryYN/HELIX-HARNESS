@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "structural"
 created: 2026-09-04
-updated: 2026-09-04
+updated: 2026-09-08
 owner: Codex / TL
 github_issue_id: 1515
 behavior_contract_id: GH-AC-040
@@ -34,6 +34,8 @@ contract_invariants: "gateの受理範囲、unsafe path検査、atomic contract/
 contract_failures: "診断が実際のvalidator規則と異なる形式を案内する、またはtemplateがparserにより重複fieldとして解釈される場合はfail-closeする"
 tdd_red_required: true
 red_at: "2026-09-04T19:59:00+09:00"
+green_at: "2026-09-08T19:41:00+09:00"
+mutation_oracle_evidence: "2026-09-08 Node 24隔離変異。Accepted form生成を`contract required`へ置換するとU-GWID-008が1 failed／6 skipped、signal mismatchから許容signal案内を除くとU-GWID-007が1 failed／6 skipped、PR template markerを除くとU-PRSCOPE-009が1 failed／36 skipped。各変異を復元したcurrent treeで対象44 testsがgreenとなり、診断・template投影の除去を各oracleがRedで固定する。"
 complexity_effect: net_negative
 complexity_justification: "失敗後にmerged PR本文を探索する手戻りを減らし、既存parser・既存CI・既存templateへ説明を集約する"
 removal_trigger: "typed PR metadataが受理形式と修正提案をimmutableに提供し、本文parserが廃止された時点"
@@ -51,10 +53,22 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-L7-728-pr-context-diagnostic-guidance.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: src/lint/github-guards.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
+  - { artifact_path: src/schema/github-workflow-identity-contract.ts, artifact_type: source_module }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/github-workflow-identity-contract.test.ts, artifact_type: test_code }
+  - { artifact_path: .github/ISSUE_TEMPLATE/add-feature.md, artifact_type: markdown_doc }
+  - { artifact_path: .github/ISSUE_TEMPLATE/recovery.md, artifact_type: markdown_doc }
   - { artifact_path: .github/PULL_REQUEST_TEMPLATE.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: docs/design/harness/L6-function-design/governance-enforcement.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-github-workflow-identity-contract-unit-test-design.md, artifact_type: test_design }
+verification_bindings:
+  - { parent_design: docs/design/harness/L6-function-design/governance-enforcement.md, oracle_id: U-PRSCOPE-009, test_path: tests/branch-kind.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, oracle_id: U-GWID-007, test_path: tests/github-workflow-identity-contract.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, oracle_id: U-GWID-008, test_path: tests/github-workflow-identity-contract.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — 既存pr-context findingの受理形式診断" }
   - { role: qa, slot_label: "QA — 診断とvalidator規則の不一致反例" }

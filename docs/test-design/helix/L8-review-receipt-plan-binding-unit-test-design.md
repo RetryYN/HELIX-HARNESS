@@ -9,6 +9,8 @@ pair_artifact: docs/design/helix/L6-function-design/review-receipt-plan-binding.
 
 # Review receipt と PLAN evidence 接合の単体テスト設計
 
+Issue #1627のRecovery oracleを既存pairへ追加し、別のtest-design authorityを作らない。
+
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-RRPB-001 | 正常なexact join | 全terminal変更PLANが同じsession/modelのcross-agent承認を持つ場合だけ受理する | `tests/review-receipt-plan-binding.test.ts` |
@@ -25,3 +27,10 @@ pair_artifact: docs/design/helix/L6-function-design/review-receipt-plan-binding.
 | U-RRPB-012 | frontmatter parse | 変更PLANのfrontmatterが壊れていればfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
 | U-RRPB-013 | local HEAD境界 | local HEADとGitHub candidate HEADが異なる場合はfail-closeする | `tests/review-receipt-plan-binding.test.ts` |
 | U-CPRCONV-020 | merge CLI接合 | terminal化した変更PLANのreview sessionとreceiptが異なる場合、`pr-merge-reviewed`がrequired checks参照前にfail-closeする | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-044 | 未解消block | block後の別session approveを拒否し、履歴を現在approve一件へ縮退するmutationをkillする | `tests/claude-pr-convergence.test.ts` |
+| U-CPRCONV-045 | 正規解消 | 同一sessionかつ時刻が後のapproveだけで解除する。explicit supersessionでも別sessionは解除できない | `tests/claude-pr-convergence.test.ts` |
+| U-GCRA-014 | GitHub admission | schema検証済みblockをCI失敗／DB未収束／CI世代差でも保持し、別session approveによる相殺を拒否する | `tests/github-cross-review-admission.test.ts` |
+| U-RRCF-001 | terminal境界 | draft継続とterminal昇格を分離し、base status比較削除をkillする | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRCF-002 | receipt exact join | session／model／HEAD／verdict／CI世代の各不一致を個別に拒否する。正しいentryと不一致entryの併記も順序によらず拒否する | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRCF-003 | receipt locator | receipt URL欠落または引用receipt不在を拒否し、自己申告だけのreview evidenceをkillする | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRCF-004 | candidate本文 | commit済みterminal PLANを作業ファイルだけdraftへ変更してもterminal昇格を検出する | `tests/review-receipt-plan-binding.test.ts` |

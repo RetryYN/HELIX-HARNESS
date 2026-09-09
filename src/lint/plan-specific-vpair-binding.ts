@@ -420,8 +420,15 @@ export function parseEligibleOracleTable(source: string): {
       continue;
     }
     for (let j = i + 2; j < lines.length; j += 1) {
-      const cells = splitTableRow(lines[j] ?? "");
-      if (!cells) break;
+      const row = lines[j] ?? "";
+      const cells = splitTableRow(row);
+      if (!cells) {
+        if (row.trimStart().startsWith("|") && /U-[A-Z0-9-]+/.test(row)) {
+          schemaErrors.push(`line ${j + 1}: invalid oracle row`);
+          continue;
+        }
+        break;
+      }
       if (cells.length !== 4) {
         if (/U-[A-Z0-9-]+/.test(lines[j] ?? ""))
           schemaErrors.push(`line ${j + 1}: invalid oracle row`);
