@@ -24,7 +24,7 @@ pair_artifact: docs/design/helix/L6-function-design/cursor-cloud-environment-adm
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-CURSOR-ENV-005 | image buildでGit・HTTPS証明書を導入しGit実行を検査 | 導入欠落、Git確認欠落、install scriptへの遅延導入を拒否 | `tests/cursor-cloud-environment.test.ts` |
-| U-CURSOR-ENV-006 | imageのpackage集合・実行列・版出力を限定 | curl／wget実行、shell pipe、ENV／CMD注入、存在検査・版出力欠落、集合外packageを個別拒否 | `tests/cursor-cloud-environment.test.ts` |
+| U-CURSOR-ENV-006 | imageのpackage集合・実行列・版出力を限定 | curl／wget実行、shell pipe、ENV／CMD注入、存在検査・版出力欠落、集合外package、URL ADD、single-stage外COPYを個別拒否 | `tests/cursor-cloud-environment.test.ts` |
 
 U-CURSOR-ENV-005はPLAN-RECOVERY-1293-cursor-image-gitの修復を拘束する静的検査であり、実clone成功の代用ではない。
 Draft Buildでrepo checkoutとHELIX installの完走を別途確認する。

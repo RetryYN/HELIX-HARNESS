@@ -20,6 +20,11 @@ function hasBoundedPrerequisites(source: string): boolean {
   return (
     runs.length === 1 &&
     runs[0]?.trim().replace(/\s+/gu, " ") === expected &&
+    lines.every(
+      (line) =>
+        !(/^\s*ADD\s/iu.test(line) && /(?:https?:\/\/|git@|ssh:\/\/)/iu.test(line)) &&
+        !(/^\s*COPY\s/iu.test(line) && /--from(?:=|\s)/iu.test(line)),
+    ) &&
     lines.every((line) => !/\b(?:curl|wget)\b/u.test(line) || line === runs[0])
   );
 }
@@ -85,6 +90,10 @@ describe("Cursor Cloud Agent environment admission", () => {
   it("U-CURSOR-ENV-006: package同梱だけを許容しdownload実行と検査欠落を拒否する", () => {
     expect(hasBoundedPrerequisites(dockerfile)).toBe(true);
     const mutations = [
+      `${dockerfile}\nADD https://example.invalid/tool /opt/tool`,
+      `${dockerfile}\nADD git@example.invalid:tool /opt/tool`,
+      `${dockerfile}\nADD ssh://example.invalid/tool /opt/tool`,
+      `${dockerfile}\nCOPY --from=ghcr.io/example/tool:latest /tool /opt/tool`,
       `${dockerfile}\nRUN curl https://example.invalid/tool`,
       `${dockerfile}\nRUN wget https://example.invalid/tool`,
       `${dockerfile}\nRUN echo payload | sh`,

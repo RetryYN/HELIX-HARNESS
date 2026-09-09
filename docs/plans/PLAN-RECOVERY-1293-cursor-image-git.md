@@ -80,3 +80,9 @@ gitCheckoutで`git: command not found`となった。Issue #1293 comment 5603812
 独立definition review（PR #1689 comment 5603961499）に従い、package同梱と任意downloadを分離した。
 追加契約の実装前にU004/U006の2件Red・既存4件Greenを確認した。実imageの再検収は未完了。
 版出力はDocker buildログへ採取し、成功時にこの節へBuild ID／HEAD／image identity／package版を転記する。
+
+### mutation_oracle_evidence（2026-09-10追記）
+
+PR #1689 comment 5604133097の独立反例を再現した。URL ADDの反例追加後、U006がRed、他5件Green。
+DockerfileのURL ADD（HTTPS／git@／SSH）とsingle-stageのCOPY --fromを拒否する修復後は6件Green。
+Dockerfile自体は変更していないため、実行中Buildのsourceは引き続き3edcbe5であり、新test HEADの実行証拠へ読み替えない。
