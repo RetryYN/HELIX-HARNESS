@@ -1080,8 +1080,8 @@ function uniqueInOrder<T extends string>(values: T[]): T[] {
 /** scoped command に埋め込んでよい planId。`;` / 空白 / `$()` などを拒否する。 */
 const COMMAND_SAFE_PLAN_ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 
-/** schema 不適合 plan_id の表示用 identity。raw は使わない。 */
-export const INVALID_OUTSTANDING_PLAN_ID = "invalid-plan-id";
+const INVALID_OUTSTANDING_PLAN_ID_PREFIX = "invalid-";
+const FALLBACK_PLAN_ID_DIGEST_CHARS = 16;
 
 export function isCommandSafePlanId(planId: string): boolean {
   return COMMAND_SAFE_PLAN_ID.test(planId);
@@ -1100,20 +1100,43 @@ function declaredPlanIdFromFrontmatter(
   return fmValue(content, "plan_id") ?? undefined;
 }
 
+function plansRelativePathForFilename(filename: string): string | null {
+  const base = filename.normalize("NFC");
+  if (!base.endsWith(".md")) return null;
+  if (base.includes("\0") || base.includes("/") || base.includes("\\")) return null;
+  if (base === ".." || base.includes("..")) return null;
+  return `docs/plans/${base}`;
+}
+
+/** schema 不適合かつ filename も不適合なときの文書単位 identity。raw は埋め込まない。 */
+export function outstandingFallbackPlanId(filename: string): string {
+  const relativePath = plansRelativePathForFilename(filename);
+  const digest = sha256Json(
+    relativePath === null
+      ? { kind: "unsafe-basename", filename }
+      : { kind: "plans-relative", relativePath },
+  );
+  return `${INVALID_OUTSTANDING_PLAN_ID_PREFIX}${digest.slice(
+    "sha256:".length,
+    "sha256:".length + FALLBACK_PLAN_ID_DIGEST_CHARS,
+  )}`;
+}
+
 function resolveOutstandingPlanId(
   declared: string | undefined,
-  filenameStem: string,
+  filename: string,
 ): { planId: string; schemaInvalid: boolean } {
+  const filenameStem = filename.endsWith(".md") ? filename.slice(0, -".md".length) : filename;
   if (declared !== undefined) {
     const parsed = planIdSchema.safeParse(declared);
     if (parsed.success) return { planId: parsed.data, schemaInvalid: false };
     const fileParsed = planIdSchema.safeParse(filenameStem);
     if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: true };
-    return { planId: INVALID_OUTSTANDING_PLAN_ID, schemaInvalid: true };
+    return { planId: outstandingFallbackPlanId(filename), schemaInvalid: true };
   }
   const fileParsed = planIdSchema.safeParse(filenameStem);
   if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: false };
-  return { planId: INVALID_OUTSTANDING_PLAN_ID, schemaInvalid: true };
+  return { planId: outstandingFallbackPlanId(filename), schemaInvalid: true };
 }
 
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
@@ -1136,10 +1159,9 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
     ) as Record<string, unknown> | null;
     const parsedFrontmatter = frontmatterSchema.safeParse(rawFrontmatter);
     const irreversibleImpactDeclared = Object.hasOwn(rawFrontmatter ?? {}, "irreversible_impact");
-    const filenameStem = f.replace(/\.md$/, "");
     const resolved = resolveOutstandingPlanId(
       declaredPlanIdFromFrontmatter(rawFrontmatter, content),
-      filenameStem,
+      f,
     );
     rows.push({
       planId: resolved.planId,
