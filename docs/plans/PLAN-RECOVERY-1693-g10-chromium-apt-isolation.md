@@ -44,10 +44,15 @@ dependencies:
   blocks: []
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-G10CHROMIUM-001, test_path: tests/harness-check-workflow.test.ts }
+agent_slots:
+  - { role: aim, slot_label: "AIM — #1691/#1683の同時失敗と外部apt publication raceを切り分ける" }
+  - { role: se, slot_label: "SE — Google Chrome source限定退避とPlaywright導入順を既存workflow内で実装する" }
+  - { role: qa, slot_label: "QA — source 2形式、順序、G10・receipt維持をmutation oracleと実CIで検証する" }
+  - { role: tl, slot_label: "TL — #1695を先頭に置くMerge Trainと後続PRのJIT同期を管理する" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1693-g10-chromium-apt-isolation.md, artifact_type: markdown_doc }
 modifies:
-  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: ci_workflow }
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
