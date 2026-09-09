@@ -8,7 +8,7 @@ status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-10
 github_issue_id: 1670
 behavior_contract_id: PIN-CHAIN-DERIVATION-001
 responsibility_owner: pin-chain-derivation
@@ -42,6 +42,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-007, test_path: tests/pin-chain-derivation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-008, test_path: tests/pin-chain-derivation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-009, test_path: tests/cli-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-010, test_path: tests/pin-chain-derivation.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -113,4 +114,14 @@ merge/read-afterの完了主張は行わず、completion_claim_allowedはfalse�
 - 本sliceの実測で未対応と確認したdesign catalog、V-pair、digest inventoryの逆引きadapter
 - JSON generated surface、literal digest、集合／cross-table pin adapter
 - Bugbot Aへの許可済みdeterministic refresh接続（別責務）
+
+## 第二slice: digest inventory line逆引き
+
+PR #1683で実測した`src/lint/outstanding.ts`の`sha256Json`行移動を反例とし、
+`config/digest-canonicalization-inventory.json`の対応rowをsource pathから逆引きする。live lineは既存
+`scanDigestInventory()`だけから取得し、独自scannerを追加しない。差分はread-only finding
+（`kind=deterministic_pin`, `action=refresh_candidate`）として返し、inventoryを自動書換えしない。
+
+このsliceはdigest inventory line adapterの局所実装・targeted testまでを対象とする。第一sliceの
+feedback/reviewed-safe adapter、Issue #1670全体、PR、CI、merge/read-afterの完了を主張しない。
 ---

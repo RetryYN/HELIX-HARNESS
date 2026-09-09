@@ -1,8 +1,8 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
+import { scanDigestInventory } from "./digest-inventory";
 import { REVIEWED_SAFE_DISPOSITIONS } from "./l12-hybrid-reviewed-safe-v2";
-
 export type PinKind = "deterministic_pin" | "semantic_review_pin";
 export type PinAction = "refresh_candidate" | "requires_reassessment";
 
@@ -43,6 +43,14 @@ function sha256(source: string): string {
   return createHash("sha256").update(source).digest("hex");
 }
 
+interface DigestInventoryBinding {
+  hit_id?: unknown;
+  path?: unknown;
+  line?: unknown;
+}
+
+const DIGEST_INVENTORY_PATH = "config/digest-canonicalization-inventory.json";
+
 function testCaseCount(source: string): number {
   return [...source.matchAll(/\b(?:it|test)\s*\(\s*["'`]([^"'`]+)["'`]/gu)].length;
 }
@@ -64,6 +72,18 @@ function bindingFieldLine(source: string, testPath: string, field: string): numb
   return 0;
 }
 
+function digestInventoryFieldLine(source: string, hitId: string, field: string): number {
+  const lines = source.replace(/\r\n?/gu, "\n").split("\n");
+  const start = lines.findIndex((line) => line.includes(`"hit_id": "${hitId}"`));
+  if (start < 0) return 0;
+  for (let index = start + 1; index < lines.length; index += 1) {
+    const line = lines[index] ?? "";
+    if (line.includes('"hit_id":')) break;
+    if (line.includes(`"${field}":`)) return index + 1;
+  }
+  return 0;
+}
+
 function canonicalPath(root: string, path: string): string {
   return relative(root, join(root, path)).replaceAll("\\", "/");
 }
@@ -73,6 +93,46 @@ export function derivePinChain(root: string, changedPaths: readonly string[]): P
   const changedSet = new Set(changed);
   const findings: PinChainFinding[] = [];
   const unsupportedSurfaces: string[] = [];
+
+  const digestInventoryAbsolute = join(root, DIGEST_INVENTORY_PATH);
+  if (existsSync(digestInventoryAbsolute)) {
+    const inventorySource = readFileSync(digestInventoryAbsolute, "utf8");
+    const parsed = JSON.parse(inventorySource) as { rows?: DigestInventoryBinding[] };
+    if (!Array.isArray(parsed.rows)) {
+      unsupportedSurfaces.push(`${DIGEST_INVENTORY_PATH}:rows`);
+    } else {
+      const relevantRows = parsed.rows.filter(
+        (row) => typeof row.path === "string" && changedSet.has(row.path),
+      );
+      const liveByHitId = new Map(
+        relevantRows.length > 0
+          ? scanDigestInventory(root).map((hit) => [hit.hit_id, hit] as const)
+          : [],
+      );
+      for (const [rowIndex, row] of parsed.rows.entries()) {
+        if (typeof row.path !== "string" || !changedSet.has(row.path)) continue;
+        const missingFields: string[] = [];
+        if (typeof row.hit_id !== "string") missingFields.push("hit_id");
+        if (typeof row.line !== "number") missingFields.push("line");
+        unsupportedSurfaces.push(
+          ...missingFields.map((field) => `${DIGEST_INVENTORY_PATH}:rows[${rowIndex}].${field}`),
+        );
+        if (typeof row.hit_id !== "string" || typeof row.line !== "number") continue;
+        const liveLine = liveByHitId.get(row.hit_id)?.line ?? null;
+        findings.push({
+          changed_path: row.path,
+          dependent_path: DIGEST_INVENTORY_PATH,
+          location: `${DIGEST_INVENTORY_PATH}:${digestInventoryFieldLine(inventorySource, row.hit_id, "line")}`,
+          field: "line",
+          kind: "deterministic_pin",
+          action: "refresh_candidate",
+          recorded_value: row.line,
+          live_value: liveLine,
+          stale: row.line !== liveLine,
+        });
+      }
+    }
+  }
 
   for (const manifestPath of FEEDBACK_MANIFESTS) {
     const absoluteManifest = join(root, manifestPath);

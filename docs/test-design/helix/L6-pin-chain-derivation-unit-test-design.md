@@ -6,7 +6,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: draft
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-10
 owner: QA
 plan: docs/plans/PLAN-L6-1670-pin-chain-derivation-design.md
 pair_artifact: docs/design/helix/L6-function-design/pin-chain-derivation.md
@@ -29,6 +29,7 @@ next_pair_freeze: L6
 | U-PINCHAIN-007 | manifest網羅 | recognition manifestが同じtest pathをpinしていても追従先から消さない | `tests/pin-chain-derivation.test.ts` |
 | U-PINCHAIN-008 | field欠落 | 登録済みbindingの必須field欠落をlocation 0のstale findingへ偽装せず`DEGRADED` | `tests/pin-chain-derivation.test.ts` |
 | U-PINCHAIN-009 | CLI縮退 | 未登録surfaceを実CLIがJSON `DEGRADED`かつexit 2で返す | `tests/cli-surface.test.ts` |
+| U-PINCHAIN-010 | digest inventory line | `src/lint/outstanding.ts`の`sha256Json`が移動しinventory lineがstaleな反例で、既存scanner由来live lineとの差を`deterministic_pin` / `refresh_candidate`として返す | `tests/pin-chain-derivation.test.ts` |
 
 件数だけでなく、deterministicとsemanticの取り違え、未対応surfaceの隠蔽、CLI未配線をそれぞれ独立して拘束する。
 
@@ -49,3 +50,5 @@ next_pair_freeze: L6
 ## U-PINCHAIN-008: binding必須field欠落の可視化
 
 ## U-PINCHAIN-009: CLI縮退exitの拘束
+
+## U-PINCHAIN-010: digest inventory行pinのscanner再利用
