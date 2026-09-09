@@ -135,11 +135,12 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   承認済みの8 Feature／25 supporting requirement／27 ACを既存partitionへ接続したものであり、
   上記2026-07-31の153件のfreeze記録を再発行・変更しない。新HEADの独立review・CI・DB検証は別途必要。
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:e1a94330c0b7288f381ba52b9178d31122fbe352734bd7f117600748eb60120d`
+- design catalog digest候補: `sha256:bb6e520483b8de6818ef3b17716abe690720efdb1ab4805bd346bb063dc3cde9`
 - PLAN-L3-1639の承認済みsource配置と派生認識設計の4 pathについて、実在・各一回登録・
   双方向pair・実bytesを検証した参照更新。packet全体のfreeze再承認や実装・IR完了を意味しない。
 - PLAN-RECOVERY-1500の監査入力L6設計登録1件と、PLAN-RECOVERY-1411のchecklist検証L6/L8登録2件を保持して再計測した候補値。
   この追従は過去のG1/G3承認の再発行ではなく、現HEADの独立レビューは別途必要である。
+- PLAN-RECOVERY-1684のRequirement↔Definition trace census L6設計を既存detailed-design itemへadmitし、catalog digestを再計測した。packet全体のfreeze再承認やIssue #1684完了を意味しない。
 - この候補は、#796取り込み後のcurrent-main catalog bytesへ#814の配布artifact、#1033のSystem Synthesis、
   #1073のRelease Module／Bundle、#1160の製品ライフサイクル運用、#1174のTechnology Environment
   Reconciliation、#1210のUniversal Improvement Loop、#1034のCI System Synthesis、#1339のimmutable
