@@ -5,8 +5,9 @@ import { parseMarkdownFrontmatter } from "./shared";
 /**
  * plan-descent gate (PLAN-L6-54 / PLAN-L7-347)。
  *
- * PO 規則 (2026-07-06/2026-07-08): L6 機能設計 + L8 単体テスト設計 pair ⇒ L7 実装は必須。
- * kind=impl / add-impl の PLAN は L6 設計 doc への parent_design と L8 unit test design への
+ * PO 規則 (2026-07-06/2026-09-07): canonical L6 機能設計 + L7 単体テスト設計の
+ * L6↔L7 pair、または移行中の既存L8 pairを持つL7実装PLANを要求する。
+ * kind=impl / add-impl の PLAN は L6 設計 doc への parent_design と canonical test design への
  * pair_artifact を持たない限り起票できない。bottom-up の正規入口は PLAN-DISCOVERY-* / reverse 系に加え、
  * Add-feature Route B の add-impl である。既存違反は
  * grandfather baseline に固定し ratchet (増加禁止・減少可) で段階是正する。
@@ -36,6 +37,7 @@ export interface PlanDescentDoc {
   file: string;
   planId: string;
   kind: string | null;
+  layer?: string | null;
   status: string | null;
   routeMode: string | null;
   created: string | null;
@@ -118,6 +120,7 @@ export function loadPlanDescentDocs(
       file: rel,
       planId: stringField(raw.plan_id) ?? rel,
       kind: stringField(raw.kind),
+      layer: stringField(raw.layer),
       status: stringField(raw.status),
       routeMode: stringField(raw.route_mode),
       created: stringField(raw.created),
@@ -168,18 +171,18 @@ function isL6DesignDoc(path: string): boolean {
   return path.startsWith(DESIGN_PARENT_PREFIX) && path.includes(`/${L6_DESIGN_SEGMENT}`);
 }
 
-function isL8PairEnforced(doc: PlanDescentDoc): boolean {
-  return !doc.created || doc.created >= L8_PAIR_ENFORCEMENT_DATE;
-}
-
-function isL8UnitTestDesign(doc: PlanDescentDoc): boolean {
+function isCanonicalUnitTestDesign(doc: PlanDescentDoc): boolean {
   return (
     (doc.pairArtifact === "docs/test-design/harness/L8-unit-test-design.md" &&
       doc.pairArtifactLayer === "L8" &&
       doc.pairArtifactType === "test_design") ||
     (doc.pairArtifact?.startsWith(TEST_DESIGN_PREFIX) === true &&
       doc.pairArtifactLayer === "L8" &&
-      doc.pairArtifactSubDoc === "unit-test-design")
+      doc.pairArtifactSubDoc === "unit-test-design") ||
+    (doc.layer === "L7" &&
+      doc.pairArtifact?.startsWith(TEST_DESIGN_PREFIX) === true &&
+      doc.pairArtifactLayer === "L7" &&
+      doc.pairArtifactType === "test_design")
   );
 }
 
@@ -220,7 +223,9 @@ function collectViolations(doc: PlanDescentDoc): PlanDescentViolation[] {
       reason: "pair_artifact_not_test_design",
       detail: doc.pairArtifact ?? undefined,
     });
-  } else if (isL8PairEnforced(doc) && !isL8UnitTestDesign(doc)) {
+  } else if (isCanonicalUnitTestDesign(doc)) {
+    // canonical L6↔L7 pair、または移行中の旧L6↔L8 pairを許可する。
+  } else if (!doc.created || doc.created >= L8_PAIR_ENFORCEMENT_DATE) {
     violations.push({
       planId: doc.planId,
       file: doc.file,
@@ -293,7 +298,7 @@ export function planDescentMessages(result: PlanDescentResult): string[] {
     .map((v) => `${v.planId}:${v.reason}${v.detail ? `(${v.detail})` : ""}`)
     .join(", ");
   return [
-    `plan-descent - violation ${result.newViolations.length} 件 (checked=${result.checked}, grandfathered=${grandfatheredIds}/${result.baselineCount})。L6 設計 doc への parent_design、L8 単体テスト設計への pair_artifact、generates の test_code を確認 (PLAN-L6-54/PLAN-L6-60)`,
+    `plan-descent - violation ${result.newViolations.length} 件 (checked=${result.checked}, grandfathered=${grandfatheredIds}/${result.baselineCount})。L6 設計 doc、canonical L7/L8 単体テスト設計への pair_artifact、generates の test_code を確認 (PLAN-L6-54/PLAN-L6-60)`,
     `plan-descent - sample: ${sample}`,
   ];
 }

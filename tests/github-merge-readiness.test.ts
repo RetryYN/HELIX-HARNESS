@@ -3,9 +3,16 @@ import {
   analyzeGithubCiStatus,
   analyzeGithubMergeReadiness,
   buildGithubPrBodyDraft,
+  type GithubCiStatusResult,
+  githubCiStatusExitCode,
   validateAtomicContractBody,
   verifyCreatedPrBody,
 } from "../src/audit/github-merge-readiness";
+
+// PLAN-RECOVERY-1659-ci-status-head-binding — U-GHCI-001..004
+
+const EXPECTED_HEAD_SHA = "1111111111111111111111111111111111111111";
+const OLD_HEAD_SHA = "2222222222222222222222222222222222222222";
 
 // PLAN-L7-677-outstanding-snapshot-semantic-merge-guard: U-OUTMERGE-004
 
@@ -14,7 +21,7 @@ describe("github merge readiness", () => {
     const result = analyzeGithubMergeReadiness({
       baseBranch: "main",
       currentBranch: "feature/github-readiness",
-      headSha: "abc123",
+      headSha: EXPECTED_HEAD_SHA,
       originUrl: "git@github.com:RetryYN/HELIX-HARNESS.git",
       worktreeClean: true,
       ahead: 2,
@@ -39,7 +46,7 @@ describe("github merge readiness", () => {
     const result = analyzeGithubMergeReadiness({
       baseBranch: "main",
       currentBranch: "feature/github-readiness",
-      headSha: "abc123",
+      headSha: EXPECTED_HEAD_SHA,
       originUrl: "git@github.com:RetryYN/HELIX-HARNESS.git",
       worktreeClean: true,
       ahead: 2,
@@ -66,7 +73,7 @@ describe("github merge readiness", () => {
     const result = analyzeGithubMergeReadiness({
       baseBranch: "main",
       currentBranch: "feature/github-readiness",
-      headSha: "abc123",
+      headSha: EXPECTED_HEAD_SHA,
       originUrl: "git@github.com:RetryYN/HELIX-HARNESS.git",
       worktreeClean: true,
       ahead: 2,
@@ -94,7 +101,7 @@ describe("github merge readiness", () => {
     const result = analyzeGithubMergeReadiness({
       baseBranch: "main",
       currentBranch: "main",
-      headSha: "abc123",
+      headSha: EXPECTED_HEAD_SHA,
       originUrl: null,
       worktreeClean: false,
       ahead: 0,
@@ -121,7 +128,7 @@ describe("github merge readiness", () => {
     const result = analyzeGithubMergeReadiness({
       baseBranch: "main",
       currentBranch: "feature/snapshot-guard",
-      headSha: "abc123",
+      headSha: EXPECTED_HEAD_SHA,
       originUrl: "git@github.com:RetryYN/HELIX-HARNESS.git",
       worktreeClean: true,
       ahead: 2,
@@ -154,7 +161,7 @@ describe("github merge readiness", () => {
     const result = buildGithubPrBodyDraft({
       baseBranch: "main",
       headBranch: "feature/github-readiness",
-      headSha: "abc123",
+      headSha: EXPECTED_HEAD_SHA,
       templateText: "## 概要\n\n## 検証\n",
       commitSubjects: ["feat: add github readiness"],
       changedPaths: ["src/audit/github-merge-readiness.ts"],
@@ -300,6 +307,8 @@ describe("github merge readiness", () => {
   it("separates unavailable CI status from red CI status", () => {
     const unavailable = analyzeGithubCiStatus({
       ref: "feature/github-readiness",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
       ghInstalled: true,
       ghAuthenticated: false,
       runs: [],
@@ -314,6 +323,8 @@ describe("github merge readiness", () => {
 
     const green = analyzeGithubCiStatus({
       ref: "feature/github-readiness",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
       ghInstalled: true,
       ghAuthenticated: true,
       runs: [
@@ -322,15 +333,23 @@ describe("github merge readiness", () => {
           workflowName: "harness-check",
           status: "completed",
           conclusion: "success",
-          headSha: "abc123",
+          headSha: EXPECTED_HEAD_SHA,
           url: "https://example.test/run",
         },
       ],
     });
-    expect(green).toMatchObject({ ok: true, status: "green" });
+    expect(green).toMatchObject({
+      ok: true,
+      status: "green",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
+    });
+    expect(green.commands.listRuns).toContain("--workflow harness-check");
 
     const red = analyzeGithubCiStatus({
       ref: "feature/github-readiness",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
       ghInstalled: true,
       ghAuthenticated: true,
       runs: [
@@ -339,11 +358,180 @@ describe("github merge readiness", () => {
           workflowName: "harness-check",
           status: "completed",
           conclusion: "failure",
-          headSha: "abc123",
+          headSha: EXPECTED_HEAD_SHA,
           url: "https://example.test/run",
         },
       ],
     });
     expect(red).toMatchObject({ ok: false, status: "red" });
+  });
+
+  it("does not treat an empty successful query as green", () => {
+    const result = analyzeGithubCiStatus({
+      ref: "main",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [],
+    });
+
+    expect(result).toMatchObject({ ok: false, status: "no_runs" });
+  });
+
+  it.each([
+    "abc123",
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "111111111111111111111111111111111111111",
+    "1111111111111111111111111111111111111111 ",
+  ])("rejects non-canonical expected HEAD SHA %s", (expectedHeadSha) => {
+    const result = analyzeGithubCiStatus({
+      ref: "main",
+      expectedHeadSha,
+      targetWorkflow: "harness-check",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [],
+    });
+
+    expect(result).toMatchObject({ ok: false, status: "unavailable" });
+    expect(result.queryError).toContain("full lowercase 40-hex SHA");
+  });
+
+  it("U-GHCI-001: ignores old HEAD success when the expected HEAD has no run", () => {
+    const result = analyzeGithubCiStatus({
+      ref: "main",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "success",
+          headSha: OLD_HEAD_SHA,
+          url: "https://example.test/old",
+        },
+      ],
+    });
+
+    expect(result).toMatchObject({ ok: false, status: "window_miss", runs: [] });
+  });
+
+  it("U-GHCI-002: ignores old HEAD failure when the expected HEAD succeeds", () => {
+    const result = analyzeGithubCiStatus({
+      ref: "main",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "failure",
+          headSha: OLD_HEAD_SHA,
+          url: "https://example.test/old",
+        },
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "success",
+          headSha: EXPECTED_HEAD_SHA,
+          url: "https://example.test/current",
+        },
+      ],
+    });
+
+    expect(result).toMatchObject({ ok: true, status: "green" });
+    expect(result.runs).toHaveLength(1);
+    expect(result.runs[0]?.headSha).toBe(EXPECTED_HEAD_SHA);
+  });
+
+  it("U-GHCI-003: ignores another workflow failure for the expected HEAD", () => {
+    const result = analyzeGithubCiStatus({
+      ref: "main",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [
+        {
+          name: "CodeQL",
+          workflowName: "CodeQL",
+          status: "completed",
+          conclusion: "failure",
+          headSha: EXPECTED_HEAD_SHA,
+          url: "https://example.test/codeql",
+        },
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "success",
+          headSha: EXPECTED_HEAD_SHA,
+          url: "https://example.test/harness",
+        },
+      ],
+    });
+
+    expect(result).toMatchObject({ ok: true, status: "green" });
+    expect(result.runs.map((run) => run.workflowName)).toEqual(["harness-check"]);
+  });
+
+  it("U-GHCI-004: distinguishes a window omission from a real current-head failure", () => {
+    const windowMiss = analyzeGithubCiStatus({
+      ref: "main",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check.yml",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "failure",
+          headSha: OLD_HEAD_SHA,
+          url: "https://example.test/old",
+        },
+      ],
+    });
+    const currentFailure = analyzeGithubCiStatus({
+      ref: "main",
+      expectedHeadSha: EXPECTED_HEAD_SHA,
+      targetWorkflow: "harness-check.yml",
+      ghInstalled: true,
+      ghAuthenticated: true,
+      runs: [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "failure",
+          headSha: EXPECTED_HEAD_SHA,
+          url: "https://example.test/current",
+        },
+      ],
+    });
+
+    expect(windowMiss).toMatchObject({ ok: false, status: "window_miss" });
+    expect(currentFailure).toMatchObject({ ok: false, status: "red" });
+  });
+
+  it.each(["no_runs", "window_miss", "unavailable", "red"] as const)(
+    "maps non-green status %s to a failing CLI exit",
+    (status) => {
+      expect(githubCiStatusExitCode({ ok: false, status } as GithubCiStatusResult)).toBe(1);
+    },
+  );
+
+  it("maps only an admitted green status to a successful CLI exit", () => {
+    expect(githubCiStatusExitCode({ ok: true, status: "green" } as GithubCiStatusResult)).toBe(0);
+    expect(githubCiStatusExitCode({ ok: false, status: "green" } as GithubCiStatusResult)).toBe(1);
   });
 });

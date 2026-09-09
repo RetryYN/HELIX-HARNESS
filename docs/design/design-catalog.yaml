@@ -145,6 +145,7 @@ items:
     artifact:
       - docs/design/harness/L5-detailed-design/internal-processing.md
       - docs/design/helix/L6-function-design/review-evidence-supersession-structure.md
+      - docs/design/helix/L6-function-design/pin-chain-derivation.md
       - docs/design/helix/L5-detail/design-template-json-authority.md
       - docs/design/helix/L5-detail/requirement-refinement-authority.md
       - docs/design/helix/L5-detail/work-graph-receipt-acceptance.md
@@ -173,6 +174,7 @@ items:
       - docs/design/helix/L6-function-design/workflow-output-consumer-inventory.md
       - docs/design/helix/L6-function-design/github-workflow-identity-contract.md
       - docs/design/helix/L6-function-design/github-workflow-identity-admission.md
+      - docs/design/helix/L6-function-design/github-ci-status-head-binding.md
       - docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md
       - docs/design/helix/L6-function-design/plan-entry-canonical-signal-authority.md
       - docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md
@@ -204,6 +206,7 @@ items:
       - docs/design/helix/L6-function-design/proposal-lane-effort-binding.md
       - docs/design/helix/L6-function-design/review-evidence-reviewer-identity.md
       - docs/design/helix/L6-function-design/project-hook-authority-resolver.md
+      - docs/design/helix/L6-function-design/project-hook-authority-consumer-wiring.md
       - docs/design/helix/L6-function-design/project-hook-physical-adapter.md
       - docs/design/helix/L6-function-design/project-hook-physical-identity-validation.md
       - docs/design/helix/L6-function-design/claude-native-memory-isolation.md
@@ -373,6 +376,7 @@ items:
       - docs/test-design/helix/L8-proposal-lane-effort-binding-unit-test-design.md
       - docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md
+      - docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-identity-validation-unit-test-design.md
       - docs/test-design/helix/L8-l3-human-approval-gate-unit-test-design.md
