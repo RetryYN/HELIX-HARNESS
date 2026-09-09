@@ -50,6 +50,8 @@ generates:
   - { artifact_path: tests/plan-compatibility-parent.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/plan-compatibility-parent-baseline.json, artifact_type: json_config }
 modifies:
+  - { artifact_path: src/lint/branch-kind.ts, artifact_type: source_module }
+  - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }

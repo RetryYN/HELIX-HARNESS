@@ -30,6 +30,8 @@ export interface BranchPlanDoc {
   supersession_metadata_only?: boolean;
   /** recovery branchが既存terminal PLANのreview_evidenceだけを訂正する場合のtyped判定。 */
   review_evidence_metadata_only?: boolean;
+  /** recovery branchが既存PLANのparentをcurrent authorityへ移し、旧parentを来歴へ隔離する場合のtyped判定。 */
+  dependency_migration_metadata_only?: boolean;
 }
 
 export interface BranchKindInput {
@@ -323,7 +325,9 @@ export function analyzeBranchKind(input: BranchKindInput): BranchKindResult {
   for (const plan of plans) {
     const allowedRecoveryMetadataMigration =
       kind === "recovery" &&
-      (plan.supersession_metadata_only === true || plan.review_evidence_metadata_only === true);
+      (plan.supersession_metadata_only === true ||
+        plan.review_evidence_metadata_only === true ||
+        plan.dependency_migration_metadata_only === true);
     if ((!plan.kind || !allowedKinds.includes(plan.kind)) && !allowedRecoveryMetadataMigration) {
       findings.push({
         code: "kind_mismatch",
@@ -396,6 +400,58 @@ export function isSupersessionMetadataOnly(currentSource: string, baseSource: st
   const currentWithout = planWithoutSupersededBy(currentSource);
   const baseWithout = planWithoutSupersededBy(baseSource);
   return currentWithout !== null && currentWithout === baseWithout;
+}
+
+/**
+ * current/baseの差がparentのcurrent authority移管と旧parentのhistorical_provenance隔離だけかをexact比較する。
+ * 本文、status、review evidence、その他の依存edge変更は許可しない。
+ */
+export function isDependencyMigrationMetadataOnly(
+  currentSource: string,
+  baseSource: string,
+): boolean {
+  const currentRaw = markdownFrontmatter(currentSource);
+  const baseRaw = markdownFrontmatter(baseSource);
+  if (!currentRaw || !baseRaw) return false;
+  try {
+    const current = parseYaml(currentRaw) as Record<string, unknown>;
+    const base = parseYaml(baseRaw) as Record<string, unknown>;
+    const currentDependencies = current.dependencies;
+    const baseDependencies = base.dependencies;
+    if (
+      !currentDependencies ||
+      typeof currentDependencies !== "object" ||
+      Array.isArray(currentDependencies) ||
+      !baseDependencies ||
+      typeof baseDependencies !== "object" ||
+      Array.isArray(baseDependencies)
+    )
+      return false;
+    const currentParent = (currentDependencies as Record<string, unknown>).parent;
+    const baseParent = (baseDependencies as Record<string, unknown>).parent;
+    if (
+      typeof currentParent !== "string" ||
+      currentParent.length === 0 ||
+      typeof baseParent !== "string" ||
+      baseParent.length === 0 ||
+      currentParent === baseParent ||
+      !Array.isArray(current.historical_provenance) ||
+      current.historical_provenance.length === 0
+    )
+      return false;
+
+    const normalizedCurrent = structuredClone(current);
+    const normalizedDependencies = normalizedCurrent.dependencies as Record<string, unknown>;
+    normalizedDependencies.parent = baseParent;
+    delete normalizedCurrent.historical_provenance;
+    const body = (source: string) => source.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/u, "");
+    return (
+      JSON.stringify(canonicalValue(normalizedCurrent)) === JSON.stringify(canonicalValue(base)) &&
+      body(currentSource) === body(baseSource)
+    );
+  } catch {
+    return false;
+  }
 }
 
 function reviewerAttributionPairs(
@@ -641,6 +697,8 @@ function loadSnapshotInput(repoRoot: string, snapshot: BranchKindSnapshot): Bran
           baseSource !== null && isSupersessionMetadataOnly(source, baseSource),
         review_evidence_metadata_only:
           baseSource !== null && isReviewEvidenceMetadataOnly(source, baseSource),
+        dependency_migration_metadata_only:
+          baseSource !== null && isDependencyMigrationMetadataOnly(source, baseSource),
       });
     }
     if (git("rev-parse", "HEAD").trim() !== observedHead)

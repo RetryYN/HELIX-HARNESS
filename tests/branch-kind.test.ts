@@ -7,6 +7,7 @@ import {
   analyzeBranchKind,
   branchKindMessages,
   classifyBranchKind,
+  isDependencyMigrationMetadataOnly,
   isReviewEvidenceMetadataOnly,
   isSupersessionMetadataOnly,
 } from "../src/lint/branch-kind";
@@ -171,6 +172,32 @@ describe("branch-kind-check", () => {
     expect(isSupersessionMetadataOnly(edgeOnly, base)).toBe(true);
     expect(isSupersessionMetadataOnly(bodyChanged, base)).toBe(false);
     expect(isSupersessionMetadataOnly(emptyEdge, base)).toBe(false);
+  });
+
+  it("recovery branchはparentのcurrent authority移管と旧parent来歴隔離だけを受理する", () => {
+    const base =
+      "---\nplan_id: PLAN-L7-1\nkind: impl\nstatus: confirmed\ndependencies:\n  parent: PLAN-OLD\n  requires: [PLAN-REQ]\n---\nbody\n";
+    const migrated =
+      "---\nplan_id: PLAN-L7-1\nkind: impl\nstatus: confirmed\ndependencies:\n  parent: PLAN-CURRENT\n  requires: [PLAN-REQ]\nhistorical_provenance:\n  - relation: historical_provenance\n    plan_id: PLAN-OLD\n---\nbody\n";
+    expect(isDependencyMigrationMetadataOnly(migrated, base)).toBe(true);
+    expect(isDependencyMigrationMetadataOnly(migrated.replace("body", "changed"), base)).toBe(false);
+    expect(
+      isDependencyMigrationMetadataOnly(migrated.replace("[PLAN-REQ]", "[PLAN-OTHER]"), base),
+    ).toBe(false);
+    const result = analyzeBranchKind({
+      branch: "recovery/dependency-migration",
+      changedPaths: ["docs/plans/PLAN-L7-1.md", "docs/plans/PLAN-RECOVERY-1.md"],
+      plans: [
+        {
+          file: "docs/plans/PLAN-L7-1.md",
+          kind: "impl",
+          dependency_migration_metadata_only: true,
+        },
+        { file: "docs/plans/PLAN-RECOVERY-1.md", kind: "recovery" },
+      ],
+    });
+    expect(result.ok).toBe(true);
+    expect(result.findings).toEqual([]);
   });
 
   // PLAN-RECOVERY-1677-review-session-model-receipt-drift: U-RVIDENT-021
