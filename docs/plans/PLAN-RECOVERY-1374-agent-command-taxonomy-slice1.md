@@ -15,7 +15,7 @@ behavior_contract_id: AGENT-COMMAND-AUTHORITY-1374-S1
 responsibility_owner: authority-taxonomy-migration
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: replace_conditional
+refactor_step: migrate_one_consumer
 legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
