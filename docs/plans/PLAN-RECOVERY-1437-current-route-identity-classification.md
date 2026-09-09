@@ -48,7 +48,7 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1437-current-route-identity-classification.md, artifact_type: markdown_doc }
-  - { artifact_path: .helix/evidence/review-1701/vitest-targeted-24e.json, artifact_type: test_evidence }
+  - { artifact_path: .helix/evidence/review-1701/vitest-targeted-24e.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, artifact_type: design_doc }
