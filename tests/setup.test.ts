@@ -35,6 +35,7 @@ import {
   COMMON_FILES,
   CONSUMER_STARTUP_AUTHORITY_PATH,
   CONSUMER_STARTUP_AUTHORITY_TEMPLATE,
+  CONSUMER_TEAM_DEFINITION_PATH,
 } from "../src/setup/templates";
 
 // PLAN-L7-462-issue-closure-contract
@@ -3513,7 +3514,16 @@ describe("setup solo/team (PLAN-L7-03 add-impl / U-SETUP)", () => {
     packet.capabilities
       .find((entry) => entry.capability_id === "legacy_team_run")
       ?.guidance.push(
-        "helix team run --definition .helix/teams/default-hybrid.yaml --mode hybrid --json",
+        [
+          "helix",
+          "team",
+          "run",
+          "--definition",
+          CONSUMER_TEAM_DEFINITION_PATH,
+          "--mode",
+          "hybrid",
+          "--json",
+        ].join(" "),
       );
     const mutant = `${JSON.stringify(packet, null, 2)}\n`;
     const receipt = verifyConsumerStartupProjection({

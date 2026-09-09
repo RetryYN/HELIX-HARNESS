@@ -76,6 +76,7 @@ modifies:
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
 agent_slots:
+  - { role: aim, slot_label: "AIM — recovery slice実装と収束" }
   - { role: se, slot_label: "SE — setup consumer projection実装" }
   - { role: qa, slot_label: "QA — digest/read-order/hook/roster/capability反例" }
   - { role: tl, slot_label: "TL — #895/#1672との責務境界確認" }
