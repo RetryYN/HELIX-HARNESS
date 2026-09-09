@@ -88,16 +88,16 @@ agent_slots:
   - { role: qa, slot_label: "QA — negative oracle／mutation／hidden consumer" }
   - { role: tl, slot_label: "TL — Phase 1 boundaryとlegacy retirement条件" }
 review_evidence:
-  - reviewer: "Claude Code / claude-fable-5-1 (convergence lane)"
+  - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
-    reviewed_at: "2026-09-07T13:12:06Z"
+    reviewed_at: "2026-09-09T19:10:00Z"
     tests_green_at: "2026-09-09T18:43:01Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
-    reviewer_session_id: 9867601a-a3ad-4369-980c-11757d63a7de
-    reviewed_head_sha: 551b58a2d9b7ff663f7344e5c855d49bbaa683cd
-    scope: "PR #1625独立review。04b73dba5 request_changes（B-1〜B-4）を440be23c7で閉じ、551b58a2dのrequire alias検出を加算的と確認。846ee256dまでのstatus／format／digest追従は非意味的deltaとしてapprove維持、blockers 0。根拠: https://github.com/RetryYN/HELIX-HARNESS/pull/1625#issuecomment-5570368257 および https://github.com/RetryYN/HELIX-HARNESS/pull/1625#issuecomment-5570874858"
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 241bcab5917a35a6327e4239ace40b2170def30e
+    scope: "PR #1625 exact-HEAD delta review。branch固有patchは前回approve HEAD c1099fefdとbyte同一、main 282ec5219 resyncはconflictなし。targeted 49 tests、governance、post-merge-status、doctor legacy-orchestration両gate green。根拠: https://github.com/RetryYN/HELIX-HARNESS/pull/1625#issuecomment-5607312326"
     green_commands:
       - kind: unit_test
         command: "npx vitest run --project fast tests/legacy-orchestration-semantic-consumers.test.ts tests/legacy-orchestration-surface.test.ts tests/goal-evidence-audit.test.ts tests/digest.test.ts --reporter=json --outputFile=.helix/evidence/review-865/vitest-targeted.json"
