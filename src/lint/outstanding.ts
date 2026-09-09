@@ -1100,25 +1100,49 @@ function declaredPlanIdFromFrontmatter(
   return fmValue(content, "plan_id") ?? undefined;
 }
 
-function plansBasenameUtf8Hex(filename: string): string {
-  return Buffer.from(filename, "utf8").toString("hex");
+const PLANS_MARKDOWN_SUFFIX = Buffer.from(".md");
+const PLANS_DOTDOT_BYTES = Buffer.from("..");
+
+function plansBasenameBytes(filename: string | Buffer): Buffer {
+  return Buffer.isBuffer(filename) ? filename : Buffer.from(filename, "utf8");
 }
 
-function isUnsafePlansBasename(filename: string): boolean {
+function plansBasenameHex(filename: string | Buffer): string {
+  return plansBasenameBytes(filename).toString("hex");
+}
+
+function plansDirentPath(dir: string, filename: Buffer): Buffer {
+  const prefix = dir.endsWith("/") ? dir : `${dir}/`;
+  return Buffer.concat([Buffer.from(prefix, "utf8"), filename]);
+}
+
+function isUtf8PlansBasename(filename: Buffer): boolean {
+  return Buffer.from(filename.toString("utf8"), "utf8").equals(filename);
+}
+
+function plansBasenameLooksLikeMarkdown(filename: Buffer): boolean {
   return (
-    filename.length === 0 ||
-    !filename.endsWith(".md") ||
-    filename.includes("\0") ||
-    filename.includes("/") ||
-    filename.includes("\\") ||
-    filename === ".." ||
-    filename.includes("..")
+    filename.length >= PLANS_MARKDOWN_SUFFIX.length &&
+    filename.subarray(-PLANS_MARKDOWN_SUFFIX.length).equals(PLANS_MARKDOWN_SUFFIX)
   );
 }
 
-/** schema 不適合かつ filename も不適合なときの文書単位 identity。digest 入力は UTF-8 物理バイトで、raw 名は埋め込まない。 */
-export function outstandingFallbackPlanId(filename: string): string {
-  const basenameHex = plansBasenameUtf8Hex(filename);
+function isUnsafePlansBasename(filename: string | Buffer): boolean {
+  const bytes = plansBasenameBytes(filename);
+  return (
+    bytes.length === 0 ||
+    !plansBasenameLooksLikeMarkdown(bytes) ||
+    bytes.includes(0) ||
+    bytes.includes(0x2f) ||
+    bytes.includes(0x5c) ||
+    bytes.equals(PLANS_DOTDOT_BYTES) ||
+    bytes.includes(PLANS_DOTDOT_BYTES)
+  );
+}
+
+/** schema 不適合かつ filename も不適合なときの文書単位 identity。digest 入力は raw basename bytes で、raw 名は埋め込まない。 */
+export function outstandingFallbackPlanId(filename: string | Buffer): string {
+  const basenameHex = plansBasenameHex(filename);
   const digest = sha256Json(
     isUnsafePlansBasename(filename)
       ? { kind: "unsafe-basename-bytes", basenameHex }
@@ -1130,20 +1154,31 @@ export function outstandingFallbackPlanId(filename: string): string {
   )}`;
 }
 
+function filenameStemForSchema(filename: string | Buffer): string | undefined {
+  const bytes = plansBasenameBytes(filename);
+  if (!isUtf8PlansBasename(bytes)) return undefined;
+  const decoded = bytes.toString("utf8");
+  return decoded.endsWith(".md") ? decoded.slice(0, -".md".length) : decoded;
+}
+
 function resolveOutstandingPlanId(
   declared: string | undefined,
-  filename: string,
+  filename: string | Buffer,
 ): { planId: string; schemaInvalid: boolean } {
-  const filenameStem = filename.endsWith(".md") ? filename.slice(0, -".md".length) : filename;
+  const filenameStem = filenameStemForSchema(filename);
   if (declared !== undefined) {
     const parsed = planIdSchema.safeParse(declared);
     if (parsed.success) return { planId: parsed.data, schemaInvalid: false };
-    const fileParsed = planIdSchema.safeParse(filenameStem);
-    if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: true };
+    if (filenameStem !== undefined) {
+      const fileParsed = planIdSchema.safeParse(filenameStem);
+      if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: true };
+    }
     return { planId: outstandingFallbackPlanId(filename), schemaInvalid: true };
   }
-  const fileParsed = planIdSchema.safeParse(filenameStem);
-  if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: false };
+  if (filenameStem !== undefined) {
+    const fileParsed = planIdSchema.safeParse(filenameStem);
+    if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: false };
+  }
   return { planId: outstandingFallbackPlanId(filename), schemaInvalid: true };
 }
 
@@ -1154,11 +1189,12 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
   const consumerSetupBoundary = consumerSetupBoundaryPlanRow(repoRoot);
   if (consumerSetupBoundary) rows.push(consumerSetupBoundary);
   if (!existsSync(dir)) return rows;
-  for (const f of readdirSync(dir)) {
-    if (!f.endsWith(".md")) continue;
+  for (const filename of readdirSync(dir, { encoding: "buffer" })) {
+    if (!plansBasenameLooksLikeMarkdown(filename)) continue;
+    if (filename.includes(0) || filename.includes(0x2f) || filename.includes(0x5c)) continue;
     let content = "";
     try {
-      content = readFileSync(join(dir, f), "utf8");
+      content = readFileSync(plansDirentPath(dir, filename), "utf8");
     } catch {
       continue;
     }
@@ -1169,7 +1205,7 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
     const irreversibleImpactDeclared = Object.hasOwn(rawFrontmatter ?? {}, "irreversible_impact");
     const resolved = resolveOutstandingPlanId(
       declaredPlanIdFromFrontmatter(rawFrontmatter, content),
-      f,
+      filename,
     );
     rows.push({
       planId: resolved.planId,
