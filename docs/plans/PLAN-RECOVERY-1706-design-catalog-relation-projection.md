@@ -4,7 +4,7 @@ title: "Design Catalogを既存relation graphへ投影"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -60,8 +60,28 @@ modifies:
   - { artifact_path: src/lint/relation-graph.ts, artifact_type: source_module }
   - { artifact_path: src/lint/relation-graph-types.ts, artifact_type: source_module }
   - { artifact_path: tests/relation-graph-loader.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T23:18:08Z"
+    tests_green_at: "2026-09-09T22:40:54Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 2706a40c36b801825e3a3015018e1503d5ace9bd
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1709#issuecomment-5610069156"
+    ci_evidence_generation: "run:34412862574:attempt:3:success"
+    scope: "Issue #1706第一sliceのDesign Catalog relation projection、既存loader/projector利用、typed edge、drift finding、semantic digest自己更新禁止をexact HEADで独立検収した。後続consumer read-afterとIssue #1706全体の完了は主張しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/relation-graph-loader.test.ts tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/digest.test.ts --reporter=json --outputFile=.helix/evidence/review-1709/vitest-targeted-final.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T22:40:54Z"
+        evidence_path: .helix/evidence/review-1709/vitest-targeted-final.json
+        output_digest: "sha256:efed3de7c95ad84c6194d55c7579e07811a37eeca8b200d97b34bb053d32eecd"
 ---
 
 # Design Catalogのrelation graph投影
