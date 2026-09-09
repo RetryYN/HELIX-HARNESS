@@ -48,8 +48,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/agent-command-taxonomy-authority.md, oracle_id: U-ACTA-003, test_path: tests/layer-authority-drift.test.ts }
 dependencies:
   parent: docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md
-  requires:
-    - docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md
+  requires: []
   references:
     - "issue:1370"
     - "issue:1374"
