@@ -4,7 +4,7 @@ title: "current route identityのlegacy誤分類是正"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -60,7 +60,28 @@ agent_slots:
   - { role: se, slot_label: "SE — legacy field分類とschema診断" }
   - { role: qa, slot_label: "QA — current route field誤分類の反例" }
   - { role: tl, slot_label: "TL — authority境界と後続分離" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T22:17:29Z"
+    tests_green_at: "2026-09-09T20:32:22Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: c0b9ec8e31e36aa1534fcaf9fbdc6aa78a87daed
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1701#issuecomment-5609508665"
+    ci_evidence_generation: "run:34409207953:attempt:1:success"
+    scope: "PR #1701 exact-HEAD review。current route identityのlegacy誤分類是正、schema境界、targeted artifact、fresh CIを検収。根拠: https://github.com/RetryYN/HELIX-HARNESS/pull/1701#issuecomment-5609508665"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/github-workflow-identity-contract.test.ts --reporter=json --outputFile=.helix/evidence/review-1701/vitest-targeted-24e.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T20:32:22Z"
+        evidence_path: .helix/evidence/review-1701/vitest-targeted-24e.json
+        output_digest: "sha256:bbff0307d01e2a0654ff619dfa9c55125515546789c9d2c5452531793d76f654"
 ---
 
 # current route identityのlegacy誤分類是正
