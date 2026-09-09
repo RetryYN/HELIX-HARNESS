@@ -25,16 +25,21 @@ import {
   ORACLE_TEST_TRACE_BASELINE,
   ORACLE_UNDECLARED_MULTI_BASELINE,
   ORACLE_UNREGISTERED_BASELINE,
+  ORACLE_UNREGISTERED_BASELINE_CAPTURE,
+  ORACLE_UNREGISTERED_BASELINE_ENTRIES,
 } from "./oracle-test-trace-baseline";
 import {
   extractExecutableOracleCases,
   parseEligibleOracleTable,
 } from "./plan-specific-vpair-binding";
 
+export type { OracleUnregisteredBaselineEntry } from "./oracle-test-trace-baseline";
 export {
   ORACLE_TEST_TRACE_BASELINE,
   ORACLE_UNDECLARED_MULTI_BASELINE,
   ORACLE_UNREGISTERED_BASELINE,
+  ORACLE_UNREGISTERED_BASELINE_CAPTURE,
+  ORACLE_UNREGISTERED_BASELINE_ENTRIES,
 };
 
 /** oracle ID パターン (U-RELGRAPH-001 / IT-DOCEXPORT-003 等)。
@@ -67,7 +72,14 @@ export interface OracleTestTraceInput {
   undeclaredMultiBaseline?: ReadonlySet<string>;
 }
 
-export interface OracleTestTraceResult {
+export interface OracleRegistrationBaselineDrift {
+  missing: string[];
+  stale: string[];
+  new: string[];
+  multiple: string[];
+}
+
+export interface OracleTestTraceResult extends OracleRegistrationBaselineDrift {
   orphans: string[];
   unregistered: string[];
   undeclaredMulti: string[];
@@ -103,22 +115,21 @@ export function isExplainedOraclePath(
   return allPaths.some((other) => other !== path && isFastSlowOraclePair(path, other));
 }
 
-/** 宣言済だが未 citation かつ baseline 外の oracle を orphan として返す。 */
-export function analyzeOracleTestTrace(input: OracleTestTraceInput): OracleTestTraceResult {
-  const orphans = [...new Set(input.declared)]
-    .filter((id) => !input.referenced.has(id) && !input.baseline.has(id))
-    .sort();
-  const appearances = input.appearances ?? new Map<string, readonly string[]>();
+export function inspectOracleRegistrationBaseline(
+  input: OracleTestTraceInput,
+): OracleRegistrationBaselineDrift {
+  if (input.appearances === undefined) {
+    return { missing: [], stale: [], new: [], multiple: [] };
+  }
+  const appearances = input.appearances;
   const registered = input.registered ?? new Set<string>();
   const declaredPaths = input.declaredPaths ?? new Map<string, readonly string[]>();
   const unregisteredBaseline = input.unregisteredBaseline ?? new Set<string>();
   const undeclaredMultiBaseline = input.undeclaredMultiBaseline ?? new Set<string>();
-
-  const unregistered = [...appearances.keys()]
-    .filter((id) => !registered.has(id) && !unregisteredBaseline.has(id))
-    .sort();
-
-  const undeclaredMulti = [...appearances.entries()]
+  const raw = [...appearances.keys()].filter((id) => !registered.has(id)).sort();
+  const missing = raw.filter((id) => !unregisteredBaseline.has(id));
+  const stale = [...unregisteredBaseline].filter((id) => !raw.includes(id)).sort();
+  const multiple = [...appearances.entries()]
     .filter(([, paths]) => paths.length > 1)
     .filter(([id, paths]) => {
       if (undeclaredMultiBaseline.has(id)) return false;
@@ -127,12 +138,31 @@ export function analyzeOracleTestTrace(input: OracleTestTraceInput): OracleTestT
     })
     .map(([id]) => id)
     .sort();
+  return { missing, stale, new: missing, multiple };
+}
+
+/** 宣言済だが未 citation かつ baseline 外の oracle を orphan として返す。 */
+export function analyzeOracleTestTrace(input: OracleTestTraceInput): OracleTestTraceResult {
+  const orphans = [...new Set(input.declared)]
+    .filter((id) => !input.referenced.has(id) && !input.baseline.has(id))
+    .sort();
+  const drift = inspectOracleRegistrationBaseline(input);
+  const unregistered = drift.missing;
+  const undeclaredMulti = drift.multiple;
 
   return {
     orphans,
     unregistered,
     undeclaredMulti,
-    ok: orphans.length === 0 && unregistered.length === 0 && undeclaredMulti.length === 0,
+    ...drift,
+    ok:
+      orphans.length === 0 &&
+      unregistered.length === 0 &&
+      undeclaredMulti.length === 0 &&
+      drift.missing.length === 0 &&
+      drift.stale.length === 0 &&
+      drift.new.length === 0 &&
+      drift.multiple.length === 0,
   };
 }
 

@@ -7,12 +7,15 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeOracleTestTrace,
+  inspectOracleRegistrationBaseline,
   isExplainedOraclePath,
   loadOracleTestTraceInput,
   ORACLE_FREEZE_PACKET_TEST_PATH,
   ORACLE_TEST_TRACE_BASELINE,
   ORACLE_UNDECLARED_MULTI_BASELINE,
   ORACLE_UNREGISTERED_BASELINE,
+  ORACLE_UNREGISTERED_BASELINE_CAPTURE,
+  ORACLE_UNREGISTERED_BASELINE_ENTRIES,
 } from "../src/lint/oracle-test-trace";
 
 describe("analyzeOracleTestTrace (U-OTT-001..003)", () => {
@@ -206,16 +209,25 @@ describe("oracle ID registration and undeclared multi (PLAN-RECOVERY-1669-oracle
     expect(r.ok).toBe(true);
   });
 
-  it("U-OTT-016: 実 repo の未宣言多重は空のまま、未登録 baseline は引き上げない", () => {
+  it("U-OTT-016: live loader は missing/stale/new/multiple が 0 かつ ok", () => {
     const live = loadOracleTestTraceInput(process.cwd());
     const r = analyzeOracleTestTrace(live);
+    const drift = inspectOracleRegistrationBaseline(live);
+    expect(drift.missing).toEqual([]);
+    expect(drift.stale).toEqual([]);
+    expect(drift.new).toEqual([]);
+    expect(drift.multiple).toEqual([]);
+    expect(r.missing).toEqual([]);
+    expect(r.stale).toEqual([]);
+    expect(r.new).toEqual([]);
+    expect(r.multiple).toEqual([]);
+    expect(r.orphans).toEqual([]);
+    expect(r.unregistered).toEqual([]);
     expect(r.undeclaredMulti).toEqual([]);
-    expect(ORACLE_TEST_TRACE_BASELINE.size).toBe(89);
-    expect(ORACLE_UNREGISTERED_BASELINE.size).toBe(454);
-    expect(live.registered?.has("U-OTT-001")).toBe(true);
-    expect(live.registered?.has("U-OTT-021")).toBe(true);
-    expect(r.unregistered.every((id) => !ORACLE_UNREGISTERED_BASELINE.has(id))).toBe(true);
-    expect(r.ok).toBe(r.orphans.length === 0 && r.unregistered.length === 0);
+    expect(r.ok).toBe(true);
+    expect(ORACLE_UNREGISTERED_BASELINE.size).toBe(547);
+    expect(ORACLE_UNREGISTERED_BASELINE_ENTRIES).toHaveLength(547);
+    expect(ORACLE_UNREGISTERED_BASELINE_CAPTURE.count).toBe(547);
   });
 
   it("U-OTT-017: 既存未 citation baseline 89 件を現在値へ置き換えない", () => {
@@ -227,7 +239,16 @@ describe("oracle ID registration and undeclared multi (PLAN-RECOVERY-1669-oracle
     expect(ORACLE_UNREGISTERED_BASELINE.has("U-PRSCOPE-008")).toBe(true);
     expect(ORACLE_UNREGISTERED_BASELINE.has("U-FAKE-999")).toBe(false);
     expect(ORACLE_UNREGISTERED_BASELINE.has("U-OTT-001")).toBe(false);
-    expect(ORACLE_UNREGISTERED_BASELINE.size).toBe(454);
+    expect(ORACLE_UNREGISTERED_BASELINE.size).toBe(547);
+    expect(ORACLE_UNREGISTERED_BASELINE_ENTRIES).toHaveLength(547);
+    expect(new Set(ORACLE_UNREGISTERED_BASELINE_ENTRIES.map((entry) => entry.id)).size).toBe(547);
+    const origin = ORACLE_UNREGISTERED_BASELINE_ENTRIES.find(
+      (entry) => entry.id === "U-PRSCOPE-008",
+    );
+    expect(origin?.paths.length).toBeGreaterThan(0);
+    expect(ORACLE_UNREGISTERED_BASELINE_CAPTURE.classifier).toBe(
+      "corrected-canonical-l6-l8-structures",
+    );
     const live = loadOracleTestTraceInput(process.cwd());
     expect(live.registered?.has("U-OTT-001")).toBe(true);
   });
@@ -251,6 +272,8 @@ describe("oracle ID registration and undeclared multi (PLAN-RECOVERY-1669-oracle
     });
     expect(ORACLE_UNREGISTERED_BASELINE.has("U-NEWUNREG-002")).toBe(false);
     expect(r.unregistered).toEqual(["U-NEWUNREG-002"]);
+    expect(r.new).toEqual(["U-NEWUNREG-002"]);
+    expect(r.missing).toEqual(["U-NEWUNREG-002"]);
     expect(r.ok).toBe(false);
   });
 

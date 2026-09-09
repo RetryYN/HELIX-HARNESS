@@ -209,6 +209,8 @@ tests 側の未登録 ID と宣言に無い多重出現を見逃す。本節は�
   4. feature test と `tests/l3-g3-freeze-packet-v2.test.ts` の freeze 伝播対。
   5. `tests/doctor.test.ts` / `tests/slow/doctor.test.ts` の doctor lane と、残り feature path が 1 件以下。
 - 未登録と未宣言多重の既存分は明示 baseline に列挙し、実行時に現在値へ置き換えない。追加は fail-close、縮小のみ可。
+- 未登録 baseline は 2026-09-09 の corrected classifier で測った exact 547 ID と
+  appearance path provenance を one-time 固定する。live の missing/stale/new/multiple は 0 を要求する。
 - 起点の既存未登録は `U-PRSCOPE-008` とする。
 
 oracleは`U-OTT-001..021`、実装は`src/lint/oracle-test-trace.ts`、回帰は
