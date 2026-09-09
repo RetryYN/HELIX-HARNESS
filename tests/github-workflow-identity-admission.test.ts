@@ -912,6 +912,40 @@ describe("GitHub workflow identity admission", () => {
       }),
     ).toMatchObject({ ok: false, reason: "workflow_identity_admission_multiple_plans" });
   });
+
+  it("U-GWIDADM-024: parentのcurrent authority移管だけを受け取る既存PLANはslice所有者に数えない", () => {
+    const root = fixtureRoot();
+    const migratedPlan = "docs/plans/PLAN-L7-575-dependency-migrated.md";
+    writePlan(root);
+    writePlan(root, {
+      path: migratedPlan,
+      targetId: "RECOVERY",
+      identityExtra: "dependencies:\n  parent: PLAN-OLD\n  requires: [PLAN-REQ]\n",
+    });
+    const baseSource = readFileSync(join(root, migratedPlan), "utf8");
+    writeFileSync(
+      join(root, migratedPlan),
+      baseSource
+        .replace("parent: PLAN-OLD", "parent: PLAN-CURRENT")
+        .replace(
+          "  requires: [PLAN-REQ]\n---\n",
+          "  requires: [PLAN-REQ]\nhistorical_provenance:\n  - relation: historical_provenance\n    plan_id: PLAN-OLD\n---\n",
+        ),
+    );
+    const result = admitGithubWorkflowIdentity({
+      repository: "RetryYN/HELIX-HARNESS",
+      prBody: contractBody(),
+      changedPaths: [PLAN_PATH, migratedPlan],
+      repoRoot: root,
+      basePlanSource: (path) => (path === migratedPlan ? baseSource : null),
+      ghApi: () => ({ number: 733, body: contractBody() }),
+    });
+    expect(result).toMatchObject({
+      ok: true,
+      applicable: true,
+      plan_id: "PLAN-L7-574-github-workflow-identity-admission",
+    });
+  });
   // PLAN-RECOVERY-1543-reviewer-session-model-history — U-GWIDADM-023
   it("U-GWIDADM-023: 既定の base reader は明示 baseHead の完全 SHA にだけ束縛し、不正・未指定・読取不能では例外を適用せず環境変数や merge-base へ fallback しない", () => {
     const root = fixtureRoot();

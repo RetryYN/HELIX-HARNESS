@@ -2,7 +2,11 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { z } from "zod";
-import { isReviewEvidenceMetadataOnly, isSupersessionMetadataOnly } from "../lint/branch-kind.js";
+import {
+  isDependencyMigrationMetadataOnly,
+  isReviewEvidenceMetadataOnly,
+  isSupersessionMetadataOnly,
+} from "../lint/branch-kind.js";
 import { parseMarkdownFrontmatter } from "../lint/shared.js";
 import {
   compareIssuePrWorkflowIdentityContracts,
@@ -254,7 +258,8 @@ export function admitGithubWorkflowIdentity(input: {
         if (
           baseSource !== null &&
           (isSupersessionMetadataOnly(source, baseSource) ||
-            isReviewEvidenceMetadataOnly(source, baseSource))
+            isReviewEvidenceMetadataOnly(source, baseSource) ||
+            isDependencyMigrationMetadataOnly(source, baseSource))
         )
           return [];
         return [{ path, frontmatter }];
