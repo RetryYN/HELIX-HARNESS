@@ -70,7 +70,7 @@ pip audit
 trivy image <image>
 ```
 
-## typed security authority
+## 型付きセキュリティauthority
 
 - 必須検査、閾値、対象環境、gate IDはactive PLANとRequirement / NFR / security policyから取得する。
 - policyに未定義の条件は`unknown`として返し、このagent本文の一般的なOWASP例をpass/fail authorityへ昇格しない。

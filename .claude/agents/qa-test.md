@@ -28,7 +28,7 @@ maxTurns: 25
 
 ## テスト戦略策定
 
-### typed quality authority
+### 型付き品質authority
 
 - test level と必要比率、coverage、性能値、security 条件は対象 Requirement / NFR policy / acceptance criteria
   から読む。この agent 本文の一般値を pass/fail authority にしない。
