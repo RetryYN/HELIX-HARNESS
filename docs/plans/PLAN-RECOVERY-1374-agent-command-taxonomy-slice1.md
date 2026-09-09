@@ -69,6 +69,9 @@ modifies:
   - { artifact_path: .claude/commands/ship.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/commands/spec.md, artifact_type: markdown_doc }
   - { artifact_path: tests/layer-authority-drift.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 review_evidence: []
 ---
 

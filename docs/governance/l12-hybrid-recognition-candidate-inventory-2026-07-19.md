@@ -2,7 +2,7 @@
 
 ## 1. 対象と判定
 
-旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は174文書。
+旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は177文書。
 
 この174件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは866 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
@@ -124,6 +124,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/design/helix/L5-detail/pillar-detail-design.md`
 - `docs/design/helix/L5-detail/python-worker-runtime.md`
 - `docs/design/helix/L6-function-design/orchestration-memory.md`
+- `docs/design/helix/L6-function-design/agent-command-taxonomy-authority.md`
 - `docs/design/helix/L6-function-design/pillar-function-design.md`
 - `docs/design/helix/L6-function-design/universal-reverse-redesign.md`
 
@@ -143,6 +144,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 - `docs/test-design/helix/L5-universal-reverse-redesign-integration-test-design.md`
 - `docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md`
 - `docs/test-design/helix/L6-universal-reverse-redesign-unit-test-design.md`
+- `docs/test-design/helix/L8-agent-command-taxonomy-authority-unit-test-design.md`
 - `docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md`
 - `docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md`
 - `docs/test-design/helix/l12-scrum-rebaseline-acceptance.md`
@@ -210,6 +212,7 @@ canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示して�
 - `docs/plans/PLAN-RECOVERY-01-internal-asset-recovery.md`
 - `docs/plans/PLAN-RECOVERY-02-vmodel-canonical.md`
 - `docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md`
+- `docs/plans/PLAN-RECOVERY-1374-agent-command-taxonomy-slice1.md`
 - `docs/plans/PLAN-REVERSE-01-process-docs.md`
 - `docs/plans/PLAN-REVERSE-02-session-log.md`
 - `docs/plans/PLAN-REVERSE-10-vmodel-pair-lint.md`

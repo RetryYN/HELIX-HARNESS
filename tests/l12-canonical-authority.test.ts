@@ -120,8 +120,8 @@ describe("L1-L12 canonical authority drift gate", () => {
 
     expect(new Set(inventoried).size).toBe(inventoried.length);
     expect(inventoried).toEqual(authorityReviewCandidates);
-    expect(candidates).toHaveLength(175);
-    expect(authorityReviewCandidates).toHaveLength(174);
+    expect(candidates).toHaveLength(178);
+    expect(authorityReviewCandidates).toHaveLength(177);
     expect(authorityReviewCandidates).not.toContain(
       "docs/plans/PLAN-L7-712-document-semantic-diff-node-authority.md",
     );
