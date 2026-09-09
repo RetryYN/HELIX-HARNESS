@@ -180,7 +180,9 @@ describe("branch-kind-check", () => {
     const migrated =
       "---\nplan_id: PLAN-L7-1\nkind: impl\nstatus: confirmed\ndependencies:\n  parent: PLAN-CURRENT\n  requires: [PLAN-REQ]\nhistorical_provenance:\n  - relation: historical_provenance\n    plan_id: PLAN-OLD\n---\nbody\n";
     expect(isDependencyMigrationMetadataOnly(migrated, base)).toBe(true);
-    expect(isDependencyMigrationMetadataOnly(migrated.replace("body", "changed"), base)).toBe(false);
+    expect(isDependencyMigrationMetadataOnly(migrated.replace("body", "changed"), base)).toBe(
+      false,
+    );
     expect(
       isDependencyMigrationMetadataOnly(migrated.replace("[PLAN-REQ]", "[PLAN-OTHER]"), base),
     ).toBe(false);
