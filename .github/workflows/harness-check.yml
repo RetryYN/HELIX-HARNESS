@@ -762,7 +762,18 @@ jobs:
       - name: install deps (frozen)
         run: npm ci
       - name: install Chromium for G10 browser evidence
-        run: npx --no-install playwright install --with-deps chromium
+        run: |
+          set -euo pipefail
+          # GitHub runnerに同梱された無関係なGoogle Chrome apt sourceを、
+          # PlaywrightがG10証拠用のUbuntu依存を導入する経路から隔離する。
+          for source in \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources; do
+            if [ -f "$source" ]; then
+              sudo mv "$source" "$RUNNER_TEMP/$(basename "$source").disabled"
+            fi
+          done
+          npx --no-install playwright install --with-deps chromium
       - name: record shard budget telemetry
         env:
           SHARD_ID: bulk-3
