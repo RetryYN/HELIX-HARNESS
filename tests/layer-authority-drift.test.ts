@@ -1,6 +1,8 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
+// PLAN-RECOVERY-1374-agent-command-taxonomy-slice1
+
 const REQUIREMENTS = "docs/governance/helix-harness-requirements_v1.3.md";
 const AUTHORITY_DOCS = [
   "docs/governance/helix-harness-concept_v3.1.md",
@@ -60,15 +62,14 @@ describe("L1-L12 canonical layer authority", () => {
     expect(currentLayerAuthorityViolations(poisoned)).not.toEqual([]);
   });
 
-  it.each(ACTIVE_AGENT_COMMAND_DOCS)(
-    "[#1374] keeps active agent/command guidance on typed L1-L12 authority in %s",
-    (path) => {
+  it("U-ACTA-001: [#1374] keeps active agent/command guidance on typed L1-L12 authority", () => {
+    for (const path of ACTIVE_AGENT_COMMAND_DOCS) {
       const text = readFileSync(path, "utf8");
       expect(text).not.toMatch(/L0-L14|G4\/G6|L12 deploy/);
-    },
-  );
+    }
+  });
 
-  it("[#1374] separates review from release and deployment authorization", () => {
+  it("U-ACTA-002: [#1374] separates review from release and deployment authorization", () => {
     const ship = readFileSync(".claude/commands/ship.md", "utf8");
     expect(ship).toContain("independent review receipt");
     expect(ship).toContain("release authorization");
@@ -76,7 +77,7 @@ describe("L1-L12 canonical layer authority", () => {
     expect(ship).toContain("runtime admission");
   });
 
-  it("[#1374] binds QA, security, and deployment thresholds to typed policy", () => {
+  it("U-ACTA-003: [#1374] binds QA, security, and deployment thresholds to typed policy", () => {
     for (const path of [
       ".claude/agents/qa-test.md",
       ".claude/agents/security-audit.md",
