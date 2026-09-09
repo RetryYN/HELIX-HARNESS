@@ -234,15 +234,13 @@ export function loadChangedPathsFromGit(repoRoot: string, base: string, head: st
 
 export function loadPlanStatusChangesFromGit(
   repoRoot: string,
-  base: string,
-  head: string,
-  changedPaths: readonly string[],
+  opts: { base: string; head: string; changedPaths: readonly string[] },
 ): PlanStatusChange[] {
-  return changedPaths
+  return opts.changedPaths
     .filter((path) => /^docs\/plans\/PLAN-.*\.md$/.test(path))
     .map((path) => {
-      const fromText = gitShow(repoRoot, base, path);
-      const toText = gitShow(repoRoot, head, path);
+      const fromText = gitShow(repoRoot, opts.base, path);
+      const toText = gitShow(repoRoot, opts.head, path);
       return {
         path,
         fromStatus: fromText ? (fmValue(fromText, "status") ?? null) : null,
@@ -281,7 +279,11 @@ export function loadPrScopePreflightFromGit(
     headBranch: head,
     baseBranch: opts.base,
     planContracts,
-    planStatusChanges: loadPlanStatusChangesFromGit(repoRoot, opts.base, head, changedPaths),
+    planStatusChanges: loadPlanStatusChangesFromGit(repoRoot, {
+      base: opts.base,
+      head,
+      changedPaths,
+    }),
     baseSnapshotText: gitShow(repoRoot, opts.base, OUTSTANDING_SNAPSHOT_PATH),
     headSnapshotText: gitShow(repoRoot, head, OUTSTANDING_SNAPSHOT_PATH),
     liveSnapshotText: loadLiveOutstandingSnapshotText(repoRoot),

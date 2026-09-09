@@ -65,6 +65,10 @@ modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
 agent_slots:
   - { role: se, slot_label: "SE — 既存analyzePrContextをpush前CLIへ接続" }
   - { role: qa, slot_label: "QA — undeclared/absent/Allowed外/snapshot mutation" }
