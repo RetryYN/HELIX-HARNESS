@@ -4,7 +4,7 @@ title: "G10 Chromium導入を無関係なGoogle apt sourceから隔離"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -53,10 +53,33 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1693-g10-chromium-apt-isolation.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T18:52:55Z"
+    tests_green_at: "2026-09-09T18:52:55Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: c070c07a1a657d5fb766d1806df9010a30089ac0
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1695#issuecomment-5607086838"
+    ci_evidence_generation: "run:34388968752:attempt:1:success"
+    scope: "PR #1695 exact HEADの独立検収。Google Chrome apt source限定隔離、G10 browser evidence維持、全CI lane success、blockers 0をcanonical receiptから転記。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 34388968752 --json status,conclusion,headSha,databaseId,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-09T18:52:55Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:7d15fb4cd5ed3e7074799a1029556adad1b4b4224e2485c8ada88deedb15cdd5"
+        result: "completed / success / HEAD c070c07a1a657d5fb766d1806df9010a30089ac0 / run 34388968752"
 ---
 
 # G10 Chromium導入のapt source隔離
