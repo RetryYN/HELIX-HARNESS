@@ -36,6 +36,7 @@ export const CLI_R00_FAILURE_CODES = [
   "value_missing_for_measured",
   "unknown_key",
   "environment_mixed",
+  "unmeasurable_not_comparable",
 ] as const;
 
 export type CliR00FailureCode = (typeof CLI_R00_FAILURE_CODES)[number];
@@ -92,6 +93,7 @@ export interface CliR00Observation {
 }
 
 export interface CliR00StructuralSnapshot {
+  source_head: string;
   cli_path: typeof CLI_R00_CLI_SOURCE_PATH;
   cli_bytes: number;
   cli_lines: number;
@@ -431,10 +433,14 @@ export function estimateReviewTokensFromBytes(bytes: number): number {
 }
 
 export function collectCliR00StructuralSnapshot(input: {
+  sourceHead: string;
   cliBytes: number;
   cliSource: string;
   workflowSource: string;
 }): CliR00StructuralSnapshot {
+  if (!FULL_SHA_PATTERN.test(input.sourceHead)) {
+    throw new Error("sourceHead must be a full SHA");
+  }
   if (!Number.isInteger(input.cliBytes) || input.cliBytes < 0) {
     throw new Error("cliBytes must be a non-negative integer");
   }
@@ -442,6 +448,7 @@ export function collectCliR00StructuralSnapshot(input: {
   const lines = countSourceLines(input.cliSource);
   const shardIds = extractFullRegressionShardJobIds(input.workflowSource);
   return {
+    source_head: input.sourceHead,
     cli_path: CLI_R00_CLI_SOURCE_PATH,
     cli_bytes: input.cliBytes,
     cli_lines: lines.lines,
@@ -906,10 +913,6 @@ export function validateCliR00BaselineArtifact(
       detail: `observations must be the exact Issue #1687 set in catalog order: ${CLI_R00_METRIC_IDS.join(",")}`,
     });
   }
-  const environments = new Set(observations.map((item) => item.condition.environment));
-  if (environments.size > 2) {
-    failures.push({ code: "environment_mixed", detail: "unexpected environment set" });
-  }
   const supporting = decodeSupportingContext(input.supporting_context);
   if ("failures" in supporting) failures.push(...supporting.failures);
   if (failures.length > 0) return { ok: false, failures };
@@ -994,7 +997,7 @@ export function compareCliR00Observation(
   }
   if (baseline.observability === "unmeasurable" || candidate.observability === "unmeasurable") {
     failures.push({
-      code: "unmeasurable_claimed_measured",
+      code: "unmeasurable_not_comparable",
       detail: `${baseline.metric_id} cannot be compared as a numeric delta`,
     });
     return { comparable: false, failures, delta: null };
@@ -1015,6 +1018,12 @@ export function remesureCliR00StructuralProxies(
   snapshot: CliR00StructuralSnapshot,
 ): CliR00Failure[] {
   const failures: CliR00Failure[] = [];
+  if (snapshot.source_head !== artifact.source_head) {
+    failures.push({
+      code: "condition_mismatch",
+      detail: `snapshot.source_head ${snapshot.source_head} != artifact.source_head ${artifact.source_head}`,
+    });
+  }
   const byId = new Map(artifact.observations.map((item) => [item.metric_id, item]));
   const expected: Array<[CliR00MetricId, number]> = [
     ["CHANGED_FILE_FAN_OUT", snapshot.changed_file_fan_out],
@@ -1023,19 +1032,19 @@ export function remesureCliR00StructuralProxies(
     ["REVIEW_CONTEXT_BYTES_OR_TOKENS", snapshot.cli_bytes],
     ["MERGE_CONFLICT_OR_SHARED_FILE_COLLISION_COUNT", snapshot.shared_file_collision_proxy],
   ];
-  for (const [metricId, live] of expected) {
+  for (const [metricId, pinned] of expected) {
     const observation = byId.get(metricId);
-    if (!observation || observation.value !== live) {
+    if (!observation || observation.value !== pinned) {
       failures.push({
         code: "condition_mismatch",
-        detail: `${metricId} frozen value ${observation?.value ?? "missing"} != live ${live}`,
+        detail: `${metricId} frozen value ${observation?.value ?? "missing"} != source_head snapshot ${pinned}`,
       });
     }
   }
   if (artifact.supporting_context.cli_bytes !== snapshot.cli_bytes) {
     failures.push({
       code: "condition_mismatch",
-      detail: "supporting_context.cli_bytes drifted from live src/cli.ts",
+      detail: "supporting_context.cli_bytes drifted from source_head blob",
     });
   }
   if (
@@ -1044,7 +1053,7 @@ export function remesureCliR00StructuralProxies(
   ) {
     failures.push({
       code: "condition_mismatch",
-      detail: "top-level command families drifted from live src/cli.ts",
+      detail: "top-level command families drifted from source_head blob",
     });
   }
   if (
@@ -1053,7 +1062,7 @@ export function remesureCliR00StructuralProxies(
   ) {
     failures.push({
       code: "condition_mismatch",
-      detail: "full-regression shard jobs drifted from live harness-check.yml",
+      detail: "full-regression shard jobs drifted from source_head workflow blob",
     });
   }
   return failures;

@@ -26,7 +26,7 @@ contract_failures: "指標欠落、proxyの直接観測化、測定不能の数�
 tdd_red_required: true
 tdd_red_waiver_reason: "本sliceは新規collectorのcharacterizationであり、実装前に既存moduleが存在しない。oracleはmutationで欠落指標・分類偽装・条件混在を殺す。"
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/cli-r00-throughput-baseline.test.ts が U-CLIR00-003/004/011/012 で測定不能の数値化、proxyのmeasured化、指標欠落、unmeasurable delta比較をいずれもfail/killする。"
+mutation_oracle_evidence: "U-CLIR00-008: source_headを別SHAへずらすとcondition_mismatch、+1 byteでDIFF_BYTES/REVIEW_CONTEXTがkill、+1 familyでCHANGED_SYMBOL_FAN_OUT/collisionがkill。U-CLIR00-003/004/011/012は測定不能の数値化、proxyのmeasured化、指標欠落、unmeasurable_not_comparableをfail/killする。"
 complexity_effect: justified_positive
 complexity_justification: "分割前baselineを後付けしないため、観測責務のpure moduleとfrozen artifactを1組追加する。CLI compositionと既存gateへ接続しない。"
 removal_trigger: "CLI-R07が同一条件でcandidate比較を終えたあと、後継baseline schemaへ全consumerが移行し本v1 artifactの参照が0になった時。"
@@ -131,7 +131,7 @@ Issue #1687 の原子scope **CLI-R00** だけを閉じる。refactor着手前の
 ## 4. 完了条件（本原子scope）
 
 - 13指標が分類され、測定不能が明示されている
-- frozen artifactが同条件で構造proxyを再計測できる
+- frozen artifactが`source_head` blobと同条件で構造proxyを再計測できる。live `src/cli.ts` はoracleにしない
 - targeted testsがmutationを殺す
 - `src/cli.ts` のdiffが空
 - #1687全体の受入（inventory 100%、分割完了、R07比較）は残義務

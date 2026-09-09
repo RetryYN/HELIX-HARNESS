@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
@@ -30,11 +31,20 @@ function loadFrozenArtifact(): CliR00BaselineArtifact {
   return validated.artifact;
 }
 
-function liveSnapshot() {
-  const cliSource = readFileSync(CLI_R00_CLI_SOURCE_PATH, "utf8");
-  const cliBytes = readFileSync(CLI_R00_CLI_SOURCE_PATH).byteLength;
-  const workflowSource = readFileSync(CLI_R00_WORKFLOW_PATH, "utf8");
-  return collectCliR00StructuralSnapshot({ cliBytes, cliSource, workflowSource });
+function gitBlob(sourceHead: string, path: string): { text: string; bytes: number } {
+  const bytes = execFileSync("git", ["show", `${sourceHead}:${path}`]);
+  return { text: bytes.toString("utf8"), bytes: bytes.byteLength };
+}
+
+function pinnedSnapshot(sourceHead: string) {
+  const cli = gitBlob(sourceHead, CLI_R00_CLI_SOURCE_PATH);
+  const workflow = gitBlob(sourceHead, CLI_R00_WORKFLOW_PATH);
+  return collectCliR00StructuralSnapshot({
+    sourceHead,
+    cliBytes: cli.bytes,
+    cliSource: cli.text,
+    workflowSource: workflow.text,
+  });
 }
 
 function observation(
@@ -161,13 +171,18 @@ describe("CLI-R00 throughput baseline", () => {
     expect(envCompare.failures.some((item) => item.code === "environment_mixed")).toBe(true);
   });
 
-  it("U-CLIR00-006: live src/cli.ts と workflow から構造snapshotを決定的に再抽出する", () => {
-    const first = liveSnapshot();
-    const second = liveSnapshot();
+  it("U-CLIR00-006: source_head blobから構造snapshotを決定的に再抽出する", () => {
+    const artifact = loadFrozenArtifact();
+    const first = pinnedSnapshot(artifact.source_head);
+    const second = pinnedSnapshot(artifact.source_head);
     expect(first).toEqual(second);
+    expect(first.source_head).toBe(artifact.source_head);
     expect(first.cli_path).toBe("src/cli.ts");
-    expect(first.cli_bytes).toBeGreaterThan(700_000);
-    expect(first.top_level_command_families.length).toBeGreaterThan(10);
+    expect(first.cli_bytes).toBe(artifact.supporting_context.cli_bytes);
+    expect(first.cli_bytes).toBe(715943);
+    expect(first.top_level_command_families).toEqual([
+      ...artifact.supporting_context.top_level_command_families,
+    ]);
     expect(first.changed_file_fan_out).toBe(1);
     expect(first.changed_symbol_fan_out).toBe(first.top_level_command_families.length);
     expect(first.shared_file_collision_proxy).toBe(first.top_level_command_families.length);
@@ -184,8 +199,8 @@ describe("CLI-R00 throughput baseline", () => {
   });
 
   it("U-CLIR00-007: collision proxyはfamily数であり同時PR数を代入しない", () => {
-    const snapshot = liveSnapshot();
     const artifact = loadFrozenArtifact();
+    const snapshot = pinnedSnapshot(artifact.source_head);
     const collision = observation(artifact, "MERGE_CONFLICT_OR_SHARED_FILE_COLLISION_COUNT");
     expect(collision.observability).toBe("proxy");
     expect(collision.value).toBe(snapshot.top_level_command_families.length);
@@ -195,16 +210,56 @@ describe("CLI-R00 throughput baseline", () => {
     );
   });
 
-  it("U-CLIR00-008: frozen artifactが検証に通り、構造proxyがliveと一致する", () => {
+  it("U-CLIR00-008: frozen artifactが検証に通り、構造proxyがsource_head blobと一致する", () => {
     const artifact = loadFrozenArtifact();
     expect(artifact.schema_version).toBe(CLI_R00_SCHEMA_VERSION);
     expect(artifact.behavior_contract_id).toBe(CLI_R00_BEHAVIOR_CONTRACT_ID);
     expect(artifact.issue_id).toBe(CLI_R00_ISSUE_ID);
     expect(artifact.slice_id).toBe(CLI_R00_SLICE_ID);
     expect(artifact.baseline_kind).toBe("pre_refactor");
+    expect(artifact.source_head).toBe("282ec52199c876976db02267df56622eed62cc3d");
     expect(artifact.source_branch).toBe("refactor/1687-cli-r00-baseline");
-    const snapshot = liveSnapshot();
+    const snapshot = pinnedSnapshot(artifact.source_head);
     expect(remesureCliR00StructuralProxies(artifact, snapshot)).toEqual([]);
+
+    const driftedHead = collectCliR00StructuralSnapshot({
+      sourceHead: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      cliBytes: snapshot.cli_bytes,
+      cliSource: gitBlob(artifact.source_head, CLI_R00_CLI_SOURCE_PATH).text,
+      workflowSource: gitBlob(artifact.source_head, CLI_R00_WORKFLOW_PATH).text,
+    });
+    const headFailures = remesureCliR00StructuralProxies(artifact, driftedHead);
+    expect(headFailures.some((item) => item.code === "condition_mismatch")).toBe(true);
+    expect(headFailures.some((item) => item.detail.includes("snapshot.source_head"))).toBe(true);
+
+    const plusByte = collectCliR00StructuralSnapshot({
+      sourceHead: artifact.source_head,
+      cliBytes: snapshot.cli_bytes + 1,
+      cliSource: `${gitBlob(artifact.source_head, CLI_R00_CLI_SOURCE_PATH).text}\n`,
+      workflowSource: gitBlob(artifact.source_head, CLI_R00_WORKFLOW_PATH).text,
+    });
+    const byteFailures = remesureCliR00StructuralProxies(artifact, plusByte);
+    expect(byteFailures.some((item) => item.detail.includes("DIFF_BYTES"))).toBe(true);
+    expect(
+      byteFailures.some((item) => item.detail.includes("REVIEW_CONTEXT_BYTES_OR_TOKENS")),
+    ).toBe(true);
+
+    const plusFamilySource = `${gitBlob(artifact.source_head, CLI_R00_CLI_SOURCE_PATH).text}\nprogram.command("extra-r00-family");\n`;
+    const plusFamily = collectCliR00StructuralSnapshot({
+      sourceHead: artifact.source_head,
+      cliBytes: Buffer.byteLength(plusFamilySource, "utf8"),
+      cliSource: plusFamilySource,
+      workflowSource: gitBlob(artifact.source_head, CLI_R00_WORKFLOW_PATH).text,
+    });
+    const familyFailures = remesureCliR00StructuralProxies(artifact, plusFamily);
+    expect(familyFailures.some((item) => item.detail.includes("CHANGED_SYMBOL_FAN_OUT"))).toBe(
+      true,
+    );
+    expect(
+      familyFailures.some((item) =>
+        item.detail.includes("MERGE_CONFLICT_OR_SHARED_FILE_COLLISION_COUNT"),
+      ),
+    ).toBe(true);
   });
 
   it("U-CLIR00-009: 未知keyと短縮HEADを拒否する", () => {
@@ -249,7 +304,7 @@ describe("CLI-R00 throughput baseline", () => {
     const compared = compareCliR00Observation(baseline, candidate);
     expect(compared.comparable).toBe(false);
     expect(compared.delta).toBeNull();
-    expect(compared.failures.some((item) => item.code === "unmeasurable_claimed_measured")).toBe(
+    expect(compared.failures.some((item) => item.code === "unmeasurable_not_comparable")).toBe(
       true,
     );
   });
