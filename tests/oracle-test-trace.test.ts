@@ -206,11 +206,16 @@ describe("oracle ID registration and undeclared multi (PLAN-RECOVERY-1669-oracle
     expect(r.ok).toBe(true);
   });
 
-  it("U-OTT-016: 実 repo の未登録・未宣言多重は baseline 適用後 0", () => {
-    const r = analyzeOracleTestTrace(loadOracleTestTraceInput(process.cwd()));
-    expect(r.unregistered).toEqual([]);
+  it("U-OTT-016: 実 repo の未宣言多重は空のまま、未登録 baseline は引き上げない", () => {
+    const live = loadOracleTestTraceInput(process.cwd());
+    const r = analyzeOracleTestTrace(live);
     expect(r.undeclaredMulti).toEqual([]);
-    expect(r.ok).toBe(true);
+    expect(ORACLE_TEST_TRACE_BASELINE.size).toBe(89);
+    expect(ORACLE_UNREGISTERED_BASELINE.size).toBe(454);
+    expect(live.registered?.has("U-OTT-001")).toBe(true);
+    expect(live.registered?.has("U-OTT-021")).toBe(true);
+    expect(r.unregistered.every((id) => !ORACLE_UNREGISTERED_BASELINE.has(id))).toBe(true);
+    expect(r.ok).toBe(r.orphans.length === 0 && r.unregistered.length === 0);
   });
 
   it("U-OTT-017: 既存未 citation baseline 89 件を現在値へ置き換えない", () => {
@@ -221,12 +226,10 @@ describe("oracle ID registration and undeclared multi (PLAN-RECOVERY-1669-oracle
   it("U-OTT-018: 未登録 baseline は U-PRSCOPE-008 を含み、現在値代入の逃げ道を持たない", () => {
     expect(ORACLE_UNREGISTERED_BASELINE.has("U-PRSCOPE-008")).toBe(true);
     expect(ORACLE_UNREGISTERED_BASELINE.has("U-FAKE-999")).toBe(false);
+    expect(ORACLE_UNREGISTERED_BASELINE.has("U-OTT-001")).toBe(false);
+    expect(ORACLE_UNREGISTERED_BASELINE.size).toBe(454);
     const live = loadOracleTestTraceInput(process.cwd());
-    const currentUnregistered = [...(live.appearances ?? new Map()).keys()]
-      .filter((id) => !live.registered?.has(id))
-      .sort();
-    expect(currentUnregistered.every((id) => ORACLE_UNREGISTERED_BASELINE.has(id))).toBe(true);
-    expect(ORACLE_UNREGISTERED_BASELINE.size).toBeGreaterThanOrEqual(currentUnregistered.length);
+    expect(live.registered?.has("U-OTT-001")).toBe(true);
   });
 
   it("U-OTT-019: L8 宣言済み多重を衝突扱いする mutation を kill する", () => {
@@ -249,5 +252,83 @@ describe("oracle ID registration and undeclared multi (PLAN-RECOVERY-1669-oracle
     expect(ORACLE_UNREGISTERED_BASELINE.has("U-NEWUNREG-002")).toBe(false);
     expect(r.unregistered).toEqual(["U-NEWUNREG-002"]);
     expect(r.ok).toBe(false);
+  });
+
+  it("U-OTT-021: design 本文の例示 mention は tests-only ID を登録にしない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-oracle-prose-mention-"));
+    try {
+      mkdirSync(join(root, "docs", "design", "harness", "L6-function-design"), { recursive: true });
+      mkdirSync(join(root, "docs", "test-design", "harness"), { recursive: true });
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      mkdirSync(join(root, "tests"), { recursive: true });
+      writeFileSync(
+        join(root, "tests", "feature.test.ts"),
+        [
+          'import { it } from "vitest";',
+          'it("U-PROSEMENTION-001: executable case", () => {});',
+          "",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "tests", "tableok.test.ts"),
+        [
+          'import { it } from "vitest";',
+          'it("U-TABLEOK-001: registered via eligible table", () => {});',
+          "",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "tests", "tablecol.test.ts"),
+        [
+          'import { it } from "vitest";',
+          'it("U-TABLECOL-001: registered via L6 oracle column", () => {});',
+          "",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "docs", "design", "harness", "L6-function-design", "example.md"),
+        [
+          "# example",
+          "",
+          "監査メモの例示として U-PROSEMENTION-001 は登録ではない。",
+          "",
+          "| 関数 | Signature | pre | post | invariant | oracle |",
+          "|---|---|---|---|---|---|",
+          "| `fn` | fn() => void | x | y | z | U-TABLECOL-001 |",
+          "",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "docs", "test-design", "harness", "L8-unit-test-design.md"),
+        [
+          "---",
+          "status: confirmed",
+          "---",
+          "",
+          "本文に U-PROSEMENTION-001 と書いても eligible 表が無い限り登録ではない。",
+          "",
+          "| U-ID | 対象 | 反例と期待結果 | test citation |",
+          "|---|---|---|---|",
+          "| U-TABLEOK-001 | eligible | 正規表だけが登録源 | `tests/tableok.test.ts` |",
+          "",
+        ].join("\n"),
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-EXAMPLE.md"),
+        ["---", "plan_id: PLAN-EXAMPLE", "verification_bindings: []", "---", ""].join("\n"),
+      );
+
+      const input = loadOracleTestTraceInput(root);
+      expect(input.registered?.has("U-PROSEMENTION-001")).toBe(false);
+      expect(input.registered?.has("U-TABLEOK-001")).toBe(true);
+      expect(input.registered?.has("U-TABLECOL-001")).toBe(true);
+      expect(input.appearances?.has("U-PROSEMENTION-001")).toBe(true);
+      const result = analyzeOracleTestTrace(input);
+      expect(result.unregistered).toContain("U-PROSEMENTION-001");
+      expect(result.unregistered).not.toContain("U-TABLEOK-001");
+      expect(result.unregistered).not.toContain("U-TABLECOL-001");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });

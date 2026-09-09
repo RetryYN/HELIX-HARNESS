@@ -199,6 +199,8 @@ tests 側の未登録 ID と宣言に無い多重出現を見逃す。本節は�
 
 - tests の実行可能な `it()` / `test()` から PLAN 既存契約と同じ `U-*` / `IT-*` exact ID を抽出する。
 - 各 ID は L6 design または L8 test-design の少なくとも一方へ exact 登録されていなければならない。
+  登録源は L8 eligible 表（`U-ID | 対象 | 反例と期待結果 | test citation`）と、L6/L8 の
+  `U-ID` / `ID` / `oracle` 列だけである。本文の例示・監査・否定文に ID を書くだけでは登録しない。
   範囲表記 `001..007` を連番へ展開しない。判定不能な採番は fail-close する。
 - 同一 ID が複数 test path に現れる場合、次のいずれかで全 path が説明できなければ fail-close する。
   1. L8 eligible 表の test citation が全 path を列挙している。
@@ -209,8 +211,8 @@ tests 側の未登録 ID と宣言に無い多重出現を見逃す。本節は�
 - 未登録と未宣言多重の既存分は明示 baseline に列挙し、実行時に現在値へ置き換えない。追加は fail-close、縮小のみ可。
 - 起点の既存未登録は `U-PRSCOPE-008` とする。
 
-oracleは`U-OTT-001..020`、実装は`src/lint/oracle-test-trace.ts`、回帰は
-`tests/oracle-test-trace.test.ts`を正本とする。
+oracleは`U-OTT-001..021`、実装は`src/lint/oracle-test-trace.ts`、回帰は
+`tests/oracle-test-trace.test.ts`を正本とする。範囲表記は登録ではない。
 
 ## §3 統合点
 

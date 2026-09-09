@@ -12,8 +12,10 @@
  *
  * Issue #1669 / ORACLE-ID-REGISTRATION-001: 逆方向も hard gate する。
  * tests の it() にある ID が L6/L8 未登録なら fail-close。宣言に無い多重出現も fail-close。
- * L8 citation または PLAN verification_bindings が全 path を宣言する多重、fast/slow pair、
- * freeze 伝播、doctor lane は衝突にしない。既存未登録・未宣言多重は明示 baseline（縮小のみ）。
+ * 登録源は L8 eligible 表と L6/L8 の U-ID / ID / oracle 列だけ。本文の例示・監査・否定文の
+ * token mention は登録にしない。L8 citation または PLAN verification_bindings が全 path を
+ * 宣言する多重、fast/slow pair、freeze 伝播、doctor lane は衝突にしない。
+ * 既存未登録・未宣言多重は明示 baseline（縮小のみ）。
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -40,9 +42,6 @@ export {
  *  追加する場合、forward-citation 規律により tests に ID 明記が無いと即 fail する (意図通り = NEW gate)。 */
 const ORACLE_ID = /\b(?:U|IT)-[A-Z0-9]+-[0-9]{3}\b/g;
 
-/** PLAN 既存契約と同じ採番形。連番補完はしない。 */
-const REGISTERED_ORACLE_ID = /\b(?:U|IT)-[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\d{3}[a-z]?\b/g;
-
 export const ORACLE_FREEZE_PACKET_TEST_PATH = "tests/l3-g3-freeze-packet-v2.test.ts";
 export const ORACLE_DOCTOR_LANE_TEST_PATHS: ReadonlySet<string> = new Set([
   "tests/doctor.test.ts",
@@ -58,7 +57,7 @@ export interface OracleTestTraceInput {
   baseline: ReadonlySet<string>;
   /** it() で宣言された ID → 出現 test path。未指定時は登録／多重検査を行わない。 */
   appearances?: ReadonlyMap<string, readonly string[]>;
-  /** L6 design または L8 test-design に exact ID がある集合。 */
+  /** L6/L8 の正規登録構造（eligible 表と U-ID / ID / oracle 列）にある exact ID。 */
   registered?: ReadonlySet<string>;
   /** L8 citation と PLAN verification_bindings が宣言した path。 */
   declaredPaths?: ReadonlyMap<string, readonly string[]>;
@@ -206,8 +205,63 @@ function walkFiles(dir: string, predicate: (name: string) => boolean, acc: strin
   }
 }
 
-function collectExactOracleIds(text: string, acc: Set<string>): void {
-  for (const match of text.matchAll(REGISTERED_ORACLE_ID)) acc.add(match[0]);
+function splitMarkdownTableRow(line: string): string[] | null {
+  const trimmed = line.trim();
+  if (!trimmed.startsWith("|") || !trimmed.endsWith("|")) return null;
+  return trimmed
+    .slice(1, -1)
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function normalizeHeaderCell(cell: string): string {
+  return cell.replace(/[`*_]/g, "").replace(/\s+/g, " ").trim().toLowerCase();
+}
+
+function isOracleRegistrationColumn(cell: string): boolean {
+  const normalized = normalizeHeaderCell(cell);
+  return (
+    normalized === "u-id" ||
+    normalized === "id" ||
+    normalized === "oracle" ||
+    normalized === "oracle id"
+  );
+}
+
+function exactRegisteredOracleId(cell: string): string | null {
+  const stripped = cell.replace(/^[`*_]+|[`*_]+$/g, "").trim();
+  return PLAN_SPECIFIC_ORACLE_ID_PATTERN.test(stripped) ? stripped : null;
+}
+
+/** L6/L8 の U-ID / ID / oracle 列だけから exact ID を取る。本文 token と範囲展開はしない。 */
+function extractRegisteredIdsFromOracleIdColumns(markdown: string, acc: Set<string>): void {
+  const lines = markdown.replace(/\r\n?/g, "\n").split("\n");
+  let fenced = false;
+  let idColumnIndexes: number[] = [];
+  for (const line of lines) {
+    if (/^\s*(```|~~~)/.test(line)) {
+      fenced = !fenced;
+      idColumnIndexes = [];
+      continue;
+    }
+    if (fenced) continue;
+    const cells = splitMarkdownTableRow(line);
+    if (!cells) {
+      idColumnIndexes = [];
+      continue;
+    }
+    if (cells.every((cell) => /^:?-{3,}:?$/.test(cell))) continue;
+    if (cells.some((cell) => isOracleRegistrationColumn(cell))) {
+      idColumnIndexes = cells
+        .map((cell, index) => (isOracleRegistrationColumn(cell) ? index : -1))
+        .filter((index) => index >= 0);
+      continue;
+    }
+    for (const index of idColumnIndexes) {
+      const id = exactRegisteredOracleId(cells[index] ?? "");
+      if (id) acc.add(id);
+    }
+  }
 }
 
 function addDeclaredPaths(
@@ -253,13 +307,15 @@ export function loadOracleTestTraceInput(repoRoot: string): OracleTestTraceInput
   const registered = new Set<string>();
   const designFiles: string[] = [];
   walkFiles(join(repoRoot, "docs", "design"), (name) => name.endsWith(".md"), designFiles);
-  for (const full of designFiles) collectExactOracleIds(readFileSync(full, "utf8"), registered);
+  for (const full of designFiles) {
+    extractRegisteredIdsFromOracleIdColumns(readFileSync(full, "utf8"), registered);
+  }
   const testDesignFiles: string[] = [];
   walkFiles(join(repoRoot, "docs", "test-design"), (name) => name.endsWith(".md"), testDesignFiles);
   const declaredPathSets = new Map<string, Set<string>>();
   for (const full of testDesignFiles) {
     const text = readFileSync(full, "utf8");
-    collectExactOracleIds(text, registered);
+    extractRegisteredIdsFromOracleIdColumns(text, registered);
     const { rows } = parseEligibleOracleTable(text);
     for (const row of rows) {
       registered.add(row.oracleId);

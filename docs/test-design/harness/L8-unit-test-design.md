@@ -611,8 +611,9 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-OTT-013 | freeze 伝播 | feature test と freeze packet の対を単純衝突にしない | `tests/oracle-test-trace.test.ts` |
 | U-OTT-014 | 未宣言多重 | 宣言に無い多重出現を fail-close する | `tests/oracle-test-trace.test.ts` |
 | U-OTT-015 | doctor lane | doctor lane と単一 feature path の対を衝突にしない | `tests/oracle-test-trace.test.ts` |
-| U-OTT-016 | 実 repo 残差 | 未登録・未宣言多重は baseline 適用後 0 件である | `tests/oracle-test-trace.test.ts` |
+| U-OTT-016 | 実 repo 残差 | 未宣言多重は baseline 適用後 0 件。未登録 baseline は引き上げず、本文 mention 残差は fail-close する | `tests/oracle-test-trace.test.ts` |
 | U-OTT-017 | 旧 baseline 固定 | 既存未 citation baseline 89 件を現在値へ置き換えない | `tests/oracle-test-trace.test.ts` |
 | U-OTT-018 | 未登録 baseline 起点 | 未登録 baseline は U-PRSCOPE-008 を含み、現在値代入の逃げ道を持たない | `tests/oracle-test-trace.test.ts` |
 | U-OTT-019 | 宣言多重 mutation | L8 宣言済み多重を衝突扱いする mutation を red にする | `tests/oracle-test-trace.test.ts` |
 | U-OTT-020 | 現在値 baseline mutation | 未登録 baseline を現在集合へ置き換える mutation を red にする | `tests/oracle-test-trace.test.ts` |
+| U-OTT-021 | 本文 mention 非登録 | tests だけに ID があり design 本文で同じ ID を例示しても unregistered のまま残る | `tests/oracle-test-trace.test.ts` |
