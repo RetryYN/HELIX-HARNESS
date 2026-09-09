@@ -74,6 +74,7 @@ modifies:
   - { artifact_path: tests/oracle-test-trace.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/harness/L6-function-design/governance-enforcement.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: tl, slot_label: "TL — 未登録と未宣言多重を既存 oracle-test-trace へ束縛する" }
   - { role: qa, slot_label: "QA — 正当な多重 citation と negative/mutation oracle を検証する" }
@@ -129,13 +130,13 @@ fail-close する。独立 CI job は作らない。
 snapshot を 98 のまま通すために status を終端へ進めることは禁止する。欠落しているのは snapshot の追従であり、
 PLAN のライフサイクルではない。
 
-required path（allowed write exact set 外のため本 slice では編集しない）:
+required companion path（PR #1681 の許可範囲へ追加済み）:
 
 - `docs/governance/generated/outstanding-snapshot.json`
 - 正規修復 command: `helix db rebuild`（手書き禁止）
-- 編集する場合の scope 追記: Allowed path families と Expected changed paths へ同 path を足す
+- Allowed path families と Expected changed paths に同 path を束縛済み。Cursor run 終了後、Codex が同 branch の生成物追従を引き継ぐ。
 
 ## 完了境界
 
 targeted tests、plan lint、typecheck、Biome が Node 24 で green であること。
-全 CI と独立 review は自己申告しない。outstanding snapshot 追従は上記 required path の別権限で行う。
+全 CI と独立 review は自己申告しない。outstanding snapshot 追従は上記許可済み companion path の正規再生成に限定する。
