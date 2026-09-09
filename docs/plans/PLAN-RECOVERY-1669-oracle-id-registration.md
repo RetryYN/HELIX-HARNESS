@@ -114,7 +114,28 @@ fail-close する。独立 CI job は作らない。
 - L8 宣言済み多重を衝突扱いする mutation は `U-OTT-019` が kill する。
 - 既存 green を相殺する別 CI job を追加しない。
 
+## ライフサイクル正本（CI run 34297057974）
+
+`status: draft` は通過用の仮値ではなく、現時点の作業状態そのものである。本 PLAN は未 review・未 merge、
+`completion_claim_allowed: false`、`review_evidence: []` であり、終端 status（confirmed / completed / accepted）
+や archived ではない。outstanding 集計は artifact progress 色で除外せず、非終端 PLAN を `active_draft` として残す。
+
+実測（HEAD `158dc2eab`、Node v24.15.0）:
+
+- live `computeOutstandingWork` → `decision_count=99`、本 PLAN を含む。blocker=`active_draft`
+- committed `docs/governance/generated/outstanding-snapshot.json` → `decision_count=98`、本 PLAN 欠落
+- `inspectOutstandingSnapshot` → `G-10: outstanding snapshot missing live plan PLAN-RECOVERY-1669-oracle-id-registration`
+
+snapshot を 98 のまま通すために status を終端へ進めることは禁止する。欠落しているのは snapshot の追従であり、
+PLAN のライフサイクルではない。
+
+required path（allowed write exact set 外のため本 slice では編集しない）:
+
+- `docs/governance/generated/outstanding-snapshot.json`
+- 正規修復 command: `helix db rebuild`（手書き禁止）
+- 編集する場合の scope 追記: Allowed path families と Expected changed paths へ同 path を足す
+
 ## 完了境界
 
 targeted tests、plan lint、typecheck、Biome が Node 24 で green であること。
-全 CI と独立 review は自己申告しない。outstanding snapshot 追従が必要な場合は allowed write set 外として報告する。
+全 CI と独立 review は自己申告しない。outstanding snapshot 追従は上記 required path の別権限で行う。
