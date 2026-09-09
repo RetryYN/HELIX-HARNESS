@@ -25,7 +25,7 @@ contract_failures: "pin漏れ、記録値だけの照合、semantic pinの自動
 tdd_red_required: true
 red_at: "2026-09-09T03:42:00+09:00"
 green_at: "2026-09-09T03:46:54+09:00"
-mutation_oracle_evidence: "U-PINCHAIN-001〜009でstale digest/count、semantic review pin、unknown surface、manifest欠落、必須field欠落、CLI未配線／縮退exitを独立拘束"
+mutation_oracle_evidence: "tests/pin-chain-derivation.test.tsで変異A（unsupportedSurfacesをall-or-nothingへ退行）を投入するとU-PINCHAIN-002/006がRed、変異B（count locationを値の最初の出現へ退行）を投入するとU-PINCHAIN-005がRedとなり、両変異をkillした。復元後5 tests green、git diff 0を独立Claudeが実測。"
 complexity_effect: justified_positive
 complexity_justification: "既存pin形式ごとのread-only adapter一箇所へ追従推測を集約し、CI再走と手作業を削減する"
 removal_trigger: "全pin ownerが共通relation graphから同等のexact逆引きを提供しconsumer移行が成立した時"
@@ -84,7 +84,7 @@ review_evidence:
     reviewed_head_sha: "00b3de438eb7a293c3fec33b2c473e2b4553f3cd"
     scope: "PR #1679 current HEADのL6設計、L6 test design、read-only runtime、CLI配線、U-PINCHAIN-001〜009、semantic pin非自動更新、unknown surface DEGRADEDを独立検収し、blocker 0。正式receiptは次HEADのCI成功後に封印する。"
     green_commands:
-      - kind: targeted_test
+      - kind: unit_test
         command: "npx --no-install vitest run tests/pin-chain-derivation.test.ts tests/cli-surface.test.ts"
         runner: local
         scope: targeted
