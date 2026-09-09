@@ -47,8 +47,8 @@
     },
     {
       "test_path": "tests/layer-authority-drift.test.ts",
-      "test_file_sha256": "3ae7c77ee805bce4d1b75d9e1b62b7694520998d26d56f5dcdbdd4a10f0a8e43",
-      "expected_case_count": 2,
+      "test_file_sha256": "c9334b61f7040f9c2d755a725f27620cf479ca47676c84de77b32a7765b841e0",
+      "expected_case_count": 5,
       "authority_paths": [
         "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
         "docs/test-design/helix/vmodel-canonical-authority-cutover-acceptance.md"
@@ -67,7 +67,7 @@
     },
     {
       "test_path": "tests/l12-canonical-authority.test.ts",
-      "test_file_sha256": "04150969ad51fd6d951601879db3e6f774357d998f05961ac65baa9d922bac92",
+      "test_file_sha256": "c49be4c84061426203bb622f71a4b97e9308e9d1c565f4712d16cc5048c9e687",
       "expected_case_count": 6,
       "authority_paths": [
         "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",

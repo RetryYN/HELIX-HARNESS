@@ -47,7 +47,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/agent-command-taxonomy-authority.md, oracle_id: U-ACTA-002, test_path: tests/layer-authority-drift.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/agent-command-taxonomy-authority.md, oracle_id: U-ACTA-003, test_path: tests/layer-authority-drift.test.ts }
 dependencies:
-  parent: docs/plans/PLAN-RECOVERY-78-effective-agent-startup-authority.md
+  parent: PLAN-RECOVERY-78-effective-agent-startup-authority
   requires: []
   references:
     - "issue:1370"
@@ -62,6 +62,8 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/agent-command-taxonomy-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-agent-command-taxonomy-authority-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_config }
+  - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
   - { artifact_path: config/specialist-agent-registry.json, artifact_type: json_config }
   - { artifact_path: .claude/agents/devops-deploy.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/agents/pmo-sonnet.md, artifact_type: markdown_doc }
