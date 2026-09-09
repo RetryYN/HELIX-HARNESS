@@ -2,8 +2,10 @@ FROM node:24.20.0-bookworm-slim@sha256:ba849c60be29959425b8734d57b8b4b7d56f98edd
 
 # Workspace checkout precedes the repository install script.
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y git ca-certificates \
+    && apt-get install --no-install-recommends -y git ca-certificates curl \
     && git --version \
+    && curl --version \
+    && dpkg-query -W git ca-certificates curl \
     && apt-get clean
 
 LABEL org.opencontainers.image.title="HELIX-HARNESS Cursor Cloud Agent"

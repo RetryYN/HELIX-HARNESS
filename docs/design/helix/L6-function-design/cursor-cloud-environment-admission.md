@@ -54,6 +54,21 @@ Nodeのbase manifest固定とinstall scriptのhost変更禁止は維持し、ima
 検証列の完走を確認する。OS package取得を含む派生image全体の再現性はbase digestだけでは証明できないため、
 採用時は実Buildのimage identityと取得されたpackage版を別途記録する。未成功候補は自動採用しない。
 
+### provider起動前提とdownload境界
+
+Git修復後のDraft Build `bld-20260909-1826d036-649a-47ee-80e0-a0c846a707e2`ではcloneが完走し、
+provider管理の`install-exec-daemon`が`curl: command not found`で停止した。HELIX installへは未到達である。
+imageへ追加するpackageは`git / ca-certificates / curl`の閉じた集合とする。`git --version`、`curl --version`、
+`dpkg-query -W git ca-certificates curl`で存在と取得版をBuildログへ出す。
+HELIX install側のcurl禁止は維持する。Dockerfileではpackage同梱と版確認のみを許し、任意URL取得、
+shell pipe、ENV／CMDへのdownload命令の混入を拒否する。U-CURSOR-ENV-006で独立反例を拘束する。
+実BuildのID・source HEAD・image identity・package版・install結果は本修復PLANの検証節へ記録し、未観測値は補作しない。
+
+2026-09-10に[公式環境設定](https://cursor.com/docs/cloud-agent/setup)を確認した。
+Dockerfileによるsystem依存導入とCursor管理のcheckoutは確認できるが、provider daemonが呼ぶ全binaryの
+網羅的契約は同ページに見当たらない。上記集合は実ログで確認した追加前提であり、全前提の網羅を主張しない。
+base image既存のshell等を含む最終適合性はDraft Build完走で確認する。
+
 ## Failure
 
 wrong／欠落digest、Node 24.15未満または25以上、mutable download、host-global write、native fallback、検証command欠落は

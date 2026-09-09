@@ -43,9 +43,11 @@ dependencies:
   blocks: []
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md, oracle_id: U-CURSOR-ENV-005, test_path: tests/cursor-cloud-environment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md, oracle_id: U-CURSOR-ENV-006, test_path: tests/cursor-cloud-environment.test.ts }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1293-cursor-image-git.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: config }
   - { artifact_path: .cursor/Dockerfile, artifact_type: config }
   - { artifact_path: tests/cursor-cloud-environment.test.ts, artifact_type: test_code }
   - { artifact_path: docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md, artifact_type: design_doc }
@@ -73,3 +75,8 @@ gitCheckoutで`git: command not found`となった。Issue #1293 comment 5603812
 修復branchのDraft Buildを1件ずつ追跡し、clone・installの完走とimage/package identityを確認する。
 未観測の費用は未測定とし、失敗時は同一入力の無制限再試行を行わない。
 独立レビュー、fresh CI、merge/read-after、active採用の適否確認は未完了。
+
+2026-09-10追記: Git修復後のDraft Buildはclone成功後、provider daemon導入のcurl欠如で停止した。
+独立definition review（PR #1689 comment 5603961499）に従い、package同梱と任意downloadを分離した。
+追加契約の実装前にU004/U006の2件Red・既存4件Greenを確認した。実imageの再検収は未完了。
+版出力はDocker buildログへ採取し、成功時にこの節へBuild ID／HEAD／image identity／package版を転記する。
