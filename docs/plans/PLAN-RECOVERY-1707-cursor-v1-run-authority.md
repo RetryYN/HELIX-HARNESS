@@ -75,7 +75,7 @@ modifies:
 review_evidence: []
 ---
 
-# Cursor v1 run authority Recovery
+# Cursor v1 run authorityの復旧
 
 ## 実装範囲
 
