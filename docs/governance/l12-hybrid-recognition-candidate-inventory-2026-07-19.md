@@ -4,7 +4,7 @@
 
 旧L0-L14、旧pair（L1↔L14 / L2↔L10 / L3↔L12）、または旧runtime方針（Python proposal-only / TypeScript・Bun一律再実装）を狭いlexical条件で含む非archive・非migration文書を抽出したseed集合である。自己生成auditを除く重複除去後は177文書。
 
-この174件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは866 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
+この177件は全候補の閉包ではない。空白・説明語・表行を挟むpair、L13/L14・G13/G14単独、Bun単独、Python worker/runtime同義表現は`src/lint/l12-hybrid-recognition.ts`の独立broad scannerで検出する。自己生成auditを除く現行broad queueは866 filesで、次のコマンドがpath・line・signal・excerpt・初期dispositionをJSON出力する。
 
 ```bash
 npx --no-install tsx scripts/audit-l12-hybrid-recognition.ts
@@ -130,7 +130,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 `vmodel-canonical-authority-cutover`と`hybrid-rebaseline-v0.5.0-collision`は`safe-current`。L0 charterは層外anchorとして`safe-current`にできるが、旧pairを工程正本として再提示していないことが条件。他はdesign/test traceへ直接使われるため`authority-review`。
 
-## 6. authority-review対象: test-design（17）
+## 6. authority-review対象: test-design（18）
 
 - `docs/test-design/harness/L1-operational-test-design.md`
 - `docs/test-design/harness/L3-acceptance-test-design.md`
@@ -153,7 +153,7 @@ rg -l '(L0-L14|L0.?L14|L1.?L14|L2.?L10|L3.?L12|proposal-only Python|proposal-onl
 
 canonical cutover acceptanceとdocgen fit acceptanceはdual-viewを明示しており`safe-current`。残りは旧pairをoracleとして固定していないか確認必須。
 
-## 7. authority-review対象: PLAN（65）
+## 7. authority-review対象: PLAN（66）
 
 - `docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md`
 - `docs/plans/PLAN-DISCOVERY-04-process-workflows.md`
