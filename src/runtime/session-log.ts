@@ -88,6 +88,8 @@ export interface SessionHookInput {
   tool_name?: string;
   tool_input?: Record<string, unknown>;
   tool_response?: unknown;
+  /** Control Planeが発行したproject-hook authority transport envelope。推測・補完しない。 */
+  project_hook_authority_transport_envelope?: unknown;
 }
 
 export type SkillInjectionAttemptOutcome = "injected" | "no_match" | "missing" | "failed";
