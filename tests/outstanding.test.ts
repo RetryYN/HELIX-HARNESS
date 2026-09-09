@@ -10,6 +10,7 @@ import {
   completionReadinessLine,
   completionReviewBundleForOutstanding,
   computeOutstandingWork,
+  INVALID_OUTSTANDING_PLAN_ID,
   isCommandSafePlanId,
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
@@ -2097,9 +2098,9 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      writePlan(root, "PLAN-A.md", "L7", "draft");
-      writePlan(root, "PLAN-B.md", "L7", "confirmed");
-      writePlan(root, "PLAN-C.md", "cross", "in_progress");
+      writePlan(root, "PLAN-L7-01.md", "L7", "draft");
+      writePlan(root, "PLAN-L7-02.md", "L7", "confirmed");
+      writePlan(root, "PLAN-L7-03.md", "cross", "in_progress");
 
       const rows = loadOutstandingPlanRows(root);
       expect(rows).toHaveLength(3);
@@ -2108,7 +2109,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
       expect(o.nonTerminalPlansByLayer).toEqual({ L7: 1, cross: 1 });
       expect(o.nonTerminalPlansTotal).toBe(2);
       expect(o.openDefers).toBe(0); // design/test-design 不在 → 0 (fail-open)
-      expect(o.items.map((item) => item.planId)).toEqual(["PLAN-A", "PLAN-C"]);
+      expect(o.items.map((item) => item.planId)).toEqual(["PLAN-L7-01", "PLAN-L7-03"]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -2118,11 +2119,11 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-classify-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      writePlan(root, "PLAN-FUTURE.md", "L7", "draft", {
+      writePlan(root, "PLAN-L7-10-future.md", "L7", "draft", {
         frontmatter: { version_target: "future" },
         body: "Action-binding activation requires approval before external webhook use.",
       });
-      writePlan(root, "PLAN-S3.md", "cross", "draft", {
+      writePlan(root, "PLAN-DISCOVERY-03.md", "cross", "draft", {
         frontmatter: { kind: "poc", workflow_phase: "S3" },
         body: "S4 decision pending.",
       });
@@ -2134,19 +2135,20 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         version_up_parked: 1,
       });
       expect(o.items.map((item) => [item.planId, item.reason])).toEqual([
-        ["PLAN-FUTURE", "version_up_parked"],
-        ["PLAN-S3", "po_decision_pending"],
+        ["PLAN-DISCOVERY-03", "po_decision_pending"],
+        ["PLAN-L7-10-future", "version_up_parked"],
       ]);
-      expect(o.items[0]?.requiredEvidence).toContain(
+      const parked = o.items.find((item) => item.planId === "PLAN-L7-10-future");
+      expect(parked?.requiredEvidence).toContain(
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
       );
-      expect(o.items[0]?.requiredEvidence).toContain(
+      expect(parked?.requiredEvidence).toContain(
         "activation_snapshot_id from the current activationSnapshot.snapshotId recorded before activation approval",
       );
-      expect(o.items[0]?.requiredEvidence).toEqual(
+      expect(parked?.requiredEvidence).toEqual(
         expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
       );
-      expect(o.items[0]?.requiredEvidence).not.toContain(
+      expect(parked?.requiredEvidence).not.toContain(
         "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
       );
     } finally {
@@ -2421,8 +2423,24 @@ S4 decision pending.
 `,
       );
       const rows = loadOutstandingPlanRows(root);
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({
+        planId: INVALID_OUTSTANDING_PLAN_ID,
+        planIdSchemaInvalid: true,
+        status: "draft",
+      });
       expect(rows.map((row) => row.planId)).not.toContain("x; rm -rf /");
       const live = computeOutstandingWork(root);
+      expect(live.items).toHaveLength(1);
+      expect(live.items[0]).toMatchObject({
+        planId: INVALID_OUTSTANDING_PLAN_ID,
+        reason: "frontmatter_schema_invalid",
+      });
+      expect(live.items[0]?.blockers).toEqual(
+        expect.arrayContaining(["frontmatter_schema_invalid", "po_decision_pending"]),
+      );
+      expect(live.blockersByKind.frontmatter_schema_invalid).toBe(1);
+      expect(live.completionReadiness.ok).toBe(false);
       const liveCommands = [
         ...workflowNextActionsForOutstanding(live).flatMap((item) => [
           item.decisionPacketCommand,
@@ -2485,6 +2503,113 @@ S4 decision pending.
       expect(packet.decisions[0]?.scopedDecisionPacketCommand).toBe(
         "helix s4 decision-packet --json",
       );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("plan_id: foo は command-safe でも schema 不適合として受理せず行は残す", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-foo-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "foo.md"),
+        `---
+plan_id: foo
+title: schema-invalid but command-safe fixture
+kind: poc
+drive: agent
+status: draft
+layer: cross
+workflow_phase: S3
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+S4 decision pending.
+`,
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L7-99-foo.md"),
+        `---
+plan_id: foo
+title: filename fallback fixture
+kind: impl
+drive: agent
+status: draft
+layer: L7
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+active draft.
+`,
+      );
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows).toHaveLength(2);
+      expect(rows.map((row) => row.planId).sort()).toEqual([
+        INVALID_OUTSTANDING_PLAN_ID,
+        "PLAN-L7-99-foo",
+      ]);
+      expect(rows.every((row) => row.planIdSchemaInvalid === true)).toBe(true);
+      expect(rows.map((row) => row.planId)).not.toContain("foo");
+
+      const live = computeOutstandingWork(root);
+      expect(live.items).toHaveLength(2);
+      expect(live.items.every((item) => item.reason === "frontmatter_schema_invalid")).toBe(true);
+      expect(live.blockersByKind.frontmatter_schema_invalid).toBe(2);
+
+      const commandText = [
+        ...workflowNextActionsForOutstanding(live).flatMap((item) => [
+          item.decisionPacketCommand,
+          item.runnableDecisionPacketCommand,
+          item.scopedDecisionPacketCommand,
+          item.runnableScopedDecisionPacketCommand,
+          ...item.packetCommands,
+          ...item.runnablePacketCommands,
+          ...item.scopedPacketCommands,
+          ...item.runnableScopedPacketCommands,
+        ]),
+        ...completionDecisionPacketForOutstanding(live).decisions.flatMap((decision) => [
+          decision.decisionPacketCommand,
+          decision.runnableDecisionPacketCommand,
+          decision.scopedDecisionPacketCommand,
+          decision.runnableScopedDecisionPacketCommand,
+          ...decision.packetCommands,
+          ...decision.runnablePacketCommands,
+          ...decision.scopedPacketCommands,
+          ...decision.runnableScopedPacketCommands,
+        ]),
+      ].join("\n");
+      expect(commandText).not.toMatch(/--plan\s+foo(?:\s|$)/);
+      expect(commandText).not.toContain("plan_id: foo");
+
+      const inMemory = analyzeOutstandingWork(
+        [
+          {
+            planId: "foo",
+            layer: "cross",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            text: "S4 decision pending.",
+          },
+        ],
+        0,
+      );
+      const actions = workflowNextActionsForOutstanding(inMemory);
+      expect(isCommandSafePlanId("foo")).toBe(true);
+      expect(actions[0]?.scopedDecisionPacketCommand).toBe("helix s4 decision-packet --json");
+      expect(actions[0]?.scopedPacketCommands).toEqual(["helix s4 decision-packet --json"]);
+      expect(actions[0]?.scopedDecisionPacketCommand).not.toContain("--plan foo");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

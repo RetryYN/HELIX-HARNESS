@@ -23,7 +23,7 @@ function basePacket(): CompletionDecisionPacket {
     analyzeOutstandingWork(
       [
         {
-          planId: "PLAN-S3",
+          planId: "PLAN-DISCOVERY-03",
           layer: "cross",
           kind: "poc",
           status: "draft",
@@ -49,7 +49,7 @@ function baseBundle(): {
   const outstanding = analyzeOutstandingWork(
     [
       {
-        planId: "PLAN-S3",
+        planId: "PLAN-DISCOVERY-03",
         layer: "cross",
         kind: "poc",
         status: "draft",
@@ -196,7 +196,7 @@ describe("completion decision packet lint", () => {
     const outstanding = analyzeOutstandingWork(
       [
         {
-          planId: "PLAN-S3",
+          planId: "PLAN-DISCOVERY-03",
           layer: "cross",
           kind: "poc",
           status: "draft",
@@ -303,8 +303,8 @@ describe("completion decision packet lint", () => {
       expect.objectContaining({
         command: "helix s4 decision-packet --json",
         runnableCommand: "npm run helix -- s4 decision-packet --json",
-        scopedCommand: "helix s4 decision-packet --json --plan PLAN-S3",
-        runnableScopedCommand: "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
+        scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-03",
+        runnableScopedCommand: "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
         schemaVersion: "s4-decision-packet.v1",
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
@@ -377,8 +377,8 @@ describe("completion decision packet lint", () => {
       runnableDecisionPacketCommand: "npm run helix -- s4 decision-packet --json",
       runnablePacketCommands: ["npm run helix -- s4 decision-packet --json"],
       runnableScopedDecisionPacketCommand:
-        "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
-      runnableScopedPacketCommands: ["npm run helix -- s4 decision-packet --json --plan PLAN-S3"],
+        "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
+      runnableScopedPacketCommands: ["npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03"],
     });
     expect(packet.humanReviewBundle).toMatchObject({
       schemaVersion: "completion-decision-human-review-bundle.v1",
@@ -390,7 +390,7 @@ describe("completion decision packet lint", () => {
       items: [
         {
           order: 1,
-          planId: "PLAN-S3",
+          planId: "PLAN-DISCOVERY-03",
           decisionKind: "po_s4_decision",
           blockerReason: "po_decision_pending",
           requiredRecords: ["s4_decision_record"],
@@ -408,12 +408,12 @@ describe("completion decision packet lint", () => {
             "s4-decision-packet.v1.decisionCommandAvailable",
             "s4-decision-packet.v1.decisionAllowed",
           ],
-          scopedPrimaryPacketCommand: "helix s4 decision-packet --json --plan PLAN-S3",
+          scopedPrimaryPacketCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-03",
           runnableScopedPrimaryPacketCommand:
-            "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
-          scopedSupportingPacketCommands: ["helix s4 decision-packet --json --plan PLAN-S3"],
+            "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
+          scopedSupportingPacketCommands: ["helix s4 decision-packet --json --plan PLAN-DISCOVERY-03"],
           runnableScopedSupportingPacketCommands: [
-            "npm run helix -- s4 decision-packet --json --plan PLAN-S3",
+            "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
           ],
         },
       ],
@@ -707,7 +707,7 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_human_review_bundle",
           detail:
-            "items[0].scopedPrimaryPacketCommand=helix completion decision-packet --json expected=helix s4 decision-packet --json --plan PLAN-S3",
+            "items[0].scopedPrimaryPacketCommand=helix completion decision-packet --json expected=helix s4 decision-packet --json --plan PLAN-DISCOVERY-03",
         },
         {
           reason: "invalid_human_review_bundle",
@@ -1736,12 +1736,12 @@ describe("completion decision packet lint", () => {
         {
           reason: "invalid_scoped_decision_packet_command",
           detail:
-            "decision[0] scopedDecisionPacketCommand mismatch expected=helix s4 decision-packet --json --plan PLAN-S3 actual=helix s4 decision-packet --json",
+            "decision[0] scopedDecisionPacketCommand mismatch expected=helix s4 decision-packet --json --plan PLAN-DISCOVERY-03 actual=helix s4 decision-packet --json",
         },
         {
           reason: "invalid_scoped_decision_packet_command",
           detail:
-            "decision[0] scopedPacketCommands mismatch expected=helix s4 decision-packet --json --plan PLAN-S3 actual=helix s4 decision-packet --json",
+            "decision[0] scopedPacketCommands mismatch expected=helix s4 decision-packet --json --plan PLAN-DISCOVERY-03 actual=helix s4 decision-packet --json",
         },
       ]),
     );
