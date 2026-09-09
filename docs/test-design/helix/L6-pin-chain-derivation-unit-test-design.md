@@ -30,6 +30,7 @@ next_pair_freeze: L6
 | U-PINCHAIN-008 | field欠落 | 登録済みbindingの必須field欠落をlocation 0のstale findingへ偽装せず`DEGRADED` | `tests/pin-chain-derivation.test.ts` |
 | U-PINCHAIN-009 | CLI縮退 | 未登録surfaceを実CLIがJSON `DEGRADED`かつexit 2で返す | `tests/cli-surface.test.ts` |
 | U-PINCHAIN-010 | digest inventory line | `src/lint/outstanding.ts`の`sha256Json`が移動しinventory lineがstaleな反例で、既存scanner由来live lineとの差を`deterministic_pin` / `refresh_candidate`として返す | `tests/pin-chain-derivation.test.ts` |
+| U-PINCHAIN-011 | digest hit消失 | inventoryの`hit_id`に対応するscanner hitが消えた場合、findingを消さず`live_value: null` / staleとして返す | `tests/pin-chain-derivation.test.ts` |
 
 件数だけでなく、deterministicとsemanticの取り違え、未対応surfaceの隠蔽、CLI未配線をそれぞれ独立して拘束する。
 
@@ -52,3 +53,5 @@ next_pair_freeze: L6
 ## U-PINCHAIN-009: CLI縮退exitの拘束
 
 ## U-PINCHAIN-010: digest inventory行pinのscanner再利用
+
+## U-PINCHAIN-011: digest scanner hit消失のfail-close

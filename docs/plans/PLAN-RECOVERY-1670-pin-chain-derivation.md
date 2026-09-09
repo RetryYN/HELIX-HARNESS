@@ -43,6 +43,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-008, test_path: tests/pin-chain-derivation.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-009, test_path: tests/cli-surface.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-010, test_path: tests/pin-chain-derivation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/pin-chain-derivation.md, oracle_id: U-PINCHAIN-011, test_path: tests/pin-chain-derivation.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -111,7 +112,7 @@ confirmedは上記exact HEADに対する第一sliceの独立検収を表す。Is
 merge/read-afterの完了主張は行わず、completion_claim_allowedはfalseを維持する。
 
 - 証跡転記後HEADのrepo-wide guard、fresh CI、最終独立receipt、merge/read-after
-- 本sliceの実測で未対応と確認したdesign catalog、V-pair、digest inventoryの逆引きadapter
+- 本sliceの実測で未対応と確認したdesign catalog、V-pairの逆引きadapter
 - JSON generated surface、literal digest、集合／cross-table pin adapter
 - Bugbot Aへの許可済みdeterministic refresh接続（別責務）
 

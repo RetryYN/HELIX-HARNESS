@@ -232,4 +232,38 @@ describe("PLAN-RECOVERY-1670 pin chain derivation", () => {
     ]);
     expect(readFileSync(inventoryPath, "utf8")).toBe(inventorySource);
   });
+
+  it("U-PINCHAIN-011: inventoryのdigest hitが消えてもfindingを消さない", () => {
+    const root = fixture();
+    mkdirSync(join(root, "config"), { recursive: true });
+    const target = "src/lint/outstanding.ts";
+    writeFileSync(join(root, target), "export const value = 1;\n");
+    const hitId = `${target}::sha256Json:createHash(sha256)::1`;
+    writeFileSync(
+      join(root, "config/digest-canonicalization-inventory.json"),
+      `${JSON.stringify(
+        {
+          schema_version: "digest-inventory.v3",
+          rows: [{ hit_id: hitId, path: target, line: 4 }],
+        },
+        null,
+        2,
+      )}\n`,
+    );
+
+    const report = derivePinChain(root, [target]);
+    expect(report.status).toBe("ok");
+    expect(report.findings).toEqual([
+      expect.objectContaining({
+        changed_path: target,
+        dependent_path: "config/digest-canonicalization-inventory.json",
+        field: "line",
+        kind: "deterministic_pin",
+        action: "refresh_candidate",
+        recorded_value: 4,
+        live_value: null,
+        stale: true,
+      }),
+    ]);
+  });
 });
