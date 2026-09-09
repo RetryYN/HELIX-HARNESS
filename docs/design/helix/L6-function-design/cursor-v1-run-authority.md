@@ -54,4 +54,3 @@ run ID重複、不正な観測時刻、不正TTLはclassifier入力エラーと�
 
 HTTP呼出し、cancel実行、follow-up POST、receipt永続化は既存adapter／assignment側の責務であり、本純粋判定器は
 副作用を持たない。外部E2Eは別途、credentialを証拠へ出さず実providerで検証する。
-
