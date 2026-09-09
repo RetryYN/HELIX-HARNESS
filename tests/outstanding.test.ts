@@ -10,10 +10,10 @@ import {
   completionReadinessLine,
   completionReviewBundleForOutstanding,
   computeOutstandingWork,
-  INVALID_OUTSTANDING_PLAN_ID,
   isCommandSafePlanId,
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
+  outstandingFallbackPlanId,
   outstandingSummaryLine,
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
@@ -2424,17 +2424,20 @@ S4 decision pending.
 `,
       );
       const rows = loadOutstandingPlanRows(root);
+      const expectedId = outstandingFallbackPlanId("evil.md");
       expect(rows).toHaveLength(1);
       expect(rows[0]).toMatchObject({
-        planId: INVALID_OUTSTANDING_PLAN_ID,
+        planId: expectedId,
         planIdSchemaInvalid: true,
         status: "draft",
       });
+      expect(expectedId).toMatch(/^invalid-[a-f0-9]{16}$/);
+      expect(isCommandSafePlanId(expectedId)).toBe(true);
       expect(rows.map((row) => row.planId)).not.toContain("x; rm -rf /");
       const live = computeOutstandingWork(root);
       expect(live.items).toHaveLength(1);
       expect(live.items[0]).toMatchObject({
-        planId: INVALID_OUTSTANDING_PLAN_ID,
+        planId: expectedId,
         reason: "frontmatter_schema_invalid",
       });
       expect(live.items[0]?.blockers).toEqual(
@@ -2558,7 +2561,7 @@ active draft.
       expect(rows).toHaveLength(2);
       expect(rows.map((row) => row.planId).sort()).toEqual([
         "PLAN-L7-99-foo",
-        INVALID_OUTSTANDING_PLAN_ID,
+        outstandingFallbackPlanId("foo.md"),
       ]);
       expect(rows.every((row) => row.planIdSchemaInvalid === true)).toBe(true);
       expect(rows.map((row) => row.planId)).not.toContain("foo");
@@ -2611,6 +2614,96 @@ active draft.
       expect(actions[0]?.scopedDecisionPacketCommand).toBe("helix s4 decision-packet --json");
       expect(actions[0]?.scopedPacketCommands).toEqual(["helix s4 decision-packet --json"]);
       expect(actions[0]?.scopedDecisionPacketCommand).not.toContain("--plan foo");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("filename も schema 不適合な文書は文書単位 identity を保ち blocker を潰さない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-distinct-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "evil.md"),
+        `---
+plan_id: "x; rm -rf /"
+title: first invalid document
+kind: poc
+drive: agent
+status: draft
+layer: cross
+workflow_phase: S3
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+S4 decision pending.
+`,
+      );
+      writeFileSync(
+        join(root, "docs", "plans", "nasty.md"),
+        `---
+plan_id: "bar; echo pwned"
+title: second invalid document
+kind: impl
+drive: agent
+status: draft
+layer: L7
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+active draft.
+`,
+      );
+      const firstId = outstandingFallbackPlanId("evil.md");
+      const secondId = outstandingFallbackPlanId("nasty.md");
+      expect(firstId).not.toEqual(secondId);
+      expect(firstId).toMatch(/^invalid-[a-f0-9]{16}$/);
+      expect(secondId).toMatch(/^invalid-[a-f0-9]{16}$/);
+      expect(isCommandSafePlanId(firstId)).toBe(true);
+      expect(isCommandSafePlanId(secondId)).toBe(true);
+
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows).toHaveLength(2);
+      expect(rows.map((row) => row.planId).sort()).toEqual([firstId, secondId].sort());
+      expect(rows.every((row) => row.planIdSchemaInvalid === true)).toBe(true);
+      expect(rows.map((row) => row.planId).join("\n")).not.toContain("rm -rf");
+      expect(rows.map((row) => row.planId).join("\n")).not.toContain("echo pwned");
+
+      const live = computeOutstandingWork(root);
+      expect(live.items).toHaveLength(2);
+      expect(new Set(live.items.map((item) => item.planId)).size).toBe(2);
+      expect(live.items.every((item) => item.reason === "frontmatter_schema_invalid")).toBe(true);
+      expect(live.blockersByKind.frontmatter_schema_invalid).toBe(2);
+      expect(live.items.some((item) => item.blockers.includes("po_decision_pending"))).toBe(true);
+
+      const snapshot = buildOutstandingSnapshot(live);
+      expect(snapshot.decision_count).toBe(2);
+      expect(snapshot.plan_ids).toHaveLength(2);
+      expect(snapshot.plan_ids).toEqual([firstId, secondId].sort());
+
+      const commandText = [
+        ...workflowNextActionsForOutstanding(live).flatMap((item) => [
+          item.scopedDecisionPacketCommand,
+          ...item.scopedPacketCommands,
+        ]),
+        ...completionDecisionPacketForOutstanding(live).decisions.flatMap((decision) => [
+          decision.scopedDecisionPacketCommand,
+          ...decision.scopedPacketCommands,
+        ]),
+      ].join("\n");
+      expect(commandText).not.toContain("rm -rf");
+      expect(commandText).not.toContain("echo pwned");
+      expect(commandText).not.toMatch(/--plan\s+invalid-/);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
