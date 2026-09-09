@@ -126,6 +126,8 @@ export interface OutstandingPlanRow {
   /** 不可逆影響の機械判定。本文の境界語はこの宣言を上書きしない。 */
   irreversibleImpact?: "none" | "cutover" | "migration" | null;
   irreversibleImpactDeclared?: boolean;
+  /** plan_id が planIdSchema 不適合で raw を棄却した行。 */
+  planIdSchemaInvalid?: boolean;
   /** frontmatter/body の軽量分類用テキスト。 */
   text?: string;
 }
@@ -828,6 +830,9 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
   if (hasIrreversibleMigrationContext(p, text)) {
     blockers.add("irreversible_migration_pending");
   }
+  if (p.planIdSchemaInvalid) {
+    blockers.add("frontmatter_schema_invalid");
+  }
   if (blockers.size === 0) blockers.add("active_draft");
   return [...blockers].sort();
 }
@@ -859,6 +864,7 @@ export function planTextHasVersionUpParkingIntent(text: string): boolean {
 
 function primaryOutstandingReason(blockers: string[]): string {
   const priority = [
+    "frontmatter_schema_invalid",
     "irreversible_migration_pending",
     "version_up_parked",
     "po_decision_pending",
@@ -938,6 +944,14 @@ function requiredOutstandingAction(reason: string): {
           "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
           "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation",
           "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
+        ],
+      };
+    case "frontmatter_schema_invalid":
+      return {
+        requiredAction:
+          "replace the invalid plan_id with a PLAN-<token>-<NN>[-slug] value before using outstanding packet commands",
+        requiredEvidence: [
+          "plan_id frontmatter matches PLAN-(L0..L14|DISCOVERY|REVERSE|RECOVERY|M)-NN[-slug]",
         ],
       };
     case "consumer_setup_boundary":
@@ -1044,6 +1058,8 @@ export function workflowEvidenceTextJa(evidence: string): string {
       return "必要な generated artifact が存在する";
     case "review_evidence and green_commands are recorded before terminal status":
       return "terminal status 前に review_evidence と green_commands を記録する";
+    case "plan_id frontmatter matches PLAN-(L0..L14|DISCOVERY|REVERSE|RECOVERY|M)-NN[-slug]":
+      return "plan_id frontmatter を PLAN-(L0..L14|DISCOVERY|REVERSE|RECOVERY|M)-NN[-slug] 形式へ直す";
     case "source_ledger_freshness records the fresh checked ledger label before terminal decision use":
       return "terminal decision に使う前に source_ledger_freshness へ fresh checked ledger label を記録する";
     case "source_status_delta records none/changed official source status impact before terminal decision use":
@@ -1064,8 +1080,15 @@ function uniqueInOrder<T extends string>(values: T[]): T[] {
 /** scoped command に埋め込んでよい planId。`;` / 空白 / `$()` などを拒否する。 */
 const COMMAND_SAFE_PLAN_ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 
+/** schema 不適合 plan_id の表示用 identity。raw は使わない。 */
+export const INVALID_OUTSTANDING_PLAN_ID = "invalid-plan-id";
+
 export function isCommandSafePlanId(planId: string): boolean {
   return COMMAND_SAFE_PLAN_ID.test(planId);
+}
+
+function canScopePlanId(planId: string): boolean {
+  return isCommandSafePlanId(planId) && planIdSchema.safeParse(planId).success;
 }
 
 function declaredPlanIdFromFrontmatter(
@@ -1080,17 +1103,17 @@ function declaredPlanIdFromFrontmatter(
 function resolveOutstandingPlanId(
   declared: string | undefined,
   filenameStem: string,
-): string | null {
+): { planId: string; schemaInvalid: boolean } {
   if (declared !== undefined) {
     const parsed = planIdSchema.safeParse(declared);
-    if (parsed.success) return parsed.data;
-    if (isCommandSafePlanId(declared)) return declared;
-    return null;
+    if (parsed.success) return { planId: parsed.data, schemaInvalid: false };
+    const fileParsed = planIdSchema.safeParse(filenameStem);
+    if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: true };
+    return { planId: INVALID_OUTSTANDING_PLAN_ID, schemaInvalid: true };
   }
-  const parsedFile = planIdSchema.safeParse(filenameStem);
-  if (parsedFile.success) return parsedFile.data;
-  if (isCommandSafePlanId(filenameStem)) return filenameStem;
-  return null;
+  const fileParsed = planIdSchema.safeParse(filenameStem);
+  if (fileParsed.success) return { planId: fileParsed.data, schemaInvalid: false };
+  return { planId: INVALID_OUTSTANDING_PLAN_ID, schemaInvalid: true };
 }
 
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
@@ -1114,13 +1137,12 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
     const parsedFrontmatter = frontmatterSchema.safeParse(rawFrontmatter);
     const irreversibleImpactDeclared = Object.hasOwn(rawFrontmatter ?? {}, "irreversible_impact");
     const filenameStem = f.replace(/\.md$/, "");
-    const planId = resolveOutstandingPlanId(
+    const resolved = resolveOutstandingPlanId(
       declaredPlanIdFromFrontmatter(rawFrontmatter, content),
       filenameStem,
     );
-    if (planId === null) continue;
     rows.push({
-      planId,
+      planId: resolved.planId,
       layer: fmValue(content, "layer") ?? "unknown",
       kind: fmValue(content, "kind") ?? "unknown",
       status: fmValue(content, "status") ?? "unknown",
@@ -1130,6 +1152,7 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
         ? (parsedFrontmatter.data.irreversible_impact ?? null)
         : null,
       irreversibleImpactDeclared,
+      planIdSchemaInvalid: resolved.schemaInvalid,
       text: content,
     });
   }
@@ -1405,6 +1428,7 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
 
 function workflowActionRank(reason: string): number {
   const priority = [
+    "frontmatter_schema_invalid",
     "po_decision_pending",
     "version_up_frontmatter_missing",
     "version_up_parked",
@@ -1799,7 +1823,7 @@ function scopedPacketCommandForPlan(
     case "helix s4 decision-packet --json":
     case "helix version-up activation-packet --json":
     case "helix action-binding approval-packet --json":
-      return isCommandSafePlanId(planId) ? `${command} --plan ${planId}` : command;
+      return canScopePlanId(planId) ? `${command} --plan ${planId}` : command;
     case "helix rename plan --json":
     case "helix rename approval-draft --json":
     case "helix completion decision-packet --json":
@@ -2255,6 +2279,8 @@ export function workflowActionTextJa(action: string): string {
       return "全体完了を主張する前に project PLAN を開始または選択し、実プロジェクトの acceptance evidence を記録する";
     case "continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present":
       return "該当 workflow phase を継続し、生成成果物と review evidence が揃った後だけ terminal にする";
+    case "replace the invalid plan_id with a PLAN-<token>-<NN>[-slug] value before using outstanding packet commands":
+      return "outstanding packet command を使う前に plan_id を PLAN-<token>-<NN>[-slug] へ直す";
     default:
       return action;
   }
@@ -2274,6 +2300,8 @@ export function workflowRouteTextJa(route: string): string {
       return "consumer setup -> completion claim 前に最初の project PLAN へ進む";
     case "continue current workflow phase until terminal evidence exists":
       return "terminal evidence が揃うまで現在の workflow phase を継続する";
+    case "fix plan_id schema before treating this PLAN as a runnable outstanding item":
+      return "runnable outstanding item として扱う前に plan_id schema を直す";
     default:
       return route;
   }
@@ -2817,6 +2845,8 @@ function nextWorkflowRouteForOutstandingReason(reason: string): string {
       return "approval gate -> action-binding approval audit before high-impact action";
     case "consumer_setup_boundary":
       return "consumer setup -> first project PLAN before completion claim";
+    case "frontmatter_schema_invalid":
+      return "fix plan_id schema before treating this PLAN as a runnable outstanding item";
     default:
       return "continue current workflow phase until terminal evidence exists";
   }
