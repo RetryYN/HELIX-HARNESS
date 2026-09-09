@@ -12,6 +12,7 @@ import {
 } from "../src/schema/workflow-classification-catalog";
 
 // PLAN-L7-573-github-workflow-identity-ingest — U-GWID-001..005
+// PLAN-RECOVERY-1437-current-route-identity-classification — U-GWID-009
 
 function contractValue(catalog: WorkflowClassificationCatalog): GithubWorkflowIdentityContract {
   return {
@@ -76,6 +77,24 @@ describe("GitHub typed workflow identity contract", () => {
         catalog,
       ),
     ).toMatchObject({ ok: false, reason: "workflow_identity_contract_schema_invalid" });
+  });
+
+  it("U-GWID-009: current route identityをlegacy fieldへ誤分類しない", () => {
+    const result = parseGithubWorkflowIdentityContract(
+      body({
+        ...contractValue(catalog),
+        catalog_route_id: "version_up",
+        route_class: "preservation",
+      }),
+      catalog,
+    );
+
+    expect(result).toEqual({
+      ok: false,
+      reason: "workflow_identity_contract_schema_invalid",
+      detail:
+        "catalog_route_id,route_class: current route identity belongs to its route projection contract, not github workflow identity contract v1",
+    });
   });
 
   it("U-GWID-003: stale authority tupleと未知identityを推測せず拒否する", () => {

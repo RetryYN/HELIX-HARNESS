@@ -209,7 +209,7 @@ function fieldValue(body: string, field: string): string | undefined {
     ?.trim();
 }
 
-function fieldValues(body: string, field: string): string[] {
+export function fieldValues(body: string, field: string): string[] {
   const escaped = field.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return Array.from(
     body.matchAll(new RegExp(`(?:^|\\n)[ \\t]*(?:[-*][ \\t]*)?${escaped}:[ \\t]*(\\S.*)`, "gi")),
@@ -217,14 +217,14 @@ function fieldValues(body: string, field: string): string[] {
   );
 }
 
-function commaValues(value: string): string[] {
+export function commaValues(value: string): string[] {
   return value
     .split(",")
     .map((entry) => entry.trim())
     .filter(Boolean);
 }
 
-function isSafeScopePath(path: string): boolean {
+export function isSafeScopePath(path: string): boolean {
   const withoutTrailingSlash = path.endsWith("/") ? path.slice(0, -1) : path;
   return (
     SAFE_SCOPE_PATH.test(path) &&
@@ -234,7 +234,7 @@ function isSafeScopePath(path: string): boolean {
   );
 }
 
-function pathCovered(path: string, family: string): boolean {
+export function pathCovered(path: string, family: string): boolean {
   return family.endsWith("/") ? path.startsWith(family) : path === family;
 }
 
