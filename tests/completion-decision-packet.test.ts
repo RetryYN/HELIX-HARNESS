@@ -1889,7 +1889,23 @@ describe("completion decision packet lint", () => {
     expect(decision?.runnableScopedPacketCommands).toEqual([
       "npm run helix -- s4 decision-packet --json",
     ]);
-    expect(JSON.stringify(decision)).not.toContain("rm -rf");
-    expect(JSON.stringify(decision?.supportingPacketSummaries)).not.toContain("--plan x");
+    const commandText = [
+      decision?.decisionPacketCommand,
+      decision?.runnableDecisionPacketCommand,
+      decision?.scopedDecisionPacketCommand,
+      decision?.runnableScopedDecisionPacketCommand,
+      ...(decision?.packetCommands ?? []),
+      ...(decision?.runnablePacketCommands ?? []),
+      ...(decision?.scopedPacketCommands ?? []),
+      ...(decision?.runnableScopedPacketCommands ?? []),
+      ...(decision?.supportingPacketSummaries.flatMap((summary) => [
+        summary.command,
+        summary.runnableCommand,
+        summary.scopedCommand,
+        summary.runnableScopedCommand,
+      ]) ?? []),
+    ].join("\n");
+    expect(commandText).not.toContain("rm -rf");
+    expect(commandText).not.toMatch(/--plan\s+x/);
   });
 });

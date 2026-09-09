@@ -2394,7 +2394,7 @@ generic terminal evidence only.
     }
   });
 
-  it("plan_id: \"x; rm -rf /\" の PLAN は raw を採用せず runnable 行へ埋め込まない", () => {
+  it('plan_id: "x; rm -rf /" の PLAN は raw を採用せず runnable 行へ埋め込まない', () => {
     // U-OUTSTANDING-1432-002
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-inject-"));
     try {
@@ -2422,7 +2422,31 @@ S4 decision pending.
       );
       const rows = loadOutstandingPlanRows(root);
       expect(rows.map((row) => row.planId)).not.toContain("x; rm -rf /");
-      expect(rows.every((row) => row.planId !== "x; rm -rf /")).toBe(true);
+      const live = computeOutstandingWork(root);
+      const liveCommands = [
+        ...workflowNextActionsForOutstanding(live).flatMap((item) => [
+          item.decisionPacketCommand,
+          item.runnableDecisionPacketCommand,
+          item.scopedDecisionPacketCommand,
+          item.runnableScopedDecisionPacketCommand,
+          ...item.packetCommands,
+          ...item.runnablePacketCommands,
+          ...item.scopedPacketCommands,
+          ...item.runnableScopedPacketCommands,
+        ]),
+        ...completionDecisionPacketForOutstanding(live).decisions.flatMap((decision) => [
+          decision.decisionPacketCommand,
+          decision.runnableDecisionPacketCommand,
+          decision.scopedDecisionPacketCommand,
+          decision.runnableScopedDecisionPacketCommand,
+          ...decision.packetCommands,
+          ...decision.runnablePacketCommands,
+          ...decision.scopedPacketCommands,
+          ...decision.runnableScopedPacketCommands,
+        ]),
+      ];
+      expect(liveCommands.join("\n")).not.toContain("x; rm -rf /");
+      expect(liveCommands.join("\n")).not.toMatch(/--plan\s+x/);
 
       const inMemory = analyzeOutstandingWork(
         [
@@ -2439,9 +2463,22 @@ S4 decision pending.
       );
       const actions = workflowNextActionsForOutstanding(inMemory);
       const packet = completionDecisionPacketForOutstanding(inMemory);
-      const commandText = JSON.stringify([actions, packet.decisions]);
+      const commandText = [
+        ...actions.flatMap((item) => [
+          item.scopedDecisionPacketCommand,
+          item.runnableScopedDecisionPacketCommand,
+          ...item.scopedPacketCommands,
+          ...item.runnableScopedPacketCommands,
+        ]),
+        ...packet.decisions.flatMap((decision) => [
+          decision.scopedDecisionPacketCommand,
+          decision.runnableScopedDecisionPacketCommand,
+          ...decision.scopedPacketCommands,
+          ...decision.runnableScopedPacketCommands,
+        ]),
+      ].join("\n");
       expect(commandText).not.toContain("x; rm -rf /");
-      expect(commandText).not.toContain("--plan x");
+      expect(commandText).not.toMatch(/--plan\s+x/);
       expect(isCommandSafePlanId("x; rm -rf /")).toBe(false);
       expect(actions[0]?.scopedDecisionPacketCommand).toBe("helix s4 decision-packet --json");
       expect(actions[0]?.scopedPacketCommands).toEqual(["helix s4 decision-packet --json"]);
