@@ -147,6 +147,7 @@ items:
       - docs/design/helix/L6-function-design/review-evidence-supersession-structure.md
       - docs/design/helix/L6-function-design/pin-chain-derivation.md
       - docs/design/helix/L6-function-design/design-catalog-relation-projection.md
+      - docs/design/helix/L6-function-design/requirement-definition-trace-census.md
       - docs/design/helix/L5-detail/design-template-json-authority.md
       - docs/design/helix/L5-detail/requirement-refinement-authority.md
       - docs/design/helix/L5-detail/work-graph-receipt-acceptance.md
