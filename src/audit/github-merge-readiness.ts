@@ -88,7 +88,13 @@ export interface GithubPrBodyDraftResult {
   };
 }
 
-export type GithubCiStatusKind = "green" | "red" | "pending" | "no_runs" | "unavailable";
+export type GithubCiStatusKind =
+  | "green"
+  | "red"
+  | "pending"
+  | "no_runs"
+  | "window_miss"
+  | "unavailable";
 
 export interface GithubCiRun {
   name: string;
@@ -101,6 +107,10 @@ export interface GithubCiRun {
 
 export interface GithubCiStatusInput {
   ref: string;
+  /** 判定対象として固定する commit SHA。branch の window は代替にならない。 */
+  expectedHeadSha: string;
+  /** 判定対象として固定する workflow identity。 */
+  targetWorkflow: string;
   ghInstalled: boolean;
   ghAuthenticated: boolean;
   runs: GithubCiRun[];
@@ -112,6 +122,8 @@ export interface GithubCiStatusResult {
   ok: boolean;
   status: GithubCiStatusKind;
   ref: string;
+  expectedHeadSha: string;
+  targetWorkflow: string;
   ghInstalled: boolean;
   ghAuthenticated: boolean;
   delegatedAuthRequired: boolean;
@@ -488,19 +500,46 @@ export function loadGithubPrBodyDraft(
   });
 }
 
+function normalizeWorkflowIdentity(value: string): string {
+  const basename = value.trim().replaceAll("\\", "/").split("/").at(-1) ?? "";
+  return basename.replace(/\.(?:ya?ml)$/i, "").toLowerCase();
+}
+
+function isTargetWorkflow(run: GithubCiRun, targetWorkflow: string): boolean {
+  const runWorkflow = run.workflowName.trim() || run.name.trim();
+  return normalizeWorkflowIdentity(runWorkflow) === normalizeWorkflowIdentity(targetWorkflow);
+}
+
 export function analyzeGithubCiStatus(input: GithubCiStatusInput): GithubCiStatusResult {
   let status: GithubCiStatusKind = "unavailable";
+  const expectedHeadSha = input.expectedHeadSha;
+  const targetWorkflow = input.targetWorkflow.trim();
+  const expectedHeadShaValid = /^[0-9a-f]{40}$/.test(expectedHeadSha);
+  const scopedRuns = input.runs.filter(
+    (run) => run.headSha === expectedHeadSha && isTargetWorkflow(run, targetWorkflow),
+  );
+  let queryError = input.queryError;
   if (input.ghInstalled && input.ghAuthenticated && input.queryError === undefined) {
-    if (input.runs.length === 0) {
+    if (!expectedHeadShaValid) {
+      status = "unavailable";
+      queryError = "expected HEAD SHA must be a full lowercase 40-hex SHA";
+    } else if (!targetWorkflow) {
+      status = "unavailable";
+      queryError = "target workflow is required";
+    } else if (input.runs.length === 0) {
       status = "no_runs";
+    } else if (scopedRuns.length === 0) {
+      // The successful query returned a branch window, but not the requested
+      // HEAD/workflow pair. Never infer green (or red) from that window.
+      status = "window_miss";
     } else if (
-      input.runs.some((run) => run.conclusion === "failure" || run.conclusion === "cancelled")
+      scopedRuns.some((run) => run.conclusion === "failure" || run.conclusion === "cancelled")
     ) {
       status = "red";
-    } else if (input.runs.some((run) => run.status !== "completed" || run.conclusion === null)) {
+    } else if (scopedRuns.some((run) => run.status !== "completed" || run.conclusion === null)) {
       status = "pending";
     } else if (
-      input.runs.every((run) => run.conclusion === "success" || run.conclusion === "skipped")
+      scopedRuns.every((run) => run.conclusion === "success" || run.conclusion === "skipped")
     ) {
       status = "green";
     } else {
@@ -518,16 +557,18 @@ export function analyzeGithubCiStatus(input: GithubCiStatusInput): GithubCiStatu
     ok: status === "green",
     status,
     ref: input.ref,
+    expectedHeadSha,
+    targetWorkflow,
     ghInstalled: input.ghInstalled,
     ghAuthenticated: input.ghAuthenticated,
     delegatedAuthRequired,
     externalPermissionBlocked: false,
     githubAccessState,
-    runs: input.runs,
-    queryError: input.queryError,
+    runs: scopedRuns,
+    queryError,
     commands: {
       inspectAuth: "gh auth status",
-      listRuns: `gh run list --branch ${shellQuote(input.ref)} --limit 10 --json databaseId,status,conclusion,headSha,name,workflowName,url`,
+      listRuns: `gh run list --branch ${shellQuote(input.ref)} --workflow ${shellQuote(targetWorkflow)} --limit 10 --json databaseId,status,conclusion,headSha,name,workflowName,url`,
     },
   };
 }
@@ -760,15 +801,19 @@ function parseGhRuns(stdout: string): GithubCiRun[] {
 
 export function loadGithubCiStatus(
   repoRoot: string,
-  opts: { ref?: string } = {},
+  opts: { ref?: string; expectedHeadSha?: string; targetWorkflow?: string } = {},
 ): GithubCiStatusResult {
   const ref = opts.ref ?? git(repoRoot, ["rev-parse", "--abbrev-ref", "HEAD"], "HEAD");
+  const expectedHeadSha = opts.expectedHeadSha ?? git(repoRoot, ["rev-parse", ref], "");
+  const targetWorkflow = opts.targetWorkflow ?? "harness-check";
   const ghVersion = spawnSync("gh", ["--version"], { stdio: "ignore" });
   const ghInstalled = ghVersion.status === 0;
   const ghAuth = ghInstalled ? spawnSync("gh", ["auth", "status"], { stdio: "ignore" }) : null;
   if (!ghInstalled || ghAuth?.status !== 0) {
     return analyzeGithubCiStatus({
       ref,
+      expectedHeadSha,
+      targetWorkflow,
       ghInstalled,
       ghAuthenticated: ghAuth?.status === 0,
       runs: [],
@@ -781,6 +826,8 @@ export function loadGithubCiStatus(
       "list",
       "--branch",
       ref,
+      "--workflow",
+      targetWorkflow,
       "--limit",
       "10",
       "--json",
@@ -790,6 +837,8 @@ export function loadGithubCiStatus(
   );
   return analyzeGithubCiStatus({
     ref,
+    expectedHeadSha,
+    targetWorkflow,
     ghInstalled,
     ghAuthenticated: true,
     runs: query.status === 0 ? parseGhRuns(query.stdout) : [],
@@ -826,4 +875,8 @@ export function renderGithubCiStatus(result: GithubCiStatusResult): string {
     );
   }
   return `${lines.join("\n")}\n`;
+}
+
+export function githubCiStatusExitCode(result: GithubCiStatusResult): 0 | 1 {
+  return result.ok && result.status === "green" ? 0 : 1;
 }
