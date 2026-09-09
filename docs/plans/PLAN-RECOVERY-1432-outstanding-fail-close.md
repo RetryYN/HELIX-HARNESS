@@ -65,15 +65,6 @@ review_evidence:
         completed_at: "2026-09-09T18:42:53Z"
         evidence_path: tests/outstanding.test.ts
         output_digest: "sha256:daa5c36f7ed21e04cb8a7250b10afa560e7fa5f800b1dea102ec0389a07e3d05"
-left_arm_carry:
-  schema_version: left-arm-carry.v1
-  decision: no_pushback
-  assessed_at: "2026-09-09T18:44:00Z"
-  review_binding:
-    reviewer: "Claude Code / Fable 5.1"
-    reviewed_at: "2026-09-09T18:44:00Z"
-    evidence_digest: "sha256:4410313098757ab3471f790d2ef625f6d74e2930c9cf85f7649fdbb2884a566a"
-  entries: []
 ---
 
 # outstandingのfail-close修復
