@@ -89,7 +89,7 @@ modifies:
   - { artifact_path: tests/feedback-test-owner-residual-disposition.test.ts, artifact_type: test_code }
   - { artifact_path: tests/vmodel-pair.test.ts, artifact_type: test_code }
 dependencies:
-  parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
+  parent: docs/design/helix/L3-requirements/github-ci-performance-requirements.md
   requires:
     - docs/design/helix/L3-requirements/github-ci-performance-requirements.md
     - docs/plans/PLAN-L7-682-lite-canary-ci-parallelization.md
@@ -98,6 +98,12 @@ dependencies:
     - issue:1002
     - issue:1106
   blocks: []
+historical_provenance:
+  - relation: historical_provenance
+    authority_scope: compatibility_input_only
+    plan_id: PLAN-L3-22-github-ci-performance-recovery
+    path: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
+    reason: "#1591: 旧PLANの来歴を保存し、現在の依存先はL3要件へ接続する"
 ---
 
 # PLAN-L3-70: Windows Lite canary PR横断 bounded admission
