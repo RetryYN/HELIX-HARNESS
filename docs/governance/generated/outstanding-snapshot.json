@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 100,
+  "decision_count": 99,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -83,7 +83,6 @@
     "PLAN-RECOVERY-1566-worktree-path-identity",
     "PLAN-RECOVERY-1568-rebuild-plan-snapshot",
     "PLAN-RECOVERY-1573-isolation-launch-cleanup",
-    "PLAN-RECOVERY-1591-compatibility-parent-trace",
     "PLAN-RECOVERY-1616-team-run-budget-lifecycle",
     "PLAN-RECOVERY-1627-review-request-changes-fail-close",
     "PLAN-RECOVERY-1638-review-seal-terminal-ci",

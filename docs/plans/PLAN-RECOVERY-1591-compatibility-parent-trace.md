@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1591: compatibility-only parent trace遮断の第一slice"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -52,7 +52,6 @@ generates:
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/schema/frontmatter.ts, artifact_type: source_module }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
@@ -63,6 +62,28 @@ dependencies:
   requires: [docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md]
   references: [issue:1591]
   blocks: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T22:50:14Z"
+    tests_green_at: "2026-09-09T22:26:48Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: d577677da233c3d70e10e2ab97f9847798d95de5
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1710#issuecomment-5609814282"
+    ci_evidence_generation: "run:34412100305:attempt:1:failure"
+    scope: "Issue #1591第一sliceの共通validator、strict historical_provenance schema、exact-edge baseline、分割境界を独立検収した。CI failureはdraft PLANのmerged-plan-status循環であり、成功へ読み替えない。残存consumer移行とIssue #1591全体の完了は主張しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/plan-compatibility-parent.test.ts tests/frontmatter.test.ts tests/plan-lint.test.ts tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/digest.test.ts tests/branch-kind.test.ts --reporter=json --outputFile=.helix/evidence/review-1710/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T22:26:48Z"
+        evidence_path: .helix/evidence/review-1710/vitest-targeted.json
+        output_digest: "sha256:e75dbe12e32fe0e30714a0b734501fe598ae9c5ab6c03f85c1cea3ecbc4b6ccf"
 ---
 
 # compatibility-only parent trace遮断
