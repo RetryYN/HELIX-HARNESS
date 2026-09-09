@@ -44,6 +44,7 @@ import {
   releaseAutomationDecisionInputSchema,
 } from "./audit/enforcement-route-input";
 import {
+  githubCiStatusExitCode,
   loadGithubCiStatus,
   loadGithubMergeReadiness,
   loadGithubPrBodyDraft,
@@ -141,6 +142,7 @@ import {
   workflowNextActionsForOutstanding,
 } from "./lint/outstanding";
 import { inspectOutstandingSnapshot, writeOutstandingSnapshot } from "./lint/outstanding-snapshot";
+import { derivePinChain } from "./lint/pin-chain-derivation";
 import {
   analyzeRelationImpact,
   collectRelationGraphProjection,
@@ -13328,6 +13330,32 @@ function loadObjectiveExternalObserved(): {
 const audit = program.command("audit").description("read-only repository audits");
 
 audit
+  .command("pin-chain")
+  .description("derive exact downstream pin records from changed paths")
+  .option("--changed <path...>", "changed paths; defaults to the current working tree")
+  .option("--json", "JSON output")
+  .action((opts: { changed?: string[]; json?: boolean }) => {
+    const changedPaths = opts.changed?.length ? opts.changed : loadChangedFiles(process.cwd());
+    const report = derivePinChain(process.cwd(), changedPaths);
+    if (opts.json) {
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+    } else {
+      process.stdout.write(
+        `pin-chain: ${report.status} changed=${report.changed_paths.length} pins=${report.findings.length} unsupported=${report.unsupported_surfaces.length}\n`,
+      );
+      for (const finding of report.findings) {
+        process.stdout.write(
+          `  ${finding.stale ? "STALE" : "CURRENT"} ${finding.kind} ${finding.changed_path} -> ${finding.location}#${finding.field} action=${finding.action} recorded=${finding.recorded_value} live=${finding.live_value ?? "missing"}\n`,
+        );
+      }
+      for (const surface of report.unsupported_surfaces) {
+        process.stdout.write(`  DEGRADED ${surface}\n`);
+      }
+    }
+    if (report.status === "degraded") process.exitCode = 2;
+  });
+
+audit
   .command("quality")
   .description("detect hardcoded values, security risks, and technical debt markers")
   .option("--json", "JSON output")
@@ -14620,12 +14648,16 @@ github
   .command("ci-status")
   .description("emit a read-only GitHub Actions status packet for a branch/ref")
   .option("--ref <ref>", "branch or ref to inspect (defaults to current branch)")
+  .option("--expected-head-sha <sha>", "required exact 40-character HEAD SHA")
   .option("--json", "JSON output")
-  .action((opts: { ref?: string; json?: boolean }) => {
-    const result = loadGithubCiStatus(process.cwd(), { ref: opts.ref });
+  .action((opts: { ref?: string; expectedHeadSha?: string; json?: boolean }) => {
+    const result = loadGithubCiStatus(process.cwd(), {
+      ref: opts.ref,
+      expectedHeadSha: opts.expectedHeadSha,
+    });
     if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     else process.stdout.write(renderGithubCiStatus(result));
-    process.exitCode = result.status === "red" ? 1 : 0;
+    process.exitCode = githubCiStatusExitCode(result);
   });
 
 github

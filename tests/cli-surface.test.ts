@@ -4,6 +4,7 @@
 // PLAN-L7-656-distribution-lite-profile-bound-package — U-DISTPKG-014
 // PLAN-L7-603-distribution-deterministic-archive
 // U-DISTDET-001
+// PLAN-RECOVERY-1659-ci-status-head-binding — U-GHCI-005..006
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
@@ -246,6 +247,41 @@ function installCurrentNodeCommand(binDir: string): string {
   }
   const path = join(binDir, "node");
   symlinkSync(process.execPath, path);
+  return path;
+}
+
+function writeFakeGithubCiStatus(binDir: string, runs: unknown[]): string {
+  const encodedRuns = JSON.stringify(runs);
+  if (process.platform === "win32") {
+    const path = join(binDir, "gh.cmd");
+    writeFileSync(
+      path,
+      [
+        "@echo off",
+        'if "%1"=="--version" exit /b 0',
+        'if "%1 %2"=="auth status" exit /b 0',
+        `echo ${encodedRuns}`,
+        "exit /b 0",
+        "",
+      ].join("\r\n"),
+      "utf8",
+    );
+    return path;
+  }
+  const path = join(binDir, "gh");
+  writeFileSync(
+    path,
+    [
+      "#!/bin/sh",
+      'case "$*" in',
+      '  "--version"|"auth status") exit 0 ;;',
+      `  *) printf '%s\\n' '${encodedRuns}' ;;`,
+      "esac",
+      "",
+    ].join("\n"),
+    { encoding: "utf8", mode: 0o755 },
+  );
+  chmodSync(path, 0o755);
   return path;
 }
 
@@ -1281,6 +1317,71 @@ describe("L7 CLI surface closure", () => {
       if (command === "pr-review-receipt") {
         expect(result.stdout).toContain("--correct-malformed");
       }
+    }
+  });
+
+  it("U-GHCI-006: forwards --expected-head-sha through the real CLI entry point", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "helix-cli-ghci-"));
+    const expectedHeadSha = "1".repeat(40);
+    try {
+      writeFakeGithubCiStatus(binDir, [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "success",
+          headSha: expectedHeadSha,
+          url: "https://example.test/current",
+        },
+      ]);
+      const run = runCliIn(
+        repoRoot,
+        ["github", "ci-status", "--ref", "main", "--expected-head-sha", expectedHeadSha, "--json"],
+        {
+          ...process.env,
+          PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+        },
+      );
+      const payload = JSON.parse(run.stdout);
+
+      expect(run.status, run.stderr || run.stdout).toBe(0);
+      expect(payload).toMatchObject({
+        ok: true,
+        status: "green",
+        expectedHeadSha,
+      });
+    } finally {
+      rmSync(binDir, { recursive: true, force: true });
+    }
+  });
+
+  it("U-GHCI-005: returns exit 1 for a real CLI window_miss result", () => {
+    const binDir = mkdtempSync(join(tmpdir(), "helix-cli-ghci-"));
+    const expectedHeadSha = "1".repeat(40);
+    try {
+      writeFakeGithubCiStatus(binDir, [
+        {
+          name: "harness-check",
+          workflowName: "harness-check",
+          status: "completed",
+          conclusion: "success",
+          headSha: "2".repeat(40),
+          url: "https://example.test/old",
+        },
+      ]);
+      const run = runCliIn(
+        repoRoot,
+        ["github", "ci-status", "--ref", "main", "--expected-head-sha", expectedHeadSha, "--json"],
+        {
+          ...process.env,
+          PATH: `${binDir}${process.platform === "win32" ? ";" : ":"}${process.env.PATH ?? ""}`,
+        },
+      );
+
+      expect(run.status, run.stderr || run.stdout).toBe(1);
+      expect(JSON.parse(run.stdout)).toMatchObject({ ok: false, status: "window_miss" });
+    } finally {
+      rmSync(binDir, { recursive: true, force: true });
     }
   });
 
@@ -7800,6 +7901,51 @@ describe("L7 CLI surface closure", () => {
     expect(payload).toHaveProperty("byBucket");
     expect(payload.byBucket).toHaveProperty("gate");
     expect(payload).toHaveProperty("byCode");
+  }, 20_000);
+
+  // PLAN-RECOVERY-1670-pin-chain-derivation: U-PINCHAIN-004
+  it("U-PINCHAIN-004: exposes changed-path pin derivation as a read-only JSON command", () => {
+    const run = runCli([
+      "audit",
+      "pin-chain",
+      "--changed",
+      "tests/ai-vision-design-harness-requirements-binding.test.ts",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(0);
+    expect(payload).toMatchObject({
+      schema_version: "helix-pin-chain-derivation.v1",
+      status: "ok",
+      changed_paths: ["tests/ai-vision-design-harness-requirements-binding.test.ts"],
+    });
+    expect(payload.findings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          dependent_path: "docs/governance/feedback-test-owner-disposition-residual.json",
+          kind: "deterministic_pin",
+        }),
+      ]),
+    );
+  }, 20_000);
+
+  it("U-PINCHAIN-009: unsupported pin surfaceをDEGRADEDかつexit 2で返す", () => {
+    const run = runCli([
+      "audit",
+      "pin-chain",
+      "--changed",
+      "src/unregistered-pin-shape.ts",
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+
+    expect(run.status).toBe(2);
+    expect(payload).toMatchObject({
+      schema_version: "helix-pin-chain-derivation.v1",
+      status: "degraded",
+      unsupported_surfaces: ["src/unregistered-pin-shape.ts:pin_surface_not_registered"],
+    });
   }, 20_000);
 
   // PLAN-L7-690-branch-audit-delete-candidate-safety
