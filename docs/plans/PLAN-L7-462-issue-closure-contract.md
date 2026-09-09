@@ -68,12 +68,18 @@ generates:
   - { artifact_path: tests/setup.test.ts, artifact_type: test_code }
   - { artifact_path: tests/goal-evidence-audit.test.ts, artifact_type: test_code }
 dependencies:
-  parent: docs/plans/PLAN-L3-19-github-operations-projection.md
+  parent: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
   requires:
     - docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
   references:
     - docs/governance/helix-harness-requirements_v1.3.md
   blocks: []
+historical_provenance:
+  - relation: historical_provenance
+    authority_scope: compatibility_input_only
+    plan_id: PLAN-L3-19-github-operations-projection
+    path: docs/plans/PLAN-L3-19-github-operations-projection.md
+    reason: "#1591: 旧PLANの来歴を保存し、現在の依存先はL3要件へ接続する"
 ---
 
 # PLAN-L7-462: Issue closure contractとGitHub close gate

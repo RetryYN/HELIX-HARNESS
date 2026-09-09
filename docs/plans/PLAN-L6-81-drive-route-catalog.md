@@ -62,7 +62,7 @@ review_evidence:
         output_digest: "sha256:904df21474364cc6f3499381d577ddea9f2fb06ac4baec4843e6a24d867c1ced"
         result: "30 passed"
 dependencies:
-  parent: docs/plans/PLAN-L3-19-github-operations-projection.md
+  parent: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
   requires:
     - docs/process/modes/README.md
   references:
@@ -70,6 +70,12 @@ dependencies:
     - docs/governance/helix-harness-requirements_v1.3.md
   blocks:
     - docs/plans/PLAN-L7-476-drive-route-catalog-gate.md
+historical_provenance:
+  - relation: historical_provenance
+    authority_scope: compatibility_input_only
+    plan_id: PLAN-L3-19-github-operations-projection
+    path: docs/plans/PLAN-L3-19-github-operations-projection.md
+    reason: "#1591: 旧PLANの来歴を保存し、現在の依存先はL3要件へ接続する"
 ---
 
 # PLAN-L6-81: 全駆動モデル経路catalog

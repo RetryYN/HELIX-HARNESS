@@ -54,7 +54,7 @@ review_evidence:
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/impact-ci-recovery-design.test.ts tests/design-language.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-08-01T12:10:00Z", evidence_path: tests/impact-ci-recovery-design.test.ts, output_digest: "sha256:435f304ece8cf9ad0ffcf3bc624df8b8008df1146214a88b5b50aefaaaba8d2f" }
 dependencies:
-  parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
+  parent: docs/design/helix/L3-requirements/github-ci-performance-requirements.md
   requires:
     - docs/design/helix/L3-requirements/github-ci-performance-requirements.md
     - docs/design/helix/L3-requirements/github-atomic-development-requirements.md
@@ -65,6 +65,12 @@ dependencies:
   blocks:
     - queue:L3Q-PC-039
     - issue:93
+historical_provenance:
+  - relation: historical_provenance
+    authority_scope: compatibility_input_only
+    plan_id: PLAN-L3-22-github-ci-performance-recovery
+    path: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
+    reason: "#1591: 旧PLANの来歴を保存し、現在の依存先はL3要件へ接続する"
 ---
 
 # PLAN-L4-58: Impact CI Recovery基本設計

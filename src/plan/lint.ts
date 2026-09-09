@@ -21,6 +21,7 @@ import {
   loadMergedPlanStatusInput,
   mergedPlanStatusMessages,
 } from "../lint/merged-plan-status";
+import { analyzePlanCompatibilityDependencies } from "../lint/plan-compatibility-parent";
 import {
   analyzePlanDescent,
   loadPlanDescentBaseline,
@@ -928,6 +929,27 @@ export function lintPlan(path?: string, repoRoot: string = process.cwd()): LintR
   return { ok: result.ok, messages: planScheduleMessages(result) };
 }
 
+export function lintPlanCompatibilityDependencies(
+  path?: string,
+  repoRoot: string = process.cwd(),
+): LintResult {
+  const docs = loadPlanGovernanceDocs(repoRoot, path);
+  const parsed = docs.map((doc) => ({ file: doc.file, raw: parsePlanFrontmatter(doc) }));
+  const invalid = parsed.filter((doc) => !doc.raw);
+  if (invalid.length) {
+    return {
+      ok: false,
+      messages: invalid.map(
+        (doc) => `plan-compatibility-parent - invalid_frontmatter: ${doc.file}`,
+      ),
+    };
+  }
+  return analyzePlanCompatibilityDependencies(
+    parsed.flatMap((doc) => (doc.raw ? [{ file: doc.file, raw: doc.raw }] : [])),
+    loadPlanLegacyWorkflowIdentityInventory(repoRoot),
+  );
+}
+
 export function lintPlanDescent(path?: string, repoRoot: string = process.cwd()): LintResult {
   const result = analyzePlanDescent(
     loadPlanDescentDocs(repoRoot, path),
@@ -1041,6 +1063,8 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
 
   // 既定 (gate 未指定) は schedule + descent + PLAN固有Vペア + entry-routing + 採番一意性の合成。
   if (!gate) {
+    const compatibility = lintPlanCompatibilityDependencies(path, repoRoot);
+    if (!compatibility.ok) return compatibility;
     const schedule = lintPlan(path, repoRoot);
     const descent = lintPlanDescent(path, repoRoot);
     const vpairBinding = lintPlanSpecificVpairBinding(repoRoot);
@@ -1056,6 +1080,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
         entryRouting.ok &&
         numberUniqueness.ok,
       messages: [
+        ...compatibility.messages,
         ...schedule.messages,
         ...descent.messages,
         ...vpairBinding.messages,
@@ -1073,8 +1098,12 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
   if (gate === "number-uniqueness") return lintPlanNumberUniqueness(repoRoot);
 
   if (gate === "governance" || gate === "frontmatter") {
+    const compatibility = lintPlanCompatibilityDependencies(path, repoRoot);
     const result = analyzePlanGovernance(loadPlanGovernanceDocs(repoRoot, path), repoRoot);
-    return { ok: result.ok, messages: planGovernanceMessages(result) };
+    return {
+      ok: result.ok && compatibility.ok,
+      messages: [...planGovernanceMessages(result), ...compatibility.messages],
+    };
   }
 
   if (gate === "post-merge-status") {
