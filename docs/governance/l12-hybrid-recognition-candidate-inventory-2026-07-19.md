@@ -261,7 +261,7 @@ skillは実行時に読まれるため`context-review`。旧layerを例として
 
 ## 9. seed集合の閉包条件
 
-174件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
+177件のseedに加え、broad scanner queueすべてが次のいずれかを持つまで監査はcloseしない。
 
 1. canonicalへ本文改訂済み
 2. compatibility sectionへ隔離済み
