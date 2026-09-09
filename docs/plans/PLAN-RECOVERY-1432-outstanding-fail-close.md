@@ -7,7 +7,7 @@ drive: agent
 status: confirmed
 completion_claim_allowed: false
 created: 2026-09-08
-updated: 2026-09-08
+updated: 2026-09-09
 owner: Cursor / TL
 github_issue_id: 1432
 behavior_contract_id: OUTSTANDING-FAIL-CLOSE-1432
@@ -51,7 +51,8 @@ Issue #1432で実測された3つのfail-openを、既存`outstanding` surface�
 ## 受入境界
 
 `irreversible_impact` が存在するのに schema 不適合なら `irreversible_migration_pending` を立てる。
-`planIdSchema` 不適合かつ allowlist 外の `plan_id` は raw のまま採用せず、scoped / runnable command へ埋め込まない。
+`planIdSchema` 不適合の raw `plan_id` は scoped / runnable command に使わない。文字 allowlist だけ通る `foo` も受理しない。
+不適合でも PLAN 行は outstanding 集計から消さない。安全な表示用識別子と `frontmatter_schema_invalid` で阻止状態を可視化する。
 `version_target` frontmatter が無い本文 only の version-up 語は `po_decision_pending` / `human_approval_pending` より下位にする。
 
 ## 現在の証拠
