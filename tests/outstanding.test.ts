@@ -2709,6 +2709,79 @@ active draft.
     }
   });
 
+  it("NFC と NFD の物理ファイル名は fallback identity を衝突させない", () => {
+    // PLAN-RECOVERY-1432-outstanding-fail-close: 物理バイト identity。表示用 NFC と混同しない。
+    const nfcName = "caf\u00e9.md";
+    const nfdName = "cafe\u0301.md";
+    expect(Buffer.from(nfcName, "utf8").toString("hex")).toBe("636166c3a92e6d64");
+    expect(Buffer.from(nfdName, "utf8").toString("hex")).toBe("63616665cc812e6d64");
+    expect(nfcName.normalize("NFC")).toBe(nfdName.normalize("NFC"));
+
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-unicode-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      const body = (title: string): string => `---
+plan_id: foo
+title: ${title}
+kind: impl
+drive: agent
+status: draft
+layer: L7
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+active draft.
+`;
+      writeFileSync(join(root, "docs", "plans", nfcName), body("nfc composed filename"), "utf8");
+      writeFileSync(join(root, "docs", "plans", nfdName), body("nfd decomposed filename"), "utf8");
+
+      const firstId = outstandingFallbackPlanId(nfcName);
+      const secondId = outstandingFallbackPlanId(nfdName);
+      expect(firstId).not.toEqual(secondId);
+      expect(firstId).toMatch(/^invalid-[a-f0-9]{16}$/);
+      expect(secondId).toMatch(/^invalid-[a-f0-9]{16}$/);
+
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows).toHaveLength(2);
+      expect(new Set(rows.map((row) => row.planId)).size).toBe(2);
+      expect(rows.map((row) => row.planId).sort()).toEqual([firstId, secondId].sort());
+      expect(rows.every((row) => row.planIdSchemaInvalid === true)).toBe(true);
+
+      const live = computeOutstandingWork(root);
+      expect(live.items).toHaveLength(2);
+      expect(new Set(live.items.map((item) => item.planId)).size).toBe(2);
+      expect(live.blockersByKind.frontmatter_schema_invalid).toBe(2);
+
+      const snapshot = buildOutstandingSnapshot(live);
+      expect(snapshot.decision_count).toBe(2);
+      expect(snapshot.plan_ids).toHaveLength(2);
+      expect(snapshot.plan_ids).toEqual([firstId, secondId].sort());
+
+      const commandText = [
+        ...workflowNextActionsForOutstanding(live).flatMap((item) => [
+          item.scopedDecisionPacketCommand,
+          ...item.scopedPacketCommands,
+        ]),
+        ...completionDecisionPacketForOutstanding(live).decisions.flatMap((decision) => [
+          decision.scopedDecisionPacketCommand,
+          ...decision.scopedPacketCommands,
+        ]),
+      ].join("\n");
+      expect(commandText).not.toContain("caf");
+      expect(commandText).not.toContain("\u00e9");
+      expect(commandText).not.toContain("\u0301");
+      expect(commandText).not.toMatch(/--plan\s+foo(?:\s|$)/);
+      expect(commandText).not.toMatch(/--plan\s+invalid-/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("U-OUTSTANDING-1432-003: S4 pending と本文 version-up 語でも primary は po_decision_pending", () => {
     // U-OUTSTANDING-1432-003
     const o = analyzeOutstandingWork(
