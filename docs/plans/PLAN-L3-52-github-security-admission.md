@@ -79,21 +79,12 @@ generates:
 dependencies:
   parent: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md
   requires:
-    - docs/design/helix/L3-requirements/github-atomic-development-requirements.md
+    - docs/plans/PLAN-L3-36-atomic-development-contract.md
   references:
     - docs/design/helix/L3-requirements/github-atomic-development-requirements.md
+    - docs/plans/PLAN-L3-19-github-operations-projection.md
+    - docs/plans/PLAN-L3-24-github-environment-promotion.md
   blocks: []
-historical_provenance:
-  - relation: historical_provenance
-    authority_scope: compatibility_input_only
-    plan_id: PLAN-L3-19-github-operations-projection
-    path: docs/plans/PLAN-L3-19-github-operations-projection.md
-    reason: "#1591: 旧PLANの来歴を保存し、現在の依存先はL3要件へ接続する"
-  - relation: historical_provenance
-    authority_scope: compatibility_input_only
-    plan_id: PLAN-L3-24-github-environment-promotion
-    path: docs/plans/PLAN-L3-24-github-environment-promotion.md
-    reason: "#1591: 旧PLANの来歴を保存し、現在の依存先はL3要件へ接続する"
 ---
 
 # PLAN-L3-52: GitHubセキュリティ証拠受入

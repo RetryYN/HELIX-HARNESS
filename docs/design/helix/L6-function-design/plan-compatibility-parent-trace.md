@@ -1,6 +1,6 @@
 ---
 title: "compatibility-only PLANへの現行依存を遮断する詳細設計"
-layer: L5
+layer: L6
 status: draft
 plan: docs/plans/PLAN-RECOVERY-1591-compatibility-parent-trace.md
 parent_design: docs/design/helix/L6-function-design/typed-plan-workflow-identity.md
@@ -52,24 +52,21 @@ prose markerだけを置く方式は機械判定できないため採用しな�
 純関数`analyzePlanCompatibilityDependencies`が判定を所有し、既存PLAN loaderとinventory loaderから
 snapshotを受け取る。既定`helix plan lint`は他のDB依存gateに先立ち拒否できる。
 `--gate governance`／`frontmatter`にも合成するため、既存doctor `plan-governance`から同じ判定を使う。
-専用のbaselineや免除inventoryを増やさない。DBのauthoritative writeは本sliceの対象外とする。
+導入時の既存違反はpath・reason・detailのexact edgeを機械生成baselineへ固定する。baseline外の追加・変更は
+同じPLAN内でもfail-closeし、解消済みedgeは再登録せず単調減少させる。DBのauthoritative writeは本sliceの対象外とする。
 
 ## 実consumer移行
 
 | PLAN | 現在の依存先／保持する来歴 |
 |---|---|
-| PLAN-L3-36 | CI性能要件へparentを移し、PLAN-L3-22を来歴へ保存 |
 | PLAN-L3-70 | CI性能要件へparentを移し、PLAN-L3-22を来歴へ保存 |
-| PLAN-L4-58 | CI性能要件へparentを移し、PLAN-L3-22を来歴へ保存 |
 | PLAN-L6-81 | 経路選択を所有するGitHub自律運用要件へparentを移し、PLAN-L3-19を来歴へ保存 |
 | PLAN-L7-462 | Issue closeを所有するGitHub自律運用要件へparentを移し、PLAN-L3-19を来歴へ保存 |
-| PLAN-L3-52 | 既存の自律運用要件parentを維持し、PLAN-L3-19／24のreferenceを来歴へ移す |
-
-L3-52のrequiresが指すL3-36もinventory登録済みのため、実際の原子的開発要件へ付け替える。
-これは要件本文・人間承認・過去review receiptを書き換えず、既存の意味を正本へ接続する修正である。
+PLAN-L3-36／52は編集すると既存human approvalの有効境界が変わるため本sliceから外す。これはその場の
+再承認待ちへ変換せず、既承認要求の意味を変えない独立migration sliceへ残す。
 
 ## 残義務
 
-全inventoryに対するgateを有効化すると、Issue記載6件以外の既存current consumerも顕在化する。
-本sliceはそれらをbaselineで隠さずREDとして残す。全体lint／doctor、DB projection／replay、
-main read-afterでconsumer 0が成立するまでDraftから進めず、#1591の終端・merge・完了を主張しない。
+全inventoryに対する既存current consumerはexact-edge baselineで可視化し、新規増加を拒否する。
+本sliceは3件をbaselineへ戻さず減少させる。PLAN-L3-36／52を含む残存edge、DB projection／replay、
+main read-afterでconsumer 0が成立するまでは#1591全体の終端・完了を主張しない。

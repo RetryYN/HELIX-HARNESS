@@ -19,23 +19,24 @@ owner: Codex / TL
 github_issue_id: 1591
 behavior_contract_id: PLAN-COMPATIBILITY-PARENT-1591-S1
 responsibility_owner: legacy-authority-migration
-parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md
+parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md
 pair_artifact: docs/test-design/helix/L8-plan-compatibility-parent-trace.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-001, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-002, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-003, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-004, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-005, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-006, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-007, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-008, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-009, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-010, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-011, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-012, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-013, test_path: tests/plan-compatibility-parent.test.ts }
-  - { parent_design: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, oracle_id: U-CPP-014, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-001, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-002, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-003, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-004, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-005, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-006, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-007, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-008, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-009, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-010, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-011, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-012, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-013, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-014, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-015, test_path: tests/plan-compatibility-parent.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — Recovery実装と検証" }
   - { role: se, slot_label: "SE — schemaとauthority判定" }
@@ -43,17 +44,15 @@ agent_slots:
   - { role: tl, slot_label: "TL — 正本境界と残義務" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1591-compatibility-parent-trace.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-plan-compatibility-parent-trace.md, artifact_type: test_design }
   - { artifact_path: src/lint/plan-compatibility-parent.ts, artifact_type: source_module }
   - { artifact_path: tests/plan-compatibility-parent.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/plan-compatibility-parent-baseline.json, artifact_type: json_config }
 modifies:
   - { artifact_path: src/schema/frontmatter.ts, artifact_type: source_module }
   - { artifact_path: src/plan/lint.ts, artifact_type: source_module }
-  - { artifact_path: docs/plans/PLAN-L3-36-atomic-development-contract.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/plans/PLAN-L3-52-github-security-admission.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L3-70-windows-lite-canary-admission.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/plans/PLAN-L4-58-impact-ci-recovery.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L6-81-drive-route-catalog.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-L7-462-issue-closure-contract.md, artifact_type: markdown_doc }
 dependencies:
@@ -75,7 +74,7 @@ Issue本文、951件inventory、schema／lint、6 PLANを読み、上流要件�
 ### Step 2: [直列] Red→Greenと実consumer移行
 
 直列理由: downstream_dependency
-parent mutationのREDを先に実測し、正規lint／doctorへ接続して6件を現行要件と来歴へ移す。
+parent mutationのREDを先に実測し、正規lint／doctorへ接続して承認非依存の3件を現行要件と来歴へ移す。
 
 ### Step 3: [直列] 検証と独立review
 
@@ -90,12 +89,12 @@ inventory件数・digest、旧PLANの承認やstatus、実行用worker-context�
 
 ## 受入条件
 
-設計／test-designのU-CPP-001..014を同sliceで照合する。current parent RED、typed history GREEN、
+設計／test-designのU-CPP-001..015を同sliceで照合する。current parent RED、typed history GREEN、
 untyped／authority混同REDを必須とし、全体consumer 0・DB replay・独立reviewが揃うまで終端を主張しない。
 
 ## 残義務
 
-6件以外のcurrent consumer除去、全体lint／doctor、DB projection／replay、全回帰、
+PLAN-L3-36／52を含む残存current consumer除去、DB projection／replay、全回帰、
 main read-after consumer 0、独立AI-B reviewは後続の受入義務である。
 
 ## 検証実測（2026-09-10）
@@ -121,6 +120,5 @@ Biomeは変更4 code/test filesを検査し、error／warningなし。`git diff 
 工程表見出しの指摘を修正し、再確認では対象14 testsがexit 0。これは自己承認や
 GitHubの最終HEAD受入receiptではない。
 
-全体には954 PLANの2009 current依存違反（parent 775／requires・references 1234）が残る。
-本sliceの6件は0であり、全体の違反をbaselineへ逃がしていない。全体gateはREDのため、
-merge可能・全回帰成功・#1591完了を主張しない。
+既存current依存違反はexact edge baselineへ機械固定し、同一PLAN内の追加も拒否する。
+本sliceの3件はbaselineへ戻さず減少させる。残存consumer 0・DB replay・read-afterまでは#1591完了を主張しない。

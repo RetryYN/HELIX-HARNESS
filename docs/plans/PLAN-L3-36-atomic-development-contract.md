@@ -63,7 +63,7 @@ generates:
   - artifact_path: tests/github-atomic-development-contract.test.ts
     artifact_type: test_code
 dependencies:
-  parent: docs/design/helix/L3-requirements/github-ci-performance-requirements.md
+  parent: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
   requires:
     - docs/design/helix/L3-requirements/github-ci-performance-requirements.md
     - docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md
@@ -73,12 +73,6 @@ dependencies:
     - docs/design/helix/L3-requirements/github-operations-projection.md
     - docs/governance/l3-downstream-queue.json
   blocks: []
-historical_provenance:
-  - relation: historical_provenance
-    authority_scope: compatibility_input_only
-    plan_id: PLAN-L3-22-github-ci-performance-recovery
-    path: docs/plans/PLAN-L3-22-github-ci-performance-recovery.md
-    reason: "#1591: 旧PLANの来歴を保存し、現在の依存先はL3要件へ接続する"
 ---
 
 # PLAN-L3-36: 原子的開発・CI・リファクタリング契約

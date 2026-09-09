@@ -3,7 +3,7 @@ title: "compatibility-only parent遮断の単体テスト設計"
 layer: L8
 status: draft
 plan: docs/plans/PLAN-RECOVERY-1591-compatibility-parent-trace.md
-pair_artifact: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md
+pair_artifact: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md
 ---
 
 # 反例と受入oracle
@@ -23,9 +23,10 @@ pair_artifact: docs/design/helix/L5-detail/plan-compatibility-parent-trace.md
 | U-CPP-009 | 境界 | history 0件／1件はGREEN、同一ID 2件はRED | `tests/plan-compatibility-parent.test.ts` |
 | U-CPP-010 | 回帰 | inventory 951件と既存digestを維持 | `tests/plan-compatibility-parent.test.ts` |
 | U-CPP-011 | 接続 | 正規PLAN lintとdoctor governanceがparent mutationを拒否 | `tests/plan-compatibility-parent.test.ts` |
-| U-CPP-012 | 実consumer | 記載6件の移行後snapshotがGREEN、来歴は旧IDを保持 | `tests/plan-compatibility-parent.test.ts` |
+| U-CPP-012 | 実consumer | 記載3件の移行後snapshotがGREEN、来歴は旧IDを保持 | `tests/plan-compatibility-parent.test.ts` |
 | U-CPP-013 | schema／projection | frontmatterが来歴を保持し、current dependencyから旧IDを除外 | `tests/plan-compatibility-parent.test.ts` |
 | U-CPP-014 | 異常 | object parent／reference、string references、dependency配下の来歴を拒否 | `tests/plan-compatibility-parent.test.ts` |
+| U-CPP-015 | ratchet | exact-edge baselineは既存違反だけを許し、同じPLANへの新規edgeを拒否 | `tests/plan-compatibility-parent.test.ts` |
 
 ## 実行とmutation
 

@@ -4,7 +4,10 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
 import { checkPlanGovernance } from "../src/doctor/index";
-import { analyzePlanCompatibilityDependencies } from "../src/lint/plan-compatibility-parent";
+import {
+  analyzePlanCompatibilityDependencies,
+  buildPlanCompatibilityDependencyBaseline,
+} from "../src/lint/plan-compatibility-parent";
 import { loadPlanLegacyWorkflowIdentityInventory } from "../src/lint/plan-entry-routing-legacy-input";
 import { lintPlanWithGate } from "../src/plan/lint";
 // PLAN-RECOVERY-1591-compatibility-parent-trace
@@ -169,12 +172,9 @@ describe("compatibility-only PLAN authority boundary", () => {
     }
   });
 
-  it("U-CPP-012: six real consumers have no current compatibility dependency", () => {
+  it("U-CPP-012: three approval-neutral consumers have no current compatibility dependency", () => {
     const plans = [
-      "PLAN-L3-36-atomic-development-contract",
-      "PLAN-L3-52-github-security-admission",
       "PLAN-L3-70-windows-lite-canary-admission",
-      "PLAN-L4-58-impact-ci-recovery",
       "PLAN-L6-81-drive-route-catalog",
       "PLAN-L7-462-issue-closure-contract",
     ];
@@ -186,19 +186,40 @@ describe("compatibility-only PLAN authority boundary", () => {
       >;
       expect(analyzePlanCompatibilityDependencies([{ file, raw }], inventory)).toEqual({
         ok: true,
-        messages: ["plan-compatibility-parent - OK (1 PLAN)"],
+        messages: ["plan-compatibility-parent - OK (1 PLAN, grandfathered=0/0)"],
       });
       const history = raw.historical_provenance as Array<{ plan_id: string }>;
-      expect(history.map((entry) => entry.plan_id)).toEqual(
-        plan.startsWith("PLAN-L3-52")
-          ? [legacy.plan_id, "PLAN-L3-24-github-environment-promotion"]
-          : [
-              plan.startsWith("PLAN-L6-81") || plan.startsWith("PLAN-L7-462")
-                ? legacy.plan_id
-                : "PLAN-L3-22-github-ci-performance-recovery",
-            ],
-      );
+      expect(history.map((entry) => entry.plan_id)).toEqual([
+        plan.startsWith("PLAN-L6-81") || plan.startsWith("PLAN-L7-462")
+          ? legacy.plan_id
+          : "PLAN-L3-22-github-ci-performance-recovery",
+      ]);
     }
+  });
+
+  it("U-CPP-015: exact-edge baseline permits existing debt but rejects a new edge on the same PLAN", () => {
+    const docs = [
+      {
+        file: "docs/plans/PLAN-RECOVERY-1591-existing.md",
+        raw: { status: "draft", dependencies: { parent: legacy.path } },
+      },
+    ];
+    const baseline = buildPlanCompatibilityDependencyBaseline(
+      docs,
+      inventory,
+      "2026-09-10T00:00:00Z",
+    );
+    expect(baseline.grandfathered).toHaveLength(1);
+    expect(analyzePlanCompatibilityDependencies(docs, inventory, baseline).ok).toBe(true);
+    const grown = [
+      {
+        ...docs[0],
+        raw: { ...docs[0].raw, dependencies: { parent: legacy.path, references: [legacy.path] } },
+      },
+    ];
+    const result = analyzePlanCompatibilityDependencies(grown, inventory, baseline);
+    expect(result.ok).toBe(false);
+    expect(result.messages.join("\n")).toContain("compatibility_reference_forbidden");
   });
 
   it("U-CPP-013: frontmatter preserves history without reemitting a dependency", () => {

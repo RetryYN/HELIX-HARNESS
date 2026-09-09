@@ -21,7 +21,12 @@ import {
   loadMergedPlanStatusInput,
   mergedPlanStatusMessages,
 } from "../lint/merged-plan-status";
-import { analyzePlanCompatibilityDependencies } from "../lint/plan-compatibility-parent";
+import {
+  analyzePlanCompatibilityDependencies,
+  buildPlanCompatibilityDependencyBaseline,
+  loadPlanCompatibilityDependencyBaseline,
+  PLAN_COMPATIBILITY_PARENT_BASELINE_PATH,
+} from "../lint/plan-compatibility-parent";
 import {
   analyzePlanDescent,
   loadPlanDescentBaseline,
@@ -947,6 +952,7 @@ export function lintPlanCompatibilityDependencies(
   return analyzePlanCompatibilityDependencies(
     parsed.flatMap((doc) => (doc.raw ? [{ file: doc.file, raw: doc.raw }] : [])),
     loadPlanLegacyWorkflowIdentityInventory(repoRoot),
+    loadPlanCompatibilityDependencyBaseline(repoRoot),
   );
 }
 
@@ -1004,16 +1010,54 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
     }
   }
   if (input.writeBaseline) {
-    if (gate !== "entry-routing") {
+    if (gate !== "entry-routing" && gate !== "compatibility-parent") {
       return {
         ok: false,
-        messages: ["plan-lint - violation: --write-baseline requires --gate entry-routing"],
+        messages: [
+          "plan-lint - violation: --write-baseline requires --gate entry-routing or compatibility-parent",
+        ],
       };
     }
     if (path) {
       return {
         ok: false,
         messages: ["plan-lint - violation: --write-baseline is repository-level only"],
+      };
+    }
+    if (gate === "compatibility-parent") {
+      const docs = loadPlanGovernanceDocs(repoRoot);
+      const parsed = docs.map((doc) => ({ file: doc.file, raw: parsePlanFrontmatter(doc) }));
+      const invalid = parsed.filter((doc) => !doc.raw);
+      if (invalid.length) {
+        return {
+          ok: false,
+          messages: invalid.map(
+            (doc) => `plan-compatibility-parent - invalid_frontmatter: ${doc.file}`,
+          ),
+        };
+      }
+      const inventory = loadPlanLegacyWorkflowIdentityInventory(repoRoot);
+      if (!inventory.valid) {
+        return {
+          ok: false,
+          messages: ["plan-compatibility-parent - compatibility_inventory_invalid"],
+        };
+      }
+      const baseline = buildPlanCompatibilityDependencyBaseline(
+        parsed.flatMap((doc) => (doc.raw ? [{ file: doc.file, raw: doc.raw }] : [])),
+        inventory,
+        new Date().toISOString(),
+      );
+      writeFileSync(
+        join(repoRoot, PLAN_COMPATIBILITY_PARENT_BASELINE_PATH),
+        `${JSON.stringify(baseline, null, 2)}\n`,
+        "utf8",
+      );
+      return {
+        ok: true,
+        messages: [
+          `plan-compatibility-parent - baseline written ${PLAN_COMPATIBILITY_PARENT_BASELINE_PATH} (${baseline.grandfathered.length} grandfathered edge)`,
+        ],
       };
     }
     const docs = loadPlanEntryRoutingDocsFromDb(repoRoot);
@@ -1091,6 +1135,7 @@ export function lintPlanGate(input: LintPlanGateInput = {}): LintResult {
     };
   }
   if (gate === "schedule") return lintPlan(path, repoRoot);
+  if (gate === "compatibility-parent") return lintPlanCompatibilityDependencies(path, repoRoot);
   if (gate === "descent") return lintPlanDescent(path, repoRoot);
   if (gate === "vpair-binding") return lintPlanSpecificVpairBinding(repoRoot);
   if (gate === "design-reality-binding") return lintDesignRealityBinding(repoRoot);
