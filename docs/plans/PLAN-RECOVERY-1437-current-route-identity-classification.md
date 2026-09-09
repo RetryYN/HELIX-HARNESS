@@ -4,7 +4,7 @@ title: "current route identityのlegacy誤分類是正"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -47,6 +47,7 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1437-current-route-identity-classification.md, artifact_type: markdown_doc }
+  - { artifact_path: .helix/evidence/review-1701/vitest-targeted-24e.json, artifact_type: test_evidence }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/github-workflow-identity-contract.md, artifact_type: design_doc }
@@ -58,7 +59,27 @@ agent_slots:
   - { role: se, slot_label: "SE — legacy field分類とschema診断" }
   - { role: qa, slot_label: "QA — current route field誤分類の反例" }
   - { role: tl, slot_label: "TL — authority境界と後続分離" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T20:23:46Z"
+    tests_green_at: "2026-09-09T20:32:22Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 24e97cdd96365c04ab051aa1563397123bcf3d2a
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1701#issuecomment-5608218505
+    ci_evidence_generation: "run:34398294214:attempt:1:success"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/github-workflow-identity-contract.test.ts --reporter=json --outputFile=.helix/evidence/review-1701/vitest-targeted-24e.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T20:32:22Z"
+        evidence_path: .helix/evidence/review-1701/vitest-targeted-24e.json
+        output_digest: "sha256:bbff0307d01e2a0654ff619dfa9c55125515546789c9d2c5452531793d76f654"
 ---
 
 # current route identityのlegacy誤分類是正
@@ -75,3 +96,4 @@ schema境界違反としてcurrent語彙であることを明示する。
 - drive DB schemaの物理移行とconsumer 0確認
 - 専用route projection contractの設計、current catalogへのexact照合、GitHub consumer接続
 - current HEADの独立review、fresh CI、merge/read-after
+- `src/schema/workflow-execution-policy-registry.ts:103-104`の同型legacy誤分類是正
