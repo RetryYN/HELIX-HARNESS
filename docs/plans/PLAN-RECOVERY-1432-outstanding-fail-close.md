@@ -43,7 +43,7 @@ modifies:
 review_evidence: []
 ---
 
-# outstanding fail-close Recovery
+# outstandingのfail-close修復
 
 Issue #1432で実測された3つのfail-openを、既存`outstanding` surfaceの実装欠陥として修復する。
 新しいcutover authority、新しいpacket command、docs/plans不在時のfail-openは追加しない。
