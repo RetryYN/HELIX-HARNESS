@@ -12,7 +12,7 @@ const digestSchema = z.custom<Sha256Digest>(
 );
 const headSchema = z.string().regex(/^[a-f0-9]{40}$/);
 const stableIdSchema = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:-]*$/);
-const rootIdentitySchema = z
+export const projectHookAuthorityRootIdentitySchema = z
   .object({
     lexical_path: z.string().min(1),
     canonical_realpath: z.string().min(1),
@@ -27,14 +27,14 @@ const rootIdentitySchema = z
       .strict(),
   })
   .strict();
-const sourceMaterialSchema = z
+export const projectHookAuthoritySourceMaterialSchema = z
   .object({
     hooks_config_digest: digestSchema,
     agent_guard_digest: digestSchema,
     worker_policy_digest: digestSchema,
   })
   .strict();
-const assignmentBindingSchema = z.discriminatedUnion("kind", [
+export const projectHookAuthorityAssignmentBindingSchema = z.discriminatedUnion("kind", [
   z
     .object({
       kind: z.literal("session"),
@@ -52,7 +52,7 @@ const assignmentBindingSchema = z.discriminatedUnion("kind", [
     })
     .strict(),
 ]);
-const lifecyclePolicySchema = z
+export const projectHookAuthorityLifecyclePolicySchema = z
   .object({
     timeout_ms: z.number().int(),
     hard_ceiling_ms: z.number().int(),
@@ -76,26 +76,38 @@ const lifecyclePolicySchema = z
 export const projectHookAuthorityInputSchema = z
   .object({
     schema_version: z.literal(PROJECT_HOOK_AUTHORITY_INPUT_SCHEMA),
-    execution_root: rootIdentitySchema,
-    loader_root: rootIdentitySchema,
-    session_project_root: rootIdentitySchema,
-    assignment_binding: assignmentBindingSchema,
+    execution_root: projectHookAuthorityRootIdentitySchema,
+    loader_root: projectHookAuthorityRootIdentitySchema,
+    session_project_root: projectHookAuthorityRootIdentitySchema,
+    assignment_binding: projectHookAuthorityAssignmentBindingSchema,
     repository_head: headSchema,
     candidate_base_head: headSchema,
     current_authority_head: headSchema,
-    source_material: sourceMaterialSchema,
-    current_authority_source_material: sourceMaterialSchema,
+    source_material: projectHookAuthoritySourceMaterialSchema,
+    current_authority_source_material: projectHookAuthoritySourceMaterialSchema,
     physical_evidence: z
       .object({
         captured_at: z.string().datetime({ offset: true }),
         capture_source: z.enum(["node-stat", "windows-file-id"]),
       })
       .strict(),
-    lifecycle_policy: lifecyclePolicySchema,
+    lifecycle_policy: projectHookAuthorityLifecyclePolicySchema,
   })
   .strict();
 
 export type ProjectHookAuthorityInputV1 = z.infer<typeof projectHookAuthorityInputSchema>;
+export type ProjectHookAuthorityRootIdentityV1 = z.infer<
+  typeof projectHookAuthorityRootIdentitySchema
+>;
+export type ProjectHookAuthoritySourceMaterialV1 = z.infer<
+  typeof projectHookAuthoritySourceMaterialSchema
+>;
+export type ProjectHookAuthorityAssignmentBindingV1 = z.infer<
+  typeof projectHookAuthorityAssignmentBindingSchema
+>;
+export type ProjectHookAuthorityLifecyclePolicyV1 = z.infer<
+  typeof projectHookAuthorityLifecyclePolicySchema
+>;
 export type ProjectHookAuthorityFailureCode =
   | "schema_invalid"
   | "unsupported_physical_identity"
@@ -105,11 +117,11 @@ export type ProjectHookAuthorityFailureCode =
 export interface ProjectHookAuthorityReceiptV1 {
   schema_version: typeof PROJECT_HOOK_AUTHORITY_RECEIPT_SCHEMA;
   authority_kind: "session" | "assignment";
-  physical_repository_identity: z.infer<typeof rootIdentitySchema>;
+  physical_repository_identity: ProjectHookAuthorityRootIdentityV1;
   authority_root: string;
   repository_head: string;
-  source_identity: z.infer<typeof sourceMaterialSchema>;
-  assignment_binding: z.infer<typeof assignmentBindingSchema>;
+  source_identity: ProjectHookAuthoritySourceMaterialV1;
+  assignment_binding: ProjectHookAuthorityAssignmentBindingV1;
   captured_at: string;
   receipt_digest: Sha256Digest;
 }
@@ -165,6 +177,23 @@ function failure(
 }
 
 /**
+ * transport envelopeの期待値とhost観測値を分離した層から、既存のstale/foreign failureへ閉じる。
+ * raw path、source bytes、provider例外はdetailへ入れず、stable reasonだけを保持する。
+ */
+export function projectHookAuthoritySourceStaleFailure(
+  json_pointer: string,
+  reason: string,
+): ProjectHookAuthorityResolution {
+  return failure("project_hook_source_stale_or_foreign", json_pointer, { reason });
+}
+
+export function projectHookAuthorityTransportSchemaFailure(): ProjectHookAuthorityResolution {
+  return failure("schema_invalid", "/transport_envelope", {
+    reason: "control_plane_transport_envelope_invalid",
+  });
+}
+
+/**
  * 明示authority inputをproviderから取得できない場合の既存failure projection。
  * provider固有の例外本文・path・credentialをdetailへ混ぜず、L5 exact failure setを維持する。
  */
@@ -175,8 +204,8 @@ export function projectHookAuthorityInputUnavailable(): ProjectHookAuthorityReso
 }
 
 function samePhysicalIdentity(
-  left: z.infer<typeof rootIdentitySchema>,
-  right: z.infer<typeof rootIdentitySchema>,
+  left: ProjectHookAuthorityRootIdentityV1,
+  right: ProjectHookAuthorityRootIdentityV1,
 ): boolean {
   return (
     left.canonical_realpath === right.canonical_realpath &&
@@ -205,7 +234,7 @@ function supportedPhysicalEvidence(input: ProjectHookAuthorityInputV1): boolean 
   );
 }
 
-function validLifecyclePolicy(policy: z.infer<typeof lifecyclePolicySchema>): boolean {
+function validLifecyclePolicy(policy: ProjectHookAuthorityLifecyclePolicyV1): boolean {
   if (
     policy.hard_ceiling_ms !== 60_000 ||
     policy.timeout_ms <= 0 ||

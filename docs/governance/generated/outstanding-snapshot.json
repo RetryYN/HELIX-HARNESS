@@ -88,6 +88,7 @@
     "PLAN-RECOVERY-1627-review-request-changes-fail-close",
     "PLAN-RECOVERY-1638-review-seal-terminal-ci",
     "PLAN-RECOVERY-1645-markdown-table-coverage",
+    "PLAN-RECOVERY-1659-ci-status-head-binding",
     "PLAN-RECOVERY-397-three-lane-ir-identity",
     "PLAN-RECOVERY-62-event-projection-checkpoint-replay-reachability",
     "PLAN-RECOVERY-66-post-merge-plan-status-preflight",
