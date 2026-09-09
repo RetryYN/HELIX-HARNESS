@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-577: rerun admissionのcurrent PR draft read-after束縛"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -53,10 +53,10 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-577-current-pr-draft-read-after.md, artifact_type: markdown_doc }
+  - { artifact_path: .helix/evidence/review-1708/vitest-targeted-a77.json, artifact_type: other }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: docs/design/helix/L5-detail/github-cross-review-admission.md, artifact_type: design_doc }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
 agent_slots:
@@ -64,7 +64,28 @@ agent_slots:
   - { role: se, slot_label: "Codex — current PR snapshot adapter修復" }
   - { role: qa, slot_label: "QA — stale event payload／read-after drift反例" }
   - { role: tl, slot_label: "TL — #577/#1638境界とmerge条件不変の収束" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T22:37:43Z"
+    tests_green_at: "2026-09-09T22:34:18Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: a77c586104c58ebfcce8e7392d73844daa950cd3
+    scope: "exact-HEAD独立reviewとcanonical receiptは https://github.com/RetryYN/HELIX-HARNESS/pull/1708#issuecomment-5609694049 。Issue #577全体close、既存runの新workflow bytesによる再実行、JIT main同期後の新run、merge/read-afterは未完了として除外する。"
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1708#issuecomment-5609694049
+    ci_evidence_generation: "run:34410352187:attempt:1:success"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/harness-check-workflow.test.ts tests/github-cross-review-admission.test.ts --reporter=json --outputFile=.helix/evidence/review-1708/vitest-targeted-a77.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T22:34:18Z"
+        evidence_path: .helix/evidence/review-1708/vitest-targeted-a77.json
+        output_digest: "sha256:c04089923d20b56d9543092902cd90cccfcc518f32172d2f51d5fa396562a623"
 ---
 
 # rerun admissionのcurrent PR draft read-after束縛
@@ -85,3 +106,10 @@ snapshotを入力正本にし、取得後のread-afterまで同一である場�
 - targeted workflow oracle、PLAN lint、typecheck、required CIを同一HEADで通す。
 - 独立reviewerがevent payloadへの退行、Draft無条件許可、Ready gate緩和がないことを検収する。
 - 実consumerでDraft化後のrerunまたは同等のsame-HEAD bootstrapを実証し、Ready復帰後は従来のadmissionを通す。
+
+## 残義務
+
+- 既存runのrerunは旧workflow bytesを使うため、この変更の実consumer証拠には使わない。
+- merge後にcurrent mainをJIT syncして新runを発生させ、current workflow bytesでDraft deferとReady admissionを検証する。
+- #1638のseal側経路を閉じるまではIssue #577全体の完了を主張しない。
+- 転記後HEADでfresh required CIと第2 exact-HEAD独立reviewを成立させ、merge/read-afterを完走する。
