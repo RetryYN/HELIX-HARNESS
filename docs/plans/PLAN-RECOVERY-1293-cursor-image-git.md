@@ -9,7 +9,7 @@ completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-09
 updated: 2026-09-09
-github_issue_id: 1293
+github_issue_id: 1356
 behavior_contract_id: TER-CURSOR-CLOUD-ENV-001
 responsibility_owner: provider-environment-admission
 engineering_discipline_required: true
@@ -61,6 +61,9 @@ review_evidence: []
 
 # Cursor環境のclone前提修復
 
+環境契約TER-CURSOR-CLOUD-ENV-001のownerはIssue #1356。#1293は利用先であり、PLAN IDは既存参照を維持する。
+workflow admissionは環境Recovery ownerへ束縛し、#1293全体をRecoveryへ再分類しない。
+
 ## 実測と範囲
 
 基準mainは`f2695861e22812444e7b22d4fc74ff5c69e00546`。
@@ -86,3 +89,18 @@ gitCheckoutで`git: command not found`となった。Issue #1293 comment 5603812
 PR #1689 comment 5604133097の独立反例を再現した。URL ADDの反例追加後、U006がRed、他5件Green。
 DockerfileのURL ADD（HTTPS／git@／SSH）とsingle-stageのCOPY --fromを拒否する修復後は6件Green。
 Dockerfile自体は変更していないため、実行中Buildのsourceは引き続き3edcbe5であり、新test HEADの実行証拠へ読み替えない。
+
+### 実クラウドBuildの観測（2026-09-10）
+
+- Build: `bld-20260909-c5c17c17-323d-4fd3-a955-e0351f812807`（Manual / Draft）。
+- source: `recovery/1293-cursor-image-git @ 3edcbe5`（dashboard表示）。
+- Git実行出力: `git version 2.39.5`。Debian packageの完全な版は未転記。
+- package版: `ca-certificates=20250419~deb12u1`、`curl=7.88.1-10+deb12u15`。
+- `2026-09-09T15:11:24.212Z`: `[helix-cursor-cloud] Cursor Cloud Agent Build completed`。
+- `2026-09-09T15:11:24.216Z`: `[INSTALL] Exit code: 0`。
+- `2026-09-09T15:11:40.803Z`: snapshot作成済み、ready待ち（provider表示の上限15分）。
+
+この時点ではBuild全体はin progress。派生image identity、snapshot ready、active採用は未確認。
+上記は実ログの観測値であり、未観測のimage digestをbase digestで代用しない。
+追跡先は[Cursor Build](https://cursor.com/dashboard/cloud-agents/builds/bld-20260909-c5c17c17-323d-4fd3-a955-e0351f812807)、
+共有記録はPR #1689 comment 5604196701。新HEADへの環境適合性の再利用と、新HEAD自身でのテスト実行は区別する。
