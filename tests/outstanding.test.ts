@@ -10,6 +10,7 @@ import {
   completionReadinessLine,
   completionReviewBundleForOutstanding,
   computeOutstandingWork,
+  isCommandSafePlanId,
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
   outstandingSummaryLine,
@@ -293,14 +294,13 @@ describe("analyzeOutstandingWork", () => {
 
     expect(o.versionUpParked).toBe(1);
     expect(o.activeDraftTotal).toBe(0);
-    expect(o.blockersByKind).toMatchObject({
+    expect(o.blockersByKind).toEqual({
       version_up_frontmatter_missing: 1,
-      version_up_parked: 1,
     });
     expect(o.items[0]).toMatchObject({
       planId: "PLAN-L7-146",
       reason: "version_up_frontmatter_missing",
-      blockers: ["version_up_frontmatter_missing", "version_up_parked"],
+      blockers: ["version_up_frontmatter_missing"],
       requiredAction:
         "record version_target frontmatter before treating version-up parked work as a valid future-version frontier",
     });
@@ -2342,9 +2342,146 @@ dependencies:
       };
       expect(frontmatterSchema.safeParse(raw).success).toBe(false);
       const result = analyzeOutstandingWork(rows, 0);
-      expect(result.items[0]?.blockers).not.toContain("irreversible_migration_pending");
+      expect(result.items[0]?.blockers).toContain("irreversible_migration_pending");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("irreversible_impact: cutOver の L14 PLAN は irreversible_migration_pending を立てる", () => {
+    // U-OUTSTANDING-1432-001
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-cutover-typo-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L14-1432-cutover-typo.md"),
+        `---
+plan_id: PLAN-L14-1432-cutover-typo
+title: invalid cutover enum fixture
+kind: troubleshoot
+drive: agent
+status: draft
+layer: L14
+irreversible_impact: cutOver
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+generic terminal evidence only.
+`,
+      );
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows[0]).toMatchObject({
+        planId: "PLAN-L14-1432-cutover-typo",
+        layer: "L14",
+        irreversibleImpact: null,
+        irreversibleImpactDeclared: true,
+      });
+      const result = analyzeOutstandingWork(rows, 0);
+      expect(result.items[0]?.reason).toBe("irreversible_migration_pending");
+      expect(result.items[0]?.blockers).toContain("irreversible_migration_pending");
+      expect(result.items[0]?.requiredEvidence).toEqual(
+        expect.arrayContaining([
+          "cutover_decision_record with allowed_outcome approve_cutover / reject_or_defer / request_runbook_changes",
+        ]),
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("plan_id: \"x; rm -rf /\" の PLAN は raw を採用せず runnable 行へ埋め込まない", () => {
+    // U-OUTSTANDING-1432-002
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-inject-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "evil.md"),
+        `---
+plan_id: "x; rm -rf /"
+title: injection fixture
+kind: poc
+drive: agent
+status: draft
+layer: cross
+workflow_phase: S3
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+S4 decision pending.
+`,
+      );
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows.map((row) => row.planId)).not.toContain("x; rm -rf /");
+      expect(rows.every((row) => row.planId !== "x; rm -rf /")).toBe(true);
+
+      const inMemory = analyzeOutstandingWork(
+        [
+          {
+            planId: "x; rm -rf /",
+            layer: "cross",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            text: "S4 decision pending.",
+          },
+        ],
+        0,
+      );
+      const actions = workflowNextActionsForOutstanding(inMemory);
+      const packet = completionDecisionPacketForOutstanding(inMemory);
+      const commandText = JSON.stringify([actions, packet.decisions]);
+      expect(commandText).not.toContain("x; rm -rf /");
+      expect(commandText).not.toContain("--plan x");
+      expect(isCommandSafePlanId("x; rm -rf /")).toBe(false);
+      expect(actions[0]?.scopedDecisionPacketCommand).toBe("helix s4 decision-packet --json");
+      expect(actions[0]?.scopedPacketCommands).toEqual(["helix s4 decision-packet --json"]);
+      expect(packet.decisions[0]?.scopedDecisionPacketCommand).toBe(
+        "helix s4 decision-packet --json",
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("S4 pending と本文の version-up 語が共起しても primary reason は po_decision_pending のまま", () => {
+    // U-OUTSTANDING-1432-003
+    const o = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          versionTarget: null,
+          text: [
+            "S4 decision pending.",
+            "mode=version-up",
+            "version_target is mentioned only in the body.",
+          ].join("\n"),
+        },
+      ],
+      0,
+    );
+
+    expect(o.items[0]).toMatchObject({
+      planId: "PLAN-DISCOVERY-10",
+      reason: "po_decision_pending",
+      blockers: ["po_decision_pending", "version_up_frontmatter_missing"],
+    });
+    expect(o.semanticFeatureFrontierRecords?.[0]).toMatchObject({
+      classification: "frontier_pending_decision",
+      reason: "po_decision_pending",
+    });
   });
 });

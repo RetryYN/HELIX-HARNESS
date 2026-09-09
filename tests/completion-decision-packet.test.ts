@@ -1855,4 +1855,41 @@ describe("completion decision packet lint", () => {
       ]),
     );
   });
+
+  it("does not interpolate an unsafe plan_id into scoped or runnable packet commands", () => {
+    // U-OUTSTANDING-1432-004
+    const packet = completionDecisionPacketForOutstanding(
+      analyzeOutstandingWork(
+        [
+          {
+            planId: "x; rm -rf /",
+            layer: "cross",
+            kind: "poc",
+            status: "draft",
+            workflowPhase: "S3",
+            text: "S4 decision pending.",
+          },
+        ],
+        0,
+      ),
+      {
+        generatedAt: "2026-06-30T00:00:00.000Z",
+        now: "2026-06-30T00:30:00.000Z",
+        validForMinutes: 60,
+        sourceCommand: "helix completion decision-packet --json",
+      },
+    );
+
+    const decision = packet.decisions[0];
+    expect(decision?.scopedDecisionPacketCommand).toBe("helix s4 decision-packet --json");
+    expect(decision?.runnableScopedDecisionPacketCommand).toBe(
+      "npm run helix -- s4 decision-packet --json",
+    );
+    expect(decision?.scopedPacketCommands).toEqual(["helix s4 decision-packet --json"]);
+    expect(decision?.runnableScopedPacketCommands).toEqual([
+      "npm run helix -- s4 decision-packet --json",
+    ]);
+    expect(JSON.stringify(decision)).not.toContain("rm -rf");
+    expect(JSON.stringify(decision?.supportingPacketSummaries)).not.toContain("--plan x");
+  });
 });

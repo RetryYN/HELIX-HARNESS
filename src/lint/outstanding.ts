@@ -25,7 +25,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { frontmatterSchema } from "../schema/frontmatter";
+import { frontmatterSchema, planIdSchema } from "../schema/frontmatter";
 import { deepFreeze, isRecord } from "../shared/value-guards";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
 import { fmValue, isTerminalPlanStatus } from "./shared";
@@ -740,13 +740,13 @@ function semanticFeatureFrontierRecordForItem(
 function semanticFeatureFrontierClassificationForItem(
   item: OutstandingItem,
 ): SemanticFeatureFrontierClassification | null {
-  if (item.blockers.includes("irreversible_migration_pending")) {
+  if (item.reason === "irreversible_migration_pending") {
     return "approval_gated_cutover";
   }
-  if (item.blockers.includes("version_up_parked")) {
+  if (item.reason === "version_up_parked" || item.reason === "version_up_frontmatter_missing") {
     return "parked_future_version";
   }
-  if (item.blockers.includes("po_decision_pending")) {
+  if (item.reason === "po_decision_pending") {
     return "frontier_pending_decision";
   }
   return null;
@@ -813,7 +813,6 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
     blockers.add("version_up_parked");
   } else if (planTextHasVersionUpParkingIntent(p.text ?? "")) {
     blockers.add("version_up_frontmatter_missing");
-    blockers.add("version_up_parked");
   }
   if (
     p.kind === "poc" &&
@@ -836,8 +835,8 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
 function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): boolean {
   if (p.irreversibleImpact === "none") return false;
   if (p.irreversibleImpact === "cutover" || p.irreversibleImpact === "migration") return true;
-  // fieldが存在するがschema不適合ならplan lintがrejectする。本文fallbackで別分類へ化けさせない。
-  if (p.irreversibleImpactDeclared) return false;
+  // schema不適合の宣言はplan lint未実行でもfail-closeする。本文fallbackへ落とさない。
+  if (p.irreversibleImpactDeclared && p.irreversibleImpact === null) return true;
   const planId = (p.planId ?? "").trim();
   if (p.layer === "L14" || planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) {
     return /irreversible|不可逆|state dir|cutover|\.helix\/.*\.helix|atomic migration/i.test(text);
@@ -861,10 +860,10 @@ export function planTextHasVersionUpParkingIntent(text: string): boolean {
 function primaryOutstandingReason(blockers: string[]): string {
   const priority = [
     "irreversible_migration_pending",
-    "version_up_frontmatter_missing",
     "version_up_parked",
     "po_decision_pending",
     "human_approval_pending",
+    "version_up_frontmatter_missing",
     "consumer_setup_boundary",
     "active_draft",
   ];
@@ -1062,6 +1061,38 @@ function uniqueInOrder<T extends string>(values: T[]): T[] {
   return [...new Set(values)];
 }
 
+/** scoped command に埋め込んでよい planId。`;` / 空白 / `$()` などを拒否する。 */
+const COMMAND_SAFE_PLAN_ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+
+export function isCommandSafePlanId(planId: string): boolean {
+  return COMMAND_SAFE_PLAN_ID.test(planId);
+}
+
+function declaredPlanIdFromFrontmatter(
+  rawFrontmatter: Record<string, unknown> | null,
+  content: string,
+): string | undefined {
+  const declared = rawFrontmatter?.plan_id;
+  if (typeof declared === "string" && declared.trim()) return declared.trim();
+  return fmValue(content, "plan_id") ?? undefined;
+}
+
+function resolveOutstandingPlanId(
+  declared: string | undefined,
+  filenameStem: string,
+): string | null {
+  if (declared !== undefined) {
+    const parsed = planIdSchema.safeParse(declared);
+    if (parsed.success) return parsed.data;
+    if (isCommandSafePlanId(declared)) return declared;
+    return null;
+  }
+  const parsedFile = planIdSchema.safeParse(filenameStem);
+  if (parsedFile.success) return parsedFile.data;
+  if (isCommandSafePlanId(filenameStem)) return filenameStem;
+  return null;
+}
+
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
 export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] {
   const dir = join(repoRoot, "docs", "plans");
@@ -1082,8 +1113,14 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
     ) as Record<string, unknown> | null;
     const parsedFrontmatter = frontmatterSchema.safeParse(rawFrontmatter);
     const irreversibleImpactDeclared = Object.hasOwn(rawFrontmatter ?? {}, "irreversible_impact");
+    const filenameStem = f.replace(/\.md$/, "");
+    const planId = resolveOutstandingPlanId(
+      declaredPlanIdFromFrontmatter(rawFrontmatter, content),
+      filenameStem,
+    );
+    if (planId === null) continue;
     rows.push({
-      planId: fmValue(content, "plan_id") ?? f.replace(/\.md$/, ""),
+      planId,
       layer: fmValue(content, "layer") ?? "unknown",
       kind: fmValue(content, "kind") ?? "unknown",
       status: fmValue(content, "status") ?? "unknown",
@@ -1762,7 +1799,7 @@ function scopedPacketCommandForPlan(
     case "helix s4 decision-packet --json":
     case "helix version-up activation-packet --json":
     case "helix action-binding approval-packet --json":
-      return `${command} --plan ${planId}`;
+      return isCommandSafePlanId(planId) ? `${command} --plan ${planId}` : command;
     case "helix rename plan --json":
     case "helix rename approval-draft --json":
     case "helix completion decision-packet --json":
