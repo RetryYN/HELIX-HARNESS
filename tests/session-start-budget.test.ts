@@ -13,6 +13,12 @@ import {
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+import { canonicalJson, sha256Digest } from "../src/runtime/digest";
+import {
+  captureProjectHookRepositoryIdentity,
+  captureProjectHookSourceMaterial,
+  nodeProjectHookPhysicalAdapterDeps,
+} from "../src/runtime/project-hook-physical-adapter";
 import { openHarnessDb } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import { installTestWorkerContextBoundary } from "./helpers/worker-context";
@@ -188,6 +194,82 @@ function runCli(cwd: string, args: string[], input?: unknown, env?: NodeJS.Proce
   });
 }
 
+function installProjectHookAuthorityEnvelope(dir: string): string {
+  for (const relative of [
+    ".codex/hooks.json",
+    "src/runtime/agent-guard.ts",
+    "src/runtime/codex-native-worker-policy.ts",
+  ]) {
+    const target = join(dir, relative);
+    mkdirSync(join(target, ".."), { recursive: true });
+    writeFileSync(target, readFileSync(join(repoRoot, relative)));
+  }
+  for (const args of [
+    ["init", "-q"],
+    ["config", "user.email", "test@example.invalid"],
+    ["config", "user.name", "HELIX Test"],
+    [
+      "add",
+      ".codex/hooks.json",
+      "src/runtime/agent-guard.ts",
+      "src/runtime/codex-native-worker-policy.ts",
+    ],
+    ["commit", "-qm", "test fixture"],
+    ["update-ref", "refs/remotes/origin/main", "HEAD"],
+    ["symbolic-ref", "refs/remotes/origin/HEAD", "refs/remotes/origin/main"],
+  ]) {
+    const result = spawnSync("git", args, { cwd: dir, encoding: "utf8" });
+    if (result.status !== 0)
+      throw new Error(`git fixture failed: ${args.join(" ")}: ${result.stderr}`);
+  }
+  const head = spawnSync("git", ["rev-parse", "HEAD"], {
+    cwd: dir,
+    encoding: "utf8",
+  }).stdout.trim();
+  const root = captureProjectHookRepositoryIdentity(dir, nodeProjectHookPhysicalAdapterDeps);
+  const source = captureProjectHookSourceMaterial(dir, nodeProjectHookPhysicalAdapterDeps);
+  const envelopePath = join(dir, "project-hook-authority-envelope.json");
+  writeFileSync(
+    envelopePath,
+    JSON.stringify({
+      schema_version: "helix-project-hook-authority-transport-envelope.v1",
+      envelope_id: "session-start-budget-fixture",
+      issued_at: new Date().toISOString(),
+      capture_locators: {
+        loader_root: dir,
+        session_project_root: dir,
+        current_authority_root: dir,
+      },
+      expected: {
+        execution_root: root,
+        loader_root: root,
+        session_project_root: root,
+        current_authority_root: root,
+        assignment_binding: {
+          kind: "assignment",
+          assignment_id: "session-start-budget",
+          assignment_root_digest: sha256Digest(canonicalJson(root)),
+          branch: "test/session-start-budget",
+          lease_id: "lease-session-start-budget",
+          fence_token: "fence-session-start-budget",
+        },
+        candidate_base_head: head,
+        current_authority_head: head,
+        source_material: source,
+        current_authority_source_material: source,
+        lifecycle_policy: {
+          timeout_ms: 15_000,
+          hard_ceiling_ms: 60_000,
+          child_termination_grace_ms: 1_000,
+          parent_terminal_required: true,
+          notification_handoff: { kind: "disabled" },
+        },
+      },
+    }),
+  );
+  return envelopePath;
+}
+
 afterEach(() => {
   while (created.length > 0) {
     const dir = created.pop();
@@ -215,6 +297,7 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
     // (実測: SyntaxError で落ちた)。dry-run は副作用前に return するため --execute で固定する。
     const dir = makeRepo();
     const contextPath = installTestWorkerContextBoundary(dir);
+    const authorityPath = installProjectHookAuthorityEnvelope(dir);
     seedFeedbackEvents(dir, 5);
     const fakeCodex = join(dir, "fake-codex.sh");
     writeFileSync(fakeCodex, "#!/bin/sh\ncat > /dev/null\nexit 0\n");
@@ -232,6 +315,8 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
         "--json",
         "--worker-context-file",
         contextPath,
+        "--project-hook-authority-envelope-file",
+        authorityPath,
       ],
       undefined,
       { HELIX_CODEX_BIN: fakeCodex },
@@ -249,6 +334,7 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
     // (Codex review 3 High)。
     const dir = makeRepo();
     const contextPath = installTestWorkerContextBoundary(dir);
+    const authorityPath = installProjectHookAuthorityEnvelope(dir);
     const failures = Array.from({ length: 3 }, () =>
       JSON.stringify({ event_type: "tool_use", target: "src/loop.ts", outcome: "error" }),
     ).join("\n");
@@ -269,6 +355,8 @@ describe("SessionStart hook budget (PLAN-L7-471)", () => {
         "--json",
         "--worker-context-file",
         contextPath,
+        "--project-hook-authority-envelope-file",
+        authorityPath,
       ],
       undefined,
       { HELIX_CODEX_BIN: fakeCodex },
