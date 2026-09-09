@@ -144,10 +144,16 @@ output digest、exit code、時刻を入力境界で検証し、validatorの`ok=
 | `U-FULLSHARD-WF-002` | receipt exact set検証後のDB／doctor／required aggregate順序 |
 | `U-BIOMEFAST-001` | Biomeをpreflight依存導入直後かつshard plan生成前に一回実行し、finalizeへの逆戻し・preflight除去・生成後移動・重複・fail-openを拒否 |
 | `U-FULLSHARD-WF-003` | preflight 35分、bulk各25分、stateful 30分、finalize 15分のbounded timeoutとbudget telemetryを固定し、timeout変更を性能改善やmerge greenへ偽装しない |
+| `U-G10CHROMIUM-001` | bulk-3のPlaywright導入前にrunner同梱の無関係なGoogle Chrome apt sourceだけを一時退避し、外部repositoryのpublication raceをG10証拠取得へ伝播させない |
 
 Biomeは`npm run lint`の対象・厳格さを変えず、preflightの依存導入直後へ前倒しする。
 preflight失敗時は`needs`依存によりshardを起動せず、finalizeや各shard jobへlintを持ち込まない。最終receipt照合・DB・doctorは維持する。
 これは検証義務の削減ではなく既存検査の実行順変更である（Issue #1640）。
+
+G10 browser evidenceのChromium導入はUbuntu依存とPlaywright browserを必要とするが、GitHub hosted runnerに
+同梱されたGoogle Chrome apt sourceは本責務の依存ではない。該当sourceが存在する場合だけrunner tempへ退避してから
+`playwright install --with-deps chromium`を実行する。sourceを削除せず、Chromium導入・G10実描画・receiptの必須性も
+緩めない。退避対象は`google-chrome.list`とdeb822形式の`google-chrome.sources`に限定する。
 
 ### 6.1 旧Recovery oracleの退役とキャンセル境界
 
