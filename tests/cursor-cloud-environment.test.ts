@@ -1,4 +1,5 @@
 // PLAN-RECOVERY-76 / TER-CURSOR-CLOUD-ENV-001
+// PLAN-RECOVERY-1293-cursor-image-git
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
@@ -55,5 +56,13 @@ describe("Cursor Cloud Agent environment admission", () => {
       expect(install, String(forbidden)).not.toMatch(forbidden);
       expect(dockerfile, String(forbidden)).not.toMatch(forbidden);
     }
+  });
+
+  it("U-CURSOR-ENV-005: clone前にimageへGitとHTTPS証明書を組み込む", () => {
+    expect(dockerfile).toMatch(
+      /RUN apt-get update\s*\\\n\s*&& apt-get install --no-install-recommends -y git ca-certificates/u,
+    );
+    expect(dockerfile).toContain("&& git --version");
+    expect(install).not.toContain("apt-get");
   });
 });

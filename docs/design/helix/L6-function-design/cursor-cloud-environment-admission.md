@@ -43,6 +43,17 @@ package.json engines.node
 公式仕様上、Buildはdisk stateだけを保存し、install shellのexportはagent sessionへ継続しない。このためPATH shim案を
 compatibilityとして残さず撤去し、runtime自体をDockerfileで固定する。
 
+## clone前提の修復（Issue #1293）
+
+PLAN-RECOVERY-1293-cursor-image-gitで、repo取得前に必要なGitとHTTPS証明書をDocker imageへ組み込む。
+repoのinstall scriptはclone後にしか使えないため、そこでGitを導入する循環は作らない。
+image build内のOS package導入と、agent hostのruntimeを書き換える操作を区別する。
+Nodeのbase manifest固定とinstall scriptのhost変更禁止は維持し、image build中の`git --version`で欠如を拒否する。
+
+単体テストはDockerfile契約の退行検出に限定する。実証はDraft BuildでGit clone、HELIX install固有ログ、
+検証列の完走を確認する。OS package取得を含む派生image全体の再現性はbase digestだけでは証明できないため、
+採用時は実Buildのimage identityと取得されたpackage版を別途記録する。未成功候補は自動採用しない。
+
 ## Failure
 
 wrong／欠落digest、Node 24.15未満または25以上、mutable download、host-global write、native fallback、検証command欠落は

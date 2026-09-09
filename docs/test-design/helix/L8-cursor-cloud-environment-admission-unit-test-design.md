@@ -18,6 +18,10 @@ pair_artifact: docs/design/helix/L6-function-design/cursor-cloud-environment-adm
 | U-CURSOR-ENV-002 | Node 24.20.0 imageとmanifest digestをexact固定 | tag-only、wrong digest、別majorを拒否 |
 | U-CURSOR-ENV-003 | Node範囲再検証後にfrozen installと検証列を実行 | range check、`npm ci`、typecheck、build、test、statusの各欠落を拒否 |
 | U-CURSOR-ENV-004 | repo内writeだけでBuildする | curl／wget／nvm、host-global path、`/tmp`、`|| true`、warning fallbackを拒否 |
+| U-CURSOR-ENV-005 | image buildでGit・HTTPS証明書を導入しGit実行を検査 | 導入欠落、Git確認欠落、install scriptへの遅延導入を拒否 |
+
+U-CURSOR-ENV-005はPLAN-RECOVERY-1293-cursor-image-gitの修復を拘束する静的検査であり、実clone成功の代用ではない。
+Draft Buildでrepo checkoutとHELIX installの完走を別途確認する。
 
 mutationではimage digest一桁変更、Node下限削除、`npm ci`から`npm install`への縮退、host shim再導入、fail-open追加を
 個別に投入し、各反例が独立してredになることを確認する。
