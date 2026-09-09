@@ -2870,6 +2870,53 @@ active draft.
     }
   });
 
+  it("POSIX で有効な backslash basename は loader で行を消さない", () => {
+    // U-OUTSTANDING-1432-002: Windows separator と POSIX basename を混同しない。
+    if (process.platform === "win32") return;
+    const filename = Buffer.from("back\\slash.md", "utf8");
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-backslash-"));
+    const dir = join(root, "docs", "plans");
+    try {
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(
+        Buffer.concat([Buffer.from(`${dir}/`), filename]),
+        `---
+plan_id: foo
+title: backslash filename
+kind: impl
+drive: agent
+status: draft
+layer: L7
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+active draft.
+`,
+        "utf8",
+      );
+
+      const fallbackId = outstandingFallbackPlanId(filename);
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({
+        planId: fallbackId,
+        planIdSchemaInvalid: true,
+      });
+
+      const live = computeOutstandingWork(root);
+      expect(live.items).toHaveLength(1);
+      expect(live.items[0]?.planId).toBe(fallbackId);
+      expect(live.blockersByKind.frontmatter_schema_invalid).toBe(1);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("U-OUTSTANDING-1432-003: S4 pending と本文 version-up 語でも primary は po_decision_pending", () => {
     // U-OUTSTANDING-1432-003
     const o = analyzeOutstandingWork(

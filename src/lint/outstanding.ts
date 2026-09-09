@@ -1191,7 +1191,9 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
   if (!existsSync(dir)) return rows;
   for (const filename of readdirSync(dir, { encoding: "buffer" })) {
     if (!plansBasenameLooksLikeMarkdown(filename)) continue;
-    if (filename.includes(0) || filename.includes(0x2f) || filename.includes(0x5c)) continue;
+    // readdirSync が返す basename では NUL と POSIX separator だけを拒否する。
+    // `\\` は POSIX では有効な basename byte なので、unsafe fallback identity として保持する。
+    if (filename.includes(0) || filename.includes(0x2f)) continue;
     let content = "";
     try {
       content = readFileSync(plansDirentPath(dir, filename), "utf8");
