@@ -7930,6 +7930,48 @@ describe("L7 CLI surface closure", () => {
     );
   }, 20_000);
 
+  it("U-PRSCOPE-PRE-007: exposes push-before PR scope preflight as a JSON command", () => {
+    const bodyFile = join(mkdtempSync(join(tmpdir(), "helix-pr-scope-preflight-cli-")), "body.md");
+    writeFileSync(
+      bodyFile,
+      [
+        "Behavior contract: PR-SCOPE-PREFLIGHT-001",
+        "Responsibility owner: pr-scope-preflight",
+        "Allowed path families: docs/plans/PLAN-RECOVERY-1690-pr-scope-preflight.md",
+        "Expected changed paths: docs/plans/PLAN-RECOVERY-1690-pr-scope-preflight.md",
+        "Required companion paths: none",
+        "Scope expansion: none",
+      ].join("\n"),
+    );
+    const help = runCli(["github", "pr-scope-preflight", "--help"]);
+    expect(help.status, help.stderr || help.stdout).toBe(0);
+    expect(help.stdout).toContain("pr-scope-preflight");
+    expect(help.stdout).toContain("--base");
+    expect(help.stdout).toContain("--body-file");
+    expect(help.stdout).toContain("--json");
+
+    const run = runCli([
+      "github",
+      "pr-scope-preflight",
+      "--base",
+      "HEAD",
+      "--head",
+      "HEAD",
+      "--body-file",
+      bodyFile,
+      "--json",
+    ]);
+    const payload = JSON.parse(run.stdout);
+    expect(payload).toMatchObject({
+      schema_version: "helix-pr-scope-preflight.v1",
+      eventName: "pull_request",
+    });
+    expect(Array.isArray(payload.findings)).toBe(true);
+    expect(payload).toHaveProperty("suggestedExpectedChangedPaths");
+    expect(payload).toHaveProperty("permissionRequiredPaths");
+    expect(payload).toHaveProperty("snapshotImpact");
+  }, 20_000);
+
   it("U-PINCHAIN-009: unsupported pin surfaceをDEGRADEDかつexit 2で返す", () => {
     const run = runCli([
       "audit",
