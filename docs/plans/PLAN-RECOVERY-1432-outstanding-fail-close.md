@@ -4,7 +4,7 @@ title: "outstandingのirreversible_impact schema不適合と未検証plan_idをf
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-08
@@ -43,7 +43,37 @@ modifies:
   - { artifact_path: tests/completion-decision-packet.test.ts, artifact_type: test_code }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: markdown_doc }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T18:44:00Z"
+    tests_green_at: "2026-09-09T18:42:53Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 49a285266f345f648ba57023fe32a7bcc4b99d94
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1683#issuecomment-5606945481"
+    ci_evidence_generation: "run:34383205122:attempt:2:success"
+    scope: "PR #1683 exact HEAD 49a285266 の独立 Claude receipt（comment 5606945481、session 44a875e0-4347-4802-8e8a-87cb4f105537）を作成側が機械転記した。blocker 0 / approve。第2 receipt と merge は未了。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/outstanding.test.ts tests/goal-evidence-audit.test.ts tests/plan-descent-specific-parent-binding.test.ts --reporter=json --outputFile=.helix/evidence/review-1683/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T18:42:53Z"
+        evidence_path: tests/outstanding.test.ts
+        output_digest: "sha256:daa5c36f7ed21e04cb8a7250b10afa560e7fa5f800b1dea102ec0389a07e3d05"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-09-09T18:44:00Z"
+  review_binding:
+    reviewer: "Claude Code / Fable 5.1"
+    reviewed_at: "2026-09-09T18:44:00Z"
+    evidence_digest: "sha256:4410313098757ab3471f790d2ef625f6d74e2930c9cf85f7649fdbb2884a566a"
+  entries: []
 ---
 
 # outstandingのfail-close修復
@@ -61,4 +91,4 @@ Issue #1432で実測された3つのfail-openを、既存`outstanding` surface�
 ## 現在の証拠
 
 修正対象は `src/lint/outstanding.ts` と既存 outstanding / completion packet 回帰に限定する。
-独立レビュー、CI green の完了主張、merge は本PLANの対象外であり、`status=draft` かつ `completion_claim_allowed=false` のまま保持する。
+独立 receipt（comment 5606945481）を `review_evidence` へ転記した。`completion_claim_allowed=false` を維持し、第2 receipt・JIT 後 CI・merge を完了主張しない。
