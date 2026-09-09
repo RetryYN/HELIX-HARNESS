@@ -4,7 +4,7 @@ title: "outstandingのirreversible_impact schema不適合と未検証plan_idをf
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-08
 updated: 2026-09-09
@@ -54,10 +54,10 @@ Issue #1432で実測された3つのfail-openを、既存`outstanding` surface�
 
 `irreversible_impact` が存在するのに schema 不適合なら `irreversible_migration_pending` を立てる。
 `planIdSchema` 不適合の raw `plan_id` は scoped / runnable command に使わない。文字 allowlist だけ通る `foo` も受理しない。
-不適合でも PLAN 行は outstanding 集計から消さない。文書ごとに決定的な command-safe な表示用識別子を与え、同一 sentinel で複数文書を潰さない。fallback identity の digest 入力は readdir で得たファイル名の UTF-8 物理バイトを使い、表示用 NFC 正規化と物理文書 identity を混同しない。`frontmatter_schema_invalid` で阻止状態を可視化する。
+不適合でも PLAN 行は outstanding 集計から消さない。文書ごとに決定的な command-safe な表示用識別子を与え、同一 sentinel で複数文書を潰さない。fallback identity の digest 入力は `readdirSync({ encoding: "buffer" })` で得たファイル名の raw bytes を使い、文字列復号や表示用 NFC 正規化と物理文書 identity を混同しない。不正 UTF-8 バイトを含むファイル名も行を消さず区別する。読取は Buffer path で行い、復号名の join による欠落を避ける。`frontmatter_schema_invalid` で阻止状態を可視化する。
 `version_target` frontmatter が無い本文 only の version-up 語は `po_decision_pending` / `human_approval_pending` より下位にする。
 
 ## 現在の証拠
 
 修正対象は `src/lint/outstanding.ts` と既存 outstanding / completion packet 回帰に限定する。
-独立レビュー、CI green の完了主張、merge は本PLANの対象外であり、`completion_claim_allowed=false` のまま保持する。
+独立レビュー、CI green の完了主張、merge は本PLANの対象外であり、`status=draft` かつ `completion_claim_allowed=false` のまま保持する。
