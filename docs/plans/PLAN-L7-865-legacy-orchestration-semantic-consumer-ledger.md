@@ -96,7 +96,9 @@ review_evidence:
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
-    reviewed_head_sha: 241bcab5917a35a6327e4239ace40b2170def30e
+    reviewed_head_sha: 0402d81ffd958f996ec2eb95418d1537fbec44ea
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1625#issuecomment-5607465674"
+    ci_evidence_generation: "run:34394147122:attempt:1:failure"
     scope: "PR #1625 exact-HEAD delta review。branch固有patchは前回approve HEAD c1099fefdとbyte同一、main 282ec5219 resyncはconflictなし。targeted 49 tests、governance、post-merge-status、doctor legacy-orchestration両gate green。根拠: https://github.com/RetryYN/HELIX-HARNESS/pull/1625#issuecomment-5607312326"
     green_commands:
       - kind: unit_test
