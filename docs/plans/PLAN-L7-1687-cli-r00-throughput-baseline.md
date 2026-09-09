@@ -86,7 +86,7 @@ modifies:
 review_evidence: []
 ---
 
-# PLAN-L7-1687: CLI-R00 throughput baseline
+# PLAN-L7-1687: CLI-R00 の throughput baseline
 
 ## 0. 目的
 
@@ -117,9 +117,9 @@ Issue #1687 の原子scope **CLI-R00** だけを閉じる。refactor着手前の
 | CI_WALL_CLOCK | measured | 1445s | GitHub run 34380027551、main push、同一HEAD |
 | FULL_REGRESSION_WALL_CLOCK | measured | 1434s | 同runのpreflight開始→finalize完了 |
 | FULL_REGRESSION_INVOCATION_COUNT | measured | 1 | 同runで4 shardが起動。reuseではない |
-| CLI_COMMAND_STARTUP_TIME | measured | p50=1827ms | Node 24.15.0、`tsx src/cli.ts --version`、n=5 |
+| CLI_COMMAND_STARTUP_TIME | measured | p50=1827ms | Node 24.15.0、同一コマンド、n=5 |
 | TARGETED_TEST_WALL_CLOCK | measured | p50=582ms n=3 | Node 24.15.0、同一テストpath。閾値oracleにしない |
-| CHANGED_FILE_FAN_OUT | proxy | 1 | `src/cli.ts` |
+| CHANGED_FILE_FAN_OUT | proxy | 1 | 実装fileは`src/cli.ts`のみ |
 | CHANGED_SYMBOL_FAN_OUT | proxy | top-level family数 | `program.command` 再抽出 |
 | DIFF_BYTES / REVIEW_CONTEXT | proxy | 715943 bytes | token見積もりはsupportingのみ |
 | collision proxy | proxy | family数 | 同時open PR数はhistorical note |
