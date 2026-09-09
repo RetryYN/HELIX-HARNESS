@@ -62,6 +62,7 @@ generates:
   - { artifact_path: docs/design/helix/L6-function-design/agent-command-taxonomy-authority.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-agent-command-taxonomy-authority-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/specialist-agent-registry.json, artifact_type: json_config }
   - { artifact_path: .claude/agents/devops-deploy.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/agents/pmo-sonnet.md, artifact_type: markdown_doc }
   - { artifact_path: .claude/agents/qa-test.md, artifact_type: markdown_doc }
