@@ -63,7 +63,7 @@ modifies:
 review_evidence: []
 ---
 
-# Design Catalog relation graph projection
+# Design Catalogのrelation graph投影
 
 ## 目的
 
