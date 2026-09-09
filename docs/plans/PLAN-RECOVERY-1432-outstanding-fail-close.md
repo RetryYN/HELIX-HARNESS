@@ -6,6 +6,7 @@ layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
+irreversible_impact: none
 created: 2026-09-08
 updated: 2026-09-09
 owner: Cursor / TL
