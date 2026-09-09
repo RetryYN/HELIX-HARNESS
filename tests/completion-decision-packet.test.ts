@@ -1,3 +1,4 @@
+// PLAN-RECOVERY-1432-outstanding-fail-close — U-OUTSTANDING-1432-004
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -1861,7 +1862,7 @@ describe("completion decision packet lint", () => {
     );
   });
 
-  it("does not interpolate an unsafe plan_id into scoped or runnable packet commands", () => {
+  it("U-OUTSTANDING-1432-004: unsafe plan_id を scoped/runnable command へ埋め込まない", () => {
     // U-OUTSTANDING-1432-004
     const packet = completionDecisionPacketForOutstanding(
       analyzeOutstandingWork(

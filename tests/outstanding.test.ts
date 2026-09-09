@@ -26,6 +26,7 @@ import {
 } from "../src/lint/outstanding-snapshot";
 import { frontmatterSchema } from "../src/schema/frontmatter";
 
+// PLAN-RECOVERY-1432-outstanding-fail-close — U-OUTSTANDING-1432-001..003
 // PLAN-L7-677-outstanding-snapshot-semantic-merge-guard: U-OUTMERGE-001..003, U-OUTMERGE-005
 
 // IMP-139: 「未了の正の集計シグナル」(非終端 PLAN 層別 + open defer) の additive surface 回帰。
@@ -2350,7 +2351,7 @@ dependencies:
     }
   });
 
-  it("irreversible_impact: cutOver の L14 PLAN は irreversible_migration_pending を立てる", () => {
+  it("U-OUTSTANDING-1432-001: irreversible_impact cutOver は irreversible_migration_pending を立てる", () => {
     // U-OUTSTANDING-1432-001
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-cutover-typo-"));
     try {
@@ -2396,7 +2397,7 @@ generic terminal evidence only.
     }
   });
 
-  it('plan_id: "x; rm -rf /" の PLAN は raw を採用せず runnable 行へ埋め込まない', () => {
+  it("U-OUTSTANDING-1432-002: 注入 plan_id は raw を採用せず行は残す", () => {
     // U-OUTSTANDING-1432-002
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-inject-"));
     try {
@@ -2615,7 +2616,7 @@ active draft.
     }
   });
 
-  it("S4 pending と本文の version-up 語が共起しても primary reason は po_decision_pending のまま", () => {
+  it("U-OUTSTANDING-1432-003: S4 pending と本文 version-up 語でも primary は po_decision_pending", () => {
     // U-OUTSTANDING-1432-003
     const o = analyzeOutstandingWork(
       [

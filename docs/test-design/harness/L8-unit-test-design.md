@@ -27,7 +27,7 @@ pair_group:
     - docs/design/harness/L6-function-design/triage-decision-integrity.md
     - docs/design/helix/L6-function-design/skill-pack-uplift.md
 created: 2026-07-08
-updated: 2026-08-01
+updated: 2026-09-09
 ---
 
 # HELIX — L8 単体テスト設計
@@ -589,3 +589,14 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-DBRS-001 | 再構築内の解析寿命 | 1回の再構築でloadReviewPlansは1回。次回再構築ではPLAN変更を再読込してreview registryへ反映する。3回解析と再構築間cacheを拒否し、解析例外時は既存投影行をrollbackで保持する | `tests/slow/projection-writer.test.ts` |
+
+### outstandingのschema不適合反例（PLAN-RECOVERY-1432）
+
+対象設計: `docs/design/harness/L6-function-design/function-spec.md`
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-OUTSTANDING-1432-001 | `hasIrreversibleMigrationContext` / `loadOutstandingPlanRows` | schema不適合の `irreversible_impact` は本文fallbackへ落とさず `irreversible_migration_pending` を立てる | `tests/outstanding.test.ts` |
+| U-OUTSTANDING-1432-002 | `resolveOutstandingPlanId` / `loadOutstandingPlanRows` | schema不適合の注入 `plan_id` は raw を採用せず、PLAN行は残して `frontmatter_schema_invalid` を立て、scoped command へ埋め込まない | `tests/outstanding.test.ts` |
+| U-OUTSTANDING-1432-003 | `primaryOutstandingReason` | S4 pending と本文 only の version-up 語が共起しても primary は `po_decision_pending` のまま | `tests/outstanding.test.ts` |
+| U-OUTSTANDING-1432-004 | `scopedPacketCommandForPlan` | schema不適合の raw `plan_id` を scoped / runnable packet command へ埋め込まない | `tests/completion-decision-packet.test.ts` |

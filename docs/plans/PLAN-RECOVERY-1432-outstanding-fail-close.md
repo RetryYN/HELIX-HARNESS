@@ -19,7 +19,7 @@ agent_slots:
   - { role: se, slot_label: "SE — outstanding loaderとscoped commandの拒否を修復" }
   - { role: qa, slot_label: "QA — cutOver・注入plan_id・S4+version-up本文の反例を検証" }
 parent_design: docs/design/harness/L6-function-design/function-spec.md
-pair_artifact: docs/test-design/harness/L7-unit-test-design.md
+pair_artifact: docs/test-design/harness/L8-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-OUTSTANDING-1432-001, test_path: tests/outstanding.test.ts }
   - { parent_design: docs/design/harness/L6-function-design/function-spec.md, oracle_id: U-OUTSTANDING-1432-002, test_path: tests/outstanding.test.ts }
@@ -40,6 +40,8 @@ modifies:
   - { artifact_path: src/lint/outstanding.ts, artifact_type: source_module }
   - { artifact_path: tests/outstanding.test.ts, artifact_type: test_code }
   - { artifact_path: tests/completion-decision-packet.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: markdown_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
 review_evidence: []
 ---
 
