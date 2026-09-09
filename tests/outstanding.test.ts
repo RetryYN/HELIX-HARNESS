@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -2775,6 +2775,94 @@ active draft.
       expect(commandText).not.toContain("caf");
       expect(commandText).not.toContain("\u00e9");
       expect(commandText).not.toContain("\u0301");
+      expect(commandText).not.toMatch(/--plan\s+foo(?:\s|$)/);
+      expect(commandText).not.toMatch(/--plan\s+invalid-/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("不正 UTF-8 物理ファイル名は loader で行を消さず identity を衝突させない", () => {
+    // PLAN-RECOVERY-1432-outstanding-fail-close: buffer readdir の raw bytes identity。
+    const firstName = Buffer.from([0x61, 0xfe, 0x2e, 0x6d, 0x64]);
+    const secondName = Buffer.from([0x61, 0xff, 0x2e, 0x6d, 0x64]);
+    expect(firstName.toString("hex")).toBe("61fe2e6d64");
+    expect(secondName.toString("hex")).toBe("61ff2e6d64");
+    expect(firstName.toString("utf8")).toBe(secondName.toString("utf8"));
+
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-invalid-utf8-"));
+    const dir = join(root, "docs", "plans");
+    try {
+      mkdirSync(dir, { recursive: true });
+      const body = (title: string): string => `---
+plan_id: foo
+title: ${title}
+kind: impl
+drive: agent
+status: draft
+layer: L7
+agent_slots:
+  - role: se
+    slot_label: fixture
+dependencies:
+  parent: null
+  requires: []
+---
+
+active draft.
+`;
+      writeFileSync(
+        Buffer.concat([Buffer.from(`${dir}/`), firstName]),
+        body("invalid utf8 fe filename"),
+        "utf8",
+      );
+      writeFileSync(
+        Buffer.concat([Buffer.from(`${dir}/`), secondName]),
+        body("invalid utf8 ff filename"),
+        "utf8",
+      );
+
+      const decodedNames = readdirSync(dir).filter((name) => name.endsWith(".md"));
+      expect(decodedNames).toHaveLength(2);
+      expect(new Set(decodedNames).size).toBe(1);
+      expect(Buffer.from(decodedNames[0] ?? "", "utf8").toString("hex")).not.toBe("61fe2e6d64");
+      expect(() => readFileSync(join(dir, decodedNames[0] ?? ""), "utf8")).toThrow();
+
+      const firstId = outstandingFallbackPlanId(firstName);
+      const secondId = outstandingFallbackPlanId(secondName);
+      expect(firstId).not.toEqual(secondId);
+      expect(firstId).toMatch(/^invalid-[a-f0-9]{16}$/);
+      expect(secondId).toMatch(/^invalid-[a-f0-9]{16}$/);
+      expect(isCommandSafePlanId(firstId)).toBe(true);
+      expect(isCommandSafePlanId(secondId)).toBe(true);
+
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows).toHaveLength(2);
+      expect(new Set(rows.map((row) => row.planId)).size).toBe(2);
+      expect(rows.map((row) => row.planId).sort()).toEqual([firstId, secondId].sort());
+      expect(rows.every((row) => row.planIdSchemaInvalid === true)).toBe(true);
+
+      const live = computeOutstandingWork(root);
+      expect(live.items).toHaveLength(2);
+      expect(new Set(live.items.map((item) => item.planId)).size).toBe(2);
+      expect(live.blockersByKind.frontmatter_schema_invalid).toBe(2);
+
+      const snapshot = buildOutstandingSnapshot(live);
+      expect(snapshot.decision_count).toBe(2);
+      expect(snapshot.plan_ids).toHaveLength(2);
+      expect(snapshot.plan_ids).toEqual([firstId, secondId].sort());
+
+      const commandText = [
+        ...workflowNextActionsForOutstanding(live).flatMap((item) => [
+          item.scopedDecisionPacketCommand,
+          ...item.scopedPacketCommands,
+        ]),
+        ...completionDecisionPacketForOutstanding(live).decisions.flatMap((decision) => [
+          decision.scopedDecisionPacketCommand,
+          ...decision.scopedPacketCommands,
+        ]),
+      ].join("\n");
+      expect(commandText).not.toContain("\uFFFD");
       expect(commandText).not.toMatch(/--plan\s+foo(?:\s|$)/);
       expect(commandText).not.toMatch(/--plan\s+invalid-/);
     } finally {
