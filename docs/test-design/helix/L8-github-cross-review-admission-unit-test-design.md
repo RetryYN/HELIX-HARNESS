@@ -65,6 +65,7 @@ requirements:
 | `U-GCRA-EXT-001` | `evaluateGitHubCrossReviewAdmission` | `external`著者PRはclaude／codexいずれか1通のreceiptでReadyにし（dual-receipt経路へ入らない）、2通は従来どおり`review_receipt_conflict`にする | externalをmixed経路へ流す、単一receipt要件の解除 |
 | `U-GCRA-WF-001` | `harness-check.yml` | candidate HEAD checkout、comment全page、PR head SHA run、CLI fail-close | default merge ref、merge SHA query、単一page、別checkへ分離 |
 | `U-GCRA-WF-002` | 同上 | command exitをrequired jobへ伝播 | `|| true`、step skip、draft固定値化 |
+| `U-GCRA-WF-003` | workflow adapter | rerun時もPulls APIのcurrent draftを入力にし、取得中のHEAD/base/draft driftをread-afterで拒否する | event payloadのdraft再利用、read-after欠落、drift無視 |
 | `U-CPRCONV-040` | `buildClaudePrReviewReceipt` / `validateClaudePrReviewReceipt` | producerがinput exact field setを検査してcanonical fieldだけを射影し、任意の非空`summary`を保持する | inputのunknown field許可、provider-neutral `schema_version`混入、空summaryの受理 |
 | `U-GCRA-010` | `evaluateGitHubCrossReviewAdmission` | Claude v4とprovider-neutral v4をexact schema valueで識別する | `schema_version` propertyの存在だけでClaude receiptをprovider-neutralへ誤分類する |
 | `U-GCRA-012` | `evaluateGitHubCrossReviewAdmission` | invalid候補をschema、独立性、CI、identity、DB provenance、時系列へ型付き分解し、comment URLだけを安全なlocatorとして返す | 全predicateをgeneric `review_receipt_invalid_or_stale`だけへ再統合、reason取り違え、receipt本文の診断流出 |
@@ -73,6 +74,10 @@ requirements:
 | `U-CPRCONV-042` | `assertClaudePrReviewReceiptCorrectionTarget` / `persistClaudePrReviewReceiptCorrection` | valid slot、対象欠落、異内容訂正、部分write、invalid reasonをfail-closeし、同一内容のpersistenceだけを冪等にする | valid receipt上書き、silent spool退避、conflicting correctionの採用、reason自由入力 |
 
 ## 現行Recovery V-pair oracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-GCRA-WF-003 | workflow adapter | rerunでもevent payloadの古いdraftを使わず、Pulls API current snapshotを採用する。観測中のrepository／number／HEAD／base／draft driftは拒否する | `tests/harness-check-workflow.test.ts` |
 
 ### #1638 封緘観測
 

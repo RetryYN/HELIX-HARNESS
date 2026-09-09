@@ -302,7 +302,7 @@ jobs:
         run: |
           set -euo pipefail
           gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
-            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha, draft: .draft}' \
             > "$RUNNER_TEMP/pr-context-before.json"
 
       - name: current HEAD independent review admission
@@ -310,10 +310,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          PR_DRAFT: ${{ github.event.pull_request.draft }}
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
+          PR_HEAD_SHA="$(jq -r '.head_sha' "$RUNNER_TEMP/pr-context-before.json")"
+          PR_DRAFT="$(jq -r '.draft' "$RUNNER_TEMP/pr-context-before.json")"
           gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments?per_page=100" \
             > "$RUNNER_TEMP/pr-review-comments-pages.json"
           gh api --paginate --slurp \
@@ -326,15 +326,25 @@ jobs:
             npx --no-install tsx src/doctor/l3-g3-logical-db-receipt.ts \
               > "$RUNNER_TEMP/pr-review-current-db.json"
           fi
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
+            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha, draft: .draft}' \
+            > "$RUNNER_TEMP/pr-review-context-read-after.json"
           node - "$RUNNER_TEMP/pr-context-before.json" \
+            "$RUNNER_TEMP/pr-review-context-read-after.json" \
             "$RUNNER_TEMP/pr-review-comments-pages.json" \
             "$RUNNER_TEMP/pr-review-runs-pages.json" \
             "$RUNNER_TEMP/pr-review.diff" \
             "$RUNNER_TEMP/pr-review-current-db.json" \
             "$RUNNER_TEMP/pr-review-admission.json" <<'NODE'
           const fs = require("node:fs");
-          const [contextPath, commentsPath, runsPath, diffPath, dbPath, outputPath] = process.argv.slice(2);
+          const [contextPath, readAfterPath, commentsPath, runsPath, diffPath, dbPath, outputPath] = process.argv.slice(2);
           const context = JSON.parse(fs.readFileSync(contextPath, "utf8"));
+          const readAfter = JSON.parse(fs.readFileSync(readAfterPath, "utf8"));
+          for (const field of ["repository", "number", "head_sha", "base_sha", "draft"]) {
+            if (context[field] !== readAfter[field]) {
+              throw new Error(`stale_pr_admission_snapshot:${field}`);
+            }
+          }
           const commentPages = JSON.parse(fs.readFileSync(commentsPath, "utf8"));
           const runPages = JSON.parse(fs.readFileSync(runsPath, "utf8"));
           const diff = fs.readFileSync(diffPath, "utf8");
@@ -365,7 +375,7 @@ jobs:
             pr_number: context.number,
             candidate_head: context.head_sha,
             state: "OPEN",
-            is_draft: process.env.PR_DRAFT === "true",
+            is_draft: readAfter.draft === true,
             observed_at: new Date().toISOString(),
             review_packet: [
               `repository: ${context.repository}`,
@@ -435,7 +445,7 @@ jobs:
             --changed-file "$RUNNER_TEMP/pr-changed-paths.bin" \
             --closure-graph-file "$RUNNER_TEMP/issue-closure-graph.json"
           gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
-            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
+            --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha, draft: .draft}' \
             > "$RUNNER_TEMP/pr-context-after.json"
           cmp -s "$RUNNER_TEMP/pr-context-before.json" "$RUNNER_TEMP/pr-context-after.json" || {
             echo "pr-context-guard: current GitHub PR context drifted during admission" >&2

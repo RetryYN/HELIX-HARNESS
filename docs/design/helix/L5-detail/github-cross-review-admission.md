@@ -19,6 +19,14 @@ responsibility_owner: github-cross-review-admission
 review packet、current logical DB receiptを入力snapshotとして受け取るpure evaluatorとする。Draftはfull CIを
 先行させるためreview admissionだけをdeferし、Readyではexactly oneのcanonical receiptを必須とする。
 
+workflow adapterがpure evaluatorへ渡す`is_draft`は、`pull_request` event payloadをauthorityにしない。
+GitHub Actionsのfailed-jobs rerunは元event payloadを再利用するため、PRをDraftへ戻した後も古い
+`draft=false`が残り得る。adapterはadmission実行時にGitHub Pulls APIからcurrent PR snapshotを取得し、
+その`draft`を使う。comments／runs／DB receiptの取得後にも同APIをread-afterし、repository、PR number、
+HEAD、base、draftのいずれかが変化していればstale snapshotとして非0終了する。これにより、意味のない
+candidate commitを追加せず、same run rerunでもcurrent Draftをdeferできる。Ready側のreceipt条件、CI世代、
+exact HEAD、DB収束条件は変更しない（Issue #577、`U-GCRA-WF-003`）。
+
 current Readyでの受理対象はClaude/Codex receipt v4またはprovider-neutral receipt v4だけとする。Claude receipt v3とv2はhistorical
 closureの読取互換に限定し、旧builderと同じ意味検証を再実行した後もcurrent receiptへ昇格しない。Kimi bootstrapのprovider-neutral receipt v4は
 現行経路として扱うが、Claude/Codex receiptと同じgeneration identityを要求する設計変更は本sliceの対象外とする。

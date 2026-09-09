@@ -2,6 +2,7 @@
 // PLAN-L7-502-worker-independent-review
 // PLAN-RECOVERY-1640-biome-preflight
 // PLAN-RECOVERY-1693-g10-chromium-apt-isolation
+// PLAN-RECOVERY-577-current-pr-draft-read-after
 import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -520,17 +521,21 @@ function reviewAdmissionViolations(raw: string): string[] {
   const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
   const checkout = steps.find((candidate) => candidate.name === "checkout");
   const contextProjection =
-    '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}';
+    '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha, draft: .draft}';
   const step = steps.find(
     (candidate) => candidate.name === "current HEAD independent review admission",
   );
   if (
     !step?.run ||
     checkout?.with?.ref !== `\${{ github.event.pull_request.head.sha || github.sha }}` ||
-    raw.split(contextProjection).length - 1 !== 2 ||
+    raw.split(contextProjection).length - 1 !== 3 ||
     step.if !== `\${{ github.event_name == 'pull_request' }}` ||
-    step.env?.PR_DRAFT !== `\${{ github.event.pull_request.draft }}` ||
-    step.env?.PR_HEAD_SHA !== `\${{ github.event.pull_request.head.sha }}` ||
+    step.env?.PR_DRAFT !== undefined ||
+    step.env?.PR_HEAD_SHA !== undefined ||
+    !step.run.includes(
+      'PR_HEAD_SHA="$(jq -r \'.head_sha\' "$RUNNER_TEMP/pr-context-before.json")"',
+    ) ||
+    !step.run.includes('PR_DRAFT="$(jq -r \'.draft\' "$RUNNER_TEMP/pr-context-before.json")"') ||
     step.run.match(/gh api --paginate --slurp/gu)?.length !== 2 ||
     !step.run.includes("issues/$PR_NUMBER/comments?per_page=100") ||
     !step.run.includes("actions/runs?event=pull_request&head_sha=$PR_HEAD_SHA") ||
@@ -543,13 +548,19 @@ function reviewAdmissionViolations(raw: string): string[] {
     !step.run.includes("pull_request_numbers") ||
     !step.run.includes("updated_at") ||
     !step.run.includes('gh pr diff "$PR_NUMBER"') ||
+    !step.run.includes('> "$RUNNER_TEMP/pr-review-context-read-after.json"') ||
+    !step.run.includes(
+      'for (const field of ["repository", "number", "head_sha", "base_sha", "draft"])',
+    ) ||
+    !step.run.includes("stale_pr_admission_snapshot:$" + "{field}") ||
     !step.run.includes("observed_at: new Date().toISOString()") ||
     !step.run.includes("review_packet:") ||
     !step.run.includes("Exact GitHub PR diff:") ||
     !step.run.includes("src/doctor/l3-g3-logical-db-receipt.ts") ||
     !step.run.includes("current_db_receipt: currentDbReceipt") ||
     !step.run.includes("github pr-review-admission") ||
-    !step.run.includes('is_draft: process.env.PR_DRAFT === "true"') ||
+    !step.run.includes("is_draft: readAfter.draft === true") ||
+    step.run.includes("github.event.pull_request.draft") ||
     step.run.includes("|| true")
   ) {
     return ["cross_review_admission_invalid"];
@@ -575,6 +586,31 @@ describe("source harness-check workflow", () => {
       (step) => step.name === "checkout",
     );
     expect(checkout?.with?.ref).toBe(`\${{ github.event.pull_request.head.sha || github.sha }}`);
+  });
+
+  it("U-GCRA-WF-003: rerunでもevent payloadではなくcurrent PR draft read-afterをauthorityにする", () => {
+    const { steps, raw } = loadWorkflow();
+    const admission = stepByName(steps, "current HEAD independent review admission");
+
+    expect(admission.env?.PR_DRAFT).toBeUndefined();
+    expect(admission.env?.PR_HEAD_SHA).toBeUndefined();
+    expect(raw).not.toContain("github.event.pull_request.draft");
+    expect(admission.run).toContain(
+      'PR_DRAFT="$(jq -r \'.draft\' "$RUNNER_TEMP/pr-context-before.json")"',
+    );
+    expect(admission.run).toContain('> "$RUNNER_TEMP/pr-review-context-read-after.json"');
+    expect(admission.run).toContain(
+      'for (const field of ["repository", "number", "head_sha", "base_sha", "draft"])',
+    );
+    expect(admission.run).toContain("is_draft: readAfter.draft === true");
+
+    const staleEventMutation = raw.replace(
+      "is_draft: readAfter.draft === true",
+      'is_draft: process.env.PR_DRAFT === "true"',
+    );
+    expect(reviewAdmissionViolations(staleEventMutation)).toContain(
+      "cross_review_admission_invalid",
+    );
   });
 
   it("U-IMPACTCI-WF-006: commitlintのschedule／workflow_dispatchの空before SHAをHEAD親へ正規化する", () => {
@@ -640,7 +676,10 @@ describe("source harness-check workflow", () => {
       "review step欠落",
       (raw: string) => raw.replace("current HEAD independent review admission", "review note"),
     ],
-    ["draft境界欠落", (raw: string) => raw.replace("github.event.pull_request.draft", "false")],
+    [
+      "draft read-after境界欠落",
+      (raw: string) => raw.replace("is_draft: readAfter.draft === true", "is_draft: false"),
+    ],
     [
       "head queryがmerge SHA",
       (raw: string) => raw.replace("head_sha=$PR_HEAD_SHA", "head_sha=$GITHUB_SHA"),
@@ -1021,7 +1060,7 @@ describe("source harness-check workflow", () => {
       'cmp -s "$RUNNER_TEMP/pr-context-before.json" "$RUNNER_TEMP/pr-context-after.json"',
     );
     expect(closure.run).toContain("current GitHub PR context drifted during admission");
-    expect(raw.match(/gh api "repos\/\$GITHUB_REPOSITORY\/pulls\/\$PR_NUMBER"/g)).toHaveLength(2);
+    expect(raw.match(/gh api "repos\/\$GITHUB_REPOSITORY\/pulls\/\$PR_NUMBER"/g)).toHaveLength(3);
     expect(raw).not.toContain("github.event.pull_request.body");
   });
 
