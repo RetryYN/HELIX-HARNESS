@@ -27,7 +27,7 @@ pair_group:
     - docs/design/harness/L6-function-design/triage-decision-integrity.md
     - docs/design/helix/L6-function-design/skill-pack-uplift.md
 created: 2026-07-08
-updated: 2026-08-01
+updated: 2026-09-08
 ---
 
 # HELIX — L8 単体テスト設計
@@ -589,3 +589,30 @@ scope expansionのunit oracleはreceipt pointerの構文と理由を検査する
 | U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
 | U-DBRS-001 | 再構築内の解析寿命 | 1回の再構築でloadReviewPlansは1回。次回再構築ではPLAN変更を再読込してreview registryへ反映する。3回解析と再構築間cacheを拒否し、解析例外時は既存投影行をrollbackで保持する | `tests/slow/projection-writer.test.ts` |
+
+### oracle ID登録と宣言済み多重出現（PLAN-RECOVERY-1669-oracle-id-registration）
+
+対象設計: `docs/design/harness/L6-function-design/governance-enforcement.md`
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-OTT-001 | 未 citation | 宣言済かつ baseline 外の NEW oracle を orphan として fail-close する | `tests/oracle-test-trace.test.ts` |
+| U-OTT-002 | citation 済 | tests に citation がある宣言 oracle は orphan にしない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-003 | 未 citation baseline | known-debt baseline の宣言 oracle は orphan にしない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-004 | 実 repo orphan | baseline 適用後の実 repo orphan は 0 件である | `tests/oracle-test-trace.test.ts` |
+| U-OTT-005 | 未 citation baseline 件数 | 既存未 citation baseline は 89 件スナップショットのまま縮小のみとする | `tests/oracle-test-trace.test.ts` |
+| U-OTT-006 | draft test-design | draft の将来 oracle を実装済み trace に混ぜない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-007 | frontmatter status | 本文の status: draft で confirmed を上書きせず、未知 status は収集して fail-close する | `tests/oracle-test-trace.test.ts` |
+| U-OTT-008 | 未登録 NEW | L6/L8 未登録の it() ID を baseline 外なら fail-close する | `tests/oracle-test-trace.test.ts` |
+| U-OTT-009 | 未登録 baseline | 未登録 baseline 済み ID は known-debt として green にする | `tests/oracle-test-trace.test.ts` |
+| U-OTT-010 | L8 宣言多重 | L8 が全 path を宣言した多重 citation を衝突にしない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-011 | PLAN 宣言多重 | PLAN verification_bindings が全 path を宣言した多重 citation を衝突にしない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-012 | fast/slow pair | 同一 basename の fast/slow pair を単純衝突にしない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-013 | freeze 伝播 | feature test と freeze packet の対を単純衝突にしない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-014 | 未宣言多重 | 宣言に無い多重出現を fail-close する | `tests/oracle-test-trace.test.ts` |
+| U-OTT-015 | doctor lane | doctor lane と単一 feature path の対を衝突にしない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-016 | 実 repo 残差 | 未登録・未宣言多重は baseline 適用後 0 件である | `tests/oracle-test-trace.test.ts` |
+| U-OTT-017 | 旧 baseline 固定 | 既存未 citation baseline 89 件を現在値へ置き換えない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-018 | 未登録 baseline 起点 | 未登録 baseline は U-PRSCOPE-008 を含み、現在値代入の逃げ道を持たない | `tests/oracle-test-trace.test.ts` |
+| U-OTT-019 | 宣言多重 mutation | L8 宣言済み多重を衝突扱いする mutation を red にする | `tests/oracle-test-trace.test.ts` |
+| U-OTT-020 | 現在値 baseline mutation | 未登録 baseline を現在集合へ置き換える mutation を red にする | `tests/oracle-test-trace.test.ts` |

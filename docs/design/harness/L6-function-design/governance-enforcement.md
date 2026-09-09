@@ -189,6 +189,29 @@ oracleは`U-OUTMERGE-001..005`、実装は`src/lint/outstanding-snapshot.ts`と
 `src/audit/github-merge-readiness.ts`、回帰は`tests/outstanding.test.ts`と
 `tests/github-merge-readiness.test.ts`を正本とする。
 
+### §2.10 oracle ID登録と宣言済み多重出現（Issue #1669 / ORACLE-ID-REGISTRATION-001）
+
+既存`oracle-test-trace`は test-design 宣言 ID が tests に citation されることだけを見て、
+tests 側の未登録 ID と宣言に無い多重出現を見逃す。本節は同じ hard gate へ逆方向を足し、
+独立 CI job は作らない。`doctor` / `harness-check` の既存`oracle-test-trace`接続を再利用する。
+
+判定は次に限定する。
+
+- tests の実行可能な `it()` / `test()` から PLAN 既存契約と同じ `U-*` / `IT-*` exact ID を抽出する。
+- 各 ID は L6 design または L8 test-design の少なくとも一方へ exact 登録されていなければならない。
+  範囲表記 `001..007` を連番へ展開しない。判定不能な採番は fail-close する。
+- 同一 ID が複数 test path に現れる場合、次のいずれかで全 path が説明できなければ fail-close する。
+  1. L8 eligible 表の test citation が全 path を列挙している。
+  2. PLAN `verification_bindings` が全 path を列挙している。
+  3. 同一 basename の fast/slow pair（`tests/` と `tests/slow/`）。
+  4. feature test と `tests/l3-g3-freeze-packet-v2.test.ts` の freeze 伝播対。
+  5. `tests/doctor.test.ts` / `tests/slow/doctor.test.ts` の doctor lane と、残り feature path が 1 件以下。
+- 未登録と未宣言多重の既存分は明示 baseline に列挙し、実行時に現在値へ置き換えない。追加は fail-close、縮小のみ可。
+- 起点の既存未登録は `U-PRSCOPE-008` とする。
+
+oracleは`U-OTT-001..020`、実装は`src/lint/oracle-test-trace.ts`、回帰は
+`tests/oracle-test-trace.test.ts`を正本とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。

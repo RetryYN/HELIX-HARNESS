@@ -1,14 +1,18 @@
 // @helix-repo-wide-guard
-// PLAN-REVERSE-41 塊B: oracle 宣言 ⇔ 実テスト citation の突合 (IMP-128、forward-citation 規律)。
-// test-design 宣言 oracle (U-*/IT-*) が tests/ に ID citation を持つか。NEW は fail、既存89は baseline。
+// PLAN-REVERSE-41 塊B / PLAN-RECOVERY-1669-oracle-id-registration:
+// oracle 宣言 ⇔ 実テスト citation の突合と、未登録／宣言に無い多重出現の fail-close。
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeOracleTestTrace,
+  isExplainedOraclePath,
   loadOracleTestTraceInput,
+  ORACLE_FREEZE_PACKET_TEST_PATH,
   ORACLE_TEST_TRACE_BASELINE,
+  ORACLE_UNDECLARED_MULTI_BASELINE,
+  ORACLE_UNREGISTERED_BASELINE,
 } from "../src/lint/oracle-test-trace";
 
 describe("analyzeOracleTestTrace (U-OTT-001..003)", () => {
@@ -99,5 +103,151 @@ describe("loadOracleTestTraceInput real repo (U-OTT-004/005)", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+});
+
+describe("oracle ID registration and undeclared multi (PLAN-RECOVERY-1669-oracle-id-registration)", () => {
+  const emptyTrace = {
+    declared: [] as string[],
+    referenced: new Set<string>(),
+    baseline: new Set<string>(),
+  };
+
+  it("U-OTT-008: L6/L8 未登録の it() ID は baseline 外なら fail-close", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([["U-NEWUNREG-001", ["tests/new.test.ts"]]]),
+      registered: new Set(),
+      unregisteredBaseline: new Set(),
+    });
+    expect(r.unregistered).toEqual(["U-NEWUNREG-001"]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-OTT-009: 未登録 baseline 済み ID は known-debt として green", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([["U-PRSCOPE-008", ["tests/branch-kind.test.ts"]]]),
+      registered: new Set(),
+      unregisteredBaseline: new Set(["U-PRSCOPE-008"]),
+    });
+    expect(r.unregistered).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-OTT-010: L8 が全 path を宣言した多重 citation は衝突でない", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([["U-L8MULTI-001", ["tests/a.test.ts", "tests/b.test.ts"]]]),
+      registered: new Set(["U-L8MULTI-001"]),
+      declaredPaths: new Map([["U-L8MULTI-001", ["tests/a.test.ts", "tests/b.test.ts"]]]),
+    });
+    expect(r.undeclaredMulti).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-OTT-011: PLAN verification_bindings が全 path を宣言した多重 citation は衝突でない", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([["U-PLANMULTI-001", ["tests/left.test.ts", "tests/right.test.ts"]]]),
+      registered: new Set(["U-PLANMULTI-001"]),
+      declaredPaths: new Map([["U-PLANMULTI-001", ["tests/left.test.ts", "tests/right.test.ts"]]]),
+    });
+    expect(r.undeclaredMulti).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-OTT-012: fast/slow pair は単純衝突でない", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([["U-LANE-001", ["tests/doctor.test.ts", "tests/slow/doctor.test.ts"]]]),
+      registered: new Set(["U-LANE-001"]),
+    });
+    expect(r.undeclaredMulti).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-OTT-013: freeze 伝播の対は単純衝突でない", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([
+        [
+          "U-GHEP-008",
+          ["tests/github-execution-episode-state.test.ts", ORACLE_FREEZE_PACKET_TEST_PATH],
+        ],
+      ]),
+      registered: new Set(["U-GHEP-008"]),
+    });
+    expect(r.undeclaredMulti).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-OTT-014: 宣言に無い多重出現は fail-close", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([["U-COLLIDE-001", ["tests/one.test.ts", "tests/two.test.ts"]]]),
+      registered: new Set(["U-COLLIDE-001"]),
+      declaredPaths: new Map(),
+      undeclaredMultiBaseline: new Set(),
+    });
+    expect(r.undeclaredMulti).toEqual(["U-COLLIDE-001"]);
+    expect(r.ok).toBe(false);
+  });
+
+  it("U-OTT-015: doctor lane と単一 feature path の対は衝突でない", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([
+        ["U-GREENCMD-003", ["tests/green-command-digest.test.ts", "tests/slow/doctor.test.ts"]],
+      ]),
+      registered: new Set(["U-GREENCMD-003"]),
+    });
+    expect(r.undeclaredMulti).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-OTT-016: 実 repo の未登録・未宣言多重は baseline 適用後 0", () => {
+    const r = analyzeOracleTestTrace(loadOracleTestTraceInput(process.cwd()));
+    expect(r.unregistered).toEqual([]);
+    expect(r.undeclaredMulti).toEqual([]);
+    expect(r.ok).toBe(true);
+  });
+
+  it("U-OTT-017: 既存未 citation baseline 89 件を現在値へ置き換えない", () => {
+    expect(ORACLE_TEST_TRACE_BASELINE.size).toBe(89);
+    expect(ORACLE_TEST_TRACE_BASELINE.has("U-PRSCOPE-008")).toBe(false);
+  });
+
+  it("U-OTT-018: 未登録 baseline は U-PRSCOPE-008 を含み、現在値代入の逃げ道を持たない", () => {
+    expect(ORACLE_UNREGISTERED_BASELINE.has("U-PRSCOPE-008")).toBe(true);
+    expect(ORACLE_UNREGISTERED_BASELINE.has("U-FAKE-999")).toBe(false);
+    const live = loadOracleTestTraceInput(process.cwd());
+    const currentUnregistered = [...(live.appearances ?? new Map()).keys()]
+      .filter((id) => !live.registered?.has(id))
+      .sort();
+    expect(currentUnregistered.every((id) => ORACLE_UNREGISTERED_BASELINE.has(id))).toBe(true);
+    expect(ORACLE_UNREGISTERED_BASELINE.size).toBeGreaterThanOrEqual(currentUnregistered.length);
+  });
+
+  it("U-OTT-019: L8 宣言済み多重を衝突扱いする mutation を kill する", () => {
+    const paths = ["tests/branch-kind.test.ts", "tests/harness-check-workflow.test.ts"];
+    const declared = new Set(paths);
+    const naiveCollision = paths.length > 1;
+    const explained = paths.every((path) => isExplainedOraclePath(path, paths, declared));
+    expect(naiveCollision).toBe(true);
+    expect(explained).toBe(true);
+    expect(ORACLE_UNDECLARED_MULTI_BASELINE.has("U-PRSCOPE-003")).toBe(false);
+  });
+
+  it("U-OTT-020: baseline を現在の未登録集合へ置き換える mutation を kill する", () => {
+    const r = analyzeOracleTestTrace({
+      ...emptyTrace,
+      appearances: new Map([["U-NEWUNREG-002", ["tests/extra.test.ts"]]]),
+      registered: new Set(),
+      unregisteredBaseline: ORACLE_UNREGISTERED_BASELINE,
+    });
+    expect(ORACLE_UNREGISTERED_BASELINE.has("U-NEWUNREG-002")).toBe(false);
+    expect(r.unregistered).toEqual(["U-NEWUNREG-002"]);
+    expect(r.ok).toBe(false);
   });
 });
