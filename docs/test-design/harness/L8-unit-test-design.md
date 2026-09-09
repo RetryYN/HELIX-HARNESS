@@ -478,6 +478,18 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-PRSCOPE-007 | current GitHub snapshot workflow | API取得不能を非zeroとし、同一snapshotからdiffとguard inputを作り、guard前後のbody／head／base driftをfail-closeする | `tests/harness-check-workflow.test.ts` |
 | U-PRSCOPE-009 | workflow identity template | Issue／PR templateがcurrent marker、strict JSON、PLANとのidentity一致を案内し、実validatorで受理される | `tests/branch-kind.test.ts` |
 
+### Issue #1690 PR scope push前preflight
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-PRSCOPE-PRE-001 | same findings | undeclared／absentを`analyzePrContext`と同じtyped findingで返す。別判定器へ退行すると不一致になる | `tests/pr-scope-preflight.test.ts` |
+| U-PRSCOPE-PRE-002 | companion | required companion欠落もCIと同じfinding codeを返す | `tests/pr-scope-preflight.test.ts` |
+| U-PRSCOPE-PRE-003 | Allowed外 | Allowed外pathをsuggested Expectedへ自動追加せず、permission requiredとして区別する | `tests/pr-scope-preflight.test.ts` |
+| U-PRSCOPE-PRE-004 | snapshot net-zero | draft→confirmed昇格でlive snapshotがbaseと同一なら「宣言から外せ」と報告する | `tests/pr-scope-preflight.test.ts` |
+| U-PRSCOPE-PRE-005 | snapshot新規 | draft PLAN追加でsnapshotがnet-diffなら宣言を求め、Allowed外への自動追加を拒否する | `tests/pr-scope-preflight.test.ts` |
+| U-PRSCOPE-PRE-006 | mutation | `analyzePrContext`結果を捨てて全actual pathをsuggestedへ足す変異をkillする | `tests/pr-scope-preflight.test.ts` |
+| U-PRSCOPE-PRE-007 | CLI | `helix github pr-scope-preflight`がbody fileとbase...HEAD入力で同じJSON schemaを返す | `tests/cli-surface.test.ts` |
+
 ### Issue #1052 outstanding snapshotのsemantic merge guard
 
 | U-ID | 対象 | 反例と期待結果 | test citation |

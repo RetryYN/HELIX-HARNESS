@@ -189,6 +189,20 @@ oracleは`U-OUTMERGE-001..005`、実装は`src/lint/outstanding-snapshot.ts`と
 `src/audit/github-merge-readiness.ts`、回帰は`tests/outstanding.test.ts`と
 `tests/github-merge-readiness.test.ts`を正本とする。
 
+### §2.10 PR scope push前preflight（Issue #1690）
+
+`helix github pr-scope-preflight`は、CIの`guard pr-context`と同じ`analyzePrContext`を
+`eventName=pull_request`で呼び、push前に同じtyped findingを返す薄い入口である。入力はPR本文
+（`--body` / `--body-file`）またはlive PR本文のread、および`git diff --name-only base...HEAD`。
+新しい判定器、CI job、gate緩和、自動commit/push、GitHub writeは禁止する。
+
+`Expected changed paths`のsuggested集合はAllowed path families内の実差分だけとする。
+Allowed外の未宣言pathは`permission required`として区別し、suggestedへ自動追加しない。
+PLAN status（draft↔confirmed）変更がある場合、既存のoutstanding snapshot再生成関数で
+base／HEAD／liveのnet-diffを観測し、「昇格したので net-zero。宣言から外せ」または
+「draft追加で snapshot が現れる。宣言せよ」まで報告する。snapshot自体の自動commitはしない。
+oracleは`U-PRSCOPE-PRE-001..007`とする。
+
 ## §3 統合点
 
 - `src/doctor/index.ts`: 3 lint を `runDoctor` に hard-fail 連動 (warn-only の handover/agent-slots と分離)。
