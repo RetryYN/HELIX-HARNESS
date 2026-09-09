@@ -64,6 +64,7 @@ modifies:
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/audit/github-merge-readiness.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/github-merge-readiness.test.ts, artifact_type: test_code }
@@ -91,6 +92,6 @@ greenを返せることが実測された。既存loader/analyzerを完全SHAと
 
 ## 後続
 
-`src/cli.ts`はPR #1628のactive writer scopeと重なるため、このsliceでは変更しない。#1628 main到達後、
-`no_runs`／`window_miss`／`unavailable`を実CLI exit codeへfail-closeで接続し、Issue #1659の最終受入を閉じる。
-本sliceだけでIssue完了を主張しない。
+PR #1628はmain未到達のままcloseされたため、本sliceで`src/cli.ts`の実入口まで所有し、
+`no_runs`／`window_miss`／`unavailable`を実CLI exit codeへfail-closeで接続した。current mainへのJIT同期、
+fresh CI、exact-HEAD独立review、merge/read-afterを成立させてIssue #1659の最終受入を閉じる。
