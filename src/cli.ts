@@ -44,6 +44,7 @@ import {
   releaseAutomationDecisionInputSchema,
 } from "./audit/enforcement-route-input";
 import {
+  githubCiStatusExitCode,
   loadGithubCiStatus,
   loadGithubMergeReadiness,
   loadGithubPrBodyDraft,
@@ -14647,12 +14648,16 @@ github
   .command("ci-status")
   .description("emit a read-only GitHub Actions status packet for a branch/ref")
   .option("--ref <ref>", "branch or ref to inspect (defaults to current branch)")
+  .option("--expected-head-sha <sha>", "required exact 40-character HEAD SHA")
   .option("--json", "JSON output")
-  .action((opts: { ref?: string; json?: boolean }) => {
-    const result = loadGithubCiStatus(process.cwd(), { ref: opts.ref });
+  .action((opts: { ref?: string; expectedHeadSha?: string; json?: boolean }) => {
+    const result = loadGithubCiStatus(process.cwd(), {
+      ref: opts.ref,
+      expectedHeadSha: opts.expectedHeadSha,
+    });
     if (opts.json) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     else process.stdout.write(renderGithubCiStatus(result));
-    process.exitCode = result.status === "red" ? 1 : 0;
+    process.exitCode = githubCiStatusExitCode(result);
   });
 
 github
