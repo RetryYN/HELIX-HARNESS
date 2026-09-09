@@ -25,6 +25,7 @@ contract_failures: "Git欠如、clone失敗、install未完走を成功と扱わ
 tdd_red_required: true
 red_at: "2026-09-09T23:48:25+09:00"
 green_at: "2026-09-09T23:48:40+09:00"
+mutation_oracle_evidence: "PR #1689 comment 5604133097の独立反例を再現した。DockerfileへURL ADDを一時追加するとU-CURSOR-ENV-006が1件Red、他5件Greenとなり、HTTPS／git@／SSHのURL ADDおよびsingle-stageのCOPY --fromを拒否する現行実装へ復元後は6件Greenへ戻った。"
 complexity_effect: justified_positive
 complexity_justification: "clone前提をimage所有へ戻し、install時の循環とprovider側再試行を解消する"
 removal_trigger: "同等のcheckout前提を提供する検証済みbase imageへ移管した時"
