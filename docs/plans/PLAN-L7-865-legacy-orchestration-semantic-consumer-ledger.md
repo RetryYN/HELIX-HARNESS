@@ -91,7 +91,7 @@ review_evidence:
   - reviewer: "Claude Code / claude-fable-5-1 (convergence lane)"
     review_kind: cross_agent
     reviewed_at: "2026-09-07T13:12:06Z"
-    tests_green_at: "2026-09-07T13:10:12Z"
+    tests_green_at: "2026-09-09T18:43:01Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
