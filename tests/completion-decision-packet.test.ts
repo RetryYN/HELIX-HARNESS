@@ -304,7 +304,8 @@ describe("completion decision packet lint", () => {
         command: "helix s4 decision-packet --json",
         runnableCommand: "npm run helix -- s4 decision-packet --json",
         scopedCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-03",
-        runnableScopedCommand: "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
+        runnableScopedCommand:
+          "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
         schemaVersion: "s4-decision-packet.v1",
         matrixField: "decisionVerificationCommandMatrix",
         expectedMatrixCount: 8,
@@ -378,7 +379,9 @@ describe("completion decision packet lint", () => {
       runnablePacketCommands: ["npm run helix -- s4 decision-packet --json"],
       runnableScopedDecisionPacketCommand:
         "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
-      runnableScopedPacketCommands: ["npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03"],
+      runnableScopedPacketCommands: [
+        "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
+      ],
     });
     expect(packet.humanReviewBundle).toMatchObject({
       schemaVersion: "completion-decision-human-review-bundle.v1",
@@ -411,7 +414,9 @@ describe("completion decision packet lint", () => {
           scopedPrimaryPacketCommand: "helix s4 decision-packet --json --plan PLAN-DISCOVERY-03",
           runnableScopedPrimaryPacketCommand:
             "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
-          scopedSupportingPacketCommands: ["helix s4 decision-packet --json --plan PLAN-DISCOVERY-03"],
+          scopedSupportingPacketCommands: [
+            "helix s4 decision-packet --json --plan PLAN-DISCOVERY-03",
+          ],
           runnableScopedSupportingPacketCommands: [
             "npm run helix -- s4 decision-packet --json --plan PLAN-DISCOVERY-03",
           ],
