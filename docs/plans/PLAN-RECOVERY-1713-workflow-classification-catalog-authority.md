@@ -57,8 +57,8 @@ modifies:
   - { artifact_path: tests/workflow-classification-catalog.test.ts, artifact_type: test_code }
   - { artifact_path: tests/drive-db-registration.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, artifact_type: design }
-  - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design }
+  - { artifact_path: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/harness/L6-function-design/function-spec.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md, artifact_type: test_design }
 agent_slots:
   - { role: aim, slot_label: "AIM — current catalogとlegacy identityのauthority境界を照合" }
