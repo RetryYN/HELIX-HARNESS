@@ -2,12 +2,12 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
-// issue:1728
+// PLAN-RECOVERY-1728-infrastructure-operations-quality-intake
 const root = resolve(import.meta.dirname, "..");
 const read = (path: string) => readFileSync(resolve(root, path), "utf8");
 
 describe("インフラ・運用品質要求候補", () => {
-  it("NIO-U-001: 9要求群と既存owner接続を欠落なく保持する", () => {
+  it("U-NIO-001: 9要求群と既存owner接続を欠落なく保持する", () => {
     const intake = read("docs/governance/candidates/infrastructure-operations-quality-intake.md");
     const ids = [...intake.matchAll(/^\| NIO-CAND-(\d{2}) \|/gm)].map((match) => match[1]);
     expect(ids).toEqual(["01", "02", "03", "04", "05", "06", "07", "08", "09"]);
@@ -16,7 +16,7 @@ describe("インフラ・運用品質要求候補", () => {
     }
   });
 
-  it("NIO-U-002: L1/L3/L10を別候補としてexact setで保持する", () => {
+  it("U-NIO-002: L1/L3/L10を別候補としてexact setで保持する", () => {
     const l1 = read(
       "docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
     );
@@ -31,7 +31,7 @@ describe("インフラ・運用品質要求候補", () => {
     expect([...l10.matchAll(/^\| NIO-L10-(\d{2}) \|/gm)]).toHaveLength(9);
   });
 
-  it("NIO-U-003: 自動権限化と運用完了の誤昇格を禁止する", () => {
+  it("U-NIO-003: 自動権限化と運用完了の誤昇格を禁止する", () => {
     const intake = read("docs/governance/candidates/infrastructure-operations-quality-intake.md");
     const acceptance = read(
       "docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md",

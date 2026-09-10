@@ -16,3 +16,11 @@
 - candidateであり、canonical promotion・Requirement IR admission・実装・運用検証は後続とした。
 
 Git取込み、検査、独立review、CI、main read-after成立後にroot原稿2件を削除する。
+
+## 検証oracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
+| U-NIO-001 | 9要求群とowner | ID欠落・重複または既存owner参照欠落をRED | `tests/infrastructure-operations-quality-intake.test.ts` |
+| U-NIO-002 | L1/L3/L10分離 | 各層候補のexact set不足または混載をRED | `tests/infrastructure-operations-quality-intake.test.ts` |
+| U-NIO-003 | authority・完了境界 | 未承認自動修復、欠測healthy化、候補からの運用完了昇格をRED | `tests/infrastructure-operations-quality-intake.test.ts` |
