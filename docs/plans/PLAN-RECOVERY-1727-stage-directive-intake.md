@@ -16,9 +16,9 @@ responsibility_owner: document-intake-cleanup
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: migrate_one_consumer
-legacy_retirement_state: successor_present
+legacy_retirement_state: consumer_migration
 no_code_decision: modify
-ddd_modeling_decision: not_applicable
+ddd_modeling_decision: none
 contract_preconditions: "root未追跡原稿7件のbytes、統合版と分冊の包含関係、既存Requirement／Capability／Issue ownerを照合できる"
 contract_postconditions: "統合版を非authorityの候補台帳へGit保全し、72件と段階割当を検査可能にし、重複root原稿を退役する"
 contract_invariants: "候補文書だけでRequirement承認、v1分母追加、一括Issue化、runtime権限追加、実装完了を成立させない"
@@ -28,7 +28,7 @@ red_at: "2026-09-11T00:00:00Z"
 green_at: null
 mutation_oracle_required: true
 mutation_oracle_evidence: "U-DIS-001/002/003が統合版bytes改変、INV見出し欠落・重複、段階集合欠落、候補境界または退役hash欠落を個別に拒否する"
-complexity_effect: reduce
+complexity_effect: net_negative
 complexity_justification: "重複6分冊とroot統合原稿を、Git管理された候補入力一冊と退役台帳へ収束する。新しいRequirement engine、scheduler、DB、実行authorityは追加しない"
 removal_trigger: "72候補すべてが既存ownerへ採否・残義務付きで終端し、入力台帳をhistoricalへ降格できる時"
 entry_signals: [regression_dev]
