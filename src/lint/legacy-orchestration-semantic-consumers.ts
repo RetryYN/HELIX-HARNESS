@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { canonicalJson, sha256Digest } from "../runtime/digest";
+import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 
 export const LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_LEDGER_PATH =
   "config/legacy-orchestration-semantic-consumers.json" as const;
