@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: draft
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-10
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md
 parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md
@@ -58,3 +58,21 @@ validatorは`config/legacy-orchestration-semantic-consumers.json`および
 `src/lint/legacy-orchestration-semantic-consumers.ts`へ束縛する。Phase 1ではsemantic ledgerの
 doctor hard checkまでを完了条件に含める。scheduler、DB projection、旧engine削除は後続phaseの
 接続前提として未解決のまま記録する。
+
+## 凍結base／revision overlayの反例
+
+追加consumerは凍結baseへ直接追記せず、`config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json`
+へ分離する。validatorはbase digest、revision payload digest、revision source headのancestor
+条件を検証してから両方をJOINする。
+
+| Oracle | 検証 |
+| --- | --- |
+| U-LORET-SEM-014〜021 | revisionへ追加した8件のsymbol／anchor／roleを必須化し、1件でも欠落したJOINを拒否する |
+| U-LORET-SEM-022 | revision payloadを改変したとき、記録済みdigestとの不一致を拒否する |
+| U-LORET-SEM-023 | 凍結baseのdigestを変更したとき、revisionとのJOINを成立させない |
+| U-LORET-SEM-024 | revision source headが検証対象HEADの祖先でないとき、観測結果を採用しない |
+
+U-LORET-SEM-014〜021の実source anchor、U-LORET-SEM-022のpayload改変、base digestの
+不一致は`tests/legacy-orchestration-semantic-consumers.test.ts`へ束縛する。base raw bytesの
+変更とsource headの非祖先はloaderの一時Git fixtureで追加検証する。revisionは観測差分であり、
+実行authorityの切替や旧engine退役の検収には使用しない。
