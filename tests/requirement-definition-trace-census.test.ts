@@ -365,4 +365,59 @@ describe("requirement-definition-trace-census", () => {
     expect(secondId).toBeDefined();
     expect(firstId).not.toBe(secondId);
   });
+
+  it("U-RDTC-010: [PLAN-RECOVERY-1684-requirement-definition-trace-census/U-RDTC-010] 出力順はlocaleではなくbytewiseで固定する", () => {
+    const result = compileRequirementDefinitionTraceCensus({
+      requirements: [
+        requirement({
+          requirement_id: "a-REQ",
+          primary_system_contract_id: "a-CONTRACT",
+          owner_id: "a-CONTRACT",
+        }),
+        requirement({
+          requirement_id: "Z-REQ",
+          primary_system_contract_id: "Z-CONTRACT",
+          owner_id: "Z-CONTRACT",
+        }),
+      ],
+      system_contracts: [
+        contract({ system_contract_id: "a-CONTRACT", requirement_ids: ["a-REQ"] }),
+        contract({ system_contract_id: "Z-CONTRACT", requirement_ids: ["Z-REQ"] }),
+      ],
+      acceptance_cases: [],
+    });
+    expect(result.edges.map((edge) => edge.edge_id)).toEqual([
+      "REFINES:Z-REQ->Z-CONTRACT",
+      "REFINES:a-REQ->a-CONTRACT",
+      "SATISFIES:Z-CONTRACT->Z-REQ",
+      "SATISFIES:a-CONTRACT->a-REQ",
+    ]);
+  });
+
+  it("U-RDTC-011: [PLAN-RECOVERY-1684-requirement-definition-trace-census/U-RDTC-011] ambiguous memberをvalid sharedへ混入しない", () => {
+    const fixture = sharedFixture();
+    fixture.requirements.push(
+      requirement({
+        requirement_id: "HIL-FR-AMBIGUOUS",
+        primary_system_contract_id: "HR-FR-HIL-02",
+        owner_id: "HR-FR-OTHER",
+      }),
+    );
+    fixture.system_contracts[0] = contract({
+      system_contract_id: "HR-FR-HIL-02",
+      requirement_ids: ["HIL-BR-01", "HIL-FR-01", "HIL-FR-AMBIGUOUS"],
+    });
+    const result = compileRequirementDefinitionTraceCensus(fixture);
+    expect(result.ok).toBe(false);
+    expect(
+      result.findings.find((finding) => finding.code === "VALID_SHARED_REQUIREMENT")?.evidence,
+    ).toEqual(["HIL-BR-01", "HIL-FR-01"]);
+    expect(
+      result.edges.some((edge) => edge.edge_id === "SHARED_BY:HR-FR-HIL-02->HIL-FR-AMBIGUOUS"),
+    ).toBe(false);
+    expect(
+      result.edges.find((edge) => edge.edge_id === "SATISFIES:HR-FR-HIL-02->HIL-FR-AMBIGUOUS")
+        ?.status,
+    ).toBe("ambiguous");
+  });
 });

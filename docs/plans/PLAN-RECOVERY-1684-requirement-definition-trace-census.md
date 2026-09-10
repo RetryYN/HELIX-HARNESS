@@ -43,6 +43,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/requirement-definition-trace-census.md, oracle_id: U-RDTC-007, test_path: tests/requirement-definition-trace-census.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-definition-trace-census.md, oracle_id: U-RDTC-008, test_path: tests/requirement-definition-trace-census.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/requirement-definition-trace-census.md, oracle_id: U-RDTC-009, test_path: tests/requirement-definition-trace-census.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/requirement-definition-trace-census.md, oracle_id: U-RDTC-010, test_path: tests/requirement-definition-trace-census.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/requirement-definition-trace-census.md, oracle_id: U-RDTC-011, test_path: tests/requirement-definition-trace-census.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6

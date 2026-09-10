@@ -31,6 +31,8 @@ responsibility_owner: requirement-ir-authority
 | U-RDTC-007 | current canonical IR | 実IR投影でも共有契約をduplicateにせず、同一入力のdigestが再安定する | `tests/requirement-definition-trace-census.test.ts` |
 | U-RDTC-008 | Acceptance contract | Acceptanceのcontractがprimaryと不一致またはunknownならambiguousになりsilent greenしない | `tests/requirement-definition-trace-census.test.ts` |
 | U-RDTC-009 | finding ID境界 | finding構成要素をlength-prefixし、delimiter由来のID衝突を許さない | `tests/requirement-definition-trace-census.test.ts` |
+| U-RDTC-010 | bytewise整列 | 大文字／小文字を含むedge exact setをlocale非依存のbytewise順へ固定する | `tests/requirement-definition-trace-census.test.ts` |
+| U-RDTC-011 | shared member admission | primary/owner不一致memberをVALID_SHARED evidenceとSHARED_BY edgeへ混ぜない | `tests/requirement-definition-trace-census.test.ts` |
 
 ## Red／Green／mutation境界
 

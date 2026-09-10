@@ -35,7 +35,7 @@ edge record exact setと、orphan / stale / ambiguous / valid sharedのfinding e
 | post | 宣言済みIDからREFINES / SATISFIES / SHARED_BY / ACCEPTED_BYを決定的に返す |
 | invariant | 要求本文を変更せず、意味重複を推測せず、既存owner以外を捏造しない |
 | failure | 未解決ID、owner/contract不一致、重複stable ID、入力不正をtyped findingへ閉じる |
-| oracle | `U-RDTC-001`〜`U-RDTC-009` |
+| oracle | `U-RDTC-001`〜`U-RDTC-011` |
 
 `requirementDefinitionTraceCensusInputFromCanonicalIr`はcanonical IRから宣言フィールドだけを
 写す投影であり、新しいauthorityを作らない。
