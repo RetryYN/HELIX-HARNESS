@@ -1007,6 +1007,7 @@ describe("source harness-check workflow", () => {
 
     expect(raw).toContain("Required Status Checks は `harness-check` 1 本だけ");
     expect(matrix.run).toContain("plan-lint vmodel-lint branch-kind-check");
+    expect(matrix.run).toContain("branch-kind-check:recovery");
     expect(matrix.run).toContain(
       "poc-no-merge-guard hotfix-postmortem-required issue-closure-contract",
     );

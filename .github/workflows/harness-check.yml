@@ -247,7 +247,7 @@ jobs:
           branch="${HEAD_BRANCH}"
           kind="${branch%%/*}"
           case "$kind" in
-            feature|design|research|poc|reverse|add|hotfix|refactor|docs|chore)
+            feature|design|research|poc|reverse|recovery|add|hotfix|refactor|docs|chore)
               ;;
             *)
               kind="none"
@@ -260,7 +260,7 @@ jobs:
             case "$subjob:$kind" in
               plan-lint:feature|plan-lint:design|plan-lint:research|plan-lint:poc|plan-lint:reverse|plan-lint:add|plan-lint:hotfix|plan-lint:refactor) status="applicable" ;;
               vmodel-lint:feature|vmodel-lint:design|vmodel-lint:add|vmodel-lint:refactor) status="applicable" ;;
-              branch-kind-check:feature|branch-kind-check:design|branch-kind-check:research|branch-kind-check:poc|branch-kind-check:reverse|branch-kind-check:add|branch-kind-check:hotfix|branch-kind-check:refactor) status="applicable" ;;
+              branch-kind-check:feature|branch-kind-check:design|branch-kind-check:research|branch-kind-check:poc|branch-kind-check:reverse|branch-kind-check:recovery|branch-kind-check:add|branch-kind-check:hotfix|branch-kind-check:refactor) status="applicable" ;;
               scrum-reverse-lint:poc|scrum-reverse-lint:reverse) status="applicable" ;;
               poc-no-merge-guard:poc) status="applicable" ;;
               hotfix-postmortem-required:hotfix) status="applicable" ;;
