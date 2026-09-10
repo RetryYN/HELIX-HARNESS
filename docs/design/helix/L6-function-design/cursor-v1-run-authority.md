@@ -32,9 +32,9 @@ single-writer、GitHub admissionを再利用し、Cursor専用scheduler、DB、q
 | classification | 条件 | dispatch上の扱い |
 | --- | --- | --- |
 | `active` | `CREATING`または`RUNNING`かつTTL内 | follow-up拒否 |
-| `cancellable_stale` | active status、TTL超過、cancel可能 | 一意な1件だけcancel候補。cancel後は再GET必須 |
+| `cancellable_stale` | stale `CREATING`かつcancel可能 | 一意な1件だけcancel候補。cancel後は再GET必須 |
 | `phantom` | stale `CREATING`かつcancel不能 | 削除・cancelせず保持。単独では一回のPOSTを妨げない |
-| `stale` | stale `RUNNING`かつcancel不能 | 状態不明としてfollow-up拒否 |
+| `stale` | stale `RUNNING`（cancel可能と報告されても含む） | 実行中成果の誤破棄を避け、follow-up拒否 |
 | `terminal` | `FINISHED`、`FAILED`、`CANCELLED` | dispatch占有から除外し、成果や履歴は削除しない |
 | `unknown` | 未知status、不正timestamp | 推測せずfollow-up拒否 |
 

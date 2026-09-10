@@ -59,6 +59,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/cursor-v1-run-authority.md, oracle_id: U-CURSOR-RUN-006, test_path: tests/cursor-cloud-run-authority.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/cursor-v1-run-authority.md, oracle_id: U-CURSOR-RUN-007, test_path: tests/cursor-cloud-run-authority.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/cursor-v1-run-authority.md, oracle_id: U-CURSOR-RUN-008, test_path: tests/cursor-cloud-run-authority.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/cursor-v1-run-authority.md, oracle_id: U-CURSOR-RUN-009, test_path: tests/cursor-cloud-run-authority.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — v0/v1 status意味差と既存adapter境界を照合" }
   - { role: se, slot_label: "SE — pure classifier、dispatch decision、read-afterを実装" }

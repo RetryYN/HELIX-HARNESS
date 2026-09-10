@@ -71,7 +71,7 @@ export function classifyCursorV1Runs(input: {
       classification = "unknown";
     } else if (!stale) {
       classification = "active";
-    } else if (run.cancellable) {
+    } else if (normalizedStatus === "CREATING" && run.cancellable) {
       classification = "cancellable_stale";
     } else if (normalizedStatus === "CREATING") {
       classification = "phantom";
