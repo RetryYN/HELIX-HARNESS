@@ -24,6 +24,7 @@ responsibility_owner: repository-hygiene
 | U-RHYG-002 | 保護対象 | dirty、未到達、open PR、active writerを個別reason付き`protected`にする | `tests/repository-hygiene-inventory.test.ts` |
 | U-RHYG-003 | identity／外部証拠 | detachedまたはPR証拠不能を`unknown_fail_closed`にしresultを`ok=false`にする | `tests/repository-hygiene-inventory.test.ts` |
 | U-RHYG-004 | 履歴／物理証拠 | shallow、cleanliness／reachability不明の複数unknown reasonを保持する | `tests/repository-hygiene-inventory.test.ts` |
+| U-RHYG-005 | default branch | cleanかつmain到達でもcanonical default branchを`protected`にする | `tests/repository-hygiene-inventory.test.ts` |
 
 実装前は対象module不在でsuiteがRedとなることを確認し、実装後は同suiteをgreenにする。今後loaderを接続する際も、
 GitHub API失敗やGit command失敗を空集合へ変換せず、同じtyped unknown契約へ落とす。

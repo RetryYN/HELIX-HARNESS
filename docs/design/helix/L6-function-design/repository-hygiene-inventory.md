@@ -24,7 +24,7 @@ leaseの証拠を結合し、`reclaim_candidate`、`protected`、`unknown_fail_c
 ## 契約
 
 - `reclaim_candidate`はclean、main到達、named branch、open PRなし、active writerなし、完全な証拠面をすべて満たす。
-- dirty、main未到達、open PR、active writerは`protected`とする。
+- default branch、dirty、main未到達、open PR、active writerは`protected`とする。
 - detached、cleanliness／reachability不明、shallow history、main／PR／writer証拠取得不能は
   `unknown_fail_closed`とし、他のgreen証拠で相殺しない。
 - branch名からprovider、workflow、ownerを推測しない。

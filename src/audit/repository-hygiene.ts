@@ -2,7 +2,13 @@ export type Sha256Digest = `sha256:${string}`;
 export type EvidenceUnavailable = { status: "unavailable"; error_digest: Sha256Digest };
 export type MainEvidence =
   | EvidenceUnavailable
-  | { status: "available"; ref: string; head: string; history_complete: boolean };
+  | {
+      status: "available";
+      ref: string;
+      default_branch: string;
+      head: string;
+      history_complete: boolean;
+    };
 export type OpenPrEvidence =
   | EvidenceUnavailable
   | { status: "available"; branches: Array<{ branch: string; head: string }> };
@@ -35,6 +41,7 @@ export type WorktreeHygieneReason =
   | "not_main_reachable"
   | "open_pr"
   | "active_writer"
+  | "default_branch"
   | "prunable_metadata"
   | "detached"
   | "main_evidence_unavailable"
@@ -102,6 +109,9 @@ export function analyzeRepositoryHygiene(input: RepositoryHygieneInput): Reposit
 
     if (worktree.cleanliness === "dirty") protectedReasons.push("dirty");
     if (worktree.main_reachable === false) protectedReasons.push("not_main_reachable");
+    if (input.main.status === "available" && worktree.branch === input.main.default_branch) {
+      protectedReasons.push("default_branch");
+    }
     if (worktree.branch !== null && openPrBranches.has(worktree.branch)) {
       protectedReasons.push("open_pr");
     }

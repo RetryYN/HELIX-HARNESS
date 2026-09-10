@@ -8,7 +8,13 @@ describe("repository hygiene inventory", () => {
 
   it("U-RHYG-001: permits reclamation only for clean main-reachable unowned worktrees", () => {
     const result = analyzeRepositoryHygiene({
-      main: { status: "available", ref: "origin/main", head: mainHead, history_complete: true },
+      main: {
+        status: "available",
+        ref: "origin/main",
+        default_branch: "main",
+        head: mainHead,
+        history_complete: true,
+      },
       open_pr_heads: { status: "available", branches: [] },
       active_writer_branches: { status: "available", branches: [] },
       worktrees: [
@@ -39,7 +45,13 @@ describe("repository hygiene inventory", () => {
     ] as const) {
       const branch = `feature/${caseName.replaceAll(" ", "-")}`;
       const result = analyzeRepositoryHygiene({
-        main: { status: "available", ref: "origin/main", head: mainHead, history_complete: true },
+        main: {
+          status: "available",
+          ref: "origin/main",
+          default_branch: "main",
+          head: mainHead,
+          history_complete: true,
+        },
         open_pr_heads: {
           status: "available",
           branches: reason === "open_pr" ? [{ branch, head: mergedHead }] : [],
@@ -79,7 +91,13 @@ describe("repository hygiene inventory", () => {
 
   it("U-RHYG-003: fails closed for detached worktrees and unavailable evidence", () => {
     const unavailable = analyzeRepositoryHygiene({
-      main: { status: "available", ref: "origin/main", head: mainHead, history_complete: true },
+      main: {
+        status: "available",
+        ref: "origin/main",
+        default_branch: "main",
+        head: mainHead,
+        history_complete: true,
+      },
       open_pr_heads: { status: "unavailable", error_digest: `sha256:${"c".repeat(64)}` },
       active_writer_branches: { status: "available", branches: [] },
       worktrees: [
@@ -103,7 +121,13 @@ describe("repository hygiene inventory", () => {
 
   it("U-RHYG-004: fails closed when history or worktree evidence is unknown", () => {
     const result = analyzeRepositoryHygiene({
-      main: { status: "available", ref: "origin/main", head: mainHead, history_complete: false },
+      main: {
+        status: "available",
+        ref: "origin/main",
+        default_branch: "main",
+        head: mainHead,
+        history_complete: false,
+      },
       open_pr_heads: { status: "available", branches: [] },
       active_writer_branches: { status: "available", branches: [] },
       worktrees: [
@@ -123,5 +147,34 @@ describe("repository hygiene inventory", () => {
     expect(result.worktrees[0]?.reasons).toEqual(
       expect.arrayContaining(["shallow_history", "cleanliness_unknown", "reachability_unknown"]),
     );
+  });
+
+  it("U-RHYG-005: always protects the canonical default branch worktree", () => {
+    const result = analyzeRepositoryHygiene({
+      main: {
+        status: "available",
+        ref: "origin/main",
+        default_branch: "main",
+        head: mainHead,
+        history_complete: true,
+      },
+      open_pr_heads: { status: "available", branches: [] },
+      active_writer_branches: { status: "available", branches: [] },
+      worktrees: [
+        {
+          path: "/repo",
+          head: mainHead,
+          branch: "main",
+          cleanliness: "clean",
+          main_reachable: true,
+          prunable: false,
+        },
+      ],
+    });
+
+    expect(result.worktrees[0]).toMatchObject({
+      disposition: "protected",
+      reasons: ["default_branch"],
+    });
   });
 });
