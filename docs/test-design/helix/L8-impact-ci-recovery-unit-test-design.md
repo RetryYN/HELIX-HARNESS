@@ -98,7 +98,7 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-006 | 非PR revision range正規化 | schedule／workflow_dispatchで空before SHAをHEAD親へ写像し、branch-kind／commitlintの片側だけempty判定を削るmutationを拒否 | `tests/harness-check-workflow.test.ts` |
-| U-CI-PREFLIGHT-AGGREGATION-001 | 事前ゲート結果の集約 | 複数ゲートの結果を個別ID・skip理由付きで保持し、集約stepの欠落、fail-open、review admissionの混入、無理由skipを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-CI-PREFLIGHT-AGGREGATION-001 | 事前ゲート結果の集約 | 複数ゲートの結果を個別ID・skip理由付きで保持し、集約stepの欠落、fail-open、review admissionの混入、無理由skip、条件付きゲートの観測漏れ、適用対象のunexpected skipを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-ESC-SRC-001 | source workflow profile boundary | sourceへ consumer doctorを適用するmutationを拒否 | `tests/escalation-stale-source-workflow.test.ts` |
 | U-ESC-SRC-002 | consumer template profile boundary | consumer templateをsource profileへ変えるmutationを拒否 | `tests/escalation-stale-source-workflow.test.ts` |
 | U-REPOGUARD-001 | repo-wide guard exact set | registryから1件削除、重複、missing path、未登録guardを拒否 | `tests/repo-wide-guard-registry.test.ts` |

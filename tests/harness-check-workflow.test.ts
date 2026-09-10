@@ -248,8 +248,14 @@ const REQUIRED_PREFLIGHT_GATE_IDS = [
   "repo_guard_preflight",
   "install_bubblewrap",
   "real_bubblewrap",
+  "branch_type_matrix",
   "branch_kind_check",
   "commitlint",
+  "poc_no_merge_guard",
+  "hotfix_postmortem_required",
+  "issue_closure_contract",
+  "issue_dependency_contract",
+  "issue_dependency_repository_contract",
   "plan_lint",
   "post_merge_plan",
   "l12_authority",
@@ -304,6 +310,9 @@ function preflightGateAggregationViolations(raw: string): string[] {
     if (step && aggregateIndex >= 0 && steps.indexOf(step) >= aggregateIndex) {
       findings.push(`required_gate_after_aggregation:${id}`);
     }
+    if (aggregateIndex >= 0 && !String(aggregate?.run ?? "").includes(`"${id}"`)) {
+      findings.push(`required_gate_not_aggregated:${id}`);
+    }
   }
 
   const realBubblewrap = byId("real_bubblewrap");
@@ -313,6 +322,28 @@ function preflightGateAggregationViolations(raw: string): string[] {
   const postMergePlan = byId("post_merge_plan");
   if (postMergePlan?.if !== `\${{ steps.plan_lint.outcome == 'success' }}`) {
     findings.push("plan_dependency_contract_invalid");
+  }
+
+  for (const [id, expectedIf] of [
+    [
+      "poc_no_merge_guard",
+      `\${{ always() && github.event_name == 'pull_request' && startsWith(github.head_ref, 'poc/') && github.base_ref == 'main' }}`,
+    ],
+    [
+      "hotfix_postmortem_required",
+      `\${{ always() && github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix/') && github.base_ref == 'main' }}`,
+    ],
+    ["issue_closure_contract", `\${{ always() && github.event_name == 'pull_request' }}`],
+    ["issue_dependency_contract", `\${{ always() && github.event_name == 'pull_request' }}`],
+    [
+      "issue_dependency_repository_contract",
+      `\${{ always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}`,
+    ],
+  ] as const) {
+    const step = byId(id);
+    if (step?.if !== expectedIf || step["continue-on-error"] !== true) {
+      findings.push(`conditional_gate_observation_invalid:${id}`);
+    }
   }
 
   const review = byId("current_head_review");

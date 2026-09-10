@@ -240,6 +240,8 @@ jobs:
         run: npx --no-install vitest run --project fast tests/worker-isolation-broker.test.ts -t "U-WIB-007"
 
       - name: branch type matrix
+        id: branch_type_matrix
+        continue-on-error: true
         env:
           HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
@@ -404,7 +406,9 @@ jobs:
             --snapshot-file "$RUNNER_TEMP/pr-review-admission.json"
 
       - name: poc-no-merge-guard
-        if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'poc/') && github.base_ref == 'main' }}
+        id: poc_no_merge_guard
+        if: ${{ always() && github.event_name == 'pull_request' && startsWith(github.head_ref, 'poc/') && github.base_ref == 'main' }}
+        continue-on-error: true
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
@@ -413,7 +417,9 @@ jobs:
         run: npx --no-install tsx src/cli.ts guard pr-context --snapshot-file "$RUNNER_TEMP/pr-context-before.json"
 
       - name: hotfix-postmortem-required
-        if: ${{ github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix/') && github.base_ref == 'main' }}
+        id: hotfix_postmortem_required
+        if: ${{ always() && github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix/') && github.base_ref == 'main' }}
+        continue-on-error: true
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
@@ -422,7 +428,9 @@ jobs:
         run: npx --no-install tsx src/cli.ts guard pr-context --snapshot-file "$RUNNER_TEMP/pr-context-before.json"
 
       - name: issue-closure-contract
-        if: ${{ github.event_name == 'pull_request' }}
+        id: issue_closure_contract
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        continue-on-error: true
         env:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
@@ -460,7 +468,9 @@ jobs:
           }
 
       - name: issue-dependency-contract
-        if: ${{ github.event_name == 'pull_request' }}
+        id: issue_dependency_contract
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -471,7 +481,9 @@ jobs:
             --json
 
       - name: issue-dependency-repository-contract
-        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+        id: issue_dependency_repository_contract
+        if: ${{ always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -511,19 +523,32 @@ jobs:
           REPO_GUARD_PREFLIGHT: ${{ steps.repo_guard_preflight.outcome }}
           INSTALL_BUBBLEWRAP: ${{ steps.install_bubblewrap.outcome }}
           REAL_BUBBLEWRAP: ${{ steps.real_bubblewrap.outcome }}
+          BRANCH_TYPE_MATRIX: ${{ steps.branch_type_matrix.outcome }}
           BRANCH_KIND_CHECK: ${{ steps.branch_kind_check.outcome }}
           COMMITLINT: ${{ steps.commitlint.outcome }}
           CURRENT_HEAD_REVIEW: ${{ steps.current_head_review.outcome }}
+          POC_NO_MERGE_GUARD: ${{ steps.poc_no_merge_guard.outcome }}
+          HOTFIX_POSTMORTEM_REQUIRED: ${{ steps.hotfix_postmortem_required.outcome }}
+          ISSUE_CLOSURE_CONTRACT: ${{ steps.issue_closure_contract.outcome }}
+          ISSUE_DEPENDENCY_CONTRACT: ${{ steps.issue_dependency_contract.outcome }}
+          ISSUE_DEPENDENCY_REPOSITORY_CONTRACT: ${{ steps.issue_dependency_repository_contract.outcome }}
           PLAN_LINT: ${{ steps.plan_lint.outcome }}
           POST_MERGE_PLAN: ${{ steps.post_merge_plan.outcome }}
           L12_AUTHORITY: ${{ steps.l12_authority.outcome }}
           TYPECHECK: ${{ steps.typecheck.outcome }}
+          EVENT_NAME: ${{ github.event_name }}
+          HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
+          BASE_BRANCH: ${{ github.base_ref }}
         run: |
           set -euo pipefail
           node - "$RUNNER_TEMP/preflight-gate-results.json" <<'NODE'
           const fs = require("node:fs");
           const outputPath = process.argv[2];
           const outcome = (name) => process.env[name] || "unknown";
+          const eventName = process.env.EVENT_NAME || "";
+          const headBranch = process.env.HEAD_BRANCH || "";
+          const baseBranch = process.env.BASE_BRANCH || "";
+          const mainPullRequest = eventName === "pull_request" && baseBranch === "main";
           const gates = [];
           const addGate = (id, label, status, skipReason) => {
             const gate = { id, label, status };
@@ -545,8 +570,57 @@ jobs:
               ? "dependency_failed:install_bubblewrap"
               : undefined,
           );
+          addGate("branch_type_matrix", "branch type matrix", outcome("BRANCH_TYPE_MATRIX"));
           addGate("branch_kind_check", "branch-kind-check", outcome("BRANCH_KIND_CHECK"));
           addGate("commitlint", "commitlint", outcome("COMMITLINT"));
+          const addConditionalGate = (id, label, envName, applies, skipReason) => {
+            const status = outcome(envName);
+            if (status === "skipped") {
+              addGate(
+                id,
+                label,
+                status,
+                applies ? `unexpected_skip:${id}` : `not_applicable:${skipReason}`,
+              );
+            } else {
+              addGate(id, label, status);
+            }
+          };
+          addConditionalGate(
+            "poc_no_merge_guard",
+            "poc-no-merge-guard",
+            "POC_NO_MERGE_GUARD",
+            mainPullRequest && headBranch.startsWith("poc/"),
+            "event_or_branch_not_poc_main",
+          );
+          addConditionalGate(
+            "hotfix_postmortem_required",
+            "hotfix-postmortem-required",
+            "HOTFIX_POSTMORTEM_REQUIRED",
+            mainPullRequest && headBranch.startsWith("hotfix/"),
+            "event_or_branch_not_hotfix_main",
+          );
+          addConditionalGate(
+            "issue_closure_contract",
+            "issue-closure-contract",
+            "ISSUE_CLOSURE_CONTRACT",
+            eventName === "pull_request",
+            "event_not_pull_request",
+          );
+          addConditionalGate(
+            "issue_dependency_contract",
+            "issue-dependency-contract",
+            "ISSUE_DEPENDENCY_CONTRACT",
+            eventName === "pull_request",
+            "event_not_pull_request",
+          );
+          addConditionalGate(
+            "issue_dependency_repository_contract",
+            "issue-dependency-repository-contract",
+            "ISSUE_DEPENDENCY_REPOSITORY_CONTRACT",
+            eventName === "schedule" || eventName === "workflow_dispatch",
+            "event_not_schedule_or_workflow_dispatch",
+          );
           addGate("plan_lint", "plan-lint", outcome("PLAN_LINT"));
           addGate(
             "post_merge_plan",
@@ -590,7 +664,9 @@ jobs:
           const result = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
           const failures = result.gates.filter((gate) => gate.status !== "success" && gate.status !== "skipped");
           const unauthorizedSkips = result.gates.filter(
-            (gate) => gate.status === "skipped" && !gate.skip_reason,
+            (gate) =>
+              gate.status === "skipped" &&
+              (!gate.skip_reason || gate.skip_reason.startsWith("unexpected_skip:")),
           );
           for (const gate of result.gates) {
             console.log(`${gate.id}: ${gate.status}${gate.skip_reason ? ` (${gate.skip_reason})` : ""}`);

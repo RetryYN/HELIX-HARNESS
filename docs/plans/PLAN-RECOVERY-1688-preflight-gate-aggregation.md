@@ -27,7 +27,7 @@ tdd_red_required: true
 red_at: "2026-09-10T03:00:00Z"
 green_at: null
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/harness-check-workflow.test.ts の U-CI-PREFLIGHT-AGGREGATION-001 系列で、集約step欠落、continue-on-errorによるfail-open、review admissionの混入、無理由skipを個別に拒否する。実CIでは branch_kind_check の単一失敗を集約結果へ保持し、shard起動を停止した。"
+mutation_oracle_evidence: "tests/harness-check-workflow.test.ts の U-CI-PREFLIGHT-AGGREGATION-001 系列で、集約step欠落、continue-on-errorによるfail-open、review admissionの混入、無理由skip、条件付きゲートの観測漏れ、適用対象のunexpected skipを個別に拒否する。実CIでは branch_kind_check の単一失敗を集約結果へ保持し、shard起動を停止した。"
 complexity_effect: net_neutral
 complexity_justification: "既存のfull-regression-preflight内へ結果集約とartifact出力を追加し、新しいscheduler・DB・reviewer・実行経路は作らない"
 removal_trigger: "後継のCI結果集約機構が同じ個別失敗、skip理由、review admission分離、fail-closeを独立検証した時"
@@ -75,6 +75,7 @@ review_evidence: []
 - summaryとartifactで同じ結果を公開し、失敗が1件でもあれば集約stepをfail-closeする。
 - current HEAD independent review admissionはPR状態に依存するため、集約対象外として別のrequired判定を維持する。
 - recoveryブランチ自身が要求するPLANをこのPRへ含め、branch-kind gateの契約を満たす。
+- branch／event依存の6ゲート（branch type matrixを含む）を同一jobの末尾集約へ追加し、非適用skipとunexpected skipを区別する。
 
 ## 対象外
 
@@ -91,7 +92,8 @@ review_evidence: []
 4. review admissionを集約結果で代替せず、別経路で強制する。
 5. 集約stepが成功した場合だけ、既存のfull regressionおよびfinalizeの入力条件を満たす。
 6. mutation oracleが集約step欠落・fail-open・review混入・skip理由欠落を検出する。
+7. 条件付きゲートが先行失敗で無音skipにならず、適用対象のskipをfail-closeし、非適用skipだけをtyped reason付きで許可する。
 
 ## 検証状態
 
-初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。PLANを同梱した後のfresh CIと独立レビューは未完了であり、本PLANはその成立まで完了を主張しない。
+初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。今回の第2 sliceでは条件付きゲートを同じ集約へ追加した。PLANを同梱した後のfresh CIと独立レビューは未完了であり、本PLANはその成立まで完了を主張しない。
