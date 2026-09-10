@@ -293,9 +293,7 @@ function preflightGateAggregationViolations(raw: string): string[] {
       !run.includes("unauthorizedSkips") ||
       !run.includes("unexpected_skip:") ||
       !run.includes("not_applicable:") ||
-      !/(^|\n)\s+applies \? `unexpected_skip:\${id}` : `not_applicable:\${skipReason}`/.test(
-        run,
-      ) ||
+      !/(^|\n)\s+applies \? `unexpected_skip:\${id}` : `not_applicable:\${skipReason}`/.test(run) ||
       !run.includes("if (failures.length > 0 || unauthorizedSkips.length > 0) {") ||
       !run.includes("process.exit(1)") ||
       !run.includes("excluded_gates")
