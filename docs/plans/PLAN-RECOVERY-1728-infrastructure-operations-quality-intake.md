@@ -53,6 +53,7 @@ dependencies:
   references: ["issue:1728", "issue:219", "issue:220", "issue:221", "issue:222", "issue:223", "issue:1160", "issue:1169", "issue:1033"]
   blocks: []
 generates:
+  - { artifact_path: .helix/evidence/review-1730/vitest-targeted.json, artifact_type: json_config }
   - { artifact_path: docs/archive/intake/infrastructure-operations-handoff-under-4000-source_v0.1.md, artifact_type: markdown_doc }
   - { artifact_path: docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/infrastructure-operations-quality-intake.md, artifact_type: markdown_doc }
