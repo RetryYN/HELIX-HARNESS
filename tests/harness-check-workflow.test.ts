@@ -19,6 +19,7 @@ const VERSION_CODENAME_GUARD = "${" + "VERSION_CODENAME:-}";
 
 type Step = {
   name?: string;
+  id?: string;
   uses?: string;
   run?: string;
   env?: Record<string, string>;
@@ -214,7 +215,7 @@ function fullRegressionShardJobViolations(raw: string): string[] {
     lintSteps.length !== 1 ||
     lintSteps[0]?.run !== "npm run lint" ||
     lintSteps[0]?.if !== undefined ||
-    lintSteps[0]?.["continue-on-error"] !== undefined ||
+    lintSteps[0]?.["continue-on-error"] !== true ||
     installIndex < 0 ||
     lintIndex !== installIndex + 1 ||
     shardPlanIndex < 0 ||
@@ -238,6 +239,106 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   const aggregateNeeds = jobs["harness-check"]?.needs;
   const needs = Array.isArray(aggregateNeeds) ? aggregateNeeds : [aggregateNeeds];
   if (!needs.includes("full-regression-finalize")) findings.push("required_check_wiring_invalid");
+  return findings;
+}
+
+const REQUIRED_PREFLIGHT_GATE_IDS = [
+  "lint_biome",
+  "design_language",
+  "repo_guard_preflight",
+  "install_bubblewrap",
+  "real_bubblewrap",
+  "branch_kind_check",
+  "commitlint",
+  "plan_lint",
+  "post_merge_plan",
+  "l12_authority",
+  "typecheck",
+] as const;
+
+function preflightGateAggregationViolations(raw: string): string[] {
+  let parsed: WorkflowRoot;
+  try {
+    parsed = parseYaml(raw) as WorkflowRoot;
+  } catch {
+    return ["workflow_yaml_invalid"];
+  }
+  const steps = parsed.jobs?.["full-regression-preflight"]?.steps ?? [];
+  const byId = (id: string) => steps.find((step) => step.id === id);
+  const aggregateSteps = steps.filter((step) => step.id === "preflight_gate_aggregation");
+  const aggregate = byId("preflight_gate_aggregation");
+  const upload = steps.find((step) => step.name === "upload preflight gate aggregation");
+  const enforcement = byId("review_admission_enforcement");
+  const findings: string[] = [];
+  const aggregateIndex = aggregate ? steps.indexOf(aggregate) : -1;
+  const dbRebuildIndex = steps.findIndex(
+    (step) => step.name === "db rebuild (deterministic projection)",
+  );
+
+  if (!aggregate) {
+    findings.push("aggregation_step_missing");
+  } else {
+    const run = String(aggregate.run ?? "");
+    if (
+      aggregate.if !== `\${{ always() }}` ||
+      aggregate["continue-on-error"] !== undefined ||
+      !run.includes("helix-preflight-gate-aggregation.v1") ||
+      !run.includes("GITHUB_STEP_SUMMARY") ||
+      !run.includes("unauthorizedSkips") ||
+      !run.includes("process.exit(1)") ||
+      !run.includes("excluded_gates")
+    ) {
+      findings.push("aggregation_fail_close_contract_invalid");
+    }
+    if (dbRebuildIndex < 0 || aggregateIndex >= dbRebuildIndex) {
+      findings.push("aggregation_after_expensive_gate_invalid");
+    }
+  }
+  if (aggregateSteps.length !== 1) findings.push("aggregation_step_count_invalid");
+
+  for (const id of REQUIRED_PREFLIGHT_GATE_IDS) {
+    const step = byId(id);
+    if (step?.["continue-on-error"] !== true) {
+      findings.push(`required_gate_observation_invalid:${id}`);
+    }
+    if (step && aggregateIndex >= 0 && steps.indexOf(step) >= aggregateIndex) {
+      findings.push(`required_gate_after_aggregation:${id}`);
+    }
+  }
+
+  const realBubblewrap = byId("real_bubblewrap");
+  if (realBubblewrap?.if !== `\${{ steps.install_bubblewrap.outcome == 'success' }}`) {
+    findings.push("bubblewrap_dependency_contract_invalid");
+  }
+  const postMergePlan = byId("post_merge_plan");
+  if (postMergePlan?.if !== `\${{ steps.plan_lint.outcome == 'success' }}`) {
+    findings.push("plan_dependency_contract_invalid");
+  }
+
+  const review = byId("current_head_review");
+  if (
+    review?.["continue-on-error"] !== true ||
+    !String(aggregate?.run ?? "").includes("current_head_review") ||
+    !String(aggregate?.run ?? "").includes("PR-state-dependent admission")
+  ) {
+    findings.push("review_admission_exclusion_invalid");
+  }
+  if (
+    enforcement?.if !== `\${{ always() && github.event_name == 'pull_request' }}` ||
+    enforcement["continue-on-error"] !== undefined ||
+    !String(enforcement.run ?? "").includes("REVIEW_ADMISSION_OUTCOME") ||
+    !String(enforcement.run ?? "").includes('!= "success"')
+  ) {
+    findings.push("review_admission_enforcement_invalid");
+  }
+
+  if (
+    upload?.uses !== "actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a" ||
+    upload.if !== `\${{ always() && steps.preflight_gate_aggregation.outcome != 'skipped' }}` ||
+    upload.with?.path !== `\${{ runner.temp }}/preflight-gate-results.json`
+  ) {
+    findings.push("aggregation_artifact_invalid");
+  }
   return findings;
 }
 
@@ -725,8 +826,9 @@ describe("source harness-check workflow", () => {
       HELIX_BWRAP_BIN: "/usr/bin/bwrap",
       HELIX_REQUIRE_REAL_BWRAP: "1",
     });
-    expect(realProcess.if).toBeUndefined();
-    expect(realProcess["continue-on-error"]).toBeUndefined();
+    expect(realProcess.if).toBe(`\${{ steps.install_bubblewrap.outcome == 'success' }}`);
+    expect(install["continue-on-error"]).toBe(true);
+    expect(realProcess["continue-on-error"]).toBe(true);
     expect((windowsJob.steps ?? []).some((step) => step.name === install.name)).toBe(false);
     expect(readFileSync("tests/worker-isolation-broker.test.ts", "utf8")).toContain(
       'it("U-WIB-007:',
@@ -878,7 +980,7 @@ describe("source harness-check workflow", () => {
     expect(authorityIndex).toBeGreaterThan(-1);
     expect(authorityIndex).toBeLessThan(typecheckIndex);
     expect(authorityIndex).toBeLessThan(regressionIndex);
-    expect(authority["continue-on-error"]).toBeUndefined();
+    expect(authority["continue-on-error"]).toBe(true);
   });
 
   it("U-MPS-PRE-003: runs post-merge PLAN status before authority and full regression", () => {
@@ -893,7 +995,8 @@ describe("source harness-check workflow", () => {
     expect(postMerge?.run).toBe(
       "npx --no-install tsx src/cli.ts plan lint --gate post-merge-status",
     );
-    expect(postMerge?.["continue-on-error"]).toBeUndefined();
+    expect(postMerge?.if).toBe(`\${{ steps.plan_lint.outcome == 'success' }}`);
+    expect(postMerge?.["continue-on-error"]).toBe(true);
     expect(postMergeIndex).toBe(planLintIndex + 1);
     expect(postMergeIndex).toBeLessThan(authorityIndex);
   });
@@ -904,6 +1007,7 @@ describe("source harness-check workflow", () => {
 
     expect(raw).toContain("Required Status Checks は `harness-check` 1 本だけ");
     expect(matrix.run).toContain("plan-lint vmodel-lint branch-kind-check");
+    expect(matrix.run).toContain("branch-kind-check:recovery");
     expect(matrix.run).toContain(
       "poc-no-merge-guard hotfix-postmortem-required issue-closure-contract",
     );
@@ -955,6 +1059,50 @@ describe("source harness-check workflow", () => {
     expect(dependencyGuard.run).toContain("github issue-dependency-audit");
     expect(dependencyGuard.run).toContain('--repository "$GITHUB_REPOSITORY"');
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
+  });
+
+  // PLAN-RECOVERY-1688-preflight-gate-aggregation — U-CI-PREFLIGHT-AGGREGATION-001
+  it("U-CI-PREFLIGHT-AGGREGATION-001: 独立ゲートを観測してから集約し、高コスト工程へfail-closeする", () => {
+    const raw = readFileSync(WORKFLOW_PATH, "utf8");
+    expect(preflightGateAggregationViolations(raw)).toEqual([]);
+    const removeAggregation = mutateWorkflowStep(
+      raw,
+      "aggregate independent preflight gates",
+      () => "      - name: missing aggregation\n        run: true\n",
+    );
+    expect(preflightGateAggregationViolations(removeAggregation)).toContain(
+      "aggregation_step_missing",
+    );
+    const failOpenAggregation = raw.replace(
+      "      - name: aggregate independent preflight gates\n        id: preflight_gate_aggregation",
+      "      - name: aggregate independent preflight gates\n        id: preflight_gate_aggregation\n        continue-on-error: true",
+    );
+    expect(preflightGateAggregationViolations(failOpenAggregation)).toContain(
+      "aggregation_fail_close_contract_invalid",
+    );
+    const failFastLint = raw.replace(
+      "      - name: lint (biome)\n        id: lint_biome\n        continue-on-error: true",
+      "      - name: lint (biome)\n        id: lint_biome",
+    );
+    expect(preflightGateAggregationViolations(failFastLint)).toContain(
+      "required_gate_observation_invalid:lint_biome",
+    );
+    const missingReviewEnforcement = mutateWorkflowStep(
+      raw,
+      "enforce current HEAD independent review admission",
+      () => "      - name: missing review enforcement\n        run: true\n",
+    );
+    expect(preflightGateAggregationViolations(missingReviewEnforcement)).toContain(
+      "review_admission_enforcement_invalid",
+    );
+    const alwaysExpression = "$" + "{{ always() }}";
+    const duplicateAggregation = raw.replace(
+      "      - name: db rebuild (deterministic projection)",
+      `      - name: aggregate independent preflight gates\n        id: preflight_gate_aggregation\n        if: ${alwaysExpression}\n        run: true\n\n      - name: db rebuild (deterministic projection)`,
+    );
+    expect(preflightGateAggregationViolations(duplicateAggregation)).toContain(
+      "aggregation_step_count_invalid",
+    );
   });
 
   // PLAN-L7-574-github-workflow-identity-admission
@@ -1184,7 +1332,8 @@ describe("source harness-check workflow", () => {
   it("U-BIOMEFAST-001: lintを依存導入直後へ置き、遅延・省略・重複を拒否する", () => {
     const raw = readFileSync(WORKFLOW_PATH, "utf8");
     expect(fullRegressionShardJobViolations(raw)).toEqual([]);
-    const lint = "      - name: lint (biome)\n        run: npm run lint\n";
+    const lint =
+      "      - name: lint (biome)\n        id: lint_biome\n        continue-on-error: true\n        run: npm run lint\n";
     expect(raw.includes(lint)).toBe(true);
     const removedFromPreflight = raw.replace(lint, "");
     const duplicatedInFinalize = mutateWorkflowJob(raw, "full-regression-finalize", (job) =>
@@ -1215,7 +1364,6 @@ describe("source harness-check workflow", () => {
       raw.replace(lint, lint + lint),
       raw.replace(lint, lint.replace("npm run lint", "true")),
       raw.replace(lint, `${lint}        if: false\n`),
-      raw.replace(lint, `${lint}        continue-on-error: true\n`),
     ]) {
       expect(fullRegressionShardJobViolations(mutant)).toContain("biome_preflight_invalid");
     }
