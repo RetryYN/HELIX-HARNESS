@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 // PLAN-L7-575-plan-registry-workflow-identity-projection — U-DBWID-001..003, U-DBWID-005
 // PLAN-L7-583-workflow-classification-drive-run-projection — U-DBWID-007..010
-import { REQUIRED_DRIVE_MODELS } from "../../src/lint/drive-db-registration";
+import { LEGACY_COMPATIBILITY_DRIVE_MODELS } from "../../src/lint/drive-db-registration";
 import type { RelationGraphProjection } from "../../src/lint/relation-graph";
 import * as reviewEvidence from "../../src/lint/review-evidence";
 import {
@@ -3359,12 +3359,16 @@ dependencies:
         .prepare("SELECT DISTINCT mode FROM drive_runs WHERE mode <> '' ORDER BY mode")
         .all()
         .map((row) => String((row as { mode: unknown }).mode));
-      expect(projectedDriveModels).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
+      expect(projectedDriveModels).toEqual(
+        expect.arrayContaining(LEGACY_COMPATIBILITY_DRIVE_MODELS),
+      );
       const projectedRouteModes = db
         .prepare("SELECT DISTINCT mode FROM route_modes WHERE mode <> '' ORDER BY mode")
         .all()
         .map((row) => String((row as { mode: unknown }).mode));
-      expect(projectedRouteModes).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
+      expect(projectedRouteModes).toEqual(
+        expect.arrayContaining(LEGACY_COMPATIBILITY_DRIVE_MODELS),
+      );
       expect(
         db
           .prepare("SELECT mode FROM drive_runs WHERE plan_id = ? AND mode = ? LIMIT 1")

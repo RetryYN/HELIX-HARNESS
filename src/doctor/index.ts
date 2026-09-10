@@ -510,6 +510,10 @@ import {
 } from "../runtime/summary-surface-audit";
 import { teamDefinitionSchema } from "../schema/team";
 import {
+  currentWorkflowModelIds,
+  loadWorkflowClassificationCatalog,
+} from "../schema/workflow-classification-catalog.js";
+import {
   analyzeConsumerCiWorkflowContract,
   analyzeConsumerEscalationWorkflowContract,
   branchProtectionScriptIsApplyCapable,
@@ -4989,7 +4993,8 @@ export function checkDriveDbRegistration(
   }
   try {
     const loaded = loadOrBuildDriveDbRegistrationStats(repoRoot, prebuiltDb);
-    const r = analyzeDriveDbRegistration(loaded.stats);
+    const catalog = loadWorkflowClassificationCatalog(repoRoot);
+    const r = analyzeDriveDbRegistration(loaded.stats, currentWorkflowModelIds(catalog));
     const reasonMessage =
       loaded.reason === "ready"
         ? []
