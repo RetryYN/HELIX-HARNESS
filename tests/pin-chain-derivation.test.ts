@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -187,5 +187,83 @@ describe("PLAN-RECOVERY-1670 pin chain derivation", () => {
           finding.field === "test_file_sha256",
       ),
     ).toBe(false);
+  });
+
+  it("U-PINCHAIN-010: outstanding.ts変更からdigest inventoryのstale lineをscannerで導出する", () => {
+    const root = fixture();
+    mkdirSync(join(root, "config"), { recursive: true });
+    const target = "src/lint/outstanding.ts";
+    const targetSource = [
+      'import { createHash } from "node:crypto";',
+      "",
+      "// PR #1683で追加された処理により、既存sha256Jsonの行が移動した反例。",
+      "function sha256Json(value: unknown): string {",
+      '  return createHash("sha256").update(JSON.stringify(value)).digest("hex");',
+      "}",
+      "",
+    ].join("\n");
+    writeFileSync(join(root, target), targetSource);
+    const hitId = `${target}::sha256Json:createHash(sha256)::1`;
+    const inventoryPath = join(root, "config/digest-canonicalization-inventory.json");
+    const inventorySource = `${JSON.stringify(
+      {
+        schema_version: "digest-inventory.v3",
+        rows: [{ hit_id: hitId, path: target, line: 4 }],
+      },
+      null,
+      2,
+    )}\n`;
+    writeFileSync(inventoryPath, inventorySource);
+
+    const report = derivePinChain(root, [target]);
+    expect(report.status).toBe("ok");
+    expect(report.findings).toEqual([
+      {
+        changed_path: target,
+        dependent_path: "config/digest-canonicalization-inventory.json",
+        location: "config/digest-canonicalization-inventory.json:7",
+        field: "line",
+        kind: "deterministic_pin",
+        action: "refresh_candidate",
+        recorded_value: 4,
+        live_value: 5,
+        stale: true,
+      },
+    ]);
+    expect(readFileSync(inventoryPath, "utf8")).toBe(inventorySource);
+  });
+
+  it("U-PINCHAIN-011: inventoryのdigest hitが消えてもfindingを消さない", () => {
+    const root = fixture();
+    mkdirSync(join(root, "config"), { recursive: true });
+    const target = "src/lint/outstanding.ts";
+    writeFileSync(join(root, target), "export const value = 1;\n");
+    const hitId = `${target}::sha256Json:createHash(sha256)::1`;
+    writeFileSync(
+      join(root, "config/digest-canonicalization-inventory.json"),
+      `${JSON.stringify(
+        {
+          schema_version: "digest-inventory.v3",
+          rows: [{ hit_id: hitId, path: target, line: 4 }],
+        },
+        null,
+        2,
+      )}\n`,
+    );
+
+    const report = derivePinChain(root, [target]);
+    expect(report.status).toBe("ok");
+    expect(report.findings).toEqual([
+      expect.objectContaining({
+        changed_path: target,
+        dependent_path: "config/digest-canonicalization-inventory.json",
+        field: "line",
+        kind: "deterministic_pin",
+        action: "refresh_candidate",
+        recorded_value: 4,
+        live_value: null,
+        stale: true,
+      }),
+    ]);
   });
 });
