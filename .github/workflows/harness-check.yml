@@ -322,6 +322,7 @@ jobs:
             --jq '{repository: .base.repo.full_name, number: .number, title: .title, body: (.body // ""), head_ref: .head.ref, base_ref: .base.ref, head_sha: .head.sha, base_sha: .base.sha}' \
             > "$RUNNER_TEMP/pr-context-before.json"
 
+      # PR状態に依存するため集約対象外。専用の enforcement step で別途 fail-close する（#1688）。
       - name: current HEAD independent review admission
         id: current_head_review
         continue-on-error: true
@@ -541,143 +542,20 @@ jobs:
           BASE_BRANCH: ${{ github.base_ref }}
         run: |
           set -euo pipefail
-          node - "$RUNNER_TEMP/preflight-gate-results.json" <<'NODE'
-          const fs = require("node:fs");
-          const outputPath = process.argv[2];
-          const outcome = (name) => process.env[name] || "unknown";
-          const eventName = process.env.EVENT_NAME || "";
-          const headBranch = process.env.HEAD_BRANCH || "";
-          const baseBranch = process.env.BASE_BRANCH || "";
-          const mainPullRequest = eventName === "pull_request" && baseBranch === "main";
-          const gates = [];
-          const addGate = (id, label, status, skipReason) => {
-            const gate = { id, label, status };
-            if (skipReason) gate.skip_reason = skipReason;
-            gates.push(gate);
-          };
-
-          addGate("lint_biome", "lint (biome)", outcome("LINT_BIOME"));
-          addGate("design_language", "design-language", outcome("DESIGN_LANGUAGE"));
-          addGate("repo_guard_preflight", "repo-wide guard preflight", outcome("REPO_GUARD_PREFLIGHT"));
-          addGate("install_bubblewrap", "install required Linux isolation backend", outcome("INSTALL_BUBBLEWRAP"));
-          addGate(
-            "real_bubblewrap",
-            "required real bubblewrap process isolation",
-            outcome("REAL_BUBBLEWRAP") === "skipped" && outcome("INSTALL_BUBBLEWRAP") !== "success"
-              ? "skipped"
-              : outcome("REAL_BUBBLEWRAP"),
-            outcome("INSTALL_BUBBLEWRAP") !== "success"
-              ? "dependency_failed:install_bubblewrap"
-              : undefined,
-          );
-          addGate("branch_type_matrix", "branch type matrix", outcome("BRANCH_TYPE_MATRIX"));
-          addGate("branch_kind_check", "branch-kind-check", outcome("BRANCH_KIND_CHECK"));
-          addGate("commitlint", "commitlint", outcome("COMMITLINT"));
-          const addConditionalGate = (id, label, envName, applies, skipReason) => {
-            const status = outcome(envName);
-            if (status === "skipped") {
-              addGate(
-                id,
-                label,
-                status,
-                applies ? `unexpected_skip:${id}` : `not_applicable:${skipReason}`,
-              );
-            } else {
-              addGate(id, label, status);
-            }
-          };
-          addConditionalGate(
-            "poc_no_merge_guard",
-            "poc-no-merge-guard",
-            "POC_NO_MERGE_GUARD",
-            mainPullRequest && headBranch.startsWith("poc/"),
-            "event_or_branch_not_poc_main",
-          );
-          addConditionalGate(
-            "hotfix_postmortem_required",
-            "hotfix-postmortem-required",
-            "HOTFIX_POSTMORTEM_REQUIRED",
-            mainPullRequest && headBranch.startsWith("hotfix/"),
-            "event_or_branch_not_hotfix_main",
-          );
-          addConditionalGate(
-            "issue_closure_contract",
-            "issue-closure-contract",
-            "ISSUE_CLOSURE_CONTRACT",
-            eventName === "pull_request",
-            "event_not_pull_request",
-          );
-          addConditionalGate(
-            "issue_dependency_contract",
-            "issue-dependency-contract",
-            "ISSUE_DEPENDENCY_CONTRACT",
-            eventName === "pull_request",
-            "event_not_pull_request",
-          );
-          addConditionalGate(
-            "issue_dependency_repository_contract",
-            "issue-dependency-repository-contract",
-            "ISSUE_DEPENDENCY_REPOSITORY_CONTRACT",
-            eventName === "schedule" || eventName === "workflow_dispatch",
-            "event_not_schedule_or_workflow_dispatch",
-          );
-          addGate("plan_lint", "plan-lint", outcome("PLAN_LINT"));
-          addGate(
-            "post_merge_plan",
-            "post-merge PLAN status",
-            outcome("POST_MERGE_PLAN") === "skipped" && outcome("PLAN_LINT") !== "success"
-              ? "skipped"
-              : outcome("POST_MERGE_PLAN"),
-            outcome("PLAN_LINT") !== "success"
-              ? "dependency_failed:plan_lint"
-              : undefined,
-          );
-          addGate("l12_authority", "L1-L12 canonical authority drift", outcome("L12_AUTHORITY"));
-          addGate("typecheck", "typecheck (tsc --noEmit)", outcome("TYPECHECK"));
-
-          const reviewOutcome = outcome("CURRENT_HEAD_REVIEW");
-          const result = {
-            schema_version: "helix-preflight-gate-aggregation.v1",
-            observed_at: new Date().toISOString(),
-            gates,
-            excluded_gates: [
-              {
-                id: "current_head_review",
-                label: "current HEAD independent review admission",
-                status: reviewOutcome,
-                reason:
-                  "PR-state-dependent admission is enforced separately after aggregation; it is not an aggregateable repository gate.",
-              },
-            ],
-          };
-          fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`);
-          NODE
+          output="$RUNNER_TEMP/preflight-gate-results.json"
+          if npx --no-install tsx src/cli/preflight-gate-aggregation.ts --output "$output"; then
+            status=0
+          else
+            status=$?
+          fi
           {
             echo '### Preflight gate aggregation'
             echo
             echo '```json'
-            cat "$RUNNER_TEMP/preflight-gate-results.json"
+            cat "$output"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-          node - "$RUNNER_TEMP/preflight-gate-results.json" <<'NODE'
-          const fs = require("node:fs");
-          const result = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
-          const failures = result.gates.filter((gate) => gate.status !== "success" && gate.status !== "skipped");
-          const unauthorizedSkips = result.gates.filter(
-            (gate) =>
-              gate.status === "skipped" &&
-              (!gate.skip_reason || gate.skip_reason.startsWith("unexpected_skip:")),
-          );
-          for (const gate of result.gates) {
-            console.log(`${gate.id}: ${gate.status}${gate.skip_reason ? ` (${gate.skip_reason})` : ""}`);
-          }
-          if (failures.length > 0 || unauthorizedSkips.length > 0) {
-            console.error(
-              `preflight gate aggregation failed: ${failures.length} failure(s), ${unauthorizedSkips.length} unauthorized skip(s)`,
-            );
-            process.exit(1);
-          }
-          NODE
+          exit "$status"
 
       - name: upload preflight gate aggregation
         if: ${{ always() && steps.preflight_gate_aggregation.outcome != 'skipped' }}

@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: confirmed
 created: 2026-08-01
-updated: 2026-09-08
+updated: 2026-09-10
 owner: QA
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 pair_artifact: docs/design/helix/L6-function-design/impact-ci-recovery.md
@@ -49,6 +49,9 @@ queue_id: L3Q-PC-039
 | U-FULLSHARD-WF-001 | preflight、4 shard、finalizeをtyped artifactと同一HEAD／baseへ接続し、checkout refはPR headまたはtrusted `github.sha`へ限定 | job／artifact／identity／required aggregateの欠落、schedule／workflow_dispatchでneeds由来candidate HEADをcheckoutする経路を拒否 |
 | U-FULLSHARD-WF-002 | receipt exact set検証後だけDB／doctorを実行 | receipt欠落、wrong partition、fail-open、gate順序短絡を拒否 |
 | U-BIOMEFAST-001 | Biomeをpreflightの依存導入直後かつshard plan生成前に一回実行 | finalizeへ戻す、preflightから除く、shard plan生成後へ移す、他jobへ複製、command差替え、条件付きskip、continue-on-errorを拒否 |
+| U-CI-PREFLIGHT-AGGREGATION-001 | workflowが独立ゲートを観測してからCLI集約へ渡し、高コスト工程の前でfail-closeする | 集約step欠落、continue-on-errorによるfail-open、review混入、観測漏れを拒否 |
+| U-CI-PREFLIGHT-AGGREGATION-002 | 純関数が複数失敗とtyped skipを保持しfail-closeする | unauthorized skip検査削除、applies条件の定数false化を拒否 |
+| U-CI-PREFLIGHT-AGGREGATION-CLI-001 | CLIがtyped JSONを書きfail-closeをexit 1へ写像する | 失敗をexit 0へ落とすmutationを拒否 |
 | U-FULLSHARD-WF-003 | preflight 35分、bulk各25分、stateful 30分、finalize 15分のbounded job timeoutとbudget telemetryを固定 | shard timeout、telemetry、timeout検査の削除、job単位の無制限化を拒否 |
 | U-G10CHROMIUM-001 | bulk-3はlegacy list形式とdeb822形式のGoogle Chrome apt sourceを存在時だけrunner tempへ退避してからPlaywright Chromiumを導入 | 片方のsource退避欠落、Playwright導入後への順序逆転、退避なしで外部Google repositoryのhash不整合を受ける経路を拒否 |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
@@ -99,6 +102,8 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-006 | 非PR revision range正規化 | schedule／workflow_dispatchで空before SHAをHEAD親へ写像し、branch-kind／commitlintの片側だけempty判定を削るmutationを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-CI-PREFLIGHT-AGGREGATION-001 | 事前ゲート結果の集約 | 複数ゲートの結果を個別ID・skip理由付きで保持し、集約stepの欠落、fail-open、review admissionの混入、無理由skip、条件付きゲートの観測漏れ、適用対象のunexpected skipを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-CI-PREFLIGHT-AGGREGATION-002 | 集約判定の純関数 | 複数独立失敗の全件保持、not_applicable／dependency_failedの許可、unexpected_skipと無理由skipのfail-close、review admission除外を固定し、unauthorized skip検査削除とapplies条件の定数false化を拒否 | `tests/preflight-gate-aggregation.test.ts` |
+| U-CI-PREFLIGHT-AGGREGATION-CLI-001 | 集約CLI境界 | typed JSONを書き、fail-closeをexit 1とstderrへ写像する。成功時も各gate行をstdoutへ出す | `tests/preflight-gate-aggregation-cli.test.ts` |
 | U-ESC-SRC-001 | source workflow profile boundary | sourceへ consumer doctorを適用するmutationを拒否 | `tests/escalation-stale-source-workflow.test.ts` |
 | U-ESC-SRC-002 | consumer template profile boundary | consumer templateをsource profileへ変えるmutationを拒否 | `tests/escalation-stale-source-workflow.test.ts` |
 | U-REPOGUARD-001 | repo-wide guard exact set | registryから1件削除、重複、missing path、未登録guardを拒否 | `tests/repo-wide-guard-registry.test.ts` |
