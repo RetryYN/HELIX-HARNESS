@@ -47,13 +47,8 @@ export type GithubWorkflowIdentityContractResult =
   | { ok: true; contract: GithubWorkflowIdentityContract }
   | { ok: false; reason: GithubWorkflowIdentityContractFailureReason; detail: string };
 
-const LEGACY_IDENTITY_FIELDS = new Set([
-  "mode",
-  "model",
-  "route_mode",
-  "catalog_route_id",
-  "route_class",
-]);
+const LEGACY_IDENTITY_FIELDS = new Set(["mode", "model", "route_mode"]);
+const CURRENT_ROUTE_IDENTITY_FIELDS = new Set(["catalog_route_id", "route_class"]);
 
 function objectValue(value: unknown): Record<string, unknown> | null {
   return value !== null && typeof value === "object" && !Array.isArray(value)
@@ -163,6 +158,17 @@ export function parseGithubWorkflowIdentityContract(
         .filter((field) => LEGACY_IDENTITY_FIELDS.has(field))
         .sort()
         .join(","),
+    };
+  }
+  if (record && Object.keys(record).some((field) => CURRENT_ROUTE_IDENTITY_FIELDS.has(field))) {
+    const fields = Object.keys(record)
+      .filter((field) => CURRENT_ROUTE_IDENTITY_FIELDS.has(field))
+      .sort()
+      .join(",");
+    return {
+      ok: false,
+      reason: "workflow_identity_contract_schema_invalid",
+      detail: `${fields}: current route identity belongs to its route projection contract, not github workflow identity contract v1`,
     };
   }
   const parsed = githubWorkflowIdentityContractSchema.safeParse(raw);
