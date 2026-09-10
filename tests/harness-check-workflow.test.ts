@@ -291,6 +291,8 @@ function preflightGateAggregationViolations(raw: string): string[] {
       !run.includes("helix-preflight-gate-aggregation.v1") ||
       !run.includes("GITHUB_STEP_SUMMARY") ||
       !run.includes("unauthorizedSkips") ||
+      !run.includes("unexpected_skip:") ||
+      !run.includes("not_applicable:") ||
       !run.includes("process.exit(1)") ||
       !run.includes("excluded_gates")
     ) {
