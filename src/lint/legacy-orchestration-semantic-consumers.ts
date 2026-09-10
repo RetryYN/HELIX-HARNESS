@@ -1,11 +1,16 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { canonicalJson, sha256Digest } from "../shared/canonical-digest";
 
 export const LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_LEDGER_PATH =
   "config/legacy-orchestration-semantic-consumers.json" as const;
+export const LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_REVISION_PATH =
+  "config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json" as const;
 export const LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_SCHEMA_VERSION =
   "helix-legacy-orchestration-semantic-consumer-ledger.v1" as const;
+export const LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_REVISION_SCHEMA_VERSION =
+  "helix-legacy-orchestration-semantic-consumer-ledger-revision.v1" as const;
 
 export const LEGACY_ORCHESTRATION_CONSUMER_ROLES = [
   "direct_execution",
@@ -43,6 +48,19 @@ export interface LegacyOrchestrationSemanticConsumerLedger {
   issue_id: 865;
   parent_plan: "PLAN-L7-729-legacy-orchestration-new-use-freeze";
   source_head: string;
+  entries: LegacyOrchestrationSemanticConsumerEntry[];
+}
+
+export interface LegacyOrchestrationSemanticConsumerLedgerRevision {
+  schema_version: typeof LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_REVISION_SCHEMA_VERSION;
+  authority_role: "compatibility_only_semantic_consumer_ledger_revision";
+  issue_id: 865;
+  parent_plan: "PLAN-L7-865-legacy-orchestration-semantic-consumer-ledger";
+  base_ledger_path: typeof LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_LEDGER_PATH;
+  base_ledger_sha256: string;
+  revision_id: string;
+  source_head: string;
+  revision_payload_sha256: string;
   entries: LegacyOrchestrationSemanticConsumerEntry[];
 }
 
@@ -135,6 +153,73 @@ const REQUIRED_CONSUMERS: RequiredConsumer[] = [
   },
 ];
 
+const REVISION_REQUIRED_CONSUMERS: RequiredConsumer[] = [
+  {
+    capability_id: "LEGACY-SEM-TEAM-SERIALIZE-AFTER-001",
+    path: "src/team/run.ts",
+    symbol_or_command: "member.serialize_after",
+    line_anchor: "if (member.serialize_after) {",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-014"],
+  },
+  {
+    capability_id: "LEGACY-SEM-AGENT-SLOTS-DEPS-001",
+    path: "src/runtime/agent-slots.ts",
+    symbol_or_command: "nodeAgentSlotsDeps",
+    line_anchor: "export function nodeAgentSlotsDeps(repoRoot: string): AgentSlotsDeps {",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-015"],
+  },
+  {
+    capability_id: "LEGACY-SEM-TEAM-SERIALIZATION-FLAG-001",
+    path: "src/team/run.ts",
+    symbol_or_command: "serializationRequired",
+    line_anchor: "const serializationRequired = mustSerialize(team.serialization);",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-017"],
+  },
+  {
+    capability_id: "LEGACY-SEM-TEAM-DEPENDENCY-FAILURE-001",
+    path: "src/team/run.ts",
+    symbol_or_command: "failedDependencies.has(member.serialize_after)",
+    line_anchor: "if (member.serialize_after && failedDependencies.has(member.serialize_after)) {",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-018"],
+  },
+  {
+    capability_id: "LEGACY-SEM-AGENT-SLOTS-WRITER-001",
+    path: "src/runtime/agent-slots.ts",
+    symbol_or_command: "writeText: (p, c)",
+    line_anchor: "writeText: (p, c) => {",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-019"],
+  },
+  {
+    capability_id: "LEGACY-SEM-LOOP-LEGACY-IMPORT-WRITE-001",
+    path: "src/orchestration/loop-store.ts",
+    symbol_or_command: "renameSync(rawPath, sourcePath)",
+    line_anchor: "renameSync(rawPath, sourcePath);",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-016"],
+  },
+  {
+    capability_id: "LEGACY-SEM-LOOP-LEGACY-IMPORT-COMMIT-001",
+    path: "src/orchestration/loop-store.ts",
+    symbol_or_command: "commitLoopEpoch",
+    line_anchor: "const committed = commitLoopEpoch({",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-020"],
+  },
+  {
+    capability_id: "LEGACY-SEM-LOOP-LEGACY-IMPORT-DONE-MARKER-001",
+    path: "src/orchestration/loop-store.ts",
+    symbol_or_command: "publishDoneMarker",
+    line_anchor: "publishDoneMarker(planId, sourceDigest);",
+    consumer_role: "write_control",
+    negative_oracle_ids: ["U-LORET-SEM-021"],
+  },
+];
+
 const RETIREMENT_PRECONDITIONS = [
   "production_consumer_zero",
   "successor_production_callsite",
@@ -152,10 +237,6 @@ const DIRECT_CALL_BASELINES = [
   { marker: "fireSlot(", paths: { "src/runtime/agent-slots.ts": 1, "src/team/run.ts": 1 } },
   { marker: "releaseSlot(", paths: { "src/runtime/agent-slots.ts": 1, "src/team/run.ts": 2 } },
 ] as const;
-
-const EXPECTED_ROLE_BY_CAPABILITY = new Map(
-  REQUIRED_CONSUMERS.map((consumer) => [consumer.capability_id, consumer.consumer_role]),
-);
 
 function isConsumerRole(value: unknown): value is LegacyOrchestrationConsumerRole {
   return (
@@ -275,12 +356,16 @@ function validateEntryShape(
     addError(errors, `entry_negative_oracles_missing:${entry.capability_id || "<unknown>"}`);
 }
 
-export function analyzeLegacyOrchestrationSemanticConsumers(
+function analyzeLedger(
   ledger: LegacyOrchestrationSemanticConsumerLedger,
   sourceFiles: LegacyOrchestrationSemanticConsumerSource[],
+  requiredConsumers: readonly RequiredConsumer[],
 ): LegacyOrchestrationSemanticConsumerResult {
   const errors: string[] = [];
   const resolvedAnchors: LegacyOrchestrationSemanticConsumerResult["resolvedAnchors"] = [];
+  const expectedRoleByCapability = new Map(
+    requiredConsumers.map((consumer) => [consumer.capability_id, consumer.consumer_role]),
+  );
 
   if (ledger.schema_version !== LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_SCHEMA_VERSION)
     addError(errors, "ledger_schema_invalid");
@@ -314,8 +399,8 @@ export function analyzeLegacyOrchestrationSemanticConsumers(
       addError(errors, `duplicate_capability:${entry.capability_id}`);
     else byCapability.set(entry.capability_id, entry);
 
-    const expectedRole = EXPECTED_ROLE_BY_CAPABILITY.get(entry.capability_id);
-    const required = REQUIRED_CONSUMERS.find(
+    const expectedRole = expectedRoleByCapability.get(entry.capability_id);
+    const required = requiredConsumers.find(
       (consumer) => consumer.capability_id === entry.capability_id,
     );
     if (!required) addError(errors, `unregistered_capability:${entry.capability_id}`);
@@ -377,7 +462,7 @@ export function analyzeLegacyOrchestrationSemanticConsumers(
     }
   }
 
-  for (const required of REQUIRED_CONSUMERS) {
+  for (const required of requiredConsumers) {
     const entry = byCapability.get(required.capability_id);
     if (!entry) {
       addError(errors, `required_capability_missing:${required.capability_id}`);
@@ -396,6 +481,71 @@ export function analyzeLegacyOrchestrationSemanticConsumers(
 
   detectHiddenConsumers(sourceFiles, errors);
   return { ok: errors.length === 0, resolvedAnchors, errors };
+}
+
+export function analyzeLegacyOrchestrationSemanticConsumers(
+  ledger: LegacyOrchestrationSemanticConsumerLedger,
+  sourceFiles: LegacyOrchestrationSemanticConsumerSource[],
+): LegacyOrchestrationSemanticConsumerResult {
+  return analyzeLedger(ledger, sourceFiles, REQUIRED_CONSUMERS);
+}
+
+function revisionPayload(
+  revision: LegacyOrchestrationSemanticConsumerLedgerRevision,
+): Omit<LegacyOrchestrationSemanticConsumerLedgerRevision, "revision_payload_sha256"> {
+  const { revision_payload_sha256: _digest, ...payload } = revision;
+  return payload;
+}
+
+function validateRevisionEnvelope(
+  revision: LegacyOrchestrationSemanticConsumerLedgerRevision,
+): string[] {
+  const errors: string[] = [];
+  if (revision.schema_version !== LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_REVISION_SCHEMA_VERSION)
+    addError(errors, "revision_schema_invalid");
+  if (revision.authority_role !== "compatibility_only_semantic_consumer_ledger_revision")
+    addError(errors, "revision_authority_role_invalid");
+  if (revision.issue_id !== 865) addError(errors, "revision_issue_invalid");
+  if (revision.parent_plan !== "PLAN-L7-865-legacy-orchestration-semantic-consumer-ledger")
+    addError(errors, "revision_parent_plan_invalid");
+  if (revision.base_ledger_path !== LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_LEDGER_PATH)
+    addError(errors, "revision_base_ledger_path_invalid");
+  if (!/^sha256:[0-9a-f]{64}$/.test(revision.base_ledger_sha256))
+    addError(errors, "revision_base_ledger_digest_invalid");
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]{2,127}$/.test(revision.revision_id))
+    addError(errors, "revision_id_invalid");
+  if (!/^[0-9a-f]{40}$/.test(revision.source_head))
+    addError(errors, "revision_source_head_invalid");
+  if (!/^sha256:[0-9a-f]{64}$/.test(revision.revision_payload_sha256))
+    addError(errors, "revision_payload_digest_invalid");
+  else if (
+    sha256Digest(canonicalJson(revisionPayload(revision))) !== revision.revision_payload_sha256
+  )
+    addError(errors, "revision_payload_digest_mismatch");
+  if (!Array.isArray(revision.entries) || revision.entries.length === 0)
+    addError(errors, "revision_entries_invalid");
+  return errors;
+}
+
+export function analyzeLegacyOrchestrationSemanticConsumerLedgerRevision(
+  ledger: LegacyOrchestrationSemanticConsumerLedger,
+  revision: LegacyOrchestrationSemanticConsumerLedgerRevision,
+  sourceFiles: LegacyOrchestrationSemanticConsumerSource[],
+): LegacyOrchestrationSemanticConsumerResult {
+  const envelopeErrors = validateRevisionEnvelope(revision);
+  const combined = {
+    ...ledger,
+    entries: [...ledger.entries, ...(Array.isArray(revision.entries) ? revision.entries : [])],
+  };
+  const result = analyzeLedger(combined, sourceFiles, [
+    ...REQUIRED_CONSUMERS,
+    ...REVISION_REQUIRED_CONSUMERS,
+  ]);
+  return {
+    ok: envelopeErrors.length === 0 && result.ok,
+    resolvedAnchors: result.resolvedAnchors,
+    errors: [...envelopeErrors, ...result.errors],
+  };
 }
 
 export function loadLegacyOrchestrationSemanticConsumerLedger(repoRoot: string): {
@@ -420,6 +570,43 @@ export function loadLegacyOrchestrationSemanticConsumerLedger(repoRoot: string):
     .filter((path) => existsSync(join(repoRoot, path)))
     .map((path) => ({ path, content: readFileSync(join(repoRoot, path), "utf8") }));
   return { ledger, sourceFiles };
+}
+
+export function loadLegacyOrchestrationSemanticConsumerLedgerRevision(repoRoot: string): {
+  ledger: LegacyOrchestrationSemanticConsumerLedger;
+  revision: LegacyOrchestrationSemanticConsumerLedgerRevision;
+  sourceFiles: LegacyOrchestrationSemanticConsumerSource[];
+} {
+  const loaded = loadLegacyOrchestrationSemanticConsumerLedger(repoRoot);
+  const revisionPath = join(repoRoot, LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_REVISION_PATH);
+  if (!existsSync(revisionPath))
+    throw new Error("legacy orchestration semantic consumer ledger revision missing");
+  const revision = JSON.parse(
+    readFileSync(revisionPath, "utf8"),
+  ) as LegacyOrchestrationSemanticConsumerLedgerRevision;
+  const baseBytes = readFileSync(
+    join(repoRoot, LEGACY_ORCHESTRATION_SEMANTIC_CONSUMER_LEDGER_PATH),
+  );
+  const envelopeErrors = validateRevisionEnvelope(revision);
+  if (
+    /^sha256:[0-9a-f]{64}$/.test(revision.base_ledger_sha256) &&
+    sha256Digest(baseBytes) !== revision.base_ledger_sha256
+  )
+    envelopeErrors.push("revision_base_ledger_digest_mismatch");
+  if (!/^[0-9a-f]{40}$/.test(revision.source_head)) {
+    envelopeErrors.push("revision_source_head_invalid");
+  } else {
+    try {
+      execFileSync("git", ["merge-base", "--is-ancestor", revision.source_head, "HEAD"], {
+        cwd: repoRoot,
+        stdio: "ignore",
+      });
+    } catch {
+      envelopeErrors.push("revision_source_head_not_ancestor");
+    }
+  }
+  if (envelopeErrors.length > 0) throw new Error(envelopeErrors.join(","));
+  return { ...loaded, revision };
 }
 
 export function legacyOrchestrationSemanticConsumerMessages(

@@ -1,9 +1,16 @@
+import { execFileSync } from "node:child_process";
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  analyzeLegacyOrchestrationSemanticConsumerLedgerRevision,
   analyzeLegacyOrchestrationSemanticConsumers,
   type LegacyOrchestrationSemanticConsumerLedger,
+  type LegacyOrchestrationSemanticConsumerLedgerRevision,
   type LegacyOrchestrationSemanticConsumerSource,
   loadLegacyOrchestrationSemanticConsumerLedger,
+  loadLegacyOrchestrationSemanticConsumerLedgerRevision,
 } from "../src/lint/legacy-orchestration-semantic-consumers";
 
 const requiredCapabilities = [
@@ -21,6 +28,12 @@ function cloneLedger(
   ledger: LegacyOrchestrationSemanticConsumerLedger,
 ): LegacyOrchestrationSemanticConsumerLedger {
   return structuredClone(ledger);
+}
+
+function cloneRevision(
+  revision: LegacyOrchestrationSemanticConsumerLedgerRevision,
+): LegacyOrchestrationSemanticConsumerLedgerRevision {
+  return structuredClone(revision);
 }
 
 function source(path: string, content: string): LegacyOrchestrationSemanticConsumerSource {
@@ -237,5 +250,104 @@ describe("legacy orchestration semantic consumer ledger", () => {
     expect(
       analyzeLegacyOrchestrationSemanticConsumers(unknownOracle, loaded.sourceFiles).errors,
     ).toContain("negative_oracle_set_mismatch:LEGACY-SEM-TEAM-CLI-DIRECT-001");
+  });
+
+  it("U-LORET-SEM-014/015/016/017/018/019/020/021: frozen baseを変更せずrevision overlayの8 consumerを検証する", () => {
+    const loaded = loadLegacyOrchestrationSemanticConsumerLedgerRevision(process.cwd());
+    const result = analyzeLegacyOrchestrationSemanticConsumerLedgerRevision(
+      loaded.ledger,
+      loaded.revision,
+      loaded.sourceFiles,
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result.errors).toEqual([]);
+    expect(loaded.revision.entries).toHaveLength(8);
+    expect(result.resolvedAnchors).toHaveLength(loaded.ledger.entries.length + 8);
+    expect(loaded.revision.base_ledger_sha256).toBe(
+      "sha256:24c0fe1c483c22b5155876ebc89351b9275b1cbd7df04f78bcc437364830335e",
+    );
+  });
+
+  it("U-LORET-SEM-014/015/016/017/018/019/020/021: overlayの欠落とpayload改変をfail-closeする", () => {
+    const loaded = loadLegacyOrchestrationSemanticConsumerLedgerRevision(process.cwd());
+    const missing = cloneRevision(loaded.revision);
+    missing.entries = missing.entries.slice(1);
+    const missingResult = analyzeLegacyOrchestrationSemanticConsumerLedgerRevision(
+      loaded.ledger,
+      missing,
+      loaded.sourceFiles,
+    );
+    expect(missingResult.ok).toBe(false);
+    expect(missingResult.errors).toContain(
+      "required_capability_missing:LEGACY-SEM-TEAM-SERIALIZE-AFTER-001",
+    );
+
+    const tampered = cloneRevision(loaded.revision);
+    tampered.entries[0].target_authority = "unrelated_authority";
+    const tamperedResult = analyzeLegacyOrchestrationSemanticConsumerLedgerRevision(
+      loaded.ledger,
+      tampered,
+      loaded.sourceFiles,
+    );
+    expect(tamperedResult.ok).toBe(false);
+    expect(tamperedResult.errors).toContain("revision_payload_digest_mismatch");
+  });
+
+  it("U-LORET-SEM-023/024: base bytes改変と非祖先revision source headをloaderで拒否する", () => {
+    const makeFixture = () => {
+      const root = mkdtempSync(join(tmpdir(), "helix-legacy-overlay-loader-"));
+      for (const path of [
+        "src/cli.ts",
+        "src/team/run.ts",
+        "src/runtime/agent-slots.ts",
+        "src/orchestration/loop-store.ts",
+      ]) {
+        const target = join(root, path);
+        mkdirSync(dirname(target), { recursive: true });
+        cpSync(join(process.cwd(), path), target);
+      }
+      mkdirSync(join(root, "config"), { recursive: true });
+      cpSync(
+        join(process.cwd(), "config/legacy-orchestration-semantic-consumers.json"),
+        join(root, "config/legacy-orchestration-semantic-consumers.json"),
+      );
+      cpSync(
+        join(
+          process.cwd(),
+          "config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json",
+        ),
+        join(root, "config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json"),
+      );
+      execFileSync("git", ["init", "-q"], { cwd: root });
+      execFileSync("git", ["config", "user.email", "test@example.invalid"], { cwd: root });
+      execFileSync("git", ["config", "user.name", "HELIX test"], { cwd: root });
+      execFileSync("git", ["add", "src", "config"], { cwd: root });
+      execFileSync("git", ["commit", "-qm", "fixture"], { cwd: root });
+      return root;
+    };
+
+    const baseTamperedRoot = makeFixture();
+    try {
+      const basePath = join(
+        baseTamperedRoot,
+        "config/legacy-orchestration-semantic-consumers.json",
+      );
+      writeFileSync(basePath, `${readFileSync(basePath, "utf8")}\n`);
+      expect(() => loadLegacyOrchestrationSemanticConsumerLedgerRevision(baseTamperedRoot)).toThrow(
+        "revision_base_ledger_digest_mismatch",
+      );
+    } finally {
+      rmSync(baseTamperedRoot, { recursive: true, force: true });
+    }
+
+    const nonAncestorRoot = makeFixture();
+    try {
+      expect(() => loadLegacyOrchestrationSemanticConsumerLedgerRevision(nonAncestorRoot)).toThrow(
+        "revision_source_head_not_ancestor",
+      );
+    } finally {
+      rmSync(nonAncestorRoot, { recursive: true, force: true });
+    }
   });
 });

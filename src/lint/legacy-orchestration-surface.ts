@@ -14,6 +14,7 @@ export const LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS = [
   "docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
   "docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md",
   "config/legacy-orchestration-semantic-consumers.json",
+  "config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json",
   "src/lint/legacy-orchestration-semantic-consumers.ts",
   "tests/legacy-orchestration-semantic-consumers.test.ts",
 ] as const;
