@@ -4,7 +4,7 @@ title: "Cursor v1 run authorityとagent_busy回復境界"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
