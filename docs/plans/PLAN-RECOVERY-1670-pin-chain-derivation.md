@@ -25,7 +25,7 @@ contract_failures: "pin漏れ、記録値だけの照合、semantic pinの自動
 tdd_red_required: true
 red_at: "2026-09-09T03:42:00+09:00"
 green_at: "2026-09-09T03:46:54+09:00"
-mutation_oracle_evidence: "tests/pin-chain-derivation.test.tsで変異A（unsupportedSurfacesをall-or-nothingへ退行）を投入するとU-PINCHAIN-002/006がRed、変異B（count locationを値の最初の出現へ退行）を投入するとU-PINCHAIN-005がRedとなり、両変異をkillした。復元後5 tests green、git diff 0を独立Claudeが実測。"
+mutation_oracle_evidence: "tests/pin-chain-derivation.test.tsで変異A（unsupportedSurfacesをall-or-nothingへ退行）を投入するとU-PINCHAIN-002/006がRed、変異B（count locationを値の最初の出現へ退行）を投入するとU-PINCHAIN-005がRedとなり、両変異をkillした。第二sliceではinventory line adapterの変異を投入し、U-PINCHAIN-010/011がlive lineの不一致とhit消失時のstale保持を検出することを確認した。復元後5 tests green、git diff 0を独立Claudeが実測。"
 complexity_effect: justified_positive
 complexity_justification: "既存pin形式ごとのread-only adapter一箇所へ追従推測を集約し、CI再走と手作業を削減する"
 removal_trigger: "全pin ownerが共通relation graphから同等のexact逆引きを提供しconsumer移行が成立した時"
@@ -97,6 +97,27 @@ review_evidence:
         completed_at: "2026-09-09T15:47:58Z"
         evidence_path: docs/governance/evidence/PR-1679/vitest-targeted.json
         output_digest: "sha256:f0b71876d084df17622ddd2387bb2b543b392422cc33b70f1d585f48952ae08f"
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-10T08:34:14Z"
+    tests_green_at: "2026-09-10T07:45:53Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 9c6b9cd387f74a33f8d8183530ce8e9528076629
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1692#issuecomment-5615646138"
+    ci_evidence_generation: "run:34449485027:attempt:1:success"
+    scope: "PR #1692のmain同期後current HEAD 9c6b9cd387f74a33f8d8183530ce8e9528076629を独立検収した。第二sliceのread-only reverse pin lookup、changed pathからのinventory row逆引き、recorded/live line比較、hit消失時のstale保持、deterministic pinとsemantic review pinの境界、自動書換えなしを確認し、blocker 0でapproveした。U-PINCHAIN-010/011のmutation kill証拠追記を含む。design catalog・V-pair等の後続adapter、Issue #1670全体の完了は主張しない。"
+    green_commands:
+      - kind: smoke
+        command: "GitHub Actions impact-ci-full-receipt artifact from run 34449485027"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-10T07:42:05Z"
+        evidence_path: .helix/evidence/impact-ci-full-receipt.json
+        output_digest: "sha256:8e38e067c49509772873836d39a4f286a4dd946a275e7d45dd9c6ee4529aadd1"
 ---
 
 # 変更pathからのpin追従先事前導出
