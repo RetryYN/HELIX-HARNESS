@@ -1,5 +1,9 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  currentWorkflowModelIds,
+  loadWorkflowClassificationCatalog,
+} from "../schema/workflow-classification-catalog";
 
 export interface DriveModelPassageDoc {
   file: string;
@@ -8,44 +12,40 @@ export interface DriveModelPassageDoc {
 
 export interface DriveModelPassageRow {
   file: string;
-  mode: string;
+  workflowIdentity: string;
   requiredColumns: string;
 }
 
 export interface DriveModelPassageViolation {
   file: string;
-  mode?: string;
+  workflowIdentity?: string;
   reason:
     | "missing_section"
     | "missing_table"
     | "malformed_row"
-    | "missing_mode"
+    | "missing_identity"
+    | "unexpected_identity"
+    | "duplicate_identity"
     | "missing_forward_target"
     | "missing_residual_status"
-    | "missing_expected_mode";
+    | "missing_expected_identity";
 }
 
 export interface DriveModelPassageResult {
   checked: number;
   rows: DriveModelPassageRow[];
   violations: DriveModelPassageViolation[];
+  expectedWorkflowModelIds: string[];
   ok: boolean;
 }
 
-const SECTION_RE = /^##\s+Section\s+2\.1\s+Drive-model Passage Certificate (Required|必須)\s*$/m;
+const SECTION_RE = /^##\s+Section\s+2\.1\s+Workflow-model Passage Certificate (Required|必須)\s*$/m;
 const NEXT_SECTION_RE = /^##\s+/m;
-const EXPECTED_MODES = [
-  "Discovery",
-  "Scrum",
-  "Reverse",
-  "Recovery",
-  "Incident",
-  "Refactor",
-  "Retrofit",
-  "Add-feature",
-  "version-up",
-  "Research",
-] as const;
+
+/** current authorityのworkflow_model集合をgenerated catalogから取得する。 */
+export function currentWorkflowModelPassageIdentities(repoRoot: string = process.cwd()): string[] {
+  return currentWorkflowModelIds(loadWorkflowClassificationCatalog(repoRoot));
+}
 
 function section(content: string): string {
   const match = content.match(SECTION_RE);
@@ -77,9 +77,14 @@ function hasResidualStatus(text: string): boolean {
   return /residual status|status|gap|parked|po decision/i.test(text);
 }
 
-export function analyzeDriveModelPassage(docs: DriveModelPassageDoc[]): DriveModelPassageResult {
+export function analyzeDriveModelPassage(
+  docs: DriveModelPassageDoc[],
+  expectedWorkflowModelIds: readonly string[] = currentWorkflowModelPassageIdentities(),
+): DriveModelPassageResult {
   const rows: DriveModelPassageRow[] = [];
   const violations: DriveModelPassageViolation[] = [];
+  const expectedIdentities = [...expectedWorkflowModelIds];
+  const expectedIdentitySet = new Set(expectedIdentities);
 
   for (const doc of docs) {
     const body = section(doc.content);
@@ -93,39 +98,58 @@ export function analyzeDriveModelPassage(docs: DriveModelPassageDoc[]): DriveMod
       continue;
     }
     const header = parsed[0].map((cell) => cell.toLowerCase());
-    const modeIndex = header.indexOf("drive model / entry mode");
+    const identityIndex = header.indexOf("workflow model / identity");
     const columnsIndex = header.findIndex(
       (cell) => cell === "required certificate columns" || cell.includes("certificate columns"),
     );
-    if (modeIndex < 0 || columnsIndex < 0) {
+    if (identityIndex < 0 || columnsIndex < 0) {
       violations.push({ file: doc.file, reason: "malformed_row" });
       continue;
     }
 
+    const documentIdentities = new Set<string>();
     for (const cells of parsed.slice(1)) {
-      const mode = cells[modeIndex] ?? "";
+      const workflowIdentity = cells[identityIndex] ?? "";
       const requiredColumns = cells[columnsIndex] ?? "";
-      if (!mode || !requiredColumns) {
-        violations.push({ file: doc.file, mode: mode || undefined, reason: "malformed_row" });
+      if (!workflowIdentity || !requiredColumns) {
+        violations.push({
+          file: doc.file,
+          workflowIdentity: workflowIdentity || undefined,
+          reason: "malformed_row",
+        });
         continue;
       }
+      if (!expectedIdentitySet.has(workflowIdentity)) {
+        violations.push({ file: doc.file, workflowIdentity, reason: "unexpected_identity" });
+      }
+      if (documentIdentities.has(workflowIdentity)) {
+        violations.push({ file: doc.file, workflowIdentity, reason: "duplicate_identity" });
+      }
+      documentIdentities.add(workflowIdentity);
       if (!hasForwardTarget(requiredColumns)) {
-        violations.push({ file: doc.file, mode, reason: "missing_forward_target" });
+        violations.push({ file: doc.file, workflowIdentity, reason: "missing_forward_target" });
       }
       if (!hasResidualStatus(requiredColumns)) {
-        violations.push({ file: doc.file, mode, reason: "missing_residual_status" });
+        violations.push({ file: doc.file, workflowIdentity, reason: "missing_residual_status" });
       }
-      rows.push({ file: doc.file, mode, requiredColumns });
+      rows.push({ file: doc.file, workflowIdentity, requiredColumns });
     }
 
-    const seen = new Set(rows.filter((row) => row.file === doc.file).map((row) => row.mode));
-    for (const mode of EXPECTED_MODES) {
-      if (!seen.has(mode))
-        violations.push({ file: doc.file, mode, reason: "missing_expected_mode" });
+    const seen = documentIdentities;
+    for (const workflowIdentity of expectedIdentities) {
+      if (!seen.has(workflowIdentity)) {
+        violations.push({ file: doc.file, workflowIdentity, reason: "missing_expected_identity" });
+      }
     }
   }
 
-  return { checked: docs.length, rows, violations, ok: violations.length === 0 };
+  return {
+    checked: docs.length,
+    rows,
+    violations,
+    expectedWorkflowModelIds: expectedIdentities,
+    ok: violations.length === 0,
+  };
 }
 
 export function loadDriveModelPassageDocs(
@@ -143,18 +167,18 @@ export function loadDriveModelPassageDocs(
 
 export function driveModelPassageMessages(result: DriveModelPassageResult): string[] {
   if (result.checked === 0) {
-    return ["drive-model-passage - violation: passage certificate table not found"];
+    return ["workflow-model-passage - violation: passage certificate table not found"];
   }
   if (result.violations.length > 0) {
     const sample = result.violations
       .slice(0, 8)
-      .map((v) => `${v.file}${v.mode ? `:${v.mode}` : ""}:${v.reason}`)
+      .map((v) => `${v.file}${v.workflowIdentity ? `:${v.workflowIdentity}` : ""}:${v.reason}`)
       .join(", ");
     return [
-      `drive-model-passage - violation ${result.violations.length} (${sample}); all entry modes need Forward target and residual status evidence`,
+      `workflow-model-passage - violation ${result.violations.length} (${sample}); all current workflow identities need Forward target and residual status evidence`,
     ];
   }
   return [
-    `drive-model-passage - OK (checked=${result.checked}, modes=${result.rows.length}, expected=${EXPECTED_MODES.length})`,
+    `workflow-model-passage - OK (checked=${result.checked}, identities=${result.rows.length}, expected=${result.expectedWorkflowModelIds.length})`,
   ];
 }
