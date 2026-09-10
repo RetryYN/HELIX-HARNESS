@@ -27,7 +27,7 @@ tdd_red_required: true
 red_at: "2026-09-10T03:00:00Z"
 green_at: null
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/harness-check-workflow.test.ts の U-CI-PREFLIGHT-AGGREGATION-001 系列で、集約step欠落、continue-on-errorによるfail-open、review admissionの混入、無理由skip、条件付きゲートの観測漏れ、適用対象のunexpected skipを個別に拒否する。実CIでは branch_kind_check の単一失敗を集約結果へ保持し、shard起動を停止した。"
+mutation_oracle_evidence: "tests/harness-check-workflow.test.ts の U-CI-PREFLIGHT-AGGREGATION-001 系列で、集約step欠落、continue-on-errorによるfail-open、review admissionの混入、無理由skip、条件付きゲートの観測漏れ、適用対象のunexpected skip、unexpected skipをfail-closeする条件の削除を個別に拒否する。実CIでは branch_kind_check の単一失敗を集約結果へ保持し、shard起動を停止した。"
 complexity_effect: net_neutral
 complexity_justification: "既存のfull-regression-preflight内へ結果集約とartifact出力を追加し、新しいscheduler・DB・reviewer・実行経路は作らない"
 removal_trigger: "後継のCI結果集約機構が同じ個別失敗、skip理由、review admission分離、fail-closeを独立検証した時"
@@ -118,3 +118,5 @@ review_evidence:
 ## 検証状態
 
 初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。今回の第2 sliceでは条件付きゲートを同じ集約へ追加した。run `34453107031` では、同一HEADに対する全required jobがsuccessとなり、preflight artifactの実体digestを取得した。Claudeの独立レビューreceiptはPLANへ転記済みだが、この転記自体で完了を主張せず、転記後のfresh CI・exact-HEAD再レビュー・merge/read-afterを残す。
+
+第3 sliceでは、集約stepのfail-close条件から `unauthorizedSkips` を取り除くmutationと、適用対象を `unexpected_skip` として扱う分岐を反転するmutationを、workflow構造のoracleで拒否する。既存のゲート判定、required性、shard、DB rebuild、doctor、review admissionの成立条件は変更しない。
