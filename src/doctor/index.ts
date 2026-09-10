@@ -243,9 +243,9 @@ import {
   loadLeftArmCarryLogInput,
 } from "../lint/left-arm-carry-log";
 import {
-  analyzeLegacyOrchestrationSemanticConsumers,
+  analyzeLegacyOrchestrationSemanticConsumerLedgerRevision,
   legacyOrchestrationSemanticConsumerMessages,
-  loadLegacyOrchestrationSemanticConsumerLedger,
+  loadLegacyOrchestrationSemanticConsumerLedgerRevision,
 } from "../lint/legacy-orchestration-semantic-consumers";
 import {
   analyzeLegacyOrchestrationSurface,
@@ -4658,8 +4658,12 @@ export function checkLegacyOrchestrationSemanticConsumers(repoRoot: string): {
     };
   }
   try {
-    const loaded = loadLegacyOrchestrationSemanticConsumerLedger(repoRoot);
-    const result = analyzeLegacyOrchestrationSemanticConsumers(loaded.ledger, loaded.sourceFiles);
+    const loaded = loadLegacyOrchestrationSemanticConsumerLedgerRevision(repoRoot);
+    const result = analyzeLegacyOrchestrationSemanticConsumerLedgerRevision(
+      loaded.ledger,
+      loaded.revision,
+      loaded.sourceFiles,
+    );
     return {
       messages: legacyOrchestrationSemanticConsumerMessages(result),
       ok: result.ok,

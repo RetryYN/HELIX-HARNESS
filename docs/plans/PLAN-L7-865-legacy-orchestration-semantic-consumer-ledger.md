@@ -15,7 +15,7 @@ workflow_identity:
 entry_signals:
   - "structural"
 created: 2026-09-07
-updated: 2026-09-07
+updated: 2026-09-10
 owner: Codex / TL
 github_issue_id: 865
 parent_plan: PLAN-L7-729-legacy-orchestration-new-use-freeze
@@ -30,15 +30,15 @@ backprop_decision_reason: "Phase 1は既存retirement契約を変更せず、現
 no_code_decision: add_code
 ddd_modeling_decision: policy
 contract_preconditions: "PLAN-L7-729のstring ratchetが存在し、現行production sourceのsymbol／callsiteを読み取れること"
-contract_postconditions: "team／pair／loop direct、fire／release、max_parallel、LoopState write-back、legacy importがexact ledgerへ束縛され、欠落・偽装・未成立退役をfail-closeする"
-contract_invariants: "既存string ratchetのcapとentry上限は不変とし、本実装3 pathだけを固定allowlistへ追加する。scheduler追加、旧engine削除、snapshot／catalog／CLI／team-run変更、historical／read-onlyとwrite／controlの混在を行わない"
+contract_postconditions: "team／pair／loop direct、fire／release、max_parallel、LoopState write-back、legacy importと追加で確認した8つのsemantic consumerが、凍結base＋署名付きrevision overlayのJOINとしてexact ledgerへ束縛され、欠落・偽装・未成立退役をfail-closeする"
+contract_invariants: "既存string ratchetのcapとentry上限および公開済みsemantic ledger baseのraw bytesは不変とする。追加consumerは別revisionへ隔離し、base digest、revision payload digest、採取source headのancestor条件を検証する。scheduler追加、旧engine削除、snapshot／catalog／CLI／team-run変更、historical／read-onlyとwrite／controlの混在を行わない"
 contract_failures: "必須entry欠落、symbol／anchor不一致、識別可能なdirect callの互換偽装、fireSlot／releaseSlot／max_parallel／write-backの欠落、直代入alias／静的dynamic import／require member・destructuring alias／CLI argv形の分割commandによる隠蔽、successor／E2E／rollback／read-afterなしの移行・退役を拒否する。tick／store.write／plan.max_parallel等の汎用tokenはexact ledger anchorで検査し、repo-wide hidden-consumer markerには使わない"
 tdd_red_required: true
 red_test: "semantic consumer validator未実装時にtests/legacy-orchestration-semantic-consumers.test.tsがmodule missingで失敗することを確認し、その後validatorとledgerを追加して同じテストをgreen化する"
 red_at: "2026-09-07T08:05:08Z"
 green_at: "2026-09-07T10:32:54Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/legacy-orchestration-semantic-consumers.test.tsでconsumer role、必須entry、successor callsite、退役precondition、alias／dynamic import／分割command、test fixture pathを変異させ、各反例がfail-closeすることを検証する"
+mutation_oracle_evidence: "tests/legacy-orchestration-semantic-consumers.test.tsでconsumer role、必須entry、successor callsite、退役precondition、alias／dynamic import／分割command、test fixture path、revision overlayの欠落・payload改変を変異させ、各反例がfail-closeすることを検証する"
 complexity_effect: net_negative
 complexity_justification: "分散した旧consumerの意味分類を純粋なledger validatorへ集約するが、実行engineや新しいschedulerは追加しない"
 removal_trigger: "production consumer zero、successor parity、E2E、rollback、read-afterが揃い、semantic ledgerをretirement read-afterへ置換できる時点"
@@ -67,10 +67,22 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-011, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-012, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-013, test_path: tests/legacy-orchestration-surface.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-014, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-015, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-016, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-017, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-018, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-019, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-020, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-021, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-022, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-023, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md, oracle_id: U-LORET-SEM-024, test_path: tests/legacy-orchestration-semantic-consumers.test.ts }
 generates:
   - { artifact_path: .helix/evidence/review-865/vitest-targeted.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-865-legacy-orchestration-semantic-consumer-ledger.md, artifact_type: markdown_doc }
   - { artifact_path: config/legacy-orchestration-semantic-consumers.json, artifact_type: json_config }
+  - { artifact_path: config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json, artifact_type: json_config }
   - { artifact_path: src/lint/legacy-orchestration-semantic-consumers.ts, artifact_type: source_module }
   - { artifact_path: tests/legacy-orchestration-semantic-consumers.test.ts, artifact_type: test_code }
 modifies:
@@ -122,13 +134,16 @@ symbol／callsiteを意味上のconsumerとして記録・検証する。既存e
 
 ## 実装範囲
 
-1. `config/legacy-orchestration-semantic-consumers.json`へ、team／pair／loop CLI direct、
+1. `config/legacy-orchestration-semantic-consumers.json`を凍結baseとして保持し、team／pair／loop CLI direct、
    `fireSlot`／`releaseSlot`、`max_parallel`、LoopState write-back、legacy importを登録する。
-2. `src/lint/legacy-orchestration-semantic-consumers.ts`で、必須field、role、source symbol、
-   再解決可能なanchor、source path、migration state、successor、退役前提を検証する。
-3. alias、dynamic import、分割command、direct callの互換・read-only偽装をnegative oracleで
+2. `config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json`へ追加で確認した8件を
+   revision overlayとして登録し、base raw bytesを直接変更せずにJOINできるようにする。
+3. `src/lint/legacy-orchestration-semantic-consumers.ts`で、必須field、role、source symbol、
+   再解決可能なanchor、source path、migration state、successor、退役前提と、base／revisionの
+   digest・source head・entry集合を検証する。
+4. alias、dynamic import、分割command、direct callの互換・read-only偽装をnegative oracleで
    fail-closeする。
-4. `tests/legacy-orchestration-semantic-consumers.test.ts`でRed→Greenとmutation反例を固定する。
+5. `tests/legacy-orchestration-semantic-consumers.test.ts`でRed→Greenとmutation反例を固定する。
 
 ## 境界
 
@@ -148,5 +163,5 @@ symbol／callsiteを意味上のconsumerとして記録・検証する。既存e
 ## 完了境界
 
 このPhaseの完了は、targeted test、Node 24 typecheck、PLAN lint、設計／テスト設計との
-verification bindingとdoctor hard checkが成立し、許可path以外を変更していないことを意味する。main／DB projection、
+verification binding、凍結baseとrevision overlayのdigest／ancestor検証、およびdoctor hard checkが成立し、許可path以外を変更していないことを意味する。main／DB projection、
 successor E2E、rollback、read-after、旧engine削除は後続phaseであり、本PLANの完了主張には含めない。
