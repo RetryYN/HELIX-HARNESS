@@ -87,23 +87,22 @@ related_l0: docs/governance/helix-harness-concept_v3.1.md
 | 実装範囲 | `src` file, exported function/module, implementation PLAN |
 | テスト範囲 | `tests` file, oracle citation, coverage gate |
 
-## Section 2.1 Workflow-model Passage Certificate 必須
+## Section 2.1 Drive-model Passage Certificate 必須
 
-residual table には、current catalog の `workflow_model` identity ごとの passage certificate を分けて含める。これは PLAN frontmatter の `drive` とは異なる。`drive` は specialist axis であり、下表の行は Forward へ再入場しなければならない typed workflow identity である。`Discovery` と `Scrum` は current `workflow_model` ではなく、case-driven model／development styleのcompatibility identityであるため、current必須集合へ戻してはならない。
+residual table には、各 drive model / entry mode ごとの passage certificate を分けて含める。これは PLAN frontmatter の `drive` とは異なる。`drive` は specialist axis であり、下表の行は Forward へ再入場しなければならない workflow mode である。
 
-| Workflow model / identity | 必須 certificate columns |
+| Drive model / entry mode | 必須 certificate columns |
 |---|---|
-| ADD_FEATURE | parent PLAN、requirement row、add-design row、add-impl row、test-design oracle、WBS、implementation target、Reverse back-fill state、residual status を記録する |
-| DESIGN_REFACTOR | behavior-invariance proof、affected modules、regression tests、design unchanged proof、behavior changed 時の escalation route、residual status |
-| INCIDENT | production impact、triage、hotfix PLAN、stabilization evidence、recovery PLAN、恒久対応の permanent-fix Forward route、postmortem、residual status |
-| PERFORMANCE_REFACTOR | performance-invariance proof、measurement evidence、affected modules、Forward target、residual status |
-| RECOVERY | incident class、approved scope、root cause、reopen point、correction artifact、再発防止の recurrence-prevention guard/test/rule、Forward target、residual status |
-| REDESIGN | requirement/design change route、再freeze条件、Forward target、residual status |
-| REFACTOR | behavior-invariance proof、affected modules、regression tests、Forward target、residual status |
-| RESEARCH | decision question、options、ADR、rejected options、research memo、Forward target、feasibility が不明な場合の Discovery switch、residual status |
-| RETROFIT | impact matrix、migration/rollback plan、regression/performance/data-integrity evidence、変更時の design/requirement route、residual status |
-| REVERSE | reverse type、R0 evidence、R1/R2 observed contracts または skip reason、R3 PO validation、R4 `forward_routing`、missing pair artifacts、re-entry gate、residual status |
-| VERSION_UP | version target marker、activation packet、parked review record、action-binding approval boundary、Forward/add-feature activation target、residual status |
+| Discovery | trigger、仮説である hypothesis、S3 verification evidence、S4 decision、Forward target、Reverse promotion requirement、residual status |
+| Scrum | feedback signal、increment evidence、acceptance evidence、Reverse fullback PLAN、Forward target、pair-freeze gate、residual status を記録する |
+| Reverse | reverse type、R0 evidence、R1/R2 observed contracts または skip reason、R3 PO validation、R4 `forward_routing`、missing pair artifacts、re-entry gate、residual status |
+| Recovery | incident class、approved scope、root cause、reopen point、correction artifact、再発防止の recurrence-prevention guard/test/rule、Forward target、residual status |
+| Incident | production impact、triage、hotfix PLAN、stabilization evidence、recovery PLAN、恒久対応の permanent-fix Forward route、postmortem、residual status |
+| Refactor | behavior-invariance proof、affected modules、regression tests、design unchanged proof、behavior changed 時の escalation route、residual status |
+| Retrofit | impact matrix、migration/rollback plan、regression/performance/data-integrity evidence、変更時の design/requirement route、residual status |
+| Add-feature | parent PLAN、requirement row、add-design row、add-impl row、test-design oracle、WBS、implementation target、Reverse back-fill state、residual status を記録する |
+| version-up | version_target marker、target version または release trigger、activation packet、parked review record、action-binding approval boundary、Forward/add-feature activation target、residual status |
+| Research | decision question、options、ADR、rejected options、research memo、Forward target、feasibility が不明な場合の Discovery switch、residual status |
 
 Passage rule: 行が再入場先の Forward layer/gate を明記するか、明示的に `gap`、`parked`、`PO decision` である場合を除き、drive model を closed として扱わない。
 
@@ -113,8 +112,8 @@ drive-model execution が harness.db に表現されているか、明示的に 
 
 | DB table | Required meaning |
 |---|---|
-| `drive_runs` | workflow-model identityの実行laneごとに 1 行を置く。 |
-| `workflow_runs` | workflow modelがphasesまたはgatesを持つ場合、`drive_run_id`でlinkedされたphase readiness rowsを置く。 |
+| `drive_runs` | drive-model / entry-mode execution lane ごとに 1 行を置く。 |
+| `workflow_runs` | drive model が phases または gates を持つ場合、`drive_run_id` で linked された phase readiness rows を置く。 |
 | `hook_events` | `session_id` と `plan_id` で linked された SessionStart / PostToolUse / Stop / gate hook evidence を置く。 |
 | `model_runs` | `plan_id` で linked された Codex / Claude / worker / reviewer execution evidence を置く。 |
 
@@ -140,7 +139,7 @@ Rule closure rule: rule に automation owner がない場合、その rule が g
 |---|---|---|---|---|---|---|---|---|
 | WBS-L3-04-01 | L1/L3 carry と A-122/A-124/A-125/A-126 addenda から FR residual matrix を作る | TL | none | 0.5d | docs | .1a | N/A | この PLAN と audit doc を revert 対象にする |
 | WBS-L3-04-02 | residual buckets R1-R9 を child PLAN seeds または明示的 park decisions へ分割する | TL/PO | WBS-L3-04-01 | 0.5d | docs | .1b | N/A | draft child PLANs を archive し、carry-only state を復元する |
-| WBS-L3-04-03 | current catalogの全workflow-model identitiesについてpassage certificate tableを作る | TL | WBS-L3-04-01,WBS-L3-04-02 | 0.5d | docs | .2 | N/A | 未解決identity rowsはすべてgapとして保持する |
+| WBS-L3-04-03 | 全 10 entry modes の drive-model passage certificate table を作る | TL | WBS-L3-04-01,WBS-L3-04-02 | 0.5d | docs | .2 | N/A | 未解決 mode rows はすべて gap として保持する |
 | WBS-L3-04-04 | DB registration gate を追加し、drive-model passage rows に `drive_runs` / linked projection evidence または non-closed status を要求する | TL | WBS-L3-04-03 | 0.5d | docs/src | .3 | ff_drive_model_db_registration=false | projection writer 拡張までは rule report-only を維持する |
 | WBS-L3-04-05 | rule automation closure table を追加し、全 text rule を doctor/plan-lint/vmodel/hook/DB/CI へ対応させるか gap のままにする | TL | WBS-L3-04-01..04 | 0.25d | docs/src | .4 | ff_rule_automation_closure=false | text-only rules は non-closed のままにする |
 | WBS-L3-04-06 | `fr-roadmap-coverage` lint を設計し、FR/carry/addendum -> PLAN/WBS/park と drive-model passage row を扱う | TL | WBS-L3-04-01..05 | 0.5d | docs/src | .5 | ff_fr_roadmap_coverage_lint=false | doctor wiring を disable し、report-only output を維持する |
@@ -153,8 +152,8 @@ Rule closure rule: rule に automation owner がない場合、その rule が g
 - A-133 audit が存在し、V-model が行ごとに close しているかを述べる。
 - Handover は、全 L7 work に next action がないとは述べない。
 - Residual buckets R1-R9 は、child PLAN seeds、明示的 park、または PO decision items のいずれかである。
-- Workflow-model passage certificate rows は current catalogの全workflow-model identitiesに存在し、Forward re-entry evidenceまたはnon-closed statusを示す。
-- Workflow-model passage rows は harness.db registration evidence（`drive_runs`とlinked workflow/hook/model evidence）を要求し、なければnon-closedのままにする。
+- Drive-model passage certificate rows は全 10 entry modes に存在し、Forward re-entry evidence または non-closed status を示す。
+- Drive-model passage rows は harness.db registration evidence（`drive_runs` と linked workflow/hook/model evidence）を要求し、なければ non-closed のままにする。
 - 新たに導入する全 rule は automation owner へ対応するか non-closed のままにし、text-only rules で row を close しない。
 - Future automation candidate `fr-roadmap-coverage` は implementation 前に定義されている。
 - Verification evidence は `doctor`、`vmodel lint`、docs old-premise `rg` checks を記録する。

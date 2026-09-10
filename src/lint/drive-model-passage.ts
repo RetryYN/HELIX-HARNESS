@@ -98,9 +98,15 @@ export function analyzeDriveModelPassage(
       continue;
     }
     const header = parsed[0].map((cell) => cell.toLowerCase());
-    const identityIndex = header.indexOf("workflow model / identity");
+    const identityIndex = Math.max(
+      header.indexOf("workflow model / identity"),
+      header.indexOf("ワークフロー識別子"),
+    );
     const columnsIndex = header.findIndex(
-      (cell) => cell === "required certificate columns" || cell.includes("certificate columns"),
+      (cell) =>
+        cell === "required certificate columns" ||
+        cell.includes("certificate columns") ||
+        cell === "必須証跡項目",
     );
     if (identityIndex < 0 || columnsIndex < 0) {
       violations.push({ file: doc.file, reason: "malformed_row" });
@@ -158,11 +164,20 @@ export function analyzeDriveModelPassage(
 export function loadDriveModelPassageDocs(
   repoRoot: string = process.cwd(),
 ): DriveModelPassageDoc[] {
-  const target = join(repoRoot, "docs", "plans", "PLAN-L3-04-upstream-schedule-reconciliation.md");
+  const target = join(
+    repoRoot,
+    "docs",
+    "plans",
+    "PLAN-RECOVERY-1715-drive-passage-catalog-authority.md",
+  );
   if (!existsSync(target)) return [];
   return [
     {
-      file: join("docs", "plans", "PLAN-L3-04-upstream-schedule-reconciliation.md"),
+      file: join(
+        "docs",
+        "plans",
+        "PLAN-RECOVERY-1715-drive-passage-catalog-authority.md",
+      ),
       content: readFileSync(target, "utf8"),
     },
   ];

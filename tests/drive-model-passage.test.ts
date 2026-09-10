@@ -1,3 +1,4 @@
+// PLAN-RECOVERY-1715-drive-passage-catalog-authority — U-CAT1437-003 / U-DMP-001..005
 import { describe, expect, it } from "vitest";
 import {
   analyzeDriveModelPassage,
@@ -120,7 +121,7 @@ describe("drive-model passage lint", () => {
     expect(driveModelPassageMessages(r)[0]).toContain("violation");
   });
 
-  it("U-DMP-003: current reconciliation PLAN has all passage certificate modes", () => {
+  it("U-DMP-003: current authority design has all passage certificate identities", () => {
     const docs = loadDriveModelPassageDocs(process.cwd());
     const r = analyzeDriveModelPassage(docs);
 

@@ -1,5 +1,5 @@
 ---
-plan_id: PLAN-RECOVERY-1437-drive-passage-catalog-authority
+plan_id: PLAN-RECOVERY-1715-drive-passage-catalog-authority
 title: "workflow-model passage certificateをcurrent catalog authorityへ移行する"
 kind: recovery
 layer: cross
@@ -32,16 +32,16 @@ complexity_effect: net_negative
 complexity_justification: "旧固定集合の重複定義を削除し、既存generated catalogのcurrent identity取得へ集約する"
 removal_trigger: "passage certificate consumerがcurrent typed authorityへ収束し、旧certificate表のcurrent参照が0になった時"
 entry_signals: [regression_dev]
-parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md
+parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md
 pair_artifact: docs/test-design/helix/L8-drive-model-passage-catalog-authority-unit-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-CAT1437-003, test_path: tests/drive-model-passage.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-001, test_path: tests/drive-model-passage.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-002, test_path: tests/drive-model-passage.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-002b, test_path: tests/drive-model-passage.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-003, test_path: tests/drive-model-passage.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-004, test_path: tests/drive-model-passage.test.ts }
-  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-005, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-CAT1437-003, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-DMP-001, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-DMP-002, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-DMP-002b, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-DMP-003, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-DMP-004, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-DMP-005, test_path: tests/drive-model-passage.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -58,13 +58,11 @@ dependencies:
     - issue:865
   blocks: []
 generates:
-  - { artifact_path: docs/plans/PLAN-RECOVERY-1437-drive-passage-catalog-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, artifact_type: design_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-1715-drive-passage-catalog-authority.md, artifact_type: markdown_doc }
   - { artifact_path: docs/test-design/helix/L8-drive-model-passage-catalog-authority-unit-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: src/lint/drive-model-passage.ts, artifact_type: source_module }
   - { artifact_path: tests/drive-model-passage.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/plans/PLAN-L3-04-upstream-schedule-reconciliation.md, artifact_type: markdown_doc }
 agent_slots:
   - { role: aim, slot_label: "AIM — current／legacy workflow identity責務境界の監査" }
   - { role: se, slot_label: "SE — current catalogからpassage identityを取得" }
@@ -78,8 +76,31 @@ review_evidence: []
 ## 目的
 
 #1437で確認された、旧Drive model固定集合がcurrent authorityのように扱われる問題のうち、passage
-certificate consumerを一つだけcurrent generated catalogへ移行する。旧mode／route inventoryは
-compatibility観測へ隔離し、旧engineやDB列の物理削除は行わない。
+certificate consumerを一つだけcurrent generated catalogへ移行する。旧mode／route inventoryと
+旧PLANの表はcompatibility観測へ隔離し、旧engineやDB列の物理削除は行わない。
+
+## Section 2.1 Workflow-model Passage Certificate 必須
+
+current catalogの`workflow_model`識別子を、`Forward`再入場先と残作業状態の証跡へ対応付ける。
+この表がcurrent passage certificateの入力であり、旧`PLAN-L3-04`に残る旧Drive model表は
+compatibility／historical sourceとして扱う。
+
+| ワークフロー識別子 | 必須証跡項目 |
+|---|---|
+| ADD_FEATURE | 親PLAN、要求行、設計行、実装行、テスト設計oracle、WBS、実装対象、Reverse再記入状態、`Forward target`、`residual status` |
+| DESIGN_REFACTOR | 振る舞い不変性証明、対象module、回帰テスト、設計不変性証明、振る舞い変更時のエスカレーション経路、`Forward target`、`residual status` |
+| INCIDENT | 本番影響、トリアージ、hotfix PLAN、安定化証跡、recovery PLAN、恒久修正の`Forward route`、事後分析、`residual status` |
+| PERFORMANCE_REFACTOR | 性能不変性証明、計測証跡、対象module、`Forward target`、`residual status` |
+| RECOVERY | incident class、承認済みscope、根本原因、再開点、修正artifact、再発防止guard／test／rule、`Forward target`、`residual status` |
+| REDESIGN | 要求／設計変更経路、再freeze条件、`Forward target`、`residual status` |
+| REFACTOR | 振る舞い不変性証明、対象module、回帰テスト、`Forward target`、`residual status` |
+| RESEARCH | 問い、選択肢、ADR、却下案、調査メモ、`Forward target`、Discovery切替条件、`residual status` |
+| RETROFIT | 影響表、移行／rollback計画、回帰／性能／データ完全性証跡、変更時の要求／設計経路、`Forward target`、`residual status` |
+| REVERSE | reverse type、R0証跡、R1／R2観測契約またはskip理由、R3検証、R4 `forward_routing`、不足pair artifact、再入場gate、`Forward target`、`residual status` |
+| VERSION_UP | version target marker、activation packet、保留review記録、action-binding境界、Forward／add-feature activation target、`residual status` |
+
+Passage rule: 行が`Forward`再入場先または明示的な`gap`、`parked`、`PO decision`を示さない限り、
+identityをclosedとして扱わない。
 
 ## 受入条件
 
