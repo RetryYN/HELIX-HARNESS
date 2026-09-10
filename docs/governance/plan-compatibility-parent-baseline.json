@@ -1,5 +1,5 @@
 {
-  "recorded": "2026-09-09T23:50:11Z",
+  "recorded": "2026-09-10T01:14:14.367Z",
   "grandfathered": [
     {
       "file": "docs/plans/PLAN-DISCOVERY-02-roster-design.md",
@@ -8177,6 +8177,11 @@
       "detail": "references: docs/plans/PLAN-L7-473-claude-pr-convergence.md"
     },
     {
+      "file": "docs/plans/PLAN-RECOVERY-1690-pr-scope-preflight.md",
+      "reason": "compatibility_reference_forbidden",
+      "detail": "references: docs/plans/PLAN-L7-466-pr-scope-contract.md"
+    },
+    {
       "file": "docs/plans/PLAN-RECOVERY-17-pr-create-contract-fail-close.md",
       "reason": "compatibility_parent_forbidden",
       "detail": "docs/plans/PLAN-L7-473-claude-pr-convergence.md"
@@ -8185,6 +8190,11 @@
       "file": "docs/plans/PLAN-RECOVERY-17-pr-create-contract-fail-close.md",
       "reason": "compatibility_reference_forbidden",
       "detail": "requires: docs/plans/PLAN-L7-473-claude-pr-convergence.md"
+    },
+    {
+      "file": "docs/plans/PLAN-RECOVERY-1706-design-catalog-relation-projection.md",
+      "reason": "compatibility_reference_forbidden",
+      "detail": "requires: docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md"
     },
     {
       "file": "docs/plans/PLAN-RECOVERY-18-lane-inventory-partial-logs.md",
@@ -10085,11 +10095,6 @@
       "file": "docs/plans/PLAN-REVERSE-719-helix-bench-task-dataset.md",
       "reason": "compatibility_reference_forbidden",
       "detail": "requires: docs/plans/PLAN-L3-49-helix-bench-evaluation.md"
-    },
-    {
-      "file": "docs/plans/PLAN-RECOVERY-1690-pr-scope-preflight.md",
-      "reason": "compatibility_reference_forbidden",
-      "detail": "references: docs/plans/PLAN-L7-466-pr-scope-contract.md"
     }
   ]
 }
