@@ -8,6 +8,7 @@ import {
   analyzeLegacyOrchestrationSurface,
   compareLegacyOrchestrationInventory,
   isNonExecutableSuccessfulVitestEvidence,
+  LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS,
   type LegacyOrchestrationInventory,
   legacyOrchestrationSurfaceMessages,
   loadLegacyOrchestrationSurface,
@@ -127,6 +128,31 @@ describe("legacy orchestration surface retirement ratchet", () => {
     ]);
   });
 
+  it("U-LORET-SEM-013: implementation exclusionは固定集合内だけを許可する", () => {
+    expect(LEGACY_ORCHESTRATION_ALLOWED_IMPLEMENTATION_EXCLUSIONS).toEqual([
+      "config/legacy-orchestration-surface-inventory.json",
+      "src/lint/legacy-orchestration-surface.ts",
+      "tests/legacy-orchestration-surface.test.ts",
+      "docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md",
+      "docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
+      "docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md",
+      "config/legacy-orchestration-semantic-consumers.json",
+      "src/lint/legacy-orchestration-semantic-consumers.ts",
+      "tests/legacy-orchestration-semantic-consumers.test.ts",
+    ]);
+    const published = inventory();
+    const allowed = structuredClone(published);
+    allowed.excluded_implementation_paths.push(
+      "src/lint/legacy-orchestration-semantic-consumers.ts",
+    );
+    expect(compareLegacyOrchestrationInventory(allowed, published)).toEqual([]);
+    const rejected = structuredClone(published);
+    rejected.excluded_implementation_paths.push("src/unrelated.ts");
+    expect(compareLegacyOrchestrationInventory(rejected, published)).toContain(
+      "inventory_implementation_exclusion_added:src/unrelated.ts",
+    );
+  });
+
   it("U-LORET-008: 削減後の再増加とsource差替えを拒否し、削減を許可する", () => {
     const reduced = inventory();
     reduced.entries[0].maximum_occurrences = 1;
@@ -138,6 +164,16 @@ describe("legacy orchestration surface retirement ratchet", () => {
     changed.source_head = "0".repeat(40);
     expect(compareLegacyOrchestrationInventory(changed, inventory())).toContain(
       "inventory_source_head_changed",
+    );
+  });
+
+  it("semantic ledger digestはpublished inventoryから自己更新できない", () => {
+    const published = inventory();
+    published.semantic_ledger_sha256 = "a".repeat(64);
+    const candidate = structuredClone(published);
+    candidate.semantic_ledger_sha256 = "b".repeat(64);
+    expect(compareLegacyOrchestrationInventory(candidate, published)).toContain(
+      "semantic_ledger_digest_changed",
     );
   });
 

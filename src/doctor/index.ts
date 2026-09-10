@@ -243,6 +243,11 @@ import {
   loadLeftArmCarryLogInput,
 } from "../lint/left-arm-carry-log";
 import {
+  analyzeLegacyOrchestrationSemanticConsumers,
+  legacyOrchestrationSemanticConsumerMessages,
+  loadLegacyOrchestrationSemanticConsumerLedger,
+} from "../lint/legacy-orchestration-semantic-consumers";
+import {
   analyzeLegacyOrchestrationSurface,
   legacyOrchestrationSurfaceMessages,
   loadLegacyOrchestrationSurface,
@@ -4636,6 +4641,37 @@ export function checkLegacyOrchestrationSurface(repoRoot: string): {
   }
 }
 
+export function checkLegacyOrchestrationSemanticConsumers(repoRoot: string): {
+  messages: string[];
+  ok: boolean;
+} {
+  if (!existsSync(repoRoot)) {
+    return {
+      messages: [
+        "legacy-orchestration-semantic-consumers - violation: repo root could not be read",
+      ],
+      ok: false,
+    };
+  }
+  try {
+    const loaded = loadLegacyOrchestrationSemanticConsumerLedger(repoRoot);
+    const result = analyzeLegacyOrchestrationSemanticConsumers(loaded.ledger, loaded.sourceFiles);
+    return {
+      messages: legacyOrchestrationSemanticConsumerMessages(result),
+      ok: result.ok,
+    };
+  } catch (error) {
+    return {
+      messages: [
+        doctorFailureMessage(
+          doctorFailure("legacy-orchestration-semantic-consumers", "read_failed", error),
+        ),
+      ],
+      ok: false,
+    };
+  }
+}
+
 export function checkRuntimePortability(repoRoot: string): {
   messages: string[];
   ok: boolean;
@@ -7331,6 +7367,9 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
   const runtimePortability = checkRuntimePortability(deps.repoRoot);
   const ruleDrift = checkRuleDrift(deps.repoRoot);
   const legacyOrchestrationSurface = checkLegacyOrchestrationSurface(deps.repoRoot);
+  const legacyOrchestrationSemanticConsumers = checkLegacyOrchestrationSemanticConsumers(
+    deps.repoRoot,
+  );
   const gateConfirm = checkGateConfirm(deps.repoRoot);
   const planSchedule = checkPlanSchedule(deps.repoRoot);
   const planDescent = checkPlanDescent(deps.repoRoot);
@@ -7528,6 +7567,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
     ["runtimePortability", runtimePortability.ok],
     ["ruleDrift", ruleDrift.ok],
     ["legacyOrchestrationSurface", legacyOrchestrationSurface.ok],
+    ["legacyOrchestrationSemanticConsumers", legacyOrchestrationSemanticConsumers.ok],
     ["gateConfirm", gateConfirm.ok],
     ["planSchedule", planSchedule.ok],
     ["planDescent", planDescent.ok],
@@ -7707,6 +7747,7 @@ function runFullDoctor(deps: DoctorDeps = nodeDoctorDeps(process.cwd())): LintRe
       ...runtimePortability.messages.map((m) => `doctor: ${m}`),
       ...ruleDrift.messages.map((m) => `doctor: ${m}`),
       ...legacyOrchestrationSurface.messages.map((m) => `doctor: ${m}`),
+      ...legacyOrchestrationSemanticConsumers.messages.map((m) => `doctor: ${m}`),
       ...gateConfirm.messages.map((m) => `doctor: ${m}`),
       ...planSchedule.messages.map((m) => `doctor: ${m}`),
       ...planDescent.messages.map((m) => `doctor: ${m}`),
