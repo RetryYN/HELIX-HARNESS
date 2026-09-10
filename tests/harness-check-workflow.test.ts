@@ -293,6 +293,8 @@ function preflightGateAggregationViolations(raw: string): string[] {
       !run.includes("unauthorizedSkips") ||
       !run.includes("unexpected_skip:") ||
       !run.includes("not_applicable:") ||
+      !/(^|\n)\s+applies \? `unexpected_skip:\${id}` : `not_applicable:\${skipReason}`/.test(run) ||
+      !run.includes("if (failures.length > 0 || unauthorizedSkips.length > 0) {") ||
       !run.includes("process.exit(1)") ||
       !run.includes("excluded_gates")
     ) {
@@ -1111,6 +1113,20 @@ describe("source harness-check workflow", () => {
       "      - name: aggregate independent preflight gates\n        id: preflight_gate_aggregation\n        continue-on-error: true",
     );
     expect(preflightGateAggregationViolations(failOpenAggregation)).toContain(
+      "aggregation_fail_close_contract_invalid",
+    );
+    const missingSkipEnforcement = raw.replace(
+      "if (failures.length > 0 || unauthorizedSkips.length > 0) {",
+      "if (failures.length > 0) {",
+    );
+    expect(preflightGateAggregationViolations(missingSkipEnforcement)).toContain(
+      "aggregation_fail_close_contract_invalid",
+    );
+    const reversedSkipClassification = raw.replace(
+      "applies ? `unexpected_skip:${id}` : `not_applicable:${skipReason}`",
+      "!applies ? `unexpected_skip:${id}` : `not_applicable:${skipReason}`",
+    );
+    expect(preflightGateAggregationViolations(reversedSkipClassification)).toContain(
       "aggregation_fail_close_contract_invalid",
     );
     const failFastLint = raw.replace(
