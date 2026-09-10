@@ -15,13 +15,15 @@
  * fail-open 原則: 各ディレクトリ不在 / parse 失敗は空集合として扱う (既存 loader と同一方針)。
  * sanitization invariant: raw MCP response / browser trace / secret / credential を行へ複製しない。
  */
-import { type Dirent, readdirSync, readFileSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { type Dirent, existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { loadRetiredArtifactPaths } from "../lint/artifact-retirement-authority";
 import { loadFrDocs, parseFrRows } from "../lint/fr-registry-audit";
 import { loadImplPlanTraceInput } from "../lint/impl-plan-trace";
 import type {
+  DesignCatalogProjectionInput,
   DesignDocInput,
   PlanInput,
   RelationGraphSourceSet,
@@ -181,6 +183,10 @@ const GOVERNANCE_DOCS = [
   "docs/governance/document-system-map.md",
 ] as const;
 const DESIGN_CATALOG_DOC = "docs/design/design-catalog.yaml";
+const DESIGN_CATALOG_REVIEWED_DIGEST_AUTHORITY = "src/lint/l3-progression-reviewed-digests.ts";
+const DESIGN_CATALOG_COVERAGE_SOURCE = "src/lint/design-coverage.ts";
+const DESIGN_CATALOG_COVERAGE_TEST = "tests/design-coverage.test.ts";
+const DESIGN_CATALOG_GOVERNING_PLAN = "PLAN-L7-421-design-coverage-catalog";
 const ROOT_CONFIG_DOCS = [
   ".codex/hooks.json",
   ".editorconfig",
@@ -197,6 +203,68 @@ function addDesignDocIfAbsent(designDocs: DesignDocInput[], path: string): void 
     id: path,
     path,
   });
+}
+
+function loadDesignCatalogProjection(repoRoot: string): DesignCatalogProjectionInput | undefined {
+  const catalogPath = join(repoRoot, DESIGN_CATALOG_DOC);
+  let content: string;
+  let parsed: unknown;
+  try {
+    content = readFileSync(catalogPath, "utf8");
+    parsed = parseYaml(content);
+  } catch {
+    return undefined;
+  }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return undefined;
+  const parsedCatalog = parsed as { items?: unknown; baseline?: unknown };
+  const rawItems = parsedCatalog.items;
+  if (!Array.isArray(rawItems)) return undefined;
+
+  const items = rawItems.flatMap((raw) => {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return [];
+    const item = raw as { id?: unknown; status?: unknown; artifact?: unknown };
+    if (typeof item.id !== "string" || typeof item.status !== "string") return [];
+    const artifacts = (Array.isArray(item.artifact) ? item.artifact : [item.artifact])
+      .filter((value): value is string => typeof value === "string" && value.length > 0)
+      .map(normalizePath);
+    const missingArtifacts = artifacts.filter(
+      (artifact) => !existsSync(join(repoRoot, ...artifact.split("/"))),
+    );
+    return [{ id: item.id, status: item.status, artifacts, missingArtifacts }];
+  });
+
+  let reviewedDigestState: DesignCatalogProjectionInput["reviewedDigestState"] = "missing";
+  try {
+    const authority = readFileSync(
+      join(repoRoot, DESIGN_CATALOG_REVIEWED_DIGEST_AUTHORITY),
+      "utf8",
+    );
+    const escapedPath = DESIGN_CATALOG_DOC.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = authority.match(
+      new RegExp(`(?:"${escapedPath}"|'${escapedPath}')\\s*:\\s*["']([a-f0-9]{64})["']`),
+    );
+    if (match) {
+      const actual = createHash("sha256").update(content, "utf8").digest("hex");
+      reviewedDigestState = match[1] === actual ? "current" : "stale";
+    }
+  } catch {
+    reviewedDigestState = "missing";
+  }
+
+  return {
+    path: DESIGN_CATALOG_DOC,
+    items,
+    reviewedDigestAuthorityPath: DESIGN_CATALOG_REVIEWED_DIGEST_AUTHORITY,
+    reviewedDigestState,
+    coverageSourcePath: DESIGN_CATALOG_COVERAGE_SOURCE,
+    coverageTestPath: DESIGN_CATALOG_COVERAGE_TEST,
+    governingPlanId: DESIGN_CATALOG_GOVERNING_PLAN,
+    baselineArtifacts: Array.isArray(parsedCatalog.baseline)
+      ? parsedCatalog.baseline
+          .filter((value): value is string => typeof value === "string" && value.length > 0)
+          .map(normalizePath)
+      : [],
+  };
 }
 
 /**
@@ -246,6 +314,8 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
   // live source node/edge へ投影しない。authority の不在は未退役 repo として空集合、
   // authority の改ざん・binding 不一致は loadRetiredArtifactPaths が fail-close する。
   const retiredArtifactPaths = loadRetiredArtifactPaths(repoRoot);
+
+  const designCatalog = loadDesignCatalogProjection(repoRoot);
 
   // 1. sourceFiles: loadImplPlanTraceInput が src/**/*.ts を収集済み
   const implTrace = loadImplPlanTraceInput(repoRoot);
@@ -410,6 +480,17 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
     addDesignDocIfAbsent(designDocs, path);
   }
 
+  // catalog が正規登録する non-Markdown artifact (CLAUDE.md や YAML checklist 等) も
+  // relation graph の catalog-artifact edge 端点として materialize する。src/tests/test-design
+  // は既存の専用 node kind が所有するため、ここで design node を重複生成しない。
+  for (const artifact of designCatalog?.items.flatMap((item) => item.artifacts) ?? []) {
+    if (!existsSync(join(repoRoot, ...artifact.split("/")))) continue;
+    if (artifact.startsWith("src/") && artifact.endsWith(".ts")) continue;
+    if (artifact.startsWith("tests/") && artifact.endsWith(".ts")) continue;
+    if (artifact.startsWith("docs/test-design/") && artifact.endsWith(".md")) continue;
+    addDesignDocIfAbsent(designDocs, artifact);
+  }
+
   // design catalog は docs/design/ の走査対象外だったため、変更時に relation graph の
   // missing-projection へ落ちていた。実在する catalog を design node として明示投影する。
   try {
@@ -440,6 +521,18 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
     // fail-open
   }
 
+  if (designCatalog) {
+    const registered = new Set([
+      ...designCatalog.items.flatMap((item) => item.artifacts),
+      ...(designCatalog.baselineArtifacts ?? []),
+    ]);
+    designCatalog.unregisteredDesignDocs = designDocs
+      .map((doc) => doc.path)
+      .filter((path) => path.startsWith("docs/design/") && path.endsWith(".md"))
+      .filter((path) => !registered.has(path))
+      .sort();
+  }
+
   return {
     requirements,
     sourceFiles,
@@ -449,6 +542,7 @@ export function loadRelationGraphSourceSet(repoRoot: string): RelationGraphSourc
     testDesignDocs,
     // dbTables: 省略 (projection-writer 経由で供給)
     dbTables: [],
+    designCatalog,
     trackedExcludedPaths: archivedPlanPaths,
   };
 }
