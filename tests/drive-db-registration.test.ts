@@ -1,5 +1,5 @@
 // PLAN-L7-427-active-plan-selection
-// PLAN-RECOVERY-1714-drive-registration-current-authority — U-DDB1437-001/002
+// PLAN-RECOVERY-1713-workflow-classification-catalog-authority — U-DDB1437-001/002
 import { randomUUID } from "node:crypto";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
