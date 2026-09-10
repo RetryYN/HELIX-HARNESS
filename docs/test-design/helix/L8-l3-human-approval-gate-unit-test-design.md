@@ -39,6 +39,7 @@ typed recordの型・対象PLAN・外部記録が揃う場合だけ、基準日�
 | U-L3APP-010 | Git provenance欠落 | L3 terminal PLANのGit provenanceが欠落・取得不能なら承認recordがあっても`missing_l3_plan_git_provenance`で拒否する | `tests/review-evidence.test.ts` |
 | U-L3APP-011 | grandfather境界 | Git初出・最終変更が基準日前の既存L3 PLANはfrontmatter日付に依存せず承認を遡及要求しない | `tests/review-evidence.test.ts` |
 | U-L3APP-012 | loader integration | tracked PLANのloaderがGit初出／最終変更日を取得し、Git provenanceを解析対象へ束縛する | `tests/review-evidence.test.ts` |
+| U-L3APP-015 | PR基準HEADとの比較 | 枝上で一時変更後にbaseと同じbytesへ戻した既存L3 PLANはbase時点のprovenanceで評価し、最終bytesが変わる場合は従来どおり`missing_human_po_approval`で拒否する | `tests/review-evidence.test.ts` |
 
 ## §2 非対象
 

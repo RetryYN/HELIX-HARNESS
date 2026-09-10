@@ -510,6 +510,37 @@ function gitOutput(repoRoot: string, args: string[]): string | null {
   }
 }
 
+/** CIのPR baseとして使える、完全なcommit SHAだけを受理する。推測可能なrefへのfallbackはしない。 */
+function resolveReviewBaselineRef(repoRoot: string, candidate?: string): string | undefined {
+  if (!candidate || !/^[0-9a-f]{40}$/iu.test(candidate)) return undefined;
+  const resolved = gitOutput(repoRoot, [
+    "rev-parse",
+    "--verify",
+    "--end-of-options",
+    `${candidate}^{commit}`,
+  ]);
+  return resolved?.toLowerCase() === candidate.toLowerCase() ? resolved : undefined;
+}
+
+/** 指定revisionのpathをbytesで読み、基準HEADとの最終内容比較に使う。 */
+function gitFileBytesAtRevision(repoRoot: string, revision: string, path: string): Buffer | null {
+  try {
+    return execFileSync("git", ["-C", repoRoot, "show", `${revision}:${path}`], {
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+  } catch {
+    return null;
+  }
+}
+
+/** 現在評価するPLAN本文が基準revisionの同一bytesなら、枝上の一時履歴をprovenanceに混ぜない。 */
+function currentFileMatchesRevision(repoRoot: string, file: string, revision: string): boolean {
+  const currentPath = join(repoRoot, "docs", "plans", file);
+  if (!existsSync(currentPath)) return false;
+  const baselineBytes = gitFileBytesAtRevision(repoRoot, revision, gitDatePath(file));
+  return baselineBytes !== null && readFileSync(currentPath).equals(baselineBytes);
+}
+
 function gitProvenanceFromDates(
   firstCommitDate: string | undefined,
   lastCommitDate: string | undefined,
@@ -557,7 +588,11 @@ export function isNonSemanticL3MetadataMigrationLine(line: string): boolean {
  * registry version-upで既存L3の意味を変えずtupleだけを再束縛したcommitを、PO再承認の発火から除外する。
  * status、本文、target axis/id等が同時に変われば通常のauthority変更として扱い、fail-closeを維持する。
  */
-function readLastAuthorityCommitDates(repoRoot: string, files: string[]): Map<string, string> {
+function readLastAuthorityCommitDates(
+  repoRoot: string,
+  files: string[],
+  revision?: string,
+): Map<string, string> {
   const dates = new Map<string, string>();
   if (files.length === 0) return dates;
   const wanted = new Set(files.map(gitDatePath));
@@ -567,6 +602,7 @@ function readLastAuthorityCommitDates(repoRoot: string, files: string[]): Map<st
     `--format=${GIT_PLAN_COMMIT_MARKER}%cI`,
     "--patch",
     "--no-ext-diff",
+    ...(revision ? [revision] : []),
     "--",
     ...wanted,
   ]);
@@ -614,9 +650,15 @@ function readLastAuthorityCommitDates(repoRoot: string, files: string[]): Map<st
 }
 
 /** L3 PLANのgrandfather判定に使う、authorが編集できないGit path provenanceを読む。 */
-export function readGitPlanDateProvenance(repoRoot: string, file: string): GitPlanDateProvenance {
+export function readGitPlanDateProvenance(
+  repoRoot: string,
+  file: string,
+  revision?: string,
+): GitPlanDateProvenance {
   const path = gitDatePath(file);
-  const tracked = gitOutput(repoRoot, ["ls-files", "--error-unmatch", "--", path]);
+  const tracked = revision
+    ? gitOutput(repoRoot, ["ls-tree", "-r", "--name-only", revision, "--", path])
+    : gitOutput(repoRoot, ["ls-files", "--error-unmatch", "--", path]);
   if (!tracked) return { source: "git", error: "not_tracked" };
   if (gitOutput(repoRoot, ["rev-parse", "--is-shallow-repository"]) !== "false") {
     return { source: "git", error: "history_unavailable" };
@@ -627,12 +669,20 @@ export function readGitPlanDateProvenance(repoRoot: string, file: string): GitPl
     "--diff-filter=A",
     "--follow",
     "--format=%cI",
+    ...(revision ? [revision] : []),
     "--",
     path,
   ]);
   const firstCommitDate = firstOutput?.split(/\r?\n/u).filter(Boolean).at(-1);
   const lastCommitDate =
-    gitOutput(repoRoot, ["log", "-1", "--format=%cI", "--", path]) || undefined;
+    gitOutput(repoRoot, [
+      "log",
+      "-1",
+      "--format=%cI",
+      ...(revision ? [revision] : []),
+      "--",
+      path,
+    ]) || undefined;
   return gitProvenanceFromDates(firstCommitDate, lastCommitDate);
 }
 
@@ -644,11 +694,14 @@ export function readGitPlanDateProvenance(repoRoot: string, file: string): GitPl
 function readGitPlanDateProvenanceBatch(
   repoRoot: string,
   files: string[],
+  revision?: string,
 ): Map<string, GitPlanDateProvenance> {
   const result = new Map<string, GitPlanDateProvenance>();
   const paths = files.map(gitDatePath);
   if (paths.length === 0) return result;
-  const trackedOutput = gitOutput(repoRoot, ["ls-files", "--", "docs/plans"]);
+  const trackedOutput = revision
+    ? gitOutput(repoRoot, ["ls-tree", "-r", "--name-only", revision, "--", "docs/plans"])
+    : gitOutput(repoRoot, ["ls-files", "--", "docs/plans"]);
   const tracked = new Set(trackedOutput?.split(/\r?\n/u).filter(Boolean) ?? []);
   const shallow = gitOutput(repoRoot, ["rev-parse", "--is-shallow-repository"]);
   for (const [file, path] of files.map((file, index) => [file, paths[index]] as const)) {
@@ -664,6 +717,7 @@ function readGitPlanDateProvenanceBatch(
       "--diff-filter=A",
       `--format=${GIT_PLAN_COMMIT_MARKER}%cI`,
       "--name-only",
+      ...(revision ? [revision] : []),
       "--",
       "docs/plans",
     ]),
@@ -674,6 +728,7 @@ function readGitPlanDateProvenanceBatch(
       "log",
       `--format=${GIT_PLAN_COMMIT_MARKER}%cI`,
       "--name-only",
+      ...(revision ? [revision] : []),
       "--",
       "docs/plans",
     ]),
@@ -690,7 +745,7 @@ function readGitPlanDateProvenanceBatch(
         last.slice(0, 10) >= L3_HUMAN_APPROVAL_ENFORCEMENT_DATE,
     );
   });
-  const lastAuthorityDates = readLastAuthorityCommitDates(repoRoot, migrationCandidates);
+  const lastAuthorityDates = readLastAuthorityCommitDates(repoRoot, migrationCandidates, revision);
   for (const file of historyPaths) {
     const path = gitDatePath(file);
     const first = firstDates.get(path);
@@ -709,7 +764,7 @@ function readGitPlanDateProvenanceBatch(
       continue;
     }
     // rename/follow等の例外は既存の単一path lookupへフォールバックし、精度を落とさない。
-    result.set(file, readGitPlanDateProvenance(repoRoot, file));
+    result.set(file, readGitPlanDateProvenance(repoRoot, file, revision));
   }
   return result;
 }
@@ -1093,7 +1148,15 @@ export function analyzeReviewEvidence(
 }
 
 /** docs/plans/*.md (archive/template 除く) を読み込む。plans 未整備 repo (fixture 等) は空扱い。 */
-export function loadReviewPlans(repoRoot: string = process.cwd()): ParsedReviewPlan[] {
+export interface ReviewPlanLoadOptions {
+  /** PRの比較基準となる完全なcommit SHA。未指定時はCIの明示環境値を使う。 */
+  baselineRef?: string;
+}
+
+export function loadReviewPlans(
+  repoRoot: string = process.cwd(),
+  options: ReviewPlanLoadOptions = {},
+): ParsedReviewPlan[] {
   const plansDir = join(repoRoot, "docs", "plans");
   if (!existsSync(plansDir)) return [];
   const plans: ParsedReviewPlan[] = [];
@@ -1108,10 +1171,25 @@ export function loadReviewPlans(repoRoot: string = process.cwd()): ParsedReviewP
     (plan): plan is ParsedReviewPlan & { layer: "L3" } =>
       plan.layer === "L3" && STATUS_REVIEW_REQUIRED.has(plan.status),
   );
-  const provenance = readGitPlanDateProvenanceBatch(
+  const baselineRef = resolveReviewBaselineRef(
     repoRoot,
-    terminalL3.map((plan) => plan.file),
+    options.baselineRef ?? process.env.HELIX_REVIEW_BASE_REF,
   );
+  const baselinePlans = baselineRef
+    ? terminalL3.filter((plan) => currentFileMatchesRevision(repoRoot, plan.file, baselineRef))
+    : [];
+  const currentPlans = terminalL3.filter((plan) => !baselinePlans.includes(plan));
+  const provenance = new Map([
+    ...readGitPlanDateProvenanceBatch(
+      repoRoot,
+      currentPlans.map((plan) => plan.file),
+    ),
+    ...readGitPlanDateProvenanceBatch(
+      repoRoot,
+      baselinePlans.map((plan) => plan.file),
+      baselineRef,
+    ),
+  ]);
   for (const plan of terminalL3) {
     plan.gitDateProvenance = provenance.get(plan.file) ?? {
       source: "git",

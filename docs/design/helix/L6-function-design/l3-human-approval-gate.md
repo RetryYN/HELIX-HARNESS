@@ -54,6 +54,19 @@ L3 PLAN が `confirmed` または `completed` へ到達する際、基準日
 基準日前のGit履歴を持つ既存PLANは承認を遡及要求せず、基準日以降にGitで作成・変更されたPLANは
 typed PO approvalを要求する。
 
+## §1.2 PR基準HEADとの比較
+
+PRのrepo-wide guardでは、完全なPR base commit SHAを明示して評価する。現在の作業ツリーにある
+L3 PLANのbytesがそのbase commitの同じpathのbytesと完全一致する場合、PR枝の途中で一時変更して
+元へ戻した履歴を現在のprovenanceへ混ぜず、base commit時点のGit初出／最終変更日を使う。これは
+既存PLANの生成物consumerを後続PLANから移行する際に、旧PLAN自身の承認recordを補作しないための
+適用境界である。
+
+base SHAの欠落・形式不正・解決不能、base側pathの欠落、またはPLAN本文のbytes差分がある場合は、
+この比較を適用しない。後者は従来どおり現在枝のprovenanceで判定し、基準日以降の変更にtyped PO
+approvalを要求する。L3 PLANの内容・status・approvalを変えた変更や、artifact owner・後続PLAN・
+独立検証の突合不能をこの境界で許可しない。
+
 ## §2 移行境界
 
 既存の基準日前に確定したL3 PLANへ、後付けの承認記録を捏造させない。基準日前の履歴は

@@ -223,6 +223,8 @@ jobs:
       - name: repo-wide guard preflight
         id: repo_guard_preflight
         continue-on-error: true
+        env:
+          HELIX_REVIEW_BASE_REF: ${{ github.event.pull_request.base.sha }}
         run: npm run test:repo-guards
 
       - name: install required Linux isolation backend

@@ -1,3 +1,8 @@
+// PLAN-RECOVERY-1716-l3-approval-provenance-baseline: U-L3APP-015
+import { execFileSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeReviewEvidence,
@@ -62,6 +67,13 @@ const l3Approval = (planId: string): L3HumanApproval => ({
   approval_source_url:
     "https://github.com/RetryYN/HELIX-HARNESS/issues/1097#issuecomment-1234567890",
 });
+
+function gitFixture(root: string, args: string[], env?: NodeJS.ProcessEnv): string {
+  return execFileSync("git", ["-C", root, ...args], {
+    encoding: "utf8",
+    env: { ...process.env, ...env },
+  }).trim();
+}
 
 const technicalReview = (): ReviewEntry => ({
   reviewer: "independent-reviewer",
@@ -923,6 +935,76 @@ describe("L3 typed PO approval gate (Issue #1097)", () => {
     expect(loaded?.gitDateProvenance?.source).toBe("git");
     expect(loaded?.gitDateProvenance?.error).toBeUndefined();
     expect(loaded?.gitDateProvenance?.firstCommitDate).toMatch(/^2026-06-28T/u);
+  });
+
+  it("U-L3APP-015: PR基準HEADと同一bytesの既存L3 PLANは枝上の一時履歴で再承認要求にならない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-l3-provenance-baseline-"));
+    const planPath = join(root, "docs", "plans", "PLAN-L3-1716-provenance-fixture.md");
+    const baseContent = [
+      "---",
+      "plan_id: PLAN-L3-1716-provenance-fixture",
+      "kind: design",
+      "layer: L3",
+      "status: confirmed",
+      "created: 2026-08-20",
+      "updated: 2026-08-20",
+      "review_evidence:",
+      "  - review_kind: human",
+      "    verdict: approve",
+      '    reviewed_at: "2026-08-20T01:00:00Z"',
+      "---",
+      "",
+    ].join("\n");
+    const changedContent = baseContent.replace("updated: 2026-08-20", "updated: 2026-09-10");
+    const commitEnv = (date: string): NodeJS.ProcessEnv => ({
+      GIT_AUTHOR_DATE: date,
+      GIT_COMMITTER_DATE: date,
+    });
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      gitFixture(root, ["init", "-q"]);
+      gitFixture(root, ["config", "user.email", "helix-test@example.invalid"]);
+      gitFixture(root, ["config", "user.name", "HELIX test"]);
+      writeFileSync(planPath, baseContent);
+      gitFixture(root, ["add", "--", "docs/plans/PLAN-L3-1716-provenance-fixture.md"]);
+      gitFixture(
+        root,
+        ["commit", "-m", "test: add pre-enforcement L3 fixture"],
+        commitEnv("2026-08-20T01:00:00Z"),
+      );
+      const baselineRef = gitFixture(root, ["rev-parse", "HEAD"]);
+
+      writeFileSync(planPath, changedContent);
+      gitFixture(root, ["add", "--", "docs/plans/PLAN-L3-1716-provenance-fixture.md"]);
+      gitFixture(
+        root,
+        ["commit", "-m", "test: temporarily change L3 fixture"],
+        commitEnv("2026-09-10T01:00:00Z"),
+      );
+      writeFileSync(planPath, baseContent);
+      gitFixture(root, ["add", "--", "docs/plans/PLAN-L3-1716-provenance-fixture.md"]);
+      gitFixture(
+        root,
+        ["commit", "-m", "test: restore unchanged L3 fixture"],
+        commitEnv("2026-09-10T02:00:00Z"),
+      );
+
+      const loaded = loadReviewPlans(root, { baselineRef });
+      const fixture = loaded.find(
+        (candidate) => candidate.plan_id === "PLAN-L3-1716-provenance-fixture",
+      );
+      expect(fixture?.gitDateProvenance?.firstCommitDate).toMatch(/^2026-08-20T/u);
+      expect(fixture?.gitDateProvenance?.lastCommitDate).toMatch(/^2026-08-20T/u);
+      expect(analyzeReviewEvidence(loaded).l3HumanApprovalViolations).toEqual([]);
+
+      writeFileSync(planPath, changedContent);
+      const changed = loadReviewPlans(root, { baselineRef });
+      expect(analyzeReviewEvidence(changed).l3HumanApprovalViolations).toEqual([
+        { plan_id: "PLAN-L3-1716-provenance-fixture", reason: "missing_human_po_approval" },
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 

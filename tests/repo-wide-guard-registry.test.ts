@@ -72,6 +72,9 @@ describe("repo-wide guard registry", () => {
     expect(installIndex).toBeGreaterThanOrEqual(0);
     expect(guardIndex).toBeGreaterThan(installIndex);
     expect(isolationIndex).toBeGreaterThan(guardIndex);
+    expect(preflight).toContain(
+      "HELIX_REVIEW_BASE_REF: $" + "{{ github.event.pull_request.base.sha }}",
+    );
   });
 
   it("U-REPOGUARD-004: runnerはregistryのexact setをfast projectへ渡す", () => {
