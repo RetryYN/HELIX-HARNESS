@@ -4,7 +4,7 @@ title: "72投資候補の段階指示書を候補台帳へ移管してroot原稿
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: not_started
 owner: Codex / TL
@@ -24,10 +24,10 @@ contract_postconditions: "統合版を非authorityの候補台帳へGit保全し
 contract_invariants: "候補文書だけでRequirement承認、v1分母追加、一括Issue化、runtime権限追加、実装完了を成立させない"
 contract_failures: "原稿欠損、INV欠落・重複、P0〜P4とseverity/V-model/Releaseの混同、存在しない分冊参照、既存正本の上書きを拒否する"
 tdd_red_required: true
-red_at: "2026-09-11T00:00:00Z"
-green_at: null
+red_at: "2026-09-10T19:30:00Z"
+green_at: "2026-09-10T20:03:06Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-DIS-001/002/003が統合版bytes改変、INV見出し欠落・重複、段階集合欠落、候補境界または退役hash欠落を個別に拒否する"
+mutation_oracle_evidence: "2026-09-10T20:06Zにtests/development-investment-stage-directives.test.tsで実測。U-DIS-001はarchive原文へMUTANTを1語追加してdigest不一致RED、U-DIS-002はINV-072見出しをINV-072Xへ変えてexact set欠落RED、U-DIS-003はREADMEから一括Issue化禁止語を除去してcandidate境界欠落REDとなり、各変異を復元後に同test 3件greenでkillした。"
 complexity_effect: net_negative
 complexity_justification: "重複6分冊とroot統合原稿を、Git管理された候補入力一冊と退役台帳へ収束する。新しいRequirement engine、scheduler、DB、実行authorityは追加しない"
 removal_trigger: "72候補すべてが既存ownerへ採否・残義務付きで終端し、入力台帳をhistoricalへ降格できる時"
@@ -60,7 +60,19 @@ generates:
   - { artifact_path: tests/development-investment-stage-directives.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-10T20:03:06Z"
+    tests_green_at: "2026-09-10T20:03:06Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 49ba4c38dd08482c80d6d60dbdf39f397bc22eed
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1729#issuecomment-5624701495"
+    ci_evidence_generation: "run:34522809098:attempt:2:failure"
+    scope: "段階指示書原文bytes保全、日本語candidate境界、72 ID/P0〜P4 exact set、PLAN discipline、outstanding snapshotをpre-confirmation reviewした。CI failureはdraft lifecycleと旧PR event payloadによるものでgreen扱いせず、confirmed化後のfresh CIと第二receiptを要求する。"
 ---
 
 # 開発投資段階指示書の正規移管
