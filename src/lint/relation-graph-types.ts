@@ -8,7 +8,8 @@ type RelationNodeKind =
   | "db-table"
   | "verification-profile"
   | "external-tool"
-  | "diagram";
+  | "diagram"
+  | "catalog-item";
 
 type RelationEdgeKind =
   | "derives-from"
@@ -17,7 +18,12 @@ type RelationEdgeKind =
   | "pairs"
   | "covered-by"
   | "upstream"
-  | "behavioral-contract";
+  | "behavioral-contract"
+  | "catalogs"
+  | "catalog-artifact"
+  | "reviewed-by"
+  | "validated-by"
+  | "governed-by";
 
 type RelationFindingCode =
   | "orphan-table"
@@ -28,7 +34,11 @@ type RelationFindingCode =
   | "missing-projection"
   | "non-graph-path"
   | "stale-edge"
-  | "missing-test-coverage";
+  | "missing-test-coverage"
+  | "catalog-artifact-missing"
+  | "reviewed-digest-missing"
+  | "reviewed-digest-stale"
+  | "catalog-unregistered-artifact";
 
 interface RelationNode {
   id: string;
@@ -91,6 +101,25 @@ interface DbTableInput {
   path?: string;
 }
 
+interface DesignCatalogItemInput {
+  id: string;
+  status: string;
+  artifacts: string[];
+  missingArtifacts?: string[];
+}
+
+interface DesignCatalogProjectionInput {
+  path: string;
+  items: DesignCatalogItemInput[];
+  reviewedDigestAuthorityPath: string;
+  reviewedDigestState: "current" | "missing" | "stale";
+  coverageSourcePath: string;
+  coverageTestPath: string;
+  governingPlanId: string;
+  baselineArtifacts?: string[];
+  unregisteredDesignDocs?: string[];
+}
+
 interface VerificationEvidenceInput {
   id: string;
   evidencePath: string;
@@ -112,6 +141,7 @@ interface RelationGraphSourceSet {
   tests?: TestFileInput[];
   dbTables?: DbTableInput[];
   verificationEvidence?: VerificationEvidenceInput[];
+  designCatalog?: DesignCatalogProjectionInput;
   /**
    * グラフ走査対象 path クラス配下だが node を意図的に生成しない path
    * (現状は archived plan。loader が live graph から除外する)。impact 分析が
@@ -147,7 +177,9 @@ type RelationImpactActionKind =
   | "update-plan-dod"
   | "record-trace-freeze-evidence"
   | "rebuild-db-table"
-  | "review-upstream";
+  | "review-upstream"
+  | "review-semantic-pin"
+  | "validate-design-coverage";
 
 interface RelationImpactAction {
   kind: RelationImpactActionKind;
@@ -187,6 +219,8 @@ interface DiagramArtifact {
 
 export type {
   DbTableInput,
+  DesignCatalogItemInput,
+  DesignCatalogProjectionInput,
   DesignDocInput,
   DiagramArtifact,
   ExportRelationDiagramInput,

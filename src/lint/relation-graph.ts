@@ -31,6 +31,8 @@ import { normalizePath } from "./shared";
 
 export type {
   DbTableInput,
+  DesignCatalogItemInput,
+  DesignCatalogProjectionInput,
   DesignDocInput,
   DiagramArtifact,
   ExportRelationDiagramInput,
@@ -59,6 +61,20 @@ export type {
 
 function nodeId(kind: RelationNodeKind, key: string): string {
   return `${kind}:${key}`;
+}
+
+function relationNodeIdForPath(path: string): string {
+  const normalized = normalizePath(path);
+  if (normalized.startsWith("src/") && normalized.endsWith(".ts")) {
+    return nodeId("source", normalized);
+  }
+  if (normalized.startsWith("tests/") && normalized.endsWith(".ts")) {
+    return nodeId("test", normalized);
+  }
+  if (normalized.startsWith("docs/test-design/") && normalized.endsWith(".md")) {
+    return nodeId("test-design", normalized);
+  }
+  return nodeId("design", normalized);
 }
 
 /** (kind,id,path) を一意化しながら node を accumulate する。 */
@@ -163,6 +179,76 @@ export function collectRelationGraphProjection(
         from: nodeId("design", design.id),
         to: nodeId("source", src),
         kind: "behavioral-contract",
+      });
+    }
+  }
+  const catalog = input.designCatalog;
+  if (catalog) {
+    const catalogNode = nodeId("design", catalog.path);
+    for (const item of catalog.items) {
+      const itemNode = nodeId("catalog-item", item.id);
+      pushNode(nodes, {
+        id: itemNode,
+        kind: "catalog-item",
+        label: `${item.id} (${item.status})`,
+      });
+      pushEdge(edges, { from: catalogNode, to: itemNode, kind: "catalogs" });
+      for (const artifact of item.artifacts) {
+        pushEdge(edges, {
+          from: itemNode,
+          to: relationNodeIdForPath(artifact),
+          kind: "catalog-artifact",
+        });
+      }
+      for (const artifact of item.missingArtifacts ?? []) {
+        findings.push({
+          code: "catalog-artifact-missing",
+          severity: "error",
+          message: `design catalog item ${item.id} references missing artifact ${artifact}`,
+          nodeId: itemNode,
+          evidencePath: catalog.path,
+        });
+      }
+    }
+    pushEdge(edges, {
+      from: catalogNode,
+      to: relationNodeIdForPath(catalog.reviewedDigestAuthorityPath),
+      kind: "reviewed-by",
+    });
+    pushEdge(edges, {
+      from: catalogNode,
+      to: relationNodeIdForPath(catalog.coverageSourcePath),
+      kind: "validated-by",
+    });
+    pushEdge(edges, {
+      from: catalogNode,
+      to: relationNodeIdForPath(catalog.coverageTestPath),
+      kind: "validated-by",
+    });
+    pushEdge(edges, {
+      from: catalogNode,
+      to: nodeId("plan", catalog.governingPlanId),
+      kind: "governed-by",
+    });
+    if (catalog.reviewedDigestState !== "current") {
+      findings.push({
+        code:
+          catalog.reviewedDigestState === "missing"
+            ? "reviewed-digest-missing"
+            : "reviewed-digest-stale",
+        severity: "error",
+        message: `design catalog reviewed digest is ${catalog.reviewedDigestState}; independent reassessment is required`,
+        nodeId: catalogNode,
+        evidencePath: catalog.reviewedDigestAuthorityPath,
+      });
+    }
+    for (const path of catalog.unregisteredDesignDocs ?? []) {
+      findings.push({
+        code: "catalog-unregistered-artifact",
+        severity: "error",
+        message: `design document ${path} is not registered by a catalog item or frozen baseline`,
+        nodeId: relationNodeIdForPath(path),
+        evidencePath: catalog.path,
       });
     }
   }
@@ -464,7 +550,41 @@ function expandDbTable(node: RelationNode, index: GraphIndex): Expansion {
   return { impacted, actions, findings: [] };
 }
 
+function expandCatalog(node: RelationNode, index: GraphIndex): Expansion {
+  const itemNodes = targets(index.edgesFrom.get(node.id), "catalogs", index);
+  const artifacts = dedupeNodes(
+    itemNodes.flatMap((item) => targets(index.edgesFrom.get(item.id), "catalog-artifact", index)),
+  );
+  const reviewedBy = targets(index.edgesFrom.get(node.id), "reviewed-by", index);
+  const validators = targets(index.edgesFrom.get(node.id), "validated-by", index);
+  const plans = targets(index.edgesFrom.get(node.id), "governed-by", index);
+  return {
+    impacted: [...itemNodes, ...artifacts, ...reviewedBy, ...validators, ...plans],
+    actions: [
+      {
+        kind: "review-semantic-pin",
+        nodeId: reviewedBy[0]?.id ?? node.id,
+        reason: "catalog meaning change requires independent reviewed-digest reassessment",
+      },
+      {
+        kind: "validate-design-coverage",
+        nodeId: validators[0]?.id ?? node.id,
+        reason: "catalog change requires the canonical design-coverage oracle",
+      },
+      ...plans.map((plan) => ({
+        kind: "update-plan" as const,
+        nodeId: plan.id,
+        reason: "catalog governance PLAN must record the change",
+      })),
+    ],
+    findings: [],
+  };
+}
+
 function expandNode(node: RelationNode, index: GraphIndex): Expansion {
+  if (node.kind === "design" && node.path === "docs/design/design-catalog.yaml") {
+    return expandCatalog(node, index);
+  }
   if (node.kind === "source") {
     return expandSource(node, index);
   }
@@ -496,6 +616,54 @@ function detectStaleEdges(
         message: `stale edge ${edge.from} -[${edge.kind}]-> ${edge.to}: endpoint node missing from projection`,
         nodeId: edge.from,
       });
+    }
+  }
+  return findings;
+}
+
+function detectCatalogProjectionIntegrity(index: GraphIndex): RelationFinding[] {
+  const catalogNode = index.nodeById.get("design:docs/design/design-catalog.yaml");
+  if (!catalogNode) return [];
+  const findings: RelationFinding[] = [];
+  const required = [
+    ["catalogs", 1],
+    ["reviewed-by", 1],
+    ["validated-by", 2],
+    ["governed-by", 1],
+  ] as const;
+  for (const [kind, minimum] of required) {
+    const count = (index.edgesFrom.get(catalogNode.id) ?? []).filter(
+      (edge) => edge.kind === kind,
+    ).length;
+    if (count < minimum) {
+      findings.push({
+        code: "missing-projection",
+        severity: "error",
+        message: `design catalog requires at least ${minimum} ${kind} edge(s), found ${count}`,
+        nodeId: catalogNode.id,
+      });
+    }
+  }
+  for (const item of [...index.nodeById.values()].filter((node) => node.kind === "catalog-item")) {
+    const catalogOwners = sources(index.edgesTo.get(item.id), "catalogs", index);
+    if (catalogOwners.length !== 1) {
+      findings.push({
+        code: "missing-projection",
+        severity: "error",
+        message: `catalog item ${item.id} requires exactly one catalogs edge`,
+        nodeId: item.id,
+      });
+    }
+    if (item.label?.endsWith("(done)")) {
+      const artifacts = targets(index.edgesFrom.get(item.id), "catalog-artifact", index);
+      if (artifacts.length === 0) {
+        findings.push({
+          code: "missing-projection",
+          severity: "error",
+          message: `done catalog item ${item.id} requires a catalog-artifact edge`,
+          nodeId: item.id,
+        });
+      }
     }
   }
   return findings;
@@ -541,7 +709,11 @@ export function analyzeRelationImpact(input: RelationImpactInput): RelationImpac
   const changedNodes: RelationNode[] = [];
   const impacted: RelationNode[] = [];
   const actions: RelationImpactAction[] = [];
-  const findings: RelationFinding[] = detectStaleEdges(input.projection, index);
+  const findings: RelationFinding[] = [
+    ...input.projection.findings.filter((finding) => finding.severity === "error"),
+    ...detectStaleEdges(input.projection, index),
+    ...detectCatalogProjectionIntegrity(index),
+  ];
   const excludedPaths = new Set((input.projection.trackedExcludedPaths ?? []).map(normalizePath));
 
   for (const raw of input.changedPaths) {
@@ -572,6 +744,18 @@ export function analyzeRelationImpact(input: RelationImpactInput): RelationImpac
     impacted.push(...expansion.impacted);
     actions.push(...expansion.actions);
     findings.push(...expansion.findings);
+    const catalogItems = sources(index.edgesTo.get(node.id), "catalog-artifact", index);
+    const catalogRoots = dedupeNodes(
+      catalogItems.flatMap((item) => sources(index.edgesTo.get(item.id), "catalogs", index)),
+    );
+    if (catalogItems.length > 0) {
+      impacted.push(...catalogItems, ...catalogRoots);
+      actions.push({
+        kind: "validate-design-coverage",
+        nodeId: catalogRoots[0]?.id ?? node.id,
+        reason: "registered artifact change requires catalog coverage validation",
+      });
+    }
   }
 
   const sortedFindings = sortFindings(findings);
