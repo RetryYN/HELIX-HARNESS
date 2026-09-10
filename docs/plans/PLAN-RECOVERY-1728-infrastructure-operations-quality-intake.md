@@ -4,7 +4,7 @@ title: "インフラ・運用・保守・logging品質要求原稿を既存owner
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: not_started
 owner: Codex / TL
@@ -65,7 +65,29 @@ generates:
   - { artifact_path: tests/infrastructure-operations-quality-intake.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-10T21:51:40Z"
+    tests_green_at: "2026-09-10T21:44:04.763Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 021e75b1932fa62c93c778bdf1fb1a4fba424f37
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1730#issuecomment-5625929492"
+    ci_evidence_generation: "run:34533849488:attempt:1:failure"
+    scope: "インフラ・運用・保守・logging品質要求の原文bytes保全、L1/L3/L10候補境界、既存owner接続、candidate非authority境界、実bytes evidenceをexact HEADでreviewした。CI failureはPLAN draftだけであり、green扱いせず本receiptでconfirmed化する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/infrastructure-operations-quality-intake.test.ts --reporter=json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-10T21:44:04.763Z"
+        evidence_path: .helix/evidence/review-1730/vitest-targeted.json
+        output_digest: "sha256:0387a96bb14368e7e589e5332b07790bd14ed9789f3c6973469de3db3787e85f"
+        result: "Codex author runtime: 1 file / 3 tests pass; JSON report bytes=1759"
 ---
 
 # インフラ・運用品質要求の候補取込み
