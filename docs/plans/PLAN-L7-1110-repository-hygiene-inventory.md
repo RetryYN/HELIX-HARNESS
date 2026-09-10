@@ -2,7 +2,7 @@
 plan_id: PLAN-L7-1110-repository-hygiene-inventory
 title: "PLAN-L7-1110: 正本化前のrepository hygiene read-only inventory"
 kind: recovery
-layer: L7
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -13,6 +13,15 @@ github_issue_id: 1110
 behavior_contract_id: REPOSITORY-HYGIENE-INVENTORY-001
 responsibility_owner: repository-hygiene
 engineering_discipline_required: true
+agent_slots:
+  - role: aim
+    slot_label: "AIM - repository hygieneのRecovery境界と既存責務の整理"
+  - role: se
+    slot_label: "SE - read-only repository hygiene analyzer"
+  - role: qa
+    slot_label: "QA - protected／candidate／unknownの反例検証"
+  - role: tl
+    slot_label: "TL - fail-close境界と既存責務の照合"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -63,11 +72,11 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 dependencies:
-  parent: PLAN-L7-690-branch-audit-delete-candidate-safety
-  requires:
-    - docs/plans/PLAN-L7-690-branch-audit-delete-candidate-safety.md
+  parent: null
+  requires: []
   blocks: []
   references:
+    - "plan:PLAN-L7-690-branch-audit-delete-candidate-safety"
     - "issue:1110"
     - "issue:631"
 ---

@@ -76,10 +76,9 @@ describe("repository hygiene inventory", () => {
             path: `/repo/${caseName}`,
             head: mergedHead,
             branch,
-            cleanliness: "clean",
-            main_reachable: true,
+            cleanliness: override.cleanliness ?? "clean",
+            main_reachable: override.main_reachable ?? true,
             prunable: false,
-            ...override,
           },
         ],
       });
