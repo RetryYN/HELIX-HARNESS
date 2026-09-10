@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -5,15 +6,25 @@ import { describe, expect, it } from "vitest";
 // PLAN-RECOVERY-1728-infrastructure-operations-quality-intake
 const root = resolve(import.meta.dirname, "..");
 const read = (path: string) => readFileSync(resolve(root, path), "utf8");
+const digest = (path: string) =>
+  createHash("sha256")
+    .update(readFileSync(resolve(root, path)))
+    .digest("hex");
 const sequence = (size: number) =>
   Array.from({ length: size }, (_, index) => String(index + 1).padStart(2, "0"));
 const ids = (source: string, prefix: string) =>
-  [...source.matchAll(new RegExp(`^\\| ${prefix}-(\\d{2}) \\|`, "gm"))].map(
-    (match) => match[1],
-  );
+  [...source.matchAll(new RegExp(`^\\| ${prefix}-(\\d{2}) \\|`, "gm"))].map((match) => match[1]);
 
 describe("インフラ・運用品質要求候補", () => {
   it("U-NIO-001: 9要求群と既存owner接続を欠落なく保持する", () => {
+    expect(
+      digest("docs/archive/intake/infrastructure-operations-handoff-under-4000-source_v0.1.md"),
+    ).toBe("0e77630d44fff35d587b0577941a35ebd10429a20f2b00f3098486552ede60e2");
+    expect(
+      digest(
+        "docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+      ),
+    ).toBe("4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344");
     const intake = read("docs/governance/candidates/infrastructure-operations-quality-intake.md");
     expect(ids(intake, "NIO-CAND")).toEqual(sequence(9));
     for (const issue of [219, 220, 221, 222, 223, 1160, 1169, 290, 1033, 1318, 282, 186, 1035]) {
