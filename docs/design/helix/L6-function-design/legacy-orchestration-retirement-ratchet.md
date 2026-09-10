@@ -4,7 +4,7 @@ layer: L6
 artifact_type: design
 status: draft
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-10
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-729-legacy-orchestration-new-use-freeze.md
 pair_artifact: docs/test-design/helix/L8-legacy-orchestration-retirement-ratchet.md
@@ -86,3 +86,19 @@ write/control authorityと別に扱う。
 semantic ledgerはinventoryの代替ではない。文字列ratchetは既存の新規利用freezeを継続し、
 semantic ledgerはconsumerの意味分類と移管前提を追加で検査する。両者の結果を相殺せず、
 どちらか一方でも不明・欠落・退化した場合はPhase 1の検証を失敗とする。
+
+### 凍結baseとrevision overlay
+
+既存の`config/legacy-orchestration-semantic-consumers.json`は、公開済みdigestで束縛された
+凍結baseとして扱う。追加の実consumerをbaseへ追記してdigestを自己更新すると、既存の
+観測基準と変更内容を同じ変更で正当化できるため、Phase 1では許可しない。
+
+追加観測は`config/legacy-orchestration-semantic-consumers-revision-2026-09-10.json`へ
+revisionとして分離する。validatorは、baseのraw bytes digest、revision payload digest、
+revisionの採取source headが検証対象HEADの祖先であることを確認し、base entriesとrevision
+entriesをJOINしてから必須consumer・anchor・hidden consumerを検査する。baseまたはrevisionの
+いずれかが検証不能なら、片方のgreenで相殺せずfail-closeする。
+
+revisionはcompatibility-onlyの観測差分であり、新しい実行authority、旧engineの削除、
+consumer zero、退役完了を意味しない。revisionのentryも`frozen`から開始し、後続の移管・
+successor parity・E2E・rollback・read-afterの証拠なしに`migrated`または`retired`へ進めない。
