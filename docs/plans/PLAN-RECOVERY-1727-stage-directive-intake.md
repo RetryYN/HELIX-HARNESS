@@ -64,16 +64,16 @@ modifies:
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
-    reviewed_at: "2026-09-10T20:03:06Z"
-    tests_green_at: "2026-09-10T20:03:06Z"
+    reviewed_at: "2026-09-10T20:42:23Z"
+    tests_green_at: "2026-09-10T20:23:21.811Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
-    reviewed_head_sha: 49ba4c38dd08482c80d6d60dbdf39f397bc22eed
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1729#issuecomment-5624701495"
-    ci_evidence_generation: "run:34522809098:attempt:2:failure"
-    scope: "段階指示書原文bytes保全、日本語candidate境界、72 ID/P0〜P4 exact set、PLAN discipline、outstanding snapshotをpre-confirmation reviewした。CI failureはdraft lifecycleと旧PR event payloadによるものでgreen扱いせず、confirmed化後のfresh CIと第二receiptを要求する。"
+    reviewed_head_sha: f0a5f704fb77893e1286fa0dd590624b022bdcea
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1729#issuecomment-5625170177"
+    ci_evidence_generation: "run:34527254684:attempt:1:failure"
+    scope: "段階指示書原文bytes保全、日本語candidate境界、72 ID/P0〜P4 exact set、PLAN discipline、実bytes evidence、Issue/PR境界をexact HEADでreviewした。CI failureは旧tests_green_atだけで、green扱いせず本receipt時刻へ正規転記する。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run --project fast tests/development-investment-stage-directives.test.ts --reporter=json --outputFile=.helix/evidence/review-1729/vitest-targeted.json"
