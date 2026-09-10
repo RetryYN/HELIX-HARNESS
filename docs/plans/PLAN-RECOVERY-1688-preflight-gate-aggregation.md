@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1688: 事前ゲート失敗の集約と可視化"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: not_started
 owner: Codex / TL
@@ -59,7 +59,28 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-10T08:32:35Z"
+    tests_green_at: "2026-09-10T08:29:29Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: f83187e037a0f0a8406b2ba8c6d8c9d821718e32
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1714#issuecomment-5615624939"
+    ci_evidence_generation: "run:34453107031:attempt:1:success"
+    scope: "PR #1714のf83187e037a0f0a8406b2ba8c6d8c9d821718e32を、Claude Code / Fable 5.1が独立検収した。条件付き事前ゲート6系統の観測、not_applicableとunexpected_skipの分離、fail-close、review admissionの分離、既存required laneの非緩和を確認し、blocker 0でapproveした。minor/importantの後続推奨と、複数条件付きゲート同時失敗の未実証は残す。"
+    green_commands:
+      - kind: smoke
+        command: "GitHub Actions preflight-gate-results artifact from run 34453107031"
+        runner: ci
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-09-10T08:08:24.924Z"
+        evidence_path: .helix/evidence/preflight-gate-results.json
+        output_digest: "sha256:ad46cd620f89480d62cdf4e04fe113654f88b296734b43a71a7c6a8f96d98e3a"
 ---
 
 # 事前ゲート失敗の集約
@@ -96,4 +117,4 @@ review_evidence: []
 
 ## 検証状態
 
-初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。今回の第2 sliceでは条件付きゲートを同じ集約へ追加した。PLANを同梱した後のfresh CIと独立レビューは未完了であり、本PLANはその成立まで完了を主張しない。
+初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。今回の第2 sliceでは条件付きゲートを同じ集約へ追加した。run `34453107031` では、同一HEADに対する全required jobがsuccessとなり、preflight artifactの実体digestを取得した。Claudeの独立レビューreceiptはPLANへ転記済みだが、この転記自体で完了を主張せず、転記後のfresh CI・exact-HEAD再レビュー・merge/read-afterを残す。
