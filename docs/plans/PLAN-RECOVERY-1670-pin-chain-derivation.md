@@ -59,6 +59,7 @@ generates:
   - { artifact_path: src/lint/pin-chain-derivation.ts, artifact_type: source_module }
   - { artifact_path: tests/pin-chain-derivation.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/evidence/PR-1679/vitest-targeted.json, artifact_type: json_config }
+  - { artifact_path: .helix/evidence/review-1692/impact-ci-full-receipt.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/design/helix/L6-function-design/pin-chain-derivation.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L6-pin-chain-derivation-unit-test-design.md, artifact_type: test_design }
@@ -116,7 +117,7 @@ review_evidence:
         scope: full
         exit_code: 0
         completed_at: "2026-09-10T07:42:05Z"
-        evidence_path: .helix/evidence/impact-ci-full-receipt.json
+        evidence_path: .helix/evidence/review-1692/impact-ci-full-receipt.json
         output_digest: "sha256:8e38e067c49509772873836d39a4f286a4dd946a275e7d45dd9c6ee4529aadd1"
 ---
 
