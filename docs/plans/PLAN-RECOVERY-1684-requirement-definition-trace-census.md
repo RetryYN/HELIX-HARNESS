@@ -83,11 +83,12 @@ review_evidence:
     reviewer_session_id: "44a875e0-4347-4802-8e8a-87cb4f105537"
     reviewed_head_sha: 294abafbea40d361fbdd9b7b682331028de231c1
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1723#issuecomment-5622122101"
+    ci_evidence_generation: "run:34502549936:attempt:1:failure"
     scope: "PR #1723 HEAD 294abafbea40d361fbdd9b7b682331028de231c1の第一sliceを独立検収。旧4 blockerの反例再実行、U-RDTC-010/011、51/51 targeted Vitest、commit済みevidence bytesを照合しblockers 0。CI failureはdraft PLANのmerged-plan-statusのみであり、本転記とconfirmed化後のsuccess世代、ready世代、main read-afterを別途必要とする。Issue #1684全体やdoctor/CLI/DB統合の完了を主張しない。"
     green_commands:
-      - kind: test
+      - kind: unit_test
         command: "npx vitest run tests/requirement-definition-trace-census.test.ts --reporter=json --outputFile=.helix/evidence/review-1723/vitest-targeted-final.json"
-        runner: vitest
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-09-10T16:30:37Z"
