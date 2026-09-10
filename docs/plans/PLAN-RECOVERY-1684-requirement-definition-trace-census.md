@@ -4,11 +4,11 @@ title: "Requirement↔Definition trace census 第一slice"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-11
 github_issue_id: 1684
 behavior_contract_id: REQUIREMENT-DEFINITION-TRACE-CENSUS-001
 responsibility_owner: requirement-ir-authority
@@ -66,11 +66,33 @@ modifies:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — #1684のread-only境界と#1682/#1170非侵食を監査" }
   - { role: se, slot_label: "SE — 宣言IDからのdeterministic edge compiler" }
   - { role: qa, slot_label: "QA — orphan/stale/ambiguous/shared反例" }
   - { role: tl, slot_label: "TL — 既存owner再利用と第一slice原子scope" }
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-10T16:37:15Z"
+    tests_green_at: "2026-09-10T16:30:37Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: "44a875e0-4347-4802-8e8a-87cb4f105537"
+    reviewed_head_sha: 294abafbea40d361fbdd9b7b682331028de231c1
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1723#issuecomment-5622122101"
+    scope: "PR #1723 HEAD 294abafbea40d361fbdd9b7b682331028de231c1の第一sliceを独立検収。旧4 blockerの反例再実行、U-RDTC-010/011、51/51 targeted Vitest、commit済みevidence bytesを照合しblockers 0。CI failureはdraft PLANのmerged-plan-statusのみであり、本転記とconfirmed化後のsuccess世代、ready世代、main read-afterを別途必要とする。Issue #1684全体やdoctor/CLI/DB統合の完了を主張しない。"
+    green_commands:
+      - kind: test
+        command: "npx vitest run tests/requirement-definition-trace-census.test.ts --reporter=json --outputFile=.helix/evidence/review-1723/vitest-targeted-final.json"
+        runner: vitest
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-10T16:30:37Z"
+        evidence_path: .helix/evidence/review-1723/vitest-targeted-final.json
+        output_digest: "sha256:39c34feebb299f5451e70d83415eb0a9f70ad9333a718524a4577de6576dbb96"
 ---
 
 # Requirement↔Definition trace census 第一slice
@@ -95,11 +117,11 @@ targeted testsに限定する。
 
 ## 受入条件
 
-- [ ] 宣言済みIDからedge record exact setを再構築できる。
-- [ ] 正当なmany-to-many共有をduplicateとして検出しない。
-- [ ] orphan / stale / ambiguous を個別分類できる。
-- [ ] 要求本文の自動書換え、意味推測、DB/GitHub write、`src/cli.ts`編集、#1682/#1685再実装が無い。
-- [ ] targeted testsがgreenである。
+- [x] 宣言済みIDからedge record exact setを再構築できる。
+- [x] 正当なmany-to-many共有をduplicateとして検出しない。
+- [x] orphan / stale / ambiguous を個別分類できる。
+- [x] 要求本文の自動書換え、意味推測、DB/GitHub write、`src/cli.ts`編集、#1682/#1685再実装が無い。
+- [x] targeted testsがgreenである。
 
 ## 非対象
 
