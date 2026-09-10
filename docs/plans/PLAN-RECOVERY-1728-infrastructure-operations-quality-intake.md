@@ -24,7 +24,7 @@ contract_postconditions: "L1/L3/L10候補と既存owner接続を分離し、原�
 contract_invariants: "候補だけでcanonical昇格、SLO確定、production操作、包括自動修復権限、実装・運用完了を成立させない"
 contract_failures: "要求群欠落、層混載、二重owner、欠測healthy化、backup名だけのrestore成功、syntheticだけのproduction成立を拒否する"
 tdd_red_required: true
-red_at: "2026-09-11T00:00:00Z"
+red_at: "2026-09-10T20:27:00Z"
 green_at: "2026-09-10T20:28:31Z"
 mutation_oracle_required: true
 mutation_oracle_evidence: "2026-09-10T20:27Z〜20:28Zに実測。U-NIO-001はintakeから#1035 ownerを除去してRED、U-NIO-002はNIO-L10-09をNIO-L10-99へ差し替えてexact set不一致RED、U-NIO-003は未承認scopeの自動修復禁止句を除去してREDとなった。各変異を復元し、同test 3件greenを再確認した。"
