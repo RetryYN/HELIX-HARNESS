@@ -1061,6 +1061,7 @@ describe("source harness-check workflow", () => {
     expect(closureGuard.run).toContain('--changed-file "$RUNNER_TEMP/pr-changed-paths.bin"');
   });
 
+  // PLAN-RECOVERY-1688-preflight-gate-aggregation — U-CI-PREFLIGHT-AGGREGATION-001
   it("U-CI-PREFLIGHT-AGGREGATION-001: 独立ゲートを観測してから集約し、高コスト工程へfail-closeする", () => {
     const raw = readFileSync(WORKFLOW_PATH, "utf8");
     expect(preflightGateAggregationViolations(raw)).toEqual([]);
