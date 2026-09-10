@@ -27,7 +27,7 @@ red_test: "tests/cursor-cloud-run-authority.test.tsはclassifier実装前にmodu
 red_at: "2026-09-10T07:27:03+09:00"
 green_at: "2026-09-10T07:28:34+09:00"
 mutation_oracle_required: true
-mutation_oracle_evidence: "各fixtureはfresh/stale、cancellable true/false、409、active件数、expected run ID、provider availabilityを独立に変え、誤cancel・再POST・全lane停止を拒否する。外部API E2Eは未実証。"
+mutation_oracle_evidence: "tests/cursor-cloud-run-authority.test.ts::U-CURSOR-RUN-009で、stale RUNNINGのcancellable=trueをCREATING扱いへ変異すると、cancel候補の誤生成とfollow-up許可を1 failedでkillすることを実測する。U-CURSOR-RUN-001..008はfresh/stale、cancellable true/false、409、active件数、expected run ID、provider availabilityの境界を独立に拘束する。外部API E2Eは未実証。"
 complexity_effect: net_neutral
 complexity_justification: "既存runtime adapter内の副作用なしclassifierとdecisionだけを追加し、provider専用control planeを増やさない"
 removal_trigger: "Cursor v1 run stateがprovider-neutral worker run authorityへ同じ分類・回復契約で吸収された時"
