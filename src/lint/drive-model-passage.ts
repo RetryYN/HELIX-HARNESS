@@ -173,11 +173,7 @@ export function loadDriveModelPassageDocs(
   if (!existsSync(target)) return [];
   return [
     {
-      file: join(
-        "docs",
-        "plans",
-        "PLAN-RECOVERY-1715-drive-passage-catalog-authority.md",
-      ),
+      file: join("docs", "plans", "PLAN-RECOVERY-1715-drive-passage-catalog-authority.md"),
       content: readFileSync(target, "utf8"),
     },
   ];

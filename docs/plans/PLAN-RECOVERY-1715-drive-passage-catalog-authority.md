@@ -33,7 +33,7 @@ complexity_justification: "旧固定集合の重複定義を削除し、既存ge
 removal_trigger: "passage certificate consumerがcurrent typed authorityへ収束し、旧certificate表のcurrent参照が0になった時"
 entry_signals: [regression_dev]
 parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md
-pair_artifact: docs/test-design/helix/L8-drive-model-passage-catalog-authority-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-CAT1437-003, test_path: tests/drive-model-passage.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md, oracle_id: U-DMP-001, test_path: tests/drive-model-passage.test.ts }
@@ -59,8 +59,8 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1715-drive-passage-catalog-authority.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/helix/L8-drive-model-passage-catalog-authority-unit-test-design.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/lint/drive-model-passage.ts, artifact_type: source_module }
   - { artifact_path: tests/drive-model-passage.test.ts, artifact_type: test_code }
 agent_slots:
