@@ -1,4 +1,5 @@
 // PLAN-L7-427-active-plan-selection
+// PLAN-RECOVERY-1714-drive-registration-current-authority — U-DDB1437-001/002
 import { randomUUID } from "node:crypto";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -92,7 +93,7 @@ describe("drive DB registration lint", () => {
     expect(regression.violations).toContainEqual({ reason: "new_hook_orphans", count: 1 });
   });
 
-  it("U-DDBREG-007: legacy drive/mode rows are compatibility-only and do not gate current registration", () => {
+  it("U-DDB1437-001: legacy drive/mode rows are compatibility-only and do not gate current registration", () => {
     const r = analyzeDriveDbRegistration({
       ...compliant,
       modes: ["Forward"],
@@ -102,7 +103,7 @@ describe("drive DB registration lint", () => {
     expect(driveDbRegistrationMessages(r)[0]).not.toContain("missing_required_mode");
   });
 
-  it("U-DDBREG-009: unknown current workflow identity fails closed without consulting legacy modes", () => {
+  it("U-DDB1437-002: unknown current workflow identity fails closed without consulting legacy modes", () => {
     const r = analyzeDriveDbRegistration({
       ...compliant,
       modes: [],

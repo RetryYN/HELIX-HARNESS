@@ -77,7 +77,8 @@ describe("workflow classification generated catalog", () => {
     );
   });
 
-  it("U-WFCAT-005: exposes current identity sets without consulting the legacy route inventory", () => {
+  // PLAN-RECOVERY-1713-workflow-classification-catalog-authority — U-CAT1437-001
+  it("U-CAT1437-001: exposes current identity sets without consulting the legacy route inventory", () => {
     const catalog = loadWorkflowClassificationCatalog();
     expect(currentWorkflowModelIds(catalog)).toEqual([
       "ADD_FEATURE",
