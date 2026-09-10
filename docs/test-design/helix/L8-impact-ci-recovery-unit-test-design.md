@@ -50,6 +50,7 @@ queue_id: L3Q-PC-039
 | U-FULLSHARD-WF-002 | receipt exact set検証後だけDB／doctorを実行 | receipt欠落、wrong partition、fail-open、gate順序短絡を拒否 |
 | U-BIOMEFAST-001 | Biomeをpreflightの依存導入直後かつshard plan生成前に一回実行 | finalizeへ戻す、preflightから除く、shard plan生成後へ移す、他jobへ複製、command差替え、条件付きskip、continue-on-errorを拒否 |
 | U-FULLSHARD-WF-003 | preflight 35分、bulk各25分、stateful 30分、finalize 15分のbounded job timeoutとbudget telemetryを固定 | shard timeout、telemetry、timeout検査の削除、job単位の無制限化を拒否 |
+| U-G10CHROMIUM-001 | bulk-3はlegacy list形式とdeb822形式のGoogle Chrome apt sourceを存在時だけrunner tempへ退避してからPlaywright Chromiumを導入 | 片方のsource退避欠落、Playwright導入後への順序逆転、退避なしで外部Google repositoryのhash不整合を受ける経路を拒否 |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLIはprovider-neutral manifest assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、対象外CLI oracleの一括緩和を拒否 |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLIはcontext injection assertionを維持し、30秒以内で完了 | deadline無制限化、30秒超過、assertion削除、routing semantics変更を拒否 |
 
@@ -97,6 +98,7 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-IMPACTCI-WF-001 | workflow profile dispatch | Draft full固定、Ready selective、empty selective、soft-passを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-004 | 同一HEAD transition reuse | transition event限定欠落、success絞り込み欠落、full receipt照合欠落、base SHA一致検査欠落、フォールバック欠落、run id検証欠落、receipt発行境界欠落を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-IMPACTCI-WF-006 | 非PR revision range正規化 | schedule／workflow_dispatchで空before SHAをHEAD親へ写像し、branch-kind／commitlintの片側だけempty判定を削るmutationを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-CI-PREFLIGHT-AGGREGATION-001 | 事前ゲート結果の集約 | 複数ゲートの結果を個別ID・skip理由付きで保持し、集約stepの欠落、fail-open、review admissionの混入、無理由skipを拒否 | `tests/harness-check-workflow.test.ts` |
 | U-ESC-SRC-001 | source workflow profile boundary | sourceへ consumer doctorを適用するmutationを拒否 | `tests/escalation-stale-source-workflow.test.ts` |
 | U-ESC-SRC-002 | consumer template profile boundary | consumer templateをsource profileへ変えるmutationを拒否 | `tests/escalation-stale-source-workflow.test.ts` |
 | U-REPOGUARD-001 | repo-wide guard exact set | registryから1件削除、重複、missing path、未登録guardを拒否 | `tests/repo-wide-guard-registry.test.ts` |
@@ -115,6 +117,7 @@ mandatory itemを1件削除する、risk tagを1件known-lowへ落とす、defer
 | U-FULLSHARD-WF-002 | workflow finalize | receipt exact setとpost-test gate順序を検査 | `tests/harness-check-workflow.test.ts` |
 | U-BIOMEFAST-001 | workflow preflight | 既存lintの早期実行・単一実行と、finalize逆戻し／preflight除去／shard後移動を含む退行を検査 | `tests/harness-check-workflow.test.ts` |
 | U-FULLSHARD-WF-003 | workflow timeout | preflight／4 shard／finalizeのbounded timeoutとbudget telemetryを検査し、bulk 25→26 mutationを拒否 | `tests/harness-check-workflow.test.ts` |
+| U-G10CHROMIUM-001 | G10 Chromium導入のapt source隔離 | legacy list／deb822のGoogle Chrome source退避欠落とPlaywright導入前後の順序逆転を拒否 | `tests/harness-check-workflow.test.ts` |
 | U-CLI-SKILL-DEADLINE-001 | skill injection CLI bounded deadline | provider-neutral manifest assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 | U-CLI-SKILL-DEADLINE-002 | task route adapter CLI bounded deadline | context injection assertionを保持し、30秒でfail-close | `tests/cli-surface.test.ts` |
 

@@ -1,0 +1,113 @@
+{
+  "schema_version": "helix-legacy-orchestration-semantic-consumer-ledger.v1",
+  "authority_role": "compatibility_only_semantic_consumer_ledger",
+  "issue_id": 865,
+  "parent_plan": "PLAN-L7-729-legacy-orchestration-new-use-freeze",
+  "source_head": "70826900d1640cf02e2010ce09378410db11c7c6",
+  "entries": [
+    {
+      "capability_id": "LEGACY-SEM-TEAM-CLI-DIRECT-001",
+      "symbol_or_command": "executeTeamRunPlan",
+      "path": "src/cli.ts",
+      "line_anchor": "team\n  .command(\"run\")",
+      "consumer_role": "direct_execution",
+      "current_authority": "legacy_team_run_cli_execution",
+      "target_authority": "assignment_lease_resident_lane",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-001", "U-LORET-SEM-006", "U-LORET-SEM-009"]
+    },
+    {
+      "capability_id": "LEGACY-SEM-PAIR-CLI-DIRECT-001",
+      "symbol_or_command": "runPairAgentTddPlan",
+      "path": "src/cli.ts",
+      "line_anchor": "pairAgent\n  .command(\"run\")",
+      "consumer_role": "direct_execution",
+      "current_authority": "legacy_pair_agent_cli_execution",
+      "target_authority": "assignment_lease_resident_lane",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-001", "U-LORET-SEM-006", "U-LORET-SEM-009"]
+    },
+    {
+      "capability_id": "LEGACY-SEM-LOOP-CLI-DIRECT-001",
+      "symbol_or_command": "tick",
+      "path": "src/cli.ts",
+      "line_anchor": "loop\n  .command(\"run\")",
+      "consumer_role": "direct_execution",
+      "current_authority": "legacy_loop_runtime_bridge",
+      "target_authority": "assignment_lease_resident_lane",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-001", "U-LORET-SEM-006", "U-LORET-SEM-009"]
+    },
+    {
+      "capability_id": "LEGACY-SEM-TEAM-FIRE-SLOT-001",
+      "symbol_or_command": "fireSlot",
+      "path": "src/team/run.ts",
+      "line_anchor": "slot = fireSlot(",
+      "consumer_role": "write_control",
+      "current_authority": "team_owned_slot_lifecycle",
+      "target_authority": "assignment_capacity_authority",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-002", "U-LORET-SEM-004", "U-LORET-SEM-011"]
+    },
+    {
+      "capability_id": "LEGACY-SEM-TEAM-RELEASE-SLOT-001",
+      "symbol_or_command": "releaseSlot",
+      "path": "src/team/run.ts",
+      "line_anchor": "releaseSlot({ slotId: slot.slot_id",
+      "consumer_role": "write_control",
+      "current_authority": "team_owned_slot_lifecycle",
+      "target_authority": "assignment_capacity_authority",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-002", "U-LORET-SEM-004", "U-LORET-SEM-011"]
+    },
+    {
+      "capability_id": "LEGACY-SEM-TEAM-MAX-PARALLEL-001",
+      "symbol_or_command": "plan.max_parallel",
+      "path": "src/team/run.ts",
+      "line_anchor": "i += plan.max_parallel",
+      "consumer_role": "write_control",
+      "current_authority": "team_runner_parallel_scheduler",
+      "target_authority": "assignment_capacity_scheduler",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-003", "U-LORET-SEM-004", "U-LORET-SEM-011"]
+    },
+    {
+      "capability_id": "LEGACY-SEM-LOOP-STATE-WRITEBACK-001",
+      "symbol_or_command": "store.write",
+      "path": "src/cli.ts",
+      "line_anchor": "store.write(current)",
+      "consumer_role": "write_control",
+      "current_authority": "legacy_loop_state_writeback",
+      "target_authority": "durable_assignment_episode_projection",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-004", "U-LORET-SEM-005", "U-LORET-SEM-009"]
+    },
+    {
+      "capability_id": "LEGACY-SEM-LOOP-LEGACY-IMPORT-001",
+      "symbol_or_command": "importLegacy",
+      "path": "src/orchestration/loop-store.ts",
+      "line_anchor": "function importLegacy(planId: string)",
+      "consumer_role": "compatibility_adapter",
+      "current_authority": "legacy_loop_state_compatibility_import",
+      "target_authority": "durable_loop_epoch",
+      "successor_symbol": null,
+      "migration_state": "frozen",
+      "removal_preconditions": ["production_consumer_zero", "successor_production_callsite", "parity_e2e_green", "rollback_verified", "read_after_verified"],
+      "negative_oracle_ids": ["U-LORET-SEM-006", "U-LORET-SEM-007", "U-LORET-SEM-010"]
+    }
+  ]
+}

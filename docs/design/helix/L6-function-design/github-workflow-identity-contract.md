@@ -4,7 +4,7 @@ layer: L6
 artifact_type: design
 status: confirmed
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-09-10
 owner: Codex / TL
 plan: docs/plans/PLAN-L7-573-github-workflow-identity-ingest.md
 pair_artifact: docs/test-design/helix/L8-github-workflow-identity-contract-unit-test-design.md
@@ -34,6 +34,8 @@ IssueとPRが同じmarker付きJSON contractで宣言した`registry_version`、
 - `U-GWID-006`: L6/L8 pairをdesign catalogとG3 freeze digestへ伝播する。
 - `U-GWID-007`: signal identity不一致時も拒否を維持し、宣言target、解決target、current registryが許すsignalを診断する。
 - `U-GWID-008`: marker欠落時も拒否を維持し、marker付きstrict JSONの受理形を診断する。
+- `U-GWID-009`: `catalog_route_id`／`route_class`をlegacy fieldへ誤分類しない。このv1 contractの
+  identity tupleは`target_axis`／`target_id`であり、route identity pairの受理・照合は専用projection contractへ委ねる。
 
 ## Marker
 
@@ -49,4 +51,6 @@ machine authorityへ昇格させない。
 ## Failure境界
 
 canonical contractがmissing／invalid／driftの場合にlegacy fieldやlabelの成功で相殺しない。
+`mode`／`model`／`route_mode`だけをlegacy identityとして扱う。current route projection語彙である
+`catalog_route_id`／`route_class`を本contractへ混載した場合はschema境界違反として拒否し、legacyとは診断しない。
 DB projection、execution episode、right-arm evidence、terminal dispositionは#205の後続sliceへ分離する。
