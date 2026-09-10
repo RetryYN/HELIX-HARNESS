@@ -204,14 +204,18 @@ export function formatPreflightGateLine(gate: PreflightGateRecord): string {
   return `${gate.id}: ${gate.status}${gate.skip_reason ? ` (${gate.skip_reason})` : ""}`;
 }
 
-function recordGate(
-  id: string,
-  label: string,
-  status: string,
-  skipReason?: string,
-): PreflightGateRecord {
-  const gate: PreflightGateRecord = { id, label, status };
-  if (skipReason) gate.skip_reason = skipReason;
+function recordGate(input: {
+  id: string;
+  label: string;
+  status: string;
+  skipReason?: string;
+}): PreflightGateRecord {
+  const gate: PreflightGateRecord = {
+    id: input.id,
+    label: input.label,
+    status: input.status,
+  };
+  if (input.skipReason) gate.skip_reason = input.skipReason;
   return gate;
 }
 
@@ -223,18 +227,18 @@ function addConditionalGate(
   const status = observedOutcome(context.outcomes, definition.outcomeKey);
   if (status === "skipped") {
     gates.push(
-      recordGate(
-        definition.id,
-        definition.label,
+      recordGate({
+        id: definition.id,
+        label: definition.label,
         status,
-        definition.applies(context)
+        skipReason: definition.applies(context)
           ? `unexpected_skip:${definition.id}`
           : `not_applicable:${definition.notApplicableReason}`,
-      ),
+      }),
     );
     return;
   }
-  gates.push(recordGate(definition.id, definition.label, status));
+  gates.push(recordGate({ id: definition.id, label: definition.label, status }));
 }
 
 export function aggregatePreflightGates(
@@ -247,77 +251,93 @@ export function aggregatePreflightGates(
   const postMergePlan = observedOutcome(context.outcomes, "POST_MERGE_PLAN");
 
   gates.push(
-    recordGate("lint_biome", "lint (biome)", observedOutcome(context.outcomes, "LINT_BIOME")),
+    recordGate({
+      id: "lint_biome",
+      label: "lint (biome)",
+      status: observedOutcome(context.outcomes, "LINT_BIOME"),
+    }),
   );
   gates.push(
-    recordGate(
-      "design_language",
-      "design-language",
-      observedOutcome(context.outcomes, "DESIGN_LANGUAGE"),
-    ),
+    recordGate({
+      id: "design_language",
+      label: "design-language",
+      status: observedOutcome(context.outcomes, "DESIGN_LANGUAGE"),
+    }),
   );
   gates.push(
-    recordGate(
-      "repo_guard_preflight",
-      "repo-wide guard preflight",
-      observedOutcome(context.outcomes, "REPO_GUARD_PREFLIGHT"),
-    ),
+    recordGate({
+      id: "repo_guard_preflight",
+      label: "repo-wide guard preflight",
+      status: observedOutcome(context.outcomes, "REPO_GUARD_PREFLIGHT"),
+    }),
   );
   gates.push(
-    recordGate("install_bubblewrap", "install required Linux isolation backend", installBubblewrap),
+    recordGate({
+      id: "install_bubblewrap",
+      label: "install required Linux isolation backend",
+      status: installBubblewrap,
+    }),
   );
   gates.push(
-    recordGate(
-      "real_bubblewrap",
-      "required real bubblewrap process isolation",
-      realBubblewrap === "skipped" && installBubblewrap !== "success" ? "skipped" : realBubblewrap,
-      installBubblewrap !== "success" ? "dependency_failed:install_bubblewrap" : undefined,
-    ),
+    recordGate({
+      id: "real_bubblewrap",
+      label: "required real bubblewrap process isolation",
+      status:
+        realBubblewrap === "skipped" && installBubblewrap !== "success"
+          ? "skipped"
+          : realBubblewrap,
+      skipReason:
+        installBubblewrap !== "success" ? "dependency_failed:install_bubblewrap" : undefined,
+    }),
   );
   gates.push(
-    recordGate(
-      "branch_type_matrix",
-      "branch type matrix",
-      observedOutcome(context.outcomes, "BRANCH_TYPE_MATRIX"),
-    ),
+    recordGate({
+      id: "branch_type_matrix",
+      label: "branch type matrix",
+      status: observedOutcome(context.outcomes, "BRANCH_TYPE_MATRIX"),
+    }),
   );
   gates.push(
-    recordGate(
-      "branch_kind_check",
-      "branch-kind-check",
-      observedOutcome(context.outcomes, "BRANCH_KIND_CHECK"),
-    ),
+    recordGate({
+      id: "branch_kind_check",
+      label: "branch-kind-check",
+      status: observedOutcome(context.outcomes, "BRANCH_KIND_CHECK"),
+    }),
   );
   gates.push(
-    recordGate("commitlint", "commitlint", observedOutcome(context.outcomes, "COMMITLINT")),
+    recordGate({
+      id: "commitlint",
+      label: "commitlint",
+      status: observedOutcome(context.outcomes, "COMMITLINT"),
+    }),
   );
 
   for (const definition of CONDITIONAL_PREFLIGHT_GATES) {
     addConditionalGate(gates, definition, context);
   }
 
-  gates.push(recordGate("plan_lint", "plan-lint", planLint));
+  gates.push(recordGate({ id: "plan_lint", label: "plan-lint", status: planLint }));
   gates.push(
-    recordGate(
-      "post_merge_plan",
-      "post-merge PLAN status",
-      postMergePlan === "skipped" && planLint !== "success" ? "skipped" : postMergePlan,
-      planLint !== "success" ? "dependency_failed:plan_lint" : undefined,
-    ),
+    recordGate({
+      id: "post_merge_plan",
+      label: "post-merge PLAN status",
+      status: postMergePlan === "skipped" && planLint !== "success" ? "skipped" : postMergePlan,
+      skipReason: planLint !== "success" ? "dependency_failed:plan_lint" : undefined,
+    }),
   );
   gates.push(
-    recordGate(
-      "l12_authority",
-      "L1-L12 canonical authority drift",
-      observedOutcome(context.outcomes, "L12_AUTHORITY"),
-    ),
+    recordGate({
+      id: "l12_authority",
+      label: "L1-L12 canonical authority drift",
+      status: observedOutcome(context.outcomes, "L12_AUTHORITY"),
+    }),
   );
   gates.push(
-    recordGate(
-      "typecheck",
-      "typecheck (tsc --noEmit)",
-      observedOutcome(context.outcomes, "TYPECHECK"),
-    ),
+    recordGate({
+      id: "typecheck",
+      label: "typecheck (tsc --noEmit)",
+      status: observedOutcome(context.outcomes, "TYPECHECK"),
+    }),
   );
 
   const failures = collectFailures(gates);
