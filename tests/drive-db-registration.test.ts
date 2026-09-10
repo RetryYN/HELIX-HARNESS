@@ -74,6 +74,7 @@ describe("drive DB registration lint", () => {
         "skill_recommendation_orphans",
         "skill_invocation_orphans",
         "missing_registered_hook_events",
+        "missing_required_mode",
       ]),
     );
   });
