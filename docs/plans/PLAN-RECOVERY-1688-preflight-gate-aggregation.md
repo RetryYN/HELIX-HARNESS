@@ -52,7 +52,7 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1688-preflight-gate-aggregation.md, artifact_type: markdown_doc }
-  - { artifact_path: .helix/evidence/preflight-gate-results.json, artifact_type: json_config }
+  - { artifact_path: .helix/evidence/review-1714/preflight-gate-results.json, artifact_type: json_config }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
@@ -79,7 +79,7 @@ review_evidence:
         scope: gate
         exit_code: 0
         completed_at: "2026-09-10T08:08:24.924Z"
-        evidence_path: .helix/evidence/preflight-gate-results.json
+        evidence_path: .helix/evidence/review-1714/preflight-gate-results.json
         output_digest: "sha256:ad46cd620f89480d62cdf4e04fe113654f88b296734b43a71a7c6a8f96d98e3a"
 ---
 
