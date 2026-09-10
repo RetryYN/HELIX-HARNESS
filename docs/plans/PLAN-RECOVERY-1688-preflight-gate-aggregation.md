@@ -1,0 +1,96 @@
+---
+plan_id: PLAN-RECOVERY-1688-preflight-gate-aggregation
+title: "PLAN-RECOVERY-1688: 事前ゲート失敗の集約と可視化"
+kind: recovery
+layer: cross
+drive: agent
+status: draft
+completion_claim_allowed: false
+backfill_state: not_started
+owner: Codex / TL
+created: 2026-09-10
+updated: 2026-09-10
+github_issue_id: 1688
+behavior_contract_id: CI-PREFLIGHT-GATE-AGGREGATION-001
+responsibility_owner: impact-ci-recovery
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: migrate_one_consumer
+legacy_retirement_state: not_applicable
+no_code_decision: modify
+ddd_modeling_decision: policy
+contract_preconditions: "harness-check の独立事前ゲートが同一の検収対象HEADで実行され、後続shardへの依存関係が定義されている"
+contract_postconditions: "事前ゲートを個別に評価し、全結果をtyped JSONとsummaryへ集約して、1件以上の失敗をfail-closeで明示する"
+contract_invariants: "review admissionは集約対象から除外して別途強制し、required lane、full regression、receipt、DB rebuild、doctorの成立条件を弱めない"
+contract_failures: "失敗を最後の1件だけに縮約すること、continue-on-errorだけで成功扱いすること、review admissionを集約結果で代替すること、無理由skipを許可することを拒否する"
+tdd_red_required: true
+red_at: "2026-09-10T03:00:00Z"
+green_at: null
+mutation_oracle_required: true
+mutation_oracle_evidence: "tests/harness-check-workflow.test.ts の U-CI-PREFLIGHT-AGGREGATION-001 系列で、集約step欠落、continue-on-errorによるfail-open、review admissionの混入、無理由skipを個別に拒否する。実CIでは branch_kind_check の単一失敗を集約結果へ保持し、shard起動を停止した。"
+complexity_effect: net_neutral
+complexity_justification: "既存のfull-regression-preflight内へ結果集約とartifact出力を追加し、新しいscheduler・DB・reviewer・実行経路は作らない"
+removal_trigger: "後継のCI結果集約機構が同じ個別失敗、skip理由、review admission分離、fail-closeを独立検証した時"
+entry_signals: [regression_dev]
+parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md
+pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-CI-PREFLIGHT-AGGREGATION-001, test_path: tests/harness-check-workflow.test.ts }
+agent_slots:
+  - { role: aim, slot_label: "AIM — 事前ゲート集約と独立レビュー admission の責務境界を照合" }
+  - { role: tl, slot_label: "TL — 既存required laneとfail-close条件を維持して集約を統合" }
+  - { role: qa, slot_label: "QA — 複数失敗、skip理由、mutation反例を実CIで検証" }
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  target_axis: workflow_model
+  target_id: RECOVERY
+dependencies:
+  requires: [docs/plans/PLAN-RECOVERY-1640-biome-preflight.md]
+  references: ["issue:1688"]
+  blocks: []
+generates:
+  - { artifact_path: docs/plans/PLAN-RECOVERY-1688-preflight-gate-aggregation.md, artifact_type: markdown_doc }
+  - { artifact_path: .helix/evidence/preflight-gate-results.json, artifact_type: json_config }
+modifies:
+  - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
+  - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/helix/L6-function-design/impact-ci-recovery.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md, artifact_type: test_design }
+review_evidence: []
+---
+
+# 事前ゲート失敗の集約
+
+## 目的
+
+`harness-check` の事前ゲートが複数失敗した場合でも、最初に表面化した1件だけでなく、同一HEADに対する全ゲートの結果を確認できるようにする。失敗の可視性を高めるための変更であり、検査範囲・required lane・独立レビューの成立条件を緩和しない。
+
+## 今回の範囲
+
+- 独立事前ゲートの結果を固定されたIDで集約する。
+- success / failure / skipped と、許可されたskip理由をtyped JSONへ出力する。
+- summaryとartifactで同じ結果を公開し、失敗が1件でもあれば集約stepをfail-closeする。
+- current HEAD independent review admissionはPR状態に依存するため、集約対象外として別のrequired判定を維持する。
+- recoveryブランチ自身が要求するPLANをこのPRへ含め、branch-kind gateの契約を満たす。
+
+## 対象外
+
+- 事前ゲートの検査内容やrequired性の削除・弱体化
+- full regression shard、DB rebuild、doctor、review admissionの代替
+- 自動修復、再試行制御、新scheduler、実行予算の変更
+- CI failureの意味的な再分類や、既存の失敗を成功へ読み替える変更
+
+## 受入条件
+
+1. 同一HEADの全事前ゲート結果が個別IDでartifactへ残る。
+2. 失敗が複数ある場合に、集約結果が全件を保持してfail-closeする。
+3. 無理由skipを拒否し、依存失敗によるskipはtyped reasonを付ける。
+4. review admissionを集約結果で代替せず、別経路で強制する。
+5. 集約stepが成功した場合だけ、既存のfull regressionおよびfinalizeの入力条件を満たす。
+6. mutation oracleが集約step欠落・fail-open・review混入・skip理由欠落を検出する。
+
+## 検証状態
+
+初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。PLANを同梱した後のfresh CIと独立レビューは未完了であり、本PLANはその成立まで完了を主張しない。
