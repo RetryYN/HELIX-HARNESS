@@ -5,9 +5,9 @@ import { describe, expect, it } from "vitest";
 
 // PLAN-RECOVERY-1727-stage-directive-intake
 const root = resolve(import.meta.dirname, "..");
-const intakePath = resolve(
+const sourcePath = resolve(
   root,
-  "docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+  "docs/archive/intake/development-investment-stage-directives-source_v1.0.md",
 );
 const cleanupPath = resolve(
   root,
@@ -31,7 +31,7 @@ function digest(source: string): string {
 
 describe("開発投資段階指示書の取込み", () => {
   it("U-DIS-001: 統合原稿のbytesを候補入力として欠損なく保全する", () => {
-    const source = readFileSync(intakePath, "utf8");
+    const source = readFileSync(sourcePath, "utf8");
     expect(digest(source)).toBe(expectedIntakeDigest);
     expect(source).toContain("# HELIX 開発コスト削減・知能化：段階指示書 統合版");
     expect(source).toContain("# 共通受入・採否・段階引継ぎ");
@@ -39,7 +39,7 @@ describe("開発投資段階指示書の取込み", () => {
   });
 
   it("U-DIS-002: INV-001〜072の個別カードと主段階割当をexact setで保持する", () => {
-    const source = readFileSync(intakePath, "utf8");
+    const source = readFileSync(sourcePath, "utf8");
     const headings = [...source.matchAll(/^## INV-(\d{3}) — /gm)].map((match) => match[1]);
     const expected = Array.from({ length: 72 }, (_, index) => String(index + 1).padStart(3, "0"));
     expect(headings).toEqual(expected);

@@ -28,7 +28,7 @@ main read-after、L4/L9 pair freeze、design catalog登録を同一promotionで�
 ## 開発投資の段階候補
 
 - `development-investment-stage-directives-intake_v1.0.md`: 開発コスト削減・知能化に関する
-  INV-001〜072の入力保全、P0〜P4導入帯、能力依存、既存owner候補、共通受入を収録する。
+  INV-001〜072の日本語候補入口。原文bytesは`docs/archive/intake/development-investment-stage-directives-source_v1.0.md`へ保全する。
 
 この文書のINV IDとP0〜P4は、Requirement ID、障害severity、L1〜L12、Release Waveではない。
 候補文書だけで72件を承認・v1必須化・一括Issue化・実装済み扱いにしない。選択したINVごとに

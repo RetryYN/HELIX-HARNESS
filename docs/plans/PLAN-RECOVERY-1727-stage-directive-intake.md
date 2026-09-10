@@ -33,7 +33,7 @@ complexity_justification: "重複6分冊とroot統合原稿を、Git管理され
 removal_trigger: "72候補すべてが既存ownerへ採否・残義務付きで終端し、入力台帳をhistoricalへ降格できる時"
 entry_signals: [regression_dev]
 parent_design: docs/governance/repository-structure.md
-pair_artifact: docs/test-design/helix/L7-development-investment-stage-directive-intake-unit-test-design.md
+pair_artifact: docs/governance/development-investment-stage-directives-source-cleanup-2026-09-11.md
 verification_bindings:
   - { parent_design: docs/governance/repository-structure.md, oracle_id: U-DIS-001, test_path: tests/development-investment-stage-directives.test.ts }
   - { parent_design: docs/governance/repository-structure.md, oracle_id: U-DIS-002, test_path: tests/development-investment-stage-directives.test.ts }
@@ -53,9 +53,9 @@ dependencies:
   references: ["issue:1727", "issue:1500", "issue:1034", "issue:1293", "issue:1639"]
   blocks: []
 generates:
+  - { artifact_path: docs/archive/intake/development-investment-stage-directives-source_v1.0.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/development-investment-stage-directives-source-cleanup-2026-09-11.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/helix/L7-development-investment-stage-directive-intake-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1727-stage-directive-intake.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-investment-stage-directives.test.ts, artifact_type: test_code }
 modifies:

@@ -10,7 +10,8 @@
 統合版は2515行で、共通境界、P0〜P4、INV-001〜072の個別カード、全件段階割当、能力依存、
 既存導入束、共通受入、出典を含む。分割6冊は統合版の対応節と、末尾空行を除いて同じ内容である。
 
-統合版を[候補入力台帳](candidates/development-investment-stage-directives-intake_v1.0.md)へ移管した。
+統合版を[履歴入力](../archive/intake/development-investment-stage-directives-source_v1.0.md)へbytes同一で保全し、
+[候補入力台帳](candidates/development-investment-stage-directives-intake_v1.0.md)を日本語の非authority入口として分離した。
 統合版は全72カードを持つため、分割文書の`06_ITEM_DIRECTIVES.md`という未実体参照は、同台帳の
 「INV-001〜072 個別実施カード」節へ解決する。存在しない別文書を新設して第二正本にはしない。
 
@@ -18,7 +19,7 @@
 
 | 退役対象のroot原稿 | 原稿SHA-256 | 保全方法 |
 |---|---|---|
-| `HELIX_STAGE_DIRECTIVES_COMPLETE.md` | `7b7d0600bccd9045aa1c11f9762886c982b38e9446197f9dcf00637116833b04` | 候補入力台帳へbytes同一で保全 |
+| `HELIX_STAGE_DIRECTIVES_COMPLETE.md` | `7b7d0600bccd9045aa1c11f9762886c982b38e9446197f9dcf00637116833b04` | 履歴入力へbytes同一で保全 |
 | `00_COMMON_DIRECTIVE.md` | `c93cfcef15df6f6a0f6660708c8aac74ad86c33cf1ea1c4ee197130cf7da4fc2` | 候補入力台帳の共通指示節へ正規化同一で保全 |
 | `01_P0_IMMEDIATE_DIRECTIVE.md` | `a28df5b78300b35bf9398a426bf20808f3798ca13bfd6cb84d6a1a1073b7d844` | 候補入力台帳のP0節へ正規化同一で保全 |
 | `02_P1_EARLY_AUTOMATION_DIRECTIVE.md` | `aab83ebd4400875f6638b090f3f858b6eaa49c957bc16862d0b9410e3f0dac25` | 候補入力台帳のP1節へ正規化同一で保全 |
@@ -37,8 +38,8 @@
 
 ## 退役条件と結果
 
-| U-ID | 検証対象 | 反例と期待結果 | test citation |
-|---|---|---|---|
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
 | U-DIS-001 | 統合原稿bytes | 保全先の1 byteでも変えるとSHA-256不一致でRED | `tests/development-investment-stage-directives.test.ts` |
 | U-DIS-002 | 72候補とP0〜P4割当 | INV見出しまたは全件対応表の欠落・重複・範囲外段階をRED | `tests/development-investment-stage-directives.test.ts` |
 | U-DIS-003 | candidate境界とroot退役 | 非authority境界、hash、移管先、root不存在のいずれかが欠けるとRED | `tests/development-investment-stage-directives.test.ts` |
