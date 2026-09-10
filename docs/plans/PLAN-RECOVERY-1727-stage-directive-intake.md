@@ -58,6 +58,7 @@ generates:
   - { artifact_path: docs/governance/development-investment-stage-directives-source-cleanup-2026-09-11.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1727-stage-directive-intake.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-investment-stage-directives.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1729/vitest-targeted.json, artifact_type: json_report }
 modifies:
   - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
 review_evidence:
@@ -73,6 +74,16 @@ review_evidence:
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1729#issuecomment-5624701495"
     ci_evidence_generation: "run:34522809098:attempt:2:failure"
     scope: "段階指示書原文bytes保全、日本語candidate境界、72 ID/P0〜P4 exact set、PLAN discipline、outstanding snapshotをpre-confirmation reviewした。CI failureはdraft lifecycleと旧PR event payloadによるものでgreen扱いせず、confirmed化後のfresh CIと第二receiptを要求する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run --project fast tests/development-investment-stage-directives.test.ts --reporter=json --outputFile=.helix/evidence/review-1729/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-10T20:23:21.811Z"
+        evidence_path: .helix/evidence/review-1729/vitest-targeted.json
+        output_digest: "sha256:4052967f5cd23fdb455cdb7356a839378a90deae6b02a66a9b4459ec72e7f997"
+        result: "Codex author runtime: 1 file / 3 tests pass; JSON report bytes=1851"
 ---
 
 # 開発投資段階指示書の正規移管
