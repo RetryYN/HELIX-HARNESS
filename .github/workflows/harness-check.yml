@@ -211,18 +211,29 @@ jobs:
         run: npm ci
 
       - name: lint (biome)
+        id: lint_biome
+        continue-on-error: true
         run: npm run lint
 
       - name: design-language gate (fail fast before shards)
+        id: design_language
+        continue-on-error: true
         run: npx --no-install tsx src/cli.ts doctor --gate design-language
 
       - name: repo-wide guard preflight
+        id: repo_guard_preflight
+        continue-on-error: true
         run: npm run test:repo-guards
 
       - name: install required Linux isolation backend
+        id: install_bubblewrap
+        continue-on-error: true
         run: bash .github/scripts/install-bubblewrap.sh
 
       - name: required real bubblewrap process isolation
+        id: real_bubblewrap
+        if: ${{ steps.install_bubblewrap.outcome == 'success' }}
+        continue-on-error: true
         env:
           HELIX_BWRAP_BIN: /usr/bin/bwrap
           HELIX_REQUIRE_REAL_BWRAP: "1"
@@ -261,6 +272,8 @@ jobs:
           done
 
       - name: branch-kind-check
+        id: branch_kind_check
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
           EVENT_NAME: ${{ github.event_name }}
@@ -276,6 +289,8 @@ jobs:
             --branch "$HEAD_BRANCH" --strict-unknown-prefix
 
       - name: commitlint
+        id: commitlint
+        continue-on-error: true
         env:
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}
@@ -306,6 +321,8 @@ jobs:
             > "$RUNNER_TEMP/pr-context-before.json"
 
       - name: current HEAD independent review admission
+        id: current_head_review
+        continue-on-error: true
         if: ${{ github.event_name == 'pull_request' }}
         env:
           GH_TOKEN: ${{ github.token }}
@@ -464,17 +481,147 @@ jobs:
             --json
 
       - name: plan-lint
+        id: plan_lint
+        continue-on-error: true
         run: npx --no-install tsx src/cli.ts plan lint --gate governance
 
       - name: post-merge PLAN status
+        id: post_merge_plan
+        if: ${{ steps.plan_lint.outcome == 'success' }}
+        continue-on-error: true
         run: npx --no-install tsx src/cli.ts plan lint --gate post-merge-status
 
       - name: L1-L12 canonical authority drift gate
+        id: l12_authority
+        continue-on-error: true
         # Authority判定をtarget runtimeのNodeで実行する。
         run: npx --no-install vitest run --project fast tests/l12-canonical-authority.test.ts tests/l12-hybrid-recognition.test.ts tests/l3-progression-authority.test.ts tests/canonical-reuse-authority.test.ts tests/runtime-authority-requirements.test.ts tests/frontmatter.test.ts tests/schema.test.ts
 
       - name: typecheck (tsc --noEmit)
+        id: typecheck
+        continue-on-error: true
         run: npm run typecheck
+
+      - name: aggregate independent preflight gates
+        id: preflight_gate_aggregation
+        if: ${{ always() }}
+        env:
+          LINT_BIOME: ${{ steps.lint_biome.outcome }}
+          DESIGN_LANGUAGE: ${{ steps.design_language.outcome }}
+          REPO_GUARD_PREFLIGHT: ${{ steps.repo_guard_preflight.outcome }}
+          INSTALL_BUBBLEWRAP: ${{ steps.install_bubblewrap.outcome }}
+          REAL_BUBBLEWRAP: ${{ steps.real_bubblewrap.outcome }}
+          BRANCH_KIND_CHECK: ${{ steps.branch_kind_check.outcome }}
+          COMMITLINT: ${{ steps.commitlint.outcome }}
+          CURRENT_HEAD_REVIEW: ${{ steps.current_head_review.outcome }}
+          PLAN_LINT: ${{ steps.plan_lint.outcome }}
+          POST_MERGE_PLAN: ${{ steps.post_merge_plan.outcome }}
+          L12_AUTHORITY: ${{ steps.l12_authority.outcome }}
+          TYPECHECK: ${{ steps.typecheck.outcome }}
+        run: |
+          set -euo pipefail
+          node - "$RUNNER_TEMP/preflight-gate-results.json" <<'NODE'
+          const fs = require("node:fs");
+          const outputPath = process.argv[2];
+          const outcome = (name) => process.env[name] || "unknown";
+          const gates = [];
+          const addGate = (id, label, status, skipReason) => {
+            const gate = { id, label, status };
+            if (skipReason) gate.skip_reason = skipReason;
+            gates.push(gate);
+          };
+
+          addGate("lint_biome", "lint (biome)", outcome("LINT_BIOME"));
+          addGate("design_language", "design-language", outcome("DESIGN_LANGUAGE"));
+          addGate("repo_guard_preflight", "repo-wide guard preflight", outcome("REPO_GUARD_PREFLIGHT"));
+          addGate("install_bubblewrap", "install required Linux isolation backend", outcome("INSTALL_BUBBLEWRAP"));
+          addGate(
+            "real_bubblewrap",
+            "required real bubblewrap process isolation",
+            outcome("REAL_BUBBLEWRAP") === "skipped" && outcome("INSTALL_BUBBLEWRAP") !== "success"
+              ? "skipped"
+              : outcome("REAL_BUBBLEWRAP"),
+            outcome("INSTALL_BUBBLEWRAP") !== "success"
+              ? "dependency_failed:install_bubblewrap"
+              : undefined,
+          );
+          addGate("branch_kind_check", "branch-kind-check", outcome("BRANCH_KIND_CHECK"));
+          addGate("commitlint", "commitlint", outcome("COMMITLINT"));
+          addGate("plan_lint", "plan-lint", outcome("PLAN_LINT"));
+          addGate(
+            "post_merge_plan",
+            "post-merge PLAN status",
+            outcome("POST_MERGE_PLAN") === "skipped" && outcome("PLAN_LINT") !== "success"
+              ? "skipped"
+              : outcome("POST_MERGE_PLAN"),
+            outcome("PLAN_LINT") !== "success"
+              ? "dependency_failed:plan_lint"
+              : undefined,
+          );
+          addGate("l12_authority", "L1-L12 canonical authority drift", outcome("L12_AUTHORITY"));
+          addGate("typecheck", "typecheck (tsc --noEmit)", outcome("TYPECHECK"));
+
+          const reviewOutcome = outcome("CURRENT_HEAD_REVIEW");
+          const result = {
+            schema_version: "helix-preflight-gate-aggregation.v1",
+            observed_at: new Date().toISOString(),
+            gates,
+            excluded_gates: [
+              {
+                id: "current_head_review",
+                label: "current HEAD independent review admission",
+                status: reviewOutcome,
+                reason:
+                  "PR-state-dependent admission is enforced separately after aggregation; it is not an aggregateable repository gate.",
+              },
+            ],
+          };
+          fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`);
+          NODE
+          {
+            echo '### Preflight gate aggregation'
+            echo
+            echo '```json'
+            cat "$RUNNER_TEMP/preflight-gate-results.json"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          node - "$RUNNER_TEMP/preflight-gate-results.json" <<'NODE'
+          const fs = require("node:fs");
+          const result = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+          const failures = result.gates.filter((gate) => gate.status !== "success" && gate.status !== "skipped");
+          const unauthorizedSkips = result.gates.filter(
+            (gate) => gate.status === "skipped" && !gate.skip_reason,
+          );
+          for (const gate of result.gates) {
+            console.log(`${gate.id}: ${gate.status}${gate.skip_reason ? ` (${gate.skip_reason})` : ""}`);
+          }
+          if (failures.length > 0 || unauthorizedSkips.length > 0) {
+            console.error(
+              `preflight gate aggregation failed: ${failures.length} failure(s), ${unauthorizedSkips.length} unauthorized skip(s)`,
+            );
+            process.exit(1);
+          }
+          NODE
+
+      - name: upload preflight gate aggregation
+        if: ${{ always() && steps.preflight_gate_aggregation.outcome != 'skipped' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: preflight-gate-results
+          path: ${{ runner.temp }}/preflight-gate-results.json
+          if-no-files-found: error
+
+      - name: enforce current HEAD independent review admission
+        id: review_admission_enforcement
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        env:
+          REVIEW_ADMISSION_OUTCOME: ${{ steps.current_head_review.outcome }}
+        run: |
+          set -euo pipefail
+          if [ "$REVIEW_ADMISSION_OUTCOME" != "success" ]; then
+            echo "current HEAD independent review admission did not succeed: $REVIEW_ADMISSION_OUTCOME" >&2
+            exit 1
+          fi
 
       - name: db rebuild (deterministic projection)
         run: npx --no-install tsx src/cli.ts db rebuild --json
