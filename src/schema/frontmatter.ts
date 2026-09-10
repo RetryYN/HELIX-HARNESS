@@ -153,6 +153,33 @@ export const dependenciesSchema = z.object({
   references: z.array(z.string()).default([]),
 });
 
+/** #1591: 来歴は現在のdependency／reference graphへ投影しない。 */
+export const historicalPlanProvenanceSchema = z
+  .object({
+    relation: z.literal("historical_provenance"),
+    authority_scope: z.literal("compatibility_input_only"),
+    plan_id: planIdSchema,
+    path: z.string().regex(/^docs\/plans\/PLAN-[A-Za-z0-9-]+\.md$/u),
+    reason: z.string().trim().min(1),
+  })
+  .strict();
+
+export const historicalPlanProvenanceListSchema = z
+  .array(historicalPlanProvenanceSchema)
+  .superRefine((entries, ctx) => {
+    const seen = new Set<string>();
+    for (const [index, entry] of entries.entries()) {
+      if (seen.has(entry.plan_id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: [index],
+          message: "duplicate historical PLAN",
+        });
+      }
+      seen.add(entry.plan_id);
+    }
+  });
+
 const sha256Schema = z.string().regex(/^sha256:[a-f0-9]{64}$/i);
 const carryEvidenceSchema = z
   .object({
@@ -258,6 +285,7 @@ const frontmatterBaseSchema = z.object({
   /** #1097: L3 要件の terminal 化は技術 review と分離した PO 承認を要求する。 */
   l3_human_approval: l3HumanApprovalSchema.optional(),
   dependencies: dependenciesSchema,
+  historical_provenance: historicalPlanProvenanceListSchema.optional(),
   /** §6.8.2 Issue 起点スパイン: 解決対象 GitHub Issue 番号 (任意、Phase 0-B で recommended)。
    *  feature/hotfix branch の close 漏れ機械検知 + PR `Closes #NN` 連携に使う。 */
   github_issue_id: z.number().int().positive().nullable().optional(),

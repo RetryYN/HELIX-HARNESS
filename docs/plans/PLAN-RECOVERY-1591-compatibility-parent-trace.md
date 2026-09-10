@@ -1,0 +1,146 @@
+---
+plan_id: PLAN-RECOVERY-1591-compatibility-parent-trace
+title: "PLAN-RECOVERY-1591: compatibility-only parent trace遮断の第一slice"
+kind: recovery
+layer: cross
+drive: agent
+status: confirmed
+completion_claim_allowed: false
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  target_axis: workflow_model
+  target_id: RECOVERY
+entry_signals: ["po_directive:Issue #1591 compatibility-only parent traceの第一slice"]
+created: 2026-09-10
+updated: 2026-09-10
+owner: Codex / TL
+github_issue_id: 1591
+behavior_contract_id: PLAN-COMPATIBILITY-PARENT-1591-S1
+responsibility_owner: legacy-authority-migration
+parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md
+pair_artifact: docs/test-design/helix/L8-plan-compatibility-parent-trace.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-001, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-002, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-003, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-004, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-005, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-006, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-007, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-008, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-009, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-010, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-011, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-012, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-013, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-014, test_path: tests/plan-compatibility-parent.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, oracle_id: U-CPP-015, test_path: tests/plan-compatibility-parent.test.ts }
+agent_slots:
+  - { role: aim, slot_label: "AIM — Recovery実装と検証" }
+  - { role: se, slot_label: "SE — schemaとauthority判定" }
+  - { role: qa, slot_label: "QA — 反例とmutation oracle" }
+  - { role: tl, slot_label: "TL — 正本境界と残義務" }
+generates:
+  - { artifact_path: docs/plans/PLAN-RECOVERY-1591-compatibility-parent-trace.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/plan-compatibility-parent-trace.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-plan-compatibility-parent-trace.md, artifact_type: test_design }
+  - { artifact_path: src/lint/plan-compatibility-parent.ts, artifact_type: source_module }
+  - { artifact_path: tests/plan-compatibility-parent.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/plan-compatibility-parent-baseline.json, artifact_type: json_config }
+modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/schema/frontmatter.ts, artifact_type: source_module }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/plan/lint.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+dependencies:
+  parent: docs/design/helix/L6-function-design/typed-plan-workflow-identity.md
+  requires: [docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md]
+  references: [issue:1591]
+  blocks: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-09T22:50:14Z"
+    tests_green_at: "2026-09-09T22:26:48Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: d577677da233c3d70e10e2ab97f9847798d95de5
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1710#issuecomment-5609814282"
+    ci_evidence_generation: "run:34412100305:attempt:1:failure"
+    scope: "Issue #1591第一sliceの共通validator、strict historical_provenance schema、exact-edge baseline、分割境界を独立検収した。CI failureはdraft PLANのmerged-plan-status循環であり、成功へ読み替えない。残存consumer移行とIssue #1591全体の完了は主張しない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/plan-compatibility-parent.test.ts tests/frontmatter.test.ts tests/plan-lint.test.ts tests/design-coverage.test.ts tests/l3-g3-freeze-packet-v2.test.ts tests/digest.test.ts tests/branch-kind.test.ts --reporter=json --outputFile=.helix/evidence/review-1710/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-09T22:26:48Z"
+        evidence_path: .helix/evidence/review-1710/vitest-targeted.json
+        output_digest: "sha256:e75dbe12e32fe0e30714a0b734501fe598ae9c5ab6c03f85c1cea3ecbc4b6ccf"
+---
+
+# compatibility-only parent trace遮断
+
+## §3 工程表
+
+### Step 1: [直列] inventoryと設計
+
+直列理由: downstream_dependency
+Issue本文、951件inventory、schema／lint、6 PLANを読み、上流要件・型付き来歴契約と対案を固定する。
+
+### Step 2: [直列] Red→Greenと共通validator導入
+
+直列理由: downstream_dependency
+parent mutationのREDを先に実測し、正規lint／doctorへ接続する。実consumerの変更は、各PLANの
+workflow identityを所有する後続PRへ分離する。
+
+### Step 3: [直列] 検証と独立review
+
+直列理由: downstream_dependency
+targeted test、typecheck、PLAN lint、mutation結果を記録する。独立reviewは受入側の残義務とし、
+自己承認・Ready化・mergeを行わない。Draft PRはRefs #1591のみとする。
+
+## §3.1 実装計画
+
+`src/schema/frontmatter.ts`、`src/lint/plan-compatibility-parent.ts`、`src/plan/lint.ts`を修正する。
+inventory件数・digest、旧PLANの承認やstatus、実行用worker-contextは変更しない。
+
+## 受入条件
+
+設計／test-designのU-CPP-001..011およびU-CPP-013..015を同sliceで照合する。current parent RED、typed history GREEN、
+untyped／authority混同REDを必須とし、全体consumer 0・DB replay・独立reviewが揃うまで終端を主張しない。
+
+## 残義務
+
+PLAN-L3-70／PLAN-L6-81／PLAN-L7-462およびPLAN-L3-36／52を含む残存current consumer除去、DB projection／replay、全回帰、
+main read-after consumer 0、独立AI-B reviewは後続の受入義務である。
+
+## 検証実測（2026-09-10）
+
+旧PRで採取した下記実測は分割前HEADの参考記録であり、本PRの受入証拠ではない。新HEADはfresh CIと
+独立reviewで再検証する。自己reviewやreceipt補作は行わない。
+Node 24.15.0、lockfileどおりの`npm ci --offline --ignore-scripts`を使った隔離copyで実行した。
+実行用worker-contextとharness.dbは成果物に含めない。
+
+| 検証 | exit | 結果 | output digest |
+|---|---|---|---|
+| targeted Vitest（plan-compatibility-parent／frontmatter／plan-lint／plan-entry-routing） | 0 | 4 files／121 tests成功。14 oracle内で各反例を検査 | `sha256:e8cfe0936bbd4dd7f3d7e7af34895520262204d40a0da79e1eb9a971832539c2` |
+| npm run typecheck | 0 | tsc --noEmit成功 | `sha256:8aa23401265a522f6a9d04e6bdaaa1855432965d44e5721ea70b1c0e037d4011` |
+| helix plan lint 対象PLAN | 0 | 既定gate成功、V-pair findings 0 | `sha256:eda563b69fcfe05506b55c6ed83b94427f8eb395eda1517d4fe95040f545cc5c` |
+| helix plan lint 対象PLAN --gate governance | 0 | frontmatter／cross-recordとcompatibility判定成功 | `sha256:4b3b6d609fc7f969bfcd3c30232060b79a298ab3639e0e3cf963841316b123db` |
+| parent拒否を無効化 | 1 | U-CPP-001 assertion失敗でkill | `sha256:38763d94b8c366e05b79bcf277789f26875c8c174f203a08615caa1f2b7b1886` |
+| reference拒否を無効化 | 1 | U-CPP-003 assertion失敗でkill | `sha256:bf9b2be943c80b50b561c1ee5e6719795c80d32245b4bbc909f7b3c4e8934db7` |
+| history scope literalをstringへ緩和 | 1 | U-CPP-004 assertion失敗でkill | `sha256:be78f6e8a47d0f7f67b84a2968121130ae49ad7144539d19f87c39870a8f18d5` |
+
+Biomeは変更4 code/test filesを検査し、error／warningなし。`git diff --check`も成功。
+未実装stubでは最初にparent表記5件のassertion失敗を実測した。
+
+既存current依存違反はexact edge baselineへ機械固定し、同一PLAN内の追加も拒否する。
+consumer変更は本PRへ混載しない。残存consumer 0・DB replay・read-afterまでは#1591完了を主張しない。
