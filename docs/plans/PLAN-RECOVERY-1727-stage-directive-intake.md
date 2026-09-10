@@ -58,7 +58,7 @@ generates:
   - { artifact_path: docs/governance/development-investment-stage-directives-source-cleanup-2026-09-11.md, artifact_type: markdown_doc }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1727-stage-directive-intake.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-investment-stage-directives.test.ts, artifact_type: test_code }
-  - { artifact_path: .helix/evidence/review-1729/vitest-targeted.json, artifact_type: json_report }
+  - { artifact_path: .helix/evidence/review-1729/vitest-targeted.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
 review_evidence:
