@@ -22,6 +22,7 @@ pair_artifact: docs/design/helix/L6-function-design/drive-model-passage-catalog-
 | U-DMP-002b | certificate文書が無い場合を拒否する | `tests/drive-model-passage.test.ts` |
 | U-DMP-003 | current reconciliation PLANのidentity集合をcatalogと一致させる | `tests/drive-model-passage.test.ts` |
 | U-DMP-004 | current identityの重複行を拒否する | `tests/drive-model-passage.test.ts` |
+| U-DMP-005 | workflow identityが空の行を専用違反として拒否する | `tests/drive-model-passage.test.ts` |
 
 ## 反例境界
 

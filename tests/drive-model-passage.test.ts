@@ -99,6 +99,20 @@ describe("drive-model passage lint", () => {
     });
   });
 
+  it("U-DMP-005: reports a missing workflow identity separately", () => {
+    const missingIdentity = compliant.replace(
+      "| ADD_FEATURE | parent PLAN, Forward target, residual status |",
+      "|  | parent PLAN, Forward target, residual status |",
+    );
+    const r = analyzeDriveModelPassage([{ file: "PLAN-X.md", content: missingIdentity }]);
+
+    expect(r.ok).toBe(false);
+    expect(r.violations).toContainEqual({
+      file: "PLAN-X.md",
+      reason: "missing_identity",
+    });
+  });
+
   it("U-DMP-002b: reports missing passage certificate docs as a violation", () => {
     const r = analyzeDriveModelPassage([]);
 

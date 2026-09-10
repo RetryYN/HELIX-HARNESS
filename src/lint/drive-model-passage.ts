@@ -111,12 +111,15 @@ export function analyzeDriveModelPassage(
     for (const cells of parsed.slice(1)) {
       const workflowIdentity = cells[identityIndex] ?? "";
       const requiredColumns = cells[columnsIndex] ?? "";
-      if (!workflowIdentity || !requiredColumns) {
+      if (!workflowIdentity) {
         violations.push({
           file: doc.file,
-          workflowIdentity: workflowIdentity || undefined,
-          reason: "malformed_row",
+          reason: "missing_identity",
         });
+        continue;
+      }
+      if (!requiredColumns) {
+        violations.push({ file: doc.file, workflowIdentity, reason: "malformed_row" });
         continue;
       }
       if (!expectedIdentitySet.has(workflowIdentity)) {

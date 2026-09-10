@@ -27,7 +27,7 @@ contract_failures: "catalog未登録identity、旧Drive model identity、current
 tdd_red_required: true
 red_at: "2026-09-10T18:47:17+09:00"
 green_at: null
-mutation_oracle_evidence: "2026-09-10T18:49:32+09:00にcurrentWorkflowModelPassageIdentities()を旧Drive modelの固定10値へ一時変異した。tests/drive-model-passage.test.tsを実行し、U-DMP-001、U-CAT1437-003、U-DMP-003が各々失敗（3 failed / 3 passed、exit 1）となり、current catalog authorityを参照しない退行を検出した。変異を復元後、同テスト6 passed／exit 0を再確認する。"
+mutation_oracle_evidence: "2026-09-10T18:52:47+09:00にcurrentWorkflowModelPassageIdentities()を旧Drive modelの固定10値へ一時変異した。tests/drive-model-passage.test.tsを実行し、U-DMP-001、U-CAT1437-003、U-DMP-003が各々失敗（3 failed / 4 passed、exit 1）となり、current catalog authorityを参照しない退行を検出した。変異を復元後、同テスト7 passed／exit 0を再確認する。"
 complexity_effect: net_negative
 complexity_justification: "旧固定集合の重複定義を削除し、既存generated catalogのcurrent identity取得へ集約する"
 removal_trigger: "passage certificate consumerがcurrent typed authorityへ収束し、旧certificate表のcurrent参照が0になった時"
@@ -41,6 +41,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-002b, test_path: tests/drive-model-passage.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-003, test_path: tests/drive-model-passage.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-004, test_path: tests/drive-model-passage.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/drive-model-passage-catalog-authority.md, oracle_id: U-DMP-005, test_path: tests/drive-model-passage.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
