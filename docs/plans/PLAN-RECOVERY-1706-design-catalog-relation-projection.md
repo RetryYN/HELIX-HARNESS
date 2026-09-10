@@ -39,15 +39,9 @@ workflow_identity:
   target_axis: workflow_model
   target_id: RECOVERY
 dependencies:
-  requires: []
+  requires: [docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md]
   references: ["issue:1706", "issue:1679"]
   blocks: []
-historical_provenance:
-  - relation: historical_provenance
-    authority_scope: compatibility_input_only
-    plan_id: PLAN-L7-32-cross-artifact-relation-graph
-    path: docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md
-    reason: "既存relation graphの実装契約を参照する来歴であり、current authority dependencyとして扱わない"
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/design-catalog-relation-projection.md, oracle_id: U-RELGRAPH-012, test_path: tests/relation-graph-loader.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/design-catalog-relation-projection.md, oracle_id: U-RELGRAPH-013, test_path: tests/relation-graph-loader.test.ts }
