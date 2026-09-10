@@ -2,7 +2,7 @@
 
 親設計: `docs/governance/repository-structure.md`
 
-| U-ID | 検証対象 | 反例と期待結果 | test citation |
+| U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-DIS-001 | 統合原稿bytes | 保全先の1 byteでも変えるとSHA-256不一致でRED | `tests/development-investment-stage-directives.test.ts` |
 | U-DIS-002 | 72候補とP0〜P4割当 | INV見出しまたは全件対応表の欠落・重複・範囲外段階をRED | `tests/development-investment-stage-directives.test.ts` |
