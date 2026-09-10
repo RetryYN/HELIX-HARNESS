@@ -3,6 +3,8 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   assertWorkflowClassificationCatalogCurrent,
+  currentClassificationIdentityIds,
+  currentWorkflowModelIds,
   loadWorkflowClassificationCatalog,
   projectWorkflowClassificationCatalog,
   WORKFLOW_CLASSIFICATION_CATALOG_PATH,
@@ -73,5 +75,24 @@ describe("workflow classification generated catalog", () => {
     expect(() => assertWorkflowClassificationCatalogCurrent(actual, expected)).toThrow(
       "catalog drift",
     );
+  });
+
+  it("U-WFCAT-005: exposes current identity sets without consulting the legacy route inventory", () => {
+    const catalog = loadWorkflowClassificationCatalog();
+    expect(currentWorkflowModelIds(catalog)).toEqual([
+      "ADD_FEATURE",
+      "DESIGN_REFACTOR",
+      "INCIDENT",
+      "PERFORMANCE_REFACTOR",
+      "RECOVERY",
+      "REDESIGN",
+      "REFACTOR",
+      "RESEARCH",
+      "RETROFIT",
+      "REVERSE",
+      "VERSION_UP",
+    ]);
+    expect(currentClassificationIdentityIds(catalog)).not.toContain("FORWARD_FULL_V");
+    expect(currentClassificationIdentityIds(catalog)).not.toContain("forward_full_v");
   });
 });

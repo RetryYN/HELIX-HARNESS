@@ -68,6 +68,12 @@ export function collectDriveDbRegistrationStats(db: HarnessDb): DriveDbRegistrat
     .prepare("SELECT DISTINCT mode FROM drive_runs WHERE mode <> '' ORDER BY mode")
     .all()
     .map((row) => String(row.mode));
+  const workflowTargetIds = db
+    .prepare(
+      "SELECT DISTINCT workflow_target_id FROM drive_runs WHERE workflow_target_id IS NOT NULL AND workflow_target_id <> '' ORDER BY workflow_target_id",
+    )
+    .all()
+    .map((row) => String(row.workflow_target_id));
   return {
     planCount: count(db, "SELECT COUNT(*) AS value FROM plan_registry"),
     planRegistryFingerprint: collectProjectedPlanRegistryFingerprint(db),
@@ -136,6 +142,7 @@ export function collectDriveDbRegistrationStats(db: HarnessDb): DriveDbRegistrat
        WHERE p.plan_id IS NULL AND h.occurred_at >= '${ACTIVE_PLAN_VALIDATION_ENFORCED_AT}'`,
     ),
     modes,
+    workflowTargetIds,
   };
 }
 

@@ -62,6 +62,25 @@ export const workflowClassificationCatalogSchema = z
 
 export type WorkflowClassificationCatalog = z.infer<typeof workflowClassificationCatalogSchema>;
 
+/**
+ * current authorityが定義するworkflow model identityだけを返す。
+ * legacy drive/mode inventoryからcurrentの必須集合を再構成してはならない。
+ */
+export function currentWorkflowModelIds(
+  catalog: WorkflowClassificationCatalog = loadWorkflowClassificationCatalog(),
+): string[] {
+  return catalog.entities
+    .filter((entity) => entity.axis === "workflow_model")
+    .map((entity) => entity.id)
+    .sort();
+}
+
+export function currentClassificationIdentityIds(
+  catalog: WorkflowClassificationCatalog = loadWorkflowClassificationCatalog(),
+): string[] {
+  return catalog.entities.map((entity) => entity.id).sort();
+}
+
 export type WorkflowClassificationSignalTokenResolution =
   | {
       disposition: "classified";

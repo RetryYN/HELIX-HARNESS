@@ -42,6 +42,7 @@ const compliant: DriveDbRegistrationStats = {
   hookOrphans: 99,
   newHookOrphans: 0,
   modes: REQUIRED_DRIVE_MODELS,
+  workflowTargetIds: ["ADD_FEATURE", "RECOVERY"],
 };
 
 describe("drive DB registration lint", () => {
@@ -74,7 +75,6 @@ describe("drive DB registration lint", () => {
         "skill_recommendation_orphans",
         "skill_invocation_orphans",
         "missing_registered_hook_events",
-        "missing_required_mode",
       ]),
     );
   });
@@ -92,17 +92,28 @@ describe("drive DB registration lint", () => {
     expect(regression.violations).toContainEqual({ reason: "new_hook_orphans", count: 1 });
   });
 
-  it("U-DDBREG-007: fails when the Forward-spine plus 10 drive-model registration is incomplete", () => {
+  it("U-DDBREG-007: legacy drive/mode rows are compatibility-only and do not gate current registration", () => {
     const r = analyzeDriveDbRegistration({
       ...compliant,
-      modes: REQUIRED_DRIVE_MODELS.filter((mode) => mode !== "Research"),
+      modes: ["Forward"],
+    });
+
+    expect(r.ok).toBe(true);
+    expect(driveDbRegistrationMessages(r)[0]).not.toContain("missing_required_mode");
+  });
+
+  it("U-DDBREG-009: unknown current workflow identity fails closed without consulting legacy modes", () => {
+    const r = analyzeDriveDbRegistration({
+      ...compliant,
+      modes: [],
+      workflowTargetIds: ["NOT_A_TYPED_WORKFLOW_ID"],
     });
 
     expect(r.ok).toBe(false);
-    expect(r.violations).toContainEqual(
-      expect.objectContaining({ reason: "missing_required_mode", mode: "Research" }),
-    );
-    expect(driveDbRegistrationMessages(r)[0]).toContain("missing_required_mode:Research");
+    expect(r.violations).toContainEqual({
+      reason: "unknown_current_workflow_identity",
+      mode: "NOT_A_TYPED_WORKFLOW_ID",
+    });
   });
 
   it("U-DDBREG-005: fails when persisted harness.db plan count is stale", () => {
