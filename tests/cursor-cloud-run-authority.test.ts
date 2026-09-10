@@ -257,4 +257,26 @@ describe("Cursor v1 run authority", () => {
       }),
     ).toEqual({ cleared: true, reason: "cancelled_run_terminal_and_agent_clear" });
   });
+
+  it("U-CURSOR-RUN-009: stale RUNNINGはcancel可能でも自動cancelせずdenyする", () => {
+    const classification = classifyCursorV1Runs({
+      now: NOW,
+      staleAfterMs: 30 * 60_000,
+      runs: [
+        {
+          id: "run-stale-running",
+          status: "RUNNING",
+          createdAt: "2026-09-10T00:00:00.000Z",
+          updatedAt: "2026-09-10T00:01:00.000Z",
+          cancellable: true,
+        },
+      ],
+    });
+
+    expect(classification.runs[0]?.classification).toBe("stale");
+    expect(classification.cancellableRecoveryRunIds).toEqual([]);
+    expect(
+      decideCursorFollowUpDispatch({ providerAvailable: true, classification }),
+    ).toMatchObject({ action: "deny", reason: "uncancellable_stale_run", postAllowed: false });
+  });
 });

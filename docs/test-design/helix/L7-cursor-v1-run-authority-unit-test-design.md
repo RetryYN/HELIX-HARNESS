@@ -23,6 +23,7 @@ pair_artifact: docs/design/helix/L6-function-design/cursor-v1-run-authority.md
 | U-CURSOR-RUN-006 | provider unavailable縮退 | Codex laneや共通実行系まで停止せず、silent fallbackも許可しない | `tests/cursor-cloud-run-authority.test.ts` |
 | U-CURSOR-RUN-007 | unknown statusと不正timestamp | 未知値をactive／terminalへ推測せずfollow-upを拒否する | `tests/cursor-cloud-run-authority.test.ts` |
 | U-CURSOR-RUN-008 | cancel後v1 read-after | cancel対象がterminal化する前、対象消失、別active存在時は再dispatchを許可しない | `tests/cursor-cloud-run-authority.test.ts` |
+| U-CURSOR-RUN-009 | stale RUNNINGの誤cancel防止 | cancel可能と報告されても実行中のstale RUNNINGを自動cancelせずfollow-upを拒否する | `tests/cursor-cloud-run-authority.test.ts` |
 
 fixture testは外部Cursor API、credential、networkを使用しない。外部E2E、cancel→IDLE→同一agent・同一PR headへの
 follow-up実証、receipt保存は本単体sliceの未実証範囲として明示する。
