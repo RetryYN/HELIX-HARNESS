@@ -135,7 +135,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   承認済みの8 Feature／25 supporting requirement／27 ACを既存partitionへ接続したものであり、
   上記2026-07-31の153件のfreeze記録を再発行・変更しない。新HEADの独立review・CI・DB検証は別途必要。
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:b1897e7526b73fc0f55f97bd7c93256a2203c6b5455d7977e21ae6da08932e1c`
+- design catalog digest候補: `sha256:318f8b7767ce0f27fbdbeffd6fa6888596bbc96250fd36a9553adb7bafa07599`
 - PLAN-L3-1639の承認済みsource配置と派生認識設計の4 pathについて、実在・各一回登録・
   双方向pair・実bytesを検証した参照更新。packet全体のfreeze再承認や実装・IR完了を意味しない。
 - PLAN-RECOVERY-1500の監査入力L6設計登録1件と、PLAN-RECOVERY-1411のchecklist検証L6/L8登録2件を保持して再計測した候補値。
@@ -167,6 +167,10 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   既存`detailed-design` itemへadmitした結果である。
 - 2026-08-03 WCC-FR-02 descent: `worker-wrapper-admission.md`のL5／L6を同itemへadmitし、raw／copy plan、
   provider、plan digest、invocation digestを実sourceとexecutable witnessへ束縛した結果である。
+- 2026-09-10 Issue #1687 CLI-R00: `cli-r00-throughput-baseline.md`のL6機能設計と
+  `L8-cli-r00-throughput-baseline-unit-test-design.md`を既存`detailed-design`／`unit-test-design`
+  itemへadmitし、分割前throughput baselineの観測契約を登録した結果である。
+  packet全体のfreeze再承認やR01以降の実装完了を意味しない。
 - 2026-08-28 Issue #1110 slice A: `branch-audit-delete-candidate-safety.md`のL6機能設計を
   既存`detailed-design` itemへadmitし、goneだけでは削除候補へ昇格しないmain／worktree証拠境界を登録した結果である。
   上記current digestは本PR conversationのcurrent same-HEAD AI-B review、full CI、DB convergence receiptで再固定する
