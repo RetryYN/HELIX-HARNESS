@@ -89,6 +89,23 @@ markerの重複宣言、registryの重複、unknown path、欠落file、marker�
 membership退行を生存させない。既存testの判定内容、full regressionのexact inventory、impact selector、required
 aggregateは変更せず、repo-wide guardがgreenでもfull admissionを代替しない。
 
+## 4.2 条件付き事前ゲートの全量観測
+
+第1 sliceで集約対象にした固定ゲートに加え、branch種別またはGitHub eventで条件付きになる事前ゲートも、同一の
+preflight job内で観測してから末尾の集約へ渡す。対象は `branch type matrix`、`poc-no-merge-guard`、
+`hotfix-postmortem-required`、`issue-closure-contract`、`issue-dependency-contract`、
+`issue-dependency-repository-contract` である。
+
+条件付きゲートは判定条件自体を変更せず、`always()` と `continue-on-error: true` により、先行する独立ゲートの
+失敗で後続ゲートが無音のskipにならないようにする。適用対象でない場合のskipには event／branchに基づく
+typed reasonを付ける。適用対象なのにskipした場合は `unexpected_skip:<gate_id>` として集約をfail-closeし、
+`continue-on-error`を成功への変換に使わない。
+
+集約JSONには各条件付きゲートの実際の outcomeを含め、`not_applicable:*` だけを許可されたskipとして扱う。
+`current HEAD independent review admission` はPR状態に依存するため引き続き集約対象外とし、専用のenforcement
+stepで別途fail-closeする。これにより、複数の安価な失敗を1回のCIで露出させながら、条件付きgateの欠落や
+レビュー判定との混同を防ぐ。
+
 ## 5. TypeScript compiler lazy-loader の共有境界（TS-LAZY-SHARED-001）
 
 compiler を使わない CLI 経路の起動単価を維持するため、`typescript` の runtime load は

@@ -1,0 +1,102 @@
+{
+  "schema_version": "helix-preflight-gate-aggregation.v1",
+  "observed_at": "2026-09-10T08:08:24.924Z",
+  "gates": [
+    {
+      "id": "lint_biome",
+      "label": "lint (biome)",
+      "status": "success"
+    },
+    {
+      "id": "design_language",
+      "label": "design-language",
+      "status": "success"
+    },
+    {
+      "id": "repo_guard_preflight",
+      "label": "repo-wide guard preflight",
+      "status": "success"
+    },
+    {
+      "id": "install_bubblewrap",
+      "label": "install required Linux isolation backend",
+      "status": "success"
+    },
+    {
+      "id": "real_bubblewrap",
+      "label": "required real bubblewrap process isolation",
+      "status": "success"
+    },
+    {
+      "id": "branch_type_matrix",
+      "label": "branch type matrix",
+      "status": "success"
+    },
+    {
+      "id": "branch_kind_check",
+      "label": "branch-kind-check",
+      "status": "success"
+    },
+    {
+      "id": "commitlint",
+      "label": "commitlint",
+      "status": "success"
+    },
+    {
+      "id": "poc_no_merge_guard",
+      "label": "poc-no-merge-guard",
+      "status": "skipped",
+      "skip_reason": "not_applicable:event_or_branch_not_poc_main"
+    },
+    {
+      "id": "hotfix_postmortem_required",
+      "label": "hotfix-postmortem-required",
+      "status": "skipped",
+      "skip_reason": "not_applicable:event_or_branch_not_hotfix_main"
+    },
+    {
+      "id": "issue_closure_contract",
+      "label": "issue-closure-contract",
+      "status": "success"
+    },
+    {
+      "id": "issue_dependency_contract",
+      "label": "issue-dependency-contract",
+      "status": "success"
+    },
+    {
+      "id": "issue_dependency_repository_contract",
+      "label": "issue-dependency-repository-contract",
+      "status": "skipped",
+      "skip_reason": "not_applicable:event_not_schedule_or_workflow_dispatch"
+    },
+    {
+      "id": "plan_lint",
+      "label": "plan-lint",
+      "status": "success"
+    },
+    {
+      "id": "post_merge_plan",
+      "label": "post-merge PLAN status",
+      "status": "success"
+    },
+    {
+      "id": "l12_authority",
+      "label": "L1-L12 canonical authority drift",
+      "status": "success"
+    },
+    {
+      "id": "typecheck",
+      "label": "typecheck (tsc --noEmit)",
+      "status": "success"
+    }
+  ],
+  "excluded_gates": [
+    {
+      "id": "current_head_review",
+      "label": "current HEAD independent review admission",
+      "status": "success",
+      "reason": "PR-state-dependent admission is enforced separately after aggregation; it is not an aggregateable repository gate."
+    }
+  ]
+}
