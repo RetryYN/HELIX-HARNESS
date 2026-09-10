@@ -25,9 +25,9 @@ contract_invariants: "候補だけでcanonical昇格、SLO確定、production操
 contract_failures: "要求群欠落、層混載、二重owner、欠測healthy化、backup名だけのrestore成功、syntheticだけのproduction成立を拒否する"
 tdd_red_required: true
 red_at: "2026-09-11T00:00:00Z"
-green_at: null
+green_at: "2026-09-10T20:28:31Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-NIO-001/002/003が要求ID・owner、層別exact set、authority/完了境界の欠落を個別にREDへ固定する"
+mutation_oracle_evidence: "2026-09-10T20:27Z〜20:28Zに実測。U-NIO-001はintakeから#1035 ownerを除去してRED、U-NIO-002はNIO-L10-09をNIO-L10-99へ差し替えてexact set不一致RED、U-NIO-003は未承認scopeの自動修復禁止句を除去してREDとなった。各変異を復元し、同test 3件greenを再確認した。"
 complexity_effect: net_negative
 complexity_justification: "2原稿を4候補面と既存owner接続へ収束し、新しい運用engine・DB・schedulerを追加しない"
 removal_trigger: "候補がcanonicalへ昇格またはrejectされ、root原稿と候補台帳をhistoricalへ降格できる時"
