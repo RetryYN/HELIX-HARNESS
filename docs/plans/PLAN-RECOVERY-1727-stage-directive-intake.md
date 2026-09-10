@@ -33,7 +33,7 @@ complexity_justification: "重複6分冊とroot統合原稿を、Git管理され
 removal_trigger: "72候補すべてが既存ownerへ採否・残義務付きで終端し、入力台帳をhistoricalへ降格できる時"
 entry_signals: [regression_dev]
 parent_design: docs/governance/repository-structure.md
-pair_artifact: docs/governance/development-investment-stage-directives-source-cleanup-2026-09-11.md
+pair_artifact: docs/test-design/helix/L7-development-investment-stage-directive-intake-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/governance/repository-structure.md, oracle_id: U-DIS-001, test_path: tests/development-investment-stage-directives.test.ts }
   - { parent_design: docs/governance/repository-structure.md, oracle_id: U-DIS-002, test_path: tests/development-investment-stage-directives.test.ts }
@@ -55,6 +55,7 @@ dependencies:
 generates:
   - { artifact_path: docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/development-investment-stage-directives-source-cleanup-2026-09-11.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/test-design/helix/L7-development-investment-stage-directive-intake-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/plans/PLAN-RECOVERY-1727-stage-directive-intake.md, artifact_type: markdown_doc }
   - { artifact_path: tests/development-investment-stage-directives.test.ts, artifact_type: test_code }
 modifies:
@@ -92,4 +93,3 @@ review_evidence: []
 4. 候補境界と存在しない`06_ITEM_DIRECTIVES.md`の解決先がREADMEに明記される。
 5. root原稿7件を削除し、hash付き退役記録から内容と移管先を逆引きできる。
 6. targeted test、PLAN lint、docs/guard、CI、独立exact-HEAD review、main read-afterが成立する。
-
