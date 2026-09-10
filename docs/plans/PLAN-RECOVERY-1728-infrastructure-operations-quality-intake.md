@@ -38,6 +38,10 @@ verification_bindings:
   - { parent_design: docs/governance/repository-structure.md, oracle_id: U-NIO-001, test_path: tests/infrastructure-operations-quality-intake.test.ts }
   - { parent_design: docs/governance/repository-structure.md, oracle_id: U-NIO-002, test_path: tests/infrastructure-operations-quality-intake.test.ts }
   - { parent_design: docs/governance/repository-structure.md, oracle_id: U-NIO-003, test_path: tests/infrastructure-operations-quality-intake.test.ts }
+agent_slots:
+  - { role: aim, slot_label: "AIM — 要求形成から運用・保守・回復までの接続境界を照合" }
+  - { role: tl, slot_label: "TL — 既存owner再利用とL1/L3/L10分離を統括" }
+  - { role: qa, slot_label: "QA — NIO ID exact setとnegative oracleを検査" }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
