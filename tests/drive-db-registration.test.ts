@@ -1,4 +1,5 @@
 // PLAN-L7-427-active-plan-selection
+// PLAN-RECOVERY-1713-workflow-classification-catalog-authority
 import { randomUUID } from "node:crypto";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -8,9 +9,13 @@ import {
   analyzeDriveDbRegistration,
   type DriveDbRegistrationStats,
   driveDbRegistrationMessages,
-  REQUIRED_DRIVE_MODELS,
+  LEGACY_COMPATIBILITY_DRIVE_MODELS,
 } from "../src/lint/drive-db-registration";
 import { loadReviewPlans } from "../src/lint/review-evidence";
+import {
+  currentWorkflowModelIds,
+  loadWorkflowClassificationCatalog,
+} from "../src/schema/workflow-classification-catalog.js";
 import {
   collectCurrentPlanRegistryFingerprint,
   collectDriveDbRegistrationStats,
@@ -22,6 +27,12 @@ import {
 import { openHarnessDb, upsertRow } from "../src/state-db/index";
 import { migrate } from "../src/state-db/migration";
 import { rebuildHarnessDb } from "../src/state-db/projection-writer";
+
+const CURRENT_WORKFLOW_MODEL_IDS = currentWorkflowModelIds(loadWorkflowClassificationCatalog());
+
+function analyze(stats: DriveDbRegistrationStats | null) {
+  return analyzeDriveDbRegistration(stats, CURRENT_WORKFLOW_MODEL_IDS);
+}
 
 const compliant: DriveDbRegistrationStats = {
   planCount: 10,
@@ -41,12 +52,13 @@ const compliant: DriveDbRegistrationStats = {
   registeredHookEvents: 3,
   hookOrphans: 99,
   newHookOrphans: 0,
-  modes: REQUIRED_DRIVE_MODELS,
+  legacyModes: LEGACY_COMPATIBILITY_DRIVE_MODELS,
+  workflowModelIds: CURRENT_WORKFLOW_MODEL_IDS,
 };
 
 describe("drive DB registration lint", () => {
   it("U-DDBREG-001: accepts drive/workflow/model/skill rows with resolvable joins", () => {
-    const r = analyzeDriveDbRegistration(compliant);
+    const r = analyze(compliant);
 
     expect(r.ok).toBe(true);
     expect(driveDbRegistrationMessages(r)[0]).toContain("OK");
@@ -54,7 +66,7 @@ describe("drive DB registration lint", () => {
   });
 
   it("U-DDBREG-002: fails when current drive execution projection is missing or orphaned", () => {
-    const r = analyzeDriveDbRegistration({
+    const r = analyze({
       ...compliant,
       plansWithoutDriveRun: 1,
       workflowOrphans: 1,
@@ -62,7 +74,8 @@ describe("drive DB registration lint", () => {
       skillRecommendationOrphans: 1,
       skillInvocationOrphans: 1,
       registeredHookEvents: 0,
-      modes: ["Forward"],
+      legacyModes: ["Forward"],
+      workflowModelIds: ["UNREGISTERED_WORKFLOW_MODEL"],
     });
 
     expect(r.ok).toBe(false);
@@ -74,16 +87,30 @@ describe("drive DB registration lint", () => {
         "skill_recommendation_orphans",
         "skill_invocation_orphans",
         "missing_registered_hook_events",
-        "missing_required_mode",
+        "unregistered_workflow_identity",
       ]),
     );
   });
 
+  it("U-CAT1437-002: rejects a typed workflow identity absent from the current catalog", () => {
+    const r = analyze({
+      ...compliant,
+      workflowModelIds: ["UNREGISTERED_WORKFLOW_MODEL"],
+    });
+
+    expect(r.ok).toBe(false);
+    expect(r.violations).toContainEqual({
+      reason: "unregistered_workflow_identity",
+      identity: "UNREGISTERED_WORKFLOW_MODEL",
+    });
+    expect(driveDbRegistrationMessages(r)[0]).toContain(
+      "unregistered_workflow_identity:UNREGISTERED_WORKFLOW_MODEL",
+    );
+  });
+
   it("U-APSEL-005: watermark以後の新規hook orphanだけをfail-closeする", () => {
-    expect(
-      analyzeDriveDbRegistration({ ...compliant, hookOrphans: 4_702, newHookOrphans: 0 }).ok,
-    ).toBe(true);
-    const regression = analyzeDriveDbRegistration({
+    expect(analyze({ ...compliant, hookOrphans: 4_702, newHookOrphans: 0 }).ok).toBe(true);
+    const regression = analyze({
       ...compliant,
       hookOrphans: 4_703,
       newHookOrphans: 1,
@@ -92,21 +119,19 @@ describe("drive DB registration lint", () => {
     expect(regression.violations).toContainEqual({ reason: "new_hook_orphans", count: 1 });
   });
 
-  it("U-DDBREG-007: fails when the Forward-spine plus 10 drive-model registration is incomplete", () => {
-    const r = analyzeDriveDbRegistration({
+  it("U-DDBREG-007: legacy mode inventory is compatibility-only and does not define current green", () => {
+    const r = analyze({
       ...compliant,
-      modes: REQUIRED_DRIVE_MODELS.filter((mode) => mode !== "Research"),
+      legacyModes: ["Forward"],
+      workflowModelIds: ["RESEARCH"],
     });
 
-    expect(r.ok).toBe(false);
-    expect(r.violations).toContainEqual(
-      expect.objectContaining({ reason: "missing_required_mode", mode: "Research" }),
-    );
-    expect(driveDbRegistrationMessages(r)[0]).toContain("missing_required_mode:Research");
+    expect(r.ok).toBe(true);
+    expect(driveDbRegistrationMessages(r)[0]).toContain("legacy_modes=1");
   });
 
   it("U-DDBREG-005: fails when persisted harness.db plan count is stale", () => {
-    const r = analyzeDriveDbRegistration({
+    const r = analyze({
       ...compliant,
       planCount: 9,
       expectedPlanCount: 10,
@@ -120,7 +145,7 @@ describe("drive DB registration lint", () => {
   });
 
   it("U-DDBREG-006: fails when persisted harness.db plan content fingerprint is stale", () => {
-    const r = analyzeDriveDbRegistration({
+    const r = analyze({
       ...compliant,
       planRegistryFingerprint: "sha256:old",
       expectedPlanRegistryFingerprint: "sha256:new",
@@ -220,7 +245,7 @@ describe("drive DB registration lint", () => {
         expectedPlanCount: loadReviewPlans(process.cwd()).length,
         expectedPlanRegistryFingerprint: collectCurrentPlanRegistryFingerprint(process.cwd()),
       };
-      const r = analyzeDriveDbRegistration(stats);
+      const r = analyze(stats);
 
       expect(stats).not.toBeNull();
       expect(r.ok).toBe(true);
@@ -232,7 +257,10 @@ describe("drive DB registration lint", () => {
       expect(stats?.skillRecommendationOrphans).toBe(0);
       expect(stats?.skillInvocationOrphans).toBe(0);
       expect(stats?.registeredHookEvents).toBeGreaterThan(0);
-      expect(stats.modes).toEqual(expect.arrayContaining(REQUIRED_DRIVE_MODELS));
+      expect(stats.legacyModes).toEqual(expect.arrayContaining(LEGACY_COMPATIBILITY_DRIVE_MODELS));
+      expect(stats.workflowModelIds.every((id) => CURRENT_WORKFLOW_MODEL_IDS.includes(id))).toBe(
+        true,
+      );
     } finally {
       db.close();
     }

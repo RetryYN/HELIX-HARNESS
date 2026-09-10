@@ -16,7 +16,10 @@ export interface DriveDbRegistrationStats {
   registeredHookEvents: number;
   hookOrphans: number;
   newHookOrphans: number;
-  modes: string[];
+  /** 互換列の観測値。current identityの必須集合には使わない。 */
+  legacyModes: string[];
+  /** drive_runsに投影されたtyped workflow_model identity。 */
+  workflowModelIds: string[];
 }
 
 export interface DriveDbRegistrationViolation {
@@ -37,9 +40,10 @@ export interface DriveDbRegistrationViolation {
     | "skill_invocation_orphans"
     | "missing_registered_hook_events"
     | "new_hook_orphans"
-    | "missing_required_mode";
+    | "unregistered_workflow_identity";
   count?: number;
   mode?: string;
+  identity?: string;
 }
 
 export interface DriveDbRegistrationResult {
@@ -48,7 +52,11 @@ export interface DriveDbRegistrationResult {
   ok: boolean;
 }
 
-export const REQUIRED_DRIVE_MODELS = [
+/**
+ * 旧 drive/mode 列を読む compatibility inventory。
+ * current authorityの集合やdoctorの合格条件として参照してはならない。
+ */
+export const LEGACY_COMPATIBILITY_DRIVE_MODELS = [
   "Discovery",
   "Scrum",
   "Reverse",
@@ -63,6 +71,7 @@ export const REQUIRED_DRIVE_MODELS = [
 
 export function analyzeDriveDbRegistration(
   stats: DriveDbRegistrationStats | null,
+  currentWorkflowModelIds: readonly string[],
 ): DriveDbRegistrationResult {
   const violations: DriveDbRegistrationViolation[] = [];
   if (!stats) {
@@ -117,8 +126,11 @@ export function analyzeDriveDbRegistration(
   if (stats.newHookOrphans > 0) {
     violations.push({ reason: "new_hook_orphans", count: stats.newHookOrphans });
   }
-  for (const mode of REQUIRED_DRIVE_MODELS) {
-    if (!stats.modes.includes(mode)) violations.push({ reason: "missing_required_mode", mode });
+  const currentIdentitySet = new Set(currentWorkflowModelIds);
+  for (const identity of stats.workflowModelIds) {
+    if (!currentIdentitySet.has(identity)) {
+      violations.push({ reason: "unregistered_workflow_identity", identity });
+    }
   }
 
   return { stats, violations, ok: violations.length === 0 };
@@ -130,7 +142,7 @@ export function driveDbRegistrationMessages(result: DriveDbRegistrationResult): 
       .slice(0, 8)
       .map(
         (v) =>
-          `${v.reason}${v.mode ? `:${v.mode}` : ""}${v.count !== undefined ? `=${v.count}` : ""}`,
+          `${v.reason}${v.identity ? `:${v.identity}` : v.mode ? `:${v.mode}` : ""}${v.count !== undefined ? `=${v.count}` : ""}`,
       )
       .join(", ");
     return [`drive-db-registration - violation ${result.violations.length} (${sample})`];
@@ -138,6 +150,6 @@ export function driveDbRegistrationMessages(result: DriveDbRegistrationResult): 
   const stats = result.stats;
   if (!stats) return ["drive-db-registration - violation: stats unavailable"];
   return [
-    `drive-db-registration - OK (plans=${stats.planCount}, drive_runs=${stats.driveRuns}, workflow_runs=${stats.workflowRuns}, model_runs=${stats.modelRuns}, skill_recommendations=${stats.skillRecommendations}, skill_invocations=${stats.skillInvocations}, registered_hook_events=${stats.registeredHookEvents}, modes=${stats.modes.length}, legacy_hook_orphans=${stats.hookOrphans}, new_hook_orphans=${stats.newHookOrphans})`,
+    `drive-db-registration - OK (plans=${stats.planCount}, drive_runs=${stats.driveRuns}, workflow_runs=${stats.workflowRuns}, model_runs=${stats.modelRuns}, skill_recommendations=${stats.skillRecommendations}, skill_invocations=${stats.skillInvocations}, registered_hook_events=${stats.registeredHookEvents}, workflow_models=${stats.workflowModelIds.length}, legacy_modes=${stats.legacyModes.length}, legacy_hook_orphans=${stats.hookOrphans}, new_hook_orphans=${stats.newHookOrphans})`,
   ];
 }

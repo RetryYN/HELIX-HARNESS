@@ -27,3 +27,10 @@ signal bindingを順序込みで等価投影する。
 
 旧`config/drive-route-catalog.json`はconsumer移行中のcompatibility inventoryであり、本catalogの
 件数、identity、axis、意味を決定しない。
+
+## DB登録consumerの境界
+
+`drive-db-registration` は `drive_runs.workflow_target_axis=workflow_model` の typed identity を
+catalogのworkflow model集合に照合する。catalogに存在しないtyped identityは登録不備として
+fail-closeする。一方、`drive_runs.mode` と `route_modes` は互換観測値であり、旧modeの存在数や
+旧名の完全集合を current green 条件にしない。

@@ -645,8 +645,8 @@ interface L7CompletionResult { checked: number; violations: L7CompletionViolatio
 
 | 関数 (実 export) | signature | pre | post | doctor 配線 |
 |---|---|---|---|---|
-| `analyzeDriveDbRegistration` | `(stats: DriveDbRegistrationStats \| null) => DriveDbRegistrationResult` | `stats` は`.helix/harness.db`から呼び出し元が事前取得する。`null`はDB不在または読取失敗。純粋関数 | 現行`drive_models`登録、orphan、fingerprintを検査し、違反を`DriveDbRegistrationViolation[]`で返す | `checkDriveDbRegistration` → `runDoctor`（現行実装） |
-| `driveDbRegistrationMessages` | `(result: DriveDbRegistrationResult) => string[]` | `result` は `analyzeDriveDbRegistration` の返り値 | `ok=false` のとき最大 8 件の違反理由サンプル (`reason[:mode][=count]`) を含む違反メッセージを返す; `ok=true` のとき全 stats を含む合格メッセージを返す | `checkDriveDbRegistration` → `runDoctor.messages` |
+| `analyzeDriveDbRegistration` | `(stats: DriveDbRegistrationStats \| null, currentWorkflowModelIds: readonly string[]) => DriveDbRegistrationResult` | `stats` は`.helix/harness.db`から呼び出し元が事前取得し、current ID集合はgenerated catalogから呼び出し元が渡す。`null`はDB不在または読取失敗。純粋関数 | typed `workflow_model` identityのcatalog登録、legacy mode観測、orphan、fingerprintを検査し、違反を`DriveDbRegistrationViolation[]`で返す | `checkDriveDbRegistration` → `runDoctor`（現行実装） |
+| `driveDbRegistrationMessages` | `(result: DriveDbRegistrationResult) => string[]` | `result` は `analyzeDriveDbRegistration` の返り値 | `ok=false` のとき最大 8 件の違反理由サンプル (`reason[:identity|mode][=count]`) を含む違反メッセージを返す; `ok=true` のとき全 stats を含む合格メッセージを返す | `checkDriveDbRegistration` → `runDoctor.messages` |
 
 Issue #248で導入する将来contractは、上記の実exportと混同しないdual-green targetである。現時点では
 `analyzeWorkflowAxisDbRegistration(stats: WorkflowAxisDbRegistrationStats | null): WorkflowAxisDbRegistrationResult`
@@ -662,7 +662,7 @@ interface DriveDbRegistrationStats {
   workflowRuns: number; workflowOrphans: number; modelRuns: number; modelOrphans: number;
   skillRecommendations: number; skillRecommendationOrphans: number;
   skillInvocations: number; skillInvocationOrphans: number;
-  registeredHookEvents: number; hookOrphans: number; modes: string[];
+  registeredHookEvents: number; hookOrphans: number; legacyModes: string[]; workflowModelIds: string[];
 }
 interface DriveDbRegistrationViolation {
   reason: "missing_db" | "empty_plan_registry" | "stale_plan_registry" | "stale_plan_registry_fingerprint"
@@ -670,15 +670,15 @@ interface DriveDbRegistrationViolation {
         | "missing_workflow_runs" | "workflow_orphans" | "missing_model_runs" | "model_orphans"
         | "missing_skill_recommendations" | "skill_recommendation_orphans"
         | "missing_skill_invocations" | "skill_invocation_orphans"
-        | "missing_registered_hook_events" | "missing_required_mode";
-  count?: number; mode?: string;
+        | "missing_registered_hook_events" | "unregistered_workflow_identity";
+  count?: number; mode?: string; identity?: string;
 }
 interface DriveDbRegistrationResult {
   stats: DriveDbRegistrationStats | null; violations: DriveDbRegistrationViolation[]; ok: boolean;
 }
 ```
 
-現行 invariant: `analyzeDriveDbRegistration` は純粋関数とし、DBアクセスは呼び出し元が担う。Issue #248の
+現行 invariant: `analyzeDriveDbRegistration` は純粋関数とし、DBアクセスとcurrent catalog読込は呼び出し元が担う。Issue #248の
 dual-green targetも同じpure boundaryを維持し、development style exact 3、case-driven model 0..1、
 `change_route` 0..1、specialist process 0..N、runtime modeを相互変換しない。旧drive model集合は
 compatibility readerの観測対象に限り、旧混在10種の存在をcurrent green条件にしない。orphan検査はstats fieldで行い、
