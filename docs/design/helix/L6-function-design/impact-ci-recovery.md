@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: confirmed
 created: 2026-08-01
-updated: 2026-09-08
+updated: 2026-09-10
 owner: Codex / TL
 plan: docs/plans/PLAN-L6-92-impact-ci-recovery.md
 parent_design: docs/design/helix/L5-detail/impact-ci-recovery.md
@@ -105,6 +105,30 @@ typed reasonを付ける。適用対象なのにskipした場合は `unexpected_
 `current HEAD independent review admission` はPR状態に依存するため引き続き集約対象外とし、専用のenforcement
 stepで別途fail-closeする。これにより、複数の安価な失敗を1回のCIで露出させながら、条件付きgateの欠落や
 レビュー判定との混同を防ぐ。
+
+## 4.3 集約判定の純関数化
+
+事前ゲートの pass / fail / skip 判定は `src/runtime/preflight-gate-aggregation.ts` の純関数が所有する。
+workflow は各 step の `outcome` を環境変数として渡し、`src/cli/preflight-gate-aggregation.ts` が typed JSON と
+`$GITHUB_STEP_SUMMARY` へ投影してから fail-close する。YAML へ判定式を再埋め込みしない。
+
+純関数は次を固定する。
+
+- 独立ゲートの失敗は最初の1件で打ち切らず、同一HEADの全結果を保持する。
+- 無理由 skip と `unexpected_skip:<gate_id>` は集約を fail-close する。`not_applicable:*` と
+  `dependency_failed:<gate_id>` だけを許可 skip とする。
+- `current HEAD independent review admission` は集約対象外として観測し、専用 enforcement で別途強制する。
+- 条件付きゲートの applies 条件を定数 false に固定する、unauthorized skip 検査を外す、集約 step に
+  `continue-on-error` を付ける各 mutation を拒否する。
+
+shard 起動条件は既存の `needs.full-regression-preflight` のままとし、集約が fail した preflight から
+bulk / stateful を起動しない。
+
+| oracle ID | 設計上の観測点 |
+|---|---|
+| `U-CI-PREFLIGHT-AGGREGATION-001` | workflow が独立ゲートを観測してから CLI 集約へ渡し、高コスト工程の前で fail-close する |
+| `U-CI-PREFLIGHT-AGGREGATION-002` | 純関数が複数失敗、許可 skip、unexpected skip、review 除外を個別に保持し、enforcement 欠落と applies 固定を拒否する |
+| `U-CI-PREFLIGHT-AGGREGATION-CLI-001` | CLI が typed JSON を書き、fail-close を exit 1 へ写像する |
 
 ## 5. TypeScript compiler lazy-loader の共有境界（TS-LAZY-SHARED-001）
 

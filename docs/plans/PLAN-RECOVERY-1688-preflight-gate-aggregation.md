@@ -27,15 +27,17 @@ tdd_red_required: true
 red_at: "2026-09-10T03:00:00Z"
 green_at: null
 mutation_oracle_required: true
-mutation_oracle_evidence: "tests/harness-check-workflow.test.ts の U-CI-PREFLIGHT-AGGREGATION-001 系列で、集約step欠落、continue-on-errorによるfail-open、review admissionの混入、無理由skip、条件付きゲートの観測漏れ、適用対象のunexpected skipを個別に拒否する。実CIでは branch_kind_check の単一失敗を集約結果へ保持し、shard起動を停止した。"
+mutation_oracle_evidence: "tests/harness-check-workflow.test.ts の U-CI-PREFLIGHT-AGGREGATION-001 が集約step欠落、continue-on-errorによるfail-open、review admission除外欠落を拒否する。tests/preflight-gate-aggregation.test.ts の U-CI-PREFLIGHT-AGGREGATION-002 が複数独立失敗の全件保持、unauthorized skip検査削除、条件付きappliesの定数false化を拒否する。tests/preflight-gate-aggregation-cli.test.ts の U-CI-PREFLIGHT-AGGREGATION-CLI-001 がtyped JSONとexit 1写像を固定する。"
 complexity_effect: net_neutral
-complexity_justification: "既存のfull-regression-preflight内へ結果集約とartifact出力を追加し、新しいscheduler・DB・reviewer・実行経路は作らない"
+complexity_justification: "既存のfull-regression-preflight内へ結果集約を維持し、判定本体だけを純関数とCLI境界へ移す。新しいscheduler・DB・reviewer・CI jobは作らない"
 removal_trigger: "後継のCI結果集約機構が同じ個別失敗、skip理由、review admission分離、fail-closeを独立検証した時"
 entry_signals: [regression_dev]
 parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md
 pair_artifact: docs/test-design/helix/L8-impact-ci-recovery-unit-test-design.md
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-CI-PREFLIGHT-AGGREGATION-001, test_path: tests/harness-check-workflow.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-CI-PREFLIGHT-AGGREGATION-002, test_path: tests/preflight-gate-aggregation.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/impact-ci-recovery.md, oracle_id: U-CI-PREFLIGHT-AGGREGATION-CLI-001, test_path: tests/preflight-gate-aggregation-cli.test.ts }
 agent_slots:
   - { role: aim, slot_label: "AIM — 事前ゲート集約と独立レビュー admission の責務境界を照合" }
   - { role: tl, slot_label: "TL — 既存required laneとfail-close条件を維持して集約を統合" }
@@ -53,6 +55,10 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1688-preflight-gate-aggregation.md, artifact_type: markdown_doc }
   - { artifact_path: .helix/evidence/review-1714/preflight-gate-results.json, artifact_type: json_config }
+  - { artifact_path: src/runtime/preflight-gate-aggregation.ts, artifact_type: source_module }
+  - { artifact_path: src/cli/preflight-gate-aggregation.ts, artifact_type: source_module }
+  - { artifact_path: tests/preflight-gate-aggregation.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/preflight-gate-aggregation-cli.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: .github/workflows/harness-check.yml, artifact_type: workflow_config }
   - { artifact_path: tests/harness-check-workflow.test.ts, artifact_type: test_code }
@@ -97,6 +103,7 @@ review_evidence:
 - current HEAD independent review admissionはPR状態に依存するため、集約対象外として別のrequired判定を維持する。
 - recoveryブランチ自身が要求するPLANをこのPRへ含め、branch-kind gateの契約を満たす。
 - branch／event依存の6ゲート（branch type matrixを含む）を同一jobの末尾集約へ追加し、非適用skipとunexpected skipを区別する。
+- 集約判定を `src/runtime/preflight-gate-aggregation.ts` の純関数へ移し、YAML内の再実装を禁止する。
 
 ## 対象外
 
@@ -114,7 +121,8 @@ review_evidence:
 5. 集約stepが成功した場合だけ、既存のfull regressionおよびfinalizeの入力条件を満たす。
 6. mutation oracleが集約step欠落・fail-open・review混入・skip理由欠落を検出する。
 7. 条件付きゲートが先行失敗で無音skipにならず、適用対象のskipをfail-closeし、非適用skipだけをtyped reason付きで許可する。
+8. 集約判定の unauthorized skip 検査削除と applies 条件固定を、純関数の単体テストが検出する。
 
 ## 検証状態
 
-初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。今回の第2 sliceでは条件付きゲートを同じ集約へ追加した。run `34453107031` では、同一HEADに対する全required jobがsuccessとなり、preflight artifactの実体digestを取得した。Claudeの独立レビューreceiptはPLANへ転記済みだが、この転記自体で完了を主張せず、転記後のfresh CI・exact-HEAD再レビュー・merge/read-afterを残す。
+初期CIでは `branch_kind_check` の「recovery branch requires at least one touched PLAN」を集約結果が正しく保持してfail-closeした。第2 sliceでは条件付きゲートを同じ集約へ追加した。第3 sliceでは判定本体を純関数とCLI境界へ移し、YAML文字列照合だけでは見逃していた意味変異を単体テストで固定する。この転記自体で完了を主張せず、fresh CI・exact-HEAD再レビュー・merge/read-afterを残す。

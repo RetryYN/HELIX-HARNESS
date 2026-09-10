@@ -9,6 +9,10 @@ import { describe, expect, it } from "vitest";
 // PLAN-L7-657-distribution-lite-consumer-canary
 // U-DISTCAN-008a: required Windows jobへLite canaryを配線する。
 import { parse as parseYaml } from "yaml";
+import {
+  OUTCOME_ENV_BY_GATE_ID,
+  REQUIRED_PREFLIGHT_GATE_IDS,
+} from "../src/runtime/preflight-gate-aggregation";
 
 const WORKFLOW_PATH = ".github/workflows/harness-check.yml";
 const ISOLATION_BACKEND_SCRIPT_PATH = ".github/scripts/install-bubblewrap.sh";
@@ -242,26 +246,6 @@ function fullRegressionShardJobViolations(raw: string): string[] {
   return findings;
 }
 
-const REQUIRED_PREFLIGHT_GATE_IDS = [
-  "lint_biome",
-  "design_language",
-  "repo_guard_preflight",
-  "install_bubblewrap",
-  "real_bubblewrap",
-  "branch_type_matrix",
-  "branch_kind_check",
-  "commitlint",
-  "poc_no_merge_guard",
-  "hotfix_postmortem_required",
-  "issue_closure_contract",
-  "issue_dependency_contract",
-  "issue_dependency_repository_contract",
-  "plan_lint",
-  "post_merge_plan",
-  "l12_authority",
-  "typecheck",
-] as const;
-
 function preflightGateAggregationViolations(raw: string): string[] {
   let parsed: WorkflowRoot;
   try {
@@ -288,13 +272,11 @@ function preflightGateAggregationViolations(raw: string): string[] {
     if (
       aggregate.if !== `\${{ always() }}` ||
       aggregate["continue-on-error"] !== undefined ||
-      !run.includes("helix-preflight-gate-aggregation.v1") ||
+      !run.includes("src/cli/preflight-gate-aggregation.ts") ||
+      !run.includes('"$RUNNER_TEMP/preflight-gate-results.json"') ||
       !run.includes("GITHUB_STEP_SUMMARY") ||
-      !run.includes("unauthorizedSkips") ||
-      !run.includes("unexpected_skip:") ||
-      !run.includes("not_applicable:") ||
-      !run.includes("process.exit(1)") ||
-      !run.includes("excluded_gates")
+      !run.includes("status=$?") ||
+      !run.includes('exit "$status"')
     ) {
       findings.push("aggregation_fail_close_contract_invalid");
     }
@@ -312,7 +294,8 @@ function preflightGateAggregationViolations(raw: string): string[] {
     if (step && aggregateIndex >= 0 && steps.indexOf(step) >= aggregateIndex) {
       findings.push(`required_gate_after_aggregation:${id}`);
     }
-    if (aggregateIndex >= 0 && !String(aggregate?.run ?? "").includes(`"${id}"`)) {
+    const envName = OUTCOME_ENV_BY_GATE_ID[id];
+    if (aggregateIndex >= 0 && aggregate?.env?.[envName] !== `\${{ steps.${id}.outcome }}`) {
       findings.push(`required_gate_not_aggregated:${id}`);
     }
   }
@@ -351,8 +334,8 @@ function preflightGateAggregationViolations(raw: string): string[] {
   const review = byId("current_head_review");
   if (
     review?.["continue-on-error"] !== true ||
-    !String(aggregate?.run ?? "").includes("current_head_review") ||
-    !String(aggregate?.run ?? "").includes("PR-state-dependent admission")
+    aggregate?.env?.CURRENT_HEAD_REVIEW !== "${{ steps.current_head_review.outcome }}" ||
+    !raw.includes("PR状態に依存するため集約対象外")
   ) {
     findings.push("review_admission_exclusion_invalid");
   }
