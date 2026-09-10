@@ -4,11 +4,13 @@ title: "PLAN-L7-1687 (refactor): CLI-R00 throughput baselineをrepo-owned artifa
 kind: refactor
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-10
 updated: 2026-09-10
+red_at: "2026-09-10T14:45:03Z"
+green_at: "2026-09-10T15:00:23Z"
 owner: Cursor / TL
 github_issue_id: 1687
 responsibility_owner: cli-r00-throughput-baseline
@@ -77,13 +79,34 @@ generates:
   - { artifact_path: src/runtime/cli-r00-throughput-baseline.ts, artifact_type: source_module }
   - { artifact_path: config/cli-r00-throughput-baseline.v1.json, artifact_type: json_config }
   - { artifact_path: tests/cli-r00-throughput-baseline.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1721/vitest-targeted.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-10T15:08:15Z"
+    tests_green_at: "2026-09-10T15:00:23Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: af020110a951b2f5e96b0a418625e9a304e0303f
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1721#issuecomment-5620893846"
+    ci_evidence_generation: "run:34492925170:attempt:1:failure"
+    scope: "PR #1721 exact HEAD af020110a の独立検収。CLI-R00 throughput baselineのclean reconstruction、catalog digest 3面一致、scope 11 path、src/cli.ts非変更、collectorの#1697 byte同一、targeted 53/53を確認しblocker 0でapprove。CI redはdraft PLANのmerged-plan-statusのみ（#1638順序）。success世代の第2 receiptとmerge/read-after、Issue #1687全体は残義務。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run --project fast tests/cli-r00-throughput-baseline.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=json --outputFile=.helix/evidence/review-1721/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-10T15:00:23Z"
+        evidence_path: .helix/evidence/review-1721/vitest-targeted.json
+        output_digest: "sha256:2a1d864dc57906faff5e2b71d62627c27239d763a2c6e6d3bbcb3f2e1ecbcde7"
 ---
 
 # PLAN-L7-1687: CLI-R00 の throughput baseline
@@ -140,9 +163,11 @@ stale PR #1697 の CI wall 1445s／startup p50=1827ms は別HEADであり、
 
 ## 5. 検収範囲と残義務
 
-draft は CLI-R00 原子scopeの実装完了を表さない。独立検収後に confirmed へ上げる。
-Issue #1687 全体、最終CI、merge/read-after、R01以降の完了主張は行わず、
+独立検収（HEAD `af020110a`、receipt `run:34492925170:attempt:1:failure`、
+blockers 0）を転記し、本原子scopeの PLAN を confirmed にした。
+Issue #1687 全体、success世代の最終receipt、merge/read-after、R01以降の完了主張は行わず、
 `completion_claim_allowed` は false を維持する。
 
-- exact-HEAD独立review、fresh CI、最終独立receipt、merge/read-after
+- success CI と第2 receipt
+- merge/read-after
 - R01以降の分割実装と candidate 比較
