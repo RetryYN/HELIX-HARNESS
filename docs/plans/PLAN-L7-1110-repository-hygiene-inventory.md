@@ -46,6 +46,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/repository-hygiene-inventory.md, oracle_id: U-RHYG-003, test_path: tests/repository-hygiene-inventory.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/repository-hygiene-inventory.md, oracle_id: U-RHYG-004, test_path: tests/repository-hygiene-inventory.test.ts }
 generates:
+  - { artifact_path: .helix/evidence/review-1731/vitest-targeted.json, artifact_type: json_config }
   - { artifact_path: docs/plans/PLAN-L7-1110-repository-hygiene-inventory.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/repository-hygiene-inventory.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-repository-hygiene-inventory-unit-test-design.md, artifact_type: test_design }
