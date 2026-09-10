@@ -107,7 +107,9 @@ export interface RequirementDefinitionTraceCensusResult {
 const DEFECT_CODE_SET = new Set<string>(TRACE_DEFECT_CODES);
 
 function compareText(left: string, right: string): number {
-  return left.localeCompare(right);
+  if (left < right) return -1;
+  if (left > right) return 1;
+  return 0;
 }
 
 function uniquePreserveOrder(values: readonly string[]): {
@@ -132,15 +134,20 @@ function indexById<T>(
   records: readonly T[],
   identity: (record: T) => string,
 ): { byId: Map<string, T>; duplicates: string[] } {
-  const byId = new Map<string, T>();
-  const duplicates: string[] = [];
+  const grouped = new Map<string, T[]>();
   for (const record of records) {
     const id = identity(record);
-    if (byId.has(id)) {
-      if (!duplicates.includes(id)) duplicates.push(id);
-      continue;
-    }
-    byId.set(id, record);
+    const group = grouped.get(id) ?? [];
+    group.push(record);
+    grouped.set(id, group);
+  }
+  const byId = new Map<string, T>();
+  const duplicates: string[] = [];
+  for (const [id, group] of [...grouped.entries()].sort(([left], [right]) =>
+    compareText(left, right),
+  )) {
+    if (group.length === 1 && group[0] !== undefined) byId.set(id, group[0]);
+    else duplicates.push(id);
   }
   return { byId, duplicates };
 }
@@ -150,7 +157,7 @@ function edgeId(relationType: TraceRelationType, sourceId: string, targetId: str
 }
 
 function findingId(code: TraceFindingCode, subjectId: string, qualifier = ""): string {
-  return qualifier === "" ? `${code}:${subjectId}` : `${code}:${subjectId}:${qualifier}`;
+  return `${code}:${subjectId.length}:${subjectId}:${qualifier.length}:${qualifier}`;
 }
 
 function pushFinding(
@@ -303,9 +310,8 @@ export function compileRequirementDefinitionTraceCensus(
         evidence: [requirement.primary_system_contract_id],
       });
     } else {
-      const stale = requirement.revision !== primary.revision;
       const ambiguous = ownerMismatch;
-      const status: TraceEdgeStatus = stale ? "stale" : ambiguous ? "ambiguous" : "current";
+      const status: TraceEdgeStatus = ambiguous ? "ambiguous" : "current";
       edges.push({
         edge_id: refinesId,
         source_id: requirement.requirement_id,
@@ -322,17 +328,6 @@ export function compileRequirementDefinitionTraceCensus(
         status,
         evidence: "primary_system_contract_id",
       });
-      if (stale) {
-        pushFinding(findings, {
-          finding_id: findingId("STALE_REVISION_EDGE", refinesId),
-          code: "STALE_REVISION_EDGE",
-          subject_id: requirement.requirement_id,
-          edge_id: refinesId,
-          owner,
-          message: "Requirement revisionとDefinition revisionが食い違う",
-          evidence: [`requirement:${requirement.revision}`, `definition:${primary.revision}`],
-        });
-      }
     }
 
     const acceptanceIds = uniquePreserveOrder(requirement.acceptance_ids);
@@ -386,7 +381,10 @@ export function compileRequirementDefinitionTraceCensus(
         });
         continue;
       }
-      const stale = requirement.revision !== acceptance.revision;
+      const acceptanceContractKnown = contracts.byId.has(acceptance.system_contract_id);
+      const acceptanceContractMatches =
+        acceptance.system_contract_id === requirement.primary_system_contract_id;
+      const acceptanceAmbiguous = !acceptanceContractKnown || !acceptanceContractMatches;
       edges.push({
         edge_id: acceptedId,
         source_id: requirement.requirement_id,
@@ -400,18 +398,27 @@ export function compileRequirementDefinitionTraceCensus(
         owner,
         source_digest: requirement.semantic_digest,
         target_digest: acceptance.semantic_digest,
-        status: stale ? "stale" : "current",
+        status: acceptanceAmbiguous ? "ambiguous" : "current",
         evidence: "acceptance_ids",
       });
-      if (stale) {
+      if (acceptanceAmbiguous) {
         pushFinding(findings, {
-          finding_id: findingId("STALE_REVISION_EDGE", acceptedId),
-          code: "STALE_REVISION_EDGE",
+          finding_id: findingId(
+            "AMBIGUOUS_TRACE",
+            requirement.requirement_id,
+            `acceptance-contract:${acceptance.acceptance_id}`,
+          ),
+          code: "AMBIGUOUS_TRACE",
           subject_id: requirement.requirement_id,
           edge_id: acceptedId,
           owner,
-          message: "Requirement revisionとAcceptance revisionが食い違う",
-          evidence: [`requirement:${requirement.revision}`, `acceptance:${acceptance.revision}`],
+          message:
+            "Acceptanceのsystem_contract_idがRequirementのprimary contractと一致しない、または実在しない",
+          evidence: [
+            `expected:${requirement.primary_system_contract_id}`,
+            `actual:${acceptance.system_contract_id}`,
+            `actual_contract_known:${acceptanceContractKnown}`,
+          ],
         });
       }
     }
@@ -438,6 +445,11 @@ export function compileRequirementDefinitionTraceCensus(
     const resolved = declared.unique
       .map((requirementId) => requirements.byId.get(requirementId))
       .filter((record): record is NonNullable<typeof record> => record !== undefined);
+    const validSharedMembers = resolved.filter(
+      (requirement) =>
+        requirement.primary_system_contract_id === contract.system_contract_id &&
+        requirement.downstream_obligation.owner_id === contract.system_contract_id,
+    );
 
     if (declared.unique.length === 0 || resolved.length === 0) {
       pushFinding(findings, {
@@ -451,7 +463,7 @@ export function compileRequirementDefinitionTraceCensus(
       });
     }
 
-    if (resolved.length >= 2) {
+    if (validSharedMembers.length >= 2) {
       pushFinding(findings, {
         finding_id: findingId("VALID_SHARED_REQUIREMENT", contract.system_contract_id),
         code: "VALID_SHARED_REQUIREMENT",
@@ -459,7 +471,7 @@ export function compileRequirementDefinitionTraceCensus(
         edge_id: null,
         owner: contract.system_contract_id,
         message: "複数Requirementが同一Definitionを正当に共有している",
-        evidence: resolved.map((record) => record.requirement_id).sort(compareText),
+        evidence: validSharedMembers.map((record) => record.requirement_id).sort(compareText),
       });
     }
 
@@ -500,7 +512,9 @@ export function compileRequirementDefinitionTraceCensus(
         }
         continue;
       }
-      const stale = contract.revision !== requirement.revision;
+      const membershipAmbiguous =
+        requirement.primary_system_contract_id !== contract.system_contract_id ||
+        requirement.downstream_obligation.owner_id !== contract.system_contract_id;
       edges.push({
         edge_id: satisfiesId,
         source_id: contract.system_contract_id,
@@ -514,21 +528,29 @@ export function compileRequirementDefinitionTraceCensus(
         owner: contract.system_contract_id,
         source_digest: contract.semantic_digest,
         target_digest: requirement.semantic_digest,
-        status: stale ? "stale" : "current",
+        status: membershipAmbiguous ? "ambiguous" : "current",
         evidence: "system_contract.requirement_ids",
       });
-      if (stale) {
+      if (membershipAmbiguous) {
         pushFinding(findings, {
-          finding_id: findingId("STALE_REVISION_EDGE", satisfiesId),
-          code: "STALE_REVISION_EDGE",
+          finding_id: findingId(
+            "AMBIGUOUS_TRACE",
+            contract.system_contract_id,
+            `membership:${requirement.requirement_id}`,
+          ),
+          code: "AMBIGUOUS_TRACE",
           subject_id: contract.system_contract_id,
           edge_id: satisfiesId,
           owner: contract.system_contract_id,
-          message: "Definition revisionとRequirement revisionが食い違う",
-          evidence: [`definition:${contract.revision}`, `requirement:${requirement.revision}`],
+          message:
+            "Definition側のRequirement宣言がRequirement側のprimary contract/ownerと一致しない",
+          evidence: [
+            `requirement_primary:${requirement.primary_system_contract_id}`,
+            `requirement_owner:${requirement.downstream_obligation.owner_id}`,
+          ],
         });
       }
-      if (resolved.length >= 2) {
+      if (validSharedMembers.length >= 2 && !membershipAmbiguous) {
         edges.push({
           edge_id: edgeId("SHARED_BY", contract.system_contract_id, requirement.requirement_id),
           source_id: contract.system_contract_id,
@@ -542,7 +564,7 @@ export function compileRequirementDefinitionTraceCensus(
           owner: contract.system_contract_id,
           source_digest: contract.semantic_digest,
           target_digest: requirement.semantic_digest,
-          status: stale ? "stale" : "current",
+          status: "current",
           evidence: "system_contract.requirement_ids",
         });
       }

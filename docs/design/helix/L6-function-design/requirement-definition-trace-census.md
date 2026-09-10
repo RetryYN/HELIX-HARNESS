@@ -34,8 +34,8 @@ edge record exact setと、orphan / stale / ambiguous / valid sharedのfinding e
 | pre | inputはRequirement IRの宣言フィールド投影であり、caller検証済みを仮定しない |
 | post | 宣言済みIDからREFINES / SATISFIES / SHARED_BY / ACCEPTED_BYを決定的に返す |
 | invariant | 要求本文を変更せず、意味重複を推測せず、既存owner以外を捏造しない |
-| failure | 未解決ID、revision不一致、owner不一致、入力不正をtyped findingへ閉じる |
-| oracle | `U-RDTC-001`〜`U-RDTC-007` |
+| failure | 未解決ID、owner/contract不一致、重複stable ID、入力不正をtyped findingへ閉じる |
+| oracle | `U-RDTC-001`〜`U-RDTC-009` |
 
 `requirementDefinitionTraceCensusInputFromCanonicalIr`はcanonical IRから宣言フィールドだけを
 写す投影であり、新しいauthorityを作らない。
@@ -49,7 +49,10 @@ edge record exact setと、orphan / stale / ambiguous / valid sharedのfinding e
 | SHARED_BY | 同一contractの解決済みrequirementが2件以上 | `system_contract_id` |
 | ACCEPTED_BY | `requirement.acceptance_ids` | `downstream_obligation.owner_id` |
 
-文字列一致だけで未宣言のrelationを確定しない。targetが無いedgeはcurrentにしない。
+文字列一致だけで未宣言のrelationを確定しない。targetが無いedgeはcurrentにしない。Acceptanceの
+`system_contract_id`はRequirementのprimary contractと実在contractへ照合する。重複stable IDは
+先頭recordを採用せずedge生成から除外する。明示revision/digest bindingが無い異種record間では、
+revision番号の一致・不一致だけからfreshnessを推測しない。
 
 ## Finding
 
@@ -57,12 +60,13 @@ edge record exact setと、orphan / stale / ambiguous / valid sharedのfinding e
 |---|---|---|
 | REQUIREMENT_WITHOUT_DEFINITION | primary Definitionが存在しない | 欠陥 |
 | DEFINITION_WITHOUT_REQUIREMENT | 解決済み親Requirementが0件 | 欠陥 |
-| STALE_REVISION_EDGE | 宣言revisionが食い違う | 欠陥 |
+| STALE_REVISION_EDGE | 後続sliceで明示revision/digest bindingがstale | 欠陥 |
 | AMBIGUOUS_TRACE | owner不一致、未解決宣言ID、重複ID、入力不正 | 欠陥 |
 | VALID_SHARED_REQUIREMENT | 1 Definitionを複数Requirementが共有 | 欠陥ではない |
 
 正当なmany-to-many共有は`DUPLICATE_SEMANTIC_OBLIGATION`へ分類しない。第一sliceは意味重複検出を
-実装せず、共有をduplicateへ誤変換する経路を持たない。
+実装せず、共有をduplicateへ誤変換する経路を持たない。出力整列はlocale非依存のbytewise比較、
+finding IDはlength-prefixで構成要素境界を保持する。
 
 ## 非対象
 

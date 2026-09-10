@@ -117,7 +117,7 @@ describe("requirement-definition-trace-census", () => {
     ]);
     expect(result.findings).toEqual([
       {
-        finding_id: "VALID_SHARED_REQUIREMENT:HR-FR-HIL-02",
+        finding_id: "VALID_SHARED_REQUIREMENT:12:HR-FR-HIL-02:0:",
         code: "VALID_SHARED_REQUIREMENT",
         subject_id: "HR-FR-HIL-02",
         edge_id: null,
@@ -185,23 +185,18 @@ describe("requirement-definition-trace-census", () => {
     );
   });
 
-  it("U-RDTC-004: [PLAN-RECOVERY-1684-requirement-definition-trace-census/U-RDTC-004] revision不一致をstale edgeにする", () => {
+  it("U-RDTC-004: [PLAN-RECOVERY-1684-requirement-definition-trace-census/U-RDTC-004] 明示bindingなしにrevision差をstaleへ推測しない", () => {
     const fixture = sharedFixture();
     fixture.requirements[0] = {
       ...fixture.requirements[0],
       revision: 2,
     };
     const result = compileRequirementDefinitionTraceCensus(fixture);
-    expect(result.ok).toBe(false);
-    const stale = result.findings.filter((finding) => finding.code === "STALE_REVISION_EDGE");
-    expect(stale.map((finding) => finding.edge_id).sort()).toEqual([
-      "ACCEPTED_BY:HIL-BR-01->HAC-HIL-02a",
-      "REFINES:HIL-BR-01->HR-FR-HIL-02",
-      "SATISFIES:HR-FR-HIL-02->HIL-BR-01",
-    ]);
+    expect(result.ok).toBe(true);
+    expect(result.findings.some((finding) => finding.code === "STALE_REVISION_EDGE")).toBe(false);
     expect(
       result.edges.find((edge) => edge.edge_id === "REFINES:HIL-BR-01->HR-FR-HIL-02")?.status,
-    ).toBe("stale");
+    ).toBe("current");
     expect(result.findings.some((finding) => finding.code === "VALID_SHARED_REQUIREMENT")).toBe(
       true,
     );
@@ -216,7 +211,7 @@ describe("requirement-definition-trace-census", () => {
     const result = compileRequirementDefinitionTraceCensus(fixture);
     expect(result.ok).toBe(false);
     expect(result.findings).toContainEqual({
-      finding_id: "AMBIGUOUS_TRACE:HIL-FR-01:owner",
+      finding_id: "AMBIGUOUS_TRACE:9:HIL-FR-01:5:owner",
       code: "AMBIGUOUS_TRACE",
       subject_id: "HIL-FR-01",
       edge_id: "REFINES:HIL-FR-01->HR-FR-HIL-02",
@@ -250,6 +245,33 @@ describe("requirement-definition-trace-census", () => {
     ).toEqual(["HR-FR-HIL-02", "HR-FR-HIL-02"]);
     expect(compileRequirementDefinitionTraceCensus({ unexpected: true }).findings[0]?.code).toBe(
       "AMBIGUOUS_TRACE",
+    );
+
+    const duplicateA = requirement({
+      requirement_id: "DUP-REQ",
+      primary_system_contract_id: "CONTRACT-A",
+      owner_id: "CONTRACT-A",
+    });
+    const duplicateB = requirement({
+      requirement_id: "DUP-REQ",
+      primary_system_contract_id: "CONTRACT-B",
+      owner_id: "CONTRACT-B",
+    });
+    const duplicateFixture = {
+      requirements: [duplicateA, duplicateB],
+      system_contracts: [],
+      acceptance_cases: [],
+    };
+    const duplicateForward = compileRequirementDefinitionTraceCensus(duplicateFixture);
+    const duplicateReverse = compileRequirementDefinitionTraceCensus({
+      ...duplicateFixture,
+      requirements: [...duplicateFixture.requirements].reverse(),
+    });
+    expect(duplicateForward.graph_digest).toBe(duplicateReverse.graph_digest);
+    expect(duplicateForward.edges).toEqual([]);
+    expect(duplicateForward.findings).toEqual(duplicateReverse.findings);
+    expect(duplicateForward.findings).toContainEqual(
+      expect.objectContaining({ code: "AMBIGUOUS_TRACE", subject_id: "requirement:DUP-REQ" }),
     );
   });
 
@@ -285,5 +307,62 @@ describe("requirement-definition-trace-census", () => {
           edge.target_id === sample.primary_system_contract_id,
       )?.owner,
     ).toBe(sample.downstream_obligation.owner_id);
+  });
+
+  it("U-RDTC-008: [PLAN-RECOVERY-1684-requirement-definition-trace-census/U-RDTC-008] Acceptance contract不一致とunknownをsilent greenにしない", () => {
+    const fixture = sharedFixture();
+    fixture.acceptance_cases[0] = acceptance({
+      acceptance_id: "HAC-HIL-02a",
+      system_contract_id: "HR-FR-UNKNOWN",
+    });
+    const result = compileRequirementDefinitionTraceCensus(fixture);
+    expect(result.ok).toBe(false);
+    expect(result.edges).toContainEqual(
+      expect.objectContaining({
+        edge_id: "ACCEPTED_BY:HIL-BR-01->HAC-HIL-02a",
+        status: "ambiguous",
+      }),
+    );
+    expect(result.findings).toContainEqual(
+      expect.objectContaining({
+        code: "AMBIGUOUS_TRACE",
+        subject_id: "HIL-BR-01",
+        evidence: ["expected:HR-FR-HIL-02", "actual:HR-FR-UNKNOWN", "actual_contract_known:false"],
+      }),
+    );
+  });
+
+  it("U-RDTC-009: [PLAN-RECOVERY-1684-requirement-definition-trace-census/U-RDTC-009] finding IDはdelimiterを含む構成要素でも衝突しない", () => {
+    const first = compileRequirementDefinitionTraceCensus({
+      requirements: [
+        requirement({
+          requirement_id: "REQ",
+          primary_system_contract_id: "CONTRACT-A",
+          owner_id: "CONTRACT-A",
+          acceptance_ids: ["X:acceptance:Y"],
+        }),
+      ],
+      system_contracts: [contract({ system_contract_id: "CONTRACT-A", requirement_ids: [] })],
+      acceptance_cases: [],
+    });
+    const second = compileRequirementDefinitionTraceCensus({
+      requirements: [
+        requirement({
+          requirement_id: "REQ:acceptance:X",
+          primary_system_contract_id: "CONTRACT-A",
+          owner_id: "CONTRACT-A",
+          acceptance_ids: ["Y"],
+        }),
+      ],
+      system_contracts: [contract({ system_contract_id: "CONTRACT-A", requirement_ids: [] })],
+      acceptance_cases: [],
+    });
+    const firstId = first.findings.find((finding) => finding.subject_id === "REQ")?.finding_id;
+    const secondId = second.findings.find(
+      (finding) => finding.subject_id === "REQ:acceptance:X",
+    )?.finding_id;
+    expect(firstId).toBeDefined();
+    expect(secondId).toBeDefined();
+    expect(firstId).not.toBe(secondId);
   });
 });
