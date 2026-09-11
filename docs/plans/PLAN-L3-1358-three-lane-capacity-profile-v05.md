@@ -59,6 +59,7 @@ generates:
   - { artifact_path: docs/governance/candidates/three-lane-capacity-profile-recognition.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: tl, slot_label: "TL — pool／active／review／merge capacity境界" }
   - { role: qa, slot_label: "QA — 段階拡張、backpressure、review lease、JIT receipt反例" }
