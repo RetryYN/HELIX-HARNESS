@@ -24,8 +24,7 @@ workflow_identity:
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
   target_id: RECOVERY
-entry_signals:
-  - "regression_dev:current-locationのScrum operationがobserved 5／missing 7、ceremony 0、metric 0"
+entry_signals: [regression_dev]
 contract_preconditions: "hybrid-vmodel source manifestの11 Scrum bindingと、current L3/L10、design declaration DB projectionをread-afterできる"
 contract_postconditions: "7 operationの採用意味、L3要件、L10受入、typed declaration、DB projectionが同一contractへ束縛され、Scrum ReverseのVモデル還流を検出できる"
 contract_invariants: "ZIP sourceはmigration provenanceのまま保持し、Project Statusや語句heuristicだけをgreen根拠にせず、管理Scrumとproduct Forwardを混在させない"
@@ -39,6 +38,8 @@ backprop_decision: not_required
 backprop_decision_reason: "本PLAN自身がDBで観測した管理工程欠落をL3/L10候補へScrum Reverseする上流sliceであるため"
 parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md
 pair_artifact: docs/governance/candidates/scrum-operation-typed-projection-acceptance.md
+verification_bindings:
+  - { parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, oracle_id: U-SCRUMOPS-001, test_path: tests/current-location.test.ts }
 dependencies:
   parent: null
   requires: []

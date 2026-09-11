@@ -19,6 +19,12 @@ parent_design: docs/governance/candidates/scrum-operation-typed-projection-requi
 | SCRUM-OPS-AC-05 | ceremonyとmetricが登録済みである | roadmapとvmodel fitを生成する | ceremony/metricが非ゼロで同じDB根拠を返す |
 | SCRUM-OPS-AC-06 | S4で採否を決定する | Scrum Reverseを実行する | 対象Issue/PLANとL1〜L12の還流先がtyped evidenceで追跡できる |
 
+## PLAN固有oracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
+| U-SCRUMOPS-001 | L3/L10候補pair | operation集合、pair metadata、受入条件のいずれかが欠ければ失敗する | `tests/current-location.test.ts` |
+
 ## 検証順序
 
 Red、Green、mutation kill、DB rebuild 2回、current-location／roadmap／vmodel fit、
