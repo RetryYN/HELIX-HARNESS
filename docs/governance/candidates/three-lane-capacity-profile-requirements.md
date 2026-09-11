@@ -14,11 +14,11 @@ pair_artifact: docs/governance/candidates/three-lane-capacity-profile-acceptance
 
 ## Feature契約
 
-### 3L-R-26 Capacity identity separation
+### 3L-R-26 capacity識別子の分離
 
 `registered_pool_capacity`、`admitted_active_wip`、`in_flight`、`review_inventory`、`merge_inventory`を別fieldで保持する。既存8-slotは製品能力上限であり、provider別pool登録数や常時active数と同一視しない。
 
-### 3L-R-27 Provider-specific pool profile
+### 3L-R-27 provider別pool profile
 
 - `codex_worker_pool`: 定常3、条件付きburst上限5
 - `cursor_worker_pool`: 1→2→3の段階canary、成立後は定常3、条件付きburst上限5
@@ -26,19 +26,19 @@ pair_artifact: docs/governance/candidates/three-lane-capacity-profile-acceptance
 
 Codex control capacityはCodex worker poolから予約分を分離し、実装量産でfrontier／Recovery／merge admissionを枯らさない。
 
-### 3L-R-28 Dynamic active WIP admission
+### 3L-R-28 動的active WIP admission
 
 active WIPはReview Queue、required CI、Merge Train、changed-path conflict、budget／runway、rework率、accepted throughputから決定的に導出する。pool上限をdispatch目標にせず、下流が詰まる場合は新規dispatchへbackpressureする。
 
-### 3L-R-29 Staged expansion and burst
+### 3L-R-29 段階拡張とburst
 
 Cursorは実案件1件の正規完走と失敗時回復を確認してから2件、2件での競合・証跡・review・費用が許容範囲なら3件へ拡張する。Codex／Cursorの4〜5件目は、実測capacity、予算、独立review、CI、Merge Trainのadmission成立中だけ一時許可する。Claude第3reviewerはreview queue滞留、待ち時間、rework占有、reviewer稼働率のtyped threshold超過時だけ一時許可する。
 
-### 3L-R-30 Review lease and rework lineage
+### 3L-R-30 review leaseとrework lineage
 
 candidate generationごとにPR単位のreview leaseをexactly once発行する。`CHANGES_REQUESTED`は同一assignment lineageとbranch ownershipへ返す。別worker processへの引継ぎは許すが、新しいassignmentとして履歴を断ち切らない。
 
-### 3L-R-31 JIT synchronization and receipt validity
+### 3L-R-31 JIT同期とreceipt有効性
 
 Merge Train直前のmain同期でcandidate HEADが変わった場合、変更後exact HEADの独立reviewを再取得する。PR寄与bytesの同値性を機械証明する承認済み契約が成立した場合だけreview receiptをcarry-forwardできる。競合解消を作成側または統合ownerへ返し、reviewerがworker branchを直接修正しない。
 

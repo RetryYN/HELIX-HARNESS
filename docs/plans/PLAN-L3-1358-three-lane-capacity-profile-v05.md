@@ -11,7 +11,7 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: ADD_FEATURE
+  target_id: REDESIGN
 entry_signals:
   - "po_directive:Codex／Cursor workerを定常3・最大5、Claude reviewerを定常2とする将来capacityを要求へ保持する"
 created: 2026-09-09
