@@ -1,10 +1,9 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 100,
+  "decision_count": 99,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
-    "PLAN-L3-1358-three-lane-capacity-profile-v05",
     "PLAN-L3-15-requirements-authority-chain-remediation",
     "PLAN-L3-1500-concept-vision-intake",
     "PLAN-L3-1594-skill-mechanism-migration",

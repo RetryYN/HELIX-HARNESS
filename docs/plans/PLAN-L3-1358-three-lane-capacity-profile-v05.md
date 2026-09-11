@@ -4,7 +4,7 @@ title: "PLAN-L3-1358: 三社レーン動的capacity profile v0.5"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -63,7 +63,38 @@ modifies:
 agent_slots:
   - { role: tl, slot_label: "TL — pool／active／review／merge capacity境界" }
   - { role: qa, slot_label: "QA — 段階拡張、backpressure、review lease、JIT receipt反例" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T23:18:55Z"
+    tests_green_at: "2026-09-11T23:18:50Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: 26c0dfbbe49dcc44dc3721f6bfdf46c83b81ff9f
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1750#issuecomment-5641749550"
+    ci_evidence_generation: "run:34656126546:attempt:1:success"
+    scope: "draft第一世代のexact HEADレビュー。L1/L3/L10/L12候補のID連番、3L-R-11引用、双方向pair、candidate-only境界、L12 pin、snapshot 100件、CI全shardを独立照合しblocker 0。runtime WIPや権限は変更しない。"
+    green_commands:
+      - kind: ci
+        command: "gh run view 34656126546 --json headSha,status,conclusion,createdAt,updatedAt,url"
+        runner: github-actions
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T23:18:50Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:522f82cd97a045e1688a1351d5695b4c3afd82eb4b0da431aefd8efc08384c43"
+        result: "exact HEAD 26c0dfbbe、all required lanes success"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-09-11T23:18:55Z"
+  review_binding:
+    reviewer: "Claude Code / Fable 5.1"
+    reviewed_at: "2026-09-11T23:18:55Z"
+    evidence_digest: "sha256:de60fa95d2532810409e4a5d1240ce9e4174c7095991a3aa5c249e4cb3fdf9e1"
+  entries: []
 ---
 
 # 三社レーン動的capacity profile v0.5
