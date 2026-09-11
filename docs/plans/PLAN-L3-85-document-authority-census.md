@@ -69,6 +69,7 @@ generates:
   - { artifact_path: docs/test-design/helix/document-authority-census-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/document-authority-census-recognition.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/repo-wide-guard-tests.v1.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }

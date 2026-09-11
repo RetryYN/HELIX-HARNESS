@@ -10,6 +10,7 @@
     "tests/digest.test.ts",
     "tests/design-coverage.test.ts",
     "tests/design-language.test.ts",
+    "tests/document-authority-census-source-promotion.test.ts",
     "tests/feedback-refactor-disposition.test.ts",
     "tests/frontend-design-coverage.test.ts",
     "tests/git-command-guard.test.ts",

@@ -73,7 +73,9 @@ describe("PLAN-L3-85 Document Authority Census source promotion", () => {
   it("DAC-PROMOTE-004: candidate pathを第二正本として残さない", () => {
     for (const name of ["requests", "requirements", "acceptance"]) {
       expect(
-        existsSync(join(repoRoot, `docs/governance/candidates/document-authority-census-${name}.md`)),
+        existsSync(
+          join(repoRoot, `docs/governance/candidates/document-authority-census-${name}.md`),
+        ),
         name,
       ).toBe(false);
     }
