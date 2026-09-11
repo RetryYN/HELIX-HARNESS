@@ -54,7 +54,7 @@ review_evidence:
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: claude:claude-fable-5-1
-    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
     reviewed_head_sha: c5222667bfe992ea75dc38cf78cb6186ff65c227
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1739#issuecomment-5632310469"
     ci_evidence_generation: "run:34580163083:attempt:2:success"
