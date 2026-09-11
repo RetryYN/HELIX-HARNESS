@@ -73,21 +73,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1707-cursor-v1-run-authority.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-review_evidence:
-  - reviewer: "Claude / Fable 5.1"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-12T01:03:00+09:00"
-    tests_green_at: "2026-09-12T01:03:00+09:00"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
-    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
-    reviewed_head_sha: 9aac15523acdd009cfb097841de92023f4f1e566
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1742#issuecomment-5637204838"
-    ci_evidence_generation: "run:34613320552:attempt:1:failure"
-    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1742:9aac15523acdd009cfb097841de92023f4f1e566:claude:run:34613320552:attempt:1:failure"
-    receipt_digest: "sha256:da835c4933796cebd6a39aaa2e0c2c91b05d1003ebc2451b2495c319fb481627"
-    scope: "draft bootstrap世代のexact HEADを独立監査しblocker 0 / approve。CI failureはconfirmed化前のpost_merge_plan循環のみで、merge admissionは付与しない。外部Cursor API E2E、#1293 transport配線、回復receipt永続化、7日WIP3は未実証のまま保持する。"
 ---
 
 # Cursor v1 run authorityの復旧
