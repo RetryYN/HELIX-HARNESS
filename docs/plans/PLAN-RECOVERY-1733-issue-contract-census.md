@@ -57,7 +57,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — read-only censusとmigration apply責務の分離" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1733-issue-contract-census.md, artifact_type: markdown_doc }
-  - { artifact_path: .helix/evidence/review-1735/impact-ci-full-receipt.json, artifact_type: test_evidence }
+  - { artifact_path: .helix/evidence/review-1735/impact-ci-full-receipt.json, artifact_type: json_config }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, artifact_type: design_doc }
