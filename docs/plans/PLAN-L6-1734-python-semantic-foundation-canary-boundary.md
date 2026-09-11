@@ -37,7 +37,6 @@ complexity_effect: justified_positive
 complexity_justification: "第一PRは既存#230 primitiveを再利用するtyped ledgerと実装境界PLANだけを追加し、runtimeや重複contractを作らない"
 removal_trigger: "全semantic atomが後継共通runtimeへ移管され、本canary固有dual-run adapterのconsumerが0になった時"
 parent_design: docs/design/helix/L6-function-design/python-worker-runtime.md
-pair_artifact: docs/test-design/helix/L6-python-worker-runtime-unit-test-design.md
 dependencies:
   parent: docs/design/helix/L6-function-design/python-worker-runtime.md
   requires:
@@ -58,6 +57,7 @@ generates:
   - { artifact_path: docs/governance/python-semantic-migration-ledger.v1.yaml, artifact_type: yaml_config }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
 ---
 
 # PLAN-L6-1734: Python意味コアfoundationとverification verb canaryの実装境界
@@ -69,10 +69,11 @@ receipt、doctor gateへ接続する。新しい並行基盤は作らず、最�
 foundationから実consumerまでの一経路を実証する。
 
 #230の`PLAN-L7-524/525/526/527/531`はcurrent L1–L12の親authorityには使わず、実装済みprimitiveの
-historical implementation evidenceとして再利用する。実装境界の正本は既存L6
-`docs/design/helix/L6-function-design/python-worker-runtime.md`、対応pairの正本は既存
-`docs/test-design/helix/L6-python-worker-runtime-unit-test-design.md`とする。pairはfrontmatterの
-`executed_at_layer: L7`と本文の17 oracleを持つ。本PLANはこの既存pairを置換しない。
+historical implementation evidenceとして再利用する。既存L6
+`docs/design/helix/L6-function-design/python-worker-runtime.md`は実装境界の入力とする。一方、
+`docs/test-design/helix/L6-python-worker-runtime-unit-test-design.md`はbehavior atom採取用の
+compatibility sourceであり、current pair正本として再利用しない。Step 0でcurrent L7 pair deltaを作り、
+review／pair-freeze後にだけ実装PLANから参照する。
 
 本PLANとledgerを追加する第一PRは、foundation/canaryの実装順と責務境界を正本化する文書sliceである。
 runtime、Python source、canary、test、activationは生成せず、実装完了を主張しない。
