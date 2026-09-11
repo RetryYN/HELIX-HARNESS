@@ -66,6 +66,7 @@ modifies:
   - { artifact_path: src/runtime/issue-hierarchy.ts, artifact_type: source_module }
   - { artifact_path: tests/issue-hierarchy.test.ts, artifact_type: test_code }
   - { artifact_path: tests/infinity-loop-strict-design-contract.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-direct.json, artifact_type: json_config }
 review_evidence: []
 ---
 
