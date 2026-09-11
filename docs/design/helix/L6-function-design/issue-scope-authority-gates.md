@@ -56,6 +56,20 @@ silent skipして母集団を縮めず、各Issueをvalid nodeまたはtyped fin
 後続責務として分離する。roleやdispositionの意味を自由文から推定しないため、ADR-009/010上の
 semantic inferenceではなくNode transactional boundaryの構造検証として保持する。
 
+## §0.3 Recovery差分 — Issue hierarchy census CLI接続（U-IHIER-022/023）
+
+`PLAN-RECOVERY-1736-issue-census-consumer`が所有するread-only consumer差分である。
+既存の`collectIssueHierarchyContractCensus`をCLIへ接続し、全Issue snapshotをvalid nodeまたはtyped findingとして
+外部の管理工程へ公開する。CLIは`--input-json`と`--repository`のexactly-oneを要求し、repository入力は
+GitHub APIを全page取得してPRを除外する。結果は入力順に依存しないIssue番号順とし、findingが1件でもあればexit 1にする。
+
+| surface | 事前条件 | 事後条件 | 不変条件／失敗 |
+|---|---|---|---|
+| `github issue-hierarchy-census` | Issue番号・state・本文のsnapshot、またはrepositoryを受ける | schema version、`ok`、全Issue件数、valid nodes、typed findingsをJSONまたは要約で返す | GitHub、Issue本文、label、DBへ書かない。不正source、入力modeの欠落・重複、API失敗はfail-close |
+| `issue-dependency-wiring` doctor gate | CLI sourceを読む | census commandの消失をhard gateで検出する | census結果のgreenをdoctor自身が偽装せず、接続存在だけを検査する |
+
+このsliceはIssue契約の自動補完、native graph比較、migration candidate apply、Projects同期を行わない。
+
 ## §0 関数境界
 
 pure functionはDB、filesystem、clock、GitHub、AI runtimeを直接読まない。custody append、event append、transition CASはinjected Node portだけが行う。

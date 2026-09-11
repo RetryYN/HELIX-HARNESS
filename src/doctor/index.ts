@@ -1591,11 +1591,16 @@ export function checkDigestInventory(repoRoot: string): { messages: string[]; ok
 export function checkIssueDependencyWiring(repoRoot: string): { messages: string[]; ok: boolean } {
   try {
     const cli = readFileSync(join(repoRoot, "src", "cli.ts"), "utf8");
+    const hierarchyCensusCommand = readFileSync(
+      join(repoRoot, "src", "cli", "commands", "issue-hierarchy-census.ts"),
+      "utf8",
+    );
     const workflow = readFileSync(
       join(repoRoot, ".github", "workflows", "harness-check.yml"),
       "utf8",
     );
     const missing = [
+      ["hierarchy-census", 'command("issue-hierarchy-census")', hierarchyCensusCommand],
       ["cli-command", 'command("issue-dependency-audit")', cli],
       ["live-ci", "github issue-dependency-audit", workflow],
       ["repository-binding", '--repository "$GITHUB_REPOSITORY"', workflow],

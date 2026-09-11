@@ -2293,6 +2293,15 @@ describe("runDoctor", () => {
     expect(hasDoctorMessageWith(r.messages, "doctor: issue-dependency-wiring - OK")).toBe(true);
   });
 
+  // PLAN-RECOVERY-1736-issue-census-consumer
+  it("U-IHIER-023: Issue hierarchy census CLI connection is covered by the doctor wiring gate", () => {
+    const source = readFileSync(join(process.cwd(), "src", "doctor", "index.ts"), "utf8");
+    expect(source).toContain(
+      '["hierarchy-census", \'command("issue-hierarchy-census")\', hierarchyCensusCommand]',
+    );
+    expect(source).toContain('"issue-hierarchy-census.ts"');
+  });
+
   it("includes repository name path hard gate in doctor output", () => {
     const r = liveDoctor();
     expect(hasDoctorMessage(r.messages, "doctor: repository-name-paths - OK")).toBe(true);
