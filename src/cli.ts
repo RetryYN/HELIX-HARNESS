@@ -61,6 +61,7 @@ import {
 import { validatePrReviewRoute } from "./audit/pr-review-route";
 import { renderQualityAudit, runQualityAudit } from "./audit/quality";
 import { planReleaseAutomationDecision } from "./audit/release-automation-decision";
+import { registerIssueHierarchyCensusCommand } from "./cli/commands/issue-hierarchy-census";
 import { registerRenameCommands } from "./cli/commands/rename";
 import { registerReviewFallbackCommand } from "./cli/commands/review-fallback";
 import { registerRouteCommands } from "./cli/commands/route";
@@ -14223,6 +14224,7 @@ const github = program
   .description("GitHub operation readiness and PR automation");
 
 registerReviewFallbackCommand(github);
+registerIssueHierarchyCensusCommand(github);
 
 github
   .command("issue-metadata-audit")

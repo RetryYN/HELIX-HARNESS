@@ -1596,6 +1596,7 @@ export function checkIssueDependencyWiring(repoRoot: string): { messages: string
       "utf8",
     );
     const missing = [
+      ["hierarchy-census", 'command("issue-hierarchy-census")', cli],
       ["cli-command", 'command("issue-dependency-audit")', cli],
       ["live-ci", "github issue-dependency-audit", workflow],
       ["repository-binding", '--repository "$GITHUB_REPOSITORY"', workflow],
