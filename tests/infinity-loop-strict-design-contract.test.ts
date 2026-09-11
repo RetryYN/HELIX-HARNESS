@@ -365,10 +365,10 @@ describe("Infinity Loop strict design contract", () => {
       }
     }
     // PLAN-RECOVERY-110: 過去commitの基線は維持し、既存doctor配線の宣言追加だけを束縛する。
-    const declaredUnitDelta = ["U-IHIER-004"];
+    const declaredUnitDelta = ["U-IHIER-004", "U-IHIER-021"];
     expect(manifest.canonical_unit_ids).toHaveLength(476);
     expect(manifest.canonical_unit_ids).not.toContain("U-IHIER-004");
-    expect(currentUnitIds.size).toBe(477);
+    expect(currentUnitIds.size).toBe(478);
     expect(currentIntegrationIds.size).toBe(360);
     expect([...currentUnitIds].sort()).toEqual(
       [...manifest.canonical_unit_ids, ...declaredUnitDelta].sort(),

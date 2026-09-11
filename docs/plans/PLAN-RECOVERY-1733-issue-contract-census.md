@@ -65,6 +65,7 @@ modifies:
   - { artifact_path: docs/test-design/helix/L6-issue-scope-authority-gates-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/issue-hierarchy.ts, artifact_type: source_module }
   - { artifact_path: tests/issue-hierarchy.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/infinity-loop-strict-design-contract.test.ts, artifact_type: test_code }
 review_evidence: []
 ---
 
