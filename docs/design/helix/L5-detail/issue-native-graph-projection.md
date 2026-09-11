@@ -57,7 +57,7 @@ repository-wide auditは後続sliceでこのreportを再利用して実装する
       "artifact_path": "src/runtime/issue-hierarchy.ts",
       "resource_kind": "typescript_export",
       "resource_name": "auditIssueNativeGraphProjection",
-      "source_digest": "sha256:2792eb135bce4c22628317181ac028c99e2b538226b63fbd8bb198087a53670a",
+      "source_digest": "sha256:c1238598e6b9dd9832b08e2e679328489c7e44f7a79bf3a54e42c742f47adace",
       "current_authority": true
     }
   ],

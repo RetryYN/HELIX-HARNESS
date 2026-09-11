@@ -83,22 +83,109 @@ export interface IssueDependencyContractSource {
   body: string | null;
 }
 
+export type IssueHierarchyContractCensusFindingCode =
+  | "issue_hierarchy_contract_missing"
+  | "issue_hierarchy_contract_required_field_missing"
+  | "issue_hierarchy_contract_invalid_role"
+  | "issue_hierarchy_contract_invalid_disposition"
+  | "issue_hierarchy_contract_invalid";
+
+export interface IssueHierarchyContractCensusFinding {
+  issueNumber: number;
+  code: IssueHierarchyContractCensusFindingCode;
+  missingFields: string[];
+  detail: string;
+}
+
+export interface IssueHierarchyContractCensus {
+  nodes: IssueHierarchyNode[];
+  findings: IssueHierarchyContractCensusFinding[];
+}
+
+const ISSUE_HIERARCHY_REQUIRED_FIELDS = [
+  "issue_role",
+  "parent_issue",
+  "blocks",
+  "blocked_by",
+  "duplicate_search",
+  "disposition",
+  "duplicate_of",
+] as const;
+
+/**
+ * Inventory every Issue instead of silently removing invalid hierarchy
+ * contracts from the population used by portfolio and dependency audits.
+ */
+export function collectIssueHierarchyContractCensus(
+  sources: readonly IssueDependencyContractSource[],
+): IssueHierarchyContractCensus {
+  const nodes: IssueHierarchyNode[] = [];
+  const findings: IssueHierarchyContractCensusFinding[] = [];
+
+  for (const source of sources) {
+    const candidate = extractIssueHierarchyCandidate(source.body ?? "");
+    if (!candidate) {
+      findings.push({
+        issueNumber: source.number,
+        code: "issue_hierarchy_contract_missing",
+        missingFields: [],
+        detail: "Issue hierarchy contract is absent",
+      });
+      continue;
+    }
+    if (candidate.parseError) {
+      findings.push({
+        issueNumber: source.number,
+        code: "issue_hierarchy_contract_invalid",
+        missingFields: [],
+        detail: `Issue hierarchy contract is invalid: ${candidate.parseError}`,
+      });
+      continue;
+    }
+
+    const missingFields = ISSUE_HIERARCHY_REQUIRED_FIELDS.filter(
+      (field) => !(field in candidate.value),
+    );
+    if (missingFields.length > 0) {
+      findings.push({
+        issueNumber: source.number,
+        code: "issue_hierarchy_contract_required_field_missing",
+        missingFields,
+        detail: `Issue hierarchy contract is missing required fields: ${missingFields.join(", ")}`,
+      });
+      continue;
+    }
+
+    try {
+      nodes.push({
+        number: source.number,
+        state: source.state,
+        ...parseIssueHierarchyContract(candidate.block),
+      });
+    } catch (error) {
+      const reason = error instanceof Error ? error.message : "unknown";
+      const code =
+        reason === "issue_role_invalid"
+          ? "issue_hierarchy_contract_invalid_role"
+          : reason === "issue_disposition_invalid"
+            ? "issue_hierarchy_contract_invalid_disposition"
+            : "issue_hierarchy_contract_invalid";
+      findings.push({
+        issueNumber: source.number,
+        code,
+        missingFields: [],
+        detail: `Issue hierarchy contract is invalid: ${reason}`,
+      });
+    }
+  }
+
+  return { nodes, findings };
+}
+
 export function collectIssueHierarchyContracts(
   sources: readonly IssueDependencyContractSource[],
 ): IssueHierarchyNode[] {
-  return sources.flatMap((source) => {
-    try {
-      return [
-        {
-          number: source.number,
-          state: source.state,
-          ...parseIssueHierarchyContract(source.body ?? ""),
-        },
-      ];
-    } catch {
-      return [];
-    }
-  });
+  return collectIssueHierarchyContractCensus(sources).nodes;
 }
 
 export interface IssueHierarchyDependencyAlignmentFinding {
@@ -838,6 +925,54 @@ function extractIssueHierarchyContractBlock(body: string): string | null {
     }
   }
   return null;
+}
+
+function extractIssueHierarchyCandidate(
+  body: string,
+):
+  | { block: string; value: Record<string, unknown>; parseError: null }
+  | { block: string; value: Record<string, never>; parseError: "yaml_parse_invalid" }
+  | null {
+  let partialCandidate:
+    | { block: string; value: Record<string, unknown>; parseError: null }
+    | { block: string; value: Record<string, never>; parseError: "yaml_parse_invalid" }
+    | null = null;
+  for (const match of body.matchAll(/```yaml\b([\s\S]*?)```/g)) {
+    const raw = match[1] ?? "";
+    let value: unknown;
+    try {
+      value = parseYaml(raw.replace(/([[,]\s*)#(\d+)/g, "$1$2"));
+    } catch {
+      if (
+        partialCandidate === null &&
+        ISSUE_HIERARCHY_REQUIRED_FIELDS.some((field) => raw.includes(`${field}:`))
+      ) {
+        partialCandidate = { block: match[0], value: {}, parseError: "yaml_parse_invalid" };
+      }
+      continue;
+    }
+    if (typeof value === "object" && value !== null) {
+      const record = value as Record<string, unknown>;
+      if (ISSUE_HIERARCHY_REQUIRED_FIELDS.every((field) => field in record)) {
+        return {
+          block: match[0],
+          value: record,
+          parseError: null,
+        };
+      }
+      if (
+        partialCandidate === null &&
+        ISSUE_HIERARCHY_REQUIRED_FIELDS.some((field) => field in record)
+      ) {
+        partialCandidate = {
+          block: match[0],
+          value: record,
+          parseError: null,
+        };
+      }
+    }
+  }
+  return partialCandidate;
 }
 
 export function parseIssueHierarchyContract(
