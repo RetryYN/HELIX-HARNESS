@@ -60,6 +60,7 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1736-issue-census-consumer.md, artifact_type: markdown_doc }
   - { artifact_path: src/cli/commands/issue-hierarchy-census.ts, artifact_type: source_module }
   - { artifact_path: tests/issue-hierarchy-census-cli.test.ts, artifact_type: test_code }
+  - { artifact_path: .helix/evidence/review-1736/preflight-gate-results.json, artifact_type: json_config }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, artifact_type: design_doc }
