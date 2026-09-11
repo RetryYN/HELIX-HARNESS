@@ -49,16 +49,16 @@ dependencies:
 review_evidence:
   - reviewer: "Claude Code / claude-fable-5-1"
     review_kind: cross_agent
-    reviewed_at: "2026-09-11T09:18:50Z"
+    reviewed_at: "2026-09-11T14:46:51Z"
     tests_green_at: "2026-09-11T08:55:52.509Z"
     verdict: approve
     worker_model: codex-gpt-5
     reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
-    reviewed_head_sha: c5222667bfe992ea75dc38cf78cb6186ff65c227
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1739#issuecomment-5632310469"
-    ci_evidence_generation: "run:34580163083:attempt:2:success"
-    scope: "PR #1739 exact HEAD c5222667bのR00 ledger／foundation境界を独立レビュー。12 module／13 behavior group、既存Node primitive再利用、Python sandbox境界、bulk port禁止、classifyVerificationVerb canary、blocked pair非再利用、未実装義務の非偽装を確認し、blocker 0でapprove。"
+    reviewed_head_sha: ca5792db0dcc5a28d34c27a9fe5f38589195f18a
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1739#issuecomment-5636233584"
+    ci_evidence_generation: "run:34611398103:attempt:1:failure"
+    scope: "PR #1739 exact HEAD ca5792db0のR00 ledger／foundation境界を独立レビュー。session再発行handshakeを現receiptへ束縛し、内容評価はc5222667b／0c078a1eaから不変。12 module／13 behavior group、既存Node primitive再利用、Python sandbox境界、bulk port禁止、classifyVerificationVerb canary、blocked pair非再利用、未実装義務の非偽装を確認し、blocker 0でapprove。"
     green_commands:
       - kind: lint
         command: "CI preflight aggregate: plan-lint, L1-L12 authority, typecheck and repository gates"
