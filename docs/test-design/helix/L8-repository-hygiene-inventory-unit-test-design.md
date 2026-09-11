@@ -9,7 +9,7 @@ status: draft
 created: 2026-09-11
 updated: 2026-09-11
 owner: QA / Codex TL
-plan: docs/plans/PLAN-L7-1110-repository-hygiene-inventory.md
+plan: docs/plans/PLAN-RECOVERY-1110-repository-hygiene-inventory.md
 pair_artifact: docs/design/helix/L6-function-design/repository-hygiene-inventory.md
 github_issue_id: 1110
 behavior_contract_id: REPOSITORY-HYGIENE-INVENTORY-001

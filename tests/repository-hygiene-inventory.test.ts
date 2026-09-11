@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { analyzeRepositoryHygiene } from "../src/audit/repository-hygiene";
 
-// PLAN-L7-1110-repository-hygiene-inventory
+// PLAN-RECOVERY-1110-repository-hygiene-inventory
 describe("repository hygiene inventory", () => {
   const mainHead = "a".repeat(40);
   const mergedHead = "b".repeat(40);

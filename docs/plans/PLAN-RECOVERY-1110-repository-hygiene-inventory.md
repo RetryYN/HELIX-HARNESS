@@ -1,10 +1,8 @@
 ---
-plan_id: PLAN-L7-1110-repository-hygiene-inventory
-title: "PLAN-L7-1110: 正本化前のrepository hygiene read-only inventory"
+plan_id: PLAN-RECOVERY-1110-repository-hygiene-inventory
+title: "PLAN-RECOVERY-1110: 正本化前のrepository hygiene read-only inventory"
 kind: recovery
 layer: cross
-legacy_physical_layer: L7
-canonical_layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: false
@@ -62,7 +60,7 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/repository-hygiene-inventory.md, oracle_id: U-RHYG-005, test_path: tests/repository-hygiene-inventory.test.ts }
 generates:
   - { artifact_path: .helix/evidence/review-1731/vitest-targeted.json, artifact_type: json_config }
-  - { artifact_path: docs/plans/PLAN-L7-1110-repository-hygiene-inventory.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-RECOVERY-1110-repository-hygiene-inventory.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/repository-hygiene-inventory.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-repository-hygiene-inventory-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/audit/repository-hygiene.ts, artifact_type: source_module }
@@ -106,7 +104,7 @@ review_evidence:
         result: "2 test files / 14 tests green"
 ---
 
-# PLAN-L7-1110: リポジトリ衛生状態の読取専用棚卸し
+# PLAN-RECOVERY-1110: リポジトリ衛生状態の読取専用棚卸し
 
 ## 今回の範囲
 
