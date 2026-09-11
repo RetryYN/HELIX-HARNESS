@@ -4,7 +4,7 @@ title: "PLAN-L3-85 (redesign): Document Authority Census"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 l3_human_approval:
   schema_version: helix-l3-human-approval.v1
@@ -82,7 +82,54 @@ agent_slots:
   - { role: se, slot_label: "SE — class／lifecycle／consumer graph" }
   - { role: qa, slot_label: "QA — stale authority／generator drift／baseline反例" }
   - { role: tl, slot_label: "TL — #825／#1370／#206との責務境界" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T18:25:21Z"
+    tests_green_at: "2026-09-11T18:21:00Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: ffe539d1bdfedefd454bc5849a676c8622be97e8
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1747#issuecomment-5638949051"
+    ci_evidence_generation: "run:34630832313:attempt:1:failure"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1747:ffe539d1bdfedefd454bc5849a676c8622be97e8:claude:run:34630832313:attempt:1:failure"
+    receipt_digest: "sha256:f7f93d9bfbd9bfe0424efe0ad89302e6d81b972bb2e7010df4b50b935d83584e"
+    scope: "承認済みDocument Authority Census sourceのcanonical昇格をexact HEADで独立監査しblocker 0 / approve。Biomeとrepo-wide guard登録の前世代block解消、意味集合5/10/13/23不変、candidate退役、L1↔L12・L3↔L10双方向pairを確認した。CI failureはdraft PLANが新規testを所有するmerged-plan-status循環だけであり、4 regression shardは個別receiptでexit 0。main追随後のsuccess CIとmerge admissionは別世代で要求する。"
+    green_commands:
+      - kind: smoke
+        command: "GitHub Actions run 34630832313 full-regression-bulk-1 shard receipt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T18:16:05Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:38aad90574bf8d5a0dfb52babc09b3ee2da122d3613d0324de718f889ab1fa35"
+      - kind: smoke
+        command: "GitHub Actions run 34630832313 full-regression-bulk-2 shard receipt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T18:16:25Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:b9c45d5c84d0bfb435ba2fbf4e4c985f4c8a4fac5bc1cf5959decfc42cbb7a95"
+      - kind: smoke
+        command: "GitHub Actions run 34630832313 full-regression-bulk-3 shard receipt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T18:15:11Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:0a81eb79168b8c137ca08632a772b2515b499035b8603b0873c674d16e873f7a"
+      - kind: smoke
+        command: "GitHub Actions run 34630832313 full-regression-stateful shard receipt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T18:21:00Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:f1cdd516e6ced7c71ec6b7b3406afe6ab5b4ed42fb0cc810ae4d3b284956e379"
 ---
 
 # Document Authority Census（文書正本センサス）
