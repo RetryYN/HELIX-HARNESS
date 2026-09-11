@@ -6,6 +6,8 @@ layer: L6
 drive: agent
 status: draft
 completion_claim_allowed: false
+entry_signals:
+  - "po_directive:Issue #1734 ADR-009/010のPython semantic coreをfoundationとclassifyVerificationVerb canaryから段階移管する"
 owner: Codex / TL
 created: 2026-09-12
 updated: 2026-09-12
