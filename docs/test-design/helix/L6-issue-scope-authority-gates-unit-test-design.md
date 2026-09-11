@@ -43,10 +43,10 @@ fixtureを変更した検査、別HEAD、別プロセスの結果は共有しな
 
 ## Issue階層のoracle
 
-| ID | exact function | scenarioと期待結果 | test参照先 |
+| U-ID | 対象 | 反例と期待結果 | test citation |
 |---|---|---|---|
-| `U-IHIER-001` | `parseIssueHierarchyContract` / `auditIssueHierarchy` / `readyLeafIssues` | valid treeではopen active non-blocked leafだけを返す。block欠落、orphan、parent cycle、深さ・子数上限、非対称blocks、duplicate不整合を投入するとfindingを返しREADYから除外する。入力順を変えてもfindingとREADY番号は同一 | `tests/issue-hierarchy.test.ts` |
-| `U-IHIER-021` | `collectIssueHierarchyContractCensus` | valid、不在、`duplicate_of`欠落、不正role、不正disposition、malformed YAMLを同一snapshotへ投入し、validだけがnode、残りがIssue番号・canonical code・欠落field付きfindingになる。既存`collectIssueHierarchyContracts`は同じvalid node集合を返す | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-001 | `parseIssueHierarchyContract` / `auditIssueHierarchy` / `readyLeafIssues` | valid treeではopen active non-blocked leafだけを返す。block欠落、orphan、parent cycle、深さ・子数上限、非対称blocks、duplicate不整合を投入するとfindingを返しREADYから除外する。入力順を変えてもfindingとREADY番号は同一 | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-021 | `collectIssueHierarchyContractCensus` | valid、不在、`duplicate_of`欠落、不正role、不正disposition、malformed YAMLを同一snapshotへ投入し、validだけがnode、残りがIssue番号・canonical code・欠落field付きfindingになる。既存`collectIssueHierarchyContracts`は同じvalid node集合を返す | `tests/issue-hierarchy.test.ts` |
 
 `U-IHIER-021`はrole別findingへの分岐をgeneric invalidへ変異するとRedになり、復元後Greenへ戻ることを確認する。
 契約なしと壊れた契約を同じfindingへ畳む変更、欠落fieldを補完する変更、invalid Issueをnodeへ採用する変更も失敗させる。

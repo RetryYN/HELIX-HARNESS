@@ -16,7 +16,7 @@ responsibility_owner: github-issue-hierarchy
 engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: compatibility_adapter
+legacy_retirement_state: retained
 no_code_decision: modify
 ddd_modeling_decision: policy
 workflow_identity:
@@ -58,14 +58,17 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1733-issue-contract-census.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/issue-native-graph-projection.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/L6-issue-scope-authority-gates-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/issue-hierarchy.ts, artifact_type: source_module }
   - { artifact_path: tests/issue-hierarchy.test.ts, artifact_type: test_code }
 review_evidence: []
 ---
 
-# Issue hierarchy contract census
+# Issue階層契約の全数診断
 
 ## 目的
 
