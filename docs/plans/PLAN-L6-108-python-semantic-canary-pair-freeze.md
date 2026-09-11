@@ -1,5 +1,5 @@
 ---
-plan_id: PLAN-L6-1734-python-semantic-canary-pair-freeze
+plan_id: PLAN-L6-108-python-semantic-canary-pair-freeze
 title: "Python意味コアfoundationとverification verb canaryのL6/L7ペア凍結"
 kind: add-design
 layer: L6
@@ -46,7 +46,7 @@ dependencies:
     - issue:1734
     - issue:230
 generates:
-  - { artifact_path: docs/plans/PLAN-L6-1734-python-semantic-canary-pair-freeze.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-L6-108-python-semantic-canary-pair-freeze.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/python-semantic-verification-verb-canary.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L7-python-semantic-verification-verb-unit-test-design.md, artifact_type: test_design }
 modifies:
@@ -54,6 +54,7 @@ modifies:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — ADR-009/010とcurrent L6/L7 authority境界を照合" }

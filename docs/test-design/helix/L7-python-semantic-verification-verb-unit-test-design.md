@@ -6,7 +6,7 @@ status: draft
 created: 2026-09-12
 updated: 2026-09-12
 owner: Codex / QA
-plan: docs/plans/PLAN-L6-1734-python-semantic-canary-pair-freeze.md
+plan: docs/plans/PLAN-L6-108-python-semantic-canary-pair-freeze.md
 parent_design: docs/design/helix/L6-function-design/python-semantic-verification-verb-canary.md
 pair_artifact: docs/design/helix/L6-function-design/python-semantic-verification-verb-canary.md
 github_issue_id: 1734

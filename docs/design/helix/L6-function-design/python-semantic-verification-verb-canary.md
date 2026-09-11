@@ -6,7 +6,7 @@ status: draft
 created: 2026-09-12
 updated: 2026-09-12
 owner: Codex / TL
-plan: docs/plans/PLAN-L6-1734-python-semantic-canary-pair-freeze.md
+plan: docs/plans/PLAN-L6-108-python-semantic-canary-pair-freeze.md
 parent_design: docs/design/helix/L6-function-design/python-worker-runtime.md
 pair_artifact: docs/test-design/helix/L7-python-semantic-verification-verb-unit-test-design.md
 related_l3: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md
