@@ -70,7 +70,29 @@ modifies:
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T06:24:02Z"
+    tests_green_at: "2026-09-11T06:18:48Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: 454738416db8bec0efdce7a6e3759336fb21d400
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1736#issuecomment-5630388257"
+    ci_evidence_generation: "run:34569042291:attempt:1:failure"
+    scope: "PR #1736の454738416db8bec0efdce7a6e3759336fb21d400をClaude Code / Fable 5.1が独立検収した。既存typed census primitiveを再実装せずread-only CLIとdoctorへ接続し、exactly-one入力、全pagination、PR除外、Issue番号順、finding存在時exit 1、command module移動後のdoctor wiringを確認した。GitHub write、意味推定、native apply、DB／Projects接続は非対象。commit側blocker 0、52/52 green。CI run 34569042291の全体redは当時未修正だったPR bodyとPLAN draft statusによる。"
+    green_commands:
+      - kind: typecheck
+        command: "npx tsc --noEmit"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T06:18:48Z"
+        evidence_path: .helix/evidence/review-1736/preflight-gate-results.json
+        output_digest: "sha256:1e54a34a418295031a35df3a81f02ea9108585bc9dbc28e02b0f04ce5a61dfc4"
+        result: "GitHub Actions run 34569042291のpreflight aggregationがtypecheck成功を記録した"
 ---
 
 # Issue hierarchy censusのconsumer接続
