@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 101,
+  "decision_count": 100,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -43,7 +43,6 @@
     "PLAN-L4-73-nfr-typed-registry-quality-taxonomy",
     "PLAN-L5-99-nfr-typed-registry-quality-taxonomy",
     "PLAN-L6-105-nfr-typed-registry-quality-taxonomy",
-    "PLAN-L6-108-python-semantic-canary-pair-freeze",
     "PLAN-L7-1307-unreachable-tokenizer-exception",
     "PLAN-L7-146-serverless-readonly-share",
     "PLAN-L7-1574-cli-summary-fixture",
