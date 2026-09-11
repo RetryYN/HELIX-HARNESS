@@ -287,6 +287,7 @@ items:
       - docs/design/helix/L6-function-design/source-capability-atomization-closure.md
       - docs/design/helix/L5-detail/python-worker-runtime.md
       - docs/design/helix/L6-function-design/python-worker-runtime.md
+      - docs/design/helix/L6-function-design/python-semantic-verification-verb-canary.md
       - docs/design/helix/L6-function-design/semantic-contract-revalidator.md
       - docs/design/helix/L5-detail/node-runtime-cutover.md
       - docs/design/helix/L6-function-design/node-runtime-cutover.md
@@ -426,6 +427,7 @@ items:
       - docs/test-design/helix/L6-os-portability-supply-chain-unit-test-design.md
       - docs/test-design/helix/L6-product-data-connector-unit-test-design.md
       - docs/test-design/helix/L6-python-worker-runtime-unit-test-design.md
+      - docs/test-design/helix/L7-python-semantic-verification-verb-unit-test-design.md
       - docs/test-design/helix/L6-requirement-translation-obligation-unit-test-design.md
       - docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md
       - docs/test-design/helix/L6-source-capability-atomization-closure-unit-test-design.md
