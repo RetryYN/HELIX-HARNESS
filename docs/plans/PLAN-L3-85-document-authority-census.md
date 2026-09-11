@@ -68,6 +68,7 @@ generates:
   - { artifact_path: docs/design/helix/L3-requirements/document-authority-census-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/document-authority-census-acceptance.md, artifact_type: test_design }
   - { artifact_path: docs/test-design/helix/document-authority-census-recognition.md, artifact_type: test_design }
+  - { artifact_path: tests/document-authority-census-source-promotion.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: config/repo-wide-guard-tests.v1.json, artifact_type: json_config }
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
@@ -75,7 +76,6 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
-  - { artifact_path: tests/document-authority-census-source-promotion.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: aim, slot_label: "AIM — 文書利用者と誤読影響" }
