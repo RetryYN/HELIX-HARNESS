@@ -4,7 +4,7 @@ title: "Python意味コアfoundationとverification verb canaryのL6/L7ペア凍
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 entry_signals:
   - "po_directive:Issue #1734 ADR-009/010のPython semantic coreをfoundationとclassifyVerificationVerb canaryから段階移管する"
@@ -63,7 +63,30 @@ agent_slots:
   - { role: se, slot_label: "SE — versioned contractとNode/Python責務を設計" }
   - { role: qa, slot_label: "QA — U-PYSEM-001..008の反例とrollbackを固定" }
   - { role: tl, slot_label: "TL — compatibility pair再利用とruntime先走りを拒否" }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T17:46:59Z"
+    tests_green_at: "2026-09-11T17:43:04Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: 5cc08e50c2f89427d1eea0aa6f2b316a400b6e35
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1746#issuecomment-5638516779"
+    ci_evidence_generation: "run:34627165078:attempt:1:success"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1746:5cc08e50c2f89427d1eea0aa6f2b316a400b6e35:claude:run:34627165078:attempt:1:success"
+    receipt_digest: "sha256:571f04f88aa5172f2da2526fb1260f3e634c81161df9f5bf0f3025371b0cc97f"
+    scope: "exact HEADを独立監査しblocker 0 / approve。#1745のbranch prefix、PLAN採番、entry signalの3 blockを解消し、L6 APIとL7 U-PYSEM-001..008の1:1対応、ADR-009/010責務境界、runtime未実装の非偽装、catalog digest追従を確認。release、runtime、manifest、lock、activationは未実証のまま保持する。"
+    green_commands:
+      - kind: smoke
+        command: "GitHub Actions harness-check run 34627165078 attempt 1 full admission receipt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T17:43:04Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:0979a53b5c939733cb9334e3c606fdc9bbaee577a2ba1ecd1c250bbdd6090248"
 ---
 
 # Python意味コアcanaryのL6/L7ペア凍結
