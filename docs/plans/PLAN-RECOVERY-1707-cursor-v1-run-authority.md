@@ -95,7 +95,7 @@ review_evidence:
         scope: targeted
         exit_code: 0
         completed_at: "2026-09-11T16:30:23Z"
-        evidence_path: .helix/evidence/review-1742/vitest-cursor-invalid-terminal.json
+        evidence_path: tests/cursor-cloud-run-authority.test.ts
         output_digest: "sha256:77be4a2c8398a627dd6bf492c08e7ed5b900bdd4e02b50564255e49a8582f1c8"
 ---
 
