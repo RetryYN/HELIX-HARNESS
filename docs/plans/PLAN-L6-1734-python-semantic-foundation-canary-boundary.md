@@ -24,9 +24,9 @@ behavior_contract_id: PYTHON-SEMANTIC-FOUNDATION-CANARY-001
 responsibility_owner: python-semantic-runtime
 change_slice: atomic
 refactor_step: introduce_contract
-legacy_retirement_state: migration_pending
+legacy_retirement_state: retained
 no_code_decision: no_change
-ddd_modeling_decision: service
+ddd_modeling_decision: domain_service
 runtime_responsibility: mixed_split_required
 contract_preconditions: "ADR-009/010、既存HDS-HIL-12のL6設計とL7実行pair、#230の実装済みNode primitive、Issue #1734の12 module/13 behavior group分類を入力とする"
 contract_postconditions: "12 module/13 behavior groupがowner、consumer、順序、rollback、authority state付きledgerへ固定され、foundationとclassifyVerificationVerb canaryの実装順、非対象、Step 0設計delta blockerが一意になる。runtime実装、test成立、activationは主張しない"
