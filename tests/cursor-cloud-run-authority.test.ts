@@ -275,8 +275,8 @@ describe("Cursor v1 run authority", () => {
 
     expect(classification.runs[0]?.classification).toBe("stale");
     expect(classification.cancellableRecoveryRunIds).toEqual([]);
-    expect(
-      decideCursorFollowUpDispatch({ providerAvailable: true, classification }),
-    ).toMatchObject({ action: "deny", reason: "uncancellable_stale_run", postAllowed: false });
+    expect(decideCursorFollowUpDispatch({ providerAvailable: true, classification })).toMatchObject(
+      { action: "deny", reason: "uncancellable_stale_run", postAllowed: false },
+    );
   });
 });
