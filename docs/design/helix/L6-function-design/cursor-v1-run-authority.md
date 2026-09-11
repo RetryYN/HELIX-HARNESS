@@ -27,7 +27,9 @@ single-writer、GitHub admissionを再利用し、Cursor専用scheduler、DB、q
 
 ## 型付き分類
 
-`classifyCursorV1Runs`はstatus、最終更新時刻、TTL、cancel可否を独立に扱う。
+`classifyCursorV1Runs`は、provider adapterが単一agentについて取得したrun一覧だけを受け取り、typedな
+`agentId`へ束縛する。空agent IDは入力エラーとし、複数agentのrunを混在させない。status、最終更新時刻、
+TTL、cancel可否を独立に扱う。
 
 | classification | 条件 | dispatch上の扱い |
 | --- | --- | --- |
@@ -46,7 +48,8 @@ run ID重複、不正な観測時刻、不正TTLはclassifier入力エラーと�
 `decideCursorFollowUpDispatch`は次を決定する。
 
 1. provider取得不能なら`cursor_cloud_execution`だけを`degraded`にし、Codex laneや共通schedulerを停止しない。
-2. fresh active、unknown、cancel不能stale、複数cancel候補があればPOSTしない。
+2. fresh active、unknown、cancel不能stale、複数cancel候補があればPOSTしない。cancel不能staleと
+   cancel候補が同居する場合もcancel副作用を起こさず拒否する。
 3. cancel可能なstale runが一意なら、そのIDだけをcancel候補にし、cancel後のv1再GETまでPOSTしない。
 4. active不在ならPOSTを一度だけ許す。phantomはcancel・削除しない。
 5. POSTが409なら無条件retryせず、v1 run一覧の再GETへ戻す。

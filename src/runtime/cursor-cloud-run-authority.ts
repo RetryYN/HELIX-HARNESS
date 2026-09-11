@@ -26,6 +26,7 @@ export type ClassifiedCursorV1Run = CursorV1RunInput & {
 export type CursorV1RunClassificationReport = {
   schemaVersion: typeof CURSOR_V1_RUN_AUTHORITY_SCHEMA_VERSION;
   sourceAuthority: "cursor_v1_run_list";
+  agentId: string;
   runs: ClassifiedCursorV1Run[];
   authoritativeActiveRunIds: string[];
   cancellableRecoveryRunIds: string[];
@@ -44,10 +45,13 @@ function parseTimestamp(value: string): number | null {
 }
 
 export function classifyCursorV1Runs(input: {
+  agentId: string;
   runs: CursorV1RunInput[];
   now: string;
   staleAfterMs: number;
 }): CursorV1RunClassificationReport {
+  const agentId = input.agentId.trim();
+  if (!agentId) throw new Error("cursor_run_authority_invalid_agent_id");
   const now = parseTimestamp(input.now);
   if (now === null) throw new Error("cursor_run_authority_invalid_now");
   if (!Number.isFinite(input.staleAfterMs) || input.staleAfterMs <= 0)
@@ -88,6 +92,7 @@ export function classifyCursorV1Runs(input: {
   return {
     schemaVersion: CURSOR_V1_RUN_AUTHORITY_SCHEMA_VERSION,
     sourceAuthority: "cursor_v1_run_list",
+    agentId,
     runs,
     authoritativeActiveRunIds: idsFor("active"),
     cancellableRecoveryRunIds: idsFor("cancellable_stale"),
@@ -150,6 +155,15 @@ export function decideCursorFollowUpDispatch(input: {
       reason: "active_run_present",
     };
   }
+  if (input.classification.staleRunIds.length > 0) {
+    return {
+      ...base,
+      laneStatus: "available",
+      action: "deny",
+      postAllowed: false,
+      reason: "uncancellable_stale_run",
+    };
+  }
   if (input.classification.cancellableRecoveryRunIds.length > 1) {
     return {
       ...base,
@@ -167,15 +181,6 @@ export function decideCursorFollowUpDispatch(input: {
       cancelRunId: input.classification.cancellableRecoveryRunIds[0],
       postAllowed: false,
       reason: "single_cancellable_stale_run",
-    };
-  }
-  if (input.classification.staleRunIds.length > 0) {
-    return {
-      ...base,
-      laneStatus: "available",
-      action: "deny",
-      postAllowed: false,
-      reason: "uncancellable_stale_run",
     };
   }
   return {

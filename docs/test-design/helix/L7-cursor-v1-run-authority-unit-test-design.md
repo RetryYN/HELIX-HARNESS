@@ -15,7 +15,7 @@ pair_artifact: docs/design/helix/L6-function-design/cursor-v1-run-authority.md
 
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
-| U-CURSOR-RUN-001 | v1 runの型付き分類 | v0 summaryをauthorityへ混入、stale phantomをactive扱いした場合は分類が一致しない | `tests/cursor-cloud-run-authority.test.ts` |
+| U-CURSOR-RUN-001 | agent単位のv1 run型付き分類 | 空agent ID、v0 summaryのauthority混入、stale phantomのactive扱いを拒否する | `tests/cursor-cloud-run-authority.test.ts` |
 | U-CURSOR-RUN-002 | 一意のcancel可能stale run | cancel前POST、cancel不能phantom削除を許可しない | `tests/cursor-cloud-run-authority.test.ts` |
 | U-CURSOR-RUN-003 | active／複数cancel候補のadmission | ID選好で複数候補から恣意的に1件選択せずfollow-upを拒否する | `tests/cursor-cloud-run-authority.test.ts` |
 | U-CURSOR-RUN-004 | POSTと409 response | 409の即時・無制限retryを拒否しv1再GETを要求する | `tests/cursor-cloud-run-authority.test.ts` |
@@ -23,7 +23,7 @@ pair_artifact: docs/design/helix/L6-function-design/cursor-v1-run-authority.md
 | U-CURSOR-RUN-006 | provider unavailable縮退 | Codex laneや共通実行系まで停止せず、silent fallbackも許可しない | `tests/cursor-cloud-run-authority.test.ts` |
 | U-CURSOR-RUN-007 | unknown statusと不正timestamp | 未知値をactive／terminalへ推測せずfollow-upを拒否する | `tests/cursor-cloud-run-authority.test.ts` |
 | U-CURSOR-RUN-008 | cancel後v1 read-after | cancel対象がterminal化する前、対象消失、別active存在時は再dispatchを許可しない | `tests/cursor-cloud-run-authority.test.ts` |
-| U-CURSOR-RUN-009 | stale RUNNINGの誤cancel防止 | cancel可能と報告されても実行中のstale RUNNINGを自動cancelせずfollow-upを拒否する | `tests/cursor-cloud-run-authority.test.ts` |
+| U-CURSOR-RUN-009 | stale RUNNINGの誤cancel防止 | cancel可能と報告されても実行中のstale RUNNINGを自動cancelせず、cancel候補と同居しても副作用前にfollow-upを拒否する | `tests/cursor-cloud-run-authority.test.ts` |
 
 fixture testは外部Cursor API、credential、networkを使用しない。外部E2E、cancel→IDLE→同一agent・同一PR headへの
 follow-up実証、receipt保存は本単体sliceの未実証範囲として明示する。

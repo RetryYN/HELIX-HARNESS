@@ -10,10 +10,12 @@ import {
 } from "../src/runtime/cursor-cloud-run-authority.js";
 
 const NOW = "2026-09-10T03:00:00.000Z";
+const AGENT_ID = "agent-cursor-1";
 
 describe("Cursor v1 run authority", () => {
   it("U-CURSOR-RUN-001: v0 summaryを使わずv1 runを型付き分類する", () => {
     const result = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -49,6 +51,7 @@ describe("Cursor v1 run authority", () => {
     });
 
     expect(result.authoritativeActiveRunIds).toEqual(["run-fresh"]);
+    expect(result.agentId).toBe(AGENT_ID);
     expect(result.cancellableRecoveryRunIds).toEqual(["run-recovery"]);
     expect(result.phantomRunIds).toEqual(["run-phantom"]);
     expect(result.terminalRunIds).toEqual(["run-finished"]);
@@ -64,6 +67,7 @@ describe("Cursor v1 run authority", () => {
     const decision = decideCursorFollowUpDispatch({
       providerAvailable: true,
       classification: classifyCursorV1Runs({
+        agentId: AGENT_ID,
         now: NOW,
         staleAfterMs: 30 * 60_000,
         runs: [
@@ -98,6 +102,7 @@ describe("Cursor v1 run authority", () => {
 
   it("U-CURSOR-RUN-003: activeまたは複数cancel候補ではfollow-upをfail-closeする", () => {
     const active = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -115,6 +120,7 @@ describe("Cursor v1 run authority", () => {
     ).toMatchObject({ action: "deny", reason: "active_run_present", postAllowed: false });
 
     const ambiguous = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: ["a", "b"].map((id, index) => ({
@@ -136,6 +142,7 @@ describe("Cursor v1 run authority", () => {
 
   it("U-CURSOR-RUN-004: phantomだけなら一度だけPOST可能だが409を再POSTしない", () => {
     const classification = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -160,6 +167,7 @@ describe("Cursor v1 run authority", () => {
 
   it("U-CURSOR-RUN-005: POST後read-afterはsingle active runと期待IDをexact照合する", () => {
     const single = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -178,13 +186,52 @@ describe("Cursor v1 run authority", () => {
     expect(
       evaluateCursorFollowUpReadAfter({ expectedRunId: "wrong", classification: single }),
     ).toEqual({ accepted: false, reason: "active_run_identity_mismatch" });
+
+    const multiple = classifyCursorV1Runs({
+      agentId: AGENT_ID,
+      now: NOW,
+      staleAfterMs: 30 * 60_000,
+      runs: ["run-new", "run-other"].map((id) => ({
+        id,
+        status: "RUNNING",
+        createdAt: "2026-09-10T02:59:00.000Z",
+        updatedAt: "2026-09-10T02:59:30.000Z",
+        cancellable: true,
+      })),
+    });
+    expect(
+      evaluateCursorFollowUpReadAfter({ expectedRunId: "run-new", classification: multiple }),
+    ).toEqual({ accepted: false, reason: "active_run_count_mismatch" });
+
+    const terminal = classifyCursorV1Runs({
+      agentId: AGENT_ID,
+      now: NOW,
+      staleAfterMs: 30 * 60_000,
+      runs: [
+        {
+          id: "run-new",
+          status: "FINISHED",
+          createdAt: "2026-09-10T02:59:00.000Z",
+          updatedAt: "2026-09-10T02:59:30.000Z",
+          cancellable: false,
+        },
+      ],
+    });
+    expect(
+      evaluateCursorFollowUpReadAfter({ expectedRunId: "run-new", classification: terminal }),
+    ).toEqual({ accepted: false, reason: "active_run_count_mismatch" });
   });
 
   it("U-CURSOR-RUN-006: Cursor停止はCursor laneだけをdegradedにしPOSTしない", () => {
     expect(
       decideCursorFollowUpDispatch({
         providerAvailable: false,
-        classification: classifyCursorV1Runs({ now: NOW, staleAfterMs: 30 * 60_000, runs: [] }),
+        classification: classifyCursorV1Runs({
+          agentId: AGENT_ID,
+          now: NOW,
+          staleAfterMs: 30 * 60_000,
+          runs: [],
+        }),
       }),
     ).toEqual({
       lane: "cursor_cloud_execution",
@@ -198,6 +245,7 @@ describe("Cursor v1 run authority", () => {
 
   it("U-CURSOR-RUN-007: unknown statusと不正timestampをactiveへ推測しない", () => {
     const result = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -214,10 +262,14 @@ describe("Cursor v1 run authority", () => {
     expect(
       decideCursorFollowUpDispatch({ providerAvailable: true, classification: result }),
     ).toMatchObject({ action: "deny", reason: "unknown_run_state" });
+    expect(() =>
+      classifyCursorV1Runs({ agentId: " ", now: NOW, staleAfterMs: 30 * 60_000, runs: [] }),
+    ).toThrow("cursor_run_authority_invalid_agent_id");
   });
 
   it("U-CURSOR-RUN-008: cancel後は対象が占有から外れた最新GETだけで再dispatch可能になる", () => {
     const stillActive = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -238,6 +290,7 @@ describe("Cursor v1 run authority", () => {
     ).toEqual({ cleared: false, reason: "cancelled_run_still_occupies_agent" });
 
     const terminal = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -256,10 +309,52 @@ describe("Cursor v1 run authority", () => {
         classification: terminal,
       }),
     ).toEqual({ cleared: true, reason: "cancelled_run_terminal_and_agent_clear" });
+
+    const missingTarget = classifyCursorV1Runs({
+      agentId: AGENT_ID,
+      now: NOW,
+      staleAfterMs: 30 * 60_000,
+      runs: [],
+    });
+    expect(
+      evaluateCursorCancelReadAfter({
+        cancelledRunId: "run-cancelled-target",
+        classification: missingTarget,
+      }),
+    ).toEqual({ cleared: false, reason: "cancelled_run_not_observed_terminal" });
+
+    const terminalWithAnotherActive = classifyCursorV1Runs({
+      agentId: AGENT_ID,
+      now: NOW,
+      staleAfterMs: 30 * 60_000,
+      runs: [
+        {
+          id: "run-cancelled-target",
+          status: "CANCELLED",
+          createdAt: "2026-09-10T02:50:00.000Z",
+          updatedAt: "2026-09-10T02:59:30.000Z",
+          cancellable: false,
+        },
+        {
+          id: "run-other",
+          status: "RUNNING",
+          createdAt: "2026-09-10T02:58:00.000Z",
+          updatedAt: "2026-09-10T02:59:30.000Z",
+          cancellable: true,
+        },
+      ],
+    });
+    expect(
+      evaluateCursorCancelReadAfter({
+        cancelledRunId: "run-cancelled-target",
+        classification: terminalWithAnotherActive,
+      }),
+    ).toEqual({ cleared: false, reason: "another_active_run_present" });
   });
 
   it("U-CURSOR-RUN-009: stale RUNNINGはcancel可能でも自動cancelせずdenyする", () => {
     const classification = classifyCursorV1Runs({
+      agentId: AGENT_ID,
       now: NOW,
       staleAfterMs: 30 * 60_000,
       runs: [
@@ -278,5 +373,24 @@ describe("Cursor v1 run authority", () => {
     expect(decideCursorFollowUpDispatch({ providerAvailable: true, classification })).toMatchObject(
       { action: "deny", reason: "uncancellable_stale_run", postAllowed: false },
     );
+
+    const mixed = classifyCursorV1Runs({
+      agentId: AGENT_ID,
+      now: NOW,
+      staleAfterMs: 30 * 60_000,
+      runs: [
+        ...classification.runs,
+        {
+          id: "run-stale-creating",
+          status: "CREATING",
+          createdAt: "2026-09-10T00:00:00.000Z",
+          updatedAt: "2026-09-10T00:01:00.000Z",
+          cancellable: true,
+        },
+      ],
+    });
+    expect(
+      decideCursorFollowUpDispatch({ providerAvailable: true, classification: mixed }),
+    ).toMatchObject({ action: "deny", reason: "uncancellable_stale_run", postAllowed: false });
   });
 });
