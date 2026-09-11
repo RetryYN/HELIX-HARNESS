@@ -53,7 +53,7 @@ review_evidence:
     tests_green_at: "2026-09-11T08:55:52.509Z"
     verdict: approve
     worker_model: codex-gpt-5
-    reviewer_model: claude-fable-5-1
+    reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
     reviewed_head_sha: c5222667bfe992ea75dc38cf78cb6186ff65c227
     receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1739#issuecomment-5632310469"
