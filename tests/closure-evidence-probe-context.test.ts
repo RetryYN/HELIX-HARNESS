@@ -46,6 +46,12 @@ describe("closure evidence-probe execution context", () => {
     );
     expect(result).toMatchObject({ status: "blocked", remote_ref_exact: false });
     expect(result.blocked_reasons).toContain("remote_exact_head_absent");
+
+    const otherBranch = evaluateClosureProbeExecutionContext(
+      base({ remote_refs: `${head}\trefs/heads/recovery/other` }),
+    );
+    expect(otherBranch.status).toBe("blocked");
+    expect(otherBranch.blocked_reasons).toContain("remote_exact_head_absent");
   });
 
   it("U-CLPROBE-004: 別worktree identityをfail-closeする", () => {

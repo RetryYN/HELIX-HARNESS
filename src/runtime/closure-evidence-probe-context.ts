@@ -47,12 +47,22 @@ export function evaluateClosureProbeExecutionContext(
   const head = SHA.test(observation.head_sha) ? observation.head_sha : null;
   const clean = observation.status_porcelain.length === 0;
   const worktrees = parseWorktreePorcelain(observation.worktree_porcelain);
+  const expectedWorktreeBranch = observation.branch ? `refs/heads/${observation.branch}` : null;
   const matchingWorktrees = worktrees.filter(
-    (row) => resolve(row.path) === repoPath && head !== null && row.head === head && !row.prunable,
+    (row) =>
+      resolve(row.path) === repoPath &&
+      head !== null &&
+      row.head === head &&
+      row.branch === expectedWorktreeBranch &&
+      !row.prunable,
   );
+  const remoteRows = observation.remote_refs.split(/\r?\n/).map((line) => line.split(/\s+/, 2));
   const remoteRefExact =
     head !== null &&
-    observation.remote_refs.split(/\r?\n/).some((line) => line.split(/\s+/, 1)[0] === head);
+    remoteRows.some(
+      ([sha, ref]) =>
+        sha === head && (observation.branch === null || ref === `refs/heads/${observation.branch}`),
+    );
   const blockedReasons = [
     ...(topLevel === repoPath ? [] : ["repo_top_level_mismatch"]),
     ...(head === null ? ["head_unresolved"] : []),
