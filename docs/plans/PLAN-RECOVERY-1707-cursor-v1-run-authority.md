@@ -4,7 +4,7 @@ title: "Cursor v1 run authorityとagent_busy回復境界"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -73,6 +73,31 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1707-cursor-v1-run-authority.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T16:39:38Z"
+    tests_green_at: "2026-09-11T16:30:23Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: e97968c681afc2b02ecdf594bfeb1bfa68d1a4a3
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1742#issuecomment-5637651418"
+    ci_evidence_generation: "run:34622643539:attempt:1:failure"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1742:e97968c681afc2b02ecdf594bfeb1bfa68d1a4a3:claude:run:34622643539:attempt:1:failure"
+    receipt_digest: "sha256:7d989669501c643be0dafb7e8d1fee8cf270d7c611f84086d1b53b4216bbc4f9"
+    scope: "修正版exact HEADを独立監査しblocker 0 / approve。invalid terminal timestampはunknownへfail-closeしU-CURSOR-RUN-007が旧順序変異をkill。CI failureはdraft PLANのpost_merge_plan循環のみでmerge admissionは付与しない。外部Cursor API E2E、#1293 transport配線、回復receipt永続化、7日WIP3は未実証のまま保持する。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/cursor-cloud-run-authority.test.ts --reporter=json --outputFile=.helix/evidence/review-1742/vitest-cursor-invalid-terminal.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-11T16:30:23Z"
+        evidence_path: .helix/evidence/review-1742/vitest-cursor-invalid-terminal.json
+        output_digest: "sha256:77be4a2c8398a627dd6bf492c08e7ed5b900bdd4e02b50564255e49a8582f1c8"
 ---
 
 # Cursor v1 run authorityの復旧
