@@ -4,7 +4,7 @@ title: "outstandingのirreversible_impact schema不適合と未検証plan_idをf
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 irreversible_impact: none
 created: 2026-09-08
@@ -45,7 +45,30 @@ modifies:
   - { artifact_path: tests/completion-decision-packet.test.ts, artifact_type: test_code }
   - { artifact_path: docs/test-design/harness/L8-unit-test-design.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T17:23:42Z"
+    tests_green_at: "2026-09-11T17:17:58Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: 29d2fdc94d45aac50574dce7ef4aab21bad1d010
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1744#issuecomment-5638156957"
+    ci_evidence_generation: "run:34624163517:attempt:2:success"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1744:29d2fdc94d45aac50574dce7ef4aab21bad1d010:claude:run:34624163517:attempt:2:success"
+    receipt_digest: "sha256:d34c4cc0bf9a12e48c110a549f47eb896bd50da2d2a6e80624648c5d22856aae"
+    scope: "現行main上の#1432 fail-close replayをexact HEADで独立監査し、blocker 0 / approve。attempt 2は全shardとfinalizeを含めsuccess。schema不適合、raw filename identity、S4優先、digest inventory、L8 pairを確認し、旧PR receiptや別HEADを完了根拠にしない。"
+    green_commands:
+      - kind: smoke
+        command: "GitHub Actions harness-check run 34624163517 attempt 2 full admission receipt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T17:17:58Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:211d2cf30265f35c7858011b862374eb958b97b9ead5ed280bbebea5805a8e1a"
 ---
 
 # outstandingのfail-close修復
