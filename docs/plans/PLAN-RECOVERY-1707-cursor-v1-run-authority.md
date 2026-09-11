@@ -73,7 +73,6 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1707-cursor-v1-run-authority.md, artifact_type: markdown_doc }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 review_evidence:
   - reviewer: "Claude Code / claude-fable-5-1"
     review_kind: cross_agent
