@@ -3,6 +3,8 @@ plan_id: PLAN-L7-1110-repository-hygiene-inventory
 title: "PLAN-L7-1110: 正本化前のrepository hygiene read-only inventory"
 kind: recovery
 layer: cross
+legacy_physical_layer: L7
+canonical_layer: cross
 drive: agent
 status: confirmed
 completion_claim_allowed: false
