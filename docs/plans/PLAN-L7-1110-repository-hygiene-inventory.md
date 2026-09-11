@@ -4,7 +4,7 @@ title: "PLAN-L7-1110: 正本化前のrepository hygiene read-only inventory"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-11
 updated: 2026-09-11
@@ -79,6 +79,29 @@ dependencies:
     - "plan:PLAN-L7-690-branch-audit-delete-candidate-safety"
     - "issue:1110"
     - "issue:631"
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T00:00:59Z"
+    tests_green_at: "2026-09-10T23:53:31.905Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: "44a875e0-4347-4802-8e8a-87cb4f105537"
+    reviewed_head_sha: 40ab314bfdc8c48085ad82471e5bd766f88192ba
+    receipt_url: https://github.com/RetryYN/HELIX-HARNESS/pull/1731#issuecomment-5627186201
+    ci_evidence_generation: "run:34544151266:attempt:1:failure"
+    scope: "PR #1731 exact HEADでbranch-kind、PLAN discipline、default branch／dirty／open PR／active writer保護、unknown fail-close、catalog digest、Expected changed paths、evidence bytesを独立検証しblocker 0。引用CIの唯一のredはdraft PLANのpost-merge statusであり、成功主張やmerge admissionには用いない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx vitest run tests/repository-hygiene-inventory.test.ts tests/branch-audit.test.ts --reporter=json --outputFile=.helix/evidence/review-1731/vitest-targeted.json"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-10T23:53:31.905Z"
+        evidence_path: .helix/evidence/review-1731/vitest-targeted.json
+        output_digest: "sha256:b065727d0bbcc9570cedea876535064dc31a93a958ca9753498fbab490ae861c"
+        result: "2 test files / 14 tests green"
 ---
 
 # PLAN-L7-1110: リポジトリ衛生状態の読取専用棚卸し
