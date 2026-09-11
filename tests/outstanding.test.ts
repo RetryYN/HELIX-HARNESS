@@ -10,8 +10,10 @@ import {
   completionReadinessLine,
   completionReviewBundleForOutstanding,
   computeOutstandingWork,
+  isCommandSafePlanId,
   loadOutstandingPlanRows,
   type OutstandingPlanRow,
+  outstandingFallbackPlanId,
   outstandingSummaryLine,
   workflowNextActionForOutstanding,
   workflowNextActionsForOutstanding,
@@ -293,14 +295,11 @@ describe("analyzeOutstandingWork", () => {
 
     expect(o.versionUpParked).toBe(1);
     expect(o.activeDraftTotal).toBe(0);
-    expect(o.blockersByKind).toMatchObject({
-      version_up_frontmatter_missing: 1,
-      version_up_parked: 1,
-    });
+    expect(o.blockersByKind).toEqual({ version_up_frontmatter_missing: 1 });
     expect(o.items[0]).toMatchObject({
       planId: "PLAN-L7-146",
       reason: "version_up_frontmatter_missing",
-      blockers: ["version_up_frontmatter_missing", "version_up_parked"],
+      blockers: ["version_up_frontmatter_missing"],
       requiredAction:
         "record version_target frontmatter before treating version-up parked work as a valid future-version frontier",
     });
@@ -2097,9 +2096,9 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      writePlan(root, "PLAN-A.md", "L7", "draft");
-      writePlan(root, "PLAN-B.md", "L7", "confirmed");
-      writePlan(root, "PLAN-C.md", "cross", "in_progress");
+      writePlan(root, "PLAN-L7-01.md", "L7", "draft");
+      writePlan(root, "PLAN-L7-02.md", "L7", "confirmed");
+      writePlan(root, "PLAN-L7-03.md", "cross", "in_progress");
 
       const rows = loadOutstandingPlanRows(root);
       expect(rows).toHaveLength(3);
@@ -2108,7 +2107,7 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
       expect(o.nonTerminalPlansByLayer).toEqual({ L7: 1, cross: 1 });
       expect(o.nonTerminalPlansTotal).toBe(2);
       expect(o.openDefers).toBe(0); // design/test-design 不在 → 0 (fail-open)
-      expect(o.items.map((item) => item.planId)).toEqual(["PLAN-A", "PLAN-C"]);
+      expect(o.items.map((item) => item.planId)).toEqual(["PLAN-L7-01", "PLAN-L7-03"]);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -2118,11 +2117,11 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-classify-"));
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
-      writePlan(root, "PLAN-FUTURE.md", "L7", "draft", {
+      writePlan(root, "PLAN-L7-10-future.md", "L7", "draft", {
         frontmatter: { version_target: "future" },
         body: "Action-binding activation requires approval before external webhook use.",
       });
-      writePlan(root, "PLAN-S3.md", "cross", "draft", {
+      writePlan(root, "PLAN-DISCOVERY-03.md", "cross", "draft", {
         frontmatter: { kind: "poc", workflow_phase: "S3" },
         body: "S4 decision pending.",
       });
@@ -2134,19 +2133,20 @@ describe("loadOutstandingPlanRows + computeOutstandingWork", () => {
         version_up_parked: 1,
       });
       expect(o.items.map((item) => [item.planId, item.reason])).toEqual([
-        ["PLAN-FUTURE", "version_up_parked"],
-        ["PLAN-S3", "po_decision_pending"],
+        ["PLAN-DISCOVERY-03", "po_decision_pending"],
+        ["PLAN-L7-10-future", "version_up_parked"],
       ]);
-      expect(o.items[0]?.requiredEvidence).toContain(
+      const parked = o.items.find((item) => item.planId === "PLAN-L7-10-future");
+      expect(parked?.requiredEvidence).toContain(
         "activation_decision_record with allowed_outcome activate_future_version / reject_or_archive / keep_parked_with_review_date, target_version_or_release_trigger, and activation_route",
       );
-      expect(o.items[0]?.requiredEvidence).toContain(
+      expect(parked?.requiredEvidence).toContain(
         "activation_snapshot_id from the current activationSnapshot.snapshotId recorded before activation approval",
       );
-      expect(o.items[0]?.requiredEvidence).toEqual(
+      expect(parked?.requiredEvidence).toEqual(
         expect.arrayContaining([...sourceLedgerMeaningReviewEvidence]),
       );
-      expect(o.items[0]?.requiredEvidence).not.toContain(
+      expect(parked?.requiredEvidence).not.toContain(
         "s4_decision_record with allowed_outcome confirmed / rejected / pivot",
       );
     } finally {
@@ -2342,9 +2342,99 @@ dependencies:
       };
       expect(frontmatterSchema.safeParse(raw).success).toBe(false);
       const result = analyzeOutstandingWork(rows, 0);
-      expect(result.items[0]?.blockers).not.toContain("irreversible_migration_pending");
+      expect(result.items[0]?.blockers).toContain("irreversible_migration_pending");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  });
+
+  it("U-OUTSTANDING-1432-001: irreversible_impact cutOver は fail-closeする", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-cutover-typo-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "PLAN-L14-1432-cutover-typo.md"),
+        `---
+plan_id: PLAN-L14-1432-cutover-typo
+title: invalid cutover enum fixture
+kind: troubleshoot
+drive: agent
+status: draft
+layer: L14
+irreversible_impact: cutOver
+---
+generic terminal evidence only.
+`,
+      );
+      const result = computeOutstandingWork(root);
+      expect(result.items[0]).toMatchObject({
+        planId: "PLAN-L14-1432-cutover-typo",
+        reason: "irreversible_migration_pending",
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-OUTSTANDING-1432-002: 注入 plan_id はraw commandへ出さず行を保持する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-planid-inject-"));
+    try {
+      mkdirSync(join(root, "docs", "plans"), { recursive: true });
+      writeFileSync(
+        join(root, "docs", "plans", "evil.md"),
+        `---
+plan_id: "x; rm -rf /"
+title: injection fixture
+kind: poc
+drive: agent
+status: draft
+layer: cross
+workflow_phase: S3
+---
+S4 decision pending.
+`,
+      );
+      const expectedId = outstandingFallbackPlanId("evil.md");
+      const rows = loadOutstandingPlanRows(root);
+      expect(rows[0]).toMatchObject({ planId: expectedId, planIdSchemaInvalid: true });
+      expect(expectedId).toMatch(/^invalid-[a-f0-9]{16}$/);
+      expect(isCommandSafePlanId(expectedId)).toBe(true);
+
+      const live = computeOutstandingWork(root);
+      expect(live.items[0]).toMatchObject({
+        planId: expectedId,
+        reason: "frontmatter_schema_invalid",
+      });
+      const commandText = JSON.stringify(completionDecisionPacketForOutstanding(live));
+      expect(commandText).not.toContain("x; rm -rf /");
+      expect(commandText).not.toMatch(/--plan\\s+invalid-/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("U-OUTSTANDING-1432-003: S4 pendingをprose-only version-upより優先する", () => {
+    const result = analyzeOutstandingWork(
+      [
+        {
+          planId: "PLAN-DISCOVERY-10",
+          layer: "cross",
+          kind: "poc",
+          status: "draft",
+          workflowPhase: "S3",
+          versionTarget: null,
+          text: "S4 decision pending.\nmode=version-up\nversion_target is body-only.",
+        },
+      ],
+      0,
+    );
+    expect(result.items[0]).toMatchObject({
+      reason: "po_decision_pending",
+      blockers: ["po_decision_pending", "version_up_frontmatter_missing"],
+    });
+    expect(result.semanticFeatureFrontierRecords?.[0]).toMatchObject({
+      classification: "frontier_pending_decision",
+      reason: "po_decision_pending",
+    });
   });
 });
