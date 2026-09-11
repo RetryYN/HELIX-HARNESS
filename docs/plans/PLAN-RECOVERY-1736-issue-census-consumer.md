@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1736: Issue hierarchy contract censusをread-only CLIへ�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 backfill_state: not_started
 created: 2026-09-11
