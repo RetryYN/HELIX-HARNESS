@@ -66,10 +66,12 @@ modifies:
   - { artifact_path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-direct.json, artifact_type: json_config }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/L6-issue-scope-authority-gates-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: tests/infinity-loop-strict-design-contract.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
