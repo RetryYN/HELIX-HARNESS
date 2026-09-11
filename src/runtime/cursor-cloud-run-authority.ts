@@ -69,9 +69,11 @@ export function classifyCursorV1Runs(input: {
     const stale = observedTimestamp === null || now - observedTimestamp > input.staleAfterMs;
 
     let classification: CursorRunClassification;
-    if (TERMINAL_STATUSES.has(normalizedStatus)) {
+    if (observedTimestamp === null) {
+      classification = "unknown";
+    } else if (TERMINAL_STATUSES.has(normalizedStatus)) {
       classification = "terminal";
-    } else if (!ACTIVE_STATUSES.has(normalizedStatus) || observedTimestamp === null) {
+    } else if (!ACTIVE_STATUSES.has(normalizedStatus)) {
       classification = "unknown";
     } else if (!stale) {
       classification = "active";

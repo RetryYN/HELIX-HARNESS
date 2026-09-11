@@ -243,7 +243,7 @@ describe("Cursor v1 run authority", () => {
     });
   });
 
-  it("U-CURSOR-RUN-007: unknown statusと不正timestampをactiveへ推測しない", () => {
+  it("U-CURSOR-RUN-007: unknown statusと不正timestampをactive／terminalへ推測しない", () => {
     const result = classifyCursorV1Runs({
       agentId: AGENT_ID,
       now: NOW,
@@ -255,10 +255,18 @@ describe("Cursor v1 run authority", () => {
           createdAt: "not-a-date",
           cancellable: true,
         },
+        {
+          id: "run-invalid-terminal",
+          status: "FINISHED",
+          createdAt: "not-a-date",
+          cancellable: false,
+        },
       ],
     });
     expect(result.runs[0]?.classification).toBe("unknown");
-    expect(result.unknownRunIds).toEqual(["run-unknown"]);
+    expect(result.runs[1]?.classification).toBe("unknown");
+    expect(result.terminalRunIds).toEqual([]);
+    expect(result.unknownRunIds).toEqual(["run-unknown", "run-invalid-terminal"]);
     expect(
       decideCursorFollowUpDispatch({ providerAvailable: true, classification: result }),
     ).toMatchObject({ action: "deny", reason: "unknown_run_state" });

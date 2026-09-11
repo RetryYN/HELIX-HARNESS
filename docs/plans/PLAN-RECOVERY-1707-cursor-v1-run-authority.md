@@ -4,7 +4,7 @@ title: "Cursor v1 run authorityとagent_busy回復境界"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-10
@@ -88,15 +88,6 @@ review_evidence:
     receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1742:9aac15523acdd009cfb097841de92023f4f1e566:claude:run:34613320552:attempt:1:failure"
     receipt_digest: "sha256:da835c4933796cebd6a39aaa2e0c2c91b05d1003ebc2451b2495c319fb481627"
     scope: "draft bootstrap世代のexact HEADを独立監査しblocker 0 / approve。CI failureはconfirmed化前のpost_merge_plan循環のみで、merge admissionは付与しない。外部Cursor API E2E、#1293 transport配線、回復receipt永続化、7日WIP3は未実証のまま保持する。"
-    green_commands:
-      - kind: unit_test
-        command: "npx vitest run tests/cursor-cloud-run-authority.test.ts --reporter=json --outputFile=.helix/evidence/review-1742/vitest-cursor.json"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-12T01:26:13+09:00"
-        evidence_path: .helix/evidence/review-1742/vitest-cursor.json
-        output_digest: "sha256:02eb948b31ca74eba4fcc19f2deeb78291945d1d44d50689f5d5eaa0db0eba70"
 ---
 
 # Cursor v1 run authorityの復旧
