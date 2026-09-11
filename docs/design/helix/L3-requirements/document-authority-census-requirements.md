@@ -1,14 +1,28 @@
 ---
-title: "Document Authority Census要件候補"
-status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+title: "Document Authority Census要件"
+layer: L3
+kind: redesign
+status: confirmed
+authority_status: canonical_source
 owner_issue: 1381
-plan_id: PLAN-L3-85-document-authority-census
+plan: PLAN-L3-85-document-authority-census
+approval_record_id: L3-PO-1381-001
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1381#issuecomment-5544538119"
+approved_candidate_head: ab6126a89262c91ecc4b87a0b8f0b9724917c84b
+approved_raw_digest: "sha256:52380a9d84a3b9544f2650d2a7c3d2d54fa317338a5cc3f3c2990ec448ed0ee3"
+canonical_body_digest: "sha256:5c36af5d015cf4f9c3caae7cd5761eb20f545ff5d14807c95d2ceca24a983650"
+version: "1.0"
+parent_design: docs/design/helix/L1-requirements/document-authority-census-requests.md
+pair_artifact: docs/test-design/helix/document-authority-census-acceptance.md
+next_pair_freeze: L10
 ---
 
-# Document Authority Census要件候補
+# Document Authority Census要件
 
-[L3-PO-1381-001](https://github.com/RetryYN/HELIX-HARNESS/issues/1381#issuecomment-5544538119)でL3候補承認済みだが、canonical昇格、IR admission、runtime実装は別工程とする。
+[L3-PO-1381-001](https://github.com/RetryYN/HELIX-HARNESS/issues/1381#issuecomment-5544538119)で承認済みのcanonical sourceである。IR admissionとruntime実装は別工程とする。
 
 ## 1. typed model（型付きモデル）
 

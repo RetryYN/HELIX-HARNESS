@@ -1,12 +1,25 @@
 ---
-title: "Document Authority Census受入候補"
-status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+canonical_vmodel: L1-L12
+canonical_layer: L10
+canonical_pair: L3
+title: "Document Authority Census総合テスト設計"
+layer: L10
+kind: redesign
+status: confirmed
+authority_status: canonical_source
 owner_issue: 1381
-plan_id: PLAN-L3-85-document-authority-census
+plan: PLAN-L3-85-document-authority-census
+approval_record_id: L3-PO-1381-001
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1381#issuecomment-5544538119"
+approved_candidate_head: ab6126a89262c91ecc4b87a0b8f0b9724917c84b
+approved_raw_digest: "sha256:c64cd941e1c9839e655cf3c9291aa638ae285ee458e2e0005df89db6900aaf82"
+canonical_body_digest: "sha256:0ebe8a02b444a1ba145ad0e8513639fcd259eaa186c2b7ccad2056849e1ff11a"
+version: "1.0"
+parent_design: docs/design/helix/L3-requirements/document-authority-census-requirements.md
+pair_artifact: docs/design/helix/L3-requirements/document-authority-census-requirements.md
 ---
 
-# Document Authority Census受入候補
+# Document Authority Census総合テスト設計
 
 | ID | 対象 | 反例／操作 | 期待結果 |
 |---|---|---|---|
@@ -36,6 +49,6 @@ plan_id: PLAN-L3-85-document-authority-census
 
 ## 完了境界
 
-候補文書のmergeはCapability完成を意味しない。`DAC-AC-001..020`をL10 test authorityとしてcanonical化し、
+canonical sourceのmergeはCapability完成を意味しない。`DAC-AC-001..023`をL10 test authorityとして保持し、
 Requirement IR、runtime、doctor、CI、DB projection、consumer smoke、Claude exact-HEAD review、Reverse fullbackを検証し、
 main反映後の再読がすべてgreenになった時だけ#1372を完了できる。

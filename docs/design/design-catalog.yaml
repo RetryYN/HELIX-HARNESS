@@ -71,6 +71,7 @@ items:
       - docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md
       - docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md
       - docs/design/helix/L1-requirements/bugbot-generation-requests.md
+      - docs/design/helix/L1-requirements/document-authority-census-requests.md
   - id: requirement-spec
     name: 要件定義書
     category: req
@@ -112,6 +113,7 @@ items:
       - docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
       - docs/design/helix/L3-requirements/skill-mechanism-migration-requirements.md
       - docs/design/helix/L3-requirements/bugbot-generation-requirements.md
+      - docs/design/helix/L3-requirements/document-authority-census-requirements.md
   - id: basic-design
     name: 基本設計書
     category: basic
@@ -407,6 +409,8 @@ items:
       - docs/test-design/helix/skill-mechanism-migration-recognition.md
       - docs/test-design/helix/bugbot-generation-acceptance.md
       - docs/test-design/helix/bugbot-generation-recognition.md
+      - docs/test-design/helix/document-authority-census-acceptance.md
+      - docs/test-design/helix/document-authority-census-recognition.md
       - docs/test-design/helix/L6-slot-scheduler-quota-handover-unit-test-design.md
       - docs/test-design/helix/L6-work-graph-receipt-acceptance-unit-test-design.md
       - docs/test-design/harness/L8-unit-test-design.md

@@ -173,7 +173,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(618);
+    expect(plans).toHaveLength(619);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -215,7 +215,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(519);
+    ).toHaveLength(520);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -240,17 +240,17 @@ describe("L12/hybrid recognition-risk scanner", () => {
   // PLAN-RECOVERY-1677追加によりplan_review conflictが1件増える。
   // PLAN-RECOVERY-1591が追加したcompatibility parent baselineは、旧語を収録する
   // executable surfaceとしてconflictへ1件加算する。baseline自体をfalse positiveへは降格しない。
-  // PLAN-L6-1734、PLAN-L6-108とPython semantic migration ledgerをplan/current/executable review候補へ加算する。
-  it("assigns exactly one reviewed final disposition to all 877 candidates", () => {
+  // Document Authority Census と PLAN-L6-108／Python semantic migration ledgerを統合して加算する。
+  it("assigns exactly one reviewed final disposition to all 878 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(877);
+    expect(candidates).toHaveLength(878);
     expect(counts).toEqual({
-      conflict: 343,
+      conflict: 344,
       compatibility_labeled: 24,
       false_positive: 492,
       historical: 18,
@@ -341,7 +341,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       compatibility_authority_review: { compatibility_labeled: 6 },
       plan_review: {
         compatibility_labeled: 1,
-        conflict: 180,
+        conflict: 181,
         false_positive: 437,
       },
     });

@@ -1,6 +1,6 @@
 {
   "schema_version": "outstanding-snapshot.v1",
-  "decision_count": 100,
+  "decision_count": 99,
   "plan_ids": [
     "PLAN-DISCOVERY-12-grok-build-worktree-precedent",
     "PLAN-L1-07-infinity-loop-platform-requirements",
@@ -31,7 +31,6 @@
     "PLAN-L3-82-authority-vocabulary-separation",
     "PLAN-L3-83-functional-release-slice-composition",
     "PLAN-L3-84-helix-concept-v4-upgrade",
-    "PLAN-L3-85-document-authority-census",
     "PLAN-L3-86-harness-memory-coordination-boundary",
     "PLAN-L3-87-security-engagement-authority",
     "PLAN-L3-88-execution-ticket-bench-authority",

@@ -1,12 +1,26 @@
 ---
-title: "Document Authority Census要求候補"
-status: draft_candidate
-authority_status: proposed_pending_l3_confirmation
+canonical_vmodel: L1-L12
+canonical_layer: L1
+canonical_pair: L12
+title: "Document Authority Census要求"
+layer: L1
+kind: redesign
+status: confirmed
+authority_status: canonical_source
 owner_issue: 1381
-plan_id: PLAN-L3-85-document-authority-census
+plan: PLAN-L3-85-document-authority-census
+approval_record_id: L3-PO-1381-001
+approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1381#issuecomment-5544538119"
+approved_candidate_head: ab6126a89262c91ecc4b87a0b8f0b9724917c84b
+approved_raw_digest: "sha256:dbaacd0c908f507d4b77dd51782b35615c696c091069d771d638088f97db7a0f"
+canonical_body_digest: "sha256:7c478af5ea99f57a668180e8843d422d60e5e6552e197e51cda1e7c9ec91affa"
+version: "1.0"
+related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
+pair_artifact: docs/test-design/helix/document-authority-census-recognition.md
+next_pair_freeze: L12
 ---
 
-# Document Authority Census要求候補
+# Document Authority Census要求
 
 ## 1. 目的
 
@@ -14,8 +28,8 @@ HELIXは、追跡対象の文書・規則・生成物をexact HEADから漏れ�
 所有責務、読取consumer、生成元、lifecycleを一意に説明できなければならない。古い文書が残ること自体ではなく、
 古い文書がcurrent authorityとして読まれること、またはcurrent文書が未束縛のまま判断へ使われることを防ぐ。
 
-本候補はIssue #1372のruntime実装より先に確定すべきsource authorityである。承認前はscanner、DB、CLI、doctor、
-Requirement IRの意味入力にしない。
+本書は`L3-PO-1381-001`で承認済みのsource authorityである。scanner、DB、CLI、doctorへのruntime接続と
+Requirement IR admissionは後続工程とし、canonical source配置だけで実装・検収完了を主張しない。
 
 ## 2. 利用者要求
 
