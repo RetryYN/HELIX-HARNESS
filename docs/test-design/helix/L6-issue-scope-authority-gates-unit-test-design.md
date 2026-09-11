@@ -47,6 +47,8 @@ fixtureを変更した検査、別HEAD、別プロセスの結果は共有しな
 |---|---|---|---|
 | U-IHIER-001 | `parseIssueHierarchyContract` / `auditIssueHierarchy` / `readyLeafIssues` | valid treeではopen active non-blocked leafだけを返す。block欠落、orphan、parent cycle、深さ・子数上限、非対称blocks、duplicate不整合を投入するとfindingを返しREADYから除外する。入力順を変えてもfindingとREADY番号は同一 | `tests/issue-hierarchy.test.ts` |
 | U-IHIER-021 | `collectIssueHierarchyContractCensus` | valid、不在、`duplicate_of`欠落、不正role、不正disposition、malformed YAMLを同一snapshotへ投入し、validだけがnode、残りがIssue番号・canonical code・欠落field付きfindingになる。部分YAMLが正規contractより前にあっても、全必須fieldを持つ正規contractを優先する。既存`collectIssueHierarchyContracts`は同じvalid node集合を返す | `tests/issue-hierarchy.test.ts` |
+| U-IHIER-022 | `github issue-hierarchy-census` | validとcontract不在を同時投入すると全2件をnode/findingへ分離し、typed schemaとexit 1を返す。全件validなら同schemaでexit 0 | `tests/issue-hierarchy-census-cli.test.ts` |
+| U-IHIER-023 | `issue-dependency-wiring` | doctor wiring gateからcensus command markerを除く変異を検出し、CLI接続の無音退役を許さない | `tests/slow/doctor.test.ts` |
 
 `U-IHIER-021`はrole別findingへの分岐をgeneric invalidへ変異するとRedになり、復元後Greenへ戻ることを確認する。
 契約なしと壊れた契約を同じfindingへ畳む変更、欠落fieldを補完する変更、invalid Issueをnodeへ採用する変更も失敗させる。
