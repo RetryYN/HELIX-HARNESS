@@ -1,0 +1,201 @@
+schema_version: helix-python-semantic-migration-ledger.v1
+ledger_id: PYTHON-SEMANTIC-MIGRATION-LEDGER-001
+status: candidate
+as_of: 2026-09-11
+source_revision: a0407f5924ef6cf965be36894619e66680815a36
+authority:
+  decisions:
+    - docs/adr/ADR-009-node-python-linux-runtime.md
+    - docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md
+  runtime_design: docs/design/helix/L5-detail/python-worker-runtime.md
+  issue: 1734
+  predecessor_issue: 230
+counts:
+  modules: 12
+  behavior_groups: 13
+invariants:
+  - Pythonは意味判断の正本、Nodeは外部副作用と単一transaction commitの正本とする。
+  - module単位のbulk portを禁止し、1 behavior atom・1 versioned contract・1 PRで移管する。
+  - Pythonへrepository、DB path、credential、.helix/、Git/GitHub write権限を渡さない。
+  - NodeはPython出力のstrict schema、provenance、digest、lease/fence、policyを再検証してからcommitする。
+  - dual-run canary成立だけで旧TS authorityを削除せず、consumer 0とRelease admissionまでrollback可能に保つ。
+foundation:
+  authority_state: blocked_by_supply_chain_freeze
+  owner: python-semantic-runtime
+  required_existing_primitives:
+    - src/semantic/semantic-contract-revalidator.ts
+    - src/semantic/semantic-commit-store.ts
+    - src/semantic/semantic-intake-receipt.ts
+    - src/lint/semantic-boundary.ts
+  missing_exact_set:
+    - Python exact versionとinterpreter provenance
+    - package manager、manifest、lock、worker root、entrypoint digest
+    - wheel／sdist policy、artifact digest、SBOM、license classification
+    - network default denyとbounded process／stdio policy
+    - 実Python envelope生成、Node再検証、実consumer接続
+behavior_groups:
+  - migration_atom_id: PYSEM-001
+    module: src/runtime/verb-classify.ts
+    behavior_group: classifyVerificationVerb
+    source_functions: [classifyVerificationVerb]
+    classification: semantic
+    semantic_owner: python-semantic-runtime
+    transactional_owner: node-session-log
+    consumers: [src/runtime/session-log.ts]
+    migration_order: 1
+    authority_state: ts_active_canary_selected
+    target_contract: helix.semantic.verification-verb.v1
+    rollback: dual-run不一致時はNode consumerをTS結果へ戻し、Python receiptを非admitとして保持する。
+  - migration_atom_id: PYSEM-002
+    module: src/task/classify-policy.ts
+    behavior_group: task_kind_risk_uncertainty_classification
+    source_functions: [KIND_PATTERNS, RISK_TERMS, UNCERTAINTY_TERMS]
+    classification: semantic
+    semantic_owner: python-task-semantics
+    transactional_owner: node-task-admission
+    consumers: [src/task/classify.ts]
+    migration_order: 2
+    authority_state: ts_active_migration_pending
+    target_contract: helix.semantic.task-policy.v1
+    rollback: Node adapterをTS classifierへ戻し、Python結果を配車authorityへ昇格させない。
+  - migration_atom_id: PYSEM-003
+    module: src/team/model-policy.ts
+    behavior_group: task_difficulty_inference
+    source_functions: [inferTaskDifficulty]
+    classification: semantic
+    semantic_owner: python-routing-advisory
+    transactional_owner: node-runtime-capacity
+    consumers: [src/team/model-policy.ts]
+    migration_order: 3
+    authority_state: ts_active_migration_pending
+    target_contract: helix.semantic.task-difficulty.v1
+    rollback: Python advisoryを無効化し既存TS推定へ戻す。lease／capacityはNodeから移さない。
+  - migration_atom_id: PYSEM-004
+    module: src/workflow/contracts-extras.ts
+    behavior_group: drive_classification
+    source_functions: [classifyDrive]
+    classification: semantic
+    semantic_owner: python-workflow-semantics
+    transactional_owner: node-workflow-admission
+    consumers: [src/task/classify.ts, src/workflow/contracts-extras.ts]
+    migration_order: 4
+    authority_state: ts_active_migration_pending
+    target_contract: helix.semantic.drive-classification.v1
+    rollback: contract version pointerをTSへ戻し、保存済みPython出力はhistorical evidenceへ降格する。
+  - migration_atom_id: PYSEM-005
+    module: src/workflow/contracts-extras.ts
+    behavior_group: complexity_skill_effort_advisory
+    source_functions: [scoreTaskComplexity, suggestSkillInjection, recommendModelEffort]
+    classification: semantic
+    semantic_owner: python-routing-advisory
+    transactional_owner: node-runtime-capacity
+    consumers: [src/task/classify.ts, src/workflow/contracts-extras.ts]
+    migration_order: 5
+    authority_state: ts_active_migration_pending
+    target_contract: helix.semantic.complexity-skill-effort.v1
+    rollback: Python advisoryをrouting入力から切り離し、Assignment／LeaseのNode authorityを維持する。
+  - migration_atom_id: PYSEM-006
+    module: src/runtime/universal-improvement-source-registry.ts
+    behavior_group: sensitive_observation_field_classification
+    source_functions: [classifySensitiveObservationField]
+    classification: semantic
+    semantic_owner: python-improvement-semantics
+    transactional_owner: node-improvement-admission
+    consumers: [src/runtime/universal-improvement-source-registry.ts]
+    migration_order: 6
+    authority_state: ts_active_migration_pending
+    target_contract: helix.semantic.sensitive-observation-field.v1
+    rollback: Node admissionをTS分類へ戻し、registry read／receipt writeはNodeに固定する。
+  - migration_atom_id: PYSEM-007
+    module: src/runtime/legacy-adoption.ts
+    behavior_group: legacy_adoption_decision
+    source_functions: [classifyTechnicalQuestion, buildRecommendationDecision, classifyLegacyHookSurface, classifyLegacyDbSurface]
+    classification: semantic
+    semantic_owner: python-legacy-advisory
+    transactional_owner: node-governance-admission
+    consumers: [src/runtime/legacy-adoption.ts]
+    migration_order: 7
+    authority_state: ts_active_migration_pending
+    target_contract: helix.semantic.legacy-adoption.v1
+    rollback: Python recommendationをadvisoryへ降格し、既存Node admission decisionを維持する。
+  - migration_atom_id: PYSEM-008
+    module: src/task/classify.ts
+    behavior_group: task_classification_composition
+    source_functions: [classifyTask]
+    classification: semantic
+    semantic_owner: python-task-semantics
+    transactional_owner: node-task-admission
+    consumers: [src/cli.ts]
+    migration_order: 8
+    authority_state: ts_active_waiting_for_atoms_002_004_005
+    target_contract: helix.semantic.task-classification.v1
+    rollback: composition contract pointerをTSへ戻し、CLI／dispatchのNode境界を変更しない。
+  - migration_atom_id: PYSEM-009
+    module: src/skills/recommend.ts
+    behavior_group: skill_recommendation_scoring
+    source_functions: [scoreSkill]
+    classification: mixed
+    semantic_owner: python-skill-semantics
+    transactional_owner: node-skill-registry
+    consumers: [src/skills/recommend.ts, src/cli.ts]
+    migration_order: 9
+    authority_state: ts_active_split_required
+    target_contract: helix.semantic.skill-score.v1
+    retained_node_scope: DB read、registry load、admission、projection
+    rollback: Python scoreを無効化してTS scoreへ戻し、DB read/write経路は常にNodeに残す。
+  - migration_atom_id: PYSEM-010
+    module: src/requirements/requirement-definition-trace-census.ts
+    behavior_group: requirement_trace_ambiguity_classification
+    source_functions: [compileRequirementDefinitionTraceCensus]
+    classification: semantic
+    semantic_owner: python-requirement-semantics
+    transactional_owner: node-requirement-admission
+    consumers: [src/requirements/requirement-definition-trace-census.ts, src/cli.ts]
+    migration_order: 10
+    authority_state: ts_active_migration_pending
+    target_contract: helix.semantic.requirement-trace-census.v1
+    rollback: Python censusをread-only候補へ降格し、GitHub／PLAN／DB writeはNode admissionだけに戻す。
+  - migration_atom_id: PYSEM-011
+    module: src/state-db/refactor-candidates.ts
+    behavior_group: refactor_candidate_detection_scoring
+    source_functions: [candidateRank, analyzeRefactorCandidates]
+    classification: mixed
+    semantic_owner: python-refactor-semantics
+    transactional_owner: node-state-db
+    consumers: [src/state-db/refactor-candidates.ts]
+    migration_order: 11
+    authority_state: ts_active_split_required
+    target_contract: helix.semantic.refactor-candidate.v1
+    retained_node_scope: DB read/write、candidate projection、transaction
+    rollback: Python findingを非admitとし、Node DB transactionは変更せずTS detectorへ戻す。
+  - migration_atom_id: PYSEM-012
+    module: src/orchestration/loop-bridge.ts
+    behavior_group: free_text_verdict_interpretation
+    source_functions: [interpretVerifierVerdict]
+    classification: mixed
+    semantic_owner: python-review-semantics
+    transactional_owner: node-orchestration-boundary
+    consumers: [src/orchestration/loop-bridge.ts]
+    migration_order: 12
+    authority_state: ts_active_split_required_legacy_consumer
+    target_contract: helix.semantic.review-verdict.v1
+    retained_node_scope: process／state bridge、lease、terminal receipt
+    rollback: Python解釈を切り離しTS解釈へ戻す。旧loop実行authorityの退役義務は相殺しない。
+  - migration_atom_id: PYSEM-013
+    module: src/runtime/independent-review-fallback.ts
+    behavior_group: review_error_and_path_risk_classification
+    source_functions: [classifyReviewProviderFailure, deriveReviewRiskClass, classifyKimiAcpError]
+    classification: mixed
+    semantic_owner: python-review-semantics
+    transactional_owner: node-review-admission
+    consumers: [src/runtime/independent-review-fallback.ts]
+    migration_order: 13
+    authority_state: ts_active_split_required
+    target_contract: helix.semantic.review-fallback-classification.v1
+    retained_node_scope: process error、changed-path取得、admission、receipt
+    rollback: Python分類を無効化しNode側既存分類へ戻す。独立review要件やfail-closeを緩めない。
+excluded_false_positives:
+  - { path: src/runtime/document-semantic-diff.ts, reason: 見出しとdigestの構造差分であり曖昧性推定をしない }
+  - { path: src/lint/semantic-frontier-*.ts, reason: 制度用語semanticの静的drift検査でありNode gate責務 }
+  - { path: src/lint/change-impact.ts, reason: 構造化path規則の厳密一致でありNode transactional判定 }
+  - { path: src/audit/repository-hygiene.ts, reason: 構造化証拠のfail-close分類でありNode read model責務 }
