@@ -57,7 +57,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — read-only censusとmigration apply責務の分離" }
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1733-issue-contract-census.md, artifact_type: markdown_doc }
-  - { artifact_path: .helix/evidence/review-1735/vitest-targeted.json, artifact_type: test_evidence }
+  - { artifact_path: .helix/evidence/review-1735/impact-ci-full-receipt.json, artifact_type: test_evidence }
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: config }
   - { artifact_path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, artifact_type: design_doc }
@@ -72,7 +72,7 @@ review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
     reviewed_at: "2026-09-11T03:43:34Z"
-    tests_green_at: "2026-09-11T03:45:32Z"
+    tests_green_at: "2026-09-11T03:40:08Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
@@ -82,15 +82,15 @@ review_evidence:
     ci_evidence_generation: "run:34557587124:attempt:1:success"
     scope: "PR #1735のfbf735851be790cb94e665c07a70f75e657070c8をClaude Code / Fable 5.1が独立検収した。完全なIssue hierarchy contractを部分YAMLより優先し、完全contractが無い入力だけをIssue番号付きtyped findingへ分離する互換境界、every→some変異でU-IHIER-021がredになる反例、scope／digest／oracle台帳の一致を確認した。CI run 34557587124はpreflight、Lite、Windows、4 shard、finalize／DB convergence／doctorまでsuccess。blocker 0。DB／CLI／Projects／migration apply接続と未parse Issue一括修復は本sliceの非対象であり、#1733後続として残す。"
     green_commands:
-      - kind: unit_test
-        command: "npx vitest run tests/issue-hierarchy.test.ts tests/infinity-loop-strict-design-contract.test.ts tests/feedback-test-owner-direct-disposition.test.ts --reporter=json --outputFile=.helix/evidence/review-1735/vitest-targeted.json"
-        runner: node
-        scope: targeted
+      - kind: smoke
+        command: "GitHub Actions harness-check run 34557587124"
+        runner: ci
+        scope: gate
         exit_code: 0
-        completed_at: "2026-09-11T03:45:32Z"
-        evidence_path: .helix/evidence/review-1735/vitest-targeted.json
-        output_digest: "sha256:55bf99104e6e78b95fb7b7e7407c1e0ce017536c8e30a27f224ffee82be2ce65"
-        result: "3 files / 33 tests passed; JSON report bytes=17317"
+        completed_at: "2026-09-11T03:40:08Z"
+        evidence_path: .helix/evidence/review-1735/impact-ci-full-receipt.json
+        output_digest: "sha256:a03154c6112bd3afe6f7071f180eb95c416fbeb528662182c906efbeae910903"
+        result: "run 34557587124 success; tested merge HEAD matches fbf735851be790cb94e665c07a70f75e657070c8"
 ---
 
 # Issue階層契約の全数診断
