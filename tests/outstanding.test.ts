@@ -2413,6 +2413,41 @@ S4 decision pending.
     }
   });
 
+  it("U-OUTSTANDING-1432-002: 不正UTF-8 filenameをraw bytesで区別して保持する", () => {
+    if (process.platform === "win32") return;
+    const root = mkdtempSync(join(tmpdir(), "helix-outstanding-invalid-utf8-"));
+    try {
+      const dir = join(root, "docs", "plans");
+      mkdirSync(dir, { recursive: true });
+      const firstName = Buffer.from([0x62, 0x61, 0x64, 0xfe, 0x2e, 0x6d, 0x64]);
+      const secondName = Buffer.from([0x62, 0x61, 0x64, 0xff, 0x2e, 0x6d, 0x64]);
+      const body = `---
+plan_id: foo
+title: invalid utf8 fixture
+kind: implement
+drive: agent
+status: draft
+layer: L7
+---
+active draft.
+`;
+      writeFileSync(Buffer.concat([Buffer.from(`${dir}/`), firstName]), body);
+      writeFileSync(Buffer.concat([Buffer.from(`${dir}/`), secondName]), body);
+
+      const rows = loadOutstandingPlanRows(root);
+      const ids = rows.map((row) => row.planId).sort();
+      expect(ids).toHaveLength(2);
+      expect(new Set(ids).size).toBe(2);
+      expect(ids).toEqual(
+        [outstandingFallbackPlanId(firstName), outstandingFallbackPlanId(secondName)].sort(),
+      );
+      expect(rows.every((row) => row.planIdSchemaInvalid)).toBe(true);
+      expect(computeOutstandingWork(root).blockersByKind.frontmatter_schema_invalid).toBe(2);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it("U-OUTSTANDING-1432-003: S4 pendingをprose-only version-upより優先する", () => {
     const result = analyzeOutstandingWork(
       [
