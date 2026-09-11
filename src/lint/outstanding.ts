@@ -25,7 +25,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { frontmatterSchema } from "../schema/frontmatter";
+import { frontmatterSchema, planIdSchema } from "../schema/frontmatter";
 import { deepFreeze, isRecord } from "../shared/value-guards";
 import { analyzePlaceholderDeps, loadPlaceholderDepsDocs } from "./placeholder-deps";
 import { fmValue, isTerminalPlanStatus } from "./shared";
@@ -126,6 +126,8 @@ export interface OutstandingPlanRow {
   /** 不可逆影響の機械判定。本文の境界語はこの宣言を上書きしない。 */
   irreversibleImpact?: "none" | "cutover" | "migration" | null;
   irreversibleImpactDeclared?: boolean;
+  /** plan_id が schema 不適合で、raw 値を command identity に使えない行。 */
+  planIdSchemaInvalid?: boolean;
   /** frontmatter/body の軽量分類用テキスト。 */
   text?: string;
 }
@@ -740,13 +742,13 @@ function semanticFeatureFrontierRecordForItem(
 function semanticFeatureFrontierClassificationForItem(
   item: OutstandingItem,
 ): SemanticFeatureFrontierClassification | null {
-  if (item.blockers.includes("irreversible_migration_pending")) {
+  if (item.reason === "irreversible_migration_pending") {
     return "approval_gated_cutover";
   }
-  if (item.blockers.includes("version_up_parked")) {
+  if (item.reason === "version_up_parked" || item.reason === "version_up_frontmatter_missing") {
     return "parked_future_version";
   }
-  if (item.blockers.includes("po_decision_pending")) {
+  if (item.reason === "po_decision_pending") {
     return "frontier_pending_decision";
   }
   return null;
@@ -813,7 +815,6 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
     blockers.add("version_up_parked");
   } else if (planTextHasVersionUpParkingIntent(p.text ?? "")) {
     blockers.add("version_up_frontmatter_missing");
-    blockers.add("version_up_parked");
   }
   if (
     p.kind === "poc" &&
@@ -829,6 +830,7 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
   if (hasIrreversibleMigrationContext(p, text)) {
     blockers.add("irreversible_migration_pending");
   }
+  if (p.planIdSchemaInvalid) blockers.add("frontmatter_schema_invalid");
   if (blockers.size === 0) blockers.add("active_draft");
   return [...blockers].sort();
 }
@@ -836,8 +838,8 @@ function classifyOutstandingBlockers(p: OutstandingPlanRow): string[] {
 function hasIrreversibleMigrationContext(p: OutstandingPlanRow, text: string): boolean {
   if (p.irreversibleImpact === "none") return false;
   if (p.irreversibleImpact === "cutover" || p.irreversibleImpact === "migration") return true;
-  // fieldが存在するがschema不適合ならplan lintがrejectする。本文fallbackで別分類へ化けさせない。
-  if (p.irreversibleImpactDeclared) return false;
+  // plan lint を別途実行しなくても、schema 不適合の不可逆宣言は fail-close する。
+  if (p.irreversibleImpactDeclared && p.irreversibleImpact === null) return true;
   const planId = (p.planId ?? "").trim();
   if (p.layer === "L14" || planId === "PLAN-M-02" || planId.startsWith("PLAN-M-02-")) {
     return /irreversible|不可逆|state dir|cutover|\.helix\/.*\.helix|atomic migration/i.test(text);
@@ -860,11 +862,12 @@ export function planTextHasVersionUpParkingIntent(text: string): boolean {
 
 function primaryOutstandingReason(blockers: string[]): string {
   const priority = [
+    "frontmatter_schema_invalid",
     "irreversible_migration_pending",
-    "version_up_frontmatter_missing",
     "version_up_parked",
     "po_decision_pending",
     "human_approval_pending",
+    "version_up_frontmatter_missing",
     "consumer_setup_boundary",
     "active_draft",
   ];
@@ -939,6 +942,14 @@ function requiredOutstandingAction(reason: string): {
           "action_binding_approval_record with allowed_outcome, approval_policy_or_named_approver, approval_scope, approved_actor, approved_tool, approved_target, approved_params, review_approval_evidence, reviewed_snapshot_binding, expires_at_or_trigger, and audit_record",
           "approval scope binds approved_actor/approved_tool/approved_target/approved_params before activation",
           "review/approval evidence, reviewed snapshot binding, and expiry or trigger condition recorded before activation",
+        ],
+      };
+    case "frontmatter_schema_invalid":
+      return {
+        requiredAction:
+          "replace the invalid plan_id with a PLAN-<token>-<NN>[-slug] value before using outstanding packet commands",
+        requiredEvidence: [
+          "plan_id frontmatter matches PLAN-(L0..L14|DISCOVERY|REVERSE|RECOVERY|M)-NN[-slug]",
         ],
       };
     case "consumer_setup_boundary":
@@ -1045,6 +1056,8 @@ export function workflowEvidenceTextJa(evidence: string): string {
       return "必要な generated artifact が存在する";
     case "review_evidence and green_commands are recorded before terminal status":
       return "terminal status 前に review_evidence と green_commands を記録する";
+    case "plan_id frontmatter matches PLAN-(L0..L14|DISCOVERY|REVERSE|RECOVERY|M)-NN[-slug]":
+      return "plan_id frontmatter を PLAN-(L0..L14|DISCOVERY|REVERSE|RECOVERY|M)-NN[-slug] 形式へ直す";
     case "source_ledger_freshness records the fresh checked ledger label before terminal decision use":
       return "terminal decision に使う前に source_ledger_freshness へ fresh checked ledger label を記録する";
     case "source_status_delta records none/changed official source status impact before terminal decision use":
@@ -1062,6 +1075,71 @@ function uniqueInOrder<T extends string>(values: T[]): T[] {
   return [...new Set(values)];
 }
 
+const COMMAND_SAFE_PLAN_ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+const INVALID_OUTSTANDING_PLAN_ID_PREFIX = "invalid-";
+const FALLBACK_PLAN_ID_DIGEST_CHARS = 16;
+const PLANS_MARKDOWN_SUFFIX = Buffer.from(".md");
+
+export function isCommandSafePlanId(planId: string): boolean {
+  return COMMAND_SAFE_PLAN_ID.test(planId);
+}
+
+function canScopePlanId(planId: string): boolean {
+  return isCommandSafePlanId(planId) && planIdSchema.safeParse(planId).success;
+}
+
+function plansBasenameBytes(filename: string | Buffer): Buffer {
+  return Buffer.isBuffer(filename) ? filename : Buffer.from(filename, "utf8");
+}
+
+function plansBasenameLooksLikeMarkdown(filename: Buffer): boolean {
+  return (
+    filename.length >= PLANS_MARKDOWN_SUFFIX.length &&
+    filename.subarray(-PLANS_MARKDOWN_SUFFIX.length).equals(PLANS_MARKDOWN_SUFFIX)
+  );
+}
+
+function plansDirentPath(dir: string, filename: Buffer): Buffer {
+  return Buffer.concat([Buffer.from(dir.endsWith("/") ? dir : `${dir}/`, "utf8"), filename]);
+}
+
+function filenameStemForSchema(filename: Buffer): string | undefined {
+  const decoded = filename.toString("utf8");
+  if (!Buffer.from(decoded, "utf8").equals(filename)) return undefined;
+  return decoded.endsWith(".md") ? decoded.slice(0, -3) : decoded;
+}
+
+/** raw plan_id や raw filename を command surface に出さない文書単位 fallback identity。 */
+export function outstandingFallbackPlanId(filename: string | Buffer): string {
+  const digest = sha256Json({
+    kind: "plans-basename-bytes",
+    basenameHex: plansBasenameBytes(filename).toString("hex"),
+  });
+  return `${INVALID_OUTSTANDING_PLAN_ID_PREFIX}${digest.slice(
+    "sha256:".length,
+    "sha256:".length + FALLBACK_PLAN_ID_DIGEST_CHARS,
+  )}`;
+}
+
+function resolveOutstandingPlanId(
+  declared: unknown,
+  filename: Buffer,
+): { planId: string; schemaInvalid: boolean } {
+  if (typeof declared === "string" && declared.trim()) {
+    const parsed = planIdSchema.safeParse(declared.trim());
+    if (parsed.success) return { planId: parsed.data, schemaInvalid: false };
+    const stem = filenameStemForSchema(filename);
+    const parsedStem = stem ? planIdSchema.safeParse(stem) : null;
+    if (parsedStem?.success) return { planId: parsedStem.data, schemaInvalid: true };
+    return { planId: outstandingFallbackPlanId(filename), schemaInvalid: true };
+  }
+  const stem = filenameStemForSchema(filename);
+  const parsedStem = stem ? planIdSchema.safeParse(stem) : null;
+  return parsedStem?.success
+    ? { planId: parsedStem.data, schemaInvalid: false }
+    : { planId: outstandingFallbackPlanId(filename), schemaInvalid: true };
+}
+
 /** docs/plans/*.md の layer / status を frontmatter から読む (PLAN registry を介さず最新値)。 */
 export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] {
   const dir = join(repoRoot, "docs", "plans");
@@ -1069,11 +1147,12 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
   const consumerSetupBoundary = consumerSetupBoundaryPlanRow(repoRoot);
   if (consumerSetupBoundary) rows.push(consumerSetupBoundary);
   if (!existsSync(dir)) return rows;
-  for (const f of readdirSync(dir)) {
-    if (!f.endsWith(".md")) continue;
+  for (const filename of readdirSync(dir, { encoding: "buffer" })) {
+    if (!plansBasenameLooksLikeMarkdown(filename)) continue;
+    if (filename.includes(0) || filename.includes(0x2f)) continue;
     let content = "";
     try {
-      content = readFileSync(join(dir, f), "utf8");
+      content = readFileSync(plansDirentPath(dir, filename), "utf8");
     } catch {
       continue;
     }
@@ -1082,8 +1161,9 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
     ) as Record<string, unknown> | null;
     const parsedFrontmatter = frontmatterSchema.safeParse(rawFrontmatter);
     const irreversibleImpactDeclared = Object.hasOwn(rawFrontmatter ?? {}, "irreversible_impact");
+    const resolvedPlanId = resolveOutstandingPlanId(rawFrontmatter?.plan_id, filename);
     rows.push({
-      planId: fmValue(content, "plan_id") ?? f.replace(/\.md$/, ""),
+      planId: resolvedPlanId.planId,
       layer: fmValue(content, "layer") ?? "unknown",
       kind: fmValue(content, "kind") ?? "unknown",
       status: fmValue(content, "status") ?? "unknown",
@@ -1093,6 +1173,7 @@ export function loadOutstandingPlanRows(repoRoot: string): OutstandingPlanRow[] 
         ? (parsedFrontmatter.data.irreversible_impact ?? null)
         : null,
       irreversibleImpactDeclared,
+      planIdSchemaInvalid: resolvedPlanId.schemaInvalid,
       text: content,
     });
   }
@@ -1368,6 +1449,7 @@ export function workflowNextActionsForOutstanding(o: OutstandingWork): WorkflowN
 
 function workflowActionRank(reason: string): number {
   const priority = [
+    "frontmatter_schema_invalid",
     "po_decision_pending",
     "version_up_frontmatter_missing",
     "version_up_parked",
@@ -1762,7 +1844,7 @@ function scopedPacketCommandForPlan(
     case "helix s4 decision-packet --json":
     case "helix version-up activation-packet --json":
     case "helix action-binding approval-packet --json":
-      return `${command} --plan ${planId}`;
+      return canScopePlanId(planId) ? `${command} --plan ${planId}` : command;
     case "helix rename plan --json":
     case "helix rename approval-draft --json":
     case "helix completion decision-packet --json":
@@ -2218,6 +2300,8 @@ export function workflowActionTextJa(action: string): string {
       return "全体完了を主張する前に project PLAN を開始または選択し、実プロジェクトの acceptance evidence を記録する";
     case "continue the applicable workflow phase or mark terminal only after generated artifacts and review evidence are present":
       return "該当 workflow phase を継続し、生成成果物と review evidence が揃った後だけ terminal にする";
+    case "replace the invalid plan_id with a PLAN-<token>-<NN>[-slug] value before using outstanding packet commands":
+      return "outstanding packet command を使う前に plan_id を PLAN-<token>-<NN>[-slug] へ直す";
     default:
       return action;
   }
@@ -2237,6 +2321,8 @@ export function workflowRouteTextJa(route: string): string {
       return "consumer setup -> completion claim 前に最初の project PLAN へ進む";
     case "continue current workflow phase until terminal evidence exists":
       return "terminal evidence が揃うまで現在の workflow phase を継続する";
+    case "fix plan_id schema before treating this PLAN as a runnable outstanding item":
+      return "runnable outstanding item として扱う前に plan_id schema を直す";
     default:
       return route;
   }
@@ -2780,6 +2866,8 @@ function nextWorkflowRouteForOutstandingReason(reason: string): string {
       return "approval gate -> action-binding approval audit before high-impact action";
     case "consumer_setup_boundary":
       return "consumer setup -> first project PLAN before completion claim";
+    case "frontmatter_schema_invalid":
+      return "fix plan_id schema before treating this PLAN as a runnable outstanding item";
     default:
       return "continue current workflow phase until terminal evidence exists";
   }
