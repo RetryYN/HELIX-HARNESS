@@ -221,6 +221,7 @@ items:
       - docs/design/helix/L6-function-design/cross-system-audit-intake.md
       - docs/design/helix/L6-function-design/runner-attestation-journal-authority.md
       - docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md
+      - docs/design/helix/L6-function-design/cursor-v1-run-authority.md
       - docs/design/helix/L6-function-design/l3-human-approval-gate.md
       - docs/design/helix/L6-function-design/branch-audit-delete-candidate-safety.md
       - docs/design/helix/L6-function-design/repository-hygiene-inventory.md
@@ -384,6 +385,7 @@ items:
       - docs/test-design/helix/L8-review-evidence-reviewer-identity-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-authority-resolver-unit-test-design.md
       - docs/test-design/helix/L7-project-hook-authority-consumer-wiring-unit-test-design.md
+      - docs/test-design/helix/L7-cursor-v1-run-authority-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-adapter-unit-test-design.md
       - docs/test-design/helix/L8-project-hook-physical-identity-validation-unit-test-design.md
       - docs/test-design/helix/L8-l3-human-approval-gate-unit-test-design.md
