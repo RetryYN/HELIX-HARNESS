@@ -2348,6 +2348,7 @@ dependencies:
     }
   });
 
+  // PLAN-RECOVERY-1432-outstanding-fail-close / U-OUTSTANDING-1432-001..003 / U-OUTSTANDING-1432-005
   it("U-OUTSTANDING-1432-001: irreversible_impact cutOver は fail-closeする", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-cutover-typo-"));
     try {
@@ -2413,7 +2414,7 @@ S4 decision pending.
     }
   });
 
-  it("U-OUTSTANDING-1432-002: 不正UTF-8 filenameをraw bytesで区別して保持する", () => {
+  it("U-OUTSTANDING-1432-005: 不正UTF-8 filenameをraw bytesで区別して保持する", () => {
     if (process.platform === "win32") return;
     const root = mkdtempSync(join(tmpdir(), "helix-outstanding-invalid-utf8-"));
     try {

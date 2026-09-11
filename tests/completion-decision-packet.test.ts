@@ -1861,6 +1861,7 @@ describe("completion decision packet lint", () => {
     );
   });
 
+  // PLAN-RECOVERY-1432-outstanding-fail-close / U-OUTSTANDING-1432-004
   it("U-OUTSTANDING-1432-004: unsafe plan_idをscoped commandへ埋め込まない", () => {
     const packet = completionDecisionPacketForOutstanding(
       analyzeOutstandingWork(

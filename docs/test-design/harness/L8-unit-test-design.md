@@ -501,7 +501,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-OUTMERGE-004 | merge-readiness integration | semantic violationがある場合、push／PR作成可能判定をfail-closeし、`helix db rebuild`を提示する | `tests/github-merge-readiness.test.ts` |
 | U-OUTMERGE-005 | guard negative oracle | driftしたsnapshotを早期guardへ渡した場合、`ok=false`かつsemantic violationを返す | `tests/outstanding.test.ts` |
 
-### Issue #1432 outstanding fail-close replay
+### Issue #1432 outstanding fail-close再構成
 
 対象設計: `docs/design/harness/L6-function-design/function-spec.md`
 
@@ -511,6 +511,7 @@ projection baselineの同一差分内自己承認を禁止する。
 | U-OUTSTANDING-1432-002 | loader identity／command境界 | 注入文字を含むraw `plan_id`を棄却し、raw filename bytes由来の決定的fallback identityで行を保持する。raw値とfallback IDを`--plan`へ埋め込まない | `tests/outstanding.test.ts` |
 | U-OUTSTANDING-1432-003 | blocker優先順位 | S4 pendingと本文onlyのversion-up語が共存しても、primary reasonとsemantic frontierを`po_decision_pending`に保つ | `tests/outstanding.test.ts` |
 | U-OUTSTANDING-1432-004 | packet command防御 | in-memory入力にunsafeなplan IDが残ってもscoped／runnable／supporting commandへ埋め込まない | `tests/completion-decision-packet.test.ts` |
+| U-OUTSTANDING-1432-005 | fallback identityのbyte境界 | 不正UTF-8を含む異なるraw filename bytesを同一identityへ潰さず、決定的に区別する | `tests/outstanding.test.ts` |
 
 scope expansionのunit oracleはreceipt pointerの構文と理由を検査する。外部commentの存在・内容・承認主体は
 同一HEADのAI-B review evidenceで検証し、unit greenだけで承認済みとは扱わない。
