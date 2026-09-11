@@ -39,6 +39,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1432-outstanding-fail-close.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: src/lint/outstanding.ts, artifact_type: source_module }
   - { artifact_path: tests/outstanding.test.ts, artifact_type: test_code }
   - { artifact_path: tests/completion-decision-packet.test.ts, artifact_type: test_code }

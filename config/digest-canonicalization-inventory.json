@@ -1457,7 +1457,7 @@
     {
       "hit_id": "src/lint/outstanding.ts::sha256Json:createHash(sha256)::1",
       "path": "src/lint/outstanding.ts",
-      "line": 1741,
+      "line": 1823,
       "symbol": "sha256Json",
       "algorithm": "sha256",
       "input_kind": "string",
