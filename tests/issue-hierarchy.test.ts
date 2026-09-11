@@ -10,6 +10,7 @@ import {
   auditIssueHierarchyDependencyAlignment,
   auditIssueNativeGraphProjection,
   collectIssueDependencyContracts,
+  collectIssueHierarchyContractCensus,
   collectIssueHierarchyContracts,
   hasIssueDependencyContractBlock,
   type IssueHierarchyNode,
@@ -692,6 +693,86 @@ duplicate_of: null
 });
 
 describe("GitHub Issue hierarchy contract", () => {
+  // PLAN-RECOVERY-1733-issue-contract-census / U-IHIER-021
+  it("U-IHIER-021: hierarchy contractのsilent skipをIssue単位のtyped findingへ分離する", () => {
+    const validBody = renderIssueHierarchyContract(
+      node({ number: 200, role: "task", parentIssue: 100 }),
+    );
+    const missingRequiredField = `\`\`\`yaml
+issue_role: task
+parent_issue: 100
+blocks: []
+blocked_by: []
+duplicate_search: completed
+disposition: active
+\`\`\``;
+    const invalidRole = `\`\`\`yaml
+issue_role: management_portfolio
+parent_issue: 100
+blocks: []
+blocked_by: []
+duplicate_search: completed
+disposition: active
+duplicate_of: null
+\`\`\``;
+    const invalidDisposition = `\`\`\`yaml
+issue_role: task
+parent_issue: 100
+blocks: []
+blocked_by: []
+duplicate_search: completed
+disposition: ready
+duplicate_of: null
+\`\`\``;
+    const malformedYaml = `\`\`\`yaml
+issue_role: task
+parent_issue: [
+\`\`\``;
+
+    const result = collectIssueHierarchyContractCensus([
+      { number: 200, state: "open", body: validBody },
+      { number: 201, state: "open", body: "## hierarchy contractなし" },
+      { number: 202, state: "open", body: missingRequiredField },
+      { number: 203, state: "open", body: invalidRole },
+      { number: 204, state: "open", body: invalidDisposition },
+      { number: 205, state: "open", body: malformedYaml },
+    ]);
+
+    expect(result.nodes.map((entry) => entry.number)).toEqual([200]);
+    expect(result.findings).toEqual([
+      {
+        issueNumber: 201,
+        code: "issue_hierarchy_contract_missing",
+        missingFields: [],
+        detail: "Issue hierarchy contract is absent",
+      },
+      {
+        issueNumber: 202,
+        code: "issue_hierarchy_contract_required_field_missing",
+        missingFields: ["duplicate_of"],
+        detail: "Issue hierarchy contract is missing required fields: duplicate_of",
+      },
+      {
+        issueNumber: 203,
+        code: "issue_hierarchy_contract_invalid_role",
+        missingFields: [],
+        detail: "Issue hierarchy contract is invalid: issue_role_invalid",
+      },
+      {
+        issueNumber: 204,
+        code: "issue_hierarchy_contract_invalid_disposition",
+        missingFields: [],
+        detail: "Issue hierarchy contract is invalid: issue_disposition_invalid",
+      },
+      {
+        issueNumber: 205,
+        code: "issue_hierarchy_contract_invalid",
+        missingFields: [],
+        detail: "Issue hierarchy contract is invalid: yaml_parse_invalid",
+      },
+    ]);
+  });
+
   it("U-IHIER-001: orphan・cycle・非対称依存を拒否し、非blocked leafだけをREADYにする", () => {
     const valid = auditIssueHierarchy([
       node({}),

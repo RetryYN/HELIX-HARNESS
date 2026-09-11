@@ -4,7 +4,7 @@ layer: L6
 kind: add-design
 status: draft
 created: 2026-07-15
-updated: 2026-07-15
+updated: 2026-09-11
 owner: Codex / TL
 plan: PLAN-L1-07-infinity-loop-platform-requirements
 design_slice: HDS-HIL-05
@@ -41,6 +41,20 @@ requirements:
 
 追加コードはこのpure parser／audit／selectorだけとし、GitHub client、DB schema、CI job、常駐処理は増やさない。
 後段Reverseまでは`completion_claim_allowed=false`とし、G7 trace確定を主張しない。
+
+## §0.2 Recovery差分 — Issue hierarchy contract census（U-IHIER-021）
+
+`PLAN-RECOVERY-1733`が所有するread-only差分である。Issue一覧からvalid contractだけを
+silent skipして母集団を縮めず、各Issueをvalid nodeまたはtyped findingのどちらか一方へ投影する。
+
+| API | 事前条件 | 事後条件 | 不変条件／失敗 |
+|---|---|---|---|
+| `collectIssueHierarchyContractCensus(sources)` | Issue番号・open/closed state・本文のsnapshotを受ける | valid contractは`nodes`へ、不在・必須field不足・不正role・不正disposition・malformed YAMLはIssue番号付き`findings`へ返す | 入力Issueを黙って除外しない。proseから契約を推定しない。GitHub write、migration適用、DB更新を行わない |
+| `collectIssueHierarchyContracts(sources)` | 既存consumerが同じsnapshotを渡す | censusの`nodes`だけを返し既存API互換を維持する | 新しい台帳・工程表・migration candidateはcensus APIを使い、互換APIの戻り値を全Issue母集団とみなさない |
+
+このsliceは欠落契約を自動補完せず、#1733のmigration candidate生成・native graph同期・GitHub Projects投影を
+後続責務として分離する。roleやdispositionの意味を自由文から推定しないため、ADR-009/010上の
+semantic inferenceではなくNode transactional boundaryの構造検証として保持する。
 
 ## §0 関数境界
 
