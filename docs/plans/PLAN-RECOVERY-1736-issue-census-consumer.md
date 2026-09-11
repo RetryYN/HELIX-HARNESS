@@ -52,6 +52,7 @@ dependencies:
   references: ["issue:1733", "issue:1732", "issue:1684", "issue:1682"]
   blocks: []
 agent_slots:
+  - { role: aim, slot_label: "AIM — Issue census consumerと管理工程authorityの整合" }
   - { role: se, slot_label: "SE — 既存censusとCLI adapter境界" }
   - { role: qa, slot_label: "QA — mixed valid/invalid、exit code、wiring消失反例" }
   - { role: tl, slot_label: "TL — read-only consumerと後続apply責務の分離" }
@@ -62,6 +63,9 @@ generates:
 modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L6-function-design/issue-scope-authority-gates.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: docs/test-design/helix/L6-issue-scope-authority-gates-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
