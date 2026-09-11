@@ -302,6 +302,10 @@ import {
   withClaudePrReviewReceiptSlotClaim,
 } from "./runtime/claude-pr-convergence";
 import {
+  type ClosureProbeExecutionContext,
+  inspectClosureProbeExecutionContext,
+} from "./runtime/closure-evidence-probe-context";
+import {
   buildConstitutionTemplateStackReport,
   type TemplateSourceKind,
 } from "./runtime/constitution-template-stack";
@@ -783,7 +787,11 @@ function closureEvidenceProbeChildActiveRoots(repoRoot: string): string {
   return JSON.stringify([...new Set(next)].sort());
 }
 
-function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
+function runClosureEvidenceProbeCommand(
+  repoRoot: string,
+  command: string,
+  executionContext: ClosureProbeExecutionContext,
+) {
   const parts = command
     .trim()
     .split(/\s+/)
@@ -806,6 +814,7 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
       stderr_bytes: 0,
       output_excerpt: buildClosureEvidenceProbeOutputExcerpt("", ""),
       error_message: "empty command",
+      execution_context: executionContext,
     };
   }
   const result = spawnSync(parts[0], parts.slice(1), {
@@ -854,6 +863,7 @@ function runClosureEvidenceProbeCommand(repoRoot: string, command: string) {
     stderr_bytes: Buffer.byteLength(stderr),
     output_excerpt: buildClosureEvidenceProbeOutputExcerpt(stdout, stderr),
     error_message: result.error?.message ?? null,
+    execution_context: executionContext,
   };
 }
 
@@ -7547,6 +7557,7 @@ function summarizeClosureEvidenceProbePacket(
           output_digest: packet.execution.output_digest,
           stdout_bytes: packet.execution.stdout_bytes,
           stderr_bytes: packet.execution.stderr_bytes,
+          execution_context: packet.execution.execution_context ?? null,
         }
       : null,
     probe_record_output: probeRecordOutput,
@@ -8782,6 +8793,36 @@ closure
           return;
         }
       }
+      let executionContext: ClosureProbeExecutionContext | null = null;
+      if (opts.execute === true) {
+        try {
+          executionContext = inspectClosureProbeExecutionContext(repoRoot);
+        } catch (error) {
+          process.stderr.write(
+            `closure evidence-probe: execution context unresolved: ${error instanceof Error ? error.message : String(error)}\n`,
+          );
+          process.exitCode = 2;
+          return;
+        }
+        if (executionContext.status !== "verified") {
+          const admission = {
+            schema_version: "closure-evidence-probe-execution-admission.v1",
+            ok: false,
+            execution_context: executionContext,
+            record_written: false,
+            failure_evidence_generated: false,
+          };
+          if (opts.json || opts.summaryJson) {
+            process.stdout.write(`${JSON.stringify(admission, null, 2)}\n`);
+          } else {
+            process.stderr.write(
+              `closure evidence-probe: execution blocked reasons=${executionContext.blocked_reasons.join(",") || "unknown"}\n`,
+            );
+          }
+          process.exitCode = 2;
+          return;
+        }
+      }
       const dbPath = opts.fromDb ? defaultHarnessDbPath(repoRoot) : ":memory:";
       const db = openHarnessDb(dbPath, { repoRoot });
       try {
@@ -8821,8 +8862,8 @@ closure
           return;
         }
         const execution =
-          opts.execute && dryRunPacket.command
-            ? runClosureEvidenceProbeCommand(repoRoot, dryRunPacket.command)
+          opts.execute && dryRunPacket.command && executionContext
+            ? runClosureEvidenceProbeCommand(repoRoot, dryRunPacket.command, executionContext)
             : null;
         const packet = buildProjectClosureEvidenceProbePacket(snapshot, {
           action: opts.action,
