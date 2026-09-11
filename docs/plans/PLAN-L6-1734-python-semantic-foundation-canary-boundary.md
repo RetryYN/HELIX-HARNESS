@@ -4,7 +4,7 @@ title: "PLAN-L6-1734 (add-design): Python意味コアfoundationとverification v
 kind: add-design
 layer: L6
 drive: agent
-status: draft
+status: confirmed
 backfill_state: pending_reverse
 completion_claim_allowed: false
 workflow_identity:
@@ -46,7 +46,29 @@ dependencies:
   references:
     - issue:230
     - issue:1734
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T09:18:50Z"
+    tests_green_at: "2026-09-11T08:55:52.509Z"
+    verdict: approve
+    worker_model: codex-gpt-5
+    reviewer_model: claude-fable-5-1
+    reviewer_session_id: 44a875e0-4347-4802-8e8a-87cb4f105537
+    reviewed_head_sha: c5222667bfe992ea75dc38cf78cb6186ff65c227
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1739#issuecomment-5632310469"
+    ci_evidence_generation: "run:34580163083:attempt:2:success"
+    scope: "PR #1739 exact HEAD c5222667bのR00 ledger／foundation境界を独立レビュー。12 module／13 behavior group、既存Node primitive再利用、Python sandbox境界、bulk port禁止、classifyVerificationVerb canary、blocked pair非再利用、未実装義務の非偽装を確認し、blocker 0でapprove。"
+    green_commands:
+      - kind: lint
+        command: "CI preflight aggregate: plan-lint, L1-L12 authority, typecheck and repository gates"
+        runner: ci
+        scope: gate
+        exit_code: 0
+        completed_at: "2026-09-11T08:55:52.509Z"
+        evidence_path: .helix/evidence/review-1739/preflight-gate-results.json
+        output_digest: "sha256:7e55a74f03e3fddd59c635ef928611655f1e9a4a6441287275469eee2a22ae86"
+        result: "run 34580163083 attempt 2: 17 admitted gates, failures 0, unauthorized skips 0"
 agent_slots:
   - { role: aim, slot_label: "AIM — ADR-009/010、HDS-HIL-12/14 freezeと既存#230 primitiveの接合" }
   - { role: se, slot_label: "SE — Python foundation、strict JSONL contract、Node adapter" }
@@ -55,6 +77,7 @@ agent_slots:
 generates:
   - { artifact_path: docs/plans/PLAN-L6-1734-python-semantic-foundation-canary-boundary.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/python-semantic-migration-ledger.v1.yaml, artifact_type: yaml_config }
+  - { artifact_path: .helix/evidence/review-1739/preflight-gate-results.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
