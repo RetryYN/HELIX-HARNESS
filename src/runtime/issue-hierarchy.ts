@@ -933,30 +933,46 @@ function extractIssueHierarchyCandidate(
   | { block: string; value: Record<string, unknown>; parseError: null }
   | { block: string; value: Record<string, never>; parseError: "yaml_parse_invalid" }
   | null {
+  let partialCandidate:
+    | { block: string; value: Record<string, unknown>; parseError: null }
+    | { block: string; value: Record<string, never>; parseError: "yaml_parse_invalid" }
+    | null = null;
   for (const match of body.matchAll(/```yaml\b([\s\S]*?)```/g)) {
     const raw = match[1] ?? "";
     let value: unknown;
     try {
       value = parseYaml(raw.replace(/([[,]\s*)#(\d+)/g, "$1$2"));
     } catch {
-      if (ISSUE_HIERARCHY_REQUIRED_FIELDS.some((field) => raw.includes(`${field}:`))) {
-        return { block: match[0], value: {}, parseError: "yaml_parse_invalid" };
+      if (
+        partialCandidate === null &&
+        ISSUE_HIERARCHY_REQUIRED_FIELDS.some((field) => raw.includes(`${field}:`))
+      ) {
+        partialCandidate = { block: match[0], value: {}, parseError: "yaml_parse_invalid" };
       }
       continue;
     }
-    if (
-      typeof value === "object" &&
-      value !== null &&
-      ISSUE_HIERARCHY_REQUIRED_FIELDS.some((field) => field in value)
-    ) {
-      return {
-        block: match[0],
-        value: value as Record<string, unknown>,
-        parseError: null,
-      };
+    if (typeof value === "object" && value !== null) {
+      const record = value as Record<string, unknown>;
+      if (ISSUE_HIERARCHY_REQUIRED_FIELDS.every((field) => field in record)) {
+        return {
+          block: match[0],
+          value: record,
+          parseError: null,
+        };
+      }
+      if (
+        partialCandidate === null &&
+        ISSUE_HIERARCHY_REQUIRED_FIELDS.some((field) => field in record)
+      ) {
+        partialCandidate = {
+          block: match[0],
+          value: record,
+          parseError: null,
+        };
+      }
     }
   }
-  return null;
+  return partialCandidate;
 }
 
 export function parseIssueHierarchyContract(

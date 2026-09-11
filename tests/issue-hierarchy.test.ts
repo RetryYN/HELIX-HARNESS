@@ -728,6 +728,11 @@ duplicate_of: null
 issue_role: task
 parent_issue: [
 \`\`\``;
+    const projectionBeforeContract = `\`\`\`yaml
+parent_issue:
+disposition:
+\`\`\`
+${validBody}`;
 
     const result = collectIssueHierarchyContractCensus([
       { number: 200, state: "open", body: validBody },
@@ -736,9 +741,10 @@ parent_issue: [
       { number: 203, state: "open", body: invalidRole },
       { number: 204, state: "open", body: invalidDisposition },
       { number: 205, state: "open", body: malformedYaml },
+      { number: 206, state: "open", body: projectionBeforeContract },
     ]);
 
-    expect(result.nodes.map((entry) => entry.number)).toEqual([200]);
+    expect(result.nodes.map((entry) => entry.number)).toEqual([200, 206]);
     expect(result.findings).toEqual([
       {
         issueNumber: 201,
