@@ -135,7 +135,7 @@ requirement freezeを各PLANの設計・実装・検証完了へ読み替えな�
   承認済みの8 Feature／25 supporting requirement／27 ACを既存partitionへ接続したものであり、
   上記2026-07-31の153件のfreeze記録を再発行・変更しない。新HEADの独立review・CI・DB検証は別途必要。
 - L3 progression authority digest候補: `sha256:f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d`
-- design catalog digest候補: `sha256:f44db2af74deb261db9bc5fe02c32ec26c02bd4256911f98a5134dad30722099`
+- design catalog digest候補: `sha256:35af29fc4a4cf5780718a2a5fe86734e2a31988eb66e620facdaff2a2f6972a8`
 - PLAN-L3-1639の承認済みsource配置と派生認識設計の4 pathについて、実在・各一回登録・
   双方向pair・実bytesを検証した参照更新。packet全体のfreeze再承認や実装・IR完了を意味しない。
 - PLAN-RECOVERY-1500の監査入力L6設計登録1件と、PLAN-RECOVERY-1411のchecklist検証L6/L8登録2件を保持して再計測した候補値。
