@@ -2,7 +2,7 @@
 plan_id: PLAN-RECOVERY-1753-closure-probe-exact-head
 title: "PLAN-RECOVERY-1753: closure evidence-probeをclean exact HEADへ固定する"
 kind: recovery
-layer: L6
+layer: cross
 drive: agent
 status: draft
 completion_claim_allowed: false
@@ -14,7 +14,7 @@ behavior_contract_id: CLOSURE-PROBE-EXACT-HEAD-001
 responsibility_owner: closure-evidence-probe
 engineering_discipline_required: true
 change_slice: atomic
-refactor_step: extract_helper
+refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: policy
@@ -28,7 +28,7 @@ mutation_oracle_required: true
 complexity_effect: net_negative
 complexity_justification: "CLI内の暗黙process.cwd依存を単一typed admissionへ抽出し、既存probe実行経路へ一度だけ接続する"
 removal_trigger: "全証拠commandが共通exact-HEAD execution brokerへ統合された時"
-backprop_decision: required
+backprop_decision: not_required
 backprop_decision_reason: "共有dirty rootでの誤実行をL6/L7 pairと管理Recoveryへ戻すため"
 parent_design: docs/design/helix/L6-function-design/closure-probe-exact-head-admission.md
 pair_artifact: docs/test-design/helix/closure-probe-exact-head-admission.md
@@ -61,6 +61,12 @@ generates:
 modifies:
   - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/current-location.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }

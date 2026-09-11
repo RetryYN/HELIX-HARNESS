@@ -5,6 +5,7 @@ canonical_layer: L7
 canonical_pair: L6-L7
 plan_id: PLAN-RECOVERY-1753-closure-probe-exact-head
 parent_design: docs/design/helix/L6-function-design/closure-probe-exact-head-admission.md
+pair_artifact: docs/design/helix/L6-function-design/closure-probe-exact-head-admission.md
 ---
 
 # closure evidence-probe exact HEAD実行許可テスト設計
