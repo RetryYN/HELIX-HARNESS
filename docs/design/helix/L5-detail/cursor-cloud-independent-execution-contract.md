@@ -18,7 +18,7 @@ responsibility_owner: cursor-cloud-execution
 上位traceは`3L-R-05`、`3L-R-06`、`3L-R-07`、`3L-R-08`、`3L-R-12`、`3L-R-13`、
 `3L-R-14`、`3L-R-23`、`3L-R-24`、`3L-R-25`であり、いずれも本pairで縮退させない。
 
-## 1. authority envelope
+## 1. 権限envelope
 
 `CursorCloudAssignmentV1`はunknown fieldを拒否し、次の必須fieldを持つ。
 
@@ -60,12 +60,12 @@ remote bytesは隔離targetでsize、schema、path traversal、symlink、diff by
 changes requestedはbudget、deadline、ownershipを再検証して元assignment・同branchへ返す。scope／設計変更は
 既存workflowへre-entryし、reviewerはwriteしない。
 
-## 4. failure precedence
+## 4. failure優先順位
 
 | order | reason code | 意味 |
 |---:|---|---|
 | 1 | `CURSOR_ASSIGNMENT_SCHEMA_INVALID` | unknown/missing field、Issue/PLAN択一違反、unsafe path |
-| 2 | `CURSOR_ASSIGNMENT_AUTHORITY_STALE` | requirement、policy、descriptor、base HEAD drift |
+| 2 | `CURSOR_ASSIGNMENT_AUTHORITY_STALE` | 要求・policy・descriptor・base HEADの失効 |
 | 3 | `CURSOR_BRANCH_NOT_PREISSUED` | HELIXによる事前発行・owner束縛なし |
 | 4 | `CURSOR_BRANCH_OWNERSHIP_CONFLICT` | atomic ownership敗者、stale token、無効renewal |
 | 5 | `CURSOR_BUDGET_UNAVAILABLE` | UNKNOWN、stale、不足、予約競合 |
@@ -80,7 +80,7 @@ changes requestedはbudget、deadline、ownershipを再検証して元assignment
 最初に成立した理由だけを返す。同一`assignment_id+action_id+generation`のreplayは同じ結果を返し、
 新しい副作用を作らない。retry回数、総時間、費用、同時実行数はenvelope上限を超えない。
 
-## 5. Phase A/Bと非依存境界
+## 5. Phase A/Bと独立境界
 
 Phase Aもatomic ownership、stale write拒否、前後2 leg、budget/deadlineを省略しない。Phase Bは#860の
 lease/fenceへreceipt付き移行する。旧run終端・旧token write不能・A/B二重writer 0が証明できなければ停止を保つ。

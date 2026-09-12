@@ -28,7 +28,9 @@ describe("Cursor Cloud independent execution L5/L8 pair", () => {
 
   it("U-CCI-DESIGN-003: L8 oracle IDs are exact and unique", () => {
     const ids = [...testDesign.matchAll(/`(U-CCI-\d{3})`/g)].map((match) => match[1]);
-    expect(ids).toEqual(Array.from({ length: 18 }, (_, index) => `U-CCI-${String(index + 1).padStart(3, "0")}`));
+    expect(ids).toEqual(
+      Array.from({ length: 18 }, (_, index) => `U-CCI-${String(index + 1).padStart(3, "0")}`),
+    );
     expect(new Set(ids).size).toBe(ids.length);
   });
 
