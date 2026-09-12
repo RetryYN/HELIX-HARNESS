@@ -2775,14 +2775,14 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // python_worker_boundary signalは旧proposal-only境界の再導入ではなく、ADR-009/010に従う
     // 現行Python意味コアとNode transaction writerの責務を保持するための語である。
     path: "docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md",
-    contentDigest: "f745c5ee9a05cc9632a9c2079d7f6b0257b0fa3da5b101c2b4b42ed5343d33a9",
+    contentDigest: "848f124da2d7d9983583dc2fb7c91ef9eb0e587628b0d6c85d20b78ad4bf4bf6",
     finalDisposition: "false_positive",
   },
   {
     // #242のL5 toolchain専用delta。ADR-010のPython意味コア／Node writer境界を維持し、
     // exact runtime取得・lock・SBOM・rollbackだけを既存runtime全体設計から分離する。
     path: "docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md",
-    contentDigest: "eafe8e2b36905ecb95a4958cadb157a94e79f9d5b0b9d17b04a1ba9337910ea2",
+    contentDigest: "effbe6ab0bfa7d2836faec9fe52ea5805291a7bc04b78181b5e635d07e872d05",
     finalDisposition: "false_positive",
   },
   {

@@ -76,6 +76,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — bulk port禁止と層別authorityの独立review" }
 generates:
   - { artifact_path: docs/plans/PLAN-L6-1734-python-semantic-foundation-canary-boundary.md, artifact_type: markdown_doc }
+  - { artifact_path: src/runtime/python-runtime-toolchain-freeze.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/python-semantic-migration-ledger.v1.yaml, artifact_type: yaml_config }
   - { artifact_path: .helix/evidence/review-1739/preflight-gate-results.json, artifact_type: json_config }
 modifies:

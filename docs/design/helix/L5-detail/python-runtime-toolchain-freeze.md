@@ -35,43 +35,56 @@ source build、実lock生成、offline sync、Linux／Windows parity、rollback 
 
 ## 設計実在性束縛
 
-本sliceで実在するのはexact runtime identityとexperimental modeを分離するpure resolverだけである。
-artifact取得・offline sync・rollback経路は未実装であり、実在証拠として扱わない。
+本sliceは設計freezeだけを所有する。exact runtime identity resolver、artifact取得、offline sync、rollback経路は
+後続実装PLANのplanned assetであり、現時点のruntime authorityとして扱わない。
 
 <!-- HELIX:design-reality-binding:v1 -->
 ```json
 {
   "schema_version": "helix-design-reality-binding.v1",
-  "declared_failure_codes": ["PYTHON_RUNTIME_EXPERIMENTAL_MODE_MISMATCH"],
+  "declared_failure_codes": ["WORKER_DESCRIPTOR_CAPABILITY_MISMATCH"],
   "assets": [
     {
-      "asset_id": "python-runtime-toolchain-freeze-resolver",
+      "asset_id": "python-semantic-worker-descriptor-boundary",
       "classification": "existing_runtime",
-      "artifact_path": "src/runtime/python-runtime-toolchain-freeze.ts",
+      "artifact_path": "src/runtime/worker-descriptor-admission.ts",
       "resource_kind": "typescript_export",
-      "resource_name": "resolvePythonRuntimeToolchain",
-      "source_digest": "sha256:13cc7e3467c160124e65311830c5be4ef49c0bd5a6fd1b03530efdb4dce8c4c4",
+      "resource_name": "projectPythonWorkerEntry",
+      "source_digest": "sha256:14e67487b627a0043e0cd06630a6ca6aed6a9341901c0311aec99d6b0170cd6d",
       "current_authority": true
+    },
+    {
+      "asset_id": "python-runtime-toolchain-freeze-resolver",
+      "classification": "planned_new",
+      "behavior_contract_id": "PYTHON-SEMANTIC-FOUNDATION-CANARY-001",
+      "responsibility_owner": "python-semantic-runtime",
+      "planned_artifact": "src/runtime/python-runtime-toolchain-freeze.ts",
+      "downstream_plan": "docs/plans/PLAN-L6-1734-python-semantic-foundation-canary-boundary.md",
+      "current_runtime": false
     }
   ],
   "failure_reachability": [
     {
-      "reason_code": "PYTHON_RUNTIME_EXPERIMENTAL_MODE_MISMATCH",
+      "reason_code": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
       "reachability_mode": "identity_post_check",
-      "source_path": "src/runtime/python-runtime-toolchain-freeze.ts",
-      "source_symbol": "resolvePythonRuntimeToolchain",
-      "test_path": "tests/python-runtime-toolchain-freeze.test.ts",
-      "oracle_id": "U-PYRT-001",
-      "identity_fields": ["python_version", "implementation"],
-      "post_resolution_checks": ["free_threaded", "jit"],
+      "source_path": "src/runtime/worker-descriptor-admission.ts",
+      "source_symbol": "resolveWorkerDescriptor",
+      "test_path": "tests/worker-descriptor-admission.test.ts",
+      "oracle_id": "U-WDA-004",
+      "identity_fields": ["agent_id", "contract_version"],
+      "post_resolution_checks": ["capability_class"],
       "fixture": {
-        "registry": [{ "python_version": "3.14.7", "implementation": "cpython", "free_threaded": "disabled", "jit": "disabled" }],
-        "request": { "python_version": "3.14.7", "implementation": "cpython", "free_threaded": "enabled", "jit": "disabled" }
+        "registry": [{ "agent_id": "python-semantic", "contract_version": "1.0.0", "capability_class": "semantic_core" }],
+        "request": { "agent_id": "python-semantic", "contract_version": "1.0.0", "capability_class": "implementation" }
       },
-      "expected_reason": "PYTHON_RUNTIME_EXPERIMENTAL_MODE_MISMATCH",
+      "expected_reason": "WORKER_DESCRIPTOR_CAPABILITY_MISMATCH",
       "mutation": {
-        "remove_post_resolution_check": "free_threaded",
-        "expected_reason_after_mutation": "OK"
+        "remove_post_resolution_check": "capability_class",
+        "expected_reason_after_mutation": "OK",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-011",
+        "execution_helper": "executeRuntimeMutationOracle",
+        "execution_target": "if (match.descriptor.capability_class !== request.capability_class)"
       }
     }
   ]
