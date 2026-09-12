@@ -54,6 +54,24 @@
           "basis": "Claude Code session transcriptの非 sidechain assistant messageで、2026-09-07T18:03:40.464Z以降claude-opus-5が観測された境界。PR #1675 comment 5588684410の型付きreceiptは後続整合証拠として扱い、実観測済みの切替境界をreceipt公開時刻へ遅延させない。model変更時のsession再発行は後続責務。"
         }
       ]
+    },
+    {
+      "reviewer_session_id": "fe061343-6172-4db5-8837-ef9aa5fd3af6",
+      "runtime": "claude",
+      "windows": [
+        {
+          "reviewer_model": "claude:claude-fable-5-1",
+          "since": "2026-09-11T13:39:44Z",
+          "until": "2026-09-12T12:39:49Z",
+          "basis": "Claude Code session transcriptの非sidechain assistant messageに記録されたmessage.modelとtimestampから境界を採取。claude-fable-5-1のfirst 2026-09-11T13:39:44.051Z、last 2026-09-12T12:39:48.604Z。実効modelのattestationではない。"
+        },
+        {
+          "reviewer_model": "claude:claude-opus-5",
+          "since": "2026-09-12T12:40:41Z",
+          "until": null,
+          "basis": "同transcriptでclaude-opus-5のfirst 2026-09-12T12:40:41.278Zを観測。以降のreceipt自己申告と整合するが、実効modelのattestationではない。"
+        }
+      ]
     }
   ]
 }
