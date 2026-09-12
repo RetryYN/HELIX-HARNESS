@@ -106,7 +106,7 @@ describe("resident lane requirements authority", () => {
     expect(l1).toContain("WAIT_DEPENDENCY");
     expect(l1).toContain("RLO-FR-041〜045 / RLO-AC-031〜036 / Issue #1778");
     expect(l12).toContain("`BR-9`");
-    expect(l12).toContain("L3 freeze前は候補");
+    expect(l12).toContain("下位要件freeze前は候補");
     expect(l3).not.toContain("#### RLO-FR-041");
     expect(l10).not.toContain("`RLO-AC-031`");
   });
