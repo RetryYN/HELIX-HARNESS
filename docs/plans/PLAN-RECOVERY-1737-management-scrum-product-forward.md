@@ -4,7 +4,7 @@ title: "管理Scrumとproduct Forwardの入口を分離する"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -25,6 +25,9 @@ contract_invariants: "Git authority、実行receipt、DB／Project projectionを
 contract_failures: "管理Issueの証拠欠落、Project未登録、Reverse先不明、product Forward迂回をfail-closeする"
 tdd_red_required: true
 mutation_oracle_required: true
+red_at: "2026-09-12T00:54:48Z"
+green_at: "2026-09-12T00:55:00Z"
+mutation_oracle_evidence: "tests/management-scrum-product-forward.test.ts::U-MSPF-003 killed the seeded required-heading rename mutant (1 failed, exit 1); restored template passed 4/4 (exit 0)"
 complexity_effect: net_negative
 complexity_justification: "分散していた入口規律を単一governance正本と最小テンプレへ集約する"
 removal_trigger: "management operation registryが同一fieldをschema強制し全consumerが移行した時"
@@ -63,6 +66,7 @@ modifies:
   - { artifact_path: CLAUDE.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
 review_evidence: []
 ---
 
