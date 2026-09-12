@@ -61,19 +61,19 @@ modifies:
 review_evidence:
   - reviewer: PO/directive
     review_kind: human
-    tests_green_at: "2026-09-12T18:12:53Z"
-    reviewed_at: "2026-09-12T18:13:00Z"
+    tests_green_at: "2026-09-12T18:41:50Z"
+    reviewed_at: "2026-09-12T18:41:50Z"
     verdict: approve
-    scope: "収束速度改善要求を早期に追加し、管理層へ責務を寄せて下層を軽量化するPO指示。L3実装完了の承認ではない。"
+    scope: "収束速度改善要求を早期に追加し、管理層へ責務を寄せて下層を軽量化するPO指示。BR-3の従来差戻しはBR-9対象外の実装所見へ限定し、意味判断は原因ownerへ返す。L3実装完了の承認ではない。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run tests/resident-lane-orchestration-requirements.test.ts"
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-12T18:12:53Z"
+        completed_at: "2026-09-12T18:41:50Z"
         evidence_path: tests/resident-lane-orchestration-requirements.test.ts
-        output_digest: "sha256:2176eae1d6ad5cd6afa89a10d50d10f4dc3d51d8ce342b8483a8d9db587d3ea4"
+        output_digest: "sha256:1784636a035bc62f2477c8ac23f1eeff1d4545d1c09c52a0d5d9563073e25f16"
 ---
 
 # 検収内修復によるPR収束速度改善

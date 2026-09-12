@@ -18,9 +18,9 @@ next_pair_freeze: L12
 # HELIX 常駐マルチランタイム・レーン オーケストレーション要求分解書
 
 - 文書ID: `HELIX-RLO-BRQ-001`
-- バージョン: `0.4.0`
+- バージョン: `0.5.0`
 - 作成日: `2026-08-20`
-- 最終更新: `2026-09-01`（Issue #826、#1293、#1294〜#1296の現行決定を反映）
+- 最終更新: `2026-09-13`（Issue #1778の検収内修復・成功証拠継承を反映）
 - 状態: `request-decomposition-confirmed / L3承認済み`
 - 上位文書: `docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md`（`HELIX-RLO-REQ-001`）
 - 対象リポジトリ: `RetryYN/HELIX-HARNESS`
@@ -105,10 +105,13 @@ branch = 変更先正本、lease = 所有者正本は常に必須とする。
 ### BR-3: 検収独立性の維持
 
 Claude は worker 会話を引き継がない blind exact-HEAD review 専用レーンであり続ける。
-worker の自己 review / 自己 merge を許さず、changes requested は元 worker・同 branch へ返す。
+worker の自己 review / 自己 merge を許さない。BR-9の`REPAIR_IN_REVIEW`に分類できない従来型の
+実装所見は元worker・同branchへ返す。要求／AC／公開契約の選択、責務跨ぎ再設計、正本矛盾、
+許可scope外は元worker固定ではなく、BR-9に従って原因ownerへ`RETURN_TO_OWNER`する。
 
 - 根拠: 上位文書 §7.4 / RLO-INV-006
-- L12 受入観点: worker 自己承認 0 件、changes requested の元 worker 復帰が実運用で成立
+- L12 受入観点: worker自己承認0件。`REPAIR_IN_REVIEW`対象外の実装所見は元worker・同branchへ戻り、
+  意味判断を要する所見は原因ownerへ戻る。両経路を混同せず実運用で追跡できる。
 - トレース: RLO-FR-014〜018 / RLO-AC-011〜015
 
 ### BR-9: 検収内修復による収束速度の改善（追加要求、PO決定 2026-09-13）
@@ -279,6 +282,9 @@ BR-3 検収独立           → SR-5, SR-6, SR-7  → RLO-FR-012..020
 BR-4 provider非依存     → SR-4              → RLO-FR-002, 027..029, RLO-NFR-001..002
 BR-5 既存通知経路統合   → SR-6, SR-9        → RLO-FR-014, 016, §14 event
 BR-6 段階導入・構成別配車 → SR-3            → RLO-FR-004..006, 030..032, RLO-NFR-007
+BR-8 実行主体の分離       → SR-2, SR-3       → RLO-FR-037..040, RLO-AC-027..030
+BR-9 検収内修復           → SR-6, SR-7       → RLO-FR-041..045, RLO-AC-031..036（freeze前候補）
+BR-10 成功証拠継承        → SR-7              → RLO-FR-046..049, RLO-AC-037..040（freeze前候補）
 BR-7 ベンチ適性評価     → SR-11             → RLO-NFR-005, RLO-FR-031..032（要件側へ新規FR追加要）
 ```
 

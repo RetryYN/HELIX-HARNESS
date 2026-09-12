@@ -20,13 +20,13 @@ pair_artifact: docs/design/helix/L1-requirements/resident-lane-orchestration-req
 |---|---|
 | `BR-1` | Codex TLが待機中も別frontierを進め、worker→PR→Claude→元worker→mergeが継続する |
 | `BR-2` | 全assignmentがIssueまたはPLANのexactly one、専用branch、base/candidate HEAD、leaseへ遡れる |
-| `BR-3` | worker自己reviewがなく、Claude exact-HEAD検収と同branch差戻しを確認できる |
+| `BR-3` | worker自己reviewがなく、Claude exact-HEAD検収後の契約内修復、実装所見の同branch差戻し、意味判断の原因owner返却を分類して確認できる |
 | `BR-4` | provider追加・停止が論理lane authorityを変更せず、既存Codex＋Claude経路を壊さない |
 | `BR-5` | HELIX Control Planeが通知を中央配送し、通知欠落をevent replayで回復できる |
 | `BR-6` | fixed routingからmeasured advisoryへ段階移行し、自動配車は承認前に有効化されない |
 | `BR-7` | FE/BE/設計/task class別のHELIX-Bench evidenceへ適性判断を遡れる |
 | `BR-8` | resident lane、native subagent、CLI workerと実model／effortが別identityで表示される |
-| `BR-9` | 契約内findingは検収セル内で修復・fresh再検証・mergeまで閉じ、意味判断が必要なfindingだけ原因ownerへ返る。下位要件freeze前は候補として識別され既存差戻し契約を暗黙上書きしない |
+| `BR-9` | 契約内findingは検収セル内で修復・fresh再検証・mergeまで閉じ、意味判断が必要なfindingだけ原因ownerへ返る。BR-3の差戻し対象を明示的に限定し、下位要件freeze前は候補として識別される |
 | `BR-10` | 同一subject・検査定義・環境・ruleの成功証拠はReady／review／mergeを越えて由来付きで継承され、失効軸がある検証だけ再実行される。tree一致だけの全面skip、stale証拠、実行済み偽装は拒否される |
 
 `CN-1..6`は全canaryで維持する。特にL1-L12 authority、Node transactional boundary、requirements-first、

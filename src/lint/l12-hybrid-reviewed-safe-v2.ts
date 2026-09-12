@@ -58,7 +58,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // Issue #859/#1778のcurrent resident lane要求。旧route／mode等への言及は再採用ではなく、
     // resident/native/CLI identity分離、検収内修復、成功証拠継承の権限境界を定めるnegative contractである。
     path: "docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
-    contentDigest: "81b0ee169498406308077694d5c835c0eb3702eb743eda3c70072da66738b1a0",
+    contentDigest: "3d528ae9c2a19189e19f7502e4188a72a338db8c5275b97907eda5a0290b24d9",
     finalDisposition: "false_positive",
   },
   {

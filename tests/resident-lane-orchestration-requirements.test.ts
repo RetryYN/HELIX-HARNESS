@@ -109,10 +109,14 @@ describe("resident lane requirements authority", () => {
     expect(l12).toContain("下位要件freeze前は候補");
     expect(l3).not.toContain("#### RLO-FR-041");
     expect(l10).not.toContain("`RLO-AC-031`");
+    expect(l1).toContain("BR-9の`REPAIR_IN_REVIEW`に分類できない従来型の");
+    expect(l1).toContain("BR-9に従って原因ownerへ`RETURN_TO_OWNER`する");
+    expect(l12).toContain("BR-3の差戻し対象を明示的に限定");
   });
 
   it("RLO-AUTH-008: 成功証拠の工程間継承をL1↔L12で束縛し全面skipを許さない", () => {
-    expect(l1).toContain("BR-10: 成功証拠の工程間継承");
+    expect(l1).toContain("BR-10:");
+    expect(l1).toContain("成功証拠の工程間継承（追加要求");
     expect(l1).toContain("検証対象、検査定義、依存環境、適用規則が同一");
     expect(l1).toContain("tree一致だけで全面skipせず");
     expect(l1).toContain("再利用できない場合");
