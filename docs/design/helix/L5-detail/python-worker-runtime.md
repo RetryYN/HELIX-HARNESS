@@ -264,6 +264,20 @@ transitive set照合、network attempt 0のclean install、installed setとSBOM�
 Nodeによるreceipt再検証の順で行う。実artifact digest、lock tool、Windows取得経路は実測receiptなしに
 推測で埋めず、別runtimeのexact-HEAD review後にだけfreezeする。macOS、free-threaded、JIT、publishは非対象とする。
 
+2026-09-12の公式release surfaceから次の候補artifactを実取得し、page掲載SHA-256との一致とSigstore bundleの
+offline identity verificationを確認した。署名identityは`hugo@python.org`、OIDC issuerは
+`https://github.com/login/oauth`である。この記録はartifact provenance候補だけを証明し、lock tool、clean install、
+runtime build、rollbackの完了を証明しない。
+
+| 対象 | artifact | SHA-256 | Sigstore bundle SHA-256 | SPDX 2.3 SHA-256 |
+|---|---|---|---|---|
+| Linux source authority | `Python-3.14.7.tar.xz` | `3b48dac8fb59f62eaa67ac83c1eb12bda1b7a08406dd286e252c11a66be27f81` | `6f41efc358b146b5548dbfc0414e9247441f8524fb6ef59f1c4ca946ffc70701` | `87f55ca6c59fe159fa8c47ba2d7d8bec39cc649b1d3f47c667f34025a2ca9a68` |
+| Windows x64 compatibility | `python-3.14.7-amd64.exe` | `9d9eb2709ef81bf5cd30db3c2096bdbc4ea10087c22e62f27d356b36f6ae9649` | `348ad14511b3049e78ad53bbb95641f07299db790a088a3ddf62e136325eebe5` | `dedeab48eff8bdb2ffc3a124473c49142b3f368abbe2996683aa1126a913ef89` |
+
+一次情報は`https://www.python.org/downloads/release/python-3147/`と同pageから直接参照される
+python.org artifact、`.sigstore`、`.spdx.json`に限定する。Python 3.14以降はPGP release signatureを
+提供せずSigstoreを推奨するという同pageのPEP 761記載に従う。
+
 ## Design Reality Binding 契約
 
 本 doc は設計フェーズの正本であり、runtime asset は実装スライス（L6 実装 ↔ L7 TDD closure）で

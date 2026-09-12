@@ -70,3 +70,11 @@ review_evidence: []
 | 5 | L8 negative oracleと独立reviewを閉じる | mutation全件kill、blocker 0のexact-HEAD receipt |
 
 runtime source、worker起動、canary activation、distribution publishは後続PLANへ分離する。
+
+## §実測済み候補境界
+
+2026-09-12にPython 3.14.7公式release surfaceからLinux source tarballとWindows x64 installer、各
+Sigstore bundle、SPDX 2.3 SBOMを取得した。release page掲載SHA-256と実bytesが一致し、`uvx sigstore verify identity
+--offline`で`hugo@python.org`／`https://github.com/login/oauth`を束縛して両artifactがOKとなった。
+artifact digestのexact setはL5設計へ記録した。manifest/lock選定、source build、offline dependency install、
+rollback rehearsalは未実証なので、本PLANはdraftを維持する。
