@@ -1,26 +1,27 @@
 ---
-title: "Cursor Phase A 境界のL9統合oracle候補"
-status: draft_candidate
-authority_status: noncanonical
+title: "Cursor Cloud第三者実行レーンのL9統合oracle"
+status: draft
+authority_status: canonical_draft
 owner_issue: 1293
-candidate_layer: L9
+layer: L9
 canonical_vmodel: L1-L12
-candidate_pair: L4
+pair_layer: L4
 completion_claim_allowed: false
 runtime_activation_allowed: false
-created: 2026-09-08
-source_head: cf85c603986b87905514d2d3ebcdd1fde1aaa2b2
-plan: docs/governance/candidates/cursor-phase-a-plan.md
-parent_design: docs/governance/candidates/cursor-phase-a-l4-boundary.md
-pair_artifact: docs/governance/candidates/cursor-phase-a-l4-boundary.md
+created: 2026-09-12
+source_head: 2677f0ee8bfdd7fb4e2e4b6e59fc9c2037401567
+plan: docs/plans/PLAN-L4-77-cursor-cloud-independent-execution-boundary.md
+parent_design: docs/design/helix/L4-basic-design/cursor-cloud-independent-execution-boundary.md
+pair_artifact: docs/design/helix/L4-basic-design/cursor-cloud-independent-execution-boundary.md
 ---
 
-# L9統合oracle候補（noncanonical draft、未実行）
+# Cursor Cloud第三者実行レーンのL9統合oracle（未実行）
 
 ## 検証境界
 
-[L4候補](cursor-phase-a-l4-boundary.md)のportを接続する将来の試験設計であり、テスト実装・成功証拠ではない。
-`IT-CPA-*` はこの候補内の行識別子に限り、正規PLAN ID／FR／AC／gateの新設ではない。
+[L4設計](../../design/helix/L4-basic-design/cursor-cloud-independent-execution-boundary.md)のportを接続する
+後続試験設計であり、テスト実装・成功証拠ではない。`IT-CPA-*` は本設計内の行識別子に限り、
+FR／AC／gateを新設しない。
 既存L10の `docs/test-design/helix/three-lane-cloud-governance-acceptance.md` の一部へtraceし、
 27 AC全体の検収を所有しない。予算と外部provenanceは#1359／#862の契約を消費する境界であり、ownerを移管しない。
 
@@ -34,7 +35,7 @@ ownership authorityやlease schemaを#1293へ移管せず、#1293はcloud adapte
 
 ## 統合条件（Given/When/Then）
 
-| oracle候補 | 上位AC／既存契約 | Given | When | Then | 回復／取り除くとRedになる境界 |
+| oracle | 上位AC／既存契約 | Given | When | Then | 回復／取り除くとRedになる境界 |
 |---|---|---|---|---|---|
 | IT-CPA-001 | 3L-AC-005/013、WCC-FR-09 | current source/IR、1 scope、有限資源、発行済みbranch、全portが成立 | contextから外部回収まで1 assignmentを通す | launch/run各1、証拠は同assignment/branchへ結合、blind review待ち1、accepted 0 | assignment結合を除去すれば別run混入で失敗。実cloudの成立は別証拠 |
 | IT-CPA-002 | 3L-AC-004/013/014、WCC-FR-01/09 | 正常入力の一項目だけを変えるfixture集合 | Issue/PLAN両方・両方なし、authority/rule/HEAD/payload drift、schema欠落、失効admission、非control発行を各々入力 | 反例ごとにlaunch 0、固有の失敗理由。別の正常fieldで相殺しない | fresh入力で全前段をやり直す。各検査除去を別mutationとする |
@@ -67,4 +68,4 @@ write可能なままの再取得を独立fixture／mutationとして持つ。一
 L5/L8でfixtureのidentity、exact失敗コード、時計・再試行上限、実consumer観測点、各mutationとassertionを固定する。
 L6/L7で本物の競合・遅延writeを検出するRed→Greenを残す。テスト名やpathの存在、文書中の語彙一致だけを
 ここに列挙した14 oracleの実行成功と数えない。IR main未着地、正式ID未予約、pair未freeze、独立review未成立、
-実cloudの権限・費用・強制機構未確認のため、本候補からruntimeを開始できない。
+実cloudの権限・費用・強制機構未確認のため、本L4/L9だけからruntimeを開始できない。
