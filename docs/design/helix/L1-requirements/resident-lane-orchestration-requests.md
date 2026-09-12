@@ -7,7 +7,7 @@ layer: L1
 kind: add-design
 status: confirmed
 created: 2026-08-20
-updated: 2026-09-01
+updated: 2026-09-13
 owner: PO / Codex TL
 plan: PLAN-L3-75-resident-lane-orchestration-authority
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -56,6 +56,10 @@ L1（機能エリア / BR・NFR）→ L3（FR）のトレースを成立させ�
 | Worker レーン（Grok Build / Cursor / Codex worker） | scope が明確な仕事を受け取り、同じ branch で完結できること |
 | Claude Review レーン | アンカリングなしの blind review を、詰まらない在庫量で行えること |
 | HELIX Control Plane | 状態正本を自分が持ち、provider の生死に依存しないこと |
+
+> 2026-09-13 PO追加要求: `BR-9`はL1要求として受領済み。対応するL3差分
+> `RLO-FR-041..045`／`RLO-AC-031..036`はfreeze前の候補であり、既存confirmed要件を
+> 暗黙に上書きしない。Issue #1778で正本化と実証を追跡する。
 
 ---
 
@@ -106,6 +110,30 @@ worker の自己 review / 自己 merge を許さず、changes requested は元 w
 - 根拠: 上位文書 §7.4 / RLO-INV-006
 - L12 受入観点: worker 自己承認 0 件、changes requested の元 worker 復帰が実運用で成立
 - トレース: RLO-FR-014〜018 / RLO-AC-011〜015
+
+### BR-9: 検収内修復による収束速度の改善（追加要求、PO決定 2026-09-13）
+
+上流Workerと新規PR生成を止めず、承認済み契約内で安全に閉じられる検収所見は、元Workerへ
+機械的に返却せず検収セル内で修復する。受領、所見集約、局所修復、fresh独立再検証、
+merge admission、main read-afterを同一検収episodeとして追跡し、品質・独立性・single writerを維持する。
+
+- 契約から期待結果を一意に導出でき、scope、公開契約、責務境界、権限、ACを変えない修復だけを
+  `REPAIR_IN_REVIEW`として許可する。
+- 要求／AC／公開契約の選択、責務跨ぎ再設計、正本矛盾、許可scope外、boundedな試行で
+  反証・回復不能な変更は、元Workerに限らず原因ownerへ`RETURN_TO_OWNER`する。
+- CI、quota、環境、receipt、stack親待ちは`WAIT_DEPENDENCY`とし、検収セルが期限、再開trigger、
+  owner、未解消義務を保持する。待機を実装不良や成功へ変換しない。
+- Opusの判定／検証、Sonnetの修復、既存Node controlの副作用を分離し、provider内分業を
+  cross-runtime証拠へ偽装しない。修復者の自己申告や修復前PASSで候補を合格させない。
+- 新scheduler、第二Assignment台帳、merge engine、承認制度を作らず、#860、#1741、#1771、
+  #1774の既存ownerとevent／lease／fence／receiptを再利用する。
+
+- L12受入観点: 実PRで契約内findingが元Worker返却0のままfresh独立検証、merge、main read-afterまで閉じる。
+  要求変更／正本矛盾は無断修復されず原因ownerへ返り、CI／quota待ちは二重修復や無限再試行なく再開する。
+  wrong model／HEAD／base／policy、偽receipt、自己承認、二重writer、gate弱化を拒否する。
+- 効果測定: PR投入量と品質を維持し、返却率、初回PASS後HEAD変更、管理起因再CI、検収からmergeまでの
+  p50／p95、費用、流出欠陥をbefore／afterで比較する。
+- トレース候補: RLO-FR-041〜045 / RLO-AC-031〜036 / Issue #1778
 
 ### BR-4: provider の生死に依存しない継続性
 

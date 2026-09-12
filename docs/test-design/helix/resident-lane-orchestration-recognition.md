@@ -7,7 +7,7 @@ layer: L12
 kind: add-design
 status: confirmed
 created: 2026-09-01
-updated: 2026-09-01
+updated: 2026-09-13
 owner: PO / QA
 plan: PLAN-L3-75-resident-lane-orchestration-authority
 parent_design: docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md
@@ -26,6 +26,7 @@ pair_artifact: docs/design/helix/L1-requirements/resident-lane-orchestration-req
 | `BR-6` | fixed routingからmeasured advisoryへ段階移行し、自動配車は承認前に有効化されない |
 | `BR-7` | FE/BE/設計/task class別のHELIX-Bench evidenceへ適性判断を遡れる |
 | `BR-8` | resident lane、native subagent、CLI workerと実model／effortが別identityで表示される |
+| `BR-9` | 契約内findingは検収セル内で修復・fresh再検証・mergeまで閉じ、意味判断が必要なfindingだけ原因ownerへ返る。L3 freeze前は候補として識別され既存差戻し契約を暗黙上書きしない |
 
 `CN-1..6`は全canaryで維持する。特にL1-L12 authority、Node transactional boundary、requirements-first、
 action-binding approval、secret非記録、main PR-onlyを一件でも破る結果を受入れない。
