@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1751: Scrum運営7 sourceをtyped declarationへ投影す�
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -31,9 +31,9 @@ contract_invariants: "ZIP sourceはmigration provenanceのまま保持し、Proj
 contract_failures: "7 operationの欠落・重複・誤layer・source未束縛・ceremonyまたはmetricゼロ・DB非収束・Scrum内完結をfail-closeする"
 tdd_red_required: true
 mutation_oracle_required: true
-red_at: "2026-09-12T00:25:30Z"
-green_at: "2026-09-12T00:25:42Z"
-mutation_oracle_evidence: "tests/current-location.test.ts::U-SCRUMOPS-001 killed the seeded missing scrum:burndown-velocity declaration mutant (1 failed, exit 1); restored declaration passed (exit 0)"
+red_at: "2026-09-12T01:51:04Z"
+green_at: "2026-09-12T01:52:52Z"
+mutation_oracle_evidence: "tests/current-location.test.ts::U-SCRUMOPS-002 changes SCRUM-OPS-R-02 layer L3 to L2, adds a matching legacy ZIP declaration, and still asserts missing plus scrum_operation_gap; exact-ID contract implementation passed (exit 0)"
 complexity_effect: net_negative
 complexity_justification: "既存vmodel-docgen-fit宣言とprojectionを拡張し、別Scrum engineや別DB tableを作らない"
 removal_trigger: "7 operationが恒常的なmanagement-operation registryへ吸収され、個別移行PLANのconsumerが0になった時"
@@ -43,6 +43,7 @@ parent_design: docs/governance/candidates/scrum-operation-typed-projection-requi
 pair_artifact: docs/governance/candidates/scrum-operation-typed-projection-acceptance.md
 verification_bindings:
   - { parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, oracle_id: U-SCRUMOPS-001, test_path: tests/current-location.test.ts }
+  - { parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, oracle_id: U-SCRUMOPS-002, test_path: tests/current-location.test.ts }
 dependencies:
   parent: null
   requires: []
@@ -57,6 +58,10 @@ generates:
   - { artifact_path: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/candidates/scrum-operation-typed-projection-acceptance.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: docs/design/helix/L3-requirements/vmodel-docgen-fit.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/vmodel-docgen-fit-acceptance.md, artifact_type: test_design }
+  - { artifact_path: src/state-db/current-location.ts, artifact_type: source_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }
