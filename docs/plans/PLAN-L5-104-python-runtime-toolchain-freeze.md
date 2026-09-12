@@ -36,20 +36,16 @@ complexity_effect: net_negative
 complexity_justification: "runtime選択をworkerごとの暗黙設定にせず、一つのversioned authority receiptへ収束する"
 removal_trigger: "後継Python runtime authorityへreceipt付きmigrationし3.14.7 consumerが0になった時"
 parent_design: docs/design/helix/L5-detail/python-worker-runtime.md
-pair_artifact: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md
+pair_artifact: docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md
 agent_slots:
   - { role: se, slot_label: "SE — runtime identity、provenance、lock境界" }
   - { role: qa, slot_label: "QA — signature、offline、SBOM、OS parity反例" }
   - { role: tl, slot_label: "TL — experimental modeとactivation境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md, artifact_type: test_design }
 modifies:
-  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
-  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
-  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
-  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/helix/L5-detail/python-worker-runtime.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md, artifact_type: test_design }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
   parent: docs/plans/PLAN-L6-1734-python-semantic-foundation-canary-boundary.md

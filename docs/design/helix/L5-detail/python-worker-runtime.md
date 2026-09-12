@@ -251,6 +251,19 @@ Python unit testだけ、prose上のauthority分離だけではfreezeしない�
 acceptedだけでなくfailed/quarantined/cancelled/timed_outもterminal event、projection、terminal receipt、commit receiptを
 atomic bundle/storeへ閉じる。全terminalでexactly-one receipt、fault後同一bundle reconcile、partial write 0を要求する。
 
+## Python runtime toolchain凍結
+
+最初のsemantic canaryは **CPython 3.14.7通常build、free-threaded無効、JIT無効**を候補とする。
+これはruntime導入済みの宣言ではない。`PythonRuntimeAuthorityV1`は`runtime_id`、implementation、exact patch、
+build mode、OS/arch別artifact、公式source/release URL、artifact SHA-256、signature/provenance、manifest/lock、
+SBOM、offline bundle、rollback runtime identityを必須とする。PATH、`python3` alias、system Python、latest minor、
+online再解決へfallbackしない。
+
+admissionはauthority decode、OS/arch artifactのexactly-one解決、signature/provenanceとdigest検証、lockの
+transitive set照合、network attempt 0のclean install、installed setとSBOMの双方向照合、build flags確認、
+Nodeによるreceipt再検証の順で行う。実artifact digest、lock tool、Windows取得経路は実測receiptなしに
+推測で埋めず、別runtimeのexact-HEAD review後にだけfreezeする。macOS、free-threaded、JIT、publishは非対象とする。
+
 ## Design Reality Binding 契約
 
 本 doc は設計フェーズの正本であり、runtime asset は実装スライス（L6 実装 ↔ L7 TDD closure）で
