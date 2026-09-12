@@ -52,28 +52,13 @@ dependencies:
   blocks: []
 generates:
   - { artifact_path: docs/plans/PLAN-M-03-in-review-repair-convergence.md, artifact_type: markdown_doc }
+modifies:
   - { artifact_path: docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/resident-lane-orchestration-recognition.md, artifact_type: test_design }
   - { artifact_path: tests/resident-lane-orchestration-requirements.test.ts, artifact_type: test_code }
-modifies:
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
   - { artifact_path: .gitignore, artifact_type: config }
-review_evidence:
-  - reviewer: PO/directive
-    review_kind: human
-    tests_green_at: "2026-09-12T18:41:50Z"
-    reviewed_at: "2026-09-12T18:41:50Z"
-    verdict: approve
-    scope: "収束速度改善要求を早期に追加し、管理層へ責務を寄せて下層を軽量化するPO指示。BR-3の従来差戻しはBR-9対象外の実装所見へ限定し、意味判断は原因ownerへ返す。L3実装完了の承認ではない。"
-    green_commands:
-      - kind: unit_test
-        command: "npx --no-install vitest run tests/resident-lane-orchestration-requirements.test.ts"
-        runner: node
-        scope: targeted
-        exit_code: 0
-        completed_at: "2026-09-12T18:41:50Z"
-        evidence_path: tests/resident-lane-orchestration-requirements.test.ts
-        output_digest: "sha256:1784636a035bc62f2477c8ac23f1eeff1d4545d1c09c52a0d5d9563073e25f16"
+review_evidence: []
 ---
 
 # 検収内修復によるPR収束速度改善
