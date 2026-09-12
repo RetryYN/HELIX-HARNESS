@@ -16,6 +16,8 @@ request／responseの発生事実はGitHub observation、継続用stateは前回
 
 - request identityは`subject_kind + number + comment_id + requested_head`で固定する。
 - 編集でmentionが失われても、前回観測済みrequestを消さない。
+- 前回artifactの観測状態を`loaded`／明示revision付き`bootstrap`／`missing`／`expired`へ分類する。
+  `missing`と`expired`はdegradedな観測gapとしてreportへ残し、未応答0を正常観測と主張しない。
 - responseはrequestより後、同一HEAD、明示されたtrusted responder loginに一致し、current v4の
   canonical independent-review receiptとして封緘済みの場合だけ受理する。人間可読のreview見出しや
   legacy v2／v3 receiptを回答済みへ昇格しない。

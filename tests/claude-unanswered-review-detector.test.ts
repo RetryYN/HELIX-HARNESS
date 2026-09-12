@@ -217,13 +217,24 @@ describe("Claude未応答review detector", () => {
         input,
         "--previous",
         previous,
+        "--previous-state",
+        "loaded",
         "--output",
         output,
       ]),
     ).toMatchObject({ ok: true, unanswered_count: 1 });
     expect(JSON.parse(readFileSync(output, "utf8")).unanswered).toHaveLength(1);
     expect(() =>
-      runClaudeUnansweredReviewDetectorCommand(["--input", input, "--output", output]),
+      runClaudeUnansweredReviewDetectorCommand([
+        "--input",
+        input,
+        "--previous",
+        previous,
+        "--previous-state",
+        "loaded",
+        "--output",
+        output,
+      ]),
     ).toThrow(/EEXIST/u);
   });
 
@@ -238,6 +249,40 @@ describe("Claude未応答review detector", () => {
     expect(workflow).toContain("persist-credentials: false");
     expect(workflow).toContain('node-version: "24.15"');
     expect(workflow).toContain("claude-unanswered-review-state");
+    expect(workflow).toContain("PREVIOUS_STATE=$previous_state");
+    expect(workflow).toContain('--previous-state "$PREVIOUS_STATE"');
+    expect(workflow).toContain("previous=$" + "{r.previous_observation.state}");
+  });
+
+  it("U-CLUNANS-010: [PLAN-L7-1743-claude-unanswered-review-detector/U-CLUNANS-010] previous artifact不存在を正常bootstrapへ変換しない", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-claude-observation-gap-"));
+    const input = join(root, "input.json");
+    const output = join(root, "report.json");
+    writeFileSync(
+      input,
+      JSON.stringify({
+        schema_version: "claude-review-observation.v1",
+        trusted_responder_logins: ["review-user"],
+        subjects: [],
+      }),
+    );
+    expect(
+      runClaudeUnansweredReviewDetectorCommand([
+        "--input",
+        input,
+        "--output",
+        output,
+        "--previous-state",
+        "missing",
+      ]),
+    ).toMatchObject({ ok: true, unanswered_count: 0, degraded: true });
+    expect(JSON.parse(readFileSync(output, "utf8")).previous_observation).toEqual({
+      state: "missing",
+      bootstrap_revision: null,
+      degraded: true,
+      gap_codes: ["previous_artifact_missing"],
+    });
+    rmSync(root, { recursive: true, force: true });
   });
 
   it("U-CLUNANS-008: [PLAN-L7-1743-claude-unanswered-review-detector/U-CLUNANS-008] paginationのread-after差分を実processでfail-closeする", async () => {

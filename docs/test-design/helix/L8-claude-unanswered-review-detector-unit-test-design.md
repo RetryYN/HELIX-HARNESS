@@ -25,5 +25,6 @@ parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-det
 | U-CLUNANS-007 | scheduled shadow workflow | YAML構造としてread-only権限と非required artifact出力を固定する | `tests/claude-unanswered-review-detector.test.ts` |
 | U-CLUNANS-008 | pagination race | collector実processへ異なるread-after応答を返し、非0終了と`pagination_race`を確認する | `tests/claude-unanswered-review-detector.test.ts` |
 | U-CLUNANS-009 | sealed response境界 | 未封緘のreview見出し＋HEAD行を回答へ昇格せず、v4 receiptだけを受理する | `tests/claude-unanswered-review-detector.test.ts` |
+| U-CLUNANS-010 | 前回artifact観測gap | artifact不存在を暗黙bootstrapにせず、`missing`／degradedとしてreportへ保持する | `tests/claude-unanswered-review-detector.test.ts` |
 
 全oracleの実行先は`tests/claude-unanswered-review-detector.test.ts`とする。

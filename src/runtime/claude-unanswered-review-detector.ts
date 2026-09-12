@@ -42,6 +42,12 @@ export interface ClaudeUnansweredDetectorReport {
   answered_request_ids: number[];
   ignored_bot_comment_ids: number[];
   untrusted_response_comment_ids: number[];
+  previous_observation: {
+    state: "loaded" | "bootstrap" | "missing" | "expired";
+    bootstrap_revision: string | null;
+    degraded: boolean;
+    gap_codes: Array<"previous_artifact_missing" | "previous_artifact_expired">;
+  };
 }
 
 function digest(value: string): `sha256:${string}` {
@@ -78,7 +84,17 @@ export function detectUnansweredClaudeReviews(input: {
   subjects: ClaudeReviewSubjectObservation[];
   previous_requests?: ClaudeReviewRequestState[];
   trusted_responder_logins: string[];
+  previous_state?: "loaded" | "bootstrap" | "missing" | "expired";
+  bootstrap_revision?: string;
 }): ClaudeUnansweredDetectorReport {
+  const previousState =
+    input.previous_state ?? (input.previous_requests === undefined ? "bootstrap" : "loaded");
+  const gapCodes: ClaudeUnansweredDetectorReport["previous_observation"]["gap_codes"] =
+    previousState === "missing"
+      ? ["previous_artifact_missing"]
+      : previousState === "expired"
+        ? ["previous_artifact_expired"]
+        : [];
   const subjectKey = (kind: string, number: number) => `${kind}:${String(number)}`;
   const currentSubjects = new Map(
     input.subjects.map((subject) => [subjectKey(subject.subject_kind, subject.number), subject]),
@@ -149,5 +165,11 @@ export function detectUnansweredClaudeReviews(input: {
     answered_request_ids: answeredRequestIds,
     ignored_bot_comment_ids: [...new Set(ignoredBotCommentIds)].sort((a, b) => a - b),
     untrusted_response_comment_ids: [...new Set(untrustedResponseCommentIds)].sort((a, b) => a - b),
+    previous_observation: {
+      state: previousState,
+      bootstrap_revision: previousState === "bootstrap" ? (input.bootstrap_revision ?? null) : null,
+      degraded: gapCodes.length > 0,
+      gap_codes: gapCodes,
+    },
   };
 }

@@ -41,13 +41,36 @@ export function runClaudeUnansweredReviewDetectorCommand(args: readonly string[]
   ) {
     throw new Error("trusted_responder_logins_invalid");
   }
+  const previousState = option(args, "--previous-state") as
+    | "loaded"
+    | "bootstrap"
+    | "missing"
+    | "expired";
+  if (!["loaded", "bootstrap", "missing", "expired"].includes(previousState)) {
+    throw new Error("previous_state_invalid");
+  }
+  const previousPath = option(args, "--previous", false);
+  const bootstrapRevision = option(args, "--bootstrap-revision", false);
+  if (previousState === "loaded" && !previousPath) throw new Error("previous_report_required");
+  if (previousState !== "loaded" && previousPath) throw new Error("previous_report_unexpected");
+  if (previousState === "bootstrap" && !bootstrapRevision)
+    throw new Error("bootstrap_revision_required");
+  if (previousState !== "bootstrap" && bootstrapRevision)
+    throw new Error("bootstrap_revision_unexpected");
   const report = detectUnansweredClaudeReviews({
     subjects: input.subjects as ClaudeReviewSubjectObservation[],
     trusted_responder_logins: input.trusted_responder_logins as string[],
-    previous_requests: previousRequests(option(args, "--previous", false)),
+    previous_requests: previousPath ? previousRequests(previousPath) : undefined,
+    previous_state: previousState,
+    bootstrap_revision: bootstrapRevision,
   });
   writeFileSync(outputPath, `${JSON.stringify(report, null, 2)}\n`, { flag: "wx" });
-  return { ok: true, output: outputPath, unanswered_count: report.unanswered.length };
+  return {
+    ok: true,
+    output: outputPath,
+    unanswered_count: report.unanswered.length,
+    degraded: report.previous_observation.degraded,
+  };
 }
 
 function main(): void {
