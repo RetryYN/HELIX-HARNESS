@@ -168,6 +168,16 @@ describe("resident lane assignment kernel", () => {
     ).toMatchObject({ ok: false, failure_codes: ["ASSIGNMENT_DUPLICATE_BRANCH_WRITER"] });
   });
 
+  it("U-RLA-014: Issue repositoryの大小文字差を同一GitHub identityとして受理する", () => {
+    const mixedCase = assignment({ scope_ref: "issue:retryyn/helix-harness#860" });
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [mixedCase],
+      }),
+    ).toMatchObject({ ok: true, active_assignments: [mixedCase] });
+  });
+
   it("U-RLA-006: observed branch／HEAD／fenceのdriftを別々に拒否する", () => {
     const current = assignment();
     expect(

@@ -1816,7 +1816,10 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeResidentLaneAssignmentMutationOracle(
-        ["!value.scope_ref.startsWith(`issue:", "{value.repository}#`)"].join("$"),
+        [
+          "!value.scope_ref.toLowerCase().startsWith(`issue:",
+          "{value.repository.toLowerCase()}#`)",
+        ].join("$"),
         "false",
         "U-RLA-002",
       ),

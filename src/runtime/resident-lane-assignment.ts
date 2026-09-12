@@ -64,7 +64,7 @@ export const residentLaneAssignmentSchema = z
     }
     if (
       value.scope_ref.startsWith("issue:") &&
-      !value.scope_ref.startsWith(`issue:${value.repository}#`)
+      !value.scope_ref.toLowerCase().startsWith(`issue:${value.repository.toLowerCase()}#`)
     ) {
       context.addIssue({
         code: "custom",
