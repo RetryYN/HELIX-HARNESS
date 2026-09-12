@@ -96,35 +96,14 @@ review_evidence:
         completed_at: "2026-09-11T23:50:39Z"
         evidence_path: docs/plans/PLAN-RECOVERY-1753-closure-probe-exact-head.md
         output_digest: "sha256:6d8ed7691c1413dbdef450cb460e2e99b3d3be799ccf46fb77daf45896221547"
-  - reviewer: "Claude Code / Fable 5.1"
-    review_kind: cross_agent
-    reviewed_at: "2026-09-11T23:57:15Z"
-    tests_green_at: "2026-09-11T23:50:39Z"
-    verdict: approve
-    worker_model: codex
-    reviewer_model: claude:claude-fable-5-1
-    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
-    reviewed_head_sha: 50c76d37bc70719e25c150ddfc48ca631a6cece0
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1754#issuecomment-5641979996"
-    ci_evidence_generation: "run:34659312795:attempt:1:failure"
-    scope: "exact HEADの独立レビュー。CI redはdraft→confirmed循環のみで、他preflight、local 153 tests、plan lint、V-pair、catalog／digest追従を照合しblocker 0。symlink rootとorigin不在はfail-close境界として設計へ追記した。全shard successは次世代CIで別途要求する。"
-    green_commands:
-      - kind: lint
-        command: "npx --no-install tsx src/cli.ts plan lint --gate governance"
-        runner: node
-        scope: full
-        exit_code: 0
-        completed_at: "2026-09-11T23:50:39Z"
-        evidence_path: docs/plans/PLAN-RECOVERY-1753-closure-probe-exact-head.md
-        output_digest: "sha256:6d8ed7691c1413dbdef450cb460e2e99b3d3be799ccf46fb77daf45896221547"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-09-11T23:57:15Z"
+  assessed_at: "2026-09-12T02:03:25Z"
   review_binding:
     reviewer: "Claude Code / Fable 5.1"
-    reviewed_at: "2026-09-11T23:57:15Z"
-    evidence_digest: "sha256:9176250f3fcdb22b76fd320df2035451d54f605c3d5ee4e89878090e044dc7d1"
+    reviewed_at: "2026-09-12T02:03:25Z"
+    evidence_digest: "sha256:2431da91161bbd896771a83c76aa546f8f6a05defd7aa352224bdfb5c5cfb9d3"
   entries: []
 ---
 
