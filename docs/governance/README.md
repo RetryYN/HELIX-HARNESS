@@ -16,6 +16,7 @@ Claude Code / Codex / human reviewer は、通常タスクでは次の順に読�
 7. `../adr/ADR-009-node-python-linux-runtime.md` (current/target runtime authority。Bun active/fallback/rollback authorityは廃止)
 8. `../adr/ADR-010-python-semantic-core-node-commit-boundary.md` (Python/Node層別authority)
 9. `repository-structure.md` (リポジトリ構成ルールの正本)
+10. `management-scrum-product-forward.md`（管理見落としのScrum収束とproduct Forwardの入口分離）
 
 > **V-model layer authority**: current canonicalはL1-L12であり、正規pairは
 > `L1↔L12` / `L2↔L11` / `L3↔L10` / `L4↔L9` / `L5↔L8` / `L6↔L7`である。
