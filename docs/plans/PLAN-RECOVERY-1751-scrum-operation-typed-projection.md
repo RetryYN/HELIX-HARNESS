@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1751: Scrum運営7 sourceをtyped declarationへ投影す�
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
