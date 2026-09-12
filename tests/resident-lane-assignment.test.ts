@@ -133,6 +133,29 @@ describe("resident lane assignment kernel", () => {
     });
   });
 
+  it("U-RLA-019: takeoverの単調revision列を最新assignmentへ再投影する", () => {
+    const previous = assignment();
+    const takeover = evaluateAssignmentTakeover({
+      assignment: previous,
+      previous_lease_ended: true,
+      handover_receipt_digest: sha256Digest("handover"),
+      remote_branch_head: HEAD,
+      next_lane_id: "codex-worker-02",
+      next_lease_id: "lease-861",
+      next_lease_fence: 2,
+      reassigned_at: "2026-09-12T12:00:01.000Z",
+      expires_at: "2026-09-12T13:00:00.000Z",
+    });
+    expect(takeover.ok).toBe(true);
+    if (!takeover.ok) return;
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T12:30:00.000Z",
+        assignments: [previous, takeover.assignment],
+      }),
+    ).toEqual({ ok: true, active_assignments: [takeover.assignment] });
+  });
+
   it("U-RLA-010: 同じassignment IDの異内容replayを拒否する", () => {
     expect(
       projectResidentLaneAssignments({

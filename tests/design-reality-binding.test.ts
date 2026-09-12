@@ -1839,7 +1839,11 @@ runtimeCommand("claude");
       ),
     ).toBe(true);
     expect(
-      executeResidentLaneAssignmentMutationOracle("identities.size > 1", "false", "U-RLA-010"),
+      executeResidentLaneAssignmentMutationOracle(
+        "if (identityConflict) {",
+        "if (false) {",
+        "U-RLA-010",
+      ),
     ).toBe(true);
     expect(
       executeResidentLaneAssignmentMutationOracle("owners.size > 1", "false", "U-RLA-004"),

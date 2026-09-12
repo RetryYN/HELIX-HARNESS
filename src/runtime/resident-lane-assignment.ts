@@ -104,6 +104,21 @@ function uniqueSorted(values: readonly ResidentLaneAssignmentFailureCode[]) {
   return [...new Set(values)].sort(compareBytewise);
 }
 
+function assignmentAuthorityKey(assignment: ResidentLaneAssignmentV1): string {
+  return canonicalJson({
+    repository: assignment.repository.toLowerCase(),
+    scope_ref: assignment.scope_ref.startsWith("issue:")
+      ? assignment.scope_ref.toLowerCase()
+      : assignment.scope_ref,
+    scope_body_digest: assignment.scope_body_digest,
+    acceptance_digest: assignment.acceptance_digest,
+    branch: assignment.branch,
+    base_sha: assignment.base_sha,
+    candidate_head: assignment.candidate_head,
+    assigned_role: assignment.assigned_role,
+  });
+}
+
 /**
  * active assignmentのexact setを決定的に投影するpure kernel。
  * provider session、cwd、GitHub表示から欠落値を補完しない。
@@ -131,7 +146,38 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
 
   const deduplicated = new Map<string, ResidentLaneAssignmentV1>();
   for (const assignment of assignments) deduplicated.set(canonicalJson(assignment), assignment);
-  const ordered = [...deduplicated.values()].sort((left, right) => {
+  const revisionsByAssignment = new Map<string, ResidentLaneAssignmentV1[]>();
+  for (const assignment of deduplicated.values()) {
+    const revisions = revisionsByAssignment.get(assignment.assignment_id) ?? [];
+    revisions.push(assignment);
+    revisionsByAssignment.set(assignment.assignment_id, revisions);
+  }
+  let identityConflict = false;
+  const currentAssignments: ResidentLaneAssignmentV1[] = [];
+  for (const revisions of revisionsByAssignment.values()) {
+    revisions.sort((left, right) => {
+      const fenceOrder = left.lease_fence - right.lease_fence;
+      return fenceOrder !== 0
+        ? fenceOrder
+        : compareBytewise(canonicalJson(left), canonicalJson(right));
+    });
+    for (let index = 1; index < revisions.length; index += 1) {
+      const previous = revisions[index - 1];
+      const next = revisions[index];
+      if (
+        next.lease_fence !== previous.lease_fence + 1 ||
+        assignmentAuthorityKey(next) !== assignmentAuthorityKey(previous) ||
+        next.assigned_lane_id === previous.assigned_lane_id ||
+        next.lease_id === previous.lease_id ||
+        Date.parse(next.created_at) <= Date.parse(previous.created_at)
+      ) {
+        identityConflict = true;
+      }
+    }
+    const latest = revisions.at(-1);
+    if (latest) currentAssignments.push(latest);
+  }
+  const ordered = currentAssignments.sort((left, right) => {
     const identityOrder = compareBytewise(left.assignment_id, right.assignment_id);
     return identityOrder !== 0
       ? identityOrder
@@ -151,14 +197,8 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
       observedAt < Date.parse(assignment.expires_at),
   );
 
-  const assignmentIdentities = new Map<string, Set<string>>();
   const branchOwners = new Map<string, Set<string>>();
   const scopeBranches = new Map<string, Set<string>>();
-  for (const assignment of ordered) {
-    const identities = assignmentIdentities.get(assignment.assignment_id) ?? new Set<string>();
-    identities.add(canonicalJson(assignment));
-    assignmentIdentities.set(assignment.assignment_id, identities);
-  }
   for (const assignment of active) {
     const repositoryKey = assignment.repository.toLowerCase();
     const branchKey = canonicalJson([repositoryKey, assignment.branch]);
@@ -175,7 +215,7 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
     branches.add(assignment.branch);
     scopeBranches.set(scopeKey, branches);
   }
-  if ([...assignmentIdentities.values()].some((identities) => identities.size > 1)) {
+  if (identityConflict) {
     failures.push("ASSIGNMENT_ID_CONFLICT");
   }
   if ([...branchOwners.values()].some((owners) => owners.size > 1)) {
