@@ -33,7 +33,7 @@ pair_artifact: docs/test-design/helix/L8-resident-lane-assignment-unit-test-desi
 
 - `projectResidentLaneAssignments`: byte同一の重複を吸収し、active exact setを決定順で返す。期限切れ、repository内のbranch二重writer、repository内のscope二branchをtyped failureにする。別repositoryの同名branch／scopeは独立に扱う。
 - `evaluateAssignmentReviewReturn`: 元lane、branch、candidate HEAD、fenceの順で照合する。
-- `evaluateAssignmentTakeover`: 旧lease終端、handover receipt、remote HEAD、新しいlease ID、`old fence + 1`、旧作成時刻より後の再割当時刻を検証し、同branchの新assignment revisionを返す。callerの`previous_lease_ended`証明を信頼するが、時刻逆行は受理しない。
+- `evaluateAssignmentTakeover`: 旧lease終端、handover receipt、remote HEAD、別lane、新しいlease ID、安全整数範囲の`old fence + 1`、旧作成時刻より後の再割当時刻を検証し、同branchの新assignment revisionを返す。callerの`previous_lease_ended`証明を信頼するが、時刻逆行は受理しない。
 
 ## 失敗分類
 
@@ -58,7 +58,7 @@ pair_artifact: docs/test-design/helix/L8-resident-lane-assignment-unit-test-desi
     "ASSIGNMENT_HANDOVER_RECEIPT_MISSING"
   ],
   "assets": [
-    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:1171ec96b9afa282bc3701e0e630d8e43b1ede68c95cc6601c68fb2b7d55f403", "current_authority": true }
+    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:8ada0fe04edef33d85dbcc47ad072c9e995af2d27bef2fc5eafae4de4c6d1416", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "ASSIGNMENT_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-002", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_INPUT_INVALID", "mutation": { "remove_post_resolution_check": "if (!assignment.success) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },

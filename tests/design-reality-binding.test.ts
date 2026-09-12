@@ -1881,6 +1881,13 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeResidentLaneAssignmentMutationOracle(
+        "input.next_lane_id === input.assignment.assigned_lane_id",
+        "false",
+        "U-RLA-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
         "Date.parse(input.reassigned_at) <= Date.parse(input.assignment.created_at)",
         "false",
         "U-RLA-008",

@@ -28,7 +28,7 @@ export const residentLaneAssignmentSchema = z
     assigned_lane_id: stableIdSchema,
     assigned_role: z.literal("worker"),
     lease_id: stableIdSchema,
-    lease_fence: z.number().int().positive(),
+    lease_fence: z.number().int().safe().positive(),
     created_at: z.string().datetime({ offset: true }),
     expires_at: z.string().datetime({ offset: true }),
   })
@@ -198,6 +198,9 @@ export function evaluateAssignmentTakeover(
     return { ok: false, failure_code: "ASSIGNMENT_STALE_CANDIDATE_HEAD" };
   }
   if (input.next_lease_id === input.assignment.lease_id) {
+    return { ok: false, failure_code: "ASSIGNMENT_INPUT_INVALID" };
+  }
+  if (input.next_lane_id === input.assignment.assigned_lane_id) {
     return { ok: false, failure_code: "ASSIGNMENT_INPUT_INVALID" };
   }
   if (input.next_lease_fence !== input.assignment.lease_fence + 1) {

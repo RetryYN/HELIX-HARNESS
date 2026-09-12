@@ -222,6 +222,12 @@ describe("resident lane assignment kernel", () => {
       ok: false,
       failure_code: "ASSIGNMENT_INPUT_INVALID",
     });
+    expect(
+      evaluateAssignmentTakeover({ ...valid, next_lane_id: current.assigned_lane_id }),
+    ).toEqual({
+      ok: false,
+      failure_code: "ASSIGNMENT_INPUT_INVALID",
+    });
     expect(evaluateAssignmentTakeover({ ...valid, next_lease_fence: 1 })).toEqual({
       ok: false,
       failure_code: "ASSIGNMENT_STALE_FENCE",
@@ -229,6 +235,13 @@ describe("resident lane assignment kernel", () => {
     expect(
       evaluateAssignmentTakeover({ ...valid, reassigned_at: "2026-09-12T10:59:59.000Z" }),
     ).toEqual({ ok: false, failure_code: "ASSIGNMENT_INPUT_INVALID" });
+    expect(
+      evaluateAssignmentTakeover({
+        ...valid,
+        assignment: assignment({ lease_fence: Number.MAX_SAFE_INTEGER }),
+        next_lease_fence: Number.MAX_SAFE_INTEGER,
+      }),
+    ).toEqual({ ok: false, failure_code: "ASSIGNMENT_STALE_FENCE" });
   });
 
   it("U-RLA-009: duplicate/replayを同一projectionへ収束させる", () => {
