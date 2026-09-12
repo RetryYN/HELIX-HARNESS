@@ -71,6 +71,9 @@ modifies:
   - { artifact_path: src/runtime/review-receipt-plan-binding.ts, artifact_type: source_module }
   - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: tests/review-receipt-plan-binding.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
 agent_slots:
   - { role: tl, slot_label: "TL — receiptとhistoryの同一主体境界を照合" }
   - { role: qa, slot_label: "QA — window重複・境界時刻・real repo evidenceを検証" }
