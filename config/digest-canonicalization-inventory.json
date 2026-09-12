@@ -3021,7 +3021,7 @@
     {
       "hit_id": "src/runtime/claude-unanswered-review-detector.ts::digest:createHash(sha256)::1",
       "path": "src/runtime/claude-unanswered-review-detector.ts",
-      "line": 49,
+      "line": 48,
       "symbol": "digest",
       "algorithm": "sha256",
       "input_kind": "string",

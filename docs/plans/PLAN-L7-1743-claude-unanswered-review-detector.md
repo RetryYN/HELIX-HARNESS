@@ -20,9 +20,9 @@ no_code_decision: add_code
 ddd_modeling_decision: value_object
 entry_signals: [feature_addition]
 contract_preconditions: "open PR／Issueのcomment observationと前回request artifactをreadできる"
-contract_postconditions: "未応答、回答済み、bot無視、untrusted responseをtyped JSONへ副作用なしで分類する"
+contract_postconditions: "未応答、v4 sealed receiptによる回答済み、bot無視、untrusted responseをtyped JSONへ副作用なしで分類する"
 contract_invariants: "既存receipt admissionを緩和せず、GitHub observationとDB projectionを意味正本へ昇格させない"
-contract_failures: "編集消失、別HEAD、先行reply、bot、spoof responderを回答へ誤分類しない"
+contract_failures: "編集消失、別HEAD、先行reply、bot、spoof responder、未封緘見出しを回答へ誤分類せず、pagination read-after driftを実processでfail-closeする"
 tdd_red_required: true
 mutation_oracle_required: true
 red_at: "2026-09-12T00:30:44Z"
@@ -48,6 +48,8 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, oracle_id: U-CLUNANS-005, test_path: tests/claude-unanswered-review-detector.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, oracle_id: U-CLUNANS-006, test_path: tests/claude-unanswered-review-detector.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, oracle_id: U-CLUNANS-007, test_path: tests/claude-unanswered-review-detector.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, oracle_id: U-CLUNANS-008, test_path: tests/claude-unanswered-review-detector.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, oracle_id: U-CLUNANS-009, test_path: tests/claude-unanswered-review-detector.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6

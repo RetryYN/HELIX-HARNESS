@@ -3,7 +3,6 @@ import { parseClaudeIndependentPrReviewComment } from "./claude-pr-convergence";
 
 const REQUEST_MENTION = /(^|\s)@claude(?:\s|$|[,:])/iu;
 const REVIEW_INTENT = /review|レビュー|監査|封緘|receipt|seal/iu;
-const HEAD_LINE = /(?:^|\n)HEAD:\s*`?([a-f0-9]{40})`?(?:\n|$)/u;
 
 export interface ClaudeReviewCommentObservation {
   id: number;
@@ -60,8 +59,7 @@ function isRequest(comment: ClaudeReviewCommentObservation): boolean {
 function responseHead(body: string): string | null {
   const receipt = parseClaudeIndependentPrReviewComment(body);
   if (receipt?.schemaVersion === "helix-claude-pr-review-receipt.v4") return receipt.headSha;
-  if (!body.includes("## Claude reviewer:")) return null;
-  return body.match(HEAD_LINE)?.[1] ?? null;
+  return null;
 }
 
 function answersRequest(
