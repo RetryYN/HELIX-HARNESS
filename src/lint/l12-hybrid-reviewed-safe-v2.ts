@@ -2770,4 +2770,19 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     contentDigest: "b2e5e3c788364ae480e1694c65be0fa94e19f2beb22aea9ef9f3c709e713e164",
     finalDisposition: "false_positive",
   },
+  {
+    // #242のcurrent Python semantic core toolchain authorityを3.14.7通常buildへ凍結するPLAN。
+    // python_worker_boundary signalは旧proposal-only境界の再導入ではなく、ADR-009/010に従う
+    // 現行Python意味コアとNode transaction writerの責務を保持するための語である。
+    path: "docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md",
+    contentDigest: "3a271abfc2f3eadfd28cb78c8e1f480a6f3b74a41f5623aa5474cd3d5dde72ee",
+    finalDisposition: "false_positive",
+  },
+  {
+    // #242のL8 toolchain専用oracle。旧Python runtime authorityを採用せず、exact patch、
+    // provenance、offline lock、SBOM、OS parity、rollbackを反証するcurrent test designである。
+    path: "docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md",
+    contentDigest: "00fa1093c0b9927e3902268eea9ac6e26c6be858618fb750feb9b842f55d004b",
+    finalDisposition: "false_positive",
+  },
 ] as const;
