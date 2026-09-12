@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1751: Scrum運営7 sourceをtyped declarationへ投影す�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -70,7 +70,28 @@ modifies:
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-11T23:52:50Z"
+    tests_green_at: "2026-09-11T23:49:31Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: a8e5fedeffd4d530096a0a34f35c844abeafc11d
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1752#issuecomment-5641953718"
+    ci_evidence_generation: "run:34657347167:attempt:2:success"
+    scope: "draft第一世代のexact HEADレビュー。7 operation exact set、L3/L10 pair、管理Scrumとproduct Forwardの分離、ZIP provenance境界、DB projection、全shard successを独立照合しblocker 0。S4判断とruntime実装は未完了。"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 34657347167 --json headSha,status,conclusion,createdAt,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-11T23:49:31Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:62346226621d780da63c4c9893f9a9c61b08410d45d0d5305745ab579ca49b3b"
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
