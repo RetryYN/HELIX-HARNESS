@@ -151,6 +151,11 @@ gate decision まで担えるという意味である。
 - Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
+- 管理側の見落とし（gate、admission、監査、運用上の欠落）はIssue化し、上記Scrumで小さく収束して
+  `S4 decide`から正規VモデルへScrum Reverseする。管理IssueはGitHub Projectへread-side projectionする。
+- product要求・設計・実装は正規Forwardで進め、管理Scrumをproduct実装の近道として使わない。
+- Git上のRequirement／Design／PLANが意味正本、admitted event／receiptが実行事実、`harness.db`と
+  GitHub Projectは再構築可能なprojectionである。Project Statusから上流意味や完了を逆書込みしない。
 - Additive change: 既存 design を保ち、`add-design` / `add-impl` で delta を追加する。
 - Continuation: `harness.db` の event/projection を session / cross-runtime continuation source として使う。
 

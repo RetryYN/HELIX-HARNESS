@@ -145,14 +145,14 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // 2026-08-21 PLAN-L7-640: Codex native spawn契約を実surfaceへ同期。legacy signal集合は不変。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "AGENTS.md",
-    contentDigest: "1ff4ad5891e4c7eb015c7b46b103d1b8a3a3ee9feefd2e5bee7a9d697927dd39",
+    contentDigest: "a0f610908343f2303d758c1228e8e7635c312e7fe71c3256b0a0f21db5b3777d",
     finalDisposition: "compatibility_labeled",
   },
   {
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "CLAUDE.md",
-    contentDigest: "8a3d59eb44e2d6cfd8b282d7cebdea317208d27849ddd461fa7e8fb60d00c8c7",
+    contentDigest: "fcf0c0efb718d92a6a69a20127b0768e1652b95a9b8e3036d460a004a4b84828",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -328,7 +328,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // #1404: current/compatibility判定順と旧harness設計の移行境界を明記した。
     // current authority自体は既存governance sourcesの順序を維持する。
     path: "docs/governance/README.md",
-    contentDigest: "723f6b83d1efaf5fbbced561fdfb08d37a8501e54234a380838e1db696fe2145",
+    contentDigest: "a36dd51f7158247d472c750a6a46b1a1e13f614a8f18fbc4fd412ef06eff7457",
     finalDisposition: "compatibility_labeled",
   },
   {

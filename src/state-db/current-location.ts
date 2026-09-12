@@ -1019,6 +1019,21 @@ export interface ProjectClosureEvidenceProbeExecution {
     limit: number;
   };
   error_message: string | null;
+  execution_context?: {
+    schema_version: "closure-probe-execution-context.v1";
+    status: "verified" | "blocked";
+    repo_path: string;
+    head_sha: string | null;
+    branch: string | null;
+    clean: boolean;
+    dirty_digest: string;
+    git_dir: string | null;
+    git_common_dir: string | null;
+    worktree_identity: string | null;
+    remote_name: "origin" | null;
+    remote_ref_exact: boolean;
+    blocked_reasons: string[];
+  };
 }
 
 export interface ProjectClosureEvidenceProbePacket {
