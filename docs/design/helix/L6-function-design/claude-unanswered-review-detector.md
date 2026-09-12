@@ -1,6 +1,6 @@
 ---
 title: "Claude review未応答のread-only検出"
-status: draft
+status: confirmed
 canonical_layer: L6
 canonical_pair: L7
 plan: docs/plans/PLAN-L7-1743-claude-unanswered-review-detector.md

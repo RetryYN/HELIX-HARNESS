@@ -1,6 +1,6 @@
 ---
 title: "Claude review未応答detector単体テスト設計"
-status: draft
+status: confirmed
 layer: L8
 executed_at_layer: L7
 sub_doc: unit-test-design
