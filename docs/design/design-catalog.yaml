@@ -1126,6 +1126,8 @@ items:
       - docs/test-design/helix/L9-cursor-cloud-independent-execution-boundary.md
       - docs/design/helix/L5-detail/cursor-cloud-independent-execution-contract.md
       - docs/test-design/helix/L8-cursor-cloud-independent-execution-contract-unit-test-design.md
+      - docs/design/helix/L6-function-design/cursor-cloud-independent-execution.md
+      - docs/test-design/helix/L7-cursor-cloud-independent-execution-unit-test-design.md
       - docs/design/helix/L4-basic-design/worker-descriptor-admission.md
       - docs/design/helix/L4-basic-design/worker-wrapper-admission.md
       - docs/design/helix/L5-detail/worker-descriptor-admission.md
