@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1753: closure evidence-probeをclean exact HEADへ固定�
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -104,6 +104,10 @@ left_arm_carry:
 ---
 
 # clean exact HEADによるprobe実行
+
+confirmed世代のCIで、`tdd_red_required`および`mutation_oracle_required`に対応するRed／Green時刻と
+resolvable mutation oracle evidenceの未登録が検出された。本PLANはdraftへ戻し、証跡取得前の
+再confirmを禁止する。
 
 ## 実装順序
 
