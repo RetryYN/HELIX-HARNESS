@@ -28,7 +28,7 @@ contract_failures: "schema→authority stale→branch preissue→budget→identi
 tdd_red_required: true
 tdd_red_waiver_reason: "module missing Redを2026-09-13に実測した"
 mutation_oracle_required: true
-mutation_oracle_evidence: "Claude独立reviewerがPR #1777 HEAD 2d4c28645で変異適用件数を確認し、branch_preissued、absolute_deadline、budget reservation ID/currentの4変異をU-CCI-003/007/006でkill。CodexがHEAD 37f915d30のsource digest sha256:c4ffbf48f53d0deafcebad6e3982187fcc1f2d163f000f301618c2c2bc633f35に対し、各置換適用件数1を確認してruntime scope、runtime cost、self review、review assignment、phase dual writer、retry attemptの列挙6変異を個別実行し、6/6 killを確認した。さらにU-CCI-012へrequested model不一致とusage unknownの反例を追加し、各判定をtrueへ置換する2変異が個別にtargeted test redとなることを確認した。ここでのsurvived 0は列挙した計12変異だけを母集団とし、網羅的変異試験の主張ではない。各変異後にsourceを復元した。"
+mutation_oracle_evidence: "2026-09-13、親#1776追従後の現行source digest sha256:d74f8b8d2cdde8719d27628245155d4c6e5609073c12a77aae8be87717989decに対し、admitCursorCloudAssignmentのvalidAssignment fail-close分岐をfalseで迂回する変異を1件適用した。tests/cursor-cloud-independent-execution.test.tsのU-CCI-001／002が2 failed・17 passed・exit 1となり、unknown field／unsafe pathの誤受理をkillした。production分岐へ復元後は19/19 green、source digest一致、source差分0を確認した。旧HEAD 2d4c28645／37f915d30での12変異測定は履歴であり、現行完了根拠には使用しない。本測定のsurvived 0はこの現行sourceへの列挙1変異だけを母集団とし、網羅的変異試験を主張しない。"
 complexity_effect: net_negative
 complexity_justification: "散在する起動前条件を副作用なしの単一admissionへ集約する"
 removal_trigger: "後継schemaへ全consumerが移行しv1参照が0になった時"
