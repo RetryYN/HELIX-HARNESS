@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1753: closure evidence-probeをclean exact HEADへ固定�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -25,6 +25,9 @@ contract_invariants: "dirty admission失敗はrecord/DB/failure evidenceを生�
 contract_failures: "dirty、HEAD drift、別worktree、remote未到達、git identity不明をexit 2でfail-closeする"
 tdd_red_required: true
 mutation_oracle_required: true
+red_at: "2026-09-12T00:24:15Z"
+green_at: "2026-09-12T00:24:23Z"
+mutation_oracle_evidence: "tests/closure-evidence-probe-context.test.ts::U-CLPROBE-003 killed the seeded branch-ref omission mutant (1 failed, exit 1); restored implementation passed 4/4 (exit 0)"
 complexity_effect: net_negative
 complexity_justification: "CLI内の暗黙process.cwd依存を単一typed admissionへ抽出し、既存probe実行経路へ一度だけ接続する"
 removal_trigger: "全証拠commandが共通exact-HEAD execution brokerへ統合された時"
