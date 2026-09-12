@@ -1,6 +1,6 @@
 ---
 title: "管理Scrumとproduct Forward入口分離の受入設計"
-status: draft
+status: confirmed
 canonical_layer: cross
 canonical_pair: cross
 plan: docs/plans/PLAN-RECOVERY-1737-management-scrum-product-forward.md

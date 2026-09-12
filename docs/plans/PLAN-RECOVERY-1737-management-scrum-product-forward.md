@@ -4,7 +4,7 @@ title: "管理Scrumとproduct Forwardの入口を分離する"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -67,7 +67,28 @@ modifies:
   - { artifact_path: docs/governance/README.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / Fable 5.1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-12T01:10:08Z"
+    tests_green_at: "2026-09-12T01:10:08Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: b0a15b147905b94667674f28ec522fe122c901e7
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1756#issuecomment-5642453703"
+    ci_evidence_generation: "run:34663739811:attempt:1:failure"
+    scope: "draft exact HEADの独立review。管理Issue起点Scrum、Scrum Reverse、product Forward、Git／receipt／DB・Project projection境界、4 oracle、mutation証跡、L12 digest追従を照合してblocker 0。CI redはdraft循環のみで、local 81/81を独立実測した。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/management-scrum-product-forward.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-12T01:10:08Z"
+        evidence_path: tests/management-scrum-product-forward.test.ts
+        output_digest: "sha256:9194aef3724913aa2c4e70f4a865140d160d0e81a4827864df786b52b1a2feae"
 ---
 
 # 実装順序
