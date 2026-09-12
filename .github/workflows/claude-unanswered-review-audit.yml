@@ -1,0 +1,71 @@
+name: claude-unanswered-review-audit
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      bootstrap_previous_state:
+        description: "前回artifactが存在しない初回だけ明示的に許可する"
+        required: false
+        default: false
+        type: boolean
+      bootstrap_revision:
+        description: "bootstrapを許可した正本revision"
+        required: false
+        type: string
+permissions:
+  actions: read
+  contents: read
+  issues: read
+  pull-requests: read
+jobs:
+  shadow-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: "24.15"
+      - run: npm ci
+      - name: GitHub observationをread-only収集
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node .github/scripts/collect-claude-review-observation.mjs "${{ github.repository }}" "$RUNNER_TEMP/observation.json" "${{ github.repository_owner }}"
+      - name: 前回artifactをread-only取得
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BOOTSTRAP_PREVIOUS_STATE: ${{ inputs.bootstrap_previous_state || 'false' }}
+          BOOTSTRAP_REVISION: ${{ inputs.bootstrap_revision || '' }}
+        run: |
+          gh api "repos/${{ github.repository }}/actions/artifacts?name=claude-unanswered-review-state&per_page=100" > "$RUNNER_TEMP/previous-artifacts.json"
+          artifact_id="$(jq -r '[.artifacts[] | select(.expired == false)][0].id // empty' "$RUNNER_TEMP/previous-artifacts.json")"
+          if [ -n "$artifact_id" ]; then
+            gh api "repos/${{ github.repository }}/actions/artifacts/$artifact_id/zip" > "$RUNNER_TEMP/previous.zip"
+            unzip -p "$RUNNER_TEMP/previous.zip" report.json > "$RUNNER_TEMP/previous-report.json"
+            previous_state=loaded
+          elif [ "$BOOTSTRAP_PREVIOUS_STATE" = "true" ]; then
+            [ -n "$BOOTSTRAP_REVISION" ] || { echo "bootstrap_revision_required" >&2; exit 1; }
+            previous_state=bootstrap
+          elif jq -e '[.artifacts[] | select(.expired == true)] | length > 0' "$RUNNER_TEMP/previous-artifacts.json" >/dev/null; then
+            previous_state=expired
+          else
+            previous_state=missing
+          fi
+          echo "PREVIOUS_STATE=$previous_state" >> "$GITHUB_ENV"
+      - name: 未応答をtyped分類
+        env:
+          BOOTSTRAP_REVISION: ${{ inputs.bootstrap_revision || '' }}
+        run: |
+          previous=()
+          [ ! -f "$RUNNER_TEMP/previous-report.json" ] || previous=(--previous "$RUNNER_TEMP/previous-report.json")
+          bootstrap=()
+          [ "$PREVIOUS_STATE" != "bootstrap" ] || bootstrap=(--bootstrap-revision "$BOOTSTRAP_REVISION")
+          npx --no-install tsx src/cli/claude-unanswered-review-detector.ts --input "$RUNNER_TEMP/observation.json" --output report.json --previous-state "$PREVIOUS_STATE" "${previous[@]}" "${bootstrap[@]}"
+          node -e 'const r=require("./report.json"); process.stdout.write(`### Claude review unanswered: ${r.unanswered.length}\n\n\`${r.schema_version}\` / read_only=${r.read_only} / previous=${r.previous_observation.state} / degraded=${r.previous_observation.degraded}\n`)' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: claude-unanswered-review-state
+          path: report.json
+          retention-days: 30
