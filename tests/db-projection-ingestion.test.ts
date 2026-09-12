@@ -452,7 +452,7 @@ describe("db projection ingestion detector", () => {
           defined_id,
           layer,
           owner: "scrum-operation-governance",
-          source_path: "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+          source_path: "docs/design/helix/L3-requirements/scrum-operation-typed-projection.md",
         })),
       );
       const fitBlockers = db

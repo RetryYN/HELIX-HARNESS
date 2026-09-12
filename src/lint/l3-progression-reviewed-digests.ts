@@ -2,7 +2,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/adr/ADR-001-helix-harness-redesign-and-language.md":
     "0e037a7716dd8890fff812ac0560664f97ba693a7a04f76b339edd13bfd71b5d",
   "docs/design/design-catalog.yaml":
-    "3c370833b8891ab2aa85a18fcd17ad22683bc75687685c39763a04de8af34c61",
+    "db727470cc15bb5431be881422b3670ef742695628fda867bbd7d38a0c3894a7",
   "docs/design/harness/L1-requirements/business-requirements.md":
     "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
   "docs/design/harness/L1-requirements/functional-requirements.md":
@@ -46,7 +46,7 @@ export const L3_PROGRESSION_REVIEWED_DIGESTS = {
   "docs/design/helix/L3-requirements/pillar-functional-requirements.md":
     "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
   "docs/design/helix/L3-requirements/vmodel-docgen-fit.md":
-    "84bfb9106d2c21dbfd3eedf334f22cad01dcd224f9c42001d3d5688855092bf0",
+    "1335b57bfc6dbdb0232f1d3fb2ec3fb1f374617ba644eb1e1ad10ba6d1f15117",
   "docs/governance/coding-rules.md":
     "4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e",
   "docs/governance/document-system-map.md":

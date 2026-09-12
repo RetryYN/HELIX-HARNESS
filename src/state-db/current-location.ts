@@ -1968,7 +1968,8 @@ const CANONICAL_SCRUM_OPERATION_DECLARATIONS = [
   layer: string;
 }>;
 
-const CANONICAL_SCRUM_OPERATION_SOURCE = "docs/design/helix/L3-requirements/vmodel-docgen-fit.md";
+const CANONICAL_SCRUM_OPERATION_SOURCE =
+  "docs/design/helix/L3-requirements/scrum-operation-typed-projection.md";
 const CANONICAL_SCRUM_OPERATION_OWNER = "scrum-operation-governance";
 
 const ZIP_ADOPTION_RULES = [

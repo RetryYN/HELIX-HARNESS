@@ -7,8 +7,8 @@ created: 2026-09-12
 updated: 2026-09-12
 owner: QA / TL
 plan: PLAN-RECOVERY-1751-scrum-operation-typed-projection
-parent_design: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
-pair_artifact: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
+parent_design: docs/design/helix/L3-requirements/scrum-operation-typed-projection.md
+pair_artifact: docs/design/helix/L3-requirements/scrum-operation-typed-projection.md
 behavior_contract_id: SCRUM-OPERATION-TYPED-PROJECTION-001
 spec:
   defines:
