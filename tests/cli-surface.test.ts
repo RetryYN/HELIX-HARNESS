@@ -88,6 +88,36 @@ function runCliIn(
   });
 }
 
+function initializeExactHeadFixture(root: string): string {
+  const remoteRoot = mkdtempSync(join(tmpdir(), "helix-cli-exact-head-origin-"));
+  const runGit = (cwd: string, args: string[]) => {
+    const result = spawnSync("git", args, { cwd, encoding: "utf8" });
+    if (result.status !== 0) {
+      throw new Error(`git exact HEAD fixture failed: ${args.join(" ")}: ${result.stderr}`);
+    }
+  };
+  runGit(remoteRoot, ["init", "--bare", "-q"]);
+  runGit(root, ["init", "-q", "-b", "main"]);
+  runGit(root, ["config", "user.email", "helix-test@example.invalid"]);
+  runGit(root, ["config", "user.name", "HELIX Test"]);
+  runGit(root, ["remote", "add", "origin", remoteRoot]);
+  synchronizeExactHeadFixture(root);
+  return remoteRoot;
+}
+
+function synchronizeExactHeadFixture(root: string): void {
+  for (const args of [
+    ["add", "-A"],
+    ["commit", "--allow-empty", "-qm", "test: synchronize exact HEAD fixture"],
+    ["push", "-q", "-u", "origin", "HEAD:refs/heads/main"],
+  ]) {
+    const result = spawnSync("git", args, { cwd: root, encoding: "utf8" });
+    if (result.status !== 0) {
+      throw new Error(`git exact HEAD fixture failed: ${args.join(" ")}: ${result.stderr}`);
+    }
+  }
+}
+
 function installProjectHookAuthorityEnvelope(root: string): string {
   for (const relative of [
     ".codex/hooks.json",
@@ -6807,6 +6837,7 @@ describe("L7 CLI surface closure", () => {
 
   it("U-CLOSURE-PROBE-REENTRANCY-001: 同一repo再入は証跡出力前にfail-closeし、fixture/親probeを維持する (PLAN-L7-548-closure-evidence-probe-reentrancy)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-evidence-probe-out-"));
+    let remoteRoot: string | null = null;
     try {
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
       writeFileSync(
@@ -6848,6 +6879,7 @@ describe("L7 CLI surface closure", () => {
         ].join("\n"),
         "utf8",
       );
+      remoteRoot = initializeExactHeadFixture(root);
 
       const probePath = join(root, "tmp", "probe-record.json");
       const probe = runCliIn(root, [
@@ -6937,6 +6969,7 @@ describe("L7 CLI surface closure", () => {
         JSON.stringify({ scripts: { "test:fast": "node probe-env-check.mjs" } }, null, 2),
         "utf8",
       );
+      synchronizeExactHeadFixture(root);
 
       const propagated = runCliIn(root, [
         "closure",
@@ -6954,6 +6987,7 @@ describe("L7 CLI surface closure", () => {
       expect(JSON.parse(propagated.stdout)).toMatchObject({
         execution: { status: "passed", exit_code: 0 },
       });
+      synchronizeExactHeadFixture(root);
 
       const summaryProbePath = join(root, "tmp", "probe-record-summary.json");
       const summaryProbe = runCliIn(root, [
@@ -7064,11 +7098,13 @@ describe("L7 CLI surface closure", () => {
       );
     } finally {
       rmSync(root, { recursive: true, force: true });
+      if (remoteRoot) rmSync(remoteRoot, { recursive: true, force: true });
     }
   }, 15_000);
 
   it("U-CLOSPROBE-001: 間接再入・symlink marker・解釈不能markerをfail-closeする (PLAN-RECOVERY-52-closure-probe-reentrancy-closure)", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-cli-closprobe-"));
+    let remoteRoot: string | null = null;
     try {
       mkdirSync(join(root, "tmp"), { recursive: true });
       mkdirSync(join(root, "docs", "plans"), { recursive: true });
@@ -7125,6 +7161,7 @@ describe("L7 CLI surface closure", () => {
         ),
         "utf8",
       );
+      remoteRoot = initializeExactHeadFixture(root);
       const probeArgs = (out: string) => [
         "closure",
         "evidence-probe",
@@ -7173,6 +7210,7 @@ describe("L7 CLI surface closure", () => {
       expect(unparseable.stderr).toContain("reentrant execution blocked");
     } finally {
       rmSync(root, { recursive: true, force: true });
+      if (remoteRoot) rmSync(remoteRoot, { recursive: true, force: true });
     }
   });
 
