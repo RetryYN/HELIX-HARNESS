@@ -76,5 +76,7 @@ runtime source、worker起動、canary activation、distribution publishは後�
 2026-09-12にPython 3.14.7公式release surfaceからLinux source tarballとWindows x64 installer、各
 Sigstore bundle、SPDX 2.3 SBOMを取得した。release page掲載SHA-256と実bytesが一致し、`uvx sigstore verify identity
 --offline`で`hugo@python.org`／`https://github.com/login/oauth`を束縛して両artifactがOKとなった。
-artifact digestのexact setはL5設計へ記録した。manifest/lock選定、source build、offline dependency install、
+artifact digestのexact setはL5設計へ記録した。lock producer候補はattestation検証済み`uv 0.12.0`、正本形式は
+`pyproject.toml`＋`uv.lock`、PEP 751 `pylock.toml`は一方向監査projectionとした。3.14.7不在環境での
+offline lockがexit 2となり旧interpreterへfallbackしないことも実測した。source build、実lock生成、offline sync、
 rollback rehearsalは未実証なので、本PLANはdraftを維持する。

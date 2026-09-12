@@ -103,6 +103,8 @@ caseごとのstate/failure合否と18/18分母は次表だけから算出する�
 署名・provenance・SHA-256欠落、lock/transitive drift、offline network fallback、SBOM欠落・重複・余剰、
 未承認free-threaded/JIT、OS別artifact混同、rollback receipt欠落を個別に反証する。version文字列だけ、
 system Python、online install、代表dependencyだけのSBOM、未実行rollbackをgreen evidenceにしない。
+lock oracleは`uv 0.12.0`以外のproducer、attestation欠落、`uv.lock`手編集、`pylock.toml`からの逆投影、
+package set差、`--frozen`／`--offline`／`--no-index`／`--no-python-downloads`の個別削除をredにする。
 
 9/9をLinux primaryの実processで実行し、上表のmutationを省略しない。各caseは期待failure code、terminal receipt
 exactly-one、partial authoritative write 0、process group残存0、artifact/event/projection digestをassertする。

@@ -278,6 +278,26 @@ runtime build、rollbackの完了を証明しない。
 python.org artifact、`.sigstore`、`.spdx.json`に限定する。Python 3.14以降はPGP release signatureを
 提供せずSigstoreを推奨するという同pageのPEP 761記載に従う。
 
+lock producer候補は`uv 0.12.0`に固定し、project authorityを`pyproject.toml`＋`uv.lock`、tool非依存の
+監査projectionをPEP 751 `pylock.toml`とする。二つを独立正本にはせず、`uv.lock`から同一producerでexportし、
+入力manifest digest、producer version/artifact digest、両lock digest、package exact setの一致をreceiptへ持つ。
+実行経路は`uv lock --check`、`uv sync --frozen --offline --no-index --no-python-downloads`を要求し、暗黙lock更新、
+index access、Python downloadを禁止する。
+
+uv公式GitHub release `0.12.0`から取得したtool artifactは次のとおりで、GitHub artifact attestationを
+`astral-sh/uv` repository identityへ束縛して検証した。ローカル既存binaryのdigest
+`b6e3cb5b4858d920c63e1d88e31a7a4d8f567073ee4e5e4a1889f93984dc28ea`はrelease archive digestと同一では
+ないため、由来未証明のローカルbinaryをfreeze evidenceへ流用しない。
+
+| 対象 | artifact | SHA-256 |
+|---|---|---|
+| Linux x64 | `uv-x86_64-unknown-linux-gnu.tar.gz` | `eaf842262aa1c418d8ecc5605f02ee1ebfd369124fa48548e85f9481a47831a9` |
+| Windows x64 | `uv-x86_64-pc-windows-msvc.zip` | `68200e25de594df92387186bbfb9d9df606ec1d87efaa0ae0c7f690970e53db6` |
+
+一次情報は`https://github.com/astral-sh/uv/releases/tag/0.12.0`、`https://docs.astral.sh/uv/concepts/projects/layout/`、
+`https://packaging.python.org/en/latest/specifications/pylock-toml/`である。3.14.7 interpreterが存在しない環境では
+dependency 0でもoffline lock生成がexit 2となることを確認済みであり、3.14.6へfallbackしない。
+
 ## Design Reality Binding 契約
 
 本 doc は設計フェーズの正本であり、runtime asset は実装スライス（L6 実装 ↔ L7 TDD closure）で
