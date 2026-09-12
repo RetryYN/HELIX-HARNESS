@@ -139,6 +139,9 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
   });
   const failures: ResidentLaneAssignmentFailureCode[] = [];
   const observedAt = Date.parse(parsed.data.observed_at);
+  if (active.some((assignment) => Date.parse(assignment.created_at) > observedAt)) {
+    failures.push("ASSIGNMENT_INPUT_INVALID");
+  }
   if (active.some((assignment) => Date.parse(assignment.expires_at) <= observedAt)) {
     failures.push("ASSIGNMENT_LEASE_EXPIRED");
   }

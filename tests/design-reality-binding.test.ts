@@ -1832,6 +1832,13 @@ runtimeCommand("claude");
       ),
     ).toBe(true);
     expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "Date.parse(assignment.created_at) > observedAt",
+        "false",
+        "U-RLA-016",
+      ),
+    ).toBe(true);
+    expect(
       executeResidentLaneAssignmentMutationOracle("identities.size > 1", "false", "U-RLA-010"),
     ).toBe(true);
     expect(

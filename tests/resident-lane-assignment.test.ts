@@ -77,6 +77,15 @@ describe("resident lane assignment kernel", () => {
     ).toMatchObject({ ok: false, failure_codes: ["ASSIGNMENT_LEASE_EXPIRED"] });
   });
 
+  it("U-RLA-016: 観測時刻より未来開始のleaseをactiveへ昇格させない", () => {
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T10:59:59.000Z",
+        assignments: [assignment()],
+      }),
+    ).toMatchObject({ ok: false, failure_codes: ["ASSIGNMENT_INPUT_INVALID"] });
+  });
+
   it("U-RLA-010: 同じassignment IDの異内容replayを拒否する", () => {
     expect(
       projectResidentLaneAssignments({
