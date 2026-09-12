@@ -1802,8 +1802,8 @@ runtimeCommand("claude");
   it("U-DRB-030: resident Assignmentのscope／ownership／lease／HEAD mutantをRedにする", () => {
     expect(
       executeResidentLaneAssignmentMutationOracle(
-        "if (!assignment.success) {",
-        "if (false) {",
+        'if (!assignment.success) {\n      return { ok: false, active_assignments: [], failure_codes: ["ASSIGNMENT_INPUT_INVALID"] };',
+        'if (!assignment.success) {\n      return { ok: false, active_assignments: [], failure_codes: ["ASSIGNMENT_LEASE_EXPIRED"] };',
         "U-RLA-002",
       ),
     ).toBe(true);
