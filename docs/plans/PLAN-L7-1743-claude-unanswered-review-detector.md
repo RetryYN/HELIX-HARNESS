@@ -65,6 +65,7 @@ generates:
   - { artifact_path: src/cli/claude-unanswered-review-detector.ts, artifact_type: source_module }
   - { artifact_path: .github/scripts/collect-claude-review-observation.mjs, artifact_type: source_module }
   - { artifact_path: .github/workflows/claude-unanswered-review-audit.yml, artifact_type: yaml_config }
+  - { artifact_path: tests/claude-unanswered-review-detector.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
@@ -72,7 +73,6 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-  - { artifact_path: tests/claude-unanswered-review-detector.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
