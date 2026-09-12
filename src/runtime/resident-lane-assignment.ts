@@ -131,7 +131,7 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
 
   const deduplicated = new Map<string, ResidentLaneAssignmentV1>();
   for (const assignment of assignments) deduplicated.set(canonicalJson(assignment), assignment);
-  const active = [...deduplicated.values()].sort((left, right) => {
+  const ordered = [...deduplicated.values()].sort((left, right) => {
     const identityOrder = compareBytewise(left.assignment_id, right.assignment_id);
     return identityOrder !== 0
       ? identityOrder
@@ -139,12 +139,17 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
   });
   const failures: ResidentLaneAssignmentFailureCode[] = [];
   const observedAt = Date.parse(parsed.data.observed_at);
-  if (active.some((assignment) => Date.parse(assignment.created_at) > observedAt)) {
+  if (ordered.some((assignment) => Date.parse(assignment.created_at) > observedAt)) {
     failures.push("ASSIGNMENT_INPUT_INVALID");
   }
-  if (active.some((assignment) => Date.parse(assignment.expires_at) <= observedAt)) {
+  if (ordered.some((assignment) => Date.parse(assignment.expires_at) <= observedAt)) {
     failures.push("ASSIGNMENT_LEASE_EXPIRED");
   }
+  const active = ordered.filter(
+    (assignment) =>
+      Date.parse(assignment.created_at) <= observedAt &&
+      observedAt < Date.parse(assignment.expires_at),
+  );
 
   const assignmentIdentities = new Map<string, Set<string>>();
   const branchOwners = new Map<string, Set<string>>();

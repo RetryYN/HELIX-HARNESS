@@ -83,7 +83,36 @@ describe("resident lane assignment kernel", () => {
         observed_at: "2026-09-12T10:59:59.000Z",
         assignments: [assignment()],
       }),
-    ).toMatchObject({ ok: false, failure_codes: ["ASSIGNMENT_INPUT_INVALID"] });
+    ).toMatchObject({
+      ok: false,
+      active_assignments: [],
+      failure_codes: ["ASSIGNMENT_INPUT_INVALID"],
+    });
+  });
+
+  it("U-RLA-017: 非有効leaseをactive競合判定から除外する", () => {
+    const current = assignment({
+      assignment_id: "assignment:current",
+      created_at: "2026-09-12T12:00:00.000Z",
+      expires_at: "2026-09-12T13:00:00.000Z",
+    });
+    const expired = assignment({
+      assignment_id: "assignment:expired",
+      assigned_lane_id: "codex-worker-old",
+      lease_id: "lease-old",
+      created_at: "2026-09-12T10:00:00.000Z",
+      expires_at: "2026-09-12T11:00:00.000Z",
+    });
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T12:30:00.000Z",
+        assignments: [current, expired],
+      }),
+    ).toEqual({
+      ok: false,
+      active_assignments: [current],
+      failure_codes: ["ASSIGNMENT_LEASE_EXPIRED"],
+    });
   });
 
   it("U-RLA-010: 同じassignment IDの異内容replayを拒否する", () => {
