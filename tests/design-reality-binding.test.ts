@@ -513,7 +513,7 @@ function executeResidentLaneAssignmentMutationOracle(
   } catch (error) {
     const failure = error as { stdout?: Buffer; stderr?: Buffer };
     const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
-    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+    return output.split(/\r?\n/u).some((line) => line.includes("FAIL") && line.includes(oracle));
   } finally {
     unlinkSync(testPath);
     unlinkSync(modulePath);
