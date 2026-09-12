@@ -156,6 +156,37 @@ describe("resident lane assignment kernel", () => {
     ).toEqual({ ok: true, active_assignments: [takeover.assignment] });
   });
 
+  it("U-RLA-020: safe integerを超えるlease fenceを拒否する", () => {
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [assignment({ lease_fence: Number.MAX_SAFE_INTEGER + 1 })],
+      }),
+    ).toEqual({
+      ok: false,
+      active_assignments: [],
+      failure_codes: ["ASSIGNMENT_INPUT_INVALID"],
+    });
+  });
+
+  it("U-RLA-021: PLAN scopeの競合判定をrepositoryで名前空間化する", () => {
+    const first = assignment({ scope_ref: "plan:PLAN-L7-860-shared-scope" });
+    const second = assignment({
+      assignment_id: "assignment:other-repository",
+      repository: "RetryYN/OTHER",
+      scope_ref: "plan:PLAN-L7-860-shared-scope",
+      branch: "feature/860-other-repository",
+      assigned_lane_id: "codex-worker-02",
+      lease_id: "lease-other-860",
+    });
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [first, second],
+      }),
+    ).toEqual({ ok: true, active_assignments: [first, second] });
+  });
+
   it("U-RLA-010: 同じassignment IDの異内容replayを拒否する", () => {
     expect(
       projectResidentLaneAssignments({

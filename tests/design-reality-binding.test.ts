@@ -1840,6 +1840,13 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeResidentLaneAssignmentMutationOracle(
+        ".int().safe().positive()",
+        ".int().positive()",
+        "U-RLA-020",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
         "if (identityConflict) {",
         "if (false) {",
         "U-RLA-010",
@@ -1850,6 +1857,13 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeResidentLaneAssignmentMutationOracle("branches.size > 1", "false", "U-RLA-005"),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "const scopeKey = canonicalJson([repositoryKey, normalizedScope]);",
+        "const scopeKey = normalizedScope;",
+        "U-RLA-021",
+      ),
     ).toBe(true);
     expect(
       executeResidentLaneAssignmentMutationOracle(

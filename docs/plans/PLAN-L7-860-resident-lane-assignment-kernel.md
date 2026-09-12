@@ -23,13 +23,13 @@ legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: domain_service
 contract_preconditions: "PLAN-L3-75でRLO要件とL3↔L10がconfirmedであり、#213 lease CAS、#215/#499 event substrate、#1256 reservation pure coreが存在する"
-contract_postconditions: "Assignment exact schema、active exact-set projection、review return、takeoverをpure kernelとして提供し、10 oracleがgreenになる"
+contract_postconditions: "Assignment exact schema、active exact-set projection、review return、takeoverをpure kernelとして提供し、21 oracleがgreenになる"
 contract_invariants: "scope意味を管理層が変更せず、provider sessionへfallbackせず、第二lease／第二journal／第二Assignment lifecycleを新設しない"
 contract_failures: "scope欠落・併記、unknown field、expired lease、duplicate writer、二active branch、foreign writer/branch、stale HEAD/fence、handover欠落をfail-closeする"
 tdd_red_required: true
 tdd_red_waiver_reason: "実装前にmodule不存在をU-RLA suiteで再現し、Cannot find moduleでRedを固定した"
 mutation_oracle_required: true
-mutation_oracle_evidence: "2026-09-12T11:38:18Zにreview-returnのfence一致guardを一時無効化し、U-RLA-006が1 failed／8 skippedでASSIGNMENT_STALE_FENCE mutationをkillした。直後にguardを復元した。scope／branch／expiry／takeoverの反例はU-RLA-002..008で直接固定する。"
+mutation_oracle_evidence: "2026-09-12T13:34:52Z、U-DRB-030がAssignment境界の20 mutationをkillした。独立監査で生存を指摘されたsafe-integer fence除去はU-RLA-020、PLAN scopeのrepository namespacing除去はU-RLA-021でRedとなり、実装・PLAN bindings・L8のoracle exact setは21件で一致した。"
 complexity_effect: justified_positive
 complexity_justification: "既存の単一assignment provider断片を、I/Oを持たない一つのdomain kernelへ収束させる。event/DB/GitHub責務は追加しない"
 removal_trigger: "後継version schemaへ全consumerが移行しv2 input/output consumerが0になった時"
@@ -52,6 +52,17 @@ verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-008, test_path: tests/resident-lane-assignment.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-009, test_path: tests/resident-lane-assignment.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-010, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-011, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-012, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-013, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-014, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-015, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-016, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-017, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-018, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-019, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-020, test_path: tests/resident-lane-assignment.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md, oracle_id: U-RLA-021, test_path: tests/resident-lane-assignment.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -101,7 +112,8 @@ modifies:
 
 1. `tests/resident-lane-assignment.test.ts`を先に追加した。
 2. `2026-09-12T11:21:34Z`、対象module不存在でsuiteがRedになった。
-3. pure module追加後、`2026-09-12T11:22:33Z`に9/9 green、自己監査で同一ID異内容の穴を検出・是正後は10/10 green、続く`tsc --noEmit`もexit 0となった。
+3. pure module追加後、`2026-09-12T11:22:33Z`に9/9 green、独立監査と小さな是正を反復してidentity、repository、branch、lease、takeover、replay境界を補強した。
+4. `2026-09-12T13:34:52Z`、実テスト・PLAN bindings・L8 test designをU-RLA-001..021へ再同期し、safe-integer fenceとPLAN scope repository namespacingの生存mutationへ反例を追加した。3 surfaceのexact setは各21件で差分0、targeted suiteは23 passed（21 oracle＋U-DRB-028／030）、`tsc --noEmit`とPLAN lintもexit 0となった。
 
 ## 完了前の残条件
 
