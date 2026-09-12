@@ -358,6 +358,9 @@ items:
       - docs/design/helix/L5-detail/issue-native-graph-projection.md
       - docs/design/helix/L5-detail/github-issue-native-graph-provider.md
       - docs/design/helix/L6-function-design/cli-r00-throughput-baseline.md
+      - docs/design/helix/L4-basic-design/resident-lane-assignment-boundary.md
+      - docs/design/helix/L5-detail/resident-lane-assignment-contract.md
+      - docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md
   - id: unit-test-design
     name: 単体テスト設計書
     category: test
@@ -405,6 +408,7 @@ items:
       - docs/test-design/helix/windows-lite-canary-admission-acceptance.md
       - docs/test-design/helix/resident-lane-orchestration-acceptance.md
       - docs/test-design/helix/resident-lane-orchestration-recognition.md
+      - docs/test-design/helix/L9-resident-lane-assignment-boundary-integration-test-design.md
       - docs/test-design/helix/three-lane-cloud-governance-acceptance.md
       - docs/test-design/helix/three-lane-cloud-governance-recognition.md
       - docs/test-design/helix/skill-mechanism-migration-acceptance.md
@@ -453,6 +457,7 @@ items:
       - docs/test-design/helix/L8-issue-native-graph-projection-unit-test-design.md
       - docs/test-design/helix/L8-github-issue-native-graph-provider-unit-test-design.md
       - docs/test-design/helix/L8-cli-r00-throughput-baseline-unit-test-design.md
+      - docs/test-design/helix/L8-resident-lane-assignment-unit-test-design.md
   - id: integration-test-design
     name: 結合テスト設計書
     category: test
