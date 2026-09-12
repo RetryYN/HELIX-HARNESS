@@ -6,7 +6,7 @@ layer: L1
 sub_doc: functional
 master_hub: true
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-13
 updated: 2026-09-13
