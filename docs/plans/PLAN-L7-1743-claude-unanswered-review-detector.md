@@ -4,7 +4,7 @@ title: "Claude review未応答のread-only検出"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
