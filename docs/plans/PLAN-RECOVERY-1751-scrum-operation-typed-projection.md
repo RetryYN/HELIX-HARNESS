@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1751: Scrum運営7 sourceをtyped declarationへ投影す�
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -93,6 +93,10 @@ left_arm_carry:
 # Scrum運営層typed projectionのRecovery計画
 
 ## S1判断
+
+独立review後のconfirmed世代で、`tdd_red_required`および`mutation_oracle_required`に対応する
+実行証跡が未登録であることが検出された。このため本PLANはdraftへ戻し、Red／Green時刻と
+resolvable mutation oracle evidenceを取得するまで再confirmしない。
 
 管理側Scrumのsource bindingは11件あるが、`story-mapping`、`estimation-velocity`、`dor-dod`、
 `daily-record`、`sprint-review`、`retrospective`、`burndown-velocity`の7件はDBで未観測である。
