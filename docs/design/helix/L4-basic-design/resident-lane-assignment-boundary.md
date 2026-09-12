@@ -41,10 +41,46 @@ L3のSlice 2を、管理層のAssignment authorityとproduct V-modelのscope契�
 
 ## 原子的な実装順
 
-1. pure schema/projection/review-return/takeover。
-2. version付きpayloadとhistorical HEAD/current writer admission分離。
-3. event reducer/queryとrestart replay。
-4. #1256 active writer provider。
-5. GitHub read-after、branch発行、dispatch effect。
+1. 純粋なschema・projection・review-return・takeover。
+2. version付きpayloadと過去HEAD／現writerの許可判定分離。
+3. event reducer／queryと再起動後replay。
+4. #1256へactive writerを渡すprovider。
+5. GitHub read-after、branch発行、dispatch副作用。
 
 本sliceは1だけを実装する。2以降を暗黙に満たしたとは扱わない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [
+    "ASSIGNMENT_INPUT_INVALID",
+    "ASSIGNMENT_LEASE_EXPIRED",
+    "ASSIGNMENT_ID_CONFLICT",
+    "ASSIGNMENT_DUPLICATE_BRANCH_WRITER",
+    "ASSIGNMENT_SCOPE_ACTIVE_BRANCH_CONFLICT",
+    "ASSIGNMENT_FOREIGN_WRITER",
+    "ASSIGNMENT_FOREIGN_BRANCH",
+    "ASSIGNMENT_STALE_CANDIDATE_HEAD",
+    "ASSIGNMENT_STALE_FENCE",
+    "ASSIGNMENT_PREVIOUS_LEASE_ACTIVE",
+    "ASSIGNMENT_HANDOVER_RECEIPT_MISSING"
+  ],
+  "assets": [
+    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:bfbdf082d8f62684bd88fe8557f90ff65cf9ae2743effb44d5cd9350a552562e", "current_authority": true }
+  ],
+  "failure_reachability": [
+    { "reason_code": "ASSIGNMENT_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-002", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_INPUT_INVALID", "mutation": { "remove_post_resolution_check": "if (!assignment.success) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_LEASE_EXPIRED", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-003", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_LEASE_EXPIRED", "mutation": { "remove_post_resolution_check": "Date.parse(assignment.expires_at) <= observedAt", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_ID_CONFLICT", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-010", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_ID_CONFLICT", "mutation": { "remove_post_resolution_check": "identities.size > 1", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_DUPLICATE_BRANCH_WRITER", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-004", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_DUPLICATE_BRANCH_WRITER", "mutation": { "remove_post_resolution_check": "owners.size > 1", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_SCOPE_ACTIVE_BRANCH_CONFLICT", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-005", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_SCOPE_ACTIVE_BRANCH_CONFLICT", "mutation": { "remove_post_resolution_check": "branches.size > 1", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_FOREIGN_WRITER", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "evaluateAssignmentReviewReturn", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-007", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_FOREIGN_WRITER", "mutation": { "remove_post_resolution_check": "input.worker_lane_id !== input.assignment.assigned_lane_id", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_FOREIGN_BRANCH", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "evaluateAssignmentReviewReturn", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-006", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_FOREIGN_BRANCH", "mutation": { "remove_post_resolution_check": "input.branch !== input.assignment.branch", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_STALE_CANDIDATE_HEAD", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "evaluateAssignmentReviewReturn", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-006", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_STALE_CANDIDATE_HEAD", "mutation": { "remove_post_resolution_check": "input.candidate_head !== input.assignment.candidate_head", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_STALE_FENCE", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "evaluateAssignmentReviewReturn", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-006", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_STALE_FENCE", "mutation": { "remove_post_resolution_check": "input.lease_fence !== input.assignment.lease_fence", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_PREVIOUS_LEASE_ACTIVE", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "evaluateAssignmentTakeover", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-008", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_PREVIOUS_LEASE_ACTIVE", "mutation": { "remove_post_resolution_check": "!input.previous_lease_ended", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
+    { "reason_code": "ASSIGNMENT_HANDOVER_RECEIPT_MISSING", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "evaluateAssignmentTakeover", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-008", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_HANDOVER_RECEIPT_MISSING", "mutation": { "remove_post_resolution_check": "!digestSchema.safeParse(input.handover_receipt_digest).success", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } }
+  ]
+}
+```

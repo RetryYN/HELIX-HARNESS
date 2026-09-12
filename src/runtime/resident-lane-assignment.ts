@@ -47,6 +47,7 @@ export type ResidentLaneAssignmentV1 = z.infer<typeof residentLaneAssignmentSche
 export type ResidentLaneAssignmentFailureCode =
   | "ASSIGNMENT_INPUT_INVALID"
   | "ASSIGNMENT_LEASE_EXPIRED"
+  | "ASSIGNMENT_ID_CONFLICT"
   | "ASSIGNMENT_DUPLICATE_BRANCH_WRITER"
   | "ASSIGNMENT_SCOPE_ACTIVE_BRANCH_CONFLICT"
   | "ASSIGNMENT_FOREIGN_WRITER"
@@ -100,19 +101,26 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
   );
   const failures: ResidentLaneAssignmentFailureCode[] = [];
   const observedAt = Date.parse(parsed.data.observed_at);
-  if (active.some((assignment) => Date.parse(assignment.expires_at) < observedAt)) {
+  if (active.some((assignment) => Date.parse(assignment.expires_at) <= observedAt)) {
     failures.push("ASSIGNMENT_LEASE_EXPIRED");
   }
 
+  const assignmentIdentities = new Map<string, Set<string>>();
   const branchOwners = new Map<string, Set<string>>();
   const scopeBranches = new Map<string, Set<string>>();
   for (const assignment of active) {
+    const identities = assignmentIdentities.get(assignment.assignment_id) ?? new Set<string>();
+    identities.add(canonicalJson(assignment));
+    assignmentIdentities.set(assignment.assignment_id, identities);
     const owners = branchOwners.get(assignment.branch) ?? new Set<string>();
     owners.add(`${assignment.assignment_id}:${assignment.assigned_lane_id}:${assignment.lease_id}`);
     branchOwners.set(assignment.branch, owners);
     const branches = scopeBranches.get(assignment.scope_ref) ?? new Set<string>();
     branches.add(assignment.branch);
     scopeBranches.set(assignment.scope_ref, branches);
+  }
+  if ([...assignmentIdentities.values()].some((identities) => identities.size > 1)) {
+    failures.push("ASSIGNMENT_ID_CONFLICT");
   }
   if ([...branchOwners.values()].some((owners) => owners.size > 1)) {
     failures.push("ASSIGNMENT_DUPLICATE_BRANCH_WRITER");

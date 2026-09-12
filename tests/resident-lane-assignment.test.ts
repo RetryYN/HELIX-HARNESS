@@ -64,39 +64,53 @@ describe("resident lane assignment kernel", () => {
   it("U-RLA-003: expired leaseを独立dispositionで拒否する", () => {
     expect(
       projectResidentLaneAssignments({
-        observed_at: "2026-09-12T12:00:00.001Z",
+        observed_at: "2026-09-12T12:00:00.000Z",
         assignments: [assignment()],
       }),
     ).toMatchObject({ ok: false, failure_codes: ["ASSIGNMENT_LEASE_EXPIRED"] });
   });
 
-  it("U-RLA-004: 同一branchの二重writerを拒否する", () => {
-    const result = projectResidentLaneAssignments({
-      observed_at: "2026-09-12T11:30:00.000Z",
-      assignments: [
-        assignment(),
-        assignment({ assignment_id: "assignment:other", assigned_lane_id: "codex-worker-02" }),
-      ],
+  it("U-RLA-010: 同じassignment IDの異内容replayを拒否する", () => {
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [assignment(), assignment({ candidate_head: "c".repeat(40) })],
+      }),
+    ).toMatchObject({
+      ok: false,
+      failure_codes: ["ASSIGNMENT_ID_CONFLICT"],
     });
-    expect(result).toMatchObject({
+  });
+
+  it("U-RLA-004: 同一branchの二重writerを拒否する", () => {
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [
+          assignment(),
+          assignment({ assignment_id: "assignment:other", assigned_lane_id: "codex-worker-02" }),
+        ],
+      }),
+    ).toMatchObject({
       ok: false,
       failure_codes: ["ASSIGNMENT_DUPLICATE_BRANCH_WRITER"],
     });
   });
 
   it("U-RLA-005: 一Issueの二active branchを拒否する", () => {
-    const result = projectResidentLaneAssignments({
-      observed_at: "2026-09-12T11:30:00.000Z",
-      assignments: [
-        assignment(),
-        assignment({
-          assignment_id: "assignment:other",
-          branch: "feature/860-other",
-          assigned_lane_id: "codex-worker-02",
-        }),
-      ],
-    });
-    expect(result).toMatchObject({
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [
+          assignment(),
+          assignment({
+            assignment_id: "assignment:other",
+            branch: "feature/860-other",
+            assigned_lane_id: "codex-worker-02",
+          }),
+        ],
+      }),
+    ).toMatchObject({
       ok: false,
       failure_codes: ["ASSIGNMENT_SCOPE_ACTIVE_BRANCH_CONFLICT"],
     });

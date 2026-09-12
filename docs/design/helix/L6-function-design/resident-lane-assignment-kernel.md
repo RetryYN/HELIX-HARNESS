@@ -11,7 +11,7 @@ updated: 2026-09-12
 owner: Codex / TL
 plan: PLAN-L7-860-resident-lane-assignment-kernel
 parent_design: docs/design/helix/L5-detail/resident-lane-assignment-contract.md
-pair_artifact: docs/plans/PLAN-L7-860-resident-lane-assignment-kernel.md
+pair_artifact: docs/test-design/helix/L8-resident-lane-assignment-unit-test-design.md
 ---
 
 # Resident Lane Assignment pure kernel 機能設計

@@ -10,7 +10,13 @@ updated: 2026-09-12
 owner: QA / Codex TL
 authority: docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md
 plan: docs/plans/PLAN-L7-860-resident-lane-assignment-kernel.md
-pair_artifact: docs/design/helix/L5-detail/resident-lane-assignment-contract.md
+pair_group:
+  schema_version: helix-pair-group.v1
+  group_id: helix-resident-lane-assignment-unit
+  authority: docs/design/helix/
+  members:
+    - docs/design/helix/L5-detail/resident-lane-assignment-contract.md
+    - docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md
 ---
 
 # Resident Lane Assignment契約 単体テスト設計
@@ -26,6 +32,7 @@ pair_artifact: docs/design/helix/L5-detail/resident-lane-assignment-contract.md
 | U-RLA-007 | review return | 元worker・同branchだけへ戻しforeign workerを拒否する | `tests/resident-lane-assignment.test.ts` |
 | U-RLA-008 | takeover | 旧lease終端、handover、新fenceのいずれか欠落を拒否する | `tests/resident-lane-assignment.test.ts` |
 | U-RLA-009 | idempotency | 同一packet再配信を同一projectionへ収束させる | `tests/resident-lane-assignment.test.ts` |
+| U-RLA-010 | identity conflict | 同一assignment ID・異内容の再配信を拒否する | `tests/resident-lane-assignment.test.ts` |
 
 `tests/resident-lane-assignment.test.ts`を正本oracleとする。event/restart/#1256接続はL9後続oracleであり、
 pure testの成功から結合完了を推論しない。

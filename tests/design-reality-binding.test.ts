@@ -483,6 +483,43 @@ function executeWorkerReviewMutationOracle(
   }
 }
 
+function executeResidentLaneAssignmentMutationOracle(
+  target: string,
+  replacement: string,
+  oracle: string,
+): boolean {
+  const runtime = readFileSync("src/runtime/resident-lane-assignment.ts", "utf8");
+  const test = readFileSync("tests/resident-lane-assignment.test.ts", "utf8");
+  if (!runtime.includes(target)) return false;
+  const id = randomUUID();
+  const moduleName = `resident-lane-assignment.mutant-${id}.ts`;
+  const modulePath = `src/runtime/${moduleName}`;
+  const testPath = `tests/resident-lane-assignment.mutant-${id}.test.ts`;
+  writeFileSync(modulePath, runtime.replace(target, replacement));
+  writeFileSync(
+    testPath,
+    test.replace(
+      'from "../src/runtime/resident-lane-assignment"',
+      `from "../src/runtime/${moduleName.slice(0, -3)}"`,
+    ),
+  );
+  try {
+    execFileSync(
+      "npx",
+      ["--no-install", "vitest", "run", testPath, "-t", oracle, "--reporter=dot"],
+      { cwd: process.cwd(), stdio: "pipe", timeout: 30_000 },
+    );
+    return false;
+  } catch (error) {
+    const failure = error as { stdout?: Buffer; stderr?: Buffer };
+    const output = `${failure.stdout?.toString() ?? ""}\n${failure.stderr?.toString() ?? ""}`;
+    return output.includes(oracle) && /FAIL|AssertionError|TypeError/.test(output);
+  } finally {
+    unlinkSync(testPath);
+    unlinkSync(modulePath);
+  }
+}
+
 function executeWorkerLifecycleMutationOracle(
   target: string,
   replacement: string,
@@ -1760,5 +1797,73 @@ runtimeCommand("claude");
         true,
       );
     }
+  }, 60_000);
+
+  it("U-DRB-030: resident Assignmentのscope／ownership／lease／HEAD mutantをRedにする", () => {
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "if (!assignment.success) {",
+        "if (false) {",
+        "U-RLA-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "Date.parse(assignment.expires_at) <= observedAt",
+        "false",
+        "U-RLA-003",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle("identities.size > 1", "false", "U-RLA-010"),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle("owners.size > 1", "false", "U-RLA-004"),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle("branches.size > 1", "false", "U-RLA-005"),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "input.worker_lane_id !== input.assignment.assigned_lane_id",
+        "false",
+        "U-RLA-007",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "input.branch !== input.assignment.branch",
+        "false",
+        "U-RLA-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "input.candidate_head !== input.assignment.candidate_head",
+        "false",
+        "U-RLA-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "input.lease_fence !== input.assignment.lease_fence",
+        "false",
+        "U-RLA-006",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "!input.previous_lease_ended",
+        "false",
+        "U-RLA-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "!digestSchema.safeParse(input.handover_receipt_digest).success",
+        "false",
+        "U-RLA-008",
+      ),
+    ).toBe(true);
   }, 60_000);
 });
