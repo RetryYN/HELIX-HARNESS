@@ -89,7 +89,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude Code / Fable 5.1"
     reviewed_at: "2026-09-11T23:52:50Z"
-    evidence_digest: "sha256:dae6e289adc2fad801993311822451a5ed50c890561282d8a23fc775f8504970"
+    evidence_digest: "sha256:a66eee18b65d425316db7e5bd2f70ea09279eeec1300828d15f42f17d792dac7"
   entries: []
 ---
 
