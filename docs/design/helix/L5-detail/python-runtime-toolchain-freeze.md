@@ -73,3 +73,18 @@ DB path、credential、Git/GitHub write authorityを与えない。
 L8の全oracle、Linux canonical実artifact、Windows compatibility artifact、offline clean install、SBOM、
 rollback rehearsal、別runtime/model familyのexact-HEAD reviewが揃うまでdraftを維持する。macOS、
 free-threaded、JIT、第三者package index、distribution publishはこのfreezeの完了条件へ混入しない。
+
+## §5 設計実在性束縛
+
+runtime authority parser、artifact verifier、lock、SBOM、worker sourceは後続L6/L7で追加する。本設計で
+定義した型やfailure codeを実装済みとして扱わない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": [],
+  "assets": [],
+  "failure_reachability": []
+}
+```
