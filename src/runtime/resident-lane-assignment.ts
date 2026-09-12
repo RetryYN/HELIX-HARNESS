@@ -131,9 +131,12 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
 
   const deduplicated = new Map<string, ResidentLaneAssignmentV1>();
   for (const assignment of assignments) deduplicated.set(canonicalJson(assignment), assignment);
-  const active = [...deduplicated.values()].sort((left, right) =>
-    compareBytewise(left.assignment_id, right.assignment_id),
-  );
+  const active = [...deduplicated.values()].sort((left, right) => {
+    const identityOrder = compareBytewise(left.assignment_id, right.assignment_id);
+    return identityOrder !== 0
+      ? identityOrder
+      : compareBytewise(canonicalJson(left), canonicalJson(right));
+  });
   const failures: ResidentLaneAssignmentFailureCode[] = [];
   const observedAt = Date.parse(parsed.data.observed_at);
   if (active.some((assignment) => Date.parse(assignment.expires_at) <= observedAt)) {

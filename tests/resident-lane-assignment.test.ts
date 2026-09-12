@@ -178,6 +178,20 @@ describe("resident lane assignment kernel", () => {
     ).toMatchObject({ ok: true, active_assignments: [mixedCase] });
   });
 
+  it("U-RLA-015: 同一IDの競合recordも入力順に依存せず投影する", () => {
+    const left = assignment();
+    const right = assignment({ candidate_head: "c".repeat(40) });
+    const forward = projectResidentLaneAssignments({
+      observed_at: "2026-09-12T11:30:00.000Z",
+      assignments: [left, right],
+    });
+    const reversed = projectResidentLaneAssignments({
+      observed_at: "2026-09-12T11:30:00.000Z",
+      assignments: [right, left],
+    });
+    expect(reversed).toEqual(forward);
+  });
+
   it("U-RLA-006: observed branch／HEAD／fenceのdriftを別々に拒否する", () => {
     const current = assignment();
     expect(

@@ -58,7 +58,7 @@ pair_artifact: docs/test-design/helix/L8-resident-lane-assignment-unit-test-desi
     "ASSIGNMENT_HANDOVER_RECEIPT_MISSING"
   ],
   "assets": [
-    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:ca08ad04e412c09c2564b864ae184df01449794c6a53241d6fd6e3151a4a14c6", "current_authority": true }
+    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:b3f256ad1deb985575e4ddab23af4a977a8f988dc8fa1b54046a2e2b6c0d9911", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "ASSIGNMENT_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-002", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_INPUT_INVALID", "mutation": { "remove_post_resolution_check": "if (!assignment.success) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },
