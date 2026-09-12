@@ -88,6 +88,7 @@ items:
       - docs/design/helix/L3-requirements/github-operations-projection.md
       - docs/design/helix/L3-requirements/lifecycle-state-separation.md
       - docs/design/helix/L3-requirements/scrum-reverse-entity-model.md
+      - docs/design/helix/L3-requirements/scrum-operation-typed-projection.md
       - docs/design/helix/L3-requirements/worker-common-contract.md
       - docs/design/helix/L3-requirements/codex-native-worker-routing-requirements.md
       - docs/design/helix/L3-requirements/management-integration-cell-requirements.md
