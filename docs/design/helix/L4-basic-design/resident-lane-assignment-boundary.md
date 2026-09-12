@@ -67,7 +67,7 @@ L3のSlice 2を、管理層のAssignment authorityとproduct V-modelのscope契�
     "ASSIGNMENT_HANDOVER_RECEIPT_MISSING"
   ],
   "assets": [
-    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:bfbdf082d8f62684bd88fe8557f90ff65cf9ae2743effb44d5cd9350a552562e", "current_authority": true }
+    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:d479b2b415163139392cd1fa7eef31027635fee052779eb813717db8329b7132", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "ASSIGNMENT_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-002", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_INPUT_INVALID", "mutation": { "remove_post_resolution_check": "if (!assignment.success) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },

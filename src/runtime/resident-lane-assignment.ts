@@ -195,8 +195,14 @@ export function evaluateAssignmentTakeover(
   if (input.remote_branch_head !== input.assignment.candidate_head) {
     return { ok: false, failure_code: "ASSIGNMENT_STALE_CANDIDATE_HEAD" };
   }
+  if (input.next_lease_id === input.assignment.lease_id) {
+    return { ok: false, failure_code: "ASSIGNMENT_INPUT_INVALID" };
+  }
   if (input.next_lease_fence !== input.assignment.lease_fence + 1) {
     return { ok: false, failure_code: "ASSIGNMENT_STALE_FENCE" };
+  }
+  if (Date.parse(input.reassigned_at) <= Date.parse(input.assignment.created_at)) {
+    return { ok: false, failure_code: "ASSIGNMENT_INPUT_INVALID" };
   }
   const next = residentLaneAssignmentSchema.safeParse({
     ...input.assignment,

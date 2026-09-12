@@ -198,10 +198,21 @@ describe("resident lane assignment kernel", () => {
       ok: false,
       failure_code: "ASSIGNMENT_HANDOVER_RECEIPT_MISSING",
     });
+    expect(evaluateAssignmentTakeover({ ...valid, remote_branch_head: "c".repeat(40) })).toEqual({
+      ok: false,
+      failure_code: "ASSIGNMENT_STALE_CANDIDATE_HEAD",
+    });
+    expect(evaluateAssignmentTakeover({ ...valid, next_lease_id: current.lease_id })).toEqual({
+      ok: false,
+      failure_code: "ASSIGNMENT_INPUT_INVALID",
+    });
     expect(evaluateAssignmentTakeover({ ...valid, next_lease_fence: 1 })).toEqual({
       ok: false,
       failure_code: "ASSIGNMENT_STALE_FENCE",
     });
+    expect(
+      evaluateAssignmentTakeover({ ...valid, reassigned_at: "2026-09-12T10:59:59.000Z" }),
+    ).toEqual({ ok: false, failure_code: "ASSIGNMENT_INPUT_INVALID" });
   });
 
   it("U-RLA-009: duplicate/replayを同一projectionへ収束させる", () => {

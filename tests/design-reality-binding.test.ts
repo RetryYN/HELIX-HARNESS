@@ -1865,5 +1865,26 @@ runtimeCommand("claude");
         "U-RLA-008",
       ),
     ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "input.remote_branch_head !== input.assignment.candidate_head",
+        "false",
+        "U-RLA-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "input.next_lease_id === input.assignment.lease_id",
+        "false",
+        "U-RLA-008",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        "Date.parse(input.reassigned_at) <= Date.parse(input.assignment.created_at)",
+        "false",
+        "U-RLA-008",
+      ),
+    ).toBe(true);
   }, 60_000);
 });
