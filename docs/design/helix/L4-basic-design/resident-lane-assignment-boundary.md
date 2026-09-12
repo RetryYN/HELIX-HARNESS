@@ -45,7 +45,7 @@ L3のSlice 2を、管理層のAssignment authorityとproduct V-modelのscope契�
 2. version付きpayloadと過去HEAD／現writerの許可判定分離。
 3. event reducer／queryと再起動後replay。
 4. #1256へactive writerを渡すprovider。
-5. GitHub read-after、branch発行、dispatch副作用。
+5. GitHub read-afterでrepository固有の保護branchを照合し、branch発行、dispatch副作用へ進む。
 
 本sliceは1だけを実装する。2以降を暗黙に満たしたとは扱わない。
 

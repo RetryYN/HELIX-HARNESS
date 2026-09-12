@@ -27,7 +27,7 @@ pair_artifact: docs/test-design/helix/L8-resident-lane-assignment-unit-test-desi
 - 担当lane／role、lease ID、正整数fence
 - 作成／期限のRFC3339 timestamp
 
-未知field、Issue scopeとrepositoryの不一致、Git refとして無効または保護対象のbranch、不正なlease期間はfail-closeする。入力欠落をcwd、env、provider session、mainから補完しない。
+未知field、Issue scopeとrepositoryの不一致、Git refとして無効なbranch、共通予約名`main`／`master`、不正なlease期間はfail-closeする。repository固有の保護branchは外部状態なしに推測せず、後続のGitHub read-after admissionで拒否する。入力欠落をcwd、env、provider session、mainから補完しない。
 
 ## 純粋な判定
 

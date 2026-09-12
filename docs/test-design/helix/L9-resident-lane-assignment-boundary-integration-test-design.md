@@ -28,5 +28,6 @@ event adapter導入時に同じ契約revisionへ束縛して実行する。
 | `IT-RLA-003` | Assignment query → #1256 reservation | active writer exact setを渡し、競合規則をadapterへ複製しない |
 | `IT-RLA-004` | #1771 role relation → #860 Assignment | required roleを照合し、relation側でlease/lifecycleを更新しない |
 | `IT-RLA-005` | restart → checkpoint/replay | provider会話なしで同一owner、branch、HEAD、fenceへ収束する |
+| `IT-RLA-006` | GitHub branch protection → assignment admission | repository固有の保護branchをread-afterで拒否し、取得不能時はdispatchをfail-closeする |
 
 これらは後続atomの必須条件であり、本pure sliceのgreen条件には数えない。
