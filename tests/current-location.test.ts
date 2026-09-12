@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   buildProjectArtifactRemapBatchReport,
@@ -34,6 +35,34 @@ function withDb<T>(fn: (db: ReturnType<typeof openHarnessDb>) => T): T {
 }
 
 describe("project current-location read model", () => {
+  // PLAN-RECOVERY-1751-scrum-operation-typed-projection
+  it("U-SCRUMOPS-001: Scrum運営7 operationのL3/L10候補pairを固定する", () => {
+    const requirementsPath =
+      "docs/governance/candidates/scrum-operation-typed-projection-requirements.md";
+    const acceptancePath =
+      "docs/governance/candidates/scrum-operation-typed-projection-acceptance.md";
+    const requirements = readFileSync(requirementsPath, "utf8");
+    const acceptance = readFileSync(acceptancePath, "utf8");
+    const operations = [
+      "scrum:story-mapping",
+      "scrum:estimation-velocity",
+      "scrum:dor-dod",
+      "scrum:daily-record",
+      "scrum:sprint-review",
+      "scrum:retrospective",
+      "scrum:burndown-velocity",
+    ];
+
+    expect(requirements).toContain("candidate_layer: L3");
+    expect(requirements).toContain(`pair_artifact: ${acceptancePath}`);
+    expect(operations.filter((operation) => requirements.includes(`\`${operation}\``))).toEqual(
+      operations,
+    );
+    expect(acceptance).toContain("candidate_layer: L10");
+    expect(acceptance).toContain(`parent_design: ${requirementsPath}`);
+    expect(acceptance.match(/\| SCRUM-OPS-AC-0[1-6] \|/g)).toHaveLength(6);
+  });
+
   it("旧 L7 実装現在地を L12 canonical の単一 L6 layer へ正規化する", () => {
     expect(mapCurrentLayerToL12("L7")).toBe("L6");
     expect(mapCurrentLayerToL12("L14")).toBe("L12");
