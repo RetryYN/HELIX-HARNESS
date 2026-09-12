@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1751: Scrum運営7 sourceをtyped declarationへ投影す�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -31,6 +31,9 @@ contract_invariants: "ZIP sourceはmigration provenanceのまま保持し、Proj
 contract_failures: "7 operationの欠落・重複・誤layer・source未束縛・ceremonyまたはmetricゼロ・DB非収束・Scrum内完結をfail-closeする"
 tdd_red_required: true
 mutation_oracle_required: true
+red_at: "2026-09-12T00:25:30Z"
+green_at: "2026-09-12T00:25:42Z"
+mutation_oracle_evidence: "tests/current-location.test.ts::U-SCRUMOPS-001 killed the seeded missing scrum:burndown-velocity declaration mutant (1 failed, exit 1); restored declaration passed (exit 0)"
 complexity_effect: net_negative
 complexity_justification: "既存vmodel-docgen-fit宣言とprojectionを拡張し、別Scrum engineや別DB tableを作らない"
 removal_trigger: "7 operationが恒常的なmanagement-operation registryへ吸収され、個別移行PLANのconsumerが0になった時"
