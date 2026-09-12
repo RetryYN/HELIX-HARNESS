@@ -76,16 +76,16 @@ modifies:
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
-    reviewed_at: "2026-09-12T02:03:33Z"
+    reviewed_at: "2026-09-12T03:44:20Z"
     tests_green_at: "2026-09-12T01:10:07Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
     reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
-    reviewed_head_sha: eaafb94563a8ce28d796676050933f98afb2d689
-    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1759#issuecomment-5642780431"
-    ci_evidence_generation: "run:34666337090:attempt:1:failure"
-    scope: "置換PRのexact HEAD独立review。旧approve済み内容とのbyte一致、commitlint、plan lint、101/101 tests、DB replay convergenceを照合しblocker 0。failure世代のためmerge admissionは別世代で要求する。"
+    reviewed_head_sha: 2f3ced7a82f7dd2b2a50439113ffe3026051e38f
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1767#issuecomment-5643267408"
+    ci_evidence_generation: "run:34670926764:attempt:1:failure"
+    scope: "clean replacement #1767のexact HEAD独立review。旧approve済み内容とのtree一致、commitlint、plan lint、70/70 tests、DB replay convergenceを照合しblocker 0。failure世代のためmerge admissionは別世代で要求する。"
     green_commands:
       - kind: unit_test
         command: "npx --no-install vitest run tests/claude-unanswered-review-detector.test.ts"
@@ -98,11 +98,11 @@ review_evidence:
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
-  assessed_at: "2026-09-12T02:03:33Z"
+  assessed_at: "2026-09-12T03:44:20Z"
   review_binding:
     reviewer: "Claude Code / Fable 5.1"
-    reviewed_at: "2026-09-12T02:03:33Z"
-    evidence_digest: "sha256:cbabe436f3dd7f45f0a80d0da675ea6ac5943777dac8ece13319d7ce37ae95ff"
+    reviewed_at: "2026-09-12T03:44:20Z"
+    evidence_digest: "sha256:ac41b886b7f643b60ee0b6b45a14bd3975675db4829afb6fe6acc22813408f30"
   entries: []
 ---
 
