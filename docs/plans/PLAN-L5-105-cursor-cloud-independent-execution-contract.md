@@ -53,9 +53,9 @@ review_evidence:
     receipt_digest: "sha256:23bb8034352592ab6537e00947ac489f1635a6193fb497ff4815ffae9f9a19e0"
     scope: "draft世代のexact HEADを独立監査しblocker 0。lint、design-language、targeted 45 tests、L5/L8 pair、catalog digest、DB projection/replay収束を確認した。CI failureはdraft起因POST_MERGE_PLANと、receipt後に是正済みのPR companion宣言だけである。"
     green_commands:
-      - kind: integration
+      - kind: unit_test
         command: "npx vitest run tests/cursor-cloud-independent-execution-contract-design.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
-        runner: local
+        runner: node
         scope: targeted
         exit_code: 0
         completed_at: "2026-09-12T22:36:39Z"
