@@ -19,7 +19,13 @@ behavior_contract_id: PYTHON-RUNTIME-TOOLCHAIN-FREEZE-001
 本書はPython worker runtime全体の既存L5↔L8 pairを再利用せず、CPython 3.14.7 toolchain authorityの
 凍結だけを検証する。worker process、semantic canary、DB transaction、distribution publishは後続PLANの責務とする。
 
-## oracle
+## 実装oracle
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-PYRT-001 | exact identityとexperimental modeの混同 | version／implementation解決後にfree-threaded／JIT driftを独立拒否する | `tests/python-runtime-toolchain-freeze.test.ts` |
+
+## 結合oracle
 
 | ID | 反証対象 | 合格条件 |
 |---|---|---|

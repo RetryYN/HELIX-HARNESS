@@ -2775,21 +2775,21 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // python_worker_boundary signalは旧proposal-only境界の再導入ではなく、ADR-009/010に従う
     // 現行Python意味コアとNode transaction writerの責務を保持するための語である。
     path: "docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md",
-    contentDigest: "e3c60a3a50fa2498570c765910104761f352538f92780325d2671be45d4c523a",
+    contentDigest: "f745c5ee9a05cc9632a9c2079d7f6b0257b0fa3da5b101c2b4b42ed5343d33a9",
     finalDisposition: "false_positive",
   },
   {
     // #242のL5 toolchain専用delta。ADR-010のPython意味コア／Node writer境界を維持し、
     // exact runtime取得・lock・SBOM・rollbackだけを既存runtime全体設計から分離する。
     path: "docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md",
-    contentDigest: "c59d021150fa9721f4c341484ee19a8c1f0ff918d1276e9061c27ae18c489422",
+    contentDigest: "eafe8e2b36905ecb95a4958cadb157a94e79f9d5b0b9d17b04a1ba9337910ea2",
     finalDisposition: "false_positive",
   },
   {
     // #242のL8 toolchain専用oracle。旧Python runtime authorityを採用せず、exact patch、
     // provenance、offline lock、SBOM、OS parity、rollbackを反証するcurrent test designである。
     path: "docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md",
-    contentDigest: "aad0e8eff1ff247785ac4083c044f1f4f324ec6bb869d4c6fff00c01d304e3be",
+    contentDigest: "87e21af09ae55eabf36f2902c23766023a9ae4ecbe351fa0f78d92566c55482d",
     finalDisposition: "false_positive",
   },
 ] as const;

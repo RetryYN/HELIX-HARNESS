@@ -32,3 +32,48 @@ behavior_contract_id: PYTHON-RUNTIME-TOOLCHAIN-FREEZE-001
 
 source build、実lock生成、offline sync、Linux／Windows parity、rollback rehearsalのreceiptが揃うまで、
 本設計、対応L8テスト設計、親PLANはdraftを維持する。
+
+## 設計実在性束縛
+
+本sliceで実在するのはexact runtime identityとexperimental modeを分離するpure resolverだけである。
+artifact取得・offline sync・rollback経路は未実装であり、実在証拠として扱わない。
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": ["PYTHON_RUNTIME_EXPERIMENTAL_MODE_MISMATCH"],
+  "assets": [
+    {
+      "asset_id": "python-runtime-toolchain-freeze-resolver",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/python-runtime-toolchain-freeze.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "resolvePythonRuntimeToolchain",
+      "source_digest": "sha256:13cc7e3467c160124e65311830c5be4ef49c0bd5a6fd1b03530efdb4dce8c4c4",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": [
+    {
+      "reason_code": "PYTHON_RUNTIME_EXPERIMENTAL_MODE_MISMATCH",
+      "reachability_mode": "identity_post_check",
+      "source_path": "src/runtime/python-runtime-toolchain-freeze.ts",
+      "source_symbol": "resolvePythonRuntimeToolchain",
+      "test_path": "tests/python-runtime-toolchain-freeze.test.ts",
+      "oracle_id": "U-PYRT-001",
+      "identity_fields": ["python_version", "implementation"],
+      "post_resolution_checks": ["free_threaded", "jit"],
+      "fixture": {
+        "registry": [{ "python_version": "3.14.7", "implementation": "cpython", "free_threaded": "disabled", "jit": "disabled" }],
+        "request": { "python_version": "3.14.7", "implementation": "cpython", "free_threaded": "enabled", "jit": "disabled" }
+      },
+      "expected_reason": "PYTHON_RUNTIME_EXPERIMENTAL_MODE_MISMATCH",
+      "mutation": {
+        "remove_post_resolution_check": "free_threaded",
+        "expected_reason_after_mutation": "OK"
+      }
+    }
+  ]
+}
+```

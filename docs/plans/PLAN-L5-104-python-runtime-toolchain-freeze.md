@@ -24,19 +24,24 @@ engineering_discipline_required: true
 change_slice: atomic
 refactor_step: introduce_contract
 legacy_retirement_state: retained
-no_code_decision: no_change
+no_code_decision: add_code
 ddd_modeling_decision: value_object
 contract_preconditions: "ADR-009/010、PLAN-L3-50、PLAN-L6-1734、PLAN-L6-108とPython公式3.14.7 release authorityを入力とする"
 contract_postconditions: "CPython exact patch、build mode、provenance、artifact digest、signature、manifest/lock、SBOM、offline install、Linux/Windows取得経路、rollback identityがL5↔L8で一意になる"
 contract_invariants: "Pythonはsemantic coreに限定し、Nodeだけがtransaction writerである。free-threadedとJITを暗黙defaultにせず、未検証runtimeをcanaryへ接続しない"
 contract_failures: "version drift、provenance/signature/digest欠落、unlocked dependency、SBOM欠落、offline不一致、OS別identity fork、experimental mode暗黙有効化をfail-closeする"
-tdd_red_required: false
-tdd_red_waiver_reason: "kind=add-design。artifact verifierとruntime admissionのRed→Greenは後続L6/L7実装PLANが所有する"
+tdd_red_required: true
+mutation_oracle_required: true
+red_at: "2026-09-12T02:35:32Z"
+green_at: "2026-09-12T02:35:53Z"
+mutation_oracle_evidence: "tests/python-runtime-toolchain-freeze.test.ts::U-PYRT-001 failed before src/runtime/python-runtime-toolchain-freeze.ts existed (module-not-found, exit 1), then passed 1/1 after the resolver was implemented (exit 0)"
 complexity_effect: net_negative
 complexity_justification: "runtime選択をworkerごとの暗黙設定にせず、一つのversioned authority receiptへ収束する"
 removal_trigger: "後継Python runtime authorityへreceipt付きmigrationし3.14.7 consumerが0になった時"
 parent_design: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md
 pair_artifact: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md, oracle_id: U-PYRT-001, test_path: tests/python-runtime-toolchain-freeze.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — runtime identity、provenance、lock境界" }
   - { role: qa, slot_label: "QA — signature、offline、SBOM、OS parity反例" }
@@ -45,7 +50,10 @@ generates:
   - { artifact_path: docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md, artifact_type: test_design }
+  - { artifact_path: src/runtime/python-runtime-toolchain-freeze.ts, artifact_type: source_module }
+  - { artifact_path: tests/python-runtime-toolchain-freeze.test.ts, artifact_type: test_code }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: docs/design/helix/L5-detail/python-worker-runtime.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 dependencies:
