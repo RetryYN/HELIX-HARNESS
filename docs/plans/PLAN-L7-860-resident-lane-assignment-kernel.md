@@ -123,7 +123,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude independent reviewer / claude-opus-5"
     reviewed_at: "2026-09-12T13:45:10Z"
-    evidence_digest: "sha256:39b2977fbb7617c4cab7d46b6566f5a0752e302d51d9776bdf18a829b5a437a8"
+    evidence_digest: "sha256:f4f5170ead36952206a90bfd50cbd6431fe2a9d4ac93ef7ffacd0af69c19bca9"
   entries: []
 ---
 
