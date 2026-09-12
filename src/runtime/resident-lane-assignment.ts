@@ -154,10 +154,12 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
   const assignmentIdentities = new Map<string, Set<string>>();
   const branchOwners = new Map<string, Set<string>>();
   const scopeBranches = new Map<string, Set<string>>();
-  for (const assignment of active) {
+  for (const assignment of ordered) {
     const identities = assignmentIdentities.get(assignment.assignment_id) ?? new Set<string>();
     identities.add(canonicalJson(assignment));
     assignmentIdentities.set(assignment.assignment_id, identities);
+  }
+  for (const assignment of active) {
     const repositoryKey = assignment.repository.toLowerCase();
     const branchKey = canonicalJson([repositoryKey, assignment.branch]);
     const owners = branchOwners.get(branchKey) ?? new Set<string>();

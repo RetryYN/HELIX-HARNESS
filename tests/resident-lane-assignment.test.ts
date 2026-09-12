@@ -115,6 +115,24 @@ describe("resident lane assignment kernel", () => {
     });
   });
 
+  it("U-RLA-018: 非active recordでもassignment ID改変を検出する", () => {
+    const expired = assignment({ expires_at: "2026-09-12T11:30:00.000Z" });
+    const altered = assignment({
+      candidate_head: "c".repeat(40),
+      expires_at: "2026-09-12T11:30:00.000Z",
+    });
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T12:00:00.000Z",
+        assignments: [expired, altered],
+      }),
+    ).toEqual({
+      ok: false,
+      active_assignments: [],
+      failure_codes: ["ASSIGNMENT_ID_CONFLICT", "ASSIGNMENT_LEASE_EXPIRED"],
+    });
+  });
+
   it("U-RLA-010: 同じassignment IDの異内容replayを拒否する", () => {
     expect(
       projectResidentLaneAssignments({
