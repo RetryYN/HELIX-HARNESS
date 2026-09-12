@@ -5,7 +5,7 @@ artifact_type: test_design
 sub_doc: unit-test-design
 status: draft
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-13
 owner: QA
 plan: docs/plans/PLAN-RECOVERY-1543-reviewer-session-model-history.md
 pair_artifact: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md
@@ -31,6 +31,8 @@ fixture は in-memory の registry（`parseReviewerSessionModelHistory` の戻�
 | U-RVIDENT-021 | terminal evidence attribution Recovery | terminal PLANの非空`review_evidence` attributionと同じreviewer/model tokenの本文鏡像だけを訂正するRecoveryは既存PLANを所有者へ数えず、無関係な本文変更・draft化・attribution以外の変更・他field混載はmetadata-onlyと判定しない | `tests/branch-kind.test.ts` |
 | U-GWIDADM-022 | admission の supersession 例外 | `superseded_by` だけを受け取る既存 PLAN を typed PLAN として数えると successor 1 本の PR が `multiple_plans` で red。base を読めない場合や本文も変わっている場合に例外を適用すると red | `tests/github-workflow-identity-admission.test.ts` |
 | U-GWIDADM-023 | admission の明示 base 束縛 | 実 git fixture で有効な明示 `baseHead`（commit SHA）は例外適用 → successor 1 本受理。`baseHead` 未指定（`GITHUB_BASE_SHA` / `PR_BASE_SHA` に有効 SHA を置いても）・`invalid-explicit-base`・存在しない 40 桁 SHA はいずれも例外不適用 → `multiple_plans`。reader 単体は不正 SHA / PLAN 以外の path / base に無い path で null。CI workflow は `--base-head "$merge_base"` を渡す | `tests/github-workflow-identity-admission.test.ts`、`tests/harness-check-workflow.test.ts` |
+| U-RRPB-014 | bindingのmodel window遷移 | 同一sessionのPLAN entryがFable window、sealed receiptが後続Opus windowにあり、双方の時刻とmodelがregistryに一致すれば受理する | `tests/review-receipt-plan-binding.test.ts` |
+| U-RRPB-015 | binding遷移のfail-close | resolver未接続、entry時刻欠落、window範囲外では、同一session・同一providerでも`review_plan_model_mismatch`を維持する | `tests/review-receipt-plan-binding.test.ts` |
 
 ## mutation 実測記録
 
