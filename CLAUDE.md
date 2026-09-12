@@ -287,6 +287,8 @@ schema・失敗コード・テンプレートは `docs/governance/worker-context
 - Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
 - Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
 - Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
+- 管理側の見落としはIssue化し、Scrumで収束後に`S4 decide`から正規VモデルへScrum Reverseする。
+  product側は正規Forwardを維持し、GitHub Projectは管理状態のread-side projectionに限定する。
 - Continuation: `harness.db` の continuation projection が non-stale なら確認する。
 
 ## 指示ファイル
