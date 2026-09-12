@@ -1,0 +1,43 @@
+name: claude-unanswered-review-audit
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch: {}
+permissions:
+  actions: read
+  contents: read
+  issues: read
+  pull-requests: read
+jobs:
+  shadow-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+      - run: npm ci
+      - name: GitHub observationをread-only収集
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node .github/scripts/collect-claude-review-observation.mjs "${{ github.repository }}" "$RUNNER_TEMP/observation.json" "${{ github.repository_owner }}"
+      - name: 前回artifactをread-only取得
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          artifact_id="$(gh api "repos/${{ github.repository }}/actions/artifacts?name=claude-unanswered-review-state&per_page=100" --jq '[.artifacts[] | select(.expired == false)][0].id // empty')"
+          if [ -n "$artifact_id" ]; then
+            gh api "repos/${{ github.repository }}/actions/artifacts/$artifact_id/zip" > "$RUNNER_TEMP/previous.zip"
+            unzip -p "$RUNNER_TEMP/previous.zip" report.json > "$RUNNER_TEMP/previous-report.json"
+          fi
+      - name: 未応答をtyped分類
+        run: |
+          previous=()
+          [ ! -f "$RUNNER_TEMP/previous-report.json" ] || previous=(--previous "$RUNNER_TEMP/previous-report.json")
+          npx --no-install tsx src/cli/claude-unanswered-review-detector.ts --input "$RUNNER_TEMP/observation.json" --output report.json "${previous[@]}"
+          node -e 'const r=require("./report.json"); process.stdout.write(`### Claude review unanswered: ${r.unanswered.length}\n\n\`${r.schema_version}\` / read_only=${r.read_only}\n`)' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: claude-unanswered-review-state
+          path: report.json
+          retention-days: 30
