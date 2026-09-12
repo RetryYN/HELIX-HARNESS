@@ -4,8 +4,8 @@ title: "PLAN-L5-105 (add-design): Cursor Cloud第三者実行レーンのtyped�
 kind: add-design
 layer: L5
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 runtime_activation_allowed: false
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
@@ -37,7 +37,31 @@ removal_trigger: "後継schemaへ全consumerがreceipt付き移行しv1 consumer
 pair_artifact: docs/test-design/helix/L8-cursor-cloud-independent-execution-contract-unit-test-design.md
 backprop_decision: not_required
 backprop_decision_reason: "confirmed L4境界を型とunit oracleへ具体化し、L3要求の意味を変更しない"
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-12T22:37:26Z"
+    tests_green_at: "2026-09-12T22:36:39Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "fe061343-6172-4db5-8837-ef9aa5fd3af6"
+    reviewed_head_sha: c61d69d6fe358eb77eb88d2e38bb2d892fafec73
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1776#issuecomment-5649169204"
+    ci_evidence_generation: "run:34723029934:attempt:1:failure"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1776:c61d69d6fe358eb77eb88d2e38bb2d892fafec73:claude:run:34723029934:attempt:1:failure"
+    receipt_digest: "sha256:23bb8034352592ab6537e00947ac489f1635a6193fb497ff4815ffae9f9a19e0"
+    scope: "draft世代のexact HEADを独立監査しblocker 0。lint、design-language、targeted 45 tests、L5/L8 pair、catalog digest、DB projection/replay収束を確認した。CI failureはdraft起因POST_MERGE_PLANと、receipt後に是正済みのPR companion宣言だけである。"
+    green_commands:
+      - kind: integration
+        command: "npx vitest run tests/cursor-cloud-independent-execution-contract-design.test.ts tests/l3-g3-freeze-packet-v2.test.ts"
+        runner: local
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-12T22:36:39Z"
+        evidence_path: tests/cursor-cloud-independent-execution-contract-design.test.ts
+        output_digest: "sha256:23bb8034352592ab6537e00947ac489f1635a6193fb497ff4815ffae9f9a19e0"
+        result: "45 tests green; independent receipt digest binding"
 agent_slots:
   - { role: se, slot_label: "SE — envelope／ownership／external receipt schema" }
   - { role: qa, slot_label: "QA — failure precedence／mutation／replay oracle" }
