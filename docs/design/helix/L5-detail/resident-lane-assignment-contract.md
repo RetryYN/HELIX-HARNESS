@@ -5,7 +5,7 @@ canonical_pair: L8
 title: "Resident Lane Assignment契約 詳細設計"
 layer: L5
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-09-12
 updated: 2026-09-12
 owner: Codex / TL

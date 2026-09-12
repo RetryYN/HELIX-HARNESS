@@ -5,7 +5,7 @@ canonical_pair: L7
 title: "Resident Lane Assignment pure kernel 機能設計"
 layer: L6
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-09-12
 updated: 2026-09-12
 owner: Codex / TL

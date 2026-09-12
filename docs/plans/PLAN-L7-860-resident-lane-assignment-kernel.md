@@ -4,8 +4,8 @@ title: "PLAN-L7-860 (impl): Resident Lane Assignment pure kernelを実装する"
 kind: impl
 layer: L7
 drive: agent
-status: draft
-completion_claim_allowed: false
+status: confirmed
+completion_claim_allowed: true
 backfill_state: pending_reverse
 irreversible_impact: none
 created: 2026-09-12
@@ -99,6 +99,32 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+review_evidence:
+  - reviewer: "Claude independent reviewer / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-12T13:45:10Z"
+    tests_green_at: "2026-09-12T13:45:05Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: cc0802ad8c5fb87a385ee99c5ce5089b93af9dbe
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1773#issuecomment-5646273356"
+    ci_evidence_generation: "run:34697071410:attempt:1:failure"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1773:cc0802ad8c5fb87a385ee99c5ce5089b93af9dbe:claude:run:34697071410:attempt:1:failure"
+    receipt_digest: "sha256:39b2977fbb7617c4cab7d46b6566f5a0752e302d51d9776bdf18a829b5a437a8"
+    scope: "exact HEAD cc0802ad8を独立監査しblocker 0。safe-integer fence、repository namespacing、21 oracleのtest／PLAN／L8 exact setを再実測した。CI failureはdraftを検出するPOST_MERGE_PLANだけで、confirmed化後のfresh CIをmerge admissionとする。"
+    green_commands:
+      - { kind: smoke, command: "Claude exact-HEAD independent review receipt 5646273356", runner: ci, scope: targeted, exit_code: 0, completed_at: "2026-09-12T13:45:10Z", evidence_path: docs/plans/PLAN-L7-860-resident-lane-assignment-kernel.md, output_digest: "sha256:39b2977fbb7617c4cab7d46b6566f5a0752e302d51d9776bdf18a829b5a437a8", result: "reviewerがfresh clean worktreeでtargeted 12 files / 410 tests green、DB projection/replay一致、blocker 0を封緘。fresh CIはconfirmed化後に別途要求する。" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-09-12T13:45:10Z"
+  review_binding:
+    reviewer: "Claude independent reviewer / claude-opus-5"
+    reviewed_at: "2026-09-12T13:45:10Z"
+    evidence_digest: "sha256:39b2977fbb7617c4cab7d46b6566f5a0752e302d51d9776bdf18a829b5a437a8"
+  entries: []
 ---
 
 # Resident Lane Assignment純粋kernel
@@ -121,4 +147,4 @@ modifies:
 - Reverse pairingを独立routeでbackfillする。
 - exact HEADの独立review、terminal CI、merge、main read-afterを行う。
 
-本PLANは上記完了前にconfirmedまたはcompletion claimへ昇格させない。
+本PLANのpure kernel sliceは独立reviewを経てconfirmedとする。保存・event・DB・GitHub接続とReverse pairingは後続義務として残し、本sliceの完了へ混同しない。

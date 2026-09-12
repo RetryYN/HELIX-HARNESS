@@ -5,7 +5,7 @@ canonical_pair: L9
 title: "Resident Lane Assignment管理境界 基本設計"
 layer: L4
 kind: add-design
-status: draft
+status: confirmed
 created: 2026-09-12
 updated: 2026-09-12
 owner: Codex / TL
