@@ -77,7 +77,7 @@ review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
     reviewed_at: "2026-09-12T02:03:33Z"
-    tests_green_at: "2026-09-12T02:28:31Z"
+    tests_green_at: "2026-09-12T01:10:07Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
@@ -92,9 +92,9 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-12T02:28:31Z"
+        completed_at: "2026-09-12T01:10:07Z"
         evidence_path: tests/claude-unanswered-review-detector.test.ts
-        output_digest: "sha256:6eceac5892e8c8d9ed8a55c85b01085bae890864023ecbe8dda217b02ef5613f"
+        output_digest: "sha256:a06746099ecf216aff3598415d4e69110c9977439fb347a07ee190280782ce41"
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
     reviewed_at: "2026-09-12T01:10:07Z"
