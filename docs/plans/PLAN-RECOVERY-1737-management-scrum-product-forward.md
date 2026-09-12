@@ -4,7 +4,7 @@ title: "管理Scrumとproduct Forwardの入口を分離する"
 kind: recovery
 layer: cross
 drive: agent
-status: confirmed
+status: draft
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
