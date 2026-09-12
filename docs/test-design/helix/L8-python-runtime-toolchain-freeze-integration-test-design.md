@@ -7,8 +7,8 @@ created: 2026-09-12
 updated: 2026-09-12
 owner: QA / TL
 plan: PLAN-L5-104-python-runtime-toolchain-freeze
-parent_design: docs/design/helix/L5-detail/python-worker-runtime.md
-pair_artifact: docs/design/helix/L5-detail/python-worker-runtime.md
+parent_design: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md
+pair_artifact: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md
 behavior_contract_id: PYTHON-RUNTIME-TOOLCHAIN-FREEZE-001
 ---
 

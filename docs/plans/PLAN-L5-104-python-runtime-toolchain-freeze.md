@@ -35,7 +35,7 @@ tdd_red_waiver_reason: "kind=add-design。artifact verifierとruntime admission�
 complexity_effect: net_negative
 complexity_justification: "runtime選択をworkerごとの暗黙設定にせず、一つのversioned authority receiptへ収束する"
 removal_trigger: "後継Python runtime authorityへreceipt付きmigrationし3.14.7 consumerが0になった時"
-parent_design: docs/design/helix/L5-detail/python-worker-runtime.md
+parent_design: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md
 pair_artifact: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md
 agent_slots:
   - { role: se, slot_label: "SE — runtime identity、provenance、lock境界" }
@@ -43,6 +43,7 @@ agent_slots:
   - { role: tl, slot_label: "TL — experimental modeとactivation境界" }
 generates:
   - { artifact_path: docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md, artifact_type: test_design }
 modifies:
   - { artifact_path: docs/design/helix/L5-detail/python-worker-runtime.md, artifact_type: design_doc }
