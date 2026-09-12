@@ -1,6 +1,10 @@
 ---
 title: "Claude review未応答detector単体テスト設計"
 status: draft
+layer: L8
+executed_at_layer: L7
+sub_doc: unit-test-design
+artifact_type: test_design
 canonical_layer: L7
 canonical_pair: L6
 plan: docs/plans/PLAN-L7-1743-claude-unanswered-review-detector.md

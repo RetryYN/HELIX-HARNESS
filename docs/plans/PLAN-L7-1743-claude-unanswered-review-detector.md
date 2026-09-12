@@ -18,7 +18,7 @@ refactor_step: introduce_contract
 legacy_retirement_state: retained
 no_code_decision: add_code
 ddd_modeling_decision: value_object
-entry_signals: [regression_dev]
+entry_signals: [feature_addition]
 contract_preconditions: "open PR／Issueのcomment observationと前回request artifactをreadできる"
 contract_postconditions: "未応答、回答済み、bot無視、untrusted responseをtyped JSONへ副作用なしで分類する"
 contract_invariants: "既存receipt admissionを緩和せず、GitHub observationとDB projectionを意味正本へ昇格させない"
@@ -34,7 +34,7 @@ removal_trigger: "provider-neutral review-request lifecycleへ同一contractで�
 backprop_decision: not_required
 backprop_decision_reason: "既存GitHub運用要求の検出欠落を局所是正し要求意味を変更しない"
 parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md
-pair_artifact: docs/test-design/helix/L7-claude-unanswered-review-detector-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-claude-unanswered-review-detector-unit-test-design.md
 dependencies:
   parent: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md
   requires: []
@@ -53,14 +53,14 @@ workflow_identity:
   registry_version: 1.1.6
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
-  target_id: REDESIGN
+  target_id: ADD_FEATURE
 agent_slots:
   - { role: se, slot_label: "SE — request／response identity境界" }
   - { role: qa, slot_label: "QA — 編集、HEAD、bot、spoof反例" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1743-claude-unanswered-review-detector.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/L7-claude-unanswered-review-detector-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-claude-unanswered-review-detector-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/claude-unanswered-review-detector.ts, artifact_type: source_module }
   - { artifact_path: src/cli/claude-unanswered-review-detector.ts, artifact_type: source_module }
   - { artifact_path: .github/scripts/collect-claude-review-observation.mjs, artifact_type: source_module }

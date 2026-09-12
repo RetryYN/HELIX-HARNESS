@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { parseClaudeIndependentPrReviewComment } from "./claude-pr-convergence";
 
 const REQUEST_MENTION = /(^|\s)@claude(?:\s|$|[,:])/iu;
-const REVIEW_INTENT = /review|レビュー|監査/iu;
+const REVIEW_INTENT = /review|レビュー|監査|封緘|receipt|seal/iu;
 const HEAD_LINE = /(?:^|\n)HEAD:\s*`?([a-f0-9]{40})`?(?:\n|$)/u;
 
 export interface ClaudeReviewCommentObservation {

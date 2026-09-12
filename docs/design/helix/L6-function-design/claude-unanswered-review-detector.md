@@ -4,7 +4,7 @@ status: draft
 canonical_layer: L6
 canonical_pair: L7
 plan: docs/plans/PLAN-L7-1743-claude-unanswered-review-detector.md
-pair_artifact: docs/test-design/helix/L7-claude-unanswered-review-detector-unit-test-design.md
+pair_artifact: docs/test-design/helix/L8-claude-unanswered-review-detector-unit-test-design.md
 ---
 
 # Claude review未応答のread-only検出
@@ -17,6 +17,8 @@ request／responseの発生事実はGitHub observation、継続用stateは前回
 - request identityは`subject_kind + number + comment_id + requested_head`で固定する。
 - 編集でmentionが失われても、前回観測済みrequestを消さない。
 - responseはrequestより後、同一HEAD、明示されたtrusted responder loginに一致する場合だけ受理する。
+- 同一GitHub accountを複数runtimeが共有する運用ではloginだけでruntimeを識別せず、typed receiptの
+  `reviewerSessionId`とexact HEADを後段admissionで照合する。
 - bot mention、別HEAD、先行reply、untrusted userのreview見出しを回答へ数えない。
 - list／comment paginationは同じID・updated_at集合を2回read-afterし、drift時は`pagination_race`でfail-closeする。
 - detectorはPLAN、receipt、Issue、DB、PRを変更しない。

@@ -39,6 +39,19 @@ describe("Claude未応答review detector", () => {
     expect(report.unanswered).toEqual([
       expect.objectContaining({ comment_id: 1, requested_head: head }),
     ]);
+    expect(
+      detectUnansweredClaudeReviews({
+        trusted_responder_logins: ["review-user"],
+        subjects: [
+          {
+            subject_kind: "pull_request",
+            number: 11,
+            head_sha: head,
+            comments: [comment(11, "@claude 封緘してください")],
+          },
+        ],
+      }).unanswered,
+    ).toEqual([expect.objectContaining({ comment_id: 11 })]);
   });
 
   it("U-CLUNANS-002: [PLAN-L7-1743-claude-unanswered-review-detector/U-CLUNANS-002] 同一HEADの後続receiptだけを回答として扱う", () => {
@@ -184,6 +197,7 @@ describe("Claude未応答review detector", () => {
     expect(workflow).toContain("issues: read");
     expect(workflow).toContain("pull-requests: read");
     expect(workflow).toContain("persist-credentials: false");
+    expect(workflow).toContain('node-version: "24.15"');
     expect(workflow).toContain("claude-unanswered-review-state");
     expect(workflow).not.toMatch(/issues:\s*write|pull-requests:\s*write/u);
     expect(readFileSync(".github/scripts/collect-claude-review-observation.mjs", "utf8")).toContain(
