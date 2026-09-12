@@ -1,21 +1,21 @@
 ---
-title: "Cursor Phase A assignment・実行証拠境界のL4候補"
-status: draft_candidate
-authority_status: noncanonical
+title: "Cursor Cloud第三者実行レーンの独立境界"
+status: confirmed
+authority_status: canonical
 owner_issue: 1293
-candidate_layer: L4
+layer: L4
 canonical_vmodel: L1-L12
-candidate_pair: L9
-completion_claim_allowed: false
+pair_layer: L9
+completion_claim_allowed: true
 runtime_activation_allowed: false
-created: 2026-09-08
-source_head: cf85c603986b87905514d2d3ebcdd1fde1aaa2b2
-plan: docs/governance/candidates/cursor-phase-a-plan.md
+created: 2026-09-12
+source_head: 2677f0ee8bfdd7fb4e2e4b6e59fc9c2037401567
+plan: docs/plans/PLAN-L4-77-cursor-cloud-independent-execution-boundary.md
 parent_design: docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md
-pair_artifact: docs/governance/candidates/cursor-phase-a-l9-integration-oracles.md
+pair_artifact: docs/test-design/helix/L9-cursor-cloud-independent-execution-boundary.md
 ---
 
-# L4境界候補（noncanonical draft）
+# Cursor Cloud第三者実行レーンの独立境界
 
 ## 1. 責務と境界
 
@@ -39,7 +39,9 @@ provider runの終端、reviewのaccepted、branch所有の安全返却は別事
 
 表内pathはrepository-relative。再利用は既存の意味・検証を保つもので、現状のままcloud対応済みという意味ではない。
 
-| port／上位契約 | 再利用するexact path・型/関数・既存テスト | 残る不足とL9候補 |
+機械照合する要求IDは省略せず、`3L-R-04`、`3L-R-05`、`3L-R-06`、`3L-R-07`、`3L-R-08`、`3L-R-12`、`3L-R-13`、`3L-R-14`、`3L-R-23`、`3L-R-24`、`3L-R-25` の11件を本境界へexact traceする。
+
+| port／上位契約 | 再利用するexact path・型/関数・既存テスト | 残る不足とL9 oracle |
 |---|---|---|
 | context／3L-R-12 | `src/runtime/worker-context-packet.ts` の `WorkerContextPacketV1`、`attestWorkerContextAuthority`、`compileWorkerContextPacket`、`verifyWorkerContextEnvelope`。`tests/worker-context-packet.test.ts` | packetのexact fieldを勝手に増やさず、branch／action-bound assignment／金額／deadlineを結合する外側envelopeの契約は未実装。authority allowlistはthree-lane IRを現状では束縛しない。IT-CPA-001/002 |
 | admission／3L-R-04/13 | `src/runtime/worker-descriptor-admission.ts` の `WorkerDescriptorV1`、`evaluateWorkerDescriptorAdmission`、`isWorkerAdmissionCurrent`。`tests/worker-descriptor-admission.test.ts` | Cursorの登録・現在の利用資格・requested/effective modelの外部provenanceは未確認。文字列provider名だけでadmitしない。IT-CPA-002/007 |
@@ -59,7 +61,7 @@ provider runの終端、reviewのaccepted、branch所有の安全返却は別事
 `docs/plans/PLAN-RECOVERY-76-cursor-cloud-environment-admission.md`。
 既存PLAN／型／テストの存在は、上表の不足portの成立証拠ではない。
 
-## 3. 入出力の最小束縛候補（L5でexact schemaを決める）
+## 3. 入出力の最小束縛（L5でexact schemaを決める）
 
 - assignment envelopeはIssueまたはPLANの択一scope、責務、発行者、事前発行branch、base HEAD、
   assignment/action identity、context/policy digest、allowed/forbidden path、requirement/test参照、
@@ -100,7 +102,88 @@ provider runの終端、reviewのaccepted、branch所有の安全返却は別事
 #860はPhase Aの原子的ownership取得・renewal・返却・stale token拒否primitiveと、Phase Bの汎用lease/fenceを所有する。
 #1293はそれをCursor Cloud adapterへ接続し、最初の実案件証拠と外部read-after E2Eを所有する。
 Phase Aの旧runが未終端・write可能なら移行も再配車も拒否するが、
-#860全体の完了をPhase A設計候補作成の前提にしない。
+#860全体の完了をPhase A設計の前提にしない。
+
+## 6. 設計実在性束縛
+
+<!-- HELIX:design-reality-binding:v1 -->
+```json
+{
+  "schema_version": "helix-design-reality-binding.v1",
+  "declared_failure_codes": ["WORKER_ISOLATION_SCOPE_VIOLATION"],
+  "assets": [
+    {
+      "asset_id": "worker-isolation-policy",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/worker-isolation-policy.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "auditWorkerIsolationScope",
+      "source_digest": "sha256:805e02513c6068ce1b00420fba88d80fd1e8f860e9078f7592153cf3ba6c55b2",
+      "current_authority": true
+    },
+    {
+      "asset_id": "worker-context-authority",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/worker-context-packet.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "attestWorkerContextAuthority",
+      "source_digest": "sha256:e0019264841da35c7018cd41931073234f6ddd1926d6f923ba675c1b445e035f",
+      "current_authority": true
+    },
+    {
+      "asset_id": "work-graph-lease",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/work-graph-receipt-acceptance.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "acquireWorkGraphLease",
+      "source_digest": "sha256:629e516db0b29a0f7b657f26cc7bd7646775eb70fa376015241d522f4a7c0063",
+      "current_authority": true
+    },
+    {
+      "asset_id": "worker-output-admission",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/worker-output-admission.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "admitWorkerOutput",
+      "source_digest": "sha256:dfdbf9bdb2ab14dd8302ad2b9c8f6c717b5527727ca59b6b5cdb87e9983e0bf5",
+      "current_authority": true
+    },
+    {
+      "asset_id": "cursor-run-authority",
+      "classification": "existing_runtime",
+      "artifact_path": "src/runtime/cursor-cloud-run-authority.ts",
+      "resource_kind": "typescript_export",
+      "resource_name": "decideCursorFollowUpDispatch",
+      "source_digest": "sha256:9084dc352318b39d25cb609c5256a82d61b4ac60e0dcd47a9adb3ef06b0b3923",
+      "current_authority": true
+    }
+  ],
+  "failure_reachability": [
+    {
+      "reason_code": "WORKER_ISOLATION_SCOPE_VIOLATION",
+      "reachability_mode": "executable_oracle",
+      "source_path": "src/runtime/worker-isolation-policy.ts",
+      "source_symbol": "auditWorkerIsolationScope",
+      "test_path": "tests/worker-isolation-policy.test.ts",
+      "oracle_id": "U-WIP-006",
+      "identity_fields": [],
+      "post_resolution_checks": [],
+      "fixture": { "changed_path": "outside/allowed.ts" },
+      "expected_reason": "WORKER_ISOLATION_SCOPE_VIOLATION",
+      "mutation": {
+        "remove_post_resolution_check": "if (changedPaths.some((path) => !pathIsWritable(path, writablePaths))) {",
+        "expected_reason_after_mutation": "RED_BY_ORACLE",
+        "execution_test_path": "tests/design-reality-binding.test.ts",
+        "execution_oracle_id": "U-DRB-015",
+        "execution_helper": "executeIsolationPolicyMutationOracle"
+      }
+    }
+  ]
+}
+```
+
+既存runtime資産の実在だけを束縛する。Cursor transport、remote receipt、実効budget/deadline、
+外部write不能の実装済みclaimではない。failure reachabilityはL5/L8でexact化する。
 
 ## 5. 未知境界と次層への引渡し
 
