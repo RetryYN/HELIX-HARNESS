@@ -55,6 +55,9 @@ describe("resident lane assignment kernel", () => {
       { ...assignment(), branch: "feature/invalid..branch" },
       { ...assignment(), branch: "feature/invalid branch" },
       { ...assignment(), branch: "feature/invalid.lock" },
+      { ...assignment(), branch: "feature/.hidden" },
+      { ...assignment(), branch: "refs/heads/main" },
+      { ...assignment(), branch: "-invalid" },
     ]) {
       expect(
         projectResidentLaneAssignments({

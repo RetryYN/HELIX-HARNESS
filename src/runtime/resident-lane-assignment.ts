@@ -19,7 +19,9 @@ function isValidGitBranchName(branch: string): boolean {
     branch.length > 0 &&
     branch !== "@" &&
     !branch.startsWith(".") &&
+    !branch.startsWith("-") &&
     !branch.startsWith("/") &&
+    !branch.startsWith("refs/heads/") &&
     !branch.endsWith(".") &&
     !branch.endsWith("/") &&
     !branch.includes("..") &&
@@ -30,7 +32,7 @@ function isValidGitBranchName(branch: string): boolean {
       return code <= 32 || code === 127;
     }) &&
     !/[~^:?*[\]\\]/u.test(branch) &&
-    !branch.split("/").some((component) => component.endsWith(".lock"))
+    !branch.split("/").some((component) => component.startsWith(".") || component.endsWith(".lock"))
   );
 }
 
