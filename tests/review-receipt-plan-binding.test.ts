@@ -14,6 +14,7 @@ import {
 
 // PLAN-RECOVERY-1603-review-receipt-plan-binding
 // PLAN-RECOVERY-1627-review-request-changes-fail-close / U-RRCF-001
+// PLAN-RECOVERY-1677-review-session-model-receipt-drift
 
 const SESSION = "9867601a-a3ad-4369-980c-11757d63a7de";
 const MODEL = "claude:claude-fable-5-1";
