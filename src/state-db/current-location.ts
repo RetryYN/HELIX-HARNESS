@@ -5005,14 +5005,10 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
   const canonicalCategories = new Set<ProjectScrumOperationCategory>(
     CANONICAL_SCRUM_OPERATION_DECLARATIONS.map((declaration) => declaration.category),
   );
-  const hasCanonicalDeclarations = declarationRows.some((row) =>
-    canonicalDeclarationIds.has(String(row.defined_id ?? "")),
-  );
   for (const row of declarationRows) {
     const category = scrumDeclarationCategory(row);
     if (category && category !== "plan") {
       if (
-        hasCanonicalDeclarations &&
         canonicalCategories.has(category) &&
         !canonicalDeclarationIds.has(String(row.defined_id ?? ""))
       ) {

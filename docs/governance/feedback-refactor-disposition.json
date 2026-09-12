@@ -63,14 +63,14 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:c450933e9b92:literal-appears-41-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "dfd1de036013e25bb44d3630b764f7b0dc879a90f64975c389765e86f135c9aa",
+      "source_file_sha256": "9581b309d4b21dea83e2e1203cba70af4e855a005ce85b1b4c8a46b87e909e84",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:ff4d1f75e1ae:literal-appears-27-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "dfd1de036013e25bb44d3630b764f7b0dc879a90f64975c389765e86f135c9aa",
+      "source_file_sha256": "9581b309d4b21dea83e2e1203cba70af4e855a005ce85b1b4c8a46b87e909e84",
       "family": "literal_policy_externalization"
     },
     {
@@ -154,7 +154,7 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-current-location.ts:module-has-9384-nonblank-line-s-and-127-export-s-",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "dfd1de036013e25bb44d3630b764f7b0dc879a90f64975c389765e86f135c9aa",
+      "source_file_sha256": "9581b309d4b21dea83e2e1203cba70af4e855a005ce85b1b4c8a46b87e909e84",
       "family": "non_cli_module_decomposition"
     },
     {
