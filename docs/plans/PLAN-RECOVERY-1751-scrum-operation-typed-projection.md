@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1751: Scrum運営7 sourceをtyped declarationへ投影す�
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -39,11 +39,11 @@ complexity_justification: "既存vmodel-docgen-fit宣言とprojectionを拡張�
 removal_trigger: "7 operationが恒常的なmanagement-operation registryへ吸収され、個別移行PLANのconsumerが0になった時"
 backprop_decision: not_required
 backprop_decision_reason: "本PLAN自身がDBで観測した管理工程欠落をL3/L10候補へScrum Reverseする上流sliceであるため"
-parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md
-pair_artifact: docs/governance/candidates/scrum-operation-typed-projection-acceptance.md
+parent_design: docs/design/helix/L3-requirements/vmodel-docgen-fit.md
+pair_artifact: docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md
 verification_bindings:
-  - { parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, oracle_id: U-SCRUMOPS-001, test_path: tests/current-location.test.ts }
-  - { parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, oracle_id: U-SCRUMOPS-002, test_path: tests/current-location.test.ts }
+  - { parent_design: docs/design/helix/L3-requirements/vmodel-docgen-fit.md, oracle_id: U-SCRUMOPS-001, test_path: tests/current-location.test.ts }
+  - { parent_design: docs/design/helix/L3-requirements/vmodel-docgen-fit.md, oracle_id: U-SCRUMOPS-002, test_path: tests/current-location.test.ts }
 dependencies:
   parent: null
   requires: []
@@ -57,11 +57,14 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1751-scrum-operation-typed-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/candidates/scrum-operation-typed-projection-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md, artifact_type: test_design }
 modifies:
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/design/helix/L3-requirements/vmodel-docgen-fit.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
-  - { artifact_path: docs/test-design/helix/vmodel-docgen-fit-acceptance.md, artifact_type: test_design }
-  - { artifact_path: src/state-db/current-location.ts, artifact_type: source_code }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/current-location.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }

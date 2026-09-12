@@ -65,8 +65,7 @@ describe("project current-location read model", () => {
 
   it("U-SCRUMOPS-002: Scrum運営7 operationは正規L3文書のtyped declaration完全一致だけを採用する", () =>
     withDb((db) => {
-      const canonicalSource =
-        "docs/design/helix/L3-requirements/vmodel-docgen-fit.md";
+      const canonicalSource = "docs/design/helix/L3-requirements/vmodel-docgen-fit.md";
       const declarations = [
         ["HOPS-VMFIT-SCRUM-BACKLOG-01", "Scrum backlog", "L3"],
         ["SCRUM-OPS-R-01", "Scrum story mapping", "L3"],
@@ -119,9 +118,7 @@ describe("project current-location read model", () => {
         "scrum:retrospective",
         "scrum:burndown-velocity",
       ]);
-      expect(snapshot.findings.map((finding) => finding.code)).not.toContain(
-        "scrum_operation_gap",
-      );
+      expect(snapshot.findings.map((finding) => finding.code)).not.toContain("scrum_operation_gap");
 
       db.prepare(
         "UPDATE design_declarations SET layer = 'L2' WHERE defined_id = 'SCRUM-OPS-R-02'",

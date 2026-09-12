@@ -439,20 +439,22 @@ describe("db projection ingestion detector", () => {
         owner: string;
         source_path: string;
       }>;
-      expect(canonicalScrumDeclarations).toEqual([
-        ["SCRUM-OPS-R-01", "L3"],
-        ["SCRUM-OPS-R-02", "L3"],
-        ["SCRUM-OPS-R-03", "L3"],
-        ["SCRUM-OPS-R-04", "L7"],
-        ["SCRUM-OPS-R-05", "L11"],
-        ["SCRUM-OPS-R-06", "L12"],
-        ["SCRUM-OPS-R-07", "L12"],
-      ].map(([defined_id, layer]) => ({
-        defined_id,
-        layer,
-        owner: "scrum-operation-governance",
-        source_path: "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
-      })));
+      expect(canonicalScrumDeclarations).toEqual(
+        [
+          ["SCRUM-OPS-R-01", "L3"],
+          ["SCRUM-OPS-R-02", "L3"],
+          ["SCRUM-OPS-R-03", "L3"],
+          ["SCRUM-OPS-R-04", "L7"],
+          ["SCRUM-OPS-R-05", "L11"],
+          ["SCRUM-OPS-R-06", "L12"],
+          ["SCRUM-OPS-R-07", "L12"],
+        ].map(([defined_id, layer]) => ({
+          defined_id,
+          layer,
+          owner: "scrum-operation-governance",
+          source_path: "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+        })),
+      );
       const fitBlockers = db
         .prepare("SELECT blocker_code FROM project_vmodel_fit_blockers ORDER BY blocker_code")
         .all() as Array<{ blocker_code: string }>;

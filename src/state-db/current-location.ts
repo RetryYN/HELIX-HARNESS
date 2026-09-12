@@ -1968,8 +1968,7 @@ const CANONICAL_SCRUM_OPERATION_DECLARATIONS = [
   layer: string;
 }>;
 
-const CANONICAL_SCRUM_OPERATION_SOURCE =
-  "docs/design/helix/L3-requirements/vmodel-docgen-fit.md";
+const CANONICAL_SCRUM_OPERATION_SOURCE = "docs/design/helix/L3-requirements/vmodel-docgen-fit.md";
 const CANONICAL_SCRUM_OPERATION_OWNER = "scrum-operation-governance";
 
 const ZIP_ADOPTION_RULES = [
@@ -4984,10 +4983,10 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
     },
     {} as Record<Exclude<ProjectScrumOperationCategory, "plan">, Array<Record<string, unknown>>>,
   );
-  const canonicalDeclarationIds = new Set(
+  const canonicalDeclarationIds = new Set<string>(
     CANONICAL_SCRUM_OPERATION_DECLARATIONS.map((declaration) => declaration.definedId),
   );
-  const canonicalCategories = new Set(
+  const canonicalCategories = new Set<ProjectScrumOperationCategory>(
     CANONICAL_SCRUM_OPERATION_DECLARATIONS.map((declaration) => declaration.category),
   );
   const hasCanonicalDeclarations = declarationRows.some((row) =>
