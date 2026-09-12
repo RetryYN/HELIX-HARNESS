@@ -1,7 +1,7 @@
 ---
 plan_id: PLAN-L7-1743-claude-unanswered-review-detector
 title: "Claude review未応答のread-only検出"
-kind: add-impl
+kind: impl
 layer: L7
 drive: agent
 status: confirmed
@@ -37,12 +37,8 @@ parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-det
 pair_artifact: docs/test-design/helix/L8-claude-unanswered-review-detector-unit-test-design.md
 dependencies:
   parent: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md
-  requires:
-    - docs/plans/PLAN-REVERSE-1743-claude-unanswered-review-detector.md
-  references:
-    - issue:1743
-    - issue:1737
-    - docs/plans/PLAN-REVERSE-1743-claude-unanswered-review-detector.md
+  requires: []
+  references: ["issue:1743", "issue:1737"]
   blocks: []
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, oracle_id: U-CLUNANS-001, test_path: tests/claude-unanswered-review-detector.test.ts }
@@ -63,7 +59,6 @@ agent_slots:
   - { role: qa, slot_label: "QA — 編集、HEAD、bot、spoof反例" }
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1743-claude-unanswered-review-detector.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/plans/PLAN-REVERSE-1743-claude-unanswered-review-detector.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/claude-unanswered-review-detector.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/L8-claude-unanswered-review-detector-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/claude-unanswered-review-detector.ts, artifact_type: source_module }
