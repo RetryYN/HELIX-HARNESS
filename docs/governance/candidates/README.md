@@ -26,15 +26,6 @@ Issue #1728の未承認候補である。既存ownerへの接続を先に行い�
 正本化するときは、候補をこのdirectoryに残したままcurrentと二重authorityにしない。昇格先、
 compatibility／archive移動、参照更新を同一migrationで閉じる。
 
-## Cursor Phase A
-
-- `cursor-phase-a-plan.md`: #1293の未採番PLAN候補と正本昇格checklist
-- `cursor-phase-a-l4-boundary.md`: assignment・原子的ownership・実行・回収・独立review境界のL4候補
-- `cursor-phase-a-l9-integration-oracles.md`: 同境界の失敗・回復を検査するL9候補
-
-この3文書はnoncanonicalであり、runtime activation authorityではない。正規PLAN ID、three-lane IRの
-main read-after、L4/L9 pair freeze、design catalog登録を同一promotionで成立させた後に候補を退役する。
-
 ## 開発投資の段階候補
 
 - `development-investment-stage-directives-intake_v1.0.md`: 開発コスト削減・知能化に関する
