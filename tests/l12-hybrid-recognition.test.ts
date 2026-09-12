@@ -173,7 +173,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const plans = scanL12HybridRecognitionCandidates().filter(
       (candidate) => candidate.disposition === "plan_review",
     );
-    expect(plans).toHaveLength(620);
+    expect(plans).toHaveLength(621);
     expect(
       plans.every(
         (candidate) => candidate.documentStatus && candidate.documentStatus !== "missing",
@@ -215,7 +215,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     expect(new Set(candidates.map((candidate) => candidate.path)).size).toBe(candidates.length);
     expect(
       candidates.filter((candidate) => candidate.auditDisposition === "needs_manual_review"),
-    ).toHaveLength(521);
+    ).toHaveLength(524);
     expect(
       candidates.filter(
         (candidate) => candidate.auditDisposition === "false_positive_execution_command",
@@ -237,23 +237,23 @@ describe("L12/hybrid recognition-risk scanner", () => {
   // PLAN-L3-1639: canonical source併記の候補1件だけを追加する。
   // PLAN-RECOVERY-1404は新規PLAN候補1件としてconflictへ明示加算する。
   // function-spec.md は docs/design/harness family の独立再分類を待って conflict のまま残す。
+  // PLAN-L3-1358 の追加候補は、独立レビュー前なので plan_review conflict に1件加算する。
   // PLAN-RECOVERY-1677追加によりplan_review conflictが1件増える。
   // PLAN-RECOVERY-1591が追加したcompatibility parent baselineは、旧語を収録する
   // executable surfaceとしてconflictへ1件加算する。baseline自体をfalse positiveへは降格しない。
   // Document Authority Census と PLAN-L6-108／Python semantic migration ledgerを統合して加算する。
-  // PLAN-L3-1358 の追加候補は、独立レビュー前なので plan_review conflict に1件加算する。
-  it("assigns exactly one reviewed final disposition to all 879 candidates", () => {
+  it("assigns exactly one reviewed final disposition to all 882 candidates", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const counts = candidates.reduce<Record<string, number>>((acc, candidate) => {
       const finalDisposition = classifyFinalRecognitionDisposition(candidate);
       acc[finalDisposition] = (acc[finalDisposition] ?? 0) + 1;
       return acc;
     }, {});
-    expect(candidates).toHaveLength(879);
+    expect(candidates).toHaveLength(882);
     expect(counts).toEqual({
       conflict: 345,
       compatibility_labeled: 24,
-      false_positive: 492,
+      false_positive: 495,
       historical: 18,
     });
   });
@@ -315,7 +315,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
     const candidates = scanL12HybridRecognitionCandidates();
     const candidatePaths = new Set(candidates.map((candidate) => candidate.path));
     const reviewedPaths = REVIEWED_SAFE_DISPOSITIONS.map((entry) => entry.path);
-    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(534);
+    expect(REVIEWED_SAFE_DISPOSITIONS).toHaveLength(537);
     expect(new Set(reviewedPaths).size).toBe(reviewedPaths.length);
     expect(reviewedPaths.every((path) => candidatePaths.has(path))).toBe(true);
 
@@ -330,7 +330,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       current_authority_review: {
         compatibility_labeled: 17,
         conflict: 135,
-        false_positive: 53,
+        false_positive: 55,
         historical: 6,
       },
       executable_surface_review: { conflict: 9, false_positive: 1, historical: 1 },
@@ -343,7 +343,7 @@ describe("L12/hybrid recognition-risk scanner", () => {
       plan_review: {
         compatibility_labeled: 1,
         conflict: 182,
-        false_positive: 437,
+        false_positive: 438,
       },
     });
     const candidateByPath = new Map(candidates.map((candidate) => [candidate.path, candidate]));
