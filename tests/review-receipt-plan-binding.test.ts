@@ -21,6 +21,15 @@ const REVIEW_HEAD = "a".repeat(40);
 const RECEIPT_URL = "https://github.com/RetryYN/HELIX-HARNESS/pull/1628#issuecomment-5570000000";
 const CI_GENERATION = "run:34100000000:attempt:1:success";
 
+const resolveSessionModel = (sessionId: string, reviewedAt: string): string | null => {
+  if (sessionId !== SESSION) return null;
+  if (reviewedAt >= "2026-09-12T00:00:00Z" && reviewedAt < "2026-09-12T12:40:41Z") {
+    return MODEL;
+  }
+  if (reviewedAt >= "2026-09-12T12:40:41Z") return "claude:claude-opus-5";
+  return null;
+};
+
 function input(
   overrides: Partial<ReviewReceiptPlanBindingInput> = {},
 ): ReviewReceiptPlanBindingInput {
@@ -83,6 +92,61 @@ describe("review receipt / PLAN binding", () => {
         }),
       ),
     ).toMatchObject({ ok: false, failures: [{ reason: "review_plan_model_mismatch" }] });
+  });
+
+  it("U-RRPB-014: 同一sessionの登録済みmodel window遷移を時刻付きで受理する", () => {
+    const changed = input().changed_plans[0];
+    expect(
+      evaluateReviewReceiptPlanBinding(
+        input({
+          receipt: {
+            reviewer_session_id: SESSION,
+            reviewer_model: "claude:claude-opus-5",
+            reviewed_at: "2026-09-12T21:00:00Z",
+          },
+          resolve_session_model: resolveSessionModel,
+          changed_plans: [
+            {
+              ...changed,
+              review_entries: [
+                { ...changed.review_entries[0], reviewed_at: "2026-09-12T03:44:20Z" },
+              ],
+            },
+          ],
+        }),
+      ),
+    ).toEqual({ ok: true, failures: [] });
+  });
+
+  it("U-RRPB-015: model window未登録・時刻欠落・範囲外を遷移根拠にしない", () => {
+    const changed = input().changed_plans[0];
+    const receipt = {
+      reviewer_session_id: SESSION,
+      reviewer_model: "claude:claude-opus-5",
+      reviewed_at: "2026-09-12T21:00:00Z",
+    };
+    for (const mutation of [
+      { resolver: undefined, reviewed_at: "2026-09-12T03:44:20Z" },
+      { resolver: resolveSessionModel, reviewed_at: undefined },
+      { resolver: resolveSessionModel, reviewed_at: "2026-09-11T03:44:20Z" },
+    ]) {
+      expect(
+        evaluateReviewReceiptPlanBinding(
+          input({
+            receipt,
+            resolve_session_model: mutation.resolver,
+            changed_plans: [
+              {
+                ...changed,
+                review_entries: [
+                  { ...changed.review_entries[0], reviewed_at: mutation.reviewed_at },
+                ],
+              },
+            ],
+          }),
+        ),
+      ).toMatchObject({ ok: false, failures: [{ reason: "review_plan_model_mismatch" }] });
+    }
   });
 
   it("U-RRPB-004: humanまたはintra-runtimeだけではcross-agent承認にならない", () => {

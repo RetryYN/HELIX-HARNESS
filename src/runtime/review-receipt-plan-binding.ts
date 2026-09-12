@@ -18,6 +18,7 @@ export interface ReviewPlanEntryBinding {
   readonly verdict: string;
   readonly reviewer_session_id?: string;
   readonly reviewer_model?: string;
+  readonly reviewed_at?: string;
   readonly reviewed_head_sha?: string;
   readonly receipt_url?: string;
   readonly ci_evidence_generation?: string;
@@ -45,7 +46,10 @@ export interface ReviewReceiptPlanBindingInput {
   readonly receipt: {
     readonly reviewer_session_id: string;
     readonly reviewer_model: string;
+    readonly reviewed_at?: string;
   };
+  /** CLI composition rootがtracked session/model historyから解決する。未登録・不正時はnull。 */
+  readonly resolve_session_model?: (reviewerSessionId: string, reviewedAt: string) => string | null;
   readonly changed_plans: readonly ChangedPlanReviewBinding[];
 }
 
@@ -119,7 +123,23 @@ export function evaluateReviewReceiptPlanBinding(
           .trim()
           .toLowerCase()
           .replace(/^[^:]+:/u, "");
-      return unprefixed(entry.reviewer_model) === unprefixed(input.receipt.reviewer_model);
+      if (unprefixed(entry.reviewer_model) === unprefixed(input.receipt.reviewer_model))
+        return true;
+      if (!entry.reviewed_at || !input.receipt.reviewed_at) return false;
+      const entryWindowModel = input.resolve_session_model?.(
+        input.receipt.reviewer_session_id,
+        entry.reviewed_at,
+      );
+      const receiptWindowModel = input.resolve_session_model?.(
+        input.receipt.reviewer_session_id,
+        input.receipt.reviewed_at,
+      );
+      return (
+        entryWindowModel != null &&
+        receiptWindowModel != null &&
+        sameReviewModel(entry.reviewer_model, entryWindowModel) &&
+        sameReviewModel(input.receipt.reviewer_model, receiptWindowModel)
+      );
     });
     if (modelMatches.length === 0) {
       failures.push({ plan_id: plan.plan_id, reason: "review_plan_model_mismatch" });
@@ -250,6 +270,7 @@ function parseChangedPlan(path: string, source: string): ChangedPlanReviewBindin
           ...(typeof entry.reviewer_model === "string"
             ? { reviewer_model: entry.reviewer_model }
             : {}),
+          ...(typeof entry.reviewed_at === "string" ? { reviewed_at: entry.reviewed_at } : {}),
           ...(typeof entry.reviewed_head_sha === "string"
             ? { reviewed_head_sha: entry.reviewed_head_sha }
             : {}),

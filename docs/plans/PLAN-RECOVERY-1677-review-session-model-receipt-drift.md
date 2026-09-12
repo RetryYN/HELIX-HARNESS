@@ -8,7 +8,7 @@ status: confirmed
 completion_claim_allowed: true
 owner: Codex / TL
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-13
 github_issue_id: 1677
 behavior_contract_id: REVIEW-SESSION-MODEL-RECEIPT-DRIFT-001
 responsibility_owner: review-evidence
@@ -27,8 +27,8 @@ red_test: "U-RVIDENT-020で新Opus windowのsinceを実観測境界より1秒遅
 red_at: "2026-09-08T17:26:14Z"
 green_at: "2026-09-08T17:27:58Z"
 mutation_oracle_required: true
-mutation_oracle: "tests/review-evidence.test.ts のU-RVIDENT-020へ実観測境界を1秒遅らせるseeded mutationを投入し、境界時刻のmodel解決がnullとなる1 failedでkillした。tests/branch-kind.test.ts のU-RVIDENT-021は無関係な本文変更をowner候補へ戻す"
-mutation_oracle_evidence: "tests/review-evidence.test.ts::U-RVIDENT-020。2026-09-08T17:26:14Zに新Opus windowのsinceを18:03:40Zから18:03:41Zへ変異し、境界時刻がnullとなって1 failed。復元後17:27:58Zに95 tests greenを再検証した。"
+mutation_oracle: "tests/review-evidence.test.ts のU-RVIDENT-020へ実観測境界を1秒遅らせるseeded mutationを投入し、境界時刻のmodel解決がnullとなる1 failedでkillした。tests/branch-kind.test.ts のU-RVIDENT-021は無関係な本文変更をowner候補へ戻す。U-RRPB-014はbindingのwindow遷移分岐を無効化する変異をkillする。"
+mutation_oracle_evidence: "tests/review-evidence.test.ts::U-RVIDENT-020。2026-09-08T17:26:14Zに新Opus windowのsinceを18:03:40Zから18:03:41Zへ変異し、境界時刻がnullとなって1 failed。復元後17:27:58Zに95 tests greenを再検証した。追加: 2026-09-13T07:07:52+09:00にreceipt bindingの登録window遷移を強制falseへ変異し、U-RRPB-014がreview_plan_model_mismatchで1 failed／18 skippedとなることを実測した。復元後targeted greenを再確認する。"
 complexity_effect: net_neutral
 complexity_justification: "新しい判定器を増やさず、既存history projectionとreceipt間の矛盾を除去する"
 removal_trigger: "model変更時にsessionを再発行し、同一sessionの複数model windowが不要になった時"
@@ -40,6 +40,8 @@ pair_artifact: docs/test-design/helix/L8-review-evidence-reviewer-session-model-
 verification_bindings:
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-020, test_path: tests/review-evidence.test.ts }
   - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RVIDENT-021, test_path: tests/branch-kind.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RRPB-014, test_path: tests/review-receipt-plan-binding.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/review-evidence-reviewer-session-model-history.md, oracle_id: U-RRPB-015, test_path: tests/review-receipt-plan-binding.test.ts }
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -66,6 +68,9 @@ modifies:
   - { artifact_path: tests/review-evidence.test.ts, artifact_type: test_code }
   - { artifact_path: tests/branch-kind.test.ts, artifact_type: test_code }
   - { artifact_path: tests/l12-hybrid-recognition.test.ts, artifact_type: test_code }
+  - { artifact_path: src/runtime/review-receipt-plan-binding.ts, artifact_type: source_module }
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
+  - { artifact_path: tests/review-receipt-plan-binding.test.ts, artifact_type: test_code }
 agent_slots:
   - { role: tl, slot_label: "TL — receiptとhistoryの同一主体境界を照合" }
   - { role: qa, slot_label: "QA — window重複・境界時刻・real repo evidenceを検証" }
@@ -111,3 +116,12 @@ review_evidence:
 
 本sliceはhistory projectionの追従だけを所有する。Claude model変更時のsession再発行、PR #1675のBun移行、
 境界区間外の過去receipt再監査を完了扱いにしない。
+
+## 2026-09-13 binding consumer是正
+
+PR #1767で、lint側は登録済みmodel windowを受理する一方、receipt-plan bindingがmodel文字列を
+直接比較し、同一sessionの正当なFable→Opus遷移を拒否する未移行consumerを検出した。
+
+bindingはPLAN entryとreceiptの双方について`reviewed_at`時点の登録windowをcomposition rootから
+解決する。同一session・同一providerで、両方の申告modelが各時点のwindowと一致する場合だけ遷移を
+受理する。provider一致だけ、時刻欠落、window外、未登録sessionを成功へ変換しない。

@@ -153,6 +153,7 @@ import {
   isSafeRelationGraphScope,
   type RelationDiagramAdapter,
 } from "./lint/relation-graph";
+import { loadReviewerSessionModelHistory, reviewerModelAt } from "./lint/review-evidence";
 import { buildS4DecisionPackets, loadS4DecisionReadinessInput } from "./lint/s4-decision-readiness";
 import {
   analyzeVerificationProfileSafety,
@@ -15202,10 +15203,18 @@ github
       }
       if (input.verdict === "approve") {
         input = bindCanonicalLogicalDbReceipt(input, createL3G3LogicalDbReceipt(process.cwd()));
+        const sessionModelHistory = loadReviewerSessionModelHistory(process.cwd());
         const planBinding = evaluateReviewReceiptPlanBinding({
           receipt: {
             reviewer_session_id: input.reviewerSessionId,
             reviewer_model: input.reviewerModel,
+            reviewed_at: input.reviewedAt,
+          },
+          resolve_session_model: (sessionId, reviewedAt) => {
+            const declared = sessionModelHistory?.sessions.find(
+              (candidate) => candidate.reviewer_session_id === sessionId,
+            );
+            return declared ? reviewerModelAt(declared, reviewedAt) : null;
           },
           changed_plans: loadChangedPlanReviewBindings(process.cwd(), "origin/main", input.headSha),
         });
@@ -15536,6 +15545,7 @@ github
           return {
             reviewer_session_id: value.reviewer_session,
             reviewer_model: value.reviewer_model,
+            reviewed_at: value.reviewed_at,
           };
         })()
       : (() => {
@@ -15543,6 +15553,7 @@ github
           return {
             reviewer_session_id: value.reviewerSessionId,
             reviewer_model: value.reviewerModel,
+            reviewed_at: value.reviewedAt,
           };
         })();
     const changedPlanBindings = loadChangedPlanReviewBindings(
@@ -15553,8 +15564,15 @@ github
     const reviewReceiptHistory = providerNeutral
       ? null
       : loadClaudePrReviewReceiptHistory(repository, prNumber);
+    const sessionModelHistory = loadReviewerSessionModelHistory(process.cwd());
     const mergePlanBinding = evaluateReviewReceiptPlanBinding({
       receipt: reviewIdentity,
+      resolve_session_model: (sessionId, reviewedAt) => {
+        const declared = sessionModelHistory?.sessions.find(
+          (candidate) => candidate.reviewer_session_id === sessionId,
+        );
+        return declared ? reviewerModelAt(declared, reviewedAt) : null;
+      },
       changed_plans: changedPlanBindings,
     });
     if (!mergePlanBinding.ok) {
