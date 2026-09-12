@@ -31,18 +31,19 @@ contract_invariants: "ZIP sourceはmigration provenanceのまま保持し、Proj
 contract_failures: "7 operationの欠落・重複・誤layer・source未束縛・ceremonyまたはmetricゼロ・DB非収束・Scrum内完結をfail-closeする"
 tdd_red_required: true
 mutation_oracle_required: true
-red_at: "2026-09-12T00:25:30Z"
-green_at: "2026-09-12T00:25:42Z"
-mutation_oracle_evidence: "tests/current-location.test.ts::U-SCRUMOPS-001 killed the seeded missing scrum:burndown-velocity declaration mutant (1 failed, exit 1); restored declaration passed (exit 0)"
+red_at: "2026-09-12T01:51:04Z"
+green_at: "2026-09-12T01:52:52Z"
+mutation_oracle_evidence: "tests/current-location.test.ts::U-SCRUMOPS-002 killed the seeded canonical-source-path mismatch mutant (1 failed, exit 1); restored exact-source implementation passed 1/1 (exit 0)"
 complexity_effect: net_negative
 complexity_justification: "既存vmodel-docgen-fit宣言とprojectionを拡張し、別Scrum engineや別DB tableを作らない"
 removal_trigger: "7 operationが恒常的なmanagement-operation registryへ吸収され、個別移行PLANのconsumerが0になった時"
 backprop_decision: not_required
 backprop_decision_reason: "本PLAN自身がDBで観測した管理工程欠落をL3/L10候補へScrum Reverseする上流sliceであるため"
-parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md
-pair_artifact: docs/governance/candidates/scrum-operation-typed-projection-acceptance.md
+parent_design: docs/design/helix/L3-requirements/scrum-operation-typed-projection.md
+pair_artifact: docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md
 verification_bindings:
-  - { parent_design: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, oracle_id: U-SCRUMOPS-001, test_path: tests/current-location.test.ts }
+  - { parent_design: docs/design/helix/L3-requirements/scrum-operation-typed-projection.md, oracle_id: U-SCRUMOPS-001, test_path: tests/current-location.test.ts }
+  - { parent_design: docs/design/helix/L3-requirements/scrum-operation-typed-projection.md, oracle_id: U-SCRUMOPS-002, test_path: tests/current-location.test.ts }
 dependencies:
   parent: null
   requires: []
@@ -56,10 +57,21 @@ generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1751-scrum-operation-typed-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/scrum-operation-typed-projection-requirements.md, artifact_type: design_doc }
   - { artifact_path: docs/governance/candidates/scrum-operation-typed-projection-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md, artifact_type: test_design }
+  - { artifact_path: docs/design/helix/L3-requirements/scrum-operation-typed-projection.md, artifact_type: design_doc }
 modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/design/helix/L3-requirements/vmodel-docgen-fit.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/current-location.ts, artifact_type: source_module }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
 review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent

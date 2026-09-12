@@ -24,6 +24,7 @@ parent_design: docs/governance/candidates/scrum-operation-typed-projection-requi
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-SCRUMOPS-001 | L3/L10候補pair | operation集合、pair metadata、受入条件のいずれかが欠ければ失敗する | `tests/current-location.test.ts` |
+| U-SCRUMOPS-002 | 正規typed declaration | ID、layer、owner、正規source pathの不一致をmissingへ落とし、語句一致で相殺しない | `tests/current-location.test.ts` |
 
 ## 検証順序
 
