@@ -63,6 +63,138 @@ describe("project current-location read model", () => {
     expect(acceptance.match(/\| SCRUM-OPS-AC-0[1-6] \|/g)).toHaveLength(6);
   });
 
+  it("U-SCRUMOPS-002: Scrum運営7 operationは正規L3文書のtyped declaration完全一致だけを採用する", () =>
+    withDb((db) => {
+      const canonicalSource =
+        "docs/design/helix/L3-requirements/scrum-operation-typed-projection.md";
+      const declarations = [
+        ["HOPS-VMFIT-SCRUM-BACKLOG-01", "Scrum backlog", "L3"],
+        ["SCRUM-OPS-R-01", "Scrum story mapping", "L3"],
+        ["SCRUM-OPS-R-02", "Scrum estimation velocity", "L3"],
+        ["HSC-RELEASE-01", "Scrum release plan", "L11"],
+        ["HOPS-VMFIT-SCRUM-SPRINT-01", "スプリント計画", "L7"],
+        ["SCRUM-OPS-R-03", "Scrum DoR DoD", "L3"],
+        ["SCRUM-OPS-R-04", "Scrum daily record", "L7"],
+        ["SCRUM-OPS-R-05", "Scrum sprint review", "L11"],
+        ["SCRUM-OPS-R-06", "Scrum retrospective", "L12"],
+        ["SCRUM-OPS-R-07", "Scrum burndown velocity metrics", "L12"],
+        ["HOPS-VMFIT-SCRUM-AC-01", "Scrum acceptance BDD", "L11"],
+      ];
+      for (const [definedId, kind, layer] of declarations) {
+        upsertRow(db, {
+          table: "design_declarations",
+          primaryKey: "declaration_id",
+          row: {
+            declaration_id: `decl:${definedId}`,
+            defined_id: definedId,
+            declaration_kind: kind,
+            title: kind,
+            layer,
+            owner: "scrum-operation-governance",
+            status: "confirmed",
+            source_path: canonicalSource,
+            source: "frontmatter",
+            indexed_at: "2026-09-12T00:00:00.000Z",
+          },
+        });
+      }
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.scrum_operation).toMatchObject({
+        planningItems: 3,
+        ceremonyItems: 4,
+        metricItems: 1,
+      });
+      expect(
+        snapshot.scrum_operation?.items
+          .filter((item) => item.declarationIds.some((id) => id.startsWith("SCRUM-OPS-R-")))
+          .map((item) => item.operationId),
+      ).toEqual([
+        "scrum:story-mapping",
+        "scrum:estimation-velocity",
+        "scrum:dor-dod",
+        "scrum:daily-record",
+        "scrum:sprint-review",
+        "scrum:retrospective",
+        "scrum:burndown-velocity",
+      ]);
+      expect(snapshot.findings.map((finding) => finding.code)).not.toContain("scrum_operation_gap");
+
+      db.prepare(
+        "UPDATE design_declarations SET layer = 'L2' WHERE defined_id = 'SCRUM-OPS-R-02'",
+      ).run();
+      upsertRow(db, {
+        table: "design_declarations",
+        primaryKey: "declaration_id",
+        row: {
+          declaration_id: "decl:legacy-estimation",
+          defined_id: "HSC-ESTIMATION-01",
+          declaration_kind: "Scrum estimation velocity",
+          title: "旧ZIP由来の見積り・ベロシティ",
+          layer: "L3",
+          owner: "HELIX",
+          status: "confirmed",
+          source_path: "docs/114_見積り・ベロシティ設計.yaml",
+          source: "zip_source_binding",
+          indexed_at: "2026-09-12T00:00:01.000Z",
+        },
+      });
+      const mutated = buildProjectCurrentLocationSnapshot(db);
+      expect(
+        mutated.scrum_operation?.items.find(
+          (item) => item.operationId === "scrum:estimation-velocity",
+        ),
+      ).toMatchObject({ status: "missing" });
+      expect(mutated.findings.map((finding) => finding.code)).toContain("scrum_operation_gap");
+
+      db.prepare("DELETE FROM design_declarations WHERE defined_id LIKE 'SCRUM-OPS-R-%'").run();
+      const legacyOnlyDeclarations = [
+        ["LEGACY-STORY-MAPPING", "Scrum story mapping"],
+        ["LEGACY-ESTIMATION-VELOCITY", "Scrum estimation velocity"],
+        ["LEGACY-DOR-DOD", "Scrum DoR DoD"],
+        ["LEGACY-DAILY-RECORD", "Scrum daily record"],
+        ["LEGACY-SPRINT-REVIEW", "Scrum sprint review"],
+        ["LEGACY-RETROSPECTIVE", "Scrum retrospective"],
+        ["LEGACY-BURNDOWN-VELOCITY", "Scrum burndown velocity metrics"],
+      ];
+      for (const [definedId, title] of legacyOnlyDeclarations) {
+        upsertRow(db, {
+          table: "design_declarations",
+          primaryKey: "declaration_id",
+          row: {
+            declaration_id: `decl:${definedId}`,
+            defined_id: definedId,
+            declaration_kind: title,
+            title,
+            layer: "L3",
+            owner: "HELIX",
+            status: "confirmed",
+            source_path: `docs/migration/${definedId}.yaml`,
+            source: "zip_source_binding",
+            indexed_at: "2026-09-12T00:00:02.000Z",
+          },
+        });
+      }
+      const legacyOnly = buildProjectCurrentLocationSnapshot(db);
+      const canonicalOperationIds = new Set([
+        "scrum:story-mapping",
+        "scrum:estimation-velocity",
+        "scrum:dor-dod",
+        "scrum:daily-record",
+        "scrum:sprint-review",
+        "scrum:retrospective",
+        "scrum:burndown-velocity",
+      ]);
+      expect(
+        legacyOnly.scrum_operation?.items
+          .filter((item) => canonicalOperationIds.has(item.operationId))
+          .every((item) => item.status === "missing"),
+      ).toBe(true);
+      expect(legacyOnly.scrum_operation).toMatchObject({ ceremonyItems: 0, metricItems: 0 });
+      expect(legacyOnly.findings.map((finding) => finding.code)).toContain("scrum_operation_gap");
+    }));
+
   it("旧 L7 実装現在地を L12 canonical の単一 L6 layer へ正規化する", () => {
     expect(mapCurrentLayerToL12("L7")).toBe("L6");
     expect(mapCurrentLayerToL12("L14")).toBe("L12");
@@ -486,6 +618,32 @@ describe("project current-location read model", () => {
             status: "draft",
             source: "frontmatter",
             indexed_at: "2026-07-08T00:04:00.000Z",
+          },
+        });
+      }
+      for (const [definedId, title, layer] of [
+        ["SCRUM-OPS-R-01", "Scrum story mapping", "L3"],
+        ["SCRUM-OPS-R-02", "Scrum estimation velocity", "L3"],
+        ["SCRUM-OPS-R-03", "Scrum DoR DoD", "L3"],
+        ["SCRUM-OPS-R-04", "Scrum daily record", "L7"],
+        ["SCRUM-OPS-R-05", "Scrum sprint review", "L11"],
+        ["SCRUM-OPS-R-06", "Scrum retrospective", "L12"],
+        ["SCRUM-OPS-R-07", "Scrum burndown velocity metrics", "L12"],
+      ]) {
+        upsertRow(db, {
+          table: "design_declarations",
+          primaryKey: "declaration_id",
+          row: {
+            declaration_id: `decl:${definedId}`,
+            defined_id: definedId,
+            declaration_kind: title,
+            title,
+            layer,
+            owner: "scrum-operation-governance",
+            status: "confirmed",
+            source_path: "docs/design/helix/L3-requirements/scrum-operation-typed-projection.md",
+            source: "frontmatter",
+            indexed_at: "2026-09-12T00:04:30.000Z",
           },
         });
       }
