@@ -12,7 +12,7 @@ layer: L1
 drive: agent
 status: confirmed
 created: 2026-06-28
-updated: 2026-06-28
+updated: 2026-09-13
 owner: PO (人間 / RetryYN)
 master_hub: true   # G.3 単一 sub_doc 規則の例外: L0 concept + L1 5 sub-doc の solo 改訂を coordinate する駆動 hub (PLAN-L3-00-master 様式)
 review_evidence:
@@ -140,6 +140,10 @@ G-REQ.L1 exit_criteria（L1 sub-doc confirmed・L1↔L14 pair 整合）を再充
 - [x] G-REQ.L1 re-freeze + PO サインオフ + audit 記録。
 
 ## §5 carry / 次工程への引き継ぎ
+
+- Issue #1778で、検収内修復によるPR収束速度の改善を resident lane の `BR-9` としてL1へ追加した。
+  本hubはL1要求とL12認識対までを束縛し、L3機能要件、実装、実PRでのclosure実証は同Issueの後続sliceへ残す。
+  新scheduler、第二Assignment台帳、merge engine、承認制度は作らず、#860／#1769／#1770／#1771の既存管理責務へ接続する。
 
 - L3 降下では P6/P8 を優先し、§2.5 外部研究 delta と §2.6 Codex runtime parity overlay を一次検証して FR+AC 化する。
 - P6/P9 では §2.7 Distribution/full setup overlay を優先し、`helix setup`（PLAN-M-02 後は `helix setup`）の final one-command setup を FR+AC 化する。AC には非破壊（silent overwrite/delete/reset 禁止）、既存プロジェクト途中導入（import report + 段階移行）、version-up（tag bump + migration/rollback plan）を必ず含める。
