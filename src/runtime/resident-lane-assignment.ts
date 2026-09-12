@@ -147,11 +147,17 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
     const identities = assignmentIdentities.get(assignment.assignment_id) ?? new Set<string>();
     identities.add(canonicalJson(assignment));
     assignmentIdentities.set(assignment.assignment_id, identities);
-    const branchKey = `${assignment.repository}:${assignment.branch}`;
+    const repositoryKey = assignment.repository.toLowerCase();
+    const branchKey = canonicalJson([repositoryKey, assignment.branch]);
     const owners = branchOwners.get(branchKey) ?? new Set<string>();
-    owners.add(`${assignment.assignment_id}:${assignment.assigned_lane_id}:${assignment.lease_id}`);
+    owners.add(
+      canonicalJson([assignment.assignment_id, assignment.assigned_lane_id, assignment.lease_id]),
+    );
     branchOwners.set(branchKey, owners);
-    const scopeKey = `${assignment.repository}:${assignment.scope_ref}`;
+    const normalizedScope = assignment.scope_ref.startsWith("issue:")
+      ? assignment.scope_ref.toLowerCase()
+      : assignment.scope_ref;
+    const scopeKey = canonicalJson([repositoryKey, normalizedScope]);
     const branches = scopeBranches.get(scopeKey) ?? new Set<string>();
     branches.add(assignment.branch);
     scopeBranches.set(scopeKey, branches);

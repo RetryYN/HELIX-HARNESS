@@ -139,6 +139,35 @@ describe("resident lane assignment kernel", () => {
     ).toMatchObject({ ok: true, active_assignments: [assignment(), otherRepository] });
   });
 
+  it("U-RLA-012: repositoryの大小文字差でbranch writer競合を回避させない", () => {
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [
+          assignment(),
+          assignment({
+            assignment_id: "assignment:other",
+            repository: "retryyn/helix-harness",
+            scope_ref: "issue:retryyn/helix-harness#861",
+            assigned_lane_id: "codex-worker-02",
+          }),
+        ],
+      }),
+    ).toMatchObject({ ok: false, failure_codes: ["ASSIGNMENT_DUPLICATE_BRANCH_WRITER"] });
+  });
+
+  it("U-RLA-013: colonを含むwriter tupleを曖昧な連結keyへ畳み込まない", () => {
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [
+          assignment({ assignment_id: "a:b", assigned_lane_id: "c", lease_id: "d" }),
+          assignment({ assignment_id: "a", assigned_lane_id: "b:c", lease_id: "d" }),
+        ],
+      }),
+    ).toMatchObject({ ok: false, failure_codes: ["ASSIGNMENT_DUPLICATE_BRANCH_WRITER"] });
+  });
+
   it("U-RLA-006: observed branch／HEAD／fenceのdriftを別々に拒否する", () => {
     const current = assignment();
     expect(
