@@ -17,6 +17,9 @@ pair_artifact: docs/design/helix/L6-function-design/closure-probe-exact-head-adm
 | U-CLPROBE-003 | remote drift | local HEADがremote refに存在しなければblocked | `tests/closure-evidence-probe-context.test.ts` |
 | U-CLPROBE-004 | worktree ownership | pathとHEADが一致する一意なworktreeでなければblocked | `tests/closure-evidence-probe-context.test.ts` |
 
+CLI結合の追加反例として、symlink経由rootと`origin`不在はいずれもidentity／remote read-afterを
+証明できないためexit 2へ倒し、成功recordを生成しない。
+
 CLI結合ではdirtyな作業treeで`--execute --out`を呼び、exit 2、`record_written=false`、
 `failure_evidence_generated=false`、出力file不存在を確認する。clean exact HEADの実command成功証拠は
 commit/push後の独立worktreeで取得し、開発中dirty treeの成功へ偽装しない。

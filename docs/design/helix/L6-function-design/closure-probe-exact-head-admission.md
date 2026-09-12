@@ -21,4 +21,6 @@ execution recordへ保存する。共有root、detached worktree、通常branch�
 - dirty/conflict/untrackedを既知の変更として免除しない。
 - local HEADだけではremote read-afterを満たしたとみなさない。
 - execution admission失敗を対象PLANのtest failureへ変換しない。
+- symlink経由のrepository rootは物理path一致を証明できない場合にfail-closeする。
+- `origin`が存在しない場合はremote exactnessを推測せずexit 2で停止する。
 - release、closure承認、既存foreign変更の削除は行わない。
