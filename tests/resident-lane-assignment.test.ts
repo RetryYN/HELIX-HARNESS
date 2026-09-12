@@ -116,6 +116,22 @@ describe("resident lane assignment kernel", () => {
     });
   });
 
+  it("U-RLA-011: branchとscopeの競合をrepository内に限定する", () => {
+    const otherRepository = assignment({
+      assignment_id: "assignment:RetryYN/OTHER#860:feature/860-assignment",
+      repository: "RetryYN/OTHER",
+      scope_ref: "issue:RetryYN/OTHER#860",
+      assigned_lane_id: "codex-worker-02",
+      lease_id: "lease-other-860",
+    });
+    expect(
+      projectResidentLaneAssignments({
+        observed_at: "2026-09-12T11:30:00.000Z",
+        assignments: [assignment(), otherRepository],
+      }),
+    ).toMatchObject({ ok: true, active_assignments: [assignment(), otherRepository] });
+  });
+
   it("U-RLA-006: observed branch／HEAD／fenceのdriftを別々に拒否する", () => {
     const current = assignment();
     expect(

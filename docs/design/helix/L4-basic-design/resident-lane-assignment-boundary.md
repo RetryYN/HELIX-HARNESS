@@ -33,7 +33,7 @@ L3のSlice 2を、管理層のAssignment authorityとproduct V-modelのscope契�
 ## 不変条件
 
 - `scope_ref`はGitHub IssueまたはPLANのexactly oneであり、本文は複製しない。
-- 一branch一writer、一scope一active branchを既定とし、子Issueは別scopeとして明示する。
+- 一repository内で一branch一writer、一scope一active branchを既定とし、子Issueは別scopeとして明示する。別repositoryの同名branch／scopeは競合させない。
 - `changes requested`は元worker・同branch・同candidate HEAD・同fenceへだけ戻す。
 - takeoverは旧lease終端、remote HEAD一致、handover receipt、新lease ID、単調増加fenceを要求する。
 - provider session、通知本文、queue row、Project表示をAssignment authorityへ昇格させない。
@@ -67,7 +67,7 @@ L3のSlice 2を、管理層のAssignment authorityとproduct V-modelのscope契�
     "ASSIGNMENT_HANDOVER_RECEIPT_MISSING"
   ],
   "assets": [
-    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:d479b2b415163139392cd1fa7eef31027635fee052779eb813717db8329b7132", "current_authority": true }
+    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:1171ec96b9afa282bc3701e0e630d8e43b1ede68c95cc6601c68fb2b7d55f403", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "ASSIGNMENT_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-002", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_INPUT_INVALID", "mutation": { "remove_post_resolution_check": "if (!assignment.success) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },

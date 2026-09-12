@@ -112,12 +112,14 @@ export function projectResidentLaneAssignments(raw: unknown): ResidentLaneAssign
     const identities = assignmentIdentities.get(assignment.assignment_id) ?? new Set<string>();
     identities.add(canonicalJson(assignment));
     assignmentIdentities.set(assignment.assignment_id, identities);
-    const owners = branchOwners.get(assignment.branch) ?? new Set<string>();
+    const branchKey = `${assignment.repository}:${assignment.branch}`;
+    const owners = branchOwners.get(branchKey) ?? new Set<string>();
     owners.add(`${assignment.assignment_id}:${assignment.assigned_lane_id}:${assignment.lease_id}`);
-    branchOwners.set(assignment.branch, owners);
-    const branches = scopeBranches.get(assignment.scope_ref) ?? new Set<string>();
+    branchOwners.set(branchKey, owners);
+    const scopeKey = `${assignment.repository}:${assignment.scope_ref}`;
+    const branches = scopeBranches.get(scopeKey) ?? new Set<string>();
     branches.add(assignment.branch);
-    scopeBranches.set(assignment.scope_ref, branches);
+    scopeBranches.set(scopeKey, branches);
   }
   if ([...assignmentIdentities.values()].some((identities) => identities.size > 1)) {
     failures.push("ASSIGNMENT_ID_CONFLICT");
