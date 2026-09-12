@@ -25,6 +25,9 @@ contract_invariants: "既存receipt admissionを緩和せず、GitHub observatio
 contract_failures: "編集消失、別HEAD、先行reply、bot、spoof responderを回答へ誤分類しない"
 tdd_red_required: true
 mutation_oracle_required: true
+red_at: "2026-09-12T00:30:44Z"
+green_at: "2026-09-12T00:30:55Z"
+mutation_oracle_evidence: "tests/claude-unanswered-review-detector.test.ts::U-CLUNANS-005 killed the seeded trusted-responder bypass mutant (1 failed, exit 1); restored implementation passed (exit 0)"
 complexity_effect: net_negative
 complexity_justification: "session依存scannerをpure detectorと再構築可能artifactへ集約する"
 removal_trigger: "provider-neutral review-request lifecycleへ同一contractで統合された時"
