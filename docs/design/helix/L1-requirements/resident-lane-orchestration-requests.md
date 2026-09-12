@@ -18,7 +18,7 @@ next_pair_freeze: L12
 # HELIX 常駐マルチランタイム・レーン オーケストレーション要求分解書
 
 - 文書ID: `HELIX-RLO-BRQ-001`
-- バージョン: `0.3.0`
+- バージョン: `0.4.0`
 - 作成日: `2026-08-20`
 - 最終更新: `2026-09-01`（Issue #826、#1293、#1294〜#1296の現行決定を反映）
 - 状態: `request-decomposition-confirmed / L3承認済み`
@@ -57,8 +57,8 @@ L1（機能エリア / BR・NFR）→ L3（FR）のトレースを成立させ�
 | Claude Review レーン | アンカリングなしの blind review を、詰まらない在庫量で行えること |
 | HELIX Control Plane | 状態正本を自分が持ち、provider の生死に依存しないこと |
 
-> 2026-09-13 PO追加要求: `BR-9`はL1要求として受領済み。対応するL3差分
-> `RLO-FR-041..045`／`RLO-AC-031..036`はfreeze前の候補であり、既存confirmed要件を
+> 2026-09-13 PO追加要求: `BR-9`／`BR-10`はL1要求として受領済み。対応するL3差分
+> `RLO-FR-041..049`／`RLO-AC-031..040`はfreeze前の候補であり、既存confirmed要件を
 > 暗黙に上書きしない。Issue #1778で正本化と実証を追跡する。
 
 ---
@@ -134,6 +134,26 @@ merge admission、main read-afterを同一検収episodeとして追跡し、品�
 - 効果測定: PR投入量と品質を維持し、返却率、初回PASS後HEAD変更、管理起因再CI、検収からmergeまでの
   p50／p95、費用、流出欠陥をbefore／afterで比較する。
 - トレース候補: RLO-FR-041〜045 / RLO-AC-031〜036 / Issue #1778
+
+### BR-10: 成功証拠の工程間継承（追加要求、PO決定 2026-09-13）
+
+検証対象、検査定義、依存環境、適用規則が同一で、有効な成功証拠が存在する検証は、PRの
+draft／Ready変更、review完了、mergeという工程遷移だけを理由に再実行しない。再利用できない場合は、
+失効したidentity軸と理由をtyped evidenceとして残し、無関係な検証まで巻き戻さない。
+
+- Ready状態またはreview receiptだけが変わった場合、状態、証拠、権限、freshnessだけを再照合し、
+  無関係なlint、型検査、単体テスト、全回帰を再実行しない。
+- code、test、依存、環境、ruleの一部が変わった場合、subject digestとinput closureから失効した検証だけを
+  再実行する。影響範囲を証明できない場合は全体検証へfail-closeする。
+- merge後のmainが検証済みcandidateと同一tree／同一検査条件を持つ場合、成功証拠を由来付きで継承し、
+  main反映のread-after、履歴、外部状態、統合後固有検査だけを実行する。
+- tree一致だけで全面skipせず、subject tree、base／merge identity、検査定義、toolchain／依存環境、rule、
+  receipt freshnessとissuerを別軸で照合する。新commitへ「今回実行した」と偽装せず、再利用元を記録する。
+- 再利用不能理由、再実行した検証集合、節約時間／費用、誤再利用拒否を計測し、同一成功検証の工程往復を検出する。
+
+- L12受入観点: 同一candidateのReady化で全回帰再実行0、同一treeのmain反映で継承元receiptとpost-merge固有検査を追跡できる。
+  code／rule／environmentの単独変化では対応検証だけが失効し、unknown impact、stale／偽receiptは再利用されない。
+- トレース候補: RLO-FR-046〜049 / RLO-AC-037〜040 / Issue #1778
 
 ### BR-4: provider の生死に依存しない継続性
 

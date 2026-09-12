@@ -1,8 +1,10 @@
 ---
-plan_id: PLAN-L1-08-in-review-repair-convergence
-title: "PLAN-L1-08: 検収内修復によるPR収束速度改善"
+plan_id: PLAN-M-03-in-review-repair-convergence
+title: "PLAN-M-03: 検収内修復によるPR収束速度改善"
 kind: design
 layer: L1
+sub_doc: functional
+master_hub: true
 drive: agent
 status: confirmed
 completion_claim_allowed: false
@@ -21,7 +23,7 @@ ddd_modeling_decision: value_object
 entry_signals:
   - "po_directive:収束速度改善要求を早期に管理層へ追加する"
 contract_preconditions: "既存のAssignment、独立review、Node admission、GitHub PR管理境界を再利用できる"
-contract_postconditions: "検収内修復のL1要求とL12認識対が成立し、L3以降の未実装義務がIssue #1778へ残る"
+contract_postconditions: "検収内修復と成功証拠継承のL1要求・L12認識対が成立し、L3以降の未実装義務がIssue #1778へ残る"
 contract_invariants: "新しいscheduler、Assignment台帳、merge engine、承認制度を増設しない"
 contract_failures: "要求変更や正本矛盾を検収担当が勝手に修復・承認・完了へ変換しない"
 tdd_red_required: false
@@ -49,20 +51,29 @@ dependencies:
     - issue:860
   blocks: []
 generates:
-  - { artifact_path: docs/plans/PLAN-L1-08-in-review-repair-convergence.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/plans/PLAN-M-03-in-review-repair-convergence.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/resident-lane-orchestration-recognition.md, artifact_type: test_design }
   - { artifact_path: tests/resident-lane-orchestration-requirements.test.ts, artifact_type: test_code }
 modifies:
   - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
-  - { artifact_path: .gitignore, artifact_type: text_config }
+  - { artifact_path: .gitignore, artifact_type: config }
 review_evidence:
   - reviewer: PO/directive
     review_kind: human
-    tests_green_at: "2026-09-12T17:40:00Z"
-    reviewed_at: "2026-09-12T17:41:00Z"
+    tests_green_at: "2026-09-12T18:12:53Z"
+    reviewed_at: "2026-09-12T18:13:00Z"
     verdict: approve
     scope: "収束速度改善要求を早期に追加し、管理層へ責務を寄せて下層を軽量化するPO指示。L3実装完了の承認ではない。"
+    green_commands:
+      - kind: unit_test
+        command: "npx --no-install vitest run tests/resident-lane-orchestration-requirements.test.ts"
+        runner: node
+        scope: targeted
+        exit_code: 0
+        completed_at: "2026-09-12T18:12:53Z"
+        evidence_path: tests/resident-lane-orchestration-requirements.test.ts
+        output_digest: "sha256:2176eae1d6ad5cd6afa89a10d50d10f4dc3d51d8ce342b8483a8d9db587d3ea4"
 ---
 
 # 検収内修復によるPR収束速度改善
@@ -74,12 +85,12 @@ resident laneの検収episodeで、承認済み契約から結果を一意に導
 
 ## 工程と残義務
 
-1. 本sliceで`BR-9`とL12認識対を固定する。
+1. 本sliceで`BR-9`／`BR-10`とL12認識対を固定する。
 2. L3で処理区分、権限、予算、停止条件、測定指標を要件化する。
 3. L4↔L9、L5↔L8、L6↔L7を対で降下し、実PRでclosureを実証する。
 
 ## 受入境界
 
-- L1とL12の双方が`BR-9`を参照し、片肺変更を検出できる。
+- L1とL12の双方が`BR-9`／`BR-10`を参照し、片肺変更を検出できる。
 - 現行confirmed L3/L10をこのsliceだけで変更済みと扱わない。
 - Issue #1778がL3以降の未解消義務と実PR closure実証を保持する。

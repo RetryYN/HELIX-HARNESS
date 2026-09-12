@@ -27,6 +27,7 @@ pair_artifact: docs/design/helix/L1-requirements/resident-lane-orchestration-req
 | `BR-7` | FE/BE/設計/task class別のHELIX-Bench evidenceへ適性判断を遡れる |
 | `BR-8` | resident lane、native subagent、CLI workerと実model／effortが別identityで表示される |
 | `BR-9` | 契約内findingは検収セル内で修復・fresh再検証・mergeまで閉じ、意味判断が必要なfindingだけ原因ownerへ返る。下位要件freeze前は候補として識別され既存差戻し契約を暗黙上書きしない |
+| `BR-10` | 同一subject・検査定義・環境・ruleの成功証拠はReady／review／mergeを越えて由来付きで継承され、失効軸がある検証だけ再実行される。tree一致だけの全面skip、stale証拠、実行済み偽装は拒否される |
 
 `CN-1..6`は全canaryで維持する。特にL1-L12 authority、Node transactional boundary、requirements-first、
 action-binding approval、secret非記録、main PR-onlyを一件でも破る結果を受入れない。
