@@ -2775,7 +2775,7 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // python_worker_boundary signalは旧proposal-only境界の再導入ではなく、ADR-009/010に従う
     // 現行Python意味コアとNode transaction writerの責務を保持するための語である。
     path: "docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md",
-    contentDigest: "848f124da2d7d9983583dc2fb7c91ef9eb0e587628b0d6c85d20b78ad4bf4bf6",
+    contentDigest: "6fbd25884da37106e9b9848d6196c1da7ad7594bd3b8627b80062663b3a5ed9a",
     finalDisposition: "false_positive",
   },
   {

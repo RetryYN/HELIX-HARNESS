@@ -38,7 +38,7 @@ removal_trigger: "後継Python runtime authorityへreceipt付きmigrationし3.14
 parent_design: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md
 pair_artifact: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md
 verification_bindings:
-  - { parent_design: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md, oracle_id: D-PYRT-001, test_path: docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md }
+  - { parent_design: docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md, oracle_id: U-WDA-004, test_path: tests/worker-descriptor-admission.test.ts }
 agent_slots:
   - { role: se, slot_label: "SE — runtime identity、provenance、lock境界" }
   - { role: qa, slot_label: "QA — signature、offline、SBOM、OS parity反例" }
