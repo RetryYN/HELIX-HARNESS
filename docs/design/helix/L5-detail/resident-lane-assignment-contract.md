@@ -27,7 +27,7 @@ pair_artifact: docs/test-design/helix/L8-resident-lane-assignment-unit-test-desi
 - 担当lane／role、lease ID、正整数fence
 - 作成／期限のRFC3339 timestamp
 
-未知field、保護branch、不正なlease期間はfail-closeする。入力欠落をcwd、env、provider session、mainから補完しない。
+未知field、Issue scopeとrepositoryの不一致、Git refとして無効または保護対象のbranch、不正なlease期間はfail-closeする。入力欠落をcwd、env、provider session、mainから補完しない。
 
 ## 純粋な判定
 
@@ -58,7 +58,7 @@ pair_artifact: docs/test-design/helix/L8-resident-lane-assignment-unit-test-desi
     "ASSIGNMENT_HANDOVER_RECEIPT_MISSING"
   ],
   "assets": [
-    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:8ada0fe04edef33d85dbcc47ad072c9e995af2d27bef2fc5eafae4de4c6d1416", "current_authority": true }
+    { "asset_id": "resident-lane-assignment-kernel", "classification": "existing_runtime", "artifact_path": "src/runtime/resident-lane-assignment.ts", "resource_kind": "typescript_export", "resource_name": "projectResidentLaneAssignments", "source_digest": "sha256:c3df3ad700ab7fd9ce3d01e0ebb9bc8d4506438c13c8634626abcf0b06931c23", "current_authority": true }
   ],
   "failure_reachability": [
     { "reason_code": "ASSIGNMENT_INPUT_INVALID", "reachability_mode": "executable_oracle", "source_path": "src/runtime/resident-lane-assignment.ts", "source_symbol": "projectResidentLaneAssignments", "test_path": "tests/resident-lane-assignment.test.ts", "oracle_id": "U-RLA-002", "identity_fields": [], "post_resolution_checks": [], "fixture": { "registry": [], "request": {} }, "expected_reason": "ASSIGNMENT_INPUT_INVALID", "mutation": { "remove_post_resolution_check": "if (!assignment.success) {", "expected_reason_after_mutation": "RED_BY_ORACLE", "execution_test_path": "tests/design-reality-binding.test.ts", "execution_oracle_id": "U-DRB-030", "execution_helper": "executeResidentLaneAssignmentMutationOracle" } },

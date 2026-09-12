@@ -51,6 +51,10 @@ describe("resident lane assignment kernel", () => {
         plan_ref: "plan:PLAN-L7-860-resident-lane-assignment-kernel",
       },
       { ...assignment(), provider_session: "not-authority" },
+      { ...assignment(), scope_ref: "issue:RetryYN/OTHER#860" },
+      { ...assignment(), branch: "feature/invalid..branch" },
+      { ...assignment(), branch: "feature/invalid branch" },
+      { ...assignment(), branch: "feature/invalid.lock" },
     ]) {
       expect(
         projectResidentLaneAssignments({

@@ -1809,6 +1809,20 @@ runtimeCommand("claude");
     ).toBe(true);
     expect(
       executeResidentLaneAssignmentMutationOracle(
+        "!isValidGitBranchName(value.branch)",
+        "false",
+        "U-RLA-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
+        ["!value.scope_ref.startsWith(`issue:", "{value.repository}#`)"].join("$"),
+        "false",
+        "U-RLA-002",
+      ),
+    ).toBe(true);
+    expect(
+      executeResidentLaneAssignmentMutationOracle(
         "Date.parse(assignment.expires_at) <= observedAt",
         "false",
         "U-RLA-003",

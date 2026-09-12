@@ -14,6 +14,26 @@ const scopeRefSchema = z.union([
   z.string().regex(/^plan:PLAN-[A-Z0-9]+-[0-9]+(?:-[a-z0-9-]+)?$/u),
 ]);
 
+function isValidGitBranchName(branch: string): boolean {
+  return (
+    branch.length > 0 &&
+    branch !== "@" &&
+    !branch.startsWith(".") &&
+    !branch.startsWith("/") &&
+    !branch.endsWith(".") &&
+    !branch.endsWith("/") &&
+    !branch.includes("..") &&
+    !branch.includes("//") &&
+    !branch.includes("@{") &&
+    ![...branch].some((character) => {
+      const code = character.charCodeAt(0);
+      return code <= 32 || code === 127;
+    }) &&
+    !/[~^:?*[\]\\]/u.test(branch) &&
+    !branch.split("/").some((component) => component.endsWith(".lock"))
+  );
+}
+
 export const residentLaneAssignmentSchema = z
   .object({
     schema_version: z.literal(RESIDENT_LANE_ASSIGNMENT_SCHEMA_VERSION),
@@ -36,6 +56,19 @@ export const residentLaneAssignmentSchema = z
   .superRefine((value, context) => {
     if (value.branch === "main" || value.branch === "master") {
       context.addIssue({ code: "custom", path: ["branch"], message: "protected branch" });
+    }
+    if (!isValidGitBranchName(value.branch)) {
+      context.addIssue({ code: "custom", path: ["branch"], message: "invalid git branch" });
+    }
+    if (
+      value.scope_ref.startsWith("issue:") &&
+      !value.scope_ref.startsWith(`issue:${value.repository}#`)
+    ) {
+      context.addIssue({
+        code: "custom",
+        path: ["scope_ref"],
+        message: "issue repository mismatch",
+      });
     }
     if (Date.parse(value.created_at) >= Date.parse(value.expires_at)) {
       context.addIssue({ code: "custom", path: ["expires_at"], message: "invalid lease window" });
