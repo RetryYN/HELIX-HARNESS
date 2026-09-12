@@ -71,7 +71,7 @@ review_evidence:
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
     reviewed_at: "2026-09-12T02:03:24Z"
-    tests_green_at: "2026-09-12T02:28:33Z"
+    tests_green_at: "2026-09-12T01:10:08Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-fable-5-1
@@ -86,9 +86,9 @@ review_evidence:
         runner: node
         scope: targeted
         exit_code: 0
-        completed_at: "2026-09-12T02:28:33Z"
+        completed_at: "2026-09-12T01:10:08Z"
         evidence_path: tests/management-scrum-product-forward.test.ts
-        output_digest: "sha256:881e90fb93ebc90ad58cd5b67a9428a881f79538616f5475af5d0fa4086a4c7a"
+        output_digest: "sha256:9194aef3724913aa2c4e70f4a865140d160d0e81a4827864df786b52b1a2feae"
   - reviewer: "Claude Code / Fable 5.1"
     review_kind: cross_agent
     reviewed_at: "2026-09-12T01:10:08Z"
