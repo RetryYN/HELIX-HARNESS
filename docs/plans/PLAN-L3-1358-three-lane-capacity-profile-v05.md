@@ -4,8 +4,18 @@ title: "PLAN-L3-1358: 三社レーン動的capacity profile v0.5"
 kind: add-design
 layer: L3
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-12T10:22:05Z"
+  plan_id: PLAN-L3-1358-three-lane-capacity-profile-v05
+  approval_record_id: L3-PO-1358-003
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1358#issuecomment-5645297663"
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
@@ -15,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Codex／Cursor workerを定常3・最大5、Claude reviewerを定常2とする将来capacityを要求へ保持する"
 created: 2026-09-09
-updated: 2026-09-09
+updated: 2026-09-12
 owner: Codex / TL
 github_issue_id: 1358
 behavior_contract_id: THREE-LANE-DYNAMIC-CAPACITY-PROFILE-001
@@ -63,6 +73,40 @@ modifies:
 agent_slots:
   - { role: tl, slot_label: "TL — pool／active／review／merge capacity境界" }
   - { role: qa, slot_label: "QA — 段階拡張、backpressure、review lease、JIT receipt反例" }
+review_evidence:
+  - reviewer: "Claude Code / claude-fable-5-1"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-12T00:13:36Z"
+    tests_green_at: "2026-09-12T00:13:36Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-fable-5-1
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: 7c06020ee29d0d718bf4730e817c5e0b8fa4247a
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1750#issuecomment-5642089190"
+    ci_evidence_generation: "run:34659443632:attempt:1:success"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1750:7c06020ee29d0d718bf4730e817c5e0b8fa4247a:claude:run:34659443632:attempt:1:success"
+    receipt_digest: "sha256:5e2734917d2834357d7f36068b7f0c5bff7c9eab8aee2028578525ce173b4d8c"
+    scope: "PO承認前のdraft exact HEADを独立監査しblocker 0。候補L1/L3/L10/L12の内容、ID連番、3L-R-11引用、双方向pair、candidate-only境界、snapshot 100件、全CI shardを確認した。main同期後の新HEADはsuccess CIと独立review receiptを再取得する。"
+    green_commands:
+      - kind: smoke
+        command: "GitHub Actions run 34659443632 full regression receipt"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-12T00:13:36Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:13da7ea43892da04f0442a448bb6304e662c2bc07e68075b17c36b0ac02b342a"
+        result: "exact HEAD 7c06020ee、全required check success、DB projection/replay converged"
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-09-12T00:13:36Z"
+  review_binding:
+    reviewer: "Claude Code / claude-fable-5-1"
+    reviewed_at: "2026-09-12T00:13:36Z"
+    evidence_digest: "sha256:863a852c27b8b9189357f5e826e2097dfafae805b4fa97a73a0ec160819d3592"
+  entries: []
 ---
 
 # 三社レーン動的capacity profile v0.5
