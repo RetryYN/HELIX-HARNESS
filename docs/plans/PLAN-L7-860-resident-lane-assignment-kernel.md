@@ -103,7 +103,7 @@ review_evidence:
   - reviewer: "Claude independent reviewer / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-09-12T13:45:10Z"
-    tests_green_at: "2026-09-12T13:45:05Z"
+    tests_green_at: "2026-09-12T13:45:10Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
@@ -123,7 +123,7 @@ left_arm_carry:
   review_binding:
     reviewer: "Claude independent reviewer / claude-opus-5"
     reviewed_at: "2026-09-12T13:45:10Z"
-    evidence_digest: "sha256:f4f5170ead36952206a90bfd50cbd6431fe2a9d4ac93ef7ffacd0af69c19bca9"
+    evidence_digest: "sha256:4955b087c685eb09e897743fc5df661b6545cdedd54a4de4e7ee411f978151c6"
   entries: []
 ---
 
@@ -147,4 +147,4 @@ left_arm_carry:
 - Reverse pairingを独立routeでbackfillする。
 - exact HEADの独立review、terminal CI、merge、main read-afterを行う。
 
-本PLANのpure kernel sliceは独立reviewを経てconfirmedとする。保存・event・DB・GitHub接続とReverse pairingは後続義務として残し、本sliceの完了へ混同しない。
+本PLANのpure kernel sliceと実行済み単体pairは独立reviewを経てconfirmedとする。L9 integration設計は実装前のdraftを維持する。保存・event・DB・GitHub接続とReverse pairingは後続義務として残し、本sliceの完了へ混同しない。
