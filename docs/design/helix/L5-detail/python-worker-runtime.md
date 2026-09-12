@@ -251,6 +251,53 @@ Python unit testだけ、prose上のauthority分離だけではfreezeしない�
 acceptedだけでなくfailed/quarantined/cancelled/timed_outもterminal event、projection、terminal receipt、commit receiptを
 atomic bundle/storeへ閉じる。全terminalでexactly-one receipt、fault後同一bundle reconcile、partial write 0を要求する。
 
+## Python runtime toolchain凍結
+
+最初のsemantic canaryは **CPython 3.14.7通常build、free-threaded無効、JIT無効**を候補とする。
+これはruntime導入済みの宣言ではない。`PythonRuntimeAuthorityV1`は`runtime_id`、implementation、exact patch、
+build mode、OS/arch別artifact、公式source/release URL、artifact SHA-256、signature/provenance、manifest/lock、
+SBOM、offline bundle、rollback runtime identityを必須とする。PATH、`python3` alias、system Python、latest minor、
+online再解決へfallbackしない。
+
+admissionはauthority decode、OS/arch artifactのexactly-one解決、signature/provenanceとdigest検証、lockの
+transitive set照合、network attempt 0のclean install、installed setとSBOMの双方向照合、build flags確認、
+Nodeによるreceipt再検証の順で行う。実artifact digest、lock tool、Windows取得経路は実測receiptなしに
+推測で埋めず、別runtimeのexact-HEAD review後にだけfreezeする。macOS、free-threaded、JIT、publishは非対象とする。
+
+2026-09-12の公式release surfaceから次の候補artifactを実取得し、page掲載SHA-256との一致とSigstore bundleの
+offline identity verificationを確認した。署名identityは`hugo@python.org`、OIDC issuerは
+`https://github.com/login/oauth`である。この記録はartifact provenance候補だけを証明し、lock tool、clean install、
+runtime build、rollbackの完了を証明しない。
+
+| 対象 | artifact | SHA-256 | Sigstore bundle SHA-256 | SPDX 2.3 SHA-256 |
+|---|---|---|---|---|
+| Linux source authority | `Python-3.14.7.tar.xz` | `3b48dac8fb59f62eaa67ac83c1eb12bda1b7a08406dd286e252c11a66be27f81` | `6f41efc358b146b5548dbfc0414e9247441f8524fb6ef59f1c4ca946ffc70701` | `87f55ca6c59fe159fa8c47ba2d7d8bec39cc649b1d3f47c667f34025a2ca9a68` |
+| Windows x64 compatibility | `python-3.14.7-amd64.exe` | `9d9eb2709ef81bf5cd30db3c2096bdbc4ea10087c22e62f27d356b36f6ae9649` | `348ad14511b3049e78ad53bbb95641f07299db790a088a3ddf62e136325eebe5` | `dedeab48eff8bdb2ffc3a124473c49142b3f368abbe2996683aa1126a913ef89` |
+
+一次情報は`https://www.python.org/downloads/release/python-3147/`と同pageから直接参照される
+python.org artifact、`.sigstore`、`.spdx.json`に限定する。Python 3.14以降はPGP release signatureを
+提供せずSigstoreを推奨するという同pageのPEP 761記載に従う。
+
+lock producer候補は`uv 0.12.0`に固定し、project authorityを`pyproject.toml`＋`uv.lock`、tool非依存の
+監査projectionをPEP 751 `pylock.toml`とする。二つを独立正本にはせず、`uv.lock`から同一producerでexportし、
+入力manifest digest、producer version/artifact digest、両lock digest、package exact setの一致をreceiptへ持つ。
+実行経路は`uv lock --check`、`uv sync --frozen --offline --no-index --no-python-downloads`を要求し、暗黙lock更新、
+index access、Python downloadを禁止する。
+
+uv公式GitHub release `0.12.0`から取得したtool artifactは次のとおりで、GitHub artifact attestationを
+`astral-sh/uv` repository identityへ束縛して検証した。ローカル既存binaryのdigest
+`b6e3cb5b4858d920c63e1d88e31a7a4d8f567073ee4e5e4a1889f93984dc28ea`はrelease archive digestと同一では
+ないため、由来未証明のローカルbinaryをfreeze evidenceへ流用しない。
+
+| 対象 | artifact | SHA-256 |
+|---|---|---|
+| Linux x64 | `uv-x86_64-unknown-linux-gnu.tar.gz` | `eaf842262aa1c418d8ecc5605f02ee1ebfd369124fa48548e85f9481a47831a9` |
+| Windows x64 | `uv-x86_64-pc-windows-msvc.zip` | `68200e25de594df92387186bbfb9d9df606ec1d87efaa0ae0c7f690970e53db6` |
+
+一次情報は`https://github.com/astral-sh/uv/releases/tag/0.12.0`、`https://docs.astral.sh/uv/concepts/projects/layout/`、
+`https://packaging.python.org/en/latest/specifications/pylock-toml/`である。3.14.7 interpreterが存在しない環境では
+dependency 0でもoffline lock生成がexit 2となることを確認済みであり、3.14.6へfallbackしない。
+
 ## Design Reality Binding 契約
 
 本 doc は設計フェーズの正本であり、runtime asset は実装スライス（L6 実装 ↔ L7 TDD closure）で
