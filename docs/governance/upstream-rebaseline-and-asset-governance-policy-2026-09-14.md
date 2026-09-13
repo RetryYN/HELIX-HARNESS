@@ -37,6 +37,38 @@ GitHubは作業・協調・CI・PR証拠のsurfaceである。Issueのopen／clo
 要求の追加・削除・採否・合意・実装・受入・退役を生成しない。GitHubで受け取った変更はtyped intakeとして
 ローカルauthority候補へ戻し、採否後にだけ下流へ伝播する。
 
+## 上流変更の同期・レビュー境界
+
+上流候補をGitHubへ保存すること、意味を独立reviewすること、人間が採否すること、下流CIで実装整合を検証することを
+別operationとして扱う。
+
+| Operation | 目的 | 入力 | 出力 | 禁止事項 |
+|---|---|---|---|---|
+| local candidate | 上流の意味を起草する | authority source、PO決定、監査差分 | repo-owned candidate revision | Issueや既存実装から意味を補完しない |
+| remote sync | 同一revisionを耐久保存・共有する | exact commit/tree、branch | remote commit/tree locator | PR作成、CI起動、承認済み化を暗黙に伴わせない |
+| upstream meaning review | 製品境界、要求意味、source completeness、非対象、下流影響を独立確認する | exact candidate revision、source inventory、review観点 | findingまたはreview receipt | 旧実装green、旧CI、PR admissionを意味妥当性のoracleにしない |
+| human decision | Concept／L1／L2／L3の所定境界を採否する | exact revision、semantic diff、finding、未解決事項 | actor・scope・revision付きdecision | AI reviewやCIから人間approvalを生成しない |
+| downstream verification | 承認上流から導出した設計・実装・projectionを検証する | approved upstream revision、pair、oracle | test／CI／review／operation evidence | 未承認候補をcurrent authorityとして検査しない |
+
+`remote sync`はbranch pushだけで成立できる。上流候補の共有にPRが必須だと仮定しない。PR作成がrepositoryの既存CI、
+merge admission、Issue closure、auto-mergeを起動する場合、U0–U4ではそのPRを作らない。上流意味reviewは、対象commitを
+read-onlyで取得でき、reviewer identity、review対象revision、source set、finding、判定時刻を記録できる専用laneで行う。
+専用laneが未整備なら`review_waiting`で停止し、旧PR／CI経路へfallbackしない。
+
+Claude等の独立reviewerは上流意味reviewを担当できるが、CIを成功させるためのreceipt発行者として扱わない。
+reviewerはConcept approval、L2合意、L3承認を代行せず、`pass`も人間decisionを進めない。修正後は新commitを別revisionとして
+再reviewし、古いreceiptを新HEADへ流用しない。
+
+PR／CIへ接続できるのは、少なくとも次が揃った後とする。
+
+1. 対象上流revisionとauthority statusが確定している。
+2. 変更から導出される下流対象、pair、oracle、expected failureが確定している。
+3. 起動するworkflowがそのrevisionの検査目的に適合し、旧authorityへの復帰を要求しない。
+4. mergeが進める状態と、進めない状態が明示されている。
+5. auto-merge、Issue close、release、deployment等の外部作用が明示的に禁止または許可されている。
+
+既存CIの再設計はU6のprojection切替対象である。U1のConcept候補を旧CIへ通すことで、CI設計の妥当性を証明しない。
+
 ## 上流から降ろし直す順序
 
 ```text
@@ -90,6 +122,9 @@ L2を飛ばしてL1からL3へ接続せず、L2要求とL11受入、L3要件とL
 変更状態は`proposed → classified → upstream_decided → derived → implemented → verified → accepted → observed`を
 別々に保持する。単一の`done`、Issue close、PR mergeで全状態を同時に進めない。
 
+同期・reviewの補助状態は`local_draft → remote_synced → review_waiting → reviewed → human_decided`として別に保持する。
+これは成果物のauthority statusを置き換えない。`remote_synced`や`reviewed`を`upstream_decided`へ自動変換しない。
+
 ## 自動走行の成立条件
 
 HELIX-OSが自動走行できる資産は、最低限次を満たす。
@@ -124,6 +159,7 @@ HELIX-OSが自動走行できる資産は、最低限次を満たす。
 - Requirement IRの確認済み意味差分とauthority語彙差分を正規transactionで適用する。
 - 既存資産台帳を上記schemaへ収束し、自動走行可能・再導出待ち・退役候補を区別する。
 - 下流consumer、runtime、CI、DB projectionは上流freeze後に変更する。
+- GitHub branchへのremote syncは行えるが、上流review専用laneが整うまで旧PR／旧CI admissionへ接続しない。
 
 現在の対象別要求と監査は[HELIX L2要求の読取り入口](../design/helix/L2-requirements/README.md)から参照する。
 [上流authority管理台帳](upstream-authority-register-2026-09-14.md)を、母集団・状態・正規入口・次の処置の管理面として使う。

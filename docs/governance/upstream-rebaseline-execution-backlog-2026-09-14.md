@@ -74,6 +74,10 @@ GitHub Issue番号、branch、PRはこの契約への参照として追加でき
 `verified（文書範囲）`は、runtime実装・全repository資産・利用者受入まで完了した意味ではない。
 U1のConcept candidate revisionは起草済みであり、製品identityと責務境界の人間確認が次の上流gateである。
 
+URB-U1-001のcandidateはremote branchへ同期済みである。ただし旧PR #1795はclosedであり、そのCIとreview admissionを
+U1のreview・承認・完了根拠にしない。上流意味reviewの専用laneが未整備のため、補助状態は`review_waiting`とする。
+この待機中にU2を起草せず、PRを再開して旧CIへfallbackしない。
+
 ## 停止規律
 
 - 対象製品、上流revision、owner、pair、acceptanceが不明なら停止する。
@@ -81,3 +85,5 @@ U1のConcept candidate revisionは起草済みであり、製品identityと責�
 - 凍結sourceの本文を先に変更してdigestだけ追従させない。
 - 未移管条件、consumer、rollback、historical evidenceが不明な資産を削除しない。
 - CIを回すこと自体を前進や完了にしない。実行する検査と判断対象を先に固定する。
+- remote sync、上流意味review、人間decision、下流CIを別operationにする。branch pushからPR作成を自動導出しない。
+- 上流review専用laneが未整備なら`review_waiting`で停止し、旧PR／旧CI receiptを代替証拠にしない。
