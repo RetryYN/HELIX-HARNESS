@@ -7,6 +7,7 @@ drive: agent
 status: confirmed
 completion_claim_allowed: false
 runtime_activation_allowed: false
+backfill_state: pending_reverse
 created: 2026-09-13
 updated: 2026-09-13
 red_at: "2026-09-12T15:24:34Z"
@@ -72,7 +73,6 @@ dependencies:
     - docs/design/helix/L5-detail/cursor-cloud-independent-execution-contract.md
   references:
     - "issue:1293"
-    - docs/plans/PLAN-REVERSE-1293-cursor-cloud-independent-execution.md
   blocks: ["issue:1362"]
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1690-cursor-cloud-independent-execution.md, artifact_type: markdown_doc }
