@@ -54,3 +54,6 @@ as_of: 2026-09-14
 - 旧資産のreuse／split／replace／retire／archive判断とreplacement evidenceがある。
 
 現在は対象別整理と適用待ち差分までであり、この完了条件は未達である。
+
+[上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)は、本台帳の各集合を
+U0母集団固定からU7旧資産退役までのwork unitへ変換する。GitHub Issueを起票しなくても作業契約を保持できる。

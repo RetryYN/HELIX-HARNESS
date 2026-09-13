@@ -1,0 +1,83 @@
+# 上流再整備の実行backlog
+
+status: draft_backlog
+created: 2026-09-14
+updated: 2026-09-14
+
+## 目的
+
+[上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)を、
+HELIX-OSが順に実行・停止・再開できる作業単位へ分ける。GitHub Issueは必要に応じた作業projectionであり、
+本backlogの意味・順序・完了状態を所有しない。
+
+## 実行順序
+
+| Wave | 目的 | 主入力 | 成果物 | 人間境界 | 自動走行の出口 |
+|---|---|---|---|---|---|
+| U0 | 母集団とauthorityを固定 | 上流authority管理台帳、Core Reads、Requirement IR、候補、旧資産 | source exact set、状態、対象、owner、未解決一覧 | 新しい製品境界・安全境界だけ判断 | 全sourceがclassifiedまたはreason付きunresolved |
+| U1 | 上位Conceptを対象別に確定 | L0 charter、Concept v3.1、Concept v4候補、最新責務決定 | HELIX全体、HARNESS、HELIX-OS、個別製品のConcept revision | Concept・製品identityを承認 | 旧Conceptとの差分、supersede、rollback、下流impactが確定 |
+| U2 | 対象別L1を再構成 | P0–P9、柱要求、Concept revision | HARNESS L1、HELIX-OS L1、個別製品L1 | 企画・価値・scopeを確認 | 全L1がexact target、親Concept、非対象、成功条件を持つ |
+| U3 | 対象別L2とL11を確定 | 対象別L1、既存L2案、prototype／非UI適用性 | 合意revision付きL2、対応L11受入設計 | 要求・prototype・N/A・合意を確認 | 全L2がL1親、利用場面、成功結果、L11 pairを持つ |
+| U4 | L3要件とL10を再凍結 | 合意済みL2、v1.3、candidate L3、Requirement IR | 対象別L3、L10、IR revision、canonicalization receipt | L3要件revisionを承認 | 全L3がL2親、AC、failure、L10 pair、impactを持つ |
+| U5 | L4–L9とL6↔L7を再導出 | 凍結L3／L10、既存設計・実装・test | 対象別設計、test contract、実装slice、trace | 不可逆・外部作用だけ判断 | 全変更が正規pair、owner、oracle、green evidenceを持つ |
+| U6 | runtime／projectionを切替 | 検証済み下流、consumer一覧、migration plan | runtime、DB、CLI、CI、GitHub projectionの新revision | cutover等のaction-binding approval | dual-green、rollback、consumer read-after、旧write停止 |
+| U7 | 旧資産を退役 | replacement、parity、consumer切替、履歴要否 | retire／archive／delete dispositionと証拠 | 破壊的削除・release境界を確認 | 未移管0、旧runtime再有効化不可、rollback対象明示 |
+
+Waveを飛ばさない。U1–U4の上流が変わった場合、影響するU5–U7をstale化する。
+U5以降の実装成功からU1–U4の意味を逆算して確定しない。
+
+## 各Waveの作業契約
+
+各作業単位は次を必須fieldとして持つ。
+
+```yaml
+work_unit_id: stable-id
+wave: U0-U7
+product_target: HARNESS | HELIX-OS | HELIX-Web | exact-other-product
+source_asset_ids: []
+upstream_revision: exact-revision
+responsibility_owner: exact-owner
+scope:
+  include: []
+  exclude: []
+dependencies: []
+required_pairs: []
+acceptance_ids: []
+allowed_actions: []
+forbidden_actions: []
+stop_conditions: []
+rollback_target: null
+evidence_required: []
+state: proposed | ready | active | blocked | verified | accepted | superseded
+```
+
+GitHub Issue番号、branch、PRはこの契約への参照として追加できるが、`source_asset_ids`、`upstream_revision`、
+`acceptance_ids`をIssue本文から補完しない。fieldが不足する作業単位は`ready`にしない。
+
+## 最初のwork unit
+
+| ID | Wave | 対象 | 入力 | 出口 | 現在状態 |
+|---|---|---|---|---|---|
+| URB-U0-001 | U0 | HELIX全体 | 上流authority管理台帳 | 既知母集団と未解決sourceのexact inventory | verified（文書範囲） |
+| URB-U1-001 | U1 | HELIX全体 | Concept v3.1、v4候補、責務決定 | 最新製品identityを持つConcept candidate revision | ready_to_draft |
+| URB-U2-HARNESS-001 | U2 | HARNESS | Concept revision、柱対応表 | 外部提供物としてのL1企画 | upstream_waiting |
+| URB-U2-OS-001 | U2 | HELIX-OS | Concept revision、柱対応表 | 管理・統制・改善機構としてのL1企画 | upstream_waiting |
+| URB-U2-WEB-001 | U2 | HELIX-Web | Concept revision、Vision原文 | 管理対象製品としてのL1企画 | upstream_waiting |
+| URB-U3-HARNESS-001 | U3 | HARNESS | HARNESS L1、L2案6件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
+| URB-U3-OS-001 | U3 | HELIX-OS | OS L1、L2案9件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
+| URB-U3-WEB-001 | U3 | HELIX-Web | Web L1、Vision由来L2案8件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
+| URB-U4-001 | U4 | 対象別 | v1.3対応表、IR差分proposal、候補L3／L10 | 対象別L3／L10とIR revision | upstream_waiting |
+| URB-U5-001 | U5 | 対象別 | 凍結L3／L10、既存資産台帳 | 下流再導出と検証済み実装slice | upstream_waiting |
+| URB-U6-001 | U6 | HELIX-OS | 検証済みslice、consumer、migration | runtime／projection切替 | upstream_waiting |
+| URB-U7-001 | U7 | HELIX全体 | replacement evidence、consumer read-after | 旧資産退役 | upstream_waiting |
+
+`verified（文書範囲）`は、runtime実装・全repository資産・利用者受入まで完了した意味ではない。
+U1のConcept candidate revisionが次の自動起草対象である。
+
+## 停止規律
+
+- 対象製品、上流revision、owner、pair、acceptanceが不明なら停止する。
+- candidate承認とcanonical admission、実装と検証、PR mergeと利用者受入を同一状態にしない。
+- 凍結sourceの本文を先に変更してdigestだけ追従させない。
+- 未移管条件、consumer、rollback、historical evidenceが不明な資産を削除しない。
+- CIを回すこと自体を前進や完了にしない。実行する検査と判断対象を先に固定する。
