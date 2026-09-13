@@ -39,6 +39,12 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 各結果は対象プロジェクト・要求revision・HARNESS版・割当・HEADへ対応づける。以上は未実行であり、
 既存の単体テストや文書の存在を利用者受入の実結果へ転用しない。
 
+管理変更入口の条件は新世代で採用するrevision確定後に評価する。全件未実行。
+
+- HELIXOS-L2-001／002／005／007：同じ観測の重複、影響欠落、出典不明、採否未決、戻し先不明を入力し、それぞれ未成立として確認できる。
+- local intakeとremote Issue／Projectの状態を食い違わせ、remote側から要求意味・承認・完了が逆生成されないことを確認する。
+- 旧policyのconfirmed、旧adapter文字列、Issue template、既存test／CI成功を与えても、新世代の管理変更入口を受入済みにしない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。

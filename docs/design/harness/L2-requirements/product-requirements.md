@@ -112,6 +112,17 @@ OS側が判断記録・反復実行を所有し、HARNESS側は以下の進行�
 
 これらを別の要求形成engineや承認台帳として実装することは要求しない。人間反応の記録・解釈分離・履歴管理はOS側へ接続する。
 
+## 管理変更を製品Forwardへ戻す条件
+
+[旧Management Scrum policy](../../../governance/management-scrum-product-forward.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-management-change-source-crosswalk.md)で再採否する。
+HARNESS-L2-003／004では、管理上の観測や改善判断から製品要求を直接変更せず、意味が変わる最上流の対象層へ
+変更候補を戻し、差戻し・再合意・pair再凍結・再検証の必要範囲を決める。
+
+管理上の緊急性、Issue作成、Project状態、既存CI成功を、V-pair、上下trace、検証、利用者受入の省略理由にしない。
+管理作業の`S0..S4`、Scrum Reverse、旧adapterをHARNESSの固定workflowとして継承しない。本節は工程条件の要求案であり、
+現行AGENTS／CLAUDE、hook、Issue template、workflow、CIを変更・実行しない。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。

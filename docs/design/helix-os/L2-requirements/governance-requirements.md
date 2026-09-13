@@ -45,6 +45,18 @@ HELIX-OSはHARNESSが規定する層・pair・工程条件を参照し、Worker�
 OS内に工程規則の別正本を作らず、適用するHARNESS版とプロジェクトの選択を記録する。
 HELIX-OS自身の変更も要求・判断・検証へ追跡し、統制する立場を自己承認権限へ拡張しない。
 
+## 管理上の観測と製品変更の入口
+
+[旧Management Scrum policy](../../../governance/management-scrum-product-forward.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-management-change-source-crosswalk.md)に従って
+HELIX-OSの管理統制とHARNESSのForward条件へ分ける。旧policyのconfirmed状態、Issue-first、`S0..S4`、Scrum Reverse、
+既存adapter／template／test／CIを新世代へ継承しない。
+
+HELIXOS-L2-001／002／003／005／007では、gate漏れ、監査所見、運用上の再発等を対象・出典・revision・影響・
+重複・調査・候補・採否・戻し先とともにrepo-owned intakeへ記録する。remote Issue／Projectは必要に応じて同期する
+projectionとし、その状態から要求意味・承認・完了を逆生成しない。採択した変更は対象製品の意味が変わる最上流へ戻し、
+OSが要求を直接書き換えたり自己承認したりしない。本節ではGitHub、DB、workflow、CIを操作しない。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を
