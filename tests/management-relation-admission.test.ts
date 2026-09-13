@@ -63,7 +63,7 @@ const evidence = {
 };
 
 describe("management relation admission", () => {
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-001] owned fieldはexactly one ownerへ分類する", () => {
+  it("U-MREL-001: owned fieldはexactly one ownerへ分類する", () => {
     const owned = MANAGEMENT_FIELD_OWNER_INVENTORY.filter((entry) => entry.disposition === "owned");
     expect(owned.length).toBeGreaterThan(0);
     expect(owned.every((entry) => typeof entry.owner === "string")).toBe(true);
@@ -90,7 +90,7 @@ describe("management relation admission", () => {
     expect([...observed].filter((path) => !registered.has(path)).sort()).toEqual([]);
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-002] unknown fieldを拒否する", () => {
+  it("U-MREL-002: unknown fieldを拒否する", () => {
     expect(classifyManagementField("invented_field")).toEqual({
       ok: false,
       reason: "unknown_field",
@@ -98,14 +98,14 @@ describe("management relation admission", () => {
     });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-003] multi-owner fieldをsplit_requiredにする", () => {
+  it("U-MREL-003: multi-owner fieldをsplit_requiredにする", () => {
     expect(classifyManagementField("status")).toMatchObject({
       ok: true,
       entry: { disposition: "split_required", owner: null },
     });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-004] agent_slotsとassignment relationの一致を受理する", () => {
+  it("U-MREL-004: agent_slotsとassignment relationの一致を受理する", () => {
     expect(evaluateManagementRelationAdmission({ ...base, relation: assignment })).toMatchObject({
       ok: true,
       disposition: "match",
@@ -113,7 +113,7 @@ describe("management relation admission", () => {
     });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-005] role/assignment mismatchを拒否する", () => {
+  it("U-MREL-005: role/assignment mismatchを拒否する", () => {
     expect(
       evaluateManagementRelationAdmission({
         ...base,
@@ -126,7 +126,7 @@ describe("management relation admission", () => {
     });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-006] requires/blocksだけをmanagement ownerにしparent/referenceを分離する", () => {
+  it("U-MREL-006: requires/blocksだけをmanagement ownerにしparent/referenceを分離する", () => {
     expect(classifyManagementField("dependencies.requires")).toMatchObject({
       entry: { owner: "management_control" },
     });
@@ -138,7 +138,7 @@ describe("management relation admission", () => {
     });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-007] revoked実行証拠を拒否し有効な旧ContractRevisionを世代だけで拒否しない", () => {
+  it("U-MREL-007: revoked実行証拠を拒否し有効な旧ContractRevisionを世代だけで拒否しない", () => {
     expect(
       evaluateManagementRelationAdmission({
         ...base,
@@ -179,7 +179,7 @@ describe("management relation admission", () => {
     ).toEqual({ ok: true, reasons: [] });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-008] transition ordering・ID conflict・冪等再配信を区別する", () => {
+  it("U-MREL-008: transition ordering・ID conflict・冪等再配信を区別する", () => {
     expect(
       admitTransitionEvent({ current_state: "draft", candidate: transition, prior_events: [] }),
     ).toMatchObject({ ok: true, disposition: "apply" });
@@ -209,7 +209,7 @@ describe("management relation admission", () => {
     ).toMatchObject({ ok: false, reason: "duplicate_business_transition" });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-009] evidence subject tupleとapproval kindの不一致を拒否する", () => {
+  it("U-MREL-009: evidence subject tupleとapproval kindの不一致を拒否する", () => {
     const result = validateEvidenceSubject({
       candidate: evidence,
       expected_head: head("f"),
@@ -232,7 +232,7 @@ describe("management relation admission", () => {
     );
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-010] canonical relation欠落をlegacy greenで相殺しない", () => {
+  it("U-MREL-010: canonical relation欠落をlegacy greenで相殺しない", () => {
     expect(evaluateManagementRelationAdmission({ ...base, relation: undefined })).toMatchObject({
       ok: false,
       disposition: "legacy_only",
@@ -240,13 +240,13 @@ describe("management relation admission", () => {
     });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-011] outside pilotだけがlegacy_onlyを許容する", () => {
+  it("U-MREL-011: outside pilotだけがlegacy_onlyを許容する", () => {
     expect(
       evaluateManagementRelationAdmission({ ...base, phase: "outside_pilot", relation: undefined }),
     ).toMatchObject({ ok: true, disposition: "legacy_only" });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-012] same operation dual-writeを拒否する", () => {
+  it("U-MREL-012: same operation dual-writeを拒否する", () => {
     expect(
       evaluateManagementRelationAdmission({
         ...base,
@@ -256,7 +256,7 @@ describe("management relation admission", () => {
     ).toMatchObject({ ok: false, reasons: expect.arrayContaining(["dual_write_forbidden"]) });
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-013] inventory digestを固定しadmission差分だけdigestへ反映する", () => {
+  it("U-MREL-013: inventory digestを固定しadmission差分だけdigestへ反映する", () => {
     const left = evaluateManagementRelationAdmission({ ...base, relation: assignment });
     const right = evaluateManagementRelationAdmission({
       ...base,
@@ -267,7 +267,7 @@ describe("management relation admission", () => {
     expect(left.admission_digest).not.toBe(right.admission_digest);
   });
 
-  it("[PLAN-L7-730-management-relation-admission/U-MREL-014] consumer-zero前のwriter cutoverを拒否する", () => {
+  it("U-MREL-014: consumer-zero前のwriter cutoverを拒否する", () => {
     expect(
       evaluateManagementRelationAdmission({
         ...base,
