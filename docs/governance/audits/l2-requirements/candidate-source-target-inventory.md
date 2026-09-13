@@ -34,7 +34,7 @@
 | `mechanism-adequacy` | HELIX-OS | 照合済み・再採否待ち | unknown・反証・証拠・効果観測を候補接続。既存方式再利用分類、旧UIL／Learning／DB／CI／workflow接続は新世代へ持ち込まない |
 | `next-generation-ci-requirements` | HARNESS / HELIX-OS | L2接続済み | layer・pair・risk別の検証契約はHARNESS、profile生成・実行・隔離・証拠回収・legacy archiveはOSへ分ける。上流確定までCI実装へ進めない |
 | `producer-provenance-separation` | HELIX-OS | L2接続済み | 作成者、commit実行者、公開者、reviewerの出所をOSの証拠要求へ接続 |
-| `refactoring-trigger-admission` | HELIX-OS | 台帳接続 | refactoring候補の検出・admission・shadow評価はOSの改善統制候補 |
+| `refactoring-trigger-admission` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 意味保存・変更・検証条件はHARNESS、観測・候補・採否・効果管理はOSへ分離。L1要求欠落。旧UIL／RF0／current 9 scope／既存CIは継承しない |
 | `requirement-formation-scoped-admission` | HELIX-OS | L2接続済み | 根拠付き要求形成と影響範囲限定の再確定をOS統制へ接続 |
 | `requirements-authority-materialization` | HELIX-OS | 照合済み・再採否待ち | GitHub非authority・一方向投影・状態分離を候補接続。JSON-only意味正本、旧IR／main／Issue admissionは新世代へ持ち込まない |
 | `responsibility-centric-learning` | HELIX-OS | L2接続済み | 責務単位の学習、失効、段階昇格、authority非奪取をOS学習要求へ接続 |

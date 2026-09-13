@@ -53,6 +53,12 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 - write-set逸脱、stale、所有競合、予算超過、循環、二重実行、不明副作用を個別に与え、停止・保全・上流返却を確認する。
 - 旧bugbot、既存CI、旧DB／transaction、main read-afterを与えても、新世代限定修復の実行・受入証拠にしない。
 
+構造改善条件は新世代L1／L2の採用revision確定後に評価する。全件未実行。
+
+- HELIXOS-L2-002／005／007：未評価、unknown、stale、partial、findingなし、no actionを個別に確認し、相互に補完しない。
+- 単一metric、AI評価、file size、Issue数、定期scanだけでは改善候補を採択・実行せず、意味変更は上流変更候補へ戻す。
+- 旧UIL／RF0、current 9 scope、既存scanner／CIを与えても、新世代trigger・scope・受入の成立根拠にしない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。

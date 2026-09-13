@@ -133,6 +133,14 @@ HARNESS-L2-005では、自動・手動を問わず修復後に必要な要求rev
 consumer受入、差戻し条件を維持する。必須test削除、閾値緩和、scope拡張、意味digestの無審査更新でgreen化しない。
 修復器の登録や旧CI自己修復成功は検証義務・操作許可を代替しない。修復の実行統制はHELIX-OSが所有する。
 
+## 構造改善に適用する変更条件
+
+[旧Refactoring Trigger候補](../../../governance/candidates/refactoring-trigger-admission-requirements.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-refactoring-trigger-source-crosswalk.md)で再採否する。
+HARNESS-L2-004／005では、構造改善が要求・public contractの意味を保存するか、影響する上流・設計・V-pair、
+必要な再検証、差戻し先を確認する。意味変更、実装故障、外部環境変化を一つのrefactoring routeへ丸めない。
+旧候補にはL1利用要求がないため、新世代の利用者価値が確定するまでL3 triggerを採用しない。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。

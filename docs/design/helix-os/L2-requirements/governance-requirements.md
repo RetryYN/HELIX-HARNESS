@@ -76,6 +76,15 @@ HELIXOS-L2-001／002／004／005／007／009では、逸脱の検出、修復候
 成功へ補完しない。意味矛盾は上流変更候補へ戻し、要求・設計・検証義務を修復器が変更しない。
 本節では旧bugbot、既存CI、旧DB／transaction、自動修復を実行しない。
 
+## 構造改善候補の統制条件
+
+[旧Refactoring Trigger候補](../../../governance/candidates/refactoring-trigger-admission-requirements.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-refactoring-trigger-source-crosswalk.md)に従って再採否する。
+HELIXOS-L2-001／002／003／005／007では、観測、finding、改善候補、scope、根拠、意味保存、必要検証、採否、
+割当、結果、効果、失効を区別する。未評価、unknown、stale、partial、findingなし、no actionを別状態として保持し、
+単一metric、AI評価、file size、Issue数、定期scan、旧CI結果から候補の採択・実行を生成しない。
+旧UIL、System Synthesis、RF0..RF6、current 9 scope、既存scanner／CIを新世代へ継承しない。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を
