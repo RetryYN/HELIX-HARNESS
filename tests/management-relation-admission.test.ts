@@ -15,6 +15,7 @@ const head = (value: string) => value.repeat(40).slice(0, 40);
 const base = {
   field_path: "agent_slots",
   phase: "pilot_dual_read" as const,
+  product_contract: { plan_id: "PLAN-L7-730-management-relation-admission", requirement: "R-1" },
   legacy_value: [{ role: "tl" }],
   canonical_available: true,
   observed_at: "2026-09-13T12:00:00Z",
@@ -161,6 +162,8 @@ describe("management relation admission", () => {
         expected_contract_revision: digest("c"),
         expected_policy_revision: digest("d"),
         required_approval_kind: "technical_review",
+        trusted_issuers: ["reviewer:claude"],
+        accepted_trust_policies: ["policy:cross-review-v1"],
       }),
     ).toMatchObject({ ok: false, reasons: ["evidence_revoked"] });
     expect(
@@ -170,6 +173,8 @@ describe("management relation admission", () => {
         expected_contract_revision: digest("c"),
         expected_policy_revision: digest("d"),
         required_approval_kind: "technical_review",
+        trusted_issuers: ["reviewer:claude"],
+        accepted_trust_policies: ["policy:cross-review-v1"],
       }),
     ).toEqual({ ok: true, reasons: [] });
   });
@@ -211,6 +216,8 @@ describe("management relation admission", () => {
       expected_contract_revision: digest("e"),
       expected_policy_revision: digest("f"),
       required_approval_kind: "human_po",
+      trusted_issuers: [],
+      accepted_trust_policies: [],
     });
     expect(result.ok).toBe(false);
     expect(result.reasons).toEqual(
@@ -219,6 +226,8 @@ describe("management relation admission", () => {
         "contract_revision_mismatch",
         "policy_revision_mismatch",
         "approval_kind_mismatch",
+        "issuer_untrusted",
+        "trust_policy_unaccepted",
       ]),
     );
   });
@@ -251,10 +260,10 @@ describe("management relation admission", () => {
     const left = evaluateManagementRelationAdmission({ ...base, relation: assignment });
     const right = evaluateManagementRelationAdmission({
       ...base,
-      relation: assignment,
-      phase: "writer_cutover",
+      relation: { ...assignment, required_capability: "management-control-v2" },
     });
     expect(left.inventory_digest).toBe(right.inventory_digest);
+    expect(left.contract_semantic_digest).toBe(right.contract_semantic_digest);
     expect(left.admission_digest).not.toBe(right.admission_digest);
   });
 

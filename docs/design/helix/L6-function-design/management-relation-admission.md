@@ -33,7 +33,7 @@ top-level fieldと主要nested fieldを`product_contract`、`management_control`
 - `WorkTicketAssignment`: required role/capabilityと#860 assignment ref／generation／validityを束縛する。
 - `AdmissionDependency`: ticket間の着手依存だけを`requires`／`blocks`方向で表す。
 - `TransitionEvent`: state machine、from/to、event ID、actor、evidence refを保持する。
-- `EvidenceSubjectRef`: commit/tree、contract/policy revision、envelope、issuer、trust、approval kind、失効を保持する。
+- `EvidenceSubjectRef`: commit/tree、contract/policy revision、envelope、issuer、trust、approval kind、失効を保持する。検証時は許可済みissuerとtrust policyにもexact matchさせる。
 
 `dependencies.parent/references`を`AdmissionDependency`へ変換せず、技術reviewをPO承認へ昇格させない。
 

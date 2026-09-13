@@ -307,6 +307,7 @@ export type ManagementMigrationPhase = "outside_pilot" | "pilot_dual_read" | "wr
 export interface ManagementRelationAdmissionInput {
   readonly field_path: string;
   readonly phase: ManagementMigrationPhase;
+  readonly product_contract: unknown;
   readonly legacy_value?: unknown;
   readonly relation?: unknown;
   readonly canonical_available: boolean;
@@ -323,6 +324,7 @@ export interface ManagementRelationAdmissionResult {
   readonly disposition: DualReadDisposition;
   readonly reasons: readonly string[];
   readonly inventory_digest: `sha256:${string}`;
+  readonly contract_semantic_digest: `sha256:${string}`;
   readonly admission_digest: `sha256:${string}`;
 }
 
@@ -414,16 +416,21 @@ export function evaluateManagementRelationAdmission(
   }
   const normalizedReasons = [...new Set(reasons)].sort();
   const inventoryDigest = managementFieldOwnerInventoryDigest();
+  const contractSemanticDigest = `sha256:${createHash("sha256")
+    .update(canonicalJson(input.product_contract))
+    .digest("hex")}` as const;
   return {
     ok: normalizedReasons.length === 0,
     disposition,
     reasons: normalizedReasons,
     inventory_digest: inventoryDigest,
+    contract_semantic_digest: contractSemanticDigest,
     admission_digest: `sha256:${createHash("sha256")
       .update(
         canonicalJson({
           field_path: input.field_path,
           phase: input.phase,
+          contract_semantic_digest: contractSemanticDigest,
           legacy_value: input.legacy_value ?? null,
           relation: input.relation ?? null,
           canonical_available: input.canonical_available,
@@ -484,6 +491,8 @@ export function validateEvidenceSubject(input: {
   readonly expected_contract_revision: string;
   readonly expected_policy_revision: string;
   readonly required_approval_kind: "technical_review" | "human_po" | "execution";
+  readonly trusted_issuers: readonly string[];
+  readonly accepted_trust_policies: readonly string[];
 }): { readonly ok: boolean; readonly reasons: readonly string[] } {
   const parsed = evidenceSubjectRefSchema.safeParse(input.candidate);
   if (!parsed.success) return { ok: false, reasons: ["evidence_subject_invalid"] };
@@ -495,6 +504,9 @@ export function validateEvidenceSubject(input: {
     reasons.push("policy_revision_mismatch");
   if (parsed.data.approval_kind !== input.required_approval_kind)
     reasons.push("approval_kind_mismatch");
+  if (!input.trusted_issuers.includes(parsed.data.issuer)) reasons.push("issuer_untrusted");
+  if (!input.accepted_trust_policies.includes(parsed.data.trust_policy))
+    reasons.push("trust_policy_unaccepted");
   if (parsed.data.revoked) reasons.push("evidence_revoked");
   return { ok: reasons.length === 0, reasons };
 }
