@@ -4,7 +4,7 @@ layer: L6
 kind: recovery
 status: draft
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-13
 owner: Claude / TL
 plan: docs/plans/PLAN-RECOVERY-1543-reviewer-session-model-history.md
 pair_artifact: docs/test-design/helix/L8-review-evidence-reviewer-session-model-history-unit-test-design.md
@@ -51,6 +51,7 @@ Codex の harness session `019febe1-…` は `.helix/logs/session/` 上で 2026-
 | `analyzeReviewEvidence` | (plans, options?) => ReviewEvidenceResult | options.sessionModelHistory は parse 済みか null | registry に載る session は **model 数を問わず** 各 entry を `reviewed_at` の window と照合し、不一致・window 外を `reviewer_session_model_history_mismatch:<session>` として collect。registry の `runtime` と entry の `reviewer_model` の provider（`modelProviderFromId`）が食い違えば `reviewer_session_model_history_runtime_mismatch:<session>`。registry に無い session は従来の `reviewer_session_model_conflict`。`sessionModelHistoryError` が与えられたら registry path を plan_id にした違反を collect | 履歴は宣言した session だけを緩め、他 session を緩めない | U-RVIDENT-012 / 013 / 015 / 017 |
 | transcript観測追従 | tracked history + session transcript + provider発行receipt | transcriptが同一sessionの新modelを観測し、後続receiptが整合する | 既存open windowを最初の新model観測時刻で閉じ、同時刻から新model windowを開始する。境界直前は旧model、境界一致は新modelになる | 後続receipt時刻で先行する実観測を覆わず、旧windowと重複させない | U-RVIDENT-020 |
 | terminal evidence訂正 | recovery branch + base/current PLAN | terminal PLANの`review_evidence` attributionだけが変更され、本文差分は同じreviewer/model tokenの鏡像訂正だけ、kind・status・他frontmatterは完全一致する | 既存PLANをRecoveryの所有PLANから除外し、workflow identity ownerにも数えない | draft化、無関係な本文変更、空evidence、attribution以外のevidence変更、他field混載は通常のownerとして扱い拒否する | U-RVIDENT-021 |
+| receipt-plan binding model window | changed PLAN entry + sealed receipt + tracked history resolver | entryとreceiptは同一session・同一providerで、それぞれ`reviewed_at`を持つ | model文字列が異なっても、両時刻が同一登録sessionの対応windowと一致する場合だけ同一review主体の継続として受理する | runtime層はlint層を直接参照せず、CLI composition rootが既存`reviewerModelAt`を注入する。provider一致だけ、未登録window、時刻欠落・範囲外は拒否する | U-RRPB-014 / 015 |
 
 doctor の `review-evidence` check は `loadReviewerSessionModelHistory(repoRoot)` を try/catch で呼び、
 失敗理由を `sessionModelHistoryError` として渡す。
@@ -84,6 +85,7 @@ slice 所有者候補から外す。base 版 PLAN の読取は **明示 `baseHea
 - 存在しない日付（2/30、非うるう年 2/29、4/31 等）を `Date.parse` の正規化で有効な instant として attribution に使う。
 - 小数精度を ms へ丸めて境界直前の instant を次 window へ昇格させる。
 - admission の metadata-only 例外が、不正・未指定の明示 base を merge-base や環境変数で相殺した結果を authority に使う。
+- receipt-plan bindingが登録windowを参照せずmodel文字列だけを比較し、正当な同一session内model遷移を拒否する、またはprovider一致だけで遷移を許可する。
 
 検査 oracle は `U-RVIDENT-012` 〜 `U-RVIDENT-020` の 9 件（`018` は `tests/doctor-cause-digest-contract.test.ts`）と `U-GWIDADM-022` / `U-GWIDADM-023`（023 は CI workflow の `--base-head "$merge_base"` 配線も `tests/harness-check-workflow.test.ts` で固定）で固定する（既存 `U-RVIDENT-001` 〜 `010`
 は不変、`011` は freeze 伝播）。
