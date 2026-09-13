@@ -43,3 +43,29 @@ runtime proofはscope、secret profile、network profile、budget reservation内
 changes requestedは同じassignment・同branchだけへ返す。Phase A/B移行はpredecessor終端、writer不能、
 dual writer 0、fresh fenceを全て要求する。retryはattempt・時間・cost currentの全上限内だけ同actionへ許可し、
 上限到達後は未解消を保持する。いずれの失敗もpeer lane停止へ伝播させない。
+
+## L7 acceptance oracle契約
+
+| U-ID | 対象 | 反例と期待結果 | test citation |
+|---|---|---|---|
+| U-CCI-001 | envelope schema | unknown fieldまたはIssue/PLAN曖昧性を拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-002 | path scope | absolute、traversal、overlap pathを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-003 | branch authority | HELIX未発行branchを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-004 | branch ownership | repository＋branch ownershipの勝者以外を拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-005 | ownership freshness | generation/fence、expiry、released ownership不整合を拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-006 | budget authority | unknownまたはstale budgetを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-007 | read-after identity | stale authorityを優先し、external identity不一致を拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-008 | launch reconciliation | 応答不明または409でblind retryを許可しない | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-009 | runtime confinement | scope、secret、networkの実効強制欠落を拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-010 | cost/deadline | cost reservationまたはabsolute deadline強制欠落を拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-011 | observation legs | launch/collectionの2 legとexact schemaが欠ける観測を拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-012 | lineage/cost | foreign base lineageまたはUNKNOWN costを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-013 | remote output | scope外・traversal pathまたは不正digestを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-014 | independent review | self review、旧HEAD、foreign assignmentを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-015 | changes requested | 異なるassignmentまたはbranchへの差戻しを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-016 | safe release | terminal・writer不能・pending 0・cost・generationの欠落時は返却しない | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-017 | phase transition | Phase A/B二重writerまたはlive predecessorを拒否する | `tests/cursor-cloud-independent-execution.test.ts` |
+| U-CCI-018 | retry isolation | retry上限後も未解消を保持し、peer laneへ停止を伝播しない | `tests/cursor-cloud-independent-execution.test.ts` |
+
+この表とL7 test designは同じ18 oracleをexact setで持つ。いずれかの欠落・追加・意味差分を
+V-pair不成立としてfail-closeし、provider mock成功や識別子の文字列存在だけを合格根拠にしない。
