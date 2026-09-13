@@ -35,11 +35,30 @@
 - v3.1／v4.0のcompatibility降格、旧資産の物理archive、AI read set変更。
 - runtime、CLI、DB、hook、adapter、CI、Worker、配布、公開、cutover。
 
+## 修正版の静的再照合
+
+remote同期済みHEAD `21ad8299e1`で、判断対象4文書のbytesが
+[人間判断packet](concept-v4.1-human-decision-packet.md)記載のSHA-256と一致することを再確認した。
+
+| 対象 | 再照合結果 |
+|---|---|
+| Concept v4.1 | 固有`document_id`、HARNESS／HELIX-OS／HELIX-Web境界、GitHub projection、legacyのbaseline／parity／fallback禁止が存在 |
+| HARNESS L1 | L1 ID 6/6、全IDのL2側逆参照6/6、P0–P9帰属、L12接続条件が存在 |
+| HELIX-OS L1 | L1 ID 8/8、全IDのL2側逆参照8/8、P0–P9帰属、L12接続条件が存在 |
+| HELIX-Web L1 | L1 ID 5/5、全IDのL2側逆参照5/5、P0–P4／P7–P9のHARNESS・OS委譲とP5／P6分類、L12接続条件が存在 |
+
+WebのL0帰属はP0–P9を個別tokenで列挙せず、直接ownerではない範囲を`P0–P4／P7–P9`としてまとめている。
+単純なtoken検索ではP1等を欠落と誤判定するため、範囲表記、P5、P6、委譲先を組として照合した。
+この検査は文書構造と接続の確認であり、意味の承認やL2合意ではない。
+
 ## 判定
 
 初回自己監査後、[Claude意味レビュー](concept-v4.1-claude-review-96171b9ba.md)でblocker 3件、major 6件を検出した。
 したがって初回の「整合」判定だけを承認準備完了の証拠にしない。document identity、v4.0との差分、L1／L2 relation、
 L12、L0柱投影、欠落責務、総称HELIX入口、上流整理期間の検査境界を修正し、新revisionを再reviewする。
 
-状態は`awaiting_human_approval`のままであり、承認済み・canonical・実装可能として扱わない。
-再reviewでblockerを閉じた後にも、v4.1の製品identity・9原則・新世代境界は人間判断を要する。
+修正版に対するClaude再reviewは3回とも本文を取得できず、旧所見の独立`resolved`判定は未取得である。
+一方、旧所見に対応する構造・接続は上記の静的再照合で存在を確認した。timeoutや静的検査をClaude passへ変換しない。
+
+状態は`awaiting_human_approval`のままであり、承認済み・canonical・実装可能として扱わない。現在残る直列判断は、
+Concept v4.1と3対象L1の意味を人間がexact SHAに対して採否することである。
