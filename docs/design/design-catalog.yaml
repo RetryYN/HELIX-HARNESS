@@ -1124,6 +1124,8 @@ items:
       - docs/design/helix/L4-basic-design/impact-ci-recovery.md
       - docs/design/helix/L4-basic-design/cursor-cloud-independent-execution-boundary.md
       - docs/test-design/helix/L9-cursor-cloud-independent-execution-boundary.md
+      - docs/design/helix/L5-detail/cursor-cloud-independent-execution-contract.md
+      - docs/test-design/helix/L8-cursor-cloud-independent-execution-contract-unit-test-design.md
       - docs/design/helix/L4-basic-design/worker-descriptor-admission.md
       - docs/design/helix/L4-basic-design/worker-wrapper-admission.md
       - docs/design/helix/L5-detail/worker-descriptor-admission.md
