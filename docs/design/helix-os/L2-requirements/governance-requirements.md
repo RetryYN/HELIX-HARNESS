@@ -97,6 +97,18 @@ provider、model、account、runner、reviewer数は有期resource profileとし
 定常3／2、burst 5、8-slotを恒久要求にしない。対象revision変更後は証拠を再評価し、stale reviewを流用しない。
 本節ではWorker dispatch、旧三社lane、既存CI、Merge Train、PR／DB projectionを実行しない。
 
+## Security engagementの統制条件
+
+[旧SEA候補](../../../governance/candidates/security-engagement-authority-requests.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-security-engagement-source-crosswalk.md)に従って再採否する。
+HELIXOS-L2-001／003／004／005／007／009では、対象製品が承認したtarget、operation、environment、network／data scope、
+期限へ操作authorityを束縛し、通常作業と特権Workerのresource・証拠を分ける。authorization不在、scope drift、revoke、
+stale、unknownでは新規・実行中操作を停止し、候補文書・Issue・過去承認・provider accessから実行権限を生成しない。
+
+sensitive security dataは対象製品のdata classificationに従い、通常DB、log、memory、Issue、PR、AI context、配布物へ
+流出させない。保管・暗号化・retention・disclosure方式は未承認であり、本節ではcredential、network、scan、exploit、
+production、external service、旧broker、既存CIを操作しない。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を

@@ -84,6 +84,11 @@ Worker capacity由来条件は新世代の採用revision確定後に評価する
 - HARNESS-L2-005：作成・検証の担当、対象revision、証拠を変化させ、providerや並列数が同じでも独立性・revision有効性を個別に判定する。
 - 固定worker数、PR review、Merge Train、既存CI成功を与えても、独立検証や利用者受入を成立させない。
 
+Security工程条件は対象製品の採用revision確定後に評価する。全件未実行。
+
+- HARNESS-L2-003／004／005：推定finding、再現、独立検証、修復、再検証、運用成立を個別に確認し、一状態から後続を推定しない。
+- authority欠落、scope drift、sensitive evidence、自己検証を与え、旧broker／provider／CI greenで工程条件を相殺しない。
+
 ## 提供構成の受入
 
 FRSと提供構成追補の採用revision確定後に評価する。全件未実行。

@@ -148,6 +148,14 @@ HARNESS-L2-004／005では、構造改善が要求・public contractの意味を
 HARNESS-L2-005では、作成側と検証側の独立性、対象revision変更時の再検証、証拠の有効性を、provider名、
 固定worker数、PR、Merge Train、既存CIに依存せず定める。登録capacityや並列数を独立検証・受入済み成果の証拠にしない。
 
+## Security要求に適用する工程条件
+
+[旧SEA候補](../../../governance/candidates/security-engagement-authority-requests.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-security-engagement-source-crosswalk.md)で再採否する。
+HARNESS-L2-003／004／005では、対象製品が承認した保護対象、data、操作、環境、network、severity、開示条件から、
+設計・threat・verification・独立review・利用者受入へ接続する。推定、再現、検証、修復、再検証、運用成立を別状態にし、
+旧broker、provider、CI greenで相殺しない。具体的な特権操作・credential管理はHELIX-OSが統制する。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。

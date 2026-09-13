@@ -65,6 +65,12 @@ Worker capacity由来条件は新世代の採用revision確定後に評価する
 - 下流詰まり、予算不足、競合増加、再作業増加を与え、盲目的dispatchではなく停止・縮退・backpressureになることを確認する。
 - 旧三社、provider固定数、8-slot、既存CI／Merge Train／PR／DBを与えても、新世代capacity profileや運用成立を生成しない。
 
+Security engagement条件は対象製品の採用revisionと操作別authority確定後に評価する。全件未実行。
+
+- HELIXOS-L2-001／004／007／009：authorization不在、期限切れ、wrong target／operation／environment／data scope、revokeを個別に与え、新規・実行中の特権操作が許可されないことを確認する。
+- 通常作業から特権resourceやrestricted evidenceへ到達できず、sensitive dataを通常DB、log、memory、Issue、PR、AI context、配布物へ出さない。
+- 旧broker、provider access、Issue上の承認、既存CI greenを与えても、security操作authorityや受入成立を生成しない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。

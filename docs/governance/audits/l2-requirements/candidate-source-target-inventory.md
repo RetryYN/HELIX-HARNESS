@@ -40,7 +40,7 @@
 | `responsibility-centric-learning` | HELIX-OS | L2接続済み | 責務単位の学習、失効、段階昇格、authority非奪取をOS学習要求へ接続 |
 | `rule-derivation` | HELIX-OS / HARNESS | 照合済み・再採否待ち | 旧revisionのapprovalを流用せず、工程上の境界はHARNESS、生成・適用・診断はOSへ再採否する |
 | `scrum-operation-typed-projection` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 着手・完了の工程条件はHARNESS、管理状態・指標・projectionはOSへ分離。固定7 operation、旧layer、DB／roadmap／CI oracleは継承しない |
-| `security-engagement-authority` | HELIX-OS | 台帳接続 | engagementの認可scope、取消、finding保護はOSの権限・証拠統制候補。実行権限は未付与 |
+| `security-engagement-authority` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | 保護対象・data・操作・開示要求は個別製品、security検証工程はHARNESS、操作authority・特権Worker・取消・証拠はOSへ分離。旧broker／provider／DB／CIは継承せず、実行権限は未付与 |
 | `three-lane-capacity-profile` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 独立検証・revision有効性はHARNESS、pool・WIP・backpressure・段階拡張はOSへ分離。三社、provider別固定数、8-slot、既存CI／Merge Trainは継承しない |
 | `world-governance` | HELIX-OS | 照合済み・再採否待ち | 全件棚卸し・状態分離・影響限定を候補接続。旧owner、旧graph／DB、旧CI／policy、JSON-only authorityは持ち込まない |
 | `concept-vision-package-intake` / `concept-vision-release-crosswalk.md` | HELIX全体 | 照合済み・再採否待ち | 上位Concept、HARNESS提供契約、OSのWorker／CI／配布運用、個別製品の将来構想へ分離。PKG-D01..13、旧Module／Bundle数、旧CI先行利用は固定要求にしない |
