@@ -70,7 +70,6 @@ modifies:
   - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
   - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
-  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: config/objective-evidence-substance-binding.v1.json, artifact_type: json_config }
