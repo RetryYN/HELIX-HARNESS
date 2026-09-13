@@ -71,7 +71,7 @@ dependencies:
   requires:
     - docs/design/helix/L5-detail/cursor-cloud-independent-execution-contract.md
   references: ["issue:1293"]
-  blocks: ["issue:1293-provider-adapter-e2e"]
+  blocks: ["issue:1362"]
 generates:
   - { artifact_path: docs/plans/PLAN-L7-1690-cursor-cloud-independent-execution.md, artifact_type: markdown_doc }
   - { artifact_path: docs/design/helix/L6-function-design/cursor-cloud-independent-execution.md, artifact_type: design_doc }
