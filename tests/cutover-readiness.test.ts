@@ -7,6 +7,17 @@ import {
   loadCutoverReadinessInput,
 } from "../src/lint/cutover-readiness";
 
+function checkedDaysAgo(days: number): string {
+  const now = new Date();
+  const tokyo = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+  const todayMs = Date.UTC(tokyo.getUTCFullYear(), tokyo.getUTCMonth(), tokyo.getUTCDate());
+  return new Date(todayMs - days * 86_400_000).toISOString().slice(0, 10);
+}
+
+const CHECKED_REFRESHED = checkedDaysAgo(45);
+const CHECKED_PRIMARY = checkedDaysAgo(30);
+const CHECKED_SECONDARY = checkedDaysAgo(28);
+
 const CONCRETE_CUTOVER_SNAPSHOT_ID =
   "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
@@ -25,11 +36,11 @@ const cutoverMarkers = [
   "- audit_record: A-NNN records commands, git hash, approver, result, and rollback decision",
   "- post_cutover_monitoring: quiet window with smoke, doctor, status, feedback, and backlog monitoring",
   "- legacy_alias_policy: decide",
-  "- source_ledger_freshness: fresh Cutover source ledger checked 2026-06-30",
+  `- source_ledger_freshness: fresh Cutover source ledger checked ${CHECKED_PRIMARY}`,
   "- source_status_delta: none",
   "- adoption_decision_delta: none",
   "- workflow_route_impact: none while draft",
-  "Cutover source ledger (checked 2026-06-30):",
+  `Cutover source ledger (checked ${CHECKED_PRIMARY}):`,
   "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
   "|---|---|---|---|---|---|---|",
   "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final / https://csrc.nist.gov/pubs/sp/800/218/r1/ipd | final publication 1.1 | Rev. 1 initial public draft v1.2 | adopt-final-1.1; track-draft-do-not-adopt-until-final | release integrity | audit_record state_backup_plan blast_radius_baseline |",
@@ -105,8 +116,8 @@ describe("cutover readiness", () => {
     const result = analyzeCutoverReadiness(
       input({
         rightArmMd: cutoverMarkers.replace(
-          "Cutover source ledger (checked 2026-06-30):",
-          "Cutover source ledger (checked 2026-07-02):",
+          `Cutover source ledger (checked ${CHECKED_PRIMARY}):`,
+          `Cutover source ledger (checked ${CHECKED_SECONDARY}):`,
         ),
       }),
     );
@@ -114,8 +125,7 @@ describe("cutover readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toContainEqual({
       subject: "PLAN-M-900",
-      reason:
-        "source_ledger_freshness checked date must match current Cutover source ledger checked 2026-07-02",
+      reason: `source_ledger_freshness checked date must match current Cutover source ledger checked ${CHECKED_SECONDARY}`,
     });
   });
 
@@ -211,7 +221,7 @@ describe("cutover readiness", () => {
             ...base,
             text: base.text
               .replace(
-                "- source_ledger_freshness: fresh Cutover source ledger checked 2026-06-30",
+                `- source_ledger_freshness: fresh Cutover source ledger checked ${CHECKED_PRIMARY}`,
                 "- source_ledger_freshness: source_ledger_freshness",
               )
               .replace("- source_status_delta: none", "- source_status_delta: source_status_delta")
@@ -521,7 +531,7 @@ describe("cutover readiness", () => {
           "audit_record",
           "post_cutover_monitoring",
           "legacy_alias_policy",
-          "Cutover source ledger (checked 2026-06-30):",
+          `Cutover source ledger (checked ${CHECKED_PRIMARY}):`,
           "| source | official URL | adopted version/date | latest official status | adoption decision | cutover use | required field impact |",
           "|---|---|---|---|---|---|---|",
           "| NIST SSDF SP 800-218 | https://csrc.nist.gov/pubs/sp/800/218/final | final publication 1.1 | Rev. 1 initial public draft v1.2 | - | release integrity | audit_record |",
@@ -611,7 +621,7 @@ describe("cutover readiness", () => {
     const result = analyzeCutoverReadiness(
       input({
         rightArmMd: cutoverMarkers.replace(
-          "Cutover source ledger (checked 2026-06-30):",
+          `Cutover source ledger (checked ${CHECKED_PRIMARY}):`,
           "Cutover source ledger (checked 2026-01-01):",
         ),
       }),
@@ -632,15 +642,15 @@ describe("cutover readiness", () => {
     const refreshedPlan = {
       ...base.plans[0],
       text: base.plans[0].text.replace(
-        "fresh Cutover source ledger checked 2026-06-30",
-        "fresh Cutover source ledger checked 2026-06-15",
+        `fresh Cutover source ledger checked ${CHECKED_PRIMARY}`,
+        `fresh Cutover source ledger checked ${CHECKED_REFRESHED}`,
       ),
     };
     const result = analyzeCutoverReadiness(
       input({
         rightArmMd: cutoverMarkers.replace(
-          "Cutover source ledger (checked 2026-06-30):",
-          "Cutover source ledger (checked 2026-06-15):",
+          `Cutover source ledger (checked ${CHECKED_PRIMARY}):`,
+          `Cutover source ledger (checked ${CHECKED_REFRESHED}):`,
         ),
         plans: [refreshedPlan],
       }),

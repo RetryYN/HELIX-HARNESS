@@ -20,6 +20,16 @@ import {
 } from "../src/lint/version-up-readiness";
 import { ensureCliBundle } from "./tools/cli-bundle";
 
+function checkedDaysAgo(days: number): string {
+  const now = new Date();
+  const tokyo = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+  const todayMs = Date.UTC(tokyo.getUTCFullYear(), tokyo.getUTCMonth(), tokyo.getUTCDate());
+  return new Date(todayMs - days * 86_400_000).toISOString().slice(0, 10);
+}
+
+const CHECKED_REFRESHED = checkedDaysAgo(45);
+const CHECKED_PRIMARY = checkedDaysAgo(30);
+
 // #93: spawn ごとの tsx transpile を避け、suite 起動時に 1 回だけ CLI を bundle する。
 const CLI_BUNDLE_PATH = ensureCliBundle(process.cwd());
 
@@ -152,7 +162,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
       "date-only refresh",
       "action-binding approval",
       "escalation_boundaries",
-      "Version-up source ledger (checked 2026-06-30)",
+      `Version-up source ledger (checked ${CHECKED_PRIMARY})`,
       "| source | official URL | adopted version/date | latest official status | adoption decision | version-up use | required field impact |",
       "|---|---|---|---|---|---|---|",
       "| Semantic Versioning 2.0.0 | https://semver.org/ | 2.0.0 | current official specification page | adopt-2.0.0 | compatibility intent | version_target target_version_or_release_trigger review_trigger activation_dependency |",
@@ -216,7 +226,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- approval_scope: Cloudflare HMAC webhook",
           "- dry_run_plan: dry-run projection",
           "- rollback_plan: disable binding",
-          "- source_ledger_freshness: fresh Version-up source ledger checked 2026-06-30",
+          `- source_ledger_freshness: fresh Version-up source ledger checked ${CHECKED_PRIMARY}`,
           "- source_status_delta: none",
           "- adoption_decision_delta: none",
           "- workflow_route_impact: none while parked",
@@ -242,7 +252,7 @@ function input(overrides: Partial<VersionUpReadinessInput> = {}): VersionUpReadi
           "- kv_limit: Workers KV free read/write/storage budget must fit projection cache",
           "- exceed_action: keep_parked_with_review_date or request_scope_reduction; never silent paid upgrade",
           "activation_provenance_requirements:",
-          "- source_ledger: docs/process/modes/version-up.md#version-up-source-ledger checked=2026-06-30",
+          `- source_ledger: docs/process/modes/version-up.md#version-up-source-ledger checked=${CHECKED_PRIMARY}`,
           "- dry_run_evidence: free-tier budget, HMAC, access-control, no-secret, no-prod-write, rollback rehearsal output",
           "- approval_evidence: activation_decision_record + action_binding_approval_record",
           "- audit_record: approver, actor, tool, target, params hash, command output, rollback/incident route",
@@ -310,7 +320,7 @@ describe("version-up-readiness", () => {
             ...base,
             text: base.text
               .replace(
-                "- source_ledger_freshness: fresh Version-up source ledger checked 2026-06-30",
+                `- source_ledger_freshness: fresh Version-up source ledger checked ${CHECKED_PRIMARY}`,
                 "- source_ledger_freshness: source_ledger_freshness",
               )
               .replace("- source_status_delta: none", "- source_status_delta: source_status_delta")
@@ -535,7 +545,7 @@ describe("version-up-readiness", () => {
           expected: expect.stringContaining("local review artifacts only"),
           evidence: expect.stringContaining("activation-review-manifest.json"),
           sourceUrl: "docs/plans/PLAN-L7-342-version-up-activation-review-bundle.md",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: CHECKED_PRIMARY,
           latestOfficialStatus: expect.stringContaining("bundle contract current at HEAD"),
           sourceStatusDelta: expect.stringContaining("does not authorize apply"),
           adoptionDecision: expect.stringContaining("local-artifact-bundle"),
@@ -568,7 +578,7 @@ describe("version-up-readiness", () => {
           writePolicy: "no-write",
           evidence: expect.stringContaining("external_rehearsal_plan"),
           sourceUrl: "https://docs.github.com/en/actions/reference/security/secure-use",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: CHECKED_PRIMARY,
           latestOfficialStatus: expect.stringContaining("GITHUB_TOKEN least-privilege"),
           sourceStatusDelta: expect.stringContaining("least-privilege"),
           adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
@@ -581,7 +591,7 @@ describe("version-up-readiness", () => {
             "npx --no-install tsx src/cli.ts version-up security-checklist --plan PLAN-L7-900-future --no-write --json",
           writePolicy: "no-write",
           sourceUrl: "https://owasp.org/www-project-web-security-testing-guide/stable/",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: CHECKED_PRIMARY,
           latestOfficialStatus: expect.stringContaining("latest page is explicitly volatile"),
           sourceStatusDelta: expect.stringContaining("stable baseline remains adopted"),
           adoptionDecision: expect.stringContaining("wstg"),
@@ -601,7 +611,7 @@ describe("version-up-readiness", () => {
           writePolicy: "no-write",
           sourceUrl:
             "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: CHECKED_PRIMARY,
           latestOfficialStatus: expect.stringContaining("availability constraints"),
           sourceStatusDelta: expect.stringContaining("public-repository gated"),
           adoptionDecision: expect.stringContaining("prevent-self-review-check"),
@@ -661,7 +671,7 @@ describe("version-up-readiness", () => {
       versionTarget: "future",
       planStatus: "draft",
       planTextDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
-      sourceLedgerCheckedDate: "2026-06-30",
+      sourceLedgerCheckedDate: CHECKED_PRIMARY,
       sourceLedgerRowsDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       approvalScopeDigest: expect.stringMatching(/^sha256:[a-f0-9]{64}$/),
       versionDryRunDigest: packet.versionDryRunEvidence.digest,
@@ -687,13 +697,13 @@ describe("version-up-readiness", () => {
         expect.objectContaining({
           surface: "Cloudflare Workers",
           sourceUrl: "https://developers.cloudflare.com/workers/platform/limits/",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: CHECKED_PRIMARY,
           adoptionDecision: "adopt-live-docs-for-worker-budget",
         }),
         expect.objectContaining({
           surface: "Cloudflare D1",
           sourceUrl: "https://developers.cloudflare.com/d1/platform/limits/",
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: CHECKED_PRIMARY,
           adoptionDecision: "adopt-live-docs-for-projection-db-budget",
         }),
       ]),
@@ -711,7 +721,7 @@ describe("version-up-readiness", () => {
     );
     expect(packet.sourceLedgerFreshness).toMatchObject({
       ledgerLabel: "Version-up source ledger",
-      checkedDate: "2026-06-30",
+      checkedDate: CHECKED_PRIMARY,
       stale: false,
       maxAgeDays: 90,
       rowCount: 21,
@@ -1047,7 +1057,7 @@ describe("version-up-readiness", () => {
           status: "pending_evidence",
           evidence: expect.stringContaining("pending evidence: workflow permissions"),
           reason: expect.stringContaining("concrete evidence path"),
-          sourceCheckedAt: "2026-06-30",
+          sourceCheckedAt: CHECKED_PRIMARY,
           adoptionDecision: expect.stringContaining("least-privilege-token-scope"),
         }),
         expect.objectContaining({
@@ -1284,7 +1294,7 @@ describe("version-up-readiness", () => {
                 "disable binding and rebuild projection from GitHub source",
               )
               .replace(
-                "docs/process/modes/version-up.md#version-up-source-ledger checked=2026-06-30",
+                `docs/process/modes/version-up.md#version-up-source-ledger checked=${CHECKED_PRIMARY}`,
                 "version-up source ledger is checked at activation review date",
               ),
           },
@@ -1342,7 +1352,7 @@ describe("version-up-readiness", () => {
                 "status: green",
               )
               .replace(
-                "docs/process/modes/version-up.md#version-up-source-ledger checked=2026-06-30",
+                `docs/process/modes/version-up.md#version-up-source-ledger checked=${CHECKED_PRIMARY}`,
                 "evidence: ok",
               ),
           },
@@ -1374,7 +1384,7 @@ describe("version-up-readiness", () => {
     const packets = buildVersionUpActivationPackets(
       input({
         modeDoc: input().modeDoc.replace(
-          "Version-up source ledger (checked 2026-06-30)",
+          `Version-up source ledger (checked ${CHECKED_PRIMARY})`,
           "Version-up source ledger (checked 2026-01-01)",
         ),
       }),
@@ -2006,7 +2016,7 @@ describe("version-up-readiness", () => {
           "date-only refresh",
           "action-binding approval",
           "escalation_boundaries",
-          "Version-up source ledger (checked 2026-06-30)",
+          `Version-up source ledger (checked ${CHECKED_PRIMARY})`,
           "| source | official URL | adopted version/date | latest official status | adoption decision | version-up use | required field impact |",
           "|---|---|---|---|---|---|---|",
           "| Semantic Versioning 2.0.0 | https://semver.org/ | 2.0.0 | current official specification page | - | compatibility intent | version_target |",
@@ -2201,7 +2211,7 @@ describe("version-up-readiness", () => {
     const result = analyzeVersionUpReadiness(
       input({
         modeDoc: input().modeDoc.replace(
-          "Version-up source ledger (checked 2026-06-30)",
+          `Version-up source ledger (checked ${CHECKED_PRIMARY})`,
           "Version-up source ledger (checked 2026-01-01)",
         ),
       }),
@@ -2222,15 +2232,15 @@ describe("version-up-readiness", () => {
     const result = analyzeVersionUpReadiness(
       input({
         modeDoc: input().modeDoc.replace(
-          "Version-up source ledger (checked 2026-06-30)",
-          "Version-up source ledger (checked 2026-06-15)",
+          `Version-up source ledger (checked ${CHECKED_PRIMARY})`,
+          `Version-up source ledger (checked ${CHECKED_REFRESHED})`,
         ),
         plans: [
           {
             ...refreshedPlan,
             text: refreshedPlan.text
-              .replaceAll("checked=2026-06-30", "checked=2026-06-15")
-              .replaceAll("checked 2026-06-30", "checked 2026-06-15"),
+              .replaceAll(`checked=${CHECKED_PRIMARY}`, `checked=${CHECKED_REFRESHED}`)
+              .replaceAll(`checked ${CHECKED_PRIMARY}`, `checked ${CHECKED_REFRESHED}`),
           },
         ],
       }),
@@ -2245,8 +2255,8 @@ describe("version-up-readiness", () => {
     const result = analyzeVersionUpReadiness(
       input({
         modeDoc: input().modeDoc.replace(
-          "Version-up source ledger (checked 2026-06-30)",
-          "Version-up source ledger (checked 2026-06-15)",
+          `Version-up source ledger (checked ${CHECKED_PRIMARY})`,
+          `Version-up source ledger (checked ${CHECKED_REFRESHED})`,
         ),
       }),
     );
@@ -2254,8 +2264,7 @@ describe("version-up-readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toContainEqual({
       subject: "PLAN-L7-900-future",
-      reason:
-        "source_ledger_freshness checked date 2026-06-30 does not match current Version-up source ledger checked 2026-06-15",
+      reason: `source_ledger_freshness checked date ${CHECKED_PRIMARY} does not match current Version-up source ledger checked ${CHECKED_REFRESHED}`,
     });
   });
 
@@ -2267,7 +2276,7 @@ describe("version-up-readiness", () => {
           {
             ...base,
             text: base.text.replace(
-              "- source_ledger_freshness: fresh Version-up source ledger checked 2026-06-30",
+              `- source_ledger_freshness: fresh Version-up source ledger checked ${CHECKED_PRIMARY}`,
               "- source_ledger_freshness: fresh checked Version-up source ledger",
             ),
           },
@@ -2278,8 +2287,7 @@ describe("version-up-readiness", () => {
     expect(result.ok).toBe(false);
     expect(result.violations).toContainEqual({
       subject: "PLAN-L7-900-future",
-      reason:
-        "source_ledger_freshness must cite current Version-up source ledger checked 2026-06-30",
+      reason: `source_ledger_freshness must cite current Version-up source ledger checked ${CHECKED_PRIMARY}`,
     });
   });
 
