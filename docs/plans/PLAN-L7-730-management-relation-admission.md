@@ -35,7 +35,7 @@ tdd_red_required: true
 red_at: "2026-09-13T08:44:23Z"
 green_at: "2026-09-13T10:52:00Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-MREL-001..014がowner・phase・digest・失効・順序・writer境界の反例を個別に拒否する"
+mutation_oracle_evidence: "tests/management-relation-admission.test.ts のU-MREL-001..014がowner・phase・digest・失効・順序・writer境界のseeded mutantを個別にkillした"
 complexity_effect: net_negative
 complexity_justification: "PLAN consumerに散在する管理field判定を一つのpure evaluatorへ集約し、既存authorityへの参照だけを持つ"
 removal_trigger: "全fieldのconsumer-zeroとwriter cutover後にlegacy dual-read分岐を削除する時点"
