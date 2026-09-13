@@ -87,7 +87,7 @@ review_evidence:
     ci_evidence_generation: "run:34753770956:attempt:1:failure"
     receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1784:444f233d937a12c9192c35e7cf5d9fdaafe7db6e:claude:run:34753770956:attempt:1:failure"
     receipt_digest: "sha256:2b848a356f50d991fccbf7f550f9cdbcd324296ac9e793da6b67e7cacfa23882"
-    scope: "exact HEAD 444f233d9を独立監査し内容blocker 0。旧L14 claimをcompatibility telemetryへ隔離し、scoped typed L12 findingだけをcurrent Recovery根拠にする境界、PR起因doctor違反0、V-pair/recovery/roadmap/drive binding 0、digest inventory 429 rows、current-location source pin、PR scope 20 path、targeted 109 tests、DB replay一致を確認した。CI failureはcurrent HEAD receipt欠落だけで、本receiptはconfirmed化に用い、merge admissionはsuccess世代で受け直す。"
+    scope: "exact HEAD 444f233d9を独立監査し内容blocker 0。旧終端層claimをcompatibility telemetryへ隔離し、scoped typed L12 findingだけをcurrent Recovery根拠にする境界、PR起因doctor違反0、V-pair/recovery/roadmap/drive binding 0、digest inventory 429 rows、current-location source pin、PR scope 20 path、targeted 109 tests、DB replay一致を確認した。CI failureはcurrent HEAD receipt欠落だけで、本receiptはconfirmed化に用い、merge admissionはsuccess世代で受け直す。"
     green_commands:
       - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/cli-surface.test.ts tests/db-projection-ingestion.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-09-13T11:20:10Z", evidence_path: tests/db-projection-ingestion.test.ts, output_digest: "sha256:2b848a356f50d991fccbf7f550f9cdbcd324296ac9e793da6b67e7cacfa23882", result: "reviewer clean worktreeでtargeted 109 tests green。receipt 5652945505。" }
 ---
