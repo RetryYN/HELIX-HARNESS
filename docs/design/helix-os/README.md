@@ -13,6 +13,7 @@ OSはその要求・進行・Worker・検証・改善を統制する。管理対
 
 | 入口 | 内容と状態 |
 |---|---|
+| [L1企画候補](L1-planning/system-intent.md) | 管理・統制、Worker、CI、証拠、配布運転、改善価値。Concept v4.1承認待ち |
 | [L2統制・実行要求](L2-requirements/governance-requirements.md) | 対象別に整理した9要求とWorker・学習・ログ・CIの条件。draft、IR移管未完了 |
 | [L11受入案](../../test-design/helix-os/L11-governance-acceptance.md) | 同じ9要求の利用シナリオ・反例。全件未実行 |
 | [移管元・対象別対応](../helix/L2-requirements/README.md) | 旧混在要求の監査、13柱の帰属、未移管条件 |

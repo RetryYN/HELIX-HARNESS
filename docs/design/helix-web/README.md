@@ -7,6 +7,7 @@ HARNESSの外部提供要求、HELIX-OSの管理・統制要求、Web固有の�
 
 | 責務 | 要求の所属先 |
 |---|---|
+| Web固有の企画・提供価値 | [L1企画候補](L1-planning/product-intent.md)。Concept v4.1とWeb固有価値の承認待ち |
 | Webの利用者体験・サービスとして提供する能力 | [L2要求案](L2-requirements/product-requirements.md)と[L11受入案](../../test-design/helix-web/L11-product-acceptance.md)。Vision由来8件、個別採択・受入未完了 |
 | 適用する開発工程・Vモデル・検証条件 | [HARNESS](../harness/README.md)。Webが採用する版と能力を参照 |
 | Webの要求・進行・Worker・CI・ログ・改善還流の管理 | [HELIX-OS](../helix-os/L2-requirements/governance-requirements.md) |
