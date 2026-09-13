@@ -19,6 +19,7 @@ as_of: 2026-09-14
 | 要件正本v1.3 | 1 | `docs/governance/helix-harness-requirements_v1.3.md` | Core Read、HARNESS／OS責務が混在 | [対象別対応](audits/l2-requirements/requirements-v1.3-target-crosswalk.md)からL2／L3を分冊 |
 | 対象別L1 | 3文書、19企画要求案 | HARNESS／HELIX-OS／HELIX-Webの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 6、HELIX-OS 8、HELIX-Web 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
 | 対象別L2 | 3文書、23要求案 | [L2要求入口](../design/helix/L2-requirements/README.md) | HARNESS 6、HELIX-OS 9、HELIX-Web 8。draft、未合意 | 出典・prototype／N/A・合意revisionを確定 |
+| 総称HELIXの旧L2／L11案 | HCV4-L2 6件、旧L11 6件 | `docs/design/helix/L2-requirements/concept-v4-derived-requirements.md`と対文書 | migration crosswalk only。6件すべてHARNESS／HELIX-OSへsplit先を記録、採否待ち | 対象別L2／L11承認後に非実行archiveへ移し、要求ownerから除外する |
 | 対象別L11 | 3文書、23受入案 | HARNESS／HELIX-OS／HELIX-Webの各L11 | draft、未実行 | 対応L2合意後に利用者受入を実行 |
 | Infinity Loop Requirement IR | 153要求 | `requirements-ir/requirements.json`と3 shard | canonical JSON、全HELIX分母ではない | [対象別crosswalk](audits/l2-requirements/infinity-business-target-crosswalk.md)群と意味差分を正規改訂 |
 | refinement契約 | 14契約 | `requirements-ir/refinement_contracts.json` | frozen／specified混在 | [対象別対応](audits/l2-requirements/refinement-target-crosswalk.md)に従いrevision単位で扱う |

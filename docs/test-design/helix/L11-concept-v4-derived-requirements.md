@@ -6,6 +6,7 @@ canonical_pair: L2
 layer: L11
 kind: test_design
 status: draft
+authority_status: migration_crosswalk_only
 freeze_blocking: true
 created: 2026-09-14
 updated: 2026-09-14
@@ -13,6 +14,9 @@ pair_artifact: docs/design/helix/L2-requirements/concept-v4-derived-requirements
 ---
 
 # Concept v4由来L2要求のL11受入設計
+
+本書は総称HELIXのL11受入正本ではない。混在するHCV4-L2要求を対象別L11へ分解するときに、
+利用場面とnegative caseを失わないためのmigration sourceである。対象別L2／L11の承認後は非実行archiveへ移す。
 
 本書は対象別移管前の混在L2要求に対応する受入案であり、実施結果ではない。全6件とも未実施。
 L3候補のL10 oracleとは分け、利用者が対象・状態・判断根拠を確認できるかを実操作で検証する。

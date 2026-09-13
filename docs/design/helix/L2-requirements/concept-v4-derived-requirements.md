@@ -6,13 +6,21 @@ canonical_pair: L11
 layer: L2
 kind: design
 status: draft
+authority_status: migration_crosswalk_only
 freeze_blocking: true
 created: 2026-09-14
 updated: 2026-09-14
 pair_artifact: docs/test-design/helix/L11-concept-v4-derived-requirements.md
+target_owners:
+  - HARNESS
+  - HELIX-OS
 ---
 
 # Concept v4から導くHELIX L2要求
+
+本書は総称HELIXのL2要求正本ではない。HCV4-L2-001..006を対象別L2へ分解するmigration crosswalkである。
+新世代の要求ownerはHARNESSとHELIX-OSであり、HELIX-Web固有要求はWeb側が所有する。
+対象別採否と合意が完了するまで出典atomを保持し、完了後は非実行archiveへ移す。
 
 本書は最新の上位概念から利用者要求を具体化した、対象別移管のための混在要求整理案である。
 最新のPO指示に従い、要求の所属先はHARNESS／HELIX-OS／個別プロダクトへ分離する。本書をそれらの共通要求正本として再固定しない。
@@ -29,14 +37,14 @@ v4.1、対象別L2、L11の合意へ転用しない。
 [HELIX-OS L2](../../helix-os/L2-requirements/governance-requirements.md)。以下は意味の分割先を示す。
 詳細条件・反例の全件移管を証明する表ではなく、下記の具体条件は照合が終わるまで本書から削除しない。
 
-| 混在要求 | HARNESSが定義する条件 | HELIX-OSが実行・管理する条件 |
-|---|---|---|
-| HCV4-L2-001 | HARNESS-L2-003：必要な合意と対象revision、進行条件 | HELIXOS-L2-001／003：要求・判断の出典、適用範囲、変更の管理 |
-| HCV4-L2-002 | HARNESS-L2-004：要求・設計・検証のtrace条件 | HELIXOS-L2-002／007：owner・作業・成果・提供・運用の追跡と証拠保存 |
-| HCV4-L2-003 | HARNESS-L2-003／005：完了判定・検証独立性・証拠有効性の条件 | HELIXOS-L2-004／007／008：独立reviewの割当、実検証・証拠回収・CI運転 |
-| HCV4-L2-004 | HARNESS-L2-003／005：再開時にも維持する工程・証拠条件 | HELIXOS-L2-004／009：runtime交代、assignment・lease・予算・作業状態の継続 |
-| HCV4-L2-005 | HARNESS-L2-006：提供機能・構成版・依存・外部利用の成立条件 | HELIXOS-L2-006：管理対象への導入・更新・復旧の実行と結果管理 |
-| HCV4-L2-006 | HARNESS-L2-003／004：要求変更時の再合意・差戻し・再検証条件 | HELIXOS-L2-005：観測・改善候補・採否・変更・効果確認の循環 |
+| 混在要求 | HARNESSが定義する条件 | HELIX-OSが実行・管理する条件 | disposition |
+|---|---|---|---|
+| HCV4-L2-001 | HARNESS-L2-003：必要な合意と対象revision、進行条件 | HELIXOS-L2-001／HELIXOS-L2-003：要求・判断の出典、適用範囲、変更の管理 | split_pending_approval |
+| HCV4-L2-002 | HARNESS-L2-004：要求・設計・検証のtrace条件 | HELIXOS-L2-002／HELIXOS-L2-007：owner・作業・成果・提供・運用の追跡と証拠保存 | split_pending_approval |
+| HCV4-L2-003 | HARNESS-L2-003／HARNESS-L2-005：完了判定・検証独立性・証拠有効性の条件 | HELIXOS-L2-004／HELIXOS-L2-007／HELIXOS-L2-008：独立reviewの割当、実検証・証拠回収・CI運転 | split_pending_approval |
+| HCV4-L2-004 | HARNESS-L2-003／HARNESS-L2-005：再開時にも維持する工程・証拠条件 | HELIXOS-L2-004／HELIXOS-L2-009：runtime交代、assignment・lease・予算・作業状態の継続 | split_pending_approval |
+| HCV4-L2-005 | HARNESS-L2-006：提供機能・構成版・依存・外部利用の成立条件 | HELIXOS-L2-006：管理対象への導入・更新・復旧の実行と結果管理 | split_pending_approval |
+| HCV4-L2-006 | HARNESS-L2-003／HARNESS-L2-004：要求変更時の再合意・差戻し・再検証条件 | HELIXOS-L2-005：観測・改善候補・採否・変更・効果確認の循環 | split_pending_approval |
 
 [HELIX-Web](../../helix-web/README.md)固有の利用者要求はWeb側へ置く。上記6要求をWeb機能の網羅分母にせず、
 OSがWebを管理するという関係と、Webが利用者に提供する機能を分ける。

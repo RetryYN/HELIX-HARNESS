@@ -95,8 +95,9 @@ mainへの収載だけで要求承認を判断せず、リポジトリ内の改�
 
 ## L2に対応する既存文書
 
-最新Conceptからの具体化は[Concept v4由来L2要求](concept-v4-derived-requirements.md)を参照する。
-6つの上位要求を利用場面へ具体化し、L3候補18件とL11受入案6件への対応を示した。
+最新Conceptからの旧具体化は[migration crosswalk](concept-v4-derived-requirements.md)として参照する。
+総称HELIXの要求正本ではなく、6つの混在要求をHARNESS／HELIX-OSへ分解し、L3候補18件と旧L11案6件の
+意味を失わないための移管元である。
 新しいL2合意を取得済みとはせず、draft・freeze_blockingで保持する。既存要求の置換・全体網羅は照合中である。
 
 物理directoryの`L1-requirements`は意味上の層を保証しない。以下はmetadataに
