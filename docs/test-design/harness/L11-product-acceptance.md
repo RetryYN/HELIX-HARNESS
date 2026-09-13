@@ -101,6 +101,11 @@ AI可読工程契約はAIDOC要求の採用revision確定後に評価する。�
 - AIDOC-HARNESS-003：未承認、stale、compatibility、historical、unknownを入力し、current実行契約として採用しない。
 - Worker inventory、provider session、CI運転、HELIX内部memoryがHARNESS工程契約へ混入した場合は不成立とする。
 
+INV由来条件は新世代で個別採用した要求revisionの確定後に評価する。全件未実行。
+
+- INV ID、P0..P4、投資効果、旧実装の存在だけではHARNESS要求・検証義務・提供機能を成立させない。
+- 旧CI、cache、shard、fixture、warm環境の成功を与えても、対応する要求revision・oracle・利用者受入がなければ完了としない。
+
 ## 提供構成の受入
 
 FRSと提供構成追補の採用revision確定後に評価する。全件未実行。

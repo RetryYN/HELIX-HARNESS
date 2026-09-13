@@ -45,7 +45,7 @@
 | `three-lane-capacity-profile` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 独立検証・revision有効性はHARNESS、pool・WIP・backpressure・段階拡張はOSへ分離。三社、provider別固定数、8-slot、既存CI／Merge Trainは継承しない |
 | `world-governance` | HELIX-OS | 照合済み・再採否待ち | 全件棚卸し・状態分離・影響限定を候補接続。旧owner、旧graph／DB、旧CI／policy、JSON-only authorityは持ち込まない |
 | `concept-vision-package-intake` / `concept-vision-release-crosswalk.md` | HELIX全体 | 照合済み・再採否待ち | 上位Concept、HARNESS提供契約、OSのWorker／CI／配布運用、個別製品の将来構想へ分離。PKG-D01..13、旧Module／Bundle数、旧CI先行利用は固定要求にしない |
-| `development-investment-stage-directives-intake_v1.0.md` | 未確定 | 保留 | INV-001..072は投資候補。個別に対象、既存owner、採否、受入を確定するまで要求へ編入しない |
+| `development-investment-stage-directives-intake_v1.0.md` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | INV-001..072を全件一回ずつ5群へ分類。旧実装指示・P0..P4・既存CI／Cursor順序は不採用。工程／検証はHARNESS、統制／学習はOS、将来研究は個別製品要求待ち |
 
 ## 現時点の適用待ち
 

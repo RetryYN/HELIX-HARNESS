@@ -85,6 +85,12 @@ AI可読文書条件はAIDOC要求の採用revision確定後に評価する。�
 - AIDOC-OS-006：source欠落、digest不一致、競合revision、未読を個別に与え、読取り済みや実行可能として表示しない。
 - AIDOC-OS-007：現行AI文書をarchive対象として与え、新世代のread setやpromptへ再注入しない。現時点では実移動を行わない。
 
+INV由来条件は新世代で個別採用した要求revisionの確定後に評価する。全件未実行。
+
+- INV-001..072をexactに一度ずつ分類し、INV ID、P0..P4、旧Issue／owner、実装状態から要求採否・priority・完了を生成しない。
+- INV-019／043を入力しても既存CIやCursor E2Eを起動せず、INV-068／070／071／072をcurrent必須機能にしない。
+- 旧graph、DB、scheduler、adapter、CIの存在や効果測定を、新世代能力の実装・受入証拠へ転用しない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。

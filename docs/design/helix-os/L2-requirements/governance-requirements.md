@@ -135,6 +135,17 @@ source更新時は影響文書をstale化し、再生成・semantic diff・read-
 現行AGENTS.md、CLAUDE.md、`.claude/`、`.codex/`、hook、adapter、promptはlegacy runtime inputとしてinventoryに留め、
 要求整理完了前に削除・移動・変更しない。新世代manifest、生成器、prompt、token budgetはL3以降で再導出する。
 
+## 開発投資候補の取扱い
+
+[旧INV-001..072](../../../governance/candidates/development-investment-stage-directives-intake_v1.0.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-investment-candidate-crosswalk.md)でexact 72件を分類した。
+HELIXOS-L2-001..009では、authority、作業、証拠、変更、resource、AI context、learning、費用、効果等の意味候補だけを
+個別採否する。INV ID、P0..P4、旧Issue／owner、既存graph／DB／scheduler／adapter／CIを新世代要求や実装順にしない。
+
+INV-043の旧Cursor早期E2Eは不採用とし、有界Worker委譲の意味だけを別のWorker要求源へ移す。
+INV-068／070／071／072は対象製品・data・権利・評価要求が成立するまで将来研究として保留する。
+72件をIssue／PLANへ一括変換せず、本節では旧CI、Cursor、DB、scheduler、既存実装を起動しない。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を

@@ -177,6 +177,14 @@ HARNESSのAI向け文書へWorker inventory、provider session、CI運転、HELI
 現行Core Reads、AGENTS／CLAUDE、promptを新世代のbaselineにせず、物理path、manifest schema、生成器は上流確定後に
 L3／L10から導出する。本節では現行AI文書、hook、adapter、runtimeを変更しない。
 
+## 開発投資候補から採る工程意味
+
+[旧INV-001..072](../../../governance/candidates/development-investment-stage-directives-intake_v1.0.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-investment-candidate-crosswalk.md)で全件分類した。
+HARNESS-L2-003／004／005／006では、到達可能性、変更影響、検証義務、反例、再資格、提供依存等の工程意味だけを
+再採否する。旧P0..P4、既存CI、prepare、cache、shard、fixture、warm環境、test generatorを要求や実装順として採用しない。
+INV番号、投資priority、費用削減見込みを、利用者要求・合意・検証済み能力の代替にしない。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。
