@@ -39,7 +39,7 @@
 | `requirements-authority-materialization` | HELIX-OS | 照合済み・再採否待ち | GitHub非authority・一方向投影・状態分離を候補接続。JSON-only意味正本、旧IR／main／Issue admissionは新世代へ持ち込まない |
 | `responsibility-centric-learning` | HELIX-OS | L2接続済み | 責務単位の学習、失効、段階昇格、authority非奪取をOS学習要求へ接続 |
 | `rule-derivation` | HELIX-OS / HARNESS | 照合済み・再採否待ち | 旧revisionのapprovalを流用せず、工程上の境界はHARNESS、生成・適用・診断はOSへ再採否する |
-| `scrum-operation-typed-projection` | HELIX-OS | 台帳接続 | Scrum運営状態のtyped projectionはOSの進行・状態管理候補 |
+| `scrum-operation-typed-projection` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 着手・完了の工程条件はHARNESS、管理状態・指標・projectionはOSへ分離。固定7 operation、旧layer、DB／roadmap／CI oracleは継承しない |
 | `security-engagement-authority` | HELIX-OS | 台帳接続 | engagementの認可scope、取消、finding保護はOSの権限・証拠統制候補。実行権限は未付与 |
 | `three-lane-capacity-profile` | HELIX-OS | 台帳接続 | Worker pool、WIP、review lease、段階拡張はOSのWorker統制候補 |
 | `world-governance` | HELIX-OS | 照合済み・再採否待ち | 全件棚卸し・状態分離・影響限定を候補接続。旧owner、旧graph／DB、旧CI／policy、JSON-only authorityは持ち込まない |

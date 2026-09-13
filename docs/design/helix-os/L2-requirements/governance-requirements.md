@@ -57,6 +57,13 @@ HELIXOS-L2-001／002／003／005／007では、gate漏れ、監査所見、運�
 projectionとし、その状態から要求意味・承認・完了を逆生成しない。採択した変更は対象製品の意味が変わる最上流へ戻し、
 OSが要求を直接書き換えたり自己承認したりしない。本節ではGitHub、DB、workflow、CIを操作しない。
 
+[旧Scrum Operation候補](../../../governance/candidates/scrum-operation-typed-projection-requirements.md)は、
+[新世代管理状態対応表](../../../governance/audits/l2-requirements/new-generation-management-state-projection-crosswalk.md)に従って
+再採否する。HELIXOS-L2-002／004／005／007／009では、要求・責務・作業・判断・証拠のauthority identityを参照し、
+進行、blocker、待ち、失敗、検証、改善候補等を再構築可能な管理viewへ投影する。Project、Issue、DB、dashboard、roadmapから
+要求意味・承認・完了を逆生成せず、missing・unknown・stale・conflict・projection failureを完了へ補完しない。
+旧7 operation、旧layer配置、既存DB／roadmap／test／CIは新世代のschema・oracleではない。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を

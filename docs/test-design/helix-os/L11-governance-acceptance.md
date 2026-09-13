@@ -44,6 +44,8 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 - HELIXOS-L2-001／002／005／007：同じ観測の重複、影響欠落、出典不明、採否未決、戻し先不明を入力し、それぞれ未成立として確認できる。
 - local intakeとremote Issue／Projectの状態を食い違わせ、remote側から要求意味・承認・完了が逆生成されないことを確認する。
 - 旧policyのconfirmed、旧adapter文字列、Issue template、既存test／CI成功を与えても、新世代の管理変更入口を受入済みにしない。
+- 管理projectionのmissing、unknown、stale、conflict、再構築失敗を個別に与え、Project／Issue／DB／dashboardの一つが正常でも完了へ補完しない。
+- 旧7 operation、旧layer、DB rebuild成功、roadmap表示を与えても、新世代の管理状態集合や利用者受入の成立根拠にしない。
 
 ## 運用品質統制の受入
 

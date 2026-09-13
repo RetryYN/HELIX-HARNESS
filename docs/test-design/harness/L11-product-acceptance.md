@@ -67,6 +67,7 @@ AVS／RFA／DGH由来の条件は採用revision確定後に検証する。全件
 - HARNESS-L2-003／004：管理観測や改善候補を入力し、意味が変わる最上流への差戻し、再合意、pair再凍結、再検証範囲を確認する。
 - Issue作成、Project状態、旧`S0..S4`完了、既存CI成功だけでは製品Forwardの進行条件を満たさない。
 - 管理上の緊急性を与えても、V-pair、trace、検証、利用者受入を省略しない。
+- 旧DoR／DoD、sprint review、retrospective等のceremony完了を与えても、HARNESSの着手・完了・利用者受入・L12観測を自動成立させない。
 
 ## 提供構成の受入
 

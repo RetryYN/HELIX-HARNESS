@@ -122,6 +122,8 @@ HARNESS-L2-003／004では、管理上の観測や改善判断から製品要求
 管理上の緊急性、Issue作成、Project状態、既存CI成功を、V-pair、上下trace、検証、利用者受入の省略理由にしない。
 管理作業の`S0..S4`、Scrum Reverse、旧adapterをHARNESSの固定workflowとして継承しない。本節は工程条件の要求案であり、
 現行AGENTS／CLAUDE、hook、Issue template、workflow、CIを変更・実行しない。
+旧Scrum Operation候補のDoR／DoD、sprint review等も固定ceremonyやV-model layerとして採用しない。
+着手・完了・受入・改善還流に必要な意味だけをHARNESS-L2-003／005へ再採否し、管理状態の保存と表示はOSへ委ねる。
 
 ## 提供構成と再現性の条件
 
