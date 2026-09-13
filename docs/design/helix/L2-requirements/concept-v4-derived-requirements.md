@@ -16,10 +16,11 @@ pair_artifact: docs/test-design/helix/L11-concept-v4-derived-requirements.md
 
 本書は最新の上位概念から利用者要求を具体化した、対象別移管のための混在要求整理案である。
 最新のPO指示に従い、要求の所属先はHARNESS／HELIX-OS／個別プロダクトへ分離する。本書をそれらの共通要求正本として再固定しない。
-出典は[Concept v4](../../../governance/candidates/helix-concept-v4.0.md)と
+最新の親候補は[Concept v4.1](../../../governance/candidates/helix-concept-v4.1.md)であり、出典要求は
 [HCV4-BR-001..006](../../../governance/candidates/helix-concept-v4-requests.md)。
-候補承認の対象revisionは[PLAN-L3-84](../../../plans/PLAN-L3-84-helix-concept-v4-upgrade.md)に記録されている。
-本書の具体化とL11条件は新しいdraftであり、その候補承認をL2合意へ転用しない。
+v4.0候補承認の対象revisionは[PLAN-L3-84](../../../plans/PLAN-L3-84-helix-concept-v4-upgrade.md)に記録されているが、
+製品境界を改訂したv4.1は人間承認待ちである。本書の具体化とL11条件もdraftであり、v4.0の候補承認を
+v4.1、対象別L2、L11の合意へ転用しない。
 既存Requirement IRの置換・追加は未実施である。
 
 ## 要求対象別の移管対応

@@ -60,11 +60,14 @@ GitHubは作業、協調、CI、review、統合証拠のsurfaceである。Issue
 6. **Evidence Closure**: subject、revision、実体、oracle、独立review、実行世代、read-afterのjoinで完了を判定する。
 7. **Durable and Replayable**: semantic authority、execution fact、projection、working contextを分け、再構築可能にする。
 8. **Controlled Adaptation**: learning、audit、environment reconciliation、synthesisは候補を上流へ戻し、authorityを直接変更しない。
-9. **Composable Release**: 検証済みBehavior ContractからSlice、Module、Bundle、HARNESS artifactへ適格性を保って合成し、releaseとdeploymentを分ける。
+9. **Composable Release**: 検証済みの機能単位から利用目的に合う提供構成とHARNESS artifactへ適格性を保って合成し、releaseとdeploymentを分ける。
 
 Product Separationだけをv4.1で追加し、v4.0のHuman Sovereignty、Contract Compilation、Responsibility First、
 Bounded Multi-AI Execution、Evidence Closure、Durable State／Replayable Truth、Controlled Adaptation、
 Composable Releaseは意味を保持する。
+
+旧`Slice`／`Module`／`Bundle`はComposable Releaseを説明したsource vocabularyであり、v4.1の承認だけで新世代の
+identity、schema、階層、個数、channelを固定しない。必要な構成単位は対象別L1／L2の承認後に再導出する。
 
 ## 上流から運用までの構造
 

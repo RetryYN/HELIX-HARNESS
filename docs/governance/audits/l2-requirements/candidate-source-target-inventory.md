@@ -12,6 +12,7 @@
 - `台帳接続`: 対象だけを確定し、個別条件の採否とL2への編入は未実施。
 - `分解待ち`: 複数対象の責務が混在し、対象別の要求atomへ分ける必要がある。
 - `照合済み・再採否待ち`: 新世代とのcrosswalkを作成し、保持候補・不採用前提・未判断を分けた。新世代での承認は未取得。
+- `照合済み・人間承認待ち`: 最新責務・出典・下流接続を照合し、次の意味判断だけが人間authorityに残る。承認済みではない。
 - `保留`: 現時点で対象製品・採否・承認revisionを確定できない。
 
 | 候補系列 | 主対象 | 整理状態 | 文書整理上の扱い |
@@ -27,7 +28,7 @@
 | `functional-release-slice` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 提供構成・検証閉包はHARNESS、投影・導入・配布・復旧の実行統制はOSへ分離。旧CI先行利用は棄却し、Cursor固有条件はWorker要求源へ移送 |
 | `harness-memory-coordination-boundary` | HELIX-OS | L2接続済み | memoryを有期限通知とpointerへ限定し、意味正本を複製しない条件をOSへ接続 |
 | `helix-commercial-license` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | HARNESSの提供許諾、OSのasset・配布統制、個別製品契約へ分離。「HELIX全体」の一括商用方針は採用せず、条文・権利・価格・準拠法等は法務判断待ち。現行LICENSE不変 |
-| `helix-concept-v4` | HELIX全体 | 分解待ち | 上位Conceptとして保持し、HARNESSの開発機構とOSの統制機構を対象別L2へ投影する |
+| `helix-concept-v4` | HELIX全体 | 照合済み・人間承認待ち | v4.1でHARNESS、HELIX-OS、HELIX-Webを分離し、対象別L2／L11へ接続。旧提供構成identityを未採択化。承認準備監査済みだがhuman approval未実施 |
 | `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | 運用品質を要求・検証へ接続する工程条件はHARNESS、配備・監視・incident・復旧統制はOS、具体SLO・環境・保持値は適用先製品へ分離。旧owner／engine再利用は棄却 |
 | `instruction-path-change-resilience` | HELIX-OS | 照合済み・再採否待ち | provenance・版固定・stale・provider差をAIDOCへ候補接続。旧owner・consumer・adapterは持ち込まない |
 | `management-scrum-product-forward` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 管理観測・採否・実行統制はOS、製品Forwardへの差戻し・再検証条件はHARNESSへ分離。Issue-first、PLANを含むGit一括authority、旧adapter／CI強制は棄却 |

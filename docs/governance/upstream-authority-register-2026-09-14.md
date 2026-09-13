@@ -14,7 +14,7 @@ as_of: 2026-09-14
 | 上流統制方針 | 1 | [上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md) | draft policy | 対象別改訂と資産台帳の運用へ適用 |
 | 現行L0 charter | 1 | `docs/design/helix/L0-charter/helix-charter_v0.1.md` | confirmed、HARNESS／OS責務が混在 | P0–P9を対象別L1へ再導出 |
 | 現行Concept | 1 | `docs/governance/helix-harness-concept_v3.1.md` | Core Read、旧製品境界を含む | 最新責務決定を反映した後にcompatibilityへ降格 |
-| 次期Concept候補 | 1系列 | `docs/governance/candidates/helix-concept-v4*` | v4.0 candidate承認済み。v4.1は最新境界で起草済み・人間確認待ち | v4.1の製品identityを確認し、L0／対象別L1へ投影 |
+| 次期Concept候補 | 1系列 | `docs/governance/candidates/helix-concept-v4*` | v4.0 candidate承認済み。v4.1は[承認準備監査](audits/l2-requirements/concept-v4.1-approval-readiness-audit.md)済み・人間承認待ち | v4.1の製品identity・9原則・新世代境界を人間が判断し、承認後にL0／対象別L1へ投影 |
 | HELIX柱要求 | HBR 9件、HNFR 4件 | `docs/design/helix/L1-requirements/pillar-requirements.md` | confirmed、工程と実行管理が混在 | [対象別対応](audits/l2-requirements/pillar-target-crosswalk.md)からL1を分冊 |
 | 要件正本v1.3 | 1 | `docs/governance/helix-harness-requirements_v1.3.md` | Core Read、HARNESS／OS責務が混在 | [対象別対応](audits/l2-requirements/requirements-v1.3-target-crosswalk.md)からL2／L3を分冊 |
 | 対象別L2 | 3文書、23要求案 | [L2要求入口](../design/helix/L2-requirements/README.md) | HARNESS 6、HELIX-OS 9、HELIX-Web 8。draft、未合意 | 出典・prototype／N/A・合意revisionを確定 |
