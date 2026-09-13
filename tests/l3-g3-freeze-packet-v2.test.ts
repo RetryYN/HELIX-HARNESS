@@ -28,7 +28,7 @@ const PACKET_PATH = "docs/governance/l3-rebaseline-g3-freeze-packet.md";
 const PLAN_PATH = "docs/plans/PLAN-L3-20-infinity-loop-g3-freeze.md";
 const packet = readFileSync(PACKET_PATH, "utf8");
 const plan = readFileSync(PLAN_PATH, "utf8");
-const designCatalogDigest = "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864";
+const designCatalogDigest = "48199e42ddccb07cebd13a405c02139ca45b2453f86301b0cc78888fa76df140";
 
 const UIL_REQUIREMENTS_PATH =
   "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md";
