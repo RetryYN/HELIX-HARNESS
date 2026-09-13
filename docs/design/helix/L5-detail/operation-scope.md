@@ -116,7 +116,7 @@ spec:
       "artifact_path": "src/state-db/current-location.ts",
       "resource_kind": "typescript_export",
       "resource_name": "buildProjectCurrentLocationSnapshot",
-      "source_digest": "sha256:49207a1e78e52d0383130d4e3e6c9eac28108aa65b4989366c16e4dd89cd9cfa",
+      "source_digest": "sha256:37dcf86f68f91cfa7e508f398f761d05f8b63e8fd6dbf05101ac141055b91de4",
       "current_authority": true
     },
     {
