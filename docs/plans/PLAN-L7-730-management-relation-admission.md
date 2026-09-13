@@ -67,7 +67,10 @@ generates:
   - { artifact_path: docs/test-design/helix/L8-management-relation-admission.md, artifact_type: test_design }
   - { artifact_path: src/runtime/management-relation-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/management-relation-admission.test.ts, artifact_type: test_code }
-modifies: []
+modifies:
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
 agent_slots:
   - { role: se, slot_label: "SE — owner inventoryとpure relation schema" }
   - { role: qa, slot_label: "QA — mismatch・失効・二重遷移反例" }

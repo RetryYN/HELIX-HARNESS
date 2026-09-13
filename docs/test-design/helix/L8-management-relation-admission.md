@@ -7,6 +7,7 @@ created: 2026-09-13
 updated: 2026-09-13
 owner: QA
 parent_design: docs/design/helix/L6-function-design/management-relation-admission.md
+pair_artifact: docs/design/helix/L6-function-design/management-relation-admission.md
 plan: docs/plans/PLAN-L7-730-management-relation-admission.md
 ---
 
