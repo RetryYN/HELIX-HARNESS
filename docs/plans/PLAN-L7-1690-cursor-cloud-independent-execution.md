@@ -32,7 +32,7 @@ mutation_oracle_evidence: "2026-09-13、親#1776追従後の現行source digest 
 complexity_effect: net_negative
 complexity_justification: "散在する起動前条件を副作用なしの単一admissionへ集約する"
 removal_trigger: "後継schemaへ全consumerが移行しv1参照が0になった時"
-entry_signals: ["po_directive:第三者実行レーンをL6/L7へ実装する"]
+entry_signals: [feature_addition]
 parent_design: docs/design/helix/L6-function-design/cursor-cloud-independent-execution.md
 pair_artifact: docs/test-design/helix/L7-cursor-cloud-independent-execution-unit-test-design.md
 workflow_identity:
