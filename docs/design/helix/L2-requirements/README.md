@@ -79,7 +79,9 @@ canonical工程はL1企画、L2要求＋画面プロト、L3要件定義・凍�
 2026-09-14に`git fetch origin main`で確認した最新mainは`6fabd1251`で、監査基準commitと一致した。
 mainへの収載だけで要求承認を判断せず、リポジトリ内の改訂・承認・supersessionを照合する。
 
-- 上位概念は[Concept v4候補](../../../governance/candidates/helix-concept-v4.0.md)とその承認対象を確認する。旧v3.1を新要求の基準へ戻さない。
+- 上位概念は[Concept v4.1候補](../../../governance/candidates/helix-concept-v4.1.md)と
+  [承認準備監査](../../../governance/audits/l2-requirements/concept-v4.1-approval-readiness-audit.md)を確認する。
+  v4.0の候補承認をv4.1へ流用せず、旧v3.1を新要求の基準へ戻さない。
 - 要件正本は[requirements v1.3](../../../governance/helix-harness-requirements_v1.3.md)、層はL1-L12 directive、実装責務はADR-009／010を基準にする。
 - JSON移管済み範囲は現行Requirement IRを読み、後続の要求候補・追補との差を確認する。承認済みの新定義を旧本文に合わせて後退させない。
 - 新しい要求の文書化、候補承認、canonicalへの昇格、runtimeへの適用は別に記録する。新しい候補を未確認のまま現行採用済みと表示しない。

@@ -169,7 +169,8 @@ HELIX-OSが自動走行できる資産は、最低限次を満たす。
 
 ## 現在の適用待ち
 
-- Concept v4候補のHarness／Control Plane／DevOS identityを、HARNESS／HELIX-OS境界へ改訂する。
+- Concept v4.1候補でHarness／Control Plane／DevOSの旧区分をHARNESS／HELIX-OS／個別製品境界へ改訂済み。
+  内容監査は完了し、人間承認revisionへの固定を待つ。
 - 柱要求と要件v1.3を対象別L1／L2／L3へ分冊し、正規pairへ再接続する。
 - Requirement IRの確認済み意味差分とauthority語彙差分を正規transactionで適用する。
 - 既存資産台帳を上記schemaへ収束し、自動走行可能・再導出待ち・退役候補を区別する。

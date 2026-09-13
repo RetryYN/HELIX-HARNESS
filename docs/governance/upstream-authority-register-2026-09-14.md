@@ -39,8 +39,8 @@ as_of: 2026-09-14
 | Security engagementの新世代対応 | 1系列、旧価値5項目、12旧機能要件、6旧非機能要件、12旧受入 | [新世代Security engagement crosswalk](audits/l2-requirements/new-generation-security-engagement-source-crosswalk.md) | 個別製品security、HARNESS検証、OS操作統制へ分離済み。旧broker／provider／DB／CIを棄却し、実行権限なし、新世代で再承認待ち | 対象別L1／L2確定後、data・操作authorityとL3／L10／L11を再導出する |
 | 利用許諾・配布の新世代対応 | 1系列、12旧要件、12旧受入 | [新世代license・distribution crosswalk](audits/l2-requirements/new-generation-license-distribution-source-crosswalk.md) | HARNESS提供許諾、OS配布統制、個別製品契約へ分離済み。HELIX全体一括方針は不採用、法的条件未決、現行LICENSE不変 | 製品scope確定後、権利棚卸しと法務判断を経て対象別L2／L11を再承認する |
 | 開発投資候補の新世代対応 | INV-001..072 exact 72件 | [新世代investment candidate crosswalk](audits/l2-requirements/new-generation-investment-candidate-crosswalk.md) | 5群へ全件分類済み。旧P0..P4、Issue／owner、既存CI／Cursor／DB／scheduler、実装順を棄却し、新世代で再採否待ち | Concept／対象別L1確定後、意味候補だけを対象別L2へ採否し、方式はL3以降で再導出する |
-| 旧HARNESS要求群 | 5文書 | `docs/design/harness/L1-requirements/`のbusiness／functional／screen／technical／nfr | compatibility debtを含む | HARNESS工程条件とOS運用条件へ分け、未移管条件を保持 |
-| 旧screen要求・設計 | 7文書＋個別mock | `docs/design/helix/L2-screen/`と対応test-design | 旧layer／pair、個別mock未確認を含む | L2要求形成・prototype合意・L11受入へ再接続 |
+| 旧HARNESS要求群 | 5文書。10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節 | [旧HARNESS要求の新世代対象別対応](audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md) | 全文確認・対象別分類済み。個別採否・L2合意待ち | 最新Concept／対象別L1の承認後、保持意味だけをHARNESS／HELIX-OS／個別製品L2へ採否する。旧実装を継承しない |
+| 旧screen要求・設計 | 7文書、個別Low-Fi 7画面、共通骨格参照8画面 | [L2画面・モック境界](../design/helix/L2-screen/screen-mock-boundary.md) | 7文書と15画面の存在・内容を確認済み。8画面の個別操作・欠落・失敗状態、prototype合意、L11受入が未確定 | 採択した画面だけを対象別L2要求、prototype revision、L11利用結果へ接続する。旧pairのPASSを流用しない |
 | 適用待ち意味差分 | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/l2-requirements/l2-freeze-ir-correction.md) | proposal、未適用 | 正規transaction、impact、rollback、全projection更新 |
 | PLAN | 1252文書 | `docs/plans/` | 作業契約・履歴。要求意味の正本ではない | 上流ID・対象・revisionへ接続し、Issue状態から意味を補完しない |
 
@@ -71,6 +71,28 @@ as_of: 2026-09-14
 - 旧資産のreuse／split／replace／retire／archive判断とreplacement evidenceがある。
 
 現在は対象別整理と適用待ち差分までであり、この完了条件は未達である。
+
+## 要求整理の閉鎖台帳
+
+この表は「文書を見た」「Issueがある」と「要求整理が閉じた」を区別する。`完了`は本表の作業単位に
+限った状態であり、製品実装・受入・運用の完了を意味しない。
+
+| 作業単位 | 閉鎖条件 | 現在の証拠 | 状態 | 残る処置 |
+|---|---|---|---|---|
+| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、候補95文書／29系列、IR 153、refinement 14、旧5＋7文書 | 完了 | 新規sourceは発見時に追記する |
+| 製品責務 | HARNESS、HELIX-OS、個別製品の所有範囲と参照関係が決定される | [対象別責務決定](product-governance-boundary-2026-09-14.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
+| 最新Concept | 最新責務、新世代境界、authority、上流順序が人間承認revisionへ束縛される | v4.1候補と承認準備監査 | 人間承認待ち | v4.1 exact revisionを人間が採否する |
+| 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Webの企画・価値・対象外が分冊される | 柱要求crosswalkとv4.1の投影先案 | 未作成 | v4.1承認後に対象別L1を起草・承認する |
+| 要求源の意味分類 | 各source atomのtarget、保持／変更／棄却、旧実現手段の扱いが分かる | Infinity 153、refinement 14、候補29系列、旧HARNESS 5文書のcrosswalk | 照合済み | 対象別L1確定後に再採否する |
+| 対象別L2 | 利用者、場面、操作、期待結果、非対象、出典、採否、合意revisionが対象別に閉じる | HARNESS 6、HELIX-OS 9、HELIX-Web 8のdraft | 未合意 | source atomを個別採否し、prototype／非UI記録と人間合意を束縛する |
+| 画面・prototype | 採択画面ごとに要求revision、prototype revision、正常・欠落・失敗状態、合意者が対応する | 旧7文書・15画面の照合、L2画面境界 | 未合意 | 共通骨格参照8画面を含め、採択後のprototype条件を確定する |
+| L11受入設計 | 各L2要求に利用場面、期待結果、negative case、対象revisionが対応する | 対象別L11 draft 23件 | 起草済み・未承認 | L2合意revisionに合わせて確定する。実行は後工程 |
+| L3／L10接続 | 合意済みL2から要件・総合検証を導出し、旧revisionを混ぜない | crosswalkと適用待ち差分のみ | 未着手 | L2合意後に開始する |
+| AI可読上流 | 承認済み上流からHARNESS契約、OS実行context、個別製品要求を分離生成できる要求が確定する | AIDOC要求10件とL11候補、legacy入口inventory | 要求案接続済み | Concept／L1／L2確定後に採否し、L3以降でmanifestを導出する |
+| 旧資産archive判断 | 各資産に意味移管、consumer、replacement、rollback、非実行化条件がある | legacy CI／AI inventoryと各crosswalk | 棚卸し中 | 上流確定後にarchive planへ進む。現在は移動・削除しない |
+
+要求整理の現在の直列境界は、`Concept v4.1人間判断 → 対象別L1 → source atom再採否 → 対象別L2・prototype合意`
+である。ここが閉じる前にL3／L10、AI文書生成器、新世代CI、runtime、archive切替へ進まない。
 
 [上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)は、本台帳の各集合を
 U0母集団固定からU7旧資産退役までのwork unitへ変換する。GitHub Issueを起票しなくても作業契約を保持できる。
