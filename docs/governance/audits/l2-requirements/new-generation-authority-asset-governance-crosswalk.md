@@ -52,7 +52,27 @@ World Registry／Graph／Policy／Admissionという旧論理component名も、�
 5. 新世代のasset graphとruntime projectionは承認上流から再構築し、旧graph・DB・IRから上流意味を逆生成しない。
 6. legacy sourceは意味採取後に非実行archiveへ移し、新世代のfallback・parity oracleにしない。
 
+## Mechanism Adequacy候補
+
+対象sourceは`mechanism-adequacy-{vision,requests,requirements,acceptance,recognition}.md`である。
+L1目的4件、要件7件、L10受入20件、L12観測4件を確認した。旧要件・受入の承認は、現行UIL、既存CI、
+既存Learning／DB／workflowへの接続を含むため新世代へ流用しない。
+
+| 旧ID | 保持候補の意味 | 新世代接続先 | 持ち込まない条件 | 状態 |
+|---|---|---|---|---|
+| MA-BR-01、R-01..03 | 宣言・実装・接続・検証・運用を分け、unknownと証拠不足を保ち、限定scopeで反証可能に判断する | asset governance policy、HELIXOS-L2-001／002／007 | 現行registry、実装能力、CI結果を新世代のbaselineにしない | scope_rewrite_required |
+| MA-R-02の六分類 | 問題原因と証拠不足・要求再検討を区別する | HELIXOS-L2-002／005 | `existing_method_applicable`と`recomposition_required`を旧実装の再有効化に使わない。legacy atomの`adopt_and_rederive／reject／unresolved`へ書き換える | classification_rewrite_required |
+| MA-BR-02、R-04／05 | 不足、制約、反例、設計候補、証拠、未知事項を一つの評価scopeへ束縛する | HELIXOS-L2-002／005／007、新世代work unit | 既存UIL、route、DB journal、Requirement IR schema、workflowへの接続を固定しない | split_reapproval_required |
+| MA-BR-03、R-06 | AI呼出し・probe・資源・回数を有界にし、打切りを証拠不足として残す | HELIXOS-L2-004／005 | 現行policyを操作許可として流用せず、新世代assignmentと停止条件から導出する | semantic_atom_candidate |
+| MA-BR-04、R-07 | 予測・実測・欠測を分け、誤判断・副作用・再発を観測する | HELIXOS-L2-005／007、L12候補 | 現行Learning、現行HELIX、post-mainを比較基準にしない。新世代revision間だけを同条件で測る | measurement_scope_rewrite |
+| MA-AC-01..19／21 | 状態混同、検索漏れ、AI断定、stale、証拠混載、無限再生成を拒否する反例 | 対象別L11／L10候補 | 旧機構適用、既存配車、旧DB replay、旧CI／main read-afterを合格条件にしない | oracle_atom_candidate |
+| MA-OP-01..04 | 誤分類、手戻り、費用、副作用、再発をL12で観測する | HELIXOS L12候補 | 現行HELIXとのbefore／after、既存Learning受渡しを必須にしない | observation_scope_rewrite |
+
+新世代での充足性評価は、旧機構を残す判断ではない。legacy sourceから採る意味atomと捨てる実装前提を証拠付きで分類し、
+採択atomも新しい上流IDから設計・実装・検証へ降ろし直す。新世代に必要な能力が既存codeに存在しても、そのcodeを
+current pathへ再接続せず、理解の参考としてarchive provenanceへ記録する。
+
 ## 次工程
 
-v4.1 Concept承認後、対象別L1でauthority管理と全資産統制の利用者・価値・非対象を確定する。その後、RAMG 14要件・
-HWG 9要件の各atomをHELIX-OS L2／L11へ採否し、新しいIDを付与する。L3／L10以降はその新IDから導出する。
+v4.1 Concept承認後、対象別L1でauthority管理と全資産統制の利用者・価値・非対象を確定する。その後、RAMG 14要件、
+HWG 9要件、MA 7要件の各atomをHELIX-OS L2／L11へ採否し、新しいIDを付与する。L3／L10以降はその新IDから導出する。

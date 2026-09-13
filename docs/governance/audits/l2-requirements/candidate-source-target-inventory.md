@@ -31,7 +31,7 @@
 | `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 分解待ち | 可搬性・診断可能性はHARNESS、配備・監視・incident統制はOS、SLO値は適用先製品へ分ける |
 | `instruction-path-change-resilience` | HELIX-OS | 照合済み・再採否待ち | provenance・版固定・stale・provider差をAIDOCへ候補接続。旧owner・consumer・adapterは持ち込まない |
 | `management-scrum-product-forward` | HELIX-OS | 台帳接続 | 管理Scrumと製品Forward入口の分離はOSの進行統制候補。HARNESS工程定義を複製しない |
-| `mechanism-adequacy` | HELIX-OS | 台帳接続 | 既存能力照合、採否、効果還流はOSの改善統制候補 |
+| `mechanism-adequacy` | HELIX-OS | 照合済み・再採否待ち | unknown・反証・証拠・効果観測を候補接続。既存方式再利用分類、旧UIL／Learning／DB／CI／workflow接続は新世代へ持ち込まない |
 | `next-generation-ci-requirements` | HARNESS / HELIX-OS | L2接続済み | layer・pair・risk別の検証契約はHARNESS、profile生成・実行・隔離・証拠回収・legacy archiveはOSへ分ける。上流確定までCI実装へ進めない |
 | `producer-provenance-separation` | HELIX-OS | L2接続済み | 作成者、commit実行者、公開者、reviewerの出所をOSの証拠要求へ接続 |
 | `refactoring-trigger-admission` | HELIX-OS | 台帳接続 | refactoring候補の検出・admission・shadow評価はOSの改善統制候補 |
