@@ -4,7 +4,7 @@ title: "PLAN-L7-1690 (add-impl): Cursor Cloud第三者実行admission"
 kind: add-impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 runtime_activation_allowed: false
 created: 2026-09-13
@@ -84,7 +84,23 @@ modifies:
   - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude independent reviewer / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-13T13:28:40Z"
+    tests_green_at: "2026-09-13T13:28:40Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: 255ab92e6c1d221d3e4eaf02e93d1ad0c1b44bde
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1789#issuecomment-5653593816"
+    ci_evidence_generation: "run:34759455262:attempt:1:failure"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1789:255ab92e6c1d221d3e4eaf02e93d1ad0c1b44bde:claude:run:34759455262:attempt:1:failure"
+    receipt_digest: "sha256:e38d3063fdfa6cfb4348daf203a6b15faebe9c7216c2f5f4a5f0b8d1fee5c942"
+    scope: "exact HEAD 255ab92e6の独立監査で内容blocker 0。Cursor L6/L7契約、U-CCI-001..018、#1293から#1362への依存、catalog pin、DB replay、PR scopeを確認した。reviewer clean worktreeで対象60 tests green。CI failureはreceipt転記前draftによるPOST_MERGE_PLANだけであり、本receiptはconfirmed化にのみ用い、merge admissionはsuccess世代で受け直す。先の散文レビュー誤帰属は本HEADで完全撤回済み。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/cursor-cloud-independent-execution.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-09-13T13:28:40Z", evidence_path: tests/cursor-cloud-independent-execution.test.ts, output_digest: "sha256:e38d3063fdfa6cfb4348daf203a6b15faebe9c7216c2f5f4a5f0b8d1fee5c942", result: "reviewer clean worktreeで2 files / 60 tests green。receipt 5653593816。" }
 ---
 
 # Cursor Cloud第三者実行admission
