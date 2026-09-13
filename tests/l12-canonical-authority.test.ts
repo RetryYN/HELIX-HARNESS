@@ -93,6 +93,8 @@ describe("L1-L12 canonical authority drift gate", () => {
     const claude = read("CLAUDE.md");
     const agents = read("AGENTS.md");
     const governance = read("docs/governance/README.md");
+    expect(governance).toContain("## 現行判断入口");
+    expect(governance).not.toContain("## 現行正本");
     for (const [source, body] of Object.entries({ AGENTS: agents, CLAUDE: claude, governance })) {
       expect(body, source).toContain("candidates/helix-concept-v4.0.md");
       expect(body, source).toMatch(/v3\.1[^\n]*compatibility source|旧Concept[^\n]*compatibility source/);

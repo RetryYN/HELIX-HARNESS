@@ -1,9 +1,9 @@
 # Governance 文書
 
-このディレクトリは HELIX-HARNESS の現行 governance 正本だけを置く。
+このディレクトリは HELIX-HARNESS の現行governance正本、承認済み次期候補、referenceを状態別に置く。
 本 README は governance 配下の案内 index であり、gate、証跡、完了条件の判定 surface ではない。
 
-## 現行正本
+## 現行判断入口
 
 Claude Code / Codex / human reviewer は、通常タスクでは次の順に読む。
 
