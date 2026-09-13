@@ -185,7 +185,7 @@ INV-068／070／071／072は対象製品・data・権利・評価要求が成立
 
 ## 新世代CIの再構築条件
 
-[新世代CI要求候補](../../../governance/candidates/next-generation-ci-requirements.md)のNCI-OS-001..007を、
+[新世代CI要求候補](../../../governance/candidates/next-generation-ci-requirements.md)のNCI-OS-001..008を、
 HELIXOS-L2-008の適用待ち具体化として保持する。既存workflow、job、required check、review admissionはlegacy implementationであり、
 新世代CIの要求分母や合格oracleにしない。GitHub Actions等は交換可能なprovider adapterとする。
 

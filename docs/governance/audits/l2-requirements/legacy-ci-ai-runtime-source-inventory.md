@@ -27,6 +27,10 @@ filename discoveryとして、`src/`内のpath basenameに
 これは依存closureでもarchive件数でもない。L3以降でsymbol・import・call graph・設定・test・consumerを追跡し、
 新世代で必要なsemantic atomとlegacy implementationを分けるための発見集合である。
 
+workflowの周囲にあるtrigger、required check、admission、証拠、生成、配布、診断、観測、復元、provider外部状態は
+[現行CI consumer relation inventory](legacy-ci-consumer-relation-inventory.md)で11種類に分類した。
+これは個別job／symbol／GitHub設定まで閉じた依存closureではない。
+
 ## 現行AI読取り入口
 
 確認した直接入口は38ファイルである。

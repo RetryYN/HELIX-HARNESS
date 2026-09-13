@@ -51,6 +51,7 @@ derived_from:
 | NCI-OS-005 | queue、parallelism、cache、shard、retry、budgetを最適化してもHARNESSのrequired oracleを維持する | 高速化やgreen化のための検査削除を拒否する |
 | NCI-OS-006 | provider adapterを交換でき、provider固有状態から要求・合意・受入・完了を生成しない | GitHub Actionsを外しても同じ検証契約と証拠identityを保てる |
 | NCI-OS-007 | 旧CIと新世代CIを別identity・別writer・別evidence namespaceで隔離し、旧CIを実行せずarchive referenceへ移す | legacy成功、失敗、job構成を新世代のbaselineや移行oracleにせず、旧workflowが新authorityを拒否しても上流を巻き戻さない |
+| NCI-OS-008 | trigger、検証義務、required check、admission、証拠、生成、配布、診断、観測、復元、provider外部状態を別relationとして追跡し、producer・consumer・revision・scopeを保持する | workflowファイルの削除だけで旧CI退役や新世代移管完了と判定しない |
 
 ## 上流意味reviewの要求
 
@@ -91,6 +92,7 @@ reviewer identity、対象revision、source set、観点、finding、判定時�
 - 旧CI green、新世代CI not-runを与え、新世代の結果をgreenやverifiedにしない。
 - 旧CIを呼び出すprofile、旧workflowとのdual-green、旧job件数との一致を移行条件として要求しない。
 - pipeline failureから正しい上流または下流の差戻し先を識別し、Concept変更を実装修正へ誤配送しない。
+- 旧workflowを削除してもrequired context、schedule、template、admission consumer、復元経路のいずれかが残れば、旧CI退役を成立させない。
 
 本候補は[上流再整備と既存資産統制方針](../upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)の
 `upstream meaning review`とU6 cutoverの間を、要求から再導出するための入力である。
