@@ -89,15 +89,17 @@ describe("L1-L12 canonical authority drift gate", () => {
     }
   });
 
-  it("loads the L12 directive before legacy-body concept and requirements docs", () => {
+  it("keeps the approved next concept in startup reads and the legacy concept compatibility-only", () => {
     const claude = read("CLAUDE.md");
+    const agents = read("AGENTS.md");
     const governance = read("docs/governance/README.md");
-    expect(claude.indexOf("l12-canonical-vmodel-direction-directive_v0.1.md")).toBeLessThan(
-      claude.indexOf("helix-harness-concept_v3.1.md"),
-    );
-    expect(governance.indexOf("l12-canonical-vmodel-direction-directive_v0.1.md")).toBeLessThan(
-      governance.indexOf("helix-harness-concept_v3.1.md"),
-    );
+    for (const [source, body] of Object.entries({ AGENTS: agents, CLAUDE: claude, governance })) {
+      expect(body, source).toContain("candidates/helix-concept-v4.0.md");
+      expect(body, source).toMatch(/v3\.1[^\n]*compatibility source|旧Concept[^\n]*compatibility source/);
+      expect(body.indexOf("candidates/helix-concept-v4.0.md"), source).toBeLessThan(
+        body.indexOf("helix-harness-concept_v3.1.md"),
+      );
+    }
   });
 
   it("U-L12INV-004: keeps the recognition-risk inventory closed over every old-authority candidate", () => {

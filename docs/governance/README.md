@@ -9,7 +9,7 @@ Claude Code / Codex / human reviewer は、通常タスクでは次の順に読�
 
 1. `l12-canonical-vmodel-direction-directive_v0.1.md` (current V-model layer authority)
 2. `l3-progression-authority-rebaseline-2026-07-19.md` (L3進行blocker 58件のprojection authority)
-3. `helix-harness-concept_v3.1.md`
+3. `candidates/helix-concept-v4.0.md`（PO承認済みの次期Concept。canonical promotion完了前はruntime正本ではない）
 4. `helix-harness-requirements_v1.3.md`（要件正本。`helix-harness-requirements_v1.2.md` は compatibility reference へ降格、PO 承認 2026-07-20 / PLAN-L3-15）
 5. `helix-harness-extraction-plan_v0.1.md`
 6. `../adr/ADR-001-helix-harness-redesign-and-language.md` (再設計方針 + 決定史)
@@ -17,6 +17,11 @@ Claude Code / Codex / human reviewer は、通常タスクでは次の順に読�
 8. `../adr/ADR-010-python-semantic-core-node-commit-boundary.md` (Python/Node層別authority)
 9. `repository-structure.md` (リポジトリ構成ルールの正本)
 10. `management-scrum-product-forward.md`（管理見落としのScrum収束とproduct Forwardの入口分離）
+
+`helix-harness-concept_v3.1.md` は旧Conceptのcompatibility sourceである。通常のCore Read正本からは外し、
+既存契約の移管・差分照合時だけ参照する。v4候補、requirements v1.3、L1-L12 directiveに反する旧定義を
+currentへ再出力しない。v4のruntime正本化と候補directoryからの昇格は、PLAN-L3-84のcanonical promotion、
+全consumer移行、独立検証が完了した時点で行う。
 
 > **V-model layer authority**: current canonicalはL1-L12であり、正規pairは
 > `L1↔L12` / `L2↔L11` / `L3↔L10` / `L4↔L9` / `L5↔L8` / `L6↔L7`である。
@@ -38,6 +43,7 @@ Claude Code / Codex / human reviewer は、通常タスクでは次の順に読�
 - `ai-dev-team-operations_v1.1.md`
 - `audit-framework.md`（旧feature単位gate／native auto-merge案。現行の原子的PR、read-only AI-B、
   明示merge契約と衝突する箇所は採用しない）
+- `helix-harness-concept_v3.1.md`（旧Concept。移管・差分照合用compatibility source）
 
 ## Archived Or Vendor Material（archive / vendor 資料）
 

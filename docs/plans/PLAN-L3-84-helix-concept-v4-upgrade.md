@@ -25,7 +25,7 @@ workflow_identity:
 entry_signals:
   - "po_directive:Issue #1496でHELIX Concept v4.0候補をL1／L3／L10へ最適化して取り込む"
 created: 2026-09-04
-updated: 2026-09-06
+updated: 2026-09-13
 owner: Codex / TL
 github_issue_id: 1496
 behavior_contract_id: HELIX-CONCEPT-V4-UPGRADE-001
@@ -78,6 +78,10 @@ generates:
   - { artifact_path: docs/governance/candidates/helix-concept-v4-readme-projection.md, artifact_type: markdown_doc }
   - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: AGENTS.md, artifact_type: markdown_doc }
+  - { artifact_path: CLAUDE.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/README.md, artifact_type: markdown_doc }
+  - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
 agent_slots:
   - { role: po, slot_label: "PO — product identityと利用者価値" }
@@ -116,8 +120,16 @@ HCV4-FR 18件、HCV4-AC 22件とする。
 
 ## 今回の非対象
 
-- current root READMEの書換え
+- root `README.md`の利用者向け説明切替
 - runtime、schema、DBの新規実装
 - repository／CLI／state directoryのrename
 - tag、publish、DevOSのcutover
 - provider固定topologyの正本化
+
+## 先行するstartup入口是正
+
+PO指示（2026-09-13）により、canonical promotion完了を待たずにstartup入口の誤分類を先に是正する。
+PO承認済みv4候補は再編・新要求の意味判断に必須の入力とし、v3.1は通常のCore Read正本から外して
+既存契約の移管・差分照合用compatibility sourceへ分類する。この変更は候補をruntime正本へ昇格せず、
+Requirement IR、runtime、DB、root READMEへ投影しない。後続のcanonical promotion、全consumer移行、
+独立検証が完了するまで、候補directoryと`completion_claim_allowed: false`を維持する。
