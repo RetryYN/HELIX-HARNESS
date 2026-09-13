@@ -7,6 +7,14 @@ updated: 2026-09-14
 product_targets:
   - HELIX-HARNESS
   - HELIX-OS
+derived_from:
+  - docs/governance/candidates/helix-concept-v4.1.md
+  - docs/governance/candidates/instruction-path-change-resilience-requests.md
+  - docs/governance/candidates/instruction-path-change-resilience-requirements.md
+  - docs/governance/candidates/instruction-path-change-resilience-acceptance.md
+  - docs/governance/candidates/rule-derivation-requests.md
+  - docs/governance/candidates/rule-derivation-requirements.md
+  - docs/governance/candidates/rule-derivation-acceptance.md
 ---
 
 # AI可読上流文書の要求候補
@@ -79,3 +87,5 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 - source欠落、digest不一致、競合revision、未読を個別に与え、推測で作業開始しない。
 
 本候補はAI文書の内容と生成・適用責務を上流で分けるための入力であり、現行runtimeへの適用を認可しない。
+[既存CI・AI候補との対応](../audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md)は、旧候補の承認を流用せず、
+新世代へ再採否するsemantic atomを記録する。

@@ -11,6 +11,7 @@
 - `L2接続済み`: 出典IDまたは具体条件を対象別L2案へ記載した。採択・freeze・実装・受入は別状態。
 - `台帳接続`: 対象だけを確定し、個別条件の採否とL2への編入は未実施。
 - `分解待ち`: 複数対象の責務が混在し、対象別の要求atomへ分ける必要がある。
+- `照合済み・再採否待ち`: 新世代とのcrosswalkを作成し、保持候補・不採用前提・未判断を分けた。新世代での承認は未取得。
 - `保留`: 現時点で対象製品・採否・承認revisionを確定できない。
 
 | 候補系列 | 主対象 | 整理状態 | 文書整理上の扱い |
@@ -19,7 +20,7 @@
 | `ai-readable-authority-requirements` | HARNESS / HELIX-OS | 台帳接続 | AI向け工程契約はHARNESS、authority解決・assignment・生成・stale管理はOSへ分ける。対象別L1／L2確定まで現行AI文書を変更しない |
 | `authority-vocabulary` | HELIX-OS | L2接続済み | 人間authority、作業指示、通知、技術判断の分離をOS統制へ接続 |
 | `bugbot-bounded-repair` / `bugbot-intake-source.md` | HELIX-OS | 台帳接続 | 自動修復の対象・権限・停止条件。HARNESSの検証規則を参照し、OSが実行を統制する候補 |
-| `ci-event-concurrency-generation` | HELIX-OS | 台帳接続 | CI世代・並行実行・current main引継ぎはOSのCI統制候補 |
+| `ci-event-concurrency-generation` | HELIX-OS | 照合済み・再採否待ち | generation・非干渉・replayの意味だけをNCIへ候補接続。GitHub event enum、旧receipt、既存provider再利用は持ち込まない |
 | `conversation-lifetime-reconstruction` | HELIX-OS | L2接続済み | 継続、外部状態からの再構成、累積制約をOSの継続・復旧要求へ接続 |
 | `design-grounding-human-convergence` | HELIX-OS | L2接続済み | 根拠、人間反応、収束を要求形成・判断履歴の統制へ接続 |
 | `execution-ticket` | HELIX-OS | L2接続済み | Workerへの実行契約、測定、証拠、replayをOSの割当・観測要求へ接続 |
@@ -28,7 +29,7 @@
 | `helix-commercial-license` | HARNESS | 台帳接続 | 外部提供物HARNESSの利用許諾候補。法的条件と正式採否は未確定 |
 | `helix-concept-v4` | HELIX全体 | 分解待ち | 上位Conceptとして保持し、HARNESSの開発機構とOSの統制機構を対象別L2へ投影する |
 | `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 分解待ち | 可搬性・診断可能性はHARNESS、配備・監視・incident統制はOS、SLO値は適用先製品へ分ける |
-| `instruction-path-change-resilience` | HELIX-OS | 台帳接続 | 指示・policy・provider差の版追従と縮退はOSの統制・継続候補 |
+| `instruction-path-change-resilience` | HELIX-OS | 照合済み・再採否待ち | provenance・版固定・stale・provider差をAIDOCへ候補接続。旧owner・consumer・adapterは持ち込まない |
 | `management-scrum-product-forward` | HELIX-OS | 台帳接続 | 管理Scrumと製品Forward入口の分離はOSの進行統制候補。HARNESS工程定義を複製しない |
 | `mechanism-adequacy` | HELIX-OS | 台帳接続 | 既存能力照合、採否、効果還流はOSの改善統制候補 |
 | `next-generation-ci-requirements` | HARNESS / HELIX-OS | L2接続済み | layer・pair・risk別の検証契約はHARNESS、profile生成・実行・隔離・証拠回収・legacy archiveはOSへ分ける。上流確定までCI実装へ進めない |
@@ -37,7 +38,7 @@
 | `requirement-formation-scoped-admission` | HELIX-OS | L2接続済み | 根拠付き要求形成と影響範囲限定の再確定をOS統制へ接続 |
 | `requirements-authority-materialization` | HELIX-OS | 台帳接続 | ローカル要求正本からruntime投影までの一方向admissionをOS統制候補とする |
 | `responsibility-centric-learning` | HELIX-OS | L2接続済み | 責務単位の学習、失効、段階昇格、authority非奪取をOS学習要求へ接続 |
-| `rule-derivation` | HELIX-OS / HARNESS | 分解待ち | 共通ruleの管理・導出はOS、V-model gateとして製品へ提供する規則はHARNESSへ分ける |
+| `rule-derivation` | HELIX-OS / HARNESS | 照合済み・再採否待ち | 旧revisionのapprovalを流用せず、工程上の境界はHARNESS、生成・適用・診断はOSへ再採否する |
 | `scrum-operation-typed-projection` | HELIX-OS | 台帳接続 | Scrum運営状態のtyped projectionはOSの進行・状態管理候補 |
 | `security-engagement-authority` | HELIX-OS | 台帳接続 | engagementの認可scope、取消、finding保護はOSの権限・証拠統制候補。実行権限は未付与 |
 | `three-lane-capacity-profile` | HELIX-OS | 台帳接続 | Worker pool、WIP、review lease、段階拡張はOSのWorker統制候補 |
