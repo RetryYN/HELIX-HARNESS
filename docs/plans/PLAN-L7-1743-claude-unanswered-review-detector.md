@@ -69,6 +69,7 @@ generates:
   - { artifact_path: .github/scripts/collect-claude-review-observation.mjs, artifact_type: source_module }
   - { artifact_path: .github/workflows/claude-unanswered-review-audit.yml, artifact_type: yaml_config }
   - { artifact_path: tests/claude-unanswered-review-detector.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/evidence/PR-1767/vitest-targeted.json, artifact_type: json_config }
 modifies:
   - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
@@ -80,7 +81,7 @@ review_evidence:
   - reviewer: "Claude independent reviewer / claude-opus-5"
     review_kind: cross_agent
     reviewed_at: "2026-09-13T07:03:01Z"
-    tests_green_at: "2026-09-13T07:03:01Z"
+    tests_green_at: "2026-09-13T07:21:27Z"
     verdict: approve
     worker_model: codex
     reviewer_model: claude:claude-opus-5
@@ -92,7 +93,7 @@ review_evidence:
     receipt_digest: "sha256:4d61767b8117271bb472d1be1ff9b0208914e83407a83d9cd77bb847295a940c"
     scope: "exact HEAD c43895dc1を独立監査し内容blocker 0。CI failureはdraft PLANのPOST_MERGE_PLAN循環だけで、他preflightは全green、unauthorized skip 0。reviewer側clean worktreeでdetectorとG3 pinの51/51、PLAN governance、DB replay、scope 14 path、catalog単一pinを再検証した。本receiptはconfirmed化の証拠でありmerge admissionには用いず、success世代で受け直す。"
     green_commands:
-      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/claude-unanswered-review-detector.test.ts tests/l3-g3-freeze-packet-v2.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-09-13T07:03:01Z", evidence_path: tests/claude-unanswered-review-detector.test.ts, output_digest: "sha256:4d61767b8117271bb472d1be1ff9b0208914e83407a83d9cd77bb847295a940c", result: "Claude reviewerのclean worktreeで2 files / 51 tests green。receipt 5651827415。" }
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-unanswered-review-detector.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=json --outputFile=.helix/evidence/review-1767/vitest-targeted.json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-09-13T07:21:27Z", evidence_path: docs/governance/evidence/PR-1767/vitest-targeted.json, output_digest: "sha256:eca986bacb7c8b5e69c649ef0b435412ab82ba634b9bcf9cc7050191211f6a48", result: "最終main追従HEADで2 files / 51 tests green。JSON出力bytesをGit管理しdigestを固定した。" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
