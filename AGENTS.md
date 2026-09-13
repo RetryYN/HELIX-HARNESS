@@ -45,11 +45,11 @@ AGENTS.md はオープン規格のため、Kimi Code など Codex 以外の AGEN
 adapter ルールなどの人間向け docs にある英語 prose debt が baseline から増えないことを検査する。baseline は
 既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
 
-## Core Reads（必読正本）
+## Core Reads（現行判断入口）
 
 このリポジトリで作業するときは、下記の repo-owned sources を読み、その workflow に従う。
 
-- `docs/governance/helix-harness-concept_v3.1.md` - 内部展開向け concept
+- `docs/governance/candidates/helix-concept-v4.0.md` - PO承認済みの次期Concept。canonical promotion完了前はruntime正本ではないが、再編・新要求の意味判断では必ず参照する
 - `docs/governance/helix-harness-requirements_v1.3.md` - requirements と acceptance criteria（要件正本。v1.2 は compatibility reference へ降格、PLAN-L3-15）
 - `docs/governance/helix-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
 - `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と決定史
@@ -58,6 +58,11 @@ adapter ルールなどの人間向け docs にある英語 prose debt が basel
 - `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md` - 現行V-model層authority（L1-L12 canonical）
 - `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md` - L3進行前に正規化する58文書と物理path projection
 - `docs/governance/README.md` - governance 配下の canonical / reference / archive 境界
+
+`docs/governance/helix-harness-concept_v3.1.md` は旧Conceptのcompatibility sourceであり、通常の
+Core Read正本ではない。既存契約の移管・差分照合が必要な場合だけ読み、v4候補、requirements v1.3、
+L1-L12 directiveに反する旧定義をcurrentへ再出力しない。v4のruntime正本化はPLAN-L3-84の
+canonical promotionとconsumer移行が完了した時点で行う。
 
 ### V-model layer authority（作業中も不変）
 
