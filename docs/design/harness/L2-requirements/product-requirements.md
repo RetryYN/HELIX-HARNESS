@@ -10,6 +10,7 @@ freeze_blocking: true
 created: 2026-09-14
 updated: 2026-09-14
 pair_artifact: docs/test-design/harness/L11-product-acceptance.md
+parent_l1_candidate: docs/design/harness/L1-planning/product-intent.md
 ---
 
 # 提供プロダクトHARNESSの利用要求
@@ -24,6 +25,18 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 外部利用者へ提供する範囲はHARNESSである。提供物の仕様・版・導入条件を明示し、HELIX内部の
 プロジェクト群、Worker割当、学習記録、ログ、CI運用をそのまま利用者の必須構成にしない。
 提供範囲と依存条件は明示して管理し、内部運用が存在することだけを暗黙の外部依存にしない。
+
+親は[HARNESS L1企画候補](../L1-planning/product-intent.md)である。現在は親ConceptとL1が未承認のため、
+以下のrelationは接続案であり、承認済み導出ではない。
+
+| L2要求 | 親L1候補 |
+|---|---|
+| HARNESS-L2-001 | HARNESS-L1-001 |
+| HARNESS-L2-002 | HARNESS-L1-002 |
+| HARNESS-L2-003 | HARNESS-L1-002／HARNESS-L1-006 |
+| HARNESS-L2-004 | HARNESS-L1-003／HARNESS-L1-004／HARNESS-L1-006 |
+| HARNESS-L2-005 | HARNESS-L1-004 |
+| HARNESS-L2-006 | HARNESS-L1-005 |
 
 | ID | HARNESSに対する利用要求 | 主な移管元 | 確認する結果 |
 |---|---|---|---|

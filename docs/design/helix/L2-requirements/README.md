@@ -1,5 +1,9 @@
 # HELIX L2要求の読取り入口
 
+本directoryは総称HELIXが要求を所有する場所ではなく、旧混在要求をHARNESS、HELIX-OS、個別製品へ
+分解する監査・移行入口である。新しい要求のownerは下記の対象別directoryとし、
+`concept-v4-derived-requirements.md`を含む本directoryの案は帰属確定後に対象別L2へ移すかarchiveする。
+
 ## 要求対象別の入口
 
 2026-09-14のPO指示に従い、要求の対象をフォルダで分離する。
@@ -18,6 +22,7 @@ HARNESS／HELIX-OS／HELIX-Web境界へ投影する。
 - [HELIX-Webの要求整理入口](../../helix-web/README.md)：Vision2で示された、HELIX-OSが管理する個別プロダクト。Web固有要求はこの対象へ分離する。
 
 HARNESSとHELIX-OSにL2／L11の対を設けた。HELIX-WebにはVision由来8件のL2／L11案を追加した。
+各対象にはConcept v4.1に従属するL1企画候補も設け、L2側へ親L1 relation案を記載した。
 現時点は混在要求からの分離案であり、全条件の採択・新規IDのIR登録は適用待ちである。
 候補系列の対象と接続状態は[対象別台帳](../../../governance/audits/l2-requirements/candidate-source-target-inventory.md)を参照する。
 以下の既存`helix/`一覧は移管元の監査入口として使い、HARNESSとHELIX-OSを一つの要求集合として再固定しない。

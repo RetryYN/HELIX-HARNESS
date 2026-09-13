@@ -1,5 +1,5 @@
 ---
-document_id: HELIX-CONCEPT-V4
+document_id: HELIX-CONCEPT-V4.1
 concept_version: "4.1-candidate"
 status: draft_candidate
 authority_status: awaiting_human_approval
@@ -8,6 +8,12 @@ derived_from:
   - docs/governance/product-governance-boundary-2026-09-14.md
 supersedes_after_approval: docs/governance/candidates/helix-concept-v4.0.md
 canonical_promotion: pending
+approval_scope: exact_body_revision_pending
+approved_body_sha256: pending_human_decision
+behavior_contract_id: HELIX-CONCEPT-V4.1
+evidence_baseline:
+  - docs/governance/audits/l2-requirements/concept-v4.1-approval-readiness-audit.md
+  - docs/governance/audits/l2-requirements/concept-v4.1-claude-review-96171b9ba.md
 ---
 
 # HELIX Concept v4.1候補
@@ -62,9 +68,19 @@ GitHubは作業、協調、CI、review、統合証拠のsurfaceである。Issue
 8. **Controlled Adaptation**: learning、audit、environment reconciliation、synthesisは候補を上流へ戻し、authorityを直接変更しない。
 9. **Composable Release**: 検証済みの機能単位から利用目的に合う提供構成とHARNESS artifactへ適格性を保って合成し、releaseとdeploymentを分ける。
 
-Product Separationだけをv4.1で追加し、v4.0のHuman Sovereignty、Contract Compilation、Responsibility First、
-Bounded Multi-AI Execution、Evidence Closure、Durable State／Replayable Truth、Controlled Adaptation、
-Composable Releaseは意味を保持する。
+v4.1はProduct Separationの追加だけではなく、製品境界に合わせて既存原則の意味も改訂する。
+
+| v4.0原則 | v4.1での扱い | 改訂理由 |
+|---|---|---|
+| Human Sovereignty | 保持 | 人間の意味判断をactor、target、scope、revisionへ束縛する |
+| Contract Compilation | 改訂 | `Intent→Requirement IR→Release Slice`という実現系列を、Concept→対象別L1→L2→L3→設計・検証・実装・運用のauthority順序へ変更する。Requirement IRは承認済み要求の機械projectionとしてL3以降に置く |
+| Responsibility First | 保持 | actionable behaviorのprimary ownerを一意にする |
+| Bounded Multi-AI Execution | 保持・対象明確化 | 実行統制をHELIX-OSへ帰属させる |
+| Evidence Closure | 保持 | 対象revisionと反証可能な証拠joinを要求する |
+| Durable State／Replayable Truth | 改訂 | semantic authority、実行事実、projection、working contextを分離し、HELIX-OSの再構築責務へ置く |
+| Controlled Adaptation | 保持・対象明確化 | 改善候補の生成はOS、採否と要求変更は対象上流authorityへ分ける |
+| Composable Release | 改訂 | Slice／Module／Bundle／DevOS artifactの旧identityを外し、承認済み機能と適格性からHARNESS提供構成を再導出する |
+| Product Separation | 追加 | HARNESS、HELIX-OS、個別製品の要求ownerを分ける |
 
 旧`Slice`／`Module`／`Bundle`はComposable Releaseを説明したsource vocabularyであり、v4.1の承認だけで新世代の
 identity、schema、階層、個数、channelを固定しない。必要な構成単位は対象別L1／L2の承認後に再導出する。
@@ -129,6 +145,11 @@ historical valueを記録した後、current startup、runtime、CI、AI read se
 
 上流要求整理が完了する前に、新世代の実装、旧資産の物理移動・削除、runtime切替、CI起動、PR admissionを行わない。
 要求整理中の成果はcandidate、inventory、crosswalk、適用待ち差分として保持する。
+
+要求整理期間中の意味判定は、対象revisionを固定した文書差分検査、source IDの欠落・重複検査、参照整合検査、
+独立した上流意味review、人間decisionで行う。これらの静的結果は候補の整合性証拠であり、実装、L11受入、
+運用成立、canonical promotionを証明しない。旧CI／旧gateを実行せず、新世代CIが未構築であることを理由に
+旧CIへfallbackしない。remote branchへの同期も意味承認を成立させない。
 
 ## 個別製品Concept
 

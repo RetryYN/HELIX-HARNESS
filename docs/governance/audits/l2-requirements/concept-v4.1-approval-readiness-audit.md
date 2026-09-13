@@ -37,5 +37,9 @@
 
 ## 判定
 
-文書内容は最新の責務決定と要求監査結果へ整合した。状態は`awaiting_human_approval`のままであり、承認済み・canonical・
-実装可能として扱わない。次の上流操作はv4.1の製品identity・9原則・新世代境界に対する人間判断である。
+初回自己監査後、[Claude意味レビュー](concept-v4.1-claude-review-96171b9ba.md)でblocker 3件、major 6件を検出した。
+したがって初回の「整合」判定だけを承認準備完了の証拠にしない。document identity、v4.0との差分、L1／L2 relation、
+L12、L0柱投影、欠落責務、総称HELIX入口、上流整理期間の検査境界を修正し、新revisionを再reviewする。
+
+状態は`awaiting_human_approval`のままであり、承認済み・canonical・実装可能として扱わない。
+再reviewでblockerを閉じた後にも、v4.1の製品identity・9原則・新世代境界は人間判断を要する。

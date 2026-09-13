@@ -8,6 +8,7 @@ kind: design
 status: draft
 freeze_blocking: true
 pair_artifact: docs/test-design/helix-web/L11-product-acceptance.md
+parent_l1_candidate: docs/design/helix-web/L1-planning/product-intent.md
 ---
 
 # HELIX-WebのVision由来利用要求案
@@ -16,6 +17,17 @@ HELIX-WebはHELIX-OSが管理する個別プロダクトである。本書は保
 [Vision原文](../../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、
 Webの利用者に対する要求を具体化した案である。最新PO指示の管理関係と原文の将来構想を区別する。
 以下の8件の個別採択・L2合意・L3凍結・IR admission・提供時期は未確定。現在のHARNESS完成条件へ追加しない。
+
+親は[HELIX-Web L1企画候補](../L1-planning/product-intent.md)である。現在は親ConceptとL1が未承認のため、
+以下のrelationは接続案であり、承認済み導出ではない。
+
+| L2要求 | 親L1候補 |
+|---|---|
+| HELIXWEB-L2-001／HELIXWEB-L2-002／HELIXWEB-L2-004 | HELIXWEB-L1-001 |
+| HELIXWEB-L2-003 | HELIXWEB-L1-002 |
+| HELIXWEB-L2-005 | HELIXWEB-L1-003 |
+| HELIXWEB-L2-006／HELIXWEB-L2-007 | HELIXWEB-L1-004 |
+| HELIXWEB-L2-008 | HELIXWEB-L1-005 |
 
 | ID | 構想段階 | 出典 | Webに対する利用要求 |
 |---|---|---|---|

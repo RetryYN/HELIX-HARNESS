@@ -17,7 +17,7 @@ as_of: 2026-09-14
 | 次期Concept候補 | 1系列 | `docs/governance/candidates/helix-concept-v4*` | v4.0 candidate承認済み。v4.1は[承認準備監査](audits/l2-requirements/concept-v4.1-approval-readiness-audit.md)済み・人間承認待ち | v4.1の製品identity・9原則・新世代境界を人間が判断し、承認後にL0／対象別L1へ投影 |
 | HELIX柱要求 | HBR 9件、HNFR 4件 | `docs/design/helix/L1-requirements/pillar-requirements.md` | confirmed、工程と実行管理が混在 | [対象別対応](audits/l2-requirements/pillar-target-crosswalk.md)からL1を分冊 |
 | 要件正本v1.3 | 1 | `docs/governance/helix-harness-requirements_v1.3.md` | Core Read、HARNESS／OS責務が混在 | [対象別対応](audits/l2-requirements/requirements-v1.3-target-crosswalk.md)からL2／L3を分冊 |
-| 対象別L1 | 3文書、16企画要求案 | HARNESS／HELIX-OS／HELIX-Webの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 5、HELIX-OS 6、HELIX-Web 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
+| 対象別L1 | 3文書、19企画要求案 | HARNESS／HELIX-OS／HELIX-Webの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 6、HELIX-OS 8、HELIX-Web 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
 | 対象別L2 | 3文書、23要求案 | [L2要求入口](../design/helix/L2-requirements/README.md) | HARNESS 6、HELIX-OS 9、HELIX-Web 8。draft、未合意 | 出典・prototype／N/A・合意revisionを確定 |
 | 対象別L11 | 3文書、23受入案 | HARNESS／HELIX-OS／HELIX-Webの各L11 | draft、未実行 | 対応L2合意後に利用者受入を実行 |
 | Infinity Loop Requirement IR | 153要求 | `requirements-ir/requirements.json`と3 shard | canonical JSON、全HELIX分母ではない | [対象別crosswalk](audits/l2-requirements/infinity-business-target-crosswalk.md)群と意味差分を正規改訂 |
@@ -83,7 +83,7 @@ as_of: 2026-09-14
 | 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、候補95文書／29系列、IR 153、refinement 14、旧5＋7文書 | 完了 | 新規sourceは発見時に追記する |
 | 製品責務 | HARNESS、HELIX-OS、個別製品の所有範囲と参照関係が決定される | [対象別責務決定](product-governance-boundary-2026-09-14.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
 | 最新Concept | 最新責務、新世代境界、authority、上流順序が人間承認revisionへ束縛される | v4.1候補と承認準備監査 | 人間承認待ち | v4.1 exact revisionを人間が採否する |
-| 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Webの企画・価値・対象外が分冊される | 対象別L1候補3文書。HARNESS 5、HELIX-OS 6、HELIX-Web 5要求 | 起草済み・親承認待ち | v4.1承認後に導出一致をreviewし、人間承認する |
+| 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Webの企画・価値・対象外が分冊される | 対象別L1候補3文書。HARNESS 6、HELIX-OS 8、HELIX-Web 5要求。L0柱とL2接続案を記載 | 起草済み・親承認待ち | v4.1承認後に導出一致をreviewし、人間承認する |
 | 要求源の意味分類 | 各source atomのtarget、保持／変更／棄却、旧実現手段の扱いが分かる | Infinity 153、refinement 14、候補29系列、旧HARNESS 5文書のcrosswalk | 照合済み | 対象別L1確定後に再採否する |
 | 対象別L2 | 利用者、場面、操作、期待結果、非対象、出典、採否、合意revisionが対象別に閉じる | HARNESS 6、HELIX-OS 9、HELIX-Web 8のdraft | 未合意 | source atomを個別採否し、prototype／非UI記録と人間合意を束縛する |
 | 画面・prototype | 採択画面ごとに要求revision、prototype revision、正常・欠落・失敗状態、合意者が対応する | 旧7文書・15画面の照合、L2画面境界 | 未合意 | 共通骨格参照8画面を含め、採択後のprototype条件を確定する |

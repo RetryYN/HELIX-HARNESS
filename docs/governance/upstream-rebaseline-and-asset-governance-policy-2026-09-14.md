@@ -81,6 +81,11 @@ PR／CIへ接続できるのは、少なくとも次が揃った後とする。
 旧CIは新世代のbaseline、parity oracle、rollback実行経路にせず、source inventoryと判断史を残す非実行archiveへ移す。
 archive前の現段階でも旧CIを起動しない。
 
+上流整理期間は、対象revisionを固定した文書diff、source IDの過不足、参照先、責務境界を静的に検査し、
+別runtimeによるread-only意味reviewと人間decisionへ渡す。この検査はcandidateの整合性だけを扱い、
+実装green、L11受入、運用成立、canonical promotionのgateではない。旧CI／旧gateを上流候補へ実行せず、
+新世代CIが未構築であっても旧経路へfallbackしない。remote syncは保存・共有だけを成立させる。
+
 ## 上流から降ろし直す順序
 
 ```text

@@ -10,6 +10,7 @@ freeze_blocking: true
 created: 2026-09-14
 updated: 2026-09-14
 pair_artifact: docs/test-design/helix-os/L11-governance-acceptance.md
+parent_l1_candidate: docs/design/helix-os/L1-planning/system-intent.md
 ---
 
 # HELIX-OSのプロジェクト群統制要求
@@ -21,6 +22,21 @@ HELIX-OSの目的は、HARNESSを含むHELIXプロジェクト群を管理・統
 外部へ輸出するプロダクトはHARNESSであり、本要求でHELIX-OSの外販・配布を目的化しない。
 HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変更→検証→再観測まで追跡する。
 候補の生成件数やログの蓄積だけで改善達成とせず、採用した変更の効果と退行を確認する。
+
+親は[HELIX-OS L1企画候補](../L1-planning/system-intent.md)である。現在は親ConceptとL1が未承認のため、
+以下のrelationは接続案であり、承認済み導出ではない。
+
+| L2要求 | 親L1候補 |
+|---|---|
+| HELIXOS-L2-001 | HELIXOS-L1-001／HELIXOS-L1-008 |
+| HELIXOS-L2-002 | HELIXOS-L1-002／HELIXOS-L1-007／HELIXOS-L1-008 |
+| HELIXOS-L2-003 | HELIXOS-L1-001 |
+| HELIXOS-L2-004 | HELIXOS-L1-003 |
+| HELIXOS-L2-005 | HELIXOS-L1-006 |
+| HELIXOS-L2-006 | HELIXOS-L1-005／HELIXOS-L1-007 |
+| HELIXOS-L2-007 | HELIXOS-L1-002／HELIXOS-L1-004／HELIXOS-L1-007／HELIXOS-L1-008 |
+| HELIXOS-L2-008 | HELIXOS-L1-004 |
+| HELIXOS-L2-009 | HELIXOS-L1-003／HELIXOS-L1-008 |
 
 | ID | HELIX-OSに対する利用要求 | 主な移管元 | 確認する結果 |
 |---|---|---|---|
