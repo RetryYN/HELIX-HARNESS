@@ -179,3 +179,5 @@ HELIX-OSが自動走行できる資産は、最低限次を満たす。
 現在の対象別要求と監査は[HELIX L2要求の読取り入口](../design/helix/L2-requirements/README.md)から参照する。
 [上流authority管理台帳](upstream-authority-register-2026-09-14.md)を、母集団・状態・正規入口・次の処置の管理面として使う。
 [上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)を、上流から再導出して旧資産退役まで進める作業契約の入口として使う。
+[authority・全資産統制の既存候補対応](audits/l2-requirements/new-generation-authority-asset-governance-crosswalk.md)は、
+JSON-only authorityや旧ownerを継承せず、新世代へ再採否する意味単位を管理する。
