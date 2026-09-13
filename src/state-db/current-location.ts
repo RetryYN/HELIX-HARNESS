@@ -4077,7 +4077,7 @@ function buildProjectRecoveryReentryForecast(input: {
       next_gate: "not_required",
       next_command: "helix drive model --json",
       next_execution_command: "helix drive model --json",
-      recompute_commands: ["helix drive model --json"],
+      recompute_commands: [...RECOVERY_REENTRY_RECOMPUTE_COMMANDS],
       expected_transition: "Recovery 以外の drive model selection に従う",
       reasons: ["Recovery が選択されていない"],
     };

@@ -1038,7 +1038,8 @@ describe("project current-location read model", () => {
       expect(
         driveModel.candidates.find((candidate) => candidate.model === "Reverse")?.doc_dependencies,
       ).toEqual(expect.arrayContaining(["docs/design/**", "docs/test-design/**"]));
-      expect(buildProjectRecoveryPlan(snapshot).automation_runway.postcheck_commands).toEqual(
+      const recoveryPlan = buildProjectRecoveryPlan(snapshot);
+      expect(recoveryPlan.automation_runway.postcheck_commands).toEqual(
         expect.arrayContaining([
           "helix drive model --json",
           "helix current-location --json",
@@ -1046,6 +1047,12 @@ describe("project current-location read model", () => {
           "helix vmodel fit",
         ]),
       );
+      expect(recoveryPlan.reentry_forecast.recompute_commands).toEqual([
+        "helix current-location --json",
+        "helix drive model --json",
+        "helix roadmap current --json",
+        "helix vmodel fit",
+      ]);
     }));
 
   it("U-CURRENT-LOCATION-001: typed close-ready readinessを全surfaceへ投影する", () =>
