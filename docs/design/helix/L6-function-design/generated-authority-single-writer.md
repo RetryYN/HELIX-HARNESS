@@ -22,7 +22,8 @@ responsibility_owner: generated-authority-projection
 canonical projectionを生成・publishできるwriterは、既存Node transactional boundary内の一writerに限定する。
 
 対象の初期集合は`docs/design/design-catalog.yaml`、G3 freeze packet、reviewed digest map、pin test、
-outstanding snapshotとする。意味正本、review receipt、CI結果はgenerated projectionへ降格しない。
+outstanding snapshot、Requirement generated view／manifestの6 surfaceとする。意味正本、review receipt、
+CI結果はgenerated projectionへ降格しない。
 
 ## 2. 既存機構との接続
 
@@ -39,14 +40,17 @@ semantic changed paths、expected output exact setを含む。canonical bytesそ
 意味ownerはfile単位ではなく、surfaceごとの安定したrecord identityで判定する。同じfileへ独立recordを追加するdeltaを
 衝突扱いして並列性を失わせず、同じrecordを異なる内容へ変更する場合だけ意味衝突とする。
 
-| surface | 意味owner単位 | 独立deltaの条件 |
-| --- | --- | --- |
-| `docs/design/design-catalog.yaml` | catalog item IDとartifact pathの組 | 異なるitem IDかつ既存artifact ownershipと重ならない |
-| G3 freeze packet | authority source path | 異なるsource pathの登録で、共有digest値はgeneratorが再導出する |
-| reviewed digest map | canonical source path | 異なるsource pathのpinで、同じpathの異なるdigestは衝突 |
-| G3 pin test | oracle IDと対象source pathの組 | 異なるoracle IDで、対象record ownershipが重ならない |
-| outstanding snapshot | PLAN ID | 異なるPLAN IDで、同一PLANの異なるstatus revisionは衝突 |
-| Requirement generated view／manifest | requirement IDまたはmanifest record ID | 異なるrecord IDで、参照先ownerが重ならない |
+| surface | 意味recordのowner単位 | 派生pin／値 | 独立deltaの条件 |
+| --- | --- | --- | --- |
+| `docs/design/design-catalog.yaml` | catalog item IDとartifact pathの組 | file digestは全delta適用後に再導出 | 異なるitem IDかつ既存artifact ownershipと重ならない |
+| G3 freeze packet | authority source path | 共有digest値は全delta適用後に再導出 | 異なるsource pathの登録 |
+| reviewed digest map | canonical source pathが指す意味record | source digestは全delta適用後に再導出し、衝突判定から除外 | 意味recordの変更が重ならない。独立recordが同じcatalog fileのdigestを更新しても衝突にしない |
+| G3 pin test | pinが検証する意味record | module-level共有pinは全delta適用後に一度だけ再導出し、衝突判定から除外 | 意味recordの変更が重ならない。oracle IDを持たない共有pinをownerにしない |
+| outstanding snapshot | PLAN ID | 件数と一覧digestは全delta適用後に再導出 | 異なるPLAN IDで、同一PLANの異なるstatus revisionは衝突 |
+| Requirement generated view／manifest | requirement IDまたはmanifest record ID | 集計値とdigestは全delta適用後に再導出 | 異なるrecord IDで、参照先ownerが重ならない |
+
+派生pin／値はsemantic ownerではない。複数の独立deltaが同じ派生pinを異なる中間値へ更新していても、writerは
+各candidateの中間値を採用せず、全admit済み意味recordを適用したcanonical bytesから一度だけ再導出する。
 
 writerはcurrent mainに対し、少なくとも次を分類する。
 
@@ -77,7 +81,7 @@ writer固有の追加・削除・置換が一件でもあればtransaction全体
 | Oracle ID | 契約 |
 | --- | --- |
 | U-GASW-001 | 2つの独立deltaを逆順で適用しても同じoutput exact set/digestを得る。 |
-| U-GASW-002 | semantic overlap、stale base、generator drift、unknown generator、missing exact setを別failureとしてfail-closeする。 |
+| U-GASW-002 | semantic overlap、stale base、generator drift、unknown generator、missing exact setを別failureとしてfail-closeする。一方、独立recordを追加する2 deltaは共有派生pinが異なっても`applicable`となり、両方を適用する。 |
 | U-GASW-003 | 同一deltaの再送は二重適用せず、superseding revisionだけを採用する。 |
 | U-GASW-004 | lease/fence失効、CAS競合、途中失敗でcanonical surfaceを部分publishしない。 |
 | U-GASW-005 | candidate semantic receiptとintegration projection receiptを混同せず、双方からsource HEADへ逆引きできる。 |

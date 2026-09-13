@@ -65,7 +65,7 @@ modifies:
 | Step | 作業 | 完了条件 |
 | --- | --- | --- |
 | 1 | L6↔L7 pair freeze | delta、collision、writer、receipt、failure境界が独立reviewで確定する |
-| 2 | pure plannerをTDD実装 | U-GASW-001〜003とgenerator drift mutationがgreenになる |
+| 2 | pure plannerをTDD実装 | U-GASW-001〜003、派生pin false-collision反例、generator drift mutationがgreenになる |
 | 3 | Node atomic publish adapterをTDD実装 | U-GASW-004〜006がgreenになり、既存lease/fence/CASを再利用する |
 | 4 | 一つのgenerated clusterを移行 | candidate PRからcanonical bytes編集を除去しdual-greenを成立させる |
 | 5 | 2〜4並列PRでdogfood | content conflict、manual repin、不要なreceipt再発行が0となる |

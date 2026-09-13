@@ -21,7 +21,7 @@ next_pair_freeze: L6
 | U-ID | 対象 | 反例と期待結果 | test citation |
 | --- | --- | --- | --- |
 | U-GASW-001 | 順序独立性 | 独立delta A/BをA→BとB→Aで再生し、exact setまたはdigestが異なればRED。 | `tests/generated-authority-single-writer.test.ts` |
-| U-GASW-002 | typed rejection | semantic overlap、stale base、generator ID/version/digest drift、unknown generator、missing exact setをそれぞれ固有codeで拒否する。 | `tests/generated-authority-single-writer.test.ts` |
+| U-GASW-002 | typed classification | semantic overlap、stale base、generator ID/version/digest drift、unknown generator、missing exact setをそれぞれ固有codeで拒否する。独立recordを追加する2 deltaは共有派生pinの中間値が異なっても`applicable`となり、両方を適用する。 | `tests/generated-authority-single-writer.test.ts` |
 | U-GASW-003 | 冪等性／supersede | 同一identity再送でapply回数が増える変異、新revisionより旧revisionを採る変異をREDにする。 | `tests/generated-authority-single-writer.test.ts` |
 | U-GASW-004 | atomic publish | lease/fence失効、CAS競合、2 file目の注入失敗で1 file目だけ残る実装をREDにする。 | `tests/generated-authority-single-writer.test.ts` |
 | U-GASW-005 | 証拠分離 | semantic receipt欠落をprojection receiptで相殺する変異と、source HEAD不一致をREDにする。 | `tests/generated-authority-single-writer.test.ts` |
@@ -34,4 +34,6 @@ pure plannerはfilesystemやGitHubへ書き込まず、Node commit adapterは許
 failure injection後はcanonical bytesが全件旧値または全件新値のどちらかで、部分状態が存在しないことをread-afterする。
 semantic conflictは自動mergeの成功例へ変換せず、owner返却と未解消義務を確認する。
 初期6 surfaceはL6の意味owner表に従ってfixtureを分け、同一fileの独立record追加をfalse collisionにしない。
+特に#1776／#1782相当として、異なるcatalog itemを追加して同じreviewed digest mapとmodule-level G3 pinを
+別の中間digestへ更新する2 deltaを与え、派生pinをownerと誤認する変異をREDにする。
 publish直前にgenerator versionだけを変更するfixtureは`generator_drift`となり、旧admissionの再利用を拒否する。
