@@ -11995,7 +11995,7 @@ function summarizeVmodelFitReport(
       function_design_policy: payload.synthesis.function_design_policy,
       current_reentry_status: payload.synthesis.current_reentry_status,
       effective_reentry_status: payload.synthesis.effective_reentry_status,
-      next_command: payload.synthesis.next_command,
+      next_command: summaryJsonCommand(payload.synthesis.next_command),
     },
     zip_manifest: {
       present: payload.zip_manifest.present,

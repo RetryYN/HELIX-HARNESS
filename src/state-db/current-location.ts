@@ -2986,10 +2986,18 @@ export function buildProjectRoadmapCurrentReport(
     }),
     doc_dependencies: snapshot.drive_route.mustReturnToDesign
       ? [...snapshot.drive_route.reverse.docDependencies]
-      : [...snapshot.roadmap_position.docDependencies],
+      : unique([
+          ...snapshot.roadmap_position.docDependencies,
+          "docs/design/**",
+          "docs/test-design/**",
+        ]),
     implementation_dependencies: snapshot.drive_route.mustReturnToDesign
       ? [...snapshot.drive_route.reverse.implementationDependencies]
-      : [...snapshot.roadmap_position.implementationDependencies],
+      : unique([
+          ...snapshot.roadmap_position.implementationDependencies,
+          "design_declarations",
+          "design_references",
+        ]),
     reasons: [...snapshot.drive_route.reasons],
   };
   const closurePhaseAction = roadmapClosurePhaseAction(snapshot);

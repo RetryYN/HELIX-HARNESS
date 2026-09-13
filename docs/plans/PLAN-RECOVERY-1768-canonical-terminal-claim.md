@@ -55,6 +55,7 @@ dependencies:
 generates:
   - { artifact_path: docs/plans/PLAN-RECOVERY-1768-canonical-terminal-claim.md, artifact_type: markdown_doc }
 modifies:
+  - { artifact_path: src/cli.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/current-location.ts, artifact_type: source_module }
   - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
   - { artifact_path: src/schema/current-location-workflow-identity-resolver.ts, artifact_type: source_module }
@@ -65,6 +66,8 @@ modifies:
   - { artifact_path: docs/test-design/helix/visualization-view-model.md, artifact_type: test_design }
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/current-location-db-workflow-identity.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/cli-surface.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/db-projection-ingestion.test.ts, artifact_type: test_code }
   - { artifact_path: tests/slow/doctor.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }

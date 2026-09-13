@@ -257,9 +257,7 @@ describe("db projection ingestion detector", () => {
       const currentLocationBlocker = vmodelFitBlockers.find(
         (row) => row.blocker_code === "current_location",
       );
-      expect(currentLocationBlocker?.doc_dependencies).toContain("docs/design/**");
-      expect(currentLocationBlocker?.implementation_dependencies).toContain("plan_registry");
-      expect(currentLocationBlocker?.implementation_dependencies).toContain("trace_edges");
+      expect(currentLocationBlocker).toBeUndefined();
       const handoffSummary = db
         .prepare(
           `SELECT status, approval_pending, scope_mismatch, recovery_gate_status, effective_phase,
@@ -282,10 +280,20 @@ describe("db projection ingestion detector", () => {
           }
         | undefined;
       expect(handoffSummary).toBeDefined();
-      expect(handoffSummary?.approval_state).toMatch(/^(missing|pending_human_review)$/);
-      expect(handoffSummary?.approval_status).toBe(handoffSummary?.approval_state);
       expect(handoffSummary?.valid_for_apply).toBe(0);
-      if (handoffSummary?.scope_status === "match") {
+      if (handoffSummary?.approval_state === "not_required") {
+        expect(handoffSummary).toMatchObject({
+          status: "none",
+          approval_pending: 0,
+          scope_mismatch: 0,
+          recovery_gate_status: "none",
+          effective_phase: "none",
+          approval_status: null,
+          scope_status: null,
+        });
+      } else if (handoffSummary?.scope_status === "match") {
+        expect(handoffSummary.approval_state).toMatch(/^(missing|pending_human_review)$/);
+        expect(handoffSummary.approval_status).toBe(handoffSummary.approval_state);
         expect(handoffSummary.scope_mismatch).toBe(0);
         if (handoffSummary.approval_state === "pending_human_review") {
           expect(handoffSummary).toMatchObject({
@@ -330,21 +338,26 @@ describe("db projection ingestion detector", () => {
           handoffSummary?.effective_phase,
         ]);
       }
-      expect(handoffSummary?.reason_codes).toContain(
-        handoffSummary?.approval_state === "missing"
-          ? "approval.missing"
-          : "approval.pending_human_review",
-      );
-      expect(handoffSummary?.reason_codes).toContain(
-        `approval.scope.${handoffSummary?.scope_status}`,
-      );
-      expect(handoffSummary?.reason_codes).toContain(
-        `handoff.phase.${handoffSummary?.effective_phase}`,
-      );
-      expect(handoffSummary?.reason_codes).toContain("action.vmodel-fit:current_location");
-      expect(handoffSummary?.reason_codes).toContain(
-        `automation.${handoffSummary?.effective_phase}`,
-      );
+      if (handoffSummary?.approval_state !== "not_required") {
+        expect(handoffSummary?.reason_codes).toContain(
+          handoffSummary?.approval_state === "missing"
+            ? "approval.missing"
+            : "approval.pending_human_review",
+        );
+        expect(handoffSummary?.reason_codes).toContain(
+          `approval.scope.${handoffSummary?.scope_status}`,
+        );
+        expect(handoffSummary?.reason_codes).toContain(
+          `handoff.phase.${handoffSummary?.effective_phase}`,
+        );
+        expect(handoffSummary?.reason_codes).toContain("action.vmodel-fit:current_location");
+        expect(handoffSummary?.reason_codes).toContain(
+          `automation.${handoffSummary?.effective_phase}`,
+        );
+      } else {
+        expect(handoffSummary.reason_codes).toContain("handoff.status.none");
+        expect(handoffSummary.reason_codes).toContain("handoff.next.missing");
+      }
       const operationScopes = db
         .prepare(
           `SELECT scope, status, observed_gap, design_ids, evidence_tables

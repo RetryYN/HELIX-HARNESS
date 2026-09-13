@@ -3002,12 +3002,12 @@ describe("L7 CLI surface closure", () => {
       schema_version: "project-skill-binding.v1",
       source_package: "hybrid-vmodel-source.v1",
       status: "ready",
-      selected_model: "Recovery",
+      selected_model: "Forward",
       source_command: "helix skill suggest --current-location --json",
       view_command: "helix progress tree-view --json",
       write_policy: "read-only",
     });
-    expect(payload.workflow_modes).toEqual(expect.arrayContaining(["Recovery", "Scrum"]));
+    expect(payload.workflow_modes).toEqual(expect.arrayContaining(["Forward", "Scrum"]));
     expect(payload.source_bindings).toEqual(
       expect.arrayContaining([
         "zip-source:scrum-product-backlog",
@@ -3044,7 +3044,7 @@ describe("L7 CLI surface closure", () => {
       schema_version: "project-skill-binding-summary.v1",
       source_package: "hybrid-vmodel-source.v1",
       status: "ready",
-      selected_model: "Recovery",
+      selected_model: "Forward",
       source_command: "helix skill suggest --current-location --summary-json",
       full_source_command: "helix skill suggest --current-location --json",
       full_inject_command: "helix skill suggest --current-location --inject --json",
@@ -3052,7 +3052,7 @@ describe("L7 CLI surface closure", () => {
       full_view_command: "helix progress tree-view --json",
       write_policy: "read-only",
     });
-    expect(payload.workflow_modes).toEqual(expect.arrayContaining(["Recovery", "Scrum"]));
+    expect(payload.workflow_modes).toEqual(expect.arrayContaining(["Forward", "Scrum"]));
     expect(payload.item_count).toBeGreaterThan(0);
     expect(payload.top_items[0]).toMatchObject({
       tier: "required",
@@ -3419,21 +3419,21 @@ describe("L7 CLI surface closure", () => {
         schema_version: "project-current-location-summary.v2",
         workflow_route: {
           workflow_identity: {
-            target_axis: "workflow_model",
-            target_id: "RECOVERY",
+            target_axis: "development_style",
+            target_id: "FULL_L1_L12_V",
           },
           workflow_identity_receipt: expect.objectContaining({
-            disposition: "converted",
+            disposition: "typed",
             emit_legacy_identity: false,
           }),
         },
         current_location_frontier: {
           schema_version: "current-location-frontier-summary.v2",
           workflow_identity: {
-            target_axis: "workflow_model",
-            target_id: "RECOVERY",
+            target_axis: "development_style",
+            target_id: "FULL_L1_L12_V",
           },
-          workflow_route_status: "recovery_required",
+          workflow_route_status: "forward_ready",
         },
       });
       expect(payload).not.toHaveProperty("drive_recommendation");
@@ -3482,14 +3482,13 @@ describe("L7 CLI surface closure", () => {
 
       const text = outputs[0].run;
       expect(text.stdout).toContain("workflow-route:");
-      expect(text.stdout).toContain("workflow-route-reverse-scope:");
+      expect(text.stdout).toContain("workflow-route-forward-scope:");
       expect(text.stdout).not.toContain("drive=");
       expect(text.stdout).not.toContain("drive-route:");
       expect(text.stdout).not.toContain("drive-reverse-scope:");
       expect(text.stdout).not.toContain("drive-forward-scope:");
 
-      // The repository fixture currently takes the reverse branch; inspect the source literal too
-      // so a legacy label reintroduced only in the forward branch is still caught.
+      // repository fixtureが選ぶbranch以外にもlegacy labelを戻せないようsource literalも検査する。
       const cliSource = readFileSync(join(repoRoot, "src", "cli.ts"), "utf8");
       const currentLocationStart = cliSource.indexOf('.command("current-location")');
       const nextCommandStart = cliSource.indexOf("const roadmap =", currentLocationStart);
@@ -3599,17 +3598,17 @@ describe("L7 CLI surface closure", () => {
         current: {
           layer: "L14",
           l12_layer: "L12",
-          status: "needs_recovery",
-          completion_boundary: "contradicted",
+          status: "needs_reverse",
+          completion_boundary: "open",
         },
         drive_recommendation: {
-          model: "Recovery",
+          model: "Reverse",
           reverseTargets: ["docs/design/**", "docs/test-design/**"],
         },
         drive_route: {
-          routeId: "drive:Recovery:recover-current-location",
-          status: "recovery_required",
-          selectedModel: "Recovery",
+          routeId: "drive:Reverse:repair-design-test-implementation",
+          status: "reverse_required",
+          selectedModel: "Reverse",
           defaultModel: "Forward",
           mustReturnToDesign: true,
           forward: {
@@ -3623,32 +3622,29 @@ describe("L7 CLI surface closure", () => {
           },
         },
         recovery: {
-          status: "active",
-          selected_closure_action: "collect_evidence",
+          status: "not_required",
+          selected_closure_action: null,
           exit_forecast: {
-            status: "blocked",
-            remaining_queue_items: 1,
-            next_command: "helix closure batch --action collect_evidence --json",
+            status: "not_required",
+            remaining_queue_items: 0,
+            next_command: "helix drive model --json",
           },
           automation_runway: {
-            status: "machine_work_available",
-            machine_actionable_count: 1,
+            status: "not_required",
+            machine_actionable_count: 0,
             human_approval_count: 0,
             remaining_after_machine_lanes: 0,
-            next_machine_action: "collect_evidence",
-            next_machine_command: "helix closure batch --action collect_evidence --json",
-            next_machine_probe_command:
-              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
-            next_machine_materialize_command:
-              "helix closure evidence-materialize --action collect_evidence --limit 1 --probe-record .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
+            next_machine_action: null,
+            next_machine_command: null,
+            next_machine_probe_command: null,
+            next_machine_materialize_command: null,
           },
           reentry_forecast: {
-            status: "machine_phase_pending",
-            next_phase_action: "collect_evidence",
-            next_phase_type: "machine",
-            next_command: "helix closure batch --action collect_evidence --json",
-            next_execution_command:
-              "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            status: "not_required",
+            next_phase_action: null,
+            next_phase_type: null,
+            next_command: "helix drive model --json",
+            next_execution_command: "helix drive model --json",
           },
         },
         roadmap_position: {
@@ -3675,13 +3671,13 @@ describe("L7 CLI surface closure", () => {
         unresolved_design_references: 1,
       });
       expect(payload.closure).toMatchObject({
-        status: "contradicted",
+        status: "open",
         l7_open_plan_ids: ["PLAN-L7-999-new-impl"],
         terminal_l14_plan_ids: ["PLAN-L14-01-close"],
         remediation: {
-          done: 0,
+          done: 1,
           missing: 1,
-          reverify: 2,
+          reverify: 1,
         },
         queue: {
           total: 1,
@@ -3747,6 +3743,26 @@ describe("L7 CLI surface closure", () => {
       expect(projectionRebuild.status, projectionRebuild.stderr || projectionRebuild.stdout).toBe(
         0,
       );
+      const projectionDb = openHarnessDb(join(root, ".helix", "harness.db"), { repoRoot: root });
+      try {
+        projectionDb
+          .prepare(
+            `INSERT INTO findings
+              (finding_id, kind, severity, subject_id, source, status, evidence_path)
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          )
+          .run(
+            "finding:canonical-l12-terminal-with-open-work",
+            "canonical_l12_terminal_with_open_work",
+            "error",
+            "release:v1:contract-revision:cli-fixture",
+            "management-relation",
+            "open",
+            "docs/evidence/canonical-l12-terminal-with-open-work.json",
+          );
+      } finally {
+        projectionDb.close();
+      }
 
       const summaryJson = runCliIn(root, ["current-location", "--from-db", "--summary-json"]);
       const summaryPayload = JSON.parse(summaryJson.stdout);
@@ -3786,7 +3802,7 @@ describe("L7 CLI surface closure", () => {
           schema_version: "current-location-frontier-summary.v2",
           frontier_type: "recovery_frontier",
           status: "recovery_required",
-          classification: "l14_claim_with_l7_work",
+          classification: "recovery_queue",
           completion_boundary: "contradicted",
           workflow_route_status: "recovery_required",
           workflow_identity: null,
@@ -3795,7 +3811,10 @@ describe("L7 CLI surface closure", () => {
           terminal_l14_claim_count: 1,
           sample_open_l7_plan_ids: ["PLAN-L7-999-new-impl"],
           sample_terminal_l14_plan_ids: ["PLAN-L14-01-close"],
-          finding_codes: expect.arrayContaining(["l14_claim_with_l7_work"]),
+          finding_codes: expect.arrayContaining([
+            "legacy_l14_claim_with_open_l7",
+            "unresolved_design_reference",
+          ]),
           selected_closure_action: "collect_evidence",
           queue_total: 1,
           automation: expect.objectContaining({
@@ -4131,7 +4150,7 @@ describe("L7 CLI surface closure", () => {
           }),
         ]),
       );
-      const roadmapCurrentText = runCliIn(root, ["roadmap", "current"]);
+      const roadmapCurrentText = runCliIn(root, ["roadmap", "current", "--from-db"]);
       expect(roadmapCurrentText.status).toBe(0);
       expect(roadmapCurrentText.stdout).toContain(
         "roadmap current: status=contradicted aligned=false basis=frontier db=L12",
@@ -4444,7 +4463,7 @@ describe("L7 CLI surface closure", () => {
           current_reentry_status: "machine_phase_pending",
           effective_reentry_status: "machine_phase_pending",
           next_command:
-            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
+            "helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --summary-json",
         },
         current_location_gate: {
           status: "needs_recovery",
@@ -4461,7 +4480,7 @@ describe("L7 CLI surface closure", () => {
         current_location_frontier: expect.objectContaining({
           schema_version: "current-location-frontier-summary.v2",
           frontier_type: "recovery_frontier",
-          classification: "l14_claim_with_l7_work",
+          classification: "recovery_queue",
           workflow_route_status: "recovery_required",
           workflow_identity: null,
           commands: expect.objectContaining({
@@ -4639,7 +4658,7 @@ describe("L7 CLI surface closure", () => {
         ].join("\n"),
         "utf8",
       );
-      const fitWithArtifactsJson = runCliIn(root, ["vmodel", "fit", "--json"]);
+      const fitWithArtifactsJson = runCliIn(root, ["vmodel", "fit", "--from-db", "--json"]);
       expect(fitWithArtifactsJson.status).toBe(0);
       const fitWithArtifactsPayload = JSON.parse(fitWithArtifactsJson.stdout);
       const currentLocationAction = fitWithArtifactsPayload.next_actions.find(
@@ -4673,6 +4692,7 @@ describe("L7 CLI surface closure", () => {
       });
       const currentLocationSummaryWithHandoff = runCliIn(root, [
         "current-location",
+        "--from-db",
         "--summary-json",
       ]);
       expect(currentLocationSummaryWithHandoff.status).toBe(0);
@@ -4693,13 +4713,19 @@ describe("L7 CLI surface closure", () => {
       const recoveryPlanSummaryWithHandoff = runCliIn(root, [
         "recovery",
         "plan",
+        "--from-db",
         "--limit",
         "1",
         "--summary-json",
       ]);
       expect(recoveryPlanSummaryWithHandoff.status).toBe(1);
       expect(recoveryPlanSummaryWithHandoff.stderr).toContain("cli_workflow_identity_invalid");
-      const fitSummaryWithHandoff = runCliIn(root, ["vmodel", "fit", "--summary-json"]);
+      const fitSummaryWithHandoff = runCliIn(root, [
+        "vmodel",
+        "fit",
+        "--from-db",
+        "--summary-json",
+      ]);
       expect(fitSummaryWithHandoff.status).toBe(0);
       expect(JSON.parse(fitSummaryWithHandoff.stdout)).toMatchObject({
         synthesis: {
@@ -4717,15 +4743,21 @@ describe("L7 CLI surface closure", () => {
           effective_phase: "approval",
         },
       });
-      const currentLocationTextWithHandoff = runCliIn(root, ["current-location"]);
+      const currentLocationTextWithHandoff = runCliIn(root, ["current-location", "--from-db"]);
       expect(currentLocationTextWithHandoff.status).toBe(0);
       expect(currentLocationTextWithHandoff.stdout).toContain(
         "recovery-reentry: status=machine_phase_pending effective=approval_pending",
       );
-      const recoveryPlanTextWithHandoff = runCliIn(root, ["recovery", "plan", "--limit", "1"]);
+      const recoveryPlanTextWithHandoff = runCliIn(root, [
+        "recovery",
+        "plan",
+        "--from-db",
+        "--limit",
+        "1",
+      ]);
       expect(recoveryPlanTextWithHandoff.status).toBe(1);
       expect(recoveryPlanTextWithHandoff.stderr).toContain("cli_workflow_identity_invalid");
-      const fitTextWithHandoff = runCliIn(root, ["vmodel", "fit"]);
+      const fitTextWithHandoff = runCliIn(root, ["vmodel", "fit", "--from-db"]);
       expect(fitTextWithHandoff.status).toBe(0);
       expect(fitTextWithHandoff.stdout).toContain(
         "synthesis: status=needs_fit common=0 complement=0 reject=0 missing=11 tailoring=needs_tailoring function_policy=abolished reentry=machine_phase_pending effective=approval_pending",
@@ -4751,7 +4783,14 @@ describe("L7 CLI surface closure", () => {
         "recovery-reentry: status=machine_phase_pending effective=machine_phase_pending blocking=1 after_machine=0 phases=1 next=collect_evidence gate=recompute_drive_model command=helix closure batch --action collect_evidence --json execute=helix closure evidence-probe --action collect_evidence --limit 1 --execute --out .helix/tmp/closure/collect_evidence-probe-record.json --json",
       );
 
-      const overviewJson = runCliIn(root, ["closure", "overview", "--limit", "1", "--json"]);
+      const overviewJson = runCliIn(root, [
+        "closure",
+        "overview",
+        "--from-db",
+        "--limit",
+        "1",
+        "--json",
+      ]);
       expect(overviewJson.status).toBe(0);
       const overviewPayload = JSON.parse(overviewJson.stdout);
       expect(overviewPayload).toMatchObject({
@@ -4799,6 +4838,7 @@ describe("L7 CLI surface closure", () => {
       const overviewSummary = runCliIn(root, [
         "closure",
         "overview",
+        "--from-db",
         "--limit",
         "1",
         "--summary-json",
@@ -4831,7 +4871,13 @@ describe("L7 CLI surface closure", () => {
       });
       expect(overviewSummaryPayload).not.toHaveProperty("work_buckets");
 
-      const overviewText = runCliIn(root, ["closure", "overview", "--limit", "1"]);
+      const overviewText = runCliIn(root, [
+        "closure",
+        "overview",
+        "--from-db",
+        "--limit",
+        "1",
+      ]);
       expect(overviewText.status).toBe(0);
       expect(overviewText.stdout).toContain(
         "closure overview: status=contradicted current=L14->L12 queue=1 close_ready=0 collect=1 repair=0 reverse=0 write=read-only",
@@ -6196,7 +6242,7 @@ describe("L7 CLI surface closure", () => {
       );
       expect(currentNode).toMatchObject({
         label: "Current location",
-        description: "L14 -> L12 / needs_recovery",
+        description: "L14 -> L12 / needs_reverse",
       });
       expect(treePayloadJson).toContain("project/current-location/coverage/L6");
       expect(treePayloadJson).toContain("project/current-location/roadmap-position");
@@ -6231,7 +6277,7 @@ describe("L7 CLI surface closure", () => {
           sections: expect.arrayContaining([
             expect.objectContaining({
               id: "current-location",
-              status: "needs_recovery",
+              status: "needs_reverse",
               command: "helix current-location --summary-json",
             }),
             expect.objectContaining({
@@ -6240,7 +6286,7 @@ describe("L7 CLI surface closure", () => {
             }),
             expect.objectContaining({
               id: "workflow-route",
-              status: "recovery_required",
+              status: "reverse_required",
               command: "helix current-location --summary-json",
             }),
             expect.objectContaining({
@@ -6271,10 +6317,10 @@ describe("L7 CLI surface closure", () => {
           current_location: {
             layer: "L14",
             l12_layer: "L12",
-            status: "needs_recovery",
-            completion_boundary: "contradicted",
-            frontier_type: "recovery_frontier",
-            classification: "l14_claim_with_l7_work",
+            status: "needs_reverse",
+            completion_boundary: "open",
+            frontier_type: "forward_frontier",
+            classification: "no_current_location_contradiction",
             command: "helix current-location --summary-json",
           },
           roadmap_position: {
@@ -6289,7 +6335,7 @@ describe("L7 CLI surface closure", () => {
           },
           workflow_identity: null,
           workflow_route: {
-            selection_status: "recovery_required",
+            selection_status: "reverse_required",
             command: "helix current-location --summary-json",
           },
           scrum_operation: {
@@ -6308,7 +6354,7 @@ describe("L7 CLI surface closure", () => {
           },
           skill_binding: {
             status: expect.any(String),
-            selected_model: "Recovery",
+            selected_model: "Reverse",
             required_skills: expect.any(Number),
             item_count: expect.any(Number),
             top_skill_path: null,
@@ -6345,15 +6391,15 @@ describe("L7 CLI surface closure", () => {
           current: {
             layer: "L14",
             l12_layer: "L12",
-            status: "needs_recovery",
-            completion_boundary: "contradicted",
+            status: "needs_reverse",
+            completion_boundary: "open",
           },
           current_location_frontier: expect.objectContaining({
             schema_version: "current-location-frontier-summary.v2",
-            frontier_type: "recovery_frontier",
-            status: "recovery_required",
-            classification: "l14_claim_with_l7_work",
-            workflow_route_status: "recovery_required",
+            frontier_type: "forward_frontier",
+            status: "current",
+            classification: "no_current_location_contradiction",
+            workflow_route_status: "reverse_required",
             workflow_identity: null,
             commands: expect.objectContaining({
               current_location: "helix current-location --summary-json",
@@ -6395,7 +6441,7 @@ describe("L7 CLI surface closure", () => {
           },
           workflow_identity: null,
           workflow_route: {
-            selection_status: "recovery_required",
+            selection_status: "reverse_required",
             source_command: "helix current-location --summary-json",
           },
           closure_frontier: {
@@ -6455,7 +6501,7 @@ describe("L7 CLI surface closure", () => {
             status: "needs_fit",
             current_location_gate: expect.objectContaining({
               status: "needs_recovery",
-              completion_boundary: "contradicted",
+              completion_boundary: "open",
             }),
             recovery_runway_gate: expect.objectContaining({
               status: expect.any(String),
@@ -6481,7 +6527,7 @@ describe("L7 CLI surface closure", () => {
           },
           skill_binding: {
             status: expect.any(String),
-            selected_model: "Recovery",
+            selected_model: "Reverse",
             required_skills: expect.any(Number),
             item_count: expect.any(Number),
             source_command: "helix skill suggest --current-location --summary-json",
@@ -6599,8 +6645,8 @@ describe("L7 CLI surface closure", () => {
         current: parsedTreeSummary.project_frontier_summary.current,
         current_location_frontier: expect.objectContaining({
           schema_version: "current-location-frontier-summary.v2",
-          frontier_type: "recovery_frontier",
-          classification: "l14_claim_with_l7_work",
+          frontier_type: "forward_frontier",
+          classification: "no_current_location_contradiction",
           commands: expect.objectContaining({
             current_location: "helix current-location --summary-json",
             project_frontier: "helix progress frontier --summary-json",
@@ -6616,7 +6662,7 @@ describe("L7 CLI surface closure", () => {
           emit_legacy_identity: false,
         }),
         workflow_route: expect.objectContaining({
-          selection_status: "recovery_required",
+          selection_status: "reverse_required",
           source_command: "helix current-location --summary-json",
         }),
         closure_frontier: expect.objectContaining({
@@ -7336,7 +7382,27 @@ describe("L7 CLI surface closure", () => {
       expect(decisionDraft.status).toBe(0);
       const rebuildWithDecisionDraft = runCliIn(root, ["db", "rebuild"]);
       expect(rebuildWithDecisionDraft.status).toBe(0);
-      const fitWithDecisionDraft = runCliIn(root, ["vmodel", "fit", "--json"]);
+      const closureDb = openHarnessDb(join(root, ".helix", "harness.db"), { repoRoot: root });
+      try {
+        closureDb
+          .prepare(
+            `INSERT INTO findings
+              (finding_id, kind, severity, subject_id, source, status, evidence_path)
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          )
+          .run(
+            "finding:canonical-l12-terminal-with-open-work",
+            "canonical_l12_terminal_with_open_work",
+            "error",
+            "release:v1:contract-revision:closure-fixture",
+            "management-relation",
+            "open",
+            "docs/evidence/canonical-l12-terminal-with-open-work.json",
+          );
+      } finally {
+        closureDb.close();
+      }
+      const fitWithDecisionDraft = runCliIn(root, ["vmodel", "fit", "--from-db", "--json"]);
       expect(fitWithDecisionDraft.status).toBe(0);
       const fitWithDecisionDraftPayload = JSON.parse(fitWithDecisionDraft.stdout);
       expect(fitWithDecisionDraftPayload).toMatchObject({
