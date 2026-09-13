@@ -24,7 +24,7 @@
 | `conversation-lifetime-reconstruction` | HELIX-OS | L2接続済み | 継続、外部状態からの再構成、累積制約をOSの継続・復旧要求へ接続 |
 | `design-grounding-human-convergence` | HELIX-OS | L2接続済み | 根拠、人間反応、収束を要求形成・判断履歴の統制へ接続 |
 | `execution-ticket` | HELIX-OS | L2接続済み | Workerへの実行契約、測定、証拠、replayをOSの割当・観測要求へ接続 |
-| `functional-release-slice` | HARNESS / HELIX-OS | 分解待ち | 提供単位・検証閉包はHARNESS、昇格・配布・rollbackの実行統制はOSへ分ける |
+| `functional-release-slice` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 提供構成・検証閉包はHARNESS、投影・導入・配布・復旧の実行統制はOSへ分離。旧CI先行利用は棄却し、Cursor固有条件はWorker要求源へ移送 |
 | `harness-memory-coordination-boundary` | HELIX-OS | L2接続済み | memoryを有期限通知とpointerへ限定し、意味正本を複製しない条件をOSへ接続 |
 | `helix-commercial-license` | HARNESS | 台帳接続 | 外部提供物HARNESSの利用許諾候補。法的条件と正式採否は未確定 |
 | `helix-concept-v4` | HELIX全体 | 分解待ち | 上位Conceptとして保持し、HARNESSの開発機構とOSの統制機構を対象別L2へ投影する |

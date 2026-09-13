@@ -27,6 +27,7 @@ as_of: 2026-09-14
 | AI可読文書 | 直接入口38件 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md) | legacy runtime input、archive待ち。docs／template参照closure未完 | HARNESS工程契約とOS実行contextへ分解し、新世代manifestから再生成する。要求整理中は変更しない |
 | CI・AI既存候補の新世代対応 | 3系列、22旧要件、25旧受入 | [新世代CI・AI source crosswalk](audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md) | semantic atom照合済み、新世代で再承認待ち | Concept／対象別L1確定後、NCI／AIDOCのL2／L11で個別採否する |
 | authority・全資産統制の新世代対応 | 3系列、30旧要件、44旧受入、4旧L12観測 | [新世代authority・asset crosswalk](audits/l2-requirements/new-generation-authority-asset-governance-crosswalk.md) | JSON-only／旧owner／旧実装再利用前提を分離済み、新世代で再承認待ち | Concept／対象別L1確定後、HELIX-OS L2／L11で個別採否する |
+| 提供構成の新世代対応 | 1系列、9旧利用者要求、6旧feature contract、24旧要件、26旧受入 | [新世代提供構成source crosswalk](audits/l2-requirements/new-generation-release-composition-source-crosswalk.md) | HARNESS契約とOS実行を分離済み。旧CI先行利用は棄却、Cursor固有条件はWorkerへ移送、新世代で再承認待ち | Concept／対象別L1確定後、HARNESS／HELIX-OS L2／L11で個別採否する |
 | 旧HARNESS要求群 | 5文書 | `docs/design/harness/L1-requirements/`のbusiness／functional／screen／technical／nfr | compatibility debtを含む | HARNESS工程条件とOS運用条件へ分け、未移管条件を保持 |
 | 旧screen要求・設計 | 7文書＋個別mock | `docs/design/helix/L2-screen/`と対応test-design | 旧layer／pair、個別mock未確認を含む | L2要求形成・prototype合意・L11受入へ再接続 |
 | 適用待ち意味差分 | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/l2-requirements/l2-freeze-ir-correction.md) | proposal、未適用 | 正規transaction、impact、rollback、全projection更新 |

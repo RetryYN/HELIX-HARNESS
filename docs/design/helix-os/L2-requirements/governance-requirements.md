@@ -205,21 +205,22 @@ Fullの成立とLiteへの昇格を区別し、利用者報告を原因確定・
 
 ## 提供・再編要求の具体化
 
-[FRS v0.2利用者要求候補](../../../governance/candidates/functional-release-slice-requests.md)の9要求を
-HELIXOS-L2-002／004／005／006／008の構成・配布運用条件として照合する。候補本文の承認記録と現行RLSへの正本昇格を分離し、
-この案から公開manifestや配布先を変更しない。
+[FRS v0.2利用者要求候補](../../../governance/candidates/functional-release-slice-requests.md)の9要求を、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-release-composition-source-crosswalk.md)に従って
+HELIXOS-L2-002／004／005／006の構成・配布運用条件へ再分類する。旧RLS・既存CI・DevOS・Cursorを含むv0.2への
+過去承認は新世代へ継承せず、この案からCI、Worker、公開manifest、配布先を変更しない。
 
 | 出典 | L2で保持する具体条件 |
 |---|---|
 | FRS-BR-001 | behavior contract・source・依存・受入・artifact・rollbackの証拠を機能単位で確認できる |
-| FRS-BR-002 | Bundleへ含むSliceと除外するSliceをexact setで確認でき、未指定・未適格・previewをstableへ暗黙収載しない |
-| FRS-BR-003 | Slice／Module／Bundleのchannelとversionを別に追跡し、一方の昇格で他方を自動昇格させない |
-| FRS-BR-004 | 変更pathから影響Module／Slice／Bundleと必要な検証へ辿れる。unknown・ambiguousを影響なしに変換しない |
+| FRS-BR-002 | 提供構成へ含む機能と除外する機能をexact setで確認でき、未指定・未適格な機能を暗黙収載しない |
+| FRS-BR-003 | 機能単位と上位構成の版・成熟度を別に追跡し、一方の昇格で他方を自動昇格させない。旧Slice／Module／Bundle名とchannel enumは未採択 |
+| FRS-BR-004 | 変更pathから影響する所有単位・機能・提供構成と必要な検証へ辿れる。unknown・ambiguousを影響なしに変換しない |
 | FRS-BR-005 | 同一source／registry／profileからmanifest・artifactを再現し、clean consumerで検証してqualifiedな直前版または明示replacementへ戻せる |
 | FRS-BR-006 | 要求・所有・依存・検証・利用実績を根拠に責務の維持・分割・統合・移管候補を比較できる。未検証の再編はshadowとして区別する |
-| FRS-BR-007 | 対象要求revisionごとに実装・検証・owner・Slice・Bundle・未成立条件を辿り、未所属・二重所有・未実装・未接続・未検証を区別できる |
-| FRS-BR-008 | 必要な検証を維持したCI改善を内部利用し、待ち時間・再実行を実測できる。限定委譲はbranch・隔離・予算・期限・成果回収・独立reviewを満たす範囲で使う |
-| FRS-BR-009 | 各Sliceの安全依存閉包を確認できる。Lite／Fullの統合・更新・rollback・運用検証を個別Sliceの成功とは別に確認する |
+| FRS-BR-007 | 対象要求revisionごとに実装・検証・owner・提供構成・未成立条件を辿り、未所属・二重所有・未実装・未接続・未検証を区別できる |
+| FRS-BR-008 | 新世代では不採用。要求整理中に既存CIを内部利用・比較・効果測定しない。Cursor固有条件は提供構成から外し、Worker要求源として別途再採否する |
+| FRS-BR-009 | 各機能単位の安全依存閉包を確認し、構成全体の統合・更新・rollback・運用検証を個別機能の成功とは別に確認する。Lite／Full名は未採択 |
 
 [Concept・Vision提供構成案](../../../governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は
 利用者向け選択viewの候補であり、正式Module／Slice identityや公開版を生成する根拠にしない。
@@ -228,11 +229,12 @@ HELIXOS-L2-002／004／005／006／008の構成・配布運用条件として照
 
 提供物として成立する条件はHARNESS-L2-006、変更影響の工程条件はHARNESS-L2-004／005を参照する。
 OSはこの条件に従う構成管理・生成・検証・配布・復旧の実行と証拠を所有する。
-FRS-BR-003では未完Module内の適格Sliceを不必要に隠さない。FRS-BR-004では局所検証と全体critical pathを分けて実行する。
+FRS-BR-003では未完の上位構成内にある適格な機能単位を不必要に隠さない。FRS-BR-004では局所検証と全体critical pathを分けて扱う。
 FRS-BR-007のWaveは依存と検収証拠から導出し、説明用の9群・17系統を固定分母にしない。
-FRS-BR-008の内部CI改善・限定委譲を常駐レーン全体の完成待ちにしない。
+FRS-BR-008は既存CI先行利用として棄却し、CI要求は上流確定後にNCIから降ろし直す。外部Workerの有界割当は
+HELIXOS-L2-004へ別系列で接続し、旧provider・branch・review方式を継承しない。
 FRS-BR-009は必要な安全依存が不足する場合に投入を止め、無関係な基盤の完成を一律の待機条件にしない。
-Sliceをworkflow、route、provider lane、repository境界の別名にせず、Moduleの所有とBundleの選択的収載を区別する。
+提供構成の単位をworkflow、route、provider lane、repository境界の別名にせず、責務所有と選択的収載を区別する。
 本移管でrepository分割、別builder・DB・要求正本、配車・全体planner、OPSやsecurity brokerの再実装を要求しない。
 
 ## L3候補への接続

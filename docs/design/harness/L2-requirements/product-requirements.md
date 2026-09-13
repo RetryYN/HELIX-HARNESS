@@ -100,11 +100,13 @@ OS側が判断記録・反復実行を所有し、HARNESS側は以下の進行�
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。
-v0.2候補の承認記録は正本化工程へ進む範囲であり、本対象別L2の合意・IR admission・公開を代替しない。
+v0.2候補の承認記録は旧RLS・既存CI・DevOS・Cursorを含む旧製品境界に対するものであり、新世代へ継承しない。
+以下は[新世代対応表](../../../governance/audits/l2-requirements/new-generation-release-composition-source-crosswalk.md)で
+再採否を待つ意味候補であり、本対象別L2の合意・IR admission・公開を代替しない。
 
 | 親要求 | 出典 | 提供物・工程の条件 |
 |---|---|---|
-| HARNESS-L2-006 | FRS-BR-001／002／003 | 提供する機能単位のcontract・source・依存・受入・artifact・復旧先へ辿れ、構成の収載・除外を特定できる。未指定・未適格・previewをstableへ暗黙収載せず、Slice・Module・Bundleの版と成熟度を区別する |
+| HARNESS-L2-006 | FRS-BR-001／002／003 | 提供する機能単位のcontract・source・依存・受入・artifact・復旧先へ辿れ、構成の収載・除外を特定できる。未指定・未適格な機能を上位の提供構成へ暗黙収載せず、各構成階層の版と成熟度を区別する。旧Slice／Module／Bundle名とchannel enumは未採択 |
 | HARNESS-L2-004／005 | FRS-BR-004／007 | 要求revisionと変更箇所から影響する構成・検証条件へ辿れる。所有・実装・接続・検証の欠落、unknownやambiguousを「影響なし」にしない |
 | HARNESS-L2-006 | FRS-BR-005 | 同一source・registry・profileから同一manifestとartifactを再現でき、clean consumerで利用できる。失敗時の復旧対象は適格な直前版または明示replacementとして識別できる |
 | HARNESS-L2-005／006 | FRS-BR-009 | 機能単位の必要な安全依存を明示し、組合せの統合・更新・復旧・L12運用検証を個別機能の成功と区別する |
@@ -113,7 +115,8 @@ v0.2候補の承認記録は正本化工程へ進む範囲であり、本対象�
 正式なModule／Sliceのidentityや公開版を生成する根拠にしない。growth-offでも通常開発が成立すること、
 公開版から構成・source・artifact・検収証拠へ辿れること、未採択Visionを必須依存にしないことを候補条件として保持する。
 文書版・Visionの節目・公開SemVerは別軸である。内部学習機構をHARNESSへ一括同梱する条件へ戻さない。
-構成の再編判断、生成・配布・復旧の実行、CIの先行利用はOS側が所有する。
+構成の再編判断、生成・配布・復旧の実行はOS側が所有する。旧CIの先行利用は新世代では採用せず、
+要求整理後に承認済み上流から新しいCI要求・設計・検証を導出する。
 
 ## L3候補との境界
 
