@@ -239,9 +239,11 @@ HELIXOS-L2-002／004／005／006の構成・配布運用条件へ再分類する
 | FRS-BR-009 | 各機能単位の安全依存閉包を確認し、構成全体の統合・更新・rollback・運用検証を個別機能の成功とは別に確認する。Lite／Full名は未採択 |
 
 [Concept・Vision提供構成案](../../../governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は
-利用者向け選択viewの候補であり、正式Module／Slice identityや公開版を生成する根拠にしない。
+利用者向け選択viewの旧候補である。[新世代対応表](../../../governance/audits/l2-requirements/new-generation-concept-package-source-crosswalk.md)に従い、
+工程・提供契約はHARNESS、Worker・CI・配布操作はOS、将来能力は個別製品へ分ける。正式Module／Slice identityや公開版を生成する根拠にしない。
 同案のgrowth-offでの通常開発、対象製品ReleaseとHELIX自己Releaseの権限分離、公開版から原証跡への追跡、
 未採択Visionの必須依存化禁止は、RLS／FRSへの要求差分として保持する。採用済みとする前に対象revisionの合意が必要である。
+PKG-D01..13の名前・個数、旧Module対応、Lite／Full、`8+1`構成、旧CI先行投入をOSの固定管理分母にしない。
 
 提供物として成立する条件はHARNESS-L2-006、変更影響の工程条件はHARNESS-L2-004／005を参照する。
 OSはこの条件に従う構成管理・生成・検証・配布・復旧の実行と証拠を所有する。

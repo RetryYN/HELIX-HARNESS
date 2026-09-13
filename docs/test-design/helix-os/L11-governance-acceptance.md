@@ -141,6 +141,8 @@ HELIXOS-L2-002／004／005／006では、FRSの新世代対応表で再採否対
 
 提供構成案の追加条件は採用revisionの確定後に検証する。growth-offでの開発、対象製品とHELIX自己Releaseの
 権限・receipt非転用、文書版から公開SemVerへの誤変換、未採択Visionの必須依存化をそれぞれ確認する。
+旧PKG-D01..13、旧Module／Bundle数、旧main、Issue／PR、既存CI結果を与えても、OSの管理対象、提供構成、
+公開版、採用済み能力として確定しない。HARNESSの提供契約、OSの配布操作、個別製品の受入を別々に照合する。
 
 全件未実行。OSで収集した実結果と、HARNESSの提供物条件を分けて照合する。
 

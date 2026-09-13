@@ -126,12 +126,15 @@ v0.2候補の承認記録は旧RLS・既存CI・DevOS・Cursorを含む旧製品
 | HARNESS-L2-006 | FRS-BR-005 | 同一source・registry・profileから同一manifestとartifactを再現でき、clean consumerで利用できる。失敗時の復旧対象は適格な直前版または明示replacementとして識別できる |
 | HARNESS-L2-005／006 | FRS-BR-009 | 機能単位の必要な安全依存を明示し、組合せの統合・更新・復旧・L12運用検証を個別機能の成功と区別する |
 
-[提供構成追補](../../../governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は選択viewの候補であり、
+[提供構成追補](../../../governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は、
+[新世代Concept・Package対応表](../../../governance/audits/l2-requirements/new-generation-concept-package-source-crosswalk.md)で
+再採否を待つ選択viewの候補であり、
 正式なModule／Sliceのidentityや公開版を生成する根拠にしない。growth-offでも通常開発が成立すること、
 公開版から構成・source・artifact・検収証拠へ辿れること、未採択Visionを必須依存にしないことを候補条件として保持する。
 文書版・Visionの節目・公開SemVerは別軸である。内部学習機構をHARNESSへ一括同梱する条件へ戻さない。
 構成の再編判断、生成・配布・復旧の実行はOS側が所有する。旧CIの先行利用は新世代では採用せず、
 要求整理後に承認済み上流から新しいCI要求・設計・検証を導出する。
+PKG-D01..13の名前・個数、旧Module対応、Lite／Full、`8+1`構成をHARNESSの固定提供分母にしない。
 
 ## L3候補との境界
 
