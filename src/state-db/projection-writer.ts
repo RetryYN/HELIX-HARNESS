@@ -44,7 +44,7 @@ import {
 } from "../lint/verification-profile";
 import { resolveFeedbackLifecycle } from "../policy/feedback-lifecycle";
 import { loadCanonicalRequirementIrFromShards } from "../requirements/requirement-generated-view";
-import { resolvePackageCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver";
+import { resolvePackageProjectDriveModelIdentity } from "../schema/current-location-workflow-identity-resolver";
 import { analyzeDesignDeclarations } from "../schema/design-declarations";
 import { planWorkflowIdentitySchema } from "../schema/frontmatter";
 import {
@@ -4971,7 +4971,7 @@ function projectVmodelReadModels(
   const visualizationSnapshot = buildVisualizationSnapshot(db, { repoRoot });
   const snapshot = visualizationSnapshot.project_current_location;
   const driveModel = buildProjectDriveModelReport(snapshot);
-  const workflowIdentityReceipt = resolvePackageCurrentLocationWorkflowIdentity(
+  const workflowIdentityReceipt = resolvePackageProjectDriveModelIdentity(
     driveModel.selected_model,
   );
   const workflowIdentity = workflowIdentityReceipt.identity;

@@ -140,3 +140,19 @@ L3 は下記を「L6 view-model 契約で新設」と送った（HR-FR-VIS-02/04
   （空 series + warning）、履歴があるときは各点が snapshot / evidence timestamp から再現可能（HAC-VIS-07）。
 - U-VVM-007: drill-down pointer は全 view で `drilldowns` 由来か `null` のいずれかであり、絶対 path・LLM 要約を
   持たない（HAC-VIS-06、全 view 対象）。pointer が無い row は `drilldown: null` を明示し、推測 path で埋めない。
+
+## §7 canonical terminal claim境界
+
+`project-current-location`はL0-L14 compatibility PLANをcurrent terminal authorityとして扱わない。
+旧L14 terminal PLANとopen L7の併存は`legacy_l14_claim_with_open_l7`のwarnとして観測し、削除もしないが、
+`completion_boundary=contradicted`やRecoveryを直接導出しない。
+
+current矛盾は、管理relation側で同一release／contract revision scopeを照合済みの
+`canonical_l12_terminal_with_open_work` error findingだけから導出する。current-locationはscopeを推測せず、
+typed findingの欠落を旧L14件数で補完しない。これにより旧層のfalse blockを除去しつつ、canonical findingは
+drive、closure、roadmap、visualization、doctorへ同じcodeで伝播する。
+
+false block解消後に選択される`Forward`は、旧token adapterへ戻して再分類しない。project drive reportの
+canonical Forward spineは、unknown／衝突時のfail-close既定であるtyped
+`development_style:FULL_L1_L12_V`としてDB projectionへ渡す。自然文tokenの一致を承認済みstyle選択へ
+昇格させる経路は設けない。

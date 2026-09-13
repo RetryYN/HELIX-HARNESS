@@ -1,4 +1,4 @@
-import { resolveCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver.js";
+import { resolveProjectDriveModelIdentity } from "../schema/current-location-workflow-identity-resolver.js";
 import type { ProjectCurrentLocationSnapshot } from "../state-db/current-location.js";
 
 export * from "../schema/current-location-workflow-identity-resolver.js";
@@ -8,10 +8,7 @@ export function attachCurrentLocationWorkflowIdentity(
   snapshot: ProjectCurrentLocationSnapshot,
   repoRoot: string = process.cwd(),
 ): ProjectCurrentLocationSnapshot {
-  const receipt = resolveCurrentLocationWorkflowIdentity({
-    legacy_model: snapshot.drive_route.selectedModel,
-    repo_root: repoRoot,
-  });
+  const receipt = resolveProjectDriveModelIdentity(snapshot.drive_route.selectedModel, repoRoot);
   return {
     ...snapshot,
     drive_route: {

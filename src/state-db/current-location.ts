@@ -192,6 +192,8 @@ export interface ProjectSkillBinding {
 export interface ProjectCurrentLocationFinding {
   code:
     | "l14_claim_with_l7_work"
+    | "legacy_l14_claim_with_open_l7"
+    | "canonical_l12_terminal_with_open_work"
     | "unresolved_design_reference"
     | "impl_ahead_descent_obligation"
     | "roadmap_uncovered_frontier"
@@ -9802,6 +9804,11 @@ export function buildProjectCurrentLocationSnapshot(db: HarnessDb): ProjectCurre
     "SELECT COUNT(*) AS value FROM findings WHERE kind LIKE ? AND severity = ? AND status = ?",
     ["design-declaration-%", "error", "open"],
   );
+  const canonicalTerminalContradictions = scalarNumber(
+    db,
+    "SELECT COUNT(*) AS value FROM findings WHERE kind = ? AND severity = ? AND status = ?",
+    ["canonical_l12_terminal_with_open_work", "error", "open"],
+  );
   const implAheadObligations = scalarNumber(
     db,
     "SELECT COUNT(*) AS value FROM descent_obligations WHERE status = ?",
@@ -9815,14 +9822,27 @@ export function buildProjectCurrentLocationSnapshot(db: HarnessDb): ProjectCurre
   const closureEvidenceIds = collectClosureEvidenceIds(db);
 
   const findings: ProjectCurrentLocationFinding[] = [];
-  const hasContradiction = terminalL14Plans > 0 && openL7PlanCount > 0;
-  if (hasContradiction) {
+  const hasLegacyL14Overlap = terminalL14Plans > 0 && openL7PlanCount > 0;
+  if (hasLegacyL14Overlap) {
     findings.push({
-      code: "l14_claim_with_l7_work",
-      severity: "error",
-      detail: `L14 到達済み claim (${terminalL14Plans}) と L7 起票/実行中 (${openL7PlanCount}) が同時に存在する。open L7=${openL7PlanIds.slice(0, 5).join(",") || "-"} / L14=${terminalL14PlanIds.slice(0, 5).join(",") || "-"}`,
+      code: "legacy_l14_claim_with_open_l7",
+      severity: "warn",
+      detail: `compatibility L14 claim (${terminalL14Plans}) とcurrent open L7 (${openL7PlanCount}) を同時観測した。L14はcurrent terminal根拠にせず、open L7=${openL7PlanIds.slice(0, 5).join(",") || "-"} / compatibility L14=${terminalL14PlanIds.slice(0, 5).join(",") || "-"}`,
       docDependencies: ["docs/plans", "docs/design", "docs/test-design"],
       implementationDependencies: ["plan_registry"],
+    });
+  }
+  // L0-L14はcompatibility projectionであり、current completion contradictionを構成しない。
+  // canonical L12 terminal claimとの矛盾はrelease/contract revision scopeを照合した管理relationが
+  // typed findingとして入力した場合だけ受理する。scopeを持たない全open L7とのglobal joinは禁止する。
+  const hasContradiction = canonicalTerminalContradictions > 0;
+  if (hasContradiction) {
+    findings.push({
+      code: "canonical_l12_terminal_with_open_work",
+      severity: "error",
+      detail: `同一release／contract revision scopeのL12 terminal claimとopen workが ${canonicalTerminalContradictions} 件競合している`,
+      docDependencies: ["docs/plans", "docs/design", "docs/test-design"],
+      implementationDependencies: ["findings", "plan_registry"],
     });
   }
   const unresolvedDocs = collectUnresolvedDesignReferenceDocs(db);

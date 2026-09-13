@@ -2411,6 +2411,19 @@ describe("runDoctor", () => {
         },
       });
       upsertRow(db, {
+        table: "findings",
+        primaryKey: "finding_id",
+        row: {
+          finding_id: "finding:canonical-l12-terminal-with-open-work",
+          kind: "canonical_l12_terminal_with_open_work",
+          severity: "error",
+          subject_id: "release:v1:contract-revision:fixture",
+          source: "management-relation",
+          status: "open",
+          evidence_path: "docs/evidence/canonical-l12-terminal-with-open-work.json",
+        },
+      });
+      upsertRow(db, {
         table: "plan_registry",
         primaryKey: "plan_id",
         row: {
@@ -2630,7 +2643,8 @@ describe("runDoctor", () => {
         "project-current-location - next-action-ledger: total=1",
       );
       expect(check.messages.join("\n")).toContain("reverse=1");
-      expect(check.messages.join("\n")).toContain("l14_claim_with_l7_work");
+      expect(check.messages.join("\n")).toContain("legacy_l14_claim_with_open_l7");
+      expect(check.messages.join("\n")).toContain("canonical_l12_terminal_with_open_work");
 
       const fitCheck = checkVmodelFit(root, db);
       expect(fitCheck.ok).toBe(true);

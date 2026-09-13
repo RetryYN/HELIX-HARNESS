@@ -248,3 +248,35 @@ export function resolvePackageCurrentLocationWorkflowIdentity(
     repo_root: WORKFLOW_CLASSIFICATION_PACKAGE_ROOT,
   });
 }
+
+/**
+ * Resolve the project drive-model result without feeding the canonical Forward spine back
+ * through the ambiguous legacy-token adapter. Unknown/conflicting development-style input is
+ * required to fail closed to FULL_L1_L12_V; the project drive report's Forward default is that
+ * already-decided boundary, not a new natural-language classification request.
+ */
+export function resolveProjectDriveModelIdentity(
+  selectedModel: string,
+  repoRoot: string,
+): CurrentLocationWorkflowIdentityReceipt {
+  if (selectedModel === "Forward") {
+    const catalog = loadWorkflowClassificationCatalog(repoRoot);
+    return resolveCurrentLocationWorkflowIdentity({
+      identity: {
+        registry_version: catalog.source_registry.registry_version,
+        registry_source_digest: catalog.source_registry.registry_source_digest,
+        target_axis: "development_style",
+        target_id: "FULL_L1_L12_V",
+      },
+      catalog,
+      repo_root: repoRoot,
+    });
+  }
+  return resolveCurrentLocationWorkflowIdentity({ legacy_model: selectedModel, repo_root: repoRoot });
+}
+
+export function resolvePackageProjectDriveModelIdentity(
+  selectedModel: string,
+): CurrentLocationWorkflowIdentityReceipt {
+  return resolveProjectDriveModelIdentity(selectedModel, WORKFLOW_CLASSIFICATION_PACKAGE_ROOT);
+}

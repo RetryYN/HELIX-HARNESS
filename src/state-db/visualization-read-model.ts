@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { resolvePackageCurrentLocationWorkflowIdentity } from "../schema/current-location-workflow-identity-resolver";
+import { resolvePackageProjectDriveModelIdentity } from "../schema/current-location-workflow-identity-resolver";
 import {
   analyzeVmodelZipManifest,
   VMODEL_ZIP_EXPECTED_INVENTORY_SIGNATURE,
@@ -110,7 +110,7 @@ export interface VisualizationSnapshot {
 function attachPackageWorkflowIdentity(
   snapshot: ProjectCurrentLocationSnapshot,
 ): ProjectCurrentLocationSnapshot {
-  const receipt = resolvePackageCurrentLocationWorkflowIdentity(snapshot.drive_route.selectedModel);
+  const receipt = resolvePackageProjectDriveModelIdentity(snapshot.drive_route.selectedModel);
   return {
     ...snapshot,
     drive_route: {

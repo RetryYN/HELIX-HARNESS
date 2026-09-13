@@ -955,7 +955,48 @@ describe("project current-location read model", () => {
       expect(snapshot.drive_recommendation.model).toBe("Reverse");
     }));
 
-  it("U-CURRENT-LOCATION-001: L14到達済みclaimとL7起票をRecoveryに昇格し、設計戻し範囲を保持する", () =>
+  it("U-CURRENT-LOCATION-001a: L14 compatibility claimとopen L7だけではcurrentをblockしない", () =>
+    withDb((db) => {
+      for (const row of [
+        {
+          plan_id: "PLAN-L14-01-compatibility-close",
+          kind: "impl",
+          layer: "L14",
+          drive: "agent",
+          status: "confirmed",
+          updated_at: "2026-07-08T00:00:00.000Z",
+        },
+        {
+          plan_id: "PLAN-L7-999-current-work",
+          kind: "add-impl",
+          layer: "L7",
+          drive: "agent",
+          status: "draft",
+          updated_at: "2026-07-08T00:01:00.000Z",
+        },
+      ]) {
+        upsertRow(db, { table: "plan_registry", primaryKey: "plan_id", row });
+      }
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+
+      expect(snapshot.current).toMatchObject({ status: "forward", completion_boundary: "open" });
+      expect(snapshot.closure.status).toBe("open");
+      expect(snapshot.findings).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            code: "legacy_l14_claim_with_open_l7",
+            severity: "warn",
+          }),
+        ]),
+      );
+      expect(snapshot.findings.map((finding) => finding.code)).not.toContain(
+        "l14_claim_with_l7_work",
+      );
+      expect(snapshot.drive_recommendation.model).not.toBe("Recovery");
+    }));
+
+  it("U-CURRENT-LOCATION-001b: scoped L12矛盾だけをRecoveryへ昇格しL14 compatibility観測を分離する", () =>
     withDb((db) => {
       upsertRow(db, {
         table: "plan_registry",
@@ -967,6 +1008,19 @@ describe("project current-location read model", () => {
           drive: "agent",
           status: "confirmed",
           updated_at: "2026-07-08T00:00:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "findings",
+        primaryKey: "finding_id",
+        row: {
+          finding_id: "finding:canonical-l12-terminal-with-open-work",
+          kind: "canonical_l12_terminal_with_open_work",
+          severity: "error",
+          subject_id: "release:v1:contract-revision:fixture",
+          source: "management-relation",
+          status: "open",
+          evidence_path: "docs/evidence/canonical-l12-terminal-with-open-work.json",
         },
       });
       upsertRow(db, {
@@ -1166,7 +1220,9 @@ describe("project current-location read model", () => {
           roadmap_projected_l12_layers: expect.arrayContaining(["L6", "L7", "L12"]),
           roadmap_terminal_l12_layers: [],
           alignment_basis: "frontier",
-          blocking_findings: expect.arrayContaining(["l14_claim_with_l7_work"]),
+          blocking_findings: expect.arrayContaining([
+            "canonical_l12_terminal_with_open_work",
+          ]),
         },
         counts: expect.objectContaining({
           current_bands: 2,
@@ -1187,7 +1243,8 @@ describe("project current-location read model", () => {
           "closure-queue",
           "roadmap-band:impl",
           "roadmap-gate:PLAN-L14-01-close:G-OPS",
-          "finding:l14_claim_with_l7_work",
+          "finding:legacy_l14_claim_with_open_l7",
+          "finding:canonical_l12_terminal_with_open_work",
         ]),
       );
       expect(roadmapCurrent.counts.blockers).toBeGreaterThanOrEqual(3);
@@ -1809,7 +1866,11 @@ describe("project current-location read model", () => {
               command: "helix closure evidence-plan --action reverse_design --summary-json",
             }),
           ]),
-          blocked_by_findings: ["unresolved_design_reference", "impl_ahead_descent_obligation"],
+          blocked_by_findings: [
+            "canonical_l12_terminal_with_open_work",
+            "unresolved_design_reference",
+            "impl_ahead_descent_obligation",
+          ],
           approval_record_template: expect.arrayContaining([
             expect.stringMatching(/^approval_scope_digest: sha256:/),
           ]),
@@ -1986,7 +2047,7 @@ describe("project current-location read model", () => {
         },
         allowed_to_apply: false,
         blocked_reasons: [
-          "blocker finding が残っている: unresolved_design_reference,impl_ahead_descent_obligation",
+          "blocker finding が残っている: canonical_l12_terminal_with_open_work,unresolved_design_reference,impl_ahead_descent_obligation",
         ],
         outcome_projection: {
           projection_type: "apply_closure",
@@ -2030,7 +2091,7 @@ describe("project current-location read model", () => {
         },
         allowed_to_apply: false,
         blocked_reasons: [
-          "blocker finding が残っている: unresolved_design_reference,impl_ahead_descent_obligation",
+          "blocker finding が残っている: canonical_l12_terminal_with_open_work,unresolved_design_reference,impl_ahead_descent_obligation",
           "対象 candidate が 0 件",
         ],
       });
@@ -2139,7 +2200,7 @@ describe("project current-location read model", () => {
           outcome: "approve_closure_claim",
         },
         blocked_reasons: [
-          "blocker finding が残っている: unresolved_design_reference,impl_ahead_descent_obligation",
+          "blocker finding が残っている: canonical_l12_terminal_with_open_work,unresolved_design_reference,impl_ahead_descent_obligation",
         ],
       });
       const pagedSnapshot = structuredClone(snapshot);
@@ -2251,7 +2312,8 @@ describe("project current-location read model", () => {
         ],
       });
       expect(snapshot.findings.map((finding) => finding.code)).toEqual([
-        "l14_claim_with_l7_work",
+        "legacy_l14_claim_with_open_l7",
+        "canonical_l12_terminal_with_open_work",
         "unresolved_design_reference",
         "impl_ahead_descent_obligation",
         "roadmap_uncovered_frontier",
