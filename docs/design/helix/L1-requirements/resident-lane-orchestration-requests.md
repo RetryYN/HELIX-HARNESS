@@ -7,7 +7,7 @@ layer: L1
 kind: add-design
 status: confirmed
 created: 2026-08-20
-updated: 2026-09-01
+updated: 2026-09-13
 owner: PO / Codex TL
 plan: PLAN-L3-75-resident-lane-orchestration-authority
 related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
@@ -18,9 +18,9 @@ next_pair_freeze: L12
 # HELIX 常駐マルチランタイム・レーン オーケストレーション要求分解書
 
 - 文書ID: `HELIX-RLO-BRQ-001`
-- バージョン: `0.3.0`
+- バージョン: `0.5.0`
 - 作成日: `2026-08-20`
-- 最終更新: `2026-09-01`（Issue #826、#1293、#1294〜#1296の現行決定を反映）
+- 最終更新: `2026-09-13`（Issue #1778の検収内修復・成功証拠継承を反映）
 - 状態: `request-decomposition-confirmed / L3承認済み`
 - 上位文書: `docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md`（`HELIX-RLO-REQ-001`）
 - 対象リポジトリ: `RetryYN/HELIX-HARNESS`
@@ -56,6 +56,10 @@ L1（機能エリア / BR・NFR）→ L3（FR）のトレースを成立させ�
 | Worker レーン（Grok Build / Cursor / Codex worker） | scope が明確な仕事を受け取り、同じ branch で完結できること |
 | Claude Review レーン | アンカリングなしの blind review を、詰まらない在庫量で行えること |
 | HELIX Control Plane | 状態正本を自分が持ち、provider の生死に依存しないこと |
+
+> 2026-09-13 PO追加要求: `BR-9`／`BR-10`はL1要求として受領済み。対応するL3差分
+> `RLO-FR-041..049`／`RLO-AC-031..040`はfreeze前の候補であり、既存confirmed要件を
+> 暗黙に上書きしない。Issue #1778で正本化と実証を追跡する。
 
 ---
 
@@ -101,11 +105,58 @@ branch = 変更先正本、lease = 所有者正本は常に必須とする。
 ### BR-3: 検収独立性の維持
 
 Claude は worker 会話を引き継がない blind exact-HEAD review 専用レーンであり続ける。
-worker の自己 review / 自己 merge を許さず、changes requested は元 worker・同 branch へ返す。
+worker の自己 review / 自己 merge を許さない。BR-9の`REPAIR_IN_REVIEW`に分類できない従来型の
+実装所見は元worker・同branchへ返す。要求／AC／公開契約の選択、責務跨ぎ再設計、正本矛盾、
+許可scope外は元worker固定ではなく、BR-9に従って原因ownerへ`RETURN_TO_OWNER`する。
 
 - 根拠: 上位文書 §7.4 / RLO-INV-006
-- L12 受入観点: worker 自己承認 0 件、changes requested の元 worker 復帰が実運用で成立
+- L12 受入観点: worker自己承認0件。`REPAIR_IN_REVIEW`対象外の実装所見は元worker・同branchへ戻り、
+  意味判断を要する所見は原因ownerへ戻る。両経路を混同せず実運用で追跡できる。
 - トレース: RLO-FR-014〜018 / RLO-AC-011〜015
+
+### BR-9: 検収内修復による収束速度の改善（追加要求、PO決定 2026-09-13）
+
+上流Workerと新規PR生成を止めず、承認済み契約内で安全に閉じられる検収所見は、元Workerへ
+機械的に返却せず検収セル内で修復する。受領、所見集約、局所修復、fresh独立再検証、
+merge admission、main read-afterを同一検収episodeとして追跡し、品質・独立性・single writerを維持する。
+
+- 契約から期待結果を一意に導出でき、scope、公開契約、責務境界、権限、ACを変えない修復だけを
+  `REPAIR_IN_REVIEW`として許可する。
+- 要求／AC／公開契約の選択、責務跨ぎ再設計、正本矛盾、許可scope外、boundedな試行で
+  反証・回復不能な変更は、元Workerに限らず原因ownerへ`RETURN_TO_OWNER`する。
+- CI、quota、環境、receipt、stack親待ちは`WAIT_DEPENDENCY`とし、検収セルが期限、再開trigger、
+  owner、未解消義務を保持する。待機を実装不良や成功へ変換しない。
+- Opusの判定／検証、Sonnetの修復、既存Node controlの副作用を分離し、provider内分業を
+  cross-runtime証拠へ偽装しない。修復者の自己申告や修復前PASSで候補を合格させない。
+- 新scheduler、第二Assignment台帳、merge engine、承認制度を作らず、#860、#1741、#1771、
+  #1774の既存ownerとevent／lease／fence／receiptを再利用する。
+
+- L12受入観点: 実PRで契約内findingが元Worker返却0のままfresh独立検証、merge、main read-afterまで閉じる。
+  要求変更／正本矛盾は無断修復されず原因ownerへ返り、CI／quota待ちは二重修復や無限再試行なく再開する。
+  wrong model／HEAD／base／policy、偽receipt、自己承認、二重writer、gate弱化を拒否する。
+- 効果測定: PR投入量と品質を維持し、返却率、初回PASS後HEAD変更、管理起因再CI、検収からmergeまでの
+  p50／p95、費用、流出欠陥をbefore／afterで比較する。
+- トレース候補: RLO-FR-041〜045 / RLO-AC-031〜036 / Issue #1778
+
+### BR-10: 成功証拠の工程間継承（追加要求、PO決定 2026-09-13）
+
+検証対象、検査定義、依存環境、適用規則が同一で、有効な成功証拠が存在する検証は、PRの
+draft／Ready変更、review完了、mergeという工程遷移だけを理由に再実行しない。再利用できない場合は、
+失効したidentity軸と理由をtyped evidenceとして残し、無関係な検証まで巻き戻さない。
+
+- Ready状態またはreview receiptだけが変わった場合、状態、証拠、権限、freshnessだけを再照合し、
+  無関係なlint、型検査、単体テスト、全回帰を再実行しない。
+- code、test、依存、環境、ruleの一部が変わった場合、subject digestとinput closureから失効した検証だけを
+  再実行する。影響範囲を証明できない場合は全体検証へfail-closeする。
+- merge後のmainが検証済みcandidateと同一tree／同一検査条件を持つ場合、成功証拠を由来付きで継承し、
+  main反映のread-after、履歴、外部状態、統合後固有検査だけを実行する。
+- tree一致だけで全面skipせず、subject tree、base／merge identity、検査定義、toolchain／依存環境、rule、
+  receipt freshnessとissuerを別軸で照合する。新commitへ「今回実行した」と偽装せず、再利用元を記録する。
+- 再利用不能理由、再実行した検証集合、節約時間／費用、誤再利用拒否を計測し、同一成功検証の工程往復を検出する。
+
+- L12受入観点: 同一candidateのReady化で全回帰再実行0、同一treeのmain反映で継承元receiptとpost-merge固有検査を追跡できる。
+  code／rule／environmentの単独変化では対応検証だけが失効し、unknown impact、stale／偽receiptは再利用されない。
+- トレース候補: RLO-FR-046〜049 / RLO-AC-037〜040 / Issue #1778
 
 ### BR-4: provider の生死に依存しない継続性
 
@@ -231,6 +282,9 @@ BR-3 検収独立           → SR-5, SR-6, SR-7  → RLO-FR-012..020
 BR-4 provider非依存     → SR-4              → RLO-FR-002, 027..029, RLO-NFR-001..002
 BR-5 既存通知経路統合   → SR-6, SR-9        → RLO-FR-014, 016, §14 event
 BR-6 段階導入・構成別配車 → SR-3            → RLO-FR-004..006, 030..032, RLO-NFR-007
+BR-8 実行主体の分離       → SR-2, SR-3       → RLO-FR-037..040, RLO-AC-027..030
+BR-9 検収内修復           → SR-6, SR-7       → RLO-FR-041..045, RLO-AC-031..036（freeze前候補）
+BR-10 成功証拠継承        → SR-7              → RLO-FR-046..049, RLO-AC-037..040（freeze前候補）
 BR-7 ベンチ適性評価     → SR-11             → RLO-NFR-005, RLO-FR-031..032（要件側へ新規FR追加要）
 ```
 

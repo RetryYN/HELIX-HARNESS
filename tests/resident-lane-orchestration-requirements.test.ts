@@ -32,7 +32,7 @@ describe("resident lane requirements authority", () => {
   });
 
   it("RLO-AUTH-002: BR/SR/CNとL3 exact setを欠落させない", () => {
-    for (let id = 1; id <= 8; id += 1) expect(l1).toContain(`BR-${id}`);
+    for (let id = 1; id <= 9; id += 1) expect(l1).toContain(`BR-${id}`);
     for (let id = 1; id <= 11; id += 1) expect(l1).toContain(`SR-${id}`);
     for (let id = 1; id <= 6; id += 1) expect(l1).toContain(`CN-${id}`);
     for (let id = 1; id <= 40; id += 1) {
@@ -97,5 +97,32 @@ describe("resident lane requirements authority", () => {
         planStatus: "confirmed",
       }),
     ).toEqual({ ok: true, failureCodes: [] });
+  });
+
+  it("RLO-AUTH-007: 検収内修復要求をL1↔L12で束縛しL3を先取りしない", () => {
+    expect(l1).toContain("BR-9: 検収内修復による収束速度の改善");
+    expect(l1).toContain("REPAIR_IN_REVIEW");
+    expect(l1).toContain("RETURN_TO_OWNER");
+    expect(l1).toContain("WAIT_DEPENDENCY");
+    expect(l1).toContain("RLO-FR-041〜045 / RLO-AC-031〜036 / Issue #1778");
+    expect(l12).toContain("`BR-9`");
+    expect(l12).toContain("下位要件freeze前は候補");
+    expect(l3).not.toContain("#### RLO-FR-041");
+    expect(l10).not.toContain("`RLO-AC-031`");
+    expect(l1).toContain("BR-9の`REPAIR_IN_REVIEW`に分類できない従来型の");
+    expect(l1).toContain("BR-9に従って原因ownerへ`RETURN_TO_OWNER`する");
+    expect(l12).toContain("BR-3の差戻し対象を明示的に限定");
+  });
+
+  it("RLO-AUTH-008: 成功証拠の工程間継承をL1↔L12で束縛し全面skipを許さない", () => {
+    expect(l1).toContain("BR-10:");
+    expect(l1).toContain("成功証拠の工程間継承（追加要求");
+    expect(l1).toContain("検証対象、検査定義、依存環境、適用規則が同一");
+    expect(l1).toContain("tree一致だけで全面skipせず");
+    expect(l1).toContain("再利用できない場合");
+    expect(l12).toContain("`BR-10`");
+    expect(l12).toContain("実行済み偽装は拒否");
+    expect(l3).not.toContain("#### RLO-FR-046");
+    expect(l10).not.toContain("`RLO-AC-037`");
   });
 });

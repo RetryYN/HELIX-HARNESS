@@ -70,4 +70,6 @@ ehthumbs.db
 npm-debug.log*
 bun-debug.log*
 codex-env.txt
+# PR review receiptのローカル搬送物は`.helix/tmp/`へ置く。root直下を証跡正本にしない。
+helix-pr-*-ready-receipt.json
 # 注: .vscode/ は共有設定 (settings.json / extensions.json) を commit したい場合があるため意図的に未 ignore (team 判断)

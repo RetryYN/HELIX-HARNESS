@@ -1969,6 +1969,24 @@ const SCRUM_OPERATION_SOURCES = [
   patterns: RegExp[];
 }>;
 
+const CANONICAL_SCRUM_OPERATION_DECLARATIONS = [
+  { definedId: "SCRUM-OPS-R-01", category: "story_mapping", layer: "L3" },
+  { definedId: "SCRUM-OPS-R-02", category: "estimation", layer: "L3" },
+  { definedId: "SCRUM-OPS-R-03", category: "readiness", layer: "L3" },
+  { definedId: "SCRUM-OPS-R-04", category: "daily", layer: "L7" },
+  { definedId: "SCRUM-OPS-R-05", category: "review", layer: "L11" },
+  { definedId: "SCRUM-OPS-R-06", category: "retro", layer: "L12" },
+  { definedId: "SCRUM-OPS-R-07", category: "metric", layer: "L12" },
+] as const satisfies ReadonlyArray<{
+  definedId: string;
+  category: Exclude<ProjectScrumOperationCategory, "plan">;
+  layer: string;
+}>;
+
+const CANONICAL_SCRUM_OPERATION_SOURCE =
+  "docs/design/helix/L3-requirements/scrum-operation-typed-projection.md";
+const CANONICAL_SCRUM_OPERATION_OWNER = "scrum-operation-governance";
+
 const ZIP_ADOPTION_RULES = [
   {
     adoptionId: "HVM-ADOPT-01",
@@ -4926,6 +4944,17 @@ function buildAcceptanceTraceability(db: HarnessDb): ProjectAcceptanceTraceabili
 function scrumDeclarationCategory(
   row: Record<string, unknown>,
 ): ProjectScrumOperationCategory | null {
+  const definedId = String(row.defined_id ?? "");
+  const canonical = CANONICAL_SCRUM_OPERATION_DECLARATIONS.find(
+    (declaration) => declaration.definedId === definedId,
+  );
+  if (canonical) {
+    return String(row.layer ?? "") === canonical.layer &&
+      String(row.owner ?? "") === CANONICAL_SCRUM_OPERATION_OWNER &&
+      String(row.source_path ?? "") === CANONICAL_SCRUM_OPERATION_SOURCE
+      ? canonical.category
+      : null;
+  }
   const text = [row.defined_id, row.declaration_kind, row.title, row.source_path]
     .map((value) => String(value ?? ""))
     .join(" ");
@@ -4949,7 +4978,9 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
     binding.bindingId.startsWith("zip-source:scrum-"),
   );
   const declarationRows = db
-    .prepare("SELECT defined_id, declaration_kind, title, source_path FROM design_declarations")
+    .prepare(
+      "SELECT defined_id, declaration_kind, title, layer, owner, source_path FROM design_declarations",
+    )
     .all() as Array<Record<string, unknown>>;
   const planRows = db
     .prepare(
@@ -4968,9 +4999,21 @@ function buildScrumOperation(db: HarnessDb): ProjectScrumOperation {
     },
     {} as Record<Exclude<ProjectScrumOperationCategory, "plan">, Array<Record<string, unknown>>>,
   );
+  const canonicalDeclarationIds = new Set<string>(
+    CANONICAL_SCRUM_OPERATION_DECLARATIONS.map((declaration) => declaration.definedId),
+  );
+  const canonicalCategories = new Set<ProjectScrumOperationCategory>(
+    CANONICAL_SCRUM_OPERATION_DECLARATIONS.map((declaration) => declaration.category),
+  );
   for (const row of declarationRows) {
     const category = scrumDeclarationCategory(row);
     if (category && category !== "plan") {
+      if (
+        canonicalCategories.has(category) &&
+        !canonicalDeclarationIds.has(String(row.defined_id ?? ""))
+      ) {
+        continue;
+      }
       rowsByCategory[category].push(row);
     }
   }
