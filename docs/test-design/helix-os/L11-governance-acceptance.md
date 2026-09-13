@@ -23,7 +23,7 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 | HELIXOS-L2-005 | 観測から改善候補・採否・要求変更を追跡し、未承認経験の規則化や棄却理由の消失を拒否する |
 | HELIXOS-L2-006 | fresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失や別artifactへの切替を拒否する |
 | HELIXOS-L2-007 | Worker・判断・検証ログを要求revisionから辿り、欠落・重複・staleを成功証拠として使わない |
-| HELIXOS-L2-008 | CIの起動・失敗・修復・再実行を追跡し、未実行・中断やreview欠落をgreenで相殺しない |
+| HELIXOS-L2-008 | 承認上流から生成したCI profileの起動・失敗・修復・再実行を追跡し、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺しない |
 | HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |
 
 ## 実行・記録の反例
@@ -31,7 +31,9 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 - HELIXOS-L2-004：成果未回収、期限超過、検証者不在、hook非強制surfaceを個別に与え、停止・不足理由を確認する。Worker自身の完了報告だけで独立検証済みにしない。
 - HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。
 - HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。
-- HELIXOS-L2-008：失敗後の修正と再実行を追跡する。新HEADへ旧CI／review結果を付けた場合や、検査を省略した場合は進行可能と表示しない。
+- HELIXOS-L2-008：上流意味review、下流verification、merge admission、releaseを別pipeline classとして生成する。Concept候補のremote syncで旧CI／merge pipelineが起動する構成を拒否する。
+- HELIXOS-L2-008：失敗後の修正と再実行を追跡する。新HEADへ旧CI／review結果を付けた場合、旧workflowを新世代profileとして扱った場合、required oracleを省略した場合は進行可能と表示しない。
+- HELIXOS-L2-008：旧CIを起動せず、新世代だけを承認要求由来のoracleで評価する。旧CIとのdual-green、job一致、結果parityを新世代の受入条件にしない。
 - HELIXOS-L2-009：event保存とprojectionの間で中断し、再開後に同じ作業と証拠へ戻れることを確認する。projection失敗時のcheckpoint公開を拒否する。
 
 各結果は対象プロジェクト・要求revision・HARNESS版・割当・HEADへ対応づける。以上は未実行であり、

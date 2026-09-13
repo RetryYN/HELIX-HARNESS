@@ -31,7 +31,7 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-002 | 対象プロダクトに適した開発styleと工程の進め方を選べる | HBR-P0／P1、v1.3 §4 | Full V／Production Scrum／Hybridを区別し、Discovery／PoCを別軸で扱う |
 | HARNESS-L2-003 | 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる | HBR-P0／P3、HNFR-P3 | 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない |
 | HARNESS-L2-004 | 要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる | HBR-P3／P9 | 上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない |
-| HARNESS-L2-005 | 言語・tool・実装方式が異なっても、工程に必要な検証と証拠の条件を適用できる | HNFR-P3、v1.3 §4 | 特定CIやWorkerに依存せず必要な証拠種別・対象revision・完了判定を説明できる |
+| HARNESS-L2-005 | 言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる | HNFR-P3、v1.3 §4、新世代CI要求候補 | 特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる |
 | HARNESS-L2-006 | 外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる | 2026-09-14 PO指示、HBR-P6の提供物側条件 | HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる |
 
 移管元の本文は[柱要求](../../helix/L1-requirements/pillar-requirements.md)、
@@ -56,10 +56,21 @@ HELIX管理下への導入・更新の実行はOSの運用側で扱う。外部�
 | HARNESS-L2-003 | UI案件は要求とプロトの合意をL3凍結前に確認する。非UIもL2要求を省略せず、非適用・理由・判定者・HEAD・要求への影響・再評価条件を記録する |
 | HARNESS-L2-003 | 実装は凍結済み設計の範囲に従い、L6↔L7でRed→Green→Refactorと双方向traceを閉じる。L10総合検証、L11利用者受入、L12運用評価を別の状態として扱う |
 | HARNESS-L2-004 | 要求変更・public contract変更・設計trace欠落等の際は、影響する設計と対検証へ差し戻す。Scrumの実装事実もreview・release合流前に設計資産へ戻し、必要なpair凍結を確認する |
-| HARNESS-L2-005 | 検証条件には対象要求revision、成果物、入力、期待結果、実結果、証拠の有効性を含める。CI成功・画面表示・文書登録だけを利用者受入や全工程完了の証拠にしない |
+| HARNESS-L2-005 | 検証条件には対象要求revision、成果物、入力、oracle、expected failure、実結果、証拠の有効期限、差戻し先を含める。required／conditional／informational／N/Aを理由付きで区別し、unknownをskipへ変換しない。CI成功・画面表示・文書登録だけを利用者受入や全工程完了の証拠にしない |
 
 HARNESSの規則が定める「未充足なら進行不可」を、OSがWorker停止・再割当・CI・記録・表示へ適用する。
 具体的なWorker起動方式やCIサービス名はこの工程規則の所有対象にしない。
+
+## 新世代CIへ渡す検証契約
+
+[新世代CI要求候補](../../../governance/candidates/next-generation-ci-requirements.md)の
+NCI-HARNESS-001..004をHARNESS-L2-004／005の適用待ち具体化として保持する。HARNESSはCI workflowを所有せず、
+layer、V-pair、artifact class、変更種別、riskから検証義務を定義する。profile生成・runner・queue・cache・retry・
+provider接続・run監視はHELIX-OSの責務である。
+
+上流意味review、設計検証、実装test、merge admission、利用者受入、release、運用評価を一つの`CI green`へ畳み込まない。
+旧CIのjob集合やworkflow名を新契約の分母にせず、承認された上流revisionから必要なoracleを降ろし直す。
+本節は要求案であり、既存CIの変更・実行・適格化を行わない。
 
 ## 外部提供の条件
 

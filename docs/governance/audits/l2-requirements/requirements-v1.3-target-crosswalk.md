@@ -22,7 +22,7 @@ HELIX-OSが実行・管理する制御面を同一文書に保持している。
 | `HR-FR-HYB-007` | HELIX-OS | HELIXOS-L2-004／005 | Skill推薦、発火、効果、誤推薦、stale版の学習還流 |
 | `HR-FR-HYB-008`、§4.6.1 | HARNESS / HELIX-OS | HARNESS-L2-006、HELIXOS-L2-006／008 | consumer向けpackage条件はHARNESS、生成・配布・promotion・rollback運転はOS |
 | `HR-FR-HYB-009` | HELIX-OS | HELIXOS-L2-001／002／007 | IDE read model、DB projection、HEAD・redaction整合 |
-| `HR-FR-HYB-010`、§6 | HELIX-OS | HELIXOS-L2-002／004／007／008 | Issue／PLAN／PR／CI／mergeの実行統制。要求意味の正本はローカル要求文書・指定JSON |
+| `HR-FR-HYB-010`、§6 | HELIX-OS | HELIXOS-L2-002／004／007／008 | Issue／PLAN／PR／CI／mergeのlegacy実行条件をsourceとして分解する。新世代CIは承認上流とHARNESS検証契約から再導出し、旧workflow・job・admissionを要求分母にしない |
 | §4.7 Authoring Admission | HELIX-OS | HELIXOS-L2-001／002／003 | proposalとcanonical化の分離、revision、impact、CAS、atomic rollback |
 | §4.8 `HR-NFR-REG-001..007` | HARNESS / HELIX-OS | HARNESS-L2-005、HELIXOS-L2-005／007／008 | 品質特性・metric・oracleはHARNESS、測定運転・時系列保存・改善joinはOS |
 | §4.9.1 Requirement Discovery | HARNESS / HELIX-OS | HARNESS-L2-003／004、HELIXOS-L2-001／002 | L2質問・prototype・合意とL3 IR境界はHARNESS、event・candidate・canonical transaction管理はOS |

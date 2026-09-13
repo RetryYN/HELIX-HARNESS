@@ -12,6 +12,16 @@ HELIX-HARNESSとHELIX-OSの責務を分離し、既存資産を上流から再�
 本方針は既存資産の一括削除、runtime切替、Requirement IR更新、release、配布先切替を認可しない。
 上流の意味と管理体制を固定し、後続の対象別改訂へ渡す。
 
+## 新世代の基準点
+
+2026-09-14の本上流整理以降を新世代とする。新世代は現行資産の継続改修ではなく、Conceptから対象別L1、L2／L11、
+L3／L10、下流pairへ順に降ろして構成する。現行の要求配置、CI、AI文書、runtime、DB、CLI、hook、adapter、workflowは
+legacy sourceとして棚卸しするが、新世代のbaseline、parity oracle、fallbackとして実行しない。
+
+現行資産は、意味・behavior・判断史・oracle・failure・consumer・運用証拠を採取し、採否と移管先を記録した後、
+current authority、startup read、runtime path、CI path、AI read setから外した非実行archiveへ移す。要求整理が完了するまでは
+物理移動・削除を行わず、archive対象として台帳管理する。
+
 ## 統制対象
 
 | 対象 | 責務 |
@@ -67,7 +77,9 @@ PR／CIへ接続できるのは、少なくとも次が揃った後とする。
 4. mergeが進める状態と、進めない状態が明示されている。
 5. auto-merge、Issue close、release、deployment等の外部作用が明示的に禁止または許可されている。
 
-既存CIの再設計はU6のprojection切替対象である。U1のConcept候補を旧CIへ通すことで、CI設計の妥当性を証明しない。
+新世代CIの実装・切替はU6のprojection切替対象である。U1のConcept候補を旧CIへ通すことで、CI設計の妥当性を証明しない。
+旧CIは新世代のbaseline、parity oracle、rollback実行経路にせず、source inventoryと判断史を残す非実行archiveへ移す。
+archive前の現段階でも旧CIを起動しない。
 
 ## 上流から降ろし直す順序
 
@@ -102,10 +114,12 @@ L2を飛ばしてL1からL3へ接続せず、L2要求とL11受入、L3要件とL
 | `upstream_ids`／`pair_ids` | 親Concept／要求と正規V-pair |
 | `disposition` | reuse、amend、split、replace、retire、archive、reject、unresolved |
 | `implementation_status` | 未設計、設計済み、実装済み、検証済み、運用確認済みを分離 |
-| `migration_preconditions` | 新旧parity、consumer、rollback、証拠、承認境界 |
+| `migration_preconditions` | 新世代要求oracle、consumer、rollback、証拠、承認境界。旧資産との実行parityは含めない |
 
 `unknown`を不要と解釈しない。古い名称、古いpath、Issue close、未参照、テスト成功、重複して見える文章だけで削除しない。
 機能sourceはbehavior atomへ分解し、HARNESSの工程能力、OSの実行統制、個別製品機能のいずれかへ帰属させる。
+`reuse`はlegacy file、runtime、workflowをそのまま再有効化する意味ではない。採択したsemantic atomを新しい上流ID、
+契約、設計、oracle、実装identityへ再導出することを指す。
 
 ## 変更管理
 
@@ -116,7 +130,7 @@ L2を飛ばしてL1からL3へ接続せず、L2要求とL11受入、L3要件とL
 5. **Execute**: HELIX-OSがWorker、branch、lease、budget、CI、review、証拠を管理して実行する。
 6. **Verify**: HARNESSの条件に従い、対象revision、oracle、実結果、独立review、利用者受入、運用評価を分離して確認する。
 7. **Admit**: CAS、semantic diff、impact、rollback、全projectionを同一transactionへ束縛してcanonical化する。
-8. **Retire**: replacement、parity、consumer切替、rollback、read-afterを確認して旧資産を退役・archive・削除する。
+8. **Retire**: 新世代要求oracle、consumer切替、rollback、read-afterを確認して旧資産を非実行archiveへ退役する。
 9. **Learn**: 結果を出典付き改善候補へ戻す。観測やAI提案からauthorityを直接変更しない。
 
 変更状態は`proposed → classified → upstream_decided → derived → implemented → verified → accepted → observed`を
@@ -147,10 +161,11 @@ HELIX-OSが自動走行できる資産は、最低限次を満たす。
 2. reuse／amend／split／replace／retire／archive／rejectの判断と根拠がある。
 3. replacementへ上流ID、pair、acceptance、failure、rollbackが移管されている。
 4. current consumerと実行経路がreplacementへ切り替わり、旧経路を再有効化しない。
-5. dual-greenまたは明示されたparity差分、negative oracle、read-afterを確認した。
+5. 新世代要求から導出したnegative oracleとread-afterを確認した。旧資産とのdual-greenや実行parityを要求しない。
 6. historical evidenceが必要ならarchiveへ隔離し、current startup／runtime／正本検索から外した。
 
 未移管条件が一件でもあれば一括削除しない。削除件数やlegacy token減少は、意味移管と実行経路切替の証拠がある場合だけ前進とする。
+現行資産は原則archiveし、法的・security・容量等の理由で物理削除が必要なものだけ、別の破壊的操作承認へ送る。
 
 ## 現在の適用待ち
 

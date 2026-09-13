@@ -4,6 +4,20 @@
 candidateをruntime入力、DB authority、README上の確定機能として扱わない。plan固有human approval、
 canonical merge、Requirement IR admission、main反映後の再読を経たものだけを現行正本へ移す。
 
+## 新世代CI
+
+- [新世代CIの上流要求候補](next-generation-ci-requirements.md)
+
+HARNESSが所有する検証契約とHELIX-OSが所有するCI生成・実行統制を分け、承認上流から新規導出するための候補である。
+要求整理が完了するまでworkflow、runtime、gate、test、設定、PR／CI運用へ進めない。
+
+## AI可読上流文書
+
+- [AI可読上流文書の要求候補](ai-readable-authority-requirements.md)
+
+HARNESSの工程契約、HELIX-OSの実行コンテキスト、個別製品要求を分け、AIが承認上流へ戻れる入口を構成する候補である。
+現行`AGENTS.md`、`CLAUDE.md`、hook、adapter、promptは要求整理中に変更しない。
+
 ## インフラ・運用・保守・logging品質要求
 
 - [入力・既存owner接続](infrastructure-operations-quality-intake.md)

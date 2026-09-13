@@ -16,6 +16,7 @@
 | 候補系列 | 主対象 | 整理状態 | 文書整理上の扱い |
 |---|---|---|---|
 | `agentic-audit-future-state-delta` | HELIX-OS | L2接続済み | 監査提案、future差分、model比較をOSの改善・証拠要求へ接続 |
+| `ai-readable-authority-requirements` | HARNESS / HELIX-OS | 台帳接続 | AI向け工程契約はHARNESS、authority解決・assignment・生成・stale管理はOSへ分ける。対象別L1／L2確定まで現行AI文書を変更しない |
 | `authority-vocabulary` | HELIX-OS | L2接続済み | 人間authority、作業指示、通知、技術判断の分離をOS統制へ接続 |
 | `bugbot-bounded-repair` / `bugbot-intake-source.md` | HELIX-OS | 台帳接続 | 自動修復の対象・権限・停止条件。HARNESSの検証規則を参照し、OSが実行を統制する候補 |
 | `ci-event-concurrency-generation` | HELIX-OS | 台帳接続 | CI世代・並行実行・current main引継ぎはOSのCI統制候補 |
@@ -30,6 +31,7 @@
 | `instruction-path-change-resilience` | HELIX-OS | 台帳接続 | 指示・policy・provider差の版追従と縮退はOSの統制・継続候補 |
 | `management-scrum-product-forward` | HELIX-OS | 台帳接続 | 管理Scrumと製品Forward入口の分離はOSの進行統制候補。HARNESS工程定義を複製しない |
 | `mechanism-adequacy` | HELIX-OS | 台帳接続 | 既存能力照合、採否、効果還流はOSの改善統制候補 |
+| `next-generation-ci-requirements` | HARNESS / HELIX-OS | L2接続済み | layer・pair・risk別の検証契約はHARNESS、profile生成・実行・隔離・証拠回収・legacy archiveはOSへ分ける。上流確定までCI実装へ進めない |
 | `producer-provenance-separation` | HELIX-OS | L2接続済み | 作成者、commit実行者、公開者、reviewerの出所をOSの証拠要求へ接続 |
 | `refactoring-trigger-admission` | HELIX-OS | 台帳接続 | refactoring候補の検出・admission・shadow評価はOSの改善統制候補 |
 | `requirement-formation-scoped-admission` | HELIX-OS | L2接続済み | 根拠付き要求形成と影響範囲限定の再確定をOS統制へ接続 |

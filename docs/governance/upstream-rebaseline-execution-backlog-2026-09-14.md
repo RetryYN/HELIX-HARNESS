@@ -20,8 +20,8 @@ HELIX-OSが順に実行・停止・再開できる作業単位へ分ける。Git
 | U3 | 対象別L2とL11を確定 | 対象別L1、既存L2案、prototype／非UI適用性 | 合意revision付きL2、対応L11受入設計 | 要求・prototype・N/A・合意を確認 | 全L2がL1親、利用場面、成功結果、L11 pairを持つ |
 | U4 | L3要件とL10を再凍結 | 合意済みL2、v1.3、candidate L3、Requirement IR | 対象別L3、L10、IR revision、canonicalization receipt | L3要件revisionを承認 | 全L3がL2親、AC、failure、L10 pair、impactを持つ |
 | U5 | L4–L9とL6↔L7を再導出 | 凍結L3／L10、既存設計・実装・test | 対象別設計、test contract、実装slice、trace | 不可逆・外部作用だけ判断 | 全変更が正規pair、owner、oracle、green evidenceを持つ |
-| U6 | runtime／projectionを切替 | 検証済み下流、consumer一覧、migration plan | runtime、DB、CLI、CI、GitHub projectionの新revision | cutover等のaction-binding approval | dual-green、rollback、consumer read-after、旧write停止 |
-| U7 | 旧資産を退役 | replacement、parity、consumer切替、履歴要否 | retire／archive／delete dispositionと証拠 | 破壊的削除・release境界を確認 | 未移管0、旧runtime再有効化不可、rollback対象明示 |
+| U6 | runtime／projectionを新世代へ切替 | 検証済み下流、consumer一覧、migration plan | runtime、DB、CLI、新世代CI、GitHub projectionの新revision | cutover等のaction-binding approval | 新要求oracleでgreen、rollback、consumer read-after、旧write停止。旧CIは実行しない |
+| U7 | 現行資産を非実行archiveへ退役 | 新世代replacement、consumer切替、履歴inventory | archive disposition、source provenance、非実行証拠 | 例外的な物理削除だけ破壊的操作確認 | 未移管0、旧runtime再有効化不可、current read／write pathから隔離 |
 
 Waveを飛ばさない。U1–U4の上流が変わった場合、影響するU5–U7をstale化する。
 U5以降の実装成功からU1–U4の意味を逆算して確定しない。
@@ -66,6 +66,7 @@ GitHub Issue番号、branch、PRはこの契約への参照として追加でき
 | URB-U3-HARNESS-001 | U3 | HARNESS | HARNESS L1、L2案6件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
 | URB-U3-OS-001 | U3 | HELIX-OS | OS L1、L2案9件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
 | URB-U3-WEB-001 | U3 | HELIX-Web | Web L1、Vision由来L2案8件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
+| URB-U3-AIDOC-001 | U3 | HARNESS / HELIX-OS | 対象別L1、AI可読文書要求候補 | 合意revision付きAI文書L2／L11 | upstream_waiting |
 | URB-U4-001 | U4 | 対象別 | v1.3対応表、IR差分proposal、候補L3／L10 | 対象別L3／L10とIR revision | upstream_waiting |
 | URB-U5-001 | U5 | 対象別 | 凍結L3／L10、既存資産台帳 | 下流再導出と検証済み実装slice | upstream_waiting |
 | URB-U6-001 | U6 | HELIX-OS | 検証済みslice、consumer、migration | runtime／projection切替 | upstream_waiting |
@@ -87,3 +88,5 @@ U1のreview・承認・完了根拠にしない。上流意味reviewの専用lan
 - CIを回すこと自体を前進や完了にしない。実行する検査と判断対象を先に固定する。
 - remote sync、上流意味review、人間decision、下流CIを別operationにする。branch pushからPR作成を自動導出しない。
 - 上流review専用laneが未整備なら`review_waiting`で停止し、旧PR／旧CI receiptを代替証拠にしない。
+- 新世代CIは承認上流から新規導出する。旧CIを動かさず、dual-green・job parity・旧workflow適合を移行条件にしない。
+- AI可読文書も承認上流から新規導出する。現行Core Reads、prompt、adapterを新世代のbaselineとして移植しない。

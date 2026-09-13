@@ -31,7 +31,7 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-005 | 観測・失敗・改善候補を、出典と適用範囲を保持して要求へ還流できる | HBR-P4／P7／P8、HCV4-L2-006 | 経験を正本へ勝手に昇格せず、訂正・棄却・保留・失効と影響範囲を確認できる |
 | HELIXOS-L2-006 | HARNESSの提供版を新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |
 | HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |
-| HELIXOS-L2-008 | CIを起動・監視・再実行し、失敗を修復へ戻して、HARNESSが要求する検証結果を収集できる | HBR-P6、v1.3 HR-FR-HYB-010 | 未実行・失敗・中断を区別し、CI greenだけで必要なreview・承認を代替しない |
+| HELIXOS-L2-008 | 承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |
 | HELIXOS-L2-009 | 中断・担当交代・障害後に、許可範囲内で継続・復旧できる | HBR-P1／P2、HNFR-P5／P8 | 累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ |
 
 移管元は[柱要求](../../helix/L1-requirements/pillar-requirements.md)、
@@ -55,11 +55,22 @@ HELIX-OS自身の変更も要求・判断・検証へ追跡し、統制する立
 | HELIXOS-L2-004 | Workerの目的・成果形式・許可範囲・予算・期限を割当に結び、実行・停止・成果回収を追跡する。作成側と検証側を区別し、独立検証不成立を明示する。CLI／IDE／hosted surfaceの差でguardの適用有無を隠さない | HBR-P2、柱要求§2.6 |
 | HELIXOS-L2-005 | 検出から改善候補・採否・再検証へ接続する。学習の発火・利用・効果・誤推薦・古い版を計測し、知見の登録だけを有効性の証拠にしない。経験からHARNESS工程規則を直接書き換えない | HBR-P4／P8、v1.3 HR-FR-HYB-007 |
 | HELIXOS-L2-007 | 作業・判断・検証の原証拠と出典を保持する。feedbackはintake・classify・ack・pending・resolutionを区別し、未ack findingを消さない。memoryの内容を責務正本へ反映してからretireし、古い指示を再提示しない | HBR-P7／P9、v1.3 HR-FR-HYB-005／006 |
-| HELIXOS-L2-008 | CI結果を対象HEADと実行世代へ結び、失敗ログを回収して修正・再実行する。新しいpushで旧reviewや証拠を使い回さず、要求する検証・独立review・DB追従が揃ってから進行を制御する。検査を弱めてgreenにしない | HBR-P6、v1.3 HR-FR-HYB-010／§6 |
+| HELIXOS-L2-008 | 承認済み上流revision、HARNESS版、対象product、変更集合からCI profileを生成し、結果を要求・pair・oracle・HEAD・環境・runner・実行世代へ結ぶ。上流意味review、下流verification、merge、releaseを別pipeline classにする。失敗種別と差戻し先を保持し、検査を弱めてgreenにしない | HBR-P6、v1.3 HR-FR-HYB-010／§6、新世代CI要求候補 |
 | HELIXOS-L2-009 | eventをdurableに記録して冪等に投影し、成功後だけcheckpointを公開する。session交代で予算・期限・失敗回数・未完義務を初期化せず、同一作業の二重claimや副作用を防ぐ | HBR-P1、HNFR-P5、柱要求§2.7 |
 
 ログ保存・DB投影は要求の意味正本を代替しない。必要な証拠の種類と工程条件はHARNESSを参照し、
 その収集・保全・有効性確認と実行制御をHELIX-OSが担う。
+
+## 新世代CIの再構築条件
+
+[新世代CI要求候補](../../../governance/candidates/next-generation-ci-requirements.md)のNCI-OS-001..007を、
+HELIXOS-L2-008の適用待ち具体化として保持する。既存workflow、job、required check、review admissionはlegacy implementationであり、
+新世代CIの要求分母や合格oracleにしない。GitHub Actions等は交換可能なprovider adapterとする。
+
+新旧CIはidentity、writer、evidence namespaceを分け、旧CIは実行せずarchive referenceとしてのみ扱う。上流意味review専用laneが整う前に、Concept／L1／L2／L3候補を
+旧PR・旧CIへ接続しない。新世代CIの実装は、対象別上流の確定後にL3／L10から再導出し、shadow比較、cutover、rollback、
+consumer read-afterを経て旧writerを停止する。shadow実行では新世代だけを要求oracleへ照合し、旧CIとのdual runやparityを求めない。
+本節ではworkflow、runtime、gate、設定を変更しない。
 
 ## 管理対象としてのHELIX-Web
 

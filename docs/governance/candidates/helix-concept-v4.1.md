@@ -110,6 +110,23 @@ HELIX-OSはHARNESSを含むHELIXプロジェクト群に対し、次を担う。
 
 OSはHARNESSの工程規則を適用する。運用実績や学習結果からHARNESSまたは個別製品の要求を直接変更しない。
 
+## 新世代への再構築
+
+本Concept revision以降を新世代とする。新世代は現行runtime、CI、AI向け文書、DB projection、CLI、hook、adapter、
+workflow、旧要求配置を改修して延命する系列ではない。Conceptから対象別L1、L2／L11、L3／L10、下流pairへ順に
+責務と契約を再導出し、その結果として必要な実装を新規構成する。
+
+現行資産は、要求atom、behavior、設計判断、oracle、失敗事例、consumer、運用証拠を採取するreference sourceである。
+新世代のbaseline、合格oracle、parity目標、runtime fallbackにはしない。採取元、digest、採否、移管先、非採用理由、
+historical valueを記録した後、current startup、runtime、CI、AI read set、正本検索から外した非実行archiveへ移す。
+
+新世代CIはHARNESSの検証契約と対象製品要求からHELIX-OSが組み立てる。旧CIを実行・比較せず、旧workflowやjob集合への
+適合を要求しない。AIが読む文書も承認済み上流から生成し、HARNESS工程契約、OS実行context、個別製品要求を分離する。
+現行`AGENTS.md`、`CLAUDE.md`、prompt、adapterの文面を新世代authorityとして複製しない。
+
+上流要求整理が完了する前に、新世代の実装、旧資産の物理移動・削除、runtime切替、CI起動、PR admissionを行わない。
+要求整理中の成果はcandidate、inventory、crosswalk、適用待ち差分として保持する。
+
 ## 個別製品Concept
 
 個別製品は自身の利用者、価値、要求、prototype、受入、運用結果を所有する。
@@ -123,8 +140,8 @@ HARNESS、HELIX-OS、個別製品のexact targetへ帰属させる。各資産�
 reject、unresolvedのいずれかを持つ。
 
 自動走行へ入れる前に、上位revision、responsibility owner、scope、pair、acceptance、停止・復旧条件を解決する。
-未解決資産は実装の有無にかかわらず上流再導出待ちとする。replacement、parity、consumer切替、rollback、read-afterが
-揃うまで旧資産を削除しない。
+未解決資産は実装の有無にかかわらず上流再導出待ちとする。新世代要求oracle、consumer切替、rollback、read-afterが
+揃うまで旧資産をcurrent pathから外さず、揃った後は非実行archiveへ移す。旧資産との実行parityを要求しない。
 
 ## System invariant
 
@@ -140,6 +157,7 @@ reject、unresolvedのいずれかを持つ。
 10. adaptation subsystemはauthorityへ直接writeしない。
 11. 未適格な機能をHARNESS packageまたは個別製品releaseへ暗黙包含しない。
 12. replacement evidenceなしで旧capabilityをretireしない。
+13. 旧CI、旧AI文書、旧runtimeを新世代のbaseline、parity oracle、fallbackとして再利用しない。
 
 ## 非目標
 

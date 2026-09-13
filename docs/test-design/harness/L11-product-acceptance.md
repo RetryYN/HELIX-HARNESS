@@ -20,7 +20,7 @@ pair_artifact: docs/design/harness/L2-requirements/product-requirements.md
 | HARNESS-L2-002 | 異なる開発styleの工程を確認し、Discovery／PoCをScrumへ混入させない |
 | HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない |
 | HARNESS-L2-004 | 要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できる |
-| HARNESS-L2-005 | 異なる言語・CI実装でも同じ工程条件を評価でき、特定Workerの成功を検証条件の代替にしない |
+| HARNESS-L2-005 | 異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |
 | HARNESS-L2-006 | 提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる |
 
 ## 工程条件の確認シナリオ
@@ -31,6 +31,7 @@ pair_artifact: docs/design/harness/L2-requirements/product-requirements.md
 - HARNESS-L2-003：実装済み・総合検証済み・利用者受入済み・運用評価済みを区別し、一つの状態から残りを推定しない。
 - HARNESS-L2-004：要求変更に対して影響する設計・V-pairが示され、無関係な要求を再承認対象へ巻き込まず、必要な検証を落とさない。
 - HARNESS-L2-005：別revisionの証拠やCI成功のみを提示しても利用者受入成立と判定しない。実行基盤を変えても必要な証拠条件を維持する。
+- HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。
 
 本書はHARNESSの利用者による工程規則の確認である。OS側のWorker・CI・ログ保存の実機能検証とは分ける。
 
