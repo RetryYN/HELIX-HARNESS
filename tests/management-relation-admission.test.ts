@@ -21,6 +21,8 @@ const base = {
   expected_generation: 1,
   writer_operations: [] as const,
   legacy_consumers_remaining: 1,
+  compatibility_reader_active: true,
+  retirement_requested: false,
 };
 const assignment = {
   schema_version: "helix-management-relation.v1",
@@ -262,6 +264,7 @@ describe("management relation admission", () => {
         ...base,
         phase: "writer_cutover",
         relation: assignment,
+        retirement_requested: true,
       }),
     ).toMatchObject({ ok: false, reasons: expect.arrayContaining(["consumer_zero_required"]) });
   });

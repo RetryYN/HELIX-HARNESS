@@ -41,7 +41,8 @@ top-level fieldと主要nested fieldを`product_contract`、`management_control`
 
 結果は`match`、`legacy_only`、`relation_only`、`mismatch`、`unavailable`のexact setで返す。
 pilot対象外だけ`legacy_only`を許容し、pilotではcanonical relation欠落をlegacy greenで相殺しない。
-writer cutover後はrelationだけを許容するが、legacy consumerが0でなければretirementを拒否する。
+writer cutover後はrelationだけを書き込み、compatibility reader期間に限って`match`を許容する。
+legacy consumerが0でなければretirementを拒否するが、readerを残したsingle-writer切替自体とは混同しない。
 同一operationのdual-writeは禁止する。
 
 transitionは同一ID・同一内容だけ冪等吸収し、同一ID・異内容、from-state不一致、同一from-stateからの

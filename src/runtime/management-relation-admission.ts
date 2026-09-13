@@ -314,6 +314,8 @@ export interface ManagementRelationAdmissionInput {
   readonly expected_generation?: number;
   readonly writer_operations: readonly ("legacy" | "relation")[];
   readonly legacy_consumers_remaining: number;
+  readonly compatibility_reader_active: boolean;
+  readonly retirement_requested: boolean;
 }
 
 export interface ManagementRelationAdmissionResult {
@@ -394,10 +396,20 @@ export function evaluateManagementRelationAdmission(
   if (disposition === "relation_only" && input.phase === "outside_pilot") {
     reasons.push("relation_only_outside_pilot");
   }
+  if (
+    disposition === "match" &&
+    input.phase === "writer_cutover" &&
+    !input.compatibility_reader_active
+  ) {
+    reasons.push("match_requires_compatibility_reader");
+  }
   if (input.writer_operations.includes("legacy") && input.writer_operations.includes("relation")) {
     reasons.push("dual_write_forbidden");
   }
-  if (input.legacy_consumers_remaining > 0 && input.phase === "writer_cutover") {
+  if (input.phase === "writer_cutover" && input.writer_operations.includes("legacy")) {
+    reasons.push("legacy_writer_after_cutover");
+  }
+  if (input.legacy_consumers_remaining > 0 && input.retirement_requested) {
     reasons.push("consumer_zero_required");
   }
   const normalizedReasons = [...new Set(reasons)].sort();
@@ -419,6 +431,8 @@ export function evaluateManagementRelationAdmission(
           expected_generation: input.expected_generation ?? null,
           writer_operations: input.writer_operations,
           legacy_consumers_remaining: input.legacy_consumers_remaining,
+          compatibility_reader_active: input.compatibility_reader_active,
+          retirement_requested: input.retirement_requested,
           disposition,
           reasons: normalizedReasons,
           inventoryDigest,
