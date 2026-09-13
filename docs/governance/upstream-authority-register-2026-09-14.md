@@ -23,8 +23,8 @@ as_of: 2026-09-14
 | refinement契約 | 14契約 | `requirements-ir/refinement_contracts.json` | frozen／specified混在 | [対象別対応](audits/l2-requirements/refinement-target-crosswalk.md)に従いrevision単位で扱う |
 | authority候補 | 95文書 | `docs/governance/candidates/` | draft／承認待ち／正本化待ち混在 | [候補対象別台帳](audits/l2-requirements/candidate-source-target-inventory.md)から個別採否 |
 | 新世代CI要求候補 | 1 | `docs/governance/candidates/next-generation-ci-requirements.md` | draft、要求整理のみ。既存CIはlegacy source | HARNESS検証契約とHELIX-OS実行統制を対象別L1／L2へ接続し、L3／L10以降は上流確定まで待つ |
-| 現行CI資産 | 未棚卸し | `.github/workflows/`、関連script／gate／設定 | legacy、非実行、archive待ち | 要求整理完了後にsource inventoryと判断史を保全し、runtime入口から外す。新世代CIのbaseline・parity oracleにしない |
-| AI可読文書 | 現行集合未棚卸し | `AGENTS.md`、`CLAUDE.md`、`.claude/`、`.codex/`、関連template／prompt | legacy runtime input、archive待ち | HARNESS工程契約とOS実行contextへ分解し、新世代manifestから再生成する。要求整理中は変更しない |
+| 現行CI資産 | workflow 4件、関連filename発見集合82件 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md) | legacy、非実行、archive待ち。依存closure未完 | 要求整理完了後にsource inventoryと判断史を保全し、runtime入口から外す。新世代CIのbaseline・parity oracleにしない |
+| AI可読文書 | 直接入口38件 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md) | legacy runtime input、archive待ち。docs／template参照closure未完 | HARNESS工程契約とOS実行contextへ分解し、新世代manifestから再生成する。要求整理中は変更しない |
 | 旧HARNESS要求群 | 5文書 | `docs/design/harness/L1-requirements/`のbusiness／functional／screen／technical／nfr | compatibility debtを含む | HARNESS工程条件とOS運用条件へ分け、未移管条件を保持 |
 | 旧screen要求・設計 | 7文書＋個別mock | `docs/design/helix/L2-screen/`と対応test-design | 旧layer／pair、個別mock未確認を含む | L2要求形成・prototype合意・L11受入へ再接続 |
 | 適用待ち意味差分 | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/l2-requirements/l2-freeze-ir-correction.md) | proposal、未適用 | 正規transaction、impact、rollback、全projection更新 |
