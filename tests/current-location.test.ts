@@ -1030,6 +1030,22 @@ describe("project current-location read model", () => {
         "l14_claim_with_l7_work",
       );
       expect(snapshot.drive_recommendation.model).not.toBe("Recovery");
+      const roadmap = buildProjectRoadmapCurrentReport(snapshot);
+      expect(
+        roadmap.actions.find((action) => action.category === "drive_route")?.l12_layers,
+      ).toEqual(expect.arrayContaining(["L12"]));
+      const driveModel = buildProjectDriveModelReport(snapshot);
+      expect(
+        driveModel.candidates.find((candidate) => candidate.model === "Reverse")?.doc_dependencies,
+      ).toEqual(expect.arrayContaining(["docs/design/**", "docs/test-design/**"]));
+      expect(buildProjectRecoveryPlan(snapshot).automation_runway.postcheck_commands).toEqual(
+        expect.arrayContaining([
+          "helix drive model --json",
+          "helix current-location --json",
+          "helix roadmap current --json",
+          "helix vmodel fit",
+        ]),
+      );
     }));
 
   it("U-CURRENT-LOCATION-001: typed close-ready readinessを全surfaceへ投影する", () =>

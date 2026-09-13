@@ -2957,7 +2957,10 @@ export function buildProjectRoadmapCurrentReport(
     });
   const driveActionL12Layers = snapshot.drive_route.mustReturnToDesign
     ? [...snapshot.drive_route.reverse.l12Layers]
-    : [...snapshot.drive_route.forward.currentBandIds.flatMap((id) => bandIdToL12Layers(id))];
+    : unique([
+        ...snapshot.drive_route.forward.currentBandIds.flatMap((id) => bandIdToL12Layers(id)),
+        ...(snapshot.current.l12_layer ? [snapshot.current.l12_layer] : []),
+      ]);
   const driveAction: ProjectRoadmapCurrentAction = {
     action_id: snapshot.drive_route.routeId,
     category: "drive_route",
@@ -3348,6 +3351,8 @@ export function buildProjectDriveModelReport(
         command: "helix current-location --json",
         ...driveModelCandidateCoverage({ model: "Reverse", snapshot }),
         doc_dependencies: unique([
+          "docs/design/**",
+          "docs/test-design/**",
           ...snapshot.drive_route.reverse.docDependencies,
           ...snapshot.design_coverage_gate.docDependencies,
         ]),
@@ -3932,7 +3937,12 @@ function buildProjectRecoveryAutomationRunway(input: {
       approval_actions: [],
       phases: [],
       target_tables: [],
-      postcheck_commands: ["helix drive model --json"],
+      postcheck_commands: [
+        "helix drive model --json",
+        "helix current-location --json",
+        "helix roadmap current --json",
+        "helix vmodel fit",
+      ],
       expected_transition: "Recovery 以外の drive model selection に従う",
       reasons: ["Recovery が選択されていないため automation runway は不要"],
     };
