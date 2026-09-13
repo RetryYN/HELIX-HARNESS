@@ -51,8 +51,10 @@ prototype／非UI適用性を個別採否し、別の人間合意を行う。
 | M5 HARNESS責務欠落 | 要求形成、合意、freeze、差戻し、再開、完了のL1要求を追加 | 未取得 |
 | M6 移行中gate不明 | 静的意味検査と人間判断の効力、旧CI／旧gate非利用を明記 | 未取得 |
 
-修正版へのClaude再reviewは2回ともprovider `outcome:error`で本文が返らず、旧所見の`resolved`判定はない。
-したがって人間は修正文書と未取得状態を見て判断する。初回reviewやtimeoutを合格receiptとして扱わない。
+修正版へのClaude再reviewは2回ともprovider `outcome:error`で本文が返らなかった。第3回はsealed worker contextから
+remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起動したが、20分deadlineで
+`terminal_failure=timed_out`となり本文を返さなかった。旧所見の`resolved`判定はない。
+したがって人間は修正文書と未取得状態を見て判断する。初回review、provider error、timeoutを合格receiptとして扱わない。
 
 ## 分けて記録する判断
 
