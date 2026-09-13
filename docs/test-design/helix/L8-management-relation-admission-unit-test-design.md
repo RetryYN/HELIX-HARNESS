@@ -1,7 +1,8 @@
 ---
 title: "Management Relation Admission単体テスト設計"
 layer: L8
-artifact_type: test-design
+artifact_type: test_design
+sub_doc: unit-test-design
 status: confirmed
 created: 2026-09-13
 updated: 2026-09-13
