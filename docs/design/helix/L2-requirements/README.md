@@ -9,6 +9,8 @@ Concept v4候補に残るHarness／Control Plane／DevOS区分を対象別要求
 HARNESS／HELIX-OS／HELIX-Web境界へ投影する。
 [上流再整備と既存資産統制方針](../../../governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)に従い、
 既存資産を意味単位で分類し、上流から再導出してから自動走行・移行・退役へ進める。
+[上流authority管理台帳](../../../governance/upstream-authority-register-2026-09-14.md)で、要求源の母集団、authority状態、
+対象別入口、適用待ちと次の処置を管理する。GitHub件数を要求分母にしない。
 
 - [HARNESSの利用要求](../../harness/L2-requirements/product-requirements.md)：Vモデル、層・pair、工程・検証条件を規定する提供プロダクト。
 - [HELIX-OSの統制要求](../../helix-os/L2-requirements/governance-requirements.md)：管理・統制、Worker、学習、ログ、CI、継続・復旧。

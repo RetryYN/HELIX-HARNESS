@@ -126,3 +126,4 @@ HELIX-OSが自動走行できる資産は、最低限次を満たす。
 - 下流consumer、runtime、CI、DB projectionは上流freeze後に変更する。
 
 現在の対象別要求と監査は[HELIX L2要求の読取り入口](../design/helix/L2-requirements/README.md)から参照する。
+[上流authority管理台帳](upstream-authority-register-2026-09-14.md)を、母集団・状態・正規入口・次の処置の管理面として使う。
