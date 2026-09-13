@@ -4871,13 +4871,7 @@ describe("L7 CLI surface closure", () => {
       });
       expect(overviewSummaryPayload).not.toHaveProperty("work_buckets");
 
-      const overviewText = runCliIn(root, [
-        "closure",
-        "overview",
-        "--from-db",
-        "--limit",
-        "1",
-      ]);
+      const overviewText = runCliIn(root, ["closure", "overview", "--from-db", "--limit", "1"]);
       expect(overviewText.status).toBe(0);
       expect(overviewText.stdout).toContain(
         "closure overview: status=contradicted current=L14->L12 queue=1 close_ready=0 collect=1 repair=0 reverse=0 write=read-only",

@@ -63,6 +63,7 @@ modifies:
   - { artifact_path: src/workflow/current-location-workflow-identity.ts, artifact_type: source_module }
   - { artifact_path: docs/design/helix/L6-function-design/visualization-view-model.md, artifact_type: design_doc }
   - { artifact_path: docs/design/helix/L5-detail/operation-scope.md, artifact_type: design_doc }
+  - { artifact_path: docs/design/helix/L4-basic-design/worker-wrapper-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/test-design/helix/visualization-view-model.md, artifact_type: test_design }
   - { artifact_path: tests/current-location.test.ts, artifact_type: test_code }
   - { artifact_path: tests/current-location-db-workflow-identity.test.ts, artifact_type: test_code }
