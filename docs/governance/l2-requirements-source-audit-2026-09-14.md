@@ -83,7 +83,8 @@ HBR9件／HNFR4件にHOT13件が対応するが、本文は旧L14観測であり
 | `docs/design/harness/L1-requirements/technical-requirements.md` | 技術制約・外部IF・既存制約・state・skill注入・共通工程・drift解消の7節と関連文書節 | 全OS第一級と現行OS tierが不一致。旧9-mode、専門職drive、旧pair、proseの未実装CLI例が残る。GitHub projection、要求意味正本、実行状態の責務を区別して移管する必要あり |
 
 既存15 NFRや7節を一括で棄却・現行採用しない。HIL/HBR/HNFR/refinementへの対応を要求単位で照合する。
-読了済み5文書の要求単位の移管対応は継続中。
+読了済み5文書は[新世代対象別対応](audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md)で
+10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節を対象別に分類した。個別採否とL2合意は継続中。
 業務要求のKPIも保持対象として照合する。D-07はAI委譲工数率を要求するが、計測場所の
 `drive:`集計だけでは工数の分子・分母を測れる証拠にならない。D-04の回帰発生総件数の
 取得方法も本文では確定していない。旧目標値の存在と現行測定可能性・達成を区別する。
@@ -125,7 +126,7 @@ PM-06のp95 2秒／50KB、Mermaid 1秒、fallback、共有範囲、renderer境�
 | `harness-memory-coordination-boundary-requests.md` | HMC-BR-001..006 | L1候補、本文で人間承認済み・正本化待ち | memoryを期限付き通知とpointerへ限定。要求・設計・長期知識をmemoryの正本にしない。BR-002の再取得先は作業状態中心であり、要求の意味をIssueから取得する許可にはならない |
 | `producer-provenance-separation-requests.md` | PPS-BR-01..04 | L1／L12、draft_candidate | 成果生成・commit・公開・reviewを分離し、GitHub actorからproducerを推測しない。PPS-R01..07への対応あり。旧receiptの独立性を後付けしない |
 | `rule-derivation-requests.md` | G-BR-001 | L1候補、approved_pending_canonical_promotion | 許容境界の実効化と根拠付き診断を要求。詳細8要求・8受入を参照。候補IDとIR登録、要求採用と実行有効化を分離 |
-| `functional-release-slice-requests.md` | FRS-BR-001..009 | L1、draft_candidate、本文にv0.2承認記録 | 独立昇格・exact収載・成熟度・影響追跡・rollback・責務再編・全要求配置・限定先行投入・安全閉包を要求。旧構成や説明用の9群・17系統を固定分母にしない。L1/L3/L10記述だけではL2接続は未確認 |
+| `functional-release-slice-requests.md` | FRS-BR-001..009 | L1、draft_candidate、本文にv0.2承認記録 | 独立昇格・exact収載・成熟度・影響追跡・rollback・責務再編・全要求配置・限定先行投入・安全閉包を要求。新世代対応表と対象別L2案へ接続済みだが再採否待ち。旧構成や説明用の9群・17系統を固定分母にしない |
 | `mechanism-adequacy-requests.md` | R1..R6、受入条件1..6 | approved_pending_canonical_promotion、層metadataなし | 既存能力照合、六分類、反証可能性、AI設計引渡し、証拠と低費用、運用還流を詳細に保持。調査未完を能力不存在へ変換しない。§5はL1要求・L3要件・L10受入と記載しL2接続が未明示 |
 | `responsibility-centric-learning-requests.md` | RCLS-BR-001..006 | L1候補／L12、draft_candidate | 責務owner、入力分類、最小packet、段階昇格、失効・隔離、authority保全を要求。Learningから要求やreleaseを直接変更しない |
 | `security-engagement-authority-requests.md` | 固有要求IDなし、価値5項目 | layer L1、draft_candidate、本文でhuman gate成立済み | 認可scope、分離実行、finding区別、取消、機密保護を要求。metadataのpendingと本文の成立済みの意味を承認revisionで照合する必要あり。本監査は実行権限を付与しない |
@@ -142,7 +143,7 @@ PM-06のp95 2秒／50KB、Mermaid 1秒、fallback、共有範囲、renderer境�
 
 | 文書 | 本文から確認した範囲 | 最新要求への取扱い |
 |---|---|---|
-| `development-investment-stage-directives-intake_v1.0.md` | INV-001..072の投資候補とP0..P4導入帯。候補／未承認と明記 | 72候補を現行必須要求やIssueへ一括変換しない。参照先の原文は2515行で、今回本文を読了していない。能力依存・個別条件・採否の照合は未完了 |
+| `development-investment-stage-directives-intake_v1.0.md` | INV-001..072の投資候補とP0..P4導入帯。候補／未承認と明記 | 参照先原文を全文確認し、72候補を新世代対応表で過不足なく5群へ分類した。現行必須要求やIssueへ一括変換せず、個別採否は未完了 |
 | `concept-vision-package-intake.md` | 2026-09-06受領10文書の取込説明、版／ownerの分離、原文欠落、既存責務との接続候補 | 文書中の通読・hash検証・過去PR状態は当時の作業者の記録。今回の検証結果として転用しない。Concept v0.1をv4承認の取消と解釈しない |
 | `concept-vision-release-crosswalk.md` | Vision1.0..5.0、PKG-D01..13、既存RLS／FRSへの対応案、要求差分5件と受入候補 | 文書版・能力目標・公開SemVerを分離。Packageは選択view、Moduleはowner。成長機構無効での開発、対象製品ReleaseとHELIX自己Releaseの分離、版追跡、将来目標の隔離をL2の提供・運用要求へ照合する |
 
@@ -279,7 +280,7 @@ v4由来L2案とL11案にはAVS6件・RFA3件・DGH3件、AAFD4件・RCLS6件・
 各要求について、出典と本文、採否と承認revision、L2プロト合意、L3要件、L11受入の対応を確認する。
 未確認・未移管・未合意・未受入を区別し、IDや文書が存在するだけでは接続済みとしない。
 
-候補directoryの92文書は系列単位で対象別台帳へ収容した。L2接続済み、台帳接続、分解待ち、保留を区別し、
+候補directoryの95文書は29系列として対象別台帳へ収容した。L2接続済み、再採否待ち、人間承認待ちを区別し、
 残る個別採否を今回の文書整理が完了していないという曖昧な一状態へまとめない。
 旧HARNESS要求に残っていた「GitHub正本」は、CI実行・PR許可・権限証跡の保存を指すよう訂正し、
 要求の意味・採否・合意revisionは対象別のローカル要求正本を参照すると明記した。

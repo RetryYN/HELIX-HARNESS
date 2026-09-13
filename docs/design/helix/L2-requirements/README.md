@@ -161,6 +161,11 @@ MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求
 旧screen7文書の本文読取りは完了したが、業務・遷移の接続欠落、旧分類、個別モック未確認8画面等の
 移管条件は[画面境界](../L2-screen/screen-mock-boundary.md)に残る。読取り完了を移管・合意・受入完了としない。
 
+旧harness要求5文書の10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節は
+[新世代対象別対応](../../../governance/audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md)で
+過不足なく分類した。旧承認、旧実装済み宣言、旧CI／DB／mode／driveを継承せず、HARNESSの工程契約、
+HELIX-OSの実行統制、個別製品の要求へ再採否する。分類済みを採択済みとは扱わない。
+
 - [画面境界](../L2-screen/screen-mock-boundary.md)と対文書はL2／L11の整備案へ改訂した。
   draftであり、要求・プロト合意と実操作受入の証拠は未確認。旧confirmedを引き継がず、対文書のcanonical再利用禁止も維持する。
 - [要求発見契約](../L3-requirements/requirement-discovery-json-authority.md)はL2の質問・回答・prototype・
@@ -201,8 +206,8 @@ MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求
 また、非空でもIssue本文・要求revision・残義務の一致が確認されたことにはならない。
 全要求から作業管理への対応は、要求集合を確定してから別に照合する。
 
-本入口の作成は全要求の監査完了を意味しない。要求候補21文書と旧harness要求5文書は本文を確認したが、
-他の名称のintake、未移管要求、L2合意証拠、全要求のL3／L11接続は確認中である。
+本入口の作成は全要求の監査完了を意味しない。要求候補系列と旧harness要求5文書は本文を確認し、
+対象別対応を作成したが、個別モック、他の名称のintake、未採否要求、L2合意証拠、全要求のL3／L11接続は確認中である。
 
 別名の[投資候補intake](../../../governance/candidates/development-investment-stage-directives-intake_v1.0.md)と
 [Concept・Vision・提供構成](../../../governance/candidates/concept-vision-release-crosswalk.md)も照合対象に含む。
