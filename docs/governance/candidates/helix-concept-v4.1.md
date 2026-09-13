@@ -50,7 +50,7 @@ rollback・監視の実行統制をHELIX-OSへ分ける。
 GitHubは作業、協調、CI、review、統合証拠のsurfaceである。Issue close、PR merge、label、board列、CI greenから、
 要求の追加・削除・採否・合意・受入・退役を生成しない。
 
-## 8原則
+## 9原則
 
 1. **Human Sovereignty**: request、selection、approval、decision、dispositionを分け、actor、target、scope、revisionへ束縛する。
 2. **Product Separation**: HARNESSの工程契約、HELIX-OSの実行統制、個別製品の利用価値を別authorityにする。
@@ -60,6 +60,11 @@ GitHubは作業、協調、CI、review、統合証拠のsurfaceである。Issue
 6. **Evidence Closure**: subject、revision、実体、oracle、独立review、実行世代、read-afterのjoinで完了を判定する。
 7. **Durable and Replayable**: semantic authority、execution fact、projection、working contextを分け、再構築可能にする。
 8. **Controlled Adaptation**: learning、audit、environment reconciliation、synthesisは候補を上流へ戻し、authorityを直接変更しない。
+9. **Composable Release**: 検証済みBehavior ContractからSlice、Module、Bundle、HARNESS artifactへ適格性を保って合成し、releaseとdeploymentを分ける。
+
+Product Separationだけをv4.1で追加し、v4.0のHuman Sovereignty、Contract Compilation、Responsibility First、
+Bounded Multi-AI Execution、Evidence Closure、Durable State／Replayable Truth、Controlled Adaptation、
+Composable Releaseは意味を保持する。
 
 ## 上流から運用までの構造
 
