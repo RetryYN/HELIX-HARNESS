@@ -23,6 +23,7 @@ as_of: 2026-09-14
 | refinement契約 | 14契約 | `requirements-ir/refinement_contracts.json` | frozen／specified混在 | [対象別対応](audits/l2-requirements/refinement-target-crosswalk.md)に従いrevision単位で扱う |
 | authority候補 | 95文書 | `docs/governance/candidates/` | draft／承認待ち／正本化待ち混在 | [候補対象別台帳](audits/l2-requirements/candidate-source-target-inventory.md)から個別採否 |
 | 新世代CI要求候補 | 1 | `docs/governance/candidates/next-generation-ci-requirements.md` | draft、要求整理のみ。既存CIはlegacy source | HARNESS検証契約とHELIX-OS実行統制を対象別L1／L2へ接続し、L3／L10以降は上流確定まで待つ |
+| 新世代AI可読文書要求候補 | HARNESS 3要求、HELIX-OS 7要求、L11候補6項目 | [AI可読上流文書の要求候補](candidates/ai-readable-authority-requirements.md) | 対象別L2／L11接続済み、human approval待ち。現行AI文書・runtimeは変更しない | Concept／対象別L1確定後に要求を承認し、manifest／生成器はL3／L10から再導出する |
 | 現行CI資産 | workflow 4件、関連filename発見集合82件 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md) | legacy、非実行、archive待ち。依存closure未完 | 要求整理完了後にsource inventoryと判断史を保全し、runtime入口から外す。新世代CIのbaseline・parity oracleにしない |
 | AI可読文書 | 直接入口38件 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md) | legacy runtime input、archive待ち。docs／template参照closure未完 | HARNESS工程契約とOS実行contextへ分解し、新世代manifestから再生成する。要求整理中は変更しない |
 | CI・AI既存候補の新世代対応 | 3系列、22旧要件、25旧受入 | [新世代CI・AI source crosswalk](audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md) | semantic atom照合済み、新世代で再承認待ち | Concept／対象別L1確定後、NCI／AIDOCのL2／L11で個別採否する |

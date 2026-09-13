@@ -166,6 +166,17 @@ HARNESS-L2-003／004／005では、対象製品が承認した保護対象、dat
 有償・評価・SaaS・OEM・再配布、所有権、学習利用、紹介表示等の具体条件は未決であり、正式な事業・法務判断を
 本要求案から生成しない。候補merge、CI、配布成功を契約発効にせず、現行LICENSEと過去版の許諾を変更しない。
 
+## AIへ渡す工程契約
+
+[AI可読上流文書の要求候補](../../../governance/candidates/ai-readable-authority-requirements.md)の
+AIDOC-HARNESS-001..003をHARNESS-L2-001／003／005の適用待ち具体化として保持する。AIは対象HARNESS版、layer、
+V-pair、artifact、required oracle、差戻し・完了条件を承認済みsourceから取得し、生成要約から該当する正本revisionへ
+逆参照できなければならない。未承認、stale、compatibility、historical、unknownをcurrent契約と区別する。
+
+HARNESSのAI向け文書へWorker inventory、provider session、CI運転、HELIX内部memoryを混入させない。
+現行Core Reads、AGENTS／CLAUDE、promptを新世代のbaselineにせず、物理path、manifest schema、生成器は上流確定後に
+L3／L10から導出する。本節では現行AI文書、hook、adapter、runtimeを変更しない。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。

@@ -120,6 +120,21 @@ HELIXOS-L2-001／002／006／007では、承認済みの製品scope、契約版�
 HELIX-OSは内部統制機構として扱い、HARNESSやHELIX-Web等の外部提供条件と一括契約にしない。
 具体的な条文・価格・契約・課金・LICENSE変更・repository visibility・公開・配布は本節の対象外である。
 
+## AI可読文書の生成・適用統制
+
+[AI可読上流文書の要求候補](../../../governance/candidates/ai-readable-authority-requirements.md)のAIDOC-OS-001..007を、
+HELIXOS-L2-001／002／003／004／005／007／009の適用待ち具体化として保持する。session開始時に対象project・product、
+authority revision、HARNESS契約、assignment、許可・禁止、予算、停止条件、必須readを解決し、会話、Issue、memory、
+旧実装から不足項目を補完しない。
+
+AI可読文書は承認上流から一方向に生成し、source、digest、生成版、適用scopeを保持する。HARNESS工程契約、OS実行統制、
+個別製品要求を別source relationとして組み立て、要約してもauthority、禁止、停止条件、未解決事項、次の必須readを落とさない。
+source更新時は影響文書をstale化し、再生成・semantic diff・read-after前に実行へ使わない。読取りrevision、未読、参照失敗、
+競合を記録し、「読んだはず」やsession記憶を証拠にしない。
+
+現行AGENTS.md、CLAUDE.md、`.claude/`、`.codex/`、hook、adapter、promptはlegacy runtime inputとしてinventoryに留め、
+要求整理完了前に削除・移動・変更しない。新世代manifest、生成器、prompt、token budgetはL3以降で再導出する。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を

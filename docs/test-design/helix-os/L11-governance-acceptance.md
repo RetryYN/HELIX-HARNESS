@@ -77,6 +77,14 @@ Security engagement条件は対象製品の採用revisionと操作別authority�
 - HARNESS、HELIX-OS、HELIX-Webの契約scopeを混在させず、一製品の許諾・receiptを他製品へ転用しない。
 - 候補merge、旧LICENSE、PR、CI、配布成功を与えても、新世代契約の内容・発効・公開許可を生成しない。
 
+AI可読文書条件はAIDOC要求の採用revision確定後に評価する。全件未実行。
+
+- AIDOC-OS-001..003：HARNESS、HELIX-OS、個別製品に異なるrevisionを与え、sourceと責務を混同せず、会話・Issue・memoryから不足fieldを補完しない。
+- AIDOC-OS-004：contextを縮小してもauthority、禁止、停止条件、未解決事項、次の必須readが残る。
+- AIDOC-OS-005：上流source更新後の旧AI文書をstaleとして拒否し、再生成・semantic diff・read-after前に実行へ使わない。
+- AIDOC-OS-006：source欠落、digest不一致、競合revision、未読を個別に与え、読取り済みや実行可能として表示しない。
+- AIDOC-OS-007：現行AI文書をarchive対象として与え、新世代のread setやpromptへ再注入しない。現時点では実移動を行わない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。

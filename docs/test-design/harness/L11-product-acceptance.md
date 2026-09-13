@@ -94,6 +94,13 @@ Security工程条件は対象製品の採用revision確定後に評価する。�
 - HARNESS-L2-006：提供artifactから適用許諾版、対象asset、第三者通知、導入・更新・復旧条件へ辿れることを確認する。
 - 旧HELIX全体契約、候補文書、PR、CI、配布成功を与えても、HARNESSの契約発効・権利確認・公開承認を成立させない。
 
+AI可読工程契約はAIDOC要求の採用revision確定後に評価する。全件未実行。
+
+- AIDOC-HARNESS-001：異なるruntime／providerに同じHARNESS revisionを与え、layer・pair・artifact・required oracleが一致することを確認する。
+- AIDOC-HARNESS-002：生成要約から正本sourceとrevisionへ逆参照し、要約の欠落・staleを検出する。要約自体をauthorityにしない。
+- AIDOC-HARNESS-003：未承認、stale、compatibility、historical、unknownを入力し、current実行契約として採用しない。
+- Worker inventory、provider session、CI運転、HELIX内部memoryがHARNESS工程契約へ混入した場合は不成立とする。
+
 ## 提供構成の受入
 
 FRSと提供構成追補の採用revision確定後に評価する。全件未実行。
