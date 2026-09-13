@@ -39,6 +39,17 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 各結果は対象プロジェクト・要求revision・HARNESS版・割当・HEADへ対応づける。以上は未実行であり、
 既存の単体テストや文書の存在を利用者受入の実結果へ転用しない。
 
+## 運用品質統制の受入
+
+NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。
+
+- HELIXOS-L2-002／007：要求revisionから運用対象・計測・log・incident・復旧・保守・観測証拠へ辿り、欠測、stale、collector停止、別環境の成功をhealthyや運用成立へ変換しない。
+- HELIXOS-L2-005／007：incidentや観測差分を改善候補として保持し、Issue close、rollback成功、文書存在から要求変更・恒久修復・再発防止完了を生成しない。
+- HELIXOS-L2-004／006／009：scope外の自動修復、公開、課金、production writeを拒否し、対象・actor・権限・予算・影響・復旧・独立検証の欠落を実行可能と表示しない。
+- HELIXOS-L2-007：secret／PIIをlog・example・evidenceへ平文出力せず、具体方式の採用前には未検証として扱う。
+
+旧NIO候補、旧Issue owner、旧engine、既存CIは受入入力や操作認可にしない。製品固有SLOの達成は対象製品のL11／L10／L12で確認する。
+
 HELIXOS-L2-005では、採用した改善を要求・設計・検証・再観測まで追跡し、改善なし・退行・判定不能も保持する。
 候補件数やログ件数の増加だけをHELIX改善の成功と表示しない。
 HARNESSの外部提供完了とHELIX-OSの内部改善状況を別に確認し、一方の成功で他方を完了扱いにしない。

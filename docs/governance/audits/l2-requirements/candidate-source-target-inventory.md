@@ -28,7 +28,7 @@
 | `harness-memory-coordination-boundary` | HELIX-OS | L2接続済み | memoryを有期限通知とpointerへ限定し、意味正本を複製しない条件をOSへ接続 |
 | `helix-commercial-license` | HARNESS | 台帳接続 | 外部提供物HARNESSの利用許諾候補。法的条件と正式採否は未確定 |
 | `helix-concept-v4` | HELIX全体 | 分解待ち | 上位Conceptとして保持し、HARNESSの開発機構とOSの統制機構を対象別L2へ投影する |
-| `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 分解待ち | 可搬性・診断可能性はHARNESS、配備・監視・incident統制はOS、SLO値は適用先製品へ分ける |
+| `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | 運用品質を要求・検証へ接続する工程条件はHARNESS、配備・監視・incident・復旧統制はOS、具体SLO・環境・保持値は適用先製品へ分離。旧owner／engine再利用は棄却 |
 | `instruction-path-change-resilience` | HELIX-OS | 照合済み・再採否待ち | provenance・版固定・stale・provider差をAIDOCへ候補接続。旧owner・consumer・adapterは持ち込まない |
 | `management-scrum-product-forward` | HELIX-OS | 台帳接続 | 管理Scrumと製品Forward入口の分離はOSの進行統制候補。HARNESS工程定義を複製しない |
 | `mechanism-adequacy` | HELIX-OS | 照合済み・再採否待ち | unknown・反証・証拠・効果観測を候補接続。既存方式再利用分類、旧UIL／Learning／DB／CI／workflow接続は新世代へ持ち込まない |

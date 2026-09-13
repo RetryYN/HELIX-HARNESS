@@ -72,6 +72,22 @@ HELIXOS-L2-008の適用待ち具体化として保持する。既存workflow、j
 consumer read-afterを経て旧writerを停止する。shadow実行では新世代だけを要求oracleへ照合し、旧CIとのdual runやparityを求めない。
 本節ではworkflow、runtime、gate、設定を変更しない。
 
+## 運用品質の管理・統制条件
+
+[旧NIO候補](../../../governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-operational-quality-source-crosswalk.md)に従って
+再採否する。旧Issue番号をownerにせず、既存measurement、event、logging、alert、incident、lifecycle、Requirement Re-entry
+engineの再利用を新世代要件にしない。
+
+HELIXOS-L2-002／005／007では、管理対象の要求revisionから配備・設定・計測・log・通知・incident・backup・restore・
+rollback・maintenance・decommission・費用の適用状態と証拠へ辿り、欠測・stale・collector停止をhealthyへ変換しない。
+運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。
+
+HELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、
+影響範囲、復旧先、独立検証が成立する範囲だけを実行対象にする。NIO候補は操作認可や自動修復権限を付与しない。
+具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、
+故障注入、production操作、自動修復を実行しない。
+
 ## 管理対象としてのHELIX-Web
 
 2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」を、HELIXOS-L2-001／002／003／005の具体的な対象として保持する。

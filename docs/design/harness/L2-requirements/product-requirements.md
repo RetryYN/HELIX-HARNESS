@@ -72,6 +72,21 @@ provider接続・run監視はHELIX-OSの責務である。
 旧CIのjob集合やworkflow名を新契約の分母にせず、承認された上流revisionから必要なoracleを降ろし直す。
 本節は要求案であり、既存CIの変更・実行・適格化を行わない。
 
+## 運用品質を落とさない工程条件
+
+[旧NIO候補](../../../governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-operational-quality-source-crosswalk.md)で
+HARNESS、HELIX-OS、個別製品へ再分類した。旧Issue owner、既存計測・logging・incident engineの再利用は継承しない。
+
+HARNESS-L2-003／004／005では、対象製品の可用性、信頼性、性能、容量、費用、security、privacy、運用、保守、
+回復、observabilityについて、適用・非適用・unknown・決定ownerをL2で確認し、設計・検証・L12観測・再要求化へ
+同じ要求revisionで接続する。designed、implemented、verified、observed、operatedを別状態とし、文書・実装・CIの
+存在だけで後続状態を成立させない。
+
+HARNESSは品質値、対象環境、RTO／RPO、保持期間、予算、blast radiusを全製品へ固定しない。それらは各製品の
+要求とrelease条件で承認する。HELIX-OSによる監視・incident・復旧の実行成功も、製品利用者の受入や運用成立を代替しない。
+本節は工程条件の要求案であり、計測、故障注入、CI、復旧、自動修復を実行しない。
+
 ## 外部提供の条件
 
 HARNESS-L2-006では、提供機能、構成版、artifact、必要依存、導入・更新条件を対応づける。
