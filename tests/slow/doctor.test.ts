@@ -3075,7 +3075,7 @@ describe("runDoctor", () => {
       ),
     ).toBe(true);
     expect(
-      hasDoctorMessageWith(r.messages, "doctor: drive-model-binding", "selected=Recovery"),
+      hasDoctorMessageWith(r.messages, "doctor: drive-model-binding", "selected=Forward"),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
@@ -3095,7 +3095,7 @@ describe("runDoctor", () => {
       true,
     );
     expect(
-      hasDoctorMessageWith(r.messages, "doctor: project-skill-binding", "workflow=Recovery,Scrum"),
+      hasDoctorMessageWith(r.messages, "doctor: project-skill-binding", "workflow=Forward,Scrum"),
     ).toBe(true);
     expect(
       hasDoctorMessageWith(
@@ -3107,61 +3107,25 @@ describe("runDoctor", () => {
     const recoveryRunway = r.messages.find((message) =>
       message.includes("doctor: recovery-runway-binding - OK:"),
     );
-    expect(recoveryRunway).toMatch(/status=(?:machine_work_available|approval_required)/);
-    if (recoveryRunway?.includes("status=machine_work_available")) {
-      expect(recoveryRunway).toMatch(/machine=[1-9]\d*/);
-    }
+    expect(recoveryRunway).toContain(
+      "status=not_required blocking=0 machine=0 approval=0 reverse=0",
+    );
     const recoveryHandoff = r.messages.find(
       (message) =>
-        message.includes("doctor: recovery-handoff-binding") &&
-        /status=[a-z_]+(?:\s+[^\n]*)?phase=(?:approval|machine)/.test(message),
+        message.includes("doctor: recovery-handoff-binding - OK:") &&
+        message.includes("status=none phase=none"),
     );
-    expect(recoveryHandoff).toMatch(
-      /status=(?:approval_required|approval_pending|machine_pending|generate_probe|generate_approval_draft|refresh_approval_draft|unchecked|unavailable).*phase=(?:approval|machine)/,
-    );
-    expect(hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "scope=")).toBe(
-      true,
-    );
+    expect(recoveryHandoff).toContain("approval=- scope=-");
     expect(
       r.messages.some(
         (message) =>
           message.includes("doctor: recovery-handoff-binding - db:") &&
-          /status=(?:approval_|machine_)/.test(message),
+          message.includes("status=none") &&
+          message.includes("approval_state=not_required"),
       ),
     ).toBe(true);
-    const handoffDecisionMatch = r.messages
-      .find(
-        (message) =>
-          message.includes("doctor: recovery-handoff-binding - digest=") &&
-          /decision=(?:closure-review|closure-evidence-materialize):[a-z_]+/.test(message),
-      )
-      ?.match(/decision=(closure-review|closure-evidence-materialize):([a-z_]+)/);
-    const handoffDecision = handoffDecisionMatch?.[2];
-    const decisionPublished = handoffDecision !== undefined;
-    if (decisionPublished) {
-      expect(handoffDecision).toMatch(/^[a-z_]+$/);
-      expect(handoffDecisionMatch?.[1]).toBe(
-        recoveryHandoff?.includes("phase=approval")
-          ? "closure-review"
-          : "closure-evidence-materialize",
-      );
-    } else {
-      // decision 未公開: machine phase の生成前段、または approval phase で decision draft が
-      // まだ生成されていない clean-env 変種 (fresh clone は .helix/tmp の draft を持たない)。
-      expect(recoveryHandoff).toMatch(
-        /status=(?:machine_pending|generate_probe|generate_approval_draft|unchecked|unavailable).*phase=machine|status=approval_required.*phase=approval/,
-      );
-    }
     expect(
-      hasDoctorMessageWith(
-        r.messages,
-        "doctor: recovery-handoff-binding",
-        recoveryHandoff?.includes("phase=approval")
-          ? decisionPublished
-            ? "handoff.decision_draft.present"
-            : "handoff.decision_draft.missing"
-          : "handoff.phase.machine",
-      ),
+      hasDoctorMessageWith(r.messages, "doctor: recovery-handoff-binding", "handoff.status.none"),
     ).toBe(true);
     const liveCount = (surface: string, pattern: RegExp): number => {
       const line = r.messages.find((message) => message.includes(`doctor: ${surface}`));
@@ -3173,16 +3137,16 @@ describe("runDoctor", () => {
     const recoveryRemaining = liveCount("recovery-exit-binding", /remaining=(\d+)/);
     const approvalCount = liveCount("approval-review-binding", /count=(\d+)/);
     const closureReadyCount = liveCount("closure-apply-binding", /close_ready=(\d+)/);
-    expect(recoveryRemaining).toBeGreaterThan(0);
+    expect(recoveryRemaining).toBe(0);
     expect(approvalCount).toBeGreaterThanOrEqual(0);
     expect(closureReadyCount).toBeGreaterThanOrEqual(0);
-    const selectedAction = r.messages
-      .find((message) => message.includes("doctor: recovery-exit-binding"))
-      ?.match(/selected=([a-z_]+)/)?.[1];
-    expect(selectedAction).toMatch(/^[a-z_]+$/);
-    if (decisionPublished) {
-      expect(selectedAction).toBe(handoffDecision);
-    }
+    expect(
+      hasDoctorMessageWith(
+        r.messages,
+        "doctor: recovery-exit-binding",
+        "status=not_required remaining=0 selected=-",
+      ),
+    ).toBe(true);
     expect(
       hasDoctorMessageWith(r.messages, "doctor: approval-review-binding", `count=${approvalCount}`),
     ).toBe(true);
@@ -3332,7 +3296,7 @@ describe("runDoctor", () => {
         ),
       ).toBe(true);
     }
-    expect(hasDoctorMessageWith(r.messages, "doctor: vmodel-fit", "current=needs_recovery")).toBe(
+    expect(hasDoctorMessageWith(r.messages, "doctor: vmodel-fit", "current=pass")).toBe(
       true,
     );
   });
