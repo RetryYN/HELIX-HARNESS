@@ -8,7 +8,7 @@ status: draft
 created: 2026-09-13
 updated: 2026-09-13
 owner: QA
-plan: docs/plans/PLAN-RECOVERY-1323-generated-authority-single-writer.md
+plan: docs/plans/PLAN-L6-1323-generated-authority-single-writer-design.md
 pair_artifact: docs/design/helix/L6-function-design/generated-authority-single-writer.md
 related_l6: docs/design/helix/L6-function-design/generated-authority-single-writer.md
 next_pair_freeze: L6

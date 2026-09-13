@@ -6,7 +6,7 @@ status: draft
 created: 2026-09-13
 updated: 2026-09-13
 owner: Codex / TL
-plan: docs/plans/PLAN-RECOVERY-1323-generated-authority-single-writer.md
+plan: docs/plans/PLAN-L6-1323-generated-authority-single-writer-design.md
 pair_artifact: docs/test-design/helix/L7-generated-authority-single-writer-unit-test-design.md
 github_issue_id: 1323
 behavior_contract_id: GENERATED-AUTHORITY-SINGLE-WRITER-001
@@ -47,7 +47,7 @@ writerはcurrent mainに対し、少なくとも次を分類する。
 delta適用順で出力が変わる場合はnondeterministicとして拒否する。複数deltaが独立なら、順序を入れ替えた再生でも
 同じexact output setとdigestになることを要求する。
 
-## 4. publish transaction
+## 4. 公開transaction
 
 writerはlease/fenceとcurrent mainを実行直前に再検証し、ephemeral projectionを生成して既存gateを実行する。
 全検査greenの場合だけcanonical exact setを単一transactionとしてpublishし、source HEAD、delta set、generator、
