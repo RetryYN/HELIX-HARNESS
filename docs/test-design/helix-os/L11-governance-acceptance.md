@@ -47,6 +47,12 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 - 管理projectionのmissing、unknown、stale、conflict、再構築失敗を個別に与え、Project／Issue／DB／dashboardの一つが正常でも完了へ補完しない。
 - 旧7 operation、旧layer、DB rebuild成功、roadmap表示を与えても、新世代の管理状態集合や利用者受入の成立根拠にしない。
 
+限定修復の条件は新世代で採用するrevision確定後に評価する。全件未実行。
+
+- HELIXOS-L2-001／004／007／009：候補、登録、許可、適用、検収を別々に確認し、旧GH-FR-011、修復器登録、他修復の成功からwrite権限を生成しない。
+- write-set逸脱、stale、所有競合、予算超過、循環、二重実行、不明副作用を個別に与え、停止・保全・上流返却を確認する。
+- 旧bugbot、既存CI、旧DB／transaction、main read-afterを与えても、新世代限定修復の実行・受入証拠にしない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。

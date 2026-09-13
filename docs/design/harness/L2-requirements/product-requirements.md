@@ -125,6 +125,14 @@ HARNESS-L2-003／004では、管理上の観測や改善判断から製品要求
 旧Scrum Operation候補のDoR／DoD、sprint review等も固定ceremonyやV-model layerとして採用しない。
 着手・完了・受入・改善還流に必要な意味だけをHARNESS-L2-003／005へ再採否し、管理状態の保存と表示はOSへ委ねる。
 
+## 限定修復に適用する検証条件
+
+[旧Bugbot候補](../../../governance/candidates/bugbot-bounded-repair-requests.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-bounded-repair-source-crosswalk.md)で再採否する。
+HARNESS-L2-005では、自動・手動を問わず修復後に必要な要求revision、oracle、expected failure、独立検証、
+consumer受入、差戻し条件を維持する。必須test削除、閾値緩和、scope拡張、意味digestの無審査更新でgreen化しない。
+修復器の登録や旧CI自己修復成功は検証義務・操作許可を代替しない。修復の実行統制はHELIX-OSが所有する。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。

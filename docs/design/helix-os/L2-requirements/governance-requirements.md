@@ -64,6 +64,18 @@ OSが要求を直接書き換えたり自己承認したりしない。本節で
 要求意味・承認・完了を逆生成せず、missing・unknown・stale・conflict・projection failureを完了へ補完しない。
 旧7 operation、旧layer配置、既存DB／roadmap／test／CIは新世代のschema・oracleではない。
 
+## 限定修復の統制条件
+
+[旧Bugbot候補](../../../governance/candidates/bugbot-bounded-repair-requests.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-bounded-repair-source-crosswalk.md)に従って再採否する。
+HELIXOS-L2-001／002／004／005／007／009では、逸脱の検出、修復候補、意味判断、操作許可、隔離適用、検収、
+停止・復旧を別状態として追跡する。対象revision、actor、write-set、副作用、予算、期限、再試行、影響範囲、復旧先、
+独立検証が成立する操作だけを実行対象にし、候補・登録・旧GH-FR-011から包括的write権限を生成しない。
+
+二重実行、session交代による予算reset、循環、stale、所有競合、未信頼実装、範囲外変更、不明な外部副作用を
+成功へ補完しない。意味矛盾は上流変更候補へ戻し、要求・設計・検証義務を修復器が変更しない。
+本節では旧bugbot、既存CI、旧DB／transaction、自動修復を実行しない。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を

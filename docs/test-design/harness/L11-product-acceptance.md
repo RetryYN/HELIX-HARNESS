@@ -69,6 +69,11 @@ AVS／RFA／DGH由来の条件は採用revision確定後に検証する。全件
 - 管理上の緊急性を与えても、V-pair、trace、検証、利用者受入を省略しない。
 - 旧DoR／DoD、sprint review、retrospective等のceremony完了を与えても、HARNESSの着手・完了・利用者受入・L12観測を自動成立させない。
 
+限定修復の条件は新世代で採用するrevision確定後に評価する。全件未実行。
+
+- HARNESS-L2-005：修復後も対象要求、必須oracle、expected failure、独立検証、consumer受入、差戻し条件が維持されることを確認する。
+- 必須test削除、閾値緩和、scope拡張、意味digest更新、旧CI greenを与えても、適格な修復や検証完了と判定しない。
+
 ## 提供構成の受入
 
 FRSと提供構成追補の採用revision確定後に評価する。全件未実行。
