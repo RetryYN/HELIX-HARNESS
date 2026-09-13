@@ -3296,9 +3296,7 @@ describe("runDoctor", () => {
         ),
       ).toBe(true);
     }
-    expect(hasDoctorMessageWith(r.messages, "doctor: vmodel-fit", "current=pass")).toBe(
-      true,
-    );
+    expect(hasDoctorMessageWith(r.messages, "doctor: vmodel-fit", "current=pass")).toBe(true);
   });
 
   it("surfaces roadmap-rollup as a hard gate summary line", () => {
