@@ -71,6 +71,12 @@ Security engagement条件は対象製品の採用revisionと操作別authority�
 - 通常作業から特権resourceやrestricted evidenceへ到達できず、sensitive dataを通常DB、log、memory、Issue、PR、AI context、配布物へ出さない。
 - 旧broker、provider access、Issue上の承認、既存CI greenを与えても、security操作authorityや受入成立を生成しない。
 
+利用許諾・配布条件は対象製品の契約・権利・公開判断が正式承認された後に評価する。全件未実行。
+
+- HELIXOS-L2-002／006／007：製品scope、契約版、asset、第三者条件、artifact、releaseを食い違わせ、権利不明・適用版不一致・未発効を個別に確認する。
+- HARNESS、HELIX-OS、HELIX-Webの契約scopeを混在させず、一製品の許諾・receiptを他製品へ転用しない。
+- 候補merge、旧LICENSE、PR、CI、配布成功を与えても、新世代契約の内容・発効・公開許可を生成しない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。

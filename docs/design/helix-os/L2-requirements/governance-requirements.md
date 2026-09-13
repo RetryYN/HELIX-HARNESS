@@ -109,6 +109,17 @@ sensitive security dataは対象製品のdata classificationに従い、通常DB
 流出させない。保管・暗号化・retention・disclosure方式は未承認であり、本節ではcredential、network、scan、exploit、
 production、external service、旧broker、既存CIを操作しない。
 
+## 利用許諾・配布の統制条件
+
+[旧Commercial License候補](../../../governance/candidates/helix-commercial-license-requirements.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-license-distribution-source-crosswalk.md)に従って再採否する。
+HELIXOS-L2-001／002／006／007では、承認済みの製品scope、契約版、対象asset、第三者条件、artifact、release、
+配布・更新・復旧結果を対応づける。権利不明、適用版不一致、未発効を識別し、候補文書・PR・CI・配布成功から
+契約内容、権利、公開許可を生成しない。
+
+HELIX-OSは内部統制機構として扱い、HARNESSやHELIX-Web等の外部提供条件と一括契約にしない。
+具体的な条文・価格・契約・課金・LICENSE変更・repository visibility・公開・配布は本節の対象外である。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を

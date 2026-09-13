@@ -89,6 +89,11 @@ Security工程条件は対象製品の採用revision確定後に評価する。�
 - HARNESS-L2-003／004／005：推定finding、再現、独立検証、修復、再検証、運用成立を個別に確認し、一状態から後続を推定しない。
 - authority欠落、scope drift、sensitive evidence、自己検証を与え、旧broker／provider／CI greenで工程条件を相殺しない。
 
+利用許諾条件はHARNESSの製品scope・契約・権利が正式承認された後に評価する。全件未実行。
+
+- HARNESS-L2-006：提供artifactから適用許諾版、対象asset、第三者通知、導入・更新・復旧条件へ辿れることを確認する。
+- 旧HELIX全体契約、候補文書、PR、CI、配布成功を与えても、HARNESSの契約発効・権利確認・公開承認を成立させない。
+
 ## 提供構成の受入
 
 FRSと提供構成追補の採用revision確定後に評価する。全件未実行。

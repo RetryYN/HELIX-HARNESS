@@ -156,6 +156,16 @@ HARNESS-L2-003／004／005では、対象製品が承認した保護対象、dat
 設計・threat・verification・独立review・利用者受入へ接続する。推定、再現、検証、修復、再検証、運用成立を別状態にし、
 旧broker、provider、CI greenで相殺しない。具体的な特権操作・credential管理はHELIX-OSが統制する。
 
+## 利用許諾を確認できる提供条件
+
+[旧Commercial License候補](../../../governance/candidates/helix-commercial-license-requirements.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-license-distribution-source-crosswalk.md)で再採否する。
+旧「HELIX全体」の一括商用方針を採用せず、HARNESS-L2-006では外部提供するHARNESSの範囲、artifact、適用許諾版、
+第三者通知、導入・更新・復旧条件を利用者が確認できる要求だけを候補として保持する。
+
+有償・評価・SaaS・OEM・再配布、所有権、学習利用、紹介表示等の具体条件は未決であり、正式な事業・法務判断を
+本要求案から生成しない。候補merge、CI、配布成功を契約発効にせず、現行LICENSEと過去版の許諾を変更しない。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。
