@@ -61,6 +61,16 @@ HELIX-OSはHARNESSが規定する層・pair・工程条件を参照し、Worker�
 OS内に工程規則の別正本を作らず、適用するHARNESS版とプロジェクトの選択を記録する。
 HELIX-OS自身の変更も要求・判断・検証へ追跡し、統制する立場を自己承認権限へ拡張しない。
 
+## 旧資産の退役・archive統制
+
+[旧資産退役要求候補](../../../governance/candidates/legacy-asset-retirement-requirements.md)のLAR-OS-001..007を、
+HELIXOS-L2-001／002／003／006／007／009の適用待ち具体化として保持する。asset identity、revision、対象、authority状態、
+provenance、dispositionと、source、runtime、AI read、CI、registry、生成、配布、外部writer、復元のconsumer relationを追跡する。
+
+replacementの上流ID、artifact、consumer適用、rollbackとHARNESSが要求するpair／oracleが揃った後だけ、旧資産をcurrent
+startup、authority検索、AI context、runtime、CI、package、復元経路から外す。archive原文と判断史を保全し、物理削除は
+法的・security等の理由と別のaction-binding approvalがある場合に限る。本節では移動・削除・停止・外部設定変更を行わない。
+
 ## 管理上の観測と製品変更の入口
 
 [旧Management Scrum policy](../../../governance/management-scrum-product-forward.md)は、

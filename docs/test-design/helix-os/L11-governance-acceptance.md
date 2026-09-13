@@ -40,6 +40,13 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 各結果は対象プロジェクト・要求revision・HARNESS版・割当・HEADへ対応づける。以上は未実行であり、
 既存の単体テストや文書の存在を利用者受入の実結果へ転用しない。
 
+旧資産退役条件はLAR-OS要求の採用revision確定後に評価する。全件未実行。
+
+- 旧pathを除いてもAI read、registry、template、CI、配布、外部schedule、復元経路の一つが残れば退役を不成立にする。
+- replacementの上流ID、artifact、consumer適用、rollback、HARNESS oracleの一つが欠ければ旧capabilityを停止しない。
+- archive原文のdigest不一致、source欠落、current pathへの再出現を個別に検出する。
+- 物理削除を通常archiveと区別し、別のaction-binding approvalがなければ保全したまま停止する。
+
 ## 旧HCV4受入条件の移管
 
 総称HELIXの旧L11を再実行せず、管理・実行統制に属するnegative caseを次へ保持する。

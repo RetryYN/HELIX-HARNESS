@@ -85,6 +85,14 @@ provider接続・run監視はHELIX-OSの責務である。
 旧CIのjob集合やworkflow名を新契約の分母にせず、承認された上流revisionから必要なoracleを降ろし直す。
 本節は要求案であり、既存CIの変更・実行・適格化を行わない。
 
+## 旧資産退役に適用する工程条件
+
+[旧資産退役要求候補](../../../governance/candidates/legacy-asset-retirement-requirements.md)の
+LAR-HARNESS-001..003をHARNESS-L2-003／004／005／006の適用待ち具体化として保持する。退役前に旧資産の要求、
+behavior、設計、検証、consumerと後継上流IDを照合し、必要なpair、oracle、expected failure、利用者受入、差戻し条件を
+確認する。archive資料をcurrent authority・実行可能成果・検証済み能力にせず、旧実装とのparityやdual-greenを要求しない。
+本節では旧資産を移動・削除・停止しない。
+
 ## 運用品質を落とさない工程条件
 
 [旧NIO候補](../../../governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、

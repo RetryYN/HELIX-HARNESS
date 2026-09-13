@@ -35,6 +35,12 @@ pair_artifact: docs/design/harness/L2-requirements/product-requirements.md
 
 本書はHARNESSの利用者による工程規則の確認である。OS側のWorker・CI・ログ保存の実機能検証とは分ける。
 
+旧資産退役条件はLAR-HARNESS要求の採用revision確定後に評価する。全件未実行。
+
+- 旧path削除や旧test greenだけを与え、要求、behavior、設計、検証、consumer、後継上流IDの欠落を移管済みにしない。
+- replacementのpair、oracle、expected failure、利用者受入、差戻し条件の一つを欠かし、退役を不成立にする。
+- archive内の旧承認・成功証拠をcurrent authority、検証済み能力、工程完了として採用しない。
+
 ## 旧HCV4受入条件の移管
 
 総称HELIXの旧L11を再実行せず、工程・提供契約に属するnegative caseを次へ保持する。

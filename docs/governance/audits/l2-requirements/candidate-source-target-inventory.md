@@ -31,6 +31,7 @@
 | `helix-concept-v4` | HELIX全体 | 照合済み・人間承認待ち | v4.1でHARNESS、HELIX-OS、HELIX-Webを分離し、対象別L2／L11へ接続。旧提供構成identityを未採択化。承認準備監査済みだがhuman approval未実施 |
 | `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | 運用品質を要求・検証へ接続する工程条件はHARNESS、配備・監視・incident・復旧統制はOS、具体SLO・環境・保持値は適用先製品へ分離。旧owner／engine再利用は棄却 |
 | `instruction-path-change-resilience` | HELIX-OS | 照合済み・再採否待ち | provenance・版固定・stale・provider差をAIDOCへ候補接続。旧owner・consumer・adapterは持ち込まない |
+| `legacy-asset-retirement-requirements` | HARNESS / HELIX-OS | L2接続済み | 意味移管・pair・oracleはHARNESS、inventory・consumer切断・非実行archive・復元防止・物理削除承認はOSへ分ける。要求整理中は現行資産を移動・削除しない |
 | `management-scrum-product-forward` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 管理観測・採否・実行統制はOS、製品Forwardへの差戻し・再検証条件はHARNESSへ分離。Issue-first、PLANを含むGit一括authority、旧adapter／CI強制は棄却 |
 | `mechanism-adequacy` | HELIX-OS | 照合済み・再採否待ち | unknown・反証・証拠・効果観測を候補接続。既存方式再利用分類、旧UIL／Learning／DB／CI／workflow接続は新世代へ持ち込まない |
 | `next-generation-ci-requirements` | HARNESS / HELIX-OS | L2接続済み | layer・pair・risk別の検証契約はHARNESS、profile生成・実行・隔離・証拠回収・consumer relation・legacy archiveはOSへ分ける。上流確定までCI実装へ進めない |

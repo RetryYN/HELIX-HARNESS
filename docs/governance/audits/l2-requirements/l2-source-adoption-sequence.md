@@ -84,11 +84,12 @@ security、credential、production、外部API操作は、この採否だけで�
 | L2D-S4-03 | `helix-commercial-license` | HARNESS／HELIX-OS／個別製品 | 再採否待ち | 製品別許諾と配布統制。条文・権利・価格は法務判断待ち |
 | L2D-S4-04 | `development-investment-stage-directives` | HARNESS／HELIX-OS／個別製品 | 再採否待ち | INV-001..072の意味候補。旧P0..P4と実装順は棄却 |
 | L2D-S4-05 | `ci-event-concurrency-generation` | HELIX-OS | 再採否待ち | generation、非干渉、replayの意味。特定GitHub event／旧receiptは棄却 |
+| L2D-S4-06 | `legacy-asset-retirement-requirements` | HARNESS／HELIX-OS | L2接続済み | 意味移管・検証条件と、consumer切断・非実行archive・復元防止・物理削除承認を分離 |
 
 S4の完了前にpackage identity、価格、契約、release、配布、旧資産archive切替を実施しない。
 
 ## 完了条件
 
-28 decision unitすべてについて、判断対象revision、target、親L1、L2 ID、L11条件、採否、未解決事項が記録され、
-対象別L2本文と一致したときにsource採否を閉じる。候補29系列の残る1系列`helix-concept-v4`は
-上位のConcept／L1人間判断packetで扱うため、本書の28 unitには重複算入しない。
+29 decision unitすべてについて、判断対象revision、target、親L1、L2 ID、L11条件、採否、未解決事項が記録され、
+対象別L2本文と一致したときにsource採否を閉じる。候補30系列の残る1系列`helix-concept-v4`は
+上位のConcept／L1人間判断packetで扱うため、本書の29 unitには重複算入しない。
