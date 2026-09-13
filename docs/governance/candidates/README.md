@@ -16,6 +16,8 @@ Issue #1728の未承認候補である。既存ownerへの接続を先に行い�
 
 ## HELIX Concept v4.0
 
+- `helix-concept-v4.1.md`: 最新のHARNESS／HELIX-OS／個別製品境界を反映した次revision候補。v4.0の承認対象bytesを変更せず、U1上流再整備の承認対象を分ける
+
 - `helix-concept-v4.0.md`: Verified Change Operating SystemへのConcept候補
 - `helix-concept-v4-requests.md`: L1要求候補
 - `helix-concept-v4-requirements.md`: L3要件候補

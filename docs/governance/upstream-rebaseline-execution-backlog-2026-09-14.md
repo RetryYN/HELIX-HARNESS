@@ -59,7 +59,7 @@ GitHub Issue番号、branch、PRはこの契約への参照として追加でき
 | ID | Wave | 対象 | 入力 | 出口 | 現在状態 |
 |---|---|---|---|---|---|
 | URB-U0-001 | U0 | HELIX全体 | 上流authority管理台帳 | 既知母集団と未解決sourceのexact inventory | verified（文書範囲） |
-| URB-U1-001 | U1 | HELIX全体 | Concept v3.1、v4候補、責務決定 | 最新製品identityを持つConcept candidate revision | ready_to_draft |
+| URB-U1-001 | U1 | HELIX全体 | Concept v3.1、v4候補、責務決定 | `candidates/helix-concept-v4.1.md` | drafted_awaiting_human_approval |
 | URB-U2-HARNESS-001 | U2 | HARNESS | Concept revision、柱対応表 | 外部提供物としてのL1企画 | upstream_waiting |
 | URB-U2-OS-001 | U2 | HELIX-OS | Concept revision、柱対応表 | 管理・統制・改善機構としてのL1企画 | upstream_waiting |
 | URB-U2-WEB-001 | U2 | HELIX-Web | Concept revision、Vision原文 | 管理対象製品としてのL1企画 | upstream_waiting |
@@ -72,7 +72,7 @@ GitHub Issue番号、branch、PRはこの契約への参照として追加でき
 | URB-U7-001 | U7 | HELIX全体 | replacement evidence、consumer read-after | 旧資産退役 | upstream_waiting |
 
 `verified（文書範囲）`は、runtime実装・全repository資産・利用者受入まで完了した意味ではない。
-U1のConcept candidate revisionが次の自動起草対象である。
+U1のConcept candidate revisionは起草済みであり、製品identityと責務境界の人間確認が次の上流gateである。
 
 ## 停止規律
 
