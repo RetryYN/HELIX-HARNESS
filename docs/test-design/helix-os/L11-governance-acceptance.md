@@ -39,6 +39,21 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 各結果は対象プロジェクト・要求revision・HARNESS版・割当・HEADへ対応づける。以上は未実行であり、
 既存の単体テストや文書の存在を利用者受入の実結果へ転用しない。
 
+## 旧HCV4受入条件の移管
+
+総称HELIXの旧L11を再実行せず、管理・実行統制に属するnegative caseを次へ保持する。
+
+| 旧受入ID | 本書の親要求 | 保持する利用結果 |
+|---|---|---|
+| HCV4-L11-001 | HELIXOS-L2-001／HELIXOS-L2-003 | 要求・判断の出典、対象、scope、revisionを確認し、未承認操作を止める |
+| HCV4-L11-002 | HELIXOS-L2-002／HELIXOS-L2-007 | owner欠落、複数owner、trace切れ、証拠欠落を別状態として表示する |
+| HCV4-L11-003 | HELIXOS-L2-004／HELIXOS-L2-007／HELIXOS-L2-008 | 独立review、実行世代、HEAD、oracleの不一致を完了へ補完しない |
+| HCV4-L11-004 | HELIXOS-L2-004／HELIXOS-L2-009 | assignment、lease、budget、capability不足時に二重実行せず停止する |
+| HCV4-L11-005 | HELIXOS-L2-006／HELIXOS-L2-007 | 導入・更新・rollback・deployment・observationの結果を分けて追跡する |
+| HCV4-L11-006 | HELIXOS-L2-005 | 観測を候補・採否・影響要求・再検証へ接続し、直接authorityを書き換えない |
+
+これは受入条件の移管案であり、対象別L2の合意、実操作、passを成立させない。
+
 管理変更入口の条件は新世代で採用するrevision確定後に評価する。全件未実行。
 
 - HELIXOS-L2-001／002／005／007：同じ観測の重複、影響欠落、出典不明、採否未決、戻し先不明を入力し、それぞれ未成立として確認できる。

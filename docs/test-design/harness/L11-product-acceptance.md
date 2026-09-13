@@ -35,6 +35,21 @@ pair_artifact: docs/design/harness/L2-requirements/product-requirements.md
 
 本書はHARNESSの利用者による工程規則の確認である。OS側のWorker・CI・ログ保存の実機能検証とは分ける。
 
+## 旧HCV4受入条件の移管
+
+総称HELIXの旧L11を再実行せず、工程・提供契約に属するnegative caseを次へ保持する。
+
+| 旧受入ID | 本書の親要求 | 保持する利用結果 |
+|---|---|---|
+| HCV4-L11-001 | HARNESS-L2-003 | request、approval、decisionと対象revisionを区別し、相談や別revisionから合意を生成しない |
+| HCV4-L11-002 | HARNESS-L2-004 | 要求から設計・検証・提供・運用へのtrace欠落を確認できる |
+| HCV4-L11-003 | HARNESS-L2-003／HARNESS-L2-005 | 未実行oracle、不一致digest、別HEAD review、projectionだけの完了主張を拒否する |
+| HCV4-L11-004 | HARNESS-L2-003／HARNESS-L2-005 | runtime交代後も同じ工程・証拠条件を維持し、不足時は再開不可と説明できる |
+| HCV4-L11-005 | HARNESS-L2-006 | 提供範囲、artifact、release、deployment、rollbackの成立を別々に確認する |
+| HCV4-L11-006 | HARNESS-L2-003／HARNESS-L2-004 | 改善候補による要求変更を再合意・再検証へ戻す |
+
+これは受入条件の移管案であり、対象別L2の合意、実操作、passを成立させない。
+
 ## 運用品質工程の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。
