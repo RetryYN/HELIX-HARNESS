@@ -4,6 +4,12 @@
 
 2026-09-14のPO指示に従い、要求の対象をフォルダで分離する。
 
+[対象別責務決定](../../../governance/product-governance-boundary-2026-09-14.md)の「上位Conceptへの正規投影」を親とする。
+Concept v4候補に残るHarness／Control Plane／DevOS区分を対象別要求へそのまま降ろさず、最新の
+HARNESS／HELIX-OS／HELIX-Web境界へ投影する。
+[上流再整備と既存資産統制方針](../../../governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)に従い、
+既存資産を意味単位で分類し、上流から再導出してから自動走行・移行・退役へ進める。
+
 - [HARNESSの利用要求](../../harness/L2-requirements/product-requirements.md)：Vモデル、層・pair、工程・検証条件を規定する提供プロダクト。
 - [HELIX-OSの統制要求](../../helix-os/L2-requirements/governance-requirements.md)：管理・統制、Worker、学習、ログ、CI、継続・復旧。
 
@@ -32,6 +38,10 @@ HARNESSとHELIX-OSにL2／L11の対を設けた。HELIX-WebにはVision由来8�
 対象別L11はいずれも未実行。旧候補の承認記録を新しい対象別要求の合意として転用しない。
 
 ### 既存柱要求の対象別対応
+
+[柱要求の対象別対応表](../../../governance/audits/l2-requirements/pillar-target-crosswalk.md)では、
+HBR-P0..P4／P6..P9とHNFR-P3／P5／P8／ACを、HARNESSの工程条件とHELIX-OSの実行・管理責務へ分けた。
+P5の欠番を推測で補わず、上位IDとの導出関係を保持する。
 
 同じ旧IDの中でも、工程条件の定義はHARNESS、実行・記録・運用はHELIX-OSへ分ける。
 以下は帰属と移管先の案であり、詳細条件を移管済みとする証拠ではない。

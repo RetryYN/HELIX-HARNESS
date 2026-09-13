@@ -229,6 +229,11 @@ stage skip拒否のoracleがbounded exposureを検査するか、実テストと
 これはv1.3のauthority取消やL3分冊の完了ではなく、正規改訂時に継承・分割・supersedeと全projectionを同一revisionへ
 更新するための適用待ち差分である。
 
+Concept v4候補の製品identityも、最新PO決定より前のHarness＝Kernel、Control Plane、DevOS区分を含む。
+[対象別責務決定](product-governance-boundary-2026-09-14.md)へ上位Conceptの正規投影を追加し、HARNESSを外部提供物、
+Control PlaneをHELIX-OS component、配布物をHARNESS、配布運転をHELIX-OSへ分けた。
+承認対象bytesは変更せず、canonical promotion時の意味差分として保持する。
+
 ## 最新要求のL2具体化
 
 FRS v0.2はPLAN-L3-83のrepo-owned承認記録を読み、対象commit

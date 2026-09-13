@@ -26,6 +26,43 @@
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を
 対象要求・設計・検証へ戻す。管理対象と規則の参照関係を、同一の要求所有へ潰さない。
 
+## 上位Conceptへの正規投影
+
+上位概念では、HELIXを一つの配布製品名として扱わず、HARNESS、HELIX-OS、HELIX-Web等を含む
+プロジェクト群の総称として扱う。
+
+| 上位identity | 意味 | 所有するConcept |
+|---|---|---|
+| HELIX | プロジェクト群と、その改善を継続する全体構想 | 人間の意図から検証済み変更へ閉じ、運用結果を次の要求へ戻す |
+| HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |
+| HELIX-OS | HELIXプロジェクト群の内部管理・統制機構 | authority管理、Worker、実行制御、CI、ログ、状態、学習、改善、配布運転 |
+| HELIX-Web | HELIX-OSが管理する個別製品 | Web利用者へ提供する操作・表示・サービス体験 |
+
+HARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、
+HARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、
+artifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。
+
+## 既存Conceptとの意味差分
+
+[Concept v4候補](candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは
+本決定より前の区分を含む。canonical promotion時は次の差分を同じrevisionで解消する。
+
+| v4候補の表現 | 最新Conceptへの投影 |
+|---|---|
+| `HELIX Harness`を`Assurance Kernel`とする | Assurance KernelはHARNESSの構成要素。HARNESS全体は外部提供する工程・契約・consumer packageを含む |
+| `HELIX Control Plane` | HELIX-OSの実行統制componentとして扱い、独立した要求対象にしない |
+| `HELIX DevOS` | 独立した提供製品identityにしない。配布物はHARNESS、配布運転はHELIX-OSへ分ける |
+| Control／Execution／Ledger／Adaptation Plane | HELIX-OSの管理・統制・Worker・ログ・学習・改善責務へ接続する |
+| Change Contract Compiler／Assurance Kernel | HARNESSが提供する工程・契約・検証能力と、OSが行うcanonical transactionを分ける |
+
+現行L0 charterのP0–P9も同様に対象別へ投影する。V-model、工程、検証、外部利用条件はHARNESSへ、
+連続走行、orchestration、GitHub／CI運転、memory／状態、学習、外部実行統制はHELIX-OSへ置く。
+「harness memoryを根幹に自己保守する」という旧表現は、HARNESS製品がmemoryを必須内包する意味に使わず、
+HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責務へ置き換える。
+
+この投影はConcept v4候補の承認対象を遡及改変せず、候補のcanonical promotion、L1再編、L2合意、L3凍結を
+完了させない。次revisionでは本表を親に、対象別L1／L2と対検証へ一方向に導出する。
+
 ## 文書整備で守ること
 
 - 上位概念を本決定に対応づけ、L2要求とL11受入、L3要件とL10総合検証を対象別に接続する。現行L1–L12と正規pairは維持する。
@@ -36,3 +73,5 @@ HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則�
 
 既存CLI・runtime state・配布repositoryの切替は、本決定の記録で実施済み・認可済みとはしない。
 現在の移管状況と未整備項目は[要求監査入口](../design/helix/L2-requirements/README.md)で追跡する。
+[上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)は、
+本決定を変更受付、上流再導出、自動走行、既存資産移行・退役へ適用する管理体制を定める。
