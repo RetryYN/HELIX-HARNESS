@@ -77,6 +77,15 @@ agent_slots:
   - { role: se, slot_label: "SE — owner inventoryとpure relation schema" }
   - { role: qa, slot_label: "QA — mismatch・失効・二重遷移反例" }
   - { role: tl, slot_label: "TL — 既存authority再利用とwriter境界" }
+left_arm_carry:
+  schema_version: left-arm-carry.v1
+  decision: no_pushback
+  assessed_at: "2026-09-13T10:52:00Z"
+  review_binding:
+    reviewer: "Claude independent reviewer / claude-opus-5"
+    reviewed_at: "2026-09-13T10:52:00Z"
+    evidence_digest: "sha256:52273b1c2e50999fab37f3ec487b47044b4960d42c1602d9aa809bcd5d6c5cc0"
+  entries: []
 review_evidence:
   - reviewer: "Claude independent reviewer / claude-opus-5"
     review_kind: cross_agent
