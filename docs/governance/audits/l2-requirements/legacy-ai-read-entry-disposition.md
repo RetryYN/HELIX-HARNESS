@@ -87,7 +87,7 @@ Claude hook entry 4件:
 |---|---|---|---|
 | A: 直接入口 | 完了 | exact 38件、区分、意味移管先を固定 | 新しい直接入口を発見した場合は本台帳へ追加 |
 | B: 直接配線 | 確認済み | settings／adapter／hookから直結するentryとruntime moduleを確認 | L2採否時に各意味を要求IDへ接続 |
-| C: 文書・template・Skill consumer | 未完 | repository内に多数の文字列参照があり、単純検索件数はconsumer closureではない | source locator、読取り主体、適用条件をrelation単位で確定 |
+| C: 文書・template・Skill consumer | relation分類済み | [consumer relation inventory](legacy-ai-consumer-relation-inventory.md)でAICR-01..10を分類。単純検索件数はconsumer closureではない | 承認済みL2に接続後、source locator、読取り主体、適用条件を個別に確定 |
 | D: generated prompt・runtime state・DB projection | 未完 | 直接入口の物理列挙だけでは動的read setを確定できない | 承認済みL2からL3 manifest契約を作った後に実測 |
 
 CとDが未完であるため、本台帳は「AI読取り資産全体38件」や「archive集合38件」を意味しない。38件は直接入口だけの

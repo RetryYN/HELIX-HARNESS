@@ -37,8 +37,8 @@ deferred recoveryはlegacy source inventoryへ置き、新しいL3／L10で必�
 | 旧ID | 保持候補の意味 | 新世代接続先 | 旧系列から持ち込まない条件 | 状態 |
 |---|---|---|---|---|
 | IPC-BR-001、IPC-R01 | Requirement／Policy、Workflow、Skill、adapter、consumerの責務を分ける | AIDOC-HARNESS-001、AIDOC-OS-002／003 | 旧Requirement IR、旧Workflow、旧Skillをcurrent ownerとして固定しない | split_reapproval_required |
-| IPC-R02 | source→生成→出力→consumerのprovenanceを保持する | AIDOC-HARNESS-002、AIDOC-OS-002／005／006 | 旧generator・output digest・call formへの互換を要求しない | split_reapproval_required |
-| IPC-R03 | 影響不明をunknownとして保留または検証拡大へ送る | AIDOC-OS-005／006 | 旧consumer集合を新世代の影響分母にしない | semantic_atom_candidate |
+| IPC-R02 | source→生成→出力→consumerのprovenanceを保持する | AIDOC-HARNESS-002、AIDOC-OS-002／005／006／008 | 旧generator・output digest・call formへの互換を要求しない | split_reapproval_required |
+| IPC-R03 | 影響不明をunknownとして保留または検証拡大へ送る | AIDOC-OS-005／006／008 | 旧consumer集合を新世代の影響分母にしない | semantic_atom_candidate |
 | IPC-R04／05／06 | 実行単位の版固定、部分混在拒否、有効化状態の分離 | AIDOC-OS-001／002／005 | 旧contractへのrollback、retired output復活、既存状態名とのbyte互換を要求しない | split_reapproval_required |
 | IPC-R07／08 | 再読込不能・provider差・観測不能を明示して安全に停止する | AIDOC-OS-001／004／006 | 現行session transition、adapter allowlist、provider固有fallbackを固定しない | semantic_atom_candidate |
 | IPC-R09 | 固定AI文書を入口と参照へ縮小し、動的に正本へ戻る | AIDOC-HARNESS-002／003、AIDOC-OS-001..005 | `worker-context-packet`等の既存ownerを新世代で再利用しない | split_reapproval_required |

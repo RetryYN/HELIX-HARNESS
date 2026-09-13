@@ -99,6 +99,7 @@ AI可読文書条件はAIDOC要求の採用revision確定後に評価する。�
 - AIDOC-OS-005：上流source更新後の旧AI文書をstaleとして拒否し、再生成・semantic diff・read-after前に実行へ使わない。
 - AIDOC-OS-006：source欠落、digest不一致、競合revision、未読を個別に与え、読取り済みや実行可能として表示しない。
 - AIDOC-OS-007：現行AI文書をarchive対象として与え、新世代のread setやpromptへ再注入しない。現時点では実移動を行わない。
+- AIDOC-OS-008：同じ旧pathをsession input、registry、生成template、配布物、lint、復元経路へ配置し、relationごとに別consumerとして検出する。一件の置換や単一read setで全移管済みにしない。
 
 INV由来条件は新世代で個別採用した要求revisionの確定後に評価する。全件未実行。
 

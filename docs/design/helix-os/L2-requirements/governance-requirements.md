@@ -138,7 +138,7 @@ HELIX-OSは内部統制機構として扱い、HARNESSやHELIX-Web等の外部�
 
 ## AI可読文書の生成・適用統制
 
-[AI可読上流文書の要求候補](../../../governance/candidates/ai-readable-authority-requirements.md)のAIDOC-OS-001..007を、
+[AI可読上流文書の要求候補](../../../governance/candidates/ai-readable-authority-requirements.md)のAIDOC-OS-001..008を、
 HELIXOS-L2-001／002／003／004／005／007／009の適用待ち具体化として保持する。session開始時に対象project・product、
 authority revision、HARNESS契約、assignment、許可・禁止、予算、停止条件、必須readを解決し、会話、Issue、memory、
 旧実装から不足項目を補完しない。
@@ -147,6 +147,11 @@ AI可読文書は承認上流から一方向に生成し、source、digest、生
 個別製品要求を別source relationとして組み立て、要約してもauthority、禁止、停止条件、未解決事項、次の必須readを落とさない。
 source更新時は影響文書をstale化し、再生成・semantic diff・read-after前に実行へ使わない。読取りrevision、未読、参照失敗、
 競合を記録し、「読んだはず」やsession記憶を証拠にしない。
+
+AI文書のinput、registry、activation、generation、distribution、enforcement、recovery、citationを別relationとして追跡し、
+読取り主体、適用時点、scope、source revisionを保持する。一件の文字列置換、一つの静的read set、旧lint greenだけで
+consumer移管完了と判定しない。現行relationの要求源は
+[consumer relation inventory](../../../governance/audits/l2-requirements/legacy-ai-consumer-relation-inventory.md)に記録する。
 
 現行AGENTS.md、CLAUDE.md、`.claude/`、`.codex/`、hook、adapter、promptはlegacy runtime inputとしてinventoryに留め、
 要求整理完了前に削除・移動・変更しない。新世代manifest、生成器、prompt、token budgetはL3以降で再導出する。

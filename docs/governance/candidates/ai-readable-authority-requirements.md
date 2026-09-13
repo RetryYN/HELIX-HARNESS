@@ -52,6 +52,7 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 | AIDOC-OS-005 | source更新時に影響するAI文書をstale化し、再生成・semantic diff・read-after前は実行へ使わない | 古い生成物と新しいauthorityを混在させない |
 | AIDOC-OS-006 | AIの読取りと判断を対象revisionへ記録し、文書未読・参照失敗・競合を明示して停止する | 「読んだはず」やsession記憶を読取り証拠にしない |
 | AIDOC-OS-007 | 現行AI文書を新世代のbaselineにせず、source inventoryと判断史を保持する非実行archiveへ移せる | 旧prompt・旧Core Reads・旧adapterが新世代sessionへ再注入されない |
+| AIDOC-OS-008 | AI文書のinput、registry、activation、generation、distribution、enforcement、recovery、citationを別relationとして追跡し、各consumerの主体・時点・scope・revisionを保持する | 一件の文字列置換や一つのread setだけで移管完了と誤判定しない |
 
 ## 新世代のAI読取り入口
 
@@ -84,6 +85,7 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 - 上流sourceを更新すると旧AI文書がstaleになり、再生成・semantic diff・read-after前に使用できない。
 - contextを縮小しても禁止事項、停止条件、未解決事項、次の必須readが残る。
 - 現行AI文書をarchiveへ移した後、新世代sessionのread setとpromptに旧文書が含まれない。
+- 同じ旧pathをsession input、registry、生成template、配布物、lint、復元経路へ配置し、各relationを別consumerとして検出する。
 - source欠落、digest不一致、競合revision、未読を個別に与え、推測で作業開始しない。
 
 本候補はAI文書の内容と生成・適用責務を上流で分けるための入力であり、現行runtimeへの適用を認可しない。

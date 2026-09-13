@@ -18,7 +18,7 @@
 | 候補系列 | 主対象 | 整理状態 | 文書整理上の扱い |
 |---|---|---|---|
 | `agentic-audit-future-state-delta` | HELIX-OS | L2接続済み | 監査提案、future差分、model比較をOSの改善・証拠要求へ接続 |
-| `ai-readable-authority-requirements` | HARNESS / HELIX-OS | L2接続済み | AIDOC-HARNESS-001..003をHARNESS-L2-001／003／005、AIDOC-OS-001..007をHELIXOS-L2-001..005／007／009へ接続。対象別L1／L2確定まで現行AI文書を変更しない |
+| `ai-readable-authority-requirements` | HARNESS / HELIX-OS | L2接続済み | AIDOC-HARNESS-001..003をHARNESS-L2-001／003／005、AIDOC-OS-001..008をHELIXOS-L2-001..005／006／007／009へ接続。AI consumer relationを別々に追跡し、対象別L1／L2確定まで現行AI文書を変更しない |
 | `authority-vocabulary` | HELIX-OS | L2接続済み | 人間authority、作業指示、通知、技術判断の分離をOS統制へ接続 |
 | `bugbot-bounded-repair` / `bugbot-intake-source.md` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 修復後の検証義務はHARNESS、検出・提案・許可・隔離適用・停止・証拠はOSへ分離。旧GH-FR-011権限、既存CI／DB／transaction再利用は棄却。未提供別紙あり |
 | `ci-event-concurrency-generation` | HELIX-OS | 照合済み・再採否待ち | generation・非干渉・replayの意味だけをNCIへ候補接続。GitHub event enum、旧receipt、既存provider再利用は持ち込まない |
