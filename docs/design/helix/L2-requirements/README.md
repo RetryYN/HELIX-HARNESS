@@ -129,6 +129,8 @@ L2監査済みへ算入しない。一方、本文に具体要求が混在して
 153要求との単純合算をHELIX全要求数にしない。上記5契約とRLOの状態は`specified`で、JSONの承認欄はnullである。
 MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求意味の正本ではない。
 [追補14契約の対象別対応](../../../governance/audits/l2-requirements/refinement-target-crosswalk.md)に、契約状態・ID件数・帰属と未確認境界を記録した。
+[要件正本v1.3の対象別責務対応](../../../governance/audits/l2-requirements/requirements-v1.3-target-crosswalk.md)には、
+現行Core Read内で混在するHARNESS工程規則とHELIX-OS実行統制を節・ID単位で分け、正規改訂の適用待ち条件を記録した。
 
 ## 画面・候補・旧資料
 
