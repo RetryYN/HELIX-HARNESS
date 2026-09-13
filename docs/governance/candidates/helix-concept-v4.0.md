@@ -2,6 +2,12 @@
 document_id: HELIX-CONCEPT-V4
 concept_version: "4.0"
 status: draft_candidate
+authority_status: approved_pending_canonical_promotion
+approval_record_id: L3-PO-1496-001
+approval_scope: candidate_exact_set_only
+approval_plan: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md
+approved_body_sha256: 9b6ee7a9f9ed16ecc82e1dd4a5d06601cc0cb313fa03daa5887cfe8772a2e8ea
+authority_note: "本文の未承認・v3.1 current表記は承認前原稿の履歴。PLAN-L3-84の候補承認と2026-09-13 startup是正に従い、v4を新要求の必読入力とする。canonical promotion・IR admission・runtime適用は未完了であり、このmetadataで完了を主張しない。"
 github_issue_id: 1496
 behavior_contract_id: HELIX-CONCEPT-V4-UPGRADE-001
 supersedes_after_approval: docs/governance/helix-harness-concept_v3.1.md

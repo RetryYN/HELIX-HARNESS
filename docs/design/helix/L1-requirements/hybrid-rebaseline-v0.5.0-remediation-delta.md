@@ -5,7 +5,7 @@ canonical_pair: L11
 legacy_physical_layer: L1
 l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
 l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
-title: "HELIX L1要求 — REBASELINE v0.5.0要件是正デルタ"
+title: "HELIX L2要求 — REBASELINE v0.5.0要件是正デルタ"
 layer: L1
 kind: add-design
 status: proposed
@@ -21,6 +21,13 @@ authority_epoch:
 ---
 
 # REBASELINE v0.5.0 要件是正デルタ（フルチェック所見 59 件の是正仕様）
+
+現行分類はL2要求、検証対はL11である。物理pathと`layer: L1`は旧projectionを保持する。
+本書の各「検証合格」「改訂済」は当時の是正案の評価記録であり、現行要求への採用、実ファイルへの適用、
+L2合意、L11受入、実装済みを証明しない。記載されたパッケージ内path・件数・コマンド例を、
+現行repositoryの実在path・現在値・実行可能コマンドと扱わない。
+要求の機械意味正本へ移管済みの範囲は`config/requirement-ir-authority.json`が指すJSONで確認する。
+本書の旧coverage ledgerと固定件数を現行要求集合の正本に戻さない。
 
 - 起点: [フルチェック監査](../../../governance/hybrid-rebaseline-v0.4.0-fullcheck-audit-2026-07-17.md)（2026-07-17、critical 9 / major 37 / minor 13 のうち反証棄却を除く 59 件）
 - 是正方針: リポジトリ正本 precedence（CLAUDE.md「仕組み > 個別機能」）に従い、**ADR-009とその部分改定ADR-010（ともにaccepted）の同一authority epoch**へ再裁定する。本書中のADR-009単独前提の個別deltaは、そのままcurrentへ昇格させない。
@@ -224,7 +231,7 @@ schemas/harness-capsule.schema.json の budget に `max_concurrency`（integer, 
 - 是正種別: schema修正 / status: 検証合格
 - 対象: `templates/subagent-harness-capsule.template.yaml`
 
-templates/subagent-harness-capsule.template.yaml の task.objective を空文字列から未記入プレースホルダ文字列 "TODO: fill objective before use" へ変更し、schema の minLength:1 を満たすようにする。あわせてテンプレート先頭にコメント（# NOTE: This is a fill-in template. Replace all TODO/XXX/000... placeholder values before use; as-is it will fail schema validation intentionally on capsule_digest/commit/objective to prevent accidental direct use.）を追加し、テンプレートがそのまま使われることを防止する意図を明示する。
+templates/subagent-harness-capsule.template.yaml の task.objective を空文字列から未記入プレースホルダ文字列 "TODO: fill objective before use" へ変更し、schema の minLength:1 を満たすようにする。テンプレート先頭には「記入用template。TODO／XXX／ゼロ値を実際のobjective・commit・digestへ置換してから使用する。形式schemaへの適合は実行admissionを意味せず、未記入placeholderを実行前検査で拒否する」と日本語で注意書きを追加する。schemaの形式検査が通ることと、未記入templateを安全に実行できることを混同しない。
 
 **機械検証**: python3 -c "import json,yaml,jsonschema; jsonschema.Draft202012Validator(json.load(open('schemas/harness-capsule.schema.json'))).validate(yaml.safe_load(open('templates/subagent-harness-capsule.template.yaml')))" が objective 修正後は pass すること（capsule_digest/commit の形式的ゼロ値は pattern 上有効なプレースホルダのため許容し、objective の minLength:1 違反のみを是正対象とする）を固定テスト化する。
 
@@ -584,7 +591,11 @@ v0.5.0で次の是正を行う。
 - 是正種別: schema修正 / status: 検証合格
 - 対象: `README.md#Start here`
 
-README.mdの『Start here』5番目の参照『19-v0.4.0-errata.md』を、実在するファイル名『19-v0.3.2-errata.md』に修正する。あわせて19-v0.3.2-errata.md冒頭の見出し『# v0.4.0 Errata — HELIX / UT / Core関係の訂正』はファイル名（v0.3.2）とタイトル（v0.4.0）が不一致であるため、v0.5.0では次のいずれかで統一する: (a) ファイルをリネームして`19-v0.4.0-errata.md`とし、README参照はそのまま維持する、または(b) 見出しを『# v0.3.2 Errata — HELIX / UT / Core関係の訂正』へ修正しファイル名と一致させる。パッケージ全体でversioned errataファイルの命名規則（ファイル名のバージョン番号＝見出しのバージョン番号）を統一し、他のerrataファイル（15/16/18番）についても同様の一致を確認する。
+この是正はIC-02と同じ対象であり、IC-02の最終案へ統一する。パッケージ内の
+`19-v0.3.2-errata.md`を`19-v0.4.0-errata.md`へ改名し、既存README参照とv0.4.0の本文・見出しは保持する。
+README参照を旧名へ戻す案と、本文をv0.3.2へ書き換える案は採用しない。
+適用と検証はIC-02の一回の変更・リンク存在・見出し一致検査へ束縛し、同じ是正を二重計上しない。
+他のerrataファイル（15/16/18番）の命名一致は個別に確認する。
 
 
 ## 軸: Linux中心マルチOS (`linux-multios`)

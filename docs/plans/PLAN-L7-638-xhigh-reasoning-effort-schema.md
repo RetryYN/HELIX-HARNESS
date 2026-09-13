@@ -60,7 +60,7 @@ pair_artifact: docs/test-design/helix/L8-xhigh-reasoning-effort-schema-unit-test
 workflow_identity:
   schema_version: helix-plan-workflow-identity.v1
   registry_version: 1.1.6
-  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
+  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c
   target_axis: workflow_model
   target_id: ADD_FEATURE
 dependencies:

@@ -1,16 +1,35 @@
 ---
-title: "HELIX L1 柱要件 運用テスト設計 — HBR/HNFR ⇔ HOT-* (片肺禁止 pair)"
+title: "HELIX L2 柱要求のL11受入対応 — HBR/HNFR ⇔ HOT-*"
+canonical_vmodel: L1-L12
+canonical_layer: L11
+canonical_pair: L2
+legacy_physical_layer: L14
 layer: L14
 kind: test_design
-status: confirmed
+status: draft
+freeze_blocking: true
 created: 2026-06-28
-updated: 2026-07-01
+updated: 2026-09-14
 owner: PO (人間 / RetryYN)
 plan: PLAN-L1-06-helix-solo-conversion
 pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 ---
 
-# HELIX L1 柱要件 運用テスト設計 (HOT-*)
+# HELIX L2 柱要求のL11受入対応 (HOT-*)
+
+現行の対はL2要求／L11受入である。本revisionは旧運用テストの受入対応を整備するdraftであり、
+旧revisionのconfirmed・対凍結を引き継がない。以下のHOT13件は要求との対応を調べる移管元として保持する。
+旧L14運用観測、L7単体テストのgreen、PLANへの降下記録を現行L11受入の合格証拠にしない。
+
+現行受入への移管では、各HOTの親要求の本文・追補・revisionと、適用する利用シナリオ、
+期待結果、合意記録、独立した検証証跡を対応づける。HBR9件／HNFR4件にIDが対応することは、
+全条件の被覆や要求合意を証明しない。特に§2.7配布／setupと§2.8可視化の追補を落とさない。
+未確認の合意・実操作・外部適用を実施済みと記録しない。
+
+`docs/governance/downstream-canonical-reuse-authority-2026-07-19.md`によるcanonical再利用禁止は維持する。
+この分類訂正だけでは個別delta・oracle・独立review・digest更新の要件を充足しない。
+
+旧承認の記録と未移管行は履歴である。HOT-P0／P1／P6／P7は現行要求に合わせた受入案へ訂正したが、実行結果は未取得である。現在の受入成功として読まない。
 
 > `docs/design/helix/L1-requirements/pillar-requirements.md`（HBR/HNFR、charter P0–P9）の **L14 対**（片肺禁止）。
 > OT-* ⇔ HBR/HNFR を **1:1** で立てる。ID は HELIX 名前空間 **HOT-** で harness の OT-01..47 と非衝突。
@@ -39,13 +58,13 @@ pair_artifact: docs/design/helix/L1-requirements/pillar-requirements.md
 
 | ID | 対応 | 運用シナリオ | 合否条件 | 実装状態 |
 |----|------|--------------|----------|----------|
-| **HOT-P0** | HBR-P0 | 逸脱・失敗・暴走を driver（Reverse/Recovery/Incident）で受け、`forward_return` 規律で Forward 正本へ収束。budget time-cap 到達で runaway を停止 | 逸脱試行が driver へ routing され forward_return で Forward へ戻る / time-cap 超過で停止が記録 / 未収束 0 | not-implemented（FR 接地厚いが forward_return first-class・runaway guard は net-new） |
-| **HOT-P1** | HBR-P1 | 要件承認後、engine（resume 3 条件 / job-queue / budget time-cap / fresh-session）で無人完走、Scrum 分割でスケール、version-up で今版外作業を保全 | 承認後 human 介在 0 で完走 / job-queue 二重 claim 0 / time-cap で fresh-session 再入 / version_target 外作業が version-up へ隔離 | partial（loop/job-queue は PLAN-L7-176 実装、continuous-run engine 全体・version-up lifecycle は net-new） |
+| **HOT-P0** | HBR-P0 | 逸脱・障害を処理した後、L3で選択したFull V／Production Scrum／Hybridへ戻る。Discovery／PoCはS4判断後だけ接続する | 選択styleと復帰先が一致 / signalだけのstyle変更を拒否 / 未解決routeを完了扱いしない / budget・time-cap超過で停止し、再開時も累積制約を保持 | 未実行（現行L11受入案） |
+| **HOT-P1** | HBR-P1 | L2合意とL3凍結の範囲で作業・検証・復旧を継続し、今版外作業を保全する | 委任scope内の実行で不要な再承認を要求しない / 意味変更・利用者受入・release等の人間判断を自動承認しない / job-queue二重claimなし / session再開で累積予算・期限・未完義務を初期化しない / 今版外作業の移管先を追跡できる | 未実行（現行L11受入案） |
 | **HOT-P2** | HBR-P2 | subagent を loop 単位（解釈→検証→計画→実行→検証→返却）で動かし orchestrator 統括、hybrid で worker≠verifier（自己評価禁止）、不在時 fail-close。Codex worker / Codex-only / hosted API surface でも同じ判定で動く | tick が canResume gate / hybrid 不在で stopped+cross_runtime_unavailable（自己評価せず）/ selectVerifier が反対 provider / Codex `spawn_agent` が agent-guard を通る / typed tool contract registry が request/response を検証し未登録 surface を deny/defer / loop effort-budget 超過時は same worker continue/pass を出さない / Codex hook 非強制 surface では編集前 preflight が要求される | **partial**（loop 構造 + 実 runtime bridge は green: PLAN-L7-175/176/177、Codex subagent guard parity は PLAN-L7-139 continuation green、typed tool contract registry は PLAN-L7-213 green、loop effort-budget は PLAN-L7-214 green、hosted/API preflight は PLAN-L7-215 green。**残 GAP**: L14 運用観測での全 agent rule/memory 一般化は HNFR-AC 側で扱う） |
 | **HOT-P3** | HBR-P3 | design⇔test-design を pair 凍結（片肺禁止）、coverage 単独 pass 禁止、合格主張は green_commands 実証跡、成果を held-out 外部真実に照合 | 片肺 freeze 試行が block / prose-only 合格主張が substance gate で reject / held-out 照合無しの完了主張を検知 | partial（pair_closure/substance gate は既存、held-out external grounding は net-new） |
 | **HOT-P4** | HBR-P4 | drift/劣化/不整合を自動検出→**自動修復**、検出→routing 循環、recipe 蓄積→予防 gate/detector へ昇格 | 検出 event が修復 action へ routing / recipe が gate/detector へ promote / 劣化（flake/perf）検出が発火 | not-implemented（検出は厚いが auto-repair/promote は net-new） |
-| **HOT-P6** | HBR-P6 | 全 gate PASS で push authorized、raw push を fail-close deny、PR 自動 cross-review、CI 失敗で auto-fix-repush、tag で版管理。配布 tag/release pin から 1 コマンドで full setup baseline を生成し、既存プロジェクト途中導入と tag bump version-up に対応 | gate 未充足 push が deny / PR が cross-review 経路に乗る / CI fail で auto-fix commit が repush / tag lifecycle が成立 / fresh repo と既存 repo で `helix setup --solo --dry-run`（rename 後は `helix setup` 相当）が hooks・Claude/Codex adapters・state/memory/evidence/feedback・GitHub rules/checks plan を生成し、session handover path/commandを生成しない / 既存 docs/code/state は import report と段階移行で扱う / version-up は target tag 差分・migration・rollback plan を出す / apply は action-binding approval 必須 / 再実行 idempotent | **partial**（`helix setup project`、consumer doctor baseline、GitHub rules/checks plan-only、fresh/brownfield import report、PATH readiness、version-up dry-run / activation packet、rename/cutover plan-only packet は L3/L6/L7 で実装・検証済み。**残 GAP**: raw push deny の実 remote enforcement、PR 自動 cross-review、CI auto-fix repush、tag/release publish の実適用は action-binding / release gate 承認前で未完） |
-| **HOT-P7** | HBR-P7 | harness/project 2層memoryを分離、全エージェント同一記憶共有（silo禁止）、SessionStart想起、GlossaryをSSoT連結。Claude内蔵memoryに寄せずCodexからも同一surfaceを読む | harness/project層分離 / Claude↔Codexが同じDB continuation projectionと`.helix/memory`を読む（silo 0）/ provider delegation evidenceとoperations transitionは監査専用でrecall sourceにしない / retirement前後のcount・digest・provenance・query/export可用性が不変 / secret reject / SessionStartで有界surface | **partial**（2層memory architecture + 有界surfaceはgreen: PLAN-L7-175/176、U-MEM-001..003 green。**残GAP**: Glossary SSoT連結 / Codex SessionStart surface同一性 / preserve integrityのL7 test_code → 親HBR-P7と整合） |
+| **HOT-P6** | HBR-P6 | development sourceから生成した配布artifactを固定し、fresh repoと既存repoへ導入・更新する。開発中のPR review・CI修復と公開操作の境界を確認する | source HEAD・requirements digest・artifact digestが対応 / tagやIssue状態を要求承認に転用しない / `helix setup project`で導入しconsumer doctorで確認 / 既存成果をsilent overwrite・deleteしない / hook・adapter・state・memory・evidence・feedbackとGitHub設定計画が揃う / 更新差分・migration・rollbackを確認でき再実行が冪等 / CI greenだけでmerge・publish・tag・cutoverを許可しない | 未実行（現行L11受入案。実remote適用と公開は対応する承認境界に従う） |
+| **HOT-P7** | HBR-P7 | harness/project 2層memoryを分離、全エージェント同一記憶共有（silo禁止）、SessionStart想起、GlossaryをSSoT連結。Claude内蔵memoryに寄せずCodexからも同一surfaceを読む | harness/project層分離 / Claude↔Codexが同じDB continuation projectionと`.helix/memory`を読む（silo 0）/ provider delegation evidenceとoperations transitionは監査専用でrecall sourceにしない / retire前に内容が責務正本へ反映済みでread-after可能 / 原文provenance・訂正履歴・移管先へ追跡可能 / 未反映内容のretire、lost update、二重deliver、期限切れtakeover、terminal receiptのactive再表示を拒否 / 件数・保存形式・digestの変化だけを成功または失敗の根拠にしない / secret reject / SessionStartで有界surface | 未実行（現行L11受入案。旧memory実装のgreenを本条件の受入証拠に転用しない） |
 | **HOT-P8** | HBR-P8 | 外部（Web/docs/OSS/tool）を検索・参照し幻覚を外部照合で抑止、有益知見を skill 化して自己取込、sandbox/trust-boundary 下で実行 | 外部照合経路が成立 / skillify ループで skill が追加 / sandbox 外アクセスが escalation へ / source ledger が fresh で `source_status_delta`・`adoption_decision_delta`・`workflow_route_impact` を記録 | **partial**（右腕 / S4 / version-up / action-binding / cutover / completion の source ledger freshness、official URL、採用判断差分、route 影響の gate は実装済み。2026-07-03 時点で Cloudflare/GitHub 等の公式 source は activation 前 evidence として packet に束縛される。**残 GAP**: 汎用 Web research loop、skillify 自己取込、sandbox/trust-boundary 実行基盤の一般化は未完） |
 | **HOT-P9** | HBR-P9 | 成果物を harness.db 台帳へ収束、**DB 未収束＝未完了** enforcement、cross-artifact relation graph で影響分析、contract ledger 整合。setup/import/upgrade 後の baseline も DB/doctor に収束。VSCode Webview / View / dashboard は docs・DB・relation graph 由来の deterministic read model として進捗・依存・未収束・skill/model/runtime evidence を可視化 | 未収束 artifact の完了主張を block / relation graph で impact 算出 / contract ledger が整合 / setup/import/upgrade baseline が doctor で可視化され未収束なら完了扱いにしない / 可視化 node-edge が DB source と一致 / projection-only evidence を runtime verified と誤表示しない / action surface は approval-bound / `completionDecisionPacket` が fresh かつ `outstanding.completionReadiness.ok=true` でなければ L14 全件達成を拒否 | partial（projection 厚いが「未収束＝未完了」enforcement gate・relation graph・contract ledger は net-new。可視化要求は PLAN-DISCOVERY-10 で起票） |
 

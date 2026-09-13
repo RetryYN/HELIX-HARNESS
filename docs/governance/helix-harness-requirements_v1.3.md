@@ -6,7 +6,7 @@
 # HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本
 
 - **Version**: 1.3.14
-- **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）
+- **Status**: document revision confirmed（既存revisionの承認記録。Infinity Loop由来の要件定義 lifecycle は153/153 frozenであり、HELIX全要求の網羅・実装・受入完了を示さない。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）
 - **設計コア**: `hybrid-vmodel-source.v1`、`universal-workflow-requirements-skill.v1.1.0`、`hybrid-core-rebaseline.v0.5.1`。旧archive filename、archive SHA、Git blobは`docs/migration/source-manifests/`のprovenance input-onlyであり、current source identityとして再出力しない。
 - **旧正本**: `helix-harness-requirements_v1.2.md`（L0〜L14部分はcompatibility referenceへ降格）
 - **継承**: v1.2のうち、本書と衝突しない安全・証跡・駆動モデル・agent・DB・GitHub要件は継承する。
@@ -25,6 +25,21 @@ VモデルとProduction Scrumは、目的に応じて選択できる同格のdel
 HybridはL5詳細設計までVモデルで凍結した後に実装をslice化し、Forwardはslice化せずL12まで進む。
 
 ## 2. 正規layer
+
+### 要求の参照範囲と最新化
+
+利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。
+物理pathに残る旧`L1-requirements`等の名称から現行層を判定しない。
+[L2要求の参照入口](../design/helix/L2-requirements/README.md)で、既存要求・追補・候補の出典と採用状態を確認する。
+Concept v4の承認対象は上位入力として参照するが、候補本文の承認と正本化・runtime適用を同一視しない。
+[Concept v4由来のL2整理案](../design/helix/L2-requirements/concept-v4-derived-requirements.md)はdraftであり、
+その追加条件に既存revisionの承認を転用しない。
+
+GitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。
+Issueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。
+DBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。
+
+### 層と対
 
 | L | 工程 | V字の対 | 完了条件の核 |
 |---|---|---|---|
@@ -394,9 +409,13 @@ backflow／human decisionを閉じた後、G1/G3人間承認だけがfreezeを�
 通り、Discovery／PoCはS4前にcanonical化しないcase-driven model、Design HARNESSはprototype／surface生成を
 支援するspecialist processとして別軸を維持する。
 
-現行153 requirement、24 system contract、72 HAC、24 HATはshadow JSON migrationとsemantic parityが完了するまで
-Markdownをcurrent authorityとして維持する。cutoverはJSON canonical、generated Markdown、DB projection、
-lint／doctor／routing／progression readerを一つのtransactionで切り替え、dual authorityを作らない。
+現行の機械正本は`config/requirement-ir-authority.json`が指定する`requirements-ir/manifest.json`とそのshardである。
+同設定の`semantic_read: canonical_json_only`に従い、列挙された旧Markdownはmigration／compatibilityのread-only入力、
+generated Markdownはread-only viewとする。移行前の「Markdownをcurrent authorityとして維持する」という条件は
+現在の読み取り方針ではない。書込みはJSON transactionへ限定し、dual authorityを作らない。
+153 requirement、24 system contract、72 HAC、24 HATはInfinity Loop由来の基準集合であり、manifestはこれに
+refinement契約を別shardとして加える。これらの件数だけで全HELIXのL2要求・追補・候補を網羅したと判定しない。
+後続の正本変更でもJSON、generated view、DB projection、consumerの整合を検証し、凍結状態と実装・受入状態を分離する。
 正本refinement＝`docs/design/helix/L3-requirements/requirement-discovery-json-authority.md`（RDJ-FR-001〜012）、
 検証oracle＝`docs/test-design/helix/requirement-discovery-json-authority-acceptance.md`（RDJ-AC-001〜012）。
 

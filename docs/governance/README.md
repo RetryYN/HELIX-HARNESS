@@ -5,6 +5,9 @@
 
 ## 現行判断入口
 
+要求対象の整理では[HARNESS・HELIX-OS・個別プロダクトの責務決定](product-governance-boundary-2026-09-14.md)を確認する。
+旧Conceptにある対象混在の記述を、この決定より優先しない。個別要求の合意・正本昇格とは区別する。
+
 Claude Code / Codex / human reviewer は、通常タスクでは次の順に読む。
 
 1. `l12-canonical-vmodel-direction-directive_v0.1.md` (current V-model layer authority)
@@ -34,6 +37,12 @@ currentへ再出力しない。v4のruntime正本化と候補directoryからの�
 
 > **ADR-009/010 boundary**: implementationはHELIX-owned TypeScript/Node transactional boundaryとPython semantic coreを同格のlayered authorityとして構成する。
 > Migration docsとsource snapshotsはatomization／regressionのsource materialであり、旧runtime自体をexecution routeにしない。
+
+要求の確認は[L2要求の読取り入口](../design/helix/L2-requirements/README.md)から、要求本文・正本JSON・
+合意状態・L3／L11への対応を辿る。GitHub Issue／PR／Projectsは要求の意味正本ではない。
+文書名や物理directoryの旧L1表記だけで要求をL1企画に分類しない。
+[要求文書監査記録](l2-requirements-source-audit-2026-09-14.md)には、確認範囲・訂正・未解決事項を記録する。
+この案内と監査記録は、新しい要求正本や承認・受入証跡ではない。
 
 ## Reference Only（参考のみ）
 

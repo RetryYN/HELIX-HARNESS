@@ -46,7 +46,7 @@ v2_import: docs/migration/v2-import-ledger.md
 | NFR-ID | 非機能要求 | 詳細 |
 |--------|-----------|------|
 | **NFR-02** | **更新性第一 (updatability)** — harness 本体・skill 等の更新 / 保守が容易であること (実現手段 = plugin / skill MCP 化 等は L4 ADR 送り) | 工程別 skill 注入機構 (FR-L1-12) + PLAN 内蔵物原則 (§3.6) で skill 更新を局所化 |
-| **NFR-05** | **GitHub を CI / 証跡 / 権限の正本**とする (具体実現手段は L3/L5 で確定) | GHA ワークフロー / branch protection / PR 許可を HELIX 証跡の正本とする。FR-L1-17 CI/PR 連携 |
+| **NFR-05** | **CI実行・PR許可・権限証跡をGitHubへ保存**する (具体実現手段は L3/L5 で確定) | GHA workflow、branch protection、PR許可を対象HEAD・実行世代へ結び、監査可能な証拠として保存する。要求の意味・採否・合意は対象別のローカル要求正本を参照する。FR-L1-17 CI/PR連携 |
 | **NFR-08** | **実装宣言の真実性** — 設計 doc が主張する CLI / file / schema field に実装状態列 (installed / partial / not-implemented) を必須化し、机上の「実装済」宣言を禁止する | v2 BR-09 翻案。L3 以降の全設計 doc に `implementation_status` 列を必須化 (forward carry: `docs/migration/v2-import-ledger.md §2 F-6`) |
 | **NFR-13** | **dev-local + CI 二重実行 (editor return loop)** — 同一 lint/gate を dev-local (editor PreToolUse / pre-commit) と CI (GHA harness-check) の両方で実行し、editor で fail なら commit 前に局所修正 loop に戻す。**機械検出目標** (A-52 audit I-01/I-02): cross-detection 全 axis (依存漏れ / 契約漏れ / 接続欠損 / デグレ) **0 件維持** + test-perspective-gate W字観点 (抜け / 重複) **0 件維持** を gate 通過条件に含む (cross-detection.md / test-perspective-gate.md 由来) | concept §audit-framework §17.3 / FR-L1-17 (CI/PR) + `.claude/hooks/agent-guard.ts` (PreToolUse) の 2 段運用。**gate 通過率 ≥90% (KPI D-02、B5=b)** を運用目標、`.helix/gate_runs` で計測 / cross-detection.md / test-perspective-gate.md |
 | **NFR-14** | **human-as-residue 原則** — 機械チェック (machine) と AI レビュー (NFR-12) で潰せない判断のみを人間 (PO) に escalate。silent pass を避ける反面、人間の判断負荷も極小化。**Recovery 収束 audit trail** (A-52 audit I-04): Recovery モード発動時、stop-hook が認識訂正履歴を自動 dump し audit trail (`.helix/recovery_log/`) に収める (recovery-workflow.md §基本フロー、収束時間 SLO は L3 NFR-grade で確定) | concept §audit-framework §17.4 / 全 gate で machine → AI → human の優先順、判断要点 + 根拠 + 推奨アクション を構造化提示。**gate fail-close 例外権 = PO のみ + audit 記録 (S-03/B6=b)**、bypass 件数 0 を KPI D-06 で計測 / recovery-workflow.md (認識訂正履歴) |
@@ -86,7 +86,7 @@ v2_import: docs/migration/v2-import-ledger.md
 |-----------|----------------|---------|
 | **可用性** | cross-platform native / fail-close / onboarding 互換性 | NFR-01 / NFR-06 / NFR-16 |
 | **性能・拡張性** | 実務で機能する完成度 / machine×AI 2 層補完 / server-optional 拡張 | NFR-07 / NFR-12 / NFR-15 |
-| **運用・保守性** | 更新性 / GitHub 正本 / 実装宣言真実性 / dev-local+CI 二重実行 / human-as-residue / 排泄系契約 | NFR-02 / NFR-05 / NFR-08 / NFR-13 / NFR-14 |
+| **運用・保守性** | 更新性 / GitHub上のCI・PR・権限証跡 / 実装宣言真実性 / dev-local+CI 二重実行 / human-as-residue / 排泄系契約 | NFR-02 / NFR-05 / NFR-08 / NFR-13 / NFR-14 |
 | **移行性** | 言語非依存 / AI mode 非依存 | NFR-04 / NFR-03 |
 | **セキュリティ** | GHA audit framework 役割分離 / 統合セキュリティグレード (5 段階 / OWASP Agentic / EU AI Act Art.14) | NFR-11 / **NFR-17** |
 | **システム環境** | Linux primary、Windows / macOS compatibility、Node.js LTS＋Python | NFR-01 / ADR-009 / ADR-010。Bun依存0 |

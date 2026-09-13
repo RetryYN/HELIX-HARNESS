@@ -7,6 +7,12 @@ layer: L1
 kind: redesign
 status: confirmed
 authority_status: canonical_source
+requirement_ir_projection:
+  path: requirements-ir/refinement_contracts.json
+  contract_ids: [3L-FR-001, 3L-FR-002, 3L-FR-003, 3L-FR-004, 3L-FR-005, 3L-FR-006, 3L-FR-007, 3L-FR-008]
+  lifecycle_status: frozen
+  audit_baseline: 6fabd1251
+  note: "本文のIR admission待ちはsource正本化時の記録。基準HEADでは上記8契約の収載とsource digest一致を確認済み。L2合意、L11受入、runtime完成を意味しない。"
 created: 2026-09-02
 updated: 2026-09-07
 owner: PO / Codex TL

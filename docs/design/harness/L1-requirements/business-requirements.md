@@ -39,7 +39,7 @@ HELIX は、AI 実装エージェントに開発を安全に委譲するため�
 | ID | 業務要求 | 出所 (trace) |
 |----|----------|--------------|
 | **BR-01** | 設計⇔実装⇔テストの整合を機械強制し、AI 委譲しても回帰が壊れず **1 案件を L0-L14 通しで回せる** | concept P1 / 成功① ③ |
-| **BR-02** | **AI agent roster の責務境界**（人間 = PO 1 名 = L0/L1/L2-mock/L3 承認のみ、実装/レビュー/検証等 = 別ランタイム/別モデルの AI agent）が日常 PR で gate・レビュー・役割境界を無理なく回せる。creation と judgement を別系統に分離し（worker≠verifier）役割境界を機械強制する（NFR-05 の GitHub 権限正本 + P2 orchestration に連結） | concept P2（AI agent 責務境界）/ 成功② / charter §3 自律境界 |
+| **BR-02** | **AI agent roster の責務境界**（人間 = PO 1 名 = L0/L1/L2-mock/L3 承認のみ、実装/レビュー/検証等 = 別ランタイム/別モデルの AI agent）が日常 PR で gate・レビュー・役割境界を無理なく回せる。creation と judgement を別系統に分離し（worker≠verifier）役割境界を機械強制する（NFR-05 の GitHub権限証跡 + P2 orchestration に連結） | concept P2（AI agent 責務境界）/ 成功② / charter §3 自律境界 |
 | **BR-03** | AI 実装を安全に委譲でき、既存の設計・テストを破壊的に改変しない (回帰検知を保つ) | concept P4 / 成功③ |
 | **BR-04** | PoC / 検証成果を契約化してから本実装へ合流させ、PoC の独り歩き・知見の散逸を防ぐ | concept P3 |
 | **BR-05** | 開発を PLAN 単位 + **phase-aware ID** でフェーズ管理し、**規約違反を機械検知できる** (起票規約 / lint 仕様は L3 FR・L5 送り) | 本 session 確定 / requirements §1.10 A |
@@ -245,7 +245,7 @@ Forward / Research / Add-feature / version-up を除く 7 mode (Reverse / Discov
 | BR-06 ダッシュボード機能仕様 | L3 FR / L4 | 実装アーキは L2/L4 |
 | 並列オーケストレーション機械実装 | L3 FR | F-1 (import-ledger §2) |
 | 配布形態 (plugin / MCP 化) | L4 ADR | NFR-02 下流 |
-| B1: solo PO + AI agent roster の具体 provisioning 方式 | L3 FR / L4 | NFR-05 / GitHub 権限正本連結、PLAN-L1-06 solo 改訂 |
+| B1: solo PO + AI agent roster の具体 provisioning 方式 | L3 FR / L4 | NFR-05 / GitHub上の権限証跡連結、PLAN-L1-06 solo 改訂 |
 | B2: gate 判断権限の機械強制実装 (人間=PO L0-L3 承認のみ、L4 以降=AI verifier が worker≠verifier で判定) | L3 FR | FR-L1-05 下流、charter §3 自律境界 |
 | B3: PoC 打ち切り条件の実装 (2 sprint 強制 OR rejected 判定ロジック) | L3 FR / L4 | Discovery ワークフロー機構 |
 | B6: bypass 条件の audit 記録実装 (`HELIX_ALLOW_RAW_AGENT=1` + PO 承認 flow) | L3 FR | agent guard 下流 |

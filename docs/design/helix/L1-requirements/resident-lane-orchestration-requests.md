@@ -76,6 +76,10 @@ PO の直接関与なしに PR → review → merge まで循環する状態を�
 
 ### BR-2: scope正本の択一と専用branch（PO決定 2026-08-20）
 
+ここでの「scope正本」はassignmentに渡す作業範囲の参照を意味し、要求の意味正本ではない。
+要求・要件の意味と承認revisionはリポジトリ内の要求文書／正本JSONで確認する。
+GitHub Issueの本文・ラベル・状態から要求を追加・削除・承認・完了へ変更しない。
+
 workerへ仕事を渡すときは、必ず **scope正本を一つ**（GitHub IssueまたはPLANの択一）と
 **専用branchを一つ**渡す。PLANはbranchの代替ではなくscope authorityであり、branchは常に必須とする。
 branch = 変更先正本、lease = 所有者正本は常に必須とする。
@@ -85,7 +89,7 @@ branch = 変更先正本、lease = 所有者正本は常に必須とする。
   上位文書の RLO-INV-001「Issue 必須」は本要求で緩和・上書きする:
   **assignmentはIssue参照またはPLAN参照（`plan_id`＋受入条件digest）の
   いずれか一つを scope 正本として持たなければならない**。
-- Issue 経由のフロー（GitHub 起点の Capability 進行）では従来どおり Issue を正本とする。
+- Issue 経由のフロー（GitHub 起点の Capability 進行）ではIssueを作業範囲の参照とする。
   同一 assignment に Issue と PLAN の二重正本を持たせない。
 - 根拠: 上位文書 §1 中核ルール ＋ PO 決定（Forward/Scrum は Issue を立てない）
 - L12 受入観点: scope 正本なし / branch なし / base SHA なしの dispatch が 0 件
@@ -264,7 +268,7 @@ BR を実現するためにシステムが備えるべき能力。要件（FR）
 
 | CN | 内容 | 由来 |
 |---|---|---|
-| CN-1 | canonical 層は L1-L12。要求=L1、要件=L3 として正本化し、L0-L14 旧体系へ戻さない | l12-canonical directive |
+| CN-1 | canonical 層は L1-L12。企画=L1、要求＋画面プロト=L2、要件定義・凍結=L3とする。本書のL1分類だけでL2要求・合意とL11受入の接続済みを主張しない | l12-canonical directive |
 | CN-2 | Python semantic core / TS-Node transactional boundary の層別 authority を維持する（ADR-009/010） | ADR-009/010 |
 | CN-3 | 新定義は要件正本（requirements v1.3 系列）へ載せてから runtime を移行する | CLAUDE.md 本線 |
 | CN-4 | release / tag / cutover / 自動 routing 有効化は action-binding approval 境界を維持 | GitHub 自走運用ルール |

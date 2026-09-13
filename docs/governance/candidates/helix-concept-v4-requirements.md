@@ -1,3 +1,15 @@
+---
+status: draft_candidate
+authority_status: approved_pending_canonical_promotion
+canonical_vmodel: L1-L12
+canonical_layer: L3
+canonical_pair: L10
+approval_record_id: L3-PO-1496-001
+approval_scope: candidate_exact_set_only
+approval_plan: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md
+approved_body_sha256: 5ef79685facb3c0641ddd5b9ff716ba5e1043ba931217f9ce73904ecd948136e
+authority_note: "本文は候補承認対象の18要件を保持する。未承認表記は承認前の記録であり、現在は候補承認済み・canonical昇格待ち。L2合意・IR admission・runtime適用済みとは扱わない。"
+---
 # HELIX Concept v4.0 L3要件候補
 
 ## Authority境界

@@ -530,7 +530,7 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       "起草済",
     );
     expect(l1).toContain("§2.8 Asset / progress visualization 要求");
-    expect(l3).toContain("§0.1 L1 要求修正の境界");
+    expect(l3).toContain("§0.1 L2要求修正の境界");
     expect(l3).toContain("§0.2 意味ベース機能一覧と要求修正境界");
     expect(l3).toContain("PLAN-DISCOVERY-10-helix-asset-visualization");
     expect(l3).toContain("下流実装 frontier として追跡する");
@@ -546,7 +546,11 @@ pair_freeze_exempt_target: docs/test-design/harness/L8-integration-test-design.m
       "future backlog / approval-gated cutover / live draft を confirmed current と混同してはならない",
     );
     expect(l12).toContain("G-SF oracle");
-    const l3ClosureRows = markdownTableRows(l3).filter((row) => row[2] === "確定済");
+    // 文書のtrace到達性を検査する。状態ラベルを承認・受入の証拠にしない。
+    const l3ClosureRows = markdownTableRows(l3).filter(
+      (row) => /^(?:HBR-P\d+|HNFR-(?:P\d+|AC))$/.test(row[0] ?? "") &&
+        /\bHR-(?:FR|NFR|BR)-/.test(row[1] ?? ""),
+    );
     const l12TraceRows = markdownTableRows(l12).filter((row) => row[1]?.includes("HR-"));
     for (const id of l1Ids) {
       const l3Row = l3ClosureRows.find((row) => row[0] === id);

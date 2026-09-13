@@ -40,7 +40,7 @@ v2_import: docs/migration/v2-import-ledger.md
 
 | 連携先 | 要望 | 対応 FR |
 |--------|------|---------|
-| **GitHub Actions** | ローカル gate 証跡 → CI 証跡検証 → branch protection PR 許可。GHA を CI / 証跡 / 権限の正本とする | NFR-05 / FR-L1-17 |
+| **GitHub Actions** | ローカルgate証跡 → CI証跡検証 → branch protection PR許可。CI実行・PR許可・権限証跡を対象HEADと実行世代に結び保存する。要求の意味・採否・合意はローカル要求正本を参照する | NFR-05 / FR-L1-17 |
 | **Claude Code SDK** | subagent guard (PreToolUse Agent hook) / hook policy (SessionStart / PostToolUse 等) | FR-L1-09 / `.claude/hooks/` |
 | **Codex CLI** | `helix codex --role <role> --task "..."` 経由の委譲。直叩き禁止 | `.claude/CLAUDE.md` |
 | **OpenTelemetry GenAI semconv** | AI 実行イベントの全量ログ化 (invocation_log / gate_runs 等) | FR-L1-20 |

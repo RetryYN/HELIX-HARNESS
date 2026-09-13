@@ -5,7 +5,7 @@ canonical_pair: L11
 legacy_physical_layer: L1
 l3_progression_marker: HELIX:L3-PROGRESSION-AUTHORITY:v1
 l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md
-title: "HELIX L1 要件 — charter P0–P9 → 業務要求 (HBR) / 非機能要求 (HNFR)"
+title: "HELIX L2 要求 — charter P0–P9 → 業務要求 (HBR) / 非機能要求 (HNFR)"
 layer: L1
 kind: design
 status: confirmed
@@ -17,7 +17,14 @@ related_l0: docs/design/helix/L0-charter/helix-charter_v0.1.md
 pair_artifact: docs/test-design/helix/L1-pillar-operational-test-design.md
 ---
 
-# HELIX L1 要件 — charter P0–P9 → HBR / HNFR
+# HELIX L2 要求 — charter P0–P9 → HBR / HNFR
+
+本書の現行分類はL2要求、検証対はL11受入である。物理pathと`layer: L1`は旧体系の
+compatibility projectionであり、L1企画の分類を意味しない。以下の旧承認名・PLAN ID・
+過去の実装状況は決定史として保持する。旧承認を現行L2のプロト合意やL11受入済みへ読み替えない。
+現行層定義は`docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`に従う。
+対文書の現行判断への再利用は`docs/governance/downstream-canonical-reuse-authority-2026-07-19.md`
+により制限されており、個別delta・oracle・独立review evidenceなしに受入済みとしない。
 
 > charter §7「P0–P9 を L1 の業務要求 (BR-*) / 非機能要求 (NFR-*) へ降ろす」の **confirmed 要件**（PLAN-L1-06
 > Step 6、PO による G-REQ.L1 re-freeze 承認済み）。
@@ -40,13 +47,13 @@ pair_artifact: docs/test-design/helix/L1-pillar-operational-test-design.md
 
 | ID | 業務要求 (機械強制/検証可能) | 既存 FR（接地・再利用） | GAP（本要件の net-new） |
 |----|------------------------------|--------------------------|--------------------------|
-| **HBR-P0** | **逸脱受け止めと Forward 収束** — 駆動 workflow で逸脱・障害・暴走を受け止め `forward_return` 規律で必ず Forward 正本へ収束。AI 暴走ガード（lock/budget time-cap/Recovery） | FR-L1-08/10/11/13/14/15/16/18/24/25/26/27/44（mode/recovery/routing/onboarding） | `forward_return` を **first-class の機械検証規律**として未定義（複数 FR に暗黙散在）。**runaway guard（budget time-cap）standalone FR 無し** |
-| **HBR-P1** | **要件承認後フル自動＋連続自律走行** — engine（resume 3 条件/job-queue/budget time-cap/fresh-session）で完走、Scrum 分割でスケール、version-up で今版外作業を保全 | FR-L1-13/23/29/30/31/42（Forward/Scrum fullback/screen/context continuation/provider delegation evidence） | **continuous-run engine 自体（heartbeat/job-queue/budget time-cap/無人再入）の FR 無し**。**version-up lifecycle（`version_target`/タグ）FR 無し** |
+| **HBR-P0** | **逸脱受け止めと選択済み開発スタイルへの収束** — workflowで逸脱・障害・暴走を受け止め、L3凍結時に合意したFull V／Production Scrum／V設計＋Scrum実装Hybridへ戻す。Discovery／PoCは独立したcase-driven routeとしてS4判断後だけ接続する。signalから開発スタイルを自動変更せず、lock／budget time-cap／Recoveryで暴走を停止する | FR-L1-08/10/11/13/14/15/16/18/24/25/26/27/44は移管元。現行定義は要件v1.3 §4／§4.2 | 旧Forward一律収束を置換。HR-FR-P0-01／02と対応するが、各styleへの返却・未解決route拒否・停止の実行証跡は別途検証する |
+| **HBR-P1** | **合意した範囲での連続自律走行** — L2要求の合意とL3凍結後、選択済み開発スタイルに従って作業・検証・復旧を継続する。resume条件、job-queue、累積budget／time-capを維持し、今版外作業はversion-upへ保全する。要求の意味変更、L11利用者受入、release／cutover等の人間判断を自動承認しない | FR-L1-13/23/29/30/31/42（Forward/Scrum fullback/screen/context continuation/provider delegation evidence） | **continuous-run engine 自体（heartbeat/job-queue/budget time-cap/無人再入）の FR 無し**。**version-up lifecycle（`version_target`/タグ）FR 無し** |
 | **HBR-P2** | **オーケストレーション根本強化＋ループエンジニアリング** — サブエージェントを loop 単位（解釈→検証→計画→実行→検証→返却）で動かし orchestrator 統括、worker≠verifier 自己評価禁止、effort/budget 制御。Claude 視点だけでなく **Codex CLI / Codex IDE / hosted API tool surface でも同じ状態遷移・同じ判定**で動く | FR-L1-09/12/28/37/39/41/46/48（guard/injection/W設計/model-effort/difficulty/drive-routing/roster/CLI） | loop 構造・worker≠verifier 専用 FR は既存に無し → **PLAN-L7-175/176/177 で一部充足済**。Codex `spawn_agent` guard parity は PLAN-L7-139 continuation で direct spawn/bulk spawn を fail-close 化済み。typed agent↔tool request/response registry core は PLAN-L7-213 で doctor hard gate 化済み。loop 内 effort-budget 制御は PLAN-L7-214 で `tickLoopEffortBudget` + `tick` 接続済み。hosted/API preflight core は PLAN-L7-215 で `validateAdapterParityMap` / `requireHostedSurfacePreflight` + CLI JSON evidence 化済み |
 | **HBR-P3** | **強い検証基盤（完全自動の安全要）** — pair_closure/片肺禁止/機械 vs AI 判定境界を機械強制、成果を外部真実に照合（held-out） | FR-L1-02/03/05/21/22/25/45/50（TDD/trace/gate/W-gate/FE detector/refactor/doc-reviewer/DDD-TDD） | **pair_closure 専用 FR・片肺禁止 standalone・機械 vs AI 境界の formalize 無し**。**external-truth grounding（held-out）FR 無し** |
 | **HBR-P4** | **自動保守システム** — drift/劣化/不整合を自動検出→**自動修復**、detection-routing 循環、学習ループ（recipe 蓄積/予防 gate 昇格）。根幹=P7 メモリ | FR-L1-08/11/18/19/33/34/36/38/43/49（検出・学習・inventory・評価・drift-lint） | **検出は厚いが「自動修復」FR 無し**。**learning→promote-to-gate/detector 専用 FR 無し**。劣化(flake/perf)検出未被覆 |
-| **HBR-P6** | **GitHub 運用自動化 + 配布/フルセットアップ** — gated push（全 gate PASS で authorized、raw push fail-close deny）/ PR クロスレビュー自動 / CI 失敗時 auto-fix-repush / タグ版管理。加えて、配布 tag/release pin から **1 コマンドで repo-local hooks・Claude/Codex adapter・state/memory/evidence/feedback・GitHub rules/checks の baseline を bootstrap**できる | FR-L1-05/17（fail-close gate / CI-PR linkage）**のみ＝薄い**。配布/途中導入の接地は FR-L1-44 + technical L1 の GitHub-pull/tag-pin/setup 方針 | **gated-push 認可・PR 自動 cross-review・CI auto-fix-and-repush・tag/version lifecycle すべて FR 無し → 大きく net-new**。**final distribution + one-command full setup** は HELIX L1 で first-class 要求化し、L3/L7 で `helix setup`（PLAN-M-02 後は `helix setup`）へ展開 |
-| **HBR-P7** | **ハーネスネイティブ 2 層メモリ** — harness-memory（保守の根幹）と project-memory を分離、**全エージェント同一記憶共有（silo 禁止）**。Claude 内蔵メモリではなくCodexからも読める`.helix/memory`をbounded recallのSSoTにする。provider delegation evidenceは委譲packetの正本だがprogress/continuation SSoTではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |
+| **HBR-P6** | **GitHub 運用自動化 + 配布/フルセットアップ** — gated push（全 gate PASS で authorized、raw push fail-close deny）/ PR クロスレビュー自動 / CI 失敗時 auto-fix-repush / タグ版管理。加えて、配布 tag/release pin から **1 コマンドで repo-local hooks・Claude/Codex adapter・state/memory/evidence/feedback・GitHub rules/checks の baseline を bootstrap**できる | FR-L1-05/17（fail-close gate / CI-PR linkage）**のみ＝薄い**。配布/途中導入の接地は FR-L1-44 + technical L1 の GitHub-pull/tag-pin/setup 方針 | 起草時の未定義評価は履歴であり、現在は要件v1.3 HR-FR-HYB-008／010と§4.6.1へ接続する。L2の利用要求として`helix setup project`による導入・更新を扱い、公開・tag・promotion・cutoverの承認を一般開発の自走へ転用しない |
+| **HBR-P7** | **責務別の記録と共有可能な継続情報** — harness/projectのscopeを分離し、Claude/Codexから同じ正本revisionへ戻れるbounded recallを提供する。要件v1.3 HR-FR-HYB-005に従い、active memoryの内容を責務正本へ反映してからbody-free receiptへretireし、期限切れ・消費済み指示を再提示しない。要求の意味は指定文書・JSON、継続状態はDB projectionで確認する。provider delegation evidenceは委譲証拠でありprogress/continuation正本ではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |
 | **HBR-P8** | **外部連携・外部検索（原則）** — 外部（Web/docs/OSS/tool）を検索・参照し幻覚を外部照合で抑止、有益知見をスキル化して自己取込（自己拡張） | （直接無し。FR-L1-09/05 が security guard 側のみ） | **外部検索/web grounding・skillify ループ・sandbox/trust-boundary すべて FR 無し → ほぼ全部 net-new**（最大の空白） |
 | **HBR-P9** | **HELIX DB 収束（trace/drift/coverage/contract）** — 成果物を台帳に収束し整合を機械追跡、**DB 未収束＝未完了**、影響範囲分析の資産保全 backbone | FR-L1-03/04/06/07/18/20/33/35/40/49/51（trace/registry/hook/doctor/observability/inventory/readiness/drive-state/drift/progress-color） | **「DB 未収束＝未完了」enforcement gate 無し**（green-command-digest が部分代替）。**cross-artifact relation graph FR・contract ledger 無し** |
 
@@ -81,25 +88,25 @@ sharpen する delta。**verify-don't-blindly-adopt**: 概念 delta は HELIX pr
 
 ## §2.6 Codex runtime parity 要求（PLAN-L1-06 close 前追加、2026-06-28）
 
-Claude 視点だけで L1 を閉じないため、P2/P7/HNFR-AC の acceptance overlay として以下を固定する。PLAN-L3-06 で `HR-FR-P2-03` / `HR-FR-P7-01` / `HR-NFR-AC-*` へ降下済み。
+Claude視点だけでL2要求を閉じないため、P2/P7/HNFR-ACの受入条件として以下を保持する。PLAN-L3-06 で `HR-FR-P2-03` / `HR-FR-P7-01` / `HR-NFR-AC-*` へ降下済み。
 
-| 対象 | L1 要求 | L3/L7 での検証観点 |
+| 対象 | L2 要求 | L3と実行・検証側への条件 |
 |------|---------|--------------------|
 | HBR-P2 / HNFR-AC | Codex の `apply_patch` / `write_file` / `exec_command` / `local_shell` surface は Claude の `Edit` / `Write` / `MultiEdit` / `Bash` と同じ guard intent に正規化される | `.codex/hooks.json` と `.claude/settings.json` が同じ TS entrypoint を呼ぶ。hosted API tool surface は repo hook が非強制であることを明示し、編集前 git/status preflight を要求する |
 | HBR-P2 | hybrid では Codex worker の成果を Codex 自身が承認しない。Codex-only では cross-agent を僭称せず `intra_runtime_subagent` / `cross_agent_review: unavailable` を記録する | `selectVerifier` が opposite provider を選ぶ。single-runtime fallback は明示 status/block reason を持ち、self-review を gate PASS 根拠にしない |
-| HBR-P2 / HNFR-P8 | Python意味コアを含む外部実行面はauthorityを持たない外部workerとして隔離し、TypeScript/Node transactional boundaryだけが再検証とcommit authorityを持つ | workerへrepository／credential／DB／state authorityを渡さず、未登録runtime、secret task、直接write要求を起動前に拒否する |
+| HBR-P2 / HNFR-P8 | ADR-010に従い、Python semantic coreは意味判断・生成の正本、TypeScript/Node transactional boundaryは再検証・単一transaction commit・外部副作用の正本とする。両者は承認済み要求・判断記録・ADRの下で層別authorityを持つ | Pythonへrepository／credential／DB path／`.helix/`を渡さず、未登録runtime、secret task、直接write要求を起動前に拒否する。第三者workerの制限とPython semantic coreの意味判断authorityを混同しない |
 | HBR-P7 | Claude/Codex どちらで開始しても同じ `.helix/memory` から bounded recallする。`.helix/handover/provider`はprovider delegation evidence専用で、progress/continuationへjoinしない | Claude 内蔵 memory / `.claude/agent-memory` を正本にしない。Codex SessionStart でも同じ memory surface（直近 12 件 / 240 字）を表示する |
 | HNFR-AC | Codex 固有の subagent/tool surface（例: `spawn_agent`）は、guard parity が未実装なら fail-close または明示 deferred とし、自由委譲面を作らない | `spawn_agent|spawn_agents_on_csv` は Codex hook adapter の agent-guard で `agent_type` allowlist / direct model override / task body / bulk spawn を fail-close 検証する。新 surface は tool contract registry / deferred follow-up のいずれかで機械追跡し、未ガード surface を「存在しない」扱いにしない |
 
 ## §2.7 Distribution / full setup 要求（2026-06-28 追補）
 
-最終的に「配布して、利用者がコマンドで簡単にフルセットアップできる」状態を L1 能力境界に含める。
+最終的に「配布して、利用者がコマンドで簡単にフルセットアップできる」状態をL2利用要求に含める。
 既存 harness L1 には GitHub-pull / tag-pin / `setup` / onboarding 方針があるが、HELIX 柱要求では
 P6/P9 の確定 GAP として明示する。
 
-| 対象 | L1 要求 | L3/L7 での検証観点 |
+| 対象 | L2 要求 | L3と実行・検証側への条件 |
 |------|---------|--------------------|
-| HBR-P6 / HBR-P9 | 配布は GitHub tag/release pin を正本とし、現行機械識別子では `helix setup`、PLAN-M-02 の rename 後は `helix setup` 相当の 1 コマンドで full bootstrap できる。fresh repo だけでなく **既存プロジェクト途中導入**にも対応する | fresh repo と既存 repo の両方で repo-local hook、Claude/Codex adapter、`.helix`/`.helix` state、memory/evidence/feedback、GitHub rulesets/required checks plan、consumer doctor baseline が生成される。session handover path/commandは生成しない。導入先 consumer repo の初回 health check は dogfood full doctor ではなく `helix doctor --profile consumer` で、setup 投影済み adapter / VSCode task / `.helix` baseline を検査する。既存 docs/code/state は import report と skip_sub_doc/段階移行により取り込み、未整備 sub-doc を理由に即 block しない |
+| HBR-P6 / HBR-P9 | 配布sourceはdevelopment repositoryとし、要件v1.3 §4.6.1に従ってsource HEAD・requirements digest・artifact digestを結ぶ。GitHub tag/release pinは取得対象を固定する参照であり、要求の意味・採否の正本ではない。`helix setup project`の1コマンドでfull bootstrapできる。fresh repo だけでなく **既存プロジェクト途中導入**にも対応する | fresh repo と既存 repo の両方で repo-local hook、Claude/Codex adapter、`.helix/` state、memory/evidence/feedback、GitHub rulesets/required checks plan、consumer doctor baseline が生成される。session handover path/commandは生成しない。導入先 consumer repo の初回 health check は dogfood full doctor ではなく `helix doctor --profile consumer` で、setup 投影済み adapter / VSCode task / `.helix` baseline を検査する。既存 docs/code/state は import report と skip_sub_doc/段階移行により取り込み、未整備 sub-doc を理由に即 block しない |
 | HBR-P1 / HNFR-P5 | セットアップ後にDB continuation projectionとbounded memoryから迷わず再開できる。必要な next_action と未充足 gate が command output に出る | 手作業の doc 探索を前提にしない。event-first appendと冪等projectionを使い、projection成功後だけcheckpointを公開する。crash後も同一event IDから重複なく再開する |
 | HBR-P1 / HBR-P6 / HBR-P9 | セットアップ済みプロジェクトは tag bump / release pin 更新で version-up できる。更新は既存 harness state を読み、必要な migration / compatibility / rollback plan を出す | 現行 version と target tag を検出し、差分 plan・互換性 warning・rollback point・再実行 idempotency を記録する。破壊的 migration や不可逆な branch/ruleset 変更は自動適用しない |
 | HNFR-P8 / HNFR-AC | branch protection/rulesets/secrets/外部 API 設定など本番・外部影響を持つ適用は dry-run/emit-only を既定にし、実適用は action-binding approval を必須にする。setup は既存ファイルを silent overwrite / delete / reset しない | `--dry-run` が無変更、apply は対象・actor・params・expiry を audit に残す。既存ファイル衝突は stop + diff plan + backup/merge 指示にし、hosted API surface でも同じ preflight を要求する |
@@ -107,10 +114,12 @@ P6/P9 の確定 GAP として明示する。
 ## §2.8 Asset / progress visualization 要求（2026-06-30 追補）
 
 HELIX 資産と進捗は、LLM に都度「図を描かせる」生成物ではなく、Markdown 正本・harness.db projection・relation graph から
-再生成可能な view として可視化する。VSCode Webview / VSCode View / 将来の web dashboard は UI surface であり、
-正本は docs と DB に置く。
+再生成可能な view として可視化する。VSCode Webview / VSCode View / 将来の web dashboard は UI surface である。
+要求の意味と承認revisionは要求文書・指定された正本JSONに置き、DBはその投影と実行状態・証跡を担う。
+JSONへ移管済みの要求は`config/requirement-ir-authority.json`の読取り規則に従う。
+DB投影、GitHub Issue、画面表示から要求の意味・承認状態を書き換えない。
 
-| 対象 | L1 要求 | L3/L7 での検証観点 |
+| 対象 | L2 要求 | L3と実行・検証側への条件 |
 |------|---------|--------------------|
 | HBR-P9 / HBR-P4 | 設計層、PLAN、test-design、implementation、gate、review evidence、dependency / trace edge を DB と Markdown から読み、進捗・未収束・依存関係・blocker を可視化する。LLM 生成の要約図を正本にしない | Markdown parser / harness.db / relation graph から Mermaid などの deterministic diagram data を生成し、LLM なしで再現できる。図の node/edge 数が DB source と一致し、未収束 artifact が見える |
 | HBR-P7 / HNFR-P3 | skill 発火、agent slot、model run、runtime verification、continuation event、memory recall を計測 view として見られる。検証戦略・RUN & Debug 証跡と同じ evidence path に戻れる | skill_invocations / model_runs / test_runs / continuation_events / guardrail_decisions / runtime verification log event へ drill-down でき、projection-only evidence は runtime verified と誤表示しない |

@@ -167,9 +167,9 @@ updated: 2026-05-28
 
 | NFR-ID | 要件 | IPA Lv | 受入閾値 | 測定方法 | pass 条件 |
 |--------|------|--------|---------|---------|----------|
-| **NFR-01** | cross-platform (§1 と兼用) | Lv2 (§1 可用性正本) | (§1 と同じ + GitHub 正本連動) | (§1 と同じ) | (§1 と同じ) |
+| **NFR-01** | cross-platform (§1 と兼用) | Lv2 (§1 可用性正本) | (§1 と同じ + GitHub CI証跡連動) | (§1 と同じ) | (§1 と同じ) |
 | **NFR-04** | 言語非依存 (統制対象 repo の言語) | Lv3 | TS/Python/Go/Rust 等 任意言語 repo で動作 | 多言語 repo テスト (CI matrix 拡張) | 4 言語以上で `helix plan lint / gate` pass |
-| **NFR-05** | GitHub 正本 (CI / 証跡 / 権限) | Lv3 | gate 証跡 + audit 全件 GitHub 永続 | `.github/workflows/` artifact upload / GHA permissions | 全 gate run が GitHub Actions log で確認可能 |
+| **NFR-05** | GitHubへのCI・PR・権限証跡保存 | Lv3 | gate証跡とauditを対象HEAD・実行世代へ結びGitHubへ保存 | `.github/workflows/` artifact upload / GHA permissions | 全gate runがGitHub Actions logとartifactで確認でき、要求意味の参照先がローカル要求正本である |
 
 #### AC-NFR-04-01 (正常系)
 - **前提**: TS / Python / Go / Rust 各 1 repo に harness 適用
@@ -181,7 +181,7 @@ updated: 2026-05-28
 - **操作**: GHA workflow `upload-artifact` で `.helix/gate_runs/` 保存
 - **期待結果**: GitHub Actions log + artifact で 90 日永続 / 任意の関係者が参照可能
 
-> **TL 採用根拠 (Lv3)**: Windows/macOS/Linux ネイティブ + 4 言語以上対応 + GitHub 正本で Lv3。Lv4-5 (任意 OS / オフライン完全動作) は scope 外。
+> **TL 採用根拠 (Lv3)**: Windows/macOS/Linuxネイティブ + 4言語以上対応 + GitHubへのCI・PR・権限証跡保存でLv3。Lv4-5 (任意OS / オフライン完全動作) はscope外。
 
 ## §7 carry / 次工程 (L4 / Phase B) への引き継ぎ
 
