@@ -272,7 +272,10 @@ export function resolveProjectDriveModelIdentity(
       repo_root: repoRoot,
     });
   }
-  return resolveCurrentLocationWorkflowIdentity({ legacy_model: selectedModel, repo_root: repoRoot });
+  return resolveCurrentLocationWorkflowIdentity({
+    legacy_model: selectedModel,
+    repo_root: repoRoot,
+  });
 }
 
 export function resolvePackageProjectDriveModelIdentity(

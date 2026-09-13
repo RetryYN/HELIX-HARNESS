@@ -25,7 +25,7 @@
     {
       "requirement_id": "G-04",
       "evidence_path": "src/state-db/visualization-read-model.ts",
-      "evidence_digest": "sha256:9a22f0c50693e722d4a2a489132cf7d7200baff51b1ef4b0b87ffff552c2fde2",
+      "evidence_digest": "sha256:f49d703c066fe474c745acc495f009b09b88cf90c93591a0bd7888a0c23093bd",
       "minimum_size_bytes": 128,
       "observation_marker": "visualization-snapshot.v1"
     },

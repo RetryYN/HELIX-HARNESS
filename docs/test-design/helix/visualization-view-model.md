@@ -42,13 +42,15 @@ pair 正本 = `docs/design/helix/L6-function-design/visualization-view-model.md`
    fake VSCode API で `helix.projectView` / `helix.harnessView` の TreeDataProvider 登録、refresh による
    動的再読込、`helix.copyPointer` の clipboard copy 限定、`onView:*` activation と command contribution
    の整合、workspace folder から CLI repo root を解決することを検証する。VSIX packaging は対象外。
-9. **canonical terminal境界** → `U-CURRENT-LOCATION-001a`: L14 compatibility claimとopen L7だけの入力は
+9. **canonical terminal境界** → `U-CURRENT-LOCATION-001a`: 旧終端層のcompatibility claimとopen L7だけの入力は
    `legacy_l14_claim_with_open_l7` warnを保持するが、currentを`contradicted`／Recoveryへ昇格しない。
    `U-CURRENT-LOCATION-001b`: 同一release／contract revision scopeを照合済みの
    `canonical_l12_terminal_with_open_work` error findingはRecoveryへ昇格し、drive／closure／roadmap／doctorへ
-   同じcodeで伝播する。旧L14件数を0にして合格させる実装と、canonical errorをwarnへ落とす実装を拒否する。
+   同じcodeで伝播する。旧終端層件数を0にして合格させる実装と、canonical errorをwarnへ落とす実装を拒否する。
 10. **Forward typed projection** → `U-CLDB-005`: canonical Forward spineを旧token adapterへ戻さず、
     `development_style:FULL_L1_L12_V`としてDBへ投影する。`ambiguous`への退行、legacy provenanceの混入、
     別axisへの推測を拒否する。
+11. **doctor伝播** → `U-CURRENT-LOCATION-001c`: scoped canonical findingとcompatibility warningを
+    doctorへ同時に伝播し、旧warningだけからhard Recoveryを再構成しない。
 
 acceptance の親 trace は HAT-VIS 系（`docs/test-design/helix/L3-pillar-acceptance-test-design.md`）。

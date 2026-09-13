@@ -91,7 +91,7 @@ describe("current-location DB typed workflow identity", () => {
     });
   });
 
-  it("U-CLDB-005: canonical Forward spineをlegacy ambiguityへ戻さずFull Vへfail-closeする", () => {
+  it("[PLAN-RECOVERY-1768-canonical-terminal-claim/U-CLDB-005] canonical Forward spineをlegacy ambiguityへ戻さずFull Vへfail-closeする", () => {
     const receipt = resolvePackageProjectDriveModelIdentity("Forward");
 
     expect(receipt).toMatchObject({

@@ -2393,7 +2393,7 @@ describe("runDoctor", () => {
     expect(r.messages.some((m) => m.includes("scaffold stub"))).toBe(false);
   });
 
-  it("surfaces Project current-location as an advisory doctor check", () => {
+  it("[PLAN-RECOVERY-1768-canonical-terminal-claim/U-CURRENT-LOCATION-001c] scoped current-location findingをdoctorへ伝播する", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-doctor-current-location-"));
     const db = openHarnessDb(":memory:", { repoRoot: root });
     try {

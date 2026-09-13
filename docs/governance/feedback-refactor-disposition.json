@@ -63,14 +63,14 @@
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:c450933e9b92:literal-appears-41-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "9581b309d4b21dea83e2e1203cba70af4e855a005ce85b1b4c8a46b87e909e84",
+      "source_file_sha256": "8405b78b8283e220c86132d5271326770e63e3e8eacd95f895cd9ed3e2bc9934",
       "family": "literal_policy_externalization"
     },
     {
       "signal_type": "refactor_candidate:externalize-literal",
       "source_id": "refactor-candidate:externalize-literal:src-state-db-current-location.ts-literal:sha256:ff4d1f75e1ae:literal-appears-27-time-s-consider-a-named-constant-or-config-boundary",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "9581b309d4b21dea83e2e1203cba70af4e855a005ce85b1b4c8a46b87e909e84",
+      "source_file_sha256": "8405b78b8283e220c86132d5271326770e63e3e8eacd95f895cd9ed3e2bc9934",
       "family": "literal_policy_externalization"
     },
     {
@@ -154,14 +154,14 @@
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-current-location.ts:module-has-9384-nonblank-line-s-and-127-export-s-",
       "source_path": "src/state-db/current-location.ts",
-      "source_file_sha256": "9581b309d4b21dea83e2e1203cba70af4e855a005ce85b1b4c8a46b87e909e84",
+      "source_file_sha256": "8405b78b8283e220c86132d5271326770e63e3e8eacd95f895cd9ed3e2bc9934",
       "family": "non_cli_module_decomposition"
     },
     {
       "signal_type": "refactor_candidate:split-module",
       "source_id": "refactor-candidate:split-module:src-state-db-projection-writer.ts:module-has-4870-nonblank-line-s-and-15-export-s-",
       "source_path": "src/state-db/projection-writer.ts",
-      "source_file_sha256": "85b05f04268fb6471d9f518ad0c59fdc50ba153fcc221c7b48e627d57d5e2467",
+      "source_file_sha256": "8284852c8ac7534e5d82366f550eee85c576c55bb1fecc2ab38e9c73aff95195",
       "family": "non_cli_module_decomposition"
     }
   ]

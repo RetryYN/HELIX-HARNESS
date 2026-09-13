@@ -955,7 +955,7 @@ describe("project current-location read model", () => {
       expect(snapshot.drive_recommendation.model).toBe("Reverse");
     }));
 
-  it("U-CURRENT-LOCATION-001a: L14 compatibility claimとopen L7だけではcurrentをblockしない", () =>
+  it("[PLAN-RECOVERY-1768-canonical-terminal-claim/U-CURRENT-LOCATION-001a] L14 compatibility claimとopen L7だけではcurrentをblockしない", () =>
     withDb((db) => {
       for (const row of [
         {
@@ -996,7 +996,7 @@ describe("project current-location read model", () => {
       expect(snapshot.drive_recommendation.model).not.toBe("Recovery");
     }));
 
-  it("U-CURRENT-LOCATION-001b: scoped L12矛盾だけをRecoveryへ昇格しL14 compatibility観測を分離する", () =>
+  it("[PLAN-RECOVERY-1768-canonical-terminal-claim/U-CURRENT-LOCATION-001b] scoped L12矛盾だけをRecoveryへ昇格しL14 compatibility観測を分離する", () =>
     withDb((db) => {
       upsertRow(db, {
         table: "plan_registry",
@@ -1220,9 +1220,7 @@ describe("project current-location read model", () => {
           roadmap_projected_l12_layers: expect.arrayContaining(["L6", "L7", "L12"]),
           roadmap_terminal_l12_layers: [],
           alignment_basis: "frontier",
-          blocking_findings: expect.arrayContaining([
-            "canonical_l12_terminal_with_open_work",
-          ]),
+          blocking_findings: expect.arrayContaining(["canonical_l12_terminal_with_open_work"]),
         },
         counts: expect.objectContaining({
           current_bands: 2,

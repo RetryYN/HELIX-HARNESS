@@ -143,13 +143,13 @@ L3 は下記を「L6 view-model 契約で新設」と送った（HR-FR-VIS-02/04
 
 ## §7 canonical terminal claim境界
 
-`project-current-location`はL0-L14 compatibility PLANをcurrent terminal authorityとして扱わない。
-旧L14 terminal PLANとopen L7の併存は`legacy_l14_claim_with_open_l7`のwarnとして観測し、削除もしないが、
+`project-current-location`は旧layer体系のcompatibility PLANをcurrent terminal authorityとして扱わない。
+旧終端層のterminal PLANとopen L7の併存は`legacy_l14_claim_with_open_l7`のwarnとして観測し、削除もしないが、
 `completion_boundary=contradicted`やRecoveryを直接導出しない。
 
 current矛盾は、管理relation側で同一release／contract revision scopeを照合済みの
 `canonical_l12_terminal_with_open_work` error findingだけから導出する。current-locationはscopeを推測せず、
-typed findingの欠落を旧L14件数で補完しない。これにより旧層のfalse blockを除去しつつ、canonical findingは
+typed findingの欠落を旧終端層件数で補完しない。これにより旧層のfalse blockを除去しつつ、canonical findingは
 drive、closure、roadmap、visualization、doctorへ同じcodeで伝播する。
 
 false block解消後に選択される`Forward`は、旧token adapterへ戻して再分類しない。project drive reportの
