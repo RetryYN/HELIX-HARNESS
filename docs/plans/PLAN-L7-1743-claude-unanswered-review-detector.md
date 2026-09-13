@@ -4,7 +4,7 @@ title: "Claude review未応答のread-only検出"
 kind: impl
 layer: L7
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 created: 2026-09-12
 updated: 2026-09-12
@@ -77,7 +77,23 @@ modifies:
   - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
   - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
   - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude independent reviewer / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-13T07:34:00Z"
+    tests_green_at: "2026-09-13T07:21:27Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: e69951634b50b1a6dbf1ba4e08c0139acfa97df5
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1767#issuecomment-5651975405"
+    ci_evidence_generation: "run:34745099202:attempt:1:failure"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1767:e69951634b50b1a6dbf1ba4e08c0139acfa97df5:claude:run:34745099202:attempt:1:failure"
+    receipt_digest: "sha256:7e20089d2e0d3ff238944cb1dffa46105243abc0e583f0df0e965d8cf0d5835d"
+    scope: "exact HEAD e69951634の独立検収で内容blocker 0。run 34745099202の唯一のfailureは旧receiptのreviewed_atが後生成したtest evidenceより前だった順序違反であり、本receiptはそのtest evidenceを07:34:00Zに再検証した。merge admissionには用いず、confirmed化後のsuccess世代で受け直す。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run tests/claude-unanswered-review-detector.test.ts tests/l3-g3-freeze-packet-v2.test.ts --reporter=json --outputFile=.helix/evidence/review-1767/vitest-targeted.json", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-09-13T07:21:27Z", evidence_path: docs/governance/evidence/PR-1767/vitest-targeted.json, output_digest: "sha256:eca986bacb7c8b5e69c649ef0b435412ab82ba634b9bcf9cc7050191211f6a48", result: "最終main追従HEADで2 files / 51 tests green。JSON出力bytesをGit管理しdigestを固定した。" }
 left_arm_carry:
   schema_version: left-arm-carry.v1
   decision: no_pushback
