@@ -143,16 +143,20 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
     // recognition scanner が検出する legacy signal の新規導入は無い (PLAN-L7-507)。
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
     // 2026-08-21 PLAN-L7-640: Codex native spawn契約を実surfaceへ同期。legacy signal集合は不変。
+    // 2026-09-13 PLAN-L3-84: Core Readを現行判断入口へ是正。独立review 5652789208で
+    // v4未昇格・v3.1 compatibility境界、5653074569でsignal集合不変を確認した。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "AGENTS.md",
-    contentDigest: "a0f610908343f2303d758c1228e8e7635c312e7fe71c3256b0a0f21db5b3777d",
+    contentDigest: "fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf",
     finalDisposition: "compatibility_labeled",
   },
   {
     // 2026-08-06 PLAN-L7-509: --worker-context-file 必須化の運用記述を追加 (issue #376)。
+    // 2026-09-13 PLAN-L3-84: Core Readを現行判断入口へ是正。独立review 5652789208で
+    // v4未昇格・v3.1 compatibility境界、5653074569でsignal集合不変を確認した。
     // 再検出した signal 集合は編集前と bit 同一のため disposition 据え置き。
     path: "CLAUDE.md",
-    contentDigest: "fcf0c0efb718d92a6a69a20127b0768e1652b95a9b8e3036d460a004a4b84828",
+    contentDigest: "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
     finalDisposition: "compatibility_labeled",
   },
   {
@@ -327,8 +331,10 @@ export const REVIEWED_SAFE_DISPOSITIONS = [
   {
     // #1404: current/compatibility判定順と旧harness設計の移行境界を明記した。
     // current authority自体は既存governance sourcesの順序を維持する。
+    // 2026-09-13 PLAN-L3-84: v4候補とv3.1 compatibilityの入口分類を是正。
+    // 独立review 5652789208で未昇格境界、5653074569でsignal集合不変を確認した。
     path: "docs/governance/README.md",
-    contentDigest: "a36dd51f7158247d472c750a6a46b1a1e13f614a8f18fbc4fd412ef06eff7457",
+    contentDigest: "96b21ddf530a32f222a83805ba38b5be0381aced7e140ade1cbe75cc4559e912",
     finalDisposition: "compatibility_labeled",
   },
   {
