@@ -26,3 +26,14 @@ verdict: changes_required
 minorは、監査根拠の粒度、Vision原文digest、Web側のGitHub非authority、新Conceptの承認bytes固定、
 HARNESS配下の旧L13／L14残存であった。修正後は新commitを別revisionとして再reviewし、
 本reviewを承認receiptや新revisionの合格証拠へ流用しない。
+
+## 修正版の再レビュー状態
+
+修正版`c74d7c1fb`に対し、sealed worker contextからClaude verifierを2回起動した。1回目は10分、
+2回目は対象をB1–B3／M1–M6へ限定して20分のbudgetを設定した。いずれもprovider sessionはread-only参照後に
+`outcome:error`で終端し、review本文を返さなかった。したがって本書の旧所見は修正文書上で対処済みでも、
+Claudeによる`resolved`判定は未取得である。timeoutをapprove、所見なし、review済みへ変換しない。
+
+修正版ではConcept identity、原則別差分、L1／L2相互relation、L0柱、L12、欠落していたHARNESS／OS責務、
+総称HELIXの監査入口、上流整理期間の静的検査境界を変更した。次の独立reviewは`c74d7c1fb`以降のexact revisionを
+対象にやり直し、本reviewのverdictを流用しない。
