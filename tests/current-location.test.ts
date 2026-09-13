@@ -955,7 +955,43 @@ describe("project current-location read model", () => {
       expect(snapshot.drive_recommendation.model).toBe("Reverse");
     }));
 
-  it("[PLAN-RECOVERY-1768-canonical-terminal-claim/U-CURRENT-LOCATION-001a] L14 compatibility claimとopen L7だけではcurrentをblockしない", () =>
+  it("U-CURRENT-LOCATION-001b: PLAN-RECOVERY-1768-canonical-terminal-claimはscoped L12矛盾をRecoveryへ昇格する", () =>
+    withDb((db) => {
+      upsertRow(db, {
+        table: "plan_registry",
+        primaryKey: "plan_id",
+        row: {
+          plan_id: "PLAN-L7-999-unbound-close-ready",
+          kind: "add-impl",
+          layer: "L7",
+          drive: "agent",
+          status: "draft",
+          updated_at: "2026-07-08T00:01:00.000Z",
+        },
+      });
+      upsertRow(db, {
+        table: "findings",
+        primaryKey: "finding_id",
+        row: {
+          finding_id: "finding:unbound-close-ready",
+          kind: "canonical_l12_terminal_with_open_work",
+          severity: "error",
+          subject_id: "release:v1:contract-revision:fixture",
+          source: "management-relation",
+          status: "open",
+          evidence_path: "docs/evidence/unbound-close-ready.json",
+        },
+      });
+
+      const snapshot = buildProjectCurrentLocationSnapshot(db);
+      expect(snapshot.current).toMatchObject({
+        status: "needs_recovery",
+        completion_boundary: "contradicted",
+      });
+      expect(snapshot.drive_recommendation.model).toBe("Recovery");
+    }));
+
+  it("U-CURRENT-LOCATION-001a: PLAN-RECOVERY-1768-canonical-terminal-claimはL14 compatibility claimとopen L7だけではcurrentをblockしない", () =>
     withDb((db) => {
       for (const row of [
         {
@@ -996,7 +1032,7 @@ describe("project current-location read model", () => {
       expect(snapshot.drive_recommendation.model).not.toBe("Recovery");
     }));
 
-  it("[PLAN-RECOVERY-1768-canonical-terminal-claim/U-CURRENT-LOCATION-001b] scoped L12矛盾だけをRecoveryへ昇格しL14 compatibility観測を分離する", () =>
+  it("U-CURRENT-LOCATION-001: typed close-ready readinessを全surfaceへ投影する", () =>
     withDb((db) => {
       upsertRow(db, {
         table: "plan_registry",

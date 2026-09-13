@@ -53,4 +53,11 @@ pair 正本 = `docs/design/helix/L6-function-design/visualization-view-model.md`
 11. **doctor伝播** → `U-CURRENT-LOCATION-001c`: scoped canonical findingとcompatibility warningを
     doctorへ同時に伝播し、旧warningだけからhard Recoveryを再構成しない。
 
+| U-ID | 対象 | 反例と期待結果 | test citation |
+| --- | --- | --- | --- |
+| U-CURRENT-LOCATION-001a | compatibility terminal claim | 旧終端claimとopen L7だけでcurrentをblockする実装を拒否する | `tests/current-location.test.ts` |
+| U-CURRENT-LOCATION-001b | scoped canonical contradiction | scoped error findingをRecoveryへ伝播しない、またはcompatibility warnと混同する実装を拒否する | `tests/current-location.test.ts` |
+| U-CURRENT-LOCATION-001c | doctor propagation | scoped error findingをdoctorへ伝播しない、または旧warningからhard Recoveryを再構成する実装を拒否する | `tests/slow/doctor.test.ts` |
+| U-CLDB-005 | Forward typed projection | canonical Forwardをlegacy ambiguityへ戻す、またはFull V以外へ推測する実装を拒否する | `tests/current-location-db-workflow-identity.test.ts` |
+
 acceptance の親 trace は HAT-VIS 系（`docs/test-design/helix/L3-pillar-acceptance-test-design.md`）。

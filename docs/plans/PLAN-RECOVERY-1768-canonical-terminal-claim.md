@@ -87,6 +87,13 @@ contract revisionの同一scopeを検証して保存した`canonical_l12_termina
 - open work、設計drift、coverage gapの検査緩和
 - リリース公開、tag付与、配布、切替
 
+## 残義務
+
+`canonical_l12_terminal_with_open_work`のproduction producerは本sliceには存在せず、現時点の実DBでは
+管理relation由来findingを生成できない。fixtureによるconsumer検証を実運用上の検出能力完成とは扱わない。
+#1771の管理relation admissionを入口として、release／contract revision scopeをexact照合するproducer、
+単一writer、再観測を後続sliceで実装し、実DBへの注入なしread-afterで検出を実証するまで未解消として追跡する。
+
 ## 完了条件
 
 1. 旧終端層とopen L7だけのfixtureはtelemetryを保持したままcurrentをblockしない。

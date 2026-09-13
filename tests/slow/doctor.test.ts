@@ -2393,7 +2393,36 @@ describe("runDoctor", () => {
     expect(r.messages.some((m) => m.includes("scaffold stub"))).toBe(false);
   });
 
-  it("[PLAN-RECOVERY-1768-canonical-terminal-claim/U-CURRENT-LOCATION-001c] scoped current-location findingをdoctorへ伝播する", () => {
+  it("U-CURRENT-LOCATION-001c: PLAN-RECOVERY-1768-canonical-terminal-claimはscoped findingをdoctor checkへ伝播する", () => {
+    const root = mkdtempSync(join(tmpdir(), "helix-doctor-scoped-finding-"));
+    const db = openHarnessDb(":memory:", { repoRoot: root });
+    try {
+      migrate(db);
+      upsertRow(db, {
+        table: "findings",
+        primaryKey: "finding_id",
+        row: {
+          finding_id: "finding:canonical-l12-terminal-with-open-work",
+          kind: "canonical_l12_terminal_with_open_work",
+          severity: "error",
+          subject_id: "release:v1:contract-revision:fixture",
+          source: "management-relation",
+          status: "open",
+          evidence_path: "docs/evidence/canonical-l12-terminal-with-open-work.json",
+        },
+      });
+
+      const check = checkProjectCurrentLocation(root, db);
+      expect(check.messages.join("\n")).toContain("canonical_l12_terminal_with_open_work");
+      expect(check.messages.join("\n")).toContain("boundary=contradicted");
+      expect(check.messages.join("\n")).toContain("drive=Recovery");
+    } finally {
+      db.close();
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("projects the complete current-location doctor surface", () => {
     const root = mkdtempSync(join(tmpdir(), "helix-doctor-current-location-"));
     const db = openHarnessDb(":memory:", { repoRoot: root });
     try {
