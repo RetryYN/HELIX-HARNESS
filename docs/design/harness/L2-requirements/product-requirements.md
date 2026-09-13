@@ -141,6 +141,13 @@ HARNESS-L2-004／005では、構造改善が要求・public contractの意味を
 必要な再検証、差戻し先を確認する。意味変更、実装故障、外部環境変化を一つのrefactoring routeへ丸めない。
 旧候補にはL1利用要求がないため、新世代の利用者価値が確定するまでL3 triggerを採用しない。
 
+## Worker capacityに依存しない検証条件
+
+[旧Three Lane候補](../../../governance/candidates/three-lane-capacity-profile-requests.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-worker-capacity-source-crosswalk.md)で再採否する。
+HARNESS-L2-005では、作成側と検証側の独立性、対象revision変更時の再検証、証拠の有効性を、provider名、
+固定worker数、PR、Merge Train、既存CIに依存せず定める。登録capacityや並列数を独立検証・受入済み成果の証拠にしない。
+
 ## 提供構成と再現性の条件
 
 [FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。

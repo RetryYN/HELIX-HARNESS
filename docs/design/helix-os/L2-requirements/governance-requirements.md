@@ -85,6 +85,18 @@ HELIXOS-L2-001／002／003／005／007では、観測、finding、改善候補�
 単一metric、AI評価、file size、Issue数、定期scan、旧CI結果から候補の採択・実行を生成しない。
 旧UIL、System Synthesis、RF0..RF6、current 9 scope、既存scanner／CIを新世代へ継承しない。
 
+## Worker capacityの統制条件
+
+[旧Three Lane候補](../../../governance/candidates/three-lane-capacity-profile-requests.md)は、
+[新世代対応表](../../../governance/audits/l2-requirements/new-generation-worker-capacity-source-crosswalk.md)に従って再採否する。
+HELIXOS-L2-004／005／007／008／009では、利用可能resource、割当上限、active WIP、実行中、検証待ち、統合待ち、
+予算、期限、競合、再作業、停止・縮退を区別する。pool登録数や最大値を稼働・accepted throughputとして表示せず、
+下流処理能力と検証独立性を保つ範囲でbackpressureを適用する。
+
+provider、model、account、runner、reviewer数は有期resource profileとして扱い、三社、Codex／Cursor／Claude、
+定常3／2、burst 5、8-slotを恒久要求にしない。対象revision変更後は証拠を再評価し、stale reviewを流用しない。
+本節ではWorker dispatch、旧三社lane、既存CI、Merge Train、PR／DB projectionを実行しない。
+
 ## Worker・学習・ログ・CIの具体条件
 
 以下は柱要求と要件v1.3の既存条件をOS側へ具体化したもの。候補固有の拡張や数値上限は、出典の採用状態を

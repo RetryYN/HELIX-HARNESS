@@ -59,6 +59,12 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 - 単一metric、AI評価、file size、Issue数、定期scanだけでは改善候補を採択・実行せず、意味変更は上流変更候補へ戻す。
 - 旧UIL／RF0、current 9 scope、既存scanner／CIを与えても、新世代trigger・scope・受入の成立根拠にしない。
 
+Worker capacity由来条件は新世代の採用revision確定後に評価する。全件未実行。
+
+- HELIXOS-L2-004／007／009：登録上限、許可WIP、実行中、検証待ち、統合待ちを個別に確認し、一つの合算lane数へ丸めない。
+- 下流詰まり、予算不足、競合増加、再作業増加を与え、盲目的dispatchではなく停止・縮退・backpressureになることを確認する。
+- 旧三社、provider固定数、8-slot、既存CI／Merge Train／PR／DBを与えても、新世代capacity profileや運用成立を生成しない。
+
 ## 運用品質統制の受入
 
 NIO由来条件は新世代で採用する要求revisionの確定後に評価する。全件未実行。
