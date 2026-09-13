@@ -40,8 +40,10 @@ filename discoveryとして、`src/`内のpath basenameに
 | `.claude/hooks/` | 4 | TypeScript hook entry | legacy実装。新世代OSの実行統制要求から設計し直す |
 | `.codex/` | 2 | `.codex/config.toml`、`.codex/hooks.json` | legacy Codex adapter設定。Claude設定とのbyte／shape parityを新世代要件にしない |
 
-この38件は直接入口の物理集合であり、`docs/`内のCore Reads、template、Skill、generated prompt、runtime state、
-DB projectionまで閉じた集合ではない。次のinventory waveで参照closureを追加する。
+この38件のexact path、意味移管先、直接配線は
+[現行AI読取り入口38件の意味移管台帳](legacy-ai-read-entry-disposition.md)で固定した。
+これは直接入口の物理集合であり、`docs/`内のCore Reads、template、Skill、generated prompt、runtime state、
+DB projectionまで閉じた集合ではない。文書consumerと動的read setは未完として分離している。
 
 ## 新世代へ採取できる情報
 
