@@ -2,12 +2,12 @@
 title: "Management Relation Admission関数設計"
 layer: L6
 artifact_type: design
-status: draft
+status: confirmed
 created: 2026-09-13
 updated: 2026-09-13
 owner: SE
 plan: docs/plans/PLAN-L7-730-management-relation-admission.md
-pair_artifact: docs/test-design/helix/L8-management-relation-admission.md
+pair_artifact: docs/test-design/helix/L8-management-relation-admission-unit-test-design.md
 ---
 
 # Management Relation Admission関数設計

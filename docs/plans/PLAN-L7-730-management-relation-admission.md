@@ -12,7 +12,7 @@ workflow_identity:
   registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89
   target_axis: workflow_model
   target_id: ADD_FEATURE
-entry_signals: [feature_request]
+entry_signals: [feature_addition]
 created: 2026-09-13
 updated: 2026-09-13
 owner: Codex / TL
@@ -40,7 +40,7 @@ complexity_effect: net_negative
 complexity_justification: "PLAN consumerに散在する管理field判定を一つのpure evaluatorへ集約し、既存authorityへの参照だけを持つ"
 removal_trigger: "全fieldのconsumer-zeroとwriter cutover後にlegacy dual-read分岐を削除する時点"
 parent_design: docs/design/helix/L6-function-design/management-relation-admission.md
-pair_artifact: docs/test-design/helix/L8-management-relation-admission.md
+pair_artifact: docs/test-design/helix/L8-management-relation-admission-unit-test-design.md
 dependencies:
   parent: null
   requires: []
@@ -64,7 +64,7 @@ verification_bindings:
 generates:
   - { artifact_path: docs/design/helix/L6-function-design/management-relation-admission.md, artifact_type: design_doc }
   - { artifact_path: docs/plans/PLAN-L7-730-management-relation-admission.md, artifact_type: markdown_doc }
-  - { artifact_path: docs/test-design/helix/L8-management-relation-admission.md, artifact_type: test_design }
+  - { artifact_path: docs/test-design/helix/L8-management-relation-admission-unit-test-design.md, artifact_type: test_design }
   - { artifact_path: src/runtime/management-relation-admission.ts, artifact_type: source_module }
   - { artifact_path: tests/management-relation-admission.test.ts, artifact_type: test_code }
 modifies:

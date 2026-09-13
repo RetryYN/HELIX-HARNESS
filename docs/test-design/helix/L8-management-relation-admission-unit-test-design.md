@@ -2,7 +2,7 @@
 title: "Management Relation Admission単体テスト設計"
 layer: L8
 artifact_type: test-design
-status: draft
+status: confirmed
 created: 2026-09-13
 updated: 2026-09-13
 owner: QA
