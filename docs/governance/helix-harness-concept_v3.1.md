@@ -111,7 +111,7 @@ AI 駆動開発の現実観察から、以下 4 問題が常態化している:
 > - **人間（PO/RetryYN）は L0 企画・L1 業務要求・L2 デザインモック・L3 要件の承認のみ**に直接関与。
 > - **それ以外の役割 owner（tl/qa/aim/uiux）と L3 起草〜L7 実装〜L8–L14 検証〜PR/CI/merge/tag は AI agent が担い無人完走**（不可逆操作のみ escalate）。
 > - **CODEOWNERS / cross-agent review は「人を跨ぐ」でなく「別ランタイム/別モデルを跨ぐ」自己承認禁止**（P2 orchestration の worker≠verifier、§2.1.2.1）として読む。
-> - 「チーム共有 audit」は単一開発者の **GitHub 正本 + harness.db** 共有（[[helix-orchestration-memory]] P7 2 層メモリ）として読む。
+> - 「チーム共有 audit」は単一開発者が **GitHub上のCI・PR証拠 + harness.dbの状態projection** を共有するものとして読む。要求の意味正本は対象別のローカル要求文書・指定JSONとする。
 > 個別箇所での team→solo 逐条注記はこの大域コンベンションに集約し、scope（§2.1 「個人開発を AI に委譲」）と整合させる。
 
 3 文書は `docs/governance/` 配下に共存する:
@@ -141,7 +141,7 @@ HELIX は、失敗事例を隠すための管理ツールではない。AI 開�
 
 このため、HELIX では「失敗をログに残す」だけでは不十分とする。失敗は、可能な限り **gate、validator、test、skill pack、durable continuation、postmortem、orchestration policy** のいずれかに還元する。
 
-チーム共有の失敗 corpus はローカル作業ログではなく、GitHub を正本にする。PR / GitHub Actions / Checks / job summary / artifact / label / review comment から失敗 event を pull し、同種失敗の反復、失敗種別、再発防止の有無を集計する。ローカル `failure_log.jsonl` は個人 advisory に留め、組織としての学習・escalation・regression 化は GitHub 上の証跡から行う。
+共有する失敗証拠はPR / GitHub Actions / Checks / job summary / artifact / label / review commentから取得し、対象HEAD・実行世代と結びつける。同種失敗の反復、失敗種別、再発防止の有無は、出典を保持して集計する。ローカル `failure_log.jsonl` は個人advisoryに留める。GitHub上の証拠から要求の意味・採否・完了を生成せず、改善候補を対象別のローカル要求正本へ戻して採否する。
 
 ---
 

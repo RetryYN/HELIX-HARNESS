@@ -81,3 +81,19 @@ walkthrough receipt・requirements delta・iteration checkpoint、G2判定・agr
 HAT-HIL-15の証拠欄と反例欄も更新案に含め、既存のimplicit skip・static-only・stale拒否を残した。23件の変更前testをメモリ上で確認済み。
 
 POの範囲指定により、今回は文書整理と適用待ち差分までとする。更新機構の設計・実装と正本適用は後続作業であり、本差分の検証完了とは分ける。
+
+## 凍結sourceのauthority語彙差分
+
+横断監査では、Infinity Loop、常駐レーン、三社レーンの凍結sourceに、Issue／PLAN／branch／leaseを
+「正本」と呼ぶ箇所が残っていることも確認した。L2対象別要求で固定した境界では、これらは要求意味の正本ではなく、
+assignment scope、変更先、writer所有、作業projectionである。
+
+本文だけを先行訂正すると`REFINEMENT_SOURCE_STALE`、`REFINEMENT_SOURCE_PROJECTION_DRIFT`、pinned compatibility
+digest差異が発生することを104テスト中3失敗で確認した。このため凍結sourceの本文変更は取り消し、次の正規改訂へ送る。
+
+- source本文、Requirement IRのstatement／source digest／projection、対応受入を同一revisionで更新する。
+- `scope正本`は`assignment scope authority`、branchは変更先、leaseはwriter authorityへ分ける。
+- Issue本文・label・close、PR merge、CI greenから要求の意味・採否・合意・受入を生成しない。
+- 変更後にrefinement source freshness、projection、compatibility pinを同じ検査で再確認する。
+
+失敗を根拠にdigestや期待値だけを更新していない。この語彙差分は、上記7レコードのJSON Patchとは別の適用待ち項目である。

@@ -273,6 +273,10 @@ v4由来L2案とL11案にはAVS6件・RFA3件・DGH3件、AAFD4件・RCLS6件・
 残る個別採否を今回の文書整理が完了していないという曖昧な一状態へまとめない。
 旧HARNESS要求に残っていた「GitHub正本」は、CI実行・PR許可・権限証跡の保存を指すよう訂正し、
 要求の意味・採否・合意revisionは対象別のローカル要求正本を参照すると明記した。
+さらに現行Concept、運用テスト、Infinity Loop、Issue graph、三社・常駐レーンを横断し、Issue／PLAN／branch／leaseへ
+使われていた「正本」を確認した。非凍結文書はGitHubを証拠・作業projectionへ限定した。Infinity Loop、三社・常駐レーンの
+凍結sourceは語彙訂正だけでもRequirement IRのsource digestが失効するため本文を変更せず、`scope正本`等を
+assignment scope authorityへ改訂する差分を適用待ちとする。現行L2案ではIssue本文から要求の意味・採否・完了を生成しない。
 
 既存digest例外はまだ更新していない。本文の訂正が既存例外と不一致になる場合は検証結果として残し、
 独立review済みという証跡を作らずに例外の期待値だけを追従させない。
