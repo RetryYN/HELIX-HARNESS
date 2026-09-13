@@ -4,7 +4,7 @@ title: "PLAN-RECOVERY-1768: 旧終端claimのcurrent判定分離"
 kind: recovery
 layer: cross
 drive: agent
-status: draft
+status: confirmed
 completion_claim_allowed: false
 owner: Codex / TL
 created: 2026-09-13
@@ -24,9 +24,9 @@ contract_invariants: "open work、L12 coverage、設計driftの検出を弱め�
 contract_failures: "scopeなしglobal join、旧終端層のcurrent terminal昇格、typed L12矛盾のwarn化、観測削除を拒否する"
 tdd_red_required: true
 red_at: "2026-09-13T08:06:14Z"
-green_at: null
+green_at: "2026-09-13T11:20:10Z"
 mutation_oracle_required: true
-mutation_oracle_evidence: "U-CURRENT-LOCATION-001a/001bがcompatibility warn削除、旧終端Recovery復帰、typed L12 error無視をそれぞれ拒否する"
+mutation_oracle_evidence: "tests/current-location.test.ts のU-CURRENT-LOCATION-001a/001bがcompatibility warn削除、旧終端Recovery復帰、typed L12 error無視のseeded mutantをそれぞれkillした"
 complexity_effect: net_negative
 complexity_justification: "旧層番号のglobal completion joinを除去し、管理relation由来のscoped finding一系統へ集約する"
 removal_trigger: "旧終端層compatibility projectionと関連fieldのconsumer-zeroが成立した時"
@@ -74,7 +74,23 @@ modifies:
   - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
   - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
   - { artifact_path: config/objective-evidence-substance-binding.v1.json, artifact_type: json_config }
-review_evidence: []
+review_evidence:
+  - reviewer: "Claude independent reviewer / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-13T11:20:10Z"
+    tests_green_at: "2026-09-13T11:20:10Z"
+    verdict: approve
+    worker_model: codex
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: fe061343-6172-4db5-8837-ef9aa5fd3af6
+    reviewed_head_sha: 444f233d937a12c9192c35e7cf5d9fdaafe7db6e
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1784#issuecomment-5652945505"
+    ci_evidence_generation: "run:34753770956:attempt:1:failure"
+    receipt_id: "claude-pr-review:RetryYN/HELIX-HARNESS#1784:444f233d937a12c9192c35e7cf5d9fdaafe7db6e:claude:run:34753770956:attempt:1:failure"
+    receipt_digest: "sha256:2b848a356f50d991fccbf7f550f9cdbcd324296ac9e793da6b67e7cacfa23882"
+    scope: "exact HEAD 444f233d9を独立監査し内容blocker 0。旧L14 claimをcompatibility telemetryへ隔離し、scoped typed L12 findingだけをcurrent Recovery根拠にする境界、PR起因doctor違反0、V-pair/recovery/roadmap/drive binding 0、digest inventory 429 rows、current-location source pin、PR scope 20 path、targeted 109 tests、DB replay一致を確認した。CI failureはcurrent HEAD receipt欠落だけで、本receiptはconfirmed化に用い、merge admissionはsuccess世代で受け直す。"
+    green_commands:
+      - { kind: unit_test, command: "npx --no-install vitest run --project fast tests/cli-surface.test.ts tests/db-projection-ingestion.test.ts", runner: node, scope: targeted, exit_code: 0, completed_at: "2026-09-13T11:20:10Z", evidence_path: tests/db-projection-ingestion.test.ts, output_digest: "sha256:2b848a356f50d991fccbf7f550f9cdbcd324296ac9e793da6b67e7cacfa23882", result: "reviewer clean worktreeでtargeted 109 tests green。receipt 5652945505。" }
 ---
 
 # 旧終端claimのcurrent判定分離
