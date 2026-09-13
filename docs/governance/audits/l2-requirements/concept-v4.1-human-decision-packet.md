@@ -10,6 +10,32 @@ status: awaiting_human_decision
 対して人間が判断するための入力である。remote branchへの同期、Claude review、静的検査は判断材料であり、
 承認を自動成立させない。
 
+## 何を判断するpacketなのか
+
+人間に判断を求める内容は、文書IDやSHAそのものではなく、次の製品方針である。
+
+| 平易な判断事項 | 採用した場合 | 採用しない場合 |
+|---|---|---|
+| 外部へ提供する製品をHARNESSとする | V-model、工程、検証契約、利用条件をHARNESSへまとめる | 外部提供物のidentityを別途定義し直す |
+| HELIX-OSを内部の管理・統制機構とする | authority、Worker、log、CI、学習、改善、配布運転をOSへまとめる | 管理・統制ownerを別途定義し直す |
+| HELIX-WebをOSが管理する個別製品とする | Web固有の利用要求を持ち、OSの管理UIへ還元しない | Webの位置づけを別途定義し直す |
+| GitHubを作業・共有・証拠の投影先とする | ローカルの対象別Concept／L1／L2等を意味正本にする | Issue／PR等のどこが意味正本かを再定義する |
+| 現行資産を参考資料へ退役し、新世代を上流から再構築する | 旧CI・runtime・AI文書をbaselineにせず、意味採取後に非実行archiveへ移す | 維持する旧実行系と互換範囲を別途決める |
+
+これら5点は、2026-09-14までのPO指示で既に方向が示されている。本packetで改めて曖昧な4件一括承認を要求する
+必要はない。残る確認対象は、下記候補文書がこの既決方針に余計な意味を追加していないか、または必要な意味を
+落としていないかである。修正が必要なら、文書IDではなく「どの方針が違うか」を指示できる。
+
+### 文書で具体化した内容
+
+- HARNESS: L1–L12、正規V-pair、工程選択、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件。
+- HELIX-OS: 対象別authority、複数project管理、Worker、CI、証拠、継続・復旧、学習・改善、release・deployment運転。
+- HELIX-Web: 許可した環境への接続、長時間作業の状態、利用者の変更・受入判断、構成版、改善利用への同意。
+- 共通: GitHub非authority、旧資産非継承、Concept→L1→L2→L3の順序、L2↔L11／L3↔L10。
+
+上記に誤りがなければ、必要な返答は「この方向で進める」で足りる。異なる点があれば、その点だけを指定する。
+内部記録では対象別revisionを混同しないためDecision IDを分けるが、人間へID入力を要求しない。
+
 ## 判断対象
 
 | 対象 | SHA-256 | 判断する意味 |
@@ -56,7 +82,7 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 `terminal_failure=timed_out`となり本文を返さなかった。旧所見の`resolved`判定はない。
 したがって人間は修正文書と未取得状態を見て判断する。初回review、provider error、timeoutを合格receiptとして扱わない。
 
-## 分けて記録する判断
+## 内部で分けて記録する判断
 
 | Decision ID | 対象 | 選択肢 | 依存 |
 |---|---|---|---|
@@ -65,8 +91,9 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 | HDEC-HELIXOS-L1-01 | HELIX-OS L1 exact SHA | approve／changes_requested／reject | HDEC-CONCEPT-4.1=approve |
 | HDEC-HELIXWEB-L1-01 | HELIX-Web L1 exact SHA | approve／changes_requested／defer／reject | HDEC-CONCEPT-4.1=approve |
 
-一括の「全部OK」で4判断を同一状態へ潰さない。WebをdeferしてもHARNESS／HELIX-OSの上流判断を自動失効させず、
-Web固有L2だけを保留できる。changes_requestedでは対象、変更理由、維持する条件を指定する。
+人間に4つのDecision IDを回答させるための表ではない。人間の平易な回答を、対象とrevisionを失わないようOS側の
+記録で4判断へ投影する。Webを保留する指示があってもHARNESS／HELIX-OSの上流判断を自動失効させず、Web固有L2だけを
+保留する。修正指示では対象、変更理由、維持する条件を記録する。
 
 ## この判断で成立しないもの
 

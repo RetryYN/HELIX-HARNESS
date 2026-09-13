@@ -46,6 +46,7 @@ as_of: 2026-09-14
 | 旧HARNESS要求群 | 5文書。10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節 | [旧HARNESS要求の新世代対象別対応](audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md) | 全文確認・対象別分類済み。個別採否・L2合意待ち | 最新Concept／対象別L1の承認後、保持意味だけをHARNESS／HELIX-OS／個別製品L2へ採否する。旧実装を継承しない |
 | 旧screen要求・設計 | 7文書、個別Low-Fi 7画面、共通骨格参照8画面 | [L2画面・モック境界](../design/helix/L2-screen/screen-mock-boundary.md) | 7文書と15画面の存在・内容を確認済み。8画面の個別操作・欠落・失敗状態、prototype合意、L11受入が未確定 | 採択した画面だけを対象別L2要求、prototype revision、L11利用結果へ接続する。旧pairのPASSを流用しない |
 | 適用待ち意味差分 | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/l2-requirements/l2-freeze-ir-correction.md) | proposal、未適用 | 正規transaction、impact、rollback、全projection更新 |
+| open PR整理 | 6件close、open 0件 | [上流再整理に伴うopen PR整理記録](audits/l2-requirements/github-pr-cleanup-2026-09-14.md) | GitHub projection整理済み。branch・Issue・要求意味は変更していない | legacy sourceの意味は対象別L2で再採否する |
 | PLAN | 1252文書 | `docs/plans/` | 作業契約・履歴。要求意味の正本ではない | 上流ID・対象・revisionへ接続し、Issue状態から意味を補完しない |
 
 ## 母集団の閉じ方
