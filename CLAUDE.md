@@ -2,7 +2,7 @@
 
 ## Claude Code Read Order（読込順）
 
-Claude Code はこのリポジトリでは以下を canonical として扱う。
+Claude Code は以下を現行判断の読込入口とし、各文書のauthority段階は個別注記に従う。
 
 1. `CLAUDE.md`
 2. `.claude/CLAUDE.md`

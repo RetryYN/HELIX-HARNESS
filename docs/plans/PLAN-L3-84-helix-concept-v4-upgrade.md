@@ -133,3 +133,8 @@ PO承認済みv4候補は再編・新要求の意味判断に必須の入力と�
 既存契約の移管・差分照合用compatibility sourceへ分類する。この変更は候補をruntime正本へ昇格せず、
 Requirement IR、runtime、DB、root READMEへ投影しない。後続のcanonical promotion、全consumer移行、
 独立検証が完了するまで、候補directoryと`completion_claim_allowed: false`を維持する。
+
+先行是正後も、`src/lint/scrum-reverse.ts`の旧Conceptを上位正本として読む`canonicalDocs`と、
+`src/lint/propagation.ts`のv3.1固定`conceptText`は未移行consumerとして残る。文書分類だけをruntime移行完了の
+根拠にせず、canonical promotion時にv4の承認revisionへ切り替え、旧Conceptの成功で新authorityの失敗を
+相殺できない回帰テストを伴わせる。
