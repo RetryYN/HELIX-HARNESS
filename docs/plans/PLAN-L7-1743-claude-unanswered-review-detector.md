@@ -99,9 +99,9 @@ left_arm_carry:
   decision: no_pushback
   assessed_at: "2026-09-12T03:44:20Z"
   review_binding:
-    reviewer: "Claude Code / Fable 5.1"
-    reviewed_at: "2026-09-12T03:44:20Z"
-    evidence_digest: "sha256:ac41b886b7f643b60ee0b6b45a14bd3975675db4829afb6fe6acc22813408f30"
+    reviewer: "Claude independent reviewer / claude-opus-5"
+    reviewed_at: "2026-09-13T07:34:00Z"
+    evidence_digest: "sha256:29caff6903422e5dd521613e51173b1de4b9ec135152426c89e0887fd7c06f26"
   entries: []
 ---
 
