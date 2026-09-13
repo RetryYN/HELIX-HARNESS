@@ -94,7 +94,7 @@ review_evidence: []
 | Step | 作業 | 終端 |
 |---|---|---|
 | 1 | module missing Red | 実測済み |
-| 2 | U-CCI-001..018 admission lifecycle Green | targeted green |
+| 2 | U-CCI-001..018のadmission lifecycleをGreen化 | 対象testがgreen |
 | 3 | mutation／独立review | blocker 0 |
 
 実cloud dispatch、credential、課金、副作用は本PLANに含めない。後続E2E義務を完了扱いにしない。

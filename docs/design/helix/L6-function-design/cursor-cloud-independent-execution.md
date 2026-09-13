@@ -33,10 +33,10 @@ launch応答消失と409は同actionをblind retryせず、ownershipとbudgetを
 一条件でも欠ければ`CURSOR_SAFE_RELEASE_UNPROVEN`で隔離を維持する。runtime policy、remote output、review、
 実provider E2Eは後続sliceの未解消義務である。
 
-`admitCursorExternalObservation`はunknown fieldを拒否し、launch/collectionの2時点、外部reader identity、
-assignment/action/owner/branch/base、candidate HEAD、requested/effective model、usage/cost、diff bytes、test receipt、
-変更pathを一つの観測契約として照合する。cost/usage UNKNOWN、同時点だけの1 leg、scope外path、foreign baseを
-受理しない。remote bytesの展開・実行やmain/DB writeは行わない。
+`admitCursorExternalObservation`は未知fieldを拒否し、起動／収集の2時点、外部reader identity、
+assignment／action／owner／branch／base、candidate HEAD、要求／実効model、使用量／cost、差分bytes、test receipt、
+変更pathを一つの観測契約として照合する。cost／使用量のUNKNOWN、同時点だけの片側観測、scope外path、外部baseを
+受理しない。remote bytesの展開・実行やmain／DB writeは行わない。
 
 runtime proofはscope、secret profile、network profile、budget reservation内cost、実効deadlineをすべて要求する。
 独立reviewはassignment・branch・candidate HEADをexact照合し、reviewerとworkerの同一identityを拒否する。
