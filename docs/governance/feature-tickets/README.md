@@ -6,8 +6,8 @@ GitHub Issue／Projectへ同期する場合も本ticketへのprojectionとし、
 
 現在は要求整理中のため、全ticketを`proposed_upstream_waiting`とする。文書具体化以外の実装、runtime、DB、CIを起動しない。
 
-| 順序 | Ticket | 対象 | 状態 |
-|---:|---|---|---|
-| 1 | [FT-OS-REQREG-001](FT-OS-REQREG-001.md) | HELIX-OS 要求候補自動登録 | proposed_upstream_waiting |
-| 2 | [FT-HARNESS-REQENG-001](FT-HARNESS-REQENG-001.md) | HARNESS 要求エンジンPython core | proposed_upstream_waiting |
-| 3 | [FT-OS-REQCLASS-001](FT-OS-REQCLASS-001.md) | HELIX-OS 要求分類projection | proposed_upstream_waiting |
+| 順序 | Ticket | 対象 | 状態 | GitHub projection |
+|---:|---|---|---|---|
+| 1 | [FT-OS-REQREG-001](FT-OS-REQREG-001.md) | HELIX-OS 要求候補自動登録 | proposed_upstream_waiting | [#1798](https://github.com/RetryYN/HELIX-HARNESS/issues/1798) |
+| 2 | [FT-HARNESS-REQENG-001](FT-HARNESS-REQENG-001.md) | HARNESS 要求エンジンPython core | proposed_upstream_waiting | [#1799](https://github.com/RetryYN/HELIX-HARNESS/issues/1799) |
+| 3 | [FT-OS-REQCLASS-001](FT-OS-REQCLASS-001.md) | HELIX-OS 要求分類projection | proposed_upstream_waiting | [#1800](https://github.com/RetryYN/HELIX-HARNESS/issues/1800) |
