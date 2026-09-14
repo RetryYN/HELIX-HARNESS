@@ -8,7 +8,7 @@ product_targets:
   - HELIX-HARNESS
   - HELIX-OS
 derived_from:
-  - docs/governance/candidates/helix-concept-v4.1.md
+  - docs/concept/helix-concept-v4.1.md
   - docs/governance/candidates/instruction-path-change-resilience-requests.md
   - docs/governance/candidates/instruction-path-change-resilience-requirements.md
   - docs/governance/candidates/instruction-path-change-resilience-acceptance.md
@@ -92,5 +92,5 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 - reviewerだけを指定してreview routeを省略した場合は`review_waiting`で停止する。一つのrouteを許可しても別routeを起動せず、無出力やtimeoutから無許可fallbackしない。
 
 本候補はAI文書の内容と生成・適用責務を上流で分けるための入力であり、現行runtimeへの適用を認可しない。
-[既存CI・AI候補との対応](../audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md)は、旧候補の承認を流用せず、
+[既存CI・AI候補との対応](../audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md)は、旧候補の承認を流用せず、
 新世代へ再採否するsemantic atomを記録する。

@@ -8,7 +8,7 @@ product_targets:
   - HELIX-HARNESS
   - HELIX-OS
 derived_from:
-  - docs/governance/candidates/helix-concept-v4.1.md
+  - docs/concept/helix-concept-v4.1.md
   - docs/governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md
 ---
 

@@ -191,8 +191,8 @@ archive内資産の物理削除は、対象ごとに次を満たした後で行�
 - 下流consumer、runtime、CI、DB projectionは上流freeze後に変更する。
 - GitHub branchへのremote syncは行えるが、上流review専用laneが整うまで旧PR／旧CI admissionへ接続しない。
 
-現在の対象別要求と監査は[HELIX L2要求の読取り入口](../design/helix/L2-requirements/README.md)から参照する。
+現在の対象別要求と監査は[HELIX L2要求の読取り入口](audits/source-rebaseline/l2-source-register.md)から参照する。
 [上流authority管理台帳](upstream-authority-register-2026-09-14.md)を、母集団・状態・正規入口・次の処置の管理面として使う。
 [上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)を、上流から再導出して旧資産退役まで進める作業契約の入口として使う。
-[authority・全資産統制の既存候補対応](audits/l2-requirements/new-generation-authority-asset-governance-crosswalk.md)は、
+[authority・全資産統制の既存候補対応](audits/source-rebaseline/new-generation-authority-asset-governance-crosswalk.md)は、
 JSON-only authorityや旧ownerを継承せず、新世代へ再採否する意味単位を管理する。

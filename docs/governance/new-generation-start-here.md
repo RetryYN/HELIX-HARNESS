@@ -11,14 +11,14 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 
 ## 読込順
 
-1. [製品責務境界](product-governance-boundary-2026-09-14.md)
-2. [Concept v4.1候補](candidates/helix-concept-v4.1.md)
+1. [製品責務境界](../concept/product-boundary.md)
+2. [Concept v4.1候補](../concept/helix-concept-v4.1.md)
 3. 対象製品のL1
-   - [HELIX-HARNESS](../design/harness/L1-planning/product-intent.md)
-   - [HELIX-OS](../design/helix-os/L1-planning/system-intent.md)
-   - [HELIX-Web](../design/helix-web/L1-planning/product-intent.md)
-   - [HELIX-Web-OS](../design/helix-web-os/L1-planning/system-intent.md)
-4. [対象別L2入口](../design/helix/L2-requirements/README.md)と対応するL11
+   - [HELIX-HARNESS](../helix-harness/L1-planning/product-intent.md)
+   - [HELIX-OS](../helix-os/L1-planning/system-intent.md)
+   - [HELIX-Web](../helix-web/L1-planning/product-intent.md)
+   - [HELIX-Web-OS](../helix-web-os/L1-planning/system-intent.md)
+4. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
 5. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 6. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
 7. 必要な場合だけ、台帳から指定された旧source／crosswalkを読む

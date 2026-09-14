@@ -8,7 +8,7 @@ product_targets:
   - HELIX-HARNESS
   - HELIX-OS
 derived_from:
-  - docs/governance/candidates/helix-concept-v4.1.md
+  - docs/concept/helix-concept-v4.1.md
   - docs/governance/candidates/ci-event-concurrency-generation-requests.md
   - docs/governance/candidates/ci-event-concurrency-generation-requirements.md
   - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md
@@ -96,5 +96,5 @@ reviewer identity、対象revision、source set、観点、finding、判定時�
 
 本候補は[上流再整備と既存資産統制方針](../upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)の
 `upstream meaning review`とU6 cutoverの間を、要求から再導出するための入力である。
-[既存CI・AI候補との対応](../audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md)は、旧候補から採る意味と
+[既存CI・AI候補との対応](../audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md)は、旧候補から採る意味と
 持ち込まない実装前提を記録する。

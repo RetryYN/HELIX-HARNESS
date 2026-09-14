@@ -27,8 +27,12 @@ executed_at: 2026-09-14
 | **合計** | **4020** | [manifest](../../archive/legacy-generation-2026-09-14/MANIFEST.sha256)で固定 |
 
 active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、対象別L1／L2／L11、上流方針、inventory、crosswalk、
-判断packetの68文書だけを残した。本記録を追加したため現在は69文書である。旧文書をbranch上で変更していた場合も、
-追加文書でなければarchive sourceへ移した。
+判断packetの68文書だけを残した。本記録と現行文書構成READMEを追加したため現在は70文書である。旧文書をbranch上で
+変更していた場合も、追加文書でなければarchive sourceへ移した。
+
+active文書は`concept/`、`helix-harness/`、`helix-os/`、`helix-web/`、`helix-web-os/`、`governance/`へ
+物理分離した。L1／L2／L11は対象directory内に置き、要求ownerをpathから判別できる。archive側は旧相対構造の
+snapshotであり、この対象別構成へ並べ替えない。
 
 ## 現在のGitHub利用
 
@@ -36,6 +40,11 @@ active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、
 - PRは新世代上流候補の差分共有と、明示許可されたGitHub review通路に使用できる。
 - repository設定に残るrequired check、branch protection、App、外部scheduleはGit内workflowとは別の外部projectionであり、本隔離だけで変更済みと扱わない。
 - required checkが旧`harness-check`を要求する間はmerge条件が成立しない。checkを迂回せず、新世代CI設計または外部設定の再構築までDraft／review surfaceとして使う。
+
+commit `064280b5c`のremote sync後にGitHubをread-afterした結果、対象branchの新runは0、open PRは0だった。
+mainのbranch protectionは`strict=true`、required context=`harness-check`、`enforce_admins=true`を維持している。
+これはGit内workflowのarchiveだけでは解消しない外部設定差分である。旧CIを一度も起動せずPRをmerge可能にするには、
+required contextの解除を対象・復旧条件付きで別途許可し、新世代CI確定後に新contextを設定する必要がある。
 
 ## 未成立事項
 
