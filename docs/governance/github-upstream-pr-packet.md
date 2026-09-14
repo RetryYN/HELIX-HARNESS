@@ -1,58 +1,57 @@
-# 新世代上流再編 GitHub PR packet
+# PR #1797 GitHub投影packet
 
-status: ready_for_draft_pr
+status: active_draft_projection
+pr: https://github.com/RetryYN/HELIX-HARNESS/pull/1797
+pr_class: repository_foundation
 head_branch: `docs/l2-requirements-source-audit`
-head_revision: `bind from remote branch immediately before review request`
 base_branch: `main`
 
-## PR classとtitle
+## 目的
 
-`repository_foundation`
+PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味reviewに限定する。PR本文、comment、review、checkはローカル上流のprojectionであり、要求、承認、完了の正本ではない。
 
-```text
-chore(governance): HELIX新世代のリポジトリ基盤と上流運用を整備する
-```
+このpacketにPR本文やreview依頼文の複製を固定しない。AIは作業開始時に[新世代入口](new-generation-start-here.md)、[GitHub上流運用モデル](github-upstream-operating-model.md)、[repository foundation readiness](repository-foundation-readiness.md)を読み、GitHubから現在のPR本文、HEAD、commentをread-afterする。過去commentのHEADは失効したreview対象として扱う。
 
-## PR body
+## ローカル正本
 
-```text
-旧HELIXのauthority、CI、AI instruction、runtime、testが現行pathに混在し、GitHub状態と旧実装から上流意味を逆算していた問題を解消します。
+| 判断対象 | ローカル正本 |
+|---|---|
+| HELIX-HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの責務 | [製品責務境界](../concept/product-boundary.md) |
+| 新世代のauthority、PR class、Issue／ticket境界 | [GitHub上流運用モデル](github-upstream-operating-model.md) |
+| archive隔離と現行実行面 | [archive-first隔離記録](archive-first-transition-record-2026-09-14.md) |
+| 旧要求の保持と再配置状態 | [carry-forward管理状況](requirement-carry-forward-status.md) |
+| マージ条件と現在の証拠 | [repository foundation readiness](repository-foundation-readiness.md) |
 
-旧世代4020ファイルを元構造とSHA-256を保った非実行archiveへ隔離し、現行側をConcept、HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS、governanceへ物理分離しました。HARNESSは外部提供するV-model基盤、HELIX-OSはHARNESS自身を含むプロジェクト群の管理・統制・継続改善機構として要求を分冊しています。
+## GitHubへ投影する内容
 
-このPRはrepository整理とGitHub上流運用のbootstrapです。個別要求はdraft container／inventoryとして配置するだけで、要求identityごとに後続のrequirement PRで詰めます。Concept／L1／L2の人間承認、L3以降、新世代CI／runtimeの実装、archive資産の意味採否・物理削除は成立させません。
+- titleは日本語で目的が分かる形にする。機械識別子と一般的な開発用語は原語を維持できる。
+- PR classは`repository_foundation`とする。
+- PR本文は、repository整理、旧要求の無損失保持、責務分離、現在成立した静的証拠、未成立条件をローカル正本から要約する。
+- final HEADを取得してから、そのfull SHAだけを対象にGitHub Claudeへread-only意味reviewを依頼する。
+- HEAD更新後は以前のreview依頼を失効とし、新しいfull SHAで依頼する。
+- review結果はfindingとしてreadinessへ反映し、要求採否、人間承認、Ready化、mergeを自動生成しない。
 
-静的確認:
-- archive manifest 4020/4020 SHA-256一致
-- 現行workflow YAML 0
-- active Markdown相対リンク切れ0
-- L2↔L11 ID集合: HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6ですべて一致
-- Concept＋4対象L1のSHA-256は判断packetと一致
-- repository foundationと後続requirement PRのmerge条件をrepo内運用上流へ固定
+## Claudeへ確認させる意味
 
-旧CI、旧test、旧runtime、ローカルClaude CLIは実行していません。
-```
+1. HARNESSが外部提供する開発・検証contractを持ち、HELIX-OSが管理、統制、推進、Worker、ログ、学習、CI、HARNESS自身の継続改善を担うこと。
+2. HELIX-WebとHELIX-Web-OSのruntime authorityを分離し、許可logによる改善loopだけでHELIX-OSへ接続すること。
+3. 旧資産を非実行archiveとして保持し、新世代のbaseline、oracle、fallbackにしないこと。
+4. 旧要求を削減せず、原要求identity、原文、digest、元authority状態を保持して再配置すること。
+5. Concept／Vision／企画→premise／research／PoC／prototype→人間decision→要求→設計・検証→実装の順序と、上流backflowが閉じていること。
+6. local ticketからGitHub Issueへ一方向投影し、GitHub状態から要求意味、採否、承認、完了を生成しないこと。
 
-## GitHub Claude review依頼文
+所見はBlocker、Major、Minorに分け、file、該当箇所、矛盾する上流方針、必要な修正を日本語で示すよう依頼する。承認、merge、CLI／API／IDE／HARNESS Workerへのfallbackは依頼しない。
 
-```text
-@claude このPRのexact HEADについて、コード実装や旧CIの成否ではなく、次の上流意味だけをread-onlyでレビューしてください。
+## 外部操作記録
 
-1. HELIX-HARNESSとHELIX-OSの責務が分離され、HARNESS自身の継続改善責務がHELIX-OSにあること
-2. HELIX-WebとHELIX-Web-OSのruntime authorityを分離し、許可logによる改善loopだけでHELIX-OSへ接続していること
-3. 旧資産を非実行archiveとして保持し、新世代のbaseline、oracle、fallbackにしていないこと
-4. Concept→対象別L1→L2／L11の順序とID接続に意味上の欠落・矛盾がないこと
-5. GitHub、PR、review、CIから人間の上流承認を生成していないこと
+- [旧open PR整理](audits/source-rebaseline/github-pr-cleanup-2026-09-14.md)
+- [旧Issue退役](audits/source-rebaseline/github-issue-retirement-2026-09-15.md)
+- [旧Project退役](audits/source-rebaseline/github-project-retirement-2026-09-15.md)
+- [Feature Ticket Issue投影](audits/source-rebaseline/github-feature-ticket-projection-2026-09-15.md)
+- [CodeQL default setup変更・復元](github-codeql-default-setup-backup-2026-09-15.json)
 
-Blockerがある場合はfile、該当箇所、矛盾する上流方針、必要な修正だけを示してください。承認やmergeは行わないでください。
-```
+これらの外部状態は操作とread-afterの証拠であり、上流意味の正本ではない。既存CodeQL、旧`harness-check`、旧test、旧runtimeの結果をPR #1797の合格根拠にしない。
 
-## 境界
+## 現在の停止条件
 
-- Draft PRとして作成する。
-- Claude reviewはGitHub上の通路だけを使い、CLI／API／IDE／HARNESS Workerへfallbackしない。
-- review結果はfindingであり、人間承認・canonical化・mergeを自動成立させない。
-- #1797のmerge条件は[GitHub上流運用モデル](github-upstream-operating-model.md)を正本とし、個別要求の採否を混入させない。
-- 旧`harness-check` required contextと旧repository workflow 4件は解除／disable済みである。
-- CodeQL default setupは一時停止のscope不整合を是正して`configured`へ復元済みで、DependabotとともにGitHub管理の
-  外部security projectionとして扱う。旧harness CIでもこのPRの意味gateでもない。
+[repository foundation readiness](repository-foundation-readiness.md)で未成立の条件が一つでもある間はDraftを維持する。個別要求の採否・意味変更、L3以降、新世代CI／runtime、archive資産の意味移管・物理削除へ進まない。
