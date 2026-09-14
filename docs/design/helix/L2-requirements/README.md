@@ -89,7 +89,7 @@ mainへの収載だけで要求承認を判断せず、リポジトリ内の改�
 - 上位概念は[Concept v4.1候補](../../../governance/candidates/helix-concept-v4.1.md)と
   [承認準備監査](../../../governance/audits/l2-requirements/concept-v4.1-approval-readiness-audit.md)を確認する。
   v4.0の候補承認をv4.1へ流用せず、旧v3.1を新要求の基準へ戻さない。
-- 要件正本は[requirements v1.3](../../../governance/helix-harness-requirements_v1.3.md)、層はL1-L12 directive、実装責務はADR-009／010を基準にする。
+- 要件正本は[requirements v1.3](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)、層はL1-L12 directive、実装責務はADR-009／010を基準にする。
 - JSON移管済み範囲は現行Requirement IRを読み、後続の要求候補・追補との差を確認する。承認済みの新定義を旧本文に合わせて後退させない。
 - 新しい要求の文書化、候補承認、canonicalへの昇格、runtimeへの適用は別に記録する。新しい候補を未確認のまま現行採用済みと表示しない。
 
@@ -107,13 +107,13 @@ mainへの収載だけで要求承認を判断せず、リポジトリ内の改�
 
 | 文書 | 現在の宣言と注意点 |
 | --- | --- |
-| [柱要求](../L1-requirements/pillar-requirements.md) | L2／L11、confirmed。HBR9件・HNFR4件。現行分類・意味コア・要求正本の境界を訂正。旧承認記録と対文書の検証基準は現行L11受入の証拠にできない |
-| [Infinity Loop要求](../L1-requirements/infinity-loop-platform-requirements.md) | L2／L11、compatibility_read_only。153要求の移管元であり、現行の機械意味正本ではない |
-| [REBASELINE是正差分](../L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md) | L2／L11、proposed。全文確認し表題・template検査・errata是正案の矛盾を訂正。59所見の過去評価と現行要求への採用を分離。個別の採否・移管は照合継続中 |
+| [柱要求](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md) | L2／L11、confirmed。HBR9件・HNFR4件。現行分類・意味コア・要求正本の境界を訂正。旧承認記録と対文書の検証基準は現行L11受入の証拠にできない |
+| [Infinity Loop要求](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md) | L2／L11、compatibility_read_only。153要求の移管元であり、現行の機械意味正本ではない |
+| [REBASELINE是正差分](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md) | L2／L11、proposed。全文確認し表題・template検査・errata是正案の矛盾を訂正。59所見の過去評価と現行要求への採用を分離。個別の採否・移管は照合継続中 |
 
-Infinity Loopの現行機械意味正本は[authority設定](../../../../config/requirement-ir-authority.json)が指す
-[Requirement IR manifest](../../../../requirements-ir/manifest.json)である。
-[requirements shard](../../../../requirements-ir/requirements.json)の153件はすべてInfinity Loop文書からの移管であり、
+Infinity Loopの現行機械意味正本は[authority設定](../../../../archive/legacy-generation-2026-09-14/root/config/requirement-ir-authority.json)が指す
+[Requirement IR manifest](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/manifest.json)である。
+[requirements shard](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)の153件はすべてInfinity Loop文書からの移管であり、
 HELIX全要求の網羅分母ではない。追加のrefinement shard、他要求文書、要求候補との照合が必要である。
 
 153要求は契約・受入条件・テストIDの参照先が存在するが、全件に`pending_resolution`があり、
@@ -133,16 +133,16 @@ L2の反映先と凍結境界の矛盾は[JSON是正差分](../../../governance/
 以下は現在のmetadataでL1／L12として扱われている。ファイル名に`requests`があることを理由に
 L2監査済みへ算入しない。一方、本文に具体要求が混在しているものはL2への接続欠落を調べる。
 
-- [常駐レーン](../L1-requirements/resident-lane-orchestration-requests.md)
-- [三社レーン](../L1-requirements/three-lane-cloud-governance-requests.md)
-- [Skill移行](../L1-requirements/skill-mechanism-migration-requests.md)
-- [定型生成](../L1-requirements/bugbot-generation-requests.md)
-- [文書監査](../L1-requirements/document-authority-census-requests.md)
+- [常駐レーン](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md)
+- [三社レーン](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md)
+- [Skill移行](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md)
+- [定型生成](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/bugbot-generation-requests.md)
+- [文書監査](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md)
 
 これらのL1／L12宣言を、L2要求の全件定義・合意・L11受入が成立した証拠にはしない。
 承認済み本文とpairを一括改名してL2へ移すことも、意味・受入の照合前には行わない。
 
-[refinement shard](../../../../requirements-ir/refinement_contracts.json)には、三社レーンの
+[refinement shard](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json)には、三社レーンの
 `3L-FR-001..008`が`frozen`として収載され、3L-R-01..25と3L-AC-001..027を保持している。
 常駐レーンの`RLO-FR-001`は追加4要件RLO-FR-037..040だけを保持し、状態は`specified`、`approval`はnullである。
 いずれもL1文書全体の要求・L2合意を収載したことにはならない。本文の古い「IR admission待ち」だけで現状を判定しない。
@@ -164,28 +164,28 @@ MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求
 本整備のv4由来L2案、HELIX画面境界、Execution Ticket候補、HARNESS L2、HELIX-OS L2、HELIX-Web L2、HELIX-Web-OS L2である。
 
 旧harness screenの`README.md`は全文確認し、現行で採用しないL2 carry／旧pair／逆伝播規則を
-[画面境界](../L2-screen/screen-mock-boundary.md)へ記録した。
+[画面境界](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md)へ記録した。
 `screen-list.md`と`screen-detail.md`も全文確認し、15画面の対応、必須schemaと詳細matrixの粒度差、
 旧層・分類表示、状態保持・欠落・描画・実行境界の移管確認を画面境界へ記録した。
 `business-flow.md`、`screen-flow.md`、`ui-element.md`、`wireframe.md`も全文確認した。
 旧screen7文書の本文読取りは完了したが、業務・遷移の接続欠落、旧分類、個別モック未確認8画面等の
-移管条件は[画面境界](../L2-screen/screen-mock-boundary.md)に残る。読取り完了を移管・合意・受入完了としない。
+移管条件は[画面境界](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md)に残る。読取り完了を移管・合意・受入完了としない。
 
 旧harness要求5文書の10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節は
 [新世代対象別対応](../../../governance/audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md)で
 過不足なく分類した。旧承認、旧実装済み宣言、旧CI／DB／mode／driveを継承せず、HARNESSの工程契約、
 HELIX-OSの実行統制、個別製品の要求へ再採否する。分類済みを採択済みとは扱わない。
 
-- [画面境界](../L2-screen/screen-mock-boundary.md)と対文書はL2／L11の整備案へ改訂した。
+- [画面境界](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md)と対文書はL2／L11の整備案へ改訂した。
   draftであり、要求・プロト合意と実操作受入の証拠は未確認。旧confirmedを引き継がず、対文書のcanonical再利用禁止も維持する。
-- [要求発見契約](../L3-requirements/requirement-discovery-json-authority.md)はL2の質問・回答・prototype・
+- [要求発見契約](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md)はL2の質問・回答・prototype・
   agreementとL3 JSON凍結を分けている。これは要求を整理する仕組みの契約であり、HELIXの全L2要求本文ではない。
 - `docs/governance/candidates/`の要求候補も監査対象に含める。候補と現行要求を合算して承認済みと扱わない。
-  [Execution Ticket要求候補](../../../governance/candidates/execution-ticket-requests.md)は明示的にL2／L11であり、
-  [受入候補](../../../governance/candidates/execution-ticket-validation.md)に7要求の対応がある。これは合意・受入の実施証拠ではない。
+  [Execution Ticket要求候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md)は明示的にL2／L11であり、
+  [受入候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md)に7要求の対応がある。これは合意・受入の実施証拠ではない。
   非UIの要求についても適用範囲と理由・再評価条件を持つN/A記録を確認し、画面がないことだけを理由に要求を監査対象から落とさない。
 - `docs/design/harness/L1-requirements/`と`L2-screen/`は移管元のcompatibility資料である。
-  [governance境界](../../../governance/README.md)に従い、旧資料を新しい要求の判断正本へ戻さない。
+  [governance境界](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/README.md)に従い、旧資料を新しい要求の判断正本へ戻さない。
 
 ## Issue登録との区別
 
@@ -219,8 +219,8 @@ HELIX-OSの実行統制、個別製品の要求へ再採否する。分類済み
 本入口の作成は全要求の監査完了を意味しない。要求候補系列と旧harness要求5文書は本文を確認し、
 対象別対応を作成したが、個別モック、他の名称のintake、未採否要求、L2合意証拠、全要求のL3／L11接続は確認中である。
 
-別名の[投資候補intake](../../../governance/candidates/development-investment-stage-directives-intake_v1.0.md)と
-[Concept・Vision・提供構成](../../../governance/candidates/concept-vision-release-crosswalk.md)も照合対象に含む。
+別名の[投資候補intake](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md)と
+[Concept・Vision・提供構成](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md)も照合対象に含む。
 INV72候補・PKG13候補は新しい全要求数ではなく、採否と既存要求への対応を要する入力である。
 
 確認範囲と未解決事項は[要求文書監査記録](../../../governance/l2-requirements-source-audit-2026-09-14.md)に記録する。

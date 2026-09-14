@@ -2,8 +2,8 @@
 
 確認日: 2026-09-14
 
-`docs/design/helix/L0-charter/helix-charter_v0.1.md`のP0–P9と
-`docs/design/helix/L1-requirements/pillar-requirements.md`のHBR／HNFRは、HARNESSの工程要求と
+`archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md`のP0–P9と
+`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md`のHBR／HNFRは、HARNESSの工程要求と
 HELIX-OSの実行・管理要求を混在させている。本表は既存承認を変更せず、対象別L2への親子関係を明示する。
 
 | 上位ID | HARNESSへ渡す意味 | HELIX-OSへ渡す意味 | 対象別L2 |

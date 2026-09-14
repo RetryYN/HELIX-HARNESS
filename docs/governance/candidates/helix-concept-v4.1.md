@@ -165,7 +165,10 @@ historical valueを記録した後、current startup、runtime、CI、AI read se
 適合を要求しない。AIが読む文書も承認済み上流から生成し、HARNESS工程契約、OS実行context、個別製品要求を分離する。
 現行`AGENTS.md`、`CLAUDE.md`、prompt、adapterの文面を新世代authorityとして複製しない。
 
-上流要求整理が完了する前に、新世代の実装、旧資産の物理移動・削除、runtime切替、CI起動、PR admissionを行わない。
+上流要求整理の開始時に、旧workflow、旧AI instruction／hook、旧runtime／testを元の構造と出典を保った
+非実行archiveへ隔離し、current startup、CI discovery、AI read、runtime pathから外す。このarchive-first隔離は
+新世代実装や旧意味の採否を成立させず、旧資産の削除、復元、実行、release、deploymentを認可しない。
+現行入口には新世代の上流読込順と停止条件だけを置き、そこからConcept→L1→L2の順に降ろす。
 要求整理中の成果はcandidate、inventory、crosswalk、適用待ち差分として保持する。
 
 要求整理期間中の意味判定は、対象revisionを固定した文書差分検査、source IDの欠落・重複検査、参照整合検査、

@@ -18,9 +18,10 @@ HELIX-HARNESSとHELIX-OSの責務を分離し、既存資産を上流から再�
 L3／L10、下流pairへ順に降ろして構成する。現行の要求配置、CI、AI文書、runtime、DB、CLI、hook、adapter、workflowは
 legacy sourceとして棚卸しするが、新世代のbaseline、parity oracle、fallbackとして実行しない。
 
-現行資産は、意味・behavior・判断史・oracle・failure・consumer・運用証拠を採取し、採否と移管先を記録した後、
-current authority、startup read、runtime path、CI path、AI read setから外した非実行archiveへ移す。要求整理が完了するまでは
-物理移動・削除を行わず、archive対象として台帳管理する。
+現行資産は、元の相対構造、provenance、digestを保った非実行archiveへ先に隔離し、current authority、startup read、
+runtime path、CI path、AI read setから外す。現行入口には新世代の上流読込順と停止条件だけを置き、archiveを検索結果や
+fallbackから現行へ戻さない。意味・behavior・判断史・oracle・failure・consumer・運用証拠の採取、採否、移管先の記録は
+archive sourceに対して行う。隔離は可逆な`git mv`を基本とし、物理削除は後続の個別判断まで行わない。
 
 ## 統制対象
 
@@ -56,7 +57,7 @@ GitHubは作業・協調・CI・PR証拠のsurfaceである。Issueのopen／clo
 |---|---|---|---|---|
 | local candidate | 上流の意味を起草する | authority source、PO決定、監査差分 | repo-owned candidate revision | Issueや既存実装から意味を補完しない |
 | remote sync | 同一revisionを耐久保存・共有する | exact commit/tree、branch | remote commit/tree locator | PR作成、CI起動、承認済み化を暗黙に伴わせない |
-| upstream meaning review | 製品境界、要求意味、source completeness、非対象、下流影響を独立確認する | exact candidate revision、source inventory、review観点 | findingまたはreview receipt | 旧実装green、旧CI、PR admissionを意味妥当性のoracleにしない |
+| upstream meaning review | 製品境界、要求意味、source completeness、非対象、下流影響を独立確認する | exact candidate revision、source inventory、review観点、許可されたreview route | findingまたはreview receipt | 旧実装green、旧CI、PR admissionを意味妥当性のoracleにせず、reviewer名だけからCLI・API・GitHub App等の起動権限を推定しない |
 | human decision | Concept／L1／L2／L3の所定境界を採否する | exact revision、semantic diff、finding、未解決事項 | actor・scope・revision付きdecision | AI reviewやCIから人間approvalを生成しない |
 | downstream verification | 承認上流から導出した設計・実装・projectionを検証する | approved upstream revision、pair、oracle | test／CI／review／operation evidence | 未承認候補をcurrent authorityとして検査しない |
 
@@ -65,7 +66,11 @@ merge admission、Issue closure、auto-mergeを起動する場合、U0–U4で�
 read-onlyで取得でき、reviewer identity、review対象revision、source set、finding、判定時刻を記録できる専用laneで行う。
 専用laneが未整備なら`review_waiting`で停止し、旧PR／CI経路へfallbackしない。
 
-Claude等の独立reviewerは上流意味reviewを担当できるが、CIを成功させるためのreceipt発行者として扱わない。
+reviewerまたはproviderの指定は、reviewを依頼する意図だけを示す。GitHub review、ローカルCLI、API、IDE、HARNESS Worker等の
+どの通路を起動してよいかは、route、credential／account、network、費用、write権限、許可期限を別に決める。通路の明示許可が
+なければ起動せず`review_waiting`とする。一つの通路への許可を別通路へ転用せず、停止・timeout・無出力を別通路で自動retryしない。
+
+Claude等の独立reviewerは、許可された通路で上流意味reviewを担当できるが、CIを成功させるためのreceipt発行者として扱わない。
 reviewerはConcept approval、L2合意、L3承認を代行せず、`pass`も人間decisionを進めない。修正後は新commitを別revisionとして
 再reviewし、古いreceiptを新HEADへ流用しない。
 
@@ -82,7 +87,7 @@ PR／CIへ接続できるのは、少なくとも次が揃った後とする。
 archive前の現段階でも旧CIを起動しない。
 
 上流整理期間は、対象revisionを固定した文書diff、source IDの過不足、参照先、責務境界を静的に検査し、
-別runtimeによるread-only意味reviewと人間decisionへ渡す。この検査はcandidateの整合性だけを扱い、
+許可された専用通路によるread-only意味reviewと人間decisionへ渡す。この検査はcandidateの整合性だけを扱い、
 実装green、L11受入、運用成立、canonical promotionのgateではない。旧CI／旧gateを上流候補へ実行せず、
 新世代CIが未構築であっても旧経路へfallbackしない。remote syncは保存・共有だけを成立させる。
 
@@ -158,9 +163,13 @@ HELIX-OSが自動走行できる資産は、最低限次を満たす。
 
 既存資産がこの条件を満たさない場合は、HELIX-OSへ無理に実行させず、上流再導出またはmigration待ちとして止める。
 
-## 旧資産削除の条件
+## archive-first隔離と旧資産削除の条件
 
-大規模削除は最初の作業にしない。削除対象ごとに次を満たした後で行う。
+旧資産の非実行archiveへの隔離は最初の作業として行う。workflow discovery、AI startup、runtime entry、package command等の
+active pathを先に空けることで、旧世代を誤実行せず新世代を上流から構成できる。archiveは旧意味の採択・棄却やreplacement
+完成を主張せず、元path、digest、asset class、consumer候補を追跡できる形で保全する。
+
+archive内資産の物理削除は、対象ごとに次を満たした後で行う。
 
 1. behavior、要求、設計、検証、consumer、runtime参照を棚卸しした。
 2. reuse／amend／split／replace／retire／archive／rejectの判断と根拠がある。

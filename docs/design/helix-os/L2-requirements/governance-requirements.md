@@ -59,10 +59,10 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-012 | 内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる | HELIX-OS編成案 §3／6 | 内部事例を先に照合し、不足分だけを未信頼外部情報として取得する。秘密を送信せず、取得文の命令やpatchを実行せず、closed／mergedだけで解決済みにしない |
 | HELIXOS-L2-013 | 管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる | HELIX-OS編成案 §5 | 観測事実・AI仮説・承認・表示、未着手・観測停止・正常を区別する。管理自身も是正対象とし、自動writeせず、修正後の症状と退行を再観測する |
 
-移管元は[柱要求](../../helix/L1-requirements/pillar-requirements.md)、
+移管元は[柱要求](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)、
 [Concept v4由来整理案](../../helix/L2-requirements/concept-v4-derived-requirements.md)、
-[常駐レーン](../../helix/L1-requirements/resident-lane-orchestration-requests.md)、
-[三社レーン](../../helix/L1-requirements/three-lane-cloud-governance-requests.md)。
+[常駐レーン](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md)、
+[三社レーン](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md)。
 承認済み・未承認・IR移管済みの状態が異なるため、上表への収載を一括採択と扱わない。
 
 [HARNESS要求](../../harness/L2-requirements/product-requirements.md)の具体的な開発能力を重複定義しない。
@@ -70,19 +70,25 @@ HELIX-OSはHARNESSが規定する層・pair・工程条件を参照し、Worker�
 OS内に工程規則の別正本を作らず、適用するHARNESS版とプロジェクトの選択を記録する。
 HELIX-OS自身の変更も要求・判断・検証へ追跡し、統制する立場を自己承認権限へ拡張しない。
 
+HELIXOS-L2-004／007では、reviewer identity、review対象、review route、実行権限を別に扱う。provider名や
+「reviewを通す」という依頼だけから、GitHub、ローカルCLI、API、IDE、HARNESS Worker等の任意通路を選ばない。
+route、account／credential、network、費用、read／write範囲、期限が許可されていない場合は`review_waiting`で停止し、
+別通路の過去許可、timeout、無出力をfallback認可へ変換しない。無許可で開始した実行は停止し、結果をreview証拠へ採用しない。
+
 ## 旧資産の退役・archive統制
 
 [旧資産退役要求候補](../../../governance/candidates/legacy-asset-retirement-requirements.md)のLAR-OS-001..007を、
 HELIXOS-L2-001／002／003／006／007／009の適用待ち具体化として保持する。asset identity、revision、対象、authority状態、
 provenance、dispositionと、source、runtime、AI read、CI、registry、生成、配布、外部writer、復元のconsumer relationを追跡する。
 
-replacementの上流ID、artifact、consumer適用、rollbackとHARNESSが要求するpair／oracleが揃った後だけ、旧資産をcurrent
-startup、authority検索、AI context、runtime、CI、package、復元経路から外す。archive原文と判断史を保全し、物理削除は
-法的・security等の理由と別のaction-binding approvalがある場合に限る。本節では移動・削除・停止・外部設定変更を行わない。
+旧資産は元の相対構造、provenance、digestを保った非実行archiveへ先に隔離し、current startup、authority検索、AI context、
+runtime、CI discovery、package command、復元経路から外す。現行pathには新世代上流の入口と停止条件だけを置く。
+隔離後にsemantic atom、consumer、採否、replacementを追跡し、承認上流から新しいartifactとoracleを再導出する。
+archive原文と判断史を保全し、物理削除は法的・security等の理由と別のaction-binding approvalがある場合に限る。
 
 ## 管理上の観測と製品変更の入口
 
-[旧Management Scrum policy](../../../governance/management-scrum-product-forward.md)は、
+[旧Management Scrum policy](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-management-change-source-crosswalk.md)に従って
 HELIX-OSの管理統制とHARNESSのForward条件へ分ける。旧policyのconfirmed状態、Issue-first、`S0..S4`、Scrum Reverse、
 既存adapter／template／test／CIを新世代へ継承しない。
@@ -92,7 +98,7 @@ HELIXOS-L2-001／002／003／005／007では、gate漏れ、監査所見、運�
 projectionとし、その状態から要求意味・承認・完了を逆生成しない。採択した変更は対象製品の意味が変わる最上流へ戻し、
 OSが要求を直接書き換えたり自己承認したりしない。本節ではGitHub、DB、workflow、CIを操作しない。
 
-[旧Scrum Operation候補](../../../governance/candidates/scrum-operation-typed-projection-requirements.md)は、
+[旧Scrum Operation候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/scrum-operation-typed-projection-requirements.md)は、
 [新世代管理状態対応表](../../../governance/audits/l2-requirements/new-generation-management-state-projection-crosswalk.md)に従って
 再採否する。HELIXOS-L2-002／004／005／007／009では、要求・責務・作業・判断・証拠のauthority identityを参照し、
 進行、blocker、待ち、失敗、検証、改善候補等を再構築可能な管理viewへ投影する。Project、Issue、DB、dashboard、roadmapから
@@ -101,7 +107,7 @@ OSが要求を直接書き換えたり自己承認したりしない。本節で
 
 ## 限定修復の統制条件
 
-[旧Bugbot候補](../../../governance/candidates/bugbot-bounded-repair-requests.md)は、
+[旧Bugbot候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-bounded-repair-source-crosswalk.md)に従って再採否する。
 HELIXOS-L2-001／002／004／005／007／009では、逸脱の検出、修復候補、意味判断、操作許可、隔離適用、検収、
 停止・復旧を別状態として追跡する。対象revision、actor、write-set、副作用、予算、期限、再試行、影響範囲、復旧先、
@@ -113,7 +119,7 @@ HELIXOS-L2-001／002／004／005／007／009では、逸脱の検出、修復候
 
 ## 構造改善候補の統制条件
 
-[旧Refactoring Trigger候補](../../../governance/candidates/refactoring-trigger-admission-requirements.md)は、
+[旧Refactoring Trigger候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-refactoring-trigger-source-crosswalk.md)に従って再採否する。
 HELIXOS-L2-001／002／003／005／007では、観測、finding、改善候補、scope、根拠、意味保存、必要検証、採否、
 割当、結果、効果、失効を区別する。未評価、unknown、stale、partial、findingなし、no actionを別状態として保持し、
@@ -122,7 +128,7 @@ HELIXOS-L2-001／002／003／005／007では、観測、finding、改善候補�
 
 ## Worker capacityの統制条件
 
-[旧Three Lane候補](../../../governance/candidates/three-lane-capacity-profile-requests.md)は、
+[旧Three Lane候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-worker-capacity-source-crosswalk.md)に従って再採否する。
 HELIXOS-L2-004／005／007／008／009では、利用可能resource、割当上限、active WIP、実行中、検証待ち、統合待ち、
 予算、期限、競合、再作業、停止・縮退を区別する。pool登録数や最大値を稼働・accepted throughputとして表示せず、
@@ -134,7 +140,7 @@ provider、model、account、runner、reviewer数は有期resource profileとし
 
 ## Security engagementの統制条件
 
-[旧SEA候補](../../../governance/candidates/security-engagement-authority-requests.md)は、
+[旧SEA候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-security-engagement-source-crosswalk.md)に従って再採否する。
 HELIXOS-L2-001／003／004／005／007／009では、対象製品が承認したtarget、operation、environment、network／data scope、
 期限へ操作authorityを束縛し、通常作業と特権Workerのresource・証拠を分ける。authorization不在、scope drift、revoke、
@@ -146,7 +152,7 @@ production、external service、旧broker、既存CIを操作しない。
 
 ## 利用許諾・配布の統制条件
 
-[旧Commercial License候補](../../../governance/candidates/helix-commercial-license-requirements.md)は、
+[旧Commercial License候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-commercial-license-requirements.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-license-distribution-source-crosswalk.md)に従って再採否する。
 HELIXOS-L2-001／002／006／007では、承認済みの製品scope、契約版、対象asset、第三者条件、artifact、release、
 配布・更新・復旧結果を対応づける。権利不明、適用版不一致、未発効を識別し、候補文書・PR・CI・配布成功から
@@ -173,11 +179,12 @@ consumer移管完了と判定しない。現行relationの要求源は
 [consumer relation inventory](../../../governance/audits/l2-requirements/legacy-ai-consumer-relation-inventory.md)に記録する。
 
 現行AGENTS.md、CLAUDE.md、`.claude/`、`.codex/`、hook、adapter、promptはlegacy runtime inputとしてinventoryに留め、
-要求整理完了前に削除・移動・変更しない。新世代manifest、生成器、prompt、token budgetはL3以降で再導出する。
+旧AI文書は要求整理開始時に非実行archiveへ隔離し、現行pathの最小入口から参照しない。物理削除は行わない。
+新世代manifest、生成器、prompt、token budgetはL3以降で再導出する。
 
 ## 開発投資候補の取扱い
 
-[旧INV-001..072](../../../governance/candidates/development-investment-stage-directives-intake_v1.0.md)は、
+[旧INV-001..072](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-investment-candidate-crosswalk.md)でexact 72件を分類した。
 HELIXOS-L2-001..009では、authority、作業、証拠、変更、resource、AI context、learning、費用、効果等の意味候補だけを
 個別採否する。INV ID、P0..P4、旧Issue／owner、既存graph／DB／scheduler／adapter／CIを新世代要求や実装順にしない。
@@ -220,7 +227,7 @@ consumer read-afterを経て旧writerを停止する。shadow実行では新世�
 
 ## 運用品質の管理・統制条件
 
-[旧NIO候補](../../../governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、
+[旧NIO候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-operational-quality-source-crosswalk.md)に従って
 再採否する。旧Issue番号をownerにせず、既存measurement、event、logging、alert、incident、lifecycle、Requirement Re-entry
 engineの再利用を新世代要件にしない。
@@ -251,7 +258,7 @@ Webでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲
 
 ## 有期限通知とmemoryの責務
 
-最新の[HMC利用者要求候補](../../../governance/candidates/harness-memory-coordination-boundary-requests.md)は、
+最新の[HMC利用者要求候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requests.md)は、
 有期限な連絡・受渡し・再開通知への限定を要求する。HELIX-OSの要求案として次の条件を保持する。
 HMC候補は人間承認記録済み・独立検収／正本化待ちと宣言されているが、本書でIRやruntimeへ昇格させない。
 
@@ -279,9 +286,9 @@ HMC-BR-006のprovider設定詳細はProvider Configurationの責務とし、OS�
 
 AAFD、RCLS、PPSの要求候補をHELIX-OSの対象別要求案へ接続する。
 AAFDはHELIXOS-L2-005／007、RCLSはHELIXOS-L2-004／005、PPSはHELIXOS-L2-004／007に対応する。
-いずれもdraftであり、以下への収載を採択・正本昇格と扱わない。出典は[AAFD](../../../governance/candidates/agentic-audit-future-state-delta-requests.md)、
-[RCLS](../../../governance/candidates/responsibility-centric-learning-requests.md)、
-[PPS](../../../governance/candidates/producer-provenance-separation-requests.md)である。
+いずれもdraftであり、以下への収載を採択・正本昇格と扱わない。出典は[AAFD](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md)、
+[RCLS](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md)、
+[PPS](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。
 
 | 出典 | 保持する具体条件 |
 |---|---|
@@ -310,7 +317,7 @@ Git actor・署名・provider routingの再設計は本移管の対象外であ�
 
 ## 会話継続と外部状態からの再構成
 
-[会話寿命管理の要求候補](../../../governance/candidates/conversation-lifetime-reconstruction-requests.md)の
+[会話寿命管理の要求候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md)の
 CLR-BR-001はHELIXOS-L2-009の追加検討入力であり、状態保存はHELIXOS-L2-007、割当継承はHELIXOS-L2-004へ接続する。詳細CLR-R01..08とL10 oracleは未承認候補であり、
 L2の合意・L11受入を代替しない。利用者向け条件を次のように保持する。
 
@@ -329,7 +336,7 @@ L2の合意・L11受入を代替しない。利用者向け条件を次のよう
 作業完了・切替成功と誤表示しないこと、実行中処理を再起動して二重実行しないことを確認する。
 L10の障害注入成功だけで利用者合意を取得済みとしない。
 
-詳細は[CLR要件候補](../../../governance/candidates/conversation-lifetime-reconstruction-requirements.md)を参照する。
+詳細は[CLR要件候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md)を参照する。
 CLR-R02のcheckpointはrepo・branch・worktree・HEAD、未追跡変更、実行中Worker／CI／外部操作、契約版と失敗回数を含む必要範囲の派生viewとする。
 CLR-R04ではhook未発火も観測不能と区別して記録する。CLR-R05の切替はsafe point、保存・再取得、旧writer停止またはhandover、後継の再束縛、再構成確認の順で扱う。
 CLR-R06ではsecret、private reasoning、撤回claim、作成側の結論誘導もrestart packetへ混入させない。
@@ -339,9 +346,9 @@ Skill、Rule導出、会話寿命は別の要求・受入・完了状態とし�
 
 ## 要求形成・人間反応の具体化
 
-[AVS](../../../governance/candidates/authority-vocabulary-requests.md)、
-[RFA](../../../governance/candidates/requirement-formation-scoped-admission-requests.md)、
-[DGH](../../../governance/candidates/design-grounding-human-convergence-requests.md)をHELIXOS-L2-001／002／003／007へ対応づける。
+[AVS](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md)、
+[RFA](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md)、
+[DGH](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md)をHELIXOS-L2-001／002／003／007へ対応づける。
 RFAは承認済み・正本化待ちの候補、AVS／DGHはdraft候補として扱い、同じ採用状態に丸めない。
 
 | 出典 | 利用者が確認できるべき具体条件 |
@@ -373,7 +380,7 @@ Fullの成立とLiteへの昇格を区別し、利用者報告を原因確定・
 
 ## 提供・再編要求の具体化
 
-[FRS v0.2利用者要求候補](../../../governance/candidates/functional-release-slice-requests.md)の9要求を、
+[FRS v0.2利用者要求候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md)の9要求を、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-release-composition-source-crosswalk.md)に従って
 HELIXOS-L2-002／004／005／006の構成・配布運用条件へ再分類する。旧RLS・既存CI・DevOS・Cursorを含むv0.2への
 過去承認は新世代へ継承せず、この案からCI、Worker、公開manifest、配布先を変更しない。
@@ -390,7 +397,7 @@ HELIXOS-L2-002／004／005／006の構成・配布運用条件へ再分類する
 | FRS-BR-008 | 新世代では不採用。要求整理中に既存CIを内部利用・比較・効果測定しない。Cursor固有条件は提供構成から外し、Worker要求源として別途再採否する |
 | FRS-BR-009 | 各機能単位の安全依存閉包を確認し、構成全体の統合・更新・rollback・運用検証を個別機能の成功とは別に確認する。Lite／Full名は未採択 |
 
-[Concept・Vision提供構成案](../../../governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は
+[Concept・Vision提供構成案](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は
 利用者向け選択viewの旧候補である。[新世代対応表](../../../governance/audits/l2-requirements/new-generation-concept-package-source-crosswalk.md)に従い、
 工程・提供契約はHARNESS、Worker・CI・配布操作はOS、将来能力は個別製品へ分ける。正式Module／Slice identityや公開版を生成する根拠にしない。
 同案のgrowth-offでの通常開発、対象製品ReleaseとHELIX自己Releaseの権限分離、公開版から原証跡への追跡、
@@ -414,15 +421,15 @@ FRS-BR-009は必要な安全依存が不足する場合に投入を止め、無�
 
 | L2条件群 | 既存L3候補とID範囲 | 接続するOS要求 |
 |---|---|---|
-| HMC | [HMC要件](../../../governance/candidates/harness-memory-coordination-boundary-requirements.md)：HMC-FR-001..006 | HELIXOS-L2-001／004／005／007／009 |
-| AAFD | [AAFD要件](../../../governance/candidates/agentic-audit-future-state-delta-requirements.md)：AAFD-FR-001..004、AAFD-R-01..15 | HELIXOS-L2-005／007 |
-| RCLS | [RCLS要件](../../../governance/candidates/responsibility-centric-learning-requirements.md)：RCLS-FR-001..006 | HELIXOS-L2-004／005 |
-| PPS | [PPS要件](../../../governance/candidates/producer-provenance-separation-requirements.md)：PPS-R-01..07 | HELIXOS-L2-004／007 |
-| CLR | [CLR要件](../../../governance/candidates/conversation-lifetime-reconstruction-requirements.md)：CLR-R01..08 | HELIXOS-L2-004／007／009 |
-| AVS | [AVS要件](../../../governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |
-| RFA | [RFA要件](../../../governance/candidates/requirement-formation-scoped-admission-requirements.md)：RFA-RF-01..04、RFA-RC-01..05、RFA-GH-01..03 | HELIXOS-L2-001／002／003／007 |
-| DGH | [DGH要件](../../../governance/candidates/design-grounding-human-convergence-requirements.md)：DG-R-01..04、HR-R-01..04、DC-R-01..04 | HELIXOS-L2-001／002／003／007 |
-| FRS | [FRS要件](../../../governance/candidates/functional-release-slice-requirements.md)：FRS-FR-001..006、FRS-R-01..24 | HELIXOS-L2-002／004／005／006／008 |
+| HMC | [HMC要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requirements.md)：HMC-FR-001..006 | HELIXOS-L2-001／004／005／007／009 |
+| AAFD | [AAFD要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md)：AAFD-FR-001..004、AAFD-R-01..15 | HELIXOS-L2-005／007 |
+| RCLS | [RCLS要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md)：RCLS-FR-001..006 | HELIXOS-L2-004／005 |
+| PPS | [PPS要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md)：PPS-R-01..07 | HELIXOS-L2-004／007 |
+| CLR | [CLR要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md)：CLR-R01..08 | HELIXOS-L2-004／007／009 |
+| AVS | [AVS要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |
+| RFA | [RFA要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md)：RFA-RF-01..04、RFA-RC-01..05、RFA-GH-01..03 | HELIXOS-L2-001／002／003／007 |
+| DGH | [DGH要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md)：DG-R-01..04、HR-R-01..04、DC-R-01..04 | HELIXOS-L2-001／002／003／007 |
+| FRS | [FRS要件](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md)：FRS-FR-001..006、FRS-R-01..24 | HELIXOS-L2-002／004／005／006／008 |
 
 HARNESSの工程・提供条件に関係するRFA／DGH／FRS等は、OSの実行機構だけで条件を再定義しない。
 既存候補の親L1参照は履歴として残し、対象別L2への正式接続は候補の改訂・承認範囲と併せて整合させる。
@@ -430,8 +437,8 @@ HARNESSの工程・提供条件に関係するRFA／DGH／FRS等は、OSの実�
 ## 要求正本を更新する管理条件
 
 HELIXOS-L2-001／002／007／009を、指定JSONのHIL-BR-26、HIL-FR-51..53、HIL-NFR-30..32と
-HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../../requirements-ir/requirements.json)、
-[契約](../../../../requirements-ir/system_contracts.json)を参照する。新しいAdmission Engineや要求DBの追加ではない。
+HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)、
+[契約](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json)を参照する。新しいAdmission Engineや要求DBの追加ではない。
 
 | 条件 | 利用者が確認できるべき結果 |
 |---|---|
@@ -448,7 +455,7 @@ HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../../requiremen
 
 ## Execution Ticketと継続観測
 
-[既存L2候補](../../../governance/candidates/execution-ticket-requests.md)の7要求をOSの対象別要求へ接続する。
+[既存L2候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md)の7要求をOSの対象別要求へ接続する。
 候補はproposed_pending_l3_confirmationであり、既存の対文書を移動・再承認したことにはしない。
 HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具体化する。
 

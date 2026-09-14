@@ -25,8 +25,8 @@ target_owners:
 本書は最新の上位概念から利用者要求を具体化した、対象別移管のための混在要求整理案である。
 最新のPO指示に従い、要求の所属先はHARNESS／HELIX-OS／個別プロダクトへ分離する。本書をそれらの共通要求正本として再固定しない。
 最新の親候補は[Concept v4.1](../../../governance/candidates/helix-concept-v4.1.md)であり、出典要求は
-[HCV4-BR-001..006](../../../governance/candidates/helix-concept-v4-requests.md)。
-v4.0候補承認の対象revisionは[PLAN-L3-84](../../../plans/PLAN-L3-84-helix-concept-v4-upgrade.md)に記録されているが、
+[HCV4-BR-001..006](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requests.md)。
+v4.0候補承認の対象revisionは[PLAN-L3-84](../../../../archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md)に記録されているが、
 製品境界を改訂したv4.1は人間承認待ちである。本書の具体化とL11条件もdraftであり、v4.0の候補承認を
 v4.1、対象別L2、L11の合意へ転用しない。
 既存Requirement IRの置換・追加は未実施である。
@@ -87,7 +87,7 @@ provider名、旧画面15件、旧51 FRを製品全体の固定構成にしな�
 
 ## L3への対応案
 
-[v4 L3候補](../../../governance/candidates/helix-concept-v4-requirements.md)の18要件との意味対応を示す。
+[v4 L3候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md)の18要件との意味対応を示す。
 これはIDのadmission、L3凍結、実装完了の記録ではない。複数要求に関係する要件は重複参照する。
 
 | L2要求 | L3候補 |
@@ -101,7 +101,7 @@ provider名、旧画面15件、旧51 FRを製品全体の固定構成にしな�
 
 ## 既存柱要求との統合境界
 
-[柱要求](../L1-requirements/pillar-requirements.md)の13 IDを次に対応づける。
+[柱要求](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)の13 IDを次に対応づける。
 「対応する」は旧条件をすべて充足したという意味ではない。個別条件・追補・数値は出典に保持し、
 本書の抽象的な6要求で上書き・削除しない。変更が必要な意味は別revisionとして扱う。
 

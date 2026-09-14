@@ -49,8 +49,8 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-006 | 外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる | 2026-09-14 PO指示、HBR-P6の提供物側条件 | HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる |
 | HARNESS-L2-007 | 検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果を含めて、HELIX-HARNESS製品群Version 1の完成を確認できる | 2026-09-14 PO指示、Vision §3／§13 | 性質の異なる対象で要求から受入・運用評価までの成立証拠を確認し、HELIX-Web等の展開前提を判定できる。Web自体の完成をVersion 1へ含めない |
 
-移管元の本文は[柱要求](../../helix/L1-requirements/pillar-requirements.md)、
-[要件v1.3](../../../governance/helix-harness-requirements_v1.3.md)を参照する。
+移管元の本文は[柱要求](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)、
+[要件v1.3](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)を参照する。
 上表は条件群の分離であり、移管元の全条件・数値・追補を置換済みではない。
 
 HARNESS自身の開発にも、その対象としての要求・設計・検証が必要である。HARNESSの実装言語や画面を
@@ -97,7 +97,7 @@ behavior、設計、検証、consumerと後継上流IDを照合し、必要なpa
 
 ## 運用品質を落とさない工程条件
 
-[旧NIO候補](../../../governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、
+[旧NIO候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-operational-quality-source-crosswalk.md)で
 HARNESS、HELIX-OS、個別製品へ再分類した。旧Issue owner、既存計測・logging・incident engineの再利用は継承しない。
 
@@ -120,9 +120,9 @@ HELIX内部のWorker割当、学習履歴、CI運転、プロジェクト群の�
 
 ## 要求形成・合意・反復の工程条件
 
-[AVS候補](../../../governance/candidates/authority-vocabulary-requests.md)、
-[RFA候補](../../../governance/candidates/requirement-formation-scoped-admission-requests.md)、
-[DGH候補](../../../governance/candidates/design-grounding-human-convergence-requests.md)から工程条件を分離する。
+[AVS候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md)、
+[RFA候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md)、
+[DGH候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md)から工程条件を分離する。
 RFAは候補承認済み・正本化待ち、AVS／DGHはdraftであり、本書への記載で採用状態を変更しない。
 OS側が判断記録・反復実行を所有し、HARNESS側は以下の進行条件を所有する。
 
@@ -137,7 +137,7 @@ OS側が判断記録・反復実行を所有し、HARNESS側は以下の進行�
 
 ## 管理変更を製品Forwardへ戻す条件
 
-[旧Management Scrum policy](../../../governance/management-scrum-product-forward.md)は、
+[旧Management Scrum policy](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-management-change-source-crosswalk.md)で再採否する。
 HARNESS-L2-003／004では、管理上の観測や改善判断から製品要求を直接変更せず、意味が変わる最上流の対象層へ
 変更候補を戻し、差戻し・再合意・pair再凍結・再検証の必要範囲を決める。
@@ -150,7 +150,7 @@ HARNESS-L2-003／004では、管理上の観測や改善判断から製品要求
 
 ## 限定修復に適用する検証条件
 
-[旧Bugbot候補](../../../governance/candidates/bugbot-bounded-repair-requests.md)は、
+[旧Bugbot候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-bounded-repair-source-crosswalk.md)で再採否する。
 HARNESS-L2-005では、自動・手動を問わず修復後に必要な要求revision、oracle、expected failure、独立検証、
 consumer受入、差戻し条件を維持する。必須test削除、閾値緩和、scope拡張、意味digestの無審査更新でgreen化しない。
@@ -158,7 +158,7 @@ consumer受入、差戻し条件を維持する。必須test削除、閾値緩�
 
 ## 構造改善に適用する変更条件
 
-[旧Refactoring Trigger候補](../../../governance/candidates/refactoring-trigger-admission-requirements.md)は、
+[旧Refactoring Trigger候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-refactoring-trigger-source-crosswalk.md)で再採否する。
 HARNESS-L2-004／005では、構造改善が要求・public contractの意味を保存するか、影響する上流・設計・V-pair、
 必要な再検証、差戻し先を確認する。意味変更、実装故障、外部環境変化を一つのrefactoring routeへ丸めない。
@@ -166,14 +166,14 @@ HARNESS-L2-004／005では、構造改善が要求・public contractの意味を
 
 ## Worker capacityに依存しない検証条件
 
-[旧Three Lane候補](../../../governance/candidates/three-lane-capacity-profile-requests.md)は、
+[旧Three Lane候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-worker-capacity-source-crosswalk.md)で再採否する。
 HARNESS-L2-005では、作成側と検証側の独立性、対象revision変更時の再検証、証拠の有効性を、provider名、
 固定worker数、PR、Merge Train、既存CIに依存せず定める。登録capacityや並列数を独立検証・受入済み成果の証拠にしない。
 
 ## Security要求に適用する工程条件
 
-[旧SEA候補](../../../governance/candidates/security-engagement-authority-requests.md)は、
+[旧SEA候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-security-engagement-source-crosswalk.md)で再採否する。
 HARNESS-L2-003／004／005では、対象製品が承認した保護対象、data、操作、環境、network、severity、開示条件から、
 設計・threat・verification・独立review・利用者受入へ接続する。推定、再現、検証、修復、再検証、運用成立を別状態にし、
@@ -181,7 +181,7 @@ HARNESS-L2-003／004／005では、対象製品が承認した保護対象、dat
 
 ## 利用許諾を確認できる提供条件
 
-[旧Commercial License候補](../../../governance/candidates/helix-commercial-license-requirements.md)は、
+[旧Commercial License候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-commercial-license-requirements.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-license-distribution-source-crosswalk.md)で再採否する。
 旧「HELIX全体」の一括商用方針を採用せず、HARNESS-L2-006では外部提供するHARNESSの範囲、artifact、適用許諾版、
 第三者通知、導入・更新・復旧条件を利用者が確認できる要求だけを候補として保持する。
@@ -202,7 +202,7 @@ L3／L10から導出する。本節では現行AI文書、hook、adapter、runti
 
 ## 開発投資候補から採る工程意味
 
-[旧INV-001..072](../../../governance/candidates/development-investment-stage-directives-intake_v1.0.md)は、
+[旧INV-001..072](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md)は、
 [新世代対応表](../../../governance/audits/l2-requirements/new-generation-investment-candidate-crosswalk.md)で全件分類した。
 HARNESS-L2-003／004／005／006では、到達可能性、変更影響、検証義務、反例、再資格、提供依存等の工程意味だけを
 再採否する。旧P0..P4、既存CI、prepare、cache、shard、fixture、warm環境、test generatorを要求や実装順として採用しない。
@@ -210,7 +210,7 @@ INV番号、投資priority、費用削減見込みを、利用者要求・合意
 
 ## 提供構成と再現性の条件
 
-[FRS v0.2候補](../../../governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。
+[FRS v0.2候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md)からHARNESSの提供物側の条件を分離する。
 v0.2候補の承認記録は旧RLS・既存CI・DevOS・Cursorを含む旧製品境界に対するものであり、新世代へ継承しない。
 以下は[新世代対応表](../../../governance/audits/l2-requirements/new-generation-release-composition-source-crosswalk.md)で
 再採否を待つ意味候補であり、本対象別L2の合意・IR admission・公開を代替しない。
@@ -222,7 +222,7 @@ v0.2候補の承認記録は旧RLS・既存CI・DevOS・Cursorを含む旧製品
 | HARNESS-L2-006 | FRS-BR-005 | 同一source・registry・profileから同一manifestとartifactを再現でき、clean consumerで利用できる。失敗時の復旧対象は適格な直前版または明示replacementとして識別できる |
 | HARNESS-L2-005／006 | FRS-BR-009 | 機能単位の必要な安全依存を明示し、組合せの統合・更新・復旧・L12運用検証を個別機能の成功と区別する |
 
-[提供構成追補](../../../governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は、
+[提供構成追補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md)のPKG-D01..13は、
 [新世代Concept・Package対応表](../../../governance/audits/l2-requirements/new-generation-concept-package-source-crosswalk.md)で
 再採否を待つ選択viewの候補であり、
 正式なModule／Sliceのidentityや公開版を生成する根拠にしない。growth-offでも通常開発が成立すること、

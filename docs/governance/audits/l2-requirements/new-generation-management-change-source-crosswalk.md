@@ -4,7 +4,7 @@
 
 ## 目的
 
-`docs/governance/management-scrum-product-forward.md`と対応する受入4件を、新世代のHARNESS工程契約と
+`archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md`と対応する受入4件を、新世代のHARNESS工程契約と
 HELIX-OS変更統制へ再分類する。旧文書はconfirmedだが、Issue-first、PLANを含むGit authority、既存adapter／template／CIを
 前提に成立しているため、現在の上流authority・製品境界へ承認状態を継承しない。
 

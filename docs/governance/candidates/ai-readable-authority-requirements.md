@@ -23,7 +23,8 @@ derived_from:
 
 AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済みのConcept・L1・L2・L3と対象revisionから、
 現在の責務、許可範囲、停止条件、次の工程を再取得できる文書体系を新世代として構成する。
-本候補は要求整理だけを行い、現行`AGENTS.md`、`CLAUDE.md`、hook、adapter、prompt、runtime stateを変更しない。
+本候補は要求整理だけを行う。旧`AGENTS.md`、`CLAUDE.md`、hook、adapter、prompt、runtime stateは非実行archiveへ隔離し、
+現行pathには新世代上流の読込順と停止条件だけを持つ最小入口を置く。生成器やruntime適用はまだ行わない。
 
 ## 文書責務の分離
 
@@ -53,6 +54,7 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 | AIDOC-OS-006 | AIの読取りと判断を対象revisionへ記録し、文書未読・参照失敗・競合を明示して停止する | 「読んだはず」やsession記憶を読取り証拠にしない |
 | AIDOC-OS-007 | 現行AI文書を新世代のbaselineにせず、source inventoryと判断史を保持する非実行archiveへ移せる | 旧prompt・旧Core Reads・旧adapterが新世代sessionへ再注入されない |
 | AIDOC-OS-008 | AI文書のinput、registry、activation、generation、distribution、enforcement、recovery、citationを別relationとして追跡し、各consumerの主体・時点・scope・revisionを保持する | 一件の文字列置換や一つのread setだけで移管完了と誤判定しない |
+| AIDOC-OS-009 | reviewer identityとreview実行通路の許可を分け、GitHub、CLI、API、IDE、Workerごとのroute・account・network・費用・write範囲・期限を解決してから起動する | 「Claudeレビュー」等のprovider指定や別通路の過去許可だけからローカルCLIその他の実行権限を生成しない |
 
 ## 新世代のAI読取り入口
 
@@ -70,11 +72,11 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 
 ## 現在の停止条件
 
-- 現行`AGENTS.md`、`CLAUDE.md`、`.claude/`、`.codex/`、hook、adapterを変更しない。
+- archive済みの旧`AGENTS.md`、`CLAUDE.md`、`.claude/`、`.codex/`、hook、adapterを現行pathへ戻さない。
 - 現行Core Readsの順序を新世代の正解として移植しない。
 - 既存AI sessionで新世代文書をruntime適用・強制しない。
 - Concept／L1／L2確定前に生成器、manifest schema、prompt、token budget値を設計しない。
-- 現行AI文書を削除・移動せず、archive対象inventoryとしてだけ登録する。
+- 旧AI文書を物理削除せず非実行archiveで保全し、現行の最小入口から参照・fallbackしない。
 
 ## L11受入候補
 
@@ -87,6 +89,7 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 - 現行AI文書をarchiveへ移した後、新世代sessionのread setとpromptに旧文書が含まれない。
 - 同じ旧pathをsession input、registry、生成template、配布物、lint、復元経路へ配置し、各relationを別consumerとして検出する。
 - source欠落、digest不一致、競合revision、未読を個別に与え、推測で作業開始しない。
+- reviewerだけを指定してreview routeを省略した場合は`review_waiting`で停止する。一つのrouteを許可しても別routeを起動せず、無出力やtimeoutから無許可fallbackしない。
 
 本候補はAI文書の内容と生成・適用責務を上流で分けるための入力であり、現行runtimeへの適用を認可しない。
 [既存CI・AI候補との対応](../audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md)は、旧候補の承認を流用せず、

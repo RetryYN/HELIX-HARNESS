@@ -14,7 +14,7 @@ parent_l1_candidate: docs/design/helix-web/L1-planning/product-intent.md
 # HELIX-WebのVision由来利用要求案
 
 HELIX-WebはHELIX-OSが開発・改善projectとして管理し、HELIX-Web-OSが展開後のservice runtimeを担う個別プロダクトである。本書は保存された
-[Vision原文](../../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、
+[Vision原文](../../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、
 Webの利用者に対する要求を具体化した案である。最新PO指示の管理関係と原文の将来構想を区別する。
 以下の9件の個別採択・L2合意・L3凍結・IR admission・提供時期は未確定。HELIX-Web自体はHARNESS Version 1の
 完成条件へ追加しない。一方、HELIX-Webの展開はHARNESS製品群Version 1の完成を必須前提とする。

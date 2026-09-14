@@ -1,6 +1,6 @@
 # 追補契約の対象別照合
 
-指定JSONの[refinement shard](../../../../requirements-ir/refinement_contracts.json)の14契約を対象別整理へ接続する。
+指定JSONの[refinement shard](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json)の14契約を対象別整理へ接続する。
 本表は契約・ID・状態と責務の照合であり、全本文・受入条件の再検証やJSON意味変更を完了した証拠ではない。
 
 照合時SHA-256：`6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443`。

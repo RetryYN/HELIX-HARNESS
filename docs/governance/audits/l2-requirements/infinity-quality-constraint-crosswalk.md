@@ -1,6 +1,6 @@
 # Infinity Loop品質・技術制約の対象別照合
 
-指定JSON正本のNFR40件・TR11件の本文を読んだ整理案。正本は[requirements.json](../../../../requirements-ir/requirements.json)。
+指定JSON正本のNFR40件・TR11件の本文を読んだ整理案。正本は[requirements.json](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)。
 本表は要件本文を置換せず、対象と衝突の確認先を示す。JSON transaction・採用revisionの変更は未実施。
 
 照合時のファイルSHA-256：`80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。

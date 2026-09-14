@@ -16,7 +16,7 @@ Web-OSのサービス運転要求を分離する。
 
 ## 原文と現在の整理
 
-[保存されたVision原文](../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の
+[保存されたVision原文](../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の
 §2.2、§3.2、§4、付録U07〜U11は、Webを別進行のAI開発SaaSとし、能力の受渡しと実践からの改善を示している。
 原文は受領時の構想を残す資料であり、最新の責務名はPO指示のHELIX-OS／HARNESSへ対応づける。
 ユーザーの「Vision2」という呼称を、原文の本体2.0、公開版、実装期限と自動的に同一視しない。

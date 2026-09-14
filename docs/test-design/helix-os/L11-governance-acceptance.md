@@ -33,6 +33,7 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 ## 実行・記録の反例
 
 - HELIXOS-L2-004：成果未回収、期限超過、検証者不在、hook非強制surfaceを個別に与え、停止・不足理由を確認する。Worker自身の完了報告だけで独立検証済みにしない。
+- HELIXOS-L2-004／007：reviewer名だけ、GitHub routeだけ、CLI routeだけを順に許可し、指定route以外を起動しないことを確認する。route未指定、別routeの過去許可、timeout、無出力では`review_waiting`を維持し、無許可実行の出力をreview receiptへ採用しない。
 - HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。
 - HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。
 - HELIXOS-L2-008：上流意味review、下流verification、merge admission、releaseを別pipeline classとして生成する。Concept候補のremote syncで旧CI／merge pipelineが起動する構成を拒否する。
@@ -244,7 +245,7 @@ HELIXOS-L2-001／002／007／009とHR-FR-HIL-19の利用者受入案。全件未
 
 ## Execution Ticketの受入
 
-[既存L11候補](../../governance/candidates/execution-ticket-validation.md)から対象別に接続する。全件未実行。
+[既存L11候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md)から対象別に接続する。全件未実行。
 HELIXOS-L2-004／005／007／009について、次の利用条件を確認する。
 
 | 出典 | 確認する結果と反例 |

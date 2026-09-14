@@ -30,8 +30,8 @@ HARNESSは合意・凍結条件を所有し、OSはwalkthrough反復・適用性
 
 - 対象要求・契約・受入・テストのrevisionとsemantic digest、各shardのdigest、manifest rootを同じ変更へ束縛する。
 - 既存参照の変更影響を列挙し、生成viewとDB projectionを同じrevisionへ追従させる。旧Markdown互換入力から正本を再生成しない。
-- `config/requirement-ir-authority.json`はjson_transaction_onlyを指定している。正規更新経路とrollback・競合revisionの扱いを確認して適用する。
-- 読み取った`src/requirements/requirement-ir-authority-cutover.ts`は旧shadowをcanonicalへ変換する全体書出し処理であり、この差分更新の手段として実行しない。
+- `archive/legacy-generation-2026-09-14/root/config/requirement-ir-authority.json`はjson_transaction_onlyを指定している。正規更新経路とrollback・競合revisionの扱いを確認して適用する。
+- 読み取った`archive/legacy-generation-2026-09-14/root/src/requirements/requirement-ir-authority-cutover.ts`は旧shadowをcanonicalへ変換する全体書出し処理であり、この差分更新の手段として実行しない。
 - 本調査で差分適用のCLIは確認できていない。経路の不存在を断定せず、正規transactionの接続確認を残作業とする。
 
 本書は7レコードの変更範囲を具体化したものであり、JSON是正・下流検証・利用者合意の完了を主張しない。
@@ -43,12 +43,12 @@ auto_admit_with_staleの参照と、関連moduleの公開interfaceを確認し�
 
 | 調査対象 | 確認した責務 | この差分への適用判断 |
 |---|---|---|
-| `src/requirements/requirement-authority.ts` | shadowからcanonicalへの昇格とdigest算出 | 既存canonicalの差分更新APIではない |
-| `src/requirements/requirement-discovery.ts` | discovery eventの生成とcandidate projection再構成 | canonical shardへのcommit処理とは別 |
-| `src/runtime/forward-plan-authoring-transaction.ts` | PLAN予約、Forward／Reverse文書、journalのtransaction | 入力はPLAN専用。requirement shard更新へ流用しない |
-| `src/design/design-registry-transaction.ts` | Design Registry graph・authority transitionのstore commit | graph更新契約。requirements-irの複数shard・manifest書出しを代替しない |
-| `requirements-ir/system_contracts.json#/HR-FR-HIL-19` | Authoring Admissionと原子的Canonical化の要求契約 | specified。実装済み・運用可能という状態ではない |
-| `requirements-ir/system_tests.json#/HAT-HIL-19` | 原子的Canonical化の検証シナリオ | designed_not_implemented。transactionの実行証拠として使えない |
+| `archive/legacy-generation-2026-09-14/root/src/requirements/requirement-authority.ts` | shadowからcanonicalへの昇格とdigest算出 | 既存canonicalの差分更新APIではない |
+| `archive/legacy-generation-2026-09-14/root/src/requirements/requirement-discovery.ts` | discovery eventの生成とcandidate projection再構成 | canonical shardへのcommit処理とは別 |
+| `archive/legacy-generation-2026-09-14/root/src/runtime/forward-plan-authoring-transaction.ts` | PLAN予約、Forward／Reverse文書、journalのtransaction | 入力はPLAN専用。requirement shard更新へ流用しない |
+| `archive/legacy-generation-2026-09-14/root/src/design/design-registry-transaction.ts` | Design Registry graph・authority transitionのstore commit | graph更新契約。requirements-irの複数shard・manifest書出しを代替しない |
+| `archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-19` | Authoring Admissionと原子的Canonical化の要求契約 | specified。実装済み・運用可能という状態ではない |
+| `archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-19` | 原子的Canonical化の検証シナリオ | designed_not_implemented。transactionの実行証拠として使えない |
 
 確認範囲では、この7レコードを既存canonicalから改訂してmanifest・生成view・DBへ整合させる運用可能な入口を特定できなかった。
 他用途のtransactionが存在することや、契約名を検査するテストがあることを、要求正本の更新機構が使える証拠にしない。
@@ -61,12 +61,12 @@ auto_admit_with_staleの参照と、関連moduleの公開interfaceを確認し�
 元L3契約、対応L10案、Requirement Discoveryのrefinementに留まり、対象shard更新を所有するL4–L6設計への直接接続は確認できなかった。
 検索結果だけで不存在とは認定せず、既存の別名設計や責務登録との照合を残す。
 
-[PLAN-L3-53](../../../plans/PLAN-L3-53-requirement-discovery-json-authority.md)のpreconditionには
+[PLAN-L3-53](../../../../archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-53-requirement-discovery-json-authority.md)のpreconditionには
 「Authoring Admission Engineが存在する」とあるが、同PLANの非対象はschema/runtime等であり、
 closure対象もL3／L10契約sliceである。このconfirmed状態をEngine実装済みの証拠に使えない。
-[RDJ契約](../../../design/helix/L3-requirements/requirement-discovery-json-authority.md)もPR-1は契約のみと明記している。
+[RDJ契約](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md)もPR-1は契約のみと明記している。
 
-[自律Authoring指示書](../../autonomous-authoring-admission-transaction-directive_v0.1.md)は
+[自律Authoring指示書](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/autonomous-authoring-admission-transaction-directive_v0.1.md)は
 Proposalの自由な作成・修正を許し、Canonical確定だけにAdmission Transactionとreceiptを要求する。
 したがって是正案の起草は進められるが、入口未確認のままcanonical shardを手編集し、正本化済みとすることはできない。
 

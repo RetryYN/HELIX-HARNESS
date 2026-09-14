@@ -60,7 +60,7 @@ HELIX-OSへexportし、HELIX-OSがHARNESS自身の実践を含む他projectの�
 
 ## 既存Conceptとの意味差分
 
-[Concept v4.0候補](candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは
+[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは
 本決定より前の区分を含む。その差分は[Concept v4.1候補](candidates/helix-concept-v4.1.md)へ投影済みである。
 v4.0の承認を流用せず、v4.1の人間承認後に次の境界を同じrevisionで固定する。
 

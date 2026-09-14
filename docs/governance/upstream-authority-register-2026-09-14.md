@@ -12,24 +12,25 @@ as_of: 2026-09-14
 |---|---:|---|---|---|
 | 最新責務決定 | 1 | [HARNESS・HELIX-OS・個別製品の責務決定](product-governance-boundary-2026-09-14.md) | 本作業のPO決定を記録 | Concept／L1／L2の親境界として使う |
 | 上流統制方針 | 1 | [上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md) | draft policy | 対象別改訂と資産台帳の運用へ適用 |
-| 現行L0 charter | 1 | `docs/design/helix/L0-charter/helix-charter_v0.1.md` | confirmed、HARNESS／OS責務が混在 | P0–P9を対象別L1へ再導出 |
-| 現行Concept | 1 | `docs/governance/helix-harness-concept_v3.1.md` | Core Read、旧製品境界を含む | 最新責務決定を反映した後にcompatibilityへ降格 |
+| 旧世代archive-first隔離 | 4020 Git追跡ファイル | [隔離記録](archive-first-transition-record-2026-09-14.md)と`archive/legacy-generation-2026-09-14/MANIFEST.sha256` | 旧実行面・旧文書・旧IRを非実行archiveへ隔離済み | archive sourceの意味を対象別L2へ採否し、物理削除はしない |
+| 現行L0 charter | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | confirmed、HARNESS／OS責務が混在 | P0–P9を対象別L1へ再導出 |
+| 現行Concept | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | Core Read、旧製品境界を含む | 最新責務決定を反映した後にcompatibilityへ降格 |
 | 次期Concept候補 | 1系列 | `docs/governance/candidates/helix-concept-v4*` | v4.0 candidate承認済み。v4.1は[人間判断packet](audits/l2-requirements/concept-v4.1-human-decision-packet.md)でexact SHAを固定、初回Claude所見修正済み・独立再review未取得 | Conceptと4対象L1を別decisionとして人間が判断し、承認後に対象別L2の個別採否へ進む |
-| HELIX柱要求 | HBR 9件、HNFR 4件 | `docs/design/helix/L1-requirements/pillar-requirements.md` | confirmed、工程と実行管理が混在 | [対象別対応](audits/l2-requirements/pillar-target-crosswalk.md)からL1を分冊 |
-| 要件正本v1.3 | 1 | `docs/governance/helix-harness-requirements_v1.3.md` | Core Read、HARNESS／OS責務が混在 | [対象別対応](audits/l2-requirements/requirements-v1.3-target-crosswalk.md)からL2／L3を分冊 |
+| HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | confirmed、工程と実行管理が混在 | [対象別対応](audits/l2-requirements/pillar-target-crosswalk.md)からL1を分冊 |
+| 要件正本v1.3 | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` | Core Read、HARNESS／OS責務が混在 | [対象別対応](audits/l2-requirements/requirements-v1.3-target-crosswalk.md)からL2／L3を分冊 |
 | 対象別L1 | 4文書、30企画要求案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 7、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
 | 対象別L2 | 4文書、35要求案 | [L2要求入口](../design/helix/L2-requirements/README.md) | HARNESS 7、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。draft、未合意 | 出典・prototype／N/A・合意revisionを確定 |
 | 総称HELIXの旧L2／L11案 | HCV4-L2 6件、旧L11 6件 | `docs/design/helix/L2-requirements/concept-v4-derived-requirements.md`と対文書 | migration crosswalk only。6件すべてHARNESS／HELIX-OSへsplit先を記録、採否待ち | 対象別L2／L11承認後に非実行archiveへ移し、要求ownerから除外する |
 | 対象別L11 | 4文書、35受入案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各L11 | draft、未実行 | 対応L2合意後に利用者受入を実行 |
-| Infinity Loop Requirement IR | 153要求 | `requirements-ir/requirements.json`と3 shard | canonical JSON、全HELIX分母ではない | [対象別crosswalk](audits/l2-requirements/infinity-business-target-crosswalk.md)群と意味差分を正規改訂 |
-| refinement契約 | 14契約 | `requirements-ir/refinement_contracts.json` | frozen／specified混在 | [対象別対応](audits/l2-requirements/refinement-target-crosswalk.md)に従いrevision単位で扱う |
+| Infinity Loop Requirement IR | 153要求 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json`と3 shard | canonical JSON、全HELIX分母ではない | [対象別crosswalk](audits/l2-requirements/infinity-business-target-crosswalk.md)群と意味差分を正規改訂 |
+| refinement契約 | 14契約 | `archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json` | frozen／specified混在 | [対象別対応](audits/l2-requirements/refinement-target-crosswalk.md)に従いrevision単位で扱う |
 | authority候補 | 97文書 | `docs/governance/candidates/` | draft／承認待ち／正本化待ち混在 | [候補対象別台帳](audits/l2-requirements/candidate-source-target-inventory.md)から個別採否 |
 | L2 source採否queue | 29 decision unit | [対象別L2 source採否順序](audits/l2-requirements/l2-source-adoption-sequence.md) | Concept系列を除く29候補系列をS1–S4へ配置、未採否 | Concept／対象別L1承認後、各unitを別decisionとして対象別L2／L11へ採否する |
 | 新世代CI要求候補 | HARNESS 4要求、HELIX-OS 8要求、L11候補8項目 | `docs/governance/candidates/next-generation-ci-requirements.md` | draft、要求整理のみ。CI relationを分離し、既存CIはlegacy source | HARNESS検証契約とHELIX-OS実行統制を対象別L1／L2へ接続し、L3／L10以降は上流確定まで待つ |
-| 新世代AI可読文書要求候補 | HARNESS 3要求、HELIX-OS 8要求、L11候補7項目 | [AI可読上流文書の要求候補](candidates/ai-readable-authority-requirements.md) | 対象別L2／L11接続済み、human approval待ち。consumer relationを分離し、現行AI文書・runtimeは変更しない | Concept／対象別L1確定後に要求を承認し、manifest／生成器はL3／L10から再導出する |
-| 現行CI資産 | workflow 4件、consumer relation 11種、関連filename発見集合82件 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md)と[CI consumer relation inventory](audits/l2-requirements/legacy-ci-consumer-relation-inventory.md) | legacy、非実行、archive待ち。relation分類済み、個別依存closure未完 | 要求整理完了後にsource inventoryと判断史を保全し、runtime入口から外す。新世代CIのbaseline・parity oracleにしない |
+| 新世代AI可読文書要求候補 | HARNESS 3要求、HELIX-OS 9要求、L11候補8項目 | [AI可読上流文書の要求候補](candidates/ai-readable-authority-requirements.md) | 旧AI実行面をarchiveへ隔離し、最小上流入口を配置。要求はhuman approval待ち、生成器は未設計 | Concept／対象別L1確定後に要求を承認し、manifest／生成器はL3／L10から再導出する |
+| 現行CI資産 | workflow 4件、consumer relation 11種、関連filename発見集合82件 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md)と[CI consumer relation inventory](audits/l2-requirements/legacy-ci-consumer-relation-inventory.md) | 4 workflowを`archive/legacy-generation-2026-09-14/root/.github/workflows/`へ隔離済み。個別依存closure未完 | archive sourceから意味と判断史を採取し、新世代CIのbaseline・parity oracleにしない |
 | AI可読文書 | 直接入口38件、consumer relation 10種 | [現行CI・AI読取り資産inventory](audits/l2-requirements/legacy-ci-ai-runtime-source-inventory.md)、[38件の意味移管台帳](audits/l2-requirements/legacy-ai-read-entry-disposition.md)、[consumer relation inventory](audits/l2-requirements/legacy-ai-consumer-relation-inventory.md) | exact直接入口、直接配線、relation familyを分類済み。個別consumer／動的read set closureは未完 | HARNESS工程契約とOS実行contextへ分解し、対象別L2へ採否する。要求整理中は現行文書・runtimeを変更しない |
-| 旧資産退役要求候補 | HARNESS 3要求、HELIX-OS 7要求、L11候補5項目 | [旧資産退役・非実行archive要求候補](candidates/legacy-asset-retirement-requirements.md) | 対象別L2／L11接続済み、human approval待ち。物理移動・削除は未認可 | Concept／対象別L1確定後に個別採否し、L3以降でarchive／cutoverを再導出する |
+| 旧資産退役要求候補 | HARNESS 3要求、HELIX-OS 7要求、L11候補5項目 | [旧資産退役・非実行archive要求候補](candidates/legacy-asset-retirement-requirements.md) | 旧実行面はarchive-first隔離済み、要求はhuman approval待ち。物理削除は未認可 | Concept／対象別L1確定後に個別採否し、L3以降でreplacementと最終退役を再導出する |
 | CI・AI既存候補の新世代対応 | 3系列、22旧要件、25旧受入 | [新世代CI・AI source crosswalk](audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md) | semantic atom照合済み、新世代で再承認待ち | Concept／対象別L1確定後、NCI／AIDOCのL2／L11で個別採否する |
 | authority・全資産統制の新世代対応 | 3系列、30旧要件、44旧受入、4旧L12観測 | [新世代authority・asset crosswalk](audits/l2-requirements/new-generation-authority-asset-governance-crosswalk.md) | JSON-only／旧owner／旧実装再利用前提を分離済み、新世代で再承認待ち | Concept／対象別L1確定後、HELIX-OS L2／L11で個別採否する |
 | 提供構成の新世代対応 | 1系列、9旧利用者要求、6旧feature contract、24旧要件、26旧受入 | [新世代提供構成source crosswalk](audits/l2-requirements/new-generation-release-composition-source-crosswalk.md) | HARNESS契約とOS実行を分離済み。旧CI先行利用は棄却、Cursor固有条件はWorkerへ移送、新世代で再承認待ち | Concept／対象別L1確定後、HARNESS／HELIX-OS L2／L11で個別採否する |
@@ -44,7 +45,7 @@ as_of: 2026-09-14
 | 利用許諾・配布の新世代対応 | 1系列、12旧要件、12旧受入 | [新世代license・distribution crosswalk](audits/l2-requirements/new-generation-license-distribution-source-crosswalk.md) | HARNESS提供許諾、OS配布統制、個別製品契約へ分離済み。HELIX全体一括方針は不採用、法的条件未決、現行LICENSE不変 | 製品scope確定後、権利棚卸しと法務判断を経て対象別L2／L11を再承認する |
 | 開発投資候補の新世代対応 | INV-001..072 exact 72件 | [新世代investment candidate crosswalk](audits/l2-requirements/new-generation-investment-candidate-crosswalk.md) | 5群へ全件分類済み。旧P0..P4、Issue／owner、既存CI／Cursor／DB／scheduler、実装順を棄却し、新世代で再採否待ち | Concept／対象別L1確定後、意味候補だけを対象別L2へ採否し、方式はL3以降で再導出する |
 | 旧HARNESS要求群 | 5文書。10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節 | [旧HARNESS要求の新世代対象別対応](audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md) | 全文確認・対象別分類済み。個別採否・L2合意待ち | 最新Concept／対象別L1の承認後、保持意味だけをHARNESS／HELIX-OS／個別製品L2へ採否する。旧実装を継承しない |
-| 旧screen要求・設計 | 7文書、個別Low-Fi 7画面、共通骨格参照8画面 | [L2画面・モック境界](../design/helix/L2-screen/screen-mock-boundary.md) | 7文書と15画面の存在・内容を確認済み。8画面の個別操作・欠落・失敗状態、prototype合意、L11受入が未確定 | 採択した画面だけを対象別L2要求、prototype revision、L11利用結果へ接続する。旧pairのPASSを流用しない |
+| 旧screen要求・設計 | 7文書、個別Low-Fi 7画面、共通骨格参照8画面 | [L2画面・モック境界](../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md) | 7文書と15画面の存在・内容を確認済み。8画面の個別操作・欠落・失敗状態、prototype合意、L11受入が未確定 | 採択した画面だけを対象別L2要求、prototype revision、L11利用結果へ接続する。旧pairのPASSを流用しない |
 | 適用待ち意味差分 | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/l2-requirements/l2-freeze-ir-correction.md) | proposal、未適用 | 正規transaction、impact、rollback、全projection更新 |
 | open PR整理 | 6件close、open 0件 | [上流再整理に伴うopen PR整理記録](audits/l2-requirements/github-pr-cleanup-2026-09-14.md) | GitHub projection整理済み。branch・Issue・要求意味は変更していない | legacy sourceの意味は対象別L2で再採否する |
 | PLAN | 1252文書 | `docs/plans/` | 作業契約・履歴。要求意味の正本ではない | 上流ID・対象・revisionへ接続し、Issue状態から意味を補完しない |
@@ -94,10 +95,10 @@ as_of: 2026-09-14
 | L11受入設計 | 各L2要求に利用場面、期待結果、negative case、対象revisionが対応する | 対象別L11 draft 35件 | 起草済み・未承認 | L2合意revisionに合わせて確定する。実行は後工程 |
 | L3／L10接続 | 合意済みL2から要件・総合検証を導出し、旧revisionを混ぜない | crosswalkと適用待ち差分のみ | 未着手 | L2合意後に開始する |
 | AI可読上流 | 承認済み上流からHARNESS契約、OS実行context、個別製品要求を分離生成できる要求が確定する | AIDOC要求10件とL11候補、legacy入口inventory | 要求案接続済み | Concept／L1／L2確定後に採否し、L3以降でmanifestを導出する |
-| 旧資産archive判断 | 各資産に意味移管、consumer、replacement、rollback、非実行化条件がある | legacy CI／AI inventoryと各crosswalk | 棚卸し中 | 上流確定後にarchive planへ進む。現在は移動・削除しない |
+| 旧資産archive判断 | 旧実行面をcurrent pathから隔離し、各資産に意味移管、consumer、replacement、rollback、最終処置がある | `archive/legacy-generation-2026-09-14/`、legacy CI／AI inventory、各crosswalk | 実行面隔離済み、文書分類と意味移管は継続中 | archive sourceを対象別L2へ採否し、物理削除は個別判断まで行わない |
 
 要求整理の現在の直列境界は、`Concept v4.1人間判断 → 対象別L1承認 → source atom再採否 → 対象別L2・prototype合意`
-である。ここが閉じる前にL3／L10、AI文書生成器、新世代CI、runtime、archive切替へ進まない。
+である。ここが閉じる前にL3／L10、AI文書生成器、新世代CI、runtime、archive資産の意味移管・最終退役へ進まない。
 
 [上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)は、本台帳の各集合を
-U0母集団固定からU7旧資産退役までのwork unitへ変換する。GitHub Issueを起票しなくても作業契約を保持できる。
+U0 archive-first隔離・母集団固定からU7意味移管・最終退役までのwork unitへ変換する。GitHub Issueを起票しなくても作業契約を保持できる。

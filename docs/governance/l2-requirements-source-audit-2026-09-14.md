@@ -33,20 +33,20 @@ metadata検索の現時点の発見集合は21文書。下記の過去の検査�
 
 | 対象 | 読取り範囲 | 所見 | 整備・残作業 |
 | --- | --- | --- | --- |
-| `docs/design/helix/L1-requirements/pillar-requirements.md` | 全文 | metadataはL2／L11だが表題はL1要件。Python意味コアを無権限workerとして扱いADR-010と矛盾。可視化節でdocsとDBの正本範囲が未分離 | 表題、現行分類、層別authority、要求とDB投影の責務を訂正。HBR9件・HNFR4件と追補の要求内容は保持。旧承認・実装状況を現行受入の証拠にしない旨を明記 |
-| `docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md` | 全文 | CN-1の「要求=L1」は現行層定義に反する。BR-2のIssue正本という表現は要求の意味正本と作業範囲の参照を混同する | L1企画／L2要求／L3要件を訂正しIssueの用途を作業範囲の参照に限定。現行L1／L12 metadataと既存承認は保持。具体要求のL2への接続は未検証 |
-| `docs/design/helix/L2-screen/screen-mock-boundary.md` | 全文 | L2をモック接続だけで説明し、要求引出し・合意の工程が欠落。L2／L10を対としていた | L2要求引出し・プロト合意・L3受渡し・L11受入へ訂正。改訂版はdraft、freeze_blocking。要求・プロトrevisionと合意者を対応づける条件を明記。実際の合意証拠は未確認 |
-| `docs/test-design/helix/L2-screen-ux-test-design.md` | 全文 | 旧L2／L10を規定し、旧doctor出力を合否条件に使用していた | canonical L11／L2を明記したdraftへ改訂。HUX-L2-01..03を要求対応・証跡欠落・revision不一致の検証へ具体化。実行結果と独立reviewは未取得。canonical再利用禁止は維持 |
-| `docs/design/helix/L10-ux/ux-evidence-boundary.md` | 全文 | L10をL2モックの検証層と定義していた | canonical L11／L2を明記したdraftへ改訂。L3／L10総合テストとL2／L11受入を分離し、列挙したtest pathは現在の実行結果ではないことを明記 |
+| `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | 全文 | metadataはL2／L11だが表題はL1要件。Python意味コアを無権限workerとして扱いADR-010と矛盾。可視化節でdocsとDBの正本範囲が未分離 | 表題、現行分類、層別authority、要求とDB投影の責務を訂正。HBR9件・HNFR4件と追補の要求内容は保持。旧承認・実装状況を現行受入の証拠にしない旨を明記 |
+| `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md` | 全文 | CN-1の「要求=L1」は現行層定義に反する。BR-2のIssue正本という表現は要求の意味正本と作業範囲の参照を混同する | L1企画／L2要求／L3要件を訂正しIssueの用途を作業範囲の参照に限定。現行L1／L12 metadataと既存承認は保持。具体要求のL2への接続は未検証 |
+| `archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md` | 全文 | L2をモック接続だけで説明し、要求引出し・合意の工程が欠落。L2／L10を対としていた | L2要求引出し・プロト合意・L3受渡し・L11受入へ訂正。改訂版はdraft、freeze_blocking。要求・プロトrevisionと合意者を対応づける条件を明記。実際の合意証拠は未確認 |
+| `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L2-screen-ux-test-design.md` | 全文 | 旧L2／L10を規定し、旧doctor出力を合否条件に使用していた | canonical L11／L2を明記したdraftへ改訂。HUX-L2-01..03を要求対応・証跡欠落・revision不一致の検証へ具体化。実行結果と独立reviewは未取得。canonical再利用禁止は維持 |
+| `archive/legacy-generation-2026-09-14/root/docs/design/helix/L10-ux/ux-evidence-boundary.md` | 全文 | L10をL2モックの検証層と定義していた | canonical L11／L2を明記したdraftへ改訂。L3／L10総合テストとL2／L11受入を分離し、列挙したtest pathは現在の実行結果ではないことを明記 |
 
 ## REBASELINE是正差分の本文照合
 
-柱要求の対文書`docs/test-design/helix/L1-pillar-operational-test-design.md`も全文を確認した。
+柱要求の対文書`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-pillar-operational-test-design.md`も全文を確認した。
 HBR9件／HNFR4件にHOT13件が対応するが、本文は旧L14観測であり、現行L11受入の証拠ではない。
 表題・metadataをL2／L11のdraft、freeze_blockingへ訂正し、旧シナリオ・条件・承認履歴は保持した。
 個別delta・oracle・独立review・digest更新までのcanonical再利用禁止も維持する。
 
-`docs/design/helix/L3-requirements/pillar-functional-requirements.md`は全文確認した。
+`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`は全文確認した。
 §1の定義行は51要件、§2は102受入条件で重複IDは0。§0の展開表だけにP2-05..08とP6-06が欠落していたため、
 本文の5要件を表へ反映し、表題・入力層をL2へ訂正した。46件は追加前の履歴と明記した。
 旧L3／L12 pair等の本文は未整備部分を含む。本文のID対応だけで全条件の被覆を認定しない。
@@ -56,7 +56,7 @@ HBR9件／HNFR4件にHOT13件が対応するが、本文は旧L14観測であり
 - HAC-P6-03aには旧配布先を含む具体コマンドがある。列挙されたコマンドを現行の実行許可として扱わず、配布authorityと照合する。
 - HBR-P0のForward一律収束を要件v1.3 §4／4.2の選択済みstyleへ更新した。HAT-P0-01／P1-03も同じ境界へ更新し、Discovery／PoCの暗黙内包を拒否する。
 
-`docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md`を全文確認した。
+`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md`を全文確認した。
 途中の出力省略箇所は分割して読み直した。これは59所見の是正案であり、59要求の現行収載証拠ではない。
 
 - 現行metadataはL2／L11、statusはproposed。L1要求という表題を訂正し、旧評価の「検証合格」を現行採用・合意・受入と解釈しない境界を追加した。
@@ -76,11 +76,11 @@ HBR9件／HNFR4件にHOT13件が対応するが、本文は旧L14観測であり
 
 | 文書 | 保持すべき要求内容 | 旧定義・未整合 |
 | --- | --- | --- |
-| `docs/design/harness/L1-requirements/screen-requirements.md` | 15画面の詳細、6遷移シナリオ、共通条件、BR／UX／FR trace、ペルソナ、カテゴリ境界、旧ID移行表 | 冒頭でL1要求・L2画面分離・L10実データ検証を正規式とし、現行L2／L11と矛盾。§5のPASSは現行合意・受入の証拠ではない。全画面not-implementedは文書内宣言であり、実装現況は別途検証が必要 |
-| `docs/design/harness/L1-requirements/business-requirements.md` | BR-01..08／21／22の10件、UX-01..03の3件、D-01..09のKPI、業務フロー・責務境界・entity・carry。省略されたKPI部分は再読した | L1要求／L2画面限定と旧L0-L14 pairが残る。§7の対応表にBR-21がなく、§11のL3／L7接続をL11受入の証拠にはできない。AIのmerge/tag自律と不可逆操作承認の境界が曖昧。copy-paste指示と無人完走の適用範囲が未分離。§9には現行13要求と別の採用候補がある |
-| `docs/design/harness/L1-requirements/functional-requirements.md` | FR-L1-01..51全件、8利用シナリオ、I/O、上流対応表、§7の追補要求束 | 現行style／L1-L12に更新した行と旧mode routing／drive／L2画面限定が混在。シナリオ1はL1からL3へ進みL2要求合意が欠落。FR-L1-29／30は旧L1要求・L10 UX。§5にはBR-22行がなく、本文でFR-L1-46..49への導出を宣言している。BR-13..20は同directory業務文書の確定10 BRに存在せず、出典namespaceの解決が必要 |
-| `docs/design/harness/L1-requirements/nfr.md` | 15個のNFR IDと追補。移植性、更新性、runtime・言語非依存、fail-close、完成度、実装宣言の真実性、役割分離、機械とAI、二重検証、人間負担、local-first、途中導入、security | NFR-05の「GitHubをCI／証跡／権限の正本」は要求意味の正本を意味しない。旧L0-L14、本人環境第一級とLinux primaryの混在、古いmemory/state path、Resource Utilizationの対象／対象外重複あり。法令適合の宣言は本監査で検証していない |
-| `docs/design/harness/L1-requirements/technical-requirements.md` | 技術制約・外部IF・既存制約・state・skill注入・共通工程・drift解消の7節と関連文書節 | 全OS第一級と現行OS tierが不一致。旧9-mode、専門職drive、旧pair、proseの未実装CLI例が残る。GitHub projection、要求意味正本、実行状態の責務を区別して移管する必要あり |
+| `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md` | 15画面の詳細、6遷移シナリオ、共通条件、BR／UX／FR trace、ペルソナ、カテゴリ境界、旧ID移行表 | 冒頭でL1要求・L2画面分離・L10実データ検証を正規式とし、現行L2／L11と矛盾。§5のPASSは現行合意・受入の証拠ではない。全画面not-implementedは文書内宣言であり、実装現況は別途検証が必要 |
+| `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md` | BR-01..08／21／22の10件、UX-01..03の3件、D-01..09のKPI、業務フロー・責務境界・entity・carry。省略されたKPI部分は再読した | L1要求／L2画面限定と旧L0-L14 pairが残る。§7の対応表にBR-21がなく、§11のL3／L7接続をL11受入の証拠にはできない。AIのmerge/tag自律と不可逆操作承認の境界が曖昧。copy-paste指示と無人完走の適用範囲が未分離。§9には現行13要求と別の採用候補がある |
+| `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md` | FR-L1-01..51全件、8利用シナリオ、I/O、上流対応表、§7の追補要求束 | 現行style／L1-L12に更新した行と旧mode routing／drive／L2画面限定が混在。シナリオ1はL1からL3へ進みL2要求合意が欠落。FR-L1-29／30は旧L1要求・L10 UX。§5にはBR-22行がなく、本文でFR-L1-46..49への導出を宣言している。BR-13..20は同directory業務文書の確定10 BRに存在せず、出典namespaceの解決が必要 |
+| `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md` | 15個のNFR IDと追補。移植性、更新性、runtime・言語非依存、fail-close、完成度、実装宣言の真実性、役割分離、機械とAI、二重検証、人間負担、local-first、途中導入、security | NFR-05の「GitHubをCI／証跡／権限の正本」は要求意味の正本を意味しない。旧L0-L14、本人環境第一級とLinux primaryの混在、古いmemory/state path、Resource Utilizationの対象／対象外重複あり。法令適合の宣言は本監査で検証していない |
+| `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md` | 技術制約・外部IF・既存制約・state・skill注入・共通工程・drift解消の7節と関連文書節 | 全OS第一級と現行OS tierが不一致。旧9-mode、専門職drive、旧pair、proseの未実装CLI例が残る。GitHub projection、要求意味正本、実行状態の責務を区別して移管する必要あり |
 
 既存15 NFRや7節を一括で棄却・現行採用しない。HIL/HBR/HNFR/refinementへの対応を要求単位で照合する。
 読了済み5文書は[新世代対象別対応](audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md)で
@@ -153,7 +153,7 @@ sourceの個数や分類を全HELIXの固定分母にしない。原文にない
 
 ## Infinity Loop JSON正本の照合
 
-`requirements-ir/requirements.json`の153件を機械走査し、参照先3shardと照合した。
+`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json`の153件を機械走査し、参照先3shardと照合した。
 `primary_system_contract_id`、`acceptance_ids`、`system_test_id`の参照先欠落は0件。
 ただし、これはIDの到達性であり、要求と検証内容の意味的一致・実行合格の証明ではない。
 153件すべてで`pending_resolution`が非空、`actor_ids`・`task_ids`・`surface_ids`は空である。
@@ -193,7 +193,7 @@ HAC-HIL-01a..24cの72件のstatement、およびHAT-HIL-01..24の全fieldも確�
 
 ## refinement契約の確認
 
-`requirements-ir/refinement_contracts.json`のRLO-FR-001と3L-FR-001..008を全field読取りした。
+`archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json`のRLO-FR-001と3L-FR-001..008を全field読取りした。
 
 - RLO-FR-001は`specified`、`approval: null`。RLO-FR-037..040の追加4要件とRLO-AC-027..030のみを持つ。常駐レーン全要件の収載を意味しない。
 - 3L-FR-001..008は`frozen`。3L-R-01..25と3L-AC-001..027を持ち、承認対象revision・candidate HEAD・subject/source digestを保持する。JSON内の承認記録の存在と外部承認原文の有効性検証は区別する。
@@ -220,10 +220,10 @@ stage skip拒否のoracleがbounded exposureを検査するか、実テストと
 
 ## 正本の判断根拠
 
-- `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`全文：L1企画、L2要求、L3要件凍結。L2のモックは要求引出しの装置。L2プロト合意なしのL3凍結は禁止。
-- `docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md`全文：承認済み要求・判断記録・ADRの下に、Python意味判断とNode実行境界の同格の層別authorityを置く。
-- `docs/governance/downstream-canonical-reuse-authority-2026-07-19.md`全文、および`src/lint/canonical-reuse-authority.ts`全文：旧pairを持つ指定成果物は個別delta・oracle・独立review evidence・digest更新まで再利用禁止。
-- `config/requirement-ir-authority.json`と`requirements-ir/manifest.json`全文：移管済み要求の機械意味正本はJSON。compatibility Markdownを別正本として編集してはならない。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`全文：L1企画、L2要求、L3要件凍結。L2のモックは要求引出しの装置。L2プロト合意なしのL3凍結は禁止。
+- `archive/legacy-generation-2026-09-14/root/docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md`全文：承認済み要求・判断記録・ADRの下に、Python意味判断とNode実行境界の同格の層別authorityを置く。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/downstream-canonical-reuse-authority-2026-07-19.md`全文、および`archive/legacy-generation-2026-09-14/root/src/lint/canonical-reuse-authority.ts`全文：旧pairを持つ指定成果物は個別delta・oracle・独立review evidence・digest更新まで再利用禁止。
+- `archive/legacy-generation-2026-09-14/root/config/requirement-ir-authority.json`と`archive/legacy-generation-2026-09-14/root/requirements-ir/manifest.json`全文：移管済み要求の機械意味正本はJSON。compatibility Markdownを別正本として編集してはならない。
 
 現行Core Readの要件v1.3は、HARNESSの工程規則とHELIX-OSの実行・管理機構を同一本文に保持している。
 [v1.3対象別責務対応](audits/l2-requirements/requirements-v1.3-target-crosswalk.md)で節・ID単位の主対象とL2親を整理した。
@@ -268,7 +268,7 @@ Execution TicketのL2要求候補7件とL11受入候補を再照合した。HXT-
 候補の状態は変更せず、実際の測定・利用者合意・受入済みとは扱わない。
 
 要件正本v1.3の§4.9.1に残る「Markdownをcurrent authorityとして維持する」という移行前記述を、
-現行`config/requirement-ir-authority.json`の`canonical_json_only`、compatibility read-only、JSON transaction方針へ訂正した。
+現行`archive/legacy-generation-2026-09-14/root/config/requirement-ir-authority.json`の`canonical_json_only`、compatibility read-only、JSON transaction方針へ訂正した。
 冒頭の153/153 frozenはInfinity Loop由来の集合に限定し、HELIX全要求の網羅・実装・受入完了を意味しないと明記した。
 §2からL2参照入口とv4由来draftへ接続し、GitHubの作業記録と要求の意味authorityを分離した。
 これは新規要求の承認・IR admission・独立reviewを成立させる変更ではない。
@@ -324,9 +324,9 @@ registry／catalogの変更は3つの参照digestだけで、分類identity・po
 HEADとの差分検証で、PLAN本文・承認記録を変更せず当該digestだけの変更であることを確認した。
 execution policy registryとSkill applicability registryの参照も更新し、既存`projectWorkflowExecutionPolicy`で
 生成projectionを再生成した。3 JSONをHEADと比較し、6参照digest以外の変更がないことを確認した。
-更新後、Node 24.15.0で`tests/requirement-authority.test.ts`と`tests/skill-applicability-registry.test.ts`は
-37件成功・exit 0、`tests/workflow-execution-policy-registry.test.ts`と
-`tests/workflow-execution-policy-projection.test.ts`は20件成功・exit 0。
+更新後、Node 24.15.0で`archive/legacy-generation-2026-09-14/root/tests/requirement-authority.test.ts`と`archive/legacy-generation-2026-09-14/root/tests/skill-applicability-registry.test.ts`は
+37件成功・exit 0、`archive/legacy-generation-2026-09-14/root/tests/workflow-execution-policy-registry.test.ts`と
+`archive/legacy-generation-2026-09-14/root/tests/workflow-execution-policy-projection.test.ts`は20件成功・exit 0。
 これによりU-RAC-005のDB投影失敗は解消した。全L2の意味網羅・独立review・全doctor合格は別の未完了項目である。
 
 `npx --yes --package=node@24.15.0 -c 'node_modules/.bin/vitest run tests/runtime-authority-requirements.test.ts tests/vmodel-pair.test.ts tests/resident-lane-orchestration-requirements.test.ts'`
@@ -339,7 +339,7 @@ frontmatter／cross-recordは1252 PLAN、compatibility parentは1252 PLANを検�
 `npm run helix -- doctor --include-working-tree --summary-json`（Node 24.15.0）はexit 1で終了した。
 この実行時点の変更に対応する不合格は次の4文書である。以後のL3／v4／L11追加差分はこの実行には含まれない。
 
-- `resident-lane-orchestration-requests.md`、`docs/governance/README.md`：`l12-hybrid-recognition`がreviewed dispositionを要求。
+- `resident-lane-orchestration-requests.md`、`archive/legacy-generation-2026-09-14/root/docs/governance/README.md`：`l12-hybrid-recognition`がreviewed dispositionを要求。
 - `hybrid-rebaseline-v0.5.0-remediation-delta.md`、`pillar-requirements.md`：`l3-progression-authority`がdigest mismatchを検出。
 
 ほかにbranch-kind、design-coverage、hook trust、project-current-location、review receipt読取り、
@@ -360,5 +360,5 @@ HARNESS6／OS9／Web8のL2・L11 ID集合と双方向pair path一致、対象要
 
 横断テスト実行は69件中68件成功・1件失敗。要求authority検査は成功したが、L2フォルダへ置いた監査5文書が
 pair-missingとなった。監査資料と是正proposalを`docs/governance/audits/l2-requirements/`へ移し、相対参照を更新した。
-配置是正後の`tests/vmodel-pair.test.ts`は57件成功・exit 0。監査資料に架空のL11を追加したり、検査を弱めたりして解消していない。
+配置是正後の`archive/legacy-generation-2026-09-14/root/tests/vmodel-pair.test.ts`は57件成功・exit 0。監査資料に架空のL11を追加したり、検査を弱めたりして解消していない。
 移動後の監査文書の参照先も存在確認済み。要求の意味是正・正本transactionの未完状態は変わらない。

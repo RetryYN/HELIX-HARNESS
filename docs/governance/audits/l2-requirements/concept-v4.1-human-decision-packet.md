@@ -1,13 +1,13 @@
 # Concept v4.1・対象別L1 人間判断packet
 
 prepared_at: 2026-09-14
-source_head: `bd7432c23f7a9577d56a1e55c748a5ce733438a4`
+revision_binding: exact SHA-256 in this packet
 status: awaiting_human_decision
 
 ## 判断の目的
 
 本packetは、HELIXの新世代上流をGitHub Issue、PR、CI、既存実装から推定せず、exactなローカル文書revisionに
-対して人間が判断するための入力である。remote branchへの同期、Claude review、静的検査は判断材料であり、
+対して人間が判断するための入力である。remote branchへの同期、許可されたreview通路の結果、静的検査は判断材料であり、
 承認を自動成立させない。
 
 ## 何を判断するpacketなのか
@@ -22,7 +22,7 @@ status: awaiting_human_decision
 | HELIX-Web-OSをHELIX-OS外へ置く | Web展開後のservice runtimeを分離し、許可logをHELIX-OSの改善loopへ接続する | Webサービスの運転ownerと改善接続を再定義する |
 | Version 1をHARNESS製品群の完成境界とする | 複数プロダクトの実開発とHELIX自身への適用でHARNESSを検証し、その完成をWeb展開の必須前提とする。Web自体はVersion 1完成分母に入れない | Web展開の依存関係とVersion 1の範囲を再定義する |
 | GitHubを作業・共有・証拠の投影先とする | ローカルの対象別Concept／L1／L2等を意味正本にする | Issue／PR等のどこが意味正本かを再定義する |
-| 現行資産を参考資料へ退役し、新世代を上流から再構築する | 旧CI・runtime・AI文書をbaselineにせず、意味採取後に非実行archiveへ移す | 維持する旧実行系と互換範囲を別途決める |
+| 現行資産を参考資料へ退役し、新世代を上流から再構築する | 旧CI・runtime・AI文書を非実行archiveへ先に隔離し、baselineにせずarchive sourceから意味を採取する | 維持する旧実行系と互換範囲を別途決める |
 
 これら7点は、2026-09-14までのPO指示で既に方向が示されている。本packetで改めて曖昧な一括承認を要求する
 必要はない。残る確認対象は、下記候補文書がこの既決方針に余計な意味を追加していないか、または必要な意味を
@@ -43,7 +43,7 @@ status: awaiting_human_decision
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/governance/candidates/helix-concept-v4.1.md` | `e2ee43b77d271d197270a8785f212cf6d9829a4fb65c987a49c6d45f41e38112` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、新世代境界、authority順序 |
+| `docs/governance/candidates/helix-concept-v4.1.md` | `30f87bc1345692d87e44afc9d2585fdb164e3bd5a7b91ce276a7a2b22c45504d` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
 | `docs/design/harness/L1-planning/product-intent.md` | `1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9` | HARNESSの外部提供価値7件と対象外 |
 | `docs/design/helix-os/L1-planning/system-intent.md` | `80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/design/helix-web/L1-planning/product-intent.md` | `5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e` | HELIX-Webの個別製品価値6件と対象外 |
@@ -62,8 +62,8 @@ prototype／非UI適用性を個別採否し、別の人間合意を行う。
 | Durable State | semantic authority、実行事実、projection、working contextを分け、OSが原情報から再構築する |
 | Composable Release | 旧Slice／Module／Bundle／DevOS artifactを新世代identityにせず、承認済み機能と適格性からHARNESS提供構成を再導出する |
 | GitHub | 作業・協調・証拠projectionに限定し、要求意味・採否・合意・受入を生成しない |
-| 既存資産 | sourceとして意味を採取後に非実行archiveへ移す。新世代のbaseline、parity oracle、fallbackにしない |
-| CI／AI文書 | 承認済み上流から新規導出する。要求整理中は旧CIを起動せず、現行AI文書も変更しない |
+| 既存資産 | 元構造と出典を保った非実行archiveへ先に隔離し、そこから意味を採取する。新世代のbaseline、parity oracle、fallbackにしない |
+| CI／AI文書 | 旧実行面をarchiveへ隔離して最小上流入口へ置換する。承認済み上流から新規導出し、要求整理中は旧CIを起動しない |
 
 ## reviewと修正状態
 
@@ -87,6 +87,10 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 `terminal_failure=timed_out`となり本文を返さなかった。旧所見の`resolved`判定はない。
 したがって人間は修正文書と未取得状態を見て判断する。初回review、provider error、timeoutを合格receiptとして扱わない。
 
+2026-09-14、最新revisionへの再reviewとしてローカルClaude CLIを起動したが、そのCLI通路はPOから許可されていなかった。
+実行は停止し、無出力の一時ファイルを削除した。この試行をreview実施、失敗receipt、再試行許可のいずれにも数えない。
+以後はreviewer指定と実行通路の許可を分け、許可されたGitHub上のreview通路以外へ自動fallbackしない。
+
 ## 内部で分けて記録する判断
 
 | Decision ID | 対象 | 選択肢 | 依存 |
@@ -105,7 +109,7 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 
 - 対象別L2の採択・合意、prototype合意、L11受入。
 - L3／L10、Requirement IR、runtime、DB、CLI、hook、adapter、AI manifest、新世代CIの設計・実装。
-- v3.1／v4.0や旧L0-L14資産の物理archive、削除、consumer切替。
+- archive sourceの意味採否、v3.1／v4.0や旧L0-L14文書の最終配置、物理削除、replacement consumer切替。
 - PR作成、merge、Issue close、release、deployment、公開。
 
 ConceptとL1が承認された場合だけ、次は要求source atomを対象別L2へ個別採否する。

@@ -1,0 +1,377 @@
+# Codex CLI — HELIX（Vモデル harness 土台）
+
+このファイルは、このリポジトリにおける Codex CLI 向け project ルールである。
+
+責務分離:
+
+- `CLAUDE.md`: 共有 project context。
+- `.claude/CLAUDE.md`: Claude Code runtime / hook 方針。
+- `AGENTS.md`: Codex CLI project rules。
+
+## 非 Codex エージェントへのランタイム境界（AGENTS.md 準拠エージェント向け、2026-08-06）
+
+AGENTS.md はオープン規格のため、Kimi Code など Codex 以外の AGENTS.md 準拠エージェントも
+本ファイルを project 指示として読み込む。それらのエージェントには以下の境界を適用する。
+
+- 本ファイルの role・権限規定（technical lead 役割、`helix codex` 委譲レーン、hybrid commit 協調、
+  push / PR / merge 権限）は **Codex CLI 専用**であり、他エージェントは継承しない。
+- 他エージェントが適用してよいのは共通ルールのみ: 日本語報連相、ドキュメント言語、安全境界
+  （secrets / PII / 認証・決済・破壊的操作の escalate）、破壊的 git 禁止、一括 stage 禁止。
+- Kimi Code を含む非正規ランタイムは **push / merge / release / tag を行わない**。これらは
+  Claude / Codex の HELIX 正規レーン専用である。PreToolUse guard の deny は user ローカル配備
+  （fail-open 仕様）の補助であり、本節の禁止規定が一次拘束である
+  （限界の詳細は `docs/governance/kimi-code-extension-security-audit-2026-08-06.md`）。
+- context compact（自動・手動）で会話中のルールは失われるため、恒久ルールは会話ではなく
+  本ファイルおよび `CLAUDE.md` に置く。compact 後もこの節が唯一の拘束正本である。
+
+## コミュニケーション (報連相)
+
+チャット上の報連相 (報告・連絡・相談) は **日本語** で行う (PO ルール、2026-06-22)。
+進捗報告・調査結論・選択肢提示・確認依頼など PO へ向けた chat 出力は日本語を既定とし、
+見出し・箇条書きラベルも日本語を優先する。これは Claude / Codex 両ランタイム共通のルール
+(`CLAUDE.md` / `.claude/CLAUDE.md` と同一)。
+
+ただし成果物はそれぞれの規約に従う: コード/識別子/commit message は従来どおり、ファイル名は
+英語 (文字化け回避)、技術用語・コマンド・PLAN ID・パスは原語のまま埋め込んでよい (無理に和訳しない)。
+
+### ドキュメント言語
+
+`docs/` 配下、PLAN、設計書、テスト設計、governance、handover、audit などの人間が読む成果物は
+**日本語を原則**とする。開発用語、コマンド、識別子、URL、コード片、エラーメッセージ、外部仕様名は原語のまま
+埋め込んでよいが、説明文・判断・受入条件・レビュー記録は日本語で書く。既存の英語記述は、触った範囲から
+段階的に日本語へ是正し、英語のまま新規追記して完了扱いにしない。
+
+`helix doctor` の `design-language` gate は、PLAN / 設計 / テスト設計 / process / governance / handover /
+adapter ルールなどの人間向け docs にある英語 prose debt が baseline から増えないことを検査する。baseline は
+既存 debt の可視化であり、将来の日本語化 PLAN で段階的に引き下げる。
+
+## Core Reads（現行判断入口）
+
+このリポジトリで作業するときは、下記の repo-owned sources を読み、その workflow に従う。
+
+- `docs/governance/candidates/helix-concept-v4.0.md` - PO承認済みの次期Concept。canonical promotion完了前はruntime正本ではないが、再編・新要求の意味判断では必ず参照する
+- `docs/governance/helix-harness-requirements_v1.3.md` - requirements と acceptance criteria（要件正本。v1.2 は compatibility reference へ降格、PLAN-L3-15）
+- `docs/governance/helix-harness-extraction-plan_v0.1.md` - source snapshot からの extraction / cutover plan
+- `docs/adr/ADR-001-helix-harness-redesign-and-language.md` - redesign policy と決定史
+- `docs/adr/ADR-009-node-python-linux-runtime.md` - target runtime authority（TS/Node＋Python worker、脱Bun、Linux-primary）
+- `docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md` - Python semantic coreとNode transactional boundaryの層別authority
+- `docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md` - 現行V-model層authority（L1-L12 canonical）
+- `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md` - L3進行前に正規化する58文書と物理path projection
+- `docs/governance/README.md` - governance 配下の canonical / reference / archive 境界
+
+`docs/governance/helix-harness-concept_v3.1.md` は旧Conceptのcompatibility sourceであり、通常の
+Core Read正本ではない。既存契約の移管・差分照合が必要な場合だけ読み、v4候補、requirements v1.3、
+L1-L12 directiveに反する旧定義をcurrentへ再出力しない。v4のruntime正本化はPLAN-L3-84の
+canonical promotionとconsumer移行が完了した時点で行う。
+
+### V-model layer authority（作業中も不変）
+
+- current canonicalは **L1-L12**。正規pairは `L1↔L12` / `L2↔L11` / `L3↔L10` /
+  `L4↔L9` / `L5↔L8` / `L6↔L7` とする。L0 charterは層外authority anchorである。
+- L0-L14のID、物理path、過去文言はcompatibility projectionまたはhistorical sourceとしてのみ保持する。
+  新規の要件、設計、trace、gate、fixture、CI期待値の判断正本にしてはならない。
+- current canonicalとcompatibility projectionを同じenum・同じ判定へ混在させない。移行中はdual-greenを要求し、
+  canonical側の失敗をlegacy側の成功で相殺しない。
+- このauthorityに反する既存Core Read本文は未移行compatibility debtであり、後勝ちの正本ではない。
+  作業中にL0-L14へ戻す変更はregressionとしてfail-closeする。
+
+## 配布パッケージ（Distribution）
+
+- **配布専用リポジトリ**: `git@github.com:RetryYN/HELIX-HARNESS-DevOS.git`
+  （consumer 側が `helix` を取得するパッケージ配布先。本 development リポジトリとは分離）。
+- この development リポジトリが正本 source。tag 済みリリースを上記配布リポジトリへ publish し、
+  consumer は配布リポジトリ経由で導入する。
+- 正式配布先は `RetryYN/HELIX-HARNESS-DevOS`。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility input／GitHub
+  redirectとしてだけ受理し、current output、receipt、manifest、tag pinへ再出力しない。remote sync、tag、publish、
+  promotionは#659のapproval契約、identifier／state cutoverはPLAN-M-02の承認契約に従う。
+
+Migration snapshots と inventories は Core Reads ではない。`docs/migration/` は migration、gap audit、
+regression-source inspection が必要なときだけ読む。HELIX runtime state や execution paths として扱わない。
+
+`docs/design/harness/L3-functional/roadmap.md` は通常 startup read として読まない。verification roadmap は
+V-model freeze 境界で verification cycle を走らせるときだけ動的に読む。通常作業はcanonical L1からL12への
+Forward/V-pair pathに従い、L0 charterは層外authority anchorとしてL1企画へ投影する。
+
+ADR-001のclean rebuild／TypeScript strictは拘束力を維持する。ADR-009/010によりPythonはsemantic core、
+TypeScript/Nodeはtransactional boundaryとし、Bunは廃止・active dependency 0を絶対条件とする。
+old W1-W3a Python runtimeをbulk portせず、薄い`.ps1` / POSIX entrypointは同じNode artifactだけを呼ぶ。
+current authority、CLI、hook、CI、template、setup、package、lockfile、distributionへBunを再導入してはならない。
+historical evidence内の旧文字列だけを理由付きallowlistでき、実行・rollback経路として再activationしない。
+HELIXがgovernするrepositoryの言語は、harness implementation languageとは独立である。
+
+`docs/archive/` は canonical ではなく historical material のみ。fork 完了に伴い HELIX vendor snapshot は削除済み
+（`docs/migration/helix-fork-completion-plan.md` §11）。
+
+## HELIX 再構築方針（現行・最優先 / Claude と共通）
+
+本リポジトリは **HELIX（超個人開発システム）** を構築する場であり、**Vモデル harness の
+「仕組み」を土台に harness 自身を HELIX へ進化させる**。北極星は L0 企画書
+`docs/design/helix/L0-charter/helix-charter_v0.1.md`（confirmed, P0–P9）。詳細は `CLAUDE.md`
+同名セクションと同一。要点のみ:
+
+- **precedence**: 仕組み（V モデル・gate・state DB・harness ルール）= HELIX ハーネスが上。個別機能
+  （command/skill の中身）= 旧 HELIX が機能ソースとして上。ただし **個別機能は仕組みを超えない**
+  （harness の仕組みに従属して差し込む）。ADR-009/010に従い旧ロジックは **Python semantic coreまたはTS/Node transactional boundaryへ再実装**。
+- **進め方**: L0 から Forward に 1 層ずつ。各層で粒度を合わせて旧 HELIX 機能を取捨選択し、機能一覧を
+  都度更新・名称を揃えて登録（一括 import はしない）。L1=機能エリア / L3=機能ユニット / L4–L6=command。
+- **旧 HELIX ソース（機能ソース・常時参照）**: 旧 HELIX = `git@github.com:RetryYN/ai-dev-kit-vscode.git`
+  （個別機能ソースの正本）。各層の設計・キュレーション時に **引っ張れる個別機能（command / skill /
+  subagent / detector / advisor role〔例: TL advisor〕等）が無いか常にこの repo を確認**（inventory-first の
+  絶対ルールに旧HELIXを必ず含める）。ただしread-only参照・behavior atom採取後、ADR-010の責務境界に従って再実装する。
+  semantic coreはPython、transactional control planeはTypeScript/Nodeとする。Python側はregistry済みdescriptor、strict JSONL、bounded resource、network default deny、
+  semantic contract、Node再検証＋単一transaction commitを満たすcoreだけに限定する。DB path／credential／repository／`.helix/`を渡さず、
+  Python出力のcommand／SQL／absolute path／codeを実行しない。**bulk import禁止**でhardenして仕組みに従属させる。
+- **自律境界**: 人＝L0/L1/L2（モックが最後）＋ L3 承認のみ。AI＝L3 起草＋L4 以降〜GitHub を完全自動。
+- **リネーム（段階）**: prose は HELIX へ移行中。**機械識別子（CLI `helix`・`.helix/`・`area=helix`・
+  rule-drift marker）は据え置き**、後日 専用 migration PLAN で atomic 改名。よって下部 Adapter Rule
+  Markers と `helix ...` 表記は現時点では変更しない。
+- `.helix` から HELIX への名称変更は必達の最終ゴールだが、runtime state / CLI / hook / adapter /
+  consumer template / distribution surface をまたぐ不可逆 cutover である。PLAN-M-02 の
+  `cutover_decision_record` と action-binding approval、dry-run、backup、rollback、monitoring evidence が揃うまで
+  実 state move や alias 有効化を行わない。承認後は漏れのない atomic migration として実施する。
+
+## Session Start（開始確認）
+
+1. 上記 Core Reads が存在することを確認する。
+2. `harness.db` の continuation projection と memory journal を確認し、stale でない next action に従う。
+3. `legacy local state/` が存在する場合は historical source state として扱い、HELIX state とは扱わない。
+4. active continuation が無ければ通常開始し、次を宣言する。
+   `OK: HELIX session initialized`.
+
+## TL Driven Mode（TL 主導）
+
+Codex CLI が別の active runtime なしで使われる場合、現在の slice の technical lead として動作する。
+これは Claude Code の置換ではない。`codex-only` または `standalone` mode で Codex が実行、検証、
+gate decision まで担えるという意味である。
+
+- feasible な範囲で design、implementation、review、tests、verification を一気通貫で行う。
+- 編集前に relevant existing files を読む。
+- 既存の structure、naming、test placement に合わせる。
+- 変更規模が必要とする場合は final response で gate outcomes を明示する。
+- production infrastructure、authentication、authorization、payment、PII、secrets、licensing など、
+  external APIs、その他 high-impact environment assumptions を変える前に escalate する。
+
+## HELIX Workflow（工程）
+
+- Forward: `plan` -> `pair-freeze` -> `implement` -> `trace-freeze` -> `review` -> `accept`
+- Reverse: `reverse <type> R0` -> `R1` -> `R2` -> `R3` -> `R4` -> Forward merge
+- Scrum / PoC: `S0 backlog` -> `S1 plan` -> `S2 poc` -> `S3 verify` -> `S4 decide`
+- 管理側の見落とし（gate、admission、監査、運用上の欠落）はIssue化し、上記Scrumで小さく収束して
+  `S4 decide`から正規VモデルへScrum Reverseする。管理IssueはGitHub Projectへread-side projectionする。
+- product要求・設計・実装は正規Forwardで進め、管理Scrumをproduct実装の近道として使わない。
+- Git上のRequirement／Design／PLANが意味正本、admitted event／receiptが実行事実、`harness.db`と
+  GitHub Projectは再構築可能なprojectionである。Project Statusから上流意味や完了を逆書込みしない。
+- Additive change: 既存 design を保ち、`add-design` / `add-impl` で delta を追加する。
+- Continuation: `harness.db` の event/projection を session / cross-runtime continuation source として使う。
+
+## Codex / Claude Code Harness（実行面）
+
+Codex と Claude Code は、contract plans、local CLIs、hooks を通じて HELIX-HARNESS が管理する。
+この product では direct API call ではない。
+
+Runtime modes（実行モード）:
+
+- `standalone`
+- `claude-only`
+- `codex-only`
+- `hybrid`
+
+正規コマンド:
+
+- セットアップ: `helix setup project`
+- Codex 実行: `helix codex --role <role> --task "..."`
+- Claude prompt 生成: `helix claude --role <role> --task "..." --dry-run`
+- チーム委譲: `helix team run --definition .helix/teams/<team>.yaml`
+- タスク分類: `helix task classify --text "..."`（`task estimate`は未実装のため正規経路に含めない）
+- スキル推薦: `helix skill suggest --plan <path>`
+- レビュー packet: `helix review --uncommitted`
+- 状態確認: `helix status`
+- 診断: `helix doctor`
+
+worker context boundary（WCC-FR-09、`--execute` 時 必須）:
+
+**`--execute` を伴う worker 起動経路はすべて `--worker-context-file <path>` を必須**とする。
+未指定は `WORKER_CONTEXT_UNSEALED` で fail-close し、provider は起動しない。
+`--dry-run` は boundary 不要。
+
+- Codex 実行: `helix codex --role <role> --task "..." --execute --worker-context-file <path>`
+- Claude 実行: `helix claude --role <role> --task "..." --execute --worker-context-file <path>`
+- ループ実行: `helix loop run --plan <id> --worker-context-file <path>`（`--dry-run` 以外）
+- pair 実行: `helix pair-agent run --execute --worker-context-file <path>`
+- チーム実行: `helix team run --definition .helix/teams/<team>.yaml --execute --worker-context-file <path>`
+
+boundary は `.helix/worker-context/<goal-id>.json` に置く。`helix setup project` は現時点で
+boundary を生成せず、テンプレートの手書きを正規手順とする。schema・失敗コード・テンプレートは
+`docs/governance/worker-context-boundary-operator-guide.md` を正本とする。
+
+複数 AI runtime が利用可能な場合は、作成側と判断側を分離する。
+設計判断、judgement gate、R4 merge 判断は、可能な限り別 runtime / model family へ回す。
+単一 runtime では `intra_runtime_subagent` を review substitute として記録し、証跡を残す。
+
+legacy command を現行 company/product execution path として追加しない。
+
+## 判断コア（judgment-core、GPT 系の判断規律）
+
+判断規律の正本は `docs/skills/judgment-core.md`（判断コア SSoT、judgment_core: v1）。
+Codex / GPT 系 runtime は以下を差分として適用する（普遍 7 原則は SSoT を参照）。
+
+- **完了主張は green_commands で裏付ける**: 実装した事実・自信のある完了報告は完了根拠に
+  ならない。test / command の exit code + output digest を残し、受入側の検証を前提とする
+  （fail-forward 傾向への防御。falsifiable claim には裏付け command を cite する）。
+- **レビューは severity-first**: bug → risk → behavior regression → missing tests の順で出力する。
+  correctness / 要件に影響する所見のみ blocker に上げ、style・好みは suggestion 止まりとする。
+- **bias to action**: 不明点は妥当な仮定を明示して進み、本当に詰まったときだけ確認する
+  （decide-record-proceed と同方向）。ただし不可逆・高影響操作（SSoT §1-3 境界）は必ず escalate。
+- **委譲を受けるとき**: task に objective / output format / tool guidance / task boundary が
+  無ければ、推測で埋めず boundary の明示を求める（SSoT §5）。
+- **role 判断ブリーフの自動注入（PLAN-L7-337）**: `helix codex --role <role>` / `helix claude --role <role>`
+  の委譲 prompt には、role archetype（worker / verify / consult）別の判断ブリーフが adapter により
+  機械注入される（正本 = `src/runtime/role-judgment.ts`）。受信側はブリーフを task 本文と同格の
+  拘束として扱う。Claude 側 Agent spawn は委譲ブリーフ 4 marker を `agent-guard` が fail-close で
+  強制する（同一規律の runtime 別実装）。
+- **思考レンズの自動注入（PLAN-L7-338）**: task 本文が設計 / 検証 / テスト戦略 / トラブル
+  シューティング領域に該当する場合、領域別の思考チェックリスト（観点 distillation + 詳細
+  skill pack への pointer）が adapter により追加注入される（正本 = `src/runtime/task-lens.ts`）。
+  受信側はレンズの観点を作業手順に織り込み、pointer 先 pack を必要に応じて読む。
+
+## Hooks（Codex orchestrator parity の方針）
+
+Codex は repo-local `.codex/hooks.json`（PLAN-L7-139）を通じて Claude と同じ guardrails を強制する。
+これは **repo-relative only** であり、global `~/.codex/` に hook config を書かない。Claude と同じ
+TypeScript hook entrypoints（`.claude/hooks/work-guard.ts`、`src/cli.ts session ...`）を再利用し、
+logic fork は作らない。guard logic は `src/runtime/*.ts` にあり runtime-agnostic である。
+
+Codex tool names は Claude と異なるため、matcher は copy ではなく map する。
+
+- `Edit|Write|MultiEdit`（Claude） -> `apply_patch|write_file`（Codex）:
+  foreign-edit `work-guard` 用。Codex の `apply_patch` は **freeform** で `file_path` field を持たず、
+  edited paths は patch body（`*** Update File:` / `*** Add File:` / `*** Delete File:` /
+  `*** Move to:`、multi-file）にある。`work-guard` はこれらの header を parse し、`write_file` だけでなく
+  Codex の primary edit tool である `apply_patch` でも foreign-edit block が発火する。
+- `Bash`（Claude） -> `exec_command|local_shell`（Codex）: `PostToolUse` session logging 用。
+- `Bash`（Claude） -> `exec_command|local_shell`（Codex）: `PreToolUse` `git-command-guard` 用。
+  明示的な one-shot override reason が記録されていない destructive git reset/restore/revert/checkout/force-push を block する。
+- `subagent-stop`（`SubagentStop`）は **Codex surface が無く** 本当に N/A。codex.exe 0.128.0 は
+  `PreToolUse` / `PostToolUse` / `SessionStart` / `Stop` / `UserPromptSubmit` hook events だけを exposed し、
+  `SubagentStop` はない。
+- `agent-guard`（`Agent`）は Codex `spawn_agent|spawn_agents_on_csv` へ map する。Codex `spawn_agent`
+  semantics は Claude `subagent_type` と異なるため、shared guard は Codex payload を別途 normalize する。
+  `agent_type` は Codex native payload に存在しないため必須とせず、渡された場合だけ allowlist を検査する。`model` と
+  `reasoning_effort` は version／digest 検証済み native-worker policy が導出する exact pair と一致する場合だけ
+  許可し、task body は必須、bulk spawn は常に deny する。
+
+`.codex/hooks.json` と `.claude/settings.json` の parity は `doctor` の `codex-hook-adapter` が機械検査する。
+guard が diverge する、`blockOnFailure` を落とす、`$CLAUDE_PROJECT_DIR` に依存する、global `~/.codex/` を参照する場合は
+fail closed する。
+
+Scope boundary（適用境界）: `.codex/hooks.json` が guard するのは direct Codex CLI / Codex IDE sessions のみ。
+この chat runtime が提供する hosted API/developer tools（この環境の `apply_patch` など）は Codex hook engine を通らないため、
+repo hooks は機械的に intercept できない。この surface では Codex は hook を non-enforcing と扱い、編集前に明示的な
+git/status preflight を行う。API tool calls について mechanical hook coverage を主張しない。
+
+Codex CLI 0.144+ではrepo-local hook trustを`hooks.state.trusted_hash`へ束縛し、hash drift時は再確認までfail-closeする。
+External Source Researchは一次ソース、確認日、採否、workflow影響を記録し、日付だけの更新を証跡にしない。
+
+## Skills（スキル）
+
+- matching triggers に該当する relevant `SKILL.md` だけを読む。
+- 全 skills を bulk-load しない。
+- `references/` は skill directory からの相対パスとして解決する。
+- Legacy-derived skill material は migration source material。HELIX skill docs は `docs/skills/` 配下に置く。
+
+## Editing Rules（編集規則）
+
+- 編集前に target files を読む。
+- 既存の code structure、naming、test placement に合わせる。
+- 既存 uncommitted changes と **other runtime（Claude）が作った commits** は正規作業として扱う。
+  明示指示なしに revert/reset/checkout しない。
+- docs、rules、examples、audit evidence に secrets、PII、credentials を書かない。
+
+## Git Rules (hybrid 多ランタイム協調)
+
+- Conventional Commits を使う。stage は explicit paths のみとする (`git add <path>`; `git add -A` /
+  `git add .` は使わない)。
+- **history を書き換える前に `git log` / `git reflog` を確認**し、もう一方のランタイム
+  (Claude) の commit を `reset` / `revert` / `checkout` / force で破棄・デグレさせない。
+  working tree の foreign 変更は既定で「相手ランタイムの正規作業」とみなす。判断不能なら
+  revert せず PO 確認。
+- `git reset` / destructive `git checkout` / `git restore` / `git revert` / force-push は
+  `git-command-guard` の block 対象。どうしても必要な場合だけ、`git log` / `git reflog` 確認後に
+  `HELIX_ALLOW_DESTRUCTIVE_GIT=1` または `.helix/state/destructive-git-override` へ理由を残して
+  one-shot override する。
+- 自分の成果は相手の commit の上に積み、相手のファイルに触れない。
+- **commit 直前に `git status` + `git diff --staged` (or `helix review --staged` /
+  `--uncommitted`)** で、authored した意図ファイルのみが staged であることを検証する。
+- push 済み履歴は破壊しない。
+- `.helix/memory/harness.jsonl` などの共有 memory を変更した場合は、レーン終端の意図 commit に
+  明示 path で含める。doctor の memory age warning を放置せず、foreign change と競合する場合は
+  勝手に混載せず所有 runtime と調整して commit/push 済 HEAD へ収束させる。
+- **引き継ぎ・検証の基準点は commit/push 済 HEAD ただ一つ**。hybrid では working tree を
+  相手ランタイムが常時書き換えるため、full tree の計測値は transient で非正本。検証は HEAD
+  (+ 自分の意図変更のみ) に固定し、測定値が動いたら相手を疑う前に自分の baseline を疑う
+  (foreign tree の transient を相手の退行と帰責しない)。引き継ぎ feedback は harness.db
+  (`feedback_events`、PLAN-L7-110) から受け取り、stale 化する prose handover を正本にしない。
+
+### GitHub 自走運用（PO 決定 2026-07-11、更新 2026-07-24）
+
+- main は branch protection 済み: required check = `harness-check` (strict)、enforce_admins、
+  **人間 approve 不要 (PO 明示承認)**。品質ゲートは CI と harness 内クロスランタイム
+  review evidence が担う。force-push / branch 削除は GitHub 側でも禁止。
+- main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。
+  必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。
+  GitHub native auto-mergeは禁止し、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。
+  repoのdelete-branch-on-merge設定は維持する。
+- AI-Aは作成・blocker修正・push、AI-Bはread-only収束review・finding disposition・merge判断を担う。
+  AI-Bは編集・push・Ready化をしない。AI-Bはreview receiptをPR commentへ記録し、AI-Aがその値をPLANの
+  `review_evidence`と`left_arm_carry.review_binding`へ機械転記してReady化する。AI-Bは最終HEADで転記一致を
+  再照合する。blockerは同一HEADにつき一括返却し、修正後HEADは新しい独立blockerの実証がない限り
+  一巡だけ再判定する。
+- current behavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、
+  虚偽・過大な完了証拠はcurrent PR内で修正する。同じ責務・既存scope内で安全かつ局所的に閉じる
+  findingもcurrent PR内で修正する。独立責務・別設計・lifecycle・性能改善だけを別episodeだけIssue化し、
+  current PRへ再流入させない。
+- **CI self-heal (PO 指示)**: 自分の push / PR で `harness-check` が落ちたら、人間に渡さず自分で
+  failure log を取得 (`gh run view --log-failed` / `helix github ci-status`) → 修正 → 再 push まで行う。
+- release publish / tag / cutover / 配布 repo 切替は従来どおり action-binding approval 境界。
+
+## Test Rules（検証規則）
+
+- Docs changes: `rg` で WSL2-required wording、migration-source-as-current wording、personal absolute paths、
+  mojibake markers などの古い前提を確認する。
+- Bash changes: `bash -n <changed-script>`。
+- PowerShell changes: `powershell -NoProfile -ExecutionPolicy Bypass -File <changed-script>`。
+- TypeScript core changes: `tsc --noEmit` と targeted `vitest`。
+- CLI / hook changes: relevant な場合は Windows PowerShell と POSIX shell paths を smoke test する。
+
+## Local Overrides（個人設定）
+
+個人 overrides は `AGENTS.override.md` に置く。これは Git 追跡対象ではない。
+
+## HELIX Adapter Rule Markers（アダプター規則 marker）
+
+この section は `rule-drift` で機械検査され、Codex / Claude adapter が静かに乖離しないようにする。
+
+- 共有 context: `CLAUDE.md`
+- Claude runtime policy（Claude runtime 方針）: `.claude/CLAUDE.md`
+- Modes（実行モード）: `standalone` / `claude-only` / `codex-only` / `hybrid`
+- セットアップ: `helix setup project`
+- 状態確認: `helix status`
+- 診断: `helix doctor`
+- Codex 委譲: `helix codex --role <role> --task "..."`
+- Claude 委譲: `helix claude --role <role> --task "..."`
+- チーム実行: `helix team run --definition .helix/teams/<team>.yaml`
+
+<!-- HELIX:managed:start -->
+# HELIX-HARNESS アダプター
+
+この project は local orchestration surface として HELIX-HARNESS command を使う。
+
+- セットアップ: `helix setup project`
+- 状態確認: `helix status`
+- 診断: `helix doctor`
+- Codex 委譲: `helix codex --role <role> --task "..."`
+- Claude 委譲: `helix claude --role <role> --task "..."`
+- チーム実行: `helix team run --definition .helix/teams/<team>.yaml`
+
+この managed block の外側にある project-owned instruction は consumer 側所有として扱う。
+<!-- HELIX:managed:end -->

@@ -2,7 +2,7 @@
 
 確認日: 2026-09-14
 
-`docs/governance/helix-harness-requirements_v1.3.md`は現行Core Readである一方、HARNESSが提供する工程規則と、
+`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md`は現行Core Readである一方、HARNESSが提供する工程規則と、
 HELIX-OSが実行・管理する制御面を同一文書に保持している。本表は既存要件を削除・採択・再凍結せず、
 対象別L2へ渡す責務を明示する。GitHub上のIssue／PR／Projects状態は帰属や採否の根拠にしない。
 

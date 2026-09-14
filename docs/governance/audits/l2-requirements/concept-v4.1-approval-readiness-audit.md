@@ -17,11 +17,11 @@
 | HELIX-Web | OSが開発・改善を管理する個別製品、固有の利用者価値を所有 | 整合 | Vision由来L2はdraft、prototype／合意未実施 |
 | HELIX-Web-OS | HELIX-OS外のservice runtime。許可logをHELIX-OS改善入口へ渡す | 整合 | L1／L2はdraft、展開方式・合意未実施 |
 | authority | repo-owned対象別文書・指定JSONと承認revisionが意味正本。GitHubはprojection | 整合 | authority registerの個別read／write contractは後続 |
-| 新世代境界 | 旧CI・旧AI文書・旧runtimeをbaseline、parity oracle、fallbackにしない | 整合 | 要求整理完了前は物理archive／cutoverしない |
+| 新世代境界 | 旧CI・旧AI文書・旧runtimeを非実行archiveへ先に隔離し、baseline、parity oracle、fallbackにしない | 整合 | archive sourceの意味移管と最終退役は未完 |
 | 提供構成 | 検証済み機能を適格性を保って構成する | 是正済み | Slice／Module／Bundle等のidentity・schemaはL1／L2承認後に導出 |
 | 層とpair | L1–L12、L2↔L11、L3↔L10を含む正規6 pair | 整合 | 対象別L3／L10は未作成・未凍結 |
 | 人間authority | Concept、要求、L3要件、不可逆作用の許可を所有 | 整合 | 本Concept v4.1自体の人間承認が未実施 |
-| AI可読文書 | 承認上流からHARNESS契約・OS context・個別製品要求を分離生成 | 整合 | 現行AI文書は未変更、manifestはL3以降 |
+| AI可読文書 | 旧instructionをarchiveへ隔離し、最小上流入口を置く。承認上流からHARNESS契約・OS context・個別製品要求を分離生成 | 整合 | 最小入口のみ配置済み、manifest／生成器はL3以降 |
 
 ## 是正した不整合
 
@@ -33,7 +33,7 @@
 ## 承認後にも自動成立しないもの
 
 - L0／対象別L1／L2／L11の合意、L3／L10 freeze、Requirement IR更新。
-- v3.1／v4.0のcompatibility降格、旧資産の物理archive、AI read set変更。
+- v3.1／v4.0のcompatibility降格、archive sourceの意味採否・最終配置、生成manifestへのAI read set切替。
 - runtime、CLI、DB、hook、adapter、CI、Worker、配布、公開、cutover。
 
 ## 修正版の静的再照合
