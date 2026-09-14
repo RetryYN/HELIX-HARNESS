@@ -8,7 +8,7 @@ kind: design
 status: draft
 freeze_blocking: true
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-15
 pair_artifact: docs/helix-os/L11-acceptance/governance-acceptance.md
 parent_l1_candidate: docs/helix-os/L1-planning/system-intent.md
 ---
@@ -69,6 +69,13 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 HELIX-OSはHARNESSが規定する層・pair・工程条件を参照し、Worker・CIの実行結果を証拠として収集して進行を制御する。
 OS内に工程規則の別正本を作らず、適用するHARNESS版とプロジェクトの選択を記録する。
 HELIX-OS自身の変更も要求・判断・検証へ追跡し、統制する立場を自己承認権限へ拡張しない。
+
+[要求エンジンPythonコア要求候補](../../governance/candidates/requirement-engine-python-core-requirements.md)の意味処理は
+HARNESS-L2-008が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／013として、Concept／企画L1、エンジン入力、
+出力L2候補、人間の訂正・採否、採用要求、後続で判明した見逃し・誤検出を同じ因果IDで管理へ登録する。企画との差を
+価値・actor・目的・scope・non-goal・制約の欠落、意味追加、対象違い、矛盾へ分け、戻す層と判断者を特定する。
+さらにengine共通、製品固有pack、入力不足、運用誤りの改善候補へ接続する。登録、ログ蓄積、自己評価だけで
+要求採用や強化済みにせず、採択した改善をHARNESSの要求・設計・検証と効果再観測へ戻す。
 
 HELIXOS-L2-004／007では、reviewer identity、review対象、review route、実行権限を別に扱う。provider名や
 「reviewを通す」という依頼だけから、GitHub、ローカルCLI、API、IDE、HARNESS Worker等の任意通路を選ばない。
