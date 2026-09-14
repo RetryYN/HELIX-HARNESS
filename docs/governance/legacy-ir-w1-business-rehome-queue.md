@@ -53,3 +53,5 @@ HIL-BR-01..33を原要求identity一件ごとの`requirement` PRで扱う。表�
 - successor割当済み0件。全33件`preserved_pending_rehome`。
 
 このqueueからIssue close、PR merge、CI、旧実装状態を理由に要求を削除・縮退しない。
+
+意味変更・照合候補8件について、原要求から保持する意味と責務上の整理箇所を[W1人間判断候補の意味分解](legacy-ir-w1-human-decision-candidates.md)へ分けた。同文書は判断を要求または適用するものではない。
