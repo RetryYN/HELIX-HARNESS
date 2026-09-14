@@ -24,6 +24,7 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 | HARNESS-L2-006 | 提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる |
 | HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |
 | HARNESS-L2-008 | 指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させない |
+| HARNESS-L2-009 | unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落を上流質問へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させない |
 
 ## 工程条件の確認シナリオ
 
@@ -92,6 +93,10 @@ AVS／RFA／DGH由来の条件は採用revision確定後に検証する。全件
 - HARNESS-L2-008：同一入力・engine版・製品pack版から決定論的な構造化結果を得る。network、DB、Git、GitHub、repository、credentialを与えずに意味処理できない場合は不成立とする。
 - HARNESS-L2-008：機能A、機能B、機能Cの単体要求を成立させても、A→B／B→Cの接続要求とA–Cから成るシステムAの構成体要求が未成立なら全体を成立としない。接続の順序、data意味、timeout、部分失敗、回復とend-to-end acceptanceを個別に確認する。
 - HARNESS-L2-008：構成体要求の変更から影響する接続・単体へ、単体interfaceの変更から影響する接続・構成体へ双方向に辿り、無関係な構成を失効させない。
+- HARNESS-L2-009：同じunit要求へunit／connection／composite templateを順に与え、unitに非適用なtemplateを理由付きで区別する。接続要求へunit templateだけを適用しても設計義務を満たしたとしない。
+- HARNESS-L2-009：templateの必須inputを一つ欠かし、AI補完ではなく質問・要求候補・N/A判断候補へbackflowする。未承認候補、stale版、別product版、該当なしで任意templateへfallbackしない。
+- HARNESS-L2-002／003／008／009：同じ親要求と管理制約から推進方式を変えてticket graphを生成し、いずれもHARNESSが要求するlayer／pair、成果物、oracle、human gate、停止・差戻し・backflowを満たすことを確認する。HARNESSが駆動tagや個別workflowを生成する実装は不成立とする。
+- HARNESS-L2-002／003：PoC、UI prototype、Feature ticketを別identityで確認し、PoC成功、prototype表示、Issue closeから要求合意・恒久技術採用・Feature完了を生成しない。
 
 管理変更入口の条件は新世代で採用するrevision確定後に評価する。全件未実行。
 

@@ -37,8 +37,8 @@ HELIXは、承認された範囲を責務単位へ分解し、実行・検証・
 | Identity | 位置づけ | 責務 |
 |---|---|---|
 | HELIX | プロジェクト群と全体構想 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS等を接続し、上流から運用・改善までを閉じる |
-| HELIX-HARNESS | 外部へ提供する製品 | V-model、L1–L12、正規pair、要求エンジン、工程、要求・設計・検証契約、進行・完了条件、consumer package |
-| HELIX-OS | HELIX内部の管理・統制機構 | authority、要求エンジン出力と企画との差の登録・管理、Worker、assignment、state、log、CI、review、learning、improvement、distribution operation |
+| HELIX-HARNESS | 外部へ提供する製品 | V-model、L1–L12、正規pair、要求エンジン、Design Template、工程、要求・設計・検証契約、進行・完了条件、consumer package |
+| HELIX-OS | HELIX内部の管理・統制機構 | authority、要求エンジン出力と企画との差、template版・適用・改善の登録・管理、Worker、assignment、state、log、CI、review、learning、improvement、distribution operation |
 | HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとして、Web利用者へダッシュボード、操作、進行表示、サービス体験を提供する |
 | HELIX-Web-OS | HELIX-Web展開時にHELIX-OSの外へ構成する運転基盤 | tenant、Connector、job、service state、evidence projection、Webサービスの配備・監視・復旧を担う |
 
@@ -116,10 +116,17 @@ HARNESSは、対象プロダクトの言語、provider、CI製品、画面方式
 - Full V、Production Scrum、V設計＋Scrum実装Hybrid、および別軸Discovery／PoCの関係。
 - 要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了の条件。
 - Concept／企画と利用者指示から、単体・接続・構成体を区別した要求候補、質問、矛盾、欠落、過剰解釈、semantic diff、影響候補を提示する要求エンジン。
+- 要求kind、構成、risk、domainから設計義務を導き、必要な要求入力の不足を上流へ戻すversioned Design Templateと初期seed。
 - trace、impact、verification obligation、failure、evidence、利用者受入、運用評価の契約。
 - consumerが構成、版、依存、導入、更新、復旧条件を確認できる配布package。
 
 HARNESSはWorker pool、HELIX内部memory、運用DB、CI運転、学習履歴を外部利用者の暗黙必須構成にしない。
+旧実装からは、要求抽出、分類、semantic diff、trace、impact、template適用、設計義務等の意味密度が高いbehavior atomを
+Python semantic coreへ再導出する。認可、lease、DB／Git／GitHub commit等の外部作用はNode／TypeScript境界へ分離し、
+旧moduleの実装言語、file、runtimeを一括継承しない。
+駆動モデルは固定modeの実行器ではなく、local ticketへ付けるversioned tag集合として表す。HELIX-OSの管理は目的、
+親要求、制約、許可、予算、期限、HARNESS版を推進へ渡し、推進がtag、ticket graph、workflow instanceを生成する。
+管理は生成物を登録・統制し、検収はHARNESS contractへの充足を独立確認する。GitHub labelはtagのprojectionに限定する。
 
 ## Version 1とHELIX-Web展開境界
 
@@ -145,6 +152,7 @@ HELIX-OSはHARNESSを含むHELIXプロジェクト群に対し、次を担う。
 
 - 対象別authority、revision、関係、変更影響、未解決状態の管理。
 - Concept／企画L1、要求エンジン入力、L2候補、訂正・採否、採用要求の系譜と齟齬を登録し、要求化漏れ、企画外追加、対象違い、scope逸脱を管理する。
+- Design Templateの版、選定、適用、義務、backflow、利用結果と改善候補を管理する。
 - Worker、assignment、branch、lease、budget、provider capability、停止・復旧の統制。
 - event、log、evidence、review、CI、HARNESS package運転、個別製品のrelease準備・artifact受渡し、observationの実行と保存。
 - requirement／design／verification／runtime projectionの整合と再構築。
@@ -215,6 +223,7 @@ adapter、AI instruction／prompt、実行設定、旧test／fixture／oracle、
 12. replacement evidenceなしで旧capabilityをretireしない。
 13. 旧CI、旧AI文書、旧runtimeを新世代のbaseline、parity oracle、fallbackとして再利用しない。
 14. 単体要求の成立から接続要求または構成体要求の成立を推定しない。
+15. Design Templateの必須input不足をAIが補完せず、要求質問・候補として上流へ戻す。
 
 ## 非目標
 

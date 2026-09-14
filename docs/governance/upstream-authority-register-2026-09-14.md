@@ -18,15 +18,15 @@ as_of: 2026-09-14
 | 新世代Concept候補 | 1文書 | [Concept v4.1候補](../concept/helix-concept-v4.1.md) | [人間判断packet](audits/source-rebaseline/concept-v4.1-human-decision-packet.md)でexact SHAを固定し直す。v4.0はarchive source | Conceptと4対象L1を別decisionとして人間が判断し、承認後に対象別L2の個別採否へ進む |
 | 旧HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | historical source。旧confirmedを継承せず、工程と実行管理が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1／L2へ個別採否する |
 | 旧要件v1.3 source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` | historical source。旧Core Read状態とHARNESS／OS責務が混在 | [対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md)からL2へ個別採否する |
-| 対象別L1 | 4文書、31企画要求案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 8、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
-| 対象別L2 | 4文書、36要求案 | [L2要求入口](audits/source-rebaseline/l2-source-register.md) | HARNESS 8、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。draft、未合意。[粒度監査](audits/source-rebaseline/current-l2-requirement-granularity-audit.md)でmixed 14、composite 15、connection 7、unit 0 | 単体・接続・構成体へ分割し、出典・prototype／N/A・合意revisionを確定 |
+| 対象別L1 | 4文書、32企画要求案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
+| 対象別L2 | 4文書、37要求案 | [L2要求入口](audits/source-rebaseline/l2-source-register.md) | HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。draft、未合意。[粒度監査](audits/source-rebaseline/current-l2-requirement-granularity-audit.md)でmixed 15、composite 15、connection 7、unit 0 | 単体・接続・構成体へ分割し、出典・prototype／N/A・合意revisionを確定 |
 | 総称HELIXの旧L2／L11案 | HCV4-L2 6件、旧L11 6件 | `docs/governance/crosswalks/legacy-concept-derived-requirements.md`と対文書 | migration crosswalk only。6件すべてHARNESS／HELIX-OSへsplit先を記録、採否待ち | 対象別L2／L11承認後に非実行archiveへ移し、要求ownerから除外する |
-| 対象別L11 | 4文書、36受入案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各L11 | draft、未実行 | 対応L2合意後に利用者受入を実行 |
+| 対象別L11 | 4文書、37受入案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各L11 | draft、未実行 | 対応L2合意後に利用者受入を実行 |
 | 旧Infinity Loop Requirement IR | 153要求 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json`と3 shard | historical machine projection。旧canonical表示を新世代へ継承しない | [対象別crosswalk](audits/source-rebaseline/infinity-business-target-crosswalk.md)群からsemantic atomをL2へ個別採否する |
 | 旧refinement契約 | 14契約 | `archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json` | historical source。旧frozen／specified状態 | [対象別対応](audits/source-rebaseline/refinement-target-crosswalk.md)に従い意味を個別採否する |
 | 旧authority候補 | 97文書 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/` | historical candidate source。旧状態を新世代へ継承しない | [候補対象別台帳](audits/source-rebaseline/candidate-source-target-inventory.md)から個別採否する |
-| 新世代要求候補 | 5文書 | `docs/governance/candidates/` | HARNESS／HELIX-OSへ分離したdraft。要求エンジンPython core候補を含む | Concept／対象別L1承認後に対象別L2／L11へ個別採否する |
-| 新世代Feature Ticket | 3件 | [Feature Ticket入口](feature-tickets/README.md) | 登録層→要求エンジン→分類projectionの順で発行。全件`proposed_upstream_waiting` | local ticketを意味source、GitHub Issueを作業projectionとして同期し、上流承認後にL3／L10へ降ろす |
+| 新世代要求候補 | 8文書 | `docs/governance/candidates/` | HARNESS／HELIX-OSへ分離したdraft。要求エンジン、意味密度抽出、Design Template、typed ticket候補を含む | Concept／対象別L1承認後に対象別L2／L11へ個別採否する |
+| 新世代Feature Ticket | 8件 | [Feature Ticket入口](feature-tickets/README.md) | 原登録→semantic抽出→要求engine→分類projection→Design Template→typed ticketの順で発行。全件`proposed_upstream_waiting` | local ticketを意味source、GitHub Issueを作業projectionとして同期し、上流承認後にL3／L10へ降ろす |
 | L2 source採否queue | 29 decision unit | [対象別L2 source採否順序](audits/source-rebaseline/l2-source-adoption-sequence.md) | Concept系列を除く29候補系列をS1–S4へ配置、未採否 | Concept／対象別L1承認後、各unitを別decisionとして対象別L2／L11へ採否する |
 | 新世代CI要求候補 | HARNESS 4要求、HELIX-OS 8要求、L11候補8項目 | `docs/governance/candidates/next-generation-ci-requirements.md` | draft、要求整理のみ。CI relationを分離し、既存CIはlegacy source | HARNESS検証契約とHELIX-OS実行統制を対象別L1／L2へ接続し、L3／L10以降は上流確定まで待つ |
 | 新世代AI可読文書要求候補 | HARNESS 3要求、HELIX-OS 9要求、L11候補8項目 | [AI可読上流文書の要求候補](candidates/ai-readable-authority-requirements.md) | 旧AI実行面をarchiveへ隔離し、最小上流入口を配置。要求はhuman approval待ち、生成器は未設計 | Concept／対象別L1確定後に要求を承認し、manifest／生成器はL3／L10から再導出する |
@@ -62,7 +62,7 @@ as_of: 2026-09-14
 
 1. archive内の旧Core Read、L0／L1／L2 sourceと、現行側のConcept／対象別L1／L2候補。
 2. Requirement IR 153要求とrefinement 14契約。
-3. archive内candidates directoryのMarkdown 97文書と、現行側の新世代候補5文書。
+3. archive内candidates directoryのMarkdown 97文書と、現行側の新世代候補8文書。
 4. 旧HARNESS要求5文書、旧screen文書、Concept／Vision intake。
 5. 人間の新規決定と、出典付きの運用・外部変化candidate。
 
@@ -94,11 +94,11 @@ as_of: 2026-09-14
 | 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、候補97文書／31系列、IR 153、refinement 14、旧5＋7文書 | 完了 | 新規sourceは発見時に追記する |
 | 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
 | 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、Version 1の複数プロダクト・自己適用検証とWeb展開依存が人間承認revisionへ束縛される | v4.1候補と承認準備監査 | 人間承認待ち | v4.1 exact revisionを人間が採否する |
-| 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1候補4文書。HARNESS 8、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | 起草済み・親承認待ち | v4.1承認後に導出一致をreviewし、人間承認する |
+| 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1候補4文書。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | 起草済み・親承認待ち | v4.1承認後に導出一致をreviewし、人間承認する |
 | 要求源の意味分類 | 各source atomのtarget、保持／変更／棄却、旧実現手段の扱いが分かる | Infinity 153、refinement 14、候補31系列、旧HARNESS 5文書のcrosswalk | 照合済み | 対象別L1確定後に再採否する |
-| 対象別L2 | 利用者、場面、操作、期待結果、非対象、出典、採否、合意revisionが対象別に閉じる | HARNESS 8、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6のdraft。粒度監査で36件すべてに分割・具体化が必要 | 未合意 | unit、connection、compositeへ再構成し、source atomを個別採否してprototype／非UI記録と人間合意を束縛する |
+| 対象別L2 | 利用者、場面、操作、期待結果、非対象、出典、採否、合意revisionが対象別に閉じる | HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6のdraft。粒度監査で37件すべてに分割・具体化が必要 | 未合意 | unit、connection、compositeへ再構成し、source atomを個別採否してprototype／非UI記録と人間合意を束縛する |
 | 画面・prototype | 採択画面ごとに要求revision、prototype revision、正常・欠落・失敗状態、合意者が対応する | 旧7文書・15画面の照合、L2画面境界 | 未合意 | 共通骨格参照8画面を含め、採択後のprototype条件を確定する |
-| L11受入設計 | 各L2要求に利用場面、期待結果、negative case、対象revisionが対応する | 対象別L11 draft 36件 | 起草済み・未承認 | L2のunit／connection／composite分割と合意revisionに合わせて確定する。実行は後工程 |
+| L11受入設計 | 各L2要求に利用場面、期待結果、negative case、対象revisionが対応する | 対象別L11 draft 37件 | 起草済み・未承認 | L2のunit／connection／composite分割と合意revisionに合わせて確定する。実行は後工程 |
 | L3／L10接続 | 合意済みL2から要件・総合検証を導出し、旧revisionを混ぜない | crosswalkと適用待ち差分のみ | 未着手 | L2合意後に開始する |
 | AI可読上流 | 承認済み上流からHARNESS契約、OS実行context、個別製品要求を分離生成できる要求が確定する | AIDOC要求10件とL11候補、legacy入口inventory | 要求案接続済み | Concept／L1／L2確定後に採否し、L3以降でmanifestを導出する |
 | 旧資産archive判断 | 旧実行面をcurrent pathから隔離し、各資産に意味移管、consumer、replacement、rollback、最終処置がある | `archive/legacy-generation-2026-09-14/`、legacy CI／AI inventory、各crosswalk | 実行面隔離済み、文書分類と意味移管は継続中 | archive sourceを対象別L2へ採否し、物理削除は個別判断まで行わない |

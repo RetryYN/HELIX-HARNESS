@@ -9,5 +9,10 @@ GitHub Issue／Projectへ同期する場合も本ticketへのprojectionとし、
 | 順序 | Ticket | 対象 | 状態 | GitHub projection |
 |---:|---|---|---|---|
 | 1 | [FT-OS-REQREG-001](FT-OS-REQREG-001.md) | HELIX-OS 要求候補自動登録 | proposed_upstream_waiting | [#1798](https://github.com/RetryYN/HELIX-HARNESS/issues/1798) |
-| 2 | [FT-HARNESS-REQENG-001](FT-HARNESS-REQENG-001.md) | HARNESS 要求エンジンPython core | proposed_upstream_waiting | [#1799](https://github.com/RetryYN/HELIX-HARNESS/issues/1799) |
-| 3 | [FT-OS-REQCLASS-001](FT-OS-REQCLASS-001.md) | HELIX-OS 要求分類projection | proposed_upstream_waiting | [#1800](https://github.com/RetryYN/HELIX-HARNESS/issues/1800) |
+| 2 | [FT-HARNESS-SEMEXTRACT-001](FT-HARNESS-SEMEXTRACT-001.md) | 旧実装semantic atomのPython core抽出 | proposed_upstream_waiting | projection_pending |
+| 3 | [FT-HARNESS-REQENG-001](FT-HARNESS-REQENG-001.md) | HARNESS 要求エンジンPython core | proposed_upstream_waiting | [#1799](https://github.com/RetryYN/HELIX-HARNESS/issues/1799) |
+| 4 | [FT-OS-REQCLASS-001](FT-OS-REQCLASS-001.md) | HELIX-OS 要求分類projection | proposed_upstream_waiting | [#1800](https://github.com/RetryYN/HELIX-HARNESS/issues/1800) |
+| 5 | [FT-HARNESS-DESIGNTPL-001](FT-HARNESS-DESIGNTPL-001.md) | HARNESS Design Template semantic coreとseed | proposed_upstream_waiting | projection_pending |
+| 6 | [FT-OS-DESIGNTPL-001](FT-OS-DESIGNTPL-001.md) | HELIX-OS Design Template lifecycle管理 | proposed_upstream_waiting | projection_pending |
+| 7 | [FT-HARNESS-TICKETCONTRACT-001](FT-HARNESS-TICKETCONTRACT-001.md) | HARNESS PoC／UI prototype／Feature ticket contract | proposed_upstream_waiting | projection_pending |
+| 8 | [FT-OS-TICKETISSUER-001](FT-OS-TICKETISSUER-001.md) | HELIX-OS推進によるtyped ticket／workflow生成・Issue projection | proposed_upstream_waiting | projection_pending |

@@ -24,6 +24,8 @@ OS内に別の要求エンジンや要求意味の正本を作らない。
 旧世代にはRequirement Engine、L3 Compiler、要求discovery、意味差分、trace、impact等の設計と
 TypeScript実装が存在した。一方、Python semantic coreを現行新世代で稼働・検証済みとする証拠はない。
 旧資産はbehavior sourceとして再採否し、既存実装や旧ADRのaccepted状態を新世代の完成証拠にしない。
+[意味密度による抽出方針](semantic-density-python-extraction-policy.md)に従い、意味判断の割合が高いbehavior atomを
+Pythonへ再導出し、認可・DB／Git／GitHub・lease等の外部作用はNode／TypeScript境界へ分離する。
 
 ## HARNESS要求候補
 

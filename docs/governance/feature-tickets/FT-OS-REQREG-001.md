@@ -20,6 +20,7 @@ parent_requirements:
 acceptance_source: docs/helix-os/L11-acceptance/governance-acceptance.md
 depends_on: []
 blocks:
+  - FT-HARNESS-SEMEXTRACT-001
   - FT-HARNESS-REQENG-001
   - FT-OS-REQCLASS-001
 ---

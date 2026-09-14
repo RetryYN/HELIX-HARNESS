@@ -80,6 +80,23 @@ HARNESS-L2-008が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／01
 固定しない。単体、接続、構成体のidentity候補と包含・接続・依存relationは、HARNESS要求エンジン確定後に別のversioned
 分類projectionとして関連付ける。原eventを再分類で書き換えず、単体の進行・証拠・完了を接続や構成体へ自動伝播しない。
 
+[設計template system要求候補](../../governance/candidates/design-template-system-requirements.md)のtemplate意味、適用規則、
+設計義務はHARNESS-L2-009が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／013として、承認済みseed／template、
+候補、retired版、対象projectの選定exact set、適用、義務、N/A、backflow、成果、finding、再作業、受入、運用結果を管理する。
+template未登録、stale、conflict、必要input欠落では任意様式へfallbackせず、停止または要求エンジンへ戻す。複数projectの
+結果から改善候補を作るが、利用回数やAI自己評価でtemplateを変更・昇格しない。
+
+[開発ticket導出要求候補](../../governance/candidates/development-ticket-derivation-requirements.md)のticket意味と工程条件は
+HARNESSが所有する。HELIX-OSはHELIXOS-L2-001／002／004／007／010として、PoC、UI prototype、Feature ticketを
+local authorityとして発行・登録し、必要なものをGitHub Issueへprojectionする。親要求revision、kind、因果ID、owner、
+scope、依存、許可、期限、backflowを持たないticketをreadyにしない。Issue作成・close、PoC成功、prototype表示を要求採用、
+実装完了、受入へ変換しない。技術選定は新世代architecture責務から候補を出し、PoC結果、risk、運用、移行、rollbackと
+採否・失効を管理する。
+管理は目的、親要求revision、優先度、制約、許可、予算、期限、適用HARNESS版を推進へ渡す。推進は作業を分解し、
+直交する駆動tagを付けてPoC／UI prototype／Feature ticketとworkflow instanceを生成する。管理は生成物、入力revision、
+semantic digest、未解決tag、再生成条件を登録・統制し、検収はHARNESS contractへの充足を独立確認する。GitHub labelはtagの
+projectionであり、remote label変更でactive workflowを書き換えない。tag変更は推進へ新revision候補として戻す。
+
 HELIXOS-L2-004／007では、reviewer identity、review対象、review route、実行権限を別に扱う。provider名や
 「reviewを通す」という依頼だけから、GitHub、ローカルCLI、API、IDE、HARNESS Worker等の任意通路を選ばない。
 route、account／credential、network、費用、read／write範囲、期限が許可されていない場合は`review_waiting`で停止し、

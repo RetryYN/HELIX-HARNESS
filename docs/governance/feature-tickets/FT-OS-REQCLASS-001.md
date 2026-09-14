@@ -3,7 +3,7 @@ feature_ticket_id: FT-OS-REQCLASS-001
 title: "HELIX-OS要求分類projection"
 product_target: HELIX-OS
 state: proposed_upstream_waiting
-priority_order: 3
+priority_order: 4
 created: 2026-09-15
 authority_effect: work_projection_only
 github_projection:

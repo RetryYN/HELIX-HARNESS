@@ -10,7 +10,7 @@ classification_authority: proposal_only
 
 ## 目的
 
-対象別L2の36要求案を、`unit`、`connection`、`composite`へそのまま確定する前に、現在一行へ混在する意味を確認する。
+対象別L2の37要求案を、`unit`、`connection`、`composite`へそのまま確定する前に、現在一行へ混在する意味を確認する。
 本監査の分類は要求エンジン実装前の人間可読proposalであり、要求IDの採択・分割・改番を行わない。
 現行IDはsource containerとして保持し、L2合意時に子要求とrelationへ分割する。
 
@@ -23,7 +23,7 @@ classification_authority: proposal_only
 
 `mixed`は将来のrequirement kindではなく監査所見である。分割後の子だけに正規kindを与える。
 
-## HARNESS 8件
+## HARNESS 9件
 
 | 現行ID | 現在形 | 再整理案 |
 |---|---|---|
@@ -35,6 +35,7 @@ classification_authority: proposal_only
 | HARNESS-L2-006 | composite | 提供機能unit、artifact／dependency／version接続、consumer package構成体へ分ける |
 | HARNESS-L2-007 | composite | 各product適用結果unit、HARNESS自己適用connection、Version 1構成体判定へ分ける |
 | HARNESS-L2-008 | mixed | 抽出・質問・差分・影響の各unit、source→候補→合意connection、要求群構成体へ分ける |
+| HARNESS-L2-009 | mixed | template適用・義務生成unit、要求→設計connection、missing inputのbackflow connection、seed pack構成体へ分ける |
 
 ## HELIX-OS 13件
 
@@ -81,11 +82,11 @@ classification_authority: proposal_only
 
 ## 監査結果
 
-36件は製品別ownerの整理には使えるが、そのまま要求エンジンの原子要求集合にはできない。
+37件は製品別ownerの整理には使えるが、そのまま要求エンジンの原子要求集合にはできない。
 
 | 判定 | 件数 | 意味 |
 |---|---:|---|
-| mixed | 14 | 複数unitまたはkindが一行に混在し、分割必須 |
+| mixed | 15 | 複数unitまたはkindが一行に混在し、分割必須 |
 | composite | 15 | 子unit／connectionと構成体固有acceptanceの明示が必要 |
 | connection | 7 | 接続端、方向、contract、失敗・回復の具体化が必要 |
 | unit | 0 | 現状のL2行だけで単一責務として閉じた要求は確認できない |

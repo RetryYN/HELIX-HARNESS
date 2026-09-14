@@ -39,6 +39,7 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-006 | HARNESS-L1-005 |
 | HARNESS-L2-007 | HARNESS-L1-007 |
 | HARNESS-L2-008 | HARNESS-L1-008 |
+| HARNESS-L2-009 | HARNESS-L1-009 |
 
 | ID | HARNESSに対する利用要求 | 主な移管元 | 確認する結果 |
 |---|---|---|---|
@@ -50,6 +51,26 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-006 | 外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる | 2026-09-14 PO指示、HBR-P6の提供物側条件 | HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる |
 | HARNESS-L2-007 | 検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果を含めて、HELIX-HARNESS製品群Version 1の完成を確認できる | 2026-09-14 PO指示、Vision §3／§13 | 性質の異なる対象で要求から受入・運用評価までの成立証拠を確認し、HELIX-Web等の展開前提を判定できる。Web自体の完成をVersion 1へ含めない |
 | HARNESS-L2-008 | 利用者指示と根拠から要求候補を形成し、単体・接続・構成体の対象粒度を分け、欠落・矛盾・重複・過剰解釈・対象違い・変更影響を提示して、人間の訂正と合意により要求へ収束できる | 2026-09-15 PO指示、旧Requirement Engine／ADR-010 | 製品非依存のPython semantic coreとして複数製品へ適用でき、機能A、A→Bの接続、A–Cから成るシステムAの要求と成立を混同せず、出力を承認済み要求や操作権限へ自動昇格させない |
+| HARNESS-L2-009 | 要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補として上流へ戻せる | 2026-09-15 PO指示、旧Design Template Registry | 初期seedを参照して設計の恣意性を抑え、templateから要求意味を自動決定せず、unit・connection・composite固有の設計と検証へ接続できる |
+
+## Design Templateと要求backflow
+
+[設計template system要求候補](../../governance/candidates/design-template-system-requirements.md)をHARNESS-L2-009の
+適用待ち具体化として保持する。Forwardでは合意要求から適用templateと設計義務を導く。Backflowではtemplate必須inputの
+欠落を質問、矛盾、derived requirement candidate、N/A判断候補としてHARNESS-L2-008へ返す。template本文、生成文書、
+旧schemaから要求意味・人間合意を生成しない。初期seedはarchiveと実例から意味を個別採否し、適用範囲と限界を持たせる。
+
+## PoC・UI prototype・Feature ticketへの分離
+
+[開発ticket導出要求候補](../../governance/candidates/development-ticket-derivation-requirements.md)を
+HARNESS-L2-002／003／008／009の適用待ち具体化として保持する。PoCは技術・成立性仮説、UI prototypeは利用者の
+操作・反応・合意、Featureは採用要求からのproduction成果を扱い、別ticket identityと状態を持つ。
+各ticketは親要求revision、問いまたは成果、scope、依存、pair、acceptance、許可、timebox、停止、backflowを持つ。
+旧開発コアの工程思想は意味atomとして保持し、技術は新世代architectureのsemantic／transactional責務から選び直す。
+ticket close、PoC成功、prototype生成から要求合意、技術採用、Feature完了を生成しない。
+HARNESSは駆動tag語彙や個別workflowを所有・生成せず、推進が生成したworkflowに必要layer／pair、成果物、oracle、
+human gate、停止・差戻し・backflow、許可操作が揃うことを判定するcontractを所有する。推進方式が変わっても
+HARNESS義務を落とさず、旧9-modeや`signal → mode`の実行器をHARNESSへ戻さない。
 
 移管元の本文は[柱要求](../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)、
 [要件v1.3](../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)を参照する。

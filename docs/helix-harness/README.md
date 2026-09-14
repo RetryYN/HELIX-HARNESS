@@ -10,8 +10,8 @@ HARNESSは外部へ提供・配布するプロダクトであり、Vモデル等
 | 入口 | 内容と状態 |
 |---|---|
 | [L1企画候補](L1-planning/product-intent.md) | 外部提供価値、対象外、L2への導出。Concept v4.1承認待ち |
-| [L2利用要求](L2-requirements/product-requirements.md) | 対象別に整理した8要求と工程条件。draft、IR移管未完了 |
-| [L11受入案](L11-acceptance/product-acceptance.md) | 同じ8要求の利用シナリオ・反例。全件未実行 |
+| [L2利用要求](L2-requirements/product-requirements.md) | 対象別に整理した9要求と工程条件。draft、IR移管未完了 |
+| [L11受入案](L11-acceptance/product-acceptance.md) | 同じ9要求の利用シナリオ・反例。全件未実行 |
 | [移管元・対象別対応](../governance/audits/source-rebaseline/l2-source-register.md) | 旧混在要求の監査、13柱の帰属、未移管条件 |
 
 archive内の旧`docs/design/harness/L1-requirements/`、`docs/design/helix/L2-screen/`等には旧harnessの層・画面・実行方式が混在している。

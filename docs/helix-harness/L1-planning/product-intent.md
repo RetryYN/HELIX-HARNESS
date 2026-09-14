@@ -33,6 +33,7 @@ HARNESSは、外部利用者が企画・要求・要件・設計・実装・検�
 | HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |
 | HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |
 | HARNESS-L1-008 | 利用者は、指示と根拠から要求候補を形成し、欠落・矛盾・過剰解釈・変更影響を確認して、合意した要求へ収束できる | HARNESS-L2-008 |
+| HARNESS-L1-009 | 利用者は、要求の種類と構成に合う設計templateを参照して必要な設計義務を導き、設計に必要な要求入力の不足を上流へ戻せる | HARNESS-L2-009 |
 
 上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。
 
@@ -58,6 +59,6 @@ OSや個別製品が参照する版を持つ。
 
 ## 採択条件
 
-Concept v4.1のexact revisionが人間承認され、本書の8要求がそのrevisionから導出されることを確認する。
+Concept v4.1のexact revisionが人間承認され、本書の9要求がそのrevisionから導出されることを確認する。
 旧L0-L14、旧9-mode、既存CI、旧DB／CLI／hook、旧HARNESS要求の実装済み宣言を承認根拠にしない。
 採択後にL2要求、L11受入、非UI適用性またはprototype、L12運用評価を同じrevisionへ接続する。

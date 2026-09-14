@@ -3,7 +3,7 @@ feature_ticket_id: FT-HARNESS-REQENG-001
 title: "HARNESS要求エンジンPython semantic core"
 product_target: HELIX-HARNESS
 state: proposed_upstream_waiting
-priority_order: 2
+priority_order: 3
 created: 2026-09-15
 authority_effect: work_projection_only
 github_projection:
@@ -16,6 +16,7 @@ parent_requirements:
 acceptance_source: docs/helix-harness/L11-acceptance/product-acceptance.md
 depends_on:
   - FT-OS-REQREG-001
+  - FT-HARNESS-SEMEXTRACT-001
 ---
 
 # FT-HARNESS-REQENG-001: HARNESS要求エンジンPython semantic core
@@ -50,7 +51,7 @@ Concept、企画、利用者指示、回答、反応、既存要求、製品固�
 
 1. HARNESS L1-008／L2-008とL11を承認revisionへ束縛する。
 2. FT-OS-REQREG-001の登録contractとnegative oracleを先にfreezeする。
-3. 旧Requirement Engine、Requirement Compiler、discovery、trace、impact資産からbehavior atomを個別採否する。
+3. FT-HARNESS-SEMEXTRACT-001で旧Requirement Engine、Requirement Compiler、discovery、trace、impact資産からsemantic behavior atomを個別採否する。
 4. L3でsemantic contract、schema、pack、resource boundary、determinismを定義する。
 5. L10で欠落、過剰抽出、対象違い、粒度混在、構成体成立の誤推定、stale、malformed outputを検証する。
 6. Python coreを実装し、Node境界と登録入口へ接続する。

@@ -38,6 +38,8 @@ pair_artifact: docs/helix-os/L2-requirements/governance-requirements.md
 - HELIXOS-L2-001／002／005／007／013：Concept／企画L1、要求エンジンの入力・出力L2候補、人間の訂正・採否、採用要求、後続の見逃しを同じ因果IDで登録する。企画価値の要求化漏れ、企画外の意味追加、対象違い、scope／non-goal逸脱を個別に示し、戻す層と判断者へ辿る。登録やログ件数だけでは要求採用・改善成立とせず、許可外の生会話・PII・別project dataを学習へ転用しない。
 - HELIXOS-L2-001／002／007／013：機能A–Cの単体、A→B／B→Cの接続、システムAの構成体を別identityとrelationで登録する。全単体を完了にしても接続・構成体を自動完了せず、接続変更から影響する単体・構成体・検証へ辿る。
 - HELIXOS-L2-001／002／007／013：要求分類schemaを与えずに原eventを登録し、意味未分類のまま出典と因果関係を再構築できる。後から異なるengine／schema版で分類しても原eventを改変せず、旧分類、stale、新分類を別projectionとして確認する。
+- HELIXOS-L2-001／002／005／007／013：要求kindとriskを変えてtemplate候補、選定版、設計義務、N/A、backflow、消込を追跡する。template欠落、stale、conflict、必要input欠落では自由形式へfallbackせず、旧template利用実績や文書生成から適用・完成を生成しない。
+- HELIXOS-L2-001／002／004／007／010：管理が同じ目的・親要求・制約を推進へ渡し、推進が異なる開発style、work kind、変更種別、risk、surface tagとticket graphを生成する。同じ入力・規則なら同じworkflow digestを得て、検収がHARNESS義務の欠落を拒否する。管理によるtag先決め、tag欠落・競合・unknownのready化、GitHub labelだけによるactive workflow変更を認めない。
 - HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。
 - HELIXOS-L2-008：上流意味review、下流verification、merge admission、releaseを別pipeline classとして生成する。Concept候補のremote syncで旧CI／merge pipelineが起動する構成を拒否する。
 - HELIXOS-L2-008：失敗後の修正と再実行を追跡する。新HEADへ旧CI／review結果を付けた場合、旧workflowを新世代profileとして扱った場合、required oracleを省略した場合は進行可能と表示しない。
