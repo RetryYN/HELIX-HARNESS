@@ -4,6 +4,7 @@ status: source_lines_preserved_pending_atomization
 scope: 旧要求文書22件
 authority: [要求文書carry-forward台帳](legacy-requirement-document-carry-forward.jsonl)
 machine_ledger: [semantic line台帳](legacy-requirement-semantic-line-carry-forward.jsonl)
+review_queue: [atom化review queue](legacy-requirement-atomization-review-queue.jsonl)
 
 ## 目的
 
@@ -19,9 +20,12 @@ machine_ledger: [semantic line台帳](legacy-requirement-semantic-line-carry-for
 | 保持semantic line | 2,386 | 原文、source path、行番号、heading path、line digestを保持 |
 | 既存identityへ接続済みのline | 328 | confirmed文書identity 175件とRequirement IR 153件へ接続 |
 | atom化待ちのline | 2,058 | `preserved_pending_atomization`。要求／根拠／例／navigation等の分類前 |
+| atom化review unit | 721 | 同一文書・同一heading・連続行だけをまとめた処理単位。最大29行 |
 | 意味変更、retire、successor割当 | 0 | 人間判断なしには変更しない |
 
 2,058件は未分類候補の数であって、未発見要求の確定数ではない。要求ではないと後に分類する場合も、source spanを台帳から削除せず、分類根拠と判断revisionを追記する。
+
+721 review unitは要求identityでもGitHub ticketでもない。2,058行を漏れなく、元文書とheadingの順序で読める大きさへ分けただけである。review unitから要求atomを生成するまでは、対象product、要求種別、重複、被覆を確定しない。
 
 ## 台帳field
 
@@ -44,6 +48,14 @@ machine_ledger: [semantic line台帳](legacy-requirement-semantic-line-carry-for
 5. prose、根拠、例、navigationへ分類しても削除しない。分類revisionと根拠を残す。
 6. 意味変更、縮退、統合、retireは対象revision付きの人間decisionなしに適用しない。
 7. GitHub Issue、PR、CI、実装の状態から分類や要求採否を逆算しない。
+
+## review queueの成立条件
+
+- 2,058の`content_line_id`が721 unitに重複なく一回ずつ現れる。
+- 既存identityへ接続済みの328行をqueueへ混入させない。
+- 一つのunitは同一source file、同一heading path、連続する物理行だけを含む。
+- unit内最大行数は29であり、source順を維持する。
+- 全unitを`classification_status: not_started`、`target_assignment_status: unassigned`、意味変更0、successor 0から開始する。
 
 ## 不合格条件
 
