@@ -35,6 +35,7 @@ partitionは要求identityごとの後続PRを並べるqueue単位であり、su
 W1は[業務価値要求33件の原文付きqueue](legacy-ir-w1-business-rehome-queue.md)へ展開済みで、
 OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断候補8（適用0）である。
 [W1人間判断候補の意味分解](legacy-ir-w1-human-decision-candidates.md)は、この8件について保持する意味、責務上の整理箇所、後続PRで示す判断を分けている。削除・縮退・統合・降格は提案していない。
+[W2機能要求69件のqueue](legacy-ir-w2-functional-rehome-queue.md)は、HELIX-OS候補43件、HARNESS／OS分割候補23件、対象未解決3件を原文・digest付きで展開している。意味変更・照合候補8件は未適用、successorは全件未割当である。
 
 ## 元statusの保持
 
