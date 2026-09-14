@@ -15,7 +15,8 @@ parent_requirements:
   - HARNESS-L2-008
   - HARNESS-L2-009
 policy_source: docs/governance/candidates/semantic-density-python-extraction-policy.md
-depends_on:
+depends_on: []
+delivery_sequence_predecessor:
   - FT-OS-REQREG-001
 blocks:
   - FT-HARNESS-REQENG-001
@@ -34,7 +35,7 @@ behavior atomへ分解し、意味密度と外部作用からPython coreへ取�
 - 対象assetとbehavior atomのexact inventory。
 - semantic-dominant／transactional-dominant／mixed／historical-onlyの判定と根拠。
 - 新世代親要求、product、requirement kind、input／output、invariant、failure、oracleへのcrosswalk。
-- Pythonへ再導出するatom、Nodeで再構成するeffect、棄却する旧結合のexact set。
+- Pythonへ再導出するatom、外部作用境界で再構成するeffect、棄却する旧結合のexact set。境界技術はL3で選定する。
 - fixture provenance、data／license／security／resource境界。
 
 ## 停止条件
@@ -45,3 +46,6 @@ behavior atomへ分解し、意味密度と外部作用からPython coreへ取�
 - 新要求のoracle、failure、unknown扱いが未定義。
 
 現在はticket発行だけを行う。archive codeのcopy、Python実装、Node接続、旧test／CI実行は行わない。
+
+FT-OS-REQREG-001を先行させるのはHELIX内部のdelivery sequenceである。semantic atom抽出とHARNESS製品契約は
+OS登録入口へ機能依存せず、別consumerで利用できる形を維持する。

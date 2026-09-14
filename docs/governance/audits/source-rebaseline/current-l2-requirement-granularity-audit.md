@@ -2,7 +2,7 @@
 title: "新世代L2要求の単体・接続・構成体分類監査"
 status: draft_audit
 created: 2026-09-15
-source_revision: working_tree_pending_commit
+source_revision: 0e17dadf0bad6f8f3d1c594fab1dc4bef284a9f0
 classification_authority: proposal_only
 ---
 

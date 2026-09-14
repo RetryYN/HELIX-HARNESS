@@ -36,6 +36,7 @@ pair_artifact: docs/helix-os/L2-requirements/governance-requirements.md
 - HELIXOS-L2-004／007：reviewer名だけ、GitHub routeだけ、CLI routeだけを順に許可し、指定route以外を起動しないことを確認する。route未指定、別routeの過去許可、timeout、無出力では`review_waiting`を維持し、無許可実行の出力をreview receiptへ採用しない。
 - HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。
 - HELIXOS-L2-001／002／005／007／013：Concept／企画L1、要求エンジンの入力・出力L2候補、人間の訂正・採否、採用要求、後続の見逃しを同じ因果IDで登録する。企画価値の要求化漏れ、企画外の意味追加、対象違い、scope／non-goal逸脱を個別に示し、戻す層と判断者へ辿る。登録やログ件数だけでは要求採用・改善成立とせず、許可外の生会話・PII・別project dataを学習へ転用しない。
+- HELIXOS-L2-001／005／007：改善入力の利用同意欠落、data class不明、retention期限超過、許可scope不一致を個別に投入し、拒否または隔離して学習・要求化・別project転用へ進めない。後から許可を補っても、過去の無許可処理を成功へ書き換えない。
 - HELIXOS-L2-001／002／007／013：機能A–Cの単体、A→B／B→Cの接続、システムAの構成体を別identityとrelationで登録する。全単体を完了にしても接続・構成体を自動完了せず、接続変更から影響する単体・構成体・検証へ辿る。
 - HELIXOS-L2-001／002／007／013：要求分類schemaを与えずに原eventを登録し、意味未分類のまま出典と因果関係を再構築できる。後から異なるengine／schema版で分類しても原eventを改変せず、旧分類、stale、新分類を別projectionとして確認する。
 - HELIXOS-L2-001／002／005／007／013：要求kindとriskを変えてtemplate候補、選定版、設計義務、N/A、backflow、消込を追跡する。template欠落、stale、conflict、必要input欠落では自由形式へfallbackせず、旧template利用実績や文書生成から適用・完成を生成しない。

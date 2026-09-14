@@ -18,7 +18,7 @@ operational_owner: HELIX-OS
 
 | ID | 要求 | 確認する結果 |
 |---|---|---|
-| DTK-HARNESS-001 | 要求候補または合意要求から、解消すべき不確実性と次の成果に応じたtyped ticket候補を導く | 要求本文、Issue、実装作業を同じidentityにしない |
+| DTK-HARNESS-001 | 要求候補または合意要求から推進がtyped ticketを生成するときに、解消すべき不確実性、次の成果、ticket identityを区別するcontractを定める | HARNESS自身がticketを生成せず、要求本文、Issue、実装作業を同じidentityにしない |
 | DTK-HARNESS-002 | `poc` ticketは技術・成立性仮説、対象要求、timebox、許可scope、入力、判定基準、expected evidence、終了条件、backflow先を持つ | PoC成功をproduction要求採用・製品完成・恒久技術選定へ自動昇格しない |
 | DTK-HARNESS-003 | `ui_prototype` ticketは対象要求・actor・task・surface、prototype revision、確認する操作・状態・failure、利用者反応、合意／未解決、backflow先を持つ | 画像作成、画面表示、AI評価だけで要求合意にしない |
 | DTK-HARNESS-004 | `feature` ticketは採用済み親要求、対象kind、設計義務、pair、acceptance、scope、依存、許可、停止、証拠を持つ | 未承認要求やPoC仮説をproduction実装へ降ろさない |
@@ -34,8 +34,8 @@ operational_owner: HELIX-OS
 | DTK-OS-002 | local ticketをGitHub Issue等へprojectionし、remote番号・状態・commentを原ticketへ関連付ける | Issue本文・label・closeから親要求、承認、完了を補完しない |
 | DTK-OS-003 | PoC／prototype／featureの実行・成果・反応・finding・期限切れ・取消を別stateで管理し、正しい要求・template・設計へbackflowする | PoC成功やprototype合意を無関係なfeatureへ伝播しない |
 | DTK-OS-004 | architectureで分けたsemantic／transactional責務ごとに技術候補、評価条件、PoC結果、採否、失効を管理する | 人気、旧採用、単一benchmarkだけで技術を固定しない |
-| DTK-OS-005 | 推進は管理から受けた目的・要求・制約とHARNESS contractを解釈し、作業を分解して駆動tagを付け、PoC／UI prototype／Feature ticketとworkflowを生成する | 管理指示を一枚の作業へ丸めず、同じ入力・規則から同じticket graphとworkflow digestを得る |
-| DTK-OS-006 | 駆動tagを直交する軸として推進が管理し、開発style、work kind、変更種別、risk、surfaceを必要に応じて合成する | 旧9-modeや`signal → mode`を単一enumとして再導入せず、PoCとScrum等の異なる軸を排他的にしない |
+| DTK-OS-005 | 推進は管理から受けた目的・要求・制約とHARNESS contractを解釈し、自ら所有するtag語彙とworkflow生成規則で作業を分解して、PoC／UI prototype／Feature ticketとworkflowを生成する | 管理指示を一枚の作業へ丸めず、同じ入力・規則から同じticket graphとworkflow digestを得る |
+| DTK-OS-006 | 駆動tag語彙と生成規則を推進がversion管理し、開発style、work kind、変更種別、risk、surfaceを必要に応じて合成する | HARNESSや管理層へ語彙・生成規則を移さず、旧9-modeや`signal → mode`を単一enumとして再導入せず、PoCとScrum等の異なる軸を排他的にしない |
 | DTK-OS-007 | 検収は推進が生成したticket graphとworkflowを承認済みHARNESS contract、親要求、依存、許可に照らして独立確認し、不足を推進または上流へ戻す | 推進の自己申告、tag、Issue作成だけでworkflowを適格としない |
 
 ## ticket共通identity候補

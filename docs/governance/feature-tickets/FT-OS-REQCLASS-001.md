@@ -56,6 +56,6 @@ FT-OS-REQREG-001が保持する意味未分類の原eventへ、HARNESS要求エ�
 2. FT-HARNESS-REQENG-001のsemantic output contractをfreezeする。
 3. L3でprojection identity、version join、stale／supersede／reclassification contractを定義する。
 4. L10でengine版変更、schema変更、分類競合、wrong product、原event欠落、重複、部分投影を検証する。
-5. Node／TypeScript境界で検証してprojectionをcommitし、原eventと分類結果をread-afterする。
+5. L3で選定したtransactional boundaryで検証してprojectionをcommitし、原eventと分類結果をread-afterする。
 
 現在はticket発行だけを行い、分類schema、DB、engine、runtime、CIを実装・起動しない。

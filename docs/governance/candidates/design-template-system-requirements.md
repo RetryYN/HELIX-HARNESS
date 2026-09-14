@@ -59,4 +59,5 @@ source inventoryへ入れ、意味atomごとに採択する。最小seedは少�
 templateの存在は要求充足、設計完成、検証成功を証明しない。旧Design Template JSON、旧#290、旧test、旧CIの成功は
 behavior sourceであり、新世代seedの承認や完成証拠にしない。
 [意味密度による抽出方針](semantic-density-python-extraction-policy.md)に従い、applicability、設計義務、required input不足、
-backflow、semantic impactはPython core候補、registry commit・版適用・外部作用はNode／TypeScript境界候補として分離する。
+backflow、semantic impactはPython core候補、registry commit・版適用・外部作用はtransactional boundary候補として分離し、
+後者の実装技術は新世代architectureからL3以降で選定する。

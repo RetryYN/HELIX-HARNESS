@@ -92,6 +92,7 @@ AVS／RFA／DGH由来の条件は採用revision確定後に検証する。全件
 - HARNESS-L2-008：指示にない制約を追加した出力、指示の一部を落とした出力、別製品の規則を混入した出力を個別に不成立とし、質問・訂正・再抽出へ戻せることを確認する。
 - HARNESS-L2-008：同一入力・engine版・製品pack版から決定論的な構造化結果を得る。network、DB、Git、GitHub、repository、credentialを与えずに意味処理できない場合は不成立とする。
 - HARNESS-L2-008：機能A、機能B、機能Cの単体要求を成立させても、A→B／B→Cの接続要求とA–Cから成るシステムAの構成体要求が未成立なら全体を成立としない。接続の順序、data意味、timeout、部分失敗、回復とend-to-end acceptanceを個別に確認する。
+- HARNESS-L2-008／009：子機能が個別に性能・security条件を満たしても、構成体全体の性能budget超過またはtrust boundary違反があれば不成立とする。非適用を選ぶ場合は理由、判断者、対象revision、再評価条件のいずれかを欠くN/Aを受け入れない。
 - HARNESS-L2-008：構成体要求の変更から影響する接続・単体へ、単体interfaceの変更から影響する接続・構成体へ双方向に辿り、無関係な構成を失効させない。
 - HARNESS-L2-009：同じunit要求へunit／connection／composite templateを順に与え、unitに非適用なtemplateを理由付きで区別する。接続要求へunit templateだけを適用しても設計義務を満たしたとしない。
 - HARNESS-L2-009：templateの必須inputを一つ欠かし、AI補完ではなく質問・要求候補・N/A判断候補へbackflowする。未承認候補、stale版、別product版、該当なしで任意templateへfallbackしない。

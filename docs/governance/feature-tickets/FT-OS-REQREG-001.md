@@ -19,9 +19,10 @@ parent_requirements:
   - HELIXOS-L2-013
 acceptance_source: docs/helix-os/L11-acceptance/governance-acceptance.md
 depends_on: []
-blocks:
+delivery_precedes:
   - FT-HARNESS-SEMEXTRACT-001
   - FT-HARNESS-REQENG-001
+blocks:
   - FT-OS-REQCLASS-001
 ---
 
@@ -87,8 +88,11 @@ field名と永続化schemaはL3で確定する。上記は要求漏れを防ぐt
 1. 親Concept、HELIX-OS L1／L2とL11を承認revisionへ束縛する。
 2. L3で原登録event、identity、因果接続、idempotency、authorization、retention contractを定義する。
 3. L10で重複、stale、wrong product、scope逸脱、部分失敗、再開、data拒否を検証する。
-4. Node／TypeScript transactional boundaryとして設計し、単一commitとread-afterを実装する。
+4. L3で選定したtransactional boundaryとして設計し、単一commitとread-afterを実装する。
 5. 意味未分類の手動event fixtureで成立させてから、要求エンジンをproducerとして接続する。
+
+この順序はHELIX内部で管理登録を先に成立させるdelivery sequenceであり、HARNESS要求エンジン製品の
+入力・出力契約をHELIX-OSへ依存させない。HARNESS単体または別consumerは、OS登録入口なしでengineを利用できる。
 
 ## 停止条件
 

@@ -1,6 +1,6 @@
 # HARNESS・HELIX-OS・個別プロダクトの責務決定
 
-本書は2026-09-14の本作業会話でPOが明示した要求対象と責務を、出典付きの人間発言記録として保持する。
+本書は2026-09-14から2026-09-15の本作業会話でPOが明示した要求対象と責務を、出典付きの人間発言記録として保持する。
 本書だけでは恒久authorityや承認を生成しない。効力は[人間判断packet](../governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md)に
 記載したexact SHA-256への人間decisionへ束縛する。判断までは旧文書の混在表現より優先する候補境界として使用し、
 個別L2要求案の一括承認、L3凍結、IR admission、実装・受入・公開の完了を記録しない。
@@ -18,6 +18,15 @@
 | 「検証フェーズでいくつかのプロダクトを作ってみてWeb展開だから自己プロジェクトへの適応が入ると思ってくれ。」 | Version 1完成前に複数プロダクトを実開発し、HELIX自身のプロジェクトへの適用も検証する。その実証後にWebを展開する |
 | 「HELIX-Webの展開時はHELIX-OSの外にHELIX-Web-OSを作る感じだな。」 | Webのservice runtimeは独立したHELIX-Web-OSが担う。HELIX-OSはその開発・改善projectを統制する |
 | 「Web-OSからのログをHELIX-OSが吸収してサービスを改善していくから最終的に接続される。」 | Web-OSは許可されたservice log・telemetryをHELIX-OSへ連携し、HELIX-OSが改善候補へ統合する。運転authorityは分離したまま改善loopで接続する |
+| 「HARNESS側だと思うぞ。要求エンジンから導いたものを管理に登録する仕組みだからな。」 | 要求エンジンの意味機能はHARNESS、導出結果の登録・管理はHELIX-OS |
+| 「管理層は企画から要求エンジンとの齟齬管理できないとな。」 | Concept／企画L1から要求候補・採用要求までの意味差分はHARNESS engineが提示し、OS管理層が系譜・routing・状態を管理する |
+| 「要求自体も細分化したほうがよくて単体要求と接続要求で事前に意味を持たせておくといい。機能Aの要求なのか、機能A～Cの集まったシステムAの要求なのかで。」 | 要求をunit、connection、compositeへ分け、単体成立から接続・構成体成立を推定しない |
+| 「登録層と分類層に分離する必要がある。」 | 意味未分類の原event登録を先行し、engine確定後の分類をversioned projectionとして分離する |
+| 「いまこれがチケット発行の役割をしていると思え。そしてイシューに登録される。」 | local ticketを意味sourceとして発行し、GitHub Issueへ作業projectionする |
+| 「初期はテンプレがないと参照するものがなくて適当になる。だからHELIXが必要になるって話な。」 | HARNESSはDesign Templateと初期seedを持ち、HELIX-OSが版・適用・利用結果・改善を管理する |
+| 「意味割合の多い部分をPython化する方針で旧実装から引き込む。」 | 旧実装のsemantic-dominant behaviorをPython coreへ再導出し、外部作用は新世代architectureで技術選定する |
+| 「要求側にPoCや画面プロトの接続があったと思うがこれらはそもそもチケットで切れる必要がある」 | PoC、UI prototype、Featureを要求へ接続する別ticketとして発行する |
+| 「管理層が推進側へ工程を渡して推進機構がチケットを切る。」「HARNESSがtag語彙とworkflow生成規則を所有ここが違う。推進側が生成する。」 | 管理が目的・要求・制約・許可・予算・期限・HARNESS版を推進へ渡す。推進機構が駆動tag語彙とworkflow生成規則を所有してticket graphとworkflowを生成する。HARNESSは必要な開発・検証contractを規定し、管理は生成物を登録・統制し、検収が独立確認する |
 
 ## 対象別の正規入口
 

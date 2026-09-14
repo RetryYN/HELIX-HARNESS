@@ -19,14 +19,15 @@ comment_inventory: `github-issue-comment-retirement-inventory.jsonl`
 - 明細台帳の`semantic_disposition`は全件`unresolved`とし、対象別L2での採否まで維持する。
 - Issue番号、title、URL、label、作成・更新時点、本文SHA-256をローカル明細へ固定する。1,330コメントもcomment ID、
   Issue番号、URL、作成・更新時点、本文SHA-256を別明細へ固定する。本文・comment自体はGitHubのclosed historical sourceとして保持する。
-- 新世代の作業が必要になった場合は旧Issueをreopenせず、承認済み上流revisionから新しい作業契約を作り、
-  `local_adoption_ref`で旧sourceへ接続する。
+- 新世代の作業が必要になった場合は旧Issueをreopenせず、repo-owned作業契約を作り`local_adoption_ref`で旧sourceへ接続する。
+  上流承認前に人間の明示指示から具体化する場合は`proposed_upstream_waiting`に限定し、実行可能状態へ進めない。
 
 ## 対象外
 
 - Draft PR #1797と、そのGitHub Claude review comment。
 - Concept／L1／L2／L11の採否、要求意味の変更、archive資産の物理削除。
-- 新世代Issueの起票。新世代作業契約の形式は上流承認後にHELIX-OS要求から導出する。
+- 本退役操作そのものによる新世代Issue起票。後続の2026-09-15 PO指示で許可されたFeature Ticket projectionは
+  [別操作記録](github-feature-ticket-projection-2026-09-15.md)に分離する。
 
 ## 完了条件
 
