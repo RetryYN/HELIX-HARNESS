@@ -17,7 +17,7 @@ authority_effect: finding_only
 | B5 | blocker | 旧CI、runtime、prompt等が追加条件付きで完全一致copy可能に見える | 旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定を完全一致再利用の対象外classへ固定 |
 | M5 | major | 旧8値と新7値のdisposition語彙が二重 | Concept・policyを新7値へ統一し、旧語彙からの対応を記録 |
 | M6 | major | 個別親要求なしの類型へ`semantic_rederive`を付与 | 個別行のないmanifest 4020件をすべて`unresolved`へ固定 |
-| M7 | major | CodeQL一時停止の許可scope・期限・復旧条件が不足 | actor、対象、scope、期限2026-09-22、期限時停止、復旧判断境界を設定記録とbacklogへ追加 |
+| M7 | major | CodeQL一時停止の許可scope・期限・復旧条件が不足 | 後続reviewで会話からの許可推定とrepository-wide実作用の不一致を確認したため、許可記録を無効化し変更前相当へ復元 |
 | M8 | major | 完全一致再利用のL11 bulletに親L2 IDがない | HARNESS-L2-004／005／006、HELIXOS-L2-002／006／007を明記 |
 | m4 | minor | archive隔離記録の「文書」とfile数が混在 | 68／74とも「ファイル」へ統一 |
 | m5 | minor | 未合意台帳が`active_inventory` | `draft_inventory`へ変更 |

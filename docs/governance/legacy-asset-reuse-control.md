@@ -11,6 +11,13 @@ byte copyで現行化しない。archive manifestの全4020件を母集団とし
 本書で個別行を持たないmanifest entryの既定dispositionは`unresolved`とする。したがって台帳未記載は母集団からの除外を
 意味しない。
 
+## archive内規則との優先関係
+
+archive内READMEのcopy禁止は、旧世代snapshot自身が定めた既定規則として保持する。現行側で完全一致再利用を判断する
+場合は本書を上位の統制とするが、例外にできるのは本書へ個別登録され、親要求と承認revisionを持つ非実行資産だけである。
+旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定は例外にできない。archive内READMEは
+historical evidenceとして改変しない。
+
 ## disposition
 
 | disposition | 意味 | 現行pathへのcopy |

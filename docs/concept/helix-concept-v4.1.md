@@ -16,6 +16,7 @@ evidence_baseline:
   - docs/governance/audits/source-rebaseline/concept-v4.1-claude-review-96171b9ba.md
   - docs/governance/audits/source-rebaseline/concept-v4.1-github-review-250fbe1ef.md
   - docs/governance/audits/source-rebaseline/legacy-reuse-github-review-5dd1f685c.md
+  - docs/governance/audits/source-rebaseline/upstream-github-review-3969a2f8b.md
 ---
 
 # HELIX Concept v4.1候補

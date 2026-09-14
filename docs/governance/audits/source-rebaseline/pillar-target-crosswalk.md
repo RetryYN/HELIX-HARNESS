@@ -1,5 +1,8 @@
 # HELIX柱要求の対象別対応
 
+> **旧世代sourceの対応記録:** 本表の上位IDと「正規改訂」は旧世代sourceから意味を採取するための対応語であり、
+> 旧文書を新世代canonicalへ再昇格する指示ではない。採用は対象別L2の個別判断で行う。
+
 確認日: 2026-09-14
 
 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md`のP0–P9と

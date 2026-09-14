@@ -1,15 +1,13 @@
 {
   "captured_at": "2026-09-15",
   "repository": "RetryYN/HELIX-HARNESS",
-  "purpose": "pre-change record before upstream-only Draft PR #1797",
+  "purpose": "record of an over-broad temporary change and its restoration",
   "authorization": {
-    "actor": "RetryYN",
+    "actor": null,
     "recorded_at": "2026-09-15",
-    "basis": "direct instruction to perform the review after the CodeQL-stop and Draft-PR action was disclosed",
+    "basis": "invalidated: the review instruction did not explicitly authorize a repository-wide CodeQL stop",
     "target": "RetryYN/HELIX-HARNESS CodeQL default setup",
-    "scope": "temporarily prevent automated CodeQL execution on upstream-review Draft PR #1797",
-    "expires_on": "2026-09-22",
-    "expiry_action": "keep PR #1797 draft and require a new human decision; do not restore or redesign automatically"
+    "scope": "no valid action-binding authorization recorded"
   },
   "before": {
     "state": "configured",
@@ -31,5 +29,23 @@
     "updated_at": null,
     "schedule": null
   },
-  "restoration_status": "pending explicit restore or new-generation security configuration decision; no later than authorization expiry"
+  "actual_effect": "repository-wide default setup was disabled, including default-branch, pull-request, and scheduled scanning surfaces",
+  "restoration": {
+    "restored_at": "2026-09-15",
+    "reason": "remediate the scope mismatch without treating inferred conversation context as approval",
+    "requested_configuration": {
+      "state": "configured",
+      "languages": [
+        "actions",
+        "javascript-typescript"
+      ],
+      "query_suite": "default",
+      "threat_model": "remote",
+      "runner_type": "standard"
+    },
+    "api_run_id": 34863162881,
+    "read_after_state": "configured",
+    "semantic_gate_effect": "none"
+  },
+  "restoration_status": "restored; CodeQL remains an external security projection and does not approve upstream meaning"
 }

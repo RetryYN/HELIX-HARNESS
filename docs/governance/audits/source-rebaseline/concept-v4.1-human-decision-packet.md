@@ -43,7 +43,7 @@ status: awaiting_human_decision
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `642bb4ef522ea49c5806aedfee88be755d799e9355056f5ebd885fa61d537e56` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
+| `docs/concept/helix-concept-v4.1.md` | `c9ac680983ac87e65f64353cb5fcfa86953525b5c5c4b3a7194ffd4db5abfd96` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
 | `docs/helix-harness/L1-planning/product-intent.md` | `e72334069da58904094cac5da074855c0d432416d4edc9e2cf11f83668ab1a20` | HARNESSの外部提供価値7件と対象外 |
 | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |
@@ -100,6 +100,10 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
   [review](legacy-reuse-github-review-5dd1f685c.md)ではB3..B5、M5..M8、m4..m5を検出した。これらは後続revisionで
   copy実績の誤記、archive規則の優先関係、完全一致copy対象外class、disposition語彙、`unresolved`既定、CodeQL記録、
   L11親ID、台帳状態を修正した。
+- HEAD `3969a2f8b80c8d1659718dd6fa63bd3958a51a06`の
+  [review](upstream-github-review-3969a2f8b.md)では、過去22所見のうち21件が解消済みと判定された。残るB6は
+  CodeQL停止の記録scopeとrepository-wide実作用の不一致、minor 2件は再利用統制の必読経路とhistorical注記だった。
+  後続revisionでCodeQLを変更前相当へ復元し、会話からの許可推定を無効化し、2注記を追加した。
 
 各reviewは対象HEADのfindingであり、後続HEADのpassではない。現在の判断対象SHAへGitHub Claude再reviewを依頼済みで、
 結果が返るまでは既知所見への修正済み自己申告と静的照合だけである。人間判断時は最新review結果を本packetへ追記し、

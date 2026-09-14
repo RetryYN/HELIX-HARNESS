@@ -50,5 +50,5 @@ Blockerがある場合はfile、該当箇所、矛盾する上流方針、必要
 - Claude reviewはGitHub上の通路だけを使い、CLI／API／IDE／HARNESS Workerへfallbackしない。
 - review結果はfindingであり、人間承認・canonical化・mergeを自動成立させない。
 - 旧`harness-check` required contextと旧repository workflow 4件は解除／disable済みである。
-- CodeQL default setupはPR作成前に`not-configured`へ変更済みで、DependabotはGitHub管理の外部projectionとしてactiveである。
-  いずれもこのPRの意味gateへ使わない。
+- CodeQL default setupは一時停止のscope不整合を是正して`configured`へ復元済みで、DependabotとともにGitHub管理の
+  外部security projectionとして扱う。旧harness CIでもこのPRの意味gateでもない。

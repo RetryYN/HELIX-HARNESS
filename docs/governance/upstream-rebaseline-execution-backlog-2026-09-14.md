@@ -79,10 +79,10 @@ URB-U1-001のcandidateはremote branchへ同期済みである。ただし旧PR 
 U1のreview・承認・完了根拠にしない。上流意味reviewの専用laneが未整備のため、補助状態は`review_waiting`とする。
 archive-first commit `064280b5c`もremote branchへ同期済みで、新runは0である。旧PRを再開せず、新しいPRを共有・reviewへ
 使う。旧`harness-check` required contextはPO許可後に解除し、旧workflow 4件もdisable済みである。
-GitHub管理のCodeQL default setupはPR #1797の上流reviewにscopeを限定して一時停止し、Dependabotは未変更である。
-CodeQLのbefore／after、許可scope、期限、復旧条件は
-[設定変更記録](github-codeql-default-setup-backup-2026-09-15.json)に保持する。どちらも上流の意味判定やmerge gateには使わず、
-上流承認やmergeへ自動進行しない。
+GitHub管理のCodeQL default setupは一時停止のscopeがrepository全体へ及び、明示されたaction-binding approvalもなかったため、
+変更前相当の`configured`へ復元した。before／一時停止／復元read-afterは
+[設定変更記録](github-codeql-default-setup-backup-2026-09-15.json)に保持する。CodeQLとDependabotは外部security projectionであり、
+旧harness CI、新世代上流の意味判定、merge gateには使わず、上流承認やmergeへ自動進行しない。
 
 ## 停止規律
 
