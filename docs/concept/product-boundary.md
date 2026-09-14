@@ -82,7 +82,7 @@ v4.0の承認を流用せず、v4.1の人間承認後に次の境界を同じrev
 | Control／Execution／Ledger／Adaptation Plane | HELIX-OSの管理・統制・Worker・ログ・学習・改善責務へ接続する |
 | Change Contract Compiler／Assurance Kernel | HARNESSが提供する工程・契約・検証能力と、OSが行うcanonical transactionを分ける |
 
-旧L0 charterのP0–P9も同様に対象別へ再採否する。V-model、工程、検証、外部利用条件はHARNESSへ、
+旧L0 charterのP0–P9も意味を保持して対象別へ再配置する。V-model、工程、検証、外部利用条件はHARNESSへ、
 連続走行、orchestration、GitHub／CI運転、memory／状態、学習、外部実行統制はHELIX-OSへ置く。
 「harness memoryを根幹に自己保守する」という旧表現は、HARNESS製品がmemoryを必須内包する意味に使わず、
 HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責務へ置き換える。
@@ -93,7 +93,7 @@ HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責
 ## 文書整備で守ること
 
 - 上位概念を本決定に対応づけ、L2要求とL11受入、L3要件とL10総合検証を対象別に接続する。現行L1–L12と正規pairは維持する。
-- 要求意味の正本は指定されたローカル文書・JSONと、その採否・合意revisionである。GitHubは作業管理の接続先であり、Issue closeから要求削除・充足を生成しない。
+- 要求意味の正本は指定されたローカル文書・JSONと、その変更・合意revisionである。既存要求は保持が既定であり、意味変更・縮退・retireだけを人間判断へ送る。GitHubは作業管理の接続先であり、Issue closeから要求削除・充足を生成しない。
 - 旧Concept・旧物理path・旧名称を理由に、OSの内部運用をHARNESSの必須提供構成に戻さない。参照するHARNESS版と適用対象を記録する。
 - 候補承認、対象別L2合意、L3凍結、IR移管、実装、利用者受入は別状態として保持する。旧候補の承認を新しい具体化の承認へ流用しない。
 - remote branchへの同期、独立した上流意味review、人間の採否、PR／CIによる下流検証を別operationにする。旧CIを通すことを上流整理の成立条件にしない。

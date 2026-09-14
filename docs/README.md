@@ -19,4 +19,6 @@
 `governance/audits/source-rebaseline/`は新世代上流を決めるための監査証拠であり、製品要求のownerではない。
 
 旧世代はrepository rootの`archive/legacy-generation-2026-09-14/root/`に元構造のまま凍結している。
-archive内の物理構成を新世代の製品区分へ並べ替えず、必要な意味だけを対象別上流へ再採否する。
+archive内の物理構成は新世代の製品区分へ並べ替えない。採用済み要求は
+[現行保持領域](governance/requirements-source/README.md)へ同一byteで保持し、意味を削減せず対象別上流へ再配置する。
+候補は元の候補状態を保ち、採用済み要求を候補へ降格しない。

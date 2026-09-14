@@ -88,7 +88,7 @@ HBR9件／HNFR4件にHOT13件が対応するが、本文は旧L14観測であり
 
 既存15 NFRや7節を一括で棄却・現行採用しない。HIL/HBR/HNFR/refinementへの対応を要求単位で照合する。
 読了済み5文書は[新世代対象別対応](legacy-harness-requirements-source-crosswalk.md)で
-10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節を対象別に分類した。個別採否とL2合意は継続中。
+10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節を対象別に分類した。原要求は保持済みであり、原要求単位の再配置とL2合意は継続中。
 業務要求のKPIも保持対象として照合する。D-07はAI委譲工数率を要求するが、計測場所の
 `drive:`集計だけでは工数の分子・分母を測れる証拠にならない。D-04の回帰発生総件数の
 取得方法も本文では確定していない。旧目標値の存在と現行測定可能性・達成を区別する。
@@ -359,7 +359,7 @@ green-command evidence欠落の診断がある。変更前との同条件比較�
 
 153のcanonical要求IDを3対応表で過不足・重複なく参照していること、追補14契約の対応を確認した。
 その後の対象別追加を含む最新静的scanではHARNESS 9／OS 13／Web 9／Web-OS 6のL2・L11 ID集合が一致し、
-active authority Markdown相対リンク352件の参照切れは0件である。完全一致保持した旧要件本文内の旧相対リンク2件は、byte一致を壊さないためhistorical pathのまま保持し、このactive link判定から除外する。
+active authority Markdown相対リンク353件の参照切れは0件である。完全一致保持した旧要件本文内の旧相対リンク2件は、byte一致を壊さないためhistorical pathのまま保持し、このactive link判定から除外する。
 `git diff -- requirements-ir config/requirement-ir-authority.json`は差分なし。canonical JSONの意味是正は未実施である。
 これらは構造と配置の検証であり、全条件の意味被覆や利用者受入の証明ではない。
 
