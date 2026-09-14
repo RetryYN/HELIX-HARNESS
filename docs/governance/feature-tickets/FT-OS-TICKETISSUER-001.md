@@ -28,14 +28,14 @@ depends_on:
 
 ## 目的
 
-管理から目的、親要求、優先度、制約、許可、予算、期限、適用HARNESS版を受け、推進が作業を分解して駆動tag、
+管理から目的、親要求、優先度、制約、許可、予算、期限、適用HARNESS版を受け、推進がHARNESSのtriggerと条件付きrouteを評価して作業を分解し、operational tag、
 PoC、UI prototype、Feature ticketとworkflowを生成する。管理は生成物を登録・統制し、必要なticketだけをGitHub Issueへ
 projectionする。検収はHARNESS contractへの充足を独立確認する。
 
 ## 境界
 
 - Issue作成前にlocal ticket ID、親要求revision、kind、owner、scope、依存、backflow、停止条件を固定する。
-- 推進がticket発行時に承認済みHARNESS版と駆動tagからworkflow instanceを生成し、管理が入力tag、contract revision、digest、未解決、再生成条件を登録する。
+- 推進がticket発行時に承認済みHARNESS版のnormative vocabulary、trigger、route内順序、joinとoperational tagのversioned mappingからworkflow instanceを生成し、管理が入力tag、contract revision、digest、未解決、再生成条件を登録する。
 - Issueは作業・協調projectionであり、要求・ticket意味・承認・完了の正本にしない。
 - remote変更をeventとして取り込んでも、local authorityを自動上書きせず、必要な再生成を推進へ戻す。
 - GitHub labelはlocal駆動tagのprojectionであり、label追加・削除からworkflowを無断再生成しない。

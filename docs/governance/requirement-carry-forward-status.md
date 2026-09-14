@@ -19,7 +19,7 @@ authority: machine ledgers linked below
 現時点ではsuccessor割当済みは0件である。37件の対象別L2はrouting containerであり、この表のsuccessorへ自動算入しない。
 要求の再配置が始まっていないことを、要求削減や移管完了として表示しない。
 v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pending_rehome`列へ混在させない。
-旧candidate 92文書の4,755行も`candidate_source_preserved`／`target unapproved`／`preserved_pending_atomization`であり、採用済み要求や棄却済み実現方式へ混在させない。
+旧candidate 92文書の4,755行も`historical_candidate`／`draft_candidate`／`preserved_pending_atomization`であり、採用済み要求や棄却済み実現方式へ混在させない。
 
 ## IR 153件の対象routing候補
 
@@ -52,7 +52,7 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 - [IR要求carry-forward](legacy-requirement-carry-forward.jsonl) — `51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0`
 - [confirmed文書identity carry-forward](legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
 - [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
-- [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `acf3bf6ceb4bab0a6a0d63e0b9d1abb3b033302c7fc8ddbe20123d48732e0af3`
+- [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `ccfccb421d2764cf4730959aa0f0a9f6538f44b04ac6f2fa92a0bcbca3430b39`
 - [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 
 ## 判定規則

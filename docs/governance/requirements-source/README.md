@@ -1,6 +1,6 @@
 # 旧要求の現行保持領域
 
-status: active_preserved_requirement_source
+status: source_snapshot_preserved_pending_human_confirmation
 policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-forward-policy.md)
 
 このdirectoryは、旧要求をarchiveだけへ退避して実質的に捨てないためのread-only source snapshotである。要求本文とRequirement IRを旧sourceから同一byteで保持するが、新世代authority、実装、oracleへ自動昇格しない。旧owner、旧技術、旧実装名が含まれていても、それを理由に要求の意味を削除しない。対象product、責務、粒度、接続関係は後続の要求PRで整理する。

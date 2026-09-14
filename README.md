@@ -12,7 +12,7 @@ adapter、source、test、設定、AI instructionを実行・復元・fallback�
 
 archive内READMEのcopy禁止は旧世代snapshotに含まれる既定の隔離規則である。新世代側では
 [完全一致再利用統制](docs/governance/legacy-asset-reuse-control.md)が上位の現行規則であり、そこに承認済み
-`verbatim_reuse`行がある非実行資産だけをarchiveから同一byteでcopyできる。旧workflow、runtime／CLI、hook、
+`verbatim_reuse`の承認行、または要求を落とさないための`source_snapshot_preservation`行がある非実行資産だけをarchiveから同一byteでcopyできる。後者は物理保全であり、対象productへの配置承認を意味しない。旧workflow、runtime／CLI、hook、
 adapter、AI instruction／prompt、実行設定は例外対象外であり、archive内README自体はhistorical bytesとして変更しない。
 
 新世代CIは未構築である。現時点のPRは上流候補の共有と許可された意味reviewに使えるが、旧CIのgreen、
