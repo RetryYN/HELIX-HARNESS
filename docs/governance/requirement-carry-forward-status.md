@@ -26,6 +26,8 @@ authority: machine ledgers linked below
 [対象routing queue](legacy-ir-target-routing-queue.jsonl)は既存crosswalkの記述をfield分離したものであり、
 successor割当、意味変更、承認を成立させない。23件は`meaning_change_applied: false`、全153件は
 `successor_assignment_status: unassigned`のまま保持する。
+対象未解決18件は、[判断packet](legacy-ir-unresolved-routing-decision-packet.md)でruntime・技術制約の層別17件と
+Domain Object規律の適用範囲1件へ整理した。これは判断内容を明確にするものであり、配置や意味変更を確定しない。
 
 ## 元statusの保持
 
