@@ -18,3 +18,7 @@ policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-f
 ## 読後検証
 
 2026-09-15時点で、要求本文1ファイル、Requirement IR 6ファイル、旧要求文書22ファイルの計29ファイルをsourceとbyte比較し、29/29一致した。これは要求の保持証拠であり、要求の再承認、責務分離完了、実装、受入を意味しない。
+
+22文書のsource metadataは、`confirmed` 17件、`draft` 3件、`proposed` 1件、`placeholder` 1件である。
+台帳では`confirmed`を`accepted_requirement_preserved`として保持し、残る5件も元statusを変えず保存する。
+新世代の物理配置や37件のrouting containerを理由に、`confirmed`を未承認候補へ降格しない。

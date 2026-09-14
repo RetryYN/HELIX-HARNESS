@@ -69,3 +69,6 @@ refinement 14契約、旧HARNESS要求5文書、screen要求、candidate 97文�
 旧HARNESS要求5文書、旧画面要求7文書、旧HELIX要求9文書、画面境界1文書は、元のauthority状態を
 再分類せず現行保持領域へ同一byteで配置する。文書に旧ownerや旧技術が混在する場合も、責務・実現方式の整理と
 要求意味の保持を別判断にする。文書単位の保持だけでatom単位の再配置完了とはせず、原要求ID単位の台帳を順次追加する。
+source metadataが`confirmed`の17文書は`accepted_requirement_preserved`、`draft`／`proposed`／`placeholder`の
+5文書は`source_state_preserved_without_promotion`とする。新世代側で承認を取り直していないことを理由に、前者を
+後者へ変更しない。責務分離によって意味変更が必要な箇所だけを、人間decisionへ送る。
