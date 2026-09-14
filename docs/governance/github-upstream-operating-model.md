@@ -59,8 +59,9 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 - Issue投影前にlocal ticketの存在、`source_revision`での内容、source digestを確認する。Issueの意味欄はlocal ticket本文からの転記に限定し、転記内容のdigest不一致はprojection失敗とする。
 - local ticketが存在しないIssue Form入力はwork authorityにしない。新規の人間指示を含む場合は入力を原eventとしてローカル登録へ戻し、要求採否と分けたprojection failure receiptを残してIssueを非実装状態で閉じる。入力を黙って捨てない。
 - 上流承認前に人間の明示指示から起票する場合は`proposed_upstream_waiting`に固定し、実装可能状態へ進めない。
-- 推進機構がtag語彙とworkflow生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。
-- 管理層は生成物を登録・統制する。HARNESSは生成物が満たす開発・検証contractを規定し、tag語彙、生成規則、ticket発行を所有しない。
+- HARNESSが工程のnormative vocabulary、適用条件、順序、停止・差戻し・完了条件を所有する。企画から前提整理、research、必要なPoC／prototype、要求合意、設計・検証へ進む意味順序もHARNESS contractである。
+- 推進機構はHARNESS語彙を別定義せず、operational tag、versioned mapping、composition、workflow instance生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。
+- 管理層は生成物を登録・統制する。HARNESSは個別ticket発行やworkflow instance生成を行わず、推進はHARNESSの工程順序を追加・削除・並べ替えない。
 - PRは対応するlocal ticketとIssueを参照する。Issue closeやPR mergeだけでticket完了を生成しない。
 
 ### 自動投影実装前のbootstrap
@@ -97,7 +98,7 @@ PR classが未選択または複数指定のPRはReadyにしない。
 5. 旧要求を扱う場合は原要求ID、原文digest、successor ID、意味atomの被覆、未被覆atomを記録する。未被覆は`pending`として保持し、旧実装・旧CIをauthorityへ戻さない。
 6. 影響する既存要求だけを示し、無関係な要求を同じPRへ混載しない。
 7. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。
-8. 意味変更またはretireがある場合だけ、人間の明示判断と対象revisionをdecision recordへ束縛する。保持と再配置を既定とする。
+8. すべての`requirement` PRで、対象revisionに束縛した人間decision recordを持つ。保持・再配置の確認、意味変更、retireを別decision種別として記録する。
 
 ## 新世代CIへの接続
 

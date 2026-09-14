@@ -46,6 +46,7 @@ historical evidenceとして改変しない。
 
 | disposition | 意味 | 現行pathへのcopy |
 |---|---|---|
+| `source_snapshot_preservation` | 要求を欠落なく再整理するための非実行・read-only・非authority source snapshot。新世代実装やoracleとして再利用しない | 必須。source／target digest一致とcopy read-afterを記録する |
 | `verbatim_reuse` | 同じ意味・責務・interface・権利・security・consumer・実行境界で同一byteを使用する | 必須。source／target digest一致を確認する |
 | `semantic_rederive` | 意味だけを採択し、新世代の要求・設計・oracle・実装へ降ろし直す | 禁止 |
 | `replace` | 新世代で別の資産へ置換する | 禁止 |
@@ -64,8 +65,7 @@ credential参照、実行可能性、外部作用が判明した他資産も、�
 
 ## 現在の完全一致再利用
 
-承認済み`verbatim_reuse`は0件である。manifest entry 4020件は資産明細台帳へ全件展開済みであり、現在の
-`disposition`はすべて`unresolved`である。
+承認済み`verbatim_reuse`は0件である。要求source 29件だけは、POの要求保全指示に基づく`source_snapshot_preservation`として個別判断・copy read-afterを記録した。これは完全一致再利用、要求採用、新世代authorityへの昇格ではない。残る3,991件は`unresolved`である。
 
 現行`LICENSE`とarchive内の監査用写し
 `archive/legacy-generation-2026-09-14/root/docs/archive/cross-system-audit-2026-09-05/source/upstream_license.txt`は

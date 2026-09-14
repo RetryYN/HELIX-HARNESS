@@ -32,7 +32,7 @@ processing_contract: [atom化review contract](requirement-atomization-review-con
 
 | Wave | unit | line | 順序と停止条件 |
 |---|---:|---:|---|
-| `A1-accepted-requirement-source` | 462 | 1,529 | `confirmed`として保持した要求文書を、文書台帳順・source line順に処理する |
+| `A1-source-confirmed-preserved` | 462 | 1,529 | `confirmed`として保持した要求文書を、文書台帳順・source line順に処理する |
 | `A2-source-state-preserved-without-promotion` | 259 | 529 | A1の分類proposal完了後に処理する。`draft`、`proposed`、`placeholder`を要求採用へ昇格させない |
 
 このwaveはレビュー順だけを決める。A1を新世代要求として自動採用せず、A2を削除・降格もしない。各sourceの元status、要求意味の保持、対象別authorityへの採用を別状態として扱う。

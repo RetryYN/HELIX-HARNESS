@@ -39,7 +39,7 @@ document_ledger: `legacy-requirement-document-carry-forward.jsonl`
 | 状態 | 意味 |
 |---|---|
 | `preserved_pending_rehome` | 原要求をそのまま保持し、対象別successorへの配置が未完 |
-| `split_with_full_coverage` | 複数successorに分割し、意味被覆とtraceを確認済み |
+| `split_with_full_coverage` | 複数successorに分割し、意味被覆とtraceを人間が対象revision付きで確認済み |
 | `reworded_with_equivalence` | 表現を変えたが意味同値を人間が確認済み |
 | `changed_by_human_decision` | 意味変更を人間が対象revision付きで明示した |
 | `retired_by_human_decision` | 不要化を人間が理由・影響・後継付きで明示した |
@@ -54,7 +54,7 @@ document_ledger: `legacy-requirement-document-carry-forward.jsonl`
 2. successor要求IDと対象productを記録する。
 3. 元要求の意味atomとsuccessorの被覆を示す。
 4. 未被覆atomを削除せず`pending`として残す。
-5. 意味変更・retireがある場合は人間decisionの対象revision、理由、影響を記録する。
+5. 保持・再配置を含むすべての要求PRで人間decisionの対象revisionを記録し、意味変更・retireでは理由と影響も記録する。
 6. L11へ正常系・失敗・回復・制約の確認を接続する。
 
 これらを満たしても実装・受入・運用成立は生成しない。
@@ -69,7 +69,7 @@ refinement 14契約、旧HARNESS要求5文書、screen要求、candidate 97文�
 旧HARNESS要求5文書、旧画面要求7文書、旧HELIX要求9文書、画面境界1文書は、元のauthority状態を
 再分類せず現行保持領域へ同一byteで配置する。文書に旧ownerや旧技術が混在する場合も、責務・実現方式の整理と
 要求意味の保持を別判断にする。文書単位の保持だけでatom単位の再配置完了とはせず、原要求ID単位の台帳を順次追加する。
-source metadataが`confirmed`の17文書は`accepted_requirement_preserved`、`draft`／`proposed`／`placeholder`の
+source metadataが`confirmed`の17文書は`source_confirmed_preserved`、`draft`／`proposed`／`placeholder`の
 5文書は`source_state_preserved_without_promotion`とする。新世代側で承認を取り直していないことを理由に、前者を
 後者へ変更しない。責務分離によって意味変更が必要な箇所だけを、人間decisionへ送る。
 

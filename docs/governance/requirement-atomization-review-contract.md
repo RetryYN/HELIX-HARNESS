@@ -38,7 +38,7 @@ candidate_atoms:
     exact_source_text: ""
     normalized_statement: ""
     candidate_kind: requirement | constraint | acceptance | premise | rationale | example | navigation | metadata | unresolved
-    candidate_target: HELIX-HARNESS | HELIX-OS | HELIX-Web | HELIX-Web-OS | cross-product | unresolved
+    candidate_target: HELIX-HARNESS | HELIX-OS | HELIX-Web | HELIX-Web-OS | unresolved
     candidate_granularity: unit | connection | composite | unresolved
     existing_identity_relations:
       - identity: source-qualified-id
@@ -56,7 +56,7 @@ decision_record: null
 
 ## line coverage
 
-- `input_content_line_ids`の各IDを`consumed_once`、`shared_context`、`unresolved`のいずれかへ一回だけ置く。
+- `input_content_line_ids`の各IDを`consumed_once`または`unresolved`のいずれかへ一回だけ置く。`shared_context`は当該unitの入力外にある前後unitの行だけに使う。
 - 一つのsource lineから複数atom候補を作る場合、同じline IDを各atomへ参照できるが、coverage集計では一回と数える。
 - 複数行を一atomへまとめる場合、間の行を省略しない。
 - 前後unitの行を参照するときは`shared_context`に置き、隣接unitの処理済み状態を生成しない。
@@ -85,7 +85,7 @@ proposal生成、独立review、PR作成、Issue投影、CI、実装、類似度
 ## proposalの機械確認
 
 1. review unitのsource SHAと全line digestが入力台帳に一致する。
-2. 入力line IDがcoverage三分類へ重複なく全件現れる。
+2. 入力line IDが`consumed_once`または`unresolved`へ重複なく全件現れ、`consumed_once`の各行は少なくとも一つのcandidate atomの`source_line_ids`に現れる。
 3. 各candidate atomに原文、source line、kind、target、granularity、既存identity relationがある。
 4. 原文にある否定、例外、停止、証拠、数量、actor、authority、failure条件が`retained_meaning`または`unresolved`に現れる。
 5. `meaning_change_applied: false`、successor空、decision nullである。

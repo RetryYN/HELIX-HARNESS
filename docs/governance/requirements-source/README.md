@@ -3,7 +3,7 @@
 status: active_preserved_requirement_source
 policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-forward-policy.md)
 
-このdirectoryは、旧要求をarchiveだけへ退避して実質的に捨てないための現行入力面である。要求本文とRequirement IRを旧sourceから同一byteで保持する。旧owner、旧技術、旧実装名が含まれていても、それを理由に要求の意味を削除しない。対象product、責務、粒度、接続関係は後続の要求PRで整理する。
+このdirectoryは、旧要求をarchiveだけへ退避して実質的に捨てないためのread-only source snapshotである。要求本文とRequirement IRを旧sourceから同一byteで保持するが、新世代authority、実装、oracleへ自動昇格しない。旧owner、旧技術、旧実装名が含まれていても、それを理由に要求の意味を削除しない。対象product、責務、粒度、接続関係は後続の要求PRで整理する。
 
 - `helix-requirements_v1.3.md`: 旧要件本文の完全一致copy
 - `requirements-ir/`: 旧Requirement IR 6ファイルの完全一致copy
@@ -25,7 +25,7 @@ policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-f
 2026-09-15時点で、要求本文1ファイル、Requirement IR 6ファイル、旧要求文書22ファイルの計29ファイルをsourceとbyte比較し、29/29一致した。これは要求の保持証拠であり、要求の再承認、責務分離完了、実装、受入を意味しない。
 
 22文書のsource metadataは、`confirmed` 17件、`draft` 3件、`proposed` 1件、`placeholder` 1件である。
-台帳では`confirmed`を`accepted_requirement_preserved`として保持し、残る5件も元statusを変えず保存する。
+台帳では`confirmed`を`source_confirmed_preserved`として保持し、残る5件も元statusを変えず保存する。
 新世代の物理配置や37件のrouting containerを理由に、`confirmed`を未承認候補へ降格しない。
 
 confirmed文書の要求表、要求見出し、要求宣言行から、source-qualified identity 175件を原文行付きで台帳化した。

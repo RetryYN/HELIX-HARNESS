@@ -182,7 +182,7 @@ MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求
 HELIX-OSの実行統制、個別製品の要求へ欠落なく再配置する。分類済みを採択済みとは扱わない。
 
 - [画面境界](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md)と対文書はL2／L11の整備案へ改訂した。
-  draftであり、要求・プロト合意と実操作受入の証拠は未確認。旧confirmedを引き継がず、対文書のcanonical再利用禁止も維持する。
+  draftであり、要求・プロト合意と実操作受入の証拠は未確認。旧sourceでconfirmedだった状態は保持するが新世代target authorityへ自動昇格せず、対文書のcanonical再利用禁止も維持する。
 - [要求発見契約](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md)はL2の質問・回答・prototype・
   agreementとL3 JSON凍結を分けている。これは要求を整理する仕組みの契約であり、HELIXの全L2要求本文ではない。
 - `docs/governance/candidates/`の要求候補も監査対象に含める。候補と現行要求を合算して承認済みと扱わない。

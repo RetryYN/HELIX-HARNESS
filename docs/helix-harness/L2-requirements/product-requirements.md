@@ -74,7 +74,7 @@ HARNESS-L2-002／003／008／009の適用待ち具体化として保持する。
 各ticketは親要求revision、問いまたは成果、scope、依存、pair、acceptance、許可、timebox、停止、backflowを持つ。
 旧開発コアの工程思想は意味atomとして保持し、技術は新世代architectureのsemantic／transactional責務から選び直す。
 ticket close、PoC成功、prototype生成から要求合意、技術採用、Feature完了を生成しない。
-HARNESSは駆動tag語彙や個別workflowを所有・生成せず、推進が生成したworkflowに必要layer／pair、成果物、oracle、
+HARNESSは工程のnormative vocabulary、適用条件、順序、停止・差戻し・完了条件を所有する。企画から前提整理、research、必要なPoC／UI prototype、要求合意へ進む順序を含む。個別のoperational tag、mapping、ticket、workflow instanceは生成せず、推進が生成したworkflowに必要layer／pair、成果物、oracle、
 human gate、停止・差戻し・backflow、許可操作が揃うことを判定するcontractを所有する。推進方式が変わっても
 HARNESS義務を落とさず、旧9-modeや`signal → mode`の実行器をHARNESSへ戻さない。
 

@@ -20,7 +20,7 @@ copy_read_after_path: `docs/governance/legacy-asset-copy-read-after.jsonl`
 | `decision_revision` | 人間判断または承認済み上流のexact revision |
 | `asset_class_before`／`asset_class_after` | 内容監査前後の資産class |
 | `reuse_exclusion_class_before`／`reuse_exclusion_class_after` | 一次分類と内容監査後の停止class。nullも明示する |
-| `disposition` | 統制で定めた7値のいずれか |
+| `disposition` | 統制で定めた8値のいずれか |
 | `product_target`／`upstream_ids`／`pair_ids` | 製品ownerと上流接続 |
 | `consumer_refs` | 現在および移行後consumer |
 | `rights_status`／`executability_status`／`secret_status`／`external_effect_status` | 個別確認結果 |
@@ -36,7 +36,7 @@ copy_read_after_path: `docs/governance/legacy-asset-copy-read-after.jsonl`
 2. 同じ`asset_id`の`asset_revision_after`は直前revisionより1だけ増やす。
 3. 明細台帳の更新と判断ログ追記を同一commitへ含め、台帳の`decision_record_ref`を
    `docs/governance/legacy-asset-decisions.jsonl#<decision_id>`へ設定する。
-4. `reuse_exclusion_class`が非nullなら`verbatim_reuse`を拒否する。nullでも内容監査と全確認項目が閉じるまで拒否する。
+4. `reuse_exclusion_class`が非nullなら`verbatim_reuse`を拒否する。nullでも内容監査と全確認項目が閉じるまで拒否する。要求保全専用の`source_snapshot_preservation`は非実行・read-only・非authorityであることを記録し、再利用許可へ読み替えない。
 5. `verbatim_reuse`ではcopy後にtarget digestとconsumerをread-afterし、下記copy・read-afterログを台帳へ接続する。
 6. GitHub Issue／PR／CI／review状態だけから判断行を生成しない。
 
@@ -57,4 +57,4 @@ copy_read_after_path: `docs/governance/legacy-asset-copy-read-after.jsonl`
 | `evidence_refs` | command output、commit/tree、その他の反証可能な証拠 |
 
 台帳の`read_after_record_ref`は`docs/governance/legacy-asset-copy-read-after.jsonl#<read_after_id>`へ設定する。
-現在のcopy・read-afterログは0件であり、copy実績を生成しない。
+要求source snapshot 29件のcopy・read-afterを記録済みである。その他のcopy実績を生成しない。
