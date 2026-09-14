@@ -19,11 +19,12 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
    - [HELIX-Web](../helix-web/L1-planning/product-intent.md)
    - [HELIX-Web-OS](../helix-web-os/L1-planning/system-intent.md)
 4. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
-5. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
-6. [GitHub上流運用モデル](github-upstream-operating-model.md)
-7. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
-8. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
-9. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
+5. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
+6. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
+7. [GitHub上流運用モデル](github-upstream-operating-model.md)
+8. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
+9. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
+10. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
    指定された旧source／crosswalkを読む。明細台帳は機械参照用であり、AIの全文startup readには含めない。
    個別採否時は[判断ログ契約](legacy-asset-decision-log.md)に従う
 

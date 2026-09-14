@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 新世代の上流運用を確認する
+    url: https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md
+    about: Issueを作る前にlocal authority、PR class、停止条件を確認してください
