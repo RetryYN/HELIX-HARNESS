@@ -37,6 +37,10 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-007 | HELIXOS-L1-002／HELIXOS-L1-004／HELIXOS-L1-007／HELIXOS-L1-008 |
 | HELIXOS-L2-008 | HELIXOS-L1-004 |
 | HELIXOS-L2-009 | HELIXOS-L1-003／HELIXOS-L1-008 |
+| HELIXOS-L2-010 | HELIXOS-L1-009 |
+| HELIXOS-L2-011 | HELIXOS-L1-010 |
+| HELIXOS-L2-012 | HELIXOS-L1-011 |
+| HELIXOS-L2-013 | HELIXOS-L1-012 |
 
 | ID | HELIX-OSに対する利用要求 | 主な移管元 | 確認する結果 |
 |---|---|---|---|
@@ -49,6 +53,10 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |
 | HELIXOS-L2-008 | 承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |
 | HELIXOS-L2-009 | 中断・担当交代・障害後に、許可範囲内で継続・復旧できる | HBR-P1／P2、HNFR-P5／P8 | 累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ |
+| HELIXOS-L2-010 | 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる | HELIX-OS編成案 §1／2／6 | 管理は目的・優先度・依存・資源・停止を統制し、推進は成果を作り、検収は収束を判断する。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない |
+| HELIXOS-L2-011 | ticket、設計、実差分、統合先、依存から統合順序・統合単位・必要検証を算出し、実行結果とbase変更に応じて再計画できる | HELIX-OS編成案 §1／4 | 実際の統合候補で検証し、必要CI欠落、影響不明、stale結果を拒否する。review、内容検証、merge admission、release、運用評価を分けて収束させる |
+| HELIXOS-L2-012 | 内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる | HELIX-OS編成案 §3／6 | 内部事例を先に照合し、不足分だけを未信頼外部情報として取得する。秘密を送信せず、取得文の命令やpatchを実行せず、closed／mergedだけで解決済みにしない |
+| HELIXOS-L2-013 | 管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる | HELIX-OS編成案 §5 | 観測事実・AI仮説・承認・表示、未着手・観測停止・正常を区別する。管理自身も是正対象とし、自動writeせず、修正後の症状と退行を再観測する |
 
 移管元は[柱要求](../../helix/L1-requirements/pillar-requirements.md)、
 [Concept v4由来整理案](../../helix/L2-requirements/concept-v4-derived-requirements.md)、
@@ -192,6 +200,11 @@ INV-068／070／071／072は対象製品・data・権利・評価要求が成立
 
 ログ保存・DB投影は要求の意味正本を代替しない。必要な証拠の種類と工程条件はHARNESSを参照し、
 その収集・保全・有効性確認と実行制御をHELIX-OSが担う。
+
+Agentic Workerは探索を含む有界な調査・設計・実装・testを担う。Patch Bot Workerは、正解とwrite-setが
+承認済み契約から一意に決まる限定修復だけをHELIXOS-L2-004の配下で担い、行数で分類しない。
+設計選択が必要なら推進責務へ返し、修復者とHELIXOS-L2-011の最終検収者を分ける。いずれも要求・権限を
+自己拡張せず、具体runtime、provider、固定Worker数を本要求では決めない。
 
 ## 新世代CIの再構築条件
 

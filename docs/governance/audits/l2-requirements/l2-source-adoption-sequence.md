@@ -91,5 +91,5 @@ S4の完了前にpackage identity、価格、契約、release、配布、旧資�
 ## 完了条件
 
 29 decision unitすべてについて、判断対象revision、target、親L1、L2 ID、L11条件、採否、未解決事項が記録され、
-対象別L2本文と一致したときにsource採否を閉じる。候補30系列の残る1系列`helix-concept-v4`は
+対象別L2本文と一致したときにsource採否を閉じる。候補31系列の残る1系列`helix-concept-v4`は
 上位のConcept／L1人間判断packetで扱うため、本書の29 unitには重複算入しない。

@@ -29,6 +29,7 @@
 | `harness-memory-coordination-boundary` | HELIX-OS | L2接続済み | memoryを有期限通知とpointerへ限定し、意味正本を複製しない条件をOSへ接続 |
 | `helix-commercial-license` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | HARNESSの提供許諾、OSのasset・配布統制、個別製品契約へ分離。「HELIX全体」の一括商用方針は採用せず、条文・権利・価格・準拠法等は法務判断待ち。現行LICENSE不変 |
 | `helix-concept-v4` | HELIX全体 | 照合済み・人間承認待ち | v4.1でHARNESS、HELIX-OS、HELIX-Webを分離し、対象別L2／L11へ接続。旧提供構成identityを未採択化。承認準備監査済みだがhuman approval未実施 |
+| `helix-os-organization-intake-2026-09-14` | HELIX-OS | L2接続済み | 管理・推進・検収、統合再計画、内部／外部crawler、因果診断をHELIXOS-L2-010..013へ接続。Worker、限定修復、CI、Ticket、実行境界は既存要求を具体化 |
 | `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | 運用品質を要求・検証へ接続する工程条件はHARNESS、配備・監視・incident・復旧統制はOS、具体SLO・環境・保持値は適用先製品へ分離。旧owner／engine再利用は棄却 |
 | `instruction-path-change-resilience` | HELIX-OS | 照合済み・再採否待ち | provenance・版固定・stale・provider差をAIDOCへ候補接続。旧owner・consumer・adapterは持ち込まない |
 | `legacy-asset-retirement-requirements` | HARNESS / HELIX-OS | L2接続済み | 意味移管・pair・oracleはHARNESS、inventory・consumer切断・非実行archive・復元防止・物理削除承認はOSへ分ける。要求整理中は現行資産を移動・削除しない |

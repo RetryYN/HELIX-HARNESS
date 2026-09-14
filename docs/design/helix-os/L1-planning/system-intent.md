@@ -33,6 +33,10 @@ HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、
 | HELIXOS-L1-006 | 人間は、観測・失敗・学習を出典付き候補として評価し、採択した改善だけを対象要求へ戻せる | HELIXOS-L2-005 |
 | HELIXOS-L1-007 | 人間は、HARNESSと個別製品のrelease、deployment、observationを対象revisionと許可へ束縛して統制できる | HELIXOS-L2-002／006／007 |
 | HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |
+| HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |
+| HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |
+| HELIXOS-L1-011 | 人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる | HELIXOS-L2-012 |
+| HELIXOS-L1-012 | 人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる | HELIXOS-L2-013 |
 
 上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。
 
@@ -59,6 +63,6 @@ HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、
 
 ## 採択条件
 
-Concept v4.1のexact revisionが人間承認され、本書の8要求がそのrevisionから導出されることを確認する。
+Concept v4.1のexact revisionが人間承認され、本書の12要求がそのrevisionから導出されることを確認する。
 Issue、PR、Projects、DB、memory、既存CIの状態から要求・承認・完了を生成しない。
 採択後にL2要求、L11受入、L12運用評価を同じrevisionへ接続し、操作authorityや実装方式はL3以降で導出する。
