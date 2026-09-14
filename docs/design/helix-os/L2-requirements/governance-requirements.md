@@ -233,14 +233,20 @@ HELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作
 具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、
 故障注入、production操作、自動修復を実行しない。
 
-## 管理対象としてのHELIX-Web
+## 管理対象としてのHELIX-WebとHELIX-Web-OS
 
-2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」を、HELIXOS-L2-001／002／003／005の具体的な対象として保持する。
-HARNESSとHELIX-Webはそれぞれ要求正本・合意revision・進行状態を持ち、OSが横断して管理する。
+2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、
+HELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは
+それぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。
 Web固有の利用者体験やサービス要求は[HELIX-Web側](../../helix-web/README.md)へ置く。
+展開後のtenant、Connector job、service state、credential、配備・監視・復旧は
+[HELIX-Web-OS側](../../helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。
+HELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・
+時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、
+再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。
 Webで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。
 Webでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。
-管理対象への位置づけは、Webの全機能の採択、開発完了、公開時期の確定を意味しない。
+管理対象への位置づけは、Web／Web-OSの全機能の採択、開発完了、公開時期の確定を意味しない。
 
 ## 有期限通知とmemoryの責務
 

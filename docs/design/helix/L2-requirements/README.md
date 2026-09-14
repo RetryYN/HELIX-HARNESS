@@ -10,7 +10,7 @@
 
 [対象別責務決定](../../../governance/product-governance-boundary-2026-09-14.md)の「上位Conceptへの正規投影」を親とする。
 Concept v4候補に残るHarness／Control Plane／DevOS区分を対象別要求へそのまま降ろさず、最新の
-HARNESS／HELIX-OS／HELIX-Web境界へ投影する。
+HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OS境界へ投影する。
 [上流再整備と既存資産統制方針](../../../governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)に従い、
 既存資産を意味単位で分類し、上流から再導出してから自動走行・移行・退役へ進める。
 [上流authority管理台帳](../../../governance/upstream-authority-register-2026-09-14.md)で、要求源の母集団、authority状態、
@@ -20,8 +20,9 @@ HARNESS／HELIX-OS／HELIX-Web境界へ投影する。
 - [HELIX-OSの統制要求](../../helix-os/L2-requirements/governance-requirements.md)：管理・統制、Worker、学習、ログ、CI、継続・復旧。
 
 - [HELIX-Webの要求整理入口](../../helix-web/README.md)：Vision2で示された、HELIX-OSが管理する個別プロダクト。Web固有要求はこの対象へ分離する。
+- [HELIX-Web-OSの要求整理入口](../../helix-web-os/README.md)：Web展開時にHELIX-OS外へ構成するservice runtime。許可logをHELIX-OSの改善入口へ渡す。
 
-HARNESSとHELIX-OSにL2／L11の対を設けた。HELIX-WebにはVision由来8件のL2／L11案を追加した。
+HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSに対象別L2／L11の対を設けた。
 各対象にはConcept v4.1に従属するL1企画候補も設け、L2側へ親L1 relation案を記載した。
 現時点は混在要求からの分離案であり、全条件の採択・新規IDのIR登録は適用待ちである。
 候補系列の対象と接続状態は[対象別台帳](../../../governance/audits/l2-requirements/candidate-source-target-inventory.md)を参照する。
@@ -33,15 +34,16 @@ HARNESSとHELIX-OSにL2／L11の対を設けた。HELIX-WebにはVision由来8�
 
 | 条件群 | 現在の配置 | 残る確認 |
 |---|---|---|
-| HARNESSの提供・工程要求6件 | HARNESS L2／L11 | 詳細出典との全件照合、対象別L3接続、IR移管 |
-| HELIX-OSの統制要求9件 | HELIX-OS L2／L11 | 既存運用要求・追補の全件照合、対象別L3接続、IR移管 |
+| HARNESSの提供・工程要求7件 | HARNESS L2／L11 | 詳細出典との全件照合、対象別L3接続、IR移管 |
+| HELIX-OSの統制要求13件 | HELIX-OS L2／L11 | 既存運用要求・追補の全件照合、対象別L3接続、IR移管 |
 | HMC6件 | HELIX-OS L2／L11 | 候補の独立検収・正本昇格、旧memory要求との差分統合 |
 | AAFD4件・RCLS6件・PPS4件 | HELIX-OS L2／L11 | draft候補の採否・採用revision、L3との接続 |
 | CLR詳細8件 | HELIX-OS L2／L11 | 未承認候補の採否・採用revision、既存継続機構との接続 |
 | FRS9件・提供構成の追補 | HARNESSの提供条件とOSの構成・配布運用へ分割 | 対象別L3接続、詳細受入との照合、正本昇格・IR移管 |
 | AVS6件・RFA3件・DGH3件 | HARNESSの工程条件とOSの判断・反復管理へ分割 | 候補状態の確認、対象別L3接続、詳細受入との全件照合 |
 | 新世代CI HARNESS 4件・OS 7件 | HARNESS-L2-004／005とHELIXOS-L2-008の適用待ち具体化 | Concept／L1確定、L2合意、L11受入設計、L3／L10導出。完了までCI設計・実装・PR起動を停止 |
-| HELIX-Web | Vision由来8件のL2／L11案 | 個別採択・プロト合意・L3接続、将来の動的計画・納品契約の詳細化 |
+| HELIX-Web | Vision由来9件のL2／L11案 | 個別採択・プロト合意・L3接続、将来の動的計画・納品契約の詳細化 |
+| HELIX-Web-OS | service運転6件のL2／L11案 | Web展開条件、log export、認証・data境界、L3接続、運用条件の合意 |
 
 対象別L11はいずれも未実行。旧候補の承認記録を新しい対象別要求の合意として転用しない。
 
@@ -159,7 +161,7 @@ MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求
 `candidate_layer: L2`を対象別L2追加後に再検索した結果は21文書である。これはmetadataによる発見集合であり、
 別層の文書に混在する要求やmetadataを持たないintakeを含む全要求の分母ではない。
 内訳は旧harness要求5文書、旧harness screen7文書、HELIX側の既存要求3文書、
-本整備のv4由来L2案、HELIX画面境界、Execution Ticket候補、HARNESS L2、HELIX-OS L2、HELIX-Web L2である。
+本整備のv4由来L2案、HELIX画面境界、Execution Ticket候補、HARNESS L2、HELIX-OS L2、HELIX-Web L2、HELIX-Web-OS L2である。
 
 旧harness screenの`README.md`は全文確認し、現行で採用しないL2 carry／旧pair／逆伝播規則を
 [画面境界](../L2-screen/screen-mock-boundary.md)へ記録した。

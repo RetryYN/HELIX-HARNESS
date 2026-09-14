@@ -134,12 +134,14 @@ HELIXOS-L2-005では、採用した改善を要求・設計・検証・再観測
 候補件数やログ件数の増加だけをHELIX改善の成功と表示しない。
 HARNESSの外部提供完了とHELIX-OSの内部改善状況を別に確認し、一方の成功で他方を完了扱いにしない。
 
-## HARNESSとHELIX-Webを管理するシナリオ
+## HARNESS、HELIX-Web、HELIX-Web-OSを管理するシナリオ
 
 未実行。HELIXOS-L2-001／002／003／005の対象間の分離を次で確認する。
 
-- HARNESSとHELIX-Webに異なる要求revision・進行状態を与え、それぞれのローカル正本へ辿れること。Web要求をOSやHARNESSの要求として誤表示しないこと。
+- HARNESS、HELIX-Web、HELIX-Web-OSに異なる要求revision・進行状態を与え、それぞれのローカル正本へ辿れること。Web／Web-OS要求をOSやHARNESSの要求として誤表示しないこと。
 - Webが採用するHARNESS版と能力を特定し、Web固有要求の変更で他プロダクトの要求・承認・工程規則が暗黙に変わらないこと。
+- HELIX-OS内部stateとHELIX-Web-OSのtenant／job／credential／service stateを食い違わせ、どちらか一方を他方のauthorityとして補完しないこと。
+- Web-OSの許可logと範囲外logを混在させ、前者だけを出典・scope・目的・同意・revision付きでHELIX-OSの改善入力へ取り込むこと。credentialとtenant原dataを拒否し、欠測を正常化しないこと。
 - Webの検証が未完のとき、HARNESSの提供完了やCI成功でWebを完了扱いにしないこと。
 - Webの実践証拠からOSが改善候補を管理し、採否・変更対象・再検証へ辿れること。証拠の利用可能範囲を越えて共有せず、候補を自動で要求正本へ昇格させないこと。
 

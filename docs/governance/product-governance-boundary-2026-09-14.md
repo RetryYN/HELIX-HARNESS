@@ -15,6 +15,8 @@
 | 「Vision2のHELIX-WebはHELIX-OSが管理すると考えればわかるだろ？」 | WebはOSが管理する個別プロダクト。Web固有要求はWeb側に置く |
 | 「HELIX-Webの展開要件がHELIX-HARNESS製品群の完成が必須になるってこと。だからバージョン1で切ってるわけな。」 | Version 1はHARNESS製品群の完成境界。Web自体をVersion 1へ含めず、その完成をWeb展開の必須前提にする |
 | 「検証フェーズでいくつかのプロダクトを作ってみてWeb展開だから自己プロジェクトへの適応が入ると思ってくれ。」 | Version 1完成前に複数プロダクトを実開発し、HELIX自身のプロジェクトへの適用も検証する。その実証後にWebを展開する |
+| 「HELIX-Webの展開時はHELIX-OSの外にHELIX-Web-OSを作る感じだな。」 | Webのservice runtimeは独立したHELIX-Web-OSが担う。HELIX-OSはその開発・改善projectを統制する |
+| 「Web-OSからのログをHELIX-OSが吸収してサービスを改善していくから最終的に接続される。」 | Web-OSは許可されたservice log・telemetryをHELIX-OSへ連携し、HELIX-OSが改善候補へ統合する。運転authorityは分離したまま改善loopで接続する |
 
 ## 対象別の正規入口
 
@@ -23,6 +25,7 @@
 | HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../design/harness/README.md) |
 | HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../design/helix-os/README.md) |
 | HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../design/helix-web/README.md) |
+| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../design/helix-web-os/README.md) |
 
 要求対象の一覧はこの三つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を
@@ -30,7 +33,7 @@ HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則�
 
 ## 上位Conceptへの正規投影
 
-上位概念では、HELIXを一つの配布製品名として扱わず、HARNESS、HELIX-OS、HELIX-Web等を含む
+上位概念では、HELIXを一つの配布製品名として扱わず、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS等を含む
 プロジェクト群の総称として扱う。
 
 | 上位identity | 意味 | 所有するConcept |
@@ -39,10 +42,19 @@ HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則�
 | HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |
 | HELIX-OS | HELIXプロジェクト群の内部管理・統制機構 | authority管理、Worker、実行制御、CI、ログ、状態、学習、改善、配布運転 |
 | HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |
+| HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |
 
 HARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、
 HARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、
 artifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。
+
+HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの
+要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを
+独立したauthority、state、credential、writerで運転する。
+
+両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで
+HELIX-OSへexportし、HELIX-OSが他projectの証拠と突合して改善候補を重複排除・評価する。採択された候補だけを
+Web／Web-OSの要求・設計・検証へ戻す。credential、tenant原data、同意範囲外logの吸収や、logからの直接変更は行わない。
 
 ## 既存Conceptとの意味差分
 

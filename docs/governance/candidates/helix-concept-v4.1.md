@@ -33,10 +33,11 @@ HELIXは、承認された範囲を責務単位へ分解し、実行・検証・
 
 | Identity | 位置づけ | 責務 |
 |---|---|---|
-| HELIX | プロジェクト群と全体構想 | HARNESS、HELIX-OS、HELIX-Web等を接続し、上流から運用・改善までを閉じる |
+| HELIX | プロジェクト群と全体構想 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS等を接続し、上流から運用・改善までを閉じる |
 | HELIX-HARNESS | 外部へ提供する製品 | V-model、L1–L12、正規pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |
 | HELIX-OS | HELIX内部の管理・統制機構 | authority、Worker、assignment、state、log、CI、review、learning、improvement、distribution operation |
 | HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとして、Web利用者へダッシュボード、操作、進行表示、サービス体験を提供する |
+| HELIX-Web-OS | HELIX-Web展開時にHELIX-OSの外へ構成する運転基盤 | tenant、Connector、job、service state、evidence projection、Webサービスの配備・監視・復旧を担う |
 
 HARNESSはOS内部のAssurance Kernelだけではなく、外部利用者へ提供する開発基盤全体である。
 Assurance KernelはHARNESSの構成要素とする。Control Plane、Execution、Ledger、AdaptationはHELIX-OSのcomponentとする。
@@ -127,8 +128,12 @@ HELIX-Web自体の実装・公開完了をHARNESS Version 1の完成分母へ含
 展開可能とも扱わない。
 
 展開後のHELIX-Webは、許可された利用者環境へConnectorで接続し、開発jobの進行、状態、成果、証拠、
-停止・再開をダッシュボードから確認できるサービスとする。HELIX-OSがその運転と改善を管理し、
-HELIX-Web内にHARNESSの開発engineやHELIX-OSの統制機構を重複実装しない。
+停止・再開をダッシュボードから確認できるサービスとする。そのservice runtimeはHELIX-OSの外に構成する
+HELIX-Web-OSが運転する。HELIX-OSはHELIX-Web／HELIX-Web-OSを開発・改善するprojectを管理するが、
+tenant、Connector job、service credential、service stateの運転authorityを自身へ吸収しない。
+HELIX-Web-OSは許可されたservice log・telemetry・incident・利用結果を、出典、tenant／data scope、目的、
+revision、時点、欠測を保ってHELIX-OSへ渡す。HELIX-OSはそれを他の開発・運用証拠と統合して改善候補を作り、
+人間の採否と対象別上流変更を経てWeb／Web-OSへ戻す。ログ転送だけで要求や学習同意を変更しない。
 
 ## HELIX-OS Concept
 
@@ -168,7 +173,7 @@ historical valueを記録した後、current startup、runtime、CI、AI read se
 ## 個別製品Concept
 
 個別製品は自身の利用者、価値、要求、prototype、受入、運用結果を所有する。
-HELIX-OSは個別製品の進行と証拠を管理し、HARNESSは開発・検証条件を提供する。
+HELIX-OSは個別製品とその運転基盤を開発・改善する進行と証拠を管理し、HARNESSは開発・検証条件を提供する。
 HELIX-Webの要求をOS管理UIやHARNESS機能へ混在させない。
 
 ## 既存資産の再導出

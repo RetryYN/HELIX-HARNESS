@@ -1,4 +1,4 @@
-# HARNESS・HELIX-OS・HELIX-Web要求配置監査
+# HARNESS・HELIX-OS・HELIX-Web・HELIX-Web-OS要求配置監査
 
 確認日: 2026-09-14。対象revision: 本branch HEADへ収載する差分。
 
@@ -9,6 +9,7 @@
 | HELIX-HARNESS | V-model、layer／pair、工程、検証義務、進行・完了・受入条件、外部提供物の契約 |
 | HELIX-OS | authority管理、管理・推進・検収、Worker、ticket、state、log、CI実行、crawler、診断、学習、配布・運用統制 |
 | HELIX-Web | Connector型AI開発SaaSの利用者操作、ダッシュボード、接続、進行表示、サービス固有の受入 |
+| HELIX-Web-OS | 展開後のtenant、Connector、job、service state、credential、evidence projection、配備・監視・復旧 |
 
 `owner`と`reference`を区別した。他対象の語が文書に現れるだけでは配置ミスとせず、その文書が意味の変更権限、
 実行責務、利用者受入のどれを所有すると記述しているかで判定した。
@@ -25,12 +26,16 @@
 | crawler | 適正 | 内部／外部のread-only観測と未信頼情報境界をOSへ配置し、要求正本化と外部命令実行を禁止している |
 | 診断・改善 | 適正 | 因果診断、是正ticket化、再観測はOS。製品要求の意味変更は対象上流へ返す |
 | Web内のOS・HARNESS語 | 適正 | Web固有体験だけを所有し、HARNESS能力とOS統制は参照関係としている |
+| Web-OSとHELIX-OS | 是正 | 旧記述はHELIX-OSがWeb運転も管理すると読めた。HELIX-OSは開発・改善project統制、Web-OSは展開後service runtimeと分離した |
 | GitHub Issue／PR | 適正 | 全対象で作業・協調・証拠projectionに限定し、要求意味・採否・受入のauthorityにしていない |
 
 ## 配置ミスの結論
 
-primary ownerの誤配置は検出しなかった。意味上の曖昧さ1件を是正した。今後L3へ導出するときも、
-HARNESSのoracle・完了条件をOSのscheduler、CI profile、検収ロジックへ複製して別正本を作らず、参照revisionへ
-束縛する。Webのダッシュボード表示をOSの実行事実やHARNESSの受入判定そのものとして扱わない。
+初回監査ではprimary ownerの誤配置を検出せず、意味上の曖昧さ1件を是正した。その後のPO補足により、
+Webサービス運転をHELIX-OSへ含める旧境界を是正し、独立したHELIX-Web-OSへ配置した。両OSは許可された
+service log・telemetryのexportと改善proposalで接続する。今後L3へ導出するときも、HARNESSのoracle・完了条件を
+OSのscheduler、CI profile、検収ロジックへ複製して別正本を作らず、参照revisionへ束縛する。Webのダッシュボード表示を
+OSの実行事実やHARNESSの受入判定そのものとして扱わない。Web-OSのcredential・tenant原data・運転stateを
+HELIX-OSの改善入力へ無条件に複製しない。
 
 本監査は候補文書の静的意味配置を確認したものであり、要求承認、L3凍結、実装、L11実行、旧資産退役を完了させない。

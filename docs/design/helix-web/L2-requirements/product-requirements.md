@@ -13,7 +13,7 @@ parent_l1_candidate: docs/design/helix-web/L1-planning/product-intent.md
 
 # HELIX-WebのVision由来利用要求案
 
-HELIX-WebはHELIX-OSが管理する個別プロダクトである。本書は保存された
+HELIX-WebはHELIX-OSが開発・改善projectとして管理し、HELIX-Web-OSが展開後のservice runtimeを担う個別プロダクトである。本書は保存された
 [Vision原文](../../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、
 Webの利用者に対する要求を具体化した案である。最新PO指示の管理関係と原文の将来構想を区別する。
 以下の9件の個別採択・L2合意・L3凍結・IR admission・提供時期は未確定。HELIX-Web自体はHARNESS Version 1の
@@ -40,12 +40,13 @@ Webの利用者に対する要求を具体化した案である。最新PO指示
 | HELIXWEB-L2-005 | 操作別に段階採択 | §7、U17、O05 | 何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる |
 | HELIXWEB-L2-006 | Web3の将来構想 | §6.3、U14、O08 | 適用範囲・版・評価証拠を確認したHDAを開発補助に利用できる。学習と分散推論の提供責務を分け、応答を独立検収済みとみなさない |
 | HELIXWEB-L2-007 | 能力接続時に採択 | §10、§11 | Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない |
-| HELIXWEB-L2-008 | 改善還流時に採択 | §10、§11 学習とデータ利用 | 利用結果をどの目的・範囲でHELIX改善へ渡すかを確認できる。サービス利用を横断学習への同意とみなさない |
+| HELIXWEB-L2-008 | 改善還流時に採択 | §10、§11 学習とデータ利用 | Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない |
 | HELIXWEB-L2-009 | 展開前に必須 | §3、§13、2026-09-14 PO指示 | 複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない |
 
 ## 要求対象と未決定の境界
 
-HARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・学習・ログを管理する。
+HARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・学習・ログを管理し、
+HELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。
 本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。
 
 provider認証方式、MCP等の通信方式、対応環境、料金、具体モデル、性能・可用性の数値は未決定である。

@@ -57,8 +57,8 @@ HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、
 
 ## 管理対象と対象外
 
-管理対象にはHARNESS、HELIX-Web、将来追加する個別製品を含む。OSは各対象の要求意味やHARNESSの工程規則を
-別本文として所有せず、承認revisionを参照して実行・記録・制御する。外部へ提供する製品はHARNESSであり、
+管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。OSは各対象の要求意味やHARNESSの工程規則を
+別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。外部へ提供する製品はHARNESSであり、
 本企画はHELIX-OSの外販を目的にしない。
 
 ## 採択条件
