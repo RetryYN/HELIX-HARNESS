@@ -78,8 +78,9 @@ U1のConcept candidate revisionは起草済みであり、製品identityと責�
 URB-U1-001のcandidateはremote branchへ同期済みである。ただし旧PR #1795はclosedであり、そのCIとreview admissionを
 U1のreview・承認・完了根拠にしない。上流意味reviewの専用laneが未整備のため、補助状態は`review_waiting`とする。
 archive-first commit `064280b5c`もremote branchへ同期済みで、新runは0である。旧PRを再開せず、新しいPRを共有・reviewへ
-使う。mainのbranch protectionに旧`harness-check` required contextが残る間はPRを開かず、外部設定の解除許可を先に得る。
-解除後もreview routeが明示されるまでreviewを起動せず、上流承認やmergeへ自動進行しない。
+使う。旧`harness-check` required contextはPO許可後に解除し、旧workflow 4件もdisable済みである。
+GitHub管理のCodeQL／Dependabotは未変更であり、上流の意味判定やmerge gateには使わない。review routeが明示されるまで
+reviewを起動せず、上流承認やmergeへ自動進行しない。
 
 ## 停止規律
 

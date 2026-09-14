@@ -27,7 +27,7 @@ executed_at: 2026-09-14
 | **合計** | **4020** | [manifest](../../archive/legacy-generation-2026-09-14/MANIFEST.sha256)で固定 |
 
 active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、対象別L1／L2／L11、上流方針、inventory、crosswalk、
-判断packetの68文書だけを残した。本記録と現行文書構成READMEを追加したため現在は70文書である。旧文書をbranch上で
+判断packetの68文書だけを残した。本記録、現行文書構成README、GitHub PR packetを追加したため現在は71文書である。旧文書をbranch上で
 変更していた場合も、追加文書でなければarchive sourceへ移した。
 
 active文書は`concept/`、`helix-harness/`、`helix-os/`、`helix-web/`、`helix-web-os/`、`governance/`へ
@@ -42,16 +42,20 @@ snapshotであり、この対象別構成へ並べ替えない。
 - required checkが旧`harness-check`を要求する間はmerge条件が成立しない。checkを迂回せず、新世代CI設計または外部設定の再構築までDraft／review surfaceとして使う。
 
 commit `064280b5c`のremote sync後にGitHubをread-afterした結果、対象branchの新runは0、open PRは0だった。
-mainのbranch protectionは`strict=true`、required context=`harness-check`、`enforce_admins=true`を維持している。
-これはGit内workflowのarchiveだけでは解消しない外部設定差分である。旧CIを一度も起動せずPRをmerge可能にするには、
-required contextの解除を対象・復旧条件付きで別途許可し、新世代CI確定後に新contextを設定する必要がある。
+PO許可後、旧`harness-check`のrequired status checkを解除し、旧repository workflow 4件をGitHub Actions側でも
+`disabled_manually`へ変更した。再確認ではrequired status checksはなく、`enforce_admins=true`、force-push禁止、
+branch削除禁止を維持している。
+
+GitHub管理の動的workflowとしてCodeQL default setupとDependabot Updatesはactiveのままである。これらは旧HARNESSの
+要求・設計・完了gateではないが、PR時に自動実行され得る外部security／dependency projectionである。本記録では
+disableしておらず、新世代上流の意味review、承認、merge条件として使わない。
 
 ## 未成立事項
 
 - archive資産4020件のsemantic atom採否、対象別L2への意味移管、replacement完成。
 - Concept v4.1、対象別L1、L2／L11の人間承認。
 - L3以降、新世代AI manifest／生成器、新世代CI、runtimeの設計・実装。
-- branch protection、required check、GitHub App、外部scheduleの変更。
+- CodeQL、Dependabot、GitHub App、その他外部scheduleの切替。
 - archive内資産の物理削除。
 
 本隔離は旧世代を実行不能なrepository位置へ移した証拠であり、新世代の完成、旧意味の棄却、consumer切替完了を示さない。
