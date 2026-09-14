@@ -25,7 +25,7 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 下位projectionから上位の要求意味、採否、承認、完了を生成しない。GitHub上の状態が失われても、承認済みlocal sourceと
 投影記録から未完作業を再構築できることを運用成立条件とする。
 
-この順序はauthorityの優先順位である。作業の導出順序は`Concept／Vision／企画／人間指示 → 判断論点 → premise／research／PoC／prototype → 人間decision → 承認済み上流revision`であり、証拠入力が先に作られることを上位authorityであることと混同しない。新しい人間指示は受領時に失わず登録し、既存の承認済み上流と衝突する場合は、指示だけで旧revisionを暗黙上書きせず人間decisionへ送る。
+この順序はauthorityの優先順位である。GitHubへ作業を導出する上流整理は`Concept／Vision／企画／人間指示 → 判断論点 → 必要なpremise／research／PoC／prototype → 人間decision → 承認済み上流revision`で行う。これはGitHub運用上の文書導出順であり、HARNESS製品内の開発workflowを一つの直線として定義しない。証拠入力が先に作られることを上位authorityであることと混同しない。新しい人間指示は受領時に失わず登録し、既存の承認済み上流と衝突する場合は、指示だけで旧revisionを暗黙上書きせず人間decisionへ送る。
 
 ## PR classとscope
 
@@ -65,10 +65,21 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 - Issue投影前にlocal ticketの存在、`source_revision`での内容、source digestを確認する。Issueの意味欄はlocal ticket本文からの転記に限定し、転記内容のdigest不一致はprojection失敗とする。
 - local ticketが存在しないIssue Form入力はwork authorityにしない。新規の人間指示を含む場合は入力を原eventとしてローカル登録へ戻し、要求採否と分けたprojection failure receiptを残してIssueを非実装状態で閉じる。入力を黙って捨てない。
 - 上流承認前に人間の明示指示から起票する場合は`proposed_upstream_waiting`に固定し、実装可能状態へ進めない。
-- HARNESSが工程のnormative vocabulary、適用条件、順序、停止・差戻し・完了条件を所有する。企画から前提整理、research、必要なPoC／prototype、要求合意、設計・検証へ進む意味順序もHARNESS contractである。
+- HARNESSが工程のnormative vocabulary、trigger、適用条件、各route内の順序、join、停止・差戻し・完了条件を所有する。単一の固定列ではなく、下記の条件付きrouteをHARNESS contractとして保持する。
 - 推進機構はHARNESS語彙を別定義せず、operational tag、versioned mapping、composition、workflow instance生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。
-- 管理層は生成物を登録・統制する。HARNESSは個別ticket発行やworkflow instance生成を行わず、推進はHARNESSの工程順序を追加・削除・並べ替えない。
+- 管理層は生成物を登録・統制する。HARNESSは個別ticket発行やworkflow instance生成を行わず、推進は入力に合うHARNESS routeとtriggerを評価し、必要なrouteだけを規定順で具体化する。
 - PRは対応するlocal ticketとIssueを参照する。Issue closeやPR mergeだけでticket完了を生成しない。
+
+### HARNESSの条件付き工程contract
+
+| contract | trigger／選択 | 保持する順序と合流 |
+|---|---|---|
+| 開発style | Full V／Production Scrum／V設計＋Scrum実装Hybridの三方式から適用可能な一つを選択する。未選択、複数選択、適用不能はfail-closeする | 選択styleの工程を進める。Discovery／PoCを第四の排他的styleにしない |
+| case-driven Discovery／PoC | `requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`のいずれか | `S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`。S4は人間が判断し、採択結果だけをL3機能要件へ合流する |
+| Research | `tech_decision_required`、`option_comparison_needed`、`adr_required`のいずれか | research memoとADRを生成し、ADR参照点／L4基本設計へ合流する。成立性実験が必要ならDiscovery／PoCへ切り替える |
+| UI prototype | 画面対象で要求理解・操作・状態・failureの合意が必要 | 独立phaseにせず`L2要求 ↔ prototype`を反復する。agreement receiptなしにL3をfreezeしない。画面非対象は理由・判定者・入力digest・再entry triggerを持つskip receiptを要求する |
+
+`premise organization`／`premise research`は上流候補sourceから保持したGitHub運用上の証拠整理語彙であり、上記の確認済みHARNESS routeと同じauthorityへ自動昇格させない。推進はrouteを無条件に全適用せず、triggerを満たすrouteを選び、その内部順序・human gate・joinを保持してworkflow instanceを生成する。
 
 ### 自動投影実装前のbootstrap
 

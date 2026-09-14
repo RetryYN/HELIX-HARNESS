@@ -34,8 +34,8 @@ operational_owner: HELIX-OS
 | DTK-OS-002 | local ticketをGitHub Issue等へprojectionし、remote番号・状態・commentを原ticketへ関連付ける | Issue本文・label・closeから親要求、承認、完了を補完しない |
 | DTK-OS-003 | PoC／prototype／featureの実行・成果・反応・finding・期限切れ・取消を別stateで管理し、正しい要求・template・設計へbackflowする | PoC成功やprototype合意を無関係なfeatureへ伝播しない |
 | DTK-OS-004 | architectureで分けたsemantic／transactional責務ごとに技術候補、評価条件、PoC結果、採否、失効を管理する | 人気、旧採用、単一benchmarkだけで技術を固定しない |
-| DTK-OS-005 | 推進は管理から受けた目的・要求・制約とHARNESS contractを解釈し、自ら所有するtag語彙とworkflow生成規則で作業を分解して、PoC／UI prototype／Feature ticketとworkflowを生成する | 管理指示を一枚の作業へ丸めず、同じ入力・規則から同じticket graphとworkflow digestを得る |
-| DTK-OS-006 | 駆動tag語彙と生成規則を推進がversion管理し、開発style、work kind、変更種別、risk、surfaceを必要に応じて合成する | HARNESSや管理層へ語彙・生成規則を移さず、旧9-modeや`signal → mode`を単一enumとして再導入せず、PoCとScrum等の異なる軸を排他的にしない |
+| DTK-OS-005 | 推進は管理から受けた目的・要求・制約とHARNESS contractを解釈し、triggerに合うHARNESS routeを選び、operational tag、versioned mapping、composition、workflow instance生成規則でPoC／UI prototype／Feature ticketとworkflowを生成する | 管理指示を一枚の作業へ丸めず、同じ入力・HARNESS版・生成規則から同じticket graphとworkflow digestを得る |
+| DTK-OS-006 | operational tag、HARNESS normative vocabularyへのmapping、composition、workflow instance生成規則を推進がversion管理し、開発style、work kind、変更種別、risk、surfaceを必要に応じて合成する | HARNESSが所有する語彙の意味・trigger・route内順序を再定義せず、旧9-modeや`signal → mode`を単一enumとして再導入せず、PoCとScrum等の異なる軸を排他的にしない |
 | DTK-OS-007 | 検収は推進が生成したticket graphとworkflowを承認済みHARNESS contract、親要求、依存、許可に照らして独立確認し、不足を推進または上流へ戻す | 推進の自己申告、tag、Issue作成だけでworkflowを適格としない |
 
 ## ticket共通identity候補

@@ -26,8 +26,7 @@
 | 「初期はテンプレがないと参照するものがなくて適当になる。だからHELIXが必要になるって話な。」 | HARNESSはDesign Templateと初期seedを持ち、HELIX-OSが版・適用・利用結果・改善を管理する |
 | 「意味割合の多い部分をPython化する方針で旧実装から引き込む。」 | 旧実装のsemantic-dominant behaviorをPython coreへ再導出し、外部作用は新世代architectureで技術選定する |
 | 「要求側にPoCや画面プロトの接続があったと思うがこれらはそもそもチケットで切れる必要がある」 | PoC、UI prototype、Featureを要求へ接続する別ticketとして発行する |
-| 「管理層が推進側へ工程を渡して推進機構がチケットを切る。」「HARNESSがtag語彙とworkflow生成規則を所有ここが違う。推進側が生成する。」 | 管理が目的・要求・制約・許可・予算・期限・HARNESS版を推進へ渡す。推進機構が駆動tag語彙とworkflow生成規則を所有してticket graphとworkflowを生成する。HARNESSは必要な開発・検証contractを規定し、管理は生成物を登録・統制し、検収が独立確認する |
-| 「HARNESSには明確に順序があるからな？リサーチからPoCまでの流れのように。」 | HARNESSは工程のnormative vocabularyと順序を所有する。推進はその順序をoperational tagとworkflow instanceへ具体化するが、追加・削除・並べ替えない |
+| 「管理層が推進側へ工程を渡して推進機構がチケットを切る。」「HARNESSがtag語彙とworkflow生成規則を所有ここが違う。推進側が生成する。」「HARNESSには明確に順序がある」 | HARNESSはnormative workflow vocabulary、その意味、trigger、適用条件、route内順序、join、停止・差戻し・完了条件を所有する。管理が目的・要求・制約・許可・予算・期限・HARNESS版を推進へ渡し、推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instance生成規則を所有してticket graphとworkflow instanceを生成する。HARNESSは個別ticket・workflow instanceを生成せず、管理は生成物を登録・統制し、検収が独立確認する |
 | 「旧要求はそのまま使いたい」「要求にはほぼHELIXの全体要求が入っている」 | 旧sourceでのauthority状態と要求意味を保持し、新世代target authorityへの配置・分割・言換えは全requirement PRで人間が確認する |
 
 ## 対象別の正規入口
@@ -95,7 +94,7 @@ HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責
 ## 文書整備で守ること
 
 - 上位概念を本決定に対応づけ、L2要求とL11受入、L3要件とL10総合検証を対象別に接続する。現行L1–L12と正規pairは維持する。
-- 要求意味の正本は指定されたローカル文書・JSONと、その変更・合意revisionである。既存要求は保持が既定であり、意味変更・縮退・retireだけを人間判断へ送る。GitHubは作業管理の接続先であり、Issue closeから要求削除・充足を生成しない。
+- 要求意味の正本は指定されたローカル文書・JSONと、その変更・合意revisionである。既存要求は保持が既定であり、保持・再配置、意味変更、retireの別を問わず、すべての要求PRを対象revision付きの人間判断へ送る。GitHubは作業管理の接続先であり、Issue closeから要求削除・充足を生成しない。
 - 旧Concept・旧物理path・旧名称を理由に、OSの内部運用をHARNESSの必須提供構成に戻さない。参照するHARNESS版と適用対象を記録する。
 - 候補承認、対象別L2合意、L3凍結、IR移管、実装、利用者受入は別状態として保持する。旧候補の承認を新しい具体化の承認へ流用しない。
 - remote branchへの同期、独立した上流意味review、人間の採否、PR／CIによる下流検証を別operationにする。旧CIを通すことを上流整理の成立条件にしない。

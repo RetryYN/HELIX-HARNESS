@@ -19,9 +19,9 @@ as_of: 2026-09-14
 | 旧L0 charter source | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | sourceでconfirmedだった状態を保持する。新世代target authorityへは自動昇格しない | P0–P9の意味を保持して対象別L1へ再配置する |
 | 旧Concept source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | historical source。旧Core Read・旧製品境界 | v4.1との差分sourceとしてのみ使う |
 | 新世代Concept候補 | 1文書 | [Concept v4.1候補](../concept/helix-concept-v4.1.md) | [人間判断packet](audits/source-rebaseline/concept-v4.1-human-decision-packet.md)でexact SHAを固定し直す。v4.0はarchive source | Conceptと4対象L1を別decisionとして人間が判断し、承認後に旧要求を保持した対象別L2整理へ進む |
-| 旧HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | historical source。旧confirmedを継承せず、工程と実行管理が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1／L2へ欠落なく再配置する |
-| 旧要件v1.3 source | 1 | [現行保持copy](requirements-source/helix-requirements_v1.3.md)、[対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md) | 原文を同一byteで現行保持。旧Core Read状態とHARNESS／OS責務の混在は配置課題であり削除理由にしない | 全要求を保持したまま対象別L2へ再配置し、意味変更・retireは人間決定に限定する |
-| 旧要求文書の現行保持 | 22文書 | [保持領域](requirements-source/README.md)、[文書台帳](legacy-requirement-document-carry-forward.jsonl) | 29/29関連fileを同一byteで保持。22文書の元statusはconfirmed 17、draft 3、proposed 1、placeholder 1。confirmedを採用済みのまま保持 | 原要求ID単位で対象・successor・未被覆atomを追加し、意味変更・retireは人間判断に限定する |
+| 旧HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | sourceでconfirmedだった要求意味を保持し、新世代targetは未承認。工程と実行管理の配置が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1／L2へ欠落なく再配置する |
+| 旧要件v1.3 source | 1 | [現行保持copy](requirements-source/helix-requirements_v1.3.md)、[対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md) | 原文を同一byteで現行保持。旧Core Read状態とHARNESS／OS責務の混在は配置課題であり削除理由にしない | 全要求を保持したまま対象別L2へ再配置し、すべての要求PRを人間決定に束縛する |
+| 旧要求文書の現行保持 | 22文書 | [保持領域](requirements-source/README.md)、[文書台帳](legacy-requirement-document-carry-forward.jsonl) | 29/29関連fileを同一byteで保持。22文書の元statusはconfirmed 17、draft 3、proposed 1、placeholder 1。source authorityをそのまま保持 | 原要求ID単位で対象・successor・未被覆atomを追加し、すべての要求PRを人間判断に束縛する |
 | confirmed要求identity | 175 source-qualified identity | [identity台帳](legacy-confirmed-requirement-identity-carry-forward.jsonl) | confirmed文書の要求表・見出し・宣言行を原文行digest付きで保持。同名IDを自動統合しない | successorと未被覆atomを要求PRで記録する |
 | 旧要求文書semantic line | 2,386 source line | [全量保全inventory](legacy-requirement-semantic-line-inventory.md)／[機械台帳](legacy-requirement-semantic-line-carry-forward.jsonl) | 22文書の非空semantic lineを原文・行番号・digest付きで保持。328行は既存identityへ接続し、残る2,058行を過包含のatom化待ちとする | 要求／制約／受入／根拠／例／navigationへ分類し、要求atomを対象別に再配置する。分類前に候補を削除しない |
 | IR↔人間向け要求原文 | 153 relation | [IR・文書relation台帳](legacy-ir-document-source-relation.jsonl) | IR 153/153件のsource pointer、ID、statementが保持済みMarkdown宣言行と一致 | 対象別successorを加えて三者traceにし、片側差分はconflictとして停止する |
@@ -72,7 +72,7 @@ as_of: 2026-09-14
 
 1. archive内の旧Core Read、L0／L1／L2 sourceと、現行側のConcept／対象別L1／L2候補。
 2. Requirement IR 153要求とrefinement 14契約。
-3. archive内candidates directoryのMarkdown 97文書と、現行側の新世代候補8文書。
+3. archive内candidates directoryのMarkdown 92文書と、現行側の新世代候補8文書。
 4. 旧HARNESS要求5文書、旧screen文書、Concept／Vision intake。
 5. 人間の新規決定と、出典付きの運用・外部変化candidate。
 
@@ -101,7 +101,7 @@ as_of: 2026-09-14
 
 | 作業単位 | 閉鎖条件 | 現在の証拠 | 状態 | 残る処置 |
 |---|---|---|---|---|
-| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、候補97文書／31系列、IR 153、refinement 14、旧5＋7文書 | 完了 | 新規sourceは発見時に追記する |
+| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書、31系列、IR 153、refinement 14、旧5＋7文書 | 完了 | 新規sourceは発見時に追記する |
 | 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
 | 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、Version 1の複数プロダクト・自己適用検証とWeb展開依存が人間承認revisionへ束縛される | v4.1候補と承認準備監査 | 人間承認待ち | v4.1 exact revisionを人間が採否する |
 | 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1候補4文書。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | 起草済み・親承認待ち | v4.1承認後に導出一致をreviewし、人間承認する |

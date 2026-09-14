@@ -125,8 +125,10 @@ HARNESSはWorker pool、HELIX内部memory、運用DB、CI運転、学習履歴�
 Python semantic coreへ再導出する。認可、lease、DB／Git／GitHub commit等の外部作用は別境界へ分離し、その技術は
 新世代architectureからL3以降で選定する。旧moduleの実装言語、file、runtimeを一括継承しない。
 駆動モデルは固定modeの実行器ではなく、local ticketへ付けるversioned tag集合として表す。HELIX-OSの管理は目的、
-親要求、制約、許可、予算、期限、HARNESS版を推進へ渡す。HELIX-OSの推進機構がtag語彙とworkflow生成規則を所有し、
-入力を作業へ分解してtag、ticket graph、workflow instanceを生成する。HARNESSはその語彙・規則・生成を所有しない。
+親要求、制約、許可、予算、期限、HARNESS版を推進へ渡す。HARNESSはnormative workflow vocabulary、各語彙の意味、
+trigger、適用条件、route内順序、join、停止・差戻し・完了条件を所有する。HELIX-OSの推進機構はoperational tag、
+HARNESS語彙へのversioned mapping、composition、workflow instance生成規則を所有し、入力を作業へ分解してtag、ticket graph、
+workflow instanceを生成する。HARNESSは個別ticketやworkflow instanceを生成せず、推進はHARNESSの意味契約を別定義しない。
 管理は生成物を登録・統制し、検収はHARNESS contractへの充足を独立確認する。GitHub labelはtagのprojectionに限定する。
 
 ## Version 1とHELIX-Web展開境界

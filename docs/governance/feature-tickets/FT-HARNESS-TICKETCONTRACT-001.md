@@ -37,6 +37,6 @@ backflowするHARNESS contractを具体化する。
 - architecture責務から技術候補を出し、PoC比較で採否・失効・rollbackを決める契約。
 - ticket結果から要求エンジンとDesign Templateへ戻るtyped backflow。
 - 推進が生成したworkflowに必要なlayer／pair、成果物、oracle、human gate、停止・差戻し・backflow、許可操作が揃うことを判定するHARNESS contract。
-- tag語彙や個別workflowをHARNESSが所有・生成せず、異なる推進方式でも同じ工程義務を検証できる境界。
+- HARNESSがnormative workflow vocabulary、意味、trigger、適用条件、route内順序、joinを所有し、推進がoperational tag、mapping、composition、個別workflow instanceを生成する境界。
 
 現在はticket発行のみ。schema、runtime、Issue automation、PoC、prototype、実装、CIを起動しない。

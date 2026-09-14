@@ -28,7 +28,7 @@ current_revision_review_status: requirement_engine_delta_review_pending
 | 現行資産を参考資料へ退役し、新世代を上流から再構築する | 旧CI・runtime・AI文書を非実行archiveへ先に隔離し、baselineにせずarchive sourceから意味を採取する | 維持する旧実行系と互換範囲を別途決める |
 | 要求エンジンをHARNESS能力、企画との齟齬管理をHELIX-OS責務とする | 単体・接続・構成体を分けて要求候補を形成し、OSがConcept／企画から採用要求までの欠落・追加・対象違いを管理する | 要求形成能力と、その出力・改善logを管理するownerを別途定義し直す |
 | Design TemplateをHARNESS能力、版・適用・改善管理をHELIX-OS責務とする | 初期seedから必要設計を導き、必要な要求入力の不足を上流へ戻して、複数projectの結果からtemplateを改善する | 初期設計知識と継続改善ownerを別途定義し直す |
-| HARNESSの工程順序を推進がticket／workflowへ具体化する | HARNESSが既存要求由来のnormative工程語彙・適用条件・順序を所有する。管理が目的・要求・制約を推進へ渡し、推進がoperational tag・mapping・composition・workflow instance生成規則を所有してresearch、PoC、UI prototype、Featureを別ticketに分解する | HARNESSの工程意味または推進の具体化責務を別途定義し直す |
+| HARNESSの条件付き工程を推進がticket／workflowへ具体化する | HARNESSが既存要求由来のnormative工程語彙・trigger・適用条件・route内順序・joinを所有する。管理が目的・要求・制約を推進へ渡し、推進がoperational tag・mapping・composition・workflow instance生成規則を所有して必要なResearch、PoC、UI prototype、Featureを別ticketに分解する | HARNESSの工程意味または推進の具体化責務を別途定義し直す |
 | 旧要求を一件も落とさず再配置する | source authority、原文、digest、acceptance、contract、test、見出しを保持し、保持・分割・再配置を含む全要求PRを人間が確認する | 削除・縮退を許す対象と判断authorityを別途明示する |
 
 これら11点は、2026-09-15までのPO指示で既に方向が示されている。本packetで改めて曖昧な一括承認を要求する
@@ -37,7 +37,7 @@ current_revision_review_status: requirement_engine_delta_review_pending
 
 ### 文書で具体化した内容
 
-- HARNESS: L1–L12、正規V-pair、工程のnormative語彙・適用条件・順序、単体・接続・構成体を分ける要求エンジン、Design Templateとseed、research／PoC／UI prototype／Feature ticketが満たす開発・検証contract、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。operational tag、mapping、個別workflow instance、ticket発行は所有しない。
+- HARNESS: L1–L12、正規V-pair、工程のnormative語彙・trigger・適用条件・route内順序・join、単体・接続・構成体を分ける要求エンジン、Design Templateとseed、条件付きResearch／Discovery・PoC／L2↔UI prototype loop／Feature ticketが満たす開発・検証contract、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。operational tag、mapping、個別workflow instance、ticket発行は所有しない。
 - HELIX-OS: HARNESS自己適用と継続改善、Concept／企画から要求エンジン出力・採用要求までの齟齬管理、template lifecycle、管理から推進への工程入力、推進によるtyped ticket・workflow生成、管理登録、検収、Issue projection、対象別authority、複数project管理、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制。
 - HELIX-Web: HARNESS Version 1完成後の展開、Connector接続、ダッシュボードによる進行確認、利用者の変更・受入判断、構成版、改善利用への同意。
 - HELIX-Web-OS: HELIX-OS外のservice runtime、tenant・job・credential・stateの運転、許可logのHELIX-OS改善入口へのexport。
@@ -50,7 +50,7 @@ current_revision_review_status: requirement_engine_delta_review_pending
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `0aa7325f554a1b133435b06d5df4657e9e1d0f89696fc467a50012e409feb449` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS要求エンジン、Design Template、意味密度によるPython抽出、管理→推進→管理登録→検収のticket tag／workflow生成、企画との齟齬管理、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
+| `docs/concept/helix-concept-v4.1.md` | `56118722c190dddfdf5436cb2c15f8b5773431d18638e0870f8dd03ec68c210e` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS要求エンジン、Design Template、意味密度によるPython抽出、HARNESS normative workflowと推進のoperational生成の分離、管理→推進→管理登録→検収、企画との齟齬管理、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
 | `docs/helix-harness/L1-planning/product-intent.md` | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | HARNESSの外部提供価値9件と対象外 |
 | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |

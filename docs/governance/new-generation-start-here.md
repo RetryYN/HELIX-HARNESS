@@ -57,4 +57,4 @@ Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだc
 PRは上流候補の差分共有と許可されたreviewに使う。旧workflowは非実行archiveへ移動済みであり、現時点で新世代CIはない。
 required check、review、merge等のrepository設定が旧世代を前提にする場合、その設定変更はHELIX-OSのGitHub projection再構築として別に扱う。
 PR #1797は`repository_foundation`に限定し、個別要求は[GitHub上流運用モデル](github-upstream-operating-model.md)に従って
-一要求identityずつ後続PRで無損失に再配置・具体化する。意味変更・縮退・retireだけを人間判断へ送る。
+一要求identityずつ後続PRで無損失に再配置・具体化する。保持・再配置、意味変更、retireを別decision種別として、すべての要求PRを対象revision付きの人間判断へ送る。
