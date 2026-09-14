@@ -29,7 +29,7 @@ successor割当、意味変更、承認を成立させない。23件は`meaning_
 対象未解決18件は、[判断packet](legacy-ir-unresolved-routing-decision-packet.md)でruntime・技術制約の層別17件と
 Domain Object規律の適用範囲1件へ整理した。これは判断内容を明確にするものであり、配置や意味変更を確定しない。
 [再配置wave台帳](legacy-ir-rehome-wave-register.md)は153件を業務価値→機能→非機能→技術制約の順に11 partitionへ分ける。
-partitionは後続要求PRの作業単位であり、successorや承認状態ではない。
+partitionは要求identityごとの後続PRを並べるqueue単位であり、successorや承認状態ではない。
 
 ## 元statusの保持
 

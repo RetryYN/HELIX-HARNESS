@@ -5,9 +5,9 @@ source: [IR対象routing queue](legacy-ir-target-routing-queue.jsonl)
 
 ## 処理順
 
-要求は削減せず、業務価値、機能、非機能、技術制約の順に対象別successorへ再配置する。各partitionを別の`requirement` PRとして扱い、前waveで確定した価値・責務を後waveの入力にする。37件のrouting containerは参照先候補であり、successorそのものではない。
+要求は削減せず、業務価値、機能、非機能、技術制約の順に対象別successorへ再配置する。各partitionは処理順と対象種別を管理するqueueである。PRは原要求identityごとに一件ずつ作り、前waveで確定した価値・責務を後waveの入力にする。37件のrouting containerは参照先候補であり、successorそのものではない。
 
-| 順序 | partition | 件数 | 処理 |
+| 順序 | queue partition | 要求PR数 | 処理 |
 |---:|---|---:|---|
 | 1 | `W1-business-value::os` | 18 | 原要求ID・原文・digestを保持し、対象・successor・保持atom・未被覆atomを記録 |
 | 2 | `W1-business-value::harness-os-split` | 14 | 原要求ID・原文・digestを保持し、対象・successor・保持atom・未被覆atomを記録 |
