@@ -43,3 +43,22 @@ open／close状態から要求、上流承認、実装許可、完了を生成�
 Issueは`closed / not_planned`へ変更でき、labelも削除できる。ただしIssue番号、timeline、更新履歴、通知は消去できない。
 rollbackは新しい人間指示なしに行わない。local ticketの上流revisionが変わった場合は、Issueから意味を戻さず、local側を
 先に改訂してから投影本文とsource commitを更新する。
+
+## 日本語表示と責務訂正の同期
+
+local ticketをcommit `741eddb855d9b24ac6645c4485e7d24b8123c95f`で更新した後、8件のIssueを再投影した。
+人間が読むtitle、見出し、目的、境界、依存・順序を日本語へ統一し、機械識別子だけ原語を維持した。
+#1799／#1801ではOS登録をHARNESS製品の実依存から外し、#1798先行をHELIX内部のdelivery sequenceとして表示した。
+#1805ではtag語彙とworkflow生成規則のownerがHELIX-OS推進機構であり、HARNESSは開発・検証contractだけを
+所有することを明記した。read-afterの`updatedAt`はUTCで次のとおり。
+
+| Issue | updatedAt UTC |
+|---:|---|
+| #1798 | 2026-09-14T17:24:07Z |
+| #1799 | 2026-09-14T17:24:08Z |
+| #1800 | 2026-09-14T17:24:10Z |
+| #1801 | 2026-09-14T17:24:52Z |
+| #1802 | 2026-09-14T17:24:53Z |
+| #1803 | 2026-09-14T17:24:55Z |
+| #1804 | 2026-09-14T17:24:56Z |
+| #1805 | 2026-09-14T17:24:57Z |

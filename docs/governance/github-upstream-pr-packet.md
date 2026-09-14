@@ -10,7 +10,7 @@ base_branch: `main`
 `repository_foundation`
 
 ```text
-docs(governance): start HELIX new generation from upstream
+chore(governance): HELIX新世代のリポジトリ基盤と上流運用を整備する
 ```
 
 ## PR body
