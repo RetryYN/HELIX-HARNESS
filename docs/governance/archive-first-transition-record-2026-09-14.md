@@ -28,7 +28,7 @@ executed_at: 2026-09-14
 
 active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、対象別L1／L2／L11、上流方針、inventory、crosswalk、
 判断packetを含む68ファイルだけを残した。本記録、現行文書構成README、Concept入口、GitHub PR packet、完全一致再利用統制、
-CodeQL設定変更記録とGitHub Claude review記録3件を追加したため現在は77ファイルである。旧文書をbranch上で
+CodeQL設定変更記録とGitHub Claude review記録4件を追加したため現在は78ファイルである。旧文書をbranch上で
 変更していた場合も、追加文書でなければarchive sourceへ移した。
 
 active文書は`concept/`、`helix-harness/`、`helix-os/`、`helix-web/`、`helix-web-os/`、`governance/`へ

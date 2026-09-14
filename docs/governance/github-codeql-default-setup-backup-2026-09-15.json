@@ -44,7 +44,15 @@
       "runner_type": "standard"
     },
     "api_run_id": 34863162881,
+    "api_run_conclusion": "success",
     "read_after_state": "configured",
+    "read_after_languages": [
+      "actions",
+      "javascript",
+      "javascript-typescript",
+      "typescript"
+    ],
+    "read_after_schedule": "weekly",
     "semantic_gate_effect": "none"
   },
   "restoration_status": "restored; CodeQL remains an external security projection and does not approve upstream meaning"
