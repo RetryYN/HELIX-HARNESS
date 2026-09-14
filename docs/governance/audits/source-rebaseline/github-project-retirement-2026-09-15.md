@@ -17,10 +17,11 @@ Project #1は旧HELIX-HARNESSのIssue／PR進捗を表示するread-side project
 | 項目 | 記録 |
 |---|---|
 | 実施runtime／account | Codex hosted chat runtime、GitHub CLI、`RetryYN` |
-| authority basis | 上流再整理で旧Issue等を潰してクリーン出発する先行指示と、GitHubを要求正本にしない方針。Project closeは可逆なprojection退役 |
+| authority basis | Projectを名指しした指示ではない。上流再整理で旧Issue等を潰してクリーン出発する先行指示とGitHub非authority方針に、旧Projectも含むと実行側が解釈した。可逆なprojection退役として実行したが、このscope解釈をPOの明示指示へ置き換えない |
 | read-before | `closed=false`、private、field 13、item 210、全item Status=`Done` |
 | item構成 | Issue／PR等210件。item ID、content、body digest、label、Statusを明細へ固定 |
 | operation | `gh project close 1 --owner RetryYN` |
+| operation time | GitHub `updatedAt=2026-09-14T16:26:21Z`（UTC、JSTでは2026-09-15） |
 | read-after | `closed=true`、field 13、item 210。Projectとitemを削除していない |
 | semantic effect | なし。全itemを`semantic_disposition=unresolved`、`requirement_authority=false`として保持 |
 
