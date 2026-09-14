@@ -14,6 +14,19 @@ authority: machine ledgers linked below
 現時点ではsuccessor割当済みは0件である。37件の対象別L2はrouting containerであり、この表のsuccessorへ自動算入しない。
 要求の再配置が始まっていないことを、要求削減や移管完了として表示しない。
 
+## IR 153件の対象routing候補
+
+| routing状態 | 件数 |
+|---|---:|
+| HELIX-OS候補 | 84 |
+| HELIX-HARNESS／HELIX-OS分割候補 | 51 |
+| 対象未解決 | 18 |
+| 上記のうち意味変更・照合を人間へ提示する候補 | 23 |
+
+[対象routing queue](legacy-ir-target-routing-queue.jsonl)は既存crosswalkの記述をfield分離したものであり、
+successor割当、意味変更、承認を成立させない。23件は`meaning_change_applied: false`、全153件は
+`successor_assignment_status: unassigned`のまま保持する。
+
 ## 元statusの保持
 
 22要求文書は`confirmed` 17件、`draft` 3件、`proposed` 1件、`placeholder` 1件である。`confirmed`は採用済みのまま保持し、新世代化を理由にcandidateへ降格しない。
@@ -24,6 +37,7 @@ authority: machine ledgers linked below
 - [confirmed文書identity carry-forward](legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
 - [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
 - [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `acf3bf6ceb4bab0a6a0d63e0b9d1abb3b033302c7fc8ddbe20123d48732e0af3`
+- [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 
 ## 判定規則
 
