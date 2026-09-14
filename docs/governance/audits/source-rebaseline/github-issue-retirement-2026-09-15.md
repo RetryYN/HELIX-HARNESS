@@ -46,3 +46,22 @@ read-afterではopen Issue 0件、対象488/488件が`closed / not_planned`、`c
 
 この結果はGitHub projectionの退役だけを閉じる。488件と1,330コメントの意味採否は全件`unresolved`であり、
 対象別L2へ採択済み、不要、実装済み、受入済みとは扱わない。
+
+## 外部操作記録
+
+| 項目 | 記録 |
+|---|---|
+| 実施runtime | Codex hosted chat runtimeからGitHub CLIのREST APIを使用 |
+| GitHub account | `RetryYN`。read-afterの`closed_by`も488/488件で一致 |
+| authorization actor | PO `RetryYN` |
+| authorization basis | 2026-09-14の「イシューとかも潰してクリーン出発がいい」と、2026-09-15の「イシューとかどうする？潰す？」という本上流整理session内の指示 |
+| target／scope | `RetryYN/HELIX-HARNESS`でread-before時点にopenだった旧世代Issue 488件。Draft PR #1797、closed Issue、要求意味は対象外 |
+| operation | 各番号へ`PATCH /repos/RetryYN/HELIX-HARNESS/issues/{number}`、`state=closed`、`state_reason=not_planned` |
+| mutation time | `closed_at`のUTC範囲: `2026-09-14T16:10:16Z`〜`2026-09-14T16:11:19Z`。JSTでは2026-09-15 |
+| mutation result | 488件実行、成功488、失敗0 |
+| read-after | 各488件を個別GETし、state、state reason、closed_at、本文SHA-256、comment countを照合。open検索0件 |
+| evidence | Issue明細488行、comment明細1,330行、本記録、GitHub各Issue timeline |
+
+操作はIssueごとに`PATCH ... state=open`でreopenできる。ただしreopenは旧backlogを再有効化する外部変更なので、現在の
+上流方針から自動実行せず、新しい人間指示へ束縛する。close時に生成されたGitHub timeline eventとwatcher通知はreopenしても
+消去・巻戻しできない。閉鎖中も本文、comment、添付URL、timelineはGitHub historical sourceとして参照できる。
