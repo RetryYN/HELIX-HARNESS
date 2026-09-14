@@ -22,7 +22,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 5. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
 6. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 7. [GitHub上流運用モデル](github-upstream-operating-model.md)
-8. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の機械台帳](legacy-requirement-carry-forward.jsonl)
+8. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-ir-rehome-wave-register.md)
 9. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
 10. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
 11. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、

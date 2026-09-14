@@ -30,7 +30,7 @@ active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、
 判断packetを含む68ファイルだけを残した。本記録、現行文書構成README、Concept入口、GitHub PR packet、完全一致再利用統制、
 CodeQL設定変更記録、旧資産明細台帳・判断／copy read-afterログ3件、旧Issue退役記録・Issue／comment明細、
 旧Project退役記録・item明細、GitHub Claude review記録、要求・設計template・ticket導出候補、Feature Ticket 8件と
-そのIssue投影記録、GitHub上流運用モデル、企画・Vision→research→要求の被覆監査を追加したため現在は149ファイルである。旧文書をbranch上で
+そのIssue投影記録、GitHub上流運用モデル、企画・Vision→research→要求の被覆監査を追加したため現在は150ファイルである。旧文書をbranch上で
 変更していた場合も、追加文書でなければarchive sourceへ移した。
 
 active文書は`concept/`、`helix-harness/`、`helix-os/`、`helix-web/`、`helix-web-os/`、`governance/`へ
