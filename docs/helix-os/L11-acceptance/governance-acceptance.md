@@ -13,6 +13,8 @@ pair_artifact: docs/helix-os/L2-requirements/governance-requirements.md
 # HELIX-OS統制要求の受入案
 
 全件未実行。複数プロジェクトを対象に要求revision・判断・実結果を照合する。
+旧要求の整理では、原要求ID・原文digest・successor・未被覆atomをOSが追跡できることを確認する。
+Issue close、PR merge、旧owner・技術との衝突、37件のrouting containerへの接続から要求削除を生成した場合は不合格とする。
 
 | 親要求 | 利用者が確認する結果と反例 |
 |---|---|

@@ -18,6 +18,11 @@ parent_l1_candidate: docs/helix-os/L1-planning/system-intent.md
 2026-09-14のPO指示に基づく対象別の分離案。HELIX-OSは管理・統制、Worker、学習、ログ、CI、継続・復旧の機能を所有する。
 HARNESSは提供プロダクトである。名称やフォルダの分離だけで個別要求の合意・実装・受入は成立しない。
 
+既存の採用済み要求は[無損失carry-forward方針](../../governance/legacy-requirement-carry-forward-policy.md)に従って保持する。
+本書と参照crosswalkに残る「再採否」「不採用」「棄却」は、明示された旧owner、旧技術、旧CI、旧実装方式、
+または元からcandidateだった項目にだけ適用する。原要求IDと要求意味を削除・縮退・candidate降格する意味には使わない。
+OSは原要求からsuccessorへのtraceと未被覆atomを管理し、意味変更・縮退・retireを人間decisionなしに登録しない。
+
 HELIX-OSの目的は、HARNESSを含むHELIXプロジェクト群を管理・統制し、HARNESSを自身へ適用してHARNESSそのものを
 改善し続けることにある。各product、HELIX自身、Web-OSからの許可された運用結果も同じ改善機構へ接続する。
 外部へ輸出するプロダクトはHARNESSであり、本要求でHELIX-OSの外販・配布を目的化しない。

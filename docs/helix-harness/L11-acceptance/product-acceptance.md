@@ -13,6 +13,8 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 # HARNESS利用要求の受入案
 
 全件未実行。合意した要求revision・対象artifact・操作・実結果を記録して判定する。
+旧要求の整理では、原要求ID・原文digest・successor・未被覆atomを照合し、37件のrouting containerへの関連付けだけで
+移管完了にしない。人間decisionのない削除・縮退・candidate降格を一件でも検出した場合は不合格とする。
 
 | 親要求 | 利用者が確認する結果と反例 |
 |---|---|

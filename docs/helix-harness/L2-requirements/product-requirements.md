@@ -19,6 +19,12 @@ parent_l1_candidate: docs/helix-harness/L1-planning/product-intent.md
 要求の対象を分離する。本書は既存の混在要求から分離した案であり、個別要求の合意・IR移管は未完了である。
 旧`harness/L1-requirements`や`L2-screen`の配置だけを現行採用の根拠にしない。
 
+既存の採用済み要求は[無損失carry-forward方針](../../governance/legacy-requirement-carry-forward-policy.md)に従って保持する。
+本書と参照crosswalkに残る「再採否」「不採用」「棄却」は、明示された旧owner、旧技術、旧CI、旧実装方式、
+または元からcandidateだった項目にだけ適用する。原要求IDと要求意味を削除・縮退・candidate降格する意味には使わない。
+原要求は対象product、責務、粒度、接続関係を再配置し、未被覆atomを`pending`として残す。要求意味の変更または
+retireには、対象ID・revision・理由・影響を持つ人間decisionを必要とする。
+
 HARNESSはVモデル等の開発工程を規定する提供プロダクトである。Worker実行、CI運転、ログ保存、学習、
 プロジェクト群の管理・統制はHELIX-OS側に置く。
 
