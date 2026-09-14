@@ -27,6 +27,15 @@ review_queue: [atom化review queue](legacy-requirement-atomization-review-queue.
 
 721 review unitは要求identityでもGitHub ticketでもない。2,058行を漏れなく、元文書とheadingの順序で読める大きさへ分けただけである。review unitから要求atomを生成するまでは、対象product、要求種別、重複、被覆を確定しない。
 
+処理順はsource authorityを変えず、二つのwaveへ固定する。
+
+| Wave | unit | line | 順序と停止条件 |
+|---|---:|---:|---|
+| `A1-accepted-requirement-source` | 462 | 1,529 | `confirmed`として保持した要求文書を、文書台帳順・source line順に処理する |
+| `A2-source-state-preserved-without-promotion` | 259 | 529 | A1の分類proposal完了後に処理する。`draft`、`proposed`、`placeholder`を要求採用へ昇格させない |
+
+このwaveはレビュー順だけを決める。A1を新世代要求として自動採用せず、A2を削除・降格もしない。各sourceの元status、要求意味の保持、対象別authorityへの採用を別状態として扱う。
+
 ## 台帳field
 
 各行は次を持つ。
@@ -56,6 +65,7 @@ review_queue: [atom化review queue](legacy-requirement-atomization-review-queue.
 - 一つのunitは同一source file、同一heading path、連続する物理行だけを含む。
 - unit内最大行数は29であり、source順を維持する。
 - 全unitを`classification_status: not_started`、`target_assignment_status: unassigned`、意味変更0、successor 0から開始する。
+- A1の462 unit／1,529行を先行し、A2の259 unit／529行はA1 proposal完了まで開始しない。各wave内はsource文書台帳順・行順を維持する。
 
 ## 不合格条件
 

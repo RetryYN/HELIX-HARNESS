@@ -36,7 +36,7 @@ active relative links  total=430, broken=0
 human-readable queues  W1-W4 total=153, source text/digest exact=153
 human-decision packets total=23, source text/digest exact=23, applied=0
 semantic line inventory documents=22, total=2386, exact=2386, linked identities=328, pending atomization=2058
-atomization review queue units=721, pending line coverage=2058/2058, duplicate=0, max lines=29
+atomization review queue units=721, pending line coverage=2058/2058, duplicate=0, max lines=29; A1 accepted-source=462 units/1529 lines, A2 nonpromoted-source=259 units/529 lines
 ```
 
 archive manifestはpathが旧repository root相対なので、`archive/legacy-generation-2026-09-14/root/`を検証起点にして`../MANIFEST.sha256`を読む。archive直下を起点にすると`root/`を欠いた誤ったmissing判定になる。
