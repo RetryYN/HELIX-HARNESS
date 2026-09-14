@@ -135,7 +135,8 @@ L2を飛ばしてL1からL3へ接続せず、L2要求とL11受入、L3要件とL
   copy後のdigest一致とactive consumerをread-afterする。要求・責務・runtime境界が変わる資産には使用しない。
 - `semantic_rederive`: 採択したsemantic atomを新しい上流ID、契約、設計、oracle、実装identityへ再導出する。
 
-旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定は`verbatim_reuse`の対象外とする。
+旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定、旧test／fixture／oracle、
+旧runtime state／evidenceは`verbatim_reuse`の対象外とする。
 それらは`semantic_rederive`、`replace`、`archive_only`、`reject`、`unresolved`のいずれかで扱う。対象外classではない
 資産は制御条件を満たせば再実装せずarchiveからコピーしてよいが、未判定資産をコピー候補から黙って除外しない。全archive資産はmanifestを
 母集団とし、`verbatim_reuse`、`semantic_rederive`、`replace`、`retire`、`archive_only`、`reject`、`unresolved`の

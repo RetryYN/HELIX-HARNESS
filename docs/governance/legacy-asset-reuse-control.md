@@ -13,9 +13,15 @@ manifest entryは必ず資産明細台帳の個別行を持ち、初期dispositi
 なく、閉包違反として処理を停止する。
 
 全entryは[資産明細台帳](legacy-asset-disposition.jsonl)にも1件1行で展開する。`asset_id`はsource pathのSHA-256先頭20桁から
-決定的に生成し、path変更と採否変更を同じ操作にしない。初期値は`asset_class=Historical`、
-`product_target=unresolved`、`disposition=unresolved`である。個別採否では該当行を新revisionとして更新し、source pathと
-source digestを保持する。明細台帳の欠落、重複、manifestとのdigest不一致があればcopyや意味移管を停止する。
+決定的に生成し、path変更と採否変更を同じ操作にしない。初期値は`revision=1`、`asset_class=Historical`、
+`product_target=unresolved`、`disposition=unresolved`である。明細台帳は機械照会用であり、AIの全文startup readにしない。
+個別採否では行の`revision`を進め、source path／digestを保持し、`decision_record_ref`でappend-only判断記録へ接続する。
+明細台帳の欠落、重複、manifestとのdigest不一致、revisionの非単調更新があればcopyや意味移管を停止する。
+
+各行は、親要求とpair、製品owner、approval revision、target path／digest、意味・interfaceの不変理由、consumer、権利、
+実行性、secret、外部作用、判断者・時点、copy実施者・時点、read-after記録の欄を持つ。未確認値は空欄または
+`unreviewed`として保持し、推測で埋めない。`reuse_exclusion_class`が非nullの行へ`verbatim_reuse`を設定してはならない。
+このclassはpathから保守的に初期化した停止条件であり、nullをcopy許可と解釈せず、内容監査後にだけ個別判断する。
 
 ## archive内規則との優先関係
 
@@ -38,11 +44,11 @@ historical evidenceとして改変しない。
 
 ## 完全一致再利用の必須記録
 
-`asset_id`、archive内source path、source SHA-256、現行target path、target SHA-256、製品owner、親要求ID、
-採否revision、意味・interfaceの不変理由、consumer、実行性、権利、secret、外部作用、copy実施者・時点、read-after結果を
-一組で記録する。旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定は完全一致再利用の
-対象外であり、他の記録が揃っても現行pathへcopyしない。credential参照、実行可能性、外部作用が判明した他資産も、
-安全境界と個別要求が確定するまで`unresolved`とする。
+`asset_id`、行revision、archive内source path、source SHA-256、現行target path、target SHA-256、製品owner、親要求ID、
+採否revision、判断記録、意味・interfaceの不変理由、consumer、実行性、権利、secret、外部作用、copy実施者・時点、
+read-after結果を一組で記録する。旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定、
+旧test／fixture／oracle、旧runtime state／evidenceは完全一致再利用の対象外であり、他の記録が揃っても現行pathへcopyしない。
+credential参照、実行可能性、外部作用が判明した他資産も、安全境界と個別要求が確定するまで`unresolved`とする。
 
 ## 現在の完全一致再利用
 

@@ -190,7 +190,8 @@ HELIX-Webの要求をOS管理UIやHARNESS機能へ混在させない。
 既存資産はファイル単位で一括移植・削除しない。behavior、要求、設計、oracle、runtime、consumerへ分解し、
 HARNESS、HELIX-OS、個別製品のexact targetへ帰属させる。各資産は`verbatim_reuse`、`semantic_rederive`、
 `replace`、`retire`、`archive_only`、`reject`、`unresolved`のいずれかを持つ。旧CI／workflow、runtime／CLI、hook、
-adapter、AI instruction／prompt、実行設定は`verbatim_reuse`の対象外とし、新世代上流から再導出または置換する。
+adapter、AI instruction／prompt、実行設定、旧test／fixture／oracle、旧runtime state／evidenceは`verbatim_reuse`の対象外とし、
+新世代上流から再導出、置換、またはhistorical sourceとして参照する。
 
 自動走行へ入れる前に、上位revision、responsibility owner、scope、pair、acceptance、停止・復旧条件を解決する。
 未解決資産はarchive内で上流再導出待ちとする。新世代要求oracle、consumer切替、rollback、read-afterは、旧capabilityの

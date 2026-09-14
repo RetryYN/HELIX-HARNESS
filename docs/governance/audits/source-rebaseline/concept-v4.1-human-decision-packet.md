@@ -43,7 +43,7 @@ status: awaiting_human_decision
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `c9ac680983ac87e65f64353cb5fcfa86953525b5c5c4b3a7194ffd4db5abfd96` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
+| `docs/concept/helix-concept-v4.1.md` | `dbd011d4b059c08aea147af83df1c5a71cd06002afe28eeea8617112dcb73025` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
 | `docs/helix-harness/L1-planning/product-intent.md` | `e72334069da58904094cac5da074855c0d432416d4edc9e2cf11f83668ab1a20` | HARNESSの外部提供価値7件と対象外 |
 | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |
@@ -107,9 +107,13 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 - HEAD `f92651a66366562eb09466c523a87b39b14669e4`の
   [review](upstream-github-review-f92651a66.md)ではBlocker 0件、新規所見0件、過去25所見すべて解消と判定された。
   要求欠落防止、完全一致再利用統制、4対象責務境界は成立し、全4020件のatom閉包は未完として保持されている。
+- HEAD `8bbb7c969b2e0b562e6e9d1c929fd4aa682085d5`の
+  [資産明細台帳review](upstream-github-review-8bbb7c969.md)ではBlocker 0件、Major 1件、Minor 2件を検出した。
+  行revisionと個別採否欄、再利用除外class、AIの照会境界を後続revisionで是正した。
 
-各reviewは対象HEADのfindingであり、人間承認ではない。Conceptと4対象L1の判断対象SHAは最終review後も変更していない。
-後続の記録変更を上流意味の変更と混同せず、判断時には対象SHAと未解消blocker数をread-afterする。
+各reviewは対象HEADのfindingであり、人間承認ではない。資産明細台帳reviewの所見を受け、Conceptは旧test／fixture／oracleと
+旧runtime state／evidenceも完全一致再利用しない条件を追加してSHAを再固定した。4対象L1は変更していない。判断時には
+対象SHAと最新reviewの未解消blocker数をread-afterする。
 
 ## 内部で分けて記録する判断
 
