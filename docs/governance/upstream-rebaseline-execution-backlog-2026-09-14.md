@@ -63,10 +63,13 @@ GitHub Issue番号、branch、PRはこの契約への参照として追加でき
 | URB-U2-HARNESS-001 | U2 | HARNESS | Concept revision、柱対応表 | 外部提供物としてのL1企画 | upstream_waiting |
 | URB-U2-OS-001 | U2 | HELIX-OS | Concept revision、柱対応表 | 管理・統制・改善機構としてのL1企画 | upstream_waiting |
 | URB-U2-WEB-001 | U2 | HELIX-Web | Concept revision、Vision原文 | 管理対象製品としてのL1企画 | upstream_waiting |
-| URB-U3-HARNESS-001 | U3 | HARNESS | HARNESS L1、L2案6件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
-| URB-U3-OS-001 | U3 | HELIX-OS | OS L1、L2案9件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
+| URB-U3-HARNESS-001 | U3 | HARNESS | HARNESS L1、L2案8件、L11案、要求粒度監査 | unit／connection／compositeへ再構成した合意revision付きL2／L11 | upstream_waiting |
+| URB-U3-OS-001 | U3 | HELIX-OS | OS L1、L2案13件、L11案、要求粒度監査 | unit／connection／compositeへ再構成した合意revision付きL2／L11 | upstream_waiting |
 | URB-U3-WEB-001 | U3 | HELIX-Web | Web L1、Vision由来L2案8件、L11案 | 合意revision付きL2／L11 | upstream_waiting |
 | URB-U3-AIDOC-001 | U3 | HARNESS / HELIX-OS | 対象別L1、AI可読文書要求候補 | 合意revision付きAI文書L2／L11 | upstream_waiting |
+| URB-U3-REQREG-001 | U3 | HELIX-OS | FT-OS-REQREG-001、OS L2／L11 | 意味未分類の原event登録要求と受入 | upstream_waiting |
+| URB-U3-REQENG-001 | U3 | HARNESS | FT-HARNESS-REQENG-001、HARNESS L2-008／L11 | 要求エンジンとunit／connection／composite意味契約 | depends_on_URB-U3-REQREG-001 |
+| URB-U3-REQCLASS-001 | U3 | HELIX-OS | FT-OS-REQCLASS-001、登録契約、engine契約 | versioned分類projection要求と受入 | depends_on_URB-U3-REQREG-001_and_REQENG-001 |
 | URB-U4-001 | U4 | 対象別 | v1.3対応表、IR差分proposal、候補L3／L10 | 対象別L3／L10とIR revision | upstream_waiting |
 | URB-U5-001 | U5 | 対象別 | 凍結L3／L10、既存資産台帳 | 下流再導出と検証済み実装slice | upstream_waiting |
 | URB-U6-001 | U6 | HELIX-OS | 検証済みslice、consumer、migration | runtime／projection切替 | upstream_waiting |

@@ -2,9 +2,10 @@
 
 prepared_at: 2026-09-14
 revision_binding: exact SHA-256 in this packet
-status: ready_for_human_decision
+status: review_refresh_pending
 latest_repository_review_head: `1d44da71f3757c362771ae80820ab495110c2af9`
 latest_repository_review_result: blocker_0_finding_0
+current_revision_review_status: requirement_engine_delta_review_pending
 
 ## 判断の目的
 
@@ -25,15 +26,16 @@ latest_repository_review_result: blocker_0_finding_0
 | Version 1をHARNESS製品群の完成境界とする | 複数プロダクトの実開発とHELIX自身への適用でHARNESSを検証し、その完成をWeb展開の必須前提とする。Web自体はVersion 1完成分母に入れない | Web展開の依存関係とVersion 1の範囲を再定義する |
 | GitHubを作業・共有・証拠の投影先とする | ローカルの対象別Concept／L1／L2等を意味正本にする | Issue／PR等のどこが意味正本かを再定義する |
 | 現行資産を参考資料へ退役し、新世代を上流から再構築する | 旧CI・runtime・AI文書を非実行archiveへ先に隔離し、baselineにせずarchive sourceから意味を採取する | 維持する旧実行系と互換範囲を別途決める |
+| 要求エンジンをHARNESS能力、企画との齟齬管理をHELIX-OS責務とする | 単体・接続・構成体を分けて要求候補を形成し、OSがConcept／企画から採用要求までの欠落・追加・対象違いを管理する | 要求形成能力と、その出力・改善logを管理するownerを別途定義し直す |
 
-これら7点は、2026-09-14までのPO指示で既に方向が示されている。本packetで改めて曖昧な一括承認を要求する
+これら8点は、2026-09-15までのPO指示で既に方向が示されている。本packetで改めて曖昧な一括承認を要求する
 必要はない。残る確認対象は、下記候補文書がこの既決方針に余計な意味を追加していないか、または必要な意味を
 落としていないかである。修正が必要なら、文書IDではなく「どの方針が違うか」を指示できる。
 
 ### 文書で具体化した内容
 
-- HARNESS: L1–L12、正規V-pair、工程選択、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。
-- HELIX-OS: HARNESS自己適用と継続改善、対象別authority、複数project管理、管理・推進・検収、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制。
+- HARNESS: L1–L12、正規V-pair、工程選択、単体・接続・構成体を分ける要求エンジン、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。
+- HELIX-OS: HARNESS自己適用と継続改善、Concept／企画から要求エンジン出力・採用要求までの齟齬管理、対象別authority、複数project管理、管理・推進・検収、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制。
 - HELIX-Web: HARNESS Version 1完成後の展開、Connector接続、ダッシュボードによる進行確認、利用者の変更・受入判断、構成版、改善利用への同意。
 - HELIX-Web-OS: HELIX-OS外のservice runtime、tenant・job・credential・stateの運転、許可logのHELIX-OS改善入口へのexport。
 - 共通: GitHub非authority、旧資産非継承、Concept→L1→L2→L3の順序、L2↔L11／L3↔L10。
@@ -45,8 +47,8 @@ latest_repository_review_result: blocker_0_finding_0
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `dbd011d4b059c08aea147af83df1c5a71cd06002afe28eeea8617112dcb73025` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
-| `docs/helix-harness/L1-planning/product-intent.md` | `e72334069da58904094cac5da074855c0d432416d4edc9e2cf11f83668ab1a20` | HARNESSの外部提供価値7件と対象外 |
+| `docs/concept/helix-concept-v4.1.md` | `79fb938a21c395a70562caa8a1c5b4444812c98e9c382f6b66b0ccac2e0f862e` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS要求エンジン、企画との齟齬管理、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
+| `docs/helix-harness/L1-planning/product-intent.md` | `6ccd609f63156df9c6625ee548d19d556639b92372977fdbf142711a3fe41a2e` | HARNESSの外部提供価値8件と対象外 |
 | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |
 | `docs/helix-web-os/L1-planning/system-intent.md` | `600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c` | HELIX-Web-OSのservice運転価値5件と対象外 |
@@ -74,20 +76,22 @@ prototype／非UI適用性を個別採否し、別の人間合意を行う。
 
 | 旧所見 | 修正文書上の対応 | 独立再review |
 |---|---|---|
-| B1 原則変更を保持と誤記 | v4.1に保持／改訂／追加と理由の表を追加 | GitHub reviewで解消確認 |
-| B2 L1→L2が片方向 | 4対象のL2に`parent_l1_candidate`と全L1 ID relationを追加 | GitHub reviewで解消確認 |
-| B3 v4.0／v4.1 identity衝突 | v4.1を`HELIX-CONCEPT-V4.1`へ分離 | GitHub reviewで解消確認 |
-| M1 L12接続欠落 | 4対象L1の採択条件へL12運用評価を追加 | GitHub reviewで解消確認 |
-| M2 L0柱がL1を迂回 | 4対象L1へP0–P9の帰属／非該当を追加 | GitHub reviewで解消確認 |
-| M3 総称HELIXが要求owner | 旧HCV4-L2／L11を`migration_crosswalk_only`とし、全6件をHARNESS／OSへ分割 | GitHub reviewで解消確認 |
-| M4 OS責務欠落 | HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制とprojection再構築のL1要求を追加。展開先deployment authorityは個別runtimeに分離 | GitHub reviewで解消確認 |
-| M5 HARNESS責務欠落 | 要求形成、合意、freeze、差戻し、再開、完了のL1要求を追加 | GitHub reviewで解消確認 |
-| M6 移行中gate不明 | 静的意味検査と人間判断の効力、旧CI／旧gate非利用を明記 | GitHub reviewで解消確認 |
+| B1 原則変更を保持と誤記 | v4.1に保持／改訂／追加と理由の表を追加 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| B2 L1→L2が片方向 | 4対象のL2に`parent_l1_candidate`と全L1 ID relationを追加 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| B3 v4.0／v4.1 identity衝突 | v4.1を`HELIX-CONCEPT-V4.1`へ分離 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| M1 L12接続欠落 | 4対象L1の採択条件へL12運用評価を追加 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| M2 L0柱がL1を迂回 | 4対象L1へP0–P9の帰属／非該当を追加 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| M3 総称HELIXが要求owner | 旧HCV4-L2／L11を`migration_crosswalk_only`とし、全6件をHARNESS／OSへ分割 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| M4 OS責務欠落 | HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制とprojection再構築のL1要求を追加。展開先deployment authorityは個別runtimeに分離 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| M5 HARNESS責務欠落 | 要求形成、合意、freeze、差戻し、再開、完了のL1要求を追加 | GitHub comment 5667389441で対応記述の存在を静的確認 |
+| M6 移行中gate不明 | 静的意味検査と人間判断の効力、旧CI／旧gate非利用を明記 | GitHub comment 5667389441で対応記述の存在を静的確認 |
 
 初期の修正版へのClaude再reviewは2回ともprovider `outcome:error`で本文が返らなかった。第3回はsealed worker contextから
 remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起動したが、20分deadlineで
-`terminal_failure=timed_out`となり本文を返さなかった。これらの試行自体は合格receiptとして扱わない。後続の許可済み
-GitHub review通路で各所見の解消を確認した。
+`terminal_failure=timed_out`となり本文を返さなかった。これらの試行自体は合格receiptとして扱わない。
+sealed reviewのB1..B3／M1..M6と後続GitHub reviewの同名IDは別系列である。GitHub
+[comment 5667389441](https://github.com/RetryYN/HELIX-HARNESS/pull/1797#issuecomment-5667389441)は、HEAD `5d03921e4`で
+各対応記述の存在を静的確認したが、sealed reviewerによる`resolved`判定を代替しない。
 
 2026-09-14、最新revisionへの再reviewとしてローカルClaude CLIを起動したが、そのCLI通路はPOから許可されていなかった。
 実行は停止し、無出力の一時ファイルを削除した。この試行をreview実施、失敗receipt、再試行許可のいずれにも数えない。

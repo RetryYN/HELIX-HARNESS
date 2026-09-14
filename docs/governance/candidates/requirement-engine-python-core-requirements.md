@@ -43,13 +43,13 @@ TypeScript実装が存在した。一方、Python semantic coreを現行新世�
 
 | ID | 要求 | 確認する結果 |
 |---|---|---|
-| REQENG-OS-001 | 要求エンジンの入力・出力を同じ因果IDで管理対象へ登録し、project、product、source、HARNESS版、engine版、schema版、候補、採否、要求revisionへ関連付ける | 登録を要求採用と混同せず、同じ指示からの再実行と訂正を追跡できる |
+| REQENG-OS-001 | Concept、企画、指示、手動候補、要求エンジン入出力を意味未分類の原eventとして同じ因果IDで登録し、project、product、source、actor、permission、data classへ関連付ける | 要求分類schemaを先取りせず、登録を要求採用と混同せず、同じ指示からの再実行と訂正を追跡できる |
 | REQENG-OS-002 | ユーザー指示と抽出結果の差、質問、訂正、採否理由、後続の差戻し、見逃し、誤検出を改善用eventとして保存する | 「指示を落とした」「意味を足した」「対象を誤った」を別の改善信号として比較できる |
 | REQENG-OS-003 | 改善用eventからengine、製品固有pack、prompt、schema、HARNESS工程のどこを直す候補かを分け、採択後の変更・再検証・再観測へ接続する | ログ蓄積や自己評価だけで強化済みにせず、改善なし・退行・判定不能も保持する |
 | REQENG-OS-004 | Node／TypeScript transactional boundaryがPython出力のschema、対象revision、権限、lease、重複、staleを再検証してから単一transactionで登録する | Python出力のcommand、SQL、path、codeを実行せず、部分登録や二重登録を成功にしない |
 | REQENG-OS-005 | 入力と改善logは目的、同意、data分類、保持期間、利用可能scopeを持ち、secret、credential、不要なPII、生会話全文を既定の学習corpusへ入れない | 要求の根拠追跡を保ちながら、許可外の別project・別tenant・外部学習へ転用しない |
 | REQENG-OS-006 | Concept／企画L1、要求エンジンへの入力、抽出されたL2候補、採否後の要求を同じ系譜で比較し、価値・actor・目的・scope・non-goal・制約の欠落、追加、対象違い、矛盾を管理する | 企画にある価値が要求へ降りていない状態と、要求側が企画を勝手に拡張した状態を別々に示し、戻す層と判断者を特定できる |
-| REQENG-OS-007 | 単体、接続、構成体の要求identityと包含・接続relationを保って登録し、各状態、変更影響、証拠、未成立条件を別々に管理する | 機能Aの完了をA–Cの接続済み・システムAの受入済みへ自動伝播せず、逆に接続変更から影響する単体へ辿れる |
+| REQENG-OS-007 | 原eventとは別のversioned分類projectionとして、単体、接続、構成体の要求identity候補と包含・接続relationを登録し、各状態、変更影響、証拠、未成立条件を別々に管理する | engine／schema／製品pack変更時に原eventを改変せず再分類でき、機能Aの完了をA–Cの接続済み・システムAの受入済みへ自動伝播しない |
 
 ## 要求の粒度とrelation
 

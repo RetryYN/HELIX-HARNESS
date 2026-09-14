@@ -76,8 +76,9 @@ HARNESS-L2-008が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／01
 価値・actor・目的・scope・non-goal・制約の欠落、意味追加、対象違い、矛盾へ分け、戻す層と判断者を特定する。
 さらにengine共通、製品固有pack、入力不足、運用誤りの改善候補へ接続する。登録、ログ蓄積、自己評価だけで
 要求採用や強化済みにせず、採択した改善をHARNESSの要求・設計・検証と効果再観測へ戻す。
-登録時は単体、接続、構成体のidentityと包含・接続・依存relationを保持する。単体の進行・証拠・完了を接続や
-構成体へ自動伝播せず、接続・構成変更の影響を必要な単体と検証へ戻す。
+管理入口は意味未分類の原eventを因果ID、source、actor、対象、permission、data class付きで先に登録し、要求分類schemaを
+固定しない。単体、接続、構成体のidentity候補と包含・接続・依存relationは、HARNESS要求エンジン確定後に別のversioned
+分類projectionとして関連付ける。原eventを再分類で書き換えず、単体の進行・証拠・完了を接続や構成体へ自動伝播しない。
 
 HELIXOS-L2-004／007では、reviewer identity、review対象、review route、実行権限を別に扱う。provider名や
 「reviewを通す」という依頼だけから、GitHub、ローカルCLI、API、IDE、HARNESS Worker等の任意通路を選ばない。

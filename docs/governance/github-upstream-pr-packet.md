@@ -24,7 +24,7 @@ docs(governance): start HELIX new generation from upstream
 - archive manifest 4020/4020 SHA-256一致
 - 現行workflow YAML 0
 - active Markdown相対リンク切れ0
-- L2↔L11 ID集合: HARNESS 7、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6ですべて一致
+- L2↔L11 ID集合: HARNESS 8、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6ですべて一致
 - Concept＋4対象L1のSHA-256は判断packetと一致
 
 旧CI、旧test、旧runtime、ローカルClaude CLIは実行していません。
