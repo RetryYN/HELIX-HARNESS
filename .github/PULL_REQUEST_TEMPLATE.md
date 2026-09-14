@@ -4,15 +4,15 @@
 
 ## PR区分
 
-<!-- 一つだけ残す: repository_foundation / research_premise / requirement / design_verification / implementation / operation_change -->
+<!-- 必ず一つ記入する: repository_foundation / concept_revision / planning_revision / research_premise / discovery_evidence / requirement / design_verification / implementation / operation_change -->
 
-`requirement`
+未選択
 
 ## ローカル正本
 
 - 対象product:
-- 親Concept／L1 revision:
-- 親Vision／企画revision:
+- 親Concept revision:
+- 親Vision／L1企画revision:
 - premise packetまたはresearch非適用判断:
 - 要求IDまたはFeature Ticket ID:
 - 正本path:

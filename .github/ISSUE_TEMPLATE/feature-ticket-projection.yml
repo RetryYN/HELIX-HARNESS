@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        このIssueはローカルFeature Ticketのprojectionです。要求、承認、完了の正本ではありません。
+        このIssueは存在確認済みのローカルFeature Ticketを転記するprojectionです。要求、承認、完了の正本でも、新しい意味の入力面でもありません。以下の意味欄はローカルticket本文から転記してください。
   - type: input
     id: ticket_id
     attributes:
@@ -31,6 +31,14 @@ body:
       description: 投影元commitのfull SHAを入力してください
     validations:
       required: true
+  - type: input
+    id: source_digest
+    attributes:
+      label: ローカル正本digest
+      description: Source revisionにあるFeature Ticket本文のSHA-256を入力してください
+      placeholder: sha256:...
+    validations:
+      required: true
   - type: dropdown
     id: product_target
     attributes:
@@ -46,35 +54,35 @@ body:
     id: upstream_sources
     attributes:
       label: 親Concept・Vision・企画
-      description: 判断論点を導いたlocal source pathとexact revisionを列挙してください
+      description: ローカルticketに記載されたsource pathとexact revisionをそのまま転記してください
     validations:
       required: true
   - type: textarea
     id: premise_basis
     attributes:
       label: 前提整理とresearch根拠
-      description: premise packet、未解決前提、またはresearch非適用の理由・判断者・再評価条件を書いてください
+      description: ローカルticketに記載されたpremise packet、未解決前提、またはresearch非適用判断をそのまま転記してください
     validations:
       required: true
   - type: textarea
     id: purpose
     attributes:
       label: 目的
-      description: 利用者または管理上の結果が分かるように日本語で書いてください
+      description: ローカルticketの目的を意味変更せず転記してください
     validations:
       required: true
   - type: textarea
     id: boundary
     attributes:
       label: 境界と停止条件
-      description: このIssueで成立しないもの、上流承認待ち、禁止する旧経路を書いてください
+      description: ローカルticketの境界、停止条件、上流承認待ちを意味変更せず転記してください
     validations:
       required: true
   - type: textarea
     id: dependencies
     attributes:
       label: 実依存と実装順序
-      description: 機能依存とHELIX内部だけのdelivery sequenceを分けて書いてください
+      description: ローカルticketの依存とdelivery sequenceを意味変更せず転記してください
     validations:
       required: true
   - type: textarea
@@ -92,6 +100,8 @@ body:
       label: authority確認
       options:
         - label: Issueから要求意味・承認・完了を生成しない
+          required: true
+        - label: local ticketの存在、source revision、digestを確認し、意味欄を同ticketから転記した
           required: true
         - label: 上流承認前は設計・実装・Worker・CI・mergeへ進めない
           required: true

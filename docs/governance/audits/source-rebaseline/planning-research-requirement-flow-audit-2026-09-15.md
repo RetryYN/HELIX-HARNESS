@@ -37,10 +37,9 @@ research、PoC、prototypeの結果は要求候補と前提へ戻せるが、そ
 | `HELIXOS-L2-012` | 内部情報を先に調べ、不足分だけ外部情報を未信頼sourceとして取得する | Concept／Vision／企画から調査義務を生成し、要求エンジンへ渡す因果接続が一要求として閉じていない |
 | `HELIXOS-L2-001／002／005／007／013` | source、候補、採否、差分、改善eventを登録・追跡する | premise identity、判断論点、調査未完、反例、再調査条件の共通契約がない |
 | OS L2本文のRFA／DGH移管節 | 企画・前提・調査・PoC・prototype・反応・比較の反復を記載する | 本文補足に留まり、L1／L2 identityとGitHub operationの必須入力になっていない |
-| GitHub上流運用モデル | local上流を正本とし、要求を一identityずつPR化する | requirement PRより前の`research_premise`段階がなかった |
+| GitHub上流運用モデル | local上流を正本とし、`research_premise`、`discovery_evidence`、Concept／L1 backflow、要求一identityごとのPRを定義した | premise identityと調査契約は対象別L2／L11として未承認 |
 
-判定は`partial_and_not_operationally_closed`である。旧要求源に思想は存在するが、現在の対象別要求とGitHub運用を
-一続きに制御するには不足する。
+判定は`operating_route_defined_requirements_unapproved`である。repository foundationとしてGitHubへ投影する経路は定義したが、premise、research、PoC／prototype、backflowの製品要求は対象別L2／L11として未承認である。運用経路の記載を要求承認や実装済み機構として扱わない。
 
 ## 新世代の責務境界
 
