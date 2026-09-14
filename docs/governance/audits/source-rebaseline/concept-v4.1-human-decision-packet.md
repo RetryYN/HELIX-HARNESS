@@ -2,7 +2,9 @@
 
 prepared_at: 2026-09-14
 revision_binding: exact SHA-256 in this packet
-status: awaiting_human_decision
+status: ready_for_human_decision
+latest_repository_review_head: `1d44da71f3757c362771ae80820ab495110c2af9`
+latest_repository_review_result: blocker_0_finding_0
 
 ## 判断の目的
 
@@ -72,20 +74,20 @@ prototype／非UI適用性を個別採否し、別の人間合意を行う。
 
 | 旧所見 | 修正文書上の対応 | 独立再review |
 |---|---|---|
-| B1 原則変更を保持と誤記 | v4.1に保持／改訂／追加と理由の表を追加 | 未取得 |
-| B2 L1→L2が片方向 | 4対象のL2に`parent_l1_candidate`と全L1 ID relationを追加 | 未取得 |
-| B3 v4.0／v4.1 identity衝突 | v4.1を`HELIX-CONCEPT-V4.1`へ分離 | 未取得 |
-| M1 L12接続欠落 | 4対象L1の採択条件へL12運用評価を追加 | 未取得 |
-| M2 L0柱がL1を迂回 | 4対象L1へP0–P9の帰属／非該当を追加 | 未取得 |
-| M3 総称HELIXが要求owner | 旧HCV4-L2／L11を`migration_crosswalk_only`とし、全6件をHARNESS／OSへ分割 | 未取得 |
-| M4 OS責務欠落 | HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制とprojection再構築のL1要求を追加。展開先deployment authorityは個別runtimeに分離 | 未取得 |
-| M5 HARNESS責務欠落 | 要求形成、合意、freeze、差戻し、再開、完了のL1要求を追加 | 未取得 |
-| M6 移行中gate不明 | 静的意味検査と人間判断の効力、旧CI／旧gate非利用を明記 | 未取得 |
+| B1 原則変更を保持と誤記 | v4.1に保持／改訂／追加と理由の表を追加 | GitHub reviewで解消確認 |
+| B2 L1→L2が片方向 | 4対象のL2に`parent_l1_candidate`と全L1 ID relationを追加 | GitHub reviewで解消確認 |
+| B3 v4.0／v4.1 identity衝突 | v4.1を`HELIX-CONCEPT-V4.1`へ分離 | GitHub reviewで解消確認 |
+| M1 L12接続欠落 | 4対象L1の採択条件へL12運用評価を追加 | GitHub reviewで解消確認 |
+| M2 L0柱がL1を迂回 | 4対象L1へP0–P9の帰属／非該当を追加 | GitHub reviewで解消確認 |
+| M3 総称HELIXが要求owner | 旧HCV4-L2／L11を`migration_crosswalk_only`とし、全6件をHARNESS／OSへ分割 | GitHub reviewで解消確認 |
+| M4 OS責務欠落 | HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制とprojection再構築のL1要求を追加。展開先deployment authorityは個別runtimeに分離 | GitHub reviewで解消確認 |
+| M5 HARNESS責務欠落 | 要求形成、合意、freeze、差戻し、再開、完了のL1要求を追加 | GitHub reviewで解消確認 |
+| M6 移行中gate不明 | 静的意味検査と人間判断の効力、旧CI／旧gate非利用を明記 | GitHub reviewで解消確認 |
 
-修正版へのClaude再reviewは2回ともprovider `outcome:error`で本文が返らなかった。第3回はsealed worker contextから
+初期の修正版へのClaude再reviewは2回ともprovider `outcome:error`で本文が返らなかった。第3回はsealed worker contextから
 remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起動したが、20分deadlineで
-`terminal_failure=timed_out`となり本文を返さなかった。旧所見の`resolved`判定はない。
-したがって人間は修正文書と未取得状態を見て判断する。初回review、provider error、timeoutを合格receiptとして扱わない。
+`terminal_failure=timed_out`となり本文を返さなかった。これらの試行自体は合格receiptとして扱わない。後続の許可済み
+GitHub review通路で各所見の解消を確認した。
 
 2026-09-14、最新revisionへの再reviewとしてローカルClaude CLIを起動したが、そのCLI通路はPOから許可されていなかった。
 実行は停止し、無出力の一時ファイルを削除した。この試行をreview実施、失敗receipt、再試行許可のいずれにも数えない。
@@ -113,6 +115,9 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 - HEAD `afd9ab7298749507f64247cbd7a7a92d72e8ba81`の
   [台帳再review](upstream-github-review-afd9ab729.md)ではBlocker 0件、Major 1件、Minor 2件を検出した。
   archive内template等の除外class、append-only判断ログ、classラベルを後続revisionで是正した。
+- HEAD `4e9c4103338e6e81a1e4bd190ad306f5c250755a`以降は、資産判断・copy read-afterログ、Issue／Project projection退役の
+  外部作用と可逆性を追加確認した。HEAD `1d44da71f3757c362771ae80820ab495110c2af9`の
+  [最終review](upstream-github-review-1d44da71f.md)はBlocker 0件、所見0件である。
 
 各reviewは対象HEADのfindingであり、人間承認ではない。資産明細台帳reviewの所見を受け、Conceptは旧test／fixture／oracleと
 旧runtime state／evidenceも完全一致再利用しない条件を追加してSHAを再固定した。4対象L1は変更していない。判断時には
