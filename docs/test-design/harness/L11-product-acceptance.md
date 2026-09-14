@@ -22,7 +22,7 @@ pair_artifact: docs/design/harness/L2-requirements/product-requirements.md
 | HARNESS-L2-004 | 要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できる |
 | HARNESS-L2-005 | 異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |
 | HARNESS-L2-006 | 提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる |
-| HARNESS-L2-007 | Version 1の完成対象と必要証拠を確認し、未受入の必須構成があれば未完成と判定する。HELIX-Webの完成有無をVersion 1判定へ混入させない |
+| HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |
 
 ## 工程条件の確認シナリオ
 

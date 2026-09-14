@@ -118,9 +118,13 @@ HARNESSはWorker pool、HELIX内部memory、運用DB、CI運転、学習履歴�
 
 ## Version 1とHELIX-Web展開境界
 
-Version 1で完成させる対象はHELIX-HARNESS製品群である。HELIX-Webの展開は、そのVersion 1完成と、
-Webが利用するHARNESS構成の適格性を確認した後に開始する。HELIX-Web自体の実装・公開完了を
-HARNESS Version 1の完成分母へ含めず、HARNESS未完成のままWebを展開可能とも扱わない。
+Version 1で完成させる対象はHELIX-HARNESS製品群である。その完成には、検証フェーズで性質の異なる複数の
+プロダクトを実際に開発し、HELIX自身のプロジェクトにもHARNESSを適用して、要求から受入・運用評価までが
+成立することの確認を含む。サンプル生成、文書整合、HARNESS単体の成功だけではVersion 1完成としない。
+
+HELIX-Webの展開は、そのVersion 1完成と、Webが利用するHARNESS構成の適格性を確認した後に開始する。
+HELIX-Web自体の実装・公開完了をHARNESS Version 1の完成分母へ含めず、HARNESS未完成のままWebを
+展開可能とも扱わない。
 
 展開後のHELIX-Webは、許可された利用者環境へConnectorで接続し、開発jobの進行、状態、成果、証拠、
 停止・再開をダッシュボードから確認できるサービスとする。HELIX-OSがその運転と改善を管理し、

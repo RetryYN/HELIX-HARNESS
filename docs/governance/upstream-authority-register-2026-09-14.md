@@ -86,7 +86,7 @@ as_of: 2026-09-14
 |---|---|---|---|---|
 | 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、候補96文書／30系列、IR 153、refinement 14、旧5＋7文書 | 完了 | 新規sourceは発見時に追記する |
 | 製品責務 | HARNESS、HELIX-OS、個別製品の所有範囲と参照関係が決定される | [対象別責務決定](product-governance-boundary-2026-09-14.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
-| 最新Concept | 最新責務、新世代境界、authority、上流順序が人間承認revisionへ束縛される | v4.1候補と承認準備監査 | 人間承認待ち | v4.1 exact revisionを人間が採否する |
+| 最新Concept | 最新責務、新世代境界、authority、上流順序、Version 1の複数プロダクト・自己適用検証とWeb展開依存が人間承認revisionへ束縛される | v4.1候補と承認準備監査 | 人間承認待ち | v4.1 exact revisionを人間が採否する |
 | 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Webの企画・価値・対象外が分冊される | 対象別L1候補3文書。HARNESS 7、HELIX-OS 8、HELIX-Web 6要求。L0柱とL2接続案を記載 | 起草済み・親承認待ち | v4.1承認後に導出一致をreviewし、人間承認する |
 | 要求源の意味分類 | 各source atomのtarget、保持／変更／棄却、旧実現手段の扱いが分かる | Infinity 153、refinement 14、候補30系列、旧HARNESS 5文書のcrosswalk | 照合済み | 対象別L1確定後に再採否する |
 | 対象別L2 | 利用者、場面、操作、期待結果、非対象、出典、採否、合意revisionが対象別に閉じる | HARNESS 7、HELIX-OS 9、HELIX-Web 9のdraft | 未合意 | source atomを個別採否し、prototype／非UI記録と人間合意を束縛する |

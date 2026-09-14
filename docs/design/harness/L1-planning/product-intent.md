@@ -31,7 +31,7 @@ HARNESSは、外部利用者が企画・要求・要件・設計・実装・検�
 | HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |
 | HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |
 | HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |
-| HARNESS-L1-007 | 依存製品の展開判断者は、HELIX-HARNESS製品群のVersion 1完成範囲と、その成立証拠を確認できる | HARNESS-L2-007 |
+| HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |
 
 上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。
 

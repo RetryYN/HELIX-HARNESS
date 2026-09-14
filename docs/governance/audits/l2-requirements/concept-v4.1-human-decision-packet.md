@@ -19,7 +19,7 @@ status: awaiting_human_decision
 | 外部へ提供する製品をHARNESSとする | V-model、工程、検証契約、利用条件をHARNESSへまとめる | 外部提供物のidentityを別途定義し直す |
 | HELIX-OSを内部の管理・統制機構とする | authority、Worker、log、CI、学習、改善、配布運転をOSへまとめる | 管理・統制ownerを別途定義し直す |
 | HELIX-WebをOSが管理する個別製品とする | Web固有の利用要求を持ち、OSの管理UIへ還元しない | Webの位置づけを別途定義し直す |
-| Version 1をHARNESS製品群の完成境界とする | HARNESS完成をWeb展開の必須前提とし、Web自体はVersion 1完成分母に入れない | Web展開の依存関係とVersion 1の範囲を再定義する |
+| Version 1をHARNESS製品群の完成境界とする | 複数プロダクトの実開発とHELIX自身への適用でHARNESSを検証し、その完成をWeb展開の必須前提とする。Web自体はVersion 1完成分母に入れない | Web展開の依存関係とVersion 1の範囲を再定義する |
 | GitHubを作業・共有・証拠の投影先とする | ローカルの対象別Concept／L1／L2等を意味正本にする | Issue／PR等のどこが意味正本かを再定義する |
 | 現行資産を参考資料へ退役し、新世代を上流から再構築する | 旧CI・runtime・AI文書をbaselineにせず、意味採取後に非実行archiveへ移す | 維持する旧実行系と互換範囲を別途決める |
 
@@ -29,7 +29,7 @@ status: awaiting_human_decision
 
 ### 文書で具体化した内容
 
-- HARNESS: L1–L12、正規V-pair、工程選択、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件。
+- HARNESS: L1–L12、正規V-pair、工程選択、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。
 - HELIX-OS: 対象別authority、複数project管理、Worker、CI、証拠、継続・復旧、学習・改善、release・deployment運転。
 - HELIX-Web: HARNESS Version 1完成後の展開、Connector接続、ダッシュボードによる進行確認、利用者の変更・受入判断、構成版、改善利用への同意。
 - 共通: GitHub非authority、旧資産非継承、Concept→L1→L2→L3の順序、L2↔L11／L3↔L10。
@@ -41,8 +41,8 @@ status: awaiting_human_decision
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/governance/candidates/helix-concept-v4.1.md` | `d157a2d2e2181a718c007d76e73e3c5b262821b0de8dfc70eed8fcc1ecf7ff45` | HELIX、HARNESS、HELIX-OS、HELIX-Webのidentity、Version 1境界、9原則、新世代境界、authority順序 |
-| `docs/design/harness/L1-planning/product-intent.md` | `24084b2c5775eb16df053ac61759c6075d0c3ee13faec342626b540a3182b1b9` | HARNESSの外部提供価値7件と対象外 |
+| `docs/governance/candidates/helix-concept-v4.1.md` | `ca1881bc977179fae9abb7efae6528e95a230926e37e81384db9afcbf15a4589` | HELIX、HARNESS、HELIX-OS、HELIX-Webのidentity、Version 1境界、9原則、新世代境界、authority順序 |
+| `docs/design/harness/L1-planning/product-intent.md` | `1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9` | HARNESSの外部提供価値7件と対象外 |
 | `docs/design/helix-os/L1-planning/system-intent.md` | `0f6511a55e550052be27ca1067071a61042e9ef894a100d918f5beb47675e62f` | HELIX-OSの管理・統制価値8件と対象外 |
 | `docs/design/helix-web/L1-planning/product-intent.md` | `f6a28279965930ae6f006583656d2a2109616ca8099c26563a7925ffc68940d6` | HELIX-Webの個別製品価値6件と対象外 |
 
@@ -54,7 +54,7 @@ prototype／非UI適用性を個別採否し、別の人間合意を行う。
 | 項目 | v4.1での決定候補 |
 |---|---|
 | 製品境界 | HARNESSを外部提供製品、HELIX-OSを内部管理・統制、HELIX-WebをOSが管理する個別製品とする |
-| Version 1 | HELIX-HARNESS製品群を完成させる境界とし、その完成をHELIX-Web展開の必須前提にする。Web自体は完成分母へ入れない |
+| Version 1 | 複数プロダクトの実開発とHELIX自身への適用を含めてHELIX-HARNESS製品群を完成させ、その完成をHELIX-Web展開の必須前提にする。Web自体は完成分母へ入れない |
 | Contract Compilation | Requirement IR／Release Sliceを先に固定せず、Concept→対象別L1→L2→L3→設計・検証・実装・運用の順にする |
 | Durable State | semantic authority、実行事実、projection、working contextを分け、OSが原情報から再構築する |
 | Composable Release | 旧Slice／Module／Bundle／DevOS artifactを新世代identityにせず、承認済み機能と適格性からHARNESS提供構成を再導出する |
