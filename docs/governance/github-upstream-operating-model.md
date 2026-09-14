@@ -16,7 +16,7 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 1. 人間が示したConcept、Vision、企画、指示と対象revision。
 2. 判断論点、前提確認research、known／assumption／unknown／conflict／staleを持つpremise packet。
 3. 要求探索research、限定PoC、prototype、人間反応の比較結果と要求候補。
-4. repo-owned対象別L2要求と対になるL11、および人間の採否revision。
+4. repo-owned対象別L2要求と対になるL11、および旧要求からの無損失carry-forward記録。
 5. L3設計と対になるL10、以降の正規V-pair。
 6. repo-owned Feature Ticketと変更契約。
 7. GitHub Issue、PR、review、check、Project等のprojection。
@@ -69,9 +69,7 @@ reviewはfindingであり、人間判断を代替しない。旧CI、旧test、�
 5. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。
 6. 人間がrepository構成と運用上流を確認する。
 
-既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。Concept／L1／L2個別要求の採否も#1797のmerge条件に
-含めず、後続の`requirement` PRへ分離する。#1797に置く要求文書とFeature Ticketは、後続PRの入力となる
-draft container／inventoryであり、mergeにより内容を承認済みにしない。
+既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。Concept／L1／L2個別要求の意味変更判断は#1797のmerge条件に含めず、後続の`requirement` PRへ分離する。#1797では旧要求本文とIRを同一byteで現行保持し、153件を原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。
 
 ### 後続`requirement` PR
 
@@ -81,10 +79,10 @@ draft container／inventoryであり、mergeにより内容を承認済みにし
 2. 親Concept／Vision／企画から導いた判断論点と、premise packetまたはresearch非適用判断へ束縛する。
 3. 一つの要求identity、`unit`／`connection`／`composite`、actor、目的、scope、non-goal、制約、失敗・回復を示す。
 4. 対になるL11に正常系とnegative case、N/Aなら理由・判断者・再評価条件を持つ。
-5. 旧sourceを使う場合はasset ID、behavior atom、採否理由を記録し、旧実装・旧CIをauthorityへ戻さない。
+5. 旧要求を扱う場合は原要求ID、原文digest、successor ID、意味atomの被覆、未被覆atomを記録する。未被覆は`pending`として保持し、旧実装・旧CIをauthorityへ戻さない。
 6. 影響する既存要求だけを示し、無関係な要求を同じPRへ混載しない。
 7. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。
-8. 人間の採否と対象revisionをdecision recordへ束縛する。
+8. 意味変更またはretireがある場合だけ、人間の明示判断と対象revisionをdecision recordへ束縛する。保持と再配置を既定とする。
 
 ## 新世代CIへの接続
 

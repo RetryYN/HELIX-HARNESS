@@ -53,3 +53,12 @@
 - 未成立のもの:
 
 PR merge、Issue close、check greenだけから要求承認、実装完了、受入、公開を生成しない。
+
+## 旧要求carry-forward（該当時）
+
+- 原要求ID:
+- 原文digest:
+- successor要求ID:
+- 保持した意味atom:
+- 未被覆atom（削除せずpending）:
+- 意味変更／retireの人間decision（該当時のみ）:

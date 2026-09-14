@@ -77,6 +77,15 @@ body:
       description: 機能依存とHELIX内部だけのdelivery sequenceを分けて書いてください
     validations:
       required: true
+  - type: textarea
+    id: legacy_requirement_carry_forward
+    attributes:
+      label: 旧要求carry-forward
+      description: 該当する原要求ID、原文digest、successor要求ID、未被覆atomを記載します。未被覆は削除せずpendingにします。
+      placeholder: 原要求ID / digest / successor / pending atom
+    validations:
+      required: false
+
   - type: checkboxes
     id: authority_ack
     attributes:

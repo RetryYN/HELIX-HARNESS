@@ -49,7 +49,7 @@ current_revision_review_status: requirement_engine_delta_review_pending
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `4d25265e064994c28ac946b40683f89301d3a16e45431ab757d3cc1605248d69` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS要求エンジン、Design Template、意味密度によるPython抽出、管理→推進→管理登録→検収のticket tag／workflow生成、企画との齟齬管理、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
+| `docs/concept/helix-concept-v4.1.md` | `0aa7325f554a1b133435b06d5df4657e9e1d0f89696fc467a50012e409feb449` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS要求エンジン、Design Template、意味密度によるPython抽出、管理→推進→管理登録→検収のticket tag／workflow生成、企画との齟齬管理、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
 | `docs/helix-harness/L1-planning/product-intent.md` | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | HARNESSの外部提供価値9件と対象外 |
 | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |
@@ -152,4 +152,4 @@ HARNESS要求エンジン、Design Template、管理→推進→ticket生成の�
 - archive sourceの意味採否、v3.1／v4.0や旧L0-L14文書の最終配置、物理削除、replacement consumer切替。
 - PR作成、merge、Issue close、release、deployment、公開。
 
-ConceptとL1が承認された場合だけ、次は要求source atomを対象別L2へ個別採否する。
+ConceptとL1が承認された場合だけ、次は既存要求を保持したままsource atomを対象別L2へ再配置する。

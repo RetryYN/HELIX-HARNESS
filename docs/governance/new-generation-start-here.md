@@ -22,14 +22,17 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 5. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
 6. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 7. [GitHub上流運用モデル](github-upstream-operating-model.md)
-8. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
-9. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
-10. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
+8. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)と[153要求の機械台帳](legacy-requirement-carry-forward.jsonl)
+9. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
+10. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
+11. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
    指定された旧source／crosswalkを読む。明細台帳は機械参照用であり、AIの全文startup readには含めない。
    個別採否時は[判断ログ契約](legacy-asset-decision-log.md)に従う
 
 Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
+この非昇格は旧要求の削減を意味しない。採用済み旧要求は`preserved_pending_rehome`として全件保持し、
+対象別へ移す。実装・CI・物理配置を継承しないことと、要求意味を保持することを分ける。
 
 ## 現在許可される作業
 

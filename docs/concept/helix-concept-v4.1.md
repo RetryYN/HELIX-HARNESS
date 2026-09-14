@@ -175,6 +175,10 @@ workflow、旧要求配置を改修して延命する系列ではない。Concep
 設計判断、oracle、失敗事例、consumer、運用証拠を採取するreference sourceとして扱い、新世代のbaseline、合格oracle、
 parity目標、runtime fallbackにはしない。採取元、digest、採否、移管先、非採用理由、historical valueは隔離後に記録する。
 
+旧要求の意味は削減せず、原文・revision・digestを保持して対象別へ無損失で配置し直す。旧owner、旧技術、旧実装との
+衝突だけで要求を棄却せず、意味変更またはretireは人間の個別decisionに限定する。現行37要求案はrouting containerであり、
+旧IR 153要求や他の旧要求源を置換しない。実装・CIを新規構成することと、要求意味を保持することを分ける。
+
 新世代CIはHARNESSの検証契約と対象製品要求からHELIX-OSが組み立てる。旧CIを実行・比較せず、旧workflowやjob集合への
 適合を要求しない。AIが読む文書も承認済み上流から生成し、HARNESS工程契約、OS実行context、個別製品要求を分離する。
 現行`AGENTS.md`、`CLAUDE.md`、prompt、adapterの文面を新世代authorityとして複製しない。

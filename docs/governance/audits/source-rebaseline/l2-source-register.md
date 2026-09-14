@@ -4,6 +4,11 @@
 分解する監査・移行入口である。新しい要求のownerは下記の対象別directoryとし、
 `concept-v4-derived-requirements.md`を含む本directoryの案は帰属確定後に対象別L2へ移すかarchiveする。
 
+現行4文書の37要求案は製品責務を振り分けるrouting containerであり、旧要求を37件へ削減したものではない。
+[旧要求の無損失carry-forward方針](../../legacy-requirement-carry-forward-policy.md)に従い、旧IR 153要求は
+[機械台帳](../../legacy-requirement-carry-forward.jsonl)で全件`preserved_pending_rehome`として保持する。
+旧要求の意味変更・棄却・retireは人間の個別decisionなしに行わない。
+
 ## 要求対象別の入口
 
 2026-09-14のPO指示に従い、要求の対象をフォルダで分離する。
@@ -89,7 +94,7 @@ mainへの収載だけで要求承認を判断せず、リポジトリ内の改�
 - 上位概念は[Concept v4.1候補](../../../concept/helix-concept-v4.1.md)と
   [承認準備監査](concept-v4.1-approval-readiness-audit.md)を確認する。
   v4.0の候補承認をv4.1へ流用せず、旧v3.1を新要求の基準へ戻さない。
-- 旧世代で要件正本だった[requirements v1.3](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)、L1-L12 directive、ADR-009／010はhistorical sourceとして読み、新世代の対象別要求へ意味を再採否する。
+- 旧世代で要件正本だった[requirements v1.3](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)、L1-L12 directive、ADR-009／010はhistorical sourceとして読む。採用済み要求の意味は保持して対象別へ配置し、旧実装方式・owner・技術との衝突は別decisionとして扱う。
 - 旧Requirement IRは移管元として読み、後続の要求候補・追補との差を確認する。旧JSONを新世代canonicalとしてin-place更新しない。
 - 新しい要求の文書化、候補承認、canonicalへの昇格、runtimeへの適用は別に記録する。新しい候補を未確認のまま現行採用済みと表示しない。
 
@@ -153,7 +158,7 @@ L2監査済みへ算入しない。一方、本文に具体要求が混在して
 MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求意味の正本ではない。
 [追補14契約の対象別対応](refinement-target-crosswalk.md)に、契約状態・ID件数・帰属と未確認境界を記録した。
 [旧要件v1.3の対象別責務対応](requirements-v1.3-target-crosswalk.md)には、
-旧Core Read内で混在したHARNESS工程規則とHELIX-OS実行統制を節・ID単位で分け、新世代L2への再採否条件を記録した。
+旧Core Read内で混在したHARNESS工程規則とHELIX-OS実行統制を節・ID単位で分け、新世代L2への無損失再配置条件を記録した。
 
 ## 画面・候補・旧資料
 
@@ -174,7 +179,7 @@ MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求
 旧harness要求5文書の10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節は
 [新世代対象別対応](legacy-harness-requirements-source-crosswalk.md)で
 過不足なく分類した。旧承認、旧実装済み宣言、旧CI／DB／mode／driveを継承せず、HARNESSの工程契約、
-HELIX-OSの実行統制、個別製品の要求へ再採否する。分類済みを採択済みとは扱わない。
+HELIX-OSの実行統制、個別製品の要求へ欠落なく再配置する。分類済みを採択済みとは扱わない。
 
 - [画面境界](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md)と対文書はL2／L11の整備案へ改訂した。
   draftであり、要求・プロト合意と実操作受入の証拠は未確認。旧confirmedを引き継がず、対文書のcanonical再利用禁止も維持する。

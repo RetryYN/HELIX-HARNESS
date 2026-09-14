@@ -1,0 +1,587 @@
+{
+  "HR-FR-HIL-01": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-01",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-12",
+      "HIL-FR-02",
+      "HIL-FR-03",
+      "HIL-NFR-01",
+      "HIL-NFR-05"
+    ],
+    "behavior": "user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない",
+    "transition_contract": "source識別可能・current schemaあり → durable intake、contract revision、routeが一意",
+    "failure_and_evidence": "field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt",
+    "acceptance_ids": [
+      "HAC-HIL-01a",
+      "HAC-HIL-01b",
+      "HAC-HIL-01c"
+    ],
+    "system_test_id": "HAT-HIL-01",
+    "semantic_digest": "sha256:696de9979c134c3b1aecc0db8881a40f80d094e85f1526a887e740f3ec06430c"
+  },
+  "HR-FR-HIL-02": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-02",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-01",
+      "HIL-BR-10",
+      "HIL-FR-01",
+      "HIL-NFR-04"
+    ],
+    "behavior": "admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする",
+    "transition_contract": "admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0",
+    "failure_and_evidence": "illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt",
+    "acceptance_ids": [
+      "HAC-HIL-02a",
+      "HAC-HIL-02b",
+      "HAC-HIL-02c"
+    ],
+    "system_test_id": "HAT-HIL-02",
+    "semantic_digest": "sha256:f93ee6920757f8e8b5f3cb31789adda184a2047e05a110c1b19d3cc3edf1920c"
+  },
+  "HR-FR-HIL-03": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-03",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-02",
+      "HIL-BR-17",
+      "HIL-FR-09",
+      "HIL-FR-30"
+    ],
+    "behavior": "全base/stacked PR deliveryをcurrent head監査jobへ冪等変換し、findingをcurrent contract影響と責務境界で`current_pr_fix`または`successor_issue`へ分類する。前者はwriterへ一括返却し、後者だけをIssue/Reverse/memory/Codex queueへ原子的昇格する",
+    "transition_contract": "delivery/head/policyあり → job最大1件、typed disposition一件、`current_pr_fix`はpromotion 0、`successor_issue`は全target同一cause commit",
+    "failure_and_evidence": "stale head、duplicate job、誤分類、current findingのIssue逃がし、successorのPR再流入、finding drop/partial promotion / delivery、job、disposition、writer return、promotion lineage",
+    "acceptance_ids": [
+      "HAC-HIL-03a",
+      "HAC-HIL-03b",
+      "HAC-HIL-03c"
+    ],
+    "system_test_id": "HAT-HIL-03",
+    "semantic_digest": "sha256:61d9fe6aec330e8adcf9d78cf5f31f225160bf4a7dad0b4eac5946693603a51e"
+  },
+  "HR-FR-HIL-04": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-04",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-04",
+      "HIL-BR-05",
+      "HIL-FR-04",
+      "HIL-FR-05",
+      "HIL-FR-08",
+      "HIL-FR-31",
+      "HIL-FR-35",
+      "HIL-NFR-03",
+      "HIL-NFR-20"
+    ],
+    "behavior": "全IssueのR0–R4 substanceを実装前に検査し、設計欠陥を影響layerのRedesignへ送り再freeze後だけForward claimを許す",
+    "transition_contract": "drive/scope/evidenceあり → substantive Reverse＋正しいre-entry",
+    "failure_and_evidence": "skip、空洞、誤layer、L0無承認、re-entry bypass / phase、coverage、redesign、stale/re-freeze receipt",
+    "acceptance_ids": [
+      "HAC-HIL-04a",
+      "HAC-HIL-04b",
+      "HAC-HIL-04c"
+    ],
+    "system_test_id": "HAT-HIL-04",
+    "semantic_digest": "sha256:9b1f0bbb31f4257d65822fa8630ad6e8450a41c6633ac6e983479dcda0f709a9"
+  },
+  "HR-FR-HIL-05": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-05",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-06",
+      "HIL-BR-07",
+      "HIL-BR-08",
+      "HIL-FR-06",
+      "HIL-FR-07",
+      "HIL-FR-36",
+      "HIL-FR-38",
+      "HIL-NFR-06",
+      "HIL-NFR-07",
+      "HIL-NFR-21",
+      "HIL-NFR-23"
+    ],
+    "behavior": "directiveを分類前に収載し、全Issue Gateをauthority root、最小性、approval、evidenceで決定論評価する",
+    "transition_contract": "durable directive・policy・rootあり → 証拠充足時のみ遷移",
+    "failure_and_evidence": "AI終端、scope cycle、不要拡張、approval欠落 / custody、gate、authority graph、approval receipt",
+    "acceptance_ids": [
+      "HAC-HIL-05a",
+      "HAC-HIL-05b",
+      "HAC-HIL-05c"
+    ],
+    "system_test_id": "HAT-HIL-05",
+    "semantic_digest": "sha256:88549026f2f7da7c6daf76994f2ac7ddb6e40e42e652f2a85835cb1dc2a3cf4c"
+  },
+  "HR-FR-HIL-06": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-06",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-16",
+      "HIL-BR-20",
+      "HIL-FR-28",
+      "HIL-FR-29",
+      "HIL-NFR-15",
+      "HIL-NFR-16"
+    ],
+    "behavior": "prejoin→postjoin→external CIを同一SHA/tree lineageで実行し既知failureだけを限定隔離する",
+    "transition_contract": "tree/check/quarantine policyあり → 三段greenまたは該当段failure",
+    "failure_and_evidence": "stage bypass、別SHA、wildcard/期限切れ/new fingerprint隔離 / CI、lineage、quarantine、remediation evidence",
+    "acceptance_ids": [
+      "HAC-HIL-06a",
+      "HAC-HIL-06b",
+      "HAC-HIL-06c"
+    ],
+    "system_test_id": "HAT-HIL-06",
+    "semantic_digest": "sha256:774023c3fe453cc95044b4bcc357f59b5f0be525f6c1cb21f92236a5fd29665d"
+  },
+  "HR-FR-HIL-07": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-07",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-03",
+      "HIL-BR-11",
+      "HIL-FR-10",
+      "HIL-FR-14",
+      "HIL-NFR-02"
+    ],
+    "behavior": "verified completionから永続知識だけをmemoryへ昇格し、finding/repairをrecipe→shadow→skill/detector/gateへ独立promoterで段階昇格する",
+    "transition_contract": "completion/history、worker≠promoter → compact/no-promotionと検証済promotion",
+    "failure_and_evidence": "raw log/secret混載、self-promotion、fixture/効果/rollback欠落 / compaction、shadow、review、rollback receipt",
+    "acceptance_ids": [
+      "HAC-HIL-07a",
+      "HAC-HIL-07b",
+      "HAC-HIL-07c"
+    ],
+    "system_test_id": "HAT-HIL-07",
+    "semantic_digest": "sha256:3edce5eb6b2d007c0905a35d6ece3b7b364e13431fece8e68bf6db4a45bf7fbd"
+  },
+  "HR-FR-HIL-08": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-08",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-09",
+      "HIL-BR-18",
+      "HIL-FR-11",
+      "HIL-FR-12",
+      "HIL-FR-13",
+      "HIL-FR-32",
+      "HIL-NFR-10",
+      "HIL-NFR-18"
+    ],
+    "behavior": "HARNESS-owned contractからteamを決定し、lease/run/checkpoint/verify/release/quarantine/retireをfencing付き正本化する",
+    "transition_contract": "versioned registry、task、eligible roles → 再生成可能projection、単一lease、独立verify",
+    "failure_and_evidence": "manual drift、worker=verifier、二重lease、旧fence、不正遷移 / contract、muster、lease、lifecycle、verify receipt",
+    "acceptance_ids": [
+      "HAC-HIL-08a",
+      "HAC-HIL-08b",
+      "HAC-HIL-08c"
+    ],
+    "system_test_id": "HAT-HIL-08",
+    "semantic_digest": "sha256:a54a1096744c223a67d028199edc9433985e04b73059a72d50f163981f3723ca"
+  },
+  "HR-FR-HIL-09": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-09",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-14",
+      "HIL-FR-15",
+      "HIL-FR-16",
+      "HIL-FR-21",
+      "HIL-FR-22",
+      "HIL-FR-37",
+      "HIL-TR-03",
+      "HIL-NFR-08",
+      "HIL-NFR-12",
+      "HIL-NFR-22"
+    ],
+    "behavior": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` authority、現行全treeをsnapshot化しatomic behaviorへ分解して採否→requirement→design→test→gateをjoinする。Git authorityはadvertisement A/B一致、exact OID materialize、object/tree/tag peel検証済みsealed receiptからだけ受理し、ref/content/edge分母をreceiptから導出する",
+    "transition_contract": "source/ref/entryとextractor version、exact 2 authority receiptあり → atom分母、disposition、trace、pending/orphan 0",
+    "failure_and_evidence": "aggregate-only、未分類/重複、remote identity不一致、A/B drift、ref/object欠落、stale、prose-only、Python write / manifest、atom、decision、edge、stale receipt",
+    "acceptance_ids": [
+      "HAC-HIL-09a",
+      "HAC-HIL-09b",
+      "HAC-HIL-09c"
+    ],
+    "system_test_id": "HAT-HIL-09",
+    "semantic_digest": "sha256:cb6f8d3da819ea3f52dba452f125fef79f5dc64aa39c185149472dd7c22e9dea"
+  },
+  "HR-FR-HIL-10": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-10",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-FR-25",
+      "HIL-FR-26",
+      "HIL-NFR-13"
+    ],
+    "behavior": "core engineとdetectorをversioned registryから同一snapshotへ決定論実行しartifactとfindingを別authorityで保存する",
+    "transition_contract": "registered version/config、fixed snapshot → rerun同一digest/fingerprint",
+    "failure_and_evidence": "unknown version、nondeterminism、provenance欠落、partial commit / run、artifact、finding、rerun evidence",
+    "acceptance_ids": [
+      "HAC-HIL-10a",
+      "HAC-HIL-10b",
+      "HAC-HIL-10c"
+    ],
+    "system_test_id": "HAT-HIL-10",
+    "semantic_digest": "sha256:c19bbffac7d8a218222671863fd53a4644a4470346fda7b0b655eb9f830f8eb2"
+  },
+  "HR-FR-HIL-11": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-11",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-15",
+      "HIL-FR-23",
+      "HIL-FR-24",
+      "HIL-NFR-17"
+    ],
+    "behavior": "versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する",
+    "transition_contract": "connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark",
+    "failure_and_evidence": "drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt",
+    "acceptance_ids": [
+      "HAC-HIL-11a",
+      "HAC-HIL-11b",
+      "HAC-HIL-11c"
+    ],
+    "system_test_id": "HAT-HIL-11",
+    "semantic_digest": "sha256:6bc63b9b4359c638f7b4f9b9809ff7871f21c9d2ee21bb86183ddfc749954cc7"
+  },
+  "HR-FR-HIL-12": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-12",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-FR-27",
+      "HIL-TR-02",
+      "HIL-TR-07",
+      "HIL-TR-08",
+      "HIL-TR-09",
+      "HIL-TR-10",
+      "HIL-NFR-14"
+    ],
+    "behavior": "NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする",
+    "transition_contract": "compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ",
+    "failure_and_evidence": "protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report",
+    "acceptance_ids": [
+      "HAC-HIL-12a",
+      "HAC-HIL-12b",
+      "HAC-HIL-12c"
+    ],
+    "system_test_id": "HAT-HIL-12",
+    "semantic_digest": "sha256:fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad"
+  },
+  "HR-FR-HIL-13": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-13",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-19",
+      "HIL-FR-33",
+      "HIL-TR-01",
+      "HIL-TR-11"
+    ],
+    "behavior": "active install/build/CLI/hooks/tests/package/distributionをNode.js LTSへ移しBun dependencyを0にする",
+    "transition_contract": "Bun-less Linux、Node lock、surface inventory → 全surface green、active finding 0",
+    "failure_and_evidence": "Bun API/command/lock/CI/distribution残存、部分互換の完了claim / inventory、workflow logs、lock、package smoke",
+    "acceptance_ids": [
+      "HAC-HIL-13a",
+      "HAC-HIL-13b",
+      "HAC-HIL-13c"
+    ],
+    "system_test_id": "HAT-HIL-13",
+    "semantic_digest": "sha256:3206e47b94bbc19635e0f0fb44796caf1c0e7d8935cc68dc266e57dccf0773e7"
+  },
+  "HR-FR-HIL-14": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-14",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-FR-34",
+      "HIL-TR-04",
+      "HIL-TR-05",
+      "HIL-TR-06",
+      "HIL-NFR-09",
+      "HIL-NFR-19"
+    ],
+    "behavior": "OS差分をadapterへ隔離しLinux full、macOS portable、Windows compatibilityを同一contractで検証、lock/SBOM/policyを再現する",
+    "transition_contract": "clean 3 OS、canonical locks/policy → scope別green、domain fork 0、SBOM/policy receipt",
+    "failure_and_evidence": "adapter leak、process/lock異常、unlock、secret、license / OS matrix、difference、offline digest、SBOM reports",
+    "acceptance_ids": [
+      "HAC-HIL-14a",
+      "HAC-HIL-14b",
+      "HAC-HIL-14c"
+    ],
+    "system_test_id": "HAT-HIL-14",
+    "semantic_digest": "sha256:d771b46b60a9f269213b4f08a3aca8823450f4dc38ddca9895228c8dfbdd5f99"
+  },
+  "HR-FR-HIL-15": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-15",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-13",
+      "HIL-FR-17",
+      "HIL-FR-18",
+      "HIL-FR-19",
+      "HIL-FR-20",
+      "HIL-NFR-11"
+    ],
+    "behavior": "全PLANをprototype_required/not_applicableへ分類し、前者はprototype→walkthrough→backprop/agreement、後者は構造skipでのみL3 freezeする",
+    "transition_contract": "scope digest/policyあり → current agreementまたはno-UI receipt",
+    "failure_and_evidence": "implicit/deferred、static-only、state/walkthrough欠落、stale skip / applicability、artifact、walkthrough、delta、agreement",
+    "acceptance_ids": [
+      "HAC-HIL-15a",
+      "HAC-HIL-15b",
+      "HAC-HIL-15c"
+    ],
+    "system_test_id": "HAT-HIL-15",
+    "semantic_digest": "sha256:b05ffe97e0976938161d72262a1ee5ecd2d4d0f8bdbda5a9a92d0962a7d9491a"
+  },
+  "HR-FR-HIL-16": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-16",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-21",
+      "HIL-FR-39",
+      "HIL-FR-40",
+      "HIL-NFR-24",
+      "HIL-NFR-25"
+    ],
+    "behavior": "DesignRefactor候補をsemantic/consumer/oracle同等性で評価し、behavior保存はRefactor、contract変更はRedesign、state変更はRetrofitへ送る",
+    "transition_contract": "before graph/oracle/consumer/role catalog → 最小plan、pair/oracle/rollback",
+    "failure_and_evidence": "lexical-only rename、根拠なし抽象化、誤route、consumer漏れ / signatures、graph、oracle、role/name、route receipt",
+    "acceptance_ids": [
+      "HAC-HIL-16a",
+      "HAC-HIL-16b",
+      "HAC-HIL-16c"
+    ],
+    "system_test_id": "HAT-HIL-16",
+    "semantic_digest": "sha256:5eed525bf1051d7751d3472211985cd68589aeeaeb80a95b99604b513c489bae"
+  },
+  "HR-FR-HIL-17": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-17",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-22",
+      "HIL-BR-23",
+      "HIL-BR-24",
+      "HIL-FR-41",
+      "HIL-FR-42",
+      "HIL-FR-43",
+      "HIL-FR-44",
+      "HIL-FR-45",
+      "HIL-NFR-26",
+      "HIL-NFR-27",
+      "HIL-NFR-28"
+    ],
+    "behavior": "原文をauthority付きatomic requirementへ翻訳し、design obligationとstable revision/edge/change receiptを正本化、template gapをshadow reviewへ送る",
+    "transition_contract": "custodied source/authority、versioned template → active atomに全typed edge、未消込/ambiguity 0",
+    "failure_and_evidence": "原文消失、aggregate/TBD/偽N/A、self-promotion、stale伝播欠落 / revision、challenge、template、obligation、gap/review/change receipt",
+    "acceptance_ids": [
+      "HAC-HIL-17a",
+      "HAC-HIL-17b",
+      "HAC-HIL-17c"
+    ],
+    "system_test_id": "HAT-HIL-17",
+    "semantic_digest": "sha256:46638389e09a375aa1059fb3b6d3321703bfb2763c3777b2c321e06d25bc1fa7"
+  },
+  "HR-FR-HIL-18": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-18",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-25",
+      "HIL-FR-46",
+      "HIL-FR-47",
+      "HIL-FR-48",
+      "HIL-FR-49",
+      "HIL-FR-50",
+      "HIL-NFR-29"
+    ],
+    "behavior": "canonical L1–L12 ledgerと層外L0 charter anchorをversion管理しtemplate obligationを抽出、上下隣接edge、正規5 V-pair、L6↔L7 TDD closureを同一revision/snapshot/oracleで閉じ、refactorも全pairを保存する",
+    "transition_contract": "active registry/template/snapshot/pair map → 全atom disposition、双方向edge、実行oracle",
+    "failure_and_evidence": "type/抽出/TBD/aggregate、片edge、revision/oracle不一致、pair破壊 / ledger、addition、pair、execution、refactor receipt",
+    "acceptance_ids": [
+      "HAC-HIL-18a",
+      "HAC-HIL-18b",
+      "HAC-HIL-18c"
+    ],
+    "system_test_id": "HAT-HIL-18",
+    "semantic_digest": "sha256:2de222b9677b4d2e61e1cb887c70afa7cae998392feadb717e5508ec23f87d50"
+  },
+  "HR-FR-HIL-19": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-19",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-26",
+      "HIL-FR-51",
+      "HIL-FR-52",
+      "HIL-FR-53",
+      "HIL-NFR-30",
+      "HIL-NFR-31",
+      "HIL-NFR-32"
+    ],
+    "behavior": "AI AuthoringをProposalとして許可し、意味差分・authority・pair・impactを検査した変更だけを原子的にCanonical化し、asset identityとrevision履歴を維持する",
+    "transition_contract": "proposal、base revision、policyあり → 自動Admission又は明示decision、部分current 0",
+    "failure_and_evidence": "過剰確認、無権限変更、partial write、stale base、identity/oracle消失 / admission、transaction、revision、rollback receipt",
+    "acceptance_ids": [
+      "HAC-HIL-19a",
+      "HAC-HIL-19b",
+      "HAC-HIL-19c"
+    ],
+    "system_test_id": "HAT-HIL-19",
+    "semantic_digest": "sha256:081fd30a519f53deb260dba56b406ef75ac51bd6e04e9dbe95ea8c0adc72654c"
+  },
+  "HR-FR-HIL-20": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-20",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-27",
+      "HIL-BR-28",
+      "HIL-FR-54",
+      "HIL-FR-55",
+      "HIL-FR-56",
+      "HIL-NFR-33"
+    ],
+    "behavior": "要求義務から必要十分な設計契約と見本を導出し、Forward各layerとScrum S0–S4へ同一snapshot・返却edge付きでbindする",
+    "transition_contract": "requirement/obligation/risk/templateあり → 未被覆・重複0のportfolioとworkflow binding",
+    "failure_and_evidence": "固定冊数、positive-only、別正本Scrum、S4前昇格 / portfolio、example、phase、back-propagation receipt",
+    "acceptance_ids": [
+      "HAC-HIL-20a",
+      "HAC-HIL-20b",
+      "HAC-HIL-20c"
+    ],
+    "system_test_id": "HAT-HIL-20",
+    "semantic_digest": "sha256:ed315f225a1eda3e5f527f58438fd637bc426764b9747d54a8067631b761880c"
+  },
+  "HR-FR-HIL-21": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-21",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-29",
+      "HIL-BR-30",
+      "HIL-FR-57",
+      "HIL-FR-58",
+      "HIL-FR-59",
+      "HIL-FR-60",
+      "HIL-NFR-34"
+    ],
+    "behavior": "taskの工程/domain/riskから判断packと最小専門agent contractを生成し、shadow reviewとruntime guard後だけmusterする",
+    "transition_contract": "task/skill/model catalog/allowlistあり → versioned pack、最小team、独立verify",
+    "failure_and_evidence": "self-promotion、未許可tool、過剰agent、自己検証、stale contract / pack、shadow、generation、muster/lifecycle receipt",
+    "acceptance_ids": [
+      "HAC-HIL-21a",
+      "HAC-HIL-21b",
+      "HAC-HIL-21c"
+    ],
+    "system_test_id": "HAT-HIL-21",
+    "semantic_digest": "sha256:d602aa54cd3416f713a802e70c76c3ed8c254845b3ff1a03187b83342d745058"
+  },
+  "HR-FR-HIL-22": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-22",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-31",
+      "HIL-FR-61",
+      "HIL-FR-62",
+      "HIL-FR-63",
+      "HIL-NFR-35",
+      "HIL-NFR-36"
+    ],
+    "behavior": "候補worker/model/effortを再現可能benchと実task scorecardで比較し、品質・安全・retry込みcostから用途別にadmit又はretireする",
+    "transition_contract": "fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt",
+    "failure_and_evidence": "smoke-only採用、重大failure相殺、単価最適化、根拠なしeffort固定 / bench、scorecard、routing、exception receipt",
+    "acceptance_ids": [
+      "HAC-HIL-22a",
+      "HAC-HIL-22b",
+      "HAC-HIL-22c"
+    ],
+    "system_test_id": "HAT-HIL-22",
+    "semantic_digest": "sha256:511f60ac91a154f4a78a46cc69199afcd4bc3051526e5b16f129620939544c6f"
+  },
+  "HR-FR-HIL-23": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-23",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-32",
+      "HIL-FR-64",
+      "HIL-FR-65",
+      "HIL-FR-66",
+      "HIL-FR-67",
+      "HIL-FR-68",
+      "HIL-FR-69",
+      "HIL-NFR-37",
+      "HIL-NFR-38",
+      "HIL-NFR-39",
+      "HIL-NFR-40"
+    ],
+    "behavior": "第三者worker委譲をsandbox契約、環境浄化、最小払い出し、proposal再検証、audit付きで実行し、安全境界の充足をローカル強制機構だけで判定する",
+    "transition_contract": "sandbox template・分類ゲート・opt-out receiptあり → 隔離実行、検証済みproposal、完全なaudit chain",
+    "failure_and_evidence": "allowlist外egress、scope外diff、bypass常態化、機密委譲、vendor設定依拠 / sandbox digest、egress計測、FS diff、audit row",
+    "acceptance_ids": [
+      "HAC-HIL-23a",
+      "HAC-HIL-23b",
+      "HAC-HIL-23c"
+    ],
+    "system_test_id": "HAT-HIL-23",
+    "semantic_digest": "sha256:9f4d2db470aaa44878294d41641b87736f43c7dd87c35d650951b134c4465070"
+  },
+  "HR-FR-HIL-24": {
+    "schema_version": "helix-system-contract.v1",
+    "system_contract_id": "HR-FR-HIL-24",
+    "revision": 1,
+    "status": "specified",
+    "requirement_ids": [
+      "HIL-BR-33"
+    ],
+    "behavior": "配布パッケージを正本indexと手編集禁止の生成indexで構成し、first/third-party分離と免責を保持する",
+    "transition_contract": "正本indexあり → 生成indexは決定論導出のみ、手編集0",
+    "failure_and_evidence": "手編集index、party混在、cutover未承認切替 / index digest、derivation receipt、cutover approval",
+    "acceptance_ids": [
+      "HAC-HIL-24a",
+      "HAC-HIL-24b",
+      "HAC-HIL-24c"
+    ],
+    "system_test_id": "HAT-HIL-24",
+    "semantic_digest": "sha256:d793126dc57cfeea9474bcc8c6f92bc7a5533eb85b774aa02b1d2a34888c079d"
+  }
+}
