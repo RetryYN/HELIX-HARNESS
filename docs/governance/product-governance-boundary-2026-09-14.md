@@ -29,7 +29,8 @@
 
 要求対象の一覧はこの三つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を
-対象要求・設計・検証へ戻す。管理対象と規則の参照関係を、同一の要求所有へ潰さない。
+HARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの自己適用・改善loopを継続運転し、HARNESSを
+改善し続ける責務を持つ。管理対象と規則の参照関係を、同一の要求所有へ潰さない。
 
 ## 上位Conceptへの正規投影
 
@@ -53,8 +54,9 @@ HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する
 独立したauthority、state、credential、writerで運転する。
 
 両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで
-HELIX-OSへexportし、HELIX-OSが他projectの証拠と突合して改善候補を重複排除・評価する。採択された候補だけを
-Web／Web-OSの要求・設計・検証へ戻す。credential、tenant原data、同意範囲外logの吸収や、logからの直接変更は行わない。
+HELIX-OSへexportし、HELIX-OSがHARNESS自身の実践を含む他projectの証拠と突合して改善候補を重複排除・評価する。
+採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、
+同意範囲外logの吸収や、logからの直接変更は行わない。
 
 ## 既存Conceptとの意味差分
 

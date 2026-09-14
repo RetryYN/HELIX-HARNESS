@@ -3,7 +3,8 @@
 要求対象と責務は[2026-09-14のPO決定](../../governance/product-governance-boundary-2026-09-14.md)に従う。
 
 HELIX-OSはHELIXプロジェクト群の管理・統制、Worker実行、学習、ログ、CI、継続・復旧を担う。
-その目的は、これらの運用と観測を通じてHELIXを継続的に改善することである。今回の外部提供プロダクトはHARNESSであり、
+その中核目的はHARNESSをHARNESS自身へ適用し、各projectの運用と観測を通じてHARNESSとHELIX全体を
+継続的に改善することである。今回の外部提供プロダクトはHARNESSであり、
 HELIX-OSを別の輸出プロダクトとして定義しない。
 [HARNESS](../harness/README.md)が規定する工程と検証条件を参照して、作業を実行し進行を制御する。
 工程規則の本文をOS側の別正本として複製しない。

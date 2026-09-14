@@ -25,6 +25,7 @@
 | Semantic CI | 適正 | 検証義務はHARNESS、profile生成・runner配車・実行・回収・再計画はOSへ分離している |
 | crawler | 適正 | 内部／外部のread-only観測と未信頼情報境界をOSへ配置し、要求正本化と外部命令実行を禁止している |
 | 診断・改善 | 適正 | 因果診断、是正ticket化、再観測はOS。製品要求の意味変更は対象上流へ返す |
+| HARNESS自身の改善 | 是正 | HELIX-OSの中核責務として、HARNESS自己適用、改善候補化、採択後の変更、再検証、効果確認を明示した。HARNESS要求の意味authorityはHARNESS側に維持する |
 | Web内のOS・HARNESS語 | 適正 | Web固有体験だけを所有し、HARNESS能力とOS統制は参照関係としている |
 | Web-OSとHELIX-OS | 是正 | 旧記述はHELIX-OSがWeb運転も管理すると読めた。HELIX-OSは開発・改善project統制、Web-OSは展開後service runtimeと分離した |
 | GitHub Issue／PR | 適正 | 全対象で作業・協調・証拠projectionに限定し、要求意味・採否・受入のauthorityにしていない |

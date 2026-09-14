@@ -145,8 +145,11 @@ HELIX-OSはHARNESSを含むHELIXプロジェクト群に対し、次を担う。
 - requirement／design／verification／runtime projectionの整合と再構築。
 - finding、失敗、経験、外部変化から改善proposalを作り、対象上流へ戻す。
 - HARNESS packageの生成・配布・promotion・rollback・monitoringの運転。
+- HARNESSをHARNESS自身の工程へ適用し、開発・運用結果からHARNESSの改善候補、変更、再検証、効果確認を継続する。
 
-OSはHARNESSの工程規則を適用する。運用実績や学習結果からHARNESSまたは個別製品の要求を直接変更しない。
+HELIX-OSはHELIX全体の継続改善機構であり、HARNESS自身の改善を中核責務に含む。HARNESSの工程規則を
+HARNESS自身と他projectへ適用し、内部実践、外部利用、Web-OSの許可log、失敗、診断、学習から改善loopを回す。
+運用実績や学習結果からHARNESSまたは個別製品の要求を直接変更せず、対象上流の採否を経て変更・再検証する。
 
 ## 新世代への再構築
 

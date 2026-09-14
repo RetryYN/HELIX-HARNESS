@@ -17,7 +17,7 @@ status: awaiting_human_decision
 | 平易な判断事項 | 採用した場合 | 採用しない場合 |
 |---|---|---|
 | 外部へ提供する製品をHARNESSとする | V-model、工程、検証契約、利用条件をHARNESSへまとめる | 外部提供物のidentityを別途定義し直す |
-| HELIX-OSを内部の管理・統制機構とする | authority、Worker、log、CI、学習、改善、配布運転をOSへまとめる | 管理・統制ownerを別途定義し直す |
+| HELIX-OSを内部の管理・統制・継続改善機構とする | HARNESS自己適用、authority、Worker、log、CI、学習、改善、配布運転をOSへまとめる | 管理・統制・HARNESS改善ownerを別途定義し直す |
 | HELIX-WebをOSが管理する個別製品とする | Web固有の利用要求を持ち、OSの管理UIへ還元しない | Webの位置づけを別途定義し直す |
 | HELIX-Web-OSをHELIX-OS外へ置く | Web展開後のservice runtimeを分離し、許可logをHELIX-OSの改善loopへ接続する | Webサービスの運転ownerと改善接続を再定義する |
 | Version 1をHARNESS製品群の完成境界とする | 複数プロダクトの実開発とHELIX自身への適用でHARNESSを検証し、その完成をWeb展開の必須前提とする。Web自体はVersion 1完成分母に入れない | Web展開の依存関係とVersion 1の範囲を再定義する |
@@ -31,7 +31,7 @@ status: awaiting_human_decision
 ### 文書で具体化した内容
 
 - HARNESS: L1–L12、正規V-pair、工程選択、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。
-- HELIX-OS: 対象別authority、複数project管理、管理・推進・検収、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、release・deployment運転。
+- HELIX-OS: HARNESS自己適用と継続改善、対象別authority、複数project管理、管理・推進・検収、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、release・deployment運転。
 - HELIX-Web: HARNESS Version 1完成後の展開、Connector接続、ダッシュボードによる進行確認、利用者の変更・受入判断、構成版、改善利用への同意。
 - HELIX-Web-OS: HELIX-OS外のservice runtime、tenant・job・credential・stateの運転、許可logのHELIX-OS改善入口へのexport。
 - 共通: GitHub非authority、旧資産非継承、Concept→L1→L2→L3の順序、L2↔L11／L3↔L10。
@@ -43,9 +43,9 @@ status: awaiting_human_decision
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/governance/candidates/helix-concept-v4.1.md` | `05f844feac2510c5489c3e4a6bf32b2fb9a96475ae16f8de07571916d3275860` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、Version 1境界、改善接続、9原則、新世代境界、authority順序 |
+| `docs/governance/candidates/helix-concept-v4.1.md` | `e2ee43b77d271d197270a8785f212cf6d9829a4fb65c987a49c6d45f41e38112` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、新世代境界、authority順序 |
 | `docs/design/harness/L1-planning/product-intent.md` | `1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9` | HARNESSの外部提供価値7件と対象外 |
-| `docs/design/helix-os/L1-planning/system-intent.md` | `0d01fc57f6a0e9a125d40f9051c6eab6856c12cbeee244144dc70f2431d235cf` | HELIX-OSの管理・統制価値12件と対象外 |
+| `docs/design/helix-os/L1-planning/system-intent.md` | `80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/design/helix-web/L1-planning/product-intent.md` | `5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e` | HELIX-Webの個別製品価値6件と対象外 |
 | `docs/design/helix-web-os/L1-planning/system-intent.md` | `9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f` | HELIX-Web-OSのservice運転価値5件と対象外 |
 
@@ -56,7 +56,7 @@ prototype／非UI適用性を個別採否し、別の人間合意を行う。
 
 | 項目 | v4.1での決定候補 |
 |---|---|
-| 製品境界 | HARNESSを外部提供製品、HELIX-OSを内部管理・統制、HELIX-Webを個別製品、HELIX-Web-OSをOS外のservice runtimeとする。許可logを改善loopへ接続する |
+| 製品境界 | HARNESSを外部提供製品、HELIX-OSをHARNESS自身とHELIX全体の管理・統制・継続改善機構、HELIX-Webを個別製品、HELIX-Web-OSをOS外のservice runtimeとする。許可logを改善loopへ接続する |
 | Version 1 | 複数プロダクトの実開発とHELIX自身への適用を含めてHELIX-HARNESS製品群を完成させ、その完成をHELIX-Web展開の必須前提にする。Web自体は完成分母へ入れない |
 | Contract Compilation | Requirement IR／Release Sliceを先に固定せず、Concept→対象別L1→L2→L3→設計・検証・実装・運用の順にする |
 | Durable State | semantic authority、実行事実、projection、working contextを分け、OSが原情報から再構築する |

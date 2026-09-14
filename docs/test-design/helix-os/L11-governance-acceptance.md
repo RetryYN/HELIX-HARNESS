@@ -20,7 +20,7 @@ pair_artifact: docs/design/helix-os/L2-requirements/governance-requirements.md
 | HELIXOS-L2-002 | 異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない |
 | HELIXOS-L2-003 | 開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する |
 | HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する |
-| HELIXOS-L2-005 | 観測から改善候補・採否・要求変更を追跡し、未承認経験の規則化や棄却理由の消失を拒否する |
+| HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補・採否・変更・再検証・効果確認を追跡し、未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失を拒否する |
 | HELIXOS-L2-006 | fresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失や別artifactへの切替を拒否する |
 | HELIXOS-L2-007 | Worker・判断・検証ログを要求revisionから辿り、欠落・重複・staleを成功証拠として使わない |
 | HELIXOS-L2-008 | 承認上流から生成したCI profileの起動・失敗・修復・再実行を追跡し、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺しない |
@@ -142,6 +142,7 @@ HARNESSの外部提供完了とHELIX-OSの内部改善状況を別に確認し�
 - Webが採用するHARNESS版と能力を特定し、Web固有要求の変更で他プロダクトの要求・承認・工程規則が暗黙に変わらないこと。
 - HELIX-OS内部stateとHELIX-Web-OSのtenant／job／credential／service stateを食い違わせ、どちらか一方を他方のauthorityとして補完しないこと。
 - Web-OSの許可logと範囲外logを混在させ、前者だけを出典・scope・目的・同意・revision付きでHELIX-OSの改善入力へ取り込むこと。credentialとtenant原dataを拒否し、欠測を正常化しないこと。
+- Web-OS log由来の改善候補をHARNESS、Web、Web-OSのどこへ戻すか区別し、HARNESS自身への影響があればHARNESS要求・設計・検証へ接続すること。一製品の観測から全対象を無条件に変更しないこと。
 - Webの検証が未完のとき、HARNESSの提供完了やCI成功でWebを完了扱いにしないこと。
 - Webの実践証拠からOSが改善候補を管理し、採否・変更対象・再検証へ辿れること。証拠の利用可能範囲を越えて共有せず、候補を自動で要求正本へ昇格させないこと。
 
