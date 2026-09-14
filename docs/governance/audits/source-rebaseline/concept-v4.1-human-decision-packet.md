@@ -28,15 +28,16 @@ current_revision_review_status: requirement_engine_delta_review_pending
 | 現行資産を参考資料へ退役し、新世代を上流から再構築する | 旧CI・runtime・AI文書を非実行archiveへ先に隔離し、baselineにせずarchive sourceから意味を採取する | 維持する旧実行系と互換範囲を別途決める |
 | 要求エンジンをHARNESS能力、企画との齟齬管理をHELIX-OS責務とする | 単体・接続・構成体を分けて要求候補を形成し、OSがConcept／企画から採用要求までの欠落・追加・対象違いを管理する | 要求形成能力と、その出力・改善logを管理するownerを別途定義し直す |
 | Design TemplateをHARNESS能力、版・適用・改善管理をHELIX-OS責務とする | 初期seedから必要設計を導き、必要な要求入力の不足を上流へ戻して、複数projectの結果からtemplateを改善する | 初期設計知識と継続改善ownerを別途定義し直す |
-| 駆動モデルをticket tagとして推進がworkflow生成する | 管理が目的・要求・制約を推進へ渡し、推進がtag語彙とworkflow生成規則を所有してPoC、UI prototype、Featureを別ticketに分解する。HARNESS contractが要求する工程義務を生成結果に含める | 固定modeまたは別のworkflow選択・生成方式を定義し直す |
+| HARNESSの工程順序を推進がticket／workflowへ具体化する | HARNESSが既存要求由来のnormative工程語彙・適用条件・順序を所有する。管理が目的・要求・制約を推進へ渡し、推進がoperational tag・mapping・composition・workflow instance生成規則を所有してresearch、PoC、UI prototype、Featureを別ticketに分解する | HARNESSの工程意味または推進の具体化責務を別途定義し直す |
+| 旧要求を一件も落とさず再配置する | source authority、原文、digest、acceptance、contract、test、見出しを保持し、保持・分割・再配置を含む全要求PRを人間が確認する | 削除・縮退を許す対象と判断authorityを別途明示する |
 
-これら10点は、2026-09-15までのPO指示で既に方向が示されている。本packetで改めて曖昧な一括承認を要求する
+これら11点は、2026-09-15までのPO指示で既に方向が示されている。本packetで改めて曖昧な一括承認を要求する
 必要はない。残る確認対象は、下記候補文書がこの既決方針に余計な意味を追加していないか、または必要な意味を
 落としていないかである。修正が必要なら、文書IDではなく「どの方針が違うか」を指示できる。
 
 ### 文書で具体化した内容
 
-- HARNESS: L1–L12、正規V-pair、工程選択、単体・接続・構成体を分ける要求エンジン、Design Templateとseed、PoC／UI prototype／Feature ticketが満たす開発・検証contract、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。tag語彙、workflow生成規則、ticket発行は所有しない。
+- HARNESS: L1–L12、正規V-pair、工程のnormative語彙・適用条件・順序、単体・接続・構成体を分ける要求エンジン、Design Templateとseed、research／PoC／UI prototype／Feature ticketが満たす開発・検証contract、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。operational tag、mapping、個別workflow instance、ticket発行は所有しない。
 - HELIX-OS: HARNESS自己適用と継続改善、Concept／企画から要求エンジン出力・採用要求までの齟齬管理、template lifecycle、管理から推進への工程入力、推進によるtyped ticket・workflow生成、管理登録、検収、Issue projection、対象別authority、複数project管理、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制。
 - HELIX-Web: HARNESS Version 1完成後の展開、Connector接続、ダッシュボードによる進行確認、利用者の変更・受入判断、構成版、改善利用への同意。
 - HELIX-Web-OS: HELIX-OS外のservice runtime、tenant・job・credential・stateの運転、許可logのHELIX-OS改善入口へのexport。

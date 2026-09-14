@@ -80,7 +80,7 @@ proposal生成、独立review、PR作成、Issue投影、CI、実装、類似度
 - 意味変更、縮退、統合、重複確定、retire。
 - successor割当、L11被覆済み、実装済み、受入済み。
 
-これらは対象revision、変更前後、保持atom、未被覆atom、L11影響を提示した後、人間decisionが必要なものだけ別の要求PRで扱う。
+これらは対象revision、変更前後、保持atom、未被覆atom、L11影響を提示した後、保持・再配置を含むすべての要求PRで人間decisionを得て扱う。
 
 ## proposalの機械確認
 
