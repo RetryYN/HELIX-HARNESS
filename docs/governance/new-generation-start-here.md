@@ -22,7 +22,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 5. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
 6. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 7. [GitHub上流運用モデル](github-upstream-operating-model.md)
-8. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)と[153要求の機械台帳](legacy-requirement-carry-forward.jsonl)
+8. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の機械台帳](legacy-requirement-carry-forward.jsonl)
 9. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
 10. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
 11. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
@@ -53,4 +53,4 @@ Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだc
 PRは上流候補の差分共有と許可されたreviewに使う。旧workflowは非実行archiveへ移動済みであり、現時点で新世代CIはない。
 required check、review、merge等のrepository設定が旧世代を前提にする場合、その設定変更はHELIX-OSのGitHub projection再構築として別に扱う。
 PR #1797は`repository_foundation`に限定し、個別要求は[GitHub上流運用モデル](github-upstream-operating-model.md)に従って
-一要求identityずつ後続PRで採否・具体化する。
+一要求identityずつ後続PRで無損失に再配置・具体化する。意味変更・縮退・retireだけを人間判断へ送る。
