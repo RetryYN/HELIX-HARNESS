@@ -12,10 +12,12 @@ authority: machine ledgers linked below
 |---|---:|---:|---:|---:|---:|
 | Requirement IR | 153 | 0 | 153 | 0 | 0 |
 | confirmed文書の明示identity | 175 | 0 | 175 | 0 | 0 |
-| v1.3／IR補助source item | 655 | 0 | 655 | 0 | 0 |
+| v1.3非空source line | 521 | 0 | 0 | 0 | 0 |
+| IR補助item（acceptance／refinement／system contract／system test） | 134 | 0 | 134 | 0 | 0 |
 
 現時点ではsuccessor割当済みは0件である。37件の対象別L2はrouting containerであり、この表のsuccessorへ自動算入しない。
 要求の再配置が始まっていないことを、要求削減や移管完了として表示しない。
+v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pending_rehome`列へ混在させない。
 
 ## IR 153件の対象routing候補
 

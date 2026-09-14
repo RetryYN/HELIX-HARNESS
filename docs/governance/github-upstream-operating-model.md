@@ -29,6 +29,12 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 
 ## PR classとscope
 
+本書で用いる上流入力を次のように区別する。
+
+- `Vision`: 一つの対象productについて、親Conceptの範囲内で将来到達像、利用者価値、時間境界、成功観測を示すsource-qualified identity。L1企画と同一視せず、revisionと親Conceptを持つ。
+- `判断論点`: Concept／Vision／企画／指示の間で、人間が選ぶ必要のある一つの問い。選択肢、維持条件、影響対象、必要証拠、返却先を持ち、結論を先取りしない。
+- `premise packet`: 一つの判断論点に対するknown／assumption／unknown／conflict／stale、source、取得時点、適用条件、限界、反例、再調査条件を持つversioned evidence bundle。要求authorityや人間decisionではない。
+
 | PR class | 一つのPRが扱うもの | 必須入力 | mergeで成立するもの | mergeで成立しないもの |
 |---|---|---|---|---|
 | `repository_foundation` | 旧世代archive隔離、新世代物理構成、authority・GitHub運用規則 | archive manifest、対象構成、運用上流 | 新世代を整理・reviewするrepository基盤 | 個別要求の承認、L3、実装、CI、製品完成 |
@@ -66,7 +72,7 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 
 ### 自動投影実装前のbootstrap
 
-推進生成器と管理登録層が未実装の間は、repository maintainerが承認済み操作scope内で、存在確認済みlocal ticketを手作業でGitHubへ同一内容投影できる。投影前にticket ID、path、full source revision、source digestを記録し、投影後にIssue本文とlocal ticketの意味欄を再読して一致を確認する。このbootstrapは新規ticketの意味作成、要求採否、workflow生成、実装許可を行わず、自動投影が成立した時点で閉じる。
+推進生成器と管理登録層が未実装の間は、repository maintainerが人間の明示指示を原文・時点・対象・source digest付き原eventとして登録し、その原文から意味を追加せず`proposed_upstream_waiting`のlocal ticketへ転記できる。曖昧さ、対象不明、依存不明は補完せず停止条件へ置く。repository maintainerは承認済み操作scope内で、存在確認済みlocal ticketをGitHubへ同一内容投影できる。投影前にticket ID、path、full source revision、source digestを記録し、投影後にIssue本文とlocal ticketの意味欄を再読して一致を確認する。このbootstrapは要求採否、workflow生成、実装許可を行わず、登録層と推進生成器が成立した時点で閉じる。
 
 ## review、判断、merge admission
 
@@ -85,7 +91,7 @@ PR classが未選択または複数指定のPRはReadyにしない。
 5. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。
 6. 人間がrepository構成と運用上流を確認する。
 
-既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。Concept／L1／L2個別要求の意味変更判断は#1797のmerge条件に含めず、後続の`requirement` PRへ分離する。#1797では旧要求本文とIRを同一byteで現行保持し、153件を原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。
+既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。#1797に含まれるConcept、Vision、L1、L2、L11、Feature Ticketはbootstrap用のcandidate／draft containerとinventoryであり、mergeしても内容の承認revision、要求採否、ticket Readyを生成しない。個別の人間decisionは対応する後続PRへ分離する。#1797では旧要求sourceを同一byteのread-only snapshotとして保持し、153件と補助sourceを原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。
 
 ### 後続`requirement` PR
 

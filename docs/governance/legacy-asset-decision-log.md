@@ -1,6 +1,6 @@
 # 旧資産の個別判断ログ契約
 
-status: empty_append_only_log
+status: active_append_only_log
 data_path: `docs/governance/legacy-asset-decisions.jsonl`
 join_key: `asset_id + asset_revision_after`
 copy_read_after_path: `docs/governance/legacy-asset-copy-read-after.jsonl`
