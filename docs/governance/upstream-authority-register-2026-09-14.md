@@ -50,6 +50,7 @@ as_of: 2026-09-14
 | 旧screen要求・設計 | 7文書、個別Low-Fi 7画面、共通骨格参照8画面 | [L2画面・モック境界](../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md) | 7文書と15画面の存在・内容を確認済み。8画面の個別操作・欠落・失敗状態、prototype合意、L11受入が未確定 | 採択した画面だけを対象別L2要求、prototype revision、L11利用結果へ接続する。旧pairのPASSを流用しない |
 | 旧IR由来の適用待ちsemantic atom | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/source-rebaseline/l2-freeze-ir-correction.md) | historical proposal、未採否。旧IRへ適用しない | 対象別L2へ個別採否し、承認後に新世代projectionを再導出する |
 | open PR整理 | 6件close、open 0件 | [上流再整理に伴うopen PR整理記録](audits/source-rebaseline/github-pr-cleanup-2026-09-14.md) | GitHub projection整理済み。branch・Issue・要求意味は変更していない | legacy sourceの意味は対象別L2で再採否する |
+| 旧open Issue projection | 488件、comment 1330件 | [退役記録](audits/source-rebaseline/github-issue-retirement-2026-09-15.md)、[Issue明細](audits/source-rebaseline/github-open-issue-retirement-inventory.jsonl)、[comment明細](audits/source-rebaseline/github-issue-comment-retirement-inventory.jsonl) | 488/488件を`closed / not_planned`へ退役、open 0件。本文digest 488/488一致。Issueとcommentの意味は`unresolved` | closeを要求棄却・実装完了にせず、必要な意味だけを対象別L2へ個別採否する |
 | 旧PLAN | 1252文書 | `archive/legacy-generation-2026-09-14/root/docs/plans/` | historical作業契約・履歴。要求意味の正本ではない | 必要なbehavior atomだけを上流ID・対象・revisionへ再採否し、旧PLANを実行しない |
 
 ## 母集団の閉じ方
