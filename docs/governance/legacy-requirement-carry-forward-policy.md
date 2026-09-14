@@ -77,3 +77,7 @@ confirmed文書で明示宣言された要求、価値、KPI、画面、制約�
 `legacy-confirmed-requirement-identity-carry-forward.jsonl`へsource-qualified IDとして保持する。同名IDをAIが
 同一要求へ統合せず、重複候補として人間判断へ提示する。明示IDのない段落条件は文書保持だけで移管完了にせず、
 原文atom台帳へ追加されるまで未完とする。
+
+Requirement IRと人間向け要求文書の関係は`legacy-ir-document-source-relation.jsonl`で管理する。
+双方のID・statementが一致しない場合は、片側を正しいものとして上書きせずconflictとして停止する。
+対象別successorへの再配置後も、原IR、原文書、successorの三者traceを残す。

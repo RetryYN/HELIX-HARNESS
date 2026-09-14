@@ -13,6 +13,7 @@ policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-f
 - `../legacy-requirement-carry-forward.jsonl`: 153要求の原文・digest・配置状態
 - `../legacy-requirement-document-carry-forward.jsonl`: 22要求文書のsource path、保持path、digest、元authority状態を変えない規則
 - `../legacy-confirmed-requirement-identity-carry-forward.jsonl`: confirmed文書で明示宣言された175 identityのsource行、行digest、再配置状態
+- `../legacy-ir-document-source-relation.jsonl`: Requirement IR 153件と保持済み人間向け要求表の原文一致relation
 
 37件の対象別L2はrouting containerであり、この要求集合を置換・縮約しない。重複、縮退、意味変更、retireは候補として明示し、人間の対象revision付き決定がない限り適用しない。
 
@@ -27,3 +28,7 @@ policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-f
 confirmed文書の要求表、要求見出し、要求宣言行から、source-qualified identity 175件を原文行付きで台帳化した。
 同名IDが別文書にある場合はsource pathをnamespaceとして衝突を残す。これは自動統合・重複削除を行わないためである。
 明示IDを持たない段落条件と技術要求節は文書単位で保持されており、atom単位の抽出は未完として残す。
+
+Requirement IR 153件は、全件が保持済み`infinity-loop-platform-requirements.md`の宣言行を指している。
+153/153件についてIDとstatementがIRと人間向け文書で一致することを確認し、relation台帳へ双方のpointerと
+source行digestを記録した。IRだけ、またはMarkdownだけの更新で要求を消したことにしない。
