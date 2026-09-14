@@ -30,6 +30,8 @@ successor割当、意味変更、承認を成立させない。23件は`meaning_
 Domain Object規律の適用範囲1件へ整理した。これは判断内容を明確にするものであり、配置や意味変更を確定しない。
 [再配置wave台帳](legacy-ir-rehome-wave-register.md)は153件を業務価値→機能→非機能→技術制約の順に11 partitionへ分ける。
 partitionは要求identityごとの後続PRを並べるqueue単位であり、successorや承認状態ではない。
+W1は[業務価値要求33件の原文付きqueue](legacy-ir-w1-business-rehome-queue.md)へ展開済みで、
+OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断候補8（適用0）である。
 
 ## 元statusの保持
 

@@ -23,6 +23,8 @@ source: [IR対象routing queue](legacy-ir-target-routing-queue.jsonl)
 
 ## 各PRの停止条件
 
+W1の原文付き処理入口は[業務価値要求33件のqueue](legacy-ir-w1-business-rehome-queue.md)とする。
+
 - 親Concept／L1 revisionが確定していない。
 - 対象productを一つに決められない場合に、分割successorを作らず単独ownerへ押し込もうとした。
 - 原要求のactor、目的、正常系、失敗、回復、制約、受入のいずれかがsuccessorで未被覆になった。
