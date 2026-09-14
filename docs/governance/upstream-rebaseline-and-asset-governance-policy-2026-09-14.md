@@ -122,7 +122,7 @@ L2を飛ばしてL1からL3へ接続せず、L2要求とL11受入、L3要件とL
 | `authority_status` | canonical、approved_pending、draft、compatibility、historical、unknown |
 | `source_provenance` | 原文、採取元、承認対象、digest、判断記録 |
 | `upstream_ids`／`pair_ids` | 親Concept／要求と正規V-pair |
-| `disposition` | reuse、amend、split、replace、retire、archive、reject、unresolved |
+| `disposition` | verbatim_reuse、semantic_rederive、replace、retire、archive_only、reject、unresolved |
 | `implementation_status` | 未設計、設計済み、実装済み、検証済み、運用確認済みを分離 |
 | `migration_preconditions` | 新世代要求oracle、consumer、rollback、証拠、承認境界。旧資産との実行parityは含めない |
 
@@ -135,10 +135,14 @@ L2を飛ばしてL1からL3へ接続せず、L2要求とL11受入、L3要件とL
   copy後のdigest一致とactive consumerをread-afterする。要求・責務・runtime境界が変わる資産には使用しない。
 - `semantic_rederive`: 採択したsemantic atomを新しい上流ID、契約、設計、oracle、実装identityへ再導出する。
 
-旧workflow、旧runtime、旧prompt、旧設定を、path移動やdigest一致だけで`verbatim_reuse`へ昇格しない。制御条件を満たす
-資産は再実装せずarchiveからコピーしてよいが、未判定資産をコピー候補から黙って除外しない。全archive資産はmanifestを
+旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定は`verbatim_reuse`の対象外とする。
+それらは`semantic_rederive`、`replace`、`archive_only`、`reject`、`unresolved`のいずれかで扱う。対象外classではない
+資産は制御条件を満たせば再実装せずarchiveからコピーしてよいが、未判定資産をコピー候補から黙って除外しない。全archive資産はmanifestを
 母集団とし、`verbatim_reuse`、`semantic_rederive`、`replace`、`retire`、`archive_only`、`reject`、`unresolved`の
 いずれかへ到達させる。
+
+旧語彙との対応は、`reuse`を個別審査後の`verbatim_reuse`または`semantic_rederive`へ分け、`amend`／`split`を
+`semantic_rederive`、`archive`を`archive_only`へ移す。`replace`、`retire`、`reject`、`unresolved`は同義で維持する。
 
 ## 変更管理
 

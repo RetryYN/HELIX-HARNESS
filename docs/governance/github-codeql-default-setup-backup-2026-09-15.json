@@ -2,6 +2,15 @@
   "captured_at": "2026-09-15",
   "repository": "RetryYN/HELIX-HARNESS",
   "purpose": "pre-change record before upstream-only Draft PR #1797",
+  "authorization": {
+    "actor": "RetryYN",
+    "recorded_at": "2026-09-15",
+    "basis": "direct instruction to perform the review after the CodeQL-stop and Draft-PR action was disclosed",
+    "target": "RetryYN/HELIX-HARNESS CodeQL default setup",
+    "scope": "temporarily prevent automated CodeQL execution on upstream-review Draft PR #1797",
+    "expires_on": "2026-09-22",
+    "expiry_action": "keep PR #1797 draft and require a new human decision; do not restore or redesign automatically"
+  },
   "before": {
     "state": "configured",
     "languages": [
@@ -22,5 +31,5 @@
     "updated_at": null,
     "schedule": null
   },
-  "restoration_status": "not_scheduled; redesign from new-generation security and CI requirements"
+  "restoration_status": "pending explicit restore or new-generation security configuration decision; no later than authorization expiry"
 }

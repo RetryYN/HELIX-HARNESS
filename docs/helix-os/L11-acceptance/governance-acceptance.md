@@ -51,9 +51,9 @@ pair_artifact: docs/helix-os/L2-requirements/governance-requirements.md
 - replacementの上流ID、artifact、consumer適用、rollback、HARNESS oracleの一つが欠ければ旧capabilityを停止しない。
 - archive原文のdigest不一致、source欠落、current pathへの再出現を個別に検出する。
 - 物理削除を通常archiveと区別し、別のaction-binding approvalがなければ保全したまま停止する。
-- archive manifestの全資産が完全一致再利用、意味再導出、置換、退役、archive限定、不採用、未判定のいずれかで追跡され、
+- HELIXOS-L2-002／006／007：archive manifestの全資産が完全一致再利用、意味再導出、置換、退役、archive限定、不採用、未判定のいずれかで追跡され、
   未判定を不要扱いして要求・behaviorを落とさないことを確認する。
-- 完全一致再利用ではsource／target pathとdigest、owner、上流要求、consumer、権利、secret、外部作用、実行性、採否revisionを
+- HELIXOS-L2-002／006／007：完全一致再利用ではsource／target pathとdigest、owner、上流要求、consumer、権利、secret、外部作用、実行性、採否revisionを
   確認する。copy後のdigest不一致、未登録consumer、旧runtime再有効化のいずれかがあれば受入を拒否する。
 
 ## 旧HCV4受入条件の移管

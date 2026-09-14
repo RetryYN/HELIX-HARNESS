@@ -27,8 +27,8 @@ executed_at: 2026-09-14
 | **合計** | **4020** | [manifest](../../archive/legacy-generation-2026-09-14/MANIFEST.sha256)で固定 |
 
 active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、対象別L1／L2／L11、上流方針、inventory、crosswalk、
-判断packetの68文書だけを残した。本記録、現行文書構成README、Concept入口、GitHub PR packet、完全一致再利用統制、
-CodeQL設定変更記録を追加したため現在は74文書である。旧文書をbranch上で
+判断packetを含む68ファイルだけを残した。本記録、現行文書構成README、Concept入口、GitHub PR packet、完全一致再利用統制、
+CodeQL設定変更記録とGitHub Claude review記録2件を追加したため現在は76ファイルである。旧文書をbranch上で
 変更していた場合も、追加文書でなければarchive sourceへ移した。
 
 active文書は`concept/`、`helix-harness/`、`helix-os/`、`helix-web/`、`helix-web-os/`、`governance/`へ
@@ -51,7 +51,9 @@ branch削除禁止を維持している。
 GitHub管理のCodeQL default setupは、PR #1797で既存CIを起動せず上流意味reviewだけを行うため、設定JSONを
 [`github-codeql-default-setup-backup-2026-09-15.json`](github-codeql-default-setup-backup-2026-09-15.json)へ記録して`not-configured`へ変更した。read-afterで
 `state=not-configured`を確認した。Dependabot Updatesはactiveのままであり、新世代上流の意味review、承認、merge条件として
-使わない。CodeQLの再構成は新世代security／CI要求から別途行う。
+使わない。この一時停止は、停止とDraft PR作成を明示した直後のPOによるreview実行指示に基づき、PR #1797の上流reviewへ
+scopeを限定する。期限は2026-09-22とし、それまでに復元または新世代security構成の人間判断がなければPRをDraftのまま停止する。
+CodeQLを自動復元・再構成しない。
 
 ## 未成立事項
 

@@ -1,6 +1,6 @@
 # 旧資産の完全一致再利用統制
 
-status: active_inventory
+status: draft_inventory
 archive_population: 4020
 source_manifest: `archive/legacy-generation-2026-09-14/MANIFEST.sha256`
 
@@ -27,17 +27,21 @@ byte copyで現行化しない。archive manifestの全4020件を母集団とし
 
 `asset_id`、archive内source path、source SHA-256、現行target path、target SHA-256、製品owner、親要求ID、
 採否revision、意味・interfaceの不変理由、consumer、実行性、権利、secret、外部作用、copy実施者・時点、read-after結果を
-一組で記録する。対象が実行可能、設定、prompt、workflow、hook、credential参照を含む場合は、digest一致だけで適格にしない。
+一組で記録する。旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定は完全一致再利用の
+対象外であり、他の記録が揃っても現行pathへcopyしない。credential参照、実行可能性、外部作用が判明した他資産も、
+安全境界と個別要求が確定するまで`unresolved`とする。
 
 ## 現在の完全一致再利用
 
-| asset_id | archive source | source SHA-256 | current target | target SHA-256 | owner／親要求 | 判定 |
-|---|---|---|---|---|---|---|
-| `LEGACY-REUSE-0001` | `archive/legacy-generation-2026-09-14/root/docs/archive/cross-system-audit-2026-09-05/source/upstream_license.txt` | `1ec00bbf092b28cae28750fb6c8cd02f2cd0999ee4d4c96d1279e09b15345796` | `LICENSE` | `1ec00bbf092b28cae28750fb6c8cd02f2cd0999ee4d4c96d1279e09b15345796` | HARNESS／HARNESS-L2-006 | `verbatim_reuse`。MIT本文とRetryYN著作権表示が同一で、実行性・secret・外部作用なし。現行の商用条件候補は未決のため、このlicenseを将来契約の承認へ転用しない |
+承認済み`verbatim_reuse`は0件である。個別行を持たないmanifest entry 4020件の既定dispositionはすべて
+`unresolved`である。
 
-`LICENSE`は2026-09-15にarchive sourceから現行pathへcopyし、同一SHA-256をread-afterした。これ以外の
-archive資産は本日時点で`verbatim_reuse`承認済みではない。旧CI、runtime、test、prompt、設定、設計、要求は、対象別要求と
-consumer closureの確認が終わるまで`semantic_rederive`または`unresolved`として扱う。
+現行`LICENSE`とarchive内の監査用写し
+`archive/legacy-generation-2026-09-14/root/docs/archive/cross-system-audit-2026-09-05/source/upstream_license.txt`は
+SHA-256 `1ec00bbf092b28cae28750fb6c8cd02f2cd0999ee4d4c96d1279e09b15345796`で一致する。ただし`LICENSE`は隔離対象
+manifestのentryではなく、Git履歴上もarchiveから作成されたことを証明できないため、copy実績や`verbatim_reuse`として
+登録しない。これは「隔離対象外の現行fileとarchive内の写しが同内容」という観測だけであり、license変更や将来契約の
+承認を生成しない。
 
 ## 要求欠落を防ぐ閉包
 

@@ -43,7 +43,7 @@ status: awaiting_human_decision
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `66968b4b71f178d99e9b8e40778b647cf275d34d3eeb846548225059811779ba` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
+| `docs/concept/helix-concept-v4.1.md` | `642bb4ef522ea49c5806aedfee88be755d799e9355056f5ebd885fa61d537e56` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
 | `docs/helix-harness/L1-planning/product-intent.md` | `e72334069da58904094cac5da074855c0d432416d4edc9e2cf11f83668ab1a20` | HARNESSの外部提供価値7件と対象外 |
 | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |
