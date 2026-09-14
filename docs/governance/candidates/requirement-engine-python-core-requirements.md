@@ -36,6 +36,8 @@ TypeScript実装が存在した。一方、Python semantic coreを現行新世�
 | REQENG-HARNESS-005 | 要求意味処理を製品非依存のPython semantic coreとして提供し、製品固有の語彙、policy、質問、品質matrixはversioned inputとして分離する | HARNESS、HELIX-Web、他製品で共通能力を利用でき、一製品の規則が他製品へ漏れない |
 | REQENG-HARNESS-006 | Python coreは決定論的な意味変換を担い、versioned strict JSONL、schema、bounded resource、network default denyで入出力する | DB、Git、GitHub、repository、credential、runtime stateへの直接writeなしに同一入力から再現できる |
 | REQENG-HARNESS-007 | 人間の指示、相談、反応、要求合意、L3承認と操作許可を区別し、エンジン出力をproposalとして扱う | 会話、Issue、PR、CI、ログ、沈黙から要求承認や操作権限を生成しない |
+| REQENG-HARNESS-008 | 要求を単体要求、接続要求、構成体要求に分け、対象identity、owner scope、構成要素、接続点、依存、前提、境界を保持する | 機能A自身の成立、A→Bの接続成立、A–Cから成るシステムAの成立を別々に判定できる |
+| REQENG-HARNESS-009 | 構成体要求は子要求の集合だけでなく、組合せで初めて生じるend-to-end behavior、順序、整合性、性能、failure propagation、回復、security境界を明示する | 全子機能の単体成功だけで接続・統合・システム成立を推定しない |
 
 ## HELIX-OSへの登録・改善要求候補
 
@@ -47,6 +49,19 @@ TypeScript実装が存在した。一方、Python semantic coreを現行新世�
 | REQENG-OS-004 | Node／TypeScript transactional boundaryがPython出力のschema、対象revision、権限、lease、重複、staleを再検証してから単一transactionで登録する | Python出力のcommand、SQL、path、codeを実行せず、部分登録や二重登録を成功にしない |
 | REQENG-OS-005 | 入力と改善logは目的、同意、data分類、保持期間、利用可能scopeを持ち、secret、credential、不要なPII、生会話全文を既定の学習corpusへ入れない | 要求の根拠追跡を保ちながら、許可外の別project・別tenant・外部学習へ転用しない |
 | REQENG-OS-006 | Concept／企画L1、要求エンジンへの入力、抽出されたL2候補、採否後の要求を同じ系譜で比較し、価値・actor・目的・scope・non-goal・制約の欠落、追加、対象違い、矛盾を管理する | 企画にある価値が要求へ降りていない状態と、要求側が企画を勝手に拡張した状態を別々に示し、戻す層と判断者を特定できる |
+| REQENG-OS-007 | 単体、接続、構成体の要求identityと包含・接続relationを保って登録し、各状態、変更影響、証拠、未成立条件を別々に管理する | 機能Aの完了をA–Cの接続済み・システムAの受入済みへ自動伝播せず、逆に接続変更から影響する単体へ辿れる |
+
+## 要求の粒度とrelation
+
+| requirement kind | 主語 | 固有に持つ意味 |
+|---|---|---|
+| `unit` | 一つの機能、component、service、actor action | その対象だけで成立する入力、出力、状態、制約、failure、acceptance |
+| `connection` | 二つ以上の対象間の接続 | producer／consumer、方向、protocol、順序、data意味、整合性、timeout、再送、部分失敗、復旧 |
+| `composite` | 複数の単体・接続から構成する製品、system、subsystem | 構成集合、全体価値、end-to-end behavior、全体制約、境界、統合acceptance |
+
+一つの要求へ複数粒度を詰め込まない。共通の要求identityから`contains`、`connects`、`depends_on`、
+`constrains`、`verified_by`等のrelationで結ぶ。単体要求の複製を構成体要求にせず、構成体固有の性質が無い場合も
+「子の成立で全体成立」と推定せず、非適用理由と判断者を要求する。具体enumとschemaはL3で確定する。
 
 ## ログからの強化loop
 

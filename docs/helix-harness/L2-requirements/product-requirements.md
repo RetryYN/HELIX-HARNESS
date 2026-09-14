@@ -49,7 +49,7 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-005 | 言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる | HNFR-P3、v1.3 §4、新世代CI要求候補 | 特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる |
 | HARNESS-L2-006 | 外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる | 2026-09-14 PO指示、HBR-P6の提供物側条件 | HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる |
 | HARNESS-L2-007 | 検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果を含めて、HELIX-HARNESS製品群Version 1の完成を確認できる | 2026-09-14 PO指示、Vision §3／§13 | 性質の異なる対象で要求から受入・運用評価までの成立証拠を確認し、HELIX-Web等の展開前提を判定できる。Web自体の完成をVersion 1へ含めない |
-| HARNESS-L2-008 | 利用者指示と根拠から要求候補を形成し、欠落・矛盾・重複・過剰解釈・対象違い・変更影響を提示して、人間の訂正と合意により要求へ収束できる | 2026-09-15 PO指示、旧Requirement Engine／ADR-010 | 製品非依存のPython semantic coreとして複数製品へ適用でき、出力を承認済み要求や操作権限へ自動昇格させない |
+| HARNESS-L2-008 | 利用者指示と根拠から要求候補を形成し、単体・接続・構成体の対象粒度を分け、欠落・矛盾・重複・過剰解釈・対象違い・変更影響を提示して、人間の訂正と合意により要求へ収束できる | 2026-09-15 PO指示、旧Requirement Engine／ADR-010 | 製品非依存のPython semantic coreとして複数製品へ適用でき、機能A、A→Bの接続、A–Cから成るシステムAの要求と成立を混同せず、出力を承認済み要求や操作権限へ自動昇格させない |
 
 移管元の本文は[柱要求](../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)、
 [要件v1.3](../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)を参照する。
@@ -132,6 +132,8 @@ HARNESS-L2-008の適用待ち具体化として保持する。要求意味の抽
 HARNESSが所有する。HELIX-OSは入力・出力・訂正・採否・改善eventを登録、実行、監視するが、要求意味を複製しない。
 Python coreはDB、Git、GitHub、repository、credentialへ直接writeせず、Node／TypeScript境界が出力を再検証して登録する。
 指示と抽出結果の齟齬は強化材料として保持するが、生会話、Issue、logやエンジン出力を要求正本・承認・学習許可へ変換しない。
+単体要求、対象間の接続要求、複数要素から成る構成体要求を別identityで持ち、包含・接続・依存・制約・検証relationで結ぶ。
+単体の成立から接続、統合、製品全体の成立を推定せず、組合せ固有のbehavior、failure、回復、全体制約と受入を要求する。
 
 [AVS候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md)、
 [RFA候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md)、
