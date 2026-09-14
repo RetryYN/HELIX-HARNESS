@@ -3,13 +3,19 @@
 status: draft_inventory
 archive_population: 4020
 source_manifest: `archive/legacy-generation-2026-09-14/MANIFEST.sha256`
+asset_ledger: `docs/governance/legacy-asset-disposition.jsonl`
 
 ## 目的
 
 変更不要な旧資産を再実装せず、archiveから安全にコピーして利用する。同時に、要求・責務・実行境界が変わる資産を
 byte copyで現行化しない。archive manifestの全4020件を母集団とし、未判定資産を削除済み・不要・移管済みへ丸めない。
-本書で個別行を持たないmanifest entryの既定dispositionは`unresolved`とする。したがって台帳未記載は母集団からの除外を
-意味しない。
+manifest entryは必ず資産明細台帳の個別行を持ち、初期dispositionを`unresolved`とする。台帳未記載は母集団からの除外では
+なく、閉包違反として処理を停止する。
+
+全entryは[資産明細台帳](legacy-asset-disposition.jsonl)にも1件1行で展開する。`asset_id`はsource pathのSHA-256先頭20桁から
+決定的に生成し、path変更と採否変更を同じ操作にしない。初期値は`asset_class=Historical`、
+`product_target=unresolved`、`disposition=unresolved`である。個別採否では該当行を新revisionとして更新し、source pathと
+source digestを保持する。明細台帳の欠落、重複、manifestとのdigest不一致があればcopyや意味移管を停止する。
 
 ## archive内規則との優先関係
 
@@ -40,8 +46,8 @@ historical evidenceとして改変しない。
 
 ## 現在の完全一致再利用
 
-承認済み`verbatim_reuse`は0件である。個別行を持たないmanifest entry 4020件の既定dispositionはすべて
-`unresolved`である。
+承認済み`verbatim_reuse`は0件である。manifest entry 4020件は資産明細台帳へ全件展開済みであり、現在の
+`disposition`はすべて`unresolved`である。
 
 現行`LICENSE`とarchive内の監査用写し
 `archive/legacy-generation-2026-09-14/root/docs/archive/cross-system-audit-2026-09-05/source/upstream_license.txt`は

@@ -22,7 +22,8 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 5. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 6. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
 7. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
-8. 必要な場合だけ、台帳から指定された旧source／crosswalkを読む
+8. [旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)
+9. 必要な場合だけ、台帳から指定された旧source／crosswalkを読む
 
 Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
