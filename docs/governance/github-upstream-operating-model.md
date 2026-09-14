@@ -5,6 +5,8 @@ generation: new-generation-2026-09-14
 local_authority: repository documents at exact revision
 github_role: work_review_evidence_projection
 
+文書、要求carry-forward、作業、GitHub projectionの状態は[上流authority状態モデル](authority-state-model.md)の独立した四軸で扱う。
+
 ## 目的
 
 GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用をやめ、ローカル上流からGitHub上の作業を

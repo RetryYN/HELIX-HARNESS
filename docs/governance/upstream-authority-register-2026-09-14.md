@@ -12,8 +12,9 @@ as_of: 2026-09-14
 |---|---:|---|---|---|
 | 最新責務候補 | 1 | [HARNESS・HELIX-OS・個別製品の責務記録](../concept/product-boundary.md) | PO発言の出典記録。exact SHAへの人間decision待ち | 人間判断packetへ束縛し、承認後にConcept／L1／L2の親境界として使う |
 | 上流統制方針 | 1 | [上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md) | draft policy | 対象別改訂と資産台帳の運用へ適用 |
+| 上流authority状態 | 4独立軸 | [上流authority状態モデル](authority-state-model.md) | source、対象別authority、carry-forward、work projectionを分離。暗黙遷移を禁止 | 後続の登録・分類機構で別fieldとして実装し、現在は台帳とdecision recordで判定する |
 | GitHub上流運用 | 1 | [GitHub上流運用モデル](github-upstream-operating-model.md) | repository foundation、要求、設計・検証、実装、外部運用のPR classとauthority／merge条件を定義 | #1797でrepository運用基盤を固定し、個別要求は旧要求を保持したまま一要求identityずつ後続PRで再配置する |
-| 企画・Vision→research→要求 | 旧source 4文書、現行被覆5箇所 | [被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md) | 思想は旧要求源に存在するが、現行は要求engine、crawler、RFA本文、GitHub運用へ断片化。`partial_and_not_operationally_closed` | #1797で順序・責務・PR classを固定し、HARNESS／OS要求は一要求identityずつ後続PRで具体化する |
+| 企画・Vision→research→要求 | 旧source 4文書、現行被覆5箇所 | [被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md) | GitHub投影までの経路は定義済み。premise、research、PoC／prototype、backflowの製品要求は未承認。`operating_route_defined_requirements_unapproved` | HARNESS／OS要求を一要求identityずつ後続PRで具体化する |
 | 旧世代archive-first隔離 | 4020 Git追跡ファイル | [隔離記録](archive-first-transition-record-2026-09-14.md)、`archive/legacy-generation-2026-09-14/MANIFEST.sha256`、[資産明細台帳](legacy-asset-disposition.jsonl) | 旧実行面・旧文書・旧IRを非実行archiveへ隔離し、全entryを個別`unresolved`行へ展開済み | archive sourceの意味を対象別L2へ採否し、物理削除はしない |
 | 旧L0 charter source | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | historical source。旧confirmedを新世代へ継承しない | P0–P9の意味を保持して対象別L1へ再配置する |
 | 旧Concept source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | historical source。旧Core Read・旧製品境界 | v4.1との差分sourceとしてのみ使う |
