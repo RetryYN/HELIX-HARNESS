@@ -128,8 +128,17 @@ L2を飛ばしてL1からL3へ接続せず、L2要求とL11受入、L3要件とL
 
 `unknown`を不要と解釈しない。古い名称、古いpath、Issue close、未参照、テスト成功、重複して見える文章だけで削除しない。
 機能sourceはbehavior atomへ分解し、HARNESSの工程能力、OSの実行統制、個別製品機能のいずれかへ帰属させる。
-`reuse`はlegacy file、runtime、workflowをそのまま再有効化する意味ではない。採択したsemantic atomを新しい上流ID、
-契約、設計、oracle、実装identityへ再導出することを指す。
+`reuse`は次の二種類を区別する。
+
+- `verbatim_reuse`: 変更不要と判断した資産をarchiveから同一byteで現行pathへコピーする。source path／source digest、
+  target path／target digest、製品owner、上流要求、consumer、実行性、権利、secret、外部作用、採否revisionを台帳へ記録し、
+  copy後のdigest一致とactive consumerをread-afterする。要求・責務・runtime境界が変わる資産には使用しない。
+- `semantic_rederive`: 採択したsemantic atomを新しい上流ID、契約、設計、oracle、実装identityへ再導出する。
+
+旧workflow、旧runtime、旧prompt、旧設定を、path移動やdigest一致だけで`verbatim_reuse`へ昇格しない。制御条件を満たす
+資産は再実装せずarchiveからコピーしてよいが、未判定資産をコピー候補から黙って除外しない。全archive資産はmanifestを
+母集団とし、`verbatim_reuse`、`semantic_rederive`、`replace`、`retire`、`archive_only`、`reject`、`unresolved`の
+いずれかへ到達させる。
 
 ## 変更管理
 

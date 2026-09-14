@@ -27,7 +27,8 @@ executed_at: 2026-09-14
 | **合計** | **4020** | [manifest](../../archive/legacy-generation-2026-09-14/MANIFEST.sha256)で固定 |
 
 active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、対象別L1／L2／L11、上流方針、inventory、crosswalk、
-判断packetの68文書だけを残した。本記録、現行文書構成README、Concept入口、GitHub PR packetを追加したため現在は72文書である。旧文書をbranch上で
+判断packetの68文書だけを残した。本記録、現行文書構成README、Concept入口、GitHub PR packet、完全一致再利用統制、
+CodeQL設定変更記録を追加したため現在は74文書である。旧文書をbranch上で
 変更していた場合も、追加文書でなければarchive sourceへ移した。
 
 active文書は`concept/`、`helix-harness/`、`helix-os/`、`helix-web/`、`helix-web-os/`、`governance/`へ
@@ -46,16 +47,17 @@ PO許可後、旧`harness-check`のrequired status checkを解除し、旧reposi
 `disabled_manually`へ変更した。再確認ではrequired status checksはなく、`enforce_admins=true`、force-push禁止、
 branch削除禁止を維持している。
 
-GitHub管理の動的workflowとしてCodeQL default setupとDependabot Updatesはactiveのままである。これらは旧HARNESSの
-要求・設計・完了gateではないが、PR時に自動実行され得る外部security／dependency projectionである。本記録では
-disableしておらず、新世代上流の意味review、承認、merge条件として使わない。
+GitHub管理のCodeQL default setupは、PR #1797で既存CIを起動せず上流意味reviewだけを行うため、設定JSONを
+[`github-codeql-default-setup-backup-2026-09-15.json`](github-codeql-default-setup-backup-2026-09-15.json)へ記録して`not-configured`へ変更した。read-afterで
+`state=not-configured`を確認した。Dependabot Updatesはactiveのままであり、新世代上流の意味review、承認、merge条件として
+使わない。CodeQLの再構成は新世代security／CI要求から別途行う。
 
 ## 未成立事項
 
 - archive資産4020件のsemantic atom採否、対象別L2への意味移管、replacement完成。
 - Concept v4.1、対象別L1、L2／L11の人間承認。
 - L3以降、新世代AI manifest／生成器、新世代CI、runtimeの設計・実装。
-- CodeQL、Dependabot、GitHub App、その他外部scheduleの切替。
+- CodeQLの新世代再構成、Dependabot、GitHub App、その他外部scheduleの切替。
 - archive内資産の物理削除。
 
 本隔離は旧世代を実行不能なrepository位置へ移した証拠であり、新世代の完成、旧意味の棄却、consumer切替完了を示さない。

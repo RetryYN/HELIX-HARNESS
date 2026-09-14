@@ -95,6 +95,11 @@ behavior、設計、検証、consumerと後継上流IDを照合し、必要なpa
 確認する。archive資料をcurrent authority・実行可能成果・検証済み能力にせず、旧実装とのparityやdual-greenを要求しない。
 本節では旧資産を移動・削除・停止しない。
 
+変更不要な既存資産は、再実装を必須にしない。HARNESS-L2-004／005／006では、archive manifestを母集団として、
+完全一致再利用と意味再導出を区別する。完全一致再利用には、同じ製品責務と要求revisionで意味・interface・権利・
+security・consumer・実行境界が変わらないこと、source／target digestが一致すること、必要なpairとoracleを満たすことを
+要求する。いずれかが不明ならコピー済み・移管済みと扱わず、意味再導出または未判定へ戻す。
+
 ## 運用品質を落とさない工程条件
 
 [旧NIO候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、

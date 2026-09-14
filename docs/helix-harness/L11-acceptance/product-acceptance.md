@@ -41,6 +41,9 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 - 旧path削除や旧test greenだけを与え、要求、behavior、設計、検証、consumer、後継上流IDの欠落を移管済みにしない。
 - replacementのpair、oracle、expected failure、利用者受入、差戻し条件の一つを欠かし、退役を不成立にする。
 - archive内の旧承認・成功証拠をcurrent authority、検証済み能力、工程完了として採用しない。
+- 完全一致再利用候補について、同じ製品責務・要求revision・意味・interface・権利・security・consumer・実行境界と
+  source／target digest一致を確認する。一条件でも不明な資産をコピー済み・移管済みとして受け入れない。
+- 完全一致再利用が適格な資産を不要に再実装せず、意味再導出が必要な資産をbyte copyで置換しない。
 
 ## 旧HCV4受入条件の移管
 

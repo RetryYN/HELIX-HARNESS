@@ -86,6 +86,12 @@ runtime、CI discovery、package command、復元経路から外す。現行path
 隔離後にsemantic atom、consumer、採否、replacementを追跡し、承認上流から新しいartifactとoracleを再導出する。
 archive原文と判断史を保全し、物理削除は法的・security等の理由と別のaction-binding approvalがある場合に限る。
 
+HELIXOS-L2-002／006／007では、archive manifestの全資産を母集団として、完全一致再利用、意味再導出、置換、退役、
+archive限定、不採用、未判定を資産ごとに追跡する。完全一致再利用が承認された資産はarchiveから現行pathへコピーし、
+source／target pathとdigest、製品owner、上流要求、consumer、権利、secret、外部作用、実行性、採否revisionを記録する。
+copy後にdigestとconsumerをread-afterし、旧startup、runtime、CI、hook、prompt、設定を暗黙に再有効化しない。
+変更不要と確認できた資産を再実装せず、未判定資産を「不要」と解釈して要求・behaviorを落とさない。
+
 ## 管理上の観測と製品変更の入口
 
 [旧Management Scrum policy](../../../archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md)は、
