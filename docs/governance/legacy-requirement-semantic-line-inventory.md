@@ -5,6 +5,7 @@ scope: 旧要求文書22件
 authority: [要求文書carry-forward台帳](legacy-requirement-document-carry-forward.jsonl)
 machine_ledger: [semantic line台帳](legacy-requirement-semantic-line-carry-forward.jsonl)
 review_queue: [atom化review queue](legacy-requirement-atomization-review-queue.jsonl)
+processing_contract: [atom化review contract](requirement-atomization-review-contract.md)
 
 ## 目的
 
@@ -57,6 +58,7 @@ review_queue: [atom化review queue](legacy-requirement-atomization-review-queue.
 5. prose、根拠、例、navigationへ分類しても削除しない。分類revisionと根拠を残す。
 6. 意味変更、縮退、統合、retireは対象revision付きの人間decisionなしに適用しない。
 7. GitHub Issue、PR、CI、実装の状態から分類や要求採否を逆算しない。
+8. AIによる具体的なproposalは[atom化review contract](requirement-atomization-review-contract.md)のline coverage、出力schema、禁止遷移に従う。
 
 ## review queueの成立条件
 
