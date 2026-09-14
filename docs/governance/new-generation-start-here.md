@@ -26,6 +26,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 9. [Repository foundation readiness](repository-foundation-readiness.md)
 10. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-ir-rehome-wave-register.md)
     - IDのない段落条件を扱う場合は、[semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)と[atom化review contract](requirement-atomization-review-contract.md)を追加で読む
+    - 旧candidate系列を扱う場合は、[旧candidate source全量inventory](legacy-candidate-source-inventory.md)から原文行へ戻る
 11. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
 12. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
 13. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、

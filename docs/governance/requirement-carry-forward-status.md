@@ -14,10 +14,12 @@ authority: machine ledgers linked below
 | confirmed文書の明示identity | 175 | 0 | 175 | 0 | 0 |
 | v1.3非空source line | 521 | 0 | 0 | 0 | 0 |
 | IR補助item（acceptance／refinement／system contract／system test） | 134 | 0 | 134 | 0 | 0 |
+| 旧candidate要求源の非空source line | 4,755 | 0 | 0 | 0 | 0 |
 
 現時点ではsuccessor割当済みは0件である。37件の対象別L2はrouting containerであり、この表のsuccessorへ自動算入しない。
 要求の再配置が始まっていないことを、要求削減や移管完了として表示しない。
 v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pending_rehome`列へ混在させない。
+旧candidate 92文書の4,755行も`candidate_source_preserved`／`target unapproved`／`preserved_pending_atomization`であり、採用済み要求や棄却済み実現方式へ混在させない。
 
 ## IR 153件の対象routing候補
 
@@ -66,5 +68,6 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 - [semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)に登録した未分類2,058行・[721 review unit](legacy-requirement-atomization-review-queue.jsonl)の要求atom化。source spanの全量登録と無損失な処理分割は完了したが、要求／制約／受入／根拠／例／navigationの分類とatom境界は未確定。
 - 153 IRと175 source-qualified identityの意味重複候補の比較。
 - [補助source 655 item](legacy-requirement-supplementary-source-inventory.md)と153 IR／175 identity／対象別L2・L11のrelation mapping。
+- [旧candidate 92文書・4,755行](legacy-candidate-source-inventory.md)のatom化と、要求意味／受入／根拠／旧実現方式の分類。
 - 各原要求のHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSへのsuccessor割当。
 - successorとL11受入の被覆確認、人間による意味変更・縮退候補の判断。
