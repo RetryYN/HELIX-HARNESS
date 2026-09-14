@@ -2,7 +2,7 @@
 
 ## 上流
 
-- [HELIX Concept](concept/helix-concept-v4.1.md)
+- [HELIX Concept入口](concept/README.md)
 - [製品責務境界](concept/product-boundary.md)
 - [作業入口](governance/new-generation-start-here.md)
 
