@@ -3,6 +3,7 @@
 status: empty_append_only_log
 data_path: `docs/governance/legacy-asset-decisions.jsonl`
 join_key: `asset_id + asset_revision_after`
+copy_read_after_path: `docs/governance/legacy-asset-copy-read-after.jsonl`
 
 ## 目的
 
@@ -17,6 +18,8 @@ join_key: `asset_id + asset_revision_after`
 | `asset_id` | 資産明細台帳のID |
 | `asset_revision_before`／`asset_revision_after` | 単調増加する行revision |
 | `decision_revision` | 人間判断または承認済み上流のexact revision |
+| `asset_class_before`／`asset_class_after` | 内容監査前後の資産class |
+| `reuse_exclusion_class_before`／`reuse_exclusion_class_after` | 一次分類と内容監査後の停止class。nullも明示する |
 | `disposition` | 統制で定めた7値のいずれか |
 | `product_target`／`upstream_ids`／`pair_ids` | 製品ownerと上流接続 |
 | `consumer_refs` | 現在および移行後consumer |
@@ -34,7 +37,24 @@ join_key: `asset_id + asset_revision_after`
 3. 明細台帳の更新と判断ログ追記を同一commitへ含め、台帳の`decision_record_ref`を
    `docs/governance/legacy-asset-decisions.jsonl#<decision_id>`へ設定する。
 4. `reuse_exclusion_class`が非nullなら`verbatim_reuse`を拒否する。nullでも内容監査と全確認項目が閉じるまで拒否する。
-5. `verbatim_reuse`ではcopy後にtarget digestとconsumerをread-afterし、その別記録を台帳へ接続する。
+5. `verbatim_reuse`ではcopy後にtarget digestとconsumerをread-afterし、下記copy・read-afterログを台帳へ接続する。
 6. GitHub Issue／PR／CI／review状態だけから判断行を生成しない。
 
 個別判断を開始するのはConceptと対象別L1が承認され、該当source atomを対象別L2へ採否できる段階からである。
+
+## copy・read-afterログ
+
+`legacy-asset-copy-read-after.jsonl`もappend-onlyとし、既存行を変更・削除しない。1行は次を必須とする。
+
+| 項目 | 内容 |
+|---|---|
+| `read_after_id`／`decision_id`／`asset_id`／`asset_revision` | 判断と台帳revisionへのjoin |
+| `source_path`／`source_sha256`／`target_path`／`target_sha256` | copy前後の実体 |
+| `copy_performed_by`／`copy_performed_at` | copy実施者と時点 |
+| `checked_by`／`checked_at` | read-after実施者と時点 |
+| `consumer_refs_observed` | read-afterで確認したconsumer |
+| `digest_match`／`consumer_match`／`result`／`failure` | 観測結果。失敗を欠落させない |
+| `evidence_refs` | command output、commit/tree、その他の反証可能な証拠 |
+
+台帳の`read_after_record_ref`は`docs/governance/legacy-asset-copy-read-after.jsonl#<read_after_id>`へ設定する。
+現在のcopy・read-afterログは0件であり、copy実績を生成しない。

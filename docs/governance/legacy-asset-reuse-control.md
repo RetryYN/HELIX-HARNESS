@@ -6,6 +6,7 @@ source_manifest: `archive/legacy-generation-2026-09-14/MANIFEST.sha256`
 asset_ledger: `docs/governance/legacy-asset-disposition.jsonl`
 decision_log_contract: `docs/governance/legacy-asset-decision-log.md`
 decision_log_data: `docs/governance/legacy-asset-decisions.jsonl`
+copy_read_after_data: `docs/governance/legacy-asset-copy-read-after.jsonl`
 
 ## 目的
 
@@ -23,13 +24,15 @@ manifest entryは必ず資産明細台帳の個別行を持ち、初期dispositi
 各行は、親要求とpair、製品owner、approval revision、target path／digest、意味・interfaceの不変理由、consumer、権利、
 実行性、secret、外部作用、判断者・時点、copy実施者・時点、read-after記録の欄を持つ。未確認値は空欄または
 `unreviewed`として保持し、推測で埋めない。`reuse_exclusion_class`が非nullの行へ`verbatim_reuse`を設定してはならない。
-このclassはpathから保守的に初期化した停止条件であり、nullをcopy許可と解釈せず、内容監査後にだけ個別判断する。
+このclassはpath規則による一次停止分類であり、旧runtimeからの参照閉包や内容分類の完了を表さない。nullは「未分類」であり、
+copy許可ではない。内容監査でclassを確定し、その変更前後をappend-only判断ログへ記録するまで個別採否を停止する。
 
-初期化はactive時に実行・判断へ作用したsurfaceと、そのarchive内template／evidenceを対象にする。具体的には`.claude`、
+一次初期化はactive時に実行・判断へ作用したことをpathだけで判別できるsurfaceと、そのarchive内template／evidenceを対象にする。具体的には`.claude`、
 `.codex`、`.cursor`、`.helix`、`.github/workflows`／`scripts`／work item template、`src`、`scripts`、`config`、`tests`、
 `docs/test-design`、`docs/templates/github`、`docs/templates/adapter`、`docs/plans`、path内`evidence`／
-`gate-evidence-manifests`、root AI instruction／build・test設定、実行可能拡張子を非nullへする。用途を混在させず、
-AI instructionとbuild／test設定は別classにする。個別判断の記録形式と追記規則は
+`gate-evidence-manifests`、root AI instruction／build・test設定、実行可能拡張子を非nullへする。これは参照閉包ではないため、
+`docs/governance`／`docs/design`内registry、`docs/skills`、`docs/process`等にはnullが残り得る。null行は内容監査前に
+`verbatim_reuse`候補へ進めない。用途を混在させず、AI instructionとbuild／test設定は別classにする。個別判断の記録形式と追記規則は
 [判断ログ契約](legacy-asset-decision-log.md)を正本とする。
 
 ## archive内規則との優先関係
