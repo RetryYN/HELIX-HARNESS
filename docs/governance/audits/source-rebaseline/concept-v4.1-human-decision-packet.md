@@ -110,6 +110,9 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 - HEAD `8bbb7c969b2e0b562e6e9d1c929fd4aa682085d5`の
   [資産明細台帳review](upstream-github-review-8bbb7c969.md)ではBlocker 0件、Major 1件、Minor 2件を検出した。
   行revisionと個別採否欄、再利用除外class、AIの照会境界を後続revisionで是正した。
+- HEAD `afd9ab7298749507f64247cbd7a7a92d72e8ba81`の
+  [台帳再review](upstream-github-review-afd9ab729.md)ではBlocker 0件、Major 1件、Minor 2件を検出した。
+  archive内template等の除外class、append-only判断ログ、classラベルを後続revisionで是正した。
 
 各reviewは対象HEADのfindingであり、人間承認ではない。資産明細台帳reviewの所見を受け、Conceptは旧test／fixture／oracleと
 旧runtime state／evidenceも完全一致再利用しない条件を追加してSHAを再固定した。4対象L1は変更していない。判断時には

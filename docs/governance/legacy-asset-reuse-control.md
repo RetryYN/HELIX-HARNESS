@@ -4,6 +4,8 @@ status: draft_inventory
 archive_population: 4020
 source_manifest: `archive/legacy-generation-2026-09-14/MANIFEST.sha256`
 asset_ledger: `docs/governance/legacy-asset-disposition.jsonl`
+decision_log_contract: `docs/governance/legacy-asset-decision-log.md`
+decision_log_data: `docs/governance/legacy-asset-decisions.jsonl`
 
 ## 目的
 
@@ -22,6 +24,13 @@ manifest entryは必ず資産明細台帳の個別行を持ち、初期dispositi
 実行性、secret、外部作用、判断者・時点、copy実施者・時点、read-after記録の欄を持つ。未確認値は空欄または
 `unreviewed`として保持し、推測で埋めない。`reuse_exclusion_class`が非nullの行へ`verbatim_reuse`を設定してはならない。
 このclassはpathから保守的に初期化した停止条件であり、nullをcopy許可と解釈せず、内容監査後にだけ個別判断する。
+
+初期化はactive時に実行・判断へ作用したsurfaceと、そのarchive内template／evidenceを対象にする。具体的には`.claude`、
+`.codex`、`.cursor`、`.helix`、`.github/workflows`／`scripts`／work item template、`src`、`scripts`、`config`、`tests`、
+`docs/test-design`、`docs/templates/github`、`docs/templates/adapter`、`docs/plans`、path内`evidence`／
+`gate-evidence-manifests`、root AI instruction／build・test設定、実行可能拡張子を非nullへする。用途を混在させず、
+AI instructionとbuild／test設定は別classにする。個別判断の記録形式と追記規則は
+[判断ログ契約](legacy-asset-decision-log.md)を正本とする。
 
 ## archive内規則との優先関係
 
