@@ -13,6 +13,7 @@
 | 「OSは管理、統制、Worker、学習、ログ、CIとかだな。HARNESSはVモデルとかの話になるんじゃないかな？」 | OSは実行・管理・改善、HARNESSは提供する開発工程の仕組みを担う |
 | 「プロダクトとして輸出するのはHARNESSのほうね。HELIX-OSはそれらの管理統制をしてHELIXを改善し続ける機構な。」 | HARNESSを外部提供する。OSはHELIXプロジェクト群を統制し、継続改善する |
 | 「Vision2のHELIX-WebはHELIX-OSが管理すると考えればわかるだろ？」 | WebはOSが管理する個別プロダクト。Web固有要求はWeb側に置く |
+| 「HELIX-Webの展開要件がHELIX-HARNESS製品群の完成が必須になるってこと。だからバージョン1で切ってるわけな。」 | Version 1はHARNESS製品群の完成境界。Web自体をVersion 1へ含めず、その完成をWeb展開の必須前提にする |
 
 ## 対象別の正規入口
 
@@ -20,7 +21,7 @@
 |---|---|---|
 | HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../design/harness/README.md) |
 | HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../design/helix-os/README.md) |
-| HELIX-Web | Webの利用者が受け取るサービスと操作体験 | [HELIX-Web](../design/helix-web/README.md) |
+| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../design/helix-web/README.md) |
 
 要求対象の一覧はこの三つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を
@@ -36,7 +37,7 @@ HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則�
 | HELIX | プロジェクト群と、その改善を継続する全体構想 | 人間の意図から検証済み変更へ閉じ、運用結果を次の要求へ戻す |
 | HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |
 | HELIX-OS | HELIXプロジェクト群の内部管理・統制機構 | authority管理、Worker、実行制御、CI、ログ、状態、学習、改善、配布運転 |
-| HELIX-Web | HELIX-OSが管理する個別製品 | Web利用者へ提供する操作・表示・サービス体験 |
+| HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |
 
 HARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、
 HARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、

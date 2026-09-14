@@ -18,7 +18,7 @@
 | 提案の対象 | 束縛先 | 自動的に確定しないもの |
 | --- | --- | --- |
 | Concept v0.1 / Vision v0.1 | 文書revision、原文digest、採用差分 | 既存Concept v4承認の取消・同一視 |
-| Vision 1.0〜5.0 | 長期能力目標、対象要求の参照 | 公開SemVer、現在の実装分母、G評価 |
+| Vision 1.0〜5.0 | Version 1はHARNESS製品群の完成境界でWeb展開の前提。2.0以降は長期能力目標と対象要求の参照 | 公開SemVer、現在の実装分母、G評価 |
 | PKG-D01〜13 | 利用者向け提供view、既存Module所有Sliceの選択 | 新しいコードowner、独立公開版 |
 | Module | 既存primary owner、path、artifact | Packageへの所有権移管 |
 | Functional Release Slice | 検証、昇格、互換性、更新・rollback | 文書IDからの正式採番 |

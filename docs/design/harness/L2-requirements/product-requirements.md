@@ -37,6 +37,7 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-004 | HARNESS-L1-003／HARNESS-L1-004／HARNESS-L1-006 |
 | HARNESS-L2-005 | HARNESS-L1-004 |
 | HARNESS-L2-006 | HARNESS-L1-005 |
+| HARNESS-L2-007 | HARNESS-L1-007 |
 
 | ID | HARNESSに対する利用要求 | 主な移管元 | 確認する結果 |
 |---|---|---|---|
@@ -46,6 +47,7 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 | HARNESS-L2-004 | 要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる | HBR-P3／P9 | 上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない |
 | HARNESS-L2-005 | 言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる | HNFR-P3、v1.3 §4、新世代CI要求候補 | 特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる |
 | HARNESS-L2-006 | 外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる | 2026-09-14 PO指示、HBR-P6の提供物側条件 | HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる |
+| HARNESS-L2-007 | HELIX-HARNESS製品群のVersion 1完成範囲、必要な構成、受入状態、証拠を確認できる | 2026-09-14 PO指示、Vision §3／§13 | HELIX-Web等の依存製品が展開前提の成立を判定できる。Web自体の完成をVersion 1へ含めない |
 
 移管元の本文は[柱要求](../../helix/L1-requirements/pillar-requirements.md)、
 [要件v1.3](../../../governance/helix-harness-requirements_v1.3.md)を参照する。
