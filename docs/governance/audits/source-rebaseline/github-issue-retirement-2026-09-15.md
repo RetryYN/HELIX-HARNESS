@@ -36,7 +36,8 @@ comment_inventory: `github-issue-comment-retirement-inventory.jsonl`
 4. close後の各Issueが`closed / not_planned`である。
 5. 明細台帳の`semantic_disposition=unresolved`と`requirement_authority=false`を維持する。
 
-閉鎖操作はGitHub projectionだけを変更する。旧workflow、旧CI、旧runtime、Issue連動の自動完了処理は使用しない。
+閉鎖操作はGitHub projectionだけを変更する。旧workflow、旧CI、旧runtimeは使用しなかった。GitHub Project #1の組込み
+automationはIssue closeに反応し、166 itemのStatusを`Done`へ変更した。このprojection副作用は下記へ記録する。
 
 ## 実行結果
 
@@ -54,7 +55,8 @@ read-afterではopen Issue 0件、対象488/488件が`closed / not_planned`、`c
 | 実施runtime | Codex hosted chat runtimeからGitHub CLIのREST APIを使用 |
 | GitHub account | `RetryYN`。read-afterの`closed_by`も488/488件で一致 |
 | authorization actor | PO `RetryYN` |
-| authorization basis | 2026-09-14の「イシューとかも潰してクリーン出発がいい」と、2026-09-15の「イシューとかどうする？潰す？」という本上流整理session内の指示 |
+| authorization basis | 本sessionでread-before／mutationより前に示された2026-09-14 JSTの「イシューとかも潰してクリーン出発がいい」。chat transcriptはexact wall-clockを提供しないためsession順序で記録 |
+| 直前の問いかけ | 2026-09-15 JSTの「イシューとかどうする？潰す？」は実行直前の確認の問いかけとして記録し、単独のaction-binding approvalとは扱わない。可逆な旧projection整理として先行指示のscope内で実行 |
 | target／scope | `RetryYN/HELIX-HARNESS`でread-before時点にopenだった旧世代Issue 488件。Draft PR #1797、closed Issue、要求意味は対象外 |
 | operation | 各番号へ`PATCH /repos/RetryYN/HELIX-HARNESS/issues/{number}`、`state=closed`、`state_reason=not_planned` |
 | mutation time | `closed_at`のUTC範囲: `2026-09-14T16:10:16Z`〜`2026-09-14T16:11:19Z`。JSTでは2026-09-15 |
@@ -62,6 +64,11 @@ read-afterではopen Issue 0件、対象488/488件が`closed / not_planned`、`c
 | read-after | 各488件を個別GETし、state、state reason、closed_at、本文SHA-256、comment countを照合。open検索0件 |
 | evidence | Issue明細488行、comment明細1,330行、本記録、GitHub各Issue timeline |
 
+Issue closeと同じUTC時間帯に、actor `github-project-automation[bot]`がProject #1の166 itemを`Done`へ変更した。
+対象166件はすべて退役Issue明細内で、別1件はclose前から`Done`だった。変更前StatusはGitHub eventにもローカルにも
+記録されておらず復元不能である。Project上の`Done`は実装完了、受入、要求棄却、上流承認の証拠にしない。
+
 操作はIssueごとに`PATCH ... state=open`でreopenできる。ただしreopenは旧backlogを再有効化する外部変更なので、現在の
 上流方針から自動実行せず、新しい人間指示へ束縛する。close時に生成されたGitHub timeline eventとwatcher通知はreopenしても
-消去・巻戻しできない。閉鎖中も本文、comment、添付URL、timelineはGitHub historical sourceとして参照できる。
+消去・巻戻しできず、Project Statusも元の値へ自動復元されない。閉鎖中も本文、comment、添付URL、timelineはGitHub
+historical sourceとして参照できる。
