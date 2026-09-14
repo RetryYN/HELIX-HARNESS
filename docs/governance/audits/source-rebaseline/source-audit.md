@@ -359,7 +359,7 @@ green-command evidence欠落の診断がある。変更前との同条件比較�
 
 153のcanonical要求IDを3対応表で過不足・重複なく参照していること、追補14契約の対応を確認した。
 その後の対象別追加を含む最新静的scanではHARNESS 9／OS 13／Web 9／Web-OS 6のL2・L11 ID集合が一致し、
-active authority Markdown相対リンク355件の参照切れは0件である。完全一致保持した旧要件本文内の旧相対リンク2件は、byte一致を壊さないためhistorical pathのまま保持し、このactive link判定から除外する。
+active authority Markdown相対リンク356件の参照切れは0件である。完全一致保持した旧要件本文内の旧相対リンク2件は、byte一致を壊さないためhistorical pathのまま保持し、このactive link判定から除外する。
 `git diff -- requirements-ir config/requirement-ir-authority.json`は差分なし。canonical JSONの意味是正は未実施である。
 これらは構造と配置の検証であり、全条件の意味被覆や利用者受入の証明ではない。
 

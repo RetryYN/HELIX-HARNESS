@@ -72,3 +72,8 @@ refinement 14契約、旧HARNESS要求5文書、screen要求、candidate 97文�
 source metadataが`confirmed`の17文書は`accepted_requirement_preserved`、`draft`／`proposed`／`placeholder`の
 5文書は`source_state_preserved_without_promotion`とする。新世代側で承認を取り直していないことを理由に、前者を
 後者へ変更しない。責務分離によって意味変更が必要な箇所だけを、人間decisionへ送る。
+
+confirmed文書で明示宣言された要求、価値、KPI、画面、制約のidentityは
+`legacy-confirmed-requirement-identity-carry-forward.jsonl`へsource-qualified IDとして保持する。同名IDをAIが
+同一要求へ統合せず、重複候補として人間判断へ提示する。明示IDのない段落条件は文書保持だけで移管完了にせず、
+原文atom台帳へ追加されるまで未完とする。
