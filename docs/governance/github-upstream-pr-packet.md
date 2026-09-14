@@ -5,7 +5,9 @@ head_branch: `docs/l2-requirements-source-audit`
 head_revision: `bind from remote branch immediately before review request`
 base_branch: `main`
 
-## PR title
+## PR classとtitle
+
+`repository_foundation`
 
 ```text
 docs(governance): start HELIX new generation from upstream
@@ -18,7 +20,7 @@ docs(governance): start HELIX new generation from upstream
 
 旧世代4020ファイルを元構造とSHA-256を保った非実行archiveへ隔離し、現行側をConcept、HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS、governanceへ物理分離しました。HARNESSは外部提供するV-model基盤、HELIX-OSはHARNESS自身を含むプロジェクト群の管理・統制・継続改善機構として要求を分冊しています。
 
-このPRは上流候補の共有と意味reviewを目的とします。Concept／L1／L2の人間承認、L3以降、新世代CI／runtimeの実装、archive資産の意味採否・物理削除は成立させません。
+このPRはrepository整理とGitHub上流運用のbootstrapです。個別要求はdraft container／inventoryとして配置するだけで、要求identityごとに後続のrequirement PRで詰めます。Concept／L1／L2の人間承認、L3以降、新世代CI／runtimeの実装、archive資産の意味採否・物理削除は成立させません。
 
 静的確認:
 - archive manifest 4020/4020 SHA-256一致
@@ -26,6 +28,7 @@ docs(governance): start HELIX new generation from upstream
 - active Markdown相対リンク切れ0
 - L2↔L11 ID集合: HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6ですべて一致
 - Concept＋4対象L1のSHA-256は判断packetと一致
+- repository foundationと後続requirement PRのmerge条件をrepo内運用上流へ固定
 
 旧CI、旧test、旧runtime、ローカルClaude CLIは実行していません。
 ```
@@ -49,6 +52,7 @@ Blockerがある場合はfile、該当箇所、矛盾する上流方針、必要
 - Draft PRとして作成する。
 - Claude reviewはGitHub上の通路だけを使い、CLI／API／IDE／HARNESS Workerへfallbackしない。
 - review結果はfindingであり、人間承認・canonical化・mergeを自動成立させない。
+- #1797のmerge条件は[GitHub上流運用モデル](github-upstream-operating-model.md)を正本とし、個別要求の採否を混入させない。
 - 旧`harness-check` required contextと旧repository workflow 4件は解除／disable済みである。
 - CodeQL default setupは一時停止のscope不整合を是正して`configured`へ復元済みで、DependabotとともにGitHub管理の
   外部security projectionとして扱う。旧harness CIでもこのPRの意味gateでもない。

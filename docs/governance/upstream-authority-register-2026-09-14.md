@@ -12,6 +12,7 @@ as_of: 2026-09-14
 |---|---:|---|---|---|
 | 最新責務候補 | 1 | [HARNESS・HELIX-OS・個別製品の責務記録](../concept/product-boundary.md) | PO発言の出典記録。exact SHAへの人間decision待ち | 人間判断packetへ束縛し、承認後にConcept／L1／L2の親境界として使う |
 | 上流統制方針 | 1 | [上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md) | draft policy | 対象別改訂と資産台帳の運用へ適用 |
+| GitHub上流運用 | 1 | [GitHub上流運用モデル](github-upstream-operating-model.md) | repository foundation、要求、設計・検証、実装、外部運用のPR classとauthority／merge条件を定義 | #1797でrepository運用基盤を固定し、個別要求は一要求identityずつ後続PRで採否する |
 | 旧世代archive-first隔離 | 4020 Git追跡ファイル | [隔離記録](archive-first-transition-record-2026-09-14.md)、`archive/legacy-generation-2026-09-14/MANIFEST.sha256`、[資産明細台帳](legacy-asset-disposition.jsonl) | 旧実行面・旧文書・旧IRを非実行archiveへ隔離し、全entryを個別`unresolved`行へ展開済み | archive sourceの意味を対象別L2へ採否し、物理削除はしない |
 | 旧L0 charter source | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | historical source。旧confirmedを新世代へ継承しない | P0–P9の意味を対象別L1へ再採否する |
 | 旧Concept source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | historical source。旧Core Read・旧製品境界 | v4.1との差分sourceとしてのみ使う |

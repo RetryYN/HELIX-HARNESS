@@ -22,6 +22,7 @@ HELIXは一つの製品ではなく、複数の製品と統制機構を接続す
 5. AI向け文書も承認済み上流から生成し、HARNESS工程、OS実行context、個別製品要求を混在させない。
 6. HARNESS Version 1は複数の異なる実プロダクト開発とHELIX自身への適用で検証する。
 7. HELIX-Webの展開はHARNESS Version 1完成を前提とする。
+8. repository整理と運用上流はfoundation PRで確立し、個別要求は一要求identityずつ別PRで詰める。
 
 ## まだ成立していないもの
 
@@ -30,6 +31,6 @@ HELIXは一つの製品ではなく、複数の製品と統制機構を接続す
 - L3以降、新世代CI、AI manifest／生成器、runtime、release、deployment。
 - archive sourceの意味移管完了と物理削除。
 
-文書に余計な意味や欠落がなければ、人間の判断は「この方向で進める」で足りる。修正する場合は、上表または7項目の
+文書に余計な意味や欠落がなければ、人間の判断は「この方向で進める」で足りる。修正する場合は、上表または8項目の
 どこが違うかだけを示す。内部では[判断packet](../governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md)が
 対象revisionとSHA-256を保持する。

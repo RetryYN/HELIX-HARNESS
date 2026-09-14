@@ -20,9 +20,10 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
    - [HELIX-Web-OS](../helix-web-os/L1-planning/system-intent.md)
 4. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
 5. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
-6. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
-7. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
-8. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
+6. [GitHub上流運用モデル](github-upstream-operating-model.md)
+7. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
+8. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
+9. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
    指定された旧source／crosswalkを読む。明細台帳は機械参照用であり、AIの全文startup readには含めない。
    個別採否時は[判断ログ契約](legacy-asset-decision-log.md)に従う
 
@@ -47,3 +48,5 @@ Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだc
 
 PRは上流候補の差分共有と許可されたreviewに使う。旧workflowは非実行archiveへ移動済みであり、現時点で新世代CIはない。
 required check、review、merge等のrepository設定が旧世代を前提にする場合、その設定変更はHELIX-OSのGitHub projection再構築として別に扱う。
+PR #1797は`repository_foundation`に限定し、個別要求は[GitHub上流運用モデル](github-upstream-operating-model.md)に従って
+一要求identityずつ後続PRで採否・具体化する。
