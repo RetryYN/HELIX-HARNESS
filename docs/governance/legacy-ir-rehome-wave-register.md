@@ -23,7 +23,7 @@ source: [IR対象routing queue](legacy-ir-target-routing-queue.jsonl)
 
 ## 各PRの停止条件
 
-原文付き処理入口は、[W1業務価値要求33件](legacy-ir-w1-business-rehome-queue.md)、[W2機能要求69件](legacy-ir-w2-functional-rehome-queue.md)、[W3非機能要求40件](legacy-ir-w3-nonfunctional-rehome-queue.md)、[W4技術制約11件](legacy-ir-w4-technical-constraint-rehome-queue.md)の各queueとする。
+原文付き処理入口は、[W1業務価値要求33件](legacy-ir-w1-business-rehome-queue.md)、[W2機能要求69件](legacy-ir-w2-functional-rehome-queue.md)、[W3非機能要求40件](legacy-ir-w3-nonfunctional-rehome-queue.md)、[W4技術制約11件](legacy-ir-w4-technical-constraint-rehome-queue.md)の各queueとする。意味変更・採用差分・適用範囲の照合が必要な23件は、[W1判断候補8件](legacy-ir-w1-human-decision-candidates.md)と[W2〜W4判断候補15件](legacy-ir-w2-w4-human-decision-candidates.md)で原文を保持したまま論点だけを分離する。
 
 - 親Concept／L1 revisionが確定していない。
 - 対象productを一つに決められない場合に、分割successorを作らず単独ownerへ押し込もうとした。

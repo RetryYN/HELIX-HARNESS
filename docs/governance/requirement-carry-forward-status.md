@@ -36,7 +36,7 @@ W1は[業務価値要求33件の原文付きqueue](legacy-ir-w1-business-rehome-
 OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断候補8（適用0）である。
 [W1人間判断候補の意味分解](legacy-ir-w1-human-decision-candidates.md)は、この8件について保持する意味、責務上の整理箇所、後続PRで示す判断を分けている。削除・縮退・統合・降格は提案していない。
 [W2機能要求69件のqueue](legacy-ir-w2-functional-rehome-queue.md)は、HELIX-OS候補43件、HARNESS／OS分割候補23件、対象未解決3件を原文・digest付きで展開している。意味変更・照合候補8件は未適用、successorは全件未割当である。
-[W3非機能要求40件](legacy-ir-w3-nonfunctional-rehome-queue.md)と[W4技術制約11件](legacy-ir-w4-technical-constraint-rehome-queue.md)も原文・digest付きで展開済みである。W3はOS候補22、HARNESS／OS分割14、対象未解決4、判断候補5、W4はOS候補1、対象未解決10、判断候補2で、意味変更適用・successor割当はいずれも0件である。
+[W3非機能要求40件](legacy-ir-w3-nonfunctional-rehome-queue.md)と[W4技術制約11件](legacy-ir-w4-technical-constraint-rehome-queue.md)も原文・digest付きで展開済みである。W3はOS候補22、HARNESS／OS分割14、対象未解決4、判断候補5、W4はOS候補1、対象未解決10、判断候補2で、意味変更適用・successor割当はいずれも0件である。[W2〜W4人間判断候補の意味分解](legacy-ir-w2-w4-human-decision-candidates.md)は、この15件の原文と整理論点を提示する。W1の8件と合わせた23件すべてについて、削除・縮退・統合・降格を行わず、人間判断もまだ要求していない。
 
 ## 元statusの保持
 
