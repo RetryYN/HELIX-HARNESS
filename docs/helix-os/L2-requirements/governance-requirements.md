@@ -238,8 +238,10 @@ consumer read-afterを経て旧writerを停止する。shadow実行では新世�
 再採否する。旧Issue番号をownerにせず、既存measurement、event、logging、alert、incident、lifecycle、Requirement Re-entry
 engineの再利用を新世代要件にしない。
 
-HELIXOS-L2-002／005／007では、管理対象の要求revisionから配備・設定・計測・log・通知・incident・backup・restore・
-rollback・maintenance・decommission・費用の適用状態と証拠へ辿り、欠測・stale・collector停止をhealthyへ変換しない。
+HELIXOS-L2-002／005／007では、管理対象の要求revisionからrelease準備・artifact受渡しと、展開先runtimeが所有する
+配備・設定・計測・log・通知・incident・backup・restore・rollback・maintenance・decommission・費用の適用状態と証拠へ
+辿り、欠測・stale・collector停止をhealthyへ変換しない。OSは証拠と進行を統制するが、展開先runtimeの実行authorityを
+吸収しない。
 運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。
 
 HELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、

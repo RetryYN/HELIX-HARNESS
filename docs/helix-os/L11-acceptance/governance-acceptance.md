@@ -66,7 +66,7 @@ pair_artifact: docs/helix-os/L2-requirements/governance-requirements.md
 | HCV4-L11-002 | HELIXOS-L2-002／HELIXOS-L2-007 | owner欠落、複数owner、trace切れ、証拠欠落を別状態として表示する |
 | HCV4-L11-003 | HELIXOS-L2-004／HELIXOS-L2-007／HELIXOS-L2-008 | 独立review、実行世代、HEAD、oracleの不一致を完了へ補完しない |
 | HCV4-L11-004 | HELIXOS-L2-004／HELIXOS-L2-009 | assignment、lease、budget、capability不足時に二重実行せず停止する |
-| HCV4-L11-005 | HELIXOS-L2-006／HELIXOS-L2-007 | 導入・更新・rollback・deployment・observationの結果を分けて追跡する |
+| HCV4-L11-005 | HELIXOS-L2-006／HELIXOS-L2-007 | HARNESS導入・更新・rollback、個別製品のrelease準備・artifact受渡し、展開先runtimeによるdeployment・observationの結果を分けて追跡する |
 | HCV4-L11-006 | HELIXOS-L2-005 | 観測を候補・採否・影響要求・再検証へ接続し、直接authorityを書き換えない |
 
 これは受入条件の移管案であり、対象別L2の合意、実操作、passを成立させない。

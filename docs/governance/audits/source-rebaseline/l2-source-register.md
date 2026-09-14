@@ -89,8 +89,8 @@ mainへの収載だけで要求承認を判断せず、リポジトリ内の改�
 - 上位概念は[Concept v4.1候補](../../../concept/helix-concept-v4.1.md)と
   [承認準備監査](concept-v4.1-approval-readiness-audit.md)を確認する。
   v4.0の候補承認をv4.1へ流用せず、旧v3.1を新要求の基準へ戻さない。
-- 要件正本は[requirements v1.3](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)、層はL1-L12 directive、実装責務はADR-009／010を基準にする。
-- JSON移管済み範囲は現行Requirement IRを読み、後続の要求候補・追補との差を確認する。承認済みの新定義を旧本文に合わせて後退させない。
+- 旧世代で要件正本だった[requirements v1.3](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)、L1-L12 directive、ADR-009／010はhistorical sourceとして読み、新世代の対象別要求へ意味を再採否する。
+- 旧Requirement IRは移管元として読み、後続の要求候補・追補との差を確認する。旧JSONを新世代canonicalとしてin-place更新しない。
 - 新しい要求の文書化、候補承認、canonicalへの昇格、runtimeへの適用は別に記録する。新しい候補を未確認のまま現行採用済みと表示しない。
 
 以下の旧文書の照合は要求を失わず置換するために行う。旧層名を直しただけで最新化済みとはしない。
@@ -152,8 +152,8 @@ L2監査済みへ算入しない。一方、本文に具体要求が混在して
 153要求との単純合算をHELIX全要求数にしない。上記5契約とRLOの状態は`specified`で、JSONの承認欄はnullである。
 MIC-R-07のとおりGitHubは計画・作業状態の投影先であり、要求意味の正本ではない。
 [追補14契約の対象別対応](refinement-target-crosswalk.md)に、契約状態・ID件数・帰属と未確認境界を記録した。
-[要件正本v1.3の対象別責務対応](requirements-v1.3-target-crosswalk.md)には、
-現行Core Read内で混在するHARNESS工程規則とHELIX-OS実行統制を節・ID単位で分け、正規改訂の適用待ち条件を記録した。
+[旧要件v1.3の対象別責務対応](requirements-v1.3-target-crosswalk.md)には、
+旧Core Read内で混在したHARNESS工程規則とHELIX-OS実行統制を節・ID単位で分け、新世代L2への再採否条件を記録した。
 
 ## 画面・候補・旧資料
 

@@ -1,8 +1,9 @@
 # HARNESS・HELIX-OS・個別プロダクトの責務決定
 
-本書は2026-09-14の本作業会話でPOが明示した、要求対象と責務の決定を記録する。
-要求整理ではこの決定を旧文書の混在表現より優先する。個別L2要求案の一括承認、L3凍結、IR admission、
-実装・受入・公開の完了を記録する文書ではない。
+本書は2026-09-14の本作業会話でPOが明示した要求対象と責務を、出典付きの人間発言記録として保持する。
+本書だけでは恒久authorityや承認を生成しない。効力は[人間判断packet](../governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md)に
+記載したexact SHA-256への人間decisionへ束縛する。判断までは旧文書の混在表現より優先する候補境界として使用し、
+個別L2要求案の一括承認、L3凍結、IR admission、実装・受入・公開の完了を記録しない。
 
 ## 明示された決定
 
@@ -27,7 +28,7 @@
 | HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |
 | HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |
 
-要求対象の一覧はこの三つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
+要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を
 HARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの自己適用・改善loopを継続運転し、HARNESSを
 改善し続ける責務を持つ。管理対象と規則の参照関係を、同一の要求所有へ潰さない。
@@ -72,7 +73,7 @@ v4.0の承認を流用せず、v4.1の人間承認後に次の境界を同じrev
 | Control／Execution／Ledger／Adaptation Plane | HELIX-OSの管理・統制・Worker・ログ・学習・改善責務へ接続する |
 | Change Contract Compiler／Assurance Kernel | HARNESSが提供する工程・契約・検証能力と、OSが行うcanonical transactionを分ける |
 
-現行L0 charterのP0–P9も同様に対象別へ投影する。V-model、工程、検証、外部利用条件はHARNESSへ、
+旧L0 charterのP0–P9も同様に対象別へ再採否する。V-model、工程、検証、外部利用条件はHARNESSへ、
 連続走行、orchestration、GitHub／CI運転、memory／状態、学習、外部実行統制はHELIX-OSへ置く。
 「harness memoryを根幹に自己保守する」という旧表現は、HARNESS製品がmemoryを必須内包する意味に使わず、
 HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責務へ置き換える。

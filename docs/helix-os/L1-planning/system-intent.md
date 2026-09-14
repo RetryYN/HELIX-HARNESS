@@ -32,7 +32,7 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 | HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |
 | HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |
 | HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |
-| HELIXOS-L1-007 | 人間は、HARNESSと個別製品のrelease、deployment、observationを対象revisionと許可へ束縛して統制できる | HELIXOS-L2-002／006／007 |
+| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |
 | HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |
 | HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |
 | HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |
@@ -51,7 +51,7 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 | P3 | HELIXOS-L1-002／004の検証実行・証拠回収 |
 | P4 | HELIXOS-L1-006の観測・改善還流 |
 | P5 | 独立柱が存在しないため推測で追加しない |
-| P6 | HELIXOS-L1-005／007の配布・release・deployment運転 |
+| P6 | HELIXOS-L1-005／007のHARNESS配布運転と個別製品release準備・artifact受渡し |
 | P7 | HELIXOS-L1-002／008のstate・log・projection・再構築 |
 | P8 | HELIXOS-L1-003の外部実行・安全統制 |
 | P9 | HELIXOS-L1-001／002／008のauthority・trace・整合管理 |

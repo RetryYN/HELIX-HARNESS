@@ -31,7 +31,7 @@ status: awaiting_human_decision
 ### 文書で具体化した内容
 
 - HARNESS: L1–L12、正規V-pair、工程選択、要求形成・合意・freeze・差戻し・完了、検証義務、外部利用条件、複数プロダクトと自己プロジェクトへの適用検証。
-- HELIX-OS: HARNESS自己適用と継続改善、対象別authority、複数project管理、管理・推進・検収、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、release・deployment運転。
+- HELIX-OS: HARNESS自己適用と継続改善、対象別authority、複数project管理、管理・推進・検収、Worker、統合再計画、crawler、CI、因果診断、継続・復旧、学習・改善、HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制。
 - HELIX-Web: HARNESS Version 1完成後の展開、Connector接続、ダッシュボードによる進行確認、利用者の変更・受入判断、構成版、改善利用への同意。
 - HELIX-Web-OS: HELIX-OS外のservice runtime、tenant・job・credential・stateの運転、許可logのHELIX-OS改善入口へのexport。
 - 共通: GitHub非authority、旧資産非継承、Concept→L1→L2→L3の順序、L2↔L11／L3↔L10。
@@ -43,10 +43,10 @@ status: awaiting_human_decision
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `080eb0f7bbeab861278cb4e36b06fb7c9452dc063d2fafe02850d50d2507b4fc` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
+| `docs/concept/helix-concept-v4.1.md` | `66968b4b71f178d99e9b8e40778b647cf275d34d3eeb846548225059811779ba` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、HARNESS自己改善、Version 1境界、改善接続、9原則、archive-first新世代境界、authority順序 |
 | `docs/helix-harness/L1-planning/product-intent.md` | `e72334069da58904094cac5da074855c0d432416d4edc9e2cf11f83668ab1a20` | HARNESSの外部提供価値7件と対象外 |
-| `docs/helix-os/L1-planning/system-intent.md` | `95e8a0858aa44e454c802499cd147b068413a75d86611945911ea65fd2327c86` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
-| `docs/helix-web/L1-planning/product-intent.md` | `f7f1c8de9d0ee37653f1db0bb2c3ca7bf94bf9a75f6fd4cb2e6e9aa6754ee393` | HELIX-Webの個別製品価値6件と対象外 |
+| `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
+| `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |
 | `docs/helix-web-os/L1-planning/system-intent.md` | `600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c` | HELIX-Web-OSのservice運転価値5件と対象外 |
 
 L2文書4件は上記L1とのrelation案を持つが、本判断対象には含めない。L2では利用者、場面、操作、期待結果、
@@ -78,7 +78,7 @@ prototype／非UI適用性を個別採否し、別の人間合意を行う。
 | M1 L12接続欠落 | 4対象L1の採択条件へL12運用評価を追加 | 未取得 |
 | M2 L0柱がL1を迂回 | 4対象L1へP0–P9の帰属／非該当を追加 | 未取得 |
 | M3 総称HELIXが要求owner | 旧HCV4-L2／L11を`migration_crosswalk_only`とし、全6件をHARNESS／OSへ分割 | 未取得 |
-| M4 OS責務欠落 | release／deployment／observationとprojection再構築のL1要求を追加 | 未取得 |
+| M4 OS責務欠落 | HARNESS package運転、個別製品のrelease準備・artifact受渡し・observation統制とprojection再構築のL1要求を追加。展開先deployment authorityは個別runtimeに分離 | 未取得 |
 | M5 HARNESS責務欠落 | 要求形成、合意、freeze、差戻し、再開、完了のL1要求を追加 | 未取得 |
 | M6 移行中gate不明 | 静的意味検査と人間判断の効力、旧CI／旧gate非利用を明記 | 未取得 |
 

@@ -40,7 +40,8 @@ snapshotであり、この対象別構成へ並べ替えない。
 - `.github/workflows/`に実行可能なYAMLはないため、このrevisionから旧repository workflowを起動しない。
 - PRは新世代上流候補の差分共有と、明示許可されたGitHub review通路に使用できる。
 - repository設定に残るrequired check、branch protection、App、外部scheduleはGit内workflowとは別の外部projectionであり、本隔離だけで変更済みと扱わない。
-- required checkが旧`harness-check`を要求する間はmerge条件が成立しない。checkを迂回せず、新世代CI設計または外部設定の再構築までDraft／review surfaceとして使う。
+- 旧`harness-check` required contextは解除済みであり、現時点ではrequired check／required reviewがmergeを防がない。
+  PR #1797は上流意味review用のDraftとして維持し、人間decisionと新世代merge条件が確定するまでReady化・mergeしない。
 
 commit `064280b5c`のremote sync後にGitHubをread-afterした結果、対象branchの新runは0、open PRは0だった。
 PO許可後、旧`harness-check`のrequired status checkを解除し、旧repository workflow 4件をGitHub Actions側でも

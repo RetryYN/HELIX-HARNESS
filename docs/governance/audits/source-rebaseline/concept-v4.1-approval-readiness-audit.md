@@ -13,7 +13,7 @@
 |---|---|---|---|
 | HELIX全体 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS等を接続する全体構想 | 整合 | 新しい対象追加時は個別Concept／L1が必要 |
 | HARNESS | 外部提供するV-model・工程・検証契約・consumer package | 整合 | L1／L2はdraft、利用者合意未実施 |
-| HELIX-OS | authority、Worker、state、log、CI、review、learning、improvement、配布運転 | 整合 | L1／L2はdraft、実装未導出 |
+| HELIX-OS | authority、Worker、state、log、CI、review、learning、improvement、HARNESS package運転、個別製品release準備・artifact受渡し・observation統制 | 整合 | L1／L2はdraft、実装未導出 |
 | HELIX-Web | OSが開発・改善を管理する個別製品、固有の利用者価値を所有 | 整合 | Vision由来L2はdraft、prototype／合意未実施 |
 | HELIX-Web-OS | HELIX-OS外のservice runtime。許可logをHELIX-OS改善入口へ渡す | 整合 | L1／L2はdraft、展開方式・合意未実施 |
 | authority | repo-owned対象別文書・指定JSONと承認revisionが意味正本。GitHubはprojection | 整合 | authority registerの個別read／write contractは後続 |
@@ -59,8 +59,10 @@ WebのL0帰属はP0–P9を個別tokenで列挙せず、直接ownerではない�
 したがって初回の「整合」判定だけを承認準備完了の証拠にしない。document identity、v4.0との差分、L1／L2 relation、
 L12、L0柱投影、欠落責務、総称HELIX入口、上流整理期間の検査境界を修正し、新revisionを再reviewする。
 
-修正版に対するClaude再reviewは3回とも本文を取得できず、旧所見の独立`resolved`判定は未取得である。
-一方、旧所見に対応する構造・接続は上記の静的再照合で存在を確認した。timeoutや静的検査をClaude passへ変換しない。
+GitHub ClaudeによるHEAD `250fbe1ef8cbc0a9c483300fe52e9956b1b35f87`の[上流意味review](concept-v4.1-github-review-250fbe1ef.md)で、
+archive順序、旧authority表示、Web-OS昇格条件、deployment境界、L1↔L2 relation、会話記録のrevision bindingに
+blocker 2件・major 4件が見つかった。各所見は新revisionで修正した。修正後HEADの独立再reviewは別revisionとして取得し、
+本監査や旧reviewをpassへ変換しない。
 
 状態は`awaiting_human_approval`のままであり、承認済み・canonical・実装可能として扱わない。現在残る直列判断は、
 Concept v4.1と4対象L1の意味を人間がexact SHAに対して採否することである。

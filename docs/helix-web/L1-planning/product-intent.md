@@ -8,7 +8,7 @@ kind: planning
 status: draft
 authority_status: awaiting_parent_approval
 parent_candidate: docs/concept/helix-concept-v4.1.md
-source_vision: docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md
+source_vision: archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md
 source_vision_sha256: 1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74
 created: 2026-09-14
 updated: 2026-09-14

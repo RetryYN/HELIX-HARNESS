@@ -10,21 +10,22 @@ as_of: 2026-09-14
 
 | 管理集合 | 現在の母集団 | authority／入口 | 現在状態 | 次の処置 |
 |---|---:|---|---|---|
-| 最新責務決定 | 1 | [HARNESS・HELIX-OS・個別製品の責務決定](../concept/product-boundary.md) | 本作業のPO決定を記録 | Concept／L1／L2の親境界として使う |
+| 最新責務候補 | 1 | [HARNESS・HELIX-OS・個別製品の責務記録](../concept/product-boundary.md) | PO発言の出典記録。exact SHAへの人間decision待ち | 人間判断packetへ束縛し、承認後にConcept／L1／L2の親境界として使う |
 | 上流統制方針 | 1 | [上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md) | draft policy | 対象別改訂と資産台帳の運用へ適用 |
 | 旧世代archive-first隔離 | 4020 Git追跡ファイル | [隔離記録](archive-first-transition-record-2026-09-14.md)と`archive/legacy-generation-2026-09-14/MANIFEST.sha256` | 旧実行面・旧文書・旧IRを非実行archiveへ隔離済み | archive sourceの意味を対象別L2へ採否し、物理削除はしない |
-| 現行L0 charter | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | confirmed、HARNESS／OS責務が混在 | P0–P9を対象別L1へ再導出 |
-| 現行Concept | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | Core Read、旧製品境界を含む | 最新責務決定を反映した後にcompatibilityへ降格 |
-| 次期Concept候補 | 1系列 | `docs/governance/candidates/helix-concept-v4*` | v4.0 candidate承認済み。v4.1は[人間判断packet](audits/source-rebaseline/concept-v4.1-human-decision-packet.md)でexact SHAを固定、初回Claude所見修正済み・独立再review未取得 | Conceptと4対象L1を別decisionとして人間が判断し、承認後に対象別L2の個別採否へ進む |
+| 旧L0 charter source | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | historical source。旧confirmedを新世代へ継承しない | P0–P9の意味を対象別L1へ再採否する |
+| 旧Concept source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | historical source。旧Core Read・旧製品境界 | v4.1との差分sourceとしてのみ使う |
+| 新世代Concept候補 | 1文書 | [Concept v4.1候補](../concept/helix-concept-v4.1.md) | [人間判断packet](audits/source-rebaseline/concept-v4.1-human-decision-packet.md)でexact SHAを固定し直す。v4.0はarchive source | Conceptと4対象L1を別decisionとして人間が判断し、承認後に対象別L2の個別採否へ進む |
 | HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | confirmed、工程と実行管理が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1を分冊 |
-| 要件正本v1.3 | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` | Core Read、HARNESS／OS責務が混在 | [対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md)からL2／L3を分冊 |
+| 旧要件v1.3 source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` | historical source。旧Core Read状態とHARNESS／OS責務が混在 | [対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md)からL2へ個別採否する |
 | 対象別L1 | 4文書、30企画要求案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 7、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
 | 対象別L2 | 4文書、35要求案 | [L2要求入口](audits/source-rebaseline/l2-source-register.md) | HARNESS 7、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。draft、未合意 | 出典・prototype／N/A・合意revisionを確定 |
 | 総称HELIXの旧L2／L11案 | HCV4-L2 6件、旧L11 6件 | `docs/governance/crosswalks/legacy-concept-derived-requirements.md`と対文書 | migration crosswalk only。6件すべてHARNESS／HELIX-OSへsplit先を記録、採否待ち | 対象別L2／L11承認後に非実行archiveへ移し、要求ownerから除外する |
 | 対象別L11 | 4文書、35受入案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各L11 | draft、未実行 | 対応L2合意後に利用者受入を実行 |
-| Infinity Loop Requirement IR | 153要求 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json`と3 shard | canonical JSON、全HELIX分母ではない | [対象別crosswalk](audits/source-rebaseline/infinity-business-target-crosswalk.md)群と意味差分を正規改訂 |
-| refinement契約 | 14契約 | `archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json` | frozen／specified混在 | [対象別対応](audits/source-rebaseline/refinement-target-crosswalk.md)に従いrevision単位で扱う |
-| authority候補 | 97文書 | `docs/governance/candidates/` | draft／承認待ち／正本化待ち混在 | [候補対象別台帳](audits/source-rebaseline/candidate-source-target-inventory.md)から個別採否 |
+| 旧Infinity Loop Requirement IR | 153要求 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json`と3 shard | historical machine projection。旧canonical表示を新世代へ継承しない | [対象別crosswalk](audits/source-rebaseline/infinity-business-target-crosswalk.md)群からsemantic atomをL2へ個別採否する |
+| 旧refinement契約 | 14契約 | `archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json` | historical source。旧frozen／specified状態 | [対象別対応](audits/source-rebaseline/refinement-target-crosswalk.md)に従い意味を個別採否する |
+| 旧authority候補 | 97文書 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/` | historical candidate source。旧状態を新世代へ継承しない | [候補対象別台帳](audits/source-rebaseline/candidate-source-target-inventory.md)から個別採否する |
+| 新世代要求候補 | 4文書 | `docs/governance/candidates/` | HARNESS／HELIX-OSへ分離したdraft | Concept／対象別L1承認後に対象別L2／L11へ個別採否する |
 | L2 source採否queue | 29 decision unit | [対象別L2 source採否順序](audits/source-rebaseline/l2-source-adoption-sequence.md) | Concept系列を除く29候補系列をS1–S4へ配置、未採否 | Concept／対象別L1承認後、各unitを別decisionとして対象別L2／L11へ採否する |
 | 新世代CI要求候補 | HARNESS 4要求、HELIX-OS 8要求、L11候補8項目 | `docs/governance/candidates/next-generation-ci-requirements.md` | draft、要求整理のみ。CI relationを分離し、既存CIはlegacy source | HARNESS検証契約とHELIX-OS実行統制を対象別L1／L2へ接続し、L3／L10以降は上流確定まで待つ |
 | 新世代AI可読文書要求候補 | HARNESS 3要求、HELIX-OS 9要求、L11候補8項目 | [AI可読上流文書の要求候補](candidates/ai-readable-authority-requirements.md) | 旧AI実行面をarchiveへ隔離し、最小上流入口を配置。要求はhuman approval待ち、生成器は未設計 | Concept／対象別L1確定後に要求を承認し、manifest／生成器はL3／L10から再導出する |
@@ -47,17 +48,17 @@ as_of: 2026-09-14
 | 開発投資候補の新世代対応 | INV-001..072 exact 72件 | [新世代investment candidate crosswalk](audits/source-rebaseline/new-generation-investment-candidate-crosswalk.md) | 5群へ全件分類済み。旧P0..P4、Issue／owner、既存CI／Cursor／DB／scheduler、実装順を棄却し、新世代で再採否待ち | Concept／対象別L1確定後、意味候補だけを対象別L2へ採否し、方式はL3以降で再導出する |
 | 旧HARNESS要求群 | 5文書。10 BR、3 UX、51 FR、15 NFR、15画面、技術要求7節 | [旧HARNESS要求の新世代対象別対応](audits/source-rebaseline/legacy-harness-requirements-source-crosswalk.md) | 全文確認・対象別分類済み。個別採否・L2合意待ち | 最新Concept／対象別L1の承認後、保持意味だけをHARNESS／HELIX-OS／個別製品L2へ採否する。旧実装を継承しない |
 | 旧screen要求・設計 | 7文書、個別Low-Fi 7画面、共通骨格参照8画面 | [L2画面・モック境界](../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md) | 7文書と15画面の存在・内容を確認済み。8画面の個別操作・欠落・失敗状態、prototype合意、L11受入が未確定 | 採択した画面だけを対象別L2要求、prototype revision、L11利用結果へ接続する。旧pairのPASSを流用しない |
-| 適用待ち意味差分 | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/source-rebaseline/l2-freeze-ir-correction.md) | proposal、未適用 | 正規transaction、impact、rollback、全projection更新 |
+| 旧IR由来の適用待ちsemantic atom | 7 JSON record＋authority語彙 | [L2 freeze IR是正差分](audits/source-rebaseline/l2-freeze-ir-correction.md) | historical proposal、未採否。旧IRへ適用しない | 対象別L2へ個別採否し、承認後に新世代projectionを再導出する |
 | open PR整理 | 6件close、open 0件 | [上流再整理に伴うopen PR整理記録](audits/source-rebaseline/github-pr-cleanup-2026-09-14.md) | GitHub projection整理済み。branch・Issue・要求意味は変更していない | legacy sourceの意味は対象別L2で再採否する |
-| PLAN | 1252文書 | `docs/plans/` | 作業契約・履歴。要求意味の正本ではない | 上流ID・対象・revisionへ接続し、Issue状態から意味を補完しない |
+| 旧PLAN | 1252文書 | `archive/legacy-generation-2026-09-14/root/docs/plans/` | historical作業契約・履歴。要求意味の正本ではない | 必要なbehavior atomだけを上流ID・対象・revisionへ再採否し、旧PLANを実行しない |
 
 ## 母集団の閉じ方
 
 現時点の要求源は次の入口で漏れを検査する。
 
-1. Core ReadとL0／L1／L2のrepo-owned文書。
+1. archive内の旧Core Read、L0／L1／L2 sourceと、現行側のConcept／対象別L1／L2候補。
 2. Requirement IR 153要求とrefinement 14契約。
-3. candidates directoryのMarkdown 97文書。
+3. archive内candidates directoryのMarkdown 97文書と、現行側の新世代候補4文書。
 4. 旧HARNESS要求5文書、旧screen文書、Concept／Vision intake。
 5. 人間の新規決定と、出典付きの運用・外部変化candidate。
 
