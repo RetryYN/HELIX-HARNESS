@@ -1,6 +1,7 @@
 # HARNESSの要求・設計
 
-要求対象と責務は[2026-09-14のPO決定](../concept/product-boundary.md)に従う。
+要求対象と責務は[2026-09-14の責務発言記録](../concept/product-boundary.md)を候補境界として参照する。
+恒久authorityは人間判断packetのexact SHA decisionへ束縛する。
 
 HARNESSは外部へ提供・配布するプロダクトであり、Vモデル等の工程、層とV-pair、要求・設計・検証の関係、進行・完了条件を規定する。
 2026-09-14のPO指示に従い、管理・統制・Worker・学習・ログ・CIを担う

@@ -16,7 +16,7 @@ as_of: 2026-09-14
 | 旧L0 charter source | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | historical source。旧confirmedを新世代へ継承しない | P0–P9の意味を対象別L1へ再採否する |
 | 旧Concept source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | historical source。旧Core Read・旧製品境界 | v4.1との差分sourceとしてのみ使う |
 | 新世代Concept候補 | 1文書 | [Concept v4.1候補](../concept/helix-concept-v4.1.md) | [人間判断packet](audits/source-rebaseline/concept-v4.1-human-decision-packet.md)でexact SHAを固定し直す。v4.0はarchive source | Conceptと4対象L1を別decisionとして人間が判断し、承認後に対象別L2の個別採否へ進む |
-| HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | confirmed、工程と実行管理が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1を分冊 |
+| 旧HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | historical source。旧confirmedを継承せず、工程と実行管理が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1／L2へ個別採否する |
 | 旧要件v1.3 source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` | historical source。旧Core Read状態とHARNESS／OS責務が混在 | [対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md)からL2へ個別採否する |
 | 対象別L1 | 4文書、30企画要求案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 7、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
 | 対象別L2 | 4文書、35要求案 | [L2要求入口](audits/source-rebaseline/l2-source-register.md) | HARNESS 7、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。draft、未合意 | 出典・prototype／N/A・合意revisionを確定 |

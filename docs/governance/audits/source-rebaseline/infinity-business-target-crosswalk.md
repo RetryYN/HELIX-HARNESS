@@ -1,6 +1,6 @@
 # Infinity Loop業務要求の対象別照合
 
-指定JSON正本のHIL-BR-01..33を読んだ対象別整理案。要求本文の複製・上書きや、JSON移管完了を意味しない。
+旧世代で指定JSON正本だったIRのHIL-BR-01..33を読んだ対象別整理案。要求本文の複製・上書きや、新世代移管完了を意味しない。
 正本は[requirements.json](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)。各IDのrevision・statementと受入参照を保持して照合する。
 
 照合時のファイルSHA-256：`80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。

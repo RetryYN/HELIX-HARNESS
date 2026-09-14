@@ -1,6 +1,7 @@
 # HELIX-OSの要求・設計
 
-要求対象と責務は[2026-09-14のPO決定](../concept/product-boundary.md)に従う。
+要求対象と責務は[2026-09-14の責務発言記録](../concept/product-boundary.md)を候補境界として参照する。
+恒久authorityは人間判断packetのexact SHA decisionへ束縛する。
 
 HELIX-OSはHELIXプロジェクト群の管理・統制、Worker実行、学習、ログ、CI、継続・復旧を担う。
 その中核目的はHARNESSをHARNESS自身へ適用し、各projectの運用と観測を通じてHARNESSとHELIX全体を

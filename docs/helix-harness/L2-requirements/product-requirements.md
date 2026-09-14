@@ -202,7 +202,7 @@ V-pair、artifact、required oracle、差戻し・完了条件を承認済みsou
 逆参照できなければならない。未承認、stale、compatibility、historical、unknownをcurrent契約と区別する。
 
 HARNESSのAI向け文書へWorker inventory、provider session、CI運転、HELIX内部memoryを混入させない。
-現行Core Reads、AGENTS／CLAUDE、promptを新世代のbaselineにせず、物理path、manifest schema、生成器は上流確定後に
+旧Core Reads、AGENTS／CLAUDE、promptを新世代のbaselineにせず、物理path、manifest schema、生成器は上流確定後に
 L3／L10から導出する。本節では現行AI文書、hook、adapter、runtimeを変更しない。
 
 ## 開発投資候補から採る工程意味

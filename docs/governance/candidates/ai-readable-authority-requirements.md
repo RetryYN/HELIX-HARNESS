@@ -73,7 +73,7 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 ## 現在の停止条件
 
 - archive済みの旧`AGENTS.md`、`CLAUDE.md`、`.claude/`、`.codex/`、hook、adapterを現行pathへ戻さない。
-- 現行Core Readsの順序を新世代の正解として移植しない。
+- 旧Core Readsの順序を新世代の正解として移植しない。
 - 既存AI sessionで新世代文書をruntime適用・強制しない。
 - Concept／L1／L2確定前に生成器、manifest schema、prompt、token budget値を設計しない。
 - 旧AI文書を物理削除せず非実行archiveで保全し、現行の最小入口から参照・fallbackしない。

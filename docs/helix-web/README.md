@@ -1,6 +1,7 @@
 # HELIX-Webの要求整理入口
 
-要求対象と責務は[2026-09-14のPO決定](../concept/product-boundary.md)に従う。
+要求対象と責務は[2026-09-14の責務発言記録](../concept/product-boundary.md)を候補境界として参照する。
+恒久authorityは人間判断packetのexact SHA decisionへ束縛する。
 
 HELIX-Webは、HELIX-OSが開発・改善projectとして管理する個別プロダクトである。展開後のservice runtimeは
 HELIX-OS外のHELIX-Web-OSが担う。HARNESSの外部提供要求、HELIX-OSの開発統制、Web固有の利用者要求、

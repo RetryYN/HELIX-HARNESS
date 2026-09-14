@@ -1,7 +1,9 @@
-# L2反映先・L3凍結境界のJSON是正差分
+# L2反映先・L3凍結境界の旧JSON意味差分
 
-本書は指定JSON正本に対する変更案。JSON本体への適用は未実施であり、独立した要求正本や承認receiptではない。
-根拠は現行L1–L12のL2要求／L11受入、requirements v1.3のL2合意・L3凍結境界、および
+本書は旧世代Requirement IRを調査したhistorical記録である。記載する旧更新経路、transaction、Admission、source実装を
+新世代では採用・実行せず、JSON本体へpatchを適用しない。7レコードとauthority語彙のsemantic atomを対象別L2へ
+個別採否するための入力であり、独立した要求正本や承認receiptではない。
+根拠は新世代L1–L12のL2要求／L11受入候補、旧requirements v1.3のL2合意・L3凍結境界、および
 [対象別責務決定](../../../concept/product-boundary.md)である。
 
 ## 確認した矛盾
@@ -30,9 +32,9 @@ HARNESSは合意・凍結条件を所有し、OSはwalkthrough反復・適用性
 
 - 対象要求・契約・受入・テストのrevisionとsemantic digest、各shardのdigest、manifest rootを同じ変更へ束縛する。
 - 既存参照の変更影響を列挙し、生成viewとDB projectionを同じrevisionへ追従させる。旧Markdown互換入力から正本を再生成しない。
-- `archive/legacy-generation-2026-09-14/root/config/requirement-ir-authority.json`はjson_transaction_onlyを指定している。正規更新経路とrollback・競合revisionの扱いを確認して適用する。
+- `archive/legacy-generation-2026-09-14/root/config/requirement-ir-authority.json`のjson_transaction_onlyは旧世代の指定として記録し、新世代の更新経路や適用認可にしない。
 - 読み取った`archive/legacy-generation-2026-09-14/root/src/requirements/requirement-ir-authority-cutover.ts`は旧shadowをcanonicalへ変換する全体書出し処理であり、この差分更新の手段として実行しない。
-- 本調査で差分適用のCLIは確認できていない。経路の不存在を断定せず、正規transactionの接続確認を残作業とする。
+- 本調査で確認した旧差分適用経路は新世代へ持ち込まない。残作業はsemantic atomの対象別L2への個別採否である。
 
 本書は7レコードの変更範囲を具体化したものであり、JSON是正・下流検証・利用者合意の完了を主張しない。
 
@@ -53,7 +55,8 @@ auto_admit_with_staleの参照と、関連moduleの公開interfaceを確認し�
 確認範囲では、この7レコードを既存canonicalから改訂してmanifest・生成view・DBへ整合させる運用可能な入口を特定できなかった。
 他用途のtransactionが存在することや、契約名を検査するテストがあることを、要求正本の更新機構が使える証拠にしない。
 この不足はHELIXOS-L2-001／002に関係する管理機構の欠落として扱う。
-次の作業は既存HR-FR-HIL-19の設計・実装状況との照合であり、新しい正本や第二のAdmission Engineを作ることではない。
+次の作業はHR-FR-HIL-19等から採取した意味を対象別L2／L11へ個別採否することである。旧設計・実装状況を
+新世代更新経路の成立証拠にせず、新しい正本や第二のAdmission Engineを先に作らない。
 
 ## 設計から実装への接続で確認した不足
 
@@ -88,12 +91,12 @@ POの範囲指定により、今回は文書整理と適用待ち差分までと
 「正本」と呼ぶ箇所が残っていることも確認した。L2対象別要求で固定した境界では、これらは要求意味の正本ではなく、
 assignment scope、変更先、writer所有、作業projectionである。
 
-本文だけを先行訂正すると`REFINEMENT_SOURCE_STALE`、`REFINEMENT_SOURCE_PROJECTION_DRIFT`、pinned compatibility
-digest差異が発生することを104テスト中3失敗で確認した。このため凍結sourceの本文変更は取り消し、次の正規改訂へ送る。
+旧世代では本文だけを先行訂正すると`REFINEMENT_SOURCE_STALE`、`REFINEMENT_SOURCE_PROJECTION_DRIFT`、pinned compatibility
+digest差異が発生することを104テスト中3失敗で確認した。この履歴を旧IRの改訂指示にせず、次のsemantic atomを対象別L2へ送る。
 
-- source本文、Requirement IRのstatement／source digest／projection、対応受入を同一revisionで更新する。
+- source本文、Requirement IRのstatement／source digest／projection、対応受入を同じ意味単位として再採否する。
 - `scope正本`は`assignment scope authority`、branchは変更先、leaseはwriter authorityへ分ける。
 - Issue本文・label・close、PR merge、CI greenから要求の意味・採否・合意・受入を生成しない。
-- 変更後にrefinement source freshness、projection、compatibility pinを同じ検査で再確認する。
+- 採択後は新世代の要求revision、pair、projection、oracleを承認上流から新規導出する。
 
 失敗を根拠にdigestや期待値だけを更新していない。この語彙差分は、上記7レコードのJSON Patchとは別の適用待ち項目である。

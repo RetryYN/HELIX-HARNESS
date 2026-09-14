@@ -1,5 +1,8 @@
 # HELIX-Web-OSの要求整理入口
 
+要求対象と責務は[2026-09-14の責務発言記録](../concept/product-boundary.md)を候補境界として参照する。
+恒久authorityは人間判断packetのexact SHA decisionへ束縛する。
+
 HELIX-Web-OSは、HELIX-Web展開時にHELIX-OSの外へ構成するサービス運転基盤である。
 HELIX-OSはHELIX-Web／HELIX-Web-OSを開発・改善するプロジェクトを統制するが、利用者向けサービスの
 runtime state、Connector job、tenant境界、service evidenceを自身の内部stateへ収容しない。

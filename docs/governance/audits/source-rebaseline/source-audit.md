@@ -225,7 +225,7 @@ stage skip拒否のoracleがbounded exposureを検査するか、実テストと
 - `archive/legacy-generation-2026-09-14/root/docs/governance/downstream-canonical-reuse-authority-2026-07-19.md`全文、および`archive/legacy-generation-2026-09-14/root/src/lint/canonical-reuse-authority.ts`全文：旧pairを持つ指定成果物は個別delta・oracle・独立review evidence・digest更新まで再利用禁止。
 - `archive/legacy-generation-2026-09-14/root/config/requirement-ir-authority.json`と`archive/legacy-generation-2026-09-14/root/requirements-ir/manifest.json`全文：移管済み要求の機械意味正本はJSON。compatibility Markdownを別正本として編集してはならない。
 
-現行Core Readの要件v1.3は、HARNESSの工程規則とHELIX-OSの実行・管理機構を同一本文に保持している。
+旧世代でCore Readだった要件v1.3は、HARNESSの工程規則とHELIX-OSの実行・管理機構を同一本文に保持している。
 [v1.3対象別責務対応](requirements-v1.3-target-crosswalk.md)で節・ID単位の主対象とL2親を整理した。
 これはv1.3のauthority取消やL3分冊の完了ではなく、正規改訂時に継承・分割・supersedeと全projectionを同一revisionへ
 更新するための適用待ち差分である。

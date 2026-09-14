@@ -1,7 +1,7 @@
 # Infinity Loop機能要求の対象別照合
 
-指定JSON正本のFR69件の本文を読んだ対象別整理案。正本は[requirements.json](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)。
-本文・契約・受入を本表で置換しない。JSONへの意味変更は正規transactionと下流の整合が必要であり未実施。
+旧世代で指定JSON正本だったIRのFR69件を読んだ対象別整理案。原文は[requirements.json](../../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)。
+本文・契約・受入を本表で置換しない。新世代では対象別L2へ意味を個別採否し、承認上流からprojectionを再導出する。
 
 照合時のファイルSHA-256：`80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
 
@@ -51,14 +51,14 @@
 | HIL-FR-42 | 1 | HARNESS／OS | 設計義務条件とgraph生成・消込検査 |
 | HIL-FR-43 | 1 | OS | 要求atom翻訳・原文・曖昧性・challenge管理 |
 | HIL-FR-44 | 1 | OS | template gapとshadow・独立監査・昇格 |
-| HIL-FR-45 | 1 | OS | 要求ID・revision・採否・全source対応の台帳管理。指定JSON正本と整合 |
+| HIL-FR-45 | 1 | OS | 要求ID・revision・採否・全source対応の台帳管理。旧JSONとの出典対応を保持 |
 | HIL-FR-46 | 1 | HARNESS／OS | 層の粒度・必須edge条件とledger登録・snapshot |
 | HIL-FR-47 | 1 | OS | 義務抽出と候補行・gap検出。自由補完を証拠にしない |
 | HIL-FR-48 | 1 | HARNESS／OS | 上下層の双方向・粒度・revision条件と検査 |
 | HIL-FR-49 | 1 | HARNESS／OS | 正規V-pair・oracle条件と双方向join、運用feedback還流 |
 | HIL-FR-50 | 1 | HARNESS／OS | ledger再編候補・意味保存・pair維持の検証 |
 | HIL-FR-51 | 1 | HARNESS／OS | admission結果分類・scope・authority検査。RFA候補の発効と照合 |
-| HIL-FR-52 | 1 | OS・意味変更要 | Markdown正本更新の一律記述を指定JSON正本・transaction境界と照合 |
+| HIL-FR-52 | 1 | OS・意味変更要 | Markdown更新の一律記述と旧JSON／transaction境界をhistorical sourceとして照合し、新世代authorityを再定義 |
 | HIL-FR-53 | 1 | OS | asset identity・意味revision・移動／分割／統合の履歴 |
 | HIL-FR-54 | 1 | HARNESS／OS | portfolioの条件と導出・重複／未被覆検出 |
 | HIL-FR-55 | 1 | HARNESS／OS | positive／negative例の十分性条件とcoverage評価 |

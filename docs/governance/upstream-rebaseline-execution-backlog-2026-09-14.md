@@ -94,4 +94,4 @@ CodeQLのbefore／after、許可scope、期限、復旧条件は
 - remote sync、上流意味review、人間decision、下流CIを別operationにする。branch pushからPR作成を自動導出しない。
 - 上流review専用laneが未整備なら`review_waiting`で停止し、旧PR／旧CI receiptを代替証拠にしない。
 - 新世代CIは承認上流から新規導出する。旧CIを動かさず、dual-green・job parity・旧workflow適合を移行条件にしない。
-- AI可読文書も承認上流から新規導出する。現行Core Reads、prompt、adapterを新世代のbaselineとして移植しない。
+- AI可読文書も承認上流から新規導出する。旧Core Reads、prompt、adapterを新世代のbaselineとして移植しない。

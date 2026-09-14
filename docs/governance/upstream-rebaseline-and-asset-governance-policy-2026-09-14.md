@@ -199,7 +199,7 @@ archive内資産の物理削除は、対象ごとに次を満たした後で行�
 - Concept v4.1候補でHarness／Control Plane／DevOSの旧区分をHARNESS／HELIX-OS／個別製品境界へ改訂済み。
   内容監査は完了し、人間承認revisionへの固定を待つ。
 - 柱要求と要件v1.3を対象別L1／L2／L3へ分冊し、正規pairへ再接続する。
-- Requirement IRの確認済み意味差分とauthority語彙差分を正規transactionで適用する。
+- 旧Requirement IRの確認済み意味差分とauthority語彙差分を対象別L2へ個別採否し、承認後に新世代projectionを再導出する。
 - 既存資産台帳を上記schemaへ収束し、自動走行可能・再導出待ち・退役候補を区別する。
 - 下流consumer、runtime、CI、DB projectionは上流freeze後に変更する。
 - GitHub branchへのremote syncは行えるが、上流review専用laneが整うまで旧PR／旧CI admissionへ接続しない。

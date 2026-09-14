@@ -91,6 +91,20 @@ remote同期済みHEAD `46e441fe714bc38a26026bc9cdde7bef9f6c3d4f`を対象に起
 実行は停止し、無出力の一時ファイルを削除した。この試行をreview実施、失敗receipt、再試行許可のいずれにも数えない。
 以後はreviewer指定と実行通路の許可を分け、許可されたGitHub上のreview通路以外へ自動fallbackしない。
 
+## GitHub Claude reviewの現況
+
+- HEAD `250fbe1ef8cbc0a9c483300fe52e9956b1b35f87`の
+  [review](concept-v4.1-github-review-250fbe1ef.md)ではB1／B2、M1..M4、m1..m3を検出した。これらは後続revisionで
+  archive-first順序、旧authority表示、Web-OS接続、deployment境界、relation、発言記録binding、READMEを修正した。
+- HEAD `5dd1f685c2acda99caf0bcc07069368b60ce2629`の
+  [review](legacy-reuse-github-review-5dd1f685c.md)ではB3..B5、M5..M8、m4..m5を検出した。これらは後続revisionで
+  copy実績の誤記、archive規則の優先関係、完全一致copy対象外class、disposition語彙、`unresolved`既定、CodeQL記録、
+  L11親ID、台帳状態を修正した。
+
+各reviewは対象HEADのfindingであり、後続HEADのpassではない。現在の判断対象SHAへGitHub Claude再reviewを依頼済みで、
+結果が返るまでは既知所見への修正済み自己申告と静的照合だけである。人間判断時は最新review結果を本packetへ追記し、
+未解消blockerを落とさない。
+
 ## 内部で分けて記録する判断
 
 | Decision ID | 対象 | 選択肢 | 依存 |
