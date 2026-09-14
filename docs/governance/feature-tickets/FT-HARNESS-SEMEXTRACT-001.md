@@ -6,6 +6,11 @@ state: proposed_upstream_waiting
 priority_order: 2
 created: 2026-09-15
 authority_effect: work_projection_only
+github_projection:
+  issue: 1801
+  url: https://github.com/RetryYN/HELIX-HARNESS/issues/1801
+  projected_source_commit: 0e17dadf0bad6f8f3d1c594fab1dc4bef284a9f0
+  read_after_state: OPEN
 parent_requirements:
   - HARNESS-L2-008
   - HARNESS-L2-009
