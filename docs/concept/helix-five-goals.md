@@ -20,7 +20,13 @@ authority_effect_before_approval: none
 
 本書は、HELIX全体が何を実現するかを五つの到達目標として定める。製品identity、責務境界、authority、V-model、
 個別要求、設計、実装方式を本書だけで確定しない。構造上の正本候補は[Concept v4.1](helix-concept-v4.1.md)と
-[製品責務境界](product-boundary.md)に置き、各目標は承認後に対象別L1、L2／L11へ無損失に分解する。
+[製品責務境界](product-boundary.md)に置く。本候補が承認された場合も、5大目標をConceptと並列の親authorityにはせず、
+まず目標差分を取り込んだConcept revisionを人間判断へ戻す。そのConceptの承認後に、対象別L1、L2／L11へ無損失に
+分解する。
+
+5大目標はHELIXの到達方向・価値を示す。別PR #1826の「HELIXエージェントの七大原則」は、その方向へ進む際の
+エージェントの行動基準を示す。どちらもConceptに従属し、目標または原則だけから要求、責務、workflow、実装を
+直接生成しない。統合後の読込順は、Concept／製品責務境界→5大目標→七大原則→対象別L1とする。
 
 本候補は人間がexact revisionを承認するまでauthorityを持たない。Issue、PR、review、CI、DB、実装状態から承認や
 達成を生成しない。
@@ -58,18 +64,22 @@ riskを確認して必要な判断を行えることを目指す。速度のた�
 担当可能な範囲で最大限の成果を出し、必要な判断・統合・独立検証だけを適切な能力へrouteする。最適性は固定provider名や
 自己申告で決めず、対象revisionに対する品質、費用、時間、再作業、失敗の計測で継続的に見直す。
 
-## 製品責務への接続
+## 製品・運転基盤の関与候補
 
-| 目標 | HELIX-HARNESS | HELIX-OS | 個別製品／運転基盤 |
-|---|---|---|---|
-| 1 | 工程、層、pair、停止・差戻し・完了条件を規定する | 管理から工程を受け、推進がticket・workflowを生成し、Worker実行と検収を統制する | 承認済みHARNESS契約に従う |
-| 2 | 要求・設計・検証契約と改善対象を提供する | log、学習、計測を改善候補へ変え、HARNESS自身を含むprojectへ還流する | 許可された利用・運用結果を改善入力として返す |
-| 3 | 要求・設計・依存・V-pair・検証のsimulation contractを提供する | 対象revisionのgraph、実測、差分を使ってsimulationを実行・記録する | 製品固有のdomain、利用条件、運用条件を入力する |
-| 4 | 非エンジニアにも判断可能な開発工程と品質契約を提供する | CI、bot、証拠、停止・再開、進行を運転する | HELIX-WebはHARNESS Version 1後に操作・dashboard体験を提供する |
-| 5 | 作業分類、能力契約、検証義務を規定する | Worker能力・費用・品質を計測し、assignmentと独立検証を最適配置する | providerやmodelを製品要求の固定authorityにしない |
+この表は、既存Conceptと製品責務境界から確認できる関与、および5大目標から生じる未確定の責務論点を分けて示す。
+新しいprimary ownerや要求をこの表で決定しない。
 
-責務のprimary ownerは、各目標を対象別要求へ分解するときに一意にする。目標が複数製品へ関係することを理由に、
-HARNESSとHELIX-OSのauthorityを一つへ戻さない。
+| 目標 | HELIX-HARNESS | HELIX-OS | HELIX-Web | HELIX-Web-OS |
+|---|---|---|---|---|
+| 1 | 既存Concept上、工程、層、pair、停止・差戻し・完了条件に関与する | 既存Concept上、管理から工程を受け、推進がticket・workflowを生成し、Worker実行と検収を統制する | 承認済みHARNESS契約に従う個別製品として関与しうる | Web service runtimeとして承認済みHARNESS契約に従う |
+| 2 | 既存Concept上、要求・設計・検証契約と改善対象に関与する | 既存Concept上、log、学習、計測を改善候補へ変え、HARNESS自身を含むprojectへ還流する | 許可された利用結果を改善入力候補として返す | 許可されたservice log、telemetry、incident、利用結果をscope付きでHELIX-OSへ返す |
+| 3 | simulation contractをどの製品が所有するかはConcept改訂と対象別L1で決める | simulationの実行・記録責務を持つかはConcept改訂と対象別L1で決める | 製品固有情報をsimulation入力にするかは個別製品L1で決める | service運転情報をsimulation入力にするかは個別製品L1で決める |
+| 4 | 非エンジニア向け開発契約を所有するかはConcept改訂と対象別L1で決める | CI、bot、証拠、停止・再開、進行に対する既存の関与を基に、追加責務は対象別L1で決める | HARNESS Version 1後の操作・dashboard体験の候補として関与する | Webのservice運転基盤として関与する。非エンジニア向け入口の責務はWeb側L1とともに決める |
+| 5 | 既存Concept上、作業分類、能力契約、検証義務に関与する | 既存Concept上、Worker能力・費用・品質の計測、assignment、独立検証に関与する | providerやmodelを製品要求の固定authorityにしない | service運転で利用するWorkerにも承認済みの配置・検証契約を適用する候補とする |
+
+責務のprimary ownerは、5大目標を取り込んだConcept revisionの承認後、各目標を対象別L1・要求へ分解するときに
+一意にする。目標が複数製品へ関係することを理由に、HARNESSとHELIX-OS、HELIX-WebとHELIX-Web-OSのauthorityを
+一つへ戻さない。
 
 ## 達成の考え方
 
@@ -97,4 +107,4 @@ Conceptと対象別L1の承認後に別の要求・設計decisionとして定め
 > ⑤低コストワーカでも最高のパフォーマンスを発揮して最適配置するシステム
 
 本書はPOが提示した5大目標をHELIX全体の到達方向として固定する候補である。承認後も、目標から下流を直接実装せず、
-Concept、対象別L1、要求、設計、検証の順に降ろす。
+目標を取り込んだConcept revision、対象別L1、要求、設計、検証の順に降ろす。
