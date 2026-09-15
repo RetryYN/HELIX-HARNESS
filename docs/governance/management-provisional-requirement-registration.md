@@ -38,6 +38,8 @@ HARNESSは原source atom集合を無損失に分割・被覆するcontractを規
 
 同じ旧atomを複数要求へ分割する場合はrelationを明示し、単純な重複計上で`no_loss`にしない。複数atomを統合する場合も原identityを消さず、各atomの保持位置と意味差分を示す。要求候補本文またはsource atom集合が変わった場合、旧recordを上書きせず`stale`にして新revisionを追記する。
 
+read-afterでは`supersedes_registration_id`の有向鎖を解決し、後続から参照されない末端recordだけを生存中とする。鎖の循環、存在しない親、同じ親を訂正する複数の末端、同一`registration_id`の重複があればfail-closeする。
+
 `source_holding`は旧source集合の保全位置を示すだけで、要求候補、successor割当、採否、配置決定ではない。複数inventoryに同じ原文意味が現れる場合があるため、各集合の件数を加算してHELIX要求総数にしない。要求PRの被覆receiptは、入力に選んだ名前空間内でatomを一度だけ計上し、別inventoryとの同一・包含・派生relationを明示する。
 
 ## 要求PRのmerge admission
@@ -56,7 +58,7 @@ PR merge、Issue作成・close、review、CI、文書ファイルの存在だけ
 
 ## bootstrap source holding
 
-現registerは、既に全量照合済みの七つのsource集合を`registered_source_holding`として保持する。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合は該当recordをstaleにする訂正revisionと、新digestのrecordをappendする。既存行の上書きは禁止する。
+現registerは13 revisionを持ち、既に全量照合済みの七つのsource集合を七つの生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属は根拠不足のため、原行を残してrepository maintainerによる6 revisionで訂正した。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合は該当recordをstaleにする訂正revisionと、新digestのrecordをappendする。既存行の上書きは禁止する。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 
