@@ -20,12 +20,13 @@ HELIX-DBの要否は本programで扱う技術制約の一論点である。専�
 
 [管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、
 `management-provisional-requirement-register.jsonl`で生存中の全`registered_source_holding`を入力入口にする。
-現在の九つのholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
+現在の十のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
 旧candidate 4,755行、workflow索引108件、構造見出し317件、Scrum Reverse 300行、archive隔離前に変更された
-基準source revision 333 pathを保持する。
+基準source revision 333 pathに加え、旧v1.3が委ねる未行分解18文書とScrum Reverse対受入1文書のfile blobを保持する。
 
 これらの件数は重複・包含・派生関係を含むため単純合算しない。一つのholdingや索引に無いことを非要求・不要の
-根拠にせず、新しいsourceを発見した場合は先に`source_holding`へ追加する。sourceで`confirmed`だった意味を、
+根拠にせず、新しいsourceを発見した場合は先に`source_holding`へ追加する。file blob／path単位のholdingは発見・保存の
+入口であり、要否を判断する分母ではない。対象文書をreviewする要求PRで無損失なatom集合へ分解し、別holdingへ仮登録してから扱う。sourceで`confirmed`だった意味を、
 新世代targetが未承認であることを理由にcandidateへ降格しない。
 
 ## 整理する単位と状態
@@ -50,8 +51,8 @@ retireを同じ処理にしない。
 ## 処理順
 
 1. PR #1797でrepository foundation、旧source snapshot、holding、上流運用を固定する。
-2. #1798で原event、要求候補、無損失receiptの管理仮登録入口を成立させる。
-3. [IR再配置wave](legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。
+2. [bootstrap register](management-provisional-requirement-registration.md#bootstrap境界)で要求PRの仮登録を受ける。自動登録入口の実装完了を前提にしない。
+3. 各holdingを別queueとして扱う。IRは[IR再配置wave](legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。semantic lineは既存A1／A2 queueを使い、file blob／path集合は対象文書を先にatom化する。残るholdingの順序とrelationは、そのholdingを扱う要求整理PRで明示する。
 4. 対象productと`unit`／`connection`／`composite`を分け、責務重複や意味類似はrelation候補として示す。
    重複候補は[責務・機能重複review program](requirement-overlap-review-program.md)で比較し、原identityと固有atomを残す。
    旧技術の拘束は[技術代替可能性review program](requirement-technical-substitutability-review-program.md)で、意味機能と実現方式を分けて比較する。
@@ -74,7 +75,7 @@ GitHub Issueは本programの進行と未決論点を共有するprojectionに限
 
 ## 完了条件
 
-- 生存中の全source holdingについて、対象名前空間内のatomが一度ずつ処理され、重複・包含・派生relationが明示される。
+- 生存中の全source holdingについて、file blob／path集合は無損失なatom集合へ展開され、対象名前空間内のatomが一度ずつ処理され、重複・包含・派生relationが明示される。
 - sourceで採用済みだった全要求は、無損失successorまたは対象revision付き人間decisionへ辿れる。
 - 未分類、未配置、未判断、未被覆は0に見せず、`unresolved`または生存中仮登録として残る。
 - 各要求PRが`coverage_result: no_loss`、`unaccounted_atom_refs: []`、同一候補digestの`registered_proposal`を持つ。

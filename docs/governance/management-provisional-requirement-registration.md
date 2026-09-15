@@ -26,6 +26,7 @@ HARNESSは原source atom集合を無損失に分割・被覆するcontractを規
 | `parent_concept_revision`／`parent_planning_revision` | 承認済み親revision |
 | `source_atom_set_ref`／`source_atom_set_digest` | この要求再編で入力にした旧source atomの完全集合と集合digest |
 | `source_atom_count` | `source_holding`が保全するsource item数（line、record、path等。集合scopeで単位を明記）、または要求候補が入力にしたatom数 |
+| `source_collection_scope` | 集合の対象、単位、過包含・非網羅性を明記する。file blobを要求atomとして扱わない |
 | `coverage_receipt_ref`／`coverage_result` | `source_holding`は`source_preserved_unassigned`、要求候補は`pending_coverage`または`no_loss`。merge可能値は`no_loss`だけ |
 | `carried_atom_refs` | 当該要求revisionへ意味を保持したatom |
 | `preserved_pending_registration_refs` | 今回含めないatomを失わず保持する、別の生存中仮登録recordへの参照 |
@@ -35,10 +36,16 @@ HARNESSは原source atom集合を無損失に分割・被覆するcontractを規
 | `authority_effect` | 常に`none`。仮登録から要求採用を生成しない |
 | `registered_by`／`registered_at` | 当該行をappendしたactorとworktree記録時点。commit時刻ではない |
 | `evidence_refs` | read-after、対象HEAD、review、人間decision等への参照 |
+| `correction_reason` | 訂正revisionでは必須。初回recordと、理由欄導入前に記録済みの旧訂正revisionでは省略可 |
 
-同じ旧atomを複数要求へ分割する場合はrelationを明示し、単純な重複計上で`no_loss`にしない。複数atomを統合する場合も原identityを消さず、各atomの保持位置と意味差分を示す。要求候補本文、source atom集合、metadataを訂正する場合は旧recordを上書きせず、`supersedes_registration_id`を持つ新revisionを追記する。置換先を作らず登録を終端する場合だけ、`stale`／`superseded`／`rejected_registration`のterminal revisionをappendする。
+上表をrecord keyの閉集合とする。既存recordにだけある省略可能fieldを追加必須へ変更するときは、旧行を上書きせず
+訂正revisionで移行する。
 
-read-afterでは`supersedes_registration_id`の有向鎖を解決し、後続から参照されない末端recordだけを生存中とする。鎖の循環、存在しない親、同じ親を訂正する複数の末端、同一`registration_id`の重複があればfail-closeする。
+同じ旧atomを複数要求へ分割する場合はrelationを明示し、単純な重複計上で`no_loss`にしない。複数atomを統合する場合も原identityを消さず、各atomの保持位置と意味差分を示す。要求候補本文、source atom集合、metadataを訂正する場合は旧recordを上書きせず、`supersedes_registration_id`を持つ新revisionを追記する。置換先を作らず登録を終端する場合も、対象を`supersedes_registration_id`で指すterminal revisionをappendする。`stale`は参照revisionの失効、`superseded`は別の有効recordへ置換済み、`rejected_registration`は登録拒否の人間decisionを記録する。
+
+read-afterでは`supersedes_registration_id`の有向鎖を解決し、後続から参照されない末端recordのうち
+`management_state`が`registered_source_holding`または`registered_proposal`のものだけを生存中とする。
+terminal revisionと、そのrevisionが指す対象はいずれも生存先として使わない。鎖の循環、存在しない親、同じ親を訂正する複数の末端、同一`registration_id`の重複があればfail-closeする。
 
 `source_holding`は旧source集合の保全位置を示すだけで、要求候補、successor割当、採否、配置決定ではない。複数inventoryに同じ原文意味が現れる場合があるため、各集合の件数を加算してHELIX要求総数にしない。要求PRの被覆receiptは、入力に選んだ名前空間内でatomを一度だけ計上し、別inventoryとの同一・包含・派生relationを明示する。
 
@@ -51,16 +58,16 @@ read-afterでは`supersedes_registration_id`の有向鎖を解決し、後続か
 3. `coverage_result: no_loss`で、`unaccounted_atom_refs`が空である。
 4. 今回移さないatomは、`preserved_pending_registration_refs`が指す生存中の`source_holding`または別の`requirement_candidate` recordで管理層へ仮登録されている。
 5. `management_state: registered_proposal`、`authority_effect: none`である。
-6. 対象HEADでregisterをread-afterし、欠落、重複、stale、wrong product、digest不一致がない。
+6. 対象HEADでregisterをread-afterし、欠落、重複、`stale`、`superseded`、`rejected_registration`、wrong product、digest不一致がない。
 7. 別条件として、対象revisionに対する人間decisionとGitHub ClaudeのBlocker／Major 0を満たす。
 
 PR merge、Issue作成・close、review、CI、文書ファイルの存在だけでは仮登録や`no_loss`を生成しない。register recordが無い、古い、対象が違う、被覆集合が不明、未計上atomがある場合はfail-closeする。
 
 ## bootstrap source holding
 
-現registerは22 revisionを持ち、既に全量照合済みの九つのsource集合を九つの生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを両方保持し、意味同値を未確認のまま残す。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
+現registerは23 revisionを持ち、既に全量照合済みの十のsource集合を十の生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを両方保持し、意味同値を未確認のまま残す。十番目は旧v1.3が委ねる未行分解18文書とScrum Reverseの対受入1文書をfile blob単位で保持し、要求atom化を未実施のまま残す。各recordは台帳path、item数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
 
-この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
+この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。file blobまたはpath単位のholdingを入力にする場合は、同じsource digestから無損失なatom集合を先に作り、別の生存中`source_holding`へ仮登録する。file blob一件を一要求atomとして扱って`no_loss`にしてはならない。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 
 ## bootstrap境界
 

@@ -57,6 +57,7 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 - [confirmed文書identity carry-forward](legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
 - [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
 - [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `bb4d12f3cfc9c1daefa064ede8bcc21943dd10df05098f423158fb5a08512490`
+- [旧v1.3委任文書・Scrum Reverse対受入のfile-blob holding](delegated-requirement-document-source-holding.jsonl) — `5cf3700bd334960893acc46e4646c8c5128be3311989ae6e0f3fddd9884c2f3f`。19文書、atom化0、successor 0、decision 0
 - [archive隔離前revision差分](pre-isolation-revision-delta-source-holding.jsonl) — `863854f766c7d5bc318b30dbc3a19e8086e5916c9cebb934684d92db3565d852`
 - [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 
@@ -71,6 +72,7 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 ## 未完了
 
 - [semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)に登録した未分類2,058行・[721 review unit](legacy-requirement-atomization-review-queue.jsonl)の要求atom化。source spanの全量登録と無損失な処理分割は完了したが、要求／制約／受入／根拠／例／navigationの分類とatom境界は未確定。
+- [file-blob保全inventory](delegated-requirement-document-source-inventory.md)の19文書を、対象文書ごとの要求整理PRで無損失atom化して管理層へ再登録する。file blobを一要求atomとして扱わない。
 - 153 IRと175 source-qualified identityの意味重複候補の比較。
 - [補助source 655 item](legacy-requirement-supplementary-source-inventory.md)と153 IR／175 identity／対象別L2・L11のrelation mapping。
 - [旧candidate 92文書・4,755行](legacy-candidate-source-inventory.md)のatom化と、要求意味／受入／根拠／旧実現方式の分類。

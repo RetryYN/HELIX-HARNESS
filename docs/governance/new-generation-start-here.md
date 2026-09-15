@@ -60,3 +60,6 @@ PRは上流候補の差分共有と許可されたreviewに使う。旧workflow�
 required check、review、merge等のrepository設定が旧世代を前提にする場合、その設定変更はHELIX-OSのGitHub projection再構築として別に扱う。
 PR #1797は`repository_foundation`に限定し、個別要求は[GitHub上流運用モデル](github-upstream-operating-model.md)に従って
 一要求identityずつ後続PRで無損失に再配置・具体化する。保持・再配置、意味変更、retireを別decision種別として、すべての要求PRを対象revision付きの人間判断へ送る。
+本PRのreview所見を理由に新しい要求本文を追加しない。既に置いた対象別L2／L11は未承認の整理案であり、個別要求の
+追加・採否・分割・具体化は後続の要求整理PRで行う。foundationで追加できるのは、旧sourceの保存位置、digest、
+仮登録、authority境界、後続PRの無損失条件に限る。
