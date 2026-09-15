@@ -1,7 +1,7 @@
 # HELIXエージェント七大原則 人間判断packet
 
 prepared_at: 2026-09-16
-status: review_pending
+status: human_decision_gated_by_current_head_review
 decision_id: HDEC-HELIX-AGENT-PRINCIPLES-0.1
 authority_effect_before_decision: none
 
@@ -9,7 +9,7 @@ authority_effect_before_decision: none
 
 | 対象 | SHA-256 | 状態 |
 |---|---|---|
-| `docs/concept/helix-principles.md` | `41d8fbe759bf24a7245df0597ddaa9c8eb6c4c0184b124ecd5d349e6c19a2dbb` | `draft_candidate`、再review待ち |
+| `docs/concept/helix-principles.md` | `41d8fbe759bf24a7245df0597ddaa9c8eb6c4c0184b124ecd5d349e6c19a2dbb` | `draft_candidate`、人間判断時のcurrent HEAD review必須 |
 
 SHA-256は上記pathのUTF-8 file bytes全体に対して算出する。内容が変わった場合、この判断対象は失効し、新しいdigestへ
 固定し直す。PR、Issue、review、CI、DB、会話の状態はこの判断を成立させない。
@@ -35,13 +35,13 @@ POが提示した次の七大原則を、HELIXで企画、要求整理、設計�
 
 | 項目 | 現在値 |
 |---|---|
-| latest reviewed HEAD | `872a11493572b4eed62b39a3d6e7e48485bfc44c` |
-| review receipt | [GitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1826#issuecomment-5685786457) |
-| result | Blocker 0／Major 0／Minor 1 |
-| disposition | 原則7でも計測結果をまず観測として保存し、承認済みtriggerまたは候補化規則への該当後だけ改善候補へ進めるよう補正。構造改善は原則5のtrigger条件へ統一し、新しい本文digestの再review待ち |
+| completed body review HEAD | `71c4abc98d630810787195eb8e0df1c7a4f2bc4e` |
+| review receipt | [GitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1826#issuecomment-5686320968) |
+| result | Blocker 0／Major 0／Minor 0 |
+| state | 判断対象本文は上記review後に不変。人間判断時は本packetを含むPR current HEADの最新reviewをGitHubからread-afterする |
 
-未解決事項は、新しい本文digestに対する独立reviewと、そのBlocker／Majorの処置確認である。最新reviewが挙げた
-原則5と原則7の候補化条件の不整合を補正したが、本packetの自己申告だけで解消扱いにしない。
+内容上の未解決review findingはない。残る条件は、PR #1797と5大目標PR #1827の判断・物理統合順を守ること、
+本候補をexact revisionで人間が採否すること、承認後も個別要求と下位文書を別判断に保つことである。
 
 人間判断時は、PRのcurrent HEAD、本文file SHA-256、review対象HEAD／digest、最新findingをread-afterする。
 本文digestに未reviewの変更がある、または未解消Blocker／Majorがある場合は判断を停止する。Minorは内容と処置を示し、
