@@ -9,7 +9,7 @@ authority_effect: work_projection_only
 github_projection:
   issue: 1802
   url: https://github.com/RetryYN/HELIX-HARNESS/issues/1802
-  projected_source_commit: 741eddb855d9b24ac6645c4485e7d24b8123c95f
+  projection_receipt_ref: docs/governance/audits/source-rebaseline/github-feature-ticket-projection-2026-09-15.md
   read_after_state: OPEN
 parent_requirements:
   - HARNESS-L2-009

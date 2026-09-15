@@ -6,6 +6,10 @@ Feature Ticketは要求正本ではなく、親Concept／L1／L2、対受入、�
 GitHub Issue／Projectへ同期する場合も本ticketへのprojectionとし、remote状態から要求、承認、完了を逆生成しない。
 `proposed_upstream_waiting`は設計・実装・Worker・CI・mergeを開始できず、親上流の承認と再導出後にだけreadyへ遷移できる。
 
+Feature Ticket本文へ、その本文を含むGit commit SHAをprojection revisionとして埋め込まない。GitHubへ送ったexact source
+commit、file SHA-256、remote revision、read-afterはappend-onlyのprojection receiptへ記録し、ticket frontmatterは
+`projection_receipt_ref`だけを持つ。これによりticket更新で内包SHAが必ずstaleになる自己参照を避ける。
+
 現在は要求整理中のため、全ticketを`proposed_upstream_waiting`とする。文書具体化以外の実装、runtime、DB、CIを起動しない。
 
 | 順序 | Ticket | 対象 | 状態 | GitHub projection |

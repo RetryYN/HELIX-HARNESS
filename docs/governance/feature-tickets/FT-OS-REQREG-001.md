@@ -9,7 +9,7 @@ authority_effect: work_projection_only
 github_projection:
   issue: 1798
   url: https://github.com/RetryYN/HELIX-HARNESS/issues/1798
-  projected_source_commit: 741eddb855d9b24ac6645c4485e7d24b8123c95f
+  projection_receipt_ref: docs/governance/audits/source-rebaseline/github-feature-ticket-projection-2026-09-15.md
   read_after_state: OPEN
 parent_requirements:
   - HELIXOS-L2-001
@@ -43,6 +43,7 @@ HELIX-OSの管理対象へ自動登録する。要求意味をOSが解釈・変�
 - project、product、Concept revision、L1 revision、source locator／digest、actor、時点、scope、data classを保持する。
 - producerが明示した任意のpayload typeとschema版を意味解釈せず保持し、unknown typeを既知分類へ補完しない。
 - 原event、後続projection、訂正、採否、作業、証拠を同じcausal IDへ追加できる接続口を持つ。
+- remote evidenceはsource system、delivery identity、remote revision、originating projection commandを保持し、自己投影のread-after／webhookと外部変更を区別する。
 - 同じeventの再送を二重登録せず、部分失敗から再開できる。
 - `requirement` PRの候補semantic digest、source atom完全集合、HARNESS無損失被覆receipt、未確定atomの生存先を`registered_proposal`として保持し、仮登録欠落・stale・未計上atomがあるPRをmerge可能にしない。
 
@@ -61,7 +62,10 @@ HELIX-OSの管理対象へ自動登録する。要求意味をOSが解釈・変�
 registration_input:
   event_id: stable-id
   causal_id: stable-id
-  source_kind: concept | planning | user_instruction | manual_candidate | requirement_engine
+  source_kind: concept | planning | user_instruction | manual_candidate | requirement_engine | remote_evidence
+  source_system: exact-producer-or-system
+  producer_event_id: exact-or-null
+  originating_projection_command_id: exact-or-null
   source_locator: exact-locator
   source_digest: sha256
   project_id: exact-id
