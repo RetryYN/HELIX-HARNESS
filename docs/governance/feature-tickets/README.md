@@ -18,3 +18,4 @@ GitHub Issue／Projectへ同期する場合も本ticketへのprojectionとし、
 | 6 | [FT-OS-DESIGNTPL-001](FT-OS-DESIGNTPL-001.md) | HELIX-OS Design Template lifecycle管理 | proposed_upstream_waiting | [#1803](https://github.com/RetryYN/HELIX-HARNESS/issues/1803) |
 | 7 | [FT-HARNESS-TICKETCONTRACT-001](FT-HARNESS-TICKETCONTRACT-001.md) | HARNESS PoC／UI prototype／Feature ticket contract | proposed_upstream_waiting | [#1804](https://github.com/RetryYN/HELIX-HARNESS/issues/1804) |
 | 8 | [FT-OS-TICKETISSUER-001](FT-OS-TICKETISSUER-001.md) | HELIX-OS推進によるtyped ticket／workflow生成・Issue projection | proposed_upstream_waiting | [#1805](https://github.com/RetryYN/HELIX-HARNESS/issues/1805) |
+| 9 | [FT-OS-GITHUBSYNC-001](FT-OS-GITHUBSYNC-001.md) | HELIX-OS GitHub一方向projection・read-after同期adapter | proposed_upstream_waiting | pending |
