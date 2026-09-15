@@ -15,7 +15,8 @@ policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-f
 - `../legacy-confirmed-requirement-identity-carry-forward.jsonl`: confirmed文書で明示宣言された175 identityのsource行、行digest、再配置状態
 - `../legacy-ir-document-source-relation.jsonl`: Requirement IR 153件と保持済み人間向け要求表の原文一致relation
 - `../legacy-requirement-semantic-line-carry-forward.jsonl`: 22文書の非空semantic line 2,386件を原文・行番号・digest付きで保持し、明示IDへ接続できない2,058件をatom化待ちにする台帳
-- `../delegated-requirement-document-source-holding.jsonl`: v1.3の意味委任22文書のうちScrum Reverse行台帳外の20文書、宣言relationを再帰的に辿って到達する16文書、Scrum Reverse対受入1文書をarchive原文blob・SHA-256付きで保持する37文書の台帳。後続要求PRでのatom化待ち
+- `../delegated-requirement-document-source-holding.jsonl`: v1.3の直接委任22文書から意味frontmatter relationを再帰的に辿ったclosure 117文書のうち、Scrum Reverse行台帳3文書を除く114文書をarchive原文blob・SHA-256付きで保持する台帳。後続要求PRでのatom化待ち
+- `../delegated-requirement-document-reference-holding.jsonl`: 上記117文書のfrontmatter・本文参照788 edgeを、参照元行とtarget blob digest付きで保持する分類待ち台帳
 - `../legacy-requirement-semantic-line-inventory.md`: semantic line台帳の範囲、数え方、後続atom化規律
 - `../legacy-requirement-atomization-review-queue.jsonl`: 未分類2,058行をsource・heading・連続範囲ごとの721 review unitへ無損失に分けた処理queue
 - `../pre-isolation-revision-delta-source-holding.jsonl`: 監査基準からarchive隔離直前までに変わった333 pathの旧revisionをcommit・blob・SHA-256付きで保持する台帳

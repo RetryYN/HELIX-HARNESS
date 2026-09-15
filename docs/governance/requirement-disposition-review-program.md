@@ -20,16 +20,18 @@ HELIX-DBの要否は本programで扱う技術制約の一論点である。専�
 
 [管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、
 `management-provisional-requirement-register.jsonl`で生存中の全`registered_source_holding`を入力入口にする。
-現在の十のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
+現在の十一のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
 旧candidate 4,755行、workflow索引108件、構造見出し317件、Scrum Reverse 300行、archive隔離前に変更された
-基準source revision 333 pathに加え、旧v1.3の意味委任22文書のうちScrum Reverse行台帳外の20文書、宣言relationを
-再帰的に辿って到達する16文書、Scrum Reverse対受入1文書の計37 file blobを保持する。
+基準source revision 333 pathに加え、旧v1.3の直接委任22文書から意味frontmatter relation 265 edgeを再帰的に辿った
+closure 117文書を、114 file blobとScrum Reverse行台帳3文書へ保持する。さらに同じ117文書から抽出したfrontmatter・
+本文参照788 edgeを、参照元行とtarget blob digest付きの分類待ちholdingへ保持する。
 
 これらの件数は重複・包含・派生関係を含むため単純合算しない。一つのholdingや索引に無いことを非要求・不要の
 根拠にせず、新しいsourceを発見した場合は先に`source_holding`へ追加する。file blob／path単位のholdingは発見・保存の
-入口であり、要否を判断する分母ではない。対象文書、そのrevision、または文書が宣言する
-`pair_artifact`／`related_*`／`parent_design`をreviewする要求PRでは、先にrelation closureを固定して無損失な
-atom集合へ分解し、別holdingへ仮登録してから扱う。sourceで`confirmed`だった意味を、
+入口であり、要否を判断する分母ではない。対象文書、そのrevision、または文書が宣言するpair、上下流設計、authority、
+意味台帳、tailoring、legacy source relationをreviewする要求PRでは、先に意味relation closureを固定して無損失な
+atom集合へ分解し、別holdingへ仮登録してから扱う。本文参照やPLAN・process・migration参照も分類前に消さず、利用・
+縮退・retireするときは参照IDと対象blobを入力へ含める。sourceで`confirmed`だった意味を、
 新世代targetが未承認であることを理由にcandidateへ降格しない。
 
 ## 整理する単位と状態
@@ -55,7 +57,7 @@ retireを同じ処理にしない。
 
 1. PR #1797でrepository foundation、旧source snapshot、holding、上流運用を固定する。
 2. [bootstrap register](management-provisional-requirement-registration.md#bootstrap境界)で要求PRの仮登録を受ける。自動登録入口の実装完了を前提にしない。
-3. 各holdingを別queueとして扱う。IRは[IR再配置wave](legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。semantic lineは既存A1／A2 queueを使い、file blob／path集合は対象文書と宣言relation closureを先にatom化する。残るholdingの順序とrelationは、そのholdingを扱う要求整理PRで明示する。
+3. 各holdingを別queueとして扱う。IRは[IR再配置wave](legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。semantic lineは既存A1／A2 queueを使い、file blob／path集合は対象文書と意味relation closureを先にatom化する。参照候補holdingは参照元・target・分類を保ったまま、要求意味を持つかを別に判断する。残るholdingの順序とrelationは、そのholdingを扱う要求整理PRで明示する。
 4. 対象productと`unit`／`connection`／`composite`を分け、責務重複や意味類似はrelation候補として示す。
    重複候補は[責務・機能重複review program](requirement-overlap-review-program.md)で比較し、原identityと固有atomを残す。
    旧技術の拘束は[技術代替可能性review program](requirement-technical-substitutability-review-program.md)で、意味機能と実現方式を分けて比較する。

@@ -66,7 +66,17 @@ PR merge、Issue作成・close、review、CI、文書ファイルの存在だけ
 
 ## bootstrap source holding
 
-現registerは25 revisionを持ち、既に全量照合済みの十のsource集合を十の生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを両方保持し、意味同値を未確認のまま残す。`MPR-SH-PREISOLATION-002`は要求・検証source 2件のcategoryを訂正し、bytesと意味状態は変えない。十番目は旧v1.3の意味委任22文書のうちScrum Reverse行台帳外の20文書、宣言relationを再帰的に辿って到達する16文書、Scrum Reverse対受入1文書の計37 file blobを保持し、要求atom化を未実施のまま残す。`MPR-SH-DELEGATED-DOC-002`は保持範囲の拡張と旧revisionの未来時刻を訂正する。各recordは台帳path、item数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
+現registerは27 revisionを持ち、既に全量照合済みの十一のsource集合を十一の生存中
+`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した
+訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを
+両方保持し、意味同値を未確認のまま残す。`MPR-SH-PREISOLATION-002`は要求・検証source 2件のcategoryを訂正し、bytesと
+意味状態は変えない。十番目は旧v1.3の直接委任22文書から意味frontmatter relation 265 edgeを再帰的に辿った117文書の
+うち、Scrum Reverse行台帳3文書を除く114 file blobを保持する。`MPR-SH-DELEGATED-DOC-003`は4 keyに限っていた旧closureを
+訂正し、`pair_group.members`、`tailoring_profile`、`definition_ledger`、`legacy_source`等から到達する77文書を追加した。
+十一番目は同じ117文書から抽出したfrontmatter・本文参照788 edgeを、参照元行と対象blob digest付きで
+`MPR-SH-DELEGATED-REF-001`へ保持する。参照候補を要求atomへ昇格せず、PLAN、process、migration、意味source候補を分類前に
+消さない。各recordは台帳path、item数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も
+同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。file blobまたはpath単位のholdingを入力にする場合は、同じsource digestから無損失なatom集合を先に作り、別の生存中`source_holding`へ仮登録する。file blob一件を一要求atomとして扱って`no_loss`にしてはならない。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 
