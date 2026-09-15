@@ -1,7 +1,7 @@
 # HELIX自体の5大目標 人間判断packet
 
 prepared_at: 2026-09-16
-status: review_complete_awaiting_human_decision
+status: human_decision_gated_by_current_head_review
 decision_id: HDEC-HELIX-FIVE-GOALS-0.1
 authority_effect_before_decision: none
 
@@ -9,7 +9,7 @@ authority_effect_before_decision: none
 
 | 対象 | SHA-256 | 状態 |
 |---|---|---|
-| `docs/concept/helix-five-goals.md` | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | `draft_candidate`、本文review完了、人間判断待ち |
+| `docs/concept/helix-five-goals.md` | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | `draft_candidate`、人間判断時のcurrent HEAD review必須 |
 
 SHA-256は上記pathのUTF-8 file bytes全体に対して算出する。内容が変わった場合、この判断対象は失効し、新しいdigestへ
 固定し直す。PR、Issue、review、CI、DB、会話の状態はこの判断を成立させない。
@@ -34,10 +34,10 @@ POが提示した次の5大目標を、HELIX全体の到達方向として採用
 |---|---|
 | completed review | [本文HEAD `4f620e32d2f60f2ce80113db1ba4e01d4facd565`のGitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1827#issuecomment-5685768483) |
 | result | Blocker 0／Major 0／Minor 0 |
-| state | 判断対象本文の意味review完了。review receiptを記録する本packet更新だけをcurrent exact HEADで再確認する |
+| state | 判断対象本文は上記review後に不変。人間判断時は本packetを含むPR current HEADの最新reviewをGitHubからread-afterする |
 
-未解決事項は、current本文digestに対する独立reviewと、そのBlocker／Majorの処置確認に加え、承認後に5大目標を
-Concept v4.1の目的・製品別Conceptへ取り込む改訂範囲、および旧L0 charter §2の目的P0–P9との保持・追加・重複関係である。
+未解決事項は、承認後に5大目標をConcept v4.1の目的・製品別Conceptへ取り込む改訂範囲、および旧L0 charter §2の
+目的P0–P9との保持・追加・重複関係である。
 これらを本PRで確定せず、Concept改訂時のsemantic diffと人間判断へ送る。人間判断時はPRのcurrent HEAD、本文file SHA-256、
 review対象HEAD／digest、最新findingをread-afterする。本文digestに未reviewの変更がある、または未解消Blocker／Majorが
 ある場合は判断を停止する。Minorは内容と処置を示し、人間が残存を認識できる状態にする。
