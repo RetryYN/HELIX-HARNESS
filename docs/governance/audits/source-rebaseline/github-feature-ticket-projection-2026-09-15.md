@@ -90,3 +90,12 @@ Issue本文のsource commit `04c89868c48a7ce3af3d10914bd13c811731243c`、file SH
 `c81612ef9121858c2364196ce43caedf94031992de701e94f6e7e5d3c2e03b9e`、payload digest
 `sha256:f3c763ef97236223e8c24c648fc086284570bd25e19239317c87c1625520d161`、OPENを
 2026-09-15T15:02:35Zにread-afterした。Issue作成と同期は要求採用、実装開始、CI起動を生成しない。
+
+### #1812依存relationの追補
+
+`FT-OS-REQREG-001`と`FT-OS-TICKETISSUER-001`に`FT-OS-GITHUBSYNC-001`への後続relationを追加したため、
+#1798と#1805をlocal source commit `4895b3da5308d70be3648efac8c63ae2402e5e88`から再投影した。
+#1798はfile SHA-256 `f1e26a22f7aa06ace98c3fd86c45f65ecbab5629ecaf61ad2cebaca7564ee5a0`と
+updatedAt `2026-09-15T15:07:03Z`、#1805はfile SHA-256
+`87a15658d6b26905c3d28fc447f2a3792e5b6782fd790f4e9f2fe58846197a16`と
+updatedAt `2026-09-15T15:07:05Z`をread-afterした。両Issueに#1812を後続として表示し、要求authorityや実装状態は変更していない。
