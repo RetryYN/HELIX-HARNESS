@@ -53,6 +53,26 @@ RDP-001の母集団と処理境界をIssue #1813へ再投影した。file blob�
 Issue本文は要約であることとlocal正本の参照行区間を明示し、自動登録入口の実装完了を要求reviewの前提から外した。
 `remote body SHA-256`はGitHub APIが返す本文文字列を、末尾改行を追加せずUTF-8 bytesへ変換して計算した。
 
+## 委任文書relation closure補正後の#1813再投影
+
+receipt_id: `RDPPROJ-1813-20260916-003`
+
+旧v1.3の直接委任だけでなく、委任先がfrontmatterで宣言する`pair_artifact`、`related_l3`、`related_l12`、
+`parent_design`を再帰的に辿った。closureは40文書で収束し、既存Scrum Reverse行台帳3文書と
+file-blob holding 37文書へ全件を保持した。Issue #1813は、この補正後の入力母集団と処理境界へ再投影した。
+
+| 項目 | read-after値 |
+|---|---|
+| correction source commit | `68f8b40b95d62415e52bab88e94e5bd5e75b26bd` |
+| correction source file SHA-256 | `5ef003a8dbb1db87545f271e5f621fc034334dfd506adf4916be8c1c0b33c6ef` |
+| previous remote revision | `updatedAt:2026-09-15T16:20:42Z+body_sha256:150afc70e29883c23ad129300a0b165f2662db8056e254ef3b75334cb7db3718` |
+| corrected remote revision | `updatedAt:2026-09-15T17:34:10Z+body_sha256:e4182e824d96a246061ccc89a3fd4600633c186d22de4965bf31685d75f44fe5` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+この補正は要求の追加、採否、統合、配置、successor、実装開始を生成しない。file blobは要求atomとして数えず、
+対象文書とrelation closureを無損失atom化して別holdingへ仮登録するまで、個別要求の要否判断を開始しない。
+
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
 RDP-001は全要求の要否・再配置を親作業として追跡し、RDP-002は責務・機能重複、RDP-003は技術代替可能性を
 別判断面として扱う。HELIX-DBはRDP-003の一論点であり、専用実装の要否と永続・排他・再開等の意味機能を分ける。
