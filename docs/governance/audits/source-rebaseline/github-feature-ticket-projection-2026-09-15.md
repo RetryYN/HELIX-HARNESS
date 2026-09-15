@@ -134,3 +134,25 @@ webhook／read-afterをreceiptまたはduplicateへ束縛して再送しない�
 
 9件はいずれもOPEN、`state:proposed-upstream-waiting`、Issue本文のsource commit／file SHA-256がlocal sourceと一致した。
 remote evidenceの受付やecho抑止を要求採用、実装開始、同期runtime稼働の証拠にしない。
+
+## #1798 remote専用指示の除去と投影訂正
+
+receipt_id: `FTPROJ-1798-20260916-001`
+correction_of: `2026-09-16 source revision再同期と同期adapter追加`の#1798意味投影
+
+以前のIssue #1798にはlocal Feature Ticketにない「最初のrequirement PR」「local Feature Ticketを起点にbranch／PRを作る」
+「Refs #1798」の指示があり、local sourceからの転記限定規則に違反していた。これらを削除し、requirement PRの入口を
+親Concept／L1 revision、source、対象product、要求kindとbootstrap registerへ戻した。Issue本文は要約であること、
+local本文の完全な参照行区間、要約にない条項を対象外にしないことを明示した。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `cb31f86e8b23bb2215a04503df0b3417d395a4a3` |
+| local file SHA-256 | `4f6741b75629405011880e960dd32f47b6b53282519448ef3b4653cf7fdbbe89` |
+| remote revision | `updatedAt:2026-09-15T16:19:47Z+body_sha256:600345a2c131c9f7e35ef1be62d259ae775330b6f505c449634cafdba3fec364` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+`remote body SHA-256`はGitHub APIが返すIssue本文文字列を、末尾改行を追加せずUTF-8 bytesへ変換して計算する。
+訂正後本文には上記三つのremote専用指示が0件であり、remote evidenceのsource system、delivery identity、
+remote revision、originating projection commandの四項目が表示されることをread-afterした。

@@ -34,6 +34,25 @@ read-afterでOPEN、`state:proposed-upstream-waiting`、exact source revision、
 
 この再投影は基準revisionと隔離revisionの意味同値、要求追加、採否、successor、実装開始を生成しない。
 
+## file-blob holding追加後の#1813再投影
+
+receipt_id: `RDPPROJ-1813-20260916-002`
+
+旧v1.3が委ねる未行分解18文書とScrum Reverse対受入1文書を十番目の生存中`source_holding`へ追加し、
+RDP-001の母集団と処理境界をIssue #1813へ再投影した。file blob／path holdingは要求判断の分母にせず、
+対象文書を扱う後続要求整理PRで無損失atom化と別holdingへの仮登録を先行させる。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `cb31f86e8b23bb2215a04503df0b3417d395a4a3` |
+| local file SHA-256 | `9121ccd9b10668fc5427af4bb0025e023c63531a2d32d1b28277fe238ff27b85` |
+| remote revision | `updatedAt:2026-09-15T16:20:42Z+body_sha256:150afc70e29883c23ad129300a0b165f2662db8056e254ef3b75334cb7db3718` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+Issue本文は要約であることとlocal正本の参照行区間を明示し、自動登録入口の実装完了を要求reviewの前提から外した。
+`remote body SHA-256`はGitHub APIが返す本文文字列を、末尾改行を追加せずUTF-8 bytesへ変換して計算した。
+
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
 RDP-001は全要求の要否・再配置を親作業として追跡し、RDP-002は責務・機能重複、RDP-003は技術代替可能性を
 別判断面として扱う。HELIX-DBはRDP-003の一論点であり、専用実装の要否と永続・排他・再開等の意味機能を分ける。
