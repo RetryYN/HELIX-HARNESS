@@ -32,6 +32,9 @@ PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味revi
 - review依頼は送信する完全な本文からpayload digestを計算し、構造化されたcomment本文として投稿する。投稿後にcomment ID、
   remote本文、target full SHA、payload digestをread-afterし、`@claude`本文の代わりにlocal file pathや`@file`文字列だけが
   投稿された場合は未配送として扱う。
+- read-after後は同じPRへ`review_request_delivery_receipt` commentを追記し、review request identity、target full SHA、
+  payload SHA-256、依頼comment ID、remote本文SHA-256、read-after時点、`delivery_result`を保存する。依頼comment、receipt、
+  review応答は人間判断時にGitHub APIから再取得する。
 - HEAD更新後は以前のreview依頼を失効とし、新しいfull SHAで依頼する。
 - review結果は依頼targetと同じexact HEADを本文で示す応答だけをfindingとしてreadinessへ反映し、要求採否、人間承認、
   Ready化、mergeを自動生成しない。依頼commentの存在、mention、reaction、workflow開始だけではreview完了にしない。

@@ -61,7 +61,7 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 - [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `bb4d12f3cfc9c1daefa064ede8bcc21943dd10df05098f423158fb5a08512490`
 - [旧v1.3委任文書・意味relation closureのfile-blob holding](delegated-requirement-document-source-holding.jsonl) — `23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd`。114 file blob＋行保持3文書でclosure 117文書、atom化0、successor 0、decision 0
 - [委任文書の参照候補holding](delegated-requirement-document-reference-holding.jsonl) — `627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7`。frontmatter・本文参照788 edge、参照先241文書、分類待ちtarget 124文書、decision 0
-- [Scrum Reverse source line台帳](scrum-reverse-source-line-carry-forward.jsonl) — closure内3文書のうちfile blob台帳へ重複登録しない3文書を、原文行とdigestで保持
+- [Scrum Reverse source line台帳](scrum-reverse-source-line-carry-forward.jsonl) — `72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9`。closure内3文書のうちfile blob台帳へ重複登録しない3文書を、原文300行と行digestで保持
 - [archive隔離前revision差分](pre-isolation-revision-delta-source-holding.jsonl) — `d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180`
 - [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 

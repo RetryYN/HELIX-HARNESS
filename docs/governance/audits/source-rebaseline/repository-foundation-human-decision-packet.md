@@ -30,10 +30,12 @@ Issue状態、CI結果だけでは対象revisionを確定しない。
 |---|---|
 | 静的整合 | [Repository foundation readiness](../../repository-foundation-readiness.md)の条件1〜4がcurrent HEADで成立 |
 | 外部意味review | 許可されたGitHub Claude通路でcurrent exact HEADをreviewし、未解消Blocker／Majorが0 |
-| review配送 | request payload、comment ID、remote本文、target full SHAをread-afterし、local file pathだけの投稿を配送済みにしない |
+| review配送 | [PR投影packet](../../github-upstream-pr-packet.md)に従う`review_request_delivery_receipt`をGitHubから取得し、request payload、comment ID、remote本文、target full SHAの一致をread-afterする。local file pathだけの投稿を配送済みにしない |
 | 人間read-after | current HEAD、PR差分、readiness、最新review finding、本packetを判断直前に再取得 |
 
-一つでも欠ける、対象HEADが変わる、reviewが別HEADを指す、台帳digestが変わる場合は判断を停止し、新revisionへ固定し直す。
+一つでも欠ける、対象HEADが変わる、reviewが別HEADを指す場合は判断を停止し、新revisionへ固定し直す。加えて、判断時HEADの
+[carry-forward管理状況](../../requirement-carry-forward-status.md)「機械台帳」に記載したSHA-256または管理registerの
+`source_atom_set_digest`が、参照先台帳fileの実測SHA-256と一致しない場合も停止する。
 
 ## 選択肢
 

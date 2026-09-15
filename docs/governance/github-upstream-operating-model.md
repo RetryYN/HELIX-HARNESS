@@ -121,6 +121,13 @@ remote本文がpayloadと一致しない、`@claude`本文がなくlocal file pa
 currentでない場合は配送失敗またはstaleとして、review待ちへ進めない。comment作成成功、mention、reaction、workflow起動は
 review receiptではない。review結果は、応答本文が対象exact HEADを示し、依頼後のcommentとして取得できた場合だけ受理する。
 
+read-after成立後、同じPR threadへ依頼commentとは別の`review_request_delivery_receipt` commentをappendする。このcommentを
+PR branch外の配送記録とし、`review_request_id`、対象PR、target full SHA、送信前payload SHA-256、依頼comment ID、取得した
+remote本文SHA-256、read-after時点を記録する。payload SHA-256は送信する依頼本文byteに対して計算し、receipt comment自身を
+含めない。依頼commentのremote本文byteと送信前payload byteが一致し、両SHA-256も一致した場合だけ`delivery_result: delivered`
+とする。訂正は旧receiptを消さず、新しいreceipt identityと`correction_of`で追記する。人間判断時はGitHub APIから依頼comment、
+delivery receipt、review応答を再取得し、三者のrequest identityとtarget full SHAが一致することを確認する。
+
 ### PR #1797 `repository_foundation`
 
 次をすべて満たした場合だけReady／merge候補にできる。
