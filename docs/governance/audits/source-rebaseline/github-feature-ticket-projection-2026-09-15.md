@@ -108,3 +108,29 @@ local source commit `1779579f2428c973656e997a539df13b2c3e2a2f`から再投影し
 `2026-09-15T15:10:19Z`、#1812はfile SHA-256
 `d43172ded165d01bd488db835797fbe491e73df3ba8b38b027c2547db3bc723b`、updatedAt
 `2026-09-15T15:10:20Z`で一致した。semantic payloadは不変で、要求採用や受入実施を生成しない。
+
+### 自己参照解消・remote evidence echo抑止の再同期
+
+Feature Ticket本文に過去の`projected_source_commit`を埋め込む方式は、ticket更新時に内包値がstaleになるため廃止した。
+9 ticketはappend-onlyの本projection receiptへの参照だけを持つ。exact source commit、file SHA-256、remote revision、
+read-afterをticket本文の外で記録し、同じticketを再commitしてSHAを埋め直す自己参照を避ける。
+
+`FT-OS-REQREG-001`へ`remote_evidence`入力とoriginating commandを追加し、`FT-OS-GITHUBSYNC-001`へ自己投影の
+webhook／read-afterをreceiptまたはduplicateへ束縛して再送しない条件を追加した。外部変更もlocalで新revisionとして
+採否されるまで送信commandを生成しない。9 Issueをsource commit
+`d7fb664c79d525625dbb0c278212c3f05a465564`から再投影し、次をread-afterした。
+
+| Issue | local file SHA-256 | remote body SHA-256 | updatedAt UTC |
+|---:|---|---|---|
+| #1798 | `4f6741b75629405011880e960dd32f47b6b53282519448ef3b4653cf7fdbbe89` | `2cb4e1554872c78fde2d879fc08d79b401e9c824765cbeac145ebc6a9aa0c3e4` | `2026-09-15T15:34:55Z` |
+| #1799 | `b4f349299b1bbb33fcc1f750a88084267d158bd6dd3acb5da1c9952f8500168e` | `a35d376cfc4e641a544370b2f91f08db1a8081c19ade9927da3d4427c2b42aa5` | `2026-09-15T15:34:57Z` |
+| #1800 | `ba24f0685d19c4126519209b8e646d31f794092862fbf642f9626eb1692d4b02` | `c7717f06db31c274e5e7d2a2435551671100c9df26cb969b6515d9155abc27ff` | `2026-09-15T15:34:58Z` |
+| #1801 | `fdf540550a16ae6666139e98d4172086782aa0df32fdb702b5cf96c7b07203cf` | `c0b6726dd674cff29a2f27b127cda14acfcaf66fc583d197d4ca178b865ee485` | `2026-09-15T15:35:00Z` |
+| #1802 | `3c88549a3bc89f5a9ad4e53b5b3a5de3df9b5d7a87a10ccbd913cd111326a3a2` | `02b95d331b5fa530ba89dac5277e0e973e11bd4058a540726b200945519bcbdd` | `2026-09-15T15:35:02Z` |
+| #1803 | `81decccec568e65ca2bca79fc351084aa3869107419f05530e2a6f99b78c3ecc` | `f2b5d3447795c272355adfeafc0029ec6446051cea758c4b7172f92e498dec74` | `2026-09-15T15:35:05Z` |
+| #1804 | `875579274d8468b4928d502cf16c7af7cab4993fc1d08a8cb8f2c3fe35ba6f10` | `7ac5a0cb9a2f0a81675f94cd963398db7da8b5ff2a6fd1c92413bf09e3489c99` | `2026-09-15T15:35:06Z` |
+| #1805 | `fd5ea6d347752134f538cfc0344917e44d8032f8445bb0fe657ec1ce48aa15da` | `2808096a24396d7b1597c4d19fde57a97379f8c7683ea5f8d56c55ccdb086907` | `2026-09-15T15:35:08Z` |
+| #1812 | `bc63b0aa00762f1f7d230dcff0b5810e8a7a5aedbf2b7b0c61356ac4498b324a` | `c1a0b5053f7ca40eb75b241ceffe83943885c09347ce2854196636e5ff1f7a28` | `2026-09-15T15:35:10Z` |
+
+9件はいずれもOPEN、`state:proposed-upstream-waiting`、Issue本文のsource commit／file SHA-256がlocal sourceと一致した。
+remote evidenceの受付やecho抑止を要求採用、実装開始、同期runtime稼働の証拠にしない。
