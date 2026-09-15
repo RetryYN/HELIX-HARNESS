@@ -14,7 +14,7 @@ scope: upstream documents, requirement carry-forward, work tickets, GitHub proje
 
 | 軸 | 問うこと | 現在使う値の例 | authorityへの作用 |
 |---|---|---|---|
-| `source_authority_state` | sourceでその意味がどの状態だったか | `confirmed`、`draft`、`proposed`、`placeholder`、`historical_candidate` | 元状態を保存する。新世代の対象や配置を自動確定しない |
+| `source_authority_state` | sourceでその意味がどの状態だったか | `confirmed`、`draft`、`proposed`、`placeholder`、`historical_candidate`、`specified_frozen`、`source_status_not_declared` | 元状態を保存する。新世代の対象や配置を自動確定しない |
 | `target_authority_state` | 新世代の対象別文書が人間decisionへ束縛されているか | `draft_candidate`、`draft`、`awaiting_parent_approval`、`approved_revision` | `approved_revision`だけが対象revisionの現行意味authorityになる |
 | `carry_forward_state` | 原要求の意味がsuccessorへ欠落なく移ったか | `preserved_pending_rehome`、`partially_covered`、`covered`、`meaning_change_decided`、`retired_by_decision` | 元の採用済み意味は`covered`または人間decisionまで保持する |
 | `work_projection_state` | 作業・外部表示がどこまで進んだか | `proposed_upstream_waiting`、`ready`、`in_progress`、`reviewed`、`closed`、`projection_failed` | 要求意味、採否、承認、受入へ作用しない |
@@ -27,6 +27,7 @@ scope: upstream documents, requirement carry-forward, work tickets, GitHub proje
 |---|---|---|
 | 旧要求文書17件の`confirmed` | sourceで採用済みだった要求意味をそのまま保持する | 新世代の対象・owner・実現方式まで承認済み |
 | 旧要求文書3件の`draft`、1件の`proposed`、1件の`placeholder` | sourceの未確定状態を保持する | 不要、削除済み、retired |
+| 旧IR 6ファイルの`specified`／`frozen`と、status metadataを持たないv1.3 | source表現を`specified_frozen`／`source_status_not_declared`として保持する | `confirmed`への自動読替え、target承認済み |
 | IR 153件の`preserved_pending_rehome` | 原文・identity・意味を保持し、successor被覆が未完 | candidateへ降格、未採用、37件へ置換済み |
 | Concept v4.1の`draft_candidate`／`awaiting_human_approval` | 人間へ提示する最新Concept案 | 旧要求の採用状態を解除済み、canonical化済み |
 | 対象別L1／L2／L11の`draft` | 新しい対象・粒度・接続での構成案 | 参照した旧要求をdraftへ降格済み |

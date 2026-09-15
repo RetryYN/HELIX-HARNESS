@@ -38,7 +38,7 @@ copy許可ではない。内容監査でclassを確定し、その変更前後�
 ## archive内規則との優先関係
 
 archive内READMEのcopy禁止は、旧世代snapshot自身が定めた既定規則として保持する。現行側で完全一致再利用を判断する
-場合は本書を上位の統制とするが、例外にできるのは本書へ個別登録され、親要求と承認revisionを持つ非実行資産だけである。
+場合は本書を上位の統制とする。`verbatim_reuse`の例外は個別登録、親要求、承認revisionを持つ非実行資産に限る。要求欠落防止の`source_snapshot_preservation`は承認revision前でも非実行・read-only・非authorityの物理保全copyだけを許し、配置判断を`pending_human_confirmation`に保つ。
 旧CI／workflow、runtime／CLI、hook、adapter、AI instruction／prompt、実行設定は例外にできない。archive内READMEは
 historical evidenceとして改変しない。
 
@@ -65,7 +65,7 @@ credential参照、実行可能性、外部作用が判明した他資産も、�
 
 ## 現在の完全一致再利用
 
-承認済み`verbatim_reuse`は0件である。要求source 29件だけは、POの要求保全指示に基づく`source_snapshot_preservation`として個別判断・copy read-afterを記録した。これは完全一致再利用、要求採用、新世代authorityへの昇格ではない。残る3,991件は`unresolved`である。
+承認済み`verbatim_reuse`は0件である。要求source 29件だけは、POの要求保全指示をproposal根拠とする`source_snapshot_preservation`としてcopy read-afterを記録し、個別配置判断は`pending_human_confirmation`に保つ。誤ってPO判断済みとしたrevision 2判断行は削除せず、revision 3の訂正行で取り消した。これは完全一致再利用、要求採用、新世代authorityへの昇格ではない。残る3,991件は`unresolved`である。
 
 現行`LICENSE`とarchive内の監査用写し
 `archive/legacy-generation-2026-09-14/root/docs/archive/cross-system-audit-2026-09-05/source/upstream_license.txt`は

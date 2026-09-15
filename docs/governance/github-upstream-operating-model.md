@@ -74,12 +74,29 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 
 | contract | 旧source identity | trigger／選択 | 保持する順序と合流 |
 |---|---|---|---|
-| 開発style | requirements v1.3 §4、HARNESS-L2-002の移管元 | Full V／Production Scrum／V設計＋Scrum実装Hybridの三方式から適用可能な一つを選択する。未選択、複数選択、適用不能はfail-closeする | 選択styleの工程を進める。Discovery／PoCを第四の排他的styleにしない |
-| case-driven Discovery／PoC | `HR-FR-HYB-003`、`FR-L1-15`、`HIL-BR-28` | `requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`のいずれか | `S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`。S4は人間が判断し、採択結果だけをL3機能要件へ合流する |
-| Research | `FR-L1-27` | `tech_decision_required`、`option_comparison_needed`、`adr_required`のいずれか | research memoとADRを生成し、ADR参照点／L4基本設計へ合流する。成立性実験が必要ならDiscovery／PoCへ切り替える |
+| 開発style | requirements v1.3 §4（`docs/governance/requirements-source/helix-requirements_v1.3.md:71-75,83-85`）、HARNESS-L2-002の移管元 | Full V／Production Scrum／V設計＋Scrum実装Hybridの三方式から適用可能な一つを選択する。未選択、複数選択、適用不能はfail-closeする | 選択styleの工程を進める。Discovery／PoCを第四の排他的styleにしない |
+| case-driven Discovery／PoC | `HR-FR-HYB-003`、`FR-L1-15`、`HIL-BR-28`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:631` | `requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`のいずれか | `S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`。S4は人間が判断し、採択結果だけをL3機能要件へ合流する |
+| Research | `FR-L1-27`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:632` | `tech_decision_required`、`option_comparison_needed`、`adr_required`のいずれか | research memoとADRを生成し、ADR参照点／L4基本設計（`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md:123`）へ合流する。成立性実験が必要ならDiscovery／PoCへ切り替える |
 | UI prototype | `HIL-BR-13`、requirements v1.3のScreen Applicability／agreement条件 | 画面対象で要求理解・操作・状態・failureの合意が必要 | 独立phaseにせず`L2要求 ↔ prototype`を反復する。agreement receiptなしにL3をfreezeしない。画面非対象は理由・判定者・入力digest・再entry triggerを持つskip receiptを要求する |
+| Scrum Reverse | requirements v1.3 §4.1、§10 | sprint review前、release candidate合流前、public contract／DB schema／主要dependency／NFR budget変更、trace欠落、finding再発・性能退行・障害・手動回避 | `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`。SR4 receiptなしにrelease-readyへ進めず、findingを4種の修正routeのexactly oneへ送る |
 
 `premise organization`／`premise research`は上流候補sourceから保持したGitHub運用上の証拠整理語彙であり、上記の確認済みHARNESS routeと同じauthorityへ自動昇格させない。推進はrouteを無条件に全適用せず、triggerを満たすrouteを選び、その内部順序・human gate・joinを保持してworkflow instanceを生成する。
+
+次の旧workflow clauseも要求sourceとidentity台帳で保持し、削除・非継承にしない。ただし新世代のnormative名称・trigger・順序・joinは未承認なので、現時点では`preserved_pending_rehome`である。
+
+| 旧workflow identity | source | 保持する意味 | 現在状態 |
+|---|---|---|---|
+| Reverse | `FR-L1-14`、旧business requirements §3.2 | R0–R4、RGC、fullback、Forward再合流 | `preserved_pending_rehome` |
+| Incident | `FR-L1-16`、旧business requirements §3.2 | 障害検出、hotfix、収束、対応層へのbackfill | `preserved_pending_rehome` |
+| Add-feature | `FR-L1-24`、旧business requirements §3.2 | 既存上流への差分設計・実装接続とForward再合流 | `preserved_pending_rehome` |
+| Refactor | `FR-L1-25`、旧business requirements §3.2 | 振る舞い不変検証とForward復帰 | `preserved_pending_rehome` |
+| Retrofit | `FR-L1-26`、旧business requirements §3.2 | 影響評価、段階移行、Forward L7以降への合流 | `preserved_pending_rehome` |
+| Recovery | requirements v1.3 §9.2 | runaway、context exhaustion、開発回帰、forced stopからの復旧 | `preserved_pending_rehome` |
+| version-up | requirements v1.3 §9.2、旧business requirements §3.2 | 将来版activationまでparkし、activation後にAdd-feature／Forwardへ合流 | `preserved_pending_rehome` |
+| selected-style change intake | requirements v1.3 §9.2 | styleを暗黙変更せず、影響によりRedesign／Add-feature／Scrum sliceへroute | `preserved_pending_rehome` |
+| Redesign re-entry | `HIL-FR-05`、`HIL-FR-31` | 影響上流とV-pairをstale化し、再freeze後にForwardへ戻す | `preserved_pending_rehome` |
+
+この一覧は旧mode実行器や`signal → mode`をcurrentへ採用する表ではない。各source clauseを失わず、後続の一要求identity PRで新世代HARNESS contractとOS推進mappingへ分離するための未移管一覧である。
 
 ### 自動投影実装前のbootstrap
 

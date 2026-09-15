@@ -74,7 +74,7 @@ HARNESS-L2-002／003／008／009の適用待ち具体化として保持する。
 各ticketは親要求revision、問いまたは成果、scope、依存、pair、acceptance、許可、timebox、停止、backflowを持つ。
 旧開発コアの工程思想は意味atomとして保持し、技術は新世代architectureのsemantic／transactional責務から選び直す。
 ticket close、PoC成功、prototype生成から要求合意、技術採用、Feature完了を生成しない。
-HARNESSは工程のnormative vocabulary、適用条件、順序、停止・差戻し・完了条件を所有する。企画から前提整理、research、必要なPoC／UI prototype、要求合意へ進む順序を含む。個別のoperational tag、mapping、ticket、workflow instanceは生成せず、推進が生成したworkflowに必要layer／pair、成果物、oracle、
+HARNESSは工程のnormative vocabulary、trigger、適用条件、route内順序、join、停止・差戻し・完了条件を所有し、具体条件は本書の工程規則表と[GitHub上流運用モデルの条件付き工程contract](../../governance/github-upstream-operating-model.md#harnessの条件付き工程contract)に従う。個別のoperational tag、mapping、ticket、workflow instanceは生成せず、推進が生成したworkflowに必要layer／pair、成果物、oracle、
 human gate、停止・差戻し・backflow、許可操作が揃うことを判定するcontractを所有する。推進方式が変わっても
 HARNESS義務を落とさず、旧9-modeや`signal → mode`の実行器をHARNESSへ戻さない。
 
@@ -92,7 +92,7 @@ HELIX管理下への導入・更新の実行はOSの運用側で扱う。外部�
 
 要件v1.3 §2–4の条件を対象別に整理する。以下はHARNESSが規定し、OSが適用する条件である。
 [工程要求source被覆監査](../../governance/harness-workflow-source-coverage.md)は、開発style、Discovery／PoC、Research、
-UI prototype、合流・差戻しに関係する確認済みsource 16 clauseを原文・digest付きで保持する。下表への参照だけで
+UI prototype、合流・差戻しに関係する確認済みsource 47 clauseを原文・digest付きで保持する。下表への参照だけで
 successor割当や移管完了を生成しない。
 
 | 親要求 | 具体条件 |
@@ -103,6 +103,7 @@ successor割当や移管完了を生成しない。
 | HARNESS-L2-002 | requirements v1.3 §4に従い、開発styleはFull V／Production Scrum／V設計＋Scrum実装Hybridの三つから適用可能な一つだけを選ぶ。未選択、複数選択、適用条件不成立はfail-closeする |
 | HARNESS-L2-002／003 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`に従い、`requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`ではcase-driven Discovery／PoCを`S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`で進める。S4は人間判断とし、採択結果だけをL3機能要件へ合流する |
 | HARNESS-L2-002／003 | `FR-L1-27`に従い、`tech_decision_required`、`option_comparison_needed`、`adr_required`ではResearchを起動し、research memoとADRをADR参照点／L4基本設計へ合流する。成立性実験が必要になればDiscovery／PoCへ切り替える |
+| HARNESS-L2-002／003 | requirements v1.3 §4.1に従い、Production Scrumの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。SR4 receiptなしにrelease-readyへ進めず、findingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへrouteする |
 | HARNESS-L2-003 | `HIL-BR-13`とScreen Applicability条件に従い、UI案件は要求とプロトの合意をL3凍結前に確認する。非UIもL2要求を省略せず、非適用・理由・判定者・HEAD・要求への影響・再評価条件を記録する |
 | HARNESS-L2-003 | `HIL-BR-13`に従い、UI prototypeは独立phaseにせず、`L2要求 ↔ prototype`の反復で操作・状態・failureを確認する。agreement receiptなしにL3をfreezeしない |
 | HARNESS-L2-003 | 実装は凍結済み設計の範囲に従い、L6↔L7でRed→Green→Refactorと双方向traceを閉じる。L10総合検証、L11利用者受入、L12運用評価を別の状態として扱う |
@@ -194,7 +195,7 @@ HARNESS-L2-003／004では、管理上の観測や改善判断から製品要求
 変更候補を戻し、差戻し・再合意・pair再凍結・再検証の必要範囲を決める。
 
 管理上の緊急性、Issue作成、Project状態、既存CI成功を、V-pair、上下trace、検証、利用者受入の省略理由にしない。
-管理作業の`S0..S4`、Scrum Reverse、旧adapterをHARNESSの固定workflowとして継承しない。本節は工程条件の要求案であり、
+旧Management Scrum policyにある管理作業の`S0..S4`、Scrum運用ceremony、旧adapterをHARNESSの固定workflowとして継承しない。これはrequirements v1.3 §4.1の製品開発用Scrum Reverse（SR0–SR4、release-ready条件、finding routing）を外す意味ではない。本節は工程条件の要求案であり、
 現行AGENTS／CLAUDE、hook、Issue template、workflow、CIを変更・実行しない。
 旧Scrum Operation候補のDoR／DoD、sprint review等も固定ceremonyやV-model layerとして採用しない。
 着手・完了・受入・改善還流に必要な意味だけをHARNESS-L2-003／005へ再採否し、管理状態の保存と表示はOSへ委ねる。

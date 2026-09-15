@@ -49,7 +49,7 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 
 ## 機械台帳
 
-- [HARNESS工程source clause carry-forward](harness-workflow-source-clause-carry-forward.jsonl) — confirmed 16件、target draft 16件、successor 0件、decision 0件
+- [HARNESS工程source clause carry-forward](harness-workflow-source-clause-carry-forward.jsonl) — source 47件、target draft 47件、successor 0件、decision 0件
 - [IR要求carry-forward](legacy-requirement-carry-forward.jsonl) — `51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0`
 - [confirmed文書identity carry-forward](legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
 - [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`

@@ -8,25 +8,29 @@ copy_read_after_path: `docs/governance/legacy-asset-copy-read-after.jsonl`
 ## 目的
 
 [資産明細台帳](legacy-asset-disposition.jsonl)の個別採否を、行の上書きだけで失わないためのappend-only記録を定める。
-現在の判断ログは0件であり、全4,020資産の`unresolved`状態を変更しない。
+現在の判断ログは58件である。要求source snapshot 29件のrevision 2判断行と、それを取り消して配置判断をpendingへ戻したrevision 3訂正行29件をappend-onlyで保持する。残る3,991資産は`unresolved`である。
 
 ## 1行の必須項目
+
+以下は現行schemaで追記する判断行の契約である。append-only修復より前の29行は当時のschemaをそのまま保存するため、後から追加された`decision_status`と`proposal_basis_refs`を持たない。現行状態は各旧行を`supersedes_decision_id`で指すrevision 3訂正行から読む。
 
 | 項目 | 内容 |
 |---|---|
 | `decision_id` | 一意な判断ID |
 | `asset_id` | 資産明細台帳のID |
 | `asset_revision_before`／`asset_revision_after` | 単調増加する行revision |
-| `decision_revision` | 人間判断または承認済み上流のexact revision |
+| `decision_revision` | `decided`時は人間判断または承認済み上流のfull exact revision。`pending_human_confirmation`ではnull |
 | `asset_class_before`／`asset_class_after` | 内容監査前後の資産class |
 | `reuse_exclusion_class_before`／`reuse_exclusion_class_after` | 一次分類と内容監査後の停止class。nullも明示する |
 | `disposition` | 統制で定めた8値のいずれか |
 | `product_target`／`upstream_ids`／`pair_ids` | 製品ownerと上流接続 |
 | `consumer_refs` | 現在および移行後consumer |
 | `rights_status`／`executability_status`／`secret_status`／`external_effect_status` | 個別確認結果 |
-| `target_path`／`target_sha256` | `verbatim_reuse`時のcopy先。その他はnull |
-| `meaning_interface_invariance_reason` | `verbatim_reuse`時の不変根拠。その他はnull可 |
-| `decided_by`／`decided_at` | actorと時点 |
+| `target_path`／`target_sha256` | `verbatim_reuse`または`source_snapshot_preservation`時のcopy先。その他はnull |
+| `meaning_interface_invariance_reason` | `verbatim_reuse`時の不変根拠、または`source_snapshot_preservation`が非authorityである根拠。その他はnull可 |
+| `decision_status` | `decided`または`pending_human_confirmation`。pendingは配置・採否を確定しない |
+| `proposal_basis_refs` | pending proposalの根拠となるfull exact revision＋path＋line。`decided`では空配列可 |
+| `decided_by`／`decided_at` | actorと時点。pendingではnull |
 | `rationale`／`evidence_refs` | 採否根拠と反証可能な参照 |
 | `supersedes_decision_id` | 訂正対象。初回はnull |
 
@@ -40,7 +44,7 @@ copy_read_after_path: `docs/governance/legacy-asset-copy-read-after.jsonl`
 5. `verbatim_reuse`ではcopy後にtarget digestとconsumerをread-afterし、下記copy・read-afterログを台帳へ接続する。
 6. GitHub Issue／PR／CI／review状態だけから判断行を生成しない。
 
-個別判断を開始するのはConceptと対象別L1が承認され、該当source atomを対象別L2へ採否できる段階からである。
+意味採否・配置の個別判断を開始するのはConceptと対象別L1が承認され、該当source atomを対象別L2へ採否できる段階からである。要求欠落防止の`source_snapshot_preservation`はそれ以前に物理copyとread-afterを行えるが、`decision_status: pending_human_confirmation`、nullの判断actor／revision、proposal根拠を記録し、配置・採否・authorityを生成しない。
 
 ## copy・read-afterログ
 
