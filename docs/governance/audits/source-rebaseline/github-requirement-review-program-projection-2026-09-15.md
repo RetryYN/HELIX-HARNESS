@@ -24,6 +24,16 @@ POの2026-09-16指示「要求の要不要整理イシュー」「責務が被�
 | RDP-002 | `docs/governance/requirement-overlap-review-program.md` | `5383815b0a1d7f2c52550df5595c7d4d0959e766d56bc7efd1160b81f55b95af` | [#1814](https://github.com/RetryYN/HELIX-HARNESS/issues/1814) | `0dd4356933398137d9ef5abf8e8e2b6feb95b1266d2da0ccb591ddf71512e227` | `2026-09-15T15:30:19Z` | OPEN、label一致、parent #1813一致 |
 | RDP-003 | `docs/governance/requirement-technical-substitutability-review-program.md` | `f0b9a2ca5031c388cd85ab8176167b2d60b23e1e4a7fc054e550ac7194ee2b70` | [#1815](https://github.com/RetryYN/HELIX-HARNESS/issues/1815) | `c8c9edfd526284e5fe47ec41b23016ec55e3860b65c86925e3db5737bf4bb539` | `2026-09-15T15:30:21Z` | OPEN、label一致、parent #1813一致 |
 
+## RDP-001のsource holding追加後の再投影
+
+archive隔離前revision差分333 pathを九つ目の生存中`source_holding`へ追加したため、RDP-001の入力母集団記述を
+Issue #1813へ再投影した。local source commitは`408fe7830aad3606d097ee4cadb626e826f632e6`、source file SHA-256は
+`c163e6e9115e03ac3391a84ac89fb2280aba082c285e026b96d0723a98ae5ece`、remote body SHA-256は
+`19388bcb9fee1d8c78a67d4928ec855e14798880016fbc5a664d6defcd739495`である。2026-09-15T16:04:34Zの
+read-afterでOPEN、`state:proposed-upstream-waiting`、exact source revision、九集合の本文を確認した。
+
+この再投影は基準revisionと隔離revisionの意味同値、要求追加、採否、successor、実装開始を生成しない。
+
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
 RDP-001は全要求の要否・再配置を親作業として追跡し、RDP-002は責務・機能重複、RDP-003は技術代替可能性を
 別判断面として扱う。HELIX-DBはRDP-003の一論点であり、専用実装の要否と永続・排他・再開等の意味機能を分ける。
