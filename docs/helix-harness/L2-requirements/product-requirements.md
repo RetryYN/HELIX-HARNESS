@@ -91,8 +91,8 @@ HELIX管理下への導入・更新の実行はOSの運用側で扱う。外部�
 ## 工程規則として保持する具体条件
 
 要件v1.3 §2–4の条件を対象別に整理する。以下はHARNESSが規定し、OSが適用する条件である。
-[工程要求source被覆監査](../../governance/harness-workflow-source-coverage.md)は、開発style、Discovery／PoC、Research、
-UI prototype、合流・差戻しに関係する要求source 108 clauseを原文・digest付きの非網羅追加索引として保持する。下表への参照や索引への不在だけで
+[工程要求source被覆監査](../../governance/harness-workflow-source-coverage.md)は、同監査の`scope`に列挙した工程範囲から
+要求source 108 clauseを原文・digest付きの非網羅追加索引として保持する。下表への参照や索引への不在だけで
 successor割当や移管完了を生成しない。
 
 | 親要求 | 具体条件 |
@@ -103,7 +103,7 @@ successor割当や移管完了を生成しない。
 | HARNESS-L2-002 | requirements v1.3 §4（`docs/governance/requirements-source/helix-requirements_v1.3.md:73-75,83-85`）に従い、開発styleはFull V／Production Scrum／V設計＋Scrum実装Hybridの三つから適用可能な一つだけを選ぶ。未選択、複数選択、適用条件不成立はfail-closeする |
 | HARNESS-L2-002／003 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`と起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:631`に従い、`requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`ではcase-driven Discovery／PoCを`S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`で進める。S4は人間判断とし、採択結果だけをL3機能要件へ合流する |
 | HARNESS-L2-002／003 | `FR-L1-27`と起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:632`に従い、`tech_decision_required`、`option_comparison_needed`、`adr_required`ではResearchを起動し、research memoとADRをADR参照点／L4基本設計（旧business requirements L123）へ合流する。成立性実験が必要になればDiscovery／PoCへ切り替える |
-| HARNESS-L2-002／003 | requirements v1.3 §4.1（L94、L96-108）／§4.2（L112-119）に従い、Production Scrumの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。SR4 receiptなしにrelease-readyへ進めず、findingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへrouteする。4 entityとSRV-FR-101〜112／SRV-AC-101〜112はhistorical draft sourceとして無損失保持し、後続要求PRまでcurrent authorityへ昇格させない |
+| HARNESS-L2-002／003 | requirements v1.3 §4.1（L94、L96-106）／§4.2（L112-119）に従い、Production Scrumの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。v1.3 L104-106にある4 entity、SR4 publish条件、provisional非canonicalをHARNESS条件とし、SR4 receiptなしにrelease-readyへ進めず、findingを4 routeのexactly oneへ送る。v1.3 L107-108が参照するarchiveのSRV-FR-101〜112／SRV-AC-101〜112とfixtureはhistorical draft sourceとして別途保持し、後続要求PRまでcurrent authorityへ昇格させない |
 | HARNESS-L2-003 | `HIL-BR-13`とScreen Applicability条件に従い、UI案件は要求とプロトの合意をL3凍結前に確認する。非UIもL2要求を省略せず、非適用・理由・判定者・HEAD・要求への影響・再評価条件を記録する |
 | HARNESS-L2-003 | `HIL-BR-13`に従い、UI prototypeは独立phaseにせず、`L2要求 ↔ prototype`の反復で操作・状態・failureを確認する。agreement receiptなしにL3をfreezeしない |
 | HARNESS-L2-003 | 実装は凍結済み設計の範囲に従い、L6↔L7でRed→Green→Refactorと双方向traceを閉じる。L10総合検証、L11利用者受入、L12運用評価を別の状態として扱う |

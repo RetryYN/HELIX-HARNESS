@@ -26,7 +26,7 @@ HARNESSは原source atom集合を無損失に分割・被覆するcontractを規
 | `parent_concept_revision`／`parent_planning_revision` | 承認済み親revision |
 | `source_atom_set_ref`／`source_atom_set_digest` | この要求再編で入力にした旧source atomの完全集合と集合digest |
 | `source_atom_count` | `source_holding`が保全する行数、または要求候補が入力にしたatom数 |
-| `coverage_receipt_ref`／`coverage_result` | HARNESS無損失被覆contractによる結果。merge可能値は`no_loss`だけ |
+| `coverage_receipt_ref`／`coverage_result` | `source_holding`は`source_preserved_unassigned`、要求候補は`pending_coverage`または`no_loss`。merge可能値は`no_loss`だけ |
 | `carried_atom_refs` | 当該要求revisionへ意味を保持したatom |
 | `preserved_pending_registration_refs` | 今回含めないatomを失わず保持する、別の生存中仮登録recordへの参照 |
 | `human_decision_disposition_refs` | 意味変更・縮退・retireを許した対象revision付き人間decision。該当なしは空配列 |
@@ -56,7 +56,7 @@ PR merge、Issue作成・close、review、CI、文書ファイルの存在だけ
 
 ## bootstrap source holding
 
-現registerは、既に全量照合済みの六つのsource集合を`registered_source_holding`として保持する。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合は該当recordをstaleにする訂正revisionと、新digestのrecordをappendする。既存行の上書きは禁止する。
+現registerは、既に全量照合済みの七つのsource集合を`registered_source_holding`として保持する。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合は該当recordをstaleにする訂正revisionと、新digestのrecordをappendする。既存行の上書きは禁止する。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 

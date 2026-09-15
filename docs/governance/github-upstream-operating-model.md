@@ -79,9 +79,9 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 | case-driven Discovery／PoC | `HR-FR-HYB-003`、`FR-L1-15`、`HIL-BR-28`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:631` | `requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`のいずれか | `S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`。S4は人間が判断し、採択結果だけをL3機能要件へ合流する |
 | Research | `FR-L1-27`、起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:632` | `tech_decision_required`、`option_comparison_needed`、`adr_required`のいずれか | research memoとADRを生成し、ADR参照点／L4基本設計（`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md:123`）へ合流する。成立性実験が必要ならDiscovery／PoCへ切り替える |
 | UI prototype | `HIL-BR-13`、requirements v1.3のScreen Applicability／agreement条件 | 画面対象で要求理解・操作・状態・failureの合意が必要 | 独立phaseにせず`L2要求 ↔ prototype`を反復する。agreement receiptなしにL3をfreezeしない。画面非対象は理由・判定者・入力digest・再entry triggerを持つskip receiptを要求する |
-| Scrum Reverse | requirements v1.3 §4.1（L94、L96-108）、§4.2（L112-119）、§10（L642-643） | sprint review前、release candidate合流前、public contract／DB schema／主要dependency／NFR budget変更、trace欠落、finding再発・性能退行・障害・手動回避 | `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`。4 entityを単一進捗値へ縮退せず、SR4 receiptなしにrelease-readyへ進めず、findingを4種の修正routeのexactly oneへ送る |
+| Scrum Reverse | requirements v1.3 §4.1（L94、L96-108）、§4.2（L112-119）、§10（L642-643） | sprint review前、release candidate合流前、public contract／DB schema／主要dependency／NFR budget変更、trace欠落、finding再発・性能退行・障害・手動回避 | `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`。v1.3 L104に従い4 entityを単一進捗値へ縮退せず、SR4 receiptなしにrelease-readyへ進めず、findingを4種の修正routeのexactly oneへ送る |
 
-`premise organization`／`premise research`は上流候補sourceから保持したGitHub運用上の証拠整理語彙であり、上記の確認済みHARNESS routeと同じauthorityへ自動昇格させない。推進はrouteを無条件に全適用せず、triggerを満たすrouteを選び、その内部順序・human gate・joinを保持してworkflow instanceを生成する。
+`premise organization`／`premise research`は上流候補sourceから保持したGitHub運用上の証拠整理語彙であり、上記のHARNESS route候補と同じauthorityへ自動昇格させない。推進はrouteを無条件に全適用せず、triggerを満たすrouteを選び、その内部順序・human gate・joinを保持してworkflow instanceを生成する。
 
 次の旧workflow clauseも要求sourceとidentity台帳で保持し、削除・非継承にしない。ただし新世代のnormative名称・trigger・順序・joinは未承認なので、現時点では`preserved_pending_rehome`である。
 
@@ -92,18 +92,18 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 | Incident | `FR-L1-16`、requirements v1.3 §9.2 L626、旧business requirements §3.2 | 障害検出、hotfix、即release、収束、production境界・approval確認、対応層へのbackfill | `preserved_pending_rehome` |
 | Add-feature | `FR-L1-24`、旧business requirements §3.2 | 既存上流への差分設計・実装接続とForward再合流 | `preserved_pending_rehome` |
 | Refactor | `FR-L1-25`、旧business requirements §3.2 | 振る舞い不変検証、旧L0-L14体系のL7/G7確認後のForward復帰。canonical L1-L12への層写像は未決定 | `preserved_pending_rehome` |
-| Design Refactor | requirements v1.3 §4.2／§5 L510、`HIL-BR-21`、`HIL-FR-39`、`HIL-FR-50`、`HIL-NFR-24` | 外部挙動を保つ責務・依存・命名・共通化・DDD境界改善。名称類似だけの統合、機能追加混載、意味変更を拒否 | `preserved_pending_rehome` |
+| Design Refactor | requirements v1.3 §4.2／§5 L510、`HIL-BR-21`、`HIL-FR-39`、`HIL-FR-50`、`HIL-NFR-24` | 外部挙動を保つ責務・依存・命名・共通化・外部化・DDD境界改善。名称類似だけで統合せず、機能追加を混載しない。observable behavior／public surface／DB semantics／要求に差分があればRedesign／Retrofitへrerouteする | `preserved_pending_rehome` |
 | Performance Refactor | requirements v1.3 §4.2 L116／L119 | 設計を保つ性能改善。変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に固定 | `preserved_pending_rehome` |
 | Retrofit | `FR-L1-26`、旧business requirements §3.2 | 影響評価と段階移行。旧L0-L14体系のL4-L7移行後／L7以降合流を保持し、canonical L1-L12への層写像は未決定 | `preserved_pending_rehome` |
 | Recovery | `FR-L1-08`、`FR-L1-10`、requirements v1.3 §9.2 L625 | 検出・routing、runaway、context exhaustion、開発回帰、forced stopから、再開点・訂正履歴・rollbackを伴って復旧 | `preserved_pending_rehome` |
 | version-up | requirements v1.3 §9.2、旧business requirements §3.2 | 将来版activationまでparkし、activation後にAdd-feature／Forwardへ合流 | `preserved_pending_rehome` |
 | selected-style change intake | requirements v1.3 §9.2 | styleを暗黙変更せず、影響によりRedesign／Add-feature／Scrum sliceへroute | `preserved_pending_rehome` |
 | Redesign re-entry | `HIL-BR-05`、`HIL-FR-05`、`HIL-FR-31`、requirements v1.3 §5 L509 | 影響上流とV-pairをstale化し、再freeze後にForwardへ戻す | `preserved_pending_rehome` |
-| Scrum Reverse entity／state | requirements v1.3 §4.1 L104-108、archive asset `LEGACY-ASSET-873BE1F8C64356A2FA0F` | `FeatureSlice`等4 entity、SR4 publish条件、provisional非canonical、逆引きtrace、SRV-FR-101〜112／SRV-AC-101〜112 | `preserved_pending_rehome` |
+| Scrum Reverse entity／state | requirements v1.3 §4.1 L104-108、archive asset `LEGACY-ASSET-873BE1F8C64356A2FA0F` | v1.3 L104-106の4 entity名・SR4 publish条件・provisional非canonicalと、archive FR文書内のSRV-FR-101〜112／SRV-AC-101〜112の写し。宣言oracle、全state表、fixture、confirmed親文書は一般source台帳に保持し、本追加索引では未索引 | `preserved_pending_rehome` |
 | 共通Reverse closure | 旧business requirements §3.3.1 L140-143 | 7 routeのReverse closure再利用と、Add-feature／version-up例外。旧層番号はcanonicalへ自動写像しない | `preserved_pending_rehome` |
 | interrupt subtype routing | requirements v1.3 §9.2 L633 | 暴走、未確定、追加、層内gapをRecovery、Discovery／PoC、Add-feature、Forwardへ分岐 | `preserved_pending_rehome` |
 
-この一覧は旧mode実行器や`signal → mode`をcurrentへ採用する表ではない。各source clauseを失わず、後続の一要求identity PRで新世代HARNESS contractとOS推進mappingへ分離するための未移管一覧である。
+この一覧は非網羅追加索引であり、不在を非継承・削除・対象外の根拠にしない。旧mode実行器や`signal → mode`をcurrentへ採用する表ではない。各source clauseを失わず、後続の一要求identity PRで新世代HARNESS contractとOS推進mappingへ分離するための未移管一覧である。interrupt横断機構、signal routing前提、差戻し手順と合流層、specialist workflow、gate順序、Scrum Reverseの宣言oracle・state表・fixture・confirmed親文書は全量source台帳に保持し、本一覧では未移管のまま残す。
 
 ### 自動投影実装前のbootstrap
 

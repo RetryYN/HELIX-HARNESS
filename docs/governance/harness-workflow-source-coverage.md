@@ -21,13 +21,13 @@ HARNESSの工程を一つの直線へ要約して旧要求を落とさないた�
 - Discovery／PoCの4 trigger、S0–S4、S4人間判断、選択style／L3への合流。
 - Researchの3 trigger、research memo＋ADR、L4への合流、成立性実験時のPoC切替。
 - Screen Applicability、prototype builder、walkthrough、要求back-propagation、agreement、skip、再entry。
-- Scrum Reverseの5 checkpoint、SR0–SR4、4 entity／state、release-ready、finding routing、SRV-FR-101〜112／SRV-AC-101〜112。
+- Scrum Reverseの5 checkpoint、SR0–SR4、4 entity名と選択したpublication state条件、release-ready、finding routing、FR文書内のSRV-FR-101〜112／SRV-AC-101〜112写し。
 - Design Refactor／Performance Refactorの分岐・不変条件・baseline・非混載条件。
 - Reverse、Incident、Add-feature、Refactor、Retrofit、Recovery、version-up、selected-style change intakeのtriggerと合流。
 - Reverse closureを使う共通合流原則とAdd-feature／version-up例外。
 - 要求・設計変更時のprototype agreement stale化と再freeze。
 
-SRV-FR／SRV-ACのsourceは非実行archive内の`docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`で、資産台帳`LEGACY-ASSET-873BE1F8C64356A2FA0F`に固定されている。本索引はその24行をhistorical `draft` sourceとして可視化するだけで、旧L3をcurrent authorityへ昇格させない。対象別L2／L11への採否とsource snapshot化は後続の一要求identity PRで決める。
+本索引のSRV-FR／SRV-AC写しは非実行archive内の`docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`にあり、資産台帳`LEGACY-ASSET-873BE1F8C64356A2FA0F`へ固定されている。宣言oracle文書のSRV-AC、fixture 16、entity全state表、confirmed親文書は一般source台帳で保持し、本索引には未収載である。本索引は24行をhistorical `draft` sourceとして可視化するだけで、旧L3をcurrent authorityへ昇格させない。対象別L2／L11への採否とsource snapshot化は後続の一要求identity PRで決める。
 
 ## 読み方
 
