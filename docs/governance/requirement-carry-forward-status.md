@@ -52,7 +52,7 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 - [IR要求carry-forward](legacy-requirement-carry-forward.jsonl) — `51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0`
 - [confirmed文書identity carry-forward](legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
 - [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
-- [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `ccfccb421d2764cf4730959aa0f0a9f6538f44b04ac6f2fa92a0bcbca3430b39`
+- [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `bb4d12f3cfc9c1daefa064ede8bcc21943dd10df05098f423158fb5a08512490`
 - [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 
 ## 判定規則

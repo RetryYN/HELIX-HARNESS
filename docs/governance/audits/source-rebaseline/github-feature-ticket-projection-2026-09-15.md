@@ -49,8 +49,10 @@ rollbackは新しい人間指示なしに行わない。local ticketの上流rev
 local ticketをcommit `741eddb855d9b24ac6645c4485e7d24b8123c95f`で更新した後、8件のIssueを再投影した。
 人間が読むtitle、見出し、目的、境界、依存・順序を日本語へ統一し、機械識別子だけ原語を維持した。
 #1799／#1801ではOS登録をHARNESS製品の実依存から外し、#1798先行をHELIX内部のdelivery sequenceとして表示した。
-#1805ではtag語彙とworkflow生成規則のownerがHELIX-OS推進機構であり、HARNESSは開発・検証contractだけを
-所有することを明記した。read-afterの`updatedAt`はUTCで次のとおり。
+#1804／#1805は、HARNESSがnormative workflow vocabulary、意味、trigger、適用条件、route内順序、joinを所有し、
+HELIX-OS推進機構がoperational tag、versioned mapping、composition、workflow instance生成規則を所有する境界へ
+2026-09-15に再投影した。両IssueはOPEN、marker、local source path、source commit、責務文言をread-after済みである。
+read-afterの`updatedAt`はUTCで次のとおり。
 
 | Issue | updatedAt UTC |
 |---:|---|
@@ -60,5 +62,5 @@ local ticketをcommit `741eddb855d9b24ac6645c4485e7d24b8123c95f`で更新した�
 | #1801 | 2026-09-14T17:24:52Z |
 | #1802 | 2026-09-14T17:24:53Z |
 | #1803 | 2026-09-14T17:24:55Z |
-| #1804 | 2026-09-14T17:24:56Z |
-| #1805 | 2026-09-14T17:24:57Z |
+| #1804 | 2026-09-14T23:58:49Z |
+| #1805 | 2026-09-14T23:58:50Z |
