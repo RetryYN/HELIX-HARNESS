@@ -36,6 +36,10 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
    指定された旧source／crosswalkを読む。明細台帳は機械参照用であり、AIの全文startup readには含めない。
    個別採否時は[判断ログ契約](legacy-asset-decision-log.md)に従う
 
+別PR #1827の5大目標候補を統合するときは、読込順2と現在の七大原則の間へ5大目標を置く。物理統合順は
+repository foundation PR #1797→5大目標PR #1827→#1827上へ載せ直した七大原則PR #1826とし、最終読込順を
+Concept／製品責務境界→5大目標→七大原則→対象別L1へ揃える。各PRの人間判断とmerge admissionは独立したまま扱う。
+
 Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
 この非昇格は旧要求の削減を意味しない。採用済み旧要求は`preserved_pending_rehome`として全件保持し、

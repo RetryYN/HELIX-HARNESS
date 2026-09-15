@@ -9,7 +9,7 @@ authority_effect_before_decision: none
 
 | 対象 | SHA-256 | 状態 |
 |---|---|---|
-| `docs/concept/helix-principles.md` | `ed00c2de4da079af9284d7adb1898c1e8f48f1cd2bd76037dbc692f213eeea8c` | `draft_candidate`、再review待ち |
+| `docs/concept/helix-principles.md` | `d72980517335491767780b829a2e063044bd0549a55f976ce8db0cdf6d9ebd1f` | `draft_candidate`、再review待ち |
 
 SHA-256は上記pathのUTF-8 file bytes全体に対して算出する。内容が変わった場合、この判断対象は失効し、新しいdigestへ
 固定し直す。PR、Issue、review、CI、DB、会話の状態はこの判断を成立させない。
@@ -35,14 +35,13 @@ POが提示した次の七大原則を、HELIXで企画、要求整理、設計�
 
 | 項目 | 現在値 |
 |---|---|
-| latest reviewed HEAD | `db4c9d8062fe3354173b5f38e8e1373e68ec74a0` |
-| review receipt | [GitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1826#issuecomment-5685127063) |
-| result | Blocker 0／Major 2／Minor 4 |
-| disposition | Major 2とMinor 4を判断対象本文・packetへ補正。新しい本文digestの再review待ち |
+| latest reviewed HEAD | `ae5d739727aab8af28d6a07b39152438f245b85a` |
+| review receipt | [GitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1826#issuecomment-5685432633) |
+| result | Blocker 0／Major 0／Minor 2 |
+| disposition | 観測記録とtrigger後の候補化を分離し、5大目標との関係・読込順・物理統合順を追記。新しい本文digestの再review待ち |
 
-未解決事項は、新しい本文digestに対する独立reviewと、そのBlocker／Majorの処置確認である。前回reviewが挙げた
-上流変更の人間採否、scope外refactorの候補化、PO原文、route境界、Evidence Closure、packet read-afterを補正したが、
-本packetの自己申告だけで解消扱いにしない。
+未解決事項は、新しい本文digestに対する独立reviewと、そのBlocker／Majorの処置確認である。最新reviewが挙げた
+scope外観測の保存とtrigger後の候補化、5大目標との関係と統合順を補正したが、本packetの自己申告だけで解消扱いにしない。
 
 人間判断時は、PRのcurrent HEAD、本文file SHA-256、review対象HEAD／digest、最新findingをread-afterする。
 本文digestに未reviewの変更がある、または未解消Blocker／Majorがある場合は判断を停止する。Minorは内容と処置を示し、
@@ -78,3 +77,10 @@ SHA-256、時点、維持する条件を`HDEC-HELIX-AGENT-PRINCIPLES-0.1`へ束�
 
 既存上流に未承認候補が含まれるため、七大原則の承認だけで親Conceptや製品責務境界を承認済みにしない。親sourceが変更された
 場合は影響を確認し、本候補を必要に応じて`stale`へ戻す。
+
+## 5大目標候補との関係と統合順
+
+別PR #1827の5大目標はHELIXの到達方向・価値、本書の七大原則はエージェントの行動基準である。いずれもConceptに
+従属し、一方の承認またはmergeが他方の承認、Concept改訂、要求追加を生成しない。物理統合順はrepository foundation
+PR #1797、5大目標PR #1827、#1827上へ載せ直した七大原則PR #1826とする。最終読込順はConcept／製品責務境界→
+5大目標→七大原則→対象別L1へ揃える。

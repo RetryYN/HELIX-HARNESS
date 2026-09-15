@@ -14,6 +14,8 @@ HELIXは一つの製品ではなく、複数の製品と統制機構を接続す
 [HELIXエージェントの七大原則候補](helix-principles.md)がエージェントの共通行動基準をまとめ、
 [Concept本文](helix-concept-v4.1.md)と[製品責務境界](product-boundary.md)がHELIX全体の構造と責務を詳細化する。
 七大原則候補も人間承認前であり、PRのmergeだけではauthorityにならない。
+別PR #1827の5大目標候補はHELIXの到達方向・価値を扱う。#1827の確定後に本PRをその上へ載せ直し、
+Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ統合する。
 
 ## 既に示された方向
 

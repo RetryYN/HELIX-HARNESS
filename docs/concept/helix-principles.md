@@ -24,6 +24,10 @@ HELIXの製品identity、authority、V-model、責務境界、要求、設計、
 system invariantは[Concept v4.1候補](helix-concept-v4.1.md)に置き、本書はその下でエージェントがどう考え、どう変更を
 進めるかに限定する。
 
+別PR #1827の「HELIX自体の5大目標」はHELIXの到達方向・価値を示し、本書の七大原則はそこへ進むエージェントの
+行動基準を示す。どちらもConceptに従属し、目標または原則だけから要求、責務、workflow、実装を直接生成しない。
+統合後の読込順はConcept／製品責務境界→5大目標→七大原則→対象別L1とする。
+
 本候補は人間がexact revisionを承認するまでauthorityを持たない。PRの作成・review・merge、Issueの状態、CI結果から
 承認を生成しない。承認後も、対象作業では承認済みConcept、企画、要求、設計、権限、停止条件を先に適用する。
 HARNESSが対象作業に適用するProduction、Discovery／PoC、Research、UI prototype等のrouteとroute内順序を所有し、
@@ -61,9 +65,10 @@ Discovery／PoC、Research、UI prototypeは、HARNESSが各routeに定める仮
 
 Production実装は承認済み要求と設計を満たす最小の変更から始める。将来予測だけで機能、抽象化、互換層、設定、例外経路を
 増やさない。承認済み変更scope内のTDD refactorは、Green後に要求意味と外部振る舞いを保持して同じ変更内で行う。
-scope外で重複、責務混在、変更集中、理解困難、測定可能な保守負債等を観測した場合は、HARNESSの承認済みtriggerを根拠に
-改善候補として記録し、採否とassignmentを経た別変更で扱う。機能追加と構造改善を同じPRへ混ぜない。最小化を、必要な
-検証、failure handling、観測、変更耐性を省く理由にしない。
+scope外で重複、責務混在、変更集中、理解困難、測定可能な保守負債等を観測した場合は、出典、対象scope、revisionを
+記録する。HARNESSの承認済みtriggerに該当すると確認できた観測だけを改善候補へ進め、採否とassignmentを経た別変更で
+扱う。triggerが未承認または非該当の観測は消さず、観測記録のまま保持する。機能追加と構造改善を同じPRへ混ぜない。
+最小化を、必要な検証、failure handling、観測、変更耐性を省く理由にしない。
 
 ### 6. 責務/依存分離で変更耐性を最適化
 
@@ -87,7 +92,8 @@ AIの自己申告、Issue close、PR merge、CI greenから要求authority、受
 - 上流の欠落や矛盾は変更候補として還流し、対象authorityの採否後に承認revisionから下流を導く。
 - 依存関係に沿って原子PRを構成し、非依存作業だけを並列化する。
 - Productionでは最小実装をtest、独立review、計測で検証し、scope内のTDD refactorだけを同じ変更で行う。
-- scope外の構造問題は改善候補として保存し、採否とassignment後の別変更へ送る。
+- scope外の構造問題は先に出典・scope・revision付きの観測として保存し、承認済みtriggerへの該当後だけ改善候補として
+  採否とassignment後の別変更へ送る。
 - 証拠と計測結果を保存し、改善候補を上流へ還流する。
 
 ## 判断に迷った場合
@@ -96,7 +102,8 @@ AIの自己申告、Issue close、PR merge、CI greenから要求authority、受
 - 一つのPRへ含めるか迷った場合は、単独で採否・検証・rollbackできるかを原則2で判断する。
 - modelと実装都合が衝突した場合は、原則3でdomainと責務を確認する。
 - 下流patchを重ねる状況になった場合は、原則4で要件定義と設計を疑い、上流変更候補を採否経路へ戻す。
-- 抽象化を追加するか迷った場合は、原則5で承認scope内かを確認し、scope外なら別の改善候補へ分ける。
+- 抽象化を追加するか迷った場合は、原則5で承認scope内かを確認し、scope外なら観測として保存して承認済みtriggerへの
+  該当を確認する。
 - 変更影響が広すぎる場合は、原則6で責務と依存の混在を解く。
 - 完了を主張できるか迷った場合は、原則7で反証可能な証拠と計測を確認する。
 
