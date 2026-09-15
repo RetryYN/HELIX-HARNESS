@@ -9,7 +9,7 @@ authority_effect_before_decision: none
 
 | 対象 | SHA-256 | 状態 |
 |---|---|---|
-| `docs/concept/helix-principles.md` | `92e809433bc4e7c9d88c17ba8caaa8d24dc5b8ec32650a0360410640300bdcc2` | `draft_candidate`、人間判断待ち |
+| `docs/concept/helix-principles.md` | `ed00c2de4da079af9284d7adb1898c1e8f48f1cd2bd76037dbc692f213eeea8c` | `draft_candidate`、再review待ち |
 
 SHA-256は上記pathのUTF-8 file bytes全体に対して算出する。内容が変わった場合、この判断対象は失効し、新しいdigestへ
 固定し直す。PR、Issue、review、CI、DB、会話の状態はこの判断を成立させない。
@@ -20,15 +20,33 @@ POが提示した次の七大原則を、HELIXで企画、要求整理、設計�
 採用してよいかを判断する。
 
 1. リサーチ＆検証ファースト
-2. 原子PR原則／非依存並列化
-3. DDD設計／TDD開発
-4. 下流トラブルは上流還流。トラブル時は要件定義や設計を疑う
-5. ミニマム実装／適時リファクタリング
-6. 責務／依存分離で変更耐性を最適化
-7. 確かな証拠と計測改善で品質を守る
+2. 原子PR原則/非依存並列化
+3. DDD設計/TDD開発
+4. 下流トラブルは上流還流※トラブルの原因は要件定義や設計を疑え
+5. ミニマム実装/適時リファクタリング
+6. 責務/依存分離で変更耐性を最適化
+7. 確かな証拠と計測改善で品質を守れ
 
-判断対象本文は、上記7項目を行動へ適用できる粒度に説明し、適用順序と迷った場合の戻り先を示す。HELIX全体の製品identity、
+判断対象本文は、上記7項目を行動へ適用できる粒度に説明し、HARNESS route内での適用方法と迷った場合の戻り先を示す。
+同本文の「PO提示原文」節が2026-09-16の指示を表記変更せず保持する。HELIX全体の製品identity、
 責務境界、authority、V-model、system invariantはConcept側に残し、本判断へ含めない。
+
+## review状態と未解決事項
+
+| 項目 | 現在値 |
+|---|---|
+| latest reviewed HEAD | `db4c9d8062fe3354173b5f38e8e1373e68ec74a0` |
+| review receipt | [GitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1826#issuecomment-5685127063) |
+| result | Blocker 0／Major 2／Minor 4 |
+| disposition | Major 2とMinor 4を判断対象本文・packetへ補正。新しい本文digestの再review待ち |
+
+未解決事項は、新しい本文digestに対する独立reviewと、そのBlocker／Majorの処置確認である。前回reviewが挙げた
+上流変更の人間採否、scope外refactorの候補化、PO原文、route境界、Evidence Closure、packet read-afterを補正したが、
+本packetの自己申告だけで解消扱いにしない。
+
+人間判断時は、PRのcurrent HEAD、本文file SHA-256、review対象HEAD／digest、最新findingをread-afterする。
+本文digestに未reviewの変更がある、または未解消Blocker／Majorがある場合は判断を停止する。Minorは内容と処置を示し、
+人間が残存を認識できる状態にする。
 
 ## 選択肢
 
