@@ -80,9 +80,9 @@ scope外で重複、責務混在、変更集中、理解困難、測定可能な
 
 完了と品質は、subject、対象revision、実体、test／oracle、独立review、実行世代、read-afterを接続した反証可能な証拠で判断する。
 AIの自己申告、Issue close、PR merge、CI greenから要求authority、受入、完了を生成しない。単発benchmarkだけで品質改善を
-確定しない。失敗、品質指標、利用結果、運用観測を
-継続計測し、出典とscope付きの改善候補へ変換する。計測結果は要求やauthorityを直接変更せず、人間の採否と上流変更を経て
-次の検証へつなぐ。
+確定しない。失敗、品質指標、利用結果、運用観測を継続計測し、出典、scope、revision付きの観測として保存する。
+対象authorityの承認済みtriggerまたは候補化規則に該当した観測だけを改善候補へ変換する。構造改善に当たる候補は
+原則5のtrigger条件に従う。計測結果は要求やauthorityを直接変更せず、人間の採否と上流変更を経て次の検証へつなぐ。
 
 ## 適用方法
 
@@ -94,7 +94,7 @@ AIの自己申告、Issue close、PR merge、CI greenから要求authority、受
 - Productionでは最小実装をtest、独立review、計測で検証し、scope内のTDD refactorだけを同じ変更で行う。
 - scope外の構造問題は先に出典・scope・revision付きの観測として保存し、承認済みtriggerへの該当後だけ改善候補として
   採否とassignment後の別変更へ送る。
-- 証拠と計測結果を保存し、改善候補を上流へ還流する。
+- 証拠と計測結果を観測として保存し、承認済みの候補化条件に該当したものを改善候補として上流へ還流する。
 
 ## 判断に迷った場合
 
