@@ -1,0 +1,107 @@
+name: 新世代Feature Ticketの投影
+description: ローカルFeature TicketをGitHub上の作業・共有用Issueへ投影します
+title: "[対象]: 日本語で作業目的を書く"
+labels:
+  - "state:proposed-upstream-waiting"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        このIssueは存在確認済みのローカルFeature Ticketを転記するprojectionです。要求、承認、完了の正本でも、新しい意味の入力面でもありません。以下の意味欄はローカルticket本文から転記してください。
+  - type: input
+    id: ticket_id
+    attributes:
+      label: Feature Ticket ID
+      description: ローカル正本のstable IDを入力してください
+      placeholder: FT-OS-EXAMPLE-001
+    validations:
+      required: true
+  - type: input
+    id: source_path
+    attributes:
+      label: ローカル正本path
+      description: repository rootからの相対pathを入力してください
+      placeholder: docs/governance/feature-tickets/FT-OS-EXAMPLE-001.md
+    validations:
+      required: true
+  - type: input
+    id: source_revision
+    attributes:
+      label: Source revision
+      description: 投影元commitのfull SHAを入力してください
+    validations:
+      required: true
+  - type: input
+    id: source_digest
+    attributes:
+      label: ローカル正本digest
+      description: Source revisionにあるFeature Ticket本文のSHA-256を入力してください
+      placeholder: sha256:...
+    validations:
+      required: true
+  - type: dropdown
+    id: product_target
+    attributes:
+      label: 対象product
+      options:
+        - HELIX-HARNESS
+        - HELIX-OS
+        - HELIX-Web
+        - HELIX-Web-OS
+    validations:
+      required: true
+  - type: textarea
+    id: upstream_sources
+    attributes:
+      label: 親Concept・Vision・企画
+      description: ローカルticketに記載されたsource pathとexact revisionをそのまま転記してください
+    validations:
+      required: true
+  - type: textarea
+    id: premise_basis
+    attributes:
+      label: 前提整理とresearch根拠
+      description: ローカルticketに記載されたpremise packet、未解決前提、またはresearch非適用判断をそのまま転記してください
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 目的
+      description: ローカルticketの目的を意味変更せず転記してください
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: 境界と停止条件
+      description: ローカルticketの境界、停止条件、上流承認待ちを意味変更せず転記してください
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: 実依存と実装順序
+      description: ローカルticketの依存とdelivery sequenceを意味変更せず転記してください
+    validations:
+      required: true
+  - type: textarea
+    id: legacy_requirement_carry_forward
+    attributes:
+      label: 旧要求carry-forward
+      description: 該当する原要求ID、原文digest、successor要求ID、未被覆atomを記載します。未被覆は削除せずpendingにします。
+      placeholder: 原要求ID / digest / successor / pending atom
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: authority_ack
+    attributes:
+      label: authority確認
+      options:
+        - label: Issueから要求意味・承認・完了を生成しない
+          required: true
+        - label: local ticketの存在、source revision、digestを確認し、意味欄を同ticketから転記した
+          required: true
+        - label: 上流承認前は設計・実装・Worker・CI・mergeへ進めない
+          required: true

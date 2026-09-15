@@ -1,0 +1,142 @@
+---
+plan_id: PLAN-L3-84-helix-concept-v4-upgrade
+title: "PLAN-L3-84 (redesign): HELIX Concept v4.0への更新"
+kind: add-design
+layer: L3
+drive: agent
+status: draft
+completion_claim_allowed: false
+l3_human_approval:
+  schema_version: helix-l3-human-approval.v1
+  approval_kind: human_po
+  decision: approve
+  approver: RetryYN
+  approved_at: "2026-09-04T18:03:15Z"
+  plan_id: PLAN-L3-84-helix-concept-v4-upgrade
+  approval_record_id: L3-PO-1496-001
+  approval_source: human_gate_record
+  approval_source_url: "https://github.com/RetryYN/HELIX-HARNESS/issues/1496#issuecomment-5544537992"
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c
+  target_axis: workflow_model
+  target_id: REDESIGN
+entry_signals:
+  - "po_directive:Issue #1496でHELIX Concept v4.0候補をL1／L3／L10へ最適化して取り込む"
+created: 2026-09-04
+updated: 2026-09-13
+owner: Codex / TL
+github_issue_id: 1496
+behavior_contract_id: HELIX-CONCEPT-V4-UPGRADE-001
+responsibility_owner: concept-authority
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+irreversible_impact: none
+backprop_decision: not_required
+backprop_decision_reason: "本PLAN自体がv3.1と現行機能の差をL1／L3／L10候補へ戻すAuthority Sliceである。"
+no_code_decision: no_change
+ddd_modeling_decision: aggregate
+contract_preconditions: "v3.1、current requirements、L0 charter、#1364、#1448、#1494をread-afterできる"
+contract_postconditions: "v4 Concept、L1 request、L3 requirement、L10 acceptance、capability evidence、人間向けREADME projectionが同一contractへ束縛される"
+contract_invariants: "未承認candidateはcurrent authority／IR／runtime／DBへ投影しない。provider固定topology、進捗snapshot、旧identityを不変Conceptへ混在させない"
+contract_failures: "runtime ahead of authority、READMEからのauthority生成、v3.1先行降格、approval捏造、legacy identity再出力を拒否する"
+tdd_red_required: false
+tdd_red_waiver_reason: "本sliceは未承認ConceptとL1／L3／L10候補の起草だけを行い、runtime／schema／DB変更は承認後の後続PLANへ分離する。"
+complexity_effect: net_negative
+complexity_justification: "Harness全体、Control Plane、DevOS、Adaptationの混在を8 Planeと責務境界へ整理する。"
+removal_trigger: "candidateがplan固有承認、Requirement IR admission、canonical promotionを経てv4.0 current authorityへ置換された時"
+parent_design: docs/governance/candidates/helix-concept-v4-requests.md
+pair_artifact: docs/governance/candidates/helix-concept-v4-acceptance.md
+dependencies:
+  parent: docs/governance/helix-harness-concept_v3.1.md
+  requires: []
+  references:
+    - "issue:204"
+    - "issue:397"
+    - "issue:1033"
+    - "issue:1073"
+    - "issue:1358"
+    - "issue:1364"
+    - "issue:1370"
+    - "issue:1409"
+    - "issue:1430"
+    - "issue:1448"
+    - "issue:1488"
+    - "issue:1494"
+    - "issue:1580"
+  blocks: []
+generates:
+  - { artifact_path: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/helix-concept-v4.0.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/helix-concept-v4-requests.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/helix-concept-v4-requirements.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/helix-concept-v4-acceptance.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/helix-concept-v4-capability-delta.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/helix-concept-v4-readme-projection.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/candidates/README.md, artifact_type: markdown_doc }
+modifies:
+  - { artifact_path: AGENTS.md, artifact_type: markdown_doc }
+  - { artifact_path: CLAUDE.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/governance/feedback-test-owner-disposition-residual.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/README.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l12-hybrid-reviewed-safe-v2.ts, artifact_type: source_module }
+  - { artifact_path: tests/l12-canonical-authority.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+agent_slots:
+  - { role: po, slot_label: "PO — product identityと利用者価値" }
+  - { role: se, slot_label: "SE — 8 Planeとtyped contract境界" }
+  - { role: qa, slot_label: "QA — 22 acceptance／negative oracle" }
+  - { role: tl, slot_label: "TL — v3.1移行、requirements、IR、runtime境界" }
+review_evidence: []
+---
+
+# HELIX Concept v4.0更新PLAN
+
+## Authority境界
+
+本PLANはIssue #1496のtyped human gate recordでL3候補承認済みである。承認は候補を正本化工程へ進めるものであり、
+current Concept、Requirement IR、runtime、DB、root READMEへの昇格を自動許可しない。`status: draft`と
+`completion_claim_allowed: false`は後続のcanonical promotionと実装・検証が閉じるまで維持する。
+
+承認対象は承認時点main `ab6126a89262c91ecc4b87a0b8f0b9724917c84b` のcandidate exact setである。frontmatterを除いた
+SHA-256はconcept `9b6ee7a9f9ed16ecc82e1dd4a5d06601cc0cb313fa03daa5887cfe8772a2e8ea`、requests
+`73e110258b8051906e1ac529d7c1ca857fc78a4c87b42291645348fa6f4f776a`、requirements
+`5ef79685facb3c0641ddd5b9ff716ba5e1043ba931217f9ce73904ecd948136e`、acceptance
+`59acaf43daa674a16ae3f42941e1623c5910f9715f6986fbf55cb43e2c374e30`、capability delta
+`af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc`、README projection
+`d38b8e37b21440cdd5056f0863c7b6bf569205d6342e7c55d25b7de38239b789`で、意味集合はHCV4-BR 6件、
+HCV4-FR 18件、HCV4-AC 22件とする。
+
+## 実装順
+
+1. v3.1、requirements、L0、既存capabilityとのsemantic diffを確認する。
+2. Conceptの不変定義と実装例、maturity snapshot、provider topologyを分離する。
+3. L1 request、L3 requirement、L10 acceptanceをplan固有承認候補としてfreezeする。
+4. 承認後にcurrent Conceptをv4へversion-upし、#397でRequirement IRへadmitする。
+5. governance index、root README、AGENTS／CLAUDE、startup packetを同じauthority revisionから投影する。
+6. v3.1をcompatibility／historicalへ降格し、旧identityのcurrent再出力をdoctorで拒否する。
+7. targeted、mutation、full CI、DB replay、independent exact-HEAD review、main read-after、consumer smokeを行う。
+
+## 今回の非対象
+
+- root `README.md`の利用者向け説明切替
+- runtime、schema、DBの新規実装
+- repository／CLI／state directoryのrename
+- tag、publish、DevOSのcutover
+- provider固定topologyの正本化
+
+## 先行するstartup入口是正
+
+PO指示（2026-09-13）により、canonical promotion完了を待たずにstartup入口の誤分類を先に是正する。
+PO承認済みv4候補は再編・新要求の意味判断に必須の入力とし、v3.1は通常のCore Read正本から外して
+既存契約の移管・差分照合用compatibility sourceへ分類する。この変更は候補をruntime正本へ昇格せず、
+Requirement IR、runtime、DB、root READMEへ投影しない。後続のcanonical promotion、全consumer移行、
+独立検証が完了するまで、候補directoryと`completion_claim_allowed: false`を維持する。
+
+先行是正後も、`src/lint/scrum-reverse.ts`の旧Conceptを上位正本として読む`canonicalDocs`と、
+`src/lint/propagation.ts`のv3.1固定`conceptText`は未移行consumerとして残る。文書分類だけをruntime移行完了の
+根拠にせず、canonical promotion時にv4の承認revisionへ切り替え、旧Conceptの成功で新authorityの失敗を
+相殺できない回帰テストを伴わせる。
