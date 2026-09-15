@@ -95,13 +95,13 @@ HELIX管理下への導入・更新の実行はOSの運用側で扱う。外部�
 | 親要求 | 具体条件 |
 |---|---|
 | HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |
-| HARNESS-L2-002 | 全production styleでL1–L3と人間の要件承認を必要とし、L3凍結時にstyleを合意する。Production ScrumはL3後、HybridはL5後にslice化し、Full Vはslice化しない。style選択で品質条件を省略しない |
-| HARNESS-L2-002 | Discovery／PoCは仮説・実現性を検証する別軸であり、S4判断前にproduction成果へ昇格しない。Scrumのphaseとして扱わない |
-| HARNESS-L2-002 | 開発styleはFull V／Production Scrum／V設計＋Scrum実装Hybridの三つから適用可能な一つだけを選ぶ。未選択、複数選択、適用条件不成立はfail-closeする |
-| HARNESS-L2-002／003 | `requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`ではcase-driven Discovery／PoCを`S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`で進める。S4は人間判断とし、採択結果だけをL3機能要件へ合流する |
-| HARNESS-L2-002／003 | `tech_decision_required`、`option_comparison_needed`、`adr_required`ではResearchを起動し、research memoとADRをADR参照点／L4基本設計へ合流する。成立性実験が必要になればDiscovery／PoCへ切り替える |
-| HARNESS-L2-003 | UI案件は要求とプロトの合意をL3凍結前に確認する。非UIもL2要求を省略せず、非適用・理由・判定者・HEAD・要求への影響・再評価条件を記録する |
-| HARNESS-L2-003 | UI prototypeは独立phaseにせず、`L2要求 ↔ prototype`の反復で操作・状態・failureを確認する。agreement receiptなしにL3をfreezeしない |
+| HARNESS-L2-002 | requirements v1.3 §4に従い、全production styleでL1–L3と人間の要件承認を必要とし、L3凍結時にstyleを合意する。Production ScrumはL3後、HybridはL5後にslice化し、Full Vはslice化しない。style選択で品質条件を省略しない |
+| HARNESS-L2-002 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`に従い、Discovery／PoCは仮説・実現性を検証する別軸とする。S4判断前にproduction成果へ昇格せず、Scrumのphaseとして扱わない |
+| HARNESS-L2-002 | requirements v1.3 §4に従い、開発styleはFull V／Production Scrum／V設計＋Scrum実装Hybridの三つから適用可能な一つだけを選ぶ。未選択、複数選択、適用条件不成立はfail-closeする |
+| HARNESS-L2-002／003 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`に従い、`requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`ではcase-driven Discovery／PoCを`S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`で進める。S4は人間判断とし、採択結果だけをL3機能要件へ合流する |
+| HARNESS-L2-002／003 | `FR-L1-27`に従い、`tech_decision_required`、`option_comparison_needed`、`adr_required`ではResearchを起動し、research memoとADRをADR参照点／L4基本設計へ合流する。成立性実験が必要になればDiscovery／PoCへ切り替える |
+| HARNESS-L2-003 | `HIL-BR-13`とScreen Applicability条件に従い、UI案件は要求とプロトの合意をL3凍結前に確認する。非UIもL2要求を省略せず、非適用・理由・判定者・HEAD・要求への影響・再評価条件を記録する |
+| HARNESS-L2-003 | `HIL-BR-13`に従い、UI prototypeは独立phaseにせず、`L2要求 ↔ prototype`の反復で操作・状態・failureを確認する。agreement receiptなしにL3をfreezeしない |
 | HARNESS-L2-003 | 実装は凍結済み設計の範囲に従い、L6↔L7でRed→Green→Refactorと双方向traceを閉じる。L10総合検証、L11利用者受入、L12運用評価を別の状態として扱う |
 | HARNESS-L2-004 | 要求変更・public contract変更・設計trace欠落等の際は、影響する設計と対検証へ差し戻す。Scrumの実装事実もreview・release合流前に設計資産へ戻し、必要なpair凍結を確認する |
 | HARNESS-L2-005 | 検証条件には対象要求revision、成果物、入力、oracle、expected failure、実結果、証拠の有効期限、差戻し先を含める。required／conditional／informational／N/Aを理由付きで区別し、unknownをskipへ変換しない。CI成功・画面表示・文書登録だけを利用者受入や全工程完了の証拠にしない |
