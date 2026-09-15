@@ -62,16 +62,16 @@ document_ledger: `legacy-requirement-document-carry-forward.jsonl`
 ## 153件以外の旧要求源
 
 153件は旧Infinity Loop IRの閉じた集合であり、HELIX全要求の総数ではない。HBR／HNFR、requirements v1.3、
-refinement 14契約、旧HARNESS要求5文書、screen要求、candidate 97文書等は既存source inventoryの別集合として保持する。
-採用済み要求は同じ`preserved_pending_rehome`規則へ追加し、candidateはcandidate状態を保つ。両者を混同して
-採用済み要求を候補へ降格しない。追加集合の原文単位ledger化が終わるまで「旧要求すべて移管済み」と主張しない。
+refinement 14契約、旧HARNESS要求5文書、screen要求、archive candidate 92文書等は既存source inventoryの別集合として保持する。
+sourceで採用済みだった要求は同じ`preserved_pending_rehome`規則へ追加し、candidateは`historical_candidate`を保つ。両者を混同して
+sourceで採用済みだった要求を、新世代targetが未承認であることを理由に候補へ降格しない。追加集合の原文単位ledger化が終わるまで「旧要求すべて移管済み」と主張しない。
 
 旧HARNESS要求5文書、旧画面要求7文書、旧HELIX要求9文書、画面境界1文書は、元のauthority状態を
 再分類せず現行保持領域へ同一byteで配置する。文書に旧ownerや旧技術が混在する場合も、責務・実現方式の整理と
 要求意味の保持を別判断にする。文書単位の保持だけでatom単位の再配置完了とはせず、原要求ID単位の台帳を順次追加する。
 source metadataが`confirmed`の17文書は`source_confirmed_preserved`、`draft`／`proposed`／`placeholder`の
 5文書は`source_state_preserved_without_promotion`とする。新世代側で承認を取り直していないことを理由に、前者を
-後者へ変更しない。責務分離によって意味変更が必要な箇所だけを、人間decisionへ送る。
+後者へ変更しない。保持・再配置、意味変更、retireを別decision種別として、すべての要求PRを対象revision付きの人間decisionへ送る。
 
 confirmed文書で明示宣言された要求、価値、KPI、画面、制約のidentityは
 `legacy-confirmed-requirement-identity-carry-forward.jsonl`へsource-qualified IDとして保持する。同名IDをAIが

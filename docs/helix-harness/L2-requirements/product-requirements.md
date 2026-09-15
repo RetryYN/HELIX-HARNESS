@@ -19,7 +19,7 @@ parent_l1_candidate: docs/helix-harness/L1-planning/product-intent.md
 要求の対象を分離する。本書は既存の混在要求から分離した案であり、個別要求の合意・IR移管は未完了である。
 旧`harness/L1-requirements`や`L2-screen`の配置だけを現行採用の根拠にしない。
 
-既存の採用済み要求は[無損失carry-forward方針](../../governance/legacy-requirement-carry-forward-policy.md)に従って保持する。
+sourceで採用済みだった要求意味は、そのsource authorityを保って[無損失carry-forward方針](../../governance/legacy-requirement-carry-forward-policy.md)に従って保持する。新世代targetへの配置は未承認である。
 本書と参照crosswalkに残る「再採否」「不採用」「棄却」は、明示された旧owner、旧技術、旧CI、旧実装方式、
 または元からcandidateだった項目にだけ適用する。原要求IDと要求意味を削除・縮退・candidate降格する意味には使わない。
 原要求は対象product、責務、粒度、接続関係を再配置し、未被覆atomを`pending`として残す。要求意味の変更または

@@ -19,7 +19,7 @@ authority: machine ledgers linked below
 現時点ではsuccessor割当済みは0件である。37件の対象別L2はrouting containerであり、この表のsuccessorへ自動算入しない。
 要求の再配置が始まっていないことを、要求削減や移管完了として表示しない。
 v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pending_rehome`列へ混在させない。
-旧candidate 92文書の4,755行も`historical_candidate`／`draft_candidate`／`preserved_pending_atomization`であり、採用済み要求や棄却済み実現方式へ混在させない。
+旧candidate 92文書の4,755行も`historical_candidate`／`draft_candidate`／`preserved_pending_atomization`であり、sourceで採用済みだった要求や棄却済み実現方式へ混在させない。
 
 ## IR 153件の対象routing候補
 
