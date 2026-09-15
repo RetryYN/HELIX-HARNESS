@@ -13,6 +13,11 @@ source_document_closure: `delegated-requirement-document-source-holding.jsonl`�
 
 ## 全量
 
+本台帳の抽出対象は、意味relation closure 117文書のうちfile blobで保持するMarkdown 114文書に現れる、archive内に実在する
+`docs/`配下fileへのfrontmatter path参照と本文path参照である。同じ行の複数参照と再出現は別edgeとして数える。closure内の
+非Markdown 1文書と、Scrum Reverse行台帳で保持するMarkdown 2文書は参照元走査の対象外であるため、「117文書から788件」は
+この抽出境界を含む表現として扱う。
+
 | origin | record数 | 扱い |
 |---|---:|---|
 | 意味frontmatter relation | 265 | 117文書のclosureを形成し、file blobまたは既存行台帳でatom化待ちとして保持 |
@@ -37,3 +42,13 @@ unique targetは、workflow PLAN 74、意味source候補34、process 8、migrati
 後続要求PRが分類待ちtargetの意味を利用・縮退・retireするときは、対象blobからatom化して管理層へ別仮登録し、
 元reference IDを入力sourceとして保持する。分類待ちを理由なく除外する、参照先がarchiveにあるだけで被覆済みにする、
 PLANやprocessを一括して非要求と決める場合はfail-closeする。
+
+`src/`、`scripts/`、`tests/`、`config/`等の`docs/`外path、directoryまたはglob、archiveに実在しない参照先、非Markdown参照元は
+788 edgeの分母に含めない。実在するfileは4,020件のarchive asset台帳でbyteを保持し、除外を非要求判断として扱わない。
+後続reviewで要求意味または意味sourceと判明した実在fileは、利用前にfile blobまたはatomを管理層へ仮登録する。実在しない参照は
+欠落参照として出典行と採否を記録し、存在しないblobを保持済みとは主張しない。
+
+分類待ちtargetを要求意味または意味sourceとして使うときは、そのtarget自身へ
+[意味relation closure規則](delegated-requirement-document-source-inventory.md)を再適用する。そこから到達した実在文書は、要求PRの
+入力に使う前にfile blobまたは既存行台帳で保持し、管理層へ仮登録する。第一段の参照targetだけを保持して二段目以降を黙って
+切らない。

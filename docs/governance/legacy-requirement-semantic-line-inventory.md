@@ -37,6 +37,13 @@ processing_contract: [atom化review contract](requirement-atomization-review-con
 
 このwaveはレビュー順だけを決める。A1を新世代要求として自動採用せず、A2を削除・降格もしない。各sourceの元status、要求意味の保持、対象別authorityへの採用を別状態として扱う。
 
+`screen-mock-boundary.md`の本台帳とqueueは、archive隔離直前revision
+`1cccd0fe7ec19a1a70cec89737ea5932ed365604db7eb6e10865ea71e5d90e83`（source status `draft`）だけを行抽出した。
+監査基準revision `e094bc7eae5ad08f19060ec3a7523d69678aff94a8990d3cbb72eca517ff582c`（source status `confirmed`）の行は
+本台帳にもqueueにも未登録であり、[revision差分台帳](pre-isolation-revision-delta-source-holding.jsonl)のfile blob保持だけである。
+後続atom化は、基準revisionの行atomを別台帳へ仮登録してから両revisionを入力し、意味同値を人間が判断するまで一方を他方で
+被覆済みにしてはならない。
+
 ## 台帳field
 
 各行は次を持つ。

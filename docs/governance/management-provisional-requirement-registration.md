@@ -58,8 +58,8 @@ terminal revisionと、そのrevisionが指す対象はいずれも生存先と�
 3. `coverage_result: no_loss`で、`unaccounted_atom_refs`が空である。
 4. 今回移さないatomは、`preserved_pending_registration_refs`が指す生存中の`source_holding`または別の`requirement_candidate` recordで管理層へ仮登録されている。
 5. `management_state: registered_proposal`、`authority_effect: none`である。
-6. 対象HEADでregisterをread-afterし、欠落、重複、`stale`、`superseded`、`rejected_registration`、wrong product、digest不一致がない。
-7. 入力source pathが`MPR-SH-PREISOLATION-*`の333 pathに含まれる場合、監査基準revisionと隔離直前revisionの両方をatom入力に含める。同値として一方へまとめる場合は、両digestへ束縛した人間decisionを持つ。
+6. 対象HEADでregisterをread-afterし、欠落、重複、`stale`、`superseded`、`rejected_registration`、wrong product、digest不一致がない。さらに入力atomの`source_path`、保持copy path、source file SHA-256を、`MPR-SH-PREISOLATION-*`が参照する333件の`source_path`、`archive_path`、`baseline_file_sha256`、`pre_isolation_file_sha256`へ照合する。
+7. 条件6のいずれかが333件のrevision差分へ対応する場合、path表記が異なっていても、監査基準revisionと隔離直前revisionの両方をatom入力に含める。同値として一方へまとめる場合は、両digestへ束縛した人間decisionを持つ。保持copy pathだけを入力して本条件を回避してはならない。
 8. 別条件として、対象revisionに対する人間decisionとGitHub ClaudeのBlocker／Major 0を満たす。
 
 PR merge、Issue作成・close、review、CI、文書ファイルの存在だけでは仮登録や`no_loss`を生成しない。register recordが無い、古い、対象が違う、被覆集合が不明、未計上atomがある場合はfail-closeする。
