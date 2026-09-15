@@ -176,3 +176,24 @@ Issue本文の要約はlocal Source全本文を意味契約としていたが、
 | authority effect | `none` |
 
 この訂正はGitHub本文を正本にせず、Issueの表示をlocal sourceの正確なnavigationへ合わせたprojection補正である。
+
+## #1798のrevision別要求保持条件への再同期
+
+receipt_id: `FTPROJ-1798-20260916-003`
+correction_of: `FTPROJ-1798-20260916-002`
+
+要求PR merge admissionへ、333 pathに含まれるsourceは監査基準revisionと隔離直前revisionを両方atom入力へ含め、
+同値としてまとめる場合も両digestへ束縛した人間decisionを要求する条件を追加した。このlocal変更を含むcommitへ
+Issue #1798のsource revisionを更新し、merge admissionの参照区間を`52–65行`へ再同期した。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `a25be494d720ba67afeec76859b0b24a3d91e50c` |
+| local Feature Ticket SHA-256 | `4f6741b75629405011880e960dd32f47b6b53282519448ef3b4653cf7fdbbe89` |
+| previous remote revision | `updatedAt:2026-09-15T17:45:28Z+body_sha256:59d98860b1102e34bacf4a1eb361b32f8897b9b98a60e41e1dbc8e8b75ee44cb` |
+| corrected remote revision | `updatedAt:2026-09-15T17:47:57Z+body_sha256:d6640ce7552d70dc23f9c9fbe234e96ad5408c6acc7e7c18a5bc3169eff903d5` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+Feature Ticket本文の意味digestは変わっていない。同期対象commitとnavigationを更新しただけであり、要求採用、
+baselineと隔離直前revisionの同値判断、実装開始を生成しない。
