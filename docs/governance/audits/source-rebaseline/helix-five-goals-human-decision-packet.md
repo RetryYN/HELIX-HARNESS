@@ -9,7 +9,7 @@ authority_effect_before_decision: none
 
 | 対象 | SHA-256 | 状態 |
 |---|---|---|
-| `docs/concept/helix-five-goals.md` | `18cdc25cb1602a548c164c086f7a61e2110b9a77399381f6633f4a8b6cd0cfe4` | `draft_candidate`、current revisionのreview待ち |
+| `docs/concept/helix-five-goals.md` | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | `draft_candidate`、current revisionのreview待ち |
 
 SHA-256は上記pathのUTF-8 file bytes全体に対して算出する。内容が変わった場合、この判断対象は失効し、新しいdigestへ
 固定し直す。PR、Issue、review、CI、DB、会話の状態はこの判断を成立させない。
@@ -32,9 +32,9 @@ POが提示した次の5大目標を、HELIX全体の到達方向として採用
 
 | 項目 | 現在値 |
 |---|---|
-| completed review | [旧HEAD `a5c5832e`のGitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1827#issuecomment-5685285605)：Blocker 0／Major 0／Minor 5。current revisionの判断根拠にはしない |
+| completed review | [旧HEAD `565b6aa5`のGitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1827#issuecomment-5685530362)：Blocker 0／Major 0／Minor 1。current revisionの判断根拠にはしない |
 | review request | current exact HEADへのGitHub Claude再reviewをpush後に依頼し、PR上でread-afterする |
-| state | Minor 5件を本文へ反映済み。current revisionのreview未完了 |
+| state | 旧reviewのMinor 1件を本文へ反映済み。current revisionのreview未完了 |
 
 未解決事項は、current本文digestに対する独立reviewと、そのBlocker／Majorの処置確認に加え、承認後に5大目標を
 Concept v4.1の目的・製品別Conceptへ取り込む改訂範囲、および旧L0 charter §2の目的P0–P9との保持・追加・重複関係である。

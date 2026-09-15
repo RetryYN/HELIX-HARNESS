@@ -71,11 +71,11 @@ riskを確認して必要な判断を行えることを目指す。速度のた�
 
 | 目標 | HELIX-HARNESS | HELIX-OS | HELIX-Web | HELIX-Web-OS |
 |---|---|---|---|---|
-| 1 | 既存Concept上、工程、層、pair、停止・差戻し・完了条件に関与する | 既存Concept上、管理から工程を受け、推進がticket・workflowを生成し、Worker実行と検収を統制する | 承認済みHARNESS契約に従う個別製品として関与しうる | Web service runtimeとして承認済みHARNESS契約に従う |
-| 2 | 既存Concept上、要求・設計・検証契約と改善対象に関与する | 既存Concept上、log、学習、計測を改善候補へ変え、HARNESS自身を含むprojectへ還流する | 許可された利用結果を改善入力候補として返す | 許可されたservice log、telemetry、incident、利用結果をscope付きでHELIX-OSへ返す |
+| 1 | 既存Concept上、工程、層、pair、停止・差戻し・完了条件に関与する | 既存Concept上、管理から工程を受け、推進がticket・workflowを生成し、Worker実行と検収を統制する | 承認済みHARNESS契約に従う個別製品として関与しうる | 開発・検証面では採用HARNESS版を参照する。Web serviceの運転責務はWeb-OS L1に従う |
+| 2 | 既存Concept上、要求・設計・検証契約と改善対象に関与する | 既存Concept上、log、学習、計測を改善候補へ変え、HARNESS自身を含むprojectへ還流する | 利用者が、改善入力に使う利用結果の目的・範囲・同意を管理する体験に関与する | 許可されたservice log、telemetry、incident、利用結果をscope付きでHELIX-OSへ返す |
 | 3 | simulation contractをどの製品が所有するかはConcept改訂と対象別L1で決める | simulationの実行・記録責務を持つかはConcept改訂と対象別L1で決める | 製品固有情報をsimulation入力にするかは個別製品L1で決める | service運転情報をsimulation入力にするかは個別製品L1で決める |
 | 4 | 非エンジニア向け開発契約を所有するかはConcept改訂と対象別L1で決める | CI、bot、証拠、停止・再開、進行に対する既存の関与を基に、追加責務は対象別L1で決める | HARNESS Version 1後の操作・dashboard体験の候補として関与する | Webのservice運転基盤として関与する。非エンジニア向け入口の責務はWeb側L1とともに決める |
-| 5 | 既存Concept上、作業分類、能力契約、検証義務に関与する | 既存Concept上、Worker能力・費用・品質の計測、assignment、独立検証に関与する | providerやmodelを製品要求の固定authorityにしない | service運転で利用するWorkerにも承認済みの配置・検証契約を適用する候補とする |
+| 5 | 既存Concept上、作業分類、能力契約、検証義務に関与する | 既存Concept上、Worker能力・費用・品質の計測、assignment、独立検証に関与する | providerやmodelを製品要求の固定authorityにしない | service運転でWorkerを使うか、使う場合の配置・検証契約をどう適用するかはConcept改訂とWeb-OS L1で決める |
 
 責務のprimary ownerは、5大目標を取り込んだConcept revisionの承認後、各目標を対象別L1・要求へ分解するときに
 一意にする。目標が複数製品へ関係することを理由に、HARNESSとHELIX-OS、HELIX-WebとHELIX-Web-OSのauthorityを
