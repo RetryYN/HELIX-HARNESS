@@ -13,7 +13,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 
 1. [Concept入口](../concept/README.md)
 2. [Concept本文](../concept/helix-concept-v4.1.md)と[製品責務境界](../concept/product-boundary.md)
-3. [HELIX原理原則候補](../concept/helix-principles.md)
+3. [HELIXエージェントの七大原則候補](../concept/helix-principles.md)
 4. 対象製品のL1
    - [HELIX-HARNESS](../helix-harness/L1-planning/product-intent.md)
    - [HELIX-OS](../helix-os/L1-planning/system-intent.md)

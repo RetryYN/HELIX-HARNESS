@@ -1,138 +1,120 @@
 ---
-document_id: HELIX-PRINCIPLES-V0.1
+document_id: HELIX-AGENT-PRINCIPLES-V0.1
 principles_version: "0.1-candidate"
 status: draft_candidate
 authority_status: awaiting_human_approval
+source_basis: PO direction 2026-09-16
 derived_from:
   - docs/concept/helix-concept-v4.1.md
   - docs/concept/product-boundary.md
   - docs/governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md
-  - docs/governance/authority-state-model.md
 canonical_promotion: pending
 approval_scope: exact_body_revision_pending
 approved_body_sha256: pending_human_decision
 authority_effect_before_approval: none
 ---
 
-# HELIX 原理原則候補
+# HELIXエージェントの七大原則候補
 
 ## 位置づけ
 
-本書は、HELIXのConceptを個別要求、設計、実装、運用へ降ろす際に使う判断基準をまとめる。
-Conceptや対象別要求を置換せず、新しい製品機能、要求、技術、workflow instance、実装許可を追加しない。
+本書は、HELIXで企画、要求整理、設計、実装、検証、運用改善を担うエージェントの共通行動原則を定める。
+HELIXの製品identity、authority、V-model、責務境界、要求、設計、実装を置換する文書ではない。HELIX全体の構造原則と
+system invariantは[Concept v4.1候補](helix-concept-v4.1.md)に置き、本書はその下でエージェントがどう考え、どう変更を
+進めるかに限定する。
 
 本候補は人間がexact revisionを承認するまでauthorityを持たない。PRの作成・review・merge、Issueの状態、CI結果から
-承認を生成しない。承認後もConceptより下位、対象別L1より上位の解釈基準として用いる。Conceptと矛盾する場合は
-本書を停止・改訂し、下位文書が本書と矛盾する場合は影響する下位revisionを`stale`として再導出する。
+承認を生成しない。承認後も、対象作業では承認済みConcept、企画、要求、設計、権限、停止条件を先に適用する。
 
-## 原理原則
+## 七大原則
 
-### P1. 人間が意味と境界を決める
+### 1. リサーチ＆検証ファースト
 
-人は価値、製品境界、要求、体験、所定の上流承認、不可逆作用の許可を所有する。AI、Worker、要求エンジン、
-reviewer、CI、学習機構は候補、質問、差分、証拠を提示できるが、人間の採否を代行しない。判断はactor、target、scope、
-exact revisionへ束縛する。
+判断や実装の前に、目的、前提、既知の事実、不明点、既存source、反証方法を確認する。必要なresearchは一次sourceを
+優先し、採用した知見、採用しなかった知見、確認revision、対象範囲を残す。実装案を先に正解とせず、何をもって成立・
+不成立と判断するかを決めてから下流へ進む。
 
-### P2. 正本とprojectionを分ける
+### 2. 原子PR原則／非依存並列化
 
-Concept、企画、要求、要件の意味はrepo-ownedの対象別文書、指定された構造化source、人間が承認したrevisionに置く。
-GitHub、DB read model、dashboard、memory、会話、生成viewは共有・作業・観測のprojectionであり、そこから要求の追加、削除、
-採否、合意、受入、退役を生成しない。
+一つのPRは、一つの独立して判断可能な目的と変更単位へ閉じる。要求採否、設計、実装、運用変更など異なるdecisionを
+一つのPRへ混ぜない。依存する作業は上流から直列に接続し、相互に依存しない作業だけを並列化する。各PRは対象revision、
+変更理由、非対象、検証、依存先を単独でreviewできる形にする。
 
-### P3. 製品ごとに責務を一意に置く
+### 3. DDD設計／TDD開発
 
-HARNESSは外部提供する開発契約を持ち、V-model、層、pair、要求形成、設計、検証、工程の順序、停止、差戻し、完了条件を
-定義する。HELIX-OSはHARNESSを適用してHELIXプロジェクト群を管理し、Worker、assignment、state、log、CI、学習、改善、
-配布運転を担う。個別製品は利用価値と固有要求を持ち、そのservice runtimeは必要に応じて別の運転基盤へ置く。
-管理対象、参照する規則、実行主体を同じ要求ownerへ畳み込まない。
+設計はdomain、利用者価値、責務境界、用語、entity、関係、invariantを先に明らかにし、実装都合でdomainを歪めない。
+開発は承認済み要求と設計から観測可能な振る舞いと失敗条件を導き、実装前に検証可能なtest／oracleへ表す。testを通すために
+要求や設計を暗黙変更せず、差異は上流へ戻す。
 
-### P4. 契約を先に定め、推進が実行形へ変換する
+### 4. 下流トラブルは上流還流
 
-HARNESSがnormative workflow vocabulary、その意味、trigger、適用条件、route内順序、join、停止・差戻し・完了条件を持つ。
-HELIX-OSの管理が目的、親要求、制約、許可、予算、期限、HARNESS版を推進へ渡し、推進機構がoperational tag、mapping、
-ticket graph、workflow instanceを生成する。推進機構はHARNESSの意味契約を別定義せず、HARNESSは個別ticketを直接生成しない。
+実装、test、CI、統合、運用で問題が起きたときは、局所的な修正だけで閉じず、要件定義や設計に原因がないかを先に疑う。
+要求の欠落、曖昧さ、矛盾、責務違い、依存不足、検証条件不足を確認し、原因が上流にあれば正しい上流revisionを改訂して、
+影響する下流を再導出・再検証する。下流のgreenで上流の不整合を隠さない。
 
-### P5. 上流から順に導出する
+### 5. ミニマム実装／適時リファクタリング
 
-Conceptと責務境界から、対象別L1、L2／L11、L3／L10、残る正規pair、release、observationへ順に降ろす。
-上位を飛ばさず、実装や既存運用が先に存在しても上流の意味を補完する正本にしない。上位変更時は影響する下位を
-`stale`にし、旧下流のgreenで未接続を相殺しない。
+実装は承認済み要求と設計を満たす最小の変更から始める。将来予測だけで機能、抽象化、互換層、設定、例外経路を増やさない。
+重複、責務混在、変更集中、理解困難、測定可能な保守負債が現れた時点で、要求意味と外部振る舞いを保持しながら適切な層を
+リファクタリングする。最小化を、必要な検証、failure handling、観測、変更耐性を省く理由にしない。
 
-### P6. 既存要求は無損失で保持してから判断する
+### 6. 責務／依存分離で変更耐性を最適化
 
-旧要求は原文、identity、source状態、revision、digestを保持し、対象別へ再配置する。新しい配置案が少数であること、
-実装が無いこと、責務や機能が重なること、技術的に代替できることを削除理由にしない。保持、分割、再配置、統合、
-意味変更、縮退、retireは原意味atomを一つずつ計上し、successor被覆、未被覆0件、対象revision付き人間decisionへ束縛する。
+各意味と動作にはprimary responsibility ownerを一意に置き、製品、domain、層、component、外部作用の境界を明示する。
+依存方向、version、入力、出力、failure、権限を契約として表し、変更をadapterまたは明示的な接続点で吸収する。変更前に
+責務、依存先、consumer、V-pair、検証、運用への影響を辿り、必要な範囲だけをstale化して降ろし直す。
 
-### P7. 意味、管理、実行の状態を混ぜない
+### 7. 確かな証拠と計測改善で品質を守れ
 
-sourceでの採用状態、target文書の承認状態、carry-forward状態、管理層の仮登録状態、作業projection状態を別軸で持つ。
-仮登録、Issue close、PR merge、review、CI green、実装完了の一つから、別軸の成立を推定しない。要求、実装、検証、受入、
-運用も単一の`done`へ畳み込まない。
+完了と品質は、対象revision、実体、test／oracle、review、実行結果、read-afterを接続した反証可能な証拠で判断する。
+AIの自己申告、Issue close、PR merge、CI green、単発benchmarkを単独の根拠にしない。失敗、品質指標、利用結果、運用観測を
+継続計測し、出典とscope付きの改善候補へ変換する。計測結果は要求やauthorityを直接変更せず、人間の採否と上流変更を経て
+次の検証へつなぐ。
 
-### P8. 実行を明示された境界へ閉じ込める
+## 適用順序
 
-Workerは対象revision、assignment、branch、lease、budget、capability、allowed path、期限へ束縛する。権限、対象、依存、
-停止条件が不明な場合は実行せず、暗黙のfallbackや別経路への切替を行わない。外部作用とsemantic coreを分け、意味出力を
-権限や実行命令として扱わない。
+七原則は独立した標語ではなく、次の順で一つの変更へ適用する。
 
-### P9. 完了は反証可能な証拠の接続で決める
+1. researchと反証条件により、問題と前提を確かめる。
+2. domain、責務、依存、変更単位を定める。
+3. 上流の欠落や矛盾を直し、要求と設計からtest／oracleを導く。
+4. 依存関係に沿って原子PRを構成し、非依存作業だけを並列化する。
+5. 最小実装を行い、test、review、計測で検証する。
+6. 観測された構造問題を適時リファクタリングし、影響範囲を再検証する。
+7. 証拠と計測結果を保存し、改善候補を上流へ還流する。
 
-完了はsubject、exact revision、実体、要求されたoracle、独立review、実行世代、read-afterを接続して判定する。
-AIの自己申告、古いreview、別HEADの結果、画面表示だけを完了根拠にしない。単体要求の成立から接続要求や構成体要求の
-成立を推定しない。
+## 判断に迷った場合
 
-### P10. 不明と矛盾は保持して停止する
+- 速く実装するか、先に調べるか迷った場合は、原則1に戻る。
+- 一つのPRへ含めるか迷った場合は、単独で採否・検証・rollbackできるかを原則2で判断する。
+- modelと実装都合が衝突した場合は、原則3でdomainと責務を確認する。
+- 下流patchを重ねる状況になった場合は、原則4で要件定義と設計へ戻る。
+- 抽象化を追加するか迷った場合は、原則5で現在の要求と観測された負債に照らす。
+- 変更影響が広すぎる場合は、原則6で責務と依存の混在を解く。
+- 完了を主張できるか迷った場合は、原則7で反証可能な証拠と計測を確認する。
 
-unknownをnone、unchanged、healthy、greenへ読み替えない。source、digest、revision、owner、依存、decisionが不一致または
-不足する場合は元状態と未解決事項を保持して停止する。compatibilityや旧世代の成功をcurrent failureの代替にしない。
-
-### P11. 観測と学習は改善候補へ戻す
-
-HELIX-OSは内部実践、外部利用、許可されたservice log、失敗、診断、review、環境変化を出典とscope付きで統合し、
-HARNESS自身を含む対象製品の改善候補を作る。学習、監査、要求エンジン出力、findingはauthorityへ直接writeせず、人間の
-採否と対象別上流変更を経て再設計・再検証する。
-
-### P12. 再利用と提供は適格性で決める
-
-旧世代は元構造、provenance、digestを保つ非実行archiveとして扱い、新世代のbaseline、parity oracle、fallbackにしない。
-既存資産は要求、behavior、設計、oracle、runtime、consumerへ分解し、完全一致再利用または意味の再導出を明示してから
-新世代へ接続する。提供物は承認済み要求と検証済み機能から合成し、release、deployment、observationを別状態にする。
-
-## 要求整理での適用
-
-要求を残す、分ける、移す、統合候補にする、技術代替候補にする、意味変更またはretire候補にする前に、次を確認する。
-
-1. 原文、identity、source状態、revision、digestを固定している。
-2. 対象製品とprimary responsibility ownerを一意に示している。
-3. unit、connection、compositeのどの粒度かを示し、別粒度の成立を推定していない。
-4. Concept・企画・research・親要求との因果関係を保持している。
-5. successorと原意味atomの被覆を示し、未被覆を0件にしている。
-6. 重複や技術代替の分析を、要求意味の自動削除や自動変更に使っていない。
-7. 管理層への仮登録と要求採否を分け、仮登録に`authority_effect: none`を保っている。
-8. 対象revision付き人間decisionの前にtarget authorityを確定していない。
-
-一項目でも不明なら、原要求を保持したまま未解決として次の判断へ送る。
+不明、矛盾、未検証が残る場合は、都合のよい推定で埋めず、元の状態と未解決事項を保持して停止する。
 
 ## 本PRで決めないこと
 
-- 個別要求の追加、採否、具体化、統合、意味変更、retire。
+- 個別要求の追加、採否、分割、統合、意味変更、retire。
+- DDD、TDD、research、計測で使う具体的なtool、framework、schema、数値基準。
+- PRの最大行数、commit数、並列数、reviewer数。
 - L1、L2／L11、L3／L10の承認またはcanonical promotion。
-- 要求エンジン、Design Template、DB、adapter、CI、runtimeの技術方式。
-- workflow vocabulary、tag、route、ticket schemaの具体的な値。
+- 要求エンジン、Design Template、DB、adapter、CI、runtime、workflowの設計・実装。
 - HELIX-HARNESS Version 1の完成、HELIX-Web展開、release、deploymentの許可。
 
 ## 出典対応
 
-| 原則 | 主な既存source |
-|---|---|
-| P1、P9 | [Concept v4.1候補](helix-concept-v4.1.md)「目的」「9原則」「System invariant」 |
-| P2、P7 | [上流authority状態モデル](../governance/authority-state-model.md)「五つの独立した状態軸」 |
-| P3、P4 | [製品責務境界](product-boundary.md)「明示された決定」「対象別の正規入口」 |
-| P5 | [上流再整備方針](../governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)「上流から降ろし直す順序」 |
-| P6 | [Concept v4.1候補](helix-concept-v4.1.md)「新世代への再構築」と[上流authority状態モデル](../governance/authority-state-model.md)「許可する状態遷移」 |
-| P8、P10 | [Concept v4.1候補](helix-concept-v4.1.md)「System invariant」 |
-| P11 | [Concept v4.1候補](helix-concept-v4.1.md)「HELIX-OS Concept」 |
-| P12 | [上流再整備方針](../governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)「新世代の基準点」「既存資産の管理単位」 |
+| 原則 | PO提示 | 既存Concept／統制との接続 |
+|---|---|---|
+| 1 | リサーチ＆検証ファースト | Conceptからresearch、要求、検証へ降ろす順序とEvidence Closure |
+| 2 | 原子PR原則／非依存並列化 | 責務単位の変更、bounded execution、対象revision単位のdecision |
+| 3 | DDD設計／TDD開発 | Responsibility First、要求・設計・検証の正規pair |
+| 4 | 下流トラブルは上流還流 | 上位変更時のstale化、backflow、旧下流greenによる相殺禁止 |
+| 5 | ミニマム実装／適時リファクタリング | 承認scope内の実行、改善候補からの再設計・再検証 |
+| 6 | 責務／依存分離で変更耐性を最適化 | Product Separation、exactly-one owner、relationとimpact管理 |
+| 7 | 確かな証拠と計測改善で品質を守れ | Evidence Closure、Controlled Adaptation、authorityへの直接write禁止 |
 
-本書は上記sourceの共通判断基準を短く抽出した候補であり、source本文の条件を省略または上書きしない。
+本書はPOが提示した七大原則を行動判断へ具体化した候補である。既存Concept、対象別要求、V-model contract、authority状態、
+停止条件を省略または上書きしない。
