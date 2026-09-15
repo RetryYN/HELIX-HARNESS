@@ -193,6 +193,7 @@ OS側が判断記録・反復実行を所有し、HARNESS側は以下の進行�
 [新世代対応表](../../governance/audits/source-rebaseline/new-generation-management-change-source-crosswalk.md)で再採否する。
 HARNESS-L2-003／004では、管理上の観測や改善判断から製品要求を直接変更せず、意味が変わる最上流の対象層へ
 変更候補を戻し、差戻し・再合意・pair再凍結・再検証の必要範囲を決める。
+HARNESS-L2-004の無損失変更contractは、入力source atom集合を当該要求へ保持する集合、別の生存中候補へ残す集合、対象revision付き人間decisionで変更・retireする集合へ完全分割し、未計上atomを0にする。HELIX-OS管理はこの被覆receiptと要求候補を仮登録するが、仮登録から要求採用・実装許可を生成しない。
 
 管理上の緊急性、Issue作成、Project状態、既存CI成功を、V-pair、上下trace、検証、利用者受入の省略理由にしない。
 旧Management Scrum policyにある管理作業の`S0..S4`、Scrum運用ceremony、旧adapterをHARNESSの固定workflowとして継承しない。これはrequirements v1.3 §4.1の製品開発用Scrum Reverse（SR0–SR4、release-ready条件、finding routing）を外す意味ではない。本節は工程条件の要求案であり、

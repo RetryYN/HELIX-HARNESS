@@ -89,6 +89,7 @@ as_of: 2026-09-14
 - Concept→L1→L2→L3とL2↔L11／L3↔L10の接続が対象別に閉じている。
 - canonical、candidate、compatibility、historical、projectionが混在していない。
 - GitHub状態を要求意味・採否・受入・削除の根拠にしていない。
+- すべての`requirement` PRが、旧source atomの未計上0を示すHARNESS無損失被覆receiptと、同じ候補digestを持つHELIX-OS管理層の`registered_proposal`へmerge前に束縛されている。
 - 自動走行対象が上位要求、責務、scope、pair、oracle、停止・復旧条件を持つ。
 - 旧資産のreuse／split／replace／retire／archive判断とreplacement evidenceがある。
 

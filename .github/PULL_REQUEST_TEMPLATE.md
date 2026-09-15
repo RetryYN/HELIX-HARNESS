@@ -36,6 +36,13 @@
 - 制約・失敗・回復:
 - 対になるL11:
 - 使用した旧source asset IDと採否:
+- 管理層の仮登録ID／record path:
+- 要求候補semantic digest:
+- source atom集合ref／digest:
+- 無損失被覆receipt（`coverage_result: no_loss`）:
+- 今回保持するatom／別の生存中仮登録へ残すatom／人間decision対象atom:
+- 未計上atom（merge時は空）:
+- 対象HEADでの仮登録read-after:
 
 ## 検証
 
@@ -49,6 +56,7 @@
 ## 判断とmerge条件
 
 - 人間判断の対象revision／記録:
+- 管理層の仮登録状態（`registered_proposal`、`authority_effect: none`）:
 - 満たしたmerge条件:
 - 未成立のもの:
 

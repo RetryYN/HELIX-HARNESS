@@ -43,10 +43,12 @@ HELIX-OSの管理対象へ自動登録する。要求意味をOSが解釈・変�
 - producerが明示した任意のpayload typeとschema版を意味解釈せず保持し、unknown typeを既知分類へ補完しない。
 - 原event、後続projection、訂正、採否、作業、証拠を同じcausal IDへ追加できる接続口を持つ。
 - 同じeventの再送を二重登録せず、部分失敗から再開できる。
+- `requirement` PRの候補semantic digest、source atom完全集合、HARNESS無損失被覆receipt、未確定atomの生存先を`registered_proposal`として保持し、仮登録欠落・stale・未計上atomがあるPRをmerge可能にしない。
 
 登録入口は次を行わない。
 
 - 要求候補の意味抽出、文章補完、採否、承認、L3 freeze。
+- 仮登録、Issue作成、PR mergeからの要求採用・実装許可生成。
 - `unit`、`connection`、`composite`の分類、要求relation生成、企画との意味齟齬判定。
 - Issue、PR、CI、ログ、AI出力からの要求正本生成。
 - Python出力に含まれるcommand、SQL、path、codeの実行。

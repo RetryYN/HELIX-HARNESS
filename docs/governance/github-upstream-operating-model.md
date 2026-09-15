@@ -64,6 +64,7 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 - IssueはFeature Ticketの協調projectionであり、Issue番号を要求IDやticket IDにしない。
 - Issue投影前にlocal ticketの存在、`source_revision`での内容、source digestを確認する。Issueの意味欄はlocal ticket本文からの転記に限定し、転記内容のdigest不一致はprojection失敗とする。
 - local ticketが存在しないIssue Form入力はwork authorityにしない。新規の人間指示を含む場合は入力を原eventとしてローカル登録へ戻し、要求採否と分けたprojection failure receiptを残してIssueを非実装状態で閉じる。入力を黙って捨てない。
+- `requirement` PRは[管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、要求候補と旧source atomの無損失被覆をHELIX-OS管理層へ仮登録してからmerge admissionへ進む。GitHub Issue／PRは仮登録recordのprojectionであり、仮登録正本ではない。
 - 上流承認前に人間の明示指示から起票する場合は`proposed_upstream_waiting`に固定し、実装可能状態へ進めない。
 - HARNESSが工程のnormative vocabulary、trigger、適用条件、各route内の順序、join、停止・差戻し・完了条件を所有する。単一の固定列ではなく、下記の条件付きrouteをHARNESS contractとして保持する。
 - 推進機構はHARNESS語彙を別定義せず、operational tag、versioned mapping、composition、workflow instance生成規則を所有し、管理から受けた目的・要求・制約をticket graphへ変換する。
@@ -136,9 +137,11 @@ PR classが未選択または複数指定のPRはReadyにしない。
 3. 一つの要求identity、`unit`／`connection`／`composite`、actor、目的、scope、non-goal、制約、失敗・回復を示す。
 4. 対になるL11に正常系とnegative case、N/Aなら理由・判断者・再評価条件を持つ。
 5. 旧要求を扱う場合は原要求ID、原文digest、successor ID、意味atomの被覆、未被覆atomを記録する。未被覆は`pending`として保持し、旧実装・旧CIをauthorityへ戻さない。
-6. 影響する既存要求だけを示し、無関係な要求を同じPRへ混載しない。
-7. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。
-8. すべての`requirement` PRで、対象revisionに束縛した人間decision recordを持つ。保持・再配置の確認、意味変更、retireを別decision種別として記録する。
+6. HARNESSの無損失被覆contractで、入力source atom集合を当該要求へ保持した集合、別の生存中仮登録へ残す集合、人間decisionにより変更・retireする集合へ完全分割し、未計上atomを0にする。
+7. 対象要求候補のsemantic digest、source atom集合digest、`coverage_result: no_loss`、未計上atom0を持つHELIX-OS管理層の`registered_proposal` recordへ束縛し、対象HEADでread-afterする。仮登録は`authority_effect: none`とする。
+8. 影響する既存要求だけを示し、無関係な要求を同じPRへ混載しない。
+9. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。
+10. すべての`requirement` PRで、対象revisionに束縛した人間decision recordを持つ。保持・再配置の確認、意味変更、retireを別decision種別として記録する。
 
 ## 新世代CIへの接続
 
