@@ -28,8 +28,12 @@ PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味revi
 - PR classは`repository_foundation`とする。
 - PR本文は、repository整理、旧要求の無損失保持、責務分離、現在成立した静的証拠、未成立条件をローカル正本から要約する。
 - final HEADを取得してから、そのfull SHAだけを対象にGitHub Claudeへread-only意味reviewを依頼する。
+- review依頼は送信する完全な本文からpayload digestを計算し、構造化されたcomment本文として投稿する。投稿後にcomment ID、
+  remote本文、target full SHA、payload digestをread-afterし、`@claude`本文の代わりにlocal file pathや`@file`文字列だけが
+  投稿された場合は未配送として扱う。
 - HEAD更新後は以前のreview依頼を失効とし、新しいfull SHAで依頼する。
-- review結果はfindingとしてreadinessへ反映し、要求採否、人間承認、Ready化、mergeを自動生成しない。
+- review結果は依頼targetと同じexact HEADを本文で示す応答だけをfindingとしてreadinessへ反映し、要求採否、人間承認、
+  Ready化、mergeを自動生成しない。依頼commentの存在、mention、reaction、workflow開始だけではreview完了にしない。
 
 ## Claudeへ確認させる意味
 

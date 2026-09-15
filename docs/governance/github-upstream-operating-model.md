@@ -115,6 +115,12 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 reviewはfindingであり、人間判断を代替しない。旧CI、旧test、旧runtime、ローカルClaude CLIをfallbackにしない。
 PR classが未選択または複数指定のPRはReadyにしない。
 
+review依頼もGitHubへの一方向projectionとして扱う。送信前にreview request identity、対象PR、target full SHA、完全な
+依頼本文、payload SHA-256を固定し、送信後にcomment ID、remote本文、remote本文SHA-256、target full SHAをread-afterする。
+remote本文がpayloadと一致しない、`@claude`本文がなくlocal file pathまたは`@file`文字列だけが投稿された、対象HEADが
+currentでない場合は配送失敗またはstaleとして、review待ちへ進めない。comment作成成功、mention、reaction、workflow起動は
+review receiptではない。review結果は、応答本文が対象exact HEADを示し、依頼後のcommentとして取得できた場合だけ受理する。
+
 ### PR #1797 `repository_foundation`
 
 次をすべて満たした場合だけReady／merge候補にできる。
