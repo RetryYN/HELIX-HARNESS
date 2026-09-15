@@ -8,10 +8,10 @@ priority_order: 9
 created: 2026-09-15
 authority_effect: work_projection_only
 github_projection:
-  issue: pending
-  url: null
+  issue: 1812
+  url: https://github.com/RetryYN/HELIX-HARNESS/issues/1812
   projection_source_semantic_digest: sha256:f3c763ef97236223e8c24c648fc086284570bd25e19239317c87c1625520d161
-  read_after_state: pending
+  read_after_state: OPEN
 parent_requirements:
   - HELIXOS-L2-001
   - HELIXOS-L2-002
