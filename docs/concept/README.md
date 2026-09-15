@@ -12,7 +12,7 @@ HELIXは一つの製品ではなく、複数の製品と統制機構を接続す
 | HELIX-Web-OS | HELIX-OS外でWeb service runtimeを運転する。許可された観測をHELIX-OSへ返し、改善loopで接続する |
 
 [Concept本文](helix-concept-v4.1.md)と[製品責務境界](product-boundary.md)が、この意味を詳細化する。
-[HELIX自体の五大目標候補](helix-five-goals.md)はHELIX全体が実現する価値を示し、個別要求と実装方式は固定しない。
+[HELIX自体の5大目標候補](helix-five-goals.md)はHELIX全体が実現する価値を示し、個別要求と実装方式は固定しない。
 
 ## 既に示された方向
 

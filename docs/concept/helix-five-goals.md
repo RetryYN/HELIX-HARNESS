@@ -4,6 +4,7 @@ goals_version: "0.1-candidate"
 status: draft_candidate
 authority_status: awaiting_human_approval
 source_basis: PO direction 2026-09-16
+source_quote_record: docs/concept/helix-five-goals.md#PO提示原文
 derived_from:
   - docs/concept/helix-concept-v4.1.md
   - docs/concept/product-boundary.md
@@ -13,7 +14,7 @@ approved_body_sha256: pending_human_decision
 authority_effect_before_approval: none
 ---
 
-# HELIX自体の五大目標候補
+# HELIX自体の5大目標候補
 
 ## 位置づけ
 
@@ -24,7 +25,7 @@ authority_effect_before_approval: none
 本候補は人間がexact revisionを承認するまでauthorityを持たない。Issue、PR、review、CI、DB、実装状態から承認や
 達成を生成しない。
 
-## 五大目標
+## 5大目標
 
 ### 1. システム駆動エージェント自走システム
 
@@ -50,7 +51,7 @@ HARNESS、Worker運用、CI、製品を改善する候補へ変換する。HELIX
 よる自動検査・差戻し・証拠化へ接続する。非エンジニアでも、実装詳細を自ら操作せずに製品を作り、進行、品質、未決、
 riskを確認して必要な判断を行えることを目指す。速度のために要求、検証、security、人間decisionを省略しない。
 
-### 5. 低コストWorkerでも最高のパフォーマンスを発揮して最適配置するシステム
+### 5. 低コストワーカでも最高のパフォーマンスを発揮して最適配置するシステム
 
 作業のdomain、難易度、risk、必要能力、context、依存、予算、期限、検証可能性を分類し、各Workerの実測能力、費用、
 成功率、失敗傾向、利用可能量に合わせて役割と作業を配置する。高価なWorkerへの一律依存を避け、低コストWorkerが
@@ -72,17 +73,28 @@ HARNESSとHELIX-OSのauthorityを一つへ戻さない。
 
 ## 達成の考え方
 
-五大目標は標語の掲載や単一機能の実装で達成扱いにしない。各目標について、対象別要求、利用場面、negative case、
+5大目標は標語の掲載や単一機能の実装で達成扱いにしない。各目標について、対象別要求、利用場面、negative case、
 設計、検証、実測、利用者受入、運用評価へ追跡できる状態を作る。目標間の優先順位、数値目標、段階release、採用技術は、
 Conceptと対象別L1の承認後に別の要求・設計decisionとして定める。
 
 ## 本PRで決めないこと
 
-- 五大目標から導く個別要求の追加、採否、分割、配置、優先順位。
+- 5大目標から導く個別要求の追加、採否、分割、配置、優先順位。
 - simulation model、要求engine、database、CI、bot、dashboard、Worker routerのschema・技術・実装。
 - 「賢くなる」「予測」「品質」「スピード」「低コスト」「最高」「最適」を判定する数値基準。
 - HELIX-HARNESS Version 1の完成、HELIX-Web展開、release、deploymentの許可。
 - Concept v4.1、対象別L1、L2／L11の承認またはcanonical promotion。
 
-本書はPOが提示した五大目標をHELIX全体の到達方向として固定する候補である。承認後も、目標から下流を直接実装せず、
+## PO提示原文
+
+2026-09-16のPO指示を、表記を変えずに本候補のsourceとして保持する。
+
+> HELIX自体の5大目標
+> ①システム駆動エージェント自走システム
+> ②開発するほど賢くなる自己知能型改善システム
+> ③設計から全体をシミュレーションする予測型システム
+> ④CIとbotで品質とスピードを両立した非エンジニアでも作れるシステム
+> ⑤低コストワーカでも最高のパフォーマンスを発揮して最適配置するシステム
+
+本書はPOが提示した5大目標をHELIX全体の到達方向として固定する候補である。承認後も、目標から下流を直接実装せず、
 Concept、対象別L1、要求、設計、検証の順に降ろす。
