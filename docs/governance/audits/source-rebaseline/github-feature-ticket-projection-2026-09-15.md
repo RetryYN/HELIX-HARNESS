@@ -64,3 +64,29 @@ read-afterの`updatedAt`はUTCで次のとおり。
 | #1803 | 2026-09-14T17:24:55Z |
 | #1804 | 2026-09-14T23:58:49Z |
 | #1805 | 2026-09-14T23:58:50Z |
+
+## 2026-09-16 source revision再同期と同期adapter追加
+
+#1798〜#1805はGitHub本文ではなく各local Feature Ticketを先に読み、最新file revisionとSHA-256をIssueへ再投影した。
+#1798は#1797後の最初の`requirement` PRとし、`no_loss`、未計上0、同一候補digestの管理層仮登録、人間decisionを
+merge条件として追記した。#1799〜#1805を含む8件は、再投影後にIssue本文からsource commit／SHA-256をread-afterし、
+local fileと8/8一致した。
+
+| Issue | local source commit | local file SHA-256 | read-after updatedAt UTC |
+|---:|---|---|---|
+| #1798 | `577cba8f6f8db80a02e02841cff5f33ddb4ba03f` | `6fdc4d5bd657e4555f26260956846199ff4cb3579273c992b2a9a7046449ed70` | 2026-09-15T14:41:38Z |
+| #1799 | `5c5d3e8450f33f2c194e8c17af366a781b86f2c9` | `d0479e1c6ce04ab44f4a13e009ac01a94b6d5244dc453c27ec4635ff83a63e11` | 2026-09-15T14:46:40Z |
+| #1800 | `5c5d3e8450f33f2c194e8c17af366a781b86f2c9` | `62bd2e0234c9f49192c9f750aabbb9dbf46856fa653e91a8f6a724c1b9fc6b9d` | 2026-09-15T14:46:41Z |
+| #1801 | `5c5d3e8450f33f2c194e8c17af366a781b86f2c9` | `952831f6fdb200593ecf51360b8186307bfe205db634c7afbc184d456e9283f3` | 2026-09-15T14:46:43Z |
+| #1802 | `5c5d3e8450f33f2c194e8c17af366a781b86f2c9` | `294634919a93c8b17dfc45faf888b6d0721a7347c65216582ca5c3da2f3b7a88` | 2026-09-15T14:46:44Z |
+| #1803 | `5c5d3e8450f33f2c194e8c17af366a781b86f2c9` | `f409f37874711e097563fb5eb1d3b8b359d2bf357c3bbdebbbbc069a82eadbcc` | 2026-09-15T14:46:45Z |
+| #1804 | `c4b6b17fca8f2c7e7305fa286fc341b6209b40d7` | `282f6da544c2d7c5734ac8fde55dfe4e9b6ec625c8a274da79ceff3bc1dc99f9` | 2026-09-15T14:46:47Z |
+| #1805 | `c4b6b17fca8f2c7e7305fa286fc341b6209b40d7` | `8fa9e356d1e82a9a8492b36cfc53f0e8a9ed74d934ef7ab93f54f66b69f3794f` | 2026-09-15T14:46:49Z |
+
+GitHub一方向projection・read-after同期adapterをlocal ticket `FT-OS-GITHUBSYNC-001`として追加し、
+[#1812](https://github.com/RetryYN/HELIX-HARNESS/issues/1812)へ投影した。GitHub metadataを除いた
+projection payload digestを意味束縛に使い、source commit、remote ID、read-after時点は別証拠として保持する。
+Issue本文のsource commit `04c89868c48a7ce3af3d10914bd13c811731243c`、file SHA-256
+`c81612ef9121858c2364196ce43caedf94031992de701e94f6e7e5d3c2e03b9e`、payload digest
+`sha256:f3c763ef97236223e8c24c648fc086284570bd25e19239317c87c1625520d161`、OPENを
+2026-09-15T15:02:35Zにread-afterした。Issue作成と同期は要求採用、実装開始、CI起動を生成しない。
