@@ -33,7 +33,7 @@ requirements source    sha256 ok=29, non_ok=0
 snapshot ledger joins  assets current revision=3:29, original decisions revision=2:29, correction decisions pending revision=3:29, read-after pass revision=2:29
 L2/L11 IDs             HARNESS=9, HELIX-OS=13, HELIX-Web=9, HELIX-Web-OS=6; all equal
 IR carry-forward       total=153, pending=153, successor=0, decision=0
-active relative links  total=444, broken=0
+active relative links  total=492, broken=0
 human-readable queues  W1-W4 total=153, source text/digest exact=153
 human-decision packets total=23, source text/digest exact=23, applied=0
 semantic line inventory documents=22, total=2386, exact=2386, linked identities=328, pending atomization=2058
