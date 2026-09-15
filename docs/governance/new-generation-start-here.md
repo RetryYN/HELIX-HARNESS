@@ -26,7 +26,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 9. [管理層の要求仮登録契約](management-provisional-requirement-registration.md)
 10. [Repository foundation readiness](repository-foundation-readiness.md)
 11. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-ir-rehome-wave-register.md)
-    - 全要求の要否・再配置を扱う場合は、[要否・再配置review program](requirement-disposition-review-program.md)を親作業とし、[責務・機能重複review](requirement-overlap-review-program.md)、[技術代替可能性review](requirement-technical-substitutability-review-program.md)、個別要求の人間decision・要求PRを分ける
+    - 全要求の要否・再配置を扱う場合は、[要否・再配置review program](requirement-disposition-review-program.md)を親作業とし、[責務・機能重複review](requirement-overlap-review-program.md)、[技術代替可能性review](requirement-technical-substitutability-review-program.md)、[交換可能な定義packageと変更影響simulation research](definition-package-impact-simulation-research.md)、個別要求の人間decision・要求PRを分ける
     - IDのない段落条件を扱う場合は、[semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)と[atom化review contract](requirement-atomization-review-contract.md)を追加で読む
     - 旧candidate系列を扱う場合は、[旧candidate source全量inventory](legacy-candidate-source-inventory.md)から原文行へ戻る
 12. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
