@@ -35,6 +35,7 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 - HARNESS-L2-002：style未選択、複数選択、適用条件不成立をfail-closeし、Discovery trigger不成立ではS0–S4を無条件起動しない。
 - HARNESS-L2-002／003：Discovery trigger成立時はS0–S4とS4人間判断を要求し、S4未判断のままL3へ合流しない。Research trigger成立時はresearch memoとADRをL4参照点へ合流し、L3要求合意の前段へ固定しない。成立性実験が必要ならDiscovery／PoCへ切り替える。
 - HARNESS-L2-002／003：Production Scrumのcheckpoint trigger成立時にSR0–SR4を要求し、SR4 receipt欠落をrelease-readyにしない。findingの修正routeが0件または複数なら拒否する。
+- HARNESS-L2-002／003：`ProvisionalVProjection`をcanonical traceやrelease判定へ使う入力、SR4 receiptなしの`CanonicalVPublication`、4 entityを単一進捗値へ縮退する入力を拒否する。Design Refactorでobservable behaviorを変える入力と、baseline／budget／workload／回帰oracleを先に固定しないPerformance Refactorを拒否する。
 - HARNESS-L2-003：プロト合意欠落と非UI記録欠落を別々に投入し、L2要求を飛ばしてL3凍結可能にならないことを確認する。
 - HARNESS-L2-003：実装済み・総合検証済み・利用者受入済み・運用評価済みを区別し、一つの状態から残りを推定しない。
 - HARNESS-L2-004：要求変更に対して影響する設計・V-pairが示され、無関係な要求を再承認対象へ巻き込まず、必要な検証を落とさない。

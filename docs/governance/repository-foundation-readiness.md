@@ -7,7 +7,7 @@ generation: new-generation-2026-09-14
 
 ## 判定
 
-PR #1797は、repository構造と静的証拠に関するmerge条件1〜4を再検証中である。HEAD `6d6727d19246fa6ec13c8873ac4ff170b4ab122f` のGitHub Claude意味reviewでBlocker 0件、Major 3件、Minor 4件が報告された。指摘を反映した後続HEADは未レビューであり、条件5と条件6は未成立である。したがってDraftを維持し、Ready化・mergeしない。
+PR #1797は、repository構造と静的証拠に関するmerge条件1〜4を再検証中である。HEAD `c4b6b17fca8f2c7e7305fa286fc341b6209b40d7` のGitHub Claude意味reviewでBlocker 0件、Major 1件、Minor 4件が報告された。指摘を反映した後続HEADは未レビューであり、条件5と条件6は未成立である。したがってDraftを維持し、Ready化・mergeしない。
 
 GitHub checkの状態はこの判定に算入しない。CodeQL、旧`harness-check`、旧test、旧runtimeは新世代上流の意味、要求保持、責務分離を検証するoracleではない。
 
