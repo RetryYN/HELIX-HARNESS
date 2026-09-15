@@ -59,13 +59,14 @@ terminal revisionと、そのrevisionが指す対象はいずれも生存先と�
 4. 今回移さないatomは、`preserved_pending_registration_refs`が指す生存中の`source_holding`または別の`requirement_candidate` recordで管理層へ仮登録されている。
 5. `management_state: registered_proposal`、`authority_effect: none`である。
 6. 対象HEADでregisterをread-afterし、欠落、重複、`stale`、`superseded`、`rejected_registration`、wrong product、digest不一致がない。
-7. 別条件として、対象revisionに対する人間decisionとGitHub ClaudeのBlocker／Major 0を満たす。
+7. 入力source pathが`MPR-SH-PREISOLATION-*`の333 pathに含まれる場合、監査基準revisionと隔離直前revisionの両方をatom入力に含める。同値として一方へまとめる場合は、両digestへ束縛した人間decisionを持つ。
+8. 別条件として、対象revisionに対する人間decisionとGitHub ClaudeのBlocker／Major 0を満たす。
 
 PR merge、Issue作成・close、review、CI、文書ファイルの存在だけでは仮登録や`no_loss`を生成しない。register recordが無い、古い、対象が違う、被覆集合が不明、未計上atomがある場合はfail-closeする。
 
 ## bootstrap source holding
 
-現registerは24 revisionを持ち、既に全量照合済みの十のsource集合を十の生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを両方保持し、意味同値を未確認のまま残す。十番目は旧v1.3の意味委任22文書のうちScrum Reverse行台帳外の20文書、宣言relationを再帰的に辿って到達する16文書、Scrum Reverse対受入1文書の計37 file blobを保持し、要求atom化を未実施のまま残す。`MPR-SH-DELEGATED-DOC-002`は保持範囲の拡張と旧revisionの未来時刻を訂正する。各recordは台帳path、item数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
+現registerは25 revisionを持ち、既に全量照合済みの十のsource集合を十の生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを両方保持し、意味同値を未確認のまま残す。`MPR-SH-PREISOLATION-002`は要求・検証source 2件のcategoryを訂正し、bytesと意味状態は変えない。十番目は旧v1.3の意味委任22文書のうちScrum Reverse行台帳外の20文書、宣言relationを再帰的に辿って到達する16文書、Scrum Reverse対受入1文書の計37 file blobを保持し、要求atom化を未実施のまま残す。`MPR-SH-DELEGATED-DOC-002`は保持範囲の拡張と旧revisionの未来時刻を訂正する。各recordは台帳path、item数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。file blobまたはpath単位のholdingを入力にする場合は、同じsource digestから無損失なatom集合を先に作り、別の生存中`source_holding`へ仮登録する。file blob一件を一要求atomとして扱って`no_loss`にしてはならない。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 

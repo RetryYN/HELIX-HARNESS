@@ -15,13 +15,13 @@ authority: machine ledgers linked below
 | v1.3非空source line | 521 | 0 | 0 | 0 | 0 |
 | IR補助item（acceptance／refinement／system contract／system test） | 134 | 0 | 134 | 0 | 0 |
 | 旧candidate要求源の非空source line | 4,755 | 0 | 0 | 0 | 0 |
-| archive隔離前に変更された基準source revision | 333 path | 0 | 333 | 0 | 0 |
+| archive隔離前に変更された基準source revision | 333 path | 0 | N/A | 0 | 0 |
 
 現時点ではsuccessor割当済みは0件である。37件の対象別L2はrouting containerであり、この表のsuccessorへ自動算入しない。
 要求の再配置が始まっていないことを、要求削減や移管完了として表示しない。
 v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pending_rehome`列へ混在させない。
 旧candidate 92文書の4,755行も`historical_candidate`／`draft_candidate`／`preserved_pending_atomization`であり、sourceで採用済みだった要求や棄却済み実現方式へ混在させない。
-333 pathは要求数ではなく、監査基準commitとarchive隔離直前commitでblobが異なるsource revision集合である。
+333 pathは要求数でも`preserved_pending_rehome`状態の件数でもなく、監査基準commitとarchive隔離直前commitでblobが異なるsource revision集合である。
 両revisionの意味同値は未確認であり、[機械台帳](pre-isolation-revision-delta-source-holding.jsonl)から前revisionを落とさない。
 
 ## IR 153件の対象routing候補
@@ -46,9 +46,11 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 [W2機能要求69件のqueue](legacy-ir-w2-functional-rehome-queue.md)は、HELIX-OS候補43件、HARNESS／OS分割候補23件、対象未解決3件を原文・digest付きで展開している。意味変更・照合候補8件は未適用、successorは全件未割当である。
 [W3非機能要求40件](legacy-ir-w3-nonfunctional-rehome-queue.md)と[W4技術制約11件](legacy-ir-w4-technical-constraint-rehome-queue.md)も原文・digest付きで展開済みである。W3はOS候補22、HARNESS／OS分割14、対象未解決4、判断候補5、W4はOS候補1、対象未解決10、判断候補2で、意味変更適用・successor割当はいずれも0件である。[W2〜W4人間判断候補の意味分解](legacy-ir-w2-w4-human-decision-candidates.md)は、この15件の原文と整理論点を提示する。W1の8件と合わせた23件すべてについて、削除・縮退・統合・降格を行わず、人間判断もまだ要求していない。
 
-## 元statusの保持
+## revision別statusの保持
 
-22要求文書は`confirmed` 17件、`draft` 3件、`proposed` 1件、`placeholder` 1件である。`confirmed`は採用済みのまま保持し、新世代化を理由にcandidateへ降格しない。
+22要求文書のarchive隔離直前revisionは`confirmed` 17件、`draft` 3件、`proposed` 1件、`placeholder` 1件である。
+監査基準revisionは`screen-mock-boundary.md`が`confirmed`のため、`confirmed` 18件、`draft` 2件、`proposed` 1件、
+`placeholder` 1件である。両revisionを別sourceとして保持し、後の`draft`で前の`confirmed`を上書きしない。
 
 ## 機械台帳
 
@@ -58,7 +60,7 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 - [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
 - [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `bb4d12f3cfc9c1daefa064ede8bcc21943dd10df05098f423158fb5a08512490`
 - [旧v1.3委任文書・relation closureのfile-blob holding](delegated-requirement-document-source-holding.jsonl) — `358ed9a50b5fac1b10cf49b401aa82a797c050ab58233f489859f0f18a0e135b`。37文書、atom化0、successor 0、decision 0
-- [archive隔離前revision差分](pre-isolation-revision-delta-source-holding.jsonl) — `863854f766c7d5bc318b30dbc3a19e8086e5916c9cebb934684d92db3565d852`
+- [archive隔離前revision差分](pre-isolation-revision-delta-source-holding.jsonl) — `d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180`
 - [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 
 ## 判定規則

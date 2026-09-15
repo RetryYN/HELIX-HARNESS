@@ -156,3 +156,23 @@ local本文の完全な参照行区間、要約にない条項を対象外にし
 `remote body SHA-256`はGitHub APIが返すIssue本文文字列を、末尾改行を追加せずUTF-8 bytesへ変換して計算する。
 訂正後本文には上記三つのremote専用指示が0件であり、remote evidenceのsource system、delivery identity、
 remote revision、originating projection commandの四項目が表示されることをread-afterした。
+
+## #1798参照行区間の訂正
+
+receipt_id: `FTPROJ-1798-20260916-002`
+correction_of: `FTPROJ-1798-20260916-001`
+
+Issue本文の要約はlocal Source全本文を意味契約としていたが、表示した二つの参照行区間が節境界と一致していなかった。
+入出力契約候補を`Source 59–91行`、要求PR merge admissionを
+`management-provisional-requirement-registration.md 52–64行`へ訂正した。意味本文、要求、relation、状態は変更していない。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `cb31f86e8b23bb2215a04503df0b3417d395a4a3` |
+| local file SHA-256 | `4f6741b75629405011880e960dd32f47b6b53282519448ef3b4653cf7fdbbe89` |
+| previous remote revision | `updatedAt:2026-09-15T16:20:07Z+body_sha256:600345a2c131c9f7e35ef1be62d259ae775330b6f505c449634cafdba3fec364` |
+| corrected remote revision | `updatedAt:2026-09-15T17:45:28Z+body_sha256:59d98860b1102e34bacf4a1eb361b32f8897b9b98a60e41e1dbc8e8b75ee44cb` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+この訂正はGitHub本文を正本にせず、Issueの表示をlocal sourceの正確なnavigationへ合わせたprojection補正である。
