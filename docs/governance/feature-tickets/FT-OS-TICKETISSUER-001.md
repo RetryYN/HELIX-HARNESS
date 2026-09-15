@@ -22,6 +22,8 @@ depends_on:
   - FT-OS-REQREG-001
   - FT-OS-REQCLASS-001
   - FT-HARNESS-TICKETCONTRACT-001
+delivery_precedes:
+  - FT-OS-GITHUBSYNC-001
 ---
 
 # FT-OS-TICKETISSUER-001: HELIX-OS推進によるtyped ticket発行・Issue projection
@@ -41,4 +43,4 @@ projectionする。検収はHARNESS contractへの充足を独立確認する。
 - GitHub labelはlocal駆動tagのprojectionであり、label追加・削除からworkflowを無断再生成しない。
 - ticket発行からWorker実行、CI、merge、releaseを自動許可しない。
 
-現在はFeature Ticket本文の発行のみ。推進生成器、管理登録、検収、GitHub同期、Worker、runtime、CIを実装・起動しない。
+現在はFeature Ticket本文の発行のみ。推進生成器、管理登録、検収、GitHub同期、Worker、runtime、CIを実装・起動しない。GitHub同期の外部作用、idempotency、read-after、drift、再開・補償は[FT-OS-GITHUBSYNC-001](FT-OS-GITHUBSYNC-001.md)へ分離する。

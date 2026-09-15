@@ -22,6 +22,7 @@ depends_on: []
 delivery_precedes:
   - FT-HARNESS-SEMEXTRACT-001
   - FT-HARNESS-REQENG-001
+  - FT-OS-GITHUBSYNC-001
 blocks:
   - FT-OS-REQCLASS-001
 ---
