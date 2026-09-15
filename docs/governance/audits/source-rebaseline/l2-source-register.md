@@ -90,6 +90,8 @@ canonical工程はL1企画、L2要求＋画面プロト、L3要件定義・凍�
 最新の要求へ更新することを本整備の目的とする。旧文書の記述を保存すること自体を完了条件にしない。
 2026-09-14に`git fetch origin main`で確認した最新mainは`6fabd1251`で、監査基準commitと一致した。
 mainへの収載だけで要求承認を判断せず、リポジトリ内の改訂・承認・supersessionを照合する。
+この基準からarchive隔離直前までに変更された333 pathは、[隔離前revision差分の保全監査](pre-isolation-revision-delta-audit-2026-09-16.md)と
+機械台帳へ両revisionのblob／digestを登録した。隔離直前snapshotだけで基準revisionを置換せず、意味同値は後続要求reviewまで未確認とする。
 
 - 上位概念は[Concept v4.1候補](../../../concept/helix-concept-v4.1.md)と
   [承認準備監査](concept-v4.1-approval-readiness-audit.md)を確認する。

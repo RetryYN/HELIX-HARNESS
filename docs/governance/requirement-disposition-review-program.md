@@ -20,8 +20,9 @@ HELIX-DBの要否は本programで扱う技術制約の一論点である。専�
 
 [管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、
 `management-provisional-requirement-register.jsonl`で生存中の全`registered_source_holding`を入力入口にする。
-現在の八つのholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
-旧candidate 4,755行、workflow索引108件、構造見出し317件、Scrum Reverse 300行を保持する。
+現在の九つのholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
+旧candidate 4,755行、workflow索引108件、構造見出し317件、Scrum Reverse 300行、archive隔離前に変更された
+基準source revision 333 pathを保持する。
 
 これらの件数は重複・包含・派生関係を含むため単純合算しない。一つのholdingや索引に無いことを非要求・不要の
 根拠にせず、新しいsourceを発見した場合は先に`source_holding`へ追加する。sourceで`confirmed`だった意味を、

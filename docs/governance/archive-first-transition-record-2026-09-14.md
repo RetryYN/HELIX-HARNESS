@@ -26,6 +26,11 @@ executed_at: 2026-09-14
 | `docs` | 2603 | 旧要求・設計・PLAN・test design・archiveを構造保持で隔離 |
 | **合計** | **4020** | [manifest](../../archive/legacy-generation-2026-09-14/MANIFEST.sha256)で固定 |
 
+archiveのsnapshot sourceはcommit `2d4991042be55268bac30a8bbcdac45b3865030a`であり、4,020件は同commitの
+同一pathと全件byte一致する。L2監査基準commit `6fabd12512a3659fff4a956692cdd61faeeb16ce`からsnapshot sourceまでに
+変更された333 pathは、[隔離前revision差分の保全監査](audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md)と
+機械台帳で両revisionを保持する。隔離直前revisionだけで基準revisionの要求・候補・検証・判断史を置換しない。
+
 active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、対象別L1／L2／L11、上流方針、inventory、crosswalk、
 判断packetを含む68ファイルだけを残した。本記録、現行文書構成README、Concept入口、GitHub PR packet、完全一致再利用統制、
 CodeQL設定変更記録、旧資産明細台帳・判断／copy read-afterログ3件、旧Issue退役記録・Issue／comment明細、

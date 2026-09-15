@@ -17,6 +17,11 @@ policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-f
 - `../legacy-requirement-semantic-line-carry-forward.jsonl`: 22文書の非空semantic line 2,386件を原文・行番号・digest付きで保持し、明示IDへ接続できない2,058件をatom化待ちにする台帳
 - `../legacy-requirement-semantic-line-inventory.md`: semantic line台帳の範囲、数え方、後続atom化規律
 - `../legacy-requirement-atomization-review-queue.jsonl`: 未分類2,058行をsource・heading・連続範囲ごとの721 review unitへ無損失に分けた処理queue
+- `../pre-isolation-revision-delta-source-holding.jsonl`: 監査基準からarchive隔離直前までに変わった333 pathの旧revisionをcommit・blob・SHA-256付きで保持する台帳
+
+archiveは隔離直前treeの同一byte snapshotである。監査基準revisionと隔離直前revisionが異なる333 pathは、
+[revision差分保全監査](../audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md)に従い両方を生存中sourceとして扱う。
+後のrevisionがあることから前の要求意味を同値・置換済み・不要と推定しない。
 
 37件の対象別L2はrouting containerであり、この要求集合を置換・縮約しない。重複、縮退、意味変更、retireは候補として明示し、人間の対象revision付き決定がない限り適用しない。
 

@@ -25,7 +25,7 @@ HARNESSは原source atom集合を無損失に分割・被覆するcontractを規
 | `candidate_source_path`／`candidate_semantic_digest` | `requirement_candidate`の本文と内容revision。Git commitの自己参照を避け、本文digestで束縛する。`source_holding`ではnull |
 | `parent_concept_revision`／`parent_planning_revision` | 承認済み親revision |
 | `source_atom_set_ref`／`source_atom_set_digest` | この要求再編で入力にした旧source atomの完全集合と集合digest |
-| `source_atom_count` | `source_holding`が保全する行数、または要求候補が入力にしたatom数 |
+| `source_atom_count` | `source_holding`が保全するsource item数（line、record、path等。集合scopeで単位を明記）、または要求候補が入力にしたatom数 |
 | `coverage_receipt_ref`／`coverage_result` | `source_holding`は`source_preserved_unassigned`、要求候補は`pending_coverage`または`no_loss`。merge可能値は`no_loss`だけ |
 | `carried_atom_refs` | 当該要求revisionへ意味を保持したatom |
 | `preserved_pending_registration_refs` | 今回含めないatomを失わず保持する、別の生存中仮登録recordへの参照 |
@@ -58,7 +58,7 @@ PR merge、Issue作成・close、review、CI、文書ファイルの存在だけ
 
 ## bootstrap source holding
 
-現registerは21 revisionを持ち、既に全量照合済みの八つのsource集合を八つの生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
+現registerは22 revisionを持ち、既に全量照合済みの九つのsource集合を九つの生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを両方保持し、意味同値を未確認のまま残す。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 
