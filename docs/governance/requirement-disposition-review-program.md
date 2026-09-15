@@ -54,8 +54,6 @@ retireを同じ処理にしない。
 4. 対象productと`unit`／`connection`／`composite`を分け、責務重複や意味類似はrelation候補として示す。
    重複候補は[責務・機能重複review program](requirement-overlap-review-program.md)で比較し、原identityと固有atomを残す。
    旧技術の拘束は[技術代替可能性review program](requirement-technical-substitutability-review-program.md)で、意味機能と実現方式を分けて比較する。
-   定義変更の責務・依存・pair・検証・ticketへの波及は、[交換可能な定義packageと変更影響simulation research](definition-package-impact-simulation-research.md)で
-   repo-owned定義と交換可能adapterを分け、未登録edgeを影響なしにしない条件を比較する。
 5. 必要な場合は親Concept／Vision／企画からresearch、PoC、prototypeへ進み、結果を判断論点へ戻す。
 6. 一つの要求identityごとに、人間decision、対象別L2／L11、無損失被覆receipt、管理層の`registered_proposal`を同じ要求PRへ束縛する。
 7. 全atomが「当該successorへ保持」「別の生存中仮登録へ保留」「人間decision対象」のいずれかに入り、未計上0であることをread-afterする。
