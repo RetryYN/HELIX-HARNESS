@@ -22,7 +22,7 @@ as_of: 2026-09-14
 | 新世代Concept候補 | 1文書 | [Concept v4.1候補](../concept/helix-concept-v4.1.md) | [人間判断packet](audits/source-rebaseline/concept-v4.1-human-decision-packet.md)でexact SHAを固定し直す。v4.0はarchive source | Conceptと4対象L1を別decisionとして人間が判断し、承認後に旧要求を保持した対象別L2整理へ進む |
 | 旧HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | sourceでconfirmedだった要求意味を保持し、新世代targetは未承認。工程と実行管理の配置が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1／L2へ欠落なく再配置する |
 | 旧要件v1.3 source | 1 | [現行保持copy](requirements-source/helix-requirements_v1.3.md)、[対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md) | 原文を同一byteで現行保持。旧Core Read状態とHARNESS／OS責務の混在は配置課題であり削除理由にしない | 全要求を保持したまま対象別L2へ再配置し、すべての要求PRを人間決定に束縛する |
-| 旧v1.3委任文書・Scrum Reverse対受入 | 19 file blob | [file-blob保全inventory](delegated-requirement-document-source-inventory.md)、[機械台帳](delegated-requirement-document-source-holding.jsonl) | archive原文とSHA-256へ束縛して管理層へ仮登録。要求atom化、採否、配置、successorは未実施 | 対象文書を扱う要求整理PRで先に無損失atom化し、別holdingへ仮登録する |
+| 旧v1.3委任文書・relation closure | 37 file blob | [file-blob保全inventory](delegated-requirement-document-source-inventory.md)、[機械台帳](delegated-requirement-document-source-holding.jsonl) | v1.3の意味委任22文書のうちScrum Reverse行台帳外の20文書、宣言relationを再帰的に辿って到達する16文書、Scrum Reverse対受入1文書をarchive原文とSHA-256へ束縛して管理層へ仮登録。要求atom化、採否、配置、successorは未実施 | 対象文書と宣言relation closureを扱う要求整理PRで先に無損失atom化し、別holdingへ仮登録する |
 | 旧要求文書の現行保持 | 22文書 | [保持領域](requirements-source/README.md)、[文書台帳](legacy-requirement-document-carry-forward.jsonl) | 29/29関連fileを同一byteで保持。22文書の元statusはconfirmed 17、draft 3、proposed 1、placeholder 1。source authorityをそのまま保持 | 原要求ID単位で対象・successor・未被覆atomを追加し、すべての要求PRを人間判断に束縛する |
 | confirmed要求identity | 175 source-qualified identity | [identity台帳](legacy-confirmed-requirement-identity-carry-forward.jsonl) | confirmed文書の要求表・見出し・宣言行を原文行digest付きで保持。同名IDを自動統合しない | successorと未被覆atomを要求PRで記録する |
 | 旧要求文書semantic line | 2,386 source line | [全量保全inventory](legacy-requirement-semantic-line-inventory.md)／[機械台帳](legacy-requirement-semantic-line-carry-forward.jsonl) | 22文書の非空semantic lineを原文・行番号・digest付きで保持。328行は既存identityへ接続し、残る2,058行を過包含のatom化待ちとする | 要求／制約／受入／根拠／例／navigationへ分類し、要求atomを対象別に再配置する。分類前に候補を削除しない |
@@ -106,7 +106,7 @@ as_of: 2026-09-14
 
 | 作業単位 | 閉鎖条件 | 現在の証拠 | 状態 | 残る処置 |
 |---|---|---|---|---|
-| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3委任18文書＋対受入1文書 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blob holdingへ追記する |
+| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3意味委任22文書と宣言relation closure 10文書 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blob holdingへ追記する |
 | 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
 | 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、Version 1の複数プロダクト・自己適用検証とWeb展開依存が人間承認revisionへ束縛される | v4.1候補と承認準備監査 | 人間承認待ち | v4.1 exact revisionを人間が採否する |
 | 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1候補4文書。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | 起草済み・親承認待ち | v4.1承認後に導出一致をreviewし、人間承認する |
