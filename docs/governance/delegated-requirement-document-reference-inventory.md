@@ -13,10 +13,10 @@ source_document_closure: `delegated-requirement-document-source-holding.jsonl`�
 
 ## 全量
 
-本台帳の抽出対象は、意味relation closure 117文書のうちfile blobで保持するMarkdown 114文書に現れる、archive内に実在する
-`docs/`配下fileへのfrontmatter path参照と本文path参照である。同じ行の複数参照と再出現は別edgeとして数える。closure内の
-非Markdown 1文書と、Scrum Reverse行台帳で保持するMarkdown 2文書は参照元走査の対象外であるため、「117文書から788件」は
-この抽出境界を含む表現として扱う。
+本台帳の抽出対象は、意味relation closure 117文書のうちMarkdown 116文書（file blob保持113文書＋Scrum Reverse行保持3文書）
+に現れる、archive内に実在する`docs/`配下fileへのfrontmatter path参照と本文path参照である。同じ行の複数参照と再出現は
+別edgeとして数える。非Markdown 1文書は参照元走査の対象外である。Markdown 116文書のうち2文書には該当参照が0件のため、
+reference recordを持つ参照元は114文書となる。「117文書から788件」はこの抽出境界と0件の文書を含む表現として扱う。
 
 | origin | record数 | 扱い |
 |---|---:|---|
