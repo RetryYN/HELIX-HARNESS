@@ -23,7 +23,7 @@ GitHub checkの状態はこの判定に算入しない。CodeQL、旧`harness-ch
 | 3. 運用モデル、authority入口、資産統制、GitHub操作記録を相互参照できる | 成立 | [新世代入口](new-generation-start-here.md)から[上流authority台帳](upstream-authority-register-2026-09-14.md)、[GitHub上流運用](github-upstream-operating-model.md)、[管理層の要求仮登録契約](management-provisional-requirement-registration.md)、[PR投影packet](github-upstream-pr-packet.md)、[archive記録](archive-first-transition-record-2026-09-14.md)、[資産再利用統制](legacy-asset-reuse-control.md)へ到達できる。管理層registerは旧source集合11件を`registered_source_holding`として保持する | 仮登録はrepo-owned JSONL bootstrap。自動登録・分類・ticket生成・GitHub同期は要求整理後に設計するため未実装 |
 | 4. 静的整合が成立する | 成立 | L2↔L11 ID集合はHARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6で一致。保持要求source 29件は29/29 SHA-256一致する。archive 4,020件は隔離直前treeと全件一致し、監査基準から隔離前に変わった333 pathは両revisionのblob／SHA-256を別台帳で保持する。旧v1.3の直接委任22文書から意味relation 265 edgeを辿ったclosure 117文書は、114/114 file blobとScrum Reverse行台帳3文書へ保存する。frontmatter・本文参照788/788 edgeは参照元行とtarget digestを別holdingへ保持する。asset現行revision 3の29件は訂正判断29件へ一対一でjoinし、append-onlyで残す元判断29件とrevision 2 read-after 29件も一対一で追跡できる。IR 153件は全件pending、successor 0、decision 0。W1〜W4の人間可読queueで153/153件の原文・digestが台帳と一致する。補助sourceはv1.3 521行＋IR 134 item＝655件、見出しは未接続317行＋identity接続済み21行＝338件を保持する。旧candidateは92文書・4,755行を保持する。旧要求文書22件のsemantic line 2,386件は原文・行digestが一致し、未接続2,058件を721 review unitへ重複なく割り当てる | byte保持した旧文書copy内の旧相対リンクは原文を改変しないため対象外。333 pathは要求数ではなくrevision差分集合で、意味同値は未確認。`screen-mock-boundary.md`の基準`confirmed` revisionはfile blobのみ保持され、行atom化が未完了。114文書はfile-blob holding、788件は参照edge holdingであり、要求判断前のatom化・分類が必須。未分類行は過包含候補であり要求確定数ではない。29 snapshotの物理保全は完了しているが、配置判断は`pending_human_confirmation` |
 | 5. GitHub Claudeの最新HEAD意味reviewで未解消Blocker／Majorが0 | 未成立 | GitHub PR commentでexact HEADを指定してreviewを依頼し、編集後は旧依頼を失効させる運用を維持 | 判断時のPR current HEADと一致するreview結果が未着 |
-| 6. 人間がrepository構成と運用上流を確認する | 未成立 | 確認対象と条件1〜5を本表へ集約 | 人間decision recordがない |
+| 6. 人間がrepository構成と運用上流を確認する | 未成立 | [人間判断packet](audits/source-rebaseline/repository-foundation-human-decision-packet.md)へ承認対象、非対象、証拠条件、選択肢を分離 | 人間decision recordがない |
 
 ## 再現用の静的確認
 
@@ -36,7 +36,7 @@ requirements source    sha256 ok=29, non_ok=0
 snapshot ledger joins  assets current revision=3:29, original decisions revision=2:29, correction decisions pending revision=3:29, read-after pass revision=2:29
 L2/L11 IDs             HARNESS=9, HELIX-OS=13, HELIX-Web=9, HELIX-Web-OS=6; all equal
 IR carry-forward       total=153, pending=153, successor=0, decision=0
-active relative links  total=497, broken=0
+active relative links  total=502, broken=0
 human-readable queues  W1-W4 total=153, source text/digest exact=153
 human-decision packets total=23, source text/digest exact=23, applied=0
 semantic line inventory documents=22, total=2386, exact=2386, linked identities=328, pending atomization=2058
@@ -55,7 +55,7 @@ archive manifestはpathが旧repository root相対なので、`archive/legacy-ge
 
 1. final HEADをGitHub Claudeがread-onlyで意味reviewする。
 2. Blocker／Majorがあれば、要求削減や旧CIへの回帰をせずrepository foundationの範囲で修正する。
-3. 未解消Blocker／Majorが0になったexact HEADについて、人間が物理構成と上流運用を確認する。
+3. 未解消Blocker／Majorが0になったexact HEADについて、[人間判断packet](audits/source-rebaseline/repository-foundation-human-decision-packet.md)に従い物理構成と上流運用を確認する。
 4. そのdecision recordを束縛して初めてReady／merge候補にする。
 
 merge後も旧要求153件と文書要求identityはpendingから自動遷移しない。後続PRは一要求identityずつ、保持を既定として再配置する。

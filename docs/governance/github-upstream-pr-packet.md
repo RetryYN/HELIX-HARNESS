@@ -21,6 +21,7 @@ PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味revi
 | archive隔離と現行実行面 | [archive-first隔離記録](archive-first-transition-record-2026-09-14.md) |
 | 旧要求の保持と再配置状態 | [carry-forward管理状況](requirement-carry-forward-status.md) |
 | マージ条件と現在の証拠 | [repository foundation readiness](repository-foundation-readiness.md) |
+| 人間が判断する範囲と非対象 | [repository foundation人間判断packet](audits/source-rebaseline/repository-foundation-human-decision-packet.md) |
 
 ## GitHubへ投影する内容
 
