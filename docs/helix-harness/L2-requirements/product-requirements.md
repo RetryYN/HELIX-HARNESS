@@ -91,6 +91,9 @@ HELIX管理下への導入・更新の実行はOSの運用側で扱う。外部�
 ## 工程規則として保持する具体条件
 
 要件v1.3 §2–4の条件を対象別に整理する。以下はHARNESSが規定し、OSが適用する条件である。
+[工程要求source被覆監査](../../governance/harness-workflow-source-coverage.md)は、開発style、Discovery／PoC、Research、
+UI prototype、合流・差戻しに関係する確認済みsource 16 clauseを原文・digest付きで保持する。下表への参照だけで
+successor割当や移管完了を生成しない。
 
 | 親要求 | 具体条件 |
 |---|---|
