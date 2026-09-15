@@ -54,10 +54,11 @@ carry_forward_state
     → 対象revision付き人間decision
     → meaning_change_decided または retired_by_decision
 
-management_registration_state
+management_registration_state（register field名は management_state）
   source集合 → registered_source_holding
   要求候補 → registered_proposal
-  内容変更・訂正 → stale／superseded／rejected_registrationをappend
+  内容変更・metadata訂正 → supersedes_registration_id付きの同種state revisionをappend
+  置換なしの終端 → stale／superseded／rejected_registrationをappend
   └─ 他の四軸を変更しない
 
 work_projection_state

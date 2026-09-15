@@ -27,7 +27,7 @@ HARNESSの工程を一つの直線へ要約して旧要求を落とさないた�
 - Reverse closureを使う共通合流原則とAdd-feature／version-up例外。
 - 要求・設計変更時のprototype agreement stale化と再freeze。
 
-本索引のSRV-FR／SRV-AC写しは非実行archive内の`docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`にあり、資産台帳`LEGACY-ASSET-873BE1F8C64356A2FA0F`へ固定されている。宣言oracle文書のSRV-AC、fixture 16、entity全state表、confirmed親文書は一般source台帳で保持し、本索引には未収載である。本索引は24行をhistorical `draft` sourceとして可視化するだけで、旧L3をcurrent authorityへ昇格させない。対象別L2／L11への採否とsource snapshot化は後続の一要求identity PRで決める。
+本索引のSRV-FR／SRV-AC写しは非実行archive内の`docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`にあり、資産台帳`LEGACY-ASSET-873BE1F8C64356A2FA0F`へ固定されている。宣言oracle文書のSRV-AC、fixture 16、entity全state表、confirmed親文書を含む3文書300非空行は[専用全量台帳](scrum-reverse-source-line-inventory.md)と管理層source holdingで保持し、本索引には未収載である。本索引は24行をhistorical `draft` sourceとして可視化するだけで、旧L3をcurrent authorityへ昇格させない。対象別L2／L11への採否とsource snapshot化は後続の一要求identity PRで決める。
 
 ## 読み方
 

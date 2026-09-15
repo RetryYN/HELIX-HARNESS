@@ -4,7 +4,7 @@ status: active_management_view
 as_of: 2026-09-15
 authority: machine ledgers linked below
 
-要求意味の元状態、対象別文書の承認状態、再配置状態、GitHubを含む作業状態は[上流authority状態モデル](authority-state-model.md)の四軸で分ける。
+要求意味の元状態、対象別文書の承認状態、再配置状態、管理層仮登録状態、GitHubを含む作業状態は[上流authority状態モデル](authority-state-model.md)の五軸で分ける。
 
 ## 現在値
 

@@ -31,12 +31,12 @@ HARNESSは原source atom集合を無損失に分割・被覆するcontractを規
 | `preserved_pending_registration_refs` | 今回含めないatomを失わず保持する、別の生存中仮登録recordへの参照 |
 | `human_decision_disposition_refs` | 意味変更・縮退・retireを許した対象revision付き人間decision。該当なしは空配列 |
 | `unaccounted_atom_refs` | 上記三集合のいずれにも属さないatom。merge時は空配列必須 |
-| `management_state` | source保全は`registered_source_holding`、要求候補は`registered_proposal`。`stale`／`superseded`／`rejected_registration`を別revisionで記録する |
+| `management_state` | `management_registration_state`軸のregister field名。source保全は`registered_source_holding`、要求候補は`registered_proposal`。置換を伴わない終端だけ`stale`／`superseded`／`rejected_registration`を使う |
 | `authority_effect` | 常に`none`。仮登録から要求採用を生成しない |
-| `registered_by`／`registered_at` | 登録actorと時点 |
+| `registered_by`／`registered_at` | 当該行をappendしたactorとworktree記録時点。commit時刻ではない |
 | `evidence_refs` | read-after、対象HEAD、review、人間decision等への参照 |
 
-同じ旧atomを複数要求へ分割する場合はrelationを明示し、単純な重複計上で`no_loss`にしない。複数atomを統合する場合も原identityを消さず、各atomの保持位置と意味差分を示す。要求候補本文またはsource atom集合が変わった場合、旧recordを上書きせず`stale`にして新revisionを追記する。
+同じ旧atomを複数要求へ分割する場合はrelationを明示し、単純な重複計上で`no_loss`にしない。複数atomを統合する場合も原identityを消さず、各atomの保持位置と意味差分を示す。要求候補本文、source atom集合、metadataを訂正する場合は旧recordを上書きせず、`supersedes_registration_id`を持つ新revisionを追記する。置換先を作らず登録を終端する場合だけ、`stale`／`superseded`／`rejected_registration`のterminal revisionをappendする。
 
 read-afterでは`supersedes_registration_id`の有向鎖を解決し、後続から参照されない末端recordだけを生存中とする。鎖の循環、存在しない親、同じ親を訂正する複数の末端、同一`registration_id`の重複があればfail-closeする。
 
@@ -58,7 +58,7 @@ PR merge、Issue作成・close、review、CI、文書ファイルの存在だけ
 
 ## bootstrap source holding
 
-現registerは13 revisionを持ち、既に全量照合済みの七つのsource集合を七つの生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属は根拠不足のため、原行を残してrepository maintainerによる6 revisionで訂正した。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合は該当recordをstaleにする訂正revisionと、新digestのrecordをappendする。既存行の上書きは禁止する。
+現registerは21 revisionを持ち、既に全量照合済みの八つのsource集合を八つの生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。各recordは台帳path、行数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 

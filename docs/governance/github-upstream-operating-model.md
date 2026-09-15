@@ -5,7 +5,7 @@ generation: new-generation-2026-09-14
 local_authority: repository documents at exact revision
 github_role: work_review_evidence_projection
 
-文書、要求carry-forward、作業、GitHub projectionの状態は[上流authority状態モデル](authority-state-model.md)の独立した四軸で扱う。
+文書、要求carry-forward、管理層仮登録、作業、GitHub projectionの状態は[上流authority状態モデル](authority-state-model.md)の独立した五軸で扱う。
 
 ## 目的
 
@@ -99,11 +99,11 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 | version-up | requirements v1.3 §9.2、旧business requirements §3.2 | 将来版activationまでparkし、activation後にAdd-feature／Forwardへ合流 | `preserved_pending_rehome` |
 | selected-style change intake | requirements v1.3 §9.2 | styleを暗黙変更せず、影響によりRedesign／Add-feature／Scrum sliceへroute | `preserved_pending_rehome` |
 | Redesign re-entry | `HIL-BR-05`、`HIL-FR-05`、`HIL-FR-31`、requirements v1.3 §5 L509 | 影響上流とV-pairをstale化し、再freeze後にForwardへ戻す | `preserved_pending_rehome` |
-| Scrum Reverse entity／state | requirements v1.3 §4.1 L104-108、archive asset `LEGACY-ASSET-873BE1F8C64356A2FA0F` | v1.3 L104-106の4 entity名・SR4 publish条件・provisional非canonicalと、archive FR文書内のSRV-FR-101〜112／SRV-AC-101〜112の写し。宣言oracle、全state表、fixture、confirmed親文書は一般source台帳に保持し、本追加索引では未索引 | `preserved_pending_rehome` |
+| Scrum Reverse entity／state | requirements v1.3 §4.1 L104-108、archive asset `LEGACY-ASSET-873BE1F8C64356A2FA0F` | v1.3 L104-106の4 entity名・SR4 publish条件・provisional非canonicalと、archive FR文書内のSRV-FR-101〜112／SRV-AC-101〜112の写し。宣言oracle、全state表、fixture、confirmed親文書は[300行全量台帳](scrum-reverse-source-line-inventory.md)で保持する | `preserved_pending_rehome` |
 | 共通Reverse closure | 旧business requirements §3.3.1 L140-143 | 7 routeのReverse closure再利用と、Add-feature／version-up例外。旧層番号はcanonicalへ自動写像しない | `preserved_pending_rehome` |
 | interrupt subtype routing | requirements v1.3 §9.2 L633 | 暴走、未確定、追加、層内gapをRecovery、Discovery／PoC、Add-feature、Forwardへ分岐 | `preserved_pending_rehome` |
 
-この一覧は非網羅追加索引であり、不在を非継承・削除・対象外の根拠にしない。旧mode実行器や`signal → mode`をcurrentへ採用する表ではない。各source clauseを失わず、後続の一要求identity PRで新世代HARNESS contractとOS推進mappingへ分離するための未移管一覧である。interrupt横断機構、signal routing前提、差戻し手順と合流層、specialist workflow、gate順序、Scrum Reverseの宣言oracle・state表・fixture・confirmed親文書は全量source台帳に保持し、本一覧では未移管のまま残す。
+この一覧は非網羅追加索引であり、不在を非継承・削除・対象外の根拠にしない。旧mode実行器や`signal → mode`をcurrentへ採用する表ではない。各source clauseを失わず、後続の一要求identity PRで新世代HARNESS contractとOS推進mappingへ分離するための未移管一覧である。interrupt横断機構、signal routing前提、差戻し手順と合流層、specialist workflow、gate順序は既存全量台帳に、Scrum Reverseの宣言oracle・state表・fixture・confirmed親文書は[専用300行台帳](scrum-reverse-source-line-inventory.md)に保持し、本一覧では未移管のまま残す。Hybrid親styleはv1.3 L138-139を入力として扱う。
 
 ### 自動投影実装前のbootstrap
 
