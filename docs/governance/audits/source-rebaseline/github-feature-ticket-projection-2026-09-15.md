@@ -118,7 +118,7 @@ read-afterをticket本文の外で記録し、同じticketを再commitしてSHA�
 `FT-OS-REQREG-001`へ`remote_evidence`入力とoriginating commandを追加し、`FT-OS-GITHUBSYNC-001`へ自己投影の
 webhook／read-afterをreceiptまたはduplicateへ束縛して再送しない条件を追加した。外部変更もlocalで新revisionとして
 採否されるまで送信commandを生成しない。9 Issueをsource commit
-`d7fb664c79d525625dbb0c278212c3f05a465564`から再投影し、次をread-afterした。
+`d7fb664c7d3c7cf152ccaa636ea63af550fa7dc0`から再投影し、次をread-afterした。
 
 | Issue | local file SHA-256 | remote body SHA-256 | updatedAt UTC |
 |---:|---|---|---|
