@@ -14,9 +14,11 @@ Issue番号、実装済み状態、既存CIの通りやすさ、候補ファイ�
 現在は採否適用ではなく、S1の判断材料を順に整える段階である。Concept v4.1と4対象L1は
 [2026-09-17 decision record](../../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)で承認済みである。
 対象別L2／L11が未採否である停止条件は維持する。
-S1へ入る前に、要求意味の採否を伴わない管理分類登録の第1層として、各identity／atomの対象製品候補を
-HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS、製品間接続、分割要、未解決へ分類する。
-このproduct routing候補をsuccessor確定または要求承認として扱わない。
+S1へ入る前の管理分類登録第1層では、旧Requirement IR 153件すべてについて、HELIX-HARNESS、HELIX-OS、
+HELIX-Web、HELIX-Web-OS、製品間接続、分割要の候補を登録し、独立reviewとmain read-afterを完了した。
+このproduct routing候補をsuccessor確定または要求承認として扱わない。次は`L2D-S1-01`の判断材料を整え、
+一つのdecision unitとしてL2／L11採否へ束縛する。
+[第1層完了監査](product-routing-completion-and-l2-entry-2026-09-17.md)をこの遷移のread-afterとする。
 
 ## 採否単位の共通入力
 

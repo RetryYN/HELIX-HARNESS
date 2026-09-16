@@ -1,6 +1,6 @@
 # 要求間の責務・機能重複review program
 
-status: proposed_upstream_waiting
+status: product_routing_complete_cluster_preparation
 program_id: RDP-002
 parent_program: RDP-001
 owner: HELIX-OS management
@@ -85,5 +85,6 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 ## 現在の停止条件
 
 Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。product routingと重複候補clusterは
-作成できるが、最終relation、successor統合、要求削除は決定しない。
+旧Requirement IR 153件について候補登録済みである。候補targetとrouting shapeを使ってclusterを作成できるが、
+最終relation、successor統合、要求削除は決定しない。
 現在は比較対象、relation語彙、記録項目、Issue境界を固定する。L3、実装、DB、CI、archiveの物理削除へ進まない。
