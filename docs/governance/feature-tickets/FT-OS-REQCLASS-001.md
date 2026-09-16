@@ -106,7 +106,8 @@ source-qualified identityまたは無損失に分解したatomを入力にする
 
 bootstrapでは[旧IR product routing候補](../legacy-ir-product-routing-bootstrap.jsonl)をrepo-owned projectionとして
 使用する。これはruntime schemaではなく、旧crosswalk seedと四製品再評価の進行を分けて保持する台帳である。
-W1業務価値33件とW2機能69件は四製品を個別評価済みの候補、W3〜W4の51件は旧seedを保持した未審査として区別する。
+W1業務価値33件、W2機能69件、W3非機能40件は四製品を個別評価済みの候補、W4技術制約11件は
+旧seedを保持した未審査として区別する。
 件数、routing shape、SHA-256、無損失照合は
 [bootstrap監査](../audits/source-rebaseline/legacy-ir-product-routing-bootstrap-audit-2026-09-17.md)へ記録する。
 現在はticketとbootstrap台帳だけを整え、DB、engine、runtime、CIを実装・起動しない。
