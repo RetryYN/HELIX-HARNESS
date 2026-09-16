@@ -240,3 +240,22 @@ requirements-admission CIを権限分離し、HARNESSの無損失coverage contra
 Issue本文はlocal ticketの要約であり、Source全文を意味契約として参照する。要求整理でregister schema、atom namespace、
 要求kind、L2↔L11、coverage receiptが確定するまでは、bot、crawler、CI、runtime、required check設定を開始しない。
 既存CI、旧runtime、旧DBを実装基盤またはoracleにせず、Issue状態から要求意味・採否・承認・完了を生成しない。
+
+### #1837の登録writer重複解消
+
+receipt_id: `FTPROJ-1837-20260917-002`
+correction_of: `FTPROJ-1837-20260917-001`
+
+PR #1838のexact HEAD reviewで、`FT-OS-REQREG-001`と本ticketの登録botが二つのwriterに読めるとのMinorを受けた。
+登録writerの正本を`FT-OS-REQREG-001`へ一意化し、本ticketは別writer、mirror register、派生正本を作らず、同じbotを
+crawler／CIへ接続する統制案件であることをlocal ticketとIssue #1837へ反映した。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `dfc7a159bdd7bf8f7d453063ab03712465d10fc3` |
+| local Feature Ticket SHA-256 | `637b8f0b47031f8c0473b09350d9fa1462305b0f27a1e810018633ecd1864372` |
+| remote revision | `updatedAt:2026-09-16T17:14:29Z+body_sha256:9e20b4996dc27a790252ec51d8a3a509e6fd791e16fdc214a005d3d72fb89703` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+この訂正は登録capabilityを追加せず、#1798との重複可能性を除いた。bot、crawler、CIの実装・起動は引き続き停止する。
