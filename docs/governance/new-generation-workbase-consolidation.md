@@ -112,8 +112,9 @@ applyを停止する。削除を先行させない。
 
 ## 完了receipt
 
-2026-09-17T01:21:47+09:00のread-afterで、operation apply基準
-`233498d6ab0a9033359d4d5056946b9bed88cc46`に対して次を確認した。
+2026-09-17T01:21:47+09:00の初回read-afterで、operation apply基準
+`233498d6ab0a9033359d4d5056946b9bed88cc46`に対して次を確認した。GitHub `archive`作成後の訂正read-afterは
+2026-09-17T01:45:35+09:00に実施し、`archive`と`main`のexact SHAを再確認した。
 
 | 確認対象 | 結果 |
 |---|---|
@@ -125,9 +126,11 @@ applyを停止する。削除を先行させない。
 | GitHub branch処置 | 旧一時branch 218件をarchive inventoryとSHA一致後に削除、成功218／失敗0。その後、PO指示の二本構成へ訂正し、旧世代切替点`6fabd12512a3659fff4a956692cdd61faeeb16ce`を`archive`として作成 |
 | branch delete receipt | SHA-256 `723b9dfa8ba3baa9774529da28bbff6a228471acbd6184fbfc0f14b71bce4e6b` |
 | canonical local | fresh clone、local branch `main` 1件、registered worktree 1件、clean、HEAD＝`origin/main` |
-| GitHub | 通常運用時はbranch `main`と`archive`の2件。`archive`は旧世代切替点、`main`は新世代active authority |
+| GitHub訂正read-after | branchは`archive`と`main`の2件。`archive`＝`6fabd12512a3659fff4a956692cdd61faeeb16ce`、`main`＝`13997e942095d11ec19bbb76e3231edc119f1ec5` |
 | archive実行境界 | old scanner、receiver、Claude lane、archiveをcwdにしたshell／language serverを停止。archive cwd process 0件 |
 | 要求境界 | #1798〜#1805、#1812〜#1815は全件OPENを維持。要求文書・要求atom・L1／L2／L11は不変 |
 
 exact path、全ref、全worktree status、process停止対象、remote branch削除結果はrepo外operation receiptへ保持した。
-archiveはsource recovery専用で、現行repositoryのremote、worktree、hook、CLI、CI、runtime、DB、fallbackへ接続していない。
+repo外archiveはsource recovery専用で、現行repositoryのremote、worktree、hook、CLI、CI、runtime、DB、fallbackへ接続して
+いない。GitHub `archive`はremote上の非実行snapshotとして存在するが、worktree、hook、CLI、CI、runtime、DB、fallback、
+要求authorityには接続していない。
