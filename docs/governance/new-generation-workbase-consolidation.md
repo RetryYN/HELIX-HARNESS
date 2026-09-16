@@ -4,7 +4,7 @@ operation_id: `NG-WORKBASE-CONSOLIDATION-20260917-001`
 status: `po_authorized_in_progress`
 operation_class: `operation_change`
 authority_effect: `none`
-authorized_by: `PO instruction 2026-09-17`
+authorized_by: `PO instruction 2026-09-17; see #PO指示原文`
 target_generation: `new-generation-2026-09-14`
 
 ## 目的
@@ -15,6 +15,21 @@ target_generation: `new-generation-2026-09-14`
 
 本operationは作業基盤の整理だけを行う。要求の採否、分割、統合、再配置、successor確定、L1／L2／L11変更、L3、
 実装、CI、runtime再構築を行わない。集約完了後は要求整理へ進む直前で停止する。
+
+## PO指示原文
+
+2026-09-17（Asia/Tokyo）の本作業会話で、POは次の順に指示した。
+
+> ローカル、ギットハブのブランチ、ワークツリーを整理してメインのみにたためる感じか？
+
+> アーカイブとメインの2つか。
+
+> それをイシューにして新世代への作業基盤へ整理を完遂して。要求整理前まで進めてくれ。
+
+この指示は、local branch、GitHub remote branch、worktreeを現役`main`一つへ集約し、旧状態をarchiveへ保存し、Issueで
+進行と証拠を共有し、要求整理前で停止するaction-binding authorizationとして適用する。remote branch削除とcanonical
+rootのfresh clone化は、指示された`main`一本化を実現する操作scopeに含む。mainの履歴変更、force-push、tag削除、archive
+破棄、要求変更は許可scopeに含めない。
 
 ## PO指示による最終状態
 
@@ -64,13 +79,14 @@ archive保存先の絶対pathは、個人環境pathをrepo文書へ固定しな�
 
 ## apply順序
 
-1. 本contractを`main`へmergeし、GitHub Issueを本revisionのprojectionとして作成する。
+1. 本contractのcontent revisionからGitHub Issueを作成し、contract merge後にIssueのsource revisionをmerge commitへ訂正する。
 2. apply直前にworktree、ref、stash、active processを再取得し、事前receiptとの差分を追加receiptへ保存する。
 3. 差分に含まれる新しいHEADをarchive refへ追加し、Git bundleを再生成・verifyする。
-4. canonical root、linked worktree root、例外pathを削除せず、同一filesystem上のrepo外archiveへrenameして生bytesを保持する。
-5. canonical pathへ`main`だけを取得するfresh cloneを作る。旧`.git`、hook、runtime state、DB、worktree metadataを移植しない。
-6. GitHubの`main`以外のbranchを、archive済みexact ref集合と照合して削除する。force-push、main履歴変更、tag削除はしない。
-7. local／GitHub branch、worktree、main HEAD、archive bundle、raw archive件数をread-afterし、完了receiptをIssueと本書へ接続する。
+4. review laneを終端し、repo関連processを再取得する。旧scanner、receiver、Claude lane等のwriterを停止して停止対象と結果をreceiptへ残す。VS Codeの表示・言語serverは旧stateのwriterに使わない。
+5. canonical root、linked worktree root、例外pathを削除せず、同一filesystem上のrepo外archiveへrenameして生bytesを保持する。
+6. canonical pathへ`main`だけを取得するfresh cloneを作る。旧`.git`、hook、runtime state、DB、worktree metadataを移植しない。
+7. GitHubの`main`以外のbranchを、archive済みexact ref集合と照合して削除する。force-push、main履歴変更、tag削除はしない。
+8. local／GitHub branch、worktree、main HEAD、archive bundle、raw archive件数をread-afterし、完了receiptをIssueと本書へ接続する。
 
 途中で新しい未archive HEAD、archive digest不一致、bundle verify失敗、main HEAD drift、保存先不足が見つかった場合は、残りの
 applyを停止する。削除を先行させない。
