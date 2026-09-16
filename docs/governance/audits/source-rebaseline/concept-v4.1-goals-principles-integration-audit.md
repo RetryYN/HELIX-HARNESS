@@ -21,11 +21,11 @@ Concept、目標、原則、L1、L2／L11のauthority昇格を行わない。
 
 | 目標 | Concept上の接続先 | 直接生成しないもの |
 |---|---|---|
-| システム駆動エージェント自走 | Human Sovereignty、Contract Compilation、Bounded Multi-AI Execution、Durable and Replayable、Evidence Closure | authority、要求、許可、完了 |
-| 開発するほど賢くなる自己知能型改善 | HELIX-OS Concept、Controlled Adaptation、HARNESS自己適用・改善 | 要求変更、自己承認、無条件な学習反映 |
-| 設計から全体をシミュレーションする予測 | Responsibility First、relation、V-pair、stale化、反証可能な証拠 | 確定事実、採否、技術方式 |
-| CIとbotで品質とスピードを両立し非エンジニアでも作れる | HARNESSの開発・検証契約、HELIX-OSの実行統制、個別製品の利用者体験 | CI greenからの要求・受入・完了 |
-| 低コストWorkerを最適配置 | Bounded Multi-AI Execution、計測、assignment、独立review | provider固定、自己申告による能力認定、品質義務の省略 |
+| システム駆動エージェント自走システム | Human Sovereignty、Contract Compilation、Bounded Multi-AI Execution、Durable and Replayable、Evidence Closure | authority、要求、許可、完了 |
+| 開発するほど賢くなる自己知能型改善システム | HELIX-OS Concept、Controlled Adaptation、HARNESS自己適用・改善 | 要求変更、自己承認、無条件な学習反映 |
+| 設計から全体をシミュレーションする予測型システム | Responsibility First、relation、V-pair、stale化、反証可能な証拠 | 確定事実、採否、技術方式 |
+| CIとbotで品質とスピードを両立した非エンジニアでも作れるシステム | HARNESSの開発・検証契約、HELIX-OSの実行統制、個別製品の利用者体験 | CI greenからの要求・受入・完了 |
+| 低コストワーカでも最高のパフォーマンスを発揮して最適配置するシステム | Bounded Multi-AI Execution、計測、assignment、独立review | provider固定、自己申告による能力認定、品質義務の省略 |
 
 5目標は5/5接続され、目標文書のPO提示原文は変更していない。対象別の利用者価値、非対象、要求、受入、数値基準、
 技術方式はL1以降へ残る。
@@ -37,12 +37,12 @@ Concept、目標、原則、L1、L2／L11のauthority昇格を行わない。
 | 七大原則 | Conceptとの関係 |
 |---|---|
 | リサーチ＆検証ファースト | 上流authorityと反証条件を確認してから下流へ降ろす |
-| 原子PR原則／非依存並列化 | responsibility、relation、対象revisionに沿って変更単位を分ける |
-| DDD設計／TDD開発 | domainと責務を先に定め、要求・設計・検証pairを閉じる |
-| 下流トラブルは上流還流 | 対象上流へ候補を戻し、採否後のrevisionから再導出する |
-| ミニマム実装／適時リファクタリング | 承認scope内の最小変更と、別採否が必要な構造改善を分ける |
-| 責務／依存分離 | Product SeparationとResponsibility Firstを変更境界へ適用する |
-| 確かな証拠と計測改善 | Evidence ClosureとControlled Adaptationを完了・改善判断へ適用する |
+| 原子PR原則/非依存並列化 | responsibility、relation、対象revisionに沿って変更単位を分ける |
+| DDD設計/TDD開発 | domainと責務を先に定め、要求・設計・検証pairを閉じる |
+| 下流トラブルは上流還流※トラブルの原因は要件定義や設計を疑え | 対象上流へ候補を戻し、採否後のrevisionから再導出する |
+| ミニマム実装/適時リファクタリング | 承認scope内の最小変更と、別採否が必要な構造改善を分ける |
+| 責務/依存分離で変更耐性を最適化 | Product SeparationとResponsibility Firstを変更境界へ適用する |
+| 確かな証拠と計測改善で品質を守れ | Evidence ClosureとControlled Adaptationを完了・改善判断へ適用する |
 
 七原則は7/7接続され、原則文書のPO提示原文は変更していない。Production、Research、Discovery／PoC、
 UI prototypeのrouteとroute内順序はHARNESS側に残る。
