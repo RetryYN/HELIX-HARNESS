@@ -72,7 +72,7 @@ review resultが変わった場合は回答前後を問わず停止し、新し�
 ### 2. 承認後recordとfinal review
 
 承認後は`docs/governance/audits/source-rebaseline/repository-foundation-decisions.jsonl`へ一件だけappendし、その変更だけを
-`target_content_head`の直後の一commitにする。recordは少なくともdecision record ID、decision ID、actor、decision、時点、
+`target_content_head`の直後の一commitにする。recordは少なくともdecision record ID、decision ID、actor、decision、RFC 3339時点、
 人間の判断原文、`target_base_ref`／`target_base_head`／`target_content_head`、packet path／digest、content review三comment、review結果、decision payload comment／digest、
 判断対象／非対象、維持する停止条件、許可されたrecord path、`required_merge_method: merge_commit`、`correction_of`を持つ。
 `decision_source_ref`は人間回答を再取得できる会話またはGitHub commentの参照、`decision_payload_remote_body_sha256`は
@@ -100,7 +100,7 @@ recordするためにbranchへ追加commitしてはならず、GitHub commentと
 | `changes_requested` | 旧要求とarchiveを保持したまま、指定箇所を修正し、新しいexact HEADでreviewと判断をやり直す |
 | `reject_foundation` | 対象revisionを基盤として採用しない。旧要求の保持台帳やarchive bytesを削除・棄却したことにはしない |
 
-平易な返答では、証拠条件が成立し、`target_content_head`とpayload digestが提示された後に「このrepository基盤で進める」、
+平易な返答では、証拠条件が成立し、`target_base_head`、`target_content_head`、payload digestが提示された後に「このrepository基盤で進める」、
 または修正箇所を指定すればよい。`approve_foundation`だけを上記二段階記録で固定する。`changes_requested`と
 `reject_foundation`は`human_decision_request`に対する人間回答のsource eventで保持し、branchへdecision recordをcommitしない。
 その場合はPRを停止状態のまま維持し、修正または退役の後続判断へ進む。

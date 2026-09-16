@@ -35,8 +35,8 @@ PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味revi
 - read-after後は同じPRへ`review_request_delivery_receipt` commentを追記し、review request identity、target full SHA、
   payload SHA-256、依頼comment ID、remote本文SHA-256、read-after時点、`delivery_result`を保存する。依頼comment、receipt、
   review応答は人間判断時にGitHub APIから再取得する。
-- HEAD更新後は以前のreview依頼を失効とし、新しいfull SHAで依頼する。
-- review結果は依頼targetと同じexact HEADを本文で示す応答だけをfindingとしてreadinessへ反映し、要求採否、人間承認、
+- baseまたはcontent HEADの更新後は以前のreview依頼を失効とし、新しいbase／content full SHA pairで依頼する。
+- review結果は依頼targetと同じexact base／content pairを本文で示す応答だけをfindingとしてreadinessへ反映し、要求採否、人間承認、
   Ready化、mergeを自動生成しない。依頼commentの存在、mention、reaction、workflow開始だけではreview完了にしない。
 - 内容reviewがBlocker／Major／Minor 0になった後、判断対象base／content HEAD pair、packet digest、review request／delivery／response、判断scope、
   decision recordの唯一の許可path、`required_merge_method: merge_commit`をcanonical decision payloadへ固定する。payload全文と
