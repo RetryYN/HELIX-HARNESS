@@ -21,6 +21,7 @@
 | 提供構成 | 検証済み機能を適格性を保って構成する | 是正済み | Slice／Module／Bundle等のidentity・schemaはL1／L2承認後に導出 |
 | 層とpair | L1–L12、L2↔L11、L3↔L10を含む正規6 pair | 整合 | 対象別L3／L10は未作成・未凍結 |
 | 人間authority | Concept、要求、L3要件、不可逆作用の許可を所有 | 整合 | 本Concept v4.1自体の人間承認が未実施 |
+| 5大目標と七大原則 | 5大目標をHELIX全体の到達価値、七大原則をHARNESS route内のエージェント行動規律としてConceptへ接続 | 整合 | 対象別L1への価値分解と将来のauthority判断は未実施 |
 | AI可読文書 | 旧instructionをarchiveへ隔離し、最小上流入口を置く。承認上流からHARNESS契約・OS context・個別製品要求を分離生成 | 整合 | 最小入口のみ配置済み、manifest／生成器はL3以降 |
 
 ## 是正した不整合
@@ -43,7 +44,7 @@
 
 | 対象 | 再照合結果 |
 |---|---|
-| Concept v4.1 | 固有`document_id`、HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OS境界、GitHub projection、legacyのbaseline／parity／fallback禁止が存在 |
+| Concept v4.1 | 固有`document_id`、HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OS境界、5大目標と七大原則の接続、GitHub projection、legacyのbaseline／parity／fallback禁止が存在 |
 | HARNESS L1 | L1 ID 7/7、全IDのL2側逆参照7/7、P0–P9帰属、L12接続条件が存在 |
 | HELIX-OS L1 | L1 ID 12/12、全IDのL2側逆参照12/12、P0–P9帰属、L12接続条件が存在 |
 | HELIX-Web L1 | L1 ID 6/6、全IDのL2側逆参照6/6、P0–P4／P7–P9のHARNESS・OS委譲とP5／P6分類、L12接続条件が存在 |
@@ -64,5 +65,6 @@ archive順序、旧authority表示、Web-OS昇格条件、deployment境界、L1�
 blocker 2件・major 4件が見つかった。各所見は新revisionで修正した。修正後HEADの独立再reviewは別revisionとして取得し、
 本監査や旧reviewをpassへ変換しない。
 
-状態は`awaiting_human_approval`のままであり、承認済み・canonical・実装可能として扱わない。現在残る直列判断は、
-Concept v4.1と4対象L1の意味を人間がexact SHAに対して採否することである。
+状態は`awaiting_human_approval`のままであり、承認済み・canonical・実装可能として扱わない。候補文書の物理mergeは
+人間承認を条件にせず、mergeからauthorityを生成しない。将来のauthority昇格では、Concept v4.1と4対象L1の意味を
+人間がそれぞれのexact SHAに対して採否する。

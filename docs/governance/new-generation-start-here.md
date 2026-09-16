@@ -40,6 +40,8 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 repository foundation、5大目標候補、七大原則候補の順に物理統合し、
 Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ収束させる。5大目標と七大原則の内容判断は、
 各候補PRのmerge admissionと独立したまま扱う。repository foundationは構造整理の証拠だけで統合済みである。
+Concept v4.1候補は、5大目標をHELIX全体の到達価値、七大原則をエージェント行動規律として接続する。
+この接続から個別要求、workflow、技術選定、authorityを直接生成しない。
 
 Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。

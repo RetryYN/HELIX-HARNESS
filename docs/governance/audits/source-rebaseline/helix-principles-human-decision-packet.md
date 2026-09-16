@@ -72,12 +72,13 @@ SHA-256、時点、維持する条件を`HDEC-HELIX-AGENT-PRINCIPLES-0.1`へ束�
 
 | source | SHA-256 | 接続する範囲 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `56118722c190dddfdf5436cb2c15f8b5773431d18638e0870f8dd03ec68c210e` | Evidence Closure、Responsibility First、Controlled Adaptation、上流還流 |
+| `docs/concept/helix-concept-v4.1.md` | `007ef9b54c85faa3cc4e8195fcf02c3e78de82bce679799d7b2fd11028fbd6b7` | 七大原則を9構造原則と分離した行動規律として接続する改訂候補。Evidence Closure、Responsibility First、Controlled Adaptation、上流還流 |
 | `docs/concept/product-boundary.md` | `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038` | HARNESS／HELIX-OS／個別製品の責務分離 |
 | `docs/governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md` | `3b5f4140787ede35ebbaae650082f5872ee0cb48e0e25f17bdb87f35f8dfa2cb` | researchから要求・検証へ降ろす順序、stale化、証拠、改善候補 |
 
 既存上流に未承認候補が含まれるため、七大原則の承認だけで親Conceptや製品責務境界を承認済みにしない。親sourceが変更された
-場合は影響を確認し、本候補を必要に応じて`stale`へ戻す。
+場合は影響を確認し、本候補を必要に応じて`stale`へ戻す。Concept v4.1の今回改訂は七大原則本文を変更せず、HARNESS routeを
+置き換えない行動規律として接続する。current pairの外部reviewで無矛盾を確認するまでauthority判断へ進めないが、候補mergeは止めない。
 
 ## 5大目標候補との関係と統合順
 
