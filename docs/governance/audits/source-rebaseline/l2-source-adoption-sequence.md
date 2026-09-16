@@ -1,13 +1,17 @@
 # 対象別L2 source採否順序
 
 prepared_at: 2026-09-14
-status: waiting_for_concept_and_l1_decisions
+status: organization_started_decision_pending
 
 ## 目的
 
 本書は、Concept v4.1と対象別L1の承認後に、候補要求源を対象別L2へ採否する順序を定める。
 Issue番号、実装済み状態、既存CIの通りやすさ、候補ファイルの作成日を優先順位に使わない。
 各系列は個別decisionを持ち、同じ段階にあることを一括承認の根拠にしない。
+
+要求整理の開始時点と全母集団は
+[無損失ベースライン](requirements-organization-entry-baseline-2026-09-17.md)へ固定した。
+現在は採否適用ではなく、S1の判断材料を順に整える段階である。Concept／L1未承認の停止条件は維持する。
 
 ## 採否単位の共通入力
 
