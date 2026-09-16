@@ -156,3 +156,66 @@ local本文の完全な参照行区間、要約にない条項を対象外にし
 `remote body SHA-256`はGitHub APIが返すIssue本文文字列を、末尾改行を追加せずUTF-8 bytesへ変換して計算する。
 訂正後本文には上記三つのremote専用指示が0件であり、remote evidenceのsource system、delivery identity、
 remote revision、originating projection commandの四項目が表示されることをread-afterした。
+
+## #1798参照行区間の訂正
+
+receipt_id: `FTPROJ-1798-20260916-002`
+correction_of: `FTPROJ-1798-20260916-001`
+
+Issue本文の要約はlocal Source全本文を意味契約としていたが、表示した二つの参照行区間が節境界と一致していなかった。
+入出力契約候補を`Source 59–91行`、要求PR merge admissionを
+`management-provisional-requirement-registration.md 52–64行`へ訂正した。意味本文、要求、relation、状態は変更していない。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `cb31f86e8b23bb2215a04503df0b3417d395a4a3` |
+| local file SHA-256 | `4f6741b75629405011880e960dd32f47b6b53282519448ef3b4653cf7fdbbe89` |
+| previous remote revision | `updatedAt:2026-09-15T16:20:07Z+body_sha256:600345a2c131c9f7e35ef1be62d259ae775330b6f505c449634cafdba3fec364` |
+| corrected remote revision | `updatedAt:2026-09-15T17:45:28Z+body_sha256:59d98860b1102e34bacf4a1eb361b32f8897b9b98a60e41e1dbc8e8b75ee44cb` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+この訂正はGitHub本文を正本にせず、Issueの表示をlocal sourceの正確なnavigationへ合わせたprojection補正である。
+
+## #1798のrevision別要求保持条件への再同期
+
+receipt_id: `FTPROJ-1798-20260916-003`
+correction_of: `FTPROJ-1798-20260916-002`
+
+要求PR merge admissionへ、333 pathに含まれるsourceは監査基準revisionと隔離直前revisionを両方atom入力へ含め、
+同値としてまとめる場合も両digestへ束縛した人間decisionを要求する条件を追加した。このlocal変更を含むcommitへ
+Issue #1798のsource revisionを更新し、merge admissionの参照区間を`52–65行`へ再同期した。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `a25be494d720ba67afeec76859b0b24a3d91e50c` |
+| local Feature Ticket SHA-256 | `4f6741b75629405011880e960dd32f47b6b53282519448ef3b4653cf7fdbbe89` |
+| previous remote revision | `updatedAt:2026-09-15T17:45:28Z+body_sha256:59d98860b1102e34bacf4a1eb361b32f8897b9b98a60e41e1dbc8e8b75ee44cb` |
+| corrected remote revision | `updatedAt:2026-09-15T17:47:57Z+body_sha256:d6640ce7552d70dc23f9c9fbe234e96ad5408c6acc7e7c18a5bc3169eff903d5` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+Feature Ticket本文の意味digestは変わっていない。同期対象commitとnavigationを更新しただけであり、要求採用、
+baselineと隔離直前revisionの同値判断、実装開始を生成しない。
+
+## #1798のrevision差分admission補強への再同期
+
+receipt_id: `FTPROJ-1798-20260916-004`
+correction_of: `FTPROJ-1798-20260916-003`
+
+要求PRのmerge admission条件6・7を、入力atomの原`source_path`だけでなく、保持copy pathとsource file SHA-256からも
+333件のrevision差分へ照合するよう補強した。保持copy pathだけを入力して基準revisionを落とせる抜け道を閉じたため、
+Issue #1798が参照するlocal source commitを、補強後のexact revisionへ再同期した。参照区間`52–65行`は補強後も節境界と
+一致する。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `b5514ad1f95226f871698288bdfa77f845637064` |
+| local Feature Ticket SHA-256 | `4f6741b75629405011880e960dd32f47b6b53282519448ef3b4653cf7fdbbe89` |
+| previous remote revision | `updatedAt:2026-09-15T17:47:57Z+body_sha256:d6640ce7552d70dc23f9c9fbe234e96ad5408c6acc7e7c18a5bc3169eff903d5` |
+| corrected remote revision | `updatedAt:2026-09-15T18:41:45Z+body_sha256:773e110deced3c29a3fd594116e37646e69157f63e6dc826fd52377d7e81f029` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+Feature Ticket本文のbytesと意味は変えていない。GitHub本文を正本へ昇格せず、local contractの新revisionを指すprojectionへ
+合わせた操作証拠である。要求採用、両revisionの意味同値、実装開始、CI起動を生成しない。

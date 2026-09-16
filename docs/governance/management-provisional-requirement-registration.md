@@ -58,14 +58,25 @@ terminal revisionと、そのrevisionが指す対象はいずれも生存先と�
 3. `coverage_result: no_loss`で、`unaccounted_atom_refs`が空である。
 4. 今回移さないatomは、`preserved_pending_registration_refs`が指す生存中の`source_holding`または別の`requirement_candidate` recordで管理層へ仮登録されている。
 5. `management_state: registered_proposal`、`authority_effect: none`である。
-6. 対象HEADでregisterをread-afterし、欠落、重複、`stale`、`superseded`、`rejected_registration`、wrong product、digest不一致がない。
-7. 別条件として、対象revisionに対する人間decisionとGitHub ClaudeのBlocker／Major 0を満たす。
+6. 対象HEADでregisterをread-afterし、欠落、重複、`stale`、`superseded`、`rejected_registration`、wrong product、digest不一致がない。さらに入力atomの`source_path`、保持copy path、source file SHA-256を、`MPR-SH-PREISOLATION-*`が参照する333件の`source_path`、`archive_path`、`baseline_file_sha256`、`pre_isolation_file_sha256`へ照合する。
+7. 条件6のいずれかが333件のrevision差分へ対応する場合、path表記が異なっていても、監査基準revisionと隔離直前revisionの両方をatom入力に含める。同値として一方へまとめる場合は、両digestへ束縛した人間decisionを持つ。保持copy pathだけを入力して本条件を回避してはならない。
+8. 別条件として、対象revisionに対する人間decisionとGitHub ClaudeのBlocker／Major 0を満たす。
 
 PR merge、Issue作成・close、review、CI、文書ファイルの存在だけでは仮登録や`no_loss`を生成しない。register recordが無い、古い、対象が違う、被覆集合が不明、未計上atomがある場合はfail-closeする。
 
 ## bootstrap source holding
 
-現registerは23 revisionを持ち、既に全量照合済みの十のsource集合を十の生存中`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを両方保持し、意味同値を未確認のまま残す。十番目は旧v1.3が委ねる未行分解18文書とScrum Reverseの対受入1文書をfile blob単位で保持し、要求atom化を未実施のまま残す。各recordは台帳path、item数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
+現registerは27 revisionを持ち、既に全量照合済みの十一のsource集合を十一の生存中
+`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した
+訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを
+両方保持し、意味同値を未確認のまま残す。`MPR-SH-PREISOLATION-002`は要求・検証source 2件のcategoryを訂正し、bytesと
+意味状態は変えない。十番目は旧v1.3の直接委任22文書から意味frontmatter relation 265 edgeを再帰的に辿った117文書の
+うち、Scrum Reverse行台帳3文書を除く114 file blobを保持する。`MPR-SH-DELEGATED-DOC-003`は4 keyに限っていた旧closureを
+訂正し、`pair_group.members`、`tailoring_profile`、`definition_ledger`、`legacy_source`等から到達する77文書を追加した。
+十一番目は同じ117文書から抽出したfrontmatter・本文参照788 edgeを、参照元行と対象blob digest付きで
+`MPR-SH-DELEGATED-REF-001`へ保持する。参照候補を要求atomへ昇格せず、PLAN、process、migration、意味source候補を分類前に
+消さない。各recordは台帳path、item数、file SHA-256へ束縛し、要求候補への移管を主張しない。台帳内容が変わった場合も
+同じく新digestの訂正revisionをappendする。既存行の上書きは禁止する。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。file blobまたはpath単位のholdingを入力にする場合は、同じsource digestから無損失なatom集合を先に作り、別の生存中`source_holding`へ仮登録する。file blob一件を一要求atomとして扱って`no_loss`にしてはならない。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 

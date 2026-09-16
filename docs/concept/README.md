@@ -11,11 +11,11 @@ HELIXは一つの製品ではなく、複数の製品と統制機構を接続す
 | HELIX-Web | HARNESS Version 1完成後に提供するConnector型Web製品。ダッシュボードで開発進行・成果・証拠を利用者へ示す |
 | HELIX-Web-OS | HELIX-OS外でWeb service runtimeを運転する。許可された観測をHELIX-OSへ返し、改善loopで接続する |
 
-[HELIXエージェントの七大原則候補](helix-principles.md)がエージェントの共通行動基準をまとめ、
-[Concept本文](helix-concept-v4.1.md)と[製品責務境界](product-boundary.md)がHELIX全体の構造と責務を詳細化する。
-七大原則候補も人間承認前であり、PRのmergeだけではauthorityにならない。
-別PR #1827の5大目標候補はHELIXの到達方向・価値を扱う。#1827の確定後に本PRをその上へ載せ直し、
-Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ統合する。
+[Concept本文](helix-concept-v4.1.md)と[製品責務境界](product-boundary.md)が、この意味を詳細化する。
+[HELIX自体の5大目標候補](helix-five-goals.md)はHELIX全体が実現する価値を示し、個別要求と実装方式は固定しない。
+[HELIXエージェントの七大原則候補](helix-principles.md)は、その価値へ進むエージェントの共通行動基準を示す。
+両候補ともConceptに従属し、人間の内容判断前である。PRのmergeだけではauthorityにならない。
+Concept／製品責務境界→5大目標→七大原則→対象別L1の順に読む。
 
 ## 既に示された方向
 
