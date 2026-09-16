@@ -1,10 +1,10 @@
 # Repository foundation 人間判断packet
 
 prepared_at: 2026-09-16
-status: review_pending
+status: decision_protocol_review_pending
 decision_id: HDEC-REPOSITORY-FOUNDATION-0.1
 authority_effect_before_decision: none
-target: PR #1797 current exact HEAD at decision time
+target: PR #1797 reviewed content HEAD bound by a pre-decision payload
 
 ## 何を判断するか
 
@@ -21,8 +21,9 @@ PR #1797を、HELIX新世代を上流から組み直すためのrepository基盤
 6. AIが[新世代作業入口](../../new-generation-start-here.md)から対象、authority状態、読込順、許可作業、停止作業を確認できる
    最小context。
 
-判断対象revisionは、判断時にGitHub APIからread-afterしたPR #1797のcurrent full HEADで固定する。branch名、PR本文、
-Issue状態、CI結果だけでは対象revisionを確定しない。
+判断対象revisionは、判断直前にGitHub APIからread-afterしたPR #1797のcurrent full HEADを`target_content_head`として固定する。
+branch名、PR本文、Issue状態、CI結果だけでは対象revisionを確定しない。判断後にdecision recordを同じPRへ保存することで
+HEADが一度だけ変わるため、下記の二段階記録を使い、record追加後のHEADを新しい内容承認対象へ読み替えない。
 
 ## 判断前に必要な証拠
 
@@ -37,6 +38,50 @@ Issue状態、CI結果だけでは対象revisionを確定しない。
 [carry-forward管理状況](../../requirement-carry-forward-status.md)「機械台帳」に記載したSHA-256または管理registerの
 `source_atom_set_digest`が、参照先台帳fileの実測SHA-256と一致しない場合も停止する。
 
+## decision recordの二段階記録
+
+### 1. 承認前payloadの固定
+
+人間へ判断を求める前に、次のfieldを持つcanonical JSON payloadを作成する。RFC 8785 JSON Canonicalization Schemeで
+serializeしたUTF-8 bytesのSHA-256を`decision_payload_sha256`とする。payload全文とdigestをPR #1797の
+`human_decision_request` commentへ投影し、remote本文とdigestをread-afterする。
+payloadは`docs/governance/audits/source-rebaseline/repository-foundation-decision-payload.schema.json`へ適合させる。
+
+- `schema_version`: `repository_foundation_decision_payload.v1`
+- `decision_id`: `HDEC-REPOSITORY-FOUNDATION-0.1`
+- `target_pr`: `1797`
+- `target_content_head`: 判断直前のcurrent full HEAD
+- `decision_packet_path`と、そのHEADにおけるfile SHA-256
+- current HEADを対象にしたcontent review request、delivery receipt、review responseのcomment IDとBlocker／Major／Minor
+- 判断対象六項目、判断で成立しない事項、維持する停止条件
+- `allowed_post_decision_change_paths`: `docs/governance/audits/source-rebaseline/repository-foundation-decisions.jsonl`だけ
+- `required_merge_method`: `merge_commit`
+
+人間には`target_content_head`と`decision_payload_sha256`を示す。「このrepository基盤で進める」は、その提示payloadに対する
+`approve_foundation`としてのみ受理する。payload提示後にPR HEAD、packet digest、review resultが変わった場合は回答前後を問わず
+停止し、新payloadから判断をやり直す。
+
+### 2. 承認後recordとfinal review
+
+承認後は`docs/governance/audits/source-rebaseline/repository-foundation-decisions.jsonl`へ一件だけappendし、その変更だけを
+`target_content_head`の直後の一commitにする。recordは少なくともdecision record ID、decision ID、actor、decision、時点、
+人間の判断原文、`target_content_head`、packet path／digest、content review三comment、review結果、decision payload comment／digest、
+判断対象／非対象、維持する停止条件、許可されたrecord path、`required_merge_method: merge_commit`、`correction_of`を持つ。
+decision recordは承認事実の証拠であり、Concept、要求、設計、実装のauthorityを追加しない。
+各行は`docs/governance/audits/source-rebaseline/repository-foundation-decision-record.schema.json`へ適合させる。
+各行のJSON objectもRFC 8785でserializeし、一recordにつきLF終端の一行としてappendする。
+
+record追加後のHEADは、次をすべて満たすrecord-only最終reviewに通す。
+
+1. `target_content_head`を直接の親とする一commitだけが追加されている。
+2. diff pathは上記decision JSONL一件だけで、承認payloadと人間回答を忠実に記録している。
+3. archive、要求source、台帳、Concept、対象別文書、運用規則、readiness、packetに差分がない。
+4. GitHub Claudeがrecord追加後のexact HEADを確認し、未解消Blocker／Major／Minorが0である。
+
+この四条件を満たすrecord-only HEADは、承認済み内容を変更せず証拠を同梱したmerge対象であり、同じ人間判断を再要求しない。
+一つでも外れる場合は承認を失効させ、変更後HEADの意味reviewと新しいdecision payloadからやり直す。final review結果やReady化を
+recordするためにbranchへ追加commitしてはならず、GitHub commentとPR metadataのread-afterで保持する。
+
 ## 選択肢
 
 | 判断 | 結果 |
@@ -45,8 +90,8 @@ Issue状態、CI結果だけでは対象revisionを確定しない。
 | `changes_requested` | 旧要求とarchiveを保持したまま、指定箇所を修正し、新しいexact HEADでreviewと判断をやり直す |
 | `reject_foundation` | 対象revisionを基盤として採用しない。旧要求の保持台帳やarchive bytesを削除・棄却したことにはしない |
 
-平易な返答では、証拠条件が成立した後に「このrepository基盤で進める」、または修正箇所を指定すればよい。判断記録は
-actor、decision、PR番号、target full HEAD、時点、review receipt、維持する停止条件へ束縛する。
+平易な返答では、証拠条件が成立し、`target_content_head`とpayload digestが提示された後に「このrepository基盤で進める」、
+または修正箇所を指定すればよい。判断記録は上記二段階記録で固定する。
 
 ## この判断で成立しないもの
 
@@ -58,6 +103,17 @@ actor、decision、PR番号、target full HEAD、時点、review receipt、維�
 - release、deployment、外部公開、配布repositoryの切替。
 
 PR merge、Issue close、既存CodeQL、旧CI green、review依頼の存在は、この人間判断を生成しない。
+
+## merge方式
+
+#1797は途中commit SHAをIssue、projection receipt、監査記録のsource revisionとして保持しているため、squash mergeとrebase mergeを
+禁止し、GitHubのmerge commitで取り込む。platformがmerge commitを拒否する場合は停止し、別方式へfallbackしない。merge後は
+merge commitが二親を持ち、第2親がrecord-only final HEADであり、`target_content_head`を含むPR全履歴がmainの祖先になったことを
+read-afterする。merge commitの生成自体はGitHubの統合作用であり、record-only final HEADの内容を変えないため再承認対象にしない。
+
+Ready化とmerge実行の直前にrepositoryの`allow_merge_commit`、main branch protection、ruleset、PRのmergeable状態をGitHub APIから
+再取得する。required platform gateが存在する場合は、その成立を確認するまで停止する。CodeQL等の非required外部projectionは
+foundationの意味合格根拠へ算入せず、その失敗を理由にsquash／rebaseや旧CIへfallbackしない。
 
 ## 判断後の次工程
 

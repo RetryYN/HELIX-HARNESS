@@ -38,6 +38,13 @@ PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味revi
 - HEAD更新後は以前のreview依頼を失効とし、新しいfull SHAで依頼する。
 - review結果は依頼targetと同じexact HEADを本文で示す応答だけをfindingとしてreadinessへ反映し、要求採否、人間承認、
   Ready化、mergeを自動生成しない。依頼commentの存在、mention、reaction、workflow開始だけではreview完了にしない。
+- 内容reviewがBlocker／Major／Minor 0になった後、判断対象HEAD、packet digest、review request／delivery／response、判断scope、
+  decision recordの唯一の許可path、`required_merge_method: merge_commit`をcanonical decision payloadへ固定する。payload全文と
+  SHA-256を`human_decision_request` commentへ投影し、remote本文をread-afterしてから人間判断を求める。
+- 承認後は許可されたdecision JSONL一件だけを判断対象HEADの直後へcommitし、そのrecord-only exact HEADを最終reviewする。
+  final reviewとReady化はbranchへcommitせずGitHub上で保持する。record以外の差分があれば承認を失効させる。
+- #1797はmerge commit限定とする。`gh pr merge --merge`相当以外を使わず、squash／rebaseへfallbackしない。merge後に二親、
+  第2親、PR全履歴のmain祖先性をread-afterするまで統合完了にしない。
 
 ## Claudeへ確認させる意味
 
