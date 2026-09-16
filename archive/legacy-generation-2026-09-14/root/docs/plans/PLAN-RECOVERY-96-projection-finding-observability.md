@@ -1,0 +1,159 @@
+---
+plan_id: PLAN-RECOVERY-96-projection-finding-observability
+title: "PLAN-RECOVERY-96: projection writerの黙示的欠落をfindingとして可視化する"
+kind: recovery
+layer: cross
+drive: db
+status: confirmed
+completion_claim_allowed: true
+backfill_state: complete
+created: 2026-09-03
+updated: 2026-09-03
+owner: Codex / TL
+github_issue_id: 1440
+behavior_contract_id: PROJECTION-FINDING-OBSERVABILITY-001
+responsibility_owner: projection-finding-observability
+engineering_discipline_required: true
+change_slice: atomic
+refactor_step: introduce_contract
+legacy_retirement_state: retained
+no_code_decision: modify
+ddd_modeling_decision: value_object
+workflow_identity:
+  schema_version: helix-plan-workflow-identity.v1
+  registry_version: 1.1.6
+  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c
+  target_axis: workflow_model
+  target_id: RECOVERY
+entry_signals:
+  - regression_dev
+contract_preconditions: "confirmed System Synthesisのstable identity・deterministic projection・fail-close原則とPLAN-L7-46 projection writerが存在する"
+contract_postconditions: "projectionの欠落・衝突・破損・依存不整合がsuccess相当へ消えず、findingまたはtyped failureとしてrebuild/replayで同一に観測できる"
+contract_invariants: "source文書を変更せず、既存finding storeとDB transaction boundaryを再利用し、#1397の責務を変更しない"
+contract_failures: "malformed evidence、plan_id欠落、span collision、parse error、row-count mismatch、reason欠落、cache digest driftを黙って成功させない"
+tdd_red_required: true
+red_at: "2026-09-03T08:16:46Z"
+green_at: "2026-09-03T08:18:06Z"
+mutation_oracle_required: true
+mutation_oracle_evidence: "U-PFO-001〜009をtargeted testとして実装し、malformed evidence、missing plan_id、span namespace除去、parse error消失、依存row欠落、DB reason混同、source digest未更新、metadata例外伝播、入力順を反転した独立rebuild間のprojection／finding差異を検出することを確認した。2026-09-03T08:16:46Zにcanonicalizationのedges sortを除去したmutationで `npx --no-install vitest run --configLoader runner --project slow tests/slow/projection-writer.test.ts -t U-PFO-009` がexit 1となり、復元後2026-09-03T08:17:32Zの同一targeted testがexit 0となった。PR #1478のexact HEAD b55831e197570248d8a251a67976fb73fa6822a9でCI run 33723078211がterminal successとなり、Claude Codeの独立レビューがblocker 0を確認した。merge後main b5c7cc451ca379f646e361b48657ace82199b915でもharness-check run 33726154167が全shard、receipt集合、post-test DB rebuild、doctor、typed laneを含めterminal successとなった。"
+complexity_effect: net_neutral
+complexity_justification: "既存projection writerとfinding storeの欠落経路を型付き失敗へ収束し、新しいDB authorityや別projectionを増やさない"
+removal_trigger: "既存projection writerの恒久的acceptanceへ統合し、Recovery専用の重複検査が不要になった時点でsource PLANから統合する"
+backprop_decision: not_required
+backprop_decision_reason: "confirmed System Synthesisの意味を変更せず、既存L7 projectionのfail-openを回復する"
+parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md
+pair_artifact: docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md
+dependencies:
+  parent: docs/plans/PLAN-L7-46-projection-writer.md
+  requires:
+    - docs/plans/PLAN-L7-46-projection-writer.md
+  references:
+    - "issue:1440"
+    - "issue:1397"
+    - "issue:1391"
+    - "issue:1420"
+    - docs/design/helix/L3-requirements/system-synthesis-requirements.md
+verification_bindings:
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-001, test_path: tests/slow/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-002, test_path: tests/slow/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-003, test_path: tests/slow/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-004, test_path: tests/test-report-parser.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-005, test_path: tests/slow/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-006, test_path: tests/drive-db-registration.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-007, test_path: tests/requirements-binding-config.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-008, test_path: tests/slow/projection-writer.test.ts }
+  - { parent_design: docs/design/helix/L6-function-design/projection-finding-observability.md, oracle_id: U-PFO-009, test_path: tests/slow/projection-writer.test.ts }
+agent_slots:
+  - { role: aim, slot_label: "AIM — projection欠落のRecovery監査" }
+  - { role: se, slot_label: "SE — projection writerのtyped failureとstable identity" }
+  - { role: qa, slot_label: "QA — silent skip・collision・rebuild順序mutation" }
+  - { role: tl, slot_label: "TL — DB projection／finding境界と#1397非対象確認" }
+generates:
+  - { artifact_path: docs/plans/PLAN-RECOVERY-96-projection-finding-observability.md, artifact_type: markdown_doc }
+  - { artifact_path: docs/design/helix/L6-function-design/projection-finding-observability.md, artifact_type: design_doc }
+  - { artifact_path: docs/test-design/helix/L8-projection-finding-observability-unit-test-design.md, artifact_type: test_design }
+  - { artifact_path: docs/governance/generated/outstanding-snapshot.json, artifact_type: json_config }
+modifies:
+  - { artifact_path: src/state-db/projection-writer.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/test-report-parser.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/drive-registration.ts, artifact_type: source_module }
+  - { artifact_path: src/state-db/feedback-projections.ts, artifact_type: source_module }
+  - { artifact_path: src/doctor/index.ts, artifact_type: source_module }
+  - { artifact_path: config/digest-canonicalization-inventory.json, artifact_type: json_config }
+  - { artifact_path: docs/governance/feedback-refactor-disposition.json, artifact_type: json_config }
+  - { artifact_path: tests/projection-writer.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/slow/projection-writer.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/test-report-parser.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/drive-db-registration.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/requirements-binding-config.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/feedback-refactor-disposition.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/design-coverage.test.ts, artifact_type: test_code }
+  - { artifact_path: tests/l3-g3-freeze-packet-v2.test.ts, artifact_type: test_code }
+  - { artifact_path: docs/design/design-catalog.yaml, artifact_type: yaml_config }
+  - { artifact_path: docs/governance/l3-rebaseline-g3-freeze-packet.md, artifact_type: markdown_doc }
+  - { artifact_path: src/lint/l3-progression-reviewed-digests.ts, artifact_type: source_module }
+review_evidence:
+  - reviewer: "Claude Code / claude-opus-5"
+    review_kind: cross_agent
+    reviewed_at: "2026-09-03T06:54:35Z"
+    tests_green_at: "2026-09-03T06:53:50Z"
+    verdict: approve
+    worker_model: codex:gpt-5.6-sol
+    reviewer_model: claude:claude-opus-5
+    reviewer_session_id: "9867601a-a3ad-4369-980c-11757d63a7de"
+    reviewed_head_sha: b55831e197570248d8a251a67976fb73fa6822a9
+    scope: "PR #1478 exact HEADのU-PFO-001〜009、projection／finding、relation graph canonicalization、DB projection／replayを独立検収し、blocker 0を確認した。"
+    receipt_url: "https://github.com/RetryYN/HELIX-HARNESS/pull/1478#issuecomment-5521804797"
+    green_commands:
+      - kind: smoke
+        command: "gh run view 33723078211 --repo RetryYN/HELIX-HARNESS --json status,conclusion,headSha,updatedAt,url"
+        runner: ci
+        scope: full
+        exit_code: 0
+        completed_at: "2026-09-03T06:53:50Z"
+        evidence_path: .github/workflows/harness-check.yml
+        output_digest: "sha256:8537b00f0f784e3a923713444d1175b579709805e3c36f74a32a2524fa801673"
+        result: "PR #1478 exact HEAD b55831e197570248d8a251a67976fb73fa6822a9でterminal success。"
+---
+
+# PLAN-RECOVERY-96: projection writerの黙示的欠落をfindingとして可視化する
+
+## 目的
+
+Issue #1440で確認されたprojection writerのsilent skip、stable identity衝突、JSON parse失敗の正常値化、
+rebuild依存順の暗黙化、drive registration理由の欠落、cache digest未束縛を、既存のSystem Synthesis／projection
+authorityへ束縛して回復する。DBを直接修正するのではなく、同じsourceからrebuild／replayした結果に欠落理由を残す。
+
+## 実装範囲
+
+1. malformed green-command evidenceとmissing `plan_id`をfinding化する。
+2. model-run identityをrun単位でnamespaceし、span collisionをfail-closeする。
+3. JSON readerを`{ value, parseError }`相当のtyped resultへ変更し、破損JSONをactive/incompleteとして投影しない。
+4. rebuildのdependency row-count／join invariant、drive registrationのtyped reason、refactor cacheのsource digestを追加する。
+5. metadata parse boundaryを明示し、既存transaction boundaryを変更せず再現可能なfindingへする。
+6. relation graph入力をcanonical orderへ正規化し、graph snapshot／diagram artifactのidentityを入力配列順から独立させる。
+
+## 非対象
+
+- Issue #1397のtransaction boundary／atomicity本体。
+- 新しいDB table、別のfinding store、source documentの自動修正。
+- Issue／PLANの自動closeや、Issue本文を正本とするprojection。
+
+## 完了条件
+
+- [x] U-PFO-001〜009のTDD Red→Greenがcurrent HEADで確認できる。
+- [x] silent skip、collision上書き、parse error消失、dependency order mutationを各oracleがredにする。
+- [x] DB rebuildとreplayのprojection／finding exact setが一致する。
+- [x] typecheck、targeted test、全回帰、doctor、Claude exact-HEAD reviewがgreenになる。
+- [x] #1440へmain read-afterの実測証拠を接続し、Recoveryの終端状態を正本へ反映する。
+
+本PLANは要求追加ではなく、confirmed System Synthesisと既存PLAN-L7-46の欠落経路を回復したRecoveryである。PR #1478のcanonical merge、Claude exact-HEAD review、main read-afterをもって実装とRecoveryの終端を確認した。
+
+## 終端read-after
+
+- PR #1478はexact HEAD `b55831e197570248d8a251a67976fb73fa6822a9`でCI run `33723078211`がterminal success、Claude Code独立reviewがapprove／blocker 0となった。
+- PR #1478はmerge commit `b5c7cc451ca379f646e361b48657ace82199b915`としてmainへ到達した。
+- merge後mainのharness-check run `33726154167`は、preflight、Lite consumer canary、Windows durability、bulk-1/2/3、stateful、exact shard receipt set、Biome、post-test DB rebuild、doctor、Full typed lane statusを全てsuccessとして完了した。
+- 同一main HEADのCodeQL run `33726153891`もsuccessで完了した。
+- したがって、本PLANは `completion_claim_allowed: true`、`backfill_state: complete` とし、Issue #1440のterminal closureへ接続する。
+- Issue closure graph contract `PROJECTION-FINDING-OBSERVABILITY-001` はPR本文の `helix-issue-closure-graph.v1` exact contractへ束縛する。

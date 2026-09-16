@@ -1,49 +1,72 @@
-## 概要
+## PRの目的
 
-## 関連 PLAN / Issue
-Closes #
+<!-- このPRで成立させる結果を日本語で書く -->
 
-## 原子契約scope
+## PR区分
 
-記入規則: 6項目は1行1項目の`Field: value`形式で、値は同じ行に置く。複数値はカンマで区切り、値をbacktickで囲まない。
-`Required companion paths`は不要なら`none`、`Scope expansion`は通常`none`とする。CIの受理範囲はこの表記規則を含めて厳密に検査する。
+<!-- 必ず一つ記入する: repository_foundation / concept_revision / planning_revision / research_premise / discovery_evidence / requirement / design_verification / implementation / operation_change -->
 
-Behavior contract: <!-- 1件だけ。例 GH-AC-040 -->
-Responsibility owner: <!-- kebab-caseで1責務 -->
-Allowed path families: <!-- exact pathまたはdirectory prefixをcomma区切り。prefixの責務粒度はAI-Bが確認 -->
-Expected changed paths: <!-- base..head diffに含める全exact pathをcomma区切り。追加時は一覧とScope expansionを更新 -->
-Required companion paths: <!-- diffに含むPLAN/testのexact path。不要ならnone -->
-Scope expansion: none <!-- または approved receipt=https://github.com/OWNER/REPO/pull/N#issuecomment-N reason=12文字以上 -->
+未選択
 
-## Workflow identity契約
+## ローカル正本
 
-Issue本文と同じmarker／JSONを置く。`signal_tokens`は`target_id`とcatalog上で一致させる。
-branch接頭辞とPLAN `kind`も下表に揃える（不一致はfail-close。branch改名はPR番号変更や再作成を伴いうる）。
+- 対象product:
+- 親Concept revision:
+- 親Vision／L1企画revision:
+- premise packetまたはresearch非適用判断:
+- 要求IDまたはFeature Ticket ID:
+- 正本path:
+- 対象HEAD:
 
-<!-- HELIX:github-workflow-identity-contract:v1 -->
-```json
-{"schema_version":"helix-github-workflow-identity-contract.v1","registry_version":"1.1.6","registry_source_digest":"sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89","target_axis":"workflow_model","target_id":"REFACTOR","signal_tokens":["structural"]}
-```
+## 対象範囲
 
-| workflow | `signal_tokens`の例 | branch接頭辞 | PLAN `kind` |
-|---|---|---|---|
-| 構造整理`REFACTOR` | `structural`, `debt_degradation`, `code_smell` | `refactor/` | `refactor` \| `retrofit` |
-| 追従`RETROFIT` | `dependency_outdated`, `upgrade`, `config_drift` | `retrofit/` | `retrofit` |
-| 復旧`RECOVERY` | `regression_dev`, `forced_stop`, `agent_runaway` | `recovery/` | `recovery` |
-| 障害`INCIDENT` | `production_incident`, `hotfix_required`, `regression_prod` | `hotfix/` | `recovery` \| `troubleshoot` |
-| 要求追加`ADD_FEATURE` | `feature_addition`, `scope_extension` | `feature/`または`add/` | `impl` \| `add-design` \| `add-impl` |
-| 逆工程`REVERSE` | `drift` | `reverse/` | `reverse` |
-| 版更新`VERSION_UP` | `version_deferral` | `version-up/` | 許可kindはvalidator診断を参照 |
-| 調査`RESEARCH` | `tech_decision_required`, `option_comparison_needed`, `adr_required` | `research/` | `research` |
-| 発見PoC`DISCOVERY_POC` | `requirement_undefined`, `feasibility_unknown` | `poc/` | `poc` |
+- このPRで変更するもの:
+- このPRでは変更しないもの:
+- 依存するPR／ticket:
+- 後続へ渡すもの:
 
-## V-model artifact (該当に ✓)
-- [ ] ① 設計 (docs/design/)
-- [ ] ② 実装 (src/)
-- [ ] ③ テスト設計 (docs/test-design/)
-- [ ] ④ テストコード (tests/)
+## 要求PRの場合
+
+<!-- requirement以外では「非該当」と理由を書く -->
+
+- 要求identity:
+- kind: `unit` / `connection` / `composite`
+- actor／目的:
+- scope／non-goal:
+- 制約・失敗・回復:
+- 対になるL11:
+- 使用した旧source asset IDと採否:
+- 管理層の仮登録ID／record path:
+- 要求候補semantic digest:
+- source atom集合ref／digest:
+- 無損失被覆receipt（`coverage_result: no_loss`）:
+- 今回保持するatom／別の生存中仮登録へ残すatom／人間decision対象atom:
+- 未計上atom（merge時は空）:
+- 対象HEADでの仮登録read-after:
 
 ## 検証
-- [ ] typecheck pass
-- [ ] 全回帰 pass
-- [ ] review 前置 通過 (frontier-reviewer / intra_runtime_subagent)
+
+- 実施した静的確認または新世代oracle:
+- 未実行の確認と理由:
+- GitHub Claude review comment:
+- 未解消Blocker／Major:
+
+旧CI、旧test、旧runtimeの結果を新世代の合格根拠にしない。
+
+## 判断とmerge条件
+
+- 人間判断の対象revision／記録:
+- 管理層の仮登録状態（`registered_proposal`、`authority_effect: none`）:
+- 満たしたmerge条件:
+- 未成立のもの:
+
+PR merge、Issue close、check greenだけから要求承認、実装完了、受入、公開を生成しない。
+
+## 旧要求carry-forward（該当時）
+
+- 原要求ID:
+- 原文digest:
+- successor要求ID:
+- 保持した意味atom:
+- 未被覆atom（削除せずpending）:
+- 意味変更／retireの人間decision（該当時のみ）:

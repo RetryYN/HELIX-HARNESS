@@ -1,0 +1,478 @@
+{
+  "HAT-HIL-01": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-01",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-01",
+    "acceptance_ids": [
+      "HAC-HIL-01a",
+      "HAC-HIL-01b",
+      "HAC-HIL-01c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-001"
+    ],
+    "scenario": "各source入力をIssue契約へ取り込む",
+    "required_evidence": "intake/contract revision/idempotency/trust receipt",
+    "negative_boundary": "duplicate、異payload、injection",
+    "semantic_digest": "sha256:9a7a56f7466cbb4dc9e61d1c4b72dca6279f03a47f033847e80a5ee6c2c08a76"
+  },
+  "HAT-HIL-02": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-02",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-02",
+    "acceptance_ids": [
+      "HAC-HIL-02a",
+      "HAC-HIL-02b",
+      "HAC-HIL-02c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-001"
+    ],
+    "scenario": "state machineをcausality付きで一周する",
+    "required_evidence": "transition、closure query、checkpoint digest",
+    "negative_boundary": "illegal transition、orphan、budget境界",
+    "semantic_digest": "sha256:d39d981c16fedbac0b1fd6615e886ec113285afc56bd57fa2f36e1865f835220"
+  },
+  "HAT-HIL-03": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-03",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-03",
+    "acceptance_ids": [
+      "HAC-HIL-03a",
+      "HAC-HIL-03b",
+      "HAC-HIL-03c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-004",
+      "HST-HIL-005"
+    ],
+    "scenario": "PR監査からtyped disposition、writer返却、successor promotionまで実行",
+    "required_evidence": "delivery/head、audit job、`current_pr_fix` writer return、`successor_issue` promotion lineage",
+    "negative_boundary": "duplicate/stale、誤分類、current finding promotion、successorのPR再流入、partial promotion",
+    "semantic_digest": "sha256:f0839e31659fa13d538b7dfd7ee75ea3aeae039082b1d64fad541526da1aa2ee"
+  },
+  "HAT-HIL-04": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-04",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-04",
+    "acceptance_ids": [
+      "HAC-HIL-04a",
+      "HAC-HIL-04b",
+      "HAC-HIL-04c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-002",
+      "HST-HIL-018"
+    ],
+    "scenario": "ReverseとRedesign re-entryを実行",
+    "required_evidence": "R0–R4、coverage、stale/re-freeze",
+    "negative_boundary": "hollow/skip、誤layer、bypass",
+    "semantic_digest": "sha256:c8f38fb8054d8bb663c5bc33b63ac0e5433fbd6285cd83482ab17bf5a29bb05f"
+  },
+  "HAT-HIL-05": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-05",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-05",
+    "acceptance_ids": [
+      "HAC-HIL-05a",
+      "HAC-HIL-05b",
+      "HAC-HIL-05c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-019",
+      "HST-HIL-021",
+      "HST-HIL-023"
+    ],
+    "scenario": "directive custody、Scope、Closureを判定",
+    "required_evidence": "custody、authority graph、approval/closure receipt",
+    "negative_boundary": "AI終端、cycle、不要拡張、欠落receipt",
+    "semantic_digest": "sha256:cfa8c4c91f550f466e6571851189e1546bde1ad521d92ec535913d655bc18402"
+  },
+  "HAT-HIL-06": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-06",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-06",
+    "acceptance_ids": [
+      "HAC-HIL-06a",
+      "HAC-HIL-06b",
+      "HAC-HIL-06c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-003",
+      "HST-HIL-022"
+    ],
+    "scenario": "三段CIとquarantineを実行",
+    "required_evidence": "SHA/tree lineage、check/log、expiry",
+    "negative_boundary": "stage bypass、別SHA、overbroad quarantine",
+    "semantic_digest": "sha256:d9842d6acd283df1775f9658a63429143e7b1b77d70fdc2db109ea3b1688fb56"
+  },
+  "HAT-HIL-07": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-07",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-07",
+    "acceptance_ids": [
+      "HAC-HIL-07a",
+      "HAC-HIL-07b",
+      "HAC-HIL-07c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-015",
+      "HST-HIL-016"
+    ],
+    "scenario": "memory compactionとlearning promotionを実行",
+    "required_evidence": "input/output digest、shadow metric、review/rollback",
+    "negative_boundary": "raw/secret、self-promotion、regression",
+    "semantic_digest": "sha256:f81fd90ef864ecbf3f6ad5216098cf25eaab85c05c086462d35033efd0b647fa"
+  },
+  "HAT-HIL-08": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-08",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-08",
+    "acceptance_ids": [
+      "HAC-HIL-08a",
+      "HAC-HIL-08b",
+      "HAC-HIL-08c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-006"
+    ],
+    "scenario": "registryからteam/lifecycleを完走",
+    "required_evidence": "registry/team digest、lease/fence/checkpoint/verify",
+    "negative_boundary": "manual drift、self-verify、late write",
+    "semantic_digest": "sha256:9b6708767a5b9ac9b9fb6ddb2a6aae04f5ecab6d90f2221f88d0e6bf1b50c8fb"
+  },
+  "HAT-HIL-09": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-09",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-09",
+    "acceptance_ids": [
+      "HAC-HIL-09a",
+      "HAC-HIL-09b",
+      "HAC-HIL-09c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-011",
+      "HST-HIL-020"
+    ],
+    "scenario": "三sourceをsnapshot/atom/coverageへ処理",
+    "required_evidence": "manifests、atom spans、decision/edge/stale receipt",
+    "negative_boundary": "branch/child欠落、aggregate-only、pending",
+    "semantic_digest": "sha256:e4533907c7b9f3520544c1fc12dd46d553a90149b3f829feb73cb1db345b25da"
+  },
+  "HAT-HIL-10": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-10",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-10",
+    "acceptance_ids": [
+      "HAC-HIL-10a",
+      "HAC-HIL-10b",
+      "HAC-HIL-10c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-008",
+      "HST-HIL-009"
+    ],
+    "scenario": "engine/detectorを同一snapshotへ再実行",
+    "required_evidence": "version/config/input/output、artifact/finding、rerun digest",
+    "negative_boundary": "unknown、混同、nondeterminism、partial",
+    "semantic_digest": "sha256:2cca44f36a77fe7305a32abcebf22615db7f636646b63b6b6c43d183aa6fbe25"
+  },
+  "HAT-HIL-11": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-11",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-11",
+    "acceptance_ids": [
+      "HAC-HIL-11a",
+      "HAC-HIL-11b",
+      "HAC-HIL-11c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-010"
+    ],
+    "scenario": "product dataをfull/incremental投影",
+    "required_evidence": "connector、lineage、watermark、redaction/query",
+    "negative_boundary": "drift、cursor逆行、PII、stale current",
+    "semantic_digest": "sha256:0d9f6abfd1ae52365fa8f81807e2b583d97baa563d3d6878bd236ad52ce28695"
+  },
+  "HAT-HIL-12": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-12",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-12",
+    "acceptance_ids": [
+      "HAC-HIL-12a",
+      "HAC-HIL-12b",
+      "HAC-HIL-12c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-007"
+    ],
+    "scenario": "NodeからPython workerを実行",
+    "required_evidence": "protocol/version/sequence/terminal/transaction",
+    "negative_boundary": "invalid/oversize/timeout/crash/late/direct write",
+    "semantic_digest": "sha256:c8f63300ab35a338b8094e1146d569f310ed1ec42d7a681bd64d0e0f60140f64"
+  },
+  "HAT-HIL-13": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-13",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-13",
+    "acceptance_ids": [
+      "HAC-HIL-13a",
+      "HAC-HIL-13b",
+      "HAC-HIL-13c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-013"
+    ],
+    "scenario": "Bun-less Linuxでinstallからdistributionまで完走",
+    "required_evidence": "environment、Node lock、CLI/build/test/package、zero finding",
+    "negative_boundary": "Bun API/command/lock/CI残存、部分claim",
+    "semantic_digest": "sha256:43de34e55f7eb0a4b9bc7aa0ebb61ef6e923ebbbd16b0d8293230d795112f4f9"
+  },
+  "HAT-HIL-14": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-14",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-14",
+    "acceptance_ids": [
+      "HAC-HIL-14a",
+      "HAC-HIL-14b",
+      "HAC-HIL-14c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-014",
+      "HST-HIL-017"
+    ],
+    "scenario": "3 OS contractとsupply chainを検証",
+    "required_evidence": "OS matrix、offline digest、SBOM/secret/license",
+    "negative_boundary": "adapter leak、process/lock、unlock/policy違反",
+    "semantic_digest": "sha256:465cd7dd4729b9a5911ab74f77dc20a9faa95a54d20db1170cd80e856f3017eb"
+  },
+  "HAT-HIL-15": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-15",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-15",
+    "acceptance_ids": [
+      "HAC-HIL-15a",
+      "HAC-HIL-15b",
+      "HAC-HIL-15c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-012",
+      "HST-HIL-024"
+    ],
+    "scenario": "no-UIまたはprototype routeを完了",
+    "required_evidence": "applicability、artifact/state、walkthrough/delta/agreement",
+    "negative_boundary": "implicit skip、static-only、stale receipt",
+    "semantic_digest": "sha256:829392537e0bf743393fc5041ea20a0741b82cc8e8343e0ee274eb182a27fc38"
+  },
+  "HAT-HIL-16": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-16",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-16",
+    "acceptance_ids": [
+      "HAC-HIL-16a",
+      "HAC-HIL-16b",
+      "HAC-HIL-16c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-025",
+      "HST-HIL-026"
+    ],
+    "scenario": "design refactorとdomain namingをrouting",
+    "required_evidence": "semantic signature、consumer/oracle、role/name、rollback",
+    "negative_boundary": "lexical-only、根拠なし抽象化、誤route",
+    "semantic_digest": "sha256:9d0078101ce1683ee9d66280c6d7b296b3a5fcdb0fc7ec74d550f78023a0860e"
+  },
+  "HAT-HIL-17": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-17",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-17",
+    "acceptance_ids": [
+      "HAC-HIL-17a",
+      "HAC-HIL-17b",
+      "HAC-HIL-17c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-027",
+      "HST-HIL-028",
+      "HST-HIL-029"
+    ],
+    "scenario": "requirement翻訳、template義務、revisionをactive化",
+    "required_evidence": "source/authority/oracle、template/obligation/change/review",
+    "negative_boundary": "aggregate/TBD/N/A、self-promotion、stale",
+    "semantic_digest": "sha256:1433c06a0d7b8cbf06ab4fbd4a2abe03ffccf2d40b651e86f306f763e051e814"
+  },
+  "HAT-HIL-18": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-18",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-18",
+    "acceptance_ids": [
+      "HAC-HIL-18a",
+      "HAC-HIL-18b",
+      "HAC-HIL-18c"
+    ],
+    "supporting_test_ids": [
+      "HST-HIL-030",
+      "HST-HIL-031",
+      "HST-HIL-032",
+      "HST-HIL-033"
+    ],
+    "scenario": "canonical L1–L12 ledger、層外L0 anchor、上下/左右pairとrefactorを検証",
+    "required_evidence": "registry、snapshot、addition/pair/oracle/refactor receipt",
+    "negative_boundary": "片edge、stale、未実行oracle、pair破壊",
+    "semantic_digest": "sha256:06c3a0ebbaee90df8165d424951e6f4673619858a9470c277fb8b95b14d66bfe"
+  },
+  "HAT-HIL-19": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-19",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-19",
+    "acceptance_ids": [
+      "HAC-HIL-19a",
+      "HAC-HIL-19b",
+      "HAC-HIL-19c"
+    ],
+    "supporting_test_ids": [
+      "HOT-HIL-48",
+      "HOT-HIL-49"
+    ],
+    "scenario": "Authoring Admissionと原子的Canonical化を検証",
+    "required_evidence": "decision、revision、transaction、rollback、identity receipt",
+    "negative_boundary": "過剰確認、無権限、partial、stale、oracle消失",
+    "semantic_digest": "sha256:6fbefab680d7d2a48946bfc2bce20879450f2c102438cb0c95e992a6beb412ed"
+  },
+  "HAT-HIL-20": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-20",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-20",
+    "acceptance_ids": [
+      "HAC-HIL-20a",
+      "HAC-HIL-20b",
+      "HAC-HIL-20c"
+    ],
+    "supporting_test_ids": [
+      "HOT-HIL-50",
+      "HOT-HIL-51"
+    ],
+    "scenario": "設計契約portfolioをForward/Scrumへ接続",
+    "required_evidence": "coverage、example、phase snapshot、S4/backprop receipt",
+    "negative_boundary": "固定冊数、negative欠落、別正本、早期昇格",
+    "semantic_digest": "sha256:7cc93e28456a0667cdedf909f00ec21102ba0a9dcbc302ed4e95fe0b0efe19a8"
+  },
+  "HAT-HIL-21": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-21",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-21",
+    "acceptance_ids": [
+      "HAC-HIL-21a",
+      "HAC-HIL-21b",
+      "HAC-HIL-21c"
+    ],
+    "supporting_test_ids": [
+      "HOT-HIL-52",
+      "HOT-HIL-53"
+    ],
+    "scenario": "判断packと専門agentを生成・muster",
+    "required_evidence": "pack、shadow、agent contract、guard/lifecycle receipt",
+    "negative_boundary": "self-promotion、過剰agent、未許可、自己検証",
+    "semantic_digest": "sha256:9b6d120f724bf289bf1ed9746c992d362d05f2fe00d72d17650e4a6aa9955926"
+  },
+  "HAT-HIL-22": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-22",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-22",
+    "acceptance_ids": [
+      "HAC-HIL-22a",
+      "HAC-HIL-22b",
+      "HAC-HIL-22c"
+    ],
+    "supporting_test_ids": [
+      "HOT-HIL-54",
+      "HOT-HIL-55"
+    ],
+    "scenario": "worker bench、実task scorecard、effort routingを検証",
+    "required_evidence": "fixture/rubric、blind score、実効cost、route receipt",
+    "negative_boundary": "smoke-only、重大failure相殺、単価/effort固定",
+    "semantic_digest": "sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8"
+  },
+  "HAT-HIL-23": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-23",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-23",
+    "acceptance_ids": [
+      "HAC-HIL-23a",
+      "HAC-HIL-23b",
+      "HAC-HIL-23c"
+    ],
+    "supporting_test_ids": [
+      "HOT-HIL-56"
+    ],
+    "scenario": "第三者workerの隔離委譲を検証",
+    "required_evidence": "sandbox、egress、payload、FS diff、audit receipt",
+    "negative_boundary": "機密漏洩、allowlist外通信、bypass残置、未検証proposal",
+    "semantic_digest": "sha256:006bf237fbd5c99991cb59533e2ced2d86fe1f76e95bc79cfecae32105647a8c"
+  },
+  "HAT-HIL-24": {
+    "schema_version": "helix-system-test.v1",
+    "system_test_id": "HAT-HIL-24",
+    "revision": 1,
+    "status": "designed_not_implemented",
+    "system_contract_id": "HR-FR-HIL-24",
+    "acceptance_ids": [
+      "HAC-HIL-24a",
+      "HAC-HIL-24b",
+      "HAC-HIL-24c"
+    ],
+    "supporting_test_ids": [
+      "HOT-HIL-57"
+    ],
+    "scenario": "marketplace型配布indexを検証",
+    "required_evidence": "source/generated index digest、party分類、cutover approval",
+    "negative_boundary": "手編集、party混在、未承認切替",
+    "semantic_digest": "sha256:ecee269117c912511dc38ca438d2d010b3b9c799de1f88111b26a8dad4acc5f9"
+  }
+}

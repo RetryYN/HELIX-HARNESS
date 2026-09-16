@@ -1,75 +1,35 @@
+# Local instruction overrides
 CLAUDE.local.md
 AGENTS.override.md
-.claude/settings.local.json
-.claude/agent-memory/
-.claude/scheduled_tasks.lock
+
+# Secrets and local credentials
 .env
 .env.*
 *.pem
 *.key
 credentials.json
 
-# HELIX runtime state
-.helix/audit/*.jsonl
-.helix/audit/escalation_state.json
-.helix/cache/*
-!.helix/cache/.gitkeep
-.helix/state/*
-!.helix/state/.gitkeep
-.helix/logs/
-.helix/adapters/local*.yaml
-.helix/teams/local*.yaml
-.helix/tmp/
-# harness.db projection (runtime state, rebuildable from docs/state/logs; never tracked)
-.helix/harness.db
-.helix/harness.db-wal
-.helix/harness.db-shm
-# Codex 委譲タスク入力 (transient、PM が貼る目標プロンプト)
-.helix/codex-tasks/
+# Local tool and editor state
 .tools/
-# 外部 DL の設計テンプレ研究素材 (transient scratch、アーキ境界外・成果物でない)
-downloads/
-
-# HELIX runtime state
-.helix/
-
-# Atomic handover retirement authority is product evidence, not rebuildable runtime state.
-!.helix/
-.helix/*
-!.helix/audit/
-.helix/audit/*
-!.helix/audit/session-handover-retirement.jsonl
-!.helix/approvals/
-.helix/approvals/*
-!.helix/approvals/session-handover-cutover.json
-
-# Python bytecode (旧 W1-W3a port の残骸。ADR-001 で TS rebuild、念のため残置)
-__pycache__/
-*.py[cod]
-*$py.class
-
-# PLAN frontmatter runtime lock (W1 cross-platform lock impl)
-docs/plans/*.lock
-
-# Node / TypeScript (HELIX-HARNESS core, ADR-001)
-node_modules/
-dist/
-*.tsbuildinfo
-coverage/
-.vitest/
-
-# OS / editor junk (Windows / macOS / Linux クロスプラットフォーム team)
+.vscode/
 .DS_Store
 Thumbs.db
 ehthumbs.db
 *.swp
 *~
 
-# debug logs
+# Generated dependencies and outputs
+node_modules/
+dist/
+coverage/
+.vitest/
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs and scratch
 *-debug.log
 npm-debug.log*
-bun-debug.log*
 codex-env.txt
-# PR review receiptのローカル搬送物は`.helix/tmp/`へ置く。root直下を証跡正本にしない。
-helix-pr-*-ready-receipt.json
-# 注: .vscode/ は共有設定 (settings.json / extensions.json) を commit したい場合があるため意図的に未 ignore (team 判断)
+downloads/
