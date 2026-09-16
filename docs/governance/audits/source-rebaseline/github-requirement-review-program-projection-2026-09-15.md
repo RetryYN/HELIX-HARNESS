@@ -53,13 +53,13 @@ RDP-001の母集団と処理境界をIssue #1813へ再投影した。file blob�
 Issue本文は要約であることとlocal正本の参照行区間を明示し、自動登録入口の実装完了を要求reviewの前提から外した。
 `remote body SHA-256`はGitHub APIが返す本文文字列を、末尾改行を追加せずUTF-8 bytesへ変換して計算した。
 
-## 委任文書relation closure補正後の#1813再投影
+## 4 key限定の委任文書relation closure補正履歴
 
 receipt_id: `RDPPROJ-1813-20260916-003`
 
 旧v1.3の直接委任だけでなく、委任先がfrontmatterで宣言する`pair_artifact`、`related_l3`、`related_l12`、
-`parent_design`を再帰的に辿った。closureは40文書で収束し、既存Scrum Reverse行台帳3文書と
-file-blob holding 37文書へ全件を保持した。Issue #1813は、この補正後の入力母集団と処理境界へ再投影した。
+`parent_design`を再帰的に辿った。当時はclosure 40文書、既存Scrum Reverse行台帳3文書、file-blob holding 37文書と
+記録したが、後続`RDPPROJ-1813-20260916-004`でrelation key不足を訂正した。本節の件数をcurrent分母に使わない。
 
 | 項目 | read-after値 |
 |---|---|
@@ -72,6 +72,29 @@ file-blob holding 37文書へ全件を保持した。Issue #1813は、この補�
 
 この補正は要求の追加、採否、統合、配置、successor、実装開始を生成しない。file blobは要求atomとして数えず、
 対象文書とrelation closureを無損失atom化して別holdingへ仮登録するまで、個別要求の要否判断を開始しない。
+
+## 意味relation全key・本文参照holding追加後の#1813再投影
+
+receipt_id: `RDPPROJ-1813-20260916-004`
+
+旧補正は`pair_artifact`、`related_l3`、`related_l12`、`parent_design`の4 keyに限られ、
+`pair_group.members`、`tailoring_profile`、`definition_ledger`、`legacy_source`等から到達する文書を保持していなかった。
+意味を持つfrontmatter relationを再帰的に辿り直し、closure 117文書、265 edgeで収束した。114 file blobと既存
+Scrum Reverse行台帳3文書へ全件を保持し、同じ117文書のfrontmatter・本文参照788件も別holdingへ仮登録した。
+
+| 項目 | read-after値 |
+|---|---|
+| correction source commit | `8ce1be6a6695140f0bcd3247b65fd6d3a3e19049` |
+| correction source file SHA-256 | `8e8a4ad8f8cb2f67bba34906f1b943946665fbdd69d3b35ddd2add180f51fab9` |
+| previous remote revision | `updatedAt:2026-09-15T17:34:10Z+body_sha256:e4182e824d96a246061ccc89a3fd4600633c186d22de4965bf31685d75f44fe5` |
+| corrected remote revision | `updatedAt:2026-09-15T18:16:53Z+body_sha256:44db8f3edded3f2d89bcdff9323c8779ed12830ec617500dfdb51eca0a92da2c` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+参照先241文書のうち意味closure外124文書は、要求ではないと決定せず分類待ちとして残す。
+`coding-rules.md`、L3 functional文書、PLAN、process、migration、skill等の参照元行と対象blob digestを保持し、
+利用・縮退・retireする後続要求PRでatom化と別仮登録を要求する。この補正も要求追加、採否、配置、successor、
+実装開始を生成しない。
 
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
 RDP-001は全要求の要否・再配置を親作業として追跡し、RDP-002は責務・機能重複、RDP-003は技術代替可能性を

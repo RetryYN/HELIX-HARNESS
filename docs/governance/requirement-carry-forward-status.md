@@ -15,13 +15,13 @@ authority: machine ledgers linked below
 | v1.3非空source line | 521 | 0 | 0 | 0 | 0 |
 | IR補助item（acceptance／refinement／system contract／system test） | 134 | 0 | 134 | 0 | 0 |
 | 旧candidate要求源の非空source line | 4,755 | 0 | 0 | 0 | 0 |
-| archive隔離前に変更された基準source revision | 333 path | 0 | 333 | 0 | 0 |
+| archive隔離前に変更された基準source revision | 333 path | 0 | N/A | 0 | 0 |
 
 現時点ではsuccessor割当済みは0件である。37件の対象別L2はrouting containerであり、この表のsuccessorへ自動算入しない。
 要求の再配置が始まっていないことを、要求削減や移管完了として表示しない。
 v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pending_rehome`列へ混在させない。
 旧candidate 92文書の4,755行も`historical_candidate`／`draft_candidate`／`preserved_pending_atomization`であり、sourceで採用済みだった要求や棄却済み実現方式へ混在させない。
-333 pathは要求数ではなく、監査基準commitとarchive隔離直前commitでblobが異なるsource revision集合である。
+333 pathは要求数でも`preserved_pending_rehome`状態の件数でもなく、監査基準commitとarchive隔離直前commitでblobが異なるsource revision集合である。
 両revisionの意味同値は未確認であり、[機械台帳](pre-isolation-revision-delta-source-holding.jsonl)から前revisionを落とさない。
 
 ## IR 153件の対象routing候補
@@ -46,9 +46,11 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 [W2機能要求69件のqueue](legacy-ir-w2-functional-rehome-queue.md)は、HELIX-OS候補43件、HARNESS／OS分割候補23件、対象未解決3件を原文・digest付きで展開している。意味変更・照合候補8件は未適用、successorは全件未割当である。
 [W3非機能要求40件](legacy-ir-w3-nonfunctional-rehome-queue.md)と[W4技術制約11件](legacy-ir-w4-technical-constraint-rehome-queue.md)も原文・digest付きで展開済みである。W3はOS候補22、HARNESS／OS分割14、対象未解決4、判断候補5、W4はOS候補1、対象未解決10、判断候補2で、意味変更適用・successor割当はいずれも0件である。[W2〜W4人間判断候補の意味分解](legacy-ir-w2-w4-human-decision-candidates.md)は、この15件の原文と整理論点を提示する。W1の8件と合わせた23件すべてについて、削除・縮退・統合・降格を行わず、人間判断もまだ要求していない。
 
-## 元statusの保持
+## revision別statusの保持
 
-22要求文書は`confirmed` 17件、`draft` 3件、`proposed` 1件、`placeholder` 1件である。`confirmed`は採用済みのまま保持し、新世代化を理由にcandidateへ降格しない。
+22要求文書のarchive隔離直前revisionは`confirmed` 17件、`draft` 3件、`proposed` 1件、`placeholder` 1件である。
+監査基準revisionは`screen-mock-boundary.md`が`confirmed`のため、`confirmed` 18件、`draft` 2件、`proposed` 1件、
+`placeholder` 1件である。両revisionを別sourceとして保持し、後の`draft`で前の`confirmed`を上書きしない。
 
 ## 機械台帳
 
@@ -57,8 +59,10 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 - [confirmed文書identity carry-forward](legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
 - [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
 - [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `bb4d12f3cfc9c1daefa064ede8bcc21943dd10df05098f423158fb5a08512490`
-- [旧v1.3委任文書・relation closureのfile-blob holding](delegated-requirement-document-source-holding.jsonl) — `358ed9a50b5fac1b10cf49b401aa82a797c050ab58233f489859f0f18a0e135b`。37文書、atom化0、successor 0、decision 0
-- [archive隔離前revision差分](pre-isolation-revision-delta-source-holding.jsonl) — `863854f766c7d5bc318b30dbc3a19e8086e5916c9cebb934684d92db3565d852`
+- [旧v1.3委任文書・意味relation closureのfile-blob holding](delegated-requirement-document-source-holding.jsonl) — `23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd`。114 file blob＋行保持3文書でclosure 117文書、atom化0、successor 0、decision 0
+- [委任文書の参照候補holding](delegated-requirement-document-reference-holding.jsonl) — `627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7`。frontmatter・本文参照788 edge、参照先241文書、分類待ちtarget 124文書、decision 0
+- [Scrum Reverse source line台帳](scrum-reverse-source-line-carry-forward.jsonl) — `72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9`。closure内3文書のうちfile blob台帳へ重複登録しない3文書を、原文300行と行digestで保持
+- [archive隔離前revision差分](pre-isolation-revision-delta-source-holding.jsonl) — `d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180`
 - [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 
 ## 判定規則
@@ -72,7 +76,9 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 ## 未完了
 
 - [semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)に登録した未分類2,058行・[721 review unit](legacy-requirement-atomization-review-queue.jsonl)の要求atom化。source spanの全量登録と無損失な処理分割は完了したが、要求／制約／受入／根拠／例／navigationの分類とatom境界は未確定。
-- [file-blob保全inventory](delegated-requirement-document-source-inventory.md)の37文書と宣言relation closureを、対象文書ごとの要求整理PRで無損失atom化して管理層へ再登録する。file blobを一要求atomとして扱わない。
+- `screen-mock-boundary.md`の監査基準`confirmed` revisionはfile blobのみ保持され、semantic line台帳とqueueには未登録である。隔離直前`draft` revisionだけで被覆済みにせず、基準revisionも行atom化して両revisionを照合する。
+- [file-blob保全inventory](delegated-requirement-document-source-inventory.md)の意味relation closure 117文書を、対象文書ごとの要求整理PRで無損失atom化して管理層へ再登録する。file blobを一要求atomとして扱わない。
+- [参照候補holding](delegated-requirement-document-reference-inventory.md)の分類待ちtarget 124文書を、要求意味、工程履歴、process、migration provenance、supporting sourceへ確認する。分類前に参照edgeまたはtarget blobを除外しない。
 - 153 IRと175 source-qualified identityの意味重複候補の比較。
 - [補助source 655 item](legacy-requirement-supplementary-source-inventory.md)と153 IR／175 identity／対象別L2・L11のrelation mapping。
 - [旧candidate 92文書・4,755行](legacy-candidate-source-inventory.md)のatom化と、要求意味／受入／根拠／旧実現方式の分類。
