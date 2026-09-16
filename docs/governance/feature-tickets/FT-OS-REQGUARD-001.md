@@ -44,6 +44,8 @@ repo-owned上流、管理層仮登録record、projection receiptから状態を�
 
 ### 登録bot
 
+- 登録writerの正本は`FT-OS-REQREG-001`とし、本ticketは別の登録writerを作らない。本ticketでいう登録botは、
+  `FT-OS-REQREG-001`から降下する同一capabilityをcrawler／CIへ接続する際の役割名である。
 - `FT-OS-REQREG-001`で確定する入力契約に従い、Concept、企画、指示、手動候補、HARNESS要求エンジン出力を管理層へ登録する。
 - append-only record、stable identity、source locator／digest、causal relation、actor、時点、対象productを保持する。
 - 再送を冪等に扱い、訂正は旧recordを上書きせず新revisionで接続する。
@@ -69,6 +71,7 @@ repo-owned上流、管理層仮登録record、projection receiptから状態を�
 
 - HELIX-HARNESSはsource atomの無損失分割・被覆、要求kind、L2↔L11、negative oracleのnormative contractを所有する。
 - HELIX-OSは登録bot、crawler、CIの実行、権限分離、schedule、receipt、finding routing、観測・復旧を所有する。
+- 登録botは`FT-OS-REQREG-001`が所有するregister writerを再利用し、本ticket固有のwriter、mirror register、派生正本を作らない。
 - 登録botのwrite権限をcrawlerまたはCIへ渡さない。crawlerとCIは要求・register・GitHub projectionを修正しない。
 - GitHub同期は`FT-OS-GITHUBSYNC-001`を経由し、本ticketが別の同期writerを作らない。
 
