@@ -137,14 +137,16 @@ delivery receipt、review応答を再取得し、三者のrequest identityとtar
 3. 本運用モデル、authority入口、旧資産採否・copy・Issue／Project操作記録が相互参照できる。
 4. 相対リンク、対象別L2↔L11、判断packet SHA等の静的整合が対象HEADで成立する。
 5. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Major／Minorが0である。
-6. 人間判断前に`target_content_head`、packet digest、content review三comment、判断scope、許可するdecision record path、
+6. 人間判断前に`target_base_head`／`target_content_head`、packet digest、content review三comment、判断scope、許可するdecision record path、
    `required_merge_method: merge_commit`をcanonical payloadへ固定し、payload SHA-256をread-afterする。
 7. 人間がそのpayloadに束縛してrepository構成と運用上流を確認する。
 8. 承認後は`docs/governance/audits/source-rebaseline/repository-foundation-decisions.jsonl`一件だけを
    `target_content_head`の直後の一commitで追記し、record-only exact HEADのGitHub Claude reviewで未解消
    Blocker／Major／Minorが0である。
-9. squash／rebaseを使わずmerge commitで取り込み、merge後に第2親がrecord-only final HEADで、PR途中commitを含む全履歴が
-   mainの祖先になったことをread-afterする。merge commitが利用できなければ停止する。
+9. merge APIまたは`gh pr merge --merge`で方式を明示し、squash／rebaseを使わずmerge commitで取り込む。API応答のmerge SHAを
+   直ちに取得し、第1親が承認済みbase HEAD、第2親がrecord-only final HEADで、PR途中commitを含む全履歴がmainの祖先に
+   なったことをread-afterする。baseが動いた、merge commitが利用できない、またはread-afterが不成立なら統合完了にせず停止する。
+   post-merge不一致はrevert／force-pushで隠さず、local監査文書のcorrective PRから専用Issueへ投影して人間判断を求める。
 
 既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。#1797に含まれるConcept、Vision、L1、L2、L11、Feature Ticketはbootstrap用のcandidate／draft containerとinventoryであり、mergeしても内容の承認revision、要求採否、ticket Readyを生成しない。個別の人間decisionは対応する後続PRへ分離する。#1797では旧要求sourceを同一byteのread-only snapshotとして保持し、153件と補助sourceを原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。
 

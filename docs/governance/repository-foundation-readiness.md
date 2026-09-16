@@ -13,6 +13,10 @@ GitHub PRのcurrent HEAD、review依頼対象、review結果を判断時にread-
 decision recordだけの追記、record-only final review、merge commitの順に進む。これらが未成立の間はDraftを維持し、
 Ready化・mergeしない。
 
+本書の`status`と条件5〜8の「未成立」は承認前snapshotである。schema適合decision recordが`target_content_head`直後の
+一commitに存在し、record-only final reviewがBlocker／Major／Minor 0で、GitHub read-afterも一致する場合は、その証拠が
+これらの表示を上書きする。本書の状態表示を更新する追加commitは不要であり、追加すると承認済みpayloadを失効させる。
+
 GitHub checkの状態はこの判定に算入しない。CodeQL、旧`harness-check`、旧test、旧runtimeは新世代上流の意味、要求保持、責務分離を検証するoracleではない。
 
 ## 条件別の証拠
@@ -26,7 +30,7 @@ GitHub checkの状態はこの判定に算入しない。CodeQL、旧`harness-ch
 | 5. GitHub Claudeの内容HEAD意味reviewで未解消Blocker／Major／Minorが0 | 未成立 | GitHub PR commentでexact HEADを指定してreviewし、編集後は旧依頼を失効させる | decision protocol補正後のcurrent HEAD reviewが未着 |
 | 6. 人間がrepository構成と運用上流を確認する | 未成立 | [人間判断packet](audits/source-rebaseline/repository-foundation-human-decision-packet.md)へ承認対象、非対象、証拠条件、選択肢、二段階記録を分離 | pre-decision payloadと人間decisionがない |
 | 7. decision recordを自己参照なく保存する | 未成立 | 許可path一件だけを承認対象HEADの直後へcommitし、record-only final reviewを要求する | decision前のためrecordは存在しない |
-| 8. provenanceを保つmerge commitで統合する | 未成立 | squash／rebaseを禁止し、merge後の二親・第2親・main祖先性をread-afterする | merge前 |
+| 8. provenanceを保つmerge commitで統合する | 未成立 | squash／rebaseを禁止し、merge後の二親・第1親・第2親・main祖先性をread-afterする | merge前 |
 
 ## 再現用の静的確認
 
@@ -59,7 +63,7 @@ archive manifestはpathが旧repository root相対なので、`archive/legacy-ge
 
 1. decision protocol補正後のcontent HEADをGitHub Claudeがread-onlyで意味reviewする。
 2. Blocker／Major／Minorがあれば、要求削減や旧CIへの回帰をせずrepository foundationの範囲で修正する。
-3. 未解消findingが0になったexact HEADからcanonical decision payloadを作り、GitHubへ投影・read-afterする。
+3. 未解消findingが0になったexact base／content HEAD pairからcanonical decision payloadを作り、GitHubへ投影・read-afterする。
 4. [人間判断packet](audits/source-rebaseline/repository-foundation-human-decision-packet.md)に従い、payloadに束縛して物理構成と上流運用を確認する。
 5. decision JSONL一件だけを直後の一commitへ記録し、そのrecord-only HEADを最終reviewする。
 6. final finding 0を確認してReady化し、merge commitで統合して履歴の祖先性をread-afterする。

@@ -19,6 +19,8 @@
     "content_review_result",
     "schema_version",
     "stop_conditions",
+    "target_base_head",
+    "target_base_ref",
     "target_content_head",
     "target_pr"
   ],
@@ -26,6 +28,8 @@
     "schema_version": { "const": "repository_foundation_decision_payload.v1" },
     "decision_id": { "const": "HDEC-REPOSITORY-FOUNDATION-0.1" },
     "target_pr": { "const": 1797 },
+    "target_base_ref": { "const": "main" },
+    "target_base_head": { "$ref": "#/$defs/git_sha" },
     "target_content_head": { "$ref": "#/$defs/git_sha" },
     "decision_packet_path": {
       "const": "docs/governance/audits/source-rebaseline/repository-foundation-human-decision-packet.md"
