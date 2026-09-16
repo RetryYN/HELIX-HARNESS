@@ -1,7 +1,7 @@
 # HELIXエージェント七大原則 人間判断packet
 
 prepared_at: 2026-09-16
-status: human_decision_gated_by_current_head_review
+status: candidate_authority_decision_pending
 decision_id: HDEC-HELIX-AGENT-PRINCIPLES-0.1
 authority_effect_before_decision: none
 
@@ -9,7 +9,7 @@ authority_effect_before_decision: none
 
 | 対象 | SHA-256 | 状態 |
 |---|---|---|
-| `docs/concept/helix-principles.md` | `41d8fbe759bf24a7245df0597ddaa9c8eb6c4c0184b124ecd5d349e6c19a2dbb` | `draft_candidate`、人間判断時のcurrent HEAD review必須 |
+| `docs/concept/helix-principles.md` | `41d8fbe759bf24a7245df0597ddaa9c8eb6c4c0184b124ecd5d349e6c19a2dbb` | `draft_candidate`。候補の物理統合に人間承認は不要。authority昇格を判断するときだけcurrent revision reviewを確認する |
 
 SHA-256は上記pathのUTF-8 file bytes全体に対して算出する。内容が変わった場合、この判断対象は失効し、新しいdigestへ
 固定し直す。PR、Issue、review、CI、DB、会話の状態はこの判断を成立させない。
@@ -38,14 +38,15 @@ POが提示した次の七大原則を、HELIXで企画、要求整理、設計�
 | completed body review HEAD | `71c4abc98d630810787195eb8e0df1c7a4f2bc4e` |
 | review receipt | [GitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1826#issuecomment-5686320968) |
 | result | Blocker 0／Major 0／Minor 0 |
-| state | 判断対象本文は上記review後に不変。人間判断時は本packetを含むPR current HEADの最新reviewをGitHubからread-afterする |
+| state | 判断対象本文は上記review後に不変。候補統合時はPR current HEADの外部reviewを確認し、将来のauthority判断時はその時点の本文revisionとreviewを改めてread-afterする |
 
-内容上の未解決review findingはない。残る条件は、PR #1797と5大目標PR #1827の判断・物理統合順を守ること、
-本候補をexact revisionで人間が採否すること、承認後も個別要求と下位文書を別判断に保つことである。
+内容上の未解決review findingはない。repository foundation PR #1797と5大目標PR #1827の物理統合は完了した。
+本PRの候補統合はauthorityを生成しないため、人間承認をmerge条件にしない。将来、本候補を共通行動基準へ昇格するときは
+exact本文revisionを人間が採否し、承認後も個別要求と下位文書を別判断に保つ。
 
-人間判断時は、PRのcurrent HEAD、本文file SHA-256、review対象HEAD／digest、最新findingをread-afterする。
-本文digestに未reviewの変更がある、または未解消Blocker／Majorがある場合は判断を停止する。Minorは内容と処置を示し、
-人間が残存を認識できる状態にする。
+authority判断時は、本文file SHA-256、review対象revision／digest、最新findingをread-afterする。本文digestに未reviewの変更が
+ある、または未解消Blocker／Majorがある場合は昇格判断を停止する。Minorは内容と処置を示し、人間が残存を認識できる状態にする。
+この条件を候補PRのmerge gateとして使わない。
 
 ## 選択肢
 
