@@ -38,8 +38,8 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 
 七大原則候補PR #1826を統合するときは、この読込順の3と対象別L1の間へ`docs/concept/helix-principles.md`を置く。
 統合順はrepository foundation PR #1797→5大目標PR #1827→#1827上へ載せ直した七大原則PR #1826とし、
-Concept／製品責務境界→5大目標→七大原則→対象別L1の順を一か所へ収束させる。各PRの人間判断とmerge admissionは
-独立したまま扱う。
+Concept／製品責務境界→5大目標→七大原則→対象別L1の順を一か所へ収束させる。5大目標と七大原則の内容判断は、
+各候補PRのmerge admissionと独立したまま扱う。repository foundationは構造整理の証拠だけで統合済みである。
 
 Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
