@@ -1,7 +1,7 @@
 # 新世代作業基盤への集約 operation contract
 
 operation_id: `NG-WORKBASE-CONSOLIDATION-20260917-001`
-status: `po_authorized_in_progress`
+status: `completed`
 operation_class: `operation_change`
 authority_effect: `none`
 authorized_by: `PO instruction 2026-09-17; see #PO指示原文`
@@ -105,3 +105,25 @@ applyを停止する。削除を先行させない。
 
 完了後は、要求の要否、重複、技術代替、対象製品、unit／connection／composite、successorを整理する前で停止する。
 次の要求整理は、POの再開指示を受けて別PRから始める。
+
+## 完了receipt
+
+2026-09-17T01:21:47+09:00のread-afterで、operation apply基準
+`233498d6ab0a9033359d4d5056946b9bed88cc46`に対して次を確認した。
+
+| 確認対象 | 結果 |
+|---|---|
+| 最終preflight | worktree 823、local branch 977、origin ref 220、stash 44を再取得 |
+| Git object保全 | 全最終worktree HEAD 823件をarchive refへ束縛し、complete historyのGit bundleをverify |
+| 最終Git bundle | 144 MiB、SHA-256 `de83e9371bfebe09f97e5a0db18d5fc5858c5531cb822b603f68ebe86a76af55` |
+| raw archive | 旧canonical root 2.0 GiB、共通linked worktree root 75 GiB、例外worktree 9件・948 MiBをrename保存 |
+| raw move receipt | SHA-256 `011a8ff75e1163e7851d345260cb24694ee0f077e3032f5160759abe0f0d9534` |
+| GitHub branch処置 | `main`以外218件をarchive inventoryとSHA一致後に削除、成功218／失敗0 |
+| branch delete receipt | SHA-256 `723b9dfa8ba3baa9774529da28bbff6a228471acbd6184fbfc0f14b71bce4e6b` |
+| canonical local | fresh clone、local branch `main` 1件、registered worktree 1件、clean、HEAD＝`origin/main` |
+| GitHub | branch `main` 1件、open PR 0件 |
+| archive実行境界 | old scanner、receiver、Claude lane、archiveをcwdにしたshell／language serverを停止。archive cwd process 0件 |
+| 要求境界 | #1798〜#1805、#1812〜#1815は全件OPENを維持。要求文書・要求atom・L1／L2／L11は不変 |
+
+exact path、全ref、全worktree status、process停止対象、remote branch削除結果はrepo外operation receiptへ保持した。
+archiveはsource recovery専用で、現行repositoryのremote、worktree、hook、CLI、CI、runtime、DB、fallbackへ接続していない。
