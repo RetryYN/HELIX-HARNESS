@@ -1,6 +1,6 @@
 # 要求に含まれる旧技術の代替可能性review program
 
-status: proposed_upstream_waiting
+status: product_routing_complete_comparison_preparation
 program_id: RDP-003
 parent_program: RDP-001
 owner: HELIX-OS management
@@ -81,4 +81,5 @@ authority_effect: none
 
 Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。意味機能と旧技術の候補比較は進めるが、
 HELIX-DBを含む特定技術の採用・不採用やL3設計を決定しない。
-現在は判断単位、比較軸、research／PoCへの接続、無損失条件を固定する。旧実装、旧DB、旧CI、runtimeは起動しない。
+旧Requirement IR 153件のproduct routing候補を入力に、判断単位、比較軸、research／PoCへの接続、無損失条件を
+固定する。旧実装、旧DB、旧CI、runtimeは起動しない。
