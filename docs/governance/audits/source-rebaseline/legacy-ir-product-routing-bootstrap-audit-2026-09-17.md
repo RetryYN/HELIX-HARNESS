@@ -17,7 +17,7 @@ HELIX-Web-OSへ分類できる状態にする。旧crosswalkのOS／HARNESS候�
 ## 台帳
 
 - projection: [legacy-ir-product-routing-bootstrap.jsonl](../../legacy-ir-product-routing-bootstrap.jsonl)
-- SHA-256: `077f5a5ee8e67b98e4a5b355fd185adccc96b7593c185e6f420f16ca5c49e70f`
+- SHA-256: `4c6913795fcaeb356f057b0e9a92d897994c411848ddc45c7a3d78e53235f9c7`
 - record: 153件
 - source holding: `MPR-SH-IR-003`
 - source identity: `HIL-BR-01..33`、`HIL-FR-01..69`、`HIL-NFR-01..40`、`HIL-TR-01..11`
@@ -52,10 +52,12 @@ W1の`HIL-BR-09`は、HARNESS所有agent contractからOS側team／runtime proje
 team選択、agent contract生成であるためHELIX-OSの`single_product`とする。別製品の入力を参照するだけで
 connectionへ昇格しない。
 
-W3のrouting候補は`single_product` 22件、`split_required` 18件である。候補targetへの出現は
-HELIX-HARNESS 20件、HELIX-OS 38件だった。工程・authority・scope・design・V-pair・evidenceの品質条件は
+W3のrouting候補は`single_product` 20件、`split_required` 20件である。候補targetへの出現は
+HELIX-HARNESS 22件、HELIX-OS 38件だった。工程・authority・scope・design・V-pair・evidenceの品質条件は
 HARNESS候補、冪等性、custody、transaction、Worker、CI、IPC、sandbox、security、quotaの実行制約はOS候補とした。
-同じ非機能要求が規範条件と実行強制を独立outcomeとして含む18件は`split_required`とした。
+同じ非機能要求が規範条件と実行強制を独立outcomeとして含む20件は`split_required`とした。source coverageを扱う
+`HIL-NFR-12`／`HIL-NFR-22`も、全件列挙・atomic behavior分母というHARNESSの無損失規範と、digest・atomization・receiptを
+管理するOS custodyを分けた。
 
 ## 旧crosswalkから変更した境界
 
