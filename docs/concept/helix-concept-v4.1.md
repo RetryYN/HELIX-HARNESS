@@ -6,6 +6,7 @@ authority_status: awaiting_human_approval
 derived_from:
   - archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md
   - docs/concept/product-boundary.md
+candidate_inputs:
   - docs/concept/helix-five-goals.md
   - docs/concept/helix-principles.md
 supersedes_after_approval: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md

@@ -12,7 +12,7 @@ Concept、目標、原則、L1、L2／L11のauthority昇格を行わない。
 
 | 対象 | SHA-256 | 役割 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `007ef9b54c85faa3cc4e8195fcf02c3e78de82bce679799d7b2fd11028fbd6b7` | 製品identity、責務境界、authority、9構造原則、system invariant、上流順序 |
+| `docs/concept/helix-concept-v4.1.md` | `181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad` | 製品identity、責務境界、authority、9構造原則、system invariant、上流順序。5大目標と七大原則は循環する`derived_from`ではなく`candidate_inputs`として接続 |
 | `docs/concept/helix-five-goals.md` | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | HELIX全体の5到達目標 |
 | `docs/concept/helix-principles.md` | `41d8fbe759bf24a7245df0597ddaa9c8eb6c4c0184b124ecd5d349e6c19a2dbb` | エージェントの7行動原則 |
 | `docs/concept/product-boundary.md` | `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038` | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの責務境界 |

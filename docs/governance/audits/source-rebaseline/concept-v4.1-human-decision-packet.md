@@ -55,7 +55,7 @@ Decision IDを分けるが、人間へID入力を要求しない。
 
 | 対象 | SHA-256 | 判断する意味 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `007ef9b54c85faa3cc4e8195fcf02c3e78de82bce679799d7b2fd11028fbd6b7` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、5大目標と七大原則の接続、HARNESS要求エンジン、Design Template、意味密度によるPython抽出、HARNESS normative workflowと推進のoperational生成の分離、管理→推進→管理登録→検収、企画との齟齬管理、HARNESS自己改善、Version 1境界、改善接続、9構造原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
+| `docs/concept/helix-concept-v4.1.md` | `181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad` | HELIX、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのidentity、5大目標と七大原則の非循環`candidate_inputs`接続、HARNESS要求エンジン、Design Template、意味密度によるPython抽出、HARNESS normative workflowと推進のoperational生成の分離、管理→推進→管理登録→検収、企画との齟齬管理、HARNESS自己改善、Version 1境界、改善接続、9構造原則、archive-first新世代境界、authority順序、旧実行・検証資産の完全一致再利用禁止 |
 | `docs/helix-harness/L1-planning/product-intent.md` | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | HARNESSの外部提供価値9件と対象外 |
 | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | HELIX-OSのHARNESS自己改善・管理・統制価値12件と対象外 |
 | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | HELIX-Webの個別製品価値6件と対象外 |

@@ -64,7 +64,7 @@ SHA-256、時点、維持する条件を`HDEC-HELIX-FIVE-GOALS-0.1`へ束縛す�
 
 | source | SHA-256 | 接続する範囲 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `007ef9b54c85faa3cc4e8195fcf02c3e78de82bce679799d7b2fd11028fbd6b7` | 5大目標を自走、改善、simulation、非エンジニア利用、Worker配置として製品責務・authority・構造原則へ接続する改訂候補 |
+| `docs/concept/helix-concept-v4.1.md` | `181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad` | 5大目標を自走、改善、simulation、非エンジニア利用、Worker配置として製品責務・authority・構造原則へ接続する改訂候補 |
 | `docs/concept/product-boundary.md` | `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038` | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの責務分離 |
 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | `8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8` | historical sourceの§2目的P0–P9を意味保持し、5大目標との保持・追加・重複をConcept改訂時に比較する |
 
