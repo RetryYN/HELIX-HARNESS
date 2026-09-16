@@ -90,6 +90,7 @@ GitHub Issueは本programの進行と未決論点を共有するprojectionに限
 
 ## 現在の停止条件
 
-Concept v4.1と対象別L1は未承認であり、個別要求の要否判断・successor確定は開始しない。現在は親programと
-GitHub projectionを作り、旧要求を全件保持したまま判断順序とmerge条件を固定する。L3、実装、DB、runtime、
-新世代CI、archiveの物理削除は本Issueから開始しない。
+Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである。現在は旧要求を全件保持したまま、
+管理分類登録の第1層として対象製品候補を一件ずつ登録する。対象別L2／L11が未採否であるため、要求の要否判断、
+successor確定、意味変更、縮退、retireは開始しない。L3、実装、DB、runtime、新世代CI、archiveの物理削除も
+本Issueから開始しない。
