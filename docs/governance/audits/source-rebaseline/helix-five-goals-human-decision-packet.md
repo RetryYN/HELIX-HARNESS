@@ -1,7 +1,7 @@
 # HELIX自体の5大目標 人間判断packet
 
 prepared_at: 2026-09-16
-status: human_decision_gated_by_current_head_review
+status: candidate_authority_decision_pending
 decision_id: HDEC-HELIX-FIVE-GOALS-0.1
 authority_effect_before_decision: none
 
@@ -9,7 +9,7 @@ authority_effect_before_decision: none
 
 | 対象 | SHA-256 | 状態 |
 |---|---|---|
-| `docs/concept/helix-five-goals.md` | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | `draft_candidate`、人間判断時のcurrent HEAD review必須 |
+| `docs/concept/helix-five-goals.md` | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | `draft_candidate`。候補の物理統合に人間承認は不要。authority昇格を判断するときだけcurrent revision reviewを確認する |
 
 SHA-256は上記pathのUTF-8 file bytes全体に対して算出する。内容が変わった場合、この判断対象は失効し、新しいdigestへ
 固定し直す。PR、Issue、review、CI、DB、会話の状態はこの判断を成立させない。
@@ -34,13 +34,12 @@ POが提示した次の5大目標を、HELIX全体の到達方向として採用
 |---|---|
 | completed review | [本文HEAD `4f620e32d2f60f2ce80113db1ba4e01d4facd565`のGitHub Claude review](https://github.com/RetryYN/HELIX-HARNESS/pull/1827#issuecomment-5685768483) |
 | result | Blocker 0／Major 0／Minor 0 |
-| state | 判断対象本文は上記review後に不変。人間判断時は本packetを含むPR current HEADの最新reviewをGitHubからread-afterする |
+| state | 判断対象本文は上記review後に不変。Concept接続候補を外部reviewし、将来のauthority判断時はその時点の本文revisionとreviewを改めてread-afterする |
 
-未解決事項は、承認後に5大目標をConcept v4.1の目的・製品別Conceptへ取り込む改訂範囲、および旧L0 charter §2の
-目的P0–P9との保持・追加・重複関係である。
-これらを本PRで確定せず、Concept改訂時のsemantic diffと人間判断へ送る。人間判断時はPRのcurrent HEAD、本文file SHA-256、
-review対象HEAD／digest、最新findingをread-afterする。本文digestに未reviewの変更がある、または未解消Blocker／Majorが
-ある場合は判断を停止する。Minorは内容と処置を示し、人間が残存を認識できる状態にする。
+5大目標をConcept v4.1の製品責務、authority、構造原則、上流順序へ接続する改訂候補を起草した。旧L0 charter §2の
+目的P0–P9はhistorical sourceとして保持し、保持・追加・重複関係の最終判断をL1へ暗黙移送しない。候補統合時はConcept接続の
+semantic diffを外部reviewする。authority判断時は本文file SHA-256、review対象revision／digest、最新findingをread-afterし、
+未review変更または未解消Blocker／Majorがある場合は昇格判断を停止する。この条件を候補PRのmerge gateとして使わない。
 
 ## 選択肢
 
@@ -65,7 +64,7 @@ SHA-256、時点、維持する条件を`HDEC-HELIX-FIVE-GOALS-0.1`へ束縛す�
 
 | source | SHA-256 | 接続する範囲 |
 |---|---|---|
-| `docs/concept/helix-concept-v4.1.md` | `56118722c190dddfdf5436cb2c15f8b5773431d18638e0870f8dd03ec68c210e` | 自走、改善、証拠、Worker、HARNESS／OS／Web境界 |
+| `docs/concept/helix-concept-v4.1.md` | `181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad` | 5大目標を自走、改善、simulation、非エンジニア利用、Worker配置として製品責務・authority・構造原則へ接続する改訂候補 |
 | `docs/concept/product-boundary.md` | `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038` | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの責務分離 |
 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | `8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8` | historical sourceの§2目的P0–P9を意味保持し、5大目標との保持・追加・重複をConcept改訂時に比較する |
 

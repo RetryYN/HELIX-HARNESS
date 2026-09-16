@@ -6,6 +6,9 @@ authority_status: awaiting_human_approval
 derived_from:
   - archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md
   - docs/concept/product-boundary.md
+candidate_inputs:
+  - docs/concept/helix-five-goals.md
+  - docs/concept/helix-principles.md
 supersedes_after_approval: archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md
 canonical_promotion: pending
 approval_scope: exact_body_revision_pending
@@ -31,6 +34,30 @@ HELIXは、人間が定めたConcept・企画・要求を起点に、HARNESSの�
 人は価値、製品境界、要求、体験、L3要件承認、不可逆作用の許可を所有する。
 HELIXは、承認された範囲を責務単位へ分解し、実行・検証・統合・運用・改善候補化を継続する。
 会話、Issue、PR、CIの状態を要求の意味や承認の代替にしない。
+
+## 5大目標と七大原則の接続
+
+[HELIX自体の5大目標](helix-five-goals.md)はHELIX全体が実現する価値、
+[HELIXエージェントの七大原則](helix-principles.md)はその価値へ進むエージェントの行動規律である。
+本Conceptは製品identity、責務境界、authority、system invariant、上流から運用までの構造を所有する。
+5大目標と七大原則をConceptと並列のauthorityにせず、この構造へ接続して対象別L1以降へ降ろす。
+
+| 5大目標 | Concept上の接続 |
+|---|---|
+| システム駆動エージェント自走システム | 人間が定めた上流authorityをHARNESS contractとHELIX-OSのstate・assignment・evidenceへ接続し、会話や個体記憶に依存しない自走として扱う |
+| 開発するほど賢くなる自己知能型改善システム | HELIX-OSがHARNESS自身を含む開発・運用結果を観測し、Controlled Adaptationにより改善候補を対象上流へ戻す。学習結果はauthorityを直接変更しない |
+| 設計から全体をシミュレーションする予測型システム | 要求、責務、依存、interface、state、failure、V-pair、検証、運用条件のrelationから変更影響を予測する。予測は前提・revision・不確実性・反証方法を持つ候補であり、確定事実を生成しない |
+| CIとbotで品質とスピードを両立した非エンジニアでも作れるシステム | HARNESSの開発・検証契約とHELIX-OSの自動検査・差戻し・証拠化を、人が目的、進行、未決、risk、判断事項を理解できる入口へ接続する。CIやbotのgreenを要求・受入・完了のauthorityにしない |
+| 低コストワーカでも最高のパフォーマンスを発揮して最適配置するシステム | Bounded Multi-AI Executionのもとで、作業特性とWorkerの品質・費用・時間・再作業・失敗実測を用いてassignment候補を更新する。provider名、価格、自己申告だけで能力や最適性を固定しない |
+
+七大原則は、HARNESSが対象作業へ適用するProduction、Research、Discovery／PoC、UI prototype等のrouteと
+route内順序を置き換えない。各routeの判断点でresearch、変更単位、domain、上流還流、最小実装、責務・依存分離、
+証拠・計測を確認する共通規律として働く。Conceptの9原則はHELIXの構造原則、七大原則はエージェントの行動原則であり、
+同じ番号体系やauthorityへ統合しない。
+
+5大目標または七大原則だけから、個別要求、責務owner、ticket、workflow instance、技術選定、実装、承認、達成を生成しない。
+対象別L1で価値と非対象へ分解し、旧要求source atomを失わずL2／L11へ再配置してから、L3以降を導出する。
+本候補への接続は、5大目標、七大原則、Concept、対象別L1のauthority昇格を成立させない。
 
 ## 製品と管理対象
 
