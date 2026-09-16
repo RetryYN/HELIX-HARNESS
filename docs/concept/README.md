@@ -15,7 +15,9 @@ HELIXは一つの製品ではなく、複数の製品と統制機構を接続す
 製品責務、authority、構造原則、上流順序へ接続する。
 [HELIX自体の5大目標候補](helix-five-goals.md)はHELIX全体が実現する価値を示し、個別要求と実装方式は固定しない。
 [HELIXエージェントの七大原則候補](helix-principles.md)は、その価値へ進むエージェントの共通行動基準を示す。
-両候補ともConceptに従属し、人間の内容判断前である。PRのmergeだけではauthorityにならない。
+両候補ともConceptに従属する。Concept v4.1と4対象L1の承認は
+[2026-09-17 decision record](../governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)に、
+各対象fileのSHA-256を分けて記録する。PRのmergeだけではauthorityにならない。
 Concept／製品責務境界→5大目標→七大原則→対象別L1の順に読む。
 
 ## 既に示された方向
@@ -29,9 +31,8 @@ Concept／製品責務境界→5大目標→七大原則→対象別L1の順に�
 7. HELIX-Webの展開はHARNESS Version 1完成を前提とする。
 8. repository整理と運用上流はfoundation PRで確立し、個別要求は一要求identityずつ別PRで詰める。
 
-## まだ成立していないもの
+## 承認後も成立していないもの
 
-- Concept本文と4対象L1の文書revisionに対する人間の意味承認。
 - 対象別L2要求・prototype／非UI条件の個別採否と合意。
 - L3以降、新世代CI、AI manifest／生成器、runtime、release、deployment。
 - archive sourceの意味移管完了と物理削除。
