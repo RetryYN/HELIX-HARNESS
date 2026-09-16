@@ -23,3 +23,4 @@ commit、file SHA-256、remote revision、read-afterはappend-onlyのprojection 
 | 7 | [FT-HARNESS-TICKETCONTRACT-001](FT-HARNESS-TICKETCONTRACT-001.md) | HARNESS PoC／UI prototype／Feature ticket contract | proposed_upstream_waiting | [#1804](https://github.com/RetryYN/HELIX-HARNESS/issues/1804) |
 | 8 | [FT-OS-TICKETISSUER-001](FT-OS-TICKETISSUER-001.md) | HELIX-OS推進によるtyped ticket／workflow生成・Issue projection | proposed_upstream_waiting | [#1805](https://github.com/RetryYN/HELIX-HARNESS/issues/1805) |
 | 9 | [FT-OS-GITHUBSYNC-001](FT-OS-GITHUBSYNC-001.md) | HELIX-OS GitHub一方向projection・read-after同期adapter | proposed_upstream_waiting | [#1812](https://github.com/RetryYN/HELIX-HARNESS/issues/1812) |
+| 10 | [FT-OS-REQGUARD-001](FT-OS-REQGUARD-001.md) | HELIX-OS 要求登録bot・監査crawler・admission CI | proposed_upstream_waiting | [#1837](https://github.com/RetryYN/HELIX-HARNESS/issues/1837) |

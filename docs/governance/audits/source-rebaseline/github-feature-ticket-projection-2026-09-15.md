@@ -219,3 +219,43 @@ Issue #1798が参照するlocal source commitを、補強後のexact revisionへ
 
 Feature Ticket本文のbytesと意味は変えていない。GitHub本文を正本へ昇格せず、local contractの新revisionを指すprojectionへ
 合わせた操作証拠である。要求採用、両revisionの意味同値、実装開始、CI起動を生成しない。
+
+## 要求登録bot・監査crawler・admission CI案件の投影
+
+receipt_id: `FTPROJ-1837-20260917-001`
+
+PO指示「CI＋登録bot＋クローラー置いたらいいんじゃね？イシュー案件だな。」を、要求採用や実装許可へ変換せず、
+local Feature Ticket `FT-OS-REQGUARD-001`として登録し、GitHub Issue
+[#1837](https://github.com/RetryYN/HELIX-HARNESS/issues/1837)へ一方向投影した。登録writer、read-only crawler、
+requirements-admission CIを権限分離し、HARNESSの無損失coverage contractとHELIX-OSの運用責務を分けている。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `c3422654b8631ab1c1c2e2317d5991d69eeb939d` |
+| local Feature Ticket SHA-256 | `761b87aaaffd5f66d961ed62e1a4ff5c189816776c2e796b2bde34b015e195cb` |
+| remote revision | `updatedAt:2026-09-16T17:10:58Z+body_sha256:e0ab6ffc49f60cc0e0fd9f20fbc2aecc9856ccfd274d5564f64e0bfeb8feb0d7` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+Issue本文はlocal ticketの要約であり、Source全文を意味契約として参照する。要求整理でregister schema、atom namespace、
+要求kind、L2↔L11、coverage receiptが確定するまでは、bot、crawler、CI、runtime、required check設定を開始しない。
+既存CI、旧runtime、旧DBを実装基盤またはoracleにせず、Issue状態から要求意味・採否・承認・完了を生成しない。
+
+### #1837の登録writer重複解消
+
+receipt_id: `FTPROJ-1837-20260917-002`
+correction_of: `FTPROJ-1837-20260917-001`
+
+PR #1838のexact HEAD reviewで、`FT-OS-REQREG-001`と本ticketの登録botが二つのwriterに読めるとのMinorを受けた。
+登録writerの正本を`FT-OS-REQREG-001`へ一意化し、本ticketは別writer、mirror register、派生正本を作らず、同じbotを
+crawler／CIへ接続する統制案件であることをlocal ticketとIssue #1837へ反映した。
+
+| 項目 | read-after値 |
+|---|---|
+| local source commit | `dfc7a159bdd7bf8f7d453063ab03712465d10fc3` |
+| local Feature Ticket SHA-256 | `637b8f0b47031f8c0473b09350d9fa1462305b0f27a1e810018633ecd1864372` |
+| remote revision | `updatedAt:2026-09-16T17:14:29Z+body_sha256:9e20b4996dc27a790252ec51d8a3a509e6fd791e16fdc214a005d3d72fb89703` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+この訂正は登録capabilityを追加せず、#1798との重複可能性を除いた。bot、crawler、CIの実装・起動は引き続き停止する。
