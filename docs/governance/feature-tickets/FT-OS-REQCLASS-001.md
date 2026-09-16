@@ -68,6 +68,11 @@ source-qualified identityまたは無損失に分解したatomを入力にする
 `cross_product_connection`、一文に別々の製品責務が混在するなら`split_required`とする。どちらかを決められない
 場合は`unresolved_product`を維持する。
 
+`cross_product_connection`は、上流製品のcontract identity、下流製品の受理identity、両者の対応、欠落・不整合時の
+扱いを含み、受渡しの成立とtrace自体がacceptance outcomeである場合に使う。別製品のcontractを入力として参照する
+だけではconnectionにしない。その入力から生成、選択、配置、実行することがacceptance outcomeなら、実行する製品の
+`single_product`とする。受渡し契約と下流運転が一文に独立したoutcomeとして混在する場合は`split_required`とする。
+
 ## 分類projection
 
 第2層以降の分類結果は少なくとも次を持つ。
@@ -101,7 +106,7 @@ source-qualified identityまたは無損失に分解したatomを入力にする
 
 bootstrapでは[旧IR product routing候補](../legacy-ir-product-routing-bootstrap.jsonl)をrepo-owned projectionとして
 使用する。これはruntime schemaではなく、旧crosswalk seedと四製品再評価の進行を分けて保持する台帳である。
-W1業務価値33件は四製品を個別評価済みの候補、W2〜W4の120件は旧seedを保持した未審査として区別する。
+W1業務価値33件とW2機能69件は四製品を個別評価済みの候補、W3〜W4の51件は旧seedを保持した未審査として区別する。
 件数、routing shape、SHA-256、無損失照合は
 [bootstrap監査](../audits/source-rebaseline/legacy-ir-product-routing-bootstrap-audit-2026-09-17.md)へ記録する。
 現在はticketとbootstrap台帳だけを整え、DB、engine、runtime、CIを実装・起動しない。
