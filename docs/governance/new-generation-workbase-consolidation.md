@@ -17,6 +17,10 @@ worktreeは`main`一つに限定し、旧branchから現役作業を再開でき
 本operationは作業基盤の整理だけを行う。要求の採否、分割、統合、再配置、successor確定、L1／L2／L11変更、L3、
 実装、CI、runtime再構築を行わない。集約完了後は要求整理へ進む直前で停止する。
 
+本operationのPR作成・修正側は差分作成、証拠提示、review依頼、finding対応までを担う。最終merge、post-merge
+read-after、Issue closeは、作成側から独立して割り当てられ、exact HEADのreviewとmerge admissionを確認し、対象通路を
+明示許可されたレビュー対応側が行う。責務割当だけでGitHub等の実行通路を許可しない。
+
 ## PO指示原文
 
 2026-09-17（Asia/Tokyo）の本作業会話で、POは次の順に指示した。
