@@ -12,28 +12,34 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 ## 読込順
 
 1. [Concept入口](../concept/README.md)
-2. [製品責務境界](../concept/product-boundary.md)と[Concept本文](../concept/helix-concept-v4.1.md)
-3. 対象製品のL1
+2. [Concept本文](../concept/helix-concept-v4.1.md)と[製品責務境界](../concept/product-boundary.md)
+3. [HELIX自体の5大目標候補](../concept/helix-five-goals.md)
+4. 対象製品のL1
    - [HELIX-HARNESS](../helix-harness/L1-planning/product-intent.md)
    - [HELIX-OS](../helix-os/L1-planning/system-intent.md)
    - [HELIX-Web](../helix-web/L1-planning/product-intent.md)
    - [HELIX-Web-OS](../helix-web-os/L1-planning/system-intent.md)
-4. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
-5. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
-6. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
-7. [上流authority状態モデル](authority-state-model.md)
-8. [GitHub上流運用モデル](github-upstream-operating-model.md)
-9. [管理層の要求仮登録契約](management-provisional-requirement-registration.md)
-10. [Repository foundation readiness](repository-foundation-readiness.md)
-11. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-ir-rehome-wave-register.md)
+5. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
+6. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
+7. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
+8. [上流authority状態モデル](authority-state-model.md)
+9. [GitHub上流運用モデル](github-upstream-operating-model.md)
+10. [管理層の要求仮登録契約](management-provisional-requirement-registration.md)
+11. [Repository foundation readiness](repository-foundation-readiness.md)
+12. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-ir-rehome-wave-register.md)
     - 全要求の要否・再配置を扱う場合は、[要否・再配置review program](requirement-disposition-review-program.md)を親作業とし、[責務・機能重複review](requirement-overlap-review-program.md)、[技術代替可能性review](requirement-technical-substitutability-review-program.md)、個別要求の人間decision・要求PRを分ける
     - IDのない段落条件を扱う場合は、[semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)と[atom化review contract](requirement-atomization-review-contract.md)を追加で読む
     - 旧candidate系列を扱う場合は、[旧candidate source全量inventory](legacy-candidate-source-inventory.md)から原文行へ戻る
-12. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
-13. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
-14. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
+13. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
+14. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
+15. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
    指定された旧source／crosswalkを読む。明細台帳は機械参照用であり、AIの全文startup readには含めない。
    個別採否時は[判断ログ契約](legacy-asset-decision-log.md)に従う
+
+七大原則候補PR #1826を統合するときは、この読込順の3と対象別L1の間へ`docs/concept/helix-principles.md`を置く。
+統合順はrepository foundation PR #1797→5大目標PR #1827→#1827上へ載せ直した七大原則PR #1826とし、
+Concept／製品責務境界→5大目標→七大原則→対象別L1の順を一か所へ収束させる。5大目標と七大原則の内容判断は、
+各候補PRのmerge admissionと独立したまま扱う。repository foundationは構造整理の証拠だけで統合済みである。
 
 Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
