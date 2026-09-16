@@ -8,10 +8,10 @@ priority_order: 10
 created: 2026-09-17
 authority_effect: work_projection_only
 github_projection:
-  issue: pending
-  url: pending
+  issue: 1837
+  url: https://github.com/RetryYN/HELIX-HARNESS/issues/1837
   projection_receipt_ref: docs/governance/audits/source-rebaseline/github-feature-ticket-projection-2026-09-15.md
-  read_after_state: pending
+  read_after_state: OPEN
 parent_requirements:
   - HELIXOS-L2-001
   - HELIXOS-L2-002
