@@ -58,6 +58,8 @@ source-qualified identityまたは無損失に分解したatomを入力にする
 - 評価対象となる四製品のexact set。
 - `candidate_product_targets`と、その責務根拠。
 - `single_product`、`cross_product_connection`、`split_required`、`unresolved_product`のrouting候補。
+- 旧crosswalk由来のseed targetとseed routing。未審査中は現在の`candidate_product_targets`を空集合、
+  `routing_candidate`を`unresolved_product`とし、seed値を現在分類と同じfieldへ置かない。
 - 各製品について`included`、`excluded_with_reason`、`unresolved`の評価。
 - 分類actor、分類規則revision、evidence、confidenceでは代替できない未解決事項。
 - supersede、stale、再分類履歴と`authority_effect: none`。

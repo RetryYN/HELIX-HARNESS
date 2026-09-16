@@ -17,7 +17,7 @@ HELIX-Web-OSへ分類できる状態にする。旧crosswalkのOS／HARNESS候�
 ## 台帳
 
 - projection: [legacy-ir-product-routing-bootstrap.jsonl](../../legacy-ir-product-routing-bootstrap.jsonl)
-- SHA-256: `8d08795162aef4ad3cd03772cb070b330c2536332caf449cc05298fc532bd5ca`
+- SHA-256: `4879982965c8f7ecb32947d6b34a82bd32b26bd969cf9ce878210720964deb4c`
 - record: 153件
 - source holding: `MPR-SH-IR-003`
 - source identity: `HIL-BR-01..33`、`HIL-FR-01..69`、`HIL-NFR-01..40`、`HIL-TR-01..11`
@@ -47,7 +47,9 @@ W1限定の候補判断である。
   `cross_product_connection`へ分けた。
 - 旧本文がHARNESS ownerと記す場合も、Worker instance lifecycle、CI運転、learning等は承認済みL1責務に従い
   HELIX-OS候補へ再配置した。旧owner表記は出典として保持し、意味変更済みとは扱わない。
-- 四製品を実際に評価していないW2〜W4の120件は、旧seed targetがあっても`pending_four_product_review`とした。
+- 四製品を実際に評価していないW2〜W4の120件は、旧seed targetとroutingを`legacy_seed_*`へ隔離し、
+  現在の`candidate_product_targets`を空集合、`routing_candidate`を`unresolved_product`、状態を
+  `pending_four_product_review`とした。
 - Web系固有価値を確認できないことと、Web系を審査していないことを区別した。
 
 ## 分類と採否の境界
@@ -70,7 +72,8 @@ W1の33件も人間承認済み要求ではない。候補targetとrouting shape
 - 153件の`source_statement_semantic_digest`がcarry-forwardと一致する。
 - 全recordの`evaluated_product_set`が四製品のexact setである。
 - W1 33件は四製品すべてが`included`または`excluded_with_reason`で、未評価targetがない。
-- W2〜W4 120件は四製品すべてを`unresolved`として残し、旧seedを審査結果へ昇格していない。
+- W2〜W4 120件は四製品すべてを`unresolved`として残し、現在targetを空集合、現在routingを
+  `unresolved_product`とし、旧seed target／routingを審査結果へ昇格していない。
 - 全153件が`authority_effect: none`、`successor_assignment_status: unassigned`、`meaning_change_applied: false`である。
 
 ## 次の順序
