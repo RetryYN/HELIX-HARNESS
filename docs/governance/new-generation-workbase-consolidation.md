@@ -10,8 +10,9 @@ target_generation: `new-generation-2026-09-14`
 ## 目的
 
 旧世代の作業branch、worktree、stash、未統合commit、未コミット差分を失わず非実行archiveへ退避し、現役の作業面を
-`main`一つへ集約する。GitHub、local repository、worktreeのどれを見ても、現役作業を旧branchから再開できるように
-見せない。新世代の要求整理は、集約済み`main`にあるローカル上流だけを入口にする。
+`main`一つへ集約する。GitHubには旧世代切替点を読み取る`archive`と、現役の`main`だけを置く。local repositoryと
+worktreeは`main`一つに限定し、旧branchから現役作業を再開できるように見せない。新世代の要求整理は、集約済み
+`main`にあるローカル上流だけを入口にする。
 
 本operationは作業基盤の整理だけを行う。要求の採否、分割、統合、再配置、successor確定、L1／L2／L11変更、L3、
 実装、CI、runtime再構築を行わない。集約完了後は要求整理へ進む直前で停止する。
@@ -26,23 +27,24 @@ target_generation: `new-generation-2026-09-14`
 
 > それをイシューにして新世代への作業基盤へ整理を完遂して。要求整理前まで進めてくれ。
 
-この指示は、local branch、GitHub remote branch、worktreeを現役`main`一つへ集約し、旧状態をarchiveへ保存し、Issueで
-進行と証拠を共有し、要求整理前で停止するaction-binding authorizationとして適用する。remote branch削除とcanonical
-rootのfresh clone化は、指示された`main`一本化を実現する操作scopeに含む。mainの履歴変更、force-push、tag削除、archive
-破棄、要求変更は許可scopeに含めない。
+この指示は、local branchとworktreeを現役`main`一つへ集約し、GitHub remote branchを非実行保全用`archive`と現役
+`main`の二本へ整理し、旧状態をrepo外archiveにも保存し、Issueで進行と証拠を共有し、要求整理前で停止する
+action-binding authorizationとして適用する。旧一時branchの削除、`archive` branchの作成、canonical rootのfresh clone化は
+許可scopeに含む。mainの履歴変更、force-push、tag削除、archive破棄、要求変更は許可scopeに含めない。
 
 ## PO指示による最終状態
 
 | surface | 完了状態 |
 |---|---|
-| GitHub branch | `main`だけが現役branchとして存在する |
+| GitHub branch | 現役`main`と、旧世代切替点を保持する非実行保全用`archive`だけが存在する |
 | local branch | 新しい作業cloneには`main`だけが存在する |
 | worktree | canonical repository rootの`main` worktree一つだけが存在する |
-| archive | 旧Git object、全worktree HEAD、local／remote ref、stash、dirty／untracked／ignored stateを復元可能な形でrepo外へ保持する |
-| 実行境界 | archiveをCLI、hook、CI、runtime、要求authority、fallbackとして使わない |
+| archive | GitHub `archive`は旧世代切替点を保持し、旧Git object、全worktree HEAD、local／remote ref、stash、dirty／untracked／ignored stateは復元可能な形でrepo外にも保持する |
+| 実行境界 | GitHub `archive`とrepo外archiveをCLI、hook、CI、runtime、要求authority、fallbackとして使わない |
 
-ここでいう「archive＋main」は、現役Git branchを二本にする意味ではない。archiveは非実行の保全領域であり、現役branchは
-`main`一本だけとする。
+GitHub `archive`は、PR #1797による新世代repository foundation導入前の旧世代切替点
+`6fabd12512a3659fff4a956692cdd61faeeb16ce`を指す。これは旧世代のGitHub可読snapshotであり、全一時branch、worktree、
+stashを含む完全保全物の代替ではない。完全保全はrepo外のverified bundleとraw archiveが担う。現役branchは`main`だけとする。
 
 ## 事前inventory receipt
 
@@ -85,20 +87,22 @@ archive保存先の絶対pathは、個人環境pathをrepo文書へ固定しな�
 4. review laneを終端し、repo関連processを再取得する。旧scanner、receiver、Claude lane等のwriterを停止して停止対象と結果をreceiptへ残す。VS Codeの表示・言語serverは旧stateのwriterに使わない。
 5. canonical root、linked worktree root、例外pathを削除せず、同一filesystem上のrepo外archiveへrenameして生bytesを保持する。
 6. canonical pathへ`main`だけを取得するfresh cloneを作る。旧`.git`、hook、runtime state、DB、worktree metadataを移植しない。
-7. GitHubの`main`以外のbranchを、archive済みexact ref集合と照合して削除する。force-push、main履歴変更、tag削除はしない。
-8. local／GitHub branch、worktree、main HEAD、archive bundle、raw archive件数をread-afterし、完了receiptをIssueと本書へ接続する。
+7. GitHubの`main`と`archive`以外のbranchを、archive済みexact ref集合と照合して削除する。`archive`は旧世代切替点へ
+   exact SHAで作成する。force-push、main履歴変更、tag削除はしない。
+8. local／GitHub branch、worktree、main／archive HEAD、archive bundle、raw archive件数をread-afterし、完了receiptを
+   Issueと本書へ接続する。
 
 途中で新しい未archive HEAD、archive digest不一致、bundle verify失敗、main HEAD drift、保存先不足が見つかった場合は、残りの
 applyを停止する。削除を先行させない。
 
 ## 完了条件
 
-- GitHub open PRが0で、remote branchが`main`だけである。
+- GitHub open PRが0で、remote branchが現役`main`と非実行保全用`archive`だけである。
 - canonical local cloneのlocal branch、remote-tracking branch、registered worktreeがそれぞれ`main`一つである。
 - canonical local cloneがcleanで、HEADと`origin/main`が一致する。
 - apply直前の全worktree HEAD、local branch、remote branch、stashがverified bundleまたはraw archiveに存在する。
 - dirty、untracked、ignored stateを持つ旧worktreeをraw archiveへrenameし、削除していない。
-- archiveを現行の実行、fallback、authorityへ接続していない。
+- GitHub `archive`とrepo外archiveを現行の実行、fallback、authorityへ接続していない。
 - 要求文書、要求atom、管理層register、L1／L2／L11、要求Issue #1798〜#1815を変更・closeしていない。
 
 ## 停止境界
@@ -118,10 +122,10 @@ applyを停止する。削除を先行させない。
 | 最終Git bundle | 144 MiB、SHA-256 `de83e9371bfebe09f97e5a0db18d5fc5858c5531cb822b603f68ebe86a76af55` |
 | raw archive | 旧canonical root 2.0 GiB、共通linked worktree root 75 GiB、例外worktree 9件・948 MiBをrename保存 |
 | raw move receipt | SHA-256 `011a8ff75e1163e7851d345260cb24694ee0f077e3032f5160759abe0f0d9534` |
-| GitHub branch処置 | `main`以外218件をarchive inventoryとSHA一致後に削除、成功218／失敗0 |
+| GitHub branch処置 | 旧一時branch 218件をarchive inventoryとSHA一致後に削除、成功218／失敗0。その後、PO指示の二本構成へ訂正し、旧世代切替点`6fabd12512a3659fff4a956692cdd61faeeb16ce`を`archive`として作成 |
 | branch delete receipt | SHA-256 `723b9dfa8ba3baa9774529da28bbff6a228471acbd6184fbfc0f14b71bce4e6b` |
 | canonical local | fresh clone、local branch `main` 1件、registered worktree 1件、clean、HEAD＝`origin/main` |
-| GitHub | branch `main` 1件、open PR 0件 |
+| GitHub | 通常運用時はbranch `main`と`archive`の2件。`archive`は旧世代切替点、`main`は新世代active authority |
 | archive実行境界 | old scanner、receiver、Claude lane、archiveをcwdにしたshell／language serverを停止。archive cwd process 0件 |
 | 要求境界 | #1798〜#1805、#1812〜#1815は全件OPENを維持。要求文書・要求atom・L1／L2／L11は不変 |
 
