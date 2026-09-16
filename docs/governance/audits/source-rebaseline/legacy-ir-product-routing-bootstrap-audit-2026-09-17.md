@@ -46,6 +46,12 @@ HELIX-HARNESS 34件、HELIX-OS 59件だった。規範的な工程・要求意�
 HARNESS候補、event／ledger／Worker／CI／connector／runtimeの登録・推進・運転はOS候補とした。一つの旧要求に
 規範条件と運転責務が混在する24件は、どちらかへ寄せず`split_required`とした。
 
+W1の`HIL-BR-09`は、HARNESS所有agent contractからOS側team／runtime projectionへの対応と決定性という
+受渡し自体をacceptance outcomeに含むため`cross_product_connection`とする。一方、W2の`HIL-FR-12`、
+`HIL-FR-13`、`HIL-FR-59`はHARNESS contractを入力に使うが、acceptance outcomeはOS側でのadapter生成、
+team選択、agent contract生成であるためHELIX-OSの`single_product`とする。別製品の入力を参照するだけで
+connectionへ昇格しない。
+
 ## 旧crosswalkから変更した境界
 
 - `HARNESS／OS`を一つのowner値として残さず、別要求へ分ける`split_required`と、製品間受渡しを所有する

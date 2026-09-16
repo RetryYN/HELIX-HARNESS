@@ -68,6 +68,11 @@ source-qualified identityまたは無損失に分解したatomを入力にする
 `cross_product_connection`、一文に別々の製品責務が混在するなら`split_required`とする。どちらかを決められない
 場合は`unresolved_product`を維持する。
 
+`cross_product_connection`は、上流製品のcontract identity、下流製品の受理identity、両者の対応、欠落・不整合時の
+扱いを含み、受渡しの成立とtrace自体がacceptance outcomeである場合に使う。別製品のcontractを入力として参照する
+だけではconnectionにしない。その入力から生成、選択、配置、実行することがacceptance outcomeなら、実行する製品の
+`single_product`とする。受渡し契約と下流運転が一文に独立したoutcomeとして混在する場合は`split_required`とする。
+
 ## 分類projection
 
 第2層以降の分類結果は少なくとも次を持つ。
