@@ -1,6 +1,6 @@
 ---
 title: "旧IR product responsibility第1層 bootstrap監査"
-status: w1_w3_candidate_review_complete_w4_pending
+status: all_waves_candidate_review_complete
 verified_at: 2026-09-17
 source_holding: MPR-SH-IR-003
 authority_effect: none
@@ -17,7 +17,7 @@ HELIX-Web-OSへ分類できる状態にする。旧crosswalkのOS／HARNESS候�
 ## 台帳
 
 - projection: [legacy-ir-product-routing-bootstrap.jsonl](../../legacy-ir-product-routing-bootstrap.jsonl)
-- SHA-256: `4c6913795fcaeb356f057b0e9a92d897994c411848ddc45c7a3d78e53235f9c7`
+- SHA-256: `c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1`
 - record: 153件
 - source holding: `MPR-SH-IR-003`
 - source identity: `HIL-BR-01..33`、`HIL-FR-01..69`、`HIL-NFR-01..40`、`HIL-TR-01..11`
@@ -32,8 +32,8 @@ HELIX-Web-OSへ分類できる状態にする。旧crosswalkのOS／HARNESS候�
 | W1 業務価値 | 33 | 33 | `proposed_four_product_reviewed` |
 | W2 機能 | 69 | 69 | `proposed_four_product_reviewed` |
 | W3 非機能 | 40 | 40 | `proposed_four_product_reviewed` |
-| W4 技術制約 | 11 | 0 | `pending_four_product_review` |
-| 合計 | 153 | 142 | 未審査11件を明示保持 |
+| W4 技術制約 | 11 | 11 | `proposed_four_product_reviewed` |
+| 合計 | 153 | 153 | 四製品候補review完了 |
 
 W1のrouting候補は`single_product` 16件、`split_required` 16件、`cross_product_connection` 1件である。
 候補targetへの出現はHELIX-HARNESS 25件、HELIX-OS 25件だった。HELIX-WebとHELIX-Web-OSは33件すべてで
@@ -59,16 +59,22 @@ HARNESS候補、冪等性、custody、transaction、Worker、CI、IPC、sandbox�
 `HIL-NFR-12`／`HIL-NFR-22`も、全件列挙・atomic behavior分母というHARNESSの無損失規範と、digest・atomization・receiptを
 管理するOS custodyを分けた。
 
+W4のrouting候補は`single_product` 6件、`split_required` 5件である。候補targetへの出現は
+HELIX-HARNESS 5件、HELIX-OS 11件だった。control plane、harness.db write authority、Python worker隔離は
+OS候補とし、platform、dependency、IPC、Bun cutoverが外部提供HARNESSと管理運転OSの双方へ別々に適用される
+5件は`split_required`とした。Web製品と展開後Web service runtimeの固有技術選定は旧W4原文に含まれないため、
+HELIX-Web／HELIX-Web-OSへ一般化していない。
+
 ## 旧crosswalkから変更した境界
 
 - `HARNESS／OS`を一つのowner値として残さず、別要求へ分ける`split_required`と、製品間受渡しを所有する
   `cross_product_connection`へ分けた。
 - 旧本文がHARNESS ownerと記す場合も、Worker instance lifecycle、CI運転、learning等は承認済みL1責務に従い
   HELIX-OS候補へ再配置した。旧owner表記は出典として保持し、意味変更済みとは扱わない。
-- 四製品を実際に評価していないW4の11件は、旧seed targetとroutingを`legacy_seed_*`へ隔離し、
-  現在の`candidate_product_targets`を空集合、`routing_candidate`を`unresolved_product`、状態を
-  `pending_four_product_review`とした。
-- Web系固有価値を確認できないことと、Web系を審査していないことを区別した。
+- 全153件を四製品で個別評価した。旧seed target／assessmentは出典として保持し、現在の候補target、routing、
+  四製品評価とは別fieldのまま維持した。
+- W1〜W4の全原文をWeb系についても審査し、固有責務を確認できなかったというwave限定判断を、
+  HELIX-Web／HELIX-Web-OSに要求が存在しないという全体判断へ一般化していない。
 
 ## 分類と採否の境界
 
@@ -90,11 +96,11 @@ W1の33件も人間承認済み要求ではない。候補targetとrouting shape
 - 153件の`source_statement_semantic_digest`がcarry-forwardと一致する。
 - 全recordの`evaluated_product_set`が四製品のexact setである。
 - W1 33件は四製品すべてが`included`または`excluded_with_reason`で、未評価targetがない。
-- W4 11件は四製品すべてを`unresolved`として残し、現在targetを空集合、現在routingを
-  `unresolved_product`とし、旧seed target／routingを審査結果へ昇格していない。
+- 全153件は四製品すべてについて`included`または`excluded_with_reason`を持ち、未評価targetがない。
+- 旧seed target／assessmentを現在分類や人間承認へ昇格していない。
 - 全153件が`authority_effect: none`、`successor_assignment_status: unassigned`、`meaning_change_applied: false`である。
 
 ## 次の順序
 
-W4技術制約11件を四製品で一件ずつ再評価する。candidate review後も、
-意味採否やsplit本文作成へ進む前に独立reviewを通し、原要求の削除・統合を行わない。
+全153件の第1層candidate reviewに対する独立reviewとmain read-afterを完了する。その後も、意味採否や
+split本文作成へ進む前にL2／L11の個別判断へ束縛し、原要求の削除・統合を行わない。
