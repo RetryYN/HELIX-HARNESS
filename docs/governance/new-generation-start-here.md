@@ -13,6 +13,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 
 1. [Concept入口](../concept/README.md)
 2. [Concept本文](../concept/helix-concept-v4.1.md)と[製品責務境界](../concept/product-boundary.md)
+   - [Concept v4.1・4対象L1の承認decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)
 3. [HELIX自体の5大目標候補](../concept/helix-five-goals.md)
 4. [HELIXエージェントの七大原則候補](../concept/helix-principles.md)
 5. 対象製品のL1
@@ -46,7 +47,9 @@ Concept／製品責務境界→5大目標→七大原則→対象別L1の読込�
 Concept v4.1候補は、5大目標をHELIX全体の到達価値、七大原則をエージェント行動規律として接続する。
 この接続から個別要求、workflow、技術選定、authorityを直接生成しない。
 
-Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだcanonicalではない。
+Concept v4.1と4対象L1のexact revisionは2026-09-17のdecision recordで承認済みである。
+対象本文内の`candidate`／`awaiting_parent_approval`は承認前snapshotのmetadataであり、現在状態はdecision recordを優先する。
+対象別L2／L11はdraft・未採否であり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
 この非昇格は旧要求の削減を意味しない。採用済み旧要求は`preserved_pending_rehome`として全件保持し、
 対象別へ移す。実装・CI・物理配置を継承しないことと、要求意味を保持することを分ける。
@@ -54,7 +57,7 @@ Conceptと対象別L1はcandidate、対象別L2／L11はdraftであり、まだc
 ## 現在許可される作業
 
 - 旧sourceのinventory、意味分類、対象別crosswalk、archive隔離。
-- Concept、対象別L1、L2／L11の起草、静的なID・参照・責務整合確認。
+- 承認済みConcept／対象別L1を親とするL2／L11候補の起草、静的なID・参照・責務整合確認、個別採否準備。
 - exact revisionのremote syncと、明示的に許可されたGitHub review通路での意味review。
 - GitHub PRを共有・review surfaceとして使うこと。
 

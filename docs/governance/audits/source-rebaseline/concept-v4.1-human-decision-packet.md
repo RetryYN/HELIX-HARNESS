@@ -2,10 +2,20 @@
 
 prepared_at: 2026-09-14
 revision_binding: exact SHA-256 in this packet
-status: candidate_merge_review_pending
+status: approved_exact_revisions
 latest_repository_review_head: `1d44da71f3757c362771ae80820ab495110c2af9`
 latest_repository_review_result: blocker_0_finding_0
-current_revision_review_status: goals_and_principles_integration_review_pending
+current_revision_review_status: exact_sha_rechecked_before_human_decision
+human_decision_record: ../../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md
+
+## 判断結果
+
+2026-09-17、POは「readiness auditの7→9を同期 → exact SHAを再確認 → Concept v4.1＋4対象L1を承認」と
+明示した。HARNESS L1の9 IDとL2逆参照9件、および本packet記載の5対象file SHA-256を再実測した上で、
+[decision record](../../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)へ5判断を分けて記録した。
+
+本packet本文に残る`候補`、`将来authorityへ昇格するとき`、`承認待ち`等の記述は判断前の入力説明である。
+判断結果と効力はdecision recordを優先する。L2／L11以降は承認対象外のままである。
 
 ## 判断の目的
 

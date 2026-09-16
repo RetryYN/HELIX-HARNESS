@@ -1,6 +1,7 @@
 # HELIX Concept v4.1承認準備監査
 
-確認日: 2026-09-14
+初回確認日: 2026-09-14
+最新再確認日: 2026-09-17
 
 ## 目的
 
@@ -45,7 +46,7 @@
 | 対象 | 再照合結果 |
 |---|---|
 | Concept v4.1 | 固有`document_id`、HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OS境界、5大目標と七大原則の接続、GitHub projection、legacyのbaseline／parity／fallback禁止が存在 |
-| HARNESS L1 | L1 ID 7/7、全IDのL2側逆参照7/7、P0–P9帰属、L12接続条件が存在 |
+| HARNESS L1 | L1 ID 9/9、全IDのL2側逆参照9/9、P0–P9帰属、L12接続条件が存在 |
 | HELIX-OS L1 | L1 ID 12/12、全IDのL2側逆参照12/12、P0–P9帰属、L12接続条件が存在 |
 | HELIX-Web L1 | L1 ID 6/6、全IDのL2側逆参照6/6、P0–P4／P7–P9のHARNESS・OS委譲とP5／P6分類、L12接続条件が存在 |
 | HELIX-Web-OS L1 | L1 ID 5/5、全IDのL2側逆参照5/5、P0–P9帰属、L12接続条件が存在 |
@@ -53,6 +54,10 @@
 WebのL0帰属はP0–P9を個別tokenで列挙せず、直接ownerではない範囲を`P0–P4／P7–P9`としてまとめている。
 単純なtoken検索ではP1等を欠落と誤判定するため、範囲表記、P5、P6、委譲先を組として照合した。
 この検査は文書構造と接続の確認であり、意味の承認やL2合意ではない。
+
+2026-09-17の再確認では、HARNESS L1へ追加済みの要求形成`HARNESS-L1-008`とDesign Template
+`HARNESS-L1-009`を含む9 IDを集合抽出し、9 IDすべてがHARNESS L2から逆参照されることを実測した。
+旧記載の7/7は対象本文より古い監査値であり、要求を7件へ縮退させる根拠にはしない。
 
 ## 判定
 
@@ -65,6 +70,6 @@ archive順序、旧authority表示、Web-OS昇格条件、deployment境界、L1�
 blocker 2件・major 4件が見つかった。各所見は新revisionで修正した。修正後HEADの独立再reviewは別revisionとして取得し、
 本監査や旧reviewをpassへ変換しない。
 
-状態は`awaiting_human_approval`のままであり、承認済み・canonical・実装可能として扱わない。候補文書の物理mergeは
-人間承認を条件にせず、mergeからauthorityを生成しない。将来のauthority昇格では、Concept v4.1と4対象L1の意味を
-人間がそれぞれのexact SHAに対して採否する。
+本監査単独の状態は`ready_for_human_decision`であり、承認・canonical化・実装許可を生成しない。
+2026-09-17の人間判断結果は、本監査を書き換えて合格扱いにせず、対象bytesを固定した
+[独立decision record](../../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)へ記録する。
