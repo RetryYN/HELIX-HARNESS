@@ -2,7 +2,8 @@
 feature_ticket_id: FT-OS-REQCLASS-001
 title: "HELIX-OS要求分類projection"
 product_target: HELIX-OS
-state: proposed_upstream_waiting
+state: layer1_bootstrap_proposed
+downstream_state: l2_and_requirement_engine_waiting
 priority_order: 4
 created: 2026-09-15
 authority_effect: work_projection_only
