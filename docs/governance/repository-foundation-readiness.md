@@ -1,21 +1,17 @@
 # Repository foundation readiness
 
-status: blocked_by_decision_protocol_review_and_human_confirmation
+status: pending_exact_pair_review_and_merge
 pr: 1797
 pr_class: repository_foundation
 generation: new-generation-2026-09-14
 
 ## 判定
 
-PR #1797は、repository構造と静的証拠に関するmerge条件1〜4を再検証中である。完了済みreviewの個別HEADと所見件数は
+PR #1797は、repository構造と静的証拠に関するmerge条件1〜4を満たしている。完了済みreviewの個別HEADと所見件数は
 文書へ固定すると直後の編集でstaleになるため、本書では正本にしない。文書編集でHEADが変わるためfinal HEADも自己参照で固定せず、
-GitHub PRのcurrent HEAD、review依頼対象、review結果を判断時にread-afterする。内容review後は、承認前payload固定、人間判断、
-decision recordだけの追記、record-only final review、merge commitの順に進む。これらが未成立の間はDraftを維持し、
-Ready化・mergeしない。
-
-本書の`status`と条件5〜8の「未成立」は承認前snapshotである。schema適合decision recordが`target_content_head`直後の
-一commitに存在し、record-only final reviewがBlocker／Major／Minor 0で、GitHub read-afterも一致する場合は、その証拠が
-これらの表示を上書きする。本書の状態表示を更新する追加commitは不要であり、追加すると承認済みpayloadを失効させる。
+GitHub PRのcurrent base／content HEAD pair、review依頼、delivery receipt、review結果をmerge admission時にread-afterする。
+repository整理はConceptや要求の内容承認ではないため、別の人間承認やdecision recordを要求しない。exact pair review、
+pre-merge read-after、merge commitの順に進み、未成立の間はDraftを維持する。
 
 GitHub checkの状態はこの判定に算入しない。CodeQL、旧`harness-check`、旧test、旧runtimeは新世代上流の意味、要求保持、責務分離を検証するoracleではない。
 
@@ -27,10 +23,9 @@ GitHub checkの状態はこの判定に算入しない。CodeQL、旧`harness-ch
 | 2. active文書を対象別に物理分離する | 成立 | `docs/concept/`、`docs/helix-harness/`、`docs/helix-os/`、`docs/helix-web/`、`docs/helix-web-os/`、`docs/governance/`が存在し、四対象のL1／L2／L11が各対象directoryにある | 個別要求の承認や再配置完了を意味しない |
 | 3. 運用モデル、authority入口、資産統制、GitHub操作記録を相互参照できる | 成立 | [新世代入口](new-generation-start-here.md)から[上流authority台帳](upstream-authority-register-2026-09-14.md)、[GitHub上流運用](github-upstream-operating-model.md)、[管理層の要求仮登録契約](management-provisional-requirement-registration.md)、[PR投影packet](github-upstream-pr-packet.md)、[archive記録](archive-first-transition-record-2026-09-14.md)、[資産再利用統制](legacy-asset-reuse-control.md)へ到達できる。管理層registerは旧source集合11件を`registered_source_holding`として保持する | 仮登録はrepo-owned JSONL bootstrap。自動登録・分類・ticket生成・GitHub同期は要求整理後に設計するため未実装 |
 | 4. 静的整合が成立する | 成立 | L2↔L11 ID集合はHARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6で一致。保持要求source 29件は29/29 SHA-256一致する。archive 4,020件は隔離直前treeと全件一致し、監査基準から隔離前に変わった333 pathは両revisionのblob／SHA-256を別台帳で保持する。旧v1.3の直接委任22文書から意味relation 265 edgeを辿ったclosure 117文書は、114/114 file blobとScrum Reverse行台帳3文書・300/300原文行へ保存する。frontmatter・本文参照788/788 edgeは参照元行とtarget digestを別holdingへ保持する。asset現行revision 3の29件は訂正判断29件へ一対一でjoinし、append-onlyで残す元判断29件とrevision 2 read-after 29件も一対一で追跡できる。IR 153件は全件pending、successor 0、decision 0。W1〜W4の人間可読queueで153/153件の原文・digestが台帳と一致する。補助sourceはv1.3 521行＋IR 134 item＝655件、見出しは未接続317行＋identity接続済み21行＝338件を保持する。旧candidateは92文書・4,755行を保持する。旧要求文書22件のsemantic line 2,386件は原文・行digestが一致し、未接続2,058件を721 review unitへ重複なく割り当てる | byte保持した旧文書copy内の旧相対リンクは原文を改変しないため対象外。333 pathは要求数ではなくrevision差分集合で、意味同値は未確認。`screen-mock-boundary.md`の基準`confirmed` revisionはfile blobのみ保持され、行atom化が未完了。114文書はfile-blob holding、788件は参照edge holdingであり、要求判断前のatom化・分類が必須。未分類行は過包含候補であり要求確定数ではない。29 snapshotの物理保全は完了しているが、配置判断は`pending_human_confirmation` |
-| 5. GitHub Claudeの内容HEAD意味reviewで未解消Blocker／Major／Minorが0 | 未成立 | GitHub PR commentでexact HEADを指定してreviewし、編集後は旧依頼を失効させる | decision protocol補正後のcurrent HEAD reviewが未着 |
-| 6. 人間がrepository構成と運用上流を確認する | 未成立 | [人間判断packet](audits/source-rebaseline/repository-foundation-human-decision-packet.md)へ承認対象、非対象、証拠条件、選択肢、二段階記録を分離 | pre-decision payloadと人間decisionがない |
-| 7. decision recordを自己参照なく保存する | 未成立 | 許可path一件だけを承認対象HEADの直後へcommitし、record-only final reviewを要求する | decision前のためrecordは存在しない |
-| 8. provenanceを保つmerge commitで統合する | 未成立 | squash／rebaseを禁止し、merge後の二親・第1親・第2親・main祖先性をread-afterする | merge前 |
+| 5. GitHub Claudeのexact pair意味reviewで未解消Blocker／Major／Minorが0 | 未成立 | base／content full SHAを指定し、request／delivery receipt／responseをread-afterする | 本文更新後のcurrent pair reviewが未着 |
+| 6. merge直前のplatform状態がreview済みpairと一致する | 未成立 | PR base／HEAD、main HEAD、merge可能性、merge方式、branch protection、ruleset、required gateをAPIから再取得する | pre-merge前 |
+| 7. provenanceを保つmerge commitで統合する | 未成立 | squash／rebaseを禁止し、merge後の二親・第1親・第2親・main祖先性をread-afterする | merge前 |
 
 ## 再現用の静的確認
 
@@ -43,7 +38,7 @@ requirements source    sha256 ok=29, non_ok=0
 snapshot ledger joins  assets current revision=3:29, original decisions revision=2:29, correction decisions pending revision=3:29, read-after pass revision=2:29
 L2/L11 IDs             HARNESS=9, HELIX-OS=13, HELIX-Web=9, HELIX-Web-OS=6; all equal
 IR carry-forward       total=153, pending=153, successor=0, decision=0
-active relative links  total=504, broken=0
+active relative links  total=503, broken=0
 human-readable queues  W1-W4 total=153, source text/digest exact=153
 human-decision packets total=23, source text/digest exact=23, applied=0
 semantic line inventory documents=22, total=2386, exact=2386, linked identities=328, pending atomization=2058
@@ -61,11 +56,9 @@ archive manifestはpathが旧repository root相対なので、`archive/legacy-ge
 
 ## 次の状態遷移
 
-1. decision protocol補正後のcontent HEADをGitHub Claudeがread-onlyで意味reviewする。
+1. merge admission補正後のexact base／content HEAD pairをGitHub Claudeがread-onlyで意味reviewする。
 2. Blocker／Major／Minorがあれば、要求削減や旧CIへの回帰をせずrepository foundationの範囲で修正する。
-3. 未解消findingが0になったexact base／content HEAD pairからcanonical decision payloadを作り、GitHubへ投影・read-afterする。
-4. [人間判断packet](audits/source-rebaseline/repository-foundation-human-decision-packet.md)に従い、payloadに束縛して物理構成と上流運用を確認する。
-5. decision JSONL一件だけを直後の一commitへ記録し、そのrecord-only HEADを最終reviewする。
-6. final finding 0を確認してReady化し、merge commitで統合して履歴の祖先性をread-afterする。
+3. 未解消finding 0とdelivery receiptの一致を確認し、[merge admission packet](audits/source-rebaseline/repository-foundation-merge-admission-packet.md)に従ってplatform状態をread-afterする。
+4. review済みpairとplatform状態が一致したらReady化し、merge commitで統合して二親と全履歴の祖先性をread-afterする。
 
 merge後も旧要求153件と文書要求identityはpendingから自動遷移しない。後続PRは一要求identityずつ、保持を既定として再配置する。

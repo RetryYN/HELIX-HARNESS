@@ -125,30 +125,27 @@ read-after成立後、同じPR threadへ依頼commentとは別の`review_request
 PR branch外の配送記録とし、`review_request_id`、対象PR、target full SHA、送信前payload SHA-256、依頼comment ID、取得した
 remote本文SHA-256、read-after時点を記録する。payload SHA-256は送信する依頼本文byteに対して計算し、receipt comment自身を
 含めない。依頼commentのremote本文byteと送信前payload byteが一致し、両SHA-256も一致した場合だけ`delivery_result: delivered`
-とする。訂正は旧receiptを消さず、新しいreceipt identityと`correction_of`で追記する。人間判断時はGitHub APIから依頼comment、
-delivery receipt、review応答を再取得し、三者のrequest identityとtarget full SHAが一致することを確認する。
+とする。訂正は旧receiptを消さず、新しいreceipt identityと`correction_of`で追記する。merge admission判定時はGitHub APIから
+依頼comment、delivery receipt、review応答を再取得し、三者のrequest identityとtarget base／content full SHAが一致することを確認する。
 
 ### PR #1797 `repository_foundation`
 
-条件1〜8をすべて満たした場合だけReady化し、merge実行候補にできる。条件9はmerge後の統合完了条件である。
+条件1〜6をすべて満たした場合だけReady化し、merge実行候補にできる。条件7はmerge後の統合完了条件である。
 
 1. archive manifestが旧資産集合を完全に固定し、現行pathから旧workflow、runtime、AI instruction、testを実行できない。
 2. active文書がConcept、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS、governanceへ物理分離されている。
 3. 本運用モデル、authority入口、旧資産採否・copy・Issue／Project操作記録が相互参照できる。
-4. 相対リンク、対象別L2↔L11、判断packet SHA等の静的整合が対象HEADで成立する。
-5. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Major／Minorが0である。
-6. 人間判断前に`target_base_head`／`target_content_head`、packet digest、content review三comment、判断scope、許可するdecision record path、
-   `required_merge_method: merge_commit`をcanonical payloadへ固定し、payload SHA-256をread-afterする。
-7. 人間がそのpayloadに束縛してrepository構成と運用上流を確認する。
-8. 承認後は`docs/governance/audits/source-rebaseline/repository-foundation-decisions.jsonl`一件だけを
-   `target_content_head`の直後の一commitで追記し、record-only exact HEADのGitHub Claude reviewで未解消
-   Blocker／Major／Minorが0である。
-9. merge APIまたは`gh pr merge --merge`で方式を明示し、squash／rebaseを使わずmerge commitで取り込む。API応答のmerge SHAを
-   直ちに取得し、第1親が承認済みbase HEAD、第2親がrecord-only final HEADで、PR途中commitを含む全履歴がmainの祖先に
+4. 相対リンク、対象別L2↔L11、merge admission packet等の静的整合が対象content HEADで成立する。
+5. GitHub Claudeのexact base／content HEAD pair意味reviewで未解消Blocker／Major／Minorが0であり、request、delivery receipt、
+   responseのidentity、full SHA、payload digestがread-afterで一致する。
+6. merge直前にPR base／HEAD、main HEAD、merge可能性、merge方式、branch protection、ruleset、required platform gateを再取得し、
+   review済みpairと一致する。repository整理だけを対象とするため、別の人間承認やdecision recordは要求しない。
+7. merge APIまたは`gh pr merge --merge`で方式を明示し、squash／rebaseを使わずmerge commitで取り込む。API応答のmerge SHAを
+   直ちに取得し、第1親がreview済みbase HEAD、第2親がreview済みcontent HEADで、PR途中commitを含む全履歴がmainの祖先に
    なったことをread-afterする。baseが動いた、merge commitが利用できない、またはread-afterが不成立なら統合完了にせず停止する。
    post-merge不一致はrevert／force-pushで隠さず、local監査文書のcorrective PRから専用Issueへ投影して人間判断を求める。
 
-既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。#1797に含まれるConcept、Vision、L1、L2、L11、Feature Ticketはbootstrap用のcandidate／draft containerとinventoryであり、mergeしても内容の承認revision、要求採否、ticket Readyを生成しない。個別の人間decisionは対応する後続PRへ分離する。#1797では旧要求sourceを同一byteのread-only snapshotとして保持し、153件と補助sourceを原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。
+既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。#1797に含まれるConcept、Vision、L1、L2、L11、Feature Ticketはbootstrap用のcandidate／draft containerとinventoryであり、mergeしても内容の承認revision、要求採否、ticket Readyを生成しない。個別の人間decisionは対応する後続PRへ分離する。#1797では旧要求sourceを同一byteのread-only snapshotとして保持し、153件と補助sourceを原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。merge admissionの詳細は[repository foundation merge admission packet](audits/source-rebaseline/repository-foundation-merge-admission-packet.md)を正とする。
 
 ### 後続`requirement` PR
 
