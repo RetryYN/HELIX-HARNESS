@@ -16,8 +16,9 @@ Issue番号、実装済み状態、既存CIの通りやすさ、候補ファイ�
 対象別L2／L11が未採否である停止条件は維持する。
 S1へ入る前の管理分類登録第1層では、旧Requirement IR 153件すべてについて、HELIX-HARNESS、HELIX-OS、
 HELIX-Web、HELIX-Web-OS、製品間接続、分割要の候補を登録し、独立reviewとmain read-afterを完了した。
-このproduct routing候補をsuccessor確定または要求承認として扱わない。次は`L2D-S1-01`の判断材料を整え、
-一つのdecision unitとしてL2／L11採否へ束縛する。
+このproduct routing候補をsuccessor確定または要求承認として扱わない。`L2D-S1-01`は
+[人間判断packet](l2d-s1-01-authority-vocabulary-human-decision-packet.md)に判断材料を揃えた。
+人間判断まではL2／L11本文へ適用せず、次のdecision unitへ進めない。
 [第1層完了監査](product-routing-completion-and-l2-entry-2026-09-17.md)をこの遷移のread-afterとする。
 
 ## 採否単位の共通入力
@@ -40,7 +41,7 @@ HELIX-Web、HELIX-Web-OS、製品間接続、分割要の候補を登録し、�
 
 | Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
 |---|---|---|---|---|
-| L2D-S1-01 | `authority-vocabulary` | HELIX-OS | L2接続済み | request、approval、decision、通知、技術判断の区別 |
+| L2D-S1-01 | `authority-vocabulary` | HARNESS／HELIX-OS | 判断packet準備済み・未承認 | request、approval、decision、通知、技術判断の区別。HARNESSの規範とOSの記録・執行へのsplit案 |
 | L2D-S1-02 | `requirement-formation-scoped-admission` | HARNESS／HELIX-OS | L2接続済み | 根拠付き要求形成、scopeを限定した再確定 |
 | L2D-S1-03 | `design-grounding-human-convergence` | HARNESS／HELIX-OS | L2接続済み | 客観根拠、人間反応、未解決finding、収束の区別 |
 | L2D-S1-04 | `requirements-authority-materialization` | HELIX-OS | 再採否待ち | repo-owned意味authority、一方向projection、状態分離。旧JSON-only／Issue admissionは棄却 |

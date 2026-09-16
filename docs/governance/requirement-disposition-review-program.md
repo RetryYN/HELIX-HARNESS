@@ -1,6 +1,6 @@
 # 全要求の要否・再配置review program
 
-status: product_routing_complete_l2_decision_preparation
+status: l2d_s1_01_decision_ready_not_approved
 program_id: RDP-001
 owner: HELIX-OS management
 authority_effect: none
@@ -93,6 +93,8 @@ GitHub Issueは本programの進行と未決論点を共有するprojectionに限
 Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである。現在は旧要求を全件保持したまま、
 管理分類登録の第1層で旧Requirement IR 153件すべての対象製品候補を登録し、独立reviewとmain read-afterを完了した。
 完了証拠と次の入口は[製品責務分類第1層の完了とL2採否入口](audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md)に固定した。
-次は`L2D-S1-01 authority-vocabulary`から、判断対象revision、親L1、L2／L11接続、保持atom、negative case、
-未解決事項を揃える。対象別L2／L11が未採否であるため、要求の要否判断、successor確定、意味変更、縮退、retireは
-まだ適用しない。L3、実装、DB、runtime、新世代CI、archiveの物理削除も本Issueから開始しない。
+`L2D-S1-01 authority-vocabulary`は[人間判断packet](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet.md)に、
+判断対象revision、親L1、L2／L11接続、旧L1 6 atom、旧L3 20 atom、旧L10 20 oracle、変更する旧拘束、未解決事項を
+揃えた。現在は`authority_effect: none`の人間判断待ちである。対象別L2／L11本文へまだ適用せず、次のdecision unitへ
+進めない。要求の要否判断、successor確定、意味変更、縮退、retire、L3、実装、DB、runtime、新世代CI、archiveの
+物理削除も本Issueから開始しない。
