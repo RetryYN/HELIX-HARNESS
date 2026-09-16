@@ -18,7 +18,8 @@ worktreeは`main`一つに限定し、旧branchから現役作業を再開でき
 実装、CI、runtime再構築を行わない。集約完了後は要求整理へ進む直前で停止する。
 
 本operationのPR作成・修正側は差分作成、証拠提示、review依頼、finding対応までを担う。最終merge、post-merge
-read-after、Issue closeは、exact HEADのreviewとmerge admissionを確認したレビュー対応側が行う。
+read-after、Issue closeは、作成側から独立して割り当てられ、exact HEADのreviewとmerge admissionを確認し、対象通路を
+明示許可されたレビュー対応側が行う。責務割当だけでGitHub等の実行通路を許可しない。
 
 ## PO指示原文
 

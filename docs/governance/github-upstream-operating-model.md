@@ -117,11 +117,23 @@ PR classが未選択または複数指定のPRはReadyにしない。
 
 ### 作成側とレビュー対応側の責務
 
+- `レビュー対応側`は、PR作成・修正側から独立して割り当てられ、対象PRのreview応答を受け取り、merge／Issue close通路を明示許可された人またはruntimeである。review findingを投稿した主体、`@claude`へのmention、ローカルClaude session、reviewer名だけからこのidentityや通路許可を推定しない。
 - PR作成・修正側は、対象差分の作成、証拠提示、review依頼、finding対応、再review依頼までを担う。
 - PR作成・修正側は、自分のPRをReady化、merge、auto-merge予約、対応Issueのcloseまで進めない。
 - レビュー対応側は、依頼と応答が同じexact base／content HEAD pairへ束縛され、必要なfinding対応が反映されたことを確認する。
 - merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う。merge後に不一致があればcloseせず、作成側へ返す。
 - review結果の投稿だけではmerge指示にならない。レビュー対応側がmerge責務を引き受け、対象PRと方式を確認して実行する。
+- 責務の割当はGitHub、CLI、API、IDE、Worker等の実行通路の許可を兼ねない。レビュー対応側は、当該通路と作用について明示許可を確認できない場合、mergeせず停止する。
+
+### governance／operation_change PRのmerge admission
+
+個別のmerge admissionが定義されていないgovernance／`operation_change` PRは、少なくとも次をすべて満たす。
+
+1. review request、最後に有効なdelivery receipt、review responseが同じrequest identityとexact base／content full SHAを示し、payload digestが一致する。誤ったreceiptは削除せず、`correction_of`付きの後続receiptで訂正する。
+2. current content HEADに未解消のBlocker／Major／Minorが0件である。
+3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。
+4. レビュー対応側に対象PRのmerge、post-merge read-after、対応Issue closeを行う通路が明示許可されている。
+5. merge commit方式で統合し、第1親、第2親、content HEADの祖先性をread-afterする。期待と一致しない場合はIssueをcloseせず作成側へ返す。
 
 review依頼もGitHubへの一方向projectionとして扱う。送信前にreview request identity、対象PR、target full SHA、完全な
 依頼本文、payload SHA-256を固定し、送信後にcomment ID、remote本文、remote本文SHA-256、target full SHAをread-afterする。
