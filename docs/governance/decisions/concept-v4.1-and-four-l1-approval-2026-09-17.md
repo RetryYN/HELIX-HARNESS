@@ -3,7 +3,7 @@ title: "Concept v4.1・4対象L1 承認decision record"
 decision_record_id: HDEC-CONCEPT-V4.1-AND-FOUR-L1-2026-09-17
 decision_status: approved
 recorded_at: 2026-09-17
-source_repository_revision: 6d22306090a12d1e809a47f895de972e917fa648
+source_repository_revision: c5d3e8a73ee932bab3af140dfbe39dbe15c4fad1
 authority_effect: effective_when_this_record_is_admitted_to_main
 ---
 
