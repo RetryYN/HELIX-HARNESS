@@ -75,17 +75,33 @@ AVS-R-01から16までの20 atomをすべて計上した。別decision unitへ�
 
 ## L11 negative oracleの保持
 
-旧AVS-AC-001..016の20 oracleは次のfailure classとして保持する。L2適用PRでは各旧ACからHARNESS／OSのL11行への
+旧AVS-AC-001..016の20 oracleを次のfailure classとして保持する。L2適用PRでは各旧ACからHARNESS／OSのL11行への
 完全な対応表を作り、未対応0を条件とする。
 
-- 0件・複数分類、口調だけのdirective化、相談・質問・不満からのapproval／decision生成を拒否する。
-- 指示だけを設計理由、review verdict、risk acceptance、完了証拠に使うことを拒否する。
-- 盲目的実行、検討打切り、全件の人間丸投げを拒否し、authority矛盾とexact escalation境界を示す。
-- Issue commentやmemoryだけのdecision、selection等のdecisionへの畳込み、対象・scope・revisionを欠くapprovalを拒否する。
-- 曖昧な旧値の推測変換、generic decisionや包括的`PO判断`等のcurrent再出力を拒否する。
-- requirement／design／profile本文のmemory保存、失効済み本文の再提示、片側runtimeだけの規則変更を拒否する。
-- actor名やAI要約からのhuman attribution、historical greenによるcanonical failure相殺を拒否する。
-- memoryからSkill正本への直接昇格、未定義・wrong-axis・legacy provenanceによるworkflow開始を拒否する。
+| source oracle | 保持するfailure class |
+|---|---|
+| AVS-AC-001 | 0件または複数の入力分類を拒否する |
+| AVS-AC-001A | 実行意図・対象・許可scopeを欠き、口調だけに基づくdirective化を拒否する |
+| AVS-AC-002 | 相談・叱責・質問・仮説からapproval／decisionを生成しない |
+| AVS-AC-003 | 指示だけを理由に正本照合、安全確認、受入検証を省略しない |
+| AVS-AC-003A | 指示だけを設計理由、review verdict、risk acceptance、完了証拠に使わない |
+| AVS-AC-003B | 思考停止、盲目的実行、全件の人間丸投げを拒否し、authority矛盾とexact escalation境界を示す |
+| AVS-AC-003C | 逐語実行や検討打切りを忠実性として合格にしない |
+| AVS-AC-004 | Issue commentやmemoryだけのdecisionを拒否する |
+| AVS-AC-005 | selection、approval、disposition、runtime judgmentをdecisionへ畳み込まない |
+| AVS-AC-006 | 対象・scope・revision・actorとの束縛を欠くapprovalを拒否する |
+| AVS-AC-007 | 曖昧な旧`decision`値を推測変換しない |
+| AVS-AC-008 | current surfaceからgeneric decision identityを再出力しない |
+| AVS-AC-009 | current identityを包括的`PO判断`／`PO決定`／`PO指示`へ再集約しない |
+| AVS-AC-010 | requirement／design／profile本文をcoordination memoryへ保存しない |
+| AVS-AC-011 | invalid／superseded memoryをcurrent guidanceへ再提示しない |
+| AVS-AC-012 | Claude／Codex等の片側runtimeだけでauthority分類規則を変更しない |
+| AVS-AC-013 | actor名やAI要約からhuman attributionを生成しない |
+| AVS-AC-014 | historical greenでcanonical failureを相殺しない |
+| AVS-AC-015 | memory本文をLearning admissionなしでSkill／Knowledge正本へ昇格しない |
+| AVS-AC-016 | 未定義・wrong-axis・legacy provenanceによるworkflow開始を拒否する |
+
+20 oracleすべてを個別計上し、未対応は0件である。
 
 ## 変更・棄却する旧拘束
 
