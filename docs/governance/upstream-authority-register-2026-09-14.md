@@ -33,6 +33,7 @@ as_of: 2026-09-14
 | IR対象未解決判断 | 2論点、18要求 | [判断packet](legacy-ir-unresolved-routing-decision-packet.md) | runtime・技術制約の層別17件、Domain Object規律の適用範囲1件。全件意味保持・未配置 | 製品要求、HARNESS提供契約、OS内部要求、L3以降の設計制約へ分ける判断時に使う |
 | IR再配置wave | 4 wave、11 partition、153要求 | [wave台帳](legacy-ir-rehome-wave-register.md) | 業務価値→機能→非機能→技術制約の順を固定。全件successor未割当 | repository foundation後に原要求identityごとの要求PRで無損失再配置する |
 | 対象別L1 | 4文書、32企画要求案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各`L1-planning/` | 親Concept v4.1承認待ち。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5 | v4.1承認後に導出一致をreviewし、対象別L1を人間承認する |
+| 5大目標・七大原則のL1被覆 | 5目標、7原則、既存L1 32件 | [L1被覆監査](audits/source-rebaseline/l1-goals-principles-coverage-audit.md) | 目標2は`covered`、目標1・3・4・5は`partial`。七大原則は行動規律として既存L1へ接続し、原則名からL1要求を自動追加しない。L1本文は不変 | `partial`四領域を管理層仮登録と無損失被覆receiptへ束縛し、最終的な要求identityごとに別PRで採否する |
 | 対象別L2 | 4文書、37要求案 | [L2要求入口](audits/source-rebaseline/l2-source-register.md) | HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。draft、未合意。[粒度監査](audits/source-rebaseline/current-l2-requirement-granularity-audit.md)でmixed 15、composite 15、connection 7、unit 0 | 単体・接続・構成体へ分割し、出典・prototype／N/A・合意revisionを確定 |
 | 総称HELIXの旧L2／L11案 | HCV4-L2 6件、旧L11 6件 | `docs/governance/crosswalks/legacy-concept-derived-requirements.md`と対文書 | migration crosswalk only。6件すべてHARNESS／HELIX-OSへsplit先を記録、採否待ち | 対象別L2／L11承認後に非実行archiveへ移し、要求ownerから除外する |
 | 対象別L11 | 4文書、37受入案 | HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの各L11 | draft、未実行 | 対応L2合意後に利用者受入を実行 |
