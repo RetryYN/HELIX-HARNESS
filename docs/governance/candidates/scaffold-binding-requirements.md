@@ -31,6 +31,8 @@ related_projection:
 要点は3つである。
 
 1. 仮の物は、担っている役割と、置き換わる先を必ず持つ。役割の分からない仮の物を置かない。
+   ここでいう置き換わる先は「正式な物が担うべき役割」であり、使い始める前に特定する。
+   その役割を実現する具体的な正式artifactは、後で確定してよい。
 2. 仮の物が動いても、正式な設計・実装・検証・受入が成立したことにしない。
 3. 正式な物ができたら、役割・接続・検査がすべて移ったことを確認してから仮の物を外す。
 
@@ -73,7 +75,7 @@ HARNESSの規範とOSの運転を一つのownerへ潰さない。T＋V＋Oの構
 
 | ID | 要求 | 確認する結果 |
 |---|---|---|
-| SCF-OS-001 | Scaffold Bindingを、安定したidentity、対象productと責務owner候補、上流sourceとrevision、role、obligations、接続、仮artifactへの参照、置換先候補または未決状態とともに登録できる | どの仮artifactがどの役割を、どの上流revisionに対して担っているかを一覧できる |
+| SCF-OS-001 | Scaffold Bindingを、安定したidentity、対象productと責務owner候補、上流sourceとrevision、role、obligations、接続、仮artifactへの参照、置換先候補または未決状態とともに登録できる | どの仮artifactがどの役割を、どの上流revisionに対して担っているかを一覧できる。置換先の役割が未特定のBindingは登録だけを許し、有効にしない。置換先の役割が特定済みで、具体的な正式artifactだけが未決のBindingは有効にできる |
 | SCF-OS-002 | Scaffold Bindingの状態を、少なくとも有効、stale、conflict、orphan、二重binding、置換中、撤去済みで区別できる | 上流revisionが変わったScaffoldをstaleにする。ownerや上流を失ったScaffoldをorphanとして検出する。根拠なく複数の正式ownerへ二重にbindingされた状態を拒否する |
 | SCF-OS-003 | 仮runner／仮CIを、正式なruntime／CIと別のnamespace、別のwriter、別の証拠種別で隔離して実行・観測できる | 仮の検証結果が正式な検証結果の保存先・表示・admissionへ混入しない。旧CI、旧runtime、旧DB、旧hookを仮設の名義で復活・fallbackさせない |
 | SCF-OS-004 | 正式な物が投入されたとき、consumer・依存・interfaceを正式なbindingへ付け替え、SCF-HARNESS-005の確認結果を対象revisionと証拠付きで記録できる | 付け替え対象のrevisionと証拠のrevisionが一致しない場合は置換を完了にしない |
@@ -120,15 +122,21 @@ L2／L11本文は`L2D-S1-01`の判断packetがexact digestで参照している�
 
 ## L11受入候補
 
-全件未実行である。
+全件未実行である。各項目の末尾に、対応する要求IDを示す。
 
-- 正式な設計が無い状態で、仮artifactから、担っている役割と上流のsource revisionへ辿れる。
-- 上流を持たないScaffold、役割を宣言しないScaffoldの登録を拒否する。
-- 仮実装だけがある要求を与え、`implemented`／`verified`と表示しない。
-- 仮の検証が成功し、正式CIが未実行の状態を与え、正式な結果をgreenやverifiedにしない。
-- 上流revisionを変更し、対応するScaffoldがstaleになる。
-- 正式な物を投入し、役割・義務・consumer・oracleのうち1件を未移管にした場合、置換完了を拒否する。
-- 置換完了前のScaffold削除を拒否する。
-- 置換完了後にScaffold、仮adapter、仮CIを1件残し、残留として検出する。
-- 1つのScaffoldを根拠なく2つの正式ownerへbindingし、拒否する。
-- 旧CIまたは旧runtimeを呼び出すScaffoldを登録し、拒否する。
+- 正式な設計が無い状態で、仮artifactから、担っている役割と上流のsource revisionへ辿れる。（SCF-HARNESS-001／002、SCF-OS-001）
+- 上流を持たないScaffold、役割を宣言しないScaffoldの登録を拒否する。（SCF-HARNESS-001／002）
+- 置換先の役割が未特定のScaffold Bindingを有効にしようとし、拒否する。具体的な正式artifactだけが未決のBindingは有効にできる。（SCF-OS-001）
+- 仮実装だけがある要求を与え、`implemented`／`verified`と表示しない。（SCF-HARNESS-003）
+- 仮の検証が成功し、正式CIが未実行の状態を与え、正式な結果をgreenやverifiedにしない。仮の検証結果が正式な検証結果の保存先・admissionへ混入しない。（SCF-HARNESS-003／004、SCF-OS-003）
+- Scaffoldが宣言した一時契約の範囲外を仮の検証の対象にしようとし、拒否する。（SCF-HARNESS-004）
+- 上流revisionを変更し、対応するScaffoldがstaleになる。ownerまたは上流を失ったScaffoldをorphanとして検出する。（SCF-OS-002）
+- 正式な物を投入し、役割・義務・consumer・oracleのうち1件を未移管にした場合、置換完了を拒否する。（SCF-HARNESS-005、SCF-OS-004）
+- 付け替え対象のrevisionと証拠のrevisionが一致しない置換を与え、置換完了を拒否する。（SCF-OS-004）
+- 置換完了前のScaffold削除を拒否する。（SCF-OS-005）
+- 置換の確認結果の読み直し（read-after）が無い、または読み直した結果が確認結果と一致しない状態で撤去済みへ遷移しようとし、拒否する。（SCF-OS-005）
+- 置換完了後にScaffold、仮adapter、仮CIを1件残し、残留として検出する。（SCF-OS-006）
+- 1つのScaffoldを根拠なく2つの正式ownerへbindingし、拒否する。（SCF-OS-002）
+- 旧CIまたは旧runtimeを呼び出すScaffoldを登録し、拒否する。（SCF-OS-003）
+- PoCまたはResearchのticketをScaffoldとして登録する、あるいはScaffoldをPoCの成立性判断・production Featureとして扱う入力を与え、identityの混同として拒否する。PoCの成果をScaffoldへ接続する場合は別identityのまま関係だけを持つ。（SCF-HARNESS-006）
+- Scaffoldの登録、検証成功、撤去のいずれかを入力として、要求の採否・人間承認・工程完了を生成しようとし、拒否する。（SCF-OS-007）
