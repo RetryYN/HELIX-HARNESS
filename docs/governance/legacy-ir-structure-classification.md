@@ -7,7 +7,7 @@ source_count: 153
 
 ## この文書で行うこと
 
-[HELIX構造に関するPO発言記録](../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分に従い、旧Requirement IR 153件へ「どの層の、どのシステムの要求か」のラベルを付ける。要求本文、意味、採否、successorは変更しない。機械台帳は[legacy-ir-structure-classification.jsonl](legacy-ir-structure-classification.jsonl)、製品振り分けの訂正案は[legacy-ir-product-routing-corrections.jsonl](legacy-ir-product-routing-corrections.jsonl)である。
+[HELIXの構造仮説（システム群）](../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分に従い、旧Requirement IR 153件へ「どの層の、どのシステムの要求か」のラベルを付ける。要求本文、意味、採否、successorは変更しない。機械台帳は[legacy-ir-structure-classification.jsonl](legacy-ir-structure-classification.jsonl)、製品振り分けの訂正案は[legacy-ir-product-routing-corrections.jsonl](legacy-ir-product-routing-corrections.jsonl)である。
 
 分類の軸は次の6つである。
 
@@ -24,7 +24,7 @@ source_count: 153
 
 ## 層の語彙（機械用codeと名称）
 
-3つの分類台帳（第1波〜第3波）の`layer_primary`／`layer_secondary`は、次のcodeだけを使う。定義は[PO発言の記録](../concept/helix-structure-tvo-po-statements-2026-09-18.md)に従う。
+3つの分類台帳（第1波〜第3波）の`layer_primary`／`layer_secondary`は、次のcodeだけを使う。定義は[HELIXの構造仮説（システム群）](../concept/helix-structure-tvo-po-statements-2026-09-18.md)に従う。
 
 | code | 名称 | 仮置き |
 |---|---|---|
@@ -103,8 +103,8 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 旧システム | 現在 | 訂正案 | 理由 |
 |---|---|---|---|---|
-| `HIL-FR-01` | InfinityLoopEvent | OS | HARNESS／OS | 工程段の並び（intakeからmerge／issueまでの順序）は工程の規範であり、PO発言「HARNESSには明確に順序がある」に従いHARNESSが所有する。状態の運転、digest binding、event causalityはOSである |
-| `HIL-FR-11` | Agent Registry | HARNESS | HARNESS／OS | agent contractの語彙と意味はHARNESS、registryとしての登録・版・保持は管理層（OS）である。PO発言「エージェントレーンやヘリックスベンチ、CIとかは管理層がないと成立しない」に従う |
+| `HIL-FR-01` | InfinityLoopEvent | OS | HARNESS／OS | 工程段の並び（intakeからmerge／issueまでの順序）は工程の規範である。工程の順序を定義する責務は製品責務境界でHARNESSにあり、順序の定義をOSだけに置くと外部提供するHARNESS単体で工程が成立しない。状態の運転、digest binding、event causalityはOSである |
+| `HIL-FR-11` | Agent Registry | HARNESS | HARNESS／OS | agent contractの語彙と意味はHARNESS、registryとしての登録・版・保持は管理層（OS）である。レーン、ベンチ、CIはいずれも登録と版の管理を前提に動くため、registryの運転を管理層に置く |
 | `HIL-FR-15` | Hybrid docgen ingestion | OS | HARNESS／OS | 既存ZIPのmetadata・trace等をHELIX契約へ変換する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、取込の実行・観測・記録はOSである。HIL-FR-16／37と同じ境界である |
 | `HIL-FR-16` | Asset Inventory | OS | HARNESS／OS | 既存資産を機能単位で比較しadopt／harden／redesign／rejectを判断する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、観測・記録の運転はOSである |
 | `HIL-FR-37` | Source Capability Atomizer | OS | HARNESS／OS | atomic behaviorの定義とcoverage分母の規範はフルリバースの中核でHARNESSが所有する。同じ規範を持つHIL-NFR-22は既にHARNESS／OSである。extractorの実行と記録はOSである |

@@ -6,7 +6,7 @@ authority_effect: none
 
 ## この文書で行うこと
 
-[HELIX構造に関するPO発言記録](../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分で、次の3つの母集団へ同じラベルを付け、層ごとに並べる。要求本文、意味、採否、successor、L1／L2／L11は変更しない。
+[HELIXの構造仮説（システム群）](../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分で、次の3つの母集団へ同じラベルを付け、層ごとに並べる。要求本文、意味、採否、successor、L1／L2／L11は変更しない。
 
 | 波 | 母集団 | 件数 | 機械台帳 |
 |---|---|---:|---|
