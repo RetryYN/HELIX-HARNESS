@@ -1,6 +1,6 @@
 # 要求間の責務・機能重複review program
 
-status: batch_1_answer_recorded_review_pending
+status: initial_and_supplementary_clusters_draft_review_pending
 program_id: RDP-002
 parent_program: RDP-001
 owner: HELIX-OS management
@@ -96,9 +96,7 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 ## 現在の停止条件
 
 Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。product routingは旧Requirement IR 153件について
-候補登録済みで、multi-product候補66件を初期20 cluster、補助sourceを5 clusterへ整理した。現在はDraft PRの独立review後、
-人間へ一度に5問ずつ確認しており、Batch 1の5件は[人間回答record](decisions/requirement-overlap-batch-1-boundary-answer-2026-09-17.md)へ
-5件とも推奨案Aとして記録した。残る20問への回答前に最終relation、successor統合、要求削除を決定せず、
-記録済み回答も個別要求の採否へ読み替えない。
+候補登録済みで、multi-product候補66件を初期20 cluster、補助sourceを5 clusterへ整理した。現在はDraft PRの独立review後、人間へ一度に5問ずつ
+確認する前である。回答前に最終relation、successor統合、要求削除を決定せず、回答後も個別要求の採否へ読み替えない。
 全25問の回答、無損失照合、再review、main read-afterまでIssue #1814をcloseしない。L3、実装、DB、CI、archiveの
 物理削除へ進まない。

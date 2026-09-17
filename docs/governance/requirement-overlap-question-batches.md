@@ -1,13 +1,11 @@
 # 責務・機能重複候補 人間質問batch
 
 prepared_at: 2026-09-17
-status: batch_1_answer_recorded_review_pending
+status: draft_review_pending
 program_id: RDP-002
 authority_effect: none
 question_count: 25
 batch_size: 5
-answered_questions: 5
-remaining_questions: 20
 
 ## 目的と判断範囲
 
@@ -47,16 +45,6 @@ section atomをexact digest付きで保存し、Issueの更新から独立して
 
 回答は対象batchの全5問が揃ってから、exact PR HEADにquestion ID、回答原文、選択、actor、時刻、対象cluster revision、
 保持する共通／固有atom、変更された候補relation、未解決事項を追記する。回答だけで要求採否を成立させない。
-
-## 回答進捗
-
-| Batch | Questions | 状態 | 人間回答record |
-|---|---|---|---|
-| 1 | `Q-OVL-001`..`Q-OVL-005` | 5件ともA。exact HEAD review待ち | [HDEC-RDP-002-BATCH-01-2026-09-17](decisions/requirement-overlap-batch-1-boundary-answer-2026-09-17.md) |
-| 2 | `Q-OVL-006`..`Q-OVL-010` | 未回答 | - |
-| 3 | `Q-OVL-011`..`Q-OVL-015` | 未回答 | - |
-| 4 | `Q-OVL-016`..`Q-OVL-020` | 未回答 | - |
-| 5 | `Q-OVL-021`..`Q-OVL-025` | 未回答 | - |
 
 ## Batch 1：工程・要求形成
 
