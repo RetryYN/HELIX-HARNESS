@@ -12,8 +12,6 @@ derived_from:
   - docs/concept/helix-concept-v4.1.md
   - docs/helix-harness/L1-planning/product-intent.md
   - docs/helix-os/L1-planning/system-intent.md
-source_po_statements:
-  - 2026-09-18 PO発言（本書「PO発言」節に逐語記録）
 related_projection:
   - "GitHub Issue #1847（作業projection。要求正本ではない）"
 ---
@@ -38,15 +36,17 @@ related_projection:
 
 本候補は要求整理だけを行う。schema、runtime、仮CI、runner、DB、hook、adapterを実装・起動しない。
 
-## PO発言
+## なぜ要るか
 
-2026-09-18、POは次のとおり述べた。逐語で記録する。
+要求整理では既に、正式なsuccessorが決まるまで旧要求を`source_holding`やproduct routingへ一時的に束縛し、
+意味を落とさない構造を使っている。設計・実装・CIの側には同じ構造が無い。このため、新世代の再構築中は
+次のどちらかに陥る。
 
-> 本線はまだ仮ワイヤー（イシュー1847）の機構要求を導入して進めたい。※これは建物立てるときに鉄パイプを組んで足場を作ることで本実装と組み替える仕組み。
+- 正式な物ができるまで何も動かせず、要求や設計の成立性を確かめられない。
+- 役割の記録が無い仮のcodeや仮のCIが増え、正式な物と区別できなくなり、撤去もできなくなる。
 
-「イシュー1847」は作業projectionであり、要求の正本ではない。同Issueが引用するPOの問題意識（要求整理で
-`source_holding`やproduct routingへ一時束縛して意味を落とさない構造を、設計・実装側にも拡張したい）を、
-本書の要求候補の入力とする。Issueの本文、状態、labelから要求の採否・承認を生成しない。
+Scaffold Bindingは、この2つを避けるための要求である。GitHub Issue #1847は作業projectionであり、要求の正本ではない。
+本候補の妥当性は、下記の要求とL11受入候補の反例で確かめる。
 
 ## 責務境界
 
