@@ -1,6 +1,6 @@
 # 要求間の責務・機能重複review program
 
-status: initial_66_reclustered_question_batches_draft_review_pending
+status: initial_and_supplementary_clusters_draft_review_pending
 program_id: RDP-002
 parent_program: RDP-001
 owner: HELIX-OS management
@@ -43,8 +43,14 @@ routing containerに現れる責務・機能の重複候補を発見し、同一
 
 初期waveでは、製品責務分類第1層で`split_required`または`cross_product_connection`となった旧Requirement IR 66件を、
 [cluster台帳](requirement-overlap-candidate-clusters.jsonl)の20 clusterへ重複0・欠落0で割り当てた。
-[人間質問batch](requirement-overlap-question-batches.md)は5問×4回で責務境界候補を確認する。これは初期66件だけの
+[人間質問batch](requirement-overlap-question-batches.md)のうち最初の4回は、初期66件の責務境界候補を確認する。これは
+初期66件だけの
 比較waveであり、残るholdingを重複なしと判定しない。
+
+Issue #1847のScaffold Bindingは、GitHub本文を要求正本にせず
+[ローカルsource holding](github-issue-1847-scaffold-source-holding.json)へexact保存した。そのcore binding、Scaffold CI、
+replacement／retireを別clusterにし、Web dashboard接続と旧HELIX-DB実装重複を加えた5件を
+[補助cluster台帳](requirement-overlap-supplementary-candidates.jsonl)へ置く。質問は合計25件、5問×5回とする。
 
 ## cluster record
 
@@ -90,7 +96,7 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 ## 現在の停止条件
 
 Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。product routingは旧Requirement IR 153件について
-候補登録済みで、multi-product候補66件を初期20 clusterへ整理した。現在はDraft PRの独立review後、人間へ一度に5問ずつ
+候補登録済みで、multi-product候補66件を初期20 cluster、補助sourceを5 clusterへ整理した。現在はDraft PRの独立review後、人間へ一度に5問ずつ
 確認する前である。回答前に最終relation、successor統合、要求削除を決定せず、回答後も個別要求の採否へ読み替えない。
-全20問の回答、無損失照合、再review、main read-afterまでIssue #1814をcloseしない。L3、実装、DB、CI、archiveの
+全25問の回答、無損失照合、再review、main read-afterまでIssue #1814をcloseしない。L3、実装、DB、CI、archiveの
 物理削除へ進まない。

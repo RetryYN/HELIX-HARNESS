@@ -1,0 +1,53 @@
+{
+  "holding_id": "MPR-SH-GH-1847-001",
+  "source_kind": "github_issue_candidate_projection",
+  "repository": "RetryYN/HELIX-HARNESS",
+  "issue_number": 1847,
+  "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/1847",
+  "remote_updated_at": "2026-09-17T00:50:10Z",
+  "remote_body_sha256": "sha256:e789b3880008ed46adde20062c1c2de0b0563179c249e12a3f01bd46a7fe54de",
+  "source_authority_state": "user_directed_candidate_projection",
+  "target_authority_state": "registered_source_holding",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "body": "<!-- HELIX:new-generation-upstream-work-projection:v1 -->\n\n## 位置づけ\n\n- Parent program: `RDP-001` / #1813\n- Related technical review: `RDP-003` / #1815\n- Related CI governance: #1837\n- Related ticket contract: #1804\n- 状態: `proposed_upstream_waiting`\n- Authority effect: `none`\n- Candidate responsibility: `split_required`（HELIX-HARNESS / HELIX-OS）\n\nこのIssueは上流整理用の作業projectionです。要求、設計、実装、CI、承認、完了の正本ではありません。\n対象別L2／L11の採否前にL3以降やruntimeを開始する許可を生成しません。\n\n## PO指示・問題意識\n\n要求整理では、正式successorが決まるまで旧要求を`source_holding`やproduct routingへ一時束縛し、意味を落とさない構造が既にある。\n同じ考え方を設計・実装側にも拡張し、正式設計・正式実装が未成立の間に必要となる仮設構造の「役割」を明示的に保持したい。\n\n建築時の足場・仮設配管のように、仮設物は本体ではないが、本体が成立するまで必要な役割と接続を保持する。\n正式なreplacementが成立したら、役割・consumer・検証の移管を確認して仮設物を撤去する。\n\n## 目的\n\n正式L3／設計／実装／正式CIが未成立でも、途中で必要になる仮設計、仮interface、仮実装、stub、adapter、仮test、仮CIを、\n「なぜ存在するか」「何を保持するか」「何に置換されるか」が追跡可能な`Scaffold Binding`として管理する。\n\nこれにより、要求整理・技術比較・新世代再構築中でも仮設領域内でCIを回しつつ、仮設のgreenを正式要求充足や正式CIへ誤昇格させない。\n\n## Candidate contract\n\n各Scaffold Bindingは少なくとも次を保持する。\n\n- stable scaffold identity\n- 対象product／責務owner候補\n- upstream requirement／decision／source identityとrevision\n- scaffoldが一時的に担う`role`と`obligations`\n- 接続対象・consumer・依存・境界\n- provisional design／interface／implementation／test／CI artifactへの参照\n- 仮設内で許可する操作と禁止操作\n- scaffold専用oracle／negative case／evidence\n- 正式replacement候補または未決状態\n- rebind条件、replacement検証条件、retire条件\n- stale／conflict／orphan／double-bindingの状態\n\n仮コードそのものを正本にせず、コードや設定はScaffold Bindingが保持する役割を一時的に実現するartifactとして扱う。\n\n## Scaffold CI\n\nScaffoldは正式CIと別namespace／別evidence classで仮CIを持てる。\n\nScaffold CIが検証してよいのは、当該Scaffoldが宣言した一時契約の範囲だけとする。例:\n\n- provisional schema／interface整合\n- deterministic behavior\n- stub／adapter接続\n- source revision／digest／stale検出\n- provisional negative case\n- 禁止write／scope越境\n- replacement移行前のconsumer一覧・dangling edge\n\n次を禁止する。\n\n- Scaffold CI greenからL10／L11／L12、正式verification、production-ready、release-readyを生成する\n- Scaffold CIを新世代正式CI profileとして暗黙昇格する\n- 旧CI／旧runtimeをScaffold CIとして復活・fallbackする\n- 仮設artifactの存在から正式design／implementationを生成する\n\n## 正式実装への置換と撤去\n\n正式Design／Implementation／Verificationが成立した場合、Scaffoldを単に削除せず次を確認する。\n\n1. Scaffoldが保持していたrole／obligationが正式成果物へ全件対応する\n2. interface／consumer／dependencyが正式bindingへrebindされる\n3. 必須oracle／negative caseが正式verificationへ移管または理由付きで置換される\n4. dangling consumer、二重owner、二重writer、二重CIが0である\n5. replacement対象revisionとevidenceが一致する\n6. 上記read-after後にだけScaffoldを`retired`へ遷移する\n\n正式replacement不足時はScaffoldを残し、実装済み・移管済み・撤去可能と表示しない。\n\n## 責務分離候補\n\n### HELIX-HARNESS\n\n- Scaffoldを使用できる条件、保持必須role／obligation、正式pairへ移管するときの無損失条件を規定する\n- Scaffold CIと正式verificationの意味境界を規定する\n- Scaffoldの存在をdesign／implementation／acceptance成立とみなさない工程contractを所有する\n\n### HELIX-OS\n\n- Scaffold Bindingの登録、revision、owner、artifact、consumer、state、stale、evidence、replacement／retire lifecycleを管理する\n- 仮設runner／仮CIを正式runtimeと隔離して実行・観測する\n- 正式replacementへのrebindと撤去read-afterを管理する\n- Scaffoldから要求・設計・承認を直接writeしない\n\nHARNESSの規範とOSの運転責務を一つのownerへ潰さない。\n\n## PoC／Researchとの違い\n\nScaffoldはPoCやResearchの別名ではない。\n\n- Research = 情報・比較証拠を得る作業\n- PoC = 成立性仮説を検証するticket\n- Scaffold Binding = 正式成果物が未成立の間、必要な役割・接続・仮artifactを失わず管理する一時構造\n\nResearch／PoCのartifactをScaffoldへ接続することはできるが、Scaffold自体を新しいdevelopment style、V-model layer、production Featureへしない。\n\n## 想定ユースケース\n\n- Requirement Engineの正式semantic contract前に、意味処理roleを仮interface／仮Python実装へ束縛する\n- JSON／DB／file等の方式決定前に、必要なauthority／projection roleを仮adapterで接続する\n- 新世代正式CI未構築中に、Scaffold領域内だけのschema／relation／failure検査を回す\n- runtime binding未確定中に、capability roleとtemporary adapterを対応づける\n- 本実装導入時に旧stub／temporary adapter／仮CIの残留を自動検出する\n\n## 接続候補\n\n- `L2D-S1-04 requirements-authority-materialization`: 正式authorityと仮設projection／artifactを分離\n- `L2D-S2-01 next-generation-ci-requirements`: Scaffold CIと正式CIのevidence class／昇格禁止を分離\n- `L2D-S2-02 execution-ticket`: Scaffold executionのscope／budget／evidence管理\n- #1815: scaffoldの保存方式、runtime、schema、CI実装方式の技術比較\n- #1837: 正式requirements-admission CIとは別にし、将来はScaffold残留／replacement漏れの監査候補として接続\n\n## Acceptance candidate\n\n- 正式設計が存在しない状態でも、仮artifactが担うroleと上流sourceへ辿れる\n- 仮実装だけが存在する状態を`implemented`／`verified`へ自動昇格しない\n- Scaffold CI greenと正式CI／L10／L11を別状態で保持できる\n- 正式replacement投入時にrole／obligation／consumer／oracleの未移管を検出できる\n- replacement完了前のScaffold削除を拒否できる\n- replacement完了後のScaffold、仮adapter、仮CIの残留を検出できる\n- Scaffoldが複数正式ownerへ無根拠に二重bindingされた場合を拒否できる\n\n## 停止条件\n\n現在は対象別L2／L11の採否中であり、本IssueからScaffold schema、runtime、仮CI、runner、DB、hook、adapterを実装・起動しない。\nまずHARNESS／HELIX-OSへの責務splitと、正式authority／正式CIへの非昇格条件をL2判断へ接続する。\n\n旧CI、旧runtime、旧DB、旧hookを仮設名義で復活させない。Scaffoldの導入を理由にConcept→L1→L2／L11→L3／L10の順序を飛ばさない。",
+  "atoms": [
+    {
+      "atom_id": "SCF-1847-PURPOSE",
+      "heading": "目的",
+      "text": "## 目的\n\n正式L3／設計／実装／正式CIが未成立でも、途中で必要になる仮設計、仮interface、仮実装、stub、adapter、仮test、仮CIを、\n「なぜ存在するか」「何を保持するか」「何に置換されるか」が追跡可能な`Scaffold Binding`として管理する。\n\nこれにより、要求整理・技術比較・新世代再構築中でも仮設領域内でCIを回しつつ、仮設のgreenを正式要求充足や正式CIへ誤昇格させない。\n",
+      "sha256": "sha256:4d3f21a0044f7eae8930a646e03b50638520e43f82c3215e121b12319ec35b15"
+    },
+    {
+      "atom_id": "SCF-1847-CONTRACT",
+      "heading": "Candidate contract",
+      "text": "## Candidate contract\n\n各Scaffold Bindingは少なくとも次を保持する。\n\n- stable scaffold identity\n- 対象product／責務owner候補\n- upstream requirement／decision／source identityとrevision\n- scaffoldが一時的に担う`role`と`obligations`\n- 接続対象・consumer・依存・境界\n- provisional design／interface／implementation／test／CI artifactへの参照\n- 仮設内で許可する操作と禁止操作\n- scaffold専用oracle／negative case／evidence\n- 正式replacement候補または未決状態\n- rebind条件、replacement検証条件、retire条件\n- stale／conflict／orphan／double-bindingの状態\n\n仮コードそのものを正本にせず、コードや設定はScaffold Bindingが保持する役割を一時的に実現するartifactとして扱う。\n",
+      "sha256": "sha256:04d39d3df466eaf62fc274d6cfa1f2f9c351ec8aeee9368346b974cf4fbe9e3f"
+    },
+    {
+      "atom_id": "SCF-1847-CI",
+      "heading": "Scaffold CI",
+      "text": "## Scaffold CI\n\nScaffoldは正式CIと別namespace／別evidence classで仮CIを持てる。\n\nScaffold CIが検証してよいのは、当該Scaffoldが宣言した一時契約の範囲だけとする。例:\n\n- provisional schema／interface整合\n- deterministic behavior\n- stub／adapter接続\n- source revision／digest／stale検出\n- provisional negative case\n- 禁止write／scope越境\n- replacement移行前のconsumer一覧・dangling edge\n\n次を禁止する。\n\n- Scaffold CI greenからL10／L11／L12、正式verification、production-ready、release-readyを生成する\n- Scaffold CIを新世代正式CI profileとして暗黙昇格する\n- 旧CI／旧runtimeをScaffold CIとして復活・fallbackする\n- 仮設artifactの存在から正式design／implementationを生成する\n",
+      "sha256": "sha256:ac84cfbd1efe01ee101622febe88ad3c9f73775fcd3f9b337649a6b313cd60a6"
+    },
+    {
+      "atom_id": "SCF-1847-REPLACEMENT",
+      "heading": "正式実装への置換と撤去",
+      "text": "## 正式実装への置換と撤去\n\n正式Design／Implementation／Verificationが成立した場合、Scaffoldを単に削除せず次を確認する。\n\n1. Scaffoldが保持していたrole／obligationが正式成果物へ全件対応する\n2. interface／consumer／dependencyが正式bindingへrebindされる\n3. 必須oracle／negative caseが正式verificationへ移管または理由付きで置換される\n4. dangling consumer、二重owner、二重writer、二重CIが0である\n5. replacement対象revisionとevidenceが一致する\n6. 上記read-after後にだけScaffoldを`retired`へ遷移する\n\n正式replacement不足時はScaffoldを残し、実装済み・移管済み・撤去可能と表示しない。\n",
+      "sha256": "sha256:43eb58f494c9415615894255302172ce8112ec59427c0b9d8a0636d895a39e4d"
+    },
+    {
+      "atom_id": "SCF-1847-RESPONSIBILITY",
+      "heading": "責務分離候補",
+      "text": "## 責務分離候補\n\n### HELIX-HARNESS\n\n- Scaffoldを使用できる条件、保持必須role／obligation、正式pairへ移管するときの無損失条件を規定する\n- Scaffold CIと正式verificationの意味境界を規定する\n- Scaffoldの存在をdesign／implementation／acceptance成立とみなさない工程contractを所有する\n\n### HELIX-OS\n\n- Scaffold Bindingの登録、revision、owner、artifact、consumer、state、stale、evidence、replacement／retire lifecycleを管理する\n- 仮設runner／仮CIを正式runtimeと隔離して実行・観測する\n- 正式replacementへのrebindと撤去read-afterを管理する\n- Scaffoldから要求・設計・承認を直接writeしない\n\nHARNESSの規範とOSの運転責務を一つのownerへ潰さない。\n",
+      "sha256": "sha256:47beb5e9036c4a9758784b5bda322ced5a8f1b3c01ba5deee1aed666627e063d"
+    },
+    {
+      "atom_id": "SCF-1847-STOP",
+      "heading": "停止条件",
+      "text": "## 停止条件\n\n現在は対象別L2／L11の採否中であり、本IssueからScaffold schema、runtime、仮CI、runner、DB、hook、adapterを実装・起動しない。\nまずHARNESS／HELIX-OSへの責務splitと、正式authority／正式CIへの非昇格条件をL2判断へ接続する。\n\n旧CI、旧runtime、旧DB、旧hookを仮設名義で復活させない。Scaffoldの導入を理由にConcept→L1→L2／L11→L3／L10の順序を飛ばさない。\n",
+      "sha256": "sha256:ce509b00d98b7c9626936dec6eb837596bec57c69ff430e68ddb7b225752b2f0"
+    }
+  ]
+}

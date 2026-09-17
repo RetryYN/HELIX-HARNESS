@@ -4,13 +4,15 @@ prepared_at: 2026-09-17
 status: draft_review_pending
 program_id: RDP-002
 authority_effect: none
-question_count: 20
+question_count: 25
 batch_size: 5
 
 ## 目的と判断範囲
 
 製品責務分類第1層で`split_required`または`cross_product_connection`となった旧Requirement IR 66件を、
-[cluster台帳](requirement-overlap-candidate-clusters.jsonl)の20 clusterへ一度ずつ割り当てた。人間には一度に5問だけ提示し、
+[初期cluster台帳](requirement-overlap-candidate-clusters.jsonl)の20 clusterへ一度ずつ割り当てた。さらに
+[補助cluster台帳](requirement-overlap-supplementary-candidates.jsonl)へIssue #1847のScaffold 3論点、Web dashboard接続、
+旧HELIX-DB実装重複の5 clusterを追加した。人間には一度に5問だけ提示し、
 HARNESSとOSの責務境界、connection、shared capability、実装だけの重複候補を確認する。
 
 回答はcluster relationと責務境界の判断であり、原要求の削除、統合、意味変更、successor確定、L2／L11採否、技術採用を
@@ -31,6 +33,10 @@ semantic decomposition完了を意味しない。境界回答後に原文とslic
 
 `single_product` 87件、confirmed identity 175件、semantic line、補助source、旧candidate、workflow索引、参照edge等は
 非対象ではない。各holdingのatom化後に別waveとして同じ台帳契約へ追加する。このPRから全要求の重複整理完了を主張しない。
+
+Issue #1847はGitHub本文を正本にしない。[ローカルsource holding](github-issue-1847-scaffold-source-holding.json)へremote bodyと
+section atomをexact digest付きで保存し、Issueの更新から独立して比較できるようにした。Scaffold CIは現在の実行許可ではなく、
+対象別L2／L11と正式CI要求の採否後にだけ設計できる候補である。
 
 ## 回答方法
 
@@ -248,13 +254,70 @@ authority規範をHARNESS、admission運転をOSへ分割してよいか
 
 対象: `HIL-BR-26`, `HIL-FR-51`, `HIL-NFR-06`, `HIL-NFR-30`, `HIL-NFR-32`。
 
+## Batch 5：Scaffold・Web接続・永続化方式
+
+### Q-OVL-021 Scaffold Binding規範と管理lifecycle
+
+Scaffoldを正式成果物が未成立の間だけrole・obligation・consumerへ束縛する一時構造とし、HARNESSが利用・非昇格・無損失移管の
+規範を、OSがbinding登録・隔離実行・state・replacement／retire lifecycleを担う責務分割でよいか。
+
+- **A（推奨）**: 規範をHARNESS、管理lifecycleをOSへ分割し、Scaffoldから要求・設計・承認・完了を生成しない。
+- **B**: Scaffold Binding全体をOS固有の内部管理機能として扱う。
+- **C**: Issue #1847のexact sourceを保持して保留する。
+
+対象: `SCF-1847-PURPOSE`、`SCF-1847-CONTRACT`、`SCF-1847-RESPONSIBILITY`、`SCF-1847-STOP`。
+
+### Q-OVL-022 Scaffold CIと正式CI
+
+Scaffold CIを正式CIとは別namespace・別evidence classにし、宣言済み一時契約だけを検証する`partial_overlap`として
+Q-OVL-007の正式CI責務と分けてよいか。
+
+- **A（推奨）**: 別classに分け、greenからL10／L11／L12、production-ready、release-readyを生成しない。
+- **B**: Scaffold専用CIを設けず、正式CI成立まで静的検査だけに限定する。
+- **C**: 正式CI要求の採否まで候補を保留する。
+
+対象: `SCF-1847-CI`、`SCF-1847-STOP`、関連cluster `OVL-007`。
+
+### Q-OVL-023 Scaffold replacement・retire
+
+Scaffold撤去前にrole、obligation、consumer、oracle、revisionを正式成果物へrebindし、二重owner／writer／CIと残留artifactを
+検査する`partial_overlap`として、旧資産retireとは別identityでよいか。
+
+- **A（推奨）**: Scaffold固有のreplacement closureとして保持し、旧資産archive／削除判断と分ける。
+- **B**: 旧資産retire契約へ包含し、Scaffold固有identityは作らない。
+- **C**: replacement設計まで候補を保留する。
+
+対象: `SCF-1847-REPLACEMENT`、`SCF-1847-STOP`、関連cluster `OVL-004`／`OVL-015`。
+
+### Q-OVL-024 HELIX-Web dashboardとHELIX-Web-OS projection
+
+HELIX-Webの利用者向け選択・操作・dashboard体験と、HELIX-Web-OSの原event／evidenceからのfresh projectionを、
+独立した`connection_requirement`で接続してよいか。
+
+- **A（推奨）**: Webの体験要求とWeb-OSのservice projectionを別identityにし、受渡し・stale・conflictを接続要求にする。
+- **B**: dashboard表示までHELIX-Web-OSに置き、Webは表示surfaceだけを持つ。
+- **C**: HARNESS Version 1完成条件が確定するまで保留する。
+
+対象: `HELIXWEB-L2-001`、`HELIXWEBOS-L2-005`。
+
+### Q-OVL-025 HELIX-DB／harness.dbと永続化能力
+
+旧`harness.db`／SQLite指定を`implementation_overlap`として技術代替reviewへ送り、永続化、排他、冪等性、再開、因果trace、
+projection再構築、single writerという意味能力だけをHELIX-OS要求に保持してよいか。
+
+- **A（推奨）**: DB製品名と旧schemaを固定せず、意味能力を保持してRDP-003で方式比較する。
+- **B**: `harness.db`を新世代HELIX-OSの必須実装として維持する。
+- **C**: 技術比較まで旧指定と意味能力の双方を未決で保持する。
+
+対象: `HIL-TR-07`、`HIL-TR-09`、`HIL-TR-10`、`HELIXOS-L2-001`、`HELIXOS-L2-007`。
+
 ## Draft PRからcloseまでの順序
 
-1. 20 clusterと質問batchをDraft PRへ置き、exact HEADの独立reviewを受ける。
+1. 25 clusterと質問batchをDraft PRへ置き、exact HEADの独立reviewを受ける。
 2. findingを解消してもDraftを維持し、人間へBatch 1の5問だけを提示する。
 3. 5回答を原文付きで記録し、cluster台帳と質問文への影響を静的検証して再reviewする。
-4. 同じ手順でBatch 2、Batch 3、Batch 4を各5問ずつ扱う。未回答や保留をAIが補完しない。
-5. 20問すべてに回答があり、66件の原identity、digest、exact statement、共通atom、固有atom、未決が無損失で追跡できる場合だけDraft解除候補にする。
+4. 同じ手順でBatch 2からBatch 5まで各5問ずつ扱う。未回答や保留をAIが補完しない。
+5. 25問すべてに回答があり、初期66件と補助5 clusterのsource、digest、exact statement、共通atom、固有atom、未決が無損失で追跡できる場合だけDraft解除候補にする。
 6. merge／post-merge read-after／Issue #1814 closeは、明示許可されたレビュー対応側だけが行う。
 
 Issue #1814をcloseしても要求の採否や削除は成立しない。closeが示すのは、この66件に対する重複候補の人間回答と
