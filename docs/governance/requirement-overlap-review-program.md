@@ -1,6 +1,6 @@
 # 要求間の責務・機能重複review program
 
-status: product_routing_complete_cluster_preparation
+status: initial_66_clustered_question_batches_draft_review_pending
 program_id: RDP-002
 parent_program: RDP-001
 owner: HELIX-OS management
@@ -40,6 +40,11 @@ routing containerに現れる責務・機能の重複候補を発見し、同一
 8. 旧`harness.db`／HELIX-DBに束ねられていたstate、event、trace、feedback、search、automation readinessと、新世代HELIX-OS要求の対応。
 
 この一覧に無いclusterを非対象にしない。新しい重複候補はsource-qualified identityとatomを保持して追加する。
+
+初期waveでは、製品責務分類第1層で`split_required`または`cross_product_connection`となった旧Requirement IR 66件を、
+[cluster台帳](requirement-overlap-candidate-clusters.jsonl)の15 clusterへ重複0・欠落0で割り当てた。
+[人間質問batch](requirement-overlap-question-batches.md)は5問×3回で責務境界候補を確認する。これは初期66件だけの
+比較waveであり、残るholdingを重複なしと判定しない。
 
 ## cluster record
 
@@ -84,7 +89,8 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 
 ## 現在の停止条件
 
-Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。product routingと重複候補clusterは
-旧Requirement IR 153件について候補登録済みである。候補targetとrouting shapeを使ってclusterを作成できるが、
-最終relation、successor統合、要求削除は決定しない。
-現在は比較対象、relation語彙、記録項目、Issue境界を固定する。L3、実装、DB、CI、archiveの物理削除へ進まない。
+Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。product routingは旧Requirement IR 153件について
+候補登録済みで、multi-product候補66件を初期15 clusterへ整理した。現在はDraft PRの独立review後、人間へ一度に5問ずつ
+確認する前である。回答前に最終relation、successor統合、要求削除を決定せず、回答後も個別要求の採否へ読み替えない。
+全15問の回答、無損失照合、再review、main read-afterまでIssue #1814をcloseしない。L3、実装、DB、CI、archiveの
+物理削除へ進まない。
