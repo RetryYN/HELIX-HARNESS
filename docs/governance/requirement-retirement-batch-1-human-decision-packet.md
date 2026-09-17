@@ -9,7 +9,7 @@ authority_effect: none
 ## このpacketで判断すること
 
 旧要求を削除する判断ではなく、5件を「吸収・統合・技術指定廃止の候補として後続の無損失移管検証へ送るか」だけを判断する。
-各節は旧要求原文を省略せず掲載し、重複箇所と各要求だけが持つ意味をsemantic atom IDで示す。Aを選んでも
+各節は旧要求原文を省略せず掲載し、完全に重複する意味と、類似するが対象が異なる固有意味を分けて示す。Aを選んでも
 `retirement_applied`はfalseのままであり、旧ID、原文、digestを保持する。
 
 ## 1. Q-RET-001 — Upstream Redesign Re-entryの包含候補
@@ -24,13 +24,18 @@ authority_effect: none
 
 > Upstream Redesign Re-entryはaffected layerがL1ならL1/L12 pairを、L2ならL2/L11 pairとscreen applicability/prototype agreementをstale化し、再承認前の実装claimとForward合流を拒否する。 | stale edge、re-entry task、re-freeze receipt
 
-### 実際に重複している意味
+### 完全に重複している意味
 
-| 重複内容 | 左側要求のatom | 右側要求のatom |
+| 重複内容 | 左側要求のcommon atom | 右側要求のcommon atom |
 |---|---|---|
 | L1変更時にL1/L12 pairをstale化する | `FR05-A02` | `FR31-A01` |
 | L2変更時にL2/L11 pairをstale化する | `FR05-A03` | `FR31-A02` |
-| 再承認／再freeze前にForwardへ戻さない | `FR05-A05`, `FR05-A06` | `FR31-A04`, `FR31-A05`, `FR31-A06` |
+
+### 類似するが、統合時に両方残す固有意味
+
+| 類似関係 | 左側の固有atom | 右側の固有atom |
+|---|---|---|
+| 再freeze・再承認前にForwardへ戻さない点は類似するが、左は工程順序、右は実装claim／Forward合流の明示拒否とreceiptであり固有条件を統合しない | `FR05-A05`, `FR05-A06` | `FR31-A04`, `FR31-A05`, `FR31-A06` |
 
 ### 各要求だけにあるため必ず残す意味
 
@@ -38,6 +43,7 @@ authority_effect: none
 
 - `FR05-A01` 設計欠陥をcanonical L1–L6の影響層へ割り当てる
 - `FR05-A04` L2要求変更ではScreen Applicability、prototypeまたはskip receiptをstale化する
+- `FR05-A05` 再freezeを要求する
 - `FR05-A06` Reverse→Redesign→pair-freeze→Forwardの順序を強制する
 - `FR05-A07` L0 charter変更をPOへescalateする
 - `FR05-A08` redesign PLAN、修正layer、stale edge、pair receiptを出力する
@@ -79,13 +85,13 @@ authority_effect: none
 
 > Finding Dispositionはcurrent contract違反、correctness/security/data loss、必須oracle/main/evidenceへの影響と責務境界を評価し、同じ責務・既存scope内で安全かつ局所的に閉じるfindingを`current_pr_fix`、独立責務・別設計・lifecycle・性能改善を`successor_issue`へ分類する。Finding Promotion Pipelineは`successor_issue`だけから重複判定、Issue contract、Universal Reverse、memory issue-summary、Codex queue itemを同一causality IDで原子的に生成する。`current_pr_fix`はwriterへ一括返却し、途中欠落はreadyにしない。 | typed disposition、writer return、Issue/Reverse/memory/queue join
 
-### 実際に重複している意味
+### 完全に重複している意味
 
-| 重複内容 | 左側要求のatom | 右側要求のatom |
+| 重複内容 | 左側要求のcommon atom | 右側要求のcommon atom |
 |---|---|---|
 | 同じ責務・既存scope内で安全かつ局所的に閉じるfindingをcurrent_pr_fixにする | `BR17-A03` | `FR30-A02` |
 | 独立責務・別設計・lifecycle・性能改善をsuccessor_issueにする | `BR17-A05` | `FR30-A03` |
-| current修正をwriterへ返す | `BR17-A04` | `FR30-A07` |
+| current修正をwriterへ返す | `BR17-A04` | `FR30-A07C` |
 | 後続工程を同一causalityで接続する | `BR17-A06` | `FR30-A06` |
 
 ### 各要求だけにあるため必ず残す意味
@@ -102,7 +108,7 @@ authority_effect: none
 - `FR30-A01` current contract違反、correctness/security/data loss、必須oracle/main/evidenceへの影響と責務境界を評価する
 - `FR30-A04` successor_issueだけからPromotion Pipelineを起動する
 - `FR30-A05` 重複判定を行う
-- `FR30-A07` current_pr_fixをwriterへ一括返却する
+- `FR30-A07U` current_pr_fixを一括返却する
 - `FR30-A08` 途中欠落があればreadyにしない
 - `FR30-A09` typed disposition、writer return、Issue/Reverse/memory/queue joinを出力する
 
@@ -136,9 +142,9 @@ authority_effect: none
 
 > Requirement Definition Ledgerはstable requirement IDとimmutable revisionを持ち、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する。split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。 | requirement definition/revision、typed edge、change/applicability receipt、orphan/stale finding
 
-### 実際に重複している意味
+### 完全に重複している意味
 
-| 重複内容 | 左側要求のatom | 右側要求のatom |
+| 重複内容 | 左側要求のcommon atom | 右側要求のcommon atom |
 |---|---|---|
 | 要求のsource、分類、scope、acceptance、capability、template、design obligation、revisionを一つの台帳で結ぶ | `BR24-A02` | `FR45-A02` |
 
@@ -189,25 +195,33 @@ authority_effect: none
 
 > requirement coverageの行数、ID連番、文書存在だけを要件定義の設計完全性としない。各active requirementはsource atom、authority、acceptance oracle、service/capabilityまたは根拠付き非該当、template applicability、design obligationへ個別に結び、未解決ambiguity、orphan、stale revisionをgreenにしない。
 
-### 実際に重複している意味
+### 完全に重複している意味
 
-| 重複内容 | 左側要求のatom | 右側要求のatom |
+| 重複内容 | 左側要求のcommon atom | 右側要求のcommon atom |
 |---|---|---|
 | 文書・行・ID・templateの存在だけを完全性証拠にしない | `NFR26-A01` | `NFR28-A01` |
-| 各単位を個別に設計内容／edge／oracle／根拠付きN/Aへ接続する | `NFR26-A02`, `NFR26-A03`, `NFR26-A04` | `NFR28-A02`, `NFR28-A03`, `NFR28-A04`, `NFR28-A05`, `NFR28-A06`, `NFR28-A07` |
-| 未消込・空洞・aggregate一括合格を拒否する | `NFR26-A05` | `NFR28-A08` |
+
+### 類似するが、統合時に両方残す固有意味
+
+| 類似関係 | 左側の固有atom | 右側の固有atom |
+|---|---|---|
+| 個別接続を要求する点は類似するが、左は設計義務を設計内容・双方向edge・test oracle／N/Aへ、右はactive requirementをsource・authority・acceptance・capability・template・design obligationへ接続する | `NFR26-A02`, `NFR26-A03`, `NFR26-A04` | `NFR28-A02`, `NFR28-A03`, `NFR28-A04`, `NFR28-A05`, `NFR28-A06`, `NFR28-A07` |
+| 空洞化を拒否する点は類似するが、左はTBD・空欄・範囲表記・複数義務一括消込、右はambiguity・orphan・stale revisionを別々に拒否する | `NFR26-A05` | `NFR28-A08` |
 
 ### 各要求だけにあるため必ず残す意味
 
 **`HIL-NFR-26`の保持対象**
 
 - `NFR26-A02` 各設計義務を意味のある設計内容へ個別接続する
+- `NFR26-A03` 各設計義務に双方向edgeを要求する
+- `NFR26-A04` 各設計義務にtest oracleまたはscope付きN/A receiptを要求する
 - `NFR26-A05` TBD、空欄、範囲表記、1行での複数義務消込を拒否する
 
 **`HIL-NFR-28`の保持対象**
 
 - `NFR28-A02` 各active requirementをsource atomへ個別接続する
 - `NFR28-A03` 各active requirementをauthorityへ個別接続する
+- `NFR28-A04` 各active requirementをacceptance oracleへ個別接続する
 - `NFR28-A05` 各active requirementをservice/capabilityまたは根拠付き非該当へ個別接続する
 - `NFR28-A06` 各active requirementをtemplate applicabilityへ個別接続する
 - `NFR28-A07` 各active requirementをdesign obligationへ個別接続する
@@ -239,9 +253,9 @@ authority_effect: none
 
 > Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。
 
-### 重複関係
+### 完全に重複している意味
 
-この候補は他要求との意味重複ではなく、旧architecture固有の技術方式と、方式に依存しない品質条件の分離候補である。
+なし。この候補は他要求との完全重複ではなく、旧architecture固有の技術方式と方式非依存の品質条件の分離候補である。
 
 ### 各要求だけにあるため必ず残す意味
 
