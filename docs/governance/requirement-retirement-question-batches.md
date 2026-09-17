@@ -1,7 +1,7 @@
 # 旧要求の削除・吸収・置換候補 人間質問batch
 
 prepared_at: 2026-09-17
-status: batch_1_draft_review_pending
+status: superseded_by_exact_human_decision_packet
 program_id: RDP-002-RETIREMENT
 parent_program: RDP-002
 github_projection_issue: 1849
@@ -10,6 +10,10 @@ batch_size: 5
 authority_effect: none
 
 ## 目的
+
+> **2026-09-17訂正:** 本書は候補作成時の要約であり、人間への提示には使用しない。原要求全文、重複atom対応、
+> 固有atom、retire前提を横並びにした
+> [Batch 1人間判断packet](requirement-retirement-batch-1-human-decision-packet.md)だけを回答surfaceとする。
 
 似ている旧要求、包含される旧要求、旧技術方式に固定された要求から、current要求として残さなくてよい候補を探す。
 [重複cluster台帳](requirement-overlap-candidate-clusters.jsonl)は検索母集団であり、cluster一件をそのまま一問にしない。

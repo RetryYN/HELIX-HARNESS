@@ -1,6 +1,6 @@
 # 旧要求retirement候補 review program
 
-status: batch_1_draft_review_pending
+status: exact_human_decision_packet_draft_review_pending
 program_id: RDP-002-RETIREMENT
 parent_program: RDP-002
 parent_issue: 1814
@@ -38,7 +38,9 @@ Batch質問へのA回答は`candidate_answer_recorded`までしか成立させ�
 
 [候補台帳](requirement-retirement-candidates.jsonl)は5候補、9 source identityを扱う。全source原文、revision、semantic digest、
 source clusterを保持し、意味をcommon、preserve unique、technical bindingへ分解する。
-[質問](requirement-retirement-question-batches.md)は同じ候補を5件だけ提示する。
+[旧質問要約](requirement-retirement-question-batches.md)は人間回答surfaceとして無効化した。
+[人間判断packet](requirement-retirement-batch-1-human-decision-packet.md)が、同じ5候補について原要求全文、重複atom対応、
+各要求だけの保持atom、候補処置、選択肢を提示する唯一の回答surfaceである。
 
 初期multi-product母集団66件の残り57件、`single_product` 87件、confirmed identity 175件、その他holdingは未処理母集団として
 生存中であり、retire候補なしと判定していない。Batch 1後も5候補ずつ探索する。
@@ -47,7 +49,7 @@ source clusterを保持し、意味をcommon、preserve unique、technical bindi
 
 - 5候補の全source meaningが一度ずつsemantic atom accountingへ入り、未計上0である。
 - 要約fieldとatom accountingが一致する。
-- 人間回答原文、対象HEAD、候補台帳digest、質問digestを記録する。
+- 人間回答原文、対象HEAD、候補台帳digest、人間判断packet digestを記録する。
 - 回答後も`retirement_applied: false`、successor空を維持する。
 - exact HEAD reviewで要求欠落、勝手なretire、対象外回答が0である。
 
