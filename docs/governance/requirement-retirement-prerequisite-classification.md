@@ -63,4 +63,4 @@ source_generation: HELIX v1.3 Requirement IR
 
 ## 次の停止点
 
-9要求のatomをHARNESS／OSへ分け、現行L2／L11候補へtraceするところまでで停止する。完全重複が証拠付きで残った場合だけ、対象要求の原文、関係、移管先、Aを選んだ場合に変わること／変わらないことを示す新しい質問を5件以内で作る。
+9要求のatomをHARNESS／OSへ分けた結果は[atom製品分割・L2／L11 trace案](requirement-retirement-atom-product-trace.md)に置く。一つの旧atomに両責務が混在する場合は`split_required`のまま保持し、次段で二つのsuccessor候補へ分ける。完全重複が証拠付きで残った場合だけ、対象要求の原文、関係、移管先、Aを選んだ場合に変わること／変わらないことを示す新しい質問を5件以内で作る。

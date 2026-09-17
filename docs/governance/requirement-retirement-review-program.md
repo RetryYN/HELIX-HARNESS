@@ -24,12 +24,13 @@ authority_effect: none
 
 - [前提分類表](requirement-retirement-prerequisite-classification.md): 各要求の平易な対象、製品分割、現行L2候補、要求間関係、未解決前提
 - [機械台帳](requirement-retirement-candidates.jsonl): 原文、revision、digest、71 atomを保持したまま判断不可状態を記録
+- [atom製品分割・L2／L11 trace案](requirement-retirement-atom-product-trace.md)と[機械台帳](requirement-retirement-atom-product-trace.jsonl): 71 atomをHARNESS規範、OS運転、分割必須、技術research待ちへ一度ずつ分類
 - [撤回済み質問](requirement-retirement-question-batches.md)
 - [撤回済み人間判断packet](requirement-retirement-batch-1-human-decision-packet.md)
 
 ## retirement候補へ進める条件
 
-1. source atomをHARNESS意味契約とOS運転責務へ分ける。
+1. source atomをHARNESS意味契約とOS運転責務へ分ける。両方を含むatomは分割必須として明示し、単一の製品へ丸めない。
 2. 各sliceの現行L2／L11移管先候補と、上位要求からのtraceを示す。
 3. 関係を完全重複、上位→具体化、接続、受入、技術bindingに分類する。
 4. 完全重複でない意味を吸収対象へ入れない。
