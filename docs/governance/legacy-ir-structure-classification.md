@@ -22,11 +22,39 @@ source_count: 153
 
 部品（要求エンジン、デザインHARNESS、Design Template）、改善loop、サービス⑦の置き場は仮置きであり、台帳の`layer_primary_provisional`で示す。
 
+## 層の語彙（機械用codeと名称）
+
+3つの分類台帳（第1波〜第3波）の`layer_primary`／`layer_secondary`は、次のcodeだけを使う。定義は[PO発言の記録](../concept/helix-structure-tvo-po-statements-2026-09-18.md)に従う。
+
+| code | 名称 | 仮置き |
+|---|---|---|
+| `entry_full_reverse` | 入口：フルリバース |  |
+| `service_1_prototype_poc` | サービス① 画面プロト／PoC |  |
+| `service_2_requirements_definition` | サービス② 要件定義 |  |
+| `service_3_design` | サービス③ 設計 |  |
+| `service_4_development` | サービス④ 開発 |  |
+| `service_5_refactoring` | サービス⑤ リファクタリング |  |
+| `service_6_release` | サービス⑥ リリース |  |
+| `service_7_operations_maintenance` | サービス⑦ 運用保守 | 仮置き |
+| `part_requirement_engine` | 部品：要求エンジン | 仮置き |
+| `part_design_harness` | 部品：デザインHARNESS | 仮置き |
+| `part_design_template` | 部品：Design Template・設計義務 | 仮置き |
+| `frame_development_method` | 枠：開発方式・接続・Gate（Vの線） |  |
+| `core` | コア（Tの縦棒） |  |
+| `ticket` | チケット・駆動モデル |  |
+| `os_management` | OS：管理（土台） |  |
+| `os_promotion` | OS：推進（チケット発行・レーン・サブエージェント） |  |
+| `os_acceptance` | OS：検収（CI・テスト最適化・ベンチ） |  |
+| `os_improvement` | OS：改善loop（学習・判断pack・memory） | 仮置き |
+| `part_research_workflow` | 部品：リサーチWorkflow（第2波・第3波で使用） | 仮置き |
+| `web_delivery` | HELIX-Web：利用者向けの窓口（第2波・第3波で使用） | 仮置き |
+| `web_os` | HELIX-Web-OS：Webのservice runtime（第3波で使用） | |
+
 ## 集計
 
 | 層 | 主 | 副 |
 |---|---:|---:|
-| 入口：フルリバース | 13 | 1 |
+| 入口：フルリバース | 12 | 2 |
 | サービス① 画面プロト／PoC | 0 | 5 |
 | サービス② 要件定義 | 0 | 5 |
 | サービス③ 設計 | 0 | 9 |
@@ -36,14 +64,14 @@ source_count: 153
 | サービス⑦ 運用保守（仮置き） | 4 | 0 |
 | 部品：要求エンジン（仮置き） | 6 | 2 |
 | 部品：デザインHARNESS（仮置き） | 6 | 0 |
-| 部品：Design Template・設計義務（仮置き） | 12 | 1 |
+| 部品：Design Template・設計義務（仮置き） | 11 | 2 |
 | 枠：開発方式・接続・Gate（Vの線） | 15 | 26 |
 | コア（Tの縦棒） | 18 | 19 |
 | チケット・駆動モデル | 9 | 13 |
-| OS：管理（土台） | 15 | 39 |
+| OS：管理（土台） | 16 | 38 |
 | OS：推進（チケット発行・レーン・サブエージェント） | 27 | 8 |
 | OS：検収（CI・テスト最適化・ベンチ） | 15 | 11 |
-| OS：改善loop（学習・判断pack・memory）（仮置き） | 8 | 2 |
+| OS：改善loop（学習・判断pack・memory）（仮置き） | 9 | 1 |
 | **計** | **153** | |
 
 | 要求か決定か | 件数 |
@@ -69,7 +97,7 @@ source_count: 153
 - リサーチWorkflow（サービス①②が使う部品）：153件に該当なし。現行の運用モデルのResearch起動条件とv1.3の`FR-L1-27`が素材になる。
 - デザインHARNESSの本体：153件にあるのは入口（画面適用の判定とprototype）だけである。v1.3 §4.5、§4.9の`HR-FR-DHR-001`〜`006`は153件の外にある。
 
-## 製品振り分けの訂正案（6件）
+## 製品振り分けの訂正案（7件）
 
 main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)のbytesは、監査記録がdigestを束縛しているため変更しない。訂正は別台帳へ`proposed_pending_po_review`として記録し、本分類の`product_targets_proposed`へ反映する。
 
@@ -77,6 +105,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 |---|---|---|---|---|
 | `HIL-FR-01` | InfinityLoopEvent | OS | HARNESS／OS | 工程段の並び（intakeからmerge／issueまでの順序）は工程の規範であり、PO発言「HARNESSには明確に順序がある」に従いHARNESSが所有する。状態の運転、digest binding、event causalityはOSである |
 | `HIL-FR-11` | Agent Registry | HARNESS | HARNESS／OS | agent contractの語彙と意味はHARNESS、registryとしての登録・版・保持は管理層（OS）である。PO発言「エージェントレーンやヘリックスベンチ、CIとかは管理層がないと成立しない」に従う |
+| `HIL-FR-15` | Hybrid docgen ingestion | OS | HARNESS／OS | 既存ZIPのmetadata・trace等をHELIX契約へ変換する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、取込の実行・観測・記録はOSである。HIL-FR-16／37と同じ境界である |
 | `HIL-FR-16` | Asset Inventory | OS | HARNESS／OS | 既存資産を機能単位で比較しadopt／harden／redesign／rejectを判断する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、観測・記録の運転はOSである |
 | `HIL-FR-37` | Source Capability Atomizer | OS | HARNESS／OS | atomic behaviorの定義とcoverage分母の規範はフルリバースの中核でHARNESSが所有する。同じ規範を持つHIL-NFR-22は既にHARNESS／OSである。extractorの実行と記録はOSである |
 | `HIL-FR-41` | Design Template Registry | HARNESS | HARNESS／OS | templateのschema・必須論点・適用条件はHARNESS、版と適用履歴の管理はOSである。製品責務境界のPO決定「HARNESSはDesign Templateと初期seedを持ち、HELIX-OSが版・適用・利用結果・改善を管理する」に従う |
@@ -108,7 +137,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-FR-15` | Hybrid docgen ingestion | 要求に技術の決定が混在 | 入口：フルリバース |
 | `HIL-FR-16` | Asset Inventory | 要求に技術の決定が混在 | 入口：フルリバース |
 | `HIL-FR-21` | Source Snapshot Manifest | 要求に技術の決定が混在 | 入口：フルリバース |
-| `HIL-FR-25` | Hybrid Document Core Engine Registry | 要求に技術の決定が混在 | 入口：フルリバース |
+| `HIL-FR-25` | Hybrid Document Core Engine Registry | 要求に技術の決定が混在 | OS：管理（土台） |
 | `HIL-FR-27` | Node/Python Supervisor | 要求に技術の決定が混在 | コア（Tの縦棒） |
 | `HIL-FR-28` | Three-stage CI Orchestrator | 要求に技術の決定が混在 | OS：検収（CI・テスト最適化・ベンチ） |
 | `HIL-FR-30` | Finding Disposition | 要求に技術の決定が混在 | チケット・駆動モデル |
@@ -139,7 +168,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 ## 層ごとの一覧（原文つき）
 
-### 入口：フルリバース（主 13件）
+### 入口：フルリバース（主 12件）
 
 **Source Capability Coverage Gate**
 
@@ -160,7 +189,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-15` | 機能 | OS：管理（土台） | 成果物の提供 | 要求に技術の決定が混在 | OS | Hybrid docgen ingestionはZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果をHELIX契約へ変換する。 ｜ source digest、adoption decision、DB relation |
+| `HIL-FR-15` | 機能 | OS：管理（土台） | 成果物の提供 | 要求に技術の決定が混在 | OS → HARNESS／OS | Hybrid docgen ingestionはZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果をHELIX契約へ変換する。 ｜ source digest、adoption decision、DB relation |
 
 **Asset Inventory**
 
@@ -173,12 +202,6 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
 | `HIL-FR-21` | 機能 | OS：管理（土台） | 品質の保証 | 要求に技術の決定が混在 | OS | Source Snapshot ManifestはZIP entry、前身repository exact 2件のidentity、namespace policy、advertisement A/B digest、全ref→peeled object→commit/tree→entry edge、sealed mirror receipt、現行HELIX symbol/doc/testを固定し、観測時刻、source/tree digest、取得器・抽出器versionを記録する。ref/content/edge分母はreceiptから導出し、remote identity・advertisement・namespace・source集合が変われば既存snapshot、atomization、coverage receiptをstale化する。 ｜ immutable manifest、Git authority receipt set、source digest、stale判定 |
-
-**Hybrid Document Core Engine Registry**
-
-| 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
-|---|---|---|---|---|---|---|
-| `HIL-FR-25` | 機能 | コア（Tの縦棒）、OS：管理（土台） | 品質の保証 | 要求に技術の決定が混在 | OS | Hybrid Document Core Engine RegistryはZIP由来のbuild、agent metadata、assignment、schedule、trace、impact等をversioned capabilityとして分離登録し、入力snapshotごとのrun/artifact/digest/exit statusを記録する。 ｜ engine run、artifact manifest、version、input/output digest |
 
 **Reverse Substance Gate**
 
@@ -296,7 +319,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-FR-20` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Screen Gateは画面対象ならartifact、walkthrough、要求反映、prototype agreementを検査し、画面非対象ならskip receiptのscope/digest/再entry条件を検査する。いずれも無い場合はL1 freezeとL3開始をfail-closeする。 ｜ G2判定、agreementまたはskip receipt、不足code |
 | `HIL-NFR-11` | 品質の制約 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 画面工程は暗黙skip不可とする。画面対象では静的wireframe/proseだけを操作可能prototypeの代替にせず、画面非対象ではLLMの自由文判断だけをskip evidenceにしない。 |
 
-### 部品：Design Template・設計義務（仮置き）（主 12件）
+### 部品：Design Template・設計義務（仮置き）（主 11件）
 
 **Design Obligation Graph**
 
@@ -326,12 +349,6 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
 | `HIL-FR-41` | 機能 | サービス③ 設計、OS：管理（土台） | 品質の保証 | 要求 | HARNESS → HARNESS／OS | Design Template Registryは要求種別、service/capability種別、domain object roleごとに適用するversioned template schema、必須設計論点、関係edge、適用条件を保持する。 ｜ template version、applicability rule、schema digest、supersession receipt |
-
-**Template Improvement Loop**
-
-| 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
-|---|---|---|---|---|---|---|
-| `HIL-FR-44` | 機能 | OS：改善loop（学習・判断pack・memory） | 品質の保証 | 要求 | HARNESS／OS | Template Improvement Loopは翻訳済み要求を現行templateへ照合し、表現不能な設計義務をTemplate Gap Issue化する。候補templateはshadow適用、既存要求への差分、false-positive/negative、migration、独立監査を経てversion昇格し、translator自身による即時強制を禁止する。 ｜ template gap Issue、shadow coverage delta、review receipt、promotion/rollback receipt |
 
 **Template Obligation Extractor**
 
@@ -528,7 +545,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 |---|---|---|---|---|---|---|
 | `HIL-FR-56` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS | Workflow Contract Routerはportfolio itemを選択済みdevelopment styleの対象layer input/output、entry/exit gate、下位task、right-arm V-pairへbindする。case-driven modelではS0 hypothesisにgapと親要求、S1 experiment planに契約snapshot・style返却先・budget、S2 pocに生成物、S3 verifyにoracle evidence、S4 decideにconfirmed/rejected/pivotとback-propagationを必須化し、S4未決定の成果をproduction currentへ昇格しない。 ｜ workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt |
 
-### OS：管理（土台）（主 15件）
+### OS：管理（土台）（主 16件）
 
 **Directive Custody Gate**
 
@@ -554,6 +571,12 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-NFR-06` | 品質の制約 | 枠：開発方式・接続・Gate（Vの線） | 安全と権限 | 要求 | HARNESS／OS | 認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraはaction-binding approvalを必要とする。 |
 | `HIL-NFR-30` | 品質の制約 | — | 省力化とコスト削減 | 要求 | HARNESS／OS | 可逆かつ既定policy内のAuthoring変更では人間入力を要求せず、機械検証からCanonical化まで自動完走できる。確認待ちを安全策として乱発せず、真のauthority境界だけをescalateする。 |
 | `HIL-NFR-32` | 品質の制約 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。 |
+
+**Hybrid Document Core Engine Registry**
+
+| 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
+|---|---|---|---|---|---|---|
+| `HIL-FR-25` | 機能 | コア（Tの縦棒）、入口：フルリバース | 品質の保証 | 要求に技術の決定が混在 | OS | Hybrid Document Core Engine RegistryはZIP由来のbuild、agent metadata、assignment、schedule、trace、impact等をversioned capabilityとして分離登録し、入力snapshotごとのrun/artifact/digest/exit statusを記録する。 ｜ engine run、artifact manifest、version、input/output digest |
 
 **Atomic Canonicalization Transaction**
 
@@ -741,7 +764,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 |---|---|---|---|---|---|---|
 | `HIL-FR-66` | 機能 | OS：推進（チケット発行・レーン・サブエージェント） | 安全と権限 | 要求に技術の決定が混在 | OS | Proposal Revalidation Gateは全第三者worker出力（ファイル成果物含む）をNodeがschema/digest/authority policyで再検証し、出力中のcommand/SQL/absolute path/codeを実行しない。検証levelはstrict既定の段階制とし、委譲完了時のFS差分検査で許可path外書込と指示外install/network取得/テスト実行痕跡をrejectする。 ｜ revalidation receipt、FS diff finding、reject decision |
 
-### OS：改善loop（学習・判断pack・memory）（仮置き）（主 8件）
+### OS：改善loop（学習・判断pack・memory）（仮置き）（主 9件）
 
 **Memory Compactor**
 
@@ -763,6 +786,12 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 |---|---|---|---|---|---|---|
 | `HIL-BR-29` | 業務の目的 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。 |
 | `HIL-FR-57` | 機能 | 枠：開発方式・接続・Gate（Vの線）、OS：管理（土台） | 品質の保証 | 要求 | HARNESS → HARNESS／OS | Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 ｜ judgment pack、applicability/digest、source skill edge、conflict finding |
+
+**Template Improvement Loop**
+
+| 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
+|---|---|---|---|---|---|---|
+| `HIL-FR-44` | 機能 | 部品：Design Template・設計義務 | 品質の保証 | 要求 | HARNESS／OS | Template Improvement Loopは翻訳済み要求を現行templateへ照合し、表現不能な設計義務をTemplate Gap Issue化する。候補templateはshadow適用、既存要求への差分、false-positive/negative、migration、独立監査を経てversion昇格し、translator自身による即時強制を禁止する。 ｜ template gap Issue、shadow coverage delta、review receipt、promotion/rollback receipt |
 
 **Judgment Pack Improvement Loop**
 

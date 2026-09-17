@@ -14,32 +14,32 @@ authority_effect: none
 | 第2波 | 旧confirmed identity | 175 | [legacy-confirmed-identity-structure-classification.jsonl](legacy-confirmed-identity-structure-classification.jsonl) |
 | 第3波 | 現行L2（4製品、draft・未採否） | 37 | [current-l2-structure-classification.jsonl](current-l2-structure-classification.jsonl) |
 
-第2波と第3波は、層（主・副）、狙い、要求か決定かの軸だけを付けた。製品の振り分けは第1波にしか存在しないため、第2波には付けていない。v1.3本体の節（§4.5、§4.9等）のうちconfirmed identityに入っていない本文は、本書の対象外である。
+第2波は、層（主・副）、狙い、要求か決定かの軸を付けた。第3波は、層（主・副）だけを付けた。現行L2は1つのIDの下に補足本文（工程規則表や節）を持つため、副の所属は補足本文の内容も含めて付けた。製品の振り分けは第1波にしか存在しないため、第2波には付けていない。v1.3本体の節（§4.5、§4.9等）のうちconfirmed identityに入っていない本文は、本書の対象外である。
 
 ## 層ごとのカバレッジ（主の所属／副の所属）
 
 | 層 | 旧IR 153 | 旧identity 175 | 現行L2 37 | 読み取り |
 |---|---:|---:|---:|---|
-| 入口：フルリバース | 13／1 | 4／0 | 0／0 | 現行L2に受け皿がない |
-| サービス① 画面プロト／PoC | 0／5 | 3／1 | 0／0 | 現行L2に受け皿がない |
+| 入口：フルリバース | 12／2 | 4／0 | 0／0 | 現行L2に受け皿がない |
+| サービス① 画面プロト／PoC | 0／5 | 2／2 | 0／2 | 現行L2では副の所属だけ。専用の要求がない |
 | サービス② 要件定義 | 0／5 | 0／0 | 0／1 | 現行L2では副の所属だけ。専用の要求がない |
 | サービス③ 設計 | 0／9 | 0／1 | 0／2 | 現行L2では副の所属だけ。専用の要求がない |
 | サービス④ 開発 | 0／0 | 2／2 | 0／1 | 現行L2では副の所属だけ。専用の要求がない |
-| サービス⑤ リファクタリング | 4／0 | 1／1 | 0／0 | 現行L2に受け皿がない |
-| サービス⑥ リリース | 1／4 | 1／3 | 3／4 |  |
+| サービス⑤ リファクタリング | 4／0 | 1／1 | 0／2 | 現行L2では副の所属だけ。専用の要求がない |
+| サービス⑥ リリース | 1／4 | 1／4 | 3／4 |  |
 | サービス⑦ 運用保守（仮置き） | 4／0 | 1／1 | 0／3 | 現行L2では副の所属だけ。専用の要求がない |
 | 部品：要求エンジン（仮置き） | 6／2 | 0／0 | 1／0 |  |
 | 部品：デザインHARNESS（仮置き） | 6／0 | 2／1 | 0／0 | 現行L2に受け皿がない |
-| 部品：Design Template・設計義務（仮置き） | 12／1 | 0／0 | 1／0 | 旧要求が厚く、現行L2が薄い |
+| 部品：Design Template・設計義務（仮置き） | 11／2 | 0／0 | 1／0 | 旧要求が厚く、現行L2が薄い |
 | 部品：リサーチWorkflow（仮置き） | 0／0 | 2／0 | 1／1 |  |
 | 枠：開発方式・接続・Gate（Vの線） | 15／26 | 11／12 | 5／2 |  |
-| コア（Tの縦棒） | 18／19 | 6／7 | 0／3 | 現行L2では副の所属だけ。専用の要求がない |
+| コア（Tの縦棒） | 18／19 | 7／6 | 0／3 | 現行L2では副の所属だけ。専用の要求がない |
 | チケット・駆動モデル | 9／13 | 10／9 | 0／4 | 現行L2では副の所属だけ。専用の要求がない |
-| OS：管理（土台） | 15／39 | 34／17 | 6／3 |  |
+| OS：管理（土台） | 16／38 | 35／16 | 6／3 |  |
 | OS：推進（チケット発行・レーン・サブエージェント） | 27／8 | 36／7 | 2／2 | 旧要求が厚く、現行L2が薄い |
 | OS：検収（CI・テスト最適化・ベンチ） | 15／11 | 27／26 | 2／4 | 旧要求が厚く、現行L2が薄い |
-| OS：改善loop（学習・判断pack・memory）（仮置き） | 8／2 | 16／7 | 1／3 | 旧要求が厚く、現行L2が薄い |
-| HELIX-Web：窓口・ダッシュボード（仮置き） | 0／0 | 19／2 | 9／1 |  |
+| OS：改善loop（学習・判断pack・memory）（仮置き） | 9／1 | 17／6 | 1／3 | 旧要求が厚く、現行L2が薄い |
+| HELIX-Web：窓口・ダッシュボード（仮置き） | 0／0 | 17／4 | 9／1 |  |
 | HELIX-Web-OS：Webサービスの運転 | 0／0 | 0／0 | 6／2 |  |
 | **計（主）** | **153** | **175** | **37** | |
 
@@ -49,7 +49,7 @@ authority_effect: none
 - サービス⑥リリースと⑦運用保守は、旧要求が合計でも数件しかない。現行L2ではHARNESSの提供条件（`HARNESS-L2-006`／`007`）、OSの導入・更新（`HELIXOS-L2-006`）、Web-OSのservice運転（`HELIXWEBOS-L2-006`）に分かれており、HARNESSのサービスとしてのリリース／運用保守は要求になっていない。
 - ダッシュボード（旧identityのPM／HM／GDの15画面とBR-06、UX-02）は、旧IR 153件には無く、旧identityにだけある。現行ではHELIX-WebのL2が受け皿である。社内向けの可視化とユーザー向けの窓口を同じ棚に置くかはPOの判断事項である。
 - OSの推進（レーン、サブエージェント）は旧要求が最も厚い（旧IR 27件、旧identity 36件）が、現行L2は`HELIXOS-L2-004`と`009`の2件である。
-- 入口のフルリバースは旧要求が17件あるが、現行L2に専用の要求がない。
+- 入口のフルリバースは旧要求が16件あるが、現行L2に専用の要求がない。
 - チケット・駆動モデルは旧要求が19件あるが、現行L2では副の所属だけである。
 - 部品のリサーチWorkflowは、旧identityの`FR-L1-27`と`HBR-P8`、現行の`HELIXOS-L2-012`が素材である。
 
@@ -64,13 +64,12 @@ authority_effect: none
 | `FR-L1-44` | サービス⑥ リリース | 成果物の提供 | 要求 | ｜ **FR-L1-44** ｜ 途中導入 onboarding workflow (既存プロジェクトへの harness baseline 確立) ｜ PO directed (2026-05-28) ｜ 既存コード/docs/PLAN 資産一覧、`.helix/` 未初期化状態 ｜ `.helix/` 初期 baseline、既存資産 → state import レポート、onboarding 完了 gate 証跡。FR-L1-14 の前段 context、FR-L1-07 初回 import 引継ぎ、FR-L1-26 段階移行と組合せ ｜ P1 ｜ GD-01 (Onboarding) ｜ |
 | `NFR-16` | — | 品質の保証 | 要求 | ｜ **NFR-16** ｜ **onboarding 互換性** — 既存プロジェクトへの途中導入時、既存 docs / コード / state の不整合を block せず段階移行 ｜ FR-L1-44 連動。既存資産を harness state に段階的に取り込み、初回 import でプロジェクトを止めない ｜ |
 
-### サービス① 画面プロト／PoC（主 3件）
+### サービス① 画面プロト／PoC（主 2件）
 
 | ID | 副の層 | 狙い | 区分 | 原文 |
 |---|---|---|---|---|
 | `BR-04` | チケット・駆動モデル | 品質の保証 | 要求 | ｜ **BR-04** ｜ PoC / 検証成果を契約化してから本実装へ合流させ、PoC の独り歩き・知見の散逸を防ぐ ｜ concept P3 ｜ |
 | `FR-L1-15` | チケット・駆動モデル | 品質の保証 | 要求 | ｜ **FR-L1-15** ｜ Discovery／PoCをScrum非内包の別軸case-driven modelとして、S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decideで実行する ｜ case-driven-workflow ｜ 仮説定義、verify script、選択済みdevelopment style ｜ poc PLAN、verify script、confirmed/rejected/pivot判定、S4後のstyle接続 ｜ P0 ｜ PM-02 (case-driven 工程) / HM-05 ｜ |
-| `FR-L1-43` | OS：改善loop（学習・判断pack・memory） | 品質の保証 | 要求に技術の決定が混在 | ｜ **FR-L1-43** ｜ PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) ｜ BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) ｜ plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) ｜ poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 ｜ P2 ｜ HM-08 ｜ |
 
 ### サービス④ 開発（主 2件）
 
@@ -127,10 +126,11 @@ authority_effect: none
 | `NFR-14` | OS：管理（土台） | 省力化とコスト削減 | 要求 | ｜ **NFR-14** ｜ **human-as-residue 原則** — 機械チェック (machine) と AI レビュー (NFR-12) で潰せない判断のみを人間 (PO) に escalate。silent pass を避ける反面、人間の判断負荷も極小化。**Recovery 収束 audit trail** (A-52 audit I-04): Recovery モード発動時、stop-hook が認識訂正履歴を自動 dump し audit trail (`.helix/recovery_log/`) に収める (recovery-workflow.md §基本フロー、収束時間 SLO は L3 NFR-grade で確定) ｜ concept §audit-framework §17.4 / 全 gate で machine → AI → human の優先順、判断要点 + 根拠 + 推奨アクション を構造化提示。**gate fail-close 例外権 = PO のみ + audit 記録 (S-03/B6=b)**、bypass 件数 0 を KPI D-06 で計測 / recovery-workflow.md (認識訂正履歴) ｜ |
 | `CN-1` | — | 品質の保証 | 要求 | ｜ CN-1 ｜ canonical 層は L1-L12。企画=L1、要求＋画面プロト=L2、要件定義・凍結=L3とする。本書のL1分類だけでL2要求・合意とL11受入の接続済みを主張しない ｜ l12-canonical directive ｜ |
 
-### コア（Tの縦棒）（主 6件）
+### コア（Tの縦棒）（主 7件）
 
 | ID | 副の層 | 狙い | 区分 | 原文 |
 |---|---|---|---|---|
+| `UX-03` | サービス⑥ リリース、HELIX-Web：窓口・ダッシュボード | 省力化とコスト削減 | 要求 | ｜ **UX-03** ｜ gate/lint 失敗時に **next_action が明確**、CLI 出力が分かりやすい、オンボーディングが滑らか ｜ DX (PO 確定 2026-05-27) ｜ |
 | `FR-L1-48` | — | 品質の保証 | 要求に技術の決定が混在 | ｜ **FR-L1-48** ｜ 内部資産 command の helix CLI subcommand 化 (dashboard / asset / builder 等) ｜ A-77 棚卸 / rebuild map W11/W12/W16 / BR-22 ｜ legacy CLI binaries 70 件 / docs/commands 19 件 ｜ `helix` subcommand 体系 ｜ P1 ｜ HM-02 ｜ |
 | `NFR-01` | — | 品質の保証 | 要求に技術の決定が混在 | ｜ **NFR-01** ｜ **cross-platform native（HELIX solo narrow）** — Windows / macOS / Linux で動くが、HELIX solo では **「開発者本人の単一プラットフォームが第一級」**（team 全体での多 OS 同時第一級保証は不要）。移植性は goal として維持 ｜ Windows = PowerShell entrypoint / macOS・Linux = bash entrypoint。WSL2 は任意互換環境 (必須外)。Git Bash 依存は局所化。**handover 保持期間 30 日 archive + 90 日削除 (B7=a)** で長期 stability 担保。**solo 改訂 (PLAN-L1-06)**: Windows 第一級の team 前提を「本人環境第一級」へ narrow ｜ |
 | `NFR-02` | サービス⑥ リリース | 品質の保証 | 要求 | ｜ **NFR-02** ｜ **更新性第一 (updatability)** — harness 本体・skill 等の更新 / 保守が容易であること (実現手段 = plugin / skill MCP 化 等は L4 ADR 送り) ｜ 工程別 skill 注入機構 (FR-L1-12) + PLAN 内蔵物原則 (§3.6) で skill 更新を局所化 ｜ |
@@ -153,7 +153,7 @@ authority_effect: none
 | `FR-L1-41` | — | 省力化とコスト削減 | 要求 | ｜ **FR-L1-41** ｜ drive 自動判定システム (PLAN/コード/依存から drive を自動分類 → orchestration_mode routing) ｜ PO directed (2026-05-28) ｜ PLAN 内容、コードファイル拡張子・パターン ｜ drive 判定結果、orchestration_mode routing 先。FR-L1-08 (mode 自動 routing) の drive 軸拡張 ｜ P1 ｜ HM-03 ｜ |
 | `HBR-P0` | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | ｜ **HBR-P0** ｜ **逸脱受け止めと選択済み開発スタイルへの収束** — workflowで逸脱・障害・暴走を受け止め、L3凍結時に合意したFull V／Production Scrum／V設計＋Scrum実装Hybridへ戻す。Discovery／PoCは独立したcase-driven routeとしてS4判断後だけ接続する。signalから開発スタイルを自動変更せず、lock／budget time-cap／Recoveryで暴走を停止する ｜ FR-L1-08/10/11/13/14/15/16/18/24/25/26/27/44は移管元。現行定義は要件v1.3 §4／§4.2 ｜ 旧Forward一律収束を置換。HR-FR-P0-01／02と対応するが、各styleへの返却・未解決route拒否・停止の実行証跡は別途検証する ｜ |
 
-### OS：管理（土台）（主 34件）
+### OS：管理（土台）（主 35件）
 
 | ID | 副の層 | 狙い | 区分 | 原文 |
 |---|---|---|---|---|
@@ -161,6 +161,7 @@ authority_effect: none
 | `FR-L1-07` | — | 省力化とコスト削減 | 要求に技術の決定が混在 | ｜ **FR-L1-07** ｜ state 自動登録 (5 イベント hook: PLAN 起票 / コード変更 / Codex 実行 / ゲート通過 / 停止)。※ extended (PLAN-REVERSE-02 fullback、2026-06-02): **session-log hook (SessionStart/PostToolUse/Stop) が session イベントを fail-open で記録し PLAN 単位ダイジェストに圧縮** → continuation/audit/FR-L1-19 へ接続。state 自動登録 (fail-close) とは別系統の観測 hook (実装 src/runtime/session-log.ts、PLAN-L6-03/L7-01)。※ extended (PLAN-REVERSE-03 fullback、2026-06-02): session-log の facet として **forced-stop 検出** (SessionStart で dangling session を強制停止と推定 → 是正フィードバックのみ記録 → concept §2.6.1 `forced_stop`=`agent_runaway` 級 Recovery trigger、起票は人間 yes、実装 src/runtime/forced-stop.ts、PLAN-L6-04/L7-02) ｜ db-auto-registration ｜ hook イベント ｜ state 自動更新、手動登録漏れ排除、session ダイジェスト、forced-stop フィードバック ｜ P0 ｜ HM-04 / HM-03 (hook 配線) ｜ |
 | `FR-L1-32` | — | 品質の保証 | 要求 | ｜ **FR-L1-32** ｜ フォルダ構成ルール (source process reference 文書 → 既存 docs/ への統合方針、tests 分散の役割明確化) ｜ folder-structure-review ｜ repo 文書群 ｜ docs/ への配置マッピング定義 ｜ P2 ｜ GD-01 (Architecture) ｜ |
 | `FR-L1-35` | HELIX-Web：窓口・ダッシュボード | 品質の保証 | 要求 | ｜ **FR-L1-35** ｜ 基盤整備状況の可視化 (実装済み / 設計済み・実装未 / 未設計の 3 区分で検証・テスト・検出基盤を一覧表示) ｜ infra-readiness ｜ 各機構の実装状況 ｜ 整備状況一覧 (区分付き) ｜ P2 ｜ HM-01 ｜ |
+| `FR-L1-51` | HELIX-Web：窓口・ダッシュボード | 成果物の提供 | 要求に技術の決定が混在 | ｜ **FR-L1-51** ｜ artifact progress color projection (実装中 / 依存未確認 / テスト済みを harness.db で赤黄緑に正規化) ｜ PLAN-L7-56 / PLAN-REVERSE-56 (2026-06-22) ｜ source artifact、covered-by test edge、impact_results、recovery PLAN ｜ `artifact_progress` projection、`helix progress artifacts` rows、linked test/dependency reason ｜ P1 ｜ HM-04 / PM-01 ｜ |
 | `NFR-08` | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | ｜ **NFR-08** ｜ **実装宣言の真実性** — 設計 doc が主張する CLI / file / schema field に実装状態列 (installed / partial / not-implemented) を必須化し、机上の「実装済」宣言を禁止する ｜ v2 BR-09 翻案。L3 以降の全設計 doc に `implementation_status` 列を必須化 (forward carry: `docs/migration/v2-import-ledger.md §2 F-6`) ｜ |
 | `NFR-17` | OS：検収（CI・テスト最適化・ベンチ） | 安全と権限 | 要求 | ｜ **NFR-17** ｜ **統合セキュリティグレード (DevSecOps 5 段階 + OWASP Agentic Top 10 + EU AI Act Art.14 human oversight)** — 下記 3 観点を単一トレース ID 配下で機械保証し、G1-trace / KPI 計測 / L4 セキュリティ設計の親 NFR とする (A-54 audit 軸1 I-01: 観点のみで NFR-ID 不在 → trace 対象外だった漏れを解消) ｜ (a) 5 段階: Develop / Commit / Build / Deploy / Operate 各段の統制 (Build = SAST / SCA / Secret Scan、L0 §2.4) / (b) OWASP Agentic Top 10 (Prompt Injection / Insecure Tool Use 等、FR-L1-09) / (c) EU AI Act Art.14 (NFR-06 / NFR-14 / BR-02 で機械保証)。詳細グレードは L3 nfr-grade §5 + L4 セキュリティ設計 ｜ |
 | `DAC-BR-001` | OS：検収（CI・テスト最適化・ベンチ） | 品質の保証 | 要求 | ｜ `DAC-BR-001` ｜ 開発者は、どの文書が現行正本で、どれが候補・参照・互換・履歴なのかを迷わず識別できる。 ｜ |
@@ -265,7 +266,7 @@ authority_effect: none
 | `3L-BR-007` | — | 品質の保証 | 要求に技術の決定が混在 | ### 3L-BR-007 GitHub監査をHELIX capabilityとして所有する |
 | `3L-BR-008` | OS：推進（チケット発行・レーン・サブエージェント） | 品質の保証 | 要求 | ### 3L-BR-008 モデル能力をrevision単位で段階認定する |
 
-### OS：改善loop（学習・判断pack・memory）（仮置き）（主 16件）
+### OS：改善loop（学習・判断pack・memory）（仮置き）（主 17件）
 
 | ID | 副の層 | 狙い | 区分 | 原文 |
 |---|---|---|---|---|
@@ -283,17 +284,16 @@ authority_effect: none
 | `FR-L1-20` | OS：管理（土台） | 品質の保証 | 要求 | ｜ **FR-L1-20** ｜ 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) ｜ observability-metrics ｜ AI 実行イベント全種 ｜ invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) ｜ P1 ｜ HM-05 / HM-08 ｜ |
 | `FR-L1-34` | — | 省力化とコスト削減 | 要求に技術の決定が混在 | ｜ **FR-L1-34** ｜ スキル・コマンド穴の優先順位管理 (vmodel-semantics 注入セット定義 / helix recover / helix route / retrofit skill 等) ｜ integration-map ｜ 穴リスト、設計確定済み仕様 ｜ 優先順位付き実装タスクリスト ｜ P2 ｜ HM-02 ｜ |
 | `FR-L1-36` | — | 省力化とコスト削減 | 要求に技術の決定が混在 | ｜ **FR-L1-36** ｜ スキル評価システム (per-skill rating / adoption / success / unused flag を skill_invocations + plan_registry から projection) ｜ BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) ｜ skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp ｜ skill_evaluations projection (skill_rating 0.0-1.0、adoption_count、success_count、unused_flag)。cold-start = 0 行。unused = 30 日以内発火なし。削除は人手のみ ｜ P2 ｜ HM-05 ｜ |
+| `FR-L1-43` | サービス① 画面プロト／PoC | 品質の保証 | 要求に技術の決定が混在 | ｜ **FR-L1-43** ｜ PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) ｜ BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) ｜ plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) ｜ poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 ｜ P2 ｜ HM-08 ｜ |
 | `HBR-P4` | サービス⑦ 運用保守 | 省力化とコスト削減 | 要求 | ｜ **HBR-P4** ｜ **自動保守システム** — drift/劣化/不整合を自動検出→**自動修復**、detection-routing 循環、学習ループ（recipe 蓄積/予防 gate 昇格）。根幹=P7 メモリ ｜ FR-L1-08/11/18/19/33/34/36/38/43/49（検出・学習・inventory・評価・drift-lint） ｜ **検出は厚いが「自動修復」FR 無し**。**learning→promote-to-gate/detector 専用 FR 無し**。劣化(flake/perf)検出未被覆 ｜ |
 | `S-BR-001` | OS：推進（チケット発行・レーン・サブエージェント） | 省力化とコスト削減 | 要求 | ## S-BR-001 利用者価値 |
 
-### HELIX-Web：窓口・ダッシュボード（仮置き）（主 19件）
+### HELIX-Web：窓口・ダッシュボード（仮置き）（主 17件）
 
 | ID | 副の層 | 狙い | 区分 | 原文 |
 |---|---|---|---|---|
 | `BR-06` | OS：管理（土台） | 成果物の提供 | 要求 | ｜ **BR-06** ｜ 複数プロダクト / 案件の工程表・進捗を **リアルタイムに横断可視化する専用 UI ダッシュボード**を提供する (実装アーキテクチャ = サーバー / DB 形式は §5 → L2/L4) ｜ ダッシュボードヒアリング / 成功④ ｜ |
 | `UX-02` | OS：管理（土台） | 成果物の提供 | 要求 | ｜ **UX-02** ｜ 工程表ダッシュボード (専用 UI) で PO と AI agent roster が進捗・詰まり・フェーズを把握できる (BR-06 の体験面) ｜ ダッシュボードヒアリング ｜ |
-| `UX-03` | コア（Tの縦棒） | 省力化とコスト削減 | 要求 | ｜ **UX-03** ｜ gate/lint 失敗時に **next_action が明確**、CLI 出力が分かりやすい、オンボーディングが滑らか ｜ DX (PO 確定 2026-05-27) ｜ |
-| `FR-L1-51` | OS：管理（土台） | 成果物の提供 | 要求に技術の決定が混在 | ｜ **FR-L1-51** ｜ artifact progress color projection (実装中 / 依存未確認 / テスト済みを harness.db で赤黄緑に正規化) ｜ PLAN-L7-56 / PLAN-REVERSE-56 (2026-06-22) ｜ source artifact、covered-by test edge、impact_results、recovery PLAN ｜ `artifact_progress` projection、`helix progress artifacts` rows、linked test/dependency reason ｜ P1 ｜ HM-04 / PM-01 ｜ |
 | `PM-01` | — | 成果物の提供 | 要求 | ｜ **PM-01** ｜ プロジェクト俯瞰ダッシュボード ｜ 4 階層プルダウン (俯瞰 / 工程 / 割当 / 詳細) による案件横断可視化 ｜ BR-06 / UX-02 / FR-L1-20 / FR-L1-08 ｜ |
 | `PM-02` | — | 成果物の提供 | 要求 | ｜ **PM-02** ｜ 工程ビュー ｜ 工程単位 deep-dive (進捗・担当・詰まりのみ、URL `/project/<案件>/L<N>`) ｜ FR-L1-01 / FR-L1-04 ｜ |
 | `PM-03` | — | 成果物の提供 | 要求 | ｜ **PM-03** ｜ Gate + 詰まり要因ビュー ｜ gate 通過状況 + 証跡 + next_action + 発生中トラブル横断 ｜ FR-L1-05 / UX-03 ｜ |
@@ -343,10 +343,10 @@ authority_effect: none
 | ID | 副の層 | 原文 |
 |---|---|---|
 | `HARNESS-L2-001` | コア（Tの縦棒） | ｜ HARNESS-L2-001 ｜ 企画・要求・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる ｜ v1.3 §2、HBR-P3 ｜ L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる ｜ |
-| `HARNESS-L2-002` | チケット・駆動モデル | ｜ HARNESS-L2-002 ｜ 対象プロダクトに適した開発styleと工程の進め方を選べる ｜ HBR-P0／P1、v1.3 §4 ｜ Full V／Production Scrum／Hybridを区別し、Discovery／PoCを別軸で扱う ｜ |
-| `HARNESS-L2-003` | チケット・駆動モデル | ｜ HARNESS-L2-003 ｜ 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる ｜ HBR-P0／P3、HNFR-P3 ｜ 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない ｜ |
-| `HARNESS-L2-004` | コア（Tの縦棒）、サービス③ 設計 | ｜ HARNESS-L2-004 ｜ 要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる ｜ HBR-P3／P9 ｜ 上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない ｜ |
-| `HARNESS-L2-005` | OS：検収（CI・テスト最適化・ベンチ）、サービス④ 開発 | ｜ HARNESS-L2-005 ｜ 言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる ｜ HNFR-P3、v1.3 §4、新世代CI要求候補 ｜ 特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる ｜ |
+| `HARNESS-L2-002` | チケット・駆動モデル、サービス① 画面プロト／PoC | ｜ HARNESS-L2-002 ｜ 対象プロダクトに適した開発styleと工程の進め方を選べる ｜ HBR-P0／P1、v1.3 §4 ｜ Full V／Production Scrum／Hybridを区別し、Discovery／PoCを別軸で扱う ｜ |
+| `HARNESS-L2-003` | チケット・駆動モデル、サービス① 画面プロト／PoC | ｜ HARNESS-L2-003 ｜ 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる ｜ HBR-P0／P3、HNFR-P3 ｜ 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない ｜ |
+| `HARNESS-L2-004` | コア（Tの縦棒）、サービス③ 設計、サービス⑤ リファクタリング | ｜ HARNESS-L2-004 ｜ 要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる ｜ HBR-P3／P9 ｜ 上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない ｜ |
+| `HARNESS-L2-005` | OS：検収（CI・テスト最適化・ベンチ）、サービス④ 開発、サービス⑤ リファクタリング | ｜ HARNESS-L2-005 ｜ 言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる ｜ HNFR-P3、v1.3 §4、新世代CI要求候補 ｜ 特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる ｜ |
 
 ### OS：管理（土台）（主 6件）
 
