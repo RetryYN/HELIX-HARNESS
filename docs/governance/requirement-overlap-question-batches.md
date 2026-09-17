@@ -1,13 +1,18 @@
 # 責務・機能重複候補 人間質問batch
 
 prepared_at: 2026-09-17
-status: draft_review_pending
+status: superseded_as_human_retirement_question_surface
 program_id: RDP-002
 authority_effect: none
 question_count: 25
 batch_size: 5
 
 ## 目的と判断範囲
+
+> **2026-09-17訂正:** 本書の`Q-OVL-*`は責務境界の比較資料として保持するが、人間へ提示する削除候補質問には
+> 使用しない。削除・吸収・統合・技術指定廃止の判断は
+> [旧要求の削除・吸収・置換候補 人間質問batch](requirement-retirement-question-batches.md)で、原要求identity単位に5件ずつ行う。
+> 先に提示したBatch 1への`OK`は削除判断へ適用していない。
 
 製品責務分類第1層で`split_required`または`cross_product_connection`となった旧Requirement IR 66件を、
 [初期cluster台帳](requirement-overlap-candidate-clusters.jsonl)の20 clusterへ一度ずつ割り当てた。さらに

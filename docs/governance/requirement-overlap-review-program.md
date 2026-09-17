@@ -1,6 +1,6 @@
 # 要求間の責務・機能重複review program
 
-status: initial_and_supplementary_clusters_draft_review_pending
+status: retirement_candidate_batch_1_draft_review_pending
 program_id: RDP-002
 parent_program: RDP-001
 owner: HELIX-OS management
@@ -43,14 +43,18 @@ routing containerに現れる責務・機能の重複候補を発見し、同一
 
 初期waveでは、製品責務分類第1層で`split_required`または`cross_product_connection`となった旧Requirement IR 66件を、
 [cluster台帳](requirement-overlap-candidate-clusters.jsonl)の20 clusterへ重複0・欠落0で割り当てた。
-[人間質問batch](requirement-overlap-question-batches.md)のうち最初の4回は、初期66件の責務境界候補を確認する。これは
-初期66件だけの
-比較waveであり、残るholdingを重複なしと判定しない。
+[責務境界質問](requirement-overlap-question-batches.md)はcluster比較資料として保持するが、人間の削除判断には使用しない。
+clusterから実際の包含・統合・技術指定廃止候補を原要求identity単位で抽出し、
+[retirement候補台帳](requirement-retirement-candidates.jsonl)と
+[人間質問batch](requirement-retirement-question-batches.md)で5件ずつ確認する。初期Batch 1は吸収3件、統合1件、
+技術指定廃止1件であり、いずれもretire適用前の候補である。これは初期66件だけの比較waveであり、残るholdingを
+重複なしまたはretire対象外と判定しない。
 
 Issue #1847のScaffold Bindingは、GitHub本文を要求正本にせず
 [ローカルsource holding](github-issue-1847-scaffold-source-holding.json)へexact保存した。そのcore binding、Scaffold CI、
 replacement／retireを別clusterにし、Web dashboard接続と旧HELIX-DB実装重複を加えた5件を
-[補助cluster台帳](requirement-overlap-supplementary-candidates.jsonl)へ置く。質問は合計25件、5問×5回とする。
+[補助cluster台帳](requirement-overlap-supplementary-candidates.jsonl)へ置く。25 clusterは検索母集団であり、質問数ではない。
+retirement候補は比較が成立したものから5件ずつ追加し、候補外の要求も未処理母集団へ残す。
 
 ## cluster record
 
@@ -96,7 +100,8 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 ## 現在の停止条件
 
 Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。product routingは旧Requirement IR 153件について
-候補登録済みで、multi-product候補66件を初期20 cluster、補助sourceを5 clusterへ整理した。現在はDraft PRの独立review後、人間へ一度に5問ずつ
-確認する前である。回答前に最終relation、successor統合、要求削除を決定せず、回答後も個別要求の採否へ読み替えない。
-全25問の回答、無損失照合、再review、main read-afterまでIssue #1814をcloseしない。L3、実装、DB、CI、archiveの
+候補登録済みで、multi-product候補66件を初期20 cluster、補助sourceを5 clusterへ整理した。責務境界だけを聞く旧質問は
+削除判断に使わず、原要求identity単位のretirement候補Batch 1を5件作成した。独立review後、人間へこの5件だけを提示する。
+回答前にretire、successor統合、要求削除を決定せず、回答後も候補回答を最終retireへ読み替えない。
+全母集団の候補探索、各候補の無損失照合、最終人間decision、再review、main read-afterまでIssue #1814をcloseしない。L3、実装、DB、CI、archiveの
 物理削除へ進まない。
