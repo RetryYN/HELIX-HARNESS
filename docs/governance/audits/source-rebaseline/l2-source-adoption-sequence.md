@@ -35,6 +35,20 @@ HELIX-Web、HELIX-Web-OS、製品間接続、分割要の候補を登録し、�
 `L2接続済み`は採択済みを意味しない。`再採否待ち`も候補の存在確認が不足している意味ではなく、
 新しい親revisionに対する人間判断が残る状態である。
 
+## S0 仮設束縛（Scaffold）
+
+2026-09-18のPO指示により、S1の前に、正式な設計・実装・CIが未成立の間の仮の物を扱う条件を判断する。
+足場が建物の成立まで作業と接続を支えるのと同じく、仮の物が担う役割と置換先を保持し、正式な成立と混同しない。
+
+| Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
+|---|---|---|---|---|
+| L2D-S0-01 | [`scaffold-binding`](../../candidates/scaffold-binding-requirements.md) | HARNESS／HELIX-OS | 候補起草済み・未承認・L2本文未接続 | 仮の物の使用条件、保持する役割と義務、仮の検証と正式な検証の分離、置換時の無損失確認、撤去。HARNESSの規範とOSの登録・隔離実行・lifecycleへのsplit案 |
+
+S0の採否はScaffoldのschema、runtime、仮CI、adapterを実装・起動する許可ではない。`L2D-S0-01`は2026-09-17の
+無損失ベースラインと候補31系列の後に追加した新規系列であり、旧要求の母集団件数を変更しない。
+`L2D-S0-01`と`L2D-S1-01`は互いの判断を前提にしない。L2／L11本文は`L2D-S1-01`の判断packetがexact digestで
+参照しているため、S0の候補追加では変更しない。
+
 ## S1 authority・要求変更境界
 
 最初に、後続の採否記録とAI読取りが依存する意味管理を確定する。
@@ -102,6 +116,6 @@ S4の完了前にpackage identity、価格、契約、release、配布、旧資�
 
 ## 完了条件
 
-29 decision unitすべてについて、判断対象revision、target、親L1、L2 ID、L11条件、採否、未解決事項が記録され、
+S1–S4の29 decision unitと、2026-09-18に追加したS0の1 decision unitすべてについて、判断対象revision、target、親L1、L2 ID、L11条件、採否、未解決事項が記録され、
 対象別L2本文と一致したときにsource採否を閉じる。候補31系列の残る1系列`helix-concept-v4`は
-上位のConcept／L1人間判断packetで扱うため、本書の29 unitには重複算入しない。
+上位のConcept／L1人間判断packetで扱うため、本書のS1–S4の29 unitには重複算入しない。S0の`scaffold-binding`は候補31系列の外にある新規系列である。
