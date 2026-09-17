@@ -1,4 +1,4 @@
-# 旧Requirement IR 153件 構造分類（T＋V＋O）
+# 旧Requirement IR 153件 システム群による分類
 
 prepared_at: 2026-09-18
 status: draft_review_pending
@@ -7,7 +7,7 @@ source_count: 153
 
 ## この文書で行うこと
 
-[HELIX構造に関するPO発言記録](../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分に従い、旧Requirement IR 153件へ「どの層の、どのシステムの要求か」のラベルを付ける。要求本文、意味、採否、successorは変更しない。機械台帳は[legacy-ir-structure-classification.jsonl](legacy-ir-structure-classification.jsonl)、製品振り分けの訂正案は[legacy-ir-product-routing-corrections.jsonl](legacy-ir-product-routing-corrections.jsonl)である。
+[HELIXの構造仮説（システム群）](../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分に従い、旧Requirement IR 153件へ「どの層の、どのシステムの要求か」のラベルを付ける。要求本文、意味、採否、successorは変更しない。機械台帳は[legacy-ir-structure-classification.jsonl](legacy-ir-structure-classification.jsonl)、製品振り分けの訂正案は[legacy-ir-product-routing-corrections.jsonl](legacy-ir-product-routing-corrections.jsonl)である。
 
 分類の軸は次の6つである。
 
@@ -24,7 +24,7 @@ source_count: 153
 
 ## 層の語彙（機械用codeと名称）
 
-3つの分類台帳（第1波〜第3波）の`layer_primary`／`layer_secondary`は、次のcodeだけを使う。定義は[PO発言の記録](../concept/helix-structure-tvo-po-statements-2026-09-18.md)に従う。
+3つの分類台帳（第1波〜第3波）の`layer_primary`／`layer_secondary`は、次のcodeだけを使う。定義は[HELIXの構造仮説（システム群）](../concept/helix-structure-tvo-po-statements-2026-09-18.md)に従う。
 
 | code | 名称 | 仮置き |
 |---|---|---|
@@ -39,8 +39,8 @@ source_count: 153
 | `part_requirement_engine` | 部品：要求エンジン | 仮置き |
 | `part_design_harness` | 部品：デザインHARNESS | 仮置き |
 | `part_design_template` | 部品：Design Template・設計義務 | 仮置き |
-| `frame_development_method` | 枠：開発方式・接続・Gate（Vの線） |  |
-| `core` | コア（Tの縦棒） |  |
+| `frame_development_method` | 枠：開発方式・接続・Gate |  |
+| `core` | コア |  |
 | `ticket` | チケット・駆動モデル |  |
 | `os_management` | OS：管理（土台） |  |
 | `os_promotion` | OS：推進（チケット発行・レーン・サブエージェント） |  |
@@ -65,8 +65,8 @@ source_count: 153
 | 部品：要求エンジン（仮置き） | 6 | 2 |
 | 部品：デザインHARNESS（仮置き） | 6 | 0 |
 | 部品：Design Template・設計義務（仮置き） | 11 | 2 |
-| 枠：開発方式・接続・Gate（Vの線） | 15 | 26 |
-| コア（Tの縦棒） | 18 | 19 |
+| 枠：開発方式・接続・Gate | 15 | 26 |
+| コア | 18 | 19 |
 | チケット・駆動モデル | 9 | 13 |
 | OS：管理（土台） | 16 | 38 |
 | OS：推進（チケット発行・レーン・サブエージェント） | 27 | 8 |
@@ -103,12 +103,12 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 旧システム | 現在 | 訂正案 | 理由 |
 |---|---|---|---|---|
-| `HIL-FR-01` | InfinityLoopEvent | OS | HARNESS／OS | 工程段の並び（intakeからmerge／issueまでの順序）は工程の規範であり、PO発言「HARNESSには明確に順序がある」に従いHARNESSが所有する。状態の運転、digest binding、event causalityはOSである |
-| `HIL-FR-11` | Agent Registry | HARNESS | HARNESS／OS | agent contractの語彙と意味はHARNESS、registryとしての登録・版・保持は管理層（OS）である。PO発言「エージェントレーンやヘリックスベンチ、CIとかは管理層がないと成立しない」に従う |
+| `HIL-FR-01` | InfinityLoopEvent | OS | HARNESS／OS | 工程段の並び（intakeからmerge／issueまでの順序）は工程の規範である。工程の順序を定義する責務は製品責務境界でHARNESSにあり、順序の定義をOSだけに置くと外部提供するHARNESS単体で工程が成立しない。状態の運転、digest binding、event causalityはOSである |
+| `HIL-FR-11` | Agent Registry | HARNESS | HARNESS／OS | agent contractの語彙と意味はHARNESS、registryとしての登録・版・保持は管理層（OS）である。レーン、ベンチ、CIはいずれも登録と版の管理を前提に動くため、registryの運転を管理層に置く |
 | `HIL-FR-15` | Hybrid docgen ingestion | OS | HARNESS／OS | 既存ZIPのmetadata・trace等をHELIX契約へ変換する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、取込の実行・観測・記録はOSである。HIL-FR-16／37と同じ境界である |
 | `HIL-FR-16` | Asset Inventory | OS | HARNESS／OS | 既存資産を機能単位で比較しadopt／harden／redesign／rejectを判断する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、観測・記録の運転はOSである |
 | `HIL-FR-37` | Source Capability Atomizer | OS | HARNESS／OS | atomic behaviorの定義とcoverage分母の規範はフルリバースの中核でHARNESSが所有する。同じ規範を持つHIL-NFR-22は既にHARNESS／OSである。extractorの実行と記録はOSである |
-| `HIL-FR-41` | Design Template Registry | HARNESS | HARNESS／OS | templateのschema・必須論点・適用条件はHARNESS、版と適用履歴の管理はOSである。製品責務境界のPO決定「HARNESSはDesign Templateと初期seedを持ち、HELIX-OSが版・適用・利用結果・改善を管理する」に従う |
+| `HIL-FR-41` | Design Template Registry | HARNESS | HARNESS／OS | templateのschema・必須論点・適用条件は設計義務の規範でありHARNESSが所有する。版と適用履歴・利用結果・改善の管理は運転でありOSが所有する。この分担は製品責務境界（docs/concept/product-boundary.md）のDesign Templateの責務分担と同じである |
 | `HIL-FR-57` | Judgment Pack Registry | HARNESS | HARNESS／OS | 判断packの観点・反証質問・停止条件の意味はHARNESS、registryとしての版・保持は管理層（OS）である。上位のHIL-BR-29は既にHARNESS／OSである |
 
 ## 技術の決定（ADR候補）と、混在の一覧
@@ -124,9 +124,9 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-BR-10` | 因果chain | 要求に技術の決定が混在 | OS：管理（土台） |
 | `HIL-BR-12` | Intake正規化 | 要求に技術の決定が混在 | チケット・駆動モデル |
 | `HIL-BR-14` | Source Capability Coverage Gate | 要求に技術の決定が混在 | 入口：フルリバース |
-| `HIL-BR-16` | Three-stage CI Orchestrator | 要求に技術の決定が混在 | 枠：開発方式・接続・Gate（Vの線） |
+| `HIL-BR-16` | Three-stage CI Orchestrator | 要求に技術の決定が混在 | 枠：開発方式・接続・Gate |
 | `HIL-BR-17` | Finding Disposition | 要求に技術の決定が混在 | チケット・駆動モデル |
-| `HIL-BR-19` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア（Tの縦棒） |
+| `HIL-BR-19` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア |
 | `HIL-BR-32` | Worker Sandbox Contract | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
 | `HIL-FR-01` | InfinityLoopEvent | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
 | `HIL-FR-02` | PR hook intake | 要求に技術の決定が混在 | OS：検収（CI・テスト最適化・ベンチ） |
@@ -138,11 +138,11 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-FR-16` | Asset Inventory | 要求に技術の決定が混在 | 入口：フルリバース |
 | `HIL-FR-21` | Source Snapshot Manifest | 要求に技術の決定が混在 | 入口：フルリバース |
 | `HIL-FR-25` | Hybrid Document Core Engine Registry | 要求に技術の決定が混在 | OS：管理（土台） |
-| `HIL-FR-27` | Node/Python Supervisor | 要求に技術の決定が混在 | コア（Tの縦棒） |
+| `HIL-FR-27` | Node/Python Supervisor | 要求に技術の決定が混在 | コア |
 | `HIL-FR-28` | Three-stage CI Orchestrator | 要求に技術の決定が混在 | OS：検収（CI・テスト最適化・ベンチ） |
 | `HIL-FR-30` | Finding Disposition | 要求に技術の決定が混在 | チケット・駆動モデル |
-| `HIL-FR-33` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-FR-34` | OS Contract Runner | 要求に技術の決定が混在 | コア（Tの縦棒） |
+| `HIL-FR-33` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア |
+| `HIL-FR-34` | OS Contract Runner | 要求に技術の決定が混在 | コア |
 | `HIL-FR-52` | Atomic Canonicalization Transaction | 要求に技術の決定が混在 | OS：管理（土台） |
 | `HIL-FR-63` | Effort Router | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
 | `HIL-FR-65` | Delegation Environment Hygiene | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
@@ -151,20 +151,20 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-FR-69` | Delegation Audit Evidence | 要求に技術の決定が混在 | OS：管理（土台） |
 | `HIL-NFR-01` | PR hook intake | 要求に技術の決定が混在 | OS：管理（土台） |
 | `HIL-NFR-02` | Agent Registry／Muster | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
-| `HIL-NFR-09` | OS Contract Runner | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-NFR-14` | Node/Python Supervisor | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-NFR-19` | OS Contract Runner | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-TR-01` | runtime選択（TypeScript＋Node.js） | 技術の決定（ADR候補） | コア（Tの縦棒） |
-| `HIL-TR-02` | Python data／detection plane | 技術の決定（ADR候補） | コア（Tの縦棒） |
-| `HIL-TR-03` | ZIP Python実装の取込境界 | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-TR-04` | 対応OSの優先順位 | 技術の決定（ADR候補） | コア（Tの縦棒） |
-| `HIL-TR-05` | OS Contract Runner | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-TR-06` | dependency再現性 | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-TR-07` | SQLite／harness.db | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-TR-08` | Node↔Python IPC | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-TR-09` | Python workerのwrite境界 | 要求に技術の決定が混在 | コア（Tの縦棒） |
-| `HIL-TR-10` | harness.dbの論理分離 | 技術の決定（ADR候補） | コア（Tの縦棒） |
-| `HIL-TR-11` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア（Tの縦棒） |
+| `HIL-NFR-09` | OS Contract Runner | 要求に技術の決定が混在 | コア |
+| `HIL-NFR-14` | Node/Python Supervisor | 要求に技術の決定が混在 | コア |
+| `HIL-NFR-19` | OS Contract Runner | 要求に技術の決定が混在 | コア |
+| `HIL-TR-01` | runtime選択（TypeScript＋Node.js） | 技術の決定（ADR候補） | コア |
+| `HIL-TR-02` | Python data／detection plane | 技術の決定（ADR候補） | コア |
+| `HIL-TR-03` | ZIP Python実装の取込境界 | 要求に技術の決定が混在 | コア |
+| `HIL-TR-04` | 対応OSの優先順位 | 技術の決定（ADR候補） | コア |
+| `HIL-TR-05` | OS Contract Runner | 要求に技術の決定が混在 | コア |
+| `HIL-TR-06` | dependency再現性 | 要求に技術の決定が混在 | コア |
+| `HIL-TR-07` | SQLite／harness.db | 要求に技術の決定が混在 | コア |
+| `HIL-TR-08` | Node↔Python IPC | 要求に技術の決定が混在 | コア |
+| `HIL-TR-09` | Python workerのwrite境界 | 要求に技術の決定が混在 | コア |
+| `HIL-TR-10` | harness.dbの論理分離 | 技術の決定（ADR候補） | コア |
+| `HIL-TR-11` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア |
 
 ## 層ごとの一覧（原文つき）
 
@@ -175,15 +175,15 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
 | `HIL-BR-14` | 業務の目的 | OS：管理（土台） | 品質の保証 | 要求に技術の決定が混在 | HARNESS／OS | ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` ref authority、現行HELIXのsourceをatomic behavior単位へ完全分解し、各項目を採否判断から要件・設計・テスト・Gateまで追跡する。file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない。ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し、観測時の件数を要件へ固定しない。 |
-| `HIL-FR-22` | 機能 | 枠：開発方式・接続・Gate（Vの線）、OS：管理（土台） | 品質の保証 | 要求 | HARNESS／OS | Source Capability Coverage Gateは各抽出capabilityに一意IDを付け、`adopt/harden/redesign/reject/absorbed`、根拠、HIL要件、基本設計、test、detector/gateを双方向joinする。未判断、根拠なしreject、孤立capability、複合IDによる一括合格が1件でもあればpair-freezeを拒否する。 ｜ capability ledger、coverage matrix、failure code |
+| `HIL-FR-22` | 機能 | 枠：開発方式・接続・Gate、OS：管理（土台） | 品質の保証 | 要求 | HARNESS／OS | Source Capability Coverage Gateは各抽出capabilityに一意IDを付け、`adopt/harden/redesign/reject/absorbed`、根拠、HIL要件、基本設計、test、detector/gateを双方向joinする。未判断、根拠なしreject、孤立capability、複合IDによる一括合格が1件でもあればpair-freezeを拒否する。 ｜ capability ledger、coverage matrix、failure code |
 | `HIL-NFR-12` | 品質の制約 | — | 品質の保証 | 要求 | HARNESS／OS | source coverageは100%列挙を要求し、文書名の列挙、代表fixture、検索結果0件、単一包括要件を完全性証拠にしない。各判断はsource path/entry、digest、抽出時点へ再現可能に結ぶ。 |
 
 **Universal Reverse Gate**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-04` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Universal Reverse Gateは全IssueのR0–R4を順序実行し、各phaseのobligation集合、input/output digest、stage固有schema、source coverage、R4 routing、双方向参照を検査する。R1を含むphase skipは認めず、該当契約なしも探索証拠付き結論として記録する。 ｜ pass/fail receipt＋不足/空洞化code |
-| `HIL-NFR-03` | 品質の制約 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 全IssueのReverse処理量を省略しない。`none/not-required/exempt`とphase skipを禁止し、budget到達は未完obligationを免除せずcheckpoint＋未完了状態へ遷移する。 |
+| `HIL-FR-04` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | Universal Reverse Gateは全IssueのR0–R4を順序実行し、各phaseのobligation集合、input/output digest、stage固有schema、source coverage、R4 routing、双方向参照を検査する。R1を含むphase skipは認めず、該当契約なしも探索証拠付き結論として記録する。 ｜ pass/fail receipt＋不足/空洞化code |
+| `HIL-NFR-03` | 品質の制約 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | 全IssueのReverse処理量を省略しない。`none/not-required/exempt`とphase skipを禁止し、budget到達は未完obligationを免除せずcheckpoint＋未完了状態へ遷移する。 |
 
 **Hybrid docgen ingestion**
 
@@ -207,7 +207,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-35` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Reverse Substance GateはR0 evidence map、R1 observed contracts、R2 as-is design/test、R3 intent hypothesis＋PO検証、R4 gap/routingをstage別schemaで検査し、空、placeholder、同文、同digest、対象obligation未被覆、根拠なし`no finding`を拒否する。 ｜ phase assertion、coverage、content digest、substance failure code |
+| `HIL-FR-35` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | Reverse Substance GateはR0 evidence map、R1 observed contracts、R2 as-is design/test、R3 intent hypothesis＋PO検証、R4 gap/routingをstage別schemaで検査し、空、placeholder、同文、同digest、対象obligation未被覆、根拠なし`no finding`を拒否する。 ｜ phase assertion、coverage、content digest、substance failure code |
 | `HIL-NFR-20` | 品質の制約 | — | 品質の保証 | 要求 | HARNESS／OS | Reverse artifactは非空、stage間非同一、source span再現可能、obligation coverage 100%を満たす。文字数だけの下限を内容証拠にせず、stage固有fieldとsemantic assertionで検査する。 |
 
 **Source Capability Atomizer**
@@ -239,15 +239,15 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-21` | 業務の目的 | チケット・駆動モデル、枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS | 設計上の重複、責務混在、変更波及、埋込みpolicyを、外部仕様と受入挙動を維持したまま外部化・共通化・オブジェクト化する第一級`DesignRefactor`駆動モデルを持つ。要求・公開contract・永続state semanticsを変える場合は`Redesign`または`Retrofit`へrerouteする。 |
-| `HIL-FR-39` | 機能 | 枠：開発方式・接続・Gate（Vの線）、コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS／OS | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 ｜ design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt |
+| `HIL-BR-21` | 業務の目的 | チケット・駆動モデル、枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS | 設計上の重複、責務混在、変更波及、埋込みpolicyを、外部仕様と受入挙動を維持したまま外部化・共通化・オブジェクト化する第一級`DesignRefactor`駆動モデルを持つ。要求・公開contract・永続state semanticsを変える場合は`Redesign`または`Retrofit`へrerouteする。 |
+| `HIL-FR-39` | 機能 | 枠：開発方式・接続・Gate、コア | 品質の保証 | 要求 | HARNESS／OS | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 ｜ design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt |
 | `HIL-NFR-24` | 品質の制約 | — | 品質の保証 | 要求 | HARNESS／OS | Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。 |
 
 **Ledger Design Refactor**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-50` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 ｜ ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt |
+| `HIL-FR-50` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 ｜ ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt |
 
 ### サービス⑥ リリース（主 1件）
 
@@ -287,8 +287,8 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-24` | 業務の目的 | サービス② 要件定義、OS：管理（土台）、コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS／OS | 要件定義そのものを設計対象として台帳化し、原文、原子要求、authority、分類、scope、priority、acceptance oracle、capability/service、template適用、design obligation、revisionを一つの履歴へ結ぶ。trace行の存在だけを要件定義完了とみなさない。 |
-| `HIL-FR-45` | 機能 | サービス② 要件定義、OS：管理（土台）、コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS／OS | Requirement Definition Ledgerはstable requirement IDとimmutable revisionを持ち、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する。split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。 ｜ requirement definition/revision、typed edge、change/applicability receipt、orphan/stale finding |
+| `HIL-BR-24` | 業務の目的 | サービス② 要件定義、OS：管理（土台）、コア | 品質の保証 | 要求 | HARNESS／OS | 要件定義そのものを設計対象として台帳化し、原文、原子要求、authority、分類、scope、priority、acceptance oracle、capability/service、template適用、design obligation、revisionを一つの履歴へ結ぶ。trace行の存在だけを要件定義完了とみなさない。 |
+| `HIL-FR-45` | 機能 | サービス② 要件定義、OS：管理（土台）、コア | 品質の保証 | 要求 | HARNESS／OS | Requirement Definition Ledgerはstable requirement IDとimmutable revisionを持ち、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する。split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。 ｜ requirement definition/revision、typed edge、change/applicability receipt、orphan/stale finding |
 | `HIL-NFR-28` | 品質の制約 | OS：管理（土台） | 品質の保証 | 要求 | HARNESS／OS | requirement coverageの行数、ID連番、文書存在だけを要件定義の設計完全性としない。各active requirementはsource atom、authority、acceptance oracle、service/capabilityまたは根拠付き非該当、template applicability、design obligationへ個別に結び、未解決ambiguity、orphan、stale revisionをgreenにしない。 |
 
 ### 部品：デザインHARNESS（仮置き）（主 6件）
@@ -297,8 +297,8 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-13` | 業務の目的 | サービス① 画面プロト／PoC、枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS | 全PLANは画面工程を`prototype_required`または`not_applicable`へ明示分類する。画面対象はprototype→walkthrough→要求back-propagation→agreement後に要件をfreezeし、画面非対象は証拠付きskip receiptでのみ通過する。 |
-| `HIL-FR-17` | 機能 | サービス① 画面プロト／PoC、枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Screen Applicability GateはL0 charter、scope、公開surfaceから画面／対話の有無を判定する。画面ありはDesign HARNESS specialist capabilityと必要時のcase-driven prototypeを別々に発動し、画面なしskipには理由、判定者、入力digest、再entry triggerを要求する。 ｜ `prototype_required` taskまたは`not_applicable` receipt |
+| `HIL-BR-13` | 業務の目的 | サービス① 画面プロト／PoC、枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS | 全PLANは画面工程を`prototype_required`または`not_applicable`へ明示分類する。画面対象はprototype→walkthrough→要求back-propagation→agreement後に要件をfreezeし、画面非対象は証拠付きskip receiptでのみ通過する。 |
+| `HIL-FR-17` | 機能 | サービス① 画面プロト／PoC、枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | Screen Applicability GateはL0 charter、scope、公開surfaceから画面／対話の有無を判定する。画面ありはDesign HARNESS specialist capabilityと必要時のcase-driven prototypeを別々に発動し、画面なしskipには理由、判定者、入力digest、再entry triggerを要求する。 ｜ `prototype_required` taskまたは`not_applicable` receipt |
 
 **Prototype Builder**
 
@@ -316,8 +316,8 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-20` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Screen Gateは画面対象ならartifact、walkthrough、要求反映、prototype agreementを検査し、画面非対象ならskip receiptのscope/digest/再entry条件を検査する。いずれも無い場合はL1 freezeとL3開始をfail-closeする。 ｜ G2判定、agreementまたはskip receipt、不足code |
-| `HIL-NFR-11` | 品質の制約 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 画面工程は暗黙skip不可とする。画面対象では静的wireframe/proseだけを操作可能prototypeの代替にせず、画面非対象ではLLMの自由文判断だけをskip evidenceにしない。 |
+| `HIL-FR-20` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | Screen Gateは画面対象ならartifact、walkthrough、要求反映、prototype agreementを検査し、画面非対象ならskip receiptのscope/digest/再entry条件を検査する。いずれも無い場合はL1 freezeとL3開始をfail-closeする。 ｜ G2判定、agreementまたはskip receipt、不足code |
+| `HIL-NFR-11` | 品質の制約 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | 画面工程は暗黙skip不可とする。画面対象では静的wireframe/proseだけを操作可能prototypeの代替にせず、画面非対象ではLLMの自由文判断だけをskip evidenceにしない。 |
 
 ### 部品：Design Template・設計義務（仮置き）（主 11件）
 
@@ -326,7 +326,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
 | `HIL-BR-22` | 業務の目的 | サービス③ 設計 | 品質の保証 | 要求 | HARNESS | 要求系統とservice/capability系統をDesign Templateへ結び、各要求から生じる設計義務を原子的に生成・消込する。閉じた要求集合について説明のない設計漏れを0件にし、未知の要求まで網羅したとは主張しない。 |
-| `HIL-FR-42` | 機能 | サービス③ 設計、コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS／OS | Design Obligation Graphは`source/directive→requirement atom→capability/service→domain object→API/data/state/event/failure/security/observability/lifecycle/operation/test oracle/gate`を双方向に結び、必須義務を生成する。未消込、孤児、placeholder、根拠のないN/A、aggregate一括消込が1件でもあればpair-freezeを拒否する。 ｜ obligation graph、discharge receipt、coverage receipt、未消込finding |
+| `HIL-FR-42` | 機能 | サービス③ 設計、コア | 品質の保証 | 要求 | HARNESS／OS | Design Obligation Graphは`source/directive→requirement atom→capability/service→domain object→API/data/state/event/failure/security/observability/lifecycle/operation/test oracle/gate`を双方向に結び、必須義務を生成する。未消込、孤児、placeholder、根拠のないN/A、aggregate一括消込が1件でもあればpair-freezeを拒否する。 ｜ obligation graph、discharge receipt、coverage receipt、未消込finding |
 | `HIL-NFR-26` | 品質の制約 | サービス③ 設計、OS：管理（土台） | 品質の保証 | 要求 | HARNESS／OS | 文書、template、見出し、入力欄の存在だけを設計完全性とみなさない。各義務は意味のある設計内容、双方向edge、test oracleまたはscope付きN/A receiptで個別消込し、`TBD`、空欄、範囲表記、1行での複数義務消込を拒否する。 |
 
 **Contract Portfolio Planner**
@@ -354,7 +354,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-47` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 省力化とコスト削減 | 要求 | HARNESS | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 ｜ template atom、ledger proposal、extractor/version digest、gap finding |
+| `HIL-FR-47` | 機能 | 枠：開発方式・接続・Gate | 省力化とコスト削減 | 要求 | HARNESS | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 ｜ template atom、ledger proposal、extractor/version digest、gap finding |
 
 **Template Example Calibrator**
 
@@ -362,7 +362,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 |---|---|---|---|---|---|---|
 | `HIL-FR-55` | 機能 | サービス③ 設計 | 品質の保証 | 要求 | HARNESS | Template Example Calibratorはactive templateの各validation ruleとapplicability branchに対し、最低限canonical positive 1件と境界negative 1件を要求する。状態遷移、failure、security、migration、multi-runtime差異はrisk分析で未被覆の場合だけ例を追加し、例の個数ではなくrule/branch/risk coverageで十分性を判定する。 ｜ example adequacy matrix、positive/negative fixture、risk追加理由、redundancy finding |
 
-### 枠：開発方式・接続・Gate（Vの線）（主 15件）
+### 枠：開発方式・接続・Gate（主 15件）
 
 **工程Gate群（AdmissionからClosure）**
 
@@ -382,16 +382,16 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-16` | 業務の目的 | OS：検収（CI・テスト最適化・ベンチ）、コア（Tの縦棒） | 品質の保証 | 要求に技術の決定が混在 | HARNESS／OS | 検証をslice統合前のimpact CI、candidate固定後のfull CI、GitHub PR上の外部CIの3段に固定し、各段のSHA/treeと直前段からのlineageがgreenでなければ次段へ進めない。style内統合によるSHA変更はpredecessor bindingで追跡する。 |
+| `HIL-BR-16` | 業務の目的 | OS：検収（CI・テスト最適化・ベンチ）、コア | 品質の保証 | 要求に技術の決定が混在 | HARNESS／OS | 検証をslice統合前のimpact CI、candidate固定後のfull CI、GitHub PR上の外部CIの3段に固定し、各段のSHA/treeと直前段からのlineageがgreenでなければ次段へ進めない。style内統合によるSHA変更はpredecessor bindingで追跡する。 |
 | `HIL-NFR-15` | 品質の制約 | OS：検収（CI・テスト最適化・ベンチ） | 品質の保証 | 要求 | HARNESS／OS | 3段CI receiptは各段自身のcommit/tree digestと直前段receiptへbindし、lineageのない別SHA greenを再利用しない。quarantine resultをgreen件数へ算入しない。 |
 
 **Layer Ledger Registry**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-25` | 業務の目的 | コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS | canonical L1からL12の各layerに粒度固有の設計・実行・検証台帳を置く`Layer Ledger Chain`を持つ。L0 charterは層外authority anchorとしてL1企画へ投影する。各台帳は上位/下位layerと双方向に導出・逆伝播し、正規V-modelの左右pairとも双方向に対応する。上下または左右の片edgeだけで工程完了を主張しない。 |
-| `HIL-FR-46` | 機能 | コア（Tの縦棒）、OS：管理（土台） | 品質の保証 | 要求 | HARNESS／OS | Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 ｜ layer ledger catalog、row revision、layer snapshot、coverage receipt |
-| `HIL-NFR-29` | 品質の制約 | コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS／OS | Layer Ledger Chainはtemplate/file/章/aggregate親の存在をpair coverageに算入せず、原子的obligationとoracleを分母にする。上下・左右edgeは両方向、同一revision/snapshot、意味粒度一致を要求し、deferred、stale、未実行、片肺pairをgreenにしない。 |
+| `HIL-BR-25` | 業務の目的 | コア | 品質の保証 | 要求 | HARNESS | canonical L1からL12の各layerに粒度固有の設計・実行・検証台帳を置く`Layer Ledger Chain`を持つ。L0 charterは層外authority anchorとしてL1企画へ投影する。各台帳は上位/下位layerと双方向に導出・逆伝播し、正規V-modelの左右pairとも双方向に対応する。上下または左右の片edgeだけで工程完了を主張しない。 |
+| `HIL-FR-46` | 機能 | コア、OS：管理（土台） | 品質の保証 | 要求 | HARNESS／OS | Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 ｜ layer ledger catalog、row revision、layer snapshot、coverage receipt |
+| `HIL-NFR-29` | 品質の制約 | コア | 品質の保証 | 要求 | HARNESS／OS | Layer Ledger Chainはtemplate/file/章/aggregate親の存在をpair coverageに算入せず、原子的obligationとoracleを分母にする。上下・左右edgeは両方向、同一revision/snapshot、意味粒度一致を要求し、deferred、stale、未実行、片肺pairをgreenにしない。 |
 
 **Workflow Contract Router**
 
@@ -416,15 +416,15 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-48` | 機能 | コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS／OS | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 ｜ vertical edge receipt、unresolved descent/backprop finding |
+| `HIL-FR-48` | 機能 | コア | 品質の保証 | 要求 | HARNESS／OS | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 ｜ vertical edge receipt、unresolved descent/backprop finding |
 
 **Horizontal V-Pair Gate**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-49` | 機能 | コア（Tの縦棒） | 品質の保証 | 要求 | HARNESS／OS | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 ｜ V-pair receipt、design/verification edge、snapshot/oracle finding |
+| `HIL-FR-49` | 機能 | コア | 品質の保証 | 要求 | HARNESS／OS | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 ｜ V-pair receipt、design/verification edge、snapshot/oracle finding |
 
-### コア（Tの縦棒）（主 18件）
+### コア（主 18件）
 
 **Bun Dependency Coverage Gate**
 
@@ -510,15 +510,15 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-04` | 業務の目的 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS | 全Issueはdevelopment style、case-driven activation、specialist capability、runtime modeを別fieldで持つ。Reverse R0–R4が適用されるIssueでは実装前の先行taskとし、省略値を持たない。 |
-| `HIL-FR-03` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS | Issue contractはobjective、acceptance oracle、development style、case-driven activation、specialist capabilities、runtime mode、affected layers、style target、risk、scope budget、digestを別fieldで保持する。 ｜ versioned issue contract＋digest |
+| `HIL-BR-04` | 業務の目的 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS | 全Issueはdevelopment style、case-driven activation、specialist capability、runtime modeを別fieldで持つ。Reverse R0–R4が適用されるIssueでは実装前の先行taskとし、省略値を持たない。 |
+| `HIL-FR-03` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS | Issue contractはobjective、acceptance oracle、development style、case-driven activation、specialist capabilities、runtime mode、affected layers、style target、risk、scope budget、digestを別fieldで保持する。 ｜ versioned issue contract＋digest |
 
 **Redesign router**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-05` | 業務の目的 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 監査で既存設計の欠陥または不足が判明した場合は、選択済みdevelopment style内の`Redesign` specialist routeへ割り当て、再freeze後に実装する。 |
-| `HIL-FR-05` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Redesign routerは設計欠陥をcanonical L1–L6の影響層へ割り当てる。L1企画変更はL12運用テストpairを、L2要求変更はL11受入テストpairとScreen Applicability/prototypeまたはskip receiptをstale化して再freezeし、Reverse→Redesign→pair-freeze→Forwardの順序を強制する。層外L0 charter変更はPOへescalateする。 ｜ redesign PLAN、修正layer、stale edge、pair receipt |
+| `HIL-BR-05` | 業務の目的 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | 監査で既存設計の欠陥または不足が判明した場合は、選択済みdevelopment style内の`Redesign` specialist routeへ割り当て、再freeze後に実装する。 |
+| `HIL-FR-05` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | Redesign routerは設計欠陥をcanonical L1–L6の影響層へ割り当てる。L1企画変更はL12運用テストpairを、L2要求変更はL11受入テストpairとScreen Applicability/prototypeまたはskip receiptをstale化して再freezeし、Reverse→Redesign→pair-freeze→Forwardの順序を強制する。層外L0 charter変更はPOへescalateする。 ｜ redesign PLAN、修正layer、stale edge、pair receipt |
 
 **Intake正規化**
 
@@ -537,13 +537,13 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-31` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | Upstream Redesign Re-entryはaffected layerがL1ならL1/L12 pairを、L2ならL2/L11 pairとscreen applicability/prototype agreementをstale化し、再承認前の実装claimとForward合流を拒否する。 ｜ stale edge、re-entry task、re-freeze receipt |
+| `HIL-FR-31` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | Upstream Redesign Re-entryはaffected layerがL1ならL1/L12 pairを、L2ならL2/L11 pairとscreen applicability/prototype agreementをstale化し、再承認前の実装claimとForward合流を拒否する。 ｜ stale edge、re-entry task、re-freeze receipt |
 
 **Workflow Contract Router**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-56` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS | Workflow Contract Routerはportfolio itemを選択済みdevelopment styleの対象layer input/output、entry/exit gate、下位task、right-arm V-pairへbindする。case-driven modelではS0 hypothesisにgapと親要求、S1 experiment planに契約snapshot・style返却先・budget、S2 pocに生成物、S3 verifyにoracle evidence、S4 decideにconfirmed/rejected/pivotとback-propagationを必須化し、S4未決定の成果をproduction currentへ昇格しない。 ｜ workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt |
+| `HIL-FR-56` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS | Workflow Contract Routerはportfolio itemを選択済みdevelopment styleの対象layer input/output、entry/exit gate、下位task、right-arm V-pairへbindする。case-driven modelではS0 hypothesisにgapと親要求、S1 experiment planに契約snapshot・style返却先・budget、S2 pocに生成物、S3 verifyにoracle evidence、S4 decideにconfirmed/rejected/pivotとback-propagationを必須化し、S4未決定の成果をproduction currentへ昇格しない。 ｜ workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt |
 
 ### OS：管理（土台）（主 16件）
 
@@ -566,30 +566,30 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-26` | 業務の目的 | コア（Tの縦棒） | 省力化とコスト削減 | 要求 | HARNESS／OS | AIは要件・設計・PLAN・関連Markdownを自律的に起草、追加、修正、分割、統合、改名できる。Authoringの自由とCanonical化を分離し、正本化だけを`Authoring Admission Transaction`で制御する。可逆かつ既定policy内の変更は自動確定し、上位目的、安全境界、不可逆な外部契約を変更する場合だけ人間へescalateする。 |
-| `HIL-FR-51` | 機能 | コア（Tの縦棒） | 省力化とコスト削減 | 要求 | HARNESS／OS | Authoring Admission EngineはProposalの意味差分、authority、revision、trace、pair、impact、安全境界、rollback routeを検査し、`auto_admit`、`auto_admit_with_stale_propagation`、`repair_then_retry`、`human_decision_required`、`reject`、`conflict`のいずれかを決定する。 ｜ admission decision、検査finding、authority/impact/rollback receipt |
-| `HIL-NFR-06` | 品質の制約 | 枠：開発方式・接続・Gate（Vの線） | 安全と権限 | 要求 | HARNESS／OS | 認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraはaction-binding approvalを必要とする。 |
+| `HIL-BR-26` | 業務の目的 | コア | 省力化とコスト削減 | 要求 | HARNESS／OS | AIは要件・設計・PLAN・関連Markdownを自律的に起草、追加、修正、分割、統合、改名できる。Authoringの自由とCanonical化を分離し、正本化だけを`Authoring Admission Transaction`で制御する。可逆かつ既定policy内の変更は自動確定し、上位目的、安全境界、不可逆な外部契約を変更する場合だけ人間へescalateする。 |
+| `HIL-FR-51` | 機能 | コア | 省力化とコスト削減 | 要求 | HARNESS／OS | Authoring Admission EngineはProposalの意味差分、authority、revision、trace、pair、impact、安全境界、rollback routeを検査し、`auto_admit`、`auto_admit_with_stale_propagation`、`repair_then_retry`、`human_decision_required`、`reject`、`conflict`のいずれかを決定する。 ｜ admission decision、検査finding、authority/impact/rollback receipt |
+| `HIL-NFR-06` | 品質の制約 | 枠：開発方式・接続・Gate | 安全と権限 | 要求 | HARNESS／OS | 認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraはaction-binding approvalを必要とする。 |
 | `HIL-NFR-30` | 品質の制約 | — | 省力化とコスト削減 | 要求 | HARNESS／OS | 可逆かつ既定policy内のAuthoring変更では人間入力を要求せず、機械検証からCanonical化まで自動完走できる。確認待ちを安全策として乱発せず、真のauthority境界だけをescalateする。 |
-| `HIL-NFR-32` | 品質の制約 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。 |
+| `HIL-NFR-32` | 品質の制約 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | 意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。 |
 
 **Hybrid Document Core Engine Registry**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-25` | 機能 | コア（Tの縦棒）、入口：フルリバース | 品質の保証 | 要求に技術の決定が混在 | OS | Hybrid Document Core Engine RegistryはZIP由来のbuild、agent metadata、assignment、schedule、trace、impact等をversioned capabilityとして分離登録し、入力snapshotごとのrun/artifact/digest/exit statusを記録する。 ｜ engine run、artifact manifest、version、input/output digest |
+| `HIL-FR-25` | 機能 | コア、入口：フルリバース | 品質の保証 | 要求に技術の決定が混在 | OS | Hybrid Document Core Engine RegistryはZIP由来のbuild、agent metadata、assignment、schedule、trace、impact等をversioned capabilityとして分離登録し、入力snapshotごとのrun/artifact/digest/exit statusを記録する。 ｜ engine run、artifact manifest、version、input/output digest |
 
 **Atomic Canonicalization Transaction**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-52` | 機能 | コア（Tの縦棒） | 品質の保証 | 要求に技術の決定が混在 | OS | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 ｜ canonicalization receipt、before/after revision、write count、rollback/conflict receipt |
-| `HIL-NFR-31` | 品質の制約 | コア（Tの縦棒） | 品質の保証 | 要求 | OS | Authoring正本、ledger、trace、projection、receiptはall-or-nothingで更新し、fault injection後にも部分current状態を0件とする。 |
+| `HIL-FR-52` | 機能 | コア | 品質の保証 | 要求に技術の決定が混在 | OS | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 ｜ canonicalization receipt、before/after revision、write count、rollback/conflict receipt |
+| `HIL-NFR-31` | 品質の制約 | コア | 品質の保証 | 要求 | OS | Authoring正本、ledger、trace、projection、receiptはall-or-nothingで更新し、fault injection後にも部分current状態を0件とする。 |
 
 **Semantic Revision and Asset Identity**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-53` | 機能 | コア（Tの縦棒）、部品：要求エンジン | 品質の保証 | 要求 | OS | Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 ｜ asset revision、identity/location history、split/merge disposition、semantic diff |
+| `HIL-FR-53` | 機能 | コア、部品：要求エンジン | 品質の保証 | 要求 | OS | Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 ｜ asset revision、identity/location history、split/merge disposition、semantic diff |
 
 **Delegation Audit Evidence**
 
@@ -616,7 +616,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
 | `HIL-BR-09` | 業務の目的 | チケット・駆動モデル | 省力化とコスト削減 | 要求に技術の決定が混在 | HARNESS／OS | 工程表のlayer×drive×task-kind×verification patternからHARNESS所有agent contractとW-agent teamを生成し、Claude/Codex固有定義へ決定論的に射影する。 |
-| `HIL-NFR-02` | 品質の制約 | OS：検収（CI・テスト最適化・ベンチ）、枠：開発方式・接続・Gate（Vの線） | 安全と権限 | 要求に技術の決定が混在 | HARNESS／OS | worker≠verifier≠knowledge promoterを維持し、Codexは最終audit/close/memory昇格を自己承認しない。 |
+| `HIL-NFR-02` | 品質の制約 | OS：検収（CI・テスト最適化・ベンチ）、枠：開発方式・接続・Gate | 安全と権限 | 要求に技術の決定が混在 | HARNESS／OS | worker≠verifier≠knowledge promoterを維持し、Codexは最終audit/close/memory昇格を自己承認しない。 |
 
 **Agent Lifecycle Controller**
 
@@ -646,7 +646,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-01` | 機能 | チケット・駆動モデル、枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求に技術の決定が混在 | OS → HARNESS／OS | `InfinityLoopEvent`を受理し、`intake→reverse→redesign?→pair-freeze→implementation→local-prejoin-ci→forward-join→internal-postjoin-ci→github-pr→external-ci→audit→merge/issue`を状態遷移する。各段は入力commit/tree digestと前段receiptへbindする。 ｜ append-only event、現在state、parent/cause ID |
+| `HIL-FR-01` | 機能 | チケット・駆動モデル、枠：開発方式・接続・Gate | 品質の保証 | 要求に技術の決定が混在 | OS → HARNESS／OS | `InfinityLoopEvent`を受理し、`intake→reverse→redesign?→pair-freeze→implementation→local-prejoin-ci→forward-join→internal-postjoin-ci→github-pr→external-ci→audit→merge/issue`を状態遷移する。各段は入力commit/tree digestと前段receiptへbindする。 ｜ append-only event、現在state、parent/cause ID |
 | `HIL-NFR-04` | 品質の制約 | — | 省力化とコスト削減 | 要求 | OS | 各loopはiteration/time/token/cost上限、停止理由、再開checkpointを持ち、無限再Issue化を防ぐ。 |
 
 **Codex実行器**
@@ -705,7 +705,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-68` | 機能 | コア（Tの縦棒） | 品質の保証 | 要求に技術の決定が混在 | OS | Delegation Wire Protocolは`helix <runtime>`委譲をプロセス起動+stdout回収から、承認要求・tool call・結果の構造化イベントを受けるadapter契約へ移行し、承認応答policyをNode制御面がコードで保持する。共通下層としてのACP互換採用を評価する。 ｜ structured event log、承認応答policy digest、adapter契約version |
+| `HIL-FR-68` | 機能 | コア | 品質の保証 | 要求に技術の決定が混在 | OS | Delegation Wire Protocolは`helix <runtime>`委譲をプロセス起動+stdout回収から、承認要求・tool call・結果の構造化イベントを受けるadapter契約へ移行し、承認応答policyをNode制御面がコードで保持する。共通下層としてのACP互換採用を評価する。 ｜ structured event log、承認応答policy digest、adapter契約version |
 
 ### OS：検収（CI・テスト最適化・ベンチ）（主 15件）
 
@@ -720,7 +720,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-20` | 業務の目的 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 既知の内部CI failureは証拠を保持した機械的quarantineで一時隔離できるが、対象外failure、新規fingerprint、最低代替gate失敗を無視してはならない。旧UTの検証契約を棚卸し後に再構築する。 |
+| `HIL-BR-20` | 業務の目的 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | 既知の内部CI failureは証拠を保持した機械的quarantineで一時隔離できるが、対象外failure、新規fingerprint、最低代替gate失敗を無視してはならない。旧UTの検証契約を棚卸し後に再構築する。 |
 | `HIL-FR-29` | 機能 | — | 品質の保証 | 要求 | OS | CI Quarantine Managerは既知failureをcheck名、failure fingerprint、baseline SHAへ限定し、理由、是正Issue、owner、期限/iteration上限、代替minimum gateを必須化する。fingerprint変化は通常failureへ戻す。 ｜ quarantine receipt、expiry/stale判定、remediation Issue |
 | `HIL-NFR-16` | 品質の制約 | — | 品質の保証 | 要求 | OS | quarantineはexact fingerprintだけに適用し、無期限、wildcard、directory単位、全check一括を禁止する。期限切れ、対象変更、fingerprint変化で失効する。 |
 
@@ -742,15 +742,15 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-26` | 機能 | コア（Tの縦棒） | 省力化とコスト削減 | 要求 | OS | Detector Registry/Runnerはspec、schema、trace、consistency、file、metadata detectorをcore engineから分離し、finding code、severity、location、subject、evidence、versionを永続化する。 ｜ detector run/finding、dedupe key、provenance |
+| `HIL-FR-26` | 機能 | コア | 省力化とコスト削減 | 要求 | OS | Detector Registry/Runnerはspec、schema、trace、consistency、file、metadata detectorをcore engineから分離し、finding code、severity、location、subject、evidence、versionを永続化する。 ｜ detector run/finding、dedupe key、provenance |
 | `HIL-NFR-08` | 品質の制約 | OS：管理（土台） | 品質の保証 | 要求 | HARNESS／OS | PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。 |
-| `HIL-NFR-13` | 品質の制約 | コア（Tの縦棒） | 品質の保証 | 要求 | OS | 同一source snapshot、engine/detector version、config digestから得るartifact/findingは決定的で、差異はnondeterminism findingにする。 |
+| `HIL-NFR-13` | 品質の制約 | コア | 品質の保証 | 要求 | OS | 同一source snapshot、engine/detector version、config digestから得るartifact/findingは決定的で、差異はnondeterminism findingにする。 |
 
 **Three-stage CI Orchestrator**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-28` | 機能 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求に技術の決定が混在 | OS | Three-stage CI Orchestratorは各段の必須check、対象SHA/tree digest、結果、artifactを記録し、`local_prejoin→internal_postjoin→github_external`の単調遷移を強制する。 ｜ stage receipt、SHA binding、next-stage可否 |
+| `HIL-FR-28` | 機能 | 枠：開発方式・接続・Gate | 品質の保証 | 要求に技術の決定が混在 | OS | Three-stage CI Orchestratorは各段の必須check、対象SHA/tree digest、結果、artifactを記録し、`local_prejoin→internal_postjoin→github_external`の単調遷移を強制する。 ｜ stage receipt、SHA binding、next-stage可否 |
 
 **Task Performance Scorecard**
 
@@ -784,8 +784,8 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-29` | 業務の目的 | 枠：開発方式・接続・Gate（Vの線） | 品質の保証 | 要求 | HARNESS／OS | 判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。 |
-| `HIL-FR-57` | 機能 | 枠：開発方式・接続・Gate（Vの線）、OS：管理（土台） | 品質の保証 | 要求 | HARNESS → HARNESS／OS | Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 ｜ judgment pack、applicability/digest、source skill edge、conflict finding |
+| `HIL-BR-29` | 業務の目的 | 枠：開発方式・接続・Gate | 品質の保証 | 要求 | HARNESS／OS | 判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。 |
+| `HIL-FR-57` | 機能 | 枠：開発方式・接続・Gate、OS：管理（土台） | 品質の保証 | 要求 | HARNESS → HARNESS／OS | Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 ｜ judgment pack、applicability/digest、source skill edge、conflict finding |
 
 **Template Improvement Loop**
 
