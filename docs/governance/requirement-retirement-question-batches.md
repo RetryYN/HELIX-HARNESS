@@ -4,6 +4,7 @@ prepared_at: 2026-09-17
 status: batch_1_draft_review_pending
 program_id: RDP-002-RETIREMENT
 parent_program: RDP-002
+github_projection_issue: 1849
 question_unit: one retirement candidate
 batch_size: 5
 authority_effect: none
@@ -39,8 +40,10 @@ Batch 1は旧Requirement IR 9 identityを比較する5候補である。初期mu
 
 両方とも、上流変更時にV-pairをstale化し、再freeze後にForwardへ戻す要求である。
 
-- `HIL-FR-05`だけの意味：影響layerへのrouting、処理順序、L0変更のPO escalation。
-- `HIL-FR-31`だけの意味：再承認前の実装claimとForward合流を明示的に拒否する。
+- `HIL-FR-05`の固有意味：影響layerへのrouting、Screen Applicability／prototypeまたはskip receiptのstale化、
+  Reverse→Redesign→pair-freeze→Forward順序、L0変更のPO escalation、redesign PLAN／修正layer／stale edge／pair receipt。
+- `HIL-FR-31`の固有意味：screen applicability／prototype agreementのstale化、再承認前の実装claimとForward合流の拒否、
+  stale edge／re-entry task／re-freeze receipt。
 - **A（推奨）**：拒否条件を後継へ残し、旧`HIL-FR-31`を`absorb_then_retire_legacy_id`候補にする。
 - **B**：対象と受入が異なる独立要求として両方残す。
 - **C**：successor設計まで保留する。
@@ -49,8 +52,10 @@ Batch 1は旧Requirement IR 9 identityを比較する5候補である。初期mu
 
 両方とも、監査findingを`current_pr_fix`と`successor_issue`へ分け、同じ因果でwriterまたは後続工程へ送る要求である。
 
-- `HIL-BR-17`だけの意味：AIによるfinding破棄禁止、後続Issueのcurrent PRへの再流入禁止。
-- `HIL-FR-30`だけの意味：security/data loss/oracle影響の判定とPromotion Pipelineの原子的生成。
+- `HIL-BR-17`の固有意味：Claude監査findingを対象にした機械的disposition、AIによるfinding破棄禁止、
+  後続Issueのcurrent PRへの再流入禁止。
+- `HIL-FR-30`の固有意味：correctness／security／data loss／oracle等の影響判定、successorだけからのPipeline起動、
+  重複判定、current修正の一括返却、途中欠落時のready拒否、typed disposition／writer return／join出力。
 - **A（推奨）**：二つの禁止条件を後継へ残し、旧`HIL-BR-17`を`absorb_then_retire_legacy_id`候補にする。
 - **B**：業務要求と機能要求として両方残す。
 - **C**：監査actorとpipeline設計が決まるまで保留する。
@@ -60,8 +65,10 @@ Batch 1は旧Requirement IR 9 identityを比較する5候補である。初期mu
 両方とも、要求の原文、atom、authority、分類、acceptance、capability、template、design obligation、revisionを
 一つの履歴へ結ぶRequirement Definition Ledgerを求めている。
 
-- `HIL-BR-24`だけの意味：要件定義自体を設計対象とし、trace行の存在だけを完了にしない。
-- `HIL-FR-45`だけの意味：typed edge、変更receipt、before/after digest、downstream staleの詳細。
+- `HIL-BR-24`の固有意味：要件定義自体を設計対象とし、trace行の存在だけを完了にしない。
+- `HIL-FR-45`の固有意味：stable ID／immutable revision、canonical statement、modality、scope/non-goal、
+  authority/rationale、owner、riskを含むtyped edge、8種の変更操作、before/after digest、全source atom disposition、
+  downstream stale、review authority付きreceipt、orphan/stale findingを含む出力。
 - **A（推奨）**：上位原則と完了禁止条件を後継へ残し、旧`HIL-BR-24`を`absorb_then_retire_legacy_id`候補にする。
 - **B**：上位要求と機能要求として両方残す。
 - **C**：Requirement LedgerのL2/L11採否まで保留する。
@@ -79,8 +86,9 @@ Batch 1は旧Requirement IR 9 identityを比較する5候補である。初期mu
 
 ### Q-RET-005 `HIL-TR-08`のNode↔Python固定方式を廃止候補にするか
 
-この要求はNode↔Pythonをchild process＋JSON Lines over stdioで接続する方式を固定している。一方で、protocol version、
-request identity、sequence、deadline、payload digest、診断channel分離という境界品質も含む。
+この要求はNode↔Pythonをchild process＋JSON Lines over stdioで接続する方式を固定している。一方で、versioned protocol、
+stdout／stderrのchannel分離、envelopeのschema、run／request identity、type、sequence、deadline、payload digestという
+境界品質も含む。
 
 - **A（推奨）**：固定技術方式を`strip_technical_binding`候補にし、境界が必要な場合だけ品質atomを技術中立の後継へ残す。
 - **B**：Node↔Python＋JSON Linesをcurrent技術要求として残す。

@@ -45,6 +45,9 @@ section atomをexact digest付きで保存し、Issueの更新から独立して
 
 ## 回答方法
 
+> **無効化:** 以下は責務境界比較を作成した当時の手順であり、現在の人間回答contractではない。`Q-OVL-*`へ回答せず、
+> [retirement質問](requirement-retirement-question-batches.md)の`Q-RET-*`だけを使用する。
+
 各問はAを推奨案、Bを別案、Cを保留とする。`Q-OVL-001=A`のように5問分を回答できる。Bを選ぶ場合は変更するownerまたは
 境界を一言添える。自由記述は既存選択肢への補足または新しい案として記録し、AIが最も近い選択肢へ自動変換しない。
 
@@ -319,6 +322,10 @@ projection再構築、single writerという意味能力だけをHELIX-OS要求�
 対象: `HIL-TR-07`、`HIL-TR-09`、`HIL-TR-10`、`HELIXOS-L2-001`、`HELIXOS-L2-007`。
 
 ## Draft PRからcloseまでの順序
+
+> **無効化:** 以下の25問回答手順とclose条件はsupersededであり、実行しない。現在は25 clusterを検索母集団として保持し、
+> 原要求identity単位のretirement候補を別台帳へ5件ずつ追加する。Issue #1814のclose条件は
+> [review program](requirement-overlap-review-program.md)の現在の停止条件に従う。
 
 1. 25 clusterと質問batchをDraft PRへ置き、exact HEADの独立reviewを受ける。
 2. findingを解消してもDraftを維持し、人間へBatch 1の5問だけを提示する。

@@ -82,7 +82,10 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 
 ## Issue化と判断境界
 
-- 本programのGitHub Issueは重複候補clusterと未決を共有するprojectionであり、統合・削除のdecisionではない。
+- Issue #1814は重複検索母集団、cluster relation、source coverageを共有するprojectionであり、統合・削除のdecisionではない。
+- retirement候補batchはIssue #1814のclose条件へ混ぜず、Batch 1をIssue #1849としてbatch別の子Issueへ投影する。
+  候補回答、successor適用、最終retireは
+  それぞれ別状態として記録し、候補Issueのcloseからretireを生成しない。
 - 一つのclusterが複数の独立判断を含む場合は、local cluster recordを先に分けてから子Issueを一件ずつ作る。
 - 重複を解消する要求PRは一つの要求identityを扱い、他要求はrelationと影響参照に限定する。
 - 統合案でも原identityを消さず、各原atomのsuccessor位置を記録する。固有atomを別の生存中仮登録へ残せない場合は停止する。
@@ -91,11 +94,22 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 
 ## 完了条件
 
+次の二つを別に判定する。
+
+**重複検索母集団（Issue #1814）の完了条件**
+
 - 発見した全clusterに比較revision、relation、共通atom、固有atom、対象product、受入差分、consumer差分がある。
 - 完全重複と判断する場合も全原identityからsuccessorへのtraceが残り、未計上atomが0である。
 - 責務分割ではHARNESSの工程意味とHELIX-OSの管理・推進・実行意味が別successorへ無損失に接続される。
 - unitの共通性とconnection／composite固有条件が分離され、一方の完了を他方へ自動伝播しない。
 - 未決clusterは`unresolved`として残り、親の要否整理を完了表示しない。
+
+**retirement候補batchの完了条件**
+
+- 各候補で原要求の全意味atomが共通、固有、技術bindingのいずれかへ一度ずつ計上される。
+- 人間回答は候補dispositionだけを記録し、`retirement_applied`を変更しない。
+- successorまたはreplacement不要根拠、consumer、L11、対象revision付き最終decisionは、原要求identity別の後続要求PRで扱う。
+- batch子Issueのcloseは候補review完了だけを示し、旧要求のretire、物理削除、親RDP-001完了を意味しない。
 
 ## 現在の停止条件
 
