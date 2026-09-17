@@ -10,8 +10,7 @@ batch_size: 5
 ## 目的と判断範囲
 
 > **2026-09-17訂正:** 本書の`Q-OVL-*`は責務境界の比較資料として保持するが、人間へ提示する削除候補質問には
-> 使用しない。削除・吸収・統合・技術指定廃止の判断は
-> [旧要求の削除・吸収・置換候補 人間質問batch](requirement-retirement-question-batches.md)で、原要求identity単位に5件ずつ行う。
+> 使用しない。削除・吸収・統合・技術指定廃止の判断はIssue #1849と別Draft PRで、原要求identity単位に5件ずつ行う。
 > 先に提示したBatch 1への`OK`は削除判断へ適用していない。
 
 製品責務分類第1層で`split_required`または`cross_product_connection`となった旧Requirement IR 66件を、
@@ -46,7 +45,7 @@ section atomをexact digest付きで保存し、Issueの更新から独立して
 ## 回答方法
 
 > **無効化:** 以下は責務境界比較を作成した当時の手順であり、現在の人間回答contractではない。`Q-OVL-*`へ回答せず、
-> [retirement質問](requirement-retirement-question-batches.md)の`Q-RET-*`だけを使用する。
+> retirement候補用の別Draft PRに置く`Q-RET-*`だけを使用する。
 
 各問はAを推奨案、Bを別案、Cを保留とする。`Q-OVL-001=A`のように5問分を回答できる。Bを選ぶ場合は変更するownerまたは
 境界を一言添える。自由記述は既存選択肢への補足または新しい案として記録し、AIが最も近い選択肢へ自動変換しない。

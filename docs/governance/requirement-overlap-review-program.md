@@ -1,6 +1,6 @@
 # 要求間の責務・機能重複review program
 
-status: retirement_candidate_batch_1_draft_review_pending
+status: overlap_search_population_draft_review_pending
 program_id: RDP-002
 parent_program: RDP-001
 owner: HELIX-OS management
@@ -44,17 +44,14 @@ routing containerに現れる責務・機能の重複候補を発見し、同一
 初期waveでは、製品責務分類第1層で`split_required`または`cross_product_connection`となった旧Requirement IR 66件を、
 [cluster台帳](requirement-overlap-candidate-clusters.jsonl)の20 clusterへ重複0・欠落0で割り当てた。
 [責務境界質問](requirement-overlap-question-batches.md)はcluster比較資料として保持するが、人間の削除判断には使用しない。
-clusterから実際の包含・統合・技術指定廃止候補を原要求identity単位で抽出し、
-[retirement候補台帳](requirement-retirement-candidates.jsonl)と
-[人間質問batch](requirement-retirement-question-batches.md)で5件ずつ確認する。初期Batch 1は吸収3件、統合1件、
-技術指定廃止1件であり、いずれもretire適用前の候補である。これは初期66件だけの比較waveであり、残るholdingを
-重複なしまたはretire対象外と判定しない。
+clusterから抽出する包含・統合・技術指定廃止候補は本PRへ混ぜず、Issue #1849と別Draft PRで原要求identity単位に
+5件ずつ扱う。これは初期66件だけの比較waveであり、残るholdingを重複なしまたはretire対象外と判定しない。
 
 Issue #1847のScaffold Bindingは、GitHub本文を要求正本にせず
 [ローカルsource holding](github-issue-1847-scaffold-source-holding.json)へexact保存した。そのcore binding、Scaffold CI、
 replacement／retireを別clusterにし、Web dashboard接続と旧HELIX-DB実装重複を加えた5件を
 [補助cluster台帳](requirement-overlap-supplementary-candidates.jsonl)へ置く。25 clusterは検索母集団であり、質問数ではない。
-retirement候補は比較が成立したものから5件ずつ追加し、候補外の要求も未処理母集団へ残す。
+retirement候補の抽出は別PRへ送り、候補外の要求も未処理母集団へ残す。
 
 ## cluster record
 
@@ -83,9 +80,8 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 ## Issue化と判断境界
 
 - Issue #1814は重複検索母集団、cluster relation、source coverageを共有するprojectionであり、統合・削除のdecisionではない。
-- retirement候補batchはIssue #1814のclose条件へ混ぜず、Batch 1をIssue #1849としてbatch別の子Issueへ投影する。
-  候補回答、successor適用、最終retireは
-  それぞれ別状態として記録し、候補Issueのcloseからretireを生成しない。
+- retirement候補batchはIssue #1814のclose条件へ混ぜず、Issue #1849と別PRへ投影する。候補回答、successor適用、
+  最終retireはそれぞれ別状態として記録し、候補Issueのcloseからretireを生成しない。
 - 一つのclusterが複数の独立判断を含む場合は、local cluster recordを先に分けてから子Issueを一件ずつ作る。
 - 重複を解消する要求PRは一つの要求identityを扱い、他要求はrelationと影響参照に限定する。
 - 統合案でも原identityを消さず、各原atomのsuccessor位置を記録する。固有atomを別の生存中仮登録へ残せない場合は停止する。
@@ -94,28 +90,19 @@ fieldと永続化schemaは、要求分類と管理登録のL3で確定する。�
 
 ## 完了条件
 
-次の二つを別に判定する。
-
-**重複検索母集団（Issue #1814）の完了条件**
-
 - 発見した全clusterに比較revision、relation、共通atom、固有atom、対象product、受入差分、consumer差分がある。
 - 完全重複と判断する場合も全原identityからsuccessorへのtraceが残り、未計上atomが0である。
 - 責務分割ではHARNESSの工程意味とHELIX-OSの管理・推進・実行意味が別successorへ無損失に接続される。
 - unitの共通性とconnection／composite固有条件が分離され、一方の完了を他方へ自動伝播しない。
 - 未決clusterは`unresolved`として残り、親の要否整理を完了表示しない。
-
-**retirement候補batchの完了条件**
-
-- 各候補で原要求の全意味atomが共通、固有、技術bindingのいずれかへ一度ずつ計上される。
-- 人間回答は候補dispositionだけを記録し、`retirement_applied`を変更しない。
-- successorまたはreplacement不要根拠、consumer、L11、対象revision付き最終decisionは、原要求identity別の後続要求PRで扱う。
-- batch子Issueのcloseは候補review完了だけを示し、旧要求のretire、物理削除、親RDP-001完了を意味しない。
+- Issue #1814のcloseは検索母集団のreview完了だけを示し、retirement候補回答、旧要求のretire、物理削除、
+  親RDP-001完了を意味しない。
 
 ## 現在の停止条件
 
 Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。product routingは旧Requirement IR 153件について
 候補登録済みで、multi-product候補66件を初期20 cluster、補助sourceを5 clusterへ整理した。責務境界だけを聞く旧質問は
-削除判断に使わず、原要求identity単位のretirement候補Batch 1を5件作成した。独立review後、人間へこの5件だけを提示する。
-回答前にretire、successor統合、要求削除を決定せず、回答後も候補回答を最終retireへ読み替えない。
-全母集団の候補探索、各候補の無損失照合、最終人間decision、再review、main read-afterまでIssue #1814をcloseしない。L3、実装、DB、CI、archiveの
+削除判断に使わない。retirement候補Batch 1はIssue #1849と別Draft PRへ移し、本PRでは人間へ削除判断を求めない。
+25 clusterのsource coverage、relation、固有atom、projectionをexact HEADでreviewし、main read-afterするまで
+Issue #1814をcloseしない。L3、実装、DB、CI、archiveの
 物理削除へ進まない。
