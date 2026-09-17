@@ -56,7 +56,7 @@ related_projection:
 | HELIX-OS | Scaffold Bindingの登録、revision、owner、artifact、consumer、状態、stale、証拠、置換・撤去のlifecycle。仮runner／仮CIの隔離実行と観測 | 要求意味、設計の採否、人間承認、利用者受入の代行 |
 | 対象プロダクト | 自身の要求、正式な設計・実装・検証 | HARNESS共通契約やOS運転の別正本 |
 
-HARNESSの規範とOSの運転を一つのownerへ潰さない。T＋V＋Oの構造では、HARNESS側は開発方式の枠とコアに
+HARNESSの規範とOSの運転を一つのownerへ潰さない。POが定義したシステム群では、HARNESS側は開発方式の枠とコアに
 またがる工程contract、OS側は管理（登録とlifecycle）と検収（仮の検証と正式な検証の分離）に接続する候補である。
 この層の置き方は未決であり、L2判断で確定する。
 
