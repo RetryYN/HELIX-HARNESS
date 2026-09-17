@@ -11,6 +11,7 @@ authority_effect: none
 
 本書の用途は、旧要求と現行要求へ「どの層の、どのシステムの要求か」のラベルを付ける分類軸の出典である。
 最初の適用は[旧Requirement IR 153件 構造分類](../governance/legacy-ir-structure-classification.md)である。
+旧confirmed identity 175件と現行L2への適用、および層ごとのカバレッジは[要求のカバレッジ](../governance/helix-structure-requirement-coverage.md)にある。
 
 ## POの発言（原文）
 
