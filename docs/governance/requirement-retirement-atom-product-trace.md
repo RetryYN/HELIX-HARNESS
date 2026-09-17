@@ -36,10 +36,10 @@ product routing台帳の根拠句: 「layer／V-pair／stale化／再freeze条�
 | atom | 分類 | HARNESS slice候補 | OS slice候補 | atom別L2／L11親trace候補 |
 |---|---|---|---|---|
 | `FR05-A01`<br>設計欠陥をcanonical L1–L6の影響層へ割り当てる | OS運転候補 | なし | 設計欠陥をcanonical L1–L6の影響層へ割り当てる | `HELIXOS-L2-003` |
-| `FR05-A02`<br>L1企画変更ではL1/L12 pairをstale化する | HARNESS／OS分割必須 | L1企画変更ではL1/L12 pairをstale対象とする | L1企画変更を検出してL1/L12 pairをstale状態へ変更する | `HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-007` |
-| `FR05-A03`<br>L2要求変更ではL2/L11 pairをstale化する | HARNESS／OS分割必須 | L2要求変更ではL2/L11 pairをstale対象とする | L2要求変更を検出してL2/L11 pairをstale状態へ変更する | `HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-007` |
-| `FR05-A04`<br>L2要求変更ではScreen Applicability、prototypeまたはskip receiptをstale化する | HARNESS／OS分割必須 | L2要求変更ではScreen Applicability、prototypeまたはskip receiptをstale対象とする | L2要求変更を検出して該当するScreen Applicability、prototypeまたはskip receiptをstale状態へ変更する | `HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-007` |
-| `FR05-A05`<br>再freezeを要求する | HARNESS／OS分割必須 | 再freezeを工程上の必要条件とする | 対象成果を再freeze処理へ送り | `HARNESS-L2-003`<br>`HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-011` |
+| `FR05-A02`<br>L1企画変更ではL1/L12 pairをstale化する | HARNESS／OS分割必須 | L1企画変更ではL1/L12 pairをstale対象とする | L1企画変更時にL1/L12 pairをstale状態へ変更する | `HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-007` |
+| `FR05-A03`<br>L2要求変更ではL2/L11 pairをstale化する | HARNESS／OS分割必須 | L2要求変更ではL2/L11 pairをstale対象とする | L2要求変更時にL2/L11 pairをstale状態へ変更する | `HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-007` |
+| `FR05-A04`<br>L2要求変更ではScreen Applicability、prototypeまたはskip receiptをstale化する | HARNESS／OS分割必須 | L2要求変更ではScreen Applicability、prototypeまたはskip receiptをstale対象とする | L2要求変更時に該当するScreen Applicability、prototypeまたはskip receiptをstale状態へ変更する | `HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-007` |
+| `FR05-A05`<br>再freezeを要求する | HARNESS／OS分割必須 | 再freezeを工程上の必要条件とする | 対象成果を再freezeする | `HARNESS-L2-003`<br>`HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-011` |
 | `FR05-A06`<br>Reverse→Redesign→pair-freeze→Forwardの順序を強制する | HARNESS／OS分割必須 | Reverse→Redesign→pair-freeze→Forwardを正規の工程順序とする | 正規順序以外の進行を拒否し、Reverse→Redesign→pair-freeze→Forwardの順に状態を進める | `HARNESS-L2-003`<br>`HARNESS-L2-004`<br>`HELIXOS-L2-003`<br>`HELIXOS-L2-011` |
 | `FR05-A07`<br>L0 charter変更をPOへescalateする | HARNESS／OS分割必須 | L0 charter変更は工程内で処理せずPO escalationを必要とする | L0 charter変更をPOへescalateする | `HARNESS-L2-003`<br>`HELIXOS-L2-004` |
 | `FR05-A08`<br>redesign PLAN、修正layer、stale edge、pair receiptを出力する | HARNESS／OS分割必須 | redesign PLAN、修正layer、stale edge、pair receiptを必須出力とする | redesign PLAN、修正layer、stale edge、pair receiptを生成して記録する | `HARNESS-L2-005`<br>`HELIXOS-L2-007`<br>`HELIXOS-L2-011` |
@@ -81,8 +81,8 @@ product routing台帳の根拠句: 「finding分類の責務境界はHARNESS、w
 | `BR17-A04`<br>current_pr_fixをwriterへ返す | OS運転候補 | なし | current_pr_fixをwriterへ返す | `HELIXOS-L2-010` |
 | `BR17-A05`<br>独立責務・別設計・lifecycle・性能改善だけをsuccessor_issueにする | HARNESS規範候補 | 独立責務・別設計・lifecycle・性能改善だけをsuccessor_issueにする | なし | `HARNESS-L2-003`<br>`HARNESS-L2-005` |
 | `BR17-A06`<br>successor_issueをIssue、Universal Reverse、memory要約、Codex ready queueへ同一causality chainで接続する | OS運転候補 | なし | successor_issueをIssue、Universal Reverse、memory要約、Codex ready queueへ同一causality chainで接続する | `HELIXOS-L2-010`<br>`HELIXOS-L2-013` |
-| `BR17-A07`<br>AIの自由判断だけによるfinding破棄を禁止する | HARNESS／OS分割必須 | AIの自由判断だけによるfinding破棄を禁止条件とする | finding破棄の根拠を評価し、AIの自由判断だけなら破棄を拒否して記録する | `HARNESS-L2-003`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-010` |
-| `BR17-A08`<br>後続Issueのcurrent PRへの再流入を禁止する | HARNESS／OS分割必須 | 後続Issueのcurrent PRへの再流入を禁止条件とする | 後続Issueの流入先を評価し、current PRへの再流入を拒否して記録する | `HARNESS-L2-003`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-010` |
+| `BR17-A07`<br>AIの自由判断だけによるfinding破棄を禁止する | HARNESS／OS分割必須 | AIの自由判断だけによるfinding破棄を禁止条件とする | finding破棄の根拠を評価し、AIの自由判断だけなら破棄を拒否する | `HARNESS-L2-003`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-010` |
+| `BR17-A08`<br>後続Issueのcurrent PRへの再流入を禁止する | HARNESS／OS分割必須 | 後続Issueのcurrent PRへの再流入を禁止条件とする | 後続Issueの流入先を評価し、current PRへの再流入を拒否する | `HARNESS-L2-003`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-010` |
 
 ## `HIL-FR-30`
 
@@ -100,7 +100,7 @@ product routing台帳の根拠句: 「findingの責務境界とdisposition条件
 | `FR30-A02`<br>同じ責務・既存scope内で安全かつ局所的に閉じるfindingをcurrent_pr_fixにする | HARNESS規範候補 | 同じ責務・既存scope内で安全かつ局所的に閉じるfindingをcurrent_pr_fixにする | なし | `HARNESS-L2-003`<br>`HARNESS-L2-005` |
 | `FR30-A03`<br>独立責務・別設計・lifecycle・性能改善をsuccessor_issueにする | HARNESS規範候補 | 独立責務・別設計・lifecycle・性能改善をsuccessor_issueにする | なし | `HARNESS-L2-003`<br>`HARNESS-L2-005` |
 | `FR30-A04`<br>successor_issueだけからPromotion Pipelineを起動する | HARNESS／OS分割必須 | successor_issueだけをPromotion Pipelineの起動許可対象とする | dispositionを評価し、successor_issueの場合だけPromotion Pipelineを起動する | `HARNESS-L2-003`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-010` |
-| `FR30-A05`<br>重複判定を行う | HARNESS／OS分割必須 | 重複判定を必須処理とする | 対象候補の重複判定を実行して結果を記録する | `HARNESS-L2-005`<br>`HELIXOS-L2-013` |
+| `FR30-A05`<br>重複判定を行う | HARNESS／OS分割必須 | 重複判定を必須処理とする | 対象候補の重複判定を実行する | `HARNESS-L2-005`<br>`HELIXOS-L2-013` |
 | `FR30-A06`<br>Issue contract、Universal Reverse、memory issue-summary、Codex queue itemを同一causality IDで原子的に生成する | OS運転候補 | なし | Issue contract、Universal Reverse、memory issue-summary、Codex queue itemを同一causality IDで原子的に生成する | `HELIXOS-L2-010`<br>`HELIXOS-L2-013` |
 | `FR30-A07C`<br>current_pr_fixをwriterへ返却する | OS運転候補 | なし | current_pr_fixをwriterへ返却する | `HELIXOS-L2-010` |
 | `FR30-A07U`<br>current_pr_fixを一括返却する | OS運転候補 | なし | current_pr_fixを一括返却する | `HELIXOS-L2-010` |
@@ -139,8 +139,8 @@ product routing台帳の根拠句: 「要求revision・typed edge・変更receip
 | `FR45-A02`<br>source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する | HARNESS／OS分割必須 | 列挙されたrequirement field間のtyped edgeの型と意味を定義する | 列挙されたfieldとtyped edgeを保存する | `HARNESS-L2-004`<br>`HARNESS-L2-008`<br>`HELIXOS-L2-001`<br>`HELIXOS-L2-007` |
 | `FR45-A03`<br>split/merge/rename/supersede/reject/N/Aを変更操作として扱う | HARNESS／OS分割必須 | split/merge/rename/supersede/reject/N/Aを正規の変更操作とする | 指定された変更操作を適用して履歴を保存する | `HARNESS-L2-004`<br>`HARNESS-L2-008`<br>`HELIXOS-L2-001`<br>`HELIXOS-L2-007` |
 | `FR45-A04`<br>変更にはbefore/after semantic digestを要求する | HARNESS／OS分割必須 | 変更にはbefore/after semantic digestを必須証拠とする | 変更時にbefore/after semantic digestを記録する | `HARNESS-L2-004`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-001`<br>`HELIXOS-L2-007` |
-| `FR45-A05`<br>変更には全source atom dispositionを要求する | HARNESS／OS分割必須 | 変更には全source atom dispositionを必須条件とする | 変更時に全source atomのdispositionを記録し | `HARNESS-L2-004`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-001`<br>`HELIXOS-L2-007` |
-| `FR45-A06`<br>変更にはdownstream staleを要求する | HARNESS／OS分割必須 | 変更にはdownstreamをstaleにする条件を含める | 変更の影響先をstale状態へ変更して伝播を記録する | `HARNESS-L2-004`<br>`HELIXOS-L2-002`<br>`HELIXOS-L2-007` |
+| `FR45-A05`<br>変更には全source atom dispositionを要求する | HARNESS／OS分割必須 | 変更には全source atom dispositionを必須条件とする | 変更時に全source atomへdispositionを付ける | `HARNESS-L2-004`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-001`<br>`HELIXOS-L2-007` |
+| `FR45-A06`<br>変更にはdownstream staleを要求する | HARNESS／OS分割必須 | 変更にはdownstreamをstaleにする条件を含める | 変更の影響先をstale状態へ変更して伝播する | `HARNESS-L2-004`<br>`HELIXOS-L2-002`<br>`HELIXOS-L2-007` |
 | `FR45-A07`<br>変更にはreview authority付きreceiptを要求する | HARNESS／OS分割必須 | 変更にはreview authority付きreceiptを必須証拠とする | review authority付きreceiptを記録する | `HARNESS-L2-004`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-001`<br>`HELIXOS-L2-007` |
 | `FR45-A08`<br>requirement definition/revision、typed edge、change/applicability receipt、orphan/stale findingを出力する | HARNESS／OS分割必須 | requirement definition/revision、typed edge、change/applicability receipt、orphan/stale findingを必須出力とする | 列挙された出力を生成して保存する | `HARNESS-L2-004`<br>`HARNESS-L2-005`<br>`HELIXOS-L2-001`<br>`HELIXOS-L2-007` |
 
