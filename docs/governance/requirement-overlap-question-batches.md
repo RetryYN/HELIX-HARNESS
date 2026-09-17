@@ -265,7 +265,8 @@ Scaffoldを正式成果物が未成立の間だけrole・obligation・consumer�
 - **B**: Scaffold Binding全体をOS固有の内部管理機能として扱う。
 - **C**: Issue #1847のexact sourceを保持して保留する。
 
-対象: `SCF-1847-PURPOSE`、`SCF-1847-CONTRACT`、`SCF-1847-RESPONSIBILITY`、`SCF-1847-STOP`。
+対象: `SCF-1847-POSITION`、`SCF-1847-PO-CONCERN`、`SCF-1847-PURPOSE`、`SCF-1847-CONTRACT`、
+`SCF-1847-RESPONSIBILITY`、`SCF-1847-RESEARCH-POC-BOUNDARY`、`SCF-1847-USE-CASES`、`SCF-1847-STOP`。
 
 ### Q-OVL-022 Scaffold CIと正式CI
 
@@ -276,7 +277,7 @@ Q-OVL-007の正式CI責務と分けてよいか。
 - **B**: Scaffold専用CIを設けず、正式CI成立まで静的検査だけに限定する。
 - **C**: 正式CI要求の採否まで候補を保留する。
 
-対象: `SCF-1847-CI`、`SCF-1847-STOP`、関連cluster `OVL-007`。
+対象: `SCF-1847-CI`、`SCF-1847-CONNECTIONS`、`SCF-1847-ACCEPTANCE`、`SCF-1847-STOP`、関連cluster `OVL-007`。
 
 ### Q-OVL-023 Scaffold replacement・retire
 
@@ -287,7 +288,8 @@ Scaffold撤去前にrole、obligation、consumer、oracle、revisionを正式成
 - **B**: 旧資産retire契約へ包含し、Scaffold固有identityは作らない。
 - **C**: replacement設計まで候補を保留する。
 
-対象: `SCF-1847-REPLACEMENT`、`SCF-1847-STOP`、関連cluster `OVL-004`／`OVL-015`。
+対象: `SCF-1847-REPLACEMENT`、`SCF-1847-CONNECTIONS`、`SCF-1847-ACCEPTANCE`、`SCF-1847-STOP`、
+関連cluster `OVL-004`／`OVL-015`。
 
 ### Q-OVL-024 HELIX-Web dashboardとHELIX-Web-OS projection
 
