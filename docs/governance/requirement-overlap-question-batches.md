@@ -320,5 +320,5 @@ projection再構築、single writerという意味能力だけをHELIX-OS要求�
 5. 25問すべてに回答があり、初期66件と補助5 clusterのsource、digest、exact statement、共通atom、固有atom、未決が無損失で追跡できる場合だけDraft解除候補にする。
 6. merge／post-merge read-after／Issue #1814 closeは、明示許可されたレビュー対応側だけが行う。
 
-Issue #1814をcloseしても要求の採否や削除は成立しない。closeが示すのは、この66件に対する重複候補の人間回答と
+Issue #1814をcloseしても要求の採否や削除は成立しない。closeが示すのは、今回25 clusterに対する重複候補の人間回答と
 記録・review・main read-afterが完了したことだけである。残るholdingと個別L2／L11採否は親Issue #1813に残す。
