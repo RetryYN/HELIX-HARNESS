@@ -22,7 +22,7 @@ Concept／製品責務境界→5大目標→七大原則→対象別L1の順に�
 
 ## 構造に関するPO発言の記録
 
-[HELIXの構造（T＋V＋O）に関するPO発言記録](helix-structure-tvo-po-statements-2026-09-18.md)は、2026-09-18のPO発言を原文のまま保持する。
+[HELIXの構造に関するPO発言記録](helix-structure-tvo-po-statements-2026-09-18.md)は、2026-09-18のPO発言を原文のまま保持する。
 authorityを持たず、承認済みConcept v4.1と4対象L1を上書きしない。旧要求と現行要求へ層とシステムのラベルを付ける分類軸の出典として使う。
 
 ## 既に示された方向
