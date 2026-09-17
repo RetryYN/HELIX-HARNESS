@@ -1,6 +1,6 @@
-# 旧要求retirement候補 review program
+# 旧要求retirement判断 前提分類program
 
-status: exact_human_decision_packet_draft_review_pending
+status: prerequisite_classification_draft_review_pending
 program_id: RDP-002-RETIREMENT
 parent_program: RDP-002
 parent_issue: 1814
@@ -9,49 +9,31 @@ authority_effect: none
 
 ## 目的
 
-[重複検索母集団](requirement-overlap-review-program.md)から、包含、統合、旧技術bindingの除去によってcurrent要求としての
-旧identityをretireできる可能性があるものを抽出し、原要求を一件も落とさず人間へ5件ずつ提示する。本programは候補探索と
-候補dispositionの記録までを扱う。旧要求のretire、物理削除、successor採用は扱わない。
+旧要求をretire候補として人間へ提示する前に、要求が旧HELIXの何を対象にし、現行のどの製品・層へ移るか、比較する要求同士が重複・上位具体化・接続・受入のどの関係かを確定する。要求本文、identity、semantic atomは一件も削減しない。
 
-## 入力と分離
+## 訂正
 
-- Issue #1814と親PR #1848は、25 clusterとsource coverageを所有する検索母集団である。
-- Issue #1849と本Draft PRは、Batch 1の5候補、9 source identity、semantic atom accountingを所有する。
-- cluster relation、Issue close、AI reviewからretireを生成しない。
-- 親PRが未mergeの間、本PRは親branchをbaseとするstacked Draftとして扱う。親のsource bytesが変わればstale化する。
+以前のBatch 1は、旧HELIX v1.3全体の9要求をHARNESS／OSへ分割する前に、5件のretirement候補として提示した。これは判断順序が逆である。`Q-RET-001`〜`Q-RET-005`はすべて撤回し、回答surfaceとして使用しない。
 
-## 候補状態
+- 9要求はすべて`preserved_pending_rehome`のまま保持する。
+- 5比較群はすべて`retirement_ready: false`とする。
+- successor、retire、削除、意味変更、L2／L11採用を生成しない。
+- 旧質問への回答を求めず、既存回答もretirement判断へ適用しない。
 
-| state | 意味 |
-|---|---|
-| `question_pending` | 人間へまだ候補dispositionを確認していない |
-| `candidate_answer_recorded` | 候補分類の回答だけを記録した。retire未適用 |
-| `successor_coverage_pending` | successorまたはreplacement不要根拠、consumer、L11が未完 |
-| `retirement_decision_ready` | 原要求identity別の最終判断packetが揃った |
-| `retired_by_human_decision` | 対象revision付き最終人間decisionがある |
-| `retain` | 独立要求として残す人間decisionがある |
-| `unresolved` | 判断材料不足で生存中保持する |
+## 現在の成果物
 
-Batch質問へのA回答は`candidate_answer_recorded`までしか成立させない。`retirement_applied`はfalseのまま維持する。
+- [前提分類表](requirement-retirement-prerequisite-classification.md): 各要求の平易な対象、製品分割、現行L2候補、要求間関係、未解決前提
+- [機械台帳](requirement-retirement-candidates.jsonl): 原文、revision、digest、71 atomを保持したまま判断不可状態を記録
+- [撤回済み質問](requirement-retirement-question-batches.md)
+- [撤回済み人間判断packet](requirement-retirement-batch-1-human-decision-packet.md)
 
-## Batch 1 coverage
+## retirement候補へ進める条件
 
-[候補台帳](requirement-retirement-candidates.jsonl)は5候補、9 source identityを扱う。全source原文、revision、semantic digest、
-source clusterを保持し、意味をcommon、preserve unique、technical bindingへ分解する。
-[旧質問要約](requirement-retirement-question-batches.md)は人間回答surfaceとして無効化した。
-[人間判断packet](requirement-retirement-batch-1-human-decision-packet.md)が、同じ5候補について原要求全文、重複atom対応、
-各要求だけの保持atom、候補処置、選択肢を提示する唯一の回答surfaceである。
+1. source atomをHARNESS意味契約とOS運転責務へ分ける。
+2. 各sliceの現行L2／L11移管先候補と、上位要求からのtraceを示す。
+3. 関係を完全重複、上位→具体化、接続、受入、技術bindingに分類する。
+4. 完全重複でない意味を吸収対象へ入れない。
+5. successorが全atomを覆うか、replacement不要の根拠を示す。
+6. 以上をexact HEAD reviewし、初めて人間へ5件ずつ具体的な問いを提示する。
 
-初期multi-product母集団66件の残り57件、`single_product` 87件、confirmed identity 175件、その他holdingは未処理母集団として
-生存中であり、retire候補なしと判定していない。Batch 1後も5候補ずつ探索する。
-
-## 完了条件
-
-- 5候補の全source meaningが一度ずつsemantic atom accountingへ入り、未計上0である。
-- 要約fieldとatom accountingが一致する。
-- 人間回答原文、対象HEAD、候補台帳digest、人間判断packet digestを記録する。
-- 回答後も`retirement_applied: false`、successor空を維持する。
-- exact HEAD reviewで要求欠落、勝手なretire、対象外回答が0である。
-
-Issue #1849のcloseはBatch 1候補review完了だけを示す。旧要求のretire、物理削除、successor採用、親Issue #1814／#1813の
-完了を意味しない。最終retireは原要求identity別の後続要求PRと対象revision付き人間decisionで扱う。
+このprogram自体は分類案であり、要求authorityを持たない。
