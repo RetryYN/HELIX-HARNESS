@@ -108,7 +108,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-FR-15` | Hybrid docgen ingestion | OS | HARNESS／OS | 既存ZIPのmetadata・trace等をHELIX契約へ変換する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、取込の実行・観測・記録はOSである。HIL-FR-16／37と同じ境界である |
 | `HIL-FR-16` | Asset Inventory | OS | HARNESS／OS | 既存資産を機能単位で比較しadopt／harden／redesign／rejectを判断する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、観測・記録の運転はOSである |
 | `HIL-FR-37` | Source Capability Atomizer | OS | HARNESS／OS | atomic behaviorの定義とcoverage分母の規範はフルリバースの中核でHARNESSが所有する。同じ規範を持つHIL-NFR-22は既にHARNESS／OSである。extractorの実行と記録はOSである |
-| `HIL-FR-41` | Design Template Registry | HARNESS | HARNESS／OS | templateのschema・必須論点・適用条件はHARNESS、版と適用履歴の管理はOSである。製品責務境界のPO決定「HARNESSはDesign Templateと初期seedを持ち、HELIX-OSが版・適用・利用結果・改善を管理する」に従う |
+| `HIL-FR-41` | Design Template Registry | HARNESS | HARNESS／OS | templateのschema・必須論点・適用条件は設計義務の規範でありHARNESSが所有する。版と適用履歴・利用結果・改善の管理は運転でありOSが所有する。この分担は製品責務境界（docs/concept/product-boundary.md）のDesign Templateの責務分担と同じである |
 | `HIL-FR-57` | Judgment Pack Registry | HARNESS | HARNESS／OS | 判断packの観点・反証質問・停止条件の意味はHARNESS、registryとしての版・保持は管理層（OS）である。上位のHIL-BR-29は既にHARNESS／OSである |
 
 ## 技術の決定（ADR候補）と、混在の一覧
