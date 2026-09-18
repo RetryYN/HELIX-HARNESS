@@ -1,0 +1,107 @@
+{
+ "schema_revision": 1,
+ "id": "SCF-B-0002",
+ "kind": "scaffold",
+ "title": "旧ルール群由来の仮のルール集（governance領域）",
+ "product": "HELIX-OS",
+ "owner_candidate": "HELIX-OS 管理（規則と検査の対応を保つ。RUL-OSA-06／RUL-OSI-02の運転側）",
+ "state": "active",
+ "reason": "要求候補57本（旧ルール群7,113 atom）は未採否で、対象別L2本文・AGENTS／hook・検査定義への正式な接続はL2採否とL3以降を待つ。その間、規則の意味を1件も落とさずgovernance領域に保持し、AI作業者が要求単位で参照できる仮のルール集が必要である。",
+ "upstream": [
+  {
+   "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
+   "sha256": "1c9891cbf76d7a28a6cf64b75e907e6ddad41c0aac5c9fa0a9196421211407a5",
+   "note": "要求候補57本（RUL-*）"
+  },
+  {
+   "path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+   "sha256": "e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125",
+   "note": "規則atom 7,113件の台帳"
+  },
+  {
+   "path": "docs/governance/legacy-rule-atom-source-files.jsonl",
+   "sha256": "7aaa62f4a301d481c3ce141317bc7058fbe55a398c7bf7edad25c005286afbad",
+   "note": "出どころfile 632件"
+  }
+ ],
+ "role": "旧ルール群の要求候補と規則atomを、要求単位の仮のルール集として無損失に保持し、参照可能にする",
+ "obligations": [
+  "台帳の全atomをちょうど1つの要求fileへ主として置き、欠落・重複・余分・置き場違いを0にする。各atomは台帳の全field（規則文、種類、強制、失敗時、旧実装固有の部分、副、出どころ、由来）を写す（govcheck E_LOSS／E_DUP／E_EXTRA／E_PLACE、E_REGEN）",
+  "副の対応づけとLEGACY-ONLY（除外理由付き）も落とさない（E_LOSS_SECONDARY、rules/LEGACY-ONLY.md）",
+  "要求文と件数を要求候補本文と一致させる（E_REQ／E_COUNT）",
+  "ルール集を手で書き換えず、正本から決定的に再生成する（E_REGEN）",
+  "正本のrevisionが変わったらstaleにする（E_STALE）",
+  "ルール集の存在・参照から、要求の採否・人間承認・AGENTS／hookへの反映・工程完了を生成しない"
+ ],
+ "connections": {
+  "consumers": [
+   "AI作業者（要求単位で旧ルールの意味を参照する。指示書としてではなく参照として）",
+   "システム群ごとの要求整理Issue（枠 #1858、サービス④ #1854、フルリバース #1852、サービス⑥ #1856、サービス⑦ #1857、OS推進 #1859、OS検収 #1860、OS改善 #1861。index.mdのIssue列が正）と #1864",
+   "差し替え台帳 Issue #1866"
+  ],
+  "dependencies": [
+   "python3 標準library",
+   "docs/governance/candidates/legacy-rule-derived-requirements.md",
+   "docs/governance/legacy-rule-atom-inventory.jsonl"
+  ],
+  "boundary": "gen_rulebook と govcheck が書くのは scaffold/governance/ 配下だけ。正本（docs/governance/candidates/、legacy-rule-atom-*.jsonl）、AGENTS.md、CLAUDE.md、hook、設定は書き換えない（上流authority registerへの登録行は人がPRで足す。生成器と検査は触らない）。"
+ },
+ "operations": {
+  "allowed": [
+   "python3 scaffold/governance/tools/gen_rulebook.py [--check]",
+   "python3 scaffold/governance/tools/govcheck.py"
+  ],
+  "forbidden": [
+   "AGENTS.md／CLAUDE.md／hook／設定へのルールの注入",
+   "正本（docs/governance/）の書き換え",
+   "archive/legacy-generation-*配下の実行・読込",
+   "要求の採否・承認・完了の生成"
+  ]
+ },
+ "artifacts": [
+  "scaffold/governance/README.md",
+  "scaffold/governance/index.md",
+  "scaffold/governance/rules",
+  "scaffold/governance/tools/gen_rulebook.py",
+  "scaffold/governance/tools/govcheck.py",
+  "scaffold/governance/tools/govcheck_selftest.py"
+ ],
+ "verification": {
+  "evidence_kind": "scaffold",
+  "scope": [
+   "schema_interface",
+   "deterministic_behavior",
+   "source_revision_stale",
+   "negative_case",
+   "forbidden_write_scope"
+  ],
+  "oracles": [
+   "scaffold/governance/tools/govcheck.py（無損失・件数一致・再生成一致・stale）",
+   "scaffold/governance/tools/govcheck_selftest.py（否定例10件）"
+  ],
+  "negative_cases": [
+   "台帳から1件消してE_EXTRA",
+   "ルール集から1行消してE_LOSS",
+   "1行を別fileへ複製してE_DUP",
+   "1行を別fileへ移してE_PLACE",
+   "副の節から1件消してE_LOSS_SECONDARY",
+   "要求文の前に行を挿入してE_REQ",
+   "要求文を書き換えてE_REQ",
+   "ルール集を手で書き換えてE_REGEN",
+   "正本を変えてE_STALE",
+   "bindingの上流sha256を変えてE_STALE"
+  ]
+ },
+ "replacement": {
+  "role_target": "対象別L2本文への要求の採否接続（L2D-S1以降）と、HELIX-OSの規則・検査対応の正式な運転（RUL-OSA-06、RUL-OSI-02）。AGENTS／hook／検査定義への反映はL3以降で導出する",
+  "formal_artifacts": [],
+  "issue": 1866,
+  "status": "pending",
+  "transfer": null,
+  "target_revisions": {},
+  "confirmation_ref": null,
+  "confirmation_digest": null
+ },
+ "created": "2026-09-18",
+ "updated": "2026-09-18"
+}
