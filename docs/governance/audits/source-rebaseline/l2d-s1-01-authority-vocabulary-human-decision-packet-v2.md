@@ -25,7 +25,7 @@ v1が計上したAVSの意味（L1 atom 6件、L3 atom 20件、L10 oracle 20件�
 本v2をsuccessorとして参照する。
 
 **本v2の結論は「まだ人間判断へ送れない」である。** 分母を取り直した結果、生存中13 holdingのうち計上できたのは1件、
-atom本文を持たず対象外にできるのは3件、全件確認して該当なしとできるのは1件で、**残る8件は未評価**である。
+全件確認して該当なしとできるのは1件で、**残る11件は未評価**である。
 そのうち`MPR-SH-CANDIDATE-003`は旧AVSの3文書そのものを内包しており、AVSが独立のholdingではなかったことも判明した。
 v1は「分母が古い」問題だったが、v2の作成過程で「分母がそもそも数えられていない」ことが分かった。
 この8件を評価するまで、S1-01は`decision_ready`にしない。
@@ -55,7 +55,7 @@ HARNESS／OSのL2・L11 4文書のSHA-256はv1と同一であり、基準revisio
 
 生存中のsource holdingは13件である（registerは32 revision）。本判断に対する処分は次のとおり。
 機械screenの結果と根拠は[`l2d-s1-01-input-holding-screen.jsonl`](l2d-s1-01-input-holding-screen.jsonl)
-（SHA-256 `9036b6153d502888509a6a586eeaa2be37e166e4e775f64eb92a4fbae31af637`）に13行で記録した。
+（SHA-256 `ae5507b1d8fc55d6eefc386822a83f0dec74824f8d725eeacfe0660c5526b756`）に13行で記録した。各行は正本台帳の`source_atom_set_sha256`を持ち、この件数がどのrevisionの台帳から出たかを固定する。
 
 | holding | atom数 | screen一致 | 処分 |
 |---|---:|---:|---|
@@ -68,10 +68,15 @@ HARNESS／OSのL2・L11 4文書のSHA-256はv1と同一であり、基準revisio
 | `MPR-SH-HEADING-002` | 317 | 9 | **未評価** |
 | `MPR-SH-SCRUM-REVERSE-001` | 300 | 6 | **未評価** |
 | `MPR-SH-WORKFLOW-003` | 108 | 5 | **未評価** |
-| `MPR-SH-PREISOLATION-002` | 333 | — | **対象外**。file revisionの差分索引であり、atom本文のfieldを持たない（path、commit、blob OID、sha256のみ） |
-| `MPR-SH-DELEGATED-DOC-003` | 114 | — | **対象外**。文書単位のholdingであり、atom本文のfieldを持たない |
-| `MPR-SH-DELEGATED-REF-001` | 788 | — | **対象外**。文書間参照の索引であり、atom本文のfieldを持たない |
+| `MPR-SH-PREISOLATION-002` | 333 | — | **未評価（atom展開未了）**。333行すべてが`revision_relation: changed_before_archive_pending_semantic_equivalence_review`、`meaning_change_applied: false`であり、台帳自身が意味等価reviewの未了を申告している。atom本文のfieldを持たずscreenを実行できない。対象pathに`docs/plans/PLAN-L3-82-authority-vocabulary-separation.md`を含む |
+| `MPR-SH-DELEGATED-DOC-003` | 114 | — | **未評価（atom展開未了）**。114行すべてが`carry_status: preserved_pending_atomization`、`holding_granularity: file_blob`。pathにauthorityを含む文書が9件 |
+| `MPR-SH-DELEGATED-REF-001` | 788 | — | **未評価（atom展開・分類未了）**。614行が`preserved_pending_atomization`、174行が`preserved_pending_classification`。authorityを含むtarget pathへのedgeが96行 |
 | `MPR-SH-PO-GOALS-PRINCIPLES-001` | 12 | 0 | **該当なし**。12件は全件目視できる規模であり、authority語彙の定義・生成禁止を持たないことを確認した |
+
+**S1-01のsource自身の来歴が未reviewのまま残っている。** `MPR-SH-PREISOLATION-002`が保持する
+`docs/plans/PLAN-L3-82-authority-vocabulary-separation.md`は、AVS候補のfrontmatter`plan:`が指す当のPLANである。
+archive隔離前にblobが変更されており、意味等価reviewは未了である。S1-01の判断材料そのものの来歴であるため、
+未評価11件のうち優先して処分する。
 
 **旧AVS 3文書は独立のsource holdingではない。** registerにAVSの登録は無く、AVSの行は`MPR-SH-CANDIDATE-003`に
 内包されている。v1と本v2の前半がAVSをholdingと並べて書いていたのは誤りであり、ここで訂正する。
@@ -79,9 +84,9 @@ HARNESS／OSのL2・L11 4文書のSHA-256はv1と同一であり、基準revisio
 「取り込まない理由は各holdingのscopeに記録済み」とは書けない。registerのfieldは`source_collection_scope`であり、
 **何を集めたか**の記述しか持たない。S1-01に取り込まない理由は、本節と上のjsonlが初めて記録するものである。
 
-未評価8件は、[要求処分review program](../../requirement-disposition-review-program.md)が求める
+未評価11件は、[要求処分review program](../../requirement-disposition-review-program.md)が求める
 「生存中の全source holdingについて無損失なatom集合へ展開する」条件を満たしていない。
-S1-01を人間判断へ送る前に、この8件へ同じ処分を付ける。
+S1-01を人間判断へ送る前に、この11件へ同じ処分を付ける。
 
 ## 旧ルール群holdingからの計上
 
@@ -179,8 +184,10 @@ S1-01を人間判断へ送る前に解消する。
 
 **分母**
 
-1. 生存中holdingのうち8件（`MPR-SH-CANDIDATE-003`の残り、`SEMANTIC-LINE-003`、`SUPPLEMENTARY-003`、`IR-003`、
-   `CONFIRMED-003`、`HEADING-002`、`SCRUM-REVERSE-001`、`WORKFLOW-003`）のS1-01該当。
+1. 生存中holdingのうち11件のS1-01該当。内訳は、screenを実行できた8件（`MPR-SH-CANDIDATE-003`の残り、
+   `SEMANTIC-LINE-003`、`SUPPLEMENTARY-003`、`IR-003`、`CONFIRMED-003`、`HEADING-002`、`SCRUM-REVERSE-001`、
+   `WORKFLOW-003`）と、atom展開が未了でscreenを実行できない3件（`PREISOLATION-002`、`DELEGATED-DOC-003`、
+   `DELEGATED-REF-001`）である。後者3件は「意味を持たない」ことの確認ではない。
 2. `MPR-SH-LEGACY-RULE-004`の`source_collection_scope`が自ら記すとおり、7,622件は**発見済みの規則atomであり
    旧HELIXの全規則ではない**。三巡目で増える可能性が残る。母集合そのものが非網羅である。
 
@@ -192,7 +199,7 @@ S1-01を人間判断へ送る前に解消する。
    screenは語に依存するため、語を使わずに同じ意味を述べたatomを取りこぼす。`RUL-OSM-05`と`RUL-OSA-07`が実例である。
 6. `re.IGNORECASE`で増える7 atom（`RC01-118`ほか）を集合に入れるかどうか。
 7. `screen_only`とした39要求、`not_screened`とした1要求について、個々のatom本文を1件ずつ見た確認。
-   現在の根拠は要求本文の意味であり、atom単位ではない。
+   現在の根拠は要求本文の意味であり、atom単位ではない。要求単位の根拠を個別に記録したのは5要求で、残る34要求の`basis`は定型文である。
 8. 各要求の`common_atoms`、`distinct_atoms_by_source`、`acceptance_differences`、`consumer_differences`、
    `unaccounted_atom_refs`（RDP-002 clusterの未評価fieldと同じ）。
 
@@ -229,7 +236,7 @@ memoryのTTLとLearning admission、workflow signalのexact token、compatibilit
 - `RUL-OSM-01`が所有する介入点の**具体の列挙**を、L2で確定するか、L3の運転規則へ降ろすか。
 - 既存候補`REQENG-HARNESS-007`、`REQENG-OS-002`／`005`、`AIDOC-HARNESS-001`／`OS-002`と本decision unitの統合・分離。
   RDP-002は関係を付けただけで、統合の可否は判断していない。
-- `route_to_other_unit`の5要求について、送り先unitの確定。
+- `route_to_other_unit`の6要求について、送り先unitの確定。
 
 ## 人間判断
 
@@ -239,7 +246,7 @@ memoryのTTLとLearning admission、workflow signalのexact token、compatibilit
 
 送れる状態にするために必要な作業は次のとおりで、いずれも別PRで行う。
 
-1. 未評価8 holdingへ、本v2と同じ形式の処分を付ける（`l2d-s1-01-input-holding-screen.jsonl`を更新する）。
+1. 未評価11 holdingへ、本v2と同じ形式の処分を付ける（3件はatom展開が先に要る）（`l2d-s1-01-input-holding-screen.jsonl`を更新する）。`PLAN-L3-82-authority-vocabulary-separation.md`を優先する。
 2. `in_scope`7要求のprimary atom 772件と、secondaryで流入する502件を、atom単位で処分する。
 3. `OVC-RUL-RUL-FRM-02`の`AVS-BR-001` `unresolved`を解消する。
 
@@ -249,7 +256,9 @@ HARNESSの規範責務とOSの記録・執行責務へ`split`する方針の可�
 - `approve_split`: 上記責務分割と処分を採用し、L2／L11適用PRの作成へ進む。**上の1〜3が終わるまで選べない。**
 - `changes_requested`: 変更するatom、要求、target、境界、理由を指定し、本packetを改訂する。
 - `defer`: sourceを生存中仮登録のまま保持し、後続採否を進めない。
-- `reject`: 不採用にするatomとその影響を明示した別decisionを要求する。黙って削除しない。
+- `reject`: 不採用にするatomとその影響を明示した別decisionを要求する。黙って削除しない。**上の1〜3が終わるまで選べない**（分母が未確定のまま不採用にすると、まだ数えていないatomを落とす）。
+
+現時点で選べるのは`changes_requested`と`defer`だけである。
 
 判断recordにはdecision unit、選択、actor、判断時刻、本packetのcommit SHA、本packet SHA-256、判断対象revision表12文書の
 SHA-256、計上台帳と holding screen のSHA-256を記録する。判断前は`authority_effect: none`を維持する。

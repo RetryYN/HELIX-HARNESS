@@ -95,7 +95,7 @@ Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである�
 完了証拠と次の入口は[製品責務分類第1層の完了とL2採否入口](audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md)に固定した。
 `L2D-S1-01 authority-vocabulary`は[人間判断packet v2](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に、
 判断対象revision、親L1、L2／L11接続、旧L1 6 atom、旧L3 20 atom、旧L10 20 oracle、旧ルール群holdingからの計上、
-変更する旧拘束、未解決事項を集めた。ただし生存中13 source holdingのうち8件が未評価であり、本programが求める
+変更する旧拘束、未解決事項を集めた。ただし生存中13 source holdingのうち11件が未評価であり、本programが求める
 「生存中の全source holdingについて無損失なatom集合へ展開する」条件を満たしていない。したがって
 **現在は人間判断へ送れる状態ではない**。v1（`MPR-SH-LEGACY-RULE-004`未計上）は`superseded_by_v2`であり、承認に使わない。
 `authority_effect: none`を維持する。対象別L2／L11本文へまだ適用せず、次のdecision unitへ
