@@ -24,21 +24,21 @@ issue_projection: #1854
 
 ## 主として対応づいた規則（13件）
 
-| atom | 規則 | 種類 | 強制 | 出どころ |
-|---|---|---|---|---|
-| `RB0-131` | 提案者は採用案に最低一つの対案とtrade-off比較を付ける。 | behavior_discipline | prose | docs/skills/judgment-core.md:58-59 |
-| `RB07-199` | 実装者はコードを書く前に要求削除・運用・既存機能・設定・共通化・採用・実装の順に検討し、どこで止まったかをPLANまたは提案冒頭へ一行記録する。 | behavior_discipline | prose | docs/skills/code-minimalism.md:36-56; docs/skills/code-minimalism.md:105-106 |
-| `RB08-282` | detector追加者は異なる2件以上の再発、既存gateで検出不能、複雑度の正当化、除去triggerが揃う場合だけ新detectorを追加する。 | process_gate | prose | docs/governance/operations-rule-audit-2026-07-26.md:71-72 |
-| `RC01-177` | runtime-portabilityは、許可wrapperが空行・コメント以外で12行を超える、src/cli.ts参照がない、またはdist/helix参照がない場合、不合格にする。 | tooling_runtime | lint | src/lint/runtime-portability.ts:160-165; src/lint/runtime-portability.ts:209-222 |
-| `RD00-046` | atomic slice評価は、選択した案より前の却下案について、必要件数の重複しない有効digestがない場合、拒否する。 | evidence_claim | gate | src/runtime/atomic-slice-admission.ts:179-184; src/runtime/atomic-slice-admission.ts:292-292 |
-| `RD05-202` | ddd-tdd-rulesは、policy文書にno-code-firstがない場合、違反にする。 | behavior_discipline | lint | src/lint/ddd-tdd-rules.ts:101-101; src/lint/ddd-tdd-rules.ts:354-362 |
-| `RD05-216` | ddd-tdd-rulesは、対象PLANのno_code_decisionが許可集合外の場合、違反にする。 | behavior_discipline | lint | src/lint/ddd-tdd-rules.ts:450-457; src/lint/ddd-tdd-rules.ts:557-565 |
-| `RD05-218` | ddd-tdd-rulesは、対象PLANのcomplexity_effectがnet_negative・net_neutral・justified_positive以外の場合、違反にする。 | behavior_discipline | lint | src/lint/ddd-tdd-rules.ts:470-470; src/lint/ddd-tdd-rules.ts:575-583 |
-| `RD05-219` | ddd-tdd-rulesは、add_codeまたはjustified_positiveを選んだPLANでcomplexity_justificationまたはremoval_triggerに実質的な値がない場合、違反にする。 | behavior_discipline | lint | src/lint/ddd-tdd-rules.ts:584-596 |
-| `RE01-152` | 実装者は実装前に既存機能を検索し、再実装より再利用を優先する。専用検索が使えない場合はgrepや設計検索へfallbackし、その事実を記録する。 | behavior_discipline | prose／gate | docs/governance/helix-harness-requirements_v1.2.md:2124-2186 |
-| `RE01-271` | 解決策の検討者は、変更しない・削除・設定・再利用・既存修正・追加実装の順に評価してからコードを増やす。 | behavior_discipline | prose／gate | docs/governance/helix-harness-requirements_v1.3.md:550-555 |
-| `RE01-274` | 変更者はcodeやCIの純増に理由と削除条件を付け、反復する欠陥または既存検査のgapがないdetector・gateを追加しない。 | behavior_discipline | prose／gate | docs/governance/helix-harness-requirements_v1.3.md:550-555 |
-| `RG18-006` | 実装提案者は提案の冒頭で「書く前の7段の問い」のどこで止まったかを1行で宣言する。 | behavior_discipline | prose | docs/skills/judgment-core.md:77-78 |
+| atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
+|---|---|---|---|---|---|---|---|---|
+| `RB0-131` | 提案者は採用案に最低一つの対案とtrade-off比較を付ける。 | behavior_discipline | prose | n/a | — | — | docs/skills/judgment-core.md:58-59 | B／gpt-6-astra |
+| `RB07-199` | 実装者はコードを書く前に要求削除・運用・既存機能・設定・共通化・採用・実装の順に検討し、どこで止まったかをPLANまたは提案冒頭へ一行記録する。 | behavior_discipline | prose | n/a | 7段の問い | — | docs/skills/code-minimalism.md:36-56; docs/skills/code-minimalism.md:105-106 | B07／gpt-6-astra |
+| `RB08-282` | detector追加者は異なる2件以上の再発、既存gateで検出不能、複雑度の正当化、除去triggerが揃う場合だけ新detectorを追加する。 | process_gate | prose | fail_close | — | — | docs/governance/operations-rule-audit-2026-07-26.md:71-72 | B08／gpt-6-astra |
+| `RC01-177` | runtime-portabilityは、許可wrapperが空行・コメント以外で12行を超える、src/cli.ts参照がない、またはdist/helix参照がない場合、不合格にする。 | tooling_runtime | lint | fail_close | 旧wrapperの12行上限とsource/dist両参照 | — | src/lint/runtime-portability.ts:160-165; src/lint/runtime-portability.ts:209-222 | C01／gpt-6-astra |
+| `RD00-046` | atomic slice評価は、選択した案より前の却下案について、必要件数の重複しない有効digestがない場合、拒否する。 | evidence_claim | gate | fail_close | rejectedOptionEvidenceDigests | — | src/runtime/atomic-slice-admission.ts:179-184; src/runtime/atomic-slice-admission.ts:292-292 | D00／gpt-6-astra |
+| `RD05-202` | ddd-tdd-rulesは、policy文書にno-code-firstがない場合、違反にする。 | behavior_discipline | lint | fail_close | 固定keyword検査 | `RUL-OSA-06` | src/lint/ddd-tdd-rules.ts:101-101; src/lint/ddd-tdd-rules.ts:354-362 | D05／gpt-6-astra |
+| `RD05-216` | ddd-tdd-rulesは、対象PLANのno_code_decisionが許可集合外の場合、違反にする。 | behavior_discipline | lint | fail_close | no_change/delete/configure/reuse/modify/add_code | `RUL-OSA-06` | src/lint/ddd-tdd-rules.ts:450-457; src/lint/ddd-tdd-rules.ts:557-565 | D05／gpt-6-astra |
+| `RD05-218` | ddd-tdd-rulesは、対象PLANのcomplexity_effectがnet_negative・net_neutral・justified_positive以外の場合、違反にする。 | behavior_discipline | lint | fail_close | complexity_effectの三値 | `RUL-OSA-06` | src/lint/ddd-tdd-rules.ts:470-470; src/lint/ddd-tdd-rules.ts:575-583 | D05／gpt-6-astra |
+| `RD05-219` | ddd-tdd-rulesは、add_codeまたはjustified_positiveを選んだPLANでcomplexity_justificationまたはremoval_triggerに実質的な値がない場合、違反にする。 | behavior_discipline | lint | fail_close | 二fieldの同時必須化 | `RUL-OSA-06` | src/lint/ddd-tdd-rules.ts:584-596 | D05／gpt-6-astra |
+| `RE01-152` | 実装者は実装前に既存機能を検索し、再実装より再利用を優先する。専用検索が使えない場合はgrepや設計検索へfallbackし、その事実を記録する。 | behavior_discipline | prose／gate | fail_close | DUP checkと検索fallback | `RUL-DEV-01` | docs/governance/helix-harness-requirements_v1.2.md:2124-2186 | E01／claude-opus |
+| `RE01-271` | 解決策の検討者は、変更しない・削除・設定・再利用・既存修正・追加実装の順に評価してからコードを増やす。 | behavior_discipline | prose／gate | n/a | no-code-firstの判断順 | — | docs/governance/helix-harness-requirements_v1.3.md:550-555 | E01／claude-opus |
+| `RE01-274` | 変更者はcodeやCIの純増に理由と削除条件を付け、反復する欠陥または既存検査のgapがないdetector・gateを追加しない。 | behavior_discipline | prose／gate | fail_close | net code/CI増加とgate追加の審査 | `RUL-OSA-06` | docs/governance/helix-harness-requirements_v1.3.md:550-555 | E01／claude-opus |
+| `RG18-006` | 実装提案者は提案の冒頭で「書く前の7段の問い」のどこで止まったかを1行で宣言する。 | behavior_discipline | prose | n/a | code-minimalism §1の7段の問い | `RUL-OSP-05` | docs/skills/judgment-core.md:77-78 | G18／claude-opus |
 
 ## 副として対応づいた規則（3件）
 

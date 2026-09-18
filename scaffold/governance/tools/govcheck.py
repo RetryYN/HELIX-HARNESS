@@ -60,10 +60,15 @@ def main():
         p = os.path.join(GOV, "rules", r["id"] + ".md")
         if not os.path.isfile(p): e.append("E_REQ: %s のfileが無い" % r["id"]); continue
         txt = open(p, encoding="utf-8").read()
+        if r["text"] is None: e.append("E_REQ: %s の要求文を本文から読めない（構造が崩れている）" % r["id"]); continue
         if r["text"] not in txt: e.append("E_REQ: %s の要求文が本文と一致しない" % r["id"])
         if (r["n_primary"], r["n_secondary"]) != (byp[r["id"]], bys[r["id"]]):
             e.append("E_COUNT: %s 本文%d／%d 台帳%d／%d" % (r["id"], r["n_primary"], r["n_secondary"], byp[r["id"]], bys[r["id"]]))
-    if len(reqs) != 57: e.append("E_REQ: 要求候補が57本でない（%d）" % len(reqs))
+    if len(reqs) != g.REQ_TOTAL: e.append("E_REQ: 要求候補が%d本でない（%d）" % (g.REQ_TOTAL, len(reqs)))
+    if len(atoms) != g.ATOMS_TOTAL: e.append("E_COUNT: 台帳のatomが%d件でない（%d）" % (g.ATOMS_TOTAL, len(atoms)))
+    groups = {r["group"] for r in reqs}
+    for k in g.GROUP_ISSUE:
+        if k not in groups: e.append("E_ISSUE_MAP: GROUP_ISSUE の群名 %r が本文に無い" % k)
     # 4
     rc = subprocess.run([sys.executable, os.path.join(HERE, "gen_rulebook.py"), "--check"], capture_output=True, text=True, env=dict(os.environ, GOVCHECK_ROOT=ROOT))
     if rc.returncode != 0: e.append("E_REGEN: " + rc.stdout.strip())

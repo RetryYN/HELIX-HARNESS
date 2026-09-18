@@ -24,13 +24,13 @@ issue_projection: none
 
 ## 主として対応づいた規則（5件）
 
-| atom | 規則 | 種類 | 強制 | 出どころ |
-|---|---|---|---|---|
-| `RA-267` | marketing scoutは市場claimを証拠で裏付け、不確実性を明示し、各仮説に最小検証stepとdecision criteriaを付ける。 | evidence_claim | prose | .claude/agents/pdm-marketing-innovation.md:15-16; .claude/agents/pdm-marketing-innovation.md:24-24 |
-| `RA-311` | marketing scoutはtarget segment・pain・urgency・差別化・導入摩擦・検証costで市場optionを比較する。 | behavior_discipline | prose | .claude/agents/pdm-marketing-innovation.md:22-24 |
-| `RB06-192` | カタログ設計者は成果物の要否をharness自身のCLI形状ではなく、他製品を開発する土台のmissionで判断する。 | behavior_discipline | prose | docs/governance/document-system-map.md:83-83 |
-| `RD09-098` | proposal-document-coverageは、ux-research-usabilityを期待するシナリオでusability_test_planまたはux_findings_traceがrequired_evidenceにない場合、失敗させる。 | evidence_claim | lint | src/lint/proposal-document-coverage-policy.ts:49-49; src/lint/proposal-document-coverage.ts:157-166 |
-| `RD09-117` | proposal-document-coverageは、discoveryを期待するシナリオでhypothesisがrequired_evidenceにない場合、失敗させる。 | evidence_claim | lint | src/lint/proposal-document-coverage-policy.ts:63-63; src/lint/proposal-document-coverage.ts:157-166 |
+| atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
+|---|---|---|---|---|---|---|---|---|
+| `RA-267` | marketing scoutは市場claimを証拠で裏付け、不確実性を明示し、各仮説に最小検証stepとdecision criteriaを付ける。 | evidence_claim | prose | n/a | — | `RUL-FRM-04` | .claude/agents/pdm-marketing-innovation.md:15-16; .claude/agents/pdm-marketing-innovation.md:24-24 | A／gpt-6-astra |
+| `RA-311` | marketing scoutはtarget segment・pain・urgency・差別化・導入摩擦・検証costで市場optionを比較する。 | behavior_discipline | prose | n/a | — | — | .claude/agents/pdm-marketing-innovation.md:22-24 | A／gpt-6-astra |
+| `RB06-192` | カタログ設計者は成果物の要否をharness自身のCLI形状ではなく、他製品を開発する土台のmissionで判断する。 | behavior_discipline | prose | n/a | — | — | docs/governance/document-system-map.md:83-83 | B06／claude_review |
+| `RD09-098` | proposal-document-coverageは、ux-research-usabilityを期待するシナリオでusability_test_planまたはux_findings_traceがrequired_evidenceにない場合、失敗させる。 | evidence_claim | lint | fail_close | ux-research-usabilityの2必須証跡 | `RUL-OSA-06` | src/lint/proposal-document-coverage-policy.ts:49-49; src/lint/proposal-document-coverage.ts:157-166 | D09／gpt-6-astra |
+| `RD09-117` | proposal-document-coverageは、discoveryを期待するシナリオでhypothesisがrequired_evidenceにない場合、失敗させる。 | evidence_claim | lint | fail_close | hypothesis | `RUL-OSA-06` | src/lint/proposal-document-coverage-policy.ts:63-63; src/lint/proposal-document-coverage.ts:157-166 | D09／gpt-6-astra |
 
 ## 副として対応づいた規則（7件）
 

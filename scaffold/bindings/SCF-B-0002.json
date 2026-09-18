@@ -26,7 +26,7 @@
  ],
  "role": "旧ルール群の要求候補と規則atomを、要求単位の仮のルール集として無損失に保持し、参照可能にする",
  "obligations": [
-  "台帳の全atomをちょうど1つの要求fileへ主として置き、欠落・重複・余分を0にする（govcheck E_LOSS／E_DUP／E_EXTRA／E_PLACE）",
+  "台帳の全atomをちょうど1つの要求fileへ主として置き、欠落・重複・余分・置き場違いを0にする。各atomは台帳の全field（規則文、種類、強制、失敗時、旧実装固有の部分、副、出どころ、由来）を写す（govcheck E_LOSS／E_DUP／E_EXTRA／E_PLACE、E_REGEN）",
   "副の対応づけとLEGACY-ONLY（除外理由付き）も落とさない（E_LOSS_SECONDARY、rules/LEGACY-ONLY.md）",
   "要求文と件数を要求候補本文と一致させる（E_REQ／E_COUNT）",
   "ルール集を手で書き換えず、正本から決定的に再生成する（E_REGEN）",
@@ -36,7 +36,7 @@
  "connections": {
   "consumers": [
    "AI作業者（要求単位で旧ルールの意味を参照する。指示書としてではなく参照として）",
-   "システム群ごとのIssue #1852〜#1861、#1864（要求候補の入力。index.mdのIssue列）",
+   "システム群ごとの要求整理Issue（枠 #1858、サービス④ #1854、フルリバース #1852、サービス⑥ #1856、サービス⑦ #1857、OS推進 #1859、OS検収 #1860、OS改善 #1861。index.mdのIssue列が正）と #1864",
    "差し替え台帳 Issue #1866"
   ],
   "dependencies": [
@@ -44,7 +44,7 @@
    "docs/governance/candidates/legacy-rule-derived-requirements.md",
    "docs/governance/legacy-rule-atom-inventory.jsonl"
   ],
-  "boundary": "scaffold/governance/ 配下だけを書く。docs/、AGENTS.md、CLAUDE.md、hook、設定には書かない。"
+  "boundary": "gen_rulebook と govcheck が書くのは scaffold/governance/ 配下だけ。正本（docs/governance/candidates/、legacy-rule-atom-*.jsonl）、AGENTS.md、CLAUDE.md、hook、設定は書き換えない（上流authority registerへの登録行は人がPRで足す。生成器と検査は触らない）。"
  },
  "operations": {
   "allowed": [
@@ -77,12 +77,15 @@
   ],
   "oracles": [
    "scaffold/governance/tools/govcheck.py（無損失・件数一致・再生成一致・stale）",
-   "scaffold/governance/tools/govcheck_selftest.py（否定例7件）"
+   "scaffold/governance/tools/govcheck_selftest.py（否定例10件）"
   ],
   "negative_cases": [
    "台帳から1件消してE_EXTRA",
    "ルール集から1行消してE_LOSS",
    "1行を別fileへ複製してE_DUP",
+   "1行を別fileへ移してE_PLACE",
+   "副の節から1件消してE_LOSS_SECONDARY",
+   "要求文の前に行を挿入してE_REQ",
    "要求文を書き換えてE_REQ",
    "ルール集を手で書き換えてE_REGEN",
    "正本を変えてE_STALE",

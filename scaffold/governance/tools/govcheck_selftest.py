@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""govcheck の否定例。repositoryの写しを一時directoryに作り、壊してから govcheck が拒否することを確かめる。
+"""govcheck の否定例（10件）。repositoryの写しを一時directoryに作り、壊してから govcheck が拒否することを確かめる。
 書き込みは一時directoryだけ。終了code: 0 合格 / 1 不合格。"""
 import json, os, shutil, subprocess, sys, tempfile
 
@@ -55,6 +55,30 @@ def dup_row(d):  # 1行を別fileへ複製 → E_DUP
     k = t.index("| `R"); open(q, "w", encoding="utf-8").write(t[:k] + row + "\n" + t[k:])
 
 
+def move_row(d):  # 1行を別fileの主の表へ移す → E_PLACE
+    p = os.path.join(d, "scaffold/governance/rules/RUL-FRM-01.md"); s = open(p, encoding="utf-8").read()
+    i = s.index("| `R"); j = s.index("\n", i); row = s[i:j]
+    open(p, "w", encoding="utf-8").write(s[:i] + s[j + 1:])
+    q = os.path.join(d, "scaffold/governance/rules/RUL-FRM-02.md"); t = open(q, encoding="utf-8").read()
+    k = t.index("| `R"); open(q, "w", encoding="utf-8").write(t[:k] + row + "\n" + t[k:])
+
+
+def drop_secondary(d):  # 副の節から1件消す → E_LOSS_SECONDARY
+    for f in sorted(os.listdir(os.path.join(d, "scaffold/governance/rules"))):
+        p = os.path.join(d, "scaffold/governance/rules", f); s = open(p, encoding="utf-8").read()
+        if "## 副として対応づいた規則" in s and "`R" in s.split("## 副として対応づいた規則")[1]:
+            head, tail = s.split("## 副として対応づいた規則", 1)
+            i = tail.index("`R"); j = tail.index("`", i + 1)
+            open(p, "w", encoding="utf-8").write(head + "## 副として対応づいた規則" + tail[:i] + tail[j + 1:].lstrip("、"))
+            return
+
+
+def shift_req(d):  # 要求文の前に1行入れて構造を崩す → E_REQ（読めない）
+    p = os.path.join(d, CAND); s = open(p, encoding="utf-8").read()
+    i = s.index("#### `RUL-FRM-01`"); j = s.index("\n", i) + 1
+    open(p, "w", encoding="utf-8").write(s[:j] + "\n注記の行\n" + s[j:])
+
+
 def edit_req(d):  # 要求文を書き換える → E_REQ（本文と不一致）／E_STALE
     p = os.path.join(d, CAND); s = open(p, encoding="utf-8").read()
     open(p, "w", encoding="utf-8").write(s.replace("工程の順序とV-pairを守る", "工程の順序を守る", 1))
@@ -80,6 +104,7 @@ def main():
     print("%s baseline -> %s" % ("ok  " if rc == 0 else "NG  ", out.strip().split("\n")[-1]))
     ok = rc == 0
     for name, m, code in (("drop_atom", drop_atom, "E_EXTRA"), ("drop_row", drop_row, "E_LOSS"), ("dup_row", dup_row, "E_DUP"),
+                          ("move_row", move_row, "E_PLACE"), ("drop_secondary", drop_secondary, "E_LOSS_SECONDARY"), ("shift_req", shift_req, "E_REQ"),
                           ("edit_req", edit_req, "E_REQ"), ("hand_edit", hand_edit, "E_REGEN"), ("touch_source", touch_source, "E_STALE"),
                           ("binding_stale", binding_stale, "E_STALE: SCF-B-0002")):
         ok &= case(name, m, code)
