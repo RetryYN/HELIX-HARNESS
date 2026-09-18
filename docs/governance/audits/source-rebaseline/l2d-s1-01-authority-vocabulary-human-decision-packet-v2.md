@@ -145,7 +145,7 @@ screenは範囲の確定ではなく候補の抽出であり、要求単位の�
 **この966件は42要求に分散している。** そのため、`in_scope`に取らなかった要求を
 「authority語彙の意味を持たない」と一括で呼ぶことはできない。要求本文がS1-01の意味を定義していなくても、
 その要求のatomが台帳自身によってS1-01の`in_scope`要求へlinkされている場合があるからである。
-計上台帳では、この区別を`in_scope_linked_atoms`（各要求が抱えるlink済みatomの件数）と、
+計上台帳では、この区別を`in_scope_linked_atoms`（各要求のprimary atomのうち、**primaryがin_scope外**でありながら`requirement_secondary`でin_scope要求へlinkしているatomの件数。in_scope要求自身は定義上0になる。primaryもsecondaryもin_scope内というatomは283件あり、これは1,540件に既に含まれる）と、
 処分`out_of_scope_requirement_holds_linked_atoms`／`out_of_scope_requirement_no_linked_atoms`で記録した。
 linkを抱える要求は35件、抱えない要求は3件である（`route_to_other_unit`の6件と
 `in_scope_covered_by_avs`の1件も`in_scope_linked_atoms`を持つ）。
@@ -158,20 +158,20 @@ linkを抱える要求は35件、抱えない要求は3件である（`route_to_
 
 ### S1-01の範囲に追加される意味
 
-| 要求 | atom（screen／全体） | AVSに無い意味 | 処分 |
-|---|---|---|---|
-| `RUL-OSM-01`（OS） | 122／277 | 人間の判断が必要な事項を**限定列挙し、その定義を所有する**こと。暫定の判断が期限と確定条件を持つこと | adds |
-| `RUL-OSP-04`（OS） | 10／25 | AIが介入点以外を自走すること。人間へ質問する**前に**AI側で解決できないかを確かめ、質問時に判断材料を揃えること | adds |
-| `RUL-FRM-02`（HARNESS） | 43／233 | 人間が承認する層とAIが進める層の**工程上の分担** | adds |
-| `RUL-COR-07`（HARNESS／OS） | 6／19 | 指示の原文を**来歴付きで追記のみ**保全すること。設計判断の後継と廃止を管理すること | adds |
-| `RUL-OSM-05`（OS） | 0／102 | 破壊的な操作を既定で拒否し、例外を**理由付き・一回限り**とし監査に残すこと。`RUL-OSM-01`の介入点「取り消せない操作」の実体 | adds |
-| `RUL-OSM-03`（OS） | 45／76 | providerの記憶を混入させないこと。memoryの**期限と保持**を管理すること | partial |
-| `RUL-OSA-07`（OS） | 0／40 | 未分類のlicenseと未解消の重大な指摘を**承認要求へ回す**接続 | partial |
-| `RUL-COR-08`（HARNESS／OS） | 11／45 | **正規の検証経路を、別の手軽な手段で代替しない**こと。AVS-AC-003は「指示だけを理由に検証を省略しない」までで、手軽な手段による代替はAVSに無い | partial |
-| `RUL-OSA-03`（OS） | 7／35 | 指摘の**処分**（current fixで閉じるか後続へ分けるか）と、審査後に対象が変わったら審査を**stale**にすること。AVS-BR-003の`disposition` identityに具体の意味を与える | partial |
-| `RUL-COR-01`（HARNESS／OS） | 55／166 | **DB・projection・生成物**の全般を第二の正本にしないこと。「作業者は状態DBへ直接書かない」こと | partial |
-| `RUL-COR-02`（HARNESS／OS） | 66／438 | **成果物と判断の全般**をrevisionとdigestへ束縛し、対象が変わったらstaleにすること。AVS-AC-006が束縛するのは`approval`だけである | partial |
-| `RUL-OSM-08`（OS） | 8／84 | **GitHubの状態一般**から要求や承認を作らないこと（Project Statusからの逆書込み禁止 atom`RB0-104`を含む）。AVS-AC-004はIssue commentとmemoryだけの`decision`拒否である | partial |
+| 要求 | atom（screen／全体） | AVSに無い意味（S1-01が取る部分） | S1-01の範囲外に残る部分と行き先 | 処分 |
+|---|---|---|---|---|
+| `RUL-OSM-01`（OS） | 122／277 | 人間の判断が必要な事項を**限定列挙し、その定義を所有する**こと。暫定の判断が期限と確定条件を持つこと | — | adds |
+| `RUL-OSP-04`（OS） | 10／25 | AIが介入点以外を自走すること。人間へ質問する**前に**AI側で解決できないかを確かめ、質問時に判断材料を揃えること | — | adds |
+| `RUL-FRM-02`（HARNESS） | 43／233 | 人間が承認する層とAIが進める層の**工程上の分担** | — | adds |
+| `RUL-COR-07`（HARNESS／OS） | 6／19 | 指示の原文を**来歴付きで追記のみ**保全すること。設計判断の後継と廃止を管理すること | — | adds |
+| `RUL-OSM-05`（OS） | 0／102 | 破壊的な操作を既定で拒否し、例外を**理由付き・一回限り**とし監査に残すこと。`RUL-OSM-01`の介入点「取り消せない操作」の実体 | — | adds |
+| `RUL-OSM-03`（OS） | 45／76 | providerの記憶を混入させないこと。memoryの**期限と保持**を管理すること | memoryと引き継ぎを正本にしない点はAVS-BR-005／AVS-AC-010／011／015で計上済みであり、本要求からは取らない | partial |
+| `RUL-OSA-07`（OS） | 0／40 | 未分類のlicenseと未解消の重大な指摘を**承認要求へ回す**接続 | 脅威modelの確認、脆弱性の審査、依存と供給網の検査の本体。安全・検収系unitで扱う | partial |
+| `RUL-COR-08`（HARNESS／OS） | 11／45 | **正規の検証経路を、別の手軽な手段で代替しない**こと。AVS-AC-003は「指示だけを理由に検証を省略しない」までで、手軽な手段による代替はAVSに無い | 要約・表示・引き継ぎの意味保存の本体。当該要求の本来のunitで扱う | partial |
+| `RUL-OSA-03`（OS） | 7／35 | 指摘の**処分**（current fixで閉じるか後続へ分けるか）。AVS-BR-003の`disposition` identityに具体の意味を与える。審査のstale化は`RUL-COR-02`が一般形で持つため、そちらを参照する | blockerの一括返却と再判定の一巡規則。検収系unit（`RUL-OSA-01`／`04`の送り先）で扱う | partial |
+| `RUL-COR-01`（HARNESS／OS） | 55／166 | **DB・projection・生成物**の全般を第二の正本にしないこと。「作業者は状態DBへ直接書かない」こと | memoryとIssue commentを正本にしない部分はAVS-BR-005／AVS-AC-004／010で計上済み。DB schemaとidentityの実現方式はL3で再導出する（v1が繰り延べた領域。本要求が取るのは「直接書かない」という規律であり、schemaの決定ではない） | partial |
+| `RUL-COR-02`（HARNESS／OS） | 66／438 | **成果物と判断の全般**をrevisionとdigestへ束縛し、対象が変わったらstaleにすること。AVS-AC-006が束縛するのは`approval`だけである | digestの計算方法の版固定。L3の実現方式で扱う | partial |
+| `RUL-OSM-08`（OS） | 8／84 | **GitHubの状態一般**から要求や承認を作らないこと（Project Statusからの逆書込み禁止 atom`RB0-104`を含む）。AVS-AC-004はIssue commentとmemoryだけの`decision`拒否である | Issue／PR／templateの形式とownerの単一性。GitHub projection系unitで扱う | partial |
 
 `RUL-OSM-05`、`RUL-OSA-07`、`RUL-COR-08`、`RUL-OSA-03`はscreen一致0件または少数であり、要求本文の判定で計上している。
 `RUL-COR-08`と`RUL-OSA-03`は2026-09-19の第2独立reviewで、`RUL-COR-01`・`RUL-COR-02`・`RUL-OSM-08`は
@@ -228,7 +228,7 @@ S1-01を人間判断へ送る前に解消する。
 6. `re.IGNORECASE`で増える7 atom（`RC01-118`ほか）を集合に入れるかどうか。
 7. 範囲外とした38要求について、個々のatom本文を1件ずつ見た確認。とくに`in_scope_linked_atoms`を持つ35要求は、
    link済みatomの処分が項目4と重なる。
-   現在の根拠は要求本文の意味であり、atom単位ではない。要求単位の根拠を個別に記録したのは4要求で、残る34要求の`basis`は定型文である（ただし`in_scope_linked_atoms`の件数と例示atomは要求ごとに実数を持つ）。
+   現在の根拠は要求本文の意味であり、atom単位ではない。要求単位の根拠を個別に記録したのは5要求で、残る33要求の`basis`は定型文である（ただし`in_scope_linked_atoms`の件数と例示atomは要求ごとに実数を持つ）。
 8. 各要求の`common_atoms`、`distinct_atoms_by_source`、`acceptance_differences`、`consumer_differences`、
    `unaccounted_atom_refs`（RDP-002 clusterの未評価fieldと同じ）。
 
