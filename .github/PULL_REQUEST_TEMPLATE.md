@@ -49,6 +49,8 @@
 - 実施した静的確認または新世代oracle:
 - 未実行の確認と理由:
 - GitHub Claude review comment:
+- 最終review記録の対象HEAD（指摘0を確認したexact revision）:
+- 上のHEADとmerge対象HEADが一致するか（一致しない場合はmergeしない。指摘反映後は最終HEADで再確認する）:
 - 未解消Blocker／Major:
 - `scaffold/`または正式実装に触れた場合、`scfctl validate`／`stale`／`residuals`／`selftest`の出力（差し替え忘れ防止）:
 
