@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSM-02
 group: OS管理
 product: OS
-atoms_primary: 111
-atoms_secondary: 108
+atoms_primary: 119
+atoms_secondary: 120
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 役割・agent・hook・adapterの登録と版を管理し、runtime間（Claude、Codex等）でguardと規則が乖離したら検出して止める。
 
-## 主として対応づいた規則（111件）
+## 主として対応づいた規則（119件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -137,7 +137,15 @@ issue_projection: none
 | `RG16-010` | 新しいagent roleを追加する担当者は、agent-guard.tsのallowlistを更新してtestし、capability classをこの文書へ記録する。 | tooling_runtime | prose | n/a | agent-guard.ts、docs/skills/agent-design.md | `RUL-OSP-01` | docs/skills/agent-design.md:52-53; docs/skills/agent-design.md:81-82 | G16／claude-opus |
 | `RG18-005` | 各agentはエスカレーション境界を再列挙せず判断コア§1を参照する。規則の管理者はCLAUDE.mdの「安全境界」と.claude/CLAUDE.mdの「Guard 規則」を同じ境界集合に保つ。 | escalation_authority | prose | n/a | CLAUDE.mdおよび.claude/CLAUDE.mdの指定節 | `RUL-OSM-01` | docs/skills/judgment-core.md:56-57 | G18／claude-opus |
 | `RG18-015` | reviewerまたはjudge役を変更する担当者は、その変更をeval-suite migration相当として扱い、PLANへ記録する。 | process_gate | prose | n/a | PLANによる変更記録 | `RUL-TKT-01` | docs/skills/judgment-core.md:184-184 | G18／claude-opus |
+| `RG23-002` | codex-hook-adapterは、hook commandが必須entrypointを呼んでいるかをscript path部のtoken完全一致で照合し、単なる部分文字列一致でguard充足と判定してはならない。 | tooling_runtime | lint | fail_close | commandHas() と CODEX_REQUIRED の commandParts | `RUL-COR-04` | src/lint/codex-hook-adapter.ts:124-135; src/lint/codex-hook-adapter.ts:205-210 | G23／claude-opus |
+| `RG32-008` | project-hookは、必須hookのうちPreToolUse(Agent\|Task)、PreToolUse(Edit\|Write\|MultiEdit)、PreToolUse(Bash)のgit-command-guardにblockOnFailure=trueを要求し、SessionStart・PostToolUse・Stop・SubagentStopの各entrypointの存在を要求する。 | safety_security | lint／hook | fail_close | .claude/settings.json、.claude/hooks/*.ts、src/cli.ts | `RUL-COR-04` | src/lint/project-hook.ts:52-82; src/lint/project-hook.ts:144-182 | G32／claude-opus |
+| `RG34-007` | tool adapter probeは、catalogに登録されていないadapter idを受理せず、probe結果を作らずnullを返す。 | tooling_runtime | lint | fail_close | probeToolAdapter の ADAPTERS 参照 | `RUL-COR-04` | src/lint/tool-adapter.ts:237-242 | G34／claude-opus |
+| `RG40-031` | 強制停止のhookは検出と生記録だけを行い、意味判定は管理されたclassifier subagentへ分離しなければならない。hook側が生APIを持ってはならない。 | lane_delegation | hook | fail_open | pmo-haiku という具体agent名 | `RUL-OSP-03` | src/runtime/forced-stop.ts:1-11; src/runtime/forced-stop.ts:57-58; src/runtime/forced-stop.ts:266-287 | G40／claude-opus |
+| `RG41-012` | hosted APIやdeveloper tool面ではrepositoryのhookが実行されないため、hook coveredとみなさず常にpreflightを要求しなければならない。 | safety_security | gate | fail_close | codex-hosted-api / hosted-api / developer-tool という面名 | — | src/runtime/hosted-preflight.ts:52-56; src/runtime/hosted-preflight.ts:74-89; src/runtime/hosted-preflight.ts:140-150 | G41／claude-opus |
+| `RG41-013` | 直接hook面であっても、repositoryのhookが未設定であればdriftとして扱い、hook coveredとしてはならない。 | safety_security | gate | fail_close | claude-hook / codex-hook | `RUL-OSI-03` | src/runtime/hosted-preflight.ts:91-102 | G41／claude-opus |
+| `RG41-014` | 既知のhook対象tool名に該当せず、明示のdeferred理由も無い面はdriftとして扱わなければならない。 | safety_security | gate | fail_close | Edit/Write/MultiEdit/Bash/Agent、apply_patch等のtool名一覧 | `RUL-OSI-03` | src/runtime/hosted-preflight.ts:58-68; src/runtime/hosted-preflight.ts:115-133 | G41／claude-opus |
+| `RG45-009` | specialist agent registryは、entriesが1件も無い場合にschema不正として不合格にする。 | lane_delegation | prose | fail_close | config/specialist-agent-registry.json | `RUL-COR-04` | src/runtime/specialist-agent-registry.ts:64-69 | G45／claude-opus |
 
-## 副として対応づいた規則（108件）
+## 副として対応づいた規則（120件）
 
-`RA-070`、`RA-071`、`RA-077`、`RA-079`、`RA-083`、`RA-084`、`RA-085`、`RA-086`、`RA-087`、`RA-088`、`RA-089`、`RA-090`、`RA-091`、`RA-109`、`RA-129`、`RA-297`、`RB0-171`、`RB0-176`、`RB04-018`、`RB04-279`、`RB05-159`、`RB05-334`、`RB06-056`、`RB06-058`、`RB06-062`、`RB06-090`、`RB06-091`、`RB06-134`、`RB06-183`、`RB06-276`、`RB07-095`、`RB07-129`、`RB07-191`、`RB07-192`、`RB07-306`、`RB08-136`、`RB08-203`、`RC0-003`、`RC0-007`、`RC0-008`、`RC00-026`、`RC00-032`、`RC00-045`、`RC00-127`、`RC00-132`、`RC00-142`、`RC00-143`、`RC00-147`、`RC00-162`、`RC00-166`、`RC00-244`、`RC01-001`、`RC01-002`、`RC01-003`、`RC01-017`、`RC01-046`、`RC01-054`、`RC01-117`、`RC01-122`、`RC03-104`、`RC04-107`、`RD00-003`、`RD00-004`、`RD00-031`、`RD01-007`、`RD02-066`、`RD02-294`、`RD02-295`、`RD03-076`、`RD03-079`、`RD03-082`、`RD03-083`、`RD03-085`、`RD03-087`、`RD03-213`、`RD03-214`、`RD03-227`、`RD03-228`、`RD03-231`、`RD04-083`、`RD04-094`、`RD04-095`、`RD04-134`、`RD09-128`、`RD10-011`、`RD11-001`、`RD11-002`、`RD11-005`、`RD11-034`、`RD11-037`、`RD11-038`、`RD11-041`、`RD11-050`、`RD11-051`、`RD11-055`、`RD11-058`、`RD11-068`、`RE01-094`、`RE01-120`、`RE01-122`、`RE01-185`、`RE01-285`、`RG10-008`、`RG10-020`、`RG10-025`、`RG13-004`、`RG16-009`、`RG18-010`
+`RA-070`、`RA-071`、`RA-077`、`RA-079`、`RA-083`、`RA-084`、`RA-085`、`RA-086`、`RA-087`、`RA-088`、`RA-089`、`RA-090`、`RA-091`、`RA-109`、`RA-129`、`RA-297`、`RB0-171`、`RB0-176`、`RB04-018`、`RB04-279`、`RB05-159`、`RB05-334`、`RB06-056`、`RB06-058`、`RB06-062`、`RB06-090`、`RB06-091`、`RB06-134`、`RB06-183`、`RB06-276`、`RB07-095`、`RB07-129`、`RB07-191`、`RB07-192`、`RB07-306`、`RB08-136`、`RB08-203`、`RC0-003`、`RC0-007`、`RC0-008`、`RC00-026`、`RC00-032`、`RC00-045`、`RC00-127`、`RC00-132`、`RC00-142`、`RC00-143`、`RC00-147`、`RC00-162`、`RC00-166`、`RC00-244`、`RC01-001`、`RC01-002`、`RC01-003`、`RC01-017`、`RC01-046`、`RC01-054`、`RC01-117`、`RC01-122`、`RC03-104`、`RC04-107`、`RD00-003`、`RD00-004`、`RD00-031`、`RD01-007`、`RD02-066`、`RD02-294`、`RD02-295`、`RD03-076`、`RD03-079`、`RD03-082`、`RD03-083`、`RD03-085`、`RD03-087`、`RD03-213`、`RD03-214`、`RD03-227`、`RD03-228`、`RD03-231`、`RD04-083`、`RD04-094`、`RD04-095`、`RD04-134`、`RD09-128`、`RD10-011`、`RD11-001`、`RD11-002`、`RD11-005`、`RD11-034`、`RD11-037`、`RD11-038`、`RD11-041`、`RD11-050`、`RD11-051`、`RD11-055`、`RD11-058`、`RD11-068`、`RE01-094`、`RE01-120`、`RE01-122`、`RE01-185`、`RE01-285`、`RG02-002`、`RG02-013`、`RG10-008`、`RG10-020`、`RG10-025`、`RG13-004`、`RG16-009`、`RG18-010`、`RG33-010`、`RG35-006`、`RG35-011`、`RG37-012`、`RG37-015`、`RG38-003`、`RG43-011`、`RG43-013`、`RG44-011`、`RG46-015`

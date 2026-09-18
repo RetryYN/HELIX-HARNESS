@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-FRM-07
 group: 枠
 product: HARNESS
-atoms_primary: 40
-atoms_secondary: 15
+atoms_primary: 46
+atoms_secondary: 18
 issue_projection: #1858
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1858
 
 文書の言語と可読性を定める。人間向けの文は日本語、主語を明示、1文1主張、文字化けや不正な文字を検査する。
 
-## 主として対応づいた規則（40件）
+## 主として対応づいた規則（46件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -66,7 +66,13 @@ issue_projection: #1858
 | `RD05-130` | completion-decision-packetは、yamlLinesJaの本文に日本語文字がない場合、失敗させる。 | doc_language | lint | fail_close | 日本語文字の存在検査 | — | src/lint/completion-decision-packet.ts:1161-1166 | D05／gpt-6-astra |
 | `RD05-140` | completion-review-bundleは、decision packetが要求する日本語actionのいずれかがrequiredOperatorActionsJaに欠ける場合、失敗させる。 | doc_language | lint | fail_close | requiredActionsJaの重複排除集合 | `RUL-COR-04` | src/lint/completion-decision-packet.ts:2015-2025 | D05／gpt-6-astra |
 | `RG19-003` | doctorのreadability gateは、半角カナまたはU+FFFD置換文字を検出した場合にfail-closeする。 | doc_language | doctor | fail_close | helix doctor readability gate | `RUL-OSA-06` | docs/skills/security-and-hardening.md:88-90 | G19／claude-opus |
+| `RG25-003` | design-languageは、README系ファイルと生成物扱いの文書（docs/archive/intake配下、日付付きsession-handover、docs/archive/handover配下）を人間向けdocsの検査対象から除外する。 | doc_language | doctor／lint | n/a | isReadmeLike / isGeneratedDoc と DESIGN_LANGUAGE_ROOTS | — | src/lint/design-language.ts:120-140 | G25／claude-opus |
+| `RG25-004` | design-languageは、コード塊・frontmatter・構造化record・表区切り・日本語を含む行を除いたうえで、技術語allowlistを除く英語語が見出しで2語以上、本文で4語以上ある行を英語prose違反とする。 | doc_language | doctor／lint | fail_close | TECHNICAL_WORD_ALLOWLIST と 見出し2語／prose4語の閾値 | — | src/lint/design-language.ts:82-114; src/lint/design-language.ts:211-230; src/lint/design-language.ts:271-288 | G25／claude-opus |
+| `RG25-005` | design-languageがbaseline件数据え置きでfingerprint変化を検出した場合、既存の英語proseを別の英語proseへ差し替えて回避してはならず、日本語化でdebtを減らすかbaseline fingerprint更新PLANを通さなければならない。 | doc_language | doctor／prose | fail_close | DESIGN_LANGUAGE_BASELINE_FINGERPRINT と fingerprintDrift 判定 | `RUL-OSA-06` | src/lint/design-language.ts:292-296; src/lint/design-language.ts:333-337 | G25／claude-opus |
+| `RG32-009` | readabilityのシステム帯は、docs/配下全体とCLAUDE.md・AGENTS.md・.claude/CLAUDE.mdを対象とし、README系ファイル、vendor source snapshot、legacy local stateは対象外とする。 | doc_language | lint | n/a | ROOT_READABILITY_DOCS | — | src/lint/readability.ts:98-122 | G32／claude-opus |
+| `RG32-010` | runtime readabilityは、.helix/audit配下のmarkdownと.helix/handover配下のJSONも文字化けmarker検査の対象とする。 | doc_language | lint | n/a | .helix/audit, .helix/handover | — | src/lint/readability.ts:137-166 | G32／claude-opus |
+| `RG40-005` | 文書metadata整形器は、frontmatter内に既存のdocument_agent blockがあればそれを置換し、無ければfrontmatterの先頭へ挿入する。 | doc_language | prose | fail_close | document_agent: というYAML key | — | src/runtime/document-agent-metadata-apply.ts:82-93 | G40／claude-opus |
 
-## 副として対応づいた規則（15件）
+## 副として対応づいた規則（18件）
 
-`RA-219`、`RA-233`、`RA-253`、`RB07-054`、`RB07-131`、`RB07-151`、`RB07-220`、`RB08-069`、`RB08-071`、`RB08-086`、`RB08-087`、`RC00-177`、`RC02-140`、`RC02-146`、`RC04-239`
+`RA-219`、`RA-233`、`RA-253`、`RB07-054`、`RB07-131`、`RB07-151`、`RB07-220`、`RB08-069`、`RB08-071`、`RB08-086`、`RB08-087`、`RC00-177`、`RC02-140`、`RC02-146`、`RC04-239`、`RG40-004`、`RG40-011`、`RG45-020`

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-FRM-03
 group: 枠
 product: HARNESS
-atoms_primary: 210
-atoms_secondary: 134
+atoms_primary: 216
+atoms_secondary: 138
 issue_projection: #1858
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1858
 
 変更の種類（新規、追加、修正、refactor、retrofit、reverse、PoC、research）ごとに進む経路を一つに決め、途中で意味の変更を検出したら正しい経路へ戻す。
 
-## 主として対応づいた規則（210件）
+## 主として対応づいた規則（216件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -233,10 +233,16 @@ issue_projection: #1858
 | `RG05-013` | design-bottomup経路を扱う処理は、作業kindをdesignまたはadd-designに限定する。 | process_gate | config | n/a | design_bottomupのallowed_kinds | — | config/drive-route-catalog.json:246-250 | G05／claude-opus |
 | `RG05-015` | 外部契約または挙動変更によるredesign判断を終了する処理は、再分類先の代替経路がcurrentであることを要求する。 | process_gate | config | n/a | redesign.exit_conditionのreplacement_route_current | `RUL-COR-02` | config/drive-route-catalog.json:288-294 | G05／claude-opus |
 | `RG10-001` | 工程選択者はproductionのdelivery単位をFull V・Production Scrum・Hybridから選ぶ。 | process_gate | prose | n/a | 旧delivery routeの3区分 | — | docs/governance/drive-route-catalog.md:56-56 | G10／claude-opus |
+| `RG11-005` | 上流追突の採用判断者は、単純なファイル分割をcapability採用として取り込まず、refactorとして既存PLANの境界で段階実施する。 | review_merge | prose | n/a | PLAN-L7-349／PLAN-L7-355 の分割境界 | `RUL-REV-01` | docs/governance/helix-harness-upstream-reconciliation-audit-2026-07-07.md:112-113 | G11／claude-opus |
 | `RG14-020` | RLOのintake routeを確定する担当者は、#819に#502のupdate／requirement_ir_release_minus_1ルートを流用せず、新規orchestration capabilityとしてrouteとIR分類を別途確定する。 | process_gate | prose | n/a | 承認依頼時点のCodex TL見解、Issue #819／#502、REUSE／AMEND／NEW分類 | `RUL-TKT-01` | docs/governance/rlo-819-approval-packet-2026-08-20.md:31-38 | G14／claude-opus |
+| `RG15-018` | route整理者はScrum以外の経路を「その他」として一括処理せず、各routeの入口、工程、合流、exitを機械正本へ固定する。 | process_gate | prose／doctor | fail_close | 統合route catalogとdoctor owner | `RUL-COR-01` | docs/governance/workflow-and-specialist-harness-audit-2026-07-28.md:212-212 | G15／claude-opus |
 | `RG18-023` | Reverse担当者はupgrade typeでRGCを使ってはならない。 | process_gate | prose | n/a | Reverse upgrade typeとRGC | `RUL-REV-01` | docs/skills/reverse-analysis.md:36-36 | G18／claude-opus |
 | `RG19-005` | Discovery／PoC担当者は、S2の軽量仕様経路をproduction development styleの工程省略として扱ってはならない。 | process_gate | prose | n/a | Discovery／PoCのS2、production development style | `RUL-PLN-01` | docs/skills/spec-driven-development.md:93-96 | G19／claude-opus |
+| `RG41-017` | Forward／Reverse予約のForward PLANはkind=add-impl・target_axis=workflow_model・target_id=ADD_FEATUREに固定され、両PLANの文書pathはPLAN IDから決まる規定の場所とする。 | process_gate | gate | fail_close | docs/plans/<plan_id>.md という具体path | `RUL-TKT-01` | src/runtime/forward-reverse-terminal-reservation.ts:29-38; src/runtime/forward-reverse-terminal-reservation.ts:143-152 | G41／claude-opus |
+| `RG47-015` | route選択は、signalに含まれるtokenの最長一致でrouteを選び、一致長が同じ場合はroute map定義順で決定する。 | tooling_runtime | prose | n/a | ROUTE_SIGNAL_MAP | — | src/workflow/routing-contracts.ts:452-459; src/workflow/routing-contracts.ts:499-505 | G47／claude-opus |
+| `RG48-004` | workflow分類器は、signalに一致したbindingのうち一致長が最長のものだけを候補として残し、axis・ID・matched signalが同じ候補の重複を除いてから判定する。 | tooling_runtime | prose | n/a | config/workflow-classification-catalog.v1.json | — | src/workflow/workflow-classification-routing.ts:42-67 | G48／claude-opus |
+| `RG48-005` | workflow分類器は、unknownとdecision_requiredをok=trueの警告かつexit code 2とし、ambiguousだけをok=falseのerrorかつexit code 1として扱う。 | escalation_authority | prose | fail_close | — | `RUL-OSM-01` | src/workflow/workflow-classification-routing.ts:69-131 | G48／claude-opus |
 
-## 副として対応づいた規則（134件）
+## 副として対応づいた規則（138件）
 
-`RA-193`、`RA-195`、`RA-227`、`RA-228`、`RA-229`、`RB0-101`、`RB0-102`、`RB04-033`、`RB04-046`、`RB04-050`、`RB04-078`、`RB04-096`、`RB04-097`、`RB04-098`、`RB04-100`、`RB04-153`、`RB04-190`、`RB05-032`、`RB05-084`、`RB05-105`、`RB05-211`、`RB05-214`、`RB05-249`、`RB05-315`、`RB05-318`、`RB05-353`、`RB05-362`、`RB05-363`、`RB05-366`、`RB06-066`、`RB06-067`、`RB06-069`、`RB06-205`、`RB06-257`、`RB06-260`、`RB07-001`、`RB07-004`、`RB07-044`、`RB07-086`、`RB07-088`、`RB07-091`、`RB07-134`、`RB07-138`、`RB07-224`、`RB07-244`、`RB07-266`、`RB07-267`、`RB07-269`、`RB07-342`、`RB08-013`、`RB08-015`、`RB08-027`、`RB08-053`、`RB08-099`、`RB08-102`、`RB08-123`、`RB08-157`、`RB08-176`、`RB08-182`、`RB08-230`、`RB08-289`、`RB08-312`、`RB09-013`、`RC0-144`、`RC0-145`、`RC0-146`、`RC0-147`、`RC0-148`、`RC00-181`、`RC00-182`、`RC00-184`、`RC02-110`、`RC04-136`、`RC04-139`、`RC04-170`、`RC04-173`、`RC04-175`、`RC04-176`、`RC04-191`、`RC04-198`、`RC04-229`、`RC04-242`、`RC04-245`、`RC04-285`、`RD00-090`、`RD02-130`、`RD02-153`、`RD04-227`、`RD05-009`、`RD05-196`、`RD06-074`、`RD06-138`、`RD06-139`、`RD06-140`、`RD06-141`、`RD06-142`、`RD06-143`、`RD06-145`、`RD06-155`、`RD06-159`、`RD06-160`、`RD06-170`、`RD06-172`、`RD06-194`、`RD07-189`、`RD08-047`、`RD08-056`、`RD09-026`、`RD09-034`、`RD09-035`、`RD09-039`、`RD09-040`、`RD09-041`、`RD09-043`、`RD09-045`、`RD09-071`、`RD10-057`、`RD10-058`、`RD10-083`、`RD10-103`、`RD10-117`、`RD11-071`、`RD11-074`、`RE01-009`、`RE01-012`、`RE01-018`、`RE01-052`、`RE01-056`、`RE01-176`、`RE01-181`、`RE01-254`、`RE01-263`、`RG10-004`、`RG19-002`
+`RA-193`、`RA-195`、`RA-227`、`RA-228`、`RA-229`、`RB0-101`、`RB0-102`、`RB04-033`、`RB04-046`、`RB04-050`、`RB04-078`、`RB04-096`、`RB04-097`、`RB04-098`、`RB04-100`、`RB04-153`、`RB04-190`、`RB05-032`、`RB05-084`、`RB05-105`、`RB05-211`、`RB05-214`、`RB05-249`、`RB05-315`、`RB05-318`、`RB05-353`、`RB05-362`、`RB05-363`、`RB05-366`、`RB06-066`、`RB06-067`、`RB06-069`、`RB06-205`、`RB06-257`、`RB06-260`、`RB07-001`、`RB07-004`、`RB07-044`、`RB07-086`、`RB07-088`、`RB07-091`、`RB07-134`、`RB07-138`、`RB07-224`、`RB07-244`、`RB07-266`、`RB07-267`、`RB07-269`、`RB07-342`、`RB08-013`、`RB08-015`、`RB08-027`、`RB08-053`、`RB08-099`、`RB08-102`、`RB08-123`、`RB08-157`、`RB08-176`、`RB08-182`、`RB08-230`、`RB08-289`、`RB08-312`、`RB09-013`、`RC0-144`、`RC0-145`、`RC0-146`、`RC0-147`、`RC0-148`、`RC00-181`、`RC00-182`、`RC00-184`、`RC02-110`、`RC04-136`、`RC04-139`、`RC04-170`、`RC04-173`、`RC04-175`、`RC04-176`、`RC04-191`、`RC04-198`、`RC04-229`、`RC04-242`、`RC04-245`、`RC04-285`、`RD00-090`、`RD02-130`、`RD02-153`、`RD04-227`、`RD05-009`、`RD05-196`、`RD06-074`、`RD06-138`、`RD06-139`、`RD06-140`、`RD06-141`、`RD06-142`、`RD06-143`、`RD06-145`、`RD06-155`、`RD06-159`、`RD06-160`、`RD06-170`、`RD06-172`、`RD06-194`、`RD07-189`、`RD08-047`、`RD08-056`、`RD09-026`、`RD09-034`、`RD09-035`、`RD09-039`、`RD09-040`、`RD09-041`、`RD09-043`、`RD09-045`、`RD09-071`、`RD10-057`、`RD10-058`、`RD10-083`、`RD10-103`、`RD10-117`、`RD11-071`、`RD11-074`、`RE01-009`、`RE01-012`、`RE01-018`、`RE01-052`、`RE01-056`、`RE01-176`、`RE01-181`、`RE01-254`、`RE01-263`、`RG01-002`、`RG02-020`、`RG10-004`、`RG19-002`、`RG32-003`、`RG48-006`

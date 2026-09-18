@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-FRM-05
 group: 枠
 product: HARNESS
-atoms_primary: 155
-atoms_secondary: 95
+atoms_primary: 162
+atoms_secondary: 101
 issue_projection: #1858
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1858
 
 検証の作り方を定める。test先行、境界値、正常系と異常系、仕込んだ欠陥を検出できる証拠、fixtureの隔離。
 
-## 主として対応づいた規則（155件）
+## 主として対応づいた規則（162件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -178,10 +178,17 @@ issue_projection: #1858
 | `RE01-076` | 作成者は早期にDraft PRを作り、TDDのRedをGreenと別commitにして証拠を残す。 | review_merge | prose | n/a | 旧Draft PR開始手順とRed commit分離 | `RUL-OSM-08` | docs/governance/helix-harness-requirements_v1.2.md:1223-1229 | E01／claude-opus |
 | `RE01-137` | テスト作成者はdomain invariantをoracleにし、truthinessだけで成功を判定しない。integration testではGiven–When–Thenで条件と結果を明示する。 | behavior_discipline | prose／gate | n/a | DDD・DbCとtest記法 | `RUL-FRM-06` | docs/governance/helix-harness-requirements_v1.2.md:1937-1946 | E01／claude-opus |
 | `RE01-229` | 検証設計者は承認・cutover・projection・GitHub・memory・feedbackの障害条件にfault injection、race、soak、crash等を適用し、riskに応じてproperty・model・differential・mutation・fuzz検証を選ぶ。手法数だけで完了としない。 | evidence_claim | gate | fail_close | harness reliability検証領域 | `RUL-OSA-08` | docs/governance/helix-harness-requirements_v1.3.md:373-375 | E01／claude-opus |
+| `RG01-008` | QA担当は、テスト設計・検証において、project-localのV-model pair文書とPLANを優先する。 | process_gate | prose | n/a | project-localのV-model pair文書とPLAN | `RUL-FRM-01` | .claude/agents/qa-test.md:17-17 | G01／claude-opus |
+| `RG01-012` | /shipのqa-test担当は、正常経路・境界ケース・エラー経路・並行処理についてテストの被覆を分析する。 | review_merge | prose | n/a | — | `RUL-OSA-02` | .claude/commands/ship.md:31-31 | G01／claude-opus |
+| `RG02-001` | /test実行者は、L6 unit-test designまたはspecのacceptance criteriaに対応するfailing testを書く。 | process_gate | prose | n/a | L6 unit-test design | `RUL-FRM-01` | .claude/commands/test.md:14-17 | G02／claude-opus |
 | `RG09-011` | L6/L7担当者は、TDD工程で契約外のコードを追加してはならない。 | behavior_discipline | prose | n/a | 旧L6/L7工程 | `RUL-DEV-01` | docs/governance/ddd-tdd-rules.md:150-150 | G09／claude-opus |
 | `RG13-008` | authority検査の是正担当者は、旧本文の現行authority主張を検出できるようprocess・gate・schema consumerのnegative fixtureを追加する。 | process_gate | prose | n/a | tests/l12-canonical-authority.test.ts | `RUL-OSA-06` | docs/governance/l12-hybrid-requirements-recognition-risk-audit-2026-07-19.md:42-42 | G13／claude-opus |
+| `RG15-005` | 検証者は不可逆・境界・認証／PIIに関わるACを厚く検証し、表示だけの箇所は薄く検証するリスク加重を行う。 | process_gate | prose | n/a | — | `RUL-FRM-09` | docs/skills/acceptance-criteria-thinking.md:90-91 | G15／claude-opus |
 | `RG19-012` | テスト担当者は、live runtimeがなくてもテスト実行を再現可能にする。 | behavior_discipline | prose | n/a | — | `RUL-COR-05` | docs/skills/testing.md:71-72 | G19／claude-opus |
+| `RG24-005` | ddd-tdd-rulesのmutation oracle locator収集は、PLAN由来のoracle_idを近接行のtest_pathまたはtest-design artifactが実在する場合にだけ登録し、test-design文書では表行またはoracle_id fieldのIDに限定して任意のprose中のIDを登録しない。 | evidence_claim | lint | fail_close | collectMutationOracleLocators と MUTATION_ORACLE_PATH_FIELD_PATTERN | `RUL-FRM-04` | src/lint/ddd-tdd-rules.ts:218-258 | G24／claude-opus |
+| `RG32-013` | 実行可能oracle caseの抽出は、it／testがvitestからimportされた識別子である呼出しだけを数える。comment、dead string、member call、動的titleは数えない。 | evidence_claim | lint | fail_close | vitest / TypeScript AST | `RUL-FRM-04` | src/lint/plan-specific-vpair-binding.ts:485-532 | G32／claude-opus |
+| `RG41-018` | ベンチdatasetは、hidden oracleをpublic taskおよびfixtureとは別のhidden配下fileへ分離して保持しなければならない。 | safety_security | prose | fail_close | config/helix-bench/hidden/hidden-oracles.v1.json という具体path | `RUL-COR-06` | src/runtime/helix-bench-task-dataset.ts:291-298 | G41／claude-opus |
 
-## 副として対応づいた規則（95件）
+## 副として対応づいた規則（101件）
 
-`RA-227`、`RA-231`、`RA-325`、`RA-333`、`RA-343`、`RA-353`、`RA-354`、`RB0-040`、`RB0-049`、`RB0-055`、`RB0-062`、`RB0-102`、`RB04-030`、`RB04-054`、`RB04-070`、`RB04-190`、`RB04-194`、`RB04-199`、`RB04-208`、`RB05-086`、`RB05-117`、`RB05-186`、`RB05-192`、`RB05-230`、`RB06-187`、`RB07-030`、`RB07-076`、`RB07-078`、`RB07-082`、`RB07-087`、`RB07-107`、`RB07-182`、`RB07-194`、`RB07-214`、`RB07-219`、`RB07-223`、`RB07-237`、`RB07-255`、`RB07-260`、`RB07-266`、`RB07-291`、`RB07-302`、`RB07-307`、`RB07-332`、`RB07-342`、`RB08-107`、`RB08-108`、`RB08-112`、`RB08-126`、`RB08-137`、`RB08-141`、`RB08-142`、`RB08-163`、`RB08-185`、`RB08-189`、`RB08-206`、`RB08-207`、`RB08-240`、`RB08-247`、`RB08-281`、`RB08-294`、`RB08-316`、`RB09-023`、`RB09-024`、`RB09-025`、`RB09-029`、`RC0-094`、`RC02-016`、`RC02-025`、`RD01-198`、`RD01-199`、`RD01-305`、`RD01-309`、`RD01-312`、`RD02-146`、`RD05-027`、`RD05-193`、`RD05-211`、`RD05-253`、`RD06-036`、`RD07-011`、`RD07-046`、`RD07-048`、`RD07-052`、`RD07-054`、`RD09-148`、`RD11-061`、`RE01-138`、`RE01-170`、`RE01-216`、`RE01-231`、`RE01-272`、`RE01-279`、`RG14-011`、`RG16-016`
+`RA-227`、`RA-231`、`RA-325`、`RA-333`、`RA-343`、`RA-353`、`RA-354`、`RB0-040`、`RB0-049`、`RB0-055`、`RB0-062`、`RB0-102`、`RB04-030`、`RB04-054`、`RB04-070`、`RB04-190`、`RB04-194`、`RB04-199`、`RB04-208`、`RB05-086`、`RB05-117`、`RB05-186`、`RB05-192`、`RB05-230`、`RB06-187`、`RB07-030`、`RB07-076`、`RB07-078`、`RB07-082`、`RB07-087`、`RB07-107`、`RB07-182`、`RB07-194`、`RB07-214`、`RB07-219`、`RB07-223`、`RB07-237`、`RB07-255`、`RB07-260`、`RB07-266`、`RB07-291`、`RB07-302`、`RB07-307`、`RB07-332`、`RB07-342`、`RB08-107`、`RB08-108`、`RB08-112`、`RB08-126`、`RB08-137`、`RB08-141`、`RB08-142`、`RB08-163`、`RB08-185`、`RB08-189`、`RB08-206`、`RB08-207`、`RB08-240`、`RB08-247`、`RB08-281`、`RB08-294`、`RB08-316`、`RB09-023`、`RB09-024`、`RB09-025`、`RB09-029`、`RC0-094`、`RC02-016`、`RC02-025`、`RD01-198`、`RD01-199`、`RD01-305`、`RD01-309`、`RD01-312`、`RD02-146`、`RD05-027`、`RD05-193`、`RD05-211`、`RD05-253`、`RD06-036`、`RD07-011`、`RD07-046`、`RD07-048`、`RD07-052`、`RD07-054`、`RD09-148`、`RD11-061`、`RE01-138`、`RE01-170`、`RE01-216`、`RE01-231`、`RE01-272`、`RE01-279`、`RG01-013`、`RG14-011`、`RG16-016`、`RG20-002`、`RG25-002`、`RG41-016`、`RG42-002`、`RG44-004`

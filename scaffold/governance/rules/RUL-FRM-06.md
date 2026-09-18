@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-FRM-06
 group: 枠
 product: HARNESS
-atoms_primary: 131
-atoms_secondary: 115
+atoms_primary: 135
+atoms_secondary: 118
 issue_projection: #1858
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1858
 
 設計の書き方を定める。component間の契約（事前条件・事後条件・不変条件）、依存の方向と強さ、ownerの単一性、用語集との同期。
 
-## 主として対応づいた規則（131件）
+## 主として対応づいた規則（135件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -157,7 +157,11 @@ issue_projection: #1858
 | `RG09-020` | L4方式設計の担当者は、arc42 §9に基づくADRテンプレートを必須artifactにする。 | process_gate | prose | n/a | L4方式設計sub-doc、IMP-023 | `RUL-COR-07` | docs/governance/document-system-map.md:187-197 | G09／claude-opus |
 | `RG10-010` | 機能設計担当者はcross-check engineのレジストリ構築・ルール解決・適用・差分レポートのアルゴリズムをL6でpseudocode化する。 | process_gate | prose | n/a | 旧L6機能設計、IEEE 1016 §5.7 | — | docs/governance/gate-design.md:180-180 | G10／claude-opus |
 | `RG14-006` | Functional Release Sliceの導入担当者は、SliceをModule／Bundle、workflow、route、drive、execution mode、provider、repositoryとは別軸として扱い、既存11 Module／8 Bundleの意味を変更してはならない。 | behavior_discipline | prose | n/a | Functional Release Slice候補と既存11 Module／8 Bundle | `RUL-COR-07` | docs/governance/release-module-bundle-rollout-roadmap.md:16-17 | G14／claude-opus |
+| `RG23-005` | coding-rulesのmodule境界policyは、全source module ownerの既定をdenyとし、明示的にallow例外として登録された依存方向だけを許可する。 | behavior_discipline | lint | fail_close | ALLOWED_SOURCE_DIRECTIONS と SOURCE_MODULE_POLICY.defaults | `RUL-DEV-01` | src/lint/coding-rules.ts:25-123; src/lint/coding-rules.ts:127-152 | G23／claude-opus |
+| `RG25-001` | dependency-driftのimport解析は、型専用のimport／export（isTypeOnlyまたは全要素が型import）を実行時依存edgeとして数えない。 | tooling_runtime | lint | n/a | TypeScript AST の importClause.isTypeOnly 判定 | `RUL-COR-05` | src/lint/dependency-drift.ts:117-157 | G25／claude-opus |
+| `RG34-004` | source-boundaryのpolicy被覆検査は、実在するsource edgeを評価した結果がunspecifiedとなる場合、その理由をfindingとして返す。 | process_gate | lint／gate | fail_close | validateBoundaryPolicyCoverage / PLAN-L7-452 U-SBOUND-003,007 | `RUL-COR-04` | src/lint/source-boundary-policy.ts:182-186 | G34／claude-opus |
+| `RG42-002` | test検証inventoryは、test fileのimportと参照artifact pathからpath selectorを純粋に投影して作り、repositoryのI/Oは呼出側に残さなければならない。 | tooling_runtime | ci | n/a | tests/ 配下の .test.ts と vitest コマンド | `RUL-FRM-05` | src/runtime/impact-ci.ts:195-222 | G42／claude-opus |
 
-## 副として対応づいた規則（115件）
+## 副として対応づいた規則（118件）
 
-`RA-067`、`RA-075`、`RA-320`、`RA-321`、`RA-324`、`RA-370`、`RB0-032`、`RB0-039`、`RB0-048`、`RB0-049`、`RB0-055`、`RB0-061`、`RB0-062`、`RB0-072`、`RB04-074`、`RB04-089`、`RB04-123`、`RB05-018`、`RB05-019`、`RB05-021`、`RB05-100`、`RB05-211`、`RB05-254`、`RB05-255`、`RB06-165`、`RB06-168`、`RB06-170`、`RB06-268`、`RB06-277`、`RB06-281`、`RB07-032`、`RB07-045`、`RB07-116`、`RB07-143`、`RB07-196`、`RB07-201`、`RB07-206`、`RB07-222`、`RB07-223`、`RB07-235`、`RB07-238`、`RB07-240`、`RB07-254`、`RB07-256`、`RB07-288`、`RB07-289`、`RB07-290`、`RB08-018`、`RB08-065`、`RB08-066`、`RB08-075`、`RB08-076`、`RB08-121`、`RB08-147`、`RB08-159`、`RB08-167`、`RB08-177`、`RB08-196`、`RB08-199`、`RB08-201`、`RB08-210`、`RB08-211`、`RB08-212`、`RB08-216`、`RB08-232`、`RB08-233`、`RB08-258`、`RB08-304`、`RB08-325`、`RB08-328`、`RB09-004`、`RB09-005`、`RB09-006`、`RB09-046`、`RB09-050`、`RB09-053`、`RB09-070`、`RB09-085`、`RB09-088`、`RC01-066`、`RC01-068`、`RC01-098`、`RC01-106`、`RC01-107`、`RC01-111`、`RC01-116`、`RC02-028`、`RC02-073`、`RC02-074`、`RC02-088`、`RD00-101`、`RD02-155`、`RD05-193`、`RD05-200`、`RD05-201`、`RD05-211`、`RD06-062`、`RD08-019`、`RD08-031`、`RD08-035`、`RD09-099`、`RD09-114`、`RE01-023`、`RE01-024`、`RE01-033`、`RE01-137`、`RE01-161`、`RE01-267`、`RE01-272`、`RG09-010`、`RG09-018`、`RG17-006`、`RG18-001`、`RG18-018`、`RG19-001`
+`RA-067`、`RA-075`、`RA-320`、`RA-321`、`RA-324`、`RA-370`、`RB0-032`、`RB0-039`、`RB0-048`、`RB0-049`、`RB0-055`、`RB0-061`、`RB0-062`、`RB0-072`、`RB04-074`、`RB04-089`、`RB04-123`、`RB05-018`、`RB05-019`、`RB05-021`、`RB05-100`、`RB05-211`、`RB05-254`、`RB05-255`、`RB06-165`、`RB06-168`、`RB06-170`、`RB06-268`、`RB06-277`、`RB06-281`、`RB07-032`、`RB07-045`、`RB07-116`、`RB07-143`、`RB07-196`、`RB07-201`、`RB07-206`、`RB07-222`、`RB07-223`、`RB07-235`、`RB07-238`、`RB07-240`、`RB07-254`、`RB07-256`、`RB07-288`、`RB07-289`、`RB07-290`、`RB08-018`、`RB08-065`、`RB08-066`、`RB08-075`、`RB08-076`、`RB08-121`、`RB08-147`、`RB08-159`、`RB08-167`、`RB08-177`、`RB08-196`、`RB08-199`、`RB08-201`、`RB08-210`、`RB08-211`、`RB08-212`、`RB08-216`、`RB08-232`、`RB08-233`、`RB08-258`、`RB08-304`、`RB08-325`、`RB08-328`、`RB09-004`、`RB09-005`、`RB09-006`、`RB09-046`、`RB09-050`、`RB09-053`、`RB09-070`、`RB09-085`、`RB09-088`、`RC01-066`、`RC01-068`、`RC01-098`、`RC01-106`、`RC01-107`、`RC01-111`、`RC01-116`、`RC02-028`、`RC02-073`、`RC02-074`、`RC02-088`、`RD00-101`、`RD02-155`、`RD05-193`、`RD05-200`、`RD05-201`、`RD05-211`、`RD06-062`、`RD08-019`、`RD08-031`、`RD08-035`、`RD09-099`、`RD09-114`、`RE01-023`、`RE01-024`、`RE01-033`、`RE01-137`、`RE01-161`、`RE01-267`、`RE01-272`、`RG09-010`、`RG09-018`、`RG17-006`、`RG18-001`、`RG18-018`、`RG19-001`、`RG34-005`、`RG38-008`、`RG39-013`

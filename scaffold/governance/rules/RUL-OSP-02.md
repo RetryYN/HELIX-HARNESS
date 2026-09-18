@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSP-02
 group: OS推進
 product: OS
-atoms_primary: 63
-atoms_secondary: 49
+atoms_primary: 65
+atoms_secondary: 52
 issue_projection: #1859
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1859
 
 作業の性質に応じてmodel・provider・推論の深さを割り当て、結果に応じて調整する。能力が足りない実行環境には割り当てず、上位modelの使用は許可を要する。
 
-## 主として対応づいた規則（63件）
+## 主として対応づいた規則（65件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -89,7 +89,9 @@ issue_projection: #1859
 | `RG18-007` | Opusへの指示ではスコープ規律を明示的に強調し、subagentの利用を並列実行または独立contextが必要な場合に限定する。grep一回で済む探索を委譲してはならない。 | lane_delegation | prose | n/a | Opus向けモデル別調整 | `RUL-OSP-03` | docs/skills/judgment-core.md:97-97 | G18／claude-opus |
 | `RG18-008` | Sonnetへの委譲者は標準mediumで依頼し、推論が浅い場合はreasoning effortを1段上げる。 | lane_delegation | prose | n/a | Sonnetの標準medium指定 | `RUL-OSP-03` | docs/skills/judgment-core.md:98-98 | G18／claude-opus |
 | `RG18-009` | Haikuへの委譲者は判断が必要な局面で自己判断させず、エスカレーション先を明記する。 | lane_delegation | prose | n/a | Haiku向けモデル別調整 | `RUL-OSP-03` | docs/skills/judgment-core.md:99-99 | G18／claude-opus |
+| `RG37-012` | provider effortの正規化は、"middle"をmediumへ読み替え、"xhigh"はCodex経路でのみ維持しClaude経路ではhighへ落とす。 | tooling_runtime | lint | n/a | normalizeProviderEffort | `RUL-OSM-02` | src/runtime/adapter.ts:654-667 | G37／claude-opus |
+| `RG44-011` | runtime能力判定は、limited状態の能力を不足として扱わず、unsupportedだけを不足に数える。 | lane_delegation | prose | warn | runtime-capability-matrix.v1 の固定registry | `RUL-OSM-02` | src/runtime/runtime-capability-matrix.ts:265-277 | G44／claude-opus |
 
-## 副として対応づいた規則（49件）
+## 副として対応づいた規則（52件）
 
-`RA-113`、`RA-115`、`RA-130`、`RA-133`、`RA-134`、`RA-141`、`RB0-177`、`RB04-013`、`RB04-272`、`RB07-104`、`RB08-062`、`RC0-005`、`RC0-009`、`RC0-010`、`RC0-011`、`RC0-012`、`RC0-013`、`RC00-003`、`RC00-051`、`RC00-172`、`RC00-203`、`RC00-208`、`RC02-065`、`RC03-103`、`RD00-001`、`RD00-028`、`RD00-033`、`RD00-035`、`RD00-036`、`RD01-073`、`RD02-005`、`RD02-009`、`RD02-016`、`RD02-017`、`RD02-021`、`RD02-023`、`RD02-037`、`RD02-064`、`RD02-150`、`RD04-087`、`RD09-115`、`RE01-116`、`RE01-126`、`RE01-237`、`RF01-021`、`RF01-028`、`RG12-002`、`RG16-003`、`RG19-004`
+`RA-113`、`RA-115`、`RA-130`、`RA-133`、`RA-134`、`RA-141`、`RB0-177`、`RB04-013`、`RB04-272`、`RB07-104`、`RB08-062`、`RC0-005`、`RC0-009`、`RC0-010`、`RC0-011`、`RC0-012`、`RC0-013`、`RC00-003`、`RC00-051`、`RC00-172`、`RC00-203`、`RC00-208`、`RC02-065`、`RC03-103`、`RD00-001`、`RD00-028`、`RD00-033`、`RD00-035`、`RD00-036`、`RD01-073`、`RD02-005`、`RD02-009`、`RD02-016`、`RD02-017`、`RD02-021`、`RD02-023`、`RD02-037`、`RD02-064`、`RD02-150`、`RD04-087`、`RD09-115`、`RE01-116`、`RE01-126`、`RE01-237`、`RF01-021`、`RF01-028`、`RG12-002`、`RG16-003`、`RG19-004`、`RG37-009`、`RG46-013`、`RG47-009`

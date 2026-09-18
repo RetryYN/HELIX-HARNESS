@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSP-04
 group: OS推進
 product: OS
-atoms_primary: 22
-atoms_secondary: 19
+atoms_primary: 25
+atoms_secondary: 22
 issue_projection: #1859
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1859
 
 AIは、RUL-OSM-01が定める人間の介入点に当たらない作業を自走する。人間へ質問する前に、AI側で解決できる情報が残っていないかを確かめ、質問するときは判断に必要な材料を揃える。介入点の定義そのものは持たず、RUL-OSM-01を参照する。
 
-## 主として対応づいた規則（22件）
+## 主として対応づいた規則（25件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -48,7 +48,10 @@ AIは、RUL-OSM-01が定める人間の介入点に当たらない作業を自�
 | `RE01-196` | AIは事実・候補・confidence・oracleを提案できるが、要求・authority・高影響操作・state・gateを自己承認してはならない。Nodeはcommit前にschema・authority・policy・HEAD・digestを再検証する。 | escalation_authority | gate | fail_close | AI proposalとNode admission boundary | `RUL-OSM-01` | docs/governance/helix-harness-requirements_v1.3.md:257-257 | E01／claude-opus |
 | `RE01-221` | AIはpolicy内の可逆変更を自律実行できるが、L1の目的・安全・外部契約・不可逆操作・実質的trade-offは人間に委ねる。 | escalation_authority | prose／gate | fail_close | authoring自律境界 | `RUL-OSM-01` | docs/governance/helix-harness-requirements_v1.3.md:353-357 | E01／claude-opus |
 | `RE01-282` | AI判断の実行者は候補・根拠・confidence・fallback・dead-letter・再評価条件・oracleを揃え、欠けた判断を実行へ流さない。 | evidence_claim | gate | fail_close | AI decision acceptance contract | `RUL-FRM-04` | docs/governance/helix-harness-requirements_v1.3.md:637-664 | E01／claude-opus |
+| `RG40-012` | AIは、POへのエスカレーションを言い出す前に、先にT0セカンドオピニオン（Sol壁打ち）を実行しなければならない。壁打ちの結果AI側で解決できるなら、エスカレーションせず通常ゲートで進める。 | escalation_authority | hook／gate | fail_close | helix codex --role tl --execute という具体コマンドとStop hook実装 | `RUL-OSM-01` | src/runtime/escalation-consult-gate.ts:1-19; src/runtime/escalation-consult-gate.ts:347-356 | G40／claude-opus |
+| `RG40-013` | エスカレーション意図の検出は、fenced/inline codeとblockquote行、gate自体を指すmeta名詞句、否定・非該当表現を先に除去してから判定し、それらをエスカレーション宣言として扱ってはならない。 | escalation_authority | hook | fail_open | 日本語・英語の具体regex集合 | `RUL-OSM-01` | src/runtime/escalation-consult-gate.ts:35-61; src/runtime/escalation-consult-gate.ts:131-149 | G40／claude-opus |
+| `RG42-020` | 質問の分類は、明示指定が無い場合、設計・契約・schema・migration・security・architecture・API・DB・認証・配置・構造といった語を含むかどうかでtechnicalと判定する。 | escalation_authority | gate | fail_close | 英語語彙の正規表現 | `RUL-OSP-01` | src/runtime/legacy-adoption.ts:221-222; src/runtime/legacy-adoption.ts:271-277 | G42／claude-opus |
 
-## 副として対応づいた規則（19件）
+## 副として対応づいた規則（22件）
 
-`RA-138`、`RB04-007`、`RB05-050`、`RB05-346`、`RB05-350`、`RB05-356`、`RB05-358`、`RB05-360`、`RB06-006`、`RB06-022`、`RB06-120`、`RB07-241`、`RB08-225`、`RB08-226`、`RC00-025`、`RC00-197`、`RC00-198`、`RC00-202`、`RE01-201`
+`RA-138`、`RB04-007`、`RB05-050`、`RB05-346`、`RB05-350`、`RB05-356`、`RB05-358`、`RB05-360`、`RB06-006`、`RB06-022`、`RB06-120`、`RB07-241`、`RB08-225`、`RB08-226`、`RC00-025`、`RC00-197`、`RC00-198`、`RC00-202`、`RE01-201`、`RG28-004`、`RG47-001`、`RG47-002`

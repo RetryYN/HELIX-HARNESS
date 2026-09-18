@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-DEV-03
 group: サービス④開発
 product: HARNESS
-atoms_primary: 13
-atoms_secondary: 3
+atoms_primary: 14
+atoms_secondary: 5
 issue_projection: #1854
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1854
 
 追加する前に、不要にできないか、再利用できないか、代替案は無いかを確かめる。複雑さが増える変更は根拠と撤去条件を示す。
 
-## 主として対応づいた規則（13件）
+## 主として対応づいた規則（14件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -39,7 +39,8 @@ issue_projection: #1854
 | `RE01-271` | 解決策の検討者は、変更しない・削除・設定・再利用・既存修正・追加実装の順に評価してからコードを増やす。 | behavior_discipline | prose／gate | n/a | no-code-firstの判断順 | — | docs/governance/helix-harness-requirements_v1.3.md:550-555 | E01／claude-opus |
 | `RE01-274` | 変更者はcodeやCIの純増に理由と削除条件を付け、反復する欠陥または既存検査のgapがないdetector・gateを追加しない。 | behavior_discipline | prose／gate | fail_close | net code/CI増加とgate追加の審査 | `RUL-OSA-06` | docs/governance/helix-harness-requirements_v1.3.md:550-555 | E01／claude-opus |
 | `RG18-006` | 実装提案者は提案の冒頭で「書く前の7段の問い」のどこで止まったかを1行で宣言する。 | behavior_discipline | prose | n/a | code-minimalism §1の7段の問い | `RUL-OSP-05` | docs/skills/judgment-core.md:77-78 | G18／claude-opus |
+| `RG38-008` | 設計候補の選択は、oracle通過率1の適格候補のうち候補許容P95が最小の集合に絞り、新規component数→新規state数→新規永続化面数→production LOC増→P95→IDの順で最小の候補を選ばなければならない。 | process_gate | lint | fail_close | selectAtomicSliceDesignCandidate の順序付け | `RUL-FRM-06` | src/runtime/atomic-slice-admission.ts:385-412 | G38／claude-opus |
 
-## 副として対応づいた規則（3件）
+## 副として対応づいた規則（5件）
 
-`RB06-286`、`RE01-058`、`RE01-273`
+`RB06-286`、`RE01-058`、`RE01-273`、`RG00-007`、`RG38-007`

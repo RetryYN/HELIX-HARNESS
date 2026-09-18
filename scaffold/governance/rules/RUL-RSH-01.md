@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-RSH-01
 group: 部品：リサーチ
 product: HARNESS
-atoms_primary: 133
-atoms_secondary: 41
+atoms_primary: 141
+atoms_secondary: 46
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 外部の技術・OSS・SaaS・事例を調べて採否する手順を定める。成熟度、依存risk、代替案、反対意見を示し、そのまま導入せずHELIXの境界へ変換する。
 
-## 主として対応づいた規則（133件）
+## 主として対応づいた規則（141件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -153,13 +153,21 @@ issue_projection: none
 | `RD11-137` | activation readiness検査は、外部境界がある場合、official_source_basisが未完了表現または具体的locatorのない値ならpending_evidenceとしてblock理由にする。 | evidence_claim | lint | fail_close | 文字列patternによる証拠充足判定 | `RUL-FRM-04` | src/lint/version-up-readiness.ts:534-536; src/lint/version-up-readiness.ts:2347-2373; src/lint/version-up-readiness.ts:2436-2470 | D11／gpt-6-astra |
 | `RD11-144` | activation readiness検査は、外部境界がある場合、provenanceのsource_ledgerの具体的証拠が未充足ならpending_evidenceとしてblock理由にする。 | evidence_claim | lint | fail_close | activation_provenance_requirements.source_ledger | `RUL-FRM-04` | src/lint/version-up-readiness.ts:542-542; src/lint/version-up-readiness.ts:2347-2373; src/lint/version-up-readiness.ts:2436-2490 | D11／gpt-6-astra |
 | `RE01-241` | 外部実装の採用者はbehavior atomを抽出して採否を判断し、Grok等の実装を直接importしない。provider比較は共通契約・固定rubric・blind benchmarkで行い、重大な失敗を平均値で相殺しない。 | evidence_claim | prose／gate | fail_close | Grok source curationとprovider比較 | `RUL-FRM-04` | docs/governance/helix-harness-requirements_v1.3.md:434-439 | E01／claude-opus |
+| `RG00-007` | pdm-tech-innovationは技術案を比較するとき、提供速度、品質リスク、運用コスト、可逆性、検証負担を比較軸にする。 | behavior_discipline | prose | n/a | — | `RUL-DEV-03` | .claude/agents/pdm-tech-innovation.md:23-23 | G00／claude-opus |
+| `RG01-005` | PMO Tech Forkは、候補OSSが3〜6か月以上未更新の場合、保守の鮮度に注意する。 | behavior_discipline | prose | warn | — | — | .claude/agents/pmo-tech-fork.md:38-38 | G01／claude-opus |
+| `RG01-006` | PMO Tech Forkは、評価の不明点を「要追加調査」として明記する。 | evidence_claim | prose | n/a | — | `RUL-FRM-04` | .claude/agents/pmo-tech-fork.md:96-96 | G01／claude-opus |
+| `RG01-007` | PMO Tech Newsは、重要テーマを短期watch項目へ分解し、経営・開発・運用への影響を定量寄りに提示する。 | behavior_discipline | prose | n/a | — | — | .claude/agents/pmo-tech-news.md:22-22 | G01／claude-opus |
 | `RG18-021` | 調査担当者は検索queryに調査対象、version等の制約、公式domainの識別子、年の限定を含める。 | behavior_discipline | prose | n/a | WebSearchのquery構成 | — | docs/skills/research.md:40-42 | G18／claude-opus |
 | `RG18-022` | 調査担当者は404またはredirectするURLを再取得せずに引用してはならない。 | evidence_claim | prose | n/a | WebFetchによる再取得 | `RUL-FRM-04` | docs/skills/research.md:89-90 | G18／claude-opus |
 | `RG19-007` | 技術選定担当者はresearch-memoのproblem statementに、何をいつまでに決める必要があるかを記載する。 | behavior_discipline | prose | n/a | — | `RUL-PLN-01` | docs/skills/tech-selection.md:34-36 | G19／claude-opus |
 | `RG19-008` | 技術選定担当者はADRからresearch-memoをpathで参照する。 | evidence_claim | prose | n/a | ADRとresearch-memoの成果物区分 | `RUL-COR-07` | docs/skills/tech-selection.md:43-44 | G19／claude-opus |
 | `RG19-009` | 技術調査担当者はDiscoveryのS1でPLAN文書内にresearch-memoの骨組みを起草し、候補と評価基準を列挙する。 | process_gate | prose | n/a | DiscoveryのS1、PLAN文書 | `RUL-PLN-01` | docs/skills/tech-selection.md:69-72 | G19／claude-opus |
 | `RG19-010` | 技術調査担当者はS2でweb researchが必要な場合、外部文書取得用に `helix claude --role pmo-tech-docs --dry-run` を使う。 | tooling_runtime | prose | n/a | helix claude --role pmo-tech-docs --dry-run | `RUL-OSP-03` | docs/skills/tech-selection.md:73-74 | G19／claude-opus |
+| `RG33-017` | right-arm verification lintは、source ledgerのadoption decision欄が空白の場合、専用の違反として失敗させる。 | evidence_claim | lint | fail_close | Verification source ledger | `RUL-FRM-04` | src/lint/right-arm-verification-strategy.ts:305-309 | G33／claude-opus |
+| `RG34-006` | source ledger確認日検査は、対象文言からchecked日付そのものを抽出できない場合、違反を返さない（日付欠落は本検査では失格にしない）。 | evidence_claim | lint | fail_open | sourceLedgerCheckedDateViolation の early return | `RUL-OSA-06` | src/lint/source-ledger-freshness.ts:47-54 | G34／claude-opus |
+| `RG35-003` | 外部profile有効化計画は、既定無効の推薦profileに対して、有効化前にreadiness probeを通すstepを必ず含めなければならない。 | process_gate | gate／lint | fail_close | planExternalProfileActivation の probe-profile step | `RUL-COR-05` | src/lint/verification-profile-safety.ts:264-271 | G35／claude-opus |
+| `RG41-010` | taxonomy審査は、採否根拠をtaxonomy分類とsource検証の証拠に置き、star数は参考情報として採否根拠にしてはならない。 | evidence_claim | gate | fail_close | star_count_is_advisory というfield | `RUL-FRM-04` | src/runtime/harness-taxonomy-curation-policy.ts:110-117 | G41／claude-opus |
 
-## 副として対応づいた規則（41件）
+## 副として対応づいた規則（46件）
 
-`RA-118`、`RA-119`、`RA-120`、`RB05-323`、`RB05-340`、`RB05-341`、`RB06-042`、`RB06-291`、`RB06-299`、`RB07-056`、`RB08-056`、`RB08-062`、`RC00-029`、`RC00-033`、`RC00-035`、`RC00-255`、`RC00-260`、`RD05-164`、`RD07-170`、`RD07-171`、`RD08-189`、`RD10-049`、`RD10-079`、`RD10-114`、`RD10-115`、`RD10-185`、`RD10-186`、`RD10-188`、`RD10-189`、`RD10-192`、`RD11-036`、`RD11-063`、`RD11-064`、`RD11-065`、`RD11-077`、`RD11-078`、`RD11-092`、`RD11-103`、`RG05-010`、`RG10-018`、`RG16-004`
+`RA-118`、`RA-119`、`RA-120`、`RB05-323`、`RB05-340`、`RB05-341`、`RB06-042`、`RB06-291`、`RB06-299`、`RB07-056`、`RB08-056`、`RB08-062`、`RC00-029`、`RC00-033`、`RC00-035`、`RC00-255`、`RC00-260`、`RD05-164`、`RD07-170`、`RD07-171`、`RD08-189`、`RD10-049`、`RD10-079`、`RD10-114`、`RD10-115`、`RD10-185`、`RD10-186`、`RD10-188`、`RD10-189`、`RD10-192`、`RD11-036`、`RD11-063`、`RD11-064`、`RD11-065`、`RD11-077`、`RD11-078`、`RD11-092`、`RD11-103`、`RG05-010`、`RG10-018`、`RG11-010`、`RG16-004`、`RG35-004`、`RG35-005`、`RG41-011`、`RG45-006`

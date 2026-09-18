@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSA-01
 group: OS検収
 product: OS
-atoms_primary: 103
-atoms_secondary: 80
+atoms_primary: 114
+atoms_secondary: 88
 issue_projection: #1860
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1860
 
 作成と検証を分ける。別の作業者・別のsession・可能なら別のmodel系統で審査し、審査者は編集しない。同じproviderで検証した場合は理由を残す。
 
-## 主として対応づいた規則（103件）
+## 主として対応づいた規則（114件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -126,10 +126,21 @@ issue_projection: #1860
 | `RF01-015` | proposalチーム生成器は、closing_authorityがtrueのlaneをmember生成対象から除外する。 | lane_delegation | gate | n/a | ProposalSubagentRecommendationInput.closing_authority | `RUL-OSP-01` | src/team/launch-policy.ts:157-161 | F01／claude-opus |
 | `RF01-020` | proposalチーム生成器は、生成した並列laneの先頭engineがある場合、cross-provider review用のtl memberを一つ追加し、そのengineをserialize_afterに指定する。 | lane_delegation | config | n/a | pmo-sonnetによる単一レビューmember | `RUL-OSP-01` | src/team/launch-policy.ts:163-166; src/team/launch-policy.ts:182-194 | F01／claude-opus |
 | `RG09-001` | レビュー担当者は、Authoring途中の相談・テスト作成・修正指示をTerminal Reviewと区別する。 | review_merge | prose | n/a | Terminal Review | `RUL-OSA-02` | docs/governance/autonomous-authoring-admission-transaction-directive_v0.1.md:233-237 | G09／claude-opus |
+| `RG11-004` | 要件定義パッケージ監査の実施者はcritical／major所見を全件、独立検証エージェントまたは原典grep再現で裏取りし、反証が成立した所見は棄却として記録する。 | evidence_claim | prose | n/a | finder→敵対的検証の2段サブエージェント構成 | `RUL-FRM-04` | docs/governance/hybrid-rebaseline-v0.4.0-fullcheck-audit-2026-07-17.md:6-6; docs/governance/hybrid-rebaseline-v0.4.0-fullcheck-audit-2026-07-17.md:65-68 | G11／claude-opus |
+| `RG15-008` | 敵対reviewの運用者は、これを人間確認（抜き打ち）の代替ではなく人間が見る件数を減らすフィルタとして扱う。 | review_merge | prose | n/a | — | `RUL-OSM-01` | docs/skills/adversarial-review.md:42-43 | G15／claude-opus |
 | `RG16-003` | 委譲者は、security reviewまたはadversarial reviewをprimary modelかsecurity-audit／code-reviewerへ割り当てる。 | lane_delegation | prose | n/a | security-audit、code-reviewer | `RUL-OSP-02` | docs/skills/agent-cost-design.md:32-37 | G16／claude-opus |
 | `RG18-010` | GPT workerまたはsparkの成果を受け入れる際、Claude側で受入検証を行う。 | lane_delegation | prose | n/a | GPT worker／sparkからClaudeへの受入検証分担 | `RUL-OSM-02` | docs/skills/judgment-core.md:101-101 | G18／claude-opus |
 | `RG18-011` | レビュー記録者は同一model familyでのself-reviewをcross_agentと称してはならない。 | evidence_claim | prose／gate | n/a | cross_agent分類とguardrail-invariantsによる検出 | `RUL-FRM-04` | docs/skills/judgment-core.md:103-105 | G18／claude-opus |
+| `RG22-002` | gate review評価は、判断gate集合（G0.5・G2・G4・G5・G6・G7・R4）に属さないgateに対してreview tierを要求せず、review証拠なしで通過させる。 | review_merge | gate | fail_open | JUDGMENT_GATES 定数とHELIXのG系gate ID | `RUL-FRM-02` | src/gate/review-tier-policy.ts:1-1; src/gate/review-tier.ts:79-113 | G22／claude-opus |
+| `RG33-010` | reviewer session model historyのruntimeにはclaude・codex・kimiのみ登録でき、unknownは登録できない。未知identity同士の一致でruntime照合を通過させない。 | safety_security | lint | fail_close | REVIEWER_SESSION_MODEL_HISTORY_RUNTIMES | `RUL-OSM-02` | src/lint/review-evidence.ts:175-183 | G33／claude-opus |
+| `RG33-012` | review-evidenceのreviewer session強制は、updatedではなくcreatedで適用日を判定する。既存PLANの編集を理由に、記録の無いsessionを遡及入力させない。 | evidence_claim | lint | fail_close | REVIEWER_SESSION_ENFORCEMENT_DATE | `RUL-COR-02` | src/lint/review-evidence.ts:996-1006 | G33／claude-opus |
+| `RG37-006` | historical migration reviewは、review_kindがcross_agentまたはintra_runtime_subagent、termination_statusがcompletedである証跡だけを受理する。 | review_merge | lint | fail_close | reviewSchema の review_kind / termination_status | `RUL-FRM-04` | src/policy/historical-vpair-migration-authority.ts:179-206 | G37／claude-opus |
+| `RG41-023` | mixed authorshipのcross-review admissionは、成立した全receiptのdigestを昇順に束ねたcanonical値1つをadmission receipt digestとし、receiptの並び順に依存させてはならない。 | review_merge | gate | fail_close | mixed_author_review_receipts というfield名 | `RUL-COR-02` | src/runtime/github-cross-review-admission.ts:676-683 | G41／claude-opus |
+| `RG46-012` | blind packetは、author claim数とprivate context数を0に固定し、成果物digestだけを載せる。judge contextの封印時にもこの0件を再確認し、満たさないpacketからは封印しない。 | review_merge | prose | fail_close | helix-worker-blind-packet.v1 | — | src/runtime/worker-blind-benchmark.ts:57-69; src/runtime/worker-blind-benchmark.ts:185-205; src/runtime/worker-isolation-broker.ts:312-333 | G46／claude-opus |
+| `RG46-013` | blind benchmarkの順位付けは、blind score降順・effective cost昇順・不透明な候補keyの順で決め、候補IDや作者情報を同点解決に使わない。 | review_merge | prose | n/a | — | `RUL-OSP-02` | src/runtime/worker-blind-benchmark.ts:382-392 | G46／claude-opus |
+| `RG47-008` | worker独立review receiptのworker・reviewer主体情報は、receipt入力の自己申告ではなく実行originから構成する。 | evidence_claim | prose | fail_close | — | `RUL-FRM-04` | src/runtime/worker-review-receipt.ts:98-107; src/runtime/worker-review-receipt.ts:145-161 | G47／claude-opus |
+| `RG47-009` | worker risk admissionは、用途ごとの採用候補を最小blind score降順・合計effective cost昇順・candidate ID順で決定し、admit候補が無ければ選出をnullにする。 | review_merge | prose | n/a | — | `RUL-OSP-02` | src/runtime/worker-risk-admission.ts:278-292 | G47／claude-opus |
 
-## 副として対応づいた規則（80件）
+## 副として対応づいた規則（88件）
 
-`RA-156`、`RB0-004`、`RB0-064`、`RB0-069`、`RB0-107`、`RB04-012`、`RB04-016`、`RB04-021`、`RB04-022`、`RB04-046`、`RB04-239`、`RB04-240`、`RB05-058`、`RB05-060`、`RB05-088`、`RB05-102`、`RB05-103`、`RB05-155`、`RB05-191`、`RB05-232`、`RB05-246`、`RB06-023`、`RB06-071`、`RB06-094`、`RB06-100`、`RB06-102`、`RB06-117`、`RB06-123`、`RB06-124`、`RB06-187`、`RB06-255`、`RB06-311`、`RB07-105`、`RB07-230`、`RB07-251`、`RB07-314`、`RB07-337`、`RB08-241`、`RB08-284`、`RB08-321`、`RB08-330`、`RB08-331`、`RB09-069`、`RB09-082`、`RC0-101`、`RC0-136`、`RC00-120`、`RC00-121`、`RC00-235`、`RC00-236`、`RC00-243`、`RC04-113`、`RC04-244`、`RD00-056`、`RD00-266`、`RD01-269`、`RD01-307`、`RD02-012`、`RD02-036`、`RD02-042`、`RD02-057`、`RD02-148`、`RD04-001`、`RD04-002`、`RD04-050`、`RD04-119`、`RD04-133`、`RD09-144`、`RD09-145`、`RD10-001`、`RD10-004`、`RD10-006`、`RD10-008`、`RD10-009`、`RD10-010`、`RD10-015`、`RE01-072`、`RF01-018`、`RF01-019`、`RF01-022`
+`RA-156`、`RB0-004`、`RB0-064`、`RB0-069`、`RB0-107`、`RB04-012`、`RB04-016`、`RB04-021`、`RB04-022`、`RB04-046`、`RB04-239`、`RB04-240`、`RB05-058`、`RB05-060`、`RB05-088`、`RB05-102`、`RB05-103`、`RB05-155`、`RB05-191`、`RB05-232`、`RB05-246`、`RB06-023`、`RB06-071`、`RB06-094`、`RB06-100`、`RB06-102`、`RB06-117`、`RB06-123`、`RB06-124`、`RB06-187`、`RB06-255`、`RB06-311`、`RB07-105`、`RB07-230`、`RB07-251`、`RB07-314`、`RB07-337`、`RB08-241`、`RB08-284`、`RB08-321`、`RB08-330`、`RB08-331`、`RB09-069`、`RB09-082`、`RC0-101`、`RC0-136`、`RC00-120`、`RC00-121`、`RC00-235`、`RC00-236`、`RC00-243`、`RC04-113`、`RC04-244`、`RD00-056`、`RD00-266`、`RD01-269`、`RD01-307`、`RD02-012`、`RD02-036`、`RD02-042`、`RD02-057`、`RD02-148`、`RD04-001`、`RD04-002`、`RD04-050`、`RD04-119`、`RD04-133`、`RD09-144`、`RD09-145`、`RD10-001`、`RD10-004`、`RD10-006`、`RD10-008`、`RD10-009`、`RD10-010`、`RD10-015`、`RE01-072`、`RF01-018`、`RF01-019`、`RF01-022`、`RG24-004`、`RG28-003`、`RG28-007`、`RG31-001`、`RG36-008`、`RG37-014`、`RG39-011`、`RG46-006`

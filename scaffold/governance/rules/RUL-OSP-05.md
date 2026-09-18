@@ -3,13 +3,13 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSP-05
 group: OS推進
 product: OS
-atoms_primary: 36
+atoms_primary: 38
 atoms_secondary: 29
 issue_projection: #1859
 ---
@@ -22,7 +22,7 @@ issue_projection: #1859
 
 作業者の行動規律を定める。失敗の出力を全部読む、根因を確定してから直す、推測で進めない、他の正本と矛盾したら止まる。
 
-## 主として対応づいた規則（36件）
+## 主として対応づいた規則（38件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -59,9 +59,11 @@ issue_projection: #1859
 | `RB08-145` | hook運用者はCLAUDE_PROJECT_DIRをrepo rootへ向け、Windows PATHのSystem32欠落をcode回帰と判断する前にdoctorで確認する。 | tooling_runtime | prose | n/a | CLAUDE_PROJECT_DIR、Windows System32 | `RUL-COR-04` | docs/skills/ci-gate-design.md:71-75 | B08／gpt-6-astra |
 | `RC00-122` | 試行監視は、同一subjectの直近連続失敗が閾値以上ならSTOPと根本原因調査を求める警告を出す。成功で連続数をリセットし、未分類Bashは集計しない。 | behavior_discipline | gate | warn | 既定3回、表示は直前session向け | `RUL-OSA-06` | src/runtime/attempt-escalation.ts:32-71; src/runtime/attempt-escalation.ts:85-94; src/runtime/attempt-escalation.ts:131-150 | C00／gpt-6-astra |
 | `RD02-131` | 作業preflightは、PLANまたはhandoverとの競合がある場合にblockerを返す。 | process_gate | gate | fail_close | conflicts_with_plan_or_handover flag | `RUL-TKT-02` | src/runtime/legacy-adoption.ts:263-267 | D02／gpt-6-astra |
+| `RG00-008` | pmo-haikuは与えられたobjectiveとboundaryの外を推測で補ってはならない。 | behavior_discipline | prose | n/a | — | `RUL-TKT-02` | .claude/agents/pmo-haiku.md:16-16 | G00／claude-opus |
 | `RG17-002` | 移行担当者は、主観的な不安だけを理由にrollbackしてはならない。 | behavior_discipline | prose | n/a | — | — | docs/skills/data-migration.md:78-80 | G17／claude-opus |
 | `RG17-003` | 障害調査担当者は、CIのharness-checkが失敗した場合、CI logから失敗したsub-gateを最初に特定する。 | behavior_discipline | prose | n/a | harness-checkとtypecheck／lint／test／doctorのsub-gate構成 | `RUL-OSA-05` | docs/skills/debugging-and-error-recovery.md:39-42 | G17／claude-opus |
 | `RG17-006` | 設計者は、判断が規約準拠とarchitecture選択のどちらに属するか判別できない場合、既存方式を踏襲する。踏襲で問題が生じる証拠が揃ってから、architecture判断としてADRを起こす。 | behavior_discipline | prose | n/a | — | `RUL-FRM-06`、`RUL-COR-07` | docs/skills/design-tailoring.md:88-93 | G17／claude-opus |
+| `RG39-004` | PR review依頼の受け手は、current HEADの必須CIがpendingまたはin_progressなら同一turn内で監視を再試行しterminalまで待機しなければならず、CI完了前に「監視中」とだけ報告してturnを終了してはならない。 | behavior_discipline | prose | n/a | gh run watchという具体コマンド名 | `RUL-OSA-05` | src/runtime/claude-memory-wake.ts:587-587 | G39／claude-opus |
 
 ## 副として対応づいた規則（29件）
 

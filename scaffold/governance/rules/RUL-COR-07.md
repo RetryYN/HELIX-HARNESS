@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-COR-07
 group: コア
 product: HARNESS／OS
-atoms_primary: 17
-atoms_secondary: 11
+atoms_primary: 19
+atoms_secondary: 16
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 成果物と判断に恒久の識別子を持たせ、改名・移動・分割・統合をしても義務と意味と履歴を保存する。指示の原文は来歴付きで追記のみで保全し、設計判断の後継と廃止を管理する。
 
-## 主として対応づいた規則（17件）
+## 主として対応づいた規則（19件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -42,8 +42,10 @@ issue_projection: none
 | `RE01-224` | 文書変更者はrename・split等でもimmutable IDとrevisionを管理し、authority・AC・oracle・履歴を保持する。 | memory_context | gate | fail_close | authoring identity lifecycle | — | docs/governance/helix-harness-requirements_v1.3.md:356-356 | E01／claude-opus |
 | `RG09-002` | Authoring assetの変更処理は、rename・move・split・merge・supersedeの際に履歴とtyped edgeを失ってはならない。 | memory_context | prose | n/a | Authoring assetのtyped edge | — | docs/governance/autonomous-authoring-admission-transaction-directive_v0.1.md:279-282 | G09／claude-opus |
 | `RG10-012` | 文書作成者はbareな未登録IDトークンを本文へ直接記載してはならない。 | behavior_discipline | prose／lint | n/a | upstream-coverage／g3-traceの孤児検出 | `RUL-FRM-08` | docs/governance/gate-design.md:188-188 | G10／claude-opus |
+| `RG15-013` | 監査者は過去時点のmilestone記録や正しいサブセット表現をaccepted-historicalとして日付つきで保持し、stale件数表記として修正しない。 | evidence_claim | prose | n/a | PLAN-L1-02 DoD と L1-operational-test-design の件数表記 | `RUL-FRM-04` | docs/governance/runtime-parity-l0-l3-design-audit-2026-06-02.md:71-71 | G15／claude-opus |
 | `RG18-018` | 変更担当者はpublic CLI flagまたは.helix/のfieldをrenameする際、callerと設計文書を更新せずに進めてはならない。 | behavior_discipline | prose | n/a | .helix/ field | `RUL-FRM-06` | docs/skills/refactoring.md:97-98 | G18／claude-opus |
+| `RG45-018` | finding IDは、root cause・scope authority・baseline revision・invariant・trigger kind・detector・event集合・source evidence集合・recurrence lineageから決定論的に導出する。 | evidence_claim | prose | n/a | uil-finding-<sha256> | `RUL-COR-02` | src/runtime/universal-improvement-finding-qualification.ts:223-245 | G45／claude-opus |
 
-## 副として対応づいた規則（11件）
+## 副として対応づいた規則（16件）
 
-`RB08-236`、`RE01-017`、`RE01-043`、`RE01-163`、`RE01-199`、`RG08-006`、`RG09-020`、`RG12-006`、`RG14-006`、`RG17-006`、`RG19-008`
+`RB08-236`、`RE01-017`、`RE01-043`、`RE01-163`、`RE01-199`、`RG01-003`、`RG08-006`、`RG09-020`、`RG11-009`、`RG12-006`、`RG14-006`、`RG17-006`、`RG19-008`、`RG28-006`、`RG31-003`、`RG37-021`

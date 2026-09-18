@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSA-05
 group: OS検収
 product: OS
-atoms_primary: 138
-atoms_secondary: 82
+atoms_primary: 152
+atoms_secondary: 90
 issue_projection: #1860
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1860
 
 CIの構成を定める。必須checkの集約、変更の種類ごとのfail-close、PR時と定期実行の監査範囲、検査の無効化やskipで違反を隠さない。
 
-## 主として対応づいた規則（138件）
+## 主として対応づいた規則（152件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -162,9 +162,23 @@ CIの構成を定める。必須checkの集約、変更の種類ごとのfail-cl
 | `RE01-107` | CI設定者は非mainの重複runをcancelできるがmainはcancelせず、Draftでは重い検査を省略し、Merge Queueは導入しない。 | tooling_runtime | config／ci | n/a | 旧CI concurrency・Draft・Merge Queue方針 | `RUL-OSA-08` | docs/governance/helix-harness-requirements_v1.2.md:1462-1474 | E01／claude-opus |
 | `RE01-130` | branch検証器は未知のbranch種別と必須PLANの欠如を拒否し、警告を無条件bypassの手段にしてはならない。 | process_gate | hook／lint／ci | fail_close | branch typeとPLAN必須判定 | `RUL-OSM-09` | docs/governance/helix-harness-requirements_v1.2.md:1857-1881 | E01／claude-opus |
 | `RE01-266` | CI設計者は外部PR向け対象検査とfull post-merge/nightlyを使い分け、根拠なくgateを弱めない。 | process_gate | ci／gate | fail_close | targeted PR検証とfull検証の分担 | — | docs/governance/helix-harness-requirements_v1.3.md:525-531 | E01／claude-opus |
+| `RG02-010` | 未応答review監査CIは、毎時17分のscheduleまたはworkflow_dispatchで監査を起動する。 | tooling_runtime | config | n/a | GitHub Actions cron「17 * * * *」 | — | .github/workflows/claude-unanswered-review-audit.yml:1-5 | G02／claude-opus |
+| `RG02-012` | escalation監査CIは、毎週月曜00:00 UTCのscheduleまたはworkflow_dispatchで監査を起動する。 | tooling_runtime | config | n/a | GitHub Actions cron「0 0 * * 1」 | — | .github/workflows/escalation-stale.yml:1-5 | G02／claude-opus |
+| `RG02-013` | 旧HELIXの検証運用では、ローカルhookを早期検知に限定し、全量テストと回帰確認をGitHub Actionsで実行する。 | process_gate | prose | n/a | GitHub Actionsを全量回帰の実行場所とする旧運用 | `RUL-OSM-02` | .github/workflows/harness-check.yml:1-3 | G02／claude-opus |
+| `RG02-014` | Branch ProtectionのRequired Status Checksは、各laneを集約するharness-checkの1本だけにする。 | process_gate | prose | n/a | Required Status Checks名harness-check | — | .github/workflows/harness-check.yml:4-9 | G02／claude-opus |
+| `RG02-015` | harness-checkは、mainへのpush、main向けPRのopened・synchronize・reopened・ready_for_review・converted_to_draft、毎日03:17 UTCのschedule、またはworkflow_dispatchで起動する。 | tooling_runtime | config | n/a | GitHub Actionsのmain向けイベントとcron「17 3 * * *」 | — | .github/workflows/harness-check.yml:12-20 | G02／claude-opus |
+| `RG02-020` | Impact CIは、現在のPRがDraftならdraft_preflight、Draftでなければcandidate_admissionを選び、PRイベント以外ではpost_merge_fullを選ぶ。 | process_gate | ci | n/a | draft_preflight、candidate_admission、post_merge_full | `RUL-FRM-03` | .github/workflows/harness-check.yml:597-615 | G02／claude-opus |
+| `RG02-025` | stateful shardは、fast projectのcli-surfaceテストを先に実行し、成功した場合だけ分割計画から選んだtests/slow/配下のテストをslow projectで実行する。 | process_gate | ci | fail_close | tests/cli-surface.test.ts、tests/slow/、Vitest fast・slow project | `RUL-OSA-08` | .github/workflows/harness-check.yml:955-964 | G02／claude-opus |
+| `RG03-001` | Issue metadata監査CIは、毎日UTC 03:23のスケジュールまたはworkflow_dispatchによる手動起動で実行する。 | tooling_runtime | config／ci | n/a | GitHub Actionsのcron「23 3 * * *」とworkflow_dispatch。 | — | .github/workflows/issue-metadata-audit.yml:3-6 | G03／claude-opus |
 | `RG16-018` | 画面検証担当者は、開始時にhelix review --uncommittedでlintとtypecheckの失敗が残っていないことを確認する。 | process_gate | prose | n/a | helix review --uncommitted | `RUL-FRM-01` | docs/skills/browser-testing-and-screen-verification.md:34-40 | G16／claude-opus |
 | `RG18-003` | 実装者は根拠なしに// biome-ignoreでformatting ruleを抑制してはならない。 | behavior_discipline | prose | n/a | Biomeの抑制コメント | `RUL-DEV-01` | docs/skills/incremental-implementation.md:104-105 | G18／claude-opus |
+| `RG38-011` | CI schedulerは、義務クラスの順位（local→boundary→global_invariant→release_only）を守り、下位クラスの最後のgroupより後のgroupへ上位クラスを配置しなければならない。 | process_gate | ci | n/a | OBLIGATION_CLASS_RANK と maxGroupByClassRank | — | src/runtime/ci-critical-path-scheduler.ts:163-172; src/runtime/ci-critical-path-scheduler.ts:375-387 | G38／claude-opus |
+| `RG38-012` | CI schedulerのbounded cancel policyは、required obligationを保全すること（preserves_required_obligations）を固定条件としなければならない。 | process_gate | ci | fail_close | bounded_cancel_policy.preserves_required_obligations: true | `RUL-OSA-08` | src/runtime/ci-critical-path-scheduler.ts:499-503 | G38／claude-opus |
+| `RG41-016` | 回帰shard分割は、CLI surface testとslow test配下をstateful shardへ集め、それ以外のtestをpathのSHA-256から決まる安定indexでbulk shardへ割り当てる（実行順や環境に依存させない）。 | process_gate | ci | fail_close | tests/cli-surface.test.ts と tests/slow/ という具体path | `RUL-FRM-05` | src/runtime/full-regression-shards.ts:71-74; src/runtime/full-regression-shards.ts:106-113 | G41／claude-opus |
+| `RG42-001` | impact判定における高risk pathは、CI workflow・action・migration配下、CLI entry・package定義・TypeScript設定・test runner設定・各runtimeのhook設定fileの完全一致、およびsecurity/permission/secret/schema/migration/rollback/checkpointを含むpathとする。 | process_gate | ci | fail_close | .claude/settings.json や .codex/hooks.json 等の具体path | `RUL-FRM-09` | src/runtime/impact-ci.ts:184-193; src/runtime/impact-ci.ts:393-399 | G42／claude-opus |
+| `RG42-011` | review risk導出は、high判定pathを含まない場合、全pathが文書系ならlow、それ以外はmediumとする。 | process_gate | gate | fail_close | docs/ と .md/.txt という具体条件 | — | src/runtime/independent-review-fallback.ts:529-538 | G42／claude-opus |
+| `RG43-014` | CI preflight集約は、PR状態に依存するreview admissionを集約可能なrepository gateとして扱わず、集約対象から除外して集約後に別途強制しなければならない。 | process_gate | ci | fail_close | — | `RUL-OSA-04` | src/runtime/preflight-gate-aggregation.ts:3-4; src/runtime/preflight-gate-aggregation.ts:20-33 | G43／claude-opus |
 
-## 副として対応づいた規則（82件）
+## 副として対応づいた規則（90件）
 
-`RA-165`、`RB0-027`、`RB04-099`、`RB04-107`、`RB04-110`、`RB04-188`、`RB04-208`、`RB04-225`、`RB04-252`、`RB04-279`、`RB04-280`、`RB05-010`、`RB05-037`、`RB05-048`、`RB05-141`、`RB06-032`、`RB06-036`、`RB06-038`、`RB07-163`、`RB07-198`、`RB07-229`、`RB07-255`、`RB07-261`、`RB07-278`、`RB07-315`、`RB07-335`、`RB08-092`、`RB08-143`、`RB08-194`、`RB08-278`、`RB08-334`、`RB08-338`、`RB09-017`、`RB09-036`、`RB09-062`、`RC0-137`、`RC0-138`、`RC0-139`、`RC00-193`、`RC01-193`、`RC02-062`、`RC04-244`、`RC04-248`、`RC04-256`、`RC04-258`、`RC04-259`、`RC04-260`、`RC04-262`、`RD00-064`、`RD00-065`、`RD00-066`、`RD00-083`、`RD00-093`、`RD00-106`、`RD00-107`、`RD00-118`、`RD00-129`、`RD00-130`、`RD00-140`、`RD00-193`、`RD00-312`、`RD00-317`、`RD01-192`、`RD01-194`、`RD01-202`、`RD01-210`、`RD01-283`、`RD01-322`、`RD01-331`、`RD01-339`、`RD01-344`、`RD01-345`、`RD02-078`、`RD09-080`、`RD09-081`、`RE01-006`、`RE01-128`、`RE01-131`、`RG14-015`、`RG16-019`、`RG17-003`、`RG17-008`
+`RA-165`、`RB0-027`、`RB04-099`、`RB04-107`、`RB04-110`、`RB04-188`、`RB04-208`、`RB04-225`、`RB04-252`、`RB04-279`、`RB04-280`、`RB05-010`、`RB05-037`、`RB05-048`、`RB05-141`、`RB06-032`、`RB06-036`、`RB06-038`、`RB07-163`、`RB07-198`、`RB07-229`、`RB07-255`、`RB07-261`、`RB07-278`、`RB07-315`、`RB07-335`、`RB08-092`、`RB08-143`、`RB08-194`、`RB08-278`、`RB08-334`、`RB08-338`、`RB09-017`、`RB09-036`、`RB09-062`、`RC0-137`、`RC0-138`、`RC0-139`、`RC00-193`、`RC01-193`、`RC02-062`、`RC04-244`、`RC04-248`、`RC04-256`、`RC04-258`、`RC04-259`、`RC04-260`、`RC04-262`、`RD00-064`、`RD00-065`、`RD00-066`、`RD00-083`、`RD00-093`、`RD00-106`、`RD00-107`、`RD00-118`、`RD00-129`、`RD00-130`、`RD00-140`、`RD00-193`、`RD00-312`、`RD00-317`、`RD01-192`、`RD01-194`、`RD01-202`、`RD01-210`、`RD01-283`、`RD01-322`、`RD01-331`、`RD01-339`、`RD01-344`、`RD01-345`、`RD02-078`、`RD09-080`、`RD09-081`、`RE01-006`、`RE01-128`、`RE01-131`、`RG02-016`、`RG02-017`、`RG02-018`、`RG02-021`、`RG03-002`、`RG14-015`、`RG16-019`、`RG17-003`、`RG17-008`、`RG38-014`、`RG39-004`、`RG42-003`

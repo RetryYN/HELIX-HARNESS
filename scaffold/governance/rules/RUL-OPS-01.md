@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OPS-01
 group: サービス⑦運用保守
 product: HARNESS／OS
-atoms_primary: 25
-atoms_secondary: 11
+atoms_primary: 26
+atoms_secondary: 12
 issue_projection: #1857
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1857
 
 運用と障害対応を定める。重大度と対応期限、初動と封じ込めと復旧、運用手順書の必須内容、アクセス権と認証情報の最小権限・短期保持・失効、秘密が漏れたときの失効と影響調査、事業継続と復元。
 
-## 主として対応づいた規則（25件）
+## 主として対応づいた規則（26件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -51,7 +51,8 @@ issue_projection: #1857
 | `RE01-064` | hotfix担当者はPR本文にpostmortemのパス、Recoveryへの参照、severityを記録する。P0/P1のpostmortemはmergeから48時間以内に用意する。 | process_gate | prose／ci | warn | 48時間期限と週次の期限超過ラベル | `RUL-OSM-08` | docs/governance/helix-harness-requirements_v1.2.md:1048-1060 | E01／claude-opus |
 | `RG10-009` | Incident担当者は暫定収束後にReverse fullbackでVモデルへ戻し、postmortemをL12 feedbackへ接続する。 | process_gate | prose | n/a | Reverse fullback、L12 feedback | `RUL-OSI-01`、`RUL-REV-01` | docs/governance/gate-design.md:61-61 | G10／claude-opus |
 | `RG18-016` | Incidentの初動担当者は安全な場合にrunbookのimmediate mitigationを適用する。 | safety_security | prose | n/a | — | — | docs/skills/incident-runbook.md:55-57 | G18／claude-opus |
+| `RG42-009` | rotationされたprovider認証の回収は、review実行の成否に関わらず必ず実施しなければならない（回収を怠ると実行ごとにhost認証が失効する）。 | safety_security | prose | fail_close | — | `RUL-OSM-04` | src/runtime/independent-review-fallback.ts:1390-1400 | G42／claude-opus |
 
-## 副として対応づいた規則（11件）
+## 副として対応づいた規則（12件）
 
-`RB04-237`、`RB04-238`、`RB04-288`、`RC04-284`、`RE01-089`、`RE01-142`、`RE01-218`、`RE01-281`、`RG05-008`、`RG05-009`、`RG18-017`
+`RB04-237`、`RB04-238`、`RB04-288`、`RC04-284`、`RE01-089`、`RE01-142`、`RE01-218`、`RE01-281`、`RG05-008`、`RG05-009`、`RG18-017`、`RG42-007`

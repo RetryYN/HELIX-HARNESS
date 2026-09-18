@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSP-03
 group: OS推進
 product: OS
-atoms_primary: 151
-atoms_secondary: 118
+atoms_primary: 155
+atoms_secondary: 124
 issue_projection: #1859
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1859
 
 委譲には目的・出力形式・tool方針・境界を必ず付ける。許可された役割とmodelの組合せだけを起動し、検証できない状態では起動しない。
 
-## 主として対応づいた規則（151件）
+## 主として対応づいた規則（155件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -177,7 +177,11 @@ issue_projection: #1859
 | `RG16-005` | 委譲者は、promptに単なる要約ではなく「観測事実→解釈→仮説→検証方法」の推論chainを要求する。 | lane_delegation | prose | n/a | — | — | docs/skills/agent-cost-design.md:56-58 | G16／claude-opus |
 | `RG16-009` | agent guardは、agent定義で宣言されたtool listを許可されたsurfaceと照合する。 | safety_security | hook | n/a | agent定義のtools、旧agent guard | `RUL-OSM-02` | docs/skills/agent-design.md:35-40 | G16／claude-opus |
 | `RG18-014` | workerへの委譲者は出力形式として要約を指定し、全文dumpを返させてはならない。 | memory_context | prose | n/a | — | `RUL-OSP-08` | docs/skills/judgment-core.md:146-149 | G18／claude-opus |
+| `RG42-004` | 外部review providerへ渡すpromptは、tool呼出し・permission要求・file読取・command実行・workspace調査を禁じ、渡したbounded review packetだけを根拠にさせ、指定markerに挟んだ所定JSONだけを返させなければならない。 | lane_delegation | prose | fail_close | HELIX_REVIEW_JSON_START/END と helix-kimi-pr-review-output.v1 | `RUL-COR-06` | src/runtime/independent-review-fallback.ts:768-782 | G42／claude-opus |
+| `RG44-012` | resident assignment schemaは未知fieldを持つ入力を拒否し、assigned_roleをworkerに限定する。 | lane_delegation | prose | fail_close | helix-resident-lane-assignment.v2 | `RUL-COR-04` | src/runtime/resident-lane-assignment.ts:39-57 | G44／claude-opus |
+| `RG44-013` | resident assignment検証器は、scope_refがissue参照形式またはPLAN参照形式でない場合に拒否する。 | lane_delegation | prose | fail_close | PLAN-<AREA>-<番号> 形式 | `RUL-TKT-02` | src/runtime/resident-lane-assignment.ts:12-15; src/runtime/resident-lane-assignment.ts:39-57 | G44／claude-opus |
+| `RG47-007` | worker起動は、relaxation_count=0を含む出力contract文字列がstdinへそのまま含まれていなければ許可しない。 | process_gate | prose | fail_close | <HELIX_WORKER_OUTPUT_CONTRACT> マーカー | `RUL-COR-04` | src/runtime/worker-output-admission.ts:281-309 | G47／claude-opus |
 
-## 副として対応づいた規則（118件）
+## 副として対応づいた規則（124件）
 
-`RA-022`、`RA-027`、`RA-046`、`RA-098`、`RA-099`、`RA-100`、`RA-101`、`RA-102`、`RA-103`、`RA-112`、`RA-139`、`RA-144`、`RA-302`、`RB0-140`、`RB0-170`、`RB04-244`、`RB05-151`、`RB05-156`、`RB05-157`、`RB05-160`、`RB06-126`、`RB06-161`、`RB06-163`、`RB06-293`、`RB07-042`、`RB07-313`、`RB08-170`、`RB08-172`、`RB09-043`、`RB09-045`、`RC0-016`、`RC0-111`、`RC0-117`、`RC0-119`、`RC00-003`、`RC00-004`、`RC00-049`、`RC00-050`、`RC00-144`、`RC00-167`、`RC00-200`、`RC00-214`、`RC01-005`、`RC01-006`、`RC01-007`、`RC02-041`、`RC03-106`、`RC03-117`、`RC03-118`、`RC03-133`、`RC04-020`、`RC04-030`、`RD00-005`、`RD00-006`、`RD00-007`、`RD00-009`、`RD00-213`、`RD00-219`、`RD00-245`、`RD00-262`、`RD01-075`、`RD01-078`、`RD01-084`、`RD02-006`、`RD02-008`、`RD02-018`、`RD02-019`、`RD02-025`、`RD02-027`、`RD02-029`、`RD02-031`、`RD02-032`、`RD02-033`、`RD02-065`、`RD02-073`、`RD02-247`、`RD02-254`、`RD02-269`、`RD02-271`、`RD02-272`、`RD02-274`、`RD02-275`、`RD03-001`、`RD03-077`、`RD03-084`、`RD03-089`、`RD03-090`、`RD04-009`、`RD04-011`、`RD04-013`、`RD04-014`、`RD04-018`、`RD04-023`、`RD04-057`、`RD04-073`、`RD04-074`、`RD04-084`、`RD04-085`、`RD04-086`、`RD04-088`、`RD04-102`、`RD04-105`、`RD04-108`、`RD04-113`、`RD04-114`、`RD04-115`、`RD04-125`、`RD04-127`、`RD04-134`、`RD04-157`、`RD09-138`、`RE01-127`、`RE01-148`、`RE01-151`、`RG18-007`、`RG18-008`、`RG18-009`、`RG19-010`
+`RA-022`、`RA-027`、`RA-046`、`RA-098`、`RA-099`、`RA-100`、`RA-101`、`RA-102`、`RA-103`、`RA-112`、`RA-139`、`RA-144`、`RA-302`、`RB0-140`、`RB0-170`、`RB04-244`、`RB05-151`、`RB05-156`、`RB05-157`、`RB05-160`、`RB06-126`、`RB06-161`、`RB06-163`、`RB06-293`、`RB07-042`、`RB07-313`、`RB08-170`、`RB08-172`、`RB09-043`、`RB09-045`、`RC0-016`、`RC0-111`、`RC0-117`、`RC0-119`、`RC00-003`、`RC00-004`、`RC00-049`、`RC00-050`、`RC00-144`、`RC00-167`、`RC00-200`、`RC00-214`、`RC01-005`、`RC01-006`、`RC01-007`、`RC02-041`、`RC03-106`、`RC03-117`、`RC03-118`、`RC03-133`、`RC04-020`、`RC04-030`、`RD00-005`、`RD00-006`、`RD00-007`、`RD00-009`、`RD00-213`、`RD00-219`、`RD00-245`、`RD00-262`、`RD01-075`、`RD01-078`、`RD01-084`、`RD02-006`、`RD02-008`、`RD02-018`、`RD02-019`、`RD02-025`、`RD02-027`、`RD02-029`、`RD02-031`、`RD02-032`、`RD02-033`、`RD02-065`、`RD02-073`、`RD02-247`、`RD02-254`、`RD02-269`、`RD02-271`、`RD02-272`、`RD02-274`、`RD02-275`、`RD03-001`、`RD03-077`、`RD03-084`、`RD03-089`、`RD03-090`、`RD04-009`、`RD04-011`、`RD04-013`、`RD04-014`、`RD04-018`、`RD04-023`、`RD04-057`、`RD04-073`、`RD04-074`、`RD04-084`、`RD04-085`、`RD04-086`、`RD04-088`、`RD04-102`、`RD04-105`、`RD04-108`、`RD04-113`、`RD04-114`、`RD04-115`、`RD04-125`、`RD04-127`、`RD04-134`、`RD04-157`、`RD09-138`、`RE01-127`、`RE01-148`、`RE01-151`、`RG18-007`、`RG18-008`、`RG18-009`、`RG19-010`、`RG37-008`、`RG37-011`、`RG40-031`、`RG43-012`、`RG44-014`、`RG47-006`

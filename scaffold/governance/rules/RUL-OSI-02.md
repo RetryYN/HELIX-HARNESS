@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSI-02
 group: OS改善
 product: OS
-atoms_primary: 32
-atoms_secondary: 14
+atoms_primary: 37
+atoms_secondary: 17
 issue_projection: #1861
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1861
 
 skill、知識、判断の基準を版で管理し、agentとcommandの定義が現行の版を参照していることを確かめる。
 
-## 主として対応づいた規則（32件）
+## 主として対応づいた規則（37件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -58,7 +58,12 @@ skill、知識、判断の基準を版で管理し、agentとcommandの定義が
 | `RE01-140` | skill設計者はskillを知識・checklistとして管理し、実行条件はworkflowに所有させる。vendor本文をそのままcanonical skillとして使わない。 | process_gate | prose | n/a | docs/skillsとworkflowの責務分離 | `RUL-OSP-08` | docs/governance/helix-harness-requirements_v1.2.md:1952-1990 | E01／claude-opus |
 | `RE01-209` | skill推薦者はtask・drive・layerと測定結果に基づいて推薦し、効果の裏付けのない主張やstaleな旧versionの黙示利用をしない。 | evidence_claim | prose／gate | fail_close | skill efficacyとversion管理 | `RUL-OSP-08` | docs/governance/helix-harness-requirements_v1.3.md:291-291 | E01／claude-opus |
 | `RG09-012` | add-design担当者は、domain boundary・invariant・workflow evidence・test granularityを変更する機能について、DDD/TDD規約正本を更新するか影響なしを明示する。 | process_gate | prose | n/a | Add-feature add-design、docs/governance/ddd-tdd-rules.md | `RUL-COR-01` | docs/governance/ddd-tdd-rules.md:151-151 | G09／claude-opus |
+| `RG15-002` | skillの追加・改修者は個別pack fileを更新してcatalogへ登録する。索引に無いpackはscore対象にならない。 | tooling_runtime | config | n/a | docs/skills/ とscored registry | `RUL-OSP-08` | docs/skills/SKILL_MAP.md:88-89 | G15／claude-opus |
+| `RG39-033` | 憲法template解決器は、同一keyの候補をpriority降順、priorityが同値の場合はcore<role<preset<projectのsource順で並べ、最上位のtemplateを採用する。 | process_gate | prose | n/a | — | `RUL-COR-01` | src/runtime/constitution-template-stack.ts:33-35; src/runtime/constitution-template-stack.ts:59-63 | G39／claude-opus |
+| `RG40-016` | 拡張registry検査はdry-run固定で実インストールを行わず、全componentのdigest manifestとinstall計画・remove計画だけを返す。 | safety_security | gate | fail_close | helix extensions registry --dry-run --json | `RUL-OSM-05` | src/runtime/extension-preset-bundle-registry.ts:26-37; src/runtime/extension-preset-bundle-registry.ts:87-98 | G40／claude-opus |
+| `RG45-001` | skill効果検証はdry-runの報告であり、報告自体は昇格や隔離を実行せず、promotion_allowedとquarantine_candidateの提示に留める。 | process_gate | prose | n/a | helix skill efficacy --dry-run --json | `RUL-OSM-05` | src/runtime/skill-efficacy-evaluation.ts:28-37; src/runtime/skill-efficacy-evaluation.ts:97-109 | G45／claude-opus |
+| `RG45-003` | skillおよびAGENTSルールの改善は、PO指示または検証済みfailureだけを根拠として認め、証拠のない自動書換えを禁じる。 | escalation_authority | prose | fail_close | AGENTS.md | `RUL-OSM-01` | src/runtime/skill-memory-hygiene.ts:47-50; src/runtime/skill-memory-hygiene.ts:112-115 | G45／claude-opus |
 
-## 副として対応づいた規則（14件）
+## 副として対応づいた規則（17件）
 
-`RB04-110`、`RB04-271`、`RB06-043`、`RB06-153`、`RB06-183`、`RB08-171`、`RC00-038`、`RC00-041`、`RC04-149`、`RD05-008`、`RG03-008`、`RG09-004`、`RG09-013`、`RG18-004`
+`RB04-110`、`RB04-271`、`RB06-043`、`RB06-153`、`RB06-183`、`RB08-171`、`RC00-038`、`RC00-041`、`RC04-149`、`RD05-008`、`RG03-008`、`RG09-004`、`RG09-013`、`RG18-004`、`RG45-002`、`RG45-004`、`RG48-010`

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""旧ルール群の要求候補57本と規則atom 7,113件を、仮のルール集（rulebook）へ機械的に写す。
+"""旧ルール群の要求候補57本と規則atom 7,622件を、仮のルール集（rulebook）へ機械的に写す。
 
 入力（正本。ここでは読むだけ）:
   docs/governance/candidates/legacy-rule-derived-requirements.md   要求候補の本文
@@ -18,7 +18,7 @@ ROOT = os.environ.get("GOVCHECK_ROOT") or os.path.dirname(os.path.dirname(GOV))
 GOV = os.path.join(ROOT, "scaffold", "governance")
 CAND = "docs/governance/candidates/legacy-rule-derived-requirements.md"
 INV = "docs/governance/legacy-rule-atom-inventory.jsonl"
-ATOMS_TOTAL = 7113   # 台帳の母数。変わったら正本側の判断として本値と binding を更新する
+ATOMS_TOTAL = 7622   # 台帳の母数。変わったら正本側の判断として本値と binding を更新する
 REQ_TOTAL = 57
 GROUP_ISSUE = {"枠": 1858, "サービス④開発": 1854, "フルリバース": 1852, "サービス⑥リリース": 1856,
                "サービス⑦運用保守": 1857, "OS推進": 1859, "OS検収": 1860, "OS改善": 1861}

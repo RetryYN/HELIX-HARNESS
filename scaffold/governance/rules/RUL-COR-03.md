@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-COR-03
 group: コア
 product: OS
-atoms_primary: 250
-atoms_secondary: 91
+atoms_primary: 271
+atoms_secondary: 102
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 状態の更新は、中断・再試行・担当の交代があっても、二重に実行されず、古い作業者の結果が新しい状態を上書きしない。同じ操作を繰り返しても結果が変わらない。実現の方式はL3以降で選ぶ。
 
-## 主として対応づいた規則（250件）
+## 主として対応づいた規則（271件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -276,7 +276,28 @@ issue_projection: none
 | `RF00-022` | epoch読取り器は、通常claimが無く、releasing claimに有効なrelease proofがある場合、そのreleasing claimを残留claimとして扱わない。 | tooling_runtime | gate | n/a | epoch.claim.releasing、validReleaseProof | — | src/orchestration/durable-loop-epoch-node.ts:593-600 | F00／claude-opus |
 | `RF00-023` | epoch commit器は、payload、manifest、pointerの順に一時書込み・ファイル同期・公開・directory同期を行い、claim解放完了後にだけcommittedを返す。intent capabilityは、その完了したcommitのsideEffectPhaseがintent_recordedの場合にだけ発行する。 | process_gate | gate | fail_close | DurableEpochPort、intent_recorded、DurableIntentCapability | — | src/orchestration/durable-loop-epoch.ts:92-97; src/orchestration/durable-loop-epoch.ts:205-224 | F00／claude-opus |
 | `RG12-006` | #214の実装担当者は、L6設計§6.1に定めた呼び出し元のprovenance責任境界を、transactional boundaryで機械強制する。 | evidence_claim | prose | n/a | Issue #214とwork-graph-receipt-acceptanceのL6設計§6.1 | `RUL-COR-07` | docs/governance/issue-213-work-graph-receipt-closure.md:45-46 | G12／claude-opus |
+| `RG28-010` | identifier-renameの切替は凍結HEADとquiet windowを必須とし、同時並行applyを禁じる単一実行ポリシーで運用する。 | safety_security | lint／prose | n/a | PLAN-M-02のrename切替という具体作業 | `RUL-OSM-05` | src/lint/identifier-rename.ts:2453-2457 | G28／claude-opus |
+| `RG30-007` | outstanding snapshotの書込み器は、生成内容が既存ファイルと同一の場合は書き込まず、変更有無をchangedとして返す。 | tooling_runtime | lint | n/a | docs/governance/generated/outstanding-snapshot.json | `RUL-OSM-09` | src/lint/outstanding-snapshot.ts:43-60 | G30／claude-opus |
+| `RG31-004` | computeOutstandingWorkは、同一同期run内はrepoRoot単位でsnapshotを共有し、microtask境界でcacheを破棄して次commandへstale値を持ち越さない。結果はdeepFreezeして書換えを禁じる。 | tooling_runtime | lint | n/a | outstandingRunCache | `RUL-COR-02` | src/lint/outstanding.ts:1214-1251 | G31／claude-opus |
+| `RG37-007` | ファイルの原子的renameは、EEXIST／ENOTEMPTY、およびwin32で対象が存在するときのEPERM／EACCESを衝突として扱わなければならない。またwin32ではdirectory fsyncを行わない。 | tooling_runtime | lint | n/a | supportsDirectoryFsync / isAtomicRenameCollision | `RUL-COR-05` | src/policy/filesystem-durability.ts:3-18 | G37／claude-opus |
+| `RG37-016` | agent slotのstate書き込みは、一時ファイルへ書いてからrenameする原子的書き込みで行い、失敗時は一時ファイルを片付けたうえで元の例外を送出しなければならない。 | tooling_runtime | hook／lint | fail_close | nodeAgentSlotsDeps.writeText | — | src/runtime/agent-slots.ts:329-347 | G37／claude-opus |
+| `RG37-018` | agent slotのIDおよび一時ファイル名は、Math.randomに依存せずプロセスIDと単調増加のseq・ISO時刻から採番しなければならない。 | tooling_runtime | lint | n/a | nodeAgentSlotsDeps の idSeq / writeSeq | `RUL-COR-05` | src/runtime/agent-slots.ts:321-350 | G37／claude-opus |
+| `RG37-023` | feedback surface記録は、同一source・同一世代・同一sessionに対する受領記録を重複して追記してはならない。 | memory_context | lint | n/a | recordFeedbackSurfaces の receiptKey / already_surfaced | `RUL-OSI-01` | src/policy/feedback-lifecycle.ts:607-614 | G37／claude-opus |
+| `RG39-017` | review receipt訂正の永続化は、corrected receiptを作成した後にauthorization作成が失敗した場合、作成済みのcorrected receiptを削除してから例外を伝播しなければならない。 | evidence_claim | prose | fail_close | — | `RUL-DEV-01` | src/runtime/claude-pr-convergence.ts:1336-1356 | G39／claude-opus |
+| `RG40-007` | 文書metadata書込器は、一時fileを排他作成（所有者のみ0600）して書込み・fsyncした後にrenameで置換し、rename段で失敗した場合は一時fileを削除してから例外を伝播する。 | safety_security | prose | fail_close | openSync("wx", 0o600)/renameSync | `RUL-COR-06` | src/runtime/document-agent-metadata-write-port.ts:40-66 | G40／claude-opus |
+| `RG40-017` | イベント冪等ingestは、既存logに同じevent IDがありpayload digestも一致する場合、重複を吸収して成功扱いにする。 | tooling_runtime | prose | n/a | — | — | src/runtime/event-projection-checkpoint-replay.ts:275-288 | G40／claude-opus |
+| `RG40-019` | orchestration event transactionは、DBを即時排他transactionで開始し、schema versionが現行未満の場合は先にmigrateしてから処理する。 | tooling_runtime | prose | fail_close | SQLiteのBEGIN IMMEDIATE | — | src/runtime/event-projection-checkpoint-transaction.ts:532-542 | G40／claude-opus |
+| `RG40-028` | continuationおよびdelivery journalへの追記は、DB上のscope別fenceを即時排他transaction内で取得したうえで実行し、内部で失敗した場合はrollbackして元の例外を優先する。 | tooling_runtime | prose | fail_close | continuation_fences table と SQLite BEGIN IMMEDIATE | — | src/runtime/continuation.ts:843-885; src/runtime/continuation.ts:1366-1380 | G40／claude-opus |
+| `RG40-029` | PLAN完了continuationのevent IDはoperation IDのSHA-256から決定的に導出し、event sequenceはDB側watermarkとjournal側watermarkの大きい方に1を足した値とする。 | tooling_runtime | prose | fail_close | continuation-<digest> というID書式 | `RUL-COR-02` | src/runtime/continuation.ts:748-763 | G40／claude-opus |
+| `RG41-007` | override監査用のDBはpersistent pragmaを適用せずに開き、schema versionが現行未満なら先にmigrateしてから使う。 | tooling_runtime | hook | fail_close | openHarnessDbのskipPersistentPragmas option | — | src/runtime/git-command-guard-hook.ts:314-320; src/runtime/git-command-guard-hook.ts:346-351 | G41／claude-opus |
+| `RG41-020` | PLAN authoringの書込みは、prepared journalの作成、stage fileの作成と全digest検証、committed journalへの更新、journalに従う適用という順の2phase commitで行い、例外時はjournalからrecoverしなければならない。 | process_gate | gate | fail_close | .helix/state/forward-plan-authoring-journal.json と .helix/tmp/ 配下のstage | — | src/runtime/forward-plan-authoring-transaction.ts:339-382; src/runtime/forward-plan-authoring-transaction.ts:687-760 | G41／claude-opus |
+| `RG42-021` | lint artifactの書込みは、同一directory内の一時file（排他作成・所有者のみ0600）へ書いてfsyncし、renameで置換し、directoryをfsyncしたうえで再読して内容を検証する。rename前に失敗した場合は一時fileを削除する。 | safety_security | lint | fail_close | — | `RUL-COR-06` | src/runtime/lint-artifact-write-port.ts:72-121 | G42／claude-opus |
+| `RG43-003` | lint effectのidempotency claimはdurableかつatomicでなければならず、同じkeyが別scopeで再利用された場合はconflictを返さなければならない。 | tooling_runtime | lint | fail_close | — | — | src/runtime/lint-effect-executor.ts:70-74; src/runtime/lint-effect-executor.ts:246-260 | G43／claude-opus |
+| `RG43-012` | hook authority consumerは、transport envelopeを一度だけcanonical resolutionへ変換しprojectorも一度だけ実行する。以降のsurface参照でserialization・capture・resolverを再実行してはならず、dispatch admissionはprovider processのspawn直前にのみ、resolutionを再計算せず判定する。 | tooling_runtime | hook | fail_close | — | `RUL-OSP-03` | src/runtime/project-hook-authority-consumer.ts:44-62; src/runtime/project-hook-authority-consumer.ts:79-96 | G43／claude-opus |
+| `RG45-011` | lease二重所有の判定は (parent_id, task_id) のlane単位に限定し、lane をまたいだfence tokenの値一致を衝突として扱わない。 | lane_delegation | prose | n/a | lane内カウンタ方式のfence token | `RUL-OSP-06` | src/runtime/slot-scheduler-quota-handover.ts:373-387 | G45／claude-opus |
+| `RG45-014` | handoverのlease CASは、observed値を稼働rowが実際に保持するlease、expected値をpacketが主張するfence tokenとし、両方をpacket由来にしてCASを自己参照にしない。 | lane_delegation | prose | fail_close | acquireWorkGraphLease | — | src/runtime/slot-scheduler-quota-handover.ts:522-534 | G45／claude-opus |
+| `RG46-010` | work graph lease取得器は、CAS成功時に現在のfence tokenへ1を加えた新leaseを発行し、fence tokenを単調増加させる。 | lane_delegation | prose | n/a | — | — | src/runtime/work-graph-receipt-acceptance.ts:283-295 | G46／claude-opus |
 
-## 副として対応づいた規則（91件）
+## 副として対応づいた規則（102件）
 
-`RA-035`、`RA-071`、`RB05-176`、`RB05-207`、`RB06-110`、`RB06-111`、`RB06-169`、`RB06-179`、`RB06-248`、`RB06-251`、`RB06-254`、`RB07-294`、`RB08-081`、`RB08-138`、`RB08-158`、`RB08-290`、`RB08-292`、`RB09-036`、`RC00-080`、`RC00-083`、`RC03-084`、`RC03-089`、`RC04-048`、`RC04-066`、`RC04-071`、`RC04-072`、`RC04-076`、`RC04-082`、`RC04-090`、`RC04-093`、`RC04-097`、`RC04-098`、`RC04-100`、`RC04-289`、`RD00-075`、`RD00-208`、`RD00-209`、`RD00-212`、`RD00-220`、`RD00-221`、`RD00-222`、`RD00-225`、`RD00-233`、`RD00-298`、`RD00-311`、`RD01-015`、`RD01-036`、`RD01-076`、`RD01-077`、`RD01-082`、`RD01-089`、`RD01-090`、`RD01-098`、`RD01-099`、`RD01-105`、`RD01-121`、`RD01-124`、`RD01-140`、`RD01-142`、`RD01-143`、`RD01-150`、`RD01-161`、`RD01-166`、`RD01-168`、`RD01-169`、`RD01-223`、`RD01-229`、`RD02-014`、`RD02-157`、`RD02-184`、`RD02-277`、`RD02-285`、`RD03-059`、`RD03-065`、`RD03-068`、`RD03-234`、`RD03-236`、`RD03-242`、`RD03-243`、`RD03-248`、`RD04-031`、`RD05-168`、`RD07-116`、`RD07-117`、`RD07-118`、`RE01-066`、`RE01-207`、`RE01-278`、`RF00-002`、`RF00-020`、`RF00-021`
+`RA-035`、`RA-071`、`RB05-176`、`RB05-207`、`RB06-110`、`RB06-111`、`RB06-169`、`RB06-179`、`RB06-248`、`RB06-251`、`RB06-254`、`RB07-294`、`RB08-081`、`RB08-138`、`RB08-158`、`RB08-290`、`RB08-292`、`RB09-036`、`RC00-080`、`RC00-083`、`RC03-084`、`RC03-089`、`RC04-048`、`RC04-066`、`RC04-071`、`RC04-072`、`RC04-076`、`RC04-082`、`RC04-090`、`RC04-093`、`RC04-097`、`RC04-098`、`RC04-100`、`RC04-289`、`RD00-075`、`RD00-208`、`RD00-209`、`RD00-212`、`RD00-220`、`RD00-221`、`RD00-222`、`RD00-225`、`RD00-233`、`RD00-298`、`RD00-311`、`RD01-015`、`RD01-036`、`RD01-076`、`RD01-077`、`RD01-082`、`RD01-089`、`RD01-090`、`RD01-098`、`RD01-099`、`RD01-105`、`RD01-121`、`RD01-124`、`RD01-140`、`RD01-142`、`RD01-143`、`RD01-150`、`RD01-161`、`RD01-166`、`RD01-168`、`RD01-169`、`RD01-223`、`RD01-229`、`RD02-014`、`RD02-157`、`RD02-184`、`RD02-277`、`RD02-285`、`RD03-059`、`RD03-065`、`RD03-068`、`RD03-234`、`RD03-236`、`RD03-242`、`RD03-243`、`RD03-248`、`RD04-031`、`RD05-168`、`RD07-116`、`RD07-117`、`RD07-118`、`RE01-066`、`RE01-207`、`RE01-278`、`RF00-002`、`RF00-020`、`RF00-021`、`RG21-007`、`RG37-020`、`RG37-022`、`RG39-018`、`RG40-006`、`RG40-010`、`RG40-020`、`RG40-022`、`RG41-022`、`RG45-010`、`RG46-020`

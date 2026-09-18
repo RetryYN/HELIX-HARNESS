@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-COR-06
 group: コア
 product: OS
-atoms_primary: 36
-atoms_secondary: 9
+atoms_primary: 63
+atoms_secondary: 27
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 作業者の実行環境を隔離する。通信は既定で拒否、最小権限、読取専用の領域、子processの回収、ホストの露出制限、対応OSの互換、外部入力に混入した命令を実行しない。
 
-## 主として対応づいた規則（36件）
+## 主として対応づいた規則（63件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -61,8 +61,35 @@ issue_projection: none
 | `RE01-205` | MCP利用者は登録済みprofileと安全なread-only probeを使用し、probeへsecretやwrite操作を混ぜない。 | safety_security | config／gate | fail_close | MCP profileとRO probe | `RUL-OSM-04` | docs/governance/helix-harness-requirements_v1.3.md:286-286 | E01／claude-opus |
 | `RE01-244` | 実行器は検証できない間接実行をsandboxへ限定するか拒否し、hostで実行しない。 | safety_security | gate | fail_close | indirect executionとhost/sandbox境界 | — | docs/governance/helix-harness-requirements_v1.3.md:466-466 | E01／claude-opus |
 | `RE01-277` | Python workerは登録済みdescriptor、strict JSONL、資源上限、network default denyで実行し、DB path・credential・repository・.helixへのアクセスを渡さない。 | safety_security | config／gate | fail_close | Python worker sandboxとJSONL protocol | — | docs/governance/helix-harness-requirements_v1.3.md:565-573 | E01／claude-opus |
+| `RG02-008` | bubblewrap導入処理は、kernel.apparmor_restrict_unprivileged_usernsを読み取れる場合、その値を0に変更する。 | tooling_runtime | ci | fail_close | sudo sysctlによるUbuntu runnerのAppArmor user namespace制限解除 | `RUL-COR-05` | .github/scripts/install-bubblewrap.sh:3-3; .github/scripts/install-bubblewrap.sh:46-48 | G02／claude-opus |
 | `RG03-011` | Claude Codeは、courtのようなrole markerをassistant textに書かず、prior contextにある場合もcorrupted transcript residueとして扱って継続しない。 | tooling_runtime | prose | n/a | Claude Codeのassistant textとcourt等のrole marker。 | `RUL-COR-08` | CLAUDE.md:178-180 | G03／claude-opus |
+| `RG11-003` | 要件化担当者はPython workerのsecurity制約（network default deny、DB path・credential・runtime state directoryを渡さない）を要件として明文化し、未要件化のまま境界成立と扱わない。 | safety_security | prose | n/a | ADR-009の`.helix/`非付与とHBR-ARCH-009 | `RUL-FRM-08` | docs/governance/hybrid-rebaseline-v0.4.0-fullcheck-audit-2026-07-17.md:54-54 | G11／claude-opus |
+| `RG21-001` | doctorはgate経路からruntime transcript由来のmodel telemetry overlayを実行せず、home配下のsession履歴を走査しない。telemetryの恒久ingestは専用のtelemetry scanコマンドが担う。 | tooling_runtime | doctor | n/a | projectRuntimeModelTelemetry / HELIX_CLAUDE_SESSIONS_DIR / helix telemetry scan | `RUL-OSA-06` | src/doctor/index.ts:1760-1782; src/doctor/index.ts:1795-1798 | G21／claude-opus |
+| `RG32-014` | V-pair test file loaderは、test pathが正規形でない、symlinkである、realpathがrepository外、または通常ファイルでない場合、本文を読まず空文字のまま証跡を返す。 | safety_security | lint | fail_close | loadPlanSpecificVpairBindingInput | `RUL-COR-04` | src/lint/plan-specific-vpair-binding.ts:1042-1070 | G32／claude-opus |
+| `RG36-012` | version-up のdry-run／bundle／tag確認コマンドを組み立てるとき、version文字列・remote URL・出力pathなどの可変値はshell quoteしてから埋め込まなければならない。 | safety_security | lint | n/a | shellQuote の適用箇所 | `RUL-COR-04` | src/lint/version-up-readiness.ts:1283-1297; src/lint/version-up-readiness.ts:2097-2099; src/lint/version-up-readiness.ts:2122-2123 | G36／claude-opus |
+| `RG37-010` | Claudeのheadless実行では所定のpermission引数だけを付与し、bypassPermissionsを使ってはならない。 | safety_security | lint | fail_close | CLAUDE_PERMISSION_ARGS とそのコメント | `RUL-OSM-05` | src/runtime/adapter.ts:689-697 | G37／claude-opus |
+| `RG37-011` | wrapper launchのcapabilityとexecutionはfreezeして発行し、発行済みcapabilityとして登録されたobjectだけをwrapper launchとして認めなければならない。 | safety_security | lint | fail_close | Object.freeze と wrapperCapabilities WeakMap | `RUL-OSP-03` | src/runtime/adapter.ts:464-505 | G37／claude-opus |
+| `RG38-009` | CI branch base解決は、外部コマンド実行にtimeout（git等10秒、GitHub API 60秒）と1MiBの出力上限を課さなければならない。 | tooling_runtime | ci | fail_close | command() の timeout / maxBuffer | `RUL-OSP-07` | src/runtime/ci-branch-base.ts:11-30 | G38／claude-opus |
+| `RG39-002` | Claude inboxのstate file（claim・marker・generation・delivered.jsonl）は、所有者のみ読み書き可（0600）で作成しなければならない。 | safety_security | prose | n/a | openSync/writeFileSyncのmode 0o600 | `RUL-OSM-04` | src/runtime/claude-memory-wake.ts:687-711; src/runtime/claude-memory-wake.ts:1338-1338; src/runtime/claude-memory-wake.ts:1569-1571 | G39／claude-opus |
+| `RG39-018` | convergence配下のreceipt・slot claim・訂正fileは、排他的新規作成（既存があれば失敗）かつ所有者のみ読み書き可の権限で作成しなければならない。 | safety_security | prose | fail_close | openSync(path, "wx", 0o600) | `RUL-COR-03` | src/runtime/claude-pr-convergence.ts:1079-1092; src/runtime/claude-pr-convergence.ts:1336-1350; src/runtime/claude-pr-convergence.ts:1402-1407 | G39／claude-opus |
+| `RG40-020` | orchestration journalは所有者のみ読み書き可の追記で書き、checkpointは一時file（0600）へ書いてfsyncし、renameで置換したうえで親directoryもfsyncして公開する。 | safety_security | prose | fail_close | openSync mode 0o600 / renameSync / fsyncSync | `RUL-COR-03` | src/runtime/event-projection-checkpoint-transaction.ts:191-211; src/runtime/event-projection-checkpoint-transaction.ts:213-232 | G40／claude-opus |
+| `RG41-022` | PLAN authoringのfile作成は排他作成（所有者のみ0600）とfsync、親directoryのfsyncまで行い、置換は一時fileを作ってrenameし親directoryをfsyncする。 | safety_security | prose | fail_close | openSync("wx", 0o600)/renameSync/fsyncSync | `RUL-COR-03` | src/runtime/forward-plan-authoring-transaction.ts:169-194 | G41／claude-opus |
+| `RG42-005` | fallback review providerはsandbox内でのみ実行し、user/pid/ipc/uts namespaceを分離し親終了で停止させ、環境変数を消去し、必要な読み取り専用bindと空のworkspaceだけを与える。clientのfilesystem・terminal capabilityは無効、MCP serverは空、permission要求はreject、tool活動はfail-close、telemetryと自動更新は無効とし、projectの資格情報はmountしない。 | safety_security | prose | fail_close | bubblewrap(bwrap)の具体引数とKIMI_*環境変数 | `RUL-OSM-04` | src/runtime/independent-review-fallback.ts:806-900; src/runtime/independent-review-fallback.ts:1075-1095 | G42／claude-opus |
+| `RG42-006` | fallback sandboxのpolicyは、network egressを制限できない事実を明示しなければならない。空のworkspaceをnetwork隔離と誤認してadmissionしてはならない。 | evidence_claim | prose | fail_close | bwrapがhostname egress allowlistを持たないという実装事実 | `RUL-FRM-04` | src/runtime/independent-review-fallback.ts:886-896 | G42／claude-opus |
+| `RG42-012` | fallback admission receipt・lease・中立review receiptの保存directoryは所有者のみ（0700）で作り、各fileは所有者のみ（0600）の排他作成とし、file名をreceipt digestに一致させる。 | safety_security | prose | fail_close | — | `RUL-COR-02` | src/runtime/independent-review-fallback.ts:346-364; src/runtime/independent-review-fallback.ts:634-646; src/runtime/independent-review-fallback.ts:1663-1683 | G42／claude-opus |
+| `RG42-013` | 隔離worktreeでの実行計画は、資格情報を一切渡さず、network policyを既定で無効とし、書込み許可pathを既定の限定集合に絞る。 | safety_security | gate | fail_close | docs/ src/ tests/ という既定許可path | — | src/runtime/isolated-worktree-sandbox-runner.ts:62-65; src/runtime/isolated-worktree-sandbox-runner.ts:93-95 | G42／claude-opus |
+| `RG42-022` | lint artifactのrootはHELIXが所有する排他書込み可能な証拠領域でなければならず、非協調actorが書き込めるrootを渡してはならない（このpath APIは非信頼filesystem向けのsandboxではない）。 | safety_security | prose | fail_close | — | `RUL-OSM-09` | src/runtime/lint-artifact-write-port.ts:25-32 | G42／claude-opus |
+| `RG43-001` | lint probeの実行adapterは、shellを介さずに子processを起動し、環境変数をallowlistした最小集合に絞り、実行directoryをadapter側で固定してintentに選ばせてはならない。出力はbyte上限で打ち切る。 | safety_security | lint | fail_close | spawnSyncのoptionとPATH等の具体変数名 | — | src/runtime/lint-probe-adapter.ts:15-35; src/runtime/lint-probe-adapter.ts:62-77 | G43／claude-opus |
+| `RG44-009` | provider lifecycle制御器は、割込みsignal handlerをprocess treeの回収確認まで外さず、後始末中の再signalでNode既定の即時終了へ戻して子孫を孤児化させない。 | tooling_runtime | prose | fail_close | Node process signal handler | — | src/runtime/provider-process-lifecycle.ts:280-300 | G44／claude-opus |
+| `RG44-010` | provider lifecycle制御器は、親process終了時にSIGKILLを送るexit fenceを、process groupの消滅が確認できた場合にだけ解除する。 | tooling_runtime | prose | fail_close | — | — | src/runtime/provider-process-lifecycle.ts:293-306; src/runtime/provider-process-lifecycle.ts:355-358 | G44／claude-opus |
+| `RG46-008` | worker isolation policyは、egressを常にdeny_allに固定し、許可hostを1件でも指定された時点で拒否する。 | safety_security | prose | fail_close | — | — | src/runtime/worker-isolation-policy.ts:36-42; src/runtime/worker-isolation-policy.ts:107-124 | G46／claude-opus |
+| `RG46-009` | scope監査のファイル取得は、O_NOFOLLOWで開いて読取前後のstatを照合し、symlink追従と読取中の差し替えを許さない。 | safety_security | prose | fail_close | POSIX O_NOFOLLOW | `RUL-COR-04` | src/runtime/worker-isolation-policy.ts:137-159 | G46／claude-opus |
+| `RG46-016` | isolation brokerの入力取得は、O_NOFOLLOWで開いた後にfd経由の実pathを再解決し、repository内であること、.git・.helix・harness.dbを指さないことを再確認してから読む。 | safety_security | prose | fail_close | /proc/self/fd 経由の realpath 再解決 | — | src/runtime/worker-isolation-broker.ts:477-512 | G46／claude-opus |
+| `RG46-017` | isolation brokerは、検証済みbackendとprovider実行体をscratchへmode 0500で複製し、fd経由で起動する。PATH上のbinaryを直接起動しない。 | safety_security | prose | fail_close | bubblewrap と /proc/self/fd/3,4 | `RUL-COR-05` | src/runtime/worker-isolation-broker.ts:670-675; src/runtime/worker-isolation-broker.ts:762-771 | G46／claude-opus |
+| `RG46-018` | isolation brokerのsandboxは、/usrを読み取り専用でbindし、/procと/devを最小構成、/tmpをtmpfsとして与え、作業directoryをworkspaceに固定する。 | safety_security | prose | fail_close | bubblewrap の引数 | — | src/runtime/worker-isolation-broker.ts:702-744 | G46／claude-opus |
+| `RG46-019` | isolation brokerは、入力fileをscratchへ排他作成フラグとmode 0600で書き、既存fileの上書きを許さない。 | safety_security | prose | fail_close | — | — | src/runtime/worker-isolation-broker.ts:652-661 | G46／claude-opus |
+| `RG46-020` | isolation実行器は、起動の成否にかかわらずlaunchの封印を1度だけ消費し、broker所有のfdとbindingを必ず解放する。 | tooling_runtime | prose | fail_close | — | `RUL-COR-03` | src/runtime/worker-isolation-broker.ts:759-782 | G46／claude-opus |
 
-## 副として対応づいた規則（9件）
+## 副として対応づいた規則（27件）
 
-`RB04-259`、`RD02-039`、`RD04-126`、`RE01-098`、`RE01-144`、`RE01-238`、`RE01-245`、`RE01-247`、`RE01-278`
+`RB04-259`、`RD02-039`、`RD04-126`、`RE01-098`、`RE01-144`、`RE01-238`、`RE01-245`、`RE01-247`、`RE01-278`、`RG02-004`、`RG02-006`、`RG03-003`、`RG21-009`、`RG22-004`、`RG23-006`、`RG31-006`、`RG35-007`、`RG38-006`、`RG39-036`、`RG40-007`、`RG40-008`、`RG41-018`、`RG41-024`、`RG42-004`、`RG42-008`、`RG42-021`、`RG43-005`

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSA-07
 group: OS検収
 product: OS
-atoms_primary: 39
-atoms_secondary: 15
+atoms_primary: 40
+atoms_secondary: 16
 issue_projection: #1860
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1860
 
 HARNESSが定めた安全検証の義務（RUL-FRM-09）を適用する。脅威modelの確認、脆弱性の審査、依存と供給網の検査を実行し、結果と証拠を対象revisionへ結び、未分類のlicenseや未解消の重大な指摘を承認要求へ回す。
 
-## 主として対応づいた規則（39件）
+## 主として対応づいた規則（40件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -65,7 +65,8 @@ HARNESSが定めた安全検証の義務（RUL-FRM-09）を適用する。脅威
 | `RD11-139` | activation readiness検査は、外部境界がある場合、webhook_signature_checkの具体的証拠が未充足ならpending_evidenceとしてblock理由にする。 | safety_security | lint | fail_close | 署名検証そのものではなく証拠文字列を検査 | `RUL-FRM-04` | src/lint/version-up-readiness.ts:537-537; src/lint/version-up-readiness.ts:2347-2373; src/lint/version-up-readiness.ts:2436-2490 | D11／gpt-6-astra |
 | `RD11-140` | activation readiness検査は、外部境界がある場合、access_control_checkの具体的証拠が未充足ならpending_evidenceとしてblock理由にする。 | safety_security | lint | fail_close | activationEvidenceIsPending | `RUL-FRM-04` | src/lint/version-up-readiness.ts:538-538; src/lint/version-up-readiness.ts:2347-2373; src/lint/version-up-readiness.ts:2436-2490 | D11／gpt-6-astra |
 | `RE01-269` | security受入者はcoverage・finding・policy・permissionのreceiptを同じHEADとartifactへ束縛し、scanner単体や別検査のgreenでcoverage不足を相殺しない。 | evidence_claim | gate | fail_close | security composite receipt | `RUL-FRM-04` | docs/governance/helix-harness-requirements_v1.3.md:542-547 | E01／claude-opus |
+| `RG01-011` | /shipのsecurity-audit担当は、脆弱性と脅威の確認にsecurity-and-hardeningおよびthreat-model skillを参照する。 | tooling_runtime | prose | n/a | 旧security-and-hardening／threat-model skill | `RUL-OSP-08` | .claude/commands/ship.md:29-30 | G01／claude-opus |
 
-## 副として対応づいた規則（15件）
+## 副として対応づいた規則（16件）
 
-`RA-177`、`RA-242`、`RB04-165`、`RB04-197`、`RB04-253`、`RB04-256`、`RB04-257`、`RB04-269`、`RB04-274`、`RB07-072`、`RB07-073`、`RB07-124`、`RB07-236`、`RB08-011`、`RE01-215`
+`RA-177`、`RA-242`、`RB04-165`、`RB04-197`、`RB04-253`、`RB04-256`、`RB04-257`、`RB04-269`、`RB04-274`、`RB07-072`、`RB07-073`、`RB07-124`、`RB07-236`、`RB08-011`、`RE01-215`、`RG15-017`

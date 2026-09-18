@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSA-03
 group: OS検収
 product: OS
-atoms_primary: 34
-atoms_secondary: 37
+atoms_primary: 35
+atoms_secondary: 40
 issue_projection: #1860
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1860
 
 指摘の処分を定める。同じ責務で局所的に閉じるものは今の変更で直し、独立の責務だけ後続へ分ける。blockerは同じ対象について一括で返す。修正後の再判定は、新しい独立のblockerが実証されない限り一巡とし、実証された場合は再審査する。審査後に対象が変われば審査をstaleにする。
 
-## 主として対応づいた規則（34件）
+## 主として対応づいた規則（35件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -60,7 +60,8 @@ issue_projection: #1860
 | `RE01-258` | 作成者は契約違反・correctness・security・data loss・必須oracle失敗・虚偽証拠、および同じ責務とscope内で安全に閉じるfindingをcurrent PRで修正する。独立責務の改善だけを別episodeへ分ける。 | review_merge | prose／gate | fail_close | current PR finding disposition | — | docs/governance/helix-harness-requirements_v1.3.md:516-516 | E01／claude-opus |
 | `RF01-001` | pair-agentの計画生成器は、maxFixCyclesが未指定の場合、難易度trivial・simpleでは1、standardでは2、complexでは3、criticalでは4を修正サイクル上限にする。 | tooling_runtime | config | n/a | 旧難易度区分とmaxFixCyclesの対応値 | `RUL-OSP-07` | src/orchestration/pair-agent.ts:128-140; src/orchestration/pair-agent.ts:203-212 | F01／claude-opus |
 | `RG14-003` | finding promotionの是正担当者は、L1／L3／L4／L5をcurrent_pr_fix／successor_issueへ同期し、実装されるまではadapter markerでfail-closeを維持する。 | process_gate | prose／gate | fail_close | ORA-009、finding promotion設計、adapter marker | `RUL-OSI-01` | docs/governance/operations-rule-audit-2026-07-26.md:42-42 | G14／claude-opus |
+| `RG39-007` | PR review依頼に埋め込む収束方針は、current behavior contract違反・correctness/security/data loss・必須CI/DB/oracle red・虚偽/過大claimをblockerとしてcurrent PR内で閉じ、non-blockerはIssueへ分離し、mergeはcurrent HEADの独立review receipt・CI・DB convergenceを再照合した明示mergeに限ると定める。 | review_merge | prose | n/a | — | `RUL-OSA-04` | src/runtime/claude-memory-wake.ts:566-571 | G39／claude-opus |
 
-## 副として対応づいた規則（37件）
+## 副として対応づいた規則（40件）
 
-`RA-179`、`RB0-076`、`RB0-158`、`RB0-168`、`RB0-173`、`RB05-058`、`RB05-063`、`RB05-148`、`RB07-113`、`RB07-258`、`RB08-020`、`RB08-089`、`RB08-109`、`RB08-274`、`RB08-277`、`RB09-032`、`RC00-238`、`RC01-058`、`RC03-067`、`RC04-123`、`RD00-310`、`RD00-316`、`RD01-273`、`RD01-279`、`RD01-286`、`RD01-290`、`RD02-060`、`RD02-067`、`RD02-280`、`RD03-009`、`RD04-152`、`RD04-153`、`RD08-005`、`RD08-069`、`RD11-127`、`RE01-053`、`RE01-074`
+`RA-179`、`RB0-076`、`RB0-158`、`RB0-168`、`RB0-173`、`RB05-058`、`RB05-063`、`RB05-148`、`RB07-113`、`RB07-258`、`RB08-020`、`RB08-089`、`RB08-109`、`RB08-274`、`RB08-277`、`RB09-032`、`RC00-238`、`RC01-058`、`RC03-067`、`RC04-123`、`RD00-310`、`RD00-316`、`RD01-273`、`RD01-279`、`RD01-286`、`RD01-290`、`RD02-060`、`RD02-067`、`RD02-280`、`RD03-009`、`RD04-152`、`RD04-153`、`RD08-005`、`RD08-069`、`RD11-127`、`RE01-053`、`RE01-074`、`RG29-001`、`RG43-004`、`RG44-006`

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSI-03
 group: OS改善
 product: OS
 atoms_primary: 27
-atoms_secondary: 26
+atoms_secondary: 32
 issue_projection: #1861
 ---
 
@@ -54,6 +54,6 @@ driftの検出、振り返り、訓練を定期に運転し、未割当の資産
 | `RD10-202` | telemetry closure lintは所定の9計測要求について、有効なstatusを持つ表行が欠ける場合に失敗させる。 | process_gate | lint | fail_close | skill発火、trouble log、Forward外Issue、発火率、retry、bottleneck、改善log、feedback loop、hook設定 | `RUL-OSA-06` | src/lint/telemetry-closure.ts:45-55; src/lint/telemetry-closure.ts:172-177 | D10／gpt-6-astra |
 | `RE01-154` | 管理者は90日間失敗がない場合も自動で統制を下げず、未使用30日を警告、90日のarchiveを人間のPO/TL判断とする。 | escalation_authority | prose／doctor | warn | 30日・90日の旧policy lifecycle | `RUL-OSM-01` | docs/governance/helix-harness-requirements_v1.2.md:2240-2244 | E01／claude-opus |
 
-## 副として対応づいた規則（26件）
+## 副として対応づいた規則（32件）
 
-`RA-273`、`RB0-042`、`RB04-117`、`RB04-132`、`RB04-158`、`RB04-220`、`RB04-254`、`RB04-270`、`RB08-273`、`RC00-046`、`RC00-185`、`RC01-067`、`RC02-040`、`RC02-091`、`RC02-127`、`RC04-253`、`RD00-105`、`RD02-266`、`RD03-092`、`RD03-093`、`RD03-094`、`RD06-028`、`RD06-073`、`RD08-150`、`RG10-007`、`RG14-002`
+`RA-273`、`RB0-042`、`RB04-117`、`RB04-132`、`RB04-158`、`RB04-220`、`RB04-254`、`RB04-270`、`RB08-273`、`RC00-046`、`RC00-185`、`RC01-067`、`RC02-040`、`RC02-091`、`RC02-127`、`RC04-253`、`RD00-105`、`RD02-266`、`RD03-092`、`RD03-093`、`RD03-094`、`RD06-028`、`RD06-073`、`RD08-150`、`RG10-007`、`RG14-002`、`RG15-014`、`RG28-001`、`RG31-012`、`RG32-001`、`RG41-013`、`RG41-014`

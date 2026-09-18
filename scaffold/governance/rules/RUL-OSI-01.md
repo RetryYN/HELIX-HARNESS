@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSI-01
 group: OS改善
 product: OS
-atoms_primary: 101
-atoms_secondary: 93
+atoms_primary: 111
+atoms_secondary: 97
 issue_projection: #1861
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1861
 
 失敗、指摘、feedback、Issueの蓄積を、出どころを保ったまま改善候補へ還流する。feedbackの受付・分類・確認・解決を区別し、未確認の指摘を消さない。
 
-## 主として対応づいた規則（101件）
+## 主として対応づいた規則（111件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -125,9 +125,19 @@ issue_projection: #1861
 | `RE01-208` | feedback管理者はfeedback eventのlifecycleを維持し、未ackの消失、proseだけのresolve、HEAD不一致の解決証拠を認めない。 | memory_context | gate | fail_close | feedback_events lifecycle | `RUL-COR-02` | docs/governance/helix-harness-requirements_v1.3.md:290-290 | E01／claude-opus |
 | `RE01-281` | routing担当者はfeedbackを理由にdelivery styleを変更せず、production incidentやupgradeを所定の承認・preflight経路へ送り、versionの保留と有効化を区別する。 | process_gate | gate | fail_close | signal routingとversion park/activate | `RUL-OPS-01` | docs/governance/helix-harness-requirements_v1.3.md:617-633 | E01／claude-opus |
 | `RF01-012` | memory昇格判定器は、session eventの構造化されたevent_typeとoutcomeだけを判定に用い、body・diff・tool input・provider transcriptを参照しない。 | memory_context | gate | n/a | MemoryPromotionEventのevent_type・outcome | `RUL-OSM-03` | src/runtime/memory-promotion.ts:27-51 | F01／claude-opus |
+| `RG01-002` | PMO Sonnetは、工程からの逸脱が疑われる場合、ProblemとTryに明記する。 | behavior_discipline | prose | n/a | PMO SonnetのProblem／Try出力区分 | `RUL-FRM-03` | .claude/agents/pmo-sonnet.md:45-47 | G01／claude-opus |
+| `RG01-003` | PMO Sonnetは、チーム内で再利用可能な判断ログを短く残す。 | memory_context | prose | n/a | — | `RUL-COR-07` | .claude/agents/pmo-sonnet.md:89-89 | G01／claude-opus |
 | `RG10-019` | feedback lifecycleの実装担当者はsource_generationを追跡するappend-only台帳により、projectionの再生成でclose済みfeedbackが復活することを防ぐ。 | memory_context | prose | n/a | feedback_lifecycle、source_generation、PLAN-L6-63 | `RUL-COR-01` | docs/governance/handover-retirement-memory-audit-2026-07-11.md:81-81 | G10／claude-opus |
 | `RG10-024` | feedback表示担当者はconsumed状態のfeedbackを非表示にする。 | memory_context | prose | n/a | PLAN-L6-63のfeedback lifecycle | `RUL-OSM-03` | docs/governance/handover-retirement-memory-audit-2026-07-11.md:117-117 | G10／claude-opus |
+| `RG15-004` | 直せない、または今直さない壊れ方は握りつぶさず、debt registerの規約で意図した残余リスクとして記録する。 | behavior_discipline | prose | n/a | debt-register skill pack | `RUL-DEV-01` | docs/skills/acceptance-criteria-thinking.md:84-85 | G15／claude-opus |
+| `RG37-020` | feedback reconcileのfull modeは、完全性が宣言されたtable（completeTables）に属し、かつ今回activeでなかったsourceだけをcloseしなければならない。 | process_gate | lint | fail_close | planReconcileEvents の mode==='full' 分岐 | `RUL-COR-03` | src/policy/feedback-lifecycle.ts:788-812 | G37／claude-opus |
+| `RG37-021` | feedback reconcileは、policyVersionが変わったか、より重いbucketへ分類が変わった場合、既存世代をsupersedeしてpolicyEpochを1つ進めた新世代をopenで起票する。 | memory_context | lint | n/a | planReconcileEvents の supersede/observed 生成 | `RUL-COR-07` | src/policy/feedback-lifecycle.ts:714-752 | G37／claude-opus |
+| `RG37-022` | feedback reconcileは、closeまたは非活性を観測済みのsourceが再び活性化した場合、activityEpochを1つ進めた新世代をopenで起票する。 | memory_context | lint | n/a | planReconcileEvents の inactiveObserved 分岐 | `RUL-COR-03` | src/policy/feedback-lifecycle.ts:753-768 | G37／claude-opus |
+| `RG40-034` | 停止後メッセージの分類は、ユーザー自身の誤操作をmistake、AIへの是正をfeedbackとし、判断が曖昧な場合はfeedback側へ倒さなければならない。 | behavior_discipline | prose | fail_open | pmo-haikuへ渡すprompt contract | — | src/runtime/forced-stop.ts:266-287 | G40／claude-opus |
+| `RG40-035` | feedback記録は、attentionがhighの場合にだけrecovery起票提示フラグを立てる。 | process_gate | prose | fail_open | recovery_proposed というfield名 | `RUL-TKT-03` | src/runtime/forced-stop.ts:166-175 | G40／claude-opus |
+| `RG44-005` | review feedback取込検査は、kind・feedback_key・source refが同じeventを重複として計上するが、重複だけを理由に取込を不合格にしない。 | review_merge | prose | warn | — | — | src/runtime/review-feedback-session-intake.ts:53-58; src/runtime/review-feedback-session-intake.ts:78-82 | G44／claude-opus |
+| `RG44-006` | review feedback分類器は、解決済みeventをresolved、孤立eventをtriage、requested_changesをneeds_you、それ以外をretry_taskへ分類する。 | review_merge | prose | n/a | — | `RUL-OSA-03` | src/runtime/review-feedback-session-intake.ts:60-66 | G44／claude-opus |
 
-## 副として対応づいた規則（93件）
+## 副として対応づいた規則（97件）
 
-`RB0-022`、`RB0-150`、`RB0-166`、`RB04-010`、`RB04-079`、`RB04-081`、`RB04-101`、`RB04-102`、`RB04-216`、`RB04-225`、`RB04-260`、`RB04-290`、`RB04-294`、`RB04-295`、`RB05-085`、`RB05-146`、`RB05-171`、`RB05-172`、`RB05-238`、`RB05-251`、`RB05-359`、`RB06-104`、`RB06-302`、`RB07-010`、`RB07-020`、`RB07-077`、`RB07-080`、`RB07-126`、`RB07-165`、`RB07-332`、`RB08-184`、`RB08-248`、`RB08-270`、`RC00-042`、`RC00-125`、`RC01-075`、`RC01-076`、`RC03-073`、`RC03-074`、`RC03-075`、`RC03-082`、`RC03-083`、`RC03-084`、`RC03-085`、`RC03-086`、`RC03-087`、`RC03-088`、`RC03-090`、`RC03-091`、`RC03-092`、`RC03-093`、`RC04-246`、`RD01-137`、`RD01-138`、`RD02-158`、`RD03-111`、`RD03-112`、`RD03-113`、`RD03-114`、`RD03-115`、`RD03-116`、`RD03-117`、`RD03-118`、`RD03-119`、`RD03-128`、`RD03-131`、`RD03-133`、`RD03-137`、`RD03-139`、`RD03-141`、`RD03-147`、`RD03-148`、`RD03-151`、`RD03-153`、`RD03-170`、`RD03-176`、`RD03-181`、`RD03-184`、`RD03-206`、`RD05-231`、`RD06-070`、`RD06-162`、`RD06-163`、`RD06-173`、`RD06-174`、`RD07-184`、`RD07-185`、`RD07-189`、`RE01-078`、`RE01-088`、`RE01-141`、`RG10-009`、`RG14-003`
+`RB0-022`、`RB0-150`、`RB0-166`、`RB04-010`、`RB04-079`、`RB04-081`、`RB04-101`、`RB04-102`、`RB04-216`、`RB04-225`、`RB04-260`、`RB04-290`、`RB04-294`、`RB04-295`、`RB05-085`、`RB05-146`、`RB05-171`、`RB05-172`、`RB05-238`、`RB05-251`、`RB05-359`、`RB06-104`、`RB06-302`、`RB07-010`、`RB07-020`、`RB07-077`、`RB07-080`、`RB07-126`、`RB07-165`、`RB07-332`、`RB08-184`、`RB08-248`、`RB08-270`、`RC00-042`、`RC00-125`、`RC01-075`、`RC01-076`、`RC03-073`、`RC03-074`、`RC03-075`、`RC03-082`、`RC03-083`、`RC03-084`、`RC03-085`、`RC03-086`、`RC03-087`、`RC03-088`、`RC03-090`、`RC03-091`、`RC03-092`、`RC03-093`、`RC04-246`、`RD01-137`、`RD01-138`、`RD02-158`、`RD03-111`、`RD03-112`、`RD03-113`、`RD03-114`、`RD03-115`、`RD03-116`、`RD03-117`、`RD03-118`、`RD03-119`、`RD03-128`、`RD03-131`、`RD03-133`、`RD03-137`、`RD03-139`、`RD03-141`、`RD03-147`、`RD03-148`、`RD03-151`、`RD03-153`、`RD03-170`、`RD03-176`、`RD03-181`、`RD03-184`、`RD03-206`、`RD05-231`、`RD06-070`、`RD06-162`、`RD06-163`、`RD06-173`、`RD06-174`、`RD07-184`、`RD07-185`、`RD07-189`、`RE01-078`、`RE01-088`、`RE01-141`、`RG02-005`、`RG10-009`、`RG14-003`、`RG37-019`、`RG37-023`、`RG45-021`

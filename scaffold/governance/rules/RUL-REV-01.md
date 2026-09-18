@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-REV-01
 group: フルリバース
 product: HARNESS
-atoms_primary: 91
-atoms_secondary: 54
+atoms_primary: 94
+atoms_secondary: 56
 issue_projection: #1852
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1852
 
 既存の成果物を観測し、契約と設計へ写し、仮説を人間が確認してから通常の工程へ合流させる。上流の文面をそのまま採用せず、未接続の実装は部分的と分類する。
 
-## 主として対応づいた規則（91件）
+## 主として対応づいた規則（94件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -112,12 +112,15 @@ issue_projection: #1852
 | `RE01-059` | ReverseのR4担当者は、生成したと主張する設計・governance・テスト成果物を実際に生成し、影響対象ごとの更新証拠または対象外・延期理由を残す。 | evidence_claim | gate | fail_close | R4 full-backの三層影響範囲と成果物生成 | `RUL-FRM-04` | docs/governance/helix-harness-requirements_v1.2.md:944-967 | E01／claude-opus |
 | `RE01-178` | Scrum Reverse担当者はSR0–SR4のreceiptを揃えてからrelease-readyとし、SR4前の暫定成果をcanonicalとして公開しない。 | process_gate | gate | fail_close | SR0–SR4 admission | `RUL-FRM-02` | docs/governance/helix-harness-requirements_v1.3.md:94-106 | E01／claude-opus |
 | `RE01-254` | 変更担当者はReverseのR0–R4を完了してからForwardへ戻り、固定済み設計を変える場合は先にRedesignを行う。loopの成果もForwardへ収束させる。 | process_gate | gate | fail_close | Reverse/Redesign/loopの正規合流 | `RUL-FRM-03` | docs/governance/helix-harness-requirements_v1.3.md:507-512 | E01／claude-opus |
+| `RG00-009` | pmo-project-explorerはrepositoryを調査するとき、src/、tests/、docs/、scripts/、設定、API、DB、CLIの接点を優先する。 | behavior_discipline | prose | n/a | 調査対象のディレクトリ名は旧repositoryの構成に対応する。 | — | .claude/agents/pmo-project-explorer.md:24-25 | G00／claude-opus |
 | `RG10-005` | POはapproval_policyがpo_intentの場合、Reverse R3で復元した意図を確認する。 | escalation_authority | prose | n/a | approval_policy=po_intent、Reverse R3 | `RUL-OSM-01` | docs/governance/drive-route-catalog.md:70-70 | G10／claude-opus |
 | `RG18-024` | Reverse担当者はR3のIntent HypothesesについてPOの確認を受ける。 | escalation_authority | prose | n/a | Reverse R3 Intent Hypotheses | `RUL-OSM-01` | docs/skills/reverse-analysis.md:43-47 | G18／claude-opus |
 | `RG18-025` | R1担当者は観測contractの出力を.helix/reverse/<plan_id>/R1-observed-contracts.yamlへ書く。 | evidence_claim | prose | n/a | .helix/reverse/<plan_id>/R1-observed-contracts.yaml | `RUL-FRM-04` | docs/skills/reverse-r1.md:49-51 | G18／claude-opus |
 | `RG19-001` | R2担当者は、再構成した設計と該当するテスト設計を `.helix/reverse/<plan_id>/` に保存する。 | tooling_runtime | prose | n/a | .helix/reverse/<plan_id>/、R2-as-is-design.md、R2-as-is-test-design.md | `RUL-FRM-06` | docs/skills/reverse-r2.md:51-64 | G19／claude-opus |
 | `RG19-002` | R3担当者は、R2成果物、該当typeのR1観測契約、R0のdrift signal、対象scopeの既存Forward成果物を入力とし、既存Forward成果物とas-isを比較して乖離を特定する。 | process_gate | prose | n/a | R0〜R2成果物名、code・upgrade・fullbackのtype区分 | `RUL-FRM-03` | docs/skills/reverse-r3.md:28-34 | G19／claude-opus |
+| `RG23-003` | backfill lintは、reverse PLANの対象参照を、2026-07-19以降に作成されたreverseではreferencesから、それ以前ではrequiresから読み取る。 | process_gate | lint | n/a | REVERSE_TARGET_REFERENCE_ENFORCEMENT_DATE=2026-07-19 と PLAN frontmatter の requires/references | `RUL-OSA-06` | src/lint/backfill-pairing.ts:24-24; src/lint/backfill-pairing.ts:218-227 | G23／claude-opus |
+| `RG33-014` | S4 lintは、confirmed判断でreverse_fullback_requiredがnoの場合、rationaleにredesign・reuse-as-is・reuse-with-hardeningのいずれかによる明示的なpromotion strategyを要求する。 | escalation_authority | lint | fail_close | s4_decision_record | `RUL-OSM-01` | src/lint/s4-decision-readiness.ts:453-462 | G33／claude-opus |
 
-## 副として対応づいた規則（54件）
+## 副として対応づいた規則（56件）
 
-`RA-195`、`RA-204`、`RB04-060`、`RB04-107`、`RB05-112`、`RB05-131`、`RB05-200`、`RB05-267`、`RB05-281`、`RB05-291`、`RB05-293`、`RB05-304`、`RB05-348`、`RB05-349`、`RB05-354`、`RB05-367`、`RB06-147`、`RB06-236`、`RB06-289`、`RB06-292`、`RB06-309`、`RB07-110`、`RB07-185`、`RB07-270`、`RB07-272`、`RB07-274`、`RB08-075`、`RB08-154`、`RB08-155`、`RB08-178`、`RB08-195`、`RB08-288`、`RB08-289`、`RB08-296`、`RB09-019`、`RB09-080`、`RC02-029`、`RD01-004`、`RD04-229`、`RD04-230`、`RD06-172`、`RD09-147`、`RD10-090`、`RD10-118`、`RD11-177`、`RD11-178`、`RD11-179`、`RE01-032`、`RE01-060`、`RE01-177`、`RE01-203`、`RG05-004`、`RG10-009`、`RG18-023`
+`RA-195`、`RA-204`、`RB04-060`、`RB04-107`、`RB05-112`、`RB05-131`、`RB05-200`、`RB05-267`、`RB05-281`、`RB05-291`、`RB05-293`、`RB05-304`、`RB05-348`、`RB05-349`、`RB05-354`、`RB05-367`、`RB06-147`、`RB06-236`、`RB06-289`、`RB06-292`、`RB06-309`、`RB07-110`、`RB07-185`、`RB07-270`、`RB07-272`、`RB07-274`、`RB08-075`、`RB08-154`、`RB08-155`、`RB08-178`、`RB08-195`、`RB08-288`、`RB08-289`、`RB08-296`、`RB09-019`、`RB09-080`、`RC02-029`、`RD01-004`、`RD04-229`、`RD04-230`、`RD06-172`、`RD09-147`、`RD10-090`、`RD10-118`、`RD11-177`、`RD11-178`、`RD11-179`、`RE01-032`、`RE01-060`、`RE01-177`、`RE01-203`、`RG05-004`、`RG10-009`、`RG11-005`、`RG11-006`、`RG18-023`

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-TKT-03
 group: チケット
 product: OS
 atoms_primary: 77
-atoms_secondary: 114
+atoms_secondary: 116
 issue_projection: none
 ---
 
@@ -104,6 +104,6 @@ issue_projection: none
 | `RG13-002` | Issue #514の終端担当者は、provenance強化を担う後続Issue #519をopenで維持する。 | process_gate | prose | n/a | Issue #514／#519、helix-issue-closure-graph.v1 | — | docs/governance/issue-514-cross-review-admission-symmetry-closure.md:47-56 | G13／claude-opus |
 | `RG16-020` | 担当者は、コード実装前の検討で要件を落とす場合、その理由をPLANへ記録する。 | evidence_claim | prose | n/a | PLAN | `RUL-OSM-01` | docs/skills/code-minimalism.md:41-42 | G16／claude-opus |
 
-## 副として対応づいた規則（114件）
+## 副として対応づいた規則（116件）
 
-`RA-163`、`RB0-094`、`RB0-179`、`RB04-048`、`RB04-070`、`RB04-077`、`RB04-078`、`RB04-101`、`RB04-102`、`RB04-205`、`RB05-040`、`RB05-081`、`RB05-146`、`RB05-205`、`RB05-229`、`RB05-361`、`RB06-026`、`RB06-043`、`RB06-110`、`RB06-173`、`RB06-204`、`RB06-257`、`RB06-261`、`RB06-264`、`RB06-265`、`RB06-309`、`RB06-314`、`RB07-005`、`RB07-006`、`RB07-013`、`RB07-032`、`RB07-083`、`RB07-091`、`RB07-135`、`RB07-137`、`RB07-140`、`RB07-145`、`RB07-171`、`RB07-188`、`RB07-253`、`RB07-258`、`RB07-269`、`RB07-280`、`RB07-282`、`RB07-345`、`RB08-003`、`RB08-014`、`RB08-035`、`RB08-115`、`RB08-116`、`RB08-156`、`RB08-185`、`RB08-192`、`RB08-229`、`RB08-271`、`RB08-272`、`RB08-275`、`RB08-295`、`RB08-309`、`RB08-310`、`RB09-012`、`RB09-013`、`RB09-039`、`RB09-046`、`RB09-056`、`RC00-112`、`RC01-059`、`RC01-061`、`RC01-074`、`RC02-157`、`RC03-024`、`RD00-079`、`RD00-081`、`RD00-082`、`RD00-084`、`RD00-086`、`RD00-087`、`RD00-089`、`RD00-092`、`RD00-120`、`RD00-121`、`RD00-122`、`RD00-123`、`RD00-124`、`RD00-127`、`RD02-117`、`RD02-278`、`RD04-232`、`RD05-251`、`RD05-252`、`RD06-079`、`RD06-170`、`RD07-018`、`RD07-044`、`RD07-091`、`RD08-036`、`RD08-039`、`RD08-040`、`RD08-042`、`RD08-045`、`RD08-053`、`RD08-060`、`RD08-061`、`RD08-063`、`RD08-066`、`RD09-002`、`RD09-010`、`RD10-063`、`RD10-098`、`RD11-020`、`RD11-086`、`RD11-098`、`RD11-131`、`RE01-041`
+`RA-163`、`RB0-094`、`RB0-179`、`RB04-048`、`RB04-070`、`RB04-077`、`RB04-078`、`RB04-101`、`RB04-102`、`RB04-205`、`RB05-040`、`RB05-081`、`RB05-146`、`RB05-205`、`RB05-229`、`RB05-361`、`RB06-026`、`RB06-043`、`RB06-110`、`RB06-173`、`RB06-204`、`RB06-257`、`RB06-261`、`RB06-264`、`RB06-265`、`RB06-309`、`RB06-314`、`RB07-005`、`RB07-006`、`RB07-013`、`RB07-032`、`RB07-083`、`RB07-091`、`RB07-135`、`RB07-137`、`RB07-140`、`RB07-145`、`RB07-171`、`RB07-188`、`RB07-253`、`RB07-258`、`RB07-269`、`RB07-280`、`RB07-282`、`RB07-345`、`RB08-003`、`RB08-014`、`RB08-035`、`RB08-115`、`RB08-116`、`RB08-156`、`RB08-185`、`RB08-192`、`RB08-229`、`RB08-271`、`RB08-272`、`RB08-275`、`RB08-295`、`RB08-309`、`RB08-310`、`RB09-012`、`RB09-013`、`RB09-039`、`RB09-046`、`RB09-056`、`RC00-112`、`RC01-059`、`RC01-061`、`RC01-074`、`RC02-157`、`RC03-024`、`RD00-079`、`RD00-081`、`RD00-082`、`RD00-084`、`RD00-086`、`RD00-087`、`RD00-089`、`RD00-092`、`RD00-120`、`RD00-121`、`RD00-122`、`RD00-123`、`RD00-124`、`RD00-127`、`RD02-117`、`RD02-278`、`RD04-232`、`RD05-251`、`RD05-252`、`RD06-079`、`RD06-170`、`RD07-018`、`RD07-044`、`RD07-091`、`RD08-036`、`RD08-039`、`RD08-040`、`RD08-042`、`RD08-045`、`RD08-053`、`RD08-060`、`RD08-061`、`RD08-063`、`RD08-066`、`RD09-002`、`RD09-010`、`RD10-063`、`RD10-098`、`RD11-020`、`RD11-086`、`RD11-098`、`RD11-131`、`RE01-041`、`RG40-018`、`RG40-035`

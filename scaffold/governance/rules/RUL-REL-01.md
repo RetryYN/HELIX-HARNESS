@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-REL-01
 group: サービス⑥リリース
 product: HARNESS
 atoms_primary: 70
-atoms_secondary: 42
+atoms_secondary: 44
 issue_projection: #1856
 ---
 
@@ -97,6 +97,6 @@ issue_projection: #1856
 | `RE01-218` | 配布同期担当者はdry-run差分・backup/restore・canary・monitoringを揃え、rollbackでは直前のimmutable engine pinとmanaged領域だけを戻す。consumer成果物を戻してはならない。 | safety_security | gate | fail_close | distribution rollbackとengine pin | `RUL-OPS-01` | docs/governance/helix-harness-requirements_v1.3.md:326-328 | E01／claude-opus |
 | `RE01-264` | cloud設計者はprovider中立の契約を保ち、Fargateは参照実装として扱う。本番resourceの操作には承認を得る。 | escalation_authority | prose／gate | fail_close | Fargate referenceとRDS fixture境界 | `RUL-OSM-01` | docs/governance/helix-harness-requirements_v1.3.md:519-523 | E01／claude-opus |
 
-## 副として対応づいた規則（42件）
+## 副として対応づいた規則（44件）
 
-`RA-107`、`RA-110`、`RA-240`、`RA-241`、`RA-327`、`RA-342`、`RB04-118`、`RB04-160`、`RB04-169`、`RB04-172`、`RB04-227`、`RB04-229`、`RB04-234`、`RB05-071`、`RB05-080`、`RB05-360`、`RB05-365`、`RB06-009`、`RB06-068`、`RB06-084`、`RB06-246`、`RB06-252`、`RB07-343`、`RB08-125`、`RB08-159`、`RB08-190`、`RB08-226`、`RB08-311`、`RB09-054`、`RC01-127`、`RC03-017`、`RC03-044`、`RD05-152`、`RD05-172`、`RD05-173`、`RD09-100`、`RD11-094`、`RE01-077`、`RE01-174`、`RE01-212`、`RE01-214`、`RE01-219`
+`RA-107`、`RA-110`、`RA-240`、`RA-241`、`RA-327`、`RA-342`、`RB04-118`、`RB04-160`、`RB04-169`、`RB04-172`、`RB04-227`、`RB04-229`、`RB04-234`、`RB05-071`、`RB05-080`、`RB05-360`、`RB05-365`、`RB06-009`、`RB06-068`、`RB06-084`、`RB06-246`、`RB06-252`、`RB07-343`、`RB08-125`、`RB08-159`、`RB08-190`、`RB08-226`、`RB08-311`、`RB09-054`、`RC01-127`、`RC03-017`、`RC03-044`、`RD05-152`、`RD05-172`、`RD05-173`、`RD09-100`、`RD11-094`、`RE01-077`、`RE01-174`、`RE01-212`、`RE01-214`、`RE01-219`、`RG36-011`、`RG36-013`

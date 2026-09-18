@@ -6,21 +6,21 @@
  "product": "HELIX-OS",
  "owner_candidate": "HELIX-OS 管理（規則と検査の対応を保つ。RUL-OSA-06／RUL-OSI-02の運転側）",
  "state": "active",
- "reason": "要求候補57本（旧ルール群7,113 atom）は未採否で、対象別L2本文・AGENTS／hook・検査定義への正式な接続はL2採否とL3以降を待つ。その間、規則の意味を1件も落とさずgovernance領域に保持し、AI作業者が要求単位で参照できる仮のルール集が必要である。",
+ "reason": "要求候補57本（旧ルール群7,622 atom）は未採否で、対象別L2本文・AGENTS／hook・検査定義への正式な接続はL2採否とL3以降を待つ。その間、規則の意味を1件も落とさずgovernance領域に保持し、AI作業者が要求単位で参照できる仮のルール集が必要である。",
  "upstream": [
   {
    "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
-   "sha256": "883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3",
+   "sha256": "386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa",
    "note": "要求候補57本（RUL-*）"
   },
   {
    "path": "docs/governance/legacy-rule-atom-inventory.jsonl",
-   "sha256": "e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125",
-   "note": "規則atom 7,113件の台帳"
+   "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+   "note": "規則atom 7,622件の台帳"
   },
   {
    "path": "docs/governance/legacy-rule-atom-source-files.jsonl",
-   "sha256": "7aaa62f4a301d481c3ce141317bc7058fbe55a398c7bf7edad25c005286afbad",
+   "sha256": "3514c9b36fa7893ee90de7917ad19a1e5549556b5229ddf7deec3776492f7939",
    "note": "出どころfile 632件"
   }
  ],

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-TKT-01
 group: チケット
 product: OS
-atoms_primary: 54
-atoms_secondary: 36
+atoms_primary: 55
+atoms_secondary: 45
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 作業単位（旧PLAN）のidentityを一意にし、重複を作らず既存の延長を優先する。置き換えは後継と訂正を双方向に記録し、黙って上書きしない。
 
-## 主として対応づいた規則（54件）
+## 主として対応づいた規則（55件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -80,7 +80,8 @@ issue_projection: none
 | `RD09-085` | plan-supersessionは、supersedes先PLANのsuperseded_byに宣言元のexact plan_idがない場合、失敗させる。 | evidence_claim | lint／doctor | fail_close | typed frontmatterの双方向edge | — | src/lint/plan-supersession.ts:110-121 | D09／gpt-6-astra |
 | `RE01-017` | lintはPLAN IDの形式、ファイル名とfrontmatterの一致、IDの一意性を検査し、不一致や重複を拒否する。 | process_gate | lint | fail_close | PLAN ID正規表現と連番規約 | `RUL-COR-07` | docs/governance/helix-harness-requirements_v1.2.md:372-389; docs/governance/helix-harness-requirements_v1.2.md:469-469 | E01／claude-opus |
 | `RE01-267` | 実装担当者は一つのatomic変更を一つの振る舞いと一人のownerへ対応づけ、同じHEADでoracle・DDD・CIを確認する。 | behavior_discipline | prose／gate | fail_close | atomic taskとsame-HEAD検証 | `RUL-FRM-06`、`RUL-COR-02` | docs/governance/helix-harness-requirements_v1.3.md:534-539 | E01／claude-opus |
+| `RG41-019` | PLAN authoring処理は、allocation IDとReverse PLAN番号をcaller入力ではなく予約authorityの内容から決定的に導出し、既存pairがあればその番号を再利用し、無ければ既存最大値に1を足す。 | process_gate | gate | fail_close | PLAN-REVERSE-<n>-<slug> というID書式 | — | src/runtime/forward-plan-authoring-transaction.ts:452-495 | G41／claude-opus |
 
-## 副として対応づいた規則（36件）
+## 副として対応づいた規則（45件）
 
-`RB0-089`、`RB0-093`、`RB0-108`、`RB04-076`、`RB04-085`、`RB05-066`、`RB06-299`、`RB07-212`、`RB07-216`、`RB07-303`、`RB08-239`、`RB08-310`、`RB08-327`、`RB09-086`、`RC0-131`、`RC03-001`、`RC03-015`、`RC03-047`、`RC03-053`、`RD00-111`、`RD00-112`、`RD01-163`、`RD01-178`、`RD01-179`、`RD01-180`、`RD02-105`、`RD02-111`、`RD02-117`、`RD02-216`、`RD02-221`、`RD08-210`、`RE01-067`、`RE01-073`、`RE01-260`、`RG14-020`、`RG18-015`
+`RB0-089`、`RB0-093`、`RB0-108`、`RB04-076`、`RB04-085`、`RB05-066`、`RB06-299`、`RB07-212`、`RB07-216`、`RB07-303`、`RB08-239`、`RB08-310`、`RB08-327`、`RB09-086`、`RC0-131`、`RC03-001`、`RC03-015`、`RC03-047`、`RC03-053`、`RD00-111`、`RD00-112`、`RD01-163`、`RD01-178`、`RD01-179`、`RD01-180`、`RD02-105`、`RD02-111`、`RD02-117`、`RD02-216`、`RD02-221`、`RD08-210`、`RE01-067`、`RE01-073`、`RE01-260`、`RG14-020`、`RG18-015`、`RG27-003`、`RG30-001`、`RG31-007`、`RG31-011`、`RG32-004`、`RG36-003`、`RG39-003`、`RG41-017`、`RG44-023`

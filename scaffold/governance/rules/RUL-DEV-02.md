@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-DEV-02
 group: サービス④開発
 product: HARNESS
-atoms_primary: 94
-atoms_secondary: 55
+atoms_primary: 99
+atoms_secondary: 56
 issue_projection: #1854
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1854
 
 役割別（API、業務logic、DB、画面、deploy）の製品実装の標準と、各役割が返す成果の形式を定める。
 
-## 主として対応づいた規則（94件）
+## 主として対応づいた規則（99件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -119,8 +119,13 @@ issue_projection: #1854
 | `RD09-123` | proposal-document-coverageは、error-observability-auditを期待するシナリオでerror-observability-audit-reviewがrequired_gatesにない場合、失敗させる。 | process_gate | lint | fail_close | error-observability-audit-review | `RUL-FRM-02` | src/lint/proposal-document-coverage-policy.ts:71-71; src/lint/proposal-document-coverage.ts:169-178 | D09／gpt-6-astra |
 | `RD09-130` | proposal-document-coverageは、軽微な画面変更だからwireframeを省略するという入力に対し、分類器がllm-shrinkage-ignoredを返さないかwireframeを必須設計文書から落とす場合、失敗させる。 | behavior_discipline | lint | fail_close | 固定英語入力、llm-shrinkage-ignored、wireframe | `RUL-OSA-06` | src/lint/proposal-document-coverage.ts:182-194 | D09／gpt-6-astra |
 | `RD10-064` | lintはL7工程表にdatabase、service、frontend、uiの必須feature pack層が欠ける場合に失敗させる。 | process_gate | lint | fail_close | L7と固定4責務層、packのspan数は合否条件外 | `RUL-TKT-02` | src/lint/roadmap-registry.ts:113-118; src/lint/roadmap-registry.ts:220-244 | D10／gpt-6-astra |
+| `RG00-001` | be-apiはAPIを設計するとき、project-localの該当設計文書とPLANを優先する。 | behavior_discipline | prose | n/a | — | `RUL-COR-01` | .claude/agents/be-api.md:22-22 | G00／claude-opus |
+| `RG00-002` | be-logicは実装判断を行うとき、project-localの該当設計文書、PLAN、testsを優先する。 | behavior_discipline | prose | n/a | — | `RUL-COR-01` | .claude/agents/be-logic.md:22-22 | G00／claude-opus |
+| `RG00-004` | db-schemaはDBを設計するとき、project-localのADR、設計文書、PLANを優先する。 | behavior_discipline | prose | n/a | — | `RUL-COR-01` | .claude/agents/db-schema.md:22-22 | G00／claude-opus |
+| `RG00-005` | devops-deployはデプロイ、インフラ、可観測性を扱うとき、project-localのrunbook、ADR、PLANを優先する。 | behavior_discipline | prose | n/a | — | `RUL-COR-01` | .claude/agents/devops-deploy.md:23-23 | G00／claude-opus |
+| `RG01-004` | PMO Tech Docsは、実装決定を提示する際、当該チームの可観測性・コスト・運用工数に関する既存制約を前提にする。 | behavior_discipline | prose | n/a | — | `RUL-FRM-08` | .claude/agents/pmo-tech-docs.md:87-87 | G01／claude-opus |
 | `RG08-002` | consoleは、状態色をok＝緑、warn＝黄、error＝赤、empty＝灰に対応させる。 | behavior_discipline | config | n/a | TOK-state-colorの状態別配色 | `RUL-FRM-08` | config/ui-domain/harness-console-bundle.json:109-109 | G08／claude-opus |
 
-## 副として対応づいた規則（55件）
+## 副として対応づいた規則（56件）
 
-`RA-049`、`RA-050`、`RA-140`、`RA-241`、`RA-336`、`RA-337`、`RA-341`、`RB04-246`、`RB05-012`、`RB05-014`、`RB05-022`、`RB05-079`、`RB05-217`、`RB05-253`、`RB06-106`、`RB06-138`、`RB06-145`、`RB06-149`、`RB06-193`、`RB06-194`、`RB06-195`、`RB06-211`、`RB06-224`、`RB06-273`、`RB07-031`、`RB07-035`、`RB07-036`、`RB07-047`、`RB07-060`、`RB07-336`、`RB07-341`、`RB07-344`、`RB08-100`、`RB08-127`、`RB08-134`、`RB08-160`、`RB08-162`、`RB08-163`、`RB08-186`、`RB08-197`、`RB08-198`、`RB08-201`、`RB08-202`、`RB08-234`、`RB08-235`、`RD09-099`、`RD09-121`、`RE01-013`、`RE01-027`、`RE01-133`、`RE01-276`、`RG03-010`、`RG08-001`、`RG08-003`、`RG18-002`
+`RA-049`、`RA-050`、`RA-140`、`RA-241`、`RA-336`、`RA-337`、`RA-341`、`RB04-246`、`RB05-012`、`RB05-014`、`RB05-022`、`RB05-079`、`RB05-217`、`RB05-253`、`RB06-106`、`RB06-138`、`RB06-145`、`RB06-149`、`RB06-193`、`RB06-194`、`RB06-195`、`RB06-211`、`RB06-224`、`RB06-273`、`RB07-031`、`RB07-035`、`RB07-036`、`RB07-047`、`RB07-060`、`RB07-336`、`RB07-341`、`RB07-344`、`RB08-100`、`RB08-127`、`RB08-134`、`RB08-160`、`RB08-162`、`RB08-163`、`RB08-186`、`RB08-197`、`RB08-198`、`RB08-201`、`RB08-202`、`RB08-234`、`RB08-235`、`RD09-099`、`RD09-121`、`RE01-013`、`RE01-027`、`RE01-133`、`RE01-276`、`RG03-010`、`RG08-001`、`RG08-003`、`RG18-002`、`RG33-003`

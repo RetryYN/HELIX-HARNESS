@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-OSP-06
 group: OS推進
 product: OS
-atoms_primary: 69
-atoms_secondary: 34
+atoms_primary: 72
+atoms_secondary: 36
 issue_projection: #1859
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1859
 
 複数agentの実行計画を検証する。並列の上限、直列化の依存、実行modeを確かめ、不整合な計画を実行しない。
 
-## 主として対応づいた規則（69件）
+## 主として対応づいた規則（72件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -95,7 +95,10 @@ issue_projection: #1859
 | `RG16-014` | team設計者は、順序依存のない独立成果物を生成する場合はparallelを使い、後続stepが先行stepの検証済み出力を必要とする場合はserialを使う。 | lane_delegation | prose | n/a | team definitionのparallel／serial mode | `RUL-TKT-02` | docs/skills/agent-teams.md:74-78; docs/skills/agent-teams.md:95-96 | G16／claude-opus |
 | `RG16-015` | team設計者は、parallelとserialの両modeが必要な場合、単一team definitionに混在させず二つのteam runへ分割する。 | tooling_runtime | prose | n/a | 単一team definitionでmodeを混在できない旧team runner | — | docs/skills/agent-teams.md:77-79 | G16／claude-opus |
 | `RG16-016` | team実行担当者は、初回のlive実行前にteam definitionを指定した実行をdry-run相当でtestする。 | process_gate | prose | n/a | helix team run --definition <path>、--dry-run相当 | `RUL-FRM-05` | docs/skills/agent-teams.md:88-88 | G16／claude-opus |
+| `RG40-003` | Cursor run分類は、観測時刻（updatedAt優先、無ければcreatedAt）が解析不能ならunknown、terminal statusならterminal、既知active status以外ならunknown、非staleならactive、staleかつ作成中で取消可能ならcancellable_stale、staleかつ作成中で取消不可ならphantom、それ以外のstaleはstaleとする。 | lane_delegation | prose | fail_close | CREATING/RUNNING/FINISHED等のCursor固有status名 | `RUL-OSP-07` | src/runtime/cursor-cloud-run-authority.ts:39-40; src/runtime/cursor-cloud-run-authority.ts:66-88 | G40／claude-opus |
+| `RG45-012` | dispatch受理判定は、queue健全性の検査をcapacity判定より先に行い、queue_limitの欠落をcapacity超過として誤報告しない。 | process_gate | prose | fail_close | SCHEDULER_QUEUE_UNBOUNDED / SCHEDULER_CAPACITY_EXCEEDED | `RUL-COR-04` | src/runtime/slot-scheduler-quota-handover.ts:389-404 | G45／claude-opus |
+| `RG46-007` | Windows canary queue評価は、activeがmax_active未満なら候補をadmitted、activeが満杯でwaitingに余地があればqueuedとし、双方満杯ならbackpressureで拒否する。 | lane_delegation | prose | fail_close | windows-lite-canary lane | `RUL-OSP-07` | src/runtime/windows-lite-canary-admission.ts:316-338 | G46／claude-opus |
 
-## 副として対応づいた規則（34件）
+## 副として対応づいた規則（36件）
 
-`RA-091`、`RA-125`、`RA-135`、`RA-202`、`RB04-012`、`RB04-015`、`RB04-024`、`RB04-149`、`RB04-241`、`RB06-102`、`RB07-170`、`RB08-258`、`RB08-321`、`RC0-112`、`RC0-116`、`RC03-098`、`RC03-102`、`RC03-103`、`RC03-104`、`RC03-120`、`RC04-034`、`RC04-104`、`RD03-041`、`RD03-042`、`RD03-053`、`RD03-056`、`RD03-062`、`RD03-074`、`RD03-075`、`RD03-232`、`RD03-237`、`RD03-240`、`RD09-134`、`RE01-030`
+`RA-091`、`RA-125`、`RA-135`、`RA-202`、`RB04-012`、`RB04-015`、`RB04-024`、`RB04-149`、`RB04-241`、`RB06-102`、`RB07-170`、`RB08-258`、`RB08-321`、`RC0-112`、`RC0-116`、`RC03-098`、`RC03-102`、`RC03-103`、`RC03-104`、`RC03-120`、`RC04-034`、`RC04-104`、`RD03-041`、`RD03-042`、`RD03-053`、`RD03-056`、`RD03-062`、`RD03-074`、`RD03-075`、`RD03-232`、`RD03-237`、`RD03-240`、`RD09-134`、`RE01-030`、`RG45-011`、`RG45-013`
