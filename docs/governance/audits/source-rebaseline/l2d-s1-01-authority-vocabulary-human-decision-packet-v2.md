@@ -120,14 +120,14 @@ screenの語に1件も一致しない**。うち`RUL-OSM-05`（破壊的な操�
 
 screenは範囲の確定ではなく候補の抽出であり、要求単位の処分は要求本文の意味で判定した。screenの結果と処分は
 [`l2d-s1-01-authority-rule-atom-accounting.jsonl`](l2d-s1-01-authority-rule-atom-accounting.jsonl)
-（SHA-256 `35b6a59cef918e66a50337eb65589f93a67144c1c669303c838e51f0d11ff701`）に、対象atom IDまで含めて57行で記録した。
+（SHA-256 `e1cb348131ef7025fe8dfeb2a062e6f0427cc384dd0d1a8d6e112528aea9cb42`）に、対象atom IDまで含めて57行で記録した。
 
 ### 処分の内訳
 
 | 処分 | 要求 | screen atom |
 |---|---:|---:|
-| `in_scope_adds`（AVSに対して、S1-01へ取る意味の全部が新規） | 5 | 181 |
-| `in_scope_partial`（AVSがその意味の一部を被覆済みで、残りが新規） | 7 | 192 |
+| `in_scope_adds`（AVSに対して、S1-01へ取る意味の全部が新規） | 7 | 192 |
+| `in_scope_partial`（AVSがその意味の一部を被覆済みで、残りが新規） | 5 | 181 |
 | `in_scope_covered_by_avs`（S1-01へ取る意味が全部AVSで計上済み） | 1 | 42 |
 | `route_to_other_unit`（別decision unitで扱う） | 6 | 92 |
 | `out_of_scope_requirement_holds_linked_atoms`（範囲外だが、台帳がin_scopeへlinkするatomを抱える） | 35 | 416 |
@@ -169,14 +169,16 @@ linkを抱える要求は35件、抱えない要求は3件である（`route_to_
 | `RUL-COR-07`（HARNESS／OS） | 6／19 | 指示の原文を**来歴付きで追記のみ**保全すること。設計判断の後継と廃止を管理すること | 成果物と判断への恒久識別子の付与と、改名・移動・分割・統合をしても義務と意味と履歴を保存すること。識別子とtraceability系unitで扱う | adds |
 | `RUL-OSM-05`（OS） | 0／102 | 破壊的な操作を既定で拒否し、例外を**理由付き・一回限り**とし監査に残すこと。`RUL-OSM-01`の介入点「取り消せない操作」の実体 | — | adds |
 | `RUL-OSM-03`（OS） | 45／76 | providerの記憶を混入させないこと。memoryの**期限と保持**を管理すること | memoryと引き継ぎを正本にしない点はAVS-BR-005／AVS-AC-010／011／015で計上済みであり、本要求からは取らない | partial |
-| `RUL-OSA-07`（OS） | 0／40 | 未分類のlicenseと未解消の重大な指摘を**承認要求へ回す**接続 | 脅威modelの確認、脆弱性の審査、依存と供給網の検査の本体。安全・検収系unitで扱う | partial |
-| `RUL-COR-08`（HARNESS／OS） | 11／45 | **正規の検証経路を、別の手軽な手段で代替しない**こと。AVS-AC-003は「指示だけを理由に検証を省略しない」までで、手軽な手段による代替はAVSに無い | 要約・表示・引き継ぎの意味保存の本体。当該要求の本来のunitで扱う | partial |
+| `RUL-OSA-07`（OS） | 0／40 | 未分類のlicenseと未解消の重大な指摘を**承認要求へ回す**接続。AVSに同じ意味は無い | 脅威modelの確認、脆弱性の審査、依存と供給網の検査の本体。安全・検収系unitで扱う | adds |
+| `RUL-COR-08`（HARNESS／OS） | 11／45 | **正規の検証経路を、別の手軽な手段で代替しない**こと。AVS-AC-003は「指示だけを理由に検証を省略しない」までの隣接領域であり、手軽な手段による代替はAVSに無い | 要約・表示・引き継ぎの意味保存の本体。当該要求の本来のunitで扱う | adds |
 | `RUL-OSA-03`（OS） | 7／35 | 指摘の**処分**（current fixで閉じるか後続へ分けるか）。AVS-BR-003の`disposition` identityに具体の意味を与える。審査のstale化は`RUL-COR-02`が一般形で持つため、そちらを参照する | blockerの一括返却と再判定の一巡規則。検収系unit（`RUL-OSA-01`の送り先）で扱う | partial |
 | `RUL-COR-01`（HARNESS／OS） | 55／166 | **DB・projection・生成物**の全般を第二の正本にしないこと。「作業者は状態DBへ直接書かない」こと | memoryとIssue commentを正本にしない部分はAVS-BR-005／AVS-AC-004／010で計上済み。DB schemaとidentityの実現方式はL3で再導出する（v1が繰り延べた領域。本要求が取るのは「直接書かない」という規律であり、schemaの決定ではない） | partial |
 | `RUL-COR-02`（HARNESS／OS） | 66／438 | **成果物と判断の全般**をrevisionとdigestへ束縛し、対象が変わったらstaleにすること。AVS-AC-006が束縛するのは`approval`だけである | digestの計算方法の版固定。L3の実現方式で扱う | partial |
 | `RUL-OSM-08`（OS） | 8／84 | **GitHubの状態一般**から要求や承認を作らないこと（Project Statusからの逆書込み禁止 atom`RB0-104`を含む）。AVS-AC-004はIssue commentとmemoryだけの`decision`拒否である | Issue／PR／templateの形式とownerの単一性。GitHub projection系unitで扱う | partial |
 
 `RUL-OSM-05`、`RUL-OSA-07`、`RUL-COR-08`、`RUL-OSA-03`はscreen一致0件または少数であり、要求本文の判定で計上している。
+`RUL-OSA-07`と`RUL-COR-08`は、S1-01へ取る意味をAVSがまったく被覆していないため`adds`である。
+要求本文の一部しか取らないことは範囲外列に書く（処分の軸はAVSの被覆範囲であり、要求本文の取り込み範囲ではない）。
 `RUL-COR-08`と`RUL-OSA-03`は2026-09-19の第2独立reviewで、`RUL-COR-01`・`RUL-COR-02`・`RUL-OSM-08`は
 同reviewの指摘により`in_scope_covered_by_avs`から変更した。
 
