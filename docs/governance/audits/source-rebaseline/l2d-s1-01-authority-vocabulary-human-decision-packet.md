@@ -1,7 +1,9 @@
-# L2D-S1-01 authority語彙分離 人間判断packet
+# L2D-S1-01 authority語彙分離 人間判断packet（v1、superseded）
 
 prepared_at: 2026-09-17
-status: decision_ready_not_approved
+status: superseded_by_v2
+superseded_by: `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md`
+superseded_reason: 本packetの入力分母は旧AVS 3文書だけであり、2026-09-18に成立したsource holding `MPR-SH-LEGACY-RULE-004`（規則atom 7,622件）とRDP-002 clusterを計上していない。本packetのまま承認しない。計上した意味（AVSのL1 atom 6件、L3 atom 20件、L10 oracle 20件）はv2でも生存する。
 decision_unit: L2D-S1-01
 authority_effect: none
 proposed_disposition: split
@@ -124,9 +126,9 @@ AVS-R-01から16までの20 atomをすべて計上した。別decision unitへ�
 - 過去データのcompatibility adapterが必要か、read-only変換か、完全retireかはconsumer inventory後に決める。
 - AVS以外のS1 sourceとの重複・包含は後続unitでrelationを付け、今回のsource identityを消さない。
 
-## 人間判断
+## 人間判断（superseded、選択しない）
 
-判断対象は、上記exact source revisionにあるAVSの全6 L1 atom、全20 L3 atom、全20 L10 oracleを落とさず、
+本節はv1のものであり、現行はv2である。ここから選択しない。判断対象は、上記exact source revisionにあるAVSの全6 L1 atom、全20 L3 atom、全20 L10 oracleを落とさず、
 HARNESSの規範責務とOSの記録・執行責務へ`split`する方針である。
 
 - `approve_split`: 上記責務分割と旧拘束の扱いを採用し、L2／L11適用PRの作成へ進む。
