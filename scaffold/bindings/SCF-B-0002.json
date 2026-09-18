@@ -10,12 +10,12 @@
  "upstream": [
   {
    "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
-   "sha256": "1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80",
+   "sha256": "386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa",
    "note": "要求候補57本（RUL-*）"
   },
   {
    "path": "docs/governance/legacy-rule-atom-inventory.jsonl",
-   "sha256": "78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92",
+   "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
    "note": "規則atom 7,622件の台帳"
   },
   {
