@@ -90,11 +90,10 @@ def build(reqs, atoms):
           "要求にはしないが、落とさずここに保持する。各行の除外理由は台帳の`legacy_only_reason`の写しである。\n",
           "| atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 除外理由 | 出どころ | 由来 |\n|---|---|---|---|---|---|---|---|---|"]
     for a in sorted(byp["LEGACY-ONLY"], key=lambda a: a["rule_id"]):
-        lo.append(row(a).replace("| — | ", "| %s | " % (esc(a.get("legacy_only_reason", "")) or "—"), 1) if False else
-                  "| `%s` | %s | %s | %s | %s | %s | %s | %s | %s |" % (
-                      a["rule_id"], esc(a["rule_text"]), a["kind"], "／".join(a["enforced_by"]), a.get("fail_mode", "n/a"), esc(a.get("legacy_binding", "")) or "—",
-                      esc(a.get("legacy_only_reason", "")), esc("; ".join("%s:%s" % (s["path"].replace("archive/legacy-generation-2026-09-14/root/", ""), s["lines"]) for s in a["sources"])),
-                      "%s／%s" % (a.get("extraction_pass", ""), a.get("mapped_by", ""))))
+        lo.append("| `%s` | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+            a["rule_id"], esc(a["rule_text"]), a["kind"], "／".join(a["enforced_by"]), a.get("fail_mode", "n/a"), esc(a.get("legacy_binding", "")) or "—",
+            esc(a.get("legacy_only_reason", "")), esc("; ".join("%s:%s" % (s["path"].replace("archive/legacy-generation-2026-09-14/root/", ""), s["lines"]) for s in a["sources"])),
+            "%s／%s" % (a.get("extraction_pass", ""), a.get("mapped_by", ""))))
     files["rules/LEGACY-ONLY.md"] = "\n".join(lo) + "\n"
     ix = [head + "rule_id: index\natoms_total: %d\nrequirements: %d\n---\n" % (len(atoms), len(reqs)),
           "# 仮のルール集 索引\n",
