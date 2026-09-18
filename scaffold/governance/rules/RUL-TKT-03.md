@@ -1,0 +1,109 @@
+---
+status: scaffold
+authority_effect: none
+generated_by: scaffold/governance/tools/gen_rulebook.py
+source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
+source_candidate_sha256: 1c9891cbf76d7a28a6cf64b75e907e6ddad41c0aac5c9fa0a9196421211407a5
+source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
+source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+rule_id: RUL-TKT-03
+group: チケット
+product: OS
+atoms_primary: 77
+atoms_secondary: 114
+issue_projection: none
+---
+
+# RUL-TKT-03（チケット／OS）
+
+仮のルール。正本は[要求候補](../../../docs/governance/candidates/legacy-rule-derived-requirements.md)であり、本fileはその機械的な写しである。採否・承認・完了を生成しない。
+
+## 要求
+
+差戻し、持ち越し、後続Issueへの分離を記録し、検証の失敗を差戻しへ接続する。
+
+## 主として対応づいた規則（77件）
+
+| atom | 規則 | 種類 | 強制 | 出どころ |
+|---|---|---|---|---|
+| `RB0-093` | queue管理者はsuperseded・duplicate・parkedのIssueをREADY queueへ入れてはならない。 | process_gate | prose | docs/governance/github-issue-hierarchy-rules.md:36-36 |
+| `RB0-096` | root/capabilityを閉じる者はopen childをゼロにし、各子をclosed・duplicate・superseded・理由付きparkedのいずれかへ処分する。 | process_gate | prose | docs/governance/github-issue-hierarchy-rules.md:51-52 |
+| `RB04-053` | readinessで検出した保留findingを後工程へcarryする場合、作業者はPM承認を得る。 | escalation_authority | prose | docs/governance/helix-harness-concept_v3.1.md:506-506 |
+| `RB04-075` | 検証失敗時はV-pairを基準に、結合を詳細設計/実装、総合を基本設計、UXを画面設計、受入を要件/実装へ差し戻す。 | process_gate | prose | docs/governance/helix-harness-concept_v3.1.md:647-655 |
+| `RB04-079` | 作業者は差戻しをPLANのcarry logへ記録し、post-merge/scheduled CIの検証失敗はIssueを自動起票して差戻しへ接続する。 | memory_context | prose／ci | docs/governance/helix-harness-concept_v3.1.md:659-659 |
+| `RB05-048` | CI失敗時はGHAがPRをblockedにして同一レポートをartifactとPR commentへ提示し、開発者またはエディタAIがそれを読んで修正・再pushする。 | review_merge | ci | docs/governance/audit-framework.md:513-514 |
+| `RB06-297` | feedback refactor処置はpost-G3 queueでliteral外部化、CLI分割、非CLI module分割の各familyに新しいadditive L7 successor sliceを要求する。 | process_gate | config | docs/governance/feedback-refactor-disposition.json:3-24 |
+| `RB06-307` | 作業者はfuture backlog・approval-gated cutover・visualization amendmentをarchiveで閉じず、未完了frontierとして追跡する。 | memory_context | prose／gate | docs/governance/helix-l0-l8-design-consistency-audit.md:30-33; docs/governance/helix-l0-l8-design-consistency-audit.md:76-80; docs/governance/helix-l0-l8-design-consistency-audit.md:101-105 |
+| `RB07-044` | L10 gateが失敗した場合、担当者はL2対象のRecoveryまたはAdd-feature PLANで画面設計を更新してから再試行する。 | process_gate | prose／gate | docs/skills/browser-testing-and-screen-verification.md:138-140 |
+| `RB07-134` | 担当者はdebtをrefactor・retrofit PLANまたは既存PLANのdebt_itemsへ登録し、理由・期限・解消先を記録する。 | process_gate | prose | docs/skills/debt-register.md:36-61 |
+| `RB07-139` | 担当者は単なるTODOを登録済みdebtとみなさず、debt PLANを原因側PLANのdependenciesへlinkする。 | process_gate | prose | docs/skills/debt-register.md:114-117 |
+| `RB07-209` | 担当者は今直せないhardcodeを黙って残さず、debtとして起票して返済条件を書く。 | process_gate | prose | docs/skills/code-minimalism.md:100-101 |
+| `RB07-272` | R4担当者は今閉じられないgapを参照付きPLANまたはbacklogへdebt・readiness-deferとして送り、全仮説にresolutionを付ける。 | process_gate | prose | docs/skills/reverse-r4.md:61-62; docs/skills/reverse-r4.md:89-96 |
+| `RB07-342` | rollback後の担当者は安定化したらRecovery PLANを開き、根因と設計修正・実装修正の分類を残し、再deploy前に回帰testを追加して継続状態を確認する。 | process_gate | prose | docs/skills/ci-deploy-and-rollback.md:80-85 |
+| `RB08-034` | 引継ぎ担当者はopen itemとcarry itemをPLAN IDまたは要求IDへ追跡可能にし、共有memoryでDB projectionを上書きしない。 | memory_context | prose | docs/skills/requirements-handover.md:35-36; docs/skills/requirements-handover.md:64-65 |
+| `RB08-230` | OperationVerification担当者はfailureを環境に応じてRecoveryまたはIncidentへ戻す。 | process_gate | prose | docs/governance/drive-route-catalog.md:86-86 |
+| `RB08-289` | 旧debt担当者はReverse pairing・理由付きnot_required・誤kind再分類のいずれかが済むまでdebtを可視化し、処置後も同期用の履歴baseline行を保持する。 | evidence_claim | prose／lint | docs/governance/conditional-backfill-decision-audit-2026-06-22.md:12-16; docs/governance/conditional-backfill-decision-audit-2026-06-22.md:62-62 |
+| `RB09-011` | forward-convergenceの監査機構は、grandfatherされた既存債務を常時表示する。 | evidence_claim | gate／doctor | docs/governance/forward-convergence-legacy-debt-audit.md:4-6 |
+| `RB09-014` | 債務台帳の管理者は、債務を解消したら現存債務の表行とallowlistの双方から除去する。解消記録は解消済節へ移し、行頭が「-」のproseとして記載し、「｜ PLAN-... ｜」の表行にしてはならない。 | tooling_runtime | prose／gate | docs/governance/forward-convergence-legacy-debt-audit.md:9-16; docs/governance/forward-convergence-legacy-debt-audit.md:22-25 |
+| `RB09-018` | CI Verification Planは、deferred receiptを束縛して扱う。 | evidence_claim | prose | docs/governance/ci-verification-plan-terminal-fullback-evidence.md:26-26 |
+| `RB09-035` | Issue #396の終端担当者は、successor #213／#397をunblockしてもopenのまま維持する。 | process_gate | prose／config | docs/governance/issue-396-mic-requirement-json-closure.md:26-33 |
+| `RB09-036` | CI deferred obligationの回収処理は、繰延義務をexactly-onceで回収し、originへbackpropする。 | process_gate | prose | docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md:15-15 |
+| `RB09-042` | fullbackの担当者は、#1304のzero-injection mutation admissionを別behavior contractとして本fullbackへ包含せず、未解決successorとしてopenを維持する。 | process_gate | prose | docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md:34-34 |
+| `RC00-141` | artifact収束検査は、stale指定されたtaskについて更新または証拠に基づくcloseを促す警告を出す。 | process_gate | gate | src/runtime/artifact-convergence-analyzer.ts:99-106 |
+| `RC01-075` | right-arm-gate-planningは、G8-G14機械化carryにPLAN参照が1件もない場合、不合格にする。 | process_gate | lint | src/lint/right-arm-gate-planning.ts:54-60; src/lint/right-arm-gate-planning.ts:70-72 |
+| `RC01-076` | right-arm-gate-planningは、gates.mdがG8-G14機械化を未起票と記述しPLAN参照もない場合、不合格にする。 | process_gate | lint | src/lint/right-arm-gate-planning.ts:61-74 |
+| `RC01-116` | source-boundaryのpolicy被覆検査は、期限と後継PLANの片方だけが設定されている場合、findingを返す。 | process_gate | lint | src/lint/source-boundary-policy.ts:161-167 |
+| `RC02-053` | doctorのleft-arm-carry-log checkは、左腕差し戻しのresolution V-pair・gate再通過証拠の検査が不合格、または検査不能の場合に失敗する。 | process_gate | doctor | src/doctor/index.ts:1390-1401 |
+| `RC03-021` | closure authority backfill処理は、PLANのverification bindingが空の場合、needs_designとして設計へ差し戻す。 | process_gate | gate | src/policy/closure-authority-backfill.ts:336-337 |
+| `RC03-150` | G7は、left-arm carry log検査が不合格の場合、失敗する。 | evidence_claim | gate | src/gate/static.ts:196-196; src/gate/static.ts:206-210 |
+| `RD00-083` | 延期義務の照合は、terminal runがない場合、期限内ならrecovery_missing、期限到達後ならrecovery_expiredとして失敗判定にする。 | process_gate | ci | src/runtime/ci-deferred-obligation-recovery.ts:235-248 |
+| `RD00-090` | 延期義務の照合は、terminal runが成功以外ならreceiptをbackprop_requiredにし、有効な初回検出oracleがあればReverse候補を作る。 | process_gate | ci | src/runtime/ci-deferred-obligation-recovery.ts:292-315 |
+| `RD03-214` | guard governance評価は、未実装surfaceがdeferred一覧に記録されていない場合、不合格にする。 | evidence_claim | gate | src/runtime/upstream-adoption.ts:186-190 |
+| `RD04-213` | action-binding readiness lintは、frontier記録が入力された場合、version-up snapshot対象PLANにparked_future_version bindingの検証を要求し、その違反を失敗に含める。 | process_gate | lint | src/lint/action-binding-approval-readiness.ts:301-310; src/lint/action-binding-approval-readiness.ts:740-745 |
+| `RD04-230` | backfill lintは、Reverse未対応の条件付き種別が施行日前または旧債務allowlist内なら、全体失敗にせずReverse要否のnoteを出す。 | process_gate | lint | src/lint/backfill-pairing.ts:185-187; src/lint/backfill-pairing.ts:272-276; src/lint/backfill-pairing.ts:307-312; src/lint/backfill-pairing.ts:382-386 |
+| `RD05-250` | descent-obligationは、未充足義務に対応するdeferのownerまたはdischargeConditionが空の場合、invalid-defer違反とunmetを返し失敗させる。 | process_gate | lint | src/lint/descent-obligation.ts:125-127; src/lint/descent-obligation.ts:392-405 |
+| `RD06-135` | drive-model-passage lintは、required certificate columnsに残存状態を表す所定語がない場合、失敗させる。 | evidence_claim | lint | src/lint/drive-model-passage.ts:76-78; src/lint/drive-model-passage.ts:115-117 |
+| `RD06-192` | fr-roadmap-coverage lintは、対象文書に残存機能bucket sectionがない、またはその本文が空の場合、失敗させる。 | process_gate | lint | src/lint/fr-roadmap-coverage.ts:66-66; src/lint/fr-roadmap-coverage.ts:213-219 |
+| `RD06-193` | fr-roadmap-coverage lintは、残存機能sectionにheaderとデータ行を持つ表がない場合、失敗させる。 | process_gate | lint | src/lint/fr-roadmap-coverage.ts:220-224 |
+| `RD06-194` | fr-roadmap-coverage lintは、残存機能表にbucket・上流出典・現在経路・V-model状態・次成果物・statusの所定headerが揃わない場合、失敗させる。 | process_gate | lint | src/lint/fr-roadmap-coverage.ts:226-238 |
+| `RD06-195` | fr-roadmap-coverage lintは、残存機能行のbucket・上流出典・現在経路・V-model状態・次成果物のいずれかが空の場合、失敗させる。後続にも各情報の空白検査があるが、通常parserではtrim済みのため先行検査で捕捉される。 | process_gate | lint | src/lint/fr-roadmap-coverage.ts:95-106; src/lint/fr-roadmap-coverage.ts:240-258 |
+| `RD06-196` | fr-roadmap-coverage lintは、残存機能行のstatusがclosed・scheduled・parked・PO decisionのいずれでもない場合、失敗させる。 | process_gate | lint | src/lint/fr-roadmap-coverage.ts:71-76; src/lint/fr-roadmap-coverage.ts:259-262 |
+| `RD06-197` | fr-roadmap-coverage lintは、closed以外の行で次成果物欄にplan・plans・wbs・park・po decision・owner・scheduledの所定語がない場合、解決方法が曖昧として失敗させる。 | process_gate | lint | src/lint/fr-roadmap-coverage.ts:77-77; src/lint/fr-roadmap-coverage.ts:263-265 |
+| `RD07-189` | improvement-backlog解析は、下位層やbackpropに関するマーカーを持つエントリについて、issueまたはlink欄に所定の逆伝播分類項目の代入記法が欠ければ記録する。 | process_gate | lint | src/lint/improvement-backlog.ts:90-109; src/lint/improvement-backlog.ts:164-167 |
+| `RD07-197` | Issue closure graph監査は、宣言された後継IssueがGitHub snapshotに存在しなければ失敗する。 | review_merge | lint | src/lint/issue-closure-graph.ts:216-223 |
+| `RD07-198` | Issue closure graph監査は、後継Issueの観測状態が宣言されたexpected_stateと異なれば失敗する。 | review_merge | lint | src/lint/issue-closure-graph.ts:224-230 |
+| `RD08-014` | L14 close audit lintは、closed以外の指定監査行でnextActionが「なし」またはnoneの場合、失敗させる。 | process_gate | lint | src/lint/l14-close-audit.ts:214-219 |
+| `RD08-038` | left-arm carry lintは、凍結legacy例外以外の終端L7 impl/add-impl PLANにleft_arm_carry判断がない場合、失敗させる。 | review_merge | lint | src/lint/left-arm-carry-log.ts:162-179; src/lint/left-arm-carry-log.ts:220-227 |
+| `RD08-041` | left-arm carry lintは、判断がno_pushback・pushback_resolved以外、no_pushbackなのにentryが存在、またはpushback_resolvedなのにentryが空の場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:234-242 |
+| `RD08-046` | left-arm carry lintは、finding_kindがsignature_mismatch・api_contract_drift・architecture_violationのいずれでもない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:25-32; src/lint/left-arm-carry-log.ts:276-278 |
+| `RD08-047` | left-arm carry lintは、指摘種別に対応する差し戻し層・gateと、pushback_targetまたはgate_repass.gateが一致しない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:25-32; src/lint/left-arm-carry-log.ts:279-290 |
+| `RD08-052` | left-arm carry lintは、affected_artifactsのpathが正規相対pathでない、または指摘種別の差し戻し層に対応する設計prefixで始まらない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:326-332 |
+| `RD08-054` | left-arm carry lintは、carry entryのaffected_artifactsが空の場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:338-339 |
+| `RD08-055` | left-arm carry lintは、resolution_plan_idに対応するPLANが入力集合にない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:341-349 |
+| `RD08-056` | left-arm carry lintは、解消PLANが指摘種別の対応層と異なる、design/add-designでない、または対応層を決定できない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:351-358 |
+| `RD08-057` | left-arm carry lintは、解消PLANがconfirmed・completed・acceptedのいずれでもない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:359-366 |
+| `RD08-058` | left-arm carry lintは、解消PLANにapprove・approve_after_fixes・passの技術レビューがない場合、失敗させる。 | review_merge | lint | src/lint/left-arm-carry-log.ts:367-378 |
+| `RD08-059` | left-arm carry lintは、影響成果物が解消PLANのgeneratesに含まれない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:379-382 |
+| `RD08-065` | left-arm carry lintは、対応gateが決まっているとき、空白を正規化した再通過commandがhelix gateと当該gate名だけの形式に一致しない場合、失敗させる。 | tooling_runtime | lint | src/lint/left-arm-carry-log.ts:193-196; src/lint/left-arm-carry-log.ts:436-443 |
+| `RD08-069` | left-arm carry lintは、指摘検出がgate再通過より前でない、再通過が元PLANのtests_green_atより後、または元PLANのレビュー日時より後の場合、失敗させる。 | review_merge | lint | src/lint/left-arm-carry-log.ts:473-479 |
+| `RD08-070` | left-arm carry lintは、終端PLANのcarry entryでresolvedがtrueでない場合、失敗させる。 | process_gate | lint | src/lint/left-arm-carry-log.ts:481-482 |
+| `RD09-003` | outstanding集計は、非終端PLAN本文にversion-up保留の意図がありversion_targetがない場合、version_up_frontmatter_missingを返す。 | process_gate | lint | src/lint/outstanding.ts:814-818; src/lint/outstanding.ts:856-860 |
+| `RD11-018` | triage lintは、retained_triagedのidとresidualがそれぞれIMP-118、IMP-148でない場合に違反にする。 | process_gate | lint | src/lint/triage-decision-integrity.ts:30-30; src/lint/triage-decision-integrity.ts:159-161 |
+| `RD11-071` | version-up lintは、charterに指定されたversion-up定義と今版外作業保持のmarkerがない場合に違反にする。 | process_gate | lint | src/lint/version-up-readiness.ts:391-391; src/lint/version-up-readiness.ts:957-961 |
+| `RD11-084` | version-up lintは、draft PLANにparking意図があるのにversion_targetがない場合に違反にする。 | process_gate | lint | src/lint/version-up-readiness.ts:1077-1086 |
+| `RD11-085` | version-up lintは、semantic frontier recordsが提供された場合、version_target付きPLANのparked_future_version binding検査で返された違反を失敗に反映する。 | evidence_claim | lint | src/lint/version-up-readiness.ts:1088-1101 |
+| `RD11-087` | version-up lintは、version_target付きPLANにPARKED_PLAN_MARKERSの各文字列がない場合に違反にする。 | process_gate | lint | src/lint/version-up-readiness.ts:412-433; src/lint/version-up-readiness.ts:1108-1112 |
+| `RD11-093` | version-up lintは、parked_review_recordのowner・trigger・review policy・stale action・dependency・decision packet routeの必須fieldが欠ける場合に違反にする。 | process_gate | lint | src/lint/version-up-readiness.ts:453-461; src/lint/version-up-readiness.ts:1178-1184 |
+| `RD11-134` | parked PLAN意味検査は、判断経路を結合した記録に保留継続の再確認日経路を示す指定語がない場合に違反にする。 | process_gate | lint | src/lint/version-up-readiness.ts:2634-2639 |
+| `RD11-135` | parked PLAN意味検査は、review_by_policyにtrigger-boundまたはYYYY-MM-DD形式の日付がない場合に違反にする。 | process_gate | lint | src/lint/version-up-readiness.ts:2640-2645 |
+| `RD11-198` | terminal fullback監査は、依存Issue #204・#635・#188の状態がopenでない、または欠落している場合に失敗させる。 | process_gate | lint | src/lint/workflow-classification-terminal-fullback.ts:134-134; src/lint/workflow-classification-terminal-fullback.ts:456-463 |
+| `RE01-022` | 作業者はForwardの各帯をroadmapへ登録し、進めない項目は理由を付けてparkし、一覧から隠してはならない。 | memory_context | prose | docs/governance/helix-harness-requirements_v1.2.md:438-440 |
+| `RE01-078` | 右腕検証で失敗した場合、担当者は一回のrun内にIssue化し、Issueがないまま次のmergeへ進んではならない。 | process_gate | prose／gate | docs/governance/helix-harness-requirements_v1.2.md:1235-1237 |
+| `RG09-005` | 既存高複雑度の保守担当者は、grandfather扱いの高複雑度を後続PLANで縮小する。 | behavior_discipline | prose | docs/governance/coding-rules.md:80-85 |
+| `RG13-001` | Issue #214の終端担当者は、後続Issue #215をunblockしてもopenのまま維持する。 | process_gate | prose | docs/governance/issue-214-slot-scheduler-closure.md:55-63 |
+| `RG13-002` | Issue #514の終端担当者は、provenance強化を担う後続Issue #519をopenで維持する。 | process_gate | prose | docs/governance/issue-514-cross-review-admission-symmetry-closure.md:47-56 |
+| `RG16-020` | 担当者は、コード実装前の検討で要件を落とす場合、その理由をPLANへ記録する。 | evidence_claim | prose | docs/skills/code-minimalism.md:41-42 |
+
+## 副として対応づいた規則（114件）
+
+`RA-163`、`RB0-094`、`RB0-179`、`RB04-048`、`RB04-070`、`RB04-077`、`RB04-078`、`RB04-101`、`RB04-102`、`RB04-205`、`RB05-040`、`RB05-081`、`RB05-146`、`RB05-205`、`RB05-229`、`RB05-361`、`RB06-026`、`RB06-043`、`RB06-110`、`RB06-173`、`RB06-204`、`RB06-257`、`RB06-261`、`RB06-264`、`RB06-265`、`RB06-309`、`RB06-314`、`RB07-005`、`RB07-006`、`RB07-013`、`RB07-032`、`RB07-083`、`RB07-091`、`RB07-135`、`RB07-137`、`RB07-140`、`RB07-145`、`RB07-171`、`RB07-188`、`RB07-253`、`RB07-258`、`RB07-269`、`RB07-280`、`RB07-282`、`RB07-345`、`RB08-003`、`RB08-014`、`RB08-035`、`RB08-115`、`RB08-116`、`RB08-156`、`RB08-185`、`RB08-192`、`RB08-229`、`RB08-271`、`RB08-272`、`RB08-275`、`RB08-295`、`RB08-309`、`RB08-310`、`RB09-012`、`RB09-013`、`RB09-039`、`RB09-046`、`RB09-056`、`RC00-112`、`RC01-059`、`RC01-061`、`RC01-074`、`RC02-157`、`RC03-024`、`RD00-079`、`RD00-081`、`RD00-082`、`RD00-084`、`RD00-086`、`RD00-087`、`RD00-089`、`RD00-092`、`RD00-120`、`RD00-121`、`RD00-122`、`RD00-123`、`RD00-124`、`RD00-127`、`RD02-117`、`RD02-278`、`RD04-232`、`RD05-251`、`RD05-252`、`RD06-079`、`RD06-170`、`RD07-018`、`RD07-044`、`RD07-091`、`RD08-036`、`RD08-039`、`RD08-040`、`RD08-042`、`RD08-045`、`RD08-053`、`RD08-060`、`RD08-061`、`RD08-063`、`RD08-066`、`RD09-002`、`RD09-010`、`RD10-063`、`RD10-098`、`RD11-020`、`RD11-086`、`RD11-098`、`RD11-131`、`RE01-041`

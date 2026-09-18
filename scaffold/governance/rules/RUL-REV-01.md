@@ -1,0 +1,123 @@
+---
+status: scaffold
+authority_effect: none
+generated_by: scaffold/governance/tools/gen_rulebook.py
+source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
+source_candidate_sha256: 1c9891cbf76d7a28a6cf64b75e907e6ddad41c0aac5c9fa0a9196421211407a5
+source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
+source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+rule_id: RUL-REV-01
+group: フルリバース
+product: HARNESS
+atoms_primary: 91
+atoms_secondary: 54
+issue_projection: #1852
+---
+
+# RUL-REV-01（フルリバース／HARNESS）
+
+仮のルール。正本は[要求候補](../../../docs/governance/candidates/legacy-rule-derived-requirements.md)であり、本fileはその機械的な写しである。採否・承認・完了を生成しない。
+
+## 要求
+
+既存の成果物を観測し、契約と設計へ写し、仮説を人間が確認してから通常の工程へ合流させる。上流の文面をそのまま採用せず、未接続の実装は部分的と分類する。
+
+## 主として対応づいた規則（91件）
+
+| atom | 規則 | 種類 | 強制 | 出どころ |
+|---|---|---|---|---|
+| `RA-193` | エージェントはReverseをR0→R1→R2→R3→R4→Forward mergeの順で進める。 | process_gate | prose | AGENTS.md:157-157; CLAUDE.md:294-294 |
+| `RB04-005` | 作業者はvendor source snapshotを読み取り専用の概念参照とし、採用内容はHELIXの構想書と要件定義書へ再記述する。 | memory_context | prose | docs/governance/helix-harness-concept_v3.1.md:66-66 |
+| `RB04-095` | Reverse担当者はR0証拠・R1観測契約・R2現状設計・R3意図仮説・R4差分と合流経路を辿り、R3はPOが直接検証する。 | process_gate | prose | docs/governance/helix-harness-concept_v3.1.md:835-845; docs/governance/helix-harness-concept_v3.1.md:1218-1218 |
+| `RB04-096` | R1の実施/skipはscrum_typeだけで決めず、解決済みreverse_typeを主キーとして30 cell matrixに明示する。 | process_gate | config | docs/governance/helix-harness-concept_v3.1.md:839-851 |
+| `RB04-097` | R4担当者は合流層と成果物の昇格戦略を別々に判断し、PoC再利用はtrace・test・security条件を満たすものだけに限定する。 | process_gate | prose | docs/governance/helix-harness-concept_v3.1.md:855-859 |
+| `RB04-153` | bottom-up実装はReverseで上位設計へ戻し、add-implは必須、refactor/retrofit/troubleshootは条件付きでback-fillし、欠落や監査driftをfail-closeする。 | process_gate | lint／doctor | docs/governance/helix-harness-concept_v3.1.md:1250-1254 |
+| `RB05-105` | 全Issueを主駆動モデルとUniversal Reverseのpairにし、Reverseの処理量を省かず、Forward合流・実装より前に完了させる。 | process_gate | prose／gate | docs/governance/infinity-loop-source-capability-ledger.md:45-47 |
+| `RB05-137` | Reverse GateはR0〜R4と主駆動モデルとのpairが有効な場合だけ実装準備を許し、段階欠落時はclaimを拒否する。 | process_gate | gate | docs/governance/infinity-loop-system-assertion-cases.md:30-31; docs/governance/infinity-loop-system-assertion-cases.md:338-338 |
+| `RB05-195` | Reverse Substance Gateはsource span欠落・placeholder・段階間の同文や同digest・未被覆obligationを拒否し、phase固有assertionが全て有効な場合だけ完了する。 | process_gate | gate | docs/governance/infinity-loop-system-assertion-cases.md:145-150; docs/governance/infinity-loop-system-assertion-cases.md:390-390; docs/governance/infinity-loop-system-assertion-cases.md:431-431 |
+| `RB05-196` | Reverseがbudget上限に達した場合は未完obligationとcheckpointを保持し、段階省略・完了・実装claimを許可しない。 | process_gate | gate | docs/governance/infinity-loop-system-assertion-cases.md:151-152; docs/governance/infinity-loop-system-assertion-cases.md:414-414 |
+| `RB05-284` | 各source entryには分類を一つ付け、意味を持つentryを一つ以上のbehavior atomへ、非意味binary・placeholder・aliasをterminal atomへ結ぶ。 | process_gate | gate | docs/governance/infinity-loop-source-atomization-contract.md:62-68 |
+| `RB05-300` | 部分吸収の場合はatomを分割し、吸収済み部分と未吸収部分を別decisionにする。 | process_gate | prose | docs/governance/infinity-loop-source-atomization-contract.md:224-225 |
+| `RB05-305` | atom抽出は言語別の規則・workflow・I/O・失敗境界をASTまたはline/column spanで保持し、file全体を一atomにせず、意味entryから候補が出なければ人手reviewを要求する。 | process_gate | prose／gate | docs/governance/infinity-loop-source-atomization-contract.md:260-267 |
+| `RB05-306` | 独立副作用や別々に採否可能なfailure policyを持つcandidateは分割し、同じsemantic digestの候補も自動削除せずduplicate edgeと証拠で吸収可否を決める。 | behavior_discipline | prose | docs/governance/infinity-loop-source-atomization-contract.md:271-273 |
+| `RB05-307` | decisionはreview済みledgerからversion付きで取り込み、LLM分類だけでpendingを終端化せず、接続先不在・stale・reject根拠不足・吸収先不在をorphanとする。 | process_gate | gate | docs/governance/infinity-loop-source-atomization-contract.md:277-279 |
+| `RB05-318` | Scrum ReverseはProduction Scrum系sliceをSR0〜SR4でL1〜L5へbackfillしてからForwardへ再入する。 | process_gate | config | config/workflow-classification-catalog.v1.json:146-156 |
+| `RB05-351` | ReverseはR0〜R2で事実回収し、R3の復元意図をPOが確認してからR4でForwardへ再入する。 | escalation_authority | config | config/drive-route-catalog.json:76-85 |
+| `RB05-352` | Reverse終了はas-is証拠の閉包、正確なForward routing、再入pairのfreezeを条件とする。 | process_gate | config | config/drive-route-catalog.json:86-88 |
+| `RB05-366` | backend由来の画面追加では棚卸し・FE要求抽出・mock・上流backfill・必要時Discoveryを経てForwardへ進み、体験意味の確認をPOに求める。 | process_gate | config | config/drive-route-catalog.json:246-258 |
+| `RB05-369` | 受入済みincrementはSR0〜SR4でcanonical V-pairへfullbackし、Scrum Reverse閉包まで処理する。 | process_gate | config | config/drive-route-catalog.json:279-285 |
+| `RB06-097` | Reverse GateはR0〜R4のstage契約・obligation・digest・routeと主駆動pairが完了するまで実装claimを拒否する。 | process_gate | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:34-34; docs/governance/infinity-loop-assertion-coverage-ledger.md:72-72 |
+| `RB06-146` | Reverse substance検査は空・placeholder・同文・同digest・source spanなし・coverage不足artifactをstage固有semantic assertionで拒否する。 | process_gate | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:103-103; docs/governance/infinity-loop-assertion-coverage-ledger.md:178-178 |
+| `RB06-173` | Reverseがbudget途中停止した場合、未完obligationを保持してcheckpointし、完了と実装claimを拒否する。 | process_gate | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:161-161 |
+| `RB06-204` | backfill担当者は既存十責務を再実装せず、owner・pair・oracle・DB証拠・stale・reentry・approvalへ再接着し、実装欠落だけをsuccessorへ分ける。 | behavior_discipline | prose | docs/governance/workflow-and-specialist-harness-audit-2026-07-28.md:119-137 |
+| `RB06-260` | 駆動PLANはconfirmed後にReverseのforward_routingで復帰先を指定し、promote経路では実装gateを通過する。 | process_gate | prose | docs/governance/gate-design.md:68-72 |
+| `RB06-291` | 採用担当者は上流enum・ID・checklistを逐語流用せず、LOCALの現行契約とcharterに接地して再導出する。 | process_gate | prose | docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md:54-59; docs/governance/upstream-helix-reconciliation-audit-2026-07-04.md:130-131 |
+| `RB07-056` | 移植担当者は上流をread-only参照し、層の粒度に合わせて概念を採取し、bulk importやコードの直接copyを行わない。 | behavior_discipline | prose | docs/governance/handover-retirement-memory-audit-2026-07-11.md:74-75; docs/governance/handover-retirement-memory-audit-2026-07-11.md:100-109; docs/governance/handover-retirement-memory-audit-2026-07-11.md:136-137 |
+| `RB07-143` | 切出し担当者はbulk portをせずbehavior atomを抽出し、Python semantic coreとTypeScript/Node transactional boundaryへ再実装する。 | tooling_runtime | prose | docs/governance/helix-harness-extraction-plan_v0.1.md:6-6; docs/governance/helix-harness-extraction-plan_v0.1.md:58-66 |
+| `RB07-147` | 担当者はhelix-porting-mapをcode-port計画として実行せず、機能inventoryとしてのみ使う。 | memory_context | prose | docs/governance/helix-harness-extraction-plan_v0.1.md:79-79 |
+| `RB07-181` | 担当者は上流文面をそのまま採用せずHELIX契約へ変換し、実装・testがない直接実装や未接続runtimeをpartialと分類する。 | evidence_claim | prose | docs/governance/helix-adoption-design-completion-audit-2026-06-30.md:24-31; docs/governance/helix-adoption-design-completion-audit-2026-06-30.md:97-108 |
+| `RB07-266` | Retrofit・Reverse担当者は既存test結果と対象pathを記録し、設計変更前にcharacterisation testと対向test designを作ってから変更・Forward合流へ進む。 | process_gate | prose | docs/skills/testing.md:99-108 |
+| `RB07-267` | Reverse担当者は全5種でR4を省略せず、upgradeではR4後にRGCを使わない。 | process_gate | prose | docs/skills/reverse-r4.md:19-25 |
+| `RB07-268` | R4担当者はPO確認済みR3仮説、R2設計・test設計、該当typeのR1観測契約、既存Forward状態を入力として読む。 | memory_context | prose | docs/skills/reverse-r4.md:29-37 |
+| `RB07-269` | R4担当者は要求曖昧をL1/L3、設計判断欠落をL4、契約欠落をL5、Forward経路なしをgap-onlyへ送り、promotion strategyを確定する。 | process_gate | prose | docs/skills/reverse-r4.md:41-51 |
+| `RB07-271` | R4担当者はconflict仮説の再評価gateと理由を記録し、invalidate機構未実装の間はPLANへ手記する。 | process_gate | prose | docs/skills/reverse-r4.md:57-60 |
+| `RB07-273` | R4担当者はgap registerを所定のreverse領域へ保存し、lint・vmodel lint・doctorのgreenと合流先PLANの存在または確認を揃えてからcycleを閉じる。 | process_gate | prose／lint／doctor | docs/skills/reverse-r4.md:64-83; docs/skills/reverse-r4.md:97-105 |
+| `RB07-280` | 新規・更新fullback PLANは上流backprop artifactをgeneratesへ記し、欠落した旧PLANは追記・非fullback再分類・新Reverseによる置換までdebtとして残す。 | process_gate | prose／gate | docs/governance/reverse-fullback-backprop-audit-2026-06-22.md:19-25 |
+| `RB07-281` | 新規・更新non-fullback R4 PLANは本文で主張する上流artifactをgeneratesへ記し、未登録claimをgovernance guardで拒否する。 | process_gate | gate | docs/governance/reverse-fullback-backprop-audit-2026-06-22.md:68-76 |
+| `RB07-282` | fullback担当者はrequirements・基本設計・詳細設計への影響をbackprop_scopeで明示し、scope欠落を更新または再分類までdebtとして扱う。 | evidence_claim | prose／gate | docs/governance/reverse-fullback-backprop-audit-2026-06-22.md:14-17; docs/governance/reverse-fullback-backprop-audit-2026-06-22.md:106-107 |
+| `RB08-051` | Reverse担当者は5種類すべてでR3を省略せず、各R2 structural gapに意図仮説を作りconfirmed・gap・conflictへ分類する。 | process_gate | prose | docs/skills/reverse-r3.md:22-22; docs/skills/reverse-r3.md:38-44; docs/skills/reverse-r3.md:83-83 |
+| `RB08-052` | Reverse担当者はconflictごとに無効化するForward gateを特定し、R4のinvalidate action用に記録する。 | process_gate | prose | docs/skills/reverse-r3.md:45-46; docs/skills/reverse-r3.md:85-85 |
+| `RB08-053` | Reverse担当者は各仮説のrouting候補をL1・L3・L4・L5・gap-onlyから作成し、PO向け意図仮説文書へ記載する。 | process_gate | prose | docs/skills/reverse-r3.md:47-49; docs/skills/reverse-r3.md:62-62; docs/skills/reverse-r3.md:86-87 |
+| `RB08-054` | Reverse担当者はPOによる意図・分類・routing確認なしにR3を退出せず、承認証拠をPLANと監査証跡へ記録する。 | escalation_authority | prose | docs/skills/reverse-r3.md:51-58; docs/skills/reverse-r3.md:84-88; docs/skills/reverse-r3.md:92-93 |
+| `RB08-055` | Reverse担当者はR4へ進む前に、R4状態のPLAN lintとdoctorが成功することを確認する。 | process_gate | prose／lint／doctor | docs/skills/reverse-r3.md:79-90 |
+| `RB08-071` | Reverse文書担当者はR2を観測された現状、R3をmoduleと要求の対応、R4をscope・受入・検証付き要求更新として書き、backfill文書もtrace-freeze前に可読性確認する。 | process_gate | prose | docs/skills/documentation-and-adrs.md:79-83 |
+| `RB08-113` | Reverse担当者はupgrade以外のcode・design・normalization・fullbackをcloseする前にRGCを通す。 | process_gate | gate | docs/skills/reverse-rgc.md:22-24 |
+| `RB08-114` | RGC担当者はR0〜R4の適用対象成果物、既存test時の再構成、PO確認、全仮説のresolutionを揃える。 | process_gate | prose／gate | docs/skills/reverse-rgc.md:32-48 |
+| `RB08-115` | Reverse担当者はtestがない場合、test-design欠落層をgap registerへ列挙し、test-design PLANと対応pair-freeze成立まで実装へ進めない。 | process_gate | prose／gate | docs/skills/reverse-rgc.md:49-52 |
+| `RB08-116` | RGC担当者は有効routingと宛先PLANまたはbacklog付きdefer、無効化gate一覧を確認し、未解決gapを黙って落とさずdebtまたは新PLANへ送る。 | process_gate | prose／gate | docs/skills/reverse-rgc.md:54-61 |
+| `RB08-117` | RGC担当者はPLAN lint・V-model lint・doctor成功、orphan非増加、blocking findingなし、DB継続状態の宛先反映を確認する。 | process_gate | prose／lint／doctor | docs/skills/reverse-rgc.md:63-74 |
+| `RB08-118` | Reverse担当者はRGC通過後にdoneへ遷移し、下流実装前には別途routing先のpair-freezeを通す。RGCをForward gate通過証拠にしない。 | process_gate | prose／gate | docs/skills/reverse-rgc.md:76-86 |
+| `RB08-147` | Reverse担当者は全typeでR2を実施し、観測資料からmodule責務・DAG・影響先・構造gapを再構成する。 | process_gate | prose | docs/skills/reverse-r2.md:22-22; docs/skills/reverse-r2.md:28-49 |
+| `RB08-148` | Reverse担当者は既存testがある場合、全testをmoduleへ対応付けてscenario・assertion・欠落を再構成し、ない場合は不在を明記する。 | evidence_claim | prose | docs/skills/reverse-r2.md:44-47; docs/skills/reverse-r2.md:61-64; docs/skills/reverse-r2.md:71-74 |
+| `RB08-149` | R2担当者は既知依存の欠落やorphanのないDAGと影響評価を揃え、gapをこの段階で解決せず列挙し、lint・V-model lint・doctor成功後にR3へ進む。 | process_gate | prose／lint／doctor | docs/skills/reverse-r2.md:66-83 |
+| `RB08-150` | Reverse担当者は全typeでR0から開始し、既存source・設定・snapshotをread-only参照して、観測したgovernance違反はこの段階で修正しない。 | process_gate | prose | docs/skills/reverse-r0.md:18-21; docs/skills/reverse-r0.md:28-34 |
+| `RB08-151` | R0担当者はscope内のsource・設計・test・schema・manifestを全列挙し、path・更新signal・Forward trace・drift・必要な依存edgeを記録する。 | evidence_claim | prose | docs/skills/reverse-r0.md:36-49 |
+| `RB08-152` | R0担当者は対象を覆うtestがあればhas_existing_tests=true、test不在またはcoverageゼロならfalseと明示する。 | evidence_claim | prose | docs/skills/reverse-r0.md:42-45 |
+| `RB08-153` | R0担当者は意図しないnullのないevidence map、全drift記録、遷移先phaseのlint・doctor成功を揃えるまでR1またはR2へ進まない。 | process_gate | prose／lint／doctor | docs/skills/reverse-r0.md:51-53; docs/skills/reverse-r0.md:68-83 |
+| `RB08-156` | Reverse担当者は既存testがあればR2でtest-designを復元し、なければR4で欠落を記録して宛先へtest-design PLANを要求する。Reverse自体ではtest codeを生成しない。 | process_gate | prose | docs/skills/reverse-analysis.md:67-76 |
+| `RB08-157` | Reverse開始者はtypeを特定し、blocking引継ぎ・doctor違反なしを確認して適切なPLANを作成し、lint成功後にR0へ入る。 | process_gate | prose／lint | docs/skills/reverse-analysis.md:78-83 |
+| `RB08-176` | Reverse担当者はcode・upgrade・fullbackでR1を行い、design・normalizationではR0からR2へ直接進む。 | process_gate | prose | docs/skills/reverse-r1.md:21-22 |
+| `RB08-177` | R1担当者は全外部interfaceの入出力・検証・error・副作用・caller依存を抽出し、暗黙契約と設計とのdriftを記録する。 | evidence_claim | prose | docs/skills/reverse-r1.md:35-47 |
+| `RB08-179` | R1担当者は全surfaceの契約抽出と暗黙契約件数が正確で、R2状態のlint・doctorが成功するまでR2へ進まない。 | process_gate | prose／lint／doctor | docs/skills/reverse-r1.md:69-81 |
+| `RB08-202` | 既存APIのReverse担当者はtest作成前にcodeからL4契約を抽出し、reviewで全handler pathの被覆を確認する。 | evidence_claim | prose | docs/skills/api.md:69-74 |
+| `RB08-228` | Add-feature Route B担当者は先行build後もReverse fullbackとG7 traceまでcompletion_claim_allowed=falseを維持する。 | evidence_claim | prose | docs/governance/drive-route-catalog.md:83-84 |
+| `RB09-013` | 既存債務の担当者は、各件をForward集約によるReverse back-fillまたは明示的なlocal_impl_only dispositionで解消する。landed済みの債務をversion-upとして扱ってはならない。 | process_gate | prose | docs/governance/forward-convergence-legacy-debt-audit.md:9-10 |
+| `RB09-039` | deferred obligationのcompanion担当者は、Forward／Reverseをbackfill_state=complete・completion_claim_allowed=trueへ接着し、ForwardへU-CIDEFER-013とterminal Reverse dependencyを投影する。 | process_gate | prose | docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md:32-32 |
+| `RB09-076` | CI execution telemetryの終端担当者は、Forward／Reverse PLANの双方向dependencyとcompletion stateを同一terminal bundleで確定する。 | process_gate | prose | docs/governance/ci-execution-telemetry-terminal-fullback-evidence.md:26-27 |
+| `RC00-139` | artifact収束検査は、codeがあるのにdesignが1件もなければ完了主張を拒否し、escalation必要とする。 | process_gate | gate | src/runtime/artifact-convergence-analyzer.ts:57-80; src/runtime/artifact-convergence-analyzer.ts:118-122 |
+| `RC02-028` | doctorのbackfill checkは、implとReverseの対応や用語のglossary反映に違反がある、またはPLAN・glossaryを読めない場合に失敗する。 | process_gate | doctor | src/doctor/index.ts:650-672 |
+| `RC04-169` | Reverse R4 route器は、R4証拠がconfirmedでなければForward先を返さず失敗する。 | process_gate | gate | src/workflow/contracts.ts:657-675 |
+| `RC04-170` | Reverse R4 route器は、forward_routingが無ければ失敗する。 | process_gate | gate | src/workflow/contracts.ts:670-675 |
+| `RD02-147` | hook採用判定器は、必要情報が揃ってもwiredでなければdeferredとし、wired扱いにしない。 | evidence_claim | gate | src/runtime/legacy-adoption.ts:436-441 |
+| `RD04-227` | backfill lintは、非archivedのadd-implに対応Reverseが無い場合に違反とするが、add-feature経路または有効なADD_FEATURE identityでpending_reverseなら保留通知にする。 | process_gate | lint | src/lint/backfill-pairing.ts:214-230; src/lint/backfill-pairing.ts:238-271 |
+| `RD04-228` | backfill lintは、2026-06-23以降更新のadd-implで対応Reverseへの逆リンクが無い場合に違反とする。通常はrequiresを要求し、pending_reverseならreferences、またはconfirmed Reverseへのrequiresを認める。 | process_gate | lint | src/lint/backfill-pairing.ts:190-192; src/lint/backfill-pairing.ts:241-257 |
+| `RD10-091` | S4 lintはconfirmed判断のrationaleにreuse-as-is、reuse-with-hardening、redesignのいずれもなければ失敗させる。 | process_gate | lint | src/lint/s4-decision-readiness.ts:453-469 |
+| `RD10-117` | Scrum Reverse lintは非archivedのconfirmed判断PoCについて、redesign以外なのに参照する非archived reverse PLANが存在しなければ失敗させる。 | process_gate | lint／doctor | src/lint/scrum-reverse.ts:116-127; src/lint/scrum-reverse.ts:223-229 |
+| `RD10-119` | Scrum Reverse lintは適用日以降作成またはcreated欠落のterminal reverseにdocs/plans/外のgenerates artifactが一つもなければ失敗させる。 | evidence_claim | lint | src/lint/scrum-reverse.ts:146-159 |
+| `RD10-120` | Scrum Reverse lintは対応reverseがterminalになった後も上位文書にPoC段階のtrace seed markerが残る場合に失敗させる。 | process_gate | lint | src/lint/scrum-reverse.ts:161-178; src/lint/scrum-reverse.ts:204-220 |
+| `RE01-009` | Reverse担当者はR4で合流先とrouting strategyを決定し、その決定なしにForwardへ合流してはならない。 | process_gate | prose／lint | docs/governance/helix-harness-requirements_v1.2.md:143-154 |
+| `RE01-056` | Reverse実行者はcode-upgrade/full-backではR1を実施し、design-normalizationではR1をskipする。後者でR1を実行しようとした場合は拒否する。 | process_gate | gate | docs/governance/helix-harness-requirements_v1.2.md:888-898 |
+| `RE01-057` | Reverse担当者は成果を設計工程へ戻し、実装・検証pairを飛ばす合流経路を作ってはならない。 | process_gate | prose／gate | docs/governance/helix-harness-requirements_v1.2.md:902-914 |
+| `RE01-058` | 再利用判断者は設計trace・テスト設計・Red・securityの条件を満たした資産だけをそのまま再利用し、不足があればhardeningまたは再設計へ分類する。目的に合わない資産は破棄する。 | process_gate | prose／gate | docs/governance/helix-harness-requirements_v1.2.md:918-932 |
+| `RE01-059` | ReverseのR4担当者は、生成したと主張する設計・governance・テスト成果物を実際に生成し、影響対象ごとの更新証拠または対象外・延期理由を残す。 | evidence_claim | gate | docs/governance/helix-harness-requirements_v1.2.md:944-967 |
+| `RE01-178` | Scrum Reverse担当者はSR0–SR4のreceiptを揃えてからrelease-readyとし、SR4前の暫定成果をcanonicalとして公開しない。 | process_gate | gate | docs/governance/helix-harness-requirements_v1.3.md:94-106 |
+| `RE01-254` | 変更担当者はReverseのR0–R4を完了してからForwardへ戻り、固定済み設計を変える場合は先にRedesignを行う。loopの成果もForwardへ収束させる。 | process_gate | gate | docs/governance/helix-harness-requirements_v1.3.md:507-512 |
+| `RG10-005` | POはapproval_policyがpo_intentの場合、Reverse R3で復元した意図を確認する。 | escalation_authority | prose | docs/governance/drive-route-catalog.md:70-70 |
+| `RG18-024` | Reverse担当者はR3のIntent HypothesesについてPOの確認を受ける。 | escalation_authority | prose | docs/skills/reverse-analysis.md:43-47 |
+| `RG18-025` | R1担当者は観測contractの出力を.helix/reverse/<plan_id>/R1-observed-contracts.yamlへ書く。 | evidence_claim | prose | docs/skills/reverse-r1.md:49-51 |
+| `RG19-001` | R2担当者は、再構成した設計と該当するテスト設計を `.helix/reverse/<plan_id>/` に保存する。 | tooling_runtime | prose | docs/skills/reverse-r2.md:51-64 |
+| `RG19-002` | R3担当者は、R2成果物、該当typeのR1観測契約、R0のdrift signal、対象scopeの既存Forward成果物を入力とし、既存Forward成果物とas-isを比較して乖離を特定する。 | process_gate | prose | docs/skills/reverse-r3.md:28-34 |
+
+## 副として対応づいた規則（54件）
+
+`RA-195`、`RA-204`、`RB04-060`、`RB04-107`、`RB05-112`、`RB05-131`、`RB05-200`、`RB05-267`、`RB05-281`、`RB05-291`、`RB05-293`、`RB05-304`、`RB05-348`、`RB05-349`、`RB05-354`、`RB05-367`、`RB06-147`、`RB06-236`、`RB06-289`、`RB06-292`、`RB06-309`、`RB07-110`、`RB07-185`、`RB07-270`、`RB07-272`、`RB07-274`、`RB08-075`、`RB08-154`、`RB08-155`、`RB08-178`、`RB08-195`、`RB08-288`、`RB08-289`、`RB08-296`、`RB09-019`、`RB09-080`、`RC02-029`、`RD01-004`、`RD04-229`、`RD04-230`、`RD06-172`、`RD09-147`、`RD10-090`、`RD10-118`、`RD11-177`、`RD11-178`、`RD11-179`、`RE01-032`、`RE01-060`、`RE01-177`、`RE01-203`、`RG05-004`、`RG10-009`、`RG18-023`

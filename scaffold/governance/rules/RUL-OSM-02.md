@@ -1,0 +1,143 @@
+---
+status: scaffold
+authority_effect: none
+generated_by: scaffold/governance/tools/gen_rulebook.py
+source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
+source_candidate_sha256: 1c9891cbf76d7a28a6cf64b75e907e6ddad41c0aac5c9fa0a9196421211407a5
+source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
+source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+rule_id: RUL-OSM-02
+group: OS管理
+product: OS
+atoms_primary: 111
+atoms_secondary: 108
+issue_projection: none
+---
+
+# RUL-OSM-02（OS管理／OS）
+
+仮のルール。正本は[要求候補](../../../docs/governance/candidates/legacy-rule-derived-requirements.md)であり、本fileはその機械的な写しである。採否・承認・完了を生成しない。
+
+## 要求
+
+役割・agent・hook・adapterの登録と版を管理し、runtime間（Claude、Codex等）でguardと規則が乖離したら検出して止める。
+
+## 主として対応づいた規則（111件）
+
+| atom | 規則 | 種類 | 強制 | 出どころ |
+|---|---|---|---|---|
+| `RA-021` | Claude設定はStop時にclaude-memory-wakeを非同期再起動付きで呼び、通知を待機する。 | memory_context | config／hook | .claude/settings.json:78-87 |
+| `RA-064` | エージェントはHELIX作業をlocal CLI・hook・wrapper経由で扱い、raw codex exec、raw claude、direct APIを通常通路にしない。 | tooling_runtime | prose | AGENTS.md:169-170; AGENTS.md:179-189; AGENTS.md:367-374; CLAUDE.md:175-175; CLAUDE.md:252-263; CLAUDE.md:324-331; .claude/CLAUDE.md:81-88; .claude/CLAUDE.md:110-111; .claude/CLAUDE.md:283-289; .claude/agents/pdm-tech-innovation.md:31-31; .claude/agents/pdm-innovation-manager.md:32-32 |
+| `RA-073` | Claudeのactive hookはpackage-local Node commandだけを呼び、個人legacy pathに依存するhookを有効化しない。 | tooling_runtime | prose／config | .claude/CLAUDE.md:33-43; .claude/CLAUDE.md:263-264; .claude/settings.json:3-101 |
+| `RA-075` | Codex hookはrepo-relativeに置き、Claudeと同じentrypointを再利用してlogic forkを作らず、global設定へ移動しない。 | tooling_runtime | prose／config | AGENTS.md:239-242; .codex/hooks.json:2-2 |
+| `RA-076` | Codex adapter実装者はClaude tool名をコピーせず、apply_patch・write_file・exec_command・local_shell・spawn_agent等へ対応付ける。 | tooling_runtime | prose | AGENTS.md:244-261 |
+| `RA-078` | doctorはCodex・Claude guardの乖離、blockOnFailure低下、Codex側のCLAUDE_PROJECT_DIR依存やglobal設定参照を検出したらfail-closeする。 | tooling_runtime | doctor | AGENTS.md:263-265 |
+| `RA-082` | Codex設定はfeatures.hooksをtrueにする。 | tooling_runtime | config | .codex/config.toml:1-2 |
+| `RA-092` | session-log shimは入力eventを優先し、解析失敗時はargvへfallbackし、startをsession start、stopをsummary、その他をpost-tool-useへ送る。 | tooling_runtime | hook | .claude/hooks/session-log.ts:27-37 |
+| `RB04-011` | runtime adapterはルールを再定義・分岐・上書きせず、coreとgovernanceの単一定義を参照し、同一入力に同一判定・exit codeを返す。 | tooling_runtime | prose／gate | docs/governance/helix-harness-concept_v3.1.md:154-162 |
+| `RB04-015` | runtime検出者はIDE内から利用できるruntimeをadapter-hostedとして表示し、Claude本体の検出やhybrid判定へ直結させない。 | tooling_runtime | prose | docs/governance/helix-harness-concept_v3.1.md:179-179 |
+| `RB04-150` | Claude hookは個別実装でなくpackage-local CLIからshared coreへdispatchし、adapterのexecuteはprovider実行をsession lifecycleで包む。 | tooling_runtime | hook | docs/governance/helix-harness-concept_v3.1.md:1246-1247 |
+| `RB05-109` | agent管理者は工程・taskに連動してsubagentを生成し、定義の正本をruntimeごとの保管場所ではなくHARNESSに保持する。 | lane_delegation | prose | docs/governance/infinity-loop-source-capability-ledger.md:51-52 |
+| `RB05-150` | agent adapterが消失した場合はHARNESS正本から同一digestで再生成し、手編集drift・未登録agent・policy違反をfail-closeする。 | tooling_runtime | prose／gate | docs/governance/infinity-loop-system-assertion-cases.md:53-53; docs/governance/infinity-loop-system-assertion-cases.md:370-370; docs/governance/infinity-loop-system-assertion-cases.md:421-421 |
+| `RB05-155` | agent管理者はfailedからverifiedへの遷移と、verification_pendingからのreleaseを拒否する。 | process_gate | prose | docs/governance/infinity-loop-system-assertion-cases.md:59-60 |
+| `RB05-157` | retired agent contractからの新規claimと、承認のないquarantined contractのeligible復帰を拒否する。 | lane_delegation | prose | docs/governance/infinity-loop-system-assertion-cases.md:62-63 |
+| `RB05-158` | agent eventは正しい連番とlifecycle順序でだけ記録し、sequence gapを拒否して全instance eventをHARNESS正本に残す。 | tooling_runtime | prose | docs/governance/infinity-loop-system-assertion-cases.md:64-64; docs/governance/infinity-loop-system-assertion-cases.md:352-352 |
+| `RB06-055` | rule-drift拡張担当者は全文hash同期ではなくshared obligationの差分registryに限定し、sync-lintを過度に一般化しない。 | behavior_discipline | prose | docs/governance/rule-enforcement-gap-audit-2026-08-12.md:213-214 |
+| `RB06-083` | Kimi guardは自身、config.toml、自己指示ファイルの改変を拒否する。 | safety_security | hook | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:112-112; docs/governance/kimi-code-extension-security-audit-2026-08-06.md:133-133 |
+| `RB06-086` | 運用者はKimiのyoloModeをfalse、editorContextをneverに固定する。 | safety_security | config | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:42-43 |
+| `RB06-087` | 完全性チェックはguard欠損・改変をcanonicalから復元し、hooks登録欠落を再追記する。 | safety_security | prose | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:167-184 |
+| `RB06-088` | 完全性チェックはKimi CLIのversion変化を記録し、yoloMode=trueを検出した場合は手動確認ALERTを出す。 | safety_security | prose | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:159-165; docs/governance/kimi-code-extension-security-audit-2026-08-06.md:186-190 |
+| `RB06-089` | 完全性チェックはClaude/Codex user設定のdriftを警告するだけとし、自動復元しない。 | safety_security | prose | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:38-41; docs/governance/kimi-code-extension-security-audit-2026-08-06.md:192-218 |
+| `RB06-102` | agent編成は固定されたlayer・drive・task・検証patternから同一teamとadapterを再現し、workerとverifierを分離する。 | lane_delegation | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:39-39; docs/governance/infinity-loop-assertion-coverage-ledger.md:81-81; docs/governance/infinity-loop-assertion-coverage-ledger.md:168-168 |
+| `RB06-111` | agent lifecycle処理は正順遷移だけを受理し、event・lease・checkpoint・verification receiptを保存する。 | lane_delegation | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:48-48; docs/governance/infinity-loop-assertion-coverage-ledger.md:100-100 |
+| `RB06-135` | adapter syncは正規adapterを再生成し、手編集drift・未登録agent・policy違反をfail-closeする。 | lane_delegation | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:80-80 |
+| `RB06-163` | 委譲wire protocol検査は承認応答policyのcode外保持を拒否する。 | safety_security | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:136-136 |
+| `RB06-226` | hook coverage報告者はCodex wiringとhooks有効化の両方を検証し、hosted/API toolを機械hook coverage外と明示する。 | tooling_runtime | doctor | docs/governance/helix-objective-evidence-audit.md:51-51 |
+| `RB06-274` | Cloud adapter管理者はruntime digestを固定し、credential、provider固有security core、download、host-global writeを置かない。 | safety_security | prose | docs/governance/repository-structure.md:22-25; docs/governance/repository-structure.md:108-108 |
+| `RB07-062` | 担当者はhandover撤去時に全adapterのrule markerをatomicに同期し、workflow規約変更としてPO confirmationを得る。 | escalation_authority | prose／gate | docs/governance/handover-retirement-memory-audit-2026-07-11.md:68-69; docs/governance/handover-retirement-memory-audit-2026-07-11.md:123-124 |
+| `RB07-311` | startup是正担当者はhook能力を実runtime・root・HEADへ束縛し、timeoutとterminal receiptを実測し、source・template・consumerとagent roster・guardの整合を揃える。 | tooling_runtime | config | docs/governance/effective-agent-startup-followup-registry.json:86-89 |
+| `RB07-313` | agent起動前にprovider capability schemaとguard payload契約を一致させる。 | tooling_runtime | config | docs/governance/effective-agent-startup-followup-registry.json:93-93 |
+| `RB08-264` | runtime担当者はClaude・Codexが同じcoreと規則を参照し、各execution modeで同一判定・同一exit codeを維持する。 | tooling_runtime | prose | docs/governance/runtime-parity-l0-l3-design-audit-2026-06-02.md:7-7 |
+| `RB09-083` | document-agent-metadataの適用処理は、docs/design/helixとdocs/test-design/helixを対象rootとし、docs/archive、docs/plans、.claude/agentsを対象から除外する。 | tooling_runtime | config | config/document-agent-metadata-scope.json:3-11 |
+| `RC00-046` | agent正本投影器は、既存内容のdigestが生成内容と異なりユーザー変更扱いでなければエラーとする。 | process_gate | gate | src/runtime/agent-ssot-runtime-projection.ts:60-77 |
+| `RC00-047` | agent正本投影器は、ユーザー変更扱いのfileにdigest差分がある場合、その差分を警告とする。 | process_gate | gate | src/runtime/agent-ssot-runtime-projection.ts:60-77 |
+| `RC00-159` | hosted preflight判定は、hosted APIまたはdeveloper tool面でhook非強制の認識が示されていなければ拒否する。 | tooling_runtime | gate | src/runtime/hosted-preflight.ts:52-56; src/runtime/hosted-preflight.ts:152-180 |
+| `RC00-248` | project hook authority解決器は、hook設定・agent guard・worker policyのsource materialがcurrent authorityと異なれば失敗する。 | escalation_authority | gate | src/runtime/project-hook-authority.ts:30-36; src/runtime/project-hook-authority.ts:286-299 |
+| `RC00-259` | agent catalog監査は、inventory fileが存在しなければエラーとし不合格を返す。 | process_gate | gate | src/runtime/agent-catalog-watch.ts:135-160 |
+| `RC01-005` | allowlist-syncは、Claude runtime文書からAllowlist転記節を抽出できない場合、不合格にする。 | lane_delegation | lint | src/lint/allowlist-sync.ts:49-63; src/lint/allowlist-sync.ts:83-87 |
+| `RC01-006` | allowlist-syncは、正本のagent名が文書のAllowlistにない場合、不合格にする。 | lane_delegation | lint | src/lint/allowlist-sync.ts:89-99 |
+| `RC01-007` | allowlist-syncは、文書のAllowlistにあるagent名が正本にない場合、不合格にする。 | lane_delegation | lint | src/lint/allowlist-sync.ts:100-114 |
+| `RC01-018` | codex-hook-trustは、project由来かつisManaged=falseのhookが0件の場合、失敗させる。 | tooling_runtime | lint | src/lint/codex-hook-trust.ts:43-47 |
+| `RC01-019` | codex-hook-trustは、対象hookのtrustStatusがtrustedでない場合、不合格にする。 | safety_security | lint | src/lint/codex-hook-trust.ts:48-59 |
+| `RC01-045` | codex-hook-adapterは、Codex hooks JSONがない場合、不合格にする。 | tooling_runtime | lint | src/lint/codex-hook-adapter.ts:137-148; src/lint/codex-hook-adapter.ts:250-259 |
+| `RC01-048` | codex-hook-adapterは、指定されたconfig.tomlのfeatures節にhooks=trueがない場合、不合格にする。 | tooling_runtime | lint | src/lint/codex-hook-adapter.ts:104-117; src/lint/codex-hook-adapter.ts:168-170 |
+| `RC01-049` | codex-hook-adapterは、Codex必須hookのentrypointがClaude必須entrypoint集合にない場合、不合格にする。 | tooling_runtime | lint | src/lint/codex-hook-adapter.ts:173-180 |
+| `RC01-050` | codex-hook-adapterは、hook commandにCLAUDE_PROJECT_DIR変数への参照がある場合、不合格にする。 | tooling_runtime | lint | src/lint/codex-hook-adapter.ts:182-189 |
+| `RC01-051` | codex-hook-adapterは、hook commandがglobal Codex path検出正規表現に一致する場合、不合格にする。 | tooling_runtime | lint | src/lint/codex-hook-adapter.ts:59-60; src/lint/codex-hook-adapter.ts:190-192 |
+| `RC01-053` | codex-hook-adapterは、各必須hookについて、指定event・matcher・entrypointに一致するtype=commandの設定がない場合、不合格にする。 | tooling_runtime | lint／config | src/lint/codex-hook-adapter.ts:200-214; src/lint/codex-hook-adapter-policy.ts:30-76 |
+| `RC01-055` | codex-hook-adapterは、StopまたはSubagentStopの対象commandに必須tokenである--quietを含む設定がない場合、不合格にする。 | tooling_runtime | lint／config | src/lint/codex-hook-adapter.ts:218-229; src/lint/codex-hook-adapter-policy.ts:64-75 |
+| `RC01-056` | codex-hook-adapterは、SessionStartの対象commandにtimeoutが90秒以上の設定がない場合、不合格にする。 | tooling_runtime | lint／config | src/lint/codex-hook-adapter.ts:230-239; src/lint/codex-hook-adapter-policy.ts:52-57 |
+| `RC01-120` | project-hookは、必須event・matcher・entrypointに一致するhook commandがない場合、不合格にする。 | tooling_runtime | lint／config | src/lint/project-hook.ts:52-82; src/lint/project-hook.ts:144-157 |
+| `RC01-121` | project-hookは、必須hookに一致するcommandにCLAUDE_PROJECT_DIR変数の文字列がない場合、不合格にする。 | tooling_runtime | lint | src/lint/project-hook.ts:159-169 |
+| `RC01-123` | project-hookは、settings検査対象が0件の場合、不合格にする。 | tooling_runtime | lint | src/lint/project-hook.ts:184-186 |
+| `RC01-125` | rule-driftは、AGENTS・共有CLAUDE・runtime CLAUDEのいずれかに必須のcommand・mode・review責務markerがない場合、不合格にする。marker存在の検査であり、記述内容の実行強制ではない。 | behavior_discipline | lint | src/lint/rule-drift.ts:16-31; src/lint/rule-drift.ts:77-81 |
+| `RC01-126` | rule-driftは、各adapter文書に指定された相互参照pathがない場合、不合格にする。 | memory_context | lint | src/lint/rule-drift.ts:33-37; src/lint/rule-drift.ts:82-87 |
+| `RC01-132` | rule-drift loaderは、必須adapter文書が存在しない場合、例外で失敗させる。 | tooling_runtime | lint | src/lint/rule-drift.ts:106-116 |
+| `RC01-174` | runtime-portabilityは、.claude/hooks配下に.ts以外のファイルがある場合、不合格にする。 | tooling_runtime | lint | src/lint/runtime-portability.ts:178-185 |
+| `RC02-040` | doctorのasset-drift checkは、実際のSUBAGENT_ALLOWLISTを入力した内部資産検査が不合格、または検査不能の場合に失敗する。 | lane_delegation | doctor | src/doctor/index.ts:1059-1080 |
+| `RC02-041` | doctorのallowlist-sync checkは、allowlist同期検査が不合格、または入力を読めない場合に失敗する。 | lane_delegation | doctor | src/doctor/index.ts:1082-1095 |
+| `RC02-052` | doctorのdocument-agent-metadata checkは、metadataが設計宣言から導出した値と一致しないなどreportが不合格、または検査例外の場合に失敗する。 | lane_delegation | doctor | src/doctor/index.ts:1366-1388 |
+| `RC02-065` | doctorのagent-model-ssot checkは、agent model登録と正規model IDの検査が不合格、またはfrontmatter読込失敗の場合に失敗する。 | lane_delegation | doctor | src/doctor/index.ts:1658-1677 |
+| `RC02-091` | doctorのrule-drift checkは、adapter規則検査が不合格、または規則文書を読めない場合に失敗する。 | behavior_discipline | doctor | src/doctor/index.ts:4608-4627 |
+| `RC02-109` | doctorのspecialist-agent-registry checkは、specialist登録読込処理のokがfalseの場合に失敗する。 | lane_delegation | doctor | src/doctor/index.ts:4982-4991 |
+| `RC02-114` | doctorのproject-hook checkは、project hook文書とClaude agent文書の検査が不合格、または設定読込不能の場合に失敗する。 | tooling_runtime | doctor | src/doctor/index.ts:5089-5108 |
+| `RC02-115` | doctorのcodex-hook-adapter checkは、Codex hook adapter検査が不合格、またはhooks.json読込不能の場合に失敗する。 | tooling_runtime | doctor | src/doctor/index.ts:5110-5129 |
+| `RC02-116` | doctorのcodex-hook-trust checkは、hook trust読込処理のokがfalseの場合に失敗する。 | safety_security | doctor | src/doctor/index.ts:5131-5134 |
+| `RC02-119` | doctorのcodex-wrapper-parity checkは、必須証拠ファイルやClaude hook command、Codexのexec -・stdin搬送・PLAN metadata、指定lifecycle test名・oracle IDが欠落する、またはsettings JSON不正の場合に失敗する。 | tooling_runtime | doctor | src/doctor/index.ts:5169-5283 |
+| `RC02-139` | consumer doctorのconsumer-files checkは、必須adapter・hook・IDE・GitHub・agent・command・team・memory/evidence marker・setup stateファイルのいずれかが読めない場合に失敗する。 | tooling_runtime | doctor | src/doctor/index.ts:5918-5953; src/doctor/index.ts:6388-6404 |
+| `RC02-140` | consumer doctorのconsumer-adapter-docs checkは、3つのadapter文書に指定タイトル・managed開始marker・日本語規則・completion案内・semantic digest・version-up・consumer doctor・cutover markerが揃わない場合に失敗する。 | doc_language | doctor | src/doctor/index.ts:5955-5983 |
+| `RC02-144` | consumer doctorのconsumer-claude-adapter checkは、Claude settingsがconsumer hook契約検査を満たさない場合に失敗する。 | tooling_runtime | doctor | src/doctor/index.ts:6174-6180 |
+| `RC02-145` | consumer doctorのconsumer-codex-adapter checkは、Codex hooks有効化設定またはconsumer hook契約検査のいずれかが不合格の場合に失敗する。 | tooling_runtime | doctor | src/doctor/index.ts:6182-6191 |
+| `RC02-146` | consumer doctorのconsumer-claude-surface checkは、agent・command templateの必須metadata、日本語文字、指定HELIX案内が欠落する場合に失敗する。agentにはname一致・非空tools・consumer-safe・機密情報・findingsのmarkerも要求する。 | lane_delegation | doctor | src/doctor/index.ts:6193-6239 |
+| `RD01-097` | projection照合は、再構築側または再読側のlane IDが既知lane集合になければ失敗する。 | lane_delegation | gate | src/runtime/event-projection-checkpoint-replay.ts:341-344 |
+| `RD02-034` | ACP transcript検証器は、protocolVersionが1でない、またはagent名がKimi Code CLIでない場合に拒否する。 | tooling_runtime | gate | src/runtime/independent-review-fallback.ts:951-958 |
+| `RD02-144` | core注入判定器は、repo-local source・生成target・consumer mode・必須marker・provenanceのいずれかが欠ける場合にharden_requiredとする。 | memory_context | gate | src/runtime/legacy-adoption.ts:366-373; src/runtime/legacy-adoption.ts:391-400 |
+| `RD02-145` | hook採用判定器は、runtime surfaceが定義済み5種のいずれでもない場合に拒否する。 | tooling_runtime | gate | src/runtime/legacy-adoption.ts:412-428 |
+| `RD02-146` | hook採用判定器は、source・tool matcher・guard intent・parity target・test oracleのいずれかが欠ける場合に拒否する。 | tooling_runtime | gate | src/runtime/legacy-adoption.ts:429-442 |
+| `RD03-077` | specialist registry検証は、runtimeに対応するallowlist sourceが設定されていない場合、拒否する。 | lane_delegation | gate | src/runtime/specialist-agent-registry.ts:46-54 |
+| `RD03-080` | specialist registry検証は、agent_idが重複する場合、不合格にする。 | lane_delegation | gate | src/runtime/specialist-agent-registry.ts:143-153 |
+| `RD03-081` | specialist registry検証は、sync sourceの実digestを取得できない場合、定義欠落として不合格にする。 | lane_delegation | gate | src/runtime/specialist-agent-registry.ts:154-160 |
+| `RD03-086` | specialist registry loaderは、registryファイルが存在しない場合、不合格にする。 | tooling_runtime | gate | src/runtime/specialist-agent-registry.ts:203-216 |
+| `RD03-212` | guard governance評価は、ClaudeとCodexを合わせたguard entrypointが一つもない場合、不合格にする。 | tooling_runtime | gate | src/runtime/upstream-adoption.ts:174-180; src/runtime/upstream-adoption.ts:191-198 |
+| `RD03-229` | runtime matcher証拠評価は、matcherが発火していない場合、incompatibleにする。 | tooling_runtime | gate | src/runtime/upstream-adoption.ts:290-290 |
+| `RD03-230` | runtime matcher証拠評価は、pipe区切りmatcherに実際のtool eventが含まれない場合、incompatibleにする。 | tooling_runtime | gate | src/runtime/upstream-adoption.ts:291-293 |
+| `RD04-078` | registry entry検証器は、元registryのidentity・provider・schema version等がdescriptorとの対応条件を満たさない場合に拒否する。 | lane_delegation | gate | src/runtime/worker-descriptor-admission.ts:227-252 |
+| `RD04-084` | descriptor解決器は、agent IDとcontract versionに一致するentryが無い場合に拒否する。 | lane_delegation | gate | src/runtime/worker-descriptor-admission.ts:390-397 |
+| `RD04-085` | descriptor解決器は、agent IDとcontract versionに一致するentryが複数ある場合に拒否する。 | lane_delegation | gate | src/runtime/worker-descriptor-admission.ts:398-400 |
+| `RD04-086` | descriptor解決器は、一致entryがactiveでない場合に拒否する。 | lane_delegation | gate | src/runtime/worker-descriptor-admission.ts:401-404 |
+| `RD04-096` | isolation authority認証器は、runtime IDとdigestの組がcatalogに登録されていない場合に拒否する。 | safety_security | gate | src/runtime/worker-isolation-broker.ts:424-430 |
+| `RD04-135` | 実行origin解決器は、対応descriptorが無い、またはagent ID・providerがoriginと異なる場合に拒否する。 | evidence_claim | gate | src/runtime/worker-isolation-broker.ts:937-946 |
+| `RD04-226` | asset drift lintは、guard allowlistのagent IDに対応するagent assetが無い場合に違反とする。 | lane_delegation | lint | src/lint/asset-drift.ts:118-118; src/lint/asset-drift.ts:179-187 |
+| `RD06-127` | drive-db-registration lintは、登録済みhook event件数が0以下の場合、失敗させる。 | process_gate | lint | src/lint/drive-db-registration.ts:123-125 |
+| `RD06-128` | drive-db-registration lintは、新しいhook orphan件数が正の場合、失敗させる。旧hook orphan件数自体はこの失敗条件に使わない。 | process_gate | lint | src/lint/drive-db-registration.ts:126-128; src/lint/drive-db-registration.ts:150-153 |
+| `RD06-129` | drive-db-registration lintは、DBに投影されたworkflow model identityが渡された現行identity集合にない場合、失敗させる。 | process_gate | lint | src/lint/drive-db-registration.ts:129-136 |
+| `RD09-157` | relation diagram exporterは、Mermaid以外の指定formatがavailableAdaptersにない場合、unavailable-adapter警告とok=falseを返し、インストールや外部コマンド起動を行わない。 | tooling_runtime | lint | src/lint/relation-graph.ts:828-853 |
+| `RD10-005` | 履歴parserはruntimeがclaude、codex、kimiのいずれでもない場合に拒否する。 | tooling_runtime | lint | src/lint/review-evidence.ts:175-180; src/lint/review-evidence.ts:277-283 |
+| `RE01-084` | doctorはPLAN・sessionへ結合できないログや、guardが黙って通過した異常をfindingとして扱う。 | evidence_claim | doctor | docs/governance/helix-harness-requirements_v1.2.md:1272-1278 |
+| `RE01-096` | MCP profileを変更した担当者はInspectorまたはtools/listによるprobeを実施し、その結果を記録する。 | tooling_runtime | prose／gate | docs/governance/helix-harness-requirements_v1.2.md:1378-1382; docs/governance/helix-harness-requirements_v1.2.md:1430-1434 |
+| `RE01-109` | runtime実装者はAI runtimeをoptionalにし、未導入でもstandaloneの機械検証を利用可能にする。 | tooling_runtime | config | docs/governance/helix-harness-requirements_v1.2.md:1542-1551 |
+| `RE01-121` | adapterはruntimeを検出しただけで実行せず、task-capableと確認された安全なcommandだけを使用する。roundtrip未確認は人間待ちとして記録する。 | tooling_runtime | gate | docs/governance/helix-harness-requirements_v1.2.md:1618-1645 |
+| `RE01-132` | adapter実装者は共有規則のlogicをforkせず、同じ入力に対する機械判定をruntime modeによって変えない。 | tooling_runtime | prose／doctor | docs/governance/helix-harness-requirements_v1.2.md:1916-1918 |
+| `RE01-247` | runtime起動者はhook・sandbox coverageがunsupported、trust drift、または利用不能ならhost fallbackせず停止する。 | safety_security | hook／gate | docs/governance/helix-harness-requirements_v1.3.md:469-469 |
+| `RF01-007` | Agent guardは、Codexのspawn_agent・spawn_agents_on_csvに該当せず、tool_nameが欠落しているかAgent・Task以外である場合、追加検査せず許可する。 | tooling_runtime | hook | src/runtime/agent-guard.ts:97-105; src/runtime/agent-guard.ts:148-157 |
+| `RG13-003` | 運用者はClaude Code／Codexの監視対象user設定を意図して変更した後、verify-guard.sh --rebaseline <file>で比較基線を更新する。 | tooling_runtime | prose | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:38-41; docs/governance/kimi-code-extension-security-audit-2026-08-06.md:192-206 |
+| `RG13-006` | 完全性チェックは監視対象設定ファイルが存在しない場合は検査をスキップし、ファイルが存在して比較基線だけがない場合は現在のSHA-256で基線を初期化する。 | tooling_runtime | prose | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:208-214 |
+| `RG14-005` | spawn guardの保守担当者は、subagent／agent起動に関するruntime surfaceの差分へ継続して追随しなければならない。 | tooling_runtime | prose | docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:85-85 |
+| `RG16-008` | agent定義者は、frontmatterのnameを空白なしのkebab-caseとし、filenameに一致させる。 | tooling_runtime | prose／hook | docs/skills/agent-design.md:33-37; docs/skills/agent-design.md:74-76 |
+| `RG16-010` | 新しいagent roleを追加する担当者は、agent-guard.tsのallowlistを更新してtestし、capability classをこの文書へ記録する。 | tooling_runtime | prose | docs/skills/agent-design.md:52-53; docs/skills/agent-design.md:81-82 |
+| `RG18-005` | 各agentはエスカレーション境界を再列挙せず判断コア§1を参照する。規則の管理者はCLAUDE.mdの「安全境界」と.claude/CLAUDE.mdの「Guard 規則」を同じ境界集合に保つ。 | escalation_authority | prose | docs/skills/judgment-core.md:56-57 |
+| `RG18-015` | reviewerまたはjudge役を変更する担当者は、その変更をeval-suite migration相当として扱い、PLANへ記録する。 | process_gate | prose | docs/skills/judgment-core.md:184-184 |
+
+## 副として対応づいた規則（108件）
+
+`RA-070`、`RA-071`、`RA-077`、`RA-079`、`RA-083`、`RA-084`、`RA-085`、`RA-086`、`RA-087`、`RA-088`、`RA-089`、`RA-090`、`RA-091`、`RA-109`、`RA-129`、`RA-297`、`RB0-171`、`RB0-176`、`RB04-018`、`RB04-279`、`RB05-159`、`RB05-334`、`RB06-056`、`RB06-058`、`RB06-062`、`RB06-090`、`RB06-091`、`RB06-134`、`RB06-183`、`RB06-276`、`RB07-095`、`RB07-129`、`RB07-191`、`RB07-192`、`RB07-306`、`RB08-136`、`RB08-203`、`RC0-003`、`RC0-007`、`RC0-008`、`RC00-026`、`RC00-032`、`RC00-045`、`RC00-127`、`RC00-132`、`RC00-142`、`RC00-143`、`RC00-147`、`RC00-162`、`RC00-166`、`RC00-244`、`RC01-001`、`RC01-002`、`RC01-003`、`RC01-017`、`RC01-046`、`RC01-054`、`RC01-117`、`RC01-122`、`RC03-104`、`RC04-107`、`RD00-003`、`RD00-004`、`RD00-031`、`RD01-007`、`RD02-066`、`RD02-294`、`RD02-295`、`RD03-076`、`RD03-079`、`RD03-082`、`RD03-083`、`RD03-085`、`RD03-087`、`RD03-213`、`RD03-214`、`RD03-227`、`RD03-228`、`RD03-231`、`RD04-083`、`RD04-094`、`RD04-095`、`RD04-134`、`RD09-128`、`RD10-011`、`RD11-001`、`RD11-002`、`RD11-005`、`RD11-034`、`RD11-037`、`RD11-038`、`RD11-041`、`RD11-050`、`RD11-051`、`RD11-055`、`RD11-058`、`RD11-068`、`RE01-094`、`RE01-120`、`RE01-122`、`RE01-185`、`RE01-285`、`RG10-008`、`RG10-020`、`RG10-025`、`RG13-004`、`RG16-009`、`RG18-010`

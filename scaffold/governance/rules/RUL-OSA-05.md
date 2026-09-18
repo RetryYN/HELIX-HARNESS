@@ -1,0 +1,170 @@
+---
+status: scaffold
+authority_effect: none
+generated_by: scaffold/governance/tools/gen_rulebook.py
+source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
+source_candidate_sha256: 1c9891cbf76d7a28a6cf64b75e907e6ddad41c0aac5c9fa0a9196421211407a5
+source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
+source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+rule_id: RUL-OSA-05
+group: OS検収
+product: OS
+atoms_primary: 138
+atoms_secondary: 82
+issue_projection: #1860
+---
+
+# RUL-OSA-05（OS検収／OS）
+
+仮のルール。正本は[要求候補](../../../docs/governance/candidates/legacy-rule-derived-requirements.md)であり、本fileはその機械的な写しである。採否・承認・完了を生成しない。
+
+## 要求
+
+CIの構成を定める。必須checkの集約、変更の種類ごとのfail-close、PR時と定期実行の監査範囲、検査の無効化やskipで違反を隠さない。
+
+## 主として対応づいた規則（138件）
+
+| atom | 規則 | 種類 | 強制 | 出どころ |
+|---|---|---|---|---|
+| `RA-238` | 検証者はLinuxをfull canonical gate、Windows・macOSを同一fixtureのcompatibility gateとし、WSL2を必須にしない。 | process_gate | prose／gate | .claude/CLAUDE.md:236-237 |
+| `RA-239` | 旧CIのharness-checkはtypecheck・Vitest・Biome lint・doctorを実施する。 | process_gate | prose／ci | CLAUDE.md:188-188 |
+| `RA-241` | DevOps担当はPush→Lint→Test→Build→Security Scan→staging deploy→E2E→production deployのpipeline順を設計する。 | process_gate | prose | .claude/agents/devops-deploy.md:33-36 |
+| `RB0-058` | CI担当者はPRでtargeted oracleとcritical gateを実行し、省略分をpost-merge fullとnightlyで回収する。targeted greenをfull greenと称さず、影響不明時はfull検証にする。 | evidence_claim | prose／ci | docs/governance/ddd-tdd-rules.md:117-118 |
+| `RB0-100` | PR admissionはclosure graphのfocusから接続する依存componentを監査し、scheduled/手動runは全採用Issueを監査する。main pushでは全件監査を行わない。 | process_gate | ci | docs/governance/github-issue-hierarchy-rules.md:69-73 |
+| `RB0-156` | 敵対reviewerはbiome-ignoreとts-ignoreにPLANへ結び付いた理由があるか確認し、説明のない抑制をreview failとする。 | review_merge | prose | docs/skills/adversarial-review.md:84-85 |
+| `RB04-003` | CI設計者はubuntu-latestを基準とし、Windows smokeを追加する。 | tooling_runtime | prose | docs/governance/helix-harness-concept_v3.1.md:18-18 |
+| `RB04-104` | CI設計者は全PRのrequired checkをharness-check一本に集約し、内部でbranch type別にfail-close判定し、個別subjobをrequired登録しない。 | review_merge | ci／config | docs/governance/helix-harness-concept_v3.1.md:933-941 |
+| `RB04-105` | hook設計者はローカル検証を小さなself-test・lint・差分検査に限定し、全量テスト・重いV-model検証・回帰確認をPRのCIへ集約する。 | tooling_runtime | prose／hook／ci | docs/governance/helix-harness-concept_v3.1.md:945-945 |
+| `RB04-200` | CIはcoverageが下がるPRを拒否し、全員合意なしのcoverage閾値引下げを禁止する。 | process_gate | ci／prose | docs/governance/ai-dev-team-operations_v1.1.md:643-643; docs/governance/ai-dev-team-operations_v1.1.md:713-713 |
+| `RB04-204` | 自分の変更でtestが失敗した場合はAI修正と再CIで対応し、期待値変更やtest skipで逃げない。 | behavior_discipline | prose | docs/governance/ai-dev-team-operations_v1.1.md:705-705 |
+| `RB05-005` | Document Gateは機能変更PRで該当feature文書が更新されていない場合、PRをブロックする。 | review_merge | gate | docs/governance/audit-framework.md:165-169 |
+| `RB05-031` | PR Gateは機能変更にdocs・code・testsの三点一致を要求し、codeだけ、codeとtestsだけ、codeとdocsだけの変更をブロックする。 | review_merge | gate | docs/governance/audit-framework.md:330-340 |
+| `RB05-038` | GHAはPR変更と全featureのrelated_pathsを照合し、影響する各featureについて個別に三点一致を検証する。 | review_merge | ci | docs/governance/audit-framework.md:411-432 |
+| `RB05-039` | GHAはfeature一覧が空、または変更ファイルがどのfeatureにも対応しない場合、unknownとしてPRをブロックする。 | review_merge | ci | docs/governance/audit-framework.md:433-434 |
+| `RB05-047` | dev-local検査はcommit-msg等の例外を除き警告に留め、執行をCI側で行う。 | tooling_runtime | prose | docs/governance/audit-framework.md:507-512 |
+| `RB05-049` | dev-localは影響featureだけの検査を許すが、CIは全量を検査し、AIレビューも両環境で同じ判定論理と出力形式を使う。 | tooling_runtime | prose／ci | docs/governance/audit-framework.md:515-516 |
+| `RB05-107` | CIはForward合流前の簡易CI、合流後の内部CI、GitHub外部CI・PRの順で進める。 | process_gate | prose／ci | docs/governance/infinity-loop-source-capability-ledger.md:49-49 |
+| `RB05-140` | CIはprejoin成功をSHA・tree・check setへ束縛し、prejoin失敗ではForward合流、postjoin失敗ではPR作成、external失敗ではmergeを拒否する。 | process_gate | ci | docs/governance/infinity-loop-system-assertion-cases.md:35-38 |
+| `RB05-142` | CIはrequired checkの欠落またはneutralなど非green conclusionを成功として数えず、passed receiptを発行しない。 | process_gate | ci | docs/governance/infinity-loop-system-assertion-cases.md:42-44 |
+| `RB05-204` | quarantineはexact fingerprintが一致し期限内でminimum代替gateが成功した既知failureだけに適用し、新failure・不一致・期限切れ・回数上限到達は失敗のままにする。 | process_gate | gate | docs/governance/infinity-loop-system-assertion-cases.md:172-175; docs/governance/infinity-loop-system-assertion-cases.md:178-178; docs/governance/infinity-loop-system-assertion-cases.md:354-354; docs/governance/infinity-loop-system-assertion-cases.md:386-386 |
+| `RB05-205` | quarantine ruleはwildcard・無期限・directory単位・全check対象を禁止し、remediation Issueがなければactive化せず、条件変更時にstale化する。 | process_gate | gate | docs/governance/infinity-loop-system-assertion-cases.md:176-177; docs/governance/infinity-loop-system-assertion-cases.md:427-427 |
+| `RB06-109` | 三段CIは正順かつ直前段receiptとcurrent SHA lineageへ結ばれたgreenだけで次段進行を許可する。 | process_gate | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:46-46; docs/governance/infinity-loop-assertion-coverage-ledger.md:96-96; docs/governance/infinity-loop-assertion-coverage-ledger.md:173-173 |
+| `RB06-113` | quarantine処理はexact fingerprint・期限内・代替gate付きの既知failureだけを隔離し、未知failure、広域指定、無期限、期限切れを拒否して変更時にstale化する。 | process_gate | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:50-50; docs/governance/infinity-loop-assertion-coverage-ledger.md:97-97; docs/governance/infinity-loop-assertion-coverage-ledger.md:174-174 |
+| `RB06-184` | bypass検査はbypassの常態化と残置を拒否する。 | safety_security | prose | docs/governance/infinity-loop-assertion-coverage-ledger.md:196-196 |
+| `RB07-127` | 担当者はlint suppressionを変更前より増やさず、新規biome-ignoreには同じ行でPLAN根拠を付け、ts-ignore・ts-expect-errorをPLANで正当化する。 | behavior_discipline | prose／lint | docs/skills/security-and-hardening.md:70-72 |
+| `RB07-316` | impact CI boundary検証はunit検証へ依存し、global authority検証を直列実行する。 | process_gate | config | config/ci-responsibility-registry.v1.json:69-75; config/ci-responsibility-registry.v1.json:89-97 |
+| `RB08-140` | CI担当者はharness-checkのtypecheck・Biome check・Vitest・doctorを省略せず、push前にnpm run lintを使う。 | process_gate | ci／prose | docs/skills/ci-gate-design.md:31-43 |
+| `RB08-335` | GitHub gate設計者はPR trace検証をaggregate CIの必須stepにし、receiptをlive head/base/merge-baseへ束縛してsynchronizeでstale化する。 | review_merge | prose | docs/governance/github-operations-reference-audit-2026-07-18.md:24-25; docs/governance/github-operations-reference-audit-2026-07-18.md:30-30 |
+| `RB09-015` | CI Verification Planは、required obligationをexact partitionとして扱う。 | process_gate | prose | docs/governance/ci-verification-plan-terminal-fullback-evidence.md:26-26 |
+| `RB09-016` | CI Verification Planは、unknownまたはhigh-riskの場合にfull fallbackを行う。 | process_gate | prose | docs/governance/ci-verification-plan-terminal-fullback-evidence.md:26-26 |
+| `RB09-028` | #1034の担当者は、#1036／#1039のimpact graph成立を入口条件としてImpact CI compositionを進め、終端証拠としてcapability closureとfull fallbackを揃える。 | process_gate | prose | docs/governance/system-synthesis-rollout-roadmap.md:9-18 |
+| `RB09-037` | CI deferred obligationの判定処理は、profile間で結果を相殺してはならない。 | process_gate | prose | docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md:15-15 |
+| `RB09-038` | CI deferred obligationの検証処理は、failed terminal runでoracleが欠落した場合もfail-closeする。 | process_gate | prose | docs/governance/ci-deferred-obligation-recovery-terminal-fullback-evidence.md:15-15 |
+| `RC0-077` | Secret-egress hookは、git commit／push --no-verifyを拒否する。 | safety_security | hook | src/runtime/secret-egress-hook.ts:263-269 |
+| `RC0-133` | Lite CI laneは、required時のbuild・Linux canary・artifact uploadが全成功でない場合、失敗する。省略はauthorized_skipかつclosure_unaffectedの場合だけ認める。 | process_gate | ci | .github/workflows/harness-check.yml:99-127 |
+| `RC0-134` | Windows CI laneは、Lite成功時にdurability smokeが成功しなければ失敗する。Liteがauthorized_skipの場合だけ対応する省略状態を返す。 | process_gate | ci | .github/workflows/harness-check.yml:162-187 |
+| `RC0-135` | Preflight CIは、lint・design-language・repo guard・隔離backend・branch／commit／PR／Issue契約・PLAN・authority・typecheck等のoutcomeを集約commandへ渡し、その終了codeをgate結果にする。各stepのcontinue-on-errorだけでは成功扱いしない。 | process_gate | ci | .github/workflows/harness-check.yml:213-240; .github/workflows/harness-check.yml:518-558 |
+| `RC0-136` | PR CIは、current HEAD independent review admissionのoutcomeがsuccessでない場合、専用enforcement stepで失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:326-407; .github/workflows/harness-check.yml:568-578 |
+| `RC0-140` | Impact CIは、fullを要求しない場合でも、選択されたtest file集合が空なら失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:718-725 |
+| `RC0-141` | Full regression finalizeは、preflight不成功、必要な4 shardの不成功、または計画・inventory・receipt集合のvalidate失敗で不合格にする。 | process_gate | ci | .github/workflows/harness-check.yml:1053-1083 |
+| `RC0-142` | Impact CIは、reuse=trueなのに再利用元の成功run IDがない場合、失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:692-696 |
+| `RC0-143` | Required harness-checkは、Lite・Windows・Fullの各laneについて、job成功と型付き成功状態、またはjob成功とclosure_unaffectedによるauthorized_skipが揃わなければ失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:1113-1147 |
+| `RC00-176` | CI preflight集約は、lint_biomeがsuccessでなければ不合格とし、skipも許可しない。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:253-258 |
+| `RC00-177` | CI preflight集約は、design_languageがsuccessでなければ不合格とし、skipも許可しない。 | doc_language | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:260-265 |
+| `RC00-178` | CI preflight集約は、repo_guard_preflightがsuccessでなければ不合格とし、skipも許可しない。 | safety_security | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:267-272 |
+| `RC00-179` | CI preflight集約は、install_bubblewrapがsuccessでなければ不合格とし、skipも許可しない。 | tooling_runtime | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:274-279 |
+| `RC00-180` | CI preflight集約は、real_bubblewrapがsuccessでなければ不合格とする。ただし導入checkが未成功の場合だけ依存失敗を理由とするskipを認める。 | tooling_runtime | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:281-291 |
+| `RC00-181` | CI preflight集約は、branch_type_matrixがsuccessでなければ不合格とし、skipも許可しない。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:293-298 |
+| `RC00-182` | CI preflight集約は、branch_kind_checkがsuccessでなければ不合格とし、skipも許可しない。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:300-305 |
+| `RC00-183` | CI preflight集約は、commitlintがsuccessでなければ不合格とし、skipも許可しない。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:307-312 |
+| `RC00-184` | CI preflight集約は、poc_no_merge_guardの失敗・不明を不合格とし、main宛てpoc/ PRの場合はskipも拒否する。 | review_merge | ci／gate | src/runtime/preflight-gate-aggregation.ts:111-120; src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:222-241 |
+| `RC00-185` | CI preflight集約は、hotfix_postmortem_requiredの失敗・不明を不合格とし、main宛てhotfix/ PRの場合はskipも拒否する。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:122-130; src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:222-241 |
+| `RC00-186` | CI preflight集約は、issue_closure_contractの失敗・不明を不合格とし、pull_requestではskipも拒否する。 | review_merge | ci／gate | src/runtime/preflight-gate-aggregation.ts:132-138; src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:222-241 |
+| `RC00-187` | CI preflight集約は、issue_dependency_contractの失敗・不明を不合格とし、pull_requestではskipも拒否する。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:139-145; src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:222-241 |
+| `RC00-188` | CI preflight集約は、repository全体のIssue依存契約checkの失敗・不明を不合格とし、scheduleまたはworkflow_dispatchではskipも拒否する。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:147-153; src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:222-241 |
+| `RC00-189` | CI preflight集約は、plan_lintがsuccessでなければ不合格とし、skipも許可しない。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:319-319 |
+| `RC00-190` | CI preflight集約は、post_merge_planがsuccessでなければ不合格とする。ただしplan_lint未成功の場合だけ依存失敗によるskipを認める。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:320-326 |
+| `RC00-191` | CI preflight集約は、l12_authorityがsuccessでなければ不合格とし、skipも許可しない。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:328-333 |
+| `RC00-192` | CI preflight集約は、typecheckがsuccessでなければ不合格とし、skipも許可しない。 | process_gate | ci／gate | src/runtime/preflight-gate-aggregation.ts:178-196; src/runtime/preflight-gate-aggregation.ts:335-340 |
+| `RC01-100` | coding-rulesは、検査対象コードに@ts-ignore・@ts-expect-error・eslint-disable・biome-ignoreの文字列がある場合、不合格にする。 | behavior_discipline | lint | src/lint/coding-rules.ts:250-256; src/lint/coding-rules.ts:574-581 |
+| `RC02-149` | consumer doctorのconsumer-ci-workflow checkは、harness-check workflowのconsumer CI契約検査が不合格の場合に失敗する。 | safety_security | doctor | src/doctor/index.ts:6320-6326 |
+| `RC02-150` | consumer doctorのconsumer-escalation-workflow checkは、escalation-stale workflowのconsumer契約検査が不合格の場合に失敗する。 | safety_security | doctor | src/doctor/index.ts:6328-6334 |
+| `RC04-234` | Lite CI selectorは、選択処理が失敗した場合、skipせずrequiredにする。 | process_gate | ci | .github/workflows/harness-check.yml:63-68 |
+| `RC04-235` | Lite CIは、authorized_skipのskip codeがclosure_unaffectedでなければ失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:99-106 |
+| `RC04-236` | Lite laneは、正規skip、またはrequired時のbuild・Linux canary・uploadすべての成功が無ければ失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:108-126 |
+| `RC04-237` | Windows laneは、Liteの正規skip、またはLite成功とWindows smoke成功が揃わなければ失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:169-186 |
+| `RC04-238` | CIは、Biome lintをpreflight checkとして実行し、そのoutcomeを集約判定へ渡す。 | process_gate | ci／lint | .github/workflows/harness-check.yml:213-216; .github/workflows/harness-check.yml:518-558 |
+| `RC04-239` | CIは、design-language doctor gateをpreflightで実行し、そのoutcomeを集約判定へ渡す。 | doc_language | ci／doctor | .github/workflows/harness-check.yml:218-221; .github/workflows/harness-check.yml:518-558 |
+| `RC04-240` | CIは、repo-wide guard preflightの結果を集約判定へ渡す。 | process_gate | ci | .github/workflows/harness-check.yml:223-226; .github/workflows/harness-check.yml:518-558 |
+| `RC04-242` | CIは、branch-kind checkをstrict-unknown-prefix付きで実行し、その結果をpreflight集約へ渡す。 | process_gate | ci | .github/workflows/harness-check.yml:276-291; .github/workflows/harness-check.yml:518-558 |
+| `RC04-243` | CIは、PRではmerge-baseからPR HEAD、pushではbeforeからHEAD等の対象範囲にcommitlintを実行して集約する。 | behavior_discipline | ci／lint | .github/workflows/harness-check.yml:293-312; .github/workflows/harness-check.yml:518-558 |
+| `RC04-245` | CIは、poc/からmainへのPRにpoc-no-merge-guardを実行し、結果をpreflight集約へ渡す。 | review_merge | ci | .github/workflows/harness-check.yml:409-418; .github/workflows/harness-check.yml:518-558 |
+| `RC04-246` | CIは、hotfix/からmainへのPRにpostmortem必須guardを実行し、結果をpreflight集約へ渡す。 | process_gate | ci | .github/workflows/harness-check.yml:420-429; .github/workflows/harness-check.yml:518-558 |
+| `RC04-247` | CIは、PRのworkflow identity admissionとIssue closure契約をchanged paths・closure graph付きで検査して集約する。 | review_merge | ci | .github/workflows/harness-check.yml:431-462; .github/workflows/harness-check.yml:518-558 |
+| `RC04-249` | CIは、PRに関係するIssue集合のdependency auditを実行してpreflight集約へ渡す。 | process_gate | ci | .github/workflows/harness-check.yml:471-482; .github/workflows/harness-check.yml:518-558 |
+| `RC04-250` | CIは、scheduleまたはworkflow_dispatchでは参照PLAN必須のrepository全体Issue dependency auditを実行して集約する。 | process_gate | ci | .github/workflows/harness-check.yml:484-494; .github/workflows/harness-check.yml:518-558 |
+| `RC04-251` | CIは、PLAN governance lintを実行し、その結果をpreflight集約へ渡す。 | process_gate | ci／lint | .github/workflows/harness-check.yml:496-499; .github/workflows/harness-check.yml:518-558 |
+| `RC04-252` | CIは、PLAN governance lint成功時にpost-merge-status lintを実行し、その結果を集約する。 | process_gate | ci／lint | .github/workflows/harness-check.yml:501-505; .github/workflows/harness-check.yml:518-558 |
+| `RC04-253` | CIは、L1〜L12 canonical authority drift gateの指定試験群を実行し、その結果を集約する。 | process_gate | ci | .github/workflows/harness-check.yml:507-511; .github/workflows/harness-check.yml:518-558 |
+| `RC04-254` | CIは、TypeScript typecheck結果をpreflight集約へ渡す。 | tooling_runtime | ci | .github/workflows/harness-check.yml:513-516; .github/workflows/harness-check.yml:518-558 |
+| `RC04-255` | CIは、独立preflight gate集約器の終了statusをそのままstep終了に反映する。 | process_gate | ci | .github/workflows/harness-check.yml:543-558 |
+| `RC04-257` | Impact CIは、PRのchanged paths取得に失敗すれば停止する。非PRの場合は空path一覧で後続判定へ進む。 | process_gate | ci | .github/workflows/harness-check.yml:619-625 |
+| `RC04-261` | CIは、known-lowの選択test一覧が空なら失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:718-724 |
+| `RC04-263` | full regression最終化は、preflightがsuccess以外なら失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:1062-1064 |
+| `RC04-264` | full regression最終化は、full必須かつ再利用なしの場合、全4shardの成功とexact receipt集合検証の成功を要求する。 | evidence_claim | ci | .github/workflows/harness-check.yml:1065-1076 |
+| `RC04-265` | full regression最終化は、DB再構築とgovernance doctorを成功させてからlane successを出力する。 | process_gate | ci／doctor | .github/workflows/harness-check.yml:1091-1111 |
+| `RC04-266` | 最終harness-checkは、Lite・Windows・Full各laneがsuccess:success:noneまたはsuccess:authorized_skip:closure_unaffected以外なら失敗する。 | process_gate | ci | .github/workflows/harness-check.yml:1130-1147 |
+| `RC04-281` | Issue metadata監査CIは、stale閾値48時間でlive metadataを検査し、監査command失敗をjob失敗にする。 | process_gate | ci | .github/workflows/issue-metadata-audit.yml:31-38 |
+| `RC04-283` | escalation監査CIは、status・completion decision-packet・review-bundle・toolchain doctorの各commandが失敗した場合、後続の通常stepへ進まない。 | process_gate | ci | .github/workflows/escalation-stale.yml:17-24 |
+| `RD00-067` | CI schedulerは、検証が自分より後順位のobligation classへ依存している場合、失敗判定にする。 | process_gate | ci | src/runtime/ci-critical-path-scheduler.ts:129-134; src/runtime/ci-critical-path-scheduler.ts:253-266 |
+| `RD00-078` | CI schedulerは、localまたはboundary失敗時の未開始キャンセル候補を、heavyなglobal_invariantまたはrelease_onlyの検証に限定する。 | process_gate | ci | src/runtime/ci-critical-path-scheduler.ts:476-485; src/runtime/ci-critical-path-scheduler.ts:499-503 |
+| `RD00-085` | 延期義務の照合は、最初のterminal runのprofileがassignmentのtarget profileと異なる場合、失敗判定にする。 | process_gate | ci | src/runtime/ci-deferred-obligation-recovery.ts:256-262 |
+| `RD00-089` | 延期義務の照合は、terminal runがcancelledの場合、recovery_cancelledとして失敗判定にする。 | process_gate | ci | src/runtime/ci-deferred-obligation-recovery.ts:286-291 |
+| `RD00-092` | 延期義務の照合は、quarantineの対象assignment・owner・代替oracle・期限が不正、または期限切れの場合、失敗判定にする。 | process_gate | ci | src/runtime/ci-deferred-obligation-recovery.ts:325-339 |
+| `RD00-102` | CI責務registry検証は、defer targetが重複する、またはrelease_only capabilityにrelease targetがない場合、失敗する。 | process_gate | ci | src/runtime/ci-responsibility-registry.ts:241-251 |
+| `RD00-114` | CI検証計画は、義務導出で返されたregistry違反を計画の失敗へ引き継ぐ。 | process_gate | ci | src/runtime/ci-verification-plan.ts:153-155; src/runtime/ci-verification-plan.ts:243-248 |
+| `RD00-115` | CI検証計画は、変更testまたは互換入力で選択されたcapabilityがactiveでない場合、失敗する。 | process_gate | ci | src/runtime/ci-verification-plan.ts:257-267 |
+| `RD00-116` | CI検証計画は、未登録risk signalを受けた場合、失敗を記録するとともにunknown_identityとして全active capabilityを選択する。 | process_gate | ci | src/runtime/ci-verification-plan.ts:269-283 |
+| `RD00-117` | CI検証計画は、登録済みfull fallback理由または導出中のunknown nodeがある場合、全active capabilityを選択する。 | process_gate | ci | src/runtime/ci-verification-plan.ts:128-139; src/runtime/ci-verification-plan.ts:269-283 |
+| `RD00-119` | CI検証計画は、required obligationが選択済み依存closureに含まれない場合、失敗する。 | process_gate | ci | src/runtime/ci-verification-plan.ts:291-295 |
+| `RD00-121` | CI検証計画は、延期assignmentのcapabilityが選択closureにない場合、失敗する。 | process_gate | ci | src/runtime/ci-verification-plan.ts:304-306 |
+| `RD00-122` | CI検証計画は、capabilityが許可していない延期targetを指定した場合、そのassignmentを拒否する。 | escalation_authority | ci | src/runtime/ci-verification-plan.ts:307-317 |
+| `RD00-127` | CI検証計画は、release_candidate以外の実行でrelease_only義務に延期assignmentがない場合、失敗する。 | process_gate | ci | src/runtime/ci-verification-plan.ts:356-363 |
+| `RD00-128` | CI検証計画は、即時実行のcapabilityが延期capabilityに依存する場合、失敗する。 | process_gate | ci | src/runtime/ci-verification-plan.ts:368-376 |
+| `RD00-252` | PR収束処理は、required checkが空集合、またはいずれかのbucketがpass以外の場合、greenと判定しない。 | review_merge | gate | src/runtime/claude-pr-convergence.ts:401-403 |
+| `RD01-186` | 回帰shard生成処理は、inventoryにCLI surface testがなければ失敗する。 | process_gate | gate | src/runtime/full-regression-shards.ts:104-104 |
+| `RD01-187` | 回帰shard処理は、空のshardを拒否する。 | process_gate | gate | src/runtime/full-regression-shards.ts:116-118; src/runtime/full-regression-shards.ts:183-183 |
+| `RD01-197` | 回帰shard検証は、stateful kindのIDがstatefulでない、またはCLI surface testを含まない場合に失敗する。 | process_gate | gate | src/runtime/full-regression-shards.ts:190-193 |
+| `RD01-198` | 回帰shard検証は、stateful shardにCLI surface testとtests/slow配下以外のpathが含まれる場合に失敗する。 | process_gate | gate | src/runtime/full-regression-shards.ts:194-198 |
+| `RD01-199` | 回帰shard検証は、bulk側にCLI surface testまたはtests/slow配下のpathが含まれる場合に失敗する。 | process_gate | gate | src/runtime/full-regression-shards.ts:199-203 |
+| `RD01-314` | Lite canary selectorは、PRイベント以外、main、またはrelease-candidate系列ではcanary省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:301-308; src/runtime/impact-ci.ts:338-349 |
+| `RD01-315` | Lite canary selectorは、PR refまたは変更statusが不正、あるいはselector不確実フラグがある場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:253-280; src/runtime/impact-ci.ts:309-310; src/runtime/impact-ci.ts:315-317; src/runtime/impact-ci.ts:325-325 |
+| `RD01-316` | Lite canary selectorは、観測変更pathがartifactまたはclosure pathに接触する場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:289-295; src/runtime/impact-ci.ts:312-314 |
+| `RD01-317` | Lite canary selectorは、変更statusが削除を示す場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:315-318 |
+| `RD01-318` | Lite canary selectorは、変更statusがrenameを示す場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:315-319 |
+| `RD01-319` | Lite canary selectorは、生成依存path集合に含まれるファイルが変わった場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:101-111; src/runtime/impact-ci.ts:321-323 |
+| `RD01-320` | Lite canary selectorは、manifest path集合に含まれるファイルが変わった場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:93-99; src/runtime/impact-ci.ts:324-324 |
+| `RD01-321` | Lite canary selectorは、path読取失敗がある場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:326-326 |
+| `RD01-323` | Lite canary selectorは、fast profile checkが失敗した場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:334-334 |
+| `RD01-324` | Lite canary selectorは、fast manifest checkが失敗した場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:335-335 |
+| `RD01-325` | Lite canary selectorは、fast closure checkが失敗した場合に省略を許可しない。 | process_gate | ci | src/runtime/impact-ci.ts:336-336 |
+| `RD01-334` | impact判定処理は、draft_preflight以外のprofileでは全inventoryを検証対象にする。 | process_gate | ci | src/runtime/impact-ci.ts:432-440 |
+| `RD01-335` | impact判定処理は、高risk pathの変更があれば全inventoryを検証対象にする。 | process_gate | ci | src/runtime/impact-ci.ts:184-193; src/runtime/impact-ci.ts:393-398; src/runtime/impact-ci.ts:431-440 |
+| `RD01-336` | impact判定処理は、変更pathの関係が未解決でinventory selectorにも一致しない場合、全inventoryを検証対象にする。 | process_gate | ci | src/runtime/impact-ci.ts:426-440 |
+| `RD01-337` | impact判定処理は、選択された検証が0件の場合、全inventoryへfallbackする。 | process_gate | ci | src/runtime/impact-ci.ts:433-440 |
+| `RD01-338` | impact判定処理は、forceFullAdmission=trueの場合、全inventoryを検証対象にする。 | process_gate | ci | src/runtime/impact-ci.ts:434-440 |
+| `RD02-267` | repo-wide guard runnerは、vitestの終了statusを自身の終了コードとし、statusを取得できなければ1で失敗する。 | process_gate | gate | src/runtime/repo-wide-guard-runner.ts:71-79 |
+| `RD03-023` | secret egress hookは、git commitまたはgit pushに--no-verifyが指定されたcommandを拒否する。 | safety_security | hook | src/runtime/secret-egress-hook.ts:263-268 |
+| `RE01-065` | pre-pushはP0のtrace違反や規定されたdirty treeを検出した場合にpushを止める。 | process_gate | hook | docs/governance/helix-harness-requirements_v1.2.md:1064-1073 |
+| `RE01-068` | CI設計者はrequired checkを単一の集約結果へ収束させ、非該当sub-jobのskipを正しく扱う。ローカルの早期検査をfull CIの代わりにしてはならない。 | process_gate | ci／config | docs/governance/helix-harness-requirements_v1.2.md:1111-1135; docs/governance/helix-harness-requirements_v1.2.md:1462-1474 |
+| `RE01-105` | CI担当者はmerge単位のPR検証とpost-merge/nightlyの右腕検証を分け、設計pairの検査を理由なく実装gateへ吸収してはならない。 | process_gate | ci | docs/governance/helix-harness-requirements_v1.2.md:1455-1474 |
+| `RE01-106` | CI設定者はrequired workflowにon.pathsによる永久pendingを生じさせず、複数jobを集約するjobを常に実行する。 | tooling_runtime | ci／config | docs/governance/helix-harness-requirements_v1.2.md:1462-1474 |
+| `RE01-107` | CI設定者は非mainの重複runをcancelできるがmainはcancelせず、Draftでは重い検査を省略し、Merge Queueは導入しない。 | tooling_runtime | config／ci | docs/governance/helix-harness-requirements_v1.2.md:1462-1474 |
+| `RE01-130` | branch検証器は未知のbranch種別と必須PLANの欠如を拒否し、警告を無条件bypassの手段にしてはならない。 | process_gate | hook／lint／ci | docs/governance/helix-harness-requirements_v1.2.md:1857-1881 |
+| `RE01-266` | CI設計者は外部PR向け対象検査とfull post-merge/nightlyを使い分け、根拠なくgateを弱めない。 | process_gate | ci／gate | docs/governance/helix-harness-requirements_v1.3.md:525-531 |
+| `RG16-018` | 画面検証担当者は、開始時にhelix review --uncommittedでlintとtypecheckの失敗が残っていないことを確認する。 | process_gate | prose | docs/skills/browser-testing-and-screen-verification.md:34-40 |
+| `RG18-003` | 実装者は根拠なしに// biome-ignoreでformatting ruleを抑制してはならない。 | behavior_discipline | prose | docs/skills/incremental-implementation.md:104-105 |
+
+## 副として対応づいた規則（82件）
+
+`RA-165`、`RB0-027`、`RB04-099`、`RB04-107`、`RB04-110`、`RB04-188`、`RB04-208`、`RB04-225`、`RB04-252`、`RB04-279`、`RB04-280`、`RB05-010`、`RB05-037`、`RB05-048`、`RB05-141`、`RB06-032`、`RB06-036`、`RB06-038`、`RB07-163`、`RB07-198`、`RB07-229`、`RB07-255`、`RB07-261`、`RB07-278`、`RB07-315`、`RB07-335`、`RB08-092`、`RB08-143`、`RB08-194`、`RB08-278`、`RB08-334`、`RB08-338`、`RB09-017`、`RB09-036`、`RB09-062`、`RC0-137`、`RC0-138`、`RC0-139`、`RC00-193`、`RC01-193`、`RC02-062`、`RC04-244`、`RC04-248`、`RC04-256`、`RC04-258`、`RC04-259`、`RC04-260`、`RC04-262`、`RD00-064`、`RD00-065`、`RD00-066`、`RD00-083`、`RD00-093`、`RD00-106`、`RD00-107`、`RD00-118`、`RD00-129`、`RD00-130`、`RD00-140`、`RD00-193`、`RD00-312`、`RD00-317`、`RD01-192`、`RD01-194`、`RD01-202`、`RD01-210`、`RD01-283`、`RD01-322`、`RD01-331`、`RD01-339`、`RD01-344`、`RD01-345`、`RD02-078`、`RD09-080`、`RD09-081`、`RE01-006`、`RE01-128`、`RE01-131`、`RG14-015`、`RG16-019`、`RG17-003`、`RG17-008`
