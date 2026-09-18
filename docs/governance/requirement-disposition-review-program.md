@@ -1,6 +1,6 @@
 # 全要求の要否・再配置review program
 
-status: l2d_s1_01_decision_ready_not_approved
+status: l2d_s1_01_input_denominator_incomplete_not_decision_ready
 program_id: RDP-001
 owner: HELIX-OS management
 authority_effect: none
