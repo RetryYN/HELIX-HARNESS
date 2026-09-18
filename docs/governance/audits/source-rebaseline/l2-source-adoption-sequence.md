@@ -45,7 +45,9 @@ S1–S4の採否が進んでも、正式なL3、設計、実装、CIはすぐに
 |---|---|---|---|---|
 | L2D-S0-01 | [`scaffold-binding`](../../candidates/scaffold-binding-requirements.md) | HARNESS／HELIX-OS | 候補起草済み・未承認・L2本文未接続 | 仮の物の使用条件、保持する役割と義務、仮の検証と正式な検証の分離、置換時の無損失確認、撤去。HARNESSの規範とOSの登録・隔離実行・lifecycleへのsplit案 |
 
-S0の採否はScaffoldのschema、runtime、仮CI、adapterを実装・起動する許可ではない。`L2D-S0-01`は2026-09-17の
+S0の採否はScaffoldの正式なschema、runtime、CI、adapterを実装・起動する許可ではない。候補の内容を先に確かめる仮組みは
+`scaffold/`名前空間に置き、自身をScaffold Binding `SCF-B-0001`として候補のrevisionへ束縛している。これは仮の物であり、
+S0の採否とも正式実装とも別である。`L2D-S0-01`は2026-09-17の
 無損失ベースラインと候補31系列の後に追加した新規系列であり、旧要求の母集団件数を変更しない。
 `L2D-S0-01`と`L2D-S1-01`は互いの判断を前提にしない。「S1の前」は節の並びとPOが先に判断したい意向を示すもので、
 `L2D-S1-01`の判断を止める条件ではない。`L2D-S1-01`の人間判断を待つ間にS0で行えるのは、候補の起草、review、

@@ -60,10 +60,11 @@ Concept v4.1と4対象L1のexact revisionは2026-09-17のdecision recordで承�
 - 承認済みConcept／対象別L1を親とするL2／L11候補の起草、静的なID・参照・責務整合確認、個別採否準備。
 - exact revisionのremote syncと、明示的に許可されたGitHub review通路での意味review。
 - GitHub PRを共有・review surfaceとして使うこと。
+- `scaffold/`名前空間での仮組み。仮の物は必ずScaffold Bindingへ登録し、`python3 scaffold/tools/scfctl.py validate`に合格させる（[scaffold/README.md](../../scaffold/README.md)）。仮組みは正式な設計・実装・CIではなく、その動作や検査の合格から採否・承認・完了を生成しない。
 
 ## 現在停止する作業
 
-- L3以降の設計・実装、新世代CIの実装・起動、release、deployment。
+- L3以降の正式な設計・実装、新世代CIの実装・起動、release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。
 - 旧CI、旧runtime、旧hook、旧test、旧AI promptの実行またはfallback。
 - reviewer名だけを根拠にしたCLI、API、IDE、Worker、GitHub Appの起動。
 - PR、Issue、CI、DB、memory、会話からの要求採否・人間承認・受入の生成。

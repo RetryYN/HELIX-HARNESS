@@ -5,6 +5,7 @@ authority_status: awaiting_human_approval
 authority_effect: none
 created: 2026-09-18
 updated: 2026-09-18
+scaffold_binding: SCF-B-0001（scaffold/bindings/SCF-B-0001.json。仮組み。正式実装ではない）
 product_targets:
   - HELIX-HARNESS
   - HELIX-OS
@@ -34,7 +35,10 @@ related_projection:
 2. 仮の物が動いても、正式な設計・実装・検証・受入が成立したことにしない。
 3. 正式な物ができたら、役割・接続・検査がすべて移ったことを確認してから仮の物を外す。
 
-本候補は要求整理だけを行う。schema、runtime、仮CI、runner、DB、hook、adapterを実装・起動しない。
+本候補は要求整理を行う。正式なschema、runtime、CI、runner、DB、hook、adapterは実装・起動しない。
+本候補の内容を先に確かめるための仮組みは、`scaffold/`名前空間に置き、それ自体を1件のScaffold Bindingとして本候補の
+revisionへ束縛する（[scaffold/README.md](../../../scaffold/README.md)、`SCF-B-0001`、差し替え台帳Issue #1866）。
+仮組みは正式な物ではなく、本候補が変われば`stale`になり、正式な実装が入れば同じ手順で置換・撤去する。
 
 ## なぜ要るか
 
@@ -115,7 +119,7 @@ L2／L11本文は`L2D-S1-01`の判断packetがexact digestで参照している�
 ## 現在の停止条件
 
 - 本候補の記載で、HARNESS／HELIX-OSのL2合意や人間承認を成立させない。
-- Scaffoldのschema、runtime、仮CI、runner、DB、hook、adapterを実装・起動しない。
+- Scaffoldの正式なschema、runtime、CI、runner、DB、hook、adapterを実装・起動しない。`scaffold/`の仮組みは正式な物ではなく、その存在と自己検査の合格から本候補の採否や実装完了を生成しない。
 - 旧CI、旧runtime、旧DB、旧hookを仮設の名義で復活させない。
 - Scaffoldの導入を理由に、Concept→L1→L2／L11→L3／L10の順序を飛ばさない。
 - Issue #1847の状態、label、closeから、本候補の採否・完了を生成しない。

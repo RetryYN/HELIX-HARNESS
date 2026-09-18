@@ -1,0 +1,74 @@
+{
+ "case": "10-detect-residual-after-replacement",
+ "l11": "置換完了後にScaffoldを1件残し、残留として検出する",
+ "requirements": [
+  "SCF-OS-006"
+ ],
+ "command": "residuals",
+ "expect": "fail",
+ "expect_codes": [
+  "置換確認済みだが未撤去"
+ ],
+ "binding": {
+  "schema_revision": 1,
+  "id": "SCF-B-0900",
+  "kind": "scaffold",
+  "title": "例",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS 管理",
+  "state": "replacing",
+  "reason": "正式な物が未成立",
+  "upstream": [
+   {
+    "path": "docs/x.md",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+   }
+  ],
+  "role": "役割X",
+  "obligations": [
+   "義務1"
+  ],
+  "connections": {
+   "consumers": [
+    "consumer1"
+   ],
+   "dependencies": [],
+   "boundary": "scaffold/"
+  },
+  "operations": {
+   "allowed": [],
+   "forbidden": [
+    "scaffold/外への書き込み"
+   ]
+  },
+  "artifacts": [
+   "scaffold/x"
+  ],
+  "verification": {
+   "evidence_kind": "scaffold",
+   "scope": [
+    "negative_case"
+   ],
+   "oracles": [
+    "oracle1"
+   ],
+   "negative_cases": [
+    "neg1"
+   ]
+  },
+  "replacement": {
+   "role_target": "正式の役割X",
+   "formal_artifacts": [
+    "src/os/scaffold.py"
+   ],
+   "issue": 1,
+   "status": "confirmed",
+   "transfer": null,
+   "target_revisions": {},
+   "confirmation_ref": null,
+   "confirmation_digest": null
+  },
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
+ }
+}

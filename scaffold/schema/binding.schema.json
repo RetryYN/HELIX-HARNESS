@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "helix://scaffold/binding/1",
+  "title": "Scaffold Binding（仮組み版）",
+  "description": "仮の物が、何の役割を、何の代わりに、いつまで担うかの記録。schema_revision=1。検査はscaffold/tools/scfctl.pyが標準libraryだけで行い、この文書はその検査の形式的な写しである。",
+  "type": "object",
+  "required": ["schema_revision", "id", "kind", "title", "product", "owner_candidate", "state", "reason", "upstream", "role", "obligations", "connections", "operations", "artifacts", "verification", "replacement", "created", "updated"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_revision": {"const": 1},
+    "id": {"type": "string", "pattern": "^SCF-B-[0-9]{4}$"},
+    "kind": {"const": "scaffold", "description": "poc／research／featureは別identity。ここでは受け付けない（SCF-HARNESS-006）"},
+    "title": {"type": "string", "minLength": 1},
+    "product": {"enum": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]},
+    "owner_candidate": {"type": "string", "minLength": 1, "description": "責務owner候補。1つだけ。二重ownerは別bindingとして表せない（SCF-OS-002）"},
+    "state": {"enum": ["registered", "active", "stale", "conflict", "orphan", "replacing", "retired"]},
+    "reason": {"type": "string", "minLength": 1, "description": "正式な物が未成立である事実と、仮の物を置く理由（SCF-HARNESS-001）"},
+    "upstream": {
+      "type": "array", "minItems": 1,
+      "items": {"type": "object", "required": ["path", "sha256"], "additionalProperties": false,
+        "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "note": {"type": "string"}}}
+    },
+    "role": {"type": "string", "minLength": 1, "description": "担う役割。同じroleを2つの非退役bindingが持つとconflict"},
+    "obligations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "connections": {
+      "type": "object", "required": ["consumers", "dependencies", "boundary"], "additionalProperties": false,
+      "properties": {
+        "consumers": {"type": "array", "items": {"type": "string"}},
+        "dependencies": {"type": "array", "items": {"type": "string"}},
+        "boundary": {"type": "string", "minLength": 1}
+      }
+    },
+    "operations": {
+      "type": "object", "required": ["allowed", "forbidden"], "additionalProperties": false,
+      "properties": {"allowed": {"type": "array", "items": {"type": "string"}}, "forbidden": {"type": "array", "minItems": 1, "items": {"type": "string"}}}
+    },
+    "artifacts": {"type": "array", "minItems": 1, "items": {"type": "string", "description": "repository相対path。archive/legacy-generation-*配下は不可（SCF-OS-003）"}},
+    "verification": {
+      "type": "object", "required": ["evidence_kind", "scope", "oracles", "negative_cases"], "additionalProperties": false,
+      "properties": {
+        "evidence_kind": {"const": "scaffold"},
+        "scope": {"type": "array", "minItems": 1, "items": {"enum": ["schema_interface", "deterministic_behavior", "stub_adapter_connection", "source_revision_stale", "negative_case", "forbidden_write_scope"]}},
+        "oracles": {"type": "array", "items": {"type": "string"}},
+        "negative_cases": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "replacement": {
+      "type": "object", "required": ["role_target", "formal_artifacts", "issue", "status"], "additionalProperties": false,
+      "properties": {
+        "role_target": {"type": ["string", "null"], "description": "正式な物が担うべき役割。nullのbindingはactiveにできない（SCF-OS-001）"},
+        "formal_artifacts": {"type": "array", "items": {"type": "string"}, "description": "正式artifactのpath。未決なら空でよい"},
+        "issue": {"type": ["integer", "null"], "description": "差し替え台帳IssueのGitHub番号（projection）。nullは不合格"},
+        "status": {"enum": ["pending", "in_progress", "confirmed"]},
+        "transfer": {
+          "type": ["object", "null"],
+          "description": "置換時の対応表。keyは置換元の各項目、valueは正式側の対応先（SCF-HARNESS-005）",
+          "required": ["role", "obligations", "consumers", "oracles", "negative_cases"], "additionalProperties": false,
+          "properties": {
+            "role": {"type": "string"},
+            "obligations": {"type": "object", "additionalProperties": {"type": "string"}},
+            "consumers": {"type": "object", "additionalProperties": {"type": "string"}},
+            "oracles": {"type": "object", "additionalProperties": {"type": ["string", "object"]}},
+            "negative_cases": {"type": "object", "additionalProperties": {"type": "string"}}
+          }
+        },
+        "target_revisions": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "description": "formal_artifactsのsha256。check-replacement時の対象revision（SCF-OS-004）"},
+        "confirmation_ref": {"type": ["string", "null"], "description": "check-replacement --recordが書いたevidence/のpath"},
+        "confirmation_digest": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "overlap_reason": {"type": "string", "description": "同じroleを別bindingと共有する根拠。無ければconflict"},
+    "created": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "updated": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "retired": {"type": "object", "additionalProperties": false, "properties": {"at": {"type": "string"}, "confirmation_ref": {"type": "string"}, "read_after_digest": {"type": "string"}}}
+  }
+}
