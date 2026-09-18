@@ -6,7 +6,7 @@ decision_unit: L2D-S1-01
 authority_effect: none
 proposed_disposition: split
 supersedes: `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet.md`
-supersedes_sha256: `9c18c0831f57ab93dc7bec3dffcbd5ec57f396167a584e073790fa7c9641d294`（`base_repository_revision`時点のv1。本PRはv1のheaderに3行を足すため、適用後のv1のdigestはこれと異なる）
+supersedes_sha256: `9c18c0831f57ab93dc7bec3dffcbd5ec57f396167a584e073790fa7c9641d294`（`base_repository_revision`時点のv1。v1のheaderに3行を足したため、適用後のv1のdigestはこれと異なる）
 base_repository_revision: `646893e815ace111dbfa233b6cc375be9ee687d8`
 
 ## なぜ作り直したか
@@ -170,7 +170,7 @@ linkを抱える要求は35件、抱えない要求は3件である（`route_to_
 いずれもこの964件の内訳である。`RB04-053`、`RB06-278`、`RB07-122`、`RB04-157`は`requirement_secondary`に`RUL-OSM-01`を持ち、
 `RB04-160`は`RUL-FRM-02`と`RUL-REL-01`を持つ（`RUL-FRM-02`が`in_scope`であるためlinkとして算入される）。
 
-### S1-01の範囲に追加される意味
+### S1-01の範囲に入る要求と、その本文の分割
 
 | 要求 | atom（screen／全体） | S1-01が取る部分 | S1-01の範囲外に残る部分と行き先 | 処分 |
 |---|---|---|---|---|
@@ -180,7 +180,7 @@ linkを抱える要求は35件、抱えない要求は3件である（`route_to_
 | `RUL-COR-07`（HARNESS／OS） | 6／19 | 指示の原文を**来歴付きで追記のみ**保全すること。設計判断の後継と廃止を管理すること | 成果物と判断への恒久識別子の付与と、改名・移動・分割・統合をしても義務と意味と履歴を保存すること。識別子とtraceability系unitで扱う | in_scope |
 | `RUL-OSM-05`（OS） | 0／102 | 破壊的な操作を既定で拒否し、例外を**理由付き・一回限り**とし監査に残すこと。`RUL-OSM-01`の介入点「取り消せない操作」の実体 | — | in_scope |
 | `RUL-OSM-03`（OS） | 45／76 | providerの記憶を混入させないこと。memoryの**期限と保持**を管理すること | **S1-01の範囲外に出るものは無い。**以下はいずれもS1-01内で担い手が別であることの記載である。memoryと引き継ぎを正本にしない点はAVS-BR-005／AVS-AC-010／011／015が被覆すると見ている（確定は対応表による）。「使う前に正本・履歴・診断と照合する」ことは同じ`in_scope`の`RUL-COR-01`の一般形が持つ | in_scope |
-| `RUL-OSA-07`（OS） | 0／40 | 未分類のlicenseと未解消の重大な指摘を**承認要求へ回す**接続。AVSに同じ意味は無い | 「結果と証拠を対象revisionへ結ぶ」ことは`RUL-COR-02`の一般形が持つ。脅威modelの確認、脆弱性の審査、依存と供給網の検査の本体は安全・検収系unitで扱う | in_scope |
+| `RUL-OSA-07`（OS） | 0／40 | 未分類のlicenseと未解消の重大な指摘を**承認要求へ回す**接続。AVSに同じ意味は無い | **S1-01内で担い手が別のもの**：「結果と証拠を対象revisionへ結ぶ」ことは同じ`in_scope`の`RUL-COR-02`の一般形が持つ（別unitへ送るものではない）。**S1-01の範囲外に出るのは次の点である。**脅威modelの確認、脆弱性の審査、依存と供給網の検査の本体は安全・検収系unitで扱う | in_scope |
 | `RUL-COR-08`（HARNESS／OS） | 11／45 | **正規の検証経路を、別の手軽な手段で代替しない**こと。AVS-AC-003は「指示だけを理由に検証を省略しない」までの隣接領域であり、手軽な手段による代替はAVSに無い | 要約・表示・引き継ぎの意味保存の本体。意味保存・提示の一貫性系unitで扱う（送り先は`l2-source-adoption-sequence.md`のS2以降で確定する） | in_scope |
 | `RUL-OSA-03`（OS） | 7／35 | 指摘の**処分**（current fixで閉じるか後続へ分けるか）。AVS-BR-003の`disposition` identityに具体の意味を与える。審査のstale化は`RUL-COR-02`が一般形で持つため、そちらを参照する | blockerの一括返却と再判定の一巡規則。検収系unit（`RUL-OSA-01`の送り先）で扱う | in_scope |
 | `RUL-COR-01`（HARNESS／OS） | 55／166 | **DB・projection・生成物**の全般を第二の正本にしないこと。「作業者は状態DBへ直接書かない」こと | memoryとIssue commentを正本にしない部分はAVS-BR-005／AVS-AC-004／010が、「会話を第二の正本にしない」ことはAVS-BR-001が被覆すると見ている（確定はいずれも対応表による。**AVS側はS1-01内の担い手であり、S1-01から落ちる部分ではない**）。S1-01の範囲外に出るのは次の1点である。DB schemaとidentityの実現方式はL3で再導出する（v1が繰り延べた領域。本要求が取るのは「直接書かない」という規律であり、schemaの決定ではない） | in_scope |
