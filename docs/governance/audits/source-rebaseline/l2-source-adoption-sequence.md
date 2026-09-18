@@ -78,7 +78,7 @@ S1のauthorityと状態語彙を参照して、HARNESSの工程条件とOS実行
 | Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
 |---|---|---|---|---|
 | L2D-S2-01 | `next-generation-ci-requirements` | HARNESS／HELIX-OS | L2接続済み | verification obligationとCI profile運転の分離。実装は行わない |
-| L2D-S2-02 | `execution-ticket` | HELIX-OS | L2接続済み | Worker assignment、scope、budget、evidence、replay |
+| L2D-S2-02 | `execution-ticket` | HELIX-OS | L2接続済み | Worker assignment、scope、budget、evidence、replay。2026-09-18追加のWBS台帳要求候補（[wbs-ledger-requirements](../../candidates/wbs-ledger-requirements.md)）を同じ判断単位で扱う |
 | L2D-S2-03 | `conversation-lifetime-reconstruction` | HELIX-OS | L2接続済み | 外部authorityからの再構成、累積制約、停止 |
 | L2D-S2-04 | `harness-memory-coordination-boundary` | HELIX-OS | L2接続済み | memoryを有期限通知とpointerへ限定 |
 | L2D-S2-05 | `producer-provenance-separation` | HELIX-OS | L2接続済み | producer、committer、publisher、reviewerの分離 |
