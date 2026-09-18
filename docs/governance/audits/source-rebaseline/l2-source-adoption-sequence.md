@@ -18,7 +18,7 @@ S1へ入る前の管理分類登録第1層では、旧Requirement IR 153件す�
 HELIX-Web、HELIX-Web-OS、製品間接続、分割要の候補を登録し、独立reviewとmain read-afterを完了した。
 このproduct routing候補をsuccessor確定または要求承認として扱わない。`L2D-S1-01`は
 [人間判断packet v2](l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に判断材料を集めたが、
-生存中13 source holdingのうち11件が未評価であり、まだ人間判断へ送れない。v1は`MPR-SH-LEGACY-RULE-004`を計上して
+生存中13 source holdingのうち11件が未評価であり、まだ人間判断へ送れない。第2独立review（2026-09-19）により、評価済みとした57要求の側でも5件の処分を改め、`in_scope`は12要求1,540 atomになった。v1は`MPR-SH-LEGACY-RULE-004`を計上して
 いないため`superseded_by_v2`である。
 人間判断まではL2／L11本文へ適用せず、S1–S4の次のdecision unitへ進めない。2026-09-18に追加したS0はこの直列の外にあり、下記S0節の範囲で並行に扱う。
 [第1層完了監査](product-routing-completion-and-l2-entry-2026-09-17.md)をこの遷移のread-afterとする。
@@ -64,7 +64,7 @@ S1–S4の直列について引き続き有効であり、今回の差分はそ�
 
 | Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
 |---|---|---|---|---|
-| L2D-S1-01 | `authority-vocabulary` | HARNESS／HELIX-OS | 判断packet v2作成済み・**未送付**（生存中13 holdingのうち11件が未評価。v1はsuperseded） | request、approval、decision、通知、技術判断の区別。人間の介入点の限定列挙と定義所有、AI自走と質問前の自己解決、人間承認層とAI進行層の分担、指示原文の来歴保全、破壊的操作の既定拒否と例外の監査、providerの記憶の混入禁止とmemoryの期限・保持。HARNESSの規範とOSの記録・執行へのsplit案 |
+| L2D-S1-01 | `authority-vocabulary` | HARNESS／HELIX-OS | 判断packet v2作成済み・**未送付**（生存中13 holdingのうち11件が未評価。v1はsuperseded） | request、approval、decision、通知、技術判断の区別。人間の介入点の限定列挙と定義所有、AI自走と質問前の自己解決、人間承認層とAI進行層の分担、指示原文の来歴保全、破壊的操作の既定拒否と例外の監査、providerの記憶の混入禁止とmemoryの期限・保持、正規の検証経路を手軽な手段で代替しないこと、指摘の処分と審査のstale、成果物と判断全般のrevision束縛、DB・projection・生成物を第二の正本にしないこと、GitHubの状態一般から要求・承認を作らないこと。HARNESSの規範とOSの記録・執行へのsplit案 |
 | L2D-S1-02 | `requirement-formation-scoped-admission` | HARNESS／HELIX-OS | L2接続済み | 根拠付き要求形成、scopeを限定した再確定 |
 | L2D-S1-03 | `design-grounding-human-convergence` | HARNESS／HELIX-OS | L2接続済み | 客観根拠、人間反応、未解決finding、収束の区別 |
 | L2D-S1-04 | `requirements-authority-materialization` | HELIX-OS | 再採否待ち | repo-owned意味authority、一方向projection、状態分離。旧JSON-only／Issue admissionは棄却 |
