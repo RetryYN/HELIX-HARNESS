@@ -15,6 +15,7 @@ derived_from:
 related_projection:
   - "GitHub Issue #1805（推進機構が駆動tag・workflow・typed ticketを生成する）"
   - "GitHub Issue #1813（全要求の要否・再配置review program）"
+  - "GitHub Issue #1802／#1803（Design Template意味コアと版管理。将来の接続先の作業projection）"
 ---
 
 # 要求からの作業分解（WBS）台帳の管理層要求候補
@@ -85,7 +86,7 @@ related_projection:
 本候補はこの接続を要求にしない。接続先が採否されたあとに、別の要求候補として扱う。
 
 - 取り込み：Tech Web Crawler（`HELIXOS-L2-012`）が外部の分解事例を「観測事実、出典、版、license、適用条件」付きで返す。リサーチの規範（`RUL-RSH-01`）に従い、成熟度・依存risk・licenseを確かめてから採否する。observationをauthorityへ昇格しない。
-- 蓄積：Design Template（Issue #1802／#1803）の一種として、作業分解のtemplateを版・適用履歴・利用結果付きで持つ。改善はOS改善（`RUL-OSI-02`）が回す。
+- 蓄積：[HARNESS設計template system要求候補](design-template-system-requirements.md)（未承認）の一種として、作業分解のtemplateを版・適用履歴・利用結果付きで持つ（版の管理は`RUL-OSI-02`）。利用結果と指摘から改善候補へ戻す還流は`RUL-OSI-01`が回す。
 - 利用：推進が作業graphを生成するとき（`WBS-OS-007`）に、変更の種類とproductに合うtemplateを候補として提示する。
 - 境界：licenseと出典が無い外部パターンを取り込まない。学習結果から要求・設計・作業を自動採用しない。
 
