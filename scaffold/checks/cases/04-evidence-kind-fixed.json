@@ -1,0 +1,73 @@
+{
+ "case": "04-evidence-kind-fixed",
+ "l11": "仮実装だけがある要求をimplemented／verifiedと表示しない：bindingの証拠種別をscaffold以外（formal_ci等）にできない",
+ "requirements": [
+  "SCF-HARNESS-003",
+  "SCF-HARNESS-004"
+ ],
+ "command": "validate",
+ "expect": "fail",
+ "expect_codes": [
+  "E_EVIDENCE"
+ ],
+ "binding": {
+  "schema_revision": 1,
+  "id": "SCF-B-0900",
+  "kind": "scaffold",
+  "title": "例",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS 管理",
+  "state": "active",
+  "reason": "正式な物が未成立",
+  "upstream": [
+   {
+    "path": "docs/x.md",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+   }
+  ],
+  "role": "役割X",
+  "obligations": [
+   "義務1"
+  ],
+  "connections": {
+   "consumers": [
+    "consumer1"
+   ],
+   "dependencies": [],
+   "boundary": "scaffold/"
+  },
+  "operations": {
+   "allowed": [],
+   "forbidden": [
+    "scaffold/外への書き込み"
+   ]
+  },
+  "artifacts": [
+   "scaffold/x"
+  ],
+  "verification": {
+   "evidence_kind": "formal_ci",
+   "scope": [
+    "negative_case"
+   ],
+   "oracles": [
+    "oracle1"
+   ],
+   "negative_cases": [
+    "neg1"
+   ]
+  },
+  "replacement": {
+   "role_target": "正式の役割X",
+   "formal_artifacts": [],
+   "issue": 1,
+   "status": "pending",
+   "transfer": null,
+   "target_revisions": {},
+   "confirmation_ref": null,
+   "confirmation_digest": null
+  },
+  "created": "2026-09-18",
+  "updated": "2026-09-18"
+ }
+}

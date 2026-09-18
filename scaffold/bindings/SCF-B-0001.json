@@ -1,0 +1,100 @@
+{
+ "schema_revision": 1,
+ "id": "SCF-B-0001",
+ "kind": "scaffold",
+ "title": "Scaffold Binding台帳と検査tool（この機構自身）",
+ "product": "HELIX-OS",
+ "owner_candidate": "HELIX-OS 管理（Scaffold Bindingの登録とlifecycle）",
+ "state": "active",
+ "reason": "HELIX-OSのScaffold Binding lifecycle（SCF-OS-001〜007）の正式な設計・実装はL3／L10未着手で未成立。その間、仮の物の役割・上流・置換先を記録し機械で検査する役割を、scaffold/配下の仮組みが担う。",
+ "upstream": [
+  {
+   "path": "docs/governance/candidates/scaffold-binding-requirements.md",
+   "sha256": "c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb",
+   "note": "SCF-HARNESS-001〜006、SCF-OS-001〜007、L11受入候補"
+  },
+  {
+   "path": "docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md",
+   "sha256": "1fa013124d212725936cb3dda202b93689287005e329caae3824df9d11f6442b",
+   "note": "L2D-S0-01 scaffold-binding"
+  }
+ ],
+ "role": "Scaffold Bindingの登録・検査・置換確認・撤去遷移・残留検出",
+ "obligations": [
+  "上流と役割を持たないbindingを拒否する（SCF-HARNESS-001／002）",
+  "置換先の役割が未特定のbindingを有効にしない（SCF-OS-001）",
+  "registered／active／stale／conflict／orphan／replacing／retiredを区別する（SCF-OS-002）",
+  "旧世代archiveを指すartifact・依存・操作を拒否する（SCF-OS-003）",
+  "置換の無損失（役割・義務・consumer・oracle・negative case）と対象revision一致を確認する（SCF-HARNESS-005、SCF-OS-004）",
+  "置換確認とread-afterが揃うまで撤去を拒否する（SCF-OS-005）",
+  "置換完了後の残留と差し替え未完を一覧する（SCF-OS-006）",
+  "要求・設計・承認・受入・工程完了をどこにも書かない（SCF-OS-007）",
+  "検証の証拠種別をscaffoldに固定し、implemented／verified／CI greenを生成しない（SCF-HARNESS-003／004）"
+ ],
+ "connections": {
+  "consumers": [
+   "scaffold/に仮の物を置くPRの作成側（bindingを登録しvalidateを貼る）",
+   "正式実装を入れるPRの作成側（check-replacement／retireを実行する）",
+   "差し替え台帳Issue（residualsの出力を写す）"
+  ],
+  "dependencies": [
+   "python3 標準library"
+  ],
+  "boundary": "scaffold/配下のみ読み書きする。docs/、.github/、archive/には書かない。archive/は読まない。"
+ },
+ "operations": {
+  "allowed": [
+   "python3 scaffold/tools/scfctl.py validate|list|stale|residuals|check-replacement|retire|selftest"
+  ],
+  "forbidden": [
+   "archive/legacy-generation-*配下の実行・読込",
+   "GitHub workflowの追加",
+   "scaffold/外への書き込み",
+   "要求・設計・承認・受入・完了の生成",
+   "正式CIの証拠保存先への書き込み"
+  ]
+ },
+ "artifacts": [
+  "scaffold/README.md",
+  "scaffold/schema/binding.schema.json",
+  "scaffold/tools/scfctl.py",
+  "scaffold/checks/cases",
+  "scaffold/evidence/selftest.json"
+ ],
+ "verification": {
+  "evidence_kind": "scaffold",
+  "scope": [
+   "schema_interface",
+   "deterministic_behavior",
+   "source_revision_stale",
+   "negative_case",
+   "forbidden_write_scope"
+  ],
+  "oracles": [
+   "scaffold/checks/cases（L11受入候補の写し）"
+  ],
+  "negative_cases": [
+   "上流なし／役割なしの登録拒否",
+   "置換先役割未特定のactive拒否",
+   "旧archive参照の拒否",
+   "未移管1件での置換完了拒否",
+   "revision不一致での置換完了拒否",
+   "確認前・read-after不一致での撤去拒否",
+   "残留・二重役割の検出",
+   "poc／research identityの拒否",
+   "承認・受入の生成入力の拒否"
+  ]
+ },
+ "replacement": {
+  "role_target": "HELIX-OSのScaffold Binding lifecycle（登録、revision、owner、状態、証拠、置換・撤去）の正式実装。L3／L10から導出する",
+  "formal_artifacts": [],
+  "issue": 1866,
+  "status": "pending",
+  "transfer": null,
+  "target_revisions": {},
+  "confirmation_ref": null,
+  "confirmation_digest": null
+ },
+ "created": "2026-09-18",
+ "updated": "2026-09-18"
+}

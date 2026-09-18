@@ -15,7 +15,7 @@
 - 新世代CIは未構築である。旧CIを動かさない。
 - reviewer名や「reviewを通す」という依頼から実行通路を推定しない。GitHub、CLI、API、IDE、Workerの各通路は明示許可が必要である。
 - PR作成・修正側はreview依頼と指摘対応までを担い、merge、post-merge read-after、対応Issueのcloseを実行しない。exact HEADのreviewを完了し、merge／close通路を明示許可されたレビュー対応側が、merge admission確認後にmergeとcloseを行う。この責務割当は通路の明示許可を代替しない。
-- 未承認、missing、unknown、conflict、staleでは下流実装へ進まない。
+- 未承認、missing、unknown、conflict、staleでは下流実装へ進まない。仮の物は`scaffold/`名前空間に限り、Scaffold Bindingへ登録して置く。正式な物が入ったら`scfctl check-replacement`→`retire`で置換・撤去し、残留を残さない。
 - secrets、PII、credentialsを書かない。不可逆操作、外部公開、release、deploymentは対象と作用を明示した許可を要する。
 
 ## 編集と検証
