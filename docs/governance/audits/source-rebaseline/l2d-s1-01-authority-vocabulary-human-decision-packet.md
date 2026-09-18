@@ -1,7 +1,9 @@
-# L2D-S1-01 authority語彙分離 人間判断packet
+# L2D-S1-01 authority語彙分離 人間判断packet（v1、superseded）
 
 prepared_at: 2026-09-17
-status: decision_ready_not_approved
+status: superseded_by_v2
+superseded_by: `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md`
+superseded_reason: 本packetの入力分母は旧AVS 3文書だけであり、2026-09-18に成立したsource holding `MPR-SH-LEGACY-RULE-004`（規則atom 7,622件）とRDP-002 clusterを計上していない。本packetのまま承認しない。計上した意味（AVSのL1 atom 6件、L3 atom 20件、L10 oracle 20件）はv2でも生存する。
 decision_unit: L2D-S1-01
 authority_effect: none
 proposed_disposition: split
