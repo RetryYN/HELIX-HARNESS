@@ -212,6 +212,8 @@ def check_stale(b, digests=None):
 def check_replacement(b, fs=True, digests=None):
     """SCF-HARNESS-005／SCF-OS-004: 置換の無損失確認。digestsを与えるとfile systemの代わりに使う（selftest用）。"""
     if digests is not None:
+        if fs is False:
+            raise ValueError("fs=False と digests の同時指定はできない")
         fs = True
     e = []
     r = b["replacement"]
@@ -428,7 +430,7 @@ def cmd_selftest(args):
                 errs += e1
         elif cmd == "check-replacement":
             errs = check_shape(target)
-            if not errs: errs = check_replacement(target, fs=False, digests=dg)[0]
+            if not errs: errs = (check_replacement(target, digests=dg) if dg is not None else check_replacement(target, fs=False))[0]
         elif cmd == "residuals":
             errs = ["R: %s" % m for _, m in residuals(bs, fs=False)]
         elif cmd == "stale":
