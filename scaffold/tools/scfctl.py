@@ -145,8 +145,10 @@ def check_shape(b):
     return e
 
 
-def check_rules(b, all_bindings, fs=True):
-    """形式以外の規則。fs=Falseはselftest用にfile systemを見ない。"""
+def check_rules(b, all_bindings, fs=True, digests=None):
+    """形式以外の規則。fs=Falseはfile systemを見ない。digestsを与えると、その集合を「存在するfile」として使う（selftest用）。"""
+    if digests is not None:
+        fs = True
     e = []
     r = b["replacement"]
     # SCF-OS-003: 旧資産を仮設名義で使わない。binding全体を走査し、禁止事項の列挙（operations.forbidden）だけ除く
@@ -167,10 +169,11 @@ def check_rules(b, all_bindings, fs=True):
         e.append("E_ACTIVATE: 置換先の役割が未特定のbindingは有効にできない（登録だけ。SCF-OS-001）")
     # SCF-OS-002: orphan
     if fs:
+        exists = (lambda pth: pth in digests) if digests is not None else (lambda pth: os.path.isfile(os.path.join(ROOT, pth)))
         for u in b["upstream"]:
-            if not os.path.isfile(os.path.join(ROOT, u["path"])):
+            if not exists(u["path"]):
                 e.append("E_ORPHAN: 上流が存在しない %s（SCF-OS-002）" % u["path"])
-        if b["state"] != "retired":
+        if b["state"] != "retired" and digests is None:
             for a in b["artifacts"]:
                 if not os.path.exists(os.path.join(ROOT, a)):
                     e.append("E_ARTIFACT: 仮artifactが存在しない %s" % a)
@@ -280,11 +283,10 @@ def residuals(bindings, fs=True):
 # ---------- 記録 ----------
 def evidence_payload(name, payload):
     """記録の置き場と内容を決める。置き場は scaffold/evidence/ 直下だけ。証拠種別と authority_effect は必ず付く。"""
+    # 記録名は単純なfile名だけ。path区切り・親参照を含む名前を拒否することで、scaffold/evidence/ の外へ出られない
     if os.sep in name or "/" in name or name in ("", ".", ".."):
-        raise ValueError("E_EVIDENCE: 記録名にpathを含められない %r" % name)
-    p = os.path.normpath(os.path.join(EVIDENCE, name))
-    if os.path.dirname(p) != os.path.normpath(EVIDENCE):
-        raise ValueError("E_EVIDENCE: scaffold/evidence/ の外へは書かない %r" % name)
+        raise ValueError("E_EVIDENCE: 記録名にpathを含められない（scaffold/evidence/ の外へは書かない） %r" % name)
+    p = os.path.join(EVIDENCE, name)
     payload = dict(payload, evidence_kind="scaffold", authority_effect="none",
                    note="仮の検証の記録。正式なCI／検証／受入の成立を意味しない")
     return p, payload
@@ -430,7 +432,8 @@ def cmd_selftest(args):
         elif cmd == "stale":
             errs = ["E_STALE: %s -> %s" % (pth, cur) for pth, cur in check_stale(target, dg or {})]
         elif cmd == "orphan":
-            errs = ["E_ORPHAN: 上流が存在しない %s（SCF-OS-002）" % u["path"] for u in target["upstream"] if (dg or {}).get(u["path"]) is None]
+            errs = check_shape(target)
+            if not errs: errs = check_rules(target, bs, digests=dg or {})
         elif cmd == "retire-precheck":
             errs = []
             if target["state"] != "replacing": errs.append("E_RETIRE: state=replacing からだけ撤去できる")
@@ -463,6 +466,14 @@ def cmd_selftest(args):
         print("%s %s  %s" % ("ok  " if ok else "NG  ", os.path.basename(cp), c.get("l11", "")))
         if not ok:
             for x in errs: print("      " + x)
+    # 記録済みの selftest.json が現行toolと一致しているか（toolを変えたのに記録を更新し忘れた状態を検出する）
+    rec_path = os.path.join(EVIDENCE, "selftest.json")
+    if os.path.isfile(rec_path) and not args.record:
+        with open(rec_path, encoding="utf-8") as f: old = json.load(f)
+        cur = sha256_file(os.path.relpath(os.path.abspath(__file__), ROOT))
+        if old.get("tool_sha256") != cur or old.get("cases") != len(cases):
+            fails += 1
+            print("NG   evidence/selftest.json が現行toolまたはcase数と一致しない（selftest --record で更新する）")
     print("cases=%d fail=%d" % (len(cases), fails))
     if args.record:
         rel, dig = evidence_record("selftest.json", {

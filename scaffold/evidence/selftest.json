@@ -493,7 +493,7 @@
    "got": "fail",
    "l11": "scaffold/evidence/ の外（正式な検証結果の保存先など）へ仮の証拠を書こうとし、拒否する",
    "messages": [
-    "E_EVIDENCE: 記録名にpathを含められない '../../.github/ci-results.json'"
+    "E_EVIDENCE: 記録名にpathを含められない（scaffold/evidence/ の外へは書かない） '../../.github/ci-results.json'"
    ],
    "ok": true,
    "requirements": [
@@ -502,5 +502,5 @@
    ]
   }
  ],
- "tool_sha256": "4adbb36f8d0568c0f3ea607bdb8be6d2931a73d170d22891d19ecc62efdbef24"
+ "tool_sha256": "ce7436f3e2b69c38565796cb1b9a037a358dbb03c9fcd4645a516ff7a13c0bb2"
 }
