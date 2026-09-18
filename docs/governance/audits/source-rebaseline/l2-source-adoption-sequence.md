@@ -44,6 +44,7 @@ S1–S4の採否が進んでも、正式なL3、設計、実装、CIはすぐに
 | Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
 |---|---|---|---|---|
 | L2D-S0-01 | [`scaffold-binding`](../../candidates/scaffold-binding-requirements.md) | HARNESS／HELIX-OS | 候補起草済み・未承認・L2本文未接続 | 仮の物の使用条件、保持する役割と義務、仮の検証と正式な検証の分離、置換時の無損失確認、撤去。HARNESSの規範とOSの登録・隔離実行・lifecycleへのsplit案 |
+| L2D-S0-02 | [`wbs-ledger`](../../candidates/wbs-ledger-requirements.md) | HELIX-OS／HARNESS | 候補起草済み・未承認・L2本文未接続 | 要求からの作業分解を管理層の台帳として所有する条件。管理＝登録・整合・統制、推進＝分解と開発方式選定、検収＝独立確認、HARNESS＝作業単位の形の規範。`L2D-S2-02`は関連系列 |
 
 S0の採否はScaffoldの正式なschema、runtime、CI、adapterを実装・起動する許可ではない。候補の内容を先に確かめる仮組みは
 `scaffold/`名前空間に置き、自身をScaffold Binding `SCF-B-0001`として候補のrevisionへ束縛している。これは仮の物であり、
@@ -122,6 +123,6 @@ S4の完了前にpackage identity、価格、契約、release、配布、旧資�
 
 ## 完了条件
 
-S1–S4の29 decision unitと、2026-09-18に追加したS0の1 decision unitすべてについて、判断対象revision、target、親L1、L2 ID、L11条件、採否、未解決事項が記録され、
+S1–S4の29 decision unitと、2026-09-18に追加したS0の2 decision unit（`scaffold-binding`、`wbs-ledger`）すべてについて、判断対象revision、target、親L1、L2 ID、L11条件、採否、未解決事項が記録され、
 対象別L2本文と一致したときにsource採否を閉じる。候補31系列の残る1系列`helix-concept-v4`は
-上位のConcept／L1人間判断packetで扱うため、本書のS1–S4の29 unitには重複算入しない。S0の`scaffold-binding`は候補31系列の外にある新規系列である。
+上位のConcept／L1人間判断packetで扱うため、本書のS1–S4の29 unitには重複算入しない。S0の`scaffold-binding`と`wbs-ledger`は候補31系列の外にある新規系列である。`wbs-ledger`は`L2D-S0-01`の判断を前提にしない（そのパイロットの仮組み手順だけが`L2D-S0-01`の承認を待つ）。
