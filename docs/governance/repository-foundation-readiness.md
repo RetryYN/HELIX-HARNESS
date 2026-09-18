@@ -49,7 +49,7 @@ structural headings    pending headings=317, identity-linked headings=21, total=
 delegated documents    semantic closure=117, file blobs=114, line-held=3, semantic edges=265, sha256 exact=114, atomized=0, successor=0, decision=0
 scrum reverse lines     documents=3, total=300, source text/digest exact=300, register digest exact=1
 delegated references   records=788, exact=788, targets=241, closure targets=117, classification-pending targets=124
-management holdings    register revisions=29, live source holdings=13（2026-09-18 MPR-SH-LEGACY-RULE-001 追加）
+management holdings    register revisions=30, live source holdings=13
 ```
 
 archive manifestはpathが旧repository root相対なので、`archive/legacy-generation-2026-09-14/root/`を検証起点にして`../MANIFEST.sha256`を読む。archive直下を起点にすると`root/`を欠いた誤ったmissing判定になる。

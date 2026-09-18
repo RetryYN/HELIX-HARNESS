@@ -66,8 +66,8 @@ PR merge、Issue作成・close、review、CI、文書ファイルの存在だけ
 
 ## bootstrap source holding
 
-現registerは28 revisionを持ち、既に全量照合済みの十二のsource集合を十二の生存中
-`registered_source_holding`として保持する。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した
+現registerは30 revisionを持ち、十三のsource集合を十三の生存中`registered_source_holding`として保持する。
+このうち十二は既に全量照合済みである。十三番目（`MPR-SH-LEGACY-RULE-001`）は旧HELIXのAI向け指示・運用文書・機械強制codeから抽出した規則atom 7,113件で、対象file 632件のうち二巡目を読ませたのは219件であり、全量照合済みではなく「発見済み」の集合として保持する。atomの要求への対応づけは候補であり、holdingの保全対象は原文と出どころだけである。初回6 revisionのactor帰属と、続く7 revisionの記録時点は、原行を残した
 訂正revisionで置換した。九つ目は監査基準からarchive隔離直前までにblobが変わった333 pathの基準revisionと隔離revisionを
 両方保持し、意味同値を未確認のまま残す。`MPR-SH-PREISOLATION-002`は要求・検証source 2件のcategoryを訂正し、bytesと
 意味状態は変えない。十番目は旧v1.3の直接委任22文書から意味frontmatter relation 265 edgeを再帰的に辿った117文書の

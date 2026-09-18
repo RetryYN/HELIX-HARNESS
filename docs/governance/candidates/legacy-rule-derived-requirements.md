@@ -7,7 +7,6 @@ created: 2026-09-18
 product_targets:
   - HELIX-HARNESS
   - HELIX-OS
-source_holding: MPR-SH-LEGACY-RULE-001
 ---
 
 # 旧HELIXのルール群から導いた要求候補
@@ -16,7 +15,7 @@ source_holding: MPR-SH-LEGACY-RULE-001
 
 旧HELIXには、AIと人がどう動くか、機械が何を拒否するかを定めたルールが大量にあった。AI向けの指示書、運用の方針文書、そしてコードに埋め込まれた検査である。新世代は旧要求153件の意味を引き継いだが、これらのルールは引き継いでいなかった。その結果、新世代のsessionでAIが素の既定動作へ戻り、何でも確認を求める、reviewが何周もする、統合を判断できない、という実害が出た（Issue #1864）。
 
-本書は、旧HELIXのルールの対象fileを全件読ませて7113件の規則（atom）にし、それを57本の要求候補へ束ねたものである。旧hook、旧script、旧test、旧runtimeは1つも実行していない。旧実装は引き継がず、意味だけを引き継ぐ。
+本書は、旧HELIXのルールの対象file 632件を一巡目で読ませ、うち219件に二巡目を行って7113件の規則（atom）にし、それを57本の要求候補へ束ねたものである。旧hook、旧script、旧test、旧runtimeは1つも実行していない。旧実装は引き継がず、意味だけを引き継ぐ。
 
 本書は要求の候補であり、採用・承認・完了を生成しない。規則atom 7,113件は管理層の`source_holding`（`MPR-SH-LEGACY-RULE-001`）として仮登録し、台帳のdigestで固定している。各atomの要求への対応づけは候補であり、確信度は出どころ（強い）、atomの存在（強い）、要求候補57本（有望）、各atomの所属（候補。標本で1割前後の置き違いを見込む）の順に下がる。57本の一括採否は行わず、システム群ごとに既存L2・旧要求との関係（重複・包含・依存・接続）を付けてから対象別L2へ流す。現行のAGENTS.md、CLAUDE.md、hook、設定を書き換えない。
 
@@ -29,7 +28,7 @@ source_holding: MPR-SH-LEGACY-RULE-001
 | AI向けの指示 | `AGENTS.md`、`CLAUDE.md`、`.claude/`（CLAUDE.md、agents、commands、hooks、settings）、`.codex/`、`.helix/`の定義 | 370 |
 | 運用の文書 | `docs/governance/`直下、`docs/skills/`、`config/`のうち規則を含む文書 | 1951 |
 | 機械による強制 | `src/runtime`、`src/lint`、`src/doctor`、`src/policy`、`src/team`、`src/gate`、`src/guardrail`、`src/security`、`src/orchestration`、`src/workflow`、`config/`、`.github/` | 4269 |
-| 再点検で追加（E／F／G系列） | 未読の残り、標本で漏れが見つかった系統、全fileの二巡目 | 523 |
+| 再点検で追加（E／F／G系列） | 未読の残り、標本で漏れが見つかった系統、二巡目実施分（219 file） | 523 |
 | 計 | 533 file | 7113 |
 
 対象file全632件（`.helix/`は定義file 2件だけを対象に含めた。test、plans、design、要求文書は除外）の内訳は次のとおりである。[出どころfile一覧](../legacy-rule-atom-source-files.jsonl)は対象file全件を`status`（`atoms`／`no_rule_declared`／`no_declaration`）と`second_pass`（二巡目を読ませたか）付きで持ち、この表はそこから機械集計している。
@@ -60,7 +59,7 @@ source_holding: MPR-SH-LEGACY-RULE-001
 
 まだ確かめられていないこと。
 
-- 抽出の全件性。1つのmodel系統が読んで申告した結果である。二巡目の標本（24 file）では一巡目の取りこぼしが約2割あり、二巡目後も取りこぼしは残りうる。「全件洗い出した」ではなく「対象file全件を二度読ませた」と読む。
+- 抽出の全件性。1つのmodel系統が読んで申告した結果である。二巡目の標本（24 file）では一巡目の取りこぼしが約2割あり、二巡目後も取りこぼしは残りうる。「全件洗い出した」ではなく「対象file全件を一度読ませ、219件だけ二度読ませた」と読む。
 - 対応づけの正しさ。無作為に22件を読んだところ、明らかに別の要求が適切なものが2件あった。全体でも1割前後の置き違いがあると見込む。要求の文には影響しないが、要求ごとの件数は概数として読む。
 - 「旧実装に固有」とした34件は再判定済みだが、その除外理由の妥当性は個別にreviewされていない。
 - 本書の要求と、既存のL2・既存の要求候補（新世代CI、AI可読文書、旧資産退役、Scaffold等）との重複と包含。後続で関係を付ける。
