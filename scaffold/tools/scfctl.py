@@ -148,6 +148,8 @@ def check_shape(b):
 def check_rules(b, all_bindings, fs=True, digests=None):
     """形式以外の規則。fs=Falseはfile systemを見ない。digestsを与えると、その集合を「存在するfile」として使う（selftest用）。"""
     if digests is not None:
+        if fs is False:
+            raise ValueError("fs=False と digests の同時指定はできない（digestsを与えたら存在判定はdigestsで行う）")
         fs = True
     e = []
     r = b["replacement"]
@@ -210,6 +212,8 @@ def check_stale(b, digests=None):
 def check_replacement(b, fs=True, digests=None):
     """SCF-HARNESS-005／SCF-OS-004: 置換の無損失確認。digestsを与えるとfile systemの代わりに使う（selftest用）。"""
     if digests is not None:
+        if fs is False:
+            raise ValueError("fs=False と digests の同時指定はできない")
         fs = True
     e = []
     r = b["replacement"]
@@ -426,7 +430,7 @@ def cmd_selftest(args):
                 errs += e1
         elif cmd == "check-replacement":
             errs = check_shape(target)
-            if not errs: errs = check_replacement(target, fs=False, digests=dg)[0]
+            if not errs: errs = (check_replacement(target, digests=dg) if dg is not None else check_replacement(target, fs=False))[0]
         elif cmd == "residuals":
             errs = ["R: %s" % m for _, m in residuals(bs, fs=False)]
         elif cmd == "stale":
@@ -468,17 +472,22 @@ def cmd_selftest(args):
             for x in errs: print("      " + x)
     # 記録済みの selftest.json が現行toolと一致しているか（toolを変えたのに記録を更新し忘れた状態を検出する）
     rec_path = os.path.join(EVIDENCE, "selftest.json")
-    if os.path.isfile(rec_path) and not args.record:
-        with open(rec_path, encoding="utf-8") as f: old = json.load(f)
-        cur = sha256_file(os.path.relpath(os.path.abspath(__file__), ROOT))
-        if old.get("tool_sha256") != cur or old.get("cases") != len(cases):
+    cases_digest = sha256_obj({os.path.basename(cp): sha256_file(os.path.relpath(cp, ROOT)) for cp in cases})
+    if not args.record:
+        if not os.path.isfile(rec_path):
             fails += 1
-            print("NG   evidence/selftest.json が現行toolまたはcase数と一致しない（selftest --record で更新する）")
+            print("NG   evidence/selftest.json が無い（selftest --record で作る）")
+        else:
+            with open(rec_path, encoding="utf-8") as f: old = json.load(f)
+            cur = sha256_file(os.path.relpath(os.path.abspath(__file__), ROOT))
+            if old.get("tool_sha256") != cur or old.get("cases") != len(cases) or old.get("cases_sha256") != cases_digest:
+                fails += 1
+                print("NG   evidence/selftest.json が現行tool・case集合と一致しない（selftest --record で更新する）")
     print("cases=%d fail=%d" % (len(cases), fails))
     if args.record:
         rel, dig = evidence_record("selftest.json", {
             "checked_at": datetime.date.today().isoformat(), "cases": len(cases), "fail": fails, "results": results,
-            "tool_sha256": sha256_file(os.path.relpath(os.path.abspath(__file__), ROOT))})
+            "tool_sha256": sha256_file(os.path.relpath(os.path.abspath(__file__), ROOT)), "cases_sha256": cases_digest})
         print("recorded %s %s" % (rel, dig))
     return 1 if fails else 0
 
