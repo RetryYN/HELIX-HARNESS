@@ -153,7 +153,8 @@ linkを抱える要求は35件、抱えない要求は3件である（`route_to_
 実例として、第2独立reviewが指摘した`RUL-OSP-01`の`RB04-160`（人間は作る内容・動作確認・リリースを判断する）、
 `RUL-TKT-03`の`RB04-053`（保留findingのcarryにPM承認を要する）、`RUL-TKT-01`の`RB06-278`（archived遷移に人間承認を要する）、
 `RUL-FRM-09`の`RB07-122`（PO承認なしに特定の依存参照を使わない）、`RUL-OSI-03`の`RB04-157`（運用ルール変更にTL・QA承認を要する）は、
-いずれも`requirement_secondary`に`RUL-OSM-01`を持つatomであり、この966件の内訳である。
+いずれもこの966件の内訳である。`RB04-053`、`RB06-278`、`RB07-122`、`RB04-157`は`requirement_secondary`に`RUL-OSM-01`を持ち、
+`RB04-160`は`RUL-FRM-02`と`RUL-REL-01`を持つ（`RUL-FRM-02`が`in_scope`であるためlinkとして算入される）。
 
 ### S1-01の範囲に追加される意味
 
