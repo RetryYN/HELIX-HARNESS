@@ -75,10 +75,11 @@ related_projection:
 本要求候補自身を、次の順で流す。要求候補が「管理層に入り、開発方式が選ばれ、要件定義へ降りる」経路を、この1件で通す。
 
 1. 管理層取込：本書を候補として置き、上流authority registerに登録する（本PR）。
-2. 開発方式選定：変更の種類は「新規」、正式なL3が止まっている間は`scaffold/`の仮組み（PoC相当）として成立性を確かめる。仮組みはScaffold Bindingに登録し、上流を本書と`RUL-TKT-*`のrevisionに束縛する。`L2D-S0-01 scaffold-binding`が人間判断で承認されるまで、この手順へ進めない。
-3. 要件定義：仮組みで確かめた入出力を、`HELIXOS-L2`本文への要求（要求の粒度 unit／connection／composite）として要求PRで接続する。
+2. 開発方式選定：変更の種類は「新規」。台帳の形が成立するかを確かめる必要があるなら、それはPoCの作業であり、PoC ticketを別identityで発行する。PoCの成果物をそのままScaffoldにしない。
+3. 仮設束縛：正式なL3が止まっている間も役割と接続を保持する必要がある部分だけを、`scaffold/`の仮組みとしてScaffold Bindingに登録し、上流を本書と`RUL-TKT-*`のrevisionに束縛する。PoCの成果物を使う場合は、PoCのidentityを保ったまま関係としてbindingへ接続する（`SCF-HARNESS-006`）。`L2D-S0-01 scaffold-binding`が人間判断で承認されるまで、この手順へ進めない。
+4. 要件定義：手順2・3で確かめた入出力を、`HELIXOS-L2`本文への要求（要求の粒度 unit／connection／composite）として要求PRで接続する。
 
-各段階は別PRで行い、前の段階の合格から次の段階の承認を生成しない。
+各段階は別PRで行い、前の段階の合格から次の段階の承認を生成しない。PoCの成立性判断から、Scaffoldの登録許可も要求の採否も生成しない。
 
 ## 将来の接続（本候補の要求ではない）
 
@@ -95,7 +96,8 @@ related_projection:
 - 本候補の記載で、HELIX-OS／HARNESSのL2合意や人間承認を成立させない。
 - WBSエンジン、台帳schema、DB、GitHub連携を実装・起動しない。仮組みは別PRで、Scaffold Bindingの下でだけ行う。
 - 候補・未承認の要求からWBSを生成しない。
-- `L2D-S0-01`が承認されるまでパイロットの手順2（仮組み）へ進めない。手順の合格から次の手順の承認を生成しない。
+- `L2D-S0-01`が承認されるまでパイロットの手順3（仮設束縛）へ進めない。手順の合格から次の手順の承認を生成しない。
+- PoC、Research、Scaffoldを同一identityとして扱わない（`SCF-HARNESS-006`）。PoCの成果物をScaffoldとして登録せず、Scaffoldの稼働をPoCの成立性判断として扱わない。
 
 ## L11受入候補
 
