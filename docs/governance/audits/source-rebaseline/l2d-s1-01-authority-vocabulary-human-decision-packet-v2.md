@@ -28,7 +28,7 @@ v1が計上したAVSの意味（L1 atom 6件、L3 atom 20件、L10 oracle 20件�
 全件確認して該当なしとできるのは1件で、**残る11件は未評価**である。
 そのうち`MPR-SH-CANDIDATE-003`は旧AVSの3文書そのものを内包しており、AVSが独立のholdingではなかったことも判明した。
 v1は「分母が古い」問題だったが、v2の作成過程で「分母がそもそも数えられていない」ことが分かった。
-この8件を評価するまで、S1-01は`decision_ready`にしない。
+この11件を評価するまで、S1-01は`decision_ready`にしない。
 
 ## 判断対象revision
 
@@ -55,7 +55,7 @@ HARNESS／OSのL2・L11 4文書のSHA-256はv1と同一であり、基準revisio
 
 生存中のsource holdingは13件である（registerは32 revision）。本判断に対する処分は次のとおり。
 機械screenの結果と根拠は[`l2d-s1-01-input-holding-screen.jsonl`](l2d-s1-01-input-holding-screen.jsonl)
-（SHA-256 `ae5507b1d8fc55d6eefc386822a83f0dec74824f8d725eeacfe0660c5526b756`）に13行で記録した。各行は正本台帳の`source_atom_set_sha256`を持ち、この件数がどのrevisionの台帳から出たかを固定する。
+（SHA-256 `e54824545dc5aca9844ca86dcae30f396dba8b6f06504344a1ea13f385ad87fa`）に13行で記録した。各行は正本台帳の`source_atom_set_sha256`を持ち、この件数がどのrevisionの台帳から出たかを固定する。
 
 | holding | atom数 | screen一致 | 処分 |
 |---|---:|---:|---|
@@ -69,8 +69,8 @@ HARNESS／OSのL2・L11 4文書のSHA-256はv1と同一であり、基準revisio
 | `MPR-SH-SCRUM-REVERSE-001` | 300 | 6 | **未評価** |
 | `MPR-SH-WORKFLOW-003` | 108 | 5 | **未評価** |
 | `MPR-SH-PREISOLATION-002` | 333 | — | **未評価（atom展開未了）**。333行すべてが`revision_relation: changed_before_archive_pending_semantic_equivalence_review`、`meaning_change_applied: false`であり、台帳自身が意味等価reviewの未了を申告している。atom本文のfieldを持たずscreenを実行できない。対象pathに`docs/plans/PLAN-L3-82-authority-vocabulary-separation.md`を含む |
-| `MPR-SH-DELEGATED-DOC-003` | 114 | — | **未評価（atom展開未了）**。114行すべてが`carry_status: preserved_pending_atomization`、`holding_granularity: file_blob`。pathにauthorityを含む文書が9件 |
-| `MPR-SH-DELEGATED-REF-001` | 788 | — | **未評価（atom展開・分類未了）**。614行が`preserved_pending_atomization`、174行が`preserved_pending_classification`。authorityを含むtarget pathへのedgeが96行 |
+| `MPR-SH-DELEGATED-DOC-003` | 114 | — | **未評価（atom展開未了）**。114行すべてが`carry_status: preserved_pending_atomization`、`holding_granularity: file_blob`。`source_path`または`archive_path`にauthorityを含む文書が7件 |
+| `MPR-SH-DELEGATED-REF-001` | 788 | — | **未評価（atom展開・分類未了）**。614行が`preserved_pending_atomization`、174行が`preserved_pending_classification`。`target_path`にauthorityを含むedgeが26行（いずれかのfieldにauthorityを含む行は96行） |
 | `MPR-SH-PO-GOALS-PRINCIPLES-001` | 12 | 0 | **該当なし**。12件は全件目視できる規模であり、authority語彙の定義・生成禁止を持たないことを確認した |
 
 **S1-01のsource自身の来歴が未reviewのまま残っている。** `MPR-SH-PREISOLATION-002`が保持する
@@ -240,7 +240,7 @@ memoryのTTLとLearning admission、workflow signalのexact token、compatibilit
 
 ## 人間判断
 
-**本v2は、この時点では人間判断へ送れない。** 「未評価のまま残すもの」の分母2項目（生存中holding 8件の未評価、
+**本v2は、この時点では人間判断へ送れない。** 「未評価のまま残すもの」の分母2項目（生存中holding 11件の未評価、
 母集合の非網羅）が解消していないため、AVSの46 atomと旧ルール群の772 atomを落とさないという主張が、分母側で
 成立していない。
 
