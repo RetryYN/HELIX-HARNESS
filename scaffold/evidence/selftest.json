@@ -1,6 +1,7 @@
 {
  "authority_effect": "none",
  "cases": 38,
+ "cases_sha256": "9f1daef1da85872fafca5ac0cff3c36484b0e292655642745cececfb8ed8ebb6",
  "checked_at": "2026-09-18",
  "evidence_kind": "scaffold",
  "fail": 0,
@@ -502,5 +503,5 @@
    ]
   }
  ],
- "tool_sha256": "ce7436f3e2b69c38565796cb1b9a037a358dbb03c9fcd4645a516ff7a13c0bb2"
+ "tool_sha256": "313352839a0885201c2856161c068079eff9db9e1e06dad50d13158f55ef3a6e"
 }
