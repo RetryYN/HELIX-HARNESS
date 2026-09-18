@@ -75,11 +75,11 @@ related_projection:
 本要求候補自身を、次の順で流す。要求候補が「管理層に入り、開発方式が選ばれ、要件定義へ降りる」経路を、この1件で通す。
 
 1. 管理層取込：本書を候補として置き、上流authority registerに登録する（本PR）。
-2. 開発方式選定：変更の種類は「新規」。台帳の形が成立するかを確かめる必要があるなら、それはPoCの作業であり、PoC ticketを別identityで発行する。PoCの成果物をそのままScaffoldにしない。
-3. 仮設束縛：正式なL3が止まっている間も役割と接続を保持する必要がある部分だけを、`scaffold/`の仮組みとしてScaffold Bindingに登録し、上流を本書と`RUL-TKT-*`のrevisionに束縛する。PoCの成果物を使う場合は、PoCのidentityを保ったまま関係としてbindingへ接続する（`SCF-HARNESS-006`）。`L2D-S0-01 scaffold-binding`が人間判断で承認されるまで、この手順へ進めない。
-4. 要件定義：手順2・3で確かめた入出力を、`HELIXOS-L2`本文への要求（要求の粒度 unit／connection／composite）として要求PRで接続する。
+2. 開発方式選定：変更の種類は「新規」とする。台帳の形の成立性を確かめる必要がある場合、それはPoCの作業である。推進は、そのPoCをScaffoldと別identityで立てる。ticketとしての発行形式は`DTK-OS-005`の採否後に決める。本候補はPoCの実施を許可しない。PoCの置き場、停止条件、人間判断は、`L2D-S0-02`の採否後に別PRで決める。
+3. 仮設束縛：正式なL3が止まっている間も役割と接続を保持する必要がある部分だけを、`scaffold/`の仮組みとしてScaffold Bindingへ登録する。登録時に役割、義務、接続先、置換先の役割を宣言する（`SCF-HARNESS-002`、`SCF-OS-001`）。上流は本書と`RUL-TKT-*`のrevisionへ束縛する。PoCの成果物を使う場合は、PoCのidentityを保ったまま関係としてbindingへ接続する（`SCF-HARNESS-006`）。`L2D-S0-01 scaffold-binding`が人間判断で承認されるまで、この手順へ進めない。
+4. 要件定義：手順2・3を行った場合はその結果を含めて、本書の入出力を`HELIXOS-L2`本文への要求（要求の粒度 unit／connection／composite）として要求PRで接続する。手順2・3の不実施は、本手順の前提を欠かせない。
 
-各段階は別PRで行い、前の段階の合格から次の段階の承認を生成しない。PoCの成立性判断から、Scaffoldの登録許可も要求の採否も生成しない。
+各段階は別PRで行い、前の段階の合格から次の段階の承認を生成しない（権限を生成しない条件は「現在の停止条件」に集約する）。
 
 ## 将来の接続（本候補の要求ではない）
 
@@ -94,10 +94,11 @@ related_projection:
 ## 現在の停止条件
 
 - 本候補の記載で、HELIX-OS／HARNESSのL2合意や人間承認を成立させない。
-- WBSエンジン、台帳schema、DB、GitHub連携を実装・起動しない。仮組みは別PRで、Scaffold Bindingの下でだけ行う。
+- WBSエンジン、台帳schema、DB、GitHub連携を実装・起動しない。Scaffoldとして保持する仮組みは別PRで、Scaffold Bindingの下でだけ行う。PoCの成果物はScaffoldではなく、この条件の対象外である（置き場と条件は手順2のとおり本候補では決めない）。
 - 候補・未承認の要求からWBSを生成しない。
 - `L2D-S0-01`が承認されるまでパイロットの手順3（仮設束縛）へ進めない。手順の合格から次の手順の承認を生成しない。
 - PoC、Research、Scaffoldを同一identityとして扱わない（`SCF-HARNESS-006`）。PoCの成果物をScaffoldとして登録せず、Scaffoldの稼働をPoCの成立性判断として扱わない。
+- PoCの成立性判断から、Scaffoldの登録許可も要求の採否も生成しない。本候補の記載から、PoCの実施許可を生成しない。
 
 ## L11受入候補
 
