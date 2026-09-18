@@ -1,12 +1,14 @@
 {
  "case": "06-stale-on-upstream-change",
- "l11": "上流revisionを変更し、対応するScaffoldがstaleになる（validateは形式合格、staleはstale commandで検出。ここでは記録がstaleへ遷移した状態が合格であることを確かめる）",
+ "l11": "上流revisionを変更し、対応するScaffoldがstaleになる",
  "requirements": [
   "SCF-OS-002"
  ],
- "command": "validate",
- "expect": "pass",
- "expect_codes": [],
+ "command": "stale",
+ "expect": "fail",
+ "expect_codes": [
+  "E_STALE: docs/x.md"
+ ],
  "binding": {
   "schema_revision": 1,
   "id": "SCF-B-0900",
@@ -14,7 +16,7 @@
   "title": "例",
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS 管理",
-  "state": "stale",
+  "state": "active",
   "reason": "正式な物が未成立",
   "upstream": [
    {
@@ -66,5 +68,8 @@
   },
   "created": "2026-09-18",
   "updated": "2026-09-18"
+ },
+ "file_digests": {
+  "docs/x.md": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
  }
 }

@@ -1,14 +1,14 @@
 {
- "case": "09-reject-retire-before-confirm",
- "l11": "置換完了前のScaffold削除を拒否する",
+ "case": "12c-reject-legacy-in-consumers",
+ "l11": "consumerやoracleに旧世代archiveを書いたbindingも拒否する",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-OS-003"
  ],
- "command": "retire-precheck",
+ "command": "validate",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: state=replacing からだけ",
-  "E_RETIRE: 置換確認が完了していない"
+  "E_LEGACY: 旧世代archiveを指す connections.consumers[0]",
+  "E_LEGACY: 旧世代archiveを指す verification.oracles[0]"
  ],
  "binding": {
   "schema_revision": 1,
@@ -31,7 +31,7 @@
   ],
   "connections": {
    "consumers": [
-    "consumer1"
+    "archive/legacy-generation-2026-09-14/root/src/cli.ts"
    ],
    "dependencies": [],
    "boundary": "scaffold/"
@@ -51,7 +51,7 @@
     "negative_case"
    ],
    "oracles": [
-    "oracle1"
+    "archive/legacy-generation-2026-09-14/root/tests/x.test.ts"
    ],
    "negative_cases": [
     "neg1"
@@ -69,7 +69,5 @@
   },
   "created": "2026-09-18",
   "updated": "2026-09-18"
- },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+ }
 }

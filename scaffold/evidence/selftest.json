@@ -1,6 +1,6 @@
 {
  "authority_effect": "none",
- "cases": 27,
+ "cases": 38,
  "checked_at": "2026-09-18",
  "evidence_kind": "scaffold",
  "fail": 0,
@@ -97,7 +97,7 @@
    "case": "04-evidence-kind-fixed.json",
    "expect": "fail",
    "got": "fail",
-   "l11": "仮実装だけがある要求をimplemented／verifiedと表示しない（証拠種別はscaffold以外にできない）",
+   "l11": "仮実装だけがある要求をimplemented／verifiedと表示しない：bindingの証拠種別をscaffold以外（formal_ci等）にできない",
    "messages": [
     "E_EVIDENCE: evidence_kindはscaffold以外にできない（SCF-HARNESS-004）"
    ],
@@ -123,10 +123,36 @@
   },
   {
    "case": "06-stale-on-upstream-change.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "上流revisionを変更し、対応するScaffoldがstaleになる",
+   "messages": [
+    "E_STALE: docs/x.md -> ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-002"
+   ]
+  },
+  {
+   "case": "06b-not-stale-when-unchanged.json",
    "expect": "pass",
    "got": "pass",
-   "l11": "上流revisionを変更し、対応するScaffoldがstaleになる（validateは形式合格、staleはstale commandで検出。ここでは記録がstaleへ遷移した状態が合格であることを確かめる）",
+   "l11": "上流revisionが同じならstaleにならない",
    "messages": [],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-002"
+   ]
+  },
+  {
+   "case": "06c-orphan-when-upstream-missing.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "ownerまたは上流を失ったScaffoldをorphanとして検出する",
+   "messages": [
+    "E_ORPHAN: 上流が存在しない docs/x.md（SCF-OS-002）"
+   ],
    "ok": true,
    "requirements": [
     "SCF-OS-002"
@@ -174,13 +200,63 @@
    "case": "08-reject-revision-mismatch.json",
    "expect": "fail",
    "got": "fail",
-   "l11": "付け替え対象のrevisionと証拠のrevisionが一致しない置換を与え、置換完了を拒否する（retire前検査）",
+   "l11": "付け替え対象のrevisionと証拠のrevisionが一致しない置換を与え、置換完了を拒否する",
+   "messages": [
+    "E_REVISION: 正式artifact src/os/scaffold.py のrevisionが記録と一致しない（SCF-OS-004）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-004"
+   ]
+  },
+  {
+   "case": "08b-revision-match-pass.json",
+   "expect": "pass",
+   "got": "pass",
+   "l11": "対象revisionが一致し全件移管済みの置換確認は合格する",
+   "messages": [],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-004"
+   ]
+  },
+  {
+   "case": "08c-reject-retire-after-binding-changed.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "置換確認後にbindingの内容が変わった状態での撤去を拒否する（確認記録のdigestと不一致）",
+   "messages": [
+    "E_RETIRE: 確認後にbindingの内容が変わっている"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-004",
+    "SCF-OS-005"
+   ]
+  },
+  {
+   "case": "08d-reject-other-bindings-record.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "別bindingの確認記録を使った撤去を拒否する",
+   "messages": [
+    "E_RETIRE: 確認記録は別のbinding"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-005"
+   ]
+  },
+  {
+   "case": "08e-reject-readafter-mismatch.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "読み直した確認記録が記録時のdigestと一致しない撤去を拒否する",
    "messages": [
     "E_RETIRE: read-after不一致"
    ],
    "ok": true,
    "requirements": [
-    "SCF-OS-004",
     "SCF-OS-005"
    ]
   },
@@ -190,8 +266,8 @@
    "got": "fail",
    "l11": "置換完了前のScaffold削除を拒否する",
    "messages": [
-    "E_RETIRE",
-    "E_RETIRE"
+    "E_RETIRE: state=replacing からだけ撤去できる",
+    "E_RETIRE: 置換確認が完了していない"
    ],
    "ok": true,
    "requirements": [
@@ -243,7 +319,8 @@
    "got": "fail",
    "l11": "1つの役割を根拠なく2つのbindingで担い、拒否する",
    "messages": [
-    "E_DOUBLE: 同じ役割 '役割X' を SCF-B-0901 も担っており根拠が無い（SCF-OS-002）"
+    "E_DOUBLE: 同じ役割 '役割X' を SCF-B-0901 も担っており、相手のidを記した根拠がどちらにも無い（SCF-OS-002）",
+    "E_DOUBLE: 同じ役割 '役割X' を SCF-B-0900 も担っており、相手のidを記した根拠がどちらにも無い（SCF-OS-002）"
    ],
    "ok": true,
    "requirements": [
@@ -262,12 +339,26 @@
    ]
   },
   {
+   "case": "11c-reject-overlap-reason-without-partner-id.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "相手のidを記さない根拠では役割の共有を許さない",
+   "messages": [
+    "E_DOUBLE: 同じ役割 '役割X' を SCF-B-0901 も担っており、相手のidを記した根拠がどちらにも無い（SCF-OS-002）",
+    "E_DOUBLE: 同じ役割 '役割X' を SCF-B-0900 も担っており、相手のidを記した根拠がどちらにも無い（SCF-OS-002）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-002"
+   ]
+  },
+  {
    "case": "12-reject-legacy-runtime.json",
    "expect": "fail",
    "got": "fail",
    "l11": "旧CIまたは旧runtimeを呼び出すScaffoldを登録し、拒否する",
    "messages": [
-    "E_LEGACY: 旧世代archiveの実行を許可している node archive/legacy-generation-2026-09-14/root/src/cli.js（SCF-OS-003）"
+    "E_LEGACY: 旧世代archiveを指す operations.allowed[0]: node archive/legacy-generation-2026-09-14/root/src/cli.js（SCF-OS-003）"
    ],
    "ok": true,
    "requirements": [
@@ -280,7 +371,21 @@
    "got": "fail",
    "l11": "旧世代archiveを仮artifactとして指すbindingを拒否する",
    "messages": [
-    "E_LEGACY: 旧世代archiveを指す archive/legacy-generation-2026-09-14/root/src/x.ts（SCF-OS-003）"
+    "E_LEGACY: 旧世代archiveを指す artifacts[0]: archive/legacy-generation-2026-09-14/root/src/x.ts（SCF-OS-003）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "12c-reject-legacy-in-consumers.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "consumerやoracleに旧世代archiveを書いたbindingも拒否する",
+   "messages": [
+    "E_LEGACY: 旧世代archiveを指す connections.consumers[0]: archive/legacy-generation-2026-09-14/root/src/cli.ts（SCF-OS-003）",
+    "E_LEGACY: 旧世代archiveを指す verification.oracles[0]: archive/legacy-generation-2026-09-14/root/tests/x.test.ts（SCF-OS-003）"
    ],
    "ok": true,
    "requirements": [
@@ -328,6 +433,21 @@
    ]
   },
   {
+   "case": "14b-reject-nested-approval-fields.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "承認・完了の欄を入れ子（replacement／verification／upstream）に置いても拒否する",
+   "messages": [
+    "E_SHAPE: 未知のkey verification.formal_ci_green",
+    "E_SHAPE: 未知のkey replacement.approved_by",
+    "E_SHAPE: 未知のkey upstream[].completed"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-007"
+   ]
+  },
+  {
    "case": "15-reject-missing-issue.json",
    "expect": "fail",
    "got": "fail",
@@ -353,7 +473,34 @@
     "SCF-OS-005",
     "SCF-OS-006"
    ]
+  },
+  {
+   "case": "17-evidence-stays-in-scaffold.json",
+   "expect": "pass",
+   "got": "pass",
+   "l11": "仮の検証結果の記録は scaffold/evidence/ 直下にだけ置かれ、証拠種別scaffold・authority_effect noneが必ず付く",
+   "messages": [],
+   "ok": true,
+   "requirements": [
+    "SCF-HARNESS-003",
+    "SCF-HARNESS-004",
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "17b-reject-evidence-outside-scaffold.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "scaffold/evidence/ の外（正式な検証結果の保存先など）へ仮の証拠を書こうとし、拒否する",
+   "messages": [
+    "E_EVIDENCE: 記録名にpathを含められない '../../.github/ci-results.json'"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-HARNESS-004",
+    "SCF-OS-003"
+   ]
   }
  ],
- "tool_sha256": "a1679436a21a451c41f50efec902ac9df641cc391d2049cc04e21cf9e294b493"
+ "tool_sha256": "4adbb36f8d0568c0f3ea607bdb8be6d2931a73d170d22891d19ecc62efdbef24"
 }

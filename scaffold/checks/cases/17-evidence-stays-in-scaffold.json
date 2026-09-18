@@ -1,15 +1,14 @@
 {
- "case": "09-reject-retire-before-confirm",
- "l11": "置換完了前のScaffold削除を拒否する",
+ "case": "17-evidence-stays-in-scaffold",
+ "l11": "仮の検証結果の記録は scaffold/evidence/ 直下にだけ置かれ、証拠種別scaffold・authority_effect noneが必ず付く",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-HARNESS-003",
+  "SCF-HARNESS-004",
+  "SCF-OS-003"
  ],
- "command": "retire-precheck",
- "expect": "fail",
- "expect_codes": [
-  "E_RETIRE: state=replacing からだけ",
-  "E_RETIRE: 置換確認が完了していない"
- ],
+ "command": "evidence-scope",
+ "expect": "pass",
+ "expect_codes": [],
  "binding": {
   "schema_revision": 1,
   "id": "SCF-B-0900",
@@ -70,6 +69,8 @@
   "created": "2026-09-18",
   "updated": "2026-09-18"
  },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+ "evidence_name": "selftest.json",
+ "payload": {
+  "cases": 1
+ }
 }

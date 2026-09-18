@@ -1,15 +1,12 @@
 {
- "case": "09-reject-retire-before-confirm",
- "l11": "置換完了前のScaffold削除を拒否する",
+ "case": "06b-not-stale-when-unchanged",
+ "l11": "上流revisionが同じならstaleにならない",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-OS-002"
  ],
- "command": "retire-precheck",
- "expect": "fail",
- "expect_codes": [
-  "E_RETIRE: state=replacing からだけ",
-  "E_RETIRE: 置換確認が完了していない"
- ],
+ "command": "stale",
+ "expect": "pass",
+ "expect_codes": [],
  "binding": {
   "schema_revision": 1,
   "id": "SCF-B-0900",
@@ -70,6 +67,7 @@
   "created": "2026-09-18",
   "updated": "2026-09-18"
  },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+ "file_digests": {
+  "docs/x.md": "0000000000000000000000000000000000000000000000000000000000000000"
+ }
 }

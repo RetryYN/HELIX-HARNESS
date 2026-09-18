@@ -42,7 +42,9 @@ python3 scaffold/tools/scfctl.py selftest [--record]  # checks/cases を実行�
 - 上流（path＋revision）と役割を持たないbindingは`validate`で不合格（SCF-HARNESS-001／002）。
 - `active`にできるのは置換先の役割（`replacement.role_target`）が特定済みのものだけ。正式artifactの具体pathは未決でよい（SCF-OS-001）。
 - 状態は`registered`／`active`／`stale`／`conflict`／`orphan`／`replacing`／`retired`（SCF-OS-002）。
-- artifactやcommandが`archive/legacy-generation-*`を指すbindingは不合格（SCF-OS-003）。
+- binding内のどの欄でも（禁止事項の列挙を除く）`archive/legacy-generation-*`を指すbindingは不合格（SCF-OS-003）。
+- 同じ役割を2つの非退役bindingが持つ場合、どちらかの`overlap_reason`に相手のidを記した根拠が無ければ不合格（SCF-OS-002）。
+- bindingの入れ子を含むどの階層にも、schemaに無い欄（承認、受入、完了など）を持ち込めない（SCF-OS-007）。
 - 置換確認は、bindingが宣言した役割・義務・接続・consumer・oracle・negative caseの全件が正式側へ対応づいた時だけ合格。1件でも未移管、二重owner、二重writer、二重CIがあれば不合格（SCF-HARNESS-005、SCF-OS-004）。
 - `retire`は、置換確認の合格記録と、その記録を読み直したdigestが一致する時だけ遷移する（SCF-OS-005）。
 - `residuals`は、置換完了後に残るbinding、退役済みなのにartifactが残るもの、差し替えIssueの無いものを列挙する（SCF-OS-006）。
@@ -53,9 +55,32 @@ python3 scaffold/tools/scfctl.py selftest [--record]  # checks/cases を実行�
 ## 差し替え忘れを防ぐ仕組み
 
 1. 全bindingは`replacement.issue`（差し替え台帳Issueの番号）を必須にする。無いものは`validate`で不合格。
-2. `residuals`が、置換未完・撤去漏れ・Issue未記載を一覧する。PRで`scaffold/`または正式実装に触れた時はこの出力をPR本文に貼る（PR templateの項目）。
+2. `residuals`が、置換未完・撤去漏れ・Issue未記載を一覧する。PRで`scaffold/`または正式実装に触れた時は`validate`／`stale`／`residuals`／`selftest`の出力をPR本文に貼る（PR templateの項目）。上流候補が改訂されれば`stale`がそれを出す。
 3. 正式な物が入ったPRは、対応するbindingを`replacing`にし、`check-replacement`の合格を証拠として付け、その後`retire`する。
    この順序を飛ばして`retired`にしたbindingは`validate`で不合格。
+
+## L11受入候補とcaseの対応
+
+候補のL11受入候補16項目を、`checks/cases/`のcase（38件）へ写している。対応が無い項目は「未検査」と書く。
+
+| # | L11受入候補（要旨） | 要求 | case |
+|---|---|---|---|
+| 1 | 正式な設計が無い状態で、仮artifactから、担っている役割と上流のsource revisionへ辿れる。 | SCF-HARNESS-001、SCF-HARNESS-002、SCF-OS-001 | 01 |
+| 2 | 上流を持たないScaffold、役割を宣言しないScaffoldの登録を拒否する。 | SCF-HARNESS-001、SCF-HARNESS-002 | 02a／02b／02c |
+| 3 | 置換先の役割が未特定のScaffold Bindingを有効にしようとし、拒否する。具体的な正式artifactだけが未… | SCF-OS-001 | 03a／03b／03c |
+| 4 | 仮実装だけがある要求を与え、`implemented`／`verified`と表示しない。 | SCF-HARNESS-003 | 04 |
+| 5 | 仮の検証が成功し、正式CIが未実行の状態を与え、正式な結果をgreenやverifiedにしない。仮の検証結果が正式な検… | SCF-HARNESS-003、SCF-HARNESS-004、SCF-OS-003 | 04／17／17b |
+| 6 | Scaffoldが宣言した一時契約の範囲外を仮の検証の対象にしようとし、拒否する。 | SCF-HARNESS-004 | 05 |
+| 7 | 上流revisionを変更し、対応するScaffoldがstaleになる。ownerまたは上流を失ったScaffoldを… | SCF-OS-002 | 06／06b／06c |
+| 8 | 正式な物を投入し、役割・義務・consumer・oracleのうち1件を未移管にした場合、置換完了を拒否する。 | SCF-HARNESS-005、SCF-OS-004 | 07／07b／07c |
+| 9 | 付け替え対象のrevisionと証拠のrevisionが一致しない置換を与え、置換完了を拒否する。 | SCF-OS-004 | 08／08b／08c |
+| 10 | 置換完了前のScaffold削除を拒否する。 | SCF-OS-005 | 09／09b |
+| 11 | 置換の確認結果の読み直し（read-after）が無い、または読み直した結果が確認結果と一致しない状態で撤去済みへ遷移し… | SCF-OS-005 | 08c／08d／08e |
+| 12 | 置換完了後にScaffold、仮adapter、仮CIを1件残し、残留として検出する。 | SCF-OS-006 | 10／10b |
+| 13 | 1つのScaffoldを根拠なく2つの正式ownerへbindingし、拒否する。 | SCF-OS-002 | 11／11b／11c |
+| 14 | 旧CIまたは旧runtimeを呼び出すScaffoldを登録し、拒否する。 | SCF-OS-003 | 12／12b／12c |
+| 15 | PoCまたはResearchのticketをScaffoldとして登録する、あるいはScaffoldをPoCの成立性判断… | SCF-HARNESS-006 | 13／13b |
+| 16 | Scaffoldの登録、検証成功、撤去のいずれかを入力として、要求の採否・人間承認・工程完了を生成しようとし、拒否する。 | SCF-OS-007 | 14／14b |
 
 ## しないこと
 

@@ -75,6 +75,29 @@ def check_shape(b):
     for k in b:
         if k not in allowed:
             e.append("E_SHAPE: 未知のkey %s" % k)
+    # 入れ子も schema と同じ集合だけを許す（承認・完了の欄をどこにも持ち込めない。SCF-OS-007）
+    nested = {"connections": {"consumers", "dependencies", "boundary"},
+              "operations": {"allowed", "forbidden"},
+              "verification": {"evidence_kind", "scope", "oracles", "negative_cases"},
+              "replacement": {"role_target", "formal_artifacts", "issue", "status", "transfer", "target_revisions", "confirmation_ref", "confirmation_digest"},
+              "retired": {"at", "confirmation_ref", "read_after_digest"}}
+    for k, al in nested.items():
+        v = b.get(k)
+        if isinstance(v, dict):
+            for kk in v:
+                if kk not in al:
+                    e.append("E_SHAPE: 未知のkey %s.%s" % (k, kk))
+    if isinstance(b.get("upstream"), list):
+        for u in b["upstream"]:
+            if isinstance(u, dict):
+                for kk in u:
+                    if kk not in ("path", "sha256", "note"):
+                        e.append("E_SHAPE: 未知のkey upstream[].%s" % kk)
+    t = (b.get("replacement") or {}).get("transfer") if isinstance(b.get("replacement"), dict) else None
+    if isinstance(t, dict):
+        for kk in t:
+            if kk not in ("role", "obligations", "consumers", "oracles", "negative_cases"):
+                e.append("E_SHAPE: 未知のkey replacement.transfer.%s" % kk)
     if b["schema_revision"] != 1: e.append("E_SHAPE: schema_revisionは1")
     if not re.match(r"^SCF-B-[0-9]{4}$", str(b["id"])): e.append("E_SHAPE: id形式 SCF-B-0000")
     if b["kind"] != "scaffold": e.append("E_IDENTITY: kind=%r はScaffoldではない（poc／research／featureは別identity。SCF-HARNESS-006）" % b["kind"])
@@ -126,15 +149,21 @@ def check_rules(b, all_bindings, fs=True):
     """形式以外の規則。fs=Falseはselftest用にfile systemを見ない。"""
     e = []
     r = b["replacement"]
-    # SCF-OS-003: 旧資産を仮設名義で使わない
-    for a in b["artifacts"] + list(r.get("formal_artifacts") or []) + list(b["connections"].get("dependencies") or []):
-        if LEGACY.search(str(a)):
-            e.append("E_LEGACY: 旧世代archiveを指す %s（SCF-OS-003）" % a)
-    for op in b["operations"].get("allowed") or []:
-        if LEGACY.search(str(op)):
-            e.append("E_LEGACY: 旧世代archiveの実行を許可している %s（SCF-OS-003）" % op)
+    # SCF-OS-003: 旧資産を仮設名義で使わない。binding全体を走査し、禁止事項の列挙（operations.forbidden）だけ除く
+    def walk(o, path):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if path == "operations" and k == "forbidden":
+                    continue
+                walk(v, path + "." + k if path else k)
+        elif isinstance(o, list):
+            for i, v in enumerate(o):
+                walk(v, "%s[%d]" % (path, i))
+        elif isinstance(o, str) and LEGACY.search(o):
+            e.append("E_LEGACY: 旧世代archiveを指す %s: %s（SCF-OS-003）" % (path, o[:80]))
+    walk(b, "")
     # SCF-OS-001: 置換先の役割が未特定なら有効化不可
-    if b["state"] in ("active", "stale", "replacing") and not r.get("role_target"):
+    if b["state"] != "registered" and not r.get("role_target"):
         e.append("E_ACTIVATE: 置換先の役割が未特定のbindingは有効にできない（登録だけ。SCF-OS-001）")
     # SCF-OS-002: orphan
     if fs:
@@ -150,8 +179,10 @@ def check_rules(b, all_bindings, fs=True):
         if o is b or o.get("id") == b.get("id"):
             continue
         if o.get("state") != "retired" and b["state"] != "retired" and o.get("role") == b["role"]:
-            if not b.get("overlap_reason"):
-                e.append("E_DOUBLE: 同じ役割 %r を %s も担っており根拠が無い（SCF-OS-002）" % (b["role"], o.get("id")))
+            oid = str(o.get("id")); bid = str(b.get("id"))
+            ok = (oid in str(b.get("overlap_reason") or "")) or (bid in str(o.get("overlap_reason") or ""))
+            if not ok:
+                e.append("E_DOUBLE: 同じ役割 %r を %s も担っており、相手のidを記した根拠がどちらにも無い（SCF-OS-002）" % (b["role"], oid))
     # 状態遷移の飛び越し（SCF-OS-005）
     if b["state"] == "retired":
         if r.get("status") != "confirmed" or not b.get("retired") or not b["retired"].get("read_after_digest"):
@@ -161,11 +192,11 @@ def check_rules(b, all_bindings, fs=True):
     return e
 
 
-def check_stale(b):
-    """上流revisionの変化。fileが変わっていれば stale 候補。"""
+def check_stale(b, digests=None):
+    """上流revisionの変化。fileが変わっていれば stale 候補。digestsを与えるとfile systemの代わりに使う。"""
     changed = []
     for u in b["upstream"]:
-        cur = sha256_file(u["path"])
+        cur = digests.get(u["path"]) if digests is not None else sha256_file(u["path"])
         if cur is None:
             changed.append((u["path"], "missing"))
         elif cur != u["sha256"]:
@@ -173,8 +204,10 @@ def check_stale(b):
     return changed
 
 
-def check_replacement(b, fs=True):
-    """SCF-HARNESS-005／SCF-OS-004: 置換の無損失確認。"""
+def check_replacement(b, fs=True, digests=None):
+    """SCF-HARNESS-005／SCF-OS-004: 置換の無損失確認。digestsを与えるとfile systemの代わりに使う（selftest用）。"""
+    if digests is not None:
+        fs = True
     e = []
     r = b["replacement"]
     t = r.get("transfer")
@@ -204,7 +237,7 @@ def check_replacement(b, fs=True):
     revs = {}
     if fs:
         for a in r.get("formal_artifacts") or []:
-            s = sha256_file(a)
+            s = digests.get(a) if digests is not None else sha256_file(a)
             if s is None:
                 e.append("E_REPL: 正式artifactが存在しない %s" % a)
             else:
@@ -245,11 +278,21 @@ def residuals(bindings, fs=True):
 
 
 # ---------- 記録 ----------
-def evidence_record(name, payload):
-    os.makedirs(EVIDENCE, exist_ok=True)
+def evidence_payload(name, payload):
+    """記録の置き場と内容を決める。置き場は scaffold/evidence/ 直下だけ。証拠種別と authority_effect は必ず付く。"""
+    if os.sep in name or "/" in name or name in ("", ".", ".."):
+        raise ValueError("E_EVIDENCE: 記録名にpathを含められない %r" % name)
+    p = os.path.normpath(os.path.join(EVIDENCE, name))
+    if os.path.dirname(p) != os.path.normpath(EVIDENCE):
+        raise ValueError("E_EVIDENCE: scaffold/evidence/ の外へは書かない %r" % name)
     payload = dict(payload, evidence_kind="scaffold", authority_effect="none",
                    note="仮の検証の記録。正式なCI／検証／受入の成立を意味しない")
-    p = os.path.join(EVIDENCE, name)
+    return p, payload
+
+
+def evidence_record(name, payload):
+    os.makedirs(EVIDENCE, exist_ok=True)
+    p, payload = evidence_payload(name, payload)
     with open(p, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1, sort_keys=True)
         f.write("\n")
@@ -348,6 +391,7 @@ def cmd_retire(args):
         else:
             with open(os.path.join(ROOT, ref), encoding="utf-8") as f: rec = json.load(f)
             if rec.get("result") != "pass": errs.append("E_RETIRE: 確認記録がpassではない")
+            if rec.get("binding") != b["id"]: errs.append("E_RETIRE: 確認記録は別のbinding %s のもの" % rec.get("binding"))
             if rec.get("binding_core_digest") != binding_core_digest(b):
                 errs.append("E_RETIRE: 確認後にbindingの内容が変わっている（対象revision不一致。SCF-OS-004）")
             e2, _ = check_replacement(b)
@@ -371,24 +415,48 @@ def cmd_selftest(args):
         with open(cp, encoding="utf-8") as f: c = json.load(f)
         bs = c.get("bindings") or [c["binding"]]
         target = bs[0]
-        cmd = c["command"]
+        cmd = c["command"]; dg = c.get("file_digests")
         if cmd == "validate":
-            errs = check_shape(target)
-            if not errs: errs += check_rules(target, bs, fs=False)
+            errs = []
+            for t in bs:  # 全bindingを検査する
+                e1 = check_shape(t)
+                if not e1: e1 = check_rules(t, bs, fs=False)
+                errs += e1
         elif cmd == "check-replacement":
             errs = check_shape(target)
-            if not errs: errs = check_replacement(target, fs=False)[0]
+            if not errs: errs = check_replacement(target, fs=False, digests=dg)[0]
         elif cmd == "residuals":
             errs = ["R: %s" % m for _, m in residuals(bs, fs=False)]
+        elif cmd == "stale":
+            errs = ["E_STALE: %s -> %s" % (pth, cur) for pth, cur in check_stale(target, dg or {})]
+        elif cmd == "orphan":
+            errs = ["E_ORPHAN: 上流が存在しない %s（SCF-OS-002）" % u["path"] for u in target["upstream"] if (dg or {}).get(u["path"]) is None]
         elif cmd == "retire-precheck":
             errs = []
-            if target["state"] != "replacing": errs.append("E_RETIRE")
-            if target["replacement"].get("status") != "confirmed": errs.append("E_RETIRE")
+            if target["state"] != "replacing": errs.append("E_RETIRE: state=replacing からだけ撤去できる")
+            if target["replacement"].get("status") != "confirmed": errs.append("E_RETIRE: 置換確認が完了していない")
             if c.get("read_after_digest") != c.get("confirmation_digest"): errs.append("E_RETIRE: read-after不一致")
+            rec = c.get("confirmation_record") or {}
+            if rec and rec.get("binding") != target["id"]: errs.append("E_RETIRE: 確認記録は別のbinding")
+            if rec and rec.get("binding_core_digest") not in (None, binding_core_digest(target)):
+                errs.append("E_RETIRE: 確認後にbindingの内容が変わっている")
+            if rec: errs += check_replacement(target, digests=dg or {})[0]
+        elif cmd == "evidence-scope":
+            errs = []
+            try:
+                pth, payload = evidence_payload(c["evidence_name"], c.get("payload") or {})
+                if not pth.startswith(os.path.normpath(EVIDENCE) + os.sep): errs.append("E_EVIDENCE: scaffold/evidence/ の外")
+                if payload.get("evidence_kind") != "scaffold" or payload.get("authority_effect") != "none": errs.append("E_EVIDENCE: 種別が固定されていない")
+            except ValueError as ex:
+                errs.append(str(ex))
         else:
             print("E_INPUT: 未知のcommand %s (%s)" % (cmd, cp)); return 2
         got = "fail" if errs else "pass"
-        ok = got == c["expect"] and all(any(code in x for x in errs) for code in c.get("expect_codes", []))
+        codes = c.get("expect_codes", [])
+        if c["expect"] == "fail" and not codes:
+            print("E_INPUT: expect=fail のcaseは expect_codes が必須 (%s)" % cp); return 2
+        # 期待したcodeがすべて出ていて、期待していないerrorが1つも無いときだけ合格
+        ok = got == c["expect"] and all(any(code in x for x in errs) for code in codes) and all(any(code in x for code in codes) for x in errs)
         fails += 0 if ok else 1
         results.append({"case": os.path.basename(cp), "l11": c.get("l11"), "requirements": c.get("requirements"),
                         "expect": c["expect"], "got": got, "ok": ok, "messages": errs})

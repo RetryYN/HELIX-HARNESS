@@ -1,14 +1,13 @@
 {
- "case": "09-reject-retire-before-confirm",
- "l11": "置換完了前のScaffold削除を拒否する",
+ "case": "06c-orphan-when-upstream-missing",
+ "l11": "ownerまたは上流を失ったScaffoldをorphanとして検出する",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-OS-002"
  ],
- "command": "retire-precheck",
+ "command": "orphan",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: state=replacing からだけ",
-  "E_RETIRE: 置換確認が完了していない"
+  "E_ORPHAN"
  ],
  "binding": {
   "schema_revision": 1,
@@ -70,6 +69,5 @@
   "created": "2026-09-18",
   "updated": "2026-09-18"
  },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+ "file_digests": {}
 }

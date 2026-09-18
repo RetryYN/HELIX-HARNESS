@@ -1,14 +1,13 @@
 {
  "case": "08-reject-revision-mismatch",
- "l11": "付け替え対象のrevisionと証拠のrevisionが一致しない置換を与え、置換完了を拒否する（retire前検査）",
+ "l11": "付け替え対象のrevisionと証拠のrevisionが一致しない置換を与え、置換完了を拒否する",
  "requirements": [
-  "SCF-OS-004",
-  "SCF-OS-005"
+  "SCF-OS-004"
  ],
- "command": "retire-precheck",
+ "command": "check-replacement",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: read-after不一致"
+  "E_REVISION: 正式artifact src/os/scaffold.py のrevisionが記録と一致しない"
  ],
  "binding": {
   "schema_revision": 1,
@@ -17,7 +16,7 @@
   "title": "例",
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS 管理",
-  "state": "replacing",
+  "state": "active",
   "reason": "正式な物が未成立",
   "upstream": [
    {
@@ -59,17 +58,36 @@
   },
   "replacement": {
    "role_target": "正式の役割X",
-   "formal_artifacts": [],
+   "formal_artifacts": [
+    "src/os/scaffold.py"
+   ],
    "issue": 1,
-   "status": "confirmed",
-   "transfer": null,
-   "target_revisions": {},
+   "status": "pending",
+   "transfer": {
+    "role": "正式X",
+    "obligations": {
+     "義務1": "正式A"
+    },
+    "consumers": {
+     "consumer1": "正式B"
+    },
+    "oracles": {
+     "oracle1": "正式C"
+    },
+    "negative_cases": {
+     "neg1": "正式D"
+    }
+   },
+   "target_revisions": {
+    "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+   },
    "confirmation_ref": null,
    "confirmation_digest": null
   },
   "created": "2026-09-18",
   "updated": "2026-09-18"
  },
- "confirmation_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
- "read_after_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+ "file_digests": {
+  "src/os/scaffold.py": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+ }
 }

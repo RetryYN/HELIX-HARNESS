@@ -1,14 +1,14 @@
 {
- "case": "09-reject-retire-before-confirm",
- "l11": "置換完了前のScaffold削除を拒否する",
+ "case": "17b-reject-evidence-outside-scaffold",
+ "l11": "scaffold/evidence/ の外（正式な検証結果の保存先など）へ仮の証拠を書こうとし、拒否する",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-HARNESS-004",
+  "SCF-OS-003"
  ],
- "command": "retire-precheck",
+ "command": "evidence-scope",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: state=replacing からだけ",
-  "E_RETIRE: 置換確認が完了していない"
+  "E_EVIDENCE: 記録名にpathを含められない"
  ],
  "binding": {
   "schema_revision": 1,
@@ -70,6 +70,6 @@
   "created": "2026-09-18",
   "updated": "2026-09-18"
  },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+ "evidence_name": "../../.github/ci-results.json",
+ "payload": {}
 }

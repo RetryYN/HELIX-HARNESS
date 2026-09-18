@@ -1,15 +1,12 @@
 {
- "case": "09-reject-retire-before-confirm",
- "l11": "置換完了前のScaffold削除を拒否する",
+ "case": "08b-revision-match-pass",
+ "l11": "対象revisionが一致し全件移管済みの置換確認は合格する",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-OS-004"
  ],
- "command": "retire-precheck",
- "expect": "fail",
- "expect_codes": [
-  "E_RETIRE: state=replacing からだけ",
-  "E_RETIRE: 置換確認が完了していない"
- ],
+ "command": "check-replacement",
+ "expect": "pass",
+ "expect_codes": [],
  "binding": {
   "schema_revision": 1,
   "id": "SCF-B-0900",
@@ -59,17 +56,36 @@
   },
   "replacement": {
    "role_target": "正式の役割X",
-   "formal_artifacts": [],
+   "formal_artifacts": [
+    "src/os/scaffold.py"
+   ],
    "issue": 1,
    "status": "pending",
-   "transfer": null,
-   "target_revisions": {},
+   "transfer": {
+    "role": "正式X",
+    "obligations": {
+     "義務1": "正式A"
+    },
+    "consumers": {
+     "consumer1": "正式B"
+    },
+    "oracles": {
+     "oracle1": "正式C"
+    },
+    "negative_cases": {
+     "neg1": "正式D"
+    }
+   },
+   "target_revisions": {
+    "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+   },
    "confirmation_ref": null,
    "confirmation_digest": null
   },
   "created": "2026-09-18",
   "updated": "2026-09-18"
  },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+ "file_digests": {
+  "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+ }
 }

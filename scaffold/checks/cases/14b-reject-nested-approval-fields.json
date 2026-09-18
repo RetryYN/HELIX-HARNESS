@@ -1,14 +1,15 @@
 {
- "case": "09-reject-retire-before-confirm",
- "l11": "置換完了前のScaffold削除を拒否する",
+ "case": "14b-reject-nested-approval-fields",
+ "l11": "承認・完了の欄を入れ子（replacement／verification／upstream）に置いても拒否する",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-OS-007"
  ],
- "command": "retire-precheck",
+ "command": "validate",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: state=replacing からだけ",
-  "E_RETIRE: 置換確認が完了していない"
+  "E_SHAPE: 未知のkey replacement.approved_by",
+  "E_SHAPE: 未知のkey verification.formal_ci_green",
+  "E_SHAPE: 未知のkey upstream[].completed"
  ],
  "binding": {
   "schema_revision": 1,
@@ -22,7 +23,8 @@
   "upstream": [
    {
     "path": "docs/x.md",
-    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "completed": true
    }
   ],
   "role": "役割X",
@@ -55,7 +57,8 @@
    ],
    "negative_cases": [
     "neg1"
-   ]
+   ],
+   "formal_ci_green": true
   },
   "replacement": {
    "role_target": "正式の役割X",
@@ -65,11 +68,10 @@
    "transfer": null,
    "target_revisions": {},
    "confirmation_ref": null,
-   "confirmation_digest": null
+   "confirmation_digest": null,
+   "approved_by": "human"
   },
   "created": "2026-09-18",
   "updated": "2026-09-18"
- },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+ }
 }

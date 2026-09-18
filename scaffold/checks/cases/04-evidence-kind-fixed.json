@@ -1,6 +1,6 @@
 {
  "case": "04-evidence-kind-fixed",
- "l11": "仮実装だけがある要求をimplemented／verifiedと表示しない（証拠種別はscaffold以外にできない）",
+ "l11": "仮実装だけがある要求をimplemented／verifiedと表示しない：bindingの証拠種別をscaffold以外（formal_ci等）にできない",
  "requirements": [
   "SCF-HARNESS-003",
   "SCF-HARNESS-004"
