@@ -31,23 +31,23 @@ product_targets:
 | 再点検で追加（E／F／G系列） | 未読の残り、標本で漏れが見つかった系統、全fileの二巡目 | 523 |
 | 計 | 533 file | 7113 |
 
-対象file全632件の内訳は次のとおりである。この表と[出どころfile一覧](../legacy-rule-atom-source-files.jsonl)で、どのfileを読んで何を得たかを機械で照合できる。
+対象file全632件（`.helix/`は定義file 2件だけを対象に含めた。test、plans、design、要求文書は除外）の内訳は次のとおりである。[出どころfile一覧](../legacy-rule-atom-source-files.jsonl)は対象file全件を`status`（`atoms`／`no_rule_declared`／`no_declaration`）と`second_pass`（二巡目を読ませたか）付きで持ち、この表はそこから機械集計している。
 
 | fileの状態 | 件数 |
 |---|---:|
 | atomを1件以上抽出した | 533 |
-| 読んだが規則は無かった（申告） | 100 |
+| 読んだが規則は無かった（申告） | 99 |
 | いずれの申告も無い | 0 |
 
-二巡目（全fileの再点検）は49分割中18分割（195 file）が完了し、残り312 file は一巡目の抽出だけである。
+二巡目（全fileの再点検）は49分割中18分割が完了し、二巡目を読ませたfileは219件（出どころfile一覧の`second_pass: true`）、残り413 file は一巡目の抽出だけである。
 
 手順は次のとおりである。
 
 1. 抽出：GPT-6 Astra（codex CLI、read-only）が対象を分割して全文を読み、「〜しなければならない／してはならない／〜を拒否する」という規則1つを1 atomとして、出どころのpathと行範囲付きで出力した。読み切れなかったfileは再分割して読ませた。その後、Astraの指摘で抽出漏れが見つかったため、対象file全件を「抽出済みatomに無い規則だけを出す」二巡目にかけ、さらにatomを足した。二巡目で出典が実在しない・行範囲が外れるatomは機械で捨てた。
 2. 検証：全atomの出どころについて、pathの実在と行範囲がfileの行数に収まることを機械で確かめた（欠落0、逸脱0、IDの重複0）。AI向けの指示の系統から無作為に8件を取り、原文と突き合わせて一致を確かめた。
-3. 対応づけ：要求の枠を起草し、Astraが各atomを主の要求1つと副の要求最大2つへ対応づけた。どの枠にも入らないatomは無理に入れず「不足」として出させ、そこから要求を11本追加した。最後まで残った22件は内容を読んで手で割り当てた（台帳の`mapped_by: claude_review`）。再点検で追加したatomの対応づけはClaude Opusが行った（`mapped_by: claude-opus`）。
+3. 対応づけ：要求の枠を起草し、Astraが各atomを主の要求1つと副の要求最大2つへ対応づけた。どの枠にも入らないatomは無理に入れず「不足」として出させ、そこから要求を11本追加した。対応づけ後に手で直したもの（残った22件、reviewで見つかった置き違い、「other」とされた7件、fail-open挙動2件）は台帳の`mapped_by: claude_review`で引ける（35件）。再点検で追加したatomの対応づけはClaude Opusが行った（`mapped_by: claude-opus`）。
 4. 出どころの固定：atomが参照する全fileのSHA-256を[出どころfile一覧](../legacy-rule-atom-source-files.jsonl)に記録した。全atomは[規則atom台帳](../legacy-rule-atom-inventory.jsonl)にある。
-5. 再判定：「旧実装に固有」とした140件を、旧名称と保持すべき意味を分けて読み直し、一般化すれば要求に寄与するものは要求へ戻した（残り36件は個別の除外理由を台帳の`legacy_only_reason`に持つ）。安全に関する69件は、義務・判定基準の定義（HARNESS、`RUL-FRM-09`）と適用・実行（OS、`RUL-OSA-07`）へ分けた。
+5. 再判定：「旧実装に固有」とした140件を、旧名称と保持すべき意味を分けて読み直し、一般化すれば要求に寄与するものは要求へ戻した（残り34件は個別の除外理由を台帳の`legacy_only_reason`に持つ）。安全に関する69件は、義務・判定基準の定義（HARNESS、`RUL-FRM-09`）と適用・実行（OS、`RUL-OSA-07`）へ分けた。
 
 ## 確かめたことと、まだ確かめられていないこと
 
@@ -61,9 +61,9 @@ product_targets:
 
 - 抽出の全件性。1つのmodel系統が読んで申告した結果である。二巡目の標本（24 file）では一巡目の取りこぼしが約2割あり、二巡目後も取りこぼしは残りうる。「全件洗い出した」ではなく「対象file全件を二度読ませた」と読む。
 - 対応づけの正しさ。無作為に22件を読んだところ、明らかに別の要求が適切なものが2件あった。全体でも1割前後の置き違いがあると見込む。要求の文には影響しないが、要求ごとの件数は概数として読む。
-- 「旧実装に固有」とした36件は再判定済みだが、その除外理由の妥当性は個別にreviewされていない。
+- 「旧実装に固有」とした34件は再判定済みだが、その除外理由の妥当性は個別にreviewされていない。
 - 本書の要求と、既存のL2・既存の要求候補（新世代CI、AI可読文書、旧資産退役、Scaffold等）との重複と包含。後続で関係を付ける。
-- `RUL-COR-04`の1310件は、個々の入力検査の条件である。L2の要求としては1本で足り、個々の条件はL3以降の検査定義の入力として扱う。
+- `RUL-COR-04`の1312件は、個々の入力検査の条件である。L2の要求としては1本で足り、個々の条件はL3以降の検査定義の入力として扱う。
 
 ## 集計
 
@@ -198,7 +198,7 @@ product_targets:
 
 ### 部品：リサーチ
 
-#### `RUL-RSH-01`（HARNESS）　133／42件
+#### `RUL-RSH-01`（HARNESS）　133／41件
 
 外部の技術・OSS・SaaS・事例を調べて採否する手順を定める。成熟度、依存risk、代替案、反対意見を示し、そのまま導入せずHELIXの境界へ変換する。
 
@@ -252,7 +252,7 @@ product_targets:
 - 例 `RC04-062`：durable storeは、副作用へ渡されたstateが永続化済みstateと異なれば拒否する。（`src/orchestration/loop-store.ts` 292-296行）
 - 例 `RB06-154`：Canonical化は全write setをcommitまたはrollbackし、fault後も部分currentをゼロにする。（`docs/governance/infinity-loop-assertion-coverage-ledger.md` 120-120行）
 
-#### `RUL-COR-04`（OS）　1310／843件
+#### `RUL-COR-04`（OS）　1312／843件
 
 入力・設定・schema・pathを検証し、不正・未知・検証不能はfail-closeで拒否する。fail-openにする箇所は意図を明示する。
 
@@ -508,7 +508,7 @@ CIの構成を定める。必須checkの集約、変更の種類ごとのfail-cl
 - 例 `RA-363`：Refactor候補検出はliteral反復6回・長さ12以上、policy閾値5・最大branch40と、stage等の登録policy語彙を使う。（`.helix/config/requirements-binding.yaml` 10-27行）
 - 例 `RD11-113`：activation phase検査は、指定された各phaseの出現回数が1回でない場合に違反にする。（`src/lint/version-up-readiness.ts` 1914-1922行）
 
-#### `RUL-OSA-07`（OS）　39／35件
+#### `RUL-OSA-07`（OS）　39／15件
 
 HARNESSが定めた安全検証の義務（RUL-FRM-09）を適用する。脅威modelの確認、脆弱性の審査、依存と供給網の検査を実行し、結果と証拠を対象revisionへ結び、未分類のlicenseや未解消の重大な指摘を承認要求へ回す。
 
@@ -578,7 +578,7 @@ driftの検出、振り返り、訓練を定期に運転し、未割当の資産
 - 例 `RB04-285`：採用は技術mentor、TL、QA/AI実装・保守、UI/UXの順を指針とし、判断量・並列AI数・顧客向け本格化に応じて増員する。（`docs/governance/ai-dev-team-concept_v1.1.md` 701-701行）
 - 例 `RB04-284`：採用担当者は採用前に責任・評価指標・報告先を確定し、規則と運用手順をonboarding資料として準備し、基盤を確認可能な状態で迎える。（`docs/governance/ai-dev-team-concept_v1.1.md` 693-703行）
 
-## 旧実装に固有とした規則（36件）
+## 旧実装に固有とした規則（34件）
 
 特定の旧Issue番号、旧PLAN番号、旧fileの件数上限、旧tableの個別仕様だけを述べ、一般化しても上の要求の意味に寄与しない規則である。台帳では`requirement_primary: LEGACY-ONLY`で引け、各行の`legacy_only_reason`に除外理由を持つ。要求にはしないが、削除もしない。
 
@@ -587,8 +587,8 @@ driftの検出、振り返り、訓練を定期に運転し、未割当の資産
 | `RB03-002` | 本inventoryのエントリ数は、設定された最大件数951件を超えてはならない。 | 特定inventoryの件数を旧上限951件と比較するだけで、上限の根拠や一般的な予算管理の義務を定めていない。 |
 | `RB06-295` | CODEOWNERS検査はteam数がゼロより多く三未満の場合にerrorとする。 | 所有team数の特定範囲だけを拒否する旧数値条件であり、ownerの単一性や権限の妥当性を検証する意味は示されていない。 |
 | `RC01-073` | right-arm-gate-planningは、改善backlogにIMP-052がない場合、不合格にする。 | 特定の旧改善IDがbacklogに存在することだけを要求し、改善の受付や処分に関する一般条件を示していない。 |
-| `RC01-086` | placeholder-depsは、対象文書がdedicated placeholder_deps doctor rule is implemented系の正規表現に一致する場合、 | 旧文書の特定英文patternを肯定・否定の区別なく拒否する検査であり、実装状態の意味を判定していない。 |
-| `RC03-058` | historical V-pair移行分類処理は、候補reasonが「PLAN verification binding absent」と完全一致しない場合、admissionを拒 | 移行候補のreasonを旧固定文字列と完全一致で照合するだけで、受入れに必要な実質的条件を検証していない。 |
+| `RC01-086` | placeholder-depsは、対象文書がdedicated placeholder_deps doctor rule is implemented系の正規表現に一致する場合、不合格にする。実装の正規表現はnotまたは未の有無を問わない。 | 旧文書の特定英文patternを肯定・否定の区別なく拒否する検査であり、実装状態の意味を判定していない。 |
+| `RC03-058` | historical V-pair移行分類処理は、候補reasonが「PLAN verification binding absent」と完全一致しない場合、admissionを拒否する。 | 移行候補のreasonを旧固定文字列と完全一致で照合するだけで、受入れに必要な実質的条件を検証していない。 |
 | `RD00-041` | slot管理は、SubagentStop用の処理でagent_guard由来の実行中かつ未releaseのslotから有効時刻が最古の1件だけをcompletedにする。 | 識別子のない旧停止eventを最古のslotへ近似対応させる救済仕様であり、対象を正確に特定して解放する一般条件は保持していない。 |
 | `RD00-348` | CLI-R00 supporting context検証は、CLI pathがsrc/cli.tsでない場合、拒否する。 | CLIのpathを旧単一fileへ固定するだけで、改名や分割後も残すべき契約を示していない。 |
 | `RD00-356` | CLI-R00 artifact検証は、behavior contract IDがCLI-R00-THROUGHPUT-BASELINE-001でない場合、失敗する。 | behavior contract IDを特定の旧IDと照合するだけで、契約の内容や一般的な束縛条件を検査していない。 |
@@ -601,9 +601,9 @@ driftの検出、振り返り、訓練を定期に運転し、未割当の資産
 | `RD07-004` | frontend-design-coverageは、document-system-mapに§1cマーカーがなければ失敗する。 | 旧文書の節markerの存在だけを検査し、画面設計の成果物やcoverageの内容を確認していない。 |
 | `RD07-059` | 証拠コマンド検査は、evidence_pathが.vitest.logで終わらなければ違反とする。 | 証拠pathの旧拡張子との一致だけを検査し、証拠の実在・内容・対象との対応を確認していない。 |
 | `RD08-089` | semantic consumer lintは、ledgerのissue_idが865でない場合、失敗させる。 | ledgerのIssue番号を旧865へ固定するだけの検査である。 |
-| `RD08-090` | semantic consumer lintは、ledgerのparent_planがPLAN-L7-729-legacy-orchestration-new-use-freeze | ledgerの親作業単位を特定の旧PLANへ固定するだけの検査である。 |
+| `RD08-090` | semantic consumer lintは、ledgerのparent_planがPLAN-L7-729-legacy-orchestration-new-use-freezeでない場合、失敗させる。 | ledgerの親作業単位を特定の旧PLANへ固定するだけの検査である。 |
 | `RD08-114` | semantic consumer revision検査は、issue_idが865でない場合、失敗させる。 | revision検査でIssue番号を旧865と照合するだけで、対象revisionとの実質的な対応を検査していない。 |
-| `RD08-115` | semantic consumer revision検査は、parent_planがPLAN-L7-865-legacy-orchestration-semantic-consum | revision検査で親作業単位を特定の旧PLANへ固定するだけの条件である。 |
+| `RD08-115` | semantic consumer revision検査は、parent_planがPLAN-L7-865-legacy-orchestration-semantic-consumer-ledgerでない場合、失敗させる。 | revision検査で親作業単位を特定の旧PLANへ固定するだけの条件である。 |
 | `RD08-168` | objective evidence auditは、必須marker groupのいずれかの文字列が監査本文にない場合、失敗させる。 | 過去の日付・HEAD・承認件数の固定markerを要求する旧snapshot専用検査であり、現在の証拠の正しさを判定しない。 |
 | `RD08-193` | objective evidence auditは、外部source ledger各列に固定期待値が含まれない場合、失敗させる。 | 外部source ledgerに過去の観測値・版・採否文の固定値を要求するだけで、再調査後の判断にも適用できる条件がない。 |
 | `RD10-136` | frontier整合lintはL3文書にconfirmed 51件をconfirmed_currentへ写像する固定記述がなければ失敗させる。 | 過去のconfirmed件数と旧分類名を結ぶ固定記述だけを要求し、現行の分類条件や分母を検証していない。 |
@@ -616,10 +616,8 @@ driftの検出、振り返り、訓練を定期に運転し、未割当の資産
 | `RD11-029` | triage lintは、固定列挙10件の各backlog statusがimplementedでない場合に違反にする。 | 過去に列挙した固定10項目の状態をimplementedへ固定するだけで、実装を確認する条件がない。 |
 | `RD11-083` | version-up lintは、discovery PLANにactivation note (2026-06-30)がない場合に違反にする。 | 特定の旧探索PLANに過去日付付きmarkerを要求するだけで、有効化の判断内容や承認条件を確認していない。 |
 | `RD11-199` | terminal fullback監査は、証拠のissueNumberが694でない場合に失敗させる。 | 証拠のIssue番号を旧694へ固定するだけの専用検査であり、一般的な証拠の対象束縛条件を示していない。 |
-| `RF00-012` | ループ実行器はtick内の停止判定でexists・noProgress・customのprobeを常にfalseとし、これらのprobeによる停止を発生させない。 |  |
-| `RF00-027` | 旧fileLoopStoreは、runSideEffectが呼ばれた場合、stateとpurposeを使った認可や重複実行検査を行わず、渡されたeffectを直接実行する。 |  |
-| `RG10-016` | Issue #592の文書化PR担当者は、変更対象をdocs/governance/github-operation-rules.mdとCLAUDE.mdだけに限定する。 |  |
-| `RG13-005` | 完全性チェックはKimiのPreToolUse hook登録を再追記する場合、timeoutを10に設定する。 |  |
+| `RG10-016` | Issue #592の文書化PR担当者は、変更対象をdocs/governance/github-operation-rules.mdとCLAUDE.mdだけに限定する。 | 旧Issue #592の文書化PRに限った変更対象の限定。一般化すると「PRの変更範囲を限定する」だが、それはRUL-DEV-01（無関係な整理を混ぜない）で既に被覆され、この行自体は旧Issue固有の指定だけである |
+| `RG13-005` | 完全性チェックはKimiのPreToolUse hook登録を再追記する場合、timeoutを10に設定する。 | 旧Kimi拡張のhook登録に固有のtimeout値（10）の指定。一般化しても特定値の再追記手順だけで、要求の意味に寄与しない |
 
 ## 既存の作業との関係
 
