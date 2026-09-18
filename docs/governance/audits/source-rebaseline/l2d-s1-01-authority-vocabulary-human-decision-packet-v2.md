@@ -34,7 +34,7 @@ v1は「分母が古い」問題だったが、v2の作成過程で「分母が�
 `screen_only`とした`RUL-COR-08`・`RUL-OSA-03`にauthority語彙の意味があること、
 `in_scope_covered_by_avs`とした`RUL-COR-01`・`RUL-COR-02`・`RUL-OSM-08`はAVS原文が一部しか被覆していないことを
 指摘した。いずれもAVS原文とatom本文で確認し、処分を改めた。その結果`in_scope`は7要求772 atomから
-**12要求1,540 atom**へ増えた。screenの語に依存する選別と、要求単位の一人判定の両方に取りこぼしがあることの実例である。
+**13要求1,799 atom**へ増えた（`RUL-OSM-07`を含む。後述のとおりAVS被覆の断定もやめた）。screenの語に依存する選別と、要求単位の一人判定の両方に取りこぼしがあることの実例である。
 
 ## 判断対象revision
 
@@ -120,14 +120,13 @@ screenの語に1件も一致しない**。うち`RUL-OSM-05`（破壊的な操�
 
 screenは範囲の確定ではなく候補の抽出であり、要求単位の処分は要求本文の意味で判定した。screenの結果と処分は
 [`l2d-s1-01-authority-rule-atom-accounting.jsonl`](l2d-s1-01-authority-rule-atom-accounting.jsonl)
-（SHA-256 `c8e1b5003391f5e24371c958440ab470f8e0a206fdcbcd6bf2a0bab63a9b04b2`）に、対象atom IDまで含めて57行で記録した。
+（SHA-256 `29abaa34156ef71ef6b0c253c529777298e3b7c49ed77515467f671bdc8fd957`）に、対象atom IDまで含めて57行で記録した。
 
 ### 処分の内訳
 
 | 処分 | 要求 | screen atom |
 |---|---:|---:|
-| `in_scope`（S1-01の範囲に入る） | 12 | 373 |
-| `in_scope_covered_by_avs`（S1-01へ取る意味が全部AVSで計上済みと見ている） | 1 | 42 |
+| `in_scope`（S1-01の範囲に入る） | 13 | 415 |
 | `route_to_other_unit`（別decision unitで扱う） | 6 | 92 |
 | `out_of_scope_requirement_holds_linked_atoms`（範囲外だが、台帳がin_scopeへlinkするatomを抱える） | 35 | 416 |
 | `out_of_scope_requirement_no_linked_atoms`（範囲外で、linkするatomも無い） | 3 | 6 |
@@ -137,30 +136,33 @@ screenは範囲の確定ではなく候補の抽出であり、要求単位の�
 旧ルール群atomの対応表（本packetが未評価として L2適用PRの条件に送っているもの）そのものだからである。
 対応表を作る前にこの区別を断定すると、判定が読む人ごとに動く。実際、本PRのreviewでは同じ要求について
 `adds`と`partial`の判定が3回入れ替わった。各要求の`avs_coverage_assessment`は`unassessed`とし、
-対応表で確定する。`in_scope_covered_by_avs`の1件も、確定は同じ対応表による。
+対応表で確定する。
+
+同じ理由で、`RUL-OSM-07`を`in_scope_covered_by_avs`（全部被覆済み）としていたのもやめた。
+全部被覆されているという断定も、一部被覆と同じく対応表を要する。`in_scope`へ移し、対応表の対象に含めた。
+これにより`in_scope`は13要求1,799 atomになる。
 
 要求本文のうちS1-01が取らない部分は、AVSの被覆と無関係に「S1-01の範囲外に残る部分と行き先」列に書く。
 
-`in_scope`の12要求が持つ**primary atomは1,540件**であり、そのうちscreenに一致したのは373件である。
-残る1,167件はscreenの語に一致しなかったatomであり、内容は未確認である。
+`in_scope`の13要求が持つ**primary atomは1,799件**であり、そのうちscreenに一致したのは415件である。
+残る1,384件はscreenの語に一致しなかったatomであり、内容は未確認である。
 
-さらに、primaryが別の要求でありながら`requirement_secondary`に`in_scope`12要求を持つatomが**966件**ある
-（linkは997本。1 atomが複数のin_scope要求へlinkする場合があるため、atom数とlink数は一致しない）。
-本screenは`requirement_primary`だけで集約しており、この966件は処分を持たない。
-計上台帳の`secondary_links_from_other_primary`は、各要求へ入るlink数（合計997）である。
+さらに、primaryが別の要求でありながら`requirement_secondary`に`in_scope`13要求を持つatomが**964件**ある
+（linkは1,009本。1 atomが複数のin_scope要求へlinkする場合があるため、atom数とlink数は一致しない）。
+本screenは`requirement_primary`だけで集約しており、この964件は処分を持たない。
+計上台帳の`secondary_links_from_other_primary`は、各要求へ入るlink数（合計1,009）である。
 
-**この966件は42要求に分散している。** そのため、`in_scope`に取らなかった要求を
+**この964件は41要求に分散している。** そのため、`in_scope`に取らなかった要求を
 「authority語彙の意味を持たない」と一括で呼ぶことはできない。要求本文がS1-01の意味を定義していなくても、
 その要求のatomが台帳自身によってS1-01の`in_scope`要求へlinkされている場合があるからである。
-計上台帳では、この区別を`in_scope_linked_atoms`（各要求のprimary atomのうち、**primaryがin_scope外**でありながら`requirement_secondary`でin_scope要求へlinkしているatomの件数。in_scope要求自身は定義上0になる。primaryもsecondaryもin_scope内というatomは283件あり、これは1,540件に既に含まれる）と、
+計上台帳では、この区別を`in_scope_linked_atoms`（各要求のprimary atomのうち、**primaryがin_scope外**でありながら`requirement_secondary`でin_scope要求へlinkしているatomの件数。in_scope要求自身は定義上0になる。primaryもsecondaryもin_scope内というatomは449件あり、これは1,799件に既に含まれる）と、
 処分`out_of_scope_requirement_holds_linked_atoms`／`out_of_scope_requirement_no_linked_atoms`で記録した。
-linkを抱える要求は35件、抱えない要求は3件である（`route_to_other_unit`の6件と
-`in_scope_covered_by_avs`の1件も`in_scope_linked_atoms`を持つ）。
+linkを抱える要求は35件、抱えない要求は3件である（`route_to_other_unit`の6件も`in_scope_linked_atoms`を持つ）。
 
 実例として、第2独立reviewが指摘した`RUL-OSP-01`の`RB04-160`（人間は作る内容・動作確認・リリースを判断する）、
 `RUL-TKT-03`の`RB04-053`（保留findingのcarryにPM承認を要する）、`RUL-TKT-01`の`RB06-278`（archived遷移に人間承認を要する）、
 `RUL-FRM-09`の`RB07-122`（PO承認なしに特定の依存参照を使わない）、`RUL-OSI-03`の`RB04-157`（運用ルール変更にTL・QA承認を要する）は、
-いずれもこの966件の内訳である。`RB04-053`、`RB06-278`、`RB07-122`、`RB04-157`は`requirement_secondary`に`RUL-OSM-01`を持ち、
+いずれもこの964件の内訳である。`RB04-053`、`RB06-278`、`RB07-122`、`RB04-157`は`requirement_secondary`に`RUL-OSM-01`を持ち、
 `RB04-160`は`RUL-FRM-02`と`RUL-REL-01`を持つ（`RUL-FRM-02`が`in_scope`であるためlinkとして算入される）。
 
 ### S1-01の範囲に追加される意味
@@ -178,12 +180,13 @@ linkを抱える要求は35件、抱えない要求は3件である（`route_to_
 | `RUL-OSA-03`（OS） | 7／35 | 指摘の**処分**（current fixで閉じるか後続へ分けるか）。AVS-BR-003の`disposition` identityに具体の意味を与える。審査のstale化は`RUL-COR-02`が一般形で持つため、そちらを参照する | blockerの一括返却と再判定の一巡規則。検収系unit（`RUL-OSA-01`の送り先）で扱う | in_scope |
 | `RUL-COR-01`（HARNESS／OS） | 55／166 | **DB・projection・生成物**の全般を第二の正本にしないこと。「作業者は状態DBへ直接書かない」こと | memoryとIssue commentを正本にしない部分はAVS-BR-005／AVS-AC-004／010で計上済み。DB schemaとidentityの実現方式はL3で再導出する（v1が繰り延べた領域。本要求が取るのは「直接書かない」という規律であり、schemaの決定ではない） | in_scope |
 | `RUL-COR-02`（HARNESS／OS） | 66／438 | **成果物と判断の全般**をrevisionとdigestへ束縛し、対象が変わったらstaleにすること。AVS-AC-006が束縛するのは`approval`だけである | digestの計算方法の版固定。L3の実現方式で扱う | in_scope |
+| `RUL-OSM-07`（OS） | 42／259 | 旧の識別子・旧の成果を**現行の根拠へ再昇格させない**こと。AVS-R-14／AVS-AC-014および旧`po_directive`の扱いと重なるが、被覆の程度は対応表で確定する | 「旧の参照を0にしてから退出する」退役管理。旧資産退役系unit（`LAR-OS-*`）で扱う | in_scope |
 | `RUL-OSM-08`（OS） | 8／84 | **GitHubの状態一般**から要求や承認を作らないこと（Project Statusからの逆書込み禁止 atom`RB0-104`を含む）。AVS-AC-004はIssue commentとmemoryだけの`decision`拒否である | Issue／PR／templateの形式とownerの単一性。GitHub projection系unitで扱う | in_scope |
 
 `RUL-OSM-05`、`RUL-OSA-07`、`RUL-COR-08`、`RUL-OSA-03`はscreen一致0件または少数であり、要求本文の判定で計上している。
 各要求についてAVSがどこまで被覆しているかは`unassessed`である（上記のとおり対応表で確定する）。
 `RUL-COR-08`と`RUL-OSA-03`は2026-09-19の第2独立reviewで、`RUL-COR-01`・`RUL-COR-02`・`RUL-OSM-08`は
-同reviewの指摘により`in_scope_covered_by_avs`から変更した。
+同reviewの指摘により`in_scope_covered_by_avs`から変更した。`RUL-OSM-07`も後に同じ理由で`in_scope`へ移した。
 
 `RUL-OSM-01`の旧atomには、`RA-104`（認証・認可・決済・PII・secrets・license・本番基盤・破壊的操作・外部API前提の変更前に
 escalateする）のように介入点を具体で列挙するものがある。v1のAVS-BR-001/003/004は「directiveに実行意図・対象・許可scopeが要る」
@@ -203,16 +206,6 @@ escalateする）のように介入点を具体で列挙するものがある。
 送り先を持たせたうえで送るのであって、不採用にしない。送り先のdecision unitは、`l2-source-adoption-sequence.md`の
 S2以降の該当unitで確定する。
 
-### AVSで計上済みのもの
-
-| 要求 | AVSで計上済みの意味 | S1-01の範囲外に残る部分と行き先 |
-|---|---|---|
-| `RUL-OSM-07` | 旧の識別子・旧の成果を現行の根拠へ再昇格させない（AVS-R-14／AVS-AC-014、旧`po_directive`の扱い）。AVS原文で確認した | 「旧の参照を0にしてから退出する」退役管理。旧資産退役系unit（`LAR-OS-*`）で扱う |
-
-初版では`RUL-COR-01`／`RUL-COR-02`／`RUL-OSM-08`もここに置いていたが、AVS原文と突き合わせた結果、
-AVS側が被覆しているのは各要求の一部だけであることが分かったため`in_scope`へ移した。
-`in_scope_covered_by_avs`として残るのは`RUL-OSM-07`の1件である。
-
 ## 未評価のまま残すもの
 
 本v2は、`MPR-SH-LEGACY-RULE-004`に対する要求単位の処分までである。次はすべて`unassessed`であり、
@@ -229,8 +222,8 @@ S1-01を人間判断へ送る前に解消する。
 
 **規則holding内部**
 
-3. `in_scope`12要求のprimary atom 1,540件のうち、screenに一致しなかった1,167件の内容。
-4. primaryが別でsecondaryに`in_scope`12要求を持つatom 966件（link 997本）の処分。本screenは`requirement_primary`だけで集約している。
+3. `in_scope`13要求のprimary atom 1,799件のうち、screenに一致しなかった1,384件の内容。
+4. primaryが別でsecondaryに`in_scope`13要求を持つatom 964件（link 1,009本）の処分。本screenは`requirement_primary`だけで集約している。
 5. 一次screenに掛からなかった6,693 atomのうち、authorityの意味を持つものが無いことの確認。
    screenは語に依存するため、語を使わずに同じ意味を述べたatomを取りこぼす。`RUL-OSM-05`と`RUL-OSA-07`が実例である。
 6. `re.IGNORECASE`で増える7 atom（`RC01-118`ほか）を集合に入れるかどうか。
@@ -246,7 +239,7 @@ S1-01を人間判断へ送る前に解消する。
    判定側の誤参照」）と記録している。`RUL-FRM-02`は本v2で`in_scope`に置いたため、L2適用PRの対応表は
    この未解決を先に片づける必要がある。
 
-L2／L11適用PRの合格条件は、旧AVSの46 atomと、`in_scope`12要求に属する**1,540 atom**（screen一致373件だけではない）
+L2／L11適用PRの合格条件は、旧AVSの46 atomと、`in_scope`13要求に属する**1,799 atom**（screen一致415件だけではない）
 について対応表を作り、未対応0とすることである。本packetの承認は、この対応表の完成を意味しない。
 
 ## v1から変わらない部分
@@ -278,16 +271,16 @@ memoryのTTLとLearning admission、workflow signalのexact token、compatibilit
 ## 人間判断
 
 **本v2は、この時点では人間判断へ送れない。** 「未評価のまま残すもの」の分母2項目（生存中holding 11件の未評価、
-母集合の非網羅）が解消していないため、AVSの46 atomと旧ルール群の1,540 atomを落とさないという主張が、分母側で
+母集合の非網羅）が解消していないため、AVSの46 atomと旧ルール群の1,799 atomを落とさないという主張が、分母側で
 成立していない。
 
 送れる状態にするために必要な作業は次のとおりで、いずれも別PRで行う。
 
 1. 未評価11 holdingへ、本v2と同じ形式の処分を付ける（3件はatom展開が先に要る）（`l2d-s1-01-input-holding-screen.jsonl`を更新する）。`PLAN-L3-82-authority-vocabulary-separation.md`を優先する。
-2. `in_scope`12要求のprimary atom 1,540件と、secondaryで流入する966件を、atom単位で処分する。
+2. `in_scope`13要求のprimary atom 1,799件と、secondaryで流入する964件を、atom単位で処分する。
 3. `OVC-RUL-RUL-FRM-02`の`AVS-BR-001` `unresolved`を解消する。
 
-そのうえで問う判断は、v1から変えていない。AVSの全46 atomと旧ルール群`in_scope`12要求の意味を落とさず、
+そのうえで問う判断は、v1から変えていない。AVSの全46 atomと旧ルール群`in_scope`13要求の意味を落とさず、
 HARNESSの規範責務とOSの記録・執行責務へ`split`する方針の可否である。
 
 - `approve_split`: 上記責務分割と処分を採用し、L2／L11適用PRの作成へ進む。**上の1〜3が終わるまで選べない。**
