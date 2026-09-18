@@ -126,9 +126,9 @@ AVS-R-01から16までの20 atomをすべて計上した。別decision unitへ�
 - 過去データのcompatibility adapterが必要か、read-only変換か、完全retireかはconsumer inventory後に決める。
 - AVS以外のS1 sourceとの重複・包含は後続unitでrelationを付け、今回のsource identityを消さない。
 
-## 人間判断
+## 人間判断（superseded、選択しない）
 
-判断対象は、上記exact source revisionにあるAVSの全6 L1 atom、全20 L3 atom、全20 L10 oracleを落とさず、
+本節はv1のものであり、現行はv2である。ここから選択しない。判断対象は、上記exact source revisionにあるAVSの全6 L1 atom、全20 L3 atom、全20 L10 oracleを落とさず、
 HARNESSの規範責務とOSの記録・執行責務へ`split`する方針である。
 
 - `approve_split`: 上記責務分割と旧拘束の扱いを採用し、L2／L11適用PRの作成へ進む。
