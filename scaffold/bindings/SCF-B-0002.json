@@ -10,7 +10,7 @@
  "upstream": [
   {
    "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
-   "sha256": "1c9891cbf76d7a28a6cf64b75e907e6ddad41c0aac5c9fa0a9196421211407a5",
+   "sha256": "883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3",
    "note": "要求候補57本（RUL-*）"
   },
   {

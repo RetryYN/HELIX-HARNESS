@@ -3,7 +3,7 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 1c9891cbf76d7a28a6cf64b75e907e6ddad41c0aac5c9fa0a9196421211407a5
+source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
 source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
 rule_id: RUL-FRM-08

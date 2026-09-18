@@ -20,11 +20,11 @@ HELIX-DBの要否は本programで扱う技術制約の一論点である。専�
 
 [管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、
 `management-provisional-requirement-register.jsonl`で生存中の全`registered_source_holding`を入力入口にする。
-現在の十二のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
+現在の十三のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
 旧candidate 4,755行、workflow索引108件、構造見出し317件、Scrum Reverse 300行、archive隔離前に変更された
 基準source revision 333 pathに加え、旧v1.3の直接委任22文書から意味frontmatter relation 265 edgeを再帰的に辿った
 closure 117文書を、114 file blobとScrum Reverse行台帳3文書へ保持する。さらに同じ117文書から抽出したfrontmatter・
-本文参照788 edgeを、参照元行とtarget blob digest付きの分類待ちholdingへ保持する。さらにPOが提示した5大目標5件と
+本文参照788 edgeを、参照元行とtarget blob digest付きの分類待ちholdingへ保持する。さらに旧HELIXのAI向け指示・運用文書・機械強制codeから抽出した規則atom 7,113件（対象file 632件、二巡目219件。発見済みであり全規則ではない）を保持する。さらにPOが提示した5大目標5件と
 七大原則7件のexact原文を、企画価値sourceと行動規律sourceの12 atomとして保持する。
 
 これらの件数は重複・包含・派生関係を含むため単純合算しない。一つのholdingや索引に無いことを非要求・不要の
