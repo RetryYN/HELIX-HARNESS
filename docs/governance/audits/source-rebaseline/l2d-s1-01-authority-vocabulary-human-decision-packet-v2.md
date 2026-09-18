@@ -120,7 +120,7 @@ screenの語に1件も一致しない**。うち`RUL-OSM-05`（破壊的な操�
 
 screenは範囲の確定ではなく候補の抽出であり、要求単位の処分は要求本文の意味で判定した。screenの結果と処分は
 [`l2d-s1-01-authority-rule-atom-accounting.jsonl`](l2d-s1-01-authority-rule-atom-accounting.jsonl)
-（SHA-256 `3e554a22e6741c057c0e3aa47eb897f8836a3caf9708337f8245e34edd74cbf2`）に、対象atom IDまで含めて57行で記録した。
+（SHA-256 `e5bf1147ae01140951755d6103566c7539e7c48a5b36aade5154a743c80bdd76`）に、対象atom IDまで含めて57行で記録した。
 
 ### 処分の内訳
 
@@ -130,8 +130,8 @@ screenは範囲の確定ではなく候補の抽出であり、要求単位の�
 | `in_scope_partial`（一部だけ広げる） | 7 | 192 |
 | `in_scope_covered_by_avs`（AVSで計上済み） | 1 | 42 |
 | `route_to_other_unit`（別decision unitで扱う） | 6 | 92 |
-| `screen_only_no_authority_semantics`（語が現れるだけ） | 37 | 422 |
-| `not_screened_no_authority_semantics`（screen非一致かつ範囲外） | 1 | 0 |
+| `out_of_scope_requirement_holds_linked_atoms`（範囲外だが、台帳がin_scopeへlinkするatomを抱える） | 35 | 416 |
+| `out_of_scope_requirement_no_linked_atoms`（範囲外で、linkするatomも無い） | 3 | 6 |
 | 合計 | 57 | 929 |
 
 `in_scope`の12要求が持つ**primary atomは1,540件**であり、そのうちscreenに一致したのは373件である。
@@ -141,6 +141,19 @@ screenは範囲の確定ではなく候補の抽出であり、要求単位の�
 （linkは997本。1 atomが複数のin_scope要求へlinkする場合があるため、atom数とlink数は一致しない）。
 本screenは`requirement_primary`だけで集約しており、この966件は処分を持たない。
 計上台帳の`secondary_links_from_other_primary`は、各要求へ入るlink数（合計997）である。
+
+**この966件は42要求に分散している。** そのため、`in_scope`に取らなかった要求を
+「authority語彙の意味を持たない」と一括で呼ぶことはできない。要求本文がS1-01の意味を定義していなくても、
+その要求のatomが台帳自身によってS1-01の`in_scope`要求へlinkされている場合があるからである。
+計上台帳では、この区別を`in_scope_linked_atoms`（各要求が抱えるlink済みatomの件数）と、
+処分`out_of_scope_requirement_holds_linked_atoms`／`out_of_scope_requirement_no_linked_atoms`で記録した。
+linkを抱える要求は35件、抱えない要求は3件である（`route_to_other_unit`の6件と
+`in_scope_covered_by_avs`の1件も`in_scope_linked_atoms`を持つ）。
+
+実例として、第2独立reviewが指摘した`RUL-OSP-01`の`RB04-160`（人間は作る内容・動作確認・リリースを判断する）、
+`RUL-TKT-03`の`RB04-053`（保留findingのcarryにPM承認を要する）、`RUL-TKT-01`の`RB06-278`（archived遷移に人間承認を要する）、
+`RUL-FRM-09`の`RB07-122`（PO承認なしに特定の依存参照を使わない）、`RUL-OSI-03`の`RB04-157`（運用ルール変更にTL・QA承認を要する）は、
+いずれも`requirement_secondary`に`RUL-OSM-01`を持つatomであり、この966件の内訳である。
 
 ### S1-01の範囲に追加される意味
 
@@ -212,8 +225,9 @@ S1-01を人間判断へ送る前に解消する。
 5. 一次screenに掛からなかった6,693 atomのうち、authorityの意味を持つものが無いことの確認。
    screenは語に依存するため、語を使わずに同じ意味を述べたatomを取りこぼす。`RUL-OSM-05`と`RUL-OSA-07`が実例である。
 6. `re.IGNORECASE`で増える7 atom（`RC01-118`ほか）を集合に入れるかどうか。
-7. `screen_only`とした37要求、`not_screened`とした1要求について、個々のatom本文を1件ずつ見た確認。
-   現在の根拠は要求本文の意味であり、atom単位ではない。要求単位の根拠を個別に記録したのは4要求で、残る33要求の`basis`は定型文である。
+7. 範囲外とした38要求について、個々のatom本文を1件ずつ見た確認。とくに`in_scope_linked_atoms`を持つ35要求は、
+   link済みatomの処分が項目4と重なる。
+   現在の根拠は要求本文の意味であり、atom単位ではない。要求単位の根拠を個別に記録したのは4要求で、残る34要求の`basis`は定型文である（ただし`in_scope_linked_atoms`の件数と例示atomは要求ごとに実数を持つ）。
 8. 各要求の`common_atoms`、`distinct_atoms_by_source`、`acceptance_differences`、`consumer_differences`、
    `unaccounted_atom_refs`（RDP-002 clusterの未評価fieldと同じ）。
 
