@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSM-08
 group: OS管理
 product: OS
-atoms_primary: 76
-atoms_secondary: 82
+atoms_primary: 84
+atoms_secondary: 88
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 GitHubを共有・作業・証拠の投影として使う。Issue、PR、templateの形式とownerの単一性を定め、GitHubの状態から要求や承認を作らない。
 
-## 主として対応づいた規則（76件）
+## 主として対応づいた規則（84件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -100,9 +100,17 @@ GitHubを共有・作業・証拠の投影として使う。Issue、PR、templat
 | `RE01-255` | GitHub運用者はmainへの変更をPR経由に限定し、strictな保護をbypassしてはならない。 | review_merge | config／gate | fail_close | main branch protection | `RUL-OSA-04` | docs/governance/helix-harness-requirements_v1.3.md:516-516 | E01／claude-opus |
 | `RE01-260` | Issueの完了はterminal PRのClosesとmergeで行い、AIが手動closeしてはならない。superseded・cancelはPO判断とし、子項目のdispositionも閉じる。 | review_merge | prose／gate | fail_close | terminal PRによるIssue closure | `RUL-TKT-01` | docs/governance/helix-harness-requirements_v1.3.md:516-516 | E01／claude-opus |
 | `RE01-265` | GitHub連携はDBからの一方向projectionを基本とし、逆方向はIssue admissionへ限定する。通常Forward外のIssueも見える状態に保つ。 | memory_context | gate | fail_close | GitHub/DB read-side projection | `RUL-COR-01` | docs/governance/helix-harness-requirements_v1.3.md:525-531 | E01／claude-opus |
+| `RG02-005` | review観測収集器は、openなPRとopenなIssueを観測対象とし、Issue一覧に含まれるPRをIssue対象から除外する。 | tooling_runtime | ci | n/a | GitHub REST APIのstate=openとpull_request属性 | `RUL-OSI-01` | .github/scripts/collect-claude-review-observation.mjs:42-45; .github/scripts/collect-claude-review-observation.mjs:56-72 | G02／claude-opus |
 | `RG10-015` | PR作成者はbehavior contractの成立に必要なPLAN・test・designなどのcompanionをRequired companion pathsへexact pathで指定する。 | review_merge | prose／gate | fail_close | pr-context-guard、Required companion paths | `RUL-FRM-01` | docs/governance/github-operation-rules.md:34-36; docs/governance/github-operation-rules.md:55-55 | G10／claude-opus |
 | `RG10-018` | GitHub運用設計者は通常Forwardを含む全入口にIssue gateを要求し、上流UTの「通常ForwardはIssue不要」をそのまま採用してはならない。 | process_gate | prose | n/a | UTのForward運用からHELIXへの移管 | `RUL-RSH-01` | docs/governance/github-operations-reference-audit-2026-07-18.md:37-37 | G10／claude-opus |
+| `RG27-003` | pr-context-guardは、PLAN companionがPRのbehavior_contract_id・responsibility_ownerと一致しない場合に失敗させるが、body内のmigration bundle manifestで明示的に束縛された他PLAN（ownerでなく、両属性が非nullのもの）に限り不一致を許容する。 | review_merge | ci／lint | fail_close | HELIX:github-workflow-identity-migration-bundle:v1 marker と JSON block 形式 | `RUL-TKT-01` | src/lint/github-guards.ts:179-203; src/lint/github-guards.ts:463-479 | G27／claude-opus |
+| `RG27-004` | pr-context-guardは、closure graphが必要なPRで、Closesが指すIssueにread-after-GitHubのclosure graph snapshotが無い場合、またはsnapshotのparent Issue集合がClose対象集合と完全一致しない（重複・余剰を含む）場合、失敗させる。 | review_merge | ci／lint | fail_close | GitHub Issue番号とClosesキーワードに依存 | `RUL-COR-02` | src/lint/github-guards.ts:521-559 | G27／claude-opus |
+| `RG41-015` | GitHub Issue graph providerは、関係集合を1ページ分だけ取得し、次ページが残る場合はその集合を不完全として記録しなければならない。取得した番号は重複排除して昇順に整える。 | evidence_claim | prose | fail_close | GraphQL first:100 と pageInfo.hasNextPage | `RUL-FRM-04` | src/runtime/github-issue-native-graph-provider.ts:14-21; src/runtime/github-issue-native-graph-provider.ts:60-77; src/runtime/github-issue-native-graph-provider.ts:126-132 | G41／claude-opus |
+| `RG42-015` | Issue metadataの管理対象type labelはbug・feature・enhancement・updateに限る。recoveryとincidentはtypedなworkflow/signal値であり、type label契約を満たしてはならない。 | process_gate | gate | fail_close | GitHub label名 | — | src/runtime/issue-metadata-audit.ts:3-7 | G42／claude-opus |
+| `RG42-017` | native Issue graphの監査は読み取り専用とし、drift findingを正確に出すだけで、GitHub側の状態からIssue本文のauthorityを推測してはならない（本文が正本）。 | evidence_claim | gate | fail_close | GitHub native sub-issue/blocked-by graph | `RUL-COR-01` | src/runtime/issue-hierarchy.ts:457-462 | G42／claude-opus |
+| `RG42-018` | 階層関係のclosure投影は、片側にしか無いblocks/blocked_byを相手側へ補って対称化し、既存edgeを削除する候補を作ってはならない。 | process_gate | gate | fail_close | — | — | src/runtime/issue-hierarchy.ts:492-520 | G42／claude-opus |
+| `RG42-019` | 依存契約の投影と整合監査の対象は、dispositionがactiveで、かつblocksまたはblocked_byの関係を持つIssueに限る。 | process_gate | gate | n/a | — | — | src/runtime/issue-hierarchy.ts:574-578; src/runtime/issue-hierarchy.ts:628-631 | G42／claude-opus |
 
-## 副として対応づいた規則（82件）
+## 副として対応づいた規則（88件）
 
-`RA-154`、`RA-160`、`RA-197`、`RB0-009`、`RB0-060`、`RB0-077`、`RB0-087`、`RB0-088`、`RB0-090`、`RB0-092`、`RB0-097`、`RB0-098`、`RB0-099`、`RB0-103`、`RB0-105`、`RB04-009`、`RB04-114`、`RB04-143`、`RB04-163`、`RB04-180`、`RB04-181`、`RB04-224`、`RB04-242`、`RB04-243`、`RB04-256`、`RB04-272`、`RB04-280`、`RB05-001`、`RB05-048`、`RB05-061`、`RB05-104`、`RB05-144`、`RB05-145`、`RB05-327`、`RB06-129`、`RB08-276`、`RB08-308`、`RB08-337`、`RB09-003`、`RB09-020`、`RB09-031`、`RC00-186`、`RC04-247`、`RC04-281`、`RD01-287`、`RD01-288`、`RD02-081`、`RD02-083`、`RD02-092`、`RD02-093`、`RD02-100`、`RD02-101`、`RD02-102`、`RD02-103`、`RD02-109`、`RD02-110`、`RD02-112`、`RD02-113`、`RD02-126`、`RD02-128`、`RD07-191`、`RD07-192`、`RD07-197`、`RD07-198`、`RD07-199`、`RD07-200`、`RD07-201`、`RD07-205`、`RD09-086`、`RD09-087`、`RD09-090`、`RE01-064`、`RE01-070`、`RE01-076`、`RE01-095`、`RE01-155`、`RE01-256`、`RE01-261`、`RG10-013`、`RG10-017`、`RG13-009`、`RG13-011`
+`RA-154`、`RA-160`、`RA-197`、`RB0-009`、`RB0-060`、`RB0-077`、`RB0-087`、`RB0-088`、`RB0-090`、`RB0-092`、`RB0-097`、`RB0-098`、`RB0-099`、`RB0-103`、`RB0-105`、`RB04-009`、`RB04-114`、`RB04-143`、`RB04-163`、`RB04-180`、`RB04-181`、`RB04-224`、`RB04-242`、`RB04-243`、`RB04-256`、`RB04-272`、`RB04-280`、`RB05-001`、`RB05-048`、`RB05-061`、`RB05-104`、`RB05-144`、`RB05-145`、`RB05-327`、`RB06-129`、`RB08-276`、`RB08-308`、`RB08-337`、`RB09-003`、`RB09-020`、`RB09-031`、`RC00-186`、`RC04-247`、`RC04-281`、`RD01-287`、`RD01-288`、`RD02-081`、`RD02-083`、`RD02-092`、`RD02-093`、`RD02-100`、`RD02-101`、`RD02-102`、`RD02-103`、`RD02-109`、`RD02-110`、`RD02-112`、`RD02-113`、`RD02-126`、`RD02-128`、`RD07-191`、`RD07-192`、`RD07-197`、`RD07-198`、`RD07-199`、`RD07-200`、`RD07-201`、`RD07-205`、`RD09-086`、`RD09-087`、`RD09-090`、`RE01-064`、`RE01-070`、`RE01-076`、`RE01-095`、`RE01-155`、`RE01-256`、`RE01-261`、`RG02-003`、`RG10-013`、`RG10-017`、`RG13-009`、`RG13-011`、`RG22-006`、`RG27-001`、`RG27-002`、`RG36-006`、`RG42-016`

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-FRM-08
 group: 枠
 product: HARNESS
-atoms_primary: 29
-atoms_secondary: 12
+atoms_primary: 35
+atoms_secondary: 14
 issue_projection: #1858
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1858
 
 要求の書き方を定める。機能要求の必須属性と受入条件、非機能要求の分類と等級、優先度、識別子の欠番の扱い、原子化しても利用者価値を失わないこと、画面設計で作る成果物。
 
-## 主として対応づいた規則（29件）
+## 主として対応づいた規則（35件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -55,7 +55,13 @@ issue_projection: #1858
 | `RE01-232` | UX検証者はprototype、DOM/token、E2E、content、analytics、accessibility間のdriftを検出し、要求atomには親task・outcome・scenario・context・成功条件・理由を保持する。意味を失う過分割をしない。 | evidence_claim | gate | fail_close | UX artifact driftと要求atom契約 | `RUL-FRM-04` | docs/governance/helix-harness-requirements_v1.3.md:385-390 | E01／claude-opus |
 | `RE01-234` | 要求compilerの設計者はL1 Markdown、L2のappend-only discovery、L3 strict JSONの役割を分け、L2の観測を直接canonical要求にしない。 | process_gate | gate | fail_close | Markdown→discovery→strict JSON要求compiler | `RUL-COR-01` | docs/governance/helix-harness-requirements_v1.3.md:402-418 | E01／claude-opus |
 | `RG08-001` | console設計者は、コントラスト基準をWCAG 2.1 AAとし、具体値をHigh-Fi層（canonical L11）で確定する。 | process_gate | config | n/a | 旧console profileとcanonical L11への具体値委譲 | `RUL-DEV-02` | config/ui-domain/harness-console-bundle.json:97-99 | G08／claude-opus |
+| `RG11-006` | package取込担当者は、Pattern Contract、profile隔離、UI段階区分、surface分類、projection-only DB、browser／VRT境界を暗黙採用にせず、個別の要件IDと受入oracleへ固定する。 | process_gate | prose | n/a | HBR-DH-001〜029 → VDH-FR-001〜019 crosswalk | `RUL-REV-01` | docs/governance/hybrid-rebaseline-v0.5.1-verification-audit-2026-07-18.md:64-64 | G11／claude-opus |
+| `RG15-006` | AC作成者はまだ着手しない将来scopeのACを先に精緻化せず、粒度を粗いまま置く。これはskip扱いとは区別する。 | behavior_discipline | prose | n/a | — | — | docs/skills/acceptance-criteria-thinking.md:92-93 | G15／claude-opus |
+| `RG25-009` | descent-obligationのFR範囲表記の展開は、開始と終了が整数で開始以下かつ差が100以内の場合にのみ全件展開し、それ以外は開始IDのみに縮退させる。 | tooling_runtime | lint | fail_close | boundedRange の上限100件 | `RUL-COR-04` | src/lint/descent-obligation.ts:63-72 | G25／claude-opus |
+| `RG47-010` | FE設計gap検出器は、slotへの登録だけをcoverageとして扱わず、設計本文の実体があるslotだけをgapから除外する。 | evidence_claim | prose | warn | L3/L5/L6 の FE 設計 slot | `RUL-FRM-04` | src/workflow/design-elicitation.ts:58-63; src/workflow/design-elicitation.ts:213-236 | G47／claude-opus |
+| `RG47-011` | FE要求抽出器は、画面固有のtraceを優先してbackend groundingを決め、全画面が同一の汎用capabilityへ潰れるgrounding劣化を避ける。 | evidence_claim | prose | warn | screen_trace と backend capability | `RUL-FRM-01` | src/workflow/design-elicitation.ts:128-152 | G47／claude-opus |
+| `RG48-007` | interview評価器は、問うべき質問集合をcore質問と、真になっているconditional signalに対応する質問だけから決める。 | process_gate | prose | n/a | uwj-question-catalog.v1 | `RUL-FRM-02` | src/workflow/workflow-interview-unresolved.ts:6-24; src/workflow/workflow-interview-unresolved.ts:100-106 | G48／claude-opus |
 
-## 副として対応づいた規則（12件）
+## 副として対応づいた規則（14件）
 
-`RE01-026`、`RE01-042`、`RE01-182`、`RE01-194`、`RE01-200`、`RE01-202`、`RE01-283`、`RG08-002`、`RG10-012`、`RG14-001`、`RG18-012`、`RG19-006`
+`RE01-026`、`RE01-042`、`RE01-182`、`RE01-194`、`RE01-200`、`RE01-202`、`RE01-283`、`RG01-004`、`RG08-002`、`RG10-012`、`RG11-003`、`RG14-001`、`RG18-012`、`RG19-006`

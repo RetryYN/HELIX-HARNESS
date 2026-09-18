@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSA-08
 group: OS検収
 product: OS
-atoms_primary: 22
-atoms_secondary: 8
+atoms_primary: 32
+atoms_secondary: 20
 issue_projection: #1860
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1860
 
 時間・費用・性能を計測して予算で管理する。CIの時間上限、後続実行による旧実行の取消、実行時間の推定の鮮度、不安定なtestと性能の退行の検出、統計の母集団、審査の証拠の有効期間。
 
-## 主として対応づいた規則（22件）
+## 主として対応づいた規則（32件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -47,8 +47,18 @@ issue_projection: #1860
 | `RD01-351` | 実行時間percentile計算は、p95が時間budgetを超える場合にbudgetExceededを立てるが、correctnessAffectedはfalseに保つ。 | evidence_claim | gate | warn | budgetExceeded、correctnessAffected=false | — | src/runtime/impact-ci.ts:570-578 | D01／gpt-6-astra |
 | `RD11-096` | version-up lintは、外部境界を持つPLANのcost_guardrailsにPages・Workers・D1・KVのlimitとexceed_actionが欠ける場合に違反にする。 | process_gate | lint | fail_close | Cloudflare向けの固定5field | `RUL-OSA-06` | src/lint/version-up-readiness.ts:517-524; src/lint/version-up-readiness.ts:1207-1213 | D11／gpt-6-astra |
 | `RE01-131` | hook設計者はsmokeを5秒未満、pre-pushを15秒未満に抑え、重いfull検証をローカル必須hookへ入れない。smokeはofflineかつAIなしで動作させる。 | tooling_runtime | prose | n/a | 5秒・15秒の旧hook予算 | `RUL-OSA-05` | docs/governance/helix-harness-requirements_v1.2.md:1887-1914 | E01／claude-opus |
+| `RG02-011` | 未応答review監査CIは、出力したreport.jsonを前回状態用artifactとして30日間保持する設定でuploadする。 | memory_context | config／ci | n/a | claude-unanswered-review-state、retention-days: 30 | `RUL-OSM-03` | .github/workflows/claude-unanswered-review-audit.yml:67-71 | G02／claude-opus |
+| `RG02-022` | full regressionのbulk shardは、Vitestをnice値10で起動する。 | tooling_runtime | ci | n/a | nice -n 10、bulk-1・bulk-2・bulk-3 | — | .github/workflows/harness-check.yml:773-775; .github/workflows/harness-check.yml:828-830; .github/workflows/harness-check.yml:898-900 | G02／claude-opus |
 | `RG16-006` | agent callがwrapperを外れた場合、担当者はcost記録義務が失われないよう、手動で.helix/audit/へentryを記録する。 | evidence_claim | prose | n/a | .helix/audit/、旧wrapperのcost telemetry | `RUL-FRM-04` | docs/skills/agent-cost-design.md:69-72 | G16／claude-opus |
+| `RG36-004` | decision packetのprovenanceは、有効期間が指定されない場合24時間（1440分）を既定とする。 | evidence_claim | lint | n/a | buildDecisionPacketProvenance の validForMinutes 既定 24*60 | `RUL-COR-02` | src/lint/workflow-decision-packets.ts:64-81 | G36／claude-opus |
+| `RG38-015` | CI telemetryのrun要約は、operationとverification_identityが同一のsetup nodeを2件目以降が重複とみなし、その件数と実行時間を無駄時間として計上しなければならない。 | evidence_claim | ci | n/a | summarizeRun の duplicateSetupByIdentity | — | src/runtime/ci-execution-telemetry.ts:975-992 | G38／claude-opus |
+| `RG39-021` | CI_WALL_CLOCKの再測定は、同一workflowの成功runについてstartedAtからupdatedAtまでの秒を取り、比較を同一eventかつ同一runner classに限定しなければならない。 | evidence_claim | prose | n/a | harness-check.yml という具体workflow名 | `RUL-FRM-04` | src/runtime/cli-r00-throughput-baseline.ts:239-248 | G39／claude-opus |
+| `RG39-022` | FULL_REGRESSION_WALL_CLOCKの再測定は、reuseによりshardが起動しなかったrunを母集団から除外し、0秒として扱ってはならない。 | evidence_claim | prose | n/a | full-regression-preflight/finalizeというjob名 | `RUL-FRM-04` | src/runtime/cli-r00-throughput-baseline.ts:250-259 | G39／claude-opus |
+| `RG39-023` | TARGETED_TEST_WALL_CLOCKは同一Node majorで複数sampleを取り、時間閾値そのものをoracleにしてはならない。 | evidence_claim | prose | n/a | vitest run --project fast の具体コマンド | `RUL-FRM-04` | src/runtime/cli-r00-throughput-baseline.ts:261-270 | G39／claude-opus |
+| `RG39-024` | CLI_COMMAND_STARTUP_TIMEは同一Node version・同一cwdで5回以上測定してp50/p95を残し、--helpの計測値を代表値へ混ぜてはならない。 | evidence_claim | prose | n/a | tsx src/cli.ts --version という具体コマンド | `RUL-FRM-04` | src/runtime/cli-r00-throughput-baseline.ts:272-281 | G39／claude-opus |
+| `RG39-025` | CI_RERUN_COUNTは比較対象PR集合と期間を先に固定したうえでattempt>1を数え、単一HEADのattempt=1をこの指標の測定値として使ってはならない。 | evidence_claim | prose | n/a | — | `RUL-FRM-04` | src/runtime/cli-r00-throughput-baseline.ts:283-293 | G39／claude-opus |
+| `RG39-026` | FULL_REGRESSION_INVOCATION_COUNTはshardが起動したかどうかで1または0とし、shard数をinvocation数として数えてはならない。 | evidence_claim | prose | n/a | full-regression-bulk-*/statefulというjob名 | `RUL-FRM-04` | src/runtime/cli-r00-throughput-baseline.ts:295-304 | G39／claude-opus |
 
-## 副として対応づいた規則（8件）
+## 副として対応づいた規則（20件）
 
-`RE01-107`、`RE01-119`、`RE01-180`、`RE01-228`、`RE01-229`、`RF00-008`、`RF00-009`、`RG16-007`
+`RE01-107`、`RE01-119`、`RE01-180`、`RE01-228`、`RE01-229`、`RF00-008`、`RF00-009`、`RG02-025`、`RG02-026`、`RG02-027`、`RG02-028`、`RG16-007`、`RG38-012`、`RG38-013`、`RG39-027`、`RG39-028`、`RG39-030`、`RG39-031`、`RG39-032`、`RG45-015`

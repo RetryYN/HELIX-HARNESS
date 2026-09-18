@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSA-02
 group: OS検収
 product: OS
-atoms_primary: 70
-atoms_secondary: 46
+atoms_primary: 74
+atoms_secondary: 52
 issue_projection: #1860
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1860
 
 審査の観点と報告の形式を定める。重大度の順、正しさ・可読性・構造・安全・性能の各観点、根拠となるfileと行、好みをblockerにしない。
 
-## 主として対応づいた規則（70件）
+## 主として対応づいた規則（74件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -93,10 +93,14 @@ issue_projection: #1860
 | `RD09-141` | verification evidence投影は、外部findingのseverityがerror・warn・info以外または未指定の場合、warnへ正規化して保持する。 | evidence_claim | lint | warn | normalizedSeverityの既定値warn | — | src/lint/relation-graph-evidence.ts:199-208 | D09／gpt-6-astra |
 | `RD10-082` | S4 lintはstakeholder_review_or_proxyにreviewの根拠語とreviewerまたはproxy主体の語がそろわなければ失敗させる。 | review_merge | lint | fail_close | review／S4 record／verificationとPO／TL／PM／Codex／proxy等 | `RUL-OSP-01` | src/lint/s4-decision-readiness.ts:363-381 | D10／gpt-6-astra |
 | `RF01-006` | ツール契約監査のメッセージ生成器は、監査失敗時に違反総数を表示するが、個別の違反内容は先頭8件までに制限する。 | tooling_runtime | gate | n/a | tool-contract-registryメッセージの8件上限 | — | src/orchestration/tool-contract.ts:224-235 | F01／claude-opus |
+| `RG01-010` | /sdd-review実行者は、所見をCritical・Important・Suggestionに分類する。 | review_merge | prose | n/a | Critical／Important／Suggestionの所見区分 | — | .claude/commands/sdd-review.md:26-26 | G01／claude-opus |
+| `RG02-003` | AI-Bは、PRのAllowed path familiesに指定されたdirectory prefixの責務粒度を確認する。 | review_merge | prose | n/a | AI-B、Allowed path families | `RUL-OSM-08` | .github/PULL_REQUEST_TEMPLATE.md:11-15 | G02／claude-opus |
 | `RG13-007` | 認識リスク監査者はscannerの初期機械dispositionを最終判定に使わず、全文レビュー後のfinal dispositionを用いる。 | evidence_claim | prose | n/a | L12・ハイブリッド認識scannerの初期分類とfinal disposition | `RUL-FRM-04` | docs/governance/l12-hybrid-requirements-recognition-risk-audit-2026-07-19.md:7-7 | G13／claude-opus |
+| `RG15-003` | accept判定・レビュー時は、Doneの偽装、ゴールの空洞化、垂直スライスの偽装、ACの後付け緩和、証跡の崩しという5型を名指しで疑い、受入条件を反例で突く。 | review_merge | prose | n/a | — | `RUL-FRM-04` | docs/skills/acceptance-criteria-thinking.md:62-73 | G15／claude-opus |
 | `RG18-012` | reviewerはartifactが誤っているという出発点で検証し、動作していてもspecまたはAC違反があれば拒否する。 | review_merge | prose | fail_close | — | `RUL-FRM-08` | docs/skills/judgment-core.md:109-110 | G18／claude-opus |
 | `RG18-013` | reviewerとjudgeはCorrectness・Readability・Architecture・Security・Performanceの5軸を横断してレビューする。 | review_merge | prose | n/a | — | — | docs/skills/judgment-core.md:132-141 | G18／claude-opus |
+| `RG46-014` | descriptor admissionは、失敗コードを定義済みの固定順序へ正規化して返し、検出順に依存した並びを返さない。 | evidence_claim | prose | n/a | — | `RUL-COR-04` | src/runtime/worker-descriptor-admission.ts:171-183 | G46／claude-opus |
 
-## 副として対応づいた規則（46件）
+## 副として対応づいた規則（52件）
 
-`RA-005`、`RA-168`、`RA-174`、`RA-251`、`RA-365`、`RA-368`、`RB0-142`、`RB0-151`、`RB0-156`、`RB04-020`、`RB04-115`、`RB04-155`、`RB05-012`、`RB05-030`、`RB05-049`、`RB06-269`、`RB07-039`、`RB07-100`、`RB07-105`、`RB07-166`、`RB07-210`、`RB07-256`、`RB07-259`、`RB07-277`、`RB07-279`、`RB07-331`、`RB08-187`、`RC0-100`、`RC00-011`、`RC00-237`、`RC03-070`、`RC03-110`、`RC03-122`、`RC04-118`、`RC04-119`、`RD02-059`、`RD03-078`、`RD03-089`、`RD08-008`、`RD08-012`、`RD08-013`、`RD08-014`、`RD09-140`、`RE01-149`、`RG08-005`、`RG09-001`
+`RA-005`、`RA-168`、`RA-174`、`RA-251`、`RA-365`、`RA-368`、`RB0-142`、`RB0-151`、`RB0-156`、`RB04-020`、`RB04-115`、`RB04-155`、`RB05-012`、`RB05-030`、`RB05-049`、`RB06-269`、`RB07-039`、`RB07-100`、`RB07-105`、`RB07-166`、`RB07-210`、`RB07-256`、`RB07-259`、`RB07-277`、`RB07-279`、`RB07-331`、`RB08-187`、`RC0-100`、`RC00-011`、`RC00-237`、`RC03-070`、`RC03-110`、`RC03-122`、`RC04-118`、`RC04-119`、`RD02-059`、`RD03-078`、`RD03-089`、`RD08-008`、`RD08-012`、`RD08-013`、`RD08-014`、`RD09-140`、`RE01-149`、`RG00-003`、`RG01-012`、`RG08-005`、`RG09-001`、`RG15-009`、`RG15-010`、`RG39-019`、`RG47-012`

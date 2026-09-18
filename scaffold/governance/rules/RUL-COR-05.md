@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-COR-05
 group: コア
 product: OS
-atoms_primary: 50
-atoms_secondary: 48
+atoms_primary: 63
+atoms_secondary: 58
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 toolchainと依存を固定し、clean環境とofflineで再現できるようにする。lockのずれ、部品表の欠落を失敗にする。
 
-## 主として対応づいた規則（50件）
+## 主として対応づいた規則（63件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -74,9 +74,22 @@ toolchainと依存を固定し、clean環境とofflineで再現できるよう�
 | `RE01-213` | 配布実装者はPOSIXとPowerShellで同じNode artifactを使い、Bun・旧UT・旧実装を再利用経路へ戻さず、必要なbehavior atomを再実装する。 | tooling_runtime | prose／gate | fail_close | Node artifactと旧UT/Bun廃止 | `RUL-OSM-07` | docs/governance/helix-harness-requirements_v1.3.md:310-312 | E01／claude-opus |
 | `RE01-216` | 配布検証者はfresh Linuxでinstallからsetup・status・doctor・workflow dry-runを確認し、Windowsでも同じartifactを検証する。state混入・bare CLI依存・network/credential依存・非冪等性を負例で検査する。 | process_gate | gate | fail_close | distribution smokeとnegative oracle | `RUL-FRM-05` | docs/governance/helix-harness-requirements_v1.3.md:319-322 | E01／claude-opus |
 | `RE01-279` | runtime検証者はLinuxをcanonicalなfull検証環境とし、Windows/macOSの互換検証でも同じfixtureを使う。Windows jobをrenameした場合は存在確認を含む参照側も更新する。 | tooling_runtime | ci／gate | fail_close | Linux-primaryとWindows/macOS compatibility job | `RUL-FRM-05` | docs/governance/helix-harness-requirements_v1.3.md:575-578 | E01／claude-opus |
+| `RG02-006` | bubblewrap導入処理は、未導入時のapt取得元を専用のUbuntu公式source listに限定し、既存のsourcepartsを使用しない。 | safety_security | ci | n/a | Ubuntu nobleのamd64用main・universeとupdates・backports・security | `RUL-COR-06` | .github/scripts/install-bubblewrap.sh:23-27; .github/scripts/install-bubblewrap.sh:33-42 | G02／claude-opus |
+| `RG02-007` | bubblewrap導入処理は、apt取得の再試行回数を3回、HTTPとHTTPSのtimeoutを各30秒に設定する。 | tooling_runtime | ci | n/a | Acquire::Retries=3、Acquire::http::Timeout=30、Acquire::https::Timeout=30 | — | .github/scripts/install-bubblewrap.sh:25-31; .github/scripts/install-bubblewrap.sh:41-42 | G02／claude-opus |
+| `RG02-023` | bulk-3のブラウザ依存導入処理は、指定されたGoogle Chromeのapt sourceファイルが存在する場合、それらをRUNNER_TEMPへ退避してからPlaywrightの依存を導入する。 | tooling_runtime | ci | fail_close | /etc/apt/sources.list.d/google-chrome.listとgoogle-chrome.sourcesの.disabledへの退避 | — | .github/workflows/harness-check.yml:865-877 | G02／claude-opus |
+| `RG03-002` | Issue metadata監査CIは、ubuntu-latest runner上でjobを実行する。 | tooling_runtime | config／ci | n/a | GitHub Actionsのubuntu-latest runner指定。 | `RUL-OSA-05` | .github/workflows/issue-metadata-audit.yml:12-14 | G03／claude-opus |
+| `RG03-004` | Issue metadata監査CIは、Node.js 24.15をセットアップして使用する。 | tooling_runtime | config／ci | n/a | actions/setup-nodeのnode-version: "24.15"。 | — | .github/workflows/issue-metadata-audit.yml:22-26 | G03／claude-opus |
+| `RG03-005` | Issue metadata監査CIは、依存関係を固定したインストールにnpm ciを使用する。 | tooling_runtime | ci | fail_close | install deps (frozen)ステップのnpm ci。 | — | .github/workflows/issue-metadata-audit.yml:28-29 | G03／claude-opus |
+| `RG03-006` | Issue metadata監査CIは、監査コマンドのnpx起動に--no-installを指定し、その場でのパッケージインストールを禁止する。 | tooling_runtime | ci | fail_close | npx --no-install tsx src/cli.ts github issue-metadata-audit。 | — | .github/workflows/issue-metadata-audit.yml:34-35 | G03／claude-opus |
 | `RG13-010` | DB検証者はrepository contractに準拠する同一runtimeで、projection／receipt digestが別checkout間でも一致することを確認する。 | evidence_claim | prose | n/a | G3 bootstrap verifierのprojection／receipt digest | `RUL-COR-02` | docs/governance/l3-rebaseline-g3-freeze-packet.md:515-518 | G13／claude-opus |
 | `RG17-004` | 障害調査担当者は、Windowsでhook entrypointのstatusがnullの場合、またはenv-pathの必須directory欠落を調べる場合、PATHにSystem32が含まれることを確認する。 | tooling_runtime | prose | n/a | WindowsのSystem32と旧hook entrypointのstatus表現 | `RUL-OSP-05` | docs/skills/debugging-and-error-recovery.md:44-44; docs/skills/debugging-and-error-recovery.md:137-138 | G17／claude-opus |
+| `RG21-006` | full doctorは、Node engine runtime checkが不合格の場合、総合判定を失敗にする。 | tooling_runtime | doctor | fail_close | checkNodeEngineRuntime | `RUL-OSA-06` | src/doctor/index.ts:7521-7521; src/doctor/index.ts:7672-7672 | G21／claude-opus |
+| `RG33-004` | runtime-portability loaderは、gitが使えない場合でもfilesystem走査へfallbackし、検査面をpackage.jsonとtsconfig.jsonだけに縮退させずsrc・.claude/hooks・scriptsを被覆する。 | tooling_runtime | lint | fail_close | git ls-files / walkRuntimeFiles | `RUL-COR-04` | src/lint/runtime-portability.ts:292-327 | G33／claude-opus |
+| `RG35-009` | profile probeのpackage宣言収集は、package.jsonが読めない、またはJSONとして解析できない場合、宣言package集合を空として扱う（結果としてpackage checkは失敗する）。 | tooling_runtime | lint | fail_close | packageNames の catch | `RUL-COR-04` | src/lint/verification-profile.ts:106-123 | G35／claude-opus |
+| `RG37-009` | provider実行ファイルの解決は、環境変数で明示指定されたbinaryを実在する場合のみ採用し、候補が複数あるときは字句順ではなくsemverの数値比較で最新を選ぶ。 | tooling_runtime | lint | n/a | HELIX_CLAUDE_BIN / HELIX_CODEX_BIN、newestVersioned | `RUL-OSP-02` | src/runtime/adapter.ts:191-229; src/runtime/adapter.ts:247-307 | G37／claude-opus |
+| `RG44-008` | review provider実測器は、CLIを起動せずbinary全体のSHA-256とmodel名だけでprovider materialを束縛する。 | evidence_claim | prose | fail_close | Kimi CLI binary | `RUL-COR-02` | src/runtime/review-lane-closure.ts:37-44; src/runtime/review-lane-closure.ts:114-135 | G44／claude-opus |
+| `RG45-008` | source mirror完全性検査は、status がok でないchunkを再開計画へ記録し、再開点を残す。 | evidence_claim | prose | fail_close | — | `RUL-FRM-04` | src/runtime/source-content-mirror-completeness.ts:97-107 | G45／claude-opus |
 
-## 副として対応づいた規則（48件）
+## 副として対応づいた規則（58件）
 
-`RA-068`、`RA-073`、`RA-238`、`RB04-257`、`RB05-185`、`RB05-269`、`RB06-112`、`RB06-167`、`RB06-229`、`RB06-267`、`RB06-285`、`RB06-288`、`RB07-195`、`RC01-169`、`RC01-184`、`RC01-185`、`RC01-187`、`RC01-190`、`RC02-017`、`RC04-195`、`RC04-276`、`RD00-145`、`RD00-148`、`RD00-149`、`RD00-171`、`RD00-186`、`RD00-280`、`RD04-097`、`RD04-098`、`RD04-115`、`RD10-031`、`RD10-032`、`RE01-002`、`RE01-086`、`RE01-102`、`RE01-108`、`RE01-109`、`RE01-159`、`RE01-211`、`RG03-007`、`RG08-007`、`RG13-003`、`RG14-004`、`RG14-010`、`RG14-013`、`RG14-014`、`RG14-016`、`RG19-012`
+`RA-068`、`RA-073`、`RA-238`、`RB04-257`、`RB05-185`、`RB05-269`、`RB06-112`、`RB06-167`、`RB06-229`、`RB06-267`、`RB06-285`、`RB06-288`、`RB07-195`、`RC01-169`、`RC01-184`、`RC01-185`、`RC01-187`、`RC01-190`、`RC02-017`、`RC04-195`、`RC04-276`、`RD00-145`、`RD00-148`、`RD00-149`、`RD00-171`、`RD00-186`、`RD00-280`、`RD04-097`、`RD04-098`、`RD04-115`、`RD10-031`、`RD10-032`、`RE01-002`、`RE01-086`、`RE01-102`、`RE01-108`、`RE01-109`、`RE01-159`、`RE01-211`、`RG02-008`、`RG02-024`、`RG03-007`、`RG08-007`、`RG13-003`、`RG14-004`、`RG14-010`、`RG14-013`、`RG14-014`、`RG14-016`、`RG19-012`、`RG22-005`、`RG24-002`、`RG25-001`、`RG35-003`、`RG37-007`、`RG37-018`、`RG40-002`、`RG46-017`

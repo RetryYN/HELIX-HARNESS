@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-FRM-01
 group: 枠
 product: HARNESS
-atoms_primary: 288
-atoms_secondary: 214
+atoms_primary: 294
+atoms_secondary: 224
 issue_projection: #1858
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1858
 
 工程の順序とV-pairを守る。上流が未確定のまま下流へ進まず、対になる設計と検証を双方向traceで閉じてから次の層へ進む。
 
-## 主として対応づいた規則（288件）
+## 主として対応づいた規則（294件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -311,10 +311,16 @@ issue_projection: #1858
 | `RE01-252` | 安全機能の実装者は規定の五sliceを順序どおり進め、各sliceでL4/L5とL8/L9/L10、mutation、DB receipt、独立review、main read-afterを揃える。 | process_gate | gate | fail_close | 安全基盤の五slice実装計画 | `RUL-TKT-02` | docs/governance/helix-harness-requirements_v1.3.md:492-503 | E01／claude-opus |
 | `RE01-272` | 設計者はG3でno-code判断・owner・複雑性をfreezeし、L4/L9でDDD境界、L5/L8でDbC、L6/L7でRed・最小Green・Refactorを対応づける。 | process_gate | gate | fail_close | no-code/DDD/DbC/TDDの層別配置 | `RUL-FRM-05`、`RUL-FRM-06` | docs/governance/helix-harness-requirements_v1.3.md:550-555 | E01／claude-opus |
 | `RE01-283` | freeze判断者は未解決の分岐を残さず、全transitionをFR・AC・test・source・対応pairへ結び付ける。schema gapがある状態でactivationしない。 | process_gate | gate | fail_close | transition traceとschema activation受入 | `RUL-FRM-08` | docs/governance/helix-harness-requirements_v1.3.md:637-664 | E01／claude-opus |
+| `RG00-006` | fe-leadはFE作業でV-modelの工程、gate、reviewの前置を遵守する。 | process_gate | prose | n/a | — | `RUL-FRM-02` | .claude/agents/fe-lead.md:28-31 | G00／claude-opus |
 | `RG09-010` | Forward L6担当者は、L7実装の開始前にdomain boundary・invariant・rule IDを定義または更新する。 | process_gate | prose | n/a | 旧L6機能設計・L7実装の工程割当 | `RUL-FRM-06` | docs/governance/ddd-tdd-rules.md:149-149 | G09／claude-opus |
 | `RG14-009` | 配置担当者は、未実体化targetについて、対応するpair-freeze／Forward PLANに至るまでdirectory自体を作成してはならない。 | process_gate | prose | n/a | repository構成表の[未実体化target]区分 | `RUL-OSM-09` | docs/governance/repository-structure.md:99-100 | G14／claude-opus |
+| `RG15-009` | pair-freeze gateのreviewerは、plan lintとdoctorがexit 0であること、header tableでなくdesign doc本文を読むこと、設計が宣言layerの期待granularityに合うことを確認し、reviewer identityとoutcomeをPLANのreview_evidenceへ記録する。 | review_merge | prose／gate | fail_close | helix plan lint / helix doctor / G2 | `RUL-OSA-02` | docs/skills/adversarial-review.md:95-101 | G15／claude-opus |
+| `RG15-010` | trace-freeze gateのreviewerは、typecheck・lint・testが全てHEADでexit 0、doctorがexit 0、PLAN rationaleのない.skip／todoが無いことを確認し、test assertionを3件spot-checkしてhappy pathだけを検証していないか確かめる。 | review_merge | prose／gate | fail_close | npm run typecheck / lint / test、Vitest、G4/G5 | `RUL-OSA-02` | docs/skills/adversarial-review.md:103-109 | G15／claude-opus |
 | `RG18-001` | 実装者はcoding前にL5設計書を読み、実装上の疑問に答える内容があることを確認する。 | process_gate | prose | n/a | 旧L5 detailed design | `RUL-FRM-06` | docs/skills/incremental-implementation.md:41-42 | G18／claude-opus |
+| `RG25-007` | descent-obligationは、source／testのtrace keyを@helix-trace注釈による明示引用からのみ採り、本文中のFR範囲展開を実装側のtraceとして認めない。 | evidence_claim | lint | fail_close | EXPLICIT_IMPLEMENTATION_TRACE_RE（@helix-trace FR-L1-NN） | `RUL-FRM-04` | src/lint/descent-obligation.ts:25-25; src/lint/descent-obligation.ts:101-103; src/lint/descent-obligation.ts:198-203 | G25／claude-opus |
+| `RG33-003` | screen-impl-pair-freezeの到達判定は、next_pair_freezeが示す層の設計ディレクトリにconfirmedまたはfrozen statusの設計文書が実在することを要件とする。screen設計不在または実装宣言なしの場合は検査対象0件として通過させる。 | process_gate | lint | fail_close | docs/design/harness/L<n>-* | `RUL-DEV-02` | src/lint/screen-impl-pair-freeze.ts:50-68; src/lint/screen-impl-pair-freeze.ts:98-113 | G33／claude-opus |
+| `RG48-002` | workflow envelope検証器は、conditionにdata参照、transitionにaction参照、permissionにaction参照、terminalにaudit参照をそれぞれ1件以上要求し、0件の定義を拒否する。 | process_gate | prose | fail_close | — | `RUL-COR-04` | src/workflow/universal-workflow-envelope.ts:45-52; src/workflow/universal-workflow-envelope.ts:56-66; src/workflow/universal-workflow-envelope.ts:78-89; src/workflow/universal-workflow-envelope.ts:98-105 | G48／claude-opus |
 
-## 副として対応づいた規則（214件）
+## 副として対応づいた規則（224件）
 
-`RA-196`、`RA-212`、`RA-213`、`RA-216`、`RA-218`、`RA-223`、`RA-232`、`RA-364`、`RB0-057`、`RB0-108`、`RB0-134`、`RB0-157`、`RB0-166`、`RB04-034`、`RB04-035`、`RB04-054`、`RB04-056`、`RB04-065`、`RB04-068`、`RB04-075`、`RB04-082`、`RB04-084`、`RB04-100`、`RB04-103`、`RB04-137`、`RB04-153`、`RB04-162`、`RB04-243`、`RB05-010`、`RB05-031`、`RB05-038`、`RB05-066`、`RB05-078`、`RB05-094`、`RB05-105`、`RB05-107`、`RB05-113`、`RB05-118`、`RB05-119`、`RB05-132`、`RB05-137`、`RB05-140`、`RB05-141`、`RB05-179`、`RB05-219`、`RB05-225`、`RB05-228`、`RB05-233`、`RB05-242`、`RB05-245`、`RB05-247`、`RB05-287`、`RB05-288`、`RB05-313`、`RB05-340`、`RB05-349`、`RB05-352`、`RB05-369`、`RB05-376`、`RB05-377`、`RB06-003`、`RB06-026`、`RB06-029`、`RB06-049`、`RB06-060`、`RB06-071`、`RB06-092`、`RB06-093`、`RB06-097`、`RB06-107`、`RB06-115`、`RB06-118`、`RB06-121`、`RB06-122`、`RB06-201`、`RB06-263`、`RB06-268`、`RB06-271`、`RB06-284`、`RB07-015`、`RB07-044`、`RB07-063`、`RB07-108`、`RB07-114`、`RB07-130`、`RB07-137`、`RB07-158`、`RB07-164`、`RB07-174`、`RB07-178`、`RB07-179`、`RB07-211`、`RB07-213`、`RB07-222`、`RB07-225`、`RB07-236`、`RB07-265`、`RB07-268`、`RB07-275`、`RB07-278`、`RB07-280`、`RB07-292`、`RB07-304`、`RB07-310`、`RB07-317`、`RB07-321`、`RB07-324`、`RB07-328`、`RB08-001`、`RB08-026`、`RB08-040`、`RB08-088`、`RB08-101`、`RB08-109`、`RB08-115`、`RB08-118`、`RB08-120`、`RB08-146`、`RB08-156`、`RB08-164`、`RB08-169`、`RB08-213`、`RB08-223`、`RB08-228`、`RB08-231`、`RB08-240`、`RB08-246`、`RB08-257`、`RB08-301`、`RB08-303`、`RB08-304`、`RB08-313`、`RB08-335`、`RB09-039`、`RB09-071`、`RB09-076`、`RC0-088`、`RC0-089`、`RC0-090`、`RC0-091`、`RC0-092`、`RC0-093`、`RC0-095`、`RC00-113`、`RC00-139`、`RC00-140`、`RC01-087`、`RC02-053`、`RC02-076`、`RC02-107`、`RC02-153`、`RC03-021`、`RC03-022`、`RC03-027`、`RC03-028`、`RC03-147`、`RC04-120`、`RC04-184`、`RC04-212`、`RC04-213`、`RC04-216`、`RD04-228`、`RD05-247`、`RD06-030`、`RD06-039`、`RD06-050`、`RD06-053`、`RD06-100`、`RD06-106`、`RD06-190`、`RD06-194`、`RD08-022`、`RD08-025`、`RD08-047`、`RD08-059`、`RD08-063`、`RD09-029`、`RD09-051`、`RD09-053`、`RD09-055`、`RD09-060`、`RD09-075`、`RD09-097`、`RD09-149`、`RD09-156`、`RD10-044`、`RD10-062`、`RD10-120`、`RD10-150`、`RD10-155`、`RD11-060`、`RD11-072`、`RD11-155`、`RD11-156`、`RD11-157`、`RE01-011`、`RE01-029`、`RE01-045`、`RE01-049`、`RE01-057`、`RE01-062`、`RE01-065`、`RE01-105`、`RE01-166`、`RE01-167`、`RE01-172`、`RE01-175`、`RE01-197`、`RE01-198`、`RE01-235`、`RG09-017`、`RG10-015`、`RG12-005`、`RG16-018`
+`RA-196`、`RA-212`、`RA-213`、`RA-216`、`RA-218`、`RA-223`、`RA-232`、`RA-364`、`RB0-057`、`RB0-108`、`RB0-134`、`RB0-157`、`RB0-166`、`RB04-034`、`RB04-035`、`RB04-054`、`RB04-056`、`RB04-065`、`RB04-068`、`RB04-075`、`RB04-082`、`RB04-084`、`RB04-100`、`RB04-103`、`RB04-137`、`RB04-153`、`RB04-162`、`RB04-243`、`RB05-010`、`RB05-031`、`RB05-038`、`RB05-066`、`RB05-078`、`RB05-094`、`RB05-105`、`RB05-107`、`RB05-113`、`RB05-118`、`RB05-119`、`RB05-132`、`RB05-137`、`RB05-140`、`RB05-141`、`RB05-179`、`RB05-219`、`RB05-225`、`RB05-228`、`RB05-233`、`RB05-242`、`RB05-245`、`RB05-247`、`RB05-287`、`RB05-288`、`RB05-313`、`RB05-340`、`RB05-349`、`RB05-352`、`RB05-369`、`RB05-376`、`RB05-377`、`RB06-003`、`RB06-026`、`RB06-029`、`RB06-049`、`RB06-060`、`RB06-071`、`RB06-092`、`RB06-093`、`RB06-097`、`RB06-107`、`RB06-115`、`RB06-118`、`RB06-121`、`RB06-122`、`RB06-201`、`RB06-263`、`RB06-268`、`RB06-271`、`RB06-284`、`RB07-015`、`RB07-044`、`RB07-063`、`RB07-108`、`RB07-114`、`RB07-130`、`RB07-137`、`RB07-158`、`RB07-164`、`RB07-174`、`RB07-178`、`RB07-179`、`RB07-211`、`RB07-213`、`RB07-222`、`RB07-225`、`RB07-236`、`RB07-265`、`RB07-268`、`RB07-275`、`RB07-278`、`RB07-280`、`RB07-292`、`RB07-304`、`RB07-310`、`RB07-317`、`RB07-321`、`RB07-324`、`RB07-328`、`RB08-001`、`RB08-026`、`RB08-040`、`RB08-088`、`RB08-101`、`RB08-109`、`RB08-115`、`RB08-118`、`RB08-120`、`RB08-146`、`RB08-156`、`RB08-164`、`RB08-169`、`RB08-213`、`RB08-223`、`RB08-228`、`RB08-231`、`RB08-240`、`RB08-246`、`RB08-257`、`RB08-301`、`RB08-303`、`RB08-304`、`RB08-313`、`RB08-335`、`RB09-039`、`RB09-071`、`RB09-076`、`RC0-088`、`RC0-089`、`RC0-090`、`RC0-091`、`RC0-092`、`RC0-093`、`RC0-095`、`RC00-113`、`RC00-139`、`RC00-140`、`RC01-087`、`RC02-053`、`RC02-076`、`RC02-107`、`RC02-153`、`RC03-021`、`RC03-022`、`RC03-027`、`RC03-028`、`RC03-147`、`RC04-120`、`RC04-184`、`RC04-212`、`RC04-213`、`RC04-216`、`RD04-228`、`RD05-247`、`RD06-030`、`RD06-039`、`RD06-050`、`RD06-053`、`RD06-100`、`RD06-106`、`RD06-190`、`RD06-194`、`RD08-022`、`RD08-025`、`RD08-047`、`RD08-059`、`RD08-063`、`RD09-029`、`RD09-051`、`RD09-053`、`RD09-055`、`RD09-060`、`RD09-075`、`RD09-097`、`RD09-149`、`RD09-156`、`RD10-044`、`RD10-062`、`RD10-120`、`RD10-150`、`RD10-155`、`RD11-060`、`RD11-072`、`RD11-155`、`RD11-156`、`RD11-157`、`RE01-011`、`RE01-029`、`RE01-045`、`RE01-049`、`RE01-057`、`RE01-062`、`RE01-065`、`RE01-105`、`RE01-166`、`RE01-167`、`RE01-172`、`RE01-175`、`RE01-197`、`RE01-198`、`RE01-235`、`RG01-001`、`RG01-008`、`RG02-001`、`RG09-017`、`RG10-015`、`RG12-005`、`RG16-018`、`RG25-008`、`RG32-012`、`RG33-016`、`RG38-010`、`RG44-027`、`RG47-011`、`RG48-008`

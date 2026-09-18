@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSP-07
 group: OS推進
 product: OS
-atoms_primary: 36
-atoms_secondary: 5
+atoms_primary: 41
+atoms_secondary: 8
 issue_projection: #1859
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1859
 
 自律実行の停止条件と上限を定める。反復回数、実行時間、予算、変更量、進捗の停滞、利用枠の枯渇、再試行の上限で止め、段階的に停止して再開できるようにする。
 
-## 主として対応づいた規則（36件）
+## 主として対応づいた規則（41件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -61,8 +61,13 @@ issue_projection: #1859
 | `RF00-011` | 予算判定器は、違反がある場合、overrunPolicyがversion_targetならkindをversion_target、escalateならblocker、それ以外ならstopにする。 | escalation_authority | gate | fail_close | overrunPolicy、LoopEffortBudgetDecision.kind | `RUL-OSM-01` | src/orchestration/loop-effort-budget.ts:174-201 | F00／claude-opus |
 | `RF00-013` | ループ実行器は、verifier後の予算判定でallowWorkerPassがfalseなら、verifierの判定がpass以外であっても最終verdictをerrorへ置換する。 | evidence_claim | gate | fail_close | afterBudget.allowWorkerPass、finalVerdict | `RUL-FRM-04` | src/orchestration/loop-runner.ts:123-147 | F00／claude-opus |
 | `RF00-026` | 停止判定器は、規則を配列順に評価し、最初に検出した不正規則または停止条件で即座に判定を返し、後続規則を評価しない。 | process_gate | gate | n/a | evaluateStopのforループ内return | — | src/orchestration/loop-stop-rules.ts:44-74 | F00／claude-opus |
+| `RG02-002` | Claude設定は、Stop時のclaude-memory-wake hookに7230秒のtimeoutを適用する。 | tooling_runtime | config | n/a | claude-memory-wake、timeout 7230秒 | `RUL-OSM-02` | .claude/settings.json:78-85 | G02／claude-opus |
 | `RG18-017` | 管理者はIncident driveの作業にtime-boxを設ける。 | process_gate | prose | n/a | Incident drive | `RUL-OPS-01` | docs/skills/project-management.md:105-105 | G18／claude-opus |
+| `RG28-005` | L1/L2 gap-checkは既定3 round以内にgreenへ至らない場合、AIが継続判断せずPOがscope分割または要求凍結を判断する。 | escalation_authority | config／prose | n/a | requirements-binding設定のmaxRounds既定値 | `RUL-OSM-01` | src/lint/l1-l2-gap-check.ts:14-15; src/lint/l1-l2-gap-check.ts:76-79 | G28／claude-opus |
+| `RG39-001` | Claude wake watcherは、poll間隔を最低10msに引き上げ、最大待機時間をpoll間隔以上（既定7,200,000ms）に丸めてから待機ループへ入る。 | tooling_runtime | prose | n/a | waitForClaudeMemoryのpollIntervalMs/maxWaitMs既定値 | — | src/runtime/claude-memory-wake.ts:1562-1563 | G39／claude-opus |
+| `RG40-033` | dangling turnの判定は、最後のsession_end以降にtool_useまたはuser_promptが残っている場合にdanglingとし、起点を最後のsession_endの直後イベント（session_endが無ければ先頭イベント）の時刻とする。 | tooling_runtime | prose | fail_open | session_end/tool_use/user_prompt というevent_type名 | `RUL-OSM-03` | src/runtime/forced-stop.ts:81-104 | G40／claude-opus |
+| `RG48-003` | workflow envelope検証器は、loop atomに正の整数のmax_iterationsと、failure・timeout・dead_letterのいずれかのon_limitを要求し、上限のない反復を認めない。 | safety_security | prose | fail_close | — | `RUL-COR-04` | src/workflow/universal-workflow-envelope.ts:67-77 | G48／claude-opus |
 
-## 副として対応づいた規則（5件）
+## 副として対応づいた規則（8件）
 
-`RA-244`、`RD02-259`、`RE01-153`、`RF01-001`、`RF01-032`
+`RA-244`、`RD02-259`、`RE01-153`、`RF01-001`、`RF01-032`、`RG38-009`、`RG40-003`、`RG46-007`

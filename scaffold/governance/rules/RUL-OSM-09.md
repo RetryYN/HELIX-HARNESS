@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSM-09
 group: OS管理
 product: OS
-atoms_primary: 29
-atoms_secondary: 8
+atoms_primary: 37
+atoms_secondary: 13
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 repositoryの運用規約を定める。commit文面の形式、統合後のbranchの廃棄、命名、追跡する生成物の範囲、設定の置き場の集約、個人設定と共有規則の分離、文書から環境固有のpathを除く。
 
-## 主として対応づいた規則（29件）
+## 主として対応づいた規則（37件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -46,6 +46,7 @@ repositoryの運用規約を定める。commit文面の形式、統合後のbran
 | `RE01-110` | 作業者は生成されたruntime stateをGit管理対象にせず、review guidanceの提供を完了判定の代わりにしてはならない。 | evidence_claim | prose／config | n/a | runtime生成物とreview guidance | `RUL-FRM-04` | docs/governance/helix-harness-requirements_v1.2.md:1542-1551 | E01／claude-opus |
 | `RE01-157` | 構成変更者はrepository structureの正本に従い、package・tsconfig・core logicを重複配置しない。 | tooling_runtime | prose／doctor | fail_close | root package/tsconfigと旧repo-structure文書 | `RUL-COR-01` | docs/governance/helix-harness-requirements_v1.2.md:2356-2356; docs/governance/helix-harness-requirements_v1.2.md:2414-2426 | E01／claude-opus |
 | `RG10-014` | branch作成者はgoverned prefixの後にスラッシュと目的を表す短い名前を置く。 | behavior_discipline | prose | n/a | governed branch prefix | — | docs/governance/github-operation-rules.md:24-24 | G10／claude-opus |
+| `RG11-008` | 目標証跡監査は、layer coverage artifactがgit trackedであることも検査対象に含める。 | evidence_claim | doctor | fail_close | objective-evidence-audit gate | `RUL-FRM-04` | docs/governance/helix-objective-evidence-audit.md:50-50 | G11／claude-opus |
 | `RG13-004` | 保守者はscripts/をHELIXの薄いOS entrypoint専用とし、userローカルに配備するKimi guard実体は監査文書へ掲載して追跡記録を残す。 | tooling_runtime | prose | n/a | scripts/、Kimi guardの文書内ソース記録とuserローカル配備 | `RUL-OSM-02` | docs/governance/kimi-code-extension-security-audit-2026-08-06.md:64-67 | G13／claude-opus |
 | `RG14-010` | Python workerの配置担当者は、workers/python/<capability>/にHDS-HIL-12／14でfreezeしたdescriptor、entrypoint、schema、lockだけを置く。 | tooling_runtime | prose | n/a | workers/python/<capability>/、HDS-HIL-12／14 | `RUL-COR-05` | docs/governance/repository-structure.md:107-107 | G14／claude-opus |
 | `RG14-011` | テストコードの作成者は、tests/の配置をsrcの構造に対応させる。 | behavior_discipline | prose | n/a | tests/がsrcをmirrorする配置規約 | `RUL-FRM-05` | docs/governance/repository-structure.md:111-111 | G14／claude-opus |
@@ -55,7 +56,14 @@ repositoryの運用規約を定める。commit文面の形式、統合後のbran
 | `RG14-015` | テスト設定管理者は、Vitestのvitest.config.tsを追跡対象の例外とし、G7のjson-summary coverage evidenceとfast／slow project分割を同ファイルで一元管理する。 | tooling_runtime | prose | n/a | Vitest、G7、PLAN-L7-348、vitest.config.ts | `RUL-OSA-05` | docs/governance/repository-structure.md:169-169 | G14／claude-opus |
 | `RG14-016` | 設定管理者は、target root configの上限をpackage.json、package-lock.json、tsconfig.json、.editorconfig、biome.json、vitest.config.tsの6ファイルとし、transition lockを分母外で別管理する。 | tooling_runtime | prose | n/a | 指定された6種類のroot configとtransition lock | `RUL-COR-05` | docs/governance/repository-structure.md:173-173 | G14／claude-opus |
 | `RG17-010` | commit担当者は、.helix/のruntime state、.env file、generated artifactをrepositoryへ含めてはならない。 | safety_security | prose | n/a | 旧.helix/ runtime stateとgenerated artifactの登録除外方針 | `RUL-OSM-04` | docs/skills/git.md:62-64 | G17／claude-opus |
+| `RG23-004` | change-impactの変更集合抽出は、.helix/harness.dbのjournal・shm・walという一時ファイルを変更pathとして数えない。 | tooling_runtime | lint | n/a | SQLite の harness.db-journal/shm/wal | — | src/lint/change-impact.ts:76-78; src/lint/change-impact.ts:301-312 | G23／claude-opus |
+| `RG23-007` | branch-kindは、codex・dependabot・renovateを接頭辞とするautomation branchを、未登録branch prefixの違反対象から除外する。 | process_gate | lint | n/a | AUTOMATION_BRANCH_PREFIXES | — | src/lint/branch-kind.ts:209-209; src/lint/branch-kind.ts:225-233 | G23／claude-opus |
+| `RG35-002` | tracked-canonicalのbaseline（既知例外集合）は空に保たなければならず、baselineへの追加は新規driftを許容する穴になるため慎重に行う。 | process_gate | prose／lint | n/a | TRACKED_CANONICAL_BASELINE | `RUL-OSA-06` | src/lint/tracked-canonical.ts:9-16 | G35／claude-opus |
+| `RG39-008` | Claude wake state rootは、git common dir配下のhelix-runtime領域に置き、git管理外の場合だけrepository-localのstate領域へfallbackする。 | tooling_runtime | prose | fail_open | .helix/state/claude-memory-wake という具体path | — | src/runtime/claude-memory-wake.ts:343-355 | G39／claude-opus |
+| `RG40-008` | 文書report書込器は、出力先をrepository配下の固定artifact root（.helix/artifacts/document-diff）に限定する。 | safety_security | prose | fail_close | .helix/artifacts/document-diff という具体path | `RUL-COR-06` | src/runtime/document-report-write-port.ts:93-96; src/runtime/document-report-write-port.ts:118-123 | G40／claude-opus |
+| `RG40-021` | orchestration eventのjournalとcheckpointは、repository配下の固定path（.helix/audit/orchestration-events.jsonl と .helix/state/orchestration-checkpoint.json）に置く。 | tooling_runtime | prose | n/a | .helix 配下の具体path | — | src/runtime/event-projection-checkpoint-transaction.ts:106-112 | G40／claude-opus |
+| `RG41-008` | push前commitlintは、比較基準をremote tracking refに置き、取得できない場合はremote HEAD（解決できなければmain）とのmerge-baseで代替する。先頭コロンの削除refspecは検査対象外とする。 | process_gate | hook | fail_close | refs/remotes/<remote>/main という既定名 | `RUL-OSA-06` | src/runtime/git-command-guard-hook.ts:92-118 | G41／claude-opus |
 
-## 副として対応づいた規則（8件）
+## 副として対応づいた規則（13件）
 
-`RB04-288`、`RB05-002`、`RB07-144`、`RE01-014`、`RE01-130`、`RE01-139`、`RE01-158`、`RG14-009`
+`RB04-288`、`RB05-002`、`RB07-144`、`RE01-014`、`RE01-130`、`RE01-139`、`RE01-158`、`RG14-009`、`RG30-007`、`RG33-001`、`RG35-001`、`RG37-005`、`RG42-022`

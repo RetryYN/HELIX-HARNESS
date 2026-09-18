@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-TKT-02
 group: チケット
 product: OS
-atoms_primary: 131
-atoms_secondary: 149
+atoms_primary: 132
+atoms_secondary: 153
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 作業を始める前に、作業graph、依存、並列と直列、scope、予算、作業者へ渡すcontextの境界を確定する。境界の無い作業者を起動しない。
 
-## 主として対応づいた規則（131件）
+## 主として対応づいた規則（132件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -157,7 +157,8 @@ issue_projection: none
 | `RG12-005` | #214のschedulerと#215のevent projection／replayの実装担当者は、#213で実装したwork graph leaseと三段receiptを土台に接続する。 | process_gate | prose | n/a | Issue #213・#214・#215の実装依存関係 | `RUL-FRM-01` | docs/governance/issue-213-work-graph-receipt-closure.md:43-44 | G12／claude-opus |
 | `RG14-007` | Functional Release Sliceの導入担当者は、承認後の差分対象をRLS-02／03／05／09／11／12／13に限定する。 | process_gate | prose | n/a | PLAN-L3-83、RLS-02／03／05／09／11／12／13 | `RUL-OSM-01` | docs/governance/release-module-bundle-rollout-roadmap.md:17-17 | G14／claude-opus |
 | `RG19-006` | 設計者はPLANのsizeを最適化目標ではなくgate入力として扱い、曖昧な大規模PLANをgovernance違反と判断する。 | behavior_discipline | prose | n/a | PLANのsizingとgate入力 | `RUL-FRM-08` | docs/skills/system-design-sizing.md:66-67 | G19／claude-opus |
+| `RG27-002` | pr-context-guardは、宣言されたAllowed path familiesがrepository root直下の広域family（.github/・config/・docs/・scripts/・src/・tests/）である場合、責務scopeとして認めず失敗させる。 | review_merge | ci／lint | fail_close | 旧repositoryの具体的top-level directory名 | `RUL-OSM-08` | src/lint/github-guards.ts:148-155; src/lint/github-guards.ts:371-382 | G27／claude-opus |
 
-## 副として対応づいた規則（149件）
+## 副として対応づいた規則（153件）
 
-`RA-126`、`RA-127`、`RA-143`、`RA-149`、`RA-150`、`RA-201`、`RA-207`、`RA-211`、`RA-298`、`RB0-061`、`RB0-073`、`RB0-074`、`RB0-089`、`RB0-100`、`RB0-109`、`RB0-113`、`RB0-115`、`RB0-116`、`RB0-118`、`RB0-127`、`RB0-154`、`RB0-155`、`RB0-169`、`RB04-018`、`RB04-027`、`RB04-052`、`RB04-057`、`RB04-068`、`RB04-069`、`RB04-071`、`RB04-087`、`RB04-148`、`RB05-011`、`RB05-074`、`RB05-111`、`RB05-196`、`RB05-203`、`RB06-105`、`RB06-162`、`RB06-259`、`RB06-301`、`RB07-090`、`RB07-093`、`RB07-139`、`RB07-168`、`RB07-169`、`RB07-174`、`RB07-176`、`RB07-177`、`RB07-213`、`RB07-216`、`RB07-234`、`RB07-250`、`RB07-316`、`RB08-025`、`RB08-030`、`RB08-103`、`RB08-104`、`RB08-119`、`RB08-130`、`RB08-166`、`RB08-262`、`RB08-300`、`RB08-319`、`RB08-339`、`RB09-022`、`RB09-023`、`RB09-024`、`RB09-026`、`RB09-027`、`RB09-028`、`RB09-041`、`RB09-042`、`RB09-044`、`RC0-121`、`RC00-075`、`RC00-187`、`RC00-188`、`RC00-213`、`RC01-084`、`RC01-141`、`RC01-142`、`RC01-143`、`RC02-136`、`RC03-095`、`RC03-096`、`RC03-097`、`RC03-101`、`RC03-111`、`RC03-119`、`RC04-002`、`RC04-014`、`RC04-016`、`RC04-032`、`RC04-110`、`RC04-249`、`RC04-250`、`RD00-019`、`RD00-051`、`RD00-055`、`RD01-119`、`RD01-120`、`RD02-080`、`RD02-085`、`RD02-086`、`RD02-087`、`RD02-088`、`RD02-089`、`RD02-090`、`RD02-091`、`RD02-094`、`RD02-095`、`RD02-097`、`RD02-104`、`RD02-114`、`RD02-131`、`RD02-151`、`RD02-270`、`RD02-298`、`RD03-045`、`RD03-046`、`RD03-047`、`RD03-048`、`RD03-049`、`RD03-050`、`RD04-008`、`RD04-010`、`RD04-012`、`RD04-068`、`RD04-069`、`RD04-109`、`RD05-030`、`RD06-110`、`RD06-111`、`RD07-009`、`RD08-153`、`RD09-059`、`RD09-087`、`RD09-088`、`RD09-089`、`RD10-064`、`RD11-138`、`RD11-197`、`RE01-007`、`RE01-015`、`RE01-031`、`RE01-252`、`RF01-009`、`RG16-014`
+`RA-126`、`RA-127`、`RA-143`、`RA-149`、`RA-150`、`RA-201`、`RA-207`、`RA-211`、`RA-298`、`RB0-061`、`RB0-073`、`RB0-074`、`RB0-089`、`RB0-100`、`RB0-109`、`RB0-113`、`RB0-115`、`RB0-116`、`RB0-118`、`RB0-127`、`RB0-154`、`RB0-155`、`RB0-169`、`RB04-018`、`RB04-027`、`RB04-052`、`RB04-057`、`RB04-068`、`RB04-069`、`RB04-071`、`RB04-087`、`RB04-148`、`RB05-011`、`RB05-074`、`RB05-111`、`RB05-196`、`RB05-203`、`RB06-105`、`RB06-162`、`RB06-259`、`RB06-301`、`RB07-090`、`RB07-093`、`RB07-139`、`RB07-168`、`RB07-169`、`RB07-174`、`RB07-176`、`RB07-177`、`RB07-213`、`RB07-216`、`RB07-234`、`RB07-250`、`RB07-316`、`RB08-025`、`RB08-030`、`RB08-103`、`RB08-104`、`RB08-119`、`RB08-130`、`RB08-166`、`RB08-262`、`RB08-300`、`RB08-319`、`RB08-339`、`RB09-022`、`RB09-023`、`RB09-024`、`RB09-026`、`RB09-027`、`RB09-028`、`RB09-041`、`RB09-042`、`RB09-044`、`RC0-121`、`RC00-075`、`RC00-187`、`RC00-188`、`RC00-213`、`RC01-084`、`RC01-141`、`RC01-142`、`RC01-143`、`RC02-136`、`RC03-095`、`RC03-096`、`RC03-097`、`RC03-101`、`RC03-111`、`RC03-119`、`RC04-002`、`RC04-014`、`RC04-016`、`RC04-032`、`RC04-110`、`RC04-249`、`RC04-250`、`RD00-019`、`RD00-051`、`RD00-055`、`RD01-119`、`RD01-120`、`RD02-080`、`RD02-085`、`RD02-086`、`RD02-087`、`RD02-088`、`RD02-089`、`RD02-090`、`RD02-091`、`RD02-094`、`RD02-095`、`RD02-097`、`RD02-104`、`RD02-114`、`RD02-131`、`RD02-151`、`RD02-270`、`RD02-298`、`RD03-045`、`RD03-046`、`RD03-047`、`RD03-048`、`RD03-049`、`RD03-050`、`RD04-008`、`RD04-010`、`RD04-012`、`RD04-068`、`RD04-069`、`RD04-109`、`RD05-030`、`RD06-110`、`RD06-111`、`RD07-009`、`RD08-153`、`RD09-059`、`RD09-087`、`RD09-088`、`RD09-089`、`RD10-064`、`RD11-138`、`RD11-197`、`RE01-007`、`RE01-015`、`RE01-031`、`RE01-252`、`RF01-009`、`RG00-008`、`RG16-014`、`RG32-007`、`RG44-013`、`RG46-011`

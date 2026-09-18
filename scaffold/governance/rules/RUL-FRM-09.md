@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-FRM-09
 group: 枠
 product: HARNESS
-atoms_primary: 26
-atoms_secondary: 1
+atoms_primary: 30
+atoms_secondary: 3
 issue_projection: #1858
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1858
 
 安全検証の義務と判定基準を定める。脅威modelを適用する工程と時期、脆弱性の重大度を実害への経路から決める基準、攻撃を試みた記録の要件、依存・供給網・licenseについて確認すべき事項。実行と証拠の管理はOSが担う（RUL-OSA-07）。
 
-## 主として対応づいた規則（26件）
+## 主として対応づいた規則（30件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -52,7 +52,11 @@ issue_projection: #1858
 | `RB08-011` | 設計者はguardrailのgreenを脅威モデル完成と扱わず、新しい攻撃面を手動列挙する。 | evidence_claim | prose | n/a | helix guardrail | `RUL-OSA-07` | docs/skills/threat-model.md:98-99 | B08／gpt-6-astra |
 | `RD02-021` | リスク導出器は、規則ファイル、hook・CI・DB等の指定prefix、または認証・決済・review等の指定語を含む変更pathをhighと判定する。 | safety_security | gate | fail_close | HIGH_RISK_REVIEW_PATH_EXACT・PREFIXES・WORDS | `RUL-OSP-02` | src/runtime/independent-review-fallback.ts:469-537 | D02／gpt-6-astra |
 | `RD04-191` | action-binding readiness lintは、右腕工程文書にOWASP LLM06:2025 Excessive Agency markerが無い場合に違反とする。 | safety_security | lint | fail_close | 特定版OWASP名の文字列検査 | — | src/lint/action-binding-approval-readiness.ts:198-198; src/lint/action-binding-approval-readiness.ts:265-272 | D04／gpt-6-astra |
+| `RG01-009` | security担当は、セキュリティ判断において、project-localのthreat・ADR・PLANとOWASP観点を優先する。 | safety_security | prose | n/a | — | `RUL-COR-01` | .claude/agents/security-audit.md:17-17 | G01／claude-opus |
+| `RG20-001` | 設計者はPLANがagent-callable surfaceを導入・変更する場合、L2/L3設計が新しいtrust boundaryを追加する場合、guardrailが未解決findingを報告した場合、またはRecovery PLANでincident原因の脅威が緩和済みであることを示す必要がある場合に、threat-model skillを読む。 | safety_security | prose | n/a | helix guardrail コマンドのfinding報告 | `RUL-OSP-08` | docs/skills/threat-model.md:26-32 | G20／claude-opus |
+| `RG35-004` | 外部profile有効化計画は、sourceTypeがmcpの既定無効profileについて、実行前にMCP Inspector smokeを行うstepを必ず含めなければならない。 | safety_security | gate／lint | fail_close | planExternalProfileActivation の mcp-inspector-smoke step | `RUL-RSH-01` | src/lint/verification-profile-safety.ts:272-278 | G35／claude-opus |
+| `RG35-008` | profile safety検査は、untrusted-source findingが1件でもあればtrustedをfalseにし、errorまたはpackage-missingが1件でもあればreadyをfalseにする。 | safety_security | lint | fail_close | analyzeVerificationProfileSafety の trusted/ready 算出 | `RUL-COR-04` | src/lint/verification-profile-safety.ts:242-253 | G35／claude-opus |
 
-## 副として対応づいた規則（1件）
+## 副として対応づいた規則（3件）
 
-`RG14-012`
+`RG14-012`、`RG15-005`、`RG42-001`

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSM-04
 group: OS管理
 product: OS
-atoms_primary: 82
-atoms_secondary: 45
+atoms_primary: 96
+atoms_secondary: 48
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 秘密・個人情報・認証情報を、文書・規則・例・log・証跡・AIへの入力に出さない。検出したら記録の前に拒否する。
 
-## 主として対応づいた規則（82件）
+## 主として対応づいた規則（96件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -108,7 +108,21 @@ issue_projection: none
 | `RE01-251` | receipt処理はraw command・secret・PII・個人絶対パスを出力せず、対象driftを検出したら新しいpreflightを要求する。自動retryで通してはならない。 | safety_security | gate | fail_close | safety receiptとdrift再preflight | `RUL-COR-02` | docs/governance/helix-harness-requirements_v1.3.md:486-488 | E01／claude-opus |
 | `RF00-005` | ループadapterは、workerの実行失敗例外にstderr本文を埋め込まず、stderrのSHA-256 digestとUTF-8バイト長を記載する。 | safety_security | gate | n/a | stderr_digest、stderr_length、sha256Digest、Buffer.byteLength | — | src/orchestration/loop-bridge.ts:165-171; src/orchestration/loop-bridge.ts:200-204 | F00／claude-opus |
 | `RF01-013` | memory昇格通知のID生成器は、session IDを直接埋め込まず、SHA-256の先頭24桁へ変換した参照値を通知IDに使う。 | memory_context | gate | n/a | memory-promotion-nudge接頭辞と24桁の16進digest | — | src/runtime/memory-promotion.ts:54-60 | F01／claude-opus |
+| `RG02-004` | 監査CIとharness-checkのcheckout設定は、取得時の資格情報を永続化しない。 | safety_security | config | n/a | actions/checkoutのpersist-credentials: false | `RUL-COR-06` | .github/workflows/claude-unanswered-review-audit.yml:25-27; .github/workflows/escalation-stale.yml:12-14; .github/workflows/harness-check.yml:40-45 | G02／claude-opus |
+| `RG03-003` | Issue metadata監査CIは、checkout時に認証情報を永続化しない。 | safety_security | config／ci | n/a | actions/checkoutのpersist-credentials: false。 | `RUL-COR-06` | .github/workflows/issue-metadata-audit.yml:17-20 | G03／claude-opus |
+| `RG23-006` | branch-kindのsnapshot読取りは、失敗理由として内部定義の失敗コードだけを返し、gitなど外部プロセスのerror messageをそのまま結果へ転送してはならない。 | safety_security | lint | fail_close | SnapshotFailure クラスと SnapshotFailureCode 列挙 | `RUL-COR-06` | src/lint/branch-kind.ts:496-515; src/lint/branch-kind.ts:664-674 | G23／claude-opus |
+| `RG33-009` | reviewer session model historyの検証失敗は、raw例外messageを露出せず、locator付きの限定reasonとしてだけ表面化させる。 | safety_security | lint | fail_close | ReviewerSessionModelHistoryError | `RUL-COR-04` | src/lint/review-evidence.ts:195-214 | G33／claude-opus |
+| `RG39-036` | closure証拠probeのremote ref照合は、credential helperを無効化した状態でremote refsを取得しなければならない。 | safety_security | prose | n/a | git -c credential.helper= ls-remote | `RUL-COR-06` | src/runtime/closure-evidence-probe-context.ts:114-114 | G39／claude-opus |
+| `RG40-032` | forced_stop eventには停止前後のメッセージ本文を載せず、参照のみを記録しなければならない。 | safety_security | hook | fail_open | next_message_ref というfield名 | — | src/runtime/forced-stop.ts:21-29; src/runtime/forced-stop.ts:106-126 | G40／claude-opus |
+| `RG42-007` | provider認証はhostを直接渡さずscratchへ複製して渡し、rotationされたcredentialの書き戻しはworkerではなくNode境界で行う。書き戻しは形の検証をfail-closeで行うが、内容の正当性までは保証しないと明示しなければならない。 | safety_security | prose | fail_close | config.toml/credentials/oauth/device_id という具体entry | `RUL-OPS-01` | src/runtime/independent-review-fallback.ts:1136-1160; src/runtime/independent-review-fallback.ts:1358-1390 | G42／claude-opus |
+| `RG42-008` | 認証の書き戻しは、読み側だけでなく書き側もsymbolic linkを追従させず、事前に存在し得ないstaging directory内へ新規作成してrenameで置換する。backupを先に確定させてから本体を置換し、後片付けの失敗で置換結果を隠してはならない。 | safety_security | prose | fail_close | — | `RUL-COR-06` | src/runtime/independent-review-fallback.ts:1234-1243; src/runtime/independent-review-fallback.ts:1300-1335 | G42／claude-opus |
+| `RG43-002` | lint effectのreceiptには、署名済みpayload（書込み内容）や標準出力・標準エラーの本文を載せず、digestだけを記録しなければならない。 | evidence_claim | lint | n/a | — | `RUL-COR-02` | src/runtime/lint-effect-executor.ts:44-49; src/runtime/lint-effect-executor.ts:494-503 | G43／claude-opus |
+| `RG43-010` | hook authorityのfailure projectionは、provider固有の例外本文・path・資格情報をdetailへ混ぜず、定義済みのfailure集合だけを返さなければならない。 | safety_security | hook | fail_close | — | — | src/runtime/project-hook-authority.ts:196-204 | G43／claude-opus |
+| `RG44-002` | provider引継ぎ生成器は、active plan・summary・budget・next_actions・filesをsanitizeしてからpackageへ載せ、生値をそのまま保存しない。 | safety_security | prose | n/a | session-log の sanitize 実装に依存 | `RUL-OSM-03` | src/runtime/provider-handover.ts:71-88 | G44／claude-opus |
+| `RG44-015` | secret egress hookは、git addのpathspecがオプション様・カレント全体・glob・展開を含むかquoteが閉じないため確定できない場合、限定走査へ縮退せず作業tree全体の変更を走査する。 | safety_security | hook | fail_close | git add pathspec 解析 | `RUL-COR-04` | src/runtime/secret-egress-hook.ts:77-134; src/runtime/secret-egress-hook.ts:275-276 | G44／claude-opus |
+| `RG44-016` | secret egress hookは、git status上で削除statusのpathを走査対象から外し、rename・copyのentryは対の片方を読み飛ばす。 | safety_security | hook | n/a | git status --porcelain=v1 -z の出力形式 | — | src/runtime/secret-egress-hook.ts:144-152 | G44／claude-opus |
+| `RG45-022` | source registry検証は、entryのredaction modeがdigest_onlyまたはmetadata_only以外の場合に拒否する。 | safety_security | prose | fail_close | — | — | src/runtime/universal-improvement-source-registry.ts:218-223 | G45／claude-opus |
 
-## 副として対応づいた規則（45件）
+## 副として対応づいた規則（48件）
 
-`RA-029`、`RA-060`、`RB04-143`、`RB04-250`、`RB04-252`、`RB04-253`、`RB04-269`、`RB04-281`、`RB05-191`、`RB05-194`、`RB05-326`、`RB06-167`、`RB06-222`、`RB06-232`、`RB06-250`、`RB06-274`、`RB06-283`、`RB07-115`、`RB07-194`、`RB07-257`、`RB08-342`、`RB09-044`、`RB09-049`、`RC0-021`、`RC0-077`、`RC0-078`、`RC0-079`、`RC0-080`、`RC00-209`、`RC00-228`、`RC00-231`、`RC02-151`、`RD03-014`、`RD03-015`、`RD03-016`、`RD03-017`、`RD03-023`、`RD03-024`、`RD11-095`、`RE01-195`、`RE01-205`、`RE01-210`、`RE01-248`、`RF00-019`、`RG17-010`
+`RA-029`、`RA-060`、`RB04-143`、`RB04-250`、`RB04-252`、`RB04-253`、`RB04-269`、`RB04-281`、`RB05-191`、`RB05-194`、`RB05-326`、`RB06-167`、`RB06-222`、`RB06-232`、`RB06-250`、`RB06-274`、`RB06-283`、`RB07-115`、`RB07-194`、`RB07-257`、`RB08-342`、`RB09-044`、`RB09-049`、`RC0-021`、`RC0-077`、`RC0-078`、`RC0-079`、`RC0-080`、`RC00-209`、`RC00-228`、`RC00-231`、`RC02-151`、`RD03-014`、`RD03-015`、`RD03-016`、`RD03-017`、`RD03-023`、`RD03-024`、`RD11-095`、`RE01-195`、`RE01-205`、`RE01-210`、`RE01-248`、`RF00-019`、`RG17-010`、`RG39-002`、`RG42-005`、`RG42-009`

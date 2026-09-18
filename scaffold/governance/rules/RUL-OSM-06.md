@@ -3,13 +3,13 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSM-06
 group: OS管理
 product: OS
-atoms_primary: 52
+atoms_primary: 62
 atoms_secondary: 34
 issue_projection: none
 ---
@@ -22,7 +22,7 @@ issue_projection: none
 
 他の作業者や他runtimeの作業中の変更を保護する。未commitの変更や他者のcommitを、明示の指示なしに戻したり上書きしたりしない。
 
-## 主として対応づいた規則（52件）
+## 主として対応づいた規則（62件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -78,6 +78,16 @@ issue_projection: none
 | `RE01-206` | 変更guardはforeign hunk、未記録override、破壊的Git操作を拒否し、同一episodeの境界で検査する。 | safety_security | hook／gate | fail_close | foreign-editとGit command guard | `RUL-OSM-05` | docs/governance/helix-harness-requirements_v1.3.md:288-288 | E01／claude-opus |
 | `RE01-268` | 共有作業のwriter leaseは常に一つにし、memoryのtakeoverを編集所有権の取得とみなしてはならない。 | lane_delegation | gate | fail_close | writer leaseとmemory takeoverの分離 | `RUL-OSM-03` | docs/governance/helix-harness-requirements_v1.3.md:534-539 | E01／claude-opus |
 | `RG14-017` | one-shot foreign-edit手続きは、理由が256文字の上限を超える場合、その申請を拒否する。 | safety_security | gate | fail_close | 理由記録付きone-shot foreign-edit手続きの256文字制限 | `RUL-COR-04` | docs/governance/request-source-cleanup-2026-09-06.md:37-38 | G14／claude-opus |
+| `RG37-015` | agent正本投影器は、既存内容が生成内容とdriftしている場合、actionをwriteにせずreportに留めなければならない。未対応runtimeまたはユーザー変更済みの場合はskipとする。 | safety_security | lint | fail_close | ProjectionAction の決定式 | `RUL-OSM-02` | src/runtime/agent-ssot-runtime-projection.ts:86-87 | G37／claude-opus |
+| `RG37-017` | agent slotの失効・release処理は、fired_atが日時として解釈できないslotを対象にしてはならない（触らずにskipする）。 | tooling_runtime | hook／lint | fail_open | releaseOldestGuardSlot / sweepStaleGuardSlots の NaN skip | `RUL-COR-04` | src/runtime/agent-slots.ts:160-170; src/runtime/agent-slots.ts:203-215 | G37／claude-opus |
+| `RG40-010` | 文書report書込器は、公開を同一directory内のhard linkで行い、既存fileがあればEEXISTを専用の既存エラーへ変換して上書きしない。 | safety_security | prose | fail_close | linkSyncによる公開 | `RUL-COR-03` | src/runtime/document-report-write-port.ts:144-155 | G40／claude-opus |
+| `RG41-004` | Git command guardが破壊操作をblockしたとき、実行者はまずgit status／log／reflogで変更の出所を確認し、相手runtimeのcommitを残したまま自分の成果を上に積まなければならない。意図的に実行する場合だけ理由付きoverrideを記録する。 | behavior_discipline | hook／prose | fail_close | HELIX_ALLOW_DESTRUCTIVE_GIT と .helix/state/destructive-git-override | `RUL-OSM-05` | src/runtime/git-command-guard.ts:543-551; src/runtime/git-command-guard.ts:580-589 | G41／claude-opus |
+| `RG46-002` | work guardのpath正規化は、POSIXでは空白・backslash・大文字小文字をidentityの一部として扱い、repository root接頭辞の一致以外の部分一致で切り詰めない。 | safety_security | hook | fail_close | git porcelain と Claude tool_input.file_path の表記差 | `RUL-COR-04` | src/runtime/work-guard.ts:44-61 | G46／claude-opus |
+| `RG46-003` | 編集対象抽出器は、tool入力にfile_pathまたはpathがある場合、content本文を走査しない。文書中のpatch例文を対象と誤認して誤ブロックしないためである。 | tooling_runtime | hook | fail_open | Claude Edit/Write/MultiEdit と Codex write_file | `RUL-COR-04` | src/runtime/work-guard.ts:168-184 | G46／claude-opus |
+| `RG46-004` | 編集対象抽出器は、file_pathが無い場合にtool入力の全string leafを走査し、Update File・Add File・Delete File・Move toの各patchヘッダから対象pathを抽出する。renameは旧pathと新pathの両方を編集対象とみなす。 | tooling_runtime | hook | fail_open | Codex apply_patch の freeform 形式 | `RUL-COR-04` | src/runtime/work-guard.ts:135-140; src/runtime/work-guard.ts:185-197 | G46／claude-opus |
+| `RG46-005` | work guardは、Bash commandのtee・sed -i・cp・mv・rm・リダイレクトから書込対象pathを抽出する。/dev/nullとオプション様の語は対象に含めない。 | safety_security | hook | fail_open | POSIX shell の書込command | `RUL-OSM-05` | src/runtime/work-guard.ts:199-222 | G46／claude-opus |
+| `RG47-003` | 未コミットpathの収集は、Git status --porcelain=v1 -z が返すrepo相対pathをtrimやOS表記変換をせずそのままidentityとして扱う。 | safety_security | hook | fail_close | git status --porcelain=v1 -z | `RUL-COR-04` | src/runtime/worktree-state.ts:28-47 | G47／claude-opus |
+| `RG47-005` | Git mutation context解決器は、複数の実行cwdのうち1つでもunknownなら全体をunknownとし、shared-rootが複数ある場合はforeign未コミット件数の最大値を採る。 | safety_security | hook | fail_close | — | `RUL-COR-04` | src/runtime/worktree-state.ts:251-281 | G47／claude-opus |
 
 ## 副として対応づいた規則（34件）
 

@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSP-08
 group: OS推進
 product: OS
-atoms_primary: 24
-atoms_secondary: 4
+atoms_primary: 28
+atoms_secondary: 7
 issue_projection: #1859
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1859
 
 作業に応じてskillと参照資料を選び、読み込む量を制限する。skillの起動条件、手順の厳密さ、検証loop、重複の排除を設計する。
 
-## 主として対応づいた規則（24件）
+## 主として対応づいた規則（28件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -48,9 +48,13 @@ issue_projection: #1859
 | `RF01-002` | pair-agentは、工程出力を前後の空白除去後に4000文字まで記録し、超過する場合は末尾を切り捨てて切詰めマーカーを付ける。 | memory_context | gate | n/a | 4000文字と[truncated]マーカー | `RUL-COR-08` | src/orchestration/pair-agent.ts:174-178; src/orchestration/pair-agent.ts:636-640 | F01／claude-opus |
 | `RF01-003` | pair-agentは、後続工程のpromptへtranscriptを注入する場合、直近6件だけを含める。 | memory_context | gate | n/a | PAIR TRANSCRIPTと直近6件の固定上限 | — | src/orchestration/pair-agent.ts:180-200 | F01／claude-opus |
 | `RF01-010` | context合成器は、required・optionalのskill pathがともに空で、呼出面policy適用後のmemoryLinesも空の場合、注入sectionを生成しない。 | memory_context | gate | n/a | AdapterContextInjectionの代わりにundefinedを返す方式 | — | src/runtime/memory-injection.ts:33-36 | F01／claude-opus |
+| `RG01-013` | /shipのqa-test担当は、test-driven-development skillを参照する。 | tooling_runtime | prose | n/a | 旧test-driven-development skill | `RUL-FRM-05` | .claude/commands/ship.md:31-32 | G01／claude-opus |
+| `RG15-001` | skill recommenderは各packの本文を読まず、frontmatterのapplies_to（layers／drive_models）だけを読んでPLANに対するscoreを算出する。 | tooling_runtime | config | n/a | helix skill suggest --plan <path> | — | docs/skills/SKILL_MAP.md:20-22 | G15／claude-opus |
 | `RG18-004` | agent文書の作成者は普遍原則を判断コアへ集約し、個別agent本文には役割固有の差分だけを書く。「判断コア」節は5行以内とし、普遍原則やレビュー5軸節を再記述・全文コピーしてはならない。 | memory_context | prose | n/a | agent本文の「判断コア」節 | `RUL-OSI-02` | docs/skills/judgment-core.md:42-44; docs/skills/judgment-core.md:132-133; docs/skills/judgment-core.md:183-183 | G18／claude-opus |
 | `RG19-004` | スキル作成者はself-consistencyによる多数決を低頻度で高stakesの判断に限定し、適用時は異なる根拠から3回独立に判定させる。 | behavior_discipline | prose | n/a | — | `RUL-OSP-02` | docs/skills/skill-authoring.md:70-71 | G19／claude-opus |
+| `RG20-002` | 検証者はForward/Add-featureがlayer groupを完了してdescent verification cycleが発火した場合、doctorがdescent/orphan findingで非ゼロ終了した場合、vmodel lintが未充足obligationを報告した場合、Scrum S3が完全性証拠を要する場合、またはRecoveryでgap close証明が要る場合に、verification skillを読む。 | process_gate | prose | n/a | helix doctor / helix vmodel lint コマンド名 | `RUL-FRM-05` | docs/skills/verification.md:34-40 | G20／claude-opus |
+| `RG45-007` | tool拡張registryは、task lensを1つも検出できない場合に絞り込みを行わず全toolを候補として返す。 | tooling_runtime | prose | fail_open | task-lens 検出器 | — | src/runtime/tool-augmentation-registry.ts:116-122 | G45／claude-opus |
 
-## 副として対応づいた規則（4件）
+## 副として対応づいた規則（7件）
 
-`RE01-123`、`RE01-140`、`RE01-209`、`RG18-014`
+`RE01-123`、`RE01-140`、`RE01-209`、`RG01-011`、`RG15-002`、`RG18-014`、`RG20-001`

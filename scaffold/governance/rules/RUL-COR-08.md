@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-COR-08
 group: コア
 product: HARNESS／OS
-atoms_primary: 40
-atoms_secondary: 8
+atoms_primary: 45
+atoms_secondary: 14
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 要約・表示・引き継ぎ・提示するcommandは、元の意味を落とさない。要約は工程、現在位置、適用中のskillや判断の根拠を保持し、提示するcommandや値は正規の導出結果と一致する。正規の検証経路を、別の手軽な手段で代替しない。
 
-## 主として対応づいた規則（40件）
+## 主として対応づいた規則（45件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -66,7 +66,12 @@ issue_projection: none
 | `RG08-003` | consoleは、次の行動を表示するときにnext authorityを明示する。 | escalation_authority | config | n/a | UX-03のnext authority表示契約 | `RUL-DEV-02` | config/ui-domain/harness-console-bundle.json:79-80 | G08／claude-opus |
 | `RG12-003` | ZIP snapshotの正規再生成commandは、path本文を表示せず、countとdigestだけを返す。 | tooling_runtime | prose | n/a | ZIP snapshot manifestの正規再生成command | `RUL-COR-02` | docs/governance/infinity-loop-source-snapshot-manifest.md:82-84 | G12／claude-opus |
 | `RG16-019` | CI担当者は、harness-checkのVitest実行をNode組込みtest runnerで代替しない。 | tooling_runtime | prose | n/a | harness-check、npm run test、Vitest、Node組込みtest runner | `RUL-OSA-05` | docs/skills/ci-gate-design.md:33-39 | G16／claude-opus |
+| `RG36-001` | active PLAN選択が不一致を返すとき、前方一致の候補提示は最大10件までに制限する。 | tooling_runtime | lint | n/a | selectActivePlanId の candidates slice(0,10) | — | src/policy/active-plan-selection.ts:23-27 | G36／claude-opus |
+| `RG38-001` | 引き継ぎsurfaceのattempt escalation表示は、既定10件（0で無制限）で上限を課し、超過分は件数のbreadcrumbだけを出す。 | behavior_discipline | hook／prose | n/a | DEFAULT_ESCALATION_SURFACE_LIMIT / renderEscalationSignals | `RUL-OSM-03` | src/runtime/attempt-escalation.ts:123-151 | G38／claude-opus |
+| `RG39-006` | PR review依頼の受け手は、review完了時はpr-review-receipt、merge時はpr-merge-reviewedの専用入口を使わなければならない。 | process_gate | prose | n/a | helix github pr-review-receipt / pr-merge-reviewedというCLI名 | `RUL-OSA-04` | src/runtime/claude-memory-wake.ts:588-588 | G39／claude-opus |
+| `RG45-019` | summary surface監査は、doctor-summaryとprogress-tree-viewを再帰呼出し回避のため監査対象から除外し、除外理由を報告へ残す。 | tooling_runtime | prose | n/a | helix doctor / helix progress tree-view | `RUL-FRM-04` | src/runtime/summary-surface-audit.ts:54-67; src/runtime/summary-surface-audit.ts:640-643 | G45／claude-opus |
+| `RG45-020` | summary surface監査は、raw json混入・catalog drift・semantic driftの順で優先し、単一のstatusへ畳む。 | doc_language | prose | warn | --json / --summary-json | `RUL-FRM-07` | src/runtime/summary-surface-audit.ts:628-638 | G45／claude-opus |
 
-## 副として対応づいた規則（8件）
+## 副として対応づいた規則（14件）
 
-`RE01-068`、`RE01-083`、`RE01-101`、`RE01-103`、`RE01-145`、`RF01-002`、`RG03-011`、`RG17-005`
+`RE01-068`、`RE01-083`、`RE01-101`、`RE01-103`、`RE01-145`、`RF01-002`、`RG03-011`、`RG17-005`、`RG32-015`、`RG33-005`、`RG37-013`、`RG39-015`、`RG47-014`、`RG48-009`

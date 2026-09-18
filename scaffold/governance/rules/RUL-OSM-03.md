@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSM-03
 group: OS管理
 product: OS
-atoms_primary: 68
-atoms_secondary: 47
+atoms_primary: 76
+atoms_secondary: 58
 issue_projection: none
 ---
 
@@ -22,7 +22,7 @@ issue_projection: none
 
 memoryと引き継ぎを正本にしない。使う前に正本・履歴・診断と照合し、期限と保持を管理し、providerの記憶を混入させない。
 
-## 主として対応づいた規則（68件）
+## 主として対応づいた規則（76件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -85,6 +85,7 @@ memoryと引き継ぎを正本にしない。使う前に正本・履歴・診�
 | `RF01-008` | memory衛生検査は、対象ファイルが存在し、Gitの追跡確認またはHEADとの差分確認が例外になった場合、そのファイルを変更ありとして年齢判定へ渡す。 | memory_context | gate | n/a | .helix/memory/harness.jsonl、git ls-files、git diff --quiet HEAD | — | src/runtime/memory-commit-hygiene.ts:21-49 | F01／claude-opus |
 | `RF01-009` | context合成器は、呼出面がdelegation・team_run・task_routeの許可集合に含まれない場合、渡されたmemoryLinesを注入しない。 | memory_context | config／gate | fail_close | MEMORY_ENABLED_SURFACESの3呼出面 | `RUL-TKT-02` | src/runtime/memory-injection.ts:12-16; src/runtime/memory-injection.ts:28-40 | F01／claude-opus |
 | `RF01-011` | context合成器は、許可された呼出面にmemoryLinesがある場合、skill pathが一件もなくてもmemoryを注入する。 | memory_context | gate | n/a | skill pathとmemory_linesの独立した合成条件 | — | src/runtime/memory-injection.ts:23-40 | F01／claude-opus |
+| `RG02-009` | 未応答review監査CIは、有効な前回artifactがあれば取得してloadedとし、明示bootstrapがなく期限切れartifactだけがあればexpired、artifactがなければmissingとして後続検出器へ渡す。 | memory_context | ci | n/a | claude-unanswered-review-state、PREVIOUS_STATE | `RUL-COR-02` | .github/workflows/claude-unanswered-review-audit.yml:42-56; .github/workflows/claude-unanswered-review-audit.yml:61-65 | G02／claude-opus |
 | `RG03-009` | エージェントは、共有memoryを変更した場合、doctorのmemory age warningを放置しない。 | memory_context | prose | n/a | helix doctorのmemory age warningと.helix/memory/harness.jsonl。 | — | AGENTS.md:306-308; CLAUDE.md:234-236 | G03／claude-opus |
 | `RG10-021` | memory移管担当者はtakeover surfaceの重複排除とsurface_countの畳み込みをL6-63の設計範囲に含める。 | memory_context | prose | n/a | 上流PR #40、PLAN-L6-63、surface_count | — | docs/governance/handover-retirement-memory-audit-2026-07-11.md:94-94 | G10／claude-opus |
 | `RG10-022` | 上流資産の移管担当者は、上流固有の運用記録である.ut-tdd/memory/*.mdを移植対象にしてはならない。 | memory_context | prose | n/a | 上流.ut-tdd/memory/*.md | `RUL-OSM-07` | docs/governance/handover-retirement-memory-audit-2026-07-11.md:109-109 | G10／claude-opus |
@@ -94,7 +95,14 @@ memoryと引き継ぎを正本にしない。使う前に正本・履歴・診�
 | `RG17-009` | agentは、pair-freeze・trace-freeze・acceptの自然なgateを越えるsessionで、continuation eventとharness.db projectionを更新する。更新がない場合は追跡されていないsession分割として扱う。 | memory_context | prose | n/a | continuation event、harness.db projection、旧gate名 | `RUL-COR-01` | docs/skills/estimation.md:69-74 | G17／claude-opus |
 | `RG18-019` | 共有memoryの管理者はbreadcrumbにprovenanceとTTLを持たせる。 | memory_context | prose | n/a | 共有memory breadcrumb | — | docs/skills/requirements-handover.md:34-36 | G18／claude-opus |
 | `RG18-020` | 継続情報の引継ぎ担当者はsession境界を越える前にhelix review --uncommittedでreview evidence gateを確認し、helix memory list harnessでbounded recallのprovenanceとTTLを確認する。 | process_gate | prose | n/a | helix review --uncommitted、helix memory list harness | `RUL-FRM-04` | docs/skills/requirements-handover.md:67-77 | G18／claude-opus |
+| `RG21-002` | doctorのmemory-handover-isolation checkは、remoteへ未到達の memory 変更commitが閾値を超えて残存する場合に失敗し、git履歴を検査できない場合もfail-closeする。 | memory_context | doctor | fail_close | .helix/memory/ パスとanalyzeMemoryHandoverIsolation | `RUL-COR-04` | src/doctor/index.ts:6764-6785; src/doctor/index.ts:7526-7526; src/doctor/index.ts:7677-7677 | G21／claude-opus |
+| `RG38-002` | attempt escalationの引き継ぎは、durableなfindingを作らず、現セッションを除いた最新の1 session logだけから都度再導出しなければならない。 | memory_context | hook | fail_open | selectPrecedingSessionFile | `RUL-COR-01` | src/runtime/attempt-escalation.ts:103-121 | G38／claude-opus |
+| `RG44-001` | provider handover読込器は、CURRENT.jsonの読込・JSON解析に失敗した場合、またはschema_versionがprovider-handover.v1でない場合、内容を採用せずnullを返す。 | evidence_claim | prose | fail_close | .helix/handover/provider/CURRENT.json と provider-handover.v1 | `RUL-COR-04` | src/runtime/provider-handover.ts:101-113 | G44／claude-opus |
+| `RG44-020` | session logのactive PLAN判定は、current-plan markerのupdated_atが既定24時間を超えて古い場合をstaleとする。updated_atが無い旧形式は判定不能としてstale扱いにしない。 | memory_context | prose | warn | .helix/state/current-plan の2行形式 | `RUL-COR-02` | src/runtime/session-log.ts:200-218 | G44／claude-opus |
+| `RG44-021` | Stop hookは、plan_idを持つeventが1件も無いsessionについてPLAN digestを書かない。 | memory_context | hook | fail_open | .helix/logs/plan/<id>.digest.json | — | src/runtime/session-log.ts:510-514; src/runtime/session-log.ts:549-570 | G44／claude-opus |
+| `RG44-023` | active PLAN解決器は、state fileの1行目を優先し、無ければbranch名の規定patternから導き、いずれも解決できなければnullを返してthrowしない。 | memory_context | prose | fail_open | add/design/feature/reverse/hotfix/poc/refactor branch prefix | `RUL-TKT-01` | src/runtime/session-log.ts:129-129; src/runtime/session-log.ts:187-198 | G44／claude-opus |
+| `RG45-002` | skill memoryの保持方針は、来歴と訂正chainを保持したままとし、能動的な忘却には圧縮証拠pathを要求する。 | memory_context | prose | fail_close | .helix/logs/memory-compaction.jsonl | `RUL-OSI-02` | src/runtime/skill-memory-hygiene.ts:30-35; src/runtime/skill-memory-hygiene.ts:105-111 | G45／claude-opus |
 
-## 副として対応づいた規則（47件）
+## 副として対応づいた規則（58件）
 
-`RA-012`、`RA-019`、`RA-248`、`RB04-038`、`RB04-103`、`RB04-114`、`RB04-127`、`RB04-135`、`RB04-144`、`RB06-090`、`RB06-180`、`RB06-241`、`RB06-316`、`RB07-061`、`RB07-176`、`RB07-293`、`RB07-298`、`RB07-299`、`RB07-300`、`RB08-029`、`RB08-033`、`RB08-034`、`RB08-077`、`RB08-079`、`RB08-173`、`RB08-255`、`RB08-256`、`RB08-337`、`RC00-133`、`RD01-055`、`RD01-067`、`RD02-293`、`RD02-296`、`RD02-301`、`RD02-319`、`RD02-332`、`RD02-333`、`RD02-334`、`RD03-038`、`RD07-121`、`RD07-123`、`RD07-128`、`RD07-138`、`RE01-081`、`RE01-268`、`RF01-012`、`RG10-024`
+`RA-012`、`RA-019`、`RA-248`、`RB04-038`、`RB04-103`、`RB04-114`、`RB04-127`、`RB04-135`、`RB04-144`、`RB06-090`、`RB06-180`、`RB06-241`、`RB06-316`、`RB07-061`、`RB07-176`、`RB07-293`、`RB07-298`、`RB07-299`、`RB07-300`、`RB08-029`、`RB08-033`、`RB08-034`、`RB08-077`、`RB08-079`、`RB08-173`、`RB08-255`、`RB08-256`、`RB08-337`、`RC00-133`、`RD01-055`、`RD01-067`、`RD02-293`、`RD02-296`、`RD02-301`、`RD02-319`、`RD02-332`、`RD02-333`、`RD02-334`、`RD03-038`、`RD07-121`、`RD07-123`、`RD07-128`、`RD07-138`、`RE01-081`、`RE01-268`、`RF01-012`、`RG02-011`、`RG10-024`、`RG11-001`、`RG38-001`、`RG40-026`、`RG40-027`、`RG40-030`、`RG40-033`、`RG44-002`、`RG44-022`、`RG44-024`、`RG44-026`

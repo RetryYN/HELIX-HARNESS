@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-OSA-04
 group: OS検収
 product: OS
-atoms_primary: 87
-atoms_secondary: 56
+atoms_primary: 94
+atoms_secondary: 62
 issue_projection: #1860
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1860
 
 統合の許可を定める。自動mergeを使わず、審査側が最新の対象・審査・CI・記録を照合して明示的に統合する。統合を妨げるのは未解消のblocker（正しさ、要求、安全、必須の検査に関わる指摘）であり、処分済みの任意改善と後続へ分けた事項は妨げない。
 
-## 主として対応づいた規則（87件）
+## 主として対応づいた規則（94件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -111,9 +111,16 @@ issue_projection: #1860
 | `RE01-259` | merge判断者はCI成功だけでmergeせず、current HEADの独立reviewとDB追従を確認する。push・base・authority・digestが変わったreceiptはstaleとして扱う。 | review_merge | gate | fail_close | exact HEAD review receiptとDB追従 | `RUL-COR-02` | docs/governance/helix-harness-requirements_v1.3.md:516-518 | E01／claude-opus |
 | `RE01-261` | 作成者は承認前でも非正本proposalとしてDraft PRを作れるが、必要な承認・exact HEAD review・CI・DBが揃うまでReady化しない。 | review_merge | gate | fail_close | Draft/Ready admission | `RUL-OSM-08` | docs/governance/helix-harness-requirements_v1.3.md:518-518 | E01／claude-opus |
 | `RE01-262` | GitHub運用者はnative auto-mergeを使用せず、AI-Bが証拠を再照合して明示的にmergeする。 | review_merge | prose／config | fail_close | GitHub auto-merge禁止とAI-B merge | — | docs/governance/helix-harness-requirements_v1.3.md:518-518 | E01／claude-opus |
+| `RG02-019` | PRの独立review admission準備では、Draftの場合はcurrent DB receiptを空オブジェクトとし、Draftでない場合はlogical DB receiptを取得する。 | review_merge | ci | fail_close | PR_DRAFT、l3-g3-logical-db-receipt.ts | `RUL-FRM-04` | .github/workflows/harness-check.yml:343-348 | G02／claude-opus |
 | `RG10-008` | ship commandの是正担当者は、intra-runtime helperによる独自のGO判断を禁止する。 | escalation_authority | config | n/a | EASC-13、.claude/commands/ship.md | `RUL-OSM-02` | docs/governance/effective-agent-startup-followup-registry.json:91-91 | G10／claude-opus |
 | `RG10-017` | PR admissionはDraft状態のPRについてready／mergeをblockする。 | review_merge | prose／gate | fail_close | 旧ready／merge admissionのDraft判定 | `RUL-OSM-08` | docs/governance/github-operation-rules.md:72-75 | G10／claude-opus |
+| `RG15-011` | accept gateのreviewerは、未commit review にblocking findingが無いこと、trace-freeze条件が継続greenであること、該当ADRがAcceptedであること、継続projectionが最新eventまで投影されstatusと整合することを確認する。 | review_merge | prose／gate | fail_close | helix review --uncommitted、harness.db continuation projection、G6/G7 | `RUL-FRM-04` | docs/skills/adversarial-review.md:111-115 | G15／claude-opus |
+| `RG39-016` | merge判定は、同一PR・同一HEADに未解消のblock receiptが残っている場合、outstanding_request_changesとしてmergeを拒否する。 | review_merge | gate | fail_close | — | — | src/runtime/claude-pr-convergence.ts:1441-1445 | G39／claude-opus |
+| `RG41-024` | merge後の再読receiptは専用directoryへ排他作成（所有者のみ0600）で保存し、同名fileが既にあって内容が異なる場合は上書きせず失敗する。 | evidence_claim | prose | fail_close | reviewed-merge/receipts 配下という具体path | `RUL-COR-06` | src/runtime/github-cross-review-admission.ts:778-799 | G41／claude-opus |
+| `RG43-004` | 並列候補の検証評議は候補の採否だけを決め、mergeの可否は判定せず既存のGitHub側gateへ委譲する。 | review_merge | gate | n/a | delegate_to_existing_github_gate というfield値 | `RUL-OSA-03` | src/runtime/parallel-candidate-verifier-council.ts:18-26; src/runtime/parallel-candidate-verifier-council.ts:55-60 | G43／claude-opus |
+| `RG44-017` | review receipt接合評価は、terminal statusでないPLANおよびbaseで既にterminalだったPLANを検査母集団から外す。 | review_merge | gate | n/a | status confirmed/completed/accepted | `RUL-FRM-04` | src/runtime/review-receipt-plan-binding.ts:66-66; src/runtime/review-receipt-plan-binding.ts:93-96; src/runtime/review-receipt-plan-binding.ts:166-171 | G44／claude-opus |
+| `RG44-018` | review receipt接合評価は、技術承認とみなすverdictをapprove・approve_after_fixes・passに限り、それ以外のcross_agent entryを承認として数えない。 | review_merge | gate | fail_close | — | — | src/runtime/review-receipt-plan-binding.ts:67-67; src/runtime/review-receipt-plan-binding.ts:97-108 | G44／claude-opus |
 
-## 副として対応づいた規則（56件）
+## 副として対応づいた規則（62件）
 
-`RA-154`、`RA-155`、`RA-159`、`RA-172`、`RB0-081`、`RB04-175`、`RB04-201`、`RB05-024`、`RB05-027`、`RB05-035`、`RB05-043`、`RB05-045`、`RB05-072`、`RB05-143`、`RB06-024`、`RB07-019`、`RB07-092`、`RB07-219`、`RB09-001`、`RC0-108`、`RC00-184`、`RC02-037`、`RD00-249`、`RD00-250`、`RD00-251`、`RD00-252`、`RD00-253`、`RD00-254`、`RD00-272`、`RD00-273`、`RD01-263`、`RD01-267`、`RD01-268`、`RD01-272`、`RD01-274`、`RD01-276`、`RD01-279`、`RD01-281`、`RD01-291`、`RD01-293`、`RD01-295`、`RD01-296`、`RD02-001`、`RD02-079`、`RD02-268`、`RD03-072`、`RD04-017`、`RD04-019`、`RD04-022`、`RD04-024`、`RE01-046`、`RE01-055`、`RE01-069`、`RE01-113`、`RE01-255`、`RG09-003`
+`RA-154`、`RA-155`、`RA-159`、`RA-172`、`RB0-081`、`RB04-175`、`RB04-201`、`RB05-024`、`RB05-027`、`RB05-035`、`RB05-043`、`RB05-045`、`RB05-072`、`RB05-143`、`RB06-024`、`RB07-019`、`RB07-092`、`RB07-219`、`RB09-001`、`RC0-108`、`RC00-184`、`RC02-037`、`RD00-249`、`RD00-250`、`RD00-251`、`RD00-252`、`RD00-253`、`RD00-254`、`RD00-272`、`RD00-273`、`RD01-263`、`RD01-267`、`RD01-268`、`RD01-272`、`RD01-274`、`RD01-276`、`RD01-279`、`RD01-281`、`RD01-291`、`RD01-293`、`RD01-295`、`RD01-296`、`RD02-001`、`RD02-079`、`RD02-268`、`RD03-072`、`RD04-017`、`RD04-019`、`RD04-022`、`RD04-024`、`RE01-046`、`RE01-055`、`RE01-069`、`RE01-113`、`RE01-255`、`RG09-003`、`RG33-015`、`RG39-005`、`RG39-006`、`RG39-007`、`RG43-014`、`RG44-019`

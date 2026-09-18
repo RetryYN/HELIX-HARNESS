@@ -3,14 +3,14 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 883ff184a90f40c844e8737a4dee49915a46cceae764d8b7cc5bd0f0fbdd85a3
+source_candidate_sha256: 1467f96bd6068028e8950b1a4ae265fa2474c9cb3dfaf442b7ba2b43fe670c80
 source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
-source_inventory_sha256: e265b57e50d4c0f2f161c89a7dadbde12738bd84eab21de3fb5745d7741ef125
+source_inventory_sha256: 78d14197ae48bc7eefb6f8c6836902fde2c20842952c8e702654492efcde0b92
 rule_id: RUL-DEV-01
 group: サービス④開発
 product: HARNESS
-atoms_primary: 91
-atoms_secondary: 110
+atoms_primary: 94
+atoms_secondary: 114
 issue_projection: #1854
 ---
 
@@ -22,7 +22,7 @@ issue_projection: #1854
 
 実装の規律を定める。失敗を握りつぶさない、循環依存を作らない、修正は最小にして無関係な整理を混ぜない。
 
-## 主として対応づいた規則（91件）
+## 主として対応づいた規則（94件）
 
 | atom | 規則 | 種類 | 強制 | 失敗時 | 旧実装固有の部分 | 副 | 出どころ | 由来 |
 |---|---|---|---|---|---|---|---|---|
@@ -117,7 +117,10 @@ issue_projection: #1854
 | `RG09-007` | lintの実装者は、lintをpureに保つ。 | behavior_discipline | prose | n/a | lint module | — | docs/governance/coding-rules.md:141-141 | G09／claude-opus |
 | `RG14-004` | workflow保守担当者は、対象workflowを次に変更する直前に、非推奨警告が出ているsetup-nodeの更新を独立して行う。 | tooling_runtime | prose | n/a | ORA-014、setup-node@v4のNode.js 20 action runtime警告、Issue #93 | `RUL-COR-05` | docs/governance/operations-rule-audit-2026-07-26.md:47-47 | G14／claude-opus |
 | `RG18-002` | 実装者はResult<T, E>の方が明確な場合、戻り値にT \| null \| undefinedを使うことを避ける。 | behavior_discipline | prose | n/a | TypeScriptの戻り値型 | `RUL-DEV-02` | docs/skills/incremental-implementation.md:48-49 | G18／claude-opus |
+| `RG44-022` | PLAN digest更新は、既存digestがJSON解析不能な場合、前回値なしとして再構築し処理を止めない。 | memory_context | hook | fail_open | — | `RUL-OSM-03` | src/runtime/session-log.ts:560-569 | G44／claude-opus |
+| `RG44-028` | 保存manifest収集器は、git ls-filesの非0終了を未追跡という正常な分類結果として扱い、収集エラーにしない。 | tooling_runtime | prose | n/a | git ls-files --error-unmatch | — | src/runtime/retirement-preserve.ts:307-316 | G44／claude-opus |
+| `RG45-010` | slot admissionは、受理結果を入力から複製したうえで凍結し、呼び出し側が保持する入力objectを凍結する副作用を起こさない。 | tooling_runtime | prose | n/a | — | `RUL-COR-03` | src/runtime/slot-scheduler-quota-handover.ts:210-229; src/runtime/slot-scheduler-quota-handover.ts:330-330 | G45／claude-opus |
 
-## 副として対応づいた規則（110件）
+## 副として対応づいた規則（114件）
 
-`RA-047`、`RA-224`、`RA-286`、`RA-288`、`RA-299`、`RA-300`、`RA-302`、`RB0-016`、`RB0-017`、`RB0-018`、`RB0-023`、`RB0-031`、`RB0-034`、`RB0-041`、`RB0-044`、`RB04-073`、`RB04-122`、`RB04-178`、`RB05-011`、`RB05-020`、`RB05-026`、`RB05-069`、`RB05-086`、`RB05-111`、`RB05-187`、`RB05-214`、`RB05-355`、`RB05-371`、`RB06-055`、`RB06-114`、`RB06-182`、`RB06-204`、`RB07-127`、`RB07-141`、`RB07-196`、`RB07-200`、`RB07-208`、`RB07-228`、`RB07-229`、`RB07-257`、`RB07-326`、`RB07-337`、`RB08-121`、`RB08-129`、`RB08-208`、`RB08-281`、`RB08-293`、`RB08-340`、`RB09-031`、`RB09-063`、`RB09-075`、`RC00-077`、`RC00-099`、`RC00-150`、`RC01-092`、`RC01-093`、`RC01-094`、`RC01-095`、`RC01-097`、`RC01-100`、`RC01-101`、`RC01-179`、`RC02-050`、`RC03-115`、`RC03-116`、`RC04-022`、`RC04-073`、`RC04-102`、`RD00-049`、`RD00-181`、`RD01-029`、`RD01-030`、`RD01-031`、`RD01-043`、`RD01-049`、`RD01-063`、`RD01-064`、`RD01-110`、`RD01-111`、`RD01-114`、`RD01-125`、`RD01-129`、`RD01-131`、`RD01-172`、`RD02-030`、`RD02-041`、`RD02-179`、`RD02-180`、`RD02-181`、`RD02-248`、`RD02-249`、`RD02-267`、`RD03-066`、`RD03-165`、`RD05-004`、`RD05-020`、`RD05-215`、`RD05-234`、`RD07-154`、`RD07-183`、`RD08-074`、`RD11-056`、`RE01-020`、`RE01-134`、`RE01-136`、`RE01-152`、`RG09-005`、`RG09-011`、`RG10-011`、`RG18-003`
+`RA-047`、`RA-224`、`RA-286`、`RA-288`、`RA-299`、`RA-300`、`RA-302`、`RB0-016`、`RB0-017`、`RB0-018`、`RB0-023`、`RB0-031`、`RB0-034`、`RB0-041`、`RB0-044`、`RB04-073`、`RB04-122`、`RB04-178`、`RB05-011`、`RB05-020`、`RB05-026`、`RB05-069`、`RB05-086`、`RB05-111`、`RB05-187`、`RB05-214`、`RB05-355`、`RB05-371`、`RB06-055`、`RB06-114`、`RB06-182`、`RB06-204`、`RB07-127`、`RB07-141`、`RB07-196`、`RB07-200`、`RB07-208`、`RB07-228`、`RB07-229`、`RB07-257`、`RB07-326`、`RB07-337`、`RB08-121`、`RB08-129`、`RB08-208`、`RB08-281`、`RB08-293`、`RB08-340`、`RB09-031`、`RB09-063`、`RB09-075`、`RC00-077`、`RC00-099`、`RC00-150`、`RC01-092`、`RC01-093`、`RC01-094`、`RC01-095`、`RC01-097`、`RC01-100`、`RC01-101`、`RC01-179`、`RC02-050`、`RC03-115`、`RC03-116`、`RC04-022`、`RC04-073`、`RC04-102`、`RD00-049`、`RD00-181`、`RD01-029`、`RD01-030`、`RD01-031`、`RD01-043`、`RD01-049`、`RD01-063`、`RD01-064`、`RD01-110`、`RD01-111`、`RD01-114`、`RD01-125`、`RD01-129`、`RD01-131`、`RD01-172`、`RD02-030`、`RD02-041`、`RD02-179`、`RD02-180`、`RD02-181`、`RD02-248`、`RD02-249`、`RD02-267`、`RD03-066`、`RD03-165`、`RD05-004`、`RD05-020`、`RD05-215`、`RD05-234`、`RD07-154`、`RD07-183`、`RD08-074`、`RD11-056`、`RE01-020`、`RE01-134`、`RE01-136`、`RE01-152`、`RG09-005`、`RG09-011`、`RG10-011`、`RG15-004`、`RG18-003`、`RG23-005`、`RG37-004`、`RG39-017`
