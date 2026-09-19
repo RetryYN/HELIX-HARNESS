@@ -108,8 +108,8 @@ RDP-001が持つのは状態とholding処理の記述であり、件数とDecisi
 
 | 出典 | 使った値 | SHA-256 |
 |---|---|---|
-| `docs/governance/requirement-disposition-review-program.md` | 状態、13 holding、未評価11件と処理順 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
-| `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md` | 1,799／415／964／1,009、AVS 46 atom、`OVC-RUL-RUL-FRM-02`の未解決、適用PR合格条件 | `f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46` |
+| `docs/governance/requirement-disposition-review-program.md` | 状態、13 holding、未評価11件、programの一般的な処理順 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
+| `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md` | 計上1件・該当なし1件、11件のうちatom展開未了3件、`PLAN-L3-82`の優先、旧AVSが`MPR-SH-CANDIDATE-003`の部分集合であること、S1-01の「次の処理」1–5の順序、1,799／415／964／1,009、AVS 46 atom、`OVC-RUL-RUL-FRM-02`の未解決、適用PR合格条件 | `f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46` |
 | `docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md` | S0の`approve`／`split`と承認範囲の除外、S1-01の`defer`、未決3点、再baseline条件 | `899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf` |
 | `docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md` | S0／S1の採否順と停止条件 | `3cf362f528b394e5c4105e63b85ae8e3630269615976474de478b53417158eb3` |
 
