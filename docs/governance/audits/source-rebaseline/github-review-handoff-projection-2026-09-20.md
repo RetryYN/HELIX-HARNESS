@@ -18,3 +18,17 @@ recorded_at: 2026-09-19T15:57:05.953167+00:00
 
 Issue作成、関係登録、台帳更新だけを記録する。要求採否、実通信、review実施、merge、Issue closeは成立させない。
 訂正が必要な場合は本記録を消さず、訂正対象と新しいread-afterを後続receiptへ追記する。
+
+## GUI経路へのscope訂正・投影receipt v2
+
+- correction_of: 上記2026-09-20の初回投影（パケットのみのscope）
+- Recorded at: 2026-09-19T16:15:26.866368+00:00
+- Source commit: `cbeee32457ec9bed01a8a3ac05edf9673dcbb0ff`
+- Source file SHA-256: `3ebae075d0007f6c1fdd103847fd633640f02f88667f668f8440484292f03958`
+- Issue #1884 payload／remote本文SHA-256: `d516d0556eee70416033312bcce547b87f27cbecb0c03ddedccd1617052bc387`（read-after一致）
+- #1866台帳payload／remote本文SHA-256: `6f8e1fa1f6fbd9535477dacb533f8812a772ee853a11df68ebe93ea63bed55bc`（read-after一致）
+- 現在のscope: 同じVS Codeの既存Claude／Codex GUI間で実行・レビュー／マージレーンの通知と指摘を往復させる仮組み。
+- 検証: パケット10件、GUI transport・hook形式10件、Scaffold Binding 38 caseが通過。GUI試験は合成入力と別processでありlive受信を代替しない。
+- 利用者設定: 新設SessionStart／Stopの参照を追加しread-after一致。無関係な設定・hook trust・権限は変更していない。
+- 実GUI: 既存Codex threadを実行レーンに束縛、既存Claude GUI processの次のnative hookを登録待ち。session ID／PIDはlocal通知箱だけに保持。
+- 未完: Codex側の新hook trustと両GUIでのnative hook読込、両方向のlive ACK。要求承認・review実施・mergeは記録しない。
