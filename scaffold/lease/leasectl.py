@@ -301,8 +301,68 @@ def collector_tests():
                      and G.isolated_git_env().get("GIT_NO_REPLACE_OBJECTS") == "1"
                      and not [k for k in G.isolated_git_env() if k.startswith("GIT_") and k not in (
                          "GIT_CONFIG_NOSYSTEM", "GIT_CONFIG_GLOBAL", "GIT_NO_REPLACE_OBJECTS", "GIT_TERMINAL_PROMPT")]})
+        # HOME配下のXDG attributes（export-ignore）は、executorのgit呼出し（core.attributesFile=/dev/null）では効かない
+        xdg = os.path.join(d2, "xdg")
+        os.makedirs(os.path.join(xdg, "git"))
+        with open(os.path.join(xdg, "git", "attributes"), "w") as f:
+            f.write("p.py export-ignore\n")
+        e3 = dict(e2, XDG_CONFIG_HOME=xdg)
+        arc = lambda *pre: subprocess.run(["git"] + list(pre) + ["archive", "--format=tar", fake], cwd=d2, env=e3,
+                                          capture_output=True).stdout
+        names = lambda b: subprocess.run(["tar", "-t"], input=b, capture_output=True).stdout.decode().split()
+        rows.append({"id": "CL-no-xdg-attributes", "ok": "p.py" not in names(arc())
+                     and "p.py" in names(arc("-c", "core.attributesFile=%s" % os.devnull))})
+        # 実行中のbytesとrevの版の照合（有効化前の実測ではPRのhead、自己修理では修理PRのhead）
+        here = os.path.join(d2, "run")
+        os.makedirs(here)
+        os.makedirs(os.path.join(d2, "scaffold", "lease"))
+        for base_ in (here, os.path.join(d2, "scaffold", "lease")):
+            with open(os.path.join(base_, "a.py"), "w") as f:
+                f.write("print(1)\n")
+        g2("add", "scaffold/lease/a.py")
+        g2("commit", "-q", "-m", "lease")
+
+        class Loc(G.Runner):
+            def run(self, args, input=None, cwd=None, env=None, check=True):
+                return subprocess.run(args, input=input, cwd=d2, env=e2, capture_output=True)
+        gl = G.GH(runner=Loc())
+        same = G.verify_self(gl, "HEAD", here=here)
+        with open(os.path.join(here, "a.py"), "w") as f:
+            f.write("print(2)\n")
+        rows.append({"id": "CL-verify-self-rev", "ok": same == [] and G.verify_self(gl, "HEAD", here=here) == ["a.py"]
+                     and G.verify_self(gl, real, here=here) == ["a.py"]})
+        # 実行者から書ける置き場所は起動条件を満たさない（interpreterの置き場所は書けない）
+        rows.append({"id": "CL-writable-location", "ok": here in G.writable_by_runner([os.path.join(here, "a.py")])
+                     and (os.getuid() == 0 or not G.writable_by_runner(["/usr/bin/python3"]))})
     finally:
         shutil.rmtree(d2, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # 外部commandへ渡す環境は許可リスト（PATH・XDG_*・GH_HOST・PYTHON*を受け取らない。GH_TOKENだけ通す）
+    saved = {k: os.environ.get(k) for k in ("GH_HOST", "XDG_CONFIG_HOME", "PYTHONPATH", "GH_TOKEN")}
+    try:
+        os.environ.update({"GH_HOST": "evil.invalid", "XDG_CONFIG_HOME": "/tmp/x", "PYTHONPATH": "/tmp/x", "GH_TOKEN": "t"})
+        be, ge = G.base_env(), G.isolated_git_env()
+        rows.append({"id": "CL-env-allowlist", "ok": be["PATH"] == "/usr/bin:/bin" and be.get("GH_TOKEN") == "t"
+                     and not {"GH_HOST", "XDG_CONFIG_HOME", "PYTHONPATH"} & (set(be) | set(ge))})
+    finally:
+        for k, v in saved.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+    # executorのgit呼出しは、使い捨てbare repository・replace objects無効・attributesFile無効・絶対pathのgh credential helper
+    calls = []
+
+    class Rec(G.Runner):
+        def run(self, args, input=None, cwd=None, env=None, check=True):
+            calls.append((list(args), env))
+            return subprocess.CompletedProcess(args, 0, b"", b"")
+    gi = G.GH(runner=Rec(), isolated=True)
+    gi.git("fetch", "-q", "origin", "main")
+    fa, fe = calls[-1]
+    rows.append({"id": "CL-isolated-git-call", "ok": "--no-replace-objects" in fa and "core.attributesFile=%s" % os.devnull in fa
+                 and "credential.helper=!%s auth git-credential" % G.shlex.quote(G.GH_BIN) in fa and fa[1] == "--git-dir"
+                 and fe.get("GIT_CONFIG_GLOBAL") == os.devnull and fe.get("GIT_NO_REPLACE_OBJECTS") == "1"
+                 and calls[1][0][-2:] == ["origin", "https://github.com/%s.git" % C.REPO]})
     rows.append({"id": "CL-sha-mentions", "ok": C.sha256_mentions("a: " + "A" * 64 + " b: " + "1" * 65) == {"a" * 64}})
     lr = {"last_resume_at": "2026-09-20T10:00:00Z"}
     rows.append({"id": "CL-local-suspend-resumed", "ok": not G.local_suspended({"suspended": {"at": "2026-09-20T09:00:00Z"}}, lr)
@@ -349,22 +409,19 @@ def run_boundary_tests():
 
         def comment(self, issue, body):
             wrote.append(issue)
-    st_path = os.environ.get("HELIX_LEASE_STATE")
+    st_path = G.STATE_OVERRIDE
     import tempfile
     d = tempfile.mkdtemp(prefix="lease-selftest-")
-    os.environ["HELIX_LEASE_STATE"] = os.path.join(d, "state.json")
+    G.STATE_OVERRIDE = os.path.join(d, "state.json")
     try:
         s = F.base_rf()
         suspend(G4(), s, [C.R("review_findings_open")])
-        rows.append({"id": "BD-no-state-comment-for-pr-reject", "ok": not wrote and not os.path.exists(os.environ["HELIX_LEASE_STATE"])})
+        rows.append({"id": "BD-no-state-comment-for-pr-reject", "ok": not wrote and not os.path.exists(G.STATE_OVERRIDE)})
         suspend(G4(), s, [C.R("protection_baseline_changed")])
         st = G.read_state()
         rows.append({"id": "BD-suspend-both-stores", "ok": wrote == [3000] and bool(st.get("suspended"))})
     finally:
-        if st_path is None:
-            os.environ.pop("HELIX_LEASE_STATE", None)
-        else:
-            os.environ["HELIX_LEASE_STATE"] = st_path
+        G.STATE_OVERRIDE = st_path
         import shutil
         shutil.rmtree(d, ignore_errors=True)
     # merge後のread-after
@@ -419,6 +476,20 @@ def run_boundary_tests():
     boot = dict(it, actor=F.AI, commit_message="Merge pull request #1886", first_parent=F.B, activates_lease=True)
     rows.append({"id": "HL-bootstrap-activation-merge", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [boot]}))[0]
                  and not C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(boot, actor=F.PO)]}))[0]})
+    # 有効化mergeは既存規則（merge API）で入るためpr_mergeでもよい。それ以外のpr_mergeは主体不一致
+    rows.append({"id": "HL-activation-merge-pr-merge", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [
+        dict(boot, activity_type="pr_merge")]}))[0]
+                 and not C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(it, first_parent=F.B, activity_type="pr_merge")]}))[0]})
+    # 自己修理: 修理PRのheadのbytes・許可の引数・recordのapproved_targetsの照合
+    import leaserecover as RC
+    sd = F.base_dr()
+    run_h, main_h = {F.TARGET: F.sha("6"), "scaffold/lease/leasecore.py": "c" * 64}, {F.TARGET: F.sha("5"), "scaffold/lease/leasecore.py": "c" * 64}
+    ok_arg = RC.manifest_sha256(run_h)
+    rows.append({"id": "RC-self-repair", "ok": RC.self_repair_errors(sd, run_h, main_h, ok_arg, F.H) == []
+                 and RC.self_repair_errors(sd, run_h, main_h, "0" * 64, F.H)
+                 and RC.self_repair_errors(sd, run_h, main_h, ok_arg, "d" * 40)
+                 and RC.self_repair_errors(sd, dict(run_h, **{F.TARGET: F.sha("7")}), main_h, RC.manifest_sha256(dict(run_h, **{F.TARGET: F.sha("7")})), F.H)
+                 and RC.self_repair_errors(sd, main_h, main_h, RC.manifest_sha256(main_h), F.H)})
     rows.append({"id": "HL-activation-merge-not-at-origin", "ok": not C.activity_chain_ok(dict(
         sn, main_head="7" * 40, activity={"reached_origin": True, "items": [
             dict(it, first_parent=F.B), dict(boot, before="e" * 40, after="7" * 40, first_parent="e" * 40)]}))[0]})
@@ -446,11 +517,19 @@ def run_boundary_tests():
                  and C.merge_message_kind("x\n\nlease_receipt: %s" % C.LEASE_ID) is None})
     # GitHub Appのloginはcollaborator roleでなくapp権限で照合する
     al = dict(F.base_rf()["lease"], identity=dict(F.base_rf()["lease"]["identity"], ai="helix-app[bot]", apps=["helix-app"]))
-    hs = {"protection": F.base_rf()["protection"], "roles": {}, "app_permissions": [{"slug": "helix-app", "app_slug": "helix-app", "permissions": {"contents": "write"}}]}
+    hs = {"protection": F.base_rf()["protection"], "roles": {}, "app_permissions": [{"slug": "helix-app", "app_slug": "helix-app", "repository_selection": "selected", "permissions": dict(C.APP_PERMISSIONS_ALLOWED)}]}
+    rm = lambda perms: [x for x in C.evaluate_lease_health(dict(hs, app_permissions=[{"slug": "helix-app", "app_slug": "helix-app", "repository_selection": "selected", "permissions": perms}]),
+                                                           lease=al, skip_activity=True) if x["code"] == "role_mismatch"]
     rows.append({"id": "HL-app-login-role", "ok": not [x for x in C.evaluate_lease_health(hs, lease=al, skip_activity=True)
                                                      if x["code"] == "role_mismatch"]
                  and [x for x in C.evaluate_lease_health(dict(hs, app_permissions=[]), lease=al, skip_activity=True)
                       if x["code"] == "role_mismatch"]})
+    # installation権限は許可集合とちょうど一致: 必須の書込みの欠落、読取りへの縮退、読取りの欠落、外の権限はどれも停止
+    rows.append({"id": "HL-app-permissions-exact", "ok": bool(rm({"contents": "write"}))
+                 and bool(rm(dict(C.APP_PERMISSIONS_ALLOWED, issues="read")))
+                 and bool(rm({k: v for k, v in C.APP_PERMISSIONS_ALLOWED.items() if k != "administration"}))
+                 and bool(rm(dict(C.APP_PERMISSIONS_ALLOWED, workflows="write")))
+                 and not rm(dict(C.APP_PERMISSIONS_ALLOWED))})
     # AppのJWT: RS256の形（header.payload.signature）と、iss・有効期間
     import subprocess as sp_, tempfile as tf_
     kd = tf_.mkdtemp(prefix="lease-jwt-")
@@ -493,6 +572,10 @@ def run_boundary_tests():
     rows.append({"id": "LS-activation-gaps", "ok": not C.activation_gaps(lb) and C.activation_gaps(dict(lb, baseline=None))
                  and C.activation_gaps(dict(lb, identity=dict(lb["identity"], po=F.AI)))
                  and C.activation_gaps(dict(lb, identity=dict(lb["identity"], po="x[bot]")))
+                 # identity表: AI側の各roleの欠落、accept_bootstrap_riskで別identityのrole
+                 and all(C.activation_gaps(dict(lb, identity=dict(lb["identity"], **{k: None}))) for k in ("creator", "executor", "recovery"))
+                 and C.activation_gaps(dict(lb, identity=dict(lb["identity"], reviewers=[])))
+                 and C.activation_gaps(dict(lb, identity=dict(lb["identity"], recovery="other-app[bot]", apps=["helix-app", "other-app"])))
                  and C.lease_scope(dict(F.base_rf(), lease=dict(lb, origin_main=None)))[0] == "none"})
     rows.append({"id": "PT-nested-gitattributes", "ok": C.is_gitattributes("docs/.gitattributes") and C.is_gitattributes(".gitattributes")
                  and not C.is_gitattributes("docs/x.gitattributes")})
@@ -567,9 +650,9 @@ def main(argv=None):
     a = ap.parse_args(argv)
     try:
         if a.cmd in ("admit", "sync"):
-            bad = G.verify_self(G.GH())
+            bad = G.self_integrity(G.GH())
             if bad:
-                print("拒否: 実行中のexecutor commandのbytesがorigin/mainと一致しない: %s" % ", ".join(bad), file=sys.stderr)
+                print("拒否: executor commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
                 return 2
         return {"admit": cmd_admit, "sync": cmd_sync, "status": cmd_status, "selftest": cmd_selftest}[a.cmd](a)
     except G.WriteRefused as e:

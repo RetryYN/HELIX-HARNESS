@@ -128,13 +128,52 @@
     "op": "set",
     "path": "lease.probe.test_reviews.1.state",
     "value": "COMMENTED"
+   },
+   {
+    "op": "set",
+    "path": "status_comments.3.body",
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"denied\", \"review_id\": 9002, \"review_state\": \"COMMENTED\"}\n```"
    }
   ],
   "expect": [
    "deletion_probe_stale"
   ],
   "mode": null,
-  "note": ""
+  "note": "有効化前の実測結果も同じ状態で揃えたうえで、登録した状態がAPPROVED・CHANGES_REQUESTEDの組でない"
+ },
+ {
+  "id": "PB-activation-result-state-mismatch",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.3.body",
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"denied\", \"review_id\": 9002, \"review_state\": \"APPROVED\"}\n```"
+   }
+  ],
+  "expect": [
+   "lease_not_activated",
+   "lease_scope_excludes_profile"
+  ],
+  "mode": null,
+  "note": "有効化前の実測結果の試験review状態がlease記録と不一致"
+ },
+ {
+  "id": "PB-activation-result-after-activation",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.3.created_epoch",
+    "value": 1789136000
+   }
+  ],
+  "expect": [
+   "lease_not_activated",
+   "lease_scope_excludes_profile"
+  ],
+  "mode": null,
+  "note": "有効化より後に置いた実測結果は有効化前の結果でない"
  },
  {
   "id": "PB-test-review-gone",

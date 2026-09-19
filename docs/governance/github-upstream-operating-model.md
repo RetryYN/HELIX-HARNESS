@@ -116,7 +116,7 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 
 すべてのPRは対象HEADを固定してreviewする。作成側と意味判断側を分け、許可されたGitHub Claude通路を用いる。
 Capability Lease（[Capability Lease bootstrap判断packet](audits/source-rebaseline/capability-lease-bootstrap-decision-packet.md)）の対象PRでは、本節の依頼comment・delivery receipt・応答commentの手順を満たす独立review（別contextのClaude agent、別contextのcodex等が自ら応答commentを置くもの）もreview通路として認める。独立性の選択が`accept_bootstrap_risk`の間に限り、reviewerが自ら投稿できないとき、作成側がreviewer出力を全文そのまま転記した応答commentも認める（転記であることをcommentに明記する）。GitHub Claude通路は引き続き使える。
-reviewはfindingであり、人間判断を代替しない。旧CI、旧test、旧runtime、ローカルClaude CLIをfallbackにしない。
+reviewはfindingであり、人間判断を代替しない。旧CI、旧test、旧runtimeをfallbackにしない。Capability Leaseの対象外のPRでは、ローカルClaude CLIもfallbackにしない（対象PRでは上記の独立reviewとして認める）。
 PR classが未選択または複数指定のPRはReadyにしない。
 
 ### 作成側とレビュー対応側の責務

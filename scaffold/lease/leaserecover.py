@@ -3,6 +3,12 @@
 
   python3 scaffold/lease/leaserecover.py PR --context ID --mode review [--degraded-activity REASON] [--apply]
   python3 scaffold/lease/leaserecover.py PR --context ID --mode comment --comment-id N --choice C --head SHA [--apply]
+  （どちらも）[--self-repair SHA256]  非常用command自体が動かない場合の自己修理: 修理PRのheadのbytesで実行する
+
+自己修理（packet「非常用command自体も機能しない場合」）では、実行中のcommand群のbytesが修理PRのheadの版と一致し、
+origin/mainと異なる各fileの変更後SHA-256をそのPRのrecordが`approved_targets`にexactに列挙し、その判断が成立していることを
+確かめる。`--self-repair`の値は実行するcommand群のbytesの一覧（path と SHA-256 の行を並べたもの）のSHA-256で、POの許可が
+引数に固定する（再bootstrapでは「選択（自己修理では実行するbytesのSHA-256も）」）。
 
 `review`はPO reviewを出所とする非常経路、`comment`は再bootstrap mode（判断の出所を人間判断者loginのissue commentに代え、
 削除不能の実測規則を適用しない）である。POが実行環境で与える許可は、対象PR（comment modeでは判断comment ID・選択・HEADも）を
@@ -49,6 +55,31 @@ def rebootstrap_decision(gh, s, a):
             "body": c["body"]}
 
 
+def manifest_sha256(hashes):
+    """実行するcommand群のbytesの一覧（`path SHA-256`の行をpath順に並べたもの）のSHA-256。自己修理の許可の引数。"""
+    return C.sha256_text("".join("%s %s\n" % (p, hashes[p]) for p in sorted(hashes)))
+
+
+def self_repair_errors(s, running, main_hashes, permitted, head):
+    """自己修理の条件: 修理PRのheadが検査したpairのheadであること、許可の引数が実行するbytesの一覧と一致すること、
+    origin/mainと異なる各fileの変更後SHA-256を、そのPRが追加するrecordの`approved_targets`がexactに列挙すること。
+    判断の成立そのもの（decision_record profile・PO review／判断comment）は、通常の非常経路の判定で確かめる。"""
+    errs = []
+    if head != s.get("pair_head"):
+        errs.append("取得した修理PRのhead %s が検査したhead %s でない" % (head, s.get("pair_head")))
+    if permitted != manifest_sha256(running):
+        errs.append("許可の引数が実行するbytesの一覧のSHA-256（%s）と一致しない" % manifest_sha256(running))
+    recs = [p for p, e in C.diff_entries(s).items() if p.startswith(C.DECISIONS) and e.get("status") == "A"]
+    fm = C.parse_frontmatter((s.get("merge_texts") or {}).get(recs[0])) if len(recs) == 1 else None
+    targets = {(t.get("path"), t.get("sha256")) for t in (fm or {}).get("approved_targets") or [] if isinstance(t, dict)}
+    for p, h in sorted(running.items()):
+        if h != main_hashes.get(p) and (p, h) not in targets:
+            errs.append("%s の変更後SHA-256がrecordのapproved_targetsに無い" % p)
+    if running == main_hashes:
+        errs.append("実行するbytesがorigin/mainと同じ（自己修理でない）")
+    return errs
+
+
 def degraded_chain(gh, s):
     """activity APIを失った場合の代替: 起点からmain HEADまでの第1親の連鎖上のcommitが、すべてlease mergeまたは非常mergeか。"""
     origin = s.get("activity_origin")
@@ -74,16 +105,25 @@ def main(argv=None):
     ap.add_argument("--mode", choices=("review", "comment"), required=True)
     ap.add_argument("--comment-id", type=int); ap.add_argument("--choice"); ap.add_argument("--head")
     ap.add_argument("--degraded-activity"); ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--self-repair", metavar="SHA256")
     a = ap.parse_args(argv)
     if a.mode == "comment" and not (a.comment_id and a.choice and a.head):
         print("入力不正: comment modeは--comment-id・--choice・--headを要する", file=sys.stderr)
         return 2
     gh = G.GH()
-    bad = G.verify_self(gh)
+    rev = G.fetch_pr_head(gh, a.pr) if a.self_repair else "origin/main"
+    bad = G.self_integrity(gh, rev)
     if bad:
-        print("拒否: 実行中の非常用commandのbytesがorigin/mainと一致しない: %s" % ", ".join(bad), file=sys.stderr)
+        print("拒否: 非常用commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
         return 2
     s = G.snapshot(gh, a.pr, a.context)
+    if a.self_repair:
+        head = gh.git("rev-parse", rev).stdout.decode().strip()
+        main_hashes = {p: G.blob_sha256(gh, "origin/main", p) for p in G.running_hashes()}
+        errs = self_repair_errors(s, G.running_hashes(), main_hashes, a.self_repair, head)
+        if errs:
+            print("拒否: 自己修理の条件を満たさない: %s" % "、".join(errs), file=sys.stderr)
+            return 2
     degraded = None
     if a.degraded_activity:
         if not degraded_chain(gh, s):
@@ -104,6 +144,8 @@ def main(argv=None):
     si = lease.get("status_issue")
     gh.w = G.Writes({("push_main", "main"), ("comment", a.pr), ("comment", si)})
     args = {"pr": a.pr, "comment_id": a.comment_id, "choice": a.choice, "head": a.head} if a.mode == "comment" else None
+    if a.self_repair:
+        args = dict(args or {"pr": a.pr}, self_repair_sha256=a.self_repair)
     msg = C.receipt_message(s, res, s.get("checks"), a.context, recovery=True, degraded=degraded, rebootstrap_args=args)
     sha = gh.git("commit-tree", s["merge_tree"], "-p", s["main_head"], "-p", s["pair_head"], "-F", "-",
                  input=msg.encode("utf-8")).stdout.decode().strip()

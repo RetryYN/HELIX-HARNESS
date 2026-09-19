@@ -43,14 +43,15 @@ def main(argv=None):
     ap.add_argument("--lease-pr", type=int, help="有効化前: lease記録を埋めた後続operation_change PRのheadのlease記録で実測する")
     a = ap.parse_args(argv)
     gh = G.GH()
-    bad = G.verify_self(gh)
-    if bad:
-        print("拒否: 実行中のcommandのbytesがorigin/mainと一致しない: %s" % ", ".join(bad), file=sys.stderr)
-        return 2
     try:
         lease = G.lease_at(gh, a.lease_pr)   # packet: 実測は有効化の条件。有効化前はPRのlease記録に対して行う
     except RuntimeError as e:
         print("拒否: %s" % e, file=sys.stderr)
+        return 2
+    # 有効化前（--lease-pr）はmainに実測commandがまだ無いため、そのPRのheadの版と照合する
+    bad = G.self_integrity(gh, "refs/lease/pr-%d" % a.lease_pr if a.lease_pr else "origin/main")
+    if bad:
+        print("拒否: 実測commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
         return 2
     probe = lease.get("probe") or {}
     tests = {t.get("id"): t.get("state") for t in probe.get("test_reviews") or []}
@@ -68,8 +69,8 @@ def main(argv=None):
         except RuntimeError as e:
             print("拒否: installation tokenで認証されていない（%s）" % str(e)[:200], file=sys.stderr)
             return 2
-        if gh.repo not in {r.get("full_name") for r in repos.get("repositories") or []}:
-            print("拒否: installation tokenが本repositoryを対象としない", file=sys.stderr)
+        if [r.get("full_name") for r in repos.get("repositories") or []] != [gh.repo]:
+            print("拒否: installation tokenの対象が本repositoryだけでない", file=sys.stderr)
             return 2
     else:
         me = (gh.api("user") or {}).get("login")

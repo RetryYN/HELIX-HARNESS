@@ -3,12 +3,29 @@
 書込みは`Writes`の許可リストを通したものだけが実行される。許可リストはcommandごとに固定し
 （packet 規則の意味6、二重境界）、リストに無い書込みは例外で止める。dry-runでは許可リストが空である。
 """
-import atexit, base64, urllib.request, datetime, hashlib, json, os, re, shutil, subprocess, tempfile, time, urllib.parse
+import atexit, base64, urllib.request, datetime, hashlib, json, os, pwd, re, shlex, shutil, subprocess, sys, tempfile, time, urllib.parse
 
 import leasecore as C
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
+GH_BIN = shutil.which("gh") or "gh"   # 絶対pathで起動する。置き場所が実行者から書けないことはself_integrityで確かめる
+STATE_OVERRIDE = None                 # selftestだけが使う（状態領域の置き場所を環境変数で変えられないようにする）
+
+
+def home_dir():
+    """実行userのhome（環境変数HOMEではなくpasswdから）。"""
+    return pwd.getpwuid(os.getuid()).pw_dir
+
+
+def base_env():
+    """外部commandへ渡す環境は許可リストで作る。呼出し元のPATH・XDG_*・GH_HOST等のGH_*・PYTHON*を受け取らない
+    （AI側contextが書けるPATH上のdirectoryやHOME配下の設定から、読取り結果を偽装させない）。GH_TOKENだけを通す。"""
+    env = {"PATH": "/usr/bin:/bin", "HOME": home_dir(), "LANG": "C.UTF-8", "GH_PROMPT_DISABLED": "1",
+           "GH_NO_UPDATE_NOTIFIER": "1"}
+    if os.environ.get("GH_TOKEN"):
+        env["GH_TOKEN"] = os.environ["GH_TOKEN"]
+    return env
 
 
 class WriteRefused(Exception):
@@ -30,8 +47,10 @@ class Writes:
 class Runner:
     """外部commandの実行。selftestでは偽の実装に差し替える。"""
     def run(self, args, input=None, cwd=None, env=None, check=True):
-        if env is None:   # 呼出し元の環境からcommit時刻・author・committerの上書きを受け取らない
-            env = {k: v for k, v in os.environ.items() if not k.startswith(("GIT_COMMITTER_", "GIT_AUTHOR_"))}
+        if env is None:   # 呼出し元の環境（commit時刻・author・committerの上書き、PATH等）を受け取らない
+            env = base_env()
+        if args and args[0] == "gh":
+            args = [GH_BIN] + list(args[1:])
         p = subprocess.run(args, input=input, cwd=cwd or ROOT, env=env, capture_output=True)
         if check and p.returncode != 0:
             raise RuntimeError("%s: %s" % (" ".join(args[:4]), p.stderr.decode("utf-8", "replace")[:500]))
@@ -39,8 +58,9 @@ class Runner:
 
 
 def isolated_git_env():
-    """executorのgit環境: 呼出し元のGIT_*を受け取らず、system・globalの設定とreplace objectsを読まない。"""
-    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+    """executorのgit環境: 呼出し元のGIT_*を受け取らず、system・globalの設定とreplace objectsを読まない
+    （HOME配下のXDG attributesは、gitの呼出しに付ける`core.attributesFile=/dev/null`で読まない）。"""
+    env = base_env()
     env.update({"GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull, "GIT_NO_REPLACE_OBJECTS": "1",
                 "GIT_TERMINAL_PROMPT": "0"})
     return env
@@ -90,7 +110,9 @@ class GH:
             return self.r.run(["git", "-c", "core.quotepath=false"] + list(args), input=input, check=check)
         gd = self._git_dir()
         return self.r.run(["git", "--git-dir", gd, "--no-replace-objects", "-c", "core.quotepath=false",
-                           "-c", "credential.helper=", "-c", "credential.helper=!gh auth git-credential"] + list(args),
+                           "-c", "core.attributesFile=%s" % os.devnull,
+                           "-c", "credential.helper=", "-c", "credential.helper=!%s auth git-credential" % shlex.quote(GH_BIN)]
+                          + list(args),
                           input=input, check=check, env=isolated_git_env(), cwd=gd)
 
     # ----- 書込み（許可リストを通す） -----
@@ -172,6 +194,8 @@ def load_lease(gh, rev):
         return {}
     if lease.get("expires_at"):
         lease["expires_epoch"] = epoch(lease["expires_at"])
+    if lease.get("activated_at"):
+        lease["activated_epoch"] = epoch(lease["activated_at"])
     if isinstance(lease, dict) and lease:
         lease["record_committed_epoch"] = lease_record_committed_epoch(gh, rev)
     return lease
@@ -179,7 +203,7 @@ def load_lease(gh, rev):
 
 # ---------- 状態領域 ----------
 def state_path():
-    return os.environ.get("HELIX_LEASE_STATE") or os.path.expanduser("~/.helix-lease/state.json")
+    return STATE_OVERRIDE or os.path.join(home_dir(), ".helix-lease", "state.json")
 
 
 def read_state():
@@ -350,7 +374,7 @@ def app_jwt(app_id, key_path, now=None):
     now = int(now or time.time())
     head = b64url(json.dumps({"alg": "RS256", "typ": "JWT"}, separators=(",", ":")).encode())
     body = b64url(json.dumps({"iat": now - 60, "exp": now + 540, "iss": str(app_id)}, separators=(",", ":")).encode())
-    sig = subprocess.run(["openssl", "dgst", "-sha256", "-sign", key_path], input=("%s.%s" % (head, body)).encode(),
+    sig = subprocess.run(["/usr/bin/openssl", "dgst", "-sha256", "-sign", key_path], input=("%s.%s" % (head, body)).encode(),
                          capture_output=True, check=True).stdout
     return "%s.%s.%s" % (head, body, b64url(sig))
 
@@ -415,17 +439,47 @@ def verified_lease_merge(gh, sha, lease, recovery_ok=False, comments_fn=None):
     return None
 
 
-def verify_self(gh):
-    """実行中のexecutor command群のbytesが、origin/mainの`scaffold/lease/`の版と一致するか（未commitの書換えで判定を変えない）。
-    これだけでは循環するため、POが許可する実行場所はAI側contextから書けないread-onlyのcopyに限る（README「有効化」）。"""
-    gh.git("fetch", "-q", "origin", "main")
-    bad = []
-    for f in sorted(os.listdir(HERE)):
+def running_hashes(here=None):
+    """実行中のcommand群（`scaffold/lease/*.py`）のbytesのSHA-256。"""
+    here = here or HERE
+    out = {}
+    for f in sorted(os.listdir(here)):
         if f.endswith(".py"):
-            with open(os.path.join(HERE, f), "rb") as fh:
-                local = hashlib.sha256(fh.read()).hexdigest()
-            if local != blob_sha256(gh, "origin/main", "scaffold/lease/%s" % f):
-                bad.append(f)
+            with open(os.path.join(here, f), "rb") as fh:
+                out["scaffold/lease/%s" % f] = hashlib.sha256(fh.read()).hexdigest()
+    return out
+
+
+def verify_self(gh, rev="origin/main", here=None):
+    """実行中のexecutor command群のbytesが、revの`scaffold/lease/`の版と一致するか（未commitの書換えで判定を変えない）。
+    revは通常origin/main。有効化前の実測（`--lease-pr`）ではそのPRのhead、自己修理では修理PRのhead。"""
+    if rev == "origin/main":
+        gh.git("fetch", "-q", "origin", "main")
+    return sorted(p.rsplit("/", 1)[1] for p, h in running_hashes(here).items() if h != blob_sha256(gh, rev, p))
+
+
+def writable_by_runner(paths):
+    """実行者（このprocessのuid）が書ける置き場所。自分自身やinterpreter・gh・gitを書き換えられる置き場所から起動していれば、
+    bytesの照合は循環する（packet 二重境界）。"""
+    bad = []
+    for p in paths:
+        for q in (p, os.path.dirname(p)):
+            if q and os.path.exists(q) and os.access(q, os.W_OK):
+                bad.append(q)
+    return sorted(set(bad))
+
+
+def self_integrity(gh, rev="origin/main"):
+    """executor・非常用command・実測commandの起動前の検査。(1) `python3 -I`で起動している（user site・PYTHON*環境変数を読まない）
+    (2) command群・interpreter・gh・git・opensslの置き場所が実行者から書けない (3) command群のbytesがrevの版と一致する。"""
+    bad = []
+    if not sys.flags.isolated:
+        bad.append("python3 -Iで起動していない（user site・PYTHON*環境変数を読む）")
+    tools = [os.path.realpath(sys.executable), os.path.realpath(GH_BIN)] + \
+        [os.path.realpath(shutil.which(t, path="/usr/bin:/bin") or t) for t in ("git", "openssl", "unshare", "tar", "sh")]
+    files = [os.path.join(HERE, f) for f in sorted(os.listdir(HERE)) if f.endswith(".py")]
+    bad += ["実行者から書ける置き場所: %s" % p for p in writable_by_runner([HERE] + files + tools)]
+    bad += ["%s（%sの版と一致しない）" % (f, rev) for f in verify_self(gh, rev)]
     return bad
 
 
@@ -438,8 +492,13 @@ def lease_at(gh, lease_pr=None):
         return main_lease
     if main_lease.get("activated_at"):
         raise RuntimeError("main上のlease記録は有効化済み。--lease-prは有効化前だけ使える")
-    gh.git("fetch", "-q", "origin", "+refs/pull/%d/head:refs/lease/pr-%d" % (lease_pr, lease_pr))
-    return load_lease(gh, "refs/lease/pr-%d" % lease_pr)
+    return load_lease(gh, fetch_pr_head(gh, lease_pr))
+
+
+def fetch_pr_head(gh, pr):
+    """PRのheadを`refs/lease/pr-N`へ取得し、そのref名を返す。"""
+    gh.git("fetch", "-q", "origin", "+refs/pull/%d/head:refs/lease/pr-%d" % (pr, pr))
+    return "refs/lease/pr-%d" % pr
 
 
 def probe_snapshot(gh, lease):

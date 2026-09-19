@@ -44,9 +44,15 @@ python3 scaffold/lease/leasepost.py request --pr N --class C --reviewer-target R
 python3 scaffold/lease/leasepost.py response --pr N --request-id RID --reviewer RUNTIME,MODEL,PROVIDER,SESSION \
         --counts B,M,m --authority-basis-sufficient yes --new-authority-created no \
         [--operation-admission pass] [--transcription-faithful yes] [--transcribed] --text-file F [--apply]
-python3 scaffold/lease/leaserecover.py PR --context ID --mode review|comment [...] [--apply]
+python3 scaffold/lease/leaserecover.py PR --context ID --mode review|comment [...] [--self-repair SHA256] [--apply]
 python3 scaffold/lease/leaseprobe.py --login LOGIN --review-id ID [--lease-pr N] [--apply]
 ```
+
+上は引数の形である。executor（`leasectl.py`の`admit`・`sync`）・非常用command・実測commandは、`/usr/bin/python3 -I <read-onlyのcopy>/scaffold/lease/…`
+の形で起動する（下記「有効化」手順2）。起動時に次を確かめ、どれかを欠けば何もしない: `-I`で起動している（user site・`PYTHON*`環境変数を読まない）、
+command群・interpreter・`gh`・`git`・`openssl`等の置き場所が実行者から書けない、command群の`.py`のbytesがorigin/main
+（有効化前の実測ではそのPRのhead、自己修理では修理PRのhead）の`scaffold/lease/`と一致する。外部commandへ渡す環境は許可リストで作り
+（`PATH=/usr/bin:/bin`、passwdのhome、`GH_TOKEN`だけを通す）、呼出し元の`PATH`・`XDG_*`・`GH_HOST`等を受け取らない。
 
 `--context`はそのcommandを動かすruntimeのcontext識別子である（作成側・reviewerのsessionと異なること）。
 終了codeは、成立0、拒否1、入力不正・内部エラー2である。実行環境の許可は、これらのcommandにだけ与える（packet 二重境界）。
@@ -79,16 +85,19 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
    POがGitHub Appを作り、本repositoryにだけinstallする。権限はcontents・pull requests・issuesの書込み、metadataとadministrationの
    読取りに限り（administrationの読取りはbranch protection・rulesetの再取得に要る）、administration・repository rulesの書込みは与えない。AI側のcontext（作成側・reviewer・executor・`recovery`）はinstallation tokenだけを使い、
    POのaccountの資格情報（`gh auth`のtoken等）はAI側のどのcontextからも取得・使用できない場所へ移す。
-   `identity.po`へPOのloginを、`identity.ai`へAppのlogin（`<app slug>[bot]`）を、`identity.apps`へapp slugを記入する。
+   `identity.po`へPOのloginを、`identity.ai`・`creator`・`executor`・`recovery`と`reviewers`の各`login`へAppのlogin（`<app slug>[bot]`）を、`identity.apps`へapp slugを記入する（identity表。どのroleが欠けても未有効。`accept_bootstrap_risk`では全roleが`identity.ai`と同じ）。
    executorは、AI側の全login（`ai`・`creator`・`executor`・`recovery`・`reviewers`）が`identity.apps`のAppのloginでなければ未有効として扱う。
    executorはAppのloginをcollaborator roleではなくappの権限で照合し、administration・repository rulesの書込みがあるか、
    取得できなければ停止する。PRの作成者がAppになるため、POは自分のPR reviewで判断できる。
    Appの秘密鍵はexecutorの実行環境の`HELIX_LEASE_APP_KEY_DIR/<app slug>.pem`に置く。executorはAppのJWTで
    `GET /repos/{repo}/installation`からinstallationの実際の権限を取得し、許可集合（contents・pull_requests・issuesの`write`、
-   metadata・administrationの`read`）の外の権限、別のappのinstallation、取得の失敗のどれでも停止する。
+   metadata・administrationの`read`）とちょうど一致しない権限（外の権限・過剰だけでなく、欠落や`read`への縮退も含む）、別のappのinstallation、取得の失敗のどれでも停止する。
 2. すべてのrulesetのbypass対象を空にし（Appを含めない）、admin資格情報をAI側から隔離する。
    executor command・非常用command・実測commandは、AI側contextから書けない場所（別のOS userが所有するdirectory、またはread-onlyのbind mount）に
-   置いたmainのcopyから実行し、POの実行環境の許可はそのpathのcommandに限る（packet 二重境界。AI側の作業treeのcommandを許可しない）。
+   置いたmainのcopyから実行し、POの実行環境の許可はそのpathのcommandを`/usr/bin/python3 -I`で起動する形に限る（packet 二重境界。
+   AI側の作業treeのcommandを許可しない）。`gh`もAI側contextから書けない場所（`/usr/bin`等）に置く。望ましくは、POが所有するwrapperが
+   別のOS userとして、空の環境（installation tokenの`GH_TOKEN`だけを渡す）で起動する。lease mergeで`scaffold/lease/`が変わった後は、
+   POがそのcopyをmainの版へ更新するまで、executorはbytesの不一致で止まる（安全側）。
    executorと`recovery`が通常pushできるbranch protectionにする（POが設定する）。
 3. `baseline`へ、mainのbranch protection（force push禁止、削除禁止、`enforce_admins`有効）とrulesetの一覧・bypass対象を記録する。
 4. 状態Issueを1件作り`status_issue`へ、draftの試験PRを1件作り`probe.test_pr`へ記入する。POがその試験PRへ、本文に`decision:`行を
@@ -125,8 +134,17 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 - activityの主体照合も、起点と「lease mergeで入ったrecord」も、親が2つ、messageの1行目と3行目が固定の形、対象PRにexecutor側loginの
   `merge_result`があるcommitに限る（messageの部分一致では決めない）。activityの各更新は、更新後commitの第1親が更新前のHEADであることも確かめる。
 - executorは共有の作業treeと`.git`を使わず、実行ごとに使い捨てのbare repositoryへ`https://github.com/<repo>.git`からfetchして判定する。
-  gitは呼出し元の`GIT_*`、system・globalの設定、replace objectsを読まない（`git replace`や`.git/config`・`info/attributes`で判定を変えない）。
-  起動時に、実行中のcommandの`.py`のbytesがorigin/mainの`scaffold/lease/`と一致することを確かめ、一致しなければ何もしない。
+  gitは呼出し元の`GIT_*`、system・globalの設定、HOME配下のattributes（`core.attributesFile=/dev/null`）、replace objectsを読まない
+  （`git replace`や`.git/config`・`info/attributes`・`~/.config/git/attributes`で判定を変えない）。
+  起動時の検査（上記「使い方」）を満たさなければ何もしない。状態領域の置き場所は実行userのhome（passwd）の`.helix-lease/`に固定し、環境変数で変えない。
+- 自己修理（packet「非常用command自体も機能しない場合」）: `leaserecover.py --self-repair <SHA-256>`は、修理PRのheadの版と一致するbytesで
+  実行する。origin/mainと異なる各fileの変更後SHA-256が、そのPRが追加するrecordの`approved_targets`にexactに列挙されていること、
+  `--self-repair`の値（実行するcommand群の`path SHA-256`の行をpath順に並べたもののSHA-256）が実行するbytesと一致することを確かめ、
+  判断の成立は通常の非常経路（または再bootstrap）の判定で確かめる。値はPOの許可が引数に固定し、merge commit messageの`permission_args`に残る。
+- 有効化mergeは既存規則（merge API）で入るため、activityの種別が`pr_merge`でもよい（起点の直後の1件だけ）。
+- AppのinstallationはAppの対象repositoryを選択したもの（`repository_selection: selected`）に限り、実測commandはinstallation tokenの
+  対象repositoryが本repositoryだけであることを確かめる。
+- 有効化前の実測結果commentは、試験reviewの状態がlease記録と一致し、`activated_at`より前に置かれたものに限る。
 - 試験reviewは、登録した状態（`APPROVED`と`CHANGES_REQUESTED`の各1件）のまま試験PRに現存することを確かめる。状態が変われば実測の欠落として扱い、
   実測commandはその試験reviewを試行しない。
 - 検査(a)(b)は`python3 -s -E`で起動し、HOMEをtree外の空のtmpfsにし、pid名前空間も切る（PRが置いたuser siteのcodeを読み込まない）。
@@ -152,6 +170,8 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 - administrationの読取りを持つinstallation tokenで、branch protectionとrulesetの`bypass_actors`を取得できること。
 - AppのJWTで`GET /repos/{repo}/installation`が`app_slug`・`permissions`・`repository_selection`を返すこと。
   installation tokenで`GET /installation/repositories`が本repositoryを返すこと（`leaseprobe.py`の認証確認）。
+- gitのcredential helper（`gh auth git-credential`）が、`GH_TOKEN`のinstallation tokenでfetch・pushに資格情報を渡すこと。
+- 既存規則でのmergeのactivityの`activity_type`（`pr_merge`か`push`か）。
 - activity APIの`actor.login`と、PR・comment・reviewの`user.login`が、Appでは`<app slug>[bot]`になること。installation tokenでの`git push`がbranch protectionの下でmainへ通常pushできること。
 - GraphQL `deletePullRequestReview`の拒否時のerror種別（`leaseprobe.py`の`DENIED`／`UNAVAILABLE`の目印）。
 - Issueの`userContentEdits`の`diff`が直前の版の本文を返すか（projection_syncの編集履歴照合）。

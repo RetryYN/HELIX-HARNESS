@@ -411,13 +411,11 @@ def probe_status(snapshot):
 
 def ai_logins(lease):
     idt = (lease or {}).get("identity") or {}
-    if (lease or {}).get("independence") == "accept_bootstrap_risk":
-        return [idt["ai"]] if idt.get("ai") else []
-    out = []
+    out = [idt["ai"]] if idt.get("ai") else []
     for k in ("creator", "executor", "recovery"):
-        if idt.get(k):
+        if idt.get(k) and idt[k] not in out:
             out.append(idt[k])
-    out += [r.get("login") for r in idt.get("reviewers") or [] if r.get("login")]
+    out += [r.get("login") for r in idt.get("reviewers") or [] if r.get("login") and r.get("login") not in out]
     return out
 
 
@@ -453,6 +451,17 @@ def activation_gaps(lease):
                            ("origin_main", (lease or {}).get("origin_main")), ("probe.test_pr", probe.get("test_pr"))) if not v]
     if idt.get("po") and (idt.get("po") in ai_logins(lease) or idt["po"].endswith("[bot]")):
         gaps.append("identity.poがAI側login")
+    # identity表: AI側の各role（作成側・executor・非常経路のrecovery・reviewer）をloginへ対応させる（packet: 独立性の選択を問わず置く）
+    for k in ("creator", "executor", "recovery"):
+        if not idt.get(k):
+            gaps.append("identity.%s" % k)
+    if not [r for r in idt.get("reviewers") or [] if isinstance(r, dict) and r.get("login")]:
+        gaps.append("identity.reviewers")
+    if (lease or {}).get("independence") == "accept_bootstrap_risk" and idt.get("ai"):
+        # accept_bootstrap_riskでは各AI roleが同じAI側identityを使う
+        for l in ai_logins(lease):
+            if l != idt["ai"]:
+                gaps.append("accept_bootstrap_riskでAI側role %s がidentity.aiと異なる" % l)
     # POの判断: AI側identityはGitHub App（AI用のaccountは作らない）。AI側の全loginが`<identity.appsのslug>[bot]`であること
     apps = set(idt.get("apps") or [])
     if not apps:
@@ -471,6 +480,7 @@ def activation_evidence_errors(snapshot):
     lease = snapshot.get("lease") or {}
     probe = lease.get("probe") or {}
     ids = set(probe.get("activation_results") or [])
+    act = lease.get("activated_epoch")
     by_id = {c.get("id"): c for c in snapshot.get("status_comments") or []}
     covered, errs = set(), []
     for i in sorted(ids, key=str):
@@ -484,6 +494,10 @@ def activation_evidence_errors(snapshot):
             errs.append("実測結果comment %s が編集されている、または投稿者が実測loginでない" % i)
         elif o.get("result") not in ("denied", "unavailable"):
             errs.append("実測結果comment %s の結果が%s" % (i, o.get("result")))
+        elif o.get("review_state") != {t.get("id"): t.get("state") for t in probe.get("test_reviews") or []}.get(o.get("review_id")):
+            errs.append("実測結果comment %s の試験reviewの状態がlease記録と一致しない" % i)
+        elif act is not None and (c.get("created_epoch") is None or c["created_epoch"] > act):
+            errs.append("実測結果comment %s が有効化より後" % i)
         else:
             covered.add((o.get("login"), o.get("review_id")))
     for l in ai_logins(lease):
@@ -923,13 +937,15 @@ def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
             return False, "取得: before／afterの連鎖切れ"
         if "first_parent" in it and it.get("first_parent") != it.get("before"):
             return False, "更新後commitの第1親が更新前のHEADでない（%s）" % it.get("after")
-        if it.get("activity_type") != "push":
+        activation = it.get("activates_lease") and it.get("is_merge") and it.get("before") == lease.get("origin_main") \
+            and it.get("before") == (snapshot.get("activity_origin") or origin) and it.get("actor") in ai_logins(lease)
+        # 有効化mergeは既存規則（merge API）で入るためpr_mergeでもよい。それ以外はexecutorのpushだけ
+        if it.get("activity_type") != "push" and not (activation and it.get("activity_type") == "pr_merge"):
             return False, "main更新がpush以外（%s）" % it.get("activity_type")
         kind = merge_message_kind(it.get("commit_message"))
-        if it.get("actor") == executor and kind == "lease" and it.get("is_merge"):
+        if it.get("actor") == executor and kind == "lease" and it.get("is_merge") and it.get("activity_type") == "push":
             pass
-        elif it.get("activates_lease") and it.get("is_merge") and it.get("before") == lease.get("origin_main") \
-                and it.get("before") == (snapshot.get("activity_origin") or origin) and it.get("actor") in ai_logins(lease):
+        elif activation:
             pass   # 起点の直後の1件だけ: lease記録を有効にした後続operation_change PRのmerge（既存規則。packet bootstrap）
         elif it.get("actor") == rec and kind == "recovery" and it.get("is_merge"):
             if not recovery:
@@ -1003,12 +1019,17 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
             continue
         if a.get("app_slug") != slug:
             out.append(R("role_mismatch", "installationのapp %s がidentity表の %s でない" % (a.get("app_slug"), slug)))
+        if a.get("repository_selection") != "selected":   # 全repositoryへのinstallationでない（対象の一覧は実測commandで確かめる）
+            out.append(R("role_mismatch", "GitHub App %s のinstallationが選択したrepositoryに限られていない（%s）"
+                         % (slug, a.get("repository_selection"))))
         if not isinstance(a.get("permissions"), dict) or not a["permissions"]:
             out.append(R("role_mismatch", "GitHub App %s のinstallation権限が返らない" % slug))
             continue
-        for k, v in a["permissions"].items():
-            if k not in APP_PERMISSIONS_ALLOWED or (APP_PERMISSIONS_ALLOWED[k] == "read" and v != "read"):
-                out.append(R("role_mismatch", "GitHub App %s のinstallation権限 %s: %s が許可集合の外" % (slug, k, v)))
+        # 許可集合とちょうど一致させる（外の権限・書込みの過剰だけでなく、必須の書込みの欠落・読取りへの縮退も停止する）
+        for k in sorted(set(a["permissions"]) | set(APP_PERMISSIONS_ALLOWED)):
+            v, want = a["permissions"].get(k), APP_PERMISSIONS_ALLOWED.get(k)
+            if v != want:
+                out.append(R("role_mismatch", "GitHub App %s のinstallation権限 %s: %s が許可集合（%s）と不一致" % (slug, k, v, want)))
     for app in snapshot.get("app_permissions") or []:
         perms = app.get("permissions") if isinstance(app.get("permissions"), dict) else app
         if perms.get("administration") == "write" or perms.get("repository_rules") == "write":

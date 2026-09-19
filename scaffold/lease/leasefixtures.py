@@ -34,7 +34,8 @@ def lease_record():
         "lease_id": C.LEASE_ID, "independence": "accept_bootstrap_risk",
         "activated_at": "2026-09-21T00:00:00+09:00", "expires_at": "2026-12-31T23:59:59+09:00",
         "revoked_at": None,
-        "identity": {"po": PO, "ai": AI, "creator": None, "executor": None, "recovery": None, "reviewers": [], "apps": ["helix-app"]},
+        "identity": {"po": PO, "ai": AI, "creator": AI, "executor": AI, "recovery": AI, "reviewers": [{"login": AI}],
+                     "apps": ["helix-app"]},
         "baseline": {"branch_protection": {"allow_force_pushes": False, "allow_deletions": False, "enforce_admins": True},
                      "rulesets": []},
         "origin_main": B, "status_issue": 3000,
@@ -97,7 +98,7 @@ def common(pr, pr_class, files, main_files, merge_files):
     lease = lease_record()
     return {
         "now_epoch": NOW,
-        "lease": dict(lease, expires_epoch=NOW + 90 * DAY),
+        "lease": dict(lease, expires_epoch=NOW + 90 * DAY, activated_epoch=NOW - 30 * DAY),
         "pr": {"repo": C.REPO, "number": pr, "base_ref": "main", "state": "OPEN", "draft": False, "head_sha": H,
                "mergeable": True, "auto_merge": None, "body": "## PRの目的\n\n架空\n\n## PR区分\n\n%s\n" % pr_class},
         "pair_base": B, "pair_head": H, "main_head": B, "executor_context": "executor-1",
@@ -110,7 +111,7 @@ def common(pr, pr_class, files, main_files, merge_files):
         "test_review_ids_present": [9001, 9002],
         "suspended_local": False, "suspended_issue": False, "unaudited_merges": 0,
         "protection": copy.deepcopy(lease["baseline"]),
-        "roles": {}, "app_permissions": [{"slug": "helix-app", "app_slug": "helix-app", "permissions": {
+        "roles": {}, "app_permissions": [{"slug": "helix-app", "app_slug": "helix-app", "repository_selection": "selected", "permissions": {
             "contents": "write", "pull_requests": "write", "issues": "write", "metadata": "read", "administration": "read"}}],
         "activity": {"reached_origin": True, "items": []}, "activity_origin": B,
     }
