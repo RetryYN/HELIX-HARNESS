@@ -323,7 +323,7 @@
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "force_push",
       "actor": "helix-ai",
-      "commit_message": "lease_receipt: CAPLEASE-BOOT-01",
+      "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: CAPLEASE-BOOT-01",
       "is_merge": true
      }
     ]
@@ -358,7 +358,7 @@
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "push",
       "actor": "helix-ai",
-      "commit_message": "lease_receipt: CAPLEASE-BOOT-01",
+      "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: CAPLEASE-BOOT-01",
       "is_merge": true
      }
     ]
@@ -425,7 +425,7 @@
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "push",
       "actor": "helix-ai",
-      "commit_message": "lease_receipt: CAPLEASE-BOOT-01",
+      "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: CAPLEASE-BOOT-01",
       "is_merge": true
      }
     ]
@@ -497,7 +497,7 @@
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "push",
       "actor": "helix-ai",
-      "commit_message": "lease_recovery: 5",
+      "commit_message": "Merge pull request #5 via Capability Lease\n\nlease_recovery: 5",
       "is_merge": true
      }
     ]

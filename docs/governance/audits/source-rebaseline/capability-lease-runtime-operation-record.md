@@ -8,7 +8,7 @@ pr_class: operation_change
 
 [Capability Lease bootstrap判断packet](capability-lease-bootstrap-decision-packet.md)（以下 packet）の手順2が定める後続の
 `operation_change` PRについて、GitHub上流運用モデルが`operation_change`に求める必須入力（HELIX-OS要求、操作authority、backup、
-rollback、read-after）を1か所に置く。本PRはpacketの意味を文言とcodeへ落とすだけで、意味を新たに決めない。
+rollback、read-after）を1か所に置く。本PRは有効化の欄を埋めるまでmergeしない（下記「外部作用」）。本PRはpacketの意味を文言とcodeへ落とすだけで、意味を新たに決めない。
 
 ## 必須入力
 
@@ -16,10 +16,10 @@ rollback、read-after）を1か所に置く。本PRはpacketの意味を文言�
 |---|---|
 | HELIX-OS要求 | 承認済みHELIX-OS L1の`HELIXOS-L1-003`（許可・予算・依存・独立検証の範囲でWorkerへ委譲する）と`HELIXOS-L1-004`（CI・review・証拠収集の統制）、およびpacketのbootstrap判断（packet 規則の意味4）。承認済みのHELIX-OS L2要求はまだない |
 | 操作authority | [HDEC-CAPLEASE-BOOT-01](../../decisions/capability-lease-bootstrap-approval-2026-09-20.md)（packet SHA-256 `395c61bf…`へのapprove、`accept_bootstrap_risk`） |
-| 外部作用 | 本PRのmerge自体はGitHubの外部状態を変えない。`scaffold/lease/lease.json`の`activated_at`が`null`のため、executorはどのPRも運ばず、Issue本文も書かない。外部作用が始まるのは、有効化の`decision_record` PR（AI側identityの分離の後、POのissue commentを判断の出所とする再bootstrap modeで運ぶ。packetは既存規則でのmergeを本PRまでに限る）がmainへ入った時点である |
+| 外部作用 | 本PRのmergeでleaseが有効になり、executorがmerge（mainへの通常push、`merge_result`）とprojection_sync（mapping上のIssue本文）を始める。packetは既存規則でのmergeを本PRまでに限り、削除不能の実測を有効化の条件とするため、有効化を別のPRへ分けず、本PRのlease記録を有効化の欄（identity表、基準値、状態Issue、試験PR・試験review、実測結果、起点、`activated_at`）まで埋め、実測を済ませてからmergeする。PO側の準備（AI側identityの分離等）が済むまで本PRはmergeしない。現headの`lease.json`は`activated_at: null`で、この状態ではexecutorはどのPRも運ばない |
 | backup | 変更前の状態はmain（`aa42531d009f57b5d65b1763aa33fb84d40b3a11`）そのものである。本PRが変えるのは新規の`scaffold/lease/`、`scaffold/bindings/SCF-B-0004.json`、`scaffold/evidence/lease-selftest.json`、本記録と、AGENTS.md・GitHub上流運用モデル・PR template・上流authority台帳の規則文言だけである |
-| rollback | lease記録を有効化しない限り、merge後も外部作用は無い。取り下げる場合は、取り下げを判断したrecordに基づく後続PRで、`SCF-B-0004`を`retire`し`scaffold/lease/`を撤去し、規則文言を戻す。revertやforce pushでmainの履歴を隠さない |
-| read-after | merge後に、main HEADがmerge commitであること、第1親・第2親、merge commitのtreeで`scfctl validate／stale／residuals／selftest`とgovcheckの合格、`python3 scaffold/lease/leasectl.py selftest`の合格、`python3 scaffold/lease/leasectl.py status`で`activated_at: null`を確かめる |
+| rollback | merge後にleaseを止めるには、packet「取消しと即時停止」の経路（実行環境からexecutor commandの許可を外す、sessionへの停止指示、`revoked_at`を記録した`decision_record`）を使う。撤去する場合は、取り下げを判断したrecordに基づく後続PRで、`SCF-B-0004`を`retire`し`scaffold/lease/`を撤去し、規則文言を戻す。revertやforce pushでmainの履歴を隠さない |
+| read-after | merge後に、main HEADがmerge commitであること、第1親・第2親、merge commitのtreeで`scfctl validate／stale／residuals／selftest`とgovcheckの合格、`python3 scaffold/lease/leasectl.py selftest`の合格、`python3 scaffold/lease/leasectl.py status`で`activated_at`と`probe.status: ok`を確かめ、`leasectl.py admit`のdry-runで、本PRのmergeがmain更新主体の照合を通る（起点の直後の有効化merge）ことを確かめる |
 
 ## 本PRで文言へ落とした規則の意味（packet 規則の意味1〜8）
 

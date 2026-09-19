@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """leaseprobe — 削除不能の実測command（packet「削除への対処」(i)）。
 
-  python3 scaffold/lease/leaseprobe.py --login LOGIN --review-id ID [--apply]
+  python3 scaffold/lease/leaseprobe.py --login LOGIN --review-id ID [--lease-pr N] [--apply]
 
 実行時に認証されているloginが`--login`と一致することを確かめ、lease記録に固定した試験PRの試験review（ID）に対して
 GraphQLの`deletePullRequestReview`を試み、結果を状態Issueへcommentする。書き込めるのは、その試験reviewへの削除の試行と、
@@ -40,10 +40,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="leaseprobe")
     ap.add_argument("--login", required=True); ap.add_argument("--review-id", type=int, required=True)
     ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--lease-pr", type=int, help="有効化前: lease記録を埋めた後続operation_change PRのheadのlease記録で実測する")
     a = ap.parse_args(argv)
     gh = G.GH()
-    gh.git("fetch", "-q", "origin", "main")
-    lease = G.load_lease(gh, "origin/main")
+    lease = G.lease_at(gh, a.lease_pr)   # packet: 実測は有効化の条件。有効化前はPRのlease記録に対して行う
     probe = lease.get("probe") or {}
     tests = {t.get("id"): t.get("state") for t in probe.get("test_reviews") or []}
     if a.review_id not in tests or not probe.get("test_pr") or not lease.get("status_issue"):

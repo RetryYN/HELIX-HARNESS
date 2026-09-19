@@ -17,7 +17,8 @@
  "origin_main": null,
  "status_issue": null,
  "probe": {"test_pr": null,
-  "test_reviews": [{"id": null, "state": "APPROVED"}, {"id": null, "state": "CHANGES_REQUESTED"}]},
+  "test_reviews": [{"id": null, "state": "APPROVED"}, {"id": null, "state": "CHANGES_REQUESTED"}],
+  "activation_results": []},
  "probe_paths": ["scaffold/lease/leaseprobe.py"],
  "audit": {"last_audited_main": null},
  "audit_records": [],
@@ -29,6 +30,5 @@
   "docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md"
  ],
  "projection": {"mapping": {}, "receipts_dir": "docs/governance/audits/projection-receipts/"},
- "timeouts": {"merged_display_minutes": 10, "activity_minutes": 10},
  "profiles": ["repository_foundation", "operation_change", "decision_record"]
 }

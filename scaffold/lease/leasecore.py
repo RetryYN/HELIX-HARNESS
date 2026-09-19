@@ -459,6 +459,31 @@ def lease_scope(snapshot, recovery=False):
     return scope, reasons
 
 
+def recovery_enumeration_errors(snapshot, record_fm):
+    """起点を付け直して再開するrecordは、起点以降の非常mergeごとに、`merge_result`のread-after結果を列挙する
+    （`recovery_read_after`: `merge_commit`と`mismatch_codes`（不一致のcodeを`,`で連ねる。無ければ`none`））。
+    列挙が`merge_result`と一致し、状態Issueに同じmergeの停止commentがあることを確かめる（packet 非常経路「停止」）。"""
+    out = []
+    listed = {e.get("merge_commit"): e for e in (record_fm or {}).get("recovery_read_after") or [] if isinstance(e, dict)}
+    status_text = "\n".join(c.get("body") or "" for c in snapshot.get("status_comments") or [])
+    for r in snapshot.get("recovery_merge_results") or []:
+        mc = r.get("merge_commit")
+        if not isinstance(r.get("read_after"), dict):
+            out.append(R("recovery_enumeration_missing", "非常merge %s のmerge_result（read-after結果）が無い" % mc))
+            continue
+        want = ",".join(sorted({x.get("code") for x in (r.get("read_after") or {}).get("mismatches") or []})) or "none"
+        e = listed.get(mc)
+        if not e:
+            out.append(R("recovery_enumeration_missing", "非常merge %s のread-after結果を列挙していない" % mc))
+            continue
+        got = ",".join(sorted(x for x in (e.get("mismatch_codes") or "").split(",") if x)) or "none"
+        if got != want:
+            out.append(R("recovery_enumeration_missing", "非常merge %s の列挙%sがmerge_resultの%sと不一致" % (mc, got, want)))
+        if mc not in status_text:
+            out.append(R("recovery_enumeration_missing", "非常merge %s の停止commentが状態Issueに無い" % mc))
+    return out
+
+
 def is_probe_repair(snapshot, record_fm):
     """approved_targetsが実測commandとlease記録の実測関連の欄だけであるdecision_recordか（lease記録は欄単位で比較）。"""
     lease = snapshot.get("lease") or {}
@@ -615,16 +640,6 @@ def evaluate(snapshot, recovery=None):
         scope_reasons = []
         if not lease.get("activated_at"):
             scope_reasons.append(R("lease_not_activated"))
-        if snapshot.get("activation"):
-            # 有効化は再bootstrap modeだけで運ぶ（packet: 既存規則で運ぶのはpacket・判断recordのPRと後続operation_change PRだけ）。
-            # 運べるのは、未有効のlease記録を有効化する記録と、その判断recordだけである。
-            if recovery != "comment":
-                reasons.append(R("lease_scope_excludes_profile", "有効化は再bootstrap modeだけで運ぶ"))
-            if (snapshot.get("lease_record_before") or {}).get("activated_at"):
-                reasons.append(R("lease_scope_excludes_profile", "main上のlease記録は既に有効化されている"))
-            for p in diff_entries(snapshot):
-                if p != LEASE_RECORD and not p.startswith(DECISIONS):
-                    reasons.append(R("lease_scope_excludes_profile", "有効化のPRにlease記録・判断record以外の変更: %s" % p))
     else:
         scope, scope_reasons = lease_scope(snapshot)
     reasons += [x for x in scope_reasons if x["code"] in ("lease_not_activated", "review_source_unsafe")]
@@ -785,6 +800,8 @@ def evaluate(snapshot, recovery=None):
             LEASE_RECORD in {t["path"] for t in own_fm.get("approved_targets") or []} and \
             isinstance(snapshot.get("lease_record_after"), dict):
         health_lease = snapshot["lease_record_after"]
+    if health_lease is not lease:
+        reasons += recovery_enumeration_errors(snapshot, own_fm)
     act = snapshot.get("activity") or {}
     if act.get("temporary_failure"):
         reasons.append(R("activity_unavailable_temporary", "PR単位の拒否。再試行する"))
@@ -804,6 +821,19 @@ def evaluate(snapshot, recovery=None):
     return {"reasons": reasons, "profile": profile, "suspend": [x for x in reasons if x["code"] in SUSPEND_CAUSES],
             "scope": scope, "run_checks": run_checks, "decision": decision, "evidence": evid, "payload": payload,
             "record": own_record_path, "health_lease": health_lease if health_lease is not lease else None}
+
+
+def merge_message_kind(msg):
+    """receipt_messageの固定位置（1行目と3行目）でlease merge・非常mergeを見分ける。本文中の引用には反応しない。"""
+    lines = (msg or "").split("\n")
+    m = re.match(r"^Merge pull request #(\d+) via Capability Lease$", lines[0] if lines else "")
+    if not m or len(lines) < 3:
+        return None
+    if lines[2] == "lease_receipt: %s" % LEASE_ID:
+        return "lease"
+    if lines[2] == "lease_recovery: %s" % m.group(1):
+        return "recovery"
+    return None
 
 
 def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
@@ -829,10 +859,13 @@ def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
             return False, "更新後commitの第1親が更新前のHEADでない（%s）" % it.get("after")
         if it.get("activity_type") != "push":
             return False, "main更新がpush以外（%s）" % it.get("activity_type")
-        msg = it.get("commit_message") or ""
-        if it.get("actor") == executor and "lease_receipt: %s" % LEASE_ID in msg and it.get("is_merge"):
+        kind = merge_message_kind(it.get("commit_message"))
+        if it.get("actor") == executor and kind == "lease" and it.get("is_merge"):
             pass
-        elif it.get("actor") == rec and "lease_recovery:" in msg and it.get("is_merge"):
+        elif it.get("activates_lease") and it.get("is_merge") and it.get("before") == lease.get("origin_main") \
+                and it.get("before") == (snapshot.get("activity_origin") or origin):
+            pass   # 起点の直後の1件だけ: lease記録を有効にした後続operation_change PRのmerge（既存規則。packet bootstrap）
+        elif it.get("actor") == rec and kind == "recovery" and it.get("is_merge"):
             if not recovery:
                 return False, "非常経路のmerge（executor以外のmain更新）"
         else:
@@ -879,7 +912,10 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
     roles = snapshot.get("roles") or {}
     separate = lease.get("independence") == "require_separate_identity"
     reviewer_logins = {x.get("login") for x in (lease.get("identity") or {}).get("reviewers") or []}
+    apps = set((lease.get("identity") or {}).get("apps") or [])
     for l in ai_logins(lease):
+        if l.endswith("[bot]") and l[:-len("[bot]")] in apps:
+            continue   # GitHub Appのloginはinstallation権限（下記）で照合する（packet: GitHub Appならinstallation権限）
         want = ("read", "triage") if (separate and l in reviewer_logins) else ("write",)
         if roles.get(l) not in want:
             out.append(R("role_mismatch", "%s: %s" % (l, roles.get(l))))

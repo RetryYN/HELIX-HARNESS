@@ -164,13 +164,14 @@ def cmd_sync(a, gh=None):
 
 
 def cmd_status(a, gh=None):
+    """leaseの状態と、削除不能の実測の判定（packet: 実測は有効化の条件）。--lease-prは有効化前にPRのlease記録を読む。"""
     gh = gh or G.GH()
-    gh.git("fetch", "-q", "origin", "main")
-    lease = G.load_lease(gh, "origin/main")
+    lease = G.lease_at(gh, a.lease_pr)
+    ps, pd = C.probe_status(G.probe_snapshot(gh, lease)) if lease.get("status_issue") else ("unconfigured", "状態Issueが未設定")
     print(json.dumps({"lease": {k: lease.get(k) for k in ("lease_id", "activated_at", "expires_at", "revoked_at",
                                                           "independence", "status_issue")},
-                      "state_area": G.read_state()}, ensure_ascii=False, indent=1))
-    return 0
+                      "probe": {"status": ps, "detail": pd}, "state_area": G.read_state()}, ensure_ascii=False, indent=1))
+    return 0 if ps == "ok" else 1
 
 
 # ---------- 自己検査 ----------
@@ -257,6 +258,16 @@ def collector_tests():
                                                                                    comments_fn=lambda n: res("po-human", m))})
         rows.append({"id": "CL-carried-before-origin-merge", "ok": not G.lease_carried(gh, m, r2, m, lease_t,
                                                                                        comments_fn=lambda n: res("helix-ai", m))})
+        # 解除時刻の上限は、lease記録を変えたfirst-parent上のcommit（merge commit）の時刻。PR側commitの時刻は使わない
+        gh.git("checkout", "-q", "-b", "side3")
+        put(C.LEASE_RECORD, "{}\n")
+        env["GIT_COMMITTER_DATE"] = "2099-01-01T00:00:00Z"
+        commit("future-dated")
+        del env["GIT_COMMITTER_DATE"]
+        gh.git("checkout", "-q", "main")
+        gh.git("merge", "-q", "--no-ff", "side3", "-m", "merge")
+        ce = G.lease_record_committed_epoch(gh, "HEAD")
+        rows.append({"id": "CL-resume-cap-first-parent", "ok": ce is not None and ce < 4000000000})
         # 人間のUI mergeの既定messageにreceipt行が混じっても、固定位置の形でなければlease mergeでない
         gh.git("checkout", "-q", "-b", "side2")
         put("docs/governance/decisions/r3.md", "z\n")
@@ -336,7 +347,7 @@ def run_boundary_tests():
     s = F.base_rf()
     after = dict(s, main_head="f" * 40, main_tree="t" * 40, main_parents=[F.B, F.H], stale=0,
                  activity={"reached_origin": True, "items": [{"before": F.B, "after": "f" * 40, "activity_type": "push",
-                                                               "actor": F.AI, "commit_message": "lease_receipt: %s" % C.LEASE_ID,
+                                                               "actor": F.AI, "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: %s" % C.LEASE_ID,
                                                                "is_merge": True}]})
     ok = C.evaluate_after(after, "f" * 40, "t" * 40, (F.B, F.H), True, True)
     rows.append({"id": "RA-ok", "ok": not ok})
@@ -377,10 +388,39 @@ def run_boundary_tests():
                                             "lease_record_after": dict(lb, probe={"test_pr": 2}, identity={"po": "b"})}, fm)})
     # activityの各更新で、更新後commitの第1親が更新前のHEADであること
     it = {"before": F.B, "after": "e" * 40, "activity_type": "push", "actor": F.AI, "is_merge": True,
-          "commit_message": "lease_receipt: %s" % C.LEASE_ID}
+          "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: %s" % C.LEASE_ID}
     sn = {"lease": F.base_rf()["lease"], "main_head": "e" * 40, "activity_origin": F.B}
     rows.append({"id": "HL-first-parent", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(it, first_parent=F.B)]}))[0]
                  and not C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(it, first_parent="9" * 40)]}))[0]})
+    boot = dict(it, actor="merge-runtime", commit_message="Merge pull request #1886", first_parent=F.B, activates_lease=True)
+    rows.append({"id": "HL-bootstrap-activation-merge", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [boot]}))[0]})
+    rows.append({"id": "HL-activation-merge-not-at-origin", "ok": not C.activity_chain_ok(dict(
+        sn, main_head="7" * 40, activity={"reached_origin": True, "items": [
+            dict(it, first_parent=F.B), dict(boot, before="e" * 40, after="7" * 40, first_parent="e" * 40)]}))[0]})
+    # 非常mergeの後の再開recordは、merge_resultのread-after結果を項目ごとに列挙する
+    rmr = [{"merge_commit": "a1" * 20, "read_after": {"ok": False, "mismatches": [{"code": "post_merge_mismatch", "detail": "x"}]}}]
+    stc = [{"body": "非常経路のmerge %s" % ("a1" * 20)}]
+    ok_fm = {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_codes": "post_merge_mismatch"}]}
+    rows.append({"id": "RC-resume-enumeration", "ok":
+                 not C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc}, ok_fm)
+                 and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc}, {})
+                 and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc},
+                                                   {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_codes": "none"}]})
+                 and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": []}, ok_fm)
+                 and C.recovery_enumeration_errors({"recovery_merge_results": [dict(rmr[0], read_after=None)], "status_comments": stc}, ok_fm)})
+    # activityの主体照合は固定位置で見る（本文に引用されたreceipt行には反応しない）
+    quoted = "Merge pull request #5 via Capability Lease\n\nlease_recovery: 5\n--- comment\nlease_receipt: %s" % C.LEASE_ID
+    rows.append({"id": "HL-quoted-receipt-in-recovery", "ok": C.merge_message_kind(quoted) == "recovery"
+                 and not C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [
+                     dict(it, first_parent=F.B, commit_message=quoted)]}))[0]
+                 and C.merge_message_kind("x\n\nlease_receipt: %s" % C.LEASE_ID) is None})
+    # GitHub Appのloginはcollaborator roleでなくapp権限で照合する
+    al = dict(F.base_rf()["lease"], identity=dict(F.base_rf()["lease"]["identity"], ai="helix-app[bot]", apps=["helix-app"]))
+    hs = {"protection": F.base_rf()["protection"], "roles": {}, "app_permissions": [{"slug": "helix-app", "contents": "write"}]}
+    rows.append({"id": "HL-app-login-role", "ok": not [x for x in C.evaluate_lease_health(hs, lease=al, skip_activity=True)
+                                                     if x["code"] == "role_mismatch"]
+                 and [x for x in C.evaluate_lease_health(dict(hs, app_permissions=[]), lease=al, skip_activity=True)
+                      if x["code"] == "role_mismatch"]})
     rows.append({"id": "PT-nested-gitattributes", "ok": C.is_gitattributes("docs/.gitattributes") and C.is_gitattributes(".gitattributes")
                  and not C.is_gitattributes("docs/x.gitattributes")})
     # 解除時刻はlease記録がmainへ入った時刻を上限にする
@@ -449,7 +489,7 @@ def main(argv=None):
     sp = ap.add_subparsers(dest="cmd", required=True)
     p = sp.add_parser("admit"); p.add_argument("pr", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
     p = sp.add_parser("sync"); p.add_argument("issue", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
-    sp.add_parser("status")
+    p = sp.add_parser("status"); p.add_argument("--lease-pr", type=int)
     p = sp.add_parser("selftest"); p.add_argument("--record", action="store_true")
     a = ap.parse_args(argv)
     try:
