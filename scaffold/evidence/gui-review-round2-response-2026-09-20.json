@@ -1,0 +1,86 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source": "既存Claude GUIのreview_response",
+  "response": {
+    "schema": "scaffold-review-response.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "request_id": "RH-1885-GUI-02",
+    "request_payload_sha256": "efb1a8ac27f674d05560c6365021d29c1d35129a0dfabcaeded78327c1b25c04",
+    "base_sha": "3469266e5f7a4b455f98ccd0f40923a40f5e4562",
+    "content_sha": "87a0624ad08cb7acf5cad7a1ac794a5be413f4df",
+    "reviewer": "claude",
+    "result": "incomplete",
+    "findings": [
+      {
+        "id": "N1",
+        "severity": "Major",
+        "evidence": "configure_gui.py:27-30 owned()は実行中checkoutのHERE/gui_mailbox.pyの絶対pathで前方一致照合する。別checkout（merge後の~/HELIX-HARNESS等）から--auditすると/tmp参照の実hookを数えずowned_hook_residuals=0（偽陰性）、--remove --applyも外せない。README:95/99の撤去手順は/tmpがboot時に消える（PID1 systemd、tmpfiles D /tmp 30d）と撤去tool自体が消える。検出はscfctl residuals（script_suffix照合）で可能だが撤去は手作業。",
+        "change": "owned()と--auditをpath非依存の安定key（参照台帳のscript_suffix＋hook --runtime）で照合し、任意checkoutから監査・撤去できるようにする。あわせて/tmp消失後の手動撤去手順をREADMEへ書くか、hook参照先を永続pathへ移す。"
+      },
+      {
+        "id": "N2",
+        "severity": "Major",
+        "evidence": "B1/M2の残り。AGENTS.md:18とnew-generation-start-here.md:70はscaffold/外の仮の物を停止中とする。操作記録:23-25は利用者設定hookを「consumer接続」と自己分類し、例外decisionは無い。操作記録:18は利用者設定path・hook方式の明示承認原文が無いと認める。POが2026-09-20に本sessionで選んだ/tmp参照hookの「今は残す」はrepoに記録が無い（docs・scaffold grep 0件）。",
+        "change": "POの保持判断を、対象（2 settings file、4 command）・作用・保持条件・撤去契機・日付付きでrepoへ記録し、SCF-B-0003のupstreamへdigestで束縛する。記録しないならmerge前に利用者設定からhookを撤去する。"
+      },
+      {
+        "id": "N3",
+        "severity": "Minor",
+        "evidence": "user-global hookが全projectのSessionStart/Stopでworld-writableな/tmp配下の固定pathを実行する。boot時wipe後にそのpathを先に作った主体のscriptがtenni権限で走る。repo判定（gui_mailbox.py:226-232）はscript内側なので防げない。現状uid>=1000はtenniのみで実害可能性は低い。",
+        "change": "hook参照先をworld-writableでない永続path（~/配下のworktree等）へ移す。移さないならこの残存riskをN2の記録へ明記する。"
+      },
+      {
+        "id": "N4",
+        "severity": "Minor",
+        "evidence": "gui_mailbox.py:107-115は同event ID、および同request/responseの別ID再送で既存messageをexpiresを見ずに返す。expiredへの遷移はclaim内（:130-132）だけのため、期限切れ依頼の再送でsendはstatus queuedを出力するが配信されない。",
+        "change": "重複照合で見つかったmessageが期限切れならexpiredとして拒否し新request IDでの再依頼を案内する（少なくともstatusをexpiredと出力する）。否定例試験を追加する。"
+      },
+      {
+        "id": "N5",
+        "severity": "Minor",
+        "evidence": "scfctl.py:264-300のresidualsは実行者の~/.claude・~/.codexを読み、結果が実行環境依存になる（SCF-B-0001.json:43のboundaryも本PRで拡張）。scaffold/README.md:21-27の構成表にexternal-references/が無く、:34のresiduals説明も利用者設定読取りに触れていない。",
+        "change": "scaffold/READMEの構成表と使い方にexternal-references/を追加し、residualsが実行者のhome設定を読み取り専用で検査することを明記する。"
+      },
+      {
+        "id": "N6",
+        "severity": "Minor",
+        "evidence": "review-handoff README:103は「台帳欠落は残留0と扱わない」、退役時は台帳をartifactsから外すとする。scfctl.py:266-270は台帳fileが無くartifactsにも無ければ[]（残留なし）を返すため、退役手順後に台帳fileが消えると黙って0件になる。",
+        "change": "外部参照を持つbindingでは状態を問わず台帳欠落をerrorにする（またはREADME記述をコードに合わせる）。"
+      },
+      {
+        "id": "N7",
+        "severity": "Info",
+        "evidence": "configure_gui.py:18のwrapperは42以外を全て0へ変換するため、state破損・version不一致・git失敗等のhook失敗が表に出ず送信側にはqueuedのまま見える。rewake連鎖抑止との引き換えとしては妥当。",
+        "change": "任意: hookの最終エラーをstatusへ出すか、READMEに無音失敗がありうるのでlive ACKで確認する旨を書く。"
+      },
+      {
+        "id": "N8",
+        "severity": "Info",
+        "evidence": "FT-OS-REVIEWHANDOFF-001 frontmatterにpriority_orderが無い（他ticket 10件にはある）。",
+        "change": "任意: priority_order: 11 を加える。"
+      },
+      {
+        "id": "N9",
+        "severity": "Info",
+        "evidence": "github-upstream-operating-model.md:120,133,150はmerge admissionにGitHub上の依頼・delivery receipt・応答のread-afterを求める。GUI通知箱の応答はこれに当たらない（README:91と整合）。",
+        "change": "変更不要。merge admission前にGitHubへ別途projectionが要る点に注意。"
+      },
+      {
+        "id": "N10",
+        "severity": "Info",
+        "evidence": "m5の残り。Codex hookのtimeout単位、decision:blockの継続意味論、hooks.json読込み場所は未検証（README:18-20、receipt limitations）。",
+        "change": "実GUIで確認するまで未検証と明示したままにする。"
+      }
+    ],
+    "unreviewed": [
+      "前round解消状況: B1部分解消（参照台帳とresiduals検出は追加、scaffold外作用の例外記録なし→N2）、B2解消（wrapperで42のみ2、他は0。否定例gui_selftest.py:147-156）、M1解消、M2部分解消（→N2）、M3解消（固定文・ID・digest・nonceのみ注入、自由文はinspectのuntrusted_data、128KiB上限）、m1/m2/m3/m4/m7/m9解消、m5/m8部分解消（→N10/N1）、m6対応不要。",
+      "Claude・Codex公式hooksの実挙動（asyncRewake exit 2のstderr扱い・連鎖抑止、Codex block reason、timeout単位、hooks.json読込み場所、hook trust）。",
+      "87a0624での実GUI両方向live ACK。",
+      "gui_selftest.py・selftest.py・packet.pyの実行結果（review中は実行していない。receipt記載のみ）。HEADでscfctl validate bindings=3 fail=0／stale 0／residuals 0／selftest 38/0、govcheck ok、git diff --check合格は実測。",
+      "Issue #1884・#1866本文digestのread-afterと#1864 sub-issue関係。",
+      "操作記録の人間原文5件の真正性と時刻。旧sourceの意味要約の妥当性。WSL rebootで/tmpが実際に消えることの実機確認。"
+    ]
+  }
+}
