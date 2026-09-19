@@ -111,8 +111,10 @@ def main(argv=None):
         print("入力不正: comment modeは--comment-id・--choice・--headを要する", file=sys.stderr)
         return 2
     gh = G.GH()
-    rev = G.fetch_pr_head(gh, a.pr) if a.self_repair else "origin/main"
-    bad = G.self_integrity(gh, rev)
+    bad = G.self_integrity(gh, None)   # 置き場所と-Iは、照合先の取得（network）より前に確かめる
+    if not bad:
+        rev = G.fetch_pr_head(gh, a.pr) if a.self_repair else "origin/main"
+        bad = G.self_integrity(gh, rev)
     if bad:
         print("拒否: 非常用commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
         return 2

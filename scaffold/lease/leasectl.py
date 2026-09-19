@@ -172,7 +172,7 @@ def cmd_status(a, gh=None):
     ps, pd = C.probe_status(G.probe_snapshot(gh, lease)) if lease.get("status_issue") else ("unconfigured", "状態Issueが未設定")
     print(json.dumps({"lease": {k: lease.get(k) for k in ("lease_id", "activated_at", "expires_at", "revoked_at",
                                                           "independence", "status_issue")},
-                      "probe": {"status": ps, "detail": pd}, "integrity": integrity or "ok",
+                      "probe": {"status": ps, "detail": pd}, "integrity": integrity or "ok", "runner": G.runner_info(),
                       "state_area": G.read_state()}, ensure_ascii=False, indent=1))
     return 0 if ps == "ok" and not integrity else 1
 
@@ -332,8 +332,18 @@ def collector_tests():
         same = G.verify_self(gl, "HEAD", here=here)
         with open(os.path.join(here, "a.py"), "w") as f:
             f.write("print(2)\n")
-        rows.append({"id": "CL-verify-self-rev", "ok": same == [] and G.verify_self(gl, "HEAD", here=here) == ["a.py"]
-                     and G.verify_self(gl, real, here=here) == ["a.py"]})
+        changed = G.verify_self(gl, "HEAD", here=here)
+        # copyに混ざった__pycache__（pyc）やpackage directoryは、.pyのbytesが一致していても拒否する
+        with open(os.path.join(here, "a.py"), "w") as f:
+            f.write("print(1)\n")
+        os.makedirs(os.path.join(here, "__pycache__"))
+        with open(os.path.join(here, "__pycache__", "a.cpython-312.pyc"), "wb") as f:
+            f.write(b"x")
+        os.makedirs(os.path.join(here, "json"))
+        rows.append({"id": "CL-verify-self-rev", "ok": same == [] and changed == ["a.py"]
+                     and "a.py" in G.verify_self(gl, real, here=here)
+                     and G.extra_entries(gl, "HEAD", here) == ["__pycache__", "__pycache__/a.cpython-312.pyc", "json"]
+                     and G.verify_self(gl, "HEAD", here=here) != []})
         # 実行者から書ける置き場所は起動条件を満たさない（interpreterの置き場所は書けない）
         # 実行者が所有する置き場所は、mode 0555に落としても信頼しない（偽のgh等）。rootが所有する置き場所は信頼する
         ro = os.path.join(d2, "ro")
@@ -651,6 +661,47 @@ def run_boundary_tests():
     rows.append({"id": "PJ-after-ok", "ok": not C.evaluate_sync_after(aft, "c" * 64, "a" * 64, "OPEN", ["x"])})
     rows.append({"id": "PJ-after-history", "ok": bool(C.evaluate_sync_after(dict(aft, previous_edit_sha256="d" * 64), "c" * 64, "a" * 64, "OPEN", ["x"]))})
     rows.append({"id": "PJ-after-label", "ok": bool(C.evaluate_sync_after(dict(aft, labels=[]), "c" * 64, "a" * 64, "OPEN", ["x"]))})
+    # command単位の起動条件: 満たさなければ、書込みも照合先の取得もせずに2で終わる（偽のrunnerで、GitHubへ何も送らない）
+    import contextlib, io, subprocess as sp2
+    import leasepost as LP, leaseprobe as LB, leaserecover as LR
+    sent = []
+
+    class Null(G.Runner):
+        def run(self, args, input=None, cwd=None, env=None, check=True):
+            sent.append(list(args))
+            return sp2.CompletedProcess(args, 0, b"", b"")
+    real_gh, real_si, real_la = G.GH, G.self_integrity, G.lease_at
+    G.GH = lambda *a, **k: real_gh(runner=Null(), writes=k.get("writes"), isolated=False)
+    try:
+        with contextlib.redirect_stderr(io.StringIO()), contextlib.redirect_stdout(io.StringIO()):
+            rc_post = LP.main(["request", "--pr", "7", "--class", "repository_foundation", "--reviewer-target", "x",
+                               "--request-file", "/nonexistent", "--creator", "a,b,c,d", "--apply"])
+            rc_probe = LB.main(["--login", F.AI, "--review-id", "9001", "--apply"])
+            rc_rec = LR.main(["7", "--context", "c", "--mode", "review", "--apply"])
+            rc_ctl = main(["admit", "7", "--context", "c", "--apply"])
+        writes = [a for a in sent if "POST" in a or "PATCH" in a or "push" in a or "graphql" in a]
+        # 起動条件を欠く実行（このselftestは-Iなしで動くか、root所有でない置き場所にある）は、どのcommandも2で止まる
+        gate = bool(real_si(G.GH(), None))
+        rows.append({"id": "CMD-integrity-gate", "ok": (not gate) or (rc_post == rc_probe == rc_rec == rc_ctl == 2 and not writes)})
+        # 実測command: 状態IssueがPR（または閉じている）なら、削除の試行も結果commentも行わない
+        sent.clear()
+        G.self_integrity = lambda gh, rev="origin/main": []
+        G.lease_at = lambda gh, lease_pr=None: F.base_rf()["lease"]
+
+        class Api(Null):
+            def run(self, args, input=None, cwd=None, env=None, check=True):
+                sent.append(list(args))
+                path = args[-1] if args and "api" in args else ""
+                body = {"repositories": [{"full_name": C.REPO}]} if "installation/repositories" in path else \
+                    {"pull_request": {"url": "x"}, "state": "open"} if "/issues/" in path else {}
+                return sp2.CompletedProcess(args, 0, json.dumps(body).encode(), b"")
+        G.GH = lambda *a, **k: real_gh(runner=Api(), writes=k.get("writes"), isolated=False)
+        with contextlib.redirect_stderr(io.StringIO()), contextlib.redirect_stdout(io.StringIO()):
+            rc_pr = LB.main(["--login", F.AI, "--review-id", "9001", "--apply"])
+        writes = [a for a in sent if "POST" in a or "graphql" in a]
+        rows.append({"id": "CMD-probe-status-issue-is-pr", "ok": rc_pr == 2 and not writes})
+    finally:
+        G.GH, G.self_integrity, G.lease_at = real_gh, real_si, real_la
     return rows
 
 

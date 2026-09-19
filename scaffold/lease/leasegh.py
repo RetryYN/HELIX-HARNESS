@@ -46,7 +46,19 @@ def base_env():
            "GH_NO_UPDATE_NOTIFIER": "1"}
     if os.environ.get("GH_TOKEN"):
         env["GH_TOKEN"] = os.environ["GH_TOKEN"]
+        env["GH_CONFIG_DIR"] = empty_dir()   # tokenがあるとき、実行userのgh設定（http_unix_socket等）を読まない
     return env
+
+
+_EMPTY = []
+
+
+def empty_dir():
+    if not _EMPTY:
+        d = tempfile.mkdtemp(prefix="lease-ghcfg-")
+        atexit.register(shutil.rmtree, d, True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+        _EMPTY.append(d)
+    return _EMPTY[0]
 
 
 class WriteRefused(Exception):
@@ -476,7 +488,24 @@ def verify_self(gh, rev="origin/main", here=None):
     revは通常origin/main。有効化前の実測（`--lease-pr`）ではそのPRのhead、自己修理では修理PRのhead。"""
     if rev == "origin/main":
         gh.git("fetch", "-q", "origin", "main")
-    return sorted(p.rsplit("/", 1)[1] for p, h in running_hashes(here).items() if h != blob_sha256(gh, rev, p))
+    bad = sorted(p.rsplit("/", 1)[1] for p, h in running_hashes(here).items() if h != blob_sha256(gh, rev, p))
+    return bad + ["%s（revに無いentry）" % x for x in extra_entries(gh, rev, here)]
+
+
+def extra_entries(gh, rev, here=None):
+    """copyの`scaffold/lease/`にあって、revの`scaffold/lease/`に無いentry（`__pycache__`のpyc、package directory、拡張module等）。
+    `.py`のbytesだけを照合すると、importがそれらを先に読んで別のcodeを動かせるため、entryの集合もrevの部分集合に限る。"""
+    here = here or HERE
+    tracked = {p[len("scaffold/lease/"):] for p in ls_tree(gh, rev, "scaffold/lease/")}
+    dirs = {t.rsplit("/", 1)[0] for t in tracked if "/" in t}
+    out = []
+    for root, ds, fs in os.walk(here):
+        rel = os.path.relpath(root, here)
+        for n in ds + fs:
+            r = n if rel == "." else "%s/%s" % (rel, n)
+            if r not in tracked and r not in dirs:
+                out.append(r)
+    return sorted(out)
 
 
 def untrusted_locations(paths):
@@ -501,6 +530,21 @@ def untrusted_locations(paths):
     return sorted(set(bad))
 
 
+def set_non_dumpable():
+    """prctl(PR_SET_DUMPABLE, 0): 同じOS userのprocessからのattach（ptrace）とcore dumpを止める（root以外）。"""
+    try:
+        import ctypes
+        libc = ctypes.CDLL(None, use_errno=True)
+        return libc.prctl(4, 0, 0, 0, 0) == 0   # PR_SET_DUMPABLE = 4
+    except (OSError, AttributeError):
+        return False
+
+
+def runner_info():
+    """statusの出力に含める実行者の情報（POが、executor userで動いていることを確かめる）。"""
+    return {"uid": os.getuid(), "user": pwd.getpwuid(os.getuid()).pw_name}
+
+
 def self_integrity(gh, rev="origin/main"):
     """executor・非常用command・実測command・投稿commandの起動前の検査。(1) `python3 -I`で起動している（user site・PYTHON*環境変数を
     読まない） (2) command群・interpreter・gh・git・openssl・tar等と、その祖先directoryがrootの所有でgroup・otherから書けない
@@ -508,11 +552,17 @@ def self_integrity(gh, rev="origin/main"):
     bad = []
     if not sys.flags.isolated:
         bad.append("python3 -Iで起動していない（user site・PYTHON*環境変数を読む）")
+    if sys.pycache_prefix is not None:
+        bad.append("pycache_prefixが設定されている（別の置き場所のpycを読む）")
+    if not os.environ.get("GH_TOKEN"):
+        bad.append("GH_TOKEN（Appのinstallation token）が無い（ghが実行userの設定と資格情報を読む）")
+    if not set_non_dumpable():
+        bad.append("processをnon-dumpableにできない（同じOS userからattachされ得る）")
     tools = [sys.executable, GH_BIN, CA_FILE] + [shutil.which(t, path="/usr/bin:/bin") or t
                                                   for t in ("git", "openssl", "unshare", "tar", "sh")]
     files = [os.path.join(HERE, f) for f in sorted(os.listdir(HERE)) if f.endswith(".py")]
     bad += ["rootの所有でない、またはgroup・otherが書ける置き場所: %s" % p for p in untrusted_locations([HERE] + files + tools)]
-    if rev is not None:
+    if rev is not None and not bad:   # 起動条件を欠けば、照合先の取得（network）へ進まない
         bad += ["%s（%sの版と一致しない）" % (f, rev) for f in verify_self(gh, rev)]
     return bad
 
