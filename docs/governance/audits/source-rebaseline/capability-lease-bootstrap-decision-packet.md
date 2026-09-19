@@ -62,7 +62,7 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
 | merge可否は一つの判定関数が、review済みHEAD、PR状態、required check、review receipt、未解消block receipt、reviewとauthorの独立性をjoinし、型付きの拒否理由を返す | `src/runtime/claude-pr-convergence.ts:1419-1454` | 継承。下記「admission判定」が同じ形の拒否理由を返す |
 | mergeはreview済みHEADに固定する（`--match-head-commit`） | 同`:405-409` | 強めて継承。HEADに加え、検査したmain HEADにもcompare-and-swapで固定する（下記「書込み」） |
 | 承認は具体actionへ束縛し、`approval_policy`（none／layer_gate／po_decision／po_intent／action_bound）でdrive routeごとに要否を決める。通常のPR・review・mergeを承認対象に広げない | `docs/governance/drive-route-catalog.md:66-80` | 軸を変えて継承。drive routeではなくPR区分ごとのadmission profileとして定義する（下記「変える点」） |
-| 人間の判断は発話、記録はAIが型付きrecordとして作る。承認対象HEADを固定し、範囲外（merge、release、外部作用）へ広げない。人間actorの認証・署名検証は未実装で、後続sliceとされていた | `docs/governance/rlo-819-approval-packet-2026-08-20.md:7-14`、`src/schema/frontmatter.ts:233-254`（:238、:244の`decision: z.literal("approve")`） | 継承。承認の根拠に使うrecordを`decision: approve`に限る。未実装だった出所の認証はPO identityのcommentで扱う（下記`decision_record`） |
+| 人間の判断は発話、記録はAIが型付きrecordとして作る。承認対象HEADを固定し、範囲外（merge、release、外部作用）へ広げない。人間actorの認証・署名検証は未実装で、後続sliceとされていた | `docs/governance/rlo-819-approval-packet-2026-08-20.md:7-14`、`src/schema/frontmatter.ts:233-254`（:238、:244の`decision: z.literal("approve")`） | 継承。旧schemaは承認block専用で、`decision`はapproveだけだった。本leaseはapprove以外の判断も記録として運ぶが、他のPRの承認の根拠に使うのは`decision: approve`のrecordだけとする。未実装だった出所の認証は、PO identityのPR reviewで扱う（下記`decision_record`） |
 | merge後read-afterは、merged観測、merge commit一致、review済みHEADがmerge parentであること、tree一致を確かめ、満たさなければ`merged_unverified`とする | `src/runtime/github-cross-review-admission.ts:704-800` | 継承（下記「merge後」。新main HEADと検査・pushしたmerge commitのSHA・treeの一致を含む） |
 | merge authorityはControl Plane／TLだけが持ち、worker・reviewerへ移らない。reviewerは作成者と別identity・別session・独立context | `docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:199,215-229`、`management-integration-cell-requirements.md:62-72`、`github-merge-admission-requirements.md:21-24` | merge authorityは継承（executorだけが持つ）。reviewerの別identityは`require_separate_identity`で継承し、`accept_bootstrap_risk`では緩める（下記「変える点」） |
 
@@ -105,8 +105,7 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
 - **authority面の検出と根拠照合**（検出は拒否の理由ではなく、根拠の照合を要求する引き金である）:
   1. 検出: 次のどれかに当たる差分を「authority面の差分」とする。
      - path: `docs/governance/decisions/`配下（`decision_record` profile以外では、どのrecordの追加・変更・削除も拒否する）、
-       `AGENTS.md`、`CLAUDE.md`、`docs/concept/`、`docs/helix-*/`、`scaffold/`（下記の保護面を除く全体。binding、checkのcase、
-       evidenceを含む）、`docs/governance/github-upstream-operating-model.md`、`github-upstream-pr-packet.md`、
+       `AGENTS.md`、`CLAUDE.md`、`docs/concept/`、`docs/helix-*/`、`scaffold/README.md`（`scaffold/`のそれ以外は保護面）、`docs/governance/github-upstream-operating-model.md`、`github-upstream-pr-packet.md`、
        `new-generation-start-here.md`、`authority-state-model.md`、`management-provisional-requirement-registration.md`、
        名前に`policy`、`contract`、`packet`、`decision`、`register`、`carry-forward`、`receipt`、`lease`のどれかを含むfile、
        `docs/governance/`の`candidates/`・`feature-tickets/`・`intake/`・`requirements-source/`・`crosswalks/`の各配下。
@@ -118,24 +117,33 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
        語による検出は誤検出を含み得るが、誤検出は`authority_basis`を求めて止まる側に倒す（止まったPRは言い換えではなく根拠の提示で進める）。
        ただし新規fileに`authority_effect: none`を置く行だけは許す。語による検出は網羅できないため、下記3のreviewer判定を必須とする。
   2. 根拠の照合: authority面の差分を持つPRは、review依頼の本文に`authority_basis`（decision recordのID、path、SHA-256の一覧）を持つ。
-     executorは、各recordのpathが`docs/governance/decisions/`配下であること、検査したmain HEADに同じSHA-256で存在すること
-     （`decision_record` profileでは、同じPRが追加するrecordでもよい。下記）、本PRがそのrecordを変更・削除しないこと、recordの
-     機械可読な選択欄（frontmatterの`decision`）が`approve`（副選択付きを含む）であることを確かめる。どれかを満たさなければ拒否する。
+     executorは、各recordのpathが`docs/governance/decisions/`配下であること、検査したmain HEADに同じSHA-256で存在すること、
+     本PRがそのrecordを変更・削除しないこと、recordの機械可読な選択欄（frontmatterの`decision`）が`approve`（副選択付きを含む）で
+     あることを確かめる。どれかを満たさなければ拒否する。
      approve以外（reject、changes_requested、defer等）のrecordは、`authority_basis`・保護面の承認・`scope_paths`の照合に使わない。
+     機械可読欄（`decision`、`approved_targets`、`scope_paths`、`decider_role`）を持たないrecord（lease有効化より前にmainへ入った
+     recordはすべてこれに当たる）も使わない。既存の承認を根拠にするには、その承認を再記録するapprove record（元のrecordのpathと
+     SHA-256、承認の範囲、`approved_targets`、`scope_paths`を持つ）を`decision_record` PRで運び、POがそのPRを判断する。
+     例外として、`decision_record` PRが追加するrecordは、そのPRの最新の判断（下記「人間判断の出所」）が成立していることを根拠に、
+     選択を問わずrecord自身のpathの追加の根拠になり、選択がapproveのときに限り、recordが列挙した対象fileの根拠にもなる。
+     この例外では、main上での存在と`decision: approve`の要件をそのrecordに適用しない。そのrecordは、同じPRの他のpathの根拠にはならない。
   3. reviewerの判定: pairに束縛されたすべての応答commentが、`authority_basis_sufficient: yes`（差分による意味の変化が、すべて
      `authority_basis`のrecordが承認した範囲内にある）と`new_authority_created: no`（本PRが、`authority_basis`のrecordにない承認・採否・
      処分・authorityを生成していない）を明示する。authority面の差分が無いPRでも両方を明示する（その場合`authority_basis`は空でよい）。
      どちらかが不適合または欠落なら拒否する。recordは「承認したbytesのpath」と別に「承認が及ぶ範囲のpath集合」
      （`scope_paths`。承認から派生するregister・台帳等を含めてよい）を持つ。`decision_record` profileで入るrecordは`scope_paths`を必ず持つ。
      照合では、各recordの`scope_paths`に、record自身のpathと、recordが承認した対象fileのpathを常に含めて扱う。
-     `authority_basis`のrecordがすべて`scope_paths`を持つ場合、executorはauthority面の差分のpathがその和集合に含まれることを機械的に確かめる。
-     `scope_paths`を持たない既存recordが一つでも`authority_basis`に含まれる場合、`scope_paths`の和集合の外にある差分pathは、そのrecordの範囲として
-     reviewerの判定だけに依存する（両選択に共通の残存risk。`accept_bootstrap_risk`ではreviewer判定の偽造で範囲外が通り得る）。
+     根拠に使えるrecordはすべて`scope_paths`を持つため、executorはauthority面の差分のpathがその和集合に含まれることを機械的に確かめる。
+     和集合の内側で意味が承認の範囲内かどうかは、reviewerの判定に依存する（`accept_bootstrap_risk`ではreviewer判定の偽造で範囲外の
+     意味が通り得る。本選択の残存risk）。
 - **保護面**（executorが自分の条件、検査の入力、外部作用の起点を変えないため）: 本packet、lease記録、lease監査記録、executor command、
-  投稿command、`scaffold/tools/`、`scaffold/governance/tools/`、検査toolの判定基準となる入力（`scaffold/checks/`、`scaffold/schema/`、
-  `scaffold/governance/rules/`、`scaffold/governance/index.md`、`docs/governance/legacy-rule-atom-inventory.jsonl`、
-  `docs/governance/candidates/legacy-rule-derived-requirements.md`、およびlease記録が列挙する検査toolの入力一覧。一覧は後続PRでtoolの実読を
-  測って作り、toolの変更時に更新する。bindingとその`upstream`が指す文書は判定基準ではなく検査される対象であり、authority面の検出で扱う）、本leaseを担うScaffold Binding、
+  非常用command（下記「非常経路」）、投稿command、`scaffold/`配下の`scaffold/README.md`以外の全体（tool、checkのcase、schema、
+  governanceのrule・index、binding、evidence。bindingの`upstream`一覧はstaleの照合範囲を決めるため判定基準として扱う）、
+  main HEADまたはmerge commitのどれかのbindingの`upstream`に現れるすべてのpath（2026-09-20時点で
+  `docs/governance/candidates/legacy-rule-derived-requirements.md`、`docs/governance/legacy-rule-atom-inventory.jsonl`、
+  `docs/governance/legacy-rule-atom-source-files.jsonl`、`docs/governance/candidates/scaffold-binding-requirements.md`、
+  `docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md`）、lease記録が列挙する検査toolの入力一覧（後続PRでtoolの
+  実読を測って作り、toolの変更時に更新する）、
   `.github/`（workflowはmain上でGitHubの権限を持って動くため）、`.gitattributes`のうち`diff`、`filter`、`merge`、`export-ignore`、
   `export-subst`、`working-tree-encoding`、`ident`のどれかを設定する行（diffやcheckoutの内容を変え得るため。`text`、`whitespace`、`eol`だけを設定する行は
   保護面に含めない。`binary`は`-diff -merge`を含むmacroのため保護面に含める）。保護面を変えるPRは、`authority_basis`のdecision recordが、変更後のそのfileのSHA-256を
@@ -158,22 +166,30 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
   新しいrecordで行う）。PRの差分は、record自身と、recordが列挙した対象fileの集合にexactに一致する。対象fileは判断の対象文書に限り、
   実行済み外部操作の記録（backup、rollback、read-after、receipt）は`operation_change`で運ぶ（recordの対象にreceipt・backup等の
   名前を含むfileがあれば拒否する）。recordはfrontmatterに機械可読な欄を持つ: `decision`（選択。副選択は`+`で連ねる）、`approved_targets`（対象のpathと変更後SHA-256）、
-  `scope_paths`、`decider_role: PO`。本文に承認の範囲と範囲外を書く。`decision`がapprove以外のとき、PRの差分はrecord 1 fileだけとし、
+  `scope_paths`、`decider_role: PO`。本文に承認の範囲と範囲外を書く。`decision`がapprove以外のとき、`approved_targets`は空とし、PRの差分はrecord 1 fileだけとし、
   対象fileを同梱しない（却下されたbytesをmainへ入れない）。
   recordを作るのはAI（作成側）であり、recordはPOの判断を受ける前の提案文である。executorは判断を生成しない。
-  - **人間判断の出所（独立性の選択を問わず必須）**: 判断は、identity表の人間判断者（PO）のloginが**そのdecision_record PR**へ投稿し、
-    作成後に編集されていないGitHub commentでなければならない。commentの本文は、行頭から始まる（引用記号`>`を含まない）機械可読な判断行
-    `decision: <選択> head: <full SHA>`をちょうど1行含む。選択はrecordが
-    定める語彙（approve、changes_requested、reject、defer等。副選択は`decision: approve+require_separate_identity`のように`+`で連ねる）、
-    SHAはrecordを含む現在のPR headである。人間判断者のcommentのうち、行頭が`decision:`で始まる行を1行でも含むものを判断候補とし、最新の判断候補1件だけを判断とする。
-    最新の判断候補が、判断行ちょうど1行の書式を満たさない、または編集済みであれば、古い判断へ戻らずadmissionを拒否する（POの最新の意思を
-    運べない状態として止まり、POが新しいcommentを置くまで進まない）。approve以外の
-    判断もrecordとして運ぶ（rejectやchanges_requestedの記録もmainへ残す）。POはrecordの本文（範囲と範囲外を含む）を読んだうえで、そのheadを判断する。executorは、commentの作者login、
-    `created_at`＝`updated_at`、最新の判断commentのSHAがreview済みcontent HEADと一致すること、その選択（副選択を含む）がrecordの選択と
-    exactに一致することを
-    APIで確かめる。recordはcommentのIDや原文を持たない（commentより前に書かれるため）。executorがcommentのID、作者、本文全文を
-    merge commit messageへ記録する。head SHAへ束縛するため、commentはrecordの全文と対象bytesのすべてに束縛される。
-    commentの後にheadが変われば、判断は無効になり、新しいheadで判断を受け直す。
+  - **人間判断の出所（独立性の選択を問わず必須）**: 判断は、identity表の人間判断者（PO）のloginが**そのdecision_record PR**へ提出した
+    GitHubのPR review（Approve／Request changes）でなければならない。issue comment、reviewの行comment、session記録等は判断の出所に
+    しない。PR reviewを使うのは、提出済みのreviewはGitHub上で削除できず、提出時のPR head（`commit_id`）へ固定され、取下げ（dismiss）も
+    状態`DISMISSED`として残るためである。これにより、判断の削除や編集で古い判断が最新へ戻ることがない。
+    - 判断の確定: executorはPRの全review（paginationを最後までたどる）を取得し、人間判断者loginのreviewのうち提出時刻が最新の1件を、
+      状態・本文を問わず「最新の判断」とする。古いreviewへは戻らない。最新の判断が次をすべて満たすときだけ判断が成立し、一つでも
+      欠ければadmissionを拒否する（POが新しいreviewを提出するまで進まない）。
+      1. `commit_id`がreview済みcontent HEAD（recordを含む現在のPR head）と一致する。
+      2. 状態が、選択がapproveなら`APPROVED`、approve以外なら`CHANGES_REQUESTED`である（`COMMENTED`、`DISMISSED`、`PENDING`は不成立）。
+      3. 本文が、行頭から始まる（引用記号`>`を含まない）判断行`decision: <選択>`をちょうど1行含み、その選択がrecordの`decision`と
+         exactに一致する。選択はrecordが定める語彙（approve、changes_requested、reject、defer等。副選択は
+         `decision: approve+require_separate_identity`のように`+`で連ねる）である。
+      4. 提出後に編集されていない（GraphQLの`lastEditedAt`が空）。
+    - AI側のloginがPOのreviewをdismissしても、最新の判断が`DISMISSED`になって不成立になるだけで、古いreviewへは戻らない
+      （dismissは止める方向にだけ働く）。POが判断を変えるときは、新しいreviewを提出する。
+    - approve以外の判断もrecordとして運ぶ（rejectやchanges_requestedの記録もmainへ残す）。POはrecordの本文（範囲と範囲外を含む）を
+      読んだうえで、そのheadをreviewする。recordはreviewのIDや原文を持たない（reviewより前に書かれるため）。executorがreviewのID、
+      作者、状態、`commit_id`、本文全文をmerge commit messageへ記録する。reviewはheadへ固定されるため、recordの全文と対象bytesの
+      すべてに束縛される。reviewの後にheadが変われば、判断は成立しなくなり（上記1）、新しいheadでreviewを受け直す。
+    - GitHubは作成者自身によるPRのapproveを認めない。PR作成者はAI側のloginであり、POのloginと分かれている（下記「AI側identityの分離」）ため、
+      POはreviewを提出できる。
   - 人間判断者のloginの資格情報は、作成側・reviewer・executor・`recovery`のどのcontextからも取得・使用できない（下記「AI側identityの分離」）。
     これにより、AI側contextは人間判断を捏造できない。session記録など、AI側が書ける出所は判断の出所として認めない。
   - reviewerは、recordの`scope_paths`と本文の範囲が一致し、対象の変更がrecordの範囲内であることを`transcription_faithful: yes`で明示する。
@@ -199,7 +215,7 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
 
 旧HELIXの判定関数と同じく、上記と下記「merge前の検査」の全条件を一つの判定でjoinし、満たさない条件ごとに型付きの拒否理由
 （例: `profile_undefined`、`class_changed`、`authority_basis_missing`、`authority_basis_not_on_main`、`protected_surface_unapproved`、
-`review_head_stale`、`review_incomplete`、`review_findings_open`、`transcription_unverified`、`operation_input_missing`、`stale_nonzero`、
+`review_head_stale`、`decision_review_invalid`、`review_incomplete`、`review_findings_open`、`transcription_unverified`、`operation_input_missing`、`stale_nonzero`、
 `protection_baseline_changed`、`lease_inactive`）を返す。既定はdry-runで、判定だけを報告する。書き込みは`--apply`を付け、拒否理由が
 0件のときに限る。
 
@@ -213,7 +229,7 @@ leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止
   停止理由と時刻を置き、(2) lease記録が指定する状態Issue（1件）へ`lease_state: suspended`と理由のcommentを置く。(2)は`suspended`に
   なるたびに書く（merge以外に許すGitHub書込みは、`merge_result`とこの状態commentの2種である）。executorは
   起動時に(1)と、lease記録にある直近の解除判断より後の(2)の両方を確かめ、どちらかがあれば停止状態として扱う。
-- **停止中（期限切れ、`suspended`、監査の遅れ、取消し後）**: executorは`decision_record` profileだけを運ぶ。人間判断者のcommentで
+- **停止中（期限切れ、`suspended`、監査の遅れ、取消し後）**: executorは`decision_record` profileだけを運ぶ。人間判断者のPR reviewで
   束縛されたrecordだけが通るため、停止中もAI側は状態を変えられない。運べる判断は次のとおり。
   1. 停止の解除、期限の更新、監査結果の受領（lease監査記録の追加を含む）。
   2. 保護設定・rulesetの基準値と、main更新主体照合の起点の付け直し（停止原因が保護設定の変更やexecutor以外のmain更新だった場合）。
@@ -229,7 +245,8 @@ leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止
   - 主体: identity表の`recovery` role（作成側・reviewerと異なるcontextのruntime）。`require_separate_identity`では専用のloginと
     資格情報を持ち（実効role `write`、他roleのcontextから資格情報を読めない）、`accept_bootstrap_risk`ではAI側loginを使う。
   - 起動: POが実行環境で、`recovery` roleのruntimeに、対象1 PRについて非常用commandの実行を許可する。非常用commandは、executorの
-    `decision_record`経路だけを取り出した固定の小さなcommand（lease記録に登録し、保護面とする）であり、executorと同じくlocal merge commitを
+    `decision_record`経路だけを取り出した固定の小さなcommand（後続PRで作り、lease記録に登録し、保護面とする。`gh pr merge`、
+    `git push`、GitHub APIへの直接の許可ではない）であり、executorと同じくlocal merge commitを
     作って通常pushでmainへ送る（compare-and-swap。検査後にmainが動いていればpushは拒否される）。許可設定であり、mergeではない。
     人間はmergeしない。
   - 条件: `recovery`は`decision_record` profileの条件（上記の全体。人間判断の出所、選択の一致、PR差分とrecordの一致、対象の制限、
@@ -237,15 +254,26 @@ leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止
     要するが、reviewer runtimeの喪失が原因の場合に限り、providerの違いの要件を外す。`require_separate_identity`で登録済みreviewerの
     runtimeを失った場合は、POが実行環境で代わりのruntimeにそのreviewer loginの資格情報を渡す（許可設定）。転記は認めない。
     運べるのは、executorの修理・取消し・別方式への移行・review要件の改訂を判断したdecision_record PR 1件だけである。
-  - 記録と書込み: merge commit messageに、非常経路であることを示す行`lease_recovery: <PR番号>`、検査したmain HEAD、PO判断commentのID・
-    作者・全文、pairに束縛したreview commentのID・SHA-256・全文を書く。`recovery`に許すGitHub書込みは、このpush、対象PRへの
+  - 非常用command自体も機能しない場合（GitHub APIの仕様変更等でexecutorと同時に壊れた場合）: 修理を運ぶdecision_record PRのheadに
+    含まれる非常用commandのbytesのうち、そのPRのrecordが変更後SHA-256を`approved_targets`にexactに列挙し、そのPRの最新の判断が
+    approveとして成立しているものを、`recovery`が実行してよい（人間が判断済みのbytesによる自己修理。POは実行環境でそのbytesの実行を
+    許可する）。実行前に`recovery`は、その判断の成立（上記1〜4）とbytesのSHA-256をGitHubとlocalの読取りで確かめる。
+  - 人間判断をGitHub上で検証する手段そのもの（PR reviewの取得）が失われた場合は、どの経路でもmergeしない。このときは、POが実行環境の
+    許可を外してleaseを止め、本packetと同じ再bootstrap（改訂したpacketを人間判断に付し、作成側と異なるcontextのruntimeが、POの許可設定の
+    下でmergeする）で再開する。人間はmergeしない。
+  - 記録と書込み: merge commit messageに、非常経路であることを示す行`lease_recovery: <PR番号>`、検査したmain HEAD、PO判断reviewのID・
+    作者・状態・`commit_id`・全文、pairに束縛したreview commentのID・SHA-256・全文を書く。`recovery`に許すGitHub書込みは、このpush、対象PRへの
     `merge_result`、状態Issueへの`lease_state: suspended`（非常経路であることとmerge後read-afterの結果を含む）の3つだけである。
-  - merge後: executorと同じread-after（第1親、第2親、tree、`stale=0`、保護設定）を行い、結果を上記の状態commentと`merge_result`へ書く。
-    不一致を隠さない。
+  - merge後: 下記「merge後」の条件をすべて行う。新main HEADがpushしたmerge commitとSHA・treeで一致、第1親＝検査したmain HEAD、
+    第2親＝review済みcontent HEAD、新mainで`stale=0`、branch protection・rulesetが基準値のまま、すべてのrulesetのbypass対象が空、
+    AI側の各loginの実効role、mainの更新主体の照合（起点は直前の起点、終点は新main。起点以降の更新は、この非常pushの1件だけで、actorが
+    `recovery`のlogin（`accept_bootstrap_risk`ではAI側login）であり、`lease_recovery:`行を持つmerge commitであること）、PRのmerged表示
+    （10分以内）、`merge_result`投稿の成功である。各項目の結果を、状態commentと`merge_result`の両方へ項目ごとに書き、不一致を隠さない。
   - 停止: 非常経路のmerge自体が、`recovery`の書く状態commentでleaseを`suspended`にする（executorの復旧を待たずに二重保存の一方が成立する）。
     executorは起動時に、actorが`recovery`のlogin（`require_separate_identity`）または`lease_recovery:`行を持つmerge commit（`accept_bootstrap_risk`）を
     executor以外のmain更新として検出する。再開は、起点の付け直しを判断したrecordで行い、そのrecordは非常経路の`merge_result`と状態commentの
-    read-after結果を列挙する（上記2）。
+    read-after結果を項目ごとに列挙する（上記2）。executorは、recordの列挙が`merge_result`と状態commentの結果に一致すること、および
+    不一致の項目があればrecordがその項目を名指ししていることを確かめる（不一致を列挙しないrecordでは再開しない）。
   - 残存risk: `accept_bootstrap_risk`では`recovery`とexecutorが同じloginのため、`lease_recovery:`行を省いたpushはexecutorのmergeと区別できない。
     状態commentの有無との突き合わせで検出を補うが、両方を省かれれば検出できない。本選択の残存riskに含める。
 
@@ -300,7 +328,8 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
     adminその他ruleset・保護設定を変更できる権限を持つAI以外の主体（POを含む）からは崩せる。
   - 各identityの資格情報は、他roleのcontextから読めない場所に置く（作成側の実行環境からreviewer・executorの資格情報に触れられない）。
   - 「用意できた」とは、identity表がmainのlease記録にあり、各roleの資格情報の分離、作成側・executor・`recovery`の実効roleが`write`ちょうど、reviewerの実効roleが`read`または`triage`であること、すべてのrulesetのbypass対象が空であること、admin資格情報がAI側contextから隔離されていることをPOが確認した時点を指す。それまでleaseを有効にしない。
-  - executorのidentityがmainへ通常pushできるよう、branch protectionの設定を変える必要があれば、それはPOが行う（executorは変えない）。
+  - executorと`recovery`のidentityがmainへ通常pushできるよう、branch protectionの設定を変える必要があれば、それはPOが行う（executorと`recovery`は変えない）。
+    「用意できた」の確認には、両identityが通常pushできる設定であることを含む。
 
 #### merge前の検査（すべて満たす。一つでも欠けたらそのPRをmergeせず、拒否理由を報告する）
 
@@ -336,10 +365,13 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
   再試行する。
   `accept_bootstrap_risk`でも、AI側loginとそれ以外（POのUI merge、admin push等）は区別できるため、同じ照合を行う。区別できないのは
   AI側の作成側・reviewer・executorの間だけであり、そこはexecutor command以外のpushを実行環境の許可で防ぐ。
-- review済みcontent HEADとmain HEADから、executorがlocalでmerge commitを作る。merge commitのtreeで`scfctl`のvalidate／stale／residuals／selftestと
-  govcheckを実行し、すべて合格、`stale=0`。検査toolと判定基準となる入力（上記の保護面の一覧）がmain HEADと
-  merge commitで異なる場合（保護面のため、変更後bytesを承認したrecordがあるときだけ起こる）は、merge commitのtreeの一時複製へ
-  main HEADのtoolと判定基準を重ねた検査も行い、両方の合格を要する。PRが変えたtoolや判定基準だけでPR自身を検査しない。
+- review済みcontent HEADとmain HEADから、executorがlocalでmerge commitを作る。検査（`scfctl`のvalidate／stale／residuals／selftestと
+  govcheck。すべて合格、`stale=0`）は次の2つのtreeで行い、両方の合格を要する。
+  (a) merge commitのtree（変更後のtool・判定基準・binding・evidenceで、変更後の全体を検査する）。
+  (b) merge commitのtreeの一時複製で、保護面のすべてのpathをmain HEADの版に置き換えたもの（main HEADに無い保護面のfileは除き、
+  PRが削除した保護面のfileは戻す）。変更前のtool・判定基準・binding・evidenceで、変更後の保護面外を検査する。
+  保護面が変わらないPRでは(a)と(b)は同じtreeである。保護面の変更そのものの当否は検査ではなく、変更後bytesを承認したrecordで決まる。
+  PRが変えたtoolや判定基準だけでPR自身を検査しない。
 
 #### 書込み（compare-and-swap）
 
@@ -410,7 +442,7 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
 - **置換先**: 正式なHELIX-OSの委任authority要求と、そのL3／L10から導出する実装。それが入ったら`SCF-B-0004`を
   `scfctl check-replacement` → `retire`で撤去する。
 - **二重境界**: 実行環境（Claude Code）の許可は、lease検査を内側に持つ一つのexecutor commandにだけ与える。`gh pr merge`、
-  `git push`、GitHub APIでの直接書込みそのものには許可を与えない（例外は非常経路の`recovery` roleへの1 PR限りの許可だけ）。実行環境の許可が「この1コマンドだけ実行してよい」を、
+  `git push`、GitHub APIでの直接書込みそのものには許可を与えない（例外は、非常経路の`recovery` roleに1 PR限りで許可する固定の非常用commandだけ。これも`gh pr merge`・`git push`・APIへの直接の許可ではない）。実行環境の許可が「この1コマンドだけ実行してよい」を、
   leaseが「そのcommandの中で何をしてよいか」を決める。
 - **意味判断に使わない**: leaseは、要求の意味、approve／reject／split等の判断、scopeの変更、release／deploy／外部公開、
   不可逆・高影響な操作、admission条件を満たせない例外を許可しない。これらは従来どおり人間を呼ぶ。人間が行うのは判断と実行環境の許可設定であり、mergeは行わない。
@@ -429,7 +461,8 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
 3. 同モデルのmerge admission条件1（request、delivery receipt、responseの照合）は変えない。上記の独立reviewも同じ三者照合で満たす。
    条件4（merge通路の明示許可）は、leaseの有効後はすべてのPRについて`merge_executor`（停止中・取消し後は`decision_record`だけ）で満たし、
    PR単位のmerge通路の許可を廃止する。例外は、lease有効前の本PRと後続`operation_change` PR（既存の条件4で満たす）と、
-   executor機能不全時の非常経路（上記。`recovery` roleがPOの許可設定の下で`decision_record` 1件だけをmergeする）の2つだけである。
+   executor機能不全時の非常経路（上記。`recovery` roleがPOの許可設定の下で`decision_record` 1件だけをmergeする）と、人間判断を検証する
+   手段が失われた場合の再bootstrap（上記。leaseを止めてから本packetと同じ方式で行う）だけである。
 4. `operation_change`の必須入力「HELIX-OS要求」: 本Scaffoldの`operation_change` PRについては、承認済みHELIX-OS L1の
    `HELIXOS-L1-003`（許可・予算・依存・独立検証の範囲でWorkerへ委譲する）と`HELIXOS-L1-004`（CI・review・証拠収集の統制）、
    および本decisionで満たす。承認済みのHELIX-OS L2要求はまだない。
@@ -443,19 +476,20 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
    merge、post-merge read-after、Issue closeを行う主体はruntime（作成側と異なるcontext）に限り、人を含めない。人間が担うのは
    意味の判断（approve／reject等）と、実行環境の許可設定・取消し・lease停止である。人間がPRをmergeすることを、通常の手順にも
    例外の手順にも置かない。AGENTS.md 17行・同モデルの他の記述に人間のmergeを前提とする文言があれば、同じPRで同じ意味へ揃える。
-8. 同モデルのPR class表（「PR区分」）: `decision_record`（一つの人間判断の記録。入力は判断の選択、対象のexact revision、範囲。判断の出所は人間判断者loginのcomment。
+8. 同モデルのPR class表（「PR区分」）: `decision_record`（一つの人間判断の記録。入力は判断の選択、対象のexact revision、範囲。判断の出所は人間判断者loginのPR review。
    成立するのは記録された判断。成立しないのは判断の生成、対象外の承認）を追加する。`concept_revision`・`planning_revision`の
    「decision記録を同じPRへ束縛した場合だけ承認revision」は、record＋承認対象fileを一つのPRで運ぶ`decision_record` profileと同じ形であり、
    両区分のprofileを後から追加するときは、この形を使う。
 
 ## 既存の未merge PRへの当てはめ（lease有効後の見込み）
 
-- #1882（`repository_foundation`、register 1 file）: path検出でauthority面の差分になる。`authority_basis`をmain上の
-  `docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md`とする。このrecordは`scope_paths`を持たないため、
-  範囲の判定はreviewerに依存し、reviewerが範囲内と判定すれば対象になる。
+- #1882（`repository_foundation`、register 1 file）: 順序上、leaseより前に既存規則でmergeする。lease有効後もなお未mergeであれば、
+  path検出でauthority面の差分になる。main上の`docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md`は
+  機械可読欄を持たないため根拠に使えない。その承認を再記録するapprove record（`scope_paths`にregisterのpathを含む）を
+  `decision_record` PRで運び、POがそのPRを判断した後、そのrecordを`authority_basis`として対象になる。
 - #1881（`operation_change`）: 現状は対象にならない。POの事後追認が`docs/governance/decisions/`配下のrecordでなく、audits配下の
   receiptの中にしかないためである。対象にするには、(1) 追認を、実行時点で操作authorityが未成立だった事実と、POの原文・出所・
-  対象revision（#1813本文の3 SHA-256）を持つdecision recordにし、POがそのPRへ判断comment（選択とPR head SHA）を置いたうえで、
+  対象revision（#1813本文の3 SHA-256）を持つdecision recordにし、POがそのPRをPR reviewで判断したうえで、
   `decision_record` profileでmainへ入れる。(2) #1881をその後のmainへ
   追従させ、`authority_basis`にそのrecordを挙げて再reviewする。#1881の`.gitattributes`は`-whitespace -text`だけを設定するため保護面に当たらない。
 - 本PRと後続の`operation_change` PR: leaseで自身を有効化できないため、bootstrapとして既存規則でmergeする（下記）。
@@ -472,21 +506,24 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
 ## 手順
 
 1. 本PR: packetのreviewを0件にし、POが判断する。approveなら、判断recordを本PRへ追加して再reviewし、既存規則でレビュー対応側がmergeする。
-2. 後続の`operation_change` PR: lease記録（機械可読。mappingを含む）、executor command、`SCF-B-0004`（上流は本packetと判断record）、
+2. 後続の`operation_change` PR: lease記録（機械可読。mappingとidentity表を含む）、executor command、非常用command、`SCF-B-0004`（上流は本packetと判断record）、
    上記規則1〜8の文言、negative caseを置く。negative caseは少なくとも次について、GitHubへ書き込まないこと（またはsuspendedになること）を確かめる。
-   dry-run（`--apply`なし）での書込み、`decision_record`の判断commentが人間判断者loginでない・編集済み・対象PR外・head SHAを含まない・review済みHEADと不一致・選択がrecordと不一致、判断comment後のhead変更、PR差分がrecord自身と対象集合に一致しない、recordの対象にreceipt・backup等を含む、session記録を出所とするrecord、
+   dry-run（`--apply`なし）での書込み、`decision_record`の判断reviewが人間判断者loginでない・編集済み・対象PR外・`commit_id`がreview済みHEADと不一致・状態が選択と不一致（approveで`APPROVED`以外、approve以外で`CHANGES_REQUESTED`以外）・`DISMISSED`・選択がrecordと不一致、issue commentを判断として扱う、判断review後のhead変更、PR差分がrecord自身と対象集合に一致しない、recordの対象にreceipt・backup等を含む、session記録を出所とするrecord、
    PR単位の不成立でleaseを`suspended`にする、`suspended`原因以外での状態comment、非常経路で`decision_record`以外を運ぶ、
    停止中・取消し後の`decision_record`以外の運搬、基準値・起点の付け直しを判断recordなしで行う、`suspended`の保存先の片方だけの消失、状態Issue以外への状態comment、
    新main HEADとpushしたmerge commitのSHA・treeの不一致、lease失効・取消し・suspended、profile未定義の区分、区分欄の変更、`operation_change`の必須入力（操作authority record、backup、rollback、read-after）の欠落・SHA-256不一致・`operation_admission`不適合、
    authority面の差分（path、authority系keyの追加行・削除行・表書式、decisionまたはbindingが束縛するbytesの変更）で`authority_basis`が無い・`docs/governance/decisions/`配下でない・mainに無い・SHA-256不一致、PRが`authority_basis`のrecordを変更、
    `authority_basis_sufficient`・`new_authority_created`の不適合または欠落、変更後bytesを承認するrecordのない保護面の差分、renameで保護面へ触れる、
-   `.gitattributes`の`diff`・`filter`等の行、`.github/`の差分、`decision_record`で既存recordの変更・削除・承認外fileの同梱・`transcription_faithful`の不適合または欠落・判断行が0行・2行以上・引用内・書式不正、最新の判断commentの選択（副選択を含む）がrecordと不一致、`scope_paths`を持たない`decision_record`、
+   `.gitattributes`の`diff`・`filter`等の行、`.github/`の差分、`decision_record`で既存recordの変更・削除・承認外fileの同梱・`transcription_faithful`の不適合または欠落・判断行が0行・2行以上・引用内・書式不正、最新の判断reviewの選択（副選択を含む）がrecordと不一致、`scope_paths`を持たない`decision_record`、
    `authority_basis`がすべて`scope_paths`を持つときにその和集合の外のauthority面の差分、
    非常経路での`decision_record`以外・複数PRの運搬・`recovery` role以外のmerge・merge commit本文の記録欠落・merge後read-afterの不一致を隠す、非常mergeの後に`suspended`にならない、
    `recovery` loginの実効roleが`write`以外、`lease_recovery:`行・状態commentを欠く非常merge、非常経路での転記、
-   approve以外のrecordと対象fileの同梱、approve以外のrecordを`authority_basis`・保護面承認・`scope_paths`照合に使う、最新の判断候補が書式不正・編集済みのときに古い判断へ戻る、
-   判定基準となる入力（inventory、legacy-rule候補、lease記録の入力一覧）の変更を承認recordなしで運ぶ、
-   変更された検査toolとmain HEADの検査toolのどちらかでの不合格、pair不一致、別pairの依頼、応答のない依頼、findingのある応答、reviewer 2 context未満、編集されたcomment、
+   approve以外のrecordと対象fileの同梱、approve以外のrecordを`authority_basis`・保護面承認・`scope_paths`照合に使う、最新のPO reviewが不成立（書式不正・編集済み・`DISMISSED`・判断行なし）のときに古いreviewへ戻る、
+   機械可読欄を持たないrecordを根拠に使う、`decision_record` PRが追加するrecordを同じPRの対象外pathの根拠に使う、approve以外のrecordに`approved_targets`がある、
+   保護面（binding、evidence、bindingの`upstream`のpath、inventory、legacy-rule候補、lease記録の入力一覧、非常用commandを含む）の変更を承認recordなしで運ぶ、
+   (a)変更後のtree・(b)保護面をmain HEADの版に置き換えたtreeのどちらかでの不合格、
+   非常用commandの自己修理でPOの判断が成立していないbytes・SHA-256の一致しないbytesを実行する、非常経路のmerge後で「merge後」の項目の一部を省く・結果を状態commentと`merge_result`の片方にしか書かない、非常経路の不一致を列挙しないrecordでの再開、`recovery`の通常push不可、
+   pair不一致、別pairの依頼、応答のない依頼、findingのある応答、reviewer 2 context未満、編集されたcomment、
    依頼より前の応答、作成側またはreviewerとexecutorの同一context、branch protection・`enforce_admins`・rulesetとbypass対象の基準値からの変化（merge前とmerge後）、監査の遅れ（10件）、作成側・reviewer・executorのloginの実効roleが上記の値以外（admin、maintain、custom role、reviewerのwrite）、起点以降のmain更新にexecutorのlease merge push以外の更新がある（人間を含む）、activity APIで起点以降の更新を取得できない、2ページ目以降にだけ現れる更新、before／afterの連鎖切れ、force push（actorを問わない）、merge後10分以内にexecutorのpushがactivityへ現れない、authorだけexecutorに偽ったcommitの直接push、GitHub Appのadministrationまたはrepository rules書込み権限、rulesetのbypass対象が空でない、stale≥1、mergeable偽、auto-merge予約、
    push拒否、merge後の親不一致、merged表示の時間切れ、`merge_result`失敗、projection_syncのmapping外・直前receiptの未取込み・書込み前照合不一致・編集履歴不一致、投稿commandによる対象PR以外への書込み。
    leaseはまだ存在しないため、bootstrapとして既存規則でレビュー対応側がmergeする。
@@ -497,8 +534,10 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
 ## 人間判断
 
 - 前提: leaseの有効化には、AI側identityの分離（POのaccountとAI側のaccountを分け、POの資格情報をAI側から隔離する）が要る。以後、
-  AIが判断の提案をdecision recordとしてPRに置き、POはPOのaccountからそのPRへcomment（`decision: <選択> head: <SHA>`）を置いて判断する。
-  executorがcommentをmerge commit messageへ記録する。
+  AIが判断の提案をdecision recordとしてPRに置き、POはPOのaccountからそのPRへPR review（approveなら`Approve`、それ以外は
+  `Request changes`。本文に`decision: <選択>`を1行）を提出して判断する。reviewは提出時のheadへ固定され、削除できない。
+  executorがreviewをmerge commit messageへ記録する。本PR（bootstrap）は、AI側identityの分離前でありPOのaccountが作成者と同じためPR reviewで
+  approveできないので、既存の方法（POの判断を判断recordへ記録し、再reviewする）で判断する。
 - `approve`: 2つのlease定義（admission profile 3区分を含む）、共通条件、後続PRで改める規則の意味1〜8、`projection_sync`の残存riskの受容を、正式要求が成立するまでの
   Scaffold上流decisionとして承認する。あわせて独立性について`accept_bootstrap_risk`か`require_separate_identity`のどちらかを選ぶ。
 - `changes_requested`: 変更する項目（対象PR、profile、authority面の検出対象、review証拠、書込み方式、期限、holder、規則の意味等）と理由を指定し、本packetを改訂する。
