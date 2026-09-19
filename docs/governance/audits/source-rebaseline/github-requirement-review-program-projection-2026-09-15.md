@@ -124,15 +124,32 @@ RDP-001が持つのは状態とholding処理の記述であり、件数とDecisi
 | authority effect | `none` |
 | 操作 | Issue #1813本文の置換（`PATCH /repos/RetryYN/HELIX-HARNESS/issues/1813`、`body`だけ）。state、label、title、commentは変更しない |
 | 操作authority | **明示の許可記録なし（未成立）**。本文書「許可」節の範囲はCodex hosted chat runtimeからのIssue作成、親子参照の本文更新、label付与、read-afterであり、本操作（Claude Code sessionからのRDP-001本文の全面再投影）はその範囲を超える。`RDPPROJ-1813-20260916-002`〜`004`も操作authorityを記録しておらず、許可の根拠にならない。本操作はauthorityを確認しないまま実行された。追認するかrollbackするかを人間判断に付す |
+| operation_authority_at_execution | `not_established`（上行のとおり。事後追認によって実行時点の状態を変更しない） |
+| human_disposition | `ratified`（下記「事後追認」） |
+| ratified_by | PO |
+| ratified_at | 2026-09-20（Asia/Tokyo、要求整理session） |
+| ratification scope | 2026-09-19の2回のPATCH（`7ea33f24…`→`4b8599bc…`→`9b47612d…`）だけ。以後のIssue操作の許可を生成しない |
 | 関係する要求 | 承認済みHELIX-OS L1の`HELIXOS-L1-008`（projection不整合の検出と原情報からの再構築）。対応するL2は未採否であり、承認済みのHELIX-OS L2要求はない |
 | backup | 更新前本文を[`github-projection-backups/issue-1813-body-2026-09-18T160930Z.txt`](github-projection-backups/issue-1813-body-2026-09-18T160930Z.txt)に、APIが返した本文文字列のUTF-8 bytesのまま保存した（改行を追加も除去もしない。SHA-256 `7ea33f24…`）。GitHubのIssue編集履歴（GraphQL `userContentEdits`）でも、2026-09-18T16:09:30Z、2026-09-19T14:27:11Z、14:32:24Zの各版の本文SHA-256が上表の`7ea33f24…`、`4b8599bc…`、`9b47612d…`と一致することを2026-09-19に確認した |
-| rollback | 人間がrollbackを選び、その書き戻しを許可した場合に、backup本文を同じ操作で書き戻し、read-afterで本文SHA-256を確認して、`correction_of: RDPPROJ-1813-20260919-005`付きの後続receiptを本文書へ追加する |
+| rollback | 人間がrollbackを選び、その書き戻しを許可した場合に、backup本文を同じ操作で書き戻し、read-afterで本文SHA-256を確認して、`correction_of: RDPPROJ-1813-20260919-005`付きの後続receiptを本文書へ追加する。POは追認を選んだため実行しない（手順は記録として残す） |
 
 `previous remote revision`は本再投影の直前に取得した値である。`RDPPROJ-1813-20260916-004`の
 `44db8f3e…`からこの値までの間にIssue本文は更新されていたが、その更新のreceiptは本文書にない。本receiptは
 その欠落を埋めず、欠落があったことだけを記録する。`intermediate remote revision`は本再投影の第1版であり、
 S0の承認範囲から未決3点を除く限定を行内に欠いていたため、独立reviewの指摘を受けて第2版へ更新した。本再投影は要求の追加、採否、successor、L2／L11適用、
 実装開始を生成しない。
+
+### 事後追認
+
+POは2026-09-20に、本receiptの2回のPATCHについて次を指示した。
+
+> 1. **Issue #1813 の書き換えは追認**
+
+> 1. #1813の書き換えは追認します。ただし、実行時点では操作authority未成立だった事実をreceiptから消さず、POによる事後追認として記録してください。rollbackは不要です。
+
+これにより、Issue #1813の現行本文（`9b47612d…`）をRDP-001 projectionとして保持し、rollbackしない。追認は事後の人間判断であり、
+実行時点で許可が成立していたことにはしない。authorityを確認せずに外部状態を変更したという事実は、`operation_authority_at_execution: not_established`として
+本receiptに残す。以後のIssue #1813を含むGitHub projection更新は、`operation_change`の必須入力（[GitHub上流運用モデル](../../github-upstream-operating-model.md)のPR class表）どおり、実行前に操作authorityを確認し、その根拠をreceiptへ記録する。
 
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
 RDP-001は全要求の要否・再配置を親作業として追跡し、RDP-002は責務・機能重複、RDP-003は技術代替可能性を
