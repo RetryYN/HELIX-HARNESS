@@ -113,7 +113,7 @@ RDP-001が持つのは状態とholding処理の記述であり、件数とDecisi
 | `docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md` | S0の`approve`／`split`と承認範囲の除外、S1-01の`defer`、未決3点、再baseline条件 | `899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf` |
 | `docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md` | S0／S1の採否順と停止条件 | `3cf362f528b394e5c4105e63b85ae8e3630269615976474de478b53417158eb3` |
 
-| 項目 | read-after値 |
+| 項目 | 記録値（revision、state、labelはread-after値） |
 |---|---|
 | source commit | `3469266e5f7a4b455f98ccd0f40923a40f5e4562`（同fileの最終変更commit `1103e0c15c7002462b4e23e7a38946a047a1a549`） |
 | source file SHA-256 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
@@ -122,6 +122,11 @@ RDP-001が持つのは状態とholding処理の記述であり、件数とDecisi
 | corrected remote revision | `updatedAt:2026-09-19T14:32:24Z+body_sha256:9b47612ddcf87b2d7d21527476908f432fba2eb360cf9d1b64a41b58ccde4be1` |
 | state／label | `OPEN`／`state:proposed-upstream-waiting` |
 | authority effect | `none` |
+| 操作 | Issue #1813本文の置換（`PATCH /repos/RetryYN/HELIX-HARNESS/issues/1813`、`body`だけ）。state、label、title、commentは変更しない |
+| 操作authority | 本文書「許可」節のPO指示（2026-09-16）に基づくRDP-001 projectionの本文更新。`RDPPROJ-1813-20260916-002`〜`004`と同じ範囲であり、本receiptで新たな許可を生成しない |
+| 関係する要求 | 承認済みHELIX-OS L1の`HELIXOS-L1-008`（projection不整合の検出と原情報からの再構築）。対応するL2は未採否であり、承認済みのHELIX-OS L2要求はない |
+| backup | GitHubのIssue編集履歴（GraphQL `userContentEdits`）。2026-09-18T16:09:30Z、2026-09-19T14:27:11Z、14:32:24Zの各版の本文SHA-256が上表の`7ea33f24…`、`4b8599bc…`、`9b47612d…`と一致することを2026-09-19に確認した |
+| rollback | backupの`previous remote revision`本文を同じ操作で書き戻し、read-afterで本文SHA-256を確認して、`correction_of: RDPPROJ-1813-20260919-005`付きの後続receiptを本文書へ追加する |
 
 `previous remote revision`は本再投影の直前に取得した値である。`RDPPROJ-1813-20260916-004`の
 `44db8f3e…`からこの値までの間にIssue本文は更新されていたが、その更新のreceiptは本文書にない。本receiptは
