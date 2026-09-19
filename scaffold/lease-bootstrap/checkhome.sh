@@ -17,7 +17,9 @@ REAL="$(readlink -f "$EXEC_HOME")"
 D="$(dirname "$EXEC_HOME")"
 while :; do
   [ "$(stat -c %U "$D")" = "root" ] || { echo "拒否: $D がroot所有ではありません（homeの置き場所を変えてください）" >&2; exit 2; }
-  [ -z "$(find "$D" -maxdepth 0 -perm /022)" ] || { echo "拒否: $D が他のuserから書けます" >&2; exit 2; }
+  M="$(stat -c %a "$D")"
+  case "$M" in *[2367]) echo "拒否: $D が他のuserから書けます（$M）" >&2; exit 2;; esac
+  case "$M" in *[2367]?) echo "拒否: $D が同じgroupのuserから書けます（$M）" >&2; exit 2;; esac
   [ "$D" != "/" ] || break
   D="$(dirname "$D")"
 done

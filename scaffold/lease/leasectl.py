@@ -910,9 +910,14 @@ def run_boundary_tests():
     mk = ("argparse." + "ArgumentParser(", "." + "add_parser(")   # この検査行自身に一致しないよう組み立てる
     src_files = sorted(glob.glob(os.path.join(HERE, "*.py")) +
                        glob.glob(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "*.py")))
-    abbrev_src = all(("allow_abbrev=False" in ln) for f in src_files
-                     for ln in open(f, encoding="utf-8").read().splitlines()
-                     if any(t in ln for t in mk))
+    def def_lines(f):
+        return [ln for ln in open(f, encoding="utf-8").read().splitlines() if any(t in ln for t in mk)]
+
+    # argparseを使うfileは、書き方に依らず必ず定義行として拾えること（拾えなければ素通りを疑う）
+    argp = [f for f in src_files if "argparse" in open(f, encoding="utf-8").read()]
+    defs = [ln for f in argp for ln in def_lines(f)]
+    abbrev_src = (len(argp) == 6 and len(defs) >= 15 and all(def_lines(f) for f in argp)
+                  and all("allow_abbrev=False" in ln for ln in defs))
     rows.append({"id": "BT-no-duplicate-options", "ok": all(dup_rcs) and abbr and abbrev_src
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
                  and not G.duplicate_options(["--a", "1", "--b", "2"])})
@@ -1038,9 +1043,9 @@ def cmd_selftest(a):
         tool = hashlib.sha256(b"".join(open(os.path.join(HERE, f), "rb").read() for f in
                                        sorted(os.listdir(HERE)) if f.endswith(".py"))).hexdigest()
         boot = os.path.join(os.path.dirname(HERE), "lease-bootstrap")
-        bootstrap = hashlib.sha256(b"".join(open(os.path.join(boot, f), "rb").read()
-                                            for f in sorted(os.listdir(boot))
-                                            if os.path.isfile(os.path.join(boot, f)))).hexdigest()
+        bfiles = sorted(os.path.join(dp, f) for dp, _, fs in os.walk(boot) for f in fs
+                        if "__pycache__" not in dp)
+        bootstrap = hashlib.sha256(b"".join(open(f, "rb").read() for f in bfiles)).hexdigest()
         cases = hashlib.sha256(b"".join(open(p, "rb").read() for p in sorted(glob.glob(os.path.join(HERE, "cases", "*.json"))))).hexdigest()
         with open(EVIDENCE, "w", encoding="utf-8") as f:
             json.dump({"evidence_kind": "scaffold", "tool_sha256": tool, "bootstrap_sha256": bootstrap, "cases_sha256": cases, "cases": len(rows),

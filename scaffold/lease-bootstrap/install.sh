@@ -20,7 +20,9 @@ SHA=""; REPO=""; PR=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="
 SEEN=""
 for x in "$@"; do
   case "$x" in
-    --*) case " $SEEN " in *" $x "*) echo "同じoptionが2回以上あります: $x" >&2; exit 2;; esac; SEEN="$SEEN $x";;
+    --*) N="${x%%=*}"
+         case " $SEEN " in *" $N "*) echo "同じoptionが2回以上あります: $N" >&2; exit 2;; esac
+         SEEN="$SEEN $N";;
   esac
 done
 while [ $# -gt 0 ]; do
