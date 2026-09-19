@@ -803,7 +803,12 @@ def run_boundary_tests():
                  # sudoersは検査（visudo）に通してから置く。対象PRはroot所有のfileでも固定する
                  and sh.index('visudo -cf "$SUDO_TMP"') < sh.index('install -m 0440 -o root -g root "$SUDO_TMP" /etc/sudoers.d/helix-lease')
                  and sh.index('visudo -cf "$SUDO_TMP_B"') < sh.index('install -m 0440 -o root -g root "$SUDO_TMP_B" /etc/sudoers.d/helix-lease-bootstrap')
-                 and "/etc/helix-lease/target-pr" in sh and "PATH=/usr/sbin:/usr/bin:/sbin:/bin" in sh})
+                 and "/etc/helix-lease/target-pr" in sh and "PATH=/usr/sbin:/usr/bin:/sbin:/bin" in sh
+                 # wrapperは呼出し元のPATH・HOMEを引き継がない（homeは実行userの登録内容から決め、空なら止める）
+                 and "PATH=/usr/bin:/bin; export PATH" in wrap and 'HOME="$HOME"' not in wrap
+                 and 'EXEC_HOME="$(getent passwd "$(id -un)" | cut -d: -f6)"' in wrap
+                 and 'HOME="$EXEC_HOME"' in wrap
+                 and wrap.index('[ -n "$EXEC_HOME" ]') < wrap.index("exec /usr/bin/env -i")})
     # 基準値は、記録といま取得した保護設定を突き合わせる（POの有効化前の確認）
     live = {"branch_protection": {"allow_force_pushes": False}, "rulesets": []}
     rows.append({"id": "BT-baseline-diff",
@@ -884,7 +889,6 @@ def run_boundary_tests():
                 parse_refused(main, ["status", "--lease-p", "1886"]),
                 parse_refused(main, ["admit", "7", "--cont", "c"]),
                 parse_refused(main, ["sync", "7", "--cont", "c"]),
-                parse_refused(main, ["selftest", "--rec"]),
                 parse_refused(LB0.main, ["--login", "x", "--review-id", "1", "--lease-p", "1"]),
                 parse_refused(LR0.main, ["7", "--cont", "c", "--mode", "review"]),
                 parse_refused(LP0.main, ["request", "--p", "1886", "--class", "x", "--reviewer-target", "t",
@@ -892,7 +896,14 @@ def run_boundary_tests():
                 parse_refused(LP0.main, ["response", "--p", "1886", "--request-id", "r", "--reviewer", "v",
                                          "--counts", "0/0/0", "--authority-basis-sufficient", "yes",
                                          "--new-authority-created", "no", "--text-file", "f"])])
-    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2] and abbr
+    # 上の呼出しで測れないparser（selftest等）も含め、全parserが省略形を受け付けない定義であること
+    mk = ("argparse." + "ArgumentParser(", "." + "add_parser(")   # この検査行自身に一致しないよう組み立てる
+    abbrev_src = all(("allow_abbrev=False" in ln) for f in
+                     ("leaseboot.py", "leasectl.py", "leasepost.py", "leaseprobe.py", "leaserecover.py",
+                      "../lease-bootstrap/appsetup.py")
+                     for ln in open(os.path.join(HERE, f), encoding="utf-8").read().splitlines()
+                     if any(t in ln for t in mk))
+    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2] and abbr and abbrev_src
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
                  and not G.duplicate_options(["--a", "1", "--b", "2"])})
     # install.shは、実行中の自分のbytesが--shaの版と一致しなければ止まる

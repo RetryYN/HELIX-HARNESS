@@ -17,6 +17,12 @@ set -eu
 PATH=/usr/sbin:/usr/bin:/sbin:/bin; export PATH   # 呼出し元のPATHのcommandをrootで走らせない
 
 SHA=""; REPO=""; PR=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="/opt/helix-lease"; ORG=""
+SEEN=""
+for x in "$@"; do
+  case "$x" in
+    --*) case " $SEEN " in *" $x "*) echo "同じoptionが2回以上あります: $x" >&2; exit 2;; esac; SEEN="$SEEN $x";;
+  esac
+done
 while [ $# -gt 0 ]; do
   case "$1" in
     --sha) SHA="$2"; shift 2;;
@@ -69,7 +75,12 @@ echo "tree: $(git -C "$TMP/repo" rev-parse "$SHA^{tree}")"
 echo "scaffold/lease のdigest:"
 (cd "$DEST.new" && find scaffold/lease scaffold/lease-bootstrap -type f | sort | xargs sha256sum | sed "s/^/  /")
 id "$EXEC_USER" >/dev/null 2>&1 || useradd --system --create-home --home-dir "/var/lib/$EXEC_USER" --shell /usr/sbin/nologin "$EXEC_USER"
-chmod 0750 "$(getent passwd "$EXEC_USER" | cut -d: -f6)"
+EXEC_HOME="$(getent passwd "$EXEC_USER" | cut -d: -f6)"
+[ -n "$EXEC_HOME" ] && [ -d "$EXEC_HOME" ] || { echo "executor userのhomeがありません: $EXEC_HOME" >&2; exit 2; }
+# homeにはAppの秘密鍵と状態領域を置くため、AI側から書ける構成を選べないようにする
+[ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ] || { echo "拒否: $EXEC_HOME が $EXEC_USER の所有ではありません" >&2; exit 2; }
+[ "$EXEC_HOME" != "$(getent passwd "$AI_USER" | cut -d: -f6)" ] || { echo "拒否: AI側userとhomeが同じです" >&2; exit 2; }
+chmod 0750 "$EXEC_HOME"   # 他のuserからは読めず書けない
 if [ -e "$DEST" ]; then rm -rf "$DEST.old"; mv "$DEST" "$DEST.old"; fi
 mv "$DEST.new" "$DEST"
 chown -R root:root "$DEST"
