@@ -121,6 +121,7 @@ PR classが未選択または複数指定のPRはReadyにしない。
 - PR作成・修正側は、対象差分の作成、証拠提示、review依頼、finding対応、再review依頼までを担う。
 - PR作成・修正側は、自分のPRをReady化、merge、auto-merge予約、対応Issueのcloseまで進めない。
 - レビュー対応側は、依頼と応答が同じexact base／content HEAD pairへ束縛され、必要なfinding対応が反映されたことを確認する。
+- レビュー対応側は、PR classを問わず、merge admissionの直前にbaseを更新した状態で`scfctl stale`が`stale=0`を返すことを確認し、結果をreview記録に残す。Scaffold Bindingの上流（`upstream[].path`）は文書・台帳を問わず`scaffold/`の外にあり、どのclassのPRでも変更されうる。PRのhead時点で一致していても、baseの進行や積んだPRのmergeで変わりうる。`stale`が1件以上ならmergeせず作成側へ返す。
 - merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う。merge後に不一致があればcloseせず、作成側へ返す。
 - review結果の投稿だけではmerge指示にならない。レビュー対応側がmerge責務を引き受け、対象PRと方式を確認して実行する。
 - 責務の割当はGitHub、CLI、API、IDE、Worker等の実行通路の許可を兼ねない。レビュー対応側は、当該通路と作用について明示許可を確認できない場合、mergeせず停止する。
@@ -131,7 +132,7 @@ PR classが未選択または複数指定のPRはReadyにしない。
 
 1. review request、最後に有効なdelivery receipt、review responseが同じrequest identityとexact base／content full SHAを示し、payload digestが一致する。誤ったreceiptは削除せず、`correction_of`付きの後続receiptで訂正する。
 2. current content HEADに未解消のBlocker／Major／Minorが0件である。
-3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。あわせて、baseを更新した状態で`scfctl stale`が`stale=0`を返す（Scaffold Bindingの上流はPRのhead時点では一致していても、baseの進行や積んだPRのmergeで変わりうる）。結果はreview記録に残す。
+3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。
 4. レビュー対応側に対象PRのmerge、post-merge read-after、対応Issue closeを行う通路が明示許可されている。
 5. merge commit方式で統合し、第1親、第2親、content HEADの祖先性をread-afterする。期待と一致しない場合はIssueをcloseせず作成側へ返す。
 
