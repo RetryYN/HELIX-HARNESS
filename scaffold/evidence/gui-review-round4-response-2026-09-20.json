@@ -1,0 +1,74 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source": "既存Claude GUIのreview_response",
+  "response": {
+    "schema": "scaffold-review-response.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "request_id": "RH-1885-GUI-04",
+    "request_payload_sha256": "879bbecdaede2eec9f8e059ce79c1707b944dd612d8c18a8eb1aba9d8471950d",
+    "base_sha": "3469266e5f7a4b455f98ccd0f40923a40f5e4562",
+    "content_sha": "a525562ba5cd9e5def97b70f01abc143b7ff9797",
+    "reviewer": "claude",
+    "result": "incomplete",
+    "findings": [
+      {
+        "id": "R4-1",
+        "severity": "Major",
+        "evidence": "R3-2の継続。POの判断は/tmp参照hookをreboot前まで残す。稼働中の5 hookはreboot後も残る永続path（~/.helix-worktrees）を参照し、ConfigChangeが追加された。操作scope記録:85は「review往復が必要な期間」で日付がなく、:86に#1885 merge/closeの撤去契機がなく、:102は前節を継承するだけ。:74「これはClaude側の作業責務ではないから」は担い手の指定で、reboot後の保持やhook種別追加の許可ではない。",
+        "change": "撤去契機に#1885のmerge/closeと具体日付を加える。またはreboot後保持（ConfigChange含む）の可否をPOに直接確認し原文と受信時刻を記録する。それまではPOが承認した範囲に収める。"
+      },
+      {
+        "id": "R4-2",
+        "severity": "Major",
+        "evidence": "記録:99は「今回の指示に従い」ConfigChangeを追加としたが、:94の引用（「送れるはずだが？」「旧実装に起こす方法あったんじゃないの？VSCodeを新たに立ち上げようとしたお前の方法は間違いだ。」）はVS Code再起動を批判し旧Stop asyncRewake方式（:96、README:114）を指すもので、ConfigChangeやuser-global設定への新hook種別を求めていない。:94に受信時刻がない。:18/:89は作成側判断と利用者発言を分けているが:99は混同。",
+        "change": "':99を作成側の実装判断と書き直し、:94の受信時刻を加える。ConfigChange追加をPOに確認するか、先行指示5「必要ですならしろ」だけが根拠だと明記する。"
+      },
+      {
+        "id": "R4-3",
+        "severity": "Minor",
+        "evidence": "記録:23/:83/:86/:89は「SessionStart/Stopのみ」「4 command」、:100は「5 command」。README:108（checkout消失時の手動撤去）はSessionStart/Stopの子hookだけを消し、ConfigChangeが残る。",
+        "change": ":23/:83/:86/:89をConfigChange含む5 commandへ直し、README:108の撤去手順にConfigChangeを加える。"
+      },
+      {
+        "id": "R4-4",
+        "severity": "Minor",
+        "evidence": "README:123と記録:102はrearmが「statusMessageだけ変える」とするが、configure_gui.py:52-72 update()はClaudeの所有hook 3件を全削除して現checkoutのpathで追加し直し、main()（:86-95）に既存確認がない。POの停止指示で撤去済みでも--rearm --applyで復活し、別checkoutから実行するとpathが切り替わる。",
+        "change": "rearmは同じpathの所有Claude hookがちょうど3件ある場合だけ実行しstatusMessageだけを変える。拒否ケースの試験を追加する。"
+      },
+      {
+        "id": "R4-5",
+        "severity": "Minor",
+        "evidence": "R3-3の継続。記録:60「確認中は…撤去し、再接続しない」と:90「再接続した」が矛盾。",
+        "change": ":60に「のちに:72以降の判断で再接続」と注記する。"
+      },
+      {
+        "id": "R4-6",
+        "severity": "Minor",
+        "evidence": "scaffold/evidence/gui-review-fixes-2026-09-20.jsonにも操作scope記録にもR3-1〜R3-4の処分が無い（grep 0件）。依頼packetはround4がround3をsupersedeするとだけ述べる。",
+        "change": "R3-1〜R3-4それぞれについて解消・未対応・却下と理由を記録する。"
+      },
+      {
+        "id": "R4-7",
+        "severity": "Info",
+        "evidence": "ConfigChange拒否試験は誤sourceだけ（gui_selftest.py:245-247）で、正sourceと誤file_path、codex runtime、別repositoryのcwdを試験しない。test_gui_hook_output（:110-122）はreceiveをpatchしConfigChange経由の実起床経路を通らない。:271のpatch.object(scf.os,'path')は未変更。",
+        "change": "任意: 上記3拒否ケースを追加する。"
+      },
+      {
+        "id": "R4-8",
+        "severity": "Info",
+        "evidence": "Claude CodeのConfigChange hookはexit 2で設定変更をblockし得るが、asyncRewake併用時の挙動は未検証。user_settingsの変更（rearm、無関係toolのapply）ごとに同repositoryの全Claude sessionでhookが起動する。旧watcherはtoken dedup（gui_mailbox.py:252-255、:172）で終了する。",
+        "change": "実機でasyncRewake併用のexit 2が設定変更をblockしないことを確認し、README/証跡に記録する。"
+      }
+    ],
+    "unreviewed": [
+      "round3処分: R3-1はoption(b)で解消（ConfigChangeをcommit、共有worktreeはclean=HEAD、稼働5 hook=HEAD、台帳3/file、residuals 0）。R3-2→R4-1、R3-3→R4-5、R3-4未対応（任意）。HEADでscfctl validate bindings=3 fail=0、stale 0、residuals 0、selftest 38/0、govcheck ok、git diff --check合格。",
+      "gui_selftest.py・selftest.py・packet.pyの実行結果（実行していない）。",
+      "rearm起点のConfigChangeが登録sessionを実際に起こしACKに至るか（REVIEW-04のACKはStop経由の可能性）。",
+      "Claude・Codex hookの実機挙動（ConfigChange exit 2+asyncRewake、Codex timeout単位、Codex Stop経由の自動受信）。",
+      "変更前の利用者設定に無関係なhook・値があったか（比較対象なし）。",
+      "PO引用（「今は残す」「これはClaude側の作業責務ではないから」、:94の2件）の真正性と時刻。Issue #1884・#1866本文digestのread-after。"
+    ]
+  }
+}
