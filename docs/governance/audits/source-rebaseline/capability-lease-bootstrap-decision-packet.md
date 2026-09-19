@@ -97,7 +97,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
     全文そのまま転記してよい。同一accountでは本人投稿と転記に検証上の差がないためである。転記はcommentにその旨を明記する。
 - `require_separate_identity`: 作成側、各reviewer、executorを、相互に別のGitHub identity（GitHub Appまたは別account）にする。
   帰結は次のとおり。
-  - lease記録にidentity表（role → GitHub login）を置く。commentとpushの投稿者は次のとおりとし、executorはloginを照合する。
+  - lease記録にidentity表（role → GitHub login。作成側、各reviewer、executorに加えPOのloginを含む）を置く。commentとpushの投稿者は次のとおりとし、executorはloginを照合する。
     依頼commentと`review_request_delivery_receipt`は、依頼を送る作成側のloginが投稿する（運用モデルの依頼送信・read-after・receipt
     appendの手順どおり）。応答commentは、依頼先として登録されたreviewerのloginが投稿する。mainへのpushと`merge_result`は
     executorのloginが行う。この対応に合わないcommentやpush（例: 作成側loginによる応答、reviewer loginによるpush）があれば対象外。
