@@ -196,9 +196,12 @@ def notification(message):
             + json.dumps(notice, ensure_ascii=True))
 
 
-def observe(data, runtime, session, now):
+def observe(data, runtime, session, now, event="Stop"):
     values = data["observed"].setdefault(runtime, {})
-    values[session] = dict(at=now, event="Stop")
+    values[session] = dict(at=now, event=event)
+    history = data.setdefault("hook_events", [])
+    history.append(dict(runtime=runtime, event=event, at=now))
+    history[:] = [entry for entry in history if now - entry["at"] <= 7200][-64:]
     data["observed"][runtime] = dict(sorted(
         ((k, v) for k, v in values.items() if now - v["at"] <= 7200),
         key=lambda item: item[1]["at"], reverse=True)[:64])
@@ -224,7 +227,11 @@ def apply_enrollment(data, runtime, session, now, chain):
 def hook(runtime, wait):
     entry = json.load(sys.stdin)
     session = identity(entry.get("session_id"))
-    p.require(entry.get("hook_event_name") in ("SessionStart", "Stop"), "未対応hook event")
+    event = entry.get("hook_event_name")
+    p.require(event in ("SessionStart", "Stop", "ConfigChange"), "未対応hook event")
+    if event == "ConfigChange":
+        p.require(runtime == "claude" and entry.get("source") == "user_settings", "回復hookの対象外")
+        p.require(entry.get("file_path") == str(Path.home() / ".claude/settings.json"), "回復hookの設定path不一致")
     p.require(isinstance(entry.get("cwd"), str) and Path(entry["cwd"]).is_absolute(), "hook cwdが必要")
     cwd = Path(entry.get("cwd", "")).resolve()
     # 同じGit repositoryのGUIだけ。別projectや裸CLIをこの設定から起動しない。
@@ -235,7 +242,7 @@ def hook(runtime, wait):
         print("{}")
         return
     with state() as data:
-        observe(data, runtime, session, time.time())
+        observe(data, runtime, session, time.time(), event)
         apply_enrollment(data, runtime, session, time.time(), ancestors())
         registered = data["lanes"].get(runtime)
         active = registered and registered["session"] == session and registered["expires"] > time.time()

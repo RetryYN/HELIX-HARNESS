@@ -26,7 +26,7 @@ python3 -B scaffold/review-handoff/configure_gui.py
 python3 -B scaffold/review-handoff/configure_gui.py --apply
 ```
 
-previewは追加するhookだけを表示する。applyは利用者の`.claude/settings.json`と`.codex/hooks.json`へ本仮設のSessionStart／Stopだけを追加する。
+previewは追加するhookだけを表示する。applyは利用者の`.claude/settings.json`と`.codex/hooks.json`へ本仮設のSessionStart／Stopと、Claude側のConfigChange回復hookを追加する。計5 command。
 無関係な設定を保持し、書込後に再読する。**hook trust、権限、model、provider、AGENTS／CLAUDE本文は変更しない。**
 Codex拡張のHooks画面で新hookを信頼し、必要なら同じsessionを再開する。Claude側もhookを読み込む。
 SessionStart／Stopで観測したsessionは`status`に現れるが、自動で作業レーンにはしない。
@@ -108,3 +108,19 @@ Bindingのexternal-hooks参照台帳を通じ、scfctl residualsでも退役後�
 checkout自体が失われた場合は、両providerの利用者設定を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stopの子hookだけを削除する。無関係なhookと設定値を残す。復旧したcheckoutでauditとresidualsを実行する。
 外部参照台帳はBindingのupstreamにも束縛し、退役後にartifactsから外しても欠落をエラーにする。
 wrapperはhook障害の再起動連鎖を避けるため通知専用終了値以外を0にする。state破損等で無音失敗する可能性があり、queuedだけで配送成功とせずlive ACKを確認する。
+
+## 待受消失からの回復
+
+旧実装の起床は共有通知箱→Claudeが起動したStop asyncRewake待受→同じsession再開という方式だった。外から新しいVS Codeを開く処理ではない。
+本仮組みではpath切替時に旧待受を止めた後、新待受が無い空白を作った。この状態をqueuedや登録済みleaseだけで稼働中と扱わない。
+Claudeの公開ConfigChange（matcher=user_settings）を回復入口とし、同じrepo・登録済みsession・利用者settingsのpathを確認してから既存の待受へ入る。設定変更を繰り返すpollは行わない。
+
+```sh
+python3 -B scaffold/review-handoff/configure_gui.py --apply
+python3 -B scaffold/review-handoff/configure_gui.py --rearm --apply
+```
+
+rearmは所有ConfigChange hookのstatusMessageだけを新しいtokenへ変更してnative eventを発火させる。Codex設定は触らない。ConfigChangeもasyncRewakeと専用終了値wrapperを使い、通知を取得した場合だけ既存Claudeを起こす。
+初回登録後はprovider側の設定読込を待ってrearmする。stateのhook_eventsにConfigChangeが現れること、依頼がclaimedになり受信GUI自身がACKすることを段階別に確認する。hook_eventsは64件・2時間のlocal観測記録である。
+Claudeの設定変更hookは実機で発火を観測済み。Codexのnative Stop自動受信は引き続き未確認。公開URIによるGUI開き直し、送信欄操作、別providerセッション、非公開IPCは回復経路にしない。
+[Claude hooksの公開仕様](https://code.claude.com/docs/en/hooks)を参照する。

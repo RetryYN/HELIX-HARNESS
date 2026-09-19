@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import shlex
 import tempfile
+import uuid
 
 HERE = Path(__file__).resolve().parent
 
@@ -18,10 +19,13 @@ def entries(runtime):
         return call + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
     stop = dict(type="command", command=command(3600 if runtime == "claude" else 5), timeout=3660 if runtime == "claude" else 10)
     if runtime == "claude": stop["asyncRewake"] = True
-    return {
+    result = {
         "SessionStart": [{"hooks": [dict(type="command", command=command(0), timeout=10)]}],
         "Stop": [{"hooks": [stop]}],
     }
+    if runtime == "claude":
+        result["ConfigChange"] = [{"matcher": "user_settings", "hooks": [dict(stop)]}]
+    return result
 
 
 def owned(hook):
@@ -45,7 +49,7 @@ def count_owned(existing):
                for record in records for h in record.get("hooks", []))
 
 
-def update(existing, runtime, remove=False):
+def update(existing, runtime, remove=False, rearm_token=None):
     result = copy.deepcopy(existing)
     hooks = result.setdefault("hooks", {})
     for event in list(hooks):
@@ -62,6 +66,8 @@ def update(existing, runtime, remove=False):
         else: del hooks[event]
     if not remove:
         for event, records in entries(runtime).items():
+            if event == "ConfigChange" and rearm_token:
+                records[0]["hooks"][0]["statusMessage"] = "HELIX GUI recovery " + rearm_token
             hooks.setdefault(event, []).extend(records)
     if not hooks: result.pop("hooks", None)
     return result
@@ -72,10 +78,13 @@ def main():
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--remove", action="store_true")
     parser.add_argument("--audit", action="store_true", help="所有hookの残留件数。残留ありはexit 1")
+    parser.add_argument("--rearm", action="store_true", help="Claudeの所有ConfigChange hook metadataだけを更新して待受を再登録する")
     args = parser.parse_args()
     residual_count = 0
     paths = {"claude": Path.home() / ".claude/settings.json", "codex": Path.home() / ".codex/hooks.json"}
     for runtime, path in paths.items():
+        if args.rearm and runtime != "claude":
+            continue
         before = path.read_bytes() if path.exists() else None
         existing = json.loads(before) if before is not None else {}
         if args.audit:
@@ -83,7 +92,7 @@ def main():
             residual_count += count
             print(runtime + ": owned_hook_residuals=" + str(count))
             continue
-        after = update(existing, runtime, args.remove)
+        after = update(existing, runtime, args.remove, uuid.uuid4().hex if args.rearm else None)
         # 設定値やcredentialsを表示しない。今回のhookだけをpreviewする。
         if not args.apply:
             print(json.dumps(dict(runtime=runtime, action="remove" if args.remove else "add", hooks=entries(runtime)), ensure_ascii=False, indent=2))
@@ -100,7 +109,7 @@ def main():
         finally:
             if os.path.exists(temp): os.unlink(temp)
         assert json.loads(path.read_bytes()) == after
-        assert count_owned(after) == (0 if args.remove else 2)
+        assert count_owned(after) == (0 if args.remove else (3 if runtime == "claude" else 2))
         print(runtime + ": hook設定read-after一致。GUI側のtrust／読込／受信ACKは別確認")
 
     if args.audit and residual_count:

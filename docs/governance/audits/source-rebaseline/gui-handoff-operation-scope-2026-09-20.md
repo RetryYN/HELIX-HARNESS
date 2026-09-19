@@ -88,3 +88,16 @@ Claude側のreview指摘から保持・撤去の実行許可を生成せず、�
 
 上記4 commandの具体pathと保持条件は作成側が限定した実装内容であり、利用者がそれらの文字列を個別指定したとは主張しない。
 原文確認中に行った一時撤去の後、この限定scopeで永続pathから再接続する。再接続後のtrustは利用者のprovider側確認を尊重する。
+
+## 起床経路の是正（利用者指摘と回復処理）
+
+利用者から「送れるはずだが？」、続いて「旧実装に起こす方法あったんじゃないの？VSCodeを新たに立ち上げようとしたお前の方法は間違いだ。」との指摘を受けた。
+作成側は公開URIで登録済みsessionを開こうとしたが、この方向を中止した。送信欄には既存draftがあり、内容を変更・送信していない。このGUI操作を通知成功として数えない。
+旧 `PLAN-L7-469`、`claude-memory-wake.ts`、Stop設定をreferenceとして再読し、起床は既存のasyncRewake待受からのexit 2であったと確認した。旧コードは実行していない。
+障害はpath移行時に待受を無効にして後継を登録する前に止めたことであり、外からVS Codeを開くことでは修復しない。
+
+既存GUIの通知経路を修復する今回の指示に従い、Claudeの公開ConfigChange hookを同じ通知処理の回復入口へ追加した。
+対象は従来と同じ2設定fileで、ClaudeにSessionStart／Stop／ConfigChange、CodexにSessionStart／Stopの計5 command。
+ConfigChangeはuser_settingsに限定し、同じrepositoryと登録済みsession、settingsのexact pathを確認する。無関係な設定・trust・権限を変更しない。
+rearmは所有hookの表示metadataを1回更新するだけで、設定への常時pollや新しいprovider起動は行わない。保持条件・撤去契機は前節を継承する。
+native ConfigChangeの発火をlocal hook_eventsで観測した。新依頼の起床・受領ACKは別の証跡で確認し、イベント観測だけで配送成功を宣言しない。

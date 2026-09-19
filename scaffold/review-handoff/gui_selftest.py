@@ -107,8 +107,10 @@ class GuiChecks(unittest.TestCase):
         # native hookのstdin/出力形式を確認。実GUIへ注入した試験ではない。
         self.send()
         m = g.claim(self.data,"claude","claude-gui",self.now)
-        for runtime in ("claude","codex"):
-            stdin = io.StringIO(json.dumps(dict(session_id=runtime+"-gui",cwd=str(p.ROOT),hook_event_name="Stop")))
+        for runtime,event in (("claude","Stop"),("codex","Stop"),("claude","ConfigChange")):
+            entry=dict(session_id=runtime+"-gui",cwd=str(p.ROOT),hook_event_name=event)
+            if event == "ConfigChange":entry.update(source="user_settings",file_path=str(Path.home()/".claude/settings.json"))
+            stdin = io.StringIO(json.dumps(entry))
             stdout, stderr = io.StringIO(), io.StringIO()
             from contextlib import contextmanager
             @contextmanager
@@ -230,11 +232,26 @@ class GuiChecks(unittest.TestCase):
             g.retry(self.data,"codex","codex-gui","event-1",self.now)
 
 
+    def test_recovery_hook_is_native_and_scoped(self):
+        initial=config.update({},"claude")
+        rearmed=config.update(initial,"claude",rearm_token="new")
+        self.assertNotEqual(initial,rearmed)
+        self.assertEqual(rearmed["hooks"]["Stop"],initial["hooks"]["Stop"])
+        recovery=rearmed["hooks"]["ConfigChange"][0]
+        self.assertEqual(recovery["matcher"],"user_settings")
+        self.assertTrue(recovery["hooks"][0]["asyncRewake"])
+        self.assertEqual(config.count_owned(config.update(rearmed,"claude",True)),0)
+        self.assertNotIn("ConfigChange",config.entries("codex"))
+        stdin=io.StringIO(json.dumps(dict(session_id="claude-gui",hook_event_name="ConfigChange",source="policy_settings",file_path="/other")))
+        with patch.object(sys,"stdin",stdin):
+            with self.assertRaises(ValueError):g.hook("claude",0)
+
+
     def test_cross_checkout_hook_removal(self):
         settings=config.update({},"claude")
         settings=json.loads(json.dumps(settings).replace(str(g.HERE),"/gone/checkout/scaffold/review-handoff"))
         with patch.object(config,"HERE",Path("/another/checkout/scaffold/review-handoff")):
-            self.assertEqual(config.count_owned(settings),2)
+            self.assertEqual(config.count_owned(settings),3)
             self.assertEqual(config.count_owned(config.update(settings,"claude",True)),0)
         self.assertFalse(config.owned(dict(command="echo /gone/scaffold/review-handoff/gui_mailbox.py unrelated")))
 

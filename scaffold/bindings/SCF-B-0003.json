@@ -30,11 +30,11 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",
-      "sha256": "d241e3e14174b9b02190d38e7499f29f680953638d7a4a691e34441154060c6e"
+      "sha256": "f70ec5f726db705b6097ca015874c6df2cf14f9d2d97ce6a2d1edd93d4a8ed16"
     },
     {
       "path": "scaffold/external-references/SCF-B-0003.json",
-      "sha256": "b3eaa962421016ce441a2faa863393519fb6cec8b1d0d7bdb687d0f582e3844e",
+      "sha256": "5331fd7b07205fbcd74a147d3692c521c6760c9464c9a81a0ca37c78cfac64fd",
       "note": "外部consumer参照の保持・撤去契約。退役後も保持する"
     }
   ],
@@ -71,7 +71,8 @@
       "gui_mailbox.py bind／enroll／unbind／send／receive／ack／retry／status／hook",
       "configure_gui.py preview／apply／remove（利用者hook設定への最小参照）",
       "python3 -B scaffold/review-handoff/gui_selftest.py",
-      "configure_gui.py --audit（外部所有hookの残留検査）"
+      "configure_gui.py --audit（外部所有hookの残留検査）",
+      "configure_gui.py --rearm --apply（Claude所有ConfigChange metadataによる既存GUI待受回復）"
     ],
     "forbidden": [
       "archive/legacy-generation-*の読込・実行",
@@ -119,7 +120,11 @@
       "未ACKを配信完了とする誤表示",
       "古いwatcher",
       "通知箱payload改変",
-      "無関係なhook設定の上書き"
+      "無関係なhook設定の上書き",
+      "回復hookの別runtime・設定source・path",
+      "別checkoutからのhook撤去",
+      "退役後の外部参照台帳欠落",
+      "期限切れ重複sendのqueued誤表示"
     ]
   },
   "replacement": {

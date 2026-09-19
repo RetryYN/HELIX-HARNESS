@@ -4,6 +4,6 @@
   "authority_effect": "none",
   "settings_paths": ["~/.claude/settings.json", "~/.codex/hooks.json"],
   "script_suffix": "/scaffold/review-handoff/gui_mailbox.py",
-  "maximum_per_settings_file": 2,
+  "maximum_per_settings_file": 3,
   "retired_expected_count": 0
 }
