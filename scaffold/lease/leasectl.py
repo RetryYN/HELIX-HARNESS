@@ -867,12 +867,21 @@ def run_boundary_tests():
                  and not BT0.verdict_merge_tree(0, "a" * 40, "b" * 40)["ok"]
                  and not BT0.verdict_merge_tree(1, "", None)["ok"]})
     # 同じoptionの重複は、実行環境の許可（sudoers）の引数固定を外すため、どのcommandも拒否する
-    dup_rcs = []
     import contextlib as cl2, io as io2
-    with cl2.redirect_stderr(io2.StringIO()):
-        dup_rcs.append(BT0.main(["probe", "--lease-pr", "1886", "--lease-pr", "999", "--apply"]))
-        dup_rcs.append(LB0.main(["--login", "x", "--review-id", "1", "--lease-pr", "1", "--lease-pr", "2", "--apply"]))
-        dup_rcs.append(LR0.main(["7", "--context", "c", "--mode", "review", "--mode", "comment", "--apply"]))
+
+    def dup_refused(fn, args):
+        """重複で止まったことを、別の理由での停止と混ぜずに測る"""
+        err = io2.StringIO()
+        with cl2.redirect_stderr(err):
+            rc = fn(args)
+        return rc == 2 and "同じoptionが2回以上ある" in err.getvalue()
+
+    dup_rcs = [dup_refused(BT0.main, ["probe", "--lease-pr", "1886", "--lease-pr", "999", "--apply"]),
+               dup_refused(LB0.main, ["--login", "x", "--review-id", "1", "--lease-pr", "1", "--lease-pr", "2", "--apply"]),
+               dup_refused(LR0.main, ["7", "--context", "c", "--mode", "review", "--mode", "comment", "--apply"]),
+               dup_refused(main, ["admit", "7", "--context", "c", "--context", "d", "--apply"]),
+               dup_refused(LP0.main, ["request", "--pr", "1", "--pr", "2", "--class", "x", "--reviewer-target", "t",
+                                      "--request-file", "f", "--creator", "c", "--apply"])]
     # 省略形（--lease-p等）は認めない。重複検査をすり抜けさせない
     # parse段階で止まることを、後続の対象PR照合と混ぜずに独立して確かめる
     def parse_refused(fn, args):
@@ -898,18 +907,31 @@ def run_boundary_tests():
                                          "--new-authority-created", "no", "--text-file", "f"])])
     # 上の呼出しで測れないparser（selftest等）も含め、全parserが省略形を受け付けない定義であること
     mk = ("argparse." + "ArgumentParser(", "." + "add_parser(")   # この検査行自身に一致しないよう組み立てる
-    abbrev_src = all(("allow_abbrev=False" in ln) for f in
-                     ("leaseboot.py", "leasectl.py", "leasepost.py", "leaseprobe.py", "leaserecover.py",
-                      "../lease-bootstrap/appsetup.py")
-                     for ln in open(os.path.join(HERE, f), encoding="utf-8").read().splitlines()
+    src_files = sorted(glob.glob(os.path.join(HERE, "*.py")) +
+                       glob.glob(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "*.py")))
+    abbrev_src = all(("allow_abbrev=False" in ln) for f in src_files
+                     for ln in open(f, encoding="utf-8").read().splitlines()
                      if any(t in ln for t in mk))
-    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2] and abbr and abbrev_src
+    rows.append({"id": "BT-no-duplicate-options", "ok": all(dup_rcs) and abbr and abbrev_src
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
                  and not G.duplicate_options(["--a", "1", "--b", "2"])})
     # install.shは、実行中の自分のbytesが--shaの版と一致しなければ止まる
     cmp_line = 'cmp -s "$SELF" "$DEST.new/scaffold/lease-bootstrap/install.sh"'
     rows.append({"id": "BT-install-self-check", "ok": cmp_line in sh
                  and sh.index(cmp_line) < sh.index("cat > /usr/local/sbin/helix-lease-run")})
+    # install.shは、引数の重複を最初に拒否し、executor userのhomeがAI側から届かないことを確かめてから置く
+    home_owner = '[ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ]'
+    rows.append({"id": "BT-install-args-home",
+                 "ok": "同じoptionが2回以上あります" in sh
+                 and sh.index("同じoptionが2回以上あります") < sh.index("while [ $# -gt 0 ]; do")
+                 and home_owner in sh
+                 and '[ "$EXEC_HOME" != "$(getent passwd "$AI_USER" | cut -d: -f6)" ]' in sh
+                 and sh.index(home_owner) < sh.index("cat > /usr/local/sbin/helix-lease-run")
+                 # homeの祖先も、AI側から差し替えられない場所であること
+                 and '[ "$(stat -c %U "$D")" = "root" ]' in sh and '-perm /022' in sh
+                 # wrapperから起動できないappsetupも、同じoptionの重複を拒否する
+                 and "同じoptionが2回以上ある" in open(os.path.join(os.path.dirname(HERE), "lease-bootstrap",
+                                                                "appsetup.py"), encoding="utf-8").read()})
     # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
     import subprocess as sp3
 
@@ -989,9 +1011,13 @@ def cmd_selftest(a):
         import hashlib
         tool = hashlib.sha256(b"".join(open(os.path.join(HERE, f), "rb").read() for f in
                                        sorted(os.listdir(HERE)) if f.endswith(".py"))).hexdigest()
+        boot = os.path.join(os.path.dirname(HERE), "lease-bootstrap")
+        bootstrap = hashlib.sha256(b"".join(open(os.path.join(boot, f), "rb").read()
+                                            for f in sorted(os.listdir(boot))
+                                            if os.path.isfile(os.path.join(boot, f)))).hexdigest()
         cases = hashlib.sha256(b"".join(open(p, "rb").read() for p in sorted(glob.glob(os.path.join(HERE, "cases", "*.json"))))).hexdigest()
         with open(EVIDENCE, "w", encoding="utf-8") as f:
-            json.dump({"evidence_kind": "scaffold", "tool_sha256": tool, "cases_sha256": cases, "cases": len(rows),
+            json.dump({"evidence_kind": "scaffold", "tool_sha256": tool, "bootstrap_sha256": bootstrap, "cases_sha256": cases, "cases": len(rows),
                        "boundary": len(b), "fail": fail}, f, ensure_ascii=False, indent=1)
             f.write("\n")
     return 1 if fail else 0

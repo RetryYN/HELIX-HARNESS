@@ -180,6 +180,13 @@ def main(argv=None):
     p.add_argument("--timeout", type=int, default=900); p.add_argument("--org", action="store_true")
     sp.add_parser("token", allow_abbrev=False)
     sp.add_parser("show", allow_abbrev=False)
+    seen = set()
+    for x in (argv if argv is not None else sys.argv[1:]):
+        if x.startswith("--") and x.split("=")[0] in seen:
+            print("拒否: 同じoptionが2回以上ある: %s" % x.split("=")[0], file=sys.stderr)
+            return 2
+        if x.startswith("--"):
+            seen.add(x.split("=")[0])
     a = ap.parse_args(argv)
     try:
         return {"create": cmd_create, "token": cmd_token, "show": cmd_show}[a.cmd](a)

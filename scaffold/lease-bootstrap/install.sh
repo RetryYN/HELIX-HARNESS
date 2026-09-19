@@ -81,6 +81,14 @@ EXEC_HOME="$(getent passwd "$EXEC_USER" | cut -d: -f6)"
 [ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ] || { echo "拒否: $EXEC_HOME が $EXEC_USER の所有ではありません" >&2; exit 2; }
 [ "$EXEC_HOME" != "$(getent passwd "$AI_USER" | cut -d: -f6)" ] || { echo "拒否: AI側userとhomeが同じです" >&2; exit 2; }
 chmod 0750 "$EXEC_HOME"   # 他のuserからは読めず書けない
+# homeの祖先も、AI側userから差し替えられない場所であること（root所有・他から書けない）
+D="$(dirname "$EXEC_HOME")"
+while :; do
+  [ "$(stat -c %U "$D")" = "root" ] || { echo "拒否: $D がroot所有ではありません（homeの置き場所を変えてください）" >&2; exit 2; }
+  [ -z "$(find "$D" -maxdepth 0 -perm /022)" ] || { echo "拒否: $D が他のuserから書けます" >&2; exit 2; }
+  [ "$D" != "/" ] || break
+  D="$(dirname "$D")"
+done
 if [ -e "$DEST" ]; then rm -rf "$DEST.old"; mv "$DEST" "$DEST.old"; fi
 mv "$DEST.new" "$DEST"
 chown -R root:root "$DEST"
