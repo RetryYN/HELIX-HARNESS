@@ -89,7 +89,9 @@ POの指示は判断単位を名前で指しており、digestを指定してい
 `status: input_denominator_incomplete_not_decision_ready`であり、同packetは現時点で選べる結果を`changes_requested`と
 `defer`に限っている。本判断はそのうち`defer`を選んだものである。
 
-- packet v2と、その計上台帳・holding screenの内容を変更しない。`authority_effect: none`のままである。
+- このdefer判断自体は、packet v2と、その計上台帳・holding screenを変更しない。`authority_effect: none`のままである。
+  未評価holdingの処分作業や下記の再baselineでこれらが改訂された場合、本deferは新しいbytesへ自動継承されず、
+  本recordは`f2c2db07…`に束縛されたまま残る（「revision変更時の扱い」）。改訂後のpacketは改めて人間判断へ送る。
 - `L2D-S1-01`のL2／L11本文への適用、successor割当、次のdecision unitへの前進を行わない。
 - 生存中13 source holdingのうち未評価11件の処分を進め、decision-readyへ戻ったときに改めて人間判断へ送るという
   従前の進め方を変えない。本deferはその作業を止めない。
@@ -169,9 +171,10 @@ packet v2の判断対象revision表を黙ってstaleにしてはならず、次�
 
 1. 同じPRまたは先行PRで、packet v2の判断対象revision表を再baselineし、S0の適用がS1-01の比較とsplit案に与える影響を
    確認して記録する。
-2. S0の適用とS1-01の再baselineの順序を変える必要がある場合は、その順序を人間判断に付す。
+2. 1の順序（再baselineを適用と同時かそれより前に行う）を変える必要がある場合は、その順序を人間判断に付す。
 
-本recordは、この2つのどちらを採るか、およびS0適用とS1-01の順序を決めていない。
+本recordが課すのは、packet v2の判断対象revision表を黙ってstaleにしないという条件だけであり、これはpacket v2が
+判断対象をSHA-256へ束縛していることから導いたものである。S0の適用と`L2D-S1-01`の人間判断のどちらを先にするかは決めていない。
 
 ## 候補の停止条件の扱い
 

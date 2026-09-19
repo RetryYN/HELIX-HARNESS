@@ -18,9 +18,9 @@ S1へ入る前の管理分類登録第1層では、旧Requirement IR 153件す�
 HELIX-Web、HELIX-Web-OS、製品間接続、分割要の候補を登録し、独立reviewとmain read-afterを完了した。
 このproduct routing候補をsuccessor確定または要求承認として扱わない。`L2D-S1-01`は
 [人間判断packet v2](l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に判断材料を集めたが、
-生存中13 source holdingのうち11件が未評価であり、まだ人間判断へ送れない。第2独立review（2026-09-19）により、評価済みとした57要求の側でも6件の処分を改め、`in_scope`は13要求1,799 atomになった。v1は`MPR-SH-LEGACY-RULE-004`を計上して
+生存中13 source holdingのうち11件が未評価であり、decision-readyではない。2026-09-19にPOは`L2D-S1-01`を`defer`とした（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。第2独立review（2026-09-19）により、評価済みとした57要求の側でも6件の処分を改め、`in_scope`は13要求1,799 atomになった。v1は`MPR-SH-LEGACY-RULE-004`を計上して
 いないため`superseded_by_v2`である。
-人間判断まではL2／L11本文へ適用せず、S1–S4の次のdecision unitへ進めない。2026-09-18に追加したS0はこの直列の外にあり、下記S0節の範囲で並行に扱う。
+`L2D-S1-01`の採否が、L2／L11への適用を伴う結果（`approve_split`等）またはその不採用として確定するまで、L2／L11本文へ適用せず、S1–S4の次のdecision unitへ進めない。`defer`は採否を先送りする判断であり、この条件を満たさない。2026-09-18に追加したS0はこの直列の外にあり、下記S0節の範囲で並行に扱う。
 [第1層完了監査](product-routing-completion-and-l2-entry-2026-09-17.md)をこの遷移のread-afterとする。
 
 ## 採否単位の共通入力
