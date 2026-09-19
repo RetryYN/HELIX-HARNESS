@@ -61,8 +61,7 @@ packetの「人間判断」節の`approve`に従い、次をpacketの本文ど�
 - 補償統制として、review commentの全文、digest、IDをmerge commit messageへ残すこと。
 - POが依頼する外部監査がlease mergeを読み直し、lease監査記録をrepoへ入れること（lease監査記録はlease対象外で、POがmergeする）。
   監査が担えるのはauthority面の変更の見逃しと記録間の不整合の発見であり、偽造や独立性違反はほぼ検出できないこと。
-  最後の監査記録より後のlease mergeが10件に
-  達したら、executorは次のmergeをしないこと。
+  最後の監査記録より後のlease mergeが10件に達したら、executorは次のmergeをしないこと。
 - 見逃し・不整合・偽造・独立性違反が判明したらleaseを`suspended`とし、人間判断まで再開しないこと。
 - reviewerが自ら投稿できない場合に限り、作成側がreviewer出力を全文そのまま転記した応答commentを認めること（転記である旨を明記）。
 
