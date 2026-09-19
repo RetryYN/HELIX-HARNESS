@@ -24,6 +24,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
    - [5大目標・七大原則のL1被覆監査](audits/source-rebaseline/l1-goals-principles-coverage-audit.md)
    - [5大目標・七大原則のPO原文source atom inventory](l1-goals-principles-source-inventory.md)
 6. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
+   - [L2D-S0-01・S0-02承認とL2D-S1-01 deferのdecision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)
 7. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
 8. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 9. [上流authority状態モデル](authority-state-model.md)
