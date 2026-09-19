@@ -13,10 +13,13 @@ import time
 
 HERE = Path(__file__).resolve().parent
 EXPIRES_AT = int(datetime.fromisoformat("2026-09-20T23:59:00+09:00").timestamp())
-BOOT_ID = Path("/proc/sys/kernel/random/boot_id").read_text().strip()
 
 
-def lifetime_guard(boot_id=BOOT_ID, expires_at=EXPIRES_AT):
+def lifetime_guard(boot_id=None, expires_at=None):
+    if boot_id is None:
+        boot_id = Path("/proc/sys/kernel/random/boot_id").read_text().strip()
+    if expires_at is None:
+        expires_at = EXPIRES_AT
     return ('[ "$(cat /proc/sys/kernel/random/boot_id 2>/dev/null)" = ' + shlex.quote(boot_id)
             + ' ] || exit 0; [ "$(date +%s)" -lt ' + str(expires_at) + ' ] || exit 0; ')
 

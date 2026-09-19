@@ -133,3 +133,12 @@ native ConfigChangeの発火をlocal hook_eventsで観測した。新依頼の�
 | R4-6 | 対応 | 本表へ全round3指摘の処分を記録 |
 | R4-7 | 対応 | 誤path・codex runtime・別repoの拒否例を追加し、os.path mockを廃止 |
 | R4-8 | 未検証を保持 | ConfigChange発火は確認済みだが、exit2後のprovider内部設定適用判断を独立に観測していない。asyncRewake併用の設定block意味論を断定しない |
+
+## Round 5指摘の処分
+
+round5ではR4-1〜R4-7の解消をreviewerが確認し、Blocker／Majorは0件となった。
+
+- R5-1: 自己検査の通常経路ではEXPIRES_ATを将来へ固定し、期限後も再現可能にした。期限後に入力・stateへ触れず終了すること、待受時間が期限で短縮されることの試験を追加。期限後はconsumer接続を撤去し、自動retireや暗黙延長は行わない。延長には新たなPO判断とrevision束縛が必要。
+- R5-2: reviewerの代替案に従い、active時のresiduals=0は失効参照の撤去完了を示さないと明記した。失効後はaudit→必要ならremove→audit=0を必須手順とする。期限後のmergeでも接続を復活させない。
+- R5-3: boot ID読込みをguard生成時へ遅延し、通知箱のsend／ack等のimportでは/procを読まないようにした。新たなplatform対応を主張しない。
+- R4-8: provider内部設定block判断は未検証を維持する。round5依頼ではclaim.hook_event=ConfigChangeでの取得と、既存ClaudeからのACKを確認済み。これは設定適用判断とは別の証拠。

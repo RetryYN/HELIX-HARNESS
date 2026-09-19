@@ -131,3 +131,8 @@ Claudeの設定変更hookは実機で発火を観測済み。Codexのnative Stop
 commandのboot ID／期限guardは再起動・期限後の本体実行を止め、待受も期限で終わる。設定参照そのものは実行側がremove→auditで撤去する。止まっただけで残留0とは扱わない。
 rearmは同じcheckout・現行commandのClaude hookが3件揃っている場合だけ許す。撤去済み接続の復活や別checkoutへの付替えは拒否し、既存ConfigChangeのstatusMessage以外を変えない。
 ConfigChange+asyncRewakeの発火と配送確認、provider内部の設定変更block判断、Codex Stop自動受信は別々に扱う。内部の設定適用結果が未観測なら未検証のまま残す。
+
+期限後・再起動後には、実行側がまず `configure_gui.py --audit` を行い、所有参照があれば `--remove --apply` → `--audit` で0件を確認する。
+active bindingの `scfctl residuals=0` は、boot不一致・期限切れの不活性な参照が撤去されたことを意味しない。guardの失効判定はresidualsの対象外で、撤去確認にはauditが必須である。
+期限切れだけでは正式側への移管が成立しないためBindingを自動retireしない。consumer接続を停止・撤去した状態でreviewを続ける。期限後のmergeでも、接続は撤去済みとして扱い、再起動しない。
+延長や再接続が必要な場合はPOの新たなscope・期限の判断を記録して別revisionへ束縛する。再現試験のために実接続期限を延長しない。自己検査は時刻を注入し、通常経路と期限切れ経路を独立に検査する。

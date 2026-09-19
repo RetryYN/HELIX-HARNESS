@@ -31,6 +31,11 @@ class GuiChecks(unittest.TestCase):
 
     def setUp(self):
         self.now = time.time()
+        # 本番接続の固定期限に依存せず、通常経路のoracleを後日も再現する。
+        for module in (g, config):
+            timer = patch.object(module, "EXPIRES_AT", int(self.now) + 3600)
+            timer.start()
+            self.addCleanup(timer.stop)
         self.data = dict(version=1, lanes={}, observed={}, messages={})
         g.bind(self.data, "codex", "codex-gui", "execution", 60, self.now)
         g.bind(self.data, "claude", "claude-gui", "review_merge", 60, self.now)
@@ -245,6 +250,22 @@ class GuiChecks(unittest.TestCase):
         stdin=io.StringIO(json.dumps(dict(session_id="claude-gui",hook_event_name="ConfigChange",source="policy_settings",file_path="/other")))
         with patch.object(sys,"stdin",stdin):
             with self.assertRaises(ValueError):g.hook("claude",0)
+
+
+    def test_expired_hook_does_not_read_input_or_state(self):
+        stdout=io.StringIO()
+        with patch.object(g,"EXPIRES_AT",self.now-1),patch.object(sys,"stdin",io.StringIO("invalid input")),patch.object(sys,"stdout",stdout),patch.object(g,"state",side_effect=AssertionError("expired hook accessed state")):
+            g.hook("claude",3600)
+        self.assertEqual(stdout.getvalue().strip(),"{}")
+
+    def test_hook_wait_is_capped_at_deadline(self):
+        from contextlib import contextmanager
+        @contextmanager
+        def fake_state():yield self.data
+        entry=dict(session_id="claude-gui",cwd=str(p.ROOT),hook_event_name="Stop")
+        with patch.object(g,"EXPIRES_AT",self.now+2),patch.object(g.time,"time",return_value=self.now),patch.object(g,"state",fake_state),patch.object(sys,"stdin",io.StringIO(json.dumps(entry))),patch.object(sys,"stdout",io.StringIO()),patch.object(g,"receive",return_value=None) as receiver:
+            g.hook("claude",3600)
+        self.assertEqual(receiver.call_args.args[2],2)
 
 
     def test_rearm_never_installs_or_migrates(self):
