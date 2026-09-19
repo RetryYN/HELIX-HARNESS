@@ -203,13 +203,13 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 ### 両leaseに共通する条件
 
-- **期限**: `expires_at: 2026-12-31T23:59:59+09:00`、または本leaseを担うScaffold `SCF-B-0003`が`retire`された時点の、早い方。
+- **期限**: `expires_at: 2026-12-31T23:59:59+09:00`、または本leaseを担うScaffold `SCF-B-0004`が`retire`された時点の、早い方。
   期限後は無効で、更新は人間判断とする。
 - **取消しと即時停止**: POは次のどれでも止められ、executorは次の書込み前にそれを確かめる。
   1. 実行環境からexecutor commandへの許可を外す（外側の境界。その時点から実行できない）。
   2. executorを動かすsessionへ停止を指示する。
   3. lease記録の`revoked_at`と理由をmainへ入れる（恒久記録。1と2の後で入れてよい）。
-- **置換先**: 正式なHELIX-OSの委任authority要求と、そのL3／L10から導出する実装。それが入ったら`SCF-B-0003`を
+- **置換先**: 正式なHELIX-OSの委任authority要求と、そのL3／L10から導出する実装。それが入ったら`SCF-B-0004`を
   `scfctl check-replacement` → `retire`で撤去する。
 - **二重境界**: 実行環境（Claude Code）の許可は、lease検査を内側に持つ一つのexecutor commandにだけ与える。`gh pr merge`、
   `git push`、GitHub APIでの直接書込みそのものには許可を与えない。実行環境の許可が「この1コマンドだけ実行してよい」を、
@@ -250,7 +250,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 ## 手順
 
 1. 本PR: packetのreviewを0件にし、POが判断する。approveなら、判断recordを本PRへ追加して再reviewし、POがmergeする。
-2. 後続の`operation_change` PR: lease記録（機械可読。mappingを含む）、executor command、`SCF-B-0003`（上流は本packetと判断record）、
+2. 後続の`operation_change` PR: lease記録（機械可読。mappingを含む）、executor command、`SCF-B-0004`（上流は本packetと判断record）、
    上記規則1〜6の文言、negative caseを置く。negative caseは少なくとも次について、GitHubへ書き込まないこと（またはsuspendedになること）を確かめる。
    lease失効・取消し・suspended、区分が`repository_foundation`でない、区分欄の変更、許可集合外または除外集合のpath、renameで除外pathへ触れる、
    authority系keyの追加行・削除行・表書式、decisionまたはbindingが束縛するbytesの変更、`authority_surface_changed`が`yes`または欠落、pair不一致、別pairの依頼、応答のない依頼、findingのある応答、reviewer 2 context未満、編集されたcomment、
@@ -258,7 +258,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
    push拒否、merge後の親不一致、merged表示の時間切れ、`merge_result`失敗、projection_syncのmapping外・直前receiptの未取込み・書込み前照合不一致・編集履歴不一致、投稿commandによる対象PR以外への書込み。
    POがGitHubで直接mergeする。
 3. POが実行環境にexecutor commandと投稿commandだけを許可する。以後、対象PRはexecutorがmergeする。
-4. 正式なHELIX-OS委任authority要求をL2／L11へ降ろし、L3／L10から実装を導出して、`SCF-B-0003`を撤去する。
+4. 正式なHELIX-OS委任authority要求をL2／L11へ降ろし、L3／L10から実装を導出して、`SCF-B-0004`を撤去する。
 
 ## 人間判断
 
