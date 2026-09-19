@@ -15,7 +15,7 @@
   },
   {
    "path": "docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md",
-   "sha256": "b5ca797e0f1d2cc418249560a8775cd1a1c24bb3b5f5ae1cb05c2805991a725b",
+   "sha256": "90f5ab6ebd7266fab742f5720b4293f825d913832245bcb977a5adbec5b0f0fe",
    "note": "L2D-S0-01 scaffold-binding"
   }
  ],
@@ -96,5 +96,5 @@
   "confirmation_digest": null
  },
  "created": "2026-09-18",
- "updated": "2026-09-18"
+ "updated": "2026-09-19"
 }
