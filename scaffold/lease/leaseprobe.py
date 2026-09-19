@@ -43,7 +43,15 @@ def main(argv=None):
     ap.add_argument("--lease-pr", type=int, help="有効化前: lease記録を埋めた後続operation_change PRのheadのlease記録で実測する")
     a = ap.parse_args(argv)
     gh = G.GH()
-    lease = G.lease_at(gh, a.lease_pr)   # packet: 実測は有効化の条件。有効化前はPRのlease記録に対して行う
+    bad = G.verify_self(gh)
+    if bad:
+        print("拒否: 実行中のcommandのbytesがorigin/mainと一致しない: %s" % ", ".join(bad), file=sys.stderr)
+        return 2
+    try:
+        lease = G.lease_at(gh, a.lease_pr)   # packet: 実測は有効化の条件。有効化前はPRのlease記録に対して行う
+    except RuntimeError as e:
+        print("拒否: %s" % e, file=sys.stderr)
+        return 2
     probe = lease.get("probe") or {}
     tests = {t.get("id"): t.get("state") for t in probe.get("test_reviews") or []}
     if a.review_id not in tests or not probe.get("test_pr") or not lease.get("status_issue"):
@@ -77,8 +85,12 @@ def main(argv=None):
     if target and (target.get("user") != (lease.get("identity") or {}).get("po") or C.decision_lines(target.get("body"))):
         print("拒否: 試験reviewは人間判断者loginが提出し、本文に`decision:`行を持たないものに限る", file=sys.stderr)
         return 2
-    if not target or target.get("state") != tests[a.review_id]:
-        print("試験reviewが試験PRに無い、または状態が違う（deletedとして扱う根拠になる）", file=sys.stderr)
+    if target and target.get("state") != tests[a.review_id]:
+        print("拒否: 試験reviewの状態が%sで、lease記録の%sでない（その状態の削除不能を実測できない）"
+              % (target.get("state"), tests[a.review_id]), file=sys.stderr)
+        return 2
+    if not target:
+        print("試験reviewが試験PRに無い（deletedとして扱う）", file=sys.stderr)
     if not a.apply:
         print(json.dumps({"mode": "dry-run", "login": a.login, "review_id": a.review_id, "node_id": (target or {}).get("node_id")},
                          ensure_ascii=False))

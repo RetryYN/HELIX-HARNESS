@@ -6,7 +6,7 @@
    {
     "op": "set",
     "path": "reviews.0.user",
-    "value": "helix-ai"
+    "value": "helix-app[bot]"
    }
   ],
   "expect": [

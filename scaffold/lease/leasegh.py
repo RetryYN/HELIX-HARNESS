@@ -3,7 +3,7 @@
 書込みは`Writes`の許可リストを通したものだけが実行される。許可リストはcommandごとに固定し
 （packet 規則の意味6、二重境界）、リストに無い書込みは例外で止める。dry-runでは許可リストが空である。
 """
-import base64, urllib.request, datetime, hashlib, json, os, re, shutil, subprocess, tempfile, time, urllib.parse
+import atexit, base64, urllib.request, datetime, hashlib, json, os, re, shutil, subprocess, tempfile, time, urllib.parse
 
 import leasecore as C
 
@@ -38,11 +38,32 @@ class Runner:
         return p
 
 
+def isolated_git_env():
+    """executorのgit環境: 呼出し元のGIT_*を受け取らず、system・globalの設定とreplace objectsを読まない。"""
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+    env.update({"GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull, "GIT_NO_REPLACE_OBJECTS": "1",
+                "GIT_TERMINAL_PROMPT": "0"})
+    return env
+
+
 class GH:
-    def __init__(self, runner=None, writes=None, repo=C.REPO):
+    def __init__(self, runner=None, writes=None, repo=C.REPO, isolated=None):
         self.r = runner or Runner()
         self.w = writes or Writes()
         self.repo = repo
+        # 実際のrunnerでは、共有の作業treeと.gitを使わず、実行ごとの使い捨てbare repositoryへ明示したURLからfetchする
+        # （AI側contextが書ける`git replace`・.git/config・info/attributes・未commitのbytesを判定に入れない）
+        self.isolated = (runner is None) if isolated is None else isolated
+        self._gd = None
+
+    def _git_dir(self):
+        if self._gd is None:
+            self._gd = tempfile.mkdtemp(prefix="lease-git-")
+            atexit.register(shutil.rmtree, self._gd, True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+            env = isolated_git_env()
+            for args in (["init", "-q", "--bare"], ["remote", "add", "origin", "https://github.com/%s.git" % self.repo]):
+                self.r.run(["git", "--git-dir", self._gd] + args, env=env, cwd=self._gd)
+        return self._gd
 
     # ----- 読取り -----
     def api(self, path, paginate=False, method="GET"):
@@ -65,7 +86,12 @@ class GH:
 
     def git(self, *args, input=None, check=True):
         # core.quotepath=falseと-z（呼出し側）で、非ASCIIのpathを引用符付き8進表記にしない
-        return self.r.run(["git", "-c", "core.quotepath=false"] + list(args), input=input, check=check)
+        if not self.isolated:
+            return self.r.run(["git", "-c", "core.quotepath=false"] + list(args), input=input, check=check)
+        gd = self._git_dir()
+        return self.r.run(["git", "--git-dir", gd, "--no-replace-objects", "-c", "core.quotepath=false",
+                           "-c", "credential.helper=", "-c", "credential.helper=!gh auth git-credential"] + list(args),
+                          input=input, check=check, env=isolated_git_env(), cwd=gd)
 
     # ----- 書込み（許可リストを通す） -----
     def comment(self, issue, body):
@@ -389,6 +415,20 @@ def verified_lease_merge(gh, sha, lease, recovery_ok=False, comments_fn=None):
     return None
 
 
+def verify_self(gh):
+    """実行中のexecutor command群のbytesが、origin/mainの`scaffold/lease/`の版と一致するか（未commitの書換えで判定を変えない）。
+    これだけでは循環するため、POが許可する実行場所はAI側contextから書けないread-onlyのcopyに限る（README「有効化」）。"""
+    gh.git("fetch", "-q", "origin", "main")
+    bad = []
+    for f in sorted(os.listdir(HERE)):
+        if f.endswith(".py"):
+            with open(os.path.join(HERE, f), "rb") as fh:
+                local = hashlib.sha256(fh.read()).hexdigest()
+            if local != blob_sha256(gh, "origin/main", "scaffold/lease/%s" % f):
+                bad.append(f)
+    return bad
+
+
 def lease_at(gh, lease_pr=None):
     """lease記録を読む。lease_prを渡すと、そのPRのheadのlease記録（有効化を運ぶ後続operation_change PRの、merge前の実測用）。
     lease_prは、main上のlease記録が未有効の間だけ受け付ける（有効化後はmain上の保護面の記録だけを使う）。"""
@@ -407,7 +447,8 @@ def probe_snapshot(gh, lease):
     si, tp = lease.get("status_issue"), (lease.get("probe") or {}).get("test_pr")
     po = (lease.get("identity") or {}).get("po")
     return {"lease": lease, "now_epoch": time.time(), "status_comments": comments_of(gh, si) if si else [],
-            "test_review_ids_present": [r["id"] for r in reviews_of(gh, tp) if r.get("user") == po] if tp else []}
+            "test_review_ids_present": [r["id"] for r in reviews_of(gh, tp) if r.get("user") == po] if tp else [],
+            "test_review_states": {r["id"]: r.get("state") for r in reviews_of(gh, tp) if r.get("user") == po} if tp else {}}
 
 
 def lease_carried(gh, main, path, origin, lease=None, comments_fn=None):
@@ -487,7 +528,9 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
     si = lease.get("status_issue")
     s["status_comments"] = comments_of(gh, si) if si else []
     tp = (lease.get("probe") or {}).get("test_pr")
-    s["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp) if r.get("user") == po] if tp else []
+    trs = [r for r in reviews_of(gh, tp) if r.get("user") == po] if tp else []
+    s["test_review_ids_present"] = [r["id"] for r in trs]
+    s["test_review_states"] = {r["id"]: r.get("state") for r in trs}
     s["suspended_local"] = local_suspended(st, lease)
     s["lease_binding_state"] = binding_state(gh, main)
     s["suspended_issue"] = C.suspended_in_status_issue(s["status_comments"], lease, epoch)
@@ -544,7 +587,7 @@ def run_checks(gh, tree, overlay_main=None, protected=None, extra_hidden=None):
                 elif os.path.exists(dst):
                     os.remove(dst)
         env = {"PATH": "/usr/bin:/bin", "HOME": "/tmp", "LANG": "C.UTF-8", "PYTHONNOUSERSITE": "1"}   # /tmpは空のtmpfs
-        top = gh.git("rev-parse", "--show-toplevel", check=False).stdout.decode().strip()
+        top = ROOT   # executorのcodeを置いたcheckout（検査からは見せない）
         cand = sorted({os.path.realpath(x) for x in [os.path.expanduser("~"), "/tmp", os.path.dirname(state_path()), top]
                        + list(extra_hidden or ()) if x and os.path.isdir(x)})
         # 既に覆うdirectoryの配下は覆えない（覆った後は存在しない）ため、祖先だけを残す
@@ -609,8 +652,9 @@ def sync_snapshot(gh, issue, after=False):
     si = lease.get("status_issue")
     snap["status_comments"] = comments_of(gh, si) if si else []
     tp = (lease.get("probe") or {}).get("test_pr")
-    snap["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp)
-                                       if r.get("user") == ((lease.get("identity") or {}).get("po"))] if tp else []
+    trs = [r for r in reviews_of(gh, tp) if r.get("user") == ((lease.get("identity") or {}).get("po"))] if tp else []
+    snap["test_review_ids_present"] = [r["id"] for r in trs]
+    snap["test_review_states"] = {r["id"]: r.get("state") for r in trs}
     st = read_state()
     snap["suspended_local"] = local_suspended(st, lease)
     snap["lease_binding_state"] = binding_state(gh, main)

@@ -21,7 +21,10 @@ import leasectl as L    # noqa: E402
 
 def rebootstrap_decision(gh, s, a):
     """人間判断者loginのそのPRへのcommentのうち、内容を問わず最新の1件を判断とする。"""
-    po = ((s.get("lease") or {}).get("identity") or {}).get("po")
+    lease = s.get("lease") or {}
+    po = (lease.get("identity") or {}).get("po")
+    if po and (po in C.ai_logins(lease) or po.endswith("[bot]")):
+        return {"ok": False, "reason": "人間判断者loginがAI側login"}
     mine = [c for c in s["comments"] if c.get("user") == po]
     if not po or not mine:
         return {"ok": False, "reason": "人間判断者loginのcommentが無い"}
@@ -76,6 +79,10 @@ def main(argv=None):
         print("入力不正: comment modeは--comment-id・--choice・--headを要する", file=sys.stderr)
         return 2
     gh = G.GH()
+    bad = G.verify_self(gh)
+    if bad:
+        print("拒否: 実行中の非常用commandのbytesがorigin/mainと一致しない: %s" % ", ".join(bad), file=sys.stderr)
+        return 2
     s = G.snapshot(gh, a.pr, a.context)
     degraded = None
     if a.degraded_activity:

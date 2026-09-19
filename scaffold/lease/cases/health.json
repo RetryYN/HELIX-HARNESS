@@ -76,78 +76,6 @@
   "note": ""
  },
  {
-  "id": "HL-role-admin",
-  "base": "rf",
-  "patch": [
-   {
-    "op": "set",
-    "path": [
-     "roles",
-     "helix-ai"
-    ],
-    "value": "admin"
-   }
-  ],
-  "expect": [
-   "role_mismatch"
-  ],
-  "mode": null,
-  "note": ""
- },
- {
-  "id": "HL-role-maintain",
-  "base": "rf",
-  "patch": [
-   {
-    "op": "set",
-    "path": [
-     "roles",
-     "helix-ai"
-    ],
-    "value": "maintain"
-   }
-  ],
-  "expect": [
-   "role_mismatch"
-  ],
-  "mode": null,
-  "note": ""
- },
- {
-  "id": "HL-separate-reviewer-write",
-  "base": "rf",
-  "patch": [
-   {
-    "op": "set",
-    "path": "lease.independence",
-    "value": "require_separate_identity"
-   },
-   {
-    "op": "set",
-    "path": "lease.identity.reviewers",
-    "value": [
-     {
-      "login": "rv-sol",
-      "session_label": "codex"
-     }
-    ]
-   },
-   {
-    "op": "set",
-    "path": [
-     "roles",
-     "rv-sol"
-    ],
-    "value": "write"
-   }
-  ],
-  "expect": [
-   "role_mismatch"
-  ],
-  "mode": null,
-  "note": "別identityのreviewerはreadまたはtriage"
- },
- {
   "id": "HL-app-unavailable",
   "base": "rf",
   "patch": [
@@ -157,6 +85,11 @@
     "value": [
      "helix-app"
     ]
+   },
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": []
    }
   ],
   "expect": [
@@ -292,6 +225,28 @@
   "note": "installationのappがidentity表のappでない"
  },
  {
+  "id": "HL-app-permissions-missing",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": [
+     {
+      "slug": "helix-app",
+      "app_slug": "helix-app",
+      "permissions": null
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": "installation権限が返らなければ一致としない"
+ },
+ {
   "id": "HL-app-ok",
   "base": "rf",
   "patch": [
@@ -390,7 +345,7 @@
       "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "push",
-      "actor": "helix-ai",
+      "actor": "helix-app[bot]",
       "commit_message": "direct",
       "is_merge": false
      }
@@ -425,7 +380,7 @@
       "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "force_push",
-      "actor": "helix-ai",
+      "actor": "helix-app[bot]",
       "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: CAPLEASE-BOOT-01",
       "is_merge": true
      }
@@ -460,7 +415,7 @@
       "before": "9999999999999999999999999999999999999999",
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "push",
-      "actor": "helix-ai",
+      "actor": "helix-app[bot]",
       "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: CAPLEASE-BOOT-01",
       "is_merge": true
      }
@@ -527,7 +482,7 @@
       "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "push",
-      "actor": "helix-ai",
+      "actor": "helix-app[bot]",
       "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: CAPLEASE-BOOT-01",
       "is_merge": true
      }
@@ -599,7 +554,7 @@
       "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
       "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
       "activity_type": "push",
-      "actor": "helix-ai",
+      "actor": "helix-app[bot]",
       "commit_message": "Merge pull request #5 via Capability Lease\n\nlease_recovery: 5",
       "is_merge": true
      }

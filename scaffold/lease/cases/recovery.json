@@ -8,6 +8,22 @@
   "note": ""
  },
  {
+  "id": "RB-po-is-ai",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.identity.po",
+    "value": "helix-app[bot]"
+   }
+  ],
+  "expect": [
+   "lease_not_activated"
+  ],
+  "mode": "comment",
+  "note": "再bootstrapでもPOがAI側loginのlease記録では運ばない"
+ },
+ {
   "id": "RC-not-dr",
   "base": "rf",
   "patch": [],
@@ -24,7 +40,7 @@
    {
     "op": "set",
     "path": "status_comments.0.body",
-    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
    }
   ],
   "expect": [
@@ -62,7 +78,7 @@
    {
     "op": "set",
     "path": "status_comments.0.body",
-    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
    }
   ],
   "expect": [],

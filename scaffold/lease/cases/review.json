@@ -291,7 +291,7 @@
    {
     "op": "set",
     "path": "lease.identity.creator",
-    "value": "helix-ai"
+    "value": "helix-app[bot]"
    },
    {
     "op": "set",

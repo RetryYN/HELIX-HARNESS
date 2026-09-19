@@ -279,6 +279,30 @@ def collector_tests():
                                                                                     lease_t, comments_fn=lambda n: res("helix-ai", m3))})
     finally:
         shutil.rmtree(d, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # executorのgit環境はreplace objectsを読まない（AI側が共有.gitに置いたgit replaceで差分を隠せない）
+    d2 = tempfile.mkdtemp(prefix="lease-replace-")
+    try:
+        e2 = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@example.invalid", GIT_COMMITTER_NAME="t",
+                  GIT_COMMITTER_EMAIL="t@example.invalid", GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_NOSYSTEM="1")
+        g2 = lambda *a: subprocess.run(["git"] + list(a), cwd=d2, env=e2, capture_output=True)
+        g2("init", "-q", "-b", "main")
+        g2("commit", "-q", "--allow-empty", "-m", "real")
+        real = g2("rev-parse", "HEAD").stdout.decode().strip()
+        with open(os.path.join(d2, "p.py"), "w") as f:
+            f.write("x\n")
+        g2("add", "p.py")
+        g2("commit", "-q", "-m", "fake")
+        fake = g2("rev-parse", "HEAD").stdout.decode().strip()
+        g2("replace", real, fake)
+        seen = g2("diff", "--name-only", real, fake).stdout.decode().split()
+        iso = subprocess.run(["git", "--no-replace-objects", "diff", "--name-only", real, fake], cwd=d2,
+                             env=G.isolated_git_env(), capture_output=True).stdout.decode().split()
+        rows.append({"id": "CL-no-replace-objects", "ok": seen == [] and iso == ["p.py"]
+                     and G.isolated_git_env().get("GIT_NO_REPLACE_OBJECTS") == "1"
+                     and not [k for k in G.isolated_git_env() if k.startswith("GIT_") and k not in (
+                         "GIT_CONFIG_NOSYSTEM", "GIT_CONFIG_GLOBAL", "GIT_NO_REPLACE_OBJECTS", "GIT_TERMINAL_PROMPT")]})
+    finally:
+        shutil.rmtree(d2, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     rows.append({"id": "CL-sha-mentions", "ok": C.sha256_mentions("a: " + "A" * 64 + " b: " + "1" * 65) == {"a" * 64}})
     lr = {"last_resume_at": "2026-09-20T10:00:00Z"}
     rows.append({"id": "CL-local-suspend-resumed", "ok": not G.local_suspended({"suspended": {"at": "2026-09-20T09:00:00Z"}}, lr)
@@ -455,10 +479,15 @@ def run_boundary_tests():
                  and all(x["code"] == "post_merge_mismatch" for x in ra3)})
     # 保護設定を取得できない、または基準値が無ければ一致としない
     lh = F.base_rf()
-    rows.append({"id": "HL-protection-unavailable", "ok": "protection_baseline_changed" in [x["code"] for x in C.evaluate_lease_health(
-        dict(lh, protection={"unavailable": True}), skip_activity=True)]
-                 and "protection_baseline_changed" in [x["code"] for x in C.evaluate_lease_health(
-                     dict(lh, protection={"branch_protection": None, "rulesets": []}), lease=dict(lh["lease"], baseline={"branch_protection": None, "rulesets": []}), skip_activity=True)]})
+    pc = lambda snap, lease=None: "protection_baseline_changed" in [x["code"] for x in C.evaluate_lease_health(snap, lease=lease, skip_activity=True)]
+    # 各条件だけが成り立たない組合せで試す（他の条件に隠れない）
+    rows.append({"id": "HL-protection-unavailable", "ok": not pc(lh) and pc(dict(lh, protection={"unavailable": True}))
+                 and pc(dict(lh, protection={"branch_protection": None, "rulesets": []}),
+                        lease=dict(lh["lease"], baseline={"branch_protection": None, "rulesets": []}))})
+    rows.append({"id": "HL-baseline-null", "ok": pc(lh, lease=dict(lh["lease"], baseline=None))
+                 and pc(lh, lease=dict(lh["lease"], baseline={"branch_protection": lh["protection"]["branch_protection"], "rulesets": None}))})
+    po_ai = dict(F.base_dr(), lease=dict(F.base_dr()["lease"], identity=dict(F.base_dr()["lease"]["identity"], po=F.AI)))
+    rows.append({"id": "DR-po-is-ai-review", "ok": C.latest_po_review(dict(po_ai, reviews=[dict(r, user=F.AI) for r in po_ai["reviews"]]), F.H)[0] is None})
     # 有効化済みでも、identity・基準値・起点・状態Issue・試験PRの欠落、POのAI側loginは未有効として扱う
     lb = F.base_rf()["lease"]
     rows.append({"id": "LS-activation-gaps", "ok": not C.activation_gaps(lb) and C.activation_gaps(dict(lb, baseline=None))
@@ -537,6 +566,11 @@ def main(argv=None):
     p = sp.add_parser("selftest"); p.add_argument("--record", action="store_true")
     a = ap.parse_args(argv)
     try:
+        if a.cmd in ("admit", "sync"):
+            bad = G.verify_self(G.GH())
+            if bad:
+                print("拒否: 実行中のexecutor commandのbytesがorigin/mainと一致しない: %s" % ", ".join(bad), file=sys.stderr)
+                return 2
         return {"admit": cmd_admit, "sync": cmd_sync, "status": cmd_status, "selftest": cmd_selftest}[a.cmd](a)
     except G.WriteRefused as e:
         print("拒否: %s" % e, file=sys.stderr)

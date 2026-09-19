@@ -6,7 +6,7 @@
    {
     "op": "set",
     "path": "status_comments.0.body",
-    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
    }
   ],
   "expect": [
@@ -24,11 +24,11 @@
     "path": "status_comments",
     "value": {
      "id": 1,
-     "user": "helix-ai",
+     "user": "helix-app[bot]",
      "created_at": "2026-09-20T00:00:41Z",
      "updated_at": "2026-09-20T00:00:41Z",
      "created_epoch": 1789827200,
-     "body": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+     "body": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
     }
    }
   ],
@@ -100,6 +100,41 @@
   ],
   "mode": null,
   "note": "実測login以外の投稿を数えない"
+ },
+ {
+  "id": "PB-test-review-state-changed",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "test_review_states",
+    "value": {
+     "9001": "APPROVED",
+     "9002": "DISMISSED"
+    }
+   }
+  ],
+  "expect": [
+   "deletion_probe_stale"
+  ],
+  "mode": null,
+  "note": "試験reviewの状態が変われば、その状態の削除不能を実測できない"
+ },
+ {
+  "id": "PB-test-review-registered-commented",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.probe.test_reviews.1.state",
+    "value": "COMMENTED"
+   }
+  ],
+  "expect": [
+   "deletion_probe_stale"
+  ],
+  "mode": null,
+  "note": ""
  },
  {
   "id": "PB-test-review-gone",

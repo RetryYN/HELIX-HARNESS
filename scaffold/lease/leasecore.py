@@ -373,9 +373,16 @@ def probe_status(snapshot):
         return "stale", "試験reviewまたはAI側loginが未登録"
     # 多重防御: 固定した試験reviewが試験PRに現存すること
     present = set(snapshot.get("test_review_ids_present") or [])
+    states = snapshot.get("test_review_states")
+    if sorted(t.get("state") for t in tests) != ["APPROVED", "CHANGES_REQUESTED"]:
+        return "stale", "試験reviewがAPPROVEDとCHANGES_REQUESTEDの各1件でない"
     for t in tests:
         if t.get("id") not in present:
             return "unsafe", "試験review %s が試験PRに現存しない" % t.get("id")
+        st = None if states is None else states.get(t.get("id"), states.get(str(t.get("id"))))
+        if states is not None and st != t.get("state"):
+            # 状態が変わった（DISMISSED等）試験reviewでは、その状態の削除不能を実測できない
+            return "stale", "試験review %s の状態が%sで、lease記録の%sでない" % (t.get("id"), st, t.get("state"))
     results = {}
     for c in snapshot.get("status_comments") or []:
         blk = lease_block(c.get("body"))
@@ -440,11 +447,50 @@ def activation_gaps(lease):
     idt = (lease or {}).get("identity") or {}
     probe = (lease or {}).get("probe") or {}
     gaps = [k for k, v in (("identity.po", idt.get("po")), ("identity.ai", idt.get("ai") or idt.get("executor")),
-                           ("baseline", (lease or {}).get("baseline")), ("status_issue", (lease or {}).get("status_issue")),
+                           ("baseline", isinstance(((lease or {}).get("baseline") or {}).get("branch_protection"), dict)
+                            and isinstance(((lease or {}).get("baseline") or {}).get("rulesets"), list)),
+                           ("status_issue", (lease or {}).get("status_issue")),
                            ("origin_main", (lease or {}).get("origin_main")), ("probe.test_pr", probe.get("test_pr"))) if not v]
     if idt.get("po") and (idt.get("po") in ai_logins(lease) or idt["po"].endswith("[bot]")):
         gaps.append("identity.poがAI側login")
+    # POの判断: AI側identityはGitHub App（AI用のaccountは作らない）。AI側の全loginが`<identity.appsのslug>[bot]`であること
+    apps = set(idt.get("apps") or [])
+    if not apps:
+        gaps.append("identity.apps（AI側GitHub App）")
+    for l in ai_logins(lease):
+        if not (l.endswith("[bot]") and l[:-len("[bot]")] in apps):
+            gaps.append("AI側login %s がidentity.appsのGitHub Appでない" % l)
+    if not probe.get("activation_results"):
+        gaps.append("probe.activation_results（有効化前の実測結果）")
     return gaps
+
+
+def activation_evidence_errors(snapshot):
+    """lease記録に残した有効化前の実測結果comment（`probe.activation_results`）が状態Issueに編集されずに現存し、
+    AI側の全login×固定した2つの試験reviewを`denied`または`unavailable`で覆うこと（packet: 有効化前の結果をlease記録に残す）。"""
+    lease = snapshot.get("lease") or {}
+    probe = lease.get("probe") or {}
+    ids = set(probe.get("activation_results") or [])
+    by_id = {c.get("id"): c for c in snapshot.get("status_comments") or []}
+    covered, errs = set(), []
+    for i in sorted(ids, key=str):
+        c = by_id.get(i)
+        blk = lease_block((c or {}).get("body"))
+        if not c or not blk or blk[0].get("kind") != "lease_probe_result":
+            errs.append("実測結果comment %s が状態Issueに無い" % i)
+            continue
+        o = blk[0]
+        if c.get("updated_at") != c.get("created_at") or c.get("user") != o.get("login"):
+            errs.append("実測結果comment %s が編集されている、または投稿者が実測loginでない" % i)
+        elif o.get("result") not in ("denied", "unavailable"):
+            errs.append("実測結果comment %s の結果が%s" % (i, o.get("result")))
+        else:
+            covered.add((o.get("login"), o.get("review_id")))
+    for l in ai_logins(lease):
+        for t in probe.get("test_reviews") or []:
+            if (l, t.get("id")) not in covered:
+                errs.append("有効化前の実測結果に %s × 試験review %s が無い" % (l, t.get("id")))
+    return errs
 
 
 def lease_scope(snapshot, recovery=False):
@@ -457,6 +503,9 @@ def lease_scope(snapshot, recovery=False):
     ps, pd = probe_status(snapshot)
     if ps == "unsafe":
         return "none", [R("review_source_unsafe", pd)]
+    ev = activation_evidence_errors(snapshot)
+    if ev:
+        return "none", [R("lease_not_activated", "、".join(ev))] + ([R("deletion_probe_stale", pd)] if ps == "stale" else [])
     scope = "all"
     now = snapshot.get("now_epoch")
     if lease.get("expires_epoch") is not None and now is not None and now > lease["expires_epoch"]:
@@ -655,8 +704,8 @@ def evaluate(snapshot, recovery=None):
             elif ps == "stale":
                 scope = "probe_repair"
         scope_reasons = []
-        if not lease.get("activated_at"):
-            scope_reasons.append(R("lease_not_activated"))
+        if not lease.get("activated_at") or activation_gaps(lease):
+            scope_reasons.append(R("lease_not_activated", "、".join(activation_gaps(lease))))
     else:
         scope, scope_reasons = lease_scope(snapshot)
     reasons += [x for x in scope_reasons if x["code"] in ("lease_not_activated", "review_source_unsafe")]
@@ -954,7 +1003,10 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
             continue
         if a.get("app_slug") != slug:
             out.append(R("role_mismatch", "installationのapp %s がidentity表の %s でない" % (a.get("app_slug"), slug)))
-        for k, v in (a.get("permissions") or {}).items():
+        if not isinstance(a.get("permissions"), dict) or not a["permissions"]:
+            out.append(R("role_mismatch", "GitHub App %s のinstallation権限が返らない" % slug))
+            continue
+        for k, v in a["permissions"].items():
             if k not in APP_PERMISSIONS_ALLOWED or (APP_PERMISSIONS_ALLOWED[k] == "read" and v != "read"):
                 out.append(R("role_mismatch", "GitHub App %s のinstallation権限 %s: %s が許可集合の外" % (slug, k, v)))
     for app in snapshot.get("app_permissions") or []:

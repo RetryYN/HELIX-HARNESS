@@ -11,7 +11,7 @@ NOW = 1790000000                     # 2026-09-21頃のepoch（固定）
 DAY = 86400
 B = "b" * 40                         # 検査したmain HEAD（=review済みbase）
 H = "c" * 40                         # review済みcontent HEAD
-PO, AI = "po-human", "helix-ai"
+PO, AI = "po-human", "helix-app[bot]"   # AI側identityはGitHub App
 CREATOR = {"runtime": "claude-code", "model": "opus", "provider": "anthropic", "session": "creator-1"}
 REVIEWERS = [{"runtime": "claude-agent", "model": "opus", "provider": "anthropic", "session": "reviewer-opus-1"},
              {"runtime": "codex", "model": "gpt-5.6-sol", "provider": "openai", "session": "reviewer-sol-1"}]
@@ -34,21 +34,22 @@ def lease_record():
         "lease_id": C.LEASE_ID, "independence": "accept_bootstrap_risk",
         "activated_at": "2026-09-21T00:00:00+09:00", "expires_at": "2026-12-31T23:59:59+09:00",
         "revoked_at": None,
-        "identity": {"po": PO, "ai": AI, "creator": None, "executor": None, "recovery": None, "reviewers": []},
+        "identity": {"po": PO, "ai": AI, "creator": None, "executor": None, "recovery": None, "reviewers": [], "apps": ["helix-app"]},
         "baseline": {"branch_protection": {"allow_force_pushes": False, "allow_deletions": False, "enforce_admins": True},
                      "rulesets": []},
         "origin_main": B, "status_issue": 3000,
-        "probe": {"test_pr": 3001, "window_days": 30,
-                  "test_reviews": [{"id": 9001, "state": "APPROVED"}, {"id": 9002, "state": "CHANGES_REQUESTED"}]},
+        "probe": {"test_pr": 3001,
+                  "test_reviews": [{"id": 9001, "state": "APPROVED"}, {"id": 9002, "state": "CHANGES_REQUESTED"}],
+                  "activation_results": [60001, 60002]},   # 有効化前の実測結果（40日前。現在の実測の鮮度には数えない）
         "probe_paths": ["scaffold/lease/leaseprobe.py"],
-        "audit": {"max_unaudited_merges": 10}, "audit_records": [],
+        "audit": {}, "audit_records": [],
         "tool_inputs": ["docs/governance/candidates/legacy-rule-derived-requirements.md"],
         "projection": {"mapping": {}},
     }
 
 
-def probe_comments(logins, tests, result="denied", age=DAY):
-    out, cid = [], 70000
+def probe_comments(logins, tests, result="denied", age=DAY, cid0=70000):
+    out, cid = [], cid0
     for l in logins:
         for t in tests:
             cid += 1
@@ -104,11 +105,13 @@ def common(pr, pr_class, files, main_files, merge_files):
         "main_records": {}, "merge_texts": {}, "decision_shas": [], "upstream_shas": [], "binding_upstreams": [
             "docs/governance/candidates/legacy-rule-derived-requirements.md"],
         "reviews": [], "observed_review_ids": [], "events_review_ids": None,
-        "status_comments": probe_comments([AI], lease["probe"]["test_reviews"]),
+        "status_comments": probe_comments([AI], lease["probe"]["test_reviews"])
+        + probe_comments([AI], lease["probe"]["test_reviews"], age=40 * DAY, cid0=60000),
         "test_review_ids_present": [9001, 9002],
         "suspended_local": False, "suspended_issue": False, "unaudited_merges": 0,
         "protection": copy.deepcopy(lease["baseline"]),
-        "roles": {AI: "write"}, "app_permissions": [],
+        "roles": {}, "app_permissions": [{"slug": "helix-app", "app_slug": "helix-app", "permissions": {
+            "contents": "write", "pull_requests": "write", "issues": "write", "metadata": "read", "administration": "read"}}],
         "activity": {"reached_origin": True, "items": []}, "activity_origin": B,
     }
 
