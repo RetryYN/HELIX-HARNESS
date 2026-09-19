@@ -796,8 +796,8 @@ def run_boundary_tests():
                  and "appsetup" not in sud.replace("# ", "") and "ALL=(ALL)" not in sud and "env_reset" in sud
                  and "self" not in wrap.lower()
                  # sudoersは検査（visudo）に通してから置く。対象PRはroot所有のfileでも固定する
-                 and sh.index('visudo -cf "$SUDO_TMP"') < sh.index("cp \"$SUDO_TMP\" /etc/sudoers.d/helix-lease")
-                 and sh.index('visudo -cf "$SUDO_TMP_B"') < sh.index('cp "$SUDO_TMP_B" /etc/sudoers.d/helix-lease-bootstrap')
+                 and sh.index('visudo -cf "$SUDO_TMP"') < sh.index('install -m 0440 -o root -g root "$SUDO_TMP" /etc/sudoers.d/helix-lease')
+                 and sh.index('visudo -cf "$SUDO_TMP_B"') < sh.index('install -m 0440 -o root -g root "$SUDO_TMP_B" /etc/sudoers.d/helix-lease-bootstrap')
                  and "/etc/helix-lease/target-pr" in sh and "PATH=/usr/sbin:/usr/bin:/sbin:/bin" in sh})
     # 基準値は、記録といま取得した保護設定を突き合わせる（POの有効化前の確認）
     live = {"branch_protection": {"allow_force_pushes": False}, "rulesets": []}
@@ -815,9 +815,13 @@ def run_boundary_tests():
         tpf = os.path.join(tp, "target-pr")
         with open(tpf, "w") as f:
             f.write("1886\n")
-        rows.append({"id": "BT-target-pr", "ok": BT0.target_pr_mismatch(1886, tpf) is None
-                     and BT0.target_pr_mismatch(4321, tpf)
-                     and BT0.target_pr_mismatch(1886, os.path.join(tp, "none")) is None})
+        import contextlib as cl3, io as io3
+        with cl3.redirect_stderr(io3.StringIO()):
+            rc_probe_pr = LB0.main(["--login", "x", "--review-id", "1", "--lease-pr", "4321", "--apply"])
+        rows.append({"id": "BT-target-pr", "ok": G.target_pr_mismatch(1886, tpf) is None
+                     and G.target_pr_mismatch(4321, tpf)
+                     and G.target_pr_mismatch(1886, os.path.join(tp, "none"))
+                     and rc_probe_pr == 2})
     finally:
         shutil.rmtree(tp, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # 「未検証」の実測は、値が揃ったときだけ成立する（取得できない・期待と違う場合は不成立）
@@ -845,7 +849,10 @@ def run_boundary_tests():
         dup_rcs.append(BT0.main(["probe", "--lease-pr", "1886", "--lease-pr", "999", "--apply"]))
         dup_rcs.append(LB0.main(["--login", "x", "--review-id", "1", "--lease-pr", "1", "--lease-pr", "2", "--apply"]))
         dup_rcs.append(LR0.main(["7", "--context", "c", "--mode", "review", "--mode", "comment", "--apply"]))
-    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2]
+    # 省略形（--lease-p等）は認めない。重複検査をすり抜けさせない
+    with cl2.redirect_stderr(io2.StringIO()):
+        abbr = BT0.main(["probe", "--lease-p", "1886", "--apply"])
+    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2] and abbr == 2
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
                  and not G.duplicate_options(["--a", "1", "--b", "2"])})
     # install.shは、実行中の自分のbytesが--shaの版と一致しなければ止まる
@@ -940,7 +947,7 @@ def cmd_selftest(a):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="leasectl")
+    ap = argparse.ArgumentParser(prog="leasectl", allow_abbrev=False)
     sp = ap.add_subparsers(dest="cmd", required=True)
     p = sp.add_parser("admit"); p.add_argument("pr", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
     p = sp.add_parser("sync"); p.add_argument("issue", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")

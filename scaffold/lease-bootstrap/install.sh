@@ -107,7 +107,7 @@ $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseprobe *
 EOF
 chmod 0440 "$SUDO_TMP"
 visudo -cf "$SUDO_TMP" >/dev/null   # 検査に通ってから置く（壊れたfileでsudoを止めない）
-cp "$SUDO_TMP" /etc/sudoers.d/helix-lease
+install -m 0440 -o root -g root "$SUDO_TMP" /etc/sudoers.d/helix-lease
 
 SUDO_TMP_B="$TMP/sudoers-lease-bootstrap"
 cat > "$SUDO_TMP_B" <<EOF
@@ -118,7 +118,7 @@ $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot ve
 EOF
 chmod 0440 "$SUDO_TMP_B"
 visudo -cf "$SUDO_TMP_B" >/dev/null
-cp "$SUDO_TMP_B" /etc/sudoers.d/helix-lease-bootstrap
+install -m 0440 -o root -g root "$SUDO_TMP_B" /etc/sudoers.d/helix-lease-bootstrap
 # 準備commandの対象PRを、root所有のfileでも固定する（sudoersの引数照合だけに頼らない）
 mkdir -p /etc/helix-lease
 printf '%s\n' "$PR" > /etc/helix-lease/target-pr

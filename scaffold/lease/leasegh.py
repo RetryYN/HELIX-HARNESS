@@ -585,6 +585,19 @@ def caller_file(path):
     return open(rp, encoding="utf-8")
 
 
+TARGET_PR_FILE = "/etc/helix-lease/target-pr"   # 実行環境が固定する対象PR（root所有。AI側からは書けない）
+
+
+def target_pr_mismatch(lease_pr, path=None):
+    """実行環境が固定した対象PR（root所有のfile）と一致するか。fileが無ければ固定していないものとして扱う。"""
+    try:
+        with open(path or TARGET_PR_FILE, encoding="utf-8") as f:
+            want = f.read().strip()
+    except OSError:
+        return "実行環境が対象PRを固定していない（%s が無い。install.shを実行する）" % (path or TARGET_PR_FILE)
+    return None if want == str(lease_pr) else "実行環境が固定した対象PR（%s）と一致しない" % want
+
+
 def duplicate_options(argv):
     """同じoptionが2回以上現れるか。実行環境の許可（sudoers）が引数を固定しても、後勝ちの重複で別の対象へ向けられるため拒否する。"""
     seen, dup = set(), []

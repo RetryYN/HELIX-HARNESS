@@ -122,7 +122,7 @@ def degraded_chain(gh, s):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="leaserecover")
+    ap = argparse.ArgumentParser(prog="leaserecover", allow_abbrev=False)
     ap.add_argument("pr", type=int); ap.add_argument("--context", required=True)
     ap.add_argument("--mode", choices=("review", "comment"), required=True)
     ap.add_argument("--comment-id", type=int); ap.add_argument("--choice"); ap.add_argument("--head")

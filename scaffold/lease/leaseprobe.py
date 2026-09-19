@@ -59,7 +59,7 @@ def classify(p, still_present):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="leaseprobe")
+    ap = argparse.ArgumentParser(prog="leaseprobe", allow_abbrev=False)
     ap.add_argument("--login", required=True); ap.add_argument("--review-id", type=int, required=True)
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--lease-pr", type=int, help="有効化前: lease記録を埋めた後続operation_change PRのheadのlease記録で実測する")
@@ -69,6 +69,11 @@ def main(argv=None):
         return 2
     a = ap.parse_args(argv)
     gh = G.GH()
+    if a.lease_pr:   # 有効化前の実測も、実行環境が固定した対象PRのlease記録だけを読む
+        miss = G.target_pr_mismatch(a.lease_pr)
+        if miss:
+            print("拒否: %s" % miss, file=sys.stderr)
+            return 2
     bad = G.self_integrity(gh, None)   # 置き場所と-Iは、照合先を取得する前に確かめる
     if bad:
         print("拒否: 実測commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)

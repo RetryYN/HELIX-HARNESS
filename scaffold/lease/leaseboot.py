@@ -41,7 +41,6 @@ import leasecore as C   # noqa: E402
 import leasegh as G     # noqa: E402
 import leaseprobe as P  # noqa: E402
 
-TARGET_PR_FILE = "/etc/helix-lease/target-pr"   # 実行環境が固定する対象PR（root所有。AI側からは書けない）
 TEST_BRANCH = "lease/probe-test"
 TEST_PATH = "docs/governance/notes/capability-lease-probe-test.md"
 TEST_TEXT = """# Capability Lease 削除不能の実測用（判断ではない）
@@ -67,19 +66,9 @@ def app_login():
     return app["slug"], "%s[bot]" % app["slug"]
 
 
-def target_pr_mismatch(lease_pr, path=None):
-    """実行環境が固定した対象PR（root所有のfile）と一致するか。fileが無ければ固定していないものとして扱う。"""
-    try:
-        with open(path or TARGET_PR_FILE, encoding="utf-8") as f:
-            want = f.read().strip()
-    except OSError:
-        return None
-    return None if want == str(lease_pr) else "実行環境が固定した対象PR（%s）と一致しない" % want
-
-
 def gate(gh, a):
     """起動条件（置き場所・-I・bytes）と、対象PRの固定、mainのlease記録が未有効であることを確かめる。"""
-    miss = target_pr_mismatch(a.lease_pr)
+    miss = G.target_pr_mismatch(a.lease_pr)
     if miss:
         return miss
     bad = G.self_integrity(gh, None)
@@ -328,7 +317,7 @@ def delete_error(gh, lease):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="leaseboot")
+    ap = argparse.ArgumentParser(prog="leaseboot", allow_abbrev=False)
     sp = ap.add_subparsers(dest="cmd", required=True)
     for name in ("prepare", "probe", "verify"):
         p = sp.add_parser(name)

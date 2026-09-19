@@ -114,7 +114,7 @@ def cmd_response(a, gh):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="leasepost")
+    ap = argparse.ArgumentParser(prog="leasepost", allow_abbrev=False)
     sp = ap.add_subparsers(dest="cmd", required=True)
     p = sp.add_parser("request")
     p.add_argument("--pr", type=int, required=True); p.add_argument("--class", dest="pr_class", required=True)
