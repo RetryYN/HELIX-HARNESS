@@ -128,6 +128,10 @@ def main(argv=None):
     ap.add_argument("--comment-id", type=int); ap.add_argument("--choice"); ap.add_argument("--head")
     ap.add_argument("--degraded-activity"); ap.add_argument("--apply", action="store_true")
     ap.add_argument("--self-repair", metavar="SHA256")
+    dup = G.duplicate_options(argv if argv is not None else sys.argv[1:])
+    if dup:
+        print("拒否: 同じoptionが2回以上ある（許可の引数を固定できない）: %s" % "、".join(dup), file=sys.stderr)
+        return 2
     a = ap.parse_args(argv)
     if a.mode == "comment" and not (a.comment_id and a.choice and a.head):
         print("入力不正: comment modeは--comment-id・--choice・--headを要する", file=sys.stderr)

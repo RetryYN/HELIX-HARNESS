@@ -129,6 +129,10 @@ def main(argv=None):
     p.add_argument("--operation-admission", choices=("pass", "fail")); p.add_argument("--transcription-faithful", choices=("yes", "no"))
     p.add_argument("--transcribed", action="store_true"); p.add_argument("--text-file", required=True)
     p.add_argument("--apply", action="store_true")
+    dup = G.duplicate_options(argv if argv is not None else sys.argv[1:])
+    if dup:
+        print("拒否: 同じoptionが2回以上ある（許可の引数を固定できない）: %s" % "、".join(dup), file=sys.stderr)
+        return 2
     a = ap.parse_args(argv)
     gh = G.GH(writes=G.Writes({("comment", a.pr)} if a.apply else ()))
     if a.apply:   # 投稿commandも、executorと同じ起動条件（-I・rootが所有する置き場所・origin/mainとのbytes照合）で動く

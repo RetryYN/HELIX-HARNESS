@@ -63,6 +63,10 @@ def main(argv=None):
     ap.add_argument("--login", required=True); ap.add_argument("--review-id", type=int, required=True)
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--lease-pr", type=int, help="有効化前: lease記録を埋めた後続operation_change PRのheadのlease記録で実測する")
+    dup = G.duplicate_options(argv if argv is not None else sys.argv[1:])
+    if dup:
+        print("拒否: 同じoptionが2回以上ある（許可の引数を固定できない）: %s" % "、".join(dup), file=sys.stderr)
+        return 2
     a = ap.parse_args(argv)
     gh = G.GH()
     bad = G.self_integrity(gh, None)   # 置き場所と-Iは、照合先を取得する前に確かめる

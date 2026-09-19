@@ -202,9 +202,9 @@ def cmd_verify(a, gh):
             out[k] = fn()
         except Exception as e:                                  # noqa: BLE001 実測なので理由をそのまま残す
             out[k] = {"ok": False, "detail": str(e)[:300]}
-    rec("activity_api", lambda: verdict_activity(G.activity(gh, main_sha)))
+    rec("activity_api", lambda: verdict_activity(G.activity(gh, activity_origin(gh, main_sha))))
     rec("role_name", lambda: role_values(gh, lease))
-    rec("protection_with_installation_token", lambda: {"ok": not G.protection(gh).get("unavailable"), "value": G.protection(gh)})
+    rec("protection_with_installation_token", lambda: protection_check(gh))
     rec("app_installation_permissions", lambda: verdict_app(G.app_permissions(gh, {"identity": {"apps": [slug]}}), slug))
     rec("installation_repositories", lambda: {"ok": [r.get("full_name") for r in
                                                      (gh.api("installation/repositories?per_page=100") or {}).get("repositories") or []] == [gh.repo]})
@@ -244,6 +244,19 @@ def content_edits(gh, lease):
     nodes = (((d.get("data") or {}).get("repository") or {}).get("issue") or {}).get("userContentEdits")
     return {"ok": not d.get("errors") and isinstance((nodes or {}).get("nodes"), list),
             "errors": [e.get("message") for e in d.get("errors") or []][:3], "nodes": (nodes or {}).get("nodes")}
+
+
+def activity_origin(gh, main_sha):
+    """activity APIの実測に使う起点。現在のmainを起点にすると更新が0件になるため、少し前のcommitを起点にする。"""
+    p = gh.git("rev-parse", "%s~20" % main_sha, check=False)
+    return p.stdout.decode().strip() if p.returncode == 0 else \
+        gh.git("rev-list", "--max-parents=0", main_sha).stdout.decode().split()[0]
+
+
+def protection_check(gh):
+    """保護設定・rulesetを1回の取得で判定する（判定と証拠を同じ観測から作る）。"""
+    v = G.protection(gh)
+    return {"ok": not v.get("unavailable") and isinstance(v.get("branch_protection"), dict), "value": v}
 
 
 def verdict_activity(act):
@@ -309,6 +322,10 @@ def main(argv=None):
         p.add_argument("--apply", action="store_true")
         if name == "prepare":
             p.add_argument("--po", required=True)
+    dup = G.duplicate_options(argv if argv is not None else sys.argv[1:])
+    if dup:
+        print("拒否: 同じoptionが2回以上ある（許可の引数を固定できない）: %s" % "、".join(dup), file=sys.stderr)
+        return 2
     a = ap.parse_args(argv)
     gh = G.GH()
     try:

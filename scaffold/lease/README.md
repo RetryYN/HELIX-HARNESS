@@ -136,6 +136,7 @@ POが行うのは、人間にしか越えられない境界だけである。設
 
 - AI側contextはexecutor userになれず、Appの秘密鍵を読めない。installation tokenはwrapperが発行して渡す。
 - AI側contextはrootになれない。`/opt/helix-lease`はroot所有で、AI側からは書けない。
+- どのcommandも、同じoptionが2回以上ある呼出しを拒否する（実行環境の許可が引数を固定しても、後勝ちの重複で別の対象へ向けられないようにする）。
 - `leaseboot`が書けるのは、状態Issueの作成、`lease/`配下のbranchへのpush、試験PRの作成と、実測commandが置く結果commentだけである。
   mainへのpushは許可リストに入らない。lease記録がmainで有効になった後は`--lease-pr`を受け付けない。結果は標準出力のJSONで返し、fileは書かない。
 - wrapper（`helix-lease-run`）から起動できるのは5つのlease commandだけ（sudoersが許すのは既定で4つ）で、`appsetup`（installation tokenの発行、秘密鍵の作成）は

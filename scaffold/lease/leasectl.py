@@ -813,6 +813,16 @@ def run_boundary_tests():
                  and not BT0.verdict_merge_tree(0, "a" * 40, None)["ok"]
                  and not BT0.verdict_merge_tree(0, "a" * 40, "b" * 40)["ok"]
                  and not BT0.verdict_merge_tree(1, "", None)["ok"]})
+    # 同じoptionの重複は、実行環境の許可（sudoers）の引数固定を外すため、どのcommandも拒否する
+    dup_rcs = []
+    import contextlib as cl2, io as io2
+    with cl2.redirect_stderr(io2.StringIO()):
+        dup_rcs.append(BT0.main(["probe", "--lease-pr", "1886", "--lease-pr", "999", "--apply"]))
+        dup_rcs.append(LB0.main(["--login", "x", "--review-id", "1", "--lease-pr", "1", "--lease-pr", "2", "--apply"]))
+        dup_rcs.append(LR0.main(["7", "--context", "c", "--mode", "review", "--mode", "comment", "--apply"]))
+    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2]
+                 and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
+                 and not G.duplicate_options(["--a", "1", "--b", "2"])})
     # install.shは、実行中の自分のbytesが--shaの版と一致しなければ止まる
     cmp_line = 'cmp -s "$SELF" "$DEST.new/scaffold/lease-bootstrap/install.sh"'
     rows.append({"id": "BT-install-self-check", "ok": cmp_line in sh
@@ -911,6 +921,10 @@ def main(argv=None):
     p = sp.add_parser("sync"); p.add_argument("issue", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
     p = sp.add_parser("status"); p.add_argument("--lease-pr", type=int)
     p = sp.add_parser("selftest"); p.add_argument("--record", action="store_true")
+    dup = G.duplicate_options(argv if argv is not None else sys.argv[1:])
+    if dup:
+        print("拒否: 同じoptionが2回以上ある（許可の引数を固定できない）: %s" % "、".join(dup), file=sys.stderr)
+        return 2
     a = ap.parse_args(argv)
     try:
         if a.cmd in ("admit", "sync"):

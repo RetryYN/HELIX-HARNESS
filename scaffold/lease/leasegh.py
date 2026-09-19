@@ -585,6 +585,18 @@ def caller_file(path):
     return open(rp, encoding="utf-8")
 
 
+def duplicate_options(argv):
+    """同じoptionが2回以上現れるか。実行環境の許可（sudoers）が引数を固定しても、後勝ちの重複で別の対象へ向けられるため拒否する。"""
+    seen, dup = set(), []
+    for x in argv or []:
+        if isinstance(x, str) and x.startswith("--"):
+            name = x.split("=", 1)[0]
+            if name in seen and name not in dup:
+                dup.append(name)
+            seen.add(name)
+    return dup
+
+
 def runner_info():
     """statusの出力に含める実行者の情報（POが、executor userで動いていることを確かめる）。"""
     return {"uid": os.getuid(), "user": pwd.getpwuid(os.getuid()).pw_name}
