@@ -850,9 +850,19 @@ def run_boundary_tests():
         dup_rcs.append(LB0.main(["--login", "x", "--review-id", "1", "--lease-pr", "1", "--lease-pr", "2", "--apply"]))
         dup_rcs.append(LR0.main(["7", "--context", "c", "--mode", "review", "--mode", "comment", "--apply"]))
     # 省略形（--lease-p等）は認めない。重複検査をすり抜けさせない
-    with cl2.redirect_stderr(io2.StringIO()):
-        abbr = BT0.main(["probe", "--lease-p", "1886", "--apply"])
-    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2] and abbr == 2
+    # parse段階で止まることを、後続の対象PR照合と混ぜずに独立して確かめる
+    def parse_refused(fn, args):
+        with cl2.redirect_stderr(io2.StringIO()):
+            try:
+                fn(args)
+            except SystemExit as e:
+                return e.code == 2
+        return False
+    abbr = all([parse_refused(BT0.main, ["probe", "--lease-p", "1886", "--apply"]),
+                parse_refused(BT0.main, ["prepare", "--lease-pr", "1886", "--lease-p", "999", "--po", "x"]),
+                parse_refused(main, ["status", "--lease-p", "1886"]),
+                parse_refused(LB0.main, ["--login", "x", "--review-id", "1", "--lease-p", "1"])])
+    rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2] and abbr
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
                  and not G.duplicate_options(["--a", "1", "--b", "2"])})
     # install.shは、実行中の自分のbytesが--shaの版と一致しなければ止まる
@@ -949,10 +959,10 @@ def cmd_selftest(a):
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="leasectl", allow_abbrev=False)
     sp = ap.add_subparsers(dest="cmd", required=True)
-    p = sp.add_parser("admit"); p.add_argument("pr", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
-    p = sp.add_parser("sync"); p.add_argument("issue", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
-    p = sp.add_parser("status"); p.add_argument("--lease-pr", type=int)
-    p = sp.add_parser("selftest"); p.add_argument("--record", action="store_true")
+    p = sp.add_parser("admit", allow_abbrev=False); p.add_argument("pr", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
+    p = sp.add_parser("sync", allow_abbrev=False); p.add_argument("issue", type=int); p.add_argument("--context", required=True); p.add_argument("--apply", action="store_true")
+    p = sp.add_parser("status", allow_abbrev=False); p.add_argument("--lease-pr", type=int)
+    p = sp.add_parser("selftest", allow_abbrev=False); p.add_argument("--record", action="store_true")
     dup = G.duplicate_options(argv if argv is not None else sys.argv[1:])
     if dup:
         print("拒否: 同じoptionが2回以上ある（許可の引数を固定できない）: %s" % "、".join(dup), file=sys.stderr)

@@ -320,7 +320,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="leaseboot", allow_abbrev=False)
     sp = ap.add_subparsers(dest="cmd", required=True)
     for name in ("prepare", "probe", "verify"):
-        p = sp.add_parser(name)
+        p = sp.add_parser(name, allow_abbrev=False)
         p.add_argument("--lease-pr", type=int, required=True)
         p.add_argument("--apply", action="store_true")
         if name == "prepare":
