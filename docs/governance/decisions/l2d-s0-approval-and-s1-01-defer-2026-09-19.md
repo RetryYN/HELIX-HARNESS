@@ -61,9 +61,11 @@ POの指示は判断単位を名前で指しており、digestを指定してい
 `adopt`は候補をそのまま採る判断であり、候補がHARNESSとHELIX-OSへの分割を内容に持つことを語彙から読めなくする。
 そのため採らない。この写像はPOの原語から導いたものであり、POが別の語彙を意図していた場合は訂正する。
 
-`split`が成立させるのは、候補の意味をHARNESSとHELIX-OSへ分けて採ることである。下記「未決として残したもの」の
-事項（`development-ticket-derivation`との統合可否、システム群内の層の置き方、`WBS-HARNESS-001`の親となるHARNESS L1の明示）と、対象別L2／L11本文への適用は
-成立していない。意味の採否は閉じたが、L2への適用は閉じていない。
+`split`が成立させるのは、候補本文の要求とL11受入候補の意味を、候補が定めるとおりHARNESSとHELIX-OSへ分けて採ることに限られる。
+下記「採否時に判断するとされていたが、本recordで決めていないもの」の節に挙げた事項は、この範囲に含まれない。そのうち`development-ticket-derivation`との統合可否と
+システム群内の層の置き方は、候補本文自身が「採否時に判断する」「L2判断で確定する」とした意味の選択であり、POの指示は
+これに触れていない。したがって両unitの採否は、これらの点について閉じていない。`WBS-HARNESS-001`の親となるHARNESS L1の
+明示と、対象別L2／L11本文への適用も成立していない。
 
 ## exact revision再確認
 
@@ -157,14 +159,14 @@ packet v2は「人間判断」節で、判断recordにdecision unit、選択、a
 | 項目 | `HDEC-L2D-S0-01` scaffold-binding | `HDEC-L2D-S0-02` wbs-ledger |
 |---|---|---|
 | source系列とexact revision、authority状態 | 候補`c7e47993…`。本recordのmain入りで承認が発効する（`authority_effect`） | 候補`34711045…`。同左 |
-| 親Concept | Concept v4.1（`HDEC-CONCEPT-4.1`、`181b0c55…`） | 同左 |
-| 対象別L1 | HARNESS L1（`HDEC-HARNESS-L1-01`、`a49da594…`）、HELIX-OS L1（`HDEC-HELIXOS-L1-01`、`0f7f30d9…`） | 候補の`derived_from`が挙げるのはHELIX-OS L1（`HDEC-HELIXOS-L1-01`、`0f7f30d9…`）だけである。HARNESS向けの`WBS-HARNESS-001`を持つが、HARNESS L1を親として明示していない（未解決事項へ） |
+| 親Concept | Concept v4.1（`HDEC-CONCEPT-4.1`、`181b0c55…`）。候補の`derived_from`が直接挙げる | 候補の`derived_from`はConceptを挙げない。Concept v4.1（`181b0c55…`）は、承認済みHELIX-OS L1（Concept v4.1を親とする）を経由した間接の親である |
+| 対象別L1 | HARNESS L1（`HDEC-HARNESS-L1-01`、`a49da594…`）、HELIX-OS L1（`HDEC-HELIXOS-L1-01`、`0f7f30d9…`） | 候補の`derived_from`が挙げるのはHELIX-OS L1（`HDEC-HELIXOS-L1-01`、`0f7f30d9…`）だけである。HARNESS向けの`WBS-HARNESS-001`を持つが、HARNESS L1を親として明示していない（未解決事項へ）。また`derived_from`は未承認のdraft HELIX-OS L2 `docs/helix-os/L2-requirements/governance-requirements.md`も挙げる。このL2は本unitの適用先でもある |
 | 対象別L2 ID | 接続先候補：HARNESS-L2-003／004／005、HELIXOS-L2-002／007／008（未適用） | 接続先候補：HELIXOS-L2-001／010／011／013、HARNESS-L2-001／002／003（未適用） |
-| 保持する利用価値・制約・negative case | 上記「承認した意味」。negative caseを含むL11受入候補16項目（うち15項目が拒否・検出を確かめる反例） | 上記「承認した意味」。negative caseを含むL11受入候補10項目（うち7項目が拒否・非生成を確かめる反例） |
+| 保持する利用価値・制約・negative case | 上記「承認した意味」。negative caseを含むL11受入候補16項目（うち15項目が拒否・検出・非生成を確かめる反例） | 上記「承認した意味」。negative caseを含むL11受入候補10項目（うち7項目が拒否・非生成を確かめる反例） |
 | 変更・棄却する旧owner、旧identity、旧実現手段と理由 | 該当なし。旧要求母集団の外に追加した新規系列であり、旧要求の件数、owner、identityを変更しない | 該当なし（同左）。入力に挙げる規則atom 336件（副を含め686件）はcarryもretireもしない |
 | prototypeまたは非UI適用性、L11利用結果 | 非UI。L11受入候補は全件未実行。仮組み`SCF-B-0001`はscaffoldであり、その検査合格をL11の利用結果にしない | 非UI。L11受入候補は全件未実行 |
 | 未解決事項 | システム群内の層の置き方（下記） | `development-ticket-derivation`との統合可否（下記）。`WBS-HARNESS-001`の親となるHARNESS L1の明示 |
-| 判断、actor、scope、revision | `split`、PO、候補本文の全要求とL11受入候補、`c7e47993…` | `split`、PO、候補本文の全要求とL11受入候補、`34711045…` |
+| 判断、actor、scope、revision | `split`、PO、候補本文の全要求とL11受入候補（システム群内の層の置き方を除く）、`c7e47993…` | `split`、PO、候補本文の全要求とL11受入候補（`development-ticket-derivation`との統合可否を除く）、`34711045…` |
 
 `HDEC-L2D-S1-01-DEFER-01`の記録項目は、packet v2が求める形式で上記「packet v2が判断recordに求める記録項目」に置いた。
 
