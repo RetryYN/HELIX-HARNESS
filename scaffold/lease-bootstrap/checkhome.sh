@@ -12,7 +12,7 @@ EXEC_USER="${1:-}"; EXEC_HOME="${2:-}"; AI_HOME="${3:-}"
 REAL="$(readlink -f "$EXEC_HOME")"
 [ "$REAL" = "$EXEC_HOME" ] || { echo "拒否: $EXEC_HOME はsymlinkを含みます（実体: $REAL）" >&2; exit 2; }
 [ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ] || { echo "拒否: $EXEC_HOME が $EXEC_USER の所有ではありません" >&2; exit 2; }
-[ -z "$AI_HOME" ] || [ "$EXEC_HOME" != "$AI_HOME" ] || { echo "拒否: AI側userとhomeが同じです" >&2; exit 2; }
+[ -z "$AI_HOME" ] || [ "$REAL" != "$(readlink -f "$AI_HOME")" ] || { echo "拒否: AI側userとhomeが同じです" >&2; exit 2; }
 # 祖先はすべてroot所有で、他のuserから書けないこと（置き場所ごと差し替えられないため）
 D="$(dirname "$EXEC_HOME")"
 while :; do

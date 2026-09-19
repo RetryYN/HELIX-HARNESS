@@ -945,16 +945,17 @@ def run_boundary_tests():
         rc_anc, out_anc = sh_run(["sh", ck, me, home, ""])
         rc_link, out_link = sh_run(["sh", ck, me, link, ""])
         rc_same, out_same = sh_run(["sh", ck, me, home, home])
+        rc_ailink, out_ailink = sh_run(["sh", ck, me, home, link])   # 別表記で同じ場所を指すAI側home
         rc_other, out_other = sh_run(["sh", ck, "nobody", home, ""])
         rc_root, out_root = sh_run(["sh", ck, me, "/", ""])   # 祖先も所有も条件を満たす形（/はroot所有）
         rc_dup, out_dup = sh_run(["sh", os.path.join(boot_dir, "install.sh"),
-                                  "--sha", "a" * 40, "--sha", "b" * 40, "--repo", "x/y", "--pr", "1"])
+                                  "--sha", "a" * 40, "--sha=" + "b" * 40, "--repo", "x/y", "--pr", "1"])
         rc_adup, out_adup = sh_run([sys.executable, "-I", "-B", os.path.join(boot_dir, "appsetup.py"),
-                                    "token", "--repo", "a", "--repo", "b"])
+                                    "token", "--repo", "a", "--repo=b"])
         rows.append({"id": "BT-install-args-home",
-                     "ok": (rc_anc, rc_link, rc_same, rc_other, rc_dup, rc_adup) == (2, 2, 2, 2, 2, 2)
+                     "ok": (rc_anc, rc_link, rc_same, rc_ailink, rc_other, rc_dup, rc_adup) == (2,) * 7
                      and "root所有ではありません" in out_anc and "symlinkを含みます" in out_link
-                     and "homeが同じです" in out_same and "所有ではありません" in out_other
+                     and "homeが同じです" in out_same and "homeが同じです" in out_ailink and "所有ではありません" in out_other
                      and "同じoptionが2回以上あります" in out_dup   # rootの確認より前に止まる
                      and "同じoptionが2回以上ある" in out_adup
                      and rc_root == 2 and "所有ではありません" in out_root
