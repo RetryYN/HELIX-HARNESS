@@ -449,7 +449,8 @@ def activation_gaps(lease):
                            ("baseline", isinstance(((lease or {}).get("baseline") or {}).get("branch_protection"), dict)
                             and isinstance(((lease or {}).get("baseline") or {}).get("rulesets"), list)),
                            ("status_issue", (lease or {}).get("status_issue")),
-                           ("origin_main", (lease or {}).get("origin_main")), ("probe.test_pr", probe.get("test_pr"))) if not v]
+                           ("origin_main", (lease or {}).get("origin_main")), ("probe.test_pr", probe.get("test_pr")),
+                           ("expires_at", (lease or {}).get("expires_at"))) if not v]
     if idt.get("po") and (idt.get("po") in ai_logins(lease) or idt["po"].endswith("[bot]")):
         gaps.append("identity.poがAI側login")
     # identity表: AI側の各role（作成側・executor・非常経路のrecovery・reviewer）をloginへ対応させる（packet: 独立性の選択を問わず置く）
@@ -475,6 +476,14 @@ def activation_gaps(lease):
     if not probe.get("activation_test_reviews"):
         gaps.append("probe.activation_test_reviews（有効化時点の試験review）")
     return gaps
+
+
+def activation_pair_differs(lease):
+    """有効化前の確認用: 有効化時点の試験review（`probe.activation_test_reviews`）が、現在の登録（`probe.test_reviews`）と
+    同じID・状態の組でないか（並び順は問わない）。"""
+    probe = (lease or {}).get("probe") or {}
+    norm = lambda xs: sorted((t.get("id"), t.get("state")) for t in xs or [] if isinstance(t, dict))
+    return norm(probe.get("activation_test_reviews")) != norm(probe.get("test_reviews"))
 
 
 def activation_evidence_errors(snapshot):

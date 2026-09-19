@@ -228,11 +228,15 @@ def load_lease(gh, rev):
         lease = json.loads(t) if t else {}
     except json.JSONDecodeError:
         return {}
+    if not isinstance(lease, dict):
+        return {}
+    for k in C.DERIVED_LEASE_KEYS:   # 派生欄は記録の中身から受け取らない（下で計算した値だけを置く）
+        lease.pop(k, None)
     if lease.get("expires_at"):
         lease["expires_epoch"] = epoch(lease["expires_at"])
     if lease.get("activated_at"):
         lease["activated_epoch"] = epoch(lease["activated_at"])
-    if isinstance(lease, dict) and lease:
+    if lease:
         lease["record_committed_epoch"] = lease_record_committed_epoch(gh, rev)
     return lease
 
