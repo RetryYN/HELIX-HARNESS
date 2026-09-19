@@ -184,7 +184,7 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
     GitHubのPR review（Approve／Request changes）でなければならない。issue comment、reviewの行comment、session記録等は判断の出所に
     しない。PR reviewを使うのは、提出時のPR head（`commit_id`）へ固定され、編集がGraphQLの`lastEditedAt`で分かり、取下げ（dismiss）も
     状態`DISMISSED`として残るためである。ただし、GitHubの公開仕様は提出済みreviewの削除を否定していない（GraphQLに
-    `deletePullRequestReview`がある）。削除されたreviewは一覧から消え、古い判断が最新へ戻り得るため、下記「削除の検出」で止める。
+    `deletePullRequestReview`がある）。削除されたreviewは一覧から消え、古い判断が最新へ戻り得るため、下記「削除への対処」で扱う。
     - 判断の確定: executorはPRの全review（paginationを最後までたどる）を取得し、人間判断者loginのreviewのうち提出時刻が最新の1件を、
       状態・本文を問わず「最新の判断」とする。古いreviewへは戻らない。最新の判断が次をすべて満たすときだけ判断が成立し、一つでも
       欠ければadmissionを拒否する（POが新しいreviewを提出するまで進まない）。
@@ -194,16 +194,21 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
          exactに一致する。選択はrecordが定める語彙（approve、changes_requested、reject、defer等。副選択は
          `decision: approve+require_separate_identity`のように`+`で連ねる）である。
       4. 提出後に編集されていない（GraphQLの`lastEditedAt`が空）。
-      5. 下記「削除の検出」で、削除されたPO reviewが見つからない。
-    - **削除の検出**: 一覧から消えたreviewを、一覧だけでは検出できない。executorは次の2つで検出し、どちらかで削除が見つかれば、
-      そのPRのadmissionを拒否して人間を呼ぶ（POが、それまでのすべてより新しいreviewを提出するまで進まない）。
-      (i) executorの状態領域に、観測した人間判断者loginのreview IDをPRごとに追記する。観測済みのIDが一覧に無ければ削除とみなす。
-      (ii) GitHubのrepository events API（`GET /repos/{owner}/{repo}/events`）の`PullRequestReviewEvent`は、後から消えない作成記録である。
-      対象PRについて人間判断者loginが作成したreviewのeventを取得し、eventに現れるreview IDがすべて一覧に現存することを確かめる。
-      取得は、PR headのpush時刻より前のeventに達するまでpaginationをたどり、達しなければ拒否して再試行する（events APIは直近90日・
-      300件までのため、達しないまま時間が過ぎたPRは、POが新しいheadを判断し直すまで進まない）。events APIへの反映は遅れ得る
-      （GitHubの説明で最大6時間）ため、判断reviewの提出から6時間を過ぎ、かつその判断review自身のeventが現れるまでmergeしない。
-      両方を経ても、6時間を超えて反映が遅れたeventの削除は検出できない。これは残存riskとして本判断に含める。
+      5. 下記「削除への対処」(ii)で、削除されたPO reviewが見つからない。
+    - **削除への対処**: 一覧から消えたreviewは、一覧だけでは検出できず、GitHubの公開仕様も削除の記録を保証しない。そこで、削除を
+      事後に検出するのではなく、AI側が削除できないことを有効化の条件として実測する。
+      (i) 有効化前の実測（必須）: AI側の各login（作成側・reviewer・executor・`recovery`）の実際の資格情報で、人間判断者loginが
+      試験用PRへ提出した試験reviewに対し、RESTの削除（`DELETE /pulls/{n}/reviews/{id}`）とGraphQLの`deletePullRequestReview`を
+      試み、すべて拒否されることを確かめる。結果（要求、応答status、応答本文）をlease記録に残し、POが確認する。一つでも削除できれば、
+      本方式ではleaseを有効にしない（判断の出所を改めた改訂を人間判断に付す）。同じ実測を、期限の更新、AI側identityの変更、
+      lease監査のたびに繰り返し、削除できた時点でleaseを`suspended`にする。
+      これにより、提出済みのPO reviewを削除できるのは人間判断者自身（とAI側から資格情報を隔離したadmin）だけになり、削除は人間の行為と
+      なる。POは判断を変えるとき、reviewを削除せず、新しいreviewを提出する。
+      (ii) 補助の検出: executorは状態領域に、観測した人間判断者loginのreview IDをPRごとに追記し、観測済みのIDが一覧に無ければ、その
+      PRのadmissionを拒否して人間を呼ぶ（POが、それまでのすべてより新しいreviewを提出するまで進まない）。
+      repository events API（`GET /repos/{owner}/{repo}/events`。GitHubの説明で過去30日・300件まで、反映は最大6時間遅れ得る）の
+      `PullRequestReviewEvent`に現れる人間判断者loginのreview IDが一覧に無い場合も同じく拒否する。events APIは完全性を保証しない
+      ため、(ii)は(i)を補うだけで、(ii)に削除の検出を依存しない。
     - AI側のloginがPOのreviewをdismissしても、最新の判断が`DISMISSED`になって不成立になるだけで、古いreviewへは戻らない
       （dismissは止める方向にだけ働く）。POが判断を変えるときは、新しいreviewを提出する。
     - approve以外の判断もrecordとして運ぶ（rejectやchanges_requestedの記録もmainへ残す）。POはrecordの本文（範囲と範囲外を含む）を
@@ -282,12 +287,22 @@ leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止
     含まれる非常用commandのbytesのうち、そのPRのrecordが変更後SHA-256を`approved_targets`にexactに列挙し、そのPRの最新の判断が
     approveとして成立しているものを、`recovery`が実行してよい（人間が判断済みのbytesによる自己修理。POは実行環境でそのbytesの実行を
     許可する）。実行前に`recovery`は、その判断の成立（上記1〜5）とbytesのSHA-256をGitHubとlocalの読取りで確かめる。
+  - 補助のAPIを失った場合（repository events APIの廃止・制限、activity APIの取得不能等。PR reviewは読める）: events APIは
+    「削除への対処」(ii)の補助にだけ使うため、取得できなければ(ii)のevents照合を省き、拒否理由にしない（省いたことを記録する）。
+    activity APIを失った場合、非常経路に限り、main更新主体の照合と連鎖、merge後のactivity反映の確認に代えて、起点からmain HEADまでの
+    第1親の連鎖上のcommitが、すべてlease receiptまたは`lease_recovery:`行を持つmerge commitであることを確かめる。commit messageは
+    自己申告であり、この代替は更新主体を証明しない。代替を使ったことと理由を、merge commit message、`merge_result`、状態commentに
+    書き、運ぶrecordはこの劣化を範囲として明記し、POがそれを含めて判断する。これにより、補助APIの喪失でも修理と改訂を運べる。
   - 人間判断をGitHub上で検証する手段そのもの（PR reviewの取得）が失われた場合は、どの経路でもmergeしない。このときは、POが実行環境の
-    許可を外してleaseを止め、再bootstrapで再開する。人間はmergeしない。再bootstrapでは、改訂したpacketと判断recordを1つのPRに置き、
+    許可を外してleaseを止め、再bootstrapで再開する。人間はmergeしない。再bootstrapでは、改訂したpacketと判断recordを1つのPRに置き（新しい判断出所を実装するexecutor・非常用command・lease記録の修理も、
+    そのrecordの`approved_targets`に変更前後の状態を列挙して同じPRに含めてよい）、
     判断の出所をPR reviewに代えて、人間判断者のloginがそのPRへ投稿したissue commentとする。commentは、行頭から始まる（引用記号`>`を
     含まない）判断行`decision: <選択> head: <full SHA>`をちょうど1行含む。人間判断者loginのそのPRへのcommentのうち、内容を問わず
     最新の1件を判断とし、それが判断行の書式を満たさない・編集済み（`lastEditedAt`が空でない）・SHAが現在のheadと不一致・選択が
-    recordと不一致なら進まない。削除は上記「削除の検出」と同じ(i)(ii)で、`IssueCommentEvent`について確かめる。作成側と異なるcontextの
+    recordと不一致なら進まない。issue commentは、write権限を持つAI側loginが他者のcommentを削除し得るため、PO reviewと同じ削除不能性を前提にできない。
+    そこで再bootstrapでは、判断commentに加え、POが実行環境で与える1 PR限りの許可を同意の成立条件とする（POは最後の判断commentを置いた
+    後に許可を与え、判断を変えたら許可を与えない、または外す。許可はAI側から与えることも戻すこともできない。判断commentの削除による
+    巻き戻しは、この許可の有無で止まる）。観測済みIDの消失は上記(ii)と同じく拒否する。作成側と異なるcontextの
     runtime（`recovery` role）が、この照合の結果と、POが実行環境で与えた1 PR限りの許可のもとで、非常用commandの再bootstrap mode
     （判断の出所をissue commentに代えるだけで、他の条件・CAS push・記録・merge後は非常経路と同じ）を実行してmergeし、commentのID・作者・全文をmerge commit messageへ
     記録する。PR reviewもissue commentも読めない（GitHubが人間判断を示せない）間は、どの経路でもmergeしない。これは閉塞ではなく、
@@ -546,7 +561,7 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
 1. 本PR: packetのreviewを0件にし、POが判断する。approveなら、判断recordを本PRへ追加して再reviewし、既存規則でレビュー対応側がmergeする。
 2. 後続の`operation_change` PR: lease記録（機械可読。mappingとidentity表を含む）、executor command、非常用command、`SCF-B-0004`（上流は本packetと判断record）、
    上記規則1〜8の文言、negative caseを置く。negative caseは少なくとも次について、GitHubへ書き込まないこと（またはsuspendedになること）を確かめる。
-   dry-run（`--apply`なし）での書込み、`decision_record`の判断reviewが人間判断者loginでない・編集済み・対象PR外・`commit_id`がreview済みHEADと不一致・状態が選択と不一致（approveで`APPROVED`以外、approve以外で`CHANGES_REQUESTED`以外）・`DISMISSED`・選択がrecordと不一致、issue commentを判断として扱う、判断review後のhead変更、PR差分がrecord自身と対象集合に一致しない、recordの対象にreceipt・backup等を含む、session記録を出所とするrecord、
+   dry-run（`--apply`なし）での書込み、`decision_record`の判断reviewが人間判断者loginでない・編集済み・対象PR外・`commit_id`がreview済みHEADと不一致・状態が選択と不一致（approveで`APPROVED`以外、approve以外で`CHANGES_REQUESTED`以外）・`DISMISSED`・選択がrecordと不一致、再bootstrap mode以外でissue commentを判断として扱う、判断review後のhead変更、PR差分がrecord自身と対象集合に一致しない、recordの対象にreceipt・backup等を含む、session記録を出所とするrecord、
    PR単位の不成立でleaseを`suspended`にする、`suspended`原因以外での状態comment、非常経路で`decision_record`以外を運ぶ、
    停止中・取消し後の`decision_record`以外の運搬、基準値・起点の付け直しを判断recordなしで行う、`suspended`の保存先の片方だけの消失、状態Issue以外への状態comment、
    新main HEADとpushしたmerge commitのSHA・treeの不一致、lease失効・取消し・suspended、profile未定義の区分、区分欄の変更、`operation_change`の必須入力（操作authority record、backup、rollback、read-after）の欠落・SHA-256不一致・`operation_admission`不適合、
@@ -556,7 +571,7 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
    `authority_basis`がすべて`scope_paths`を持つときにその和集合の外のauthority面の差分、
    非常経路での`decision_record`以外・複数PRの運搬・`recovery` role以外のmerge・merge commit本文の記録欠落・merge後read-afterの不一致を隠す、非常mergeの後に`suspended`にならない、
    `recovery` loginの実効roleが`write`以外、`lease_recovery:`行・状態commentを欠く非常merge、非常経路での転記、
-   approve以外のrecordと対象fileの同梱、approve以外のrecordを`authority_basis`・保護面承認・`scope_paths`照合に使う、最新のPO reviewが不成立（書式不正・編集済み・`DISMISSED`・判断行なし）のときに古いreviewへ戻る、PO reviewの削除（観測済みIDの消失、eventに現れるIDの不在）の見逃し、判断reviewの提出から6時間未満またはそのeventの未反映でのmerge、再bootstrapでの判断commentの書式不正・編集・削除・head不一致の見逃し、保護面の承認照合より前の検査の実行、資格情報・networkに触れられる環境での検査、`supersedes`に挙がったrecordを根拠に使う、`from_sha256`の不一致（古い承認で新しいbytesを戻す）、承認のない保護面fileの削除、`decision_record`以外でmainへ入ったrecord（本PRの判断recordを含む）を根拠に使う、非常経路でのmerge前検査の省略、
+   approve以外のrecordと対象fileの同梱、approve以外のrecordを`authority_basis`・保護面承認・`scope_paths`照合に使う、最新のPO reviewが不成立（書式不正・編集済み・`DISMISSED`・判断行なし）のときに古いreviewへ戻る、AI側loginによる試験reviewの削除の実測を欠く・削除できたのに有効化または継続する、PO reviewの削除（観測済みIDの消失、eventに現れるIDの不在）の見逃し、再bootstrapでPOの1 PR限りの許可なしのmerge、events API取得不能を拒否理由にする、activity API喪失時の第1親連鎖代替を非常経路以外で使う・代替の使用を記録しない、再bootstrapでの判断commentの書式不正・編集・削除・head不一致の見逃し、保護面の承認照合より前の検査の実行、資格情報・networkに触れられる環境での検査、`supersedes`に挙がったrecordを根拠に使う、`from_sha256`の不一致（古い承認で新しいbytesを戻す）、承認のない保護面fileの削除、`decision_record`以外でmainへ入ったrecord（本PRの判断recordを含む）を根拠に使う、非常経路でのmerge前検査の省略、
    機械可読欄を持たないrecordを根拠に使う、`decision_record` PRが追加するrecordを同じPRの対象外pathの根拠に使う、approve以外のrecordに`approved_targets`がある、
    保護面（binding、evidence、bindingの`upstream`のpath、inventory、legacy-rule候補、lease記録の入力一覧、非常用commandを含む）の変更を承認recordなしで運ぶ、
    (a)変更後のtree・(b)保護面をmain HEADの版に置き換えたtreeのどちらかでの不合格、
@@ -565,7 +580,7 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
    依頼より前の応答、作成側またはreviewerとexecutorの同一context、branch protection・`enforce_admins`・rulesetとbypass対象の基準値からの変化（merge前とmerge後）、監査の遅れ（10件）、作成側・reviewer・executorのloginの実効roleが上記の値以外（admin、maintain、custom role、reviewerのwrite）、起点以降のmain更新にexecutorのlease merge push以外の更新がある（人間を含む）、activity APIで起点以降の更新を取得できない、2ページ目以降にだけ現れる更新、before／afterの連鎖切れ、force push（actorを問わない）、merge後10分以内にexecutorのpushがactivityへ現れない、authorだけexecutorに偽ったcommitの直接push、GitHub Appのadministrationまたはrepository rules書込み権限、rulesetのbypass対象が空でない、stale≥1、mergeable偽、auto-merge予約、
    push拒否、merge後の親不一致、merged表示の時間切れ、`merge_result`失敗、projection_syncのmapping外・直前receiptの未取込み・書込み前照合不一致・編集履歴不一致、投稿commandによる対象PR以外への書込み。
    leaseはまだ存在しないため、bootstrapとして既存規則でレビュー対応側がmergeする。
-3. POが実行環境にexecutor commandと投稿commandだけを許可する（非常経路を除く）。以後、すべてのPRはexecutorがadmission判定を経てmergeする。admissionを満たせないPRは止まり、人間の判断を
+3. POが実行環境にexecutor commandと投稿commandだけを許可する（非常経路と再bootstrapを除く）。以後、すべてのPRはexecutorがadmission判定を経てmergeする。admissionを満たせないPRは止まり、人間の判断を
    decision recordにしてから同じ経路で運ぶ。
 4. 正式なHELIX-OS委任authority要求をL2／L11へ降ろし、L3／L10から実装を導出して、`SCF-B-0004`を撤去する。
 
@@ -573,7 +588,7 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
 
 - 前提: leaseの有効化には、AI側identityの分離（POのaccountとAI側のaccountを分け、POの資格情報をAI側から隔離する）が要る。以後、
   AIが判断の提案をdecision recordとしてPRに置き、POはPOのaccountからそのPRへPR review（approveなら`Approve`、それ以外は
-  `Request changes`。本文に`decision: <選択>`を1行）を提出して判断する。reviewは提出時のheadへ固定され、編集と削除は検出されて止まる。
+  `Request changes`。本文に`decision: <選択>`を1行）を提出して判断する。reviewは提出時のheadへ固定され、編集は検出されて止まり、AI側が削除できないことを有効化前に実測する。
   executorがreviewをmerge commit messageへ記録する。判断reviewの後、POはそのPRのFiles changedで行commentを書いたり、review threadへ
   返信したりしない（GitHubは状態`COMMENTED`のPR reviewを作るため、最新の判断が不成立になり、止まる。止まった場合は判断reviewを
   出し直す）。本PR（bootstrap）は、AI側identityの分離前でありPOのaccountが作成者と同じためPR reviewで
@@ -586,5 +601,5 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
 期限（2026-12-31）、merged表示の待ち時間（10分）、`projection_sync`のholder（roleを問わない）、`merge_executor`のbootstrap profile（3区分）と
 authority面の検出対象・保護面は、本packetの提案値であり、POが変更できる。
 
-判断recordには、frontmatterの`decision`（選択と独立性の副選択）、`approved_targets`（本packetのpathとSHA-256）、`scope_paths`、`decider_role: PO`、
+判断recordには、frontmatterの`decision`（選択と独立性の副選択）、`approved_targets`（本packetのpath、`from_sha256`、変更後の`sha256`）、`scope_paths`、`decider_role: PO`、
 判断時刻、本packetのcommit SHAを記録する。判断前は`authority_effect: none`を維持する。
