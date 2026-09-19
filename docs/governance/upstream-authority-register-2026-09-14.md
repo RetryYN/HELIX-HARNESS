@@ -77,7 +77,7 @@ as_of: 2026-09-19
 | open PR整理 | 6件close、open 0件 | [上流再整理に伴うopen PR整理記録](audits/source-rebaseline/github-pr-cleanup-2026-09-14.md) | GitHub projection整理済み。branch・Issue・要求意味は変更していない | legacy sourceの意味は対象別L2で再採否する |
 | 旧open Issue projection | 488件、comment 1330件 | [退役記録](audits/source-rebaseline/github-issue-retirement-2026-09-15.md)、[Issue明細](audits/source-rebaseline/github-open-issue-retirement-inventory.jsonl)、[comment明細](audits/source-rebaseline/github-issue-comment-retirement-inventory.jsonl) | 488/488件を`closed / not_planned`へ退役、open 0件。本文digest 488/488一致。Issueとcommentの意味は`unresolved` | closeを要求棄却・実装完了にせず、必要な意味だけを対象別L2へ欠落なく再配置する |
 | 新世代Feature Issue projection | open 9件（#1798..#1805、#1812） | [Feature Ticket入口](feature-tickets/README.md) | local ticketから原登録、semantic抽出、要求engine、分類、Design Template、typed ticket／workflow、GitHub一方向同期adapterをprojectionし、marker・source commit・digest・open stateをread-after済み | Issueを作業共有に使い、意味・依存・状態はlocal ticketと承認上流から同期する。Issue closeを要求採否や実装完了にしない |
-| 要求整理Issue projection | open 3件（#1813..#1815） | [投影記録](audits/source-rebaseline/github-requirement-review-program-projection-2026-09-15.md) | RDP-001の要否・再配置、RDP-002の責務・機能重複、RDP-003の技術代替可能性をlocal sourceから投影しread-after済み | 親子Issueを進行共有だけに使い、closeやcheckboxから個別要求の採否・統合・技術選定を生成しない |
+| 要求整理Issue projection | open 3件（#1813..#1815） | [投影記録](audits/source-rebaseline/github-requirement-review-program-projection-2026-09-15.md) | RDP-001の要否・再配置、RDP-002の責務・機能重複、RDP-003の技術代替可能性をlocal sourceから投影しread-after済み。#1813は2026-09-19にmain `3469266e`のRDP-001へ再投影した（`RDPPROJ-1813-20260919-005`） | 親子Issueを進行共有だけに使い、closeやcheckboxから個別要求の採否・統合・技術選定を生成しない |
 | 旧GitHub Project projection | Project 1件、item 210件 | [退役記録](audits/source-rebaseline/github-project-retirement-2026-09-15.md)と[item明細](audits/source-rebaseline/github-project-1-item-inventory.jsonl) | Project #1を削除せずclose。全item `Done`は完了証拠にせず、意味`unresolved` | 承認済みHELIX-OS要求から新世代dashboard／projectionを別identityで再導出する |
 | 旧PLAN | 1252文書 | `archive/legacy-generation-2026-09-14/root/docs/plans/` | historical作業契約・履歴。要求意味の正本ではない | 必要なbehavior atomだけを上流ID・対象・revisionへ再採否し、旧PLANを実行しない |
 
@@ -118,8 +118,8 @@ as_of: 2026-09-19
 | 作業単位 | 閉鎖条件 | 現在の証拠 | 状態 | 残る処置 |
 |---|---|---|---|---|
 | 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書（2026-09-17時点の閉じた集合。2026-09-18に追加した仮設束縛候補、旧ルール群由来の要求候補、WBS台帳候補の3文書は、この集合の外に別記する。現行候補の総数は11文書）、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3直接委任22文書から閉じた意味relation closure 117文書、分類待ちを含む参照edge 788件 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blobまたは参照候補holdingへ追記する |
-| 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
-| 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、5大目標、七大原則、Version 1の複数プロダクト・自己適用検証とWeb展開依存が一つの候補revisionへ束縛される | v4.1候補、承認準備監査、5大目標・七大原則接続監査 | 候補統合・外部review待ち | 候補を証拠で統合し、将来のauthority判断時にv4.1 exact revisionを人間が採否する |
+| 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1と4対象L1のexact revisionへ束縛して承認済み（[2026-09-17 decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)）。L2／L11のproduct routingの親境界として使う |
+| 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、5大目標、七大原則、Version 1の複数プロダクト・自己適用検証とWeb展開依存が一つの候補revisionへ束縛される | [Concept v4.1](../concept/helix-concept-v4.1.md)（SHA-256 `181b0c55...`）、承認準備監査、5大目標・七大原則接続監査、[承認decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)（`HDEC-CONCEPT-4.1`） | exact revision承認済み | 承認済みConceptを親に、対象別L1からL2／L11へ降ろす |
 | 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1 4文書。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | exact revision承認済み | 第1層product routingの責務根拠として使い、L2／L11へ降ろす |
 | 要求源の意味分類 | 各source atomのtarget、保持／変更／棄却、旧実現手段の扱いが分かる | Infinity 153、refinement 14、候補31系列、旧HARNESS 5文書のcrosswalk | 第1層product routing開始 | 原要求を保持し、四製品・製品間接続・分割要・未解決へ候補登録する |
 | 対象別L2 | 利用者、場面、操作、期待結果、非対象、出典、採否、合意revisionが対象別に閉じる | HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6のdraft。粒度監査で37件すべてに分割・具体化が必要 | 未合意 | unit、connection、compositeへ再構成し、source atomを欠落なく再配置してprototype／非UI記録と人間合意を束縛する |
@@ -129,8 +129,8 @@ as_of: 2026-09-19
 | AI可読上流 | 承認済み上流からHARNESS契約、OS実行context、個別製品要求を分離生成できる要求が確定する | AIDOC要求10件とL11候補、legacy入口inventory | 要求案接続済み | 対象別L2採否後に採否し、L3以降でmanifestを導出する |
 | 旧資産archive判断 | 旧実行面をcurrent pathから隔離し、各資産に意味移管、consumer、replacement、rollback、最終処置がある | `archive/legacy-generation-2026-09-14/`、legacy CI／AI inventory、各crosswalk | 実行面隔離済み、文書分類と意味移管は継続中 | archive sourceを対象別L2へ採否し、物理削除は個別判断まで行わない |
 
-要求整理の現在の直列境界は、`Concept v4.1人間判断 → 対象別L1承認 → source atom無損失再配置 → 対象別L2・prototype合意`
-である。ここが閉じる前にL3／L10、AI文書生成器、新世代CI、runtime、archive資産の意味移管・最終退役へ進まない。
+要求整理の直列境界は、`Concept v4.1人間判断 → 対象別L1承認 → source atom無損失再配置 → 対象別L2・prototype合意`
+である。先頭2段は2026-09-17のdecision recordで承認済みであり、現在は3段目以降にある。対象別L2・prototype合意が閉じる前にL3／L10、AI文書生成器、新世代CI、runtime、archive資産の意味移管・最終退役へ進まない。
 
 [上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)は、本台帳の各集合を
 U0 archive-first隔離・母集団固定からU7意味移管・最終退役までのwork unitへ変換する。GitHub Issueを起票しなくても作業契約を保持できる。

@@ -96,11 +96,35 @@ Scrum Reverse行台帳3文書へ全件を保持し、同じ117文書のfrontmatt
 利用・縮退・retireする後続要求PRでatom化と別仮登録を要求する。この補正も要求追加、採否、配置、successor、
 実装開始を生成しない。
 
+## S0承認・S1-01 defer後の#1813再投影
+
+receipt_id: `RDPPROJ-1813-20260919-005`
+
+RDP-001のheader訂正（`status: l2_decision_input_denominator_incomplete`）、`in_scope`の13要求1,799 atom
+（screen一致415、secondary 964 atom・link 1,009本）への拡大、`HDEC-L2D-S0-01`／`HDEC-L2D-S0-02`の承認（正規語彙`split`）、
+`HDEC-L2D-S1-01-DEFER-01`の`defer`を、main `3469266e`時点のRDP-001からIssue #1813へ再投影した。
+S0の2 unitは対象別L2／L11へ未適用であり、適用前に人間判断が要る未決3点を本文に残した。
+
+| 項目 | read-after値 |
+|---|---|
+| source commit | `3469266e5f7a4b455f98ccd0f40923a40f5e4562`（同fileの最終変更commit `1103e0c15c7002462b4e23e7a38946a047a1a549`） |
+| source file SHA-256 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
+| previous remote revision | `updatedAt:2026-09-18T16:09:30Z+body_sha256:7ea33f2417eca9ee7f3e8aaed375f6978b45ab18f318a28e73594441f64336c1` |
+| corrected remote revision | `updatedAt:2026-09-19T14:27:11Z+body_sha256:4b8599bc5f987021a7293e289a8e3b40d852608d3bb4079a7e03d99cadcc25fc` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+
+`previous remote revision`は本再投影の直前に取得した値である。`RDPPROJ-1813-20260916-004`の
+`44db8f3e…`からこの値までの間にIssue本文は更新されていたが、その更新のreceiptは本文書にない。本receiptは
+その欠落を埋めず、欠落があったことだけを記録する。本再投影は要求の追加、採否、successor、L2／L11適用、
+実装開始を生成しない。
+
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
 RDP-001は全要求の要否・再配置を親作業として追跡し、RDP-002は責務・機能重複、RDP-003は技術代替可能性を
 別判断面として扱う。HELIX-DBはRDP-003の一論点であり、専用実装の要否と永続・排他・再開等の意味機能を分ける。
 
 ## 残る境界
 
-Concept v4.1と対象別L1は未承認であり、個別要求の判断、successor、L3、実装、DB、CI、物理削除は未開始である。
+Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである。L2採否ではS0の2 unitが承認済み（対象別L2／L11へは未適用）、
+`L2D-S1-01`は`defer`である。個別要求の要否判断、successor、L3、実装、DB、CI、物理削除は未開始である。
 親・子Issueのcloseやcheckboxから、個別要求の処理完了を生成しない。
