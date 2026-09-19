@@ -21,8 +21,8 @@ as_of: 2026-09-19
 | 旧L0 charter source | 1 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md` | sourceでconfirmedだった状態を保持する。新世代target authorityへは自動昇格しない | P0–P9の意味を保持して対象別L1へ再配置する |
 | 旧Concept source | 1 | `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md` | historical source。旧Core Read・旧製品境界 | v4.1との差分sourceとしてのみ使う |
 | 新世代Concept | 1文書 | [Concept v4.1](../concept/helix-concept-v4.1.md)、[人間判断packet](audits/source-rebaseline/concept-v4.1-human-decision-packet.md)、[承認decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md) | SHA-256 `181b0c55...`のexact revisionを承認済み。5大目標と七大原則は入力接続であり、独立authority承認ではない。v4.0はarchive sourceのまま | 承認済みConceptを親に、旧要求を保持した対象別L2／L11整理へ進む |
-| HELIX自体の5大目標候補 | 1文書、5目標 | [5大目標候補](../concept/helix-five-goals.md)、[人間判断packet](audits/source-rebaseline/helix-five-goals-human-decision-packet.md) | `draft_candidate / awaiting_human_approval`。HELIX全体の到達方向であり、個別要求・実装方式・達成を生成しない。Concept改訂候補への接続済み | Concept接続の無矛盾をreviewする。将来のauthority判断はexact本文SHAへ束縛し、対象別L1・L2／L11への分解と分ける |
-| HELIXエージェント七大原則候補 | 1文書、7原則 | [七大原則候補](../concept/helix-principles.md)、[人間判断packet](audits/source-rebaseline/helix-principles-human-decision-packet.md) | PO提示の7原則を行動判断へ具体化した`draft_candidate`。Conceptの9構造原則と分離してConcept改訂候補へ接続済み。authority effectなし | Concept接続の無矛盾をreviewする。将来のauthority判断後も個別要求の採否は別decisionにする |
+| HELIX自体の5大目標候補 | 1文書、5目標 | [5大目標候補](../concept/helix-five-goals.md)、[人間判断packet](audits/source-rebaseline/helix-five-goals-human-decision-packet.md) | `draft_candidate / awaiting_human_approval`。HELIX全体の到達方向であり、個別要求・実装方式・達成を生成しない。承認済みConcept v4.1への入力接続は承認済み（独立authority承認ではない） | Concept接続の無矛盾をreviewする。将来のauthority判断はexact本文SHAへ束縛し、対象別L1・L2／L11への分解と分ける |
+| HELIXエージェント七大原則候補 | 1文書、7原則 | [七大原則候補](../concept/helix-principles.md)、[人間判断packet](audits/source-rebaseline/helix-principles-human-decision-packet.md) | PO提示の7原則を行動判断へ具体化した`draft_candidate`。Conceptの9構造原則と分離して、承認済みConcept v4.1への入力接続は承認済み（独立authority承認ではない）。authority effectなし | Concept接続の無矛盾をreviewする。将来のauthority判断後も個別要求の採否は別decisionにする |
 | 旧HELIX柱要求 | HBR 9件、HNFR 4件 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | sourceでconfirmedだった要求意味を保持し、新世代targetは未承認。工程と実行管理の配置が混在 | [対象別対応](audits/source-rebaseline/pillar-target-crosswalk.md)からL1／L2へ欠落なく再配置する |
 | 旧要件v1.3 source | 1 | [現行保持copy](requirements-source/helix-requirements_v1.3.md)、[対象別対応](audits/source-rebaseline/requirements-v1.3-target-crosswalk.md) | archive隔離直前revisionの原文を同一byteで現行保持し、監査基準revisionとの差は333 path台帳で別保持。旧Core Read状態とHARNESS／OS責務の混在は配置課題であり削除理由にしない | 全要求を保持したまま対象別L2へ再配置し、すべての要求PRを人間決定に束縛する |
 | 旧v1.3委任文書・意味relation closure | 117文書（114 file blob＋行保持3） | [file-blob保全inventory](delegated-requirement-document-source-inventory.md)、[機械台帳](delegated-requirement-document-source-holding.jsonl)、[参照候補holding](delegated-requirement-document-reference-inventory.md) | v1.3の直接委任22文書から意味frontmatter relation 265 edgeを再帰的に辿り、117文書をarchive原文とSHA-256へ束縛して管理層へ仮登録。別にfrontmatter・本文参照788 edgeを行・target digest付きで保持。要求atom化、採否、配置、successorは未実施 | 対象文書と意味relation closureを先に無損失atom化する。分類待ち参照を利用・縮退・retireする場合も別holdingへ仮登録し、理由なく除外しない |
@@ -118,8 +118,8 @@ as_of: 2026-09-19
 | 作業単位 | 閉鎖条件 | 現在の証拠 | 状態 | 残る処置 |
 |---|---|---|---|---|
 | 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書（2026-09-17時点の閉じた集合。2026-09-18に追加した仮設束縛候補、旧ルール群由来の要求候補、WBS台帳候補の3文書は、この集合の外に別記する。現行候補の総数は11文書）、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3直接委任22文書から閉じた意味relation closure 117文書、分類待ちを含む参照edge 788件 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blobまたは参照候補holdingへ追記する |
-| 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
-| 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、5大目標、七大原則、Version 1の複数プロダクト・自己適用検証とWeb展開依存が一つの候補revisionへ束縛される | v4.1候補、承認準備監査、5大目標・七大原則接続監査 | 候補統合・外部review待ち | 候補を証拠で統合し、将来のauthority判断時にv4.1 exact revisionを人間が採否する |
+| 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1と4対象L1のexact revisionへ束縛して承認済み（[2026-09-17 decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)）。L2／L11のproduct routingの親境界として使う |
+| 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、5大目標、七大原則、Version 1の複数プロダクト・自己適用検証とWeb展開依存が一つの候補revisionへ束縛される | [Concept v4.1](../concept/helix-concept-v4.1.md)（SHA-256 `181b0c55...`）、承認準備監査、5大目標・七大原則接続監査、[承認decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)（`HDEC-CONCEPT-4.1`） | exact revision承認済み。5大目標と七大原則は入力接続であり独立authority承認ではない（「HELIX自体の5大目標候補」「HELIXエージェント七大原則候補」の行のとおり`draft_candidate`のまま） | 承認済みConceptを親に、対象別L1からL2／L11へ降ろす |
 | 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1 4文書。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | exact revision承認済み | 第1層product routingの責務根拠として使い、L2／L11へ降ろす |
 | 要求源の意味分類 | 各source atomのtarget、保持／変更／棄却、旧実現手段の扱いが分かる | Infinity 153、refinement 14、候補31系列、旧HARNESS 5文書のcrosswalk | 第1層product routing開始 | 原要求を保持し、四製品・製品間接続・分割要・未解決へ候補登録する |
 | 対象別L2 | 利用者、場面、操作、期待結果、非対象、出典、採否、合意revisionが対象別に閉じる | HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6のdraft。粒度監査で37件すべてに分割・具体化が必要 | 未合意 | unit、connection、compositeへ再構成し、source atomを欠落なく再配置してprototype／非UI記録と人間合意を束縛する |
@@ -129,8 +129,8 @@ as_of: 2026-09-19
 | AI可読上流 | 承認済み上流からHARNESS契約、OS実行context、個別製品要求を分離生成できる要求が確定する | AIDOC要求10件とL11候補、legacy入口inventory | 要求案接続済み | 対象別L2採否後に採否し、L3以降でmanifestを導出する |
 | 旧資産archive判断 | 旧実行面をcurrent pathから隔離し、各資産に意味移管、consumer、replacement、rollback、最終処置がある | `archive/legacy-generation-2026-09-14/`、legacy CI／AI inventory、各crosswalk | 実行面隔離済み、文書分類と意味移管は継続中 | archive sourceを対象別L2へ採否し、物理削除は個別判断まで行わない |
 
-要求整理の現在の直列境界は、`Concept v4.1人間判断 → 対象別L1承認 → source atom無損失再配置 → 対象別L2・prototype合意`
-である。ここが閉じる前にL3／L10、AI文書生成器、新世代CI、runtime、archive資産の意味移管・最終退役へ進まない。
+要求整理の直列境界は、`Concept v4.1人間判断 → 対象別L1承認 → source atom無損失再配置 → 対象別L2・prototype合意`
+である。先頭2段は2026-09-17のdecision recordで承認済みであり、現在は3段目以降にある。対象別L2・prototype合意が閉じる前にL3／L10、AI文書生成器、新世代CI、runtime、archive資産の意味移管・最終退役へ進まない。
 
 [上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)は、本台帳の各集合を
 U0 archive-first隔離・母集団固定からU7意味移管・最終退役までのwork unitへ変換する。GitHub Issueを起票しなくても作業契約を保持できる。
