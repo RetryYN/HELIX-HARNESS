@@ -97,8 +97,13 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
     全文そのまま転記してよい。同一accountでは本人投稿と転記に検証上の差がないためである。転記はcommentにその旨を明記する。
 - `require_separate_identity`: 作成側、各reviewer、executorを、相互に別のGitHub identity（GitHub Appまたは別account）にする。
   帰結は次のとおり。
-  - lease記録にidentity表（role → GitHub login）を置き、executorは各commentの投稿者loginと、main へのpushの主体を照合する。
-    作成側のloginが依頼以外のcommentやpushに現れたら対象外。
+  - lease記録にidentity表（role → GitHub login）を置く。commentとpushの投稿者は次のとおりとし、executorはloginを照合する。
+    依頼commentと`review_request_delivery_receipt`は、依頼を送る作成側のloginが投稿する（運用モデルの依頼送信・read-after・receipt
+    appendの手順どおり）。応答commentは、依頼先として登録されたreviewerのloginが投稿する。mainへのpushと`merge_result`は
+    executorのloginが行う。この対応に合わないcommentやpush（例: 作成側loginによる応答、reviewer loginによるpush）があれば対象外。
+    作成側による応答の転記は、この選択では認めない。
+  - 作成側、各reviewer、executorのidentityは、repositoryのadmin権限を持たない（保護設定を変えられるのはPOのidentityだけ）。
+    これにより、保護設定を変えない限り改変できないというmerge記録の性質が、AI側のどのroleからも崩せなくなる。
   - 各identityの資格情報は、他roleのcontextから読めない場所に置く（作成側の実行環境からreviewer・executorの資格情報に触れられない）。
   - 「用意できた」とは、identity表がmainのlease記録にあり、資格情報の分離をPOが確認した時点を指す。それまでleaseを有効にしない。
   - executorのidentityがmainへ通常pushできるよう、branch protectionの設定を変える必要があれば、それはPOが行う（executorは変えない）。
@@ -128,10 +133,11 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 - merge commit messageに、lease ID、PR、pair、pairに束縛されたすべての依頼・delivery receipt・応答commentのID・SHA-256・全文、
   各検査の結果、executor contextを書く。mainのforce pushと削除はbranch protectionで禁止され、`enforce_admins`が有効で、
-  executorは保護設定とrulesetの変更を禁止されている。したがってexecutorからはこの記録を改変できない。
+  executorは保護設定とrulesetの変更を禁止されている。したがってexecutorは、この記録の改変を禁止されている。
 - **改変耐性の限界**: 2026-09-20時点で作業に使うGitHub accountはrepositoryの管理権限を持ち、保護設定を変えられる。
-  `accept_bootstrap_risk`では同じaccountを使うため、そのaccountを使う主体が保護設定を変えれば記録を書き換え得る。
-  executorは下記のとおり保護設定の変化を検出して停止するが、変更そのものは防げない。
+  `accept_bootstrap_risk`では同じaccountを使うため、そのaccountを使う主体（executorを含む）が保護設定を変えれば記録を書き換え得る。
+  executorは下記のとおり保護設定の変化を検出して停止するが、変更そのものは防げない。`require_separate_identity`では、
+  AI側のidentityからadmin権限を外すことを条件とするため（上記）、この限界はPOのidentityだけに残る。
 - push後、対象PRへ`merge_result` comment（結果、merge commit SHA、親、read-after結果）を置く。merge以外に許すGitHub書込みは、
   この1 commentだけである。
 - `merge_result`は次の`operation_change` PRで、repoの台帳へ全文とdigestごと取り込む。
