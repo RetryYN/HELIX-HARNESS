@@ -122,15 +122,21 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 - GitHubのmergeableが真。auto-mergeが予約されていない。
 - mainのbranch protection（force push禁止、削除禁止、`enforce_admins`有効）と、repositoryのrulesetの一覧とbypass対象を再取得し、
   lease記録に固定した基準値と一致する。一致しなければ停止する。
-- `require_separate_identity`の場合、identity表の各loginの実効repository roleを再取得し（例: collaborator permission APIの
-  `role_name`が、作成側とexecutorは`write`、reviewerは`read`または`triage`。GitHub Appならinstallation権限にadministrationと
-  repository rulesの書込みを含まない）、それ以外であれば停止する。
-- `require_separate_identity`の場合、前回のlease merge以降にmainのfirst-parent chainへ入ったcommitが、すべてexecutorのloginによる
-  lease merge（commit messageにlease receiptを持つもの）か、identity表のPOのloginによるmergeであることを確かめる。
-  それ以外があれば、review外の変更がmainへ入ったとみなし、書き込まずに停止しleaseを`suspended`にする。
+- `require_separate_identity`の場合、identity表のうち作成側、各reviewer、executorの各loginの実効repository roleを再取得し
+  （例: collaborator permission APIの`role_name`が、作成側とexecutorは`write`、reviewerは`read`または`triage`。GitHub Appなら
+  installation権限にadministrationとrepository rulesの書込みを含まない）、それ以外であれば停止する。POの行はrole検査の対象外で、
+  下記のmainの更新主体の照合にだけ使う。
+- すべてのrulesetのbypass対象が空であることを確かめ、空でなければ停止する（両選択に共通）。
+- `require_separate_identity`の場合、mainの更新主体を照合する。起点は、leaseを有効にした時点のmain HEAD（lease記録に固定する）と、
+  それ以降の最後のlease mergeのうち新しい方である。起点以降の`refs/heads/main`の更新を、GitHubが認証済みのactorとともに記録する
+  repository activity API（`GET /repos/{owner}/{repo}/activity`、`ref=refs/heads/main`）から取得し、各更新が次のどちらかであることを確かめる。
+  1. actorがexecutorのloginで、種類がpush、更新後のcommitがlease receiptをcommit messageに持つmerge commitである。
+  2. actorがPOのloginである（PRのmergeならPRの`merged_by`もPOのloginである）。
+  それ以外（作成側やreviewerのloginによる更新、force push等）があれば、review外の変更がmainへ入ったとみなし、書き込まずに停止し
+  leaseを`suspended`にする。commit objectの`author`／`committer`は自己申告で偽れるため、主体の判定に使わない。
+  activity APIが起点以降の更新を取得できない（保持期間外、取得失敗）場合も停止する。
   `accept_bootstrap_risk`では全roleが同じloginのため、この区別はできない（実行環境の許可がexecutor commandと投稿commandに
   限られることで、AI側contextからの直接pushを防ぐ）。
-  あわせて、すべてのrulesetのbypass対象が空であることを確かめ、空でなければ停止する。
 - review済みcontent HEADとmain HEADから、executorがlocalでmerge commitを作る。`scaffold/`配下がmain HEADとmerge commitで
   bytes単位で同一であることを確かめる（許可集合の外のため、同一でなければ上記の除外に当たる）。そのうえでmerge commitのtreeで
   `scfctl`のvalidate／stale／residuals／selftestとgovcheckを実行し、すべて合格、`stale=0`。toolがmain HEADと同一であるため、
@@ -160,7 +166,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 #### merge後
 
-- 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`、branch protectionとrulesetが基準値から変わっていないこと、`require_separate_identity`の場合は各loginの実効roleが上記の値で、すべてのrulesetのbypass対象が空であることを確認する。
+- 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`、branch protectionとrulesetが基準値から変わっていないこと、`require_separate_identity`の場合は作成側・reviewer・executorの各loginの実効roleが上記の値で、すべてのrulesetのbypass対象が空であることを確認する。
 - GitHubがPRをmergedと表示するのは非同期である。push後10分以内にmergedにならなければ、失敗として扱う。
 - 不一致・失敗（上記の親、stale、branch protection・ruleset、identity表のloginの実効roleが上記の値でない、rulesetのbypass対象が空でない、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
   （運用モデル「PR #1797」節7と同じ扱い）。leaseは`suspended`になり、executorは人間が解除するまで次のmergeをしない。
@@ -243,7 +249,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
    上記規則1〜6の文言、negative caseを置く。negative caseは少なくとも次について、GitHubへ書き込まないこと（またはsuspendedになること）を確かめる。
    lease失効・取消し・suspended、区分が`repository_foundation`でない、区分欄の変更、許可集合外または除外集合のpath、renameで除外pathへ触れる、
    authority系keyの追加行・削除行・表書式、decisionまたはbindingが束縛するbytesの変更、`authority_surface_changed`が`yes`または欠落、pair不一致、別pairの依頼、応答のない依頼、findingのある応答、reviewer 2 context未満、編集されたcomment、
-   依頼より前の応答、作成側またはreviewerとexecutorの同一context、`scaffold/`配下の差分、branch protection・`enforce_admins`・rulesetとbypass対象の基準値からの変化（merge前とmerge後）、`.gitattributes`の変更、監査の遅れ（10件）、identity表のloginの実効roleが上記の値以外（admin、maintain、custom role、reviewerのwrite）、前回lease merge以降のmainにexecutorのlease mergeでもPOのmergeでもないcommitがある、GitHub Appのadministrationまたはrepository rules書込み権限、rulesetのbypass対象が空でない、stale≥1、mergeable偽、auto-merge予約、
+   依頼より前の応答、作成側またはreviewerとexecutorの同一context、`scaffold/`配下の差分、branch protection・`enforce_admins`・rulesetとbypass対象の基準値からの変化（merge前とmerge後）、`.gitattributes`の変更、監査の遅れ（10件）、identity表のloginの実効roleが上記の値以外（admin、maintain、custom role、reviewerのwrite）、起点以降のmain更新にexecutorのlease merge pushでもPOの更新でもないactorの更新がある、activity APIで起点以降の更新を取得できない、authorだけexecutorやPOに偽ったcommitの直接push、GitHub Appのadministrationまたはrepository rules書込み権限、rulesetのbypass対象が空でない、stale≥1、mergeable偽、auto-merge予約、
    push拒否、merge後の親不一致、merged表示の時間切れ、`merge_result`失敗、projection_syncのmapping外・直前receiptの未取込み・書込み前照合不一致・編集履歴不一致、投稿commandによる対象PR以外への書込み。
    POがGitHubで直接mergeする。
 3. POが実行環境にexecutor commandと投稿commandだけを許可する。以後、対象PRはexecutorがmergeする。
