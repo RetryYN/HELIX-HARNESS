@@ -18,9 +18,9 @@ S1へ入る前の管理分類登録第1層では、旧Requirement IR 153件す�
 HELIX-Web、HELIX-Web-OS、製品間接続、分割要の候補を登録し、独立reviewとmain read-afterを完了した。
 このproduct routing候補をsuccessor確定または要求承認として扱わない。`L2D-S1-01`は
 [人間判断packet v2](l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に判断材料を集めたが、
-生存中13 source holdingのうち11件が未評価であり、まだ人間判断へ送れない。第2独立review（2026-09-19）により、評価済みとした57要求の側でも6件の処分を改め、`in_scope`は13要求1,799 atomになった。v1は`MPR-SH-LEGACY-RULE-004`を計上して
+生存中13 source holdingのうち11件が未評価であり、decision-readyではない。2026-09-19にPOは`L2D-S1-01`を`defer`とした（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。第2独立review（2026-09-19）により、評価済みとした57要求の側でも6件の処分を改め、`in_scope`は13要求1,799 atomになった。v1は`MPR-SH-LEGACY-RULE-004`を計上して
 いないため`superseded_by_v2`である。
-人間判断まではL2／L11本文へ適用せず、S1–S4の次のdecision unitへ進めない。2026-09-18に追加したS0はこの直列の外にあり、下記S0節の範囲で並行に扱う。
+`L2D-S1-01`の採否が`approve_split`、または`reject`（不採用にするatomと影響を明示した別decisionを伴う）として確定するまで、L2／L11本文へ適用せず、S1–S4の次のdecision unitへ進めない。`defer`と`changes_requested`はこの条件を満たさない。2026-09-18に追加したS0はこの直列の外にあり、下記S0節の範囲で並行に扱う。
 [第1層完了監査](product-routing-completion-and-l2-entry-2026-09-17.md)をこの遷移のread-afterとする。
 
 ## 採否単位の共通入力
@@ -45,18 +45,21 @@ S1–S4の採否が進んでも、正式なL3、設計、実装、CIはすぐに
 
 | Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
 |---|---|---|---|---|
-| L2D-S0-01 | [`scaffold-binding`](../../candidates/scaffold-binding-requirements.md) | HARNESS／HELIX-OS | 候補起草済み・未承認・L2本文未接続 | 仮の物の使用条件、保持する役割と義務、仮の検証と正式な検証の分離、置換時の無損失確認、撤去。HARNESSの規範とOSの登録・隔離実行・lifecycleへのsplit案 |
-| L2D-S0-02 | [`wbs-ledger`](../../candidates/wbs-ledger-requirements.md) | HELIX-OS／HARNESS | 候補起草済み・未承認・L2本文未接続 | 要求からの作業分解を管理層の台帳として所有する条件。管理＝登録・整合・統制、推進＝分解と開発方式選定、検収＝独立確認、HARNESS＝作業単位の形の規範。`L2D-S2-02`は関連系列 |
+| L2D-S0-01 | [`scaffold-binding`](../../candidates/scaffold-binding-requirements.md) | HARNESS／HELIX-OS | **approve**（正規語彙`split`。[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-01`）・L2／L11本文未接続 | 仮の物の使用条件、保持する役割と義務、仮の検証と正式な検証の分離、置換時の無損失確認、撤去。HARNESSの規範とOSの登録・隔離実行・lifecycleへのsplit案 |
+| L2D-S0-02 | [`wbs-ledger`](../../candidates/wbs-ledger-requirements.md) | HELIX-OS／HARNESS | **approve**（正規語彙`split`。[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-02`）・L2／L11本文未接続 | 要求からの作業分解を管理層の台帳として所有する条件。管理＝登録・整合・統制、推進＝分解と開発方式選定、検収＝独立確認、HARNESS＝作業単位の形の規範。`L2D-S2-02`は関連系列 |
 
 S0の採否はScaffoldの正式なschema、runtime、CI、adapterを実装・起動する許可ではない。候補の内容を先に確かめる仮組みは
 `scaffold/`名前空間に置き、自身をScaffold Binding `SCF-B-0001`として候補のrevisionへ束縛している。これは仮の物であり、
 S0の採否とも正式実装とも別である。`L2D-S0-01`は2026-09-17の
 無損失ベースラインと候補31系列の後に追加した新規系列であり、旧要求の母集団件数を変更しない。
 `L2D-S0-01`と`L2D-S1-01`は互いの判断を前提にしない。「S1の前」は節の並びとPOが先に判断したい意向を示すもので、
-`L2D-S1-01`の判断を止める条件ではない。`L2D-S1-01`の人間判断を待つ間にS0で行えるのは、候補の起草、review、
-人間判断packetの準備までである。`L2D-S1-01`の判断packetは、生存中のsource holdingを取り直した[v2](l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)が現行であり、[v1](l2d-s1-01-authority-vocabulary-human-decision-packet.md)は承認に使わない。2026-09-17のベースラインと第1層完了監査が`L2D-S1-01`から始めると案内している点は
-S1–S4の直列について引き続き有効であり、今回の差分はその直列の外にS0の1 unitを追加したことだけである。L2／L11本文は`L2D-S1-01`の判断packetがexact digestで
-参照しているため、S0の候補追加では変更しない。
+`L2D-S1-01`の判断を止める条件ではない。2026-09-19に`L2D-S0-01`と`L2D-S0-02`は候補のexact revisionに対して承認され、
+`L2D-S1-01`はdeferとなった（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。S0の承認は対象別L2／L11本文への適用ではなく、適用は別の要求PRで行う。
+`wbs-ledger`と`development-ticket-derivation`の統合可否、`scaffold-binding`のシステム群内の層の置き方は、同recordで未決として残した。`L2D-S1-01`の判断packetは、生存中のsource holdingを取り直した[v2](l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)が現行であり、[v1](l2d-s1-01-authority-vocabulary-human-decision-packet.md)は承認に使わない。2026-09-17のベースラインと第1層完了監査が`L2D-S1-01`から始めると案内している点は
+S1–S4の直列について引き続き有効であり、今回の差分はその直列の外にS0の2 unitを追加したことだけである。L2／L11本文は`L2D-S1-01`の判断packetがexact digestで
+参照しているため、S0の候補追加では変更しない。S0の承認後の適用PRはこれらのL2／L11本文を変更するため、
+`L2D-S1-01` packet v2の判断対象revision表を黙ってstaleにしない。同じPRか先行PRでpacket v2を再baselineするか、
+順序を人間判断に付す（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。
 
 ## S1 authority・要求変更境界
 
@@ -64,7 +67,7 @@ S1–S4の直列について引き続き有効であり、今回の差分はそ�
 
 | Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
 |---|---|---|---|---|
-| L2D-S1-01 | `authority-vocabulary` | HARNESS／HELIX-OS | 判断packet v2作成済み・**未送付**（生存中13 holdingのうち11件が未評価。v1はsuperseded） | request、approval、decision、通知、技術判断の区別。人間の介入点の限定列挙と定義所有、AI自走と質問前の自己解決、人間承認層とAI進行層の分担、指示原文の来歴保全、破壊的操作の既定拒否と例外の監査、providerの記憶の混入禁止とmemoryの期限・保持、正規の検証経路を手軽な手段で代替しないこと、指摘の処分と審査のstale、成果物と判断全般のrevision束縛、DB・projection・生成物を第二の正本にしないこと、GitHubの状態一般から要求・承認を作らないこと。HARNESSの規範とOSの記録・執行へのsplit案 |
+| L2D-S1-01 | `authority-vocabulary` | HARNESS／HELIX-OS | **defer**（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S1-01-DEFER-01`）。判断packet v2は生存中13 holdingのうち11件が未評価。v1はsuperseded | request、approval、decision、通知、技術判断の区別。人間の介入点の限定列挙と定義所有、AI自走と質問前の自己解決、人間承認層とAI進行層の分担、指示原文の来歴保全、破壊的操作の既定拒否と例外の監査、providerの記憶の混入禁止とmemoryの期限・保持、正規の検証経路を手軽な手段で代替しないこと、指摘の処分と審査のstale、成果物と判断全般のrevision束縛、DB・projection・生成物を第二の正本にしないこと、GitHubの状態一般から要求・承認を作らないこと。HARNESSの規範とOSの記録・執行へのsplit案 |
 | L2D-S1-02 | `requirement-formation-scoped-admission` | HARNESS／HELIX-OS | L2接続済み | 根拠付き要求形成、scopeを限定した再確定 |
 | L2D-S1-03 | `design-grounding-human-convergence` | HARNESS／HELIX-OS | L2接続済み | 客観根拠、人間反応、未解決finding、収束の区別 |
 | L2D-S1-04 | `requirements-authority-materialization` | HELIX-OS | 再採否待ち | repo-owned意味authority、一方向projection、状態分離。旧JSON-only／Issue admissionは棄却 |

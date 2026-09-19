@@ -1,7 +1,7 @@
 # 上流authority管理台帳
 
 status: active_register
-as_of: 2026-09-17
+as_of: 2026-09-19
 
 ## 台帳の役割
 
@@ -42,10 +42,10 @@ as_of: 2026-09-17
 | 旧Infinity Loop Requirement IR | 153要求 | [現行保持IR](requirements-source/requirements-ir/requirements.json)、[carry-forward台帳](legacy-requirement-carry-forward.jsonl) | 153/153を原文・digest付きで`preserved_pending_rehome`として現行保持。37件はrouting containerであり代替集合ではない | [無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)に従い対象別successorへ再配置する。欠落atomはpendingのまま残す |
 | 旧refinement契約 | 14契約 | `archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json` | historical source。旧frozen／specified状態 | [対象別対応](audits/source-rebaseline/refinement-target-crosswalk.md)に従い意味を保持して再配置する |
 | 旧authority候補 | 97文書 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/` | historical candidate source。旧状態を新世代へ継承しない | [候補対象別台帳](audits/source-rebaseline/candidate-source-target-inventory.md)から個別採否する |
-| 新世代要求候補 | 9文書 | `docs/governance/candidates/` | HARNESS／HELIX-OSへ分離したdraft。要求エンジン、意味密度抽出、Design Template、typed ticket候補、仮設束縛（Scaffold Binding）候補を含む | 承認済みConcept／対象別L1を親に、対象別L2／L11へ個別採否する |
+| 新世代要求候補 | 11文書 | `docs/governance/candidates/` | HARNESS／HELIX-OSへ分離した候補。要求エンジン、意味密度抽出、Design Template、typed ticket候補、旧ルール群由来の要求候補、仮設束縛（Scaffold Binding）候補、WBS台帳候補を含む。うち`scaffold-binding`と`wbs-ledger`は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済み（L2／L11未適用）、他はdraft | 承認済みConcept／対象別L1を親に、対象別L2／L11へ個別採否する |
 | 新世代Feature Ticket | 9件 | [Feature Ticket入口](feature-tickets/README.md) | 原登録→semantic抽出→要求engine→分類projection→Design Template→typed ticket→GitHub一方向同期の順で発行。全件`proposed_upstream_waiting` | local ticketを意味source、GitHub Issueを作業projectionとして同期し、上流承認後にL3／L10へ降ろす |
 | 要求要否・重複・技術代替review program | 親1件、子2件 | [要否・再配置](requirement-disposition-review-program.md)、[責務・機能重複](requirement-overlap-review-program.md)、[技術代替可能性](requirement-technical-substitutability-review-program.md) | 全要求保持、重複候補の意味比較、技術と意味機能の分離条件を定義。Concept／4対象L1承認後のproduct routingを開始 | source-qualified identityまたはatomごとにproduct routing候補、無損失被覆、人間decision、要求PRを分ける |
-| L2 source採否queue | S1–S4の29 decision unit＋S0の1 decision unit | [対象別L2 source採否順序](audits/source-rebaseline/l2-source-adoption-sequence.md) | Concept系列を除く29候補系列をS1–S4へ配置。2026-09-18のPO指示でS0 `scaffold-binding`を追加。Concept／4対象L1は承認済み、L2／L11は未採否 | 第1層product routing後、各unitを別decisionとして対象別L2／L11へ採否する |
+| L2 source採否queue | S1–S4の29 decision unit＋S0の2 decision unit | [対象別L2 source採否順序](audits/source-rebaseline/l2-source-adoption-sequence.md) | Concept系列を除く29候補系列をS1–S4へ配置。2026-09-18にS0 `scaffold-binding`と`wbs-ledger`を追加。Concept／4対象L1は承認済み。2026-09-19にS0の2 unitはapprove、`L2D-S1-01`はdefer（[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。L2／L11本文への適用は全unitで未了 | S0の2 unitはL2／L11適用の要求PRへ。`L2D-S1-01`は未評価11 holdingの処分後に人間判断へ戻す。他unitは各unitを別decisionとして対象別L2／L11へ採否する |
 | 新世代CI要求候補 | HARNESS 4要求、HELIX-OS 8要求、L11候補8項目 | `docs/governance/candidates/next-generation-ci-requirements.md` | draft、要求整理のみ。CI relationを分離し、既存CIはlegacy source | HARNESS検証契約とHELIX-OS実行統制を対象別L1／L2へ接続し、L3／L10以降は上流確定まで待つ |
 | 新世代AI可読文書要求候補 | HARNESS 3要求、HELIX-OS 9要求、L11候補8項目 | [AI可読上流文書の要求候補](candidates/ai-readable-authority-requirements.md) | 旧AI実行面をarchiveへ隔離し、最小上流入口を配置。L2／L11要求はhuman approval待ち、生成器は未設計 | 承認済み親revisionに対してL2／L11を個別採否し、manifest／生成器はL3／L10から再導出する |
 | 旧ルール群由来の要求候補 | 規則atom 7,622件（うち再点検で追加1,032件。source_holding `MPR-SH-LEGACY-RULE-004`）、要求候補57本（HARNESS／HELIX-OS） | [旧HELIXのルール群から導いた要求候補](candidates/legacy-rule-derived-requirements.md)、[規則atom台帳](legacy-rule-atom-inventory.jsonl)、[出どころfile一覧](legacy-rule-atom-source-files.jsonl) | draft、要求整理のみ。未承認。旧hook・旧lint・旧CIを実行も復活もしない | 既存L2・既存候補との重複と包含を付け、システム群ごとのIssue（#1852〜#1861、#1864）の入力にする |
@@ -53,9 +53,9 @@ as_of: 2026-09-17
 | AI可読文書 | 直接入口38件、consumer relation 10種 | [現行CI・AI読取り資産inventory](audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md)、[38件の意味移管台帳](audits/source-rebaseline/legacy-ai-read-entry-disposition.md)、[consumer relation inventory](audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md) | exact直接入口、直接配線、relation familyを分類済み。個別consumer／動的read set closureは未完 | HARNESS工程契約とOS実行contextへ分解し、対象別L2へ採否する。要求整理中は現行文書・runtimeを変更しない |
 | archive資産の完全一致再利用 | manifest／明細台帳 4020件、個別判断0件 | [完全一致再利用統制](legacy-asset-reuse-control.md)と[append-only判断ログ契約](legacy-asset-decision-log.md) | 承認済みcopy 0件。全entryは個別`unresolved`行を持ち、全asset atom閉包は未完 | 資産ごとにcopy可否、owner、親要求、consumer、権利、実行性を判定し、判断ログへ追記した適格な非実行資産だけarchiveから同一byteで現行pathへコピーする |
 | 旧資産退役要求候補 | HARNESS 3要求、HELIX-OS 7要求、L11候補5項目 | [旧資産退役・非実行archive要求候補](candidates/legacy-asset-retirement-requirements.md) | 旧実行面はarchive-first隔離済み、L2／L11要求はhuman approval待ち。物理削除は未認可 | 承認済み親revisionに対して個別採否し、L3以降でreplacementと最終退役を再導出する |
-| authority語彙分離の人間判断packet | AVS 46 atom（L1 6、L3 20、L10 oracle 20）＋旧ルール群`in_scope` 13要求 1,799 atom（うちscreen一致415） | [L2D-S1-01判断packet v2](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)、[計上台帳57行](audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl)、[holding screen 13行](audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl) | **未送付**。生存中13 source holdingのうち計上1、該当なし1、未評価11（うち3件はatom展開未了）。v1は`MPR-SH-LEGACY-RULE-004`未計上のためsuperseded、承認に使わない | 未評価11 holdingの処分後に`L2D-S1-01`として人間判断へ送る。承認後のL2／L11適用PRは、AVS 46 atomと旧ルール群1,799 atomの対応表（未対応0）を条件とする |
-| WBS台帳要求候補 | HARNESS 1要求、HELIX-OS 8要求（管理6＋接続2）、L11候補10項目 | [要求からの作業分解（WBS）台帳の管理層要求候補](candidates/wbs-ledger-requirements.md) | draft、要求整理のみ。未承認、L2本文未接続。WBSエンジンの実装・起動を許可しない | `L2D-S0-02`として人間判断へ送る。パイロット：管理層取込→開発方式選定（PoCは別identity。本候補では実施を許可しない）→仮設束縛（`L2D-S0-01`承認後）→要件定義 |
-| 仮設束縛要求候補 | HARNESS 6要求、HELIX-OS 7要求、L11候補16項目 | [仮設束縛（Scaffold Binding）の上流要求候補](candidates/scaffold-binding-requirements.md) | draft、要求整理。未承認、L2／L11本文未接続。正式なScaffold実装・起動を許可しない。仮組みは`scaffold/`（下行）に限る | `L2D-S0-01`として人間判断へ送り、採否後に対象別L2／L11へ要求PRで接続する |
+| authority語彙分離の人間判断packet | AVS 46 atom（L1 6、L3 20、L10 oracle 20）＋旧ルール群`in_scope` 13要求 1,799 atom（うちscreen一致415） | [L2D-S1-01判断packet v2](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)、[計上台帳57行](audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl)、[holding screen 13行](audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl) | **defer**（[2026-09-19 decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S1-01-DEFER-01`。packet v2のSHA-256 `f2c2db07…`）。生存中13 source holdingのうち計上1、該当なし1、未評価11（うち3件はatom展開未了）。v1は`MPR-SH-LEGACY-RULE-004`未計上のためsuperseded、承認に使わない | 未評価11 holdingの処分後に`L2D-S1-01`として人間判断へ送る。承認後のL2／L11適用PRは、AVS 46 atomと旧ルール群1,799 atomの対応表（未対応0）を条件とする |
+| WBS台帳要求候補 | HARNESS 1要求、HELIX-OS 8要求（管理6＋接続2）、L11候補10項目 | [要求からの作業分解（WBS）台帳の管理層要求候補](candidates/wbs-ledger-requirements.md) | **approve**（[2026-09-19 decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-02`、正規語彙`split`。SHA-256 `34711045…`）。L2本文未接続。WBSエンジンの実装・起動を許可しない（解除は別PRで決める） | L2／L11適用は別の要求PRで行う。`development-ticket-derivation`との統合可否は未決。パイロット：管理層取込→開発方式選定（PoCは別identity。本候補では実施を許可しない）→仮設束縛（`L2D-S0-01`承認後）→要件定義 |
+| 仮設束縛要求候補 | HARNESS 6要求、HELIX-OS 7要求、L11候補16項目 | [仮設束縛（Scaffold Binding）の上流要求候補](candidates/scaffold-binding-requirements.md) | **approve**（[2026-09-19 decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-01`、正規語彙`split`。SHA-256 `c7e47993…`）。L2／L11本文未接続。正式なScaffold実装・起動を許可しない。仮組みは`scaffold/`（下行）に限る | 対象別L2／L11へ要求PRで接続する。システム群内の層の置き方は未決 |
 | 仮設束縛の仮組み | binding 1件、検査tool、L11 16項目→38 case（対応表はscaffold/README.md） | [scaffold/README.md](../../scaffold/README.md)、`scaffold/bindings/`、`scaffold/tools/scfctl.py` | scaffold（正式実装ではない）。`SCF-B-0001`として要求候補のrevisionへ束縛。証拠種別`scaffold`。差し替え台帳Issue #1866 | 正式なHELIX-OS実装（L3／L10導出）が入ったら`check-replacement`→`retire`で置換・撤去する |
 | 旧ルール群の仮のルール集 | 要求57 file＋LEGACY-ONLY、atom 7,622件（無損失をgovcheckで機械確認） | [scaffold/governance/README.md](../../scaffold/governance/README.md)、`scaffold/governance/index.md` | scaffold（正式な規則・指示書ではない）。`SCF-B-0002`として要求候補と台帳のrevisionへ束縛。差し替え台帳Issue #1866 | 対象別L2への採否接続とHELIX-OSの規則・検査対応の正式運転が入ったら`check-replacement`→`retire` |
 | CI・AI既存候補の新世代対応 | 3系列、22旧要件、25旧受入 | [新世代CI・AI source crosswalk](audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md) | semantic atom照合済み、新世代で再承認待ち | 承認済みConcept／対象別L1を親に、NCI／AIDOCのL2／L11で個別採否する |
@@ -87,7 +87,7 @@ as_of: 2026-09-17
 
 1. archive内の旧Core Read、L0／L1／L2 sourceと、現行側のConcept／対象別L1／L2候補。
 2. Requirement IR 153要求とrefinement 14契約。
-3. archive内candidates directoryのMarkdown 92文書と、現行側の新世代候補9文書（2026-09-17時点の8文書と、2026-09-18にPO指示で追加した仮設束縛候補1文書）。
+3. archive内candidates directoryのMarkdown 92文書と、現行側の新世代候補11文書（2026-09-17時点の8文書と、2026-09-18に追加した仮設束縛候補、旧ルール群由来の要求候補、WBS台帳候補の3文書）。
 4. 旧HARNESS要求5文書、旧screen文書、Concept／Vision intake。
 5. 人間の新規決定と、出典付きの運用・外部変化candidate。
 
@@ -117,7 +117,7 @@ as_of: 2026-09-17
 
 | 作業単位 | 閉鎖条件 | 現在の証拠 | 状態 | 残る処置 |
 |---|---|---|---|---|
-| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書（2026-09-17時点の閉じた集合。2026-09-18追加の仮設束縛候補1文書は新規系列であり、この集合の外に別記する）、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3直接委任22文書から閉じた意味relation closure 117文書、分類待ちを含む参照edge 788件 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blobまたは参照候補holdingへ追記する |
+| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書（2026-09-17時点の閉じた集合。2026-09-18に追加した仮設束縛候補、旧ルール群由来の要求候補、WBS台帳候補の3文書は、この集合の外に別記する。現行候補の総数は11文書）、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3直接委任22文書から閉じた意味relation closure 117文書、分類待ちを含む参照edge 788件 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blobまたは参照候補holdingへ追記する |
 | 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
 | 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、5大目標、七大原則、Version 1の複数プロダクト・自己適用検証とWeb展開依存が一つの候補revisionへ束縛される | v4.1候補、承認準備監査、5大目標・七大原則接続監査 | 候補統合・外部review待ち | 候補を証拠で統合し、将来のauthority判断時にv4.1 exact revisionを人間が採否する |
 | 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1 4文書。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | exact revision承認済み | 第1層product routingの責務根拠として使い、L2／L11へ降ろす |
