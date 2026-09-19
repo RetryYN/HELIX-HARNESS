@@ -102,21 +102,31 @@ receipt_id: `RDPPROJ-1813-20260919-005`
 
 RDP-001のheader訂正（`status: l2_decision_input_denominator_incomplete`）、`in_scope`の13要求1,799 atom
 （screen一致415、secondary 964 atom・link 1,009本）への拡大、`HDEC-L2D-S0-01`／`HDEC-L2D-S0-02`の承認（正規語彙`split`）、
-`HDEC-L2D-S1-01-DEFER-01`の`defer`を、main `3469266e`時点のRDP-001からIssue #1813へ再投影した。
+`HDEC-L2D-S1-01-DEFER-01`の`defer`を、main `3469266e`時点のrepo文書からIssue #1813へ再投影した。
 S0の2 unitは対象別L2／L11へ未適用であり、適用前に人間判断が要る未決3点を本文に残した。
+RDP-001が持つのは状態とholding処理の記述であり、件数とDecision IDは次の文書から取った（SHA-256はいずれも`3469266e`時点）。
+
+| 出典 | 使った値 | SHA-256 |
+|---|---|---|
+| `docs/governance/requirement-disposition-review-program.md` | 状態、13 holding、未評価11件と処理順 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
+| `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md` | 1,799／415／964／1,009、AVS 46 atom、`OVC-RUL-RUL-FRM-02`の未解決、適用PR合格条件 | `f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46` |
+| `docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md` | S0の`approve`／`split`と承認範囲の除外、S1-01の`defer`、未決3点、再baseline条件 | `899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf` |
+| `docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md` | S0／S1の採否順と停止条件 | `3cf362f528b394e5c4105e63b85ae8e3630269615976474de478b53417158eb3` |
 
 | 項目 | read-after値 |
 |---|---|
 | source commit | `3469266e5f7a4b455f98ccd0f40923a40f5e4562`（同fileの最終変更commit `1103e0c15c7002462b4e23e7a38946a047a1a549`） |
 | source file SHA-256 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
 | previous remote revision | `updatedAt:2026-09-18T16:09:30Z+body_sha256:7ea33f2417eca9ee7f3e8aaed375f6978b45ab18f318a28e73594441f64336c1` |
-| corrected remote revision | `updatedAt:2026-09-19T14:27:11Z+body_sha256:4b8599bc5f987021a7293e289a8e3b40d852608d3bb4079a7e03d99cadcc25fc` |
+| intermediate remote revision | `updatedAt:2026-09-19T14:27:11Z+body_sha256:4b8599bc5f987021a7293e289a8e3b40d852608d3bb4079a7e03d99cadcc25fc` |
+| corrected remote revision | `updatedAt:2026-09-19T14:32:24Z+body_sha256:9b47612ddcf87b2d7d21527476908f432fba2eb360cf9d1b64a41b58ccde4be1` |
 | state／label | `OPEN`／`state:proposed-upstream-waiting` |
 | authority effect | `none` |
 
 `previous remote revision`は本再投影の直前に取得した値である。`RDPPROJ-1813-20260916-004`の
 `44db8f3e…`からこの値までの間にIssue本文は更新されていたが、その更新のreceiptは本文書にない。本receiptは
-その欠落を埋めず、欠落があったことだけを記録する。本再投影は要求の追加、採否、successor、L2／L11適用、
+その欠落を埋めず、欠落があったことだけを記録する。`intermediate remote revision`は本再投影の第1版であり、
+S0の承認範囲から未決3点を除く限定を行内に欠いていたため、独立reviewの指摘を受けて第2版へ更新した。本再投影は要求の追加、採否、successor、L2／L11適用、
 実装開始を生成しない。
 
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
