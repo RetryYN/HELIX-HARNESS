@@ -21,7 +21,7 @@ command群である。判断（承認・採否・処分）は生成しない。P
 |---|---|
 | `lease.json` | lease記録（機械可読）。identity表、基準値、起点、状態Issue、試験PR・試験review、mapping、検査toolの入力一覧 |
 | `leasecore.py` | 判定の中核。GitHubにもgitにも触れない純粋な関数。型付きの拒否理由を返す |
-| `leasegh.py` | GitHubとgitからsnapshotを集め、許可リストを通した書込みだけを行う。検査(a)(b)を隔離環境で実行する |
+| `leasegh.py` | GitHubとgitからsnapshotを集め、許可リストを通した書込みだけを行う。検査(a)(b)を隔離環境（user・network・mount名前空間。HOME、`/tmp`、状態領域、実行中のworking treeを空のtmpfsで覆う）で実行する |
 | `leasectl.py` | executor command（`admit`＝merge_executor、`sync`＝projection_sync、`status`、`selftest`） |
 | `leasepost.py` | 投稿command（review依頼＋delivery receipt、応答）。対象PRへのcomment作成だけ |
 | `leaserecover.py` | 非常用command（非常経路と再bootstrap mode）。`decision_record` 1件だけ |
@@ -91,6 +91,15 @@ PO判断は```` helix-lease ````を使わない。decision_record PRへのPR rev
 - 実測の期限切れ中に運べるのは、`approved_targets`が`probe_paths`と`lease.json`の`probe`欄だけであるdecision_recordである
   （lease記録は欄単位で比較する）。approve以外のrecordは`approved_targets`が空のため形式上この条件を満たすが、出所はPO reviewであり、
   判断の生成にはならない。期限切れ中の削除への多重防御（観測済みIDの必須化・events照合の待ち）は加えていない（残存risk）。
+- `accept_bootstrap_risk`でも、依頼・receipt・応答のcommentはidentity表のAI側loginの投稿だけを証拠として数える（受容した
+  残存riskは「AI側内部の偽造」であり、第三者の投稿は含まない）。
+- 観測したPO reviewのID（再bootstrapでは判断commentのID）は、dry-runや拒否の時も状態領域へ追記し、消さない。
+- lease記録が有効化される前は、停止を状態領域にも状態Issueにも記録しない（基準値が無いため。有効化後へ持ち越さない）。
+- 状態領域の停止は、状態Issueと同じく、lease記録の直近の解除判断（`last_resume_at`）より後のものだけを数える。
+- `SCF-B-0004`の`state`が`retired`になった時点で、leaseは期限切れと同じ扱いになる。
+- 「lease mergeで入ったrecord」は、起点（`origin_main`）より後のfirst-parent上のcommitで入り、その記録を持つものに限る。
+- 変更前bytesのSHA-256とrecordとの照合は、`docs/governance/decisions/`配下の本文に現れる64桁のSHA-256表記と比べる。
+- pathは`core.quotepath=false`と`-z`で引用符なしに読み、renameとcopyは検出せず削除と追加として扱う。
 
 ## 未検証（実際のGitHubでまだ確かめていないこと）
 

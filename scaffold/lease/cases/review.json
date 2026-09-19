@@ -258,6 +258,22 @@
   "note": ""
  },
  {
+  "id": "RV-third-party-poster",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "comments.5.user",
+    "value": "stranger"
+   }
+  ],
+  "expect": [
+   "review_identity_mismatch"
+  ],
+  "mode": null,
+  "note": "accept_bootstrap_riskでもAI側login以外の投稿は証拠にしない"
+ },
+ {
   "id": "RV-inconsistent",
   "base": "rf",
   "patch": [

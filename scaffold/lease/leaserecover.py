@@ -33,11 +33,11 @@ def rebootstrap_decision(gh, s, a):
         return {"ok": False, "reason": "最新の判断commentのIDが許可の引数と一致しない"}
     if c["updated_at"] != c["created_at"]:
         return {"ok": False, "reason": "判断commentが編集されている"}
-    lines = [l for l in c["body"].splitlines() if l.startswith("decision: ")]
+    lines = [l for l in c["body"].splitlines() if l.startswith("decision:")]   # 書式不正の行も数える
     if len(lines) != 1:
         return {"ok": False, "reason": "判断行が%d行" % len(lines)}
     parts = lines[0].split()
-    if len(parts) != 4 or parts[2] != "head:":
+    if len(parts) != 4 or parts[0] != "decision:" or parts[2] != "head:":
         return {"ok": False, "reason": "判断行の書式不正"}
     choice, head = parts[1], parts[3]
     if choice != a.choice or head != a.head or head != s["pair_head"]:
@@ -78,6 +78,8 @@ def main(argv=None):
         degraded = "activity_api_unavailable: %s（第1親連鎖の代替。更新主体は証明しない）" % a.degraded_activity
     if a.mode == "comment":
         s["rebootstrap_decision"] = rebootstrap_decision(gh, s, a)
+        po = ((s.get("lease") or {}).get("identity") or {}).get("po")
+        L.observe(s, "observed_comment_ids", [c["id"] for c in s["comments"] if po and c.get("user") == po])
     res = L.judge(gh, s, recovery=a.mode)
     report = {"pr": a.pr, "mode": a.mode, "reasons": res["reasons"], "checks": s.get("checks"), "degraded": degraded}
     if not a.apply or res["reasons"]:

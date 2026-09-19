@@ -128,6 +128,22 @@
   "note": ""
  },
  {
+  "id": "DR-malformed-extra-line",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "reviews.0.body",
+    "value": "decision: approve\ndecision: reject 理由を後で書く"
+   }
+  ],
+  "expect": [
+   "decision_review_invalid"
+  ],
+  "mode": null,
+  "note": "書式不正の判断行も数え、片方へ寄せて解釈しない"
+ },
+ {
   "id": "DR-latest-reject",
   "base": "dr",
   "patch": [
@@ -174,6 +190,30 @@
   ],
   "mode": null,
   "note": "最新の不成立で古いapproveへ戻らない"
+ },
+ {
+  "id": "DR-latest-pending-no-fallback",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "append",
+    "path": "reviews",
+    "value": {
+     "id": 8003,
+     "user": "po-human",
+     "state": "PENDING",
+     "commit_id": "cccccccccccccccccccccccccccccccccccccccc",
+     "submitted_at": null,
+     "body": "",
+     "last_edited_at": null
+    }
+   }
+  ],
+  "expect": [
+   "decision_review_invalid"
+  ],
+  "mode": null,
+  "note": "提出時刻を持たないPENDINGも最新の候補で、古いapproveへ戻らない"
  },
  {
   "id": "DR-deleted-observed",

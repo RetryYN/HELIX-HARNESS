@@ -41,14 +41,26 @@ def judge(gh, s, recovery=None):
         if s["checks"]["b"] is None:
             s["checks"]["b"] = dict(s["checks"]["a"], summary="(b)=(a)（保護面の変更なし）")
         res = C.evaluate(s, recovery=recovery)
+    s["health_lease"] = res.get("health_lease")   # 付け直しを運ぶmergeは、merge後も新しい値で照合する
     return res
+
+
+def observe(s, key, ids):
+    """観測したID（PO review、再bootstrapの判断comment）を状態領域へ追記する。dry-runや拒否でも追記し、消さない
+    （packet「削除への対処」(ii)）。"""
+    if not ids:
+        return
+    st = G.read_state()
+    cur = st.setdefault(key, {}).setdefault(str(s["pr"]["number"]), [])
+    st[key][str(s["pr"]["number"])] = sorted(set(cur) | set(ids))
+    G.write_state(st)
 
 
 def suspend(gh, s, reasons, note=""):
     """停止の二重保存: (1)状態領域 (2)状態Issueへのcomment。停止原因のときだけ呼ぶ。"""
     causes = [r for r in reasons if r["code"] in C.SUSPEND_CAUSES]
-    if not causes:
-        return
+    if not causes or not (s.get("lease") or {}).get("activated_at"):
+        return   # 有効化前は基準値が無く、停止を記録しない（有効化後へ持ち越さない）
     st = G.read_state()
     st["suspended"] = {"at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "reasons": causes, "note": note}
     G.write_state(st)
@@ -78,6 +90,9 @@ def read_after(gh, s, pushed, tree, pr, recovery=None, degraded=None, wait=600):
 def cmd_admit(a, gh=None):
     gh = gh or G.GH()
     s = G.snapshot(gh, a.pr, a.context)
+    po = ((s.get("lease") or {}).get("identity") or {}).get("po")
+    if po and (s.get("lease") or {}).get("activated_at"):
+        observe(s, "observed_review_ids", [r["id"] for r in s["reviews"] if r.get("user") == po])
     res = judge(gh, s)
     report = {"pr": a.pr, "pair": [s["pair_base"], s["pair_head"]], "profile": res["profile"], "scope": res["scope"],
               "reasons": res["reasons"], "checks": s.get("checks")}
@@ -90,10 +105,6 @@ def cmd_admit(a, gh=None):
         suspend(gh, s, res["reasons"], "merge前の検査で停止原因を検出（PR #%d）" % a.pr)
         print(json.dumps(dict(report, mode="apply", result="refused"), ensure_ascii=False, indent=1))
         return 1
-    st = G.read_state()
-    st.setdefault("observed_review_ids", {})[str(a.pr)] = sorted(
-        {r["id"] for r in s["reviews"] if r.get("user") == (lease.get("identity") or {}).get("po")})
-    G.write_state(st)
     msg = C.receipt_message(s, res, s.get("checks"), a.context)
     sha = gh.git("commit-tree", s["merge_tree"], "-p", s["main_head"], "-p", s["pair_head"], "-F", "-",
                  input=msg.encode("utf-8")).stdout.decode().strip()
@@ -165,6 +176,65 @@ def run_cases():
             fail += 0 if ok else 1
             rows.append({"id": c["id"], "ok": ok, "expect": c["expect"], "got": codes})
     return rows, fail
+
+
+def collector_tests():
+    """収集層の自己検査。使い捨てのlocal git repositoryだけを使い、GitHubへ触れない。"""
+    import shutil, subprocess, tempfile
+    rows = []
+    d = tempfile.mkdtemp(prefix="lease-selftest-")
+    try:
+        env = dict(os.environ, GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@example.invalid", GIT_COMMITTER_NAME="t",
+                   GIT_COMMITTER_EMAIL="t@example.invalid", GIT_CONFIG_GLOBAL="/dev/null", GIT_CONFIG_NOSYSTEM="1")
+
+        class Local(G.Runner):
+            def run(self, args, input=None, cwd=None, env_=None, check=True):
+                p = subprocess.run(args, input=input, cwd=d, env=env, capture_output=True)
+                if check and p.returncode != 0:
+                    raise RuntimeError(p.stderr.decode("utf-8", "replace"))
+                return p
+        gh = G.GH(runner=Local(), writes=G.Writes())
+
+        def put(path, text):
+            os.makedirs(os.path.join(d, os.path.dirname(path)), exist_ok=True)
+            with open(os.path.join(d, path), "w", encoding="utf-8") as f:
+                f.write(text)
+
+        def commit(msg):
+            gh.git("add", "-A")
+            gh.git("commit", "-q", "--allow-empty", "-m", msg)
+            return gh.git("rev-parse", "HEAD").stdout.decode().strip()
+        gh.git("init", "-q", "-b", "main")
+        put("docs/old.md", "x\n")
+        base = commit("base")
+        put("docs/governance/decisions/承認.md", "---\ndecision: approve\ndecider_role: PO\n---\n")
+        put(".github/workflows/同期.yml", "on: push\n")
+        gh.git("mv", "docs/old.md", "docs/新.md")
+        head = commit("change")
+        fs = {f["path"]: f for f in G.diff_files(gh, base, head)}
+        rows.append({"id": "CL-nonascii-path", "ok": "docs/governance/decisions/承認.md" in fs and ".github/workflows/同期.yml" in fs
+                     and "decision: approve" in fs["docs/governance/decisions/承認.md"]["added"]
+                     and C.auth_path("docs/governance/decisions/承認.md")})
+        rows.append({"id": "CL-rename-split", "ok": fs.get("docs/old.md", {}).get("status") == "D"
+                     and fs.get("docs/新.md", {}).get("status") == "A"})
+        rows.append({"id": "CL-ls-tree-nonascii", "ok": G.ls_tree(gh, head, "docs/governance/decisions/")
+                     == ["docs/governance/decisions/承認.md"]})
+        # 起点以前に入ったrecordは、messageにlease mergeの記録を書いてもlease運搬として扱わない
+        put("docs/governance/decisions/r1.md", "x\n")
+        fake = commit("lease_receipt: %s\ndecision_source: review" % C.LEASE_ID)
+        origin = commit("origin")
+        rows.append({"id": "CL-carried-before-origin", "ok": not G.lease_carried(gh, origin, "docs/governance/decisions/r1.md", origin)})
+        rows.append({"id": "CL-carried-no-origin", "ok": not G.lease_carried(gh, origin, "docs/governance/decisions/r1.md", None)})
+        rows.append({"id": "CL-carried-after-origin", "ok": G.lease_carried(gh, origin, "docs/governance/decisions/r1.md", base)
+                     and fake != base})
+    finally:
+        shutil.rmtree(d, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    rows.append({"id": "CL-sha-mentions", "ok": C.sha256_mentions("a: " + "A" * 64 + " b: " + "1" * 65) == {"a" * 64}})
+    lr = {"last_resume_at": "2026-09-20T10:00:00Z"}
+    rows.append({"id": "CL-local-suspend-resumed", "ok": not G.local_suspended({"suspended": {"at": "2026-09-20T09:00:00Z"}}, lr)
+                 and G.local_suspended({"suspended": {"at": "2026-09-20T11:00:00Z"}}, lr)
+                 and G.local_suspended({"suspended": {"at": "2026-09-20T09:00:00Z"}}, {})})
+    return rows
 
 
 def run_boundary_tests():
@@ -247,9 +317,27 @@ def run_boundary_tests():
     rows.append({"id": "PJ-ok", "ok": not C.evaluate_sync(base)})
     for name, patch, code in (("PJ-mapping", {"issue": 1814}, "projection_mapping_missing"),
                               ("PJ-receipt-pending", {"last_receipt": {"on_main": False}}, "projection_receipt_pending"),
-                              ("PJ-remote-edited", {"remote_body_sha256": "b" * 64}, "projection_mismatch")):
+                              ("PJ-remote-edited", {"remote_body_sha256": "b" * 64}, "projection_mismatch"),
+                              ("PJ-suspended-local", {"suspended_local": True}, "lease_inactive"),
+                              ("PJ-suspended-issue", {"suspended_issue": True}, "lease_inactive")):
         r = C.evaluate_sync(dict(base, **patch))
         rows.append({"id": name, "ok": code in [x["code"] for x in r]})
+    # 状態Issueの停止commentの解釈（admitとsyncで共有する）
+    sc = base["status_comments"] + [{"id": 7777, "user": F.AI, "created_epoch": F.NOW - 10,
+                                     "body": "```helix-lease\n%s\n```" % json.dumps({"kind": "lease_state", "lease_state": "suspended"})}]
+    rows.append({"id": "PJ-status-issue-parse", "ok": C.suspended_in_status_issue(sc, base["lease"], lambda t: 0) and
+                 not C.suspended_in_status_issue(base["status_comments"], base["lease"], lambda t: 0) and
+                 not C.suspended_in_status_issue(sc, dict(base["lease"], last_resume_at="x"), lambda t: F.NOW)})
+    rows += collector_tests()
+    # 起点の付け直し: 新しい起点から集めたactivityで照合する（旧起点からの連鎖が人間のpushで切れていても通る）
+    ho = dict(F.base_rf()["lease"], origin_main="e" * 40)
+    snap = {"lease": F.base_rf()["lease"], "main_head": "e" * 40, "activity_origin": F.B,
+            "activity": {"reached_origin": True, "items": [{"before": F.B, "after": "e" * 40, "activity_type": "push",
+                                                             "actor": "someone", "commit_message": "", "is_merge": False}]}}
+    rows.append({"id": "HL-reorigin-new-activity", "ok": C.activity_chain_ok(
+        dict(snap, activity_by_origin={"e" * 40: {"reached_origin": True, "items": []}}), lease=ho)[0]})
+    rows.append({"id": "HL-reorigin-needs-new-activity", "ok": not C.activity_chain_ok(snap, lease=ho)[0]})
+    rows.append({"id": "HL-old-origin-still-checked", "ok": not C.activity_chain_ok(snap)[0]})
     aft = {"remote_body_sha256": "c" * 64, "state": "OPEN", "labels": ["x"], "previous_edit_sha256": "a" * 64}
     rows.append({"id": "PJ-after-ok", "ok": not C.evaluate_sync_after(aft, "c" * 64, "a" * 64, "OPEN", ["x"])})
     rows.append({"id": "PJ-after-history", "ok": bool(C.evaluate_sync_after(dict(aft, previous_edit_sha256="d" * 64), "c" * 64, "a" * 64, "OPEN", ["x"]))})

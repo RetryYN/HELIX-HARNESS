@@ -98,6 +98,23 @@
   "note": ""
  },
  {
+  "id": "LS-binding-retired",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease_binding_state",
+    "value": "retired"
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile",
+   "lease_inactive"
+  ],
+  "mode": null,
+  "note": "SCF-B-0004のretireで失効"
+ },
+ {
   "id": "LS-suspended-dr-ok",
   "base": "dr",
   "patch": [

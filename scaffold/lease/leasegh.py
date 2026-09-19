@@ -60,7 +60,8 @@ class GH:
         return json.loads(self.r.run(args).stdout.decode("utf-8"))
 
     def git(self, *args, input=None, check=True):
-        return self.r.run(["git"] + list(args), input=input, check=check)
+        # core.quotepath=falseと-z（呼出し側）で、非ASCIIのpathを引用符付き8進表記にしない
+        return self.r.run(["git", "-c", "core.quotepath=false"] + list(args), input=input, check=check)
 
     # ----- 書込み（許可リストを通す） -----
     def comment(self, issue, body):
@@ -106,25 +107,22 @@ def blob_text(gh, rev, path):
 
 
 def ls_tree(gh, rev, prefix):
-    p = gh.git("ls-tree", "-r", "--name-only", rev, "--", prefix, check=False)
-    return [l for l in p.stdout.decode("utf-8").splitlines() if l]
+    p = gh.git("ls-tree", "-r", "-z", "--name-only", rev, "--", prefix, check=False)
+    return [l for l in p.stdout.decode("utf-8").split("\0") if l]
 
 
 def diff_files(gh, base, tree):
-    """name-status -M。renameは旧pathの削除と新pathの追加に分ける。行は -U0 --text --no-textconv --no-ext-diff。"""
-    ns = gh.git("diff", "--name-status", "-M", base, tree).stdout.decode("utf-8").splitlines()
+    """name-status。renameとcopyは検出せず（--no-renames）、旧pathの削除と新pathの追加として並べる。pathは-zのNUL区切りで
+    引用符なしに読む。行は -U0 --text --no-textconv --no-ext-diff、pathspecはliteral。"""
+    raw = gh.git("diff", "-z", "--no-renames", "--name-status", base, tree).stdout.decode("utf-8").split("\0")
     files = []
-    for l in ns:
-        parts = l.split("\t")
-        st = parts[0][0]
-        if st == "R":
-            files.append({"path": parts[1], "status": "D"})
-            files.append({"path": parts[2], "status": "A"})
-        else:
-            files.append({"path": parts[1], "status": st})
+    for st, path in zip(raw[0::2], raw[1::2]):
+        if st:
+            files.append({"path": path, "status": st[0]})
     for f in files:
         f["before_sha"] = blob_sha256(gh, base, f["path"])
-        d = gh.git("diff", "-U0", "--text", "--no-textconv", "--no-ext-diff", base, tree, "--", f["path"]).stdout.decode("utf-8", "replace")
+        d = gh.git("diff", "-U0", "--no-renames", "--text", "--no-textconv", "--no-ext-diff", base, tree, "--",
+                   ":(literal)" + f["path"]).stdout.decode("utf-8", "replace")
         f["added"] = [l[1:] for l in d.splitlines() if l.startswith("+") and not l.startswith("+++")]
         f["removed"] = [l[1:] for l in d.splitlines() if l.startswith("-") and not l.startswith("---")]
     return files
@@ -152,6 +150,23 @@ def read_state():
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {"suspended": None, "observed_review_ids": {}}
+
+
+def local_suspended(st, lease):
+    """状態領域の停止のうち、lease記録の直近の解除判断（last_resume_at）より後のもの（packet「状態の保存」）。"""
+    sp = (st or {}).get("suspended")
+    if not sp:
+        return False
+    lr = epoch((lease or {}).get("last_resume_at"))
+    return not (lr and (epoch(sp.get("at")) or 0) <= lr)
+
+
+def binding_state(gh, rev):
+    """leaseを担うScaffold（SCF-B-0004）のstate。retireされた時点でleaseは失効する（packet「期限」）。"""
+    try:
+        return (json.loads(blob_text(gh, rev, C.LEASE_BINDING) or "{}") or {}).get("state")
+    except json.JSONDecodeError:
+        return None
 
 
 def write_state(st):
@@ -247,11 +262,17 @@ def activity(gh, origin):
     return {"reached_origin": True, "items": out}
 
 
-def lease_carried(gh, main, path):
-    """recordをmainへ入れたfirst-parent上のcommitが、PO判断の記録を持つlease mergeか。"""
-    p = gh.git("log", "--first-parent", "--diff-filter=A", "--format=%H", main, "--", path, check=False)
+def lease_carried(gh, main, path, origin):
+    """recordをmainへ入れたfirst-parent上のcommitが、lease有効化の起点より後の、PO判断の記録を持つlease mergeか。
+    起点以前（有効化前の既存規則でのmerge）のcommitは、messageに関わらず当たらない（packet 根拠に使えるrecord）。"""
+    if not origin:
+        return False
+    p = gh.git("log", "--first-parent", "--diff-filter=A", "--format=%H", main, "--", ":(literal)" + path, check=False)
     shas = p.stdout.decode().split()
     if not shas:
+        return False
+    after_origin = set(gh.git("rev-list", "--first-parent", "%s..%s" % (origin, main), check=False).stdout.decode().split())
+    if shas[-1] not in after_origin:
         return False
     msg = gh.git("log", "-1", "--format=%B", shas[-1]).stdout.decode("utf-8", "replace")
     return ("lease_receipt: %s" % C.LEASE_ID in msg or "lease_recovery:" in msg) and \
@@ -292,9 +313,11 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
     recs = {}
     for p in ls_tree(gh, main, C.DECISIONS):
         t = blob_text(gh, main, p)
-        recs[p] = {"sha256": blob_sha256(gh, main, p), "text": t, "carried_by_lease": lease_carried(gh, main, p)}
+        recs[p] = {"sha256": blob_sha256(gh, main, p), "text": t,
+                   "carried_by_lease": lease_carried(gh, main, p, lease.get("origin_main"))}
     s["main_records"] = recs
-    s["decision_shas"] = [r["sha256"] for r in recs.values()]
+    # 判断recordの本文に現れるSHA-256（packet authority面の検出: 変更前bytesのSHA-256がrecordに現れる）
+    s["decision_shas"] = sorted({h for r in recs.values() for h in C.sha256_mentions(r.get("text"))})
     ups, upshas = set(), []
     for rev in filter(None, (main, merge_tree)):
         for bp in ls_tree(gh, rev, "scaffold/bindings/"):
@@ -318,15 +341,9 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
     s["status_comments"] = comments_of(gh, si) if si else []
     tp = (lease.get("probe") or {}).get("test_pr")
     s["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp)] if tp else []
-    s["suspended_local"] = bool(st.get("suspended"))
-    last_resume = lease.get("last_resume_at")
-    susp = False
-    for c in s["status_comments"]:
-        blk = C.lease_block(c["body"])
-        if blk and blk[0].get("kind") == "lease_state" and blk[0].get("lease_state") == "suspended":
-            if not last_resume or (c["created_epoch"] or 0) > (epoch(last_resume) or 0):
-                susp = True
-    s["suspended_issue"] = susp
+    s["suspended_local"] = local_suspended(st, lease)
+    s["lease_binding_state"] = binding_state(gh, main)
+    s["suspended_issue"] = C.suspended_in_status_issue(s["status_comments"], lease, epoch)
     audited = (lease.get("audit") or {}).get("last_audited_main") or lease.get("origin_main")
     n = 0
     if audited:
@@ -350,12 +367,22 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
             break
     s["activity_origin"] = last or origin
     s["activity"] = activity(gh, s["activity_origin"]) if s["activity_origin"] else {"reached_origin": False, "items": []}
+    new_origin = (s.get("lease_record_after") or {}).get("origin_main")
+    if new_origin and new_origin != origin:   # 起点を付け直すrecordを運ぶmergeは、新しい起点から照合する
+        s["activity_by_origin"] = {new_origin: activity(gh, new_origin)}
     return s
 
 
 # ---------- 検査（隔離環境） ----------
-def run_checks(gh, tree, overlay_main=None, protected=None):
-    """treeを使い捨てdirectoryへ展開し、network名前空間を切り離し、資格情報を持たない環境でscfctl／govcheckを実行する。
+# user・network・mount名前空間を切り、展開したtreeを/mntへbindしてから、HOME（GitHubの資格情報）・/tmp・executorの状態領域・
+# 実行中のworking treeを空のtmpfsで覆う（packet 検査(a)(b)「資格情報・状態領域・networkに触れられない使い捨ての環境」）。
+ISOLATE = ('mount --bind "$1" /mnt || exit 97; n=$2; shift 2; i=0; '
+           'while [ $i -lt $n ]; do mount -t tmpfs lease-hide "$1" || exit 97; shift; i=$((i+1)); done; '
+           'cd /mnt && exec "$@"')
+
+
+def run_checks(gh, tree, overlay_main=None, protected=None, extra_hidden=None):
+    """treeを使い捨てdirectoryへ展開し、隔離した名前空間で、資格情報を持たない環境でscfctl／govcheckを実行する。
     overlay_mainを渡すと、保護面のpathをmain HEADの版へ置き換えた(b)のtreeで実行する。"""
     d = tempfile.mkdtemp(prefix="lease-check-")
     try:
@@ -371,12 +398,18 @@ def run_checks(gh, tree, overlay_main=None, protected=None):
                         f.write(data.stdout)
                 elif os.path.exists(dst):
                     os.remove(dst)
-        env = {"PATH": "/usr/bin:/bin", "HOME": d, "LANG": "C.UTF-8"}
+        env = {"PATH": "/usr/bin:/bin", "HOME": "/mnt", "LANG": "C.UTF-8"}
+        top = gh.git("rev-parse", "--show-toplevel", check=False).stdout.decode().strip()
+        cand = sorted({os.path.realpath(x) for x in [os.path.expanduser("~"), "/tmp", os.path.dirname(state_path()), top]
+                       + list(extra_hidden or ()) if x and os.path.isdir(x)})
+        # 既に覆うdirectoryの配下は覆えない（覆った後は存在しない）ため、祖先だけを残す
+        hide = [x for x in cand if not any(x != y and x.startswith(y.rstrip("/") + "/") for y in cand)]
         outs, ok, stale = [], True, None
         cmds = [["python3", "scaffold/tools/scfctl.py", c] for c in ("validate", "stale", "residuals", "selftest")]
         cmds.append(["python3", "scaffold/governance/tools/govcheck.py"])
         for cmd in cmds:
-            p = subprocess.run(["unshare", "-rn"] + cmd, cwd=d, env=env, capture_output=True)
+            p = subprocess.run(["unshare", "-rnm", "--", "sh", "-c", ISOLATE, "sh", d, str(len(hide))] + hide + cmd,
+                               cwd="/", env=env, capture_output=True)
             text = (p.stdout + p.stderr).decode("utf-8", "replace")
             last = text.strip().splitlines()[-1] if text.strip() else ""
             outs.append("%s rc=%d %s" % (" ".join(cmd[1:]), p.returncode, last))
@@ -396,7 +429,8 @@ def snapshot_after(gh, pr, s, pushed):
     a = {"lease": s.get("lease"), "main_head": main,
          "main_tree": gh.git("rev-parse", "%s^{tree}" % main).stdout.decode().strip(),
          "main_parents": gh.git("log", "-1", "--format=%P", main).stdout.decode().split(),
-         "protection": protection(gh), "app_permissions": [], "activity_origin": s.get("activity_origin")}
+         "protection": protection(gh), "app_permissions": [], "activity_origin": s.get("activity_origin"),
+         "health_lease": s.get("health_lease")}
     a["roles"] = {}
     for l in C.ai_logins(s.get("lease") or {}):
         try:
@@ -404,6 +438,10 @@ def snapshot_after(gh, pr, s, pushed):
         except RuntimeError:
             a["roles"][l] = None
     a["activity"] = activity(gh, s.get("activity_origin")) if s.get("activity_origin") else {"reached_origin": False, "items": []}
+    ho = (s.get("health_lease") or {}).get("origin_main")
+    if s.get("health_lease") and ho and ho != s.get("activity_origin"):
+        a["activity_by_origin"] = {ho: activity(gh, ho)}
+        a["activity"] = a["activity_by_origin"][ho]
     a["activity_has_push"] = any(it.get("after") == pushed for it in (a["activity"].get("items") or []))
     a["stale"] = run_checks(gh, a["main_tree"]).get("stale")
     try:
@@ -430,7 +468,9 @@ def sync_snapshot(gh, issue, after=False):
     tp = (lease.get("probe") or {}).get("test_pr")
     snap["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp)] if tp else []
     st = read_state()
-    snap["suspended_local"] = bool(st.get("suspended"))
+    snap["suspended_local"] = local_suspended(st, lease)
+    snap["lease_binding_state"] = binding_state(gh, main)
+    snap["suspended_issue"] = C.suspended_in_status_issue(snap["status_comments"], lease, epoch)   # 停止は両lease共通
     if src:
         t = gh.git("cat-file", "-p", "%s:%s" % (main, src), check=False)
         snap["source_text"] = t.stdout.decode("utf-8") if t.returncode == 0 else None

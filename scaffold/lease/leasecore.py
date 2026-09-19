@@ -36,6 +36,15 @@ def sha256_bytes(b):
     return hashlib.sha256(b).hexdigest()
 
 
+LEASE_BINDING = "scaffold/bindings/SCF-B-0004.json"
+SHA256_RE = re.compile(r"(?<![0-9a-f])[0-9a-f]{64}(?![0-9a-f])")
+
+
+def sha256_mentions(text):
+    """本文に現れる64桁のSHA-256表記の集合（大文字は小文字へ寄せる）。"""
+    return set(SHA256_RE.findall((text or "").lower()))
+
+
 def sha256_text(s):
     return sha256_bytes(s.encode("utf-8"))
 
@@ -82,7 +91,8 @@ def pr_class_from_body(body):
                     continue
                 if s.startswith("#"):
                     return None
-                return s.split()[0].strip("`").strip("（(").strip()   # 欄の最初の語を区分とする
+                m = re.match(r"`?([a-z_]+)", s)   # 欄の先頭の英小文字・下線の語を区分とする（後続の括弧書きは含めない）
+                return m.group(1) if m else s
             return None
     return None
 
@@ -300,15 +310,20 @@ DECISION_LINE = re.compile(r"^decision: ([a-z_]+(?:\+[a-z_]+)*)\s*$")
 
 
 def decision_lines(body):
-    return [m.group(1) for l in (body or "").splitlines() for m in [DECISION_LINE.match(l)] if m]
+    """行頭の`decision:`で始まる行をすべて数える。書式に合わない行はNoneとして残し、呼出し側で不成立にする。"""
+    return [(m.group(1) if m else None) for l in (body or "").splitlines() if l.startswith("decision:")
+            for m in [DECISION_LINE.match(l)]]
 
 
 def latest_po_review(snapshot, head):
     """最新のPO reviewを確定し、判断が成立すれば(choice, review)、不成立なら(None, 理由)を返す。"""
     po = (snapshot.get("lease") or {}).get("identity", {}).get("po")
-    reviews = [r for r in snapshot.get("reviews") or [] if r.get("user") == po and r.get("state") != "PENDING"]
+    reviews = [r for r in snapshot.get("reviews") or [] if r.get("user") == po]
     if not po or not reviews:
         return None, "人間判断者loginのPR reviewが無い"
+    # PENDINGは提出前のため提出時刻を持たないが、最新の判断の候補に含めて不成立とする（古いreviewへ戻らない。packet 条件2）
+    if any(r.get("state") == "PENDING" for r in reviews):
+        return None, "最新のPO reviewがPENDING"
     cur_ids = {r.get("id") for r in reviews}
     for rid in (snapshot.get("observed_review_ids") or []):
         if rid not in cur_ids:
@@ -324,8 +339,8 @@ def latest_po_review(snapshot, head):
     if r.get("last_edited_at"):
         return None, "最新のPO reviewが編集されている"
     ds = decision_lines(r.get("body"))
-    if len(ds) != 1:
-        return None, "最新のPO reviewの判断行が%d行" % len(ds)
+    if len(ds) != 1 or ds[0] is None:
+        return None, "最新のPO reviewの判断行が%d行、または書式不正" % len(ds)
     choice = ds[0]
     want = "APPROVED" if is_approve(choice) else "CHANGES_REQUESTED"
     if r.get("state") != want:
@@ -388,6 +403,17 @@ def ai_logins(lease):
 
 
 # ---------- leaseの状態と運搬範囲 ----------
+def suspended_in_status_issue(comments, lease, to_epoch):
+    """状態Issueに、lease記録の直近の解除判断より後の`lease_state: suspended`があるか（packet「状態の保存」）。"""
+    last_resume = (lease or {}).get("last_resume_at")
+    for c in comments or []:
+        blk = lease_block(c.get("body"))
+        if blk and blk[0].get("kind") == "lease_state" and blk[0].get("lease_state") == "suspended":
+            if not last_resume or (c.get("created_epoch") or 0) > (to_epoch(last_resume) or 0):
+                return True
+    return False
+
+
 def lease_scope(snapshot, recovery=False):
     """運搬範囲（'all' / 'decision_record' / 'probe_repair' / 'none'）と理由の一覧を返す。
     packet「運搬範囲の優先順位」: review_source_unsafe < deletion_probe_stale < 停止中・取消し後 < 有効。"""
@@ -404,6 +430,8 @@ def lease_scope(snapshot, recovery=False):
         scope = "decision_record"; reasons.append(R("lease_inactive", "期限切れ"))
     if lease.get("revoked_at"):
         scope = "decision_record"; reasons.append(R("lease_inactive", "取消し済み"))
+    if snapshot.get("lease_binding_state") == "retired":
+        scope = "decision_record"; reasons.append(R("lease_inactive", "SCF-B-0004がretire済み"))
     if snapshot.get("suspended_local") or snapshot.get("suspended_issue"):
         scope = "decision_record"; reasons.append(R("lease_inactive", "suspended"))
     if (snapshot.get("unaudited_merges") or 0) >= int((lease.get("audit") or {}).get("max_unaudited_merges") or 10):
@@ -451,6 +479,9 @@ def review_evidence(snapshot, pair, profile_needs):
         if k in ("review_request", "review_request_delivery_receipt", "review_response"):
             if o.get("pr") != snapshot["pr"]["number"] or o.get("base") != pair[0] or o.get("head") != pair[1]:
                 continue   # 別pairは数えない
+            if not separate and c.get("user") != idt.get("ai"):
+                reasons.append(R("review_identity_mismatch", "%s %s の投稿者がAI側loginでない" % (k, c.get("id"))))
+                continue   # accept_bootstrap_riskでも、AI側identity以外の投稿は証拠にしない
             (reqs if k == "review_request" else rcpts if k == "review_request_delivery_receipt" else resps).append((c, o, raw))
     if len(reqs) < 2:
         reasons.append(R("review_incomplete", "pairに束縛された依頼が%d件（2 context以上が要る）" % len(reqs)))
@@ -745,7 +776,7 @@ def evaluate(snapshot, recovery=None):
                 reasons.append(R("stale_nonzero", "(%s) stale=%s" % (key, c.get("stale"))))
     return {"reasons": reasons, "profile": profile, "suspend": [x for x in reasons if x["code"] in SUSPEND_CAUSES],
             "scope": scope, "run_checks": run_checks, "decision": decision, "evidence": evid, "payload": payload,
-            "record": own_record_path}
+            "record": own_record_path, "health_lease": health_lease if health_lease is not lease else None}
 
 
 def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
@@ -753,8 +784,9 @@ def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
     act = snapshot.get("activity") or {}
     lease = lease if lease is not None else (snapshot.get("lease") or {})
     origin = snapshot.get("activity_origin")
-    if lease is not snapshot.get("lease") and lease.get("origin_main"):
-        origin = lease["origin_main"]   # 起点の付け直し
+    if lease is not snapshot.get("lease") and lease.get("origin_main") and lease["origin_main"] != origin:
+        origin = lease["origin_main"]   # 起点の付け直し: 新しい起点から集めたactivityで照合する
+        act = (snapshot.get("activity_by_origin") or {}).get(origin) or {}
     head = after or snapshot.get("main_head")
     if not act.get("reached_origin"):
         return False, "取得: 起点以前に達しない（保持期間外）"
