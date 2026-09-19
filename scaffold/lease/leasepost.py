@@ -67,10 +67,10 @@ def current_pair(gh, pr):
 
 def cmd_request(a, gh):
     base, head = current_pair(gh, a.pr)
-    payload = {"pr_class": a.pr_class, "authority_basis": json.load(open(a.basis, encoding="utf-8")) if a.basis else [],
-               "operation_inputs": json.load(open(a.op_inputs, encoding="utf-8")) if a.op_inputs else {},
+    payload = {"pr_class": a.pr_class, "authority_basis": json.load(G.caller_file(a.basis)) if a.basis else [],
+               "operation_inputs": json.load(G.caller_file(a.op_inputs)) if a.op_inputs else {},
                "creator": ctx(a.creator), "reviewer_target": a.reviewer_target,
-               "request_text": open(a.request_file, encoding="utf-8").read()}
+               "request_text": G.caller_file(a.request_file).read()}
     rid = "RR-%d-%s" % (a.pr, time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()))
     req = {"kind": "review_request", "review_request_id": rid, "pr": a.pr, "base": base, "head": head,
            "payload": payload, "payload_sha256": C.sha256_text(canon(payload))}
@@ -103,7 +103,7 @@ def cmd_response(a, gh):
         resp["operation_admission"] = a.operation_admission
     if a.transcription_faithful:
         resp["transcription_faithful"] = a.transcription_faithful
-    text = open(a.text_file, encoding="utf-8").read()
+    text = G.caller_file(a.text_file).read()
     body = block(resp) + "\n\n" + ("（reviewer出力の全文転記）\n\n" if a.transcribed else "") + text
     if not a.apply:
         print(body)

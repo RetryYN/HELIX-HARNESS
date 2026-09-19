@@ -53,10 +53,10 @@ cat > /usr/local/sbin/helix-lease-run <<'WRAP'
 # helix-lease-run — executor userとしてlease commandを起動する。installation tokenをここで発行し、AI側contextへは出さない。
 set -eu
 DEST=/opt/helix-lease
+# appsetupはここから起動できない（installation tokenと秘密鍵の操作をAI側contextへ出さない）
 case "${1:-}" in
   leasectl|leasepost|leaseprobe|leaserecover|leaseboot) CMD="$1"; shift;;
-  appsetup) shift; exec /usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" "$@";;
-  *) echo "使えるcommand: leasectl leasepost leaseprobe leaserecover leaseboot appsetup" >&2; exit 2;;
+  *) echo "使えるcommand: leasectl leasepost leaseprobe leaserecover leaseboot" >&2; exit 2;;
 esac
 GH_TOKEN="$(/usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" token)"
 export GH_TOKEN
@@ -76,5 +76,6 @@ visudo -cf /etc/sudoers.d/helix-lease >/dev/null
 
 echo "置き場所: $DEST（root所有）、wrapper: /usr/local/sbin/helix-lease-run、sudoers: /etc/sudoers.d/helix-lease"
 echo "AI側userは次の形だけで実行できます: sudo -u $EXEC_USER /usr/local/sbin/helix-lease-run <command> ..."
+echo "installation tokenはwrapperの中だけで発行され、標準出力へは出ません（appsetupはAI側から起動できません）。"
 echo "続けてGitHub Appの作成に進みます。browserで表示のURLを開いてください。"
 exec sudo -u "$EXEC_USER" /usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" create --repo "$REPO"

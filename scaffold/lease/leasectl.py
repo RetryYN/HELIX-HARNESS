@@ -727,6 +727,54 @@ def run_boundary_tests():
                      and dirty == [["__pycache__", "cases/x.json", "json", "shlex.py"]] * 5})
     finally:
         shutil.rmtree(sd2, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # 有効化の準備の書込み境界: 許可リストに無いGitHub書込みは通らず、branch pushはlease/配下だけ
+    wr = G.Writes({("create_issue", "issue"), ("push_branch", "lease/probe-test"), ("create_pr", "lease/probe-test")})
+
+    class Quiet(G.Runner):
+        def run(self, args, input=None, cwd=None, env=None, check=True):
+            import subprocess as sp4
+            return sp4.CompletedProcess(args, 0, b"{}", b"")
+    gw = G.GH(runner=Quiet(), writes=wr, isolated=False)
+    refused = []
+    for fn in (lambda: gw.push_main("a" * 40), lambda: gw.issue_body(3000, "x"), lambda: gw.comment(3000, "x"),
+               lambda: gw.push_branch("a" * 40, "main"), lambda: gw.push_branch("a" * 40, "topic/x"),
+               lambda: gw.create_pr("t", "other/branch", "b")):
+        try:
+            fn()
+            refused.append(False)
+        except G.WriteRefused:
+            refused.append(True)
+    rows.append({"id": "BT-write-allowlist", "ok": refused == [True] * 6})
+    # 呼出し元が渡すfileは、実行user・rootの持ちもの（Appの秘密鍵・状態領域・root所有のcopy）を開かない
+    cf = tempfile.mkdtemp(prefix="lease-callerfile-")
+    try:
+        own = os.path.join(cf, "mine.txt")
+        with open(own, "w") as f:
+            f.write("x")
+        blocked = []
+        # 実行user自身の持ちもの（本番ではAppの秘密鍵・状態領域）、root所有、実行中のcopyの配下はどれも開かない
+        for p2 in (own, "/etc/hostname", os.path.join(G.HERE, "leasecore.py")):
+            try:
+                G.caller_file(p2).close()
+                blocked.append(False)
+            except RuntimeError:
+                blocked.append(True)
+        rows.append({"id": "BT-caller-file", "ok": blocked == [True, True, True]})
+    finally:
+        shutil.rmtree(cf, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # 実行環境を組むscriptとwrapperの形: AI側へinstallation tokenと秘密鍵の操作を出さない
+    sh = open(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "install.sh"), encoding="utf-8").read()
+    wrap = sh.split("<<'WRAP'")[1].split("WRAP\n")[0]
+    sud = sh.split("/etc/sudoers.d/helix-lease <<EOF")[1].split("EOF\n")[0]
+    appsetup_lines = [l for l in wrap.splitlines() if "appsetup" in l and not l.strip().startswith("#")]
+    rows.append({"id": "BT-wrapper-scope",
+                 # 呼出し元が選べるcommandにappsetupが無く、appsetupはtokenの発行にだけ使われる
+                 "ok": "leasectl|leasepost|leaseprobe|leaserecover|leaseboot)" in wrap
+                 and not [l for l in wrap.splitlines() if l.strip().startswith("appsetup)")]
+                 and len(appsetup_lines) == 1 and "GH_TOKEN=" in appsetup_lines[0] and "token" in appsetup_lines[0]
+                 and "exec /usr/bin/env -i" in wrap
+                 and "NOPASSWD: /usr/local/sbin/helix-lease-run" in sud and "appsetup" not in sud
+                 and "ALL=(ALL)" not in sud and "env_reset" in sud})
     # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
     import subprocess as sp3
 
@@ -766,7 +814,7 @@ def run_boundary_tests():
             rc_rep = LR.main(["7", "--context", "c", "--mode", "review", "--self-repair", "0" * 64, "--apply"])
             rc_ctl = main(["admit", "7", "--context", "c", "--apply"])
             rc_status = main(["status", "--lease-pr", "7"])
-            rc_boot = BT0.main(["prepare", "--lease-pr", "7", "--po", "po-human", "--out", os.devnull, "--apply"])
+            rc_boot = BT0.main(["prepare", "--lease-pr", "7", "--po", "po-human", "--apply"])
         writes = [a for a in sent if "POST" in a or "PATCH" in a or "push" in a or "graphql" in a]
         # 起動条件を欠けば、どのcommandも書込みも照合先の取得（fetch・API）もせずに2で止まる
         rows.append({"id": "CMD-integrity-gate", "ok": rc_post == rc_probe == rc_rec == rc_rep == rc_ctl == rc_status == rc_boot == 2

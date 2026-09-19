@@ -48,7 +48,7 @@ python3 scaffold/lease/leasepost.py response --pr N --request-id RID --reviewer 
         [--operation-admission pass] [--transcription-faithful yes] [--transcribed] --text-file F [--apply]
 python3 scaffold/lease/leaserecover.py PR --context ID --mode review|comment [...] [--self-repair SHA256] [--apply]
 python3 scaffold/lease/leaseprobe.py --login LOGIN --review-id ID [--lease-pr N] [--apply]
-python3 scaffold/lease/leaseboot.py prepare|probe|verify --lease-pr N --out F [--po LOGIN] [--apply]
+python3 scaffold/lease/leaseboot.py prepare|probe|verify --lease-pr N [--po LOGIN] [--apply]
 ```
 
 上は引数の形である。executor（`leasectl.py`の`admit`・`sync`）・非常用command・実測command・投稿command（`--apply`）は、
@@ -105,13 +105,13 @@ POが行うのは、人間にしか越えられない境界だけである。設
 
 **AI側が行うこと（`sudo -u <executor user> /usr/local/sbin/helix-lease-run <command> ...`の形で起動する）**
 
-- 操作1・2の後: `leaseboot prepare --lease-pr <本PR> --po <POのlogin> --out <lease候補> --apply`
+- 操作1・2の後: `leaseboot prepare --lease-pr <本PR> --po <POのlogin> --apply`
   状態Issueを1件、`lease/probe-test` branchと試験PR（draft）を1件作り、保護設定・rulesetの基準値、identity表（AI側の全roleを`<app slug>[bot]`）、
   状態Issue、試験PRを書いたlease記録の候補を出す。作成側はこれを本PRのlease記録へ入れてpushする。POが提出した試験reviewのIDと状態も記入する。
-- 操作3の後: `leaseboot probe --lease-pr <本PR> --out <lease候補> --apply`
+- 操作3の後: `leaseboot probe --lease-pr <本PR> --apply`
   AI側の全login×2 reviewへ削除の試行を行い、結果commentのIDを`probe.activation_results`へ、そのときの試験reviewを
   `probe.activation_test_reviews`へ書いた候補を出す。`leasectl status --lease-pr <本PR>`で`integrity`・`runner`・`probe.status`・`activation`を確かめる。
-- `leaseboot verify --lease-pr <本PR> --out <evidence>`: 下記「未検証」を実物で確かめる（読取りだけ）。
+- `leaseboot verify --lease-pr <本PR>`: 下記「未検証」を実物で確かめる（読取りだけ）。
 - 最後に、上流authority台帳のCapability Lease行の状態（未有効化）を有効化へ更新し、`origin_main`へ本PRのmerge直前のmain HEADを、
   `activated_at`へ時刻を記入して、最終headで独立reviewを受ける。mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。
   保護設定・rulesetを取得できない、または基準値が無い間はexecutorは停止する（空の一致にしない）。
@@ -123,7 +123,11 @@ POが行うのは、人間にしか越えられない境界だけである。設
 - AI側contextはexecutor userになれず、Appの秘密鍵を読めない。installation tokenはwrapperが発行して渡す。
 - AI側contextはrootになれない。`/opt/helix-lease`はroot所有で、AI側からは書けない。
 - `leaseboot`が書けるのは、状態Issueの作成、`lease/`配下のbranchへのpush、試験PRの作成と、実測commandが置く結果commentだけである。
-  mainへのpushは許可リストに入らない。lease記録がmainで有効になった後は`--lease-pr`を受け付けない。
+  mainへのpushは許可リストに入らない。lease記録がmainで有効になった後は`--lease-pr`を受け付けない。結果は標準出力のJSONで返し、fileは書かない。
+- wrapper（`helix-lease-run`）から起動できるのは5つのlease commandだけで、`appsetup`（installation tokenの発行、秘密鍵の作成）は
+  AI側contextから起動できない。tokenはwrapperの中だけで発行され、標準出力へ出ない。
+- wrapperでexecutor userとして動くcommandは、呼出し元が渡したfileのうち、実行user自身・rootの持ちもの（Appの秘密鍵、状態領域、
+  `/opt/helix-lease`のcopy）を開かない（投稿commandに読ませて外へ出させない）。
 - lease mergeで`scaffold/lease/`が変わった後は、POが`install.sh`を新しいSHAで実行し直すまで、executorはbytesの不一致で止まる（安全側）。
 
 本PRを無効状態（`activated_at: null`）のままmergeした場合は、leaseは存在しない（packet「そのPRがmainへ入るまでleaseは存在しない」）。

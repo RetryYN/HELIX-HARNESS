@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """leaseboot — 有効化の準備のうち機械作業だけを行うcommand（packet「有効化」。POの手作業を、越える必要のある境界だけに絞る）。
 
-  leaseboot.py prepare  --lease-pr N --po LOGIN --out F [--apply]   状態Issueと試験PRを作り、lease記録の候補を書く
-  leaseboot.py probe    --lease-pr N --out F [--apply]              全login×2 reviewの実測を回し、結果IDを書く
-  leaseboot.py verify   --lease-pr N --out F                        READMEの「未検証」項目を実物で確かめる（読取りだけ）
+  leaseboot.py prepare  --lease-pr N --po LOGIN [--apply]   状態Issueと試験PRを作り、lease記録の候補を標準出力へ出す
+  leaseboot.py probe    --lease-pr N [--apply]              全login×2 reviewの実測を回し、結果IDを入れた候補を出す
+  leaseboot.py verify   --lease-pr N                        READMEの「未検証」項目を実物で確かめる（読取りだけ）
+
+結果は標準出力のJSONだけで返し、fileは書かない（実行userの領域へ書かせない）。作成側はその候補を本PRのlease記録へ入れる。
 
 判断は生成しない。人間が越えるのは、GitHub Appの作成・installの認可、rootでの`install.sh`の1回、試験reviewの提出、
 最終exact HEADの承認だけである。書き込むのは、状態Issueの作成、`lease/`配下のbranchへのpush、試験PRの作成、
@@ -74,12 +76,6 @@ def gate(gh, a):
     return "起動条件を満たさない: %s" % "、".join(bad) if bad else lease
 
 
-def write_out(path, obj):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=1, sort_keys=False)
-        f.write("\n")
-
-
 def cmd_prepare(a, gh):
     lease = gate(gh, a)
     if isinstance(lease, str):
@@ -117,10 +113,9 @@ def cmd_prepare(a, gh):
     out["probe"] = probe
     for k in C.DERIVED_LEASE_KEYS:
         out.pop(k, None)
-    write_out(a.out, out)
     print(json.dumps({"status_issue": issue["number"], "test_pr": pr["number"], "test_pr_url": pr.get("html_url"),
                       "next": "POはこの試験PRへ、判断行を書かないreviewをApproveで1件、Request changesで1件提出する",
-                      "out": a.out}, ensure_ascii=False, indent=1))
+                      "lease": out}, ensure_ascii=False, indent=1))
     return 0
 
 
@@ -187,10 +182,9 @@ def cmd_probe(a, gh):
     out["probe"] = pr_
     for k in C.DERIVED_LEASE_KEYS:
         out.pop(k, None)
-    write_out(a.out, out)
     snap = G.probe_snapshot(gh, dict(out, activated_epoch=time.time() + 1))
     errs = C.activation_evidence_errors(snap)
-    print(json.dumps({"runs": runs, "activation_results": ids, "evidence": errs or "ok", "out": a.out},
+    print(json.dumps({"runs": runs, "activation_results": ids, "evidence": errs or "ok", "lease": out},
                      ensure_ascii=False, indent=1))
     return 0 if not errs and not [r for r in rcs if r] else 1
 
@@ -222,9 +216,8 @@ def cmd_verify(a, gh):
         "query($o:String!,$n:String!,$i:Int!){repository(owner:$o,name:$n){issue(number:$i){"
         "userContentEdits(first:1){nodes{editedAt diff}}}}}", o=gh.repo.split("/")[0], n=gh.repo.split("/")[1],
         i=lease.get("status_issue") or 1))})
-    write_out(a.out, out)
     ng = sorted(k for k, v in out.items() if isinstance(v, dict) and v.get("ok") is False)
-    print(json.dumps({"checked": sorted(out), "ng": ng or "none", "out": a.out}, ensure_ascii=False, indent=1))
+    print(json.dumps({"checked": sorted(out), "ng": ng or "none", "results": out}, ensure_ascii=False, indent=1))
     return 1 if ng else 0
 
 
@@ -266,7 +259,6 @@ def main(argv=None):
     for name in ("prepare", "probe", "verify"):
         p = sp.add_parser(name)
         p.add_argument("--lease-pr", type=int, required=True)
-        p.add_argument("--out", required=True)
         p.add_argument("--apply", action="store_true")
         if name == "prepare":
             p.add_argument("--po", required=True)

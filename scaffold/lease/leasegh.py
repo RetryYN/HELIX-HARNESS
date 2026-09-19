@@ -571,6 +571,16 @@ def set_non_dumpable():
         return False
 
 
+def caller_file(path):
+    """呼出し元（AI側context）が渡したfileを開く。実行user自身の持ちもの（Appの秘密鍵、状態領域、root所有のcopy等）は開かない
+    （wrapperでexecutor userとして動くcommandに、実行user側のfileを読ませて外へ出させない）。"""
+    rp = os.path.realpath(path)
+    st = os.stat(rp)
+    if st.st_uid in (0, os.getuid()) or rp.startswith(home_dir().rstrip("/") + "/") or rp.startswith(ROOT + "/"):
+        raise RuntimeError("呼出し元のfileでない（実行userまたはrootの持ちもの）: %s" % rp)
+    return open(rp, encoding="utf-8")
+
+
 def runner_info():
     """statusの出力に含める実行者の情報（POが、executor userで動いていることを確かめる）。"""
     return {"uid": os.getuid(), "user": pwd.getpwuid(os.getuid()).pw_name}
