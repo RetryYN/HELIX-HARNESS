@@ -105,6 +105,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
   - 作成側、各reviewer、executorのidentityは、repositoryのadmin権限を持たない（保護設定を変えられるのはPOのidentityだけ）。
   - POのidentityその他admin権限を持つidentityの資格情報は、作成側・reviewer・executorのどのcontextからも取得・使用できない。
   - 上の2条件を満たす間に限り、保護設定を変えない限り改変できないというmerge記録の性質は、AI側のどのroleからも崩せない。
+    admin権限またはruleset bypassを持つAI以外の主体（POを含む）からは崩せる。
   - 各identityの資格情報は、他roleのcontextから読めない場所に置く（作成側の実行環境からreviewer・executorの資格情報に触れられない）。
   - 「用意できた」とは、identity表がmainのlease記録にあり、各roleの資格情報の分離、AI側identityがadminでないこと、admin資格情報がAI側contextから隔離されていることをPOが確認した時点を指す。それまでleaseを有効にしない。
   - executorのidentityがmainへ通常pushできるよう、branch protectionの設定を変える必要があれば、それはPOが行う（executorは変えない）。
@@ -140,7 +141,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 - **改変耐性の限界**: 2026-09-20時点で作業に使うGitHub accountはrepositoryの管理権限を持ち、保護設定を変えられる。
   `accept_bootstrap_risk`では同じaccountを使うため、そのaccountを使う主体（executorを含む）が保護設定を変えれば記録を書き換え得る。
   executorは下記のとおり保護設定の変化を検出して停止するが、変更そのものは防げない。`require_separate_identity`では、
-  AI側のidentityからadmin権限を外すことを条件とするため（上記）、この限界はPOのidentityだけに残る。
+  AI側identityのadmin権限とadmin資格情報への到達を条件で除くため（上記）、この限界はAI側のどのcontextからも行使できない。ただしPOを含む、admin権限またはruleset bypassを持つ主体（人間、GitHub App等）には残る。
 - push後、対象PRへ`merge_result` comment（結果、merge commit SHA、親、read-after結果）を置く。merge以外に許すGitHub書込みは、
   この1 commentだけである。
 - `merge_result`は次の`operation_change` PRで、repoの台帳へ全文とdigestごと取り込む。
@@ -149,7 +150,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 - 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`、branch protectionとrulesetが基準値から変わっていないこと、`require_separate_identity`の場合は各loginがadminでないことを確認する。
 - GitHubがPRをmergedと表示するのは非同期である。push後10分以内にmergedにならなければ、失敗として扱う。
-- 不一致・失敗（上記の親、stale、branch protection・ruleset、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
+- 不一致・失敗（上記の親、stale、branch protection・ruleset、identity表のloginのadmin権限、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
   （運用モデル「PR #1797」節7と同じ扱い）。leaseは`suspended`になり、executorは人間が解除するまで次のmergeをしない。
   原因は作成側が監査文書のcorrective PRで扱う。
 - 対応Issueのcloseはleaseの範囲外とする（下記規則の意味5）。
