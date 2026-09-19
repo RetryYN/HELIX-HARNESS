@@ -87,7 +87,7 @@ as_of: 2026-09-19
 
 1. archive内の旧Core Read、L0／L1／L2 sourceと、現行側のConcept／対象別L1／L2候補。
 2. Requirement IR 153要求とrefinement 14契約。
-3. archive内candidates directoryのMarkdown 92文書と、現行側の新世代候補9文書（2026-09-17時点の8文書と、2026-09-18にPO指示で追加した仮設束縛候補1文書）。
+3. archive内candidates directoryのMarkdown 92文書と、現行側の新世代候補11文書（2026-09-17時点の8文書と、2026-09-18に追加した仮設束縛候補、旧ルール群由来の要求候補、WBS台帳候補の3文書）。
 4. 旧HARNESS要求5文書、旧screen文書、Concept／Vision intake。
 5. 人間の新規決定と、出典付きの運用・外部変化candidate。
 
