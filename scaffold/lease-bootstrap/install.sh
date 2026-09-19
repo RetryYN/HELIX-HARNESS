@@ -76,19 +76,10 @@ echo "scaffold/lease のdigest:"
 (cd "$DEST.new" && find scaffold/lease scaffold/lease-bootstrap -type f | sort | xargs sha256sum | sed "s/^/  /")
 id "$EXEC_USER" >/dev/null 2>&1 || useradd --system --create-home --home-dir "/var/lib/$EXEC_USER" --shell /usr/sbin/nologin "$EXEC_USER"
 EXEC_HOME="$(getent passwd "$EXEC_USER" | cut -d: -f6)"
-[ -n "$EXEC_HOME" ] && [ -d "$EXEC_HOME" ] || { echo "executor userのhomeがありません: $EXEC_HOME" >&2; exit 2; }
-# homeにはAppの秘密鍵と状態領域を置くため、AI側から書ける構成を選べないようにする
-[ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ] || { echo "拒否: $EXEC_HOME が $EXEC_USER の所有ではありません" >&2; exit 2; }
-[ "$EXEC_HOME" != "$(getent passwd "$AI_USER" | cut -d: -f6)" ] || { echo "拒否: AI側userとhomeが同じです" >&2; exit 2; }
+[ -n "$EXEC_HOME" ] || { echo "executor userのhomeが登録されていません" >&2; exit 2; }
+# homeにはAppの秘密鍵と状態領域を置くため、AI側から差し替えられる構成を選べないようにする
+sh "$DEST.new/scaffold/lease-bootstrap/checkhome.sh" "$EXEC_USER" "$EXEC_HOME" "$(getent passwd "$AI_USER" | cut -d: -f6)"
 chmod 0750 "$EXEC_HOME"   # 他のuserからは読めず書けない
-# homeの祖先も、AI側userから差し替えられない場所であること（root所有・他から書けない）
-D="$(dirname "$EXEC_HOME")"
-while :; do
-  [ "$(stat -c %U "$D")" = "root" ] || { echo "拒否: $D がroot所有ではありません（homeの置き場所を変えてください）" >&2; exit 2; }
-  [ -z "$(find "$D" -maxdepth 0 -perm /022)" ] || { echo "拒否: $D が他のuserから書けます" >&2; exit 2; }
-  [ "$D" != "/" ] || break
-  D="$(dirname "$D")"
-done
 if [ -e "$DEST" ]; then rm -rf "$DEST.old"; mv "$DEST" "$DEST.old"; fi
 mv "$DEST.new" "$DEST"
 chown -R root:root "$DEST"

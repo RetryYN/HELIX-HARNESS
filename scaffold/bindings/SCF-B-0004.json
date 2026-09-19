@@ -78,6 +78,7 @@
   "scaffold/lease/cases",
   "scaffold/lease-bootstrap/install.sh",
   "scaffold/lease-bootstrap/appsetup.py",
+  "scaffold/lease-bootstrap/checkhome.sh",
   "scaffold/evidence/lease-selftest.json"
  ],
  "verification": {

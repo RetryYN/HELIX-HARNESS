@@ -1,0 +1,24 @@
+#!/bin/sh
+# executor userのhomeが、AI側contextから差し替えられない場所であることを確かめる。
+# Appの秘密鍵と状態領域（観測済みreview・停止）を置くため、ここが動くと隔離が成り立たない。
+# 使い方: checkhome.sh <executor user> <executor home> <AI側userのhome>
+# 拒否のときだけ理由を出して2で終わる（rootでなくても動く。install.shから呼ぶ）。
+set -eu
+PATH=/usr/sbin:/usr/bin:/sbin:/bin; export PATH
+EXEC_USER="${1:-}"; EXEC_HOME="${2:-}"; AI_HOME="${3:-}"
+[ -n "$EXEC_USER" ] && [ -n "$EXEC_HOME" ] || { echo "拒否: 引数が足りません" >&2; exit 2; }
+[ -d "$EXEC_HOME" ] || { echo "拒否: executor userのhomeがありません: $EXEC_HOME" >&2; exit 2; }
+# symlinkを挟むと、検査したpathと書込み先が別になる。実体pathと一致することを求める
+REAL="$(readlink -f "$EXEC_HOME")"
+[ "$REAL" = "$EXEC_HOME" ] || { echo "拒否: $EXEC_HOME はsymlinkを含みます（実体: $REAL）" >&2; exit 2; }
+[ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ] || { echo "拒否: $EXEC_HOME が $EXEC_USER の所有ではありません" >&2; exit 2; }
+[ -z "$AI_HOME" ] || [ "$EXEC_HOME" != "$AI_HOME" ] || { echo "拒否: AI側userとhomeが同じです" >&2; exit 2; }
+# 祖先はすべてroot所有で、他のuserから書けないこと（置き場所ごと差し替えられないため）
+D="$(dirname "$EXEC_HOME")"
+while :; do
+  [ "$(stat -c %U "$D")" = "root" ] || { echo "拒否: $D がroot所有ではありません（homeの置き場所を変えてください）" >&2; exit 2; }
+  [ -z "$(find "$D" -maxdepth 0 -perm /022)" ] || { echo "拒否: $D が他のuserから書けます" >&2; exit 2; }
+  [ "$D" != "/" ] || break
+  D="$(dirname "$D")"
+done
+exit 0

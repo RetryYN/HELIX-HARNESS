@@ -468,6 +468,7 @@ def collector_tests():
 def run_boundary_tests():
     """書込み境界の自己検査（偽のrunnerで、GitHubへ何も送らない）。"""
     import leasefixtures as F
+    import pwd, subprocess as sp2
     rows = []
 
     class Fake(G.Runner):
@@ -921,17 +922,42 @@ def run_boundary_tests():
                  and sh.index(cmp_line) < sh.index("cat > /usr/local/sbin/helix-lease-run")})
     # install.shは、引数の重複を最初に拒否し、executor userのhomeがAI側から届かないことを確かめてから置く
     home_owner = '[ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ]'
-    rows.append({"id": "BT-install-args-home",
-                 "ok": "同じoptionが2回以上あります" in sh
-                 and sh.index("同じoptionが2回以上あります") < sh.index("while [ $# -gt 0 ]; do")
-                 and home_owner in sh
-                 and '[ "$EXEC_HOME" != "$(getent passwd "$AI_USER" | cut -d: -f6)" ]' in sh
-                 and sh.index(home_owner) < sh.index("cat > /usr/local/sbin/helix-lease-run")
-                 # homeの祖先も、AI側から差し替えられない場所であること
-                 and '[ "$(stat -c %U "$D")" = "root" ]' in sh and '-perm /022' in sh
-                 # wrapperから起動できないappsetupも、同じoptionの重複を拒否する
-                 and "同じoptionが2回以上ある" in open(os.path.join(os.path.dirname(HERE), "lease-bootstrap",
-                                                                "appsetup.py"), encoding="utf-8").read()})
+    # install.sh・checkhome.sh・appsetupの拒否を、rootを使わずに実挙動で測る
+    boot_dir = os.path.join(os.path.dirname(HERE), "lease-bootstrap")
+
+    def sh_run(args):
+        r = sp2.run(args, capture_output=True, text=True)
+        return r.returncode, (r.stderr or "") + (r.stdout or "")
+
+    hp = tempfile.mkdtemp(prefix="lease-home-")
+    try:
+        home = os.path.join(hp, "home")
+        os.mkdir(home)                      # 祖先（hp）はroot所有ではない＝拒否されるはず
+        link = os.path.join(hp, "link")
+        os.symlink(home, link)
+        me = pwd.getpwuid(os.getuid()).pw_name
+        ck = os.path.join(boot_dir, "checkhome.sh")
+        rc_anc, out_anc = sh_run(["sh", ck, me, home, ""])
+        rc_link, out_link = sh_run(["sh", ck, me, link, ""])
+        rc_same, out_same = sh_run(["sh", ck, me, home, home])
+        rc_other, out_other = sh_run(["sh", ck, "nobody", home, ""])
+        rc_root, out_root = sh_run(["sh", ck, me, "/", ""])   # 祖先も所有も条件を満たす形（/はroot所有）
+        rc_dup, out_dup = sh_run(["sh", os.path.join(boot_dir, "install.sh"),
+                                  "--sha", "a" * 40, "--sha", "b" * 40, "--repo", "x/y", "--pr", "1"])
+        rc_adup, out_adup = sh_run([sys.executable, "-I", "-B", os.path.join(boot_dir, "appsetup.py"),
+                                    "token", "--repo", "a", "--repo", "b"])
+        rows.append({"id": "BT-install-args-home",
+                     "ok": (rc_anc, rc_link, rc_same, rc_other, rc_dup, rc_adup) == (2, 2, 2, 2, 2, 2)
+                     and "root所有ではありません" in out_anc and "symlinkを含みます" in out_link
+                     and "homeが同じです" in out_same and "所有ではありません" in out_other
+                     and "同じoptionが2回以上あります" in out_dup   # rootの確認より前に止まる
+                     and "同じoptionが2回以上ある" in out_adup
+                     and rc_root == 2 and "所有ではありません" in out_root
+                     # install.shは、この検査をwrapperを置く前に通す
+                     and 'sh "$DEST.new/scaffold/lease-bootstrap/checkhome.sh" "$EXEC_USER" "$EXEC_HOME"' in sh
+                     and sh.index("checkhome.sh") < sh.index("cat > /usr/local/sbin/helix-lease-run")})
+    finally:
+        os.unlink(link); os.rmdir(home); os.rmdir(hp)
     # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
     import subprocess as sp3
 
