@@ -25,7 +25,7 @@ def protected_in_diff(s):
     is_prot = C.protected_paths(s)
     out = []
     for f in s["diff"]["files"]:
-        if is_prot(f["path"]) or (f["path"] == ".gitattributes" and C.gitattributes_protected_change(f)):
+        if is_prot(f["path"]) or (C.is_gitattributes(f["path"]) and C.gitattributes_protected_change(f)):
             out.append(f["path"])
     return out
 
@@ -87,6 +87,15 @@ def read_after(gh, s, pushed, tree, pr, recovery=None, degraded=None, wait=600):
     return after, merged
 
 
+def post_merge_result(gh, s, sha, ra, recovery=None):
+    """read-afterの後に`merge_result`（結果・SHA・親・read-after結果）を置く。投稿の失敗はread-after不一致として返す。"""
+    try:
+        gh.comment(s["pr"]["number"], C.merge_result_body(s, sha, ra, recovery=recovery))
+        return []
+    except RuntimeError:
+        return [C.R("post_merge_mismatch", "merge_resultの投稿に失敗")]
+
+
 def cmd_admit(a, gh=None):
     gh = gh or G.GH()
     s = G.snapshot(gh, a.pr, a.context)
@@ -113,15 +122,9 @@ def cmd_admit(a, gh=None):
         print(json.dumps(dict(report, mode="apply", result="push_rejected",
                               detail=p.stderr.decode("utf-8", "replace")[:300]), ensure_ascii=False, indent=1))
         return 1   # PR単位の拒否。再試行は検査からやり直す
-    posted = True
-    try:
-        gh.comment(a.pr, "```helix-lease\n%s\n```" % json.dumps(
-            {"kind": "merge_result", "lease_id": C.LEASE_ID, "pr": a.pr, "merge_commit": sha,
-             "parents": [s["main_head"], s["pair_head"]], "tree": s["merge_tree"]}, ensure_ascii=False, sort_keys=True))
-    except RuntimeError:
-        posted = False
     after, merged = read_after(gh, s, sha, s["merge_tree"], a.pr)
-    ra = C.evaluate_after(after, sha, s["merge_tree"], (s["main_head"], s["pair_head"]), merged, posted)
+    ra = C.evaluate_after(after, sha, s["merge_tree"], (s["main_head"], s["pair_head"]), merged, True)
+    ra += post_merge_result(gh, s, sha, ra)
     if ra:
         suspend(gh, s, ra, "merge後のread-after不一致（PR #%d、merge %s）" % (a.pr, sha))
     print(json.dumps(dict(report, mode="apply", result="merged" if not ra else "merged_unverified", merge_commit=sha,
@@ -146,10 +149,17 @@ def cmd_sync(a, gh=None):
     ra = C.evaluate_sync_after(after, snap["source_sha256"], snap["remote_body_sha256"], snap["state"], snap["labels"])
     if ra:
         suspend(gh, snap, ra, "projection_syncのread-after不一致（Issue #%d）" % a.issue)
+    receipt = {"lease_id": C.LEASE_ID, "issue": a.issue, "source_commit": snap["source_commit"],
+               "mapping": [a.issue, snap["source_path"]], "before_sha256": snap["remote_body_sha256"],
+               "after_sha256": after.get("remote_body_sha256"),
+               "written_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    receipt["receipt_id"] = C.sha256_text(json.dumps(receipt, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
+    # このreceiptがmainへ取り込まれるまで、同じIssueへ次の書込みをしない（packet 書込み前の照合）
+    st = G.read_state()
+    st.setdefault("pending_sync", {})[str(a.issue)] = receipt["receipt_id"]
+    G.write_state(st)
     print(json.dumps({"issue": a.issue, "mode": "apply", "result": "synced" if not ra else "mismatch", "read_after": ra,
-                      "receipt": {"lease_id": C.LEASE_ID, "source_commit": snap["source_commit"],
-                                  "mapping": [a.issue, snap["source_path"]], "before_sha256": snap["remote_body_sha256"],
-                                  "after_sha256": after.get("remote_body_sha256")}}, ensure_ascii=False, indent=1))
+                      "receipt": receipt}, ensure_ascii=False, indent=1))
     return 0 if not ra else 1
 
 
@@ -225,8 +235,37 @@ def collector_tests():
         origin = commit("origin")
         rows.append({"id": "CL-carried-before-origin", "ok": not G.lease_carried(gh, origin, "docs/governance/decisions/r1.md", origin)})
         rows.append({"id": "CL-carried-no-origin", "ok": not G.lease_carried(gh, origin, "docs/governance/decisions/r1.md", None)})
-        rows.append({"id": "CL-carried-after-origin", "ok": G.lease_carried(gh, origin, "docs/governance/decisions/r1.md", base)
-                     and fake != base})
+        # 起点より後でも、親2つ・固定形のmessage・executor側loginのmerge_resultが揃わなければlease運搬として扱わない
+        lease_t = {"independence": "accept_bootstrap_risk", "identity": {"ai": "helix-ai", "po": "po-human"}}
+        msg = "Merge pull request #77 via Capability Lease\n\nlease_receipt: %s\nlease_id: %s\npr: 77\ndecision_source: review" % (
+            C.LEASE_ID, C.LEASE_ID)
+        rows.append({"id": "CL-carried-not-merge", "ok": not G.lease_carried(
+            gh, origin, "docs/governance/decisions/r1.md", base, lease_t, comments_fn=lambda n: [])})
+        gh.git("checkout", "-q", "-b", "side")
+        put("docs/governance/decisions/r2.md", "y\n")
+        commit("record")
+        gh.git("checkout", "-q", "main")
+        gh.git("merge", "-q", "--no-ff", "side", "-m", msg)
+        m = gh.git("rev-parse", "HEAD").stdout.decode().strip()
+
+        def res(user, sha):
+            return [{"id": 1, "user": user, "body": "```helix-lease\n%s\n```" % json.dumps({"kind": "merge_result", "merge_commit": sha})}]
+        r2 = "docs/governance/decisions/r2.md"
+        rows.append({"id": "CL-carried-verified-merge", "ok": G.lease_carried(gh, m, r2, origin, lease_t, comments_fn=lambda n: res("helix-ai", m))})
+        rows.append({"id": "CL-carried-no-merge-result", "ok": not G.lease_carried(gh, m, r2, origin, lease_t, comments_fn=lambda n: [])})
+        rows.append({"id": "CL-carried-result-by-other", "ok": not G.lease_carried(gh, m, r2, origin, lease_t,
+                                                                                   comments_fn=lambda n: res("po-human", m))})
+        rows.append({"id": "CL-carried-before-origin-merge", "ok": not G.lease_carried(gh, m, r2, m, lease_t,
+                                                                                       comments_fn=lambda n: res("helix-ai", m))})
+        # 人間のUI mergeの既定messageにreceipt行が混じっても、固定位置の形でなければlease mergeでない
+        gh.git("checkout", "-q", "-b", "side2")
+        put("docs/governance/decisions/r3.md", "z\n")
+        commit("r3")
+        gh.git("checkout", "-q", "main")
+        gh.git("merge", "-q", "--no-ff", "side2", "-m", "Merge pull request #78 from x/side2\n\nlease_receipt: %s\npr: 78\ndecision_source: review" % C.LEASE_ID)
+        m3 = gh.git("rev-parse", "HEAD").stdout.decode().strip()
+        rows.append({"id": "CL-carried-ui-merge-message", "ok": not G.lease_carried(gh, m3, "docs/governance/decisions/r3.md", origin,
+                                                                                    lease_t, comments_fn=lambda n: res("helix-ai", m3))})
     finally:
         shutil.rmtree(d, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     rows.append({"id": "CL-sha-mentions", "ok": C.sha256_mentions("a: " + "A" * 64 + " b: " + "1" * 65) == {"a" * 64}})
@@ -329,6 +368,46 @@ def run_boundary_tests():
                  not C.suspended_in_status_issue(base["status_comments"], base["lease"], lambda t: 0) and
                  not C.suspended_in_status_issue(sc, dict(base["lease"], last_resume_at="x"), lambda t: F.NOW)})
     rows += collector_tests()
+    # 実測の修理はlease記録を欄単位で比べる（probe欄以外の変更を含めば修理でない）
+    fm = {"approved_targets": [{"path": C.LEASE_RECORD}]}
+    lb = {"probe": {"test_pr": 1}, "identity": {"po": "a"}}
+    rows.append({"id": "PB-repair-field-level", "ok": C.is_probe_repair({"lease": {}, "lease_record_before": lb,
+                                                                         "lease_record_after": dict(lb, probe={"test_pr": 2})}, fm)
+                 and not C.is_probe_repair({"lease": {}, "lease_record_before": lb,
+                                            "lease_record_after": dict(lb, probe={"test_pr": 2}, identity={"po": "b"})}, fm)})
+    # activityの各更新で、更新後commitの第1親が更新前のHEADであること
+    it = {"before": F.B, "after": "e" * 40, "activity_type": "push", "actor": F.AI, "is_merge": True,
+          "commit_message": "lease_receipt: %s" % C.LEASE_ID}
+    sn = {"lease": F.base_rf()["lease"], "main_head": "e" * 40, "activity_origin": F.B}
+    rows.append({"id": "HL-first-parent", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(it, first_parent=F.B)]}))[0]
+                 and not C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(it, first_parent="9" * 40)]}))[0]})
+    rows.append({"id": "PT-nested-gitattributes", "ok": C.is_gitattributes("docs/.gitattributes") and C.is_gitattributes(".gitattributes")
+                 and not C.is_gitattributes("docs/x.gitattributes")})
+    # 解除時刻はlease記録がmainへ入った時刻を上限にする
+    to = lambda t: {"past": 100.0, "future": 10 ** 12}.get(t)
+    rows.append({"id": "LS-resume-capped", "ok": C.resume_epoch({"last_resume_at": "future", "record_committed_epoch": 200.0}, to) == 200.0
+                 and C.resume_epoch({"last_resume_at": "past", "record_committed_epoch": 200.0}, to) == 100.0
+                 and C.suspended_in_status_issue([{"created_epoch": 300.0, "body": "```helix-lease\n%s\n```" % json.dumps(
+                     {"kind": "lease_state", "lease_state": "suspended"})}], {"last_resume_at": "future", "record_committed_epoch": 200.0}, to)})
+    # merge_resultはread-afterの後に、その結果を含めて置く
+    posted = []
+
+    class PostGH:
+        def comment(self, n, body):
+            posted.append((n, body))
+    snapm = dict(F.base_rf(), merge_tree="t" * 40)
+    mm = [C.R("post_merge_mismatch", "treeが検査したtreeと不一致")]
+    extra = post_merge_result(PostGH(), snapm, "f" * 40, mm)
+    blk = C.lease_block(posted[-1][1])[0] if posted else {}
+    rows.append({"id": "MR-body-read-after", "ok": not extra and posted[-1][0] == snapm["pr"]["number"]
+                 and blk.get("read_after") == {"ok": False, "mismatches": mm} and blk.get("parents") == [F.B, F.H]
+                 and blk.get("result") == "merged_read_after_mismatch"})
+
+    class FailGH:
+        def comment(self, n, body):
+            raise RuntimeError("x")
+    rows.append({"id": "MR-post-failure-is-mismatch", "ok": [x["code"] for x in post_merge_result(FailGH(), snapm, "f" * 40, [])]
+                 == ["post_merge_mismatch"]})
     # 起点の付け直し: 新しい起点から集めたactivityで照合する（旧起点からの連鎖が人間のpushで切れていても通る）
     ho = dict(F.base_rf()["lease"], origin_main="e" * 40)
     snap = {"lease": F.base_rf()["lease"], "main_head": "e" * 40, "activity_origin": F.B,

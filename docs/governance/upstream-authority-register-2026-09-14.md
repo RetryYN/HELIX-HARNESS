@@ -1,7 +1,7 @@
 # 上流authority管理台帳
 
 status: active_register
-as_of: 2026-09-21
+as_of: 2026-09-20
 
 ## 台帳の役割
 

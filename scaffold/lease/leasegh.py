@@ -46,12 +46,14 @@ class GH:
     def api(self, path, paginate=False, method="GET"):
         args = ["gh", "api", "-X", method, path]
         if paginate:
-            args.insert(2, "--paginate")
+            args[2:2] = ["--paginate", "--slurp"]   # 全pageを配列の配列で受け取り、本文を書き換えずに連結する
         out = self.r.run(args).stdout.decode("utf-8")
+        if not out.strip():
+            return None
+        d = json.loads(out)
         if paginate:
-            # --paginateは配列をそのまま連結して出すため、"]["を境に結合する
-            out = "[" + re.sub(r"\]\s*\[", ",", out.strip())[1:] if out.strip().startswith("[") else out
-        return json.loads(out) if out.strip() else None
+            return [x for page in d for x in (page if isinstance(page, list) else [page])]
+        return d
 
     def graphql(self, query, **vars):
         args = ["gh", "api", "graphql", "-f", "query=%s" % query]
@@ -128,6 +130,12 @@ def diff_files(gh, base, tree):
     return files
 
 
+def lease_record_committed_epoch(gh, rev):
+    p = gh.git("log", "-1", "--format=%ct", rev, "--", C.LEASE_RECORD, check=False)
+    t = p.stdout.decode().strip()
+    return float(t) if t else None
+
+
 def load_lease(gh, rev):
     t = blob_text(gh, rev, C.LEASE_RECORD)
     try:
@@ -136,6 +144,8 @@ def load_lease(gh, rev):
         return {}
     if lease.get("expires_at"):
         lease["expires_epoch"] = epoch(lease["expires_at"])
+    if isinstance(lease, dict) and lease:
+        lease["record_committed_epoch"] = lease_record_committed_epoch(gh, rev)
     return lease
 
 
@@ -157,7 +167,7 @@ def local_suspended(st, lease):
     sp = (st or {}).get("suspended")
     if not sp:
         return False
-    lr = epoch((lease or {}).get("last_resume_at"))
+    lr = C.resume_epoch(lease, epoch)
     return not (lr and (epoch(sp.get("at")) or 0) <= lr)
 
 
@@ -258,13 +268,65 @@ def activity(gh, origin):
         msg = gh.git("log", "-1", "--format=%B", it.get("after") or "", check=False).stdout.decode("utf-8", "replace")
         parents = gh.git("log", "-1", "--format=%P", it.get("after") or "", check=False).stdout.decode().split()
         out.append({"before": it.get("before"), "after": it.get("after"), "activity_type": it.get("activity_type"),
-                    "actor": (it.get("actor") or {}).get("login"), "commit_message": msg, "is_merge": len(parents) == 2})
+                    "actor": (it.get("actor") or {}).get("login"), "commit_message": msg, "is_merge": len(parents) == 2,
+                    "first_parent": parents[0] if parents else None})
     return {"reached_origin": True, "items": out}
 
 
-def lease_carried(gh, main, path, origin):
-    """recordをmainへ入れたfirst-parent上のcommitが、lease有効化の起点より後の、PO判断の記録を持つlease mergeか。
-    起点以前（有効化前の既存規則でのmerge）のcommitは、messageに関わらず当たらない（packet 根拠に使えるrecord）。"""
+def app_permissions(gh, lease):
+    """identity表の`apps`（AI側がGitHub Appで動く場合のapp slug）ごとに、appの権限を取得する。installation権限はappの権限の
+    範囲内であるため、appの権限にadministration・repository rulesの書込みが無ければinstallationにも無い（安全側の近似）。
+    取得できなければunavailableとして返し、判定側で停止原因にする。"""
+    out = []
+    for slug in ((lease or {}).get("identity") or {}).get("apps") or []:
+        try:
+            perms = (gh.api("apps/%s" % urllib.parse.quote(slug)) or {}).get("permissions")
+        except RuntimeError:
+            perms = None
+        out.append(dict(perms, slug=slug) if isinstance(perms, dict) else {"slug": slug, "unavailable": True})
+    return out
+
+
+def verified_lease_merge(gh, sha, lease, recovery_ok=False, comments_fn=None):
+    """shaが、executor（または非常経路）の書いたlease mergeか。messageの部分一致では決めず、次をすべて確かめる。
+    (1) 親が2つ (2) messageの1行目・3行目がreceipt_messageの固定の形 (3) 対象PRに、executor側login（accept_bootstrap_riskでは
+    AI側login）が投稿した`merge_result`があり、その`merge_commit`がshaである。人間のUI mergeや第三者はこれを満たせない。"""
+    parents = gh.git("log", "-1", "--format=%P", sha, check=False).stdout.decode().split()
+    if len(parents) != 2:
+        return None
+    lines = gh.git("log", "-1", "--format=%B", sha, check=False).stdout.decode("utf-8", "replace").split("\n")
+    m = re.match(r"^Merge pull request #(\d+) via Capability Lease$", lines[0] if lines else "")
+    if not m or len(lines) < 3:
+        return None
+    pr = int(m.group(1))
+    if lines[2] == "lease_receipt: %s" % C.LEASE_ID:
+        kind = "lease"
+    elif recovery_ok and lines[2] == "lease_recovery: %d" % pr:
+        kind = "recovery"
+    else:
+        return None
+    if "pr: %d" % pr not in lines:
+        return None
+    idt = (lease or {}).get("identity") or {}
+    if lease.get("independence") == "accept_bootstrap_risk":
+        writers = {idt.get("ai")}
+    else:
+        writers = {idt.get("executor")} | ({idt.get("recovery")} if kind == "recovery" else set())
+    writers.discard(None)
+    try:
+        cs = (comments_fn or (lambda n: comments_of(gh, n)))(pr)
+    except RuntimeError:
+        return None
+    for c in cs:
+        blk = C.lease_block(c.get("body"))
+        if c.get("user") in writers and blk and blk[0].get("kind") == "merge_result" and blk[0].get("merge_commit") == sha:
+            return {"kind": kind, "pr": pr, "lines": lines}
+    return None
+
+
+def lease_carried(gh, main, path, origin, lease=None, comments_fn=None):
+    """recordをmainへ入れたfirst-parent上のcommitが、lease有効化の起点より後の、PO判断の記録を持つ検証済みのlease merge
+    （または非常経路のmerge）か。起点以前（有効化前の既存規則でのmerge）のcommitは当たらない（packet 根拠に使えるrecord）。"""
     if not origin:
         return False
     p = gh.git("log", "--first-parent", "--diff-filter=A", "--format=%H", main, "--", ":(literal)" + path, check=False)
@@ -274,12 +336,13 @@ def lease_carried(gh, main, path, origin):
     after_origin = set(gh.git("rev-list", "--first-parent", "%s..%s" % (origin, main), check=False).stdout.decode().split())
     if shas[-1] not in after_origin:
         return False
-    msg = gh.git("log", "-1", "--format=%B", shas[-1]).stdout.decode("utf-8", "replace")
-    return ("lease_receipt: %s" % C.LEASE_ID in msg or "lease_recovery:" in msg) and \
-        ("decision_source: review" in msg or "decision_source: comment" in msg)
+    v = verified_lease_merge(gh, shas[-1], lease or {}, recovery_ok=True, comments_fn=comments_fn)
+    return bool(v) and ("decision_source: review" in v["lines"] or "decision_source: comment" in v["lines"])
 
 
-def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
+def snapshot(gh, pr_number, executor_context, lease_rev="origin/main", activation=False):
+    """activation=Trueは有効化（再bootstrap modeだけ）: main上のlease記録が未有効のとき、PRが入れる有効化後のlease記録
+    （identity表・基準値・起点）で全体を照合する。"""
     gh.git("fetch", "-q", "origin", "main", "+refs/pull/%d/head:refs/lease/pr-%d" % (pr_number, pr_number))
     main = gh.git("rev-parse", "origin/main").stdout.decode().strip()
     pr = gh.api("repos/%s/pulls/%d" % (gh.repo, pr_number))
@@ -287,6 +350,8 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
     lease = load_lease(gh, main)
     tree_p = gh.git("merge-tree", "--write-tree", main, head, check=False)
     merge_tree = tree_p.stdout.decode().split("\n")[0].strip() if tree_p.returncode == 0 else None
+    if activation and merge_tree and not lease.get("activated_at"):
+        lease = load_lease(gh, merge_tree)
     files = diff_files(gh, main, merge_tree) if merge_tree else []
     st = read_state()
     idt = lease.get("identity") or {}
@@ -297,7 +362,7 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
                "draft": pr.get("draft"), "head_sha": head, "mergeable": pr.get("mergeable") is True and merge_tree is not None,
                "auto_merge": pr.get("auto_merge"), "body": pr.get("body") or ""},
         "pair_base": main, "pair_head": head, "main_head": main, "merge_tree": merge_tree,
-        "diff": {"files": files},
+        "diff": {"files": files}, "activation": bool(activation),
     }
     paths = {f["path"] for f in files}
     comments = comments_of(gh, pr_number)
@@ -314,7 +379,7 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
     for p in ls_tree(gh, main, C.DECISIONS):
         t = blob_text(gh, main, p)
         recs[p] = {"sha256": blob_sha256(gh, main, p), "text": t,
-                   "carried_by_lease": lease_carried(gh, main, p, lease.get("origin_main"))}
+                   "carried_by_lease": lease_carried(gh, main, p, lease.get("origin_main"), lease)}
     s["main_records"] = recs
     # 判断recordの本文に現れるSHA-256（packet authority面の検出: 変更前bytesのSHA-256がrecordに現れる）
     s["decision_shas"] = sorted({h for r in recs.values() for h in C.sha256_mentions(r.get("text"))})
@@ -340,7 +405,7 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
     si = lease.get("status_issue")
     s["status_comments"] = comments_of(gh, si) if si else []
     tp = (lease.get("probe") or {}).get("test_pr")
-    s["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp)] if tp else []
+    s["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp) if r.get("user") == po] if tp else []
     s["suspended_local"] = local_suspended(st, lease)
     s["lease_binding_state"] = binding_state(gh, main)
     s["suspended_issue"] = C.suspended_in_status_issue(s["status_comments"], lease, epoch)
@@ -348,7 +413,7 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
     n = 0
     if audited:
         for sha in gh.git("rev-list", "--first-parent", "%s..%s" % (audited, main), check=False).stdout.decode().split():
-            if "lease_receipt: %s" % C.LEASE_ID in gh.git("log", "-1", "--format=%B", sha).stdout.decode("utf-8", "replace"):
+            if verified_lease_merge(gh, sha, lease):
                 n += 1
     s["unaudited_merges"] = n
     s["protection"] = protection(gh)
@@ -358,11 +423,12 @@ def snapshot(gh, pr_number, executor_context, lease_rev="origin/main"):
             s["roles"][l] = (gh.api("repos/%s/collaborators/%s/permission" % (gh.repo, urllib.parse.quote(l))) or {}).get("role_name")
         except RuntimeError:
             s["roles"][l] = None
-    s["app_permissions"] = []
+    s["app_permissions"] = app_permissions(gh, lease)
     origin = lease.get("origin_main")
     last = None
     for sha in gh.git("rev-list", "--first-parent", "%s..%s" % (origin, main), check=False).stdout.decode().split() if origin else []:
-        if "lease_receipt: %s" % C.LEASE_ID in gh.git("log", "-1", "--format=%B", sha).stdout.decode("utf-8", "replace"):
+        v = verified_lease_merge(gh, sha, lease)   # 非常mergeは起点にしない（executor以外の更新として検出する）
+        if v and v["kind"] == "lease":
             last = sha
             break
     s["activity_origin"] = last or origin
@@ -398,17 +464,19 @@ def run_checks(gh, tree, overlay_main=None, protected=None, extra_hidden=None):
                         f.write(data.stdout)
                 elif os.path.exists(dst):
                     os.remove(dst)
-        env = {"PATH": "/usr/bin:/bin", "HOME": "/mnt", "LANG": "C.UTF-8"}
+        env = {"PATH": "/usr/bin:/bin", "HOME": "/tmp", "LANG": "C.UTF-8", "PYTHONNOUSERSITE": "1"}   # /tmpは空のtmpfs
         top = gh.git("rev-parse", "--show-toplevel", check=False).stdout.decode().strip()
         cand = sorted({os.path.realpath(x) for x in [os.path.expanduser("~"), "/tmp", os.path.dirname(state_path()), top]
                        + list(extra_hidden or ()) if x and os.path.isdir(x)})
         # 既に覆うdirectoryの配下は覆えない（覆った後は存在しない）ため、祖先だけを残す
         hide = [x for x in cand if not any(x != y and x.startswith(y.rstrip("/") + "/") for y in cand)]
         outs, ok, stale = [], True, None
-        cmds = [["python3", "scaffold/tools/scfctl.py", c] for c in ("validate", "stale", "residuals", "selftest")]
-        cmds.append(["python3", "scaffold/governance/tools/govcheck.py"])
+        py = ["python3", "-s", "-E"]   # user site（usercustomize・.pth）とPYTHON*環境変数を読まない
+        cmds = [py + ["scaffold/tools/scfctl.py", c] for c in ("validate", "stale", "residuals", "selftest")]
+        cmds.append(py + ["scaffold/governance/tools/govcheck.py"])
         for cmd in cmds:
-            p = subprocess.run(["unshare", "-rnm", "--", "sh", "-c", ISOLATE, "sh", d, str(len(hide))] + hide + cmd,
+            p = subprocess.run(["unshare", "-rnm", "--pid", "--fork", "--mount-proc", "--", "sh", "-c", ISOLATE, "sh", d,
+                                str(len(hide))] + hide + cmd,
                                cwd="/", env=env, capture_output=True)
             text = (p.stdout + p.stderr).decode("utf-8", "replace")
             last = text.strip().splitlines()[-1] if text.strip() else ""
@@ -429,7 +497,8 @@ def snapshot_after(gh, pr, s, pushed):
     a = {"lease": s.get("lease"), "main_head": main,
          "main_tree": gh.git("rev-parse", "%s^{tree}" % main).stdout.decode().strip(),
          "main_parents": gh.git("log", "-1", "--format=%P", main).stdout.decode().split(),
-         "protection": protection(gh), "app_permissions": [], "activity_origin": s.get("activity_origin"),
+         "protection": protection(gh), "app_permissions": app_permissions(gh, s.get("health_lease") or s.get("lease") or {}),
+         "activity_origin": s.get("activity_origin"),
          "health_lease": s.get("health_lease")}
     a["roles"] = {}
     for l in C.ai_logins(s.get("lease") or {}):
@@ -466,7 +535,8 @@ def sync_snapshot(gh, issue, after=False):
     si = lease.get("status_issue")
     snap["status_comments"] = comments_of(gh, si) if si else []
     tp = (lease.get("probe") or {}).get("test_pr")
-    snap["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp)] if tp else []
+    snap["test_review_ids_present"] = [r["id"] for r in reviews_of(gh, tp)
+                                       if r.get("user") == ((lease.get("identity") or {}).get("po"))] if tp else []
     st = read_state()
     snap["suspended_local"] = local_suspended(st, lease)
     snap["lease_binding_state"] = binding_state(gh, main)

@@ -2,7 +2,7 @@
 """leaserecover — 非常用command（packet「非常経路」「再bootstrap」）。executorの`decision_record`経路だけを取り出した固定のcommand。
 
   python3 scaffold/lease/leaserecover.py PR --context ID --mode review [--degraded-activity REASON] [--apply]
-  python3 scaffold/lease/leaserecover.py PR --context ID --mode comment --comment-id N --choice C --head SHA [--apply]
+  python3 scaffold/lease/leaserecover.py PR --context ID --mode comment --comment-id N --choice C --head SHA [--activate] [--apply]
 
 `review`はPO reviewを出所とする非常経路、`comment`は再bootstrap mode（判断の出所を人間判断者loginのissue commentに代え、
 削除不能の実測規則を適用しない）である。POが実行環境で与える許可は、対象PR（comment modeでは判断comment ID・選択・HEADも）を
@@ -63,12 +63,16 @@ def main(argv=None):
     ap.add_argument("--mode", choices=("review", "comment"), required=True)
     ap.add_argument("--comment-id", type=int); ap.add_argument("--choice"); ap.add_argument("--head")
     ap.add_argument("--degraded-activity"); ap.add_argument("--apply", action="store_true")
+    ap.add_argument("--activate", action="store_true", help="未有効のlease記録を有効化するdecision_record（comment modeだけ）")
     a = ap.parse_args(argv)
+    if a.activate and a.mode != "comment":
+        print("入力不正: --activateは再bootstrap mode（--mode comment）だけで使う", file=sys.stderr)
+        return 2
     if a.mode == "comment" and not (a.comment_id and a.choice and a.head):
         print("入力不正: comment modeは--comment-id・--choice・--headを要する", file=sys.stderr)
         return 2
     gh = G.GH()
-    s = G.snapshot(gh, a.pr, a.context)
+    s = G.snapshot(gh, a.pr, a.context, activation=a.activate)
     degraded = None
     if a.degraded_activity:
         if not degraded_chain(gh, s):
@@ -96,17 +100,10 @@ def main(argv=None):
     if p.returncode != 0:
         print(json.dumps(dict(report, result="push_rejected"), ensure_ascii=False, indent=1))
         return 1
-    posted = True
-    try:
-        gh.comment(a.pr, "```helix-lease\n%s\n```" % json.dumps({"kind": "merge_result", "lease_id": C.LEASE_ID,
-                                                                 "lease_recovery": a.pr, "merge_commit": sha,
-                                                                 "parents": [s["main_head"], s["pair_head"]]},
-                                                                ensure_ascii=False, sort_keys=True))
-    except RuntimeError:
-        posted = False
     after, merged = L.read_after(gh, s, sha, s["merge_tree"], a.pr)
     after["recovery_mode"] = True
-    ra = C.evaluate_after(after, sha, s["merge_tree"], (s["main_head"], s["pair_head"]), merged, posted)
+    ra = C.evaluate_after(after, sha, s["merge_tree"], (s["main_head"], s["pair_head"]), merged, True)
+    ra += L.post_merge_result(gh, s, sha, ra, recovery=True)   # read-afterの後に、その結果を含めて置く
     # 非常経路のmerge自体がleaseをsuspendedにする（read-afterの全項目を含める）
     L.suspend(gh, s, [C.R("post_merge_mismatch", "非常経路のmerge（lease_recovery: %d）" % a.pr)] + ra,
               "非常経路のmerge %s。read-after: %s" % (sha, json.dumps(ra or "全項目一致", ensure_ascii=False)))

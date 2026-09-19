@@ -8,6 +8,61 @@
   "note": ""
  },
  {
+  "id": "RB-activation-review-mode",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activation",
+    "value": true
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": "review",
+  "note": "有効化は再bootstrap modeだけで運ぶ"
+ },
+ {
+  "id": "RB-activation-extra-file",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activation",
+    "value": true
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": "comment",
+  "note": "有効化のPRはlease記録と判断recordだけ（dr土台は承認対象fileを含む）"
+ },
+ {
+  "id": "RB-activation-already-active",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activation",
+    "value": true
+   },
+   {
+    "op": "set",
+    "path": "lease_record_before",
+    "value": {
+     "activated_at": "2026-09-20T00:00:00Z"
+    }
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": "comment",
+  "note": ""
+ },
+ {
   "id": "RC-not-dr",
   "base": "rf",
   "patch": [],

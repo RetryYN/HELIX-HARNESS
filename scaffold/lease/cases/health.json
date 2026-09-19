@@ -114,6 +114,113 @@
   "note": ""
  },
  {
+  "id": "HL-separate-reviewer-write",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.independence",
+    "value": "require_separate_identity"
+   },
+   {
+    "op": "set",
+    "path": "lease.identity.reviewers",
+    "value": [
+     {
+      "login": "rv-sol",
+      "session_label": "codex"
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": [
+     "roles",
+     "rv-sol"
+    ],
+    "value": "write"
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": "別identityのreviewerはreadまたはtriage"
+ },
+ {
+  "id": "HL-app-unavailable",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.identity.apps",
+    "value": [
+     "helix-app"
+    ]
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": "identity表のGitHub Appの権限を取得できなければ停止"
+ },
+ {
+  "id": "HL-app-admin",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.identity.apps",
+    "value": [
+     "helix-app"
+    ]
+   },
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": [
+     {
+      "slug": "helix-app",
+      "administration": "write"
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-app-ok",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.identity.apps",
+    "value": [
+     "helix-app"
+    ]
+   },
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": [
+     {
+      "slug": "helix-app",
+      "contents": "write",
+      "pull_requests": "write"
+     }
+    ]
+   }
+  ],
+  "expect": [],
+  "mode": null,
+  "note": ""
+ },
+ {
   "id": "HL-app",
   "base": "rf",
   "patch": [

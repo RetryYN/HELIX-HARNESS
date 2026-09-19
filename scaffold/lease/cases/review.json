@@ -258,6 +258,59 @@
   "note": ""
  },
  {
+  "id": "RV-separate-transcribed",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.independence",
+    "value": "require_separate_identity"
+   },
+   {
+    "op": "block_set",
+    "comment": 4,
+    "path": "transcribed",
+    "value": true
+   }
+  ],
+  "expect": [
+   "review_transcription_forbidden"
+  ],
+  "mode": null,
+  "note": "require_separate_identityでは転記を認めない"
+ },
+ {
+  "id": "RV-separate-reviewer-login",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.independence",
+    "value": "require_separate_identity"
+   },
+   {
+    "op": "set",
+    "path": "lease.identity.creator",
+    "value": "helix-ai"
+   },
+   {
+    "op": "set",
+    "path": "lease.identity.reviewers",
+    "value": [
+     {
+      "login": "rv-opus",
+      "session_label": null
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "review_identity_mismatch"
+  ],
+  "mode": null,
+  "note": "応答の投稿者が登録reviewer loginでない"
+ },
+ {
   "id": "RV-third-party-poster",
   "base": "rf",
   "patch": [

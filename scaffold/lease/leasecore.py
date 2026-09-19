@@ -22,6 +22,8 @@ SHA40 = re.compile(r"^[0-9a-f]{40}$")
 SHA64 = re.compile(r"^[0-9a-f]{64}$")
 
 # 停止原因（packet「merge前の検査」冒頭）。これ以外の不成立はPR単位の拒否であり、leaseを止めない。
+PROBE_WINDOW_DAYS = 30        # packet「削除への対処」(i): 30日以内（lease記録では変えない）
+MAX_UNAUDITED_MERGES = 10     # packet「監査」: 10件（lease記録では変えない）
 SUSPEND_CAUSES = {
     "protection_baseline_changed", "role_mismatch", "bypass_nonempty", "main_actor_mismatch",
     "activity_incomplete", "review_source_unsafe", "post_merge_mismatch", "projection_mismatch",
@@ -261,6 +263,11 @@ def diff_entries(snapshot):
     return out
 
 
+def is_gitattributes(path):
+    """どの階層の`.gitattributes`も、git archive等の挙動を変えるため行単位で判定する。"""
+    return path == ".gitattributes" or path.endswith("/.gitattributes")
+
+
 def gitattributes_protected_change(entry):
     for l in (entry.get("added") or []) + (entry.get("removed") or []):
         s = l.strip()
@@ -356,7 +363,7 @@ def probe_status(snapshot):
     tests = probe.get("test_reviews") or []
     logins = ai_logins(lease)
     now = snapshot.get("now_epoch")
-    window = int(probe.get("window_days") or 30) * 86400
+    window = PROBE_WINDOW_DAYS * 86400
     if not tests or not logins or now is None:
         return "stale", "試験reviewまたはAI側loginが未登録"
     # 多重防御: 固定した試験reviewが試験PRに現存すること
@@ -403,13 +410,22 @@ def ai_logins(lease):
 
 
 # ---------- leaseの状態と運搬範囲 ----------
+def resume_epoch(lease, to_epoch):
+    """直近の解除判断の時刻。解除を記録したlease記録がmainへ入った時刻を上限にする（未来の時刻で停止を消さない）。"""
+    lr = to_epoch((lease or {}).get("last_resume_at"))
+    cap = (lease or {}).get("record_committed_epoch")
+    if lr is None:
+        return None
+    return min(lr, cap) if cap is not None else lr
+
+
 def suspended_in_status_issue(comments, lease, to_epoch):
     """状態Issueに、lease記録の直近の解除判断より後の`lease_state: suspended`があるか（packet「状態の保存」）。"""
-    last_resume = (lease or {}).get("last_resume_at")
+    last_resume = resume_epoch(lease, to_epoch)
     for c in comments or []:
         blk = lease_block(c.get("body"))
         if blk and blk[0].get("kind") == "lease_state" and blk[0].get("lease_state") == "suspended":
-            if not last_resume or (c.get("created_epoch") or 0) > (to_epoch(last_resume) or 0):
+            if not last_resume or (c.get("created_epoch") or 0) > last_resume:
                 return True
     return False
 
@@ -434,7 +450,7 @@ def lease_scope(snapshot, recovery=False):
         scope = "decision_record"; reasons.append(R("lease_inactive", "SCF-B-0004がretire済み"))
     if snapshot.get("suspended_local") or snapshot.get("suspended_issue"):
         scope = "decision_record"; reasons.append(R("lease_inactive", "suspended"))
-    if (snapshot.get("unaudited_merges") or 0) >= int((lease.get("audit") or {}).get("max_unaudited_merges") or 10):
+    if (snapshot.get("unaudited_merges") or 0) >= MAX_UNAUDITED_MERGES:
         scope = "decision_record"; reasons.append(R("lease_inactive", "監査の遅れ"))
     if ps == "stale":
         scope = "probe_repair"; reasons.append(R("deletion_probe_stale", pd))
@@ -519,7 +535,8 @@ def review_evidence(snapshot, pair, profile_needs):
             evid.append(rsc)
             if rsc.get("updated_at") != rsc.get("created_at"):
                 reasons.append(R("review_comment_edited", "応答 %s" % rid))
-            if not (c.get("created_at") < rcc.get("created_at") < rsc.get("created_at")):
+            if not ((c.get("created_at"), c.get("id") or 0) < (rcc.get("created_at"), rcc.get("id") or 0)
+                    < (rsc.get("created_at"), rsc.get("id") or 0)):
                 reasons.append(R("review_order_invalid", "依頼→receipt→応答の順でない（%s）" % rid))
             cnt = rso.get("counts") or {}
             if any(not isinstance(cnt.get(k), int) for k in ("blocker", "major", "minor")):
@@ -598,6 +615,16 @@ def evaluate(snapshot, recovery=None):
         scope_reasons = []
         if not lease.get("activated_at"):
             scope_reasons.append(R("lease_not_activated"))
+        if snapshot.get("activation"):
+            # 有効化は再bootstrap modeだけで運ぶ（packet: 既存規則で運ぶのはpacket・判断recordのPRと後続operation_change PRだけ）。
+            # 運べるのは、未有効のlease記録を有効化する記録と、その判断recordだけである。
+            if recovery != "comment":
+                reasons.append(R("lease_scope_excludes_profile", "有効化は再bootstrap modeだけで運ぶ"))
+            if (snapshot.get("lease_record_before") or {}).get("activated_at"):
+                reasons.append(R("lease_scope_excludes_profile", "main上のlease記録は既に有効化されている"))
+            for p in diff_entries(snapshot):
+                if p != LEASE_RECORD and not p.startswith(DECISIONS):
+                    reasons.append(R("lease_scope_excludes_profile", "有効化のPRにlease記録・判断record以外の変更: %s" % p))
     else:
         scope, scope_reasons = lease_scope(snapshot)
     reasons += [x for x in scope_reasons if x["code"] in ("lease_not_activated", "review_source_unsafe")]
@@ -723,7 +750,7 @@ def evaluate(snapshot, recovery=None):
 
     # 保護面
     for p, e in entries.items():
-        prot = is_prot(p) or (p == ".gitattributes" and gitattributes_protected_change(e))
+        prot = is_prot(p) or (is_gitattributes(p) and gitattributes_protected_change(e))
         if not prot:
             continue
         approvers = []
@@ -798,6 +825,8 @@ def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
     for it in items:
         if it.get("before") != prev:
             return False, "取得: before／afterの連鎖切れ"
+        if "first_parent" in it and it.get("first_parent") != it.get("before"):
+            return False, "更新後commitの第1親が更新前のHEADでない（%s）" % it.get("after")
         if it.get("activity_type") != "push":
             return False, "main更新がpush以外（%s）" % it.get("activity_type")
         msg = it.get("commit_message") or ""
@@ -854,6 +883,10 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
         want = ("read", "triage") if (separate and l in reviewer_logins) else ("write",)
         if roles.get(l) not in want:
             out.append(R("role_mismatch", "%s: %s" % (l, roles.get(l))))
+    got = {a.get("slug") for a in snapshot.get("app_permissions") or [] if not a.get("unavailable")}
+    for slug in (lease.get("identity") or {}).get("apps") or []:
+        if slug not in got:
+            out.append(R("role_mismatch", "GitHub App %s の権限を取得できない" % slug))
     for app in snapshot.get("app_permissions") or []:
         if app.get("administration") == "write" or app.get("repository_rules") == "write":
             out.append(R("role_mismatch", "GitHub Appの権限にadministrationまたはrepository rulesの書込みがある"))
@@ -865,6 +898,17 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
 
 
 # ---------- merge commit messageの記録 ----------
+def merge_result_body(snapshot, merge_commit, read_after, recovery=None):
+    """対象PRへ置く`merge_result`（packet: 結果、merge commit SHA、親、read-after結果）。read-afterの後に作る。"""
+    o = {"kind": "merge_result", "lease_id": LEASE_ID, "pr": snapshot["pr"]["number"], "merge_commit": merge_commit,
+         "parents": [snapshot["main_head"], snapshot["pair_head"]], "tree": snapshot.get("merge_tree"),
+         "result": "merged" if not read_after else "merged_read_after_mismatch",
+         "read_after": {"ok": not read_after, "mismatches": read_after}}
+    if recovery:
+        o["lease_recovery"] = snapshot["pr"]["number"]
+    return "```helix-lease\n%s\n```" % json.dumps(o, ensure_ascii=False, sort_keys=True)
+
+
 def receipt_message(snapshot, result, checks, executor_context, recovery=None, degraded=None, rebootstrap_args=None):
     pr = snapshot["pr"]
     lines = ["Merge pull request #%d via Capability Lease" % pr["number"], ""]
