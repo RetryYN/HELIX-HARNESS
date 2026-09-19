@@ -189,6 +189,11 @@ def cmd_status(a, gh=None):
     """leaseの状態と、削除不能の実測の判定（packet: 実測は有効化の条件）。--lease-prは有効化前にPRのlease記録を読む。"""
     gh = gh or G.GH()
     # POが有効化前の実測の確認に使う出力。起動条件（置き場所・-I等）を欠けば、照合先の取得（network）へ進まない
+    if a.lease_pr:   # 有効化前に読む先も、実行環境が固定した対象PRのlease記録だけに限る
+        miss = G.target_pr_mismatch(a.lease_pr)
+        if miss:
+            print("拒否: %s" % miss, file=sys.stderr)
+            return 2
     integrity = G.self_integrity(gh, None)
     if integrity:
         print(json.dumps({"integrity": integrity, "runner": G.runner_info()}, ensure_ascii=False, indent=1))
@@ -816,12 +821,26 @@ def run_boundary_tests():
         with open(tpf, "w") as f:
             f.write("1886\n")
         import contextlib as cl3, io as io3
-        with cl3.redirect_stderr(io3.StringIO()):
-            rc_probe_pr = LB0.main(["--login", "x", "--review-id", "1", "--lease-pr", "4321", "--apply"])
+
+        def refused_for_pr(fn, args):
+            """照合先fileを試験用に差し替え、対象PR不一致で（別の理由ではなく）止まることを測る"""
+            err = io3.StringIO()
+            with cl3.redirect_stderr(err):
+                rc = fn(args)
+            return rc == 2 and "固定した対象PR" in err.getvalue()
+
+        orig_tpf = G.TARGET_PR_FILE
+        G.TARGET_PR_FILE = tpf
+        try:
+            pinned = [refused_for_pr(LB0.main, ["--login", "x", "--review-id", "1", "--lease-pr", "4321", "--apply"]),
+                      refused_for_pr(BT0.main, ["probe", "--lease-pr", "4321", "--apply"]),
+                      refused_for_pr(main, ["status", "--lease-pr", "4321"])]   # 一致する側は外部作用を起こしうるため、ここでは照合関数だけで確かめる
+        finally:
+            G.TARGET_PR_FILE = orig_tpf
         rows.append({"id": "BT-target-pr", "ok": G.target_pr_mismatch(1886, tpf) is None
                      and G.target_pr_mismatch(4321, tpf)
                      and G.target_pr_mismatch(1886, os.path.join(tp, "none"))
-                     and rc_probe_pr == 2})
+                     and all(pinned)})
     finally:
         shutil.rmtree(tp, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # 「未検証」の実測は、値が揃ったときだけ成立する（取得できない・期待と違う場合は不成立）

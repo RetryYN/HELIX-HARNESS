@@ -589,7 +589,7 @@ TARGET_PR_FILE = "/etc/helix-lease/target-pr"   # 実行環境が固定する対
 
 
 def target_pr_mismatch(lease_pr, path=None):
-    """実行環境が固定した対象PR（root所有のfile）と一致するか。fileが無ければ固定していないものとして扱う。"""
+    """実行環境が固定した対象PR（root所有のfile）と一致するか。fileが無ければ「固定していない」として拒否する（安全側）。"""
     try:
         with open(path or TARGET_PR_FILE, encoding="utf-8") as f:
             want = f.read().strip()
