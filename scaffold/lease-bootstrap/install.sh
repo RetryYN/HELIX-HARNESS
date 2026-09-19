@@ -1,7 +1,10 @@
 #!/bin/sh
 # install.sh — Capability Leaseの実行環境をrootで1回だけ組む（POが越えるtrust boundaryのうちOS側の1回）。
 #
-#   sudo sh scaffold/lease-bootstrap/install.sh --sha <40桁のcommit> --repo OWNER/NAME [--ai-user NAME] [--exec-user NAME]
+#   sudo sh install.sh --sha <40桁のcommit> --repo OWNER/NAME [--ai-user NAME] [--exec-user NAME] [--org]
+#
+# 実行するinstall.shは--shaの版と同じbytesでなければならない（自分で照合し、違えば止まる）。
+# --org は、Appを組織のsettingsで作る場合に付ける。repositoryが公開されていることを前提にする（cloneに資格情報を使わない）。
 #
 # 行うこと（これ以外は行わない）:
 #   1. executor用のOS user（既定 helix-exec）を作る。AI側contextはこのuserになれない。
@@ -12,13 +15,14 @@
 # root以外では動かない。失敗したら途中で止まる。
 set -eu
 
-SHA=""; REPO=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="/opt/helix-lease"
+SHA=""; REPO=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="/opt/helix-lease"; ORG=""
 while [ $# -gt 0 ]; do
   case "$1" in
     --sha) SHA="$2"; shift 2;;
     --repo) REPO="$2"; shift 2;;
     --ai-user) AI_USER="$2"; shift 2;;
     --exec-user) EXEC_USER="$2"; shift 2;;
+    --org) ORG="--org"; shift;;
     *) echo "不明な引数: $1" >&2; exit 2;;
   esac
 done
@@ -41,6 +45,14 @@ rm -rf "$DEST.new"
 mkdir -p "$DEST.new"
 git -C "$TMP/repo" -c core.attributesFile=/dev/null archive --format=tar "$SHA" | tar -x -C "$DEST.new"
 [ -f "$DEST.new/scaffold/lease/leasectl.py" ] || { echo "取り出したtreeにscaffold/leaseがありません" >&2; exit 2; }
+# 実行中のこのscript自身が、--shaの版と同じbytesであること（AI側の作業treeの書換えをrootで走らせない）
+SELF="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
+if ! cmp -s "$SELF" "$DEST.new/scaffold/lease-bootstrap/install.sh"; then
+  echo "拒否: 実行中のinstall.shが --sha $SHA の版と一致しません。" >&2
+  echo "      次の版を使ってください: $DEST.new/scaffold/lease-bootstrap/install.sh" >&2
+  echo "      （そのSHA-256: $(sha256sum "$DEST.new/scaffold/lease-bootstrap/install.sh" | cut -d" " -f1)）" >&2
+  exit 2
+fi
 if [ -e "$DEST" ]; then rm -rf "$DEST.old"; mv "$DEST" "$DEST.old"; fi
 mv "$DEST.new" "$DEST"
 chown -R root:root "$DEST"
@@ -67,9 +79,14 @@ chown root:root /usr/local/sbin/helix-lease-run
 chmod 755 /usr/local/sbin/helix-lease-run
 
 cat > /etc/sudoers.d/helix-lease <<EOF
-# Capability Lease: AI側contextは、executor userとしてこのwrapperだけを実行できる（引数のcommandはwrapperが限定する）。
+# Capability Lease: AI側contextは、executor userとしてこのwrapperだけを、下のcommandに限って実行できる。
+# 非常用command（leaserecover）は既定で許可しない。packetのとおり、POが対象を引数に固定した行を、必要なときだけ足す。
+#   例: $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaserecover 1234 --context R --mode review --apply
 Defaults:$AI_USER env_reset
-$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leasectl *
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leasepost *
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseprobe *
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot *
 EOF
 chmod 0440 /etc/sudoers.d/helix-lease
 visudo -cf /etc/sudoers.d/helix-lease >/dev/null
@@ -78,4 +95,5 @@ echo "置き場所: $DEST（root所有）、wrapper: /usr/local/sbin/helix-lease
 echo "AI側userは次の形だけで実行できます: sudo -u $EXEC_USER /usr/local/sbin/helix-lease-run <command> ..."
 echo "installation tokenはwrapperの中だけで発行され、標準出力へは出ません（appsetupはAI側から起動できません）。"
 echo "続けてGitHub Appの作成に進みます。browserで表示のURLを開いてください。"
-exec sudo -u "$EXEC_USER" /usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" create --repo "$REPO"
+# shellcheck disable=SC2086  # ORGは空か--orgのどちらか
+exec sudo -u "$EXEC_USER" /usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" create --repo "$REPO" $ORG

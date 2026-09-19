@@ -336,7 +336,15 @@ def collector_tests():
         rows.append({"id": "CL-no-replace-objects", "ok": seen == [] and iso == ["p.py"]
                      and G.isolated_git_env().get("GIT_NO_REPLACE_OBJECTS") == "1"
                      and not [k for k in G.isolated_git_env() if k.startswith("GIT_") and k not in (
-                         "GIT_CONFIG_NOSYSTEM", "GIT_CONFIG_GLOBAL", "GIT_NO_REPLACE_OBJECTS", "GIT_TERMINAL_PROMPT")]})
+                         "GIT_CONFIG_NOSYSTEM", "GIT_CONFIG_GLOBAL", "GIT_NO_REPLACE_OBJECTS", "GIT_TERMINAL_PROMPT",
+                         "GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL", "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL")]})
+        # identを持たないuser（GECOS空・global設定なし）でもcommit-treeが動く
+        empty = subprocess.run(["git", "commit-tree", real + "^{tree}", "-m", "x"], cwd=d2, capture_output=True,
+                               env=dict(G.isolated_git_env(), HOME=d2))
+        noid = subprocess.run(["git", "commit-tree", real + "^{tree}", "-m", "x"], cwd=d2, capture_output=True,
+                              env={k: v for k, v in G.isolated_git_env().items() if not k.startswith(("GIT_AUTHOR", "GIT_COMMITTER"))} | {"HOME": d2})
+        rows.append({"id": "CL-commit-ident", "ok": empty.returncode == 0 and noid.returncode != 0
+                     and b"empty ident" in noid.stderr + noid.stdout})
         # HOME配下のXDG attributes（export-ignore）は、executorのgit呼出し（core.attributesFile=/dev/null）では効かない
         xdg = os.path.join(d2, "xdg")
         os.makedirs(os.path.join(xdg, "git"))
@@ -773,8 +781,15 @@ def run_boundary_tests():
                  and not [l for l in wrap.splitlines() if l.strip().startswith("appsetup)")]
                  and len(appsetup_lines) == 1 and "GH_TOKEN=" in appsetup_lines[0] and "token" in appsetup_lines[0]
                  and "exec /usr/bin/env -i" in wrap
-                 and "NOPASSWD: /usr/local/sbin/helix-lease-run" in sud and "appsetup" not in sud
-                 and "ALL=(ALL)" not in sud and "env_reset" in sud})
+                 # sudoersはcommand別で、非常用commandは既定で許可しない（POが対象を引数に固定した行を足す）
+                 and sorted(l.split("helix-lease-run ")[1].split(" ")[0] for l in sud.splitlines()
+                            if "NOPASSWD:" in l and not l.strip().startswith("#")) == ["leaseboot", "leasectl", "leasepost", "leaseprobe"]
+                 and "appsetup" not in sud.replace("# ", "") and "ALL=(ALL)" not in sud and "env_reset" in sud
+                 and "self" not in wrap.lower()})
+    # install.shは、実行中の自分のbytesが--shaの版と一致しなければ止まる
+    cmp_line = 'cmp -s "$SELF" "$DEST.new/scaffold/lease-bootstrap/install.sh"'
+    rows.append({"id": "BT-install-self-check", "ok": cmp_line in sh
+                 and sh.index(cmp_line) < sh.index("cat > /usr/local/sbin/helix-lease-run")})
     # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
     import subprocess as sp3
 

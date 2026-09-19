@@ -57,7 +57,7 @@
    "sh scaffold/lease-bootstrap/install.sh（POがrootで1回。OS環境の構築とGitHub Appの作成へ進む）"
   ],
   "forbidden": [
-   "gh pr merge、mainへのgit pushの直接実行、許可リストを通さないGitHub APIへの書込み",
+   "gh pr merge、main（およびlease/配下以外）へのgit pushの直接実行、許可リストを通さないGitHub APIへの書込み",
    "squash、rebase、force push、auto-merge予約、branch protection・rulesetの変更、branch削除、Issue close、release、deploy",
    "comment・reviewの編集・削除（実測commandの試験review削除の試行を除く）",
    "承認・採否・処分・authorityの生成",

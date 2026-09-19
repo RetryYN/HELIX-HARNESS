@@ -91,9 +91,19 @@ POが行うのは、人間にしか越えられない境界だけである。設
 
 **POの操作（4回）**
 
-1. **rootで1回**: `sudo sh scaffold/lease-bootstrap/install.sh --sha <本PRの現在のhead> --repo RetryYN/HELIX-HARNESS --ai-user <AI側のOS user>`
+1. **rootで1回**: 本PRのheadの`scaffold/lease-bootstrap/install.sh`をGitHubから取り出して実行する（AI側の作業treeのbytesをrootで走らせない）。
+   scriptは自分のbytesが`--sha`の版と一致することを自分で確かめ、違えば止まる。
+   ```
+   sha=<本PRの現在のhead>
+   curl -fsSL "https://raw.githubusercontent.com/RetryYN/HELIX-HARNESS/$sha/scaffold/lease-bootstrap/install.sh" -o /tmp/install.sh
+   sha256sum /tmp/install.sh   # PR本文に載せたSHA-256と一致することを確かめる
+   sudo sh /tmp/install.sh --sha "$sha" --repo RetryYN/HELIX-HARNESS --ai-user <AI側のOS user>
+   ```
    これは、executor用のOS user、`/opt/helix-lease`のroot所有copy（GitHubから`--sha`のtreeを取り出す）、installation tokenを発行する
-   wrapper `/usr/local/sbin/helix-lease-run`、AI側userにそのwrapperだけを許すsudoersを置き、続けてGitHub Appの作成へ進む。
+   wrapper `/usr/local/sbin/helix-lease-run`、AI側userにそのwrapperの`leasectl`・`leasepost`・`leaseprobe`・`leaseboot`だけを許す
+   sudoersを置き、続けてGitHub Appの作成へ進む。非常用command（`leaserecover`）は既定で許可せず、packetのとおり、POが対象を
+   引数に固定した行を必要なときだけ足す（sudoersに例を書いてある）。repositoryは公開である前提（cloneに資格情報を使わない）。
+   Appを組織のsettingsで作る場合は`--org`を付ける。
 2. **browserで認可**: 表示されたlocalhostのURLを開き、[GitHub Appを作成する]を押す。名前と権限（contents・pull requests・issuesの
    書込み、metadataとadministrationの読取り。administration・repository rulesの書込みは無し）は入力済みである。作成の戻りで秘密鍵は
    executor userのhomeへ0600で保存され、AI側contextからは読めない。続けて表示される install URLで、このrepositoryだけを選んでinstallする。
@@ -124,11 +134,14 @@ POが行うのは、人間にしか越えられない境界だけである。設
 - AI側contextはrootになれない。`/opt/helix-lease`はroot所有で、AI側からは書けない。
 - `leaseboot`が書けるのは、状態Issueの作成、`lease/`配下のbranchへのpush、試験PRの作成と、実測commandが置く結果commentだけである。
   mainへのpushは許可リストに入らない。lease記録がmainで有効になった後は`--lease-pr`を受け付けない。結果は標準出力のJSONで返し、fileは書かない。
-- wrapper（`helix-lease-run`）から起動できるのは5つのlease commandだけで、`appsetup`（installation tokenの発行、秘密鍵の作成）は
+- wrapper（`helix-lease-run`）から起動できるのは5つのlease commandだけ（sudoersが許すのは既定で4つ）で、`appsetup`（installation tokenの発行、秘密鍵の作成）は
   AI側contextから起動できない。tokenはwrapperの中だけで発行され、標準出力へ出ない。
 - wrapperでexecutor userとして動くcommandは、呼出し元が渡したfileのうち、実行user自身・rootの持ちもの（Appの秘密鍵、状態領域、
   `/opt/helix-lease`のcopy）を開かない（投稿commandに読ませて外へ出させない）。
 - lease mergeで`scaffold/lease/`が変わった後は、POが`install.sh`を新しいSHAで実行し直すまで、executorはbytesの不一致で止まる（安全側）。
+  実行し直すと前のcopyは`/opt/helix-lease.old`として残る（rootの持ちもの。起動条件は新しいcopyだけを見る）。
+- lease mergeのcommitのident（author・committer）は固定値で、実行userのGECOSやgit設定を読まない（commitのauthorは主体の証明に使わない。
+  主体はactivityとtokenで照合する）。
 
 本PRを無効状態（`activated_at: null`）のままmergeした場合は、leaseは存在しない（packet「そのPRがmainへ入るまでleaseは存在しない」）。
 その後に有効化するには、packetの改訂（有効化を運ぶPRの追加）と新たな人間判断が要る。

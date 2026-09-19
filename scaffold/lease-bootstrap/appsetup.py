@@ -91,7 +91,8 @@ DONE = """<!doctype html><meta charset="utf-8"><body style="font-family:sans-ser
 
 
 def cmd_create(a):
-    state = {"code": None}
+    import secrets
+    state = {"code": None, "nonce": secrets.token_urlsafe(16)}
     port = a.port
 
     class H(http.server.BaseHTTPRequestHandler):
@@ -102,12 +103,16 @@ def cmd_create(a):
             u = urllib.parse.urlparse(self.path)
             if u.path == "/":
                 owner = a.repo.split("/")[0]
-                action = "https://github.com/organizations/%s/settings/apps/new?state=helix" % owner if a.org \
-                    else "https://github.com/settings/apps/new?state=helix"
+                action = "https://github.com/organizations/%s/settings/apps/new?state=%s" % (owner, state["nonce"]) if a.org \
+                    else "https://github.com/settings/apps/new?state=%s" % state["nonce"]
                 page = PAGE % (action, json.dumps(manifest(a.repo, "http://127.0.0.1:%d/done" % port)).replace("'", "&#39;"))
                 self.respond(page)
             elif u.path == "/done":
-                state["code"] = urllib.parse.parse_qs(u.query).get("code", [None])[0]
+                q = urllib.parse.parse_qs(u.query)
+                if q.get("state", [None])[0] != state["nonce"]:   # 同じhostの他processからの横取り・妨害を受け取らない
+                    self.respond(DONE % ("stateが一致しません", "この戻りは捨てます。最初のURLからやり直してください。"), 400)
+                    return
+                state["code"] = q.get("code", [None])[0]
                 self.respond(DONE % ("受け取りました", "端末の表示に従って、次にこのAppをこのrepositoryにだけinstallしてください。"))
             else:
                 self.respond(DONE % ("不明なURL", ""), 404)
@@ -133,9 +138,9 @@ def cmd_create(a):
     conv = api("/app-manifests/%s/conversions" % urllib.parse.quote(state["code"]), method="POST")
     slug, app_id = conv.get("slug"), conv.get("id")
     key = os.path.join(app_dir(), "%s.pem" % slug)
-    with open(key, "w", encoding="utf-8") as f:
+    fd = os.open(key, os.O_WRONLY | os.O_CREAT | os.O_EXCL, stat.S_IRUSR | stat.S_IWUSR)   # 0600以外で存在する瞬間を作らない
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
         f.write(conv["pem"])
-    os.chmod(key, stat.S_IRUSR | stat.S_IWUSR)
     with open(os.path.join(app_dir(), "app.json"), "w", encoding="utf-8") as f:
         json.dump({"slug": slug, "id": app_id, "repo": a.repo, "html_url": conv.get("html_url")}, f, ensure_ascii=False)
     print(json.dumps({"slug": slug, "app_id": app_id, "key": key,

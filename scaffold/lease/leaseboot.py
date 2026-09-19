@@ -203,22 +203,46 @@ def cmd_verify(a, gh):
         except Exception as e:                                  # noqa: BLE001 実測なので理由をそのまま残す
             out[k] = {"ok": False, "detail": str(e)[:300]}
     rec("activity_api", lambda: shape_activity(gh, main_sha))
-    rec("role_name", lambda: {"ok": True, "roles": G.roles_of(gh, dict(lease, identity={"po": lease.get("identity", {}).get("po")}))})
+    rec("role_name", lambda: role_values(gh, lease))
     rec("protection_with_installation_token", lambda: {"ok": not G.protection(gh).get("unavailable"), "value": G.protection(gh)})
     rec("app_installation_permissions", lambda: {"ok": True, "value": G.app_permissions(gh, {"identity": {"apps": [slug]}})})
     rec("installation_repositories", lambda: {"ok": [r.get("full_name") for r in
                                                      (gh.api("installation/repositories?per_page=100") or {}).get("repositories") or []] == [gh.repo]})
     rec("bot_login", lambda: bot_login(gh, lease, login))
-    rec("credential_helper_push", lambda: {"ok": True, "detail": "prepareの試験branch pushで確認済み（別途の書込みはしない）"})
+    rec("credential_helper_push", lambda: branch_pushed(gh, lease))
     rec("merge_tree", lambda: merge_tree_check(gh, lease, main_sha))
     rec("delete_review_error", lambda: delete_error(gh, lease))
-    rec("user_content_edits", lambda: {"ok": bool(gh.graphql(
-        "query($o:String!,$n:String!,$i:Int!){repository(owner:$o,name:$n){issue(number:$i){"
-        "userContentEdits(first:1){nodes{editedAt diff}}}}}", o=gh.repo.split("/")[0], n=gh.repo.split("/")[1],
-        i=lease.get("status_issue") or 1))})
+    rec("user_content_edits", lambda: content_edits(gh, lease))
     ng = sorted(k for k, v in out.items() if isinstance(v, dict) and v.get("ok") is False)
     print(json.dumps({"checked": sorted(out), "ng": ng or "none", "results": out}, ensure_ascii=False, indent=1))
     return 1 if ng else 0
+
+
+def role_values(gh, lease):
+    """collaborator permission APIの`role_name`が実際に返る値（AI側のloginはAppなので対象外。POのloginで確かめる）。"""
+    po = (lease.get("identity") or {}).get("po")
+    r = gh.api("repos/%s/collaborators/%s/permission" % (gh.repo, po)) or {} if po else {}
+    return {"ok": isinstance(r.get("role_name"), str) and bool(r.get("role_name")), "login": po,
+            "role_name": r.get("role_name"), "permission": r.get("permission")}
+
+
+def branch_pushed(gh, lease):
+    """installation tokenでのpush（credential helper経由）が成立したこと: 試験PRのheadが試験branchとして存在する。"""
+    ref = gh.api("repos/%s/git/ref/heads/%s" % (gh.repo, TEST_BRANCH)) or {}
+    pr = (lease.get("probe") or {}).get("test_pr")
+    info = gh.api("repos/%s/pulls/%d" % (gh.repo, pr)) or {} if pr else {}
+    sha = (ref.get("object") or {}).get("sha")
+    return {"ok": bool(sha) and sha == (info.get("head") or {}).get("sha"), "ref": ref.get("ref"), "sha": sha}
+
+
+def content_edits(gh, lease):
+    """Issueの`userContentEdits`が取得できること（編集履歴の照合に使う。errorsだけの応答は不可とする）。"""
+    d = gh.graphql("query($o:String!,$n:String!,$i:Int!){repository(owner:$o,name:$n){issue(number:$i){"
+                   "userContentEdits(first:5){nodes{editedAt diff}}}}}",
+                   o=gh.repo.split("/")[0], n=gh.repo.split("/")[1], i=lease.get("status_issue") or 0)
+    nodes = (((d.get("data") or {}).get("repository") or {}).get("issue") or {}).get("userContentEdits")
+    return {"ok": not d.get("errors") and isinstance((nodes or {}).get("nodes"), list),
+            "errors": [e.get("message") for e in d.get("errors") or []][:3], "nodes": (nodes or {}).get("nodes")}
 
 
 def shape_activity(gh, main_sha):

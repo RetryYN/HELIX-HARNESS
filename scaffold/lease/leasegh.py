@@ -12,6 +12,7 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 GH_BIN = shutil.which("gh", path="/usr/bin:/bin") or "/usr/bin/gh"   # 呼出し元のPATHで引かない。置き場所はself_integrityで確かめる
 # 状態領域の置き場所の差替えはselftestだけが使う（環境変数では変えられない）
 STATE_OVERRIDE = None
+COMMIT_IDENT = ("helix-lease", "helix-lease@users.noreply.invalid")   # lease mergeのident（主体の照合はactivityとtokenで行う）
 # 使い捨てdirectoryの置き場所を呼出し元のTMPDIRで変えない（mkdtempは0700で作る）
 tempfile.tempdir = "/tmp"
 
@@ -99,7 +100,10 @@ def isolated_git_env():
     （HOME配下のXDG attributesは、gitの呼出しに付ける`core.attributesFile=/dev/null`で読まない）。"""
     env = base_env()
     env.update({"GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull, "GIT_NO_REPLACE_OBJECTS": "1",
-                "GIT_TERMINAL_PROMPT": "0"})
+                "GIT_TERMINAL_PROMPT": "0",
+                # commit-treeのidentは固定値にする（実行userのGECOS・git設定に依存しない。commitのauthorは主体の証明に使わない）
+                "GIT_AUTHOR_NAME": COMMIT_IDENT[0], "GIT_AUTHOR_EMAIL": COMMIT_IDENT[1],
+                "GIT_COMMITTER_NAME": COMMIT_IDENT[0], "GIT_COMMITTER_EMAIL": COMMIT_IDENT[1]})
     return env
 
 
