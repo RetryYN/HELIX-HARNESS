@@ -14,6 +14,22 @@ projection_syncの対象Issue本文に限る。判断の意味の正本は packe
 import argparse, glob, json, os, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def _preflight(here):
+    """HEREをsys.pathへ入れてcommand群をimportする前に、copyに既知のentry以外（`__pycache__`のpyc、標準libraryを覆うmodule・
+    package、拡張module）が無いことを標準libraryだけで確かめる（`-I`で起動したときだけ。bytesの照合は起動条件で行う）。"""
+    known = {"README.md", "cases", "lease.json", "leasecore.py", "leasectl.py", "leasefixtures.py", "leasegh.py",
+             "leasepost.py", "leaseprobe.py", "leaserecover.py"}
+    stray = [n for n in os.listdir(here) if n not in known]
+    cd = os.path.join(here, "cases")
+    stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else []) if not n.endswith(".json")]
+    if sys.flags.isolated and stray:
+        print("拒否: copyに既知でないentryがある（importの前に止める）: %s" % ", ".join(sorted(stray)), file=sys.stderr)
+        sys.exit(2)
+
+
+_preflight(HERE)
 sys.path.insert(0, HERE)
 import leasecore as C   # noqa: E402
 import leasegh as G     # noqa: E402
@@ -166,8 +182,12 @@ def cmd_sync(a, gh=None):
 def cmd_status(a, gh=None):
     """leaseの状態と、削除不能の実測の判定（packet: 実測は有効化の条件）。--lease-prは有効化前にPRのlease記録を読む。"""
     gh = gh or G.GH()
+    # POが有効化前の実測の確認に使う出力。起動条件（置き場所・-I等）を欠けば、照合先の取得（network）へ進まない
+    integrity = G.self_integrity(gh, None)
+    if integrity:
+        print(json.dumps({"integrity": integrity, "runner": G.runner_info()}, ensure_ascii=False, indent=1))
+        return 2
     lease = G.lease_at(gh, a.lease_pr)
-    # POが有効化前の実測の確認に使う出力には、このcommand自身の起動条件の結果も含める
     integrity = G.self_integrity(gh, "refs/lease/pr-%d" % a.lease_pr if a.lease_pr else "origin/main")
     ps, pd = C.probe_status(G.probe_snapshot(gh, lease)) if lease.get("status_issue") else ("unconfigured", "状態Issueが未設定")
     print(json.dumps({"lease": {k: lease.get(k) for k in ("lease_id", "activated_at", "expires_at", "revoked_at",
@@ -510,7 +530,10 @@ def run_boundary_tests():
     rows.append({"id": "PB-repair-field-level", "ok": C.is_probe_repair({"lease": {}, "lease_record_before": lb,
                                                                          "lease_record_after": dict(lb, probe={"test_pr": 2})}, fm)
                  and not C.is_probe_repair({"lease": {}, "lease_record_before": lb,
-                                            "lease_record_after": dict(lb, probe={"test_pr": 2}, identity={"po": "b"})}, fm)})
+                                            "lease_record_after": dict(lb, probe={"test_pr": 2}, identity={"po": "b"})}, fm)
+                 # 有効化前の実測結果（有効化の証拠）は修理でも変えない
+                 and not C.is_probe_repair({"lease": {}, "lease_record_before": dict(lb, probe={"test_pr": 1, "activation_results": [1]}),
+                                            "lease_record_after": dict(lb, probe={"test_pr": 2, "activation_results": [2]})}, fm)})
     # activityの各更新で、更新後commitの第1親が更新前のHEADであること
     it = {"before": F.B, "after": "e" * 40, "activity_type": "push", "actor": F.AI, "is_merge": True,
           "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: %s" % C.LEASE_ID}
@@ -670,19 +693,24 @@ def run_boundary_tests():
         def run(self, args, input=None, cwd=None, env=None, check=True):
             sent.append(list(args))
             return sp2.CompletedProcess(args, 0, b"", b"")
-    real_gh, real_si, real_la = G.GH, G.self_integrity, G.lease_at
+    real_gh, real_si, real_la, real_ul = G.GH, G.self_integrity, G.lease_at, G.untrusted_locations
     G.GH = lambda *a, **k: real_gh(runner=Null(), writes=k.get("writes"), isolated=False)
+    # 置き場所の検査を必ず不合格にする（-I・root所有のcopyで実行しても、この試験を空振りさせない）
+    G.untrusted_locations = lambda paths: ["(selftest)"]
     try:
         with contextlib.redirect_stderr(io.StringIO()), contextlib.redirect_stdout(io.StringIO()):
             rc_post = LP.main(["request", "--pr", "7", "--class", "repository_foundation", "--reviewer-target", "x",
                                "--request-file", "/nonexistent", "--creator", "a,b,c,d", "--apply"])
             rc_probe = LB.main(["--login", F.AI, "--review-id", "9001", "--apply"])
             rc_rec = LR.main(["7", "--context", "c", "--mode", "review", "--apply"])
+            rc_rep = LR.main(["7", "--context", "c", "--mode", "review", "--self-repair", "0" * 64, "--apply"])
             rc_ctl = main(["admit", "7", "--context", "c", "--apply"])
+            rc_status = main(["status", "--lease-pr", "7"])
         writes = [a for a in sent if "POST" in a or "PATCH" in a or "push" in a or "graphql" in a]
-        # 起動条件を欠く実行（このselftestは-Iなしで動くか、root所有でない置き場所にある）は、どのcommandも2で止まる
-        gate = bool(real_si(G.GH(), None))
-        rows.append({"id": "CMD-integrity-gate", "ok": (not gate) or (rc_post == rc_probe == rc_rec == rc_ctl == 2 and not writes)})
+        # 起動条件を欠けば、どのcommandも書込みも照合先の取得（fetch・API）もせずに2で止まる
+        rows.append({"id": "CMD-integrity-gate", "ok": rc_post == rc_probe == rc_rec == rc_rep == rc_ctl == rc_status == 2
+                     and not writes and not [a for a in sent if "fetch" in a or "api" in a]})
+        G.untrusted_locations = real_ul
         # 実測command: 状態IssueがPR（または閉じている）なら、削除の試行も結果commentも行わない
         sent.clear()
         G.self_integrity = lambda gh, rev="origin/main": []
@@ -701,7 +729,7 @@ def run_boundary_tests():
         writes = [a for a in sent if "POST" in a or "graphql" in a]
         rows.append({"id": "CMD-probe-status-issue-is-pr", "ok": rc_pr == 2 and not writes})
     finally:
-        G.GH, G.self_integrity, G.lease_at = real_gh, real_si, real_la
+        G.GH, G.self_integrity, G.lease_at, G.untrusted_locations = real_gh, real_si, real_la, real_ul
     return rows
 
 

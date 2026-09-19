@@ -19,6 +19,22 @@ origin/mainと異なる各fileの変更後SHA-256をそのPRのrecordが`approve
 import argparse, json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def _preflight(here):
+    """HEREをsys.pathへ入れてcommand群をimportする前に、copyに既知のentry以外（`__pycache__`のpyc、標準libraryを覆うmodule・
+    package、拡張module）が無いことを標準libraryだけで確かめる（`-I`で起動したときだけ。bytesの照合は起動条件で行う）。"""
+    known = {"README.md", "cases", "lease.json", "leasecore.py", "leasectl.py", "leasefixtures.py", "leasegh.py",
+             "leasepost.py", "leaseprobe.py", "leaserecover.py"}
+    stray = [n for n in os.listdir(here) if n not in known]
+    cd = os.path.join(here, "cases")
+    stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else []) if not n.endswith(".json")]
+    if sys.flags.isolated and stray:
+        print("拒否: copyに既知でないentryがある（importの前に止める）: %s" % ", ".join(sorted(stray)), file=sys.stderr)
+        sys.exit(2)
+
+
+_preflight(HERE)
 sys.path.insert(0, HERE)
 import leasecore as C   # noqa: E402
 import leasegh as G     # noqa: E402

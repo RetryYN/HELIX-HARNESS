@@ -476,13 +476,15 @@ def activation_gaps(lease):
 
 def activation_evidence_errors(snapshot):
     """lease記録に残した有効化前の実測結果comment（`probe.activation_results`）が状態Issueに編集されずに現存し、
-    AI側の全login×固定した2つの試験reviewを`denied`または`unavailable`で覆うこと（packet: 有効化前の結果をlease記録に残す）。"""
+    有効化時点の試験review（`APPROVED`・`CHANGES_REQUESTED`の各1件。結果commentが示すID）をAI側の全loginについて
+    `denied`または`unavailable`で覆い、`activated_at`より前に置かれていること（packet: 有効化前の結果をlease記録に残す）。
+    有効化後に実測の修理で付け直した試験reviewは、ここではなく`probe_status`の30日以内の結果で確かめる。"""
     lease = snapshot.get("lease") or {}
     probe = lease.get("probe") or {}
     ids = set(probe.get("activation_results") or [])
     act = lease.get("activated_epoch")
     by_id = {c.get("id"): c for c in snapshot.get("status_comments") or []}
-    covered, errs = set(), []
+    covered, states, errs = set(), {}, []
     for i in sorted(ids, key=str):
         c = by_id.get(i)
         blk = lease_block((c or {}).get("body"))
@@ -494,16 +496,18 @@ def activation_evidence_errors(snapshot):
             errs.append("実測結果comment %s が編集されている、または投稿者が実測loginでない" % i)
         elif o.get("result") not in ("denied", "unavailable"):
             errs.append("実測結果comment %s の結果が%s" % (i, o.get("result")))
-        elif o.get("review_state") != {t.get("id"): t.get("state") for t in probe.get("test_reviews") or []}.get(o.get("review_id")):
-            errs.append("実測結果comment %s の試験reviewの状態がlease記録と一致しない" % i)
         elif act is not None and (c.get("created_epoch") is None or c["created_epoch"] > act):
             errs.append("実測結果comment %s が有効化より後" % i)
+        elif states.setdefault(o.get("review_id"), o.get("review_state")) != o.get("review_state"):
+            errs.append("実測結果comment %s の試験review %s の状態が他の結果と食い違う" % (i, o.get("review_id")))
         else:
             covered.add((o.get("login"), o.get("review_id")))
+    if sorted(v or "" for v in states.values()) != ["APPROVED", "CHANGES_REQUESTED"]:
+        errs.append("有効化前の実測結果の試験reviewがAPPROVEDとCHANGES_REQUESTEDの各1件でない")
     for l in ai_logins(lease):
-        for t in probe.get("test_reviews") or []:
-            if (l, t.get("id")) not in covered:
-                errs.append("有効化前の実測結果に %s × 試験review %s が無い" % (l, t.get("id")))
+        for rid in states:
+            if (l, rid) not in covered:
+                errs.append("有効化前の実測結果に %s × 試験review %s が無い" % (l, rid))
     return errs
 
 
@@ -576,6 +580,9 @@ def is_probe_repair(snapshot, record_fm):
                 return False
             keys = set(before) | set(after)
             if any(before.get(k) != after.get(k) for k in keys if k != "probe"):
+                return False
+            # 有効化前の実測結果（有効化の証拠）は実測の修理でも変えない
+            if (before.get("probe") or {}).get("activation_results") != (after.get("probe") or {}).get("activation_results"):
                 return False
         elif p not in allowed:
             return False

@@ -10,7 +10,8 @@ import leasecore as C
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 GH_BIN = shutil.which("gh", path="/usr/bin:/bin") or "/usr/bin/gh"   # 呼出し元のPATHで引かない。置き場所はself_integrityで確かめる
-STATE_OVERRIDE = None                 # selftestだけが使う（状態領域の置き場所を環境変数で変えられないようにする）
+STATE_OVERRIDE = None
+tempfile.tempdir = "/tmp"             # 使い捨てdirectoryの置き場所を呼出し元のTMPDIRで変えない（mkdtempは0700で作る）                 # selftestだけが使う（状態領域の置き場所を環境変数で変えられないようにする）
 
 
 CA_FILE = "/etc/ssl/certs/ca-certificates.crt"   # 固定のtrust store（SSL_CERT_FILE等の環境変数を読まない）
@@ -298,6 +299,9 @@ def reviews_of(gh, pr):
         if not d["pageInfo"]["hasNextPage"]:
             break
         cursor = d["pageInfo"]["endCursor"]
+    missing = [r["id"] for r in rs if r["id"] not in edited]
+    if missing:   # 編集の有無（lastEditedAt）を確かめられないreviewを「未編集」として扱わない
+        raise RuntimeError("GraphQLのreview一覧にREST側のreview %s が無い" % missing[:5])
     return [{"id": r["id"], "node_id": edited.get(r["id"], (None, None))[1], "user": (r.get("user") or {}).get("login"),
              "state": r.get("state"), "commit_id": r.get("commit_id"), "submitted_at": r.get("submitted_at"),
              "body": r.get("body") or "", "last_edited_at": edited.get(r["id"], (None, None))[0]} for r in rs]

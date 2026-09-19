@@ -128,18 +128,62 @@
     "op": "set",
     "path": "lease.probe.test_reviews.1.state",
     "value": "COMMENTED"
-   },
-   {
-    "op": "set",
-    "path": "status_comments.3.body",
-    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"denied\", \"review_id\": 9002, \"review_state\": \"COMMENTED\"}\n```"
    }
   ],
   "expect": [
    "deletion_probe_stale"
   ],
   "mode": null,
-  "note": "有効化前の実測結果も同じ状態で揃えたうえで、登録した状態がAPPROVED・CHANGES_REQUESTEDの組でない"
+  "note": "登録した試験reviewの状態がAPPROVED・CHANGES_REQUESTEDの組でない"
+ },
+ {
+  "id": "PB-test-reviews-reregistered",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.probe.test_reviews",
+    "value": [
+     {
+      "id": 9101,
+      "state": "APPROVED"
+     },
+     {
+      "id": 9102,
+      "state": "CHANGES_REQUESTED"
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "test_review_ids_present",
+    "value": [
+     9101,
+     9102
+    ]
+   },
+   {
+    "op": "set",
+    "path": "test_review_states",
+    "value": {
+     "9101": "APPROVED",
+     "9102": "CHANGES_REQUESTED"
+    }
+   },
+   {
+    "op": "set",
+    "path": "status_comments.0.body",
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"denied\", \"review_id\": 9101, \"review_state\": \"APPROVED\"}\n```"
+   },
+   {
+    "op": "set",
+    "path": "status_comments.1.body",
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-app[bot]\", \"result\": \"denied\", \"review_id\": 9102, \"review_state\": \"CHANGES_REQUESTED\"}\n```"
+   }
+  ],
+  "expect": [],
+  "mode": null,
+  "note": "実測の修理で試験reviewを付け直した後も、有効化前の実測結果は有効化時点の試験reviewで照合する（運搬範囲をnoneに落とさない）"
  },
  {
   "id": "PB-activation-result-state-mismatch",

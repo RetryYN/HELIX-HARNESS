@@ -98,9 +98,10 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
    metadata・administrationの`read`）とちょうど一致しない権限（外の権限・過剰だけでなく、欠落や`read`への縮退も含む）、別のappのinstallation、取得の失敗のどれでも停止する。
 2. すべてのrulesetのbypass対象を空にし（Appを含めない）、admin資格情報をAI側から隔離する。
    executor command・非常用command・実測command・投稿commandは、rootが所有しgroup・otherが書けない場所（祖先directoryを含む。例: `/opt/helix-lease/`）に
-   置いたmainのcopyから実行し、POの実行環境の許可はそのpathのcommandを`/usr/bin/python3 -I`で起動する形に限る（packet 二重境界。
+   置いたcopy（下記）から実行し、POの実行環境の許可はそのpathのcommandを`/usr/bin/python3 -I`で起動する形に限る（packet 二重境界。
    AI側の作業treeのcommandを許可しない）。copyは`git archive`またはfresh cloneだけから作る（作業treeからcopyしない。`__pycache__`等の
-   revに無いentryがあれば起動条件で拒否する）。`gh`は`/usr/bin`に置く。
+   既知でないentryがあれば、command群をimportする前に拒否する）。有効化前（手順5の実測・確認）は本PRの最終exact HEADから、
+   有効化後はmainから作る（照合先がそれぞれ`--lease-pr`のPRのheadとorigin/mainであるため）。`gh`は`/usr/bin`に置く。
    executor・非常用commandは、AI側contextと別のOS userとして動かす（POが所有するwrapper、例: そのcommandだけを許すsudoersの規則で、
    installation tokenの`GH_TOKEN`だけを渡した空の環境）。同じOS userでは、AI側contextが動作中のexecutor processへattachでき（ptrace）、
    上の起動条件では防げないため、POはこれを有効化の前に確かめる。lease mergeで`scaffold/lease/`が変わった後は、
@@ -152,7 +153,10 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 - 有効化mergeは既存規則（merge API）で入るため、activityの種別が`pr_merge`でもよい（起点の直後の1件だけ）。
 - AppのinstallationはAppの対象repositoryを選択したもの（`repository_selection: selected`）に限り、実測commandはinstallation tokenの
   対象repositoryが本repositoryだけであることを確かめる。
-- 有効化前の実測結果commentは、試験reviewの状態がlease記録と一致し、`activated_at`より前に置かれたものに限る。
+- 有効化前の実測結果commentは、`activated_at`より前に置かれ、有効化時点の試験review（結果commentが示す`APPROVED`・`CHANGES_REQUESTED`の各1件）を
+  AI側の全loginについて覆うものに限る。有効化後に実測の修理で付け直した試験reviewは、`probe_status`の30日以内の結果で確かめる
+  （付け直しでleaseが未有効に落ちない）。実測の修理は`probe.activation_results`を変えられない。
+- PRのreview一覧で、GraphQL側に無いreview（`lastEditedAt`を確かめられないもの）があれば、未編集として扱わず取得失敗とする。
   非常経路と再bootstrapは、packetのとおり「lease記録の有効性」を条件から除くため、この実測結果の現存照合も行わない。
 - 実測commandは、lease記録の`status_issue`が開いているIssue（PRでなく、試験PRでもない）であることを確かめてから書き込む。
 - 起動条件には、`GH_TOKEN`があること（ghには空の設定directoryを渡し、実行userのgh設定を読まない）、`pycache_prefix`が無いこと、
