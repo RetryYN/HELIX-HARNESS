@@ -3,7 +3,7 @@
 書込みは`Writes`の許可リストを通したものだけが実行される。許可リストはcommandごとに固定し
 （packet 規則の意味6、二重境界）、リストに無い書込みは例外で止める。dry-runでは許可リストが空である。
 """
-import datetime, hashlib, json, os, re, shutil, subprocess, tempfile, time, urllib.parse
+import base64, urllib.request, datetime, hashlib, json, os, re, shutil, subprocess, tempfile, time, urllib.parse
 
 import leasecore as C
 
@@ -30,6 +30,8 @@ class Writes:
 class Runner:
     """外部commandの実行。selftestでは偽の実装に差し替える。"""
     def run(self, args, input=None, cwd=None, env=None, check=True):
+        if env is None:   # 呼出し元の環境からcommit時刻・author・committerの上書きを受け取らない
+            env = {k: v for k, v in os.environ.items() if not k.startswith(("GIT_COMMITTER_", "GIT_AUTHOR_"))}
         p = subprocess.run(args, input=input, cwd=cwd or ROOT, env=env, capture_output=True)
         if check and p.returncode != 0:
             raise RuntimeError("%s: %s" % (" ".join(args[:4]), p.stderr.decode("utf-8", "replace")[:500]))
@@ -233,20 +235,24 @@ def events_review_ids(gh, pr, po):
 
 
 def protection(gh):
+    """branch protectionとrulesetを取得する。取得できない、または`bypass_actors`が返らない場合は`unavailable`とし、
+    判定側で基準値と一致しない（停止）として扱う（空の一致にしない）。"""
     try:
         bp = gh.api("repos/%s/branches/main/protection" % gh.repo)
-    except RuntimeError:
-        bp = None
-    norm = None
-    if bp:
-        norm = {"allow_force_pushes": (bp.get("allow_force_pushes") or {}).get("enabled"),
-                "allow_deletions": (bp.get("allow_deletions") or {}).get("enabled"),
-                "enforce_admins": (bp.get("enforce_admins") or {}).get("enabled")}
-    rules = []
-    for r in gh.api("repos/%s/rulesets?per_page=100" % gh.repo, paginate=True) or []:
-        full = gh.api("repos/%s/rulesets/%d" % (gh.repo, r["id"])) or {}
-        rules.append({"id": r["id"], "name": r.get("name"), "enforcement": full.get("enforcement"),
-                      "bypass_actors": full.get("bypass_actors") or []})
+        rules = []
+        for r in gh.api("repos/%s/rulesets?per_page=100" % gh.repo, paginate=True) or []:
+            full = gh.api("repos/%s/rulesets/%d" % (gh.repo, r["id"])) or {}
+            if "bypass_actors" not in full:
+                return {"unavailable": True, "detail": "ruleset %s のbypass_actorsが返らない" % r["id"]}
+            rules.append({"id": r["id"], "name": r.get("name"), "enforcement": full.get("enforcement"),
+                          "bypass_actors": full.get("bypass_actors")})
+    except RuntimeError as e:
+        return {"unavailable": True, "detail": str(e)[:200]}
+    if not isinstance(bp, dict):
+        return {"unavailable": True, "detail": "branch protectionが返らない"}
+    norm = {"allow_force_pushes": (bp.get("allow_force_pushes") or {}).get("enabled"),
+            "allow_deletions": (bp.get("allow_deletions") or {}).get("enabled"),
+            "enforce_admins": (bp.get("enforce_admins") or {}).get("enabled")}
     return {"branch_protection": norm, "rulesets": sorted(rules, key=lambda x: x["id"])}
 
 
@@ -309,17 +315,40 @@ def recovery_merge_results(gh, lease, main):
     return out
 
 
+def b64url(b):
+    return base64.urlsafe_b64encode(b).rstrip(b"=").decode("ascii")
+
+
+def app_jwt(app_id, key_path, now=None):
+    """GitHub AppのJWT（RS256）。署名はopensslで行い、秘密鍵はexecutorの実行環境の`HELIX_LEASE_APP_KEY_DIR/<slug>.pem`に置く。"""
+    now = int(now or time.time())
+    head = b64url(json.dumps({"alg": "RS256", "typ": "JWT"}, separators=(",", ":")).encode())
+    body = b64url(json.dumps({"iat": now - 60, "exp": now + 540, "iss": str(app_id)}, separators=(",", ":")).encode())
+    sig = subprocess.run(["openssl", "dgst", "-sha256", "-sign", key_path], input=("%s.%s" % (head, body)).encode(),
+                         capture_output=True, check=True).stdout
+    return "%s.%s.%s" % (head, body, b64url(sig))
+
+
 def app_permissions(gh, lease):
-    """identity表の`apps`（AI側がGitHub Appで動く場合のapp slug）ごとに、appの権限を取得する。installation権限はappの権限の
-    範囲内であるため、appの権限にadministration・repository rulesの書込みが無ければinstallationにも無い（安全側の近似）。
-    取得できなければunavailableとして返し、判定側で停止原因にする。"""
+    """identity表の`apps`ごとに、本repositoryへのinstallationの実際の権限を、AppのJWTで`GET /repos/{repo}/installation`から
+    取得する（Appの定義（`GET /apps/{slug}`）ではなく、installationの権限）。取得できなければunavailableとして返し、判定側で停止原因にする。"""
     out = []
+    kdir = os.environ.get("HELIX_LEASE_APP_KEY_DIR")
     for slug in ((lease or {}).get("identity") or {}).get("apps") or []:
         try:
-            perms = (gh.api("apps/%s" % urllib.parse.quote(slug)) or {}).get("permissions")
-        except RuntimeError:
-            perms = None
-        out.append(dict(perms, slug=slug) if isinstance(perms, dict) else {"slug": slug, "unavailable": True})
+            app_id = (gh.api("apps/%s" % urllib.parse.quote(slug)) or {}).get("id")
+            key = os.path.join(kdir, "%s.pem" % slug) if kdir else None
+            if not app_id or not key or not os.path.isfile(key):
+                raise RuntimeError("app idまたは秘密鍵が無い")
+            req = urllib.request.Request("https://api.github.com/repos/%s/installation" % gh.repo, headers={
+                "Authorization": "Bearer %s" % app_jwt(app_id, key), "Accept": "application/vnd.github+json",
+                "X-GitHub-Api-Version": "2022-11-28"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                inst = json.loads(r.read().decode("utf-8"))
+            out.append({"slug": slug, "app_slug": inst.get("app_slug"), "permissions": inst.get("permissions"),
+                        "repository_selection": inst.get("repository_selection")})
+        except (RuntimeError, OSError, ValueError, subprocess.CalledProcessError) as e:
+            out.append({"slug": slug, "unavailable": True, "detail": str(e)[:200]})
     return out
 
 
@@ -361,12 +390,16 @@ def verified_lease_merge(gh, sha, lease, recovery_ok=False, comments_fn=None):
 
 
 def lease_at(gh, lease_pr=None):
-    """lease記録を読む。lease_prを渡すと、そのPRのheadのlease記録（有効化を運ぶ後続operation_change PRの、merge前の実測用）。"""
-    if lease_pr:
-        gh.git("fetch", "-q", "origin", "+refs/pull/%d/head:refs/lease/pr-%d" % (lease_pr, lease_pr))
-        return load_lease(gh, "refs/lease/pr-%d" % lease_pr)
+    """lease記録を読む。lease_prを渡すと、そのPRのheadのlease記録（有効化を運ぶ後続operation_change PRの、merge前の実測用）。
+    lease_prは、main上のlease記録が未有効の間だけ受け付ける（有効化後はmain上の保護面の記録だけを使う）。"""
     gh.git("fetch", "-q", "origin", "main")
-    return load_lease(gh, "origin/main")
+    main_lease = load_lease(gh, "origin/main")
+    if not lease_pr:
+        return main_lease
+    if main_lease.get("activated_at"):
+        raise RuntimeError("main上のlease記録は有効化済み。--lease-prは有効化前だけ使える")
+    gh.git("fetch", "-q", "origin", "+refs/pull/%d/head:refs/lease/pr-%d" % (lease_pr, lease_pr))
+    return load_lease(gh, "refs/lease/pr-%d" % lease_pr)
 
 
 def probe_snapshot(gh, lease):

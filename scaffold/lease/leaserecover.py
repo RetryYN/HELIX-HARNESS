@@ -49,11 +49,19 @@ def rebootstrap_decision(gh, s, a):
 def degraded_chain(gh, s):
     """activity APIを失った場合の代替: 起点からmain HEADまでの第1親の連鎖上のcommitが、すべてlease mergeまたは非常mergeか。"""
     origin = s.get("activity_origin")
+    lease_origin = (s.get("lease") or {}).get("origin_main")
     for sha in gh.git("rev-list", "--first-parent", "%s..%s" % (origin, s["main_head"])).stdout.decode().split():
         msg = gh.git("log", "-1", "--format=%B", sha).stdout.decode("utf-8", "replace")
         parents = gh.git("log", "-1", "--format=%P", sha).stdout.decode().split()
-        if len(parents) != 2 or not ("lease_receipt: %s" % C.LEASE_ID in msg or "lease_recovery:" in msg):
+        if len(parents) != 2:
             return False
+        if C.merge_message_kind(msg) in ("lease", "recovery"):
+            continue
+        # 起点の直後の有効化merge（lease記録を未有効から有効へ変えたmerge）だけは例外
+        if parents[0] == lease_origin and not (G.load_lease(gh, parents[0]) or {}).get("activated_at") \
+                and (G.load_lease(gh, sha) or {}).get("activated_at"):
+            continue
+        return False
     return True
 
 

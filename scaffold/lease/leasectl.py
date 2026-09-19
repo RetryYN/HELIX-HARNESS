@@ -93,7 +93,7 @@ def post_merge_result(gh, s, sha, ra, recovery=None):
         gh.comment(s["pr"]["number"], C.merge_result_body(s, sha, ra, recovery=recovery))
         return []
     except RuntimeError:
-        return [C.R("post_merge_mismatch", "merge_resultの投稿に失敗")]
+        return [dict(C.R("post_merge_mismatch", "merge_resultの投稿に失敗"), item="merge_result_post")]
 
 
 def cmd_admit(a, gh=None):
@@ -392,20 +392,26 @@ def run_boundary_tests():
     sn = {"lease": F.base_rf()["lease"], "main_head": "e" * 40, "activity_origin": F.B}
     rows.append({"id": "HL-first-parent", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(it, first_parent=F.B)]}))[0]
                  and not C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(it, first_parent="9" * 40)]}))[0]})
-    boot = dict(it, actor="merge-runtime", commit_message="Merge pull request #1886", first_parent=F.B, activates_lease=True)
-    rows.append({"id": "HL-bootstrap-activation-merge", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [boot]}))[0]})
+    boot = dict(it, actor=F.AI, commit_message="Merge pull request #1886", first_parent=F.B, activates_lease=True)
+    rows.append({"id": "HL-bootstrap-activation-merge", "ok": C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [boot]}))[0]
+                 and not C.activity_chain_ok(dict(sn, activity={"reached_origin": True, "items": [dict(boot, actor=F.PO)]}))[0]})
     rows.append({"id": "HL-activation-merge-not-at-origin", "ok": not C.activity_chain_ok(dict(
         sn, main_head="7" * 40, activity={"reached_origin": True, "items": [
             dict(it, first_parent=F.B), dict(boot, before="e" * 40, after="7" * 40, first_parent="e" * 40)]}))[0]})
     # 非常mergeの後の再開recordは、merge_resultのread-after結果を項目ごとに列挙する
-    rmr = [{"merge_commit": "a1" * 20, "read_after": {"ok": False, "mismatches": [{"code": "post_merge_mismatch", "detail": "x"}]}}]
+    rmr = [{"merge_commit": "a1" * 20, "read_after": {"ok": False, "mismatches": [
+        {"code": "post_merge_mismatch", "item": "tree", "detail": "x"}, {"code": "post_merge_mismatch", "item": "main_actor_mismatch", "detail": "y"}]}}]
     stc = [{"body": "非常経路のmerge %s" % ("a1" * 20)}]
-    ok_fm = {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_codes": "post_merge_mismatch"}]}
+    ok_fm = {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_items": "tree,main_actor_mismatch"}]}
     rows.append({"id": "RC-resume-enumeration", "ok":
                  not C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc}, ok_fm)
                  and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc}, {})
                  and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc},
-                                                   {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_codes": "none"}]})
+                                                   {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_items": "none"}]})
+                 and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc},
+                                                   {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_items": "tree"}]})
+                 and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": stc},
+                                                   {"recovery_read_after": [{"merge_commit": "a1" * 20, "mismatch_items": "post_merge_mismatch"}]})
                  and C.recovery_enumeration_errors({"recovery_merge_results": rmr, "status_comments": []}, ok_fm)
                  and C.recovery_enumeration_errors({"recovery_merge_results": [dict(rmr[0], read_after=None)], "status_comments": stc}, ok_fm)})
     # activityの主体照合は固定位置で見る（本文に引用されたreceipt行には反応しない）
@@ -416,11 +422,49 @@ def run_boundary_tests():
                  and C.merge_message_kind("x\n\nlease_receipt: %s" % C.LEASE_ID) is None})
     # GitHub Appのloginはcollaborator roleでなくapp権限で照合する
     al = dict(F.base_rf()["lease"], identity=dict(F.base_rf()["lease"]["identity"], ai="helix-app[bot]", apps=["helix-app"]))
-    hs = {"protection": F.base_rf()["protection"], "roles": {}, "app_permissions": [{"slug": "helix-app", "contents": "write"}]}
+    hs = {"protection": F.base_rf()["protection"], "roles": {}, "app_permissions": [{"slug": "helix-app", "app_slug": "helix-app", "permissions": {"contents": "write"}}]}
     rows.append({"id": "HL-app-login-role", "ok": not [x for x in C.evaluate_lease_health(hs, lease=al, skip_activity=True)
                                                      if x["code"] == "role_mismatch"]
                  and [x for x in C.evaluate_lease_health(dict(hs, app_permissions=[]), lease=al, skip_activity=True)
                       if x["code"] == "role_mismatch"]})
+    # AppのJWT: RS256の形（header.payload.signature）と、iss・有効期間
+    import subprocess as sp_, tempfile as tf_
+    kd = tf_.mkdtemp(prefix="lease-jwt-")
+    try:
+        kp = os.path.join(kd, "k.pem")
+        sp_.run(["openssl", "genrsa", "-out", kp, "2048"], capture_output=True, check=True)
+        tok = G.app_jwt(123, kp, now=1000)
+        hd, bd, sg = tok.split(".")
+        import base64 as b64_
+        pl = json.loads(b64_.urlsafe_b64decode(bd + "=" * (-len(bd) % 4)))
+        pub = sp_.run(["openssl", "rsa", "-in", kp, "-pubout"], capture_output=True, check=True).stdout
+        with open(os.path.join(kd, "pub.pem"), "wb") as f:
+            f.write(pub)
+        with open(os.path.join(kd, "sig"), "wb") as f:
+            f.write(b64_.urlsafe_b64decode(sg + "=" * (-len(sg) % 4)))
+        v = sp_.run(["openssl", "dgst", "-sha256", "-verify", os.path.join(kd, "pub.pem"), "-signature", os.path.join(kd, "sig")],
+                    input=("%s.%s" % (hd, bd)).encode(), capture_output=True)
+        rows.append({"id": "APP-jwt", "ok": v.returncode == 0 and pl == {"iat": 940, "exp": 1540, "iss": "123"}})
+    finally:
+        shutil_ = __import__("shutil"); shutil_.rmtree(kd, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # read-afterの不一致は項目ごとに残る
+    ra3 = C.evaluate_after({"main_head": "x", "main_tree": "y", "main_parents": [], "stale": 0, "lease": F.base_rf()["lease"],
+                            "protection": F.base_rf()["protection"], "roles": {F.AI: "write"}, "activity": {"reached_origin": False}},
+                           "f" * 40, "t" * 40, (F.B, F.H), True, True)
+    rows.append({"id": "RA-items", "ok": {"main_head", "tree", "parents"} <= {x.get("item") for x in ra3}
+                 and all(x["code"] == "post_merge_mismatch" for x in ra3)})
+    # 保護設定を取得できない、または基準値が無ければ一致としない
+    lh = F.base_rf()
+    rows.append({"id": "HL-protection-unavailable", "ok": "protection_baseline_changed" in [x["code"] for x in C.evaluate_lease_health(
+        dict(lh, protection={"unavailable": True}), skip_activity=True)]
+                 and "protection_baseline_changed" in [x["code"] for x in C.evaluate_lease_health(
+                     dict(lh, protection={"branch_protection": None, "rulesets": []}), lease=dict(lh["lease"], baseline={"branch_protection": None, "rulesets": []}), skip_activity=True)]})
+    # 有効化済みでも、identity・基準値・起点・状態Issue・試験PRの欠落、POのAI側loginは未有効として扱う
+    lb = F.base_rf()["lease"]
+    rows.append({"id": "LS-activation-gaps", "ok": not C.activation_gaps(lb) and C.activation_gaps(dict(lb, baseline=None))
+                 and C.activation_gaps(dict(lb, identity=dict(lb["identity"], po=F.AI)))
+                 and C.activation_gaps(dict(lb, identity=dict(lb["identity"], po="x[bot]")))
+                 and C.lease_scope(dict(F.base_rf(), lease=dict(lb, origin_main=None)))[0] == "none"})
     rows.append({"id": "PT-nested-gitattributes", "ok": C.is_gitattributes("docs/.gitattributes") and C.is_gitattributes(".gitattributes")
                  and not C.is_gitattributes("docs/x.gitattributes")})
     # 解除時刻はlease記録がmainへ入った時刻を上限にする

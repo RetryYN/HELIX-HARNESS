@@ -22,6 +22,9 @@ SHA40 = re.compile(r"^[0-9a-f]{40}$")
 SHA64 = re.compile(r"^[0-9a-f]{64}$")
 
 # 停止原因（packet「merge前の検査」冒頭）。これ以外の不成立はPR単位の拒否であり、leaseを止めない。
+# AI側GitHub Appのinstallation権限の許可集合（packet: `write`ちょうどに相当。administration・repository rulesを含まない）
+APP_PERMISSIONS_ALLOWED = {"contents": "write", "pull_requests": "write", "issues": "write", "metadata": "read",
+                           "administration": "read"}   # administrationの読取りは保護設定・rulesetの再取得に要る
 PROBE_WINDOW_DAYS = 30        # packet「削除への対処」(i): 30日以内（lease記録では変えない）
 MAX_UNAUDITED_MERGES = 10     # packet「監査」: 10件（lease記録では変えない）
 SUSPEND_CAUSES = {
@@ -325,6 +328,8 @@ def decision_lines(body):
 def latest_po_review(snapshot, head):
     """最新のPO reviewを確定し、判断が成立すれば(choice, review)、不成立なら(None, 理由)を返す。"""
     po = (snapshot.get("lease") or {}).get("identity", {}).get("po")
+    if po and (po in ai_logins(snapshot.get("lease") or {}) or po.endswith("[bot]")):
+        return None, "人間判断者loginがAI側login"
     reviews = [r for r in snapshot.get("reviews") or [] if r.get("user") == po]
     if not po or not reviews:
         return None, "人間判断者loginのPR reviewが無い"
@@ -430,13 +435,25 @@ def suspended_in_status_issue(comments, lease, to_epoch):
     return False
 
 
+def activation_gaps(lease):
+    """有効化済みのlease記録に欠けてはならない欄。"""
+    idt = (lease or {}).get("identity") or {}
+    probe = (lease or {}).get("probe") or {}
+    gaps = [k for k, v in (("identity.po", idt.get("po")), ("identity.ai", idt.get("ai") or idt.get("executor")),
+                           ("baseline", (lease or {}).get("baseline")), ("status_issue", (lease or {}).get("status_issue")),
+                           ("origin_main", (lease or {}).get("origin_main")), ("probe.test_pr", probe.get("test_pr"))) if not v]
+    if idt.get("po") and (idt.get("po") in ai_logins(lease) or idt["po"].endswith("[bot]")):
+        gaps.append("identity.poがAI側login")
+    return gaps
+
+
 def lease_scope(snapshot, recovery=False):
     """運搬範囲（'all' / 'decision_record' / 'probe_repair' / 'none'）と理由の一覧を返す。
     packet「運搬範囲の優先順位」: review_source_unsafe < deletion_probe_stale < 停止中・取消し後 < 有効。"""
     lease = snapshot.get("lease") or {}
     reasons = []
-    if not lease.get("activated_at"):
-        return "none", [R("lease_not_activated", "lease記録の有効化（identity表・基準値・起点）が未了")]
+    if not lease.get("activated_at") or activation_gaps(lease):
+        return "none", [R("lease_not_activated", "lease記録の有効化（identity表・基準値・起点）が未了%s" % activation_gaps(lease))]
     ps, pd = probe_status(snapshot)
     if ps == "unsafe":
         return "none", [R("review_source_unsafe", pd)]
@@ -461,7 +478,7 @@ def lease_scope(snapshot, recovery=False):
 
 def recovery_enumeration_errors(snapshot, record_fm):
     """起点を付け直して再開するrecordは、起点以降の非常mergeごとに、`merge_result`のread-after結果を列挙する
-    （`recovery_read_after`: `merge_commit`と`mismatch_codes`（不一致のcodeを`,`で連ねる。無ければ`none`））。
+    （`recovery_read_after`: `merge_commit`と`mismatch_items`（不一致の項目を`,`で連ねる。無ければ`none`））。
     列挙が`merge_result`と一致し、状態Issueに同じmergeの停止commentがあることを確かめる（packet 非常経路「停止」）。"""
     out = []
     listed = {e.get("merge_commit"): e for e in (record_fm or {}).get("recovery_read_after") or [] if isinstance(e, dict)}
@@ -471,12 +488,12 @@ def recovery_enumeration_errors(snapshot, record_fm):
         if not isinstance(r.get("read_after"), dict):
             out.append(R("recovery_enumeration_missing", "非常merge %s のmerge_result（read-after結果）が無い" % mc))
             continue
-        want = ",".join(sorted({x.get("code") for x in (r.get("read_after") or {}).get("mismatches") or []})) or "none"
+        want = ",".join(sorted({x.get("item") or x.get("code") for x in (r.get("read_after") or {}).get("mismatches") or []})) or "none"
         e = listed.get(mc)
         if not e:
             out.append(R("recovery_enumeration_missing", "非常merge %s のread-after結果を列挙していない" % mc))
             continue
-        got = ",".join(sorted(x for x in (e.get("mismatch_codes") or "").split(",") if x)) or "none"
+        got = ",".join(sorted(x.strip() for x in (e.get("mismatch_items") or "").split(",") if x.strip())) or "none"
         if got != want:
             out.append(R("recovery_enumeration_missing", "非常merge %s の列挙%sがmerge_resultの%sと不一致" % (mc, got, want)))
         if mc not in status_text:
@@ -863,7 +880,7 @@ def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
         if it.get("actor") == executor and kind == "lease" and it.get("is_merge"):
             pass
         elif it.get("activates_lease") and it.get("is_merge") and it.get("before") == lease.get("origin_main") \
-                and it.get("before") == (snapshot.get("activity_origin") or origin):
+                and it.get("before") == (snapshot.get("activity_origin") or origin) and it.get("actor") in ai_logins(lease):
             pass   # 起点の直後の1件だけ: lease記録を有効にした後続operation_change PRのmerge（既存規則。packet bootstrap）
         elif it.get("actor") == rec and kind == "recovery" and it.get("is_merge"):
             if not recovery:
@@ -879,21 +896,27 @@ def activity_chain_ok(snapshot, recovery=None, after=None, lease=None):
 def evaluate_after(snapshot, pushed_sha, inspected_tree, pair, merged_ok, result_posted):
     """merge後のread-after（packet「merge後」）。不一致はすべて停止原因。"""
     reasons = []
+
+    def miss(item, detail):
+        r = R("post_merge_mismatch", detail)
+        r["item"] = item   # 再開recordが項目ごとに名指しする単位（packet 非常経路「停止」）
+        reasons.append(r)
     if snapshot.get("main_head") != pushed_sha:
-        reasons.append(R("post_merge_mismatch", "新main HEADがpushしたmerge commitと不一致"))
+        miss("main_head", "新main HEADがpushしたmerge commitと不一致")
     if snapshot.get("main_tree") != inspected_tree:
-        reasons.append(R("post_merge_mismatch", "treeが検査したtreeと不一致"))
+        miss("tree", "treeが検査したtreeと不一致")
     if snapshot.get("main_parents") != [pair[0], pair[1]]:
-        reasons.append(R("post_merge_mismatch", "親が検査したmain HEAD・content HEADでない"))
+        miss("parents", "親が検査したmain HEAD・content HEADでない")
     if snapshot.get("stale") != 0:
-        reasons.append(R("post_merge_mismatch", "新mainでstale=%s" % snapshot.get("stale")))
+        miss("stale", "新mainでstale=%s" % snapshot.get("stale"))
     pre = evaluate_lease_health(snapshot, after=pushed_sha, recovery=snapshot.get("recovery_mode"),
                                 lease=snapshot.get("health_lease"))
-    reasons += [R("post_merge_mismatch", "%s %s" % (x["code"], x["detail"])) for x in pre]
+    for x in pre:
+        miss(x["code"], "%s %s" % (x["code"], x["detail"]))
     if not merged_ok:
-        reasons.append(R("post_merge_mismatch", "10分以内にPRがmergedと表示されない"))
+        miss("merged_display", "10分以内にPRがmergedと表示されない")
     if not result_posted:
-        reasons.append(R("post_merge_mismatch", "merge_resultの投稿に失敗"))
+        miss("merge_result_post", "merge_resultの投稿に失敗")
     return reasons
 
 
@@ -903,7 +926,11 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
     out = []
     s = snapshot.get("protection") or {}
     base = lease.get("baseline") or {}
-    if s.get("branch_protection") != base.get("branch_protection") or s.get("rulesets") != base.get("rulesets"):
+    if s.get("unavailable") or not isinstance(s.get("branch_protection"), dict):
+        out.append(R("protection_baseline_changed", "保護設定を取得できない（%s）" % s.get("detail", "")))
+    elif not isinstance(base.get("branch_protection"), dict) or not isinstance(base.get("rulesets"), list):
+        out.append(R("protection_baseline_changed", "lease記録の基準値が無い"))
+    elif s.get("branch_protection") != base.get("branch_protection") or s.get("rulesets") != base.get("rulesets"):
         out.append(R("protection_baseline_changed"))
     for r in s.get("rulesets") or []:
         if r.get("bypass_actors"):
@@ -919,12 +946,20 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
         want = ("read", "triage") if (separate and l in reviewer_logins) else ("write",)
         if roles.get(l) not in want:
             out.append(R("role_mismatch", "%s: %s" % (l, roles.get(l))))
-    got = {a.get("slug") for a in snapshot.get("app_permissions") or [] if not a.get("unavailable")}
+    got = {a.get("slug"): a for a in snapshot.get("app_permissions") or [] if not a.get("unavailable")}
     for slug in (lease.get("identity") or {}).get("apps") or []:
-        if slug not in got:
-            out.append(R("role_mismatch", "GitHub App %s の権限を取得できない" % slug))
+        a = got.get(slug)
+        if not a:
+            out.append(R("role_mismatch", "GitHub App %s のinstallation権限を取得できない" % slug))
+            continue
+        if a.get("app_slug") != slug:
+            out.append(R("role_mismatch", "installationのapp %s がidentity表の %s でない" % (a.get("app_slug"), slug)))
+        for k, v in (a.get("permissions") or {}).items():
+            if k not in APP_PERMISSIONS_ALLOWED or (APP_PERMISSIONS_ALLOWED[k] == "read" and v != "read"):
+                out.append(R("role_mismatch", "GitHub App %s のinstallation権限 %s: %s が許可集合の外" % (slug, k, v)))
     for app in snapshot.get("app_permissions") or []:
-        if app.get("administration") == "write" or app.get("repository_rules") == "write":
+        perms = app.get("permissions") if isinstance(app.get("permissions"), dict) else app
+        if perms.get("administration") == "write" or perms.get("repository_rules") == "write":
             out.append(R("role_mismatch", "GitHub Appの権限にadministrationまたはrepository rulesの書込みがある"))
     if not skip_activity:
         ok, why = activity_chain_ok(snapshot, recovery, after, lease=lease)

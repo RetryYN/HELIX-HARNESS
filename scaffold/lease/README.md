@@ -76,12 +76,15 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 実測を済ませてから、本PRを既存規則でmergeして行う。再bootstrap modeは停止後の再開経路であり、初回の有効化には使わない。
 
 1. AI側のGitHub identityはGitHub Appとする（AI用の別accountは作らない。packetは「GitHub Appまたは別account」を認める）。
-   POがGitHub Appを作り、本repositoryにだけinstallする。権限はcontents・pull requests・issuesの書込みとmetadataの読取りに限り、
-   administrationとrepository rulesは与えない。AI側のcontext（作成側・reviewer・executor・`recovery`）はinstallation tokenだけを使い、
+   POがGitHub Appを作り、本repositoryにだけinstallする。権限はcontents・pull requests・issuesの書込み、metadataとadministrationの
+   読取りに限り（administrationの読取りはbranch protection・rulesetの再取得に要る）、administration・repository rulesの書込みは与えない。AI側のcontext（作成側・reviewer・executor・`recovery`）はinstallation tokenだけを使い、
    POのaccountの資格情報（`gh auth`のtoken等）はAI側のどのcontextからも取得・使用できない場所へ移す。
    `identity.po`へPOのloginを、`identity.ai`へAppのlogin（`<app slug>[bot]`）を、`identity.apps`へapp slugを記入する。
    executorはAppのloginをcollaborator roleではなくappの権限で照合し、administration・repository rulesの書込みがあるか、
    取得できなければ停止する。PRの作成者がAppになるため、POは自分のPR reviewで判断できる。
+   Appの秘密鍵はexecutorの実行環境の`HELIX_LEASE_APP_KEY_DIR/<app slug>.pem`に置く。executorはAppのJWTで
+   `GET /repos/{repo}/installation`からinstallationの実際の権限を取得し、許可集合（contents・pull_requests・issuesの`write`、
+   metadata・administrationの`read`）の外の権限、別のappのinstallation、取得の失敗のどれでも停止する。
 2. すべてのrulesetのbypass対象を空にし（Appを含めない）、admin資格情報をAI側から隔離する。
    executorと`recovery`が通常pushできるbranch protectionにする（POが設定する）。
 3. `baseline`へ、mainのbranch protection（force push禁止、削除禁止、`enforce_admins`有効）とrulesetの一覧・bypass対象を記録する。
@@ -89,11 +92,12 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
    書かない試験reviewを`APPROVED`と`CHANGES_REQUESTED`で1件ずつ提出し、そのIDを`probe.test_reviews`へ記入する。
 5. 1〜4を本PRへpushした後、AI側の各loginで`leaseprobe.py --lease-pr <本PR> --login L --review-id ID --apply`を両試験reviewに実行する。
    `leasectl.py status --lease-pr <本PR>`の`probe.status`が`ok`（全login×2 reviewが30日以内に`denied`または`unavailable`）であることを
-   確かめ、結果commentのIDを`probe.activation_results`へ記入する。POがその結果を確認する（本PRへのPR review）。
-6. 下記「未検証」を実物で確かめる。`origin_main`へ本PRのmerge直前のmain HEADを、`activated_at`へ時刻を記入し、最終headで独立reviewを受ける。
-   mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。
-7. 本PRを既存規則でmergeする。executorは、起点の直後の1件に限り、lease記録を未有効から有効へ変えたこのmergeを、executor以外の
-   main更新として扱わない。以後mainを更新するのはexecutorだけである。
+   確かめ、結果commentのIDを`probe.activation_results`へ記入する。`--lease-pr`は、main上のlease記録が未有効の間だけ使える。
+6. 下記「未検証」を実物で確かめる。保護設定・rulesetを取得できない、または基準値が無い間はexecutorは停止する（空の一致にしない）。上流authority台帳のCapability Lease行の状態（未有効化）を有効化へ更新する。`origin_main`へ本PRのmerge直前のmain HEADを、`activated_at`へ時刻を記入し、最終headで独立reviewを受ける。
+   mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。POは、有効化の値（実測結果・起点・`activated_at`）を
+   含む最終headに対してPR reviewで確認し、merge通路の許可をその最終exact HEADに固定する。
+7. 本PRを既存規則でmergeする（mergeするruntimeはAppのinstallation tokenで動く）。executorは、起点の直後の1件に限り、lease記録を
+   未有効から有効へ変えた、AI側loginによるこのmergeを、executor以外のmain更新として扱わない。以後mainを更新するのはexecutorだけである。
 
 本PRを無効状態（`activated_at: null`）のままmergeした場合は、leaseは存在しない（packet「そのPRがmainへ入るまでleaseは存在しない」）。
 その後に有効化するには、packetの改訂（有効化を運ぶPRの追加）と新たな人間判断が要る。
@@ -118,11 +122,13 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
   `merge_result`があるcommitに限る（messageの部分一致では決めない）。activityの各更新は、更新後commitの第1親が更新前のHEADであることも確かめる。
 - 検査(a)(b)は`python3 -s -E`で起動し、HOMEをtree外の空のtmpfsにし、pid名前空間も切る（PRが置いたuser siteのcodeを読み込まない）。
 - 実測の期限（30日）と監査の遅れの上限（10件）はpacketの固定値であり、lease記録では変えない。
-- 解除時刻（`last_resume_at`）は、それを記録したlease記録がmainへ入った時刻を上限にする。
+- 解除時刻（`last_resume_at`）は、それを記録したlease記録がmainへ入った時刻を上限にする。gitの呼出しは環境変数のcommit時刻・
+  author・committerの上書きを受け取らない。
+- lease記録の`identity.po`がAI側loginまたはAppのlogin（`[bot]`）なら、未有効として扱い、判断も成立させない。
 - projection_syncは書込みのたびに状態領域へ`pending_sync`を置き、そのreceiptがmainへ入るまで同じIssueへ書き込まない。
 - どの階層の`.gitattributes`も、行単位で保護面かを判定する。
-- 非常mergeの後に起点を付け直して再開するrecordは、frontmatterの`recovery_read_after`（`merge_commit`と`mismatch_codes`。不一致が
-  無ければ`none`）で、起点以降の非常mergeごとに`merge_result`のread-after結果を列挙する。列挙の不一致・欠落、状態Issueの停止commentの
+- 非常mergeの後に起点を付け直して再開するrecordは、frontmatterの`recovery_read_after`（`merge_commit`と`mismatch_items`。read-afterの不一致の項目（`tree`、`parents`、
+  `main_actor_mismatch`等）を`,`で連ね、無ければ`none`）で、起点以降の非常mergeごとに`merge_result`のread-after結果を列挙する。列挙の不一致・欠落、状態Issueの停止commentの
   欠落があれば運ばない。
 - 変更前bytesのSHA-256とrecordとの照合は、`docs/governance/decisions/`配下の本文に現れる64桁のSHA-256表記と比べる。
 - pathは`core.quotepath=false`と`-z`で引用符なしに読み、renameとcopyは検出せず削除と追加として扱う。
@@ -134,7 +140,9 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 
 - repository activity API（`GET /repos/{owner}/{repo}/activity`）の`before`／`after`／`activity_type`／`actor`の形と、保持期間。
 - collaborator permission APIの`role_name`（`write`等）の値。
-- `GET /apps/{app_slug}`の`permissions`が、installation権限の上限として使えること（`identity.apps`を使う場合）。
+- administrationの読取りを持つinstallation tokenで、branch protectionとrulesetの`bypass_actors`を取得できること。
+- AppのJWTで`GET /repos/{repo}/installation`が`app_slug`・`permissions`・`repository_selection`を返すこと。
+  installation tokenで`GET /installation/repositories`が本repositoryを返すこと（`leaseprobe.py`の認証確認）。
 - activity APIの`actor.login`と、PR・comment・reviewの`user.login`が、Appでは`<app slug>[bot]`になること。installation tokenでの`git push`がbranch protectionの下でmainへ通常pushできること。
 - GraphQL `deletePullRequestReview`の拒否時のerror種別（`leaseprobe.py`の`DENIED`／`UNAVAILABLE`の目印）。
 - Issueの`userContentEdits`の`diff`が直前の版の本文を返すか（projection_syncの編集履歴照合）。

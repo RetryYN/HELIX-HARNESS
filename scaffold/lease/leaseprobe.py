@@ -52,12 +52,31 @@ def main(argv=None):
     if a.login not in C.ai_logins(lease):
         print("拒否: identity表のAI側loginでない", file=sys.stderr)
         return 2
-    me = (gh.api("user") or {}).get("login")
-    if me != a.login:
-        print("拒否: 認証中のlogin %s が --login と一致しない" % me, file=sys.stderr)
+    if a.login.endswith("[bot]"):
+        # installation tokenは`GET /user`を使えない。本repositoryを対象とするinstallation tokenであることを確かめ、
+        # どのAppかは結果commentの投稿者（executorが`--login`と照合する）で確かめる
+        try:
+            repos = gh.api("installation/repositories?per_page=100") or {}
+        except RuntimeError as e:
+            print("拒否: installation tokenで認証されていない（%s）" % str(e)[:200], file=sys.stderr)
+            return 2
+        if gh.repo not in {r.get("full_name") for r in repos.get("repositories") or []}:
+            print("拒否: installation tokenが本repositoryを対象としない", file=sys.stderr)
+            return 2
+    else:
+        me = (gh.api("user") or {}).get("login")
+        if me != a.login:
+            print("拒否: 認証中のlogin %s が --login と一致しない" % me, file=sys.stderr)
+            return 2
+    tp = gh.api("repos/%s/pulls/%d" % (gh.repo, probe["test_pr"])) or {}
+    if not tp.get("draft"):
+        print("拒否: 試験PRがdraftでない", file=sys.stderr)
         return 2
     rv = {r["id"]: r for r in G.reviews_of(gh, probe["test_pr"])}
     target = rv.get(a.review_id)
+    if target and (target.get("user") != (lease.get("identity") or {}).get("po") or C.decision_lines(target.get("body"))):
+        print("拒否: 試験reviewは人間判断者loginが提出し、本文に`decision:`行を持たないものに限る", file=sys.stderr)
+        return 2
     if not target or target.get("state") != tests[a.review_id]:
         print("試験reviewが試験PRに無い、または状態が違う（deletedとして扱う根拠になる）", file=sys.stderr)
     if not a.apply:

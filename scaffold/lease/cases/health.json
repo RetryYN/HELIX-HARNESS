@@ -182,7 +182,11 @@
     "value": [
      {
       "slug": "helix-app",
-      "administration": "write"
+      "app_slug": "helix-app",
+      "permissions": {
+       "contents": "write",
+       "administration": "write"
+      }
      }
     ]
    }
@@ -192,6 +196,100 @@
   ],
   "mode": null,
   "note": ""
+ },
+ {
+  "id": "HL-app-extra-permission",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.identity.apps",
+    "value": [
+     "helix-app"
+    ]
+   },
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": [
+     {
+      "slug": "helix-app",
+      "app_slug": "helix-app",
+      "permissions": {
+       "contents": "write",
+       "workflows": "write"
+      }
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": "installation権限は許可集合（contents・pull_requests・issues write、metadata read）の内側だけ"
+ },
+ {
+  "id": "HL-app-metadata-write",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.identity.apps",
+    "value": [
+     "helix-app"
+    ]
+   },
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": [
+     {
+      "slug": "helix-app",
+      "app_slug": "helix-app",
+      "permissions": {
+       "metadata": "write"
+      }
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-app-other-installation",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.identity.apps",
+    "value": [
+     "helix-app"
+    ]
+   },
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": [
+     {
+      "slug": "helix-app",
+      "app_slug": "other-app",
+      "permissions": {
+       "contents": "write"
+      }
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": "installationのappがidentity表のappでない"
  },
  {
   "id": "HL-app-ok",
@@ -210,8 +308,13 @@
     "value": [
      {
       "slug": "helix-app",
-      "contents": "write",
-      "pull_requests": "write"
+      "app_slug": "helix-app",
+      "permissions": {
+       "contents": "write",
+       "pull_requests": "write",
+       "issues": "write",
+       "metadata": "read"
+      }
      }
     ]
    }
