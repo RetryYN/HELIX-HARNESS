@@ -14,9 +14,9 @@ replacement_issue: 1866
 実行GUI → gui_mailbox send → scaffold内の通知箱 → review GUIのnative Stop hook → 明示ACK → review応答send → 実行GUIのnative Stop hook → 明示ACK。
 新規CLIセッション、非公開IPC、旧memory、旧hook、旧DBは使わない。通知からmerge許可・要求承認を生成しない。
 
-- Claude: Stopの`asyncRewake`で待受し、通知を確保したときだけexit 2で同じセッションへ返す。
+- Claude: Stopの`asyncRewake`で待受し、通知を確保したときだけ専用exit 42をwrapperでexit 2で同じセッションへ返す。
 - Codex: **同期Stop**で待受し、通知があれば`decision: block`とreasonで同じスレッドを継続する。通常async hookだけではidleスレッドを起こせない。
-- 待受は最長1時間、レーンleaseも既定1時間。CodexのStop待受中はGUIがhook処理中になる。中断・lease失効・wait満了後のcold idle再開は対象外で、次のGUI入力で再開・再armが必要。
+- Claudeの待受は最長1時間、Codexの同期Stop待受は5秒、レーンleaseは既定1時間。CodexのStop待受中はGUIがhook処理中になる。中断・lease失効・wait満了後のcold idle再開は対象外で、次のGUI入力で再開・再armが必要。
 - native hookが読み込まれていない状態をtransport成功と呼ばない。新hookのtrustが必要な場合は利用者がGUIで確認する。
 
 ## 接続準備
@@ -47,7 +47,7 @@ python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime claude --sessio
 1. PRの現在のbase／content full SHAを取得する。commit済みの対象だけを使う。
 2. `packet.py build`で参照digest付きパケットを作り、`local/request.json`へ保存する。両runtimeが同じcontent SHAの文書を読む。
 3. 実行レーンから`send`する。宛先sessionが未登録なら拒否する。
-4. 受信GUIは通知のevent ID・digest・claim nonceで`ack`する。**hookが出力しただけではACK済みにしない。**
+4. hookは固定文・event ID・digest・nonceだけを表示する。`inspect --runtime RUNTIME --session SESSION --id EVENT_ID`で本文をuntrusted_dataとして読み、承認・操作許可として扱わない。受信GUIは通知のevent ID・digest・claim nonceで`ack`する。**hookが出力しただけではACK済みにしない。**
 5. review側は[応答形式](response-template.json)へ指摘・未確認範囲を書き、`review_response`として逆方向へsendする。
 6. 修正でSHAが変わったら新request IDで再依頼する。受信側はPRの最新SHAを再取得してから差分を扱う。
 
@@ -68,8 +68,10 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 同じevent IDとpayloadの再送、および同じrequest／responseの別ID再送は重複配送しない。
 未ACKのclaimを自動で再表示せず、送信側が`retry --runtime RUNTIME --session SESSION --id EVENT_ID`した場合だけ再配送する。
 retry時は同じ宛先sessionを維持する。新claim nonceが発行され、古いnonceではACKできない。
+期限切れ・既受領の同じrequestを再依頼する場合は、現在のSHAを確認し、新しいrequest IDとevent IDでbuild/sendする。
 レーン・通知は期限付き。期限切れの通知を復活させない。古い待受は新しい待受世代で無効化する。
-保存はfile lockとatomic replaceで直列化する。これは同一OS利用者内の協調機構で、悪意ある同一UIDに対する認証ではない。
+保存はfile lockとatomic replaceで直列化する。無変更のpollでは書込み・fsyncしない。observedは各runtime最大64件・2時間で、次のhook時に整理する。
+通知本文は128KiB以内。hook継続文へ相手の自由文を注入しない。これは同一OS利用者内の協調機構で、悪意ある同一UIDに対する認証ではない。
 
 ## 一時契約と検証
 
@@ -90,6 +92,12 @@ python3 -B scaffold/tools/scfctl.py stale
 
 ## 撤去
 
-`configure_gui.py --remove --apply`で今回追加したhookだけを除く。各レーンをunbindし、残るqueued／claimedを確認する。
+`configure_gui.py --remove --apply`で今回追加したhookだけを除く。`configure_gui.py --audit`で所有参照0を確認する。
+所有commandで照合するためprovider注記が増えても撤去できる。無関係な値を保持するがJSON書式は再serializeする。
+Bindingのexternal-hooks参照台帳を通じ、scfctl residualsでも退役後参照・重複・参照先不在を検査する。各レーンをunbindし、残るqueued／claimedを確認する。
 正式側へ役割・義務・接続・検査・否定例を移した後、#1866でcheck-replacement→retireを行う。
 利用者設定からhook参照を外す前にこのworktreeやscriptを削除しない。
+
+操作scopeと全指摘の対応は[操作記録](../../docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md)を参照する。
+
+外部参照台帳は撤去証跡として保持する。退役時は台帳をBindingの現役artifactから移し、設定残留0を確認してから本体を削除する。台帳欠落は残留0と扱わない。

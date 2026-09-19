@@ -12,26 +12,47 @@ HERE = Path(__file__).resolve().parent
 
 
 def entries(runtime):
-    command = shlex.join(["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime", runtime])
-    stop = dict(type="command", command=command + " --wait 3600", timeout=3660)
+    def command(wait):
+        call = shlex.join(["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime", runtime, "--wait", str(wait)])
+        # 通知専用42だけをClaudeの2に変換。不在・argparse・例外の2/1は常に0。
+        return call + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
+    stop = dict(type="command", command=command(3600 if runtime == "claude" else 5), timeout=3660 if runtime == "claude" else 10)
     if runtime == "claude": stop["asyncRewake"] = True
     return {
-        "SessionStart": [{"hooks": [dict(type="command", command=command + " --wait 0", timeout=10)]}],
+        "SessionStart": [{"hooks": [dict(type="command", command=command(0), timeout=10)]}],
         "Stop": [{"hooks": [stop]}],
     }
+
+
+def owned(hook):
+    command = hook.get("command", "")
+    prefix = shlex.join(["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime"])
+    return isinstance(command, str) and command.startswith(prefix + " ")
+
+
+def count_owned(existing):
+    return sum(owned(h) for records in existing.get("hooks", {}).values()
+               for record in records for h in record.get("hooks", []))
 
 
 def update(existing, runtime, remove=False):
     result = copy.deepcopy(existing)
     hooks = result.setdefault("hooks", {})
-    for event, records in entries(runtime).items():
-        current = hooks.setdefault(event, [])
-        for record in records:
-            if remove:
-                current[:] = [item for item in current if item != record]
-            elif record not in current:
-                current.append(record)
-        if not current: hooks.pop(event)
+    for event in list(hooks):
+        retained = []
+        for record in hooks[event]:
+            children = record.get("hooks", [])
+            remaining = [h for h in children if not owned(h)]
+            if len(remaining) == len(children):
+                retained.append(record)
+            elif remaining:
+                record["hooks"] = remaining
+                retained.append(record)
+        if retained: hooks[event] = retained
+        else: del hooks[event]
+    if not remove:
+        for event, records in entries(runtime).items():
+            hooks.setdefault(event, []).extend(records)
     if not hooks: result.pop("hooks", None)
     return result
 
@@ -40,11 +61,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--remove", action="store_true")
+    parser.add_argument("--audit", action="store_true", help="所有hookの残留件数。残留ありはexit 1")
     args = parser.parse_args()
+    residual_count = 0
     paths = {"claude": Path.home() / ".claude/settings.json", "codex": Path.home() / ".codex/hooks.json"}
     for runtime, path in paths.items():
         before = path.read_bytes() if path.exists() else None
         existing = json.loads(before) if before is not None else {}
+        if args.audit:
+            count = count_owned(existing)
+            residual_count += count
+            print(runtime + ": owned_hook_residuals=" + str(count))
+            continue
         after = update(existing, runtime, args.remove)
         # 設定値やcredentialsを表示しない。今回のhookだけをpreviewする。
         if not args.apply:
@@ -62,7 +90,11 @@ def main():
         finally:
             if os.path.exists(temp): os.unlink(temp)
         assert json.loads(path.read_bytes()) == after
+        assert count_owned(after) == (0 if args.remove else 2)
         print(runtime + ": hook設定read-after一致。GUI側のtrust／読込／受信ACKは別確認")
+
+    if args.audit and residual_count:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

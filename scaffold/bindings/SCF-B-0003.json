@@ -26,7 +26,11 @@
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
-      "sha256": "3ebae075d0007f6c1fdd103847fd633640f02f88667f668f8440484292f03958"
+      "sha256": "17133a9604f92e90dfb2db581795e61e533c0cb168f25fc199a2294f5fc8651e"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",
+      "sha256": "b0232b28153697be916ede9c2d36250aca5271e204c0b1f4f0c3e176bd08fdc6"
     }
   ],
   "role": "共通規則・対象revisionを固定した通知を既存VS Code GUIの両レーンへ届け、明示ACKと応答対応を確認する",
@@ -61,7 +65,8 @@
       "python3 -B scaffold/review-handoff/selftest.py",
       "gui_mailbox.py bind／enroll／unbind／send／receive／ack／retry／status／hook",
       "configure_gui.py preview／apply／remove（利用者hook設定への最小参照）",
-      "python3 -B scaffold/review-handoff/gui_selftest.py"
+      "python3 -B scaffold/review-handoff/gui_selftest.py",
+      "configure_gui.py --audit（外部所有hookの残留検査）"
     ],
     "forbidden": [
       "archive/legacy-generation-*の読込・実行",
@@ -71,7 +76,8 @@
     ]
   },
   "artifacts": [
-    "scaffold/review-handoff"
+    "scaffold/review-handoff",
+    "scaffold/external-references/SCF-B-0003.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -87,7 +93,8 @@
       "scaffold/review-handoff/selftest.py",
       "packet.pyの外部作用・書込なしの静的確認",
       "scaffold/review-handoff/gui_selftest.py",
-      "両既存GUIの受信ACK（未確認なら完了にしない）"
+      "両既存GUIの受信ACK（未確認なら完了にしない）",
+      "scfctl residualsのexternal-hooks参照台帳検査"
     ],
     "negative_cases": [
       "payload改変",

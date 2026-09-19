@@ -40,7 +40,7 @@
   "dependencies": [
    "python3 標準library"
   ],
-  "boundary": "scaffold/配下のみ読み書きする。docs/、.github/、archive/には書かない。archive/は読まない。"
+  "boundary": "scaffold内へだけ書き込む。参照台帳が指定する利用者hook設定の残留検査は読み取り専用。docs・設定・archiveへ書かず、archiveを読まない。"
  },
  "operations": {
   "allowed": [
@@ -71,7 +71,8 @@
    "forbidden_write_scope"
   ],
   "oracles": [
-   "scaffold/checks/cases（L11受入候補の写し）"
+   "scaffold/checks/cases（L11受入候補の写し）",
+   "scaffold/review-handoff/gui_selftest.pyの外部hook残留否定例"
   ],
   "negative_cases": [
    "上流なし／役割なしの登録拒否",
