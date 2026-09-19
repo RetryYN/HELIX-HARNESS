@@ -1,0 +1,142 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0003",
+  "kind": "scaffold",
+  "title": "共通ルール参照とVS Code GUIレーン間通知",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS 推進（依頼contextと応答対応の準備）",
+  "state": "active",
+  "reason": "正式なWorkerとreview配送は未成立。既存VS Codeの実行レーンとレビュー／マージレーンの通知を先に仮組みする",
+  "upstream": [
+    {
+      "path": "docs/governance/candidates/scaffold-binding-requirements.md",
+      "sha256": "c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb"
+    },
+    {
+      "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+      "sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "7feda9e40b813081608ee5d776861f9f7f24638e9b2a3e4b472aba781b29cb25"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
+      "sha256": "5568819aa38bc2fa0d432873e81774834aab61783fadd57892c36f588a3460b2"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",
+      "sha256": "921b23f20762848eca209db9cf4896940327e1b2f253f4ab146135603dc6bd35"
+    },
+    {
+      "path": "scaffold/external-references/SCF-B-0003.json",
+      "sha256": "5331fd7b07205fbcd74a147d3692c521c6760c9464c9a81a0ca37c78cfac64fd",
+      "note": "外部consumer参照の保持・撤去契約。退役後も保持する"
+    }
+  ],
+  "role": "共通規則・対象revisionを固定した通知を既存VS Code GUIの両レーンへ届け、明示ACKと応答対応を確認する",
+  "obligations": [
+    "規則と候補参照を種別とdigestで区別する",
+    "base／content SHA、request identity、payload digestを照合する",
+    "既存GUIのruntime・session・レーン・有効期限へ宛先を固定する",
+    "queued／claimed／ackedを分離し、重複・別session・期限切れを拒否する",
+    "未ACK時の明示retry、watcher世代、応答の逆方向配送を扱う",
+    "通知から要求採否・承認・review完了・merge許可を生成しない",
+    "設定撤去と両GUIのlive ACK未確認を追跡する"
+  ],
+  "connections": {
+    "consumers": [
+      "Claude／Codex作成側とreview側",
+      "AIレーン引継ぎ #1864、推進 #1859、検収 #1860",
+      "差し替え台帳 #1866"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "読み取り専用Git",
+      "SCF-B-0002の仮ルール集index",
+      "同じVS CodeのClaude Code／Codex拡張のnative hook",
+      "Linux file lockと共有のscaffold通知箱"
+    ],
+    "boundary": "scriptと通知stateはscaffold内。configure_guiだけが利用者のClaude settingsとCodex hooksへ本仮設参照を追加・撤去する。trustと権限を変更しない"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/review-handoff/packet.py build",
+      "python3 -B scaffold/review-handoff/packet.py check",
+      "python3 -B scaffold/review-handoff/selftest.py",
+      "gui_mailbox.py bind／enroll／unbind／send／receive／ack／retry／status／hook",
+      "configure_gui.py preview／apply／remove（利用者hook設定への最小参照）",
+      "python3 -B scaffold/review-handoff/gui_selftest.py",
+      "configure_gui.py --audit（外部所有hookの残留検査）",
+      "configure_gui.py --rearm --apply（Claude所有ConfigChange metadataによる既存GUI待受回復）"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*の読込・実行",
+      "新しいprovider CLI／API／Workerの起動、非公開GUI IPC、GitHub review起動、merge、Issue close",
+      "AGENTS／CLAUDE本文・承認文書・DB・hook trust・権限の書換",
+      "要求採否・承認・工程完了の生成"
+    ]
+  },
+  "artifacts": [
+    "scaffold/review-handoff",
+    "scaffold/external-references/SCF-B-0003.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope",
+      "stub_adapter_connection",
+      "deterministic_behavior"
+    ],
+    "oracles": [
+      "scaffold/review-handoff/selftest.py",
+      "packet.pyの外部作用・書込なしの静的確認",
+      "scaffold/review-handoff/gui_selftest.py",
+      "両既存GUIの受信ACK（未確認なら完了にしない）",
+      "scfctl residualsのexternal-hooks参照台帳検査"
+    ],
+    "negative_cases": [
+      "payload改変",
+      "参照欠落",
+      "候補参照の規則化",
+      "stale base／content",
+      "同一runtime",
+      "未知field・authority変更・起動route",
+      "別request／payload／SHA／reviewer応答",
+      "未確認をno_findingsにする",
+      "根拠なしのfinding",
+      "別sessionのclaim／ACK",
+      "異なるdigest／nonceのACK",
+      "通知期限切れ",
+      "二重bind・役割競合",
+      "再送・claim二重取得",
+      "未ACKを配信完了とする誤表示",
+      "古いwatcher",
+      "通知箱payload改変",
+      "無関係なhook設定の上書き",
+      "回復hookの別runtime・設定source・path",
+      "別checkoutからのhook撤去",
+      "退役後の外部参照台帳欠落",
+      "期限切れ重複sendのqueued誤表示"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIX-OSの正式なルール参照・Worker context・review配送／応答照合。対象別L2／L11とL3／L10から導出",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-20",
+  "updated": "2026-09-20"
+}

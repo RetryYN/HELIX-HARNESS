@@ -1,0 +1,13 @@
+{
+  "schema": "scaffold-review-response.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "依頼から転記",
+  "request_payload_sha256": "依頼から転記",
+  "base_sha": "依頼から転記",
+  "content_sha": "依頼から転記",
+  "reviewer": "依頼から転記",
+  "result": "incomplete",
+  "findings": [],
+  "unreviewed": ["未review。実際に確認した範囲と残る範囲を記録する"]
+}

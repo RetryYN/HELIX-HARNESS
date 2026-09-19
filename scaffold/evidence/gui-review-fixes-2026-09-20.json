@@ -1,0 +1,85 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_commit": "189284b52244deb1c53aba2b3b1dd6e41fa8dd68",
+  "recorded_at": "2026-09-19T16:46:44.849649+00:00",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/review-handoff/selftest.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "3aa4545962440aef57dfaa6108ffd02e5102e74c05cebc9ccd88e7c54ab087dc"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/review-handoff/gui_selftest.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "c856748ef024ba2ae578cdc84ab8dfa23051f34462a1e6afd9101d8e10e3009b"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "output_sha256": "305b744f0ea82d342b9dcb9e26469ce4c9f73398dfd9a31e08f423174a285955"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "output_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "residuals"
+      ],
+      "exit_code": 0,
+      "output_sha256": "f46ea5e2820c2731f4999edec0095a9094928411307eacaac3be271f8aae3fd5"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "selftest"
+      ],
+      "exit_code": 0,
+      "output_sha256": "56bfc8e3f481a9770b2309262ce03b12e2ba37dfe9ebff327cbb9a9df420160e"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "counts": {
+    "packet": 10,
+    "gui": 18,
+    "scaffold": 38
+  },
+  "limitations": [
+    "修正版の独立reviewは未完",
+    "Codex native Stop自動受信は未確認",
+    "旧HEADのGUI往復ACKは修正版の確認に代用しない"
+  ]
+}

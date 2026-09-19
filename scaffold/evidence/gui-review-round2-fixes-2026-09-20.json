@@ -1,0 +1,85 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_commit": "f76fba7091b791010c227881ff04849738e78061",
+  "recorded_at": "2026-09-19T16:59:20.545845+00:00",
+  "counts": {
+    "packet": 10,
+    "gui": 20,
+    "scaffold": 38
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/review-handoff/selftest.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "2a1863a40ed0b63c59e26e19bc72c52b3fde138d4aecb164733d35508b71d9f9"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/review-handoff/gui_selftest.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "570ddf573cdd0e99c8b819cd026012de15cc9f58398f389adabf6ac338cc4304"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "output_sha256": "305b744f0ea82d342b9dcb9e26469ce4c9f73398dfd9a31e08f423174a285955"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "output_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "residuals"
+      ],
+      "exit_code": 0,
+      "output_sha256": "f46ea5e2820c2731f4999edec0095a9094928411307eacaac3be271f8aae3fd5"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "selftest"
+      ],
+      "exit_code": 0,
+      "output_sha256": "56bfc8e3f481a9770b2309262ce03b12e2ba37dfe9ebff327cbb9a9df420160e"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "再review待ち",
+    "Codex native Stop自動受信未確認",
+    "user設定pathの個別指定と実行側の実装判断を区別"
+  ]
+}
