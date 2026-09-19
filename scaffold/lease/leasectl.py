@@ -167,11 +167,14 @@ def cmd_status(a, gh=None):
     """leaseの状態と、削除不能の実測の判定（packet: 実測は有効化の条件）。--lease-prは有効化前にPRのlease記録を読む。"""
     gh = gh or G.GH()
     lease = G.lease_at(gh, a.lease_pr)
+    # POが有効化前の実測の確認に使う出力には、このcommand自身の起動条件の結果も含める
+    integrity = G.self_integrity(gh, "refs/lease/pr-%d" % a.lease_pr if a.lease_pr else "origin/main")
     ps, pd = C.probe_status(G.probe_snapshot(gh, lease)) if lease.get("status_issue") else ("unconfigured", "状態Issueが未設定")
     print(json.dumps({"lease": {k: lease.get(k) for k in ("lease_id", "activated_at", "expires_at", "revoked_at",
                                                           "independence", "status_issue")},
-                      "probe": {"status": ps, "detail": pd}, "state_area": G.read_state()}, ensure_ascii=False, indent=1))
-    return 0 if ps == "ok" else 1
+                      "probe": {"status": ps, "detail": pd}, "integrity": integrity or "ok",
+                      "state_area": G.read_state()}, ensure_ascii=False, indent=1))
+    return 0 if ps == "ok" and not integrity else 1
 
 
 # ---------- 自己検査 ----------
@@ -332,8 +335,21 @@ def collector_tests():
         rows.append({"id": "CL-verify-self-rev", "ok": same == [] and G.verify_self(gl, "HEAD", here=here) == ["a.py"]
                      and G.verify_self(gl, real, here=here) == ["a.py"]})
         # 実行者から書ける置き場所は起動条件を満たさない（interpreterの置き場所は書けない）
-        rows.append({"id": "CL-writable-location", "ok": here in G.writable_by_runner([os.path.join(here, "a.py")])
-                     and (os.getuid() == 0 or not G.writable_by_runner(["/usr/bin/python3"]))})
+        # 実行者が所有する置き場所は、mode 0555に落としても信頼しない（偽のgh等）。rootが所有する置き場所は信頼する
+        ro = os.path.join(d2, "ro")
+        os.makedirs(ro)
+        with open(os.path.join(ro, "gh"), "w") as f:
+            f.write("#!/bin/sh\n")
+        os.chmod(os.path.join(ro, "gh"), 0o555)
+        os.chmod(ro, 0o555)
+        try:
+            flagged = G.untrusted_locations([os.path.join(ro, "gh")])
+        finally:
+            os.chmod(ro, 0o755)
+        rows.append({"id": "CL-untrusted-location", "ok": os.path.join(ro, "gh") in flagged and ro in flagged
+                     and here in G.untrusted_locations([os.path.join(here, "a.py")])
+                     and (os.getuid() == 0 or not G.untrusted_locations(["/usr/bin/python3"]))
+                     and os.path.dirname(G.GH_BIN) in ("/usr/bin", "/bin")})
     finally:
         shutil.rmtree(d2, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # 外部commandへ渡す環境は許可リスト（PATH・XDG_*・GH_HOST・PYTHON*を受け取らない。GH_TOKENだけ通す）
@@ -343,6 +359,24 @@ def collector_tests():
         be, ge = G.base_env(), G.isolated_git_env()
         rows.append({"id": "CL-env-allowlist", "ok": be["PATH"] == "/usr/bin:/bin" and be.get("GH_TOKEN") == "t"
                      and not {"GH_HOST", "XDG_CONFIG_HOME", "PYTHONPATH"} & (set(be) | set(ge))})
+    finally:
+        for k, v in saved.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+    # App JWTを送る経路は呼出し元のproxy環境変数・trust storeの環境変数を使わない
+    saved = {k: os.environ.get(k) for k in ("HTTPS_PROXY", "https_proxy", "SSL_CERT_FILE")}
+    try:
+        os.environ.update({"HTTPS_PROXY": "http://127.0.0.1:9", "https_proxy": "http://127.0.0.1:9", "SSL_CERT_FILE": "/dev/null"})
+        op = G.direct_opener()
+        ph = [h for h in op.handlers if isinstance(h, G.urllib.request.ProxyHandler)]   # 空のProxyHandlerは登録されない
+        hs = [h for h in op.handlers if isinstance(h, G.urllib.request.HTTPSHandler)]
+        rd = [h for h in op.handlers if isinstance(h, G.urllib.request.HTTPRedirectHandler)]
+        rows.append({"id": "CL-app-transport-no-ambient", "ok": not ph and len(hs) == 1
+                     and len(rd) == 1 and isinstance(rd[0], G.NoRedirect)
+                     and hs[0]._context.cert_store_stats().get("x509_ca", 0) > 0
+                     and G.app_key_dir() == os.path.join(G.home_dir(), ".helix-lease", "apps")})
     finally:
         for k, v in saved.items():
             if v is None:

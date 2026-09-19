@@ -1,8 +1,8 @@
 {
  "evidence_kind": "scaffold",
- "tool_sha256": "fde4685c2e848b0308b34310e7087e2ed58b8eb58a9edaf1bb4c7278d32eb6ea",
+ "tool_sha256": "b801d350a6bfce8779361fa24cb4ce18c30f662e1ba2d47047e716c67b359f4b",
  "cases_sha256": "8bbdecda08d3fe36d65f5155838ffae1e429941a6aa135dcbffc3eef2fad142e",
  "cases": 143,
- "boundary": 71,
+ "boundary": 72,
  "fail": 0
 }

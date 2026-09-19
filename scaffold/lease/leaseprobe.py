@@ -43,6 +43,10 @@ def main(argv=None):
     ap.add_argument("--lease-pr", type=int, help="有効化前: lease記録を埋めた後続operation_change PRのheadのlease記録で実測する")
     a = ap.parse_args(argv)
     gh = G.GH()
+    bad = G.self_integrity(gh, None)   # 置き場所と-Iは、照合先を取得する前に確かめる
+    if bad:
+        print("拒否: 実測commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
+        return 2
     try:
         lease = G.lease_at(gh, a.lease_pr)   # packet: 実測は有効化の条件。有効化前はPRのlease記録に対して行う
     except RuntimeError as e:
@@ -77,6 +81,10 @@ def main(argv=None):
         if me != a.login:
             print("拒否: 認証中のlogin %s が --login と一致しない" % me, file=sys.stderr)
             return 2
+    si = gh.api("repos/%s/issues/%d" % (gh.repo, lease["status_issue"])) or {}
+    if si.get("pull_request") or lease["status_issue"] == probe["test_pr"] or si.get("state") != "open":
+        print("拒否: 状態Issueが開いているIssue（PRでない）でない", file=sys.stderr)
+        return 2
     tp = gh.api("repos/%s/pulls/%d" % (gh.repo, probe["test_pr"])) or {}
     if not tp.get("draft"):
         print("拒否: 試験PRがdraftでない", file=sys.stderr)

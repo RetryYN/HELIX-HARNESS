@@ -3,14 +3,35 @@
 書込みは`Writes`の許可リストを通したものだけが実行される。許可リストはcommandごとに固定し
 （packet 規則の意味6、二重境界）、リストに無い書込みは例外で止める。dry-runでは許可リストが空である。
 """
-import atexit, base64, urllib.request, datetime, hashlib, json, os, pwd, re, shlex, shutil, subprocess, sys, tempfile, time, urllib.parse
+import atexit, base64, ssl, urllib.request, datetime, hashlib, json, os, pwd, re, shlex, shutil, subprocess, sys, tempfile, time, urllib.parse
 
 import leasecore as C
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
-GH_BIN = shutil.which("gh") or "gh"   # 絶対pathで起動する。置き場所が実行者から書けないことはself_integrityで確かめる
+GH_BIN = shutil.which("gh", path="/usr/bin:/bin") or "/usr/bin/gh"   # 呼出し元のPATHで引かない。置き場所はself_integrityで確かめる
 STATE_OVERRIDE = None                 # selftestだけが使う（状態領域の置き場所を環境変数で変えられないようにする）
+
+
+CA_FILE = "/etc/ssl/certs/ca-certificates.crt"   # 固定のtrust store（SSL_CERT_FILE等の環境変数を読まない）
+GITHUB_API = "https://api.github.com"
+
+
+def app_key_dir():
+    """Appの秘密鍵の置き場所（実行userのhomeの`.helix-lease/apps/`。環境変数で変えない）。"""
+    return os.path.join(home_dir(), ".helix-lease", "apps")
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *a, **k):
+        return None   # JWTを別のhostへ転送しない
+
+
+def direct_opener():
+    """App JWTを送るHTTP要求の経路: 呼出し元のproxy環境変数（HTTPS_PROXY等）を使わず（空のProxyHandler）、固定のtrust storeで
+    検証し、redirectに従わない。"""
+    ctx = ssl.create_default_context(cafile=CA_FILE)
+    return urllib.request.build_opener(urllib.request.ProxyHandler({}), urllib.request.HTTPSHandler(context=ctx), NoRedirect)
 
 
 def home_dir():
@@ -370,12 +391,12 @@ def b64url(b):
 
 
 def app_jwt(app_id, key_path, now=None):
-    """GitHub AppのJWT（RS256）。署名はopensslで行い、秘密鍵はexecutorの実行環境の`HELIX_LEASE_APP_KEY_DIR/<slug>.pem`に置く。"""
+    """GitHub AppのJWT（RS256）。署名はopensslで行い、秘密鍵は実行userのhomeの`.helix-lease/apps/<slug>.pem`に置く（環境変数で変えない）。"""
     now = int(now or time.time())
     head = b64url(json.dumps({"alg": "RS256", "typ": "JWT"}, separators=(",", ":")).encode())
     body = b64url(json.dumps({"iat": now - 60, "exp": now + 540, "iss": str(app_id)}, separators=(",", ":")).encode())
     sig = subprocess.run(["/usr/bin/openssl", "dgst", "-sha256", "-sign", key_path], input=("%s.%s" % (head, body)).encode(),
-                         capture_output=True, check=True).stdout
+                         capture_output=True, check=True, env=base_env()).stdout
     return "%s.%s.%s" % (head, body, b64url(sig))
 
 
@@ -383,17 +404,17 @@ def app_permissions(gh, lease):
     """identity表の`apps`ごとに、本repositoryへのinstallationの実際の権限を、AppのJWTで`GET /repos/{repo}/installation`から
     取得する（Appの定義（`GET /apps/{slug}`）ではなく、installationの権限）。取得できなければunavailableとして返し、判定側で停止原因にする。"""
     out = []
-    kdir = os.environ.get("HELIX_LEASE_APP_KEY_DIR")
+    kdir = app_key_dir()
     for slug in ((lease or {}).get("identity") or {}).get("apps") or []:
         try:
             app_id = (gh.api("apps/%s" % urllib.parse.quote(slug)) or {}).get("id")
             key = os.path.join(kdir, "%s.pem" % slug) if kdir else None
             if not app_id or not key or not os.path.isfile(key):
                 raise RuntimeError("app idまたは秘密鍵が無い")
-            req = urllib.request.Request("https://api.github.com/repos/%s/installation" % gh.repo, headers={
+            req = urllib.request.Request("%s/repos/%s/installation" % (GITHUB_API, gh.repo), headers={
                 "Authorization": "Bearer %s" % app_jwt(app_id, key), "Accept": "application/vnd.github+json",
                 "X-GitHub-Api-Version": "2022-11-28"})
-            with urllib.request.urlopen(req, timeout=30) as r:
+            with direct_opener().open(req, timeout=30) as r:
                 inst = json.loads(r.read().decode("utf-8"))
             out.append({"slug": slug, "app_slug": inst.get("app_slug"), "permissions": inst.get("permissions"),
                         "repository_selection": inst.get("repository_selection")})
@@ -458,28 +479,41 @@ def verify_self(gh, rev="origin/main", here=None):
     return sorted(p.rsplit("/", 1)[1] for p, h in running_hashes(here).items() if h != blob_sha256(gh, rev, p))
 
 
-def writable_by_runner(paths):
-    """実行者（このprocessのuid）が書ける置き場所。自分自身やinterpreter・gh・gitを書き換えられる置き場所から起動していれば、
-    bytesの照合は循環する（packet 二重境界）。"""
+def untrusted_locations(paths):
+    """rootが所有しgroup・otherが書けない、という条件を、path自身と祖先directoryのすべてで満たさない置き場所。
+    実行者（AI側と同じOS userであり得る）が所有する置き場所は、mode bitを落としていても書き戻せるため信頼しない
+    （mode 0555の自前のdirectoryに置いた偽のgh等）。symlinkは解決した先で見る。"""
     bad = []
     for p in paths:
-        for q in (p, os.path.dirname(p)):
-            if q and os.path.exists(q) and os.access(q, os.W_OK):
+        q = os.path.realpath(p)
+        while True:
+            try:
+                st = os.stat(q)
+            except OSError:
                 bad.append(q)
+                break
+            if st.st_uid != 0 or st.st_mode & 0o022:
+                bad.append(q)
+            parent = os.path.dirname(q)
+            if parent == q:
+                break
+            q = parent
     return sorted(set(bad))
 
 
 def self_integrity(gh, rev="origin/main"):
-    """executor・非常用command・実測commandの起動前の検査。(1) `python3 -I`で起動している（user site・PYTHON*環境変数を読まない）
-    (2) command群・interpreter・gh・git・opensslの置き場所が実行者から書けない (3) command群のbytesがrevの版と一致する。"""
+    """executor・非常用command・実測command・投稿commandの起動前の検査。(1) `python3 -I`で起動している（user site・PYTHON*環境変数を
+    読まない） (2) command群・interpreter・gh・git・openssl・tar等と、その祖先directoryがrootの所有でgroup・otherから書けない
+    (3) command群のbytesがrevの版と一致する（revがNoneなら(1)(2)だけ。bytesの照合先を取得する前に使う）。"""
     bad = []
     if not sys.flags.isolated:
         bad.append("python3 -Iで起動していない（user site・PYTHON*環境変数を読む）")
-    tools = [os.path.realpath(sys.executable), os.path.realpath(GH_BIN)] + \
-        [os.path.realpath(shutil.which(t, path="/usr/bin:/bin") or t) for t in ("git", "openssl", "unshare", "tar", "sh")]
+    tools = [sys.executable, GH_BIN, CA_FILE] + [shutil.which(t, path="/usr/bin:/bin") or t
+                                                  for t in ("git", "openssl", "unshare", "tar", "sh")]
     files = [os.path.join(HERE, f) for f in sorted(os.listdir(HERE)) if f.endswith(".py")]
-    bad += ["実行者から書ける置き場所: %s" % p for p in writable_by_runner([HERE] + files + tools)]
-    bad += ["%s（%sの版と一致しない）" % (f, rev) for f in verify_self(gh, rev)]
+    bad += ["rootの所有でない、またはgroup・otherが書ける置き場所: %s" % p for p in untrusted_locations([HERE] + files + tools)]
+    if rev is not None:
+        bad += ["%s（%sの版と一致しない）" % (f, rev) for f in verify_self(gh, rev)]
     return bad
 
 
@@ -634,7 +668,7 @@ def run_checks(gh, tree, overlay_main=None, protected=None, extra_hidden=None):
     d = tempfile.mkdtemp(prefix="lease-check-")
     try:
         arc = gh.git("archive", "--format=tar", tree).stdout
-        subprocess.run(["tar", "-x", "-C", d], input=arc, check=True)
+        subprocess.run(["tar", "-x", "-C", d], input=arc, check=True, env=base_env())   # PATHは固定（呼出し元のPATHを使わない）
         if overlay_main and protected:
             for p in protected:
                 dst = os.path.join(d, p)
@@ -647,7 +681,7 @@ def run_checks(gh, tree, overlay_main=None, protected=None, extra_hidden=None):
                     os.remove(dst)
         env = {"PATH": "/usr/bin:/bin", "HOME": "/tmp", "LANG": "C.UTF-8", "PYTHONNOUSERSITE": "1"}   # /tmpは空のtmpfs
         top = ROOT   # executorのcodeを置いたcheckout（検査からは見せない）
-        cand = sorted({os.path.realpath(x) for x in [os.path.expanduser("~"), "/tmp", os.path.dirname(state_path()), top]
+        cand = sorted({os.path.realpath(x) for x in [home_dir(), "/tmp", os.path.dirname(state_path()), top]
                        + list(extra_hidden or ()) if x and os.path.isdir(x)})
         # 既に覆うdirectoryの配下は覆えない（覆った後は存在しない）ため、祖先だけを残す
         hide = [x for x in cand if not any(x != y and x.startswith(y.rstrip("/") + "/") for y in cand)]

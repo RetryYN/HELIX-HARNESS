@@ -48,11 +48,13 @@ python3 scaffold/lease/leaserecover.py PR --context ID --mode review|comment [..
 python3 scaffold/lease/leaseprobe.py --login LOGIN --review-id ID [--lease-pr N] [--apply]
 ```
 
-上は引数の形である。executor（`leasectl.py`の`admit`・`sync`）・非常用command・実測commandは、`/usr/bin/python3 -I <read-onlyのcopy>/scaffold/lease/…`
-の形で起動する（下記「有効化」手順2）。起動時に次を確かめ、どれかを欠けば何もしない: `-I`で起動している（user site・`PYTHON*`環境変数を読まない）、
-command群・interpreter・`gh`・`git`・`openssl`等の置き場所が実行者から書けない、command群の`.py`のbytesがorigin/main
+上は引数の形である。executor（`leasectl.py`の`admit`・`sync`）・非常用command・実測command・投稿command（`--apply`）は、
+`/usr/bin/python3 -I <rootが所有するcopy>/scaffold/lease/…`の形で起動する（下記「有効化」手順2）。起動時に次を確かめ、どれかを欠けば何もしない:
+`-I`で起動している（user site・`PYTHON*`環境変数を読まない）、command群・interpreter・`gh`（`/usr/bin`か`/bin`から引く）・`git`・`openssl`・`tar`等と
+その祖先directoryのすべてがrootの所有でgroup・otherから書けない（実行者が所有する置き場所は、mode bitを落としていても信頼しない）、command群の`.py`のbytesがorigin/main
 （有効化前の実測ではそのPRのhead、自己修理では修理PRのhead）の`scaffold/lease/`と一致する。外部commandへ渡す環境は許可リストで作り
 （`PATH=/usr/bin:/bin`、passwdのhome、`GH_TOKEN`だけを通す）、呼出し元の`PATH`・`XDG_*`・`GH_HOST`等を受け取らない。
+`leasectl.py status`は、この起動条件の結果も`integrity`として出力する（POが有効化前の実測を確認する出力）。
 
 `--context`はそのcommandを動かすruntimeのcontext識別子である（作成側・reviewerのsessionと異なること）。
 終了codeは、成立0、拒否1、入力不正・内部エラー2である。実行環境の許可は、これらのcommandにだけ与える（packet 二重境界）。
@@ -89,14 +91,16 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
    executorは、AI側の全login（`ai`・`creator`・`executor`・`recovery`・`reviewers`）が`identity.apps`のAppのloginでなければ未有効として扱う。
    executorはAppのloginをcollaborator roleではなくappの権限で照合し、administration・repository rulesの書込みがあるか、
    取得できなければ停止する。PRの作成者がAppになるため、POは自分のPR reviewで判断できる。
-   Appの秘密鍵はexecutorの実行環境の`HELIX_LEASE_APP_KEY_DIR/<app slug>.pem`に置く。executorはAppのJWTで
+   Appの秘密鍵はexecutorを動かすOS userのhomeの`.helix-lease/apps/<app slug>.pem`に置く（環境変数で変えない）。executorはAppのJWTを、呼出し元のproxy環境変数を使わず固定のtrust store（`/etc/ssl/certs/ca-certificates.crt`）で検証した`api.github.com`への直接の接続だけで送り、
    `GET /repos/{repo}/installation`からinstallationの実際の権限を取得し、許可集合（contents・pull_requests・issuesの`write`、
    metadata・administrationの`read`）とちょうど一致しない権限（外の権限・過剰だけでなく、欠落や`read`への縮退も含む）、別のappのinstallation、取得の失敗のどれでも停止する。
 2. すべてのrulesetのbypass対象を空にし（Appを含めない）、admin資格情報をAI側から隔離する。
    executor command・非常用command・実測commandは、AI側contextから書けない場所（別のOS userが所有するdirectory、またはread-onlyのbind mount）に
    置いたmainのcopyから実行し、POの実行環境の許可はそのpathのcommandを`/usr/bin/python3 -I`で起動する形に限る（packet 二重境界。
-   AI側の作業treeのcommandを許可しない）。`gh`もAI側contextから書けない場所（`/usr/bin`等）に置く。望ましくは、POが所有するwrapperが
-   別のOS userとして、空の環境（installation tokenの`GH_TOKEN`だけを渡す）で起動する。lease mergeで`scaffold/lease/`が変わった後は、
+   AI側の作業treeのcommandを許可しない）。copyはrootが所有する場所（例: `/opt/helix-lease/`）に置き、`gh`は`/usr/bin`に置く。
+   executor・非常用commandは、AI側contextと別のOS userとして動かす（POが所有するwrapper、例: そのcommandだけを許すsudoersの規則で、
+   installation tokenの`GH_TOKEN`だけを渡した空の環境）。同じOS userでは、AI側contextが動作中のexecutor processへattachでき（ptrace）、
+   上の起動条件では防げないため、POはこれを有効化の前に確かめる。lease mergeで`scaffold/lease/`が変わった後は、
    POがそのcopyをmainの版へ更新するまで、executorはbytesの不一致で止まる（安全側）。
    executorと`recovery`が通常pushできるbranch protectionにする（POが設定する）。
 3. `baseline`へ、mainのbranch protection（force push禁止、削除禁止、`enforce_admins`有効）とrulesetの一覧・bypass対象を記録する。
@@ -108,7 +112,8 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
    AI側の全login×2 reviewを`denied`または`unavailable`で覆うことを毎回確かめ、欠ければ未有効として扱う）。`--lease-pr`は、main上のlease記録が未有効の間だけ使える。
 6. 下記「未検証」を実物で確かめる。保護設定・rulesetを取得できない、または基準値が無い間はexecutorは停止する（空の一致にしない）。上流authority台帳のCapability Lease行の状態（未有効化）を有効化へ更新する。`origin_main`へ本PRのmerge直前のmain HEADを、`activated_at`へ時刻を記入し、最終headで独立reviewを受ける。
    mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。POは、有効化の値（実測結果・起点・`activated_at`）を
-   含む最終headに対してPR reviewで確認し、merge通路の許可をその最終exact HEADに固定する。
+   含む最終headを確認し、既存規則の条件4（merge通路の明示許可）をその最終exact HEADに固定して与える（本PRは既存規則でmergeするため、
+   POの確認はPR reviewではなくこの許可である。executorは有効化mergeにPO reviewを照合しない）。
 7. 本PRを既存規則でmergeする（mergeするruntimeはAppのinstallation tokenで動く）。executorは、起点の直後の1件に限り、lease記録を
    未有効から有効へ変えた、AI側loginによるこのmergeを、executor以外のmain更新として扱わない。以後mainを更新するのはexecutorだけである。
 
@@ -145,6 +150,8 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 - AppのinstallationはAppの対象repositoryを選択したもの（`repository_selection: selected`）に限り、実測commandはinstallation tokenの
   対象repositoryが本repositoryだけであることを確かめる。
 - 有効化前の実測結果commentは、試験reviewの状態がlease記録と一致し、`activated_at`より前に置かれたものに限る。
+  非常経路と再bootstrapは、packetのとおり「lease記録の有効性」を条件から除くため、この実測結果の現存照合も行わない。
+- 実測commandは、lease記録の`status_issue`が開いているIssue（PRでなく、試験PRでもない）であることを確かめてから書き込む。
 - 試験reviewは、登録した状態（`APPROVED`と`CHANGES_REQUESTED`の各1件）のまま試験PRに現存することを確かめる。状態が変われば実測の欠落として扱い、
   実測commandはその試験reviewを試行しない。
 - 検査(a)(b)は`python3 -s -E`で起動し、HOMEをtree外の空のtmpfsにし、pid名前空間も切る（PRが置いたuser siteのcodeを読み込まない）。

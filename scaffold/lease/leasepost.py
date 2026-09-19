@@ -109,6 +109,11 @@ def main(argv=None):
     p.add_argument("--apply", action="store_true")
     a = ap.parse_args(argv)
     gh = G.GH(writes=G.Writes({("comment", a.pr)} if a.apply else ()))
+    if a.apply:   # 投稿commandも、executorと同じ起動条件（-I・rootが所有する置き場所・origin/mainとのbytes照合）で動く
+        bad = G.self_integrity(gh)
+        if bad:
+            print("拒否: 投稿commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
+            return 2
     try:
         return {"request": cmd_request, "response": cmd_response}[a.cmd](a, gh)
     except G.WriteRefused as e:
