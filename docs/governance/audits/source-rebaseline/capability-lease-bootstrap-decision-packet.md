@@ -219,8 +219,10 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
         `review_source_unsafe`として`suspended`にし、`decision_record`を含む全profileを運ばない（非常経路もPO reviewを出所とする
         運搬をしない）。解除と判断出所の改訂は、再bootstrap（下記。issue commentと引数を固定した許可）で運ぶ。
       - 欠落・期限切れ（`deletion_probe_stale`）の間は、削除不能の前提を確かめられない。executorは、`approved_targets`が実測command
-        とlease記録の実測関連の行（試験PR・試験review IDの登録を含む）だけである`decision_record`（実測の修理）以外を運ばない。
-        実測を行わないことで他の判断を運ぶ経路にはならない。
+        とlease記録の実測関連の欄（試験PR・試験review IDの登録を含む）だけである`decision_record`（実測の修理）以外を運ばない。
+        lease記録については、executorが変更前後を欄単位で比較し、実測関連以外の欄が変わっていれば実測の修理として扱わない。
+        実測を行わないことで他の判断を運ぶ経路にはならない。実測の修理では直らない原因（AI側loginの喪失によるidentity表の
+        差替え、executorの結果照合部の故障、状態Issueが使えない等）でstaleが続く場合は、再bootstrapで進む。
       - `deleted`は30日以内の全結果commentについて数え、後の`denied`で打ち消さない。POが自分で試験reviewを削除した場合も`deleted`に
         なる（安全側の誤検出）。削除が成功すると固定した試験reviewは消えるため、新しい試験PR・試験review IDの登録と停止の解除は
         再bootstrapで運ぶ。原因がGitHub側で是正され、新しい試験reviewの再実測がすべて`denied`または`unavailable`なら、packetを改訂せず、
@@ -272,7 +274,7 @@ merge統合の構造を継承し、新世代の責務分離と未構築部分に
 
 #### 停止・取消し・改訂の経路
 
-leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止中・取消し後は、executorは`decision_record`だけを運ぶ（`review_source_unsafe`の間は`decision_record`も運ばず、再bootstrapだけで進む）。どの状態でも、
+leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ（`deletion_probe_stale`の間は実測の修理だけ）。停止中・取消し後は、executorは`decision_record`だけを運ぶ（`review_source_unsafe`の間は`decision_record`も運ばず、再bootstrapだけで進む）。どの状態でも、
 人間のmerge、adminの直接push、lease外のmerge通路を前提にしない（executor自身が機能しない場合は下記「非常経路」）。
 
 - **状態の保存**: executorは`suspended`になったとき（原因は「merge前の検査」の冒頭に列挙したものだけ）、(1) executor専用の状態領域
@@ -304,8 +306,9 @@ leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止
   - 条件: `recovery`は`decision_record` profileの条件（上記の全体。人間判断の出所、選択の一致、PR差分とrecordの一致、対象の制限、
     `transcription_faithful`、review証拠）と、下記「merge前の検査」のうちlease記録の有効性を除く全項目（保護設定・rulesetの基準値、
     bypass対象が空、AI側各loginの実効role、main更新主体の照合と連鎖、mergeable、auto-merge予約なし、順序と隔離を守った(a)(b)の
-    検査の合格と`stale=0`）を確かめる。削除不能の実測は、executorと同じ規則（30日以内に`deleted`がないこと。期限切れ・欠落の間は
-    実測の修理を運ぶrecordに限る）で確かめる。`deleted`があれば、PO reviewを出所とする非常経路は使わず、再bootstrapで進む。review証拠は2 context以上を
+    検査の合格と`stale=0`）を確かめる。PO reviewを出所とする非常経路では、削除不能の実測をexecutorと同じ規則（30日以内に`deleted`が
+    ないこと。期限切れ・欠落の間は実測の修理を運ぶrecordに限る）で確かめる。再bootstrap modeは出所がPO reviewでないため、この
+    実測規則を適用しない。`deleted`があれば、PO reviewを出所とする非常経路は使わず、再bootstrapで進む。review証拠は2 context以上を
     要するが、reviewer runtimeの喪失が原因の場合に限り、providerの違いの要件を外す。`require_separate_identity`で登録済みreviewerの
     runtimeを失った場合は、POが実行環境で代わりのruntimeにそのreviewer loginの資格情報を渡す（許可設定）。転記は認めない。
     運べるのは、executorの修理・取消し・別方式への移行・review要件の改訂を判断したdecision_record PR 1件だけである。
@@ -319,8 +322,8 @@ leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止
     第1親の連鎖上のcommitが、すべてlease receiptまたは`lease_recovery:`行を持つmerge commitであることを確かめる。commit messageは
     自己申告であり、この代替は更新主体を証明しない。代替を使ったことと理由を、merge commit message、`merge_result`、状態commentに
     書き、運ぶrecordはこの劣化を範囲として明記し、POがそれを含めて判断する。これにより、補助APIの喪失でも修理と改訂を運べる。
-  - 人間判断をGitHub上で検証する手段そのもの（PR reviewの取得）が失われた場合、または実測で`deleted`が出てPO reviewが出所として
-    安全でない場合（`review_source_unsafe`）は、PR reviewを出所とする経路ではmergeしない。このときは、POが実行環境の
+  - 人間判断をGitHub上で検証する手段そのもの（PR reviewの取得）が失われた場合、実測で`deleted`が出てPO reviewが出所として
+    安全でない場合（`review_source_unsafe`）、または実測の修理では直らない原因で`deletion_probe_stale`が続く場合は、PR reviewを出所とする経路ではmergeしない。このときは、POが実行環境の
     許可を外してleaseを止め、再bootstrapで再開する。人間はmergeしない。再bootstrapでは、改訂したpacket（または、上記の登録と解除だけの場合は解除を判断したrecordだけ）と判断recordを1つのPRに置き（新しい判断出所を実装するexecutor・非常用command・lease記録の修理も、
     そのrecordの`approved_targets`に変更前後の状態を列挙して同じPRに含めてよい）、
     判断の出所をPR reviewに代えて、人間判断者のloginがそのPRへ投稿したissue commentとする。commentは、行頭から始まる（引用記号`>`を
@@ -336,7 +339,7 @@ leaseが有効な間は、上記のprofileすべてをexecutorが運ぶ。停止
     許可を残したままcommentで判断を変えた場合、そのcommentがAI側に削除されると古い許可でmergeされ得る。これは人間の手順に依存する
     残存riskであり、本判断に含める。観測済みIDの消失は上記(ii)と同じく拒否する。作成側と異なるcontextの
     runtime（`recovery` role）が、この照合の結果と、POが実行環境で与えた引数固定の許可のもとで、非常用commandの再bootstrap mode
-    （判断の出所をissue commentに代えるだけで、他の条件・CAS push・記録・merge後は非常経路と同じ）を実行してmergeし、commentのID・作者・全文をmerge commit messageへ
+    （判断の出所をissue commentに代え、削除不能の実測規則を適用しないほかは、条件・CAS push・記録・merge後は非常経路と同じ）を実行してmergeし、commentのID・作者・全文をmerge commit messageへ
     記録する。PR reviewもissue commentも読めない（GitHubが人間判断を示せない）間は、どの経路でもmergeしない。これは閉塞ではなく、
     検証できる人間判断がない状態での停止であり、GitHubの復旧を待つ（AGENTS.mdのとおり、会話やsession記録から承認を生成しない）。
     main上の非常用commandの再bootstrap modeそのものが動かない場合は、上記の自己修理と同じく、そのPRのheadに含まれ、recordの
@@ -583,6 +586,17 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
   `decision_record` profileでmainへ入れる。(2) #1881をその後のmainへ
   追従させ、`authority_basis`にそのrecordを挙げて再reviewする。#1881の`.gitattributes`は`-whitespace -text`だけを設定するため保護面に当たらない。
 - 本PRと後続の`operation_change` PR: leaseで自身を有効化できないため、bootstrapとして既存規則でmergeする（下記）。
+
+## 既知の残存riskと後続PRで扱う論点
+
+本packetは、round 30以降、packet内の矛盾・通常経路でAIが人間判断を生成できる穴・人間のmergeの前提だけを本packet内で直し、
+それ以外の堅牢化は次に列挙して後続PR（lease記録・executorの実装とそのreview）で扱う。POは本判断にこれらの残存を含めて判断する。
+
+- 実測結果commentのうち「結果として数えない」ものを投稿するか、投稿した場合に最新の採否から外すか（実装で定める。外す側を既定とする）。
+- executorが結果commentだけでなく、固定した試験review IDが一覧に現存することを自ら確かめる多重防御（`accept_bootstrap_risk`では
+  結果commentが自己申告であるため）。
+- 本文中で残存riskと明記したもの（`accept_bootstrap_risk`のreviewer判定の偽造、再bootstrapで許可を外さずにcommentで判断を変えた場合、
+  activity API喪失時の第1親連鎖の代替、`projection_sync`の条件付き書込みの欠如）。
 
 ## 本packetの承認で成立しないもの
 
