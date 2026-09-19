@@ -99,7 +99,7 @@ Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである�
 「生存中の全source holdingについて無損失なatom集合へ展開する」条件を満たしていない。したがって
 **現在は人間判断へ送れる状態ではない**。v1（`MPR-SH-LEGACY-RULE-004`未計上）は`superseded_by_v2`であり、承認に使わない。
 2026-09-19にPOは`L2D-S1-01`を`defer`とした（[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、
-`HDEC-L2D-S1-01-DEFER-01`）。deferは採否の先送りであり、上記の停止条件を解除しない。
+`HDEC-L2D-S1-01-DEFER-01`）。deferは採否の先送りであり、本節の停止条件を解除しない。
 `authority_effect: none`を維持する。対象別L2／L11本文へまだ適用せず、次のdecision unitへ
 進めない。要求の要否判断、successor確定、意味変更、縮退、retire、L3、実装、DB、runtime、新世代CI、archiveの
 物理削除も本Issueから開始しない。
