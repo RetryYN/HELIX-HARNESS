@@ -50,7 +50,7 @@
 - 未実行の確認と理由:
 - GitHub Claude review comment:
 - 未解消Blocker／Major:
-- `scfctl stale`の出力（**全PRで必須**。Scaffold Bindingの`upstream[].path`が指すファイルは文書・台帳を問わず、`scaffold/`に触れないPRでも変更されうる。変更したファイルが束縛対象かを作成側が判定しなくてよいよう、条件を付けずに実行する。`stale`が1件以上ならそのPRで再束縛するまでmergeしない。merge直前のbase更新後の`stale=0`の再確認は、merge admissionを行う側が行い、結果をreview記録に残す）:
+- `scfctl stale`の出力（**全PRで必須**。Scaffold Bindingの`upstream[].path`が指すファイルは文書・台帳を問わず、`scaffold/`に触れないPRでも変更されうる。変更したファイルが束縛対象かを作成側が判定しなくてよいよう、条件を付けずに実行する。`stale`が1件以上ならそのPRで再束縛するまでmergeしない。merge直前に、PRのcontent HEADを変えずに、最新baseとのmerge結果（GitHubの`refs/pull/<番号>/merge`、またはローカルの試験merge）に対して`stale=0`を再確認する。この再確認は、merge admissionを行う側が行い、結果をreview記録に残す）:
 - `scaffold/`または正式実装に触れた場合、および`stale`が1件以上を返した場合、`scfctl validate`／`residuals`／`selftest`の出力（差し替え忘れ・束縛切れ防止）:
 
 旧CI、旧test、旧runtimeの結果を新世代の合格根拠にしない。
