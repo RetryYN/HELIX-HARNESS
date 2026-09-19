@@ -26,6 +26,8 @@ command群である。判断（承認・採否・処分）は生成しない。P
 | `leasepost.py` | 投稿command（review依頼＋delivery receipt、応答）。対象PRへのcomment作成だけ |
 | `leaserecover.py` | 非常用command（非常経路と再bootstrap mode）。`decision_record` 1件だけ |
 | `leaseprobe.py` | 削除不能の実測command。固定した試験reviewへの削除の試行と、状態Issueへの結果commentだけ |
+| `leaseboot.py` | 有効化の準備command（`prepare`＝状態Issueと試験PRの作成、`probe`＝全login×2 reviewの実測、`verify`＝「未検証」の実測）。mainへは押せない |
+| `../lease-bootstrap/` | POがrootで1回実行する`install.sh`（OS user、root所有copy、wrapper、sudoers）と、GitHub Appの作成・token発行を行う`appsetup.py` |
 | `leasefixtures.py`、`cases/` | negative case（packet 手順2の写し）の土台とcase |
 
 すべて保護面である（packet「保護面」: `scaffold/`配下の`README.md`以外）。変更には、変更前後の状態をexactに列挙した
@@ -46,6 +48,7 @@ python3 scaffold/lease/leasepost.py response --pr N --request-id RID --reviewer 
         [--operation-admission pass] [--transcription-faithful yes] [--transcribed] --text-file F [--apply]
 python3 scaffold/lease/leaserecover.py PR --context ID --mode review|comment [...] [--self-repair SHA256] [--apply]
 python3 scaffold/lease/leaseprobe.py --login LOGIN --review-id ID [--lease-pr N] [--apply]
+python3 scaffold/lease/leaseboot.py prepare|probe|verify --lease-pr N --out F [--po LOGIN] [--apply]
 ```
 
 上は引数の形である。executor（`leasectl.py`の`admit`・`sync`）・非常用command・実測command・投稿command（`--apply`）は、
@@ -77,50 +80,51 @@ commentの本文に```` ```helix-lease ```` のfenceで囲んだJSONを1つだ�
 PO判断は```` helix-lease ````を使わない。decision_record PRへのPR review本文の`decision: <選択>`の1行だけである
 （再bootstrap modeだけ、PRへのissue commentの`decision: <選択> head: <full SHA>`の1行）。
 
-## 有効化（POの確認が要る。それまで`activated_at`は`null`）
+## 有効化（POが越える境界だけをPOが行う。それまで`activated_at`は`null`）
 
-packetは、既存規則でmergeするPRを、packet・判断recordのPRと後続`operation_change` PR（本PR）の2つに限り、削除不能の実測を
+packetは、既存規則でmergeするPRを、packet・判断recordのPR（#1883）と後続`operation_change` PR（本PR）に限り、削除不能の実測を
 有効化の条件とする（有効化前の結果をlease記録に残し、POが確認する）。そのため有効化は、本PRのlease記録をmerge前に埋め、
 実測を済ませてから、本PRを既存規則でmergeして行う。再bootstrap modeは停止後の再開経路であり、初回の有効化には使わない。
 
-1. AI側のGitHub identityはGitHub Appとする（AI用の別accountは作らない。packetは「GitHub Appまたは別account」を認める）。
-   POがGitHub Appを作り、本repositoryにだけinstallする。権限はcontents・pull requests・issuesの書込み、metadataとadministrationの
-   読取りに限り（administrationの読取りはbranch protection・rulesetの再取得に要る）、administration・repository rulesの書込みは与えない。AI側のcontext（作成側・reviewer・executor・`recovery`）はinstallation tokenだけを使い、
-   POのaccountの資格情報（`gh auth`のtoken等）はAI側のどのcontextからも取得・使用できない場所へ移す。
-   `identity.po`へPOのloginを、`identity.ai`・`creator`・`executor`・`recovery`と`reviewers`の各`login`へAppのlogin（`<app slug>[bot]`）を、`identity.apps`へapp slugを記入する（identity表。どのroleが欠けても未有効。`accept_bootstrap_risk`では全roleが`identity.ai`と同じ）。
-   executorは、AI側の全login（`ai`・`creator`・`executor`・`recovery`・`reviewers`）が`identity.apps`のAppのloginでなければ未有効として扱う。
-   executorはAppのloginをcollaborator roleではなくappの権限で照合し、administration・repository rulesの書込みがあるか、
-   取得できなければ停止する。PRの作成者がAppになるため、POは自分のPR reviewで判断できる。
-   Appの秘密鍵は、executorと非常用commandを動かすOS userのhomeの`.helix-lease/apps/<app slug>.pem`に置く（環境変数で変えない。AI側contextからは読めない）。
-   AI側context（作成側・reviewer・実測command）が使うinstallation tokenは、POが所有するwrapperがその鍵から発行して渡す。executorは呼出し元が
-   渡した`GH_TOKEN`をそのまま使う（同じAppのtokenしか存在しないため、権限の上乗せは無い）。executorはAppのJWTを、呼出し元のproxy環境変数を使わず固定のtrust store（`/etc/ssl/certs/ca-certificates.crt`）で検証した`api.github.com`への直接の接続だけで送り、
-   `GET /repos/{repo}/installation`からinstallationの実際の権限を取得し、許可集合（contents・pull_requests・issuesの`write`、
-   metadata・administrationの`read`）とちょうど一致しない権限（外の権限・過剰だけでなく、欠落や`read`への縮退も含む）、別のappのinstallation、取得の失敗のどれでも停止する。
-2. すべてのrulesetのbypass対象を空にし（Appを含めない）、admin資格情報をAI側から隔離する。
-   executor command・非常用command・実測command・投稿commandは、rootが所有しgroup・otherが書けない場所（祖先directoryを含む。例: `/opt/helix-lease/`）に
-   置いたcopy（下記）から実行し、POの実行環境の許可はそのpathのcommandを`/usr/bin/python3 -I`で起動する形に限る（packet 二重境界。
-   AI側の作業treeのcommandを許可しない）。copyは`git archive`またはfresh cloneだけから作る（作業treeからcopyしない。`__pycache__`等の
-   既知でないentryがあれば、command群をimportする前に拒否する）。有効化前（手順5の実測・確認）は実測時の本PRのhead（`scaffold/lease/`の`.py`が最終headと同じもの）から、
-   有効化後はmainから作る（照合先がそれぞれ`--lease-pr`のPRのheadとorigin/mainであるため）。`gh`は`/usr/bin`に置く。
-   executor・非常用commandは、AI側contextと別のOS userとして動かす（POが所有するwrapper、例: そのcommandだけを`/usr/bin/python3 -I -B`で許すsudoersの規則で、
-   installation tokenの`GH_TOKEN`だけを渡した空の環境）。同じOS userでは、AI側contextが動作中のexecutor processへattachでき（ptrace）、
-   上の起動条件では防げないため、POはこれを有効化の前に確かめる。lease mergeで`scaffold/lease/`が変わった後は、
-   POがそのcopyをmainの版へ更新するまで、executorはbytesの不一致で止まる（安全側）。
-   executorと`recovery`が通常pushできるbranch protectionにする（POが設定する）。
-3. `baseline`へ、mainのbranch protection（force push禁止、削除禁止、`enforce_admins`有効）とrulesetの一覧・bypass対象を記録する。
-4. 状態Issueを1件作り`status_issue`へ、draftの試験PRを1件作り`probe.test_pr`へ記入する。POがその試験PRへ、本文に`decision:`行を
-   書かない試験reviewを`APPROVED`と`CHANGES_REQUESTED`で1件ずつ提出し、そのIDを`probe.test_reviews`へ記入する。
-5. 1〜4を本PRへpushした後、AI側の各loginで`leaseprobe.py --lease-pr <本PR> --login L --review-id ID --apply`を両試験reviewに実行する。
-   executor userで実行した`leasectl.py status --lease-pr <本PR>`の`integrity`が`ok`、`runner`がAI側contextと別のOS user、`probe.status`が`ok`、有効化の値を記入した後は`activation`が`ok`（全login×2 reviewが30日以内に`denied`または`unavailable`）であることを
-   確かめ、結果commentのIDを`probe.activation_results`へ、そのとき登録していた試験reviewを`probe.activation_test_reviews`へ記入する
-   （executorは、これらのcommentが状態Issueに編集されずに現存し、`probe.activation_test_reviews`のIDと状態に一致し、AI側の全login×2 reviewを
-   `denied`または`unavailable`で覆うことを毎回確かめ、欠ければ未有効として扱う。実測の修理はこの2欄を変えられない）。`--lease-pr`は、main上のlease記録が未有効の間だけ使える。
-6. 下記「未検証」を実物で確かめる。保護設定・rulesetを取得できない、または基準値が無い間はexecutorは停止する（空の一致にしない）。上流authority台帳のCapability Lease行の状態（未有効化）を有効化へ更新する。`origin_main`へ本PRのmerge直前のmain HEADを、`activated_at`へ時刻を記入し、最終headで独立reviewを受ける。
-   mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。POは、有効化の値（実測結果・起点・`activated_at`）を
-   含む最終headを確認し、既存規則の条件4（merge通路の明示許可）をその最終exact HEADに固定して与える（本PRは既存規則でmergeするため、
-   POの確認はPR reviewではなくこの許可である。executorは有効化mergeにPO reviewを照合しない）。
-7. 本PRを既存規則でmergeする（mergeするruntimeはAppのinstallation tokenで動く）。executorは、起点の直後の1件に限り、lease記録を
-   未有効から有効へ変えた、AI側loginによるこのmergeを、executor以外のmain更新として扱わない。以後mainを更新するのはexecutorだけである。
+POが行うのは、人間にしか越えられない境界だけである。設定値の作成、状態Issue・試験PRの作成、OS環境の構築、lease記録への転記、
+実測、未検証項目の確認、read-afterは、下記のcommandが行う。
+
+**POの操作（4回）**
+
+1. **rootで1回**: `sudo sh scaffold/lease-bootstrap/install.sh --sha <本PRの現在のhead> --repo RetryYN/HELIX-HARNESS --ai-user <AI側のOS user>`
+   これは、executor用のOS user、`/opt/helix-lease`のroot所有copy（GitHubから`--sha`のtreeを取り出す）、installation tokenを発行する
+   wrapper `/usr/local/sbin/helix-lease-run`、AI側userにそのwrapperだけを許すsudoersを置き、続けてGitHub Appの作成へ進む。
+2. **browserで認可**: 表示されたlocalhostのURLを開き、[GitHub Appを作成する]を押す。名前と権限（contents・pull requests・issuesの
+   書込み、metadataとadministrationの読取り。administration・repository rulesの書込みは無し）は入力済みである。作成の戻りで秘密鍵は
+   executor userのhomeへ0600で保存され、AI側contextからは読めない。続けて表示される install URLで、このrepositoryだけを選んでinstallする。
+   あわせて、すべてのrulesetのbypass対象を空にし、POのaccountの資格情報（`gh auth`のtoken等）をAI側contextから取得・使用できない場所へ移す。
+3. **試験PRで2回押す**: AIが作った試験PR（draft）で、Approveを1回、Request changesを1回提出する（本文は空でよい。判断行`decision:`を書かない）。
+   これは、AI側identityがPO reviewを削除できないことを実測するためのreviewであり、判断ではない。
+4. **最終headの承認**: 有効化の値を埋めた最終exact HEADを確認し、既存規則の条件4（merge通路の明示許可）をそのHEADに固定して与える
+   （本PRは既存規則でmergeするため、POの確認はPR reviewではなくこの許可である。executorは有効化mergeにPO reviewを照合しない）。
+
+**AI側が行うこと（`sudo -u <executor user> /usr/local/sbin/helix-lease-run <command> ...`の形で起動する）**
+
+- 操作1・2の後: `leaseboot prepare --lease-pr <本PR> --po <POのlogin> --out <lease候補> --apply`
+  状態Issueを1件、`lease/probe-test` branchと試験PR（draft）を1件作り、保護設定・rulesetの基準値、identity表（AI側の全roleを`<app slug>[bot]`）、
+  状態Issue、試験PRを書いたlease記録の候補を出す。作成側はこれを本PRのlease記録へ入れてpushする。POが提出した試験reviewのIDと状態も記入する。
+- 操作3の後: `leaseboot probe --lease-pr <本PR> --out <lease候補> --apply`
+  AI側の全login×2 reviewへ削除の試行を行い、結果commentのIDを`probe.activation_results`へ、そのときの試験reviewを
+  `probe.activation_test_reviews`へ書いた候補を出す。`leasectl status --lease-pr <本PR>`で`integrity`・`runner`・`probe.status`・`activation`を確かめる。
+- `leaseboot verify --lease-pr <本PR> --out <evidence>`: 下記「未検証」を実物で確かめる（読取りだけ）。
+- 最後に、上流authority台帳のCapability Lease行の状態（未有効化）を有効化へ更新し、`origin_main`へ本PRのmerge直前のmain HEADを、
+  `activated_at`へ時刻を記入して、最終headで独立reviewを受ける。mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。
+  保護設定・rulesetを取得できない、または基準値が無い間はexecutorは停止する（空の一致にしない）。
+- 操作4の後: 本PRを既存規則でmergeする（mergeするruntimeはAppのinstallation tokenで動く）。executorは、起点の直後の1件に限り、
+  lease記録を未有効から有効へ変えた、AI側loginによるこのmergeを、executor以外のmain更新として扱わない。以後mainを更新するのはexecutorだけである。
+
+**境界（操作を機械へ移しても変えない）**
+
+- AI側contextはexecutor userになれず、Appの秘密鍵を読めない。installation tokenはwrapperが発行して渡す。
+- AI側contextはrootになれない。`/opt/helix-lease`はroot所有で、AI側からは書けない。
+- `leaseboot`が書けるのは、状態Issueの作成、`lease/`配下のbranchへのpush、試験PRの作成と、実測commandが置く結果commentだけである。
+  mainへのpushは許可リストに入らない。lease記録がmainで有効になった後は`--lease-pr`を受け付けない。
+- lease mergeで`scaffold/lease/`が変わった後は、POが`install.sh`を新しいSHAで実行し直すまで、executorはbytesの不一致で止まる（安全側）。
 
 本PRを無効状態（`activated_at: null`）のままmergeした場合は、leaseは存在しない（packet「そのPRがmainへ入るまでleaseは存在しない」）。
 その後に有効化するには、packetの改訂（有効化を運ぶPRの追加）と新たな人間判断が要る。

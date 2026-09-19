@@ -1,0 +1,80 @@
+#!/bin/sh
+# install.sh — Capability Leaseの実行環境をrootで1回だけ組む（POが越えるtrust boundaryのうちOS側の1回）。
+#
+#   sudo sh scaffold/lease-bootstrap/install.sh --sha <40桁のcommit> --repo OWNER/NAME [--ai-user NAME] [--exec-user NAME]
+#
+# 行うこと（これ以外は行わない）:
+#   1. executor用のOS user（既定 helix-exec）を作る。AI側contextはこのuserになれない。
+#   2. GitHubから--shaのtreeを取り出し、/opt/helix-lease へroot所有・group/other書込み不可で置く。
+#   3. /usr/local/sbin/helix-lease-run を置く（installation tokenを発行してcommandへ渡すwrapper。tokenはAI側へ出さない）。
+#   4. /etc/sudoers.d/helix-lease を置く（AI側userが、そのwrapperだけをexecutor userとして実行できる）。
+#   5. GitHub Appの作成と installのURLを出す（値の入力は不要。POはbrowserで認可するだけ）。
+# root以外では動かない。失敗したら途中で止まる。
+set -eu
+
+SHA=""; REPO=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="/opt/helix-lease"
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --sha) SHA="$2"; shift 2;;
+    --repo) REPO="$2"; shift 2;;
+    --ai-user) AI_USER="$2"; shift 2;;
+    --exec-user) EXEC_USER="$2"; shift 2;;
+    *) echo "不明な引数: $1" >&2; exit 2;;
+  esac
+done
+[ "$(id -u)" = "0" ] || { echo "rootで実行してください" >&2; exit 2; }
+echo "$SHA" | grep -Eq '^[0-9a-f]{40}$' || { echo "--sha は40桁のcommitで指定してください" >&2; exit 2; }
+echo "$REPO" | grep -Eq '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' || { echo "--repo は OWNER/NAME で指定してください" >&2; exit 2; }
+[ -n "$AI_USER" ] || { echo "--ai-user を指定してください（AI側contextのOS user）" >&2; exit 2; }
+[ "$AI_USER" != "$EXEC_USER" ] || { echo "AI側userとexecutor userは別にしてください" >&2; exit 2; }
+id "$AI_USER" >/dev/null 2>&1 || { echo "AI側user $AI_USER が居ません" >&2; exit 2; }
+
+id "$EXEC_USER" >/dev/null 2>&1 || useradd --system --create-home --home-dir "/var/lib/$EXEC_USER" --shell /usr/sbin/nologin "$EXEC_USER"
+chmod 0750 "$(getent passwd "$EXEC_USER" | cut -d: -f6)"
+
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+git -c core.attributesFile=/dev/null clone --quiet --no-checkout "https://github.com/$REPO.git" "$TMP/repo"
+git -C "$TMP/repo" -c core.attributesFile=/dev/null fetch --quiet origin "$SHA"
+git -C "$TMP/repo" cat-file -e "$SHA^{commit}"
+rm -rf "$DEST.new"
+mkdir -p "$DEST.new"
+git -C "$TMP/repo" -c core.attributesFile=/dev/null archive --format=tar "$SHA" | tar -x -C "$DEST.new"
+[ -f "$DEST.new/scaffold/lease/leasectl.py" ] || { echo "取り出したtreeにscaffold/leaseがありません" >&2; exit 2; }
+if [ -e "$DEST" ]; then rm -rf "$DEST.old"; mv "$DEST" "$DEST.old"; fi
+mv "$DEST.new" "$DEST"
+chown -R root:root "$DEST"
+chmod -R go-w "$DEST"
+find "$DEST" -type d -exec chmod 755 {} +
+find "$DEST" -type f -exec chmod 644 {} +
+
+cat > /usr/local/sbin/helix-lease-run <<'WRAP'
+#!/bin/sh
+# helix-lease-run — executor userとしてlease commandを起動する。installation tokenをここで発行し、AI側contextへは出さない。
+set -eu
+DEST=/opt/helix-lease
+case "${1:-}" in
+  leasectl|leasepost|leaseprobe|leaserecover|leaseboot) CMD="$1"; shift;;
+  appsetup) shift; exec /usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" "$@";;
+  *) echo "使えるcommand: leasectl leasepost leaseprobe leaserecover leaseboot appsetup" >&2; exit 2;;
+esac
+GH_TOKEN="$(/usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" token)"
+export GH_TOKEN
+exec /usr/bin/env -i PATH=/usr/bin:/bin HOME="$HOME" LANG=C.UTF-8 GH_TOKEN="$GH_TOKEN" \
+  /usr/bin/python3 -I -B "$DEST/scaffold/lease/$CMD.py" "$@"
+WRAP
+chown root:root /usr/local/sbin/helix-lease-run
+chmod 755 /usr/local/sbin/helix-lease-run
+
+cat > /etc/sudoers.d/helix-lease <<EOF
+# Capability Lease: AI側contextは、executor userとしてこのwrapperだけを実行できる（引数のcommandはwrapperが限定する）。
+Defaults:$AI_USER env_reset
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run
+EOF
+chmod 0440 /etc/sudoers.d/helix-lease
+visudo -cf /etc/sudoers.d/helix-lease >/dev/null
+
+echo "置き場所: $DEST（root所有）、wrapper: /usr/local/sbin/helix-lease-run、sudoers: /etc/sudoers.d/helix-lease"
+echo "AI側userは次の形だけで実行できます: sudo -u $EXEC_USER /usr/local/sbin/helix-lease-run <command> ..."
+echo "続けてGitHub Appの作成に進みます。browserで表示のURLを開いてください。"
+exec sudo -u "$EXEC_USER" /usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" create --repo "$REPO"

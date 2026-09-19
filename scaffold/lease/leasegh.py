@@ -69,7 +69,8 @@ class WriteRefused(Exception):
 
 
 class Writes:
-    """許可する書込みの集合。kind: comment（issue番号）／push_main／issue_body（issue番号）／graphql_delete_review（review node id）。"""
+    """許可する書込みの集合。kind: comment（issue番号）／push_main／issue_body（issue番号）／graphql_delete_review（review node id）／
+    有効化の準備だけで使うcreate_issue・create_pr・push_branch（branch名。mainへは使えない）。"""
     def __init__(self, allowed=()):
         self.allowed = set(allowed)
         self.done = []
@@ -168,6 +169,26 @@ class GH:
         """通常のpush（force pushでない）。mainが検査後に動いていればGitHubが拒否する（compare-and-swap）。"""
         self.w.check("push_main", "main")
         return self.git("push", "origin", "%s:refs/heads/main" % sha, check=False)
+
+    # ----- 有効化の準備（leaseboot。mainにlease記録が無い間だけ）-----
+    def create_issue(self, title, body):
+        self.w.check("create_issue", "issue")
+        p = self.r.run(["gh", "api", "-X", "POST", "repos/%s/issues" % self.repo, "--input", "-"],
+                       input=json.dumps({"title": title, "body": body}).encode("utf-8"))
+        return json.loads(p.stdout.decode("utf-8"))
+
+    def create_pr(self, title, head, body, base="main", draft=True):
+        self.w.check("create_pr", head)
+        p = self.r.run(["gh", "api", "-X", "POST", "repos/%s/pulls" % self.repo, "--input", "-"],
+                       input=json.dumps({"title": title, "head": head, "base": base, "body": body, "draft": draft}).encode("utf-8"))
+        return json.loads(p.stdout.decode("utf-8"))
+
+    def push_branch(self, sha, branch):
+        """mainでないbranchへの通常push（試験PRの作成に使う）。mainへは`push_main`だけで、こちらでは押せない。"""
+        if branch == "main" or not branch.startswith("lease/"):
+            raise WriteRefused("push_branchはlease/配下のbranchだけ: %s" % branch)
+        self.w.check("push_branch", branch)
+        return self.git("push", "origin", "%s:refs/heads/%s" % (sha, branch), check=False)
 
     def delete_review(self, node_id):
         self.w.check("graphql_delete_review", node_id)

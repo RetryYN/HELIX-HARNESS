@@ -18,8 +18,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 def _stray(here):
     """copyの既知でないentry（`__pycache__`のpyc、標準libraryを覆うmodule・package、拡張module）。標準libraryだけで調べる。"""
-    known = {"README.md", "cases", "lease.json", "leasecore.py", "leasectl.py", "leasefixtures.py", "leasegh.py",
-             "leasepost.py", "leaseprobe.py", "leaserecover.py"}
+    known = {"README.md", "cases", "lease.json", "leaseboot.py", "leasecore.py", "leasectl.py", "leasefixtures.py",
+             "leasegh.py", "leasepost.py", "leaseprobe.py", "leaserecover.py"}
     stray = [n for n in os.listdir(here) if n not in known]
     cd = os.path.join(here, "cases")
     stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else [])
@@ -712,19 +712,19 @@ def run_boundary_tests():
     rows.append({"id": "PJ-after-label", "ok": bool(C.evaluate_sync_after(dict(aft, labels=[]), "c" * 64, "a" * 64, "OPEN", ["x"]))})
     # import前のentry確認: 4つのcommandが同じ既知集合を持ち、pyc・package・json以外のcases entryを挙げる
     import tempfile as tf2
-    import leasepost as LP0, leaseprobe as LB0, leaserecover as LR0
+    import leaseboot as BT0, leasepost as LP0, leaseprobe as LB0, leaserecover as LR0
     sd2 = tf2.mkdtemp(prefix="lease-stray-")
     try:
         for n in ("leasecore.py", "cases"):
             (os.makedirs if n == "cases" else (lambda q: open(q, "w").close()))(os.path.join(sd2, n))
-        clean = [m._stray(sd2) for m in (sys.modules[__name__], LP0, LB0, LR0)]
+        clean = [m._stray(sd2) for m in (sys.modules[__name__], LP0, LB0, LR0, BT0)]
         os.makedirs(os.path.join(sd2, "__pycache__"))
         os.makedirs(os.path.join(sd2, "json"))
         os.makedirs(os.path.join(sd2, "cases", "x.json"))
         open(os.path.join(sd2, "shlex.py"), "w").close()
-        dirty = [m._stray(sd2) for m in (sys.modules[__name__], LP0, LB0, LR0)]
-        rows.append({"id": "CMD-preflight-stray", "ok": clean == [[]] * 4
-                     and dirty == [["__pycache__", "cases/x.json", "json", "shlex.py"]] * 4})
+        dirty = [m._stray(sd2) for m in (sys.modules[__name__], LP0, LB0, LR0, BT0)]
+        rows.append({"id": "CMD-preflight-stray", "ok": clean == [[]] * 5
+                     and dirty == [["__pycache__", "cases/x.json", "json", "shlex.py"]] * 5})
     finally:
         shutil.rmtree(sd2, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
@@ -766,9 +766,10 @@ def run_boundary_tests():
             rc_rep = LR.main(["7", "--context", "c", "--mode", "review", "--self-repair", "0" * 64, "--apply"])
             rc_ctl = main(["admit", "7", "--context", "c", "--apply"])
             rc_status = main(["status", "--lease-pr", "7"])
+            rc_boot = BT0.main(["prepare", "--lease-pr", "7", "--po", "po-human", "--out", os.devnull, "--apply"])
         writes = [a for a in sent if "POST" in a or "PATCH" in a or "push" in a or "graphql" in a]
         # 起動条件を欠けば、どのcommandも書込みも照合先の取得（fetch・API）もせずに2で止まる
-        rows.append({"id": "CMD-integrity-gate", "ok": rc_post == rc_probe == rc_rec == rc_rep == rc_ctl == rc_status == 2
+        rows.append({"id": "CMD-integrity-gate", "ok": rc_post == rc_probe == rc_rec == rc_rep == rc_ctl == rc_status == rc_boot == 2
                      and not writes and not [a for a in sent if "fetch" in a or "api" in a]})
         G.untrusted_locations = real_ul
         # 実測command: 状態IssueがPR（または閉じている）なら、削除の試行も結果commentも行わない

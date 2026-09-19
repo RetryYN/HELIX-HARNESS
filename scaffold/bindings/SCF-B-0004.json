@@ -52,10 +52,12 @@
    "python3 scaffold/lease/leasectl.py admit|sync|status|selftest",
    "python3 scaffold/lease/leasepost.py request|response（対象PRへのcomment作成だけ）",
    "python3 scaffold/lease/leaserecover.py（POが対象を引数に固定して許可した1件だけ）",
-   "python3 scaffold/lease/leaseprobe.py（lease記録に固定した試験reviewだけ）"
+   "python3 scaffold/lease/leaseprobe.py（lease記録に固定した試験reviewだけ）",
+   "python3 scaffold/lease/leaseboot.py prepare|probe|verify（有効化の準備。状態Issue・試験PRの作成と実測だけ。mainへは押せない）",
+   "sh scaffold/lease-bootstrap/install.sh（POがrootで1回。OS環境の構築とGitHub Appの作成へ進む）"
   ],
   "forbidden": [
-   "gh pr merge、git pushの直接実行、GitHub APIへの直接書込み",
+   "gh pr merge、mainへのgit pushの直接実行、許可リストを通さないGitHub APIへの書込み",
    "squash、rebase、force push、auto-merge予約、branch protection・rulesetの変更、branch削除、Issue close、release、deploy",
    "comment・reviewの編集・削除（実測commandの試験review削除の試行を除く）",
    "承認・採否・処分・authorityの生成",
@@ -71,8 +73,11 @@
   "scaffold/lease/leasepost.py",
   "scaffold/lease/leaserecover.py",
   "scaffold/lease/leaseprobe.py",
+  "scaffold/lease/leaseboot.py",
   "scaffold/lease/leasefixtures.py",
   "scaffold/lease/cases",
+  "scaffold/lease-bootstrap/install.sh",
+  "scaffold/lease-bootstrap/appsetup.py",
   "scaffold/evidence/lease-selftest.json"
  ],
  "verification": {

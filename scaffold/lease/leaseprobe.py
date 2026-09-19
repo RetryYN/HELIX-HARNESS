@@ -15,8 +15,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 def _stray(here):
     """copyの既知でないentry（`__pycache__`のpyc、標準libraryを覆うmodule・package、拡張module）。標準libraryだけで調べる。"""
-    known = {"README.md", "cases", "lease.json", "leasecore.py", "leasectl.py", "leasefixtures.py", "leasegh.py",
-             "leasepost.py", "leaseprobe.py", "leaserecover.py"}
+    known = {"README.md", "cases", "lease.json", "leaseboot.py", "leasecore.py", "leasectl.py", "leasefixtures.py",
+             "leasegh.py", "leasepost.py", "leaseprobe.py", "leaserecover.py"}
     stray = [n for n in os.listdir(here) if n not in known]
     cd = os.path.join(here, "cases")
     stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else [])
