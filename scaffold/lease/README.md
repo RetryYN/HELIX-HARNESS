@@ -162,6 +162,8 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 - 実測commandは、lease記録の`status_issue`が開いているIssue（PRでなく、試験PRでもない）であることを確かめてから書き込む。
 - copyを書ける状態（配置作業中のroot等）で`-B`なしに起動すると`__pycache__`ができ、以後すべてのcommandが既知でないentryで止まる
   （安全側）。copyはrootで実行せず、起動の形に`-B`を含める。
+- 再bootstrapで状態Issueを差し替えた場合も、有効化前の実測結果commentは旧Issueに残るため、leaseは未有効として扱われる。
+  そのrecordも`probe.activation_results`・`probe.activation_test_reviews`・`activated_at`の付け直しを列挙して運ぶ。
 - 再bootstrapでidentity表を差し替えてAI側loginが増えた場合、新しいloginには有効化前の実測結果が無いため、leaseは未有効として扱われる。
   その再bootstrapのrecordは、新しいloginの実測結果と`probe.activation_results`・`probe.activation_test_reviews`・`activated_at`の付け直しを
   変更前後の状態として列挙して運ぶ。

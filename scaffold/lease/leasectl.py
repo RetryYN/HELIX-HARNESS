@@ -199,6 +199,10 @@ def cmd_status(a, gh=None):
     ps, pd = C.probe_status(psn) if psn else ("unconfigured", "状態Issueが未設定")
     # 有効化の値（activated_at・activation_results等）を記入した後は、executorと同じ有効化の検査も出す（POの有効化前の確認）
     activation = (C.activation_gaps(lease) + (C.activation_evidence_errors(psn) if psn else [])) if lease.get("activated_at") else None
+    pr_ = lease.get("probe") or {}
+    if activation is not None and a.lease_pr and pr_.get("activation_test_reviews") != pr_.get("test_reviews"):
+        # 有効化前（--lease-prのlease記録）は、有効化時点の試験reviewが現在の登録と同じであるはず
+        activation.append("probe.activation_test_reviewsが現在のprobe.test_reviewsと一致しない")
     print(json.dumps({"lease": {k: lease.get(k) for k in ("lease_id", "activated_at", "expires_at", "revoked_at",
                                                           "independence", "status_issue")},
                       "probe": {"status": ps, "detail": pd}, "integrity": integrity or "ok", "runner": G.runner_info(),
@@ -544,6 +548,9 @@ def run_boundary_tests():
                  # 有効化前の実測結果（有効化の証拠）は修理でも変えない
                  and not C.is_probe_repair({"lease": {}, "lease_record_before": dict(lb, probe={"test_pr": 1, "activation_results": [1]}),
                                             "lease_record_after": dict(lb, probe={"test_pr": 2, "activation_results": [2]})}, fm)
+                 # load_leaseが足す派生欄（after側はtreeから読むためrecord_committed_epochがNone）の違いでは修理を拒否しない
+                 and C.is_probe_repair({"lease": {}, "lease_record_before": dict(lb, record_committed_epoch=100.0, activated_epoch=5.0),
+                                        "lease_record_after": dict(lb, probe={"test_pr": 2}, record_committed_epoch=None, activated_epoch=5.0)}, fm)
                  # 対象の無いrecord、実測関連を実際には変えないrecordは修理でない
                  and not C.is_probe_repair({"lease": {}, "lease_record_before": lb, "lease_record_after": dict(lb)}, {"approved_targets": []})
                  and not C.is_probe_repair({"lease": {}, "lease_record_before": lb, "lease_record_after": dict(lb)}, fm)

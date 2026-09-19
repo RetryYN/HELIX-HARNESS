@@ -25,6 +25,7 @@ SHA64 = re.compile(r"^[0-9a-f]{64}$")
 # AI側GitHub Appのinstallation権限の許可集合（packet: `write`ちょうどに相当。administration・repository rulesを含まない）
 APP_PERMISSIONS_ALLOWED = {"contents": "write", "pull_requests": "write", "issues": "write", "metadata": "read",
                            "administration": "read"}   # administrationの読取りは保護設定・rulesetの再取得に要る
+DERIVED_LEASE_KEYS = {"expires_epoch", "activated_epoch", "record_committed_epoch"}   # leasegh.load_leaseが足す欄
 PROBE_WINDOW_DAYS = 30        # packet「削除への対処」(i): 30日以内（lease記録では変えない）
 MAX_UNAUDITED_MERGES = 10     # packet「監査」: 10件（lease記録では変えない）
 SUSPEND_CAUSES = {
@@ -587,7 +588,8 @@ def is_probe_repair(snapshot, record_fm):
             before, after = snapshot.get("lease_record_before"), snapshot.get("lease_record_after")
             if not isinstance(before, dict) or not isinstance(after, dict):
                 return False
-            keys = set(before) | set(after)
+            # 読込み時に足す派生欄（時刻の換算、lease記録がmainへ入った時刻）はrecordの内容でないため比べない
+            keys = (set(before) | set(after)) - DERIVED_LEASE_KEYS
             if any(before.get(k) != after.get(k) for k in keys if k != "probe"):
                 return False
             # 有効化前の実測結果と有効化時点の試験review（有効化の証拠）は実測の修理でも変えない
