@@ -106,9 +106,9 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
     custom roleのどれでもない。custom roleには非adminでもruleset編集権限を付けられるため）。GitHub Appを使う場合は、
     installation権限にadministrationとrepository rulesの書込みを含まない。
   - repositoryのすべてのrulesetのbypass対象は空である（actorの種別を問わず、どの主体もrulesetをbypassしない）。
-  - 上の2条件により、AI側identityからは保護設定を変えることも迂回することもできない。
+  - 実効roleとbypass対象についての上の2条件により、AI側identityからは保護設定を変えることも迂回することもできない。
   - POのidentityその他admin権限を持つidentityの資格情報は、作成側・reviewer・executorのどのcontextからも取得・使用できない。
-  - 上の2条件を満たす間に限り、保護設定を変えない限り改変できないというmerge記録の性質は、AI側のどのroleからも崩せない。
+  - 実効role、bypass対象、admin資格情報の隔離の3条件を満たす間に限り、保護設定を変えない限り改変できないというmerge記録の性質は、AI側のどのroleからも崩せない。
     adminその他ruleset・保護設定を変更できる権限を持つAI以外の主体（POを含む）からは崩せる。
   - 各identityの資格情報は、他roleのcontextから読めない場所に置く（作成側の実行環境からreviewer・executorの資格情報に触れられない）。
   - 「用意できた」とは、identity表がmainのlease記録にあり、各roleの資格情報の分離、AI側identityの実効roleが`write`ちょうどであること、すべてのrulesetのbypass対象が空であること、admin資格情報がAI側contextから隔離されていることをPOが確認した時点を指す。それまでleaseを有効にしない。
