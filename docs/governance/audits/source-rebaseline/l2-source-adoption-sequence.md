@@ -45,8 +45,8 @@ S1–S4の採否が進んでも、正式なL3、設計、実装、CIはすぐに
 
 | Decision unit | source系列 | 対象 | 現在の接続 | 採否で固定する意味 |
 |---|---|---|---|---|
-| L2D-S0-01 | [`scaffold-binding`](../../candidates/scaffold-binding-requirements.md) | HARNESS／HELIX-OS | **approve**（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-01`）・L2／L11本文未接続 | 仮の物の使用条件、保持する役割と義務、仮の検証と正式な検証の分離、置換時の無損失確認、撤去。HARNESSの規範とOSの登録・隔離実行・lifecycleへのsplit案 |
-| L2D-S0-02 | [`wbs-ledger`](../../candidates/wbs-ledger-requirements.md) | HELIX-OS／HARNESS | **approve**（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-02`）・L2／L11本文未接続 | 要求からの作業分解を管理層の台帳として所有する条件。管理＝登録・整合・統制、推進＝分解と開発方式選定、検収＝独立確認、HARNESS＝作業単位の形の規範。`L2D-S2-02`は関連系列 |
+| L2D-S0-01 | [`scaffold-binding`](../../candidates/scaffold-binding-requirements.md) | HARNESS／HELIX-OS | **approve**（正規語彙`split`。[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-01`）・L2／L11本文未接続 | 仮の物の使用条件、保持する役割と義務、仮の検証と正式な検証の分離、置換時の無損失確認、撤去。HARNESSの規範とOSの登録・隔離実行・lifecycleへのsplit案 |
+| L2D-S0-02 | [`wbs-ledger`](../../candidates/wbs-ledger-requirements.md) | HELIX-OS／HARNESS | **approve**（正規語彙`split`。[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、`HDEC-L2D-S0-02`）・L2／L11本文未接続 | 要求からの作業分解を管理層の台帳として所有する条件。管理＝登録・整合・統制、推進＝分解と開発方式選定、検収＝独立確認、HARNESS＝作業単位の形の規範。`L2D-S2-02`は関連系列 |
 
 S0の採否はScaffoldの正式なschema、runtime、CI、adapterを実装・起動する許可ではない。候補の内容を先に確かめる仮組みは
 `scaffold/`名前空間に置き、自身をScaffold Binding `SCF-B-0001`として候補のrevisionへ束縛している。これは仮の物であり、

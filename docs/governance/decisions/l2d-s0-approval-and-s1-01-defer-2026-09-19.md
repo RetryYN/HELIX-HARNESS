@@ -22,7 +22,7 @@ POは2026-09-19 21:33:37（Asia/Tokyo。UTCで`2026-09-19T12:33:37Z`）の要求
 
 POの指示3「それぞれexact revision付きdecision record」は、判断ごとに別のDecision IDと対象SHA-256を持たせることと解釈し、
 3件を1つのrecordの中で別々のDecision IDとして記録する。approveとdeferが混在するため、frontmatterの`decision_status`は
-`recorded`とし、各判断の結果は下表の「結果」列を正とする。
+`recorded`とし、各判断の結果は下表の「人間の選択」列と「正規の判断語彙」列を正とする。
 
 この指示を、下記3文書のexact bytesに対する判断として記録する。会話要約、GitHub状態、PR merge、CI結果、
 外部監査の評価から判断を推定したものではない。
@@ -33,16 +33,37 @@ POの指示は判断単位を名前で指しており、digestを指定してい
 
 ## 判断対象
 
-| Decision ID | 判断単位 | 対象 | 判断したSHA-256 | 結果 |
-|---|---|---|---|---|
-| `HDEC-L2D-S0-01` | `L2D-S0-01 scaffold-binding` | `docs/governance/candidates/scaffold-binding-requirements.md` | `c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb` | approve |
-| `HDEC-L2D-S0-02` | `L2D-S0-02 wbs-ledger` | `docs/governance/candidates/wbs-ledger-requirements.md` | `34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6` | approve |
-| `HDEC-L2D-S1-01-DEFER-01` | `L2D-S1-01 authority-vocabulary` | `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md` | `f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46` | defer |
+| Decision ID | 判断単位 | 対象 | 判断したSHA-256 | 人間の選択 | 正規の判断語彙 |
+|---|---|---|---|---|---|
+| `HDEC-L2D-S0-01` | `L2D-S0-01 scaffold-binding` | `docs/governance/candidates/scaffold-binding-requirements.md` | `c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb` | approve | `split` |
+| `HDEC-L2D-S0-02` | `L2D-S0-02 wbs-ledger` | `docs/governance/candidates/wbs-ledger-requirements.md` | `34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6` | approve | `split` |
+| `HDEC-L2D-S1-01-DEFER-01` | `L2D-S1-01 authority-vocabulary` | `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md` | `f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46` | defer | `defer` |
 
 3件を一つの曖昧なrevisionへまとめず、各Decision IDとfile SHA-256を維持する。[対象別L2 source採否順序](../audits/source-rebaseline/l2-source-adoption-sequence.md)は、
 `L2D-S0-01`と`L2D-S1-01`が互いの判断を前提にしないこと、`wbs-ledger`が`L2D-S0-01`の判断を前提にしないこと
 （ただしそのパイロットの仮組み手順だけが`L2D-S0-01`の承認を待つ）を定めている。本recordの3判断は、採否判断として
 この関係に従う。`L2D-S0-02`と`L2D-S1-01`の関係は同文書に定めが無く、本recordも定めない。
+
+### 正規の判断語彙への写像
+
+[対象別L2 source採否順序](../audits/source-rebaseline/l2-source-adoption-sequence.md)は、各decisionに
+`adopt`、`amend`、`split`、`defer`、`reject`のいずれかの判断を持たせる。POの原語は「approve」であり、これは
+「人間の選択」列にそのまま残す。正規語彙への写像は次の根拠による。
+
+- `L2D-S0-01`：同sequence文書は本unitの採否で固定する意味を「HARNESSの規範とOSの登録・隔離実行・lifecycleへの
+  split案」としている。候補本文も要求を`SCF-HARNESS-001`〜`006`と`SCF-OS-001`〜`007`に分けて持つ。承認したのは
+  このsplit案であるため`split`とする。
+- `L2D-S0-02`：候補本文は要求をHELIX-OSの管理・推進・検収（`WBS-OS-001`〜`008`）とHARNESSの規範
+  （`WBS-HARNESS-001`）に分けて持ち、責務境界表でも両者を分けている。承認したのは製品をまたぐこの分割であるため
+  `split`とする。
+- `L2D-S1-01`：POの原語「defer」がそのまま正規語彙である。
+
+`adopt`は候補をそのまま採る判断であり、候補がHARNESSとHELIX-OSへの分割を内容に持つことを語彙から読めなくする。
+そのため採らない。この写像はPOの原語から導いたものであり、POが別の語彙を意図していた場合は訂正する。
+
+`split`が成立させるのは、候補の意味をHARNESSとHELIX-OSへ分けて採ることである。下記「未決として残したもの」の
+事項（`development-ticket-derivation`との統合可否、システム群内の層の置き方、`WBS-HARNESS-001`の親となるHARNESS L1の明示）と、対象別L2／L11本文への適用は
+成立していない。意味の採否は閉じたが、L2への適用は閉じていない。
 
 ## exact revision再確認
 
@@ -129,6 +150,24 @@ packet v2は「人間判断」節で、判断recordにdecision unit、選択、a
 | HARNESS L11比較対象 | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b` |
 | OS L11比較対象 | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19` |
 
+## 採否sequenceが各decisionに求める記録項目
+
+同sequence文書は、各decisionが次を揃えるとしている。S0の2判断について、該当箇所または値を示す。
+
+| 項目 | `HDEC-L2D-S0-01` scaffold-binding | `HDEC-L2D-S0-02` wbs-ledger |
+|---|---|---|
+| source系列とexact revision、authority状態 | 候補`c7e47993…`。本recordのmain入りで承認が発効する（`authority_effect`） | 候補`34711045…`。同左 |
+| 親Concept | Concept v4.1（`HDEC-CONCEPT-4.1`、`181b0c55…`） | 同左 |
+| 対象別L1 | HARNESS L1（`HDEC-HARNESS-L1-01`、`a49da594…`）、HELIX-OS L1（`HDEC-HELIXOS-L1-01`、`0f7f30d9…`） | 候補の`derived_from`が挙げるのはHELIX-OS L1（`HDEC-HELIXOS-L1-01`、`0f7f30d9…`）だけである。HARNESS向けの`WBS-HARNESS-001`を持つが、HARNESS L1を親として明示していない（未解決事項へ） |
+| 対象別L2 ID | 接続先候補：HARNESS-L2-003／004／005、HELIXOS-L2-002／007／008（未適用） | 接続先候補：HELIXOS-L2-001／010／011／013、HARNESS-L2-001／002／003（未適用） |
+| 保持する利用価値・制約・negative case | 上記「承認した意味」。negative caseを含むL11受入候補16項目（うち15項目が拒否・検出を確かめる反例） | 上記「承認した意味」。negative caseを含むL11受入候補10項目（うち7項目が拒否・非生成を確かめる反例） |
+| 変更・棄却する旧owner、旧identity、旧実現手段と理由 | 該当なし。旧要求母集団の外に追加した新規系列であり、旧要求の件数、owner、identityを変更しない | 該当なし（同左）。入力に挙げる規則atom 336件（副を含め686件）はcarryもretireもしない |
+| prototypeまたは非UI適用性、L11利用結果 | 非UI。L11受入候補は全件未実行。仮組み`SCF-B-0001`はscaffoldであり、その検査合格をL11の利用結果にしない | 非UI。L11受入候補は全件未実行 |
+| 未解決事項 | システム群内の層の置き方（下記） | `development-ticket-derivation`との統合可否（下記）。`WBS-HARNESS-001`の親となるHARNESS L1の明示 |
+| 判断、actor、scope、revision | `split`、PO、候補本文の全要求とL11受入候補、`c7e47993…` | `split`、PO、候補本文の全要求とL11受入候補、`34711045…` |
+
+`HDEC-L2D-S1-01-DEFER-01`の記録項目は、packet v2が求める形式で上記「packet v2が判断recordに求める記録項目」に置いた。
+
 ## 採否時に判断するとされていたが、本recordで決めていないもの
 
 両候補の本文は、次の2点を採否の時点かL2判断で決めるとしている。POの指示はこれらに触れていないため、
@@ -141,6 +180,13 @@ packet v2は「人間判断」節で、判断recordにdecision unit、選択、a
 2. **`scaffold-binding`の責務を、POが定義したシステム群のどの層に置くか。** 候補本文は、HARNESS側を開発方式の枠と
    コアにまたがる工程contractへ、OS側を管理と検収へ接続する候補とし、「この層の置き方は未決であり、L2判断で確定する」
    としている。本recordが承認したのはHARNESSとHELIX-OSの間のsplitであり、各製品内の層の置き方ではない。
+
+加えて、本recordの作成時に次の点を確認した。これは候補本文が採否時に決めるとしていた事項ではないが、L2への適用前に
+確定を要する。
+
+3. **`WBS-HARNESS-001`の親となるHARNESS L1。** `wbs-ledger`候補の`derived_from`はHELIX-OS L1だけを挙げ、HARNESS L1を
+   挙げていない。一方で候補はHARNESS向けの要求`WBS-HARNESS-001`（作業単位の形の規範）を持つ。L2／L11適用PRは、
+   この要求をHARNESS L1のどの企画要求から導くかを示す。示せない場合はAIの判断で親を補わず、人間判断を要求する。
 
 ## この判断で成立しないもの
 
