@@ -24,3 +24,4 @@ commit、file SHA-256、remote revision、read-afterはappend-onlyのprojection 
 | 8 | [FT-OS-TICKETISSUER-001](FT-OS-TICKETISSUER-001.md) | HELIX-OS推進によるtyped ticket／workflow生成・Issue projection | proposed_upstream_waiting | [#1805](https://github.com/RetryYN/HELIX-HARNESS/issues/1805) |
 | 9 | [FT-OS-GITHUBSYNC-001](FT-OS-GITHUBSYNC-001.md) | HELIX-OS GitHub一方向projection・read-after同期adapter | proposed_upstream_waiting | [#1812](https://github.com/RetryYN/HELIX-HARNESS/issues/1812) |
 | 10 | [FT-OS-REQGUARD-001](FT-OS-REQGUARD-001.md) | HELIX-OS 要求登録bot・監査crawler・admission CI | proposed_upstream_waiting | [#1837](https://github.com/RetryYN/HELIX-HARNESS/issues/1837) |
+| 11 | [FT-OS-REVIEWHANDOFF-001](FT-OS-REVIEWHANDOFF-001.md) | 共通ルール参照とClaude／Codex review引継ぎ | proposed_upstream_waiting（仮組みは別identity SCF-B-0003） | 親 [#1864](https://github.com/RetryYN/HELIX-HARNESS/issues/1864)。子Issueは投影receiptへ記録 |

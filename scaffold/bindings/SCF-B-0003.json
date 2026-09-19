@@ -1,0 +1,104 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0003",
+  "kind": "scaffold",
+  "title": "共通ルール参照とClaude／Codex review引継ぎ",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS 推進（依頼contextと応答対応の準備）",
+  "state": "active",
+  "reason": "正式なWorker contextとreview配送は未成立。先に同じ規則revisionと対象SHAを参照する仮のパケットが必要",
+  "upstream": [
+    {
+      "path": "docs/governance/candidates/scaffold-binding-requirements.md",
+      "sha256": "c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb"
+    },
+    {
+      "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+      "sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "7feda9e40b813081608ee5d776861f9f7f24638e9b2a3e4b472aba781b29cb25"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
+      "sha256": "583a089f4f327ad48fc854391ecb7b6c59fc8351517e9d0f50bb48826bbd4659"
+    }
+  ],
+  "role": "共通の規則参照一覧とreview依頼・応答のrevision対応を静的に検査する",
+  "obligations": [
+    "現行規則と候補参照を種別付きで区別する",
+    "base／content full SHA、request identity、payload digestを照合する",
+    "未確認範囲を隠さず、未知の承認・完了fieldを拒否する",
+    "配送・本人性・実review・merge admissionを成立させない"
+  ],
+  "connections": {
+    "consumers": [
+      "Claude／Codex作成側とreview側",
+      "AIレーン引継ぎ #1864、推進 #1859、検収 #1860",
+      "差し替え台帳 #1866"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "読み取り専用Git",
+      "SCF-B-0002の仮ルール集index"
+    ],
+    "boundary": "toolはGitの固定revisionを読み標準出力へ返すだけ。保存は利用者がscaffold内で行う"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/review-handoff/packet.py build",
+      "python3 -B scaffold/review-handoff/packet.py check",
+      "python3 -B scaffold/review-handoff/selftest.py"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*の読込・実行",
+      "CLI／API／IDE／Workerの起動、外部配送、merge、Issue close",
+      "AGENTS／CLAUDE／settings／承認文書／DBへの書込",
+      "要求採否・承認・工程完了の生成"
+    ]
+  },
+  "artifacts": [
+    "scaffold/review-handoff"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/review-handoff/selftest.py",
+      "packet.pyの外部作用・書込なしの静的確認"
+    ],
+    "negative_cases": [
+      "payload改変",
+      "参照欠落",
+      "候補参照の規則化",
+      "stale base／content",
+      "同一runtime",
+      "未知field・authority変更・起動route",
+      "別request／payload／SHA／reviewer応答",
+      "未確認をno_findingsにする",
+      "根拠なしのfinding"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIX-OSの正式なルール参照・Worker context・review配送／応答照合。対象別L2／L11とL3／L10から導出",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-20",
+  "updated": "2026-09-20"
+}

@@ -15,6 +15,9 @@ replacement_issue: GitHub Issue #1866（仮組み→本実装差し替え台帳�
 
 ## 構成
 
+追加の仮組み: [共通ルール参照とClaude／Codex review引継ぎ](review-handoff/README.md)（SCF-B-0003）。
+同じrevisionの参照一覧・依頼・応答を静的に照合する。自動起動・配送・mergeは行わない。
+
 | path | 役割 | 書き込むもの |
 |---|---|---|
 | `bindings/*.json` | Scaffold Bindingの記録。1 file 1 binding | 人が編集する。`scfctl`は`retire`以外で書き込まない |
