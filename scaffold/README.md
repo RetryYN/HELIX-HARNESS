@@ -55,7 +55,9 @@ python3 scaffold/tools/scfctl.py selftest [--record]  # checks/cases を実行�
 ## 差し替え忘れを防ぐ仕組み
 
 1. 全bindingは`replacement.issue`（差し替え台帳Issueの番号）を必須にする。無いものは`validate`で不合格。
-2. `residuals`が、置換未完・撤去漏れ・Issue未記載を一覧する。PRで`scaffold/`または正式実装に触れた時は`validate`／`stale`／`residuals`／`selftest`の出力をPR本文に貼る（PR templateの項目）。上流候補が改訂されれば`stale`がそれを出す。
+2. `residuals`が、置換未完・撤去漏れ・Issue未記載を一覧する。PRで`scaffold/`または正式実装に触れた時、およびbindingが`upstream`に束縛している文書を変更した時は、`validate`／`stale`／`residuals`／`selftest`の出力をPR本文に貼る（PR templateの項目）。上流候補が改訂されれば`stale`がそれを出す。`scaffold/`に触れないPRでも上流の変更でstaleは生じるため、上流を変更したPRの側で検出する。
+
+   staleを解消するときは、digestを書き換える前に、上流の差分がbindingの`role`と`obligations`が依拠する記述を変えたかを確認する。変えていなければ`upstream`のdigestを現行へ再束縛する。変えていれば、bindingの役割・義務を見直してから再束縛する。digestだけを機械的に追随させない。
 3. 正式な物が入ったPRは、対応するbindingを`replacing`にし、`check-replacement`の合格を証拠として付け、その後`retire`する。
    この順序を飛ばして`retired`にしたbindingは`validate`で不合格。
 

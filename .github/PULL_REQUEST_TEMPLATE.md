@@ -50,7 +50,7 @@
 - 未実行の確認と理由:
 - GitHub Claude review comment:
 - 未解消Blocker／Major:
-- `scaffold/`または正式実装に触れた場合、`scfctl validate`／`stale`／`residuals`／`selftest`の出力（差し替え忘れ防止）:
+- `scaffold/`または正式実装に触れた場合、あるいはScaffold Bindingが`upstream`として束縛している文書を変更した場合、`scfctl validate`／`stale`／`residuals`／`selftest`の出力（差し替え忘れ・束縛切れ防止。上流だけを変更したPRでも`stale`は出る）:
 
 旧CI、旧test、旧runtimeの結果を新世代の合格根拠にしない。
 
