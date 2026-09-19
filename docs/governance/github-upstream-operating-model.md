@@ -131,7 +131,7 @@ PR classが未選択または複数指定のPRはReadyにしない。
 
 1. review request、最後に有効なdelivery receipt、review responseが同じrequest identityとexact base／content full SHAを示し、payload digestが一致する。誤ったreceiptは削除せず、`correction_of`付きの後続receiptで訂正する。
 2. current content HEADに未解消のBlocker／Major／Minorが0件である。
-3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。
+3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。あわせて、baseを更新した状態で`scfctl stale`が`stale=0`を返す（Scaffold Bindingの上流はPRのhead時点では一致していても、baseの進行や積んだPRのmergeで変わりうる）。結果はreview記録に残す。
 4. レビュー対応側に対象PRのmerge、post-merge read-after、対応Issue closeを行う通路が明示許可されている。
 5. merge commit方式で統合し、第1親、第2親、content HEADの祖先性をread-afterする。期待と一致しない場合はIssueをcloseせず作成側へ返す。
 
