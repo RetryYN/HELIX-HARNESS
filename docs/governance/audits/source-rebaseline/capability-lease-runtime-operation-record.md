@@ -31,7 +31,7 @@ rollback、read-after）を1か所に置く。本PRは有効化の欄を埋め�
 | 3 merge admission条件4をleaseで満たし、PR単位の許可を廃止。例外は非常経路と再bootstrap | 運用モデル「governance／operation_change PRのmerge admission」条件4 |
 | 4 `operation_change`の必須入力「HELIX-OS要求」 | 同節冒頭、本記録 |
 | 5 lease対象PRのmergeとread-afterはexecutor、Issue closeは従来どおり | 運用モデル「作成側とレビュー対応側の責務」 |
-| 6 投稿command・executor commandだけを許可し、例外は非常用command・実測command | AGENTS.md 16行 |
+| 6 投稿command・executor commandだけを許可し、例外は非常用command・実測command（有効化の間だけ、対象PRを引数に固定した準備command） | AGENTS.md 16行 |
 | 7 レビュー対応側の定義から人を除き、人間はmergeしない | AGENTS.md 17行、運用モデル「作成側とレビュー対応側の責務」 |
 | 8 PR class表へ`decision_record`を追加 | 運用モデル「PR classとscope」、PR template |
 

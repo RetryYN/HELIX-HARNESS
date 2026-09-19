@@ -101,13 +101,13 @@ def cmd_create(a):
 
         def do_GET(self):
             u = urllib.parse.urlparse(self.path)
-            if u.path == "/":
+            if u.path == "/" + state["nonce"]:
                 owner = a.repo.split("/")[0]
                 action = "https://github.com/organizations/%s/settings/apps/new?state=%s" % (owner, state["nonce"]) if a.org \
                     else "https://github.com/settings/apps/new?state=%s" % state["nonce"]
-                page = PAGE % (action, json.dumps(manifest(a.repo, "http://127.0.0.1:%d/done" % port)).replace("'", "&#39;"))
+                page = PAGE % (action, json.dumps(manifest(a.repo, "http://127.0.0.1:%d/done/%s" % (port, state["nonce"]))).replace("'", "&#39;"))
                 self.respond(page)
-            elif u.path == "/done":
+            elif u.path == "/done/" + state["nonce"]:
                 q = urllib.parse.parse_qs(u.query)
                 if q.get("state", [None])[0] != state["nonce"]:   # 同じhostの他processからの横取り・妨害を受け取らない
                     self.respond(DONE % ("stateが一致しません", "この戻りは捨てます。最初のURLからやり直してください。"), 400)
@@ -127,7 +127,8 @@ def cmd_create(a):
 
     srv = http.server.HTTPServer(("127.0.0.1", port), H)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
-    print("browserで次を開き、[GitHub Appを作成する]を押してください: http://127.0.0.1:%d/" % port, flush=True)
+    # URLのpathは推測できない値にする（同じhostの他processが受け口へ先に投げるのを防ぐ）
+    print("browserで次を開き、[GitHub Appを作成する]を押してください: http://127.0.0.1:%d/%s" % (port, state["nonce"]), flush=True)
     deadline = time.time() + a.timeout
     while state["code"] is None and time.time() < deadline:
         time.sleep(0.5)

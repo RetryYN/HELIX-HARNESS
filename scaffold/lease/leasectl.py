@@ -203,7 +203,11 @@ def cmd_status(a, gh=None):
         # 有効化前（--lease-prのlease記録）は、有効化時点の試験reviewが現在の登録と同じであるはず
         activation.append("probe.activation_test_reviewsが現在のprobe.test_reviewsと一致しない")
     print(json.dumps({"lease": {k: lease.get(k) for k in ("lease_id", "activated_at", "expires_at", "revoked_at",
-                                                          "independence", "status_issue")},
+                                                          "independence", "status_issue", "origin_main")},
+                      "identity": lease.get("identity"), "probe_registered": {
+                          k: (lease.get("probe") or {}).get(k) for k in
+                          ("test_pr", "test_reviews", "activation_results", "activation_test_reviews")},
+                      "baseline_sha256": C.sha256_text(json.dumps(lease.get("baseline"), ensure_ascii=False, sort_keys=True)),
                       "probe": {"status": ps, "detail": pd}, "integrity": integrity or "ok", "runner": G.runner_info(),
                       "activation": "not_set" if activation is None else (activation or "ok"),
                       "state_area": G.read_state()}, ensure_ascii=False, indent=1))
@@ -774,6 +778,7 @@ def run_boundary_tests():
     sh = open(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "install.sh"), encoding="utf-8").read()
     wrap = sh.split("<<'WRAP'")[1].split("WRAP\n")[0]
     sud = sh.split("/etc/sudoers.d/helix-lease <<EOF")[1].split("EOF\n")[0]
+    sud_b = sh.split("/etc/sudoers.d/helix-lease-bootstrap <<EOF")[1].split("EOF\n")[0]
     appsetup_lines = [l for l in wrap.splitlines() if "appsetup" in l and not l.strip().startswith("#")]
     rows.append({"id": "BT-wrapper-scope",
                  # 呼出し元が選べるcommandにappsetupが無く、appsetupはtokenの発行にだけ使われる
@@ -783,7 +788,11 @@ def run_boundary_tests():
                  and "exec /usr/bin/env -i" in wrap
                  # sudoersはcommand別で、非常用commandは既定で許可しない（POが対象を引数に固定した行を足す）
                  and sorted(l.split("helix-lease-run ")[1].split(" ")[0] for l in sud.splitlines()
-                            if "NOPASSWD:" in l and not l.strip().startswith("#")) == ["leaseboot", "leasectl", "leasepost", "leaseprobe"]
+                            if "NOPASSWD:" in l and not l.strip().startswith("#")) == ["leasectl", "leasepost", "leaseprobe"]
+                 # 準備commandは別dropinで、対象PRを引数に固定する（有効化が済めば外す）
+                 and all("--lease-pr $PR" in l for l in sud_b.splitlines() if "NOPASSWD:" in l and not l.strip().startswith("#"))
+                 and sorted(l.split("helix-lease-run ")[1].split(" ")[1] for l in sud_b.splitlines()
+                            if "NOPASSWD:" in l and not l.strip().startswith("#")) == ["prepare", "probe", "verify"]
                  and "appsetup" not in sud.replace("# ", "") and "ALL=(ALL)" not in sud and "env_reset" in sud
                  and "self" not in wrap.lower()})
     # 「未検証」の実測は、値が揃ったときだけ成立する（取得できない・期待と違う場合は不成立）

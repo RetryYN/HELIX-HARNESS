@@ -1,7 +1,7 @@
 #!/bin/sh
 # install.sh — Capability Leaseの実行環境をrootで1回だけ組む（POが越えるtrust boundaryのうちOS側の1回）。
 #
-#   sudo sh install.sh --sha <40桁のcommit> --repo OWNER/NAME [--ai-user NAME] [--exec-user NAME] [--org]
+#   sudo sh install.sh --sha <40桁のcommit> --repo OWNER/NAME --pr <PR番号> [--ai-user NAME] [--exec-user NAME] [--org]
 #
 # 実行するinstall.shは--shaの版と同じbytesでなければならない（自分で照合し、違えば止まる）。
 # --org は、Appを組織のsettingsで作る場合に付ける。repositoryが公開されていることを前提にする（cloneに資格情報を使わない）。
@@ -15,11 +15,12 @@
 # root以外では動かない。失敗したら途中で止まる。
 set -eu
 
-SHA=""; REPO=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="/opt/helix-lease"; ORG=""
+SHA=""; REPO=""; PR=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="/opt/helix-lease"; ORG=""
 while [ $# -gt 0 ]; do
   case "$1" in
     --sha) SHA="$2"; shift 2;;
     --repo) REPO="$2"; shift 2;;
+    --pr) PR="$2"; shift 2;;
     --ai-user) AI_USER="$2"; shift 2;;
     --exec-user) EXEC_USER="$2"; shift 2;;
     --org) ORG="--org"; shift;;
@@ -30,11 +31,10 @@ done
 echo "$SHA" | grep -Eq '^[0-9a-f]{40}$' || { echo "--sha は40桁のcommitで指定してください" >&2; exit 2; }
 echo "$REPO" | grep -Eq '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' || { echo "--repo は OWNER/NAME で指定してください" >&2; exit 2; }
 [ -n "$AI_USER" ] || { echo "--ai-user を指定してください（AI側contextのOS user）" >&2; exit 2; }
+echo "$PR" | grep -Eq '^[0-9]+$' || { echo "--pr は有効化を運ぶPRの番号で指定してください" >&2; exit 2; }
 [ "$AI_USER" != "$EXEC_USER" ] || { echo "AI側userとexecutor userは別にしてください" >&2; exit 2; }
 id "$AI_USER" >/dev/null 2>&1 || { echo "AI側user $AI_USER が居ません" >&2; exit 2; }
-
-id "$EXEC_USER" >/dev/null 2>&1 || useradd --system --create-home --home-dir "/var/lib/$EXEC_USER" --shell /usr/sbin/nologin "$EXEC_USER"
-chmod 0750 "$(getent passwd "$EXEC_USER" | cut -d: -f6)"
+[ "$(id -u "$EXEC_USER" 2>/dev/null || echo 999)" != "0" ] || { echo "executor userをrootにはできません" >&2; exit 2; }
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
@@ -45,6 +45,12 @@ rm -rf "$DEST.new"
 mkdir -p "$DEST.new"
 git -C "$TMP/repo" -c core.attributesFile=/dev/null archive --format=tar "$SHA" | tar -x -C "$DEST.new"
 [ -f "$DEST.new/scaffold/lease/leasectl.py" ] || { echo "取り出したtreeにscaffold/leaseがありません" >&2; exit 2; }
+# --shaが、指定したPRの現在のheadであること（資格情報なしの公開APIで確かめる。任意のcommitを入れさせない）
+PRINFO="$(curl -fsSL -H 'Accept: application/vnd.github+json' "https://api.github.com/repos/$REPO/pulls/$PR" \
+  | /usr/bin/python3 -I -c 'import json,sys; d=json.load(sys.stdin); print(d["head"]["sha"], d["state"], d["base"]["ref"])')"
+set -- $PRINFO
+[ "$1" = "$SHA" ] || { echo "拒否: --sha が PR #$PR の現在のhead（$1）と一致しません" >&2; exit 2; }
+[ "$2" = "open" ] && [ "$3" = "main" ] || { echo "拒否: PR #$PR がopenでmainを対象にしていません（$2 $3）" >&2; exit 2; }
 # 実行中のこのscript自身が、--shaの版と同じbytesであること（AI側の作業treeの書換えをrootで走らせない）
 SELF="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 if ! cmp -s "$SELF" "$DEST.new/scaffold/lease-bootstrap/install.sh"; then
@@ -53,6 +59,13 @@ if ! cmp -s "$SELF" "$DEST.new/scaffold/lease-bootstrap/install.sh"; then
   echo "      （そのSHA-256: $(sha256sum "$DEST.new/scaffold/lease-bootstrap/install.sh" | cut -d" " -f1)）" >&2
   exit 2
 fi
+# 置くtreeの中身をPOが突き合わせられるように、commit・treeとcommand群のdigestを出す
+echo "PR #$PR head: $SHA"
+echo "tree: $(git -C "$TMP/repo" rev-parse "$SHA^{tree}")"
+echo "scaffold/lease のdigest:"
+(cd "$DEST.new" && find scaffold/lease scaffold/lease-bootstrap -type f | sort | xargs sha256sum | sed "s/^/  /")
+id "$EXEC_USER" >/dev/null 2>&1 || useradd --system --create-home --home-dir "/var/lib/$EXEC_USER" --shell /usr/sbin/nologin "$EXEC_USER"
+chmod 0750 "$(getent passwd "$EXEC_USER" | cut -d: -f6)"
 if [ -e "$DEST" ]; then rm -rf "$DEST.old"; mv "$DEST" "$DEST.old"; fi
 mv "$DEST.new" "$DEST"
 chown -R root:root "$DEST"
@@ -86,10 +99,18 @@ Defaults:$AI_USER env_reset
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leasectl *
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leasepost *
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseprobe *
-$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot *
 EOF
 chmod 0440 /etc/sudoers.d/helix-lease
 visudo -cf /etc/sudoers.d/helix-lease >/dev/null
+
+cat > /etc/sudoers.d/helix-lease-bootstrap <<EOF
+# 有効化の準備の間だけの許可。対象PRを引数に固定する。有効化が済んだらこのfileを消す（commandも有効化後は動かない）。
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot prepare --lease-pr $PR *
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot probe --lease-pr $PR *
+$AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot verify --lease-pr $PR
+EOF
+chmod 0440 /etc/sudoers.d/helix-lease-bootstrap
+visudo -cf /etc/sudoers.d/helix-lease-bootstrap >/dev/null
 
 echo "置き場所: $DEST（root所有）、wrapper: /usr/local/sbin/helix-lease-run、sudoers: /etc/sudoers.d/helix-lease"
 echo "AI側userは次の形だけで実行できます: sudo -u $EXEC_USER /usr/local/sbin/helix-lease-run <command> ..."
