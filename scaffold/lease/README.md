@@ -100,9 +100,9 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
    executor command・非常用command・実測command・投稿commandは、rootが所有しgroup・otherが書けない場所（祖先directoryを含む。例: `/opt/helix-lease/`）に
    置いたcopy（下記）から実行し、POの実行環境の許可はそのpathのcommandを`/usr/bin/python3 -I`で起動する形に限る（packet 二重境界。
    AI側の作業treeのcommandを許可しない）。copyは`git archive`またはfresh cloneだけから作る（作業treeからcopyしない。`__pycache__`等の
-   既知でないentryがあれば、command群をimportする前に拒否する）。有効化前（手順5の実測・確認）は本PRの最終exact HEADから、
+   既知でないentryがあれば、command群をimportする前に拒否する）。有効化前（手順5の実測・確認）は実測時の本PRのhead（`scaffold/lease/`の`.py`が最終headと同じもの）から、
    有効化後はmainから作る（照合先がそれぞれ`--lease-pr`のPRのheadとorigin/mainであるため）。`gh`は`/usr/bin`に置く。
-   executor・非常用commandは、AI側contextと別のOS userとして動かす（POが所有するwrapper、例: そのcommandだけを許すsudoersの規則で、
+   executor・非常用commandは、AI側contextと別のOS userとして動かす（POが所有するwrapper、例: そのcommandだけを`/usr/bin/python3 -I -B`で許すsudoersの規則で、
    installation tokenの`GH_TOKEN`だけを渡した空の環境）。同じOS userでは、AI側contextが動作中のexecutor processへattachでき（ptrace）、
    上の起動条件では防げないため、POはこれを有効化の前に確かめる。lease mergeで`scaffold/lease/`が変わった後は、
    POがそのcopyをmainの版へ更新するまで、executorはbytesの不一致で止まる（安全側）。
@@ -111,9 +111,10 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 4. 状態Issueを1件作り`status_issue`へ、draftの試験PRを1件作り`probe.test_pr`へ記入する。POがその試験PRへ、本文に`decision:`行を
    書かない試験reviewを`APPROVED`と`CHANGES_REQUESTED`で1件ずつ提出し、そのIDを`probe.test_reviews`へ記入する。
 5. 1〜4を本PRへpushした後、AI側の各loginで`leaseprobe.py --lease-pr <本PR> --login L --review-id ID --apply`を両試験reviewに実行する。
-   executor userで実行した`leasectl.py status --lease-pr <本PR>`の`integrity`が`ok`、`runner`がAI側contextと別のOS user、`probe.status`が`ok`（全login×2 reviewが30日以内に`denied`または`unavailable`）であることを
-   確かめ、結果commentのIDを`probe.activation_results`へ記入する（executorは、これらのcommentが状態Issueに編集されずに現存し、
-   AI側の全login×2 reviewを`denied`または`unavailable`で覆うことを毎回確かめ、欠ければ未有効として扱う）。`--lease-pr`は、main上のlease記録が未有効の間だけ使える。
+   executor userで実行した`leasectl.py status --lease-pr <本PR>`の`integrity`が`ok`、`runner`がAI側contextと別のOS user、`probe.status`が`ok`、有効化の値を記入した後は`activation`が`ok`（全login×2 reviewが30日以内に`denied`または`unavailable`）であることを
+   確かめ、結果commentのIDを`probe.activation_results`へ、そのとき登録していた試験reviewを`probe.activation_test_reviews`へ記入する
+   （executorは、これらのcommentが状態Issueに編集されずに現存し、`probe.activation_test_reviews`のIDと状態に一致し、AI側の全login×2 reviewを
+   `denied`または`unavailable`で覆うことを毎回確かめ、欠ければ未有効として扱う。実測の修理はこの2欄を変えられない）。`--lease-pr`は、main上のlease記録が未有効の間だけ使える。
 6. 下記「未検証」を実物で確かめる。保護設定・rulesetを取得できない、または基準値が無い間はexecutorは停止する（空の一致にしない）。上流authority台帳のCapability Lease行の状態（未有効化）を有効化へ更新する。`origin_main`へ本PRのmerge直前のmain HEADを、`activated_at`へ時刻を記入し、最終headで独立reviewを受ける。
    mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。POは、有効化の値（実測結果・起点・`activated_at`）を
    含む最終headを確認し、既存規則の条件4（merge通路の明示許可）をその最終exact HEADに固定して与える（本PRは既存規則でmergeするため、
@@ -130,8 +131,8 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 - executorは結果commentだけでなく、固定した試験reviewが試験PRに現存することを自ら確かめ、無ければ`review_source_unsafe`とする。
 - 再bootstrapでidentity表だけを差し替える場合は、packetを改訂せず、差替えを判断したrecordで運ぶ（「登録と解除だけ」と同じ扱い）。
 - 実測の期限切れ中に運べるのは、`approved_targets`が`probe_paths`と`lease.json`の`probe`欄だけであるdecision_recordである
-  （lease記録は欄単位で比較する）。approve以外のrecordは`approved_targets`が空のため形式上この条件を満たすが、出所はPO reviewであり、
-  判断の生成にはならない。期限切れ中の削除への多重防御（観測済みIDの必須化・events照合の待ち）は加えていない（残存risk）。
+  （lease記録は欄単位で比較する）。`approved_targets`が空のrecord（approve以外の判断を含む）と、実測関連の欄・bytesを実際には
+  変えないrecordは、実測の修理として運ばない（packet「実測を行わないことで他の判断を運ぶ経路にはならない」）。期限切れ中の削除への多重防御（観測済みIDの必須化・events照合の待ち）は加えていない（残存risk）。
 - `accept_bootstrap_risk`でも、依頼・receipt・応答のcommentはidentity表のAI側loginの投稿だけを証拠とする（受容した
   残存riskは「AI側内部の偽造」であり、第三者の投稿は含まない）。AI側login以外がpairに束縛されたblockを置くと、そのPRは
   `review_identity_mismatch`で拒否される（安全側。第三者によるPR単位の妨害はあり得る）。
@@ -159,6 +160,11 @@ packetは、既存規則でmergeするPRを、packet・判断recordのPRと後�
 - PRのreview一覧で、GraphQL側に無いreview（`lastEditedAt`を確かめられないもの）があれば、未編集として扱わず取得失敗とする。
   非常経路と再bootstrapは、packetのとおり「lease記録の有効性」を条件から除くため、この実測結果の現存照合も行わない。
 - 実測commandは、lease記録の`status_issue`が開いているIssue（PRでなく、試験PRでもない）であることを確かめてから書き込む。
+- copyを書ける状態（配置作業中のroot等）で`-B`なしに起動すると`__pycache__`ができ、以後すべてのcommandが既知でないentryで止まる
+  （安全側）。copyはrootで実行せず、起動の形に`-B`を含める。
+- 再bootstrapでidentity表を差し替えてAI側loginが増えた場合、新しいloginには有効化前の実測結果が無いため、leaseは未有効として扱われる。
+  その再bootstrapのrecordは、新しいloginの実測結果と`probe.activation_results`・`probe.activation_test_reviews`・`activated_at`の付け直しを
+  変更前後の状態として列挙して運ぶ。
 - 起動条件には、`GH_TOKEN`があること（ghには空の設定directoryを渡し、実行userのgh設定を読まない）、`pycache_prefix`が無いこと、
   processをnon-dumpable（`prctl(PR_SET_DUMPABLE, 0)`）にできたことも含む。起動条件を欠けば、照合先の取得（network）へも進まない。
 - 提出前（`PENDING`）のPO reviewは、GitHubの仕様で本人以外から見えない。packetは判断を「提出時刻が最新の1件」とするため、

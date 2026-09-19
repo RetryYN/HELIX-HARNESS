@@ -16,16 +16,22 @@ import argparse, glob, json, os, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
-def _preflight(here):
-    """HEREをsys.pathへ入れてcommand群をimportする前に、copyに既知のentry以外（`__pycache__`のpyc、標準libraryを覆うmodule・
-    package、拡張module）が無いことを標準libraryだけで確かめる（`-I`で起動したときだけ。bytesの照合は起動条件で行う）。"""
+def _stray(here):
+    """copyの既知でないentry（`__pycache__`のpyc、標準libraryを覆うmodule・package、拡張module）。標準libraryだけで調べる。"""
     known = {"README.md", "cases", "lease.json", "leasecore.py", "leasectl.py", "leasefixtures.py", "leasegh.py",
              "leasepost.py", "leaseprobe.py", "leaserecover.py"}
     stray = [n for n in os.listdir(here) if n not in known]
     cd = os.path.join(here, "cases")
-    stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else []) if not n.endswith(".json")]
+    stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else [])
+              if not n.endswith(".json") or not os.path.isfile(os.path.join(cd, n))]
+    return sorted(stray)
+
+
+def _preflight(here):
+    """HEREをsys.pathへ入れてcommand群をimportする前に、既知でないentryがあれば止める（`-I`で起動したときだけ。bytesの照合は起動条件で行う）。"""
+    stray = _stray(here)
     if sys.flags.isolated and stray:
-        print("拒否: copyに既知でないentryがある（importの前に止める）: %s" % ", ".join(sorted(stray)), file=sys.stderr)
+        print("拒否: copyに既知でないentryがある（importの前に止める）: %s" % ", ".join(stray), file=sys.stderr)
         sys.exit(2)
 
 
@@ -189,12 +195,16 @@ def cmd_status(a, gh=None):
         return 2
     lease = G.lease_at(gh, a.lease_pr)
     integrity = G.self_integrity(gh, "refs/lease/pr-%d" % a.lease_pr if a.lease_pr else "origin/main")
-    ps, pd = C.probe_status(G.probe_snapshot(gh, lease)) if lease.get("status_issue") else ("unconfigured", "状態Issueが未設定")
+    psn = G.probe_snapshot(gh, lease) if lease.get("status_issue") else None
+    ps, pd = C.probe_status(psn) if psn else ("unconfigured", "状態Issueが未設定")
+    # 有効化の値（activated_at・activation_results等）を記入した後は、executorと同じ有効化の検査も出す（POの有効化前の確認）
+    activation = (C.activation_gaps(lease) + (C.activation_evidence_errors(psn) if psn else [])) if lease.get("activated_at") else None
     print(json.dumps({"lease": {k: lease.get(k) for k in ("lease_id", "activated_at", "expires_at", "revoked_at",
                                                           "independence", "status_issue")},
                       "probe": {"status": ps, "detail": pd}, "integrity": integrity or "ok", "runner": G.runner_info(),
+                      "activation": "not_set" if activation is None else (activation or "ok"),
                       "state_area": G.read_state()}, ensure_ascii=False, indent=1))
-    return 0 if ps == "ok" and not integrity else 1
+    return 0 if ps == "ok" and not integrity and not activation else 1
 
 
 # ---------- 自己検査 ----------
@@ -533,7 +543,12 @@ def run_boundary_tests():
                                             "lease_record_after": dict(lb, probe={"test_pr": 2}, identity={"po": "b"})}, fm)
                  # 有効化前の実測結果（有効化の証拠）は修理でも変えない
                  and not C.is_probe_repair({"lease": {}, "lease_record_before": dict(lb, probe={"test_pr": 1, "activation_results": [1]}),
-                                            "lease_record_after": dict(lb, probe={"test_pr": 2, "activation_results": [2]})}, fm)})
+                                            "lease_record_after": dict(lb, probe={"test_pr": 2, "activation_results": [2]})}, fm)
+                 # 対象の無いrecord、実測関連を実際には変えないrecordは修理でない
+                 and not C.is_probe_repair({"lease": {}, "lease_record_before": lb, "lease_record_after": dict(lb)}, {"approved_targets": []})
+                 and not C.is_probe_repair({"lease": {}, "lease_record_before": lb, "lease_record_after": dict(lb)}, fm)
+                 and C.is_probe_repair({"lease": {"probe_paths": ["p.py"]}}, {"approved_targets": [{"path": "p.py", "from_sha256": "a", "sha256": "b"}]})
+                 and not C.is_probe_repair({"lease": {"probe_paths": ["p.py"]}}, {"approved_targets": [{"path": "p.py", "from_sha256": "a", "sha256": "a"}]})})
     # activityの各更新で、更新後commitの第1親が更新前のHEADであること
     it = {"before": F.B, "after": "e" * 40, "activity_type": "push", "actor": F.AI, "is_merge": True,
           "commit_message": "Merge pull request #1 via Capability Lease\n\nlease_receipt: %s" % C.LEASE_ID}
@@ -684,6 +699,40 @@ def run_boundary_tests():
     rows.append({"id": "PJ-after-ok", "ok": not C.evaluate_sync_after(aft, "c" * 64, "a" * 64, "OPEN", ["x"])})
     rows.append({"id": "PJ-after-history", "ok": bool(C.evaluate_sync_after(dict(aft, previous_edit_sha256="d" * 64), "c" * 64, "a" * 64, "OPEN", ["x"]))})
     rows.append({"id": "PJ-after-label", "ok": bool(C.evaluate_sync_after(dict(aft, labels=[]), "c" * 64, "a" * 64, "OPEN", ["x"]))})
+    # import前のentry確認: 4つのcommandが同じ既知集合を持ち、pyc・package・json以外のcases entryを挙げる
+    import tempfile as tf2
+    import leasepost as LP0, leaseprobe as LB0, leaserecover as LR0
+    sd2 = tf2.mkdtemp(prefix="lease-stray-")
+    try:
+        for n in ("leasecore.py", "cases"):
+            (os.makedirs if n == "cases" else (lambda q: open(q, "w").close()))(os.path.join(sd2, n))
+        clean = [m._stray(sd2) for m in (sys.modules[__name__], LP0, LB0, LR0)]
+        os.makedirs(os.path.join(sd2, "__pycache__"))
+        os.makedirs(os.path.join(sd2, "json"))
+        os.makedirs(os.path.join(sd2, "cases", "x.json"))
+        open(os.path.join(sd2, "shlex.py"), "w").close()
+        dirty = [m._stray(sd2) for m in (sys.modules[__name__], LP0, LB0, LR0)]
+        rows.append({"id": "CMD-preflight-stray", "ok": clean == [[]] * 4
+                     and dirty == [["__pycache__", "cases/x.json", "json", "shlex.py"]] * 4})
+    finally:
+        shutil.rmtree(sd2, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
+    import subprocess as sp3
+
+    class RV(G.Runner):
+        def run(self, args, input=None, cwd=None, env=None, check=True):
+            if "graphql" in args:
+                out = {"data": {"repository": {"pullRequest": {"reviews": {"pageInfo": {"hasNextPage": False}, "nodes": [
+                    {"databaseId": 1, "id": "n1", "lastEditedAt": None}]}}}}}
+            else:
+                out = [[{"id": 1, "user": {"login": "a"}}, {"id": 2, "user": {"login": "b"}}]]
+            return sp3.CompletedProcess(args, 0, json.dumps(out).encode(), b"")
+    try:
+        G.reviews_of(G.GH(runner=RV(), isolated=False), 5)
+        raised = False
+    except RuntimeError:
+        raised = True
+    rows.append({"id": "CL-review-missing-in-graphql", "ok": raised})
     # command単位の起動条件: 満たさなければ、書込みも照合先の取得もせずに2で終わる（偽のrunnerで、GitHubへ何も送らない）
     import contextlib, io, subprocess as sp2
     import leasepost as LP, leaseprobe as LB, leaserecover as LR

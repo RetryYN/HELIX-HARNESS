@@ -13,16 +13,22 @@ import argparse, json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
-def _preflight(here):
-    """HEREをsys.pathへ入れてcommand群をimportする前に、copyに既知のentry以外（`__pycache__`のpyc、標準libraryを覆うmodule・
-    package、拡張module）が無いことを標準libraryだけで確かめる（`-I`で起動したときだけ。bytesの照合は起動条件で行う）。"""
+def _stray(here):
+    """copyの既知でないentry（`__pycache__`のpyc、標準libraryを覆うmodule・package、拡張module）。標準libraryだけで調べる。"""
     known = {"README.md", "cases", "lease.json", "leasecore.py", "leasectl.py", "leasefixtures.py", "leasegh.py",
              "leasepost.py", "leaseprobe.py", "leaserecover.py"}
     stray = [n for n in os.listdir(here) if n not in known]
     cd = os.path.join(here, "cases")
-    stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else []) if not n.endswith(".json")]
+    stray += ["cases/" + n for n in (os.listdir(cd) if os.path.isdir(cd) else [])
+              if not n.endswith(".json") or not os.path.isfile(os.path.join(cd, n))]
+    return sorted(stray)
+
+
+def _preflight(here):
+    """HEREをsys.pathへ入れてcommand群をimportする前に、既知でないentryがあれば止める（`-I`で起動したときだけ。bytesの照合は起動条件で行う）。"""
+    stray = _stray(here)
     if sys.flags.isolated and stray:
-        print("拒否: copyに既知でないentryがある（importの前に止める）: %s" % ", ".join(sorted(stray)), file=sys.stderr)
+        print("拒否: copyに既知でないentryがある（importの前に止める）: %s" % ", ".join(stray), file=sys.stderr)
         sys.exit(2)
 
 

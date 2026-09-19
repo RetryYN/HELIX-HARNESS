@@ -471,12 +471,14 @@ def activation_gaps(lease):
             gaps.append("AI側login %s がidentity.appsのGitHub Appでない" % l)
     if not probe.get("activation_results"):
         gaps.append("probe.activation_results（有効化前の実測結果）")
+    if not probe.get("activation_test_reviews"):
+        gaps.append("probe.activation_test_reviews（有効化時点の試験review）")
     return gaps
 
 
 def activation_evidence_errors(snapshot):
     """lease記録に残した有効化前の実測結果comment（`probe.activation_results`）が状態Issueに編集されずに現存し、
-    有効化時点の試験review（`APPROVED`・`CHANGES_REQUESTED`の各1件。結果commentが示すID）をAI側の全loginについて
+    有効化時点の試験review（`probe.activation_test_reviews`。実測の修理でも変えない）をAI側の全loginについて
     `denied`または`unavailable`で覆い、`activated_at`より前に置かれていること（packet: 有効化前の結果をlease記録に残す）。
     有効化後に実測の修理で付け直した試験reviewは、ここではなく`probe_status`の30日以内の結果で確かめる。"""
     lease = snapshot.get("lease") or {}
@@ -502,8 +504,11 @@ def activation_evidence_errors(snapshot):
             errs.append("実測結果comment %s の試験review %s の状態が他の結果と食い違う" % (i, o.get("review_id")))
         else:
             covered.add((o.get("login"), o.get("review_id")))
-    if sorted(v or "" for v in states.values()) != ["APPROVED", "CHANGES_REQUESTED"]:
-        errs.append("有効化前の実測結果の試験reviewがAPPROVEDとCHANGES_REQUESTEDの各1件でない")
+    fixed = {t.get("id"): t.get("state") for t in probe.get("activation_test_reviews") or []}
+    if sorted(v or "" for v in fixed.values()) != ["APPROVED", "CHANGES_REQUESTED"]:
+        errs.append("probe.activation_test_reviews（有効化時点の試験review）がAPPROVEDとCHANGES_REQUESTEDの各1件でない")
+    elif states != fixed:
+        errs.append("有効化前の実測結果の試験review・状態が、有効化時点の試験review（probe.activation_test_reviews）と一致しない")
     for l in ai_logins(lease):
         for rid in states:
             if (l, rid) not in covered:
@@ -572,7 +577,11 @@ def is_probe_repair(snapshot, record_fm):
     """approved_targetsが実測commandとlease記録の実測関連の欄だけであるdecision_recordか（lease記録は欄単位で比較）。"""
     lease = snapshot.get("lease") or {}
     allowed = set(lease.get("probe_paths") or [])
-    for t in record_fm.get("approved_targets") or []:
+    targets = record_fm.get("approved_targets") or []
+    if not targets:
+        return False   # 対象の無いrecord（approve以外の判断を含む）は実測の修理でない（packet: 実測を行わないことで他の判断を運ぶ経路にしない）
+    changed = False
+    for t in targets:
         p = t.get("path")
         if p == LEASE_RECORD:
             before, after = snapshot.get("lease_record_before"), snapshot.get("lease_record_after")
@@ -581,12 +590,16 @@ def is_probe_repair(snapshot, record_fm):
             keys = set(before) | set(after)
             if any(before.get(k) != after.get(k) for k in keys if k != "probe"):
                 return False
-            # 有効化前の実測結果（有効化の証拠）は実測の修理でも変えない
-            if (before.get("probe") or {}).get("activation_results") != (after.get("probe") or {}).get("activation_results"):
+            # 有効化前の実測結果と有効化時点の試験review（有効化の証拠）は実測の修理でも変えない
+            if any((before.get("probe") or {}).get(k) != (after.get("probe") or {}).get(k)
+                   for k in ("activation_results", "activation_test_reviews")):
                 return False
+            changed = changed or before.get("probe") != after.get("probe")
         elif p not in allowed:
             return False
-    return True
+        else:
+            changed = changed or t.get("sha256") != t.get("from_sha256")
+    return changed   # 実測関連の欄またはbytesが実際に変わること
 
 
 # ---------- review証拠 ----------

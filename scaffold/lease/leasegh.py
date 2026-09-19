@@ -10,8 +10,10 @@ import leasecore as C
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 GH_BIN = shutil.which("gh", path="/usr/bin:/bin") or "/usr/bin/gh"   # 呼出し元のPATHで引かない。置き場所はself_integrityで確かめる
+# 状態領域の置き場所の差替えはselftestだけが使う（環境変数では変えられない）
 STATE_OVERRIDE = None
-tempfile.tempdir = "/tmp"             # 使い捨てdirectoryの置き場所を呼出し元のTMPDIRで変えない（mkdtempは0700で作る）                 # selftestだけが使う（状態領域の置き場所を環境変数で変えられないようにする）
+# 使い捨てdirectoryの置き場所を呼出し元のTMPDIRで変えない（mkdtempは0700で作る）
+tempfile.tempdir = "/tmp"
 
 
 CA_FILE = "/etc/ssl/certs/ca-certificates.crt"   # 固定のtrust store（SSL_CERT_FILE等の環境変数を読まない）

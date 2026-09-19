@@ -41,7 +41,8 @@ def lease_record():
         "origin_main": B, "status_issue": 3000,
         "probe": {"test_pr": 3001,
                   "test_reviews": [{"id": 9001, "state": "APPROVED"}, {"id": 9002, "state": "CHANGES_REQUESTED"}],
-                  "activation_results": [60001, 60002]},   # 有効化前の実測結果（40日前。現在の実測の鮮度には数えない）
+                  "activation_results": [60001, 60002],
+                  "activation_test_reviews": [{"id": 9001, "state": "APPROVED"}, {"id": 9002, "state": "CHANGES_REQUESTED"}]},   # 有効化前の実測結果（40日前。現在の実測の鮮度には数えない）
         "probe_paths": ["scaffold/lease/leaseprobe.py"],
         "audit": {}, "audit_records": [],
         "tool_inputs": ["docs/governance/candidates/legacy-rule-derived-requirements.md"],
