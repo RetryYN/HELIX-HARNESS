@@ -1,63 +1,95 @@
-# ルール参照とClaude／Codex review引継ぎの仮組み
+# 共通ルール参照とVS Code GUIレーン間通知の仮組み
 
 status: scaffold
 authority_effect: none
 binding: SCF-B-0003
 replacement_issue: 1866
 
-この仮組みは、両runtimeへ同じ版の参照一覧と同じbase／content SHAを渡し、戻った指摘の対応を静的に確認する。
-正式なAI context生成器、Worker、配送adapter、review admissionではない。
-上流入口が許す仮組みの範囲で置き、S0承認から正式実装の許可を導かない。
+同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、実行レーン→レビュー／マージレーンへの依頼と、逆方向の指摘を届ける。
+[作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)、[調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)を参照する。
+親 #1864、子 #1884、PR #1885、推進 #1859、検収 #1860、置換 #1866。旧ルール参照は既存SCF-B-0002を使う。
 
-## 接続先
+## 経路
 
-- [作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)
-- [旧経路の調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)
-- 親 #1864、推進 #1859、検収 #1860、置換・撤去 #1866。
-- `SCF-B-0002`は旧ルール参照集を所有する。本仮組みはそのindexを参照するだけで、規則本文を複製・指示書化しない。
+実行GUI → gui_mailbox send → scaffold内の通知箱 → review GUIのnative Stop hook → 明示ACK → review応答send → 実行GUIのnative Stop hook → 明示ACK。
+新規CLIセッション、非公開IPC、旧memory、旧hook、旧DBは使わない。通知からmerge許可・要求承認を生成しない。
 
-## 最初の使い方
+- Claude: Stopの`asyncRewake`で待受し、通知を確保したときだけexit 2で同じセッションへ返す。
+- Codex: **同期Stop**で待受し、通知があれば`decision: block`とreasonで同じスレッドを継続する。通常async hookだけではidleスレッドを起こせない。
+- 待受は最長1時間、レーンleaseも既定1時間。CodexのStop待受中はGUIがhook処理中になる。中断・lease失効・wait満了後のcold idle再開は対象外で、次のGUI入力で再開・再armが必要。
+- native hookが読み込まれていない状態をtransport成功と呼ばない。新hookのtrustが必要な場合は利用者がGUIで確認する。
 
-1. 作成側が対象PRの現在のbase／content full SHAを取得する。未commitの変更は対象外。
-2. `packet.py build`で依頼JSONを標準出力へ生成する。保存する場合は`scaffold/`内の作業用領域へ置く。
-3. 既に許可された連携経路でだけ依頼と対象diffを渡す。経路未許可なら配送待ちで止める。
-4. review側はcontent SHAの参照文書を読む。ここにある一覧は最低限の入口であり、作業入口の必読順と対象別資料を代替しない。
-5. review側が[応答形式](response-template.json)を埋める。指摘には根拠と必要な変更を付け、未確認範囲を隠さない。
-6. 作成側がPRの現在のSHAを再取得し、`check`で照合する。修正でSHAが動いたら新request IDで再依頼する。
+## 接続準備
 
 ```sh
-python3 -B scaffold/review-handoff/packet.py build --base BASE_FULL_SHA --head CONTENT_FULL_SHA --pr PR_NUMBER --request-id RH-UNIQUE-ID --author codex --purpose '対象差分の静的review' --scope '対象ファイルと確認事項'
-python3 -B scaffold/review-handoff/packet.py check scaffold/review-handoff/local/request.json --base CURRENT_BASE_FULL_SHA --head CURRENT_CONTENT_FULL_SHA --response scaffold/review-handoff/local/response.json
-python3 -B scaffold/review-handoff/selftest.py
+python3 -B scaffold/review-handoff/configure_gui.py
+python3 -B scaffold/review-handoff/configure_gui.py --apply
 ```
 
-`--author claude`なら宛先はcodex、`--author codex`なら宛先はclaudeとなる。役割の名前を指定するだけで、本人性・独立性や起動許可を証明しない。
-`local/`はGit対象外。秘密・PII・生会話・credentialsをpurpose、scope、応答へ入力しない。
+previewは追加するhookだけを表示する。applyは利用者の`.claude/settings.json`と`.codex/hooks.json`へ本仮設のSessionStart／Stopだけを追加する。
+無関係な設定を保持し、書込後に再読する。**hook trust、権限、model、provider、AGENTS／CLAUDE本文は変更しない。**
+Codex拡張のHooks画面で新hookを信頼し、必要なら同じsessionを再開する。Claude側もhookを読み込む。
+SessionStart／Stopで観測したsessionは`status`に現れるが、自動で作業レーンにはしない。
 
-## パケットの一時契約
+```sh
+python3 -B scaffold/review-handoff/gui_mailbox.py status
+python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime codex --session CODEX_SESSION --lane execution
+python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime claude --session CLAUDE_SESSION --lane review_merge
+```
 
-- 現行規則・context・運用文書・decision record・上流参照・候補参照を種別付きで列挙する。承認状態は参照元のdecisionで確認する。
-- 旧ルール候補と仮ルール集は`candidate_reference_only`／`scaffold_reference_only`であり、指示への昇格をしない。
-- ハッシュはGitのcontent SHAのfile bytesに対するSHA-256。依頼payloadはキーを整列したUTF-8 JSONに対するSHA-256。
-- このpayload digestはパケット対応の照合用。GitHub commentの送信byteに対するdigestやdelivery receiptとは別である。
-- `check`は入力したexpected base／headとの一致を確認する。GitHubへ接続しないため、expected SHAの最新性は実行者が別途確認する。
-- 応答の`no_findings`は指摘なしという申告。配送・署名・reviewの妥当性・merge可否を検証しない。
-- JSONには未知fieldを認めず、承認・merge・完了fieldを足せない。本文中の主張の真偽は機械判定しない。
+既存Claude GUIのsession IDがまだ分からない場合は`enroll --runtime claude --pid GUI_PROCESS_PID --lane review_merge`で、
+確認済みのGUI native processのPIDと開始時刻を固定できる。そのprocess配下の次のhookだけがsessionをbindする。
+別process・PID再利用ではbindしない。Codex app-serverには複数threadがあるため、Codexは`enroll`を使わず正しいthread IDでbindする。
+同じruntimeの生存中レーンを別sessionで上書きできない。解除は`unbind --runtime RUNTIME --session SESSION`。
 
-## 許可と停止
+## 依頼と指摘返却
 
-toolはPython標準libraryと読み取り専用の`git rev-parse`／`git show`だけを使い、標準出力へ返す。
-旧CLI、旧hook、旧runtime、旧testを読込・実行せず、Claude／CodexやGitHubへの配送も起動しない。
-AGENTS.md、CLAUDE.md、settings、承認文書、DBを更新しない。
-参照不足・digest不一致・SHA変化・別依頼への応答・同一runtime・未知fieldでは検査を拒否する。
-次の経路実装は、起動方式・許可scope・timeout・費用・隔離・配送read-afterを別の作業契約で定める。
+1. PRの現在のbase／content full SHAを取得する。commit済みの対象だけを使う。
+2. `packet.py build`で参照digest付きパケットを作り、`local/request.json`へ保存する。両runtimeが同じcontent SHAの文書を読む。
+3. 実行レーンから`send`する。宛先sessionが未登録なら拒否する。
+4. 受信GUIは通知のevent ID・digest・claim nonceで`ack`する。**hookが出力しただけではACK済みにしない。**
+5. review側は[応答形式](response-template.json)へ指摘・未確認範囲を書き、`review_response`として逆方向へsendする。
+6. 修正でSHAが変わったら新request IDで再依頼する。受信側はPRの最新SHAを再取得してから差分を扱う。
 
-## 正式な物への置換
+```sh
+python3 -B scaffold/review-handoff/packet.py build --base BASE_FULL_SHA --head CONTENT_FULL_SHA --pr PR_NUMBER --request-id RH-UNIQUE-ID --author codex --purpose '対象差分のreview' --scope '対象pathと論点'
+python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime codex --session CODEX_SESSION --id EVENT_ID --kind review_request --request scaffold/review-handoff/local/request.json --base BASE_FULL_SHA --head CONTENT_FULL_SHA
+python3 -B scaffold/review-handoff/gui_mailbox.py ack --runtime claude --session CLAUDE_SESSION --id EVENT_ID --digest MESSAGE_DIGEST --nonce CLAIM_NONCE
+python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime claude --session CLAUDE_SESSION --id RESPONSE_EVENT_ID --kind review_response --request scaffold/review-handoff/local/request.json --response scaffold/review-handoff/local/response.json --base CURRENT_BASE_FULL_SHA --head CURRENT_CONTENT_FULL_SHA
+```
 
-HELIX-OSのルール参照・Worker context・review配送／応答照合がL2／L11採否とL3／L10導出を経て成立したら、
-SCF-B-0003の役割・義務・接続・検査・否定例を正式側へ対応づける。
-#1866で`check-replacement`→`retire`を追跡し、このdirectoryとbindingの残留を確認する。
+コマンドは両GUIから**同じ仮設worktreeの絶対path**を使う。通知箱はその`scaffold/review-handoff/local/gui/`に一本化し、
+branchを切り替えても違う通知箱へ書かない。`local/`はGit対象外。secrets・PII・credentials・生会話は入力しない。
+`receive --runtime RUNTIME --session SESSION --wait 45`は、そのGUIが自分のnative toolで待つ代替経路。providerを別起動しない。
 
-## 検証の限界
+## 配送状態・再開
 
-自己検査は一時契約のパケット整合だけを対象とする。Claude×Codexの実通信は未実施であり、連携運転の成立・正式L11 passを主張しない。
+`queued`は保存、`claimed`はhook／receiverによる確保、`acked`は受信セッションによる明示受領。意味reviewとmergeは別。
+同じevent IDとpayloadの再送、および同じrequest／responseの別ID再送は重複配送しない。
+未ACKのclaimを自動で再表示せず、送信側が`retry --runtime RUNTIME --session SESSION --id EVENT_ID`した場合だけ再配送する。
+retry時は同じ宛先sessionを維持する。新claim nonceが発行され、古いnonceではACKできない。
+レーン・通知は期限付き。期限切れの通知を復活させない。古い待受は新しい待受世代で無効化する。
+保存はfile lockとatomic replaceで直列化する。これは同一OS利用者内の協調機構で、悪意ある同一UIDに対する認証ではない。
+
+## 一時契約と検証
+
+`packet.py`は規則・context・decision・候補参照を種別とfile bytes SHA-256で列挙し、依頼・応答のrevisionとdigestを照合する。
+候補参照を指示に昇格せず、一覧だけで必読資料の全量被覆・実読を主張しない。payload digestはcanonical JSON用でGitHub配送byte digestとは別。
+`gui_mailbox.py`は通知箱だけを書く。GitHub最新SHAは自動取得しないため、send／review時に各GUIが照合する。
+`configure_gui.py`だけが利用者hook設定を追加・撤去する。script本体と通知stateはscaffold内。
+
+```sh
+python3 -B scaffold/review-handoff/selftest.py
+python3 -B scaffold/review-handoff/gui_selftest.py
+python3 -B scaffold/tools/scfctl.py validate
+python3 -B scaffold/tools/scfctl.py stale
+```
+
+合成入力と別processの往復試験は実GUI受信証拠ではない。運転の確認には両GUIが返すACKを必要とする。
+通知だけでは本人性、独立review、正式L11、merge admissionを証明しない。
+
+## 撤去
+
+`configure_gui.py --remove --apply`で今回追加したhookだけを除く。各レーンをunbindし、残るqueued／claimedを確認する。
+正式側へ役割・義務・接続・検査・否定例を移した後、#1866でcheck-replacement→retireを行う。
+利用者設定からhook参照を外す前にこのworktreeやscriptを削除しない。

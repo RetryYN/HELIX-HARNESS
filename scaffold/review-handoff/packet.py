@@ -65,7 +65,7 @@ def validate(packet, base, head):
     require(text(packet["request_id"]) and text(packet["purpose"]), "依頼identity・目的が必要")
     require(isinstance(packet["scope"], list) and packet["scope"] and all(text(s) for s in packet["scope"]), "scopeが必要")
     require({packet["author"], packet["reviewer"]} == {"claude", "codex"}, "異なるruntimeを指定")
-    require(packet["route"] == "manual_handoff_no_launch", "自動起動・配送は対象外")
+    require(packet["route"] in ("manual_handoff_no_launch", "vscode_gui_mailbox"), "未対応の配送経路")
     require(packet["base_sha"] == commit(base) and packet["content_sha"] == commit(head), "staleなbase/content")
     require(packet["references"] == references(head), "参照集合・種別・bytesが不一致")
     core = {k: v for k, v in packet.items() if k != "payload_sha256"}
@@ -108,6 +108,7 @@ def main():
     build.add_argument("--pr", type=int, required=True)
     build.add_argument("--author", choices=("claude", "codex"), required=True)
     build.add_argument("--scope", action="append", required=True)
+    build.add_argument("--route", choices=("manual_handoff_no_launch", "vscode_gui_mailbox"), default="vscode_gui_mailbox")
     check = sub.add_parser("check")
     check.add_argument("request")
     check.add_argument("--base", required=True)
@@ -120,7 +121,7 @@ def main():
                           request_id=args.request_id, repository="RetryYN/HELIX-HARNESS", pr=args.pr,
                           base_sha=commit(args.base), content_sha=commit(args.head), author=args.author,
                           reviewer="claude" if args.author == "codex" else "codex", purpose=args.purpose,
-                          scope=args.scope, route="manual_handoff_no_launch", references=references(args.head))
+                          scope=args.scope, route=args.route, references=references(args.head))
             packet["payload_sha256"] = sha(encode(packet))
             validate(packet, args.base, args.head)
             print(json.dumps(packet, ensure_ascii=False, indent=2))

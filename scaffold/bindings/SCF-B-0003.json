@@ -2,11 +2,11 @@
   "schema_revision": 1,
   "id": "SCF-B-0003",
   "kind": "scaffold",
-  "title": "共通ルール参照とClaude／Codex review引継ぎ",
+  "title": "共通ルール参照とVS Code GUIレーン間通知",
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS 推進（依頼contextと応答対応の準備）",
   "state": "active",
-  "reason": "正式なWorker contextとreview配送は未成立。先に同じ規則revisionと対象SHAを参照する仮のパケットが必要",
+  "reason": "正式なWorkerとreview配送は未成立。既存VS Codeの実行レーンとレビュー／マージレーンの通知を先に仮組みする",
   "upstream": [
     {
       "path": "docs/governance/candidates/scaffold-binding-requirements.md",
@@ -26,15 +26,18 @@
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
-      "sha256": "583a089f4f327ad48fc854391ecb7b6c59fc8351517e9d0f50bb48826bbd4659"
+      "sha256": "3ebae075d0007f6c1fdd103847fd633640f02f88667f668f8440484292f03958"
     }
   ],
-  "role": "共通の規則参照一覧とreview依頼・応答のrevision対応を静的に検査する",
+  "role": "共通規則・対象revisionを固定した通知を既存VS Code GUIの両レーンへ届け、明示ACKと応答対応を確認する",
   "obligations": [
-    "現行規則と候補参照を種別付きで区別する",
-    "base／content full SHA、request identity、payload digestを照合する",
-    "未確認範囲を隠さず、未知の承認・完了fieldを拒否する",
-    "配送・本人性・実review・merge admissionを成立させない"
+    "規則と候補参照を種別とdigestで区別する",
+    "base／content SHA、request identity、payload digestを照合する",
+    "既存GUIのruntime・session・レーン・有効期限へ宛先を固定する",
+    "queued／claimed／ackedを分離し、重複・別session・期限切れを拒否する",
+    "未ACK時の明示retry、watcher世代、応答の逆方向配送を扱う",
+    "通知から要求採否・承認・review完了・merge許可を生成しない",
+    "設定撤去と両GUIのlive ACK未確認を追跡する"
   ],
   "connections": {
     "consumers": [
@@ -45,20 +48,25 @@
     "dependencies": [
       "Python標準library",
       "読み取り専用Git",
-      "SCF-B-0002の仮ルール集index"
+      "SCF-B-0002の仮ルール集index",
+      "同じVS CodeのClaude Code／Codex拡張のnative hook",
+      "Linux file lockと共有のscaffold通知箱"
     ],
-    "boundary": "toolはGitの固定revisionを読み標準出力へ返すだけ。保存は利用者がscaffold内で行う"
+    "boundary": "scriptと通知stateはscaffold内。configure_guiだけが利用者のClaude settingsとCodex hooksへ本仮設参照を追加・撤去する。trustと権限を変更しない"
   },
   "operations": {
     "allowed": [
       "python3 -B scaffold/review-handoff/packet.py build",
       "python3 -B scaffold/review-handoff/packet.py check",
-      "python3 -B scaffold/review-handoff/selftest.py"
+      "python3 -B scaffold/review-handoff/selftest.py",
+      "gui_mailbox.py bind／enroll／unbind／send／receive／ack／retry／status／hook",
+      "configure_gui.py preview／apply／remove（利用者hook設定への最小参照）",
+      "python3 -B scaffold/review-handoff/gui_selftest.py"
     ],
     "forbidden": [
       "archive/legacy-generation-*の読込・実行",
-      "CLI／API／IDE／Workerの起動、外部配送、merge、Issue close",
-      "AGENTS／CLAUDE／settings／承認文書／DBへの書込",
+      "新しいprovider CLI／API／Workerの起動、非公開GUI IPC、GitHub review起動、merge、Issue close",
+      "AGENTS／CLAUDE本文・承認文書・DB・hook trust・権限の書換",
       "要求採否・承認・工程完了の生成"
     ]
   },
@@ -71,11 +79,15 @@
       "schema_interface",
       "source_revision_stale",
       "negative_case",
-      "forbidden_write_scope"
+      "forbidden_write_scope",
+      "stub_adapter_connection",
+      "deterministic_behavior"
     ],
     "oracles": [
       "scaffold/review-handoff/selftest.py",
-      "packet.pyの外部作用・書込なしの静的確認"
+      "packet.pyの外部作用・書込なしの静的確認",
+      "scaffold/review-handoff/gui_selftest.py",
+      "両既存GUIの受信ACK（未確認なら完了にしない）"
     ],
     "negative_cases": [
       "payload改変",
@@ -86,7 +98,16 @@
       "未知field・authority変更・起動route",
       "別request／payload／SHA／reviewer応答",
       "未確認をno_findingsにする",
-      "根拠なしのfinding"
+      "根拠なしのfinding",
+      "別sessionのclaim／ACK",
+      "異なるdigest／nonceのACK",
+      "通知期限切れ",
+      "二重bind・役割競合",
+      "再送・claim二重取得",
+      "未ACKを配信完了とする誤表示",
+      "古いwatcher",
+      "通知箱payload改変",
+      "無関係なhook設定の上書き"
     ]
   },
   "replacement": {

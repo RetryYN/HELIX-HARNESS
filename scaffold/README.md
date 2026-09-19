@@ -16,7 +16,7 @@ replacement_issue: GitHub Issue #1866（仮組み→本実装差し替え台帳�
 ## 構成
 
 追加の仮組み: [共通ルール参照とClaude／Codex review引継ぎ](review-handoff/README.md)（SCF-B-0003）。
-同じrevisionの参照一覧・依頼・応答を静的に照合する。自動起動・配送・mergeは行わない。
+同じrevisionの参照一覧・依頼・応答を照合し、既存VS Code GUIセッションへ双方向通知する。新規provider起動・mergeは行わない。
 
 | path | 役割 | 書き込むもの |
 |---|---|---|
