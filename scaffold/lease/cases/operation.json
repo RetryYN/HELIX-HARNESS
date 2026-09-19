@@ -1,0 +1,83 @@
+[
+ {
+  "id": "OC-input-missing",
+  "base": "oc",
+  "patch": [
+   {
+    "op": "set",
+    "path": [
+     "merge_files",
+     "docs/governance/audits/op/backup.md"
+    ],
+    "value": null
+   }
+  ],
+  "expect": [
+   "operation_input_missing"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "OC-input-sha",
+  "base": "oc",
+  "patch": [
+   {
+    "op": "set",
+    "path": [
+     "merge_files",
+     "docs/governance/audits/op/rollback.md"
+    ],
+    "value": "0000000000000000000000000000000000000000000000000000000000000000"
+   }
+  ],
+  "expect": [
+   "operation_input_missing"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "OC-admission",
+  "base": "oc",
+  "patch": [
+   {
+    "op": "block_set",
+    "comment": 4,
+    "path": "operation_admission",
+    "value": "fail"
+   }
+  ],
+  "expect": [
+   "operation_input_missing"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "OC-authority-not-basis",
+  "base": "oc",
+  "patch": [
+   {
+    "op": "block_set",
+    "comment": 0,
+    "path": "payload.operation_inputs.operation_authority.path",
+    "value": "docs/governance/audits/op/x.md"
+   },
+   {
+    "op": "block_set",
+    "comment": 2,
+    "path": "payload.operation_inputs.operation_authority.path",
+    "value": "docs/governance/audits/op/x.md"
+   },
+   {
+    "op": "resign"
+   }
+  ],
+  "expect": [
+   "operation_input_missing"
+  ],
+  "mode": null,
+  "note": ""
+ }
+]

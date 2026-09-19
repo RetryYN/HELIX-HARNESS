@@ -1,0 +1,112 @@
+{
+ "schema_revision": 1,
+ "id": "SCF-B-0004",
+ "kind": "scaffold",
+ "title": "Capability Lease（CAPLEASE-BOOT-01）のexecutor・投稿・非常用・実測command",
+ "product": "HELIX-OS",
+ "owner_candidate": "HELIX-OS 管理（委任authorityの付与・停止・取消しと、merge／projectionの実行）",
+ "state": "registered",
+ "reason": "HELIX-OSの委任authority要求（範囲・条件・失効・取消しを持つ委任）はL2／L11未成立で、正式な実装はL3／L10から導出できない。その間、人間が意味を判断した後の機械的なmergeとIssue本文の同期を、packetとPO判断に束縛したlease検査の内側でだけ行う役割を、scaffold/lease/配下の仮組みが担う。lease記録の有効化（AI側identityの分離とPOの確認）までは、どのPRも運ばない。",
+ "upstream": [
+  {
+   "path": "docs/governance/audits/source-rebaseline/capability-lease-bootstrap-decision-packet.md",
+   "sha256": "395c61bfb71f5cedc8b1945cac288f6b2b1334454be7732ca6ba57e0f9815533",
+   "note": "CAPLEASE-BOOT-01 bootstrap判断packet（lease定義、admission profile、非常経路、規則の意味1〜8）"
+  },
+  {
+   "path": "docs/governance/decisions/capability-lease-bootstrap-approval-2026-09-20.md",
+   "sha256": "536ac2b9b6d68430fc5f04863735ce87041cf25fa5ba7c06d978690a3a454388",
+   "note": "HDEC-CAPLEASE-BOOT-01（approve、accept_bootstrap_risk）"
+  }
+ ],
+ "role": "Capability Leaseのadmission判定・merge実行・read-after・停止記録、review証拠の投稿、非常経路と再bootstrap、削除不能の実測、projection_sync",
+ "obligations": [
+  "区分固有のadmission profile（repository_foundation／operation_change／decision_record）の成立だけを判定し、意味判断を生成しない",
+  "authority面の差分に、decision_record経由のapprove recordの根拠とscope_pathsの包含を要求する",
+  "保護面の変更に、変更前後の状態をexactに列挙した承認を要求する",
+  "decision_recordの判断の出所を人間判断者loginの最新のPR reviewに限り、古い判断へ戻らない",
+  "既定をdry-runとし、書込みを許可リスト（mainへの通常push、対象PRのmerge_result、状態Issueの停止comment、mapping内のIssue本文）に限る",
+  "codeを実行しない条件の成立後に、network・資格情報のない使い捨て環境で(a)(b)の検査を行う",
+  "merge後のread-afterの不一致と停止原因を、状態領域と状態Issueの両方へ記録し、revertやforce pushで隠さない",
+  "lease記録が有効化されるまで、どのPRも運ばない"
+ ],
+ "connections": {
+  "consumers": [
+   "executor（作成側・reviewerと異なるcontextのruntime）",
+   "作成側（leasepostでreview依頼・receiptを投稿する）",
+   "reviewer（leasepostで応答を投稿する）",
+   "recovery role（leaserecoverで非常経路・再bootstrapを行う）",
+   "人間判断者（PO）（PR reviewで判断し、実行環境の許可を設定する）",
+   "差し替え台帳 Issue #1866"
+  ],
+  "dependencies": [
+   "python3 標準library",
+   "git",
+   "gh（GitHub CLI）",
+   "unshare（network名前空間）"
+  ],
+  "boundary": "書き込むのはGitHubの許可リストの宛先と、executor専用の状態領域（~/.helix-lease/、scaffold外）とscaffold/evidence/lease-selftest.jsonだけ。docs/、AGENTS.md、.github/、archive/には書かない。archive/は読まない。"
+ },
+ "operations": {
+  "allowed": [
+   "python3 scaffold/lease/leasectl.py admit|sync|status|selftest",
+   "python3 scaffold/lease/leasepost.py request|response（対象PRへのcomment作成だけ）",
+   "python3 scaffold/lease/leaserecover.py（POが対象を引数に固定して許可した1件だけ）",
+   "python3 scaffold/lease/leaseprobe.py（lease記録に固定した試験reviewだけ）"
+  ],
+  "forbidden": [
+   "gh pr merge、git pushの直接実行、GitHub APIへの直接書込み",
+   "squash、rebase、force push、auto-merge予約、branch protection・rulesetの変更、branch削除、Issue close、release、deploy",
+   "comment・reviewの編集・削除（実測commandの試験review削除の試行を除く）",
+   "承認・採否・処分・authorityの生成",
+   "archive/legacy-generation-*配下の実行・読込"
+  ]
+ },
+ "artifacts": [
+  "scaffold/lease/README.md",
+  "scaffold/lease/lease.json",
+  "scaffold/lease/leasecore.py",
+  "scaffold/lease/leasegh.py",
+  "scaffold/lease/leasectl.py",
+  "scaffold/lease/leasepost.py",
+  "scaffold/lease/leaserecover.py",
+  "scaffold/lease/leaseprobe.py",
+  "scaffold/lease/leasefixtures.py",
+  "scaffold/lease/cases",
+  "scaffold/evidence/lease-selftest.json"
+ ],
+ "verification": {
+  "evidence_kind": "scaffold",
+  "scope": [
+   "schema_interface",
+   "deterministic_behavior",
+   "negative_case",
+   "forbidden_write_scope"
+  ],
+  "oracles": [
+   "scaffold/lease/cases（packet 手順2のnegative caseの写し）",
+   "leasectl selftestの書込み境界・read-after・projection_sync試験"
+  ],
+  "negative_cases": [
+   "dry-runでの書込み、投稿commandの対象PR外への書込み、状態Issue以外への状態comment",
+   "判断reviewの出所・編集・head・状態・選択・削除の不成立と、古い判断への巻き戻し",
+   "authority面の根拠の欠落・不適格・範囲外、保護面の未承認・変更前状態の不一致",
+   "review証拠のpair・順序・編集・payload・context・独立性・件数の不成立",
+   "lease未有効化・失効・取消し・停止・監査の遅れ・実測の期限切れと削除可能",
+   "保護設定・ruleset・bypass・実効role・main更新主体・activity連鎖の不一致",
+   "merge後のSHA・tree・親・stale・merged表示・merge_result投稿の不一致"
+  ]
+ },
+ "replacement": {
+  "role_target": "HELIX-OSの委任authority要求（範囲・条件・失効・取消しを持つ委任）のL3／L10から導出する正式な実装",
+  "formal_artifacts": [],
+  "issue": 1866,
+  "status": "pending",
+  "transfer": null,
+  "target_revisions": {},
+  "confirmation_ref": null,
+  "confirmation_digest": null
+ },
+ "created": "2026-09-21",
+ "updated": "2026-09-21"
+}

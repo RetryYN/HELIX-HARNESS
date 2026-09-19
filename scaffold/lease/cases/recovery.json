@@ -1,0 +1,72 @@
+[
+ {
+  "id": "RC-ok",
+  "base": "dr",
+  "patch": [],
+  "expect": [],
+  "mode": "review",
+  "note": ""
+ },
+ {
+  "id": "RC-not-dr",
+  "base": "rf",
+  "patch": [],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": "review",
+  "note": ""
+ },
+ {
+  "id": "RC-unsafe",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.0.body",
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+   }
+  ],
+  "expect": [
+   "review_source_unsafe"
+  ],
+  "mode": "review",
+  "note": ""
+ },
+ {
+  "id": "RB-no-decision",
+  "base": "dr",
+  "patch": [],
+  "expect": [
+   "decision_review_invalid"
+  ],
+  "mode": "comment",
+  "note": "再bootstrapの判断comment（引数固定の許可）が無い"
+ },
+ {
+  "id": "RB-ok",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "rebootstrap_decision",
+    "value": {
+     "ok": true,
+     "choice": "approve",
+     "comment_id": 1,
+     "user": "po-human",
+     "head": "cccccccccccccccccccccccccccccccccccccccc",
+     "body": "decision: approve head: cccccccccccccccccccccccccccccccccccccccc"
+    }
+   },
+   {
+    "op": "set",
+    "path": "status_comments.0.body",
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+   }
+  ],
+  "expect": [],
+  "mode": "comment",
+  "note": "再bootstrapは実測規則を適用しない"
+ }
+]

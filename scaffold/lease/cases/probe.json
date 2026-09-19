@@ -1,0 +1,138 @@
+[
+ {
+  "id": "PB-deleted",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.0.body",
+    "value": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+   }
+  ],
+  "expect": [
+   "review_source_unsafe"
+  ],
+  "mode": null,
+  "note": "deleted後はdecision_recordも運ばない"
+ },
+ {
+  "id": "PB-deleted-then-denied",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "append",
+    "path": "status_comments",
+    "value": {
+     "id": 1,
+     "user": "helix-ai",
+     "created_at": "2026-09-20T00:00:41Z",
+     "updated_at": "2026-09-20T00:00:41Z",
+     "created_epoch": 1789827200,
+     "body": "```helix-lease\n{\"kind\": \"lease_probe_result\", \"login\": \"helix-ai\", \"result\": \"deleted\", \"review_id\": 9001, \"review_state\": \"APPROVED\"}\n```"
+    }
+   }
+  ],
+  "expect": [
+   "review_source_unsafe"
+  ],
+  "mode": null,
+  "note": "30日以内のdeletedを後のdeniedで打ち消さない"
+ },
+ {
+  "id": "PB-missing-combo",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "del",
+    "path": "status_comments.1"
+   }
+  ],
+  "expect": [
+   "deletion_probe_stale"
+  ],
+  "mode": null,
+  "note": "組合せの片方だけ"
+ },
+ {
+  "id": "PB-old",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.0.created_epoch",
+    "value": 1787321600
+   }
+  ],
+  "expect": [
+   "deletion_probe_stale"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PB-edited",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.0.updated_at",
+    "value": "2026-09-20T09:00:00Z"
+   }
+  ],
+  "expect": [
+   "deletion_probe_stale"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PB-other-poster",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.0.user",
+    "value": "someone"
+   }
+  ],
+  "expect": [
+   "deletion_probe_stale"
+  ],
+  "mode": null,
+  "note": "実測login以外の投稿を数えない"
+ },
+ {
+  "id": "PB-test-review-gone",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "test_review_ids_present",
+    "value": [
+     9002
+    ]
+   }
+  ],
+  "expect": [
+   "review_source_unsafe"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PB-stale-dr-nonrepair",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "status_comments.0.created_epoch",
+    "value": 1787321600
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": null,
+  "note": "期限切れ中は実測の修理以外のdecision_recordを運ばない"
+ }
+]

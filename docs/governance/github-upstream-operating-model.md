@@ -46,6 +46,9 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 | `design_verification` | 一つの承認要求に対するL3とL10、または後続の一つのV-pair | 承認要求revision、適用template、risk、未解決 | 対象pairのfreeze可能な設計・検証契約 | 実装完了、利用者受入、運用成立 |
 | `implementation` | 一つの承認・freeze済みticketが指定する成果と必要検証 | Feature Ticket、親要求、設計、oracle、許可、HEAD | 対象成果と検証証拠 | 無関係な要求・設計の変更、release、deployment |
 | `operation_change` | GitHub、CI、Worker、配布等の一つの外部運用変更 | HELIX-OS要求、操作authority、backup、rollback、read-after | 許可scope内の外部状態変更 | 要求意味、人間承認、別操作の許可 |
+| `decision_record` | 一つの人間判断の記録 | 判断の選択、対象のexact revision、範囲。判断の出所は人間判断者loginのPR review | 記録された判断 | 判断の生成、対象外の承認 |
+
+`concept_revision`・`planning_revision`の「decision記録を同じPRへ束縛した場合だけ承認revision」は、record＋承認対象fileを一つのPRで運ぶ`decision_record`のadmission profileと同じ形であり、両区分のprofileを後から追加するときはこの形を使う（[Capability Lease bootstrap判断packet](audits/source-rebaseline/capability-lease-bootstrap-decision-packet.md) 規則の意味8）。
 
 要求PRは原則として一つの要求identityだけを扱う。複数要求を一括変更しない。connection要求は接続そのもの、
 composite要求は組合せ固有の全体条件を一つのidentityとして扱い、構成unitの要求PRと分ける。
@@ -112,28 +115,32 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 ## review、判断、merge admission
 
 すべてのPRは対象HEADを固定してreviewする。作成側と意味判断側を分け、許可されたGitHub Claude通路を用いる。
+Capability Lease（[Capability Lease bootstrap判断packet](audits/source-rebaseline/capability-lease-bootstrap-decision-packet.md)）の対象PRでは、本節の依頼comment・delivery receipt・応答commentの手順を満たす独立review（別contextのClaude agent、別contextのcodex等が自ら応答commentを置くもの）もreview通路として認める。独立性の選択が`accept_bootstrap_risk`の間に限り、reviewerが自ら投稿できないとき、作成側がreviewer出力を全文そのまま転記した応答commentも認める（転記であることをcommentに明記する）。GitHub Claude通路は引き続き使える。
 reviewはfindingであり、人間判断を代替しない。旧CI、旧test、旧runtime、ローカルClaude CLIをfallbackにしない。
 PR classが未選択または複数指定のPRはReadyにしない。
 
 ### 作成側とレビュー対応側の責務
 
-- `レビュー対応側`は、PR作成・修正側から独立して割り当てられ、対象PRのreview応答を受け取り、merge／Issue close通路を明示許可された人またはruntimeである。review findingを投稿した主体、`@claude`へのmention、ローカルClaude session、reviewer名だけからこのidentityや通路許可を推定しない。
+- `レビュー対応側`は、PR作成・修正側から独立して割り当てられ、対象PRのreview応答を受け取り、merge／Issue close通路を明示許可されたruntime（作成側と異なるcontext）である。merge、post-merge read-after、Issue closeを行う主体に人を含めない。人間が担うのは意味の判断（approve／reject等）と、実行環境の許可設定・取消し・lease停止であり、人間がPRをmergeすることを通常の手順にも例外の手順にも置かない。review findingを投稿した主体、`@claude`へのmention、ローカルClaude session、reviewer名だけからこのidentityや通路許可を推定しない。
 - PR作成・修正側は、対象差分の作成、証拠提示、review依頼、finding対応、再review依頼までを担う。
 - PR作成・修正側は、自分のPRをReady化、merge、auto-merge予約、対応Issueのcloseまで進めない。
+- 有効な`merge_executor` leaseを持ち、作成側・reviewerと異なるcontextの主体（executor）は、leaseの条件を満たしたPRを、人間の追加確認なしでmergeしてよい。
 - レビュー対応側は、依頼と応答が同じexact base／content HEAD pairへ束縛され、必要なfinding対応が反映されたことを確認する。
 - レビュー対応側は、PR classを問わず、merge admissionの直前に、PRのcontent HEADを変えずに、最新baseとのmerge結果（GitHubの`refs/pull/<番号>/merge`、またはローカルの試験merge）に対して`scfctl stale`が`stale=0`を返すことを確認し、結果をreview記録に残す。Scaffold Bindingの上流（`upstream[].path`）は文書・台帳を問わず`scaffold/`の外にあり、どのclassのPRでも変更されうる。PRのhead時点で一致していても、baseの進行や積んだPRのmergeで変わりうる。PR branchへbaseを取り込んでcontent HEADを変えると、exact HEADに束縛したreviewをやり直すことになるため、そうしない。`refs/pull/<番号>/merge`はGitHubが非同期に再計算するため最新baseより古いことがある。使う場合は、その第1親が再取得したbase HEADと、第2親がcontent HEADと一致することを確かめ、一致しなければローカルの試験mergeで実行する。`stale`が1件以上ならmergeせず作成側へ返す。
-- merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う。merge後に不一致があればcloseせず、作成側へ返す。
+- merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う。merge後に不一致があればcloseせず、作成側へ返す。Capability Leaseの対象PRでは、mergeとpost-merge read-afterをexecutorが行い、対応Issueのcloseは従来どおりclose通路を明示許可された主体が行う。
 - review結果の投稿だけではmerge指示にならない。レビュー対応側がmerge責務を引き受け、対象PRと方式を確認して実行する。
 - 責務の割当はGitHub、CLI、API、IDE、Worker等の実行通路の許可を兼ねない。レビュー対応側は、当該通路と作用について明示許可を確認できない場合、mergeせず停止する。
 
 ### governance／operation_change PRのmerge admission
+
+Capability Lease（CAPLEASE-BOOT-01）のScaffoldを置く・直す`operation_change` PRの必須入力「HELIX-OS要求」は、承認済みHELIX-OS L1の`HELIXOS-L1-003`（許可・予算・依存・独立検証の範囲でWorkerへ委譲する）と`HELIXOS-L1-004`（CI・review・証拠収集の統制）、および同leaseのbootstrap判断で満たす。承認済みのHELIX-OS L2要求はまだない。
 
 個別のmerge admissionが定義されていないgovernance／`operation_change` PRは、少なくとも次をすべて満たす。
 
 1. review request、最後に有効なdelivery receipt、review responseが同じrequest identityとexact base／content full SHAを示し、payload digestが一致する。誤ったreceiptは削除せず、`correction_of`付きの後続receiptで訂正する。
 2. current content HEADに未解消のBlocker／Major／Minorが0件である。
 3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。
-4. レビュー対応側に対象PRのmerge、post-merge read-after、対応Issue closeを行う通路が明示許可されている。
+4. レビュー対応側に対象PRのmerge、post-merge read-after、対応Issue closeを行う通路が明示許可されている。Capability Leaseの有効後は、すべてのPRについて`merge_executor`で満たし（運搬範囲はleaseの状態による。停止中・取消し後は`decision_record`だけ、実測の期限切れ中は実測の修理だけ、`review_source_unsafe`の間は`decision_record`も運ばない）、PR単位のmerge通路の許可を廃止する。例外は、lease有効前のbootstrap PR（既存の本条件で満たす）、executor機能不全時の非常経路（`recovery` roleがPOの許可設定の下で`decision_record` 1件だけをmergeする）、人間判断を検証する手段が失われた場合・削除不能の実測で`deleted`が出た場合・実測の修理では直らない原因で実測の期限切れが続く場合の再bootstrap（leaseを止めてから、人間判断者loginのissue commentを出所とし、非常用commandの再bootstrap modeで行う）だけである。条件1（request、delivery receipt、responseの照合）は変えず、上記の独立reviewも同じ三者照合で満たす。
 5. merge commit方式で統合し、第1親、第2親、content HEADの祖先性をread-afterする。期待と一致しない場合はIssueをcloseせず作成側へ返す。
 
 review依頼もGitHubへの一方向projectionとして扱う。送信前にreview request identity、対象PR、target full SHA、完全な

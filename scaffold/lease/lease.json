@@ -1,0 +1,34 @@
+{
+ "lease_id": "CAPLEASE-BOOT-01",
+ "upstream": [
+  {"path": "docs/governance/audits/source-rebaseline/capability-lease-bootstrap-decision-packet.md",
+   "sha256": "395c61bfb71f5cedc8b1945cac288f6b2b1334454be7732ca6ba57e0f9815533"},
+  {"path": "docs/governance/decisions/capability-lease-bootstrap-approval-2026-09-20.md",
+   "sha256": "536ac2b9b6d68430fc5f04863735ce87041cf25fa5ba7c06d978690a3a454388"}
+ ],
+ "independence": "accept_bootstrap_risk",
+ "activated_at": null,
+ "activation_note": "有効化の前提（AI側identityの分離、PO資格情報の隔離、実効role、bypass対象、試験PR・試験review、実測結果、基準値、起点、状態Issue）がすべて揃い、POが確認するまでnullのままにする。nullの間、executorはどのPRも運ばない（lease_not_activated）。",
+ "expires_at": "2026-12-31T23:59:59+09:00",
+ "revoked_at": null,
+ "last_resume_at": null,
+ "identity": {"po": null, "ai": null, "creator": null, "executor": null, "recovery": null, "reviewers": []},
+ "baseline": {"branch_protection": null, "rulesets": null},
+ "origin_main": null,
+ "status_issue": null,
+ "probe": {"test_pr": null, "window_days": 30,
+  "test_reviews": [{"id": null, "state": "APPROVED"}, {"id": null, "state": "CHANGES_REQUESTED"}]},
+ "probe_paths": ["scaffold/lease/leaseprobe.py"],
+ "audit": {"max_unaudited_merges": 10, "last_audited_main": null},
+ "audit_records": [],
+ "tool_inputs": [
+  "docs/governance/candidates/legacy-rule-derived-requirements.md",
+  "docs/governance/legacy-rule-atom-inventory.jsonl",
+  "docs/governance/legacy-rule-atom-source-files.jsonl",
+  "docs/governance/candidates/scaffold-binding-requirements.md",
+  "docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md"
+ ],
+ "projection": {"mapping": {}, "receipts_dir": "docs/governance/audits/projection-receipts/"},
+ "timeouts": {"merged_display_minutes": 10, "activity_minutes": 10},
+ "profiles": ["repository_foundation", "operation_change", "decision_record"]
+}

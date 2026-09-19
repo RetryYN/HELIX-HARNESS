@@ -1,0 +1,114 @@
+[
+ {
+  "id": "LS-not-activated",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.activated_at",
+    "value": null
+   }
+  ],
+  "expect": [
+   "lease_not_activated"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "LS-expired",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.expires_epoch",
+    "value": 1789999999
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile",
+   "lease_inactive"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "LS-revoked",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "lease.revoked_at",
+    "value": "2026-09-20T00:00:00Z"
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile",
+   "lease_inactive"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "LS-suspended-local",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "suspended_local",
+    "value": true
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "LS-suspended-issue",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "suspended_issue",
+    "value": true
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": null,
+  "note": "保存先の片方だけが残っても停止"
+ },
+ {
+  "id": "LS-audit-overdue",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "unaudited_merges",
+    "value": 10
+   }
+  ],
+  "expect": [
+   "lease_scope_excludes_profile"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "LS-suspended-dr-ok",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "suspended_local",
+    "value": true
+   }
+  ],
+  "expect": [],
+  "mode": null,
+  "note": "停止中もdecision_recordは運ぶ"
+ }
+]

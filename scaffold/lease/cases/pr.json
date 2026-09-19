@@ -1,0 +1,132 @@
+[
+ {
+  "id": "PR-draft",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "pr.draft",
+    "value": true
+   }
+  ],
+  "expect": [
+   "pr_not_eligible"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PR-closed",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "pr.state",
+    "value": "CLOSED"
+   }
+  ],
+  "expect": [
+   "pr_not_eligible"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PR-base",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "pr.base_ref",
+    "value": "dev"
+   }
+  ],
+  "expect": [
+   "pr_not_eligible"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PR-testpr",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "pr.number",
+    "value": 3001
+   }
+  ],
+  "expect": [
+   "pr_not_eligible"
+  ],
+  "mode": null,
+  "note": "試験PRのadmission"
+ },
+ {
+  "id": "PR-head-moved",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "pr.head_sha",
+    "value": "dddddddddddddddddddddddddddddddddddddddd"
+   }
+  ],
+  "expect": [
+   "review_head_stale"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PR-main-moved",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "main_head",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   }
+  ],
+  "expect": [
+   "review_head_stale"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PR-unmergeable",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "pr.mergeable",
+    "value": false
+   }
+  ],
+  "expect": [
+   "mergeable_false"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "PR-automerge",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "pr.auto_merge",
+    "value": {
+     "merge_method": "merge"
+    }
+   }
+  ],
+  "expect": [
+   "auto_merge_reserved"
+  ],
+  "mode": null,
+  "note": ""
+ }
+]

@@ -1,0 +1,415 @@
+[
+ {
+  "id": "HL-protection",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "protection.branch_protection.enforce_admins",
+    "value": false
+   }
+  ],
+  "expect": [
+   "protection_baseline_changed"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-ruleset",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "protection.rulesets",
+    "value": [
+     {
+      "id": 1,
+      "bypass_actors": []
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "protection_baseline_changed"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-bypass",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "protection.rulesets",
+    "value": [
+     {
+      "id": 1,
+      "bypass_actors": [
+       {
+        "actor_type": "RepositoryRole"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "lease.baseline.rulesets",
+    "value": [
+     {
+      "id": 1,
+      "bypass_actors": [
+       {
+        "actor_type": "RepositoryRole"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "bypass_nonempty"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-role-admin",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": [
+     "roles",
+     "helix-ai"
+    ],
+    "value": "admin"
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-role-maintain",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": [
+     "roles",
+     "helix-ai"
+    ],
+    "value": "maintain"
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-app",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "app_permissions",
+    "value": [
+     {
+      "administration": "write"
+     }
+    ]
+   }
+  ],
+  "expect": [
+   "role_mismatch"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-actor-human",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.items",
+    "value": [
+     {
+      "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "activity_type": "push",
+      "actor": "po-human",
+      "commit_message": "x",
+      "is_merge": true
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "main_head",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "set",
+    "path": "pair_base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   }
+  ],
+  "expect": [
+   "main_actor_mismatch"
+  ],
+  "mode": null,
+  "note": "人間を含む他actorの更新"
+ },
+ {
+  "id": "HL-author-forged",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.items",
+    "value": [
+     {
+      "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "activity_type": "push",
+      "actor": "helix-ai",
+      "commit_message": "direct",
+      "is_merge": false
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "main_head",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "set",
+    "path": "pair_base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   }
+  ],
+  "expect": [
+   "main_actor_mismatch"
+  ],
+  "mode": null,
+  "note": "authorだけexecutorに偽った直接push"
+ },
+ {
+  "id": "HL-force-push",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.items",
+    "value": [
+     {
+      "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "activity_type": "force_push",
+      "actor": "helix-ai",
+      "commit_message": "lease_receipt: CAPLEASE-BOOT-01",
+      "is_merge": true
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "main_head",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "set",
+    "path": "pair_base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   }
+  ],
+  "expect": [
+   "main_actor_mismatch"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-chain-break",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.items",
+    "value": [
+     {
+      "before": "9999999999999999999999999999999999999999",
+      "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "activity_type": "push",
+      "actor": "helix-ai",
+      "commit_message": "lease_receipt: CAPLEASE-BOOT-01",
+      "is_merge": true
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "main_head",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "set",
+    "path": "pair_base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   }
+  ],
+  "expect": [
+   "activity_incomplete"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-not-reached",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.reached_origin",
+    "value": false
+   }
+  ],
+  "expect": [
+   "activity_incomplete"
+  ],
+  "mode": null,
+  "note": ""
+ },
+ {
+  "id": "HL-temporary",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.temporary_failure",
+    "value": true
+   }
+  ],
+  "expect": [
+   "activity_unavailable_temporary"
+  ],
+  "mode": null,
+  "note": "一時的な失敗はPR単位の拒否"
+ },
+ {
+  "id": "HL-lease-merge-ok",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.items",
+    "value": [
+     {
+      "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "activity_type": "push",
+      "actor": "helix-ai",
+      "commit_message": "lease_receipt: CAPLEASE-BOOT-01",
+      "is_merge": true
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "main_head",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "set",
+    "path": "pair_base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "block_set",
+    "comment": 0,
+    "path": "base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "block_set",
+    "comment": 1,
+    "path": "base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "block_set",
+    "comment": 2,
+    "path": "base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "block_set",
+    "comment": 3,
+    "path": "base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "block_set",
+    "comment": 4,
+    "path": "base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "block_set",
+    "comment": 5,
+    "path": "base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "resign"
+   }
+  ],
+  "expect": [],
+  "mode": null,
+  "note": "executorのlease mergeだけなら通る"
+ },
+ {
+  "id": "HL-recovery-push",
+  "base": "rf",
+  "patch": [
+   {
+    "op": "set",
+    "path": "activity.items",
+    "value": [
+     {
+      "before": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "after": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "activity_type": "push",
+      "actor": "helix-ai",
+      "commit_message": "lease_recovery: 5",
+      "is_merge": true
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "main_head",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   },
+   {
+    "op": "set",
+    "path": "pair_base",
+    "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+   }
+  ],
+  "expect": [
+   "main_actor_mismatch"
+  ],
+  "mode": null,
+  "note": "非常経路のmergeをexecutor以外の更新として検出"
+ }
+]

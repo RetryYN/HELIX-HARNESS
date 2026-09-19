@@ -1,7 +1,7 @@
 # 上流authority管理台帳
 
 status: active_register
-as_of: 2026-09-19
+as_of: 2026-09-21
 
 ## 台帳の役割
 
@@ -14,6 +14,7 @@ as_of: 2026-09-19
 | 上流統制方針 | 1 | [上流再整備と既存資産統制方針](upstream-rebaseline-and-asset-governance-policy-2026-09-14.md) | draft policy | 対象別改訂と資産台帳の運用へ適用 |
 | 上流authority状態 | 5独立軸 | [上流authority状態モデル](authority-state-model.md) | source、対象別authority、carry-forward、管理層仮登録、work projectionを分離。暗黙遷移を禁止 | 後続の登録・分類機構で別fieldとして実装し、現在は台帳とdecision recordで判定する |
 | GitHub上流運用 | 1 | [GitHub上流運用モデル](github-upstream-operating-model.md) | repository foundation、要求、設計・検証、実装、外部運用のPR classとauthority／merge条件を定義 | #1797でrepository運用基盤を固定し、個別要求は旧要求を保持したまま一要求identityずつ後続PRで再配置する |
+| Capability Lease | 1 lease（CAPLEASE-BOOT-01） | [bootstrap判断packet](audits/source-rebaseline/capability-lease-bootstrap-decision-packet.md)、[判断record](decisions/capability-lease-bootstrap-approval-2026-09-20.md)、[`scaffold/lease/`](../../scaffold/lease/README.md)（`SCF-B-0004`） | packetのexact revisionをPOがapprove（`accept_bootstrap_risk`）。executor・投稿・非常用・実測commandとlease記録をScaffoldとして置いた。lease記録は未有効化で、どのPRも運ばない | AI側identityの分離と有効化前の実測をPOが確認してから、lease記録を有効化する。正式な委任authority要求のL3／L10実装で`SCF-B-0004`を撤去する |
 | 新世代作業基盤集約 | 1 operation | [集約operation contract](new-generation-workbase-consolidation.md) | PO指示により、旧Git／worktree stateを非実行archiveへ全量退避し、現役面を`main`一つへ集約中。要求authority effectなし | exact inventory、verified bundle、raw archive、fresh clone、remote branch削除をread-afterし、要求整理前で停止する |
 | 企画・Vision→research→要求 | 旧source 4文書、現行被覆5箇所 | [被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md) | GitHub投影までの経路は定義済み。premise、research、PoC／prototype、backflowの製品要求は未承認。`operating_route_defined_requirements_unapproved` | HARNESS／OS要求を一要求identityずつ後続PRで具体化する |
 | 旧世代archive-first隔離 | 4020 Git追跡ファイル | [隔離記録](archive-first-transition-record-2026-09-14.md)、`archive/legacy-generation-2026-09-14/MANIFEST.sha256`、[資産明細台帳](legacy-asset-disposition.jsonl) | 旧実行面・旧文書・旧IRを非実行archiveへ隔離し、全entryを個別`unresolved`行へ展開済み | archive sourceの意味を対象別L2へ採否し、物理削除はしない |

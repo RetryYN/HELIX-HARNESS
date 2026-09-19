@@ -1,0 +1,103 @@
+[
+ {
+  "id": "POS-rf",
+  "base": "rf",
+  "patch": [],
+  "expect": [],
+  "mode": null,
+  "note": "admissionが成立する土台"
+ },
+ {
+  "id": "POS-oc",
+  "base": "oc",
+  "patch": [],
+  "expect": [],
+  "mode": null,
+  "note": "admissionが成立する土台"
+ },
+ {
+  "id": "POS-dr",
+  "base": "dr",
+  "patch": [],
+  "expect": [],
+  "mode": null,
+  "note": "admissionが成立する土台"
+ },
+ {
+  "id": "POS-dr-reject",
+  "base": "dr",
+  "patch": [
+   {
+    "op": "set",
+    "path": "reviews.0.state",
+    "value": "CHANGES_REQUESTED"
+   },
+   {
+    "op": "set",
+    "path": "reviews.0.body",
+    "value": "decision: reject"
+   },
+   {
+    "op": "set",
+    "path": "diff.files",
+    "value": [
+     {
+      "path": "docs/governance/decisions/example-decision-2026.md",
+      "status": "A",
+      "before_sha": null,
+      "added": [
+       "---",
+       "decision: approve",
+       "decider_role: PO",
+       "approved_targets:",
+       "  - path: docs/concept/example.md",
+       "    from_sha256: 5555555555555555555555555555555555555555555555555555555555555555",
+       "    sha256: 6666666666666666666666666666666666666666666666666666666666666666",
+       "scope_paths:",
+       "  - docs/governance/decisions/example-decision-2026.md",
+       "  - docs/concept/example.md",
+       "---",
+       "",
+       "# 架空の判断record",
+       ""
+      ],
+      "removed": []
+     }
+    ]
+   },
+   {
+    "op": "set",
+    "path": "merge_texts",
+    "value": {
+     "docs/governance/decisions/example-decision-2026.md": "---\ndecision: reject\ndecider_role: PO\napproved_targets: []\nscope_paths:\n  - docs/governance/decisions/example-decision-2026.md\n---\n\n# 架空の判断record\n"
+    }
+   },
+   {
+    "op": "set",
+    "path": "diff.files.0.added",
+    "value": [
+     "---",
+     "decision: reject",
+     "decider_role: PO",
+     "approved_targets: []",
+     "scope_paths:",
+     "  - docs/governance/decisions/example-decision-2026.md",
+     "---",
+     "",
+     "# 架空の判断record",
+     ""
+    ]
+   },
+   {
+    "op": "set",
+    "path": "merge_files",
+    "value": {
+     "docs/governance/decisions/example-decision-2026.md": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+   }
+  ],
+  "expect": [],
+  "mode": null,
+  "note": "approve以外のrecordをrecord 1 fileだけで運ぶ"
+ }
+]
