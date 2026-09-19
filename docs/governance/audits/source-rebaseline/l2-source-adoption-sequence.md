@@ -56,8 +56,10 @@ S0の採否とも正式実装とも別である。`L2D-S0-01`は2026-09-17の
 `L2D-S1-01`の判断を止める条件ではない。2026-09-19に`L2D-S0-01`と`L2D-S0-02`は候補のexact revisionに対して承認され、
 `L2D-S1-01`はdeferとなった（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。S0の承認は対象別L2／L11本文への適用ではなく、適用は別の要求PRで行う。
 `wbs-ledger`と`development-ticket-derivation`の統合可否、`scaffold-binding`のシステム群内の層の置き方は、同recordで未決として残した。`L2D-S1-01`の判断packetは、生存中のsource holdingを取り直した[v2](l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)が現行であり、[v1](l2d-s1-01-authority-vocabulary-human-decision-packet.md)は承認に使わない。2026-09-17のベースラインと第1層完了監査が`L2D-S1-01`から始めると案内している点は
-S1–S4の直列について引き続き有効であり、今回の差分はその直列の外にS0の1 unitを追加したことだけである。L2／L11本文は`L2D-S1-01`の判断packetがexact digestで
-参照しているため、S0の候補追加では変更しない。
+S1–S4の直列について引き続き有効であり、今回の差分はその直列の外にS0の2 unitを追加したことだけである。L2／L11本文は`L2D-S1-01`の判断packetがexact digestで
+参照しているため、S0の候補追加では変更しない。S0の承認後の適用PRはこれらのL2／L11本文を変更するため、
+`L2D-S1-01` packet v2の判断対象revision表を黙ってstaleにしない。同じPRか先行PRでpacket v2を再baselineするか、
+順序を人間判断に付す（[2026-09-19 decision record](../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。
 
 ## S1 authority・要求変更境界
 

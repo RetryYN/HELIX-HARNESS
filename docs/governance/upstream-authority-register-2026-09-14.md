@@ -1,7 +1,7 @@
 # 上流authority管理台帳
 
 status: active_register
-as_of: 2026-09-17
+as_of: 2026-09-19
 
 ## 台帳の役割
 
@@ -45,7 +45,7 @@ as_of: 2026-09-17
 | 新世代要求候補 | 9文書 | `docs/governance/candidates/` | HARNESS／HELIX-OSへ分離したdraft。要求エンジン、意味密度抽出、Design Template、typed ticket候補、仮設束縛（Scaffold Binding）候補を含む | 承認済みConcept／対象別L1を親に、対象別L2／L11へ個別採否する |
 | 新世代Feature Ticket | 9件 | [Feature Ticket入口](feature-tickets/README.md) | 原登録→semantic抽出→要求engine→分類projection→Design Template→typed ticket→GitHub一方向同期の順で発行。全件`proposed_upstream_waiting` | local ticketを意味source、GitHub Issueを作業projectionとして同期し、上流承認後にL3／L10へ降ろす |
 | 要求要否・重複・技術代替review program | 親1件、子2件 | [要否・再配置](requirement-disposition-review-program.md)、[責務・機能重複](requirement-overlap-review-program.md)、[技術代替可能性](requirement-technical-substitutability-review-program.md) | 全要求保持、重複候補の意味比較、技術と意味機能の分離条件を定義。Concept／4対象L1承認後のproduct routingを開始 | source-qualified identityまたはatomごとにproduct routing候補、無損失被覆、人間decision、要求PRを分ける |
-| L2 source採否queue | S1–S4の29 decision unit＋S0の1 decision unit | [対象別L2 source採否順序](audits/source-rebaseline/l2-source-adoption-sequence.md) | Concept系列を除く29候補系列をS1–S4へ配置。2026-09-18のPO指示でS0 `scaffold-binding`を追加。Concept／4対象L1は承認済み、L2／L11は未採否 | 第1層product routing後、各unitを別decisionとして対象別L2／L11へ採否する |
+| L2 source採否queue | S1–S4の29 decision unit＋S0の2 decision unit | [対象別L2 source採否順序](audits/source-rebaseline/l2-source-adoption-sequence.md) | Concept系列を除く29候補系列をS1–S4へ配置。2026-09-18にS0 `scaffold-binding`と`wbs-ledger`を追加。Concept／4対象L1は承認済み。2026-09-19にS0の2 unitはapprove、`L2D-S1-01`はdefer（[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)）。L2／L11本文への適用は全unitで未了 | S0の2 unitはL2／L11適用の要求PRへ。`L2D-S1-01`は未評価11 holdingの処分後に人間判断へ戻す。他unitは各unitを別decisionとして対象別L2／L11へ採否する |
 | 新世代CI要求候補 | HARNESS 4要求、HELIX-OS 8要求、L11候補8項目 | `docs/governance/candidates/next-generation-ci-requirements.md` | draft、要求整理のみ。CI relationを分離し、既存CIはlegacy source | HARNESS検証契約とHELIX-OS実行統制を対象別L1／L2へ接続し、L3／L10以降は上流確定まで待つ |
 | 新世代AI可読文書要求候補 | HARNESS 3要求、HELIX-OS 9要求、L11候補8項目 | [AI可読上流文書の要求候補](candidates/ai-readable-authority-requirements.md) | 旧AI実行面をarchiveへ隔離し、最小上流入口を配置。L2／L11要求はhuman approval待ち、生成器は未設計 | 承認済み親revisionに対してL2／L11を個別採否し、manifest／生成器はL3／L10から再導出する |
 | 旧ルール群由来の要求候補 | 規則atom 7,622件（うち再点検で追加1,032件。source_holding `MPR-SH-LEGACY-RULE-004`）、要求候補57本（HARNESS／HELIX-OS） | [旧HELIXのルール群から導いた要求候補](candidates/legacy-rule-derived-requirements.md)、[規則atom台帳](legacy-rule-atom-inventory.jsonl)、[出どころfile一覧](legacy-rule-atom-source-files.jsonl) | draft、要求整理のみ。未承認。旧hook・旧lint・旧CIを実行も復活もしない | 既存L2・既存候補との重複と包含を付け、システム群ごとのIssue（#1852〜#1861、#1864）の入力にする |

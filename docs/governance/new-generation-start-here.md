@@ -50,6 +50,8 @@ Concept v4.1候補は、5大目標をHELIX全体の到達価値、七大原則�
 
 Concept v4.1と4対象L1のexact revisionは2026-09-17のdecision recordで承認済みである。
 対象本文内の`candidate`／`awaiting_parent_approval`は承認前snapshotのmetadataであり、現在状態はdecision recordを優先する。
+`L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
+候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
 対象別L2／L11はdraft・未採否であり、まだcanonicalではない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
 この非昇格は旧要求の削減を意味しない。採用済み旧要求は`preserved_pending_rehome`として全件保持し、
