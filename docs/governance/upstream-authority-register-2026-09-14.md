@@ -117,7 +117,7 @@ as_of: 2026-09-19
 
 | 作業単位 | 閉鎖条件 | 現在の証拠 | 状態 | 残る処置 |
 |---|---|---|---|---|
-| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書（2026-09-17時点の閉じた集合。2026-09-18追加の仮設束縛候補1文書は新規系列であり、この集合の外に別記する）、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3直接委任22文書から閉じた意味relation closure 117文書、分類待ちを含む参照edge 788件 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blobまたは参照候補holdingへ追記する |
+| 母集団の発見 | Core Read、IR、refinement、候補、旧要求、画面、intakeの入口と件数が台帳化される | 本台帳の母集団、archive候補92文書、現行候補8文書（2026-09-17時点の閉じた集合。2026-09-18に追加した仮設束縛候補、旧ルール群由来の要求候補、WBS台帳候補の3文書は、この集合の外に別記する。現行候補の総数は11文書）、31系列、IR 153、refinement 14、旧5＋7文書、旧v1.3直接委任22文書から閉じた意味relation closure 117文書、分類待ちを含む参照edge 788件 | 継続中 | archive全体から新しい要求源を発見したら、判断前にfile blobまたは参照候補holdingへ追記する |
 | 製品責務 | HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの所有範囲、service log export、改善接続が決定される | [対象別責務決定](../concept/product-boundary.md) | 完了 | Concept v4.1へ承認revisionとして固定する |
 | 最新Concept | HARNESS自己改善を含む最新責務、新世代境界、authority、上流順序、5大目標、七大原則、Version 1の複数プロダクト・自己適用検証とWeb展開依存が一つの候補revisionへ束縛される | v4.1候補、承認準備監査、5大目標・七大原則接続監査 | 候補統合・外部review待ち | 候補を証拠で統合し、将来のauthority判断時にv4.1 exact revisionを人間が採否する |
 | 対象別L1 | ConceptからHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの企画・価値・対象外が分冊される | 対象別L1 4文書。HARNESS 9、HELIX-OS 12、HELIX-Web 6、HELIX-Web-OS 5要求。L0柱とL2接続案を記載 | exact revision承認済み | 第1層product routingの責務根拠として使い、L2／L11へ降ろす |
