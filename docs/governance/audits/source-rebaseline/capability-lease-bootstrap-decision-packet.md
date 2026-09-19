@@ -43,32 +43,39 @@ L2／L11 → L3／L10の順で別に行う。本packetは、その正式化が�
   依頼時と変わっていれば対象外とする。reviewerは各依頼で、区分の当否をfindingとして判定する。
   `repository_foundation`以外の区分は、それぞれ固有のmerge admission条件（`requirement`の仮登録・人間decision record等）を持ち、
   executorはそれを検査しないため、対象外とする。
-- 差分は、検査したmain HEADとexecutorがlocalで作ったmerge commitの間の`git diff --name-status -M`で求める（GitHubのfiles APIの
-  件数上限に依存しない。renameは旧pathと新pathの両方を対象として扱う）。差分のすべてのpathが次の**許可集合**に含まれる。
-  - `docs/governance/audits/`配下
-  - `docs/governance/`直下の`.md`と`.jsonl`のうち、次の**除外集合**に含まれないもの
-- 除外集合（規則、入口、authorityの面、またはleaseそのもの）: `docs/governance/github-upstream-operating-model.md`、
-  `docs/governance/github-upstream-pr-packet.md`、`docs/governance/new-generation-start-here.md`、`docs/governance/authority-state-model.md`、
-  `docs/governance/management-provisional-requirement-registration.md`、名前に`policy`または`contract`を含むfile、本packet、その判断record、
-  lease記録、`docs/governance/decisions/`・`candidates/`・`feature-tickets/`・`intake/`・`requirements-source/`・`crosswalks/`の各配下。
-  許可集合の外（`docs/concept/`、`docs/helix-*/`、`scaffold/`（検査toolとbindingを含む）、`AGENTS.md`、`CLAUDE.md`、`.github/`等）は
-  もともと対象外である。
-- 差分の追加行に、`authority_effect`、`authority_status`、`decision_status`のkeyを含む行が一つもない。ただし値が`none`の
-  `authority_effect`行は許す。新規fileの追加行も同じ規則で判定する。
+- 差分は、検査したmain HEADとexecutorがlocalで作ったmerge commitの間の`git diff --name-status -M`と`git diff -U0`で求める
+  （GitHubのfiles APIの件数上限に依存しない。renameは旧pathと新pathの両方を対象として扱う）。
+- **authority面の機械的な除外**（どれか一つに当たれば対象外）:
+  1. pathが許可集合の外にある。許可集合は`docs/governance/audits/`配下と、`docs/governance/`直下の`.md`・`.jsonl`だけである。
+     `docs/concept/`、`docs/helix-*/`、`scaffold/`（検査toolとbindingを含む）、`AGENTS.md`、`CLAUDE.md`、`.github/`等は許可集合の外である。
+  2. pathが除外集合にある。除外集合は、`docs/governance/github-upstream-operating-model.md`、`github-upstream-pr-packet.md`、
+     `new-generation-start-here.md`、`authority-state-model.md`、`management-provisional-requirement-registration.md`、
+     名前に`policy`、`contract`、`packet`、`decision`、`register`、`carry-forward`、`receipt`、`lease`のどれかを含むfile、
+     `docs/governance/decisions/`・`candidates/`・`feature-tickets/`・`intake/`・`requirements-source/`・`crosswalks/`の各配下、
+     本packetとその判断record、lease記録、lease監査記録である。
+  3. 変更前のfile bytesのSHA-256が、`docs/governance/decisions/`配下のどれかのfile、またはどれかのScaffold Bindingの
+     `upstream`に現れる（decision recordやbindingが束縛しているbytesを変えない）。
+  4. 追加行または削除行（新規fileを含む）に、次のkeyが現れる。keyの判定は、大文字小文字、`_`と空白の違い、YAML・JSON・
+     表（`| authority effect |`等）の書式を区別せずに行う: `authority_effect`、`authority_status`、`decision_status`、
+     `decision_record`、`status`（frontmatterまたは文書先頭の状態行）、`human_disposition`、`disposition`、`ratified`、`approved`、
+     `carry_status`、`successor`、`requirement_change_authority`。ただし新規fileに`authority_effect: none`を置く行だけは許す。
+- **authority面の意味的な確認**: pairに束縛されたすべての応答commentが、`authority_surface_changed: no`（承認・採否・処分・
+  carry-forward・承認済みbytesの意味を変えていない）を明示する。`yes`または欠落が一つでもあれば対象外。機械的な除外は
+  網羅できないため、reviewerの判定を必須の第2段とする。
 
 #### review証拠（運用モデルの既存のreview依頼手順を使う）
 
 - 各reviewは、GitHub上流運用モデル「review、判断、merge admission」節の手順どおり、review開始前に**依頼comment**（review request
   identity、対象PR、base／content full SHA、依頼本文全文、payload SHA-256）と`review_request_delivery_receipt` commentをPRへ置き、
-  review後にreviewer contextが自ら**応答comment**（request identity、pair、blocker／major／minorの件数、応答全文）を置く。
-  作成側がreviewerの応答を代わりに投稿しない。
+  review後に**応答comment**（request identity、pair、blocker／major／minorの件数、`authority_surface_changed`、応答全文）を置く。
+  投稿の通路は下記規則の意味6による。
 - executorはGitHub APIから三者を取得し、request identity、pair、payload SHA-256の一致、依頼→delivery receipt→応答の作成時刻の順、
-  3 commentとも作成後に編集されていないこと（`updated_at`が`created_at`と一致）を確かめる。
+  すべてのcommentが作成後に編集されていないこと（`updated_at`が`created_at`と一致）を確かめる。
 - 分母は、そのpairに束縛された**すべての依頼**である。応答のない依頼、findingが1件以上の応答が一つでもあれば対象外。
   別pairに束縛された依頼と応答は数えない（baseまたはcontentが動いたら、以前のreviewはすべて無効）。
 - pairに束縛された依頼は、少なくとも2つの異なるreviewer contextに対するものである。
 - context: 作成側、各reviewer、executorはすべて異なるcontext（別agent instanceまたは別session）である。
-- executorは、使った3 commentのIDとSHA-256をmerge commit message（下記）に記録する。
+- executorは、pairに束縛された**すべての**依頼・delivery receipt・応答commentのID、SHA-256、全文を、merge commit message（下記）に記録する。
 
 #### 独立性についての選択（本判断に含める）
 
@@ -76,20 +83,32 @@ L2／L11 → L3／L10の順で別に行う。本packetは、その正式化が�
 executorはそれが本当に別主体かを暗号的に検証できない。同一主体がcontext識別子だけ変えて依頼と応答を作れば、上記の
 検査はすべて通る。これは技術的な限界であり、本packetの文言では解消できない。POは次のどちらかを選ぶ。
 
-- `accept_bootstrap_risk`: bootstrap期間（期限まで）に限り、この限界を受容する。補償統制として、review commentとmerge commit
-  messageに全文・digest・comment IDを残し、外部監査がそれを事後に照合できる状態を保つ。偽造または独立性違反が見つかった
-  場合、leaseは`suspended`となり、人間判断まで再開しない。
-- `require_separate_identity`: executorとreviewerの投稿を、作成側と別のGitHub identity（GitHub Appまたは別account）に限る。
-  これを用意するまでleaseを有効にしない。
+- `accept_bootstrap_risk`: bootstrap期間（期限まで）に限り、この限界を受容する。帰結は次のとおり。
+  - 補償統制: review commentの全文、digest、IDをmerge commit messageに残す（branch protectionを変えない限り改変できない）。
+  - 監査: POが依頼する外部監査（AI作業系列の外の主体）が、lease mergeのmerge commit messageと`merge_result`を照合する。
+    監査結果はlease監査記録としてrepoへ入れる（lease監査記録はlease対象外で、POがmergeする）。
+  - 監査の遅れ: 最後のlease監査記録より後のlease mergeが10件に達したら、executorは次のmergeをしない（監査が入るまで停止）。
+  - 停止: 偽造、独立性違反、authority面の変更の見逃しが見つかったら、leaseは`suspended`となり、人間判断まで再開しない。
+  - 応答commentは、reviewer contextが自ら投稿できない場合（例: 読取り専用sandboxのreviewer）、作成側がreviewerの出力を
+    全文そのまま転記してよい。同一accountでは本人投稿と転記に検証上の差がないためである。転記はcommentにその旨を明記する。
+- `require_separate_identity`: 作成側、各reviewer、executorを、相互に別のGitHub identity（GitHub Appまたは別account）にする。
+  帰結は次のとおり。
+  - lease記録にidentity表（role → GitHub login）を置き、executorは各commentの投稿者loginと、main へのpushの主体を照合する。
+    作成側のloginが依頼以外のcommentやpushに現れたら対象外。
+  - 各identityの資格情報は、他roleのcontextから読めない場所に置く（作成側の実行環境からreviewer・executorの資格情報に触れられない）。
+  - 「用意できた」とは、identity表がmainのlease記録にあり、資格情報の分離をPOが確認した時点を指す。それまでleaseを有効にしない。
+  - executorのidentityがmainへ通常pushできるよう、branch protectionの設定を変える必要があれば、それはPOが行う（executorは変えない）。
 
 #### merge前の検査（すべて満たす。一つでも欠けたらGitHubへ一切書き込まずに停止し、理由を報告する）
 
-- 書込み直前に最新mainからlease記録を読み直し、有効（期限内、取消しなし、`suspended`でない）である。
+- 書込み直前に最新mainからlease記録を読み直し、有効（期限内、取消しなし、`suspended`でない、監査の遅れがない）である。
 - PR head SHAとmain HEADを再取得し、review証拠のpairと一致する。
 - GitHubのmergeableが真。auto-mergeが予約されていない。
-- review済みcontent HEADとmain HEADから、executorがlocalでmerge commitを作る。**検査したmain HEADにある**`scfctl`とgovcheckを
-  使い、merge commitのtreeを入力として実行する（PRが変えたtoolでPR自身を検査しない）。validate／stale／residuals／selftestと
-  govcheckが合格し、`stale=0`。
+- mainのbranch protectionを再取得し、force pushと削除が禁止されている。
+- review済みcontent HEADとmain HEADから、executorがlocalでmerge commitを作る。`scaffold/`配下がmain HEADとmerge commitで
+  bytes単位で同一であることを確かめる（許可集合の外のため、同一でなければ上記の除外に当たる）。そのうえでmerge commitのtreeで
+  `scfctl`のvalidate／stale／residuals／selftestとgovcheckを実行し、すべて合格、`stale=0`。toolがmain HEADと同一であるため、
+  PRが変えたtoolでPR自身を検査することにならない。
 
 #### 書込み（compare-and-swap）
 
@@ -102,17 +121,18 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 #### 記録（receipt）
 
-- merge commit messageに、lease ID、PR、pair、使ったreview comment 3種のIDとSHA-256、各検査の結果、executor contextを書く。
-  mainはforce push禁止であるため、pushが通った時点でこの記録は改変できない形でmainに残る。
+- merge commit messageに、lease ID、PR、pair、pairに束縛されたすべての依頼・delivery receipt・応答commentのID・SHA-256・全文、
+  各検査の結果、executor contextを書く。mainのforce pushと削除はbranch protectionで禁止されており、executorはその設定を
+  変えることを禁止されているため、pushが通った後、この記録はbranch protectionを変えない限り改変できない。
 - push後、対象PRへ`merge_result` comment（結果、merge commit SHA、親、read-after結果）を置く。merge以外に許すGitHub書込みは、
   この1 commentだけである。
 - `merge_result`は次の`operation_change` PRで、repoの台帳へ全文とdigestごと取り込む。
 
 #### merge後
 
-- 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`を確認する。
+- 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`、branch protectionが変わっていないことを確認する。
 - GitHubがPRをmergedと表示するのは非同期である。push後10分以内にmergedにならなければ、失敗として扱う。
-- 不一致・失敗（上記の親、stale、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
+- 不一致・失敗（上記の親、stale、branch protection、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
   （運用モデル「PR #1797」節7と同じ扱い）。leaseは`suspended`になり、executorは人間が解除するまで次のmergeをしない。
   原因は作成側が監査文書のcorrective PRで扱う。
 - 対応Issueのcloseはleaseの範囲外とする（下記規則の意味5）。
@@ -126,7 +146,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 |---|---|
 | mapping | lease記録に、Issue番号 → repo内の本文file pathの対応表を置く。表にないIssue、表にないfileは対象外 |
 | source | 対応fileの、mainにmerge済みのexact commitのbytes。未merge branch、会話、review所見から本文を作らない |
-| 書込み前の照合 | 書込み直前にremote本文を取得し、そのSHA-256が、同じIssueの直前のreceiptに記録された「写したsource commitとfile SHA-256」と一致する。一致しなければ、他者の編集または未記録の更新があるとみなし、書き込まずに停止する。直前のreceiptのsourceはmainにあるため、変更前本文は常にmainにbackup済みである |
+| 書込み前の照合 | 同じIssueの直前のreceiptがmainへ取り込まれていること（取り込まれるまで、同じIssueへ次の書込みをしない）。書込み直前にremote本文を取得し、そのSHA-256が、main上の直前のreceiptに記録された「写したsource commitとfile SHA-256」と一致する。一致しなければ、他者の編集または未記録の更新があるとみなし、書き込まずに停止する。直前のreceiptのsourceはmainにあるため、変更前本文は常にmainにbackup済みである |
 | 書込み | 本文（`body`）だけ。state、label、title、assignee、milestoneの変更、close、commentの削除・編集はしない |
 | read-after | remote本文のSHA-256が写したfileと一致、state・label不変。さらにIssueの編集履歴で、今回の書込みの直前の版が照合した版であることを確かめる |
 | receipt | 既存の`RDPPROJ-*`形式に、lease ID、source commit、mapping行、書込み前後のremote本文SHA-256を加え、次のPRで投影記録へ取り込む |
@@ -173,6 +193,9 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
    および本decisionで満たす。承認済みのHELIX-OS L2要求はまだない。
 5. 同モデル「作成側とレビュー対応側の責務」の「merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う」:
    lease対象PRでは、mergeとpost-merge read-afterをexecutorが行い、対応Issueのcloseは従来どおりclose通路を明示許可された主体が行う。
+6. AGENTS.md 16行（GitHub等の各通路は明示許可が必要）: review依頼・delivery receipt・応答commentの投稿は、対象PRへの
+   comment作成だけを行う一つの投稿commandに限る。POは実行環境にこのcommandとexecutor commandだけを許可する。
+   GitHub APIへの直接書込み、他のPR・Issueへの書込み、comment編集・削除は許可しない。
 
 ## 本packetの承認で成立しないもの
 
@@ -186,18 +209,18 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 1. 本PR: packetのreviewを0件にし、POが判断する。approveなら、判断recordを本PRへ追加して再reviewし、POがmergeする。
 2. 後続の`operation_change` PR: lease記録（機械可読。mappingを含む）、executor command、`SCF-B-0003`（上流は本packetと判断record）、
-   上記規則1〜5の文言、negative caseを置く。negative caseは少なくとも次について、GitHubへ書き込まないこと（またはsuspendedになること）を確かめる。
+   上記規則1〜6の文言、negative caseを置く。negative caseは少なくとも次について、GitHubへ書き込まないこと（またはsuspendedになること）を確かめる。
    lease失効・取消し・suspended、区分が`repository_foundation`でない、区分欄の変更、許可集合外または除外集合のpath、renameで除外pathへ触れる、
-   authority系keyの追加行、pair不一致、別pairの依頼、応答のない依頼、findingのある応答、reviewer 2 context未満、編集されたcomment、
-   依頼より前の応答、作成側またはreviewerとexecutorの同一context、PRが変えたtoolでの検査、stale≥1、mergeable偽、auto-merge予約、
-   push拒否、merge後の親不一致、merged表示の時間切れ、`merge_result`失敗、projection_syncのmapping外・書込み前照合不一致・編集履歴不一致。
+   authority系keyの追加行・削除行・表書式、decisionまたはbindingが束縛するbytesの変更、`authority_surface_changed`が`yes`または欠落、pair不一致、別pairの依頼、応答のない依頼、findingのある応答、reviewer 2 context未満、編集されたcomment、
+   依頼より前の応答、作成側またはreviewerとexecutorの同一context、`scaffold/`配下の差分、branch protectionでforce push・削除が許可されている、監査の遅れ（10件）、stale≥1、mergeable偽、auto-merge予約、
+   push拒否、merge後の親不一致、merged表示の時間切れ、`merge_result`失敗、projection_syncのmapping外・直前receiptの未取込み・書込み前照合不一致・編集履歴不一致、投稿commandによる対象PR以外への書込み。
    POがGitHubで直接mergeする。
-3. POが実行環境にexecutor commandだけを許可する。以後、対象PRはexecutorがmergeする。
+3. POが実行環境にexecutor commandと投稿commandだけを許可する。以後、対象PRはexecutorがmergeする。
 4. 正式なHELIX-OS委任authority要求をL2／L11へ降ろし、L3／L10から実装を導出して、`SCF-B-0003`を撤去する。
 
 ## 人間判断
 
-- `approve`: 2つのlease定義、共通条件、後続PRで改める規則の意味1〜5、`projection_sync`の残存riskの受容を、正式要求が成立するまでの
+- `approve`: 2つのlease定義、共通条件、後続PRで改める規則の意味1〜6、`projection_sync`の残存riskの受容を、正式要求が成立するまでの
   Scaffold上流decisionとして承認する。あわせて独立性について`accept_bootstrap_risk`か`require_separate_identity`のどちらかを選ぶ。
 - `changes_requested`: 変更する項目（対象PR、許可集合、review証拠、書込み方式、期限、holder、規則の意味等）と理由を指定し、本packetを改訂する。
 - `reject`: 現行どおり都度許可とする。
