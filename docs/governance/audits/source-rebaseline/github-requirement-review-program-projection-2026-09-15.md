@@ -96,11 +96,67 @@ Scrum Reverse行台帳3文書へ全件を保持し、同じ117文書のfrontmatt
 利用・縮退・retireする後続要求PRでatom化と別仮登録を要求する。この補正も要求追加、採否、配置、successor、
 実装開始を生成しない。
 
+## S0承認・S1-01 defer後の#1813再投影
+
+receipt_id: `RDPPROJ-1813-20260919-005`
+
+RDP-001のheader訂正（`status: l2_decision_input_denominator_incomplete`）、`in_scope`の13要求1,799 atom
+（screen一致415、secondary 964 atom・link 1,009本）への拡大、`HDEC-L2D-S0-01`／`HDEC-L2D-S0-02`の承認（正規語彙`split`）、
+`HDEC-L2D-S1-01-DEFER-01`の`defer`を、main `3469266e`時点のrepo文書からIssue #1813へ再投影した。
+S0の2 unitは対象別L2／L11へ未適用であり、適用前に人間判断が要る未決3点を本文に残した。
+RDP-001が持つのは状態とholding処理の記述であり、件数とDecision IDは次の文書から取った（SHA-256はいずれも`3469266e`時点）。
+
+| 出典 | 使った値 | SHA-256 |
+|---|---|---|
+| `docs/governance/requirement-disposition-review-program.md` | 状態、13 holding、未評価11件、programの一般的な処理順 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
+| `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md` | 計上1件・該当なし1件、11件のうちatom展開未了3件、`PLAN-L3-82`の優先、旧AVSが`MPR-SH-CANDIDATE-003`の部分集合であること、S1-01の「次の処理」1–5の順序、1,799／415／964／1,009、AVS 46 atom、`OVC-RUL-RUL-FRM-02`の未解決、適用PR合格条件 | `f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46` |
+| `docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md` | S0の`approve`／`split`と承認範囲の除外、S1-01の`defer`、未決3点、再baseline条件 | `899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf` |
+| `docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md` | S0／S1の採否順と停止条件 | `3cf362f528b394e5c4105e63b85ae8e3630269615976474de478b53417158eb3` |
+
+| 項目 | 記録値（revision、state、labelはread-after値） |
+|---|---|
+| source commit | `3469266e5f7a4b455f98ccd0f40923a40f5e4562`（同fileの最終変更commit `1103e0c15c7002462b4e23e7a38946a047a1a549`） |
+| source file SHA-256 | `6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308` |
+| previous remote revision | `updatedAt:2026-09-18T16:09:30Z+body_sha256:7ea33f2417eca9ee7f3e8aaed375f6978b45ab18f318a28e73594441f64336c1` |
+| intermediate remote revision | `updatedAt:2026-09-19T14:27:11Z+body_sha256:4b8599bc5f987021a7293e289a8e3b40d852608d3bb4079a7e03d99cadcc25fc` |
+| corrected remote revision | `updatedAt:2026-09-19T14:32:24Z+body_sha256:9b47612ddcf87b2d7d21527476908f432fba2eb360cf9d1b64a41b58ccde4be1` |
+| state／label | `OPEN`／`state:proposed-upstream-waiting` |
+| authority effect | `none` |
+| 操作 | Issue #1813本文の置換（`PATCH /repos/RetryYN/HELIX-HARNESS/issues/1813`、`body`だけ）。state、label、title、commentは変更しない |
+| 操作authority | **明示の許可記録なし（未成立）**。本文書「許可」節の範囲はCodex hosted chat runtimeからのIssue作成、親子参照の本文更新、label付与、read-afterであり、本操作（Claude Code sessionからのRDP-001本文の全面再投影）はその範囲を超える。`RDPPROJ-1813-20260916-002`〜`004`も操作authorityを記録しておらず、許可の根拠にならない。本操作はauthorityを確認しないまま実行された。追認するかrollbackするかを人間判断に付す |
+| operation_authority_at_execution | `not_established`（上行のとおり。事後追認によって実行時点の状態を変更しない） |
+| human_disposition | `ratified`（下記「事後追認」） |
+| ratified_by | PO |
+| ratified_at | 2026-09-20（Asia/Tokyo、要求整理session） |
+| ratification scope | 2026-09-19の2回のPATCH（`7ea33f24…`→`4b8599bc…`→`9b47612d…`）だけ。以後のIssue操作の許可を生成しない |
+| 関係する要求 | 承認済みHELIX-OS L1の`HELIXOS-L1-008`（projection不整合の検出と原情報からの再構築）。対応するL2は未採否であり、承認済みのHELIX-OS L2要求はない |
+| backup | 更新前本文を[`github-projection-backups/issue-1813-body-2026-09-18T160930Z.txt`](github-projection-backups/issue-1813-body-2026-09-18T160930Z.txt)に、APIが返した本文文字列のUTF-8 bytesのまま保存した（改行を追加も除去もしない。SHA-256 `7ea33f24…`）。GitHubのIssue編集履歴（GraphQL `userContentEdits`）でも、2026-09-18T16:09:30Z、2026-09-19T14:27:11Z、14:32:24Zの各版の本文SHA-256が上表の`7ea33f24…`、`4b8599bc…`、`9b47612d…`と一致することを2026-09-19に確認した |
+| rollback | 人間がrollbackを選び、その書き戻しを許可した場合に、backup本文を同じ操作で書き戻し、read-afterで本文SHA-256を確認して、`correction_of: RDPPROJ-1813-20260919-005`付きの後続receiptを本文書へ追加する。POは追認を選んだため実行しない（手順は記録として残す） |
+
+`previous remote revision`は本再投影の直前に取得した値である。`RDPPROJ-1813-20260916-004`の
+`44db8f3e…`からこの値までの間にIssue本文は更新されていたが、その更新のreceiptは本文書にない。本receiptは
+その欠落を埋めず、欠落があったことだけを記録する。`intermediate remote revision`は本再投影の第1版であり、
+S0の承認範囲から未決3点を除く限定を行内に欠いていたため、独立reviewの指摘を受けて第2版へ更新した。本再投影は要求の追加、採否、successor、L2／L11適用、
+実装開始を生成しない。
+
+### 事後追認
+
+POは2026-09-20に、本receiptの2回のPATCHについて次を指示した。
+
+> 1. **Issue #1813 の書き換えは追認**
+
+> 1. #1813の書き換えは追認します。ただし、実行時点では操作authority未成立だった事実をreceiptから消さず、POによる事後追認として記録してください。rollbackは不要です。
+
+これにより、Issue #1813の現行本文（`9b47612d…`）をRDP-001 projectionとして保持し、rollbackしない。追認は事後の人間判断であり、
+実行時点で許可が成立していたことにはしない。authorityを確認せずに外部状態を変更したという事実は、`operation_authority_at_execution: not_established`として
+本receiptに残す。以後のIssue #1813を含むGitHub projection更新は、`operation_change`の必須入力（[GitHub上流運用モデル](../../github-upstream-operating-model.md)のPR class表）どおり、実行前に操作authorityを確認し、その根拠をreceiptへ記録する。
+
 3件のIssue本文はlocal program ID、source path、exact source commit、file SHA-256、状態、`authority_effect: none`を持つ。
 RDP-001は全要求の要否・再配置を親作業として追跡し、RDP-002は責務・機能重複、RDP-003は技術代替可能性を
 別判断面として扱う。HELIX-DBはRDP-003の一論点であり、専用実装の要否と永続・排他・再開等の意味機能を分ける。
 
 ## 残る境界
 
-Concept v4.1と対象別L1は未承認であり、個別要求の判断、successor、L3、実装、DB、CI、物理削除は未開始である。
+Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである。L2採否ではS0の2 unitが承認済み（対象別L2／L11へは未適用）、
+`L2D-S1-01`は`defer`である。個別要求の要否判断、successor、L3、実装、DB、CI、物理削除は未開始である。
 親・子Issueのcloseやcheckboxから、個別要求の処理完了を生成しない。

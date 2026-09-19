@@ -1,0 +1,2 @@
+# Issue本文backupは取得したbytesのまま保存する。末尾空白・空行を正規化しない。
+*.txt -whitespace -text
