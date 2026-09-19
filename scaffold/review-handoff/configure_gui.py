@@ -26,8 +26,18 @@ def entries(runtime):
 
 def owned(hook):
     command = hook.get("command", "")
-    prefix = shlex.join(["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime"])
-    return isinstance(command, str) and command.startswith(prefix + " ")
+    if not isinstance(command, str):
+        return False
+    try:
+        tokens = shlex.split(command)
+    except ValueError:
+        return False
+    # 別checkout・消失済みworktreeでも所有参照を撤去できる。
+    for index, token in enumerate(tokens):
+        if token.endswith("/scaffold/review-handoff/gui_mailbox.py"):
+            if tokens[index + 1:index + 3] == ["hook", "--runtime"]:
+                return index + 3 < len(tokens) and tokens[index + 3] in ("claude", "codex")
+    return False
 
 
 def count_owned(existing):

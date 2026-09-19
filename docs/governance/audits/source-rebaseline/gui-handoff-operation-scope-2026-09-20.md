@@ -53,3 +53,38 @@ recorded_at: 2026-09-19T16:44:49.775178+00:00
 Claudeはnative Stop経由、Codexは既存GUI内のnative toolからreceiveしてACKした。Codex Stopの自動受信成功とは扱わない。
 修正版は新HEADへ再依頼する。上記修正の自己検査を独立reviewの指摘解消判断へ代用しない。
 merge、post-merge、Issue close、新規providerセッションや非公開IPCは今回の操作対象外。
+
+## 再レビュー（round 2）への対応
+
+- N1: 所有判定をscript末尾とhook引数へ変更し、別checkout・消失したworktreeの参照も監査・撤去できる。参照先が無い場合の手動撤去手順もREADMEへ追加。
+- N2: reviewerが別セッションでのPO発言「今は残す」を報告したが、作成側はその原文を持たない。原文確認を依頼中で、reviewerの報告から承認を生成しない。確認中は2つの利用者設定から4 commandを撤去し、再接続しない。これはcodeの撤去ではなくconsumer接続の停止である。
+- N3: worktreeと通知箱を `/tmp/helix-rule-review-handoff` から `~/.helix-worktrees/rule-review-handoff` へ移動。親directoryは本人所有・他利用者書込不可を確認した。旧pathへのsymlinkや実行fallbackは置かない。
+- N4: 期限切れmessageの再送をqueuedと表示せずexpiredへ遷移させる。新request IDでの再依頼手順を維持。
+- N5: scaffoldの構成表にexternal-referencesを追加。residualsが実行者のhome設定を読むため環境依存であることを明記。
+- N6: 外部参照台帳をBindingのupstreamへ永続束縛。退役時にartifactsから外れても台帳欠落はエラー。
+- N7: hook障害が無音化される場合があることとlive ACKの必要性をREADMEへ記録。
+- N8: FTにpriority_orderを追加。
+- N9: GUI応答はGitHubのmerge admission証跡の代わりにしない。GitHubへ別途projectionしread-afterを記録する。
+- N10: Codex native Stopの自動受信は未確認として保持する。
+
+round 2依頼・応答も両GUIがACKした。Claude native StopとCodex GUI内のnative toolによる往復であり、Codex Stopの自動受信証拠ではない。
+
+## PO回答による実行責務の確認（2026-09-20）
+
+作成側が「Claude側のレビューに、あなたがhookを『今は残す』と判断したとの記載があります。そのときの指示原文を教えてください」と確認したところ、利用者は「これはClaude側の作業責務ではないから」と回答した。
+回答の受領記録時刻: 2026-09-19T16:58:51.659345+00:00
+
+別セッションの「今は残す」という原文・送信時刻は依然未確認であり、その発言を承認根拠にしない。
+今回の直接回答は、hookの保持・変更・撤去を実行レーンの作業として扱う根拠とし、既に受けたGUI通知経路の仮組み・指摘修正指示の範囲で接続を回復する。
+Claude側のreview指摘から保持・撤去の実行許可を生成せず、実行側が修正・検査・撤去の責任を持つ。
+
+対象と作用は以下に限定する。
+
+- 対象: `~/.claude/settings.json` と `~/.codex/hooks.json`。各SessionStartとStopの計4 command。
+- 作用: 旧 `/tmp` 参照を撤去し、本人所有・他利用者書込不可の `~/.helix-worktrees/rule-review-handoff/scaffold/review-handoff/gui_mailbox.py` 参照へ交換して保持する。
+- 保持条件（実行側の制約）: このGUI通知仮組みのreview・指摘往復が必要な期間だけ。scfctl residualsで参照先存在・重複なしを確認し、無関係な設定・trust・権限は変更しない。
+- 撤去契機（実行側の制約）: 利用者の停止指示、正式経路への置換、当該worktreeの撤去、または安全な通知維持ができない不具合。所有4 commandを除去しauditで0件確認後に本体を撤去する。
+- 本記録のscope: この作業で明示された既存VS Codeの両GUI間通知の可逆なconsumer接続のみ。scaffold外への一般的な仮実装許可、正式要求採否、merge・closeの許可へ拡張しない。
+
+上記4 commandの具体pathと保持条件は作成側が限定した実装内容であり、利用者がそれらの文字列を個別指定したとは主張しない。
+原文確認中に行った一時撤去の後、この限定scopeで永続pathから再接続する。再接続後のtrustは利用者のprovider側確認を尊重する。

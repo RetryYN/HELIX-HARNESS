@@ -26,11 +26,16 @@
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
-      "sha256": "17133a9604f92e90dfb2db581795e61e533c0cb168f25fc199a2294f5fc8651e"
+      "sha256": "5568819aa38bc2fa0d432873e81774834aab61783fadd57892c36f588a3460b2"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",
-      "sha256": "b0232b28153697be916ede9c2d36250aca5271e204c0b1f4f0c3e176bd08fdc6"
+      "sha256": "d241e3e14174b9b02190d38e7499f29f680953638d7a4a691e34441154060c6e"
+    },
+    {
+      "path": "scaffold/external-references/SCF-B-0003.json",
+      "sha256": "b3eaa962421016ce441a2faa863393519fb6cec8b1d0d7bdb687d0f582e3844e",
+      "note": "外部consumer参照の保持・撤去契約。退役後も保持する"
     }
   ],
   "role": "共通規則・対象revisionを固定した通知を既存VS Code GUIの両レーンへ届け、明示ACKと応答対応を確認する",

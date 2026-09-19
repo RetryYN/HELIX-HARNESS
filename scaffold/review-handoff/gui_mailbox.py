@@ -107,11 +107,15 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
     previous = data["messages"].get(event_id)
     if previous:
         p.require(previous["digest"] == digest, "同じevent IDの異なるpayload")
+        if previous["expires"] <= now and previous["status"] != "acked":
+            previous["status"] = "expired"
         return previous
     # 同じ依頼・同じ応答を別IDで再送してもGUIを再起動させない。
     for message in data["messages"].values():
         old = message["payload"]
         if all(old[key] == payload[key] for key in ("kind", "sender_session", "receiver_session", "request", "response")):
+            if message["expires"] <= now and message["status"] != "acked":
+                message["status"] = "expired"
             return message
     message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                    status="queued", claim=None, ack=None)

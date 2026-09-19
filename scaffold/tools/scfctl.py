@@ -265,7 +265,8 @@ def external_hook_residuals(binding, home=None):
     """binding隣接の参照台帳を読む。利用者設定を実行・変更しない。"""
     manifest = os.path.join(SCF, "external-references", binding["id"] + ".json")
     if not os.path.isfile(manifest):
-        if os.path.relpath(manifest, ROOT) in binding.get("artifacts", []):
+        declared = binding.get("artifacts", []) + [u.get("path") for u in binding.get("upstream", [])]
+        if os.path.relpath(manifest, ROOT) in declared:
             return ["外部hook参照台帳が欠落。残留を判定できない"]
         return []
     errors = []

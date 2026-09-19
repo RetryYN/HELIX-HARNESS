@@ -101,3 +101,10 @@ Bindingのexternal-hooks参照台帳を通じ、scfctl residualsでも退役後�
 操作scopeと全指摘の対応は[操作記録](../../docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md)を参照する。
 
 外部参照台帳は撤去証跡として保持する。退役時は台帳をBindingの現役artifactから移し、設定残留0を確認してから本体を削除する。台帳欠落は残留0と扱わない。
+
+## 別checkout・参照先消失時の撤去
+
+どのcheckoutからでも `configure_gui.py --remove --apply` → `--audit` を実行できる。所有判定はcheckoutの絶対pathに依存せず、script末尾と `hook --runtime claude|codex` で照合する。
+checkout自体が失われた場合は、両providerの利用者設定を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stopの子hookだけを削除する。無関係なhookと設定値を残す。復旧したcheckoutでauditとresidualsを実行する。
+外部参照台帳はBindingのupstreamにも束縛し、退役後にartifactsから外しても欠落をエラーにする。
+wrapperはhook障害の再起動連鎖を避けるため通知専用終了値以外を0にする。state破損等で無音失敗する可能性があり、queuedだけで配送成功とせずlive ACKを確認する。

@@ -230,11 +230,35 @@ class GuiChecks(unittest.TestCase):
             g.retry(self.data,"codex","codex-gui","event-1",self.now)
 
 
+    def test_cross_checkout_hook_removal(self):
+        settings=config.update({},"claude")
+        settings=json.loads(json.dumps(settings).replace(str(g.HERE),"/gone/checkout/scaffold/review-handoff"))
+        with patch.object(config,"HERE",Path("/another/checkout/scaffold/review-handoff")):
+            self.assertEqual(config.count_owned(settings),2)
+            self.assertEqual(config.count_owned(config.update(settings,"claude",True)),0)
+        self.assertFalse(config.owned(dict(command="echo /gone/scaffold/review-handoff/gui_mailbox.py unrelated")))
+
+    def test_expired_duplicate_reports_expired(self):
+        m=self.send()
+        m["expires"]=self.now-1
+        self.assertEqual(self.send()["status"],"expired")
+        self.assertEqual(self.send("another-id")["status"],"expired")
+        self.assertIsNone(g.claim(self.data,"claude","claude-gui",self.now))
+
+
     def test_external_hook_residuals(self):
         import importlib.util
         spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
         scf=importlib.util.module_from_spec(spec); spec.loader.exec_module(scf)
-        binding=dict(id="SCF-B-0003",state="active")
+        binding=dict(id="SCF-B-0003",state="active",upstream=[dict(path="scaffold/external-references/SCF-B-0003.json")])
+        with patch.object(scf.os,"path") as mocked:
+            mocked.join=__import__("posixpath").join
+            mocked.relpath=__import__("posixpath").relpath
+            mocked.isfile=lambda value: False
+            self.assertTrue(scf.external_hook_residuals(binding))
+            binding["state"]="retired"
+            self.assertTrue(scf.external_hook_residuals(binding))
+        binding["state"]="active"
         with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
             home=Path(directory); (home / ".claude").mkdir()
             settings=home / ".claude/settings.json"

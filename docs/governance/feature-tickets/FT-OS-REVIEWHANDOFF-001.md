@@ -6,6 +6,7 @@ state: proposed_upstream_waiting
 authority_effect: work_projection_only
 created: 2026-09-20
 primary_role: progression
+priority_order: 11
 parent_requirements: [HELIXOS-L2-003, HELIXOS-L2-004, HELIXOS-L2-007, HELIXOS-L2-010]
 acceptance_source: docs/helix-os/L11-acceptance/governance-acceptance.md
 depends_on: [FT-OS-REQREG-001]
