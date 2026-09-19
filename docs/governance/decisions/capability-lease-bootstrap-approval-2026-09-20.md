@@ -23,6 +23,10 @@ POは2026-09-20 01:44:32（Asia/Tokyo。UTCで`2026-09-19T16:44:32Z`）の作業
 この選択を、下記packetのexact bytesに対する判断として記録する。会話要約、GitHub状態、PR merge、review結果、
 外部監査の評価から判断を推定したものではない。
 
+POの回答はPR番号を指しており、revisionやdigestを指定していない。本recordはこれを、回答の時点でPR #1883のheadにあった
+packetのbytes（下表）へ束縛する。理由は「対象revisionについて」に示す。POが別のrevisionを指していた場合、本recordは誤りであり、
+新しい判断として訂正する。
+
 ## 判断対象
 
 | Decision ID | decision unit | 対象 | commit | 判断したSHA-256 | 選択 | 独立性の選択 |
@@ -36,8 +40,8 @@ actorはPOである。packetが提案値としPOが変更できるとした値�
 
 独立reviewが未解消0件（Opus 0/0/0、Sol 0/0/0）に達したのは`a272237e370f86aa5077f87ade07f588c1a47465`（packet SHA-256
 `688e5918…`）である。その後`fa143dde`で、leaseを担うScaffoldのIDだけを`SCF-B-0003`から`SCF-B-0004`へ改めた
-（`SCF-B-0003`はPR #1885の仮組みが使うため）。POの判断はこの変更の後に行われたため、本recordは`fa143dde`のbytesへ束縛する。
-両revisionの差分はこのID 4箇所だけである。
+（`SCF-B-0003`はPR #1885の仮組みが使うため）。`fa143dde`のcommit（2026-09-20 01:43:26 Asia/Tokyo）とpushはPOの回答の前であり、
+回答の時点のPR headは`fa143dde`だった。そのため本recordは`fa143dde`のbytesへ束縛する。両revisionの差分はこのID 4箇所だけである。
 
 packet本文の`status: awaiting_human_decision`と`authority_effect: none`は変更しない。書き換えると判断したbytesが変わるためである。
 判断の正本は本recordである。
@@ -51,25 +55,29 @@ packetの「人間判断」節の`approve`に従い、次をpacketの本文ど�
 - 後続PRで改める規則の意味1〜6。
 - `projection_sync`の残存risk（Issue更新APIに条件付き書込みがないことによる上書きを、予防でなく検出で扱うこと）の受容。
 
-独立性は`accept_bootstrap_risk`とする。packetが述べる帰結をそのまま受け入れる。
+独立性は`accept_bootstrap_risk`とする。packetが述べる帰結を受け入れる。帰結の正本はpacket本文であり、次はその要約である。
 
 - 作成側、reviewer、executorが同じGitHub accountと実行環境から動くため、偽造と独立性違反を事前にも事後にも止められないこと。
 - 補償統制として、review commentの全文、digest、IDをmerge commit messageへ残すこと。
-- POが依頼する外部監査がlease mergeを読み直し、lease監査記録をrepoへ入れること。最後の監査記録より後のlease mergeが10件に
+- POが依頼する外部監査がlease mergeを読み直し、lease監査記録をrepoへ入れること（lease監査記録はlease対象外で、POがmergeする）。
+  監査が担えるのはauthority面の変更の見逃しと記録間の不整合の発見であり、偽造や独立性違反はほぼ検出できないこと。
+  最後の監査記録より後のlease mergeが10件に
   達したら、executorは次のmergeをしないこと。
 - 見逃し・不整合・偽造・独立性違反が判明したらleaseを`suspended`とし、人間判断まで再開しないこと。
 - reviewerが自ら投稿できない場合に限り、作成側がreviewer出力を全文そのまま転記した応答commentを認めること（転記である旨を明記）。
 
 ## この判断で成立しないもの
 
-packetの「本packetの承認で成立しないもの」をそのまま維持する。
+packetの「本packetの承認で成立しないもの」を維持する。正本はpacket本文であり、次はその要約である。
 
 - HELIX-OSまたはHARNESSの要求採択、対象別L2／L11への適用。
-- lease記録、規則1〜6の文言改訂、executor commandの実装、`SCF-B-0004`の登録、実行環境の許可設定。これらは後続の
+- lease記録、上記規則の文言改訂、executor commandの実装、Scaffold Binding（`SCF-B-0004`）の登録、実行環境の許可設定。これらは後続の
   `operation_change` PRとPOの設定で行い、そのPRがmainへ入るまでleaseは存在しない。
 - 本recordを含むPR（#1883）と後続`operation_change` PRのmerge。leaseでlease自身を有効化できないため、この2つは既存規則のまま、
   POがGitHubで直接mergeする。
-- 既存PR（#1881、#1882、#1885等）のmerge許可。leaseが存在するまで、各PRは既存規則のmerge admissionに従う。
+
+次はpacketの記載ではなく、本recordの作成側の注記である（POの判断ではない）。leaseが存在するまで、既存PR（#1881、#1882、#1885等）は
+既存規則のmerge admissionに従い、本判断はそれらのmerge許可を与えない。
 
 ## revision変更時の扱い
 
