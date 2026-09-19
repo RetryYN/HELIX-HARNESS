@@ -168,7 +168,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 - 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`、branch protectionとrulesetが基準値から変わっていないこと、`require_separate_identity`の場合は作成側・reviewer・executorの各loginの実効roleが上記の値で、すべてのrulesetのbypass対象が空であることを確認する。
 - GitHubがPRをmergedと表示するのは非同期である。push後10分以内にmergedにならなければ、失敗として扱う。
-- 不一致・失敗（上記の親、stale、branch protection・ruleset、identity表のloginの実効roleが上記の値でない、rulesetのbypass対象が空でない、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
+- 不一致・失敗（上記の親、stale、branch protection・ruleset、作成側・reviewer・executorのloginの実効roleが上記の値でない、main更新主体の照合不一致、rulesetのbypass対象が空でない、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
   （運用モデル「PR #1797」節7と同じ扱い）。leaseは`suspended`になり、executorは人間が解除するまで次のmergeをしない。
   原因は作成側が監査文書のcorrective PRで扱う。
 - 対応Issueのcloseはleaseの範囲外とする（下記規則の意味5）。
