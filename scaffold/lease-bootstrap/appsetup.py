@@ -21,9 +21,14 @@ def home():
 
 
 def app_dir():
-    d = os.path.join(home(), ".helix-lease", "apps")
-    os.makedirs(d, mode=0o700, exist_ok=True)
-    return d
+    base = os.path.join(home(), ".helix-lease")
+    for d in (base, os.path.join(base, "apps")):
+        if os.path.islink(d):
+            raise RuntimeError("App設定の置き場所がsymlinkです（差し替えを受け付けない）: %s" % d)
+        os.makedirs(d, mode=0o700, exist_ok=True)
+        if os.stat(d).st_mode & 0o077:
+            raise RuntimeError("App設定の置き場所が他のuserから読めます: %s" % d)
+    return os.path.join(base, "apps")
 
 
 def opener():

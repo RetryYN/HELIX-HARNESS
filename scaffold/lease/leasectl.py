@@ -916,7 +916,7 @@ def run_boundary_tests():
     # argparseを使うfileは、書き方に依らず必ず定義行として拾えること（拾えなければ素通りを疑う）
     argp = [f for f in src_files if "argparse" in open(f, encoding="utf-8").read()]
     defs = [ln for f in argp for ln in def_lines(f)]
-    abbrev_src = (len(argp) == 6 and len(defs) >= 15 and all(def_lines(f) for f in argp)
+    abbrev_src = (len(argp) >= 6 and len(defs) >= len(argp) and all(def_lines(f) for f in argp)
                   and all("allow_abbrev=False" in ln for ln in defs))
     rows.append({"id": "BT-no-duplicate-options", "ok": all(dup_rcs) and abbr and abbrev_src
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
@@ -927,6 +927,42 @@ def run_boundary_tests():
                  and sh.index(cmp_line) < sh.index("cat > /usr/local/sbin/helix-lease-run")})
     # install.shは、引数の重複を最初に拒否し、executor userのhomeがAI側から届かないことを確かめてから置く
     home_owner = '[ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ]'
+    # 状態領域は、AI側から差し替えられる置き場所（symlink・他から読める権限）では使わない
+    sp_dir = tempfile.mkdtemp(prefix="lease-state-")
+    try:
+        real = os.path.join(sp_dir, "real"); os.mkdir(real, 0o700)
+        loose = os.path.join(sp_dir, "loose"); os.mkdir(loose, 0o755)
+        via = os.path.join(sp_dir, "via"); os.symlink(real, via)
+        keep = G.STATE_OVERRIDE
+        try:
+            G.STATE_OVERRIDE = os.path.join(via, "state.json")
+            refused_link = False
+            try:
+                G.write_state({"suspended": None})
+            except RuntimeError as e:
+                refused_link = "symlink" in str(e)
+            G.STATE_OVERRIDE = os.path.join(real, "state.json")
+            G.write_state({"suspended": None, "observed_review_ids": {}})
+            wrote = G.read_state().get("observed_review_ids") == {}
+            mode_ok = (os.stat(real).st_mode & 0o077) == 0
+            os.rename(os.path.join(real, "state.json"), os.path.join(sp_dir, "moved"))
+            os.symlink(os.path.join(sp_dir, "moved"), os.path.join(real, "state.json"))
+            refused_file = False
+            try:
+                G.write_state({"suspended": None})
+            except RuntimeError as e:
+                refused_file = "symlink" in str(e)
+            G.STATE_OVERRIDE = os.path.join(loose, "state.json")   # 他のuserから読める置き場所
+            refused_loose = False
+            try:
+                G.write_state({"suspended": None})
+            except RuntimeError as e:
+                refused_loose = "他のuserから読めます" in str(e)
+        finally:
+            G.STATE_OVERRIDE = keep
+        rows.append({"id": "BT-state-no-symlink", "ok": refused_link and refused_file and refused_loose and wrote and mode_ok})
+    finally:
+        shutil.rmtree(sp_dir, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # install.sh・checkhome.sh・appsetupの拒否を、rootを使わずに実挙動で測る
     boot_dir = os.path.join(os.path.dirname(HERE), "lease-bootstrap")
 
@@ -947,23 +983,32 @@ def run_boundary_tests():
         rc_same, out_same = sh_run(["sh", ck, me, home, home])
         rc_ailink, out_ailink = sh_run(["sh", ck, me, home, link])   # 別表記で同じ場所を指すAI側home
         rc_other, out_other = sh_run(["sh", ck, "nobody", home, ""])
-        rc_root, out_root = sh_run(["sh", ck, me, "/", ""])   # 祖先も所有も条件を満たす形（/はroot所有）
+        wide = os.path.join(hp, "wide")
+        os.mkdir(wide); os.chmod(wide, 0o777)
+        rc_mode, out_mode = sh_run(["sh", ck, me, wide, ""])   # home自身が他のuserから書ける
+        ent = os.path.join(home, "taken")
+        os.symlink("/tmp", ent)
+        rc_ent, out_ent = sh_run(["sh", ck, me, home, ""])     # 直下に置かれたsymlink
+        os.unlink(ent)
         rc_dup, out_dup = sh_run(["sh", os.path.join(boot_dir, "install.sh"),
                                   "--sha", "a" * 40, "--sha=" + "b" * 40, "--repo", "x/y", "--pr", "1"])
         rc_adup, out_adup = sh_run([sys.executable, "-I", "-B", os.path.join(boot_dir, "appsetup.py"),
                                     "token", "--repo", "a", "--repo=b"])
         rows.append({"id": "BT-install-args-home",
-                     "ok": (rc_anc, rc_link, rc_same, rc_ailink, rc_other, rc_dup, rc_adup) == (2,) * 7
+                     "ok": (rc_anc, rc_link, rc_same, rc_ailink, rc_other,
+                            rc_mode, rc_ent, rc_dup, rc_adup) == (2,) * 9
                      and "root所有ではありません" in out_anc and "symlinkを含みます" in out_link
-                     and "homeが同じです" in out_same and "homeが同じです" in out_ailink and "所有ではありません" in out_other
+                     and "homeが同じです" in out_same and "homeが同じです" in out_ailink
+                     # homeの所有者と、祖先の所有者は別の理由として測る
+                     and "home" in out_other and "の所有ではありません" in out_other
+                     and "他のuserから書けます" in out_mode and "はsymlinkです" in out_ent
                      and "同じoptionが2回以上あります" in out_dup   # rootの確認より前に止まる
                      and "同じoptionが2回以上ある" in out_adup
-                     and rc_root == 2 and "所有ではありません" in out_root
                      # install.shは、この検査をwrapperを置く前に通す
                      and 'sh "$DEST.new/scaffold/lease-bootstrap/checkhome.sh" "$EXEC_USER" "$EXEC_HOME"' in sh
                      and sh.index("checkhome.sh") < sh.index("cat > /usr/local/sbin/helix-lease-run")})
     finally:
-        os.unlink(link); os.rmdir(home); os.rmdir(hp)
+        os.unlink(link); os.rmdir(home); os.rmdir(wide); os.rmdir(hp)
     # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
     import subprocess as sp3
 

@@ -271,8 +271,20 @@ def state_path():
     return STATE_OVERRIDE or os.path.join(home_dir(), ".helix-lease", "state.json")
 
 
+def safe_dir(d):
+    """状態領域の置き場所。symlinkなら（AI側から差し替えられる）使わない。無ければ本人だけのdirectoryで作る。"""
+    if os.path.islink(d):
+        raise RuntimeError("状態領域がsymlinkです（差し替えを受け付けない）: %s" % d)
+    os.makedirs(d, mode=0o700, exist_ok=True)
+    if os.stat(d).st_mode & 0o077:
+        raise RuntimeError("状態領域が他のuserから読めます: %s" % d)
+    return d
+
+
 def read_state():
     try:
+        if os.path.islink(state_path()):
+            raise RuntimeError("状態領域のfileがsymlinkです: %s" % state_path())
         with open(state_path(), encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
@@ -298,9 +310,12 @@ def binding_state(gh, rev):
 
 def write_state(st):
     p = state_path()
-    os.makedirs(os.path.dirname(p), exist_ok=True)
+    safe_dir(os.path.dirname(p))
+    if os.path.islink(p):
+        raise RuntimeError("状態領域のfileがsymlinkです: %s" % p)
     tmp = p + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
+    with open(os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | os.O_NOFOLLOW, 0o600), "w",
+              encoding="utf-8") as f:
         json.dump(st, f, ensure_ascii=False, indent=1)
     os.replace(tmp, p)
 
