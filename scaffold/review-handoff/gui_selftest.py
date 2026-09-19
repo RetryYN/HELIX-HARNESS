@@ -154,7 +154,7 @@ class GuiChecks(unittest.TestCase):
             result = subprocess.run(candidate, shell=True, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0)
         for rc, expected in ((1,0),(2,0),(42,2)):
-            wrapped = "sh -c 'exit " + str(rc) + "';" + command.split(";",1)[1]
+            wrapped = "sh -c 'exit " + str(rc) + "'; helix_hook_rc=" + command.split("; helix_hook_rc=",1)[1]
             self.assertEqual(subprocess.run(wrapped,shell=True).returncode,expected)
 
     def test_notification_omits_untrusted_text_and_bounds_payload(self):
@@ -247,6 +247,37 @@ class GuiChecks(unittest.TestCase):
             with self.assertRaises(ValueError):g.hook("claude",0)
 
 
+    def test_rearm_never_installs_or_migrates(self):
+        with self.assertRaises(ValueError):config.update({},"claude",rearm_token="new")
+        value=config.update({},"claude")
+        with self.assertRaises(ValueError):config.update(value,"claude",remove=True,rearm_token="new")
+        with patch.object(config,"HERE",Path("/other/scaffold/review-handoff")):
+            with self.assertRaises(ValueError):config.update(value,"claude",rearm_token="new")
+        value["hooks"]["ConfigChange"][0]["hooks"][0]["provider_note"]="preserve"
+        original=copy.deepcopy(value)
+        updated=config.update(value,"claude",rearm_token="new")
+        updated["hooks"]["ConfigChange"][0]["hooks"][0].pop("statusMessage")
+        self.assertEqual(original,updated)
+
+    def test_lifetime_guard_stops_on_reboot_or_deadline(self):
+        for guard in (config.lifetime_guard(boot_id="other-boot"),config.lifetime_guard(expires_at=0)):
+            r=subprocess.run(guard+"printf SHOULD_NOT_RUN; exit 42",shell=True,capture_output=True,text=True)
+            self.assertEqual(r.returncode,0)
+            self.assertNotIn("SHOULD_NOT_RUN",r.stdout)
+
+    def test_recovery_rejects_wrong_path_runtime_repository(self):
+        good=dict(session_id="claude-gui",hook_event_name="ConfigChange",source="user_settings",file_path=str(Path.home()/".claude/settings.json"),cwd=str(p.ROOT))
+        for runtime,change in (("claude",dict(file_path="/wrong")),("codex",{})):
+            with patch.object(sys,"stdin",io.StringIO(json.dumps(dict(good,**change)))):
+                with self.assertRaises(ValueError):g.hook(runtime,0)
+        with tempfile.TemporaryDirectory(dir=g.HERE/"local") as directory:
+            subprocess.run(["git","init","--quiet",directory],check=True)
+            stdout=io.StringIO()
+            with patch.object(sys,"stdin",io.StringIO(json.dumps(dict(good,cwd=directory)))),patch.object(sys,"stdout",stdout),patch.object(g,"state",side_effect=AssertionError("foreign repo accessed mailbox")):
+                g.hook("claude",0)
+            self.assertEqual(stdout.getvalue().strip(),"{}")
+
+
     def test_cross_checkout_hook_removal(self):
         settings=config.update({},"claude")
         settings=json.loads(json.dumps(settings).replace(str(g.HERE),"/gone/checkout/scaffold/review-handoff"))
@@ -268,13 +299,10 @@ class GuiChecks(unittest.TestCase):
         spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
         scf=importlib.util.module_from_spec(spec); spec.loader.exec_module(scf)
         binding=dict(id="SCF-B-0003",state="active",upstream=[dict(path="scaffold/external-references/SCF-B-0003.json")])
-        with patch.object(scf.os,"path") as mocked:
-            mocked.join=__import__("posixpath").join
-            mocked.relpath=__import__("posixpath").relpath
-            mocked.isfile=lambda value: False
-            self.assertTrue(scf.external_hook_residuals(binding))
-            binding["state"]="retired"
-            self.assertTrue(scf.external_hook_residuals(binding))
+        absent = str(g.HERE / "local/absent-external-manifest.json")
+        self.assertTrue(scf.external_hook_residuals(binding,manifest_path=absent))
+        binding["state"]="retired"
+        self.assertTrue(scf.external_hook_residuals(binding,manifest_path=absent))
         binding["state"]="active"
         with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
             home=Path(directory); (home / ".claude").mkdir()

@@ -261,12 +261,13 @@ def check_replacement(b, fs=True, digests=None):
     return e, revs
 
 
-def external_hook_residuals(binding, home=None):
+def external_hook_residuals(binding, home=None, manifest_path=None):
     """binding隣接の参照台帳を読む。利用者設定を実行・変更しない。"""
-    manifest = os.path.join(SCF, "external-references", binding["id"] + ".json")
+    declared_manifest = os.path.join(SCF, "external-references", binding["id"] + ".json")
+    manifest = manifest_path or declared_manifest
     if not os.path.isfile(manifest):
         declared = binding.get("artifacts", []) + [u.get("path") for u in binding.get("upstream", [])]
-        if os.path.relpath(manifest, ROOT) in declared:
+        if os.path.relpath(declared_manifest, ROOT) in declared:
             return ["外部hook参照台帳が欠落。残留を判定できない"]
         return []
     errors = []

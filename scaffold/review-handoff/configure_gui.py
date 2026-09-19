@@ -2,21 +2,31 @@
 """新設のGUI通知hookだけを利用者設定へ接続／撤去する。trustは変更しない。"""
 import argparse
 import copy
+from datetime import datetime
 import json
 import os
 from pathlib import Path
 import shlex
 import tempfile
 import uuid
+import time
 
 HERE = Path(__file__).resolve().parent
+EXPIRES_AT = int(datetime.fromisoformat("2026-09-20T23:59:00+09:00").timestamp())
+BOOT_ID = Path("/proc/sys/kernel/random/boot_id").read_text().strip()
+
+
+def lifetime_guard(boot_id=BOOT_ID, expires_at=EXPIRES_AT):
+    return ('[ "$(cat /proc/sys/kernel/random/boot_id 2>/dev/null)" = ' + shlex.quote(boot_id)
+            + ' ] || exit 0; [ "$(date +%s)" -lt ' + str(expires_at) + ' ] || exit 0; ')
+
 
 
 def entries(runtime):
     def command(wait):
         call = shlex.join(["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime", runtime, "--wait", str(wait)])
         # 通知専用42だけをClaudeの2に変換。不在・argparse・例外の2/1は常に0。
-        return call + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
+        return lifetime_guard() + call + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
     stop = dict(type="command", command=command(3600 if runtime == "claude" else 5), timeout=3660 if runtime == "claude" else 10)
     if runtime == "claude": stop["asyncRewake"] = True
     result = {
@@ -50,6 +60,25 @@ def count_owned(existing):
 
 
 def update(existing, runtime, remove=False, rearm_token=None):
+    if rearm_token:
+        if runtime != "claude" or remove:
+            raise ValueError("rearmは既存Claude接続だけが対象")
+        expected = entries("claude")
+        actual = [(event, record, hook) for event, records in existing.get("hooks", {}).items()
+                  for record in records for hook in record.get("hooks", []) if owned(hook)]
+        if len(actual) != 3 or {event for event, _, _ in actual} != set(expected):
+            raise ValueError("rearmは既存3 hookが必要。撤去済み接続を復活させない")
+        for event, record, hook in actual:
+            baseline = expected[event][0]
+            if record.get("matcher", "") != baseline.get("matcher", "") or any(
+                    hook.get(key) != value for key, value in baseline["hooks"][0].items()):
+                raise ValueError("rearmは同じcheckout・現行commandの接続だけが対象")
+        result = copy.deepcopy(existing)
+        for record in result["hooks"]["ConfigChange"]:
+            for hook in record.get("hooks", []):
+                if owned(hook):
+                    hook["statusMessage"] = "HELIX GUI recovery " + rearm_token
+        return result
     result = copy.deepcopy(existing)
     hooks = result.setdefault("hooks", {})
     for event in list(hooks):
@@ -66,8 +95,6 @@ def update(existing, runtime, remove=False, rearm_token=None):
         else: del hooks[event]
     if not remove:
         for event, records in entries(runtime).items():
-            if event == "ConfigChange" and rearm_token:
-                records[0]["hooks"][0]["statusMessage"] = "HELIX GUI recovery " + rearm_token
             hooks.setdefault(event, []).extend(records)
     if not hooks: result.pop("hooks", None)
     return result
@@ -80,6 +107,10 @@ def main():
     parser.add_argument("--audit", action="store_true", help="所有hookの残留件数。残留ありはexit 1")
     parser.add_argument("--rearm", action="store_true", help="Claudeの所有ConfigChange hook metadataだけを更新して待受を再登録する")
     args = parser.parse_args()
+    if args.rearm and (args.remove or args.audit):
+        parser.error("rearmとremove/auditは同時指定不可")
+    if args.apply and not args.remove and time.time() >= EXPIRES_AT:
+        parser.error("接続期限切れ。追加・rearmせず撤去する")
     residual_count = 0
     paths = {"claude": Path.home() / ".claude/settings.json", "codex": Path.home() / ".codex/hooks.json"}
     for runtime, path in paths.items():

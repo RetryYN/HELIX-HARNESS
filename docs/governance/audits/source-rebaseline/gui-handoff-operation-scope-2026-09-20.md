@@ -20,7 +20,7 @@ recorded_at: 2026-09-19T16:44:49.775178+00:00
 
 ## 仮組みの接続境界
 
-本体・通知state・検査・外部参照台帳はscaffold内へ置く。外部の既存provider設定はconsumerとして扱い、新設SessionStart／Stopの参照だけを接続する。
+本体・通知state・検査・外部参照台帳はscaffold内へ置く。外部の既存provider設定はconsumerとして扱い、新設SessionStart／StopとClaude ConfigChangeの参照だけを接続する（後述の修正後は計5 command）。
 対象は利用者の `.claude/settings.json` と `.codex/hooks.json`。無関係な設定、trust、権限、provider、modelを変更しない。
 このconsumer接続をscaffold名前空間制約の例外として一般化しない。仮artifactを設定側へ複製せず、参照台帳で残留を管理する。
 初版の未管理な参照は今回いったん撤去し、古い待受世代を無効にした。
@@ -57,7 +57,7 @@ merge、post-merge、Issue close、新規providerセッションや非公開IPC�
 ## 再レビュー（round 2）への対応
 
 - N1: 所有判定をscript末尾とhook引数へ変更し、別checkout・消失したworktreeの参照も監査・撤去できる。参照先が無い場合の手動撤去手順もREADMEへ追加。
-- N2: reviewerが別セッションでのPO発言「今は残す」を報告したが、作成側はその原文を持たない。原文確認を依頼中で、reviewerの報告から承認を生成しない。確認中は2つの利用者設定から4 commandを撤去し、再接続しない。これはcodeの撤去ではなくconsumer接続の停止である。
+- N2: reviewerが別セッションでのPO発言「今は残す」を報告したが、作成側はその原文を持たない。原文確認を依頼中で、reviewerの報告から承認を生成しない。確認中はいったん2つの利用者設定から当時の4 commandを撤去し、再接続を止めた。その後、後述のPO回答に基づく実行責務の判断で再接続した。これはcodeの撤去ではなくconsumer接続の停止である。
 - N3: worktreeと通知箱を `/tmp/helix-rule-review-handoff` から `~/.helix-worktrees/rule-review-handoff` へ移動。親directoryは本人所有・他利用者書込不可を確認した。旧pathへのsymlinkや実行fallbackは置かない。
 - N4: 期限切れmessageの再送をqueuedと表示せずexpiredへ遷移させる。新request IDでの再依頼手順を維持。
 - N5: scaffoldの構成表にexternal-referencesを追加。residualsが実行者のhome設定を読むため環境依存であることを明記。
@@ -80,13 +80,13 @@ Claude側のreview指摘から保持・撤去の実行許可を生成せず、�
 
 対象と作用は以下に限定する。
 
-- 対象: `~/.claude/settings.json` と `~/.codex/hooks.json`。各SessionStartとStopの計4 command。
+- 対象: `~/.claude/settings.json` と `~/.codex/hooks.json`。ClaudeはSessionStart／Stop／ConfigChange、CodexはSessionStart／Stopの計5 command（ConfigChange追加前は4 command）。
 - 作用: 旧 `/tmp` 参照を撤去し、本人所有・他利用者書込不可の `~/.helix-worktrees/rule-review-handoff/scaffold/review-handoff/gui_mailbox.py` 参照へ交換して保持する。
-- 保持条件（実行側の制約）: このGUI通知仮組みのreview・指摘往復が必要な期間だけ。scfctl residualsで参照先存在・重複なしを確認し、無関係な設定・trust・権限は変更しない。
-- 撤去契機（実行側の制約）: 利用者の停止指示、正式経路への置換、当該worktreeの撤去、または安全な通知維持ができない不具合。所有4 commandを除去しauditで0件確認後に本体を撤去する。
+- 保持条件（実行側の制約）: このGUI通知仮組みのreview・指摘往復が必要な期間だけとし、上限は2026-09-20 23:59 JST、現在のOS boot終了、PR #1885のmergeまたはcloseのうち最も早い時点とする。scfctl residualsで参照先存在・重複なしを確認し、無関係な設定・trust・権限は変更しない。
+- 撤去契機（実行側の制約）: 上記保持上限、利用者の停止指示、正式経路への置換、当該worktreeの撤去、または安全な通知維持ができない不具合。実行側が所有5 commandを除去しauditで0件確認後に本体を撤去する。
 - 本記録のscope: この作業で明示された既存VS Codeの両GUI間通知の可逆なconsumer接続のみ。scaffold外への一般的な仮実装許可、正式要求採否、merge・closeの許可へ拡張しない。
 
-上記4 commandの具体pathと保持条件は作成側が限定した実装内容であり、利用者がそれらの文字列を個別指定したとは主張しない。
+上記5 commandの具体pathと保持条件は作成側が限定した実装内容であり、利用者がそれらの文字列を個別指定したとは主張しない。
 原文確認中に行った一時撤去の後、この限定scopeで永続pathから再接続する。再接続後のtrustは利用者のprovider側確認を尊重する。
 
 ## 起床経路の是正（利用者指摘と回復処理）
@@ -96,8 +96,40 @@ Claude側のreview指摘から保持・撤去の実行許可を生成せず、�
 旧 `PLAN-L7-469`、`claude-memory-wake.ts`、Stop設定をreferenceとして再読し、起床は既存のasyncRewake待受からのexit 2であったと確認した。旧コードは実行していない。
 障害はpath移行時に待受を無効にして後継を登録する前に止めたことであり、外からVS Codeを開くことでは修復しない。
 
-既存GUIの通知経路を修復する今回の指示に従い、Claudeの公開ConfigChange hookを同じ通知処理の回復入口へ追加した。
+Claudeの公開ConfigChange hookを回復入口へ追加する方式は、作成側の実装判断である。この追加作業の根拠は先行指示5「必要ですならしろ。」であり、後の起床経路に関する発言をConfigChange指定や新しい許可として扱わない。
 対象は従来と同じ2設定fileで、ClaudeにSessionStart／Stop／ConfigChange、CodexにSessionStart／Stopの計5 command。
 ConfigChangeはuser_settingsに限定し、同じrepositoryと登録済みsession、settingsのexact pathを確認する。無関係な設定・trust・権限を変更しない。
 rearmは所有hookの表示metadataを1回更新するだけで、設定への常時pollや新しいprovider起動は行わない。保持条件・撤去契機は前節を継承する。
 native ConfigChangeの発火をlocal hook_eventsで観測した。新依頼の起床・受領ACKは別の証跡で確認し、イベント観測だけで配送成功を宣言しない。
+
+## 原文・時刻の確認と保持上限の確定
+
+本節は、それまで未取得だった原文と時刻をlocal session記録から確認した訂正である。modelのレビュー文に引用された内容と、利用者の回答を区別した。
+
+- Claude側AskUserQuestion（2026-09-19T16:43:58.289Z）の該当質問: 「#1885がuser-globalに登録した /tmp 参照のhook（~/.claude/settings.json と ~/.codex/hooks.json のSessionStart/Stop）を私が撤去してよいですか？撤去するとcodex↔ClaudeのGUI通知レーンは止まります。」
+- 対応回答（2026-09-19T16:44:16.787Z）: 「今は残す」。選択肢の説明は「reboot前まで残す」。これは再起動後の保持許可ではない。
+- Codex側user_message「必要ですならしろ。」: 2026-09-19T16:39:47.135Z。
+- 「これはClaude側の作業責務ではないから」: 2026-09-19T16:58:06.950Z。
+- 「送れるはずだが？」: 2026-09-19T17:02:02.823Z。
+- 「旧実装に起こす方法あったんじゃないの？VSCodeを新たに立ち上げようとしたお前の方法は間違いだ。」: 2026-09-19T17:04:55.462Z。
+
+上記は各local sessionの入力／回答記録時刻（UTC）であり、POの端末側送信時刻とは区別する。いずれも日本時間2026-09-20。
+機械的にも、hook commandを現在のboot IDと2026-09-20 23:59 JSTに束縛した。再起動後・期限後は本体を実行せず0で終了する。稼働中の待受も期限で終了する。
+残った不活性な設定参照は実行側の撤去対象であり、停止を撤去完了とは扱わない。PR #1885のmerge/close連絡を受けた場合も実行側が5 commandを撤去してauditする。この作成側はmerge・closeを実行しない。
+
+## Round 3／4指摘の処分
+
+| ID | 処分 | 根拠・対応 |
+| --- | --- | --- |
+| R3-1 | 解消確認済み | ConfigChangeをcommitし最新HEADへ再依頼。round4 reviewerが稼働コードとの一致を確認 |
+| R3-2 | 修正して再review | 原文・時刻を確認し、boot・具体日付・PR merge/closeの上限を追加。再起動後の実行をguardで停止 |
+| R3-3 | 修正して再review | 一時撤去は過去の状態で、その後再接続したと追記 |
+| R3-4 | 対応 | manifest path注入に変え、共有os.pathのmockを廃止 |
+| R4-1 | 修正して再review | 上記の保持上限と実行guard、実行側の撤去責務 |
+| R4-2 | 修正して再review | ConfigChangeは先行指示5に基づく作成側実装判断と明記。local入力時刻を追記 |
+| R4-3 | 修正して再review | 現行対象を5 commandへ統一し手動撤去にConfigChangeを追加。過去の4 commandは経緯として明示 |
+| R4-4 | 修正して再review | rearmは同じcheckout・現行commandの既存3 hookだけを許し、表示metadata以外を変更しない。撤去済み・別checkout・remove併用を拒否 |
+| R4-5 | 修正して再review | R3-3と同じ修正 |
+| R4-6 | 対応 | 本表へ全round3指摘の処分を記録 |
+| R4-7 | 対応 | 誤path・codex runtime・別repoの拒否例を追加し、os.path mockを廃止 |
+| R4-8 | 未検証を保持 | ConfigChange発火は確認済みだが、exit2後のprovider内部設定適用判断を独立に観測していない。asyncRewake併用の設定block意味論を断定しない |

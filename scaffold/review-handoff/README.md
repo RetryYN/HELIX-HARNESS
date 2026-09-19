@@ -105,7 +105,7 @@ Bindingのexternal-hooks参照台帳を通じ、scfctl residualsでも退役後�
 ## 別checkout・参照先消失時の撤去
 
 どのcheckoutからでも `configure_gui.py --remove --apply` → `--audit` を実行できる。所有判定はcheckoutの絶対pathに依存せず、script末尾と `hook --runtime claude|codex` で照合する。
-checkout自体が失われた場合は、両providerの利用者設定を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stopの子hookだけを削除する。無関係なhookと設定値を残す。復旧したcheckoutでauditとresidualsを実行する。
+checkout自体が失われた場合は、両providerの利用者設定を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stop／ConfigChangeの該当子hookだけを削除する。無関係なhookと設定値を残す。復旧したcheckoutでauditとresidualsを実行する。
 外部参照台帳はBindingのupstreamにも束縛し、退役後にartifactsから外しても欠落をエラーにする。
 wrapperはhook障害の再起動連鎖を避けるため通知専用終了値以外を0にする。state破損等で無音失敗する可能性があり、queuedだけで配送成功とせずlive ACKを確認する。
 
@@ -124,3 +124,10 @@ rearmは所有ConfigChange hookのstatusMessageだけを新しいtokenへ変更�
 初回登録後はprovider側の設定読込を待ってrearmする。stateのhook_eventsにConfigChangeが現れること、依頼がclaimedになり受信GUI自身がACKすることを段階別に確認する。hook_eventsは64件・2時間のlocal観測記録である。
 Claudeの設定変更hookは実機で発火を観測済み。Codexのnative Stop自動受信は引き続き未確認。公開URIによるGUI開き直し、送信欄操作、別providerセッション、非公開IPCは回復経路にしない。
 [Claude hooksの公開仕様](https://code.claude.com/docs/en/hooks)を参照する。
+
+## 接続の保持上限
+
+保持は現在のOS boot内、かつ2026-09-20 23:59 JSTまで。PR #1885のmerge/close、利用者の停止指示、正式経路への置換が先ならそこで撤去する。永続pathへの移動はreboot後の稼働許可を意味しない。
+commandのboot ID／期限guardは再起動・期限後の本体実行を止め、待受も期限で終わる。設定参照そのものは実行側がremove→auditで撤去する。止まっただけで残留0とは扱わない。
+rearmは同じcheckout・現行commandのClaude hookが3件揃っている場合だけ許す。撤去済み接続の復活や別checkoutへの付替えは拒否し、既存ConfigChangeのstatusMessage以外を変えない。
+ConfigChange+asyncRewakeの発火と配送確認、provider内部の設定変更block判断、Codex Stop自動受信は別々に扱う。内部の設定適用結果が未観測なら未検証のまま残す。
