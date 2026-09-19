@@ -122,7 +122,7 @@ POが行うのは、人間にしか越えられない境界だけである。設
   状態Issue、試験PRを書いたlease記録の候補を出す。作成側はこれを本PRのlease記録へ入れてpushする。POが提出した試験reviewのIDと状態も記入する。
 - 操作3の後: `leaseboot probe --lease-pr <本PR> --apply`
   AI側の全login×2 reviewへ削除の試行を行い、結果commentのIDを`probe.activation_results`へ、そのときの試験reviewを
-  `probe.activation_test_reviews`へ書いた候補を出す。`leasectl status --lease-pr <本PR>`で`identity`（`po`がPOのlogin、AI側の全roleがAppのlogin）・`probe_registered`・`origin_main`・`baseline_sha256`と、
+  `probe.activation_test_reviews`へ書いた候補を出す。`leasectl status --lease-pr <本PR>`で`identity`（`po`がPOのlogin、AI側の全roleがAppのlogin）・`probe_registered`・`origin_main`・`baseline_diff`（記録といま取得した保護設定の違い。`一致`であること）と、
   `integrity`・`runner`・`probe.status`・`activation`を確かめる。
 - `leaseboot verify --lease-pr <本PR>`: 下記「未検証」を実物で確かめる（読取りだけ）。取得できない項目・期待と違う値は成立とせず、
   1つでも欠ければ0以外で終わる。

@@ -207,7 +207,7 @@ def cmd_status(a, gh=None):
                       "identity": lease.get("identity"), "probe_registered": {
                           k: (lease.get("probe") or {}).get(k) for k in
                           ("test_pr", "test_reviews", "activation_results", "activation_test_reviews")},
-                      "baseline_sha256": C.sha256_text(json.dumps(lease.get("baseline"), ensure_ascii=False, sort_keys=True)),
+                      "baseline_diff": C.baseline_diff(lease, G.protection(gh)) or "一致",
                       "probe": {"status": ps, "detail": pd}, "integrity": integrity or "ok", "runner": G.runner_info(),
                       "activation": "not_set" if activation is None else (activation or "ok"),
                       "state_area": G.read_state()}, ensure_ascii=False, indent=1))
@@ -777,8 +777,8 @@ def run_boundary_tests():
     # 実行環境を組むscriptとwrapperの形: AI側へinstallation tokenと秘密鍵の操作を出さない
     sh = open(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "install.sh"), encoding="utf-8").read()
     wrap = sh.split("<<'WRAP'")[1].split("WRAP\n")[0]
-    sud = sh.split("/etc/sudoers.d/helix-lease <<EOF")[1].split("EOF\n")[0]
-    sud_b = sh.split("/etc/sudoers.d/helix-lease-bootstrap <<EOF")[1].split("EOF\n")[0]
+    sud = sh.split('cat > "$SUDO_TMP" <<EOF')[1].split("EOF\n")[0]
+    sud_b = sh.split('cat > "$SUDO_TMP_B" <<EOF')[1].split("EOF\n")[0]
     appsetup_lines = [l for l in wrap.splitlines() if "appsetup" in l and not l.strip().startswith("#")]
     rows.append({"id": "BT-wrapper-scope",
                  # 呼出し元が選べるcommandにappsetupが無く、appsetupはtokenの発行にだけ使われる
@@ -794,7 +794,32 @@ def run_boundary_tests():
                  and sorted(l.split("helix-lease-run ")[1].split(" ")[1] for l in sud_b.splitlines()
                             if "NOPASSWD:" in l and not l.strip().startswith("#")) == ["prepare", "probe", "verify"]
                  and "appsetup" not in sud.replace("# ", "") and "ALL=(ALL)" not in sud and "env_reset" in sud
-                 and "self" not in wrap.lower()})
+                 and "self" not in wrap.lower()
+                 # sudoersは検査（visudo）に通してから置く。対象PRはroot所有のfileでも固定する
+                 and sh.index('visudo -cf "$SUDO_TMP"') < sh.index("cp \"$SUDO_TMP\" /etc/sudoers.d/helix-lease")
+                 and sh.index('visudo -cf "$SUDO_TMP_B"') < sh.index('cp "$SUDO_TMP_B" /etc/sudoers.d/helix-lease-bootstrap')
+                 and "/etc/helix-lease/target-pr" in sh and "PATH=/usr/sbin:/usr/bin:/sbin:/bin" in sh})
+    # 基準値は、記録といま取得した保護設定を突き合わせる（POの有効化前の確認）
+    live = {"branch_protection": {"allow_force_pushes": False}, "rulesets": []}
+    rows.append({"id": "BT-baseline-diff",
+                 "ok": C.baseline_diff({"baseline": live}, live) == []
+                 and C.baseline_diff({"baseline": dict(live, rulesets=[{"id": 1}])}, live) == ["rulesets"]
+                 and C.baseline_diff({"baseline": live}, {"unavailable": True}) == ["取得できない"]})
+    # verifyの集計: 例外で止まった項目もokでない項目も、すべてngとして数える
+    boot_out = {"a": {"ok": True}, "b": {"ok": False}, "c": {"ok": None}, "d": "例外"}
+    rows.append({"id": "BT-verify-ng-count",
+                 "ok": sorted(k for k, v in boot_out.items() if not (isinstance(v, dict) and v.get("ok") is True)) == ["b", "c", "d"]})
+    # 実行環境が固定した対象PRと違うPRでは動かない
+    tp = tempfile.mkdtemp(prefix="lease-target-")
+    try:
+        tpf = os.path.join(tp, "target-pr")
+        with open(tpf, "w") as f:
+            f.write("1886\n")
+        rows.append({"id": "BT-target-pr", "ok": BT0.target_pr_mismatch(1886, tpf) is None
+                     and BT0.target_pr_mismatch(4321, tpf)
+                     and BT0.target_pr_mismatch(1886, os.path.join(tp, "none")) is None})
+    finally:
+        shutil.rmtree(tp, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # 「未検証」の実測は、値が揃ったときだけ成立する（取得できない・期待と違う場合は不成立）
     ok_app = [{"slug": "helix-app", "app_slug": "helix-app", "repository_selection": "selected",
                "permissions": dict(C.APP_PERMISSIONS_ALLOWED)}]

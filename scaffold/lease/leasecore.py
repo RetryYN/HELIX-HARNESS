@@ -478,6 +478,14 @@ def activation_gaps(lease):
     return gaps
 
 
+def baseline_diff(lease, live):
+    """lease記録の基準値と、いま取得した保護設定・rulesetの違い（POの有効化前の確認に使う。欄名だけを返す）。"""
+    base = (lease or {}).get("baseline") or {}
+    if not isinstance(live, dict) or live.get("unavailable"):
+        return ["取得できない"]
+    return sorted(k for k in ("branch_protection", "rulesets") if base.get(k) != live.get(k))
+
+
 def activation_pair_differs(lease):
     """有効化前の確認用: 有効化時点の試験review（`probe.activation_test_reviews`）が、現在の登録（`probe.test_reviews`）と
     同じID・状態の組でないか（並び順は問わない）。"""

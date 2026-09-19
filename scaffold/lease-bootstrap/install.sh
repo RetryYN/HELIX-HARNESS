@@ -14,6 +14,7 @@
 #   5. GitHub Appの作成と installのURLを出す（値の入力は不要。POはbrowserで認可するだけ）。
 # root以外では動かない。失敗したら途中で止まる。
 set -eu
+PATH=/usr/sbin:/usr/bin:/sbin:/bin; export PATH   # 呼出し元のPATHのcommandをrootで走らせない
 
 SHA=""; REPO=""; PR=""; AI_USER="${SUDO_USER:-}"; EXEC_USER="helix-exec"; DEST="/opt/helix-lease"; ORG=""
 while [ $# -gt 0 ]; do
@@ -31,6 +32,9 @@ done
 echo "$SHA" | grep -Eq '^[0-9a-f]{40}$' || { echo "--sha は40桁のcommitで指定してください" >&2; exit 2; }
 echo "$REPO" | grep -Eq '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' || { echo "--repo は OWNER/NAME で指定してください" >&2; exit 2; }
 [ -n "$AI_USER" ] || { echo "--ai-user を指定してください（AI側contextのOS user）" >&2; exit 2; }
+for u in "$AI_USER" "$EXEC_USER"; do
+  echo "$u" | grep -Eq '^[A-Za-z_][A-Za-z0-9_-]*$' || { echo "user名の形が不正です: $u" >&2; exit 2; }
+done
 echo "$PR" | grep -Eq '^[0-9]+$' || { echo "--pr は有効化を運ぶPRの番号で指定してください" >&2; exit 2; }
 [ "$AI_USER" != "$EXEC_USER" ] || { echo "AI側userとexecutor userは別にしてください" >&2; exit 2; }
 id "$AI_USER" >/dev/null 2>&1 || { echo "AI側user $AI_USER が居ません" >&2; exit 2; }
@@ -91,7 +95,8 @@ WRAP
 chown root:root /usr/local/sbin/helix-lease-run
 chmod 755 /usr/local/sbin/helix-lease-run
 
-cat > /etc/sudoers.d/helix-lease <<EOF
+SUDO_TMP="$TMP/sudoers-lease"
+cat > "$SUDO_TMP" <<EOF
 # Capability Lease: AI側contextは、executor userとしてこのwrapperだけを、下のcommandに限って実行できる。
 # 非常用command（leaserecover）は既定で許可しない。packetのとおり、POが対象を引数に固定した行を、必要なときだけ足す。
 #   例: $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaserecover 1234 --context R --mode review --apply
@@ -100,17 +105,26 @@ $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leasectl *
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leasepost *
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseprobe *
 EOF
-chmod 0440 /etc/sudoers.d/helix-lease
-visudo -cf /etc/sudoers.d/helix-lease >/dev/null
+chmod 0440 "$SUDO_TMP"
+visudo -cf "$SUDO_TMP" >/dev/null   # 検査に通ってから置く（壊れたfileでsudoを止めない）
+cp "$SUDO_TMP" /etc/sudoers.d/helix-lease
 
-cat > /etc/sudoers.d/helix-lease-bootstrap <<EOF
+SUDO_TMP_B="$TMP/sudoers-lease-bootstrap"
+cat > "$SUDO_TMP_B" <<EOF
 # 有効化の準備の間だけの許可。対象PRを引数に固定する。有効化が済んだらこのfileを消す（commandも有効化後は動かない）。
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot prepare --lease-pr $PR *
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot probe --lease-pr $PR *
 $AI_USER ALL=($EXEC_USER) NOPASSWD: /usr/local/sbin/helix-lease-run leaseboot verify --lease-pr $PR
 EOF
-chmod 0440 /etc/sudoers.d/helix-lease-bootstrap
-visudo -cf /etc/sudoers.d/helix-lease-bootstrap >/dev/null
+chmod 0440 "$SUDO_TMP_B"
+visudo -cf "$SUDO_TMP_B" >/dev/null
+cp "$SUDO_TMP_B" /etc/sudoers.d/helix-lease-bootstrap
+# 準備commandの対象PRを、root所有のfileでも固定する（sudoersの引数照合だけに頼らない）
+mkdir -p /etc/helix-lease
+printf '%s\n' "$PR" > /etc/helix-lease/target-pr
+chown -R root:root /etc/helix-lease
+chmod 0755 /etc/helix-lease
+chmod 0644 /etc/helix-lease/target-pr
 
 echo "置き場所: $DEST（root所有）、wrapper: /usr/local/sbin/helix-lease-run、sudoers: /etc/sudoers.d/helix-lease"
 echo "AI側userは次の形だけで実行できます: sudo -u $EXEC_USER /usr/local/sbin/helix-lease-run <command> ..."
