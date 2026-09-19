@@ -1,0 +1,49 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source": "既存Claude GUIのreview_response",
+  "response": {
+    "schema": "scaffold-review-response.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "request_id": "RH-1885-GUI-05",
+    "request_payload_sha256": "747f424290f5f8da92cdf7afb2713c5ca2e3f76768c250b622dc45fd9e6b54ee",
+    "base_sha": "3469266e5f7a4b455f98ccd0f40923a40f5e4562",
+    "content_sha": "eb90aeb8e3517e2fc715e9eafd2fe58aab38538d",
+    "reviewer": "claude",
+    "result": "incomplete",
+    "findings": [
+      {
+        "id": "R5-1",
+        "severity": "Minor",
+        "evidence": "gui_mailbox.py:229-232はtime.time()>=EXPIRES_ATで即{}を返すが、gui_selftest.pyのg.hook呼出し（:120,:124,:247,:272,:277）はEXPIRES_ATも時刻もpatchしない。2026-09-20 23:59 JST以降、test_gui_hook_output（SystemExit 42期待）、:247、:272（ValueError期待）は失敗し、:277（別repositoryで{}期待）は時刻判定だけで空振りする。configure_gui.py:112-113も期限後は--applyを拒否。SCF-B-0003はgui_selftest.pyをoracleに挙げており、packetの「gui24合格」は期限後に再現できない。期限処理（即時return、wait短縮）自体の試験がない。期限後merge時の扱いも記録にない。",
+        "change": "gui_selftestでEXPIRES_ATを将来時刻へpatchするか時刻を注入する。期限後にhookが{}を返しstateへ触れないこと、waitが短縮されることの試験を加える。期限切れ後にbindingをretireするかPO判断で延長するかをREADME「接続の保持上限」節か記録に書く。"
+      },
+      {
+        "id": "R5-2",
+        "severity": "Minor",
+        "evidence": "README:131と記録:118は「止まっただけで残留0とは扱わない」とするが、scfctl.py:264-304 external_hook_residualsはscript存在と件数上限しか見ず、boot ID不一致・期限切れguardを持つ参照を数えない。再起動後・期限後に動かない5件が利用者設定に残ってもbinding activeのままresiduals=0になる（HEADで現時点residuals=0を実測）。",
+        "change": "residualsが所有commandのguardからboot ID・期限を読み、失効参照を「残留（要撤去）」として報告する。またはREADME・記録に「residuals=0は失効参照の撤去完了を意味しない」と明記し、失効後にconfigure_gui.py --auditを必ず行う手順を置く。"
+      },
+      {
+        "id": "R5-3",
+        "severity": "Info",
+        "evidence": "configure_gui.py:16はimport時に/proc/sys/kernel/random/boot_idを読み、gui_mailbox.py:15がそれをimportするため、/procの無い環境ではgui_mailboxのCLI全体（send/ack/inspect等）がimportで失敗する。hook経路ではwrapperが0に変えるので無音。現環境（WSL2）では問題ない。",
+        "change": "任意: EXPIRES_ATを共通定数moduleへ分けるか、BOOT_ID読出しをlifetime_guard呼出し時へ遅らせる。"
+      },
+      {
+        "id": "R4-8",
+        "severity": "Info",
+        "evidence": "継続。README:133と記録:135が未検証を保持。REVIEW-05はConfigChange経由でclaim・ACKまで届いた（state実測、claim.hook_event=ConfigChange）が、その際exit 2で設定変更が適用されたかblockされたかは観測されていない。",
+        "change": "前roundと同じ。実機で設定の適用結果を観測し記録する。"
+      }
+    ],
+    "unreviewed": [
+      "round4処分: R4-1〜R4-7解消、R4-8は宣言どおり未検証。実測: 利用者設定の所有hookはClaude 3件・Codex 2件でboot ID・期限guard付き、/tmp参照なし。共有worktreeはclean=HEAD、稼働3 scriptのSHA-256はHEAD blobと一致。PO原文（「今は残す」16:44:16Z、「必要ですならしろ。」「これはClaude側の作業責務ではないから」「送れるはずだが？」「旧実装に起こす方法…」）は記録:109-114と原文・時刻が一致。HEADでscfctl validate bindings=3 fail=0、stale 0、residuals 0、selftest 38/0、govcheck ok、git diff --check合格。",
+      "gui_selftest.py・selftest.py・packet.pyの実行結果（実行していない。packet10/gui24合格は未確認）。",
+      "ConfigChange+asyncRewakeのexit 2で設定変更が適用されたか（R4-8）。Codex native Stopの自動受信。",
+      "変更前の利用者設定の無関係なhook・値の有無（比較元なし）。Issue #1884・#1866本文digestのread-after。",
+      "期限切れ・再起動後に実行側が実際に撤去・auditするか（将来事象）。"
+    ]
+  }
+}
