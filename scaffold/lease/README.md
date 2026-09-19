@@ -121,7 +121,8 @@ POが行うのは、人間にしか越えられない境界だけである。設
 - 操作3の後: `leaseboot probe --lease-pr <本PR> --apply`
   AI側の全login×2 reviewへ削除の試行を行い、結果commentのIDを`probe.activation_results`へ、そのときの試験reviewを
   `probe.activation_test_reviews`へ書いた候補を出す。`leasectl status --lease-pr <本PR>`で`integrity`・`runner`・`probe.status`・`activation`を確かめる。
-- `leaseboot verify --lease-pr <本PR>`: 下記「未検証」を実物で確かめる（読取りだけ）。
+- `leaseboot verify --lease-pr <本PR>`: 下記「未検証」を実物で確かめる（読取りだけ）。取得できない項目・期待と違う値は成立とせず、
+  1つでも欠ければ0以外で終わる。
 - 最後に、上流authority台帳のCapability Lease行の状態（未有効化）を有効化へ更新し、`origin_main`へ本PRのmerge直前のmain HEADを、
   `activated_at`へ時刻を記入して、最終headで独立reviewを受ける。mainが動いた場合は`origin_main`を記入し直す（content変更のため再review）。
   保護設定・rulesetを取得できない、または基準値が無い間はexecutorは停止する（空の一致にしない）。
@@ -223,4 +224,4 @@ POが行うのは、人間にしか越えられない境界だけである。設
 - activity APIの`actor.login`と、PR・comment・reviewの`user.login`が、Appでは`<app slug>[bot]`になること。installation tokenでの`git push`がbranch protectionの下でmainへ通常pushできること。
 - GraphQL `deletePullRequestReview`の拒否時のerror種別（`leaseprobe.py`の`DENIED`／`UNAVAILABLE`の目印）。
 - Issueの`userContentEdits`の`diff`が直前の版の本文を返すか（projection_syncの編集履歴照合）。
-- `git merge-tree --write-tree`とGitHubのmerge結果のtreeが一致すること（mergeable判定との対応）。
+- `git merge-tree --write-tree`とGitHubのmerge結果のtreeが一致すること（試験PRの`refs/pull/N/merge`のtreeと比べる。mergeはしない）。

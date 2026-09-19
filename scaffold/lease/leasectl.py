@@ -786,6 +786,24 @@ def run_boundary_tests():
                             if "NOPASSWD:" in l and not l.strip().startswith("#")) == ["leaseboot", "leasectl", "leasepost", "leaseprobe"]
                  and "appsetup" not in sud.replace("# ", "") and "ALL=(ALL)" not in sud and "env_reset" in sud
                  and "self" not in wrap.lower()})
+    # 「未検証」の実測は、値が揃ったときだけ成立する（取得できない・期待と違う場合は不成立）
+    ok_app = [{"slug": "helix-app", "app_slug": "helix-app", "repository_selection": "selected",
+               "permissions": dict(C.APP_PERMISSIONS_ALLOWED)}]
+    act_ok = {"reached_origin": True, "items": [{"before": F.B, "after": "e" * 40, "activity_type": "push", "actor": F.AI}]}
+    rows.append({"id": "BT-verify-fail-closed",
+                 "ok": BT0.verdict_activity(act_ok)["ok"]
+                 and not BT0.verdict_activity(dict(act_ok, reached_origin=False))["ok"]
+                 and not BT0.verdict_activity({"reached_origin": True, "items": []})["ok"]
+                 and not BT0.verdict_activity({"reached_origin": True, "items": [{"before": F.B}]})["ok"]
+                 and BT0.verdict_app(ok_app, "helix-app")["ok"]
+                 and not BT0.verdict_app([dict(ok_app[0], unavailable=True)], "helix-app")["ok"]
+                 and not BT0.verdict_app([dict(ok_app[0], repository_selection="all")], "helix-app")["ok"]
+                 and not BT0.verdict_app([dict(ok_app[0], permissions={"contents": "write"})], "helix-app")["ok"]
+                 and not BT0.verdict_app([], "helix-app")["ok"]
+                 and BT0.verdict_merge_tree(0, "a" * 40, "a" * 40)["ok"]
+                 and not BT0.verdict_merge_tree(0, "a" * 40, None)["ok"]
+                 and not BT0.verdict_merge_tree(0, "a" * 40, "b" * 40)["ok"]
+                 and not BT0.verdict_merge_tree(1, "", None)["ok"]})
     # install.shは、実行中の自分のbytesが--shaの版と一致しなければ止まる
     cmp_line = 'cmp -s "$SELF" "$DEST.new/scaffold/lease-bootstrap/install.sh"'
     rows.append({"id": "BT-install-self-check", "ok": cmp_line in sh

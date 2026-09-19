@@ -202,18 +202,19 @@ def cmd_verify(a, gh):
             out[k] = fn()
         except Exception as e:                                  # noqa: BLE001 実測なので理由をそのまま残す
             out[k] = {"ok": False, "detail": str(e)[:300]}
-    rec("activity_api", lambda: shape_activity(gh, main_sha))
+    rec("activity_api", lambda: verdict_activity(G.activity(gh, main_sha)))
     rec("role_name", lambda: role_values(gh, lease))
     rec("protection_with_installation_token", lambda: {"ok": not G.protection(gh).get("unavailable"), "value": G.protection(gh)})
-    rec("app_installation_permissions", lambda: {"ok": True, "value": G.app_permissions(gh, {"identity": {"apps": [slug]}})})
+    rec("app_installation_permissions", lambda: verdict_app(G.app_permissions(gh, {"identity": {"apps": [slug]}}), slug))
     rec("installation_repositories", lambda: {"ok": [r.get("full_name") for r in
                                                      (gh.api("installation/repositories?per_page=100") or {}).get("repositories") or []] == [gh.repo]})
     rec("bot_login", lambda: bot_login(gh, lease, login))
     rec("credential_helper_push", lambda: branch_pushed(gh, lease))
     rec("merge_tree", lambda: merge_tree_check(gh, lease, main_sha))
+    # 判定できなかった項目（okがTrueでない）は、すべて不成立として数える
     rec("delete_review_error", lambda: delete_error(gh, lease))
     rec("user_content_edits", lambda: content_edits(gh, lease))
-    ng = sorted(k for k, v in out.items() if isinstance(v, dict) and v.get("ok") is False)
+    ng = sorted(k for k, v in out.items() if not (isinstance(v, dict) and v.get("ok") is True))
     print(json.dumps({"checked": sorted(out), "ng": ng or "none", "results": out}, ensure_ascii=False, indent=1))
     return 1 if ng else 0
 
@@ -245,11 +246,28 @@ def content_edits(gh, lease):
             "errors": [e.get("message") for e in d.get("errors") or []][:3], "nodes": (nodes or {}).get("nodes")}
 
 
-def shape_activity(gh, main_sha):
-    act = G.activity(gh, main_sha)
+def verdict_activity(act):
+    """activity APIが起点まで届き、照合に要る欄（before・after・activity_type・actor）を返すこと。"""
     items = act.get("items") or []
     keys = sorted({k for it in items for k in it})
-    return {"ok": act.get("reached_origin") is not None, "keys": keys, "count": len(items)}
+    need = {"before", "after", "activity_type", "actor"}
+    return {"ok": act.get("reached_origin") is True and bool(items) and need <= set(keys),
+            "keys": keys, "count": len(items), "reached_origin": act.get("reached_origin")}
+
+
+def verdict_app(perms, slug):
+    """installation権限が、取得できたうえで許可集合とちょうど一致し、対象repositoryを選んだinstallationであること。"""
+    got = [a for a in perms or [] if a.get("slug") == slug]
+    a = got[0] if got else {}
+    ok = bool(got) and not a.get("unavailable") and a.get("app_slug") == slug \
+        and a.get("permissions") == C.APP_PERMISSIONS_ALLOWED and a.get("repository_selection") == "selected"
+    return {"ok": ok, "value": a}
+
+
+def verdict_merge_tree(local_rc, local_tree, remote_tree):
+    """`git merge-tree --write-tree`の結果が、GitHubが作る試験merge（`refs/pull/N/merge`）のtreeと一致すること。"""
+    return {"ok": local_rc == 0 and bool(local_tree) and local_tree == remote_tree,
+            "local": local_tree, "remote": remote_tree}
 
 
 def bot_login(gh, lease, login):
@@ -260,11 +278,16 @@ def bot_login(gh, lease, login):
 def merge_tree_check(gh, lease, main_sha):
     pr = (lease.get("probe") or {}).get("test_pr")
     info = gh.api("repos/%s/pulls/%d" % (gh.repo, pr)) or {}
-    head = info.get("head", {}).get("sha")
+    head = (info.get("head") or {}).get("sha")
     gh.git("fetch", "-q", "origin", "+refs/pull/%d/head:refs/lease/pr-%d" % (pr, pr))
     local = gh.git("merge-tree", "--write-tree", main_sha, head, check=False)
-    return {"ok": local.returncode == 0, "tree": local.stdout.decode().split("\n")[0][:40],
-            "mergeable": info.get("mergeable"), "mergeable_state": info.get("mergeable_state")}
+    # GitHubが作る試験merge commit（refs/pull/N/merge）のtreeと比べる（mergeはしない）
+    gh.git("fetch", "-q", "origin", "+refs/pull/%d/merge:refs/lease/prmerge-%d" % (pr, pr), check=False)
+    remote = gh.git("rev-parse", "refs/lease/prmerge-%d^{tree}" % pr, check=False)
+    v = verdict_merge_tree(local.returncode, local.stdout.decode().split("\n")[0][:40],
+                           remote.stdout.decode().strip() if remote.returncode == 0 else None)
+    v.update({"mergeable": info.get("mergeable"), "mergeable_state": info.get("mergeable_state")})
+    return v
 
 
 def delete_error(gh, lease):
