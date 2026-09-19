@@ -32,3 +32,14 @@ Issue作成、関係登録、台帳更新だけを記録する。要求採否、
 - 利用者設定: 新設SessionStart／Stopの参照を追加しread-after一致。無関係な設定・hook trust・権限は変更していない。
 - 実GUI: 既存Codex threadを実行レーンに束縛、既存Claude GUI processの次のnative hookを登録待ち。session ID／PIDはlocal通知箱だけに保持。
 - 未完: Codex側の新hook trustと両GUIでのnative hook読込、両方向のlive ACK。要求承認・review実施・mergeは記録しない。
+
+## 指摘修正の投影receipt v3
+
+- Recorded at: 2026-09-19T16:47:25.740300+00:00
+- Source commit: `189284b52244deb1c53aba2b3b1dd6e41fa8dd68`
+- Source file SHA-256: `17133a9604f92e90dfb2db581795e61e533c0cb168f25fc199a2294f5fc8651e`
+- issues/1884 本文payload／read-after SHA-256: `d14a524a9e9a2b36222bbc45cc2248fcbe9b4cf121bfab276869d1a3300dc523`（一致）
+- issues/1866 本文payload／read-after SHA-256: `8d0a8c9b6955d778b85a4cac327a1cdb250350479783be10f64c38f6a2464aaf`（一致）
+- 検証証跡: `scaffold/evidence/gui-review-fixes-2026-09-20.json`。修正版content commitへ束縛。
+- 初回依頼／応答は両GUIがACK済み。Codex受信はGUI内のnative toolであり、native Stop自動受信は未確認。
+- 修正版の独立reviewとlive受信は未完。
