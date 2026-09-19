@@ -877,10 +877,21 @@ def run_boundary_tests():
             except SystemExit as e:
                 return e.code == 2
         return False
+    # 省略形を受け付けるcommandが1つでも残らないよう、5つのlease commandの全subcommandを測る
     abbr = all([parse_refused(BT0.main, ["probe", "--lease-p", "1886", "--apply"]),
                 parse_refused(BT0.main, ["prepare", "--lease-pr", "1886", "--lease-p", "999", "--po", "x"]),
+                parse_refused(BT0.main, ["verify", "--lease-p", "1886"]),
                 parse_refused(main, ["status", "--lease-p", "1886"]),
-                parse_refused(LB0.main, ["--login", "x", "--review-id", "1", "--lease-p", "1"])])
+                parse_refused(main, ["admit", "7", "--cont", "c"]),
+                parse_refused(main, ["sync", "7", "--cont", "c"]),
+                parse_refused(main, ["selftest", "--rec"]),
+                parse_refused(LB0.main, ["--login", "x", "--review-id", "1", "--lease-p", "1"]),
+                parse_refused(LR0.main, ["7", "--cont", "c", "--mode", "review"]),
+                parse_refused(LP0.main, ["request", "--p", "1886", "--class", "x", "--reviewer-target", "t",
+                                         "--request-file", "f", "--creator", "c"]),
+                parse_refused(LP0.main, ["response", "--p", "1886", "--request-id", "r", "--reviewer", "v",
+                                         "--counts", "0/0/0", "--authority-basis-sufficient", "yes",
+                                         "--new-authority-created", "no", "--text-file", "f"])])
     rows.append({"id": "BT-no-duplicate-options", "ok": dup_rcs == [2, 2, 2] and abbr
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
                  and not G.duplicate_options(["--a", "1", "--b", "2"])})

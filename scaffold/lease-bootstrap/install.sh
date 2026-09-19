@@ -81,6 +81,7 @@ cat > /usr/local/sbin/helix-lease-run <<'WRAP'
 #!/bin/sh
 # helix-lease-run — executor userとしてlease commandを起動する。installation tokenをここで発行し、AI側contextへは出さない。
 set -eu
+PATH=/usr/bin:/bin; export PATH   # 呼び出し元のPATHに依らない
 DEST=/opt/helix-lease
 # appsetupはここから起動できない（installation tokenと秘密鍵の操作をAI側contextへ出さない）
 case "${1:-}" in
@@ -89,7 +90,9 @@ case "${1:-}" in
 esac
 GH_TOKEN="$(/usr/bin/python3 -I -B "$DEST/scaffold/lease-bootstrap/appsetup.py" token)"
 export GH_TOKEN
-exec /usr/bin/env -i PATH=/usr/bin:/bin HOME="$HOME" LANG=C.UTF-8 GH_TOKEN="$GH_TOKEN" \
+EXEC_HOME="$(getent passwd "$(id -un)" | cut -d: -f6)"   # 呼び出し元のHOMEを素通ししない（env_keepのある環境で読み先が変わらないように）
+[ -n "$EXEC_HOME" ] || { echo "実行userのhomeを特定できない" >&2; exit 2; }
+exec /usr/bin/env -i PATH=/usr/bin:/bin HOME="$EXEC_HOME" LANG=C.UTF-8 GH_TOKEN="$GH_TOKEN" \
   /usr/bin/python3 -I -B "$DEST/scaffold/lease/$CMD.py" "$@"
 WRAP
 chown root:root /usr/local/sbin/helix-lease-run

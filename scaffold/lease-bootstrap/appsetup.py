@@ -173,13 +173,13 @@ def cmd_show(a):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="appsetup")
+    ap = argparse.ArgumentParser(prog="appsetup", allow_abbrev=False)
     sp = ap.add_subparsers(dest="cmd", required=True)
-    p = sp.add_parser("create")
+    p = sp.add_parser("create", allow_abbrev=False)
     p.add_argument("--repo", required=True); p.add_argument("--port", type=int, default=8765)
     p.add_argument("--timeout", type=int, default=900); p.add_argument("--org", action="store_true")
-    sp.add_parser("token")
-    sp.add_parser("show")
+    sp.add_parser("token", allow_abbrev=False)
+    sp.add_parser("show", allow_abbrev=False)
     a = ap.parse_args(argv)
     try:
         return {"create": cmd_create, "token": cmd_token, "show": cmd_show}[a.cmd](a)
