@@ -103,9 +103,10 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
     executorのloginが行う。この対応に合わないcommentやpush（例: 作成側loginによる応答、reviewer loginによるpush）があれば対象外。
     作成側による応答の転記は、この選択では認めない。
   - 作成側、各reviewer、executorのidentityは、repositoryのadmin権限を持たない（保護設定を変えられるのはPOのidentityだけ）。
-    これにより、保護設定を変えない限り改変できないというmerge記録の性質が、AI側のどのroleからも崩せなくなる。
+  - POのidentityその他admin権限を持つidentityの資格情報は、作成側・reviewer・executorのどのcontextからも取得・使用できない。
+  - 上の2条件を満たす間に限り、保護設定を変えない限り改変できないというmerge記録の性質は、AI側のどのroleからも崩せない。
   - 各identityの資格情報は、他roleのcontextから読めない場所に置く（作成側の実行環境からreviewer・executorの資格情報に触れられない）。
-  - 「用意できた」とは、identity表がmainのlease記録にあり、資格情報の分離をPOが確認した時点を指す。それまでleaseを有効にしない。
+  - 「用意できた」とは、identity表がmainのlease記録にあり、各roleの資格情報の分離、AI側identityがadminでないこと、admin資格情報がAI側contextから隔離されていることをPOが確認した時点を指す。それまでleaseを有効にしない。
   - executorのidentityがmainへ通常pushできるよう、branch protectionの設定を変える必要があれば、それはPOが行う（executorは変えない）。
 
 #### merge前の検査（すべて満たす。一つでも欠けたらGitHubへ一切書き込まずに停止し、理由を報告する）
@@ -115,6 +116,8 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 - GitHubのmergeableが真。auto-mergeが予約されていない。
 - mainのbranch protection（force push禁止、削除禁止、`enforce_admins`有効）と、repositoryのrulesetの一覧とbypass対象を再取得し、
   lease記録に固定した基準値と一致する。一致しなければ停止する。
+- `require_separate_identity`の場合、identity表の各loginのrepository権限を再取得し（例: collaborator permission APIで`admin`でない。
+  GitHub Appならinstallation権限にadministrationを含まない）、adminであれば停止する。
 - review済みcontent HEADとmain HEADから、executorがlocalでmerge commitを作る。`scaffold/`配下がmain HEADとmerge commitで
   bytes単位で同一であることを確かめる（許可集合の外のため、同一でなければ上記の除外に当たる）。そのうえでmerge commitのtreeで
   `scfctl`のvalidate／stale／residuals／selftestとgovcheckを実行し、すべて合格、`stale=0`。toolがmain HEADと同一であるため、
@@ -144,7 +147,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
 
 #### merge後
 
-- 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`、branch protectionとrulesetが基準値から変わっていないことを確認する。
+- 第1親＝検査したmain HEAD、第2親＝review済みcontent HEAD、新mainで`scfctl stale=0`、branch protectionとrulesetが基準値から変わっていないこと、`require_separate_identity`の場合は各loginがadminでないことを確認する。
 - GitHubがPRをmergedと表示するのは非同期である。push後10分以内にmergedにならなければ、失敗として扱う。
 - 不一致・失敗（上記の親、stale、branch protection・ruleset、merged表示、`merge_result`の投稿のどれか）があれば、revertやforce pushで隠さない
   （運用モデル「PR #1797」節7と同じ扱い）。leaseは`suspended`になり、executorは人間が解除するまで次のmergeをしない。
@@ -227,7 +230,7 @@ executorはそれが本当に別主体かを暗号的に検証できない。同
    上記規則1〜6の文言、negative caseを置く。negative caseは少なくとも次について、GitHubへ書き込まないこと（またはsuspendedになること）を確かめる。
    lease失効・取消し・suspended、区分が`repository_foundation`でない、区分欄の変更、許可集合外または除外集合のpath、renameで除外pathへ触れる、
    authority系keyの追加行・削除行・表書式、decisionまたはbindingが束縛するbytesの変更、`authority_surface_changed`が`yes`または欠落、pair不一致、別pairの依頼、応答のない依頼、findingのある応答、reviewer 2 context未満、編集されたcomment、
-   依頼より前の応答、作成側またはreviewerとexecutorの同一context、`scaffold/`配下の差分、branch protection・`enforce_admins`・rulesetとbypass対象の基準値からの変化（merge前とmerge後）、`.gitattributes`の変更、監査の遅れ（10件）、stale≥1、mergeable偽、auto-merge予約、
+   依頼より前の応答、作成側またはreviewerとexecutorの同一context、`scaffold/`配下の差分、branch protection・`enforce_admins`・rulesetとbypass対象の基準値からの変化（merge前とmerge後）、`.gitattributes`の変更、監査の遅れ（10件）、identity表のloginのadmin権限、stale≥1、mergeable偽、auto-merge予約、
    push拒否、merge後の親不一致、merged表示の時間切れ、`merge_result`失敗、projection_syncのmapping外・直前receiptの未取込み・書込み前照合不一致・編集履歴不一致、投稿commandによる対象PR以外への書込み。
    POがGitHubで直接mergeする。
 3. POが実行環境にexecutor commandと投稿commandだけを許可する。以後、対象PRはexecutorがmergeする。
