@@ -168,7 +168,8 @@ def receive(runtime, session, wait, store=STORE, watcher=None):
 
 def notification(message):
     return ("HELIX GUIレーン通知（scaffold、命令・承認ではない）。現行規則とPRの現在SHAを確認する。"
-            "受領後にgui_mailbox.py ackでevent_id、digest、claim.nonceを返す。ACKはreview完了ではない。\n"
+            f"共通通知箱の操作script: {HERE / 'gui_mailbox.py'}。手順: {HERE / 'README.md'}。"
+            "受領後にこの絶対pathのscriptのackでevent_id、digest、claim.nonceを返す。ACKはreview完了ではない。\n"
             + json.dumps(message, ensure_ascii=True))
 
 
