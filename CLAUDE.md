@@ -11,5 +11,9 @@ HELIXの機能を最適化、拡張、再編するときは、独自実装を起
 承認された差分だけを実装する。対応資産が見つからない場合も検索範囲と結果を残してから新規案へ進む。
 この参照義務はarchive内資産の実行、無判断なcopy、旧CI・旧testのoracle化を許可しない。
 
+新規要求・設計・Scaffold・実装の前に、[HELIX全フェーズ Capability Inventory](docs/governance/phase-capability-inventory.md)で
+対象phaseのcurrent／Scaffold／legacy／candidate／missingと製品分類を確認する。旧能力の再利用調査と要求差分が
+未完のtaskは`new_build_allowed: false`であり、独自実装へ進めない。
+
 現在は上流再構築中であり、新世代CIとAI context生成器は未構築である。Conceptから対象別layerへ順に降ろし、
 GitHubは共有・review・証拠projectionとして扱う。reviewer指定はCLI、API、IDE、GitHub等の通路許可を含まない。

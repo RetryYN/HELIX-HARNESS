@@ -1,0 +1,1122 @@
+{
+  "schema_revision": 1,
+  "inventory_id": "PHCAP-2026-09-20-01",
+  "title": "HELIX全フェーズ Capability Inventory 初期分類",
+  "source_revision": "legacy-generation-2026-09-14",
+  "authority_effect": "inventory_and_work_projection_only",
+  "classification_basis": [
+    "docs/concept/product-boundary.md",
+    "docs/governance/legacy-asset-disposition.jsonl",
+    "docs/governance/audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md"
+  ],
+  "status_vocabulary": {
+    "legacy_capability_status": [
+      "implemented_with_tests",
+      "implemented_partial",
+      "documented_and_tested",
+      "documented_partial",
+      "documented_candidate",
+      "equivalent_capabilities_found_no_explicit_wbs_asset"
+    ],
+    "transition": [
+      "rederived_current",
+      "degraded_to_candidate",
+      "degraded_to_draft",
+      "degraded_to_scaffold",
+      "not_reimplemented_formally",
+      "semantic_equivalence_unresolved"
+    ]
+  },
+  "records": [
+    {
+      "task_id": "PHCAP-01",
+      "phase": "concept_l1",
+      "title": "Concept／L1企画",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "approved_current",
+        "refs": [
+          "docs/concept/helix-concept-v4.1.md",
+          "docs/concept/product-boundary.md",
+          "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L0",
+          "L1"
+        ],
+        "maximum_layer_evidenced": "L1",
+        "capability_status": "documented_and_governed",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-3B16BCFFAF353ADA813A",
+            "source_path": "docs/design/helix/L0-charter/helix-charter_v0.1.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+            "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+            "implementation_status": "non_executable_read_only_source"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+            "source_path": "docs/governance/helix-harness-concept_v3.1.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧Concept、charter、L1要求が存在した。現行は四製品境界へ再編済み。"
+      },
+      "transition_assessment": "rederived_current",
+      "gaps": "旧L0/L1 atomと現行四製品L1の無損失対応が未完了",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-02",
+      "phase": "requirement_registration",
+      "title": "要求収集・原登録",
+      "product_targets": [
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "candidate_with_partial_current_registry",
+        "refs": [
+          "docs/governance/feature-tickets/FT-OS-REQREG-001.md",
+          "docs/governance/management-provisional-requirement-registration.md",
+          "docs/governance/management-provisional-requirement-register.jsonl"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L6",
+          "L7 implementation/test"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_with_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-2F4C154611460DD55358",
+            "source_path": "src/design/requirement-intake-lifecycle.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-3DED4B36AC6A8AD9A68C",
+            "source_path": "docs/design/helix/L6-function-design/requirement-discovery-event-projection.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4DF51DE06C57917FEA9C",
+            "source_path": "tests/requirement-intake-lifecycle.test.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧実装には要求intake lifecycle、event projection、testが存在した。"
+      },
+      "transition_assessment": "degraded_to_candidate_and_static_registry",
+      "gaps": "正式L2/L11、L3/L10、永続化・再開契約が未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-03",
+      "phase": "requirement_classification",
+      "title": "要求分類",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "candidate",
+        "refs": [
+          "docs/governance/feature-tickets/FT-HARNESS-REQENG-001.md",
+          "docs/governance/feature-tickets/FT-OS-REQCLASS-001.md",
+          "docs/governance/candidates/requirement-engine-python-core-requirements.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L4",
+          "L5",
+          "L6",
+          "L7 implementation"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_partial",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-90ECC62DFFEDE09800F0",
+            "source_path": "docs/design/helix/L4-basic-design/requirement-refinement-authority.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-8D1C0205DFCCE5C0359D",
+            "source_path": "docs/design/helix/L5-detail/requirement-refinement-authority.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-41F787DD7C89B20A3732",
+            "source_path": "docs/design/helix/L6-function-design/requirement-translation-obligation.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-33E80E6D11CC51ADA817",
+            "source_path": "src/config/requirements-binding.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧実装にはrefinement、translation、bindingがあったが、現行製品境界での再評価が必要。"
+      },
+      "transition_assessment": "degraded_to_candidate",
+      "gaps": "HARNESS意味コアとOS分類projectionの分離・正式要求化が未完了",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-04",
+      "phase": "requirement_adoption_l2",
+      "title": "要求採否／L2",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "draft_containers",
+        "refs": [
+          "docs/helix-harness/L2-requirements/product-requirements.md",
+          "docs/helix-os/L2-requirements/governance-requirements.md",
+          "docs/helix-web/L2-requirements/product-requirements.md",
+          "docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L1",
+          "L3"
+        ],
+        "maximum_layer_evidenced": "L3",
+        "capability_status": "documented_with_runtime_support",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+            "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+            "implementation_status": "non_executable_read_only_source"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+            "source_path": "docs/design/harness/L3-functional/functional-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+            "implementation_status": "non_executable_read_only_source"
+          }
+        ],
+        "assessment": "旧世代は要求文書と要求処理機構を持ったが、現在のL2定義と製品境界とは一致しない。"
+      },
+      "transition_assessment": "degraded_to_unapproved_routing_containers",
+      "gaps": "153件のsuccessor割当0、split_required 65件、connection 1件",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-05",
+      "phase": "acceptance_l11",
+      "title": "L11受入",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "draft",
+        "refs": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "docs/helix-web/L11-acceptance/product-acceptance.md",
+          "docs/helix-web-os/L11-acceptance/service-acceptance.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L11",
+          "L12"
+        ],
+        "maximum_layer_evidenced": "L12",
+        "capability_status": "documented_and_tested_partial",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+            "source_path": "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-EA8C51BDF69B34E896AA",
+            "source_path": "docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-2CA9EFB00A24A7346674",
+            "source_path": "docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代には受入境界、証拠index、acceptance testがあった。"
+      },
+      "transition_assessment": "degraded_to_draft",
+      "gaps": "現行L2未採否のためL11も未採否",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-06",
+      "phase": "design_l3",
+      "title": "Design／L3",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "candidate_only",
+        "refs": [
+          "docs/governance/candidates/design-template-system-requirements.md",
+          "docs/governance/feature-tickets/FT-HARNESS-DESIGNTPL-001.md",
+          "docs/governance/feature-tickets/FT-OS-DESIGNTPL-001.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L4",
+          "L5",
+          "L6"
+        ],
+        "maximum_layer_evidenced": "L6",
+        "capability_status": "documented_with_implementation_assets",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-F1F753F31DB8D874EF21",
+            "source_path": "docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+            "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-EBEF9C2559936172AD8F",
+            "source_path": "docs/design/helix/L5-detail/design-registry.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-D8A9E08B9BDD62096AEF",
+            "source_path": "docs/design/helix/L6-function-design/design-artifact-source-digest.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代はL3要求からL6機能設計まで広く存在し、design registry実装もあった。"
+      },
+      "transition_assessment": "degraded_to_candidate",
+      "gaps": "製品別L3/L10の正式導出とtemplate再利用評価が未開始",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-07",
+      "phase": "verification_l10",
+      "title": "Verification／L10",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "candidate_only",
+        "refs": [
+          "docs/governance/candidates/next-generation-ci-requirements.md",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L8",
+          "L9",
+          "L10 contract",
+          "L11",
+          "L12"
+        ],
+        "maximum_layer_evidenced": "L12",
+        "capability_status": "documented_and_tested",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+            "source_path": "docs/design/helix/L8-integration/integration-evidence-index.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-174B63F415197A4B09C5",
+            "source_path": "docs/design/helix/L9-system/system-evidence-index.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+            "source_path": "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+            "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代は右腕L8〜L12の契約と多数のtest design／testを持った。"
+      },
+      "transition_assessment": "not_reimplemented_formally",
+      "gaps": "現行L10、oracle registry、新世代CIが未構築",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-08",
+      "phase": "wbs",
+      "title": "WBS",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "approved_requirement_not_applied",
+        "refs": [
+          "docs/governance/candidates/wbs-ledger-requirements.md",
+          "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L7 implementation"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "equivalent_capabilities_found_no_explicit_wbs_asset",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-D27D4A1511BFD43623A9",
+            "source_path": "docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-78D55762187C612C93C4",
+            "source_path": "src/state-db/current-location.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-DE68E15724FB6EC258AB",
+            "source_path": "docs/governance/plan-descent-baseline.json",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "WBS同名artifactは未検出。PLAN、current-location、roadmap、state DBの等価能力は存在した。"
+      },
+      "transition_assessment": "semantic_equivalence_unresolved",
+      "gaps": "WBS語彙と旧PLAN/roadmap/state機能の対応、HARNESS規範とOS ledgerの分離",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-09",
+      "phase": "ticket_generation",
+      "title": "Ticket生成",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "candidate",
+        "refs": [
+          "docs/governance/candidates/development-ticket-derivation-requirements.md",
+          "docs/governance/feature-tickets/FT-HARNESS-TICKETCONTRACT-001.md",
+          "docs/governance/feature-tickets/FT-OS-TICKETISSUER-001.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "candidate requirements",
+          "acceptance",
+          "L3 plan"
+        ],
+        "maximum_layer_evidenced": "L3",
+        "capability_status": "documented_candidate",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+            "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-06C7FAF2A0981A4778AC",
+            "source_path": "docs/plans/PLAN-L3-88-execution-ticket-bench-authority.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはExecution Ticketの要求・受入・trace群があった。"
+      },
+      "transition_assessment": "degraded_to_rederived_candidate",
+      "gaps": "ticket contract、発行責務、GitHub projectionの正式分離が未完了",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-10",
+      "phase": "worker_execution",
+      "title": "Worker実行",
+      "product_targets": [
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "draft_requirement_and_bootstrap_decision",
+        "refs": [
+          "docs/helix-os/L2-requirements/governance-requirements.md",
+          "docs/governance/decisions/capability-lease-bootstrap-approval-2026-09-20.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L4",
+          "L5",
+          "L6",
+          "L7 implementation/test"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_with_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-F67008331E92FA0A5773",
+            "source_path": "docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-25EB3B29EA909B050987",
+            "source_path": "docs/design/helix/L5-detail/worker-lifecycle-receipt.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-6DA5F7026F38B4C091AF",
+            "source_path": "docs/design/helix/L6-function-design/worker-output-admission.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-44F2DE5EBB3DF3A4744A",
+            "source_path": "src/orchestration/loop-runner.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-08488BBF033F37F536AB",
+            "source_path": "tests/provider-process-lifecycle.test.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代はworker lifecycle、隔離、dispatch、receipt、回収の実装を持った。"
+      },
+      "transition_assessment": "degraded_to_requirement_and_limited_bootstrap",
+      "gaps": "正式L2/L11、L3/L10、worker runtime再実装が未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-11",
+      "phase": "ci_test",
+      "title": "CI／Test",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "candidate_local_checks_only",
+        "refs": [
+          "docs/governance/candidates/next-generation-ci-requirements.md",
+          "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L4",
+          "L6",
+          "L7 implementation/test"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_with_workflows_and_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+            "source_path": "docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-D888FB040D52499EE09E",
+            "source_path": "docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-E9998EF887555DBB2751",
+            "source_path": "docs/design/helix/L6-function-design/ci-verification-plan.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-CA0C7F22EA2ACBBF417E",
+            "source_path": "src/runtime/ci-critical-path-scheduler.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-1C7E5C0B33364FBF9EC6",
+            "source_path": ".github/workflows/harness-check.yml",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはCI synthesis、impact、scheduler、workflow、testが多数あった。旧CIは実行禁止。"
+      },
+      "transition_assessment": "degraded_to_candidate_and_scaffold_local_checks",
+      "gaps": "新世代CI、責務別profile、現行oracleが未構築",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-12",
+      "phase": "review_convergence",
+      "title": "Review convergence",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "scaffold_operating",
+        "refs": [
+          "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
+          "docs/governance/github-upstream-operating-model.md"
+        ]
+      },
+      "scaffold": [
+        "SCF-B-0003"
+      ],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L4",
+          "L5",
+          "L6",
+          "L7 implementation/test"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_with_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-D107FD145A2588FAAD09",
+            "source_path": "docs/design/helix/L4-basic-design/worker-independent-review.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-D6816E22DAF2E990410B",
+            "source_path": "docs/design/helix/L5-detail/github-cross-review-admission.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+            "source_path": "docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-188DE92635DFB97B0200",
+            "source_path": "src/runtime/review-lane-closure.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代には独立review、receipt、finding収束、review lane実装があった。"
+      },
+      "transition_assessment": "degraded_to_operating_contract_and_gui_scaffold",
+      "gaps": "正式配送、receipt schema、再開、provider境界が未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-13",
+      "phase": "merge_admission",
+      "title": "Merge admission",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "operating_contract_only",
+        "refs": [
+          "docs/governance/github-upstream-operating-model.md",
+          "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L10 system test",
+          "L7 implementation"
+        ],
+        "maximum_layer_evidenced": "L10",
+        "capability_status": "implemented_with_system_test",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+            "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+            "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-EA1DFC00D984068C2444",
+            "source_path": "src/runtime/github-cross-review-admission.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはreviewed merge／merge admissionの要求、実装、system testがあった。"
+      },
+      "transition_assessment": "degraded_to_manual_operating_contract",
+      "gaps": "canonical receipt、current CI、DB convergenceを再導出する必要あり",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-14",
+      "phase": "release",
+      "title": "Release",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "requirement_candidate",
+        "refs": [
+          "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+          "docs/helix-os/L2-requirements/governance-requirements.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L10 system test",
+          "L7 implementation"
+        ],
+        "maximum_layer_evidenced": "L10",
+        "capability_status": "implemented_partial_with_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+            "source_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+            "source_path": "docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+            "source_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4C97F9E72F120F6B664E",
+            "source_path": "src/audit/release-automation-decision.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはpackage release、bundle composition、automation判断、system testがあった。"
+      },
+      "transition_assessment": "degraded_to_candidate",
+      "gaps": "製品別release責務、artifact、promotion、rollbackの正式契約が未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-15",
+      "phase": "deploy",
+      "title": "Deploy",
+      "product_targets": [
+        "HELIX-Web-OS",
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "draft_requirement",
+        "refs": [
+          "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "docs/helix-os/L2-requirements/governance-requirements.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L13 post-deploy",
+          "L7 plan"
+        ],
+        "maximum_layer_evidenced": "L13",
+        "capability_status": "documented_partial",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-54330A68064B58B22259",
+            "source_path": "docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-1251704E0BE627232E00",
+            "source_path": "docs/design/harness/L13-post-deploy/post-deploy-evidence-boundary.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-189702B332643A3BFDAF",
+            "source_path": "docs/plans/PLAN-L13-00-post-deploy-verification-master.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはpost-deploy evidenceと計画があったが、現行Web-OS authorityへの適合は未評価。"
+      },
+      "transition_assessment": "degraded_to_draft",
+      "gaps": "deployment authority、tenant/runtime境界、実装・検証は未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-16",
+      "phase": "operations_monitoring",
+      "title": "運用・監視",
+      "product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "draft_requirement",
+        "refs": [
+          "docs/helix-os/L2-requirements/governance-requirements.md",
+          "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L6",
+          "L7 implementation/test"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_partial_with_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+            "source_path": "docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-11770E4E81583B408E67",
+            "source_path": "docs/design/helix/L6-function-design/ci-execution-telemetry.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-7339DBE16914B6461DBC",
+            "source_path": "src/runtime/agent-observability-provenance.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-CC461E26D160DA910B4C",
+            "source_path": "tests/ci-execution-telemetry.test.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはlifecycle operations、telemetry、observability実装とtestがあった。"
+      },
+      "transition_assessment": "degraded_to_draft_and_crosswalk",
+      "gaps": "HELIX-OS project運転とWeb-OS service運転の分離・接続が未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-17",
+      "phase": "incident",
+      "title": "Incident",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "thin_candidate",
+        "refs": [
+          "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+          "docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "process",
+          "L7 plan"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "documented_thin",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+            "source_path": "docs/process/modes/incident.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+            "source_path": "docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+            "source_path": "docs/skills/incident-runbook.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはincident mode、runbook、route token計画があったが、独立L3/L10の厚い契約は確認できていない。"
+      },
+      "transition_assessment": "degraded_and_incomplete",
+      "gaps": "incident identity、severity、authority、復旧、postmortem、製品別責務が不足候補",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-18",
+      "phase": "refactor",
+      "title": "Refactor",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "requirement_candidate",
+        "refs": [
+          "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "docs/helix-harness/L2-requirements/product-requirements.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "candidate requirements",
+          "L5",
+          "L6",
+          "L7 implementation/test"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_with_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+            "source_path": "docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+            "source_path": "docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+            "source_path": "docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-7EBF2130DE1840722A6B",
+            "source_path": "src/state-db/refactor-candidates.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-E56701056732E5CF9A1C",
+            "source_path": "tests/feedback-refactor-disposition.test.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはrefactor trigger、domain model、候補state、testがあった。"
+      },
+      "transition_assessment": "degraded_to_candidate",
+      "gaps": "Design/Performance/Redesign/Retrofitのrouteと対象製品backflowを正式化する必要あり",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-19",
+      "phase": "learning_improvement",
+      "title": "Learning／改善",
+      "product_targets": [
+        "HELIX-OS",
+        "HELIX-HARNESS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "draft_requirement",
+        "refs": [
+          "docs/helix-os/L2-requirements/governance-requirements.md",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L5",
+          "L6",
+          "L11 acceptance",
+          "L7 implementation"
+        ],
+        "maximum_layer_evidenced": "L11",
+        "capability_status": "implemented_with_acceptance_assets",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+            "source_path": "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+            "source_path": "docs/design/helix/L5-detail/memory-learning-promotion.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-C544D3D166699301485D",
+            "source_path": "docs/design/helix/L6-function-design/universal-improvement-source-registry.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-57A29D57A3AD07CA4DFF",
+            "source_path": "src/runtime/universal-improvement-finding-qualification.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+            "source_path": "docs/test-design/helix/universal-improvement-loop-acceptance.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代には改善source、finding qualification、memory promotion、acceptanceがあった。"
+      },
+      "transition_assessment": "degraded_to_draft",
+      "gaps": "観測→候補→採否→変更→再検証→再観測と製品別backflowの正式契約が未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    },
+    {
+      "task_id": "PHCAP-20",
+      "phase": "memory",
+      "title": "Memory／継続再構成",
+      "product_targets": [
+        "HELIX-OS"
+      ],
+      "current": {
+        "status": "draft_requirement",
+        "refs": [
+          "docs/helix-os/L2-requirements/governance-requirements.md",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L3",
+          "L5",
+          "L6",
+          "L7 implementation/test"
+        ],
+        "maximum_layer_evidenced": "L7",
+        "capability_status": "implemented_with_tests",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-899A61905AFBC415F595",
+            "source_path": "docs/design/helix/L3-requirements/orchestration-memory.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+            "source_path": "docs/design/helix/L5-detail/memory-learning-promotion.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-E2208C8FDEDCABF63A79",
+            "source_path": "docs/design/helix/L6-function-design/orchestration-memory.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-AB9A16E8A8DB2F094CC5",
+            "source_path": "src/memory/memory-store.ts",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-C4A63C3FE02AA86E2391",
+            "source_path": "tests/memory/memory-v2.test.ts",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代にはmemory store、compaction、handover、injection、promotionとtestがあった。"
+      },
+      "transition_assessment": "degraded_to_draft",
+      "gaps": "正本state、会話寿命、復旧、retention、秘密境界の新世代設計が未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    }
+  ]
+}
