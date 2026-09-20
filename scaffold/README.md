@@ -15,13 +15,17 @@ replacement_issue: GitHub Issue #1866（仮組み→本実装差し替え台帳�
 
 ## 構成
 
+追加の仮組み: [共通ルール参照とClaude／Codex review引継ぎ](review-handoff/README.md)（SCF-B-0003）。
+同じrevisionの参照一覧・依頼・応答を照合し、既存VS Code GUIセッションへ双方向通知する。新規provider起動・mergeは行わない。
+
 | path | 役割 | 書き込むもの |
 |---|---|---|
+| `external-references/*.json` | 外部consumer設定の参照台帳。退役後も残留検査用に保持 | 人が編集しBindingのupstreamへ束縛 |
 | `bindings/*.json` | Scaffold Bindingの記録。1 file 1 binding | 人が編集する。`scfctl`は`retire`以外で書き込まない |
 | `schema/binding.schema.json` | bindingの形式（JSON Schema draft 2020-12の語彙の一部。検査は`scfctl`が標準libraryだけで行う） | 変更はrevisionを上げる |
 | `tools/scfctl.py` | 検査・一覧・置換確認・残留検出・撤去遷移・自己検査 | `scaffold/`配下だけ。`retire`はbinding fileのstateだけを書く |
 | `checks/cases/*.json` | L11受入候補を写した否定例・肯定例 | 追加は候補のL11項目と対応づける |
-| `evidence/` | 自己検査の結果（証拠種別`scaffold`）。正式な検証結果と混ぜない | `scfctl selftest --record`だけが書く |
+| `evidence/` | 自己検査の結果（証拠種別`scaffold`）。正式な検証結果と混ぜない | 各仮組みの検証記録と`scfctl selftest --record`が書く |
 
 ## 使い方
 
@@ -36,6 +40,8 @@ python3 scaffold/tools/scfctl.py selftest [--record]  # checks/cases を実行�
 ```
 
 終了codeは、合格0、不合格1、入力不正2である。
+
+`residuals`は参照台帳があるBindingについて、実行者のhomeの `.claude/settings.json` と `.codex/hooks.json` を読み取り専用で検査する。結果は実行環境に依存し、他の利用者・別machineの撤去完了を示さない。参照台帳は退役後もupstream記録として保持し、欠落を残留0と扱わない。
 
 ## 守ること（要求候補との対応）
 

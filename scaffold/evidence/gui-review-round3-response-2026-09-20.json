@@ -1,0 +1,50 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source": "既存Claude GUIのreview_response",
+  "response": {
+    "schema": "scaffold-review-response.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "request_id": "RH-1885-GUI-03",
+    "request_payload_sha256": "5a5b1418e7ec00cd3484ff4ae76929662fde8887b396e3a2b85a61a75f0ac341",
+    "base_sha": "3469266e5f7a4b455f98ccd0f40923a40f5e4562",
+    "content_sha": "6df0a7a13acbdbacb2a20905eb48df969f8ee11e",
+    "reviewer": "claude",
+    "result": "incomplete",
+    "findings": [
+      {
+        "id": "R3-1",
+        "severity": "Blocker",
+        "evidence": "実測: ~/.claude/settings.jsonに所有hookが3件（SessionStart、Stop、ConfigChange。ConfigChangeはasyncRewake:true、--wait 3600、timeout 3660、statusMessage HELIX GUI recovery…）、Codex側2件で計5 command。操作scope記録:83は「各SessionStartとStopの計4 command」、:85は無関係設定を変更しないとし、README:99の手動撤去もSessionStart/Stopのみ。共有worktreeはHEAD 6df0a7a1のまま未commit変更7 file（configure_gui.py ConfigChange・--rearm追加、gui_mailbox.py ConfigChange受付、台帳maximum_per_settings_file:3等）で、稼働中コードはreview対象HEADと一致しない。HEADでscfctl residualsは「SCF-B-0003: 外部hook残留・重複: ~/.claude/settings.json count=3」exit 1。",
+        "change": "(a) 利用者設定からConfigChange hookを外しHEADのコードと記録どおり4 commandへ戻す、または(b) ConfigChangeを使うならcommitして再review依頼に載せ、操作記録の対象・作用、README撤去手順、台帳値、許可根拠を更新する。いずれもreview対象commitと稼働コードを一致させる。"
+      },
+      {
+        "id": "R3-2",
+        "severity": "Major",
+        "evidence": "POの選択は「/tmp参照hookを今は残す（reboot前まで）」。操作scope記録:84-86は永続pathへ付け替えて「review・指摘往復が必要な期間だけ」保持とし、日付・期限がない。根拠の:74「これはClaude側の作業責務ではないから」は担い手の指定であり、reboot後も残る保持やhook種別追加の許可ではない。:89は作成側判断と自認。:77は「今は残す」の原文未記録。",
+        "change": "保持終了期限（日付または明確な契機）を記録するか、reboot後も残る保持の可否をPOへ直接確認し原文を記録する。確認まではreboot後に残らない範囲へ戻すか、撤去契機に本PRのmerge/closeを加える。"
+      },
+      {
+        "id": "R3-3",
+        "severity": "Minor",
+        "evidence": "操作scope記録:60は「確認中は…撤去し、再接続しない」、:90は再接続したとしており矛盾が残る。",
+        "change": ":60に「のちに:72以降の判断で再接続」と注記する。"
+      },
+      {
+        "id": "R3-4",
+        "severity": "Info",
+        "evidence": "gui_selftest.pyのtest_external_hook_residualsはpatch.object(scf.os,'path')でプロセス共有のos.pathを差し替えており壊れやすい。",
+        "change": "任意: external_hook_residualsにmanifest pathを注入できる引数を設ける。"
+      }
+    ],
+    "unreviewed": [
+      "round 2解消状況: N1・N3〜N8解消、N9対応不要、N10未検証のまま保持（妥当）、N2部分解消（→R3-1/R3-2）。HEADでscfctl validate bindings=3 fail=0、stale 0、selftest 38/0、govcheck ok、git diff --check合格。residualsは実行環境依存でexit 1（R3-1）。",
+      "gui_selftest.py・selftest.py・packet.pyの実行結果（実行していない）。",
+      "共有worktreeの未commit変更（ConfigChange、--rearm）の実挙動（待受の重複、設定書換えによる再起動連鎖）。",
+      "Claude・Codex公式hooksの実挙動（ConfigChange matcherとasyncRewake、Codex timeout単位、block継続、hooks.json読込み場所、trust）。",
+      "6df0a7a1および稼働中未commitコードでの両方向live ACK。Issue #1884・#1866本文digestのread-after。",
+      "「今は残す」「これはClaude側の作業責務ではないから」原文の真正性と時刻。"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_commit": "ce6faac98d928e4c1721410869e0dc2317cb8fc7",
+  "recorded_at": "2026-09-19T17:32:08.573186+00:00",
+  "counts": {
+    "packet": 10,
+    "gui": 26,
+    "scaffold": 38
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/review-handoff/selftest.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "7ea5284e046d7a8e28b8cad1859cdc407ce9096916d3c2fef7086eb0bc67e9e2"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/review-handoff/gui_selftest.py"
+      ],
+      "exit_code": 0,
+      "output_sha256": "26798d8410db36562c9db2eb827c9490c91dc22555ff5a224c671a785a8139af"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "output_sha256": "305b744f0ea82d342b9dcb9e26469ce4c9f73398dfd9a31e08f423174a285955"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "stale"
+      ],
+      "exit_code": 0,
+      "output_sha256": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "residuals"
+      ],
+      "exit_code": 0,
+      "output_sha256": "f46ea5e2820c2731f4999edec0095a9094928411307eacaac3be271f8aae3fd5"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scaffold/tools/scfctl.py",
+        "selftest"
+      ],
+      "exit_code": 0,
+      "output_sha256": "56bfc8e3f481a9770b2309262ce03b12e2ba37dfe9ebff327cbb9a9df420160e"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "prior_request_live_delivery": {
+    "event_id": "GUI-1885-REVIEW-05",
+    "content_sha": "eb90aeb8e3517e2fc715e9eafd2fe58aab38538d",
+    "status": "acked",
+    "hook_event": "ConfigChange",
+    "ack_at": 1789838725.4478915
+  },
+  "limitations": [
+    "最新HEADの独立review待ち",
+    "ConfigChange exit2後の内部設定block判断未観測",
+    "Codex native Stop自動受信未確認"
+  ]
+}

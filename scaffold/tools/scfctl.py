@@ -6,7 +6,7 @@ check-replacement --record / selftest --record: evidence/）。要求・設計�
 
 終了code: 0 合格 / 1 不合格 / 2 入力不正
 """
-import argparse, datetime, glob, hashlib, json, os, re, sys
+import argparse, datetime, glob, hashlib, json, os, re, shlex, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SCF = os.path.dirname(HERE)                       # scaffold/
@@ -261,9 +261,53 @@ def check_replacement(b, fs=True, digests=None):
     return e, revs
 
 
+def external_hook_residuals(binding, home=None, manifest_path=None):
+    """binding隣接の参照台帳を読む。利用者設定を実行・変更しない。"""
+    declared_manifest = os.path.join(SCF, "external-references", binding["id"] + ".json")
+    manifest = manifest_path or declared_manifest
+    if not os.path.isfile(manifest):
+        declared = binding.get("artifacts", []) + [u.get("path") for u in binding.get("upstream", [])]
+        if os.path.relpath(declared_manifest, ROOT) in declared:
+            return ["外部hook参照台帳が欠落。残留を判定できない"]
+        return []
+    errors = []
+    try:
+        with open(manifest) as stream:
+            spec = json.load(stream)
+        if spec["binding_id"] != binding["id"] or spec["authority_effect"] != "none":
+            raise ValueError("参照台帳identity不一致")
+        for relative in spec["settings_paths"]:
+            if relative not in ("~/.claude/settings.json", "~/.codex/hooks.json"):
+                raise ValueError("参照台帳settings対象外")
+            path = os.path.join(home or os.path.expanduser("~"), relative[2:])
+            if not os.path.exists(path):
+                continue
+            with open(path) as stream:
+                settings = json.load(stream)
+            count = 0
+            for records in settings.get("hooks", {}).values():
+                for record in records:
+                    for hook in record.get("hooks", []):
+                        tokens = shlex.split(hook.get("command", ""))
+                        scripts = [t for t in tokens if t.endswith(spec["script_suffix"])]
+                        if not scripts:
+                            continue
+                        count += 1
+                        if any(not os.path.isfile(t) for t in scripts):
+                            errors.append("外部hook参照先不在: " + relative)
+            limit = spec["retired_expected_count"] if binding["state"] == "retired" else spec["maximum_per_settings_file"]
+            if count > limit:
+                errors.append("外部hook残留・重複: %s count=%d" % (relative, count))
+    except (OSError, ValueError, KeyError, TypeError):
+        errors.append("外部hook参照台帳・設定を検証できない")
+    return errors
+
+
 def residuals(bindings, fs=True):
     out = []
     for b in bindings:
+        if fs:
+            out.extend((b["id"], error) for error in external_hook_residuals(b))
         r = b["replacement"]
         if b["state"] == "retired":
             if fs:
