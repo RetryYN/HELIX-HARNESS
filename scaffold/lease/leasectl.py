@@ -943,7 +943,7 @@ def run_boundary_tests():
         return out
 
     # argparseを使うfileは、必ず定義を拾えること（別名・helper経由で母集合から静かに消えない）
-    argp = [f for f in src_files if imports_argparse(f)]
+    argp = [f for f in src_files if imports_argparse(f) or parser_calls(f)]
     defs = [c for f in argp for c in parser_calls(f)]
     abbrev_src = (len(argp) >= 6 and len(defs) >= 15 and all(parser_calls(f) for f in argp)
                   and not [f for f in src_files if alias_refs(f)]
@@ -964,7 +964,7 @@ def run_boundary_tests():
     app_tmp = []
     try:
         real = os.path.join(sp_dir, "real"); os.mkdir(real, 0o700)
-        loose = os.path.join(sp_dir, "loose"); os.mkdir(loose, 0o755)
+        loose = os.path.join(sp_dir, "loose"); os.mkdir(loose); os.chmod(loose, 0o755)   # umaskに左右されない
         via = os.path.join(sp_dir, "via"); os.symlink(real, via)
         keep = G.STATE_OVERRIDE
         try:
@@ -1072,7 +1072,8 @@ def run_boundary_tests():
             except RuntimeError as e:
                 app_refused.append("symlink" in str(e))
             os.unlink(os.path.join(kh, ".helix-lease"))
-            os.makedirs(os.path.join(kh, ".helix-lease", "apps"), mode=0o755)
+            os.makedirs(os.path.join(kh, ".helix-lease", "apps"), mode=0o700)
+            os.chmod(os.path.join(kh, ".helix-lease", "apps"), 0o755)   # umaskに左右されない形で置く
             try:
                 G.app_key_dir()
                 app_refused.append(False)
@@ -1109,12 +1110,22 @@ def run_boundary_tests():
             return bool(fn) and not joins and any(getattr(c.func, "id", None) == "app_key_file"
                                                   for c in calls)
 
+        def own_paths():
+            """置き場所の検査を通さずに、自分でpathを組み立てているcommandが無いこと（leasegh側へ寄せる）"""
+            bad = []
+            for f in glob.glob(os.path.join(HERE, "*.py")):
+                if os.path.basename(f) in ("leasegh.py", "leasectl.py"):
+                    continue          # 置き場所を定める側と、この検査file
+                if ".helix-lease" in open(f, encoding="utf-8").read():
+                    bad.append(f)
+            return bad
+
         rows.append({"id": "BT-state-no-symlink",
                      "ok": refused_link and refused_file and refused_loose and wrote and mode_ok
                      and read_refused == [True] * 6
                      and app_refused == [True] * 13
                      # 実測側も、lease記録のslugをそのままpathにしない（呼出しの有無を構文で見る）
-                     and uses_key_file() and (os.stat(d).st_mode & 0o077) == 0})
+                     and uses_key_file() and not own_paths() and (os.stat(d).st_mode & 0o077) == 0})
     finally:
         shutil.rmtree(sp_dir, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
         for t in app_tmp:
@@ -1129,7 +1140,7 @@ def run_boundary_tests():
     hp = tempfile.mkdtemp(prefix="lease-home-")
     try:
         home = os.path.join(hp, "home")
-        os.mkdir(home)                      # 祖先（hp）はroot所有ではない＝拒否されるはず
+        os.mkdir(home); os.chmod(home, 0o700)   # 祖先（hp）はroot所有ではない＝拒否されるはず（権限はumaskに依らせない）
         link = os.path.join(hp, "link")
         os.symlink(home, link)
         me = pwd.getpwuid(os.getuid()).pw_name

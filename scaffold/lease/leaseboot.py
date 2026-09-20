@@ -58,11 +58,7 @@ ISSUE_BODY = """Capability Leaseの状態・停止・削除不能の実測の結
 
 def app_login():
     """executor userのhomeに置いたGitHub Appの設定から、AI側のlogin（`<slug>[bot]`）とslugを読む。"""
-    p = os.path.join(G.home_dir(), ".helix-lease", "apps", "app.json")
-    if not os.path.exists(p):
-        raise RuntimeError("GitHub Appの設定が無い（install.shとappsetup.py createを先に行う）")
-    with open(p, encoding="utf-8") as f:
-        app = json.load(f)
+    app = G.app_config()
     return app["slug"], "%s[bot]" % app["slug"]
 
 

@@ -496,6 +496,17 @@ def app_key_file(kdir, slug):
     return p
 
 
+def app_config():
+    """AI側identityの設定（`app.json`）。置き場所もfileも、差し替えられる形なら使わない。"""
+    p = os.path.join(app_key_dir(), "app.json")
+    if os.path.islink(p):
+        raise RuntimeError("App設定のfileがsymlinkです（差し替えを受け付けない）: %s" % p)
+    if not os.path.exists(p):
+        raise RuntimeError("GitHub Appの設定が無い（install.shとappsetup.py createを先に行う）")
+    with open(os.open(p, os.O_RDONLY | os.O_NOFOLLOW), encoding="utf-8") as f:
+        return json.load(f)
+
+
 def app_permissions(gh, lease):
     """identity表の`apps`ごとに、本repositoryへのinstallationの実際の権限を、AppのJWTで`GET /repos/{repo}/installation`から
     取得する（Appの定義（`GET /apps/{slug}`）ではなく、installationの権限）。取得できなければunavailableとして返し、判定側で停止原因にする。"""
