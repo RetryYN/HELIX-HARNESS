@@ -14,6 +14,13 @@ ATOMS={'IRUNIT-HIL-FR-28-HELIX-OS': [{'atom_id': 'FR28-OS-A01', 'kind': 'stage_e
 QUERIES={'IRUNIT-HIL-FR-28-HELIX-OS': ['HIL-FR-28', 'local_prejoin', 'internal_postjoin', 'github_external', 'predecessor_receipt_digest', 'CI_VERIFICATION_PLAN_SCHEMA'], 'IRUNIT-HIL-FR-32-HELIX-OS': ['HIL-FR-32', 'mustered', 'checkpointed', 'HIL_AGENT_LIFECYCLE_INVALID', 'WorkerLifecycleState', 'worker_lifecycle_receipt'], 'IRUNIT-HIL-FR-64-HELIX-OS': ['HIL-FR-64', 'WCC-FR-03', 'allowed_egress_hosts', 'WORKER_ISOLATION_SCOPE_VIOLATION', 'deny_all', 'harness.db']}
 DECISIONS={('IRUNIT-HIL-FR-28-HELIX-OS', 'LEGACY-ASSET-719D5EC9C06FC4AAD0FF'): ('confirmed', 'same_requirement_id_exact_source_contract_not_implementation', ('FR28-OS-A01', 'FR28-OS-A02', 'FR28-OS-A03')), ('IRUNIT-HIL-FR-28-HELIX-OS', 'LEGACY-ASSET-F23AB691AD5152B1C0E9'): ('unresolved', 'design_contract_evidence', ('FR28-OS-A01', 'FR28-OS-A02', 'FR28-OS-A03')), ('IRUNIT-HIL-FR-28-HELIX-OS', 'LEGACY-ASSET-0FF72046071B80359A3D'): ('unresolved', 'partial_implementation_behavior_evidence_unexecuted', ('FR28-OS-A01', 'FR28-OS-A03')), ('IRUNIT-HIL-FR-32-HELIX-OS', 'LEGACY-ASSET-719D5EC9C06FC4AAD0FF'): ('confirmed', 'same_requirement_id_exact_source_contract_not_implementation', ('FR32-OS-A01', 'FR32-OS-A02', 'FR32-OS-A03')), ('IRUNIT-HIL-FR-32-HELIX-OS', 'LEGACY-ASSET-1D32912A9A194FEAA7DE'): ('unresolved', 'design_contract_evidence', ('FR32-OS-A01', 'FR32-OS-A02', 'FR32-OS-A03')), ('IRUNIT-HIL-FR-32-HELIX-OS', 'LEGACY-ASSET-AAA841EE3711C67DC1EE'): ('unresolved', 'partial_implementation_behavior_evidence_unexecuted', ('FR32-OS-A01', 'FR32-OS-A02', 'FR32-OS-A03')), ('IRUNIT-HIL-FR-64-HELIX-OS', 'LEGACY-ASSET-719D5EC9C06FC4AAD0FF'): ('confirmed', 'same_requirement_id_exact_source_contract_not_implementation', ('FR64-OS-A01', 'FR64-OS-A02', 'FR64-OS-A03', 'FR64-OS-A04', 'FR64-OS-A05', 'FR64-OS-A06', 'FR64-OS-A07')), ('IRUNIT-HIL-FR-64-HELIX-OS', 'LEGACY-ASSET-9114D4E463E95B67DD0C'): ('unresolved', 'design_contract_evidence', ('FR64-OS-A02', 'FR64-OS-A03', 'FR64-OS-A04', 'FR64-OS-A06')), ('IRUNIT-HIL-FR-64-HELIX-OS', 'LEGACY-ASSET-93040CD4C281E3AC3C06'): ('unresolved', 'partial_implementation_behavior_evidence_unexecuted', ('FR64-OS-A02', 'FR64-OS-A04', 'FR64-OS-A07'))}
 CONNECTIVES={u:[] for u in ATOMS}
+FR64_COUNTEREVIDENCE={
+ 'LEGACY-ASSET-9114D4E463E95B67DD0C':[
+  'network default denyと許可path/host外のfail-closeは示すが、推論API endpoint限定、versioned sandbox template、CLI設定merge/append、quarantine receiptは確認できない',
+  '旧資産は未実行でconsumer closureも未確認'],
+ 'LEGACY-ASSET-93040CD4C281E3AC3C06':[
+  'network namespaceを分離するがhost+path allowlistを実装せず、versioned sandbox template、CLI設定merge/append、template逸脱からquarantine receiptまでの連結も確認できない',
+  '旧資産は未実行でconsumer closureも未確認']}
 
 def require(v,m):
  if not v: raise ValueError(m)
@@ -84,6 +91,7 @@ def main():
   for out,src in mapping.items(): require(r[out]==a[src],f'catalog join不一致 {out}: {rid}')
   require(hashlib.sha256((ARCH/r['source_path']).read_bytes()).hexdigest()==r['source_sha256']==mani[r['source_path']],f'archive digest不一致: {rid}')
   require(r['legacy_execution_status']=='not_run' and r['current_requirement_implementation_status']=='not_established' and r['consumer_closure_status']=='pending' and not r['consumer_closure_evidence'] and not r['new_build_allowed'],f'実装/closure過大主張: {rid}')
+  if r['asset_id'] in FR64_COUNTEREVIDENCE: require(r['counterevidence']==FR64_COUNTEREVIDENCE[r['asset_id']],f'FR-64反証と被覆の分離不一致: {rid}')
   ids=r['covered_requirement_atom_ids']; require(len(ids)==len(set(ids)) and r['covered_requirement_atoms']==[amap[uid][x] for x in ids],f'atom binding不一致: {rid}')
   if r['semantic_link_status']=='rejected': require(not ids and not r['evidence_atom_bindings'] and r['counterevidence'],f'rejected境界不一致: {rid}')
   excerpts=[]; relations=set()
