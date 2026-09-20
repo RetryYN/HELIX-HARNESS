@@ -1,0 +1,84 @@
+<!-- HELIX:new-generation-upstream-work-projection:v1 -->
+
+## ローカル正本
+
+- Program ID: `RDP-001`
+- Source: `docs/governance/requirement-disposition-review-program.md`
+- Source commit: `c5f268806` の `docs/governance/requirement-disposition-review-program.md`（2026-09-18更新）
+- Source SHA-256: 更新中（PR #1875 で本文を改訂中。確定値は同PRのmerge後に反映する）
+- 状態: `l2d_s1_01_input_denominator_incomplete_not_decision_ready`（2026-09-18訂正。旧`decision_ready_not_approved`は撤回した）
+- Authority effect: `none`
+- 判断資料PR: #1846（v1、`superseded_by_v2`）、#1875（v2、review中）
+
+## 投影範囲
+
+このIssueは進行共有用のprojectionです。要求の意味正本、採否、successor、承認はrepo-owned文書と対象revision付きdecisionにあります。Issue、PR、CI、DB、実装状態から要求判断を逆生成しません。
+
+## 上流状態
+
+- Concept v4.1＋4対象L1: decision recordで承認済み
+- 対象別L2／L11: 未採否
+- L3以降、要求エンジン、DB、bot、crawler、CI、runtime: 未承認・未起動
+- 現行資産: archiveの非実行historical source
+
+## 入力母集団
+
+管理層の生存中`registered_source_holding` **13集合**を入口にします（2026-09-18訂正。旧記載の12は`MPR-SH-LEGACY-RULE-004`を含まない）。主な保持集合は次のとおりです。
+
+- Requirement IR 153件
+- confirmed identity 175件
+- semantic line 2,386行
+- 補助source 655件
+- 旧candidate 4,755行
+- workflow索引108件
+- 構造見出し317件
+- Scrum Reverse 300行
+- archive隔離前revision差分333 path
+- 委任relation closure 117文書（file blob 114＋行台帳3）
+- frontmatter／本文参照788 edge
+- 5大目標5件＋七大原則7件のexact原文12 atom
+- **旧ルール群の規則atom 7,622件**（`MPR-SH-LEGACY-RULE-004`。PR #1869／#1870。発見済みであり全規則ではない）
+
+file blob、path、参照edgeは要求判断の分母ではありません。対象文書と意味relation closureを無損失atom化してから処理します。
+
+## 製品責務分類第1層
+
+PR #1841〜#1844で旧Requirement IR 153件を四製品に対して個別評価し、独立reviewとmain read-afterを完了しました。
+
+- `single_product`: 87件
+- `split_required`: 65件
+- `cross_product_connection`: 1件
+- candidate target出現: HELIX-HARNESS 86件、HELIX-OS 133件
+- 未評価target／unresolved評価: 0件
+- 全153件: authority none、successor未割当、意味変更なし
+- 台帳SHA-256: `c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1`
+
+第1層完了は要求採否を意味しません。
+
+## 次の処理（2026-09-18改訂）
+
+`L2D-S1-01`はまだ人間判断へ送れない。生存中13 source holdingのうち、計上できたのは1件（`MPR-SH-LEGACY-RULE-004`）、
+全件確認して該当なしとできたのは1件、**残る11件は未評価**である。旧AVSは独立holdingではなく`MPR-SH-CANDIDATE-003`の
+部分集合だった（AVS 3文書の行123件）。
+
+1. 未評価11 holdingへ処分を付ける。`MPR-SH-PREISOLATION-002`が保持する`docs/plans/PLAN-L3-82-authority-vocabulary-separation.md`を優先する。これはAVS候補のfrontmatter`plan:`が指す当のPLANであり、archive隔離前にblobが変更され意味等価reviewが未了である。11件のうち3件（`PREISOLATION-002`、`DELEGATED-DOC-003`、`DELEGATED-REF-001`）はatom展開自体が未了である。
+2. `in_scope`7要求のprimary atom 772件と、secondaryで流入する502件をatom単位で処分する。
+3. RDP-002が`RUL-FRM-02`と`AVS-BR-001`の関係に記録した`unresolved`を解消する。
+4. 1〜3の完了後に、HARNESSの工程規範とOSの記録・投影・執行責務への`split`案を一つのdecision unitとして人間判断する。現時点で選べるのは`changes_requested`と`defer`だけである。
+5. `approve_split`後だけ、同じ判断revisionへ束縛したL2／L11適用PRと無損失coverage、管理層`registered_proposal`を作る。適用PRの合格条件は、AVS 46 atomと旧ルール群772 atomの対応表で未対応0とすることである。
+6. 判断前は要求本文、successor、runtimeへ適用せず、次のdecision unitへ進めない。
+
+## 停止条件
+
+対象別L2／L11が未採否なので、要求の要否、successor確定、意味変更、縮退、retireを適用しません。L3、実装、DB、runtime、新世代CI、archive物理削除にも進みません。
+
+## 子Issue
+
+- #1800：製品責務分類第1層（完了・CLOSED）
+- #1814：責務・機能重複候補の整理（RDP-002。57 cluster main済み。粗relationは57/57完了、無損失な統合・split判断は未了）
+- #1815：旧技術の代替可能性の判断
+
+子Issueのcloseから親programや個別要求の判断完了を生成しません。
+
+
+
