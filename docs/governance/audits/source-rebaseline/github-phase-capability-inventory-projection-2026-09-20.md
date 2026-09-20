@@ -1,0 +1,128 @@
+# HELIX全フェーズ Capability Inventory GitHub投影記録
+
+status: projection_created_read_after
+authority_effect: projection_only
+repository: `RetryYN/HELIX-HARNESS`
+source_commit: `04ca945a32d6d0a0c3a4bdbbf39e8271a0631c36`
+source_sha256: `2aebd4e7824562328fc495cadc181841ee2741dd9723882af0df3ade49856bbb`
+
+## 操作authority
+
+POの指示「それぞれイシューを立てて、旧HELIXにあるか、どのLまであってを整理してどの製品に該当するのかを整理せよ」に基づき、親Issue 1件とフェーズ別Issue 20件を作成した。操作はIssue作成、既存label付与、親Issueへの子参照追記、read-afterに限定した。
+
+## 投影境界
+
+IssueはCapability Inventoryの作業projectionであり、要求採否、successor確定、L2／L11承認、L3／L10 freeze、実装開始、旧資産再利用許可、完了を生成しない。全taskは`new_build_allowed: false`で開始する。
+
+## read-after
+
+| 種別 | Task | Issue | state | label | remote body SHA-256 | updatedAt UTC |
+|---|---|---:|---|---|---|---|
+| 親program | `parent` | [#1888](https://github.com/RetryYN/HELIX-HARNESS/issues/1888) | `OPEN` | `state:proposed-upstream-waiting` | `a947cd8922e997b528bfc6865ec95f92f2dc03af1bdb4d6e40bbd5a9bd689dbd` | `2026-09-20T12:51:41Z` |
+| phase task | `PHCAP-01` | [#1889](https://github.com/RetryYN/HELIX-HARNESS/issues/1889) | `OPEN` | `state:proposed-upstream-waiting` | `926362300cdb40f399ea4cb0d09d70c587ead853739ab8369e238912cfa3988f` | `2026-09-20T12:51:14Z` |
+| phase task | `PHCAP-02` | [#1890](https://github.com/RetryYN/HELIX-HARNESS/issues/1890) | `OPEN` | `state:proposed-upstream-waiting` | `2807d347681fe0cab4ee1e694f0ebd099667d05ab375ed31dad1ee87a313535b` | `2026-09-20T12:51:16Z` |
+| phase task | `PHCAP-03` | [#1891](https://github.com/RetryYN/HELIX-HARNESS/issues/1891) | `OPEN` | `state:proposed-upstream-waiting` | `1f05d54a9a048b00de178671dbff77753df6b58b404b5431f9b5de73bf5d647f` | `2026-09-20T12:51:17Z` |
+| phase task | `PHCAP-04` | [#1892](https://github.com/RetryYN/HELIX-HARNESS/issues/1892) | `OPEN` | `state:proposed-upstream-waiting` | `579a117605ed85070ecd92c26ef18d7f505be90025c96550465e8d58c01b167b` | `2026-09-20T12:51:18Z` |
+| phase task | `PHCAP-05` | [#1893](https://github.com/RetryYN/HELIX-HARNESS/issues/1893) | `OPEN` | `state:proposed-upstream-waiting` | `a47692c5e6746fcf73fff6978f636a82d6644ab3e12914c9a4d0dd6159d968a4` | `2026-09-20T12:51:20Z` |
+| phase task | `PHCAP-06` | [#1894](https://github.com/RetryYN/HELIX-HARNESS/issues/1894) | `OPEN` | `state:proposed-upstream-waiting` | `fb891724912f10755c7241fd2e462d8aa37004936391489c232badbd72971cf6` | `2026-09-20T12:51:21Z` |
+| phase task | `PHCAP-07` | [#1895](https://github.com/RetryYN/HELIX-HARNESS/issues/1895) | `OPEN` | `state:proposed-upstream-waiting` | `5f700f0c6fb1db19204bad9d50238512959eede9bd08fd395f1c94ad03010dc8` | `2026-09-20T12:51:23Z` |
+| phase task | `PHCAP-08` | [#1896](https://github.com/RetryYN/HELIX-HARNESS/issues/1896) | `OPEN` | `state:proposed-upstream-waiting` | `1bd0ed1e4cd9e1bd94e0cd0d2399940b33006cf9f6a1e600530a316d68f22aa0` | `2026-09-20T12:51:24Z` |
+| phase task | `PHCAP-09` | [#1897](https://github.com/RetryYN/HELIX-HARNESS/issues/1897) | `OPEN` | `state:proposed-upstream-waiting` | `25bcf4be2499a1692faa6e1d6e8423f8f0dc501f26cfa48f9c3007bdacaf828d` | `2026-09-20T12:51:26Z` |
+| phase task | `PHCAP-10` | [#1898](https://github.com/RetryYN/HELIX-HARNESS/issues/1898) | `OPEN` | `state:proposed-upstream-waiting` | `756fd620e121f6caf9f0ef22c1f69f259af0338a24d7a8997840e34fdb32a1d5` | `2026-09-20T12:51:27Z` |
+| phase task | `PHCAP-11` | [#1899](https://github.com/RetryYN/HELIX-HARNESS/issues/1899) | `OPEN` | `state:proposed-upstream-waiting` | `5a3d0fe25ff5ff0022a77a61a8e19ac2e0cf8a344f7160063bd787644a95f049` | `2026-09-20T12:51:28Z` |
+| phase task | `PHCAP-12` | [#1900](https://github.com/RetryYN/HELIX-HARNESS/issues/1900) | `OPEN` | `state:proposed-upstream-waiting` | `67a171c66eb926bbfb3d6d28ddcaa1e37afe78fe2e108d439f3a5622cb54fe8f` | `2026-09-20T12:51:30Z` |
+| phase task | `PHCAP-13` | [#1901](https://github.com/RetryYN/HELIX-HARNESS/issues/1901) | `OPEN` | `state:proposed-upstream-waiting` | `2ae431d9dae16f40f057ea4f6e2eb9ddf3435a9f06694890b809e4fc224b52b9` | `2026-09-20T12:51:31Z` |
+| phase task | `PHCAP-14` | [#1902](https://github.com/RetryYN/HELIX-HARNESS/issues/1902) | `OPEN` | `state:proposed-upstream-waiting` | `a62206ce8a1d1cd48b26f697126a6e39994c34ad9a2fce2838e4b4b84428da53` | `2026-09-20T12:51:32Z` |
+| phase task | `PHCAP-15` | [#1903](https://github.com/RetryYN/HELIX-HARNESS/issues/1903) | `OPEN` | `state:proposed-upstream-waiting` | `4850f44024cca67f977db0a3863425167136306b3cf709f9e41bfc4ecbd5b4ae` | `2026-09-20T12:51:34Z` |
+| phase task | `PHCAP-16` | [#1904](https://github.com/RetryYN/HELIX-HARNESS/issues/1904) | `OPEN` | `state:proposed-upstream-waiting` | `0404eca1ce5ab324c1115fdad328f0b912ae2d1f597df574a690445377734f4c` | `2026-09-20T12:51:35Z` |
+| phase task | `PHCAP-17` | [#1905](https://github.com/RetryYN/HELIX-HARNESS/issues/1905) | `OPEN` | `state:proposed-upstream-waiting` | `5e889f17b4959e460e0ca3ba8b75b6ba6c1089fe3f2e70fb2986f8dc8cbf7eea` | `2026-09-20T12:51:36Z` |
+| phase task | `PHCAP-18` | [#1906](https://github.com/RetryYN/HELIX-HARNESS/issues/1906) | `OPEN` | `state:proposed-upstream-waiting` | `d6beff80f834c74bd65d8ffa43b089626d5b7b5dd028a59337e556dace57610c` | `2026-09-20T12:51:38Z` |
+| phase task | `PHCAP-19` | [#1907](https://github.com/RetryYN/HELIX-HARNESS/issues/1907) | `OPEN` | `state:proposed-upstream-waiting` | `30585c0268c600eaad3b79791df3b6a97fef1845e7baa0527f5fac1c3eda9f06` | `2026-09-20T12:51:39Z` |
+| phase task | `PHCAP-20` | [#1908](https://github.com/RetryYN/HELIX-HARNESS/issues/1908) | `OPEN` | `state:proposed-upstream-waiting` | `e709c147a85bf7a7d8033862d053543e39f88b85653ff09ac5b1bda99ecb78f5` | `2026-09-20T12:51:40Z` |
+
+## 検査結果
+
+- Issueは21件、番号は#1888〜#1908。
+- 親#1888に20件すべての子Issue番号が存在する。
+- 子Issueは`PHCAP-01`〜`PHCAP-20`のexact setで重複・欠番なし。
+- 全IssueがOPENで`state:proposed-upstream-waiting`を持つ。
+- 全子Issue本文がlocal source commit／digest、製品候補、現行状態、旧到達層、代表asset ID、縮退判定、`new_build_allowed: false`を持つ。
+- remote body SHA-256はGitHub APIが返した本文文字列を末尾改行追加なしのUTF-8 bytesとして計算した。
+
+## 残る作業
+
+各Issueで代表assetから全関連assetとconsumer closureへ調査を広げ、製品分類とunit／connection／composite分割を確定する。Issue closeだけで台帳完了にせず、local inventory更新とread-afterを必要とする。
+
+## vocabulary修正後の再投影
+
+receipt_id: `PHCAPPROJ-20260920-002`
+
+round 1 reviewで状態語彙の不一致を修正し、`new_build_allowed: false`の射程を明確化したため、親#1888と子#1889〜#1908を修正版inventoryへ再投影した。要求分類等の調査作業は継続可能とし、新しい設計artifact、Scaffold、実装だけを停止する。
+
+- source commit: `f6fd0896ce3e48470c17bbe2f8fd8cf1f32184a5`
+- source SHA-256: `2d72ebb94f643ee6036410ab3664f7238fe7adc584c231cd36b3ad5238bc7dc5`
+- operation authority: POのIssue作成・整理指示の実施に必要なprojection修正
+- authority effect: `projection_only`
+
+| Issue | state | label | remote body SHA-256 | updatedAt UTC |
+|---:|---|---|---|---|
+| [#1888](https://github.com/RetryYN/HELIX-HARNESS/issues/1888) | `OPEN` | `state:proposed-upstream-waiting` | `7250bfb464563e0cdd1328e9b764763fdb9e43c6676063de008d2e99d6a2d1d8` | `2026-09-20T13:02:51Z` |
+| [#1889](https://github.com/RetryYN/HELIX-HARNESS/issues/1889) | `OPEN` | `state:proposed-upstream-waiting` | `30dea6097e1d750d50c81cb4367a8e471f0800aa56f5c4369015b77cc66ccedf` | `2026-09-20T13:02:53Z` |
+| [#1890](https://github.com/RetryYN/HELIX-HARNESS/issues/1890) | `OPEN` | `state:proposed-upstream-waiting` | `2e7bd4319959b14dd8aa88015c200ae1cf1b8ecd104c7acb5bf5b92109040381` | `2026-09-20T13:02:55Z` |
+| [#1891](https://github.com/RetryYN/HELIX-HARNESS/issues/1891) | `OPEN` | `state:proposed-upstream-waiting` | `38d2b483905e7da4bd6a3d640f1f24feeb44fdf91a52b324f0100e64579f4a66` | `2026-09-20T13:02:57Z` |
+| [#1892](https://github.com/RetryYN/HELIX-HARNESS/issues/1892) | `OPEN` | `state:proposed-upstream-waiting` | `31a5aee0ad6e35eb1a9772cf6d85557dc422294d412d91667b7e240546b58fe5` | `2026-09-20T13:02:59Z` |
+| [#1893](https://github.com/RetryYN/HELIX-HARNESS/issues/1893) | `OPEN` | `state:proposed-upstream-waiting` | `d52098d9576c60c7286ed3da38decc24b95542adbc84d1e5243d05f858e622f6` | `2026-09-20T13:03:01Z` |
+| [#1894](https://github.com/RetryYN/HELIX-HARNESS/issues/1894) | `OPEN` | `state:proposed-upstream-waiting` | `9d0510436e7206c9390367f029e71c5759678d3da4b35aa5ab6580b3fbdb2111` | `2026-09-20T13:03:03Z` |
+| [#1895](https://github.com/RetryYN/HELIX-HARNESS/issues/1895) | `OPEN` | `state:proposed-upstream-waiting` | `74578d2c068d4e2fdb551a9b5c4446af0d0193db8874af62ad025b9116a4de1b` | `2026-09-20T13:03:05Z` |
+| [#1896](https://github.com/RetryYN/HELIX-HARNESS/issues/1896) | `OPEN` | `state:proposed-upstream-waiting` | `e7d3696f657912f1c1f89f0c6abe45f0633ba97bf8e05cb31e938a45b17992d9` | `2026-09-20T13:03:07Z` |
+| [#1897](https://github.com/RetryYN/HELIX-HARNESS/issues/1897) | `OPEN` | `state:proposed-upstream-waiting` | `2ede98410f003753c50060f3034464823ecec0c3268d606232b04db775adc7b0` | `2026-09-20T13:03:09Z` |
+| [#1898](https://github.com/RetryYN/HELIX-HARNESS/issues/1898) | `OPEN` | `state:proposed-upstream-waiting` | `ab88d3eb54daa190d707efd8b33c5aea538c94b76f30730f5b362596d4fa4e69` | `2026-09-20T13:03:11Z` |
+| [#1899](https://github.com/RetryYN/HELIX-HARNESS/issues/1899) | `OPEN` | `state:proposed-upstream-waiting` | `a46c4bb60f7eaf4db282a9e3afc87793382bd01f79804596d49a00f962e65ae0` | `2026-09-20T13:03:12Z` |
+| [#1900](https://github.com/RetryYN/HELIX-HARNESS/issues/1900) | `OPEN` | `state:proposed-upstream-waiting` | `a9873926fc0f7188860413b0c859d467c29daa30b2fca06537ec4c2b6a25d501` | `2026-09-20T13:03:14Z` |
+| [#1901](https://github.com/RetryYN/HELIX-HARNESS/issues/1901) | `OPEN` | `state:proposed-upstream-waiting` | `7e672fa01421b557f2a4faf7d526270e80bd3c4c06c6fb1e76fb3d9da4b55c31` | `2026-09-20T13:03:16Z` |
+| [#1902](https://github.com/RetryYN/HELIX-HARNESS/issues/1902) | `OPEN` | `state:proposed-upstream-waiting` | `feadca3dd49de1b6599664308b14796e0103a4d07e8b573bd34c60f94ed08eb7` | `2026-09-20T13:03:17Z` |
+| [#1903](https://github.com/RetryYN/HELIX-HARNESS/issues/1903) | `OPEN` | `state:proposed-upstream-waiting` | `83209566007336704d50f66321c5f61130386f38cad7a2a360f9c444601d6080` | `2026-09-20T13:03:19Z` |
+| [#1904](https://github.com/RetryYN/HELIX-HARNESS/issues/1904) | `OPEN` | `state:proposed-upstream-waiting` | `1ed18b9cdf53654f3018319be262c9d7b90ff056a8e86d7bbcade22e6057061b` | `2026-09-20T13:03:21Z` |
+| [#1905](https://github.com/RetryYN/HELIX-HARNESS/issues/1905) | `OPEN` | `state:proposed-upstream-waiting` | `4951f08118cb0f29882328b555b67bdabf727766e1eab24e27c810e9d22d9d87` | `2026-09-20T13:03:23Z` |
+| [#1906](https://github.com/RetryYN/HELIX-HARNESS/issues/1906) | `OPEN` | `state:proposed-upstream-waiting` | `8e45fa81b714d9f8f5daf33a4c06d6845d8e0055479bf54aa49e875a1a5afbba` | `2026-09-20T13:03:25Z` |
+| [#1907](https://github.com/RetryYN/HELIX-HARNESS/issues/1907) | `OPEN` | `state:proposed-upstream-waiting` | `a339e6805c1d0d18a4045e4077a87ae10207f0cd6c49f25db1eeaeb4216ff629` | `2026-09-20T13:03:27Z` |
+| [#1908](https://github.com/RetryYN/HELIX-HARNESS/issues/1908) | `OPEN` | `state:proposed-upstream-waiting` | `aac92a41be6b34a366fb44726b485b8437a0810f35ae96c1177047cb84304a0a` | `2026-09-20T13:03:29Z` |
+
+read-afterで21件すべてが修正版source commit／digestを持ち、旧source commit／digestが残っていないことを確認した。子Issue20件は修正版gate scopeを本文に持つ。
+
+## 外部監査round 2修正後の再投影
+
+receipt_id: `PHCAPPROJ-20260920-003`
+
+候補scope製品と現行証拠製品の分離、旧layer／status訂正、premise packet追加を反映し、親#1888と子#1889〜#1908を再投影した。
+
+- source commit: `034c1f9f4b770e8636bd8e74b64c2083f1f34e5a`
+- source SHA-256: `9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c`
+- operation authority: POのIssue作成・整理指示の実施に必要なprojection修正
+- authority effect: `projection_only`
+
+| Issue | state | label | remote body SHA-256 | updatedAt UTC |
+|---:|---|---|---|---|
+| [#1888](https://github.com/RetryYN/HELIX-HARNESS/issues/1888) | `OPEN` | `state:proposed-upstream-waiting` | `31c8c92cf902fa611b532bc26e08bdd5d88adc95b0cf58ca4a97de05e738c71a` | `2026-09-20T13:19:22Z` |
+| [#1889](https://github.com/RetryYN/HELIX-HARNESS/issues/1889) | `OPEN` | `state:proposed-upstream-waiting` | `3cdd428278c17b57cf42b0d05d401c602b2dc04e529e6edcb93305de0acd52e9` | `2026-09-20T13:19:23Z` |
+| [#1890](https://github.com/RetryYN/HELIX-HARNESS/issues/1890) | `OPEN` | `state:proposed-upstream-waiting` | `18cbcd380425ea3da8da82df366aaf0f3965175922bc23ae69437713a9866464` | `2026-09-20T13:19:23Z` |
+| [#1891](https://github.com/RetryYN/HELIX-HARNESS/issues/1891) | `OPEN` | `state:proposed-upstream-waiting` | `313a4825520095309b74602ad232001c0d2a956145f254677001b191b5440dc9` | `2026-09-20T13:19:24Z` |
+| [#1892](https://github.com/RetryYN/HELIX-HARNESS/issues/1892) | `OPEN` | `state:proposed-upstream-waiting` | `10c3cbadd7fd83fc9cb9264bc79d11dfa613ebe7562c26da5cd79f1dd34807e4` | `2026-09-20T13:19:25Z` |
+| [#1893](https://github.com/RetryYN/HELIX-HARNESS/issues/1893) | `OPEN` | `state:proposed-upstream-waiting` | `038777e74f62e93485db8ec16bc1cc20f3cbdc51fc4377872c9695851df615c7` | `2026-09-20T13:19:26Z` |
+| [#1894](https://github.com/RetryYN/HELIX-HARNESS/issues/1894) | `OPEN` | `state:proposed-upstream-waiting` | `a3a2405ed142efc7fcd747098fe2cf1a8c5b20ada929a125cca471ae815e196d` | `2026-09-20T13:19:26Z` |
+| [#1895](https://github.com/RetryYN/HELIX-HARNESS/issues/1895) | `OPEN` | `state:proposed-upstream-waiting` | `aba11400f356a453427aca9c530ab1d3bc5158babd407d29fa4cc3d9daf3d3f0` | `2026-09-20T13:19:27Z` |
+| [#1896](https://github.com/RetryYN/HELIX-HARNESS/issues/1896) | `OPEN` | `state:proposed-upstream-waiting` | `df93e2264b4a713ba2dc23020ad8e1fa80493d35f8cf1589be0dcda4984cfc66` | `2026-09-20T13:19:28Z` |
+| [#1897](https://github.com/RetryYN/HELIX-HARNESS/issues/1897) | `OPEN` | `state:proposed-upstream-waiting` | `3943172595b246daa32439913cada3a1118bedaa9f70a30ae55066f7db3aed7d` | `2026-09-20T13:19:29Z` |
+| [#1898](https://github.com/RetryYN/HELIX-HARNESS/issues/1898) | `OPEN` | `state:proposed-upstream-waiting` | `d7fa8368666552ae2944691ad8bda20616c12c42addbef2973a46e17c093ec61` | `2026-09-20T13:19:30Z` |
+| [#1899](https://github.com/RetryYN/HELIX-HARNESS/issues/1899) | `OPEN` | `state:proposed-upstream-waiting` | `8052203879ebaf29fef59e2424463e8050c16c515a6441a6b19b46c4fbf6a62f` | `2026-09-20T13:19:31Z` |
+| [#1900](https://github.com/RetryYN/HELIX-HARNESS/issues/1900) | `OPEN` | `state:proposed-upstream-waiting` | `7dff8095a2fe319e7195c1b64a1d95a948d4c4a5462d011e5d71c89697140c93` | `2026-09-20T13:19:31Z` |
+| [#1901](https://github.com/RetryYN/HELIX-HARNESS/issues/1901) | `OPEN` | `state:proposed-upstream-waiting` | `664e787d705c5edf7adf76d176ccd72c3f7d0e32dedefc7bc8b0881ebbea6e3b` | `2026-09-20T13:19:32Z` |
+| [#1902](https://github.com/RetryYN/HELIX-HARNESS/issues/1902) | `OPEN` | `state:proposed-upstream-waiting` | `8b2f13288a4ba49df11142976ef5b5258f4f78893cc0897b21b4f9ac5a1e76dd` | `2026-09-20T13:19:33Z` |
+| [#1903](https://github.com/RetryYN/HELIX-HARNESS/issues/1903) | `OPEN` | `state:proposed-upstream-waiting` | `0abaaab8dfa2d58af3e12f8ad6d81a5ac6edb2c95c1d81fc26883624f4f9b09e` | `2026-09-20T13:19:34Z` |
+| [#1904](https://github.com/RetryYN/HELIX-HARNESS/issues/1904) | `OPEN` | `state:proposed-upstream-waiting` | `07f6f0ac293979ce92526c6ca8f6020d831b0935dcac472f09373b0eabed551f` | `2026-09-20T13:19:35Z` |
+| [#1905](https://github.com/RetryYN/HELIX-HARNESS/issues/1905) | `OPEN` | `state:proposed-upstream-waiting` | `054e17df7728d5eb88bb683d6a3f69558ff8b85111af3598c27764df6a663b8b` | `2026-09-20T13:19:36Z` |
+| [#1906](https://github.com/RetryYN/HELIX-HARNESS/issues/1906) | `OPEN` | `state:proposed-upstream-waiting` | `49add03418b89d64662f7e31c71a843ad10452082575b36a1acd475641aef2b4` | `2026-09-20T13:19:37Z` |
+| [#1907](https://github.com/RetryYN/HELIX-HARNESS/issues/1907) | `OPEN` | `state:proposed-upstream-waiting` | `db3c69906daa95f1e6c4f42fa1234ad4e630daa408ee9150468523a1d9e18090` | `2026-09-20T13:19:37Z` |
+| [#1908](https://github.com/RetryYN/HELIX-HARNESS/issues/1908) | `OPEN` | `state:proposed-upstream-waiting` | `dffeb46dd665843f3b6d7c14894298b77d80d93b53d9e6efb17b7406f196682e` | `2026-09-20T13:19:38Z` |
+
+21件をGitHub APIから再取得し、state、label、body SHA-256、updatedAtを更新応答と照合した。全件一致した。要求採否、完了、実装許可は生成しない。
