@@ -45,7 +45,7 @@ review単位は`(unit_candidate_id, asset_id)`である。要求全体やphase�
 
 unit集計は要求契約自身による被覆と実装sourceによる被覆を分ける。`contract_confirmed_atom_ids`は契約照合にだけ使い、実装被覆の完全性には算入しない。実装側は`implementation_confirmed_atom_ids`、`implementation_unresolved_atom_ids`、`implementation_uncovered_atom_ids`のexact setと各digestを持つ。`semantic_edge_coverage_complete`は`implementation_source`かつ`implementation_behavior_evidence`のedgeだけから計算する。旧実装状態が`unknown_*`のunitを完全被覆にできない。`partial`は実装側の未完集合を同時に記録する場合だけ使う。
 
-各引用は、同一要求IDの逐語source、別機能の非該当source、実装挙動証拠を区別する。各covered atomは引用indexと`required_terms`へ束縛し、逐語一致なら全source fragment、controlled term setなら定義済みtermが引用本文に存在することを検査する。`confirmed`は`literal_source_fragment`または`controlled_term_set`、`unresolved`は`controlled_term_set_partial`だけを使う。term検査は引用とatomの語彙的束縛であり、意味妥当性を独立導出するものではない。
+各引用は、同一要求IDの逐語source、別機能の非該当source、実装挙動証拠を区別する。`contract_confirmed`へ算入するのは、全引用が`same_requirement_id_exact_restatement`であるedgeだけとする。別要求IDの整合文は契約被覆へ算入せず、非該当または未解決の意味整合として記録する。各covered atomは引用indexと`required_terms`へ束縛し、逐語一致なら全source fragment、controlled term setなら定義済みtermが引用本文に存在することを検査する。`confirmed`は`literal_source_fragment`または`controlled_term_set`、`unresolved`は`controlled_term_set_partial`だけを使う。term検査は引用とatomの語彙的束縛であり、意味妥当性を独立導出するものではない。
 
 ## 製品・phase・縮退
 
@@ -63,6 +63,6 @@ catalogの`consumer_refs`は観測値として転記する。空配列はconsume
 
 ## 静的検証
 
-独立verifierは、親revisionの三入力digest、2 unit／6 edge exact set、11 atom exact set、atom fragment unionによる要求span無損失被覆、unit原文とdigest、asset ID／path／SHA／kind、archive manifest、引用行digest、引用中のrequired term、match mode、候補pool所属、契約／実装を分離したatom coverage receipt、未review集合digest、状態集計を再計算する。また候補membershipからの直接link、要求文書からの実装claim、旧実行claim、consumer closure、current implemented、phase承認、new build許可を拒否する。
+独立verifierは、親revisionの三入力digest、2 unit／6 edge exact set、11 atom exact set、atom fragment unionによる要求span無損失被覆、unit原文とdigest、asset ID／path／SHA／kind、archive manifest、引用行digest、引用中のrequired term、match mode、候補pool所属、契約／実装を分離したatom coverage receipt、未review集合digest、状態集計を再計算する。status文書のunit別旧／現行状態とatom件数もmetadataから照合する。また候補membershipからの直接link、要求文書からの実装claim、旧実行claim、consumer closure、current implemented、phase承認、new build許可を拒否する。
 
 `EXPECTED_DECISIONS`はreview済み判定の改変を検出するregression pinであり、意味判定をsourceから自動導出しない。この検証は人間の意味判断、旧codeの動作、consumer完全性、要求採否を証明しない。

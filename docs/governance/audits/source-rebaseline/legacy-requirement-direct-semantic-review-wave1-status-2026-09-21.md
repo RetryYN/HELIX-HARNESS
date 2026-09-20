@@ -42,7 +42,7 @@ OS unitで実装confirmedなのは「未登録agentをfail-closeする」「mode
 
 現行2 unitはいずれも`not_established`である。これは現行正式実装の成立証拠がない状態であり、bounded negative searchを終えた「不存在」の断定ではない。
 
-旧HARNESS unitは契約だけが確認でき、実装sourceは未確定である。旧OS unitは静的な部分実装証拠を確認できたが、consumer、test／acceptance、動作、全atom closureがないため`implemented`ではない。phase候補も`candidate_unchanged`であり、本waveから採否を生成していない。
+旧HARNESS unitは契約だけが確認でき、実装sourceは未確定である。旧OS unitは静的な部分実装証拠を確認できたが、consumer、test／acceptance、動作、全atom closureがないため実装済みではない。phase候補も`candidate_unchanged`であり、本waveから採否を生成していない。
 
 ## 残る集合
 
@@ -63,6 +63,7 @@ OS unitで実装confirmedなのは「未登録agentをfail-closeする」「mode
 - `legacy-requirement-direct-semantic-review-wave1-premise-packet-2026-09-21.md`: 一つの判断論点とknown／assumption／unknown／conflict／stale。
 - `legacy-requirement-direct-semantic-review-wave1-review-response-2026-09-21.md`: exact HEAD reviewの全指摘と処分。
 - `legacy-requirement-direct-semantic-review-wave1-review-response-round2-2026-09-21.md`: schema 3へ至る第2reviewの全指摘と処分。
+- `legacy-requirement-direct-semantic-review-wave1-review-response-round3-2026-09-21.md`: status照合と契約relation境界に関する第3reviewの全指摘と処分。
 - `verify_legacy_requirement_direct_semantic_review_wave1.py`: archiveを実行せず、入力・引用・集計・過大主張を独立検証する。
 
 静的検証は`schema3 / 6 edges / 11 atoms verified`で合格した。既存の218 unit crosswalk、153要求からの218 unit分解、旧asset 4,020件分類もそれぞれ再検証した。semantic statusの不正昇格、consumer closureの偽装、引用digest改変、atomと無関係な正しいdigestの引用への差替え、coverage receipt消去、契約被覆からの実装完全被覆偽装を個別に欠陥注入し、いずれも新verifierが拒否することを確認してから元bytesへ戻した。

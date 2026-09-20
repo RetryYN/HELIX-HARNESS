@@ -58,7 +58,7 @@ def uncovered_meaningful_runs(statement,fragments):
 def coverage_receipt(uid,records):
  inventory=EXPECTED_ATOMS[uid]; ids=[x['atom_id'] for x in inventory]
  rows=[r for r in records if r['unit_candidate_id']==uid]
- contract=sorted({a for r in rows if r['semantic_link_status']=='confirmed' and r['artifact_evidence_kind']=='requirement' for a in r['covered_requirement_atom_ids']})
+ contract=sorted({a for r in rows if r['semantic_link_status']=='confirmed' and r['artifact_evidence_kind']=='requirement' and all(e['source_requirement_relation']=='same_requirement_id_exact_restatement' for e in r['evidence_refs']) for a in r['covered_requirement_atom_ids']})
  impl_confirmed=sorted({a for r in rows if r['semantic_link_status']=='confirmed' and r['artifact_evidence_kind']=='implementation_source' and all(e['source_requirement_relation']=='implementation_behavior_evidence' for e in r['evidence_refs']) for a in r['covered_requirement_atom_ids']})
  impl_unresolved=sorted({a for r in rows if r['semantic_link_status']=='unresolved' and r['artifact_evidence_kind']=='implementation_source' for a in r['covered_requirement_atom_ids']}-set(impl_confirmed))
  impl_uncovered=sorted(set(ids)-set(impl_confirmed)-set(impl_unresolved))
@@ -131,7 +131,23 @@ def main():
  require(aggregates['IRUNIT-HIL-BR-01-HELIX-HARNESS']['legacy_requirement_implementation_status'].startswith('unknown_'),'HARNESS旧実装過大主張')
  osagg=aggregates['IRUNIT-HIL-FR-12-HELIX-OS']; require(osagg['legacy_requirement_implementation_status']=='partial_static_implementation_evidence_unexecuted','OS部分実装状態不一致'); require(not osagg['atom_coverage_receipt']['semantic_edge_coverage_complete'],'OS incomplete coverage欠落')
  status_text=STATUS.read_text()
- require('`unknown_pending_direct_implementation_and_consumer_review`' in status_text and '`unknown_pending_remaining_semantic_and_consumer_review`' not in status_text,'status doc旧実装状態不一致')
+ status_rows=[]
+ for line in status_text.splitlines():
+  if line.startswith('|'):
+   status_rows.append([cell.strip().strip('`') for cell in line.strip().strip('|').split('|')])
+ for uid,a in aggregates.items():
+  result_rows=[cells for cells in status_rows if len(cells)==6 and cells[1]==uid]
+  require(len(result_rows)==1,f'status doc結果行不一致: {uid}')
+  require(result_rows[0][3]==a['legacy_requirement_implementation_status'] and result_rows[0][4]==a['current_requirement_implementation_status'],f'status doc実装状態不一致: {uid}')
+  coverage_rows=[cells for cells in status_rows if len(cells)==6 and cells[0]==uid]
+  require(len(coverage_rows)==1,f'status doc atom行不一致: {uid}')
+  receipt=a['atom_coverage_receipt']; expected_counts=[len(receipt['atom_inventory']),len(receipt['contract_confirmed_atom_ids']),len(receipt['implementation_confirmed_atom_ids']),len(receipt['implementation_unresolved_atom_ids']),len(receipt['implementation_uncovered_atom_ids'])]
+  try: observed_counts=[int(value) for value in coverage_rows[0][1:]]
+  except ValueError: raise ValueError(f'status doc atom件数が整数でない: {uid}')
+  require(observed_counts==expected_counts,f'status doc atom件数不一致: {uid}')
+ code_tokens=re.findall(r'`([^`\n]+)`',status_text)
+ forbidden_states={'implemented','tested','operational'}
+ require(not (forbidden_states & set(code_tokens)),f'status docに過大な実装状態語: {sorted(set(code_tokens)&forbidden_states)}')
  for uid in EXPECTED_ATOMS:
   reviewed={a for u,a in edges if u==uid}; remaining=sorted(set(cross[uid]['candidate_asset_pool']['phase_candidate_asset_ids'])-reviewed); rec=meta['unreviewed_candidate_edges'][uid]
   require(rec['source_pool']=='phase_candidate_asset_ids' and rec['count']==len(remaining) and rec['asset_ids_sha256']==canon_digest(remaining),f'unreviewed set不一致: {uid}')
