@@ -62,7 +62,7 @@ OS unitでconfirmedなのは「未登録agentをfail-closeする」「model/effo
 - `legacy-requirement-direct-semantic-review-wave1-review-response-2026-09-21.md`: exact HEAD reviewの全指摘と処分。
 - `verify_legacy_requirement_direct_semantic_review_wave1.py`: archiveを実行せず、入力・引用・集計・過大主張を独立検証する。
 
-静的検証は`schema2 / 6 edges / 10 atoms verified`で合格した。既存の218 unit crosswalk、153要求からの218 unit分解、旧asset 4,020件分類もそれぞれ再検証した。semantic statusの不正昇格、consumer closureの偽装、引用digest改変、atomと無関係な正しいdigestの引用への差替えを個別に欠陥注入し、いずれも新verifierが拒否することを確認してから元bytesへ戻す。
+静的検証は`schema2 / 6 edges / 10 atoms verified`で合格した。既存の218 unit crosswalk、153要求からの218 unit分解、旧asset 4,020件分類もそれぞれ再検証した。semantic statusの不正昇格、consumer closureの偽装、引用digest改変、atomと無関係な正しいdigestの引用への差替えを個別に欠陥注入し、いずれも新verifierが拒否することを確認してから元bytesへ戻した。
 
 ## 次の作業
 
