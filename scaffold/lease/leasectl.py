@@ -906,31 +906,26 @@ def run_boundary_tests():
                 parse_refused(LP0.main, ["response", "--p", "1886", "--request-id", "r", "--reviewer", "v",
                                          "--counts", "0/0/0", "--authority-basis-sufficient", "yes",
                                          "--new-authority-created", "no", "--text-file", "f"])])
-    # 上の呼出しで測れないparser（selftest等）も含め、全parserが省略形を受け付けない定義であること
-    # 定義の書き方に依らず拾う（helper経由でも落ちない）。検査行自身は印で除く
-    mk = ("ArgumentParser(", "add_parser(")   # parser-scan
+    # 上の呼出しで測れないparser（selftest等）も含め、全parserが省略形を受け付けない定義であること。
+    # 文字列ではなく構文で見る（helper経由・別名変数でも拾え、この検査file自身の文字列には当たらない）
+    import ast as ast2
     src_files = sorted(glob.glob(os.path.join(HERE, "*.py")) +
                        glob.glob(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "*.py")))
-    def def_lines(f):
-        return [ln for ln in open(f, encoding="utf-8").read().splitlines()
-                if any(t in ln for t in mk) and "parser-scan" not in ln]
 
-    # argparseを使うfileは、書き方に依らず必ず定義行として拾えること（拾えなければ素通りを疑う）
-    argp = [f for f in src_files if "argparse" in open(f, encoding="utf-8").read()]
-    defs = [ln for f in argp for ln in def_lines(f)]
-    # subcommandを持つfileは、その数だけ定義行があること（helper経由などで拾えない行を見逃さない）
-    subs = sum(len([ln for ln in open(f, encoding="utf-8").read().splitlines()
-                    if "add_subparsers(" in ln and "parser-scan" not in ln]) for f in argp)   # parser-scan
-    # 除外の印は、この検査file以外では使えない（印を付けて検査を外せないようにする）
-    marked_elsewhere = [f for f in src_files
-                        if f != os.path.join(HERE, "leasectl.py")
-                        and "parser-scan" in open(f, encoding="utf-8").read()]
-    self_marked_defs = [ln for ln in open(os.path.join(HERE, "leasectl.py"), encoding="utf-8").read().splitlines()
-                        if "parser-scan" in ln and ("sp." + "add_parser(") in ln]
-    abbrev_src = (len(argp) >= 6 and all(def_lines(f) for f in argp)
-                  and not marked_elsewhere and not self_marked_defs
-                  and subs >= 3 and len(defs) >= len(argp) + subs
-                  and all("allow_abbrev=False" in ln for ln in defs))
+    def parser_calls(f):
+        out = []
+        for n in ast2.walk(ast2.parse(open(f, encoding="utf-8").read())):
+            if isinstance(n, ast2.Call):
+                name = getattr(n.func, "attr", None) or getattr(n.func, "id", None)
+                if name in ("ArgumentParser", "add_parser"):
+                    out.append(n)
+        return out
+
+    argp = [f for f in src_files if parser_calls(f)]
+    defs = [c for f in argp for c in parser_calls(f)]
+    abbrev_src = (len(argp) >= 6 and len(defs) >= 15
+                  and all(any(k.arg == "allow_abbrev" and k.value.value is False for k in c.keywords)
+                          for c in defs))
     rows.append({"id": "BT-no-duplicate-options", "ok": all(dup_rcs) and abbr and abbrev_src
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
                  and not G.duplicate_options(["--a", "1", "--b", "2"])})
