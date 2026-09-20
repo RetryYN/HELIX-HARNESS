@@ -296,8 +296,12 @@ def read_state():
             raise
         with open(fd, encoding="utf-8") as f:
             return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
+    except FileNotFoundError:
         return {"suspended": None, "observed_review_ids": {}}
+    except OSError as e:   # 読めない置き場所は、停止が無いものとして扱わない
+        raise RuntimeError("状態領域を読めません（%s）: %s" % (e.strerror, state_path()))
+    except json.JSONDecodeError:
+        raise RuntimeError("状態領域のfileが壊れています（停止を読み落とさないため止める）: %s" % state_path())
 
 
 def local_suspended(st, lease):
@@ -471,6 +475,19 @@ def app_jwt(app_id, key_path, now=None):
     return "%s.%s.%s" % (head, body, b64url(sig))
 
 
+APP_SLUG_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,64}")
+
+
+def app_key_file(kdir, slug):
+    """秘密鍵のfile。lease記録のslugでpathを外へ出さず、symlinkなら使わない（記録はAI側が書ける）。"""
+    if not kdir or not isinstance(slug, str) or not APP_SLUG_RE.fullmatch(slug):
+        raise RuntimeError("App設定のslugの形が不正です")
+    p = os.path.join(kdir, "%s.pem" % slug)
+    if os.path.islink(p):
+        raise RuntimeError("秘密鍵のfileがsymlinkです（差し替えを受け付けない）: %s" % p)
+    return p
+
+
 def app_permissions(gh, lease):
     """identity表の`apps`ごとに、本repositoryへのinstallationの実際の権限を、AppのJWTで`GET /repos/{repo}/installation`から
     取得する（Appの定義（`GET /apps/{slug}`）ではなく、installationの権限）。取得できなければunavailableとして返し、判定側で停止原因にする。"""
@@ -479,8 +496,8 @@ def app_permissions(gh, lease):
     for slug in ((lease or {}).get("identity") or {}).get("apps") or []:
         try:
             app_id = (gh.api("apps/%s" % urllib.parse.quote(slug)) or {}).get("id")
-            key = os.path.join(kdir, "%s.pem" % slug) if kdir else None
-            if not app_id or not key or not os.path.isfile(key):
+            key = app_key_file(kdir, slug)
+            if not app_id or not os.path.isfile(key):
                 raise RuntimeError("app idまたは秘密鍵が無い")
             req = urllib.request.Request("%s/repos/%s/installation" % (GITHUB_API, gh.repo), headers={
                 "Authorization": "Bearer %s" % app_jwt(app_id, key), "Accept": "application/vnd.github+json",

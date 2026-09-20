@@ -983,6 +983,26 @@ def run_boundary_tests():
                 G.read_state()
             except RuntimeError as e:
                 read_refused.append("symlink" in str(e))
+            # 置き場所自体がsymlink（directoryでない先を指す場合も含む）
+            for target in (real, os.path.join(sp_dir, "moved")):
+                d2 = os.path.join(sp_dir, "dir-link-%d" % len(read_refused))
+                os.symlink(target, d2)
+                G.STATE_OVERRIDE = os.path.join(d2, "state.json")
+                try:
+                    G.read_state()
+                    read_refused.append(False)
+                except RuntimeError as e:
+                    read_refused.append("置き場所がsymlink" in str(e))
+            # 壊れた状態fileは、停止が無いものとして扱わない
+            broken = os.path.join(sp_dir, "broken"); os.mkdir(broken, 0o700)
+            with open(os.path.join(broken, "state.json"), "w") as f:
+                f.write("{壊れ")
+            G.STATE_OVERRIDE = os.path.join(broken, "state.json")
+            try:
+                G.read_state()
+                read_refused.append(False)
+            except RuntimeError as e:
+                read_refused.append("壊れています" in str(e))
         finally:
             G.STATE_OVERRIDE = keep
         # App設定の置き場所とfileも同じ扱い（symlinkは使わない）
@@ -1007,6 +1027,12 @@ def run_boundary_tests():
         except RuntimeError as e:
             app_refused.append("symlink" in str(e))
         os.unlink(os.path.join(d, "app.json"))
+        for bad in ("../../x", "a/b", "", ".."):      # lease記録のslugでもpathを外へ出せない
+            try:
+                G.app_key_file(d, bad)
+                app_refused.append(False)
+            except RuntimeError as e:
+                app_refused.append("slugの形が不正" in str(e))
         for bad in ("../../x", "a/b", "", ".."):      # slugでpathを外へ出せない
             try:
                 AS.key_file(bad)
@@ -1019,10 +1045,20 @@ def run_boundary_tests():
         except RuntimeError as e:
             app_refused.append("symlink" in str(e))
         os.unlink(os.path.join(d, "helix-app.pem"))
+        def uses_key_file():
+            import ast as ast3
+            tree = ast3.parse(open(os.path.join(HERE, "leasegh.py"), encoding="utf-8").read())
+            fn = next((n for n in ast3.walk(tree)
+                       if isinstance(n, ast3.FunctionDef) and n.name == "app_permissions"), None)
+            return bool(fn) and any(getattr(c.func, "id", None) == "app_key_file"
+                                    for c in ast3.walk(fn) if isinstance(c, ast3.Call))
+
         rows.append({"id": "BT-state-no-symlink",
                      "ok": refused_link and refused_file and refused_loose and wrote and mode_ok
-                     and read_refused == [True, True]
-                     and app_refused == [True] * 7 and (os.stat(d).st_mode & 0o077) == 0})
+                     and read_refused == [True] * 5
+                     and app_refused == [True] * 11
+                     # 実測側も、lease記録のslugをそのままpathにしない（呼出しの有無を構文で見る）
+                     and uses_key_file() and (os.stat(d).st_mode & 0o077) == 0})
     finally:
         shutil.rmtree(sp_dir, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
         for t in app_tmp:
@@ -1060,22 +1096,11 @@ def run_boundary_tests():
                                     "token", "--repo", "a", "--repo=b"])
         # 条件を満たすhomeでは止めないことも測る（常に拒否へ壊れたら気づく）。
         # rootを使わずに作れないため、root所有で他から書けない既存のdirectoryを借りる。
-        def usable(d):
-            try:
-                st = os.stat(d)
-            except OSError:
-                return False
-            return (os.path.isdir(d) and not os.path.islink(d) and st.st_uid == 0
-                    and (st.st_mode & 0o022) == 0)
-
-        fixture = next((d for d in ("/usr", "/root", "/etc") if usable(d)), None)
-        ok_home = False
-        if fixture:
-            rc_ok, out_ok = sh_run(["sh", ck, "root", fixture, ""])
-            ok_home = rc_ok == 0
-            if not ok_home:
-                print("NG BT-install-args-home（合格するはずのhomeで拒否）", fixture, out_ok.strip()[:200])
-        else:
+        # 借り先ごとに直下の中身が違うため、候補のどれか1つでも通ればよい（1つも通らなければ落とす）。
+        accepted = [d for d in ("/usr", "/root", "/etc", "/usr/share", "/var/lib")
+                    if os.path.isdir(d) and sh_run(["sh", ck, "root", d, ""])[0] == 0]
+        ok_home = bool(accepted)
+        if not ok_home:
             print("NG BT-install-args-home（合格の場合を測れるdirectoryが無い）")
         rows.append({"id": "BT-install-args-home",
                      "ok": (rc_anc, rc_link, rc_same, rc_ailink, rc_other,
