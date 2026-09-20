@@ -14,7 +14,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:9c66c6884bf69cd70802fcfa883946e134c91a29c8709b7d852d99e29fad5073",
+  "output_sha256": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
   "parent_revision": "7b4cb8ef5cfa71e5166a6565c4ba8426020e15ec",
   "prior_review_batch": {
     "batch_id": "LEGACY-SEMANTIC-WAVE1-2026-09-21",
@@ -68,8 +68,8 @@
   "schema_revision": 4,
   "semantic_link_counts": {
     "confirmed": 2,
-    "rejected": 4,
-    "unresolved": 3
+    "rejected": 6,
+    "unresolved": 1
   },
   "source_revision": "legacy-generation-2026-09-14",
   "status": "research_premise_candidate",
@@ -160,8 +160,14 @@
         "implementation_uncovered_atom_ids_sha256": "sha256:c2a035b0d3b79f413e2da0f82f45896ff27286b332b22ba84756d3fcb7973697",
         "implementation_unresolved_atom_ids": [],
         "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "no_evidence_atom_ids": [],
-        "no_evidence_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "no_evidence_atom_ids": [
+          "FR06-HARNESS-A01",
+          "FR06-HARNESS-A02",
+          "FR06-HARNESS-A03",
+          "FR06-HARNESS-A04",
+          "FR06-HARNESS-A05"
+        ],
+        "no_evidence_atom_ids_sha256": "sha256:c2a035b0d3b79f413e2da0f82f45896ff27286b332b22ba84756d3fcb7973697",
         "product_boundary_resolution_complete": false,
         "product_exclusive_atom_ids": [
           "FR06-HARNESS-A03",
@@ -204,8 +210,8 @@
       "reviewed_edge_count": 3,
       "semantic_link_counts": {
         "confirmed": 1,
-        "rejected": 1,
-        "unresolved": 1
+        "rejected": 2,
+        "unresolved": 0
       },
       "unit_candidate_id": "IRUNIT-HIL-FR-06-HELIX-HARNESS"
     },
@@ -271,8 +277,12 @@
         "implementation_uncovered_atom_ids_sha256": "sha256:bff00f280bb633a8681aa384663636c945bdb45192799bcd24968d5ead27b147",
         "implementation_unresolved_atom_ids": [],
         "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "no_evidence_atom_ids": [],
-        "no_evidence_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "no_evidence_atom_ids": [
+          "FR06-OS-A01",
+          "FR06-OS-A02",
+          "FR06-OS-A03"
+        ],
+        "no_evidence_atom_ids_sha256": "sha256:bff00f280bb633a8681aa384663636c945bdb45192799bcd24968d5ead27b147",
         "product_boundary_resolution_complete": false,
         "product_exclusive_atom_ids": [],
         "product_exclusive_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -306,8 +316,8 @@
       "reviewed_edge_count": 3,
       "semantic_link_counts": {
         "confirmed": 1,
-        "rejected": 1,
-        "unresolved": 1
+        "rejected": 2,
+        "unresolved": 0
       },
       "unit_candidate_id": "IRUNIT-HIL-FR-06-HELIX-OS"
     },

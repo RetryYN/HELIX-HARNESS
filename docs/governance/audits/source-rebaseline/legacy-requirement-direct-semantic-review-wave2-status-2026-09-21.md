@@ -10,12 +10,12 @@ pr_class: research_premise
 
 ## 結果
 
-218要求unitのうち新たに3 unit、候補edge 9件を直接照合した。結果は`confirmed` 2、`rejected` 4、`unresolved` 3である。wave 1と合わせて5 unit、15 edgeをreview済みとし、両waveのedge集合は交差しない。
+218要求unitのうち新たに3 unit、候補edge 9件を直接照合した。結果は`confirmed` 2、`rejected` 6、`unresolved` 1である。wave 1と合わせて5 unit、15 edgeをreview済みとし、両waveのedge集合は交差しない。
 
 | 製品 | unit | review結果 | 旧要求実装状態 | 現行状態 | 縮退判定 |
 |---|---|---|---|---|---|
-| HELIX-HARNESS | `IRUNIT-HIL-FR-06-HELIX-HARNESS` | 契約一致1、非該当1、隣接挙動・atom対応なし1 | `unknown_pending_direct_implementation_and_consumer_review` | `not_established` | 旧実装自体が不明のため未判定 |
-| HELIX-OS | `IRUNIT-HIL-FR-06-HELIX-OS` | 契約一致1、非該当1、隣接挙動・atom対応なし1 | `unknown_pending_direct_implementation_and_consumer_review` | `not_established` | 旧実装自体が不明のため未判定 |
+| HELIX-HARNESS | `IRUNIT-HIL-FR-06-HELIX-HARNESS` | 契約一致1、非該当1、隣接実装・atom対応なし1 | `unknown_pending_direct_implementation_and_consumer_review` | `not_established` | 旧実装自体が不明のため未判定 |
+| HELIX-OS | `IRUNIT-HIL-FR-06-HELIX-OS` | 契約一致1、非該当1、隣接実装・atom対応なし1 | `unknown_pending_direct_implementation_and_consumer_review` | `not_established` | 旧実装自体が不明のため未判定 |
 | HELIX-OS | `IRUNIT-HIL-BR-12-HELIX-OS` | intake設計部分一致1、非該当2 | `unknown_pending_direct_implementation_and_consumer_review` | `not_established` | phase能力の実装状態を個別要求へ転記せず未判定 |
 
 ## 製品分離
@@ -24,7 +24,7 @@ pr_class: research_premise
 
 `HIL-BR-12`の入力源3 atomはOS固有候補だが、「同じintake契約へ正規化する」atomはHARNESSの分類規則とOSのGitHub event受付を接続する共有spanである。このatomも`product_boundary_pending_human_decision`を維持し、OS単独ownerへ確定しない。
 
-`requirement-discovery.ts`はhuman actorとcurrent human agreementを強制するが、FR-06の5 atom／3 atomには人間承認atomがない。allowed changes、non-goals、capability budgetも検査しないため、直接対応atomは0のまま、phase／product上の隣接実装として両製品edgeを`unresolved`に保った。
+`requirement-discovery.ts`はhuman actorとcurrent human agreementを強制するが、FR-06の5 atom／3 atomには人間承認atomがない。allowed changes、non-goals、capability budgetも検査しないため、直接対応atomは0のまま、phase／product上の隣接実装として両製品edgeを`rejected`とし、隣接実装用relationで単なる別機能との違いを残した。
 
 ## phaseと実装状態
 
@@ -39,13 +39,13 @@ PHCAP-02の旧能力にはL6とL7 implementation/testの証拠がある。しか
 
 ## atom coverage receipt
 
-| unit | atom総数 | 契約confirmed | 設計partial | 実装confirmed | 実装unresolved | 実装未被覆 | 全証拠なし |
+| unit | atom総数 | 契約confirmed | 設計partial | 実装confirmed | 実装unresolved | 実装未被覆 | 設計・実装証拠なし |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| `IRUNIT-HIL-FR-06-HELIX-HARNESS` | 5 | 5 | 0 | 0 | 0 | 5 | 0 |
-| `IRUNIT-HIL-FR-06-HELIX-OS` | 3 | 3 | 0 | 0 | 0 | 3 | 0 |
+| `IRUNIT-HIL-FR-06-HELIX-HARNESS` | 5 | 5 | 0 | 0 | 0 | 5 | 5 |
+| `IRUNIT-HIL-FR-06-HELIX-OS` | 3 | 3 | 0 | 0 | 0 | 3 | 3 |
 | `IRUNIT-HIL-BR-12-HELIX-OS` | 6 | 0 | 3 | 0 | 0 | 6 | 3 |
 
-FR-06のcontract被覆は同一要求IDの非実行source snapshotによる。共有atom 3件の製品境界は未決であり、contract被覆完了と製品境界解決を別fieldにした。BR-12はstable ID A01〜A06を維持し、A01、A02、A06を設計partial、A03、A04、A05を全証拠なしとする。A06はHARNESSとの共有span、A01〜A05はOSのexclusive候補である。すべてのatomは`product_boundary_pending_human_decision`を保持し、shared／exclusiveのexact setで区別する。設計partialを実装被覆へ算入せず、全証拠なしとも区別する。
+FR-06のcontract被覆は同一要求IDの非実行source snapshotによる。共有atom 3件の製品境界は未決であり、contract被覆完了と製品境界解決を別fieldにした。要求原文の自己再掲は`no_evidence_atom_ids`から差し引かず、FR-06の5 atom／3 atomはいずれも設計・実装証拠なしとして表示する。BR-12はstable ID A01〜A06を維持し、A01、A02、A06を設計partial、A03、A04、A05を全証拠なしとする。A06はHARNESSとの共有span、A01〜A05はOSのexclusive候補である。すべてのatomは`product_boundary_pending_human_decision`を保持し、shared／exclusiveのexact setで区別する。設計partialを実装被覆へ算入せず、全証拠なしとも区別する。
 
 ## 残る集合
 

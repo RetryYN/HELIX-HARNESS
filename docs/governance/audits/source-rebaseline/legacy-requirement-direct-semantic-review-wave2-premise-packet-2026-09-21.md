@@ -17,7 +17,7 @@ pr_class: research_premise
 | 状態 | 内容 | 扱い |
 |---|---|---|
 | known | `HIL-FR-06`の同一ID sourceはHARNESS 5 atom、OS 3 atomを逐語保持する | 契約被覆に限定し、実装被覆に算入しない |
-| known | `requirement-discovery.ts`はhuman actor／agreement後のL3 compileを強制する | FR-06のScope Gate atomへの直接対応は0だが隣接実装であるため、covered atomなしの`unresolved`とする |
+| known | `requirement-discovery.ts`はhuman actor／agreement後のL3 compileを強制する | FR-06のScope Gate atomへの直接対応は0だが隣接実装であるため、covered atomなしの`rejected`とし、隣接実装用relationで別機能との違いを残す |
 | known | PHCAP-02は旧能力を`implemented_with_tests`と分類する | phase能力の状態として保持し、`HIL-BR-12`個別unitへ転記しない |
 | known | `requirement-intake-lifecycle.ts`はscreen台帳adapterのpermanent／replaceable／retireを検査する | GitHub／user ingress正規化とは別機能としてrejectする |
 | assumption | phase候補poolは次に読むassetを絞る検索入口になる | membership自体をsemantic edgeへ昇格させない |

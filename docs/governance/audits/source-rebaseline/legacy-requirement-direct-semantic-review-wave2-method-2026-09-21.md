@@ -22,11 +22,11 @@ wave 1の判定軸を継承し、製品別要求unitと旧assetを一辺ずつ�
 
 `confirmed`、`rejected`、`unresolved`の意味、引用digest、atom binding、consumer closure、現行状態、new build境界はwave 1方法を継承する。wave 2はschema revision 4とし、設計が記述する契約の部分対応を`design_contract_evidence`で明示する。このrelationは設計をimplementation sourceに変えない。契約sourceの一致とimplementation sourceの一致を別集合で集計し、設計またはtest designの一致から実装被覆を生成しない。
 
-`HIL-FR-06`の同一ID migration sourceは両製品unitの契約を逐語保持するため、各unitが保持したatomだけを契約confirmedにする。同じassetを2 unitでreviewしてもedge identityは`unit_candidate_id × asset_id`なので重複ではない。3共有spanはatomごとに`shared_with_units`と`product_boundary_pending_human_decision`を持ち、製品固有atomと分ける。共有契約の逐語被覆から製品owner確定を生成しない。全atomの`boundary_review_state`は既存語彙`product_boundary_pending_human_decision`を使い、shared／exclusiveのexact setで境界を区別する。製品候補がHELIX-OSだけの`requirement-discovery.ts`はhuman actor／agreement gateを持つ隣接実装だが、FR-06のどのatomにも直接対応しない。そのため両製品edgeはcovered atomなしの`unresolved`とし、契約被覆には算入しない。
+`HIL-FR-06`の同一ID migration sourceは両製品unitの契約を逐語保持するため、各unitが保持したatomだけを契約confirmedにする。同じassetを2 unitでreviewしてもedge identityは`unit_candidate_id × asset_id`なので重複ではない。3共有spanはatomごとに`shared_with_units`と`product_boundary_pending_human_decision`を持ち、製品固有atomと分ける。共有契約の逐語被覆から製品owner確定を生成しない。全atomの`boundary_review_state`は既存語彙`product_boundary_pending_human_decision`を使い、shared／exclusiveのexact setで境界を区別する。製品候補がHELIX-OSだけの`requirement-discovery.ts`はhuman actor／agreement gateを持つ隣接実装だが、FR-06のどのatomにも直接対応しない。そのため両製品edgeはcovered atomなしの`rejected`とし、`adjacent_implementation_nonmatching`で単なる別機能との違いを保持する。
 
 `HIL-BR-12`ではPHCAP-02の`legacy_capability_status`が`implemented_with_tests`でも、それを個別要求の実装済み判定に使わない。stable ID A01〜A06でGitHub Issue、GitHub PR、GitHub CI event、ユーザー差し込みIssue、ユーザー差し込みPLAN、同一intake契約への正規化をそれぞれ自立atomにし、区切りと接続だけを`connective_fragments`へ置く。A06はHARNESS unitとの共有接続条件であり、製品境界の人間decision待ちを保持する。`intake-contract-normalization.md`はA01、A02、A06へ部分一致するが、CI eventおよびユーザー差し込みIssue／PLANの全入力を閉じないため`unresolved`とする。`requirement-discovery-event-schema.json`は正規化後のevent schema、`requirement-intake-lifecycle.ts`はscreen台帳adapterのlifecycleであり、直接intake正規化edgeとして`rejected`とする。
 
-coverage receiptは契約confirmed、設計partial、実装confirmed／unresolved／uncovered、全証拠なしを別exact setで持つ。設計partialを実装被覆へ算入せず、同時に証拠皆無atomとの区別を失わない。`product_exclusive_atom_ids`、`shared_atom_ids`、製品境界状態もdecomposition正本から再計算する。
+coverage receiptは契約confirmed、設計partial、実装confirmed／unresolved／uncovered、設計・実装証拠なしを別exact setで持つ。`no_evidence_atom_ids`は要求原文の自己再掲を証拠と数えず、実装confirmed／unresolvedと設計partialだけを差し引く。`product_exclusive_atom_ids`、`shared_atom_ids`、製品境界状態もdecomposition正本から再計算する。
 
 ## 累積境界
 

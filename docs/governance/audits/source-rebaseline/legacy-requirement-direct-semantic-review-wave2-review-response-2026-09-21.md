@@ -32,3 +32,19 @@ pr_class: research_premise
 ## 境界
 
 本処分はreview済みHEADの指摘対応であり、要求・phase・asset採否、製品owner決定、successor、正式L2／L11、実装、consumer closureを生成しない。修正後HEADは新しいrequest identityで再reviewする。
+
+## round 2
+
+- request: `RH-1914-GUI-02`
+- reviewed content: `b6298c2f6b1bea0464ee48cc7c343f09f84e7869`
+- request payload SHA-256: `51cf6a844c92cb4b71c86b8a94ce6165492c06ba217f1266b58cd2bfd0d17778`
+- response file SHA-256: `adc3ccd668e2127b153228f622e425d5b9db2c05e46332c6abe0c6633d359c4b`
+
+| finding | severity | 処分 |
+|---|---|---|
+| `MAJOR-1914-02-01` | Major | 対応。`no_evidence_atom_ids`からcontract自己再掲を差し引かず、実装confirmed／unresolvedと設計partialだけを差し引く。status列は「設計・実装証拠なし」と定義し、FR-06を5件／3件、BR-12を3件とした。 |
+| `MINOR-1914-02-01` | Minor | 対応。`connective_fragments`を1〜2文字の明示allowlistへ制限し、重複を拒否し、atomの意味fragmentに含まれる文字列をconnectiveへ置けないようにした。 |
+| `MINOR-1914-02-02` | Minor | 対応。直接対応atom 0の隣接実装2 edgeを三値定義に従って`rejected`へ変更し、evidence relation `adjacent_implementation_nonmatching`で単なる別機能との違いを保持した。集計はconfirmed 2／rejected 6／unresolved 1となる。 |
+| `INFO-1914-02-01` | Info | 確認。round 1の他の修正、欠陥注入、test mergeおよび静的検証結果を保持する。 |
+
+round 2の`incomplete`に列挙された残る213 unit、425 edge、consumer、製品owner decision等は本PRの未確認範囲として保持し、完了や採否を生成しない。
