@@ -97,9 +97,19 @@
         "info": 1
       },
       "status": "addressed_pending_round_2"
+    },
+    "exact_head_review_round_2": {
+      "content_sha": "f391da6b677c65fcd999fd627e28d8c5176aa3d3",
+      "findings": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 1,
+        "info": 1
+      },
+      "status": "addressed_pending_round_3"
     }
   },
-  "output_sha256": "sha256:4e3bbac33240cc8a3fde2816276119c2e66b0b5b690809838510bfab625ad31b",
+  "output_sha256": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
   "known_open_conditions": [
     "exact_head_independent_review_pending",
     "successor_assignment_unassigned",

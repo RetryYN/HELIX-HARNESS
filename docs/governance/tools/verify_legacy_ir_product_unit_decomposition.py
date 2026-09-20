@@ -31,8 +31,7 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def uncovered_meaningful_runs(statement, spans):
-    """Return source runs not covered by the union of exact spans."""
+def span_mask(statement, spans):
     covered = [False] * len(statement)
     for span in spans:
         start = 0
@@ -43,11 +42,37 @@ def uncovered_meaningful_runs(statement, spans):
             for position in range(index, index + len(span)):
                 covered[position] = True
             start = index + 1
+    return covered
+
+
+def uncovered_meaningful_runs(statement, spans):
+    """Return source runs not covered by the union of exact spans."""
+    covered = span_mask(statement, spans)
     uncovered = "".join(
         " " if covered[index] or character in IGNORABLE_COVERAGE_CHARS else character
         for index, character in enumerate(statement)
     )
     return re.findall(r"\S+", uncovered)
+
+
+def shared_overlap_texts(statement, left_spans, right_spans):
+    """Return maximal source-position runs covered by both units."""
+    left = span_mask(statement, left_spans)
+    right = span_mask(statement, right_spans)
+    overlaps = []
+    index = 0
+    while index < len(statement):
+        if not (left[index] and right[index]):
+            index += 1
+            continue
+        end = index
+        while end < len(statement) and left[end] and right[end]:
+            end += 1
+        text = statement[index:end].strip("".join(IGNORABLE_COVERAGE_CHARS))
+        if any(character not in IGNORABLE_COVERAGE_CHARS for character in text):
+            overlaps.append(text)
+        index = end
+    return overlaps
 
 
 def main():
@@ -95,9 +120,11 @@ def main():
             spans = [span for unit in units for span in unit["source_text_spans"]]
             uncovered = uncovered_meaningful_runs(row["statement_text"], spans)
             require(not uncovered, f"split source union coverage mismatch: {requirement_id}: {uncovered}")
-            shared_spans = set.intersection(*(set(unit["source_text_spans"]) for unit in units))
-            if shared_spans:
-                require(all("共有span" in unit["semantic_coverage_note"] for unit in units), f"shared span reason missing: {requirement_id}")
+            overlaps = shared_overlap_texts(row["statement_text"], units[0]["source_text_spans"], units[1]["source_text_spans"])
+            for unit in units:
+                overlap_notes = unit["shared_source_overlaps"]
+                require([note["source_text"] for note in overlap_notes] == overlaps, f"shared source overlap set mismatch: {requirement_id}")
+                require(all(note["source_text"] in note["reason"] and note["review_state"] == "product_boundary_pending_human_decision" for note in overlap_notes), f"shared source overlap reason mismatch: {requirement_id}")
             require(all(not span.endswith(tuple("、。，．；;")) for span in spans), f"split span has trailing punctuation: {requirement_id}")
         else:
             require(row["routing_candidate"] == "cross_product_connection", "unknown routing candidate")
@@ -110,6 +137,8 @@ def main():
             unit_ids.add(unit["unit_candidate_id"])
             require(unit["authority_effect"] == "none", "unit authority overclaim")
             require(unit["semantic_coverage_status"] == "pending_exact_head_independent_review", "semantic coverage overclaim")
+            if row["routing_candidate"] != "split_required":
+                require(unit["shared_source_overlaps"] == [], "unexpected shared source overlap")
             require(unit["responsibility_summary"].strip() and unit["semantic_coverage_note"].strip(), "empty unit meaning")
             require(unit["source_text_spans"] and all(span and span in row["statement_text"] for span in unit["source_text_spans"]), "source span mismatch")
             require(len(unit["source_text_spans"]) == len(set(unit["source_text_spans"])), "duplicate source span")

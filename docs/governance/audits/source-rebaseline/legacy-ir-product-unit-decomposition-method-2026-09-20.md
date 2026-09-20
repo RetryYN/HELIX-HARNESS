@@ -25,7 +25,10 @@ product_routing_revision: c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7
 1. `single_product`は原文全体を一つの`product_unit`候補として保持する。複数責務が同一製品内に残る場合も、別要求への分割やsuccessor IDをここでは生成しない。
 2. `split_required`は候補targetごとに一つの`product_unit`候補を作る。各unitには原文からの逐語spanと、そのspanから導ける責務要約を付ける。
 3. `cross_product_connection`は両端製品を持つ一つのconnection候補として保持する。片側のunit成立や実装状態からconnection成立を推定しない。
-4. 同じ原文spanを複数unitが共有する場合は、共有条件である理由を`semantic_coverage_note`へ記録する。どちらの製品に置くか決められないatomは一方へ丸めず`unresolved_reasons`へ残す。
+4. 複数unitのspanが原文上の同じ文字位置を共有する場合は、byte一致spanだけでなく部分重複も含め、各unitの
+   `shared_source_overlaps`へ最大連続重複を記録する。各entryは`source_text`、その原文を共有する具体理由、
+   `product_boundary_pending_human_decision`を持つ。どちらの製品に置くか決められないatomは一方へ丸めず
+   `unresolved_reasons`へ残す。
 5. `source_text_spans`は原文に実在する連続文字列に限る。`responsibility_summary`は正規化候補であり原文を置換しない。
 6. `candidate_product_targets`は既存routingのexact setを維持する。この作業でHELIX-Web／HELIX-Web-OSを追加・除外確定しない。
 7. `split_required`では、全unitの逐語spanが覆う原文上の文字位置をunionし、空白と句読点・括弧・区切り記号を
@@ -66,6 +69,11 @@ Minor 3、Info 1を検出した。短いspanを含むだけでclause全体を被
 否定義務をsummaryへ戻した。共有spanには各unitのnoteで共有理由を記録し、`HIL-BR-06`の分割不能性と
 phase集合差も保留理由として明示した。修正後HEADは新しいreview requestとして再確認する。
 
+修正後HEAD `f391da6b677c65fcd999fd627e28d8c5176aa3d3`へのGUI round 2はMinor 1、Info 1だった。
+byte一致spanだけを対象にした共有判定を原文上の文字位置重複へ拡張し、35 split要求・110 unit entryへ
+`shared_source_overlaps`を追加した。`HIL-BR-12`と`HIL-NFR-07`を含む各重複について、引用した
+`source_text`と具体理由と人間判断保留状態を構造化した。修正後HEADはround 3で再確認する。
+
 ## 静的検証
 
 - source requirement ID 153件のexact set、順序、statement digest、statement textが原IRと一致する。
@@ -73,7 +81,8 @@ phase集合差も保留理由として明示した。修正後HEADは新しいre
 - `single_product`はproduct unit 1件、`split_required`は各targetにproduct unit 1件、connectionはconnection 1件である。
 - 全spanが原文のsubstringで、空span、空要約、未知product、未知phase、重複unit IDがない。
 - `split_required`では、全spanの文字位置unionに、空白・句読点・括弧・区切り以外の未被覆runがない。
-- 共有spanがあれば両unitのnoteに共有理由があり、split spanに末尾句読点、重複、入れ子がない。
+- 原文位置を共有するspanがあれば両unitの`shared_source_overlaps`が同じ最大連続重複を列挙し、各entryの
+  `reason`が`source_text`を引用し、人間判断保留状態を持つ。split spanに末尾句読点、重複、入れ子がない。
 - 各直接phase候補のIDが`phase_rationale`に現れ、根拠を追跡できる。
 - routing訂正保留、直接phase review保留と、それぞれのnote・未解決flagが一致する。
 - authority、meaning change、successorを生成していない。

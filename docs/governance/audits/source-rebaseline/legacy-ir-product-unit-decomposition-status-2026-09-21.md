@@ -47,6 +47,11 @@ Minor 3、Info 1だった。split要求3件の否定・例外、10件のactor・
 clause被覆判定を修正した。全65 split要求は全spanの文字位置unionでmeaningful文字の未被覆run 0となった。
 修正後HEADの再reviewが終わるまではexact-head review pendingを維持する。
 
+round 2（HEAD `f391da6b677c65fcd999fd627e28d8c5176aa3d3`）はMinor 1、Info 1だった。
+共有判定をbyte一致spanから原文上の文字位置重複へ拡張し、35 split要求の110 unit entryへ
+`shared_source_overlaps`を追加した。各entryは共有する原文、具体理由、製品境界の人間判断保留状態を持つ。
+修正後HEADのround 3が終わるまではexact-head review pendingを維持する。
+
 ## 未解決のrouting
 
 既存routingをこの候補台帳から上書きせず、次の5要求を訂正候補として保持する。
