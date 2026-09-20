@@ -1160,6 +1160,11 @@ def run_boundary_tests():
         spec = iu.spec_from_file_location("appsetup_t", os.path.join(os.path.dirname(HERE),
                                                                     "lease-bootstrap", "appsetup.py"))
         AS = iu.module_from_spec(spec); spec.loader.exec_module(AS)
+        app_manifest = AS.manifest("RetryYN/HELIX-HARNESS", "http://127.0.0.1:8765/done/test")
+        rows.append({"id": "BT-app-manifest-no-webhook",
+                     "ok": app_manifest.get("url") == "https://github.com/RetryYN/HELIX-HARNESS"
+                     and app_manifest.get("redirect_url") == "http://127.0.0.1:8765/done/test"
+                     and "hook_attributes" not in app_manifest})
         ah = tempfile.mkdtemp(prefix="lease-app-")
         app_tmp.append(ah)
         AS.home = lambda: ah

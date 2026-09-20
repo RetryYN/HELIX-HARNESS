@@ -87,7 +87,9 @@ def load_app():
 def manifest(repo, redirect):
     owner, name = repo.split("/")
     return {"name": "helix-lease-%s" % name.lower()[:20], "url": "https://github.com/%s" % repo,
-            "hook_attributes": {"active": False}, "redirect_url": redirect, "public": False,
+            # Webhookを使わないのでhook_attributesを送らない。GitHubのmanifest schemaでは、
+            # このobjectを送る場合は内部のurlが必須であり、activeだけでは登録を拒否される。
+            "redirect_url": redirect, "public": False,
             "default_permissions": PERMISSIONS, "default_events": []}
 
 
