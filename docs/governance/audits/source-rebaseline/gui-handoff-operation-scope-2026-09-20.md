@@ -142,3 +142,19 @@ round5ではR4-1〜R4-7の解消をreviewerが確認し、Blocker／Majorは0件
 - R5-2: reviewerの代替案に従い、active時のresiduals=0は失効参照の撤去完了を示さないと明記した。失効後はaudit→必要ならremove→audit=0を必須手順とする。期限後のmergeでも接続を復活させない。
 - R5-3: boot ID読込みをguard生成時へ遅延し、通知箱のsend／ack等のimportでは/procを読まないようにした。新たなplatform対応を主張しない。
 - R4-8: provider内部設定block判断は未検証を維持する。round5依頼ではclaim.hook_event=ConfigChangeでの取得と、既存ClaudeからのACKを確認済み。これは設定適用判断とは別の証拠。
+
+## PR #1885 merge後の撤去と再接続scope
+
+PR #1885は2026-09-20T11:48:39Zにmerge commit `3a00732031d78f2e19b98b6da39ca317f691bdc2`でmainへ統合された。レビュー／マージレーンの完了応答を受領してACKした後、実行レーンは`configure_gui.py --audit`でClaude 3件／Codex 2件を確認し、`--remove --apply`、再auditの順に所有hook 0件を確認した。その後、初回の一時worktree、通知箱、local branchを撤去した。関連Issueはcloseせずopenで保持した。
+
+利用者へ、現在の通知経路は停止済みであること、仕組みはmainに保持されていること、次は#1884／#1866の記録更新、#1859／#1860への正式要件接続、L3／L10での正式設計、#1866での置換・retireであることを報告した。期限付きで仮経路を復旧しながら正式化を進める案に対し、利用者は「それで進めて」と指示した。受領時刻は2026-09-20T20:59:34+09:00より前、正確な端末送信時刻は取得できない。
+
+この指示に基づく再接続は次へ限定する。
+
+- 対象: 同じVS Codeの既存Claude Code／Codex GUIと、`~/.claude/settings.json`／`~/.codex/hooks.json`内の所有5 command。
+- 作用: 最新mainから作った専用worktreeのSCF-B-0003をconsumerへ再接続し、#1884／#1866のmerge後状態訂正と、#1859／#1860へ接続する正式化候補のreview依頼・指摘返却に使用する。
+- 保持上限: 再接続した現在のOS boot、2026-09-21 23:59 JST、再接続revisionのPR merge/close、利用者の停止指示、正式経路への置換のうち最早時点。
+- 境界: 新規provider sessionを起動せず、旧hook・旧runtime・旧CIを実行しない。要求採否、正式実装許可、review完了、merge許可を通知から生成しない。
+- 撤去: 上限到達時に実行レーンがaudit→remove→audit=0を確認してから専用worktreeと通知stateを片付ける。
+
+期限を2026-09-21 23:59 JSTとしたのは、今回のreview往復に必要な最小の翌日末までとする実行側の限定である。より長い保持、reboot後の再接続、正式運用への昇格には別のPO判断とrevisionを要する。

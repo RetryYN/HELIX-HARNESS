@@ -26,11 +26,11 @@
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
-      "sha256": "5568819aa38bc2fa0d432873e81774834aab61783fadd57892c36f588a3460b2"
+      "sha256": "90279e1082f7e9b7e3a3bb382feceba6adf240bac4a159fdcaf1168dcef611a0"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",
-      "sha256": "921b23f20762848eca209db9cf4896940327e1b2f253f4ab146135603dc6bd35"
+      "sha256": "bd183353693075fc9404ec40de8e60e2b5403f11911a3ae041aa8fd97b5d04b7"
     },
     {
       "path": "scaffold/external-references/SCF-B-0003.json",

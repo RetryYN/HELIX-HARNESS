@@ -12,7 +12,7 @@ import uuid
 import time
 
 HERE = Path(__file__).resolve().parent
-EXPIRES_AT = int(datetime.fromisoformat("2026-09-20T23:59:00+09:00").timestamp())
+EXPIRES_AT = int(datetime.fromisoformat("2026-09-21T23:59:00+09:00").timestamp())
 
 
 def lifetime_guard(boot_id=None, expires_at=None):
