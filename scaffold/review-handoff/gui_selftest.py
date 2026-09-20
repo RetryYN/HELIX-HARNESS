@@ -277,6 +277,16 @@ class GuiChecks(unittest.TestCase):
                 g.hook("claude",0)
             self.assertEqual(stdout.getvalue().strip(),"{}")
 
+    def test_registered_session_activity_refreshes_lease(self):
+        from contextlib import contextmanager
+        @contextmanager
+        def fake_state(): yield self.data
+        self.data["lanes"]["claude"]["expires"] = self.now - 1
+        entry=dict(session_id="claude-gui",cwd=str(p.ROOT),hook_event_name="SessionStart")
+        with patch.object(g,"state",fake_state),patch.object(g.time,"time",return_value=self.now),patch.object(sys,"stdin",io.StringIO(json.dumps(entry))),patch.object(sys,"stdout",io.StringIO()):
+            g.hook("claude",0)
+        self.assertEqual(self.data["lanes"]["claude"]["expires"],self.now+3600)
+
 
     def test_cross_checkout_hook_removal(self):
         settings=config.update({},"claude")

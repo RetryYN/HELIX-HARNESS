@@ -242,10 +242,14 @@ def hook(runtime, wait):
         print("{}")
         return
     with state() as data:
-        observe(data, runtime, session, time.time(), event)
-        apply_enrollment(data, runtime, session, time.time(), ancestors())
+        now = time.time()
+        observe(data, runtime, session, now, event)
+        apply_enrollment(data, runtime, session, now, ancestors())
         registered = data["lanes"].get(runtime)
-        active = registered and registered["session"] == session and registered["expires"] > time.time()
+        # 同じ登録済みGUIだけがactivityごとにleaseを更新する。別sessionへの付替えはbind/enrollが必要。
+        if registered and registered["session"] == session:
+            registered["expires"] = now + 3600
+        active = registered and registered["session"] == session and registered["expires"] > now
     if entry.get("hook_event_name") == "SessionStart" or not active:
         print("{}")
         return
