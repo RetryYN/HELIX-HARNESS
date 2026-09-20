@@ -12,6 +12,9 @@
 - GitHub、Issue、PR、CI、DB、memory、会話から要求意味・承認・完了を生成しない。
 - `archive/legacy-generation-2026-09-14/`内の旧workflow、CLI、hook、adapter、source、test、設定を実行しない。
 - 旧資産は意味、判断史、failure、consumerを調べるreferenceとしてだけ読み、新世代のbaseline、oracle、fallbackにしない。
+- HELIXの機能を最適化、拡張、再編するときは、設計・実装の前に旧HELIXの対応資産を資産明細台帳から特定し、対応するsource、判断史、failure、consumerを必ず読む。調査したasset ID、保持する契約、変更が必要な差分を記録する。
+- 旧HELIXに同じ役割の仕組みがある場合、独自の代替機構を新規開発しない。[旧資産の完全一致再利用統制](docs/governance/legacy-asset-reuse-control.md)に従い、完全一致再利用、意味の再導出、置換のいずれかを明示し、承認された差分だけを現行構造へ反映する。対応資産が無いと判断する場合も、検索範囲と結果を記録してから新規案へ進む。
+- この参照義務は旧資産の実行、現行pathへの無判断なcopy、旧CI・旧testをoracleとして使うことを許可しない。
 - 新世代CIは未構築である。旧CIを動かさない。
 - reviewer名や「reviewを通す」という依頼から実行通路を推定しない。GitHub、CLI、API、IDE、Workerの各通路は明示許可が必要である。
 - PR作成・修正側はreview依頼と指摘対応までを担い、merge、post-merge read-after、対応Issueのcloseを実行しない。exact HEADのreviewを完了し、merge／close通路を明示許可されたレビュー対応側が、merge admission確認後にmergeとcloseを行う。この責務割当は通路の明示許可を代替しない。
