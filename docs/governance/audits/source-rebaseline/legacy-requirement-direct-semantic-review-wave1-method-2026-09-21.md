@@ -65,4 +65,6 @@ catalogの`consumer_refs`は観測値として転記する。空配列はconsume
 
 独立verifierは、親revisionの三入力digest、2 unit／6 edge exact set、11 atom exact set、atom fragment unionによる要求span無損失被覆、unit原文とdigest、asset ID／path／SHA／kind、archive manifest、引用行digest、引用中のrequired term、match mode、候補pool所属、契約／実装を分離したatom coverage receipt、未review集合digest、状態集計を再計算する。status文書のunit別旧／現行状態とatom件数もmetadataから照合する。また候補membershipからの直接link、要求文書からの実装claim、旧実行claim、consumer closure、current implemented、phase承認、new build許可を拒否する。
 
+status文書のunit別状態値と件数は、metadataと照合する指定表のcellへcode spanまたは整数で記録する。地の文は表と異なる状態値や件数を導入せず、説明と限界だけを書く。verifierの文書照合対象は指定表とcode spanの禁止状態語であり、自由記述の意味妥当性は人間reviewに残る。
+
 `EXPECTED_DECISIONS`はreview済み判定の改変を検出するregression pinであり、意味判定をsourceから自動導出しない。この検証は人間の意味判断、旧codeの動作、consumer完全性、要求採否を証明しない。

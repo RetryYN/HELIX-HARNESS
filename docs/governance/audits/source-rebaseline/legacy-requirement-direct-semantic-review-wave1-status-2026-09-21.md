@@ -64,9 +64,10 @@ OS unitで実装confirmedなのは「未登録agentをfail-closeする」「mode
 - `legacy-requirement-direct-semantic-review-wave1-review-response-2026-09-21.md`: exact HEAD reviewの全指摘と処分。
 - `legacy-requirement-direct-semantic-review-wave1-review-response-round2-2026-09-21.md`: schema 3へ至る第2reviewの全指摘と処分。
 - `legacy-requirement-direct-semantic-review-wave1-review-response-round3-2026-09-21.md`: status照合と契約relation境界に関する第3reviewの全指摘と処分。
+- `legacy-requirement-direct-semantic-review-wave1-review-response-round4-2026-09-21.md`: repository内検証記録の同期に関する第4reviewの全指摘と処分。
 - `verify_legacy_requirement_direct_semantic_review_wave1.py`: archiveを実行せず、入力・引用・集計・過大主張を独立検証する。
 
-静的検証は`schema3 / 6 edges / 11 atoms verified`で合格した。既存の218 unit crosswalk、153要求からの218 unit分解、旧asset 4,020件分類もそれぞれ再検証した。semantic statusの不正昇格、consumer closureの偽装、引用digest改変、atomと無関係な正しいdigestの引用への差替え、coverage receipt消去、契約被覆からの実装完全被覆偽装を個別に欠陥注入し、いずれも新verifierが拒否することを確認してから元bytesへ戻した。
+静的検証は`schema3 / 6 edges / 11 atoms verified`で合格した。既存の218 unit crosswalk、153要求からの218 unit分解、旧asset 4,020件分類もそれぞれ再検証した。semantic statusの不正昇格、consumer closureの偽装、引用digest改変、atomと無関係な正しいdigestの引用への差替え、coverage receipt消去、契約被覆からの実装完全被覆偽装、match mode付替え、status文書の状態値・atom件数drift、code spanの過大状態語を個別に欠陥注入し、いずれも新verifierが拒否することを確認してから元bytesへ戻した。責務主体欠落はsource fragment union検査で検出し、別要求IDの文書は契約被覆から除外されることも確認した。
 
 ## 次の作業
 
