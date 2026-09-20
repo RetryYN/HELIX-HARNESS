@@ -5,6 +5,7 @@
   "authority_effect": "none",
   "source_revision": "legacy-generation-2026-09-14",
   "method": "docs/governance/audits/source-rebaseline/legacy-phase-product-classification-method-2026-09-20.md",
+  "verification_script": "docs/governance/tools/verify_legacy_asset_phase_product_classification.py",
   "record_count": 4020,
   "source_inputs": [
     {
@@ -27,12 +28,12 @@
   ],
   "working_batch_artifacts_retained": false,
   "provenance_note": "一時batch出力は正本参照にせず、全4,020件をsource ledgerのexact set・digestと照合した統合台帳だけを保持する。",
-  "output_sha256": "sha256:1072bc55b2efd6e45402733e46a6e1b4ca2a7fc8f82dadd468ebaa1680409626",
+  "output_sha256": "sha256:c0f952f7adb33d8f3bd00cfd515b1dc3c9bfe48c11e534b0d2f30c5b1a56a9be",
   "phase_classification_counts": {
-    "classified_candidate": 606,
+    "classified_candidate": 515,
     "multi_phase_candidate": 1170,
     "unresolved": 1253,
-    "unresolved_with_candidate": 991
+    "unresolved_with_candidate": 1082
   },
   "product_classification_counts": {
     "candidate_needs_semantic_review": 2228,
@@ -46,5 +47,22 @@
     "all_consumer_closures_pending",
     "multi_phase_candidates_require_split_review",
     "unknown_artifact_kinds_remain"
-  ]
+  ],
+  "evidence_tag_vocabulary": [
+    "inventory:representative_asset:<PHCAP-ID>",
+    "basename:<name>",
+    "frontmatter:<field>:<value>",
+    "frontmatter:layer=<layer>",
+    "path:<path>",
+    "heading:<ordinal>:<text>",
+    "subject:<term>",
+    "subject_path:<term>",
+    "body:<term>"
+  ],
+  "confidence_policy": {
+    "high_requires": "inventory representative, capability-bearing basename, or phase-correspondence frontmatter beyond layer/status",
+    "frontmatter_layer_only_max": "medium",
+    "body_subject_path_heading_only_max": "medium",
+    "doctor_basename_only_for_phcap_11_max": "medium"
+  }
 }
