@@ -55,3 +55,10 @@ parent_requirementsは未承認L2候補への接続であり、承認済み親Co
 L2／L11採否→L3／L10で正式なcontext・配送・応答照合を導出する。
 正式側へ役割・義務・接続・検査・否定例を移し、#1866でcheck-replacement→retireを行う。
 GitHubへの投影source commitとdigestはIssue本文および別の投影receiptへ記録し、本文に自己commit SHAを埋め込まない。
+
+## 2026-09-20 scaffold merge後の状態
+
+PR #1885はmerge commit `3a00732031d78f2e19b98b6da39ca317f691bdc2`でmainへ統合された。成立したのは`authority_effect: none`のSCF-B-0003だけであり、本ticket、親要求、L3／L10、受入、CI、運用成立は生成していない。
+merge完了応答の受領後、初回consumer接続は契約どおり撤去し、Claude／Codexの所有hook 0件と一時worktree削除を確認した。
+
+利用者の後続指示「それで進めて」はGUI経路を復旧しながら正式化を進める作業指示として扱い、続く「期限とかだるいことやる意味がない」により固定日時とOS bootによる接続期限を設けない。再接続はSCF-B-0003の別revisionであり、Binding lifecycleに従って利用者の停止指示または正式経路への置換・retireまで維持する。正式Featureの採否・実装許可には使わない。

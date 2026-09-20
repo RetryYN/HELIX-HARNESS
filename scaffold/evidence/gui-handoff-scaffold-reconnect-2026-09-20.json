@@ -1,0 +1,60 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "binding_id": "SCF-B-0003",
+  "source_commit": "2357674fb14f45feadc4b1d9d785920465e73efc",
+  "recorded_at": "2026-09-20T12:15:08.122159+00:00",
+  "consumer_connection": {
+    "claude_owned_hooks": 3,
+    "codex_owned_hooks": 2,
+    "fixed_deadline_guard": false,
+    "boot_guard": false,
+    "stop_condition": "SCF-B-0003 state is not active or binding is unreadable",
+    "physical_removal": "configure_gui.py --audit -> --remove --apply -> --audit=0"
+  },
+  "live_delivery": {
+    "request_id": "RH-1887-SCAFFOLD-01",
+    "event_id": "GUI-1887-REVIEW-01",
+    "content_sha": "336529b80e9613cc6a84c37755e8181a226ccf10",
+    "status": "acked",
+    "claim_hook_event": "ConfigChange",
+    "request_comment_id": 5749692068,
+    "delivery_receipt_comment_id": 5749693408,
+    "review_response_comment_id": 5749716891,
+    "digest": "b56ac929f47609d55391bb78ccbadf258f52f0f10ff014437c6f6cc2d2d8da32"
+  },
+  "issue_connections": {
+    "feature_issue": 1884,
+    "feature_status_comment_id": 5749699749,
+    "replacement_issue": 1866,
+    "replacement_status_comment_id": 5749699806,
+    "progression_issue": 1859,
+    "acceptance_issue": 1860
+  },
+  "checks": {
+    "packet_tests": 10,
+    "gui_tests": 26,
+    "scaffold_tests": 38,
+    "validate": "bindings=3 fail=0",
+    "stale": "stale=0",
+    "residuals": "residuals=0",
+    "diff_check": "pass",
+    "python_compile": "pass",
+    "clean_checkout_first_run": "gui 26 OK; packet 10 OK"
+  },
+  "round1_disposition": {
+    "major_1": "binding state is now a fail-closed runtime stop condition",
+    "minor_1": "PR title corrected",
+    "minor_2": "message TTL and sliding session lease documented separately",
+    "info_1": "binding lifecycle negative test added; GUI count restored to 26",
+    "info_2": "message GC and settings mode preservation remain formalization tasks"
+  },
+  "limitations": [
+    "Codex native Stop automatic receive remains unverified",
+    "Claude ConfigChange exit 2 provider-internal settings application remains unverified",
+    "This evidence does not create requirement approval, implementation permission, acceptance, or merge authority"
+  ],
+  "round2_disposition": {
+    "major_1": "local directory is created in setUp; clean checkout first run passed"
+  }
+}

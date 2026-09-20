@@ -142,3 +142,33 @@ round5ではR4-1〜R4-7の解消をreviewerが確認し、Blocker／Majorは0件
 - R5-2: reviewerの代替案に従い、active時のresiduals=0は失効参照の撤去完了を示さないと明記した。失効後はaudit→必要ならremove→audit=0を必須手順とする。期限後のmergeでも接続を復活させない。
 - R5-3: boot ID読込みをguard生成時へ遅延し、通知箱のsend／ack等のimportでは/procを読まないようにした。新たなplatform対応を主張しない。
 - R4-8: provider内部設定block判断は未検証を維持する。round5依頼ではclaim.hook_event=ConfigChangeでの取得と、既存ClaudeからのACKを確認済み。これは設定適用判断とは別の証拠。
+
+## PR #1885 merge後の撤去と再接続scope
+
+PR #1885は2026-09-20T11:48:39Zにmerge commit `3a00732031d78f2e19b98b6da39ca317f691bdc2`でmainへ統合された。レビュー／マージレーンの完了応答を受領してACKした後、実行レーンは`configure_gui.py --audit`でClaude 3件／Codex 2件を確認し、`--remove --apply`、再auditの順に所有hook 0件を確認した。その後、初回の一時worktree、通知箱、local branchを撤去した。関連Issueはcloseせずopenで保持した。
+
+利用者へ、現在の通知経路は停止済みであること、仕組みはmainに保持されていること、次は#1884／#1866の記録更新、#1859／#1860への正式要件接続、L3／L10での正式設計、#1866での置換・retireであることを報告した。期限付きで仮経路を復旧しながら正式化を進める案に対し、利用者は「それで進めて」と指示した。受領時刻は2026-09-20T20:59:34+09:00より前、正確な端末送信時刻は取得できない。
+
+この指示に基づく再接続は次へ限定する。
+
+- 対象: 同じVS Codeの既存Claude Code／Codex GUIと、`~/.claude/settings.json`／`~/.codex/hooks.json`内の所有5 command。
+- 作用: 最新mainから作った専用worktreeのSCF-B-0003をconsumerへ再接続し、#1884／#1866のmerge後状態訂正と、#1859／#1860へ接続する正式化候補のreview依頼・指摘返却に使用する。
+- lifecycle: SCF-B-0003のactive期間は接続を維持し、利用者の停止指示、正式経路への置換、Bindingのreplacing／retired遷移、安全な通知維持ができない不具合で撤去する。
+- 境界: 新規provider sessionを起動せず、旧hook・旧runtime・旧CIを実行しない。要求採否、正式実装許可、review完了、merge許可を通知から生成しない。
+- 撤去: 上限到達時に実行レーンがaudit→remove→audit=0を確認してから専用worktreeと通知stateを片付ける。
+
+当初は実行側の限定として2026-09-21 23:59 JSTと現在bootを上限に置いた。その報告に対し、利用者は「Scaffold って仕組みがあるだろ？これにつなげよ。」、続いて「期限とかだるいことやる意味がない。」と指示した。この後続指示を優先し、固定日時・boot guard・PR mergeを撤去契機にする案を取り下げ、既存のSCF-B-0003と#1866の置換・撤去lifecycleへ一本化する。
+
+message TTLとsession leaseは古い依頼・sessionへの誤配送防止であり、接続全体の期限ではないため維持する。consumer接続が継続しても正式Featureの採否、要求承認、実装許可、受入、運用成立は生成しない。撤去時はaudit→remove→audit=0を行い、正式置換時は#1866で`check-replacement`→`retire`を経る。
+
+## PR #1887 round 1 reviewの処分
+
+- Major 1: 採用。hookの入口でSCF-B-0003を読み、identity不一致、`active`以外、欠落、JSON破損ではfail closedで配送しない。Binding lifecycleを文書上の契機だけにせず、実行時停止条件へ接続する。
+- Minor 1: PR titleから「期限付き」を除く。GitHub metadata変更でありcontent HEADは変えない。
+- Minor 2: READMEの「レーン・通知は期限付き」を、message TTLと同一登録sessionのsliding leaseに分けて記述する。
+- Info 1: 期限関連2 testの削除、lease更新1 testの追加後は25件。Binding停止の否定例を追加して26件とする。
+- Info 2: acked／expired message GCと設定file mode保存・復元を正式化の移管課題としてREADME、#1884、#1859、#1860へ残す。今回の再接続PRで正式実装済みとは扱わない。
+
+## PR #1887 round 2 reviewの処分
+
+- Major 1: 採用。`gui_selftest.py`の`setUp`でgitignore対象の`scaffold/review-handoff/local/`を作り、各testが先行testの副作用へ依存しないようにする。fresh worktreeの初回実行で26件合格することを再確認し、証拠のsource commitをこの修正へ更新する。

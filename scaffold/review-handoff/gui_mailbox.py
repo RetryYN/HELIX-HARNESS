@@ -12,11 +12,20 @@ import tempfile
 import time
 import uuid
 import packet as p
-from configure_gui import EXPIRES_AT
 
 HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
+BINDING = HERE.parent / "bindings" / "SCF-B-0003.json"
 RUNTIMES = ("claude", "codex")
+
+
+def binding_active(path=BINDING):
+    """Bindingを実行時停止条件にする。欠落・破損・identity不一致はfail closed。"""
+    try:
+        binding = json.loads(Path(path).read_text())
+    except (OSError, ValueError, TypeError):
+        return False
+    return binding.get("id") == "SCF-B-0003" and binding.get("state") == "active"
 
 
 def process_identity(pid):
@@ -226,10 +235,9 @@ def apply_enrollment(data, runtime, session, now, chain):
 
 
 def hook(runtime, wait):
-    if time.time() >= EXPIRES_AT:
+    if not binding_active():
         print("{}")
         return
-    wait = min(wait, max(0, EXPIRES_AT - time.time()))
     entry = json.load(sys.stdin)
     session = identity(entry.get("session_id"))
     event = entry.get("hook_event_name")
@@ -247,10 +255,14 @@ def hook(runtime, wait):
         print("{}")
         return
     with state() as data:
-        observe(data, runtime, session, time.time(), event)
-        apply_enrollment(data, runtime, session, time.time(), ancestors())
+        now = time.time()
+        observe(data, runtime, session, now, event)
+        apply_enrollment(data, runtime, session, now, ancestors())
         registered = data["lanes"].get(runtime)
-        active = registered and registered["session"] == session and registered["expires"] > time.time()
+        # 同じ登録済みGUIだけがactivityごとにleaseを更新する。別sessionへの付替えはbind/enrollが必要。
+        if registered and registered["session"] == session:
+            registered["expires"] = now + 3600
+        active = registered and registered["session"] == session and registered["expires"] > now
     if entry.get("hook_event_name") == "SessionStart" or not active:
         print("{}")
         return
