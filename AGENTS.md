@@ -13,7 +13,6 @@
 - `archive/legacy-generation-2026-09-14/`内の旧workflow、CLI、hook、adapter、source、test、設定を実行しない。
 - 旧資産は意味、判断史、failure、consumerを調べるreferenceとしてだけ読み、新世代のbaseline、oracle、fallbackにしない。
 - HELIXの機能を最適化、拡張、再編するときは、設計・実装の前に旧HELIXの対応資産を資産明細台帳から特定し、対応するsource、判断史、failure、consumerを必ず読む。調査したasset ID、保持する契約、変更が必要な差分を記録する。
-- 新規要求・設計・Scaffold・実装を起こす前に、[HELIX全フェーズ Capability Inventory](docs/governance/phase-capability-inventory.md)で対象phaseのcurrent／Scaffold／legacy／candidate／missingと製品分類を確認する。該当taskの再利用調査と要求差分が未完なら`new_build_allowed: false`として下流へ進まない。
 - 旧HELIXに同じ役割の仕組みがある場合、独自の代替機構を新規開発しない。[旧資産の完全一致再利用統制](docs/governance/legacy-asset-reuse-control.md)に従い、完全一致再利用、意味の再導出、置換のいずれかを明示し、承認された差分だけを現行構造へ反映する。対応資産が無いと判断する場合も、検索範囲と結果を記録してから新規案へ進む。
 - この参照義務は旧資産の実行、現行pathへの無判断なcopy、旧CI・旧testをoracleとして使うことを許可しない。
 - 新世代CIは未構築である。旧CIを動かさない。

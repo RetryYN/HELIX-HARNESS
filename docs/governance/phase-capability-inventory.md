@@ -17,7 +17,7 @@ projection_receipt: `docs/governance/audits/source-rebaseline/github-phase-capab
 - `legacy.exists`は代表assetが台帳に存在することを示す。現在利用可能であることを示さない。
 - `maximum_layer_evidenced`は代表証拠で確認した旧到達層であり、その層の全条件成立や品質を示さない。
 - `transition_assessment`は旧能力と現行状態の差を示す。`degraded`は現行正式能力が旧実装より浅い状態で、旧実装を復活させる判断ではない。
-- `new_build_allowed`は全件`false`。旧asset、current candidate、Scaffold、consumer、要求差分の調査が完了し、既存能力で満たせない差分が記録されるまで新規実装しない。
+- `new_build_allowed`は全件`false`。これは調査、consumer closure、要求分類、要求判断準備、inventory更新を止めない。旧asset、current candidate、Scaffold、consumer、要求差分の調査が完了し、既存能力で満たせない差分が記録されるまで、新しい設計artifact、Scaffold、実装を起こさない。
 
 ## 初期分類
 
@@ -53,7 +53,7 @@ projection_receipt: `docs/governance/audits/source-rebaseline/github-phase-capab
 3. 現行の正式・draft・candidate・Scaffold・missingを区別する。
 4. 四製品のうち該当productと、複数製品ならunit／connection／compositeの分割点を記録する。
 5. 未実装、縮退、重複、欠落、意味差分を記録し、旧assetの直接実行・copyを行わない。
-6. 既存能力で承認済み要求を満たせない差分が確定するまで`new_build_allowed: false`を維持する。
+6. 既存能力で承認済み要求を満たせない差分が確定するまで`new_build_allowed: false`を維持する。調査・consumer closure・要求分類・要求判断準備・inventory更新は継続し、新しい設計artifact・Scaffold・実装だけを停止する。
 
 ## 初期集計
 

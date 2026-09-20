@@ -10,20 +10,53 @@
     "docs/governance/audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md"
   ],
   "status_vocabulary": {
-    "legacy_capability_status": [
-      "implemented_with_tests",
-      "implemented_partial",
-      "documented_and_tested",
-      "documented_partial",
-      "documented_candidate",
-      "equivalent_capabilities_found_no_explicit_wbs_asset"
+    "current_status": [
+      "approved_current",
+      "approved_requirement_not_applied",
+      "candidate",
+      "candidate_local_checks_only",
+      "candidate_only",
+      "candidate_with_partial_current_registry",
+      "draft",
+      "draft_containers",
+      "draft_requirement",
+      "draft_requirement_and_bootstrap_decision",
+      "operating_contract_only",
+      "requirement_candidate",
+      "scaffold_operating",
+      "thin_candidate"
     ],
-    "transition": [
-      "rederived_current",
+    "legacy_capability_status": [
+      "documented_and_governed",
+      "documented_and_tested",
+      "documented_and_tested_partial",
+      "documented_candidate",
+      "documented_partial",
+      "documented_thin",
+      "documented_with_implementation_assets",
+      "documented_with_runtime_support",
+      "equivalent_capabilities_found_no_explicit_wbs_asset",
+      "implemented_partial",
+      "implemented_partial_with_tests",
+      "implemented_with_acceptance_assets",
+      "implemented_with_system_test",
+      "implemented_with_tests",
+      "implemented_with_workflows_and_tests"
+    ],
+    "transition_assessment": [
+      "degraded_and_incomplete",
       "degraded_to_candidate",
+      "degraded_to_candidate_and_scaffold_local_checks",
+      "degraded_to_candidate_and_static_registry",
       "degraded_to_draft",
-      "degraded_to_scaffold",
+      "degraded_to_draft_and_crosswalk",
+      "degraded_to_manual_operating_contract",
+      "degraded_to_operating_contract_and_gui_scaffold",
+      "degraded_to_rederived_candidate",
+      "degraded_to_requirement_and_limited_bootstrap",
+      "degraded_to_unapproved_routing_containers",
       "not_reimplemented_formally",
+      "rederived_current",
       "semantic_equivalence_unresolved"
     ]
   },
@@ -1118,5 +1151,20 @@
       "new_build_allowed": false,
       "authority_effect": "inventory_and_work_projection_only"
     }
-  ]
+  ],
+  "new_build_gate_scope": {
+    "allowed_while_false": [
+      "inventory_research",
+      "consumer_closure",
+      "requirement_classification",
+      "requirement_decision_preparation",
+      "inventory_update"
+    ],
+    "blocked_while_false": [
+      "new_design_artifact",
+      "new_scaffold",
+      "new_implementation"
+    ],
+    "meaning": "調査と要求判断準備を止めず、旧能力と承認済み要求の差分が確定する前の新規設計・Scaffold・実装を止める"
+  }
 }
