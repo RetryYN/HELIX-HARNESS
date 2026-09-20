@@ -10,7 +10,7 @@ pr_class: research_premise
 
 - parent revision: `d4f25c413a6f1e105c988325f67208a018431939`
 - 対象: BR-05、BR-17、BR-22のHELIX-HARNESS unit
-- 追加: 3 unit / 9 edge / 16 atom
+- 追加: 3 unit / 9 edge / 15 atom
 - 累計: 14 / 218 unit、42 edge
 - 残り: 204 unit
 - archive実行: なし

@@ -32,7 +32,7 @@ BR-22はRequirement JSONからDesign Template、Design Instance、pair graphへ�
 
 | unit | atom総数 | 契約confirmed | 設計partial | 実装confirmed | 実装unresolved | 実装未被覆 | 設計・実装証拠なし |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| `IRUNIT-HIL-BR-05-HELIX-HARNESS` | 4 | 4 | 1 | 0 | 0 | 4 | 3 |
+| `IRUNIT-HIL-BR-05-HELIX-HARNESS` | 3 | 3 | 1 | 0 | 0 | 3 | 2 |
 | `IRUNIT-HIL-BR-17-HELIX-HARNESS` | 8 | 8 | 0 | 0 | 0 | 8 | 8 |
 | `IRUNIT-HIL-BR-22-HELIX-HARNESS` | 4 | 4 | 1 | 0 | 0 | 4 | 3 |
 

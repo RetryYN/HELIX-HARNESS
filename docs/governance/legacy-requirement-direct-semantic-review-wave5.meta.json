@@ -90,7 +90,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:f4e24e1b69f38c305dc0bd6084c9750b1d0ba2f394dec74defd560a4ebe00771",
+  "output_sha256": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
   "parent_revision": "d4f25c413a6f1e105c988325f67208a018431939",
   "prior_review_batches": [
     {
@@ -173,22 +173,13 @@
           {
             "atom_id": "BR05-HARNESS-A01",
             "boundary_review_state": "product_boundary_pending_human_decision",
-            "kind": "audit_defect_trigger",
+            "kind": "audit_existing_design_defect_condition",
             "shared_with_units": [],
             "source_fragments": [
-              "監査で既存設計の欠陥または不足が判明した場合"
-            ],
-            "text": "監査で既存設計の欠陥または不足が判明した場合をtriggerとする"
-          },
-          {
-            "atom_id": "BR05-HARNESS-A02",
-            "boundary_review_state": "product_boundary_pending_human_decision",
-            "kind": "existing_design_defect_condition",
-            "shared_with_units": [],
-            "source_fragments": [
+              "監査で既存設計の欠陥または不足が判明した場合",
               "既存設計の欠陥または不足が判明した場合は"
             ],
-            "text": "既存設計の欠陥または不足の判明を条件とする"
+            "text": "監査で既存設計の欠陥または不足が判明した場合を条件とする"
           },
           {
             "atom_id": "BR05-HARNESS-A03",
@@ -215,16 +206,15 @@
             "text": "再freeze後に実装する"
           }
         ],
-        "atom_inventory_sha256": "sha256:933c3477827be3bbf391443c89102f7779847771e8a2dfbb3be6dc3f77d70656",
+        "atom_inventory_sha256": "sha256:9c9d0dc3e89bbc0f2b49ad9cd9e4bc51a2366df97d177f48edddd1fe2f90c6dd",
         "connective_fragments": [],
         "connective_fragments_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "contract_confirmed_atom_ids": [
           "BR05-HARNESS-A01",
-          "BR05-HARNESS-A02",
           "BR05-HARNESS-A03",
           "BR05-HARNESS-A04"
         ],
-        "contract_confirmed_atom_ids_sha256": "sha256:1b99832a58a965e6ec1798a0a18ccc747147e771f399fd9d697f42087fb42c4b",
+        "contract_confirmed_atom_ids_sha256": "sha256:f1e33a16d315a4ca9656a2c1d210408c10f12bd13736f67e426a5c9ef069898d",
         "contract_semantic_edge_coverage_complete": true,
         "design_partial_atom_ids": [
           "BR05-HARNESS-A03"
@@ -234,26 +224,23 @@
         "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_uncovered_atom_ids": [
           "BR05-HARNESS-A01",
-          "BR05-HARNESS-A02",
           "BR05-HARNESS-A03",
           "BR05-HARNESS-A04"
         ],
-        "implementation_uncovered_atom_ids_sha256": "sha256:1b99832a58a965e6ec1798a0a18ccc747147e771f399fd9d697f42087fb42c4b",
+        "implementation_uncovered_atom_ids_sha256": "sha256:f1e33a16d315a4ca9656a2c1d210408c10f12bd13736f67e426a5c9ef069898d",
         "implementation_unresolved_atom_ids": [],
         "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "no_evidence_atom_ids": [
           "BR05-HARNESS-A01",
-          "BR05-HARNESS-A02",
           "BR05-HARNESS-A04"
         ],
-        "no_evidence_atom_ids_sha256": "sha256:1c7d94570eb8c3df63563a7390d03509454c14b8dd97297fcac2b141392271e9",
+        "no_evidence_atom_ids_sha256": "sha256:a3ca69c0152d580c27ac32dc665f21b1b47bc3be8bc3f4399435c57e5ba9129b",
         "no_shared_source_span": false,
         "product_boundary_decision_complete": false,
         "product_exclusive_atom_ids": [
-          "BR05-HARNESS-A01",
-          "BR05-HARNESS-A02"
+          "BR05-HARNESS-A01"
         ],
-        "product_exclusive_atom_ids_sha256": "sha256:2a6a94de955530ca50a4390c750b2c724da16b7a148e314561e45daad4021dd8",
+        "product_exclusive_atom_ids_sha256": "sha256:98535adc8cf2fc5e52b8d9fc5d350970b163ca7da8eb51d3830c4fb88f9b775c",
         "product_exclusive_contract_coverage_complete": true,
         "semantic_edge_coverage_complete": false,
         "shared_atom_ids": [

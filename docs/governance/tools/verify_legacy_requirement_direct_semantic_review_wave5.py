@@ -12,8 +12,7 @@ PHASE=GOV/'phase-capability-inventory.json'; PRIOR=[(GOV/f'legacy-requirement-di
 
 ATOMS={
 'IRUNIT-HIL-BR-05-HELIX-HARNESS':[
- {'atom_id':'BR05-HARNESS-A01','kind':'audit_defect_trigger','text':'監査で既存設計の欠陥または不足が判明した場合をtriggerとする','source_fragments':['監査で既存設計の欠陥または不足が判明した場合'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
- {'atom_id':'BR05-HARNESS-A02','kind':'existing_design_defect_condition','text':'既存設計の欠陥または不足の判明を条件とする','source_fragments':['既存設計の欠陥または不足が判明した場合は'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
+ {'atom_id':'BR05-HARNESS-A01','kind':'audit_existing_design_defect_condition','text':'監査で既存設計の欠陥または不足が判明した場合を条件とする','source_fragments':['監査で既存設計の欠陥または不足が判明した場合','既存設計の欠陥または不足が判明した場合は'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
  {'atom_id':'BR05-HARNESS-A03','kind':'redesign_route','text':'選択済みdevelopment style内のRedesign specialist routeへ割り当てる','source_fragments':['選択済みdevelopment style内の`Redesign` specialist routeへ割り当て'],'shared_with_units':['IRUNIT-HIL-BR-05-HELIX-OS'],'boundary_review_state':'product_boundary_pending_human_decision'},
  {'atom_id':'BR05-HARNESS-A04','kind':'refreeze_before_implementation','text':'再freeze後に実装する','source_fragments':['再freeze後に実装する'],'shared_with_units':['IRUNIT-HIL-BR-05-HELIX-OS'],'boundary_review_state':'product_boundary_pending_human_decision'}],
 'IRUNIT-HIL-BR-17-HELIX-HARNESS':[
@@ -35,7 +34,7 @@ QUERIES={
 'IRUNIT-HIL-BR-17-HELIX-HARNESS':['HIL-BR-17','current_pr_fix','successor_issue','evaluateGitHubCrossReviewAdmission','REVIEW_LANE_CLOSURE_PATHS','review_lane_closure'],
 'IRUNIT-HIL-BR-22-HELIX-HARNESS':['HIL-BR-22','DesignTemplateRegistry','Design Obligation Graph','requirementsBindingConfigSchema','HELIX_REQUIREMENTS_BINDING_SCHEMA_VERSION']}
 DECISIONS={
-('IRUNIT-HIL-BR-05-HELIX-HARNESS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('BR05-HARNESS-A01','BR05-HARNESS-A02','BR05-HARNESS-A03','BR05-HARNESS-A04')),
+('IRUNIT-HIL-BR-05-HELIX-HARNESS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('BR05-HARNESS-A01','BR05-HARNESS-A03','BR05-HARNESS-A04')),
 ('IRUNIT-HIL-BR-05-HELIX-HARNESS','LEGACY-ASSET-603D0E8D8193914F4AC0'):('unresolved','design_contract_evidence',('BR05-HARNESS-A03',)),
 ('IRUNIT-HIL-BR-05-HELIX-HARNESS','LEGACY-ASSET-7EBF2130DE1840722A6B'):('rejected','adjacent_implementation_nonmatching',()),
 ('IRUNIT-HIL-BR-17-HELIX-HARNESS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',tuple(a['atom_id'] for a in ATOMS['IRUNIT-HIL-BR-17-HELIX-HARNESS'])),
@@ -144,6 +143,7 @@ def main():
   connectives=CONNECTIVES[uid]; allowed_connectives={'/','、','と','と、','を'}
   require(len(connectives)==len(set(connectives)) and all(c in allowed_connectives and 1<=len(c)<=2 for c in connectives),f'connective allowlist不一致: {uid}')
   require(all(c not in f for c in connectives for a in inv for f in a['source_fragments']),f'connectiveがatom意味fragmentと重複: {uid}')
+  require(not any(f in g or g in f for i,a in enumerate(inv) for b in inv[i+1:] for f in a['source_fragments'] for g in b['source_fragments']),f'atom間source fragment包含重複: {uid}')
   statement=' '.join(cross[uid]['source_text_spans']); fragments=[f for a in inv for f in a['source_fragments']]+connectives
   require(not meaningful_uncovered(statement,fragments),f'atom無損失被覆不一致: {uid}: {meaningful_uncovered(statement,fragments)}')
   overlaps=decomp[uid].get('shared_source_overlaps',[])
@@ -177,7 +177,8 @@ def main():
  require(batch and [int(x) for x in batch.groups()]==[len(ATOMS),len(records)],'status batch件数不一致')
  require(cumulative and [int(x) for x in cumulative.groups()]==[meta['cumulative_reviewed_unit_count'],meta['cumulative_reviewed_edge_count']],'status累積件数不一致')
  require(remaining and int(remaining.group(1))==len(cross)-meta['cumulative_reviewed_unit_count'],'status未着手件数不一致')
- require(not any(p in {'HELIX-Web','HELIX-Web-OS'} for u in cross.values() for p in u['product_scope']) and '正規分解台帳にHELIX-Web／Web-OS unitは0件' in text,'Web/Web-OS正規unit境界の過大主張')
+ require(not any(p in {'HELIX-Web','HELIX-Web-OS'} for u in cross.values() for p in u['product_scope']),'crosswalk Web/Web-OS正規unit境界の過大主張')
+ require(not any(p in {'HELIX-Web','HELIX-Web-OS'} for u in decomp.values() for p in ([u.get('product_target')] if u.get('product_target') else [])+list(u.get('connected_product_targets') or [])) and '正規分解台帳にHELIX-Web／Web-OS unitは0件' in text,'decomposition Web/Web-OS正規unit境界の過大主張')
  forbidden={'implemented','tested','operational'}; require(not forbidden&set(re.findall(r'`([^`\n]+)`',text)),'status過大状態語')
  table=[[c.strip().strip('`') for c in line.strip('|').split('|')] for line in text.splitlines() if line.startswith('|')]
  observed_phase={(r[0],r[1],r[2],r[3],r[4]) for r in table if len(r)==5 and r[0] in ATOMS and r[1].startswith('PHCAP-')}
@@ -187,5 +188,5 @@ def main():
   state=[r for r in table if len(r)==6 and r[1]==uid]; require(len(state)==1 and state[0][3:]==[a['legacy_requirement_implementation_status'],a['current_requirement_implementation_status'],a['degradation_assessment']],f'status状態行不一致: {uid}')
   atom=[r for r in table if len(r)==8 and r[0]==uid]; require(len(atom)==1,'status atom行不一致')
   c=a['atom_coverage_receipt']; expected=[len(c[k]) for k in ('atom_inventory','contract_confirmed_atom_ids','design_partial_atom_ids','implementation_confirmed_atom_ids','implementation_unresolved_atom_ids','implementation_uncovered_atom_ids','no_evidence_atom_ids')]; require([int(x) for x in atom[0][1:]]==expected,f'status atom件数不一致: {uid}')
- print('legacy requirement direct semantic review wave5: schema7 / 9 edges / 16 atoms / bounded search + phase candidates verified')
+ print('legacy requirement direct semantic review wave5: schema7 / 9 edges / 15 atoms / bounded search + phase candidates verified')
 if __name__=='__main__': main()
