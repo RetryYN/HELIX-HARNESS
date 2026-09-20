@@ -1,0 +1,69 @@
+{
+  "schema_revision": 1,
+  "classification_id": "LASPH-BOOTSTRAP-2026-09-20",
+  "status": "candidate_incomplete",
+  "authority_effect": "none",
+  "source_revision": "legacy-generation-2026-09-14",
+  "method": "docs/governance/audits/source-rebaseline/legacy-phase-product-classification-method-2026-09-20.md",
+  "verification_script": "docs/governance/tools/verify_legacy_asset_phase_product_classification.py",
+  "record_count": 4020,
+  "source_inputs": [
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    }
+  ],
+  "working_batch_scopes": [
+    "PHCAP-01..07",
+    "PHCAP-08..14",
+    "PHCAP-15..20"
+  ],
+  "working_batch_artifacts_retained": false,
+  "provenance_note": "一時batch出力は正本参照にせず、全4,020件をsource ledgerのexact set・digestと照合した統合台帳だけを保持する。",
+  "output_sha256": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+  "phase_classification_counts": {
+    "classified_candidate": 510,
+    "multi_phase_candidate": 1170,
+    "unresolved": 1253,
+    "unresolved_with_candidate": 1087
+  },
+  "product_classification_counts": {
+    "candidate_needs_semantic_review": 2228,
+    "unresolved": 1792
+  },
+  "consumer_closure_counts": {
+    "pending": 4020
+  },
+  "known_open_conditions": [
+    "all_product_candidates_require_direct_semantic_review",
+    "all_consumer_closures_pending",
+    "multi_phase_candidates_require_split_review",
+    "unknown_artifact_kinds_remain"
+  ],
+  "evidence_tag_vocabulary": [
+    "inventory:representative_asset:<PHCAP-ID>",
+    "basename:<name>",
+    "frontmatter:<field>:<value>",
+    "frontmatter:<layer-field>=<layer>",
+    "path:<path>",
+    "heading:<ordinal>:<text>",
+    "subject:<term>",
+    "subject_path:<term>",
+    "body:<term>"
+  ],
+  "confidence_policy": {
+    "high_requires": "inventory representative, capability-bearing basename, or phase-correspondence frontmatter beyond layer/status",
+    "frontmatter_layer_only_max": "medium",
+    "body_subject_path_heading_only_max": "medium",
+    "doctor_basename_only_for_phcap_11_max": "medium",
+    "artifact_layer_fields_only_max": "medium"
+  }
+}
