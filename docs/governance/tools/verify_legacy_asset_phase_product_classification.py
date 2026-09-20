@@ -31,6 +31,13 @@ EVIDENCE_STATES = {
     "configuration": {"configuration_present_unexecuted"},
     "workflow": {"workflow_present_unexecuted"},
 }
+ARTIFACT_LAYER_PREFIXES = tuple(
+    f"frontmatter:{field}="
+    for field in (
+        "layer", "canonical_layer", "legacy_physical_layer", "paired_requirement_layer",
+        "canonical_layer_scheme", "canonical_vmodel", "canonical_pair",
+    )
+)
 
 
 def sha(path):
@@ -50,7 +57,7 @@ def direct_high_evidence(phase, evidence):
     return any(
         item.startswith("inventory:representative_asset:")
         or (item.startswith("basename:") and not (phase == "PHCAP-11" and "doctor" in item.lower()))
-        or (item.startswith("frontmatter:") and not item.startswith(("frontmatter:layer=", "frontmatter:status:")))
+        or (item.startswith("frontmatter:") and not item.startswith(ARTIFACT_LAYER_PREFIXES + ("frontmatter:status:",)))
         for item in evidence
     )
 
@@ -64,12 +71,18 @@ def main():
     source_by_id = {row["asset_id"]: row for row in source}
     require(len(source_by_id) == 4020, "duplicate source asset_id")
 
-    for row in output:
+    for index, row in enumerate(output, 1):
+        require(row["classification_id"] == f"LASPH-{index:04d}", "classification id sequence mismatch")
         original = source_by_id[row["asset_id"]]
         require((row["source_path"], row["source_sha256"]) == (original["source_path"], original["source_sha256"]), "source identity mismatch")
         require(sha(ARCHIVE / row["source_path"]) == row["source_sha256"], "archive digest mismatch")
         require(set(row["candidate_phase_targets"]) <= PHASES, "unknown phase")
         require(set(row["candidate_product_targets"]) <= PRODUCTS, "unknown product")
+        assessment_phases = [item["phase"] for item in row["phase_assessments"]]
+        require(len(assessment_phases) == len(set(assessment_phases)), "duplicate phase assessment")
+        require(row["candidate_phase_targets"] == assessment_phases, "phase target/assessment mismatch")
+        assessment_products = [item["product"] for item in row["product_assessments"]]
+        require(row["candidate_product_targets"] == assessment_products, "product target/assessment mismatch")
         require(row["artifact_evidence_kind"] in EVIDENCE_STATES, "unknown artifact kind vocabulary")
         require(row["implementation_evidence_state"] in EVIDENCE_STATES[row["artifact_evidence_kind"]], "artifact/evidence state mismatch")
         if row["source_path"].startswith("src/"):
@@ -79,16 +92,38 @@ def main():
         for assessment in row["phase_assessments"]:
             evidence = assessment["evidence"]
             require(evidence and all(item.startswith(EVIDENCE_PREFIXES) for item in evidence), "invalid phase evidence")
+            for item in evidence:
+                if item.startswith("heading:"):
+                    parts = item.split(":", 2)
+                    require(len(parts) == 3 and parts[1].isdigit() and bool(parts[2]), "invalid heading evidence")
+                else:
+                    require(bool(item.split(":", 1)[1]), "empty evidence value")
             if assessment["confidence"] == "high":
                 require(direct_high_evidence(assessment["phase"], evidence), "high confidence lacks direct evidence")
         for assessment in row["product_assessments"]:
             require(assessment["confidence"] == "low", "product confidence overclaim")
             require(assessment["evidence_status"] == "direct_product_boundary_evidence_pending", "product evidence overclaim")
 
+        confidence = [item["confidence"] for item in row["phase_assessments"]]
+        expected_status = (
+            "unresolved" if not confidence else
+            "multi_phase_candidate" if len(confidence) > 1 else
+            "classified_candidate" if confidence[0] == "high" else
+            "unresolved_with_candidate"
+        )
+        require(row["phase_classification_status"] == expected_status, "phase classification boundary mismatch")
+        require("consumer_closure_pending" in row["unresolved"], "missing consumer pending flag")
+        require(("requires_semantic_split" in row["unresolved"]) == (len(confidence) > 1), "semantic split flag mismatch")
+        require(("artifact_kind_unresolved" in row["unresolved"]) == (row["artifact_evidence_kind"] == "unknown"), "artifact unresolved flag mismatch")
+
     require(meta["record_count"] == 4020, "meta record count mismatch")
     require(meta["output_sha256"] == "sha256:" + sha(OUTPUT), "output digest mismatch")
     counts = dict(sorted(collections.Counter(row["phase_classification_status"] for row in output).items()))
     require(meta["phase_classification_counts"] == counts, "phase count mismatch")
+    product_counts = dict(sorted(collections.Counter(row["product_classification_status"] for row in output).items()))
+    consumer_counts = dict(sorted(collections.Counter(row["consumer_closure_status"] for row in output).items()))
+    require(meta["product_classification_counts"] == product_counts, "product count mismatch")
+    require(meta["consumer_closure_counts"] == consumer_counts, "consumer count mismatch")
     for item in meta["source_inputs"]:
         require(item["sha256"] == "sha256:" + sha(ROOT / item["path"]), "source input digest mismatch")
     print(f"legacy-asset-classification: ok records={len(output)} archive_sha={len(output)}")

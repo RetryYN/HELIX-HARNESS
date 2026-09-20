@@ -59,9 +59,9 @@ current_evidence_revision: c51125b3af523d4efcc46a328f5bc948b9f82c79
 
 複数phaseの義務を一assetが持つ場合は候補を複数記録し、`requires_semantic_split`を残す。共通設定、汎用tool、repository metadata、証拠不足のassetは無理に割り当てず`unresolved`とする。
 
-inventoryの代表asset、phaseを明示するbasename、phase対応を示すfrontmatterは直接根拠として扱える。`frontmatter:layer`はartifact layerであり、それだけではcapability phaseのhigh confidence根拠にしない。本文や一般的なsubjectに`event`、`finding`、`operation`、`recovery`等が現れるだけでもhigh confidenceにしない。根拠が空の候補は保持しない。test design／verification planは検査artifactであることと検査対象capabilityを分け、対象capabilityが未確認ならphase候補をmedium以下に留める。
+inventoryの代表asset、phaseを明示するbasename、phase対応を示すfrontmatterは直接根拠として扱える。`layer`、`canonical_layer`、`legacy_physical_layer`、`paired_requirement_layer`、`canonical_layer_scheme`、`canonical_vmodel`、`canonical_pair`はartifact layer／pairの記述であり、それだけではcapability phaseのhigh confidence根拠にしない。本文や一般的なsubjectに`event`、`finding`、`operation`、`recovery`等が現れるだけでもhigh confidenceにしない。根拠が空の候補は保持しない。test design／verification planは検査artifactであることと検査対象capabilityを分け、対象capabilityが未確認ならphase候補をmedium以下に留める。
 
-evidence tagは`inventory:representative_asset:<PHCAP-ID>`、`basename:<name>`、`frontmatter:<field>:<value>`、`frontmatter:layer=<layer>`、`path:<path>`、`heading:<ordinal>:<text>`、`subject:<term>`、`subject_path:<term>`、`body:<term>`のいずれかとする。`body`、`subject`、`path`、`heading`、`frontmatter:layer`だけの候補はmediumを上限とする。`doctor`を含むbasenameだけから`PHCAP-11`をhighにしない。
+evidence tagは`inventory:representative_asset:<PHCAP-ID>`、`basename:<name>`、`frontmatter:<field>:<value>`、`frontmatter:<layer-field>=<layer>`、`path:<path>`、`heading:<ordinal>:<text>`、`subject:<term>`、`subject_path:<term>`、`body:<term>`のいずれかとする。`body`、`subject`、`path`、`heading`、artifact layer fieldだけの候補はmediumを上限とする。`doctor`を含むbasenameだけから`PHCAP-11`をhighにしない。
 
 ## 実装状況
 

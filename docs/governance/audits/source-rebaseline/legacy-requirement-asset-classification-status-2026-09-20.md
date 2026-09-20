@@ -31,20 +31,20 @@ phase routingはまだ正本化しない。独立した二つの全件候補を�
 
 ## 旧asset 4,020件
 
-[分類方法](legacy-phase-product-classification-method-2026-09-20.md)に従い、[候補台帳](../../legacy-asset-phase-product-classification-bootstrap.jsonl)と[metadata](../../legacy-asset-phase-product-classification-bootstrap.meta.json)を作成した。候補台帳のSHA-256は`c0f952f7adb33d8f3bd00cfd515b1dc3c9bfe48c11e534b0d2f30c5b1a56a9be`である。
+[分類方法](legacy-phase-product-classification-method-2026-09-20.md)に従い、[候補台帳](../../legacy-asset-phase-product-classification-bootstrap.jsonl)と[metadata](../../legacy-asset-phase-product-classification-bootstrap.meta.json)を作成した。候補台帳のSHA-256は`2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f`である。
 
 | phase分類状態 | 件数 |
 |---|---:|
-| `classified_candidate` | 515 |
+| `classified_candidate` | 510 |
 | `multi_phase_candidate` | 1,170 |
-| `unresolved_with_candidate` | 1,082 |
+| `unresolved_with_candidate` | 1,087 |
 | `unresolved` | 1,253 |
 
 全4,020件について、asset ID、source path、source SHA、archive実体SHAを照合済みである。旧source、test、workflowは実行していない。実装source 557件、test source 597件、test design 373件、workflow 5件はいずれも`present_unexecuted`としており、`implemented`、`tested`、`operational`を生成していない。
 
 製品候補があるassetは2,228件、根拠不足は1,792件である。全5,227 product assignmentは直接根拠の記録が未完了なためlow confidenceへ統一し、現行製品境界とのsemantic review待ちとした。旧path中の`helix`、`harness`等だけではownerを確定しない。
 
-`classified_candidate` 515件はphase側のstrong candidate数であり、製品分類の成立件数ではない。このうち製品候補がないrecordを含み、製品候補があるrecordもすべて直接根拠review待ちである。
+`classified_candidate` 510件はphase側のstrong candidate数であり、製品分類の成立件数ではない。このうち製品候補がないrecordを含み、製品候補があるrecordもすべて直接根拠review待ちである。
 
 consumer closureは4,020件すべてpendingである。`consumer_refs`が空の3,991件に加え、値がある29件も全consumer集合との一致をまだ証明していない。
 
@@ -56,6 +56,7 @@ consumer closureは4,020件すべてpendingである。`consumer_refs`が空の3
 - body／一般subject語だけのhigh confidenceをmediumへ降格した。
 - `doctor`を含むbasenameだけを根拠にした`PHCAP-11` high confidenceを一律mediumへ降格した。
 - `frontmatter:layer`だけを直接根拠としたhigh confidence 254件をmediumへ降格した。
+- `frontmatter:canonical_layer`等のartifact layer／pair fieldだけを直接根拠としたhigh confidence 25件をmediumへ降格した。
 - evidence tagを宣言語彙へ正規化し、confidence上限をmetadataと検査scriptへ固定した。
 - [静的検査script](../../tools/verify_legacy_asset_phase_product_classification.py)を追加し、exact set、archive SHA、状態境界、evidence形式、confidence上限を再検証可能にした。
 - 根拠を保持していないproduct候補5,227割当をすべてlow confidenceにし、直接semantic evidence待ちを明記した。
@@ -69,7 +70,7 @@ consumer closureは4,020件すべてpendingである。`consumer_refs`が空の3
 2. `split_required` 65件とconnection 1件の製品別unit化。
 3. 全153件のsuccessor割当と個別の人間decision。
 4. 2,228 assetの製品候補に対する直接根拠の追加。
-5. 1,170 multi-phase assetの意味分割、1,082 weak candidateの確認、1,253 unresolved assetの調査。
+5. 1,170 multi-phase assetの意味分割、1,087 weak candidateの確認、1,253 unresolved assetの調査。
 6. 全4,020 assetのconsumer closureと209件のartifact kind解決。
 
 これらが閉じるまでは、旧能力の有無、現行との差分、`new_build_allowed`の解除、旧assetの再利用可否を確定しない。
