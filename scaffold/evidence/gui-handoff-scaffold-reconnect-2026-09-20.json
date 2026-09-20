@@ -2,7 +2,7 @@
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "binding_id": "SCF-B-0003",
-  "source_commit": "ac6e8b051",
+  "source_commit": "2357674fb14f45feadc4b1d9d785920465e73efc",
   "recorded_at": "2026-09-20T12:15:08.122159+00:00",
   "consumer_connection": {
     "claude_owned_hooks": 3,
@@ -39,7 +39,8 @@
     "stale": "stale=0",
     "residuals": "residuals=0",
     "diff_check": "pass",
-    "python_compile": "pass"
+    "python_compile": "pass",
+    "clean_checkout_first_run": "gui 26 OK; packet 10 OK"
   },
   "round1_disposition": {
     "major_1": "binding state is now a fail-closed runtime stop condition",
@@ -52,5 +53,8 @@
     "Codex native Stop automatic receive remains unverified",
     "Claude ConfigChange exit 2 provider-internal settings application remains unverified",
     "This evidence does not create requirement approval, implementation permission, acceptance, or merge authority"
-  ]
+  ],
+  "round2_disposition": {
+    "major_1": "local directory is created in setUp; clean checkout first run passed"
+  }
 }
