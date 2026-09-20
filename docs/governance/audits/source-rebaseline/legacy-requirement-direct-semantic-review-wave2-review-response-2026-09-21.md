@@ -60,3 +60,15 @@ round 2の`incomplete`に列挙された残る213 unit、425 edge、consumer、�
 |---|---|---|
 | `MINOR-1914-03-01` | Minor | 対応。`adjacent_implementation_nonmatching`を`implementation_source`かつ`rejected`かつ単独relationの場合だけ許可し、configuration等への偽装を拒否する。方法書にも専用境界を明記した。 |
 | `INFO-1914-03-01` | Info | 確認。round 2の修正と検証結果を保持し、status本文に残った旧称「全証拠なし」を「設計・実装証拠なし」へ統一した。 |
+
+## round 4
+
+- request: `RH-1914-GUI-04`
+- reviewed content: `4d85a8192cd3fd8ee23c08e97619d082a3ce5203`
+- request payload SHA-256: `05f038705a0610df340f673645a51061546caf3db44126a1a469f4c913912ce3`
+- response file SHA-256: `b16b2b14447f30ee77d3baf81e92c24f3eff801ccb1a8faabc46cb42506667d4`
+
+| finding | severity | 処分 |
+|---|---|---|
+| `MINOR-1914-04-01` | Minor | 対応。status正本の検証節へ、round 2〜4で追加した再計算境界と7欠陥注入classを追記し、PR本文の検証記録と一致させた。 |
+| `INFO-1914-04-01` | Info | 確認。隣接実装relation境界の欠陥注入拒否、全静的検証、test merge結果を保持する。 |

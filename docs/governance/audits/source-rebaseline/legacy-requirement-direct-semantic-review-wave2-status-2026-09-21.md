@@ -61,6 +61,6 @@ FR-06のcontract被覆は同一要求IDの非実行source snapshotによる。�
 
 ## 検証と次作業
 
-verifierは9 edge、14 atom、引用bytes、archive manifest、catalog join、製品別source span、shared overlap、設計partial／設計・実装証拠なし集合、phase状態、wave 1との非重複、累積件数、未review集合を再計算する。設計relationの実装偽装、phase能力から個別要求への実装過大転記、status文書のphase drift、累積edge件数driftを個別に欠陥注入し、すべて拒否した後に元bytesへ戻して再合格した。旧runtime、旧test、旧hook、旧CI、旧adapterは実行していない。
+verifierは9 edge、14 atom、引用bytes、archive manifest、catalog join、製品別source span、decomposition正本とのshared atom照合、設計partial／設計・実装証拠なし集合、unresolved bindingのsource fragment anchor、connective allowlist、隣接実装relationの`implementation_source`専用境界、phase状態、wave 1との非重複、累積件数、未review集合を再計算する。unresolved anchor欠落、design receipt欠落、製品境界の偽完了、今回件数drift、connectiveへの意味語混入、契約自己再掲による証拠なし隠蔽、configurationによる隣接実装relation偽装を個別に欠陥注入し、すべて拒否した後に元bytesへ戻して再合格した。旧runtime、旧test、旧hook、旧CI、旧adapterは実行していない。
 
 次waveでは今回の未review集合からconsumer、verification、call chainを優先し、direct-phase-unresolved queueはpool外探索の検索範囲と否定結果を別overlayへ固定する。unit全atom、consumer、acceptance、current差分が閉じるまで実装済みやnew build許可へ昇格しない。
