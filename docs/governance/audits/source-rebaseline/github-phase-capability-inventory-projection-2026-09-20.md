@@ -3,7 +3,7 @@
 status: projection_created_read_after
 authority_effect: projection_only
 repository: `RetryYN/HELIX-HARNESS`
-source_commit: `04ca945a3`
+source_commit: `04ca945a32d6d0a0c3a4bdbbf39e8271a0631c36`
 source_sha256: `2aebd4e7824562328fc495cadc181841ee2741dd9723882af0df3ade49856bbb`
 
 ## 操作authority
