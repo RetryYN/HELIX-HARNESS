@@ -8,7 +8,7 @@
 秘密鍵と設定は実行userのhomeの`.helix-lease/apps/`に0600で置く。AI側contextはこのuserになれないため読めない。
 POの操作はbrowserでの作成・installの認可だけで、値の作成・転記はしない。標準libraryだけを使う。
 """
-import argparse, http.server, json, os, pwd, ssl, stat, subprocess, sys, threading, time, urllib.parse, urllib.request
+import argparse, http.server, json, os, pwd, re, ssl, stat, subprocess, sys, threading, time, urllib.parse, urllib.request
 
 CA_FILE = "/etc/ssl/certs/ca-certificates.crt"
 API = "https://api.github.com"
@@ -103,6 +103,16 @@ DONE = """<!doctype html><meta charset="utf-8"><body style="font-family:sans-ser
 <h1>%s</h1><p>%s</p></body>"""
 
 
+def key_file(slug):
+    """秘密鍵のfile。slugでpathを外へ出さず、symlinkなら使わない。"""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,64}", slug or ""):
+        raise RuntimeError("App設定のslugの形が不正です: %.60s" % (slug or ""))
+    p = os.path.join(app_dir(), "%s.pem" % slug)
+    if os.path.islink(p):
+        raise RuntimeError("秘密鍵のfileがsymlinkです（差し替えを受け付けない）: %s" % p)
+    return p
+
+
 def cmd_create(a):
     import secrets
     state = {"code": None, "nonce": secrets.token_urlsafe(16)}
@@ -151,12 +161,13 @@ def cmd_create(a):
         return 2
     conv = api("/app-manifests/%s/conversions" % urllib.parse.quote(state["code"]), method="POST")
     slug, app_id = conv.get("slug"), conv.get("id")
-    key = os.path.join(app_dir(), "%s.pem" % slug)
+    key = key_file(slug)
     fd = os.open(key, os.O_WRONLY | os.O_CREAT | os.O_EXCL, stat.S_IRUSR | stat.S_IWUSR)   # 0600以外で存在する瞬間を作らない
     with os.fdopen(fd, "w", encoding="utf-8") as f:
         f.write(conv["pem"])
     with open(os.open(app_file(), os.O_WRONLY | os.O_CREAT | os.O_TRUNC | os.O_NOFOLLOW, 0o600), "w",
               encoding="utf-8") as f:
+        os.fchmod(f.fileno(), 0o600)
         json.dump({"slug": slug, "id": app_id, "repo": a.repo, "html_url": conv.get("html_url")}, f, ensure_ascii=False)
     print(json.dumps({"slug": slug, "app_id": app_id, "key": key,
                       "install_url": "https://github.com/apps/%s/installations/new" % slug}, ensure_ascii=False))
@@ -165,7 +176,7 @@ def cmd_create(a):
 
 
 def installation(app):
-    jwt = app_jwt(app["id"], os.path.join(app_dir(), "%s.pem" % app["slug"]))
+    jwt = app_jwt(app["id"], key_file(app["slug"]))
     return api("/repos/%s/installation" % app["repo"], jwt=jwt), jwt
 
 

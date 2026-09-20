@@ -921,7 +921,14 @@ def run_boundary_tests():
     # subcommandを持つfileは、その数だけ定義行があること（helper経由などで拾えない行を見逃さない）
     subs = sum(len([ln for ln in open(f, encoding="utf-8").read().splitlines()
                     if "add_subparsers(" in ln and "parser-scan" not in ln]) for f in argp)   # parser-scan
+    # 除外の印は、この検査file以外では使えない（印を付けて検査を外せないようにする）
+    marked_elsewhere = [f for f in src_files
+                        if f != os.path.join(HERE, "leasectl.py")
+                        and "parser-scan" in open(f, encoding="utf-8").read()]
+    self_marked_defs = [ln for ln in open(os.path.join(HERE, "leasectl.py"), encoding="utf-8").read().splitlines()
+                        if "parser-scan" in ln and ("sp." + "add_parser(") in ln]
     abbrev_src = (len(argp) >= 6 and all(def_lines(f) for f in argp)
+                  and not marked_elsewhere and not self_marked_defs
                   and subs >= 3 and len(defs) >= len(argp) + subs
                   and all("allow_abbrev=False" in ln for ln in defs))
     rows.append({"id": "BT-no-duplicate-options", "ok": all(dup_rcs) and abbr and abbrev_src
@@ -935,6 +942,7 @@ def run_boundary_tests():
     home_owner = '[ "$(stat -c %U "$EXEC_HOME")" = "$EXEC_USER" ]'
     # 状態領域は、AI側から差し替えられる置き場所（symlink・他から読める権限）では使わない
     sp_dir = tempfile.mkdtemp(prefix="lease-state-")
+    app_tmp = []
     try:
         real = os.path.join(sp_dir, "real"); os.mkdir(real, 0o700)
         loose = os.path.join(sp_dir, "loose"); os.mkdir(loose, 0o755)
@@ -988,6 +996,7 @@ def run_boundary_tests():
                                                                     "lease-bootstrap", "appsetup.py"))
         AS = iu.module_from_spec(spec); spec.loader.exec_module(AS)
         ah = tempfile.mkdtemp(prefix="lease-app-")
+        app_tmp.append(ah)
         AS.home = lambda: ah
         app_refused = []
         os.symlink(sp_dir, os.path.join(ah, ".helix-lease"))
@@ -1003,13 +1012,26 @@ def run_boundary_tests():
         except RuntimeError as e:
             app_refused.append("symlink" in str(e))
         os.unlink(os.path.join(d, "app.json"))
+        for bad in ("../../x", "a/b", "", ".."):      # slugでpathを外へ出せない
+            try:
+                AS.key_file(bad)
+                app_refused.append(False)
+            except RuntimeError as e:
+                app_refused.append("slugの形が不正" in str(e))
+        os.symlink("/tmp/nowhere", os.path.join(d, "helix-app.pem"))
+        try:
+            AS.key_file("helix-app")
+        except RuntimeError as e:
+            app_refused.append("symlink" in str(e))
+        os.unlink(os.path.join(d, "helix-app.pem"))
         rows.append({"id": "BT-state-no-symlink",
                      "ok": refused_link and refused_file and refused_loose and wrote and mode_ok
                      and read_refused == [True, True]
-                     and app_refused == [True, True] and (os.stat(d).st_mode & 0o077) == 0})
-        os.rmdir(d); os.rmdir(os.path.join(ah, ".helix-lease")); os.rmdir(ah)
+                     and app_refused == [True] * 7 and (os.stat(d).st_mode & 0o077) == 0})
     finally:
         shutil.rmtree(sp_dir, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+        for t in app_tmp:
+            shutil.rmtree(t, ignore_errors=True)
     # install.sh・checkhome.sh・appsetupの拒否を、rootを使わずに実挙動で測る
     boot_dir = os.path.join(os.path.dirname(HERE), "lease-bootstrap")
 

@@ -3,7 +3,7 @@
 書込みは`Writes`の許可リストを通したものだけが実行される。許可リストはcommandごとに固定し
 （packet 規則の意味6、二重境界）、リストに無い書込みは例外で止める。dry-runでは許可リストが空である。
 """
-import atexit, base64, ssl, urllib.request, datetime, hashlib, json, os, pwd, re, shlex, shutil, subprocess, sys, tempfile, time, urllib.parse
+import atexit, base64, ssl, urllib.request, datetime, errno, hashlib, json, os, pwd, re, shlex, shutil, subprocess, sys, tempfile, time, urllib.parse
 
 import leasecore as C
 
@@ -283,12 +283,18 @@ def safe_dir(d):
 
 def read_state():
     try:
-        if os.path.islink(state_path()):
-            raise RuntimeError("状態領域のfileがsymlinkです: %s" % state_path())
         d = os.path.dirname(state_path())
-        if os.path.isdir(d) and (os.path.islink(d) or os.stat(d).st_mode & 0o077):
+        if os.path.islink(d):
+            raise RuntimeError("状態領域の置き場所がsymlinkです: %s" % d)
+        if os.path.isdir(d) and os.stat(d).st_mode & 0o077:
             raise RuntimeError("状態領域の置き場所が他のuserから読めます: %s" % d)
-        with open(state_path(), encoding="utf-8") as f:
+        try:
+            fd = os.open(state_path(), os.O_RDONLY | os.O_NOFOLLOW)
+        except OSError as e:
+            if e.errno == errno.ELOOP:   # symlinkは追わない（差し替えを受け付けない）
+                raise RuntimeError("状態領域のfileがsymlinkです: %s" % state_path())
+            raise
+        with open(fd, encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {"suspended": None, "observed_review_ids": {}}

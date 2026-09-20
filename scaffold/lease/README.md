@@ -137,9 +137,9 @@ POが行うのは、人間にしか越えられない境界だけである。設
 - AI側contextはexecutor userになれず、Appの秘密鍵を読めない。installation tokenはwrapperが発行して渡す。
 - AI側contextはrootになれない。`/opt/helix-lease`はroot所有で、AI側からは書けない。
 - executor userのhome（Appの秘密鍵と状態領域の置き場所）は、そのuserの所有で、AI側userのhomeと同じではなく、
-  home自身と祖先が他のuserから書けず、symlinkを含まず、直下に別のuserの持ち物やsymlinkが無いことを
-  `install.sh`が（`checkhome.sh`で）確かめる。状態領域とApp設定の置き場所・fileも、symlinkや他から読める権限なら読み書きに使わない
-  （読み書きともsymlinkを追わない）。
+  home自身と祖先が他のuserから書けず、symlinkを含まず、直下に別のuserの持ち物・symlink・他から書けるものが
+  無いことを`install.sh`が（`checkhome.sh`で）確かめ、homeを0700にする（既存userを指定した場合は権限が変わる）。状態領域とApp設定・秘密鍵の置き場所・fileも、symlinkや他から読める権限なら読み書きに使わない
+  （読み書きともsymlinkを追わない。秘密鍵のpathはApp設定のslugから組み立てず、形を確かめてから使う）。
   wrapperは呼び出し元の`PATH`・`HOME`を引き継がず、homeは実行userの登録内容から決める（特定できなければ止まる）。
 - 有効化前に`--lease-pr`を受け付けるcommand（準備・実測・状態表示）は、実行環境が固定した対象PR（`/etc/helix-lease/target-pr`。root所有）と
   一致しなければ動かない。fileが無ければ「固定していない」として拒否する。
