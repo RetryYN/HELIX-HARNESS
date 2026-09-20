@@ -27,7 +27,7 @@ QUERIES={
 DECISIONS={
 ('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('BR10-OS-A01','BR10-OS-A02','BR10-OS-A03')),
 ('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-33C30050BD9B4A523E60'):('unresolved','design_contract_evidence',('BR10-OS-A02',)),
-('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-3705801CEFFE5E9A650A'):('unresolved','partial_implementation_behavior_evidence_unexecuted',('BR10-OS-A02',)),
+('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-3705801CEFFE5E9A650A'):('rejected','adjacent_implementation_nonmatching',()),
 ('IRUNIT-HIL-BR-06-HELIX-OS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('BR06-OS-A01','BR06-OS-A02')),
 ('IRUNIT-HIL-BR-06-HELIX-OS','LEGACY-ASSET-D9345A55829519760D5D'):('unresolved','design_contract_evidence',('BR06-OS-A01','BR06-OS-A02')),
 ('IRUNIT-HIL-BR-06-HELIX-OS','LEGACY-ASSET-EA1DFC00D984068C2444'):('unresolved','partial_implementation_behavior_evidence_unexecuted',('BR06-OS-A02',)),
@@ -42,6 +42,15 @@ def load(p): return [json.loads(x) for x in p.read_text().splitlines() if x.stri
 def digest(b): return 'sha256:'+hashlib.sha256(b).hexdigest()
 def canon(v): return digest(json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode())
 def git_blob(rev,path): return subprocess.run(['git','show',f'{rev}:{path}'],cwd=ROOT,check=True,capture_output=True).stdout
+def anchor_is_exact_token(anchor,text):
+ if re.fullmatch(r'[A-Za-z0-9_/-]+',anchor):
+  if len(anchor)<3: return False
+  for m in re.finditer(re.escape(anchor),text):
+   left=m.start()==0 or re.fullmatch(r'[A-Za-z0-9]',text[m.start()-1]) is None or text[m.start()-1] in '_/-' or (text[m.start()-1].islower() and anchor[0].isupper())
+   right=m.end()==len(text) or re.fullmatch(r'[A-Za-z0-9]',text[m.end()]) is None or text[m.end()] in '_/-' or (anchor[-1].islower() and text[m.end()].isupper())
+   if left and right: return True
+  return False
+ return len(anchor)>=2 and anchor in text
 def meaningful_uncovered(text,fragments):
  hit=[False]*len(text)
  for fragment in fragments:
@@ -117,7 +126,7 @@ def main():
    if b['match_mode']=='literal_source_fragment': require(all(f in joined for f in amap[uid][b['atom_id']]['source_fragments']),f'literal atom欠落: {rid}')
    else:
     anchors=b.get('source_fragment_anchors',[]); fragments=''.join(amap[uid][b['atom_id']]['source_fragments'])
-    require(b['match_mode']=='controlled_term_set_partial' and anchors and all(x in fragments and any(x in t for t in b['required_terms']) for x in anchors),f'partial anchor不一致: {rid}')
+    require(b['match_mode']=='controlled_term_set_partial' and anchors and all(anchor_is_exact_token(x,fragments) and any(anchor_is_exact_token(x,t) for t in b['required_terms']) for x in anchors),f'partial anchor不一致: {rid}')
    bound.append(b['atom_id'])
   require(sorted(bound)==sorted(ids),f'covered atom/binding不一致: {rid}')
  for uid,inv in ATOMS.items():
@@ -147,7 +156,7 @@ def main():
   require(a['semantic_link_counts']=={s:sum(r['semantic_link_status']==s for r in rr) for s in ('confirmed','rejected','unresolved')},f'unit count不一致: {uid}')
   require(a['current_requirement_implementation_status']=='not_established' and a['legacy_requirement_implementation_status'].startswith('unknown_') and not a['direct_confirmed_implementation_asset_ids'] and a['consumer_closure_status']=='pending' and not a['new_build_allowed'],'aggregate実装過大主張')
   require(a['degradation_assessment']=='unresolved_legacy_implementation_unknown',f'unknown状態で縮退先断定: {uid}')
- counts={s:sum(r['semantic_link_status']==s for r in records) for s in ('confirmed','rejected','unresolved')}; require(meta['semantic_link_counts']==counts=={'confirmed':3,'rejected':1,'unresolved':5},'batch count不一致')
+ counts={s:sum(r['semantic_link_status']==s for r in records) for s in ('confirmed','rejected','unresolved')}; require(meta['semantic_link_counts']==counts=={'confirmed':3,'rejected':2,'unresolved':4},'batch count不一致')
  prior_edges=set(); prior_units=set(); batches=[]
  for lp,mp in PRIOR:
   m=json.loads(mp.read_text()); prior_edges|={(x['unit_candidate_id'],x['asset_id']) for x in m['reviewed_edges']}; prior_units|=set(m['reviewed_unit_ids']); batches.append({'batch_id':m['batch_id'],'ledger_sha256':digest(lp.read_bytes()),'meta_sha256':digest(mp.read_bytes())})

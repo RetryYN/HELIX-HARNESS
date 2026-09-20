@@ -10,8 +10,8 @@ pr_class: research_premise
 
 ## 結果
 
-218要求unitのうち新たに3 unit、候補edge 9件を直接照合した。結果は`confirmed` 3、`rejected` 1、
-`unresolved` 5である。wave 1〜3と合わせて11 unit、33 edgeをreview済みとし、edge pairは交差しない。
+218要求unitのうち新たに3 unit、候補edge 9件を直接照合した。結果は`confirmed` 3、`rejected` 2、
+`unresolved` 4である。wave 1〜3と合わせて11 unit、33 edgeをreview済みとし、edge pairは交差しない。
 
 | # | unit | 製品 | 旧要求実装状態 | 現行要求実装状態 | 縮退評価 |
 |---:|---|---|---|---|---|
@@ -20,8 +20,9 @@ pr_class: research_premise
 | 3 | `IRUNIT-HIL-BR-33-HELIX-OS` | HELIX-OS | `unknown_pending_remaining_bounded_search_and_consumer_review` | `not_established` | `unresolved_legacy_implementation_unknown` |
 
 BR-10にはcausation/correlation、因果順序、冪等取り込み、lifecycle transitionの設計と旧sourceがある。
-これはcausality join atomの一部を扱うが、Issue、Reverse、Redesign、PLAN、commit、PR、CI、audit、memoryの
-member集合とjoin切れ未完了判定、harness.db収束を確認しない。
+設計文書は「同一因果連鎖」を直接記すためcausality join atomの部分証拠とする。旧sourceはcausation/correlationを
+検証するが、同一causality chainからharness.dbへの収束を直接示す同一tokenとconsumer closureが無いため、
+隣接sourceとして棄却する。Issueからmemoryまでのmember集合と横断join切れ未完了判定も確認しない。
 
 BR-06にはordered Issue gate設計とcurrent HEAD review admission／merge read-afterの旧sourceがある。
 merge遷移の一部は静的に対応するが、Admission、Reverse Evidence、Redesign、Scope、Implementation Entry、Closureの
@@ -35,7 +36,7 @@ ADRは承認境界の設計部分証拠である。decision sourceは実cutover�
 
 | unit | atom総数 | 契約confirmed | 設計partial | 実装confirmed | 実装unresolved | 実装未被覆 | 設計・実装証拠なし |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| `IRUNIT-HIL-BR-10-HELIX-OS` | 3 | 3 | 1 | 0 | 1 | 2 | 2 |
+| `IRUNIT-HIL-BR-10-HELIX-OS` | 3 | 3 | 1 | 0 | 0 | 3 | 2 |
 | `IRUNIT-HIL-BR-06-HELIX-OS` | 2 | 2 | 2 | 0 | 1 | 1 | 0 |
 | `IRUNIT-HIL-BR-33-HELIX-OS` | 1 | 1 | 1 | 0 | 0 | 1 | 0 |
 

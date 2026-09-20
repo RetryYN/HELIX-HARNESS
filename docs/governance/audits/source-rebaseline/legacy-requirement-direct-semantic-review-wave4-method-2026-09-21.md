@@ -27,12 +27,13 @@ phaseごとの旧能力・現行状態・transition assessmentはphase候補の�
 implementation confirmedへ算入しない。
 
 `unresolved` edgeのcontrolled term bindingは、空でないanchorがatom原文と引用内のrequired termの双方に
-含まれる場合だけ成立する。共通termを持たない隣接sourceはatomへ束縛せず`rejected`にする。
+同一tokenとして現れる場合だけ成立する。英数字anchorは3文字以上かつ英数字境界一致、日本語を含むanchorは
+2文字以上を要求する。語幹だけの部分一致は認めず、共通tokenを持たない隣接sourceはatomへ束縛せず`rejected`にする。
 atom間の接続語はunit別`connective_fragments`へ列挙し、短いallowlist、重複なし、atom意味fragmentとの
 非重複を検査する。statusのphase表は値をcode spanで示し、metadataのphase assessmentとexact set照合する。
 
 - BR-10はOS単独候補で、event envelope、causation/correlation、因果順序、冪等取り込みをcausality joinの
-  部分証拠とする。Issueからmemoryまでのmember集合とjoin切れの未完了判定、harness.db consumer closureは未確認である。
+  設計部分証拠とする。旧sourceは同一tokenによる直接束縛ができないため隣接sourceとして棄却する。Issueからmemoryまでのmember集合と横断join切れの未完了判定、harness.db consumer closureは未確認である。
 - BR-06はHARNESS unitとの共有source overlapを維持する。設計のordered gateと旧merge admission sourceは
   遷移禁止の部分証拠であり、AdmissionからClosureまでの全gate実装ではない。
 - BR-33 OS unitは配布surfaceの実切替とcutover承認境界だけを扱う。release ADRは境界の設計部分証拠とするが、
