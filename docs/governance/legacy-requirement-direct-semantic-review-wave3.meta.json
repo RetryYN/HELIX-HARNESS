@@ -217,7 +217,8 @@
         "implementation_unresolved_atom_ids_sha256": "sha256:21fb733cb1d70cc7dad9417f5d7b65cb4d182254a5b726c54d33ece87a4b136b",
         "no_evidence_atom_ids": [],
         "no_evidence_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "product_boundary_resolution_complete": true,
+        "no_shared_source_span": true,
+        "product_boundary_decision_complete": false,
         "product_exclusive_atom_ids": [
           "FR33-HARNESS-A01",
           "FR33-HARNESS-A02",
@@ -284,7 +285,8 @@
         "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "no_evidence_atom_ids": [],
         "no_evidence_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "product_boundary_resolution_complete": true,
+        "no_shared_source_span": true,
+        "product_boundary_decision_complete": false,
         "product_exclusive_atom_ids": [
           "NFR02-HARNESS-A01"
         ],
@@ -392,7 +394,8 @@
         "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "no_evidence_atom_ids": [],
         "no_evidence_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "product_boundary_resolution_complete": false,
+        "no_shared_source_span": false,
+        "product_boundary_decision_complete": false,
         "product_exclusive_atom_ids": [
           "NFR03-HARNESS-A01",
           "NFR03-HARNESS-A02",

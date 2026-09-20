@@ -33,3 +33,15 @@ pr_class: research_premise
 
 本処分はreview済みHEADの指摘対応であり、要求・phase・asset採否、製品owner決定、successor、正式L2／L11、
 実装、consumer closureを生成しない。修正後HEADは新しいrequest identityで再reviewする。
+
+## round 2
+
+- request: `RH-1915-GUI-02`
+- reviewed content: `5a5af467091716624cadfc5695bbc0071d0e04c4`
+- request payload SHA-256: `865bbb947b8592af24596ec75a1bebd359fd819790f73d568e39ba1438388caa`
+- response file SHA-256: `32dd79a88467ed21ad42b143ac8e23c2c598c3479dcd410877bc2464fa8efe0a`
+
+| finding | severity | 処分 |
+|---|---|---|
+| `MAJOR-1915-02-01` | Major | 対応。schema 4と同名fieldの意味を変えず、schema 5では`no_shared_source_span`と`product_boundary_decision_complete`へ分離する。pending atomが一件でもあればdecision完了をtrueにできず、shared集合と前者の一致も検査する。 |
+| `INFO-1915-02-01` | Info | 確認。round 1の5件が解消したことと、bounded search／引用bytesが不変であることを保持する。 |

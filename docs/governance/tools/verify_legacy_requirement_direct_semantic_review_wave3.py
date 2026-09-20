@@ -72,7 +72,7 @@ def coverage(uid,records):
  uncovered=sorted(set(ids)-set(implc)-set(implu)); noe=sorted(set(ids)-set(design)-set(implc)-set(implu)); shared=sorted(x['atom_id'] for x in inv if x['shared_with_units']); exclusive=sorted(set(ids)-set(shared))
  result={'atom_inventory':inv,'connective_fragments':CONNECTIVES[uid],'contract_confirmed_atom_ids':contract,'design_partial_atom_ids':design,'implementation_confirmed_atom_ids':implc,'implementation_unresolved_atom_ids':implu,'implementation_uncovered_atom_ids':uncovered,'no_evidence_atom_ids':noe,'shared_atom_ids':shared,'product_exclusive_atom_ids':exclusive}
  for k in list(result): result[k+'_sha256']=canon(result[k])
- result.update(contract_semantic_edge_coverage_complete=set(contract)==set(ids),semantic_edge_coverage_complete=not implu and not uncovered,product_boundary_resolution_complete=not shared,product_exclusive_contract_coverage_complete=bool(exclusive) and set(exclusive)<=set(contract))
+ result.update(contract_semantic_edge_coverage_complete=set(contract)==set(ids),semantic_edge_coverage_complete=not implu and not uncovered,no_shared_source_span=not shared,product_boundary_decision_complete=not any(x['boundary_review_state']=='product_boundary_pending_human_decision' for x in inv),product_exclusive_contract_coverage_complete=bool(exclusive) and set(exclusive)<=set(contract))
  return result
 
 def main():
@@ -152,6 +152,9 @@ def main():
  for uid,a in aggregates.items():
   require(set(a)=={'unit_candidate_id','product_scope','reviewed_edge_count','semantic_link_counts','atom_coverage_receipt','phase_authority_status','phase_capability_assessments','current_requirement_implementation_status','legacy_requirement_implementation_status','degradation_assessment','direct_confirmed_implementation_asset_ids','consumer_closure_status','new_build_allowed'},f'aggregate field集合不一致: {uid}')
   rr=[r for r in records if r['unit_candidate_id']==uid]; require(a['atom_coverage_receipt']==coverage(uid,records),f'coverage receipt不一致: {uid}')
+  pending=any(x['boundary_review_state']=='product_boundary_pending_human_decision' for x in a['atom_coverage_receipt']['atom_inventory'])
+  require(not pending or not a['atom_coverage_receipt']['product_boundary_decision_complete'],f'pending atomを製品境界decision完了化: {uid}')
+  require(a['atom_coverage_receipt']['no_shared_source_span']==(not bool(a['atom_coverage_receipt']['shared_atom_ids'])),f'shared span指標不一致: {uid}')
   require(a['semantic_link_counts']=={s:sum(r['semantic_link_status']==s for r in rr) for s in ('confirmed','rejected','unresolved')},f'unit count不一致: {uid}')
   require(a['phase_authority_status']=='unresolved_no_direct_phase_candidate' and a['phase_capability_assessments']==[] and a['current_requirement_implementation_status']=='not_established' and a['legacy_requirement_implementation_status'].startswith('unknown_') and not a['direct_confirmed_implementation_asset_ids'] and a['consumer_closure_status']=='pending' and not a['new_build_allowed'],f'aggregate過大主張: {uid}')
   require(not a['legacy_requirement_implementation_status'].startswith('unknown_') or a['degradation_assessment']=='unresolved_legacy_implementation_unknown',f'unknown状態で縮退先断定: {uid}')

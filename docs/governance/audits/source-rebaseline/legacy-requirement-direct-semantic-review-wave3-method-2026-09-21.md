@@ -19,6 +19,11 @@ phase候補が空であることは旧assetが無いことを意味しないた�
 HELIX-OS unit側のspanであり、本waveのHARNESS atomへ持ち込まない。budget非免除spanだけはdecompositionが
 HARNESS／OS共有候補として保持しているため、その境界未決状態を維持する。
 
+schema 5では、共有source spanが無いという構造事実を`no_shared_source_span`、人間による製品境界判断の完了を
+`product_boundary_decision_complete`として分離する。全atomが`product_boundary_pending_human_decision`である本waveでは、
+前者がtrueでも後者はfalseであり、製品境界の解決完了を生成しない。wave 2 schema 4の
+`product_boundary_resolution_complete`とは名前と意味を分ける。
+
 ## bounded global search
 
 各unitは、4,020件のasset catalog全件について対応archive fileを読み、metadataのphase候補に依存せず、
