@@ -3,6 +3,11 @@ title: "製品要求unit・旧HELIX実装証拠crosswalk方法"
 status: research_method
 authority_effect: none
 source_revision: legacy-generation-2026-09-14
+pr_class: research_premise
+parent_decision: HDEC-CONCEPT-V4.1-AND-FOUR-L1-2026-09-17
+parent_concept_sha256: 181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad
+parent_harness_l1_sha256: a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04
+parent_helix_os_l1_sha256: 0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8
 ---
 
 # 製品要求unit・旧HELIX実装証拠crosswalk方法
@@ -23,7 +28,7 @@ source_revision: legacy-generation-2026-09-14
 
 ## 接続規則
 
-1. unitの`direct_phase_candidates`だけをPhase Capability Inventoryへ接続する。一般語やasset pathから新しいphaseを追加しない。各phaseのrationaleを個別entryへ分け、引用文字列がunitの逐語`source_text_spans`に存在する場合だけ`exact_source_quote_traced`とする。逐語引用がない候補は`unresolved_no_exact_source_span`としてreview queueへ残す。
+1. unitの`direct_phase_candidates`だけをPhase Capability Inventoryへ接続する。一般語やasset pathから新しいphaseを追加しない。各phaseのrationaleを個別entryへ分け、引用文字列がunitの逐語`source_text_spans`の一要素と完全一致する場合は`exact_source_span_element_traced`、要素内の逐語部分文字列である場合は`source_substring_quote_traced`とする。両方を含む場合は`mixed_exact_and_substring_quote_traced`とし、逐語引用がない候補は`unresolved_no_exact_source_span`としてreview queueへ残す。いずれのtrace済み状態も意味上のphase採否を示さない。
 2. phaseの`current.status`、`legacy.capability_status`、`transition_assessment`、`gaps`は改名・要約せず転記する。
 3. phaseの代表assetは`representative_legacy_assets`へ置き、asset ID、path、source digest、artifact kind、静的存在状態、観測済みconsumer、closure状態を保持する。ただし`direct_requirement_semantic_link: false`と要求実装状態`unknown`を固定し、phase代表であることから要求への直接対応を生成しない。
 4. 4,020件の候補台帳から、phase集合との交差asset ID集合と、さらに製品候補との交差asset ID集合を記録する。各IDの詳細はmetadataでdigestを固定したasset catalog参照と正規化joinして再読する。unitごとに同じasset metadataを複製しない。製品候補は直接根拠未確認のlow confidenceであるため、候補pool membershipを直接意味linkとして扱わない。

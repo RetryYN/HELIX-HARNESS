@@ -3,6 +3,7 @@ title: "製品要求unit・旧HELIX実装証拠crosswalk 独立監査応答"
 status: review_response_candidate
 authority_effect: none
 source_revision: legacy-generation-2026-09-14
+pr_class: research_premise
 ---
 
 # 製品要求unit・旧HELIX実装証拠crosswalk 独立監査応答
@@ -27,11 +28,14 @@ Luna xhighの三担当が、HELIX-HARNESS 85 unit、HELIX-OS 132 unit、phase／
 
 再監査で、321 unit-phase候補linkにphase別の逐語根拠がない問題を検出した。rationaleをphaseごとのentryへ分け、引用文字列をunitの`source_text_spans`へ照合した。
 
-- exact source quoteを結べたlink: 138
-- exact source quoteを結べないlink: 183
+- source span要素と完全一致するquoteを結べたlink: 87
+- source span要素内の逐語部分文字列quoteを結べたlink: 51
+- 逐語quoteを結べないlink: 183
 - 未trace linkを含むunit: 117
 
 未trace linkは削除や補完をせず`unresolved_no_exact_source_span`としてreview queueへ残した。直接phase自体がない30 unitも、ID、製品scope、原文spanを別queueへ保持した。top-levelのphase非対応summaryを廃止し、phase entry内でtransition assessmentと根拠を対応させた。
+
+Claude GUI round 1はBlocker 0、Major 0、Minor 2、Info 1だった。PR classと必須入力の欠落、作業入口規範変更の同梱、source span要素全体一致と部分文字列一致の表現混同を指摘された。PR classを`research_premise`として明示し、作業入口変更を分離し、trace状態を上記2種へ分けた。独立再計算という表現はasset pool交差の別式検査に限定した。
 
 最終再監査はBlocker 0、Major 0、Minor 0だった。4,020 assetとのphase交差・phaseと製品候補の交差をbuilderとは別に218 unit全件で再計算し、候補ID集合と一致した。未接続代表6件もsource SHA、artifact種別、静的状態、consumer、closure、archive digestの不一致0を確認した。
 

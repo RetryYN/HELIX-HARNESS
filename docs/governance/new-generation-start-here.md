@@ -41,10 +41,6 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 16. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、
    指定された旧source／crosswalkを読む。明細台帳は機械参照用であり、AIの全文startup readには含めない。
    個別採否時は[判断ログ契約](legacy-asset-decision-log.md)に従う
-17. 製品要求unitから旧phase能力・代表asset・現行縮退を調べる場合は、
-   [要求unit・旧実装証拠crosswalk状況](audits/source-rebaseline/legacy-requirement-implementation-crosswalk-status-2026-09-21.md)と
-   [crosswalk方法](audits/source-rebaseline/legacy-requirement-implementation-crosswalk-method-2026-09-21.md)を読む。
-   phase代表assetは要求への直接意味linkではなく、要求単位の実装状態は全件未確定である。
 
 repository foundation、5大目標候補、七大原則候補の順に物理統合し、
 Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ収束させる。5大目標と七大原則の内容判断は、

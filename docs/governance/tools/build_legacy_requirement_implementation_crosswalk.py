@@ -30,7 +30,7 @@ def stable_counts(values) -> dict[str, int]:
     return dict(sorted(Counter(values).items()))
 
 
-def phase_rationale_trace(unit: dict, phase_id: str) -> tuple[str, list[str], str]:
+def phase_rationale_trace(unit: dict, phase_id: str) -> tuple[str, list[dict], str]:
     text = unit["phase_rationale"]
     starts = list(re.finditer(r"PHCAP-\d{2}:", text))
     matches = []
@@ -45,12 +45,22 @@ def phase_rationale_trace(unit: dict, phase_id: str) -> tuple[str, list[str], st
         raise ValueError(f"phase rationale segment不一致: {unit['unit_candidate_id']} {phase_id}")
     rationale = matches[0]
     quoted = re.findall(r"「([^」]+)」", rationale)
-    evidence_spans = sorted({
-        value for value in quoted
-        if any(value in source_span for source_span in unit["source_text_spans"])
-    })
-    status = "exact_source_quote_traced" if evidence_spans else "unresolved_no_exact_source_span"
-    return rationale, evidence_spans, status
+    evidence_matches = []
+    for value in sorted(set(quoted)):
+        if value in unit["source_text_spans"]:
+            evidence_matches.append({"text": value, "match_kind": "exact_source_span_element"})
+        elif any(value in source_span for source_span in unit["source_text_spans"]):
+            evidence_matches.append({"text": value, "match_kind": "source_span_substring"})
+    match_kinds = {item["match_kind"] for item in evidence_matches}
+    if match_kinds == {"exact_source_span_element"}:
+        status = "exact_source_span_element_traced"
+    elif match_kinds == {"source_span_substring"}:
+        status = "source_substring_quote_traced"
+    elif match_kinds:
+        status = "mixed_exact_and_substring_quote_traced"
+    else:
+        status = "unresolved_no_exact_source_span"
+    return rationale, evidence_matches, status
 
 
 def build_records() -> list[dict]:
@@ -79,7 +89,7 @@ def build_records() -> list[dict]:
             representative: dict[str, dict] = {}
             for phase_id in unit["direct_phase_candidates"]:
                 phase = phases[phase_id]
-                phase_rationale, evidence_spans, evidence_trace_status = phase_rationale_trace(unit, phase_id)
+                phase_rationale, evidence_matches, evidence_trace_status = phase_rationale_trace(unit, phase_id)
                 candidates = assets_by_phase[phase_id]
                 for asset in candidates:
                     phase_pool[asset["asset_id"]] = asset
@@ -123,7 +133,8 @@ def build_records() -> list[dict]:
                         "title": phase["title"],
                         "status_scope": "phase_capability",
                         "source_phase_rationale": phase_rationale,
-                        "evidence_spans": evidence_spans,
+                        "evidence_spans": [item["text"] for item in evidence_matches],
+                        "evidence_span_matches": evidence_matches,
                         "evidence_trace_status": evidence_trace_status,
                         "current_status": phase["current"]["status"],
                         "current_evidence_products": phase["current"]["evidence_products"],
@@ -154,7 +165,7 @@ def build_records() -> list[dict]:
             if not unit["direct_phase_candidates"]:
                 unresolved.append("direct_phase_unresolved")
             if any(evidence["evidence_trace_status"] == "unresolved_no_exact_source_span" for evidence in phase_evidence):
-                unresolved.append("phase_candidate_exact_source_trace_pending")
+                unresolved.append("phase_candidate_source_quote_trace_pending")
             records.append(
                 {
                     "schema_revision": 1,

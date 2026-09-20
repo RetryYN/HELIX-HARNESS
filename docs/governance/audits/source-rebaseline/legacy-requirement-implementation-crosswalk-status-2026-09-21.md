@@ -3,6 +3,7 @@ title: "製品要求unit・旧HELIX実装証拠crosswalk状況"
 status: candidate_incomplete
 authority_effect: none
 source_revision: legacy-generation-2026-09-14
+pr_class: research_premise
 ---
 
 # 製品要求unit・旧HELIX実装証拠crosswalk状況
@@ -11,7 +12,7 @@ source_revision: legacy-generation-2026-09-14
 
 218件の要求unit候補をPhase Capability Inventoryへ接続した。188 unitは直接phase候補を持ち、321件のunit-phase候補linkになった。30 unitは直接phase未解決のまま保持した。未解決30件の製品scopeはHELIX-HARNESS 6件、HELIX-OS 24件である。
 
-321 linkのうち、phase別rationaleがunitの逐語source spanを引用するものは138件、逐語根拠を構造的に結べないものは183件である。後者を含む117 unitは`phase_evidence_trace_review_queue`へ残した。候補phaseの意味採否はどちらも未完であり、138件も直接asset linkや実装成立を示さない。
+321 linkのうち、phase別rationaleの引用がunitの逐語source span要素と完全一致するものは87件、span要素内の逐語部分文字列と一致するものは51件、逐語根拠を構造的に結べないものは183件である。後者を含む117 unitは`phase_evidence_trace_review_queue`へ残した。候補phaseの意味採否はいずれも未完であり、trace済み138件も直接asset linkや実装成立を示さない。
 
 | 製品scope | unit数 |
 |---|---:|
@@ -59,7 +60,7 @@ unitとphase候補assetのmembershipは延べ87,731件、さらに製品候補�
 - `build_legacy_requirement_implementation_crosswalk.py`: 三入力からの決定論的再導出。
 - `verify_legacy_requirement_implementation_crosswalk.py`: exact setと過大主張防止の静的検証。
 
-静的検証は`records=218 phase_linked=188 phase_unresolved=30 unit_phase_links=321 representative_assets=78`で合格した。直接asset linkの早期追加とmetadata件数改変をそれぞれ欠陥注入し、再導出不一致として拒否することも確認した。
+静的検証は`records=218 phase_linked=188 phase_unresolved=30 unit_phase_links=321 representative_assets=78`で合格した。候補asset poolのphase交差・phaseと製品候補の交差はverifier内の別式で全218 unitを再計算する。その他のrecord全体はbuilder再導出との一致と過大主張防止assertionで検査する。直接asset linkの早期追加とmetadata件数改変をそれぞれ欠陥注入し、再導出不一致として拒否することも確認した。
 
 ## 未完了条件
 

@@ -46,13 +46,27 @@ def main() -> None:
         for evidence in record["phase_capability_evidence"]:
             require(evidence["status_scope"] == "phase_capability", "phase状態scope不一致")
             require(evidence["phase_id"] in evidence["source_phase_rationale"], "phase rationale対応不一致")
-            if evidence["evidence_trace_status"] == "exact_source_quote_traced":
+            if evidence["evidence_trace_status"] != "unresolved_no_exact_source_span":
                 require(bool(evidence["evidence_spans"]), "trace済みphaseに根拠spanなし")
                 require(all(any(span in source for source in record["source_text_spans"]) for span in evidence["evidence_spans"]), "phase根拠spanがunit原文外")
                 require(all(f"「{span}」" in evidence["source_phase_rationale"] for span in evidence["evidence_spans"]), "phase根拠spanがrationale引用外")
+                require(evidence["evidence_spans"] == [item["text"] for item in evidence["evidence_span_matches"]], "phase根拠spanとmatch detail不一致")
+                kinds = {item["match_kind"] for item in evidence["evidence_span_matches"]}
+                expected_status = (
+                    "exact_source_span_element_traced" if kinds == {"exact_source_span_element"}
+                    else "source_substring_quote_traced" if kinds == {"source_span_substring"}
+                    else "mixed_exact_and_substring_quote_traced"
+                )
+                require(evidence["evidence_trace_status"] == expected_status, "phase根拠spanの一致種別不正")
+                for item in evidence["evidence_span_matches"]:
+                    if item["match_kind"] == "exact_source_span_element":
+                        require(item["text"] in record["source_text_spans"], "exact element一致でないphase根拠")
+                    else:
+                        require(item["match_kind"] == "source_span_substring", "未知のphase根拠一致種別")
+                        require(item["text"] not in record["source_text_spans"], "完全一致をsubstring扱い")
             else:
-                require(evidence["evidence_trace_status"] == "unresolved_no_exact_source_span", "未知のphase trace状態")
                 require(not evidence["evidence_spans"], "unresolved phaseに根拠spanあり")
+                require(not evidence["evidence_span_matches"], "unresolved phaseにmatch detailあり")
         require(record["status_scope"]["legacy_requirement_implementation_status"] == "requirement_unit", "要求実装状態scope不一致")
         require(record["status_scope"]["candidate_asset_pool"] == "search_candidate_pool", "候補pool scope不一致")
         representative_ids = [asset["asset_id"] for asset in record["representative_legacy_assets"]]

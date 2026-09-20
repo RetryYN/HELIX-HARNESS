@@ -79,7 +79,8 @@
     "semantic_equivalence_unresolved": 5
   },
   "phase_evidence_trace_counts": {
-    "exact_source_quote_traced": 138,
+    "exact_source_span_element_traced": 87,
+    "source_substring_quote_traced": 51,
     "unresolved_no_exact_source_span": 183
   },
   "units_with_untraced_phase_candidate_count": 117,
@@ -1775,5 +1776,5 @@
     "human_product_authority_decisions_pending",
     "successor_assignments_unassigned"
   ],
-  "output_sha256": "sha256:c04553681db71fdeaee59e0b388eeea7877295bd671240322ce1871320a24129"
+  "output_sha256": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
 }
