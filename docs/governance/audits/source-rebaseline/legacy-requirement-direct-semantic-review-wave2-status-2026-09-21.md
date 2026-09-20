@@ -45,7 +45,7 @@ PHCAP-02の旧能力にはL6とL7 implementation/testの証拠がある。しか
 | `IRUNIT-HIL-FR-06-HELIX-OS` | 3 | 3 | 0 | 0 | 0 | 3 | 3 |
 | `IRUNIT-HIL-BR-12-HELIX-OS` | 6 | 0 | 3 | 0 | 0 | 6 | 3 |
 
-FR-06のcontract被覆は同一要求IDの非実行source snapshotによる。共有atom 3件の製品境界は未決であり、contract被覆完了と製品境界解決を別fieldにした。要求原文の自己再掲は`no_evidence_atom_ids`から差し引かず、FR-06の5 atom／3 atomはいずれも設計・実装証拠なしとして表示する。BR-12はstable ID A01〜A06を維持し、A01、A02、A06を設計partial、A03、A04、A05を全証拠なしとする。A06はHARNESSとの共有span、A01〜A05はOSのexclusive候補である。すべてのatomは`product_boundary_pending_human_decision`を保持し、shared／exclusiveのexact setで区別する。設計partialを実装被覆へ算入せず、全証拠なしとも区別する。
+FR-06のcontract被覆は同一要求IDの非実行source snapshotによる。共有atom 3件の製品境界は未決であり、contract被覆完了と製品境界解決を別fieldにした。要求原文の自己再掲は`no_evidence_atom_ids`から差し引かず、FR-06の5 atom／3 atomはいずれも設計・実装証拠なしとして表示する。BR-12はstable ID A01〜A06を維持し、A01、A02、A06を設計partial、A03、A04、A05を設計・実装証拠なしとする。A06はHARNESSとの共有span、A01〜A05はOSのexclusive候補である。すべてのatomは`product_boundary_pending_human_decision`を保持し、shared／exclusiveのexact setで区別する。設計partialを実装被覆へ算入せず、設計・実装証拠なしとも区別する。
 
 ## 残る集合
 
@@ -61,6 +61,6 @@ FR-06のcontract被覆は同一要求IDの非実行source snapshotによる。�
 
 ## 検証と次作業
 
-verifierは9 edge、14 atom、引用bytes、archive manifest、catalog join、製品別source span、shared overlap、設計partial／全証拠なし集合、phase状態、wave 1との非重複、累積件数、未review集合を再計算する。設計relationの実装偽装、phase能力から個別要求への実装過大転記、status文書のphase drift、累積edge件数driftを個別に欠陥注入し、すべて拒否した後に元bytesへ戻して再合格した。旧runtime、旧test、旧hook、旧CI、旧adapterは実行していない。
+verifierは9 edge、14 atom、引用bytes、archive manifest、catalog join、製品別source span、shared overlap、設計partial／設計・実装証拠なし集合、phase状態、wave 1との非重複、累積件数、未review集合を再計算する。設計relationの実装偽装、phase能力から個別要求への実装過大転記、status文書のphase drift、累積edge件数driftを個別に欠陥注入し、すべて拒否した後に元bytesへ戻して再合格した。旧runtime、旧test、旧hook、旧CI、旧adapterは実行していない。
 
 次waveでは今回の未review集合からconsumer、verification、call chainを優先し、direct-phase-unresolved queueはpool外探索の検索範囲と否定結果を別overlayへ固定する。unit全atom、consumer、acceptance、current差分が閉じるまで実装済みやnew build許可へ昇格しない。

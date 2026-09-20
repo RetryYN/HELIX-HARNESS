@@ -48,3 +48,15 @@ pr_class: research_premise
 | `INFO-1914-02-01` | Info | 確認。round 1の他の修正、欠陥注入、test mergeおよび静的検証結果を保持する。 |
 
 round 2の`incomplete`に列挙された残る213 unit、425 edge、consumer、製品owner decision等は本PRの未確認範囲として保持し、完了や採否を生成しない。
+
+## round 3
+
+- request: `RH-1914-GUI-03`
+- reviewed content: `d22b0855711209e426cf443f6288c2534700a064`
+- request payload SHA-256: `4ddde5b22d0369232661a8cfa9a21641fe1fd47e907d2f7ffae67c6f66b7a49e`
+- response file SHA-256: `8c7969f2bdce0b3705f01798ee6a3bab161f2ae27b52afeed33c4eb5b041edff`
+
+| finding | severity | 処分 |
+|---|---|---|
+| `MINOR-1914-03-01` | Minor | 対応。`adjacent_implementation_nonmatching`を`implementation_source`かつ`rejected`かつ単独relationの場合だけ許可し、configuration等への偽装を拒否する。方法書にも専用境界を明記した。 |
+| `INFO-1914-03-01` | Info | 確認。round 2の修正と検証結果を保持し、status本文に残った旧称「全証拠なし」を「設計・実装証拠なし」へ統一した。 |

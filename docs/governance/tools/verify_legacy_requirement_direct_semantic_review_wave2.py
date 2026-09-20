@@ -113,6 +113,7 @@ def main():
   if 'same_requirement_id_exact_restatement' in relations: require(r['artifact_evidence_kind']=='requirement' and relations=={'same_requirement_id_exact_restatement'},f'要求契約relationのartifact種別不一致: {rid}')
   if 'implementation_behavior_evidence' in relations: require(r['artifact_evidence_kind']=='implementation_source',f'実装relationのartifact種別不一致: {rid}')
   if 'design_contract_evidence' in relations: require(r['artifact_evidence_kind']=='design' and r['semantic_link_status']=='unresolved' and relations=={'design_contract_evidence'},f'設計契約relationの境界不一致: {rid}')
+  if 'adjacent_implementation_nonmatching' in relations: require(r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='rejected' and relations=={'adjacent_implementation_nonmatching'},f'隣接実装relationの境界不一致: {rid}')
   if r['semantic_link_status']=='rejected': require(relations in ({'different_function_nonmatching'},{'adjacent_implementation_nonmatching'}),f'rejected relation不一致: {rid}')
   bound=[]
   for binding in r['evidence_atom_bindings']:
