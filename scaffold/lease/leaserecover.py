@@ -181,13 +181,16 @@ def main(argv=None):
     if p.returncode != 0:
         print(json.dumps(dict(report, result="push_rejected"), ensure_ascii=False, indent=1))
         return 1
-    after, merged = L.read_after(gh, s, sha, s["merge_tree"], a.pr)
+    after, merged = L.read_after(gh, s, sha, s["merge_tree"], a.pr, degraded=degraded)
     after["recovery_mode"] = True
+    after["degraded"] = degraded
     ra = C.evaluate_after(after, sha, s["merge_tree"], (s["main_head"], s["pair_head"]), merged, True)
-    ra += L.post_merge_result(gh, s, sha, ra, recovery=True)   # read-afterの後に、その結果を含めて置く
+    ra += L.post_merge_result(gh, s, sha, ra, recovery=True, degraded=degraded)   # read-afterの後に、その結果を含めて置く
     # 非常経路のmerge自体がleaseをsuspendedにする（read-afterの全項目を含める）
     L.suspend(gh, s, [C.R("post_merge_mismatch", "非常経路のmerge（lease_recovery: %d）" % a.pr)] + ra,
-              "非常経路のmerge %s。read-after: %s" % (sha, json.dumps(ra or "全項目一致", ensure_ascii=False)))
+              "非常経路のmerge %s。%sread-after: %s"
+              % (sha, ("劣化: %s。" % degraded) if degraded else "",
+                 json.dumps(ra or "全項目一致", ensure_ascii=False)))
     print(json.dumps(dict(report, result="merged", merge_commit=sha, read_after=ra), ensure_ascii=False, indent=1))
     return 0
 

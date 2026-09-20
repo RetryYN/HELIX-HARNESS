@@ -1014,7 +1014,8 @@ def evaluate_after(snapshot, pushed_sha, inspected_tree, pair, merged_ok, result
     if snapshot.get("stale") != 0:
         miss("stale", "新mainでstale=%s" % snapshot.get("stale"))
     pre = evaluate_lease_health(snapshot, after=pushed_sha, recovery=snapshot.get("recovery_mode"),
-                                lease=snapshot.get("health_lease"))
+                                lease=snapshot.get("health_lease"),
+                                skip_activity=bool(snapshot.get("degraded") and snapshot.get("recovery_mode")))
     for x in pre:
         miss(x["code"], "%s %s" % (x["code"], x["detail"]))
     if not merged_ok:
@@ -1081,7 +1082,7 @@ def evaluate_lease_health(snapshot, after=None, recovery=None, lease=None, skip_
 
 
 # ---------- merge commit messageの記録 ----------
-def merge_result_body(snapshot, merge_commit, read_after, recovery=None):
+def merge_result_body(snapshot, merge_commit, read_after, recovery=None, degraded=None):
     """対象PRへ置く`merge_result`（packet: 結果、merge commit SHA、親、read-after結果）。read-afterの後に作る。"""
     o = {"kind": "merge_result", "lease_id": LEASE_ID, "pr": snapshot["pr"]["number"], "merge_commit": merge_commit,
          "parents": [snapshot["main_head"], snapshot["pair_head"]], "tree": snapshot.get("merge_tree"),
@@ -1089,6 +1090,8 @@ def merge_result_body(snapshot, merge_commit, read_after, recovery=None):
          "read_after": {"ok": not read_after, "mismatches": read_after}}
     if recovery:
         o["lease_recovery"] = snapshot["pr"]["number"]
+    if degraded:   # packet 非常経路: 代替を使ったことと理由を、commit message・merge_result・状態commentの3つに書く
+        o["degraded"] = degraded
     return "```helix-lease\n%s\n```" % json.dumps(o, ensure_ascii=False, sort_keys=True)
 
 

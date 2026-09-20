@@ -102,17 +102,17 @@ def read_after(gh, s, pushed, tree, pr, recovery=None, degraded=None, wait=600):
         gh.git("fetch", "-q", "origin", "main")
         after = G.snapshot_after(gh, pr, s, pushed)
         merged = after.get("pr_merged")
-        chain_ok = after.get("activity_has_push")
+        chain_ok = after.get("activity_has_push") or bool(degraded)
         if (merged and chain_ok) or time.time() > deadline:
             break
         time.sleep(20)
     return after, merged
 
 
-def post_merge_result(gh, s, sha, ra, recovery=None):
+def post_merge_result(gh, s, sha, ra, recovery=None, degraded=None):
     """read-afterの後に`merge_result`（結果・SHA・親・read-after結果）を置く。投稿の失敗はread-after不一致として返す。"""
     try:
-        gh.comment(s["pr"]["number"], C.merge_result_body(s, sha, ra, recovery=recovery))
+        gh.comment(s["pr"]["number"], C.merge_result_body(s, sha, ra, recovery=recovery, degraded=degraded))
         return []
     except RuntimeError:
         return [dict(C.R("post_merge_mismatch", "merge_resultの投稿に失敗"), item="merge_result_post")]
@@ -849,6 +849,23 @@ def run_boundary_tests():
                      and all(pinned)})
     finally:
         shutil.rmtree(tp, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # 非常経路で代替（第1親の連鎖）を使ったことは、commit message・merge_result・状態commentの3つに残す
+    snap = {"pr": {"number": 7}, "main_head": "a" * 40, "pair_head": "b" * 40, "merge_tree": "c" * 40,
+            "pair_base": "a" * 40}
+    deg = "activity_api_unavailable: 理由（第1親連鎖の代替。更新主体は証明しない）"
+    body_d = C.merge_result_body(snap, "d" * 40, [], recovery=True, degraded=deg)
+    body_n = C.merge_result_body(snap, "d" * 40, [], recovery=True)
+    rm_src = open(os.path.join(HERE, "leaserecover.py"), encoding="utf-8").read()
+    rows.append({"id": "BT-degraded-recorded",
+                 "ok": deg in body_d and '"degraded"' in body_d and "degraded" not in body_n
+                 and deg in C.receipt_message(snap, {"reasons": []}, None, "x", recovery=True, degraded=deg)
+                 # 停止のnoteとmerge_resultへも同じ理由を渡している
+                 and "degraded=degraded" in rm_src and "劣化: %s。" in rm_src
+                 # merge後のread-afterは、劣化のときactivityの照合に代えない
+                 and not [x for x in C.evaluate_after(
+                     {"main_head": "d" * 40, "main_tree": "c" * 40, "main_parents": ["a" * 40, "b" * 40],
+                      "stale": 0, "recovery_mode": True, "degraded": deg, "pr_merged": True},
+                     "d" * 40, "c" * 40, ("a" * 40, "b" * 40), True, True) if x.get("item") == "activity_incomplete"]})
     # 実測の結果commentは、AI側identityが書いたものだけを有効化の証拠にする
     blk = "```helix-lease\n%s\n```" % json.dumps({"kind": "lease_probe_result"}, ensure_ascii=False)
     cm = [{"id": 1, "user": "helix-app[bot]", "body": blk},
