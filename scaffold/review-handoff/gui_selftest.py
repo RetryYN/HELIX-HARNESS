@@ -31,6 +31,8 @@ class GuiChecks(unittest.TestCase):
 
     def setUp(self):
         self.now = time.time()
+        # clean checkoutの初回実行でもTemporaryDirectoryの親を必ず用意する。
+        (g.HERE / "local").mkdir(exist_ok=True)
         self.data = dict(version=1, lanes={}, observed={}, messages={})
         g.bind(self.data, "codex", "codex-gui", "execution", 60, self.now)
         g.bind(self.data, "claude", "claude-gui", "review_merge", 60, self.now)

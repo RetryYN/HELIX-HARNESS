@@ -168,3 +168,7 @@ message TTLとsession leaseは古い依頼・sessionへの誤配送防止であ�
 - Minor 2: READMEの「レーン・通知は期限付き」を、message TTLと同一登録sessionのsliding leaseに分けて記述する。
 - Info 1: 期限関連2 testの削除、lease更新1 testの追加後は25件。Binding停止の否定例を追加して26件とする。
 - Info 2: acked／expired message GCと設定file mode保存・復元を正式化の移管課題としてREADME、#1884、#1859、#1860へ残す。今回の再接続PRで正式実装済みとは扱わない。
+
+## PR #1887 round 2 reviewの処分
+
+- Major 1: 採用。`gui_selftest.py`の`setUp`でgitignore対象の`scaffold/review-handoff/local/`を作り、各testが先行testの副作用へ依存しないようにする。fresh worktreeの初回実行で26件合格することを再確認し、証拠のsource commitをこの修正へ更新する。
