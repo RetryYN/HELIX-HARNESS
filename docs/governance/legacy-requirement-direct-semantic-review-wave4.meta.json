@@ -90,7 +90,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:4e338931170eb68559796a71e0fa6b51f78b8aae29b153c01dbc8b0c9e699003",
+  "output_sha256": "sha256:05eacc69baf656e630cd0133a37c9d58b619a310eb6e16090bdb8a601ae390c3",
   "parent_revision": "04ec8370bfadc8a88aeede3e248499f5507107e6",
   "prior_review_batches": [
     {
@@ -156,8 +156,8 @@
   "schema_revision": 6,
   "semantic_link_counts": {
     "confirmed": 3,
-    "rejected": 0,
-    "unresolved": 6
+    "rejected": 1,
+    "unresolved": 5
   },
   "source_revision": "legacy-generation-2026-09-14",
   "status": "research_premise_candidate",
@@ -197,8 +197,10 @@
           }
         ],
         "atom_inventory_sha256": "sha256:68ae55b020c51f0fcb79adaf21b9af11438e99bafe1cae810a9a46e95207a215",
-        "connective_fragments": [],
-        "connective_fragments_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "connective_fragments": [
+          "を"
+        ],
+        "connective_fragments_sha256": "sha256:c6890c6b403aadb6a5d50f4481c85d443b11b87611fb1f80af76fdfbdb6be8b3",
         "contract_confirmed_atom_ids": [
           "BR10-OS-A01",
           "BR10-OS-A02",
@@ -207,10 +209,9 @@
         "contract_confirmed_atom_ids_sha256": "sha256:9374537953457e351e7cb3b2d6726d9ec4ce366e14688dbb822e892b87defc65",
         "contract_semantic_edge_coverage_complete": true,
         "design_partial_atom_ids": [
-          "BR10-OS-A02",
-          "BR10-OS-A03"
+          "BR10-OS-A02"
         ],
-        "design_partial_atom_ids_sha256": "sha256:2b4f01f50a13fbbcac8ec69e9362d5a8befe8537af2287044ec4552f3813c7db",
+        "design_partial_atom_ids_sha256": "sha256:efd897e4c7fa9cf97fc0fd8489cec11bbe3d8aacd9be1d5ab1ea256bb5fd4af1",
         "implementation_confirmed_atom_ids": [],
         "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_uncovered_atom_ids": [
@@ -223,9 +224,10 @@
         ],
         "implementation_unresolved_atom_ids_sha256": "sha256:efd897e4c7fa9cf97fc0fd8489cec11bbe3d8aacd9be1d5ab1ea256bb5fd4af1",
         "no_evidence_atom_ids": [
-          "BR10-OS-A01"
+          "BR10-OS-A01",
+          "BR10-OS-A03"
         ],
-        "no_evidence_atom_ids_sha256": "sha256:8d02defd9f35d2f3b1b2f79397b272f46de2911afb4f65af39a5ab6511332f2d",
+        "no_evidence_atom_ids_sha256": "sha256:eb6482ecc02bc7b0e4499ee73f9f199ce9f0931687b49901ddac0514929213c4",
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
         "product_exclusive_atom_ids": [
@@ -385,12 +387,12 @@
         "design_partial_atom_ids_sha256": "sha256:47020053478e68b1d7e21ab3938c4c7956bd59f29b456f65693c5ce1d4225de1",
         "implementation_confirmed_atom_ids": [],
         "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "implementation_uncovered_atom_ids": [],
-        "implementation_uncovered_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "implementation_unresolved_atom_ids": [
+        "implementation_uncovered_atom_ids": [
           "BR33-OS-A01"
         ],
-        "implementation_unresolved_atom_ids_sha256": "sha256:47020053478e68b1d7e21ab3938c4c7956bd59f29b456f65693c5ce1d4225de1",
+        "implementation_uncovered_atom_ids_sha256": "sha256:47020053478e68b1d7e21ab3938c4c7956bd59f29b456f65693c5ce1d4225de1",
+        "implementation_unresolved_atom_ids": [],
+        "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "no_evidence_atom_ids": [],
         "no_evidence_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "no_shared_source_span": true,
@@ -425,8 +427,8 @@
       "reviewed_edge_count": 3,
       "semantic_link_counts": {
         "confirmed": 1,
-        "rejected": 0,
-        "unresolved": 2
+        "rejected": 1,
+        "unresolved": 1
       },
       "unit_candidate_id": "IRUNIT-HIL-BR-33-HELIX-OS"
     }

@@ -26,12 +26,17 @@ phaseごとの旧能力・現行状態・transition assessmentはphase候補の�
 `confirmed`は契約保存だけである。設計と未実行sourceは要求atomの一部に対応しても`unresolved`とし、
 implementation confirmedへ算入しない。
 
-- BR-10はOS単独候補で、event envelope、causation/correlation、因果順序、冪等取り込みを部分証拠とする。
-  Issueからmemoryまでの全member joinとharness.db consumer closureは未確認である。
+`unresolved` edgeのcontrolled term bindingは、空でないanchorがatom原文と引用内のrequired termの双方に
+含まれる場合だけ成立する。共通termを持たない隣接sourceはatomへ束縛せず`rejected`にする。
+atom間の接続語はunit別`connective_fragments`へ列挙し、短いallowlist、重複なし、atom意味fragmentとの
+非重複を検査する。statusのphase表は値をcode spanで示し、metadataのphase assessmentとexact set照合する。
+
+- BR-10はOS単独候補で、event envelope、causation/correlation、因果順序、冪等取り込みをcausality joinの
+  部分証拠とする。Issueからmemoryまでのmember集合とjoin切れの未完了判定、harness.db consumer closureは未確認である。
 - BR-06はHARNESS unitとの共有source overlapを維持する。設計のordered gateと旧merge admission sourceは
   遷移禁止の部分証拠であり、AdmissionからClosureまでの全gate実装ではない。
-- BR-33 OS unitは配布surfaceの実切替とcutover承認境界だけを扱う。release ADRとplan-only decision sourceは
-  approval境界の部分証拠で、実cutoverやpublishを成立させない。
+- BR-33 OS unitは配布surfaceの実切替とcutover承認境界だけを扱う。release ADRは境界の設計部分証拠とするが、
+  plan-only decision sourceは実cutoverを扱わない隣接sourceとして`rejected`にする。
 
 ## bounded global search
 

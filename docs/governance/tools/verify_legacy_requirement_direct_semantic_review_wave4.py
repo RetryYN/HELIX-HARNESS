@@ -26,14 +26,15 @@ QUERIES={
 'IRUNIT-HIL-BR-33-HELIX-OS':['HIL-BR-33','配布surfaceの実切替','cutover承認境界','ADR-008','planReleaseAutomationDecision','applyAuthorized']}
 DECISIONS={
 ('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('BR10-OS-A01','BR10-OS-A02','BR10-OS-A03')),
-('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-33C30050BD9B4A523E60'):('unresolved','design_contract_evidence',('BR10-OS-A02','BR10-OS-A03')),
+('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-33C30050BD9B4A523E60'):('unresolved','design_contract_evidence',('BR10-OS-A02',)),
 ('IRUNIT-HIL-BR-10-HELIX-OS','LEGACY-ASSET-3705801CEFFE5E9A650A'):('unresolved','partial_implementation_behavior_evidence_unexecuted',('BR10-OS-A02',)),
 ('IRUNIT-HIL-BR-06-HELIX-OS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('BR06-OS-A01','BR06-OS-A02')),
 ('IRUNIT-HIL-BR-06-HELIX-OS','LEGACY-ASSET-D9345A55829519760D5D'):('unresolved','design_contract_evidence',('BR06-OS-A01','BR06-OS-A02')),
 ('IRUNIT-HIL-BR-06-HELIX-OS','LEGACY-ASSET-EA1DFC00D984068C2444'):('unresolved','partial_implementation_behavior_evidence_unexecuted',('BR06-OS-A02',)),
 ('IRUNIT-HIL-BR-33-HELIX-OS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('BR33-OS-A01',)),
 ('IRUNIT-HIL-BR-33-HELIX-OS','LEGACY-ASSET-FF94651B242236F07668'):('unresolved','design_contract_evidence',('BR33-OS-A01',)),
-('IRUNIT-HIL-BR-33-HELIX-OS','LEGACY-ASSET-4C97F9E72F120F6B664E'):('unresolved','partial_implementation_behavior_evidence_unexecuted',('BR33-OS-A01',))}
+('IRUNIT-HIL-BR-33-HELIX-OS','LEGACY-ASSET-4C97F9E72F120F6B664E'):('rejected','adjacent_implementation_nonmatching',())}
+CONNECTIVES={u:[] for u in ATOMS}; CONNECTIVES['IRUNIT-HIL-BR-10-HELIX-OS']=['を']
 
 def require(v,m):
  if not v: raise ValueError(m)
@@ -41,6 +42,14 @@ def load(p): return [json.loads(x) for x in p.read_text().splitlines() if x.stri
 def digest(b): return 'sha256:'+hashlib.sha256(b).hexdigest()
 def canon(v): return digest(json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode())
 def git_blob(rev,path): return subprocess.run(['git','show',f'{rev}:{path}'],cwd=ROOT,check=True,capture_output=True).stdout
+def meaningful_uncovered(text,fragments):
+ hit=[False]*len(text)
+ for fragment in fragments:
+  start=0
+  while (i:=text.find(fragment,start))>=0:
+   hit[i:i+len(fragment)]=[True]*len(fragment); start=i+1
+ out=''.join(' ' if hit[i] or ch.isspace() or ch in '。、・|`' else ch for i,ch in enumerate(text))
+ return re.findall(r'\S+',out)
 def manifest():
  out={}
  for line in MANIFEST.read_text().splitlines():
@@ -55,7 +64,7 @@ def coverage(uid,records):
  implc=sorted({a for r in rr if r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='confirmed' for a in r['covered_requirement_atom_ids']})
  implu=sorted({a for r in rr if r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='unresolved' for a in r['covered_requirement_atom_ids']}-set(implc))
  shared=sorted(x['atom_id'] for x in inv if x['shared_with_units']); exclusive=sorted(set(ids)-set(shared)); uncovered=sorted(set(ids)-set(implc)-set(implu)); noe=sorted(set(ids)-set(design)-set(implc)-set(implu))
- result={'atom_inventory':inv,'connective_fragments':[],'contract_confirmed_atom_ids':contract,'design_partial_atom_ids':design,'implementation_confirmed_atom_ids':implc,'implementation_unresolved_atom_ids':implu,'implementation_uncovered_atom_ids':uncovered,'no_evidence_atom_ids':noe,'shared_atom_ids':shared,'product_exclusive_atom_ids':exclusive}
+ result={'atom_inventory':inv,'connective_fragments':CONNECTIVES[uid],'contract_confirmed_atom_ids':contract,'design_partial_atom_ids':design,'implementation_confirmed_atom_ids':implc,'implementation_unresolved_atom_ids':implu,'implementation_uncovered_atom_ids':uncovered,'no_evidence_atom_ids':noe,'shared_atom_ids':shared,'product_exclusive_atom_ids':exclusive}
  for k in list(result): result[k+'_sha256']=canon(result[k])
  result.update(contract_semantic_edge_coverage_complete=set(contract)==set(ids),semantic_edge_coverage_complete=not implu and not uncovered,no_shared_source_span=not shared,product_boundary_decision_complete=False,product_exclusive_contract_coverage_complete=bool(exclusive) and set(exclusive)<=set(contract))
  return result
@@ -88,32 +97,35 @@ def main():
   require(hashlib.sha256((ARCH/r['source_path']).read_bytes()).hexdigest()==r['source_sha256']==mani[r['source_path']],f'archive digest不一致: {rid}')
   require(r['legacy_execution_status']=='not_run' and r['current_requirement_implementation_status']=='not_established' and r['consumer_closure_status']=='pending' and not r['consumer_closure_evidence'] and not r['new_build_allowed'],f'実装/closure過大主張: {rid}')
   ids=r['covered_requirement_atom_ids']; require(len(ids)==len(set(ids)) and r['covered_requirement_atoms']==[amap[uid][x] for x in ids],f'atom binding不一致: {rid}')
+  if r['semantic_link_status']=='rejected': require(not ids and not r['evidence_atom_bindings'] and r['counterevidence'],f'rejected境界不一致: {rid}')
   excerpts=[]; relations=set()
   for e in r['evidence_refs']:
    require(e['archive_path']==str((ARCH/r['source_path']).relative_to(ROOT)),f'evidence path不一致: {rid}')
-   lines=(ROOT/e['archive_path']).read_text().splitlines(); text='\n'.join(lines[e['line_start']-1:e['line_end']])+'\n'; require(digest(text.encode())==e['excerpt_sha256'],f'引用digest不一致: {rid}'); excerpts.append(text); relations.add(e['source_requirement_relation'])
-  expected={'same_requirement_id_exact_source_contract_not_implementation':'same_requirement_id_exact_restatement','design_contract_evidence':'design_contract_evidence','partial_implementation_behavior_evidence_unexecuted':'partial_implementation_behavior_evidence_unexecuted'}[r['semantic_relation']]
+   lines=(ROOT/e['archive_path']).read_text().splitlines(); require(1<=e['line_start']<=e['line_end']<=len(lines),f'引用range不一致: {rid}'); text='\n'.join(lines[e['line_start']-1:e['line_end']])+'\n'; require(digest(text.encode())==e['excerpt_sha256'],f'引用digest不一致: {rid}'); excerpts.append(text); relations.add(e['source_requirement_relation'])
+  expected={'same_requirement_id_exact_source_contract_not_implementation':'same_requirement_id_exact_restatement','design_contract_evidence':'design_contract_evidence','partial_implementation_behavior_evidence_unexecuted':'partial_implementation_behavior_evidence_unexecuted','adjacent_implementation_nonmatching':'adjacent_implementation_nonmatching'}[r['semantic_relation']]
   require(relations=={expected},f'evidence relation不一致: {rid}')
   if expected=='same_requirement_id_exact_restatement': require(r['artifact_evidence_kind']=='requirement' and r['semantic_link_status']=='confirmed','要求snapshot境界不一致')
   if expected=='design_contract_evidence': require(r['artifact_evidence_kind']=='design' and r['semantic_link_status']=='unresolved','designを実装算入')
   if expected=='partial_implementation_behavior_evidence_unexecuted': require(r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='unresolved','未確定sourceを実装確定')
-  contribution={'same_requirement_id_exact_source_contract_not_implementation':'contract_only_no_implementation_claim','design_contract_evidence':'design_contract_only_no_implementation_claim','partial_implementation_behavior_evidence_unexecuted':'partial_static_implementation_candidate_unresolved_no_implementation_claim'}[r['semantic_relation']]
+  if expected=='adjacent_implementation_nonmatching': require(r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='rejected','隣接source境界不一致')
+  contribution={'same_requirement_id_exact_source_contract_not_implementation':'contract_only_no_implementation_claim','design_contract_evidence':'design_contract_only_no_implementation_claim','partial_implementation_behavior_evidence_unexecuted':'partial_static_implementation_candidate_unresolved_no_implementation_claim','adjacent_implementation_nonmatching':'none_rejected'}[r['semantic_relation']]
   require(r['legacy_requirement_implementation_contribution']==contribution,f'実装contribution不一致: {rid}')
   bound=[]
   for b in r['evidence_atom_bindings']:
    require(b['atom_id'] in ids and b['evidence_ref_indexes'] and all(0<=i<len(excerpts) for i in b['evidence_ref_indexes']),f'binding index不一致: {rid}')
    joined='\n'.join(excerpts[i] for i in b['evidence_ref_indexes']); require(all(t in joined for t in b['required_terms']),f'required term欠落: {rid}/{b["atom_id"]}')
    if b['match_mode']=='literal_source_fragment': require(all(f in joined for f in amap[uid][b['atom_id']]['source_fragments']),f'literal atom欠落: {rid}')
-   else: require(b['match_mode']=='controlled_term_set_partial' and all(x in ''.join(amap[uid][b['atom_id']]['source_fragments']) for x in b['source_fragment_anchors']),f'partial anchor不一致: {rid}')
+   else:
+    anchors=b.get('source_fragment_anchors',[]); fragments=''.join(amap[uid][b['atom_id']]['source_fragments'])
+    require(b['match_mode']=='controlled_term_set_partial' and anchors and all(x in fragments and any(x in t for t in b['required_terms']) for x in anchors),f'partial anchor不一致: {rid}')
    bound.append(b['atom_id'])
   require(sorted(bound)==sorted(ids),f'covered atom/binding不一致: {rid}')
  for uid,inv in ATOMS.items():
-  statement=' '.join(cross[uid]['source_text_spans']); require(all(f in statement for a in inv for f in a['source_fragments']),f'atom source span外: {uid}')
-  # Atom fragmentを除去した残りは日本語助詞・区切りだけでなければならない。
-  remain=statement
-  for a in inv:
-   for f in a['source_fragments']: remain=remain.replace(f,'')
-  remain=re.sub(r'[\s。、・]','',remain); require(remain in {'','を'},f'atom無損失被覆不一致: {uid}: {remain}')
+  connectives=CONNECTIVES[uid]; allowed_connectives={'/','、','と','を'}
+  require(len(connectives)==len(set(connectives)) and all(c in allowed_connectives and 1<=len(c)<=2 for c in connectives),f'connective allowlist不一致: {uid}')
+  require(all(c not in f for c in connectives for a in inv for f in a['source_fragments']),f'connectiveがatom意味fragmentと重複: {uid}')
+  statement=' '.join(cross[uid]['source_text_spans']); fragments=[f for a in inv for f in a['source_fragments']]+connectives
+  require(not meaningful_uncovered(statement,fragments),f'atom無損失被覆不一致: {uid}: {meaningful_uncovered(statement,fragments)}')
   overlaps=decomp[uid].get('shared_source_overlaps',[])
   for atom in inv:
    peers=set(atom['shared_with_units']); containers=[x for x in overlaps if all(f in x['source_text'] for f in atom['source_fragments'])]
@@ -135,16 +147,21 @@ def main():
   require(a['semantic_link_counts']=={s:sum(r['semantic_link_status']==s for r in rr) for s in ('confirmed','rejected','unresolved')},f'unit count不一致: {uid}')
   require(a['current_requirement_implementation_status']=='not_established' and a['legacy_requirement_implementation_status'].startswith('unknown_') and not a['direct_confirmed_implementation_asset_ids'] and a['consumer_closure_status']=='pending' and not a['new_build_allowed'],'aggregate実装過大主張')
   require(a['degradation_assessment']=='unresolved_legacy_implementation_unknown',f'unknown状態で縮退先断定: {uid}')
- counts={s:sum(r['semantic_link_status']==s for r in records) for s in ('confirmed','rejected','unresolved')}; require(meta['semantic_link_counts']==counts=={'confirmed':3,'rejected':0,'unresolved':6},'batch count不一致')
+ counts={s:sum(r['semantic_link_status']==s for r in records) for s in ('confirmed','rejected','unresolved')}; require(meta['semantic_link_counts']==counts=={'confirmed':3,'rejected':1,'unresolved':5},'batch count不一致')
  prior_edges=set(); prior_units=set(); batches=[]
  for lp,mp in PRIOR:
   m=json.loads(mp.read_text()); prior_edges|={(x['unit_candidate_id'],x['asset_id']) for x in m['reviewed_edges']}; prior_units|=set(m['reviewed_unit_ids']); batches.append({'batch_id':m['batch_id'],'ledger_sha256':digest(lp.read_bytes()),'meta_sha256':digest(mp.read_bytes())})
  require(not edges&prior_edges and meta['prior_review_batches']==batches,'prior wave束縛/edge重複')
  require(meta['cumulative_reviewed_edge_count']==len(prior_edges|edges)==33 and meta['cumulative_reviewed_unit_count']==len(prior_units|set(ATOMS))==11,'累積件数不一致')
  text=STATUS.read_text(); batch=re.search(r'218要求unitのうち新たに(\d+) unit、候補edge (\d+)件',text); cumulative=re.search(r'wave 1〜3と合わせて(\d+) unit、(\d+) edge',text); remaining=re.search(r'残る(\d+) unitは未着手',text)
- require(batch and [int(x) for x in batch.groups()]==[3,9] and cumulative and [int(x) for x in cumulative.groups()]==[11,33] and remaining and int(remaining.group(1))==207,'status件数不一致')
+ require(batch and [int(x) for x in batch.groups()]==[len(ATOMS),len(records)],'status batch件数不一致')
+ require(cumulative and [int(x) for x in cumulative.groups()]==[meta['cumulative_reviewed_unit_count'],meta['cumulative_reviewed_edge_count']],'status累積件数不一致')
+ require(remaining and int(remaining.group(1))==len(cross)-meta['cumulative_reviewed_unit_count'],'status未着手件数不一致')
  forbidden={'implemented','tested','operational'}; require(not forbidden&set(re.findall(r'`([^`\n]+)`',text)),'status過大状態語')
  table=[[c.strip().strip('`') for c in line.strip('|').split('|')] for line in text.splitlines() if line.startswith('|')]
+ observed_phase={(r[0],r[1],r[2],r[3],r[4]) for r in table if len(r)==5 and r[0] in ATOMS and r[1].startswith('PHCAP-')}
+ expected_phase={(uid,x['phase_id'],x['current_status'],x['legacy_capability_status'],x['transition_assessment']) for uid,a in aggregates.items() for x in a['phase_capability_assessments']}
+ require(observed_phase==expected_phase,'status phase表不一致')
  for uid,a in aggregates.items():
   state=[r for r in table if len(r)==6 and r[1]==uid]; require(len(state)==1 and state[0][3:]==[a['legacy_requirement_implementation_status'],a['current_requirement_implementation_status'],a['degradation_assessment']],f'status状態行不一致: {uid}')
   atom=[r for r in table if len(r)==8 and r[0]==uid]; require(len(atom)==1,'status atom行不一致')
