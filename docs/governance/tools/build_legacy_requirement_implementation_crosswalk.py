@@ -279,6 +279,7 @@ def build_meta(records: list[dict]) -> dict:
         "authority_effect": "none",
         "source_revision": "legacy-generation-2026-09-14",
         "method": "docs/governance/audits/source-rebaseline/legacy-requirement-implementation-crosswalk-method-2026-09-21.md",
+        "premise_packet": "docs/governance/audits/source-rebaseline/legacy-requirement-implementation-crosswalk-premise-packet-2026-09-21.md",
         "record_count": len(records),
         "product_scope_counts": stable_counts(
             "+".join(record["product_scope"]) for record in records

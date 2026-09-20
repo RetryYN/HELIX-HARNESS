@@ -55,6 +55,7 @@ unitとphase候補assetのmembershipは延べ87,731件、さらに製品候補�
 
 ## 成果物
 
+- `legacy-requirement-implementation-crosswalk-premise-packet-2026-09-21.md`: 一つの判断論点とknown／assumption／unknown／conflict／stale、反例、再調査条件。
 - `legacy-requirement-implementation-crosswalk-bootstrap.jsonl`: 218 unitのcrosswalk。
 - `legacy-requirement-implementation-crosswalk-bootstrap.meta.json`: 集計、入力digest、出力digest、未完了条件。
 - `build_legacy_requirement_implementation_crosswalk.py`: 三入力からの決定論的再導出。

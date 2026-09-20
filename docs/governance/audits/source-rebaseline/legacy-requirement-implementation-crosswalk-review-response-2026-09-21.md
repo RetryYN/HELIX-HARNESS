@@ -37,6 +37,8 @@ Luna xhighの三担当が、HELIX-HARNESS 85 unit、HELIX-OS 132 unit、phase／
 
 Claude GUI round 1はBlocker 0、Major 0、Minor 2、Info 1だった。PR classと必須入力の欠落、作業入口規範変更の同梱、source span要素全体一致と部分文字列一致の表現混同を指摘された。PR classを`research_premise`として明示し、作業入口変更を分離し、trace状態を上記2種へ分けた。独立再計算という表現はasset pool交差の別式検査に限定した。
 
+Claude GUI round 2はBlocker 0、Major 0、Minor 1だった。`research_premise`の成立物に、一つの判断論点、known／assumption／unknown／conflict／stale、反例、再調査条件、返却先が明示されていないとの指摘だった。独立した`legacy-requirement-implementation-crosswalk-premise-packet-2026-09-21.md`を追加し、親revision、取得時点、scope、適用条件、限界を含む一つのversioned evidence bundleへ揃えた。
+
 最終再監査はBlocker 0、Major 0、Minor 0だった。4,020 assetとのphase交差・phaseと製品候補の交差をbuilderとは別に218 unit全件で再計算し、候補ID集合と一致した。未接続代表6件もsource SHA、artifact種別、静的状態、consumer、closure、archive digestの不一致0を確認した。
 
 HELIX-HARNESSのphase未解決6 unitを調べるsearch leadとして、独立監査は次の旧assetを提示した。unitへの直接linkとphase採否は未判断である。

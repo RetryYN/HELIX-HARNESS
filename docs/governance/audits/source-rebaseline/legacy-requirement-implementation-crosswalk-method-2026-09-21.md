@@ -20,6 +20,7 @@ parent_helix_os_l1_sha256: 0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5
 
 ## 入力
 
+- `legacy-requirement-implementation-crosswalk-premise-packet-2026-09-21.md`: 判断論点、premise状態、反例、再調査条件、返却先。
 - `legacy-ir-product-unit-decomposition-bootstrap.jsonl`: 217 product unit候補と1 connection候補、直接phase候補。
 - `phase-capability-inventory.json`: phaseごとの現行状態、旧到達層、旧能力状態、transition assessment、代表asset。
 - `legacy-asset-phase-product-classification-bootstrap.jsonl`: 旧asset 4,020件のphase／製品候補と静的存在状態。
