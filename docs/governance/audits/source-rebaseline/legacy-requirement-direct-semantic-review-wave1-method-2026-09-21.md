@@ -41,6 +41,10 @@ review単位は`(unit_candidate_id, asset_id)`である。要求全体やphase�
 
 実装sourceの`confirmed`は`partial_static_implementation_evidence_unexecuted`まで許す。全atomの静的対応があっても、consumer call chain、verification／acceptance、実行可能性、現行との差分が閉じなければ`implemented`、`tested`、`operational`にしない。
 
+要求spanはstable atom IDへ分ける。複数triggerを支配する`fail-closeする`のような述語は単独atomにせず、triggerごとに`trigger＋predicate`を一atomとする。unit集計はatom inventory、`confirmed`、`unresolved`、未被覆のexact setと各digestを持つ。`partial`はこの未完集合を同時に記録する場合だけ使う。
+
+各引用は、同一要求IDの逐語source、別機能の非該当source、実装挙動証拠を区別する。各covered atomは引用indexと`required_terms`へ束縛し、逐語一致なら全source fragment、controlled term setなら定義済みtermが引用本文に存在することを検査する。term検査は引用とatomの語彙的束縛であり、意味妥当性を独立導出するものではない。
+
 ## 製品・phase・縮退
 
 要求unitの`product_scope`は既存の製品分解結果を保持する。asset catalogの製品候補は探索用であり、直接semantic reviewと承認済み製品境界の両方に整合する場合だけ`direct_partial_support_for_*`と記録する。製品候補が対象unitと異なるedgeは、意味の部分一致があっても`unresolved`または`rejected`にする。
@@ -57,6 +61,6 @@ catalogの`consumer_refs`は観測値として転記する。空配列はconsume
 
 ## 静的検証
 
-独立verifierは、親revisionの三入力digest、2 unit／6 edge exact set、unit原文とdigest、asset ID／path／SHA／kind、archive manifest、引用行digest、候補pool所属、未review集合digest、状態集計を再計算する。また候補membershipからの直接link、要求文書からの実装claim、旧実行claim、consumer closure、current implemented、phase承認、new build許可を拒否する。
+独立verifierは、親revisionの三入力digest、2 unit／6 edge exact set、10 atom exact set、unit原文とdigest、asset ID／path／SHA／kind、archive manifest、引用行digest、引用中のrequired term、候補pool所属、atom coverage receipt、未review集合digest、状態集計を再計算する。また候補membershipからの直接link、要求文書からの実装claim、旧実行claim、consumer closure、current implemented、phase承認、new build許可を拒否する。
 
-この検証は人間の意味判断、旧codeの動作、consumer完全性、要求採否を証明しない。
+`EXPECTED_DECISIONS`はreview済み判定の改変を検出するregression pinであり、意味判定をsourceから自動導出しない。この検証は人間の意味判断、旧codeの動作、consumer完全性、要求採否を証明しない。

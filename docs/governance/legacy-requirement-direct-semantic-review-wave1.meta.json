@@ -9,12 +9,12 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:5d5cc380e29bcadbeb03bf74a38cd231ba51e6a996162681ffff9933ff9342be",
+  "output_sha256": "sha256:7d81f54b242d7586fbef0b1df028af6009a81845470497b55052fdda2b42d741",
   "parent_revision": "8e570941f6fabcfc4c60877b493c6fe7fd9fc1f3",
   "record_count": 6,
   "reviewed_edges": [
     {
-      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
       "unit_candidate_id": "IRUNIT-HIL-BR-01-HELIX-HARNESS"
     },
     {
@@ -42,21 +42,52 @@
     "IRUNIT-HIL-BR-01-HELIX-HARNESS",
     "IRUNIT-HIL-FR-12-HELIX-OS"
   ],
-  "schema_revision": 1,
+  "schema_revision": 2,
   "semantic_link_counts": {
-    "confirmed": 3,
+    "confirmed": 2,
     "rejected": 1,
-    "unresolved": 2
+    "unresolved": 3
   },
   "source_revision": "legacy-generation-2026-09-14",
   "status": "research_premise_candidate",
   "unit_aggregates": [
     {
+      "atom_coverage_receipt": {
+        "atom_inventory": [
+          {
+            "atom_id": "BR01-HARNESS-A01",
+            "kind": "authority_precondition",
+            "source_fragments": [
+              "人のL3承認後"
+            ],
+            "text": "人のL3承認後"
+          },
+          {
+            "atom_id": "BR01-HARNESS-A02",
+            "kind": "completion_boundary",
+            "source_fragments": [
+              "不可逆境界以外を無人完走する"
+            ],
+            "text": "不可逆境界以外を無人完走する"
+          }
+        ],
+        "atom_inventory_sha256": "sha256:07a306c8281377c17d321c57a68992527fbfdd60428ae612cae30f3923813eac",
+        "confirmed_atom_ids": [
+          "BR01-HARNESS-A01",
+          "BR01-HARNESS-A02"
+        ],
+        "confirmed_atom_ids_sha256": "sha256:24e8d41a0e7aab122a6f7330a5e9d4e7f6d8f3f261328e416ba15f6c0db2e2d2",
+        "semantic_edge_coverage_complete": true,
+        "uncovered_atom_ids": [],
+        "uncovered_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unresolved_atom_ids": [],
+        "unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
       "consumer_closure_status": "pending",
       "current_requirement_implementation_status": "not_established",
       "degradation_assessment": "unresolved_legacy_implementation_unknown",
       "direct_confirmed_implementation_asset_ids": [],
-      "legacy_requirement_implementation_status": "unknown_pending_remaining_semantic_and_consumer_review",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_implementation_and_consumer_review",
       "new_build_allowed": false,
       "phase_authority_status": "candidate_unchanged",
       "product_scope": [
@@ -71,11 +102,102 @@
       "unit_candidate_id": "IRUNIT-HIL-BR-01-HELIX-HARNESS"
     },
     {
+      "atom_coverage_receipt": {
+        "atom_inventory": [
+          {
+            "atom_id": "FR12-OS-A01",
+            "kind": "behavior",
+            "source_fragments": [
+              "Claude/Codex定義を生成し"
+            ],
+            "text": "Claude/Codex定義を生成する"
+          },
+          {
+            "atom_id": "FR12-OS-A02",
+            "kind": "failure",
+            "source_fragments": [
+              "手編集drift",
+              "fail-closeする"
+            ],
+            "text": "手編集driftをfail-closeする"
+          },
+          {
+            "atom_id": "FR12-OS-A03",
+            "kind": "failure",
+            "source_fragments": [
+              "未登録agent",
+              "fail-closeする"
+            ],
+            "text": "未登録agentをfail-closeする"
+          },
+          {
+            "atom_id": "FR12-OS-A04",
+            "kind": "failure",
+            "source_fragments": [
+              "model/effort override",
+              "fail-closeする"
+            ],
+            "text": "model/effort overrideをfail-closeする"
+          },
+          {
+            "atom_id": "FR12-OS-A05",
+            "kind": "failure",
+            "source_fragments": [
+              "blind context漏洩",
+              "fail-closeする"
+            ],
+            "text": "blind context漏洩をfail-closeする"
+          },
+          {
+            "atom_id": "FR12-OS-A06",
+            "kind": "failure",
+            "source_fragments": [
+              "forbidden path",
+              "fail-closeする"
+            ],
+            "text": "forbidden pathをfail-closeする"
+          },
+          {
+            "atom_id": "FR12-OS-A07",
+            "kind": "output",
+            "source_fragments": [
+              "generated adapter"
+            ],
+            "text": "generated adapter"
+          },
+          {
+            "atom_id": "FR12-OS-A08",
+            "kind": "output",
+            "source_fragments": [
+              "drift/guard receipt"
+            ],
+            "text": "drift/guard receipt"
+          }
+        ],
+        "atom_inventory_sha256": "sha256:f9fd76fc859fe9b58e1588ab5f39cd124d4965e16d4ed6a766336c1d581a5fd3",
+        "confirmed_atom_ids": [
+          "FR12-OS-A03",
+          "FR12-OS-A04"
+        ],
+        "confirmed_atom_ids_sha256": "sha256:2be23b6b375d45136b76394ad9e6d9bda7b795057e2f9da3c001a405daaaa407",
+        "semantic_edge_coverage_complete": false,
+        "uncovered_atom_ids": [
+          "FR12-OS-A01",
+          "FR12-OS-A05",
+          "FR12-OS-A07",
+          "FR12-OS-A08"
+        ],
+        "uncovered_atom_ids_sha256": "sha256:ece8ea3c3e4ca0e45c8373284a78459508f46ab1314c6682cde9c9221f661993",
+        "unresolved_atom_ids": [
+          "FR12-OS-A02",
+          "FR12-OS-A06"
+        ],
+        "unresolved_atom_ids_sha256": "sha256:bcee75d0f66d3a975ff54ad5525009b47d5d1d14a689165f7be4fcd6468aa56d"
+      },
       "consumer_closure_status": "pending",
       "current_requirement_implementation_status": "not_established",
       "degradation_assessment": "degraded_from_partial_legacy_static_evidence_to_current_not_established",
       "direct_confirmed_implementation_asset_ids": [
-        "LEGACY-ASSET-7B8261E520354DF48FD0",
         "LEGACY-ASSET-8EB0EDD06A4197FD3532"
       ],
       "legacy_requirement_implementation_status": "partial_static_implementation_evidence_unexecuted",
@@ -86,16 +208,16 @@
       ],
       "reviewed_edge_count": 3,
       "semantic_link_counts": {
-        "confirmed": 2,
+        "confirmed": 1,
         "rejected": 0,
-        "unresolved": 1
+        "unresolved": 2
       },
       "unit_candidate_id": "IRUNIT-HIL-FR-12-HELIX-OS"
     }
   ],
   "unreviewed_candidate_edges": {
     "IRUNIT-HIL-BR-01-HELIX-HARNESS": {
-      "asset_ids_sha256": "sha256:bc5ee6a71529a095464126565afccb97b50cbdffac985156b4ef09d1577d910f",
+      "asset_ids_sha256": "sha256:63391efa836850e739ead4e2cf95e45e0385c93dfcaf84ad3c7249c73019c46f",
       "count": 55,
       "source_pool": "phase_candidate_asset_ids"
     },

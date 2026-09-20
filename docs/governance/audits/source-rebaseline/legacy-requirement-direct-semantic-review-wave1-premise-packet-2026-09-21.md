@@ -32,14 +32,15 @@ archiveはread-onlyで照合し、旧runtime、hook、test、CI、adapterは実�
 | `known` | HELIX-OSはWorker、実行制御、authority、状態、証拠、CI、継続・復旧を管理する | 承認済みHELIX-OS L1と`product-boundary.md`、2026-09-21再読 |
 | `known` | BR-01 HARNESS unitは「人のL3承認後」「不可逆境界以外を無人完走する」を保持する | implementation crosswalk入力、parent revision |
 | `known` | FR-12 OS unitはagent定義生成、drift、未登録agent、model/effort、context/pathをfail-closeする義務を保持する | implementation crosswalk入力、parent revision |
-| `known` | 旧要求文書はL3／人間承認と可逆authoring自動完走／不可逆操作境界を明記するが、実装sourceではない | `helix-harness-requirements_v1.3.md:83-85,353-358` |
-| `known` | OS unitの旧sourceにはdrift reportとagent/model/effort guardの直接部分証拠があり、worker context/path packetはaccess enforcement未確認の部分候補として存在する | 対象archive sourceの引用行、未実行 |
+| `known` | BR-01のmigration source assetは同じ要求IDと原文を逐語保持するが、非実行の要求source snapshotである | `infinity-loop-platform-requirements.md:51-54` |
+| `known` | OS unitではagent/model/effort guardに直接部分証拠があり、drift reportとworker context/path packetはfail-close／access enforcement未確認の部分候補として存在する | 対象archive sourceの引用行、未実行 |
 | `assumption` | 6 edgeの小さいwaveで判定schemaと過大主張防止を先に固めると、残る216 unitへ同じreview単位を適用できる | wave拡張前にexact HEAD reviewで反例を確認する |
 | `unknown` | BR-01を満たす旧HARNESS実装source、consumer、verification、実行可能性 | 残る55 phase候補edgeとpool外検索へ返す |
 | `unknown` | OS 3 sourceの実consumer、hook／provider接続、receipt persistence、旧test結果 | 残る468 phase候補edgeとconsumer closureへ返す |
 | `unknown` | 2 unitのphase候補の最終採否、successor、L11、旧asset再利用可否 | PHCAP、RDP-001、RDP-003、人間decisionへ返す |
 | `conflict` | `requirement-discovery.ts`はhuman L3 gateへ部分一致するが、catalog製品候補はOS／Web-OSでHARNESSではない | 製品owner判断まで`unresolved` |
 | `conflict` | `requirement-authority.ts`はPHCAP-04候補だが、BR-01のhuman L3 gateや不可逆境界、自動完走を実装しない | `rejected` edgeとして保持 |
+| `conflict` | projection sourceはdriftを検出するが、user-modified driftをwarning＋skipとし一律fail-closeしない | FR-12のdrift failure atomは`unresolved` |
 | `stale` | archive sourceの存在は2026-09-21の稼働、依存解決、test pass、現行適合を示さない | 全実装sourceを`not_run`、consumer pendingに固定 |
 | `stale` | parent revision、crosswalk、asset catalog、manifest、製品境界が変われば本waveの集合と判定前提は現行性を失う | 入力digest不一致で再調査 |
 
@@ -53,8 +54,9 @@ archiveはread-onlyで照合し、旧runtime、hook、test、CI、adapterは実�
 
 - PHCAP-04候補の`requirement-authority.ts`は、review済みshadowのcanonical変換を扱っても、BR-01の人間L3承認と自動完走を満たさない。
 - human agreementを検査する`requirement-discovery.ts`はBR-01の一atomへ近くても、HARNESS ownerと無人完走責務が確定しない。
-- 旧要求文書がBR-01を逐語的に支えても、非実行source snapshotなので実装済みではない。
+- 同一IDのmigration sourceがBR-01原文を逐語保持しても、非実行source snapshotなので実装済みではない。
 - `agent-ssot-runtime-projection.ts`の`action: write`はread-only report内の値であり、実書込consumerの成立を示さない。
+- 同sourceはuser-modified driftをwarning＋skipにするため、drift検出からFR-12の一律fail-closeを生成できない。
 - agent guardがfail-closeしても、context path enforcementやadapter生成まで同じassetが満たすとは限らない。
 - 旧sourceがFR-12のatomへ部分対応しても、consumer、verification、運用成立が無ければ要求全体をimplementedにできない。
 
