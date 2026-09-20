@@ -1,5 +1,7 @@
 # HELIX 新世代共有context
 
+@AGENTS.md
+
 本repositoryの現行contextは[新世代作業入口](docs/governance/new-generation-start-here.md)から取得する。
 旧世代のClaude設定、role、command、hook、runtime方針は
 `archive/legacy-generation-2026-09-14/root/.claude/`および同階層の旧`CLAUDE.md`に隔離されている。
