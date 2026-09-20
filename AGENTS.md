@@ -12,9 +12,12 @@
 - GitHub、Issue、PR、CI、DB、memory、会話から要求意味・承認・完了を生成しない。
 - `archive/legacy-generation-2026-09-14/`内の旧workflow、CLI、hook、adapter、source、test、設定を実行しない。
 - 旧資産は意味、判断史、failure、consumerを調べるreferenceとしてだけ読み、新世代のbaseline、oracle、fallbackにしない。
+- HELIXの機能を最適化、拡張、再編するときは、設計・実装の前に旧HELIXの対応資産を資産明細台帳から特定し、対応するsource、判断史、failure、consumerを必ず読む。調査したasset ID、保持する契約、変更が必要な差分を記録する。
+- 旧HELIXに同じ役割の仕組みがある場合、独自の代替機構を新規開発しない。[旧資産の完全一致再利用統制](docs/governance/legacy-asset-reuse-control.md)に従い、完全一致再利用、意味の再導出、置換のいずれかを明示し、承認された差分だけを現行構造へ反映する。対応資産が無いと判断する場合も、検索範囲と結果を記録してから新規案へ進む。
+- この参照義務は旧資産の実行、現行pathへの無判断なcopy、旧CI・旧testをoracleとして使うことを許可しない。
 - 新世代CIは未構築である。旧CIを動かさない。
-- reviewer名や「reviewを通す」という依頼から実行通路を推定しない。GitHub、CLI、API、IDE、Workerの各通路は明示許可が必要である。Capability Leaseの対象PRでは、review依頼・delivery receipt・応答commentの投稿を、対象PRへのcomment作成だけを行う投稿command（`scaffold/lease/leasepost.py`）に限り、POは実行環境にこのcommandとexecutor command（`scaffold/lease/leasectl.py`）だけを許可する（例外は、非常経路と再bootstrapで`recovery`へ対象を引数に固定して許可する非常用commandと、AI側の各runtimeへ許可する削除不能の実測commandだけ）。GitHub APIへの直接書込み、他のPR・Issueへの書込み、comment編集・削除は許可しない。leaseの有効化の間に限り、非常用commandと同じく対象PRを引数に固定して、準備command（`scaffold/lease/leaseboot.py`。状態Issueと試験PRの作成、実測の実行だけで、mainへは押せない）を許可してよい。POがrootで1回実行する`scaffold/lease-bootstrap/install.sh`も同じ範囲である。有効化の後はこの準備commandは動かず、許可も外す。
-- PR作成・修正側はreview依頼と指摘対応までを担い、merge、post-merge read-after、対応Issueのcloseを実行しない。exact HEADのreviewを完了し、merge／close通路を明示許可されたレビュー対応側（作成側と異なるcontextのruntime。人を含めない）が、merge admission確認後にmergeとcloseを行う。有効な`merge_executor` leaseを持ち、作成側・reviewerと異なるcontextの主体は、leaseの条件を満たしたPRを人間の追加確認なしでmergeしてよい。人間が担うのは意味の判断と実行環境の許可設定・取消し・lease停止であり、PRをmergeしない。この責務割当は通路の明示許可を代替しない。
+- reviewer名や「reviewを通す」という依頼から実行通路を推定しない。GitHub、CLI、API、IDE、Workerの各通路は明示許可が必要である。
+- PR作成・修正側はreview依頼と指摘対応までを担い、merge、post-merge read-after、対応Issueのcloseを実行しない。exact HEADのreviewを完了し、merge／close通路を明示許可されたレビュー対応側が、merge admission確認後にmergeとcloseを行う。この責務割当は通路の明示許可を代替しない。
 - 未承認、missing、unknown、conflict、staleでは下流実装へ進まない。仮の物は`scaffold/`名前空間に限り、Scaffold Bindingへ登録して置く。正式な物が入ったら`scfctl check-replacement`→`retire`で置換・撤去し、残留を残さない。
 - secrets、PII、credentialsを書かない。不可逆操作、外部公開、release、deploymentは対象と作用を明示した許可を要する。
 

@@ -4,7 +4,7 @@
 
 ## PR区分
 
-<!-- 必ず一つ記入する: repository_foundation / concept_revision / planning_revision / research_premise / discovery_evidence / requirement / design_verification / implementation / operation_change / decision_record -->
+<!-- 必ず一つ記入する: repository_foundation / concept_revision / planning_revision / research_premise / discovery_evidence / requirement / design_verification / implementation / operation_change -->
 
 未選択
 
