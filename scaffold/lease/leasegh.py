@@ -22,8 +22,16 @@ GITHUB_API = "https://api.github.com"
 
 
 def app_key_dir():
-    """Appの秘密鍵の置き場所（実行userのhomeの`.helix-lease/apps/`。環境変数で変えない）。"""
-    return os.path.join(home_dir(), ".helix-lease", "apps")
+    """Appの秘密鍵の置き場所（実行userのhomeの`.helix-lease/apps/`。環境変数で変えない）。
+    symlinkや他から読める権限なら、差し替えを受け付けないため使わない（状態領域と同じ扱い）。"""
+    base = os.path.join(home_dir(), ".helix-lease")
+    d = os.path.join(base, "apps")
+    for x in (base, d):
+        if os.path.islink(x):
+            raise RuntimeError("秘密鍵の置き場所がsymlinkです（差し替えを受け付けない）: %s" % x)
+        if os.path.isdir(x) and os.stat(x).st_mode & 0o077:
+            raise RuntimeError("秘密鍵の置き場所が他のuserから読めます: %s" % x)
+    return d
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):

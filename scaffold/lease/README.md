@@ -238,3 +238,7 @@ POが行うのは、人間にしか越えられない境界だけである。設
 - GraphQL `deletePullRequestReview`の拒否時のerror種別（`leaseprobe.py`の`DENIED`／`UNAVAILABLE`の目印）。
 - Issueの`userContentEdits`の`diff`が直前の版の本文を返すか（projection_syncの編集履歴照合）。
 - `git merge-tree --write-tree`とGitHubのmerge結果のtreeが一致すること（試験PRの`refs/pull/N/merge`のtreeと比べる。mergeはしない）。
+
+- 自己検査のうち、`checkhome.sh`が「条件を満たすhomeでは止めない」ことを測る1件は、rootなしでそのようなdirectoryを作れないため、
+  `/usr`等の既存のdirectoryを借りる。借り先の中身はhostごとに違うため、どれも条件を満たさないhostではこの1件が落ちる。
+  その場合は実装の退行ではなく実行環境の差であり、`checkhome.sh`を直接実行して確かめる。

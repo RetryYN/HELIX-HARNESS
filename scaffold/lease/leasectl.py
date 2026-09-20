@@ -912,19 +912,43 @@ def run_boundary_tests():
     src_files = sorted(glob.glob(os.path.join(HERE, "*.py")) +
                        glob.glob(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "*.py")))
 
+    def tree_of(f):
+        return ast2.parse(open(f, encoding="utf-8").read())
+
     def parser_calls(f):
         out = []
-        for n in ast2.walk(ast2.parse(open(f, encoding="utf-8").read())):
+        for n in ast2.walk(tree_of(f)):
             if isinstance(n, ast2.Call):
                 name = getattr(n.func, "attr", None) or getattr(n.func, "id", None)
                 if name in ("ArgumentParser", "add_parser"):
                     out.append(n)
         return out
 
-    argp = [f for f in src_files if parser_calls(f)]
+    def imports_argparse(f):
+        return any((isinstance(n, ast2.Import) and any(al.name == "argparse" for al in n.names))
+                   or (isinstance(n, ast2.ImportFrom) and n.module == "argparse")
+                   for n in ast2.walk(tree_of(f)))
+
+    def alias_refs(f):
+        """parserの生成を別名へ束ねる書き方（AP = argparse.ArgumentParser 等）は、検査から外れるため許さない"""
+        tree = tree_of(f)   # 同じ木で見ないと、生成呼出しと参照を突き合わせられない
+        called = {id(n.func) for n in ast2.walk(tree) if isinstance(n, ast2.Call)
+                  and (getattr(n.func, "attr", None) or getattr(n.func, "id", None))
+                  in ("ArgumentParser", "add_parser")}
+        out = []
+        for n in ast2.walk(tree):
+            nm = n.attr if isinstance(n, ast2.Attribute) else (n.id if isinstance(n, ast2.Name) else None)
+            if nm in ("ArgumentParser", "add_parser") and id(n) not in called:
+                out.append(n)
+        return out
+
+    # argparseを使うfileは、必ず定義を拾えること（別名・helper経由で母集合から静かに消えない）
+    argp = [f for f in src_files if imports_argparse(f)]
     defs = [c for f in argp for c in parser_calls(f)]
-    abbrev_src = (len(argp) >= 6 and len(defs) >= 15
-                  and all(any(k.arg == "allow_abbrev" and k.value.value is False for k in c.keywords)
+    abbrev_src = (len(argp) >= 6 and len(defs) >= 15 and all(parser_calls(f) for f in argp)
+                  and not [f for f in src_files if alias_refs(f)]
+                  and all(any(k.arg == "allow_abbrev" and isinstance(k.value, ast2.Constant)
+                              and k.value.value is False for k in c.keywords)
                           for c in defs))
     rows.append({"id": "BT-no-duplicate-options", "ok": all(dup_rcs) and abbr and abbrev_src
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
@@ -1036,6 +1060,26 @@ def run_boundary_tests():
         except RuntimeError as e:
             app_refused.append("symlink" in str(e))
         os.unlink(os.path.join(d, "app.json"))
+        keep_home = G.home_dir
+        try:
+            kh = tempfile.mkdtemp(prefix="lease-key-")
+            app_tmp.append(kh)
+            G.home_dir = lambda: kh
+            os.symlink(sp_dir, os.path.join(kh, ".helix-lease"))
+            try:
+                G.app_key_dir()
+                app_refused.append(False)
+            except RuntimeError as e:
+                app_refused.append("symlink" in str(e))
+            os.unlink(os.path.join(kh, ".helix-lease"))
+            os.makedirs(os.path.join(kh, ".helix-lease", "apps"), mode=0o755)
+            try:
+                G.app_key_dir()
+                app_refused.append(False)
+            except RuntimeError as e:
+                app_refused.append("他のuserから読めます" in str(e))
+        finally:
+            G.home_dir = keep_home
         for bad in ("../../x", "a/b", "", ".."):      # lease記録のslugでもpathを外へ出せない
             try:
                 G.app_key_file(d, bad)
@@ -1059,13 +1103,16 @@ def run_boundary_tests():
             tree = ast3.parse(open(os.path.join(HERE, "leasegh.py"), encoding="utf-8").read())
             fn = next((n for n in ast3.walk(tree)
                        if isinstance(n, ast3.FunctionDef) and n.name == "app_permissions"), None)
-            return bool(fn) and any(getattr(c.func, "id", None) == "app_key_file"
-                                    for c in ast3.walk(fn) if isinstance(c, ast3.Call))
+            calls = [c for c in ast3.walk(fn) if isinstance(c, ast3.Call)] if fn else []
+            joins = [c for c in calls if getattr(c.func, "attr", None) == "join"
+                     and any(getattr(x, "id", None) == "kdir" for x in c.args)]
+            return bool(fn) and not joins and any(getattr(c.func, "id", None) == "app_key_file"
+                                                  for c in calls)
 
         rows.append({"id": "BT-state-no-symlink",
                      "ok": refused_link and refused_file and refused_loose and wrote and mode_ok
                      and read_refused == [True] * 6
-                     and app_refused == [True] * 11
+                     and app_refused == [True] * 13
                      # 実測側も、lease記録のslugをそのままpathにしない（呼出しの有無を構文で見る）
                      and uses_key_file() and (os.stat(d).st_mode & 0o077) == 0})
     finally:
