@@ -32,7 +32,7 @@ archiveはread-onlyで照合し、旧runtime、hook、test、CI、adapterは実�
 | `known` | HELIX-OSはWorker、実行制御、authority、状態、証拠、CI、継続・復旧を管理する | 承認済みHELIX-OS L1と`product-boundary.md`、2026-09-21再読 |
 | `known` | BR-01 HARNESS unitは「人のL3承認後」「不可逆境界以外を無人完走する」を保持する | implementation crosswalk入力、parent revision |
 | `known` | FR-12 OS unitはagent定義生成、drift、未登録agent、model/effort、context/pathをfail-closeする義務を保持する | implementation crosswalk入力、parent revision |
-| `known` | BR-01のmigration source assetは同じ要求IDと原文を逐語保持するが、非実行の要求source snapshotである | `infinity-loop-platform-requirements.md:51-54` |
+| `known` | BR-01のmigration source assetは同じ要求IDと原文を逐語保持するが、非実行の要求source snapshotである | `infinity-loop-platform-requirements.md:53` |
 | `known` | OS unitではagent/model/effort guardに直接部分証拠があり、drift reportとworker context/path packetはfail-close／access enforcement未確認の部分候補として存在する | 対象archive sourceの引用行、未実行 |
 | `assumption` | 6 edgeの小さいwaveで判定schemaと過大主張防止を先に固めると、残る216 unitへ同じreview単位を適用できる | wave拡張前にexact HEAD reviewで反例を確認する |
 | `unknown` | BR-01を満たす旧HARNESS実装source、consumer、verification、実行可能性 | 残る55 phase候補edgeとpool外検索へ返す |

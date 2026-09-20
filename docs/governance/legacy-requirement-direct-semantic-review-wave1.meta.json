@@ -9,7 +9,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:7d81f54b242d7586fbef0b1df028af6009a81845470497b55052fdda2b42d741",
+  "output_sha256": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
   "parent_revision": "8e570941f6fabcfc4c60877b493c6fe7fd9fc1f3",
   "record_count": 6,
   "reviewed_edges": [
@@ -42,7 +42,7 @@
     "IRUNIT-HIL-BR-01-HELIX-HARNESS",
     "IRUNIT-HIL-FR-12-HELIX-OS"
   ],
-  "schema_revision": 2,
+  "schema_revision": 3,
   "semantic_link_counts": {
     "confirmed": 2,
     "rejected": 1,
@@ -72,16 +72,23 @@
           }
         ],
         "atom_inventory_sha256": "sha256:07a306c8281377c17d321c57a68992527fbfdd60428ae612cae30f3923813eac",
-        "confirmed_atom_ids": [
+        "contract_confirmed_atom_ids": [
           "BR01-HARNESS-A01",
           "BR01-HARNESS-A02"
         ],
-        "confirmed_atom_ids_sha256": "sha256:24e8d41a0e7aab122a6f7330a5e9d4e7f6d8f3f261328e416ba15f6c0db2e2d2",
-        "semantic_edge_coverage_complete": true,
-        "uncovered_atom_ids": [],
-        "uncovered_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "unresolved_atom_ids": [],
-        "unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        "contract_confirmed_atom_ids_sha256": "sha256:24e8d41a0e7aab122a6f7330a5e9d4e7f6d8f3f261328e416ba15f6c0db2e2d2",
+        "contract_semantic_edge_coverage_complete": true,
+        "implementation_confirmed_atom_ids": [],
+        "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_uncovered_atom_ids": [
+          "BR01-HARNESS-A02"
+        ],
+        "implementation_uncovered_atom_ids_sha256": "sha256:8b85bc6ba817a3014ca02f4a5a14c21c8874076480822e7c78dd24fa97030e39",
+        "implementation_unresolved_atom_ids": [
+          "BR01-HARNESS-A01"
+        ],
+        "implementation_unresolved_atom_ids_sha256": "sha256:822a7c975481c61fe8f1dd8d5611ebe4564893f57174e2921262a28335e7ca2f",
+        "semantic_edge_coverage_complete": false
       },
       "consumer_closure_status": "pending",
       "current_requirement_implementation_status": "not_established",
@@ -104,6 +111,14 @@
     {
       "atom_coverage_receipt": {
         "atom_inventory": [
+          {
+            "atom_id": "FR12-OS-A00",
+            "kind": "responsible_component",
+            "source_fragments": [
+              "Agent Sync/Guardは"
+            ],
+            "text": "Agent Sync/Guard"
+          },
           {
             "atom_id": "FR12-OS-A01",
             "kind": "behavior",
@@ -152,7 +167,7 @@
             "atom_id": "FR12-OS-A06",
             "kind": "failure",
             "source_fragments": [
-              "forbidden path",
+              "forbidden pathを",
               "fail-closeする"
             ],
             "text": "forbidden pathをfail-closeする"
@@ -174,25 +189,29 @@
             "text": "drift/guard receipt"
           }
         ],
-        "atom_inventory_sha256": "sha256:f9fd76fc859fe9b58e1588ab5f39cd124d4965e16d4ed6a766336c1d581a5fd3",
-        "confirmed_atom_ids": [
+        "atom_inventory_sha256": "sha256:1ae08db517e3ca56da611cdfbc54b59b75f22b0c7b98df26143699d7ab06ed48",
+        "contract_confirmed_atom_ids": [],
+        "contract_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "contract_semantic_edge_coverage_complete": false,
+        "implementation_confirmed_atom_ids": [
           "FR12-OS-A03",
           "FR12-OS-A04"
         ],
-        "confirmed_atom_ids_sha256": "sha256:2be23b6b375d45136b76394ad9e6d9bda7b795057e2f9da3c001a405daaaa407",
-        "semantic_edge_coverage_complete": false,
-        "uncovered_atom_ids": [
+        "implementation_confirmed_atom_ids_sha256": "sha256:2be23b6b375d45136b76394ad9e6d9bda7b795057e2f9da3c001a405daaaa407",
+        "implementation_uncovered_atom_ids": [
+          "FR12-OS-A00",
           "FR12-OS-A01",
           "FR12-OS-A05",
           "FR12-OS-A07",
           "FR12-OS-A08"
         ],
-        "uncovered_atom_ids_sha256": "sha256:ece8ea3c3e4ca0e45c8373284a78459508f46ab1314c6682cde9c9221f661993",
-        "unresolved_atom_ids": [
+        "implementation_uncovered_atom_ids_sha256": "sha256:9db8d189dd4199b881eece261cb23f006a69257e8ca87cbf33e0e20843f1a7e0",
+        "implementation_unresolved_atom_ids": [
           "FR12-OS-A02",
           "FR12-OS-A06"
         ],
-        "unresolved_atom_ids_sha256": "sha256:bcee75d0f66d3a975ff54ad5525009b47d5d1d14a689165f7be4fcd6468aa56d"
+        "implementation_unresolved_atom_ids_sha256": "sha256:bcee75d0f66d3a975ff54ad5525009b47d5d1d14a689165f7be4fcd6468aa56d",
+        "semantic_edge_coverage_complete": false
       },
       "consumer_closure_status": "pending",
       "current_requirement_implementation_status": "not_established",
