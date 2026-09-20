@@ -35,7 +35,11 @@ metadataへ保存する。verifierはcatalogとarchive bytesからこの集合�
 - 同じ要求IDの原文snapshotは`confirmed`だが、契約だけで実装ではない。
 - L5 designは要求atomを具体化していても`unresolved`の`design_contract_evidence`とし、実装被覆へ算入しない。
 - implementation sourceがatomの一部しか扱わない場合は`unresolved`、隣接機能だけの場合は`rejected`とする。
+- `unresolved` edgeは静的実装証拠を生成しない。旧要求実装状態がunknown、またはbounded searchに未review候補が
+  残る間は具体的な縮退先を確定せず、aggregateを`unresolved_legacy_implementation_unknown`に保つ。
 - archive内runtime、test、hook、CI、adapterは実行しない。旧test設計も実行証拠にしない。
 - consumer closure、現行実装、phase authority、製品境界、人間判断を生成せず、`new_build_allowed:false`を維持する。
 
 wave 1とwave 2のledger／metadataをdigestで入力へ固定し、全waveのedge集合の非重複と累積件数を検査する。
+status表の状態値はmetadataから導出し、単独code spanの`implemented`、`tested`、`operational`を過大状態語として拒否する。
+atom無損失被覆で使うconnectiveは短い許可語だけに限定し、意味句をconnectiveへ逃がさない。

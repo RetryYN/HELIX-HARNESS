@@ -68,11 +68,11 @@ def coverage(uid,records):
  contract=sorted({a for r in rr if r['artifact_evidence_kind']=='requirement' and r['semantic_link_status']=='confirmed' for a in r['covered_requirement_atom_ids']})
  design=sorted({a for r in rr if r['artifact_evidence_kind']=='design' for a in r['covered_requirement_atom_ids']})
  implc=sorted({a for r in rr if r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='confirmed' for a in r['covered_requirement_atom_ids']})
- implu=sorted({a for r in rr if r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='unresolved' for a in r['covered_requirement_atom_ids']})
+ implu=sorted({a for r in rr if r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='unresolved' for a in r['covered_requirement_atom_ids']}-set(implc))
  uncovered=sorted(set(ids)-set(implc)-set(implu)); noe=sorted(set(ids)-set(design)-set(implc)-set(implu)); shared=sorted(x['atom_id'] for x in inv if x['shared_with_units']); exclusive=sorted(set(ids)-set(shared))
  result={'atom_inventory':inv,'connective_fragments':CONNECTIVES[uid],'contract_confirmed_atom_ids':contract,'design_partial_atom_ids':design,'implementation_confirmed_atom_ids':implc,'implementation_unresolved_atom_ids':implu,'implementation_uncovered_atom_ids':uncovered,'no_evidence_atom_ids':noe,'shared_atom_ids':shared,'product_exclusive_atom_ids':exclusive}
  for k in list(result): result[k+'_sha256']=canon(result[k])
- result.update(contract_semantic_edge_coverage_complete=set(contract)==set(ids),semantic_edge_coverage_complete=not implu and not uncovered,product_boundary_resolution_complete=not any(x['boundary_review_state']=='product_boundary_pending_human_decision' for x in inv),product_exclusive_contract_coverage_complete=bool(exclusive) and set(exclusive)<=set(contract))
+ result.update(contract_semantic_edge_coverage_complete=set(contract)==set(ids),semantic_edge_coverage_complete=not implu and not uncovered,product_boundary_resolution_complete=not shared,product_exclusive_contract_coverage_complete=bool(exclusive) and set(exclusive)<=set(contract))
  return result
 
 def main():
@@ -116,6 +116,13 @@ def main():
   if expected_relation=='same_requirement_id_exact_restatement': require(r['artifact_evidence_kind']=='requirement' and r['semantic_link_status']=='confirmed',f'要求artifact境界不一致: {rid}')
   if expected_relation=='design_contract_evidence': require(r['artifact_evidence_kind']=='design' and r['semantic_link_status']=='unresolved',f'designを実装算入: {rid}')
   if expected_relation in {'partial_implementation_behavior_evidence_unexecuted','adjacent_implementation_nonmatching'}: require(r['artifact_evidence_kind']=='implementation_source',f'実装relation artifact不一致: {rid}')
+  contribution_by_relation={
+   'same_requirement_id_exact_source_contract_not_implementation':'contract_only_no_implementation_claim',
+   'design_contract_evidence':'design_contract_only_no_implementation_claim',
+   'partial_implementation_behavior_evidence_unexecuted':'partial_static_implementation_candidate_unresolved_no_implementation_claim',
+   'adjacent_implementation_nonmatching':'none_rejected'}
+  require(r['legacy_requirement_implementation_contribution']==contribution_by_relation[r['semantic_relation']],f'実装contribution不一致: {rid}')
+  if r['legacy_requirement_implementation_contribution']=='partial_static_implementation_evidence_unexecuted': require(r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='confirmed',f'未確定edgeから実装証拠生成: {rid}')
   bound=[]
   for b in r['evidence_atom_bindings']:
    require(b['atom_id'] in ids and b['evidence_ref_indexes'] and all(0<=i<len(excerpts) for i in b['evidence_ref_indexes']),f'binding index不一致: {rid}')
@@ -127,6 +134,9 @@ def main():
    bound.append(b['atom_id'])
   require(sorted(bound)==sorted(ids),f'covered atom/binding不一致: {rid}')
  for uid,atoms in ATOMS.items():
+  allowed_connectives={'/','、','と','を'}; connectives=CONNECTIVES[uid]
+  require(len(connectives)==len(set(connectives)) and all(c in allowed_connectives and 1<=len(c)<=2 for c in connectives),f'connective allowlist不一致: {uid}')
+  require(all(c not in f for c in connectives for a in atoms for f in a['source_fragments']),f'connectiveがatom意味fragmentと重複: {uid}')
   statement=' '.join(cross[uid]['source_text_spans']); fragments=[f for a in atoms for f in a['source_fragments']]+CONNECTIVES[uid]
   require(not meaningful_uncovered(statement,fragments),f'atom無損失被覆不一致: {uid}: {meaningful_uncovered(statement,fragments)}')
   overlap={x['source_text']:x for x in decomp[uid].get('shared_source_overlaps',[])}
@@ -144,13 +154,19 @@ def main():
   rr=[r for r in records if r['unit_candidate_id']==uid]; require(a['atom_coverage_receipt']==coverage(uid,records),f'coverage receipt不一致: {uid}')
   require(a['semantic_link_counts']=={s:sum(r['semantic_link_status']==s for r in rr) for s in ('confirmed','rejected','unresolved')},f'unit count不一致: {uid}')
   require(a['phase_authority_status']=='unresolved_no_direct_phase_candidate' and a['phase_capability_assessments']==[] and a['current_requirement_implementation_status']=='not_established' and a['legacy_requirement_implementation_status'].startswith('unknown_') and not a['direct_confirmed_implementation_asset_ids'] and a['consumer_closure_status']=='pending' and not a['new_build_allowed'],f'aggregate過大主張: {uid}')
+  require(not a['legacy_requirement_implementation_status'].startswith('unknown_') or a['degradation_assessment']=='unresolved_legacy_implementation_unknown',f'unknown状態で縮退先断定: {uid}')
  counts={s:sum(r['semantic_link_status']==s for r in records) for s in ('confirmed','rejected','unresolved')}; require(meta['semantic_link_counts']==counts=={'confirmed':3,'rejected':2,'unresolved':4},'batch count不一致')
  prior_edges=set(); prior_units=set(); batches=[]
  for n,(lp,mp) in enumerate(PRIOR,1):
   m=json.loads(mp.read_text()); prior_edges|={(x['unit_candidate_id'],x['asset_id']) for x in m['reviewed_edges']}; prior_units|=set(m['reviewed_unit_ids']); batches.append({'batch_id':m['batch_id'],'ledger_sha256':digest(lp.read_bytes()),'meta_sha256':digest(mp.read_bytes())})
  require(not edges&prior_edges and meta['prior_review_batches']==batches,'prior wave束縛/edge重複')
  require(meta['cumulative_reviewed_edge_count']==len(prior_edges|edges)==24 and meta['cumulative_reviewed_unit_count']==len(prior_units|set(ATOMS))==8,'累積件数不一致')
- text=STATUS.read_text(); require('218要求unitのうち新たに3 unit、候補edge 9件' in text and 'wave 1・2と合わせて8 unit、24 edge' in text and '残る210 unitは未着手' in text,'status累積文不一致')
+ text=STATUS.read_text()
+ batch=re.search(r'218要求unitのうち新たに(\d+) unit、候補edge (\d+)件',text); cumulative=re.search(r'wave 1・2と合わせて(\d+) unit、(\d+) edge',text); remaining=re.search(r'残る(\d+) unitは未着手',text)
+ require(batch and [int(x) for x in batch.groups()]==[len(ATOMS),len(records)],'status batch件数不一致')
+ require(cumulative and [int(x) for x in cumulative.groups()]==[meta['cumulative_reviewed_unit_count'],meta['cumulative_reviewed_edge_count']],'status累積件数不一致')
+ require(remaining and int(remaining.group(1))==len(cross)-meta['cumulative_reviewed_unit_count'],'status未着手件数不一致')
+ forbidden={'implemented','tested','operational'}; code_tokens=set(re.findall(r'`([^`\n]+)`',text)); require(not forbidden&code_tokens,f'status過大状態語: {sorted(forbidden&code_tokens)}')
  table=[]
  for line in text.splitlines():
   if line.startswith('|'): table.append([c.strip().strip('`') for c in line.strip('|').split('|')])

@@ -15,9 +15,9 @@ pr_class: research_premise
 
 | # | unit | 製品 | 旧要求実装状態 | 現行要求実装状態 | 縮退評価 |
 |---:|---|---|---|---|---|
-| 1 | `IRUNIT-HIL-FR-33-HELIX-HARNESS` | HELIX-HARNESS | `unknown_pending_remaining_bounded_search_and_consumer_review` | `not_established` | `degraded_to_runtime_marker_and_sqlite_driver_checks` |
-| 2 | `IRUNIT-HIL-NFR-02-HELIX-HARNESS` | HELIX-HARNESS | `unknown_pending_remaining_bounded_search_and_consumer_review` | `not_established` | `degraded_to_memory_write_nudge_without_role_separation` |
-| 3 | `IRUNIT-HIL-NFR-03-HELIX-HARNESS` | HELIX-HARNESS | `unknown_pending_remaining_bounded_search_and_consumer_review` | `not_established` | `degraded_to_reverse_r0_candidate_query` |
+| 1 | `IRUNIT-HIL-FR-33-HELIX-HARNESS` | HELIX-HARNESS | `unknown_pending_remaining_bounded_search_and_consumer_review` | `not_established` | `unresolved_legacy_implementation_unknown` |
+| 2 | `IRUNIT-HIL-NFR-02-HELIX-HARNESS` | HELIX-HARNESS | `unknown_pending_remaining_bounded_search_and_consumer_review` | `not_established` | `unresolved_legacy_implementation_unknown` |
+| 3 | `IRUNIT-HIL-NFR-03-HELIX-HARNESS` | HELIX-HARNESS | `unknown_pending_remaining_bounded_search_and_consumer_review` | `not_established` | `unresolved_legacy_implementation_unknown` |
 
 `HIL-FR-33`はL5 designに全surface inventory、classifier、historical allowlist、JSONL artifact候補がある。
 旧`runtime-portability.ts`はruntime markerとSQLite driverを検査するが、package、lockfile、CI、hook、template、
@@ -31,6 +31,9 @@ setup、distributionを含む全surface分類とclassified ledgerを成立させ
 `HIL-NFR-03`はL5 designに全IssueのR0–R4 workload、免除禁止、phase skip禁止、budget checkpointがある。
 旧`reverse-candidates.ts`は赤artifactとwarn findingからR0起票候補を返すquery-only機能であり、全Issue分母や
 免除・skip・budget条件を検査しないため、隣接実装として`rejected`とした。
+
+これら3つの隣接sourceは縮退先の候補を示すが、未review候補55件とconsumer chainが残るため、旧要求全体の
+縮退先とは確定しない。
 
 ## atom被覆
 
