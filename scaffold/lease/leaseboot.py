@@ -173,7 +173,7 @@ def cmd_probe(a, gh):
         print(json.dumps({"mode": "dry-run", "runs": runs}, ensure_ascii=False, indent=1))
         return 0 if not [r for r in rcs if r] else 1
     fresh = [c for c in G.comments_of(gh, lease["status_issue"]) if c["id"] not in before]
-    ids = sorted(c["id"] for c in fresh if (C.lease_block(c.get("body")) or [{}])[0].get("kind") == "lease_probe_result")
+    ids = probe_result_ids(fresh, C.ai_logins(lease))
     out = dict(lease)
     pr_ = dict(out.get("probe") or {})
     pr_["activation_results"] = ids
@@ -256,6 +256,13 @@ def protection_check(gh):
     """保護設定・rulesetを1回の取得で判定する（判定と証拠を同じ観測から作る）。"""
     v = G.protection(gh)
     return {"ok": not v.get("unavailable") and isinstance(v.get("branch_protection"), dict), "value": v}
+
+
+def probe_result_ids(comments, ai_logins):
+    """実測の結果commentのうち、AI側identityが書いたものだけ（第三者のcommentを有効化の証拠に混ぜない）。"""
+    return sorted(c["id"] for c in comments
+                  if c.get("user") in (ai_logins or [])
+                  and (C.lease_block(c.get("body")) or [{}])[0].get("kind") == "lease_probe_result")
 
 
 def verdict_activity(act):

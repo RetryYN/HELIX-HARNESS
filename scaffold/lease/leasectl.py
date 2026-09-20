@@ -468,7 +468,7 @@ def collector_tests():
 def run_boundary_tests():
     """書込み境界の自己検査（偽のrunnerで、GitHubへ何も送らない）。"""
     import leasefixtures as F
-    import pwd, subprocess as sp2
+    import ast as ast_, pwd, subprocess as sp2
     rows = []
 
     class Fake(G.Runner):
@@ -849,6 +849,21 @@ def run_boundary_tests():
                      and all(pinned)})
     finally:
         shutil.rmtree(tp, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    # 実測の結果commentは、AI側identityが書いたものだけを有効化の証拠にする
+    blk = "```helix-lease\n%s\n```" % json.dumps({"kind": "lease_probe_result"}, ensure_ascii=False)
+    cm = [{"id": 1, "user": "helix-app[bot]", "body": blk},
+          {"id": 2, "user": "someone", "body": blk},
+          {"id": 3, "user": "helix-app[bot]", "body": "ただのcomment"}]
+    rows.append({"id": "BT-probe-result-authors",
+                 "ok": BT0.probe_result_ids(cm, ["helix-app[bot]"]) == [1]
+                 and BT0.probe_result_ids(cm, []) == []})
+    # 投稿commandの宛先は、引数のPRのcommentだけ（他のPR・Issueへは書けない）
+    lp_src = ast_.parse(open(os.path.join(HERE, "leasepost.py"), encoding="utf-8").read())
+    lp_writes = [n for n in ast_.walk(lp_src) if isinstance(n, ast_.Call)
+                 and getattr(n.func, "attr", None) == "Writes"]
+    rows.append({"id": "BT-leasepost-target",
+                 "ok": len(lp_writes) == 1
+                 and ast_.unparse(lp_writes[0]) == "G.Writes({('comment', a.pr)} if a.apply else ())"})
     # 「未検証」の実測は、値が揃ったときだけ成立する（取得できない・期待と違う場合は不成立）
     ok_app = [{"slug": "helix-app", "app_slug": "helix-app", "repository_selection": "selected",
                "permissions": dict(C.APP_PERMISSIONS_ALLOWED)}]
