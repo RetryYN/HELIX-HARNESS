@@ -849,6 +849,46 @@ def run_boundary_tests():
                      and all(pinned)})
     finally:
         shutil.rmtree(tp, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
+    def wired(src):
+        """非常経路の3つの出口（read-after・merge_result・停止のnote）へ劣化が渡っていること"""
+        t = ast_.parse(src)
+        calls = {}
+        for n in ast_.walk(t):
+            if isinstance(n, ast_.Call):
+                nm = getattr(n.func, "attr", None)
+                if nm in ("read_after", "post_merge_result", "suspend"):
+                    calls.setdefault(nm, []).append(ast_.unparse(n))
+        return (len(calls) == 3
+                and all(any("degraded" in u for u in v) for v in calls.values()))
+
+    def waits(degraded):
+        """read_afterが、反映を待つためにsleepした回数"""
+        class Stub:
+            def __init__(self):
+                self.n = 0
+
+            def sleep(self, _s):
+                self.n += 1
+
+            def time(self):
+                return 0 if self.n < 2 else 10 ** 9   # 2回で打ち切る
+
+        st = Stub()
+        keep_t, keep_s = globals()["time"], G.snapshot_after
+        try:
+            globals()["time"] = st
+            G.snapshot_after = lambda *a2, **k2: {"pr_merged": True, "activity_has_push": False}
+
+            class GhStub:
+                def git(self, *a2, **k2):
+                    return None
+
+            read_after(GhStub(), {"pr": {"number": 7}}, "d" * 40, "c" * 40, 7,
+                       degraded=("理由" if degraded else None), wait=1)
+        finally:
+            globals()["time"], G.snapshot_after = keep_t, keep_s
+        return st.n
+
     # 非常経路で代替（第1親の連鎖）を使ったことは、commit message・merge_result・状態commentの3つに残す
     snap = {"pr": {"number": 7}, "main_head": "a" * 40, "pair_head": "b" * 40, "merge_tree": "c" * 40,
             "pair_base": "a" * 40}
@@ -859,8 +899,10 @@ def run_boundary_tests():
     rows.append({"id": "BT-degraded-recorded",
                  "ok": deg in body_d and '"degraded"' in body_d and "degraded" not in body_n
                  and deg in C.receipt_message(snap, {"reasons": []}, None, "x", recovery=True, degraded=deg)
-                 # 停止のnoteとmerge_resultへも同じ理由を渡している
-                 and "degraded=degraded" in rm_src and "劣化: %s。" in rm_src
+                 # 非常経路が、劣化の理由をread-after・merge_result・停止のnoteへ実際に渡している
+                 and wired(rm_src)
+                 # 劣化のときは、現れ得ない反映を待たない（待つ回数で測る）
+                 and waits(True) == 0 and waits(False) > 0
                  # merge後のread-afterは、劣化のときactivityの照合に代えない
                  and not [x for x in C.evaluate_after(
                      {"main_head": "d" * 40, "main_tree": "c" * 40, "main_parents": ["a" * 40, "b" * 40],
