@@ -30,12 +30,12 @@ PR #1886を、新しいCapability Leaseを独自開発する作業から、旧HE
 
 ## 旧経路がすでに持っていた契約
 
-1. merge入口は`helix github pr-merge-reviewed --receipt`の一つで、既定はdry-run、`--apply`のときだけ書き込む。guard hookは入口外の直接`gh pr merge`を拒否し、単一入口を実行面でも強制する。
+1. merge入口は`helix github pr-merge-reviewed --receipt`の一つで、既定はdry-run、`--apply`のときだけ書き込む。guard hookは入口外の直接`gh pr merge`とPR close／reopenを拒否し、単一入口を実行面でも強制する。この拒否はoverride対象外であり、nonce付き記録によるoverrideは別層の破壊的git操作だけに限る。
 2. repository、PR番号、PR URL、review済みHEADをreceiptと現在のGitHub状態で照合する。
 3. Claude専用receipt経路では、PRがopenで、review receiptがcurrent HEADへ束縛され、approveかつblocker 0であることを求める。
 4. Claude専用receipt経路ではauthorとreviewerのruntimeを分け、review commentのread-after、author runtimeの実測、過去のrequest changesが後続reviewで解消されていること、CI generationを確認する。
 5. provider-neutral v4 receipt経路は上記より弱く、判定理由へ常に`provider_neutral_receipt_advisory_only`を加えるためmergeを成立させない。この停止境界を維持し、他providerのreview応答からmerge authorityを生成しない。
-6. receiptが示すCI runは同じHEAD、completed、success、期待するworkflowとgenerationでなければならない。required checkも全件passを求める。
+6. Claude専用receipt経路では、CI runが同じHEAD、completed、event=`pull_request`、name=`harness-check`、successで、attempt／generationも一致することを求める。provider-neutral v4経路のCI照合はhead SHA一致とconclusion=`success`だけである。required check全件passは両経路に共通する。
 7. DBが収束し、receiptがその状態へ束縛されていなければ`db_not_converged`としてmergeを拒否する。
 8. 変更された計画・scope manifestとreview receiptをjoinし、対象外の変更や必要なcompanion pathの欠落を拒否する。
 9. mergeは`gh pr merge --merge --match-head-commit <review済みHEAD>`でHEAD driftを拒否する。
@@ -52,7 +52,7 @@ PR #1886を、新しいCapability Leaseを独自開発する作業から、旧HE
 | 独立review | 作成側とレビュー対応側の分離、Claude×Codex GUI通知scaffold（PR #1885） | GUI応答をcanonical receiptへ変換する正式契約 |
 | provider-neutral receipt | GUI通知で他providerの応答を運べる | 旧v4はadvisory onlyでmergeを成立させない。GUI応答を強いreceiptへ昇格する要件・独立性・認証は未成立 |
 | DB収束 | 対応物なし | 旧DB停止条件を何で置換するか、またはどの判断で削除するか未確定 |
-| 単一入口の迂回拒否 | 現行規則では直接mergeを禁止 | 現行`helix` commandと同時に成立する実行面のguardは未構築 |
+| 単一入口の迂回拒否 | 現行規則では直接mergeを禁止 | 現行`helix` commandと同時に成立する実行面のguardは未構築。直接merge／PR close／reopenをoverride不能で拒否し、破壊的git操作だけを記録付きoverrideの対象にする境界の採否も未確定 |
 | HEAD固定merge | 現行運用モデルのmerge直前再取得 | 現行`helix` wrapper内の単一commandは未構築 |
 | merge後read-after | 現行運用モデルに責務として存在 | digest付きreceiptの現行保存先とschema |
 
