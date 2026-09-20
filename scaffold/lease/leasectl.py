@@ -1041,11 +1041,25 @@ def run_boundary_tests():
                                   "--sha", "a" * 40, "--sha=" + "b" * 40, "--repo", "x/y", "--pr", "1"])
         rc_adup, out_adup = sh_run([sys.executable, "-I", "-B", os.path.join(boot_dir, "appsetup.py"),
                                     "token", "--repo", "a", "--repo=b"])
-        ok_home = True
-        if os.path.isdir("/root") and pwd.getpwuid(os.stat("/root").st_uid).pw_name == "root" \
-                and not os.path.islink("/root") and (os.stat("/root").st_mode & 0o022) == 0:
-            rc_ok, _ = sh_run(["sh", ck, "root", "/root", ""])   # 条件を満たすhomeでは止めない
+        # 条件を満たすhomeでは止めないことも測る（常に拒否へ壊れたら気づく）。
+        # rootを使わずに作れないため、root所有で他から書けない既存のdirectoryを借りる。
+        def usable(d):
+            try:
+                st = os.stat(d)
+            except OSError:
+                return False
+            return (os.path.isdir(d) and not os.path.islink(d) and st.st_uid == 0
+                    and (st.st_mode & 0o022) == 0)
+
+        fixture = next((d for d in ("/usr", "/root", "/etc") if usable(d)), None)
+        ok_home = False
+        if fixture:
+            rc_ok, out_ok = sh_run(["sh", ck, "root", fixture, ""])
             ok_home = rc_ok == 0
+            if not ok_home:
+                print("NG BT-install-args-home（合格するはずのhomeで拒否）", fixture, out_ok.strip()[:200])
+        else:
+            print("NG BT-install-args-home（合格の場合を測れるdirectoryが無い）")
         rows.append({"id": "BT-install-args-home",
                      "ok": (rc_anc, rc_link, rc_same, rc_ailink, rc_other,
                             rc_mode, rc_ent, rc_dup, rc_adup) == (2,) * 9
